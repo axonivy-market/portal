@@ -20,6 +20,7 @@ public enum GlobalVariable {
   HIDE_TIME(GlobalVariableType.SELECTION, Option.FALSE.toString(), "hideTimeNote"),
   SHOW_TASK_DURATION_TIME(GlobalVariableType.SELECTION, Option.TRUE.toString(), "showTaskDurationTime"),
   SHOW_CASE_DURATION_TIME(GlobalVariableType.SELECTION, Option.TRUE.toString(), "showCaseDurationTime"),
+  APPLY_JSON_CONFIGURATION_FILE_FOR_TASK_DETAILS(GlobalVariableType.SELECTION, Option.TRUE.toString(), "applyJsonConfigurationFileForTaskDetails"),
   EXPRESS_END_PAGE(GlobalVariableType.SELECTION, Option.TRUE.toString(), "expressEndPageNote"),
   REFRESH_TASK_LIST_INTERVAL(GlobalVariableType.NUMBER, String.valueOf(TaskWidgetBean.DEFAULT_TASK_LIST_REFRESH_INTERVAL), "refreshTaskListIntervalNote"),
   UPLOAD_DOCUMENT_WHITELIST_EXTENSION(GlobalVariableType.TEXT, String.join(", ", DocumentExtensionConstants.DEFAULT_WHITELIST_EXTENSION), "uploadDocumentWhiteListExtensionNote"),
@@ -46,10 +47,11 @@ public enum GlobalVariable {
   SHOW_GLOBAL_SEARCH(GlobalVariableType.SELECTION, Option.TRUE.toString(), "showGlobalSearch"),
   SHOW_BUTTON_ICON(GlobalVariableType.SELECTION, Option.TRUE.toString(), "showButtonIcon"),
   DEFAULT_SORT_FIELD_OF_TASK_LIST(GlobalVariableType.EXTERNAL_SELECTION, TaskSortField.ID.name(), "defaultSortFieldOfTaskList", getTaskListSortFields()),
-  DEFAULT_SORT_DIRECTION_OF_TASK_LIST(GlobalVariableType.EXTERNAL_SELECTION, SortDirection.DESCENDING.name(), "defaultSortDirectionOfTaskList", getSortDirections()),
+  DEFAULT_SORT_DIRECTION_OF_TASK_LIST(GlobalVariableType.EXTERNAL_SELECTION, SortDirection.DESC.name(), "defaultSortDirectionOfTaskList", getSortDirections()),
   DEFAULT_SORT_FIELD_OF_CASE_LIST(GlobalVariableType.EXTERNAL_SELECTION, CaseSortField.ID.name(), "defaultSortFieldOfCaseList", getCaseListSortFields()),
-  DEFAULT_SORT_DIRECTION_OF_CASE_LIST(GlobalVariableType.EXTERNAL_SELECTION, SortDirection.DESCENDING.name(), "defaultSortDirectionOfCaseList", getSortDirections()),
-  DEFAULT_HOMEPAGE(GlobalVariableType.EXTERNAL_SELECTION, StringUtils.capitalize(HomepageType.DASHBOARD.name().toLowerCase()), "defaultHomepage");
+  DEFAULT_SORT_DIRECTION_OF_CASE_LIST(GlobalVariableType.EXTERNAL_SELECTION, SortDirection.DESC.name(), "defaultSortDirectionOfCaseList", getSortDirections()),
+  DEFAULT_HOMEPAGE(GlobalVariableType.EXTERNAL_SELECTION, StringUtils.capitalize(HomepageType.DASHBOARD.name().toLowerCase()), "defaultHomepage"),
+  DISPLAY_ALL_USERS_OF_TASK_ACTIVATOR(GlobalVariableType.SELECTION, Option.FALSE.toString(), "displayAllUsersOfTaskActivator");
   
   private GlobalVariableType type;
   private String defaultValue;
@@ -132,7 +134,8 @@ public enum GlobalVariable {
   private static Map<String, String> getTaskListSortFields() {
     Map<String, String> result = new HashMap<>();
     for (TaskSortField sortField : TaskSortField.values()) {
-      if (StringUtils.isNotBlank(sortField.getLabel())) {
+      // Task sort field not available
+      if (StringUtils.isNotBlank(sortField.getLabel()) && sortField != TaskSortField.CATEGORY) {
         result.put(sortField.name(), sortField.getLabel());
       }
     }
@@ -142,7 +145,8 @@ public enum GlobalVariable {
   private static Map<String, String> getCaseListSortFields() {
     Map<String, String> result = new HashMap<>();
     for (CaseSortField sortField : CaseSortField.values()) {
-      if (StringUtils.isNotBlank(sortField.getLabel())) {
+      // Case sort field not available
+      if (StringUtils.isNotBlank(sortField.getLabel()) && sortField != CaseSortField.CATEGORY) {
         result.put(sortField.name(), sortField.getLabel());
       }
     }

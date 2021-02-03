@@ -17,13 +17,13 @@ import ch.ivy.addon.portalkit.bo.GuidePool;
 import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
-import ch.ivy.addon.portalkit.exporter.TaskExporter;
+import ch.ivy.addon.portalkit.exporter.Exporter;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.TaskFilterService;
 import ch.ivy.addon.portalkit.support.HtmlParser;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilter;
-import ch.ivy.addon.portalkit.taskfilter.TaskFilterData;
-import ch.ivy.addon.portalkit.taskfilter.TaskStateFilter;
+import ch.ivy.addon.portalkit.taskfilter.impl.TaskFilterData;
+import ch.ivy.addon.portalkit.taskfilter.impl.TaskStateFilter;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -176,6 +176,6 @@ public class TaskWidgetBean implements Serializable {
   }
 
   public int getMaxTaskNumberInExcel() {
-    return TaskExporter.MAX_TASK_NUMBER_IN_EXCEL;
+    return Exporter.MAX_ROW_NUMBER_IN_EXCEL;
   }
 }

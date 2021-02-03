@@ -10,11 +10,11 @@
     <div class="ui-g">
       <div class="ui-g-12 TexAlRight u-padding-0">
         <p:commandButton id="import-express-btn" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/importExpress')}" partialSubmit="true"
-          oncomplete="PF('import-express-dialog').show()" update="#{p:component('import-express-dialog')}" icon="#{visibilityBean.generateButtonIcon('icon ivyicon-download-bottom')}" />
+          oncomplete="PF('import-express-dialog').show()" update="#{p:component('import-express-dialog')}" icon="#{visibilityBean.generateButtonIcon('si si-download-bottom')}" />
         <p:spacer width="10px" />
         <p:commandButton id="export-express-btn" widgetVar="export-express-btn" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/exportExpress')}"
           process="express-workflow-summary-table" partialSubmit="true" oncomplete="PF('export-express-dialog').show()"
-          icon="#{visibilityBean.generateButtonIcon('icon ivyicon-upload-bottom')}"
+          icon="#{visibilityBean.generateButtonIcon('si si-upload-bottom')}"
           update="#{p:component('export-express-dialog')} #{p:component('express-export-group')}" disabled="#{empty expressManagementBean.selectedExpressProcesses}" />
       </div>
 
@@ -62,7 +62,7 @@
 
         <div id="express-helper-loading-container" class="ui-g-12 express-helper-loading-container">
           <div class="express-helper-loading">
-            <i class="icon ivyicon-synchronize-arrows icon-is-spinning icon-lg u-mar-right-10" /> <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/waitingMessage')}</span>
+            <i class="si si-synchronize-arrows si-is-spinning si-lg u-mar-right-10" /> <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/waitingMessage')}</span>
           </div>
         </div>
 
@@ -81,7 +81,7 @@
             onclick="PF('export-express-dialog').hide()" global="false" />
           <p:spacer width="15px" />
           <p:commandButton id="export-express-dowload" rendered="#{not empty expressManagementBean.selectedExpressProcesses}"
-            icon="#{visibilityBean.generateButtonIcon('icon ivyicon-download-bottom')}"
+            icon="#{visibilityBean.generateButtonIcon('si si-download-bottom')}"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/download')}" ajax="false"
             onclick="PrimeFaces.monitorDownload(showLoadingIndicator, hideLoadingAndCloseExportDialog); PF('export-express-dialog').initPosition();">
             <p:fileDownload value="#{expressManagementBean.exportExpress()}" />
@@ -108,11 +108,11 @@
         </div>
 
         <div class="ui-g-12">
-          <p:fileUpload id="express-process-upload" mode="advanced" chooseIcon="#{visibilityBean.generateButtonIcon('icon ivyicon-touchpad-finger')}" dragDropSupport="true"
+          <p:fileUpload id="express-process-upload" mode="advanced" chooseIcon="#{visibilityBean.generateButtonIcon('si si-touchpad-finger')}" dragDropSupport="true"
             update="import-express-form impress-export-output import-express-dialog-message"
             label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}"
-            uploadLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/deployButton')}" uploadIcon="#{visibilityBean.generateButtonIcon('icon ivyicon-cog-play')}"
-            cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" cancelIcon="#{visibilityBean.generateButtonIcon('icon ivyicon-delete-1')}"
+            uploadLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/deployButton')}" uploadIcon="#{visibilityBean.generateButtonIcon('si si-cog-play')}"
+            cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" cancelIcon="#{visibilityBean.generateButtonIcon('si si-delete-1')}"
             fileUploadListener="#{expressManagementBean.importExpress}"
             value="#{expressManagementBean.importExpressFile}" fileLimit="1"
             onstart="showLoadingIndicator(); cleanExportMessage(); PF('close-import-express').disable();"
@@ -124,7 +124,7 @@
 
         <div id="express-helper-loading-container" class="ui-g-12 express-helper-loading-container">
           <div class="express-helper-loading">
-            <i class="icon ivyicon-synchronize-arrows icon-is-spinning icon-lg u-mar-right-10" /> <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/deployMessage')}</span>
+            <i class="si si-synchronize-arrows si-is-spinning si-lg u-mar-right-10" /> <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/deployMessage')}</span>
           </div>
         </div>
 
@@ -138,7 +138,7 @@
 
     <f:facet name="footer">
       <p:commandButton id="close-import-express" widgetVar="close-import-express" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
-        icon="#{visibilityBean.generateButtonIcon('icon ivyicon-remove')}" onclick="PF('import-express-dialog').hide()" global="false" />
+        icon="#{visibilityBean.generateButtonIcon('si si-remove')}" onclick="PF('import-express-dialog').hide()" global="false" />
     </f:facet>
   </p:dialog>
 

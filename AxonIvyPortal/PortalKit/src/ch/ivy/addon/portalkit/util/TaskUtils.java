@@ -9,6 +9,7 @@ import java.util.List;
 
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
+import ch.ivy.addon.portalkit.publicapi.TaskAPI;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.ISecurityMember;
@@ -94,18 +95,20 @@ public final class TaskUtils {
 
   /**
    * Sets the "HIDE" additional property to the given task to hide it in any task lists of Portal.
-   * 
+   * @deprecated Use {@link TaskAPI#setHidePropertyToHideInPortal(ITask)} instead
    * @param task
    */
+  @Deprecated
   public static void setHidePropertyToHideInPortal(ITask task) {
     task.customFields().stringField(AdditionalProperty.HIDE.toString()).set(AdditionalProperty.HIDE.toString());
   }
 
   /**
    * Removes the "HIDE" property to the given task to display it in any task lists of Portal.
-   * 
+   * @deprecated Use {@link TaskAPI#removeHidePropertyToDisplayInPortal(ITask)} instead
    * @param task
    */
+  @Deprecated
   public static void removeHidePropertyToDisplayInPortal(ITask task) {
     task.customFields().stringField(AdditionalProperty.HIDE.toString()).set(null);
   }

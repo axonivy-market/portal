@@ -32,6 +32,18 @@ input, body .ui-widget, body .ui-widget .ui-widget,
 body .ui-selectonemenu .ui-selectonemenu-label.ui-inputfield {
   font-family: var(--portal-font-family); }
 
+.portal-icon.ui-widget.si,
+.portal-icon-container .ui-widget.si,
+.ui-widget.si::before {
+  font-family: var(--portal-icon-font-family);
+}
+
+.portal-icon.ui-icon.si,
+.portal-icon-container .ui-icon.si {
+  font-size: var(--portal-icon-ui-icon-font-size);
+  line-height: var(--portal-icon-line-height);
+}
+
 _:-ms-input-placeholder, :root .ui-g .ui-outputlabel, :root .ui-g .ui-commandlink {
   display: inline-block; }
 
@@ -144,32 +156,17 @@ body .ui-icon {
 .ui-fieldset-content table {
   width: 100%; }
 
-body .ui-widget.ui-fieldset .ui-fieldset-legend {
-  padding: 0 10px; }
-
-.ui-fieldset-legend.ui-state-hover {
-  background-color: var(--field-set-legend-hover-color); }
-
-body .ui-fieldset .ui-fieldset-legend .ui-fieldset-toggler:hover {
-  background-color: var(--fieldset-togger-hover-background-color); }
-
-body .ui-fieldset .ui-fieldset-legend {
-  color: var(--ui-fiedset-legend-text-color); }
-  body .ui-fieldset .ui-fieldset-legend .ui-fieldset-toggler {
-    background-color: var(--field-set-toggler-background-color);
-    color: var(--ui-field-set-toggler-color); }
+.ui-fieldset.fieldset-no-border {
+  border-color: var(--field-set-no-border-color);}
 
 /* Dialog */
 body .ui-dialog .ui-dialog-titlebar {
   border-bottom: 1px solid var(--ivy-primary-color-grey-light);
-  padding: 8px 20px;
   color: var(--ui-dialog-title-bar-text-color); }
-  body .ui-dialog .ui-dialog-titlebar .ui-dialog-title {
-    padding-left: 2px;
-    font-size: var(--body-dialog-title-font-size); }
-  body .ui-dialog .ui-dialog-titlebar .ui-dialog-content {
-    font-size: var(--large-font-size);
-    padding: 1rem 2rem 2rem; }
+body .ui-dialog .ui-dialog-titlebar .ui-dialog-title {
+  font-size: var(--body-dialog-title-font-size); }
+body .ui-dialog .ui-dialog-titlebar .ui-dialog-content {
+  font-size: var(--large-font-size);}
 
 /* Data table */
 body .ui-datatable tbody tr td.ui-editable-column.ui-state-highlight.ui-cell-editing .ui-inputfield {
@@ -224,7 +221,7 @@ body .ui-datatable tbody tr.ui-datatable-even {
 .topbar-menu li .ui-commandlink {
   font-size: var(--large-font-size); }
   
-.topbar-menu li .icon {
+.topbar-menu li .si {
   font-size: var(--top-bar-icon-size) !important;
 }
 
@@ -496,7 +493,7 @@ body .ui-widget-header.portal-breadcrumb {
   background-color: var(--breadcrumb-background-color) !important;
   font-size: var(--breadcrumb-font-size); }
 
-.portal-breadcrumb .icon {
+.portal-breadcrumb .si {
   color: var(--breadcrumb-home-icon-color) !important;
 }
 /*Style Email Setting --------------------------------------------------------------------------------*/
@@ -517,20 +514,22 @@ a.compact-task-start-link .task-start-list-item {
 .process-start-list-item:hover .process-start-list-item-icon {
   color: var(--hovered-process-start-list-item-i-con-color); }
 
+.process-start-list-item .warning-icon,
+.order-list-item  .warning-icon {
+  color: var(--process-warning-icon-color);
+  font-size: var(--process-icon-font-size);
+  font-weight: var(--process-warning-icon-font-weight);
+}
+
 .process-start-list-item-icon {
   font-size: 2rem; }
 
 .process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item:hover .process-start-list-item-icon {
   color: var(--hovered-user-process-start-list-item-icon-color); }
 
-body .ui-widget.ui-fieldset.process-group.ui-fieldset .ui-fieldset-legend {
-  font-size: var(--large-font-size);
-  padding: 14px 10px 10px 0;
-  margin-left: -1px; }
-
-.process-widget .process-group .ui-fieldset-toggler {
-  background-image: none;
-  text-indent: 0; }
+.process-widget .ui-orderlist .ui-orderlist-list .order-list-item .action-icon {
+  font-size: var(--process-icon-font-size);
+}
 
 .new-process-dialog .md-inputfield .md-inputwrapper-focus ~ label.new-process-name-label,
 .new-process-dialog .md-inputfield .md-inputwrapper-filled ~ label.new-process-name-label {
@@ -623,11 +622,6 @@ _::-moz-progress-bar, body:last-child .statistic-carousel .ui-carousel-header .u
 .edit-statistic-container .chart-list .chart-container .separator {
   border: var(--chart-container-separator-border);
   border-radius: var(--chart-container-separator-border-radius); }
-
-.edit-statistic-container .chart-list .chart-container .add-button,
-.add-chart-dialog .ok-button,
-.chart-list-container .filter-container .apply-filters-btn {
-  border-radius: var(--portal-border-radius); }
 
 .chart-filter-header-text {
   font-size: var(--chart-filter-header-font-size); }
@@ -851,8 +845,8 @@ body .ui-inputfield.task-name-input {
   font-weight: var(--task-detail-header-font-weight); }
 
 .task-detail-section-title,
-.task-detail-section-title > i.icon,
-.task-detail-section-title > div > i.icon {
+.task-detail-section-title > i.si,
+.task-detail-section-title > div > i.si {
   font-weight: var(--task-detail-section-title-font-weight) !important; }
 
 .task-action-item:hover {
@@ -863,15 +857,6 @@ body .ui-datepicker .ui-timepicker-div dl dd {
   margin-top: 30px; }
   body .ui-datepicker .ui-timepicker-div dl dd .ui-slider.ui-slider-horizontal.ui-widget.ui-widget-content {
     margin-right: 10px; }
-
-/*Style for Fieldset --------------------------------------------------------------------------------------*/
-.fieldset-no-border .ui-fieldset-toggler:before {
-  font-size: var(--large-font-size);
-  color: var(--field-set-toggler-color);
-  font-family: var(--icon-font-family); }
-
-body .fieldset-no-border {
-  background-color: var(--field-set-no-border-color); }
 
 /*Style for start Filter Widget--------------------------------------------------------------------------------------*/
 .filter-category-checkbox-tree {
@@ -1152,6 +1137,13 @@ body .fieldset-no-border {
 :-ms-input-placeholder, :root .case-detail-body .history-note a {
   display: inline; }
 
+.task-widget-sub-header .operations-column,
+.case-widget .widget-column-header .operations-column {
+  font-size: var(--large-font-size);
+  color: var(--task-widget-header-column);
+  font-family: var(--portal-font-family);
+}
+
 /*Style for Case Item --------------------------------------------------------------------------------------*/
 .case-list-unsortable-header-cell {
   font-size: var(--large-font-size);
@@ -1169,8 +1161,8 @@ body .ui-inputfield.case-detail-name-input {
 
 .case-detail-section-title, .case-history-button-container,
 .task-history-button-container,
-.case-detail-section-title > i.icon,
-.case-detail-section-title > div > i.icon {
+.case-detail-section-title > i.si,
+.case-detail-section-title > div > i.si {
   font-weight: var(--history-button-container-font-weight) !important; }
 
 .case-header-action-cell .action-item .ui-button {
@@ -1815,6 +1807,10 @@ ul.participants-list li {
 .express-workflow-summary-table tr.ui-datatable-selectable.ui-state-hover td:not(:last-child) {
   border-right-color: var(--ivy-primary-color-grey-medium); }
 
+.express-helper-loading-container .si-lg {
+  font-size: var(--express-helper-loading-container-si-lg-font-size);
+}
+
 /* Modify style because accent color of Portal so light */
 body .ui-datepicker tbody td.ui-datepicker-today a, body .ui-datepicker tbody td.ui-datepicker-today span {
   border: solid 1px var(--accent-light-color);
@@ -1827,6 +1823,11 @@ body .ui-slider .ui-slider-handle {
 .side-step-panel .dropdown-content {
 background-color: var(--ivy-primary-color-white);
 }
+
+.side-step-panel .dropdown-content a {
+color: var(--ivy-primary-color-black);
+}
+
 .case-map-stage .line-right:after, .case-map-stage .line-left:before {
 border-top: 0.2rem solid var(--primary-color);   
 }
@@ -1835,6 +1836,7 @@ background-color: var(--primary-color);
 }
 .case-stage-icon{
 background-color:var(--primary-color);
+color:var(--ivy-primary-color-white);
 }
 .case-stage-detail{
 background-color:var(--ivy-primary-color-white);	
@@ -1861,7 +1863,12 @@ background-color:var(--primary-color);
 color: var(--button-text-color);
 }
 
-.no-item-panel .icon {
+.no-item-panel .si {
+  font-size: var(--no-item-icon-font-size) !important;
+  color: var(--no-item-icon-color);
+}
+
+.no-item-panel .si {
   font-size: var(--no-item-icon-font-size) !important;
   color: var(--no-item-icon-color);
 }
@@ -1883,7 +1890,7 @@ color: var(--button-text-color);
 }
 
 
-.layout-menu .icon  {
+.layout-menu .si  {
   font-size: var(--left-menu-icon-font-size) !important;
 }
 
@@ -1928,4 +1935,29 @@ body .ui-button.secondary-btn.ui-state-focus {
 }
 body.in-dialog .ui-widget-overlay {
   background-color: transparent;
+}
+
+.time-information .si-graphic-tablet-drawing-pen,
+.general-information .si-graphic-tablet-drawing-pen,
+.task-detail-description .si-add-circle,
+.task-detail-description .si-subtract-circle {
+  margin-left: 5px;
+  color: var(--primary-color);
+}
+
+.task-details-description-title .si-graphic-tablet-drawing-pen {
+  margin: 0 2px;
+  color: var(--primary-color);
+}
+
+.time-information .si-information-circle {
+  margin-left: 5px;
+  top: 2px;
+  color: var(--primary-color);
+  position: relative;
+}
+
+.portal-icon.action-icon.icon-compact-mode,
+.portal-icon.action-link i {
+  font-size: var(--portal-icon-font-size);
 }

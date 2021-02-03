@@ -103,11 +103,8 @@ Ds0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ds0 f0 83 51 26 26 -28 33 #rect
-Ds0 f0 @|UdInitIcon #fIcon
 Ds0 f1 819 51 26 26 0 12 #rect
-Ds0 f1 @|UdProcessEndIcon #fIcon
 Ds0 f4 707 595 26 26 0 12 #rect
-Ds0 f4 @|UdExitEndIcon #fIcon
 Ds0 f6 actionTable 'out=in;
 ' #txt
 Ds0 f6 actionCode 'import ch.ivy.gawfs.DynaFormController;
@@ -129,7 +126,6 @@ Ds0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ds0 f6 640 42 112 44 -40 -8 #rect
-Ds0 f6 @|StepIcon #fIcon
 Ds0 f8 guid 15749D9D5247FA7C #txt
 Ds0 f8 method createInputField() #txt
 Ds0 f8 inParameterDecl '<> param;' #txt
@@ -144,7 +140,6 @@ Ds0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ds0 f8 83 147 26 26 -44 15 #rect
-Ds0 f8 @|UdMethodIcon #fIcon
 Ds0 f9 actionTable 'out=in;
 ' #txt
 Ds0 f9 actionCode '
@@ -158,7 +153,6 @@ Ds0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ds0 f9 193 138 128 44 -61 -8 #rect
-Ds0 f9 @|StepIcon #fIcon
 Ds0 f10 expr out #txt
 Ds0 f10 109 160 193 160 #arcP
 Ds0 f12 guid 1574A296AECB0DD4 #txt
@@ -173,7 +167,6 @@ Ds0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ds0 f12 83 211 26 26 -58 15 #rect
-Ds0 f12 @|UdMethodIcon #fIcon
 Ds0 f14 guid 1574A2979225007A #txt
 Ds0 f14 method createManyCheckbox() #txt
 Ds0 f14 inParameterDecl '<> param;' #txt
@@ -186,7 +179,6 @@ Ds0 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ds0 f14 83 275 26 26 -62 15 #rect
-Ds0 f14 @|UdMethodIcon #fIcon
 Ds0 f15 guid 1574A2984D932DE0 #txt
 Ds0 f15 method createOneRadio() #txt
 Ds0 f15 inParameterDecl '<> param;' #txt
@@ -199,7 +191,6 @@ Ds0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ds0 f15 83 339 26 26 -49 15 #rect
-Ds0 f15 @|UdMethodIcon #fIcon
 Ds0 f16 guid 1574A2991F562461 #txt
 Ds0 f16 method createFileUpload() #txt
 Ds0 f16 inParameterDecl '<> param;' #txt
@@ -212,7 +203,6 @@ Ds0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ds0 f16 83 403 26 26 -51 15 #rect
-Ds0 f16 @|UdMethodIcon #fIcon
 Ds0 f17 actionTable 'out=in;
 ' #txt
 Ds0 f17 actionCode '
@@ -228,11 +218,9 @@ Ds0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ds0 f17 193 202 128 44 -59 -8 #rect
-Ds0 f17 @|StepIcon #fIcon
 Ds0 f18 expr out #txt
 Ds0 f18 109 224 193 224 #arcP
 Ds0 f19 560 48 32 32 0 16 #rect
-Ds0 f19 @|AlternativeIcon #fIcon
 Ds0 f7 expr in #txt
 Ds0 f7 592 64 640 64 #arcP
 Ds0 f21 expr out #txt
@@ -293,7 +281,6 @@ Ds0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ds0 f11 384 40 112 48 -52 -8 #rect
-Ds0 f11 @|StepIcon #fIcon
 Ds0 f20 expr out #txt
 Ds0 f20 496 64 560 64 #arcP
 Ds0 f22 expr out #txt
@@ -322,7 +309,6 @@ Ds0 f33 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ds0 f33 193 266 144 44 -63 -8 #rect
-Ds0 f33 @|StepIcon #fIcon
 Ds0 f34 expr out #txt
 Ds0 f34 109 288 193 288 #arcP
 Ds0 f35 actionTable 'out=in;
@@ -341,7 +327,6 @@ Ds0 f35 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ds0 f35 193 329 160 44 -75 -8 #rect
-Ds0 f35 @|StepIcon #fIcon
 Ds0 f36 expr out #txt
 Ds0 f36 108 351 193 351 #arcP
 Ds0 f37 expr out #txt
@@ -368,7 +353,6 @@ Ds0 f39 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ds0 f39 193 394 144 44 -67 -8 #rect
-Ds0 f39 @|StepIcon #fIcon
 Ds0 f40 expr out #txt
 Ds0 f40 109 416 193 416 #arcP
 Ds0 f41 expr out #txt
@@ -391,7 +375,6 @@ Ds0 f44 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ds0 f44 83 659 26 26 -13 15 #rect
-Ds0 f44 @|UdEventIcon #fIcon
 Ds0 f45 expr out #txt
 Ds0 f45 109 672 720 621 #arcP
 Ds0 f45 1 720 672 #addKink
@@ -409,7 +392,6 @@ Ds0 f42 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ds0 f42 83 595 26 26 -41 15 #rect
-Ds0 f42 @|UdEventIcon #fIcon
 Ds0 f51 guid 158942FA3188C6C0 #txt
 Ds0 f51 actionTable 'out=in;
 ' #txt
@@ -423,7 +405,6 @@ Ds0 f51 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ds0 f51 83 723 26 26 -18 15 #rect
-Ds0 f51 @|UdEventIcon #fIcon
 Ds0 f48 actionTable 'out=in;
 ' #txt
 Ds0 f48 actionCode 'in.data.discard = true;
@@ -438,7 +419,6 @@ Ds0 f48 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ds0 f48 272 794 112 44 -37 -8 #rect
-Ds0 f48 @|StepIcon #fIcon
 Ds0 f46 actionTable 'out=in;
 ' #txt
 Ds0 f46 actionCode 'import ch.ivy.gawfs.enums.FormElementType;
@@ -457,7 +437,6 @@ Ds0 f46 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ds0 f46 192 42 112 44 -35 -8 #rect
-Ds0 f46 @|StepIcon #fIcon
 Ds0 f47 expr out #txt
 Ds0 f47 109 64 192 64 #arcP
 Ds0 f13 expr out #txt
@@ -485,9 +464,7 @@ Ds0 f49 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ds0 f49 83 467 26 26 -44 15 #rect
-Ds0 f49 @|UdMethodIcon #fIcon
 Ds0 f52 563 467 26 26 0 12 #rect
-Ds0 f52 @|UdProcessEndIcon #fIcon
 Ds0 f56 actionTable 'out=in;
 ' #txt
 Ds0 f56 actionCode 'import ch.ivy.gawfs.ExpressProcessUtils;
@@ -511,7 +488,6 @@ controllers</name>
 </elementInfo>
 ' #txt
 Ds0 f56 192 458 112 44 -34 -16 #rect
-Ds0 f56 @|StepIcon #fIcon
 Ds0 f55 expr out #txt
 Ds0 f55 304 480 563 480 #arcP
 Ds0 f58 guid 162BD1499F4DC89A #txt
@@ -535,7 +511,6 @@ Ds0 f58 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ds0 f58 83 531 26 26 -39 15 #rect
-Ds0 f58 @|UdMethodIcon #fIcon
 Ds0 f61 expr out #txt
 Ds0 f61 109 544 248 502 #arcP
 Ds0 f61 1 248 544 #addKink
@@ -543,7 +518,6 @@ Ds0 f61 0 0.6714985851425087 0 0 #arcLabel
 Ds0 f57 expr out #txt
 Ds0 f57 109 480 192 480 #arcP
 Ds0 f26 400 592 32 32 0 16 #rect
-Ds0 f26 @|AlternativeIcon #fIcon
 Ds0 f25 expr in #txt
 Ds0 f25 outCond in.isAbleToExecute #txt
 Ds0 f25 432 608 707 608 #arcP
@@ -573,7 +547,6 @@ Ds0 f23 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ds0 f23 192 586 160 44 -72 -8 #rect
-Ds0 f23 @|StepIcon #fIcon
 Ds0 f24 expr out #txt
 Ds0 f24 109 608 192 608 #arcP
 Ds0 f27 expr out #txt
@@ -594,7 +567,6 @@ Ds0 f53 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ds0 f53 640 882 160 44 -71 -8 #rect
-Ds0 f53 @|StepIcon #fIcon
 Ds0 f60 guid 1638704721DA1E76 #txt
 Ds0 f60 actionTable 'out=in;
 ' #txt
@@ -608,7 +580,6 @@ Ds0 f60 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ds0 f60 82 891 26 26 -13 15 #rect
-Ds0 f60 @|UdEventIcon #fIcon
 Ds0 f62 guid 1638704721E99BED #txt
 Ds0 f62 actionTable 'out=in;
 ' #txt
@@ -622,7 +593,6 @@ Ds0 f62 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ds0 f62 82 955 26 26 -15 15 #rect
-Ds0 f62 @|UdEventIcon #fIcon
 Ds0 f63 actionTable 'out=in;
 out.isTaskFinished=true;
 ' #txt
@@ -635,11 +605,9 @@ Ds0 f63 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ds0 f63 480 946 112 44 -52 -8 #rect
-Ds0 f63 @|StepIcon #fIcon
 Ds0 f66 expr out #txt
 Ds0 f66 108 904 640 904 #arcP
 Ds0 f3 851 891 26 26 0 12 #rect
-Ds0 f3 @|UdExitEndIcon #fIcon
 Ds0 f5 expr out #txt
 Ds0 f5 800 904 851 904 #arcP
 Ds0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -652,7 +620,6 @@ Ds0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ds0 f28 368 952 32 32 -26 -34 #rect
-Ds0 f28 @|AlternativeIcon #fIcon
 Ds0 f32 expr in #txt
 Ds0 f32 outCond in.isAbleToExecute #txt
 Ds0 f32 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -687,7 +654,6 @@ Ds0 f43 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ds0 f43 192 946 112 44 -22 -8 #rect
-Ds0 f43 @|StepIcon #fIcon
 Ds0 f50 expr out #txt
 Ds0 f50 108 968 192 968 #arcP
 Ds0 f50 0 0.5863480725728565 0 0 #arcLabel
@@ -695,7 +661,6 @@ Ds0 f29 expr out #txt
 Ds0 f29 304 968 368 968 #arcP
 Ds0 f29 0 0.5863480725728565 0 0 #arcLabel
 Ds0 f59 851 1019 26 26 0 12 #rect
-Ds0 f59 @|UdProcessEndIcon #fIcon
 Ds0 f65 expr in #txt
 Ds0 f65 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -717,16 +682,16 @@ Ds0 f67 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ds0 f67 176 720 32 32 -40 -39 #rect
-Ds0 f67 @|AlternativeIcon #fIcon
 Ds0 f68 expr out #txt
 Ds0 f68 109 736 176 736 #arcP
 Ds0 f68 0 0.20328842452716808 0 0 #arcLabel
 Ds0 f69 actionTable 'out=in;
 ' #txt
-Ds0 f69 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
-import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
+Ds0 f69 actionCode 'import ch.ivy.addon.portalkit.publicapi.PortalNavigatorAPI;
+import ch.ivy.addon.portalkit.util.TaskUtils;
+
 TaskUtils.resetTask(ivy.task);
-PortalNavigator.navigateToPortalEndPage();' #txt
+PortalNavigatorAPI.navigateToPortalEndPage();' #txt
 Ds0 f69 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -736,7 +701,6 @@ navigate back</name>
 </elementInfo>
 ' #txt
 Ds0 f69 280 714 128 44 -40 -16 #rect
-Ds0 f69 @|StepIcon #fIcon
 Ds0 f70 expr in #txt
 Ds0 f70 outCond in.data.savedFlag #txt
 Ds0 f70 208 736 280 736 #arcP
@@ -762,7 +726,6 @@ that task is cancelled</name>
 </elementInfo>
 ' #txt
 Ds0 f64 440 794 144 44 -51 -16 #rect
-Ds0 f64 @|StepIcon #fIcon
 Ds0 f72 384 816 440 816 #arcP
 Ds0 f72 0 0.7876920328136172 0 0 #arcLabel
 Ds0 f30 584 816 720 621 #arcP
@@ -771,7 +734,6 @@ Ds0 f30 0 0.7876920328136172 0 0 #arcLabel
 >Proto Ds0 .type ch.ivy.gawfs.workflowCreation.FormDefinition.FormDefinitionData #txt
 >Proto Ds0 .processKind HTML_DIALOG #txt
 >Proto Ds0 -8 -8 16 16 16 26 #rect
->Proto Ds0 '' #fIcon
 Ds0 f6 mainOut f2 tail #connect
 Ds0 f2 head f1 mainIn #connect
 Ds0 f8 mainOut f10 tail #connect

@@ -3,11 +3,11 @@ package ch.internalsupport;
 import java.util.Collections;
 
 import ch.ivy.addon.portalkit.comparator.TaskFilterComparator;
-import ch.ivy.addon.portalkit.taskfilter.TaskCreationDateFilter;
-import ch.ivy.addon.portalkit.taskfilter.TaskDescriptionFilter;
-import ch.ivy.addon.portalkit.taskfilter.TaskExpiredDateFilter;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilterContainer;
-import ch.ivy.addon.portalkit.taskfilter.TaskResponsibleFilter;
+import ch.ivy.addon.portalkit.taskfilter.impl.TaskCreationDateFilter;
+import ch.ivy.addon.portalkit.taskfilter.impl.TaskDescriptionFilter;
+import ch.ivy.addon.portalkit.taskfilter.impl.TaskExpiredDateFilter;
+import ch.ivy.addon.portalkit.taskfilter.impl.TaskResponsibleFilter;
 
 public class CustomizedTaskFilterContainer extends TaskFilterContainer {
 

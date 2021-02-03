@@ -40,6 +40,7 @@ $(window).resize(function() {
 });
 
 function setupCaseHeader() {
+  // Wait for Main layout is updated, then run setup header
   setTimeout(function() {
     caseWidget.setupHeader();
   }, 250);

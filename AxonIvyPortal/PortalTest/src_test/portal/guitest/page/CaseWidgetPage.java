@@ -250,6 +250,11 @@ public class CaseWidgetPage extends TemplatePage {
 		waitAjaxIndicatorDisappear();
 	}
 
+	public String getSelectedSortColumn() {
+	  waitForElementDisplayed(By.cssSelector(".js-case-widget-column-header"), true);
+	  return findElementByCssSelector(".js-case-widget-column-header a.ui-commandlink.is-selected").getText();
+	}
+
 	public String getCaseListFirstCustomCellValue() {
 		return findElementByCssSelector(
 				"div[id$=':0\\:case-item\\:case-item-container'] span.customized-case-header-column").getText();
@@ -331,8 +336,8 @@ public class CaseWidgetPage extends TemplatePage {
 		WebElement responsible = findElementByCssSelector("input[id$='creator-filter:filter-input-form:creator-component:creator-select_input']");
 		type(responsible, text);
 		waitAjaxIndicatorDisappear();
-		waitForElementDisplayedByCssSelector("i[class*='ivyicon-single-neutral-actions']");
-		click(By.cssSelector("i[class*='ivyicon-single-neutral-actions']"));
+		waitForElementDisplayedByCssSelector("i[class*='si-single-neutral-actions']");
+		click(By.cssSelector("i[class*='si-single-neutral-actions']"));
 		waitAjaxIndicatorDisappear();
 		click(By.cssSelector("button[id$='creator-filter:filter-input-form:update-command']"));
 		waitAjaxIndicatorDisappear();
@@ -391,7 +396,7 @@ public class CaseWidgetPage extends TemplatePage {
 
   public CaseState getCaseState(int caseIndex) {
     List<WebElement> caseStateCells = findListElementsByCssSelector("span[id$=':case-state-cell']");
-    String stateClass = caseStateCells.get(caseIndex).findElement(By.className("icon")).getAttribute("class");
+    String stateClass = caseStateCells.get(caseIndex).findElement(By.className("si")).getAttribute("class");
     return CaseState.fromClass(stateClass.substring(stateClass.indexOf("case-state-")));
   }
   
@@ -401,8 +406,8 @@ public class CaseWidgetPage extends TemplatePage {
     WebElement owner = findElementByCssSelector("input[id$='owner-filter:filter-input-form:owner_input']");
     type(owner, text);
     waitAjaxIndicatorDisappear();
-    waitForElementDisplayedByCssSelector("i[class*='ivyicon-single-neutral-actions']");
-    click(By.cssSelector("i[class*='ivyicon-single-neutral-actions']"));
+    waitForElementDisplayedByCssSelector("i[class*='si-single-neutral-actions']");
+    click(By.cssSelector("i[class*='si-single-neutral-actions']"));
     waitAjaxIndicatorDisappear();
     click(By.cssSelector("button[id$='owner-filter:filter-input-form:update-command']"));
     waitAjaxIndicatorDisappear();
