@@ -5,6 +5,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
+
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
 
@@ -56,8 +59,16 @@ public class RelatedCaseLazyDataModel extends LazyDataModel<ICase> {
       startIndex = 0;
       count = first + pageSize;
     }
-    return findCaseCaller.invokeComponentLogic(caseWidgetComponentId, "#{logic.findCases}",
-        new Object[] {criteria, startIndex, count});
+    UIComponent component = findRelatedCaseComponent();
+    if (component != null) {
+      return findCaseCaller.invokeComponentLogic(component, "#{logic.findCases}", new Object[] {criteria, startIndex, count});
+    }
+    return new ArrayList<>();
+  }
+
+  private UIComponent findRelatedCaseComponent() {
+    List<UIComponent> children = FacesContext.getCurrentInstance().getViewRoot().findComponent(":case-item-details:widgets:case-details-technical-case-card").getChildren();
+    return children.stream().filter(child -> child.getId().equals(caseWidgetComponentId)).findFirst().orElse(null);
   }
 
   private void initializedDataModel() {
@@ -68,8 +79,12 @@ public class RelatedCaseLazyDataModel extends LazyDataModel<ICase> {
 
   private int getCaseCount(CaseSearchCriteria criteria) {
     IvyComponentLogicCaller<Long> countCaseCaller = new IvyComponentLogicCaller<>();
-    Long caseCount = countCaseCaller.invokeComponentLogic(caseWidgetComponentId, "#{logic.countCases}", new Object[] { criteria });
-    return caseCount.intValue();
+    UIComponent component = findRelatedCaseComponent();
+    if (component != null) {
+      Long caseCount = countCaseCaller.invokeComponentLogic(component, "#{logic.countCases}", new Object[] {criteria});
+      return caseCount.intValue();
+    }
+    return 0;
   }
 
   private void buildCriteria() {

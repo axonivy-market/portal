@@ -24,7 +24,6 @@ public class StatisticScreenshotTest extends ScreenshotTest {
   @Override
   public void setup() {
     super.setup();
-    redirectToRelativeLink(createTestingTasksUrl);
     redirectToRelativeLink(createTestingCaseContainOneTask);
   }
   
@@ -33,6 +32,7 @@ public class StatisticScreenshotTest extends ScreenshotTest {
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     WaitHelper.assertTrueWithRefreshPage(taskWidgetPage, () -> !taskWidgetPage.isWelcomeDialogExisted());
     taskWidgetPage.startTaskWithoutUI(0);
+    redirectToRelativeLink(createTestingTasksUrl);
     homePage = new HomePage();
     homePage.waitForStatisticRendered();
     
