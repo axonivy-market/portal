@@ -117,34 +117,47 @@
                 </div>
 
                 <div class="ui-g-12 u-no-padding-top">
-                  <h:panelGrid columns="2" columnClasses="application-email-setting-label, Fright"
-                    styleClass="application-email-panel">
+                  <h:panelGrid columns="2" columnClasses="application-email-setting-label, Fright" styleClass="application-email-panel">
                     <!-- MAIL NOTIFICATION ON TASK ASSIGNMENT -->
                     <p:outputLabel id="mail-notification-on-task-assign-label"
                       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/mailNotificationOnTaskAssign')}"
                       for="mail-notification-on-task-assign" />
-                    <p:inputSwitch id="mail-notification-on-task-assign"
-                      value="#{data.emailSetting.emailSendOnNewWorkTasks}" />
+                    <p:inputSwitch id="mail-notification-on-task-assign" value="#{data.emailSetting.emailSendOnNewWorkTasks}" />
 
                     <!-- FURTHER MAILS FROM APPLICATION -->
                     <p:outputLabel id="further-mails-from-application-label"
-                      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/furtherEmailFromApp')}"
-                      for="further-mails-from-application" />
-                    <p:inputSwitch id="further-mails-from-application" value="#{data.emailSetting.customMailEnabled}"/>
+                      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/furtherEmailFromApp')}" for="further-mails-from-application" />
+                    <p:inputSwitch id="further-mails-from-application" value="#{data.emailSetting.customMailEnabled}" />
                   </h:panelGrid>
 
                   <h:panelGrid columns="1" styleClass="ui-g-12 u-padding-0">
                     <!--  DAILY SUMMARY -->
-                    <p:outputLabel id="daily-summary-label"
-                      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/dailySummary')}"
+                    <p:outputLabel id="daily-summary-label" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/dailySummary')}"
                       for="daily-summary" styleClass="ui-g-12 u-no-padding-top u-no-padding-bottom" />
 
-                    <p:selectManyCheckbox id="daily-summary" value="#{data.emailSetting.emailSendDailyTaskSummary}"
-                      layout="responsive" columns="3" styleClass="daily-summary">
-                      <f:selectItems value="#{data.dailySummaryList}" var="day"
-                        itemLabel="#{day.getLocalizedName(ivy.session.getContentLocale())}" itemValue="#{day}" />
+                    <p:selectManyCheckbox id="daily-summary" value="#{data.emailSetting.emailSendDailyTaskSummary}" layout="responsive" columns="3"
+                      styleClass="daily-summary">
+                      <f:selectItems value="#{data.dailySummaryList}" var="day" itemLabel="#{day.getLocalizedName(ivy.session.getContentLocale())}"
+                        itemValue="#{day}" />
                     </p:selectManyCheckbox>
                   </h:panelGrid>
+                </div>
+              </div>
+
+              <div id="date-formatting-setting-container" class="ui-g-12">
+                <div class="setting-header ui-g-12 u-no-padding-bottom">
+                  <h2 id="date-format-configuration-title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dateFormatConfiguration/dateFormatConfiguration')}</h2>
+                </div>
+
+                <div class="date-format-selection ui-g-12 u-no-padding-top">
+                  <h:outputText id="date-format-selection-label" styleClass="date-format-selection-label ui-g-12"
+                    value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dateFormatConfiguration/selectedDateFormat')}" />
+                  <div class="ui-g-12">
+                    <p:selectOneMenu id="date-format-selection" value="#{data.selectedDateFormat}">
+                      <f:selectItems value="#{data.dateFormats}" var="format" itemValue="#{format}"
+                        itemLabel="#{userProfileBean.getDisplayDatePattern(format)}" />
+                    </p:selectOneMenu>
+                  </div>
                 </div>
               </div>
             </div>

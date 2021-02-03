@@ -20,7 +20,7 @@
             dataModel="#{data.caseView.getDataModel()}"
             hideCaseFilter="#{data.caseView.hideCaseFilter or not empty data.caseView.getKeyword()}"
             autoSelectCaseId="#{data.caseView.getAutoSelectCaseId()}" filterGroupId="#{ivy.request.processModel.id}"
-            hideWidgetHeader="#{hideWidgetHeader}" isTechnicalCaseView="#{data.caseView.isTechnicalCaseView()}"
+            hideWidgetHeader="true" isTechnicalCaseView="#{data.caseView.isTechnicalCaseView()}"
             readOnly="true" inFrame="true">
 
             <f:facet name="caseListHeader">
