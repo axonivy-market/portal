@@ -29,90 +29,89 @@
   <h:outputScript name="case-widget.js" library="js" />
 
   <div id="#{cc.clientId}" class="widget case-widget case-widget-container ui-g">
-      <h:panelGroup id="case-widget-header" layout="block"
-        styleClass="widget-header ui-g-12 ui-g u-no-padding-left u-no-padding-bottom js-case-widget-header"
-        rendered="#{!cc.attrs.hideWidgetHeader}">
-        <h:panelGroup id="filter-container" styleClass="filter-container js-filter-container ui-g-12 u-no-padding-bottom"
-        rendered="#{!cc.attrs.hideCaseFilter}">
-        <h:panelGroup id="filter-selection-container" styleClass="filter-selection-container-group  u-hidden-md-down"
-          rendered="#{(not empty data.privateFilters or not empty data.publicFilters) and !cc.attrs.isTechnicalCaseView}">
-          <span class="filter-selection-label">#{ivy.cms.co(data.dataModel.isSelectedDefaultFilter() or data.dataModel.selectedFilterData == null ? '/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filter' : '/ch.ivy.addon.portalkit.ui.jsf/components/taskView/savedFilters')} </span>
-          <h:form id="filter-selection-form" class="filter-selection-form filter-selection-container">
-            <h:panelGroup id="filter-selection-panel" layout="block">
-              <p:commandLink id="filter-name" styleClass="filter-name" global="false">
-                <span>#{data.dataModel.isSelectedDefaultFilter() ? data.dataModel.defaultCaseFilterData.filterName : data.dataModel.selectedFilterData == null ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/NoSelection') : data.dataModel.selectedFilterData.filterName}</span>
-              </p:commandLink>
-              <p:overlayPanel id="filter-name-overlay-panel" styleClass="filter-name-overlay-panel" for="filter-name"
-                hideEffect="fade" my="left top" at="left bottom">
-                <h:panelGroup id="private-filters" rendered="#{not empty data.publicFilters}">
-                  <div class="filter-type-label">
-                    <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/publicFilter')}</span>
-                  </div>
-                  <ui:repeat var="filterData" value="#{data.publicFilters}">
-                    <div class="user-defined-filter-container">
-                      <p:commandLink id="user-defined-filter" styleClass="user-defined-filter"
-                        value="#{filterData.filterName}"
-                        actionListener="#{logic.applyFilter(filterData)}"
-                        update="#{cc.clientId}:filter-selection-container #{cc.clientId}:filter-container #{cc.clientId}:case-widget-header #{cc.clientId}:case-list #{cc.clientId}:filter-add-form #{cc.clientId}:hidden-case-count"
-                        oncomplete="caseWidget.setUpScrollbar();caseWidget.setupHeader();caseWidget.updateCaseCountToBreadcrumb();" />
-                      <p:tooltip id="user-defined-filter-tooltip" for="user-defined-filter"
-                        value="#{filterData.filterName}" trackMouse="true" />
-                      <p:commandLink id="delete-user-defined-filter-command"
-                        rendered="#{caseWidgetBean.isDeleteFilterEnabledFor(filterData)}"
-                        styleClass="si si-delete-2 delete-user-defined-filter-command"
-                        actionListener="#{data.setFilterDataToBeDeleted(filterData)}"
-                        oncomplete="PF('delete-filter-confirmation-dialog').show();" />
+    <h:panelGroup id="case-widget-header" layout="block"
+      styleClass="widget-header ui-g-12 ui-g u-no-padding-left u-no-padding-bottom js-case-widget-header">
+      <h:panelGroup id="filter-container" styleClass="filter-container js-filter-container ui-g-12 u-no-padding-bottom">
+        <h:panelGroup layout="block" rendered="#{!cc.attrs.hideCaseFilter and !cc.attrs.hideWidgetHeader}">
+          <h:panelGroup id="filter-selection-container" styleClass="filter-selection-container-group  u-hidden-md-down"
+            rendered="#{(not empty data.privateFilters or not empty data.publicFilters) and !cc.attrs.isTechnicalCaseView}">
+            <span class="filter-selection-label">#{ivy.cms.co(data.dataModel.isSelectedDefaultFilter() or data.dataModel.selectedFilterData == null ? '/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filter' : '/ch.ivy.addon.portalkit.ui.jsf/components/taskView/savedFilters')} </span>
+            <h:form id="filter-selection-form" class="filter-selection-form filter-selection-container">
+              <h:panelGroup id="filter-selection-panel" layout="block">
+                <p:commandLink id="filter-name" styleClass="filter-name" global="false">
+                  <span>#{data.dataModel.isSelectedDefaultFilter() ? data.dataModel.defaultCaseFilterData.filterName : data.dataModel.selectedFilterData == null ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/NoSelection') : data.dataModel.selectedFilterData.filterName}</span>
+                </p:commandLink>
+                <p:overlayPanel id="filter-name-overlay-panel" styleClass="filter-name-overlay-panel" for="filter-name"
+                  hideEffect="fade" my="left top" at="left bottom">
+                  <h:panelGroup id="private-filters" rendered="#{not empty data.publicFilters}">
+                    <div class="filter-type-label">
+                      <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/publicFilter')}</span>
                     </div>
-                  </ui:repeat>
-                </h:panelGroup>
-                <p:separator rendered="#{not empty data.publicFilters and not empty data.privateFilters}" styleClass="filter-separator" />
-                <h:panelGroup id="public-filters" rendered="#{not empty data.privateFilters}">
-                  <div class="filter-type-label">
-                    <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/privateFilter')}</span>
-                  </div>
-                  <ui:repeat var="filterData" value="#{data.privateFilters}">
-                    <div class="user-defined-filter-container">
-                      <p:commandLink id="user-defined-filter" styleClass="user-defined-filter"
-                        value="#{filterData.filterName}"
-                        actionListener="#{logic.applyFilter(filterData)}"
-                        update="#{cc.clientId}:filter-selection-container #{cc.clientId}:filter-container #{cc.clientId}:case-widget-header #{cc.clientId}:case-list #{cc.clientId}:filter-add-form #{cc.clientId}:hidden-case-count"
-                        oncomplete="caseWidget.setUpScrollbar(); caseWidget.setupHeader();caseWidget.updateCaseCountToBreadcrumb();" />
-                      <p:tooltip id="user-defined-filter-tooltip" for="user-defined-filter"
-                        value="#{filterData.filterName}" trackMouse="true" />
-                      <p:commandLink id="delete-user-defined-filter-command"
-                        rendered="#{caseWidgetBean.isDeleteFilterEnabledFor(filterData)}"
-                        styleClass="si si-delete-2 delete-user-defined-filter-command"
-                        actionListener="#{logic.setFilterToBeDeleted(filterData)}"
-                        oncomplete="PF('delete-filter-confirmation-dialog').show();" />
+                    <ui:repeat var="filterData" value="#{data.publicFilters}">
+                      <div class="user-defined-filter-container">
+                        <p:commandLink id="user-defined-filter" styleClass="user-defined-filter"
+                          value="#{filterData.filterName}"
+                          actionListener="#{logic.applyFilter(filterData)}"
+                          update="#{cc.clientId}:filter-selection-container #{cc.clientId}:filter-container #{cc.clientId}:case-widget-header #{cc.clientId}:case-list #{cc.clientId}:filter-add-form #{cc.clientId}:hidden-case-count"
+                          oncomplete="caseWidget.setUpScrollbar();caseWidget.setupHeader();caseWidget.updateCaseCountToBreadcrumb();" />
+                        <p:tooltip id="user-defined-filter-tooltip" for="user-defined-filter"
+                          value="#{filterData.filterName}" trackMouse="true" />
+                        <p:commandLink id="delete-user-defined-filter-command"
+                          rendered="#{caseWidgetBean.isDeleteFilterEnabledFor(filterData)}"
+                          styleClass="si si-delete-2 delete-user-defined-filter-command"
+                          actionListener="#{data.setFilterDataToBeDeleted(filterData)}"
+                          oncomplete="PF('delete-filter-confirmation-dialog').show();" />
+                      </div>
+                    </ui:repeat>
+                  </h:panelGroup>
+                  <p:separator rendered="#{not empty data.publicFilters and not empty data.privateFilters}" styleClass="filter-separator" />
+                  <h:panelGroup id="public-filters" rendered="#{not empty data.privateFilters}">
+                    <div class="filter-type-label">
+                      <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/privateFilter')}</span>
                     </div>
-                  </ui:repeat>
-                </h:panelGroup>
-              </p:overlayPanel>
+                    <ui:repeat var="filterData" value="#{data.privateFilters}">
+                      <div class="user-defined-filter-container">
+                        <p:commandLink id="user-defined-filter" styleClass="user-defined-filter"
+                          value="#{filterData.filterName}"
+                          actionListener="#{logic.applyFilter(filterData)}"
+                          update="#{cc.clientId}:filter-selection-container #{cc.clientId}:filter-container #{cc.clientId}:case-widget-header #{cc.clientId}:case-list #{cc.clientId}:filter-add-form #{cc.clientId}:hidden-case-count"
+                          oncomplete="caseWidget.setUpScrollbar(); caseWidget.setupHeader();caseWidget.updateCaseCountToBreadcrumb();" />
+                        <p:tooltip id="user-defined-filter-tooltip" for="user-defined-filter"
+                          value="#{filterData.filterName}" trackMouse="true" />
+                        <p:commandLink id="delete-user-defined-filter-command"
+                          rendered="#{caseWidgetBean.isDeleteFilterEnabledFor(filterData)}"
+                          styleClass="si si-delete-2 delete-user-defined-filter-command"
+                          actionListener="#{logic.setFilterToBeDeleted(filterData)}"
+                          oncomplete="PF('delete-filter-confirmation-dialog').show();" />
+                      </div>
+                    </ui:repeat>
+                  </h:panelGroup>
+                </p:overlayPanel>
+              </h:panelGroup>
+            </h:form>
+          </h:panelGroup>
+  
+          <div id="applied-filters-container" class="applied-filters-container">
+            <!-- Title on mobile -->
+            <h:panelGroup id="case-header-mobile" styleClass="ui-sm-4 widget-title-mobile js-widget-title-mobile">
+              <f:event listener="#{logic.preRenderTitle()}" type="preRenderComponent" />
+              <span class="top-header-main-title widget-header-main-title">
+                <span> #{cc.attrs.title}</span>
+                <h:outputText styleClass="js-case-count-mobile" rendered="#{!data.dataModel.disableCaseCount}" />
+              </span>
             </h:panelGroup>
-          </h:form>
-        </h:panelGroup>
-
-        <div id="applied-filters-container" class="applied-filters-container">
-         <!-- Title on mobile -->
-         <h:panelGroup id="case-header-mobile" styleClass="ui-sm-4 widget-title-mobile js-widget-title-mobile">
-           <f:event listener="#{logic.preRenderTitle()}" type="preRenderComponent" />
-           <span class="top-header-main-title widget-header-main-title">
-             <span> #{cc.attrs.title}</span>
-             <h:outputText styleClass="js-case-count-mobile" rendered="#{!data.dataModel.disableCaseCount}" />
-          </span>
-        </h:panelGroup>
-
-        <!-- Search filter -->
-        <div id="text-filter" class="text-filter #{cc.attrs.isTechnicalCaseView ? 'technical-case-text-filter' : ''}">
-          <span class="selected-filters-label u-hidden-md-down">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/appliedFilters')} </span>
-          <h:form id="case-basic-filter-form" onsubmit="return false;">
-            <ic:ch.ivy.addon.portalkit.component.Filter id="case-filter-component" keywordStoresIn="#{data.dataModel.criteria.keyword}"
-              updateComponent="#{cc.clientId}:case-list #{cc.clientId}:hidden-case-count"
-              listener="#{data.dataModel.onKeywordChange()}" styleClass="case-filter-component"
-              placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/filterTextPlaceholder')}"
-              onCompletedCallback="caseWidget.setUpScrollbar();caseWidget.setupHeader(); caseWidget.updateCaseCountToBreadcrumb();" isFilterToggleRenderedOnMobile="true" onClickIconFilter="caseWidget.toggleCaseFilter();caseWidget.setUpScrollbar();" />
-          </h:form>
-        </div>
+  
+            <!-- Search filter -->
+            <div id="text-filter" class="text-filter #{cc.attrs.isTechnicalCaseView ? 'technical-case-text-filter' : ''}">
+              <span class="selected-filters-label u-hidden-md-down">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/appliedFilters')} </span>
+              <h:form id="case-basic-filter-form" onsubmit="return false;">
+                <ic:ch.ivy.addon.portalkit.component.Filter id="case-filter-component" keywordStoresIn="#{data.dataModel.criteria.keyword}"
+                  updateComponent="#{cc.clientId}:case-list #{cc.clientId}:hidden-case-count"
+                  listener="#{data.dataModel.onKeywordChange()}" styleClass="case-filter-component"
+                  placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/filterTextPlaceholder')}"
+                  onCompletedCallback="caseWidget.setUpScrollbar();caseWidget.setupHeader(); caseWidget.updateCaseCountToBreadcrumb();" isFilterToggleRenderedOnMobile="true" onClickIconFilter="caseWidget.toggleCaseFilter();caseWidget.setUpScrollbar();" />
+              </h:form>
+            </div>
 
             <f:event listener="#{data.dataModel.initFilters()}" type="preRenderComponent" />
 
@@ -172,11 +171,12 @@
               icon="#{visibilityBean.generateButtonIcon('si si-floppy-disk')}" update="save-filter-set-dialog" resetValues="true"
               oncomplete="PF('save-filter-set-dialog').show();" rendered="#{!cc.attrs.isTechnicalCaseView}"
               actionListener="#{caseWidgetBean.verifyCaseStateFilter(data.dataModel.selectedFilters)}" />
-        </div>
+          </div>
+        </h:panelGroup>
         <!-- Export to Excel, Manage Columns -->
-        <h:panelGroup id="case-list-actions" styleClass="case-list-actions u-hidden-md-down ">
+        <h:panelGroup id="case-list-actions" styleClass="case-list-actions u-hidden-md-down  #{!cc.attrs.hideWidgetHeader ? '' : 'no-widget-header'}">
           <p:spacer width="20px"></p:spacer>
-          <h:form id="case-export-to-excel-form" styleClass="case-export-to-excel-form">
+          <h:form id="case-export-to-excel-form" styleClass="case-export-to-excel-form u-mar-right-20">
             <p:commandLink ajax="false" id="case-export-to-excel"
               onclick="PrimeFaces.monitorDownload(start, stop);">
               <i class="si si-office-file-xls-1 u-mar-right-5" />
@@ -186,20 +186,19 @@
               <p:fileDownload value="#{logic.getExportedFile(caseWidgetBean.getColumns(data.dataModel))}" />
             </p:commandLink>
           </h:form>
-          <p:spacer width="20px" />
+
           <ic:ch.ivy.addon.portalkit.component.ColumnsConfiguration id="case-columns-configuration"
-                updatedComponent="#{cc.clientId}:case-view #{cc.clientId}:widget-column-header #{cc.clientId}:hidden-case-count #{cc.clientId}:case-list-actions"
-                dataModel="#{data.dataModel}" oncomplete="caseWidget.setUpScrollbar(); caseWidget.setupHeader(); caseWidget.updateCaseCountToBreadcrumb();"
-                configButtonId="case-config-button" overlayPanelId="case-config-columns-panel" />
+            updatedComponent="#{cc.clientId}:case-view #{cc.clientId}:widget-column-header #{cc.clientId}:hidden-case-count #{cc.clientId}:case-list-actions"
+            dataModel="#{data.dataModel}" oncomplete="caseWidget.setUpScrollbar(); caseWidget.setupHeader(); caseWidget.updateCaseCountToBreadcrumb();"
+            configButtonId="case-config-button" overlayPanelId="case-config-columns-panel" />
         </h:panelGroup>
       </h:panelGroup>
-      <h:panelGroup layout="block">
-		<p:link id="back-link" href="#" rendered="#{cc.attrs.inFrame}" onclick="backToCaseDetails()" styleClass="list-back-link js-back-link">
-          <i class="si si-arrow-left-1" />
-          <p:spacer width="3px"/>
+      <h:panelGroup rendered="#{cc.attrs.inFrame}" layout="block" styleClass="back-link-container">
+        <p:commandLink id="back-link" actionListener="#{logic.backToCaseDetails()}" styleClass="list-back-link js-back-link"
+          process="@this" immediate="true" update="@none">
+          <i class="si si-arrow-left-1 u-mar-right-5" />
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}"/>
-        </p:link>
-        <p:remoteCommand name="backToCaseDetails" actionListener="#{logic.backToCaseDetails()}" process="@this" immediate="true" />
+        </p:commandLink>
       </h:panelGroup>
     </h:panelGroup>
 
