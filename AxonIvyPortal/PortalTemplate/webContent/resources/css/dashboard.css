@@ -308,10 +308,6 @@ body .ui-calendar.task-configuration__calendar .ui-datepicker-trigger {
   max-width: 100%;
 }
 
-body .ui-widget-content .dashboard-widget-icon {
-  font-size: 2rem !important;
-}
-
 .category-filter-tree {
   max-height: 400px;
   overflow-y: auto;
