@@ -49,8 +49,7 @@ public class MainMenuPage extends TemplatePage {
   }
 
   public StatisticWidgetPage selectStatisticDashboard() {
-    clickByCssSelector(".layout-menu li[role='menuitem'] a.ripplelink.STATISTICS");
-    waitForElementDisplayed(By.className("statistic-dashboard-expand-mode"), true);
+    WaitHelper.waitForNavigation(this, () -> clickByCssSelector(".layout-menu li[role='menuitem'] a.ripplelink.STATISTICS"));
     return new StatisticWidgetPage();
   }
 
@@ -79,7 +78,7 @@ public class MainMenuPage extends TemplatePage {
   }
 
   public HomePage backToHomeByClickOnBreadcrumb() {
-    click(findElementByCssSelector("a.ui-menuitem-link.ui-icon.ui-icon-home"));
+    WaitHelper.waitForNavigation(this, () -> clickByCssSelector("a.ui-icon-home"));
     return new HomePage();
   }
 }
