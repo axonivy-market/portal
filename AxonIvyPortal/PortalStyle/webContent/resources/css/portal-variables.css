@@ -117,9 +117,6 @@
   --command-link-disabled-text-color: var(--ivy-primary-color-grey-medium);
 
   /* Fieldset */
-  --field-set-toggler-color: var(--ivy-primary-color-black);
-  --field-set-legend-hover-color: var(--ivy-primary-color-white);
-  --field-set-toggler-background-color: var(--ivy-primary-color-grey-pale);
   --field-set-no-border-color: transparent;
 
   /* Widget header */
@@ -233,6 +230,10 @@
   --process-nav-item-disable-color: hsla(0, 0%, 11%, 0.3);
   --hovered-process-start-list-item-i-con-color: var(--primary-color);
   --hovered-user-process-start-list-item-icon-color: var(--primary-color);
+  --process-warning-icon-color: var(--ivy-tertinary-color-red-medium);
+  --process-warning-icon-font-weight: bold;
+  --process-icon-font-size: 1.5rem;
+
   /* Case Detail */
   --case-related-task-color: var(--ivy-primary-color-black);
   --case-related-task-hover-color: var(--ivy-primary-color-grey-dark);
@@ -423,7 +424,6 @@
   --chat-send-form-icon-color: var(--ivy-primary-color-black);
   /* Icon */
   --icon-font-family: "FontAwesome";
-  --fieldset-togger-hover-background-color: transparent;
   --icon-selection-dialog-border: transparent;
   --icon-selection-dialog-border-hover: var(--ivy-primary-color-black);
   --ui-inplace-background-color: transparent;

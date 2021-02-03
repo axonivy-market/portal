@@ -33,7 +33,6 @@ public class AdditionalComponentsScreenshotTest extends ScreenshotTest {
   public void captureScreenshotGrowlMessage() throws IOException {
     login(TestAccount.ADMIN_USER);
     updatePortalSetting("DISPLAY_MESSAGE_AFTER_FINISH_TASK", "true");
-    redirectToRelativeLink(createTestingTasksUrl);
     redirectToRelativeLink(createTestingCaseContainOneTask);
     ScreenshotUtil.resizeBrowser(new Dimension(1500, 1000));
 
@@ -42,7 +41,8 @@ public class AdditionalComponentsScreenshotTest extends ScreenshotTest {
     HomePage homePage = new HomePage();
     homePage.waitForGrowlMessageDisplayClearly();
     ScreenshotUtil.captureHalfTopPageScreenShot(ScreenshotUtil.COMPONENTS_FOLDER + "example-global-growl-finished-task");
-    
+
+    redirectToRelativeLink(createTestingTasksUrl);
     taskWidgetPage = new TaskWidgetPage();
     TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
     homePage = taskTemplatePage.clickCancelAndLeftButton();
