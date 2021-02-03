@@ -42,10 +42,10 @@
                       
                       <div class="widget__header-actions">
                         <p:link id="filter-sidebar-link-#{status.index}" href="#" styleClass="widget__filter-sidebar-link u-mar-right-5">
-                          <i class="icon ui-icon ivyicon-filter-1" />
+                          <i class="si si-filter-1" />
                         </p:link>
                         <p:link id="info-sidebar-link-#{status.index}" href="#" styleClass="u-mar-right-5">
-                          <i class="icon ui-icon ivyicon-information-circle" />
+                          <i class="si si-information-circle" />
                         </p:link>
                         <p:remoteCommand name="buildStatisticInfos#{status.index}" actionListener="#{widget.buildStatisticInfos}" update="statistic-filter-accordion-panel" />
                         <p:commandLink styleClass="u-mar-right-5" oncomplete="PF('task-widget-configuration-dialog').show()" global="false"
