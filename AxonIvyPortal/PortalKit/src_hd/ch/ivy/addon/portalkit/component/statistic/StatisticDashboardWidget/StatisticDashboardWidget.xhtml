@@ -35,7 +35,7 @@
                     <h:panelGroup styleClass="statistics-header-container ui-g-12">
                       <h:panelGroup id="chart-name-container" styleClass="chart-name-container" layout="block">
                         <h1 id="chart-name-#{chartStatus.index}" class="chart-name">#{chart.name}</h1>
-                        <p:commandLink rendered="#{!(empty chart.filter)}" styleClass="si si-information-circle chart-info portal-icon"
+                        <p:commandLink rendered="#{chart.filter != null}" styleClass="si si-information-circle chart-info portal-icon"
                             actionListener="#{logic.selectChart(chart)}" update="#{p:component('chart-details-dialog')}" oncomplete="PF('chart-details-dialog').show();" />
                       </h:panelGroup>
 

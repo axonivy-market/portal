@@ -15,16 +15,21 @@ import ch.ivyteam.ivy.environment.Ivy;
 
 public class IvyComponentLogicCaller<T> {
 
-  @SuppressWarnings("unchecked")
   public T invokeComponentLogic(String componentId, String methodSignature, Object[] paramValues) {
     FacesContext fc = FacesContext.getCurrentInstance();
     UIComponent component = fc.getViewRoot().findComponent(componentId);
+    
     if (component == null) {
       throw new PortalException("ivy component with ID " + componentId + " does not exist!");
     }
 
-    ELContext el = fc.getELContext();
-    Application app = fc.getApplication();
+    return invokeComponentLogic(component, methodSignature, paramValues);
+  }
+
+  @SuppressWarnings("unchecked")
+  public T invokeComponentLogic(UIComponent component, String methodSignature, Object[] paramValues) {
+    ELContext el = FacesContext.getCurrentInstance().getELContext();
+    Application app = FacesContext.getCurrentInstance().getApplication();
     MethodExpression elExpression =
         app.getExpressionFactory().createMethodExpression(el, methodSignature, Object.class,
             ClassUtils.toClass(paramValues));
