@@ -1,1 +1,1 @@
-TODO If true, task details page init widgets by configuration in JSON file for the first time. User can set up position of widgets, hide, drag, drop and resize widgets in JSON file.
+Si es activado, la página de detalles de la tarea inicializa los widgets mediante la configuración en el archivo JSON por primera vez. El usuario puede configurar la posición de los widgets, ocultar, arrastrar, soltar y cambiar el tamaño de los widgets en el archivo JSON.
