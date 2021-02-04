@@ -232,7 +232,7 @@ public class TaskActionBean implements Serializable {
     ProcessStartCollector collector = new ProcessStartCollector(Ivy.request().getApplication());
     String urlParameters = "?TaskId=" + iTask.getId();
     try {
-      return ProcessStartAPI.findLinkByFriendlyRequestPath(Ivy.request().getApplication(), requestPath) + urlParameters; //collector.findLinkByFriendlyRequestPath(requestPath) + urlParameters;
+      return ProcessStartAPI.findLinkByFriendlyRequestPath(Ivy.request().getApplication(), requestPath) + urlParameters; 
     } catch (Exception e) {
       Ivy.log().error(e);
       IProcessStart process = collector.findProcessStartByUserFriendlyRequestPath(requestPath);
