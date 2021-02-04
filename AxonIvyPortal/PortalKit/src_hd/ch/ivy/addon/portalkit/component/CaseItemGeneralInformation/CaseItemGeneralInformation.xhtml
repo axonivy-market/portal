@@ -50,7 +50,8 @@
             value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/CaseCategory')}" />
         </div>
         <div class="ui-g-12 no-padding-column text-content last-line text-ellipsis">
-          <h:outputText id="case-category" value="#{case.categoryPath}" />
+          <h:outputText id="case-category" value="#{case.categoryPath}" rendered="#{not empty case.categoryPath}" />
+          <h:outputText id="empty-case-category" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable')}" rendered="#{empty case.categoryPath}" />
         </div>
       </div>
     </div>
@@ -72,6 +73,7 @@
           <ic:ch.ivy.addon.portalkit.component.SecurityMemberDisplayName id="case-owner-full-name" rendered="#{case.getOwner().isUser()}"
             securityMember="#{case.getOwner()}" securityMemberName="#{case.ownerName}" />
           <h:outputText value="#{case.getOwner().getDisplayName()}" rendered="#{not case.getOwner().isUser()}" />
+          <h:outputText id="empty-case-owner" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable')}" rendered="#{empty case.getOwner()}" />
         </div>
       </h:panelGroup>
 
@@ -111,9 +113,10 @@
             value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/Finished')}" />
         </div>
         <div class="ui-xl-9 ui-lg-8 ui-md-8 ui-sm-8 ui-g-4 u-no-padding-left text-ellipsis">
-          <h:outputText id="case-end-time" value="#{case.endTimestamp}">
+          <h:outputText id="case-end-time" value="#{case.endTimestamp}" rendered="#{not empty case.endTimestamp}">
             <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
           </h:outputText>
+           <h:outputText id="empty-case-owner" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable')}" rendered="#{empty case.endTimestamp}" />
         </div>
       </h:panelGroup>
 

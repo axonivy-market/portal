@@ -90,7 +90,7 @@ public class CaseDetailsBean implements Serializable {
   private void loadCaseDetailsSettings() {
     hasShowNotAvailableData = PermissionUtils.isSessionUserHasAdminRole();
     hasApplyJsonConfigurationFile = Boolean.parseBoolean(globalSettingService
-        .findGlobalSettingValue(GlobalVariable.APPLY_JSON_CONFIGURATION_FILE_FOR_TASK_DETAILS.toString()));
+        .findGlobalSettingValue(GlobalVariable.JSON_CONFIGURATION_FOR_CASE_DETAILS.toString()));
   }
 
   private void loadWidgets() throws Exception {
