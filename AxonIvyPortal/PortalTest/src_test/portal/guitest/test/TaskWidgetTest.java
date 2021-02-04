@@ -192,7 +192,7 @@ public class TaskWidgetTest extends BaseTest {
   @Test
   public void testStartATaskAtHomePage() {
     HomePage homePage = new HomePage();
-    String annualLeaveRequest = "Annual Leave Request";
+    String maternityLeaveRequest = "Maternity Leave Request";
     String sickRequest = "Sick Leave Request";
     TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
     //Start first task
@@ -204,7 +204,7 @@ public class TaskWidgetTest extends BaseTest {
     taskWidgetPage = homePage.getTaskWidget();
     assertTrue(taskWidgetPage.isResumedTask(0));
     taskTemplatePage = taskWidgetPage.startTask(0);
-    assertEquals(annualLeaveRequest, taskTemplatePage.getTaskName());
+    assertEquals(maternityLeaveRequest, taskTemplatePage.getTaskName());
     homePage = taskTemplatePage.clickCancelAndLeftButton();
     
     taskWidgetPage = homePage.getTaskWidget();
@@ -284,7 +284,7 @@ public class TaskWidgetTest extends BaseTest {
     selectedSortColumn = taskWidgetPage.getSelectedCompactSortLable();
     assertTrue(StringUtils.equalsIgnoreCase("Creation date (Newest first)", selectedSortColumn));
     taskName = taskWidgetPage.getCompactTaskCellValue(0);
-    assertTrue(StringUtils.equalsIgnoreCase("Annual Leave Request", taskName));
+    assertTrue(StringUtils.equalsIgnoreCase("Maternity Leave Request", taskName));
     // Change User sort selection
     UserProfilePage userProfilePage = taskWidgetPage.openMyProfilePage();
     userProfilePage.selectTaskSortField("Priority");
