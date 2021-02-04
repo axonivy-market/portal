@@ -149,7 +149,7 @@ Migrate 9.1 to 9.2
    - Log in with user that MUST have permission to start all processes of your application (not only favorite processes) to avoid wrong migration.
    - Run ``MigrateUserFavoriteProcesses/migrateUserFavoriteProcesses.ivp`` to migrate all user favorite processes in your application.
 
-8. The ``APPLY_JSON_CONFIGURATION_FILE_FOR_TASK_DETAILS`` Portal setting will be activated by default. If you don't want to use the task details with new style, please deactivate this portal setting.
+8. The ``JSON_CONFIGURATION_FOR_TASK_DETAILS`` and ``JSON_CONFIGURATION_FOR_CASE_DETAILS`` Portal setting will be activated by default. If you don't want to use the task/case details with new style, please deactivate this portal setting to keep your old customization.
 
 Migrate 8.x to 9.1
 ------------------
@@ -212,7 +212,7 @@ Changes in 9.2
 
 - Introduce new approach to customize :ref:`Portal Task item details <customization-task-item-details>`.
 
-- Introduce new Portal Setting ``APPLY_JSON_CONFIGURATION_FILE_FOR_TASK_DETAILS`` to control visibility of widgets on task details page with new style.
+- Introduce new Portal Setting ``JSON_CONFIGURATION_FOR_TASK_DETAILS`` and ``JSON_CONFIGURATION_FOR_CASE_DETAILS`` to control visibility of widgets on task/case details page with new style.
 
 - Introduce new Portal Setting ``SHOW_BUTTON_ICON`` to control visibility of icon of button in Portal.
 

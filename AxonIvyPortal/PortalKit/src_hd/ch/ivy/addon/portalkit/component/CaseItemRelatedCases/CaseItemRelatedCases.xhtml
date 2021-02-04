@@ -40,12 +40,12 @@
           rendered="#{caseBean.isCaseOwnerEnabled()}">
           <h:outputText value="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(case.owner, case.ownerName)}" />
         </p:column>
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/CREATION_TIME')}" sortBy="#{case.startTimestamp}" styleClass="created-column">
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATION_TIME')}" sortBy="#{case.startTimestamp}" styleClass="created-column">
           <h:outputText value="#{case.startTimestamp}">
             <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
           </h:outputText>
         </p:column>
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/EXPIRY_TIME')}" sortBy="#{case.endTimestamp}" styleClass="expiry-column">
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/FINISHED_TIME')}" sortBy="#{case.endTimestamp}" styleClass="expiry-column">
           <h:outputText value="#{case.endTimestamp}">
             <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
           </h:outputText>

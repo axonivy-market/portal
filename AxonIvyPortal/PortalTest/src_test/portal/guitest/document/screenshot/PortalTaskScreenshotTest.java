@@ -78,7 +78,7 @@ public class PortalTaskScreenshotTest extends ScreenshotTest {
   public void screenshotBasicTaskDetails() throws IOException {
     login(TestAccount.ADMIN_USER);
     ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 1200));
-    updatePortalSetting("APPLY_JSON_CONFIGURATION_FILE_FOR_TASK_DETAILS", "true");
+    updatePortalSetting("JSON_CONFIGURATION_FOR_TASK_DETAILS", "true");
     TaskWidgetPage taskWidget = homePage.openTaskList();
     TaskDetailsPage taskDetails = taskWidget.openTaskDetails(0);
     taskDetails.waitUtilsTaskDetailsDisplayed();
@@ -92,7 +92,7 @@ public class PortalTaskScreenshotTest extends ScreenshotTest {
   public void screenshotActionButtonsOnTaskDetailsWithJsonFile() throws IOException {
     login(TestAccount.ADMIN_USER);
     ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 1440));
-    updatePortalSetting("APPLY_JSON_CONFIGURATION_FILE_FOR_TASK_DETAILS", "true");
+    updatePortalSetting("JSON_CONFIGURATION_FOR_TASK_DETAILS", "true");
     TaskWidgetPage taskWidget = homePage.openTaskList();
     TaskDetailsPage taskDetails = taskWidget.openTaskDetails(0);
     taskDetails.waitUtilsTaskDetailsDisplayed();
@@ -126,7 +126,7 @@ public class PortalTaskScreenshotTest extends ScreenshotTest {
   public void screenshotTaskDetails() throws IOException {
     login(TestAccount.ADMIN_USER);
     ScreenshotUtil.resizeBrowser(new Dimension(2560, 1440));
-    updatePortalSetting("APPLY_JSON_CONFIGURATION_FILE_FOR_TASK_DETAILS", "true");
+    updatePortalSetting("JSON_CONFIGURATION_FOR_TASK_DETAILS", "true");
     TaskWidgetPage taskWidget = homePage.openTaskList();
     TaskDetailsPage taskDetails = taskWidget.openTaskDetails(0);
     taskDetails.waitUtilsTaskDetailsDisplayed();
@@ -207,7 +207,7 @@ public class PortalTaskScreenshotTest extends ScreenshotTest {
   @Test
   public void screenshotCustomTaskDetails() throws IOException {
     ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 1200));
-    updatePortalSetting("APPLY_JSON_CONFIGURATION_FILE_FOR_TASK_DETAILS", "false");
+    updatePortalSetting("JSON_CONFIGURATION_FOR_TASK_DETAILS", "false");
     redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
 
     TaskWidgetPage taskWidget = homePage.openTaskList();
