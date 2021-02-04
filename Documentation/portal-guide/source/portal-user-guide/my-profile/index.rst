@@ -118,16 +118,21 @@ These are options you can select:
    +=======================+===============================================+
    | Default               | Default date format will detected by browser's|
    |                       | locale for your first login.                  |
-   |                       | Example: Default date format is dd/MM/yyyy.   |
+   |                       |                                               |
+   |                       | Example: Default format is dd/MM/yyyy.        |
    |                       | Date fields will be displayed as "31/01/2021" |
    +-----------------------+-----------------------------------------------+
    | dd.MM.yyyy            | Date fields will be displayed by              |
-   |                       | Day.Month.Year. Example: With this format,    |
-   |                       | date fields will be displayed as "31.01.2021" |
+   |                       | Day.Month.Year.                               |
+   |                       |                                               |
+   |                       | Example: With this format, date fields will   |
+   |                       | be displayed as "31.01.2021"                  |
    +-----------------------+-----------------------------------------------+
    | MM.dd.yyyy            | Date fields will be displayed by              |
-   |                       | Month.Day.Year. Example: With this format,    |
-   |                       | date fields will be displayed as "01.31.2021" |
+   |                       | Month.Day.Year.                               |
+   |                       |                                               |
+   |                       | Example: With this format, date fields will   |   
+   |                       | be displayed as "01.31.2021"                  |
    +-----------------------+-----------------------------------------------+
 
 .. |my-profile-save| image:: ../../screenshots/my-profile/my-profile.png
