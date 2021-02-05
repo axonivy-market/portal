@@ -81,6 +81,9 @@ Process developer can set up global settings of Portal in file ``portal_settings
       #CLIENT_SIDE_TIMEOUT =
       #REFRESH_TASK_LIST_INTERVAL = 10000
 
+      # Year settings
+      #HIDE_TIME = false
+
       # Task/case counting functions
       #DISABLE_CASE_COUNT = false
       #DISABLE_TASK_COUNT = false
