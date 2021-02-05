@@ -68,7 +68,7 @@ public class MainMenuPage extends TemplatePage {
   }
 
   public WorkingTaskDialogPageOfApplicationMenu selectDashboardMenu() {
-    WaitHelper.waitForNavigation(this, () -> clickByCssSelector(".layout-menu li[role='menuitem'] a.ripplelink.DASHBOARD"));
+    clickByCssSelector(".layout-menu li[role='menuitem'] a.ripplelink.DASHBOARD");
     return new WorkingTaskDialogPageOfApplicationMenu();
   }
 
