@@ -1,11 +1,14 @@
 package portal.guitest.test;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 
 import org.junit.Test;
 
 import portal.guitest.bean.ExpressResponsible;
 import portal.guitest.common.BaseTest;
+import portal.guitest.common.DateTimePattern;
 import portal.guitest.common.TestAccount;
 import portal.guitest.common.WaitHelper;
 import portal.guitest.page.ExpressFormDefinitionPage;
@@ -45,7 +48,8 @@ public class GlobalGrowlTest extends BaseTest {
     redirectToRelativeLink(createTestingTasksUrl);
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
-    taskTemplatePage.inputFields("Employee", "1.1.2019", "1.1.2019", "Representation");
+    String today =  LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_PATTERN));
+    taskTemplatePage.inputFields("Employee", today, today, "Representation");
     HomePage homePage = taskTemplatePage.clickSubmitButton();
     assertGrowlMessage(homePage, FINISH_MESSAGE_WITH_DETAILS);
   }
@@ -54,7 +58,8 @@ public class GlobalGrowlTest extends BaseTest {
   public void testDisplayDefaultGrowlAfterFinishFirstTask() {
     redirectToRelativeLink(SKIP_TASK_LIST_URL);
     TaskTemplatePage taskTemplatePage = new TaskTemplatePage();
-    taskTemplatePage.inputFields("Employee", "1.1.2019", "1.1.2019", "Representation");
+    String today =  LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_PATTERN));
+    taskTemplatePage.inputFields("Employee", today, today, "Representation");
     HomePage homePage = taskTemplatePage.clickSubmitButton();
     assertGrowlMessage(homePage, FINISH_MESSAGE_WITH_DETAILS);
   }
