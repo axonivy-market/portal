@@ -2,11 +2,15 @@ package portal.guitest.test;
 
 import static org.junit.Assert.assertEquals;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 
 import portal.guitest.common.BaseTest;
+import portal.guitest.common.DateTimePattern;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.CaseDetailsPage;
 import portal.guitest.page.CaseWidgetPage;
@@ -79,7 +83,9 @@ public class BackNavigationTest extends BaseTest {
     assertEquals(TASK_DETAILS_TITLE, taskDetailsPage.getPageTitle());
 
     TaskTemplatePage taskTemplatePage = taskDetailsPage.clickStartTask();
-    taskTemplatePage.inputFields("tester", "16.05.2019", "17.05.2019", "tester");
+    String today =  LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_PATTERN));
+    String yesterday =  LocalDateTime.now().minusDays(1).format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_PATTERN));
+    taskTemplatePage.inputFields("tester", yesterday, today, "tester");
     taskTemplatePage.clickOnSubmitButton();
 
     caseDetailsPage = new CaseDetailsPage();
@@ -131,7 +137,8 @@ public class BackNavigationTest extends BaseTest {
 
     TaskTemplatePage taskTemplatePage = taskDetailsPage.clickStartTask();
     taskTemplatePage.type(By.id("payment-request:fullname"), "Demo");
-    taskTemplatePage.type(By.id("payment-request:from_input"), "30.06.2020");
+    String today =  LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_PATTERN));
+    taskTemplatePage.type(By.id("payment-request:from_input"), today);
     taskTemplatePage.clickOnSubmitButton();
     caseDetailsPage = new CaseDetailsPage();
     caseDetailsPage.waitForCaseDetailsReload();
