@@ -279,12 +279,12 @@ public class TaskWidgetTest extends BaseTest {
     taskWidgetPage.sortTaskListByColumn("Name / Description", 0, "task-name", "Annual Leave Request");
     // Back to Dashboard - compact task list will sort by default column
     taskWidgetPage.clickOnLogo();
+    // Create new task
+    createTestingTasks();
     homePage = new HomePage();
     taskWidgetPage = homePage.getTaskWidget();
     selectedSortColumn = taskWidgetPage.getSelectedCompactSortLable();
     assertTrue(StringUtils.equalsIgnoreCase("Creation date (Newest first)", selectedSortColumn));
-    taskName = taskWidgetPage.getCompactTaskCellValue(0);
-    assertTrue(StringUtils.equalsIgnoreCase("Maternity Leave Request", taskName));
     // Change User sort selection
     UserProfilePage userProfilePage = taskWidgetPage.openMyProfilePage();
     userProfilePage.selectTaskSortField("Priority");
