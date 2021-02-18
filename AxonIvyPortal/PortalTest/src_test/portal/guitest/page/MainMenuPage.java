@@ -63,7 +63,7 @@ public class MainMenuPage extends TemplatePage {
   }
 
   public CaseWidgetPage selectCaseMenu() {
-    clickByCssSelector(".layout-menu li[role='menuitem'] a.ripplelink.CASE");
+    WaitHelper.waitForNavigation(this, () -> clickByCssSelector(".layout-menu li[role='menuitem'] a.ripplelink.CASE"));
     return new CaseWidgetPage();
   }
 

@@ -382,11 +382,7 @@ public class TaskDetailsPage extends TemplatePage {
     moveWidget.perform();
   }
 
-  public boolean isResetButtonDisplayed() {
-    try {
-      return isElementDisplayed(findElementByCssSelector("[id$=':reset-task-details-settings-button']"));
-    } catch (NoSuchElementException ex) {
-      return false;
-    }
+  public void waitForResetButtonDisplayed() {
+    waitForElementDisplayed(By.cssSelector("[id$=':reset-task-details-settings-button']"), true);
   }
 }
