@@ -32,7 +32,8 @@ public class UserFavoriteProcessPage extends TemplatePage {
     WaitHelper.typeWithRetry(this, "input[id$='process-widget:new-process-name_input']", ivyProcessName);
     String processSelector = String.format("tr[data-item-label='%s']", ivyProcessName);
     clickByCssSelector(processSelector);
-    waitUntilAttributeChanged(By.id("process-widget:process-display-name"), "value", "", DEFAULT_TIMEOUT);
+    WaitHelper.assertTrueWithWait(() -> !findElementByCssSelector("input[id$='process-widget:process-display-name']")
+        .getAttribute("value").equalsIgnoreCase(""));
   }
 
   public boolean isIvyProcessByNameSearchable(String ivyProcessName) {
