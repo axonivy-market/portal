@@ -139,14 +139,6 @@ List of valid ``ui:param``:
 
    To show or hide Task Header, use ``showItemDetailsHeader``. Default value is true.
 
--  ``ui:param name="showItemDetailsNotes" value="true"``
-
-   To show/hide Histories (Task Notes) component, by default it’s true.
-
--  ``ui:param name="showItemDetailDocuments" value="true"``
-
-   To show/hide Task Documents component, by default it’s true.
-
 .. _customization-task-item-details-how-to-overide-ui-custom-body:
 
 Show Custom Panels (Widgets)

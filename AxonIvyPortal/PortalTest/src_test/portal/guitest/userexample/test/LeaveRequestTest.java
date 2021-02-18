@@ -1,10 +1,14 @@
 package portal.guitest.userexample.test;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import portal.guitest.common.BaseTest;
+import portal.guitest.common.DateTimePattern;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.CaseDetailsPage;
 import portal.guitest.page.TaskWidgetPage;
@@ -31,7 +35,9 @@ public class LeaveRequestTest extends BaseTest {
         + "Approver: This field is required,"
         + "Requester comment: This field is required", 
         leaveRequestPage.clickSubmitAndGetValidationMsg());
-    leaveRequestPage.enterLeaveRequestInformation("Maternity Leave", "01.02.2020", "01.01.2020", TestAccount.DEMO_USER.getFullName(), "requester comment");
+    String today =  LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_PATTERN));
+    String yesterday =  LocalDateTime.now().minusDays(1).format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_PATTERN));
+    leaveRequestPage.enterLeaveRequestInformation("Maternity Leave", today, yesterday, TestAccount.DEMO_USER.getFullName(), "requester comment");
     Assert.assertEquals("'To' must be later than 'From'.", leaveRequestPage.clickSubmitAndGetValidationMsg());
   }
  
@@ -39,7 +45,9 @@ public class LeaveRequestTest extends BaseTest {
   public void testApproveScenario() {
     leaveRequestPage = startLeaveRequestProcess();
     Assert.assertEquals("Create leave request", leaveRequestPage.getPageTitle());
-    leaveRequestPage.enterLeaveRequestInformation("Maternity Leave", "01.01.2020", "01.02.2020", TestAccount.ADMIN_USER.getFullName(), "requester comment");
+    String today =  LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_PATTERN));
+    String yesterday = LocalDateTime.now().minusDays(1).format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_PATTERN));
+    leaveRequestPage.enterLeaveRequestInformation("Maternity Leave", yesterday, today, TestAccount.ADMIN_USER.getFullName(), "requester comment");
     leaveRequestPage.clickSubmitButton();
     login(TestAccount.ADMIN_USER);
     taskWidgetPage = new TaskWidgetPage();
@@ -63,7 +71,9 @@ public class LeaveRequestTest extends BaseTest {
   public void testRejectScenario() {
     leaveRequestPage = startLeaveRequestProcess();
     Assert.assertEquals("Create leave request", leaveRequestPage.getPageTitle());
-    leaveRequestPage.enterLeaveRequestInformation("Maternity Leave", "01.01.2020", "01.02.2020", TestAccount.ADMIN_USER.getFullName(), "requester comment");
+    String today =  LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_PATTERN));
+    String yesterday =  LocalDateTime.now().minusDays(1).format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_PATTERN));
+    leaveRequestPage.enterLeaveRequestInformation("Maternity Leave", yesterday, today, TestAccount.ADMIN_USER.getFullName(), "requester comment");
     leaveRequestPage.clickSubmitButton();
     login(TestAccount.ADMIN_USER);
     taskWidgetPage = new TaskWidgetPage();
