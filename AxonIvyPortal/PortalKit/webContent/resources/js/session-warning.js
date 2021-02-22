@@ -1,16 +1,17 @@
+var sessionCounter = 0;
+var sessionCounterUpdatedOn = new Date();
+var isLogOut = false;
+
 var PortalSessionWarning = function() {
-  var sessionCounterCookieName = 'ch.ivy.addon.portal.SessionCounter',
-  sessionCounterUpdatedOnCookieName = 'ch.ivy.addon.portal.SessionCounterUpdatedOn',
-  isLogOutCookieName = 'ch.ivy.addon.portal.IsLogout',
-  warningDialogShow = false,
-  logOutCalled = false,
+  var warningDialogShow = false,
   isInteractedInIframeTaskTemplate = false,
-  intervalCheckSessionTimeout, 
+  intervalCheckSessionTimeout,
+
   init = function(clientSideTimeOut) {
     timeout = clientSideTimeOut,
     timeOutSeconds = timeout / 1000,
-    setCookie(sessionCounterCookieName, timeOutSeconds);
-    setCookie(isLogOutCookieName, false);
+    sessionCounter = timeOutSeconds,
+    isLogOut = false,
     intervalCheckSessionTimeout = setInterval(timerDecrement, 1000); // Call Every Second
     window.onload = resetCounterAndTimeout;
     document.onkeypress = resetCounterAndTimeout;
@@ -31,26 +32,25 @@ var PortalSessionWarning = function() {
   },
 
   timerDecrement = function() {
-    var lastUpdated = getCookie(sessionCounterUpdatedOnCookieName), now = new Date(), shouldCheck = false;
+    var lastUpdated = sessionCounterUpdatedOn, now = new Date(), shouldCheck = false;
     if (lastUpdated == 'null') {
-      setCookie(sessionCounterUpdatedOnCookieName, now);
+      sessionCounterUpdatedOn = now;
     } else if (now.getTime() - new Date(lastUpdated).getTime() >= 1000) {
-      setCookie(sessionCounterUpdatedOnCookieName, now);
+      sessionCounterUpdatedOn = now;
       shouldCheck = true;
     }
 
     if (shouldCheck) {
       if (timeOutSeconds > 0) {
-
-        if (parseInt((getCookie(sessionCounterCookieName)), 10) > 0) {
-          timeOutSeconds = parseInt(getCookie(sessionCounterCookieName), 10);
+        if (parseInt(sessionCounter, 10) > 0) {
+          timeOutSeconds = parseInt(sessionCounter, 10);
         }
         timeOutSeconds--;
-        setCookie(sessionCounterCookieName, timeOutSeconds);
+        sessionCounter = timeOutSeconds;
 
       } else {
-        if (getCookie(isLogOutCookieName) == "false") {
-          setCookie(isLogOutCookieName, true);
+        if (isLogOut == false) {
+          isLogOut = true;
           logoutAndShowDialog();
         } else {
           PF('timeout-warning-dialog').hide();
@@ -59,7 +59,7 @@ var PortalSessionWarning = function() {
         }
       }
     } else {
-      timeOutSeconds = parseInt(getCookie(sessionCounterCookieName), 10);
+      timeOutSeconds = parseInt(sessionCounter, 10);
     }
 
     if (timeOutSeconds < 60) {
@@ -78,9 +78,9 @@ var PortalSessionWarning = function() {
 
   resetCounterAndTimeout = function() {
     if (warningDialogShow == false) {
-      setCookie(sessionCounterUpdatedOnCookieName, null);
+      sessionCounterUpdatedOn = null;
       timeOutSeconds = timeout / 1000;
-      setCookie(sessionCounterCookieName, timeOutSeconds);
+      sessionCounter = timeOutSeconds;
     }
   },
 
