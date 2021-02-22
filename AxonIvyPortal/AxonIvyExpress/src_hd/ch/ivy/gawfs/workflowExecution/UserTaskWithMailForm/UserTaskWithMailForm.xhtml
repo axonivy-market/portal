@@ -13,13 +13,14 @@
 
     <ui:define name="content">
       <h:form id="task-form">
+        <p:messages id="messages-user-task" showDetail="false" closable="true" redisplay="false">
+          <p:autoUpdate />
+        </p:messages>
+
         <p:tabView id="task-view">
           <p:tab id="custom-request-tab" title="#{ivy.cms.co('/ch.ivy.addon.portal.generic/CaseDetailsTemplate/requestTabTitle')}"
             styleClass="dynaFormGrid">
             <h:outputScript library="js" name="express-dyna-form.js" />
-            <p:messages id="messages-dynaform" showDetail="false" closable="true" redisplay="false">
-              <p:autoUpdate />
-            </p:messages>
     
             <h:panelGroup id="finished-user-tasks-container" layout="block" rendered="#{not empty data.executePredefinedWorkflowData.finishedTasks}">
               <ic:ch.ivy.gawfs.component.FinishedUserTasksForm id="finished-tasks-component"
