@@ -372,6 +372,11 @@ public class TaskDetailsPage extends TemplatePage {
     waitForElementDisplayed(By.cssSelector("[id$=':switch-to-view-mode-button']"), true);
   }
 
+  public void clickOnSwitchToViewModeButton() {
+    waitForElementDisplayed(By.cssSelector("[id$=':switch-to-view-mode-button']"), true);
+    click(By.cssSelector("[id$=':switch-to-view-mode-button']"));
+  }
+
   public void drapAndDropWidgets(String sourceName, String destinationName) {
     waitForElementDisplayed(By.cssSelector(String.format("[id$=':task-detail-%s-container']", sourceName)), true);
     WebElement sourceElement = findElementByCssSelector(String.format("[id$=':task-detail-%s-container']", sourceName));
