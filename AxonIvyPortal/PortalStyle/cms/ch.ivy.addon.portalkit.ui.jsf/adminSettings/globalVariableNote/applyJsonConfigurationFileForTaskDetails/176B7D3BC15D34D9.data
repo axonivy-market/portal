@@ -1,1 +1,0 @@
-Wenn "true", werden auf der Aufgabendetailseite Widgets durch die Konfiguration in der JSON-Datei zum ersten Mal initiiert. Der Benutzer kann die Position der Widgets einrichten, Widgets ausblenden, ziehen, ablegen und die Größe der Widgets in der JSON-Datei ändern.
