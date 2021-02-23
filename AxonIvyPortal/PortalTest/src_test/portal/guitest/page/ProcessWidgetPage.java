@@ -194,9 +194,11 @@ public class ProcessWidgetPage extends TemplatePage {
   }
   
   public void moveFavoriteProcess(int processToMoveIndex, int destinationProcessIndex) {
-    WebElement processToMove = findElementByCssSelector(".ui-orderlist-item:nth-child(" + processToMoveIndex + ")");
-    WebElement destinationProcess =
-        findElementByCssSelector(".ui-orderlist-item:nth-child(" + destinationProcessIndex + ")");
+    WebElement editProcesses = findElementByCssSelector("form[id$=':edit-process-item-form']");
+    List<WebElement> processItems = findChildElementsByCssSelector(editProcesses, ".ui-orderlist-list .ui-orderlist-item");
+    WebElement processToMove = processItems.get(processToMoveIndex - 1);
+    WebElement destinationProcess = processItems.get(destinationProcessIndex - 1);
+
     Actions builder = new Actions(driver);
     Action moveProcessSequence = builder.dragAndDrop(processToMove, destinationProcess).build();
     moveProcessSequence.perform();
