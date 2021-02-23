@@ -41,7 +41,6 @@ public class TaskDetailsBean implements Serializable {
   private ObjectMapper mapper = new ObjectMapper().enable(MapperFeature.ACCEPT_CASE_INSENSITIVE_ENUMS);
   private boolean isReadOnlyMode = true;
   private boolean hasShowNotAvailableData;
-  private boolean hasApplyJsonConfigurationFile;
   private boolean hasShowDurationTime;
   private GlobalSettingService globalSettingService = new GlobalSettingService();
 
@@ -57,18 +56,14 @@ public class TaskDetailsBean implements Serializable {
 
   private void loadTaskDetailsSettings() {
     hasShowNotAvailableData = PermissionUtils.isSessionUserHasAdminRole();
-    hasApplyJsonConfigurationFile = Boolean.parseBoolean(globalSettingService
-        .findGlobalSettingValue(GlobalVariable.APPLY_JSON_CONFIGURATION_FILE_FOR_TASK_DETAILS.toString()));
     hasShowDurationTime = Boolean
         .parseBoolean(globalSettingService.findGlobalSettingValue(GlobalVariable.SHOW_TASK_DURATION_TIME.toString()));
   }
 
   private void loadWidgets() throws Exception {
-    if (hasApplyJsonConfigurationFile) {
-      String configurationJson = readConfigurationJsonInProperty();
-      configuration = readConfiguration(configurationJson);
-      widgets = configuration.getWidgets();
-    }
+    String configurationJson = readConfigurationJsonInProperty();
+    configuration = readConfiguration(configurationJson);
+    widgets = configuration.getWidgets();
   }
 
   private String readConfigurationJsonInProperty() {
@@ -196,14 +191,6 @@ public class TaskDetailsBean implements Serializable {
 
   public void setShowNotAvailableData(boolean hasShowNotAvailableData) {
     this.hasShowNotAvailableData = hasShowNotAvailableData;
-  }
-
-  public boolean isApplyJsonConfigurationFile() {
-    return hasApplyJsonConfigurationFile;
-  }
-
-  public void setApplyJsonConfigurationFile(boolean hasApplyJsonConfigurationFile) {
-    this.hasApplyJsonConfigurationFile = hasApplyJsonConfigurationFile;
   }
 
   public boolean isShowDurationTime() {
