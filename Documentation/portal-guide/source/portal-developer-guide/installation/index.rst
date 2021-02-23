@@ -117,8 +117,13 @@ In engine
 Migrate 9.1 to 9.2
 ------------------
 
-1. Deploy :download:`MigrateData.iar <documents/MigrateData.iar>` project to your ivy application and run it. 
-If you have many applications, deploy to only one application and run it.
+1. Deploy :download:`MigrateData.iar <documents/MigrateData.iar>` project to your ivy application and run it by access link
+``your_host/your_application/MigrateData/175F92F71BC45295/startMigrateConfiguration.ivp``
+
+If you have many applications, deploy to only one application and run it by access link
+``your_host/your_application/MigrateData/175F92F71BC45295/startMigrateConfiguration.ivp``
+
+Example: ``https://portal.io/Portal/MigrateData/175F92F71BC45295/startMigrateConfiguration.ivp``
 
    .. important:: Run migration process only once
 
