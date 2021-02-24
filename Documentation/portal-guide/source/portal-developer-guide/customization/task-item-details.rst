@@ -30,7 +30,7 @@ How to custom Task item details UI
 
 Refer to ``PortalExamples`` project for examples.
 
-1. Introduce an Axon.ivy project which has ``PortalTemplate`` as a
+1. Introduce an Axon Ivy project which has ``PortalTemplate`` as a
    required library.
 
 2. To customize task item detail, you must customize Portal Home first.
@@ -53,7 +53,7 @@ Refer to ``PortalExamples`` project for examples.
                in PortalTemplate. Remove ``ui:remove`` and change the copied
                one's view.
 
-   -  Use Axon.ivy Override to override the ``OpenPortalTaskDetail``  callable. The original implementation of this
+   -  Use Axon Ivy Override to override the ``OpenPortalTaskDetail``  callable. The original implementation of this
       callable is calling  ``PortalTaskDetails`` , change it to call the customized
       Page introduced in the step above. The signature of this callable is ``call(ITask)``  and customized page must receive this  ``ITask``  instance, put in
       the dialog's  ``Data``  with the exact name  ``taskData``  .

@@ -249,7 +249,7 @@ public class ProcessWidgetTest extends BaseTest {
   @Test
   public void testDefaultProcessIsExcludedFromSearchProcessToAdd() {
     processWidget = homePage.getProcessWidget();
-    String processName = "Axon.ivy Selfservice";
+    String processName = "Axon Ivy Selfservice";
     UserFavoriteProcessPage addNewProcessDialog = processWidget.openNewProcessDialog();
     assertFalse(addNewProcessDialog.isIvyProcessByNameSearchable(processName));
   }

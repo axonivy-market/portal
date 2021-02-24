@@ -32,7 +32,7 @@ How to custom Case item details UI
 
 Refer to ``PortalExamples`` project for examples.
 
-1. Introduce an Axon.ivy project which has ``PortalTemplate`` as a
+1. Introduce an Axon Ivy project which has ``PortalTemplate`` as a
    required library.
 
 2. To customize case item detail, you must customize Portal Home first.
@@ -55,7 +55,7 @@ Refer to ``PortalExamples`` project for examples.
             in PortalTemplate. Remove ``ui:remove`` and change the copied
             one's view.
 
-   -  Use Axon.ivy Override to override the
+   -  Use Axon Ivy Override to override the
       ``OpenPortalCaseDetails`` callable. The original implementation of this
       callable is calling ``PortalCaseDetails``, change it to call the customized
       Page introduced in the step above. The signature of this callable is

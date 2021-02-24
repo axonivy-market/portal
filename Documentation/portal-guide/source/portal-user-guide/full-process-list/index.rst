@@ -6,7 +6,7 @@ Full Process List
 The :guilabel:`Full Process List` page gives you an overview on all the
 processes in the application that are accessible to you. You can reach
 the page by either using the **Processes** link in the
-Axon.ivy Portal menu or the quick link **Show all processes** in your
+Axon Ivy Portal menu or the quick link **Show all processes** in your
 dashboard.
 
 .. figure:: images/navigate-to-full-process-list.png
@@ -23,7 +23,7 @@ and process descriptions then filter the process list accordingly.
 
 .. warning:: 
    Don’t confuse the process search
-   with the global Axon.ivy Portal 
+   with the global Axon Ivy Portal 
    search which you find in the    
    header area of the Portal.      
 

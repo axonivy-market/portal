@@ -29,7 +29,7 @@ How to override task widget's UI
 
 Refer to ``PortalExamples`` project for examples
 
-1. Introduce an Axon.ivy project which has ``PortalTemplate`` as a
+1. Introduce an Axon Ivy project which has ``PortalTemplate`` as a
    required library.
 
 2. To customize task widget, you must customize Portal Home first. Refer
@@ -53,7 +53,7 @@ Refer to ``PortalExamples`` project for examples
       .. tip:: Highly recommend to copy the ``PortalTasks`` HTMLDialog in
          PortalTemplate and change the copied one's view.
 
-   -  Use Axon.ivy Override to override the ``OpenPortalTasks``  callable. The original implementation 
+   -  Use Axon Ivy Override to override the ``OpenPortalTasks``  callable. The original implementation 
       of this callable is calling  ``PortalTasks`` , change it to call the customized Page introduced in
       the step above. The signature of this callable is u ``seView(TaskView)``
       and customized page must receive this  ``TaskView``  instance, put in the
@@ -111,7 +111,7 @@ function of these columns work:
       
          <ic:ch.ivy.addon.portalkit.component.task.column.TaskCustomField id="customer-name-component" componentId="customer-name" column="customVarCharField5" dataModel="#{taskView.dataModel}" labelValue="#{task.customVarCharField5}" />
 
-*  Use Axon.ivy Override to override the ``InitializeTaskDataModel``
+*  Use Axon Ivy Override to override the ``InitializeTaskDataModel``
    callable and initialize data model by your customized one.
 
 *  In your customized portal tasks HTMLDialog, the customized data model
@@ -142,7 +142,7 @@ Task filter
    ``initFilterContainer`` method and initialize filter container (see
    javadoc comments)
 
--  Use Axon.ivy Override to override the ``InitializeTaskDataModel``
+-  Use Axon Ivy Override to override the ``InitializeTaskDataModel``
    callable and initialize data model by your customized one.
 
 -  In your customized portal tasks HTMLDialog, the customized data model
@@ -214,7 +214,7 @@ Custom task delegate
 Portal allows to customize the list of users and roles that a task can
 be delegated to. This can be done following these steps:
 
-1. Introduce a Axon.ivy project which has ``PortalTemplate`` as a
+1. Introduce a Axon Ivy project which has ``PortalTemplate`` as a
    required library and its own ``PortalStart`` process. Refer to step
    1, 2, 3, 4 in :ref:`override task widget's
    UI <customization-task-widget-how-to-overide-ui>` guide.
