@@ -838,8 +838,9 @@ public class TaskWidgetPage extends TemplatePage {
   @SuppressWarnings("deprecation")
   public void selectDelegateResponsible(String responsibleName, boolean isRole) {
     if (isRole) {
-      List<WebElement> radioButtonLabels = findListElementsByCssSelector("table[id$='activator-type-select'] label");
-      click(radioButtonLabels.get(1));
+      waitForElementDisplayed(By.cssSelector("[id$=':task-delegate-form:activator-type-select']"), true);
+      waitForElementEnabled(By.cssSelector("[id$=':task-delegate-form:activator-type-select:1']"), true, DEFAULT_TIMEOUT);
+      clickByCssSelector("[for$=':task-delegate-form:activator-type-select:1']");
       waitAjaxIndicatorDisappear();
       waitForElementDisplayed(By.cssSelector("input[id$='group-activator-select_input']"), true);
       type(By.cssSelector("input[id$='group-activator-select_input']"), responsibleName);
