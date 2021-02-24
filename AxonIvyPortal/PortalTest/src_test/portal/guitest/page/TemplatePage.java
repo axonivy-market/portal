@@ -202,10 +202,9 @@ public abstract class TemplatePage extends AbstractPage {
   }
 
   public MainMenuPage openMainMenu() {
-    WebElement mainMenuToggle = findDisplayedElementByCssSelector("#left-menu");
     if (!isMainMenuOpen()) {
-      click(mainMenuToggle);
-      click(By.xpath("//a[@id='user-menu-required-login:toggle-menu']"));
+      click(findDisplayedElementByCssSelector("#left-menu"));
+      clickByCssSelector("a[id$='user-menu-required-login:toggle-menu']");
     }
     return new MainMenuPage();
   }

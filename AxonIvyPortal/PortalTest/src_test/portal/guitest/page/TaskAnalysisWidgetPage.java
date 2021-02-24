@@ -300,6 +300,7 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
   }
   
   public List<WebElement> getRowsInTaskTable() {
+    waitForElementDisplayed(By.cssSelector("[id$=':statistic-result-form:task-table_data'] tr[role='row']"), true);
     return findElementById("task-widget:statistic-result-form:task-table_data").findElements(By.cssSelector("tr[role='row']"));
   }
   
@@ -310,7 +311,7 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
   }
   
   public void waitForTaskDataChangeToSpecificSize(int size) {
-    Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> {
+    Awaitility.await().atMost(new Duration(DEFAULT_TIMEOUT, TimeUnit.SECONDS)).until(() -> {
       return getRowsInTaskTable().size() == size;
     });
   }
