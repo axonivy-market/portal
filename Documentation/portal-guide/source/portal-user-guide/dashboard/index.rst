@@ -3,10 +3,10 @@
 Dashboard
 *********
 
-The Axon.ivy Portal :guilabel:`Dashboard` is the first page you encounter after
+The Axon Ivy Portal :guilabel:`Dashboard` is the first page you encounter after
 successful login. You can always get back to the dashboard using the 
-**Dashboard** link in the Axon.ivy Portal menu. Alternatively, you can click on
-the Axon.ivy logo in the header.
+**Dashboard** link in the Axon Ivy Portal menu. Alternatively, you can click on
+the Axon Ivy logo in the header.
 
 .. figure:: images/dash-board.png
 
@@ -30,8 +30,8 @@ Process Favorites
 The  **Process favorites** you find under the heading :guilabel:`Processes` on the
 left side of your dashboard. They provide you with a quick and easy access to
 the processes you need most in your daily work. Therefore, the process favorites
-are a key feature to enhance your Axon.ivy Portal experience and increase your
-efficiency. To make full use of this feature the Axon.ivy Portal offers you an
+are a key feature to enhance your Axon Ivy Portal experience and increase your
+efficiency. To make full use of this feature the Axon Ivy Portal offers you an
 easy way to configure the process favorites to your personal needs. 
 
 .. figure:: images/process-favorites.png
@@ -48,7 +48,7 @@ When you have a look at the process favorites you see two areas:
 
 Furthermore, next to the heading you find a link :guilabel:`Show all processes`.
 This quick link routes you the **Full Process List** page of the
-Axon.ivy Portal. Please refer to :ref:`full-process-list` for more detail information.
+Axon Ivy Portal. Please refer to :ref:`full-process-list` for more detail information.
 
 .. _howto-add-a-process-as-a-user-favorite:
 
@@ -65,7 +65,7 @@ HowTo: Add a process as a user favorite
 
 4. The **Display name** is default process name, to add multilingual for favorite process, use **Add languages** button
 
-5. The **Start link** is automatically filled by the Axon.ivy Portal.
+5. The **Start link** is automatically filled by the Axon Ivy Portal.
 
 6. You may change the **Icon** for the process by using the link
    |change-icon| **Change** and selecting your preferred icon.
@@ -148,13 +148,13 @@ from the task list and start working on it.
 At first glance, you see the number of tasks right next to the heading
 :guilabel:`Tasks`. Further to the right you find the link **Show full task
 list**. This quick link routes you to the :guilabel:`Task List` page of the
-Axon.ivy Portal. Please refer to :ref:`full-task-list` for more
+Axon Ivy Portal. Please refer to :ref:`full-task-list` for more
 detailed information.
 
 Right below the heading :guilabel:`Task` you find the following features which
 support you in finding the correct tasks:
 
-1. The Axon.ivy Portal searches for your keyword in the task ID, name and
+1. The Axon Ivy Portal searches for your keyword in the task ID, name and
    description of the tasks in your task list.
 2. On the right side of the Tasks section you can find the sort by :guilabel:`Creation Date` :guilabel:`Expiry` :guilabel:`Priority`  
 
@@ -193,7 +193,7 @@ the overall situation at a glance.
 
 
 Next to the heading you find a link **Show all charts**. This quick link
-routes you the :guilabel:`Statistics` page of the Axon.ivy Portal. Please refer
+routes you the :guilabel:`Statistics` page of the Axon Ivy Portal. Please refer
 to :ref:`full-statistic-list`  for more detailed information.
 
 Within header of the chart, you find two navigation buttons

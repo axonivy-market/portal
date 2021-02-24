@@ -80,7 +80,7 @@
           </additionalOptions>
           <show>public</show>
           <doclint>none</doclint>
-          <windowtitle>Axon.ivy Public API</windowtitle>
+          <windowtitle>Axon Ivy Public API</windowtitle>
           <doctitle><![CDATA[<h1>Portal Public API</h1>]]></doctitle>
           <header><![CDATA[<i><b>Portal Public API<br>Version ${project.version}</b></i>]]></header>
           <footer><![CDATA[<i><b>Portal Public API<br>Version ${project.version}</b></i>]]></footer>

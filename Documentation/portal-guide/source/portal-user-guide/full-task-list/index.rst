@@ -7,12 +7,12 @@ The :guilabel:`Full Task List` page shows you the same tasks you see on your
 personal dashboard. However, this page provides you with extended
 information on the tasks, as well as, advanced search and filter
 capabilities. You can reach the page by using the |check-icon| **Tasks**
-link in the Axon.ivy Portal menu.
+link in the Axon Ivy Portal menu.
 
 .. hint:: 
    Depending on the roles you hold
    in the application and the     
-   configuration of the Axon.ivy  
+   configuration of the Axon Ivy  
    Portal, you might see not only 
    the tasks belonging to you but 
    all open tasks.                

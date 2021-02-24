@@ -37,7 +37,7 @@ Le0 f1 @|EndSubIcon #fIcon
 Le0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>This process overrides the LogoutPage process of Portal Template. It set the in.logoutPage to the url of the overview page of Axon.Ivy.
+        <name>This process overrides the LogoutPage process of Portal Template. It set the in.logoutPage to the url of the overview page of Axon Ivy.
 So whenever user logout of Portal, he will be redirected to the overview page.</name>
         <nameStyle>214,7
 </nameStyle>

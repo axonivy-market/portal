@@ -107,7 +107,7 @@ Migration notes
 
 This document informs you in detail about incompatibilities that were
 introduced between Portal versions and tells you what needs to be done
-to make your existing Portal working with current Axon.ivy engine.
+to make your existing Portal working with current Axon Ivy engine.
 
 How to migrate
 --------------
@@ -116,10 +116,10 @@ How to migrate
    If you call any Portal API which is not mentioned in the document. It could be changed or removed without inform. Don't forget
    to re-implement the concerning API in your own project.
 
-   In order to migrate Portal, you need to migrate Axon.ivy, refer
-   `Axon.ivy migration
+   In order to migrate Portal, you need to migrate Axon Ivy, refer
+   `Axon Ivy migration
    notes <https://developer.axonivy.com/doc/8.0/engine-guide/installation/upgrade.html>`__.
-   Changes in Axon.ivy could lead to problems if customer project is not
+   Changes in Axon Ivy could lead to problems if customer project is not
    migrated properly.
 
 In designer
@@ -225,7 +225,7 @@ Release notes
 =============
 
 This part lists all relevant changes since the last official product
-releases of Axon.ivy.
+releases of Axon Ivy.
 
 Changes in 8.0.12
 -----------------
