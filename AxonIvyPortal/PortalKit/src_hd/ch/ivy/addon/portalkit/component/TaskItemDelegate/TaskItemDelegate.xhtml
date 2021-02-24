@@ -7,6 +7,7 @@
   <cc:attribute name="taskId" shortDescription="Task id" type="java.lang.Long" />
   <cc:attribute name="dataModel" />
   <cc:attribute name="componentToUpdate" />
+  <cc:attribute name="onCompletedCallback" default="" />
 </cc:interface>
 
 <cc:implementation>
@@ -68,14 +69,14 @@
         </h:panelGroup>
 
         <div class="ui-dialog-footer u-dialog-footer">
-          <p:commandLink id="cancel-task-delegate-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" 
-            onclick="PF('task-delegate-dialog').hide()" />
+          <p:link id="cancel-task-delegate-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+            href="#" onclick="PF('task-delegate-dialog').hide()" />
           <p:spacer width="15px" />
           <p:commandButton id="proceed-task-delegate-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/delegate')}"
             icon="#{visibilityBean.generateButtonIcon('si si-road-sign-u-turn-right')}"
             actionListener="#{logic.delegateTask}" process=":#{p:component('activator-panel')} delegate-comment-panel" disabled="#{data.disabledDelegateButton}"
             update="@(.task-view-container) #{cc.attrs.componentToUpdate}"
-            oncomplete="if (#{not empty cc.attrs.dataModel}){taskWidget.setupScrollbar();}"
+            oncomplete="#{cc.attrs.onCompletedCallback}"
             onsuccess="PF('task-delegate-dialog').hide();" />
         </div>
       </h:form>

@@ -191,34 +191,40 @@ public class TaskWidgetTest extends BaseTest {
 
   @Test
   public void testStartATaskAtHomePage() {
+    login(TestAccount.ADMIN_USER);
+    redirectToRelativeLink(createTestingCaseMapUrl);
     HomePage homePage = new HomePage();
-    String maternityLeaveRequest = "Maternity Leave Request";
-    String sickRequest = "Sick Leave Request";
+    homePage.waitForPageLoaded();
+    redirectToRelativeLink(createNewPaymentUrl);
+    final String NEW_PAYMENT = "Do New Payment";
+    final String LEAVE_REQUEST = "Case Map Leave Request";
+
+    homePage = new HomePage();
     TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
     //Start first task
     assertFalse(taskWidgetPage.isResumedTask(0));
     TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
     homePage = taskTemplatePage.clickCancelAndLeftButton();
     
-    // Start first task is resumed
+    //First task is resumed
     taskWidgetPage = homePage.getTaskWidget();
     assertTrue(taskWidgetPage.isResumedTask(0));
     taskTemplatePage = taskWidgetPage.startTask(0);
-    assertEquals(maternityLeaveRequest, taskTemplatePage.getTaskName());
+    assertEquals(NEW_PAYMENT, taskTemplatePage.getTaskName());
     homePage = taskTemplatePage.clickCancelAndLeftButton();
     
     taskWidgetPage = homePage.getTaskWidget();
     //Start second task
     assertFalse(taskWidgetPage.isResumedTask(1));
     taskTemplatePage = taskWidgetPage.startTask(1);
-    homePage = taskTemplatePage.clickCancelAndLeftButton();
-    
-    // Start second task is resumed
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+    homePage = new HomePage();
+
+    //Second task is resumed
     taskWidgetPage = homePage.getTaskWidget();
     assertTrue(taskWidgetPage.isResumedTask(1));
     taskTemplatePage = taskWidgetPage.startTask(1);
-    assertEquals(sickRequest, taskTemplatePage.getTaskName());
-    taskTemplatePage.clickCancelAndLeftButton();
+    assertEquals(LEAVE_REQUEST, taskTemplatePage.getTaskName());
   }
 
   @Test
