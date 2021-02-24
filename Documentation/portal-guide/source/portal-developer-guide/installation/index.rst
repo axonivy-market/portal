@@ -148,9 +148,6 @@ Example: ``https://portal.io/Portal/MigrateData/175F92F71BC45295/startMigrateCon
 7. We remove ivy-icon.css and replace current classes with new classes from `Streamline icons <https://dev.demo.ivyteam.io/demo-app/faces/view/html-dialog-demos$1/icons.xhtml>`_. So that you need to update your files that are using classes in ivy-icon.css.
 
 8. If you have taskItemDetailCustomPanelTop, taskItemDetailCustomPanelBottom customization, follow :ref:`How to override TaskItemDetail <customization-task-item-details>` to add custom widgets.
-
-   .. important:: If you want to keep current state of everything in Task Details Page, you must deactivate the portal setting ``APPLY_JSON_CONFIGURATION_FILE_FOR_TASK_DETAILS``. This Portal setting will be activated by default.
-
 Migrate 8.x to 9.1
 ------------------
 
