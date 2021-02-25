@@ -7,8 +7,8 @@ So far, this document familiarized you with the Axon Ivy Portal and
 explained how you can use processes provided to you by your IT
 department. The following chapter takes you to the next level.
 
-:guilabel:`Axon Ivy Express`  is a module of the Axon.iy Digital Business
-Platform which is provided to you with the Axon Ivy Portal as well. It
+:guilabel:`Axon Ivy Express`  is a module of the Axon Ivy
+platform which is provided to you with the Axon Ivy Portal as well. It
 enables you – as a business user – to create your own process
 applications and share them with your colleagues. These capabilities are
 also known as No-Code Application Platforms or Citizen Developer
@@ -22,8 +22,8 @@ of the key features of Axon Ivy Express are:
 -  The **Axon Ivy Portal Integration**, allows business users to
    implement processes without IT department involvement.
 
--  The **Seamless Integration** into the Axon Ivy Digital Business
-   Platform allows you to make use of standard features like email
+-  The **Seamless Integration** into the Axon Ivy
+   platform allows you to make use of standard features like email
    notifications, task delegation, etc.
 
 -  The **Powerful Toolset** allows you to create processes, define
