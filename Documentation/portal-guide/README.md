@@ -1,4 +1,4 @@
-# Axon Ivy Product Documentation
+# Axon Ivy Documentation
 
 Based on [sphinx](http://www.sphinx-doc.org).
 Using reStructredText as markup language.
