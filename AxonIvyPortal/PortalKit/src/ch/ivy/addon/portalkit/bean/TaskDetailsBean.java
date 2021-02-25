@@ -93,15 +93,12 @@ public class TaskDetailsBean implements Serializable {
     Ivy.session().getSessionUser().removeProperty(TASK_DETAILS_CONFIGURATION_PROPERTY);
   }
 
-  public void switchToViewMode() {
-    this.isReadOnlyMode = true;
-  }
-
   public void switchToEditMode() {
     this.isReadOnlyMode = false;
   }
 
   public void save() throws JsonMappingException, JsonProcessingException {
+    this.isReadOnlyMode = true;
     configuration.setChanged(true);
     List<TaskDetailsWidget> widgets = getUpdatedWidgets();
     updateToConfiguration(widgets);
