@@ -573,8 +573,11 @@ Dt0 f56 623 384 720 384 #arcP
 Dt0 f59 1080 368 32 32 0 16 #rect
 Dt0 f60 actionTable 'out=in;
 ' #txt
-Dt0 f60 actionCode 'import ch.ivyteam.ivy.security.IUser;
-List<IUser> users = ivy.request.getApplication().getSecurityContext().getUsers();
+Dt0 f60 actionCode 'import ch.ivyteam.ivy.security.query.UserQuery;
+import ch.ivyteam.ivy.security.IUser;
+
+UserQuery userQuery = ivy.request.getApplication().getSecurityContext().users().query();
+List<IUser> users = userQuery.executor().results();
 in.numberOfUsersInApplication = users.size();
 in.counter = 1;
 

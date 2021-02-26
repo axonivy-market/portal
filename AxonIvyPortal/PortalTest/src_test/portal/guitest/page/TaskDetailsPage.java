@@ -372,6 +372,11 @@ public class TaskDetailsPage extends TemplatePage {
     waitForElementDisplayed(By.cssSelector("[id$=':switch-to-view-mode-button']"), true);
   }
 
+  public void clickOnSwitchToViewModeButton() {
+    waitForElementDisplayed(By.cssSelector("[id$=':switch-to-view-mode-button']"), true);
+    click(By.cssSelector("[id$=':switch-to-view-mode-button']"));
+  }
+
   public void drapAndDropWidgets(String sourceName, String destinationName) {
     waitForElementDisplayed(By.cssSelector(String.format("[id$=':task-detail-%s-container']", sourceName)), true);
     WebElement sourceElement = findElementByCssSelector(String.format("[id$=':task-detail-%s-container']", sourceName));
@@ -382,11 +387,7 @@ public class TaskDetailsPage extends TemplatePage {
     moveWidget.perform();
   }
 
-  public boolean isResetButtonDisplayed() {
-    try {
-      return isElementDisplayed(findElementByCssSelector("[id$=':reset-task-details-settings-button']"));
-    } catch (NoSuchElementException ex) {
-      return false;
-    }
+  public void waitForResetButtonDisplayed() {
+    waitForElementDisplayed(By.cssSelector("[id$=':reset-task-details-settings-button']"), true);
   }
 }

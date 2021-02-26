@@ -7,15 +7,12 @@
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="task" type="ch.ivyteam.ivy.workflow.ITask" />
   <cc:attribute name="styleClass" />
-  <cc:attribute name="applyJsonConfigurationFile" default="true"/>
 </cc:interface>
 
 <cc:implementation>
   <c:set var="task" value="#{cc.attrs.task}" />
-  <c:set var="applyJsonConfigurationFile" value="#{cc.attrs.applyJsonConfigurationFile}" />
   <f:event listener="#{logic.initData(task)}" type="preRenderComponent" />
   <h:panelGroup class="task-details-item-note ui-g" id="task-details-item-note" layout="block">
-
     <div class="task-detail-section-title ui-g-12">
       <div class="ui-g-4 u-truncate-text u-padding-0 task-details-panel-title">
         <i class="si si-synchronize-arrow-clock" /> #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/histories')}
@@ -36,7 +33,7 @@
             <span class="display-short-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}</span>
           </p:commandLink>
           <p:selectBooleanCheckbox value="#{data.showSystemNotes}" itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/showSystemNotes')}"
-            rendered="#{data.showSystemNotesChkbox and applyJsonConfigurationFile}" id="show-system-notes-checkbox">
+            rendered="#{data.showSystemNotesChkbox}" id="show-system-notes-checkbox">
             <p:ajax update="task-history-content-container" process="@this" partialSubmit="true" listener="#{logic.showHideSystemNotes}" />
           </p:selectBooleanCheckbox>
         </h:panelGroup>
@@ -44,7 +41,7 @@
     </div>
 
     <h:panelGroup id="task-history-content-container" styleClass="ui-g-12 u-padding-0">
-      <p:dataTable value="#{data.notes}" var="note" id="task-note-table" paginator="true" pageLinks="3" rows="#{applyJsonConfigurationFile ? 8 : 5}"
+      <p:dataTable value="#{data.notes}" var="note" id="task-note-table" paginator="true" pageLinks="3" rows="8"
         paginatorPosition="top" rendered="#{not empty data.notes}"
         emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}" paginatorAlwaysVisible="false"
         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
