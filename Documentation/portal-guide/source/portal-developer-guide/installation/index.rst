@@ -149,7 +149,7 @@ Migrate 9.1 to 9.2
    - Log in with user that MUST have permission to start all processes of your application (not only favorite processes) to avoid wrong migration.
    - Run ``MigrateUserFavoriteProcesses/migrateUserFavoriteProcesses.ivp`` to migrate all user favorite processes in your application.
 
-8. The ``JSON_CONFIGURATION_FOR_TASK_DETAILS`` and ``JSON_CONFIGURATION_FOR_CASE_DETAILS`` Portal setting will be activated by default. If you don't want to use the task/case details with new style, please deactivate this portal setting to keep your old customization.
+9. If you have taskItemDetailCustomPanelTop and taskItemDetailCustomPanelBottom customization, follow :ref:`How to override TaskItemDetail <customization-task-item-details>` to add these custom widgets.
 
 Migrate 8.x to 9.1
 ------------------
