@@ -51,8 +51,7 @@ public enum GlobalVariable {
   DEFAULT_SORT_DIRECTION_OF_CASE_LIST(GlobalVariableType.EXTERNAL_SELECTION, SortDirection.DESC.name(), "defaultSortDirectionOfCaseList", getSortDirections()),
   DEFAULT_HOMEPAGE(GlobalVariableType.EXTERNAL_SELECTION, StringUtils.capitalize(HomepageType.DASHBOARD.name().toLowerCase()), "defaultHomepage"),
   DISPLAY_ALL_USERS_OF_TASK_ACTIVATOR(GlobalVariableType.SELECTION, Option.FALSE.toString(), "displayAllUsersOfTaskActivator"),
-  JSON_CONFIGURATION_FOR_TASK_DETAILS(GlobalVariableType.SELECTION, Option.TRUE.toString(), "jsonConfigurationForTaskDetails"),
-  JSON_CONFIGURATION_FOR_CASE_DETAILS(GlobalVariableType.SELECTION, Option.TRUE.toString(), "jsonConfigurationForCaseDetails");
+  HIDE_YEAR(GlobalVariableType.SELECTION, Option.FALSE.toString(), "hideYear");
   
   private GlobalVariableType type;
   private String defaultValue;
