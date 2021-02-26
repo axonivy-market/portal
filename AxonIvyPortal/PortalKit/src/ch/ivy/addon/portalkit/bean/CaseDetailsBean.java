@@ -64,9 +64,6 @@ public class CaseDetailsBean implements Serializable {
   private ObjectMapper mapper = new ObjectMapper().enable(MapperFeature.ACCEPT_CASE_INSENSITIVE_ENUMS);
   private boolean isReadOnlyMode = true;
   private boolean hasShowNotAvailableData;
-  private boolean hasApplyJsonConfigurationFile;
-  private GlobalSettingService globalSettingService = new GlobalSettingService();
-  
 
   @PostConstruct
   public void init() {
@@ -89,16 +86,12 @@ public class CaseDetailsBean implements Serializable {
   
   private void loadCaseDetailsSettings() {
     hasShowNotAvailableData = PermissionUtils.isSessionUserHasAdminRole();
-    hasApplyJsonConfigurationFile = Boolean.parseBoolean(globalSettingService
-        .findGlobalSettingValue(GlobalVariable.JSON_CONFIGURATION_FOR_CASE_DETAILS.toString()));
   }
 
   private void loadWidgets() throws Exception {
-    if (hasApplyJsonConfigurationFile) {
-      String configurationJson = readConfigurationJsonInProperty();
-      configuration = readConfiguration(configurationJson);
-      widgets = configuration.getWidgets();
-    }
+    String configurationJson = readConfigurationJsonInProperty();
+    configuration = readConfiguration(configurationJson);
+    widgets = configuration.getWidgets();
   }
 
   private String readConfigurationJsonInProperty() {
@@ -295,13 +288,5 @@ public class CaseDetailsBean implements Serializable {
 
   public void setShowNotAvailableData(boolean hasShowNotAvailableData) {
     this.hasShowNotAvailableData = hasShowNotAvailableData;
-  }
-
-  public boolean isApplyJsonConfigurationFile() {
-    return hasApplyJsonConfigurationFile;
-  }
-
-  public void setApplyJsonConfigurationFile(boolean hasApplyJsonConfigurationFile) {
-    this.hasApplyJsonConfigurationFile = hasApplyJsonConfigurationFile;
   }
 }

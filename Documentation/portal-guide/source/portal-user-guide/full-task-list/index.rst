@@ -174,12 +174,12 @@ HowTo: Move and Resize Widgets
 |how-to-switch-to-edit-mode|
 
 
-2. Click on the **Switch to View Mode** button to switch page to readonly mode.
+2. Click on the **Save** button to save current state of page and switch to readonly mode.
 
 |how-to-switch-to-view-mode|
 
 
-3. Click **Reset** button to reset to default configuration, this button is only shown if any changes.
+3. Click **Reset** button to reset to default configuration.
 
 |how-to-reset-to-default|
 
@@ -295,6 +295,6 @@ You may export the Task List by clicking on the button **Export to Excel**.
 .. |how-to-show-workflow-event| image:: ../../screenshots/task-detail/how-to-show-workflow-event.png
 .. |workflow-events-table| image:: ../../screenshots/task-detail/workflow-events-table.png
 .. |export-to-excel-button| image:: ../../screenshots/task/export-to-excel-button.png
-.. |how-to-switch-to-view-mode| image:: how-to-switch-to-view-mode.png
-.. |how-to-switch-to-edit-mode| image:: how-to-switch-to-edit-mode.png
-.. |how-to-reset-to-default| image:: how-to-reset-to-default.png
+.. |how-to-switch-to-view-mode| image:: ../../screenshots/task-detail/how-to-switch-to-view-mode.png
+.. |how-to-switch-to-edit-mode| image:: ../../screenshots/task-detail/how-to-switch-to-edit-mode.png
+.. |how-to-reset-to-default| image:: ../../screenshots/task-detail/how-to-reset-to-default.png
