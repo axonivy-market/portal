@@ -7,7 +7,6 @@ $(function () {
 
 function loadTaskDetailsGrid() {
   initTaskDetailsGrid();
-  saveChangedPosition();
 }
 
 function initTaskDetailsGrid() {
@@ -20,33 +19,6 @@ function initTaskDetailsGrid() {
   });
 }
 
-function saveChangedPosition() {
-  if (!taskDetailsGrid) {
-    return;
-  }
-
-  taskDetailsGrid.on("change", function () {
-    var serializedData = [];
-    taskDetailsGrid.engine.nodes.forEach((node) => {
-      let widgetType = getTaskDetailsWidgetType(node.el.getAttribute("widget-type"));
-      serializedData.push({
-        type: widgetType,
-        id: node.id,
-        axisX: node.x,
-        axisY: node.y,
-        width: node.width,
-        height: node.height
-      });
-      if (widgetType === "document" || widgetType === "history") {
-        responsiveATableInPanel(node.el);
-      }
-    });
-    saveConfigurationCommand([{
-      name: "nodes",
-      value: JSON.stringify(serializedData, null, "")
-    }]);
-  });
-}
 
 function getTaskDetailsWidgetType(taskDetailsWidgetName) {
   let type = "";
@@ -89,4 +61,31 @@ function removeStyle(element, styleName) {
   } else {
     element.style.removeAttribute(styleName);
   }
+}
+
+function saveTaskDetailsGrid() {
+  if (!taskDetailsGrid) {
+    return;
+  }
+
+  let serializedData = [];
+  taskDetailsGrid.engine.nodes.forEach((node) => {
+    let widgetType = getTaskDetailsWidgetType(node.el.getAttribute("widget-type"));
+    serializedData.push({
+      type: widgetType,
+      id: node.id,
+      axisX: node.x,
+      axisY: node.y,
+      width: node.width,
+      height: node.height
+    });
+    if (widgetType === "document" || widgetType === "history") {
+      responsiveATableInPanel(node.el);
+    }
+  });
+
+  saveConfigurationCommand([{
+    name: "nodes",
+    value: JSON.stringify(serializedData, null, "")
+  }]);
 }

@@ -61,7 +61,7 @@
               <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/creationDate')}" />
             </f:facet>
             <h:outputText value="#{history.timestamp}">
-              <f:convertDateTime pattern="#{ivy.cms.co('/patterns/dateTimePattern')}" />
+              <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
             </h:outputText>
           </p:column>
         </p:dataTable>
