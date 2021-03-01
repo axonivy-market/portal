@@ -116,7 +116,7 @@
           <h:outputText id="case-end-time" value="#{case.endTimestamp}" rendered="#{not empty case.endTimestamp}">
             <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
           </h:outputText>
-           <h:outputText id="empty-case-owner" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable')}" rendered="#{empty case.endTimestamp}" />
+           <h:outputText id="empty-case-end-time" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable')}" rendered="#{empty case.endTimestamp}" />
         </div>
       </h:panelGroup>
 
