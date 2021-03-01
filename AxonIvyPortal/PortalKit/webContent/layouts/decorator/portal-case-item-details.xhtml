@@ -24,7 +24,7 @@
     styleClass="switch-and-reset-buttons-area ui-g-6 ui-sm-12">
     <p:commandButton id="view-mode-button" rendered="#{not caseDetailsBean.readOnlyMode}"
       value="#{ivy.cms.co('/Dialogs/Tasks/TaskDetail/switchToViewMode')}" actionListener="#{caseDetailsBean.save()}"
-      icon="#{visibilityBean.generateButtonIcon('si si-view-1')}" onclick="saveCaseDetailsGrid()"
+      icon="#{visibilityBean.generateButtonIcon('si si-floppy-disk')}" onclick="saveCaseDetailsGrid()"
       update="case-detail-body case-details-actions" oncomplete="loadCaseDetailsGrid()" />
     <p:commandButton id="edit-mode-button" rendered="#{caseDetailsBean.readOnlyMode}"
       value="#{ivy.cms.co('/Dialogs/Tasks/TaskDetail/switchToEditMode')}" actionListener="#{caseDetailsBean.switchToEditMode()}"
