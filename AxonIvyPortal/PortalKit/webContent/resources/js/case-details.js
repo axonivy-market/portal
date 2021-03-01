@@ -7,7 +7,6 @@ $(function () {
 
 function loadCaseDetailsGrid() {
   initCaseDetailsGrid();
-  saveChangedPosition();
 }
 
 function initCaseDetailsGrid() {
@@ -20,32 +19,30 @@ function initCaseDetailsGrid() {
   });
 }
 
-function saveChangedPosition() {
+function saveCaseDetailsGrid() {
   if (!caseDetailsGrid) {
     return;
   }
 
-  caseDetailsGrid.on("change", function () {
-    var serializedData = [];
-    caseDetailsGrid.engine.nodes.forEach((node) => {
-      let widgetType = getCaseDetailsWidgetType(node.el.getAttribute("widget-type"));
-      serializedData.push({
-        type: widgetType,
-        id: node.id,
-        axisX: node.x,
-        axisY: node.y,
-        width: node.width,
-        height: node.height
-      });
-      if (widgetType === "document" || widgetType === "history") {
-        responsiveATableInPanel(node.el);
-      }
+  let serializedData = [];
+  caseDetailsGrid.engine.nodes.forEach((node) => {
+    let widgetType = getCaseDetailsWidgetType(node.el.getAttribute("widget-type"));
+    serializedData.push({
+      type: widgetType,
+      id: node.id,
+      axisX: node.x,
+      axisY: node.y,
+      width: node.width,
+      height: node.height
     });
-    saveConfigurationCommand([{
-      name: "nodes",
-      value: JSON.stringify(serializedData, null, "")
-    }]);
+    if (widgetType === "document" || widgetType === "history") {
+      responsiveATableInPanel(node.el);
+    }
   });
+  saveConfigurationCommand([{
+    name: "nodes",
+    value: JSON.stringify(serializedData, null, "")
+  }]);
 }
 
 function getCaseDetailsWidgetType(caseDetailsWidgetName) {
