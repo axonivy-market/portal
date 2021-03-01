@@ -124,21 +124,18 @@ public class CaseDetailsBean implements Serializable {
     Ivy.session().getSessionUser().removeProperty(CASE_DETAILS_CONFIGURATION_PROPERTY);
   }
 
-  public void switchToViewMode() {
-    this.isReadOnlyMode = true;
-  }
-
   public void switchToEditMode() {
     this.isReadOnlyMode = false;
   }
 
   public void save() throws JsonMappingException, JsonProcessingException {
+    this.isReadOnlyMode = true;
     configuration.setChanged(true);
     List<CaseDetailsWidget> widgets = getUpdatedWidgets();
     updateToConfiguration(widgets);
     saveConfigurationToProperty();
   }
-
+  
   private List<CaseDetailsWidget> getUpdatedWidgets() throws JsonMappingException, JsonProcessingException {
     Map<String, String> requestParamMap = getRequestParameterMap();
     String nodes = Optional.ofNullable(requestParamMap.get("nodes")).orElse(StringUtils.EMPTY);
