@@ -1,5 +1,6 @@
 package ch.ivy.addon.portalkit.persistence.dao;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -22,9 +23,11 @@ public class ExternalLinkDao extends AbstractDao<ExternalLink> {
   }
 
   public ExternalLink findExternalLinkByName(String externalLinkName) {
+    Comparator<ExternalLink> comparator = (link1, link2) -> Long.compare(link1.getId(), link2.getId());
     return findAll()
         .stream()
         .filter(externalLink -> Objects.equal(externalLink.getName(), externalLinkName))
+        .sorted(comparator)
         .findFirst().orElse(null);
   }
 

@@ -1330,7 +1330,6 @@ Dt0 S10 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Dt0 S10 160 1298 192 44 -89 -8 #rect
-Dt0 S10 @|BIcon #fIcon
 Dt0 f136 outLink createTaskWithSystemState.ivp #txt
 Dt0 f136 inParamDecl '<> param;' #txt
 Dt0 f136 requestEnabled true #txt
@@ -1370,7 +1369,9 @@ Dt0 f140 808 1192 32 32 -114 25 #rect
 Dt0 f141 1097 1193 30 30 0 15 #rect
 Dt0 f142 actionTable 'out=in;
 ' #txt
-Dt0 f142 actionCode 'import ch.ivy.addon.portalkit.service.ExternalLinkService;
+Dt0 f142 actionCode 'import ch.ivy.addon.portalkit.enums.ProcessType;
+import ch.ivyteam.ivy.application.IApplication;
+import ch.ivy.addon.portalkit.service.ExternalLinkService;
 import ch.ivy.addon.portalkit.bo.ExternalLink;
 import ch.ivy.addon.portalkit.service.ExpressProcessService;
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
@@ -1379,8 +1380,12 @@ import ch.ivy.addon.portalkit.service.UserProcessService;
 // Create user process
 UserProcessService userProcessService = new UserProcessService();
 Long testUserId = ivy.session.getSessionUser().getId();
+IApplication application = ivy.wf.getApplication();
+String applicationName = application.getName();
 
 UserProcess userProcess = new UserProcess();
+userProcess.setProcessId(applicationName + "/InternalSupport/Business Processes/testCaseMaps/caseMapLeaves.icm");
+userProcess.setProcessType(ProcessType.IVY_PROCESS);
 userProcess.setApplicationId(ivy.request.getApplication().getId());
 userProcess.setUserId(testUserId);
 userProcess.setIndex(1);
@@ -1390,6 +1395,8 @@ userProcess.setIcon("fa fa-rocket fa-fw");
 userProcessService.save(userProcess);
 
 userProcess = new UserProcess();
+userProcess.setProcessId(applicationName + "/InternalSupport/Business Processes/testProcesses/TestTaskFlow/CreateSupportTicket.ivp");
+userProcess.setProcessType(ProcessType.IVY_PROCESS);
 userProcess.setApplicationId(ivy.request.getApplication().getId());
 userProcess.setUserId(testUserId);
 userProcess.setIndex(2);
@@ -1399,6 +1406,8 @@ userProcess.setIcon("fa fa-tags fa-fw");
 userProcessService.save(userProcess);
 
 userProcess = new UserProcess();
+userProcess.setProcessId(applicationName + "/InternalSupport/Business Processes/testCaseMaps/testProcesses/ApproveLeave/Appraisal.ivp");
+userProcess.setProcessType(ProcessType.IVY_PROCESS);
 userProcess.setApplicationId(ivy.request.getApplication().getId());
 userProcess.setUserId(testUserId);
 userProcess.setIndex(3);

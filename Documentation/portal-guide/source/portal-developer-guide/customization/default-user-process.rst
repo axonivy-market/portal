@@ -30,4 +30,10 @@ list of user processes. Follow instruction to create default processes.
 
     - To display process name with multilingual, define a **CMS** and set it for **UserProcess#setProcessName**
 
+    - To apply broken link warning to a default user process, we provide 3 methods in  ``ProcessStartAPI``  class to initiate a default user process from existing processes.
+      This default user process will store ``processId`` and ``processType`` that will be used to check if it is broken or not.
+        + For Ivy Process: ``initUserProcessByUserFriendlyRequestPath(String friendlyRequestPath, String displayName)``
+        + For Express Process: ``initUserProcessByExpressProcessName(String expressProcessName, String displayName)``
+        + For External Link: ``initUserProcessByExternalLinkName(String externalLinkName, String displayName)``
+
 .. |default-user-processes| image:: images/default-user-process/default-user-processes.png
