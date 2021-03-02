@@ -107,25 +107,25 @@
             <ic:ch.ivy.addon.portalkit.component.CaseItemHistory id="case-histories" case="#{case}" />
           </h:panelGroup>
           
-          <!-- caseItemDetailCustomPanelTop box -->
-          <h:panelGroup id="caseItemDetailCustomPanelTop"
-            rendered="#{widget.class.simpleName eq 'CaseDetailsCustomWidget' and widget.id eq 'caseItemDetailCustomPanelTop'}"
+          <!-- caseItemDetailCustomTop box -->
+          <h:panelGroup id="caseItemDetailCustomTop"
+            rendered="#{widget.class.simpleName eq 'CaseDetailsCustomWidget' and widget.id eq 'caseItemDetailCustomTop'}"
             styleClass="card task-detail-card grid-stack-item-content #{caseDetailsBean.readOnlyMode ? '' : 'moveable-area'}">
-            <cc:renderFacet name="caseItemDetailCustomPanelTop" />
+            <cc:renderFacet name="caseItemDetailCustomTop" />
           </h:panelGroup>
           
-          <!-- caseItemDetailCustomPanelMiddle box -->
-          <h:panelGroup id="caseItemDetailCustomPanelMiddle"
-            rendered="#{widget.class.simpleName eq 'CaseDetailsCustomWidget' and widget.id eq 'caseItemDetailCustomPanelMiddle'}"
+          <!-- caseItemDetailCustomMiddle box -->
+          <h:panelGroup id="caseItemDetailCustomMiddle"
+            rendered="#{widget.class.simpleName eq 'CaseDetailsCustomWidget' and widget.id eq 'caseItemDetailCustomMiddle'}"
             styleClass="card task-detail-card grid-stack-item-content #{caseDetailsBean.readOnlyMode ? '' : 'moveable-area'}">
-            <cc:renderFacet name="caseItemDetailCustomPanelMiddle" />
+            <cc:renderFacet name="caseItemDetailCustomMiddle" />
           </h:panelGroup>
 
-          <!-- caseItemDetailCustomPanelBottom box -->
-          <h:panelGroup id="caseItemDetailCustomPanelBottom"
-            rendered="#{widget.class.simpleName eq 'CaseDetailsCustomWidget' and widget.id eq 'caseItemDetailCustomPanelBottom'}"
+          <!-- caseItemDetailCustomBottom box -->
+          <h:panelGroup id="caseItemDetailCustomBottom"
+            rendered="#{widget.class.simpleName eq 'CaseDetailsCustomWidget' and widget.id eq 'caseItemDetailCustomBottom'}"
             styleClass="card task-detail-card grid-stack-item-content #{caseDetailsBean.readOnlyMode ? '' : 'moveable-area'}">
-            <cc:renderFacet name="caseItemDetailCustomPanelBottom" />
+            <cc:renderFacet name="caseItemDetailCustomBottom" />
           </h:panelGroup>
         </div>
       </ui:repeat>
