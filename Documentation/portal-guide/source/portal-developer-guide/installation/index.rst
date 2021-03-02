@@ -212,8 +212,6 @@ Changes in 9.2
 
 - Introduce new approach to customize :ref:`Portal Task item details <customization-task-item-details>`.
 
-- Introduce new Portal Setting ``JSON_CONFIGURATION_FOR_TASK_DETAILS`` and ``JSON_CONFIGURATION_FOR_CASE_DETAILS`` to control visibility of widgets on task/case details page with new style.
-
 - Introduce new Portal Setting ``SHOW_BUTTON_ICON`` to control visibility of icon of button in Portal.
 
 - Introduce new global variable named ``PortalLoginPageDisplay`` to show Login page or hide it then show error page instead.
