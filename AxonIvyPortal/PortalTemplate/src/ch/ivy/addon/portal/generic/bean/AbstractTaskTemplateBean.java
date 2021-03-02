@@ -32,6 +32,7 @@ public abstract class AbstractTaskTemplateBean implements Serializable {
   protected IStartableSideStep selectedSideStep;
   protected List<AdhocHistory> adhocHistories;
   protected ITask task;
+  protected ITask currentTask;
 
   public List<IStartableSideStep> getSideStepList() {
     return sideStepList;
@@ -66,14 +67,19 @@ public abstract class AbstractTaskTemplateBean implements Serializable {
       return Collections.emptyList();
     }
 
-    if (sideStepList == null) {
-      ICaseMapService caseMapService =
-          ICaseMapService.get().getCaseMapService(iCase.getBusinessCase(),
-              Ivy.session().getSessionUser().getUserToken());
+    if (sideStepList == null || isSkippingTaskList()) {
+      ICaseMapService caseMapService = ICaseMapService.get().getCaseMapService(iCase.getBusinessCase(),
+          Ivy.session().getSessionUser().getUserToken());
       sideStepList = caseMapService.findStartableSideSteps();
       sortSideStepsByName(sideStepList);
     }
+
+    currentTask = task != null ? task : null;
     return sideStepList;
+  }
+
+  private boolean isSkippingTaskList() {
+    return task != null && currentTask != null && currentTask.getId() != task.getId();
   }
   
   public boolean hasAdhocTasks(ITask task) {
