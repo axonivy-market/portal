@@ -2,8 +2,6 @@ package ch.ivy.addon.portalkit.bean;
 
 import java.io.IOException;
 import java.io.Serializable;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -27,18 +25,16 @@ import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.dto.casedetails.CaseDetails;
 import ch.ivy.addon.portalkit.dto.casedetails.CaseDetailsWidget;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
-import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
-import ch.ivy.addon.portalkit.loader.ResourceLoader;
 import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
-import ch.ivyteam.ivy.application.ILibrary;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.globalvars.IGlobalVariableContext;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.ICase;
 
@@ -50,7 +46,7 @@ public class CaseDetailsBean implements Serializable {
 
   private static final String OPEN_CASES_LIST = "Start Processes/PortalStart/CaseListPage.ivp";
   private static final String CASE_DETAILS_CONFIGURATION_PROPERTY = "case.details.widgets";
-  private static final String BREAK_LINE_CHARACTERS = "\n";
+  private static final String PORTAL_CASE_DETAILS_GLOBAL_VARIABLE = "PORTAL_CASE_DETAILS";
 
   private boolean isShowCaseDetails;
   private boolean isHideCaseDocument;
@@ -107,10 +103,7 @@ public class CaseDetailsBean implements Serializable {
   }
 
   private CaseDetails defaultConfiguration() throws IOException {
-    ILibrary portalStyleLib = Ivy.wf().getApplication().findReleasedLibrary(PortalLibrary.PORTAL_STYLE.getValue());
-    ResourceLoader loader = new ResourceLoader(portalStyleLib.getProcessModelVersion());
-    Optional<Path> path = loader.getCaseDetailsWidgetConfiguration();
-    String widgetsJsonData = String.join(BREAK_LINE_CHARACTERS, Files.readAllLines(path.get()));
+    String widgetsJsonData = IGlobalVariableContext.current().get(PORTAL_CASE_DETAILS_GLOBAL_VARIABLE);
     return mapper.readValue(widgetsJsonData, CaseDetails.class);
   }
 
