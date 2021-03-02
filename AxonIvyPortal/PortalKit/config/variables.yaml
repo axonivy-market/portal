@@ -2,3 +2,4 @@ Variables:
   # External file
   # [file: json]
   PORTAL_TASK_DETAILS:
+  PORTAL_CASE_DETAILS:
