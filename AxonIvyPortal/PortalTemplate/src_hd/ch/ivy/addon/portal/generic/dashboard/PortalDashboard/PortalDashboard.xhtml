@@ -61,7 +61,7 @@
                             <ui:param name="widget" value="#{widget}" />
                           </ui:include>
                         </p:overlayPanel>
-                        <p:overlayPanel widgetVar="filter-overlay-panel-#{status.index}" for="filter-sidebar-link-#{status.index}" appendTo="@(body)" styleClass="info-overlay-panel" dismissable="false">
+                        <p:overlayPanel widgetVar="filter-overlay-panel-#{status.index}" for="filter-sidebar-link-#{status.index}" appendTo="@(body)" styleClass="info-overlay-panel task-filter-overlay-panel" dismissable="false">
                           <ui:include src="TaskFilter.xhtml">
                             <ui:param name="widget" value="#{widget}" />
                             <ui:param name="updateComponent" value="#{component.parent.namingContainer.clientId}:task-component:dashboard-tasks" />
