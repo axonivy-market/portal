@@ -58,6 +58,9 @@ private static final long serialVersionUID = -5889375917550618261L;
   private List<UserProcess> defaultProcesses;
   private List<UserProcess> selectedUserProcesses;
   private List<UserProcess> processesToAdd;
+  private Map<String, Process> ivyProcesses;
+  private Map<String, Process> expressProcesses;
+  private Map<String, Process> externalLinks;
   
   private UserProcessService userProcessService;
   private UserProcess editingProcess;
@@ -88,6 +91,9 @@ private static final long serialVersionUID = -5889375917550618261L;
     } else {
       String isUserFavoritesEnabledGlobalVariable = new GlobalSettingService().findGlobalSettingValue(GlobalVariable.ENABLE_USER_FAVORITES.toString());
       isUserFavoritesEnabled = StringUtils.isNotBlank(isUserFavoritesEnabledGlobalVariable) ? Boolean.parseBoolean(isUserFavoritesEnabledGlobalVariable) : true;
+      ivyProcesses = findProcesses();
+      expressProcesses = findExpressProcesses();
+      externalLinks = findExternalLink();
       userProcesses = findUserProcesses();
       defaultProcesses = findStartableDefaultProcesses();
       isDisplayShowAllProcessesLink = PermissionUtils.checkAccessFullProcessListPermission();
@@ -103,6 +109,9 @@ private static final long serialVersionUID = -5889375917550618261L;
 
   private List<UserProcess> findStartableDefaultProcesses() {
     List<UserProcess> processes = userProcessService.getDefaultUserProcessesFromSubProcess();
+
+    updateLinkForDefaultProcesses(processes);
+
     processes.sort(UserProcessIndexComparator.comparatorNullsLast(UserProcess::getIndex));
     return processes;
   }
@@ -118,38 +127,52 @@ private static final long serialVersionUID = -5889375917550618261L;
      * 1. Update link because since 9.2, saved user favorite processes didn't store this value.
      * 2. Check if link is broken.
      */
-    Map<String, Process> ivyProcesses = findProcesses();
-    Map<String, Process> expressProcesses = findExpressProcesses();
-    Map<String, Process> externalLinks = findExternalLink();
-    Process process;
-    for (UserProcess userProcess : processes) {
-      String processId = userProcess.getProcessId();
-      if (StringUtils.isNotBlank(processId)) {
-        switch (userProcess.getProcessType()) {
-          case IVY_PROCESS:
-            process = ivyProcesses.get(processId);
-            break;
-          case EXPRESS_PROCESS:
-            process = expressProcesses.get(processId);
-            break;
-          case EXTERNAL_LINK:
-            process = externalLinks.get(processId);
-            break;
-          default:
-            process = null;
-            break;
-        }
-        userProcess.setLink(process == null ? "" : process.getStartLink());
-      } else {
-        process = null;
-      }
-      userProcess.setBrokenLink(process == null);
-    }
+    updateLinkForUserProcesses(processes);
 
     processes.sort(UserProcessIndexComparator.comparatorNullsLast(UserProcess::getIndex));
     removeDeletedExpressWorkflowFromUserProcesses(processes);
     removeDeletedExternalLinkFromUserProcesses(processes);
     return processes;
+  }
+
+  private void updateLinkForUserProcesses(List<UserProcess> processes) {
+    Process process;
+    for (UserProcess userProcess : processes) {
+      process = findProcess(userProcess);
+      userProcess.setLink(process == null ? "" : process.getStartLink());
+      userProcess.setBrokenLink(process == null);
+    }
+  }
+
+  private void updateLinkForDefaultProcesses(List<UserProcess> processes) {
+    Process process;
+    for (UserProcess userProcess : processes) {
+      process = findProcess(userProcess);
+      if (process != null) {
+        userProcess.setLink(process.getStartLink());
+      } else {
+        userProcess.setBrokenLink(StringUtils.isBlank(userProcess.getLink()));
+      }
+    }
+  }
+
+  private Process findProcess(UserProcess userProcess) {
+    Process process = null;
+    String processId = userProcess.getProcessId();
+    if (StringUtils.isNotBlank(processId)) {
+      switch (userProcess.getProcessType()) {
+        case IVY_PROCESS:
+          process = ivyProcesses.get(processId);
+          break;
+        case EXPRESS_PROCESS:
+          process = expressProcesses.get(processId);
+          break;
+        case EXTERNAL_LINK:
+          process = externalLinks.get(processId);
+          break;
+      }
+    }
+    return process;
   }
 
   private Map<String, Process> findProcesses() {
