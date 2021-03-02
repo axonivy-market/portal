@@ -33,9 +33,7 @@ Ds0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ds0 f0 51 83 26 26 14 0 #rect
-Ds0 f0 @|StartSubIcon #fIcon
 Ds0 f1 51 339 26 26 14 0 #rect
-Ds0 f1 @|EndSubIcon #fIcon
 Ds0 f3 actionTable 'out=in;
 ' #txt
 Ds0 f3 actionCode 'import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
@@ -97,7 +95,6 @@ processes</name>
 </elementInfo>
 ' #txt
 Ds0 f3 46 196 36 24 20 -2 #rect
-Ds0 f3 @|StepIcon #fIcon
 Ds0 f4 expr out #txt
 Ds0 f4 64 109 64 196 #arcP
 Ds0 f2 expr out #txt
@@ -148,12 +145,24 @@ if (!StringUtils.isEmpty(createInvestmentLink)){	&#13;
 	userProcess.setIcon("si si-analytics-graph");&#13;
 	userProcess.setIndex(4);&#13;
 	in.defaultUserProcesses.add(userProcess);&#13;
-}</name>
+}&#13;
+&#13;
+UserProcess ivyProcess = ProcessStartAPI.initUserProcessByUserFriendlyRequestPath("Business Processes/testCaseMaps/testProcesses/ApproveLeave/Appraisal.ivp", "Appraisal");&#13;
+ivyProcess.setIcon("fa fa-graduation-cap fa-fw");&#13;
+ivyProcess.setIndex(4);&#13;
+in.defaultUserProcesses.add(ivyProcess);&#13;
+&#13;
+UserProcess expressProcess = ProcessStartAPI.initUserProcessByExpressProcessName("Your Express Process Name", "Favorite Process Displayed Name");&#13;
+expressProcess.setIndex(5);&#13;
+in.defaultUserProcesses.add(expressProcess);&#13;
+&#13;
+UserProcess externalLink = ProcessStartAPI.initUserProcessByExternalLinkName("Your External Link Name", "Favorite Process Displayed Name");&#13;
+externalLink.setIndex(6);&#13;
+in.defaultUserProcesses.add(externalLink);</name>
     </language>
 </elementInfo>
 ' #txt
-Ds0 f5 256 82 992 716 -493 -352 #rect
-Ds0 f5 @|IBIcon #fIcon
+Ds0 f5 256 34 1008 924 -501 -456 #rect
 >Proto Ds0 .type _com.axonivy.portal.developerexamples.DefaultUserProcessOverrideData #txt
 >Proto Ds0 .processKind CALLABLE_SUB #txt
 >Proto Ds0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
