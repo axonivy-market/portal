@@ -23,6 +23,15 @@ public class ExpressProcessService extends BusinessDataService<ExpressProcess> {
     }
     return queryResult.getAll().stream().filter(ExpressProcess::isReadyToExecute).collect(Collectors.toList());
   }
+
+  public ExpressProcess findReadyToExecuteProcessByName(String processName) {
+    Result<ExpressProcess> queryResult = repo().search(getType()).textField("processName").isEqualToIgnoringCase(processName).limit(LIMIT_20).execute();
+    long totalCount = queryResult.totalCount();
+    if(totalCount > LIMIT_20) {
+      queryResult = repo().search(getType()).textField("processName").isEqualToIgnoringCase(processName).limit(Math.toIntExact(totalCount)).execute();
+    }
+    return queryResult.getAll().stream().filter(ExpressProcess::isReadyToExecute).findFirst().orElse(null);
+  }
   
   public ExpressProcess findExpressProcessByName(String processName) {
     Filter<ExpressProcess> filter = repo().search(getType()).textField("processName").isEqualToIgnoringCase(processName);

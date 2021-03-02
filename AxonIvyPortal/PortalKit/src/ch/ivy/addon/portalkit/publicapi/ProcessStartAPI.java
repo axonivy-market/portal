@@ -5,6 +5,12 @@ import java.util.stream.Stream;
 
 import org.apache.commons.lang3.StringUtils;
 
+import ch.ivy.addon.portalkit.bo.ExpressProcess;
+import ch.ivy.addon.portalkit.bo.ExternalLink;
+import ch.ivy.addon.portalkit.enums.ProcessType;
+import ch.ivy.addon.portalkit.persistence.domain.UserProcess;
+import ch.ivy.addon.portalkit.service.ExpressServiceRegistry;
+import ch.ivy.addon.portalkit.service.ExternalLinkService;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivyteam.ivy.application.ActivityState;
 import ch.ivyteam.ivy.application.IApplication;
@@ -32,7 +38,50 @@ public final class ProcessStartAPI {
         return processStart != null ? processStart.getLink().getRelative() : StringUtils.EMPTY; 
     });
   }
-  
+
+  public static UserProcess initUserProcessByUserFriendlyRequestPath(String friendlyRequestPath, String displayName) {
+    return initUserProcess(findStartableIdByUserFriendlyRequestPath(friendlyRequestPath), ProcessType.IVY_PROCESS, displayName);
+  }
+
+  public static UserProcess initUserProcessByExpressProcessName(String expressProcessName, String displayName) {
+    return initUserProcess(findExpressProcessIdByExpressProcessName(expressProcessName), ProcessType.EXPRESS_PROCESS, displayName);
+  }
+
+  public static UserProcess initUserProcessByExternalLinkName(String externalLinkName, String displayName) {
+    UserProcess userProcess = initUserProcess(findExternalLinkIdByExternalLinkName(externalLinkName), ProcessType.EXTERNAL_LINK, displayName);
+    userProcess.setExternalLink(true);
+    return userProcess;
+  }
+
+  private static UserProcess initUserProcess(String processId, ProcessType processType, String displayName) {
+    UserProcess userProcess = new UserProcess();
+    userProcess.setProcessId(processId);
+    userProcess.setProcessType(processType);
+    userProcess.setLink(StringUtils.EMPTY);
+    userProcess.setProcessName(displayName);
+    userProcess.setIcon("fa fa-play fa-fw");
+    return userProcess;
+  }
+
+  private static String findStartableIdByUserFriendlyRequestPath(String friendlyRequestPath) {
+    return IvyExecutor.executeAsSystem(() -> {
+      IApplication application = Ivy.wf().getApplication();
+      IProcessStart processStart = findStartableProcessStartByUserFriendlyRequestPath(friendlyRequestPath);
+      return processStart != null ? application.getName() + "/" + processStart.getFullUserFriendlyRequestPath() : StringUtils.EMPTY;
+    });
+  }
+
+  private static String findExpressProcessIdByExpressProcessName(String expressProcessName) {
+    ExpressProcess expressProcess =
+        ExpressServiceRegistry.getProcessService().findReadyToExecuteProcessByName(expressProcessName);
+    return expressProcess != null ? expressProcess.getId() : StringUtils.EMPTY;
+  }
+
+  private static String findExternalLinkIdByExternalLinkName(String externalLinkName) {
+    ExternalLink externalLink = ExternalLinkService.getInstance().findExternalLinkByName(externalLinkName);
+    return externalLink != null ? externalLink.getId().toString() : StringUtils.EMPTY;
+  }
+
   /**
    * Find start link from friendly request path
    * @param friendlyRequestPath friendly path e.g "Start Processes/UserExampleGuide/userExampleGuide.ivp"
