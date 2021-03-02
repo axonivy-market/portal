@@ -54,18 +54,16 @@ Ts0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ts0 f7 320 138 144 44 -64 -8 #rect
 Ts0 f7 @|CallSubIcon #fIcon
 Ts0 f3 guid 1773DE3D406A808F #txt
-Ts0 f3 method openDetails(org.primefaces.event.SelectEvent) #txt
-Ts0 f3 inParameterDecl '<org.primefaces.event.SelectEvent event> param;' #txt
-Ts0 f3 inActionCode 'import ch.ivy.addon.portalkit.datamodel.DashboardTaskLazyDataModel;
-import ch.ivyteam.ivy.workflow.ITask;
-
-out.selectedTask = param.event.getObject() as ITask;
-out.dataModel = param.event.getComponent().getAttributes().get("model") as DashboardTaskLazyDataModel;' #txt
+Ts0 f3 method openDetails(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.DashboardTaskLazyDataModel) #txt
+Ts0 f3 inParameterDecl '<ch.ivyteam.ivy.workflow.ITask task,ch.ivy.addon.portalkit.datamodel.DashboardTaskLazyDataModel dataModel> param;' #txt
+Ts0 f3 inParameterMapAction 'out.dataModel=param.dataModel;
+out.selectedTask=param.task;
+' #txt
 Ts0 f3 outParameterDecl '<> result;' #txt
 Ts0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>openDetails(SelectEvent)</name>
+        <name>openDetails(ITask,DashboardTaskLazyDataModel)</name>
     </language>
 </elementInfo>
 ' #txt

@@ -22,7 +22,7 @@
           <p:outputLabel value="#{field.header}" />
         </div>
         <div class="ui-g-9">
-          <p:selectCheckboxMenu id="priorities" value="#{field.userFilterPriorities}" multiple="true" dynamic="true"
+          <p:selectCheckboxMenu id="priorities" value="#{field.userFilterPriorities}" multiple="true" dynamic="true" onShow="removeDuplicatedValues(this)"
             panelStyleClass="task-configuration__selectcheckboxmenu-panel" styleClass="task-configuration__selectcheckboxmenu">
             <f:selectItems value="#{field.userFilterPriorityOptions}" var="priority" itemValue="#{priority}"
               itemLabel="#{dashboardTaskFilterBean.getUserFriendlyTaskPriority(priority)}" />
@@ -35,7 +35,7 @@
           <p:outputLabel value="#{field.header}" />
         </div>
         <div class="ui-g-9">
-          <p:selectCheckboxMenu id="states" value="#{field.userFilterStates}" multiple="true" filter="true" dynamic="true"
+          <p:selectCheckboxMenu id="states" value="#{field.userFilterStates}" multiple="true" filter="true" dynamic="true" onShow="removeDuplicatedValues(this)"
             filterMatchMode="contains" panelStyleClass="task-configuration__selectcheckboxmenu-panel" styleClass="task-configuration__selectcheckboxmenu">
             <f:selectItems value="#{field.userFilterStateOptions}" var="state" itemValue="#{state}"
               itemLabel="#{dashboardTaskFilterBean.getUserFriendlyTaskState(state)}" />
@@ -154,4 +154,21 @@
     </h:panelGroup>
   </div>
 </div>
+<script>
+  function removeDuplicatedValues(e) {
+    var positionToRemove = [];
+    $(e.items).each(function(i){
+      $(e.items).each(function(j) {
+        var isAlreadyChecked = i != j &#38;&#38; !positionToRemove.includes(j) &#38;&#38; !positionToRemove.includes(i);
+        if (isAlreadyChecked &#38;&#38; e.items.get(j).getAttributeNode("data-item-value").value == e.items.get(i).getAttributeNode("data-item-value").value) {
+          positionToRemove.push(j);
+        }
+      });
+    });
+
+    $(positionToRemove).each(function(i){
+      $(e.items.get(positionToRemove[i])).remove();
+    });
+  }
+</script>
 </html>
