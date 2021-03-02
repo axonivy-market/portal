@@ -75,11 +75,21 @@ HINT: how to get a process url&#13;
 - We provide method to get startable link by user friendly request path (If user don''t have permission to start this link, the method will return empty string)&#13;
 ch.ivy.addon.portalkit.publicapi.ProcessStartAPI.findStartableLinkByUserFriendlyRequestPath(...)&#13;
 Example: &#13;
-String newEmployeeLink = ProcessStartAPI.findStartableLinkByUserFriendlyRequestPath("Start Processes/Employee/NewEmployee.ivp");</name>
+String newEmployeeLink = ProcessStartAPI.findStartableLinkByUserFriendlyRequestPath("Start Processes/Employee/NewEmployee.ivp");&#13;
+&#13;
+HINT: how to apply broken link warning to a default user process&#13;
+- We provide 3 methods to initiate a default user process from processes (existing in your application or database), this default user process will store processId and processType that will be used to check if it is broken or not.&#13;
+ + For Ivy Process: ch.ivy.addon.portalkit.publicapi.ProcessStartAPI.initUserProcessByUserFriendlyRequestPath(String, String)&#13;
+ + For Express Process: ch.ivy.addon.portalkit.publicapi.ProcessStartAPI.initUserProcessByExpressProcessName(String, String)&#13;
+ + For External Link: ch.ivy.addon.portalkit.publicapi.ProcessStartAPI.initUserProcessByExternalLinkName(String, String)&#13;
+Example:&#13;
+UserProcess ivyProcess = ProcessStartAPI.initUserProcessByUserFriendlyRequestPath("Business Processes/testCaseMaps/testProcesses/ApproveLeave/Appraisal.ivp", "Appraisal");&#13;
+UserProcess expressProcess = ProcessStartAPI.initUserProcessByExpressProcessName("Your Express Process Name", "Favorite Process Displayed Name");&#13;
+UserProcess externalLink = ProcessStartAPI.initUserProcessByExternalLinkName("Your External Link Name", "Favorite Process Displayed Name");</name>
     </language>
 </elementInfo>
 ' #txt
-Ds0 f5 176 66 832 316 -412 -152 #rect
+Ds0 f5 200 66 1232 476 -610 -232 #rect
 Ds0 f5 @|IBIcon #fIcon
 >Proto Ds0 .type ch.ivy.add.portalkit.DefaultUserProcessData #txt
 >Proto Ds0 .processKind CALLABLE_SUB #txt
