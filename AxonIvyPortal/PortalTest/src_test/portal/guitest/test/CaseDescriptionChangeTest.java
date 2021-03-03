@@ -31,7 +31,7 @@ public class CaseDescriptionChangeTest extends BaseTest {
     CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
     CaseDetailsPage detailsPage = casePage.openDetailsOfCaseHasName("Leave Request");
     detailsPage.changeCaseDescription(newCaseDescription);
-    String updatedDescription = detailsPage.getDescriptionOfCaseAt();
+    String updatedDescription = detailsPage.getDescription();
     assertEquals(newCaseDescription, updatedDescription);
   }
   
