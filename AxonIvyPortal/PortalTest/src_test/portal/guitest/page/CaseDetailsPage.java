@@ -29,7 +29,7 @@ public class CaseDetailsPage extends TemplatePage {
 
   @Override
   protected String getLoadedLocator() {
-    return "id('case-item-details:case-detail-title-form')";
+    return "id('case-item-details:case-detail-body')";
   }
 
   public CaseDetailsPage() {
@@ -408,7 +408,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
   
   public void waitForCaseDetailsDisplay() {
-    waitForElementDisplayed(By.id("case-item-details:case-detail-title-form"), true);
+    waitForElementDisplayed(By.id("case-item-details:case-detail-body"), true);
   }
 
 }
