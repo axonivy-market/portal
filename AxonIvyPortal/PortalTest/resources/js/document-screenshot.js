@@ -352,20 +352,14 @@ function cleanHighlightExportExpress() {
   $('.marker').remove();
 }
 
+function scrollToMiddleOfLayoutContent() {
+  var layoutContent = $('.js-layout-content'); 
+  layoutContent.scrollTop(layoutContent[0].scrollHeight/2);
+}
+
 function scrollToBottomOfLayoutContent() {
   var layoutContent = $('.js-layout-content'); 
   layoutContent.scrollTop(layoutContent[0].scrollHeight);
-}
-
-function highlightCustomCaseDetail() {
-  var customTop = $('.custom-task-details-panel-top');
-  appendStepAnnotation(customTop, 1, -45, customTop.width()/2);
-  
-  var customMidle = $('.custom-task-details-panel-middle');
-  appendStepAnnotation(customMidle, 2, -45, customMidle.width()/2);
-  
-  var customBottom = $('.custom-task-details-panel');
-  appendStepAnnotation(customBottom, 3, -45, customBottom.width()/2);
 }
 
 function highlightCustomTaskDetail() {
@@ -391,17 +385,20 @@ function highlightCustomTaskDetailWithNewStyle() {
 }
 
 function highlightCaseDetailComponents() {
-  var general = $('#case-general-information-card');
+  var general = $('#case-details-information-panel');
   appendStepAnnotation(general, 1, 0, general.width()/2);
   
-  var histories = $('#case-item-details\\:history-container');
-  appendStepAnnotation(histories, 2, 0, histories.width()/2);
+  var document = $('#case-details-document-panel');
+  appendStepAnnotation(document, 2, 0, document.width()/2);
   
-  var runningTask = $('#case-item-details\\:case-details-related-running-tasks-card');
-  appendStepAnnotation(runningTask, 3, 0, runningTask.width()/2);
+  var technicalCase = $('#case-details-technicalCase-panel');
+  appendStepAnnotation(technicalCase, 3, 0, technicalCase.width()/2);
   
-  var document = $('#case-item-details\\:case-details-document-card');
-  appendStepAnnotation(document, 4, 0, document.width()/2);
+  var relatedTask = $('#case-details-relatedTask-panel');
+  appendStepAnnotation(relatedTask, 4, 0, relatedTask.width()/2);
+  
+  var histories = $('#case-details-history-panel');
+  appendStepAnnotation(histories, 5, 0, histories.width()/2);
 }
 
 function highlightTaskDetailComponent() {
