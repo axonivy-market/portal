@@ -64,6 +64,7 @@ public class CaseDetailsTest extends BaseTest {
   @Test
   public void testShowCaseDetail() {
     assertTrue(detailsPage.isGeneralInformationComponentPresented());
+    assertTrue(detailsPage.isRelatedCasesComponentPresented());
     assertTrue(detailsPage.isRelatedTasksComponentPresented());
     assertTrue(detailsPage.isHistoryComponentPresented());
     assertTrue(detailsPage.isDocumentComponentPresented());
