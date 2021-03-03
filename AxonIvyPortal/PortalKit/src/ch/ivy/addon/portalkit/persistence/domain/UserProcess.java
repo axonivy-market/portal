@@ -8,6 +8,7 @@ import org.apache.commons.collections4.CollectionUtils;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import ch.ivy.addon.portalkit.bo.ExternalLink;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.enums.ProcessType;
 import ch.ivy.addon.portalkit.util.Locales;
@@ -22,10 +23,19 @@ public class UserProcess extends BusinessEntity implements Cloneable {
   private String link;
   private String icon;
   private String processId;
+  /**
+   * @deprecated Use processId instead
+   */
+  @Deprecated(since = "9.2", forRemoval = true)
   private String workflowId;
   private Integer index;
   private boolean defaultProcess;
+  /**
+   * @deprecated Use processType instead
+   */
+  @Deprecated
   private boolean isExternalLink;
+  @JsonIgnore
   private boolean isBrokenLink = false;
 
   /**
@@ -143,18 +153,38 @@ public class UserProcess extends BusinessEntity implements Cloneable {
     this.processId = processId;
   }
 
+  /**
+   * @deprecated Use {@link UserProcess#getProcessId()} instead
+   * @return WorkflowId
+   */
+  @Deprecated(since = "9.2", forRemoval = true)
   public String getWorkflowId() {
     return workflowId;
   }
 
+  /**
+   * @deprecated Use {@link UserProcess#setProcessId(String)} instead
+   * @param workflowId
+   */
+  @Deprecated(since = "9.2", forRemoval = true)
   public void setWorkflowId(String workflowId) {
     this.workflowId = workflowId;
   }
   
+  /**
+   * @deprecated Use {@link UserProcess#getProcessType()} instead
+   * @return true if this object is used for {@link ExternalLink}
+   */
+  @Deprecated(since = "9.2", forRemoval = true)
   public boolean isExternalLink() {
     return isExternalLink;
   }
 
+  /**
+   * @deprecated Use {@link UserProcess#setProcessType(ProcessType)} instead
+   * @param isExternalLink
+   */
+  @Deprecated(since = "9.2", forRemoval = true)
   public void setExternalLink(boolean isExternalLink) {
     this.isExternalLink = isExternalLink;
   }
