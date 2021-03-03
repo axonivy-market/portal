@@ -289,8 +289,8 @@ There are **two steps** for adding new custom panels.
    |task-customized-bottom|
 
 .. |task-standard| image:: ../../screenshots/task-detail/customization/task-standard.png
-.. |task-customized-top| image:: ../../screenshots/task-detail/customization/task-customized-top.png
-.. |task-customized-bottom| image:: ../../screenshots/task-detail/customization/task-customized-bottom.png
+.. |task-customized-top| image:: images/customization/task-customized-top.png
+.. |task-customized-bottom| image:: images/customization/task-customized-bottom.png
 .. |edit-variable-portal-task-details| image:: images/customization/edit-variable-portal-task-details.png
 
 
