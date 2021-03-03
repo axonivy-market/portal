@@ -149,7 +149,9 @@ Migrate 9.1 to 9.2
    - Log in with user that MUST have permission to start all processes of your application (not only favorite processes) to avoid wrong migration.
    - Run ``MigrateUserFavoriteProcesses/migrateUserFavoriteProcesses.ivp`` to migrate all user favorite processes in your application.
 
-9. If you have taskItemDetailCustomPanelTop and taskItemDetailCustomPanelBottom customization, follow :ref:`How to override TaskItemDetail <customization-task-item-details>` to add these custom widgets.
+9. If you have ``taskItemDetailCustomPanelTop`` or ``taskItemDetailCustomPanelBottom`` customization, follow :ref:`How to override TaskItemDetail <customization-task-item-details>` to add these custom widgets.
+
+10. If you have ``caseItemDetailCustomTop`` or ``caseItemDetailCustomMiddle`` or ``caseItemDetailCustomBottom`` customization, follow :ref:`How to override CaseItemDetail <customization-case-item-details>` to add these custom widgets.
 
 Migrate 8.x to 9.1
 ------------------
