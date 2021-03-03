@@ -801,6 +801,7 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 .case-detail-card, .task-detail-card {
   display: block;
   float: left;
+  width: 100%;
 }
 
 .case-history-button-container, .task-history-button-container {
