@@ -314,11 +314,11 @@ private static final long serialVersionUID = -5889375917550618261L;
       return;
     }
     
-    if (StringUtils.isNotBlank(userProcess.getWorkflowId())) {
+    if (userProcess.isExpressProcess() && StringUtils.isNotBlank(userProcess.getProcessId())) {
       ProcessStartCollector processStartCollector = new ProcessStartCollector();
       String expressStartLink = processStartCollector.findExpressWorkflowStartLink();
       if (StringUtils.isNotBlank(expressStartLink)) {
-        FacesContext.getCurrentInstance().getExternalContext().redirect(expressStartLink + "?workflowID=" + userProcess.getWorkflowId());
+        FacesContext.getCurrentInstance().getExternalContext().redirect(expressStartLink + "?workflowID=" + userProcess.getProcessId());
         return;
       }
     }
@@ -336,7 +336,7 @@ private static final long serialVersionUID = -5889375917550618261L;
   
   private boolean isExternalLinkUserProcess(UserProcess processToAdd) {
     return userProcesses.stream().anyMatch(userProcess -> userProcess.isExternalLink() && processToAdd.isExternalLink()
-        && StringUtils.equalsIgnoreCase(userProcess.getWorkflowId(), processToAdd.getWorkflowId()));
+        && StringUtils.equalsIgnoreCase(userProcess.getProcessId(), processToAdd.getProcessId()));
   }
 
   private boolean isDefaultUserProcess(UserProcess processToAdd) {
@@ -435,9 +435,8 @@ private static final long serialVersionUID = -5889375917550618261L;
                                       .collect(Collectors.toList());
     
     List<UserProcess> deletedExpressProcesses = processes.stream()
-        .filter(process ->  StringUtils.isNotBlank(process.getWorkflowId()) 
-            && !executableExpressProcessIds.contains(process.getWorkflowId())
-            && !process.isExternalLink())
+        .filter(process ->  process.isExpressProcess() && StringUtils.isNotBlank(process.getProcessId())
+            && !executableExpressProcessIds.contains(process.getProcessId()))
         .collect(Collectors.toList());
 
     userProcessService.deleteAll(deletedExpressProcesses);
@@ -453,7 +452,7 @@ private static final long serialVersionUID = -5889375917550618261L;
         .collect(Collectors.toList());
     
     List<UserProcess> deletedExternalLinks = processes.stream()
-        .filter(process ->  process.isExternalLink() && StringUtils.isNotBlank(process.getWorkflowId()) && !startableExternalLinkIds.contains(process.getWorkflowId().toString()))
+        .filter(process ->  process.isExternalLink() && StringUtils.isNotBlank(process.getProcessId()) && !startableExternalLinkIds.contains(process.getProcessId().toString()))
         .collect(Collectors.toList());
 
     userProcessService.deleteAll(deletedExternalLinks);
