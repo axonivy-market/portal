@@ -110,7 +110,7 @@ in.subMenuItems.add(subMenuItem);&#13;
 OUT: subMenuItems: List&lt;SubMenuItem&gt;&#13;
 &#13;
 HINT: how to build a menu link&#13;
-Axon.Ivy link: IProcessStart#getLink() to get absolute/relative path (Refer to Axon.ivy Public API document)&#13;
+Axon Ivy link: IProcessStart#getLink() to get absolute/relative path (Refer to Axon Ivy Public API document)&#13;
 External link: &#13;
 - www.yourexternallink.com&#13;
 - http://www.yourexternallink.com&#13;
