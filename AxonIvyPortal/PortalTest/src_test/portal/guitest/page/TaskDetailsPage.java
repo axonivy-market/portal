@@ -191,7 +191,7 @@ public class TaskDetailsPage extends TemplatePage {
   }
   
   public WebElement getResetButtonElement() {
-    return findElementByCssSelector("[id$=':reset-task-details-settings-button']");
+    return findElementByCssSelector("[id$=':reset-details-settings-button']");
   }
 
   public WebElement getAddAttachmentDialog() {
@@ -359,8 +359,8 @@ public class TaskDetailsPage extends TemplatePage {
   }
 
   public void clickOnResetToDefaultButton() {
-    waitForElementDisplayed(By.cssSelector("[id$=':reset-task-details-settings-button']"), true);
-    click(By.cssSelector("[id$=':reset-task-details-settings-button']"));
+    waitForElementDisplayed(By.cssSelector("[id$=':reset-details-settings-button']"), true);
+    click(By.cssSelector("[id$=':reset-details-settings-button']"));
   }
   
   public void clickOnSwitchToEditModeButton() {
@@ -388,6 +388,6 @@ public class TaskDetailsPage extends TemplatePage {
   }
 
   public void waitForResetButtonDisplayed() {
-    waitForElementDisplayed(By.cssSelector("[id$=':reset-task-details-settings-button']"), true);
+    waitForElementDisplayed(By.cssSelector("[id$=':reset-details-settings-button']"), true);
   }
 }
