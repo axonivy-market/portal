@@ -7,6 +7,8 @@ import java.util.stream.Collectors;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
 
 import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
@@ -389,4 +391,52 @@ public class CaseDetailsPage extends TemplatePage {
     waitForElementDisplayed(By.id("case-item-details:case-detail-body"), true);
   }
 
+  public WebElement getSwitchToEditModeButton() {
+    return findElementByCssSelector("[id$=':switch-to-edit-mode-button']");
+  }
+  
+  public WebElement getSwitchToViewModeButton() {
+    return findElementByCssSelector("[id$=':switch-to-view-mode-button']");
+  }
+  
+  public WebElement getResetButton() {
+    return findElementByCssSelector("[id$=':reset-details-settings-button']");
+  }
+  
+  public void resetToDefault() {
+    waitForElementDisplayed(By.cssSelector("[id$=':reset-details-settings-button']"), true);
+    click(By.cssSelector("[id$=':reset-details-settings-button']"));
+  }
+  
+  public void switchToEditMode() {
+    waitForElementDisplayed(By.cssSelector("[id$=':switch-to-edit-mode-button']"), true);
+    click(By.cssSelector("[id$=':switch-to-edit-mode-button']"));
+  }
+
+  public void waitForSaveButtonDisplayed() {
+    waitForElementDisplayed(By.cssSelector("[id$=':switch-to-view-mode-button']"), true);
+  }
+
+  public void saveAndSwitchToViewMode() {
+    waitForElementDisplayed(By.cssSelector("[id$=':switch-to-view-mode-button']"), true);
+    click(By.cssSelector("[id$=':switch-to-view-mode-button']"));
+  }
+
+  public void drapAndDropWidgets(String sourceName, String destinationName) {
+    waitForElementDisplayed(By.cssSelector(String.format("[id='case-details-%s-panel']", sourceName)), true);
+    WebElement sourceElement = findElementByCssSelector(String.format("[id='case-details-%s-panel']", sourceName));
+    waitForElementDisplayed(By.cssSelector(String.format("[id='case-details-%s-panel']", destinationName)), true);
+    WebElement destinationElement = findElementByCssSelector(String.format("[id='case-details-%s-panel']", destinationName));
+    Actions actions = new Actions(driver);
+    Action moveWidget = actions.dragAndDrop(sourceElement, destinationElement).build();
+    moveWidget.perform();
+  }
+
+  public void waitForResetButtonDisplayed() {
+    waitForElementDisplayed(By.cssSelector("[id='case-item-details:reset-details-settings-button']"), true);
+  }
+  
+  public void waitForResetButtonNotPresent() {
+    waitForElementPresent(By.cssSelector("[id='case-item-details:reset-details-settings-button']"), false);
+  }
 }
