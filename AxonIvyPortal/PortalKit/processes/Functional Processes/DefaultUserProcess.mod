@@ -68,7 +68,7 @@ in.defaultUserProcesses.add(userProcess);&#13;
 OUT: defaultUserProcesses: List&lt;UserProcess&gt;&#13;
 &#13;
 HINT:&#13;
-- We provide 3 public APIs in ProcessStartAPI class (Refer to Axon.ivy Public API document) to initiate a default user process. We recommended you to use them when you want to create user favorite process.&#13;
+- We provide 3 public APIs in ProcessStartAPI class (Refer to Axon.ivy Public API document) to initiate a default user process. We recommend you to use them when you want to create user favorite process.&#13;
  + For Ivy Process: ch.ivy.addon.portalkit.publicapi.ProcessStartAPI.initUserProcessByUserFriendlyRequestPath(String, String)&#13;
  + For Express Process: ch.ivy.addon.portalkit.publicapi.ProcessStartAPI.initUserProcessByExpressProcessName(String, String)&#13;
  + For External Link: ch.ivy.addon.portalkit.publicapi.ProcessStartAPI.initUserProcessByExternalLinkName(String, String)&#13;
@@ -81,7 +81,7 @@ UserProcess externalLink = ProcessStartAPI.initUserProcessByExternalLinkName("Yo
     </language>
 </elementInfo>
 ' #txt
-Ds0 f5 192 66 1136 348 -563 -168 #rect
+Ds0 f5 192 66 1120 348 -556 -168 #rect
 Ds0 f5 @|IBIcon #fIcon
 >Proto Ds0 .type ch.ivy.add.portalkit.DefaultUserProcessData #txt
 >Proto Ds0 .processKind CALLABLE_SUB #txt
