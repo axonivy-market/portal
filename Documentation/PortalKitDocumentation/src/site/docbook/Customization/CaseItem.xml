@@ -18,7 +18,7 @@
 		<orderedlist>
 			<listitem>
 				<para>
-					Introduce an Axon.ivy project which has <code>PortalTemplate</code> as a required library.
+					Introduce an Axon Ivy project which has <code>PortalTemplate</code> as a required library.
 				</para>
 			</listitem>
 			<listitem>
@@ -137,7 +137,7 @@
 			</listitem>
 			<listitem>
 				<para>
-					Use Axon.ivy Override to override the <code>OpenPortalCases</code> callable . The original implementation is calling <code>PortalCases</code>, change it to call the Page introduced in the step above. The signature of this callable is <code>useView(CaseView)</code> and your customized Page must receive this <code>CaseView</code> instance, put in the dialog's <code>Data</code> with the exact name <code>caseView</code>.
+					Use Axon Ivy Override to override the <code>OpenPortalCases</code> callable . The original implementation is calling <code>PortalCases</code>, change it to call the Page introduced in the step above. The signature of this callable is <code>useView(CaseView)</code> and your customized Page must receive this <code>CaseView</code> instance, put in the dialog's <code>Data</code> with the exact name <code>caseView</code>.
 				</para>
 			</listitem>
 			<listitem>
@@ -217,7 +217,7 @@ out.caseView = CaseView.create().dataModel(dataModel)
 				<para>Introduce a java class extends CaseLazyDataModel. Override the <code>initFilterContainer</code> method and initialize filter container (see javadoc comments)</para>
 			</listitem>
 			<listitem>
-				<para>Use Axon.ivy Override to override the <code>InitializeCaseDataModel</code> callable and initialize data model by your customized one.</para>
+				<para>Use Axon Ivy Override to override the <code>InitializeCaseDataModel</code> callable and initialize data model by your customized one.</para>
 			</listitem>
 			<listitem>
 				<para>In your customized portal cases HTMLDialog, the customized data model and filter container should be passed as parameters to components (refer to <code>PortalCases.xhtml</code>).</para>

@@ -94,7 +94,7 @@
 						<emphasis role="bold">Single mode</emphasis>
 						: Only one Portal application on one engine. The Portal application must include portalKit, portalTemplate and
 						portalStyle modules.
-						By default, portalConnector is already deployed on the System application of Axon.ivy engine.
+						By default, portalConnector is already deployed on the System application of Axon Ivy engine.
 					</listitem>
 					<listitem>
 						<emphasis role="bold">Multi applications on single engine mode</emphasis>
@@ -643,7 +643,7 @@
 			</para>
 			<para>
 				Please notice that all dialogs in Portal and screens of <emphasis role="bold">Self service BPM</emphasis> 
-				and <emphasis role="bold">Axon.ivy Express</emphasis> have following buttons orders:
+				and <emphasis role="bold">Axon Ivy Express</emphasis> have following buttons orders:
 			</para>
 			<itemizedlist>
 				<listitem>
@@ -658,12 +658,12 @@
 		<title xml:id="axonivyportal.installation.migrationnotes.title">Migration notes</title>
 		<para>
 			This document informs you in detail about incompatibilities that were introduced between Portal versions and
-			tells you what needs to be done to make your existing Portal working with current Axon.ivy engine.
+			tells you what needs to be done to make your existing Portal working with current Axon Ivy engine.
 		</para>
 		<sect2>
 			<title>How to migrate</title>
-			<important>In order to migrate Portal, you need to migrate Axon.ivy, refer <link xlink:href="https://developer.axonivy.com/doc/latest/MigrationNotes.html">Axon.ivy migration notes</link>. 
-				Changes in Axon.ivy could lead to problems if the customer project is not migrated properly.</important>
+			<important>In order to migrate Portal, you need to migrate Axon Ivy, refer <link xlink:href="https://developer.axonivy.com/doc/latest/MigrationNotes.html">Axon Ivy migration notes</link>. 
+				Changes in Axon Ivy could lead to problems if the customer project is not migrated properly.</important>
 			<sect3>
 				<title>In designer</title>
 				<orderedlist>
@@ -788,7 +788,7 @@
 				<para>
 					From Portal
 					<code>7.0</code>
-					, we use standard axon.ivy Task Category field to store task category.
+					, we use standard Axon Ivy Task Category field to store task category.
 				</para>
 				<para>
 					To migrate task categories, please deploy
@@ -956,7 +956,7 @@
 		<title>Release notes</title>
 		
 		<para>
-			This part lists all relevant changes since the last official product releases of Axon.ivy.
+			This part lists all relevant changes since the last official product releases of Axon Ivy.
             <sect2>
                 <title>Changes in 7.0.15</title>
                 <itemizedlist>

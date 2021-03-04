@@ -98,7 +98,7 @@ public class ProcessWidgetTest extends BaseTest {
     processWidget = homePage.getProcessWidget();
     String inspectResource = "Inspect Resource";
     String viewResource = "View Resource";
-    String selfService = "Axon.ivy Selfservice";
+    String selfService = "Axon Ivy Selfservice";
     processWidget.clickSortDefaultProcessByName();
     assertEquals(selfService, processWidget.getProcessNameFromDefaultProcessList(0));
     assertEquals(inspectResource, processWidget.getProcessNameFromDefaultProcessList(1));
@@ -109,7 +109,7 @@ public class ProcessWidgetTest extends BaseTest {
   public void testSortDefaultProcessByIndex() {
     String inspectResource = "Inspect Resource";
     String viewResource = "View Resource";
-    String selfService = "Axon.ivy Selfservice";
+    String selfService = "Axon Ivy Selfservice";
     processWidget = homePage.getProcessWidget();
     assertEquals(inspectResource, processWidget.getProcessNameFromDefaultProcessList(0));
     assertEquals(viewResource, processWidget.getProcessNameFromDefaultProcessList(1));
@@ -168,7 +168,7 @@ public class ProcessWidgetTest extends BaseTest {
   @Test
   public void testDefaultProcessIsExcludedFromSearchProcessToAdd() {
     processWidget = homePage.getProcessWidget();
-    String processName = "Axon.ivy Selfservice";
+    String processName = "Axon Ivy Selfservice";
     AddNewProcessDialog addNewProcessDialog = processWidget.openNewProcessDialog();
     assertFalse(addNewProcessDialog.isIvyProcessByNameSearchable(processName));
   }

@@ -39,7 +39,7 @@
 		</para>
 	</sect1>
 	<sect1 xml:id="axonivyportal.architecture.axonivyexpress">
-		<title>Axon.ivy Express</title>
+		<title>Axon Ivy Express</title>
 		<para>
 			The idea is that user can create his own process and can manage it easily, it gives user more flexibility when working with Portal.
 		</para>
@@ -62,10 +62,10 @@
 	<sect1 xml:id="axonivyportal.architecture.portalconnector">
 		<title>Portal connector</title>
 		<para>
-			Communication channel to communicate between portal axon.ivy engine (e.g.: for synchronizing data, read ivy process data like task, case, absence, substitute,...). This module acts like service layer that contains web service's implementation for PortalKit to call and get data, only PortalKit knows about these web services.
+			Communication channel to communicate between portal Axon Ivy engine (e.g.: for synchronizing data, read ivy process data like task, case, absence, substitute,...). This module acts like service layer that contains web service's implementation for PortalKit to call and get data, only PortalKit knows about these web services.
 		</para>
 		<note>
-			By default, this module is integrated to System application of Axon.Ivy engine. To be able to run Portal in designer, you need to import this module.
+			By default, this module is integrated to System application of Axon Ivy engine. To be able to run Portal in designer, you need to import this module.
 		</note>
 	</sect1>
 </chapter>

@@ -35,7 +35,7 @@
 			<orderedlist>
 				<listitem>
 					<para>
-						Introduce an Axon.ivy project which has <code>PortalTemplate</code> as a required library.
+						Introduce an Axon Ivy project which has <code>PortalTemplate</code> as a required library.
 					</para>
 				</listitem>
 				<listitem>
@@ -61,7 +61,7 @@
 								</para>
 							</listitem>
 							<listitem>
-								Use Axon.ivy Override to override the <code>OpenPortalTasks</code> callable. The original implementation of this callable is calling <code>PortalTasks</code>, change it to call the customized Page introduced in the step above. The signature of this callable is <code>useView(TaskView)</code> and customized page must receive this <code>TaskView</code> instance, put in the dialog's <code>Data</code> with the exact name <code>taskView</code>.
+								Use Axon Ivy Override to override the <code>OpenPortalTasks</code> callable. The original implementation of this callable is calling <code>PortalTasks</code>, change it to call the customized Page introduced in the step above. The signature of this callable is <code>useView(TaskView)</code> and customized page must receive this <code>TaskView</code> instance, put in the dialog's <code>Data</code> with the exact name <code>taskView</code>.
 							</listitem>
 						</itemizedlist>
 					</para>
@@ -116,7 +116,7 @@
 							</para>
 						</listitem>
 						<listitem>
-							<para>Use Axon.ivy Override to override the <code>InitializeTaskDataModel</code> callable and initialize data model by your customized one.</para>
+							<para>Use Axon Ivy Override to override the <code>InitializeTaskDataModel</code> callable and initialize data model by your customized one.</para>
 						</listitem>
 						<listitem>
 							<para>In your customized portal tasks HTMLDialog, the customized data model should be passed as a parameter to components (refer to <code>PortalTasks.xhtml</code>).</para>
@@ -249,7 +249,7 @@
 						<para>Introduce a java class extends TaskLazyDataModel. Override the <code>initFilterContainer</code> method and initialize filter container (see javadoc comments)</para>
 					</listitem>
 					<listitem>
-						<para>Use Axon.ivy Override to override the <code>InitializeTaskDataModel</code> callable and initialize data model by your customized one.</para>
+						<para>Use Axon Ivy Override to override the <code>InitializeTaskDataModel</code> callable and initialize data model by your customized one.</para>
 					</listitem>
 					<listitem>
 						<para>In your customized portal tasks HTMLDialog, the customized data model and filter container should be passed as parameters to components (refer to <code>PortalTasks.xhtml</code>).</para>
@@ -302,7 +302,7 @@ out.taskView = TaskView.create().dataModel(dataModel)
 		</para>
 		<orderedlist>
 			<listitem>
-				<para>Introduce a Axon.ivy project which has <code>PortalTemplate</code> as a required library and its own <code>PortalStart</code> process. Refer to step 1, 2, 3, 4 in <link linkend="axonivyportal.customization.taskwidget.howtooverideui">override task widget's UI</link> guide.</para>
+				<para>Introduce a Axon Ivy project which has <code>PortalTemplate</code> as a required library and its own <code>PortalStart</code> process. Refer to step 1, 2, 3, 4 in <link linkend="axonivyportal.customization.taskwidget.howtooverideui">override task widget's UI</link> guide.</para>
 			</listitem>
 			<listitem>
 				<para>In your project, override the callable subprocess <code>CalculateTaskDelegate</code></para>

@@ -5,7 +5,7 @@
 		<orderedlist>
 			<listitem>
 				<para>
-					Introduce an Axon.ivy project which has	<code>PortalTemplate</code>	as a required library.
+					Introduce an Axon Ivy project which has	<code>PortalTemplate</code>	as a required library.
 				</para>
 			</listitem>
 			<listitem>

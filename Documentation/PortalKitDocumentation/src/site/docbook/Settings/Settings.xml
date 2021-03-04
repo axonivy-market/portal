@@ -364,7 +364,7 @@
 											<listitem>
 												<para>
 													Web services authentication of the built-in PortalConnector
-													of the Axon.ivy engine are configured as
+													of the Axon Ivy engine are configured as
 													<code>HTTP Basic</code>
 													. Therefore, when adding a new server using the built-in
 													PortalConnector, use authentication type

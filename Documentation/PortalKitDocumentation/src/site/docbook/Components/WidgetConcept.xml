@@ -31,7 +31,7 @@
 			This section introduces the Html Dialog Component and Portal services, predefined styles used in building a widget, and goes on to describe the process of designing and implementing.
 		</para>
 		<para>
-			Portal widgets should be implemented using the <emphasis role="bold">Html Dialog Component</emphasis> technology from Axon.ivy and follow the famous model-view-controller pattern.
+			Portal widgets should be implemented using the <emphasis role="bold">Html Dialog Component</emphasis> technology from Axon Ivy and follow the famous model-view-controller pattern.
 		</para>
 		<para>
 			Furthermore, to have a clean architecture and avoid a lot of headaches going forward, we suggest that you should separate your widget into layers like below:
@@ -103,7 +103,7 @@
 							</listitem>
 							<listitem>
 								<para>
-									Controller is implemented by a series of UI processes that can be mapped to events on the view such as mouse clicks. Axon.ivy provides the keyword logic to call an event process or a method process in the logic.
+									Controller is implemented by a series of UI processes that can be mapped to events on the view such as mouse clicks. Axon Ivy provides the keyword logic to call an event process or a method process in the logic.
 								</para>
 							</listitem>
 							<listitem>
@@ -270,7 +270,7 @@
 						<para><code>&lt;ic:my.namespace.ComponentName ... /&gt;</code></para>
 					</para>
 					<para>
-						For more information, see the Html Dialog Component section in Axon.ivy Designer - Help: <emphasis role="bold">Designer Guide > User Interface > User Dialogs > Html Dialogs</emphasis>
+						For more information, see the Html Dialog Component section in Axon Ivy Designer - Help: <emphasis role="bold">Designer Guide > User Interface > User Dialogs > Html Dialogs</emphasis>
 					</para>
 				</listitem>
 				<listitem>

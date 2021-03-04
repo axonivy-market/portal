@@ -96,7 +96,7 @@ String acmLink = collector.findACMLink();
 if (!StringUtils.isEmpty(acmLink)) {
 	UserProcess acmProcess = new UserProcess();
 	acmProcess.setLink(acmLink);
-	acmProcess.setProcessName("Axon.ivy Selfservice");
+	acmProcess.setProcessName("Axon Ivy Selfservice");
 	acmProcess.setIcon("fa-play");
 	acmProcess.setIndex(3);
 	in.defaultUserProcesses.add(acmProcess);
