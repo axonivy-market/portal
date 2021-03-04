@@ -5,15 +5,15 @@ Troubleshooting
 ===============
 
 Here you will find solutions to some of the most common problems related
-to Axon.ivy Portal.
+to Axon Ivy Portal.
 
 If you can't find your solution here there are some other sources which
 could help:
 
--  Axon.ivy Q&A
+-  Axon Ivy Q&A
 
-   The `Axon.ivy Q&A <http://answers.axonivy.com/>`__ contains a
-   considerable amount of questions and answers related to Axon.ivy
+   The `Axon Ivy Q&A <http://answers.axonivy.com/>`__ contains a
+   considerable amount of questions and answers related to Axon Ivy
    Designer and Engine.
 
 -  Stack Overflow

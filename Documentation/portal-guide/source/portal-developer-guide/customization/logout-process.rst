@@ -3,7 +3,7 @@
 Logout process
 ==============
 
-1. Introduce an Axon.ivy project which has ``PortalTemplate`` as a
+1. Introduce an Axon Ivy project which has ``PortalTemplate`` as a
    required library.
 
 2. Copy the ``PortalStart`` process from ``PortalTemplate`` to your
