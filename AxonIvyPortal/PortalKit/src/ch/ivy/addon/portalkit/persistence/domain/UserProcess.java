@@ -8,7 +8,6 @@ import org.apache.commons.collections4.CollectionUtils;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import ch.ivy.addon.portalkit.bo.ExternalLink;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.enums.ProcessType;
 import ch.ivy.addon.portalkit.util.Locales;
@@ -169,15 +168,19 @@ public class UserProcess extends BusinessEntity implements Cloneable {
   @Deprecated(since = "9.2", forRemoval = true)
   public void setWorkflowId(String workflowId) {
     this.workflowId = workflowId;
+    this.processId = workflowId;
   }
-  
-  /**
-   * @deprecated Use {@link UserProcess#getProcessType()} instead
-   * @return true if this object is used for {@link ExternalLink}
-   */
-  @Deprecated(since = "9.2", forRemoval = true)
+
   public boolean isExternalLink() {
-    return isExternalLink;
+    return ProcessType.EXTERNAL_LINK.equals(processType);
+  }
+
+  public boolean isIvyProcess() {
+    return ProcessType.IVY_PROCESS.equals(processType);
+  }
+
+  public boolean isExpressProcess() {
+    return ProcessType.EXPRESS_PROCESS.equals(processType);
   }
 
   /**
@@ -187,6 +190,7 @@ public class UserProcess extends BusinessEntity implements Cloneable {
   @Deprecated(since = "9.2", forRemoval = true)
   public void setExternalLink(boolean isExternalLink) {
     this.isExternalLink = isExternalLink;
+    this.processType = ProcessType.EXTERNAL_LINK;
   }
 
   public boolean isBrokenLink() {
