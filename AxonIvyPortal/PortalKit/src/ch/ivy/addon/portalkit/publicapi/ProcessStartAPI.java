@@ -70,7 +70,7 @@ public final class ProcessStartAPI {
    */
   public static UserProcess initUserProcessByExternalLinkName(String externalLinkName, String displayName) {
     UserProcess userProcess = initUserProcess(findExternalLinkIdByExternalLinkName(externalLinkName), ProcessType.EXTERNAL_LINK, displayName);
-    userProcess.setExternalLink(true);
+    userProcess.setProcessType(ProcessType.EXTERNAL_LINK);
     return userProcess;
   }
 
