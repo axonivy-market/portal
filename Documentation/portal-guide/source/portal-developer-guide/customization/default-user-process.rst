@@ -25,7 +25,7 @@ list of user processes. Follow instruction to create default processes.
 
 .. tip::
     - We provide 3 public APIs in ``ProcessStartAPI`` class (Refer to :ref:`Axon.ivy Public API document <public-api>`) to initiate a default user process.
-      We recommended you to use them when you want to create user favorite process.
+      We recommend you to use them when you want to create user favorite process.
 
         + For Ivy Process: ``initUserProcessByUserFriendlyRequestPath(String friendlyRequestPath, String displayName)``
         + For Express Process: ``initUserProcessByExpressProcessName(String expressProcessName, String displayName)``
