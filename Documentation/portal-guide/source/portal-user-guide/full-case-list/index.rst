@@ -150,6 +150,24 @@ HowTo: Create new filter
    2. Depending on your permissions you might only be allowed to save filters for
    yourself.
 
+HowTo: Move and Resize Widgets in Case Details
+----------------------------------------------
+1. Open the case details of a case
+
+2. Click on the **Switch to Edit Mode** button to drag, drop and resize widgets.
+
+|how-to-switch-to-edit-mode|
+
+
+3. Click on the **Save** button to save current state of page and switch to readonly mode.
+
+|how-to-switch-to-view-mode|
+
+
+4. Click **Reset** button to reset to default configuration.
+
+|how-to-reset-to-default|
+
 HowTo: Show all related Tasks
 -----------------------------
 
@@ -253,3 +271,6 @@ You may export the Case List by clicking on the button **Export to Excel**.
 .. |how-to-show-note-details| image:: ../../screenshots/case-detail/how-to-show-note-details.png
 .. |export-case-history| image:: ../../screenshots/case/export-case-history.png
 .. |export-to-excel-button| image:: ../../screenshots/case/export-to-excel-button.png
+.. |how-to-switch-to-view-mode| image:: ../../screenshots/case-detail/how-to-switch-to-view-mode.png
+.. |how-to-switch-to-edit-mode| image:: ../../screenshots/case-detail/how-to-switch-to-edit-mode.png
+.. |how-to-reset-to-default| image:: ../../screenshots/case-detail/how-to-reset-to-default.png
