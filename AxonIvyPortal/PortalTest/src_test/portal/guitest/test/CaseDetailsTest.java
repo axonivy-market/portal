@@ -82,6 +82,18 @@ public class CaseDetailsTest extends BaseTest {
     detailsPage.clickViewNote();
     assertTrue(detailsPage.isViewNoteDialogPresented());
   }
+  
+  @Test
+  public void testDragDropWidgets() {
+    detailsPage.switchToEditMode();
+    detailsPage.waitForSaveButtonDisplayed();
+    detailsPage.drapAndDropWidgets("information", "document");
+    detailsPage.drapAndDropWidgets("document", "information");
+    detailsPage.saveAndSwitchToViewMode();
+    detailsPage.waitForResetButtonDisplayed();
+    detailsPage.resetToDefault();
+    detailsPage.waitForResetButtonNotPresent();
+  }
 
   @After
   public void teardown() {
