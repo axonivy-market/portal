@@ -10,7 +10,7 @@ Global Search Result
 
 Follow these steps to customize the global search page:
 
-1. Introduce an Axon.ivy project which has ``PortalTemplate`` as a
+1. Introduce an Axon Ivy project which has ``PortalTemplate`` as a
    required library.
 
 2. Copy the ``PortalStart`` process from ``PortalTemplate`` to your
@@ -27,7 +27,7 @@ Follow these steps to customize the global search page:
    .. note:: It is recommended that lazy loading or pagination should be
     applied for custom tabs to have a good performance.
 
-5. Use `Axon.ivy HtmlOverride wizard <https://developer.axonivy.com/doc/9.1/designer-guide/how-to/overrides.html?#override-new-wizard>`_ to override ``SearchResults`` HTML dialog.
+5. Use `Axon Ivy HtmlOverride wizard <https://developer.axonivy.com/doc/9.1/designer-guide/how-to/overrides.html?#override-new-wizard>`_ to override ``SearchResults`` HTML dialog.
 
    In dataclass, change the ``dataModel`` to the above one, and in logic, also cast it.
 
