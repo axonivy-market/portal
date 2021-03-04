@@ -40,7 +40,7 @@
       styleClass="switch-and-reset-buttons-area ui-g-12">
       <p:commandButton id="switch-to-view-mode-button" rendered="#{not taskDetailsBean.readOnlyMode}"
         value="#{ivy.cms.co('/Dialogs/Tasks/TaskDetail/switchToViewMode')}" onclick="saveTaskDetailsGrid()"
-        icon="#{visibilityBean.generateButtonIcon('si si-view-1')}" update="task-item-body task-details-actions" oncomplete="loadTaskDetailsGrid()" />
+        icon="#{visibilityBean.generateButtonIcon('si si-floppy-disk')}" update="task-item-body task-details-actions" oncomplete="loadTaskDetailsGrid()" />
       <p:commandButton id="switch-to-edit-mode-button" rendered="#{taskDetailsBean.readOnlyMode}"
         value="#{ivy.cms.co('/Dialogs/Tasks/TaskDetail/switchToEditMode')}" actionListener="#{taskDetailsBean.switchToEditMode()}"
         icon="#{visibilityBean.generateButtonIcon('si si-pencil')}" update="task-item-body task-details-actions" oncomplete="loadTaskDetailsGrid()" />
