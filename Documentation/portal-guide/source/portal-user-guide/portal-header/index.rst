@@ -3,13 +3,13 @@
 Portal Header
 *************
 
-Axon.ivy Portal header is always visible. On the top right of the
+Axon Ivy Portal header is always visible. On the top right of the
 header you find two useful features:
 
 1. Name of the user you’re logged in with. Additionally, if you
    click on your username you get a menu with options that allow you to
-   configure the Axon.ivy Portal to your personal needs. See `User Settings in
-   the Axon.ivy Portal`_ for a detailed overview of the configuration options.
+   configure the Axon Ivy Portal to your personal needs. See `User Settings in
+   the Axon Ivy Portal`_ for a detailed overview of the configuration options.
 
 2. Next to your username is a |search-icon| **Search Bar** providing you
    with a portal-wide search. This feature is described in detail in 
@@ -17,10 +17,10 @@ header you find two useful features:
 
 |portal-header|
 
-User Settings in the Axon.ivy Portal
+User Settings in the Axon Ivy Portal
 ------------------------------------
 
-When you click on your username in the top right of the Axon.ivy Portal,
+When you click on your username in the top right of the Axon Ivy Portal,
 a menu is shown allowing you to configure the portal to your personal
 needs. These features are described in the following sections below.
 
@@ -89,7 +89,7 @@ Info
 ----
 
 The menu entry **Info** provides you with detailed information about the
-Axon.ivy Engine, the Axon.ivy Portal and your companies application. You
+Axon Ivy Engine, the Axon Ivy Portal and your companies application. You
 might be asked for this information in case you issue a support request.
 
 |portal-version-information|
@@ -97,12 +97,12 @@ might be asked for this information in case you issue a support request.
 Logout
 ------
 
-The menu entry **Logout** will terminate your session in the Axon.ivy
-Portal. You’ll be routed back to the login page of the Axon.ivy
+The menu entry **Logout** will terminate your session in the Axon Ivy
+Portal. You’ll be routed back to the login page of the Axon Ivy
 Portal.
 
 .. hint:: 
-   The Axon.ivy Portal will also do
+   The Axon Ivy Portal will also do
    an automatic logout if you’re   
    inactive for a certain amount of
    time.                           
@@ -111,8 +111,8 @@ Global Search
 -------------
 
 The Global Search is a convenient tool for you to look up
-information in the whole Axon.ivy Portal. You may search for any
-keyword. By default, the Axon.ivy Portal will search for:
+information in the whole Axon Ivy Portal. You may search for any
+keyword. By default, the Axon Ivy Portal will search for:
 
 1. Processes
 
@@ -120,7 +120,7 @@ keyword. By default, the Axon.ivy Portal will search for:
 
 3. Tasks
 
-When you confirm the keyword you’re looking for, the Axon.ivy Portal
+When you confirm the keyword you’re looking for, the Axon Ivy Portal
 will route you to the :guilabel:`Global Search Results` page. For each category
 a tab is provided, giving you the results of your search.
 
@@ -130,7 +130,7 @@ a tab is provided, giving you the results of your search.
    Your company’s application may   
    provide further search           
    capabilities which are integrated
-   in the Axon.ivy Portal Global    
+   in the Axon Ivy Portal Global    
    Search. You’d find the results on
    the result page accordingly.     
    Contact your administrator for   

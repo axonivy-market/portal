@@ -113,7 +113,7 @@ Os0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
         <name>Deprecated Note&#13;
 &#13;
 This callable will be removed from Portal 11.&#13;
-To override Portal task item details UI: you should use Axon.ivy HTMLOverride Dialog to override the PortalTaskDetails Html dialog.</name>
+To override Portal task item details UI: you should use Axon Ivy HTMLOverride Dialog to override the PortalTaskDetails Html dialog.</name>
         <nameStyle>10,5,8,0
 1,5,8
 4,5,8,0
@@ -132,7 +132,7 @@ Os0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
         <name>Deprecated Note&#13;
 &#13;
 This callable will be removed from Portal 11.&#13;
-To override Portal task item details UI: you should use Axon.ivy HTMLOverride Dialog to override the PortalTaskItemDetailsInIFrame Html dialog.</name>
+To override Portal task item details UI: you should use Axon Ivy HTMLOverride Dialog to override the PortalTaskItemDetailsInIFrame Html dialog.</name>
         <nameStyle>10,5,8,0
 1,5,8
 4,5,8,0
