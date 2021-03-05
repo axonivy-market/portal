@@ -67,14 +67,7 @@ public class ProcessWidgetBean implements Serializable {
   public void init() {
     processWidgetComponentId = Attrs.currentContext().getBuildInAttribute("clientId");
     
-    String userProcessSetting = UserSettingService.newInstance().getDefaultProcessMode();
-    if (StringUtils.isBlank(userProcessSetting) || StringUtils.equalsIgnoreCase(userProcessSetting, UserSettingService.DEFAULT)) {
-      GlobalSettingService globalSettingService = new GlobalSettingService();
-      GlobalSetting defaultSetting = globalSettingService.findGlobalSettingByKey(GlobalVariable.DEFAULT_PROCESS_MODE.name());
-      userProcessSetting = defaultSetting.getDisplayValue();
-    }
-
-    isCompactMode = ProcessMode.COMPACT.getLabel().equalsIgnoreCase(userProcessSetting) ? true : false;
+    initProcessViewMode();
     
     ProcessStartCollector collector = new ProcessStartCollector();
     createExpressWorkflowProcessStart = collector.findExpressCreationProcess();
@@ -86,6 +79,17 @@ public class ProcessWidgetBean implements Serializable {
     groupProcessesByAlphabetIndex(portalProcesses);
   }
 
+  private void initProcessViewMode() {
+    String userProcessSetting = UserSettingService.newInstance().getDefaultProcessMode();
+    if (StringUtils.isBlank(userProcessSetting) || StringUtils.equalsIgnoreCase(userProcessSetting, UserSettingService.DEFAULT)) {
+      GlobalSettingService globalSettingService = new GlobalSettingService();
+      GlobalSetting defaultSetting = globalSettingService.findGlobalSettingByKey(GlobalVariable.DEFAULT_PROCESS_MODE.name());
+      userProcessSetting = defaultSetting.getDisplayValue();
+    }
+
+    isCompactMode = ProcessMode.COMPACT.getLabel().equalsIgnoreCase(userProcessSetting) ? true : false;
+  }
+
   private void groupProcessesByAlphabetIndex(List<Process> processes) {
     processesByAlphabet = new HashMap<>();
     // Follow Oracle document about regex for punctual character
@@ -93,9 +97,8 @@ public class ProcessWidgetBean implements Serializable {
     String punctualRegex = "\\p{Punct}";
 
     for (Process process : processes) {
-      String processNameUpperCase = StringUtils.trim(process.getName()).toUpperCase();
-      if (StringUtils.isNotEmpty(processNameUpperCase)) {
-        String firstLetter = processNameUpperCase.substring(0, 1);
+      String firstLetter = extractProcessFirstLetter(process.getName());
+      if (StringUtils.isNotEmpty(firstLetter)) {
         if (firstLetter.matches(punctualRegex)) {
           addOrUpdateProcessesByKey(process, SPECIAL_CHARACTER_KEY);
         } else {
@@ -113,6 +116,15 @@ public class ProcessWidgetBean implements Serializable {
     }
   }
 
+  private String extractProcessFirstLetter(String processName) {
+    String firstLetter = "";
+    String processNameUpperCase = StringUtils.trim(processName).toUpperCase();
+    if (StringUtils.isNotEmpty(processNameUpperCase)) {
+      firstLetter = processNameUpperCase.substring(0, 1);
+    }
+    return firstLetter;
+  }
+  
   private void addOrUpdateProcessesByKey(Process process, String key) {
     if (!processesByAlphabet.containsKey(key)) {
       List<Process> processes = new ArrayList<>();
@@ -207,6 +219,7 @@ public class ProcessWidgetBean implements Serializable {
           expressProcess.setIcon(this.selectedIconProcess);
           expressProcessService.save(expressProcess);
         }
+        PermissionUtils.checkAbleToStartAndAbleToEditExpressWorkflow(expressProcess);
         this.editedProcess = new PortalExpressProcess(expressProcess);
         break;
       case EXTERNAL_LINK:
@@ -227,21 +240,19 @@ public class ProcessWidgetBean implements Serializable {
     }
     selectedIconProcess = null;
 
-    String processNameUpperCase = StringUtils.trim(this.editedProcess.getName()).toUpperCase();
-    if (StringUtils.isNotEmpty(processNameUpperCase)) {
-      String firstLetter = processNameUpperCase.substring(0, 1);
+    String firstLetter = extractProcessFirstLetter(this.editedProcess.getName());
+    if (StringUtils.isNotEmpty(firstLetter)) {
       List<Process> processes = this.processesByAlphabet.get(firstLetter);
       processes.removeIf(editProcess -> editProcess.getId().equals(this.editedProcess.getId()));
       processes.add(editedProcess);
       sortProcesses(processes);
       processesByAlphabet.put(firstLetter, processes);
-
       this.editedProcess = null;
     }
   }
 
   public String getProcessIcon(Process process) {
-    return process != null ? process.getIcon() : "si si-cog-double-2";
+    return process != null ? process.getIcon() : Process.DEFAULT_ICON;
   }
   
   public void createNewExternalLink() {
