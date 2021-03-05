@@ -10,20 +10,64 @@
   <cc:attribute name="isWorkingOnTask" type="java.lang.Boolean"/>
   <cc:attribute name="inFrame" type="java.lang.Boolean" default="false"/>
   <cc:attribute name="readOnly" type="java.lang.Boolean" default="false"/>
+  <cc:attribute name="dataModel"/>
 </cc:interface>
 
 <cc:implementation>
+  <h:outputScript name="task-widget.js" library="js" />
   <f:event listener="#{logic.initData(cc.attrs.case)}" type="preRenderComponent" />
-
+  <f:event listener="#{cc.attrs.dataModel.initColumnsConfiguration()}" type="preRenderComponent" />
   <div id="#{cc.clientId}" class="case-details-item #{cc.attrs.styleClass}">
-    <div class="task-details-panel-title">
-      <i class="si si-task-list-edit" /> #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/headerTitle/relatedTasksHeader')}
+    <div class="case-detail-section-title ui-g-12">
+      <div class="ui-g-4 u-truncate-text u-padding-0">
+        <i class="si si-task-list-edit" /> #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/headerTitle/relatedTasksHeader')}
+      </div>
+      <div class="case-history-button-container ui-g-8 u-padding-0">
+        <!-- <h:panelGroup layout="block" styleClass="case-details-note-add">
+          <p:link id="show-more-note-link"
+            styleClass="case-details-document-add-link note-show-more-link" target="_blank"
+            rendered="#{caseTaskNoteHistoryBean.showMoreNote}">
+            <span class="si si-expand-6 note-show-more-link-icon" />
+            <span class="display-full-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/showMoreBtn')}</span>
+            <span class="display-short-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}</span>
+          </p:link>
+          <p:commandLink id="add-note-command" styleClass="case-details-document-add-link"
+            rendered="#{caseTaskNoteHistoryBean.showAddNote}" onclick="PF('add-note-dialog-#{case.id}').show()">
+            <span class="si si-notes-add" />
+            <span class="display-full-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addNote')} </span>
+            <span class="display-short-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}</span>
+          </p:commandLink>
+        </h:panelGroup> -->
+        <!-- Export to Excel, Manage Columns -->
+        <h:panelGroup id="task-list-actions" layout="block" styleClass="case-details-note-add">
+          <h:form id="task-export-to-excel-form">
+            <p:commandLink ajax="false" id="task-export-to-excel" styleClass="case-details-document-add-link note-show-more-link"
+              onclick="PrimeFaces.monitorDownload(start, stop);">
+              <span class="si si-office-file-xls-1 note-show-more-link-icon" />
+              <span class="link-text display-full-text">
+                <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}" />
+              </span>
+              <span class="link-text display-short-text">
+                <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}" />
+              </span>
+              <p:fileDownload value="#{logic.getExportedFile(caseWidgetBean.getRelatedTaskColumns(cc.attrs.dataModel))}" />
+            </p:commandLink>
+          </h:form>
+          <ic:ch.ivy.addon.portalkit.component.ColumnsConfiguration styleClass="case-details-document-add-link"
+            id="task-columns-configuration"
+            updatedComponent="#{cc.clientId}:related-tasks #{cc.clientId}:task-list-actions"
+            dataModel="#{cc.attrs.dataModel}"
+            oncomplete="taskWidget.setupScrollbar(); taskWidget.setupHeader()"
+            configButtonId="task-config-command"
+            overlayPanelId="task-config-columns-panel" />
+        </h:panelGroup>
+      </div>
     </div>
 
     <div class="ui-g-12 u-padding-0">
       <p:dataTable id="related-tasks" value="#{data.relatedTasks}" var="task" paginator="true" rows="5" paginatorPosition="bottom" paginatorAlwaysVisible="false"
         paginatorTemplate="{PreviousPageLink} {PageLinks} {NextPageLink} {RowsPerPageDropdown}"
-        sortBy="#{task.id}" sortOrder="descending" reflow="true">
+        sortBy="#{task.id}" sortOrder="descending" reflow="true" rowIndexVar="rowIndex" rowHover="true" >
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/abbreviation/PRIORITY')}" sortBy="#{task.priority}" styleClass="priority-column">
           <ui:include src="PriorityCell.xhtml" />
         </p:column>
@@ -55,10 +99,99 @@
             styleClass="task-state #{task.state.toString().toLowerCase()}-task-state" />
         </p:column>
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}" styleClass="more-column">
-          <ui:include src="TaskAction.xhtml" />
+          <ui:include src="TaskAction.xhtml">
+            <ui:param name="dataModel" value="#{cc.attrs.dataModel}" />
+            <ui:param name="currentPortalPage" value="#{data.currentPortalPage}" />
+	          <ui:param name="onDestroyComplete" value="PF('destroy-task-dialog').show()" />
+	          <ui:param name="onDelegateComplete" value="initDataToDelegate()" />
+	          <ui:param name="onWorkflowEventComplete" value="initWorkflowEventData()" />
+          </ui:include>
         </p:column>
       </p:dataTable>
     </div>
   </div>
+
+  <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
+    <ui:param name="id" value="reset-task-dialog" />
+    <ui:param name="widgetVar" value="reset-task-dialog" />
+    <ui:param name="appendTo" value="@(body)" />
+    <ui:param name="iconClass" value="si si-road-sign-warning" />
+    <ui:param name="iconStyleClass" value="portal-dialog-warning-icon" />
+    <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/restTaskHeaderText')}" />
+    <ui:param name="dialogContent" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/resetTaskWarning')}" />
+
+    <ui:define name="dialogFooter">
+      <h:form id="reset-task-form">
+        <p:commandLink onclick="PF('reset-task-dialog').hide()" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+          styleClass="u-mar-right-15" />
+        <p:commandButton actionListener="#{logic.resetAndOpenTask}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
+          icon="#{visibilityBean.generateButtonIcon('si si-road-sign-u-turn-left')}"
+          onstart="#{cc.attrs.onTaskStartCallback}" />
+      </h:form>
+    </ui:define>
+  </ui:decorate>
+
+  <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
+    <ui:param name="id" value="destroy-task-confirmation-dialog" />
+    <ui:param name="widgetVar" value="destroy-task-dialog" />
+    <ui:param name="appendTo" value="@(body)" />
+    <ui:param name="iconClass" value="si si-delete-1" />
+    <ui:param name="iconStyleClass" value="portal-dialog-error-icon" />
+    <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroyTaskHeaderText')}" />
+    <ui:param name="dialogContent" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/destroyTaskMessage')}" />
+
+    <ui:define name="dialogFooter">
+      <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+        onclick="PF('destroy-task-dialog').hide();" styleClass="u-mar-right-15"/>
+       <p:commandButton id="confirm-destruction" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}"
+        icon="#{visibilityBean.generateButtonIcon('si si-remove')}"
+        actionListener="#{taskWidgetBean.destroyTask(taskWidgetBean.selectedTaskItemId)}"
+        oncomplete="PF('destroy-task-dialog').hide()"
+        update="#{cc.clientId}:related-tasks"
+        process="@this"/>
+    </ui:define>
+  </ui:decorate>
+
+  <!-- Delegate Task Dialog -->
+  <ic:ch.ivy.addon.portalkit.component.TaskItemDelegate id="task-item-delegate-component" dataModel="#{cc.attrs.dataModel}"
+    taskId="#{taskWidgetBean.selectedTaskItemId}"
+    componentToUpdate="#{p:component('related-tasks')}" />
+
+  <!-- Workflow Event of Task -->
+  <ic:ch.ivy.addon.portalkit.component.TaskItemWorkflowEvents id="workflow-event-component"
+    taskId="#{taskWidgetBean.selectedTaskItemId}"/>
+
+  <script type="text/javascript">
+      var taskWidget = new TaskWidget();
+      function toggleShowTaskList() {
+        $('[id $= "task-widget-sub-header"]').toggleClass("ui-sm-hidden").toggleClass("ui-md-hidden");
+        $('[id $= "task-view"]').toggleClass("ui-sm-hidden").toggleClass("ui-md-hidden");
+        $('[id $= "toggle-tasks-link"] > i').toggleClass("si-add-small").toggleClass("si-subtract-small");
+      }
+
+      $(function() {
+        var simpleScreen = new TaskListScreenHandler();
+        var responsiveToolkit = ResponsiveToolkit(simpleScreen);
+        Portal.init(responsiveToolkit);
+        taskWidget.updateTaskCountToBreadcrumb();
+      });
+
+    function start() {
+        var statusDialog = PF('status-dialog');
+        statusDialog.jq.removeAttr("download-status");
+        statusDialog.show();
+    }
+
+    function stop() {
+        var statusDialog = PF('status-dialog');
+        statusDialog.jq.attr("download-status","completed");
+        statusDialog.hide();
+    }
+  </script>
+
+  <p:dialog modal="true" id="status-dialog" widgetVar="status-dialog" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/status')}" draggable="false" closable="false" resizable="false" responsive="true">
+    <div>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/waitingDownloadMessage')}</div>
+    <h:panelGroup layout="block" rendered="#{cc.attrs.dataModel.rowCount gt taskWidgetBean.getMaxTaskNumberInExcel()}">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/downloadZipFileExplanation')}</h:panelGroup>
+  </p:dialog>
 </cc:implementation>
 </html>
