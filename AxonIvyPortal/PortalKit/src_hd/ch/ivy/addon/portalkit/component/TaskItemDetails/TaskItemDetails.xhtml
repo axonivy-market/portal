@@ -44,9 +44,9 @@
       <p:commandButton id="switch-to-edit-mode-button" rendered="#{taskDetailsBean.readOnlyMode}"
         value="#{ivy.cms.co('/Dialogs/Tasks/TaskDetail/switchToEditMode')}" actionListener="#{taskDetailsBean.switchToEditMode()}"
         icon="#{visibilityBean.generateButtonIcon('si si-pencil')}" update="task-item-body task-details-actions" oncomplete="loadTaskDetailsGrid()" />
-      <p:commandButton id="reset-task-details-settings-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
+      <p:commandButton id="reset-details-settings-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
         rendered="#{taskDetailsBean.configuration.changed}"
-        icon="#{visibilityBean.generateButtonIcon('si si-button-refresh-arrows')}" styleClass="reset-task-details-settings-button"
+        icon="#{visibilityBean.generateButtonIcon('si si-button-refresh-arrows')}" styleClass="reset-details-settings-button"
         actionListener="#{taskDetailsBean.reset()}" update="task-item-body task-details-actions" oncomplete="loadTaskDetailsGrid()" />
     </h:panelGroup>
   </div>

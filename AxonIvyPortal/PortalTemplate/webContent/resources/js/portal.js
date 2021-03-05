@@ -570,7 +570,7 @@ function highlightSwitchToViewMode() {
 }
 
 function highlightResetToDefault() {
-  createRedMediumOutline($("[id$=':reset-task-details-settings-button']"));
+  createRedMediumOutline($("[id$=':reset-details-settings-button']"));
 }
 
 function highlightShowWorkflowEvents() {
