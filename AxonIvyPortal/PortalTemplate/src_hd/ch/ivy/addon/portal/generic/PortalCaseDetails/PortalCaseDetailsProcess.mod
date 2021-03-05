@@ -24,7 +24,9 @@ Ps0 f0 guid 16BBB5AA8B6BE5B7 #txt
 Ps0 f0 method start(ch.ivyteam.ivy.workflow.ICase,Boolean) #txt
 Ps0 f0 inParameterDecl '<ch.ivyteam.ivy.workflow.ICase caseInfo,Boolean isShowBackButton> param;' #txt
 Ps0 f0 inParameterMapAction 'out.caseInfo=param.caseInfo;
+out.caseLazyDataModel=new ch.ivy.addon.portalkit.datamodel.internal.RelatedCaseLazyDataModel();
 out.isShowBackButton=param.isShowBackButton;
+out.relatedTaskLazyDataModel=new ch.ivy.addon.portalkit.datamodel.internal.RelatedTaskLazyDataModel();
 ' #txt
 Ps0 f0 outParameterDecl '<> result;' #txt
 Ps0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
