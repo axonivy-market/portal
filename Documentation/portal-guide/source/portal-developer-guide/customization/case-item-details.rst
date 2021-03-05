@@ -120,7 +120,7 @@ How to custom Case details UI
 
 Refer to ``portal-developer-examples`` project for examples.
 
-1. Introduce an Axon.ivy project which has ``PortalTemplate`` as a
+1. Introduce an Axon Ivy project which has ``PortalTemplate`` as a
    required library.
 
 2. To customize case detail, you must customize Portal Home first.
@@ -133,7 +133,7 @@ Refer to ``portal-developer-examples`` project for examples.
    previous step. This process is new home page and administrator should
    register this link by Portal's Admin Settings.
 
-4. Use `Axon.ivy HtmlOverride wizard <https://developer.axonivy.com/doc/9.1/designer-guide/how-to/overrides.html?#override-new-wizard>`_ to override ``CaseInformation`` HTML dialog.
+4. Use `Axon Ivy HtmlOverride wizard <https://developer.axonivy.com/doc/9.1/designer-guide/how-to/overrides.html?#override-new-wizard>`_ to override ``CaseInformation`` HTML dialog.
 
 5. After previous steps, you can override Case details UI elements
    as shown/hidden element by keywords:
