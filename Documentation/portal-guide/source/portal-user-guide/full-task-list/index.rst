@@ -161,25 +161,21 @@ HowTo: Create new filter
    filters for yourself.            
 
 
-HowTo: Move and Resize Widgets
-------------------------------
+HowTo: Move and Resize Widgets in Task Details
+----------------------------------------------
+1. Open the task details of a task
 
-.. hint:: 
-   Depending on applying configuration file,
-   we can move and resize    
-   widgets for yourself.
-
-1. Click on the **Switch to Edit Mode** button to drag, drop and resize widgets.
+2. Click on the **Switch to Edit Mode** button to drag, drop and resize widgets.
 
 |how-to-switch-to-edit-mode|
 
 
-2. Click on the **Save** button to save current state of page and switch to readonly mode.
+3. Click on the **Save** button to save current state of page and switch to readonly mode.
 
 |how-to-switch-to-view-mode|
 
 
-3. Click **Reset** button to reset to default configuration.
+4. Click **Reset** button to reset to default configuration.
 
 |how-to-reset-to-default|
 
