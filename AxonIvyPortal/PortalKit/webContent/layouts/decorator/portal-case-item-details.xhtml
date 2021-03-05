@@ -97,8 +97,8 @@
           <!-- Related running tasks box -->
           <h:panelGroup id="case-details-related-running-tasks-card" styleClass="card case-related-task-component grid-stack-item-content"
             rendered="#{widget.class.simpleName eq 'CaseDetailsRelatedTaskWidget'}">
-            <ic:ch.ivy.addon.portalkit.component.CaseItemRelatedTasks id="related-tasks" case="#{case}"
-              isWorkingOnTask="#{isWorkingOnTask}" inFrame="#{inFrame}" readOnly="#{readOnly}" />
+            <ic:ch.ivy.addon.portalkit.component.CaseItemRelatedTasks id="task-widget" case="#{case}"
+              isWorkingOnTask="#{isWorkingOnTask}" inFrame="#{inFrame}" readOnly="#{readOnly}" dataModel="#{relatedTaskLazyDataModel}"/>
           </h:panelGroup>
           
           <!-- Histories box -->
