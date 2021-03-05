@@ -76,12 +76,11 @@ Example:&#13;
 UserProcess ivyProcess = ProcessStartAPI.initUserProcessByUserFriendlyRequestPath("Start Processes/Employee/NewEmployee.ivp", "NewEmployee");&#13;
 UserProcess expressProcess = ProcessStartAPI.initUserProcessByExpressProcessName("Your Express Process Name", "Favorite Process Display Name");&#13;
 UserProcess externalLink = ProcessStartAPI.initUserProcessByExternalLinkName("Your External Link Name", "Favorite Process Display Name");&#13;
-- Use a CMS for defining multilingual display name.&#13;
 - The default processes are sorted by their index attribute. If this attribute is not set, the process will be put at the bottom of the list.</name>
     </language>
 </elementInfo>
 ' #txt
-Ds0 f5 192 66 1120 348 -556 -168 #rect
+Ds0 f5 192 66 1120 332 -556 -160 #rect
 Ds0 f5 @|IBIcon #fIcon
 >Proto Ds0 .type ch.ivy.add.portalkit.DefaultUserProcessData #txt
 >Proto Ds0 .processKind CALLABLE_SUB #txt

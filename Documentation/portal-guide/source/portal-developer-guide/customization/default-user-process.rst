@@ -31,7 +31,6 @@ list of user processes. Follow instruction to create default processes.
         + For Express Process: ``initUserProcessByExpressProcessName(String expressProcessName, String displayName)``
         + For External Link: ``initUserProcessByExternalLinkName(String externalLinkName, String displayName)``
 
-    - Use a **CMS** for defining multilingual display name.
     - The default processes are sorted by their index attribute. If this attribute is not set, the process will be put at the bottom of the list.
 
 .. |default-user-processes| image:: images/default-user-process/default-user-processes.png

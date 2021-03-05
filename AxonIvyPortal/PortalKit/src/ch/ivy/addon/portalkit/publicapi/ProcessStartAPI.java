@@ -43,7 +43,7 @@ public final class ProcessStartAPI {
    * Initiates {@link UserProcess} by user friendly request path.
    * 
    * @param friendlyRequestPath friendly path e.g "Start Processes/UserExampleGuide/userExampleGuide.ivp"
-   * @param displayName value for {@link UserProcess} processName field. To display process name with multilingual, provide a CMS for this param
+   * @param displayName value for {@link UserProcess} processName field
    * @return {@link UserProcess}
    */
   public static UserProcess initUserProcessByUserFriendlyRequestPath(String friendlyRequestPath, String displayName) {
@@ -54,7 +54,7 @@ public final class ProcessStartAPI {
    * Initiates {@link UserProcess} by {@link ExpressProcess} name.
    * 
    * @param expressProcessName Name of existing {@link ExpressProcess} in database
-   * @param displayName value for {@link UserProcess} processName field. To display process name with multilingual, provide a CMS for this param
+   * @param displayName value for {@link UserProcess} processName field
    * @return {@link UserProcess}
    */
   public static UserProcess initUserProcessByExpressProcessName(String expressProcessName, String displayName) {
@@ -65,13 +65,11 @@ public final class ProcessStartAPI {
    * Initiates {@link UserProcess} by External Link name.
    * 
    * @param externalLinkName Name of existing {@link ExternalLink} in database. Note: {@link ExternalLink} name can be duplicated in database, this method will return first matched {@link ExternalLink}
-   * @param displayName value for {@link UserProcess} processName field. To display process name with multilingual, provide a CMS for this param
+   * @param displayName value for {@link UserProcess} processName field
    * @return {@link UserProcess}
    */
   public static UserProcess initUserProcessByExternalLinkName(String externalLinkName, String displayName) {
-    UserProcess userProcess = initUserProcess(findExternalLinkIdByExternalLinkName(externalLinkName), ProcessType.EXTERNAL_LINK, displayName);
-    userProcess.setProcessType(ProcessType.EXTERNAL_LINK);
-    return userProcess;
+    return initUserProcess(findExternalLinkIdByExternalLinkName(externalLinkName), ProcessType.EXTERNAL_LINK, displayName);
   }
 
   private static UserProcess initUserProcess(String processId, ProcessType processType, String displayName) {
