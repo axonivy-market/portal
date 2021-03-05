@@ -10,4 +10,8 @@ public interface Process {
   public ProcessType getType();
   public String getTypeName();
   public String getId();
+
+  default public String getIcon() {
+    return "si si-cog-double-2";
+  }
 }
