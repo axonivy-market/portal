@@ -1,6 +1,6 @@
-var sessionCounter = 0;
-var sessionCounterUpdatedOn = new Date();
-var isLogOut = false;
+var sessionCounter = 0,
+sessionCounterUpdatedOn = new Date(),
+isLogOut = false;
 
 var PortalSessionWarning = function() {
   var warningDialogShow = false,
@@ -33,19 +33,23 @@ var PortalSessionWarning = function() {
 
   timerDecrement = function() {
     var lastUpdated = sessionCounterUpdatedOn, now = new Date(), shouldCheck = false;
-    if (lastUpdated == 'null') {
+    let periodOfTime = 0;
+    if (lastUpdated == null) {
       sessionCounterUpdatedOn = now;
-    } else if (now.getTime() - new Date(lastUpdated).getTime() >= 1000) {
-      sessionCounterUpdatedOn = now;
-      shouldCheck = true;
+    } else {
+      periodOfTime = now.getTime() - new Date(lastUpdated).getTime();
+      if (periodOfTime >= 1000) {
+        sessionCounterUpdatedOn = now;
+        shouldCheck = true;
+      }
     }
 
     if (shouldCheck) {
       if (timeOutSeconds > 0) {
-        if (parseInt(sessionCounter, 10) > 0) {
-          timeOutSeconds = parseInt(sessionCounter, 10);
+        if (sessionCounter > 0) {
+          timeOutSeconds = sessionCounter;
         }
-        timeOutSeconds--;
+        timeOutSeconds = timeOutSeconds - (periodOfTime / 1000);
         sessionCounter = timeOutSeconds;
 
       } else {
@@ -59,7 +63,7 @@ var PortalSessionWarning = function() {
         }
       }
     } else {
-      timeOutSeconds = parseInt(sessionCounter, 10);
+      timeOutSeconds = sessionCounter;
     }
 
     if (timeOutSeconds < 60) {
