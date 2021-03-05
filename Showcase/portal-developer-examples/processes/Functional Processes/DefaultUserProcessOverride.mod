@@ -33,42 +33,36 @@ Ds0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ds0 f0 51 83 26 26 14 0 #rect
+Ds0 f0 @|StartSubIcon #fIcon
 Ds0 f1 51 339 26 26 14 0 #rect
+Ds0 f1 @|EndSubIcon #fIcon
 Ds0 f3 actionTable 'out=in;
 ' #txt
 Ds0 f3 actionCode 'import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
-import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portalkit.persistence.domain.UserProcess;
 
-String createAlphaLink = ProcessStartAPI.findStartableLinkByUserFriendlyRequestPath("Start Processes/ProcessHistoryComponent/createAlphaCompany.ivp");
-if (!StringUtils.isEmpty(createAlphaLink)){	
-	UserProcess userProcess = new UserProcess();
-	userProcess.setLink(createAlphaLink);
-	userProcess.setProcessName(ivy.cms.co("/Processes/ProcessHistoryComponent/AlphaCompany/name"));
-	userProcess.setIcon("fa-building");
-	userProcess.setIndex(1);
-	in.defaultUserProcesses.add(userProcess);
-}
+UserProcess ivyProcess = ProcessStartAPI.initUserProcessByUserFriendlyRequestPath("Start Processes/ProcessHistoryComponent/createAlphaCompany.ivp", ivy.cms.co("/Processes/ProcessHistoryComponent/AlphaCompany/name"));
+ivyProcess.setIcon("fa-building");
+ivyProcess.setIndex(1);
+in.defaultUserProcesses.add(ivyProcess);
 
-String viewAlphaHistoryLink = ProcessStartAPI.findStartableLinkByUserFriendlyRequestPath("Start Processes/ProcessHistoryComponent/viewProcessHistoryOfAlphaCompany.ivp");
-if (!StringUtils.isEmpty(viewAlphaHistoryLink)){	
-	UserProcess userProcess = new UserProcess();
-	userProcess.setLink(viewAlphaHistoryLink);
-	userProcess.setProcessName(ivy.cms.co("/Processes/ProcessHistoryComponent/ProcessHistoryOfAlphaCompany/name"));
-	userProcess.setIcon("fa-list-alt");
-	userProcess.setIndex(2);
-	in.defaultUserProcesses.add(userProcess);
-}
+UserProcess ivyProcess2 = ProcessStartAPI.initUserProcessByUserFriendlyRequestPath("Start Processes/ProcessHistoryComponent/viewProcessHistoryOfAlphaCompany.ivp", ivy.cms.co("/Processes/ProcessHistoryComponent/ProcessHistoryOfAlphaCompany/name"));
+ivyProcess.setIcon("fa-list-alt");
+ivyProcess.setIndex(2);
+in.defaultUserProcesses.add(ivyProcess);
 
-String categoriedLeaveRequestLink = ProcessStartAPI.findStartableLinkByUserFriendlyRequestPath("Start Processes/ProcessHistoryComponent/viewProcessHistoryOfAlphaCompanyInDialog.ivp");
-if (!StringUtils.isEmpty(categoriedLeaveRequestLink)){	
-	UserProcess userProcess = new UserProcess();
-	userProcess.setLink(categoriedLeaveRequestLink);
-	userProcess.setProcessName(ivy.cms.co("/Processes/ProcessHistoryComponent/ProcessHistoryOfAlphaCompanyInDialog/name"));
-	userProcess.setIcon("fa-asterisk");
-	userProcess.setIndex(3);
-	in.defaultUserProcesses.add(userProcess);
-}
+UserProcess ivyProcess3 = ProcessStartAPI.initUserProcessByUserFriendlyRequestPath("Start Processes/ProcessHistoryComponent/viewProcessHistoryOfAlphaCompanyInDialog.ivp", ivy.cms.co("/Processes/ProcessHistoryComponent/ProcessHistoryOfAlphaCompanyInDialog/name"));
+ivyProcess.setIcon("fa-asterisk");
+ivyProcess.setIndex(3);
+in.defaultUserProcesses.add(ivyProcess);
+
+UserProcess expressProcess = ProcessStartAPI.initUserProcessByExpressProcessName("Your Express Process Name", "Favorite Process Display Name");
+expressProcess.setIndex(4);
+in.defaultUserProcesses.add(expressProcess);
+
+UserProcess externalLink = ProcessStartAPI.initUserProcessByExternalLinkName("Your External Link Name", "Favorite Process Display Name");
+externalLink.setIndex(5);
+in.defaultUserProcesses.add(externalLink);
 
 ' #txt
 Ds0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -82,6 +76,7 @@ processes</name>
 </elementInfo>
 ' #txt
 Ds0 f3 46 196 36 24 20 -2 #rect
+Ds0 f3 @|StepIcon #fIcon
 Ds0 f4 expr out #txt
 Ds0 f4 64 109 64 196 #arcP
 Ds0 f2 expr out #txt
@@ -94,49 +89,33 @@ It add several application favorites processes and determines their order using 
 &#13;
 Code Example:&#13;
 &#13;
-String createAlphaLink = ProcessStartAPI.findStartableLinkByUserFriendlyRequestPath("Start Processes/ProcessHistoryComponent/createAlphaCompany.ivp");&#13;
-if (!StringUtils.isEmpty(createAlphaLink)){	&#13;
-	UserProcess userProcess = new UserProcess();&#13;
-	userProcess.setLink(createAlphaLink);&#13;
-	userProcess.setProcessName(ivy.cms.co("/Processes/ProcessHistoryComponent/AlphaCompany/name"));&#13;
-	userProcess.setIcon("si si-buildings-1");&#13;
-	userProcess.setIndex(1);&#13;
-	in.defaultUserProcesses.add(userProcess);&#13;
-}&#13;
+UserProcess ivyProcess = ProcessStartAPI.initUserProcessByUserFriendlyRequestPath("Start Processes/ProcessHistoryComponent/createAlphaCompany.ivp", ivy.cms.co("/Processes/ProcessHistoryComponent/AlphaCompany/name"));&#13;
+ivyProcess.setIcon("fa-building");&#13;
+ivyProcess.setIndex(1);&#13;
+in.defaultUserProcesses.add(ivyProcess);&#13;
 &#13;
-String viewAlphaHistoryLink = ProcessStartAPI.findStartableLinkByUserFriendlyRequestPath("Start Processes/ProcessHistoryComponent/viewProcessHistoryOfAlphaCompany.ivp");&#13;
-if (!StringUtils.isEmpty(viewAlphaHistoryLink)){	&#13;
-	UserProcess userProcess = new UserProcess();&#13;
-	userProcess.setLink(viewAlphaHistoryLink);&#13;
-	userProcess.setProcessName(ivy.cms.co("/Processes/ProcessHistoryComponent/ProcessHistoryOfAlphaCompany/name"));&#13;
-	userProcess.setIcon("si si-task-list-approve");&#13;
-	userProcess.setIndex(2);&#13;
-	in.defaultUserProcesses.add(userProcess);&#13;
-}&#13;
+UserProcess ivyProcess2 = ProcessStartAPI.initUserProcessByUserFriendlyRequestPath("Start Processes/ProcessHistoryComponent/viewProcessHistoryOfAlphaCompany.ivp", ivy.cms.co("/Processes/ProcessHistoryComponent/ProcessHistoryOfAlphaCompany/name"));&#13;
+ivyProcess.setIcon("fa-list-alt");&#13;
+ivyProcess.setIndex(2);&#13;
+in.defaultUserProcesses.add(ivyProcess);&#13;
 &#13;
-String categoriedLeaveRequestLink = ProcessStartAPI.findStartableLinkByUserFriendlyRequestPath("Start Processes/CreateTestData/CategoriedLeaveRequest.ivp");&#13;
-if (!StringUtils.isEmpty(categoriedLeaveRequestLink)){	&#13;
-	UserProcess userProcess = new UserProcess();&#13;
-	userProcess.setLink(categoriedLeaveRequestLink);&#13;
-	userProcess.setProcessName(ivy.cms.co("/Categories/LeaveRequest/name"));&#13;
-	userProcess.setIcon("si si-calendar");&#13;
-	userProcess.setIndex(3);&#13;
-	in.defaultUserProcesses.add(userProcess);&#13;
-}&#13;
+UserProcess ivyProcess3 = ProcessStartAPI.initUserProcessByUserFriendlyRequestPath("Start Processes/ProcessHistoryComponent/viewProcessHistoryOfAlphaCompanyInDialog.ivp", ivy.cms.co("/Processes/ProcessHistoryComponent/ProcessHistoryOfAlphaCompanyInDialog/name"));&#13;
+ivyProcess.setIcon("fa-asterisk");&#13;
+ivyProcess.setIndex(3);&#13;
+in.defaultUserProcesses.add(ivyProcess);&#13;
 &#13;
-String createInvestmentLink = ProcessStartAPI.findStartableLinkByUserFriendlyRequestPath("Start Processes/IFrameExample/CreateInvestment.ivp");&#13;
-if (!StringUtils.isEmpty(createInvestmentLink)){	&#13;
-	UserProcess userProcess = new UserProcess();&#13;
-	userProcess.setLink(createInvestmentLink);&#13;
-	userProcess.setProcessName(ivy.cms.co("/Processes/CreateInvestment/name"));&#13;
-	userProcess.setIcon("si si-analytics-graph");&#13;
-	userProcess.setIndex(4);&#13;
-	in.defaultUserProcesses.add(userProcess);&#13;
-}</name>
+UserProcess expressProcess = ProcessStartAPI.initUserProcessByExpressProcessName("Your Express Process Name", "Favorite Process Display Name");&#13;
+expressProcess.setIndex(4);&#13;
+in.defaultUserProcesses.add(expressProcess);&#13;
+&#13;
+UserProcess externalLink = ProcessStartAPI.initUserProcessByExternalLinkName("Your External Link Name", "Favorite Process Display Name");&#13;
+externalLink.setIndex(5);&#13;
+in.defaultUserProcesses.add(externalLink);</name>
     </language>
 </elementInfo>
 ' #txt
-Ds0 f5 256 82 992 716 -493 -352 #rect
+Ds0 f5 256 82 1584 444 -789 -216 #rect
+Ds0 f5 @|IBIcon #fIcon
 >Proto Ds0 .type _com.axonivy.portal.developerexamples.DefaultUserProcessOverrideData #txt
 >Proto Ds0 .processKind CALLABLE_SUB #txt
 >Proto Ds0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
