@@ -49,8 +49,9 @@ public class PortalTaskScreenshotTest extends ScreenshotTest {
   
   @Test
   public void screenshotCustomTaskList() throws IOException {
-    login(TestAccount.ADMIN_USER);
     ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 900));
+    login(TestAccount.ADMIN_USER);
+    refreshPage();
     TaskWidgetPage taskWidget = new TaskWidgetPage();
     taskWidget.expand();
     executeDecorateJs("highlightCustomTaskList()");
@@ -76,8 +77,9 @@ public class PortalTaskScreenshotTest extends ScreenshotTest {
   
   @Test
   public void screenshotBasicTaskDetails() throws IOException {
-    login(TestAccount.ADMIN_USER);
     ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 1200));
+    login(TestAccount.ADMIN_USER);
+    refreshPage();
     TaskWidgetPage taskWidget = homePage.openTaskList();
     TaskDetailsPage taskDetails = taskWidget.openTaskDetails(0);
     taskDetails.waitUtilsTaskDetailsDisplayed();
@@ -89,8 +91,9 @@ public class PortalTaskScreenshotTest extends ScreenshotTest {
  
   @Test
   public void screenshotActionButtonsOnTaskDetailsWithJsonFile() throws IOException {
-    login(TestAccount.ADMIN_USER);
     ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 1440));
+    login(TestAccount.ADMIN_USER);
+    refreshPage();
     TaskWidgetPage taskWidget = homePage.openTaskList();
     TaskDetailsPage taskDetails = taskWidget.openTaskDetails(0);
     taskDetails.waitUtilsTaskDetailsDisplayed();
@@ -120,8 +123,9 @@ public class PortalTaskScreenshotTest extends ScreenshotTest {
 
   @Test
   public void screenshotTaskDetails() throws IOException {
-    login(TestAccount.ADMIN_USER);
     ScreenshotUtil.resizeBrowser(new Dimension(2560, 1440));
+    login(TestAccount.ADMIN_USER);
+    refreshPage();
     TaskWidgetPage taskWidget = homePage.openTaskList();
     TaskDetailsPage taskDetails = taskWidget.openTaskDetails(0);
     taskDetails.waitUtilsTaskDetailsDisplayed();
@@ -177,6 +181,7 @@ public class PortalTaskScreenshotTest extends ScreenshotTest {
   public void screenshotShowMoreTaskHistories() throws IOException {
     ScreenshotUtil.resizeBrowser(new Dimension(2560, 1000));
     login(TestAccount.ADMIN_USER);
+    refreshPage();
     TaskWidgetPage taskWidget = homePage.openTaskList();
     TaskDetailsPage taskDetails = taskWidget.openTaskDetails(0);
     taskDetails.waitUtilsTaskDetailsDisplayed();

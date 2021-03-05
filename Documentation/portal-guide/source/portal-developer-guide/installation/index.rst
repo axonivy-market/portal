@@ -76,7 +76,7 @@ Migration notes
 
 This document informs you in detail about incompatibilities that were
 introduced between Portal versions and tells you what needs to be done
-to make your existing Portal working with current Axon.ivy engine.
+to make your existing Portal working with current Axon Ivy engine.
 
 How to migrate
 --------------
@@ -85,10 +85,10 @@ How to migrate
    If you call any Portal API which is not mentioned in the document. It could be changed or removed without inform. Don't forget
    to re-implement the concerning API in your own project.
 
-   In order to migrate Portal, you need to migrate Axon.ivy, refer
-   `Axon.ivy migration
+   In order to migrate Portal, you need to migrate Axon Ivy, refer
+   `Axon Ivy migration
    notes <https://developer.axonivy.com/doc/9.1/axonivy/migration/index.html>`__.
-   Changes in Axon.ivy could lead to problems if customer project is not
+   Changes in Axon Ivy could lead to problems if customer project is not
    migrated properly.
 
 In designer
@@ -137,7 +137,7 @@ Migrate 9.1 to 9.2
 
 6. Deprecated callable processes: ``OpenPortalSearch.mod``, ``OpenPortalTasks.mod``, ``OpenPortalTaskDetails.mod``, ``OpenPortalCases.mod``, ``OpenPortalCaseDetails.mod`` process.
 
-   Portal recommends using `Axon.ivy HtmlOverride wizard <https://developer.axonivy.com/doc/9.1/designer-guide/how-to/overrides.html?#override-new-wizard>`_ to customize ``Portal HTML Dialog``
+   Portal recommends using `Axon Ivy HtmlOverride wizard <https://developer.axonivy.com/doc/9.1/designer-guide/how-to/overrides.html?#override-new-wizard>`_ to customize ``Portal HTML Dialog``
 
    .. important:: The callable process which is supporting to open customization dialog will be removed in the future, do not use it in the new project
 
@@ -194,7 +194,7 @@ Release notes
 =============
 
 This part lists all relevant changes since the last official product
-releases of Axon.ivy.
+releases of Axon Ivy.
 
 
 Changes in 9.2
@@ -211,8 +211,6 @@ Changes in 9.2
 - Introduce new approach to customize :ref:`Portal Case Item details <customization-case-item-details>`. Now, your case information in Case details page and Case Info dialog is the same
 
 - Introduce new approach to customize :ref:`Portal Task item details <customization-task-item-details>`.
-
-- Introduce new Portal Setting ``APPLY_JSON_CONFIGURATION_FILE_FOR_TASK_DETAILS`` to control visibility of widgets on task details page with new style.
 
 - Introduce new Portal Setting ``SHOW_BUTTON_ICON`` to control visibility of icon of button in Portal.
 
