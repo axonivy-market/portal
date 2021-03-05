@@ -23,7 +23,7 @@ public class ProcessStartUtils {
 
   public static boolean isExpressProcessAdded(ExpressProcess expressProcess, List<UserProcess> userProcesses) {
     return userProcesses.stream()
-    .filter(process -> StringUtils.isNoneBlank(process.getWorkflowId()) && process.getWorkflowId().equals(expressProcess.getId()))
+    .filter(process -> process.isExpressProcess() && StringUtils.isNoneBlank(process.getProcessId()) && process.getProcessId().equals(expressProcess.getId()))
     .findFirst()
     .isPresent();
   }
