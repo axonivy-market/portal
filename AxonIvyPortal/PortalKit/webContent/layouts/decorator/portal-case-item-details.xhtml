@@ -22,17 +22,17 @@
   </h:panelGroup>
   <h:panelGroup id="case-details-actions" rendered="#{not readOnly}"
     styleClass="switch-and-reset-buttons-area ui-g-6 ui-sm-12">
-    <p:commandButton id="view-mode-button" rendered="#{not caseDetailsBean.readOnlyMode}"
+    <p:commandButton id="switch-to-view-mode-button" rendered="#{not caseDetailsBean.readOnlyMode}"
       value="#{ivy.cms.co('/Dialogs/Tasks/TaskDetail/switchToViewMode')}" actionListener="#{caseDetailsBean.save()}"
       icon="#{visibilityBean.generateButtonIcon('si si-floppy-disk')}" onclick="saveCaseDetailsGrid()"
       update="case-detail-body case-details-actions" oncomplete="loadCaseDetailsGrid()" />
-    <p:commandButton id="edit-mode-button" rendered="#{caseDetailsBean.readOnlyMode}"
+    <p:commandButton id="switch-to-edit-mode-button" rendered="#{caseDetailsBean.readOnlyMode}"
       value="#{ivy.cms.co('/Dialogs/Tasks/TaskDetail/switchToEditMode')}" actionListener="#{caseDetailsBean.switchToEditMode()}"
       icon="#{visibilityBean.generateButtonIcon('si si-pencil')}"
       update="case-detail-body case-details-actions" oncomplete="loadCaseDetailsGrid()" />
-    <p:commandButton id="settings-reset-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
+    <p:commandButton id="reset-details-settings-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
       rendered="#{caseDetailsBean.configuration.changed}"
-      icon="#{visibilityBean.generateButtonIcon('si si-button-refresh-arrows')}" styleClass="reset-task-details-settings-button"
+      icon="#{visibilityBean.generateButtonIcon('si si-button-refresh-arrows')}" styleClass="reset-details-settings-button"
       actionListener="#{caseDetailsBean.reset()}" update="case-detail-body case-details-actions" oncomplete="loadCaseDetailsGrid()" />
   </h:panelGroup>
   
@@ -97,8 +97,8 @@
           <!-- Related running tasks box -->
           <h:panelGroup id="case-details-related-running-tasks-card" styleClass="card case-related-task-component grid-stack-item-content"
             rendered="#{widget.class.simpleName eq 'CaseDetailsRelatedTaskWidget'}">
-            <ic:ch.ivy.addon.portalkit.component.CaseItemRelatedTasks id="related-tasks" case="#{case}"
-              isWorkingOnTask="#{isWorkingOnTask}" inFrame="#{inFrame}" readOnly="#{readOnly}" />
+            <ic:ch.ivy.addon.portalkit.component.CaseItemRelatedTasks id="task-widget" case="#{case}"
+              isWorkingOnTask="#{isWorkingOnTask}" inFrame="#{inFrame}" readOnly="#{readOnly}" dataModel="#{relatedTaskLazyDataModel}"/>
           </h:panelGroup>
           
           <!-- Histories box -->
