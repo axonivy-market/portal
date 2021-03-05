@@ -8,30 +8,41 @@ import java.util.Map;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
 
 import ch.ivy.addon.portalkit.bean.IvyComponentLogicCaller;
 import ch.ivy.addon.portalkit.enums.CaseSortField;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.ICase;
 
 public class RelatedCaseLazyDataModel extends LazyDataModel<ICase> {
 
   private static final long serialVersionUID = 1L;
+  
+  public static final String DESCRIPTION = "DESCRIPTION";
 
-  protected final List<ICase> data;
+  private final List<ICase> data;
 
-  protected String caseWidgetComponentId;
-  protected int rowIndex;
-  protected CaseSearchCriteria criteria;
+  private String caseWidgetComponentId;
+  private CaseSearchCriteria criteria;
+  private List<String> allColumns = new ArrayList<>();
+  private List<String> selectedColumns = new ArrayList<>();
+  private List<String> portalRequiredColumns = Arrays.asList(CaseSortField.NAME.name());
+  private List<String> portalDefaultColumns;
+  private boolean isDisableSelectionCheckboxes;
+  private boolean isAutoHideColumns;
 
   public RelatedCaseLazyDataModel(Long businessCaseId) {
     super();
     data = new ArrayList<>();
     caseWidgetComponentId = "related-cases-widget";
     buildCriteria(businessCaseId);
+    initColumnsConfiguration();
   }
 
   @Override
@@ -46,6 +57,28 @@ public class RelatedCaseLazyDataModel extends LazyDataModel<ICase> {
     List<ICase> foundCases = findCases(criteria, first, pageSize);
     data.addAll(foundCases);
     return foundCases;
+  }
+
+  public void initColumnsConfiguration() {
+    if (new GlobalSettingService().isCaseOwnerEnabled()) {
+      portalDefaultColumns = List.of(CaseSortField.NAME.name(), CaseSortField.ID.name(), CaseSortField.CREATOR.name(), CaseSortField.OWNER.name(), CaseSortField.CREATION_TIME.name(), 
+          CaseSortField.FINISHED_TIME.name(), CaseSortField.STATE.name());
+    } else {
+      portalDefaultColumns = List.of(CaseSortField.NAME.name(), CaseSortField.ID.name(), CaseSortField.CREATOR.name(), CaseSortField.CREATION_TIME.name(), CaseSortField.FINISHED_TIME.name(), 
+          CaseSortField.STATE.name());
+    }
+    if (CollectionUtils.isEmpty(allColumns)) {
+      allColumns.addAll(portalDefaultColumns);
+      initSelectedColumns();
+    }
+  }
+  
+  private void initSelectedColumns() {
+    if (selectedColumns.isEmpty()) {
+      selectedColumns.addAll(getDefaultColumns());
+      isAutoHideColumns = true;
+    }
+    setDisableSelectionCheckboxes(isAutoHideColumns);
   }
 
   private List<ICase> findCases(CaseSearchCriteria criteria, int first, int pageSize) {
@@ -93,6 +126,54 @@ public class RelatedCaseLazyDataModel extends LazyDataModel<ICase> {
     criteria.setSortField(CaseSortField.NAME.toString());
     criteria.setSortDescending(false);
   }
+
+  public List<String> getAllColumns() {
+    return allColumns;
+  }
+
+  public void setSelectedColumns(List<String> selectedColumns) {
+    this.selectedColumns = selectedColumns;
+  }
   
+  public List<String> getSelectedColumns() {
+    return selectedColumns;
+  }
+
+  public List<String> getPortalRequiredColumns() {
+    return portalRequiredColumns;
+  }
   
+  public List<String> getDefaultColumns() {
+    return portalDefaultColumns;
+  }
+  
+  public String getColumnLabel(String column) {
+    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/" + column);
+  }
+  
+  public void saveColumnsConfiguration() {
+    // avoid duplicating
+    for (String requiredColumn : portalRequiredColumns) {
+      if (!selectedColumns.contains(requiredColumn)) {
+        selectedColumns.add(requiredColumn);
+      }
+    }
+    setAutoHideColumns(isDisableSelectionCheckboxes);
+  }
+  
+  public void setAutoHideColumns(boolean isAutoHideColumns) {
+    this.isAutoHideColumns = isAutoHideColumns;
+  }
+  
+  public boolean getAutoHideColumns() {
+    return this.isAutoHideColumns;
+  }
+
+  public boolean isDisableSelectionCheckboxes() {
+    return isDisableSelectionCheckboxes;
+  }
+
+  public void setDisableSelectionCheckboxes(boolean isDisableSelectionCheckboxes) {
+    this.isDisableSelectionCheckboxes = isDisableSelectionCheckboxes;
+  }
 }
