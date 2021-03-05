@@ -2,6 +2,7 @@ package ch.ivy.addon.portalkit.bean;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -22,11 +23,14 @@ import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
+import ch.ivy.addon.portalkit.datamodel.internal.RelatedCaseLazyDataModel;
 import ch.ivy.addon.portalkit.dto.casedetails.CaseDetails;
 import ch.ivy.addon.portalkit.dto.casedetails.CaseDetailsWidget;
+import ch.ivy.addon.portalkit.enums.CaseSortField;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
+import ch.ivy.addon.portalkit.exporter.Exporter;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
@@ -65,7 +69,6 @@ public class CaseDetailsBean implements Serializable {
   public void init() {
     isShowCaseDetails = PermissionUtils.hasPortalPermission(PortalPermission.SHOW_CASE_DETAILS);
     caseActionBean = ManagedBeans.get("caseActionBean");
-    
     try {
       loadCaseDetailsSettings();
       loadWidgets();
@@ -278,5 +281,34 @@ public class CaseDetailsBean implements Serializable {
 
   public void setShowNotAvailableData(boolean hasShowNotAvailableData) {
     this.hasShowNotAvailableData = hasShowNotAvailableData;
+  }
+
+  /**
+   * Gets visible columns on Case list page.
+   * 
+   * @param dataModel
+   * @return visible columns
+   */
+  public List<String> getColumns(RelatedCaseLazyDataModel dataModel) {
+    List<String> visibilityColumns = new ArrayList<>();
+    visibilityColumns.addAll(dataModel.getSelectedColumns());
+
+    /*
+     * In UI we have a column called "Name / Description", but PortalRequiredColumns contains only "Name" column, so
+     * that we need to check and add "Description" to Excel file
+     */
+    List<String> requiredColumns = dataModel.getPortalRequiredColumns();
+    if (requiredColumns != null && requiredColumns.contains(CaseSortField.NAME.name())) {
+      visibilityColumns.add(RelatedCaseLazyDataModel.DESCRIPTION);
+    }
+    return visibilityColumns;
+  }
+  
+  public int getMaxCaseNumberInExcel() {
+    return Exporter.MAX_ROW_NUMBER_IN_EXCEL;
+  }
+  
+  public boolean isDisplayColumn(RelatedCaseLazyDataModel dataModel, String columnName) {
+    return dataModel.getSelectedColumns().contains(columnName);
   }
 }
