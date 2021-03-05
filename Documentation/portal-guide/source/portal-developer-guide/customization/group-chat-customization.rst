@@ -25,7 +25,7 @@ Override group chat title/header via ``groupChatHeader`` CMS entry.
 Customize group chat name
 -------------------------
 
-1. Introduce an Axon.ivy project which has ``PortalTemplate`` as a
+1. Introduce an Axon Ivy project which has ``PortalTemplate`` as a
    required library.
 
 2. Override ``SetGroupChatName`` process to customize group chat name,
