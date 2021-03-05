@@ -29,7 +29,7 @@ How to override case widget's UI
 
 Refer to ``portal-developer-examples`` project for examples
 
-1. Introduce an Axon.ivy project which has ``PortalTemplate`` as a
+1. Introduce an Axon Ivy project which has ``PortalTemplate`` as a
    required library.
 
 2. To customize case widget, you must customize Portal Home first. Refer
@@ -42,7 +42,7 @@ Refer to ``portal-developer-examples`` project for examples
    previous step. This process is new home page and administrator should
    register this link by Portal's Admin Settings.
 
-4. Use `Axon.ivy HtmlOverride wizard <https://developer.axonivy.com/doc/9.1/designer-guide/how-to/overrides.html?#override-new-wizard>`_ to override ``PortalCases`` HTML dialog.
+4. Use `Axon Ivy HtmlOverride wizard <https://developer.axonivy.com/doc/9.1/designer-guide/how-to/overrides.html?#override-new-wizard>`_ to override ``PortalCases`` HTML dialog.
 
    .. tip:: This action overrides ``Case widget`` in: CaseList page, Case Search result.
 
@@ -99,7 +99,7 @@ function of these columns work:
     
        <ic:ch.ivy.addon.portalkit.component.cases.column.CaseCustomField id="case-customer-name-component" panelGroupId="customVarCharField1-column-case-header-panel" componentId="customVarCharField1-column-case-header-text" column="customVarCharField1" dataModel="#{caseView.dataModel}" labelValue="#{case.customVarCharField1}" />
 
--  Use Axon.ivy Override to override the ``InitializeCaseDataModel``
+-  Use Axon Ivy Override to override the ``InitializeCaseDataModel``
    callable and initialize data model by your customized one.
 
 -  In your customized portal cases HTMLDialog, the customized data model
@@ -134,7 +134,7 @@ Case filter
    ``initFilterContainer`` method and initialize filter container (see
    javadoc comments)
 
--  Use Axon.ivy Override to override the ``InitializeCaseDataModel``
+-  Use Axon Ivy Override to override the ``InitializeCaseDataModel``
    callable and initialize data model by your customized one.
 
 -  In your customized portal cases HTMLDialog, the customized data model
