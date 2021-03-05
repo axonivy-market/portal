@@ -22,10 +22,19 @@ public class UserProcess extends BusinessEntity implements Cloneable {
   private String link;
   private String icon;
   private String processId;
+  /**
+   * @deprecated Use processId instead
+   */
+  @Deprecated(since = "9.2", forRemoval = true)
   private String workflowId;
   private Integer index;
   private boolean defaultProcess;
+  /**
+   * @deprecated Use processType instead
+   */
+  @Deprecated
   private boolean isExternalLink;
+  @JsonIgnore
   private boolean isBrokenLink = false;
 
   /**
@@ -143,20 +152,45 @@ public class UserProcess extends BusinessEntity implements Cloneable {
     this.processId = processId;
   }
 
+  /**
+   * @deprecated Use {@link UserProcess#getProcessId()} instead
+   * @return WorkflowId
+   */
+  @Deprecated(since = "9.2", forRemoval = true)
   public String getWorkflowId() {
     return workflowId;
   }
 
+  /**
+   * @deprecated Use {@link UserProcess#setProcessId(String)} instead
+   * @param workflowId
+   */
+  @Deprecated(since = "9.2", forRemoval = true)
   public void setWorkflowId(String workflowId) {
     this.workflowId = workflowId;
-  }
-  
-  public boolean isExternalLink() {
-    return isExternalLink;
+    this.processId = workflowId;
   }
 
+  public boolean isExternalLink() {
+    return ProcessType.EXTERNAL_LINK.equals(processType);
+  }
+
+  public boolean isIvyProcess() {
+    return ProcessType.IVY_PROCESS.equals(processType);
+  }
+
+  public boolean isExpressProcess() {
+    return ProcessType.EXPRESS_PROCESS.equals(processType);
+  }
+
+  /**
+   * @deprecated Use {@link UserProcess#setProcessType(ProcessType)} instead
+   * @param isExternalLink
+   */
+  @Deprecated(since = "9.2", forRemoval = true)
   public void setExternalLink(boolean isExternalLink) {
     this.isExternalLink = isExternalLink;
+    this.processType = ProcessType.EXTERNAL_LINK;
   }
 
   public boolean isBrokenLink() {
