@@ -233,6 +233,8 @@
   --process-warning-icon-color: var(--ivy-tertinary-color-red-medium);
   --process-warning-icon-font-weight: bold;
   --process-icon-font-size: 1.5rem;
+  --full-process-icon-font-size: 5.6rem;
+  --process-widget-icon-font-size: 5.6rem;
 
   /* Case Detail */
   --case-related-task-color: var(--ivy-primary-color-black);
@@ -313,7 +315,6 @@
   /* Absences and Deputy */
   --substituted-user-text-color: var(--ivy-primary-color-black);
   /* Awesome Icon Selection */
-  --link-change-awesome-icon-color: var(--ivy-primary-color-black);
   --content-link-change-awesome-icon-color: var(--primary-color);
   --select-awesome-icon-button-font-weight: bold;
   /* Start Notification */

@@ -68,9 +68,10 @@ function ProcessWidget() {
       var processNavOuterHeight = processNav.outerHeight(true) - processNav.outerHeight();
       processNav.css("height", (availableHeight - processNavOuterHeight) + "px");
       
-      var processHeaderHeight = $('.js-portal-template-header').outerHeight();
+      var portalHeaderHeight = $('.js-portal-template-header').outerHeight();
+      let processPaddingTop = parseInt($('.js-process-widget').css('padding-top'));
       var availableHeightProcessNavTop = (($('.js-process-header').outerHeight(true)||0) + ($('.layout-topbar').outerHeight(true)||0)
-                                          + (announcementMessageContainer.outerHeight(true)||0) + processHeaderHeight);
+                                          + (announcementMessageContainer.outerHeight(true)||0) + portalHeaderHeight + processPaddingTop);
       processNav.css("top", availableHeightProcessNavTop + "px");
 
       var numberOfDisplayingCharacters = $('.js-process-nav-item').length;
@@ -85,8 +86,7 @@ function ProcessWidget() {
       } else {
         characterContainer.height(processNav.get(0).offsetHeight);
       }
-
-
+      $(".js-process-nav-item.selected").removeClass("selected");
     },
 
     detectScrollBarWidth : function() {
@@ -109,10 +109,13 @@ function ProcessWidget() {
       $(processItems).show();
       $.each(processItems, function(index) {
         var processName = $('.js-process-start-list-item-name', this).text().toLowerCase();
-        var processDescription = $('.js-process-start-list-item-description .ui-tooltip-text').get(index).innerText.toLowerCase();
         var keyword = $('.js-filter-process-widget-list-item').val().toLowerCase();
-        if (!contain(processName, keyword) && !contain(processDescription, keyword)) {
-          $(this).hide();
+        let descriptionTooltip = $('.js-process-start-list-item-description .ui-tooltip-text');
+        if (descriptionTooltip.length > 0) {
+          var processDescription = descriptionTooltip.get(index).innerText.toLowerCase();
+          if (!contain(processName, keyword) && !contain(processDescription, keyword)) {
+            $(this).hide();
+          }
         }
         var expressKeyToSearch = "express";
         if (expressKeyToSearch.toLowerCase() === keyword.trim().toLowerCase()
@@ -238,13 +241,42 @@ function expandOrCollapseAllCategories(shouldExpand) {
   }
 }
 
-function jumpToProcessGroupByCharacter(event) {
+function jumpToProcessGroupByCharacter(event, isCompactMode) {
+  if (isCompactMode === false) {
+    jumpToProcessGroupByCharacterForGridProcess(event, isCompactMode);
+    return;
+  }
+
   var clickedCharacter = getClassNameStartsWith(event.target.className, prefixProcessStart).slice(prefixProcessStart.length);
   $(".js-process-nav-item.selected").removeClass("selected");
   var selectedItem = document.getElementById(event.target.id);
   var processGroupSeleted = document.getElementsByClassName(prefixProcessGroup + clickedCharacter)[0];
   
   processGroupSeleted.parentNode.scrollTop = processGroupSeleted.offsetTop - processGroupSeleted.parentNode.offsetTop;
+  setTimeout(function(){ selectedItem.classList.add("selected"); }, 100);
+}
+
+function resetGridViewProcesses() {
+  let processList = $('.js-process-start-list-item.js-grid-process-index-group');
+  $(".js-process-nav-item.selected").removeClass("selected");
+  $('.js-filter-process-widget-list-item').val('');
+  processList.show();
+  let processWidget = new ProcessWidget();
+  processWidget.setupScrollbar();
+}
+
+function jumpToProcessGroupByCharacterForGridProcess(event, isCompactMode) {
+  let processList = $('.js-process-start-list-item.js-grid-process-index-group');
+  processList.show();
+
+  let clickedCharacter = getClassNameStartsWith(event.target.className, prefixProcessStart).slice(prefixProcessStart.length);
+  $(".js-process-nav-item.selected").removeClass("selected");
+  let selectedItem = document.getElementById(event.target.id);
+  let processGroupSeleted = document.getElementsByClassName(prefixProcessGroup + clickedCharacter);
+
+  processList.not(processGroupSeleted).hide();
+  let processWidget = new ProcessWidget();
+  processWidget.setupScrollbar();
   setTimeout(function(){ selectedItem.classList.add("selected"); }, 100);
 }
 

@@ -1,0 +1,54 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions">
+
+<ui:composition>
+
+  <h:panelGroup layout="block"
+    styleClass="js-process-start-list-item ui-g-2 ui-xl-2 ui-lg-3 ui-md-6 ui-sm-12 portal-card-container process-grid-item #{groupCode}">
+    <div class="card-item card ui-g-12 #{processWidgetBean.isExpressProcess(process) ? 'express-workflow' : ''} #{processWidgetBean.isExternalLink(process) ? 'js-external-link-process-item' : ''}">
+      <h:form id="panel-#{status.index}" styleClass="grid-view-form TexAlCenter" target="#{processWidgetBean.targetToStartProcess(process)}">
+        <h:panelGroup id="process-action-group" styleClass="process-action-group" layout="block"
+          rendered="#{!processWidgetBean.isIvyProcess(process) and process.getProcess().ableToEdit}">
+          <p:commandLink styleClass="u-mar-right-10" oncomplete="PF('edit-process-dialog').show();"
+            actionListener="#{processWidgetBean.setEditedProcess(process)}" update="#{cc.clientId}:edit-process-dialog">
+            <i class="si si-graphic-tablet-drawing-pen" />
+            <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}</span>
+          </p:commandLink>
+          <p:commandLink oncomplete="PF('remove-process-workflow-dialog').show();"
+            actionListener="#{processWidgetBean.setDeletedProcess(process)}"
+            update="#{cc.clientId}:remove-process-workflow-dialog">
+            <i class="si si-bin-1" />
+            <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}</span>
+          </p:commandLink>
+        </h:panelGroup>
+
+        <i id="icon" class="#{iconSelectionBean.generateIconWithFontFamily(process.getIcon())} process-grid-view-icon" />
+
+        <div class="ui-g-12 process-name js-process-start-list-item-name">
+          <h2 class="line-clamp-text-2">#{process.getName()}</h2>
+        </div>
+
+        <div class="ui-g-12 process-description js-process-start-list-item-description">
+          <h:outputText value="#{process.description}" styleClass="TexAlCenter line-clamp-text-5" />
+        </div>
+
+        <div class="ui-g-12 MarTop10" id="start-button-wrap-#{status.index}">
+          <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/startProcess')}" id="start-button"
+            actionListener="#{processWidgetBean.startProcess(process)}" icon="si si-arrow-right-1"
+            ajax="#{!processWidgetBean.isExternalLink(process)}" />
+        </div>
+        <h:panelGroup styleClass="ui-g-12" id="more-info-wrap" rendered="false">
+          <p:commandLink id="info-workflow" disabled="true">
+            <i class="si si-information-circle" />
+            <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/moreInformation')}</span>
+          </p:commandLink>
+          <p:tooltip id="info-workflow-tooltip" for="info-workflow" value="#{process.description}" position="top" trackMouse="true"
+            hideEvent="mouseleave click" styleClass="js-process-start-list-item-description" />
+        </h:panelGroup>
+      </h:form>
+    </div>
+  </h:panelGroup>
+
+</ui:composition>
+</html>
