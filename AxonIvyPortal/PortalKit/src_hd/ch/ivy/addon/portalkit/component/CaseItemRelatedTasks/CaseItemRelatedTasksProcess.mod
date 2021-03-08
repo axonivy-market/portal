@@ -92,6 +92,8 @@ Cs0 @PushWFArc f3 '' #zField
 Cs0 f0 guid 167E9A75EF3D0909 #txt
 Cs0 f0 method start() #txt
 Cs0 f0 inParameterDecl '<> param;' #txt
+Cs0 f0 inParameterMapAction 'out.currentPortalPage="TASK_LIST";
+' #txt
 Cs0 f0 outParameterDecl '<> result;' #txt
 Cs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -124,46 +126,8 @@ Cs0 f7 @|UdProcessEndIcon #fIcon
 Cs0 f14 actionTable 'out=in;
 ' #txt
 Cs0 f14 actionCode 'import ch.ivy.addon.portalkit.datamodel.internal.RelatedTaskLazyDataModel;
-import ch.ivy.addon.portalkit.util.PermissionUtils;
-import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
-import ch.ivyteam.ivy.security.ISession;
-import ch.ivy.addon.portalkit.util.HiddenTasksCasesConfig;
-import org.apache.commons.lang3.StringUtils;
-import ch.ivy.addon.portalkit.enums.AdditionalProperty;
-import ch.ivyteam.ivy.workflow.TaskState;
-import ch.ivyteam.ivy.workflow.ITask;
 
 in.dataModel = new RelatedTaskLazyDataModel(in.iCase);
-
-// TODO: remove
-in.relatedTasks.clear();
-
-int count = 1;
-in.totalRelatedTasks = 0;
-boolean excludeHiddenTasks = Boolean.parseBoolean(ivy.var.get(HiddenTasksCasesConfig.PORTAL_HIDDEN_TASK_CASE_EXCLUDED));
-ISession session = ivy.session;
-boolean isOwner = in.iCase.#owner != null ? in.iCase.getOwner().isMember(ivy.session, true) : false;
-boolean ableToSeeAllRelatedTaskOfCase = PermissionUtils.checkReadAllTasksPermission() || PermissionUtils.checkTaskReadOwnCaseTasksPermission() || isOwner;
-for (ITask task : in.iCase.tasks().all()) {
-	if ((task.getState() == TaskState.SUSPENDED || task.getState() == TaskState.RESUMED || task.getState() == TaskState.PARKED || task.getState() == TaskState.CREATED)
-				&& (excludeHiddenTasks ? StringUtils.isEmpty(task.customFields().stringField(AdditionalProperty.HIDE.toString()).getOrNull()) : true) && task.isPersistent()) {
-		if (ableToSeeAllRelatedTaskOfCase) {
-			in.totalRelatedTasks++;
-			if (count <= 21) {//get only 21 tasks
-					in.relatedTasks.add(task);
-			}
-			count++;
-		} else {
-			if(task.canUserResumeTask(session).wasSuccessful()) {
-				in.totalRelatedTasks++;
-				if (count <= 21) {//get only 21 tasks
-						in.relatedTasks.add(task);
-				}
-				count++;
-			}
-		}
-	}
-}
 ' #txt
 Cs0 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
