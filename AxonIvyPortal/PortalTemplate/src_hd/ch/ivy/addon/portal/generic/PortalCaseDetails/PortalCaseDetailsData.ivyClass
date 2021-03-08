@@ -8,5 +8,3 @@ isTaskStartedInDetails Boolean #field
 isTaskStartedInDetails PERSISTENT #fieldModifier
 caseLazyDataModel ch.ivy.addon.portalkit.datamodel.internal.RelatedCaseLazyDataModel #field
 caseLazyDataModel PERSISTENT #fieldModifier
-relatedTaskLazyDataModel ch.ivy.addon.portalkit.datamodel.internal.RelatedTaskLazyDataModel #field
-relatedTaskLazyDataModel PERSISTENT #fieldModifier
