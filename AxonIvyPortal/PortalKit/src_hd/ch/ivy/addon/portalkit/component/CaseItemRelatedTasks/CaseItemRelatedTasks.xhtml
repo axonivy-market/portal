@@ -10,13 +10,12 @@
   <cc:attribute name="isWorkingOnTask" type="java.lang.Boolean"/>
   <cc:attribute name="inFrame" type="java.lang.Boolean" default="false"/>
   <cc:attribute name="readOnly" type="java.lang.Boolean" default="false"/>
-  <cc:attribute name="dataModel"/>
 </cc:interface>
 
 <cc:implementation>
   <h:outputScript name="task-widget.js" library="js" />
   <f:event listener="#{logic.initData(cc.attrs.case)}" type="preRenderComponent" />
-  <f:event listener="#{cc.attrs.dataModel.initColumnsConfiguration()}" type="preRenderComponent" />
+  <f:event listener="#{data.dataModel.initColumnsConfiguration()}" type="preRenderComponent" />
   <div id="#{cc.clientId}" class="case-details-item #{cc.attrs.styleClass}">
     <div class="case-detail-section-title ui-g-12">
       <div class="ui-g-4 u-truncate-text u-padding-0">
@@ -35,13 +34,13 @@
               <span class="link-text display-short-text">
                 <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}" />
               </span>
-              <p:fileDownload value="#{logic.getExportedFile(caseWidgetBean.getRelatedTaskColumns(cc.attrs.dataModel))}" />
+              <p:fileDownload value="#{logic.getExportedFile(caseWidgetBean.getRelatedTaskColumns(data.dataModel))}" />
             </p:commandLink>
           </h:form>
           <ic:ch.ivy.addon.portalkit.component.ColumnsConfiguration styleClass="case-details-document-add-link"
             id="task-columns-configuration"
             updatedComponent="#{cc.clientId}:related-tasks #{cc.clientId}:task-list-actions"
-            dataModel="#{cc.attrs.dataModel}"
+            dataModel="#{data.dataModel}"
             oncomplete="taskWidget.setupScrollbar(); taskWidget.setupHeader()"
             configButtonId="task-config-command"
             overlayPanelId="task-config-columns-panel" />
@@ -50,15 +49,15 @@
     </div>
 
     <div class="ui-g-12 u-padding-0">
-      <p:dataTable id="related-tasks" value="#{data.relatedTasks}" var="task" paginator="true" rows="5" paginatorPosition="bottom" paginatorAlwaysVisible="false"
+      <p:dataTable id="related-tasks" lazy="true" value="#{data.dataModel}" var="task" paginator="true" rows="5" paginatorPosition="bottom" paginatorAlwaysVisible="false"
         paginatorTemplate="{PreviousPageLink} {PageLinks} {NextPageLink} {RowsPerPageDropdown}"
         sortBy="#{task.id}" sortOrder="descending" reflow="true" rowIndexVar="rowIndex" rowHover="true" >
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/abbreviation/PRIORITY')}" sortBy="#{task.priority}" styleClass="priority-column"
-          rendered="#{cc.attrs.dataModel.isSelectedColumn(masterDataBean.taskSortFieldPriority)}">
+          rendered="#{data.dataModel.isSelectedColumn(masterDataBean.taskSortFieldPriority)}">
           <ui:include src="PriorityCell.xhtml" />
         </p:column>
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}" sortBy="#{task.name}" styleClass="name-column"
-          rendered="#{cc.attrs.dataModel.isSelectedColumn(masterDataBean.taskSortFieldName)}">
+          rendered="#{data.dataModel.isSelectedColumn(masterDataBean.taskSortFieldName)}">
           <h:outputText value="#{task.name}" styleClass="u-truncate-text" />
         </p:column>
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}" sortable="false" styleClass="description-column">
@@ -66,33 +65,33 @@
         </p:column>
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}" styleClass="responsible-column"
           sortBy="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(task.activator, task.activator.memberName)}"
-          rendered="#{cc.attrs.dataModel.isSelectedColumn(masterDataBean.taskSortFieldActivator)}">
+          rendered="#{data.dataModel.isSelectedColumn(masterDataBean.taskSortFieldActivator)}">
           <h:outputText value="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(task.activator, task.activator.memberName)}" />
         </p:column>
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ID')}" sortBy="#{task.id}" styleClass="id-column"
-          rendered="#{cc.attrs.dataModel.isSelectedColumn(masterDataBean.taskSortFieldId)}">
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ID')}" field="ID" sortBy="#{ID}" styleClass="id-column"
+          rendered="#{data.dataModel.isSelectedColumn(masterDataBean.taskSortFieldId)}">
           <h:outputText value="#{task.id}" />
         </p:column>
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/CREATION_TIME')}" sortBy="#{task.startTimestamp}" styleClass="created-column"
-          rendered="#{cc.attrs.dataModel.isSelectedColumn(masterDataBean.taskSortFieldCreationTime)}">
+          rendered="#{data.dataModel.isSelectedColumn(masterDataBean.taskSortFieldCreationTime)}">
           <h:outputText value="#{task.startTimestamp}">
             <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
           </h:outputText>
         </p:column>
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/EXPIRY_TIME')}" sortBy="#{task.expiryTimestamp}" styleClass="expiry-column"
-          rendered="#{cc.attrs.dataModel.isSelectedColumn(masterDataBean.taskSortFieldExpiryTime)}">
+          rendered="#{data.dataModel.isSelectedColumn(masterDataBean.taskSortFieldExpiryTime)}">
           <h:outputText value="#{task.expiryTimestamp}">
             <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
           </h:outputText>
         </p:column>
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/STATE')}" sortBy="#{taskBean.getUserFriendlyTaskStateInCapitalization(task.state)}" styleClass="state-column"
-          rendered="#{cc.attrs.dataModel.isSelectedColumn(masterDataBean.taskSortFieldState)}">
+          rendered="#{data.dataModel.isSelectedColumn(masterDataBean.taskSortFieldState)}">
           <h:outputText value="#{taskBean.getUserFriendlyTaskStateInCapitalization(task.state)}" 
             styleClass="task-state #{task.state.toString().toLowerCase()}-task-state" />
         </p:column>
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}" styleClass="more-column">
           <ui:include src="TaskAction.xhtml">
-            <ui:param name="dataModel" value="#{cc.attrs.dataModel}" />
+            <ui:param name="dataModel" value="#{data.dataModel}" />
             <ui:param name="currentPortalPage" value="#{data.currentPortalPage}" />
 	          <ui:param name="onDestroyComplete" value="PF('destroy-task-dialog').show()" />
 	          <ui:param name="onDelegateComplete" value="initDataToDelegate()" />
@@ -145,7 +144,7 @@
   </ui:decorate>
 
   <!-- Delegate Task Dialog -->
-  <ic:ch.ivy.addon.portalkit.component.TaskItemDelegate id="task-item-delegate-component" dataModel="#{cc.attrs.dataModel}"
+  <ic:ch.ivy.addon.portalkit.component.TaskItemDelegate id="task-item-delegate-component" dataModel="#{data.dataModel}"
     taskId="#{taskWidgetBean.selectedTaskItemId}"
     componentToUpdate="#{p:component('related-tasks')}" />
 
@@ -183,7 +182,7 @@
 
   <p:dialog modal="true" id="status-dialog" widgetVar="status-dialog" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/status')}" draggable="false" closable="false" resizable="false" responsive="true">
     <div>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/waitingDownloadMessage')}</div>
-    <h:panelGroup layout="block" rendered="#{cc.attrs.dataModel.rowCount gt taskWidgetBean.getMaxTaskNumberInExcel()}">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/downloadZipFileExplanation')}</h:panelGroup>
+    <h:panelGroup layout="block" rendered="#{data.dataModel.rowCount gt taskWidgetBean.getMaxTaskNumberInExcel()}">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/downloadZipFileExplanation')}</h:panelGroup>
   </p:dialog>
 </cc:implementation>
 </html>

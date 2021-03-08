@@ -39,3 +39,9 @@ maxResultNumberPerQuery Integer #field
 maxResultNumberPerQuery PERSISTENT #fieldModifier
 collectedTasksForExporting java.util.List<ch.ivyteam.ivy.workflow.ITask> #field
 collectedTasksForExporting PERSISTENT #fieldModifier
+count Integer #field
+count PERSISTENT #fieldModifier
+startIndex Integer #field
+startIndex PERSISTENT #fieldModifier
+tasks List<ch.ivyteam.ivy.workflow.ITask> #field
+tasks PERSISTENT #fieldModifier
