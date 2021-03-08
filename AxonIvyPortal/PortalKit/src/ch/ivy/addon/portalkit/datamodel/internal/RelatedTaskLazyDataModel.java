@@ -16,6 +16,7 @@ import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria;
+import ch.ivy.addon.portalkit.util.HiddenTasksCasesConfig;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ICase;
@@ -56,7 +57,11 @@ public class RelatedTaskLazyDataModel extends TaskLazyDataModel {
     this.setQueryByBusinessCaseId(true);
     boolean isOwner = iCase != null && iCase.getOwner() != null ? iCase.getOwner().isMember(Ivy.session(), true) : false;
     this.setAdminQuery(PermissionUtils.checkReadAllTasksPermission() || PermissionUtils.checkTaskReadOwnCaseTasksPermission() || isOwner);
-    criteria.setCustomTaskQuery(TaskQuery.create().where().customField().stringField(AdditionalProperty.HIDE.toString()).isNull());
+
+    boolean excludeHiddenTasks = Boolean.parseBoolean(Ivy.var().get(HiddenTasksCasesConfig.PORTAL_HIDDEN_TASK_CASE_EXCLUDED));
+    if (excludeHiddenTasks) {
+      criteria.setCustomTaskQuery(TaskQuery.create().where().customField().stringField(AdditionalProperty.HIDE.toString()).isNull());
+    }
   }
 
   @Override
