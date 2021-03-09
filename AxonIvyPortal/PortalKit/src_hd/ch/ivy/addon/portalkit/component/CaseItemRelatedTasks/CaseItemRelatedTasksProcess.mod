@@ -350,7 +350,8 @@ Cs0 f98 467 659 26 26 0 12 #rect
 Cs0 f98 @|UdProcessEndIcon #fIcon
 Cs0 f49 actionTable 'out=in;
 ' #txt
-Cs0 f49 actionCode 'import ch.ivy.addon.portalkit.enums.PortalPage;
+Cs0 f49 actionCode 'import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
+import ch.ivy.addon.portalkit.enums.PortalPage;
 import ch.ivy.addon.portalkit.enums.NavigationHistory;
 import ch.ivy.addon.portalkit.dto.TaskEndInfo;
 import ch.ivy.addon.portalkit.service.StickyTaskListService;
@@ -358,7 +359,7 @@ import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import javax.faces.context.FacesContext;
 
 TaskEndInfo taskEndInfo = new TaskEndInfo();
-taskEndInfo.setDataModel(in.dataModel);
+taskEndInfo.setDataModel(new TaskLazyDataModel());
 taskEndInfo.setPortalPage(PortalPage.valueOf(in.currentPortalPage));
 
 String taskEndInfoSessionAttributeKey = StickyTaskListService.service().getTaskEndInfoSessionAttributeKey(in.task.getId());
@@ -409,15 +410,17 @@ Cs0 f15 587 755 26 26 0 12 #rect
 Cs0 f15 @|UdProcessEndIcon #fIcon
 Cs0 f16 actionTable 'out=in;
 ' #txt
-Cs0 f16 actionCode 'import ch.ivy.addon.portalkit.enums.PortalPage;
+Cs0 f16 actionCode 'import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
+import ch.ivy.addon.portalkit.enums.PortalPage;
 import ch.ivy.addon.portalkit.enums.NavigationHistory;
 import ch.ivy.addon.portalkit.dto.TaskEndInfo;
 import ch.ivy.addon.portalkit.service.StickyTaskListService;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import javax.faces.context.FacesContext;
 
+
 TaskEndInfo taskEndInfo = new TaskEndInfo();
-taskEndInfo.setDataModel(in.dataModel);
+taskEndInfo.setDataModel(new TaskLazyDataModel());
 taskEndInfo.setPortalPage(PortalPage.valueOf(in.currentPortalPage));
 
 String taskEndInfoSessionAttributeKey = StickyTaskListService.service().getTaskEndInfoSessionAttributeKey(in.selectedTask.getId());
