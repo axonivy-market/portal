@@ -97,7 +97,7 @@
           </h:panelGroup>
 
           <h:outputText id="no-found-processes" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/noProcesses')}"
-            styleClass="no-process-message js-no-found-processes u-display-none" />
+            styleClass="no-process-message js-no-found-processes u-display-none #{processWidgetBean.compactMode ? '' : 'ui-g-12'}" />
         </h:panelGroup>
 
         <!-- Process navigator -->
