@@ -564,8 +564,13 @@ body .process-widget .ui-selectbooleanbutton.ui-state-active .ui-icon {
 }
 
 .edit-process-header-group .edit-process-header-title {
+  overflow: hidden;
   margin-top: auto;
   font-size: var(--header-font-size);
+}
+
+.edit-process-dialog .edit-process-info-group {
+  overflow: hidden;
 }
 
 .edit-process-header-group .edit-process-header-sub-title,
@@ -580,7 +585,6 @@ body .process-widget .ui-selectbooleanbutton.ui-state-active .ui-icon {
   font-size: var(--edit-process-icon-font-size);
 }
 
-.edit-process-header-group .edit-process-header-description,
 .edit-process-info-group .edit-process-detail-1st-cell,
 .grid-view-form .process-action-group {
   font-size: var(--small-font-size);
