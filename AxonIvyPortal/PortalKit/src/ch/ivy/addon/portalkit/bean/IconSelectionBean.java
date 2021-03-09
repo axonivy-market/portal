@@ -16,13 +16,15 @@ public class IconSelectionBean implements Serializable {
   private static final String AWESOME_FAMILY = "fa";
   private static final String STREAMLINE_FAMILY = "si";
   private static final String DEFAULT_ICON = "fa-play";
-  private String icon = " fa-play ";
-  private String iconPattern = "fa fa-2x ";
+  private String icon;
+  private String iconPattern;
 
   private static final long serialVersionUID = 5293980958176538592L;
   
   public void init(String cssIcon) {
     if (StringUtils.isBlank(cssIcon)) {
+      icon = DEFAULT_ICON;
+      iconPattern = String.format(ICON_WITH_FONT_FAMILY_PATTERN, AWESOME_FAMILY, "fa-2x");
       iconPattern = String.format(ICON_WITH_FONT_FAMILY_PATTERN, iconPattern, DEFAULT_ICON);
       return;
     }

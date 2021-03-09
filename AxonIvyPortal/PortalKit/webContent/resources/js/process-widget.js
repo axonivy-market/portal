@@ -156,6 +156,7 @@ function ProcessWidget() {
       if (document.getElementsByClassName('process-nav').length !== 0) {
         disableGroupNavigation();
       }
+      this.setupScrollbar();
     }
   };
 }

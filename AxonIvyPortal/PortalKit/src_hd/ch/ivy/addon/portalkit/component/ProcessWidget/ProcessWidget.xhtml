@@ -50,12 +50,12 @@
 
           <div class="u-hidden-sm-down ui-md-4 ui-lg-3 ui-xl-4 u-no-padding-right">
             <h:form id="process-type-mode" class="md-inputfiled ui-g-12 TexAlRight u-no-padding-right md-inputfiled">
-              <label class="#{processWidgetBean.compactMode ? 'switch-off':'switch-active'}">#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/Enums/ProcessMode/GRID")}</label>
-              <p:inputSwitch id="process-type" styleClass="process-input-switch-selection" value="#{processWidgetBean.compactMode}">
+              <label class="#{processWidgetBean.listMode ? 'switch-off':'switch-active'}">#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/Enums/ProcessMode/GRID")}</label>
+              <p:inputSwitch id="process-type" styleClass="process-input-switch-selection" value="#{processWidgetBean.listMode}">
                 <p:ajax update="process-type-mode #{cc.clientId}:process-list #{cc.clientId}:process-nav"
                   oncomplete="processWidget.setupScrollbar(); expandOrCollapseAllCategories(true); return false;" />
               </p:inputSwitch>
-              <label class="#{processWidgetBean.compactMode ? 'switch-active':'switch-off'}">#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/Enums/ProcessMode/COMPACT")}</label>
+              <label class="#{processWidgetBean.listMode ? 'switch-active':'switch-off'}">#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/Enums/ProcessMode/LIST")}</label>
             </h:form>
           </div>
         </div>
@@ -63,12 +63,12 @@
 
       <!-- Process body -->
       <h:panelGroup id="process-list" layout="block"
-        styleClass="widget-content process-start-list-container js-process-start-list-container ui-g-12 u-no-padding-top u-no-padding-bottom #{processWidgetBean.compactMode ? '' : 'u-no-padding-left'}">
-        <h:panelGroup id="grid-process-container" layout="block" styleClass="ui-g process-group grid-process-container" rendered="#{!processWidgetBean.compactMode}">
+        styleClass="widget-content process-start-list-container js-process-start-list-container ui-g-12 u-no-padding-top u-no-padding-bottom #{processWidgetBean.listMode ? '' : 'u-no-padding-left'}">
+        <h:panelGroup id="grid-process-container" layout="block" styleClass="ui-g process-group grid-process-container" rendered="#{!processWidgetBean.listMode}">
           <ui:repeat id="grid-process-group-alphabet" var="entryProcess" value="#{processWidgetBean.processesByAlphabet.entrySet().toArray()}">
             <ui:repeat id="grid-processes" varStatus="status" var="process" value="#{entryProcess.value}">
-              <ui:fragment id="grid-view" rendered="#{!processWidgetBean.compactMode}">
-                <ui:include src="ProcessFullMode.xhtml">
+              <ui:fragment id="grid-view" rendered="#{!processWidgetBean.listMode}">
+                <ui:include src="ProcessGridMode.xhtml">
                   <ui:param name="process" value="#{process}" />
                   <ui:param name="status" value="#{status}" />
                   <ui:param name="groupCode" value="js-grid-process-index-group js-process-group-#{entryProcess.key}" />
@@ -78,15 +78,15 @@
           </ui:repeat>
           </h:panelGroup>
         
-        <h:panelGroup rendered="#{processWidgetBean.compactMode}">
+        <h:panelGroup rendered="#{processWidgetBean.listMode}">
           <ui:repeat id="process-group-alphabet" var="entryProcess" value="#{processWidgetBean.processesByAlphabet.entrySet().toArray()}">
             <p:fieldset id="alphabet-process-index-fieldset"
               legend="#{entryProcess.key eq 'SPECIAL_CHARACTER' ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/specialCharacterGroup') : entryProcess.key}"
               toggleable="true" styleClass="fieldset-no-border process-group js-process-index-group js-process-group-#{entryProcess.key}">
               <h:panelGroup id="process-container" layout="block" styleClass="ui-g">
                 <ui:repeat id="processes" varStatus="status" var="process" value="#{entryProcess.value}">
-                  <ui:fragment id="list-view" rendered="#{processWidgetBean.compactMode}">
-                    <ui:include src="ProcessCompactMode.xhtml">
+                  <ui:fragment id="list-view" rendered="#{processWidgetBean.listMode}">
+                    <ui:include src="ProcessListMode.xhtml">
                       <ui:param name="process" value="#{process}" />
                     </ui:include>
                   </ui:fragment>
@@ -97,22 +97,22 @@
           </h:panelGroup>
 
           <h:outputText id="no-found-processes" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/noProcesses')}"
-            styleClass="no-process-message js-no-found-processes u-display-none #{processWidgetBean.compactMode ? '' : 'ui-g-12'}" />
+            styleClass="no-process-message js-no-found-processes u-display-none #{processWidgetBean.listMode ? '' : 'ui-g-12'}" />
         </h:panelGroup>
 
         <!-- Process navigator -->
       <h:panelGroup id="process-nav" layout="block" styleClass="process-nav js-process-nav" rendered="#{!cc.attrs.hideProcessNavigation}">
         <div class="js-character-container character-container">
           <p:commandLink styleClass="process-nav-item js-process-nav-item js-process-starts-with-reset" value="All"
-            onclick="resetGridViewProcesses(event)" global="false" rendered="#{!processWidgetBean.compactMode}" />
-          <p:commandLink id="expand-all-btn" rendered="#{processWidgetBean.compactMode}" onclick="expandOrCollapseAllCategories(true); return false;"
+            onclick="resetGridViewProcesses(event)" global="false" rendered="#{!processWidgetBean.listMode}" />
+          <p:commandLink id="expand-all-btn" rendered="#{processWidgetBean.listMode}" onclick="expandOrCollapseAllCategories(true); return false;"
             styleClass="si si-add expand-collapse-btn process-nav-item" />
-          <p:commandLink id="collapse-all-btn" rendered="#{processWidgetBean.compactMode}" onclick="expandOrCollapseAllCategories(false); return false;"
+          <p:commandLink id="collapse-all-btn" rendered="#{processWidgetBean.listMode}" onclick="expandOrCollapseAllCategories(false); return false;"
             styleClass="si si-subtract expand-collapse-btn process-nav-item" />
 
           <ui:repeat value="#{processWidgetBean.getAllAlphabeticalCharacters().entrySet().toArray()}" var="character">
             <p:commandLink value="#{character.value}" styleClass="process-nav-item js-process-nav-item js-process-starts-with-#{character.key}"
-              onclick="jumpToProcessGroupByCharacter(event, #{processWidgetBean.compactMode})" global="false" />
+              onclick="jumpToProcessGroupByCharacter(event, #{processWidgetBean.listMode})" global="false" />
           </ui:repeat>
         </div>
       </h:panelGroup>
@@ -129,13 +129,13 @@
   <script>
       var processWidget = new ProcessWidget();
       $(function() {
-      	processWidget.setupScrollbar();
+        processWidget.setupScrollbar();
       });
       function jumpToProcessGroup() {
         document.getElementsByClassName("js-process-group-" + PF('dictionary-process-group-selection').value)[0]
             .scrollIntoViewIfNeeded();
         PF('dictionary-process-group-selection').hide();
-		
+    
         var processHeaderHeight = document.getElementsByClassName("process-widget")[0]
             .getElementsByClassName("widget-header")[0].offsetHeight;
         document.getElementsByClassName("process-widget")[0].scrollTop -= processHeaderHeight;

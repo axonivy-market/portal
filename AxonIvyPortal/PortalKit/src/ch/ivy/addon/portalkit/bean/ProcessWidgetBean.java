@@ -57,7 +57,7 @@ public class ProcessWidgetBean implements Serializable {
   private Process editedProcess;
   private ExternalLink editedExternalLink;
   private String selectedIconProcess;
-  private boolean isCompactMode;
+  private boolean isListMode;
 
   private IProcessStart createExpressWorkflowProcessStart;
   private Map<String, List<Process>> processesByAlphabet;
@@ -87,7 +87,7 @@ public class ProcessWidgetBean implements Serializable {
       userProcessSetting = defaultSetting.getDisplayValue();
     }
 
-    isCompactMode = ProcessMode.COMPACT.getLabel().equalsIgnoreCase(userProcessSetting) ? true : false;
+    isListMode = ProcessMode.LIST.getLabel().equalsIgnoreCase(userProcessSetting) ? true : false;
   }
 
   private void groupProcessesByAlphabetIndex(List<Process> processes) {
@@ -194,23 +194,21 @@ public class ProcessWidgetBean implements Serializable {
         break;
     }
   }
-  
+
   public void deleteExpressWorkflow() {
-    if (this.deletedProcess.getType() == ProcessType.EXPRESS_PROCESS) {
-      String workflowId = this.deletedProcess.getId();
-      ExpressServiceRegistry.getProcessService().delete(workflowId);
-      ExpressServiceRegistry.getTaskDefinitionService().deleteByProcessId(workflowId);
-      ExpressServiceRegistry.getFormElementService().deleteByProcessId(workflowId);
-      portalProcesses.remove(portalProcesses.stream().filter(process -> process.getId().equals(deletedProcess.getId())).findFirst().get());
-      groupProcessesByAlphabetIndex(portalProcesses);
-    }
+    String workflowId = this.deletedProcess.getId();
+    ExpressServiceRegistry.getProcessService().delete(workflowId);
+    ExpressServiceRegistry.getTaskDefinitionService().deleteByProcessId(workflowId);
+    ExpressServiceRegistry.getFormElementService().deleteByProcessId(workflowId);
+    portalProcesses.remove(portalProcesses.stream().filter(process -> process.getId().equals(deletedProcess.getId())).findFirst().get());
+    groupProcessesByAlphabetIndex(portalProcesses);
   }
 
   public void updateProcessData() {
     if (this.editedProcess == null) {
       return;
     }
-
+    String oldProcessName = this.editedProcess.getName();
     switch (this.editedProcess.getType()) {
       case EXPRESS_PROCESS:
         ExpressProcessService expressProcessService = ExpressServiceRegistry.getProcessService();
@@ -239,15 +237,29 @@ public class ProcessWidgetBean implements Serializable {
         break;
     }
     selectedIconProcess = null;
+    updateStartProcessesList(oldProcessName);
+    this.editedProcess = null;
+  }
 
+  private void updateStartProcessesList(String oldProcessName) {
+    String processId = this.editedProcess.getId();
+    String oldProcessNameFirstLetter = extractProcessFirstLetter(oldProcessName);
     String firstLetter = extractProcessFirstLetter(this.editedProcess.getName());
-    if (StringUtils.isNotEmpty(firstLetter)) {
+    if (!StringUtils.equals(oldProcessNameFirstLetter, firstLetter)) {
+      if (StringUtils.isNotEmpty(oldProcessNameFirstLetter) && this.processesByAlphabet.containsKey(oldProcessNameFirstLetter)) {
+        List<Process> processes = this.processesByAlphabet.get(oldProcessNameFirstLetter);
+        processes.removeIf(editProcess -> editProcess.getId().equals(processId));
+        sortProcesses(processes);
+        processesByAlphabet.put(oldProcessNameFirstLetter, processes);
+      }
+    }
+
+    if (StringUtils.isNotEmpty(firstLetter) && this.processesByAlphabet.containsKey(firstLetter)) {
       List<Process> processes = this.processesByAlphabet.get(firstLetter);
-      processes.removeIf(editProcess -> editProcess.getId().equals(this.editedProcess.getId()));
+      processes.removeIf(editProcess -> editProcess.getId().equals(processId));
       processes.add(editedProcess);
       sortProcesses(processes);
       processesByAlphabet.put(firstLetter, processes);
-      this.editedProcess = null;
     }
   }
 
@@ -267,14 +279,11 @@ public class ProcessWidgetBean implements Serializable {
   }
   
   public void deleteExternalLink() {
-    if (this.deletedProcess.getType() == ProcessType.EXTERNAL_LINK) {
-      ExternalLinkService.getInstance().delete(Long.parseLong(this.deletedProcess.getId()));
-      portalProcesses.remove(portalProcesses.stream()
-          .filter(process -> process.getId().equals(this.deletedProcess.getId()))
-          .findFirst()
-          .get());
-      groupProcessesByAlphabetIndex(portalProcesses);
-    }
+    ExternalLinkService.getInstance().delete(Long.parseLong(this.deletedProcess.getId()));
+    portalProcesses.remove(portalProcesses.stream()
+        .filter(process -> process.getId().equals(this.deletedProcess.getId()))
+        .findFirst().get());
+    groupProcessesByAlphabetIndex(portalProcesses);
   }
 
   public String getCreateExpessWorkflowLink() {
@@ -358,12 +367,12 @@ public class ProcessWidgetBean implements Serializable {
     return processGroups;
   }
 
-  public boolean isCompactMode() {
-    return isCompactMode;
+  public boolean isListMode() {
+    return isListMode;
   }
 
-  public void setCompactMode(boolean isCompactMode) {
-    this.isCompactMode = isCompactMode;
+  public void setListMode(boolean isListMode) {
+    this.isListMode = isListMode;
   }
 
   public boolean isIvyProcess(Process process) {
