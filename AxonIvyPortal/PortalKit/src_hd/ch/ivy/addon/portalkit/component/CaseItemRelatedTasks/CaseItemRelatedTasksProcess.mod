@@ -357,9 +357,16 @@ import ch.ivy.addon.portalkit.dto.TaskEndInfo;
 import ch.ivy.addon.portalkit.service.StickyTaskListService;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import javax.faces.context.FacesContext;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
+import ch.ivy.addon.portalkit.enums.TaskAssigneeType;
+
+TaskLazyDataModel dataModel = new TaskLazyDataModel();
+boolean hasReadAllTasksPermisson = PermissionUtils.checkReadAllTasksPermission();
+dataModel.setAdminQuery(hasReadAllTasksPermisson);
+dataModel.setTaskAssigneeType(TaskAssigneeType.ALL);
 
 TaskEndInfo taskEndInfo = new TaskEndInfo();
-taskEndInfo.setDataModel(new TaskLazyDataModel());
+taskEndInfo.setDataModel(dataModel);
 taskEndInfo.setPortalPage(PortalPage.valueOf(in.currentPortalPage));
 
 String taskEndInfoSessionAttributeKey = StickyTaskListService.service().getTaskEndInfoSessionAttributeKey(in.task.getId());
@@ -417,10 +424,16 @@ import ch.ivy.addon.portalkit.dto.TaskEndInfo;
 import ch.ivy.addon.portalkit.service.StickyTaskListService;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import javax.faces.context.FacesContext;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
+import ch.ivy.addon.portalkit.enums.TaskAssigneeType;
 
+TaskLazyDataModel dataModel = new TaskLazyDataModel();
+boolean hasReadAllTasksPermisson = PermissionUtils.checkReadAllTasksPermission();
+dataModel.setAdminQuery(hasReadAllTasksPermisson);
+dataModel.setTaskAssigneeType(TaskAssigneeType.ALL);
 
 TaskEndInfo taskEndInfo = new TaskEndInfo();
-taskEndInfo.setDataModel(new TaskLazyDataModel());
+taskEndInfo.setDataModel(dataModel);
 taskEndInfo.setPortalPage(PortalPage.valueOf(in.currentPortalPage));
 
 String taskEndInfoSessionAttributeKey = StickyTaskListService.service().getTaskEndInfoSessionAttributeKey(in.selectedTask.getId());
@@ -514,9 +527,9 @@ Cs0 f27 184 842 112 44 -34 -8 #rect
 Cs0 f27 @|StepIcon #fIcon
 Cs0 f28 109 864 184 864 #arcP
 Cs0 f26 296 864 355 864 #arcP
-Cs0 f44 1051 115 26 26 0 12 #rect
+Cs0 f44 403 1139 26 26 0 12 #rect
 Cs0 f44 @|UdProcessEndIcon #fIcon
-Cs0 f53 1051 211 26 26 0 12 #rect
+Cs0 f53 403 1235 26 26 0 12 #rect
 Cs0 f53 @|UdProcessEndIcon #fIcon
 Cs0 f30 processCall 'Ivy Data Processes/TaskService:findTasksByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria,Integer,Integer)' #txt
 Cs0 f30 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria taskSearchCriteria,Integer startIndex,Integer count> param;' #txt
@@ -536,7 +549,7 @@ Cs0 f30 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f30 848 106 112 44 -28 -8 #rect
+Cs0 f30 200 1130 112 44 -28 -8 #rect
 Cs0 f30 @|CallSubIcon #fIcon
 Cs0 f32 guid 178019346DF34FD9 #txt
 Cs0 f32 method countTasks(ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria) #txt
@@ -553,7 +566,7 @@ Cs0 f32 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f32 731 211 26 26 -89 15 #rect
+Cs0 f32 83 1235 26 26 -89 15 #rect
 Cs0 f32 @|UdMethodIcon #fIcon
 Cs0 f34 processCall 'Ivy Data Processes/TaskService:countTasksByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria)' #txt
 Cs0 f34 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria taskSearchCriteria> param;' #txt
@@ -571,7 +584,7 @@ Cs0 f34 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f34 848 202 112 44 -33 -8 #rect
+Cs0 f34 200 1226 112 44 -33 -8 #rect
 Cs0 f34 @|CallSubIcon #fIcon
 Cs0 f35 guid 178019346DFD95F4 #txt
 Cs0 f35 method findTasks(ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria,Integer,Integer) #txt
@@ -590,16 +603,16 @@ Cs0 f35 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f35 731 115 26 26 -89 18 #rect
+Cs0 f35 83 1139 26 26 -89 18 #rect
 Cs0 f35 @|UdMethodIcon #fIcon
 Cs0 f52 expr out #txt
-Cs0 f52 960 128 1051 128 #arcP
+Cs0 f52 312 1152 403 1152 #arcP
 Cs0 f37 expr out #txt
-Cs0 f37 960 224 1051 224 #arcP
+Cs0 f37 312 1248 403 1248 #arcP
 Cs0 f38 expr out #txt
-Cs0 f38 757 128 848 128 #arcP
+Cs0 f38 109 1152 200 1152 #arcP
 Cs0 f55 expr out #txt
-Cs0 f55 757 224 848 224 #arcP
+Cs0 f55 109 1248 200 1248 #arcP
 Cs0 f76 actionTable 'out=in;
 ' #txt
 Cs0 f76 actionCode 'import java.util.ArrayList;
