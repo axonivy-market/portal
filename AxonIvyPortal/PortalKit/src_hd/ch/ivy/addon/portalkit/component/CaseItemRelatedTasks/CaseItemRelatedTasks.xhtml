@@ -51,7 +51,8 @@
     <div class="ui-g-12 u-padding-0">
       <p:dataTable id="related-tasks" lazy="true" value="#{data.dataModel}" var="task" paginator="true" rows="5" paginatorPosition="bottom" paginatorAlwaysVisible="false"
         paginatorTemplate="{PreviousPageLink} {PageLinks} {NextPageLink} {RowsPerPageDropdown}"
-        sortBy="#{task.id}" sortOrder="descending" reflow="true" rowIndexVar="rowIndex" rowHover="true" >
+        sortBy="#{task.id}" sortOrder="descending" reflow="true" rowIndexVar="rowIndex" rowHover="true" selectionMode="single">
+        <p:ajax event="rowSelect" listener="#{caseWidgetBean.navigateToSelectedTaskDetails}"/>
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/abbreviation/PRIORITY')}" sortBy="#{task.priority}" styleClass="priority-column"
           rendered="#{data.dataModel.isSelectedColumn(masterDataBean.taskSortFieldPriority)}">
           <ui:include src="PriorityCell.xhtml" />
@@ -68,7 +69,7 @@
           rendered="#{data.dataModel.isSelectedColumn(masterDataBean.taskSortFieldActivator)}">
           <h:outputText value="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(task.activator, task.activator.memberName)}" />
         </p:column>
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ID')}" field="ID" sortBy="#{ID}" styleClass="id-column"
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ID')}" sortBy="#{task.id}" styleClass="id-column"
           rendered="#{data.dataModel.isSelectedColumn(masterDataBean.taskSortFieldId)}">
           <h:outputText value="#{task.id}" />
         </p:column>

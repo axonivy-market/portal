@@ -115,4 +115,19 @@ public class RelatedTaskLazyDataModel extends TaskLazyDataModel {
     setRowCount(getTaskCount(criteria));
     criteria.setFinalTaskQuery(null);
   }
+
+  @Override
+  public ITask getRowData(String rowKey) {
+    for (ITask task : data) {
+      if (task.getId() == Long.valueOf(rowKey)) {
+        return task;
+      }
+    }
+    return null;
+  }
+
+  @Override
+  public String getRowKey(ITask task) {
+    return String.valueOf(task.getId());
+  }
 }
