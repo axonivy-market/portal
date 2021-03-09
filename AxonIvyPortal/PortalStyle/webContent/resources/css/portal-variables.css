@@ -233,8 +233,9 @@
   --process-warning-icon-color: var(--ivy-tertinary-color-red-medium);
   --process-warning-icon-font-weight: bold;
   --process-icon-font-size: 1.5rem;
-  --full-process-icon-font-size: 5.6rem;
-  --process-widget-icon-font-size: 5.6rem;
+  --process-grid-icon-font-size: 4.8rem;
+  --process-grid-name-font-size: 18px;
+  --edit-process-icon-font-size: 5.6rem;
 
   /* Case Detail */
   --case-related-task-color: var(--ivy-primary-color-black);

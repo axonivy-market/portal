@@ -26,7 +26,7 @@
         <i id="icon" class="#{iconSelectionBean.generateIconWithFontFamily(process.getIcon())} process-grid-view-icon" />
 
         <div class="ui-g-12 process-name js-process-start-list-item-name">
-          <h2 class="line-clamp-text-2">#{process.getName()}</h2>
+          <h:outputText value="#{process.getName()}" styleClass="line-clamp-text-2 process-grid-view-name" />
         </div>
 
         <div class="ui-g-12 process-description js-process-start-list-item-description">

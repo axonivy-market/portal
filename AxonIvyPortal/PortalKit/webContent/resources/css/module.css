@@ -3085,6 +3085,10 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   width: 95%;
 }
 
+.process-start-list-container .grid-process-container {
+  padding-bottom: 25px;
+}
+
 .grid-view-form {
   padding: 2rem;
   height: 100%;
