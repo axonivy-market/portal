@@ -1144,7 +1144,8 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   padding-right: 20px;
 }
 
-.process-widget .process-group {
+.process-widget .process-group,
+.process-widget .grid-process {
   width: calc(100% - 75px);
   float: left;
 }
@@ -3097,7 +3098,7 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 }
 
 .grid-view-form .process-description {
-  height: 8rem;
+  height: 9rem;
   overflow: hidden;
 }
 

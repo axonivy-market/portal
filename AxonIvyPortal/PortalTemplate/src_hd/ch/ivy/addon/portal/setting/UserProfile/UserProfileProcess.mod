@@ -79,7 +79,7 @@ Ct9 @PushTrueWFInG-01 g0 '' #zField
 Ct9 @PushWFArc f0 '' #zField
 Ct9 @PushTrueWFOutG-01 g1 '' #zField
 Ct9 @PushWFArc f1 '' #zField
->Proto Ct9 Ct8 Component #zField
+>Proto Ct9 Ct0 Component #zField
 Ct8 @AnnotationInP-0n ai ai #zField
 Ct8 @TextInP .type .type #zField
 Ct8 @TextInP .processKind .processKind #zField
@@ -90,7 +90,7 @@ Ct8 @PushTrueWFInG-01 g0 '' #zField
 Ct8 @PushWFArc f0 '' #zField
 Ct8 @PushTrueWFOutG-01 g1 '' #zField
 Ct8 @PushWFArc f1 '' #zField
->Proto Ct8 Ct7 Component #zField
+>Proto Ct8 Ct1 Component #zField
 Ct7 @AnnotationInP-0n ai ai #zField
 Ct7 @TextInP .type .type #zField
 Ct7 @TextInP .processKind .processKind #zField
@@ -101,7 +101,7 @@ Ct7 @PushTrueWFInG-01 g0 '' #zField
 Ct7 @PushWFArc f0 '' #zField
 Ct7 @PushTrueWFOutG-01 g1 '' #zField
 Ct7 @PushWFArc f1 '' #zField
->Proto Ct7 Ct6 Component #zField
+>Proto Ct7 Ct2 Component #zField
 Ct6 @AnnotationInP-0n ai ai #zField
 Ct6 @TextInP .type .type #zField
 Ct6 @TextInP .processKind .processKind #zField
@@ -112,7 +112,7 @@ Ct6 @PushTrueWFInG-01 g0 '' #zField
 Ct6 @PushWFArc f0 '' #zField
 Ct6 @PushTrueWFOutG-01 g1 '' #zField
 Ct6 @PushWFArc f1 '' #zField
->Proto Ct6 Ct5 Component #zField
+>Proto Ct6 Ct3 Component #zField
 Ct5 @AnnotationInP-0n ai ai #zField
 Ct5 @TextInP .type .type #zField
 Ct5 @TextInP .processKind .processKind #zField
@@ -136,7 +136,7 @@ Ct4 @PushTrueWFInG-01 g0 '' #zField
 Ct4 @PushWFArc f0 '' #zField
 Ct4 @PushTrueWFOutG-01 g1 '' #zField
 Ct4 @PushWFArc f1 '' #zField
->Proto Ct4 Ct2 Component #zField
+>Proto Ct4 Ct5 Component #zField
 Ct3 @TextInP .type .type #zField
 Ct3 @TextInP .processKind .processKind #zField
 Ct3 @TextInP .xml .xml #zField
@@ -148,7 +148,7 @@ Ct3 @PushTrueWFOutG-01 g1 '' #zField
 Ct3 @GridStep f4 '' #zField
 Ct3 @PushWFArc f2 '' #zField
 Ct3 @PushWFArc f1 '' #zField
->Proto Ct3 Ct0 Component #zField
+>Proto Ct3 Ct6 Component #zField
 Ct2 @TextInP .type .type #zField
 Ct2 @TextInP .processKind .processKind #zField
 Ct2 @TextInP .xml .xml #zField
@@ -160,7 +160,7 @@ Ct2 @PushTrueWFInG-01 g0 '' #zField
 Ct2 @PushWFArc f0 '' #zField
 Ct2 @PushTrueWFOutG-01 g1 '' #zField
 Ct2 @PushWFArc f1 '' #zField
->Proto Ct2 Ct1 Component #zField
+>Proto Ct2 Ct7 Component #zField
 Ct0 @TextInP .type .type #zField
 Ct0 @TextInP .processKind .processKind #zField
 Ct0 @TextInP .xml .xml #zField
@@ -172,7 +172,7 @@ Ct0 @PushTrueWFInG-01 g0 '' #zField
 Ct0 @PushWFArc f0 '' #zField
 Ct0 @PushTrueWFOutG-01 g1 '' #zField
 Ct0 @PushWFArc f1 '' #zField
->Proto Ct0 Ct3 Component #zField
+>Proto Ct0 Ct8 Component #zField
 Ct10 @AnnotationInP-0n ai ai #zField
 Ct10 @TextInP .type .type #zField
 Ct10 @TextInP .processKind .processKind #zField
@@ -425,8 +425,8 @@ Ct9 g1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ct9 g1 307 147 26 26 0 5 #rect
 Ct9 f1 248 160 307 160 #arcP
->Proto Ct8 0 0 32 24 18 0 #rect
->Proto Ct8 @|BIcon #fIcon
+>Proto Ct0 0 0 32 24 18 0 #rect
+>Proto Ct0 @|BIcon #fIcon
 Ct8 f27 actionTable 'out=in;
 ' #txt
 Ct8 f27 actionCode 'import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;
@@ -457,8 +457,8 @@ Ct8 g1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ct8 g1 307 147 26 26 0 5 #rect
 Ct8 f1 248 160 307 160 #arcP
->Proto Ct7 0 0 32 24 18 0 #rect
->Proto Ct7 @|BIcon #fIcon
+>Proto Ct1 0 0 32 24 18 0 #rect
+>Proto Ct1 @|BIcon #fIcon
 Ct7 f28 actionTable 'out=in;
 ' #txt
 Ct7 f28 actionCode 'import ch.ivy.addon.portal.generic.bean.UserProfileBean;
@@ -498,8 +498,8 @@ Ct7 g1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ct7 g1 371 147 26 26 0 5 #rect
 Ct7 f1 296 160 371 160 #arcP
->Proto Ct6 0 0 32 24 18 0 #rect
->Proto Ct6 @|BIcon #fIcon
+>Proto Ct2 0 0 32 24 18 0 #rect
+>Proto Ct2 @|BIcon #fIcon
 Ct6 f11 actionTable 'out=in;
 ' #txt
 Ct6 f11 actionCode 'import ch.ivy.addon.portalkit.enums.GlobalVariable;
@@ -509,6 +509,7 @@ import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;
 import ch.ivy.addon.portalkit.enums.ProcessMode;
 
+in.processModes.clear();
 GlobalSettingService globalSettingService = new GlobalSettingService();
 GlobalSetting defaultSetting = globalSettingService.findGlobalSettingByKey(GlobalVariable.DEFAULT_PROCESS_MODE.name());
 
@@ -554,8 +555,8 @@ Ct6 g1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ct6 g1 339 147 26 26 0 5 #rect
 Ct6 f1 264 160 339 160 #arcP
->Proto Ct5 0 0 32 24 18 0 #rect
->Proto Ct5 @|BIcon #fIcon
+>Proto Ct3 0 0 32 24 18 0 #rect
+>Proto Ct3 @|BIcon #fIcon
 Ct5 f25 actionTable 'out=in;
 ' #txt
 Ct5 f25 actionCode 'import ch.ivyteam.ivy.environment.Ivy;
@@ -701,8 +702,8 @@ Ct4 g1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ct4 g1 467 147 26 26 0 5 #rect
 Ct4 f1 408 160 467 160 #arcP
->Proto Ct2 0 0 32 24 18 0 #rect
->Proto Ct2 @|BIcon #fIcon
+>Proto Ct5 0 0 32 24 18 0 #rect
+>Proto Ct5 @|BIcon #fIcon
 Ct3 f11 actionTable 'out=in;
 ' #txt
 Ct3 f11 actionCode 'import ch.ivy.addon.portalkit.constant.UserProperty;
@@ -763,8 +764,8 @@ Ct3 f4 352 138 112 44 -45 -8 #rect
 Ct3 f2 288 160 352 160 #arcP
 Ct3 f1 464 160 571 160 #arcP
 Ct3 f1 0 0.5362622036262203 0 0 #arcLabel
->Proto Ct0 0 0 32 24 18 0 #rect
->Proto Ct0 @|BIcon #fIcon
+>Proto Ct6 0 0 32 24 18 0 #rect
+>Proto Ct6 @|BIcon #fIcon
 Ct2 f11 processCall 'Ivy Data Processes/LanguageService:findUserLanguages()' #txt
 Ct2 f11 requestActionDecl '<> param;' #txt
 Ct2 f11 responseActionDecl 'ch.ivy.addon.portalkit.multiapp.settings.CentralLanguage.CentralLanguageData out;
@@ -816,8 +817,8 @@ Ct2 g1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ct2 g1 467 147 26 26 0 5 #rect
 Ct2 f1 expr out #txt
 Ct2 f1 400 160 467 160 #arcP
->Proto Ct1 0 0 32 24 18 0 #rect
->Proto Ct1 @|BIcon #fIcon
+>Proto Ct7 0 0 32 24 18 0 #rect
+>Proto Ct7 @|BIcon #fIcon
 Ct0 f31 expr out #txt
 Ct0 f31 248 160 288 160 #arcP
 Ct0 f18 processCall 'Ivy Data Processes/LanguageService:saveUserLanguage(ch.ivy.addon.portalkit.ivydata.bo.IvyLanguage)' #txt
@@ -869,8 +870,8 @@ Ct0 g1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ct0 g1 467 147 26 26 0 5 #rect
 Ct0 f1 expr out #txt
 Ct0 f1 400 160 467 160 #arcP
->Proto Ct3 0 0 32 24 18 0 #rect
->Proto Ct3 @|BIcon #fIcon
+>Proto Ct8 0 0 32 24 18 0 #rect
+>Proto Ct8 @|BIcon #fIcon
 Ct10 g0 51 243 26 26 0 5 #rect
 Ct10 g1 563 243 26 26 0 5 #rect
 Ct10 f1 actionTable 'out=in;
