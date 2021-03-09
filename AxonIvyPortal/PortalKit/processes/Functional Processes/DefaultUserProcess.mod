@@ -59,9 +59,7 @@ Ds0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <language>
         <name>HOW TO CREATE A DEFAULT USER PROCESS:&#13;
 &#13;
-UserProcess userProcess = new UserProcess();&#13;
-userProcess.setLink(&lt;PROCESS_LINK&gt;); //Absolute path or relative path starts with: /&lt;CONTEXT_PATH&gt;/pro/...&#13;
-userProcess.setProcessName(&lt;PROCESS_NAME&gt;);  // Use a CMS for defining multilingual process name&#13;
+UserProcess userProcess = &lt;INITIATE_A_USER_PROCESS&gt;;&#13;
 userProcess.setIcon(&lt;PROCESS_ICON&gt;); //Icons in Font Awesome&#13;
 userProcess.setIndex(1); // Set the index of the process on the default process list&#13;
 &#13;
@@ -69,17 +67,20 @@ in.defaultUserProcesses.add(userProcess);&#13;
 &#13;
 OUT: defaultUserProcesses: List&lt;UserProcess&gt;&#13;
 &#13;
-HINT: how to get a process url&#13;
-- Use IProcessStart#getLink() to get absolute/relative path (Refer to Axon Ivy Public API document)&#13;
-- The default processes are sorted by their index attribute. If this attribute is not set, the process will be put at the bottom of the list.&#13;
-- We provide method to get startable link by user friendly request path (If user don''t have permission to start this link, the method will return empty string)&#13;
-ch.ivy.addon.portalkit.publicapi.ProcessStartAPI.findStartableLinkByUserFriendlyRequestPath(...)&#13;
-Example: &#13;
-String newEmployeeLink = ProcessStartAPI.findStartableLinkByUserFriendlyRequestPath("Start Processes/Employee/NewEmployee.ivp");</name>
+HINT:&#13;
+- We provide 3 public APIs in ProcessStartAPI class (Refer to Axon.ivy Public API document) to initiate a default user process. We recommend you to use them when you want to create user favorite process.&#13;
+ + For Ivy Process: ch.ivy.addon.portalkit.publicapi.ProcessStartAPI.initUserProcessByUserFriendlyRequestPath(String, String)&#13;
+ + For Express Process: ch.ivy.addon.portalkit.publicapi.ProcessStartAPI.initUserProcessByExpressProcessName(String, String)&#13;
+ + For External Link: ch.ivy.addon.portalkit.publicapi.ProcessStartAPI.initUserProcessByExternalLinkName(String, String)&#13;
+Example:&#13;
+UserProcess ivyProcess = ProcessStartAPI.initUserProcessByUserFriendlyRequestPath("Start Processes/Employee/NewEmployee.ivp", "NewEmployee");&#13;
+UserProcess expressProcess = ProcessStartAPI.initUserProcessByExpressProcessName("Your Express Process Name", "Favorite Process Display Name");&#13;
+UserProcess externalLink = ProcessStartAPI.initUserProcessByExternalLinkName("Your External Link Name", "Favorite Process Display Name");&#13;
+- The default processes are sorted by their index attribute. If this attribute is not set, the process will be put at the bottom of the list.</name>
     </language>
 </elementInfo>
 ' #txt
-Ds0 f5 176 66 832 316 -412 -152 #rect
+Ds0 f5 192 66 1120 332 -556 -160 #rect
 Ds0 f5 @|IBIcon #fIcon
 >Proto Ds0 .type ch.ivy.add.portalkit.DefaultUserProcessData #txt
 >Proto Ds0 .processKind CALLABLE_SUB #txt
