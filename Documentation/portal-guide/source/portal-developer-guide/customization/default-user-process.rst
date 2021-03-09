@@ -24,10 +24,13 @@ list of user processes. Follow instruction to create default processes.
 
 
 .. tip::
-    - We provide the method to generate link from UserFriendlyRequestPath
-      in  ``ProcessStartAPI``  class: ``findStartableLinkByUserFriendlyRequestPath(String requestPath)`` . This method
-      will return startable link if user has permission to start the process, otherwise return emtpy string.
+    - We provide 3 public APIs in ``ProcessStartAPI`` class (Refer to :ref:`Axon.ivy Public API document <public-api>`) to initiate a default user process.
+      We recommend you to use them when you want to create user favorite process.
 
-    - To display process name with multilingual, define a **CMS** and set it for **UserProcess#setProcessName**
+        + For Ivy Process: ``initUserProcessByUserFriendlyRequestPath(String friendlyRequestPath, String displayName)``
+        + For Express Process: ``initUserProcessByExpressProcessName(String expressProcessName, String displayName)``
+        + For External Link: ``initUserProcessByExternalLinkName(String externalLinkName, String displayName)``
+
+    - The default processes are sorted by their index attribute. If this attribute is not set, the process will be put at the bottom of the list.
 
 .. |default-user-processes| image:: images/default-user-process/default-user-processes.png
