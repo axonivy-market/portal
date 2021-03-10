@@ -8,10 +8,10 @@
 
   <div class="ui-g-4 ui-lg-4 ui-md-6 ui-sm-12 u-no-padding-top u-no-padding-left js-process-start-list-item">
     <h:form id="process-item-form"
-      styleClass="process-start-list-item #{processWidgetBean.isExpressProcess(process) ? 'express-workflow' : ''} #{processWidgetBean.isExternalLink(process) ? 'js-external-link-process-item' : ''}">
+      styleClass="process-start-list-item #{isExpress ? 'express-workflow' : ''} #{isExternalLink ? 'js-external-link-process-item' : ''}">
 
       <p:commandLink id="process-item" actionListener="#{processWidgetBean.startProcess(process)}" styleClass="process-item"
-        target="#{processWidgetBean.targetToStartProcess(process)}" ajax="#{!processWidgetBean.isExternalLink(process)}">
+        target="#{processWidgetBean.targetToStartProcess(process)}" ajax="#{!isExternalLink}">
 
         <div class="process-start-list-item-name #{isExpress ? 'is-express' : ''} #{isExternalLink ? 'is-external-link' : ''}">
           <h:outputText id="process-name" value="#{process.name}"

@@ -28,7 +28,7 @@
                   placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processFilterPlaceHolder')}"
                   styleClass="js-filter-process-widget-list-item" />
           </div>
-          <div class="ui-sm-hidden ui-md-hidden ui-lg-6 ui-xl-4 MarTop5">
+          <div class="ui-sm-hidden ui-md-hidden ui-lg-6 ui-xl-4">
             <h:panelGroup id="create-express-link"
               rendered="#{!cc.attrs.hideExpressCreation and processWidgetBean.canCreateExpessWorkflow()}"
               styleClass="create-express-link u-mar-right-10">
@@ -49,10 +49,10 @@
           </div>
 
           <div class="u-hidden-sm-down ui-md-4 ui-lg-3 ui-xl-4 u-no-padding-right">
-            <h:form id="process-type-mode" class="md-inputfiled ui-g-12 TexAlRight u-no-padding-right md-inputfiled">
+            <h:form id="process-view-mode" class="md-inputfiled ui-g-12 TexAlRight u-no-padding-right u-no-padding-top md-inputfiled">
               <label class="#{processWidgetBean.listMode ? 'switch-off':'switch-active'}">#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/Enums/ProcessMode/GRID")}</label>
-              <p:inputSwitch id="process-type" styleClass="process-input-switch-selection" value="#{processWidgetBean.listMode}">
-                <p:ajax update="process-type-mode #{cc.clientId}:process-list #{cc.clientId}:process-nav"
+              <p:inputSwitch id="process-view" styleClass="process-input-switch-selection" value="#{processWidgetBean.listMode}">
+                <p:ajax update="process-view-mode #{cc.clientId}:process-list #{cc.clientId}:process-nav"
                   oncomplete="processWidget.setupScrollbar(); expandOrCollapseAllCategories(true); return false;" />
               </p:inputSwitch>
               <label class="#{processWidgetBean.listMode ? 'switch-active':'switch-off'}">#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/Enums/ProcessMode/LIST")}</label>
