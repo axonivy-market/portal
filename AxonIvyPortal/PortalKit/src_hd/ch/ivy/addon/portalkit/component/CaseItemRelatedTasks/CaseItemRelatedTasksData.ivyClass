@@ -2,8 +2,6 @@ CaseItemRelatedTasksData #class
 ch.ivy.addon.portalkit.component.CaseItemRelatedTasks #namespace
 iCase ch.ivyteam.ivy.workflow.ICase #field
 iCase PERSISTENT #fieldModifier
-relatedTasks java.util.List<ch.ivyteam.ivy.workflow.ITask> #field
-relatedTasks PERSISTENT #fieldModifier
 isTaskFinished Boolean #field
 isTaskFinished PERSISTENT #fieldModifier
 isWorkingOnTask Boolean #field
@@ -12,8 +10,6 @@ inFrame Boolean #field
 inFrame PERSISTENT #fieldModifier
 taskId Long #field
 taskId PERSISTENT #fieldModifier
-totalRelatedTasks Integer #field
-totalRelatedTasks PERSISTENT #fieldModifier
 task ch.ivyteam.ivy.workflow.ITask #field
 task PERSISTENT #fieldModifier
 canUserResumeTask Boolean #field
@@ -39,3 +35,9 @@ maxResultNumberPerQuery Integer #field
 maxResultNumberPerQuery PERSISTENT #fieldModifier
 collectedTasksForExporting java.util.List<ch.ivyteam.ivy.workflow.ITask> #field
 collectedTasksForExporting PERSISTENT #fieldModifier
+count Integer #field
+count PERSISTENT #fieldModifier
+startIndex Integer #field
+startIndex PERSISTENT #fieldModifier
+tasks List<ch.ivyteam.ivy.workflow.ITask> #field
+tasks PERSISTENT #fieldModifier
