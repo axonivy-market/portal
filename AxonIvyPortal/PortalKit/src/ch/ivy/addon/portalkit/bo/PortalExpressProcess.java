@@ -8,6 +8,7 @@ import ch.ivy.addon.portalkit.enums.ProcessType;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.util.ExpressManagementUtils;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.security.IUser;
 
 /*
@@ -17,6 +18,7 @@ public class PortalExpressProcess implements Process {
   private ExpressProcess process;
   private static final String EXPRESS_WORKFLOW_ID_PARAM = "?workflowID=";
   private String processOwnerDisplayName;
+  private String ableToStart;
 
   public PortalExpressProcess(ExpressProcess process) {
     this.process = process;
@@ -29,6 +31,12 @@ public class PortalExpressProcess implements Process {
     IUser user = processOwnerName != null ? Ivy.session().getSecurityContext().users().find(processOwnerName) : null;
 
     this.processOwnerDisplayName = Optional.ofNullable(user).map(IUser::getDisplayName).orElse(StringUtils.EMPTY);
+    
+    for (String username : this.process.getProcessPermissions()) {
+      ISecurityMember assignee = Ivy.session().getSecurityContext().findSecurityMember(username);
+      String ableStartName = Optional.ofNullable(assignee).map(ISecurityMember::getDisplayName).orElse(StringUtils.EMPTY);
+      this.ableToStart = StringUtils.isBlank(ableToStart) ? ableStartName : String.join(";", ableToStart, ableStartName);
+    }
   }
 
   @Override
@@ -85,4 +93,19 @@ public class PortalExpressProcess implements Process {
   public void setProcessOwnerDisplayName(String processOwenerDisplayName) {
     this.processOwnerDisplayName = processOwenerDisplayName;
   }
+
+  @Override
+  public String getIcon() {
+    String icon = this.process.getIcon();
+    return StringUtils.isBlank(icon) ? "si si-startup-launch" : icon;
+  }
+  
+  public String getAbleToStart() {
+    return ableToStart;
+  }
+
+  public void setAbleToStart(String ableToStart) {
+    this.ableToStart = ableToStart;
+  }
+
 }

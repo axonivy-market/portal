@@ -26,6 +26,9 @@ Ae0 @InfoButton f13 '' #zField
 Ae0 @GridStep f10 '' #zField
 Ae0 @PushWFArc f12 '' #zField
 Ae0 @PushWFArc f14 '' #zField
+Ae0 @StartRequest f15 '' #zField
+Ae0 @EndTask f16 '' #zField
+Ae0 @PushWFArc f17 '' #zField
 >Proto Ae0 Ae0 AdditionalCaseDetailPage #zField
 Ae0 f0 outLink createInvestmentRequest.ivp #txt
 Ae0 f0 inParamDecl '<> param;' #txt
@@ -63,9 +66,7 @@ Ae0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ae0 f0 @C|.responsibility Everybody #txt
 Ae0 f0 121 169 30 30 -79 17 #rect
-Ae0 f0 @|StartRequestIcon #fIcon
 Ae0 f1 537 169 30 30 0 15 #rect
-Ae0 f1 @|EndIcon #fIcon
 Ae0 f3 actionTable 'out=in1;
 ' #txt
 Ae0 f3 outLinks "TaskA.ivp" #txt
@@ -79,7 +80,6 @@ TaskA.SKIP_TASK_LIST=false
 TaskA.TYPE=0' #txt
 Ae0 f3 template "" #txt
 Ae0 f3 441 169 30 30 0 16 #rect
-Ae0 f3 @|TaskSwitchSimpleIcon #fIcon
 Ae0 f2 expr data #txt
 Ae0 f2 outCond ivp=="TaskA.ivp" #txt
 Ae0 f2 471 184 537 184 #arcP
@@ -101,7 +101,6 @@ Ae0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ae0 f5 232 162 176 44 -80 -8 #rect
-Ae0 f5 @|CallSubIcon #fIcon
 Ae0 f6 expr out #txt
 Ae0 f6 151 184 232 184 #arcP
 Ae0 f4 expr out #txt
@@ -136,9 +135,7 @@ Ae0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ae0 f7 @C|.responsibility Everybody #txt
 Ae0 f7 129 49 30 30 -116 17 #rect
-Ae0 f7 @|StartRequestIcon #fIcon
 Ae0 f8 701 49 30 30 0 15 #rect
-Ae0 f8 @|EndIcon #fIcon
 Ae0 f9 dialogId com.axonivy.portal.developerexamples.customization.InvestmentRequestCaseDetailPage #txt
 Ae0 f9 startMethod start(ch.ivyteam.ivy.workflow.ICase) #txt
 Ae0 f9 requestActionDecl '<ch.ivyteam.ivy.workflow.ICase iCase> param;' #txt
@@ -159,7 +156,6 @@ Additional Case Details Page</name>
 </elementInfo>
 ' #txt
 Ae0 f9 476 42 192 44 -76 -16 #rect
-Ae0 f9 @|UserDialogIcon #fIcon
 Ae0 f11 expr out #txt
 Ae0 f11 668 64 701 64 #arcP
 Ae0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -188,7 +184,6 @@ HOW TO RUN THIS EXAMPLE:
 </elementInfo>
 ' #txt
 Ae0 f13 784 2 896 268 -439 -128 #rect
-Ae0 f13 @|IBIcon #fIcon
 Ae0 f10 actionTable 'out=in;
 ' #txt
 Ae0 f10 actionCode 'import ch.ivy.addon.portalkit.util.CaseUtils;
@@ -201,11 +196,27 @@ Ae0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ae0 f10 296 42 112 44 -41 -8 #rect
-Ae0 f10 @|StepIcon #fIcon
 Ae0 f12 expr out #txt
 Ae0 f12 159 64 296 64 #arcP
 Ae0 f14 expr out #txt
 Ae0 f14 408 64 476 64 #arcP
+Ae0 f15 outLink start.ivp #txt
+Ae0 f15 inParamDecl '<> param;' #txt
+Ae0 f15 requestEnabled true #txt
+Ae0 f15 triggerEnabled false #txt
+Ae0 f15 callSignature start() #txt
+Ae0 f15 caseData businessCase.attach=true #txt
+Ae0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>start.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Ae0 f15 @C|.responsibility Everybody #txt
+Ae0 f15 145 417 30 30 -21 17 #rect
+Ae0 f16 561 433 30 30 0 15 #rect
+Ae0 f17 175 432 561 448 #arcP
 >Proto Ae0 .type com.axonivy.portal.developerexamples.customization.AdditionalCaseDetailPage #txt
 >Proto Ae0 .processKind NORMAL #txt
 >Proto Ae0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -227,3 +238,5 @@ Ae0 f7 mainOut f12 tail #connect
 Ae0 f12 head f10 mainIn #connect
 Ae0 f10 mainOut f14 tail #connect
 Ae0 f14 head f9 mainIn #connect
+Ae0 f15 mainOut f17 tail #connect
+Ae0 f17 head f16 mainIn #connect
