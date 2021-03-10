@@ -1,0 +1,5 @@
+Variables:
+
+  # The delay time of search function at top menu
+  PortalSearchDelayInMilliseconds: 500
+
