@@ -13,6 +13,7 @@ public class ExternalLink extends BusinessEntity{
   private String link;
   private Long creatorId;
   private boolean isPublic;
+  private String icon;
 
   @Deprecated
   private String creator;
@@ -94,6 +95,14 @@ public class ExternalLink extends BusinessEntity{
       return false;
     }
     return true;
+  }
+
+  public String getIcon() {
+    return icon;
+  }
+
+  public void setIcon(String icon) {
+    this.icon = icon;
   }
 
 }

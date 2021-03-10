@@ -10,6 +10,7 @@ import org.openqa.selenium.WebElement;
 import ch.ivy.addon.portalkit.util.ScreenshotMargin;
 import ch.ivy.addon.portalkit.util.ScreenshotUtil;
 import portal.guitest.common.ScreenshotTest;
+import portal.guitest.common.Sleeper;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.ProcessWidgetPage;
@@ -61,12 +62,26 @@ public class PortalProcessesScreenshotTest extends ScreenshotTest {
   
   @Test
   public void screenshotPortalFullProcessesList() throws IOException {
+    login(TestAccount.ADMIN_USER);
     processWidget = homePage.getProcessWidget();
     processWidget.expand();
-    ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, SCREENSHOT_HEIGHT));
+    ScreenshotUtil.resizeBrowser(new Dimension(1440, 800));
     processWidget.navigateToProcessIndex("A");
+    executeDecorateJs("highlightEditProcessLink()");
+    ScreenshotUtil.captureHalfLeftPageScreenShot(ScreenshotUtil.PROCESSES_WIDGET_FOLDER + "edit-process-link");
+    processWidget.clickOnProcessEditLink(0);
+    executeDecorateJs("highlightEditProcessIcon()");
+    ScreenshotUtil.captureElementWithMarginOptionScreenshot(processWidget.getEditProcessDialog(), ScreenshotUtil.PROCESSES_WIDGET_FOLDER + "edit-process-dialog", new ScreenshotMargin(50, 100));
+    refreshPage();
+    processWidget.waitUtilProcessWidgetDisplayed();
     executeDecorateJs("highlightProcessItems()");
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.PROCESSES_WIDGET_FOLDER + "portal-full-process-list-page");
+    refreshPage();
+    processWidget.waitUtilProcessWidgetDisplayed();
+    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.PROCESSES_WIDGET_FOLDER + "portal-process-grid-view-page");
+    processWidget.clickOnSwitchButton();
+    Sleeper.sleep(250); /* Wait for css styling */
+    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.PROCESSES_WIDGET_FOLDER + "portal-process-list-view-page");
   }
   
   @Test
