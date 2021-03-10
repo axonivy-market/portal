@@ -22,17 +22,10 @@ public class UserProcess extends BusinessEntity implements Cloneable {
   private String link;
   private String icon;
   private String processId;
-  private String workflowId;
   private Integer index;
   private boolean defaultProcess;
-  private boolean isExternalLink;
+  @JsonIgnore
   private boolean isBrokenLink = false;
-
-  /**
-   *  Since 9.1, we use userId to store user process instead of userName.
-   */
-  @Deprecated
-  private String userName;
 
   @JsonIgnore
   private String description;
@@ -53,16 +46,6 @@ public class UserProcess extends BusinessEntity implements Cloneable {
 
   public void setUserId(Long userId) {
     this.userId = userId;
-  }
-
-  @Deprecated
-  public String getUserName() {
-    return userName;
-  }
-
-  @Deprecated
-  public void setUserName(String userName) {
-    this.userName = userName;
   }
 
   public long getApplicationId() {
@@ -143,26 +126,11 @@ public class UserProcess extends BusinessEntity implements Cloneable {
     this.processId = processId;
   }
 
-  public String getWorkflowId() {
-    return workflowId;
-  }
-
-  public void setWorkflowId(String workflowId) {
-    this.workflowId = workflowId;
-  }
-  
-  public boolean isExternalLink() {
-    return isExternalLink;
-  }
-
-  public void setExternalLink(boolean isExternalLink) {
-    this.isExternalLink = isExternalLink;
-  }
-
   public boolean isBrokenLink() {
     return isBrokenLink;
   }
 
+  @JsonIgnore
   public void setBrokenLink(boolean isBrokenLink) {
     this.isBrokenLink = isBrokenLink;
   }
@@ -210,13 +178,6 @@ public class UserProcess extends BusinessEntity implements Cloneable {
         return false;
       }
     } else if (!id.equals(other.id)) {
-      return false;
-    }
-    if (workflowId == null) {
-      if (other.workflowId != null) {
-        return false;
-      }
-    } else if (!workflowId.equals(other.workflowId)) {
       return false;
     }
     return true;
