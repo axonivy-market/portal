@@ -33,9 +33,7 @@ Ds0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ds0 f0 51 83 26 26 -54 -39 #rect
-Ds0 f0 @|StartSubIcon #fIcon
 Ds0 f1 51 339 26 26 14 0 #rect
-Ds0 f1 @|EndSubIcon #fIcon
 Ds0 f3 actionTable 'out=in;
 ' #txt
 Ds0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -49,7 +47,6 @@ processes</name>
 </elementInfo>
 ' #txt
 Ds0 f3 46 196 36 24 20 -2 #rect
-Ds0 f3 @|StepIcon #fIcon
 Ds0 f4 expr out #txt
 Ds0 f4 64 109 64 196 #arcP
 Ds0 f2 expr out #txt
@@ -68,7 +65,7 @@ in.defaultUserProcesses.add(userProcess);&#13;
 OUT: defaultUserProcesses: List&lt;UserProcess&gt;&#13;
 &#13;
 HINT:&#13;
-- We provide 3 public APIs in ProcessStartAPI class (Refer to Axon.ivy Public API document) to initiate a default user process. We recommend you to use them when you want to create user favorite process.&#13;
+- We provide 3 public APIs in ProcessStartAPI class (Refer to Axon Ivy Public API document) to initiate a default user process. We recommend you to use them when you want to create user favorite process.&#13;
  + For Ivy Process: ch.ivy.addon.portalkit.publicapi.ProcessStartAPI.initUserProcessByUserFriendlyRequestPath(String, String)&#13;
  + For Express Process: ch.ivy.addon.portalkit.publicapi.ProcessStartAPI.initUserProcessByExpressProcessName(String, String)&#13;
  + For External Link: ch.ivy.addon.portalkit.publicapi.ProcessStartAPI.initUserProcessByExternalLinkName(String, String)&#13;
@@ -81,7 +78,6 @@ UserProcess externalLink = ProcessStartAPI.initUserProcessByExternalLinkName("Yo
 </elementInfo>
 ' #txt
 Ds0 f5 192 66 1120 332 -556 -160 #rect
-Ds0 f5 @|IBIcon #fIcon
 >Proto Ds0 .type ch.ivy.add.portalkit.DefaultUserProcessData #txt
 >Proto Ds0 .processKind CALLABLE_SUB #txt
 >Proto Ds0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
