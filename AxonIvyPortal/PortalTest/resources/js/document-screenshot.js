@@ -121,13 +121,24 @@ function highlightProcessItems() {
   createRedMediumOutline(processSearch);
   appendStepAnnotation(processSearch, "1", -5, processSearch.width() - 40);
   
-  var expressLogo = $('.express-process-logo.si-startup-launch');
+  var expressLogo = $('.is-express .si-startup-launch:eq(0)');
   createRedMediumOutline(expressLogo);
   appendStepAnnotation(expressLogo, "2", -45, -10);
   
-  var externalLink = $('.si-hyperlink-3.external-link-icon:eq(0)');
+  var externalLink = $('.is-external-link .si-hyperlink-3:eq(0)');
   createRedMediumOutline(externalLink);
   appendStepAnnotation(externalLink, "3", -45, -10);
+  
+  createRedMediumOutline($('[id$="process-widget:process-view-mode:process-view"]'));
+  appendStepAnnotation($("[id$='process-widget:process-view-mode'] label[class$='switch-active']"), "4", -10, -40);
+}
+
+function highlightEditProcessIcon() {
+  appendStepAnnotation($("[id$='process-widget:edit-process-form:edit-process-icon:awesome-icon-selection']"), "4", -10, 100);
+}
+
+function highlightEditProcessLink() {
+  createRedMediumOutline($('[id$="grid-process-group-alphabet:0:grid-processes:0:process-item:edit-link"]'))
 }
 
 function numberingStatisticWidget() {
