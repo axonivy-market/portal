@@ -12,7 +12,9 @@ import javax.faces.bean.ViewScoped;
 
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.primefaces.event.SelectEvent;
 
+import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.casefilter.CaseFilter;
 import ch.ivy.addon.portalkit.casefilter.impl.CaseFilterData;
 import ch.ivy.addon.portalkit.casefilter.impl.CaseStateFilter;
@@ -33,6 +35,7 @@ import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.ICase;
+import ch.ivyteam.ivy.workflow.ITask;
 
 @ManagedBean
 @ViewScoped
@@ -242,5 +245,10 @@ public class CaseWidgetBean implements Serializable {
       visibilityColumns.add(TaskLazyDataModel.DESCRIPTION);
     }
     return visibilityColumns;
+  }
+
+  public void navigateToSelectedTaskDetails(SelectEvent event) {
+    Long taskId = ((ITask) event.getObject()).getId();
+    PortalNavigator.navigateToPortalTaskDetails(taskId);
   }
 }
