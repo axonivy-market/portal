@@ -48,7 +48,7 @@
                   <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/processListConfigDescription')}</span>
                 </div>
                 <div class="ui-g-12 u-no-padding-top">
-                  <span class="ui-g-12">Default view mode</span>
+                  <span class="ui-g-12">#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/MyProfile/defaultViewMode")}</span>
                   <div class="ui-g-12">
                     <p:selectOneMenu id="process-mode-selection" value="#{data.selectedProcessMode}">
                       <f:selectItems value="#{data.processModes}" var="mode"

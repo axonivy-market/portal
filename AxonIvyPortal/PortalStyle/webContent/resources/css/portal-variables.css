@@ -235,7 +235,7 @@
   --process-icon-font-size: 1.5rem;
   --process-grid-icon-font-size: 4.8rem;
   --process-grid-name-font-size: 18px;
-  --edit-process-icon-font-size: 5.6rem;
+  --process-grid-name-font-weight: 700;
 
   /* Case Detail */
   --case-related-task-color: var(--ivy-primary-color-black);

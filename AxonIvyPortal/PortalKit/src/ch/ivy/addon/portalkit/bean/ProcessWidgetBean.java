@@ -254,9 +254,13 @@ public class ProcessWidgetBean implements Serializable {
       }
     }
 
-    if (StringUtils.isNotEmpty(firstLetter) && this.processesByAlphabet.containsKey(firstLetter)) {
+    if (StringUtils.isNotEmpty(firstLetter)) {
       List<Process> processes = this.processesByAlphabet.get(firstLetter);
-      processes.removeIf(editProcess -> editProcess.getId().equals(processId));
+      if (CollectionUtils.isNotEmpty(processes))  {
+        processes.removeIf(editProcess -> editProcess.getId().equals(processId));
+      } else {
+        processes = new ArrayList<>();
+      }
       processes.add(editedProcess);
       sortProcesses(processes);
       processesByAlphabet.put(firstLetter, processes);

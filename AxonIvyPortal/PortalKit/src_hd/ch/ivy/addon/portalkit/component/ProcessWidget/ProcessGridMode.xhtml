@@ -7,16 +7,16 @@
   <h:panelGroup layout="block"
     styleClass="js-process-start-list-item ui-g-2 ui-xl-2 ui-lg-3 ui-md-6 ui-sm-12 portal-card-container process-grid-item #{groupCode}">
     <div class="card-item card ui-g-12 #{processWidgetBean.isExpressProcess(process) ? 'express-workflow' : ''} #{processWidgetBean.isExternalLink(process) ? 'js-external-link-process-item' : ''}">
-      <h:form id="panel-#{status.index}" styleClass="grid-view-form TexAlCenter" target="#{processWidgetBean.targetToStartProcess(process)}">
+      <h:form id="process-item" styleClass="grid-view-form TexAlCenter" target="#{processWidgetBean.targetToStartProcess(process)}">
         <!-- Action -->
         <h:panelGroup id="process-action-group" styleClass="process-action-group" layout="block"
           rendered="#{!processWidgetBean.isIvyProcess(process) and process.getProcess().ableToEdit}">
-          <p:commandLink styleClass="u-mar-right-10" oncomplete="PF('edit-process-dialog').show();"
+          <p:commandLink id="edit-link" styleClass="u-mar-right-10" oncomplete="PF('edit-process-dialog').show();"
             actionListener="#{processWidgetBean.setEditedProcess(process)}" update="#{cc.clientId}:edit-process-dialog">
             <i class="si si-graphic-tablet-drawing-pen" />
             <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}</span>
           </p:commandLink>
-          <p:commandLink oncomplete="PF('remove-process-workflow-dialog').show();"
+          <p:commandLink id="delete-link" oncomplete="PF('remove-process-workflow-dialog').show();"
             actionListener="#{processWidgetBean.setDeletedProcess(process)}"
             update="#{cc.clientId}:remove-process-workflow-dialog">
             <i class="si si-bin-1" />
