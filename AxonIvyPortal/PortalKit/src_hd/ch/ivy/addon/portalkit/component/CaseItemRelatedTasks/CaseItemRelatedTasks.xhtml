@@ -19,10 +19,10 @@
   <f:event listener="#{cc.attrs.dataModel.initColumnsConfiguration()}" type="preRenderComponent" />
   <div id="#{cc.clientId}" class="case-details-item #{cc.attrs.styleClass}">
     <div class="case-detail-section-title ui-g-12">
-      <div class="ui-g-4 u-truncate-text u-padding-0">
+      <div class="ui-g-7 u-truncate-text u-padding-0">
         <i class="si si-task-list-edit" /> #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/headerTitle/relatedTasksHeader')}
       </div>
-      <div class="case-history-button-container ui-g-8 u-padding-0">
+      <div class="case-history-button-container ui-g-5 u-padding-0">
         <!-- Export to Excel, Manage Columns -->
         <h:panelGroup id="task-list-actions" layout="block" styleClass="case-details-note-add">
           <h:form id="task-export-to-excel-form">
@@ -49,7 +49,7 @@
       </div>
     </div>
 
-    <div class="ui-g-12 u-padding-0">
+    <div class="ui-g-12 u-padding-0 case-details-related-task-table" id="case-details-related-task-table">
       <p:dataTable id="related-tasks" value="#{data.relatedTasks}" var="task" paginator="true" rows="5" paginatorPosition="bottom" paginatorAlwaysVisible="false"
         paginatorTemplate="{PreviousPageLink} {PageLinks} {NextPageLink} {RowsPerPageDropdown}"
         sortBy="#{task.id}" sortOrder="descending" reflow="true" rowIndexVar="rowIndex" rowHover="true" >
@@ -61,13 +61,13 @@
           rendered="#{cc.attrs.dataModel.isSelectedColumn(masterDataBean.taskSortFieldName)}">
           <h:outputText value="#{task.name}" styleClass="u-truncate-text" />
         </p:column>
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}" sortable="false" styleClass="description-column">
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}" sortable="false">
           <h:outputText value="#{task.description}" styleClass="u-truncate-text" />
         </p:column>
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}" styleClass="responsible-column"
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}"
           sortBy="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(task.activator, task.activator.memberName)}"
           rendered="#{cc.attrs.dataModel.isSelectedColumn(masterDataBean.taskSortFieldActivator)}">
-          <h:outputText value="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(task.activator, task.activator.memberName)}" />
+          <h:outputText value="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(task.activator, task.activator.memberName)}" styleClass="u-truncate-text"/>
         </p:column>
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ID')}" sortBy="#{task.id}" styleClass="id-column"
           rendered="#{cc.attrs.dataModel.isSelectedColumn(masterDataBean.taskSortFieldId)}">
@@ -185,5 +185,6 @@
     <div>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/waitingDownloadMessage')}</div>
     <h:panelGroup layout="block" rendered="#{cc.attrs.dataModel.rowCount gt taskWidgetBean.getMaxTaskNumberInExcel()}">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/downloadZipFileExplanation')}</h:panelGroup>
   </p:dialog>
+  <h:outputScript library="js" name="case-related-tasks.js" />
 </cc:implementation>
 </html>
