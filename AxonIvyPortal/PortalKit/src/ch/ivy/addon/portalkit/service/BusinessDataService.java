@@ -7,6 +7,7 @@ import ch.ivyteam.ivy.environment.Ivy;
 
 public abstract class BusinessDataService<T> {
   
+  public static final int LIMIT_1 = 1;
   public static final int LIMIT_10 = 10;
   public static final int LIMIT_20 = 20;
   public static final int LIMIT_100 = 100;
