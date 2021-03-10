@@ -256,7 +256,7 @@ public class ProcessWidgetBean implements Serializable {
 
     if (StringUtils.isNotEmpty(firstLetter)) {
       List<Process> processes = this.processesByAlphabet.get(firstLetter);
-      if (CollectionUtils.isNotEmpty(processes))  {
+      if (CollectionUtils.isNotEmpty(processes)) {
         processes.removeIf(editProcess -> editProcess.getId().equals(processId));
       } else {
         processes = new ArrayList<>();

@@ -291,19 +291,23 @@ public class ProcessWidgetPage extends TemplatePage {
 
   public void clickOnSwitchButton() {
     String currentView = getCurrentViewMode();
-    clickByCssSelector("[id$='process-type-mode:process-type']");
+    clickByCssSelector("[id$='process-view-mode:process-view']");
     WaitHelper.assertTrueWithWait(() -> !currentView.equals(getCurrentViewMode()));
   }
 
   public String getCurrentViewMode() {
-    waitForElementDisplayed(By.cssSelector("[id$='process-type-mode'] label.switch-active"), true);
-    WebElement switchMode = findElementByCssSelector("[id$='process-type-mode'] label.switch-active");
+    waitForElementDisplayed(By.cssSelector("[id$='process-view-mode'] label.switch-active"), true);
+    WebElement switchMode = findElementByCssSelector("[id$='process-view-mode'] label.switch-active");
     return switchMode.getText();
   }
 
   public void clickOnProcessEditLink(int index) {
     clickByCssSelector(String.format("[id$=':%d:grid-processes:0:process-item:edit-link']", index));
     waitForElementDisplayed(By.cssSelector("[id$='process-widget:edit-process-dialog']"), true);
+  }
+  
+  public WebElement getEditProcessDialog() {
+    return findElementByCssSelector("[id$='process-widget:edit-process-dialog']");
   }
 
   public void changeProcessIcon() {
