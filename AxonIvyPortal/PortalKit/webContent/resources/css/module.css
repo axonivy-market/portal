@@ -2073,6 +2073,23 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 /********************************** END TASK DETAIL **********************************/
 
 /********************************** CASE DETAIL **********************************/
+.case-detail-title {
+  font-weight: bold;
+  padding: 10px 0 5px 0 !important;
+  margin-bottom: 6px;
+}
+
+.case-detail-description {
+  display: inline-flex;
+  max-height: 150px;
+  padding: 0 !important;
+}
+
+.case-description-inplace .ui-button.ui-widget.ui-button-icon-only.ui-inplace-save {
+  margin-right: 5px;
+  margin-top: 3px;
+}
+
 .case-detail-header-container {
   display: flex;
 }
@@ -2087,6 +2104,11 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   padding: 0 15px;
   justify-content: center;
   position: relative
+}
+
+.case-detail-description-input {
+  width: calc(100% - 6px);
+  resize: none;
 }
 
 _:-ms-input-placeholder, :root .case-details>* {
@@ -2191,11 +2213,6 @@ _:-ms-fullscreen, :root .additional-case-details-link {
   .additional-case-details-link {
     display: inline !important;
   }
-}
-
-.case-detail-description-input.ui-inputfield.ui-inputtextarea.ui-widget {
-  width: calc(100% - 75px);
-  resize: none;
 }
 
 .case-detail-field-set {
@@ -4535,7 +4552,7 @@ _:-ms-fullscreen, :root .content-link-history {
   margin-bottom: 6px;
 }
 
-.si-add-circle-task-description {
+.si-add-circle-task-description, .si-add-circle-case-description {
   position: relative;
   top: 18px;
   right: 1px;
@@ -5272,7 +5289,7 @@ body td .si {
   padding-bottom: 3px;
 }
 
-.task-details-description-content {
+.task-details-description-content, .case-details-description-content {
   padding: 7px 0 !important;
 }
 
