@@ -1937,12 +1937,14 @@ body.in-dialog .ui-widget-overlay {
 .time-information .si-graphic-tablet-drawing-pen,
 .general-information .si-graphic-tablet-drawing-pen,
 .task-detail-description .si-add-circle,
-.task-detail-description .si-subtract-circle {
+.task-detail-description .si-subtract-circle,
+.case-detail-description .si-add-circle,
+.case-detail-description .si-subtract-circle {
   margin-left: 5px;
   color: var(--primary-color);
 }
 
-.task-details-description-title .si-graphic-tablet-drawing-pen {
+.task-details-description-title .si-graphic-tablet-drawing-pen, .case-details-description-title .si-graphic-tablet-drawing-pen {
   margin: 0 2px;
   color: var(--primary-color);
 }
