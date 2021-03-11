@@ -13,7 +13,6 @@
 </cc:interface>
 
 <cc:implementation>
-  <h:outputScript name="task-widget.js" library="js" />
   <f:event listener="#{logic.initData(cc.attrs.case)}" type="preRenderComponent" />
   <f:event listener="#{data.dataModel.initColumnsConfiguration()}" type="preRenderComponent" />
   <div id="#{cc.clientId}" class="case-details-item #{cc.attrs.styleClass}">
@@ -41,7 +40,6 @@
             id="task-columns-configuration"
             updatedComponent="#{cc.clientId}:related-tasks #{cc.clientId}:task-list-actions"
             dataModel="#{data.dataModel}"
-            oncomplete="taskWidget.setupScrollbar(); taskWidget.setupHeader()"
             configButtonId="task-config-command"
             overlayPanelId="task-config-columns-panel" />
         </h:panelGroup>
@@ -155,20 +153,6 @@
     taskId="#{taskWidgetBean.selectedTaskItemId}"/>
 
   <script type="text/javascript">
-      var taskWidget = new TaskWidget();
-      function toggleShowTaskList() {
-        $('[id $= "task-widget-sub-header"]').toggleClass("ui-sm-hidden").toggleClass("ui-md-hidden");
-        $('[id $= "task-view"]').toggleClass("ui-sm-hidden").toggleClass("ui-md-hidden");
-        $('[id $= "toggle-tasks-link"] > i').toggleClass("si-add-small").toggleClass("si-subtract-small");
-      }
-
-      $(function() {
-        var simpleScreen = new TaskListScreenHandler();
-        var responsiveToolkit = ResponsiveToolkit(simpleScreen);
-        Portal.init(responsiveToolkit);
-        taskWidget.updateTaskCountToBreadcrumb();
-      });
-
     function start() {
         var statusDialog = PF('status-dialog');
         statusDialog.jq.removeAttr("download-status");
