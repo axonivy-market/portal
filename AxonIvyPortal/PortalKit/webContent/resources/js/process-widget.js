@@ -75,16 +75,17 @@ function ProcessWidget() {
       processNav.css("top", availableHeightProcessNavTop + "px");
 
       var numberOfDisplayingCharacters = $('.js-process-nav-item').length;
-      var characterContainer = processNav.find('.js-character-container');
+      let characterContainer = processNav.find('.js-character-container');
+      let characterContainerPadding = parseInt(characterContainer.css('padding-top')) + parseInt(characterContainer.css('padding-bottom'));;
       processNav.width(characterContainer.width());
 
       // If there is less than 6 characters displayed, calculate height of character container to make UI look better.
       if (numberOfDisplayingCharacters < 6) {
         var heightForEachCharacter = (processNav.get(0).offsetHeight / numberOfMaximumCharacters) * 2;
         var numberOfDisplayingCharacters = $('.js-process-nav-item').length;
-        characterContainer.height(numberOfDisplayingCharacters * heightForEachCharacter);
+        characterContainer.height((numberOfDisplayingCharacters * heightForEachCharacter) - characterContainerPadding);
       } else {
-        characterContainer.height(processNav.get(0).offsetHeight);
+        characterContainer.height(processNav.get(0).offsetHeight - characterContainerPadding);
       }
       $(".js-process-nav-item.selected").removeClass("selected");
     },
@@ -244,7 +245,7 @@ function expandOrCollapseAllCategories(shouldExpand) {
 
 function jumpToProcessGroupByCharacter(event, isCompactMode) {
   if (isCompactMode === false) {
-    jumpToProcessGroupByCharacterForGridProcess(event, isCompactMode);
+    jumpToProcessGroupByCharacterForGridProcess(event);
     return;
   }
 
@@ -257,16 +258,19 @@ function jumpToProcessGroupByCharacter(event, isCompactMode) {
   setTimeout(function(){ selectedItem.classList.add("selected"); }, 100);
 }
 
-function resetGridViewProcesses() {
+function resetGridViewProcesses(event) {
   let processList = $('.js-process-start-list-item.js-grid-process-index-group');
-  $(".js-process-nav-item.selected").removeClass("selected");
-  $('.js-filter-process-widget-list-item').val('');
   processList.show();
+  $(".js-process-nav-item.selected").removeClass("selected");
+  let selectedItem = document.getElementById(event.target.id);
+  setTimeout(function(){ selectedItem.classList.add("selected"); }, 100);
+
   let processWidget = new ProcessWidget();
   processWidget.setupScrollbar();
+  processWidget.clearSearchField();
 }
 
-function jumpToProcessGroupByCharacterForGridProcess(event, isCompactMode) {
+function jumpToProcessGroupByCharacterForGridProcess(event) {
   let processList = $('.js-process-start-list-item.js-grid-process-index-group');
   processList.show();
 
@@ -278,6 +282,7 @@ function jumpToProcessGroupByCharacterForGridProcess(event, isCompactMode) {
   processList.not(processGroupSeleted).hide();
   let processWidget = new ProcessWidget();
   processWidget.setupScrollbar();
+  processWidget.clearSearchField();
   setTimeout(function(){ selectedItem.classList.add("selected"); }, 100);
 }
 

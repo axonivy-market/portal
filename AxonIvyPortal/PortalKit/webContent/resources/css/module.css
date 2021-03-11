@@ -969,6 +969,7 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   text-align: center;
   position: absolute !important;
   right: 0;
+  padding: .5em 0;
 }
 
 .process-widget .process-nav .process-nav-item {
@@ -3139,7 +3140,15 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 
 .edit-process-dialog {
   max-width: 550px;
+  overflow: hidden !important;
 }
+
+.edit-process-dialog .ui-dialog-title {
+  width: calc(100% - 20px);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  padding-right: .5em;}
 
 .process-widget .process-input-switch-selection,
 .ui-inputswitch.ui-widget.ui-widget-content.process-input-switch-selection.ui-inputswitch-checked {
@@ -3148,9 +3157,38 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 }
 
 .edit-process-form .edit-process-detail-1st-cell {
+  min-width: 100px;
   width: 150px;
   text-align: left;
-  padding-left: 0;
+  padding: 6px 0;
+}
+
+.edit-process-form .edit-process-detail-2nd-cell {
+  width: calc(100% - 150px);
+  text-align: left;
+}
+
+.edit-process-form .edit-external-link-name {
+  float: left;
+  max-width: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  direction: ltr;
+}
+
+@media screen and (max-width: 40em) {
+  .edit-process-form .edit-external-link-name {
+    max-width: 120px;
+  }
+  
+  .edit-process-dialog .ui-dialog-title {
+    width: 300px;
+  }
+}
+
+.edit-process-form .edit-external-link-name,
+.edit-process-form .edit-external-link-name-icon {
+  float: left;
 }
 
 .process-grid-item .card-item {
