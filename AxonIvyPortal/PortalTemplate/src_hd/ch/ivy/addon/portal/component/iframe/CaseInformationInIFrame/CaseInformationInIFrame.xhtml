@@ -9,7 +9,7 @@
     <ui:define name="pageContent">
       <f:event listener="#{caseDetailsBean.preRender(data.currentCase, data.showBackButton)}" type="preRenderView" />
       <ic:ch.ivy.addon.portal.component.CaseInformation case="#{data.currentCase}" showItemBackButton="#{data.showBackButton}" isWorkingOnTask="true" inFrame="true"
-      showItemDetailsHeader="#{data.showBackButton}" readOnly="#{data.readOnly}" />
+        showItemDetailsHeader="#{data.showBackButton}" readOnly="#{data.readOnly}" />
     </ui:define>
   </ui:composition>
 </h:body>
