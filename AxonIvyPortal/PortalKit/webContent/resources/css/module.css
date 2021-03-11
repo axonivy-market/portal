@@ -862,18 +862,18 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   text-align: center;
 }
 
-.case-detail-body .case-details-related-task-table .id-column,
-.case-detail-body .case-details-related-task-table .created-column,
-.case-detail-body .case-details-related-task-table .expiry-column {
+.case-detail-body .case-details-related-task-table .related-task-id-column,
+.case-detail-body .case-details-related-task-table .related-task-created-column,
+.case-detail-body .case-details-related-task-table .related-task-expiry-column {
   text-align: center;
 }
 
-.case-detail-body .case-details-related-task-table .state-column {
+.case-detail-body .case-details-related-task-table .related-task-state-column {
   width: 92px;
   text-align: center;
 }
 
-.case-detail-body .more-column {
+.case-detail-body .case-details-related-task-table .related-task-more-column {
   width: 245px;
   text-align: center;
 }
