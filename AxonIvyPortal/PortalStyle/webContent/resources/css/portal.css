@@ -559,7 +559,8 @@ body .process-widget .ui-selectbooleanbutton.ui-state-active .ui-icon {
 .edit-process-header-group .edit-process-header-title {
   overflow: hidden;
   margin-top: auto;
-  font-size: var(--header-font-size); }
+  font-size: var(--process-edit-name-font-size);
+  font-weight: var(--process-edit-name-font-weight); }
 
 .edit-process-dialog .edit-process-info-group {
   overflow: hidden; }
