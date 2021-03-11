@@ -92,7 +92,7 @@ Cs0 @PushWFArc f3 '' #zField
 Cs0 f0 guid 167E9A75EF3D0909 #txt
 Cs0 f0 method start() #txt
 Cs0 f0 inParameterDecl '<> param;' #txt
-Cs0 f0 inParameterMapAction 'out.currentPortalPage="TASK_LIST";
+Cs0 f0 inParameterMapAction 'out.currentPortalPage="CASE_DETAIL_FROM_TASK";
 ' #txt
 Cs0 f0 outParameterDecl '<> result;' #txt
 Cs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -360,13 +360,8 @@ import javax.faces.context.FacesContext;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.enums.TaskAssigneeType;
 
-TaskLazyDataModel dataModel = new TaskLazyDataModel();
-boolean hasReadAllTasksPermisson = PermissionUtils.checkReadAllTasksPermission();
-dataModel.setAdminQuery(hasReadAllTasksPermisson);
-dataModel.setTaskAssigneeType(TaskAssigneeType.ALL);
-
 TaskEndInfo taskEndInfo = new TaskEndInfo();
-taskEndInfo.setDataModel(dataModel);
+taskEndInfo.setDataModel(in.dataModel);
 taskEndInfo.setPortalPage(PortalPage.valueOf(in.currentPortalPage));
 
 String taskEndInfoSessionAttributeKey = StickyTaskListService.service().getTaskEndInfoSessionAttributeKey(in.task.getId());
@@ -427,13 +422,8 @@ import javax.faces.context.FacesContext;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.enums.TaskAssigneeType;
 
-TaskLazyDataModel dataModel = new TaskLazyDataModel();
-boolean hasReadAllTasksPermisson = PermissionUtils.checkReadAllTasksPermission();
-dataModel.setAdminQuery(hasReadAllTasksPermisson);
-dataModel.setTaskAssigneeType(TaskAssigneeType.ALL);
-
 TaskEndInfo taskEndInfo = new TaskEndInfo();
-taskEndInfo.setDataModel(dataModel);
+taskEndInfo.setDataModel(in.dataModel);
 taskEndInfo.setPortalPage(PortalPage.valueOf(in.currentPortalPage));
 
 String taskEndInfoSessionAttributeKey = StickyTaskListService.service().getTaskEndInfoSessionAttributeKey(in.selectedTask.getId());
