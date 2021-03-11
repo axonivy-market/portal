@@ -12,17 +12,16 @@
   <p:dialog id="edit-process-dialog" widgetVar="edit-process-dialog"
     closeOnEscape="true" modal="true" appendTo="@(body)"
     responsive="true" resizable="false" fitViewport="true"
-    styleClass="edit-process-dialog"  showHeader="false">
+    styleClass="edit-process-dialog" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/editDialog/dialogHeaderTitle', [processWidgetBean.editedProcess.getName()])}">
     <h:form id="edit-process-form" styleClass="ui-g edit-process-form">
       <c:set var="process" value="#{processWidgetBean.editedProcess}" />
       <c:set var="processIcon" value="#{process.getIcon()}" />
 
       <div class="ui-g-12 edit-process-header-group">
-        <h2 class="edit-process-header-title">
-          <i class="si si-graphic-tablet-drawing-pen u-mar-right-5" />#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/processwidget/editDialog/dialogHeaderTitle", [process.getName()])}
-        </h2>
-        <p class="edit-process-header-sub-title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}</p>
-        <p class="edit-process-header-description MarTop5">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/editDialog/dialogHeaderDescription')}</p>
+        <div class="ui-g-12 u-padding-0">
+          <p class="edit-process-header-sub-title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}</p>
+          <p class="edit-process-header-description MarTop5">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/editDialog/dialogHeaderDescription')}</p>
+        </div>
       </div>
 
       <div id="edit-process-icon-group" class="ui-g-12 edit-process-icon-group MarTop20">
@@ -48,29 +47,40 @@
           <p:autoUpdate />
         </p:messages>
 
-        <h:panelGroup styleClass="ui-g-12 u-no-padding-left u-no-padding-right" rendered="#{processWidgetBean.isExpressProcess(process)}">
-          <h:outputText styleClass="ui-g-4 edit-process-detail-1st-cell" value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/ProcessOwner')}" />
-          <h:outputText styleClass="ui-g-8 u-truncate-text" value="#{process.getProcessOwnerDisplayName()}" />
-          <h:outputText styleClass="ui-g-4 edit-process-detail-1st-cell" value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/AbleToStart')}" />
-          <h:outputText styleClass="ui-g-8 u-truncate-text" value="#{process.ableToStart}" />
-        </h:panelGroup>
+        <h:panelGrid styleClass="ui-g-12 u-no-padding-left u-no-padding-right" columns="2" columnClasses="edit-process-detail-1st-cell, u-truncate-text" rendered="#{processWidgetBean.isExpressProcess(process)}">
+          <h:outputText value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/ProcessOwner')}" />
+          <h:outputText value="#{process.getProcessOwnerDisplayName()}" />
+          <h:outputText value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/AbleToStart')}" />
+          <h:outputText value="#{process.ableToStart}" />
+        </h:panelGrid>
 
-        <h:panelGroup styleClass="ui-g-12 u-no-padding-left u-no-padding-right" rendered="#{!processWidgetBean.isExpressProcess(process)}">
-          <div class="ui-g-12 u-no-padding-left u-no-padding-right ui-fluid md-inputfield MarTop10">
-            <p:inputText id="edit-external-link-name" value="#{processWidgetBean.editedExternalLink.name}" required="true" maxlength="85"
-              requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processName')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/isRequiredMessage')}"
-              styleClass="ui-g-8 u-truncate-text" />
-            <p:outputLabel for="edit-external-link-name" styleClass="ui-g-4 edit-process-detail-1st-cell"
-              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/displayName')}" />
-          </div>
-          <div class="ui-g-12 u-no-padding-left u-no-padding-right ui-fluid md-inputfield MarTop20">
-            <p:inputText id="edit-external-link" value="#{processWidgetBean.editedExternalLink.link}" required="true"
+        <h:panelGrid styleClass="ui-g-12 u-no-padding-left" columns="2" columnClasses="edit-process-detail-1st-cell, edit-process-detail-2nd-cell"
+          rendered="#{!processWidgetBean.isExpressProcess(process)}">
+          <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/displayName')}" />
+          <p:inplace editor="true" styleClass="md-inputfield" effectSpeed="fast"
+            saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
+            cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}">
+            <f:facet name="output">
+              <h:outputText styleClass="edit-external-link-name" value="#{processWidgetBean.editedExternalLink.name}" />
+              <a href="#" class="si si-graphic-tablet-drawing-pen edit-external-link-name-icon" />
+            </f:facet>
+            <p:inputText id="external-link-name" value="#{processWidgetBean.editedExternalLink.name}" required="true" maxlength="85"
+              requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processName')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/isRequiredMessage')}" />
+          </p:inplace>
+
+          <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/startLink')}" />
+          <p:inplace editor="true" styleClass="md-inputfield" effectSpeed="fast"
+            saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
+            cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}">
+            <f:facet name="output">
+              <h:outputText styleClass="edit-external-link-name" value="#{processWidgetBean.editedExternalLink.link}" />
+              <a href="#" class="si si-graphic-tablet-drawing-pen edit-external-link-name-icon" />
+            </f:facet>
+            <p:inputText id="external-link" value="#{processWidgetBean.editedExternalLink.link}" required="true"
               requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/startLink')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/isRequiredMessage')}"
-              styleClass="u-truncate-text ui-g-8" />
-            <p:outputLabel for="edit-external-link" styleClass="ui-g-4 edit-process-detail-1st-cell"
-              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/startLink')}" />
-          </div>
-        </h:panelGroup>
+              placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/webLinkExample')}" />
+          </p:inplace>
+        </h:panelGrid>
       </div>
     </h:form>
 

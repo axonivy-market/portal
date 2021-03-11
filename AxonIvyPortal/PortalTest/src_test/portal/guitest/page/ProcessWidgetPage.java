@@ -3,6 +3,7 @@ package portal.guitest.page;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
@@ -51,13 +52,31 @@ public class ProcessWidgetPage extends TemplatePage {
     WebElement processItemElement = getProcess(processName);
     click(processItemElement);
   }
-  
+
   public WebElement getProcess(String processName) {
     WebElement processListElement = findElementById(processWidgetId + ":process-list");
-    WebElement processItemElement = findChildElementByXpathExpression(processListElement, "//a[.//text() = '" + processName + "']");
+    WebElement processItemElement = null;
+    if (StringUtils.contains(getCurrentViewMode(), "Grid")) {
+      processItemElement = getGridProcess(processName, processListElement, processItemElement);
+    } else {
+      processItemElement =
+          findChildElementByXpathExpression(processListElement, "//a[.//text() = '" + processName + "']");
+    }
     return processItemElement;
   }
-  
+
+  private WebElement getGridProcess(String processName, WebElement processListElement, WebElement processItemElement) {
+    List<WebElement> processItems = findChildElementsByCssSelector(processListElement, ".js-process-start-list-item");
+    for (WebElement process : processItems) {
+      WebElement processNameElement = findChildElementByCssSelector(process, ".js-process-start-list-item-name");
+      if (processNameElement.getText().equalsIgnoreCase(processName)) {
+        processItemElement = findChildElementByCssSelector(process, "[id$=':process-item:start-button']");
+        break;
+      }
+    }
+    return processItemElement;
+  }
+
   public ExpressProcessPage editExpressWF(String wfName) {
     int numberOfRefesh = 5;
     for(int i=0; i< numberOfRefesh; i++) {

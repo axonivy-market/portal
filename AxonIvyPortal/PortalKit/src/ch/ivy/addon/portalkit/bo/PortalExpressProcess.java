@@ -15,8 +15,10 @@ import ch.ivyteam.ivy.security.IUser;
  * Used for merging express process and ivy process into a process list
  */
 public class PortalExpressProcess implements Process {
-  private ExpressProcess process;
+
+  private static final String NOT_AVAILABLE_CMS = "/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable";
   private static final String EXPRESS_WORKFLOW_ID_PARAM = "?workflowID=";
+  private ExpressProcess process;
   private String processOwnerDisplayName;
   private String ableToStart;
 
@@ -30,11 +32,11 @@ public class PortalExpressProcess implements Process {
 
     IUser user = processOwnerName != null ? Ivy.session().getSecurityContext().users().find(processOwnerName) : null;
 
-    this.processOwnerDisplayName = Optional.ofNullable(user).map(IUser::getDisplayName).orElse(StringUtils.EMPTY);
+    this.processOwnerDisplayName = Optional.ofNullable(user).map(IUser::getDisplayName).orElse(Ivy.cms().co(NOT_AVAILABLE_CMS));
     
     for (String username : this.process.getProcessPermissions()) {
       ISecurityMember assignee = Ivy.session().getSecurityContext().findSecurityMember(username);
-      String ableStartName = Optional.ofNullable(assignee).map(ISecurityMember::getDisplayName).orElse(StringUtils.EMPTY);
+      String ableStartName = Optional.ofNullable(assignee).map(ISecurityMember::getDisplayName).orElse(Ivy.cms().co(NOT_AVAILABLE_CMS));
       this.ableToStart = StringUtils.isBlank(ableToStart) ? ableStartName : String.join(";", ableToStart, ableStartName);
     }
   }
