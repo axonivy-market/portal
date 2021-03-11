@@ -19,6 +19,7 @@ public class UserProcess extends BusinessEntity implements Cloneable {
   private ProcessType processType;
   private String processName;
   private List<DisplayName> names;
+  @JsonIgnore
   private String link;
   private String icon;
   private String processId;
