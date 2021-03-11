@@ -13,7 +13,7 @@
   <c:set var="case" value="#{cc.attrs.case}" />
 
   <div class="ui-g-12 u-padding-0">
-    <div class="task-detail-title">
+    <div class="case-detail-title">
       <h:outputText
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/CaseStatusInformation/GeneralInformation/generalInformation')}"
         class="text-ellipsis" />
@@ -59,7 +59,7 @@
     <p:separator styleClass="case-details-separator" />
 
     <div id="role-and-user-information" class="ui-g role-and-user-information">
-      <div class="ui-g-12 task-detail-title">
+      <div class="ui-g-12 case-detail-title">
         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/RoleUserInformation')}" styleClass="text-ellipsis" />
       </div>
       
@@ -90,7 +90,7 @@
     </div>
     
     <div id="time-information" class="ui-g time-information">
-      <div class="ui-g-12 task-detail-title">
+      <div class="ui-g-12 case-detail-title">
         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/timeInformation')}" styleClass="text-ellipsis" />
       </div>
 
