@@ -857,11 +857,18 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   width: 150px;
 }
 
-.case-detail-body .id-column, .case-detail-body .created-column, .case-detail-body .expiry-column {
+.case-detail-body .id-column, .case-detail-body .created-column, .case-detail-body .expiry-column, .case-detail-body .state-column {
+  width: 120px;
   text-align: center;
 }
 
-.case-detail-body .state-column {
+.case-detail-body .case-details-related-task-table .id-column,
+.case-detail-body .case-details-related-task-table .created-column,
+.case-detail-body .case-details-related-task-table .expiry-column {
+  text-align: center;
+}
+
+.case-detail-body .case-details-related-task-table .state-column {
   width: 92px;
   text-align: center;
 }
