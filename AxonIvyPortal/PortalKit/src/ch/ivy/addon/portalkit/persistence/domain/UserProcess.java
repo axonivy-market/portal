@@ -181,6 +181,13 @@ public class UserProcess extends BusinessEntity implements Cloneable {
     } else if (!id.equals(other.id)) {
       return false;
     }
+    if (processId == null) {
+      if (other.processId != null) {
+        return false;
+      }
+    } else if (!processId.equals(other.processId)) {
+      return false;
+    }
     return true;
   }
 
