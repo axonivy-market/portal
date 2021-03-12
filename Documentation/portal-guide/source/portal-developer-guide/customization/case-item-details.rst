@@ -64,7 +64,7 @@ How to configure widgets in case details
 	      "type": "technicalCase",
 	      "id": "technicalCase",
 	      "axisX": 0,
-	      "axisY": 9,
+	      "axisY": 8,
 	      "width": 12,
 	      "height": 6
 	    },
@@ -72,7 +72,7 @@ How to configure widgets in case details
 	      "type": "relatedTask",
 	      "id": "relatedTask",
 	      "axisX": 0,
-	      "axisY": 16,
+	      "axisY": 14,
 	      "width": 12,
 	      "height": 6
 	    },
@@ -80,7 +80,7 @@ How to configure widgets in case details
 	      "type": "history",
 	      "id": "history",
 	      "axisX": 0,
-	      "axisY": 23,
+	      "axisY": 20,
 	      "width": 12,
 	      "height": 6
 	    }
@@ -205,7 +205,7 @@ There are **two steps** for adding new custom panels.
 	      "type": "technicalCase",
 	      "id": "technicalCase",
 	      "axisX": 0,
-	      "axisY": 21,
+	      "axisY": 20,
 	      "width": 12,
 	      "height": 6
 	    },
@@ -213,7 +213,7 @@ There are **two steps** for adding new custom panels.
 	      "type": "relatedTask",
 	      "id": "relatedTask",
 	      "axisX": 0,
-	      "axisY": 28,
+	      "axisY": 26,
 	      "width": 12,
 	      "height": 6
 	    },
@@ -221,7 +221,7 @@ There are **two steps** for adding new custom panels.
 	      "type": "history",
 	      "id": "history",
 	      "axisX": 0,
-	      "axisY": 35,
+	      "axisY": 32,
 	      "width": 12,
 	      "height": 6
 	    },
@@ -231,23 +231,23 @@ There are **two steps** for adding new custom panels.
 	      "axisX": 0,
 	      "axisY": 0,
 	      "width": 12,
-	      "height": 5
+	      "height": 6
 	    },
 	    {
 	      "type": "custom",
 	      "id": "caseItemDetailCustomMiddle",
 	      "axisX": 0,
-	      "axisY": 15,
+	      "axisY": 14,
 	      "width": 12,
-	      "height": 5
+	      "height": 6
 	    },
 	    {
 	      "type": "custom",
 	      "id": "caseItemDetailCustomBottom",
 	      "axisX": 0,
-	      "axisY": 42,
+	      "axisY": 38,
 	      "width": 12,
-	      "height": 5
+	      "height": 6
 	    }
 	  ]
 	}
