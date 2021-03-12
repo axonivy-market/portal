@@ -316,6 +316,8 @@ _:-ms-input-placeholder, :root .task-widget .in-progress-task-checkbox, .case-wi
   top: 7px;
 }
 
+.case-details-related-task-header-section,
+.case-details-related-case-header-section,
 .task-widget .ui-overlaypanel.advanced-filter-panel,
 .task-widget .ui-overlaypanel.advanced-filter-panel .ui-overlaypanel-content,
 .case-widget-container .ui-overlaypanel.advanced-filter-panel,
@@ -825,11 +827,6 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   }
 }
 
-.case-related-task-component .config-columns {
-  float: right;
-  white-space: normal;
-}
-
 .case-details-related-task-table .ui-datatable-tablewrapper tbody tr td .u-truncate-text {
   display: block;
 }
@@ -862,9 +859,32 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   text-align: center;
 }
 
+/* Mobile screen */
+@media screen and (max-width: 40em) {
+  .case-detail-body .case-details-related-task-table .related-task-name-column {
+    text-overflow: ellipsis;
+    overflow-y: hidden;
+    white-space: nowrap;
+  }
+}
+
+.case-detail-body .case-details-related-task-table .related-task-name-column {
+  font-weight: bold;
+  width: 170px;
+}
+
+.case-detail-body .case-details-related-task-table .related-task-description-column {
+  width: 300px;
+}
+
+.case-detail-body .case-details-related-task-table .related-task-responsible-column {
+  width: 170px;
+}
+
 .case-detail-body .case-details-related-task-table .related-task-id-column,
 .case-detail-body .case-details-related-task-table .related-task-created-column,
 .case-detail-body .case-details-related-task-table .related-task-expiry-column {
+  width: 110px;
   text-align: center;
 }
 
@@ -874,8 +894,12 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 }
 
 .case-detail-body .case-details-related-task-table .related-task-more-column {
-  width: 245px;
-  text-align: center;
+  width: 238px;
+  text-align: left;
+}
+
+.case-detail-body .case-details-related-task-table th.related-task-more-column {
+  padding-left: 30px;
 }
 
 .case-detail-body .related-cases .more-column {
@@ -4627,6 +4651,20 @@ _:-ms-fullscreen, :root .content-link-history {
   align-content: start;
   padding: 0 !important;
   position: relative;
+}
+
+.related-task-section-header-actions,
+.related-case-section-header-actions {
+  display: flex !important;
+  align-content: start;
+  padding: 0 !important;
+  position: relative;
+  white-space: nowrap;
+}
+
+.related-task-column-config,
+.related-case-column-config {
+  margin-left: 20px;
 }
 
 .task-description-inplace .ui-button.ui-widget.ui-button-icon-only.ui-inplace-save {
