@@ -5385,3 +5385,9 @@ body td .si {
     max-height: 180px;
   }
 }
+
+/* Allow users to scroll on mobile when use gridstack library*/
+.grid-stack-item-content.ui-draggable-handle {
+  -ms-touch-action: initial !important; 
+  touch-action: auto !important;
+}
