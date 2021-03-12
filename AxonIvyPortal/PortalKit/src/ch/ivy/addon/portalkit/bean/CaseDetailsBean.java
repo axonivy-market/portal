@@ -41,6 +41,7 @@ import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.globalvars.IGlobalVariableContext;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.ICase;
+import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
 @ManagedBean
 @ViewScoped
@@ -81,6 +82,11 @@ public class CaseDetailsBean implements Serializable {
     this.selectedCase = selectedCase;
     this.showBackButton = showBackButton;
     this.isTaskStartedInDetails = BooleanUtils.toBooleanDefaultIfNull((Boolean) Ivy.session().getAttribute(SessionAttribute.IS_TASK_STARTED_IN_DETAILS.toString()), false);
+  }
+  
+  public boolean hasTechnicalCases(ICase iCase) {
+    CaseQuery caseQuery = CaseQuery.subCases().where().businessCaseId().isEqual(iCase.getId());
+    return Ivy.wf().getCaseQueryExecutor().getFirstResult(caseQuery) != null;
   }
   
   private void loadCaseDetailsSettings() {
