@@ -123,22 +123,24 @@ function highlightProcessItems() {
   
   var expressLogo = $('.is-express .si-startup-launch:eq(0)');
   createRedMediumOutline(expressLogo);
-  appendStepAnnotation(expressLogo, "2", -45, -10);
+  appendStepAnnotation(expressLogo, "2", -15, -30);
   
   var externalLink = $('.is-external-link .si-hyperlink-3:eq(0)');
   createRedMediumOutline(externalLink);
-  appendStepAnnotation(externalLink, "3", -45, -10);
+  appendStepAnnotation(externalLink, "3", -15, -30);
   
   createRedMediumOutline($('[id$="process-widget:process-view-mode:process-view"]'));
   appendStepAnnotation($("[id$='process-widget:process-view-mode'] label[class$='switch-active']"), "4", -10, -40);
 }
 
 function highlightEditProcessIcon() {
-  appendStepAnnotation($("[id$='process-widget:edit-process-form:edit-process-icon:awesome-icon-selection']"), "4", -10, 100);
+  appendStepAnnotation($("[id$='process-widget:edit-process-form:edit-process-icon:awesome-icon-selection']"), "2", -10, 100);
 }
 
 function highlightEditProcessLink() {
-  createRedMediumOutline($('[id$="grid-process-group-alphabet:0:grid-processes:0:process-item:edit-link"]'))
+  let editProcessLink = $('[id$="grid-process-group-alphabet:0:grid-processes:0:process-item:edit-link"]');
+  createRedMediumOutline(editProcessLink);
+  appendStepAnnotation(editProcessLink, "1", -10, -40);
 }
 
 function numberingStatisticWidget() {

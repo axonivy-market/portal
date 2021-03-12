@@ -20,6 +20,25 @@ Express workflows are described in detail in :ref:`axon-ivy-express`.
    1. Search for a process, input your keyword here
    2. Express workfow icon
    3. External link icon
+   4. Change view mode
+
+Process mode
+------------
+
+In the :guilabel:`Full Process List`, we provided two modes for displaying the process list.
+By default, **Grid mode** is activated, change on the :guilabel:`My Profile` page.
+
+Grid mode
+^^^^^^^^^
+
+|portal-process-grid-view-page|
+
+
+List Mode
+^^^^^^^^^
+
+|portal-process-list-view-page|
+
 
 If you’re looking for a specific process, you can search your keyword in search field 
 marked in the image above. The search will look up your keyword in process names 
@@ -36,8 +55,25 @@ Please be aware, that after you finished your activities in the case you will be
 re-directed to the :guilabel:`Dashboard`  and not the :guilabel:`Full Process
 List`.
 
+HowTo: Edit process icon
+------------------------
+
+1. Click on **Edit link** in the process card item.
+
+2. The dialog :guilabel:`Edit process information` is opened.
+
+3. Click on **Change link**, besides the current icon.
+
+4. The dialog :guilabel:`Selecting icon` is opened, and choose new icon.
+
+5. Press on **Save button**, and process icon is changed
+
+|edit-process-icon-dialog|
+
+
+
 HowTo: Add an external link
---------------------------------------------
+---------------------------
 
 1. Select **Add external link** which is in Process list header.
 
@@ -71,3 +107,6 @@ HowTo: Add an external link
 .. |portal-full-process-list-page| image:: ../../screenshots/process/portal-full-process-list-page.png
 .. |how-to-add-a-new-external-link| image:: ../../screenshots/process/how-to-add-a-new-external-link.png
 .. |add-external-link-dialog| image:: ../../screenshots/process/add-external-link-dialog.png
+.. |portal-process-grid-view-page| image:: ../../screenshots/process/portal-process-grid-view-page.png
+.. |portal-process-list-view-page| image:: ../../screenshots/process/portal-process-list-view-page.png
+.. |edit-process-icon-dialog| image:: ../../screenshots/process/edit-process-dialog.png
