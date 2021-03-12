@@ -15,11 +15,11 @@
 <cc:implementation>
   <f:event listener="#{logic.initData(cc.attrs.case)}" type="preRenderComponent" />
   <div id="#{cc.clientId}" class="case-details-item #{cc.attrs.styleClass}">
-    <div class="ui-g-12">
-      <div class="ui-g-8 task-details-panel-title case-detail-section-title ">
+    <div class="ui-g-12 case-details-related-case-header-section">
+      <div class="ui-g-7 u-truncate-text task-details-panel-title case-detail-section-title">
         <i class="si si-layout-bullets"/> #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/relatedCases')}
       </div>
-      <h:panelGroup layout="block" styleClass="ui-g-4 case-detail-section-title-container" id="related-case-actions">
+      <h:panelGroup layout="block" styleClass="ui-g-5 related-case-section-header-actions" id="related-case-actions">
         <h:form id="related-cases-form" styleClass="config-columns-button">
           <p:commandLink ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);" >
             <i class="si si-office-file-xls-1 u-mar-right-5" />
@@ -27,9 +27,8 @@
             <p:fileDownload value="#{logic.getExportedFile(caseDetailsBean.getColumns(data.caseLazyDataModel))}" />
           </p:commandLink>
         </h:form>
-        
-        <p:spacer width="20px" />
-        <div id="column-config">
+
+        <div  id="related-case-column-config" class="related-case-column-config u-hidden-md-down">
           <ic:ch.ivy.addon.portalkit.component.ColumnsConfiguration id="case-columns-configuration"
             updatedComponent="#{cc.clientId}:related-cases-container #{cc.clientId}:related-case-actions"
             dataModel="#{data.caseLazyDataModel}" oncomplete="PF('case-config-columns-panel').hide()"
@@ -117,5 +116,6 @@
         PF('status-dialog').hide();
     }
   </script>
+  <h:outputScript library="js" name="case-detail-related-case.js" />
 </cc:implementation>
 </html>
