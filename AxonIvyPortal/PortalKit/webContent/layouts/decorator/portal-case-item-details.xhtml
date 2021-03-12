@@ -2,7 +2,7 @@
   xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
   xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
   xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
-  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:jsf="http://xmlns.jcp.org/jsf">
 
 <!-- THIS DECORATOR IS ONLY USED BY PORTAL. DON'T MODIFY IT -->
 
@@ -42,7 +42,8 @@
       <ui:repeat var="widget" value="#{caseDetailsBean.widgets}" id="widgets">
         <div id="case-details-#{widget.id}-panel" class="#{widget.styleClass} grid-stack-item" style="#{widget.style}" widget-type="#{widget.class.simpleName}"
           data-gs-x="#{widget.axisX}" data-gs-y="#{widget.axisY}" data-gs-width="#{widget.width}" data-gs-height="#{widget.height}" data-gs-id="#{widget.id}"
-          data-gs-no-resize="#{caseDetailsBean.readOnlyMode}" data-gs-no-move="#{caseDetailsBean.readOnlyMode}">
+          data-gs-no-resize="#{caseDetailsBean.readOnlyMode}" data-gs-no-move="#{caseDetailsBean.readOnlyMode}"
+          jsf:rendered="#{not (widget.class.simpleName eq 'CaseDetailsTechnicalCaseWidget' and not caseDetailsBean.hasTechnicalCases(case))}">
           <!-- General & description box -->
           <h:panelGroup id="case-detail-general-container" layout="block" rendered="#{widget.class.simpleName eq 'CaseDetailsInformationWidget'}"
             styleClass="card custom-general-panel grid-stack-item-content #{caseDetailsBean.readOnlyMode ? '' : 'moveable-area'}">
