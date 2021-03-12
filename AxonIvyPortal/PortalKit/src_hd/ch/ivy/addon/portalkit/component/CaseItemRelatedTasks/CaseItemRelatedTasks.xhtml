@@ -56,7 +56,7 @@
           rendered="#{data.dataModel.isSelectedColumn(masterDataBean.taskSortFieldPriority)}">
           <ui:include src="PriorityCell.xhtml" />
         </p:column>
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}" sortBy="#{task.name}" styleClass="name-column"
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}" sortBy="#{task.name}" styleClass="related-task-name-column"
           rendered="#{data.dataModel.isSelectedColumn(masterDataBean.taskSortFieldName)}">
           <h:outputText value="#{task.name}" styleClass="u-truncate-text" />
         </p:column>
@@ -68,28 +68,28 @@
           rendered="#{data.dataModel.isSelectedColumn(masterDataBean.taskSortFieldActivator)}">
           <h:outputText value="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(task.activator, task.activator.memberName)}" styleClass="u-truncate-text"/>
         </p:column>
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ID')}" sortBy="#{task.id}" styleClass="id-column"
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ID')}" sortBy="#{task.id}" styleClass="related-task-id-column"
           rendered="#{data.dataModel.isSelectedColumn(masterDataBean.taskSortFieldId)}">
           <h:outputText value="#{task.id}" />
         </p:column>
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/CREATION_TIME')}" sortBy="#{task.startTimestamp}" styleClass="created-column"
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/CREATION_TIME')}" sortBy="#{task.startTimestamp}" styleClass="related-task-created-column"
           rendered="#{data.dataModel.isSelectedColumn(masterDataBean.taskSortFieldCreationTime)}">
           <h:outputText value="#{task.startTimestamp}">
             <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
           </h:outputText>
         </p:column>
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/EXPIRY_TIME')}" sortBy="#{task.expiryTimestamp}" styleClass="expiry-column"
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/EXPIRY_TIME')}" sortBy="#{task.expiryTimestamp}" styleClass="related-task-expiry-column"
           rendered="#{data.dataModel.isSelectedColumn(masterDataBean.taskSortFieldExpiryTime)}">
           <h:outputText value="#{task.expiryTimestamp}">
             <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
           </h:outputText>
         </p:column>
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/STATE')}" sortBy="#{taskBean.getUserFriendlyTaskStateInCapitalization(task.state)}" styleClass="state-column"
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/STATE')}" sortBy="#{taskBean.getUserFriendlyTaskStateInCapitalization(task.state)}" styleClass="related-task-state-column"
           rendered="#{data.dataModel.isSelectedColumn(masterDataBean.taskSortFieldState)}">
           <h:outputText value="#{taskBean.getUserFriendlyTaskStateInCapitalization(task.state)}" 
             styleClass="task-state #{task.state.toString().toLowerCase()}-task-state" />
         </p:column>
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}" styleClass="more-column">
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}" styleClass="related-task-more-column">
           <ui:include src="TaskAction.xhtml">
             <ui:param name="dataModel" value="#{data.dataModel}" />
             <ui:param name="currentPortalPage" value="#{data.currentPortalPage}" />
