@@ -31,6 +31,7 @@ public class FullProcessPageTest extends BaseTest{
   
   @Test
   public void testFindProcess() {
+    processWidgetPage.clickOnSwitchButton();
     processWidgetPage.enterSearchKeyword("Alpha Company");
     assertTrue(processWidgetPage.isProcessDisplay("Create Alpha Company"));
     assertTrue(processWidgetPage.isProcessGroupDisplay("C"));
