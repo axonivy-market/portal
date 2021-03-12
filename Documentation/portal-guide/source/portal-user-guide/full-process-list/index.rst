@@ -17,10 +17,10 @@ Express workflows are described in detail in :ref:`axon-ivy-express`.
 
 |portal-full-process-list-page|
 
-   1. Search for a process, input your keyword here
-   2. Express workfow icon
-   3. External link icon
-   4. Change view mode
+   #. Search for a process, input your keyword here
+   #. Express workfow icon
+   #. External link icon
+   #. Change view mode
 
 Process mode
 ------------
@@ -58,17 +58,13 @@ List`.
 HowTo: Edit process icon
 ------------------------
 
-1. Click on **Edit link** in the process card item.
+#. Click on **Edit link** in the process card item.
+#. The dialog :guilabel:`Edit process information` is opened.
+#. Click on **Change link**, besides the current icon.
+#. The dialog :guilabel:`Selecting icon` is opened, and choose new icon.
+#. Press on **Save button**, and process icon is changed
 
-2. The dialog :guilabel:`Edit process information` is opened.
-
-3. Click on **Change link**, besides the current icon.
-
-4. The dialog :guilabel:`Selecting icon` is opened, and choose new icon.
-
-5. Press on **Save button**, and process icon is changed
-
-|edit-process-icon-dialog|
+   |edit-process-icon-dialog|
 
 
 
