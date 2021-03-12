@@ -65,13 +65,13 @@ public class PortalProcessesScreenshotTest extends ScreenshotTest {
     login(TestAccount.ADMIN_USER);
     processWidget = homePage.getProcessWidget();
     processWidget.expand();
-    ScreenshotUtil.resizeBrowser(new Dimension(1440, 800));
+    ScreenshotUtil.resizeBrowser(new Dimension(1000, 900));
     processWidget.navigateToProcessIndex("A");
     executeDecorateJs("highlightEditProcessLink()");
-    ScreenshotUtil.captureHalfLeftPageScreenShot(ScreenshotUtil.PROCESSES_WIDGET_FOLDER + "edit-process-link");
     processWidget.clickOnProcessEditLink(0);
     executeDecorateJs("highlightEditProcessIcon()");
-    ScreenshotUtil.captureElementWithMarginOptionScreenshot(processWidget.getEditProcessDialog(), ScreenshotUtil.PROCESSES_WIDGET_FOLDER + "edit-process-dialog", new ScreenshotMargin(50, 100));
+    ScreenshotUtil.captureElementWithMarginOptionScreenshot(processWidget.getEditProcessDialog(), ScreenshotUtil.PROCESSES_WIDGET_FOLDER + "edit-process-dialog", new ScreenshotMargin(150, 200));
+    ScreenshotUtil.resizeBrowser(new Dimension(1366, 800));
     refreshPage();
     processWidget.waitUtilProcessWidgetDisplayed();
     executeDecorateJs("highlightProcessItems()");
