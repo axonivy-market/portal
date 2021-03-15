@@ -14,6 +14,7 @@ import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivy.addon.portalkit.util.RequestUtil;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivyteam.ivy.workflow.StandardProcessType;
 
 public class BaseNavigator {
@@ -37,7 +38,13 @@ public class BaseNavigator {
   
   protected static String getRelativeLink(StandardProcessType standardProcess) {
     return IvyExecutor.executeAsSystem(() ->
-      Ivy.wf().getStandardProcessImplementation(standardProcess).getLink().getRelative());
+      {
+        IProcessStart standardProcessImplementation = Ivy.wf().getStandardProcessImplementation(standardProcess);
+        if (standardProcessImplementation != null) {
+          return standardProcessImplementation.getLink().getRelative();
+        }
+        return StringUtils.EMPTY;
+      });
   }
   
   private static String buildUrl(String friendlyRequestPath, Map<String, String> params) {
