@@ -899,7 +899,7 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 }
 
 .case-detail-body .case-details-related-task-table th.related-task-more-column {
-  padding-left: 30px;
+  text-align: center;
 }
 
 .case-detail-body .related-cases .more-column {
