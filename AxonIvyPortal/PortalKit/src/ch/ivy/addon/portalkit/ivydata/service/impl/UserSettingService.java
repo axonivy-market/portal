@@ -56,6 +56,15 @@ public class UserSettingService {
     UserUtils.setSessionCaseSortAttribute(null);
   }
 
+  public void saveProcessModeSetting(String processMode) {
+    IUser user = getSessionUser();
+    if (StringUtils.startsWithIgnoreCase(processMode, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/MyProfile/defaultOption").replace("({0})", ""))) {
+      user.removeProperty(UserProperty.DEFAULT_PROCESS_MODE);
+    } else {
+      user.setProperty(UserProperty.DEFAULT_PROCESS_MODE, processMode);
+    }
+  }
+  
   public String getDefaultSortFieldOfCaseList() {
     return getUserProperty(UserProperty.DEFAULT_SORT_FIELD_OF_CASE_LIST);
   }
@@ -72,6 +81,10 @@ public class UserSettingService {
     return getUserProperty(UserProperty.DEFAULT_DATE_FORMAT);
   }
 
+  public String getDefaultProcessMode() {
+    return getUserProperty(UserProperty.DEFAULT_PROCESS_MODE);
+  }
+  
   private String getUserProperty(String property) {
     if (Ivy.session().isSessionUserUnknown()) {
       return StringUtils.EMPTY;

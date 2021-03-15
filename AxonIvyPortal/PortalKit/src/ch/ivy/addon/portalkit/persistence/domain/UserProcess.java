@@ -19,6 +19,7 @@ public class UserProcess extends BusinessEntity implements Cloneable {
   private ProcessType processType;
   private String processName;
   private List<DisplayName> names;
+  @JsonIgnore
   private String link;
   private String icon;
   private String processId;
@@ -178,6 +179,13 @@ public class UserProcess extends BusinessEntity implements Cloneable {
         return false;
       }
     } else if (!id.equals(other.id)) {
+      return false;
+    }
+    if (processId == null) {
+      if (other.processId != null) {
+        return false;
+      }
+    } else if (!processId.equals(other.processId)) {
       return false;
     }
     return true;
