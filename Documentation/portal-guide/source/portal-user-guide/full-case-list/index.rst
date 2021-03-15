@@ -68,7 +68,7 @@ The case details are separated into 4 different sections:
    |case-details-histories|
 
 #. Documents, you find an area for documents that were
-   attached to the case. You may add or delete documents which his
+   attached to the case. You may add or delete documents as
    described in the HowTo’s below.
 
    |case-details-documents|
@@ -94,7 +94,7 @@ HowTo: Create new filter
 ------------------------
 
 #. Click on the button :guilabel:`More`  to select one of the available filters.
-   For a list of available filters, see Table 3: Case filter criterias.
+   For a list of available filters, see Table 3: Case filter criteria.
 
 #. Click on the newly added filter and configure it.
 
@@ -103,21 +103,21 @@ HowTo: Create new filter
 #. Drop filters by clicking on the |delete-circle-icon| icon next to
    the filter.
 
-#. When finished, click on the button :guilabel:`Save filter` .
+#. When finished, click on the button :guilabel:`Save filter`.
 
 #. The dialog :guilabel:`Save filter` is opened.
 
-#. Under :guilabel:`Filter name` , provide a recognizable name for the filter.
+#. Under :guilabel:`Filter name`, provide a recognizable name for the filter.
 
-#. Under :guilabel:`Filter visibility` , you can select if the filter is only
+#. Under :guilabel:`Filter visibility`, you can select if the filter is only
    visible for you or shall be available to all users.
 
-#. Save the filter by clicking the button :guilabel:`Ok` .
+#. Save the filter by clicking the button :guilabel:`Ok`.
 
 |how-to-create-case-filter|
 
 
-.. centered:: Case filter criterias
+.. centered:: Case filter criteria
 
 +-----------------------------------+-----------------------------------+
 | Criteria                          | Description                       |
@@ -163,8 +163,8 @@ HowTo: Show all related Tasks
 
 #. Click the :guilabel:`Show all tasks`  link.
 
-#. You’re routed to the :guilabel:`Related Tasks List` page. This page resembles
-   the :guilabel:`Full Tasks List` page (see  :ref:`full-task-list`) both in
+#. You’re routed to the **Related Tasks List** page. This page resembles
+   the **Full Tasks List** page (see  :ref:`full-task-list`) both in
    appearance and features. The shown tasks are only down selected to the ones
    related to your case already.
 
@@ -198,7 +198,7 @@ HowTo: Remove an attachment from the case
 #. Click on the |delete-icon| :guilabel:`Delete` button next to the
    attachment you want to remove.
 
-#. A :guilabel:`Confirmation` dialog is opened
+#. A confirmation dialog is opened
 
 #. Confirm the deletion with the button :guilabel:`Yes` 
 

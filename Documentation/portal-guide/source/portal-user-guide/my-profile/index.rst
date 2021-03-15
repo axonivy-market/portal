@@ -35,7 +35,7 @@ These are options you can modify:
 Task list configuration
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-This section has available options which help you to modified your personal Task list.
+This section has available options which help you to modify your personal Task list.
 These are options you can modify:
 
 .. table:: 
@@ -45,18 +45,18 @@ These are options you can modify:
    +=======================+===============================================+
    | Default sort field    | Your default sort field when open a task list.|
    |                       | Portal will get default value which is defined|
-   |                       | by adminif you don't select any option.       |
+   |                       | by admin if you don't select any option.      |
    +-----------------------+-----------------------------------------------+
    | Default sort direction| Your default sort direction when open a task  |
    |                       | list.                                         |
    |                       | Portal will get default value which is defined|
-   |                       | by adminif you don't select any option.       |
+   |                       | by admin if you don't select any option.      |
    +-----------------------+-----------------------------------------------+
 
 Case list configuration
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-This section has available options which help you to modified your personal Case list.
+This section has available options which help you to modify your personal Case list.
 These are options you can modify:
 
 .. table:: 
@@ -66,12 +66,12 @@ These are options you can modify:
    +=======================+===============================================+
    | Default sort field    | Your default sort field when open a case list.|
    |                       | Portal will get default value which is defined|
-   |                       | by adminif you don't select any option.       |
+   |                       | by admin if you don't select any option.      |
    +-----------------------+-----------------------------------------------+
    | Default sort direction| Your default sort direction when open a case  |
    |                       | list.                                         |
    |                       | Portal will get default value which is defined|
-   |                       | by adminif you don't select any option.       |
+   |                       | by admin if you don't select any option.      |
    +-----------------------+-----------------------------------------------+
 
 .. _language-settings:
@@ -81,7 +81,7 @@ Language settings
 
 **Language settings** allows you to specify your
 preferred application language. This setting will affect all Axon Ivy
-Portal pages and – if supported – your companies applications pages as
+Portal pages and – if supported – your company's application pages as
 well. The following languages are currently supported in the Axon Ivy
 Portal:
 
@@ -136,8 +136,8 @@ These are options you can select:
    +-----------------------+-----------------------------------------------+
    | Option                | Description                                   |
    +=======================+===============================================+
-   | Default               | Default date format will detected by browser's|
-   |                       | locale for your first login.                  |
+   | Default               | Default date format will be detected by       |
+   |                       | browser's locale for your first login.        |
    |                       |                                               |
    |                       | Example: Default format is dd/MM/yyyy.        |
    |                       | Date fields will be displayed as "31/01/2021" |

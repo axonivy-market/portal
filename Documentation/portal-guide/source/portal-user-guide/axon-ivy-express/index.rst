@@ -11,7 +11,7 @@ department. The following chapter takes you to the next level.
 enables you – as a business user – to create your own process
 applications and share them with your colleagues. These capabilities are
 also known as No-Code Application Platforms or Citizen Developer
-Platforms.Therefore, it is the perfect tool for you to digitize your
+Platforms. Therefore, it is the perfect tool for you to digitize your
 processes and create standardization, reliability and traceability. Some
 of the key features of Axon Ivy Express are:
 
@@ -35,9 +35,9 @@ your dashboard.
 
 |navigate-to-axon-ivy-express|
 
-Below the heading **Processes**, you see the link :guilabel:`Create express workflow` .
+Below the heading **Processes**, you see the link :guilabel:`Create express workflow`.
 This feature is explained in detail in `Axon Ivy Express`_. Below
-you find the process category :guilabel:`Express Workflows` with a list of
+you find the process category **Express Workflows** with a list of
 already defined processes.
 
 |start-link-for-axon-ivy-express|
@@ -84,7 +84,7 @@ HowTo: Create an Express Workflow
 
 #. For each process step provide a speaking name under :guilabel:`Task Name` 
 
-#. For each process step you may provide a description under :guilabel:`Task description` .
+#. For each process step you may provide a description under :guilabel:`Task description`.
 
 #. For *One time* process type, the first process step define the users or roles under
    :guilabel:`Able to start`  who can start the process
@@ -251,7 +251,7 @@ This feature is put in :ref:`Admin Settings <settings-admin-settings>`.
 |express-management-tab|
 
 .. note:: 
-  To use this feature, user needs to have role :guilabel:`AXONIVY_PORTAL_ADMIN`.
+  To use this feature, user needs to have role **AXONIVY_PORTAL_ADMIN**.
   
 
 HowTo: Export Express process
@@ -294,7 +294,7 @@ Then press the :guilabel:`Deploy` button and wait for the deployment process.
 
 After the deploy process is finished, an output log panel will be displayed, you can see all information which collected during the deployment process.
 
-Now, if the deployment process is success, your workflows are imported and administrator can check, edit them before they are ready to use by user.
+Now, if the deployment process is successful, your workflows are imported and administrator can check, edit them before they are ready to use by user.
 
 |deployment-result|
 
