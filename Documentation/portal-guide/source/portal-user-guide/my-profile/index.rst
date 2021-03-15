@@ -14,6 +14,24 @@ General settings
 contains :guilabel:`Selected homepage`, :guilabel:`Process list configuration`,
 :guilabel:`Task list configuration`, :guilabel:`Case list configuration` and :guilabel:`Show Welcome Tour`.
 
+Process list configuration
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This section has available options which help you to configure your personal Process list.
+These are options you can modify:
+
+.. table::
+
+   +-----------------------+-----------------------------------------------+
+   | Option                | Description                                   |
+   +=======================+===============================================+
+   | Default view mode     | Your standard view mode when open the process |
+   |                       | list.                                         |
+   |                       |                                               |
+   |                       | Portal will get default value which is defined|
+   |                       | by admin if you don't select any option.      |
+   +-----------------------+-----------------------------------------------+
+
 Task list configuration
 ^^^^^^^^^^^^^^^^^^^^^^^
 
