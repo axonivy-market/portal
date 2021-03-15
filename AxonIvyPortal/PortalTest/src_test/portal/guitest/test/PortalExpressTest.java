@@ -214,6 +214,7 @@ public class PortalExpressTest extends BaseTest {
 
 	@Test
 	public void testUserAdminCanViewEditDeleteProcess() {
+	  updatePortalSetting("DEFAULT_PROCESS_MODE", "LIST");
 		createAdministratedWorkflow("Test approval", Arrays.asList(responsible1, groupHr), false);
 		login(TestAccount.ADMIN_USER);
 		GlobalSearch globalSearch = homePage.getGlobalSearch();
@@ -227,6 +228,7 @@ public class PortalExpressTest extends BaseTest {
 
 	@Test
 	public void testUserCreatorCanViewEditDeleteProcess() {
+	  updatePortalSetting("DEFAULT_PROCESS_MODE", "LIST");
 		createAdministratedWorkflow("Test approval", Arrays.asList(responsible1, groupHr), false);
 		GlobalSearch globalSearch = homePage.getGlobalSearch();
 		SearchResultPage searchResultPage = globalSearch.inputSearchKeyword("Test approval");
@@ -239,6 +241,7 @@ public class PortalExpressTest extends BaseTest {
 
 	@Test
 	public void testProcessOwnerCanViewAndEditProcess() {
+	  updatePortalSetting("DEFAULT_PROCESS_MODE", "LIST");
 		createAdministratedWorkflow("Test approval", Arrays.asList(responsible1, groupHr), false);
 		login(TestAccount.HR_ROLE_USER);
 		GlobalSearch globalSearch = homePage.getGlobalSearch();
@@ -252,6 +255,7 @@ public class PortalExpressTest extends BaseTest {
 	
 	@Test
   public void testAbleToStartCanViewProcess() {
+	  updatePortalSetting("DEFAULT_PROCESS_MODE", "LIST");
     login(TestAccount.ADMIN_USER);
     createAdministratedWorkflow("Test approval", Arrays.asList(groupHr), false);
     login(TestAccount.DEMO_USER);
