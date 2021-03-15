@@ -1,6 +1,6 @@
 .. _my-profile:
 
-My profile
+My Profile
 **********
 
 Help you adjust your general settings, language, email settings and date format configuration.
@@ -11,8 +11,8 @@ General settings
 ----------------
 
 **General settings** allows you to configure some settings according to your requirements. This area
-contains :guilabel:`Homepage selection`, :guilabel:`Process list configuration`,
-:guilabel:`Task list configuration`, :guilabel:`Case list configuration` and :guilabel:`Show tutorial`.
+contains :guilabel:`Selected homepage`, :guilabel:`Process list configuration`,
+:guilabel:`Task list configuration`, :guilabel:`Case list configuration` and :guilabel:`Show Welcome Tour`.
 
 Task list configuration
 ^^^^^^^^^^^^^^^^^^^^^^^
@@ -56,6 +56,8 @@ These are options you can modify:
    |                       | by adminif you don't select any option.       |
    +-----------------------+-----------------------------------------------+
 
+.. _language-settings:
+
 Language settings
 -----------------
 
@@ -97,12 +99,12 @@ Engine.
    If configured by your company’s application, you might also be able to configure application specific email notifications.   
 ..
 
-Toggle button **Receive email notification on task assignment** allows you to 
+Toggle button :guilabel:`Receive email notification on task assignment`  allows you to 
 specify if you want to receive an instant notification when a task is assigned to you or one of the roles you hold.
 
-Toggle button **Receive further emails from application** allows you to activate / deactivate further email notifications.
+Toggle button :guilabel:`Receive further emails from application`  allows you to activate / deactivate further email notifications.
 
-Toggle button **Receive daily summary at** allows you to specify the weekdays 
+Toggle button :guilabel:`Receive daily summary at`  allows you to specify the weekdays 
 when you receive a summary of all tasks assigned to you or one of your roles.
 
 Date format configuration

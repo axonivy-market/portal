@@ -1,6 +1,6 @@
 .. _demo-processes:
 
-Demo processes
+Demo Processes
 **************
 
 When you start engine in demo mode, you will see the project :guilabel:`portal-user-examples`.
@@ -23,56 +23,56 @@ to have the feeling how ivy and Portal work.
 Leave request
 -------------
 
-1. Login to Portal.
+#. Login to Portal.
 
-2. Select User example guide to open overview page.
+#. Select User example guide to open overview page.
 
-|user-example-guide-link|
+   |user-example-guide-link|
 
-3. At example overview page, start leave request
+#. At example overview page, start leave request
 
-|example-overview-leave-request|
+   |example-overview-leave-request|
 
-4. You will go directly to the first task **Create leave request for: <user>**.
+#. You will go directly to the first task **Create leave request for: <user>**.
 
-|leave-request-creation|
+   |leave-request-creation|
 
-5. Input your data and submit leave request. Base on your selected approver, next task will be assigned to that user.
+#. Input your data and submit leave request. Base on your selected approver, next task will be assigned to that user.
 
-6. The 2nd task is **Leave request approval**, and after approver finishes his task, summary task will be assigned back to requester.
+#. The 2nd task is **Leave request approval**, and after approver finishes his task, summary task will be assigned back to requester.
 
-7. After requester finishes **summary task**, the case is Done.
+#. After requester finishes **summary task**, the case is Done.
 
 Lending (Case Map)
 ------------------
 
-1. Login to Portal
+#. Login to Portal
 
-2. Select User example guide to open overview page.
+#. Select User example guide to open overview page.
 
-|user-example-guide-link|
+   |user-example-guide-link|
 
-3. At example overview page, start Lending case
+#. At example overview page, start Lending case
 
-|example-overview-lending-case|
+   |example-overview-lending-case|
 
-4. You will go directly to the first task **Collect Personal Data**
+#. You will go directly to the first task **Collect Personal Data**
 
-|lending-casemap-collect-personal-data|
+   |lending-casemap-collect-personal-data|
 
-By default we'll have dummy data on all fields, or you can input your data and submit the request.
+   By default we'll have dummy data on all fields, or you can input your data and submit the request.
 
-5. You will go to task **Verify Personal Data** to verify your information.
+#. You will go to task **Verify Personal Data** to verify your information.
 
-6. In **Internal Solvency Check** task, you can proceed to next task or start **External Solvency Service** sidestep by clicking **External solvency service**.
+#. In **Internal Solvency Check** task, you can proceed to next task or start **External Solvency Service** sidestep by clicking **External solvency service**.
 
-|lending-casemap-external-solvency-service|
+   |lending-casemap-external-solvency-service|
 
-7. After finishing Internal Solvency, you will have 1 or 2 approval levels which are depended on Amount and Salary fields. If Amount is greater than or equal to 20% of Salary, you will have 2 approval levels.
+#. After finishing Internal Solvency, you will have 1 or 2 approval levels which are depended on Amount and Salary fields. If Amount is greater than or equal to 20% of Salary, you will have 2 approval levels.
 
-|lending-casemap-approval-task|
+   |lending-casemap-approval-task|
 
-8. In the approval task, you can approve to complete task and go to the last step which is created a contract. Now **Create Contract** task is finished, the case is Done. If we reject task, process will end.
+#. In the approval task, you can approve to complete task and go to the last step which is created a contract. Now **Create Contract** task is finished, the case is Done. If we reject task, process will end.
 
 
 .. |example-overview-leave-request| image:: ../../screenshots/demo-processes/example-overview-leave-request.png
