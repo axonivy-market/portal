@@ -66,12 +66,12 @@ The task details are separated into 3 different sections:
 
    |detailed-task-information-data-description|
 
-#. Histories, you may add additional notes which is described below
+#. Histories, you may add additional notes which are described below
 
    |detailed-task-information-note|
 
 #. Documents, these documents once attached to the case are
-   available on all tasks. You may add or delete documents which his
+   available on all tasks. You may add or delete documents 
    described in the HowTo’s below.
 
    |detailed-task-information-documents|
@@ -95,7 +95,7 @@ HowTo: Create new filter
 ------------------------
 
 #. Click on the button :guilabel:`More`  to select one of the available filters.
-   For a list of available filters, see  `Task filter criterias`_.
+   For a list of available filters, see  `Task filter criteria`_.
 
 #. Click on the newly added filter and configure it.
 
@@ -109,17 +109,17 @@ HowTo: Create new filter
 
 #. The :guilabel:`Save filter` dialog is opened.
 
-#. Under :guilabel:`Filter name` , provide a recognizable name for the filter.
+#. Under :guilabel:`Filter name`, provide a recognizable name for the filter.
 
-#. Under :guilabel:`Filter visibility` , you can select if the filter is only
+#. Under :guilabel:`Filter visibility`, you can select if the filter is only
    visible for you or shall be available to all users.
 
-#. Save the filter by clicking the button :guilabel:`Ok` .
+#. Save the filter by clicking the button :guilabel:`Ok`.
 
 |how-to-create-task-filter|
 
 
-.. centered:: _`Task filter criterias`
+.. centered:: _`Task filter criteria`
 
 +-----------------------------------+-----------------------------------+
 | Criteria                          | Description                       |
@@ -214,7 +214,7 @@ HowTo: Remove an attachment from the case
 #. Click on the |delete-icon| **Delete** button next to the
    attachment you want to remove
 
-#. A :guilabel:`Confirmation` dialog is opened
+#. A confirmation dialog is opened
 
 #. Confirm the deletion with the button :guilabel:`Delete` 
 
