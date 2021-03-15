@@ -15,7 +15,7 @@ Project modules
 ---------------
 
 The application consists of 4 process modules. For detailed information
-of each module, refer to :ref:`architecture` .
+of each module, refer to :ref:`architecture`.
 
 -  PortalStyle
 
