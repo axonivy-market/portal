@@ -8,10 +8,12 @@ import ch.ivy.addon.portalkit.persistence.domain.BusinessEntity;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public class ExternalLink extends BusinessEntity{
+
   private String name;
   private String link;
   private Long creatorId;
   private boolean isPublic;
+  private String icon;
 
   @Deprecated
   private String creator;
@@ -65,7 +67,7 @@ public class ExternalLink extends BusinessEntity{
   
   @Override
   public String toString() {
-    return "ExternalLink {creatorId=" + creatorId + ", name=" + name + ", link=" + link + ", isPublic=" + isPublic + "}";
+    return String.format("ExternalLink {creatorId=%s, name=%s, link=%s, isPublic=%s, icon=%s}", creatorId, name, link, isPublic, icon);
   }
   
   @Override
@@ -93,5 +95,13 @@ public class ExternalLink extends BusinessEntity{
       return false;
     }
     return true;
+  }
+
+  public String getIcon() {
+    return icon;
+  }
+
+  public void setIcon(String icon) {
+    this.icon = icon;
   }
 }
