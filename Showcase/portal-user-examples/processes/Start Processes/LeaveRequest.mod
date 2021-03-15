@@ -36,6 +36,7 @@ Lt0 f0 callSignature start() #txt
 Lt0 f0 startName <%=ivy.cms.co("/Processes/LeaveRequest/leaveRequest")%> #txt
 Lt0 f0 startDescription 'This process allow employee to submit their leave request, then the request will be sent to selected approver.
 After approver finish his task, the approval result will be sent back to requester' #txt
+Lt0 f0 startCustomFields 'cssIcon=si si-advertising-megaphone-2' #txt
 Lt0 f0 taskData TaskTriggered.NAM=<%\=ivy.cms.co("/Processes/LeaveRequest/createNewLeaveRequest")%> #txt
 Lt0 f0 caseData 'businessCase.attach=true
 case.name=<%\=ivy.cms.co("/Processes/LeaveRequest/leaveRequest")%>
@@ -51,7 +52,6 @@ Lt0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Lt0 f0 @C|.responsibility Everybody #txt
 Lt0 f0 73 233 30 30 -21 17 #rect
-Lt0 f0 @|StartRequestIcon #fIcon
 Lt0 f18 dialogId com.axonivy.portal.userexamples.leaverequest.LeaveRequestCreation #txt
 Lt0 f18 startMethod start() #txt
 Lt0 f18 requestActionDecl '<> param;' #txt
@@ -71,7 +71,6 @@ Lt0 f18 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Lt0 f18 208 226 144 44 -63 -8 #rect
-Lt0 f18 @|UserTaskIcon #fIcon
 Lt0 f20 103 248 208 248 #arcP
 Lt0 f4 dialogId com.axonivy.portal.userexamples.leaverequest.LeaveRequestApproval #txt
 Lt0 f4 startMethod start() #txt
@@ -90,7 +89,6 @@ Lt0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Lt0 f4 424 226 144 44 -63 -8 #rect
-Lt0 f4 @|UserTaskIcon #fIcon
 Lt0 f16 dialogId com.axonivy.portal.userexamples.leaverequest.LeaveRequestSummary #txt
 Lt0 f16 startMethod start() #txt
 Lt0 f16 requestActionDecl '<> param;' #txt
@@ -107,7 +105,6 @@ Lt0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Lt0 f16 648 226 144 44 -66 -8 #rect
-Lt0 f16 @|UserTaskIcon #fIcon
 Lt0 f2 568 248 648 248 #arcP
 Lt0 f2 0 0.6124600781942752 0 0 #arcLabel
 Lt0 f3 352 248 424 248 #arcP
@@ -123,7 +120,6 @@ In this task, user able to submit his/her  leave request, and choose the approva
 </elementInfo>
 ' #txt
 Lt0 f5 96 26 528 76 -257 -32 #rect
-Lt0 f5 @|IBIcon #fIcon
 Lt0 f6 360 102 280 226 #arcP
 Lt0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -133,7 +129,6 @@ Lt0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Lt0 f7 344 393 480 30 -234 -8 #rect
-Lt0 f7 @|IBIcon #fIcon
 Lt0 f8 584 393 496 270 #arcP
 Lt0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -145,7 +140,6 @@ the person who submit the leave request</name>
 </elementInfo>
 ' #txt
 Lt0 f9 816 34 336 60 -158 -24 #rect
-Lt0 f9 @|IBIcon #fIcon
 Lt0 f10 816 64 720 226 #arcP
 Lt0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -156,7 +150,6 @@ After approver finish his task, the approval result will be sent back to request
 </elementInfo>
 ' #txt
 Lt0 f11 0 530 608 44 -298 -16 #rect
-Lt0 f11 @|IBIcon #fIcon
 Lt0 f12 304 530 83 262 #arcP
 Lt0 f28 actionTable 'out=in;
 ' #txt
@@ -180,10 +173,8 @@ Lt0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Lt0 f28 864 226 112 44 -34 -8 #rect
-Lt0 f28 @|StepIcon #fIcon
 Lt0 f1 792 248 864 248 #arcP
 Lt0 f13 1041 233 30 30 0 15 #rect
-Lt0 f13 @|EndIcon #fIcon
 Lt0 f14 976 248 1041 248 #arcP
 >Proto Lt0 .type com.axonivy.portal.userexamples.leaverequest.LeaveRequestProcessData #txt
 >Proto Lt0 .processKind NORMAL #txt

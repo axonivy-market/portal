@@ -14,4 +14,5 @@ public class UserProperty {
   public static final String PORTAL_CHAT_UNREAD_MESSAGES = "PORTAL_CHAT_UNREAD_MESSAGES";
   public static final String DEFAULT_DATE_FORMAT = "DEFAULT_DATE_FORMAT";
   public static final String DATE_FORMAT = "DATE_FORMAT";
+  public static final String DEFAULT_PROCESS_MODE = "DEFAULT_PROCESS_MODE";
 }

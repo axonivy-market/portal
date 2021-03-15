@@ -36,7 +36,8 @@ public class ExternalLinkBean implements Serializable {
   
   public ExternalLink saveNewExternalLink() {
     externalLink.setCreatorId(Ivy.session().getSessionUser().getId());
-    correctLink();
+    String processLink = correctLink(externalLink.getLink());
+    externalLink.setLink(processLink);
     externaLinkService.save(externalLink);
     return externalLink;
   }
@@ -45,12 +46,12 @@ public class ExternalLinkBean implements Serializable {
     return PermissionUtils.checkPublicLinkCreationPermission();
   }
   
-  private void correctLink() {
-    String processLink = externalLink.getLink().trim();
+  public String correctLink(String link) {
+    String processLink = link.trim();
     if (!isValidProcessLink(processLink)) {
       processLink = Protocol.HTTP.getValue() + processLink;
-      externalLink.setLink(processLink);
     }
+    return processLink;
   }
 
   private boolean isValidProcessLink(String processLink) {
