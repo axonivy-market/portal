@@ -8,7 +8,7 @@ Document processes
 Introduction
 ------------
 
-When you upload document, but want to manage them outside ivy, for
+When you upload document but want to manage them outside ivy, for
 example: in Document Management System (DMS), you should follow this
 section to override document functions of Portal.
 
