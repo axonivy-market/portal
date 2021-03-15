@@ -26,7 +26,7 @@ Process mode
 ------------
 
 In the :guilabel:`Full Process List`, we provided two modes for displaying the process list.
-By default, **Grid mode** is activated, change on the :guilabel:`My Profile` page.
+By default, **Grid mode** is activated. You can change default process mode in :guilabel:`My Profile` page.
 
 Grid mode
 ^^^^^^^^^
@@ -55,14 +55,14 @@ Please be aware, that after you finished your activities in the case you will be
 re-directed to the **Dashboard**  and not the :guilabel:`Full Process
 List`.
 
-HowTo: Edit process icon
-------------------------
+HowTo: Edit process icon in Grid mode
+-------------------------------------
 
-#. Click on **Edit link** in the process card item.
+#. Click on **Edit** link in the process card item.
 #. The dialog :guilabel:`Edit process information` is opened.
-#. Click on **Change link**, besides the current icon.
+#. Click on **Change** link, besides the current icon.
 #. The dialog :guilabel:`Selecting icon` is opened, and choose new icon.
-#. Press on **Save button**, and process icon is changed
+#. Press on **Save** button, and process icon is changed
 
    |edit-process-icon-dialog|
 
