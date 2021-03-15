@@ -58,7 +58,7 @@
         </p:column>
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}" sortable="false"
           styleClass="u-hidden-sm-down related-task-description-column">
-          <h:outputText value="#{task.description}" />
+          <h:outputText value="#{taskWidgetBean.createTaskDescriptionInTaskStart(task.description)}" />
         </p:column>
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}"
           styleClass="related-task-responsible-column"
