@@ -67,7 +67,7 @@ public class ExternalLink extends BusinessEntity{
   
   @Override
   public String toString() {
-    return "ExternalLink {creatorId=" + creatorId + ", name=" + name + ", link=" + link + ", isPublic=" + isPublic + "}";
+    return String.format("ExternalLink {creatorId=%s, name=%s, link=%s, isPublic=%s, icon=%s}", creatorId, name, link, isPublic, icon);
   }
   
   @Override
@@ -104,5 +104,4 @@ public class ExternalLink extends BusinessEntity{
   public void setIcon(String icon) {
     this.icon = icon;
   }
-
 }
