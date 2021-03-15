@@ -100,7 +100,11 @@ public class CaseDetailsBean implements Serializable {
   }
 
   private String readConfigurationJsonInProperty() {
+    if (Ivy.session().isSessionUserUnknown()) {
+      return StringUtils.EMPTY;
+    }
     return Ivy.session().getSessionUser().getProperty(CASE_DETAILS_CONFIGURATION_PROPERTY);
+    
   }
 
   private CaseDetails readConfiguration(String configurationJson) throws JsonMappingException, JsonProcessingException, IOException {
