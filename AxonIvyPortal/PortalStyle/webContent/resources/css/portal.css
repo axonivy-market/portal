@@ -1149,7 +1149,7 @@ a.case-details-document-add-link,
 a.task-details-document-add-link,
 span.case-details-document-add-link,
 span.task-details-document-add-link,
-.case-history-button-container a.config-columns {
+.related-task-section-header-actions a {
   font-weight: var(--details-document-add-link-font-weight); }
 
 body .ui-inputfield.case-detail-name-input {
