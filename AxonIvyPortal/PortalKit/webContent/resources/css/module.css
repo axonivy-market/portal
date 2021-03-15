@@ -903,8 +903,12 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 }
 
 .case-detail-body .related-cases .more-column {
-  width: 120px;
+  width: 130px;
   text-align: center;
+}
+
+.related-cases .case-header-action-cell{
+	display: inline-block;
 }
 
 .case-detail-body .priority {
