@@ -5,8 +5,8 @@ Full Statistics Page
 
 One way to consume statistics is through your personal dashboard (see
 :ref:`dashboard`). If you need a deeper insight in what is going on, the
-:guilabel:`Full Statistics` page provides you with the perfect toolset. You can
-consume statistics and charts here at one glance and have the chance to setup
+**Full Statistics** page provides you with the perfect toolset. You can
+consume statistics and charts here at one glance and have the chance to set up
 your own statistics. You can reach the page by using the 
 **Statistics** link in the Axon Ivy Portal menu or by using the :guilabel:`Show all
 charts`  quick link in the statistics section of your dashboard.
@@ -18,7 +18,7 @@ charts`  quick link in the statistics section of your dashboard.
 
 |navigate-to-full-statistics-page|
 
-On the :guilabel:`Full Statistics` page you see all charts that were previously
+On the **Full Statistics** page you see all charts that were previously
 created. Each chart provides you with the following features:
 
 |full-statistics-page-chart-detail|
@@ -50,7 +50,7 @@ HowTo: Create chart
 
 3. Select one of the available chart types (see Available charts)
 
-4. Select and configure one or more of the available filters (see Chart filter criterias).
+4. Select and configure one or more of the available filters (see Chart filter criteria).
 
 5. Click :guilabel:`Add to dashboard` 
 
@@ -95,7 +95,7 @@ HowTo: Create chart
 |                       |                       | categorized by expiry |
 |                       |                       | time (Today, This     |
 |                       |                       | Week, This Month,     |
-|                       |                       | This Year). The valus |
+|                       |                       | This Year). The values|
 |                       |                       | are the sum of tasks  |
 |                       |                       | in the respective     |
 |                       |                       | categories.           |
@@ -133,7 +133,7 @@ HowTo: Create chart
 +-----------------------+-----------------------+-----------------------+
 
 
-.. centered:: Chart filter criterias
+.. centered:: Chart filter criteria
 
 +-----------------------------------+-----------------------------------+
 | Filter                            | Description                       |
@@ -158,7 +158,7 @@ HowTo: Create chart
 |                                   | the future will be included in    |
 |                                   | the chart.                        |
 +-----------------------------------+-----------------------------------+
-| Workflow states                   | Select which status / statuses    |
+| Workflow states                   | Select which status/statuses      |
 |                                   | shall be analyzed (Created, In    |
 |                                   | Progress, Done).                  |
 +-----------------------------------+-----------------------------------+
@@ -225,7 +225,7 @@ HowTo: Create new filter
 
 #. Under :guilabel:`Filter name`, provide a recognizable name for the filter.
 
-#. Under :guilabel:`Filter visibility` , you can select if the filter is only
+#. Under :guilabel:`Filter visibility`, you can select if the filter is only
    visible to you or shall be available to all users.
 
 #. Save the filter by clicking on :guilabel:`Ok`.
