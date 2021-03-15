@@ -889,7 +889,7 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 }
 
 .case-detail-body .case-details-related-task-table .related-task-state-column {
-  width: 92px;
+  width: 170px;
   text-align: center;
 }
 
@@ -4827,6 +4827,19 @@ body .ui-picklist .ui-picklist-filter-container .ui-icon {
   .display-short-text {
     display: none !important;
   }
+}
+
+.group-history-fitlers.display-short-text {
+  white-space: nowrap;
+  margin-bottom: 7px;
+}
+
+.group-history-fitlers.display-full-text {
+  white-space: nowrap;
+}
+
+.group-history-fitlers.display-full-text .show-system-tasks {
+  margin-right: 8px;
 }
 
 /*=================== EXPRESS MANAGEMENT START ===================*/
