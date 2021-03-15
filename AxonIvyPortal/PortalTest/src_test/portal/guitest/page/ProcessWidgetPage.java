@@ -55,17 +55,17 @@ public class ProcessWidgetPage extends TemplatePage {
 
   public WebElement getProcess(String processName) {
     WebElement processListElement = findElementById(processWidgetId + ":process-list");
-    WebElement processItemElement = null;
-    if (StringUtils.contains(getCurrentViewMode(), "Grid")) {
-      processItemElement = getGridProcess(processName, processListElement, processItemElement);
-    } else {
-      processItemElement =
-          findChildElementByXpathExpression(processListElement, "//a[.//text() = '" + processName + "']");
+    if (!isCompactMode()) {
+      if (StringUtils.contains(getCurrentViewMode(), "Grid") && !isCompactMode()) {
+        return getGridProcess(processName, processListElement);
+      }
     }
-    return processItemElement;
+
+    return findChildElementByXpathExpression(processListElement, "//a[.//text() = '" + processName + "']");
   }
 
-  private WebElement getGridProcess(String processName, WebElement processListElement, WebElement processItemElement) {
+  private WebElement getGridProcess(String processName, WebElement processListElement) {
+    WebElement processItemElement = null;
     List<WebElement> processItems = findChildElementsByCssSelector(processListElement, ".js-process-start-list-item");
     for (WebElement process : processItems) {
       WebElement processNameElement = findChildElementByCssSelector(process, ".js-process-start-list-item-name");
@@ -283,7 +283,7 @@ public class ProcessWidgetPage extends TemplatePage {
     WebElement deleteExternalIcon = findElementByCssSelector(deleteExternalLinkIconCssSelector);
     deleteExternalIcon.click();
     waitAjaxIndicatorDisappear();
-    findElementByCssSelector("button[id$='delete-external-link-btn']").click();
+    findElementByCssSelector("button[id$=':remove-process-command']").click();
     waitAjaxIndicatorDisappear();
   }
 
