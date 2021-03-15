@@ -41,13 +41,24 @@
                 </div>
               </div>
 
+              <!-- Process List Setting -->
               <div class="ui-g-12">
                 <div class="setting-header ui-g-12">
                   <h2>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/processListConfiguration')}</h2>
                   <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/processListConfigDescription')}</span>
                 </div>
+                <div class="ui-g-12 u-no-padding-top">
+                  <span class="ui-g-12">#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/MyProfile/defaultViewMode")}</span>
+                  <div class="ui-g-12">
+                    <p:selectOneMenu id="process-mode-selection" value="#{data.selectedProcessMode}">
+                      <f:selectItems value="#{data.processModes}" var="mode"
+                        itemValue="#{mode}" itemLabel="#{mode}" />
+                    </p:selectOneMenu>
+                  </div>
+                </div>
               </div>
 
+              <!-- Task List Setting -->
               <div class="ui-g-12">
                 <div class="setting-header ui-g-12">
                   <h2>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/taskListConfiguration')}</h2>
@@ -69,6 +80,7 @@
                 </div>
               </div>
 
+              <!-- Case List Setting -->
               <div class="ui-g-12">
                 <div class="setting-header ui-g-12">
                   <h2>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/caseListConfiguration')}</h2>
@@ -100,6 +112,7 @@
                   <h2 id="language-setting-title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/languageSetting/languageSetting')}</h2>
                 </div>
 
+                <!-- Language Setting -->
                 <div class="language-selection ui-g-12 u-no-padding-top">
                   <h:outputText id="language-selection-label" styleClass="language-selection-label ui-g-12"
                     value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/languageSetting/selectedLanguage')}" />
@@ -111,6 +124,7 @@
                 </div>
               </div>
 
+              <!-- Email Setting -->
               <div id="email-setting-container" class="email-setting-container ui-g-12">
                 <div class="setting-header ui-g-12">
                   <h2>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/emailSetting')}</h2>
@@ -144,6 +158,7 @@
                 </div>
               </div>
 
+              <!-- Date format Setting -->
               <div id="date-formatting-setting-container" class="ui-g-12">
                 <div class="setting-header ui-g-12 u-no-padding-bottom">
                   <h2 id="date-format-configuration-title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dateFormatConfiguration/dateFormatConfiguration')}</h2>
