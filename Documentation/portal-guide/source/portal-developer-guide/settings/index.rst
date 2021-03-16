@@ -266,7 +266,7 @@ Case permission
 - See related tasks of case
 
    To show related tasks action, user needs permission: 
-   ``PortalPermission.SHOW_ALL_TASKS_OF_CASE`` .
+   ``PortalPermission.SHOW_ALL_TASKS_OF_CASE``.
 
    To see related tasks, user needs permission: 
    ``IPermission.TASK_READ_OWN_CASE_TASKS`` or
@@ -287,7 +287,7 @@ Normal users can only see their tasks/cases they can work on.
 
 Administrator can see all tasks/cases in the application.
 
-Permissions needed: ``IPermission.TASK_READ_ALL`` ,
+Permissions needed: ``IPermission.TASK_READ_ALL``,
 ``IPermission.CASE_READ_ALL`` .
 
 Administrator permission can interact with all workflows in the application

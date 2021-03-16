@@ -3,7 +3,7 @@
 Demo Processes
 **************
 
-When you start engine in demo mode, you will see the project :guilabel:`portal-user-examples`.
+When you start engine in demo mode, you will see the project **portal-user-examples**.
 In this project, we provide some simple examples and you can play around with them
 to have the feeling how ivy and Portal work.
 

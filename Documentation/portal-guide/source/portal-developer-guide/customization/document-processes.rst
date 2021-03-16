@@ -17,18 +17,18 @@ section to override document functions of Portal.
 Customization
 -------------
 
-1. Introduce an Axon Ivy project which has ``PortalTemplate`` as a
+#. Introduce an Axon Ivy project which has ``PortalTemplate`` as a
    required library.
 
-2. Copy the ``PortalStart`` process from ``PortalTemplate`` to your
+#. Copy the ``PortalStart`` process from ``PortalTemplate`` to your
    project. This process is new home page and administrator should
    register this link by global
 
-3. Refer to :ref:`Customize Portal
+#. Refer to :ref:`Customize Portal
    home <customization-portal-home>` to set new home
    page.
 
-4. Override 4 ``Document sub processes`` described in table below to
+#. Override 4 ``Document sub processes`` described in table below to
    customize document functions.
 
    .. table::

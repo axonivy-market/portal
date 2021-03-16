@@ -75,11 +75,11 @@ HowTo: Set deputy
 #. You see a list with an entry for your personal tasks and for each
    role you hold.
 
-#. Specify a deputy by selecting user from the list.
+#. Specify a deputy by selecting a user from the list.
 
 #. With personal task, you can choose :guilabel:`Always`  or :guilabel:`During my absence` 
 
-#. Confirm your deputies with the button :guilabel:`Save` .
+#. Confirm your deputies with the button :guilabel:`Save`.
 
 |how-to-set-absence-deputies|
 
@@ -94,7 +94,7 @@ Info
 ----
 
 The menu entry :guilabel:`Info`  provides you with detailed information about the
-Axon Ivy Engine, the Axon Ivy Portal and your companies application. You
+Axon Ivy Engine, the Axon Ivy Portal and your company's application. You
 might be asked for this information in case you issue a support request.
 
 |portal-version-information|
