@@ -69,17 +69,17 @@ HowTo: Edit process icon in Grid mode
 HowTo: Add an external link
 ---------------------------
 
-#. Select :guilabel:`Add external link`  which is in Process list header.
+#. Click on :guilabel:`Add external link`  which is in Process list header.
 
-#. The dialog :guilabel:`Add new external link` is opened.
+#. The dialog :guilabel:`Add external link` is opened.
 
 #. For the :guilabel:`Process name`, define the best name for it.
 
 #. For the :guilabel:`Start link`, add the URL of your external link.
 
 #. This step is only for a user granted ``CreatePublicExternalLink`` Portal permission. 
-   This user can set this link as a public link by selecting ``All users``.
-   By default, 'Visibility' field is not displayed and this new external link is a private link.
+   This user can set this link as a public link by selecting :guilabel:`All users` .
+   By default, :guilabel:`Visibility`  field is not displayed and this new external link is a private link.
 
 #. Confirm your configuration with the button :guilabel:`Add`.
 

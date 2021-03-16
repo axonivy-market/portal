@@ -8,10 +8,10 @@ which users can interact with. In order to show needed case's
 information, Portal supports overriding concept for CaseWidget. Each
 CaseWidget contains 2 parts:
 
-1. :ref:`UI <customization-case-widget-how-to-override-ui>` :
+#. :ref:`UI <customization-case-widget-how-to-override-ui>` :
    CaseListHeader, CaseHeader and CaseFilter
 
-2. :ref:`Data
+#. :ref:`Data
    query <customization-case-widget-how-to-override-data-query>`
    : display the cases as you want by modifying data query
 
@@ -29,24 +29,24 @@ How to override case widget's UI
 
 Refer to ``portal-developer-examples`` project for examples
 
-1. Introduce an Axon Ivy project which has ``PortalTemplate`` as a
+#. Introduce an Axon Ivy project which has ``PortalTemplate`` as a
    required library.
 
-2. To customize case widget, you must customize Portal Home first. Refer
+#. To customize case widget, you must customize Portal Home first. Refer
    to :ref:`Customize Portal
    home <customization-portal-home>` to set new home
    page.
 
-3. Copy the ``PortalStart`` process from ``PortalTemplate`` to your
+#. Copy the ``PortalStart`` process from ``PortalTemplate`` to your
    project. Point PortalHome element to your custom home page in
    previous step. This process is new home page and administrator should
    register this link by Portal's Admin Settings.
 
-4. Use `Axon Ivy HtmlOverride wizard <https://developer.axonivy.com/doc/9.1/designer-guide/how-to/overrides.html?#override-new-wizard>`_ to override ``PortalCases`` HTML dialog.
+#. Use `Axon Ivy HtmlOverride wizard <https://developer.axonivy.com/doc/9.1/designer-guide/how-to/overrides.html?#override-new-wizard>`_ to override ``PortalCases`` HTML dialog.
 
    .. tip:: This action overrides ``Case widget`` in: CaseList page, Case Search result.
 
-5. After previous steps, you can override :ref:`CaseHeader and
+#. After previous steps, you can override :ref:`CaseHeader and
    CaseListHeader <customization-case-widget-how-to-override-ui-case-header>`
    and
    :ref:`CaseFilter <customization-case-widget-how-to-override-case-filter>`
@@ -117,9 +117,9 @@ Case filter
 -  In order to introduce new filter, create a new java class extends
    CaseFilter and override its methods (see javadoc comments)
 
-   1. Filter ``label()`` and ``value()`` method.
-   2. Filter ``resetValue()`` is called when click on ``X`` icon.
-   3. Filter ``validate()`` is called when click on ``Apply`` button.
+   #. Filter ``label()`` and ``value()`` method.
+   #. Filter ``resetValue()`` is called when click on ``X`` icon.
+   #. Filter ``validate()`` is called when click on ``Apply`` button.
 
    |case-filter|
 
@@ -188,7 +188,7 @@ case list after navigating to case list from your page:
 How to override export feature
 ------------------------------
 
-1. Extend the CaseExporter java class of PortalKit.
+#. Extend the CaseExporter java class of PortalKit.
 
    -  Override the ``getColumnName`` method.
 
@@ -216,7 +216,7 @@ How to override export feature
          }
       }
 
-2. Override the ExportCaseToExcel callable process and apply your extended CaseExporter java class.
+#. Override the ExportCaseToExcel callable process and apply your extended CaseExporter java class.
 
    .. code-block:: java
 
@@ -233,7 +233,7 @@ screen sizes, please follow below steps.
 
 You can refer to ``portal-developer-examples`` project for examples
 
-1. Add responsiveStyleClass param (in case you're using Portal
+#. Add responsiveStyleClass param (in case you're using Portal
    component), or styleClass (in case you're using Primefaces or JSF
    component) with the same responsive css class for both caseListHeader
    and caseHeader. You can find responsive class in :ref:`this
