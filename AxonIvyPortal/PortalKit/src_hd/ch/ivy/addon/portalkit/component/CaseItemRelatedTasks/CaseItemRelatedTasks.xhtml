@@ -52,12 +52,12 @@
           <ui:include src="PriorityCell.xhtml" />
         </p:column>
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}"
-          styleClass="related-task-name-column" field="NAME" sortBy="#{NAME}"
+          styleClass="related-task-name-column u-truncate-text" field="NAME" sortBy="#{NAME}"
           rendered="#{data.dataModel.isSelectedColumn(masterDataBean.taskSortFieldName)}">
           <h:outputText value="#{task.name}" />
         </p:column>
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}" sortable="false"
-          styleClass="u-hidden-sm-down related-task-description-column">
+          styleClass="u-hidden-sm-down related-task-description-column u-truncate-text">
           <h:outputText value="#{taskWidgetBean.createTaskDescriptionInTaskStart(task.description)}" />
         </p:column>
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}"
