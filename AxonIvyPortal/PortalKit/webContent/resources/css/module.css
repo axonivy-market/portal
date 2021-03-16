@@ -902,10 +902,6 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 
 .case-detail-body .case-details-related-task-table .related-task-more-column {
   width: 238px;
-  text-align: left;
-}
-
-.case-detail-body .case-details-related-task-table th.related-task-more-column {
   text-align: center;
 }
 
