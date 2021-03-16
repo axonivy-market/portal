@@ -831,6 +831,11 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   display: block;
 }
 
+.related-cases-container tbody tr,
+.case-details-related-task-table tbody tr {
+  height: 53px;
+}
+
 .case-details-related-task-table .u-hidden-lg-down,
 .case-details-related-task-table .u-hidden-md-down,
 .case-details-related-task-table .task-header-action-cell {

@@ -37,18 +37,18 @@
       </h:panelGroup>
     </div>
     
-    <h:panelGroup layout="block" styleClass="ui-g-12 u-padding-0" id="related-cases-container">
+    <h:panelGroup layout="block" styleClass="ui-g-12 u-padding-0 related-cases-container" id="related-cases-container">
     
       <p:dataTable id="related-cases" lazy="true" value="#{data.caseLazyDataModel}" var="case" paginator="true" rows="5" paginatorPosition="bottom" paginatorAlwaysVisible="false"
         paginatorTemplate="{PreviousPageLink} {PageLinks} {NextPageLink} {RowsPerPageDropdown}" sortMode="single" reflow="true"
         sortBy="#{NAME}" sortField="NAME"  styleClass="related-cases">
         
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}" field="NAME" sortBy="#{NAME}" styleClass="name-column" 
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}" field="NAME" sortBy="#{NAME}" styleClass="name-column u-truncate-text"
           visible="#{caseDetailsBean.isDisplayColumn(data.caseLazyDataModel, 'NAME')}">
           <h:outputText value="#{case.name}" />
         </p:column>
         
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}" sortable="false" styleClass="description-column"
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}" sortable="false" styleClass="description-column u-truncate-text"
           visible="#{caseDetailsBean.isDisplayColumn(data.caseLazyDataModel, 'NAME')}" >
           <h:outputText escape="false" value="#{caseWidgetBean.formatCaseDescription(case.description)}" />
         </p:column>
@@ -88,7 +88,7 @@
             styleClass="case-state #{case.state.toString().toLowerCase()}-case-state" />
         </p:column>
         
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CATEGORY')}" sortable="false" 
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CATEGORY')}" sortable="false" styleClass="u-truncate-text"
           visible="#{caseDetailsBean.isDisplayColumn(data.caseLazyDataModel, 'CATEGORY')}">
           <h:outputText value="#{case.getCategory().getName()}" title="#{case.getCategory().getPath()}" />
         </p:column>
