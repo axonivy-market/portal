@@ -854,8 +854,15 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   width: 150px;
 }
 
-.case-detail-body .id-column, .case-detail-body .created-column, .case-detail-body .expiry-column, .case-detail-body .state-column {
+.case-detail-body .state-column {
   width: 120px;
+  text-align: center;
+}
+
+.case-detail-body .id-column,
+.case-detail-body .created-column, 
+.case-detail-body .expiry-column {
+  width: 130px;
   text-align: center;
 }
 
@@ -870,26 +877,21 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 
 .case-detail-body .case-details-related-task-table .related-task-name-column {
   font-weight: bold;
-  width: 170px;
-}
-
-.case-detail-body .case-details-related-task-table .related-task-description-column {
-  width: 300px;
 }
 
 .case-detail-body .case-details-related-task-table .related-task-responsible-column {
-  width: 170px;
+  width: 150px;
 }
 
 .case-detail-body .case-details-related-task-table .related-task-id-column,
 .case-detail-body .case-details-related-task-table .related-task-created-column,
 .case-detail-body .case-details-related-task-table .related-task-expiry-column {
-  width: 110px;
+  width: 130px;
   text-align: center;
 }
 
 .case-detail-body .case-details-related-task-table .related-task-state-column {
-  width: 170px;
+  width: 120px;
   text-align: center;
 }
 
