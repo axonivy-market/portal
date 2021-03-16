@@ -42,9 +42,9 @@
     <div class="ui-g-12 u-padding-0 case-details-related-task-table" id="case-details-related-task-table">
       <p:dataTable id="related-tasks" lazy="true" value="#{data.dataModel}" var="task" paginator="true" rows="5"
         paginatorPosition="bottom" paginatorAlwaysVisible="false"
-        paginatorTemplate="{PreviousPageLink} {PageLinks} {NextPageLink} {RowsPerPageDropdown}" sortBy="#{ID}"
+        paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}" sortBy="#{ID}"
         sortOrder="descending" reflow="true" rowIndexVar="rowIndex" rowHover="true" selectionMode="single">
-        <p:ajax event="rowSelect" listener="#{caseWidgetBean.navigateToSelectedTaskDetails}" />
+        <p:ajax event="rowSelect" listener="#{caseDetailsBean.navigateToSelectedTaskDetails}" />
         <p:column
           headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/abbreviation/PRIORITY')}"
           styleClass="priority-column" field="PRIORITY" sortBy="#{PRIORITY}"
