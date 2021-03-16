@@ -33,9 +33,7 @@ Ds0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ds0 f0 51 83 26 26 14 0 #rect
-Ds0 f0 @|StartSubIcon #fIcon
 Ds0 f1 51 339 26 26 14 0 #rect
-Ds0 f1 @|EndSubIcon #fIcon
 Ds0 f3 actionTable 'out=in;
 ' #txt
 Ds0 f3 actionCode 'import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
@@ -49,18 +47,18 @@ in.defaultUserProcesses.add(ivyProcess);
 UserProcess ivyProcess2 = ProcessStartAPI.initUserProcessByUserFriendlyRequestPath("Start Processes/ProcessHistoryComponent/viewProcessHistoryOfAlphaCompany.ivp", ivy.cms.co("/Processes/ProcessHistoryComponent/ProcessHistoryOfAlphaCompany/name"));
 ivyProcess.setIcon("fa-list-alt");
 ivyProcess.setIndex(2);
-in.defaultUserProcesses.add(ivyProcess);
+in.defaultUserProcesses.add(ivyProcess2);
 
 UserProcess ivyProcess3 = ProcessStartAPI.initUserProcessByUserFriendlyRequestPath("Start Processes/ProcessHistoryComponent/viewProcessHistoryOfAlphaCompanyInDialog.ivp", ivy.cms.co("/Processes/ProcessHistoryComponent/ProcessHistoryOfAlphaCompanyInDialog/name"));
 ivyProcess.setIcon("fa-asterisk");
 ivyProcess.setIndex(3);
-in.defaultUserProcesses.add(ivyProcess);
+in.defaultUserProcesses.add(ivyProcess3);
 
-UserProcess expressProcess = ProcessStartAPI.initUserProcessByExpressProcessName("Your Express Process Name", "Favorite Process Display Name");
+UserProcess expressProcess = ProcessStartAPI.initUserProcessByExpressProcessName("Your Express Process Name", "Favorite Express Process Display Name");
 expressProcess.setIndex(4);
 in.defaultUserProcesses.add(expressProcess);
 
-UserProcess externalLink = ProcessStartAPI.initUserProcessByExternalLinkName("Your External Link Name", "Favorite Process Display Name");
+UserProcess externalLink = ProcessStartAPI.initUserProcessByExternalLinkName("Your External Link Name", "Favorite External Process Display Name");
 externalLink.setIndex(5);
 in.defaultUserProcesses.add(externalLink);
 
@@ -76,7 +74,6 @@ processes</name>
 </elementInfo>
 ' #txt
 Ds0 f3 46 196 36 24 20 -2 #rect
-Ds0 f3 @|StepIcon #fIcon
 Ds0 f4 expr out #txt
 Ds0 f4 64 109 64 196 #arcP
 Ds0 f2 expr out #txt
@@ -115,7 +112,6 @@ in.defaultUserProcesses.add(externalLink);</name>
 </elementInfo>
 ' #txt
 Ds0 f5 256 82 1584 444 -789 -216 #rect
-Ds0 f5 @|IBIcon #fIcon
 >Proto Ds0 .type _com.axonivy.portal.developerexamples.DefaultUserProcessOverrideData #txt
 >Proto Ds0 .processKind CALLABLE_SUB #txt
 >Proto Ds0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

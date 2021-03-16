@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
+import ch.ivy.addon.portalkit.enums.ProcessType;
 import ch.ivy.addon.portalkit.persistence.domain.UserProcess;
 import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
 import ch.ivyteam.ivy.application.ActivityState;
@@ -23,7 +24,7 @@ public class ProcessStartUtils {
 
   public static boolean isExpressProcessAdded(ExpressProcess expressProcess, List<UserProcess> userProcesses) {
     return userProcesses.stream()
-    .filter(process -> process.isExpressProcess() && StringUtils.isNoneBlank(process.getProcessId()) && process.getProcessId().equals(expressProcess.getId()))
+    .filter(process -> isExpressProcess(process.getProcessType()) && StringUtils.isNoneBlank(process.getProcessId()) && process.getProcessId().equals(expressProcess.getId()))
     .findFirst()
     .isPresent();
   }
@@ -75,5 +76,17 @@ public class ProcessStartUtils {
 
   private static boolean isActive(IProcessModel processModel) {
     return processModel.getActivityState() == ActivityState.ACTIVE;
+  }
+
+  public static boolean isExternalLink(ProcessType processType) {
+    return ProcessType.EXTERNAL_LINK.equals(processType);
+  }
+
+  public static boolean isIvyProcess(ProcessType processType) {
+    return ProcessType.IVY_PROCESS.equals(processType);
+  }
+
+  public static boolean isExpressProcess(ProcessType processType) {
+    return ProcessType.EXPRESS_PROCESS.equals(processType);
   }
 }
