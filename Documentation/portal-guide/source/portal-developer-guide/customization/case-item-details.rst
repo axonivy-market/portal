@@ -31,22 +31,22 @@ How to custom Case item details UI
 
 Refer to ``portal-developer-examples`` project for examples.
 
-1. Introduce an Axon Ivy project which has ``PortalTemplate`` as a
+#. Introduce an Axon Ivy project which has ``PortalTemplate`` as a
    required library.
 
-2. To customize case item detail, you must customize Portal Home first.
+#. To customize case item detail, you must customize Portal Home first.
    Refer to :ref:`Customize Portal
    home <customization-portal-home>` to set new home
    page.
 
-3. Copy the ``PortalStart`` process from ``PortalTemplate`` to your
+#. Copy the ``PortalStart`` process from ``PortalTemplate`` to your
    project. Point PortalHome element to your custom home page in
    previous step. This process is new home page and administrator should
    register this link by Portal's Admin Settings.
 
-4. Use `Axon Ivy HtmlOverride wizard <https://developer.axonivy.com/doc/9.1/designer-guide/how-to/overrides.html?#override-new-wizard>`_ to override ``CaseInformation`` HTML dialog.
+#. Use `Axon Ivy HtmlOverride wizard <https://developer.axonivy.com/doc/9.1/designer-guide/how-to/overrides.html?#override-new-wizard>`_ to override ``CaseInformation`` HTML dialog.
 
-5. After previous steps, you can override Case item details UI elements
+#. After previous steps, you can override Case item details UI elements
    as shown/hidden element by keywords:
 
    To show/hide, please using ``showItemDetailsHeader``,
@@ -207,9 +207,9 @@ Refer to the ``caseItemDetailCustom*`` section in
 -  After applied above code to your custom page, custom panels will be
    displayed as below
 
-   1. ``caseItemDetailCustomTop`` panel box.
-   2. ``caseItemDetailCustomMiddle`` panel box.
-   3. ``caseItemDetailCustomBottom`` panel box.
+   #. ``caseItemDetailCustomTop`` panel box.
+   #. ``caseItemDetailCustomMiddle`` panel box.
+   #. ``caseItemDetailCustomBottom`` panel box.
 
    |case-customized-top|
 

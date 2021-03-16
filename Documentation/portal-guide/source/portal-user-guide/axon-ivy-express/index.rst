@@ -11,7 +11,7 @@ department. The following chapter takes you to the next level.
 enables you – as a business user – to create your own process
 applications and share them with your colleagues. These capabilities are
 also known as No-Code Application Platforms or Citizen Developer
-Platforms.Therefore, it is the perfect tool for you to digitize your
+Platforms. Therefore, it is the perfect tool for you to digitize your
 processes and create standardization, reliability and traceability. Some
 of the key features of Axon Ivy Express are:
 
@@ -29,15 +29,15 @@ of the key features of Axon Ivy Express are:
    different task types, set responsibilities and due dates and define
    user dialogs for each task.
 
-You can reach the page by either using the **Processes** link
-in the Axon Ivy Portal menu or the quick link **Show all processes** in
+You can reach the page by either using the :guilabel:`Processes`  link
+in the Axon Ivy Portal menu or the quick link :guilabel:`Show all processes`  in
 your dashboard.
 
 |navigate-to-axon-ivy-express|
 
-Below the heading **Processes**, you see the link :guilabel:`Create express workflow` .
+Below the heading **Processes**, you see the link :guilabel:`Create express workflow`.
 This feature is explained in detail in `Axon Ivy Express`_. Below
-you find the process category :guilabel:`Express Workflows` with a list of
+you find the process category **Express Workflows** with a list of
 already defined processes.
 
 |start-link-for-axon-ivy-express|
@@ -82,11 +82,11 @@ HowTo: Create an Express Workflow
 
 #. For each process step, select the :guilabel:`Task Type`  (see `Express Workflow task types`_).
 
-#. For each process step provide a speaking name under :guilabel:`Task Name` 
+#. For each process step, provide a speaking name under :guilabel:`Task Name` 
 
-#. For each process step you may provide a description under :guilabel:`Task description` .
+#. For each process step, you may provide a description under :guilabel:`Task description`.
 
-#. For *One time* process type, the first process step define the users or roles under
+#. For *One time* process type, the first process step defines the users or roles under
    :guilabel:`Able to start`  who can start the process
 
    |express-able-to-start|
@@ -229,13 +229,13 @@ For express case, after you had done a workflow, you can recheck the summary dat
 HowTo: Show Business summary
 """"""""""""""""""""""""""""
 
-1. Firstly, you should go to the :ref:`Case List <full-case-list>` page and open ``Action`` link of your case.
+#. Firstly, you should go to the :ref:`Case List <full-case-list>` page and open :guilabel:`Action`  link of your case.
 
-2. Find the ``Show Business details`` link and click on it.
+#. Find the :guilabel:`Show Business details`  link and click on it.
 
    |express-case|
 
-3. Then the ``Express form`` will be shown up via read-only mode.
+#. Then the ``Express form`` will be shown up via read-only mode.
 
    |express-business-summary|
 
@@ -251,7 +251,7 @@ This feature is put in :ref:`Admin Settings <settings-admin-settings>`.
 |express-management-tab|
 
 .. note:: 
-  To use this feature, user needs to have role :guilabel:`AXONIVY_PORTAL_ADMIN`.
+  To use this feature, user needs to have role **AXONIVY_PORTAL_ADMIN**.
   
 
 HowTo: Export Express process
@@ -294,7 +294,7 @@ Then press the :guilabel:`Deploy` button and wait for the deployment process.
 
 After the deploy process is finished, an output log panel will be displayed, you can see all information which collected during the deployment process.
 
-Now, if the deployment process is success, your workflows are imported and administrator can check, edit them before they are ready to use by user.
+Now, if the deployment process is successful, your workflows are imported and administrator can check, edit them before they are ready to use by user.
 
 |deployment-result|
 
@@ -304,7 +304,7 @@ AdHoc process
 Axon Ivy Express also provides an AdHoc process feature. When Express is deployed, user can start an AdHoc process from any task. 
 Adhoc allows user to define more process steps and will be executed before current task.
 
-Start Adhoc by clicking on top right menu icon in your task then select :guilabel:`Start Adhoc`
+Start Adhoc by clicking on top right menu icon in your task then click on :guilabel:`Start Adhoc`
 
 |adhoc-start|
 
@@ -329,7 +329,7 @@ When start your original task, you will see summary about the Adhoc process for 
 
 |adhoc-process-history|
 
-You can also view it again by clicking menu icon then select :guilabel:`Adhoc history`.
+You can also view it again by clicking menu icon then click on :guilabel:`Adhoc history`.
 
 |adhoc-show-history|
 
