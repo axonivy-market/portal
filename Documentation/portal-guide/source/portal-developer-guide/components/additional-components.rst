@@ -48,7 +48,7 @@ The value of the attribute ``businessEntityId`` must match the id input
 into the subprocess in the first step.
 
 By default the component will load 20 cases at a time. You can change
-this by setting the attribute ``chunkSize`` to the number you want . You
+this by setting the attribute ``chunkSize`` to the number you want. You
 should use this attribute alongside with the attribute ``scrollHeight``
 to configure the scroll bar of the list.
 

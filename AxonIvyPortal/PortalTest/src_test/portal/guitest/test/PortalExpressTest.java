@@ -52,6 +52,7 @@ public class PortalExpressTest extends BaseTest {
 	@Before
 	public void setup() {
 		super.setup();
+		updatePortalSetting("DEFAULT_PROCESS_MODE", "LIST");
 		redirectToRelativeLink("portalKitTestHelper/14DE09882B540AD5/grantPortalPermission.ivp");
 		homePage = new HomePage();
 	}
