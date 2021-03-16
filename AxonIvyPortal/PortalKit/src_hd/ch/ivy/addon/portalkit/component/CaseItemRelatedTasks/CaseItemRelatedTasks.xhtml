@@ -43,7 +43,8 @@
       <p:dataTable id="related-tasks" lazy="true" value="#{data.dataModel}" var="task" paginator="true" rows="5"
         paginatorPosition="bottom" paginatorAlwaysVisible="false"
         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}" sortBy="#{ID}"
-        sortOrder="descending" reflow="true" rowIndexVar="rowIndex" rowHover="true" selectionMode="single">
+        sortOrder="descending" reflow="true" rowIndexVar="rowIndex" rowHover="true" selectionMode="single"
+        currentPageReportTemplate="{currentPage} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/curentReportOf')} {totalPages}">
         <p:ajax event="rowSelect" listener="#{caseDetailsBean.navigateToSelectedTaskDetails}" />
         <p:column
           headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/abbreviation/PRIORITY')}"
