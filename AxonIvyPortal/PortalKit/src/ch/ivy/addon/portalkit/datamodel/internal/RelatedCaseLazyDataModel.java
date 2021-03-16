@@ -19,6 +19,7 @@ import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.ICase;
+import ch.ivyteam.ivy.workflow.ITask;
 
 public class RelatedCaseLazyDataModel extends LazyDataModel<ICase> {
 
@@ -175,5 +176,20 @@ public class RelatedCaseLazyDataModel extends LazyDataModel<ICase> {
 
   public void setDisableSelectionCheckboxes(boolean isDisableSelectionCheckboxes) {
     this.isDisableSelectionCheckboxes = isDisableSelectionCheckboxes;
+  }
+  
+  @Override
+  public String getRowKey(ICase icase) {
+    return String.valueOf(icase.getId());
+  }
+  
+  @Override
+  public ICase getRowData(String rowKey) {
+    for (ICase icase : data) {
+      if (icase.getId() == Long.valueOf(rowKey)) {
+        return icase;
+      }
+    }
+    return null;
   }
 }
