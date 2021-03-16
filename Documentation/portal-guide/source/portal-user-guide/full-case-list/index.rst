@@ -6,7 +6,7 @@ Full Case List
 The **Full Case List** page shows you all cases you’re involved in.
 This page provides you with extended information on the cases, as well
 as advanced search and filter capabilities. You can reach the page by
-using the |case-icon| **Cases** link in the Axon Ivy Portal menu.
+using the |case-icon| :guilabel:`Cases`  link in the Axon Ivy Portal menu.
 
 .. hint:: 
    Depending on the roles you hold in the application and the configuration of
@@ -68,7 +68,7 @@ The case details are separated into 4 different sections:
    |case-details-histories|
 
 #. Documents, you find an area for documents that were
-   attached to the case. You may add or delete documents which his
+   attached to the case. You may add or delete documents as
    described in the HowTo’s below.
 
    |case-details-documents|
@@ -94,7 +94,7 @@ HowTo: Create new filter
 ------------------------
 
 #. Click on the button :guilabel:`More`  to select one of the available filters.
-   For a list of available filters, see Table 3: Case filter criterias.
+   For a list of available filters, see Table 3: Case filter criteria.
 
 #. Click on the newly added filter and configure it.
 
@@ -103,21 +103,21 @@ HowTo: Create new filter
 #. Drop filters by clicking on the |delete-circle-icon| icon next to
    the filter.
 
-#. When finished, click on the button :guilabel:`Save filter` .
+#. When finished, click on the button :guilabel:`Save filter`.
 
 #. The dialog :guilabel:`Save filter` is opened.
 
-#. Under :guilabel:`Filter name` , provide a recognizable name for the filter.
+#. Under :guilabel:`Filter name`, provide a recognizable name for the filter.
 
-#. Under :guilabel:`Filter visibility` , you can select if the filter is only
+#. Under :guilabel:`Filter visibility`, you can select if the filter is only
    visible for you or shall be available to all users.
 
-#. Save the filter by clicking the button :guilabel:`Ok` .
+#. Save the filter by clicking the button :guilabel:`Ok`.
 
 |how-to-create-case-filter|
 
 
-.. centered:: Case filter criterias
+.. centered:: Case filter criteria
 
 +-----------------------------------+-----------------------------------+
 | Criteria                          | Description                       |
@@ -163,8 +163,8 @@ HowTo: Show all related Tasks
 
 #. Click the :guilabel:`Show all tasks`  link.
 
-#. You’re routed to the :guilabel:`Related Tasks List` page. This page resembles
-   the :guilabel:`Full Tasks List` page (see  :ref:`full-task-list`) both in
+#. You’re routed to the **Related Tasks List** page. This page resembles
+   the **Full Tasks List** page (see  :ref:`full-task-list`) both in
    appearance and features. The shown tasks are only down selected to the ones
    related to your case already.
 
@@ -181,10 +181,10 @@ HowTo: Attach a document to the case
 
 #. The :guilabel:`Add document` dialog is opened
 
-#. Upload a file by using the :guilabel:`Select`  button or by simply dragging
+#. Upload a file by using the :guilabel:`Select` button or by simply dragging
    the file into the dialog.
 
-#. Click the button :guilabel:`Close`  to add the attachment
+#. Click the button :guilabel:`Close` to close the dialog
 
 |how-to-attach-document-to-case|
 
@@ -195,12 +195,12 @@ HowTo: Remove an attachment from the case
 
 #. Open the case details of a task
 
-#. Click on the |delete-icon| :guilabel:`Delete` button next to the
+#. Click on the |delete-icon| button next to the
    attachment you want to remove.
 
-#. A :guilabel:`Confirmation` dialog is opened
+#. A confirmation dialog is opened
 
-#. Confirm the deletion with the button :guilabel:`Yes` 
+#. Confirm the deletion with the button :guilabel:`Delete` 
 
 |how-to-delete-an-attachment-from-case|
 
@@ -230,8 +230,7 @@ HowTo: Export a case history
 
 #. A new page with the case history is opened
 
-#. You may export the history by clicking on the button **Export to
-   Excel**
+#. You may export the history by clicking on the button :guilabel:`Export to Excel` 
 
    |export-case-history|
 

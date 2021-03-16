@@ -3,9 +3,9 @@
 Full Process List
 *****************
 
-The **Full Process List** page gives you an overview on all the
+The **Full Process List** page gives you an overview of all the
 processes in the application that are accessible to you. You can reach
-the page by either using the :guilabel:`Processes`  link in the
+the page by either using the :guilabel:`Processes` link in the
 Axon Ivy Portal menu or the quick link :guilabel:`Show all processes`  in your
 dashboard.
 
@@ -18,15 +18,15 @@ Express workflows are described in detail in :ref:`axon-ivy-express`.
 |portal-full-process-list-page|
 
    #. Search for a process, input your keyword here
-   #. Express workfow icon
+   #. Express workflow icon
    #. External link icon
    #. Change view mode
 
 Process mode
 ------------
 
-In the :guilabel:`Full Process List`, we provided two modes for displaying the process list.
-By default, **Grid mode** is activated. You can change default process mode in :guilabel:`My Profile` page.
+In the **Full Process List**, we provided two modes for displaying the process list.
+By default, **Grid mode** is activated. You can change the default process mode in :guilabel:`My Profile` page.
 
 Grid mode
 ^^^^^^^^^
@@ -42,7 +42,7 @@ List Mode
 
 If you’re looking for a specific process, you can search your keyword in search field 
 marked in the image above. The search will look up your keyword in process names 
-and process descriptions then filter the process list accordingly.
+and process descriptions, then filter the process list accordingly.
 
 .. warning:: 
    Don’t confuse the process search
@@ -58,32 +58,30 @@ List`.
 HowTo: Edit process icon in Grid mode
 -------------------------------------
 
-#. Click on **Edit** link in the process card item.
-#. The dialog :guilabel:`Edit process information` is opened.
-#. Click on **Change** link, besides the current icon.
+#. Click on :guilabel:`Edit`  link in the process card item.
+#. The dialog **Edit process information** is opened.
+#. Click on :guilabel:`Change`  link, besides the current icon.
 #. The dialog :guilabel:`Selecting icon` is opened, and choose new icon.
-#. Press on **Save** button, and process icon is changed
+#. Press on :guilabel:`Save` button, and process icon is changed
 
    |edit-process-icon-dialog|
-
-
 
 HowTo: Add an external link
 ---------------------------
 
-#. Select :guilabel:`Add external link`  which is in Process list header.
+#. Click on :guilabel:`Add external link`  which is in Process list header.
 
-#. The dialog :guilabel:`Add new external link` is opened.
+#. The dialog :guilabel:`Add external link` is opened.
 
-#. For the :guilabel:`Process name` , define the best name for it.
+#. For the :guilabel:`Process name`, define the best name for it.
 
-#. For the :guilabel:`Start link` , add the URL of your external link.
+#. For the :guilabel:`Start link`, add the URL of your external link.
 
 #. This step is only for a user granted ``CreatePublicExternalLink`` Portal permission. 
-   This user can set this link as a public link by selecting ``All users``.
-   By default, 'Visibility' field is not displayed and this new external link is a private link.
+   This user can set this link as a public link by selecting :guilabel:`All users` .
+   By default, :guilabel:`Visibility`  field is not displayed and this new external link is a private link.
 
-#. Confirm your configuration with the button :guilabel:`Add` .
+#. Confirm your configuration with the button :guilabel:`Add`.
 
 |how-to-add-a-new-external-link|
 

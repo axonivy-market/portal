@@ -10,7 +10,7 @@ Introduction
 
 In Portal statistic, when user add new chart, statistic filter will
 displays default 5 custom string fields ``CustomVarCharField1`` to
-``CustomVarCharField5`` , you can customize them by your own custom
+``CustomVarCharField5``, you can customize them by your own custom
 string fields.
 
 |default-custom-field|

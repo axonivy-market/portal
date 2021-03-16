@@ -63,7 +63,7 @@ HowTo: Add a process as a user favorite
 ---------------------------------------
 
 #. Click on the link :guilabel:`Add new process`  which you find next to the
-   heading :guilabel:`User Favorites` .
+   heading :guilabel:`User Favorites`.
 
 #. The dialog :guilabel:`Add new user process` is opened.
 
@@ -75,7 +75,7 @@ HowTo: Add a process as a user favorite
 #. You may change the :guilabel:`Icon`  for the process by using the link
    |change-icon| :guilabel:`Change`  and selecting your preferred icon.
 
-#. Confirm your configuration with the button :guilabel:`Add` .
+#. Confirm your configuration with the button :guilabel:`Add`.
 
 |how-to-add-process-favorite|
 
@@ -101,7 +101,7 @@ HowTo: Delete a process as a user favorite
 #. Click on the |trash-icon| :guilabel:`Delete`  symbol next to process / processes
    you wish to remove from your user favorites.
 
-#. Confirm the removal with the link :guilabel:`Save`  next to the heading :guilabel:`User Favorites` .
+#. Confirm the removal with the link :guilabel:`Save`  next to the heading :guilabel:`User Favorites`.
 
 |how-to-delete-process-favorites-1|
 
@@ -124,11 +124,11 @@ Edit processes
 ^^^^^^^^^^^^^^
 
 #. To order your processes in an individual order, click on the link
-   :guilabel:`Edit processes`  next to the heading :guilabel:`User Favorites` .
+   :guilabel:`Edit processes`  next to the heading :guilabel:`User Favorites`.
 
 #. To change the order of your processes, drag and drop processes.
 
-#. Confirm the reorder with the link :guilabel:`Save`  next to the heading :guilabel:`User Favorites` .
+#. Confirm the reorder with the link :guilabel:`Save`  next to the heading :guilabel:`User Favorites`.
 
 |how-to-delete-process-favorites-1|
 
@@ -150,7 +150,7 @@ from the task list and start working on it.
 
 At first glance, you see the number of tasks right next to the heading
 :guilabel:`Tasks`. Further to the right you find the link :guilabel:`Show full task
-list`. This quick link routes you to the :guilabel:`Task List` page of the
+list`. This quick link routes you to the **Task List** page of the
 Axon Ivy Portal. Please refer to :ref:`full-task-list` for more
 detailed information.
 

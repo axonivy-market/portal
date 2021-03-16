@@ -21,7 +21,7 @@ PortalKit
 
 Contains set of UI components. This module contains set of JSF Ivy
 Component to provide user the usages to work with Ivy Process Data such
-as: task, case, absence... , styles CSS and JavaScript file for
+as: task, case, absence..., styles CSS and JavaScript file for
 component and theme library. This is the most important module that user
 needs to use Portal. This module also contains AdminSettings component
 that is used to configure Portal.
