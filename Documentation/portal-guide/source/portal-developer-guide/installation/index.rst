@@ -15,7 +15,7 @@ Project modules
 ---------------
 
 The application consists of 4 process modules. For detailed information
-of each module, refer to :ref:`architecture` .
+of each module, refer to :ref:`architecture`.
 
 -  PortalStyle
 
@@ -117,21 +117,25 @@ In engine
 Migrate 9.1 to 9.2
 ------------------
 
-1. We remove implementation of Portal multiple applications. So that you need to adapt some points below:
+1. Deploy :download:`MigrateData.iar <documents/MigrateData.iar>` project to your ivy application and run it by access link
+``your_host/your_application/pro/MigrateData/175F92F71BC45295/startMigrateConfiguration.ivp``
+
+If you have many applications, deploy to only one application and run it by access link
+``your_host/your_application/pro/MigrateData/175F92F71BC45295/startMigrateConfiguration.ivp``
+
+Example: ``https://portal.io/Portal/pro/MigrateData/175F92F71BC45295/startMigrateConfiguration.ivp``
+
+   .. important:: Run migration process only once
+
+2. We remove implementation of Portal multiple applications. So that you need to adapt some points below:
 
    - Adapt start process signature of ``PasswordService`` in ``ChangePassword.mod`` if you overrode this callable.
    - If you are using ``ProcessStartCollector``, replace constructor ``ProcessStartCollector(application)`` with ``ProcessStartCollector()``.
-   - If you have TaskLazyDataModel, CaseLazyDataModel customization, remove ``setInvolvedApplications()`` method, ``setInvolvedUsername`` in search criteria.
+   - If you have TaskLazyDataModel, CaseLazyDataModel customization, remove ``setInvolvedApplications()`` method, ``setInvolvedUsername`` in search criteria.   
 
-2. In PortalNavigatorInFrame.java, change the methods from non-static to static.
+3. In PortalNavigatorInFrame.java, change the methods from non-static to static.
 
-3. CaseDetails component in PortalTemplate is removed.
-
-4. Since 9.2, statistic chart has multiple names for supported languages in application. Therefore you must run a migration process by the following steps:
-
-   - Deploy :download:`MigrateStatisticChartTo9.iar <documents/MigrateStatisticChartTo9.iar>` project to your Ivy application. This project requires ``PortalKit`` to run.
-   - Run ``MigrateStatisticChart/MigrateStatisticChart.ivp`` to migrate all statistic charts in your application.
-   - Restart Ivy engine.
+4. CaseDetails component in PortalTemplate is removed.
 
 5. If you have TaskLazyDataModel, CaseLazyDataModel customization, follow :ref:`How to override export feature of Task list <customization-task-widget-how-to-override-export-feature>` and :ref:`How to override export feature of Case list <customization-case-widget-how-to-override-export-feature>` to customize label and value of custom columns that will be exported.
 
@@ -143,15 +147,9 @@ Migrate 9.1 to 9.2
 
 7. We remove ivy-icon.css and replace current classes with new classes from `Streamline icons <https://dev.demo.ivyteam.io/demo-app/faces/view/html-dialog-demos$1/icons.xhtml>`_. So that you need to update your files that are using classes in ivy-icon.css.
 
-8. For :guilabel:`User Favorites`, we will store processId and processType instead of start link and use them to find it's latest link. Therefore you must run a migration process by the following steps:
+8. If you have taskItemDetailCustomPanelTop, taskItemDetailCustomPanelBottom customization, follow :ref:`How to override TaskItemDetail <customization-task-item-details>` to add custom widgets.
 
-   - Deploy :download:`UserFavoriteProcessesMigration.iar <documents/UserFavoriteProcessesMigration.iar>` project to your Ivy application. This project requires ``PortalKit`` to run.
-   - Log in with user that MUST have permission to start all processes of your application (not only favorite processes) to avoid wrong migration.
-   - Run ``MigrateUserFavoriteProcesses/migrateUserFavoriteProcesses.ivp`` to migrate all user favorite processes in your application.
-
-9. If you have ``taskItemDetailCustomPanelTop`` or ``taskItemDetailCustomPanelBottom`` customization, follow :ref:`How to override TaskItemDetail <customization-task-item-details>` to add these custom widgets.
-
-10. If you have ``caseItemDetailCustomTop`` or ``caseItemDetailCustomMiddle`` or ``caseItemDetailCustomBottom`` customization, follow :ref:`How to override CaseItemDetail <customization-case-item-details>` to add these custom widgets.
+9. If you have ``caseItemDetailCustomTop`` or ``caseItemDetailCustomMiddle`` or ``caseItemDetailCustomBottom`` customization, follow :ref:`How to override CaseItemDetail <customization-case-item-details>` to add these custom widgets.
 
 Migrate 8.x to 9.1
 ------------------
@@ -189,6 +187,11 @@ Migrate 8.x to 9.1
 10. ``TaskTemplate-7`` is removed, change it to ``TaskTemplate-8``. ``TaskTemplate`` is also removed, change it to ``frame-8`` (provided by Ivy).
 
 11. The ``MenuKind`` enum has one more entry: EXTERNAL_LINK, use it if your item is an external link, and use CUSTOM if yours is an internal link.
+
+Migrate 8.x to 9.2
+------------------
+
+You need to do all steps in ``Migrate 8.x to 9.1`` and ``Migrate 9.1 to 9.2``
 
 .. _installation-release-notes:
 

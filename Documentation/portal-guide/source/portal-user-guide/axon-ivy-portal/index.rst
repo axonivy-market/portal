@@ -3,7 +3,7 @@
 Axon Ivy Portal
 ***************
    
-The :guilabel:`Axon Ivy Portal` is the centerpiece for your daily work with the
+**Axon Ivy Portal** is the centerpiece for your daily work with the
 applications you / your company implemented using the Axon Ivy.
 With a web-based, modern interface the Portal provides you with key
 functionalities on all your devices:
@@ -39,37 +39,36 @@ credentials.
    by the single-sign-on (SSO). In this case you’ll directly be forwarded to the
    Axon Ivy Portal Dashboard. 
 
-   If ivy Security System is used, you can click on **Forgot my password** to reset
+   If ivy Security System is used, you can click on :guilabel:`Forgot my password`  to reset
    in case you forget it.
 
 After successful login, you’ll see the Axon Ivy Portal Homepage and your
 personal dashboard. All your activities can be managed from this central entry
 point. In detail these are:
-   
-1. The Axon Ivy Portal header on the top is always visible and provides
+
+#. The Axon Ivy Portal header on the top is always visible and provides
    you with a global search, key information about the portal and options to
    configure your personal user account. See  :ref:`portal-header`  for
    details.
    
-|axon-ivy-portal-header|
+   |axon-ivy-portal-header|
 
-2. The menu on the left side is always available and gives you access to
-   all processes, cases, tasks and other features of the Axon Ivy Portal. You
-   may enlarge or minimise the menu using the **Toggle Menu** button
-   in the top left corner.
+#. The menu on the left side is always available and gives you access to
+   all processes, cases, tasks and other features of the Axon Ivy Portal. If the menu is minimised, you could hover to the menu to enlarge it. You
+   may enlarge permanently the menu by clicking on |pin-icon| icon in the top left corner.
    
-|axon-ivy-portal-menu|
+   |axon-ivy-portal-menu|
 
-3. In the center you see your personal dashboard providing you instant
+#. In the center you see your personal dashboard providing you instant
    access to your processes, tasks and performance indicators. See
    :ref:`dashboard` for a detailed introduction.
 
-|axon-ivy-portal|
+   |axon-ivy-portal|
 
 .. include:: ../includes/_common-icon.rst
 
 
 .. |login-screen| image:: ../../screenshots/login/login-form.png
 .. |axon-ivy-portal-header| image:: ../../screenshots/dashboard/portal-header.png
-.. |axon-ivy-portal-menu| image:: ../../screenshots/dashboard/left-menu.png
+.. |axon-ivy-portal-menu| image:: ../../screenshots/dashboard/expanded-left-menu.png
 .. |axon-ivy-portal| image:: ../../screenshots/dashboard/dashboard.png

@@ -14,7 +14,7 @@ Build your own portal using PortalKit
 
    a. Create a new ``HTML Dialog`` for your home page and then use ``ui:composition`` to define template which you use inside. If you want to keep the look of default homepage, then choose ``DefaultHomePageTemplate``.
 
-      .. tip:: Find more information about templates at :ref:`Layout templates <components-layout-templates>` .
+      .. tip:: Find more information about templates at :ref:`Layout templates <components-layout-templates>`.
       ..
 
       .. warning:: Portal uses some template files in the folder
@@ -30,7 +30,7 @@ Build your own portal using PortalKit
       |custom-portal-home|
 
       .. tip:: Your new homepage is the default portal homepage. You can
-                customize it. Reference at :ref:`Portal home <customization-portal-home>` .
+                customize it. Reference at :ref:`Portal home <customization-portal-home>`.
 
 3. Set category for tasks
 

@@ -31,6 +31,7 @@ import ch.ivy.addon.portalkit.bo.Process;
 import ch.ivy.addon.portalkit.comparator.UserProcessIndexComparator;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
+import ch.ivy.addon.portalkit.enums.ProcessType;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyLanguageResultDTO;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyProcessResultDTO;
 import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
@@ -45,6 +46,7 @@ import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.service.UserProcessService;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
+import ch.ivy.addon.portalkit.util.ProcessStartUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
@@ -309,12 +311,12 @@ private static final long serialVersionUID = -5889375917550618261L;
   public void startProcess(UserProcess userProcess) throws IOException {
     Objects.requireNonNull(userProcess, "User process must not be null");
     String link = userProcess.getLink();
-    if (userProcess.isExternalLink()) {
+    if (isExternalLink(userProcess)) {
       FacesContext.getCurrentInstance().getExternalContext().redirect(link);
       return;
     }
     
-    if (userProcess.isExpressProcess() && StringUtils.isNotBlank(userProcess.getProcessId())) {
+    if (isExpressProcess(userProcess) && StringUtils.isNotBlank(userProcess.getProcessId())) {
       ProcessStartCollector processStartCollector = new ProcessStartCollector();
       String expressStartLink = processStartCollector.findExpressWorkflowStartLink();
       if (StringUtils.isNotBlank(expressStartLink)) {
@@ -330,12 +332,12 @@ private static final long serialVersionUID = -5889375917550618261L;
   }
   
   private boolean isUserProcess(UserProcess processToAdd) {
-    return userProcesses.stream().anyMatch(userProcess -> !processToAdd.isExternalLink()
+    return userProcesses.stream().anyMatch(userProcess -> !isExternalLink(processToAdd)
         && StringUtils.equalsIgnoreCase(userProcess.getLink(), processToAdd.getLink()));
   }
   
   private boolean isExternalLinkUserProcess(UserProcess processToAdd) {
-    return userProcesses.stream().anyMatch(userProcess -> userProcess.isExternalLink() && processToAdd.isExternalLink()
+    return userProcesses.stream().anyMatch(userProcess -> isExternalLink(userProcess) && isExternalLink(processToAdd)
         && StringUtils.equalsIgnoreCase(userProcess.getProcessId(), processToAdd.getProcessId()));
   }
 
@@ -435,7 +437,7 @@ private static final long serialVersionUID = -5889375917550618261L;
                                       .collect(Collectors.toList());
     
     List<UserProcess> deletedExpressProcesses = processes.stream()
-        .filter(process ->  process.isExpressProcess() && StringUtils.isNotBlank(process.getProcessId())
+        .filter(process ->  isExpressProcess(process) && StringUtils.isNotBlank(process.getProcessId())
             && !executableExpressProcessIds.contains(process.getProcessId()))
         .collect(Collectors.toList());
 
@@ -452,7 +454,7 @@ private static final long serialVersionUID = -5889375917550618261L;
         .collect(Collectors.toList());
     
     List<UserProcess> deletedExternalLinks = processes.stream()
-        .filter(process ->  process.isExternalLink() && StringUtils.isNotBlank(process.getProcessId()) && !startableExternalLinkIds.contains(process.getProcessId().toString()))
+        .filter(process ->  isExternalLink(process) && StringUtils.isNotBlank(process.getProcessId()) && !startableExternalLinkIds.contains(process.getProcessId().toString()))
         .collect(Collectors.toList());
 
     userProcessService.deleteAll(deletedExternalLinks);
@@ -504,7 +506,7 @@ private static final long serialVersionUID = -5889375917550618261L;
   
   public String targetToStartProcess(UserProcess process) {
     String target="_self";
-    if (process.isExternalLink()) {
+    if (isExternalLink(process)) {
       target="_blank";
     }
     return target;
@@ -514,5 +516,13 @@ private static final long serialVersionUID = -5889375917550618261L;
     return IvyExecutor.executeAsSystem(() -> {
       return Ivy.wf().getApplication().getDefaultEMailLanguage();
     });
+  }
+
+  public boolean isExternalLink(UserProcess process) {
+    return process != null && ProcessStartUtils.isExternalLink(process.getProcessType());
+  }
+
+  public boolean isExpressProcess(UserProcess process) {
+    return process != null && ProcessStartUtils.isExpressProcess(process.getProcessType());
   }
 }
