@@ -53,7 +53,7 @@
           <h:outputText escape="false" value="#{caseWidgetBean.formatCaseDescription(case.description)}" />
         </p:column>
         
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/ID')}" field="ID" sortBy="#{ID}" styleClass="id-column" width="150"
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/ID')}" field="ID" sortBy="#{ID}" styleClass="id-column"
           visible="#{caseDetailsBean.isDisplayColumn(data.caseLazyDataModel, 'ID')}" >
           <h:outputText value="#{case.id}" />
         </p:column>
