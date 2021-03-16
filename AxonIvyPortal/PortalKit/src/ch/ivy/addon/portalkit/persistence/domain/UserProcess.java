@@ -19,29 +19,14 @@ public class UserProcess extends BusinessEntity implements Cloneable {
   private ProcessType processType;
   private String processName;
   private List<DisplayName> names;
+  @JsonIgnore
   private String link;
   private String icon;
   private String processId;
-  /**
-   * @deprecated Use processId instead
-   */
-  @Deprecated(since = "9.2", forRemoval = true)
-  private String workflowId;
   private Integer index;
   private boolean defaultProcess;
-  /**
-   * @deprecated Use processType instead
-   */
-  @Deprecated
-  private boolean isExternalLink;
   @JsonIgnore
   private boolean isBrokenLink = false;
-
-  /**
-   *  Since 9.1, we use userId to store user process instead of userName.
-   */
-  @Deprecated
-  private String userName;
 
   @JsonIgnore
   private String description;
@@ -62,16 +47,6 @@ public class UserProcess extends BusinessEntity implements Cloneable {
 
   public void setUserId(Long userId) {
     this.userId = userId;
-  }
-
-  @Deprecated
-  public String getUserName() {
-    return userName;
-  }
-
-  @Deprecated
-  public void setUserName(String userName) {
-    this.userName = userName;
   }
 
   public long getApplicationId() {
@@ -152,51 +127,11 @@ public class UserProcess extends BusinessEntity implements Cloneable {
     this.processId = processId;
   }
 
-  /**
-   * @deprecated Use {@link UserProcess#getProcessId()} instead
-   * @return WorkflowId
-   */
-  @Deprecated(since = "9.2", forRemoval = true)
-  public String getWorkflowId() {
-    return workflowId;
-  }
-
-  /**
-   * @deprecated Use {@link UserProcess#setProcessId(String)} instead
-   * @param workflowId
-   */
-  @Deprecated(since = "9.2", forRemoval = true)
-  public void setWorkflowId(String workflowId) {
-    this.workflowId = workflowId;
-    this.processId = workflowId;
-  }
-
-  public boolean isExternalLink() {
-    return ProcessType.EXTERNAL_LINK.equals(processType);
-  }
-
-  public boolean isIvyProcess() {
-    return ProcessType.IVY_PROCESS.equals(processType);
-  }
-
-  public boolean isExpressProcess() {
-    return ProcessType.EXPRESS_PROCESS.equals(processType);
-  }
-
-  /**
-   * @deprecated Use {@link UserProcess#setProcessType(ProcessType)} instead
-   * @param isExternalLink
-   */
-  @Deprecated(since = "9.2", forRemoval = true)
-  public void setExternalLink(boolean isExternalLink) {
-    this.isExternalLink = isExternalLink;
-    this.processType = ProcessType.EXTERNAL_LINK;
-  }
-
   public boolean isBrokenLink() {
     return isBrokenLink;
   }
 
+  @JsonIgnore
   public void setBrokenLink(boolean isBrokenLink) {
     this.isBrokenLink = isBrokenLink;
   }
@@ -246,11 +181,11 @@ public class UserProcess extends BusinessEntity implements Cloneable {
     } else if (!id.equals(other.id)) {
       return false;
     }
-    if (workflowId == null) {
-      if (other.workflowId != null) {
+    if (processId == null) {
+      if (other.processId != null) {
         return false;
       }
-    } else if (!workflowId.equals(other.workflowId)) {
+    } else if (!processId.equals(other.processId)) {
       return false;
     }
     return true;

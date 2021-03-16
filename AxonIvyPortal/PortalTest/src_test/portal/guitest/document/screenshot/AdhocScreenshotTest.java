@@ -77,7 +77,9 @@ public class AdhocScreenshotTest extends ScreenshotTest {
     ScreenshotUtil.resizeBrowser(new Dimension(1500, 600));
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.EXPRESS_FOLDER + "adhoc-process-history");
     
-    taskTemplatePage.closeAdhocHistoryDialog();
+    if (taskTemplatePage.isAdhocHistoryDialogExist()) {
+      taskTemplatePage.closeAdhocHistoryDialog();
+    }
     taskTemplatePage.clickTaskActionMenu();
     ScreenshotUtil.resizeBrowser(new Dimension(1200, 580));
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.EXPRESS_FOLDER + "adhoc-show-history");

@@ -94,6 +94,7 @@ public class ProcessWidgetTest extends BaseTest {
     
     processWidget = homePage.getProcessWidget();
     processWidget.expand();
+    processWidget.clickOnSwitchButton();
     processWidget.deleteExternalLinkByFieldsetIndexAndIndex(0, 0);
     backToCompactProcessWidget();
     
@@ -126,22 +127,24 @@ public class ProcessWidgetTest extends BaseTest {
   @Test
   public void testSortDefaultProcessByName() {
     redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
-    homePage = new HomePage();
-    processWidget = homePage.getProcessWidget();
+    processWidget = new ProcessWidgetPage();
     processWidget.clickSortDefaultProcessByName();
     assertEquals(ALPHA_HISTORY_TASK, processWidget.getProcessNameFromDefaultProcessList(0));
-    assertEquals(VIEW_ALPHA_HISTORY, processWidget.getProcessNameFromDefaultProcessList(1));
-    assertEquals(VIEW_ALPHA_HISTORY_IN_DIALOG, processWidget.getProcessNameFromDefaultProcessList(2));
+    assertEquals("Favorite Express Process Display Name", processWidget.getProcessNameFromDefaultProcessList(1));
+    assertEquals("Favorite External Process Display Name", processWidget.getProcessNameFromDefaultProcessList(2));
+    assertEquals(VIEW_ALPHA_HISTORY, processWidget.getProcessNameFromDefaultProcessList(3));
+    assertEquals(VIEW_ALPHA_HISTORY_IN_DIALOG, processWidget.getProcessNameFromDefaultProcessList(4));
   }
 
   @Test
   public void testSortDefaultProcessByIndex() {
     redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
-    homePage = new HomePage();
-    processWidget = homePage.getProcessWidget();
+    processWidget = new ProcessWidgetPage();
     assertEquals(ALPHA_HISTORY_TASK, processWidget.getProcessNameFromDefaultProcessList(0));
-    assertEquals(VIEW_ALPHA_HISTORY, processWidget.getProcessNameFromDefaultProcessList(1));
-    assertEquals(VIEW_ALPHA_HISTORY_IN_DIALOG, processWidget.getProcessNameFromDefaultProcessList(2));
+    assertEquals("Favorite Express Process Display Name", processWidget.getProcessNameFromDefaultProcessList(1));
+    assertEquals("Favorite External Process Display Name", processWidget.getProcessNameFromDefaultProcessList(2));
+    assertEquals(VIEW_ALPHA_HISTORY, processWidget.getProcessNameFromDefaultProcessList(3));
+    assertEquals(VIEW_ALPHA_HISTORY_IN_DIALOG, processWidget.getProcessNameFromDefaultProcessList(4));
   }
 
   @Test
