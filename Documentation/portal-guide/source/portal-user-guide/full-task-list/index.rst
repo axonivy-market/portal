@@ -6,7 +6,7 @@ Full Task List
 The **Full Task List** page shows you the same tasks you see on your
 personal dashboard. However, this page provides you with extended
 information on the tasks, as well as, advanced search and filter
-capabilities. You can reach the page by using the |task-list-icon| **Tasks**
+capabilities. You can reach the page by using the |task-list-icon| :guilabel:`Tasks` 
 link in the Axon Ivy Portal menu.
 
 .. hint:: 
@@ -21,7 +21,7 @@ link in the Axon Ivy Portal menu.
 |navigate-to-full-task-list-page|
 
 On the top of the **Full Task List** page you see next to the heading
-**Tasks** in brackets the overall number of tasks shown to you. Below you find the filter feature.
+:guilabel:`Tasks`  in brackets the overall number of tasks shown to you. Below you find the filter feature.
 The usage will be explained in the HowTo’s further down this chapter.
 Finally, you see the list of tasks.
 
@@ -66,12 +66,12 @@ The task details are separated into 3 different sections:
 
    |detailed-task-information-data-description|
 
-#. Histories, you may add additional notes which is described below
+#. Histories, you may add additional notes which are described below
 
    |detailed-task-information-note|
 
 #. Documents, these documents once attached to the case are
-   available on all tasks. You may add or delete documents which his
+   available on all tasks. You may add or delete documents 
    described in the HowTo’s below.
 
    |detailed-task-information-documents|
@@ -95,7 +95,7 @@ HowTo: Create new filter
 ------------------------
 
 #. Click on the button :guilabel:`More`  to select one of the available filters.
-   For a list of available filters, see  `Task filter criterias`_.
+   For a list of available filters, see  `Task filter criteria`_.
 
 #. Click on the newly added filter and configure it.
 
@@ -109,17 +109,17 @@ HowTo: Create new filter
 
 #. The :guilabel:`Save filter` dialog is opened.
 
-#. Under :guilabel:`Filter name` , provide a recognizable name for the filter.
+#. Under :guilabel:`Filter name`, provide a recognizable name for the filter.
 
-#. Under :guilabel:`Filter visibility` , you can select if the filter is only
+#. Under :guilabel:`Filter visibility`, you can select if the filter is only
    visible for you or shall be available to all users.
 
-#. Save the filter by clicking the button :guilabel:`Ok` .
+#. Save the filter by clicking the button :guilabel:`Ok`.
 
 |how-to-create-task-filter|
 
 
-.. centered:: _`Task filter criterias`
+.. centered:: _`Task filter criteria`
 
 +-----------------------------------+-----------------------------------+
 | Criteria                          | Description                       |
@@ -202,7 +202,7 @@ HowTo: Attach a document to the case
 #. Upload a file by using the :guilabel:`Select`  button or by simply dragging
    the file into the dialog
 
-#. Click the button :guilabel:`Close`  to add the attachment
+#. Click the button :guilabel:`Close`  to close the dialog
 
 |how-to-upload-document|
 
@@ -211,10 +211,10 @@ HowTo: Remove an attachment from the case
 
 #. Open the task details of a task
 
-#. Click on the |delete-icon| **Delete** button next to the
+#. Click on the |delete-icon| button next to the
    attachment you want to remove
 
-#. A :guilabel:`Confirmation` dialog is opened
+#. A confirmation dialog is opened
 
 #. Confirm the deletion with the button :guilabel:`Delete` 
 
@@ -229,7 +229,7 @@ HowTo: Add a note to a task
 
 #. The :guilabel:`Add note` dialog is opened
 
-3. Enter your note
+#. Enter your note
 
 #. Confirm your note by clicking the button :guilabel:`Save`
 
@@ -242,13 +242,13 @@ HowTo: Export a task history
 
 #. Click on the |show-more-icon| :guilabel:`Show more`  link below the notes section
 
-|how-to-show-note-details|
+   |how-to-show-note-details|
 
 #. A new page with the task history is opened
 
 #. You may export the history by clicking on the button :guilabel:`Export to Excel` 
 
-|how-to-export-note-details|
+   |how-to-export-note-details|
 
 
 .. _how-to-show-workflow-events:

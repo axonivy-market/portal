@@ -8,31 +8,31 @@ Build your own portal
 Build your own portal using PortalKit
 -------------------------------------
 
-1. Create a new project that depends on ``PortalTemplate``.
+#. Create a new project that depends on ``PortalTemplate``.
 
-2. Create new home page
+#. Create new home page
 
-   a. Create a new ``HTML Dialog`` for your home page and then use ``ui:composition`` to define template which you use inside. If you want to keep the look of default homepage, then choose ``DefaultHomePageTemplate``.
+   - Create a new ``HTML Dialog`` for your home page and then use ``ui:composition`` to define template which you use inside. If you want to keep the look of default homepage, then choose ``DefaultHomePageTemplate``.
 
-      .. tip:: Find more information about templates at :ref:`Layout templates <components-layout-templates>` .
-      ..
+     .. tip:: Find more information about templates at :ref:`Layout templates <components-layout-templates>`.
+     ..
 
-      .. warning:: Portal uses some template files in the folder
-                        ``"webContent/layouts"`` 
-                        in Portal Template project. Do not create files with the same
-                        path and name in your project as they can override the Portal
-                        files.
-                    
-   b. Create a new ``Start process`` named ``DefaultApplicationHomePage.ivp`` and connect to ``User Dialog`` for your home page.
+     .. warning:: Portal uses some template files in the folder
+                       ``"webContent/layouts"`` 
+                       in Portal Template project. Do not create files with the same
+                       path and name in your project as they can override the Portal
+                       files.
+                   
+   - Create a new ``Start process`` named ``DefaultApplicationHomePage.ivp`` and connect to ``User Dialog`` for your home page.
 
-   c. Run your application, start your newly created process and see result.
+   - Run your application, start your newly created process and see result.
 
-      |custom-portal-home|
+     |custom-portal-home|
 
-      .. tip:: Your new homepage is the default portal homepage. You can
-                customize it. Reference at :ref:`Portal home <customization-portal-home>` .
+     .. tip:: Your new homepage is the default portal homepage. You can
+               customize it. Reference at :ref:`Portal home <customization-portal-home>`.
 
-3. Set category for tasks
+#. Set category for tasks
 
    To categorize tasks, set values for ``Category`` field. Task category
    can be multi-level if it is separated by slash ``/`` signs, as below.
@@ -40,7 +40,7 @@ Build your own portal using PortalKit
    |task-category-config|
 
 
-4. How to use feature warning on closing browser/tab
+#. How to use feature warning on closing browser/tab
 
    Sometimes when users are working on a task, if they close tab,
    browser or refresh page then they may lose their current work. It's a
