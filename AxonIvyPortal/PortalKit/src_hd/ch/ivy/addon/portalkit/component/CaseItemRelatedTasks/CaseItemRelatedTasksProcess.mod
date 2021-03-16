@@ -103,9 +103,7 @@ Cs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f0 83 83 26 26 -16 15 #rect
-Cs0 f0 @|UdInitIcon #fIcon
 Cs0 f1 339 83 26 26 0 12 #rect
-Cs0 f1 @|UdProcessEndIcon #fIcon
 Cs0 f6 guid 167E9A777AB171EA #txt
 Cs0 f6 method initData(ch.ivyteam.ivy.workflow.ICase) #txt
 Cs0 f6 inParameterDecl '<ch.ivyteam.ivy.workflow.ICase iCase> param;' #txt
@@ -120,14 +118,13 @@ Cs0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f6 83 179 26 26 -41 15 #rect
-Cs0 f6 @|UdMethodIcon #fIcon
 Cs0 f7 339 179 26 26 0 12 #rect
-Cs0 f7 @|UdProcessEndIcon #fIcon
 Cs0 f14 actionTable 'out=in;
 ' #txt
 Cs0 f14 actionCode 'import ch.ivy.addon.portalkit.datamodel.internal.RelatedTaskLazyDataModel;
 
 in.dataModel = new RelatedTaskLazyDataModel(in.iCase);
+in.dataModel.initColumnsConfiguration();
 ' #txt
 Cs0 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -137,7 +134,6 @@ Cs0 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f14 168 170 112 44 -40 -8 #rect
-Cs0 f14 @|StepIcon #fIcon
 Cs0 f33 actionTable 'out=in;
 ' #txt
 Cs0 f33 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
@@ -151,7 +147,6 @@ Cs0 f33 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f33 168 362 160 44 -76 -8 #rect
-Cs0 f33 @|StepIcon #fIcon
 Cs0 f31 actionTable 'out=in;
 ' #txt
 Cs0 f31 actionCode 'import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
@@ -169,7 +164,6 @@ Cs0 f31 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f31 384 360 176 48 -59 -8 #rect
-Cs0 f31 @|StepIcon #fIcon
 Cs0 f36 328 384 384 384 #arcP
 Cs0 f45 guid 1720C62D9BF92EB1 #txt
 Cs0 f45 method navigateToSelectedTaskDetails(Long,Boolean,Boolean) #txt
@@ -187,7 +181,6 @@ Cs0 f45 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f45 83 371 26 26 -77 20 #rect
-Cs0 f45 @|UdMethodIcon #fIcon
 Cs0 f47 109 384 168 384 #arcP
 Cs0 f47 0 0.5541990710792534 0 0 #arcLabel
 Cs0 f8 109 192 168 192 #arcP
@@ -210,7 +203,6 @@ Cs0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f4 392 266 112 44 -50 -8 #rect
-Cs0 f4 @|StepIcon #fIcon
 Cs0 f51 109 288 392 288 #arcP
 Cs0 f51 0 0.5658938645158399 0 0 #arcLabel
 Cs0 f43 guid 1720C5CCA7DA3932 #txt
@@ -228,7 +220,6 @@ Cs0 f43 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f43 83 275 26 26 -78 23 #rect
-Cs0 f43 @|UdMethodIcon #fIcon
 Cs0 f97 guid 1774C81671A1604F #txt
 Cs0 f97 method validate(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.internal.RelatedTaskLazyDataModel) #txt
 Cs0 f97 inParameterDecl '<ch.ivyteam.ivy.workflow.ITask task,ch.ivy.addon.portalkit.datamodel.internal.RelatedTaskLazyDataModel dataModel> param;' #txt
@@ -244,9 +235,7 @@ Cs0 f97 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f97 83 659 26 26 -60 16 #rect
-Cs0 f97 @|UdMethodIcon #fIcon
 Cs0 f46 587 467 26 26 0 12 #rect
-Cs0 f46 @|UdProcessEndIcon #fIcon
 Cs0 f66 actionTable 'out=in;
 ' #txt
 Cs0 f66 actionCode 'import org.primefaces.PrimeFaces;
@@ -285,7 +274,6 @@ Cs0 f66 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f66 424 554 112 44 -35 -8 #rect
-Cs0 f66 @|StepIcon #fIcon
 Cs0 f80 actionTable 'out=in;
 ' #txt
 Cs0 f80 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
@@ -304,9 +292,7 @@ Cs0 f80 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f80 160 650 128 44 -56 -8 #rect
-Cs0 f80 @|StepIcon #fIcon
 Cs0 f99 336 560 32 32 0 16 #rect
-Cs0 f99 @|AlternativeIcon #fIcon
 Cs0 f2 actionTable 'out=in;
 ' #txt
 Cs0 f2 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
@@ -325,7 +311,6 @@ Cs0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f2 160 458 128 44 -56 -8 #rect
-Cs0 f2 @|StepIcon #fIcon
 Cs0 f5 guid 1774C81671AA10A1 #txt
 Cs0 f5 method openTask(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.internal.RelatedTaskLazyDataModel) #txt
 Cs0 f5 inParameterDecl '<ch.ivyteam.ivy.workflow.ITask task,ch.ivy.addon.portalkit.datamodel.internal.RelatedTaskLazyDataModel dataModel> param;' #txt
@@ -341,13 +326,9 @@ Cs0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f5 83 467 26 26 -80 15 #rect
-Cs0 f5 @|UdMethodIcon #fIcon
 Cs0 f77 338 466 28 28 14 0 #rect
-Cs0 f77 @|AlternativeIcon #fIcon
 Cs0 f68 595 563 26 26 0 12 #rect
-Cs0 f68 @|UdProcessEndIcon #fIcon
 Cs0 f98 467 659 26 26 0 12 #rect
-Cs0 f98 @|UdProcessEndIcon #fIcon
 Cs0 f49 actionTable 'out=in;
 ' #txt
 Cs0 f49 actionCode 'import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
@@ -380,9 +361,7 @@ Start task</name>
 </elementInfo>
 ' #txt
 Cs0 f49 416 458 128 44 -44 -16 #rect
-Cs0 f49 @|StepIcon #fIcon
 Cs0 f79 336 656 32 32 0 16 #rect
-Cs0 f79 @|AlternativeIcon #fIcon
 Cs0 f81 expr out #txt
 Cs0 f81 109 672 160 672 #arcP
 Cs0 f11 expr in #txt
@@ -409,7 +388,6 @@ Cs0 f71 536 576 595 576 #arcP
 Cs0 f58 expr out #txt
 Cs0 f58 109 480 160 480 #arcP
 Cs0 f15 587 755 26 26 0 12 #rect
-Cs0 f15 @|UdProcessEndIcon #fIcon
 Cs0 f16 actionTable 'out=in;
 ' #txt
 Cs0 f16 actionCode 'import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
@@ -442,7 +420,6 @@ Start task</name>
 </elementInfo>
 ' #txt
 Cs0 f16 416 746 128 44 -44 -16 #rect
-Cs0 f16 @|StepIcon #fIcon
 Cs0 f62 actionTable 'out=in;
 ' #txt
 Cs0 f62 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
@@ -457,7 +434,6 @@ Cs0 f62 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f62 192 746 112 44 -29 -8 #rect
-Cs0 f62 @|StepIcon #fIcon
 Cs0 f61 guid 1775BC8F03CA8B79 #txt
 Cs0 f61 method resetAndOpenTask(String,Long) #txt
 Cs0 f61 inParameterDecl '<String currentPortalPage,Long selectedTaskItemId> param;' #txt
@@ -476,7 +452,6 @@ Cs0 f61 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f61 83 755 26 26 -57 15 #rect
-Cs0 f61 @|UdMethodIcon #fIcon
 Cs0 f17 304 768 416 768 #arcP
 Cs0 f85 expr out #txt
 Cs0 f85 109 768 192 768 #arcP
@@ -495,9 +470,7 @@ Cs0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f24 83 851 26 26 -25 15 #rect
-Cs0 f24 @|UdMethodIcon #fIcon
 Cs0 f25 355 851 26 26 0 12 #rect
-Cs0 f25 @|UdProcessEndIcon #fIcon
 Cs0 f27 actionTable 'out=in;
 ' #txt
 Cs0 f27 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
@@ -514,13 +487,10 @@ Cs0 f27 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f27 184 842 112 44 -34 -8 #rect
-Cs0 f27 @|StepIcon #fIcon
 Cs0 f28 109 864 184 864 #arcP
 Cs0 f26 296 864 355 864 #arcP
 Cs0 f44 403 1139 26 26 0 12 #rect
-Cs0 f44 @|UdProcessEndIcon #fIcon
 Cs0 f53 403 1235 26 26 0 12 #rect
-Cs0 f53 @|UdProcessEndIcon #fIcon
 Cs0 f30 processCall 'Ivy Data Processes/TaskService:findTasksByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria,Integer,Integer)' #txt
 Cs0 f30 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria taskSearchCriteria,Integer startIndex,Integer count> param;' #txt
 Cs0 f30 requestMappingAction 'param.taskSearchCriteria=in.taskSearchCriteria;
@@ -540,7 +510,6 @@ Cs0 f30 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f30 200 1130 112 44 -28 -8 #rect
-Cs0 f30 @|CallSubIcon #fIcon
 Cs0 f32 guid 178019346DF34FD9 #txt
 Cs0 f32 method countTasks(ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria) #txt
 Cs0 f32 inParameterDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria criteria> param;' #txt
@@ -557,7 +526,6 @@ Cs0 f32 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f32 83 1235 26 26 -89 15 #rect
-Cs0 f32 @|UdMethodIcon #fIcon
 Cs0 f34 processCall 'Ivy Data Processes/TaskService:countTasksByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria)' #txt
 Cs0 f34 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria taskSearchCriteria> param;' #txt
 Cs0 f34 requestMappingAction 'param.taskSearchCriteria=in.taskSearchCriteria;
@@ -575,7 +543,6 @@ Cs0 f34 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f34 200 1226 112 44 -33 -8 #rect
-Cs0 f34 @|CallSubIcon #fIcon
 Cs0 f35 guid 178019346DFD95F4 #txt
 Cs0 f35 method findTasks(ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria,Integer,Integer) #txt
 Cs0 f35 inParameterDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria criteria,Integer startIndex,Integer count> param;' #txt
@@ -594,7 +561,6 @@ Cs0 f35 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f35 83 1139 26 26 -89 18 #rect
-Cs0 f35 @|UdMethodIcon #fIcon
 Cs0 f52 expr out #txt
 Cs0 f52 312 1152 403 1152 #arcP
 Cs0 f37 expr out #txt
@@ -617,7 +583,6 @@ Cs0 f76 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f76 320 938 112 44 -21 -8 #rect
-Cs0 f76 @|StepIcon #fIcon
 Cs0 f18 guid 178100AAF132C580 #txt
 Cs0 f18 method getExportedFile(java.util.List<String>) #txt
 Cs0 f18 inParameterDecl '<java.util.List<String> columnsVisibility> param;' #txt
@@ -634,7 +599,6 @@ Cs0 f18 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f18 83 947 26 26 -46 15 #rect
-Cs0 f18 @|UdMethodIcon #fIcon
 Cs0 f75 processCall 'Ivy Data Processes/TaskService:findTasksByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria,Integer,Integer)' #txt
 Cs0 f75 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria taskSearchCriteria,Integer startIndex,Integer count> param;' #txt
 Cs0 f75 requestMappingAction 'param.taskSearchCriteria=in.taskSearchCriteria;
@@ -654,7 +618,6 @@ Cs0 f75 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f75 424 1066 112 44 -26 -8 #rect
-Cs0 f75 @|CallSubIcon #fIcon
 Cs0 f19 processCall 'Ivy Data Processes/TaskService:countTasksByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria)' #txt
 Cs0 f19 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria taskSearchCriteria> param;' #txt
 Cs0 f19 requestMappingAction 'param.taskSearchCriteria=in.taskSearchCriteria;
@@ -672,7 +635,6 @@ Cs0 f19 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f19 176 938 112 44 -31 -8 #rect
-Cs0 f19 @|CallSubIcon #fIcon
 Cs0 f82 actionTable 'out=in;
 ' #txt
 Cs0 f82 actionCode in.loopCounter++; #txt
@@ -684,7 +646,6 @@ Cs0 f82 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f82 576 1066 112 44 -27 -8 #rect
-Cs0 f82 @|StepIcon #fIcon
 Cs0 f20 processCall 'Functional Processes/ExportTaskToExcel:exportToExcel(java.util.List<ch.ivyteam.ivy.workflow.ITask>,java.util.List<String>)' #txt
 Cs0 f20 requestActionDecl '<java.util.List<ch.ivyteam.ivy.workflow.ITask> collectedTasksForExporting,java.util.List<String> columnsVisibility> param;' #txt
 Cs0 f20 requestMappingAction 'param.collectedTasksForExporting=in.collectedTasksForExporting;
@@ -701,11 +662,8 @@ Cs0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f20 616 938 112 44 -38 -8 #rect
-Cs0 f20 @|CallSubIcon #fIcon
 Cs0 f21 851 947 26 26 0 12 #rect
-Cs0 f21 @|UdProcessEndIcon #fIcon
 Cs0 f78 464 944 32 32 0 16 #rect
-Cs0 f78 @|AlternativeIcon #fIcon
 Cs0 f88 728 960 851 960 #arcP
 Cs0 f86 496 960 616 960 #arcP
 Cs0 f22 432 960 464 960 #arcP
@@ -722,7 +680,6 @@ Cs0 f3 109 96 339 96 #arcP
 >Proto Cs0 .type ch.ivy.addon.portalkit.component.CaseItemRelatedTasks.CaseItemRelatedTasksData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 -8 -8 16 16 16 26 #rect
->Proto Cs0 '' #fIcon
 Cs0 f33 mainOut f36 tail #connect
 Cs0 f36 head f31 mainIn #connect
 Cs0 f45 mainOut f47 tail #connect
