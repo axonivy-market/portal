@@ -16,6 +16,7 @@ import javax.faces.context.FacesContext;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.primefaces.event.SelectEvent;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -41,6 +42,7 @@ import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.globalvars.IGlobalVariableContext;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.ICase;
+import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
 @ManagedBean
@@ -65,6 +67,7 @@ public class CaseDetailsBean implements Serializable {
   private ObjectMapper mapper = new ObjectMapper().enable(MapperFeature.ACCEPT_CASE_INSENSITIVE_ENUMS);
   private boolean isReadOnlyMode = true;
   private boolean hasShowNotAvailableData;
+  private boolean inFrame;
 
   @PostConstruct
   public void init() {
@@ -320,5 +323,31 @@ public class CaseDetailsBean implements Serializable {
   
   public boolean isDisplayColumn(RelatedCaseLazyDataModel dataModel, String columnName) {
     return dataModel.getSelectedColumns().contains(columnName);
+  }
+  
+  public void navigateToSelectedTaskDetails(SelectEvent event) {
+    Long taskId = ((ITask) event.getObject()).getId();
+    if (inFrame) {
+      PortalNavigator.navigateToPortalTaskDetailsInFrame(taskId);
+    } else {
+      PortalNavigator.navigateToPortalTaskDetails(taskId);
+    }
+  }
+  
+  public void navigateToSelectedCaseDetails(SelectEvent event) {
+    Long caseId = ((ICase) event.getObject()).getId();
+    if (inFrame) {
+      PortalNavigator.navigateToPortalCaseDetailsInFrame(caseId);
+    } else {
+      PortalNavigator.navigateToPortalCaseDetails(caseId);
+    }
+  }
+
+  public boolean isInFrame() {
+    return inFrame;
+  }
+
+  public void setInFrame(boolean inFrame) {
+    this.inFrame = inFrame;
   }
 }
