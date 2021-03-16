@@ -17,7 +17,7 @@ background and the process calls this data provider.
 Customization
 -------------
 
-1. Create a callable subprocess that has signature
+#. Create a callable subprocess that has signature
    "portalExpressDataProvider"
 
    |callable-sub-process|
@@ -48,7 +48,7 @@ Customization
 
    |database-output|
 
-2. Create new Express Workflow
+#. Create new Express Workflow
 
    In the form creation, choose Checkbox and select the data provider in
    the dropdown list. Then fill the label of check box and press Create

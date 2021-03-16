@@ -30,7 +30,7 @@ Basic usage
 
 Following these steps to have your own Portal Home:
 
-1. Create a new home page which uses the
+#. Create a new home page which uses the
    ``DefaultHomePageTemplate.xhtml`` template. By doing this, your new
    home page will inherit the widgets from the default home page and has
    a place holder for your own widgets.
@@ -45,7 +45,7 @@ Following these steps to have your own Portal Home:
       </ui:define>
       </ui:composition>
 
-2. Create a new process start named ``DefaultApplicationHomePage.ivp`` for the new
+#. Create a new process start named ``DefaultApplicationHomePage.ivp`` for the new
    home page. Now you will use this process start as the entry point of
    your portal instead of the default one. To let portal know about
    your new portal home, you have to set default pages to your project, follow this chapter to customize standard processes:
