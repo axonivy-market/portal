@@ -124,7 +124,7 @@ public class RelatedCaseLazyDataModel extends LazyDataModel<ICase> {
     criteria.setTechnicalCase(true);
     criteria.setBusinessCaseId(businessCaseId);
     criteria.setIncludedStates(new ArrayList<>(Arrays.asList(CaseState.CREATED, CaseState.RUNNING, CaseState.DONE)));
-    criteria.setSortField(CaseSortField.NAME.toString());
+    criteria.setSortField(CaseSortField.ID.toString());
     criteria.setSortDescending(false);
   }
 
