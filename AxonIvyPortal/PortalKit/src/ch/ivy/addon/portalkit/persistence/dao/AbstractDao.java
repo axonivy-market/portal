@@ -18,6 +18,10 @@ public abstract class AbstractDao<T extends BusinessEntity> {
 
   protected IApplication ivyApplication;
 
+  public void setIvyApplication(IApplication ivyApplication) {
+    this.ivyApplication = ivyApplication;
+  }
+
   public AbstractDao() {
     this.ivyApplication = Ivy.wf().getApplication();
   }
