@@ -160,7 +160,7 @@ function highlightCaseMenuItem() {
 }
 
 function highlightShowMoreNoteLink() {
-  createRedMediumOutline($('#case-item-details\\:case-histories\\:show-more-note-link'));
+  createRedMediumOutline($('a.js-note-show-more-link'));
 }
 
 function highlightStatisticNavigation() {
@@ -368,6 +368,11 @@ function cleanHighlightExportExpress() {
 function scrollToMiddleOfLayoutContent() {
   var layoutContent = $('.js-layout-content'); 
   layoutContent.scrollTop(layoutContent[0].scrollHeight/2);
+}
+
+function scrollToMiddleOfLayoutContent2() {
+  var layoutContent = $('.js-layout-content');
+  layoutContent.scrollTop(layoutContent[0].scrollHeight/4);
 }
 
 function scrollToBottomOfLayoutContent() {
