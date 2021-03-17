@@ -337,7 +337,7 @@ public class CaseDetailsBean implements Serializable {
   public void navigateToSelectedCaseDetails(SelectEvent event) {
     Long caseId = ((ICase) event.getObject()).getId();
     if (inFrame) {
-      PortalNavigator.navigateToPortalCaseDetailsInFrame(caseId);
+      PortalNavigator.navigateToPortalCaseDetailsInFrame(caseId, false);
     } else {
       PortalNavigator.navigateToPortalCaseDetails(caseId);
     }
