@@ -276,6 +276,6 @@ You may export the Case List by clicking on the button **Export to Excel**.
 .. |how-to-show-note-details| image:: ../../screenshots/case-detail/how-to-show-note-details.png
 .. |export-case-history| image:: ../../screenshots/case/export-case-history.png
 .. |export-to-excel-button| image:: ../../screenshots/case/export-to-excel-button.png
-.. |how-to-switch-to-view-mode| image:: ../../screenshots/case-detail/how-to-switch-to-view-mode.png
-.. |how-to-switch-to-edit-mode| image:: ../../screenshots/case-detail/how-to-switch-to-edit-mode.png
-.. |how-to-reset-to-default| image:: ../../screenshots/case-detail/how-to-reset-to-default.png
+.. |how-to-switch-to-view-mode| image:: ../../screenshots/case-detail/case-details.png
+.. |how-to-switch-to-edit-mode| image:: ../../screenshots/case-detail/case-details.png
+.. |how-to-reset-to-default| image:: ../../screenshots/case-detail/case-details.png
