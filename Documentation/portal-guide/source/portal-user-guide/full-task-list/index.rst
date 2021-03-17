@@ -168,13 +168,9 @@ HowTo: Configure displayed tasks in the Full Task List
 #. To sort data, click on the column header. To change sort direction, click on that column header one more time.
    Note that some columns do not support sorting.
 
-HowTo: Move and Resize Widgets
-------------------------------
-
-.. hint:: 
-   Depending on applying configuration file,
-   we can move and resize    
-   widgets for yourself.
+HowTo: Move and Resize Widgets in Task Details
+----------------------------------------------
+#. Open the task details of a task
 
 #. Click on the :guilabel:`Edit`  button to drag, drop and resize widgets.
 

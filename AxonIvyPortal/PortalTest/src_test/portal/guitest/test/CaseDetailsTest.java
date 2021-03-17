@@ -64,6 +64,7 @@ public class CaseDetailsTest extends BaseTest {
   @Test
   public void testShowCaseDetail() {
     assertTrue(detailsPage.isGeneralInformationComponentPresented());
+    assertTrue(detailsPage.isRelatedCasesComponentPresented());
     assertTrue(detailsPage.isRelatedTasksComponentPresented());
     assertTrue(detailsPage.isHistoryComponentPresented());
     assertTrue(detailsPage.isDocumentComponentPresented());
@@ -80,6 +81,18 @@ public class CaseDetailsTest extends BaseTest {
     detailsPage.addNote("Consider the remaining annual leaves before the approval");
     detailsPage.clickViewNote();
     assertTrue(detailsPage.isViewNoteDialogPresented());
+  }
+  
+  @Test
+  public void testDragDropWidgets() {
+    detailsPage.switchToEditMode();
+    detailsPage.waitForSaveButtonDisplayed();
+    detailsPage.drapAndDropWidgets("information", "document");
+    detailsPage.drapAndDropWidgets("document", "information");
+    detailsPage.saveAndSwitchToViewMode();
+    detailsPage.waitForResetButtonDisplayed();
+    detailsPage.resetToDefault();
+    detailsPage.waitForResetButtonNotPresent();
   }
 
   @After

@@ -18,7 +18,7 @@
         <i class="si si-synchronize-arrow-clock" /> #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/histories')}
 
       </div>
-      <div class="task-history-button-container ui-g-8 u-padding-0">
+      <div class="ui-g-8 u-padding-0">
         <h:panelGroup layout="block">
           <p:link id="show-more-note-link" styleClass="task-details-document-add-link note-show-more-link ui-commandlink" target="_blank"
             href="#{caseTaskNoteHistoryBean.getTaskNoteHistoryLink(task)}" rendered="#{caseTaskNoteHistoryBean.showMoreNote}">
@@ -33,7 +33,7 @@
             <span class="display-short-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}</span>
           </p:commandLink>
           <p:selectBooleanCheckbox value="#{data.showSystemNotes}" itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/showSystemNotes')}"
-            rendered="#{data.showSystemNotesChkbox}" id="show-system-notes-checkbox">
+            rendered="#{data.showSystemNotesChkbox}" id="show-system-notes-checkbox" styleClass="task-history-checkbox">
             <p:ajax update="task-history-content-container" process="@this" partialSubmit="true" listener="#{logic.showHideSystemNotes}" />
           </p:selectBooleanCheckbox>
         </h:panelGroup>
@@ -42,7 +42,7 @@
 
     <h:panelGroup id="task-history-content-container" styleClass="ui-g-12 u-padding-0">
       <p:dataTable value="#{data.notes}" var="note" id="task-note-table" paginator="true" pageLinks="3" rows="8"
-        paginatorPosition="top" rendered="#{not empty data.notes}"
+        paginatorPosition="bottom" rendered="#{not empty data.notes}"
         emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}" paginatorAlwaysVisible="false"
         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
         currentPageReportTemplate="{currentPage} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/curentReportOf')} {totalPages}">
@@ -105,7 +105,7 @@
           onsuccess="PF('#{cc.clientId}:addNewNoteDialog').hide()" update="task-detail-note-content task-detail-create-note-msg" />
         <p:spacer width="15px" />
         <p:commandButton styleClass="add-new-note-save-command" id="save-add-note-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
-          icon="#{visibilityBean.generateButtonIcon('si si-floppy-disk')}"
+          icon="#{visibilityBean.generateButtonIcon('si si-floppy-disk')}" partialSubmit="true"
           process="task-detail-note-content" update="task-detail-note-content task-detail-create-note-msg #{cc.clientId}:task-history-content-container"
           actionListener="#{logic.createNote()}" oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('#{cc.clientId}:addNewNoteDialog').hide();}" />
       </h:panelGroup>

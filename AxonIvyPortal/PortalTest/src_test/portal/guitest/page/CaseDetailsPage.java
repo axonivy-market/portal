@@ -7,6 +7,8 @@ import java.util.stream.Collectors;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
 
 import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
@@ -14,22 +16,22 @@ import com.jayway.awaitility.Duration;
 import portal.guitest.common.Sleeper;
 
 public class CaseDetailsPage extends TemplatePage {
-  private static final String DOCUMENT_COMPONENT_ID = "div[id='case-item-details:document']";
-  private static final String CASE_ICONS_CONTAINER_COMPONENT_CSS_SELECTOR = "span[id$='responsive-handle-container']";
-  private static final String HISTORY_COMPONENT_ID = "div[class*='case-history-button-container']";
-  private static final String RELATED_TASKS_COMPONENT_ID = "div[id='case-item-details:related-tasks']";
-  private static final String HISTORY_LIST_CSS_SELECTOR = "a[id^='case-item-details:case-histories:case-histories']";
+  private static final String DOCUMENT_COMPONENT_ID = "div[id='case-details-document-panel']";
+  private static final String HISTORY_COMPONENT_ID = "div[id='case-details-history-panel']";
+  private static final String RELATED_TASKS_COMPONENT_ID = "div[id='case-details-relatedTask-panel']";
+  private static final String RELATED_CASES_COMPONENT_ID = "div[id='case-details-technicalCase-panel']";
+  private static final String HISTORY_LIST_CSS_SELECTOR = "a[id^='case-item-details:widgets:4:case-histories:case-histories']";
   private static final String LATEST_HISTORY_LIST_CSS_SELECTOR =
-      "a[id^='case-item-details:case-histories:case-histories:0']";
-  private static final String GENERAL_INFORMATION_COMPONENT_ID = "div[class$='case-detail-section-title-container']";
+      "a[id='case-item-details:widgets:4:case-histories:case-histories:0:note-link']";
+  private static final String GENERAL_INFORMATION_COMPONENT_ID = "div[id='case-details-information-panel']";
   private static final String ADDITIONAL_CASE_DETAILS_URL_CSS_SELECTOR = "a[id$='additional-case-details-link']";
   private static final String AUTHOR_USER_CSS_SELECTOR = "span[class='history-fullname']";
-  private static final String VIEW_NOTE_DIALOG_ID = "case-item-details:case-histories:view-note-dialog";
+  private static final String VIEW_NOTE_DIALOG_ID = "case-item-details:widgets:4:case-histories:view-note-dialog";
   private WebElement caseItem;
 
   @Override
   protected String getLoadedLocator() {
-    return "id('case-item-details:case-detail-title-form')";
+    return "id('case-item-details:case-detail-body')";
   }
 
   public CaseDetailsPage() {
@@ -92,6 +94,14 @@ public class CaseDetailsPage extends TemplatePage {
   public boolean isRelatedTasksComponentPresented() {
     return getRelatedTasksComponent().isDisplayed();
   }
+  
+  public boolean isRelatedCasesComponentPresented() {
+    return getRelatedCasesComponent().isDisplayed();
+  }
+  
+  private WebElement getRelatedCasesComponent() {
+    return findElementByCssSelector(RELATED_CASES_COMPONENT_ID);
+  }
 
   public boolean isHistoryComponentPresented() {
     WebElement historyComponent = getHistoryComponent();
@@ -149,16 +159,6 @@ public class CaseDetailsPage extends TemplatePage {
     return findElementById(VIEW_NOTE_DIALOG_ID);
   }
 
-  public void changeCaseName(String newCaseName) {
-    clickByCssSelector("span[id$='case-name-edit-inplace_display']");
-    WebElement taskNameInput = findElementByCssSelector("input[id$='case-detail-name-input']");
-    waitForElementDisplayed(taskNameInput, true);
-    taskNameInput.clear();
-    taskNameInput.sendKeys(newCaseName);
-    clickByCssSelector("#case-item-details\\:case-detail-title-form\\:case-name-edit-inplace_editor .ui-inplace-save");
-    waitAjaxIndicatorDisappear();
-  }
-
   public void changeCaseDescription(String newDescription) {
     onClickDescriptionEditIcon();
     onClickDescriptionInplace();
@@ -167,19 +167,8 @@ public class CaseDetailsPage extends TemplatePage {
     waitForPageLoaded();
   }
 
-  public String getNameOfCaseAt() {
-    WebElement taskName = findElementByCssSelector("span[id$='case-name-edit-inplace_display']");
-    waitForElementDisplayed(taskName, true);
-    return taskName.getText();
-  }
-
-  public boolean isCaseNameChangeComponentPresented(int caseIndex) {
-    return isElementPresent(By.id(String.format(
-        "case-widget:case-list-scroller:%d:case-item:case-name-component:case-name-form:case-name-input", caseIndex)));
-  }
-
-  public String getDescriptionOfCaseAt() {
-    WebElement caseDescription = findElementById("case-item-details:description:case-description-form:case-description-output");
+  public String getDescription() {
+    WebElement caseDescription = findElementById("case-item-details:widgets:0:general-information:description:case-description-form:case-description-output");
     waitForElementDisplayed(caseDescription, true);
     return caseDescription.getText();
   }
@@ -195,45 +184,36 @@ public class CaseDetailsPage extends TemplatePage {
   }
   
   private void onSubmitDescriptionInplaceEditor() {
-    WebElement editor = findElementById("case-item-details:description:case-description-form:case-description-inplace_editor");
+    WebElement editor = findElementById("case-item-details:widgets:0:general-information:description:case-description-form:case-description-inplace_editor");
     WebElement saveButton = findChildElementByClassName(editor, "ui-inplace-save");
     click(saveButton);
     waitAjaxIndicatorDisappear();
   }
 
   private void onChangeDescriptionInput(String newDescription) {
-   // WebElement caseDescriptionInput = findElementById("case-item-details:description:case-description-form:case-description-output");
-    WebElement caseDescriptionInput = findElementByCssSelector("textarea[id='case-item-details:description:case-description-form:case-description-input']");
+    WebElement caseDescriptionInput = findElementByCssSelector("textarea[id='case-item-details:widgets:0:general-information:description:case-description-form:case-description-input']");
     waitForElementDisplayed(caseDescriptionInput, true);
     caseDescriptionInput.clear();
     caseDescriptionInput.sendKeys(newDescription);
   }
 
   private void onClickDescriptionInplace() {
-    WebElement caseDescriptionInplace = findElementById("case-item-details:description:case-description-form:case-description-output");
+    WebElement caseDescriptionInplace = findElementById("case-item-details:widgets:0:general-information:description:case-description-form:case-description-output");
     waitForElementDisplayed(caseDescriptionInplace, true);
     click(caseDescriptionInplace);
   }
 
   private void onClickDescriptionEditIcon() {
-    try {
-      WebElement caseIcons = caseItem.findElement(By.cssSelector(CASE_ICONS_CONTAINER_COMPONENT_CSS_SELECTOR));
-      WebElement descriptionIcon = caseIcons.findElement(By.cssSelector("a[class*='fa fa-clipboard']"));
-      if (descriptionIcon != null) {
-        click(descriptionIcon);
-      }
-    } catch (Exception e) {
-      return;
-    }
+    click(By.id("case-item-details:widgets:0:general-information:description:edit-description-link"));
   }
 
   public void onClickHistoryIcon() {
-    click(findElementById("case-item-details:case-histories:add-note-command"));
+    click(findElementById("case-item-details:widgets:4:case-histories:add-note-command"));
     waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
   }
 
   public void onClickDestroyCase() {
-    click(findElementById("case-item-details:destroy-case-link"));
+    click(findElementById("case-item-details:widgets:0:destroy-case-link"));
   }
   
   public void confimDestruction() {
@@ -408,7 +388,55 @@ public class CaseDetailsPage extends TemplatePage {
   }
   
   public void waitForCaseDetailsDisplay() {
-    waitForElementDisplayed(By.id("case-item-details:case-detail-title-form"), true);
+    waitForElementDisplayed(By.id("case-item-details:case-detail-body"), true);
   }
 
+  public WebElement getSwitchToEditModeButton() {
+    return findElementByCssSelector("[id$=':switch-to-edit-mode-button']");
+  }
+  
+  public WebElement getSwitchToViewModeButton() {
+    return findElementByCssSelector("[id$=':switch-to-view-mode-button']");
+  }
+  
+  public WebElement getResetButton() {
+    return findElementByCssSelector("[id$=':reset-details-settings-button']");
+  }
+  
+  public void resetToDefault() {
+    waitForElementDisplayed(By.cssSelector("[id$=':reset-details-settings-button']"), true);
+    click(By.cssSelector("[id$=':reset-details-settings-button']"));
+  }
+  
+  public void switchToEditMode() {
+    waitForElementDisplayed(By.cssSelector("[id$=':switch-to-edit-mode-button']"), true);
+    click(By.cssSelector("[id$=':switch-to-edit-mode-button']"));
+  }
+
+  public void waitForSaveButtonDisplayed() {
+    waitForElementDisplayed(By.cssSelector("[id$=':switch-to-view-mode-button']"), true);
+  }
+
+  public void saveAndSwitchToViewMode() {
+    waitForElementDisplayed(By.cssSelector("[id$=':switch-to-view-mode-button']"), true);
+    click(By.cssSelector("[id$=':switch-to-view-mode-button']"));
+  }
+
+  public void drapAndDropWidgets(String sourceName, String destinationName) {
+    waitForElementDisplayed(By.cssSelector(String.format("[id='case-details-%s-panel']", sourceName)), true);
+    WebElement sourceElement = findElementByCssSelector(String.format("[id='case-details-%s-panel']", sourceName));
+    waitForElementDisplayed(By.cssSelector(String.format("[id='case-details-%s-panel']", destinationName)), true);
+    WebElement destinationElement = findElementByCssSelector(String.format("[id='case-details-%s-panel']", destinationName));
+    Actions actions = new Actions(driver);
+    Action moveWidget = actions.dragAndDrop(sourceElement, destinationElement).build();
+    moveWidget.perform();
+  }
+
+  public void waitForResetButtonDisplayed() {
+    waitForElementDisplayed(By.cssSelector("[id='case-item-details:reset-details-settings-button']"), true);
+  }
+  
+  public void waitForResetButtonNotPresent() {
+    waitForElementPresent(By.cssSelector("[id='case-item-details:reset-details-settings-button']"), false);
+  }
 }

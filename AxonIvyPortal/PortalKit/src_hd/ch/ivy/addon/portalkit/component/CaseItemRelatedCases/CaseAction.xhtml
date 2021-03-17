@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+<ui:composition>
+  <div id="action-cell" class="task-header-action-cell">
+    <div class="action-container">
+      <p:commandLink id="task-action-component"
+        disabled="#{!taskActionBean.isNotDone(task) or !taskActionBean.canResume(task)}" rendered="#{task.state != 'RESUMED'}" onstart="event.stopPropagation();"
+        styleClass="task-action-item start-task-action">
+        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}" styleClass="task-action-item-label u-hidden-lg-down" />
+        <i class="si si-arrow-right-1 icon-compact-mode" />
+      </p:commandLink>
+
+      <p:commandLink id="resume-task-action-component" disabled="#{!taskActionBean.isNotDone(task) or !taskActionBean.canResume(task)}"
+        rendered="#{task.state == 'RESUMED'}" styleClass="task-action-item start-task-action">
+        <f:setPropertyActionListener value="#{task.id}" target="#{taskWidgetBean.selectedTaskItemId}"/>
+        <p:ajax event="click" onstart="event.stopPropagation();"
+          oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('reset-task-dialog').show();}" />
+        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}" styleClass="task-action-item-label u-hidden-lg-down" />
+        <i class="si si-arrow-right-1 icon-compact-mode" />
+      </p:commandLink>
+
+      <ic:ch.ivy.addon.portalkit.component.SideStep id="additional-options" actionLinkId="task-side-steps-menu"
+        panelWidgetVar="task-side-steps-panel" isAdhocExcluded="false" renderedAdditionalAction="#{taskActionBean.showAdditionalOptions(task)}"
+        task="#{task}" componentToUpdate="#{p:component('task-start')}" showDetailOption="#{true}"
+        buttonStyleClass="u-hidden-md-down" />
+    </div>
+  </div>
+</ui:composition>
+</html>
