@@ -20,6 +20,7 @@
   <cc:attribute name="onDestroyComplete" />
   <cc:attribute name="onWorkflowEventComplete" />
   <cc:attribute name="showInTaskList" type="java.lang.Boolean" default="true" shortDescription="Indicator to display SideStep in TaskList"/>
+  <cc:attribute name="inFrame" default="false"/>
 </cc:interface>
 
 <cc:implementation>
@@ -38,7 +39,7 @@
     styleClass="options-panel" dynamic="true" rendered="#{!cc.attrs.isDisabled}">
 
     <p:commandLink id="task-open-detail-command" styleClass="option-item"
-      actionListener="#{logic.openDetails(task, dataModel)}" rendered="#{cc.attrs.showDetailOption}">
+      actionListener="#{logic.openDetails(task, dataModel, cc.attrs.inFrame)}" rendered="#{cc.attrs.showDetailOption}">
       <i class="option-action-icon si si-information-circle" />
       <span class="option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/detail')}</span>
     </p:commandLink>
