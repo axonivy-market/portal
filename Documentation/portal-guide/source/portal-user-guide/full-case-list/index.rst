@@ -259,6 +259,59 @@ You may export the Case List by clicking on the button **Export to Excel**.
 
 |export-to-excel-button|
 
+HowTo: Manipulate related tasks inside case details
+---------------------------------------------------
+
+#. Open the case details of a case
+
+#. Scroll to related tasks section
+
+|case-details-related-tasks-cases|
+
+This section shows you the related tasks of this case.
+
+.. hint:: 
+   Depending on the roles you hold
+   in the application and the     
+   configuration of the Axon Ivy  
+   Portal, you might see not only 
+   the tasks belonging to you but 
+   all open tasks.                
+
+For each task the following key information is shown in the list:
+
+#. Priority
+
+#. Name
+
+#. Description
+
+#. Responsible user or role
+
+#. Task ID
+
+#. Creation Date
+
+#. Expiry Date
+
+#. State
+
+Furthermore, at the end of each row you find a side step menu of key features in
+handling tasks:
+
+#. Reset Task
+
+#. Delegate Task
+
+#. Reserve
+
+#. Destroy Task
+
+#. Add Ad-hoc Task
+
+Finally, you have the possibility to access the full set of the task
+data by clicking on the row containing the task.
+
 .. include:: ../includes/_common-icon.rst
 
 .. |navigate-to-full-cases-list-page| image:: ../../screenshots/case/navigate-to-full-cases-list-page.png
