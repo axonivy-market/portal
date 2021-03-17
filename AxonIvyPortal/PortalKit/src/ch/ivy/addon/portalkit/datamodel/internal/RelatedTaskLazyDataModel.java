@@ -130,4 +130,28 @@ public class RelatedTaskLazyDataModel extends TaskLazyDataModel {
   public String getRowKey(ITask task) {
     return String.valueOf(task.getId());
   }
+
+  /**
+   * @hidden
+   */
+  @Override
+  public void setRowIndex(int index) {
+    setRowIndexAtSuper(index);
+  }
+
+  /**
+   * @hidden
+   */
+  @Override
+  public ITask getRowData() {
+    return getRowDataAtSuper();
+  }
+
+  /**
+   * @hidden
+   */
+  @Override
+  public boolean isRowAvailable() {
+    return isRowAvailableAtSuper();
+  }
 }
