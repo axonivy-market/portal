@@ -162,6 +162,9 @@ Pt0 @PushWFArc f119 '' #zField
 Pt0 @PushWFArc f114 '' #zField
 Pt0 @StartRequest f120 '' #zField
 Pt0 @PushWFArc f129 '' #zField
+Pt0 @CallSub f122 '' #zField
+Pt0 @StartRequest f130 '' #zField
+Pt0 @PushWFArc f131 '' #zField
 >Proto Pt0 Pt0 PortalStart #zField
 Bk0 @TextInP .type .type #zField
 Bk0 @TextInP .processKind .processKind #zField
@@ -1457,6 +1460,40 @@ Pt0 f120 81 65 30 30 -65 17 #rect
 Pt0 f129 111 80 192 144 #arcP
 Pt0 f129 1 192 80 #addKink
 Pt0 f129 0 0.5408093300227363 0 0 #arcLabel
+Pt0 f122 processCall 'Functional Processes/Navigator:viewCaseItemDetailsInIFrame(ch.ivy.addon.portalkit.dto.GlobalCaseId)' #txt
+Pt0 f122 requestActionDecl '<ch.ivy.addon.portalkit.dto.GlobalCaseId caseId> param;' #txt
+Pt0 f122 requestMappingAction 'param.caseId=ch.ivy.addon.portalkit.dto.GlobalCaseId.caseId(in.caseId).isBusinessCase(in.isBusinessCase).build();
+' #txt
+Pt0 f122 responseMappingAction 'out=in;
+' #txt
+Pt0 f122 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Functional Processes/Navigator</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f122 216 2378 176 44 -83 -8 #rect
+Pt0 f130 outLink CaseDetailsPageInFrame.ivp #txt
+Pt0 f130 inParamDecl '<Long caseId,Boolean isBusinessCase> param;' #txt
+Pt0 f130 inParamTable 'out.caseId=param.caseId;
+out.isBusinessCase=param.isBusinessCase;
+' #txt
+Pt0 f130 requestEnabled true #txt
+Pt0 f130 triggerEnabled false #txt
+Pt0 f130 callSignature CaseDetailsPageInFrame(Long,Boolean) #txt
+Pt0 f130 caseData businessCase.attach=true #txt
+Pt0 f130 showInStartList 0 #txt
+Pt0 f130 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>CaseDetailsPageInFrame.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f130 @C|.responsibility Everybody #txt
+Pt0 f130 81 2385 30 30 -68 21 #rect
+Pt0 f131 111 2400 216 2400 #arcP
 >Proto Pt0 .type ch.ivy.addon.portal.generic.PortalStartData #txt
 >Proto Pt0 .processKind NORMAL #txt
 >Proto Pt0 0 0 32 24 18 0 #rect
@@ -2283,6 +2320,8 @@ Pt0 f127 out f114 tail #connect
 Pt0 f114 head f118 mainIn #connect
 Pt0 f120 mainOut f129 tail #connect
 Pt0 f129 head f21 in #connect
+Pt0 f130 mainOut f131 tail #connect
+Pt0 f131 head f122 mainIn #connect
 Bk0 f17 mainOut f26 tail #connect
 Bk0 f26 head f23 mainIn #connect
 Bk0 f19 mainOut f39 tail #connect
