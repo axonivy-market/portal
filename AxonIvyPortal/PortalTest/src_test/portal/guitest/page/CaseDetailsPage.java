@@ -252,7 +252,7 @@ public class CaseDetailsPage extends TemplatePage {
     Sleeper.sleep(2000);//slow down a bit for FF
     openAddDocumentDialogAndUploadDocument(pathToFile);
     waitForElementDisplayed(By.cssSelector("span[class$='ui-messages-info-summary']"), true);
-    click(By.cssSelector("button[id$='case-item-details:document:document-upload-close-command']"));
+    click(By.cssSelector("button[id$='document:document-upload-close-command']"));
   }
 
   public String uploadDocumentWithError(String pathToFile) {
@@ -360,7 +360,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public WebElement getGeneralInforBox() {
-    return findElementByCssSelector("[id$='case-general-information-card']");
+    return findElementByCssSelector("[id$='case-detail-general-container']");
   }
 
   public WebElement getRelatedRunningTaskBox() {
@@ -378,13 +378,13 @@ public class CaseDetailsPage extends TemplatePage {
   public WebElement getAddNoteDialog() {
     onClickHistoryIcon();
     waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
-    return findElementById("case-item-details:case-histories:add-note-dialog");
+    return findElementByCssSelector("[id$='case-histories:add-note-dialog']");
   }
 
   public WebElement getAddAttachmentDialog() {
     clickByCssSelector("a[id$='add-document-command']");
     waitForElementDisplayed(By.cssSelector("span[id$='document-upload-dialog_title']"), true);
-    return findElementById("case-item-details:document:document-upload-dialog");
+    return findElementByCssSelector("[id$='document:document-upload-dialog']");
   }
   
   public void waitForCaseDetailsDisplay() {
