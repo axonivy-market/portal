@@ -17,8 +17,10 @@ Ps0 @UdEvent f3 '' #zField
 Ps0 @UdExitEnd f4 '' #zField
 Ps0 @PushWFArc f5 '' #zField
 Ps0 @GridStep f6 '' #zField
-Ps0 @PushWFArc f7 '' #zField
 Ps0 @PushWFArc f2 '' #zField
+Ps0 @GridStep f8 '' #zField
+Ps0 @PushWFArc f9 '' #zField
+Ps0 @PushWFArc f7 '' #zField
 >Proto Ps0 Ps0 PortalCaseDetailsProcess #zField
 Ps0 f0 guid 16BBB5AA8B6BE5B7 #txt
 Ps0 f0 method start(ch.ivyteam.ivy.workflow.ICase,Boolean) #txt
@@ -36,7 +38,7 @@ Ps0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ps0 f0 83 51 26 26 -16 15 #rect
 Ps0 f0 @|UdInitIcon #fIcon
-Ps0 f1 467 51 26 26 0 12 #rect
+Ps0 f1 571 51 26 26 0 12 #rect
 Ps0 f1 @|UdProcessEndIcon #fIcon
 Ps0 f3 guid 16BBB5AA8D8DEFBB #txt
 Ps0 f3 actionTable 'out=in;
@@ -66,18 +68,35 @@ Ps0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ps0 f6 224 42 176 44 -82 -8 #rect
+Ps0 f6 360 42 176 44 -82 -8 #rect
 Ps0 f6 @|StepIcon #fIcon
-Ps0 f7 expr out #txt
-Ps0 f7 109 64 224 64 #arcP
-Ps0 f2 400 64 467 64 #arcP
+Ps0 f2 536 64 571 64 #arcP
+Ps0 f8 actionTable 'out=in;
+' #txt
+Ps0 f8 actionCode 'import ch.ivy.addon.portalkit.datamodel.internal.RelatedCaseLazyDataModel;
+
+in.caseLazyDataModel = new RelatedCaseLazyDataModel(in.caseInfo.getId());' #txt
+Ps0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>init data model</name>
+    </language>
+</elementInfo>
+' #txt
+Ps0 f8 216 42 112 44 -40 -8 #rect
+Ps0 f8 @|StepIcon #fIcon
+Ps0 f9 expr out #txt
+Ps0 f9 109 64 216 64 #arcP
+Ps0 f7 328 64 360 64 #arcP
 >Proto Ps0 .type ch.ivy.addon.portal.generic.PortalCaseDetails.PortalCaseDetailsData #txt
 >Proto Ps0 .processKind HTML_DIALOG #txt
 >Proto Ps0 -8 -8 16 16 16 26 #rect
 >Proto Ps0 '' #fIcon
 Ps0 f3 mainOut f5 tail #connect
 Ps0 f5 head f4 mainIn #connect
-Ps0 f0 mainOut f7 tail #connect
-Ps0 f7 head f6 mainIn #connect
 Ps0 f6 mainOut f2 tail #connect
 Ps0 f2 head f1 mainIn #connect
+Ps0 f0 mainOut f9 tail #connect
+Ps0 f9 head f8 mainIn #connect
+Ps0 f8 mainOut f7 tail #connect
+Ps0 f7 head f6 mainIn #connect
