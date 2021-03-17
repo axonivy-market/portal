@@ -143,7 +143,7 @@ Refer to ``portal-developer-examples`` project for examples.
    components <customization-case-details-how-to-override-ui-show-hidden-ui>`.
 
    And to add a new elements, please refer to :ref:`Add new Custom
-   panel <customization-case-details-how-to-override-ui-custom-body>`
+   panel <customization-case-item-details-how-to-override-ui-custom-body>`
    code
 
 .. _customization-case-details-how-to-override-ui-show-hidden-ui:
@@ -345,7 +345,7 @@ There are **two steps** for adding new custom panels.
    class to define the width of panel
 
 
-.. |case-standard-1| image:: ../../screenshots/case-detail/customization/case-standard-1.png
-.. |case-standard-2| image:: ../../screenshots/case-detail/customization/case-standard-2.png
+.. |case-standard-1| image:: images/customization/edit-variable-portal-case-details.png
+.. |case-standard-2| image:: images/customization/edit-variable-portal-case-details.png
 .. |edit-variable-portal-case-details| image:: images/customization/edit-variable-portal-case-details.png
 
