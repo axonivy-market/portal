@@ -301,7 +301,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
   
   public String getCaseId() {
-    return findElementById("case-item-details:general-information:case-id").getText();
+    return findElementByCssSelector("span[id$='general-information:case-id']").getText();
   }
   
   public boolean isAddNoteButtonDisplayed() {
