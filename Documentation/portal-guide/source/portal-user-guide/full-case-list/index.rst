@@ -6,7 +6,7 @@ Full Case List
 The **Full Case List** page shows you all cases you’re involved in.
 This page provides you with extended information on the cases, as well
 as advanced search and filter capabilities. You can reach the page by
-using the |case-icon| **Cases** link in the Axon Ivy Portal menu.
+using the |case-icon| :guilabel:`Cases`  link in the Axon Ivy Portal menu.
 
 .. hint:: 
    Depending on the roles you hold in the application and the configuration of
@@ -199,10 +199,10 @@ HowTo: Attach a document to the case
 
 #. The :guilabel:`Add document` dialog is opened
 
-#. Upload a file by using the :guilabel:`Select`  button or by simply dragging
+#. Upload a file by using the :guilabel:`Select` button or by simply dragging
    the file into the dialog.
 
-#. Click the button :guilabel:`Close`  to add the attachment
+#. Click the button :guilabel:`Close` to close the dialog
 
 |how-to-attach-document-to-case|
 
@@ -213,12 +213,12 @@ HowTo: Remove an attachment from the case
 
 #. Open the case details of a task
 
-#. Click on the |delete-icon| :guilabel:`Delete` button next to the
+#. Click on the |delete-icon| button next to the
    attachment you want to remove.
 
 #. A confirmation dialog is opened
 
-#. Confirm the deletion with the button :guilabel:`Yes` 
+#. Confirm the deletion with the button :guilabel:`Delete` 
 
 |how-to-delete-an-attachment-from-case|
 
@@ -248,8 +248,7 @@ HowTo: Export a case history
 
 #. A new page with the case history is opened
 
-#. You may export the history by clicking on the button **Export to
-   Excel**
+#. You may export the history by clicking on the button :guilabel:`Export to Excel` 
 
    |export-case-history|
 

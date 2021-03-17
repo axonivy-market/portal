@@ -10,30 +10,30 @@ Global Search Result
 
 Follow these steps to customize the global search page:
 
-1. Introduce an Axon Ivy project which has ``PortalTemplate`` as a
+#. Introduce an Axon Ivy project which has ``PortalTemplate`` as a
    required library.
 
-2. Copy the ``PortalStart`` process from ``PortalTemplate`` to your
+#. Copy the ``PortalStart`` process from ``PortalTemplate`` to your
    project. This process is new home page and administrator should
    register this link by global
 
-3. Refer to :ref:`Customize Portal home<customization-portal-home>` to set new home
+#. Refer to :ref:`Customize Portal home<customization-portal-home>` to set new home
    page.
 
-4. Create the customized search data model extends
+#. Create the customized search data model extends
    ``SearchResultsDataModel``, and override the ``search`` method to
    filter your objects.
 
    .. note:: It is recommended that lazy loading or pagination should be
     applied for custom tabs to have a good performance.
 
-5. Use `Axon Ivy HtmlOverride wizard <https://developer.axonivy.com/doc/9.1/designer-guide/how-to/overrides.html?#override-new-wizard>`_ to override ``SearchResults`` HTML dialog.
+#. Use `Axon Ivy HtmlOverride wizard <https://developer.axonivy.com/doc/9.1/designer-guide/how-to/overrides.html?#override-new-wizard>`_ to override ``SearchResults`` HTML dialog.
 
    In dataclass, change the ``dataModel`` to the above one, and in logic, also cast it.
 
    |customized-data-model-cast|
 
-6. Define the ``custom-search`` section to add your customized tabs:
+#. Define the ``custom-search`` section to add your customized tabs:
 
    .. code-block:: html
    
@@ -62,7 +62,7 @@ Follow these steps to customize the global search page:
    ..
    
 
-7. Override the ``OpenPortalSearch`` callable process and change the
+#. Override the ``OpenPortalSearch`` callable process and change the
    HTML dialog to your customized one.
 
    .. tip:: Refer to the example in the portal-developer-examples project:

@@ -88,13 +88,13 @@ Task Analysis component of Portal provides features for the user's own permissio
 Cockpit <https://developer.axonivy.com/doc/9.1/engine-guide/tool-reference/engine-cockpit/security.html>`_
 to analyze  not only tasks but also cases. These features are:
 
-1. Set of filters for both tasks and cases which allow user to filter
+#. Set of filters for both tasks and cases which allow user to filter
    and to find tasks, cases more better. More, user can create and
    manage their own filter set for future usage.
 
-2. Dynamic result table with lots of information for both task and case.
+#. Dynamic result table with lots of information for both task and case.
 
-3. Support export result as Excel files (currently we only support .xlsx
+#. Support export result as Excel files (currently we only support .xlsx
    extension).
 
 |task-analysis|
@@ -129,12 +129,12 @@ Process Chain component of Portal provides features for users to know
 status of all steps in a process: the step's working, these steps are
 done, these steps is not done. These features are:
 
-1. Support to display all working steps or display only helpful steps as
+#. Support to display all working steps or display only helpful steps as
    begin, last, current, previous current, next current steps.
 
-2. Support to change the sharp of process chain: circle or line.
+#. Support to change the sharp of process chain: circle or line.
 
-3. Support to change direction of process chain: horizontal or vertical.
+#. Support to change direction of process chain: horizontal or vertical.
 
 |process-chain|
 
@@ -153,19 +153,19 @@ include this component to this page with following code:
 		componentId="component-circle-horizontal" shape="CIRCLE" direction="HORIZONTAL"
 		isShowAllSteps="FALSE" actualStepIndex="#{data.actualCurrentIndex}" steps="#{data.steps}" />
 
-1. Must to set value for ``actualStepIndex`` parameter. This is current
+#. Must to set value for ``actualStepIndex`` parameter. This is current
    step index.
 
-2. Must to set value for ``steps`` parameter. This is list of working
+#. Must to set value for ``steps`` parameter. This is list of working
    steps.
 
-3. Can change ``shape`` parameter to ``CIRCLE`` or ``LINE`` based on the
+#. Can change ``shape`` parameter to ``CIRCLE`` or ``LINE`` based on the
    requirement. Default value of this is ``CIRCLE``.
 
-4. Can change ``direction`` parameter to ``HORIZONTAL`` or ``VERTICAL``
+#. Can change ``direction`` parameter to ``HORIZONTAL`` or ``VERTICAL``
    based on the requirement. Default value of this is ``HORIZONTAL``.
 
-5. Can change ``isShowAllSteps`` parameter to ``TRUE`` or ``FALSE``
+#. Can change ``isShowAllSteps`` parameter to ``TRUE`` or ``FALSE``
    based on the requirement. Default value of this is ``FALSE``.
 
 .. _components-additional-component-global-growl:
@@ -273,13 +273,13 @@ How to use
 
 You can include this component to any page. This component supports 2 styles of displaying a label.
 
-1. Default style
+#. Default style
 
-|user-selection|
+   |user-selection|
 
-Code example:
+   Code example:
 
-.. code-block:: html
+   .. code-block:: html
 
       <ic:ch.ivy.addon.portalkit.component.UserSelection 
             componentId="user-by-role-autocomplete"
@@ -288,12 +288,13 @@ Code example:
             isRequired="true"
             label="Users from defined rolenames"/>
 
-2. Floating label
-|user-selection-floating-label|
+#. Floating label
 
-Code example:
+   |user-selection-floating-label|
 
-.. code-block:: html
+   Code example:
+
+   .. code-block:: html
 
       <ic:ch.ivy.addon.portalkit.component.UserSelection 
             componentId="all-user-autocomplete"
@@ -360,13 +361,13 @@ How to use
 
 You can include this component to any page. This component supports 2 styles of displaying a label.
 
-1. Default style
+#. Default style
 
-|role-selection|
+   |role-selection|
 
-Code example:
+   Code example:
 
-.. code-block:: html
+   .. code-block:: html
 
       <ic:ch.ivy.addon.portalkit.component.RoleSelection
          componentId="role-from-defined-role-autocomplete"
@@ -375,13 +376,13 @@ Code example:
          isRequired="true"
          label="Roles from defined role names"/>
 
-2. Floating label
+#. Floating label
 
 |role-selection-floating-label|
 
-Code example:
+   Code example:
 
-.. code-block:: html
+   .. code-block:: html
 
       <ic:ch.ivy.addon.portalkit.component.RoleSelection
          componentId="floating-label-and-exclude-role-autocomplete" hightlight="false"

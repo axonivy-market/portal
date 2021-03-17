@@ -6,7 +6,7 @@ Full Task List
 The **Full Task List** page shows you the same tasks you see on your
 personal dashboard. However, this page provides you with extended
 information on the tasks, as well as, advanced search and filter
-capabilities. You can reach the page by using the |task-list-icon| **Tasks**
+capabilities. You can reach the page by using the |task-list-icon| :guilabel:`Tasks` 
 link in the Axon Ivy Portal menu.
 
 .. hint:: 
@@ -21,7 +21,7 @@ link in the Axon Ivy Portal menu.
 |navigate-to-full-task-list-page|
 
 On the top of the **Full Task List** page you see next to the heading
-**Tasks** in brackets the overall number of tasks shown to you. Below you find the filter feature.
+:guilabel:`Tasks`  in brackets the overall number of tasks shown to you. Below you find the filter feature.
 The usage will be explained in the HowTo’s further down this chapter.
 Finally, you see the list of tasks.
 
@@ -198,7 +198,7 @@ HowTo: Attach a document to the case
 #. Upload a file by using the :guilabel:`Select`  button or by simply dragging
    the file into the dialog
 
-#. Click the button :guilabel:`Close`  to add the attachment
+#. Click the button :guilabel:`Close`  to close the dialog
 
 |how-to-upload-document|
 
@@ -207,7 +207,7 @@ HowTo: Remove an attachment from the case
 
 #. Open the task details of a task
 
-#. Click on the |delete-icon| **Delete** button next to the
+#. Click on the |delete-icon| button next to the
    attachment you want to remove
 
 #. A confirmation dialog is opened
@@ -225,7 +225,7 @@ HowTo: Add a note to a task
 
 #. The :guilabel:`Add note` dialog is opened
 
-3. Enter your note
+#. Enter your note
 
 #. Confirm your note by clicking the button :guilabel:`Save`
 
@@ -238,13 +238,13 @@ HowTo: Export a task history
 
 #. Click on the |show-more-icon| :guilabel:`Show more`  link below the notes section
 
-|how-to-show-note-details|
+   |how-to-show-note-details|
 
 #. A new page with the task history is opened
 
 #. You may export the history by clicking on the button :guilabel:`Export to Excel` 
 
-|how-to-export-note-details|
+   |how-to-export-note-details|
 
 
 .. _how-to-show-workflow-events:
