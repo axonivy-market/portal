@@ -23,6 +23,7 @@ public class CaseDetailsTest extends BaseTest {
   private CaseDetailsPage detailsPage;
 
   private static final String LEAVE_REQUEST_CASE_NAME = "Leave Request";
+  private static final String ORDER_PIZZA = "Order Pizza";
 
   @Override
   @Before
@@ -63,6 +64,10 @@ public class CaseDetailsTest extends BaseTest {
 
   @Test
   public void testShowCaseDetail() {
+    redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
+    MainMenuPage mainMenuPage = homePage.openMainMenu();
+    CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
+    detailsPage = casePage.openDetailsOfCaseHasName(ORDER_PIZZA);
     assertTrue(detailsPage.isGeneralInformationComponentPresented());
     assertTrue(detailsPage.isRelatedCasesComponentPresented());
     assertTrue(detailsPage.isRelatedTasksComponentPresented());
