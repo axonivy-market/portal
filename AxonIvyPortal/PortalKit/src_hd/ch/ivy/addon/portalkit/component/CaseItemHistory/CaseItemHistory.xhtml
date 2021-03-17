@@ -34,31 +34,16 @@
             <span class="display-full-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addNote')} </span>
             <span class="display-short-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}</span>
           </p:commandLink>
-          <div class="group-history-fitlers display-full-text">
           <p:selectBooleanCheckbox value="#{data.showSystemNotes}" itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/showSystemNotes')}" rendered="#{data.showSystemNotesChkbox}"
-            styleClass="case-history-checkbox">
+            styleClass="case-history-checkbox u-hidden-md-down u-hidden-sm-down">
             <p:ajax update="case-histories-table" process="@this" partialSubmit="true" listener="#{logic.loadHistories}" />
           </p:selectBooleanCheckbox>
           <p:selectBooleanCheckbox value="#{data.showSystemTasks}" itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/showSystemTasks')}" rendered="#{data.showSystemTasksChkbox}"
-            styleClass="case-history-checkbox show-system-tasks">
+            styleClass="case-history-checkbox u-hidden-md-down u-hidden-sm-down">
             <p:ajax update="case-histories-table" process="@this" partialSubmit="true" listener="#{logic.loadHistories}" />
           </p:selectBooleanCheckbox>
-          </div>
         </h:panelGroup>
       </div>
-    </div>
-
-    <div class="group-history-fitlers display-short-text">
-      <p:selectBooleanCheckbox value="#{data.showSystemNotes}"
-        itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/showSystemNotes')}"
-        rendered="#{data.showSystemNotesChkbox}" styleClass="case-history-checkbox">
-        <p:ajax update="case-histories-table" process="@this" partialSubmit="true" listener="#{logic.loadHistories}" />
-      </p:selectBooleanCheckbox>
-      <p:selectBooleanCheckbox value="#{data.showSystemTasks}"
-        itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/showSystemTasks')}"
-        rendered="#{data.showSystemTasksChkbox}" styleClass="case-history-checkbox">
-        <p:ajax update="case-histories-table" process="@this" partialSubmit="true" listener="#{logic.loadHistories}" />
-      </p:selectBooleanCheckbox>
     </div>
 
     <h:panelGroup id="case-histories-table" class="ui-g-12 u-padding-0">

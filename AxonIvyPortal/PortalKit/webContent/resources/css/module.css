@@ -4946,19 +4946,6 @@ body .ui-picklist .ui-picklist-filter-container .ui-icon {
   }
 }
 
-.group-history-fitlers.display-short-text {
-  white-space: nowrap;
-  margin-bottom: 7px;
-}
-
-.group-history-fitlers.display-full-text {
-  white-space: nowrap;
-}
-
-.group-history-fitlers.display-full-text .show-system-tasks {
-  margin-right: 8px;
-}
-
 /*=================== EXPRESS MANAGEMENT START ===================*/
 .express-process-upload.ui-fileupload {
   padding: 0 !important;
