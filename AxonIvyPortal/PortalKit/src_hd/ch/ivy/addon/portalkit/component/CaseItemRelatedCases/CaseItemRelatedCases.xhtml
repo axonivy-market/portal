@@ -46,12 +46,12 @@
         <p:ajax event="rowSelect" listener="#{caseDetailsBean.navigateToSelectedCaseDetails}" />
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}" field="NAME" sortBy="#{NAME}" styleClass="name-column u-truncate-text"
           visible="#{caseDetailsBean.isDisplayColumn(data.caseLazyDataModel, 'NAME')}">
-          <h:outputText value="#{case.name}" />
+          <h:outputText value="#{case.name}" title="#{case.name}"/>
         </p:column>
         
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}" sortable="false" styleClass="description-column u-truncate-text"
           visible="#{caseDetailsBean.isDisplayColumn(data.caseLazyDataModel, 'NAME')}" >
-          <h:outputText escape="false" value="#{caseWidgetBean.formatCaseDescription(case.description)}" />
+          <h:outputText escape="false" value="#{caseWidgetBean.formatCaseDescription(case.description)}" title="#{case.description}"/>
         </p:column>
         
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/ID')}" field="ID" sortBy="#{ID}" styleClass="id-column"
@@ -97,7 +97,7 @@
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}" styleClass="more-column">
           <div class="case-header-action-cell">
             <ic:ch.ivy.addon.portalkit.component.ActionStep id="action-step-component" actionLinkId="action-steps-menu"
-              actionLinkStyleClass="ui-button-text-only" case="#{case}" isAdhocExcluded="true" />
+              actionLinkStyleClass="ui-button-text-only" case="#{case}" isAdhocExcluded="true" inFrame="#{cc.attrs.inFrame}"/>
           </div>
         </p:column>
       </p:dataTable>
