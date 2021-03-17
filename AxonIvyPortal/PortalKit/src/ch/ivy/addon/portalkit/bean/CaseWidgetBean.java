@@ -17,10 +17,12 @@ import ch.ivy.addon.portalkit.casefilter.CaseFilter;
 import ch.ivy.addon.portalkit.casefilter.impl.CaseFilterData;
 import ch.ivy.addon.portalkit.casefilter.impl.CaseStateFilter;
 import ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel;
+import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.enums.CaseSortField;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
+import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivy.addon.portalkit.exporter.Exporter;
 import ch.ivy.addon.portalkit.service.CaseFilterService;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
@@ -219,5 +221,26 @@ public class CaseWidgetBean implements Serializable {
 
   public int getMaxCaseNumberInExcel() {
     return Exporter.MAX_ROW_NUMBER_IN_EXCEL;
+  }
+
+  /**
+   * Gets visible columns on Task list page.
+   * 
+   * @param dataModel
+   * @return visible columns
+   */
+  public List<String> getRelatedTaskColumns(TaskLazyDataModel dataModel) {
+    List<String> visibilityColumns = new ArrayList<>();
+    visibilityColumns.addAll(dataModel.getSelectedColumns());
+
+    /*
+     * In UI we have a column called "Name / Description", but PortalRequiredColumns contains only "Name" column, so
+     * that we need to check and add "Description" to Excel file
+     */
+    List<String> requiredColumns = dataModel.getPortalRequiredColumns();
+    if (requiredColumns != null && requiredColumns.contains(TaskSortField.NAME.name())) {
+      visibilityColumns.add(TaskLazyDataModel.DESCRIPTION);
+    }
+    return visibilityColumns;
   }
 }

@@ -1194,7 +1194,8 @@ body .ui-datepicker .ui-timepicker-div dl dd {
 a.case-details-document-add-link,
 a.task-details-document-add-link,
 span.case-details-document-add-link,
-span.task-details-document-add-link {
+span.task-details-document-add-link,
+.related-task-section-header-actions a {
   font-weight: var(--details-document-add-link-font-weight); }
 
 body .ui-inputfield.case-detail-name-input {
@@ -1987,12 +1988,14 @@ body.in-dialog .ui-widget-overlay {
 .time-information .si-graphic-tablet-drawing-pen,
 .general-information .si-graphic-tablet-drawing-pen,
 .task-detail-description .si-add-circle,
-.task-detail-description .si-subtract-circle {
+.task-detail-description .si-subtract-circle,
+.case-detail-description .si-add-circle,
+.case-detail-description .si-subtract-circle {
   margin-left: 5px;
   color: var(--primary-color);
 }
 
-.task-details-description-title .si-graphic-tablet-drawing-pen {
+.task-details-description-title .si-graphic-tablet-drawing-pen, .case-details-description-title .si-graphic-tablet-drawing-pen {
   margin: 0 2px;
   color: var(--primary-color);
 }
@@ -2007,4 +2010,40 @@ body.in-dialog .ui-widget-overlay {
 .portal-icon.action-icon.icon-compact-mode,
 .portal-icon.action-link i {
   font-size: var(--portal-icon-font-size);
+}
+/*****CSS FOR DECORATE SCREENSHOT******/
+.marker {
+  position: absolute;
+  z-index: 9999;
+  display: inherit;
+  width: 36px;
+  height: 36px;
+  color: #212121;
+  line-height: 36px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 50%;
+  background-color: #b5e61a;
+}
+
+.overlay-text {
+  position: absolute;
+  z-index: 100;
+  background: transparent;
+}
+
+.red-thick-outline {
+  outline-style: solid;
+  outline-color: red;
+  outline-width: thick;
+}
+
+.red-medium-outline {
+  outline-style: solid;
+  outline-color: red;
+  outline-width: medium;
+}
+
+.red-outline-thick-offset {
+  outline-offset: -5px;
 }

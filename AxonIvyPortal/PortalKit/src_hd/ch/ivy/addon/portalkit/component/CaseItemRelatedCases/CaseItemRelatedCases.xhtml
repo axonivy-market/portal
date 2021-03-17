@@ -1,0 +1,124 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="case" type="ch.ivyteam.ivy.workflow.ICase" />
+  <cc:attribute name="styleClass" />
+  <cc:attribute name="isWorkingOnTask" type="java.lang.Boolean"/>
+  <cc:attribute name="inFrame" type="java.lang.Boolean" default="false"/>
+  <cc:attribute name="readOnly" type="java.lang.Boolean" default="false"/>
+</cc:interface>
+
+<cc:implementation>
+  <f:event listener="#{logic.initData(cc.attrs.case)}" type="preRenderComponent" />
+  <div id="#{cc.clientId}" class="case-details-item #{cc.attrs.styleClass}">
+    <div class="ui-g-12 case-details-related-case-header-section">
+      <div class="ui-g-7 u-truncate-text task-details-panel-title case-detail-section-title">
+        <i class="si si-layout-bullets"/> #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/relatedCases')}
+      </div>
+      <h:panelGroup layout="block" styleClass="ui-g-5 related-case-section-header-actions" id="related-case-actions">
+        <h:form id="related-cases-form" styleClass="config-columns-button">
+          <p:commandLink ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);" >
+            <i class="si si-office-file-xls-1 u-mar-right-5" />
+            <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}" />
+            <p:fileDownload value="#{logic.getExportedFile(caseDetailsBean.getColumns(data.caseLazyDataModel))}" />
+          </p:commandLink>
+        </h:form>
+
+        <div  id="related-case-column-config" class="related-case-column-config u-hidden-md-down">
+          <ic:ch.ivy.addon.portalkit.component.ColumnsConfiguration id="case-columns-configuration"
+            updatedComponent="#{cc.clientId}:related-cases-container #{cc.clientId}:related-case-actions"
+            dataModel="#{data.caseLazyDataModel}" oncomplete="PF('case-config-columns-panel').hide()"
+            configButtonId="case-config-button" overlayPanelId="case-config-columns-panel" />
+        </div>
+      </h:panelGroup>
+    </div>
+    
+    <h:panelGroup layout="block" styleClass="ui-g-12 u-padding-0 related-cases-container" id="related-cases-container">
+    
+      <p:dataTable id="related-cases" lazy="true" value="#{data.caseLazyDataModel}" var="case" paginator="true" rows="5" paginatorPosition="bottom" paginatorAlwaysVisible="false"
+        paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}" sortMode="single" reflow="true"
+        sortBy="#{ID}" sortField="ID" styleClass="related-cases" rowHover="true" selectionMode="single"
+        currentPageReportTemplate="{currentPage} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/curentReportOf')} {totalPages}">
+        <p:ajax event="rowSelect" listener="#{caseDetailsBean.navigateToSelectedCaseDetails}" />
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}" field="NAME" sortBy="#{NAME}" styleClass="name-column u-truncate-text"
+          visible="#{caseDetailsBean.isDisplayColumn(data.caseLazyDataModel, 'NAME')}">
+          <h:outputText value="#{case.name}" />
+        </p:column>
+        
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}" sortable="false" styleClass="description-column u-truncate-text"
+          visible="#{caseDetailsBean.isDisplayColumn(data.caseLazyDataModel, 'NAME')}" >
+          <h:outputText escape="false" value="#{caseWidgetBean.formatCaseDescription(case.description)}" />
+        </p:column>
+        
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/ID')}" field="ID" sortBy="#{ID}" styleClass="id-column"
+          visible="#{caseDetailsBean.isDisplayColumn(data.caseLazyDataModel, 'ID')}" >
+          <h:outputText value="#{case.id}" />
+        </p:column>
+        
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATOR')}" styleClass="responsible-column" field="CREATOR" sortBy="#{CREATOR}"
+          visible="#{caseDetailsBean.isDisplayColumn(data.caseLazyDataModel, 'CREATOR')}">
+          <h:outputText value="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(case.creatorUser, case.creatorUserName)}" />
+        </p:column>
+        
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/OWNER')}" styleClass="owner-column" sortBy="#{OWNER}" field="OWNER" rendered="#{caseBean.isCaseOwnerEnabled()}"
+          visible="#{caseDetailsBean.isDisplayColumn(data.caseLazyDataModel, 'OWNER')}">
+          <h:outputText value="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(case.owner, case.ownerName)}" />
+        </p:column>
+        
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATION_TIME')}" field="CREATION_TIME" sortBy="#{CREATION_TIME}" styleClass="created-column"
+          visible="#{caseDetailsBean.isDisplayColumn(data.caseLazyDataModel, 'CREATION_TIME')}" >
+          <h:outputText value="#{case.startTimestamp}">
+            <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
+          </h:outputText>
+        </p:column>
+        
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/FINISHED_TIME')}" field="FINISHED_TIME" sortBy="#{FINISHED_TIME}" styleClass="expiry-column"
+          visible="#{caseDetailsBean.isDisplayColumn(data.caseLazyDataModel, 'FINISHED_TIME')}">
+          <h:outputText value="#{case.endTimestamp}">
+            <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
+          </h:outputText>
+        </p:column>
+        
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/STATE')}" field="STATE" sortBy="#{STATE}" styleClass="state-column"
+          visible="#{caseDetailsBean.isDisplayColumn(data.caseLazyDataModel, 'STATE')}">
+          <h:outputText value="#{caseBean.getState(case)}" 
+            styleClass="case-state #{case.state.toString().toLowerCase()}-case-state" />
+        </p:column>
+        
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CATEGORY')}" sortable="false" styleClass="u-truncate-text"
+          visible="#{caseDetailsBean.isDisplayColumn(data.caseLazyDataModel, 'CATEGORY')}">
+          <h:outputText value="#{case.getCategory().getName()}" title="#{case.getCategory().getPath()}" />
+        </p:column>
+        
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}" styleClass="more-column">
+          <div class="case-header-action-cell">
+            <ic:ch.ivy.addon.portalkit.component.ActionStep id="action-step-component" actionLinkId="action-steps-menu"
+              actionLinkStyleClass="ui-button-text-only" case="#{case}" isAdhocExcluded="true" />
+          </div>
+        </p:column>
+      </p:dataTable>
+    </h:panelGroup>
+    
+    
+  </div>
+  <p:dialog modal="true" id="status-dialog" widgetVar="status-dialog" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/status')}" draggable="false" closable="false" resizable="false" responsive="true">
+    <div>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/waitingDownloadMessage')}</div>
+    <h:panelGroup layout="block" rendered="#{data.caseLazyDataModel.rowCount gt caseDetailesBean.getMaxTaskNumberInExcel()}">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/downloadZipFileExplanation')}</h:panelGroup>
+  </p:dialog>
+    
+  <script type="text/javascript">
+    function start() {
+        PF('status-dialog').show();
+    }
+
+    function stop() {
+        PF('status-dialog').hide();
+    }
+  </script>
+  <h:outputScript library="js" name="case-detail-related-case.js" />
+</cc:implementation>
+</html>

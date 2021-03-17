@@ -151,23 +151,14 @@ public class PortalCasesScreenshotTest extends ScreenshotTest {
     CaseDetailsPage caseDetailsPage = caseWidget.openDetailsOfCaseHasName("Choose Alpha business name");
     caseDetailsPage.waitForCaseDetailsDisplay();
     executeDecorateJs("highlightCaseDetailComponents()");
-    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.CASE_DETAIL_CUSTOMIZATION_FOLDER + "case-standard");
-    
-    ScreenshotUtil.resizeBrowser(new Dimension(1366, 1400));
-    redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
-    caseWidget = homePage.openMainMenu().selectCaseMenu();
-    homePage.closeMainMenu();
-    caseDetailsPage = caseWidget.openDetailsOfCaseHasName("Leave Request");
-    caseDetailsPage.waitForCaseDetailsDisplay();
-    executeDecorateJs("highlightCustomCaseDetail()");
-    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.CASE_DETAIL_CUSTOMIZATION_FOLDER + "case-customized-top");
-    
+    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.CASE_DETAIL_CUSTOMIZATION_FOLDER + "case-standard-1");
+
     refreshPage();
     caseDetailsPage.waitForCaseDetailsDisplay();
-    executeDecorateJs("scrollToBottomOfLayoutContent()");
+    executeDecorateJs("scrollToMiddleOfLayoutContent()");
     Sleeper.sleep(500);
-    executeDecorateJs("highlightCustomCaseDetail()");
-    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.CASE_DETAIL_CUSTOMIZATION_FOLDER + "case-customized-bottom");
+    executeDecorateJs("highlightCaseDetailComponents()");
+    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.CASE_DETAIL_CUSTOMIZATION_FOLDER + "case-standard-2");
   }
   
   @Test
@@ -176,5 +167,37 @@ public class PortalCasesScreenshotTest extends ScreenshotTest {
     caseWidget = homePage.openCaseList();
     executeDecorateJs("highlightCaseExportToExcelButton()");
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.CASE_WIDGET_FOLDER + "export-to-excel-button");
+  }
+  
+  @Test
+  public void screenshotActionButtonsOnCaseDetails() throws IOException {
+    ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 1440));
+    login(TestAccount.ADMIN_USER);
+    caseWidget = homePage.openMainMenu().selectCaseMenu();
+    homePage.closeMainMenu();
+    CaseDetailsPage caseDetailsPage = caseWidget.openDetailsOfCaseHasName("Choose Alpha business name");
+    caseDetailsPage.waitForCaseDetailsDisplay();
+
+    executeDecorateJs("highlightSwitchToEditMode()");
+    WebElement switchToEditMode = caseDetailsPage.getSwitchToEditModeButton();
+    ScreenshotUtil.captureElementWithMarginOptionScreenshot(switchToEditMode,
+        ScreenshotUtil.CASE_DETAIL_CUSTOMIZATION_FOLDER + "how-to-switch-to-edit-mode", new ScreenshotMargin(100, 200));
+
+    caseDetailsPage.switchToEditMode();
+    caseDetailsPage.waitForSaveButtonDisplayed();
+    caseDetailsPage.drapAndDropWidgets("information", "document");
+    Sleeper.sleep(2000);// wait for focus animation to capture screenshot
+    executeDecorateJs("highlightSwitchToViewMode()");
+    WebElement switchToViewMode = caseDetailsPage.getSwitchToViewModeButton();
+    ScreenshotUtil.captureElementWithMarginOptionScreenshot(switchToViewMode,
+        ScreenshotUtil.CASE_DETAIL_CUSTOMIZATION_FOLDER + "how-to-switch-to-view-mode", new ScreenshotMargin(100, 200));
+
+    caseDetailsPage.saveAndSwitchToViewMode();
+    Sleeper.sleep(2000);// wait for focus animation to capture screenshot
+    executeDecorateJs("highlightResetToDefault()");
+    WebElement resetButton = caseDetailsPage.getResetButton();
+    ScreenshotUtil.captureElementWithMarginOptionScreenshot(resetButton,
+        ScreenshotUtil.CASE_DETAIL_CUSTOMIZATION_FOLDER + "how-to-reset-to-default", new ScreenshotMargin(100, 200));
+    caseDetailsPage.resetToDefault();
   }
 }
