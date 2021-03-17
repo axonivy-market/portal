@@ -3,7 +3,6 @@ package portal.guitest.page;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
@@ -55,22 +54,32 @@ public class ProcessWidgetPage extends TemplatePage {
 
   public WebElement getProcess(String processName) {
     WebElement processListElement = findElementById(processWidgetId + ":process-list");
-    if (!isCompactMode()) {
-      if (StringUtils.contains(getCurrentViewMode(), "Grid") && !isCompactMode()) {
-        return getGridProcess(processName, processListElement);
-      }
+    if (isGridModeActivated()) {
+      return getStartGridProcess(processName, processListElement);
     }
-
     return findChildElementByXpathExpression(processListElement, "//a[.//text() = '" + processName + "']");
   }
 
-  private WebElement getGridProcess(String processName, WebElement processListElement) {
-    WebElement processItemElement = null;
+  public WebElement getStartGridProcess(String processName, WebElement processListElement) {
+    WebElement startProcessItemElement = null;
     List<WebElement> processItems = findChildElementsByCssSelector(processListElement, ".js-process-start-list-item");
     for (WebElement process : processItems) {
       WebElement processNameElement = findChildElementByCssSelector(process, ".js-process-start-list-item-name");
       if (processNameElement.getText().equalsIgnoreCase(processName)) {
-        processItemElement = findChildElementByCssSelector(process, "[id$=':process-item:start-button']");
+        startProcessItemElement = findChildElementByCssSelector(process, "[id$=':process-item:start-button']");
+        break;
+      }
+    }
+    return startProcessItemElement;
+  }
+
+  public WebElement getGridProcessItem(String processName) {
+    WebElement processItemElement = null;
+    List<WebElement> processItems = findListElementsByClassName("js-process-start-list-item");
+    for (WebElement process : processItems) {
+      processItemElement = findChildElementByCssSelector(process, ".js-process-start-list-item-name");
+      if (processItemElement.getText().equalsIgnoreCase(processName)) {
+        processItemElement = process;
         break;
       }
     }
@@ -82,13 +91,21 @@ public class ProcessWidgetPage extends TemplatePage {
     for(int i=0; i< numberOfRefesh; i++) {
       waitForElementDisplayed(By.id(processWidgetId + ":process-search:non-ajax-keyword-filter"), true);
       enterSearchKeyword(wfName);
-      if(isElementDisplayed(By.cssSelector("[id$='edit-express-workflow']"))) {
-        click(By.cssSelector("[id$='edit-express-workflow']"));
-        break;
+      if (isGridModeActivated()) {
+        if (isElementDisplayed(By.cssSelector("[id$=':process-item:edit-link']"))) {
+          clickByCssSelector("[id$=':process-item:edit-link']");
+          waitForElementDisplayed(By.cssSelector("[id$='process-widget:edit-process-dialog']"), true);
+          clickByCssSelector("a[id$='process-widget:edit-process-form:edit-express-workflow']");
+          break;
+        }
+      } else {
+        if(isElementDisplayed(By.cssSelector("[id$='edit-express-workflow']"))) {
+          click(By.cssSelector("[id$='edit-express-workflow']"));
+          break;
+        }
       }
-      else {
-        refresh();
-      }
+
+      refresh();
     }
     return new ExpressProcessPage();
   }
@@ -102,6 +119,10 @@ public class ProcessWidgetPage extends TemplatePage {
   }
   
   public boolean isProcessGroupDisplay(String processGroupCharacter) {
+    if (isGridModeActivated()) {
+      List<WebElement> webElements = findListElementsByClassName("js-grid-process-index-group");
+      return webElements.stream().anyMatch(processItem -> processItem.isDisplayed() && processItem.getAttribute("class").endsWith(processGroupCharacter));
+    }
     List<WebElement> indexGroup = findListElementsByXpath("//legend[@class='ui-fieldset-legend ui-corner-all ui-state-default']");
     return indexGroup.stream().anyMatch(item -> processGroupCharacter.equals(item.getText()));
   }
@@ -193,6 +214,11 @@ public class ProcessWidgetPage extends TemplatePage {
   public boolean isCompactMode() {
     List<WebElement> findElements = driver.findElements(By.id(processWidgetId + ":process-search:non-ajax-keyword-filter"));
     return findElements.isEmpty();
+  }
+
+  public boolean isGridModeActivated() {
+    List<WebElement> findElements = driver.findElements(By.cssSelector("[id$=':grid-process-container']"));
+    return !findElements.isEmpty();
   }
 
   public void expand() {
