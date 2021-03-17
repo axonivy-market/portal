@@ -75,6 +75,8 @@ public class PortalCasesScreenshotTest extends ScreenshotTest {
     WebElement generalInfor = detailsPage.getGeneralInforBox();
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(generalInfor, ScreenshotUtil.CASE_DETAIL_FOLDER + "case-details-data-description", new ScreenshotMargin(50, 10, 10, 10));
     
+    executeDecorateJs("scrollToMiddleOfLayoutContent2()");
+    Sleeper.sleep(500);
     WebElement relatedTask = detailsPage.getRelatedRunningTaskBox();
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(relatedTask, ScreenshotUtil.CASE_DETAIL_FOLDER + "case-details-related-tasks-cases", new ScreenshotMargin(10));
     
@@ -93,6 +95,8 @@ public class PortalCasesScreenshotTest extends ScreenshotTest {
     WebElement document = detailsPage.getDocumentBox();
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(document, ScreenshotUtil.CASE_DETAIL_FOLDER + "case-details-documents", new ScreenshotMargin(10));
     
+    executeDecorateJs("scrollToBottomOfLayoutContent()");
+    Sleeper.sleep(500);
     WebElement histories = detailsPage.getHistoriesBox();
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(histories, ScreenshotUtil.CASE_DETAIL_FOLDER + "case-details-histories", new ScreenshotMargin(10));
     
@@ -102,8 +106,11 @@ public class PortalCasesScreenshotTest extends ScreenshotTest {
     
     refreshPage();
     detailsPage.waitForCaseDetailsDisplay();
+    executeDecorateJs("scrollToBottomOfLayoutContent()");
+    Sleeper.sleep(500);
     executeDecorateJs("highlightShowMoreNoteLink()");
-    ScreenshotUtil.captureHalfTopPageScreenShot(ScreenshotUtil.CASE_DETAIL_FOLDER + "how-to-show-note-details", new Dimension(SCREENSHOT_MEDIUM_WIDTH, 1400));
+    histories = detailsPage.getHistoriesBox();
+    ScreenshotUtil.captureElementWithMarginOptionScreenshot(histories, ScreenshotUtil.CASE_DETAIL_FOLDER + "how-to-show-note-details", new ScreenshotMargin(10));
     
     detailsPage.showNoteHistory();
     Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> homePage.countBrowserTab() > 1);
