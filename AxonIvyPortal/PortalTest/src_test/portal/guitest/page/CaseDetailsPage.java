@@ -52,7 +52,7 @@ public class CaseDetailsPage extends TemplatePage {
 
   public int countRelatedTasks() {
     return caseItem.findElement(By.cssSelector("div[id$='related-tasks']"))
-        .findElements(By.cssSelector("a[id$='task-name']")).size();
+        .findElements(By.cssSelector("td.related-task-name-column")).size();
   }
 
   public void addNote(String content) {
@@ -124,7 +124,8 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public TaskDetailsPage openTasksOfCasePage(int index) {
-    click(By.cssSelector("a[id$='tasks:" + index + ":task-name']"));
+    caseItem.findElement(By.cssSelector("div[id$='related-tasks']"))
+    .findElements(By.cssSelector("td.related-task-name-column")).get(index).click();
     return new TaskDetailsPage();
   }
 
@@ -168,7 +169,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public String getDescription() {
-    WebElement caseDescription = findElementById("case-item-details:widgets:0:general-information:description:case-description-form:case-description-output");
+    WebElement caseDescription = findElementByCssSelector("[id$='case-description-output']");
     waitForElementDisplayed(caseDescription, true);
     return caseDescription.getText();
   }
@@ -198,7 +199,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   private void onClickDescriptionInplace() {
-    WebElement caseDescriptionInplace = findElementById("case-item-details:widgets:0:general-information:description:case-description-form:case-description-output");
+    WebElement caseDescriptionInplace = findElementByCssSelector("[id$='case-description-output']");
     waitForElementDisplayed(caseDescriptionInplace, true);
     click(caseDescriptionInplace);
   }
