@@ -164,10 +164,11 @@ public final class PortalNavigator extends BaseNavigator{
     navigateByKeyword("TaskDetailsPageInFrame.ivp", PORTAL_TASK_DETAILS_IN_FRAME, params);
   }
   
-  public static void navigateToPortalCaseDetailsInFrame(Long caseId) {
+  public static void navigateToPortalCaseDetailsInFrame(Long caseId, boolean isBusinessCase) {
     Map<String, String> params = new HashMap<>();
     params.put("caseId", String.valueOf(caseId));
-    navigateByKeyword("CaseDetailsInIFrame.ivp", PORTAL_CASE_DETAILS_IN_FRAME, params);
+    params.put("isBusinessCase", String.valueOf(isBusinessCase));
+    navigateByKeyword("CaseDetailsPageInFrame.ivp", PORTAL_CASE_DETAILS_IN_FRAME, params);
   }
 
   public static void navigateToPortalGlobalSearch(String keyword) {
