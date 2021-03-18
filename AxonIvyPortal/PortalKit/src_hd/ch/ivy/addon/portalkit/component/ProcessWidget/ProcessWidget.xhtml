@@ -35,7 +35,7 @@
               <p:commandLink id="create-express-workflow"
                 actionListener="#{processWidgetBean.startExpressWorkflowCreationLink()}">
                 <i class="si si-startup-launch" />
-                <span>#{processWidgetBean.createExpressWorkflowProcessStart.name}</span>
+                <span class="process-widget-header-link">#{processWidgetBean.createExpressWorkflowProcessStart.name}</span>
               </p:commandLink>
             </h:panelGroup>
             <h:panelGroup styleClass="add-external-link-command">
@@ -43,7 +43,7 @@
                 actionListener="#{externalLinkBean.addNewExternalLink(cc.clientId)}"
                 update="#{cc.clientId}:add-external-link-dialog" oncomplete="PF('add-external-link-dialog').show()">
                 <i class="si si-hyperlink-3" aria-hidden="true" />
-                <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/addExternalLink')}</span>
+                <span class="process-widget-header-link">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/addExternalLink')}</span>
               </p:commandLink>
             </h:panelGroup>
           </div>
