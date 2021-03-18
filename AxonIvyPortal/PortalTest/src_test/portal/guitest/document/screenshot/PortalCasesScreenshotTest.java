@@ -40,6 +40,7 @@ public class PortalCasesScreenshotTest extends ScreenshotTest {
     redirectToRelativeLink(createUserFavoriteProcess);
     redirectToRelativeLink(createAlphaCompanyUrl);
     redirectToRelativeLink(createTestingCaseMapUrl);
+    redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
     refreshPage();
     homePage = new HomePage();
     ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, SCREENSHOT_HEIGHT));
@@ -69,7 +70,7 @@ public class PortalCasesScreenshotTest extends ScreenshotTest {
     caseWidget = homePage.openCaseList();
     homePage.closeMainMenu();
     ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 1000));
-    CaseDetailsPage detailsPage = caseWidget.openDetailsOfCaseHasName("Choose Alpha business name");
+    CaseDetailsPage detailsPage = caseWidget.openDetailsOfCaseHasName("Order Pizza");
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.CASE_DETAIL_FOLDER + "case-details");
     
     WebElement generalInfor = detailsPage.getGeneralInforBox();
