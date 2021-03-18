@@ -18,7 +18,8 @@
       <p:dialog id="viewExpiredExceptionDialog"
         header="View or Session Expired"
         widgetVar="viewExpiredExceptionDialog" 
-        height="50px" 
+        height="80px" 
+        width="320px" 
         modal="true">
         <h:outputText value="The view or session has expired." />
         <br />
@@ -35,7 +36,8 @@
       <!-- Error Dialog to show Exceptions -->
       <p:dialog id="ajaxExceptionDialog" header="Error"
         widgetVar="ajaxExceptionDialog" 
-        height="#{errorPage.showDetails == true ? '400px' : '150px'}" 
+        height="#{errorPage.showDetails ? '450px' : '180px'}" 
+        width="#{errorPage.showDetails ? '80%' : '450px'}" 
         modal="true">
         <ui:include src="exception-details.xhtml"/>
       </p:dialog>
