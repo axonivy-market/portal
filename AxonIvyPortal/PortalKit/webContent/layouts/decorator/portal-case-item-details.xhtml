@@ -141,7 +141,7 @@
   <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
     <ui:param name="id" value="destroy-case-confirmation-dialog" />
     <ui:param name="widgetVar" value="destroy-case-dialog" />
-    
+    <ui:param name="appendTo" value="@(body)" />
     <ui:param name="iconClass" value="si si-delete-1" />
     <ui:param name="iconStyleClass" value="portal-dialog-error-icon" />
     <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroyCaseHeaderText')}" />
