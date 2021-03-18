@@ -112,8 +112,11 @@ function highlightAddExternalDialogItem() {
   var visibility = $('#process-widget\\:add-external-link-form\\:external-link-type-radio');
   appendStepAnnotation(visibility, "5", 0, -10);
   
+  var icon = $("[id$='add-external-link-form:external-link-icon:awesome-icon-selection']");
+  appendStepAnnotation(icon, "6", -10, 80);
+  
   var addButton = $("[id$='process-widget:add-external-link-form:adding-new-external-link-command']");
-  appendStepAnnotation(addButton, "6", 0, -35);
+  appendStepAnnotation(addButton, "7", 0, -35);
 }
 
 function highlightProcessItems() {
