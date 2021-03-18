@@ -367,6 +367,6 @@ You can export the related case list by clicking on the button :guilabel:`Export
 .. |how-to-show-note-details| image:: ../../screenshots/case-detail/how-to-show-note-details.png
 .. |export-case-history| image:: ../../screenshots/case/export-case-history.png
 .. |export-to-excel-button| image:: ../../screenshots/case/export-to-excel-button.png
-.. |how-to-switch-to-view-mode| image:: ../../screenshots/case-detail/case-details.png
-.. |how-to-switch-to-edit-mode| image:: ../../screenshots/case-detail/case-details.png
-.. |how-to-reset-to-default| image:: ../../screenshots/case-detail/case-details.png
+.. |how-to-switch-to-view-mode| image:: ../../screenshots/case-detail/how-to-switch-to-view-mode.png
+.. |how-to-switch-to-edit-mode| image:: ../../screenshots/case-detail/how-to-switch-to-edit-mode.png
+.. |how-to-reset-to-default| image:: ../../screenshots/case-detail/how-to-reset-to-default.png

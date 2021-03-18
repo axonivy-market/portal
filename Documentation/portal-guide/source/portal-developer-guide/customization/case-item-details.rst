@@ -345,7 +345,7 @@ There are **two steps** for adding new custom panels.
    class to define the width of panel
 
 
-.. |case-standard-1| image:: images/customization/edit-variable-portal-case-details.png
-.. |case-standard-2| image:: images/customization/edit-variable-portal-case-details.png
+.. |case-standard-1| image:: ../../screenshots/case-detail/customization/case-standard-1.png
+.. |case-standard-2| image:: ../../screenshots/case-detail/customization/case-standard-2.png
 .. |edit-variable-portal-case-details| image:: images/customization/edit-variable-portal-case-details.png
 
