@@ -16,6 +16,7 @@ import ch.ivyteam.ivy.security.IUser;
  */
 public class PortalExpressProcess implements Process {
 
+  public static final String DEFAULT_ICON = "si si-startup-launch";
   private static final String NOT_AVAILABLE_CMS = "/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable";
   private static final String EXPRESS_WORKFLOW_ID_PARAM = "?workflowID=";
   private ExpressProcess process;
@@ -99,7 +100,7 @@ public class PortalExpressProcess implements Process {
   @Override
   public String getIcon() {
     String icon = this.process.getIcon();
-    return StringUtils.isBlank(icon) ? "si si-startup-launch" : icon;
+    return StringUtils.isBlank(icon) ? DEFAULT_ICON : icon;
   }
   
   public String getAbleToStart() {
