@@ -5,8 +5,7 @@
   xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
   xmlns:ic="http://ivyteam.ch/jsf/component"
   xmlns:p="http://primefaces.org/ui"
-  xmlns:pe="http://primefaces.org/ui/extensions"
-  >
+  xmlns:pe="http://primefaces.org/ui/extensions">
   <body>
     <ui:composition>
       <!-- Exception Handler for ViewExpiredExceptions -->
@@ -19,12 +18,14 @@
       <p:dialog id="viewExpiredExceptionDialog"
         header="View or Session Expired"
         widgetVar="viewExpiredExceptionDialog" 
-        height="50px" 
+        height="80px" 
+        width="320px" 
         modal="true">
         <h:outputText value="The view or session has expired." />
         <br />
-        <h:outputLink value="#{ivy.html.loginRef()}" rendered="#{ivy.session.sessionUserUnknown}">Please login again</h:outputLink>
-        <h:outputLink value="#{ivy.html.applicationHomeRef()}" rendered="#{!ivy.session.sessionUserUnknown}">Please restart</h:outputLink>
+        <br />
+        <p:button href="#{ivy.html.loginRef()}" rendered="#{ivy.session.sessionUserUnknown}" value="Please login again" />
+        <p:button href="#{ivy.html.applicationHomeRef()}" rendered="#{!ivy.session.sessionUserUnknown}" value="Please restart" />
       </p:dialog>
 
       <!--  Exception Handler for any other Exception -->
@@ -35,7 +36,8 @@
       <!-- Error Dialog to show Exceptions -->
       <p:dialog id="ajaxExceptionDialog" header="Error"
         widgetVar="ajaxExceptionDialog" 
-        height="#{errorPage.showDetails == true ? '400px' : '150px'}" 
+        height="#{errorPage.showDetails ? '450px' : '180px'}" 
+        width="#{errorPage.showDetails ? '80%' : '450px'}" 
         modal="true">
         <ui:include src="exception-details.xhtml"/>
       </p:dialog>
