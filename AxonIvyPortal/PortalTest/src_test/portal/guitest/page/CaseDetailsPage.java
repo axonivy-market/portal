@@ -308,23 +308,19 @@ public class CaseDetailsPage extends TemplatePage {
   }
   
   public boolean isAddNoteButtonDisplayed() {
-    return isElementDisplayedById("case-item-details:case-histories:add-note-command");
+    return isElementDisplayed(By.cssSelector("a[id$='case-histories:add-note-command']"));
   }
 
   public boolean isShowMoreNoteButtonDisplayed() {
-    return isElementDisplayedById("case-item-details:case-histories:show-more-note-link");
+    return isElementDisplayed(By.cssSelector("a[id$='case-histories:show-more-note-link']"));
   }
 
   public boolean isShowDetailsDisplayed() {
-    return isElementDisplayedById("case-item-details:show-additional-case-details-link");
-  }
-
-  public boolean isShowAllTasksDisplayed() {
-    return isElementDisplayedById("case-item-details:related-tasks:show-more-related-tasks");
+    return isElementDisplayed(By.cssSelector("a[id$='show-additional-case-details-link']"));
   }
 
   public boolean isAddDocumentLinkDisplayed() {
-    return isElementDisplayedById("case-item-details:document:add-document-command");
+    return isElementDisplayed(By.cssSelector("a[id$='document:add-document-command']"));
   }
   
   public int countNumberOfDocument() {
