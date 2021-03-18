@@ -89,7 +89,7 @@
             styleClass="case-state #{case.state.toString().toLowerCase()}-case-state" />
         </p:column>
         
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CATEGORY')}" sortable="false" styleClass="u-truncate-text"
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CATEGORY')}" sortable="false" styleClass="category-column u-truncate-text"
           visible="#{caseDetailsBean.isDisplayColumn(data.caseLazyDataModel, 'CATEGORY')}">
           <h:outputText value="#{case.getCategory().getName()}" title="#{case.getCategory().getPath()}" />
         </p:column>
