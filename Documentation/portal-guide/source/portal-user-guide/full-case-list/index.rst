@@ -280,37 +280,75 @@ This section shows you the related tasks of this case.
 
 For each task the following key information is shown in the list:
 
-#. Priority
+- Priority
 
-#. Name
+- Name
 
-#. Description
+- Description
 
-#. Responsible user or role
+- Responsible user or role
 
-#. Task ID
+- Task ID
 
-#. Creation Date
+- Creation Date
 
-#. Expiry Date
+- Expiry Date
 
-#. State
+- State
 
 Furthermore, at the end of each row you find a side step menu of key features in
 handling tasks:
 
-#. Reset Task
+- Reset Task
 
-#. Delegate Task
+- Delegate Task
 
-#. Reserve
+- Reserve
 
-#. Destroy Task
+- Destroy Task
 
-#. Add Ad-hoc Task
+- Add Ad-hoc Task
 
 Finally, you have the possibility to access the full set of the task
 data by clicking on the row containing the task.
+
+HowTo: Manipulate related cases inside case details
+---------------------------------------------------
+
+#. Open the case details
+
+#. If case has related case, you will see it below :guilabel:`Data and Description` section.
+
+|case-details|
+
+The following information is shown by default, you can change it by click on :guilabel:`Manage columns`:
+
+- Priority
+
+- Name
+
+- Description
+
+- Case ID
+
+- Creation date
+
+- Finished date
+
+- State
+
+- Category
+
+Action column provides actions in handling case:
+
+- Case details
+
+- Business details
+
+- Side step
+
+Click on row will navigate to detail of related case. 
+You can export the related case list by clicking on the button :guilabel:`Export to Excel`.
 
 .. include:: ../includes/_common-icon.rst
 
