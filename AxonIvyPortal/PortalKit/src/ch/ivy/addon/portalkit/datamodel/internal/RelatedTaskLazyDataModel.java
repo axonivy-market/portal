@@ -52,7 +52,8 @@ public class RelatedTaskLazyDataModel extends TaskLazyDataModel {
     criteria = new TaskSearchCriteria();
     criteria.setIncludedStates(new ArrayList<>(TaskSearchCriteria.STANDARD_STATES));
     this.setCaseId(iCase.getId());
-    this.setSortField(TaskSortField.ID.toString(), false);
+    criteria.setSortField(TaskSortField.ID.toString());
+    criteria.setSortDescending(false);
     this.getCriteria().setKeyword(StringUtils.EMPTY);
     this.setQueryByBusinessCaseId(true);
     boolean isOwner = iCase != null && iCase.getOwner() != null ? iCase.getOwner().isMember(Ivy.session(), true) : false;
