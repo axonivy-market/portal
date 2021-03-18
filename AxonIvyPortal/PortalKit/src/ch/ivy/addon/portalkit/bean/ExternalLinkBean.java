@@ -11,6 +11,7 @@ import javax.faces.context.FacesContext;
 import org.primefaces.PrimeFaces;
 
 import ch.ivy.addon.portalkit.bo.ExternalLink;
+import ch.ivy.addon.portalkit.bo.ExternalLinkProcessItem;
 import ch.ivy.addon.portalkit.enums.Protocol;
 import ch.ivy.addon.portalkit.service.ExternalLinkService;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
@@ -30,7 +31,8 @@ public class ExternalLinkBean implements Serializable {
   }
   
   public void addNewExternalLink(String clientId) {
-    externalLink =  new ExternalLink();
+    externalLink = new ExternalLink();
+    externalLink.setIcon(ExternalLinkProcessItem.DEFAULT_ICON);
     PrimeFaces.current().resetInputs(clientId + ":add-external-link-form");
   }
   
