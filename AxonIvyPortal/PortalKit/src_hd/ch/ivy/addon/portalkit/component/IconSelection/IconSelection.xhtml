@@ -23,7 +23,8 @@
       function updateSelectedIConDisplay(iconCode) {
         var iconDisplayJQ = $(PrimeFaces.escapeClientId("#{cc.clientId}:awesome-icon-display"));
         iconDisplayJQ.removeClass();
-        iconDisplayJQ.addClass("fa fa-2x");
+        iconDisplayJQ.toggleClass("fa fa-2x");
+        iconDisplayJQ.toggleClass("u-vertical-align-center");
         iconDisplayJQ.addClass(iconCode);
         var iconOupputValueJQ = $(PrimeFaces.escapeClientId("#{cc.clientId}:awesome-icon-value"));
         iconOupputValueJQ.text(iconCode);
