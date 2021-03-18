@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -16,6 +17,8 @@ import com.jayway.awaitility.Duration;
 import portal.guitest.common.Sleeper;
 
 public class CaseDetailsPage extends TemplatePage {
+  private static final String CLASS = "class";
+  private static final String DONE_TASKS_SELECTOR = "td.related-task-state-column .task-state.done-task-state";
   private static final String DOCUMENT_COMPONENT_ID = "div[id='case-details-document-panel']";
   private static final String HISTORY_COMPONENT_ID = "div[id='case-details-history-panel']";
   private static final String RELATED_TASKS_COMPONENT_ID = "div[id='case-details-relatedTask-panel']";
@@ -439,5 +442,10 @@ public class CaseDetailsPage extends TemplatePage {
   
   public void waitForResetButtonNotPresent() {
     waitForElementPresent(By.cssSelector("[id='case-item-details:reset-details-settings-button']"), false);
+  }
+
+  public boolean hasDoneTask() {
+    List<WebElement> doneTasks = findListElementsByCssSelector(DONE_TASKS_SELECTOR);
+    return CollectionUtils.isNotEmpty(doneTasks);
   }
 }
