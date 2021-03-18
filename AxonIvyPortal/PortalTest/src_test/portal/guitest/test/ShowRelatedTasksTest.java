@@ -49,58 +49,34 @@ public class ShowRelatedTasksTest extends BaseTest {
   }
   
   @Test
-  public void testShowRelatedTasksWithTaskReadAllPermissionAndClickingShowAllTasks() {
+  public void testRelatedTasksWithTaskReadAllPermission() {
     grantTaskReadAllPermissionsToCurrentUser();
     openCaseDetail();
-    TaskWidgetPage taskWidgetPage = detailsPage.clickShowAllTasks();
-    int numberOfTasks = taskWidgetPage.countTasks();
+    int numberOfTasks = detailsPage.countRelatedTasks();
     assertTrue(numberOfTasks == 4);
-    boolean hasDoneTask = false;
-    for (int i = 0; i < numberOfTasks; i++) {
-      if (taskWidgetPage.getTaskState(i).equals(TaskState.DONE)) {
-        hasDoneTask = true;
-        break;
-      }
-    }
-    assertTrue(hasDoneTask);
+    assertTrue(detailsPage.hasDoneTask());
   }
   
   @Test
-  public void testShowRelatedTasksWithTaskReadOwnCaseTasksPermissionAndClickingShowAllTasks() {
+  public void testRelatedTasksWithTaskReadOwnCaseTasksPermission() {
     grantTaskReadOwnCaseTaskPermissionsToCurrentUser();
     openCaseDetail();
-    TaskWidgetPage taskWidgetPage = detailsPage.clickShowAllTasks();
-    int numberOfTasks = taskWidgetPage.countTasks();
+    int numberOfTasks = detailsPage.countRelatedTasks();
     assertTrue(numberOfTasks == 4);
-    boolean hasDoneTask = false;
-    for (int i = 0; i < numberOfTasks; i++) {
-      if (taskWidgetPage.getTaskState(i).equals(TaskState.DONE)) {
-        hasDoneTask = true;
-        break;
-      }
-    }
-    assertTrue(hasDoneTask);
+    assertTrue(detailsPage.hasDoneTask());
   }
   
   @Test
-  public void testShowRelatedTasksWithNoPermissionAndClickingShowAllTasks() {
+  public void testRelatedTasksWithNoPermission() {
     denyReadAllPermissionFromCurrentUser();
     openCaseDetail();
-    TaskWidgetPage taskWidgetPage = detailsPage.clickShowAllTasks();
-    int numberOfTasks = taskWidgetPage.countTasks();
+    int numberOfTasks = detailsPage.countRelatedTasks();
     assertTrue(numberOfTasks == 2);
-    boolean hasDoneTask = false;
-    for (int i = 0; i < numberOfTasks; i++) {
-      if (taskWidgetPage.getTaskState(i).equals(TaskState.DONE)) {
-        hasDoneTask = true;
-        break;
-      }
-    }
-    assertFalse(hasDoneTask);
+    assertFalse(detailsPage.hasDoneTask());
   }
 
   @Test
-  public void testShowRelatedTasksWhenClickingRelatedTask() {
+  public void testRelatedTasksWhenClickingRelatedTask() {
     grantTaskReadOwnCaseTaskPermissionsToCurrentUser();
     openCaseDetail();
     TaskDetailsPage taskDetailsPage = detailsPage.openTasksOfCasePage(0);
@@ -109,7 +85,7 @@ public class ShowRelatedTasksTest extends BaseTest {
   
   @Test
   @Ignore
-  public void testShowRelatedTasksWhenClickingDoneTask() {
+  public void testRelatedTasksWhenClickingDoneTask() {
     grantTaskReadOwnCaseTaskPermissionsToCurrentUser();
     openCaseDetail();
     detailsPage.addNote("test");
