@@ -81,6 +81,8 @@ HowTo: Add an external link
    This user can set this link as a public link by selecting :guilabel:`All users` .
    By default, :guilabel:`Visibility`  field is not displayed and this new external link is a private link.
 
+#. For the :guilabel:`Icon`, change the best icon for it.
+
 #. Confirm your configuration with the button :guilabel:`Add`.
 
 |how-to-add-a-new-external-link|
