@@ -35,7 +35,7 @@
 
       <div class="ui-g-12 u-no-padding-bottom MarTop20 edit-process-info-group">
         <p class="edit-process-header-sub-title">
-          #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/editDialog/dialogEditInfoTitle', [process.getType().getLabel()])}
+          <span class="u-mar-right-5">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/editDialog/dialogEditInfoTitle', [process.getType().getLabel()])}</span>
           <p:commandLink id="edit-express-workflow" rendered="#{processWidgetBean.isExpressProcess(process)}"
             actionListener="#{processWidgetBean.editExpressWorkflow(process.getProcess())}" target="_self"
             process="@this" immediate="true" partialSubmit="true"
@@ -61,7 +61,7 @@
             saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
             cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}">
             <f:facet name="output">
-              <h:outputText styleClass="edit-external-link-name" value="#{processWidgetBean.editedExternalLink.name}" />
+              <h:outputText styleClass="edit-external-link-name u-mar-right-5" value="#{processWidgetBean.editedExternalLink.name}" />
               <a href="#" class="si si-graphic-tablet-drawing-pen edit-external-link-name-icon" />
             </f:facet>
             <p:inputText id="external-link-name" value="#{processWidgetBean.editedExternalLink.name}" required="true" maxlength="85"
@@ -73,7 +73,7 @@
             saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
             cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}">
             <f:facet name="output">
-              <h:outputText styleClass="edit-external-link-name" value="#{processWidgetBean.editedExternalLink.link}" />
+              <h:outputText styleClass="edit-external-link-name u-mar-right-5" value="#{processWidgetBean.editedExternalLink.link}" />
               <a href="#" class="si si-graphic-tablet-drawing-pen edit-external-link-name-icon" />
             </f:facet>
             <p:inputText id="external-link" value="#{processWidgetBean.editedExternalLink.link}" required="true"
