@@ -14,10 +14,11 @@
   <cc:attribute name="onDestroyComplete" />
   <cc:attribute name="renderShowDetailAction" default="true" type="java.lang.Boolean" />
   <cc:attribute name="readOnly" default="false" />
+  <cc:attribute name="inFrame" default="false"/>
 </cc:interface>
 
 <cc:implementation>
-  <p:link id="#{cc.attrs.actionLinkId}" href="#" styleClass="#{cc.attrs.actionLinkStyleClass} #{cc.attrs.taskId} action-link portal-icon" disabled="#{cc.attrs.readOnly}">
+  <p:link id="#{cc.attrs.actionLinkId}" onclick="event.stopPropagation(); return false;" styleClass="#{cc.attrs.actionLinkStyleClass} #{cc.attrs.taskId} action-link portal-icon" disabled="#{cc.attrs.readOnly}">
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}" styleClass="task-action-item-label" />
       <i class="si si-arrow-down-1" />
     </p:link>
@@ -26,7 +27,7 @@
     dynamic="true">
     
     <p:commandLink id="case-item-open-detail-link" styleClass="case-command action-step-item"
-          actionListener="#{logic.openDetails(case)}" rendered="#{cc.attrs.renderShowDetailAction}">
+          actionListener="#{logic.openDetails(cc.attrs.case,cc.attrs.inFrame)}" rendered="#{cc.attrs.renderShowDetailAction}">
       <span class="action-icon si si-information-circle" />
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/detail')}" />
     </p:commandLink>
