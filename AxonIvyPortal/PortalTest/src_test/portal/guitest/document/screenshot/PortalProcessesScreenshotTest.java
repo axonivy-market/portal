@@ -19,7 +19,7 @@ public class PortalProcessesScreenshotTest extends ScreenshotTest {
 
   private HomePage homePage;
   ProcessWidgetPage processWidget;
-  private static final int SCREENSHOT_WIDTH = 1500;
+  private static final int SCREENSHOT_WIDTH = 1440;
   private static final int SCREENSHOT_HD_WIDTH = 1920;
   private static final int SCREENSHOT_MOBILE_HEIGHT = 500;
   private static final int SCREENSHOT_HEIGHT = 1080;
@@ -44,16 +44,16 @@ public class PortalProcessesScreenshotTest extends ScreenshotTest {
 
   @Test
   public void screenshotAddNewExternalLink() throws IOException {
+    ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, SCREENSHOT_MOBILE_HEIGHT));
     login(TestAccount.ADMIN_USER);
     processWidget = homePage.getProcessWidget();
     processWidget.expand();
-    ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, SCREENSHOT_MOBILE_HEIGHT));
     executeDecorateJs("highlightAddExternalLink()");
     ScreenshotUtil.captureHalfTopPageScreenShot(ScreenshotUtil.PROCESSES_WIDGET_FOLDER + "how-to-add-a-new-external-link", new Dimension(SCREENSHOT_WIDTH, SCREENSHOT_MOBILE_HEIGHT));
-    
-    ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, SCREENSHOT_HEIGHT));
     refreshPage();
     processWidget.waitUtilProcessWidgetDisplayed();
+
+    ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, SCREENSHOT_HEIGHT));
     processWidget.openNewExternalLinkDialog();
     executeDecorateJs("highlightAddExternalDialogItem()");
     WebElement externalDialog = processWidget.getAddExternalLinkDialog();
