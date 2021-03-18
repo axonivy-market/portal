@@ -3288,7 +3288,7 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   position: absolute;
   right: 0;
   top: 0;
-  padding: 0.5rem;
+  padding: 0.7rem;
 }
 
 .edit-process-dialog {
@@ -4944,19 +4944,6 @@ body .ui-picklist .ui-picklist-filter-container .ui-icon {
   .display-short-text {
     display: none !important;
   }
-}
-
-.group-history-fitlers.display-short-text {
-  white-space: nowrap;
-  margin-bottom: 7px;
-}
-
-.group-history-fitlers.display-full-text {
-  white-space: nowrap;
-}
-
-.group-history-fitlers.display-full-text .show-system-tasks {
-  margin-right: 8px;
 }
 
 /*=================== EXPRESS MANAGEMENT START ===================*/
