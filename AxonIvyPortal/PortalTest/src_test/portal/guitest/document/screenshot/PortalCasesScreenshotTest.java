@@ -151,11 +151,12 @@ public class PortalCasesScreenshotTest extends ScreenshotTest {
   
   @Test
   public void screenshotCustomizeCaseDetails() throws IOException {
-    ScreenshotUtil.resizeBrowser(new Dimension(1366, 1000));
+    ScreenshotUtil.resizeBrowser(new Dimension(1366, 1200));
+    redirectToRelativeLink(createNewPaymentUrl);
     login(TestAccount.ADMIN_USER);
     caseWidget = homePage.openMainMenu().selectCaseMenu();
     homePage.closeMainMenu();
-    CaseDetailsPage caseDetailsPage = caseWidget.openDetailsOfCaseHasName("Choose Alpha business name");
+    CaseDetailsPage caseDetailsPage = caseWidget.openDetailsOfCaseHasName("Create New Payment");
     caseDetailsPage.waitForCaseDetailsDisplay();
     executeDecorateJs("highlightCaseDetailComponents()");
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.CASE_DETAIL_CUSTOMIZATION_FOLDER + "case-standard-1");
