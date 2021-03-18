@@ -79,7 +79,7 @@ public class BackNavigationTest extends BaseTest {
     caseDetailsPage = caseWidgetPage.openCaseDetailsFromActionMenuByCaseName(LEAVE_REQUEST_CASE_NAME);
     assertEquals(CASE_DETAILS_TITLE, caseDetailsPage.getPageTitle());
 
-    TaskDetailsPage taskDetailsPage = caseDetailsPage.openTasksOfCasePage(0);
+    TaskDetailsPage taskDetailsPage = caseDetailsPage.openTasksOfCasePage(1);
     assertEquals(TASK_DETAILS_TITLE, taskDetailsPage.getPageTitle());
 
     TaskTemplatePage taskTemplatePage = taskDetailsPage.clickStartTask();
@@ -123,16 +123,12 @@ public class BackNavigationTest extends BaseTest {
     caseDetailsPage = caseWidgetPage.openDetailsOfCaseHasName(PAYMENT_CASE_NAME);
     assertEquals(PAYMENT_CASE_NAME, caseDetailsPage.getCaseName());
 
-    taskDetailsPage = caseDetailsPage.openTasksOfCasePage(0);
+    taskDetailsPage = caseDetailsPage.openTasksOfCasePage(1);
     assertEquals(PAYMENT_TASK_NAME, taskDetailsPage.getTaskName());
     caseDetailsPage = taskDetailsPage.backToCaseDetails();
     assertEquals(PAYMENT_CASE_NAME, caseDetailsPage.getCaseName());
 
-    caseDetailsPage.openRelatedCaseOfBusinessCase(0);
-    caseDetailsPage.waitForCaseDetailsReload();
-    assertEquals("Signal create New Payment", caseDetailsPage.getCaseName());
-
-    taskDetailsPage = caseDetailsPage.openTasksOfCasePage(0);
+    taskDetailsPage = caseDetailsPage.openTasksOfCasePage(1);
     assertEquals(PAYMENT_TASK_NAME, taskDetailsPage.getTaskName());
 
     TaskTemplatePage taskTemplatePage = taskDetailsPage.clickStartTask();
@@ -156,7 +152,7 @@ public class BackNavigationTest extends BaseTest {
     caseDetailsPage = caseWidgetPage.openDetailsOfCaseHasName(PAYMENT_CASE_NAME);
     assertEquals(PAYMENT_CASE_NAME, caseDetailsPage.getCaseName());
 
-    taskDetailsPage = caseDetailsPage.openTasksOfCasePage(0);
+    taskDetailsPage = caseDetailsPage.openTasksOfCasePage(1);
     assertEquals(PAYMENT_TASK_NAME, taskDetailsPage.getTaskName());
 
     TaskTemplatePage taskTemplatePage = taskDetailsPage.clickStartTask();

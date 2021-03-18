@@ -17,7 +17,6 @@ import com.jayway.awaitility.Duration;
 import portal.guitest.common.Sleeper;
 
 public class CaseDetailsPage extends TemplatePage {
-  private static final String CLASS = "class";
   private static final String DONE_TASKS_SELECTOR = "td.related-task-state-column .task-state.done-task-state";
   private static final String DOCUMENT_COMPONENT_ID = "div[id='case-details-document-panel']";
   private static final String HISTORY_COMPONENT_ID = "div[id='case-details-history-panel']";
@@ -340,11 +339,15 @@ public class CaseDetailsPage extends TemplatePage {
   }
   
   public void clickBackButton() {
-    click(findElementById("case-item-details:case-detail-title-form:back-to-cases"));
+    click(findElementById("case-item-details:back-to-cases"));
   }
 
   public void openRelatedCaseOfBusinessCase(int index) {
-    click(By.cssSelector("a[id$='related-tasks:cases:" + index + ":case-name']"));
+    WebElement findElement = caseItem.findElement(By.cssSelector("div[id$='related-cases']"));
+    if (findElement != null) {
+      findElement
+      .findElements(By.cssSelector("td.name-column")).get(index).click();
+    } 
     waitForPageLoaded();
   }
   
