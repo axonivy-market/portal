@@ -7,7 +7,7 @@
 <!-- THIS DECORATOR IS ONLY USED BY PORTAL. DON'T MODIFY IT -->
 
   <h:panelGroup styleClass="ui-g-12 case-detail-header-container u-truncate-text" rendered="#{showItemDetailsHeader}" layout="block">
-    <h:panelGroup id="case-detail-name" styleClass="case-detail-header u-hidden-md-up" layout="block">
+    <h:panelGroup id="case-detail-name" styleClass="case-detail-header #{inFrame == true ? '' : 'u-hidden-md-up'}" layout="block">
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/searchResult/case')}: "
         styleClass="case-detail-name-prefix" />
       <span class="u-truncate-text">#{case.name}</span>
