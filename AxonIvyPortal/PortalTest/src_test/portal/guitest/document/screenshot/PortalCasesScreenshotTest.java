@@ -190,7 +190,7 @@ public class PortalCasesScreenshotTest extends ScreenshotTest {
     executeDecorateJs("highlightSwitchToEditMode()");
     WebElement switchToEditMode = caseDetailsPage.getSwitchToEditModeButton();
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(switchToEditMode,
-        ScreenshotUtil.CASE_DETAIL_CUSTOMIZATION_FOLDER + "how-to-switch-to-edit-mode", new ScreenshotMargin(100, 200));
+        ScreenshotUtil.CASE_DETAIL_FOLDER + "how-to-switch-to-edit-mode", new ScreenshotMargin(100, 200));
 
     caseDetailsPage.switchToEditMode();
     caseDetailsPage.waitForSaveButtonDisplayed();
@@ -199,14 +199,14 @@ public class PortalCasesScreenshotTest extends ScreenshotTest {
     executeDecorateJs("highlightSwitchToViewMode()");
     WebElement switchToViewMode = caseDetailsPage.getSwitchToViewModeButton();
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(switchToViewMode,
-        ScreenshotUtil.CASE_DETAIL_CUSTOMIZATION_FOLDER + "how-to-switch-to-view-mode", new ScreenshotMargin(100, 200));
+        ScreenshotUtil.CASE_DETAIL_FOLDER + "how-to-switch-to-view-mode", new ScreenshotMargin(100, 200));
 
     caseDetailsPage.saveAndSwitchToViewMode();
     Sleeper.sleep(2000);// wait for focus animation to capture screenshot
     executeDecorateJs("highlightResetToDefault()");
     WebElement resetButton = caseDetailsPage.getResetButton();
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(resetButton,
-        ScreenshotUtil.CASE_DETAIL_CUSTOMIZATION_FOLDER + "how-to-reset-to-default", new ScreenshotMargin(100, 200));
+        ScreenshotUtil.CASE_DETAIL_FOLDER + "how-to-reset-to-default", new ScreenshotMargin(100, 200));
     caseDetailsPage.resetToDefault();
   }
 }
