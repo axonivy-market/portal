@@ -59,6 +59,7 @@ public class ExpressProcessUtils {
     processRepository.setProcessDescription(expressData.getProcessDescription());
     processRepository.setProcessType(expressData.getProcessType().getValue());
     processRepository.setUseDefaultUI(expressData.getIsUseDefaultUI());
+    processRepository.setIcon(expressData.getProcessIcon());
 
     ExpressManagementUtils expressManagementUtils = new ExpressManagementUtils();
     if(StringUtils.isBlank(processRepository.getProcessOwner())) {
