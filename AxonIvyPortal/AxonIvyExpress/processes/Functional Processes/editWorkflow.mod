@@ -96,7 +96,6 @@ ew0 S10 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 ew0 S10 312 330 112 44 -37 -8 #rect
-ew0 S10 @|BIcon #fIcon
 ew0 f0 inParamDecl '<> param;' #txt
 ew0 f0 outParamDecl '<> result;' #txt
 ew0 f0 callSignature newWorkflow() #txt
@@ -599,6 +598,7 @@ in.processDescription = workflow.processDescription;
 in.processName = workflow.processName;
 in.processFolder = workflow.processFolder;
 in.processCoOwners = workflow.processCoOwners;
+in.processIcon = workflow.icon;
 //Old processes won''t have process co owners, so we add process owner as default
 if(CollectionUtils.isEmpty(in.processCoOwners)) {
 	in.processCoOwners = new ArrayList();
