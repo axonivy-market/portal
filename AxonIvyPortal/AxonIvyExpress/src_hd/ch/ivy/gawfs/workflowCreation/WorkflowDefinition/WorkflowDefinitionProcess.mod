@@ -139,7 +139,8 @@ Fs0 f3 747 515 26 26 -15 12 #rect
 Fs0 f4 1379 515 26 26 0 12 #rect
 Fs0 f6 actionTable 'out=in;
 ' #txt
-Fs0 f6 actionCode 'import ch.ivy.gawfs.enums.TaskType;
+Fs0 f6 actionCode 'import ch.ivy.addon.portalkit.bo.PortalExpressProcess;
+import ch.ivy.gawfs.enums.TaskType;
 import ch.ivy.gawfs.enums.ProcessType;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -173,7 +174,10 @@ if (!in.data.#processType is initialized) {
   in.data.processType = ProcessType.REPEAT;
 }
 in.isRepeatable = in.data.processType != ProcessType.AD_HOC;
-' #txt
+
+if (!in.data.#processIcon is initialized) {
+	in.data.processIcon = PortalExpressProcess.DEFAULT_ICON;
+}' #txt
 Fs0 f6 security system #txt
 Fs0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
