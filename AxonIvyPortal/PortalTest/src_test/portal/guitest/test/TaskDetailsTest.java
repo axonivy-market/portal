@@ -83,7 +83,7 @@ public class TaskDetailsTest extends BaseTest {
     assertTrue(taskDetailsPage.isClearDelayTimeDisplayed());
     taskDetailsPage.clickOnClearDelayTime();
     assertTrue(StringUtils.equalsIgnoreCase("SUSPENDED", taskDetailsPage.getTaskState()));
-    assertTrue(StringUtils.equalsIgnoreCase("NA", taskDetailsPage.getTaskDelayTime()));
+    assertTrue(StringUtils.equalsIgnoreCase("N/A", taskDetailsPage.getTaskDelayTime()));
   }
 
   @Test
@@ -158,7 +158,7 @@ public class TaskDetailsTest extends BaseTest {
   public void testShowNotAvailableValues() {
     login(TestAccount.ADMIN_USER);
     openFirstTaskInTaskList();
-    assertTrue(StringUtils.equalsIgnoreCase(taskDetailsPage.getTaskDelayTime(), "NA")); 
+    assertTrue(StringUtils.equalsIgnoreCase(taskDetailsPage.getTaskDelayTime(), "N/A"));
     
     login(TestAccount.GUEST_USER);
     openFirstTaskInTaskList();
