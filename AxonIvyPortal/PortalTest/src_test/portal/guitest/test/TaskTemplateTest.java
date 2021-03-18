@@ -74,34 +74,11 @@ public class TaskTemplateTest extends BaseTest {
     createTestData();
     TaskTemplatePage taskTemplatePage = startATaskAndOpenCaseInfo();
 
-    assertTrue(taskTemplatePage.countRelatedTasks() > 0);
-    TaskDetailsPage taskDetailsPage = taskTemplatePage.openFirstRelatedTaskInHistoryArea();
+    getBrowser().getDriver().switchTo().defaultContent();
+    TaskDetailsPage taskDetailsPage = taskTemplatePage.openRelatedTaskInList(1);
     assertEquals("Task: Annual Leave Request", taskDetailsPage.getTaskNameInDialog());
 
     taskDetailsPage.clickBackButton();
-    getBrowser().getDriver().switchTo().defaultContent();
-    taskTemplatePage = new TaskTemplatePage();
-    assertTrue(taskTemplatePage.countRelatedTasks() > 0);
-  }
-
-  @Test
-  public void testOpenTaskListInCaseInfo() {
-    createTestData();
-    TaskTemplatePage taskTemplatePage = startATaskAndOpenCaseInfo();
-    assertTrue(taskTemplatePage.countRelatedTasks() > 0);
-
-    getBrowser().getDriver().switchTo().defaultContent();
-    TaskWidgetPage taskWidgetPage = taskTemplatePage.openRelatedTaskList();
-    assertTrue(taskWidgetPage.countTasks() > 0);
-
-    TaskDetailsPage taskDetailsPage = taskWidgetPage.openTaskDetails(1);
-    assertEquals("Task: Sick Leave Request", taskDetailsPage.getTaskNameInDialog());
-
-    taskDetailsPage.clickBackButton();
-    taskWidgetPage = new TaskWidgetPage();
-    assertTrue(taskWidgetPage.countTasks() > 0);
-
-    taskWidgetPage.clickBack();
     getBrowser().getDriver().switchTo().defaultContent();
     taskTemplatePage = new TaskTemplatePage();
     assertTrue(taskTemplatePage.countRelatedTasks() > 0);
