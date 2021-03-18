@@ -536,7 +536,8 @@ a.compact-task-start-link .task-start-list-item {
 
 .process-start-list-container .grid-view-form .process-grid-view-icon {
   font-size: var(--process-grid-icon-font-size);
-  padding: 7px; }
+  padding: 0.7rem;
+  padding-top: 2rem; }
 
 body .process-widget .ui-selectbooleanbutton.ui-state-active {
   background-color: var(--primary-color);
@@ -581,6 +582,8 @@ body .process-widget .ui-selectbooleanbutton.ui-state-active .ui-icon {
 
 .edit-process-info-group .edit-process-detail-1st-cell {
   color: var(--ivy-primary-color-grey-medium); }
+.process-header .process-widget-header-link {
+  font-size: var(--small-font-size); }
 
 /*Style For Task Widget ----------------------------------------------------------------------------------*/
 .filter-selection-form .filter-name:hover,
