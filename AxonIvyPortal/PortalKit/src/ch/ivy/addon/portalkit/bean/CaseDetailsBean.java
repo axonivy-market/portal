@@ -53,7 +53,7 @@ public class CaseDetailsBean implements Serializable {
 
   private static final String OPEN_CASES_LIST = "Start Processes/PortalStart/CaseListPage.ivp";
   private static final String CASE_DETAILS_CONFIGURATION_PROPERTY = "case.details.widgets";
-  private static final String PORTAL_CASE_DETAILS_GLOBAL_VARIABLE = "PORTAL_CASE_DETAILS";
+  private static final String PORTAL_CASE_DETAILS_GLOBAL_VARIABLE = "Portal.CaseDetails";
 
   private boolean isShowCaseDetails;
   private boolean isHideCaseDocument;
