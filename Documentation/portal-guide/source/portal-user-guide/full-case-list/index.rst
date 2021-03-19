@@ -264,7 +264,7 @@ This section shows you the related tasks of this case.
    the tasks belonging to you but 
    all open tasks.                
 
-For each task the following key information is shown in the list:
+For each task the following key information is shown in the list, you can change it by click on :guilabel:`Manage columns`:
 
 - Priority
 
@@ -309,13 +309,13 @@ HowTo: Manipulate related cases inside case details
 
 The following information is shown by default, you can change it by click on :guilabel:`Manage columns`:
 
-- Priority
-
 - Name
 
 - Description
 
 - Case ID
+
+- Creator
 
 - Creation date
 
