@@ -31,7 +31,7 @@
       icon="#{visibilityBean.generateButtonIcon('si si-pencil')}"
       update="case-detail-body case-details-actions" oncomplete="loadCaseDetailsGrid()" />
     <p:commandButton id="reset-details-settings-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
-      rendered="#{caseDetailsBean.configuration.changed}"
+      rendered="#{caseDetailsBean.configuration.changed and not caseDetailsBean.readOnlyMode}"
       icon="#{visibilityBean.generateButtonIcon('si si-button-refresh-arrows')}" styleClass="reset-details-settings-button"
       actionListener="#{caseDetailsBean.reset()}" update="case-detail-body case-details-actions" oncomplete="loadCaseDetailsGrid()" />
   </h:panelGroup>
