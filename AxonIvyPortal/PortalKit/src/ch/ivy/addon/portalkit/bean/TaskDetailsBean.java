@@ -34,7 +34,7 @@ public class TaskDetailsBean implements Serializable {
 
   private static final long serialVersionUID = 8566646437739271552L;
   private static final String TASK_DETAILS_CONFIGURATION_PROPERTY = "task.details.widgets";
-  private static final String PORTAL_TASK_DETAILS_GLOBAL_VARIABLE = "PORTAL_TASK_DETAILS";
+  private static final String PORTAL_TASK_DETAILS_GLOBAL_VARIABLE = "Portal.TaskDetails";
 
   private TaskDetails configuration;
   private List<TaskDetailsWidget> widgets;
