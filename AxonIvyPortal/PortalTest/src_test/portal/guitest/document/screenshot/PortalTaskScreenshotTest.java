@@ -113,6 +113,7 @@ public class PortalTaskScreenshotTest extends ScreenshotTest {
         ScreenshotUtil.TASK_DETAIL_FOLDER + "how-to-switch-to-view-mode", new ScreenshotMargin(100, 200));
 
     taskDetails.clickOnSwitchToViewModeButton();
+    taskDetails.clickOnSwitchToEditModeButton();
     Sleeper.sleep(2000);// wait for focus animation to capture screenshot
     executeDecorateJs("highlightResetToDefault()");
     WebElement resetButton = taskDetails.getResetButtonElement();
