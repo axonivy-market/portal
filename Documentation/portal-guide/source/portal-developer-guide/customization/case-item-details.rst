@@ -26,16 +26,16 @@ Each CaseItemDetails contains
 
 |case-standard-2|
 
-.. important:: All visible widgets will be configured in :ref:`Global Variable PORTAL_CASE_DETAILS<case-details-configuration-variable>`.
+.. important:: All visible widgets will be configured in :ref:`Global Variable Portal.CaseDetails<case-details-configuration-variable>`.
 
 .. _case-details-configuration-variable:
 
 How to configure widgets in case details
 ----------------------------------------
 
--  Settings of all visible widgets on case details page are saved in **Global Variable PORTAL_CASE_DETAILS**.
--  Cockpit Administrator can configure widgets via global variable **PORTAL_CASE_DETAILS** on Cockpit settings page.
-   |edit-variable-portal-case-details|
+-  Settings of all visible widgets on case details page are saved in **Global Variable Portal.CaseDetails**.
+-  Cockpit Administrator can configure widgets via global variable **Portal.CaseDetails** on Cockpit settings page.
+   |edit-variable-portal-task-case-details|
 
 -  Default configuration includes 5 widgets.
 
@@ -89,7 +89,7 @@ How to configure widgets in case details
 
    ..
 
--  Structure of each widget in variable **PORTAL_CASE_DETAILS**:
+-  Structure of each widget in variable **Portal.CaseDetails**:
 
    ``type``: There are 6 types: ``information``, ``document``, ``technicalCase``, ``relatedTask``, ``history``, ``custom``
 
@@ -173,12 +173,12 @@ Show custom widgets
 
 There are **two steps** for adding new custom panels.
 
-1. **Cockpit admin** must configure global variable :ref:`PORTAL_CASE_DETAILS<case-details-configuration-variable>`
+1. **Cockpit admin** must configure global variable :ref:`Portal.CaseDetails<case-details-configuration-variable>`
    on Cockpit Page to add custom widgets.
 
 .. _case-details-custom-configuration-variable-example:
 
--  Example PORTAL_CASE_DETAILS with including 1 custom widget configuration:
+-  Example Portal.CaseDetails with including 1 custom widget configuration:
 
    .. code-block:: html
 
@@ -347,5 +347,5 @@ There are **two steps** for adding new custom panels.
 
 .. |case-standard-1| image:: ../../screenshots/case-detail/customization/case-standard-1.png
 .. |case-standard-2| image:: ../../screenshots/case-detail/customization/case-standard-2.png
-.. |edit-variable-portal-case-details| image:: images/customization/edit-variable-portal-case-details.png
+.. |edit-variable-portal-task-case-details| image:: images/customization/edit-variable-portal-task-case-details.png
 
