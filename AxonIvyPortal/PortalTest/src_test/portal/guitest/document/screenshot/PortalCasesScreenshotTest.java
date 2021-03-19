@@ -202,6 +202,7 @@ public class PortalCasesScreenshotTest extends ScreenshotTest {
         ScreenshotUtil.CASE_DETAIL_FOLDER + "how-to-switch-to-view-mode", new ScreenshotMargin(100, 200));
 
     caseDetailsPage.saveAndSwitchToViewMode();
+    caseDetailsPage.switchToEditMode();
     Sleeper.sleep(2000);// wait for focus animation to capture screenshot
     executeDecorateJs("highlightResetToDefault()");
     WebElement resetButton = caseDetailsPage.getResetButton();
