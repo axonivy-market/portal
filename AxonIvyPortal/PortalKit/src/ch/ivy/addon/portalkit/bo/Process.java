@@ -3,7 +3,7 @@ package ch.ivy.addon.portalkit.bo;
 import ch.ivy.addon.portalkit.enums.ProcessType;
 
 public interface Process {
-  public static final String DEFAULT_ICON = "si si-cog-double-2";
+  public static final String DEFAULT_PROCESS_ICON = "si si-cog-double-2";
   public String getName();
   public String getStartLink();
   public String getDescription();
@@ -13,6 +13,6 @@ public interface Process {
   public String getId();
 
   default public String getIcon() {
-    return DEFAULT_ICON;
+    return DEFAULT_PROCESS_ICON;
   }
 }
