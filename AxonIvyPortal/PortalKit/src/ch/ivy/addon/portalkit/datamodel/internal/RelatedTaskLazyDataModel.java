@@ -155,4 +155,33 @@ public class RelatedTaskLazyDataModel extends TaskLazyDataModel {
   public boolean isRowAvailable() {
     return isRowAvailableAtSuper();
   }
+
+  /**
+   * @hidden
+   */
+  @Override
+  public void saveColumnsConfiguration() {
+    setAutoHideColumns(isDisableSelectionCheckboxes);
+    if (isAutoHideColumns()) {
+      selectedColumns.clear();
+      selectedColumns.addAll(getDefaultColumns());
+    } else {
+      // avoid duplicating
+      for (String requiredColumn : portalRequiredColumns) {
+        if (!selectedColumns.contains(requiredColumn)) {
+          selectedColumns.add(requiredColumn);
+        }
+      }
+    }
+    initSelectedColumns();
+  }
+
+  @Override
+  protected void initSelectedColumns() {
+    if (selectedColumns.isEmpty()) {
+      selectedColumns.addAll(getDefaultColumns());
+      isAutoHideColumns = true;
+    }
+    setDisableSelectionCheckboxes(isAutoHideColumns);
+  }
 }
