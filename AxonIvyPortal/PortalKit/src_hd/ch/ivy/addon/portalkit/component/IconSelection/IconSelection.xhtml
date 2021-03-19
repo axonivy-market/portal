@@ -17,7 +17,8 @@
     <p:inputText type="hidden" id="awesome-icon-hidden-value" value="#{cc.attrs.value}" />
     <p:commandLink styleClass="select-awesome-icon-button" tabindex="#{cc.attrs.tabindex}"
       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/change')}" process="@this"
-      onclick="PF('select-icon-dialog').show()" rendered="#{empty cc.attrs.isReadOnly or !cc.attrs.isReadOnly}"/>
+      onclick="PF('#{cc.clientId}-select-icon-dialog').show()"
+      rendered="#{empty cc.attrs.isReadOnly or !cc.attrs.isReadOnly}"/>
   </h:panelGroup>
   <script>
       function updateSelectedIConDisplay(iconCode) {
@@ -32,15 +33,15 @@
         iconHiddenValueJQ.val(iconCode);
       }
     </script>
-  <p:dialog id="select-icon-dialog" styleClass="select-icon-dialog" widgetVar="select-icon-dialog" width="52%" modal="true" appendTo="@(body)"
-    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/iconselection/iconSelectionDialogHeader')}" dynamic="true" height="40vh" resizable="false" fitViewport="true" responsive="true" >
+  <p:dialog id="select-icon-dialog" widgetVar="#{cc.clientId}-select-icon-dialog" styleClass="select-icon-dialog" width="52%" modal="true" appendTo="@(body)"
+    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/iconselection/iconSelectionDialogHeader')}" dynamic="true" height="40vh" resizable="false" fitViewport="true" responsive="true">
     <div class="search-icon-name-container">
 	    <p:inputText id="search-icon-name-field" onkeyup="searchIconByName(this)" placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/iconselection/seachIconByNamePlaceHolder')}" styleClass="search-icon-input Fright" />
     </div>
-    <h:form>
+    <h:form id="icons-selection-form">
       <ui:repeat var="icon" value="#{masterDataBean.awesomeIcons}">
         <h:link id="awesome-icon" styleClass="icon-selection-dialog-selecting-icon"
-          onclick="updateSelectedIConDisplay('#{icon.iconCode}');PF('select-icon-dialog').hide();return false;">
+          onclick="updateSelectedIConDisplay('#{icon.iconCode}');PF('#{cc.clientId}-select-icon-dialog').hide();return false;">
           <span class="fa #{icon.iconCode} fa-lg" />
         </h:link>
         <p:tooltip for="awesome-icon" value="#{icon.iconCode}" trackMouse="true" hideEvent="mouseleave click"/>
