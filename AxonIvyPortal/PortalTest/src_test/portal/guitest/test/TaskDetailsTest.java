@@ -182,6 +182,7 @@ public class TaskDetailsTest extends BaseTest {
     taskDetailsPage.drapAndDropWidgets("note", "document");
     taskDetailsPage.drapAndDropWidgets("document", "note");
     taskDetailsPage.clickOnSwitchToViewModeButton();
+    taskDetailsPage.clickOnSwitchToEditModeButton();
     taskDetailsPage.waitForResetButtonDisplayed();
   }
 }
