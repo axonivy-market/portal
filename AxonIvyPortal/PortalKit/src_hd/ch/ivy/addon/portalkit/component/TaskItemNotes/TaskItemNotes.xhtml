@@ -33,7 +33,7 @@
             <span class="display-short-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}</span>
           </p:commandLink>
           <p:selectBooleanCheckbox value="#{data.showSystemNotes}" itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/showSystemNotes')}"
-            rendered="#{data.showSystemNotesChkbox}" id="show-system-notes-checkbox" styleClass="task-history-checkbox">
+            rendered="#{data.showSystemNotesChkbox}" id="show-system-notes-checkbox" styleClass="task-history-checkbox u-hidden-sm-down">
             <p:ajax update="task-history-content-container" process="@this" partialSubmit="true" listener="#{logic.showHideSystemNotes}" />
           </p:selectBooleanCheckbox>
         </h:panelGroup>
