@@ -95,9 +95,8 @@ public class CaseDetailsTest extends BaseTest {
     detailsPage.drapAndDropWidgets("information", "document");
     detailsPage.drapAndDropWidgets("document", "information");
     detailsPage.saveAndSwitchToViewMode();
+    detailsPage.switchToEditMode();
     detailsPage.waitForResetButtonDisplayed();
-    detailsPage.resetToDefault();
-    detailsPage.waitForResetButtonNotPresent();
   }
 
   @After
