@@ -19,7 +19,6 @@ import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.ICase;
-import ch.ivyteam.ivy.workflow.ITask;
 
 public class RelatedCaseLazyDataModel extends LazyDataModel<ICase> {
 
@@ -151,17 +150,23 @@ public class RelatedCaseLazyDataModel extends LazyDataModel<ICase> {
   public String getColumnLabel(String column) {
     return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/" + column);
   }
-  
+
   public void saveColumnsConfiguration() {
-    // avoid duplicating
-    for (String requiredColumn : portalRequiredColumns) {
-      if (!selectedColumns.contains(requiredColumn)) {
-        selectedColumns.add(requiredColumn);
+    setAutoHideColumns(isDisableSelectionCheckboxes);
+    if (getAutoHideColumns()) {
+      selectedColumns.clear();
+      selectedColumns.addAll(getDefaultColumns());
+    } else {
+      // avoid duplicating
+      for (String requiredColumn : portalRequiredColumns) {
+        if (!selectedColumns.contains(requiredColumn)) {
+          selectedColumns.add(requiredColumn);
+        }
       }
     }
-    setAutoHideColumns(isDisableSelectionCheckboxes);
+    initSelectedColumns();
   }
-  
+
   public void setAutoHideColumns(boolean isAutoHideColumns) {
     this.isAutoHideColumns = isAutoHideColumns;
   }
