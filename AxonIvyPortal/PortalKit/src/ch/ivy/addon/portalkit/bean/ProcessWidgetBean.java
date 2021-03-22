@@ -268,7 +268,7 @@ public class ProcessWidgetBean implements Serializable {
   }
 
   public String getProcessIcon(Process process) {
-    return process != null ? process.getIcon() : Process.DEFAULT_ICON;
+    return process != null ? process.getIcon() : Process.DEFAULT_PROCESS_ICON;
   }
   
   public void createNewExternalLink() {
