@@ -67,4 +67,12 @@
    :height: 0.15748in   
 .. |check-icon| image:: ../includes/images/check-icon.png
    :width: 0.1378in
-   :height: 0.15748in      
+   :height: 0.15748in
+.. |undo-icon| image:: ../includes/images/undo.png
+   :width: 15px
+.. |bubble-icon| image:: ../includes/images/messages-bubble.png
+   :width: 15px 
+.. |send-email-icon| image:: ../includes/images/send-email.png
+   :width: 15px 
+.. |pin-icon| image:: ../includes/images/pin.png
+   :width: 15px 

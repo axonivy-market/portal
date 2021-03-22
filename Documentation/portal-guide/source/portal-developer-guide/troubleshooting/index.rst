@@ -10,9 +10,9 @@ to Axon Ivy Portal.
 If you can't find your solution here there are some other sources which
 could help:
 
--  Axon Ivy Q&A
+-  Community
 
-   The `Axon Ivy Q&A <http://answers.axonivy.com/>`__ contains a
+   The `Community <http://community.axonivy.com/>`__ contains a
    considerable amount of questions and answers related to Axon Ivy
    Designer and Engine.
 
