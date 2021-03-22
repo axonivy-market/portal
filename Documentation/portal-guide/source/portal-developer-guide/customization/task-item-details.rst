@@ -20,7 +20,7 @@ Each TaskItemDetails contains
 
 |task-standard|
 
-.. important:: All visible widgets will be configured in :ref:`Global Variable PORTAL_TASK_DETAILS<task-details-configuration-variable>`.
+.. important:: All visible widgets will be configured in :ref:`Global Variable Portal.TaskDetails<task-details-configuration-variable>`.
 
 
 .. _task-details-configuration-variable:
@@ -28,9 +28,9 @@ Each TaskItemDetails contains
 How to configure widgets in task details
 ----------------------------------------
 
--  Settings of all visible widgets on task details page are saved in **Global Variable PORTAL_TASK_DETAILS**.
--  Cockpit Administrator can configure widgets via global variable **PORTAL_TASK_DETAILS** on Cockpit settings page.
-   |edit-variable-portal-task-details|
+-  Settings of all visible widgets on task details page are saved in **Global Variable Portal.TaskDetails**.
+-  Cockpit Administrator can configure widgets via global variable **Portal.TaskDetails** on Cockpit settings page.
+   |edit-variable-portal-task-case-details|
 
 -  Default configuration includes 3 widgets.
 
@@ -68,7 +68,7 @@ How to configure widgets in task details
 
    ..
 
--  Structure of each widget in variable **PORTAL_TASK_DETAILS**:
+-  Structure of each widget in variable **Portal.TaskDetails**:
 
    ``type``: There are 4 types: ``information``, ``document``, ``history``, ``custom``
 
@@ -146,12 +146,12 @@ Show Custom Panels (Widgets)
 
 There are **two steps** for adding new custom panels.
 
-#. **Cockpit admin** must configure global variable :ref:`PORTAL_TASK_DETAILS<task-details-configuration-variable>`
+#. **Cockpit admin** must configure global variable :ref:`Portal.TaskDetails<task-details-configuration-variable>`
    on Cockpit Page to add custom widgets.
 
    .. _task-details-custom-configuration-variable-example:
    
-   -  Example PORTAL_TASK_DETAILS with including 2 custom widgets configuration:
+   -  Example Portal.TaskDetails with including 2 custom widgets configuration:
    
       .. code-block:: html
    
@@ -210,7 +210,7 @@ There are **two steps** for adding new custom panels.
    
       The ``taskItemDetailCustomPanel*`` will be displayed
       base on value of global variable
-      :ref:`PORTAL_TASK_DETAILS<task-details-configuration-variable>`.
+      :ref:`Portal.TaskDetails<task-details-configuration-variable>`.
    
    -  Add your custom code into ``<ui:define name="taskItemDetailCustomPanel*"></ui:define>`` tags.
    
@@ -279,7 +279,7 @@ There are **two steps** for adding new custom panels.
          </ui:composition>
       ..
    
-   -  After applied above **example xhtml code** and **example variable PORTAL_TASK_DETAILS** to your custom page, custom panels
+   -  After applied above **example xhtml code** and **example variable Portal.TaskDetails** to your custom page, custom panels
       will be displayed as the below image.
       ``taskItemDetailCustomPanelTop (1)``
    
@@ -291,6 +291,6 @@ There are **two steps** for adding new custom panels.
 .. |task-standard| image:: ../../screenshots/task-detail/customization/task-standard.png
 .. |task-customized-top| image:: images/customization/task-customized-top.png
 .. |task-customized-bottom| image:: images/customization/task-customized-bottom.png
-.. |edit-variable-portal-task-details| image:: images/customization/edit-variable-portal-task-details.png
+.. |edit-variable-portal-task-case-details| image:: images/customization/edit-variable-portal-task-case-details.png
 
 
