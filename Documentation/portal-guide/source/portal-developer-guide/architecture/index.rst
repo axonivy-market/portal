@@ -21,7 +21,7 @@ PortalKit
 
 Contains set of UI components. This module contains set of JSF Ivy
 Component to provide user the usages to work with Ivy Process Data such
-as: task, case, absence... , styles CSS and JavaScript file for
+as: task, case, absence..., styles CSS and JavaScript file for
 component and theme library. This is the most important module that user
 needs to use Portal. This module also contains AdminSettings component
 that is used to configure Portal.
@@ -50,7 +50,7 @@ Provides default portal's templates and pages. This module contains
 templates page for Portal's user to use as composition, then they will
 have supporting features such as : top menu, application menu, user
 menu. It also contains some start process links to default page such as
-: Portal home, Portal task list, Portal case list... . Portal's user is
+: Portal home, Portal task list, Portal case list... Portal's user is
 advised to depend on this module to use Portal easily.
 
 .. _architecture-axonivy-express:

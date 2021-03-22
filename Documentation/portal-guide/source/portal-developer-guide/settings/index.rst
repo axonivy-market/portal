@@ -3,57 +3,21 @@
 Settings
 ********
 
-This section covers Portal role, permissions and some settings in User menu
+This section covers Portal role, permissions and some settings.
 
 |portal-header|
 
 .. _settings-admin-settings:
 
-Admin settings
-==============
+Setup Portal settings by configuration file in Designer
+=======================================================
 
-User needs to have role ``AXONIVY_PORTAL_ADMIN`` to see this menu item,
-it is used to configure Portal configuration, see different Portal
-configurations in
-:ref:`Portal mode <installation-basic-portal-mode>`
+To manually configure Portal settings, refer to :ref:`update-portal-settings`.
 
-How to open Admin Settings
---------------------------
+In development, it is a quite tedious task to configure Portal settings after restarting Designer. Therefore,
+Portal supports modification of Portal settings in Designer by configuration file, it could survive after restarting Designer.
 
-Open ``Admin Settings`` by selecting the item in ``UserMenu`` on the
-topbar, if your page using layout of ``PortalTemplate`` .
-
-|multi-portal-open-settings|
-
-.. important:: 
-   If your application does not use templates of PortalTemplate project, you
-   have to create a page and use AdminSettings component inside.
-
-.. _settings-admin-settings-global-settings:
-
-Global settings
----------------
-
-Global settings for Portal can be set in Settings tab. All available
-settings with their default value and description are listed in this
-place.
-
-|global-settings|
-
-You can edit value for a specific setting
-
-|global-setting-edit|
-
-You can also get back the default value for each setting by clicking
-reset button on each row, or reset all values of all settings by
-clicking ``Restore All To Defaults`` button.
-
-Setup Global settings by configuration file
-"""""""""""""""""""""""""""""""""""""""""""
-.. important:: 
-   This feature only supports modification of Portal settings in Designer.
-
-Process developer can set up global settings of Portal in file ``portal_settings_config.properties`` which put in ``PortalKit``.
+Process developer can set up Portal settings of Portal in file ``portal_settings_config.properties`` which put in ``PortalKit``.
 
    .. code-block:: Python
 
@@ -169,33 +133,6 @@ Multi applications (without overview)
 -  Configure multi-apps Portal: login by Portal
    Admin, configure applications: App1,
    App2, App3...
-
-How to add a new application
-""""""""""""""""""""""""""""
-
-Choose ``Application`` tab on ``Admin Settings`` dialog and click on
-``New`` button to add new application. Here you can choose application
-type either as Ivy application or Third Party application.
-
-|multi-portal-add-application|
-
-.. tip::
-
-   -  Select ``Application`` from dropdown list (see :ref:`Setup Portal multi applications <settings-admin-settings-setup-multi-portals>`). ``Display name`` is the name of the application to be
-      shown on Portal UI.
-
-   -  ``Portal link`` specifies the link will be redirected when
-      selecting the application on the application menu. It could be an
-      absolute link (e.g.
-      http://10.123.1.30:8000/ivy/pro/.../DefaultApplicationHomePage.ivp) or relative
-      link (e.g. /ivy/pro/.../DefaultApplicationHomePage.ivp). If your application
-      could be accessed from multiple domains, use relative link so that
-      you can access the link from different domains.
-
-   -  For multiple languages of application display name, you need to
-      create the "AppInfo/SupportedLanguages" CMS which defines how many
-      languages your application supports. See the below "Language
-      settings" for more details.
 
 .. _settings-language:
 
@@ -614,5 +551,3 @@ Global variables
 .. |language-settings| image:: images/settings/language-settings.png
 .. |add-new-language| image:: images/settings/add-new-language.png
 .. |multi-portal-open-settings| image:: images/settings/multi-portal-open-settings.png
-.. |multi-portal-add-application| image:: images/settings/multi-portal-add-application.png
-

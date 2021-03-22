@@ -24,6 +24,11 @@ When you click on your username in the top right of the Axon Ivy Portal,
 a menu is shown allowing you to configure the portal to your personal
 needs. These features are described in the following sections below.
 
+Admin Settings
+--------------
+
+Menu entry :ref:`admin-settings` is only available for users have role AXONIVY_PORTAL_ADMIN.
+
 Absences
 --------
 
