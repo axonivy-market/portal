@@ -31,9 +31,8 @@
       icon="#{visibilityBean.generateButtonIcon('si si-pencil')}"
       update="case-detail-body case-details-actions" oncomplete="loadCaseDetailsGrid()" />
     <p:commandButton id="reset-details-settings-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
-      rendered="#{caseDetailsBean.configuration.changed and not caseDetailsBean.readOnlyMode}"
-      icon="#{visibilityBean.generateButtonIcon('si si-button-refresh-arrows')}" styleClass="reset-details-settings-button"
-      actionListener="#{caseDetailsBean.reset()}" update="case-detail-body case-details-actions" oncomplete="loadCaseDetailsGrid()" />
+      rendered="#{caseDetailsBean.configuration.changed and not caseDetailsBean.readOnlyMode}" onclick="PF('reset-to-default-case-dialog').show()"
+      icon="#{visibilityBean.generateButtonIcon('si si-button-refresh-arrows')}" styleClass="reset-details-settings-button" immediate="true" />
   </h:panelGroup>
   
   <h:panelGroup layout="block" styleClass="case-detail-body portal-card-container ui-g-12" id="case-detail-body">
@@ -49,7 +48,7 @@
             styleClass="card custom-general-panel grid-stack-item-content #{caseDetailsBean.readOnlyMode ? '' : 'moveable-area'}">
             <div class="task-detail-section-title u-truncate-text ui-g-12 ui-xl-12 ui-lg-12 ui-md-12 ui-sm-12 u-padding-0">
               <div class="ui-g-4 u-truncate-text u-padding-0 task-details-panel-title">
-                <i class="si si-single-neutral-actions" /> #{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/CaseDetail/DataDescription')}
+                <i class="si si-single-neutral-actions" /> #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/general')}
               </div>
               
               <h:panelGroup class="case-history-button-container u-truncate-text ui-g-8"
@@ -154,6 +153,27 @@
         icon="#{visibilityBean.generateButtonIcon('si si-remove')}"
         actionListener="#{caseWidgetBean.destroyCase(case)}"
         oncomplete="backToPrevPage(#{caseWidgetBean.willNavigateBack()});" />
+    </ui:define>
+  </ui:decorate>
+
+  <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
+    <ui:param name="id" value="reset-to-default-case-confirmation-dialog" />
+    <ui:param name="widgetVar" value="reset-to-default-case-dialog" />
+    <ui:param name="appendTo" value="@(body)" />
+    <ui:param name="iconClass" value="si si-button-refresh-arrows" />
+    <ui:param name="iconStyleClass" value="portal-dialog-warning-icon" />
+    <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ResetToDefaultHeaderText')}" />
+    <ui:param name="dialogContent" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/resetToDefaultMessage')}" />
+
+    <ui:define name="dialogFooter">
+      <h:form id="reset-to-default-case-form">
+        <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+          onclick="PF('reset-to-default-case-dialog').hide();" styleClass="u-mar-right-15" />
+        <p:commandButton id="confirm-destruction" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
+          icon="#{visibilityBean.generateButtonIcon('si si-button-refresh-arrows')}"
+          actionListener="#{caseDetailsBean.reset()}" update="case-item-details"
+          oncomplete="PF('reset-to-default-case-dialog').hide(); loadCaseDetailsGrid()" />
+      </h:form>
     </ui:define>
   </ui:decorate>
 
