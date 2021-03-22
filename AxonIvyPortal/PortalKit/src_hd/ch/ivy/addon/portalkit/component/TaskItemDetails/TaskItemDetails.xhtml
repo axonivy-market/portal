@@ -47,7 +47,7 @@
       <p:commandButton id="reset-details-settings-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
         rendered="#{taskDetailsBean.configuration.changed and not taskDetailsBean.readOnlyMode}"
         icon="#{visibilityBean.generateButtonIcon('si si-button-refresh-arrows')}" styleClass="reset-details-settings-button"
-        actionListener="#{taskDetailsBean.reset()}" update="task-item-body task-details-actions" oncomplete="loadTaskDetailsGrid()" />
+        immediate="true" onclick="PF('reset-to-default-task-dialog').show()" />
     </h:panelGroup>
   </div>
 
@@ -79,7 +79,7 @@
             styleClass="card custom-general-panel grid-stack-item-content #{taskDetailsBean.readOnlyMode ? '' : 'moveable-area'}">
             <div class="task-detail-section-title u-truncate-text ui-g-12 ui-xl-12 ui-lg-12 ui-md-12 ui-sm-12 u-padding-0 ">
               <div class="task-details-description-title u-truncate-text ui-g-7 task-details-panel-title">
-                <i class="si si-single-neutral-actions" /> #{ivy.cms.co('/Dialogs/Tasks/TaskDetail/DataDescription')}
+                <i class="si si-single-neutral-actions" /> #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/general')}
               </div>
               <h:panelGroup id="task-detail-action-group" class="task-details-action-container action-container ui-g-5" layout="block">
                 <p:commandLink id="task-detail-start-command" disabled="#{!taskActionBean.canResume(task) or cc.attrs.readOnly}"
@@ -188,6 +188,28 @@
         icon="#{visibilityBean.generateButtonIcon('si si-remove')}" actionListener="#{logic.destroyTask(task)}"
         oncomplete="PF('destroy-task-dialog').hide()" update="#{informationWidgetComponent}" process="@this" />
     </ui:define>
+  </ui:decorate>
+
+  <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
+    <ui:param name="id" value="reset-to-default-task-confirmation-dialog" />
+    <ui:param name="widgetVar" value="reset-to-default-task-dialog" />
+    <ui:param name="appendTo" value="@(body)" />
+    <ui:param name="iconClass" value="si si-button-refresh-arrows" />
+    <ui:param name="iconStyleClass" value="portal-dialog-warning-icon" />
+    <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ResetToDefaultHeaderText')}" />
+    <ui:param name="dialogContent" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/resetToDefaultMessage')}" />
+
+    <ui:define name="dialogFooter">
+      <h:form id="reset-to-default-task-form">
+        <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+          onclick="PF('reset-to-default-task-dialog').hide();" styleClass="u-mar-right-15" />
+        <p:commandButton id="confirm-destruction" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
+          icon="#{visibilityBean.generateButtonIcon('si si-button-refresh-arrows')}"
+          actionListener="#{taskDetailsBean.reset()}" update="task-detail-template:task-details-actions task-detail-template:task-item-body"
+          oncomplete="PF('reset-to-default-task-dialog').hide(); loadTaskDetailsGrid();" />
+      </h:form>
+    </ui:define>
+
   </ui:decorate>
 
   <!-- Delegate Task Dialog -->
