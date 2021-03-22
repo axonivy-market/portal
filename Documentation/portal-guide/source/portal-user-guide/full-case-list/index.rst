@@ -174,20 +174,6 @@ HowTo: Move and Resize Widgets in Case Details
 
 |how-to-reset-to-default|
 
-HowTo: Show all related Tasks
------------------------------
-
-#. Open the case details of a case.
-
-#. Click the :guilabel:`Show all tasks`  link.
-
-#. You’re routed to the **Related Tasks List** page. This page resembles
-   the **Full Tasks List** page (see  :ref:`full-task-list`) both in
-   appearance and features. The shown tasks are only down selected to the ones
-   related to your case already.
-
-|related-tasks-list-page|
-
 .. _howto-attach-a-document-to-the-case-1:
 
 HowTo: Attach a document to the case
@@ -278,7 +264,7 @@ This section shows you the related tasks of this case.
    the tasks belonging to you but 
    all open tasks.                
 
-For each task the following key information is shown in the list:
+For each task the following key information is shown in the list, you can change it by click on :guilabel:`Manage columns`:
 
 - Priority
 
@@ -317,19 +303,19 @@ HowTo: Manipulate related cases inside case details
 
 #. Open the case details
 
-#. If case has related case, you will see it below :guilabel:`Data and Description` section.
+#. Scroll to related cases section (this section is shown if case has related case).
 
 |case-details|
 
 The following information is shown by default, you can change it by click on :guilabel:`Manage columns`:
-
-- Priority
 
 - Name
 
 - Description
 
 - Case ID
+
+- Creator
 
 - Creation date
 
@@ -360,7 +346,6 @@ You can export the related case list by clicking on the button :guilabel:`Export
 .. |case-details-histories| image:: ../../screenshots/case-detail/case-details-histories.png
 .. |case-details-documents| image:: ../../screenshots/case-detail/case-details-documents.png
 .. |how-to-create-case-filter| image:: ../../screenshots/case/how-to-create-case-filter.png
-.. |related-tasks-list-page| image:: ../../screenshots/task/task-key-information.png
 .. |how-to-attach-document-to-case| image:: ../../screenshots/case-detail/how-to-attach-document-to-case.png
 .. |how-to-delete-an-attachment-from-case| image:: ../../screenshots/case-detail/how-to-delete-an-attachment-from-case.png
 .. |how-to-add-task-note| image:: ../../screenshots/case-detail/how-to-add-task-note.png

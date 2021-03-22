@@ -33,7 +33,6 @@ public class SystemNoteVisibilityTest extends BaseTest {
 
   @Test
   public void testSystemNoteVisibilityInCaseForAdmin() {
-    updatePortalSetting("HIDE_SYSTEM_NOTES_FROM_HISTORY_ADMINISTRATOR", "false");
     login(TestAccount.ADMIN_USER);
     
     CaseDetailsPage caseDetailsPage = openCaseDetails();
@@ -44,20 +43,10 @@ public class SystemNoteVisibilityTest extends BaseTest {
     NoteHistoryPage caseNoteHistoryPage = openCaseNoteHistory(caseId);
     caseNoteAuthors = caseNoteHistoryPage.getNoteAuthors();
     Assert.assertTrue(caseNoteAuthors.contains(SYSTEM_USER_NAME));
-    
-    updatePortalSetting("HIDE_SYSTEM_NOTES_FROM_HISTORY_ADMINISTRATOR", "true");
-    caseDetailsPage = openCaseDetails();
-    caseNoteAuthors = caseDetailsPage.getCaseNoteAuthors();
-    Assert.assertFalse(caseNoteAuthors.contains(SYSTEM_USER_NAME));
-    
-    caseNoteHistoryPage = openCaseNoteHistory(caseId);
-    caseNoteAuthors = caseNoteHistoryPage.getNoteAuthors();
-    Assert.assertFalse(caseNoteAuthors.contains(SYSTEM_USER_NAME));
   }
 
   @Test
   public void testSystemNoteVisibilityInCaseForNormalUser() {
-    updatePortalSetting("HIDE_SYSTEM_NOTES_FROM_HISTORY", "true");
     CaseDetailsPage caseDetailsPage = openCaseDetails();
     String caseId = caseDetailsPage.getCaseId();
     List<String> caseNoteAuthors = caseDetailsPage.getCaseNoteAuthors();
@@ -66,15 +55,6 @@ public class SystemNoteVisibilityTest extends BaseTest {
     NoteHistoryPage caseNoteHistoryPage = openCaseNoteHistory(caseId);
     caseNoteAuthors = caseNoteHistoryPage.getNoteAuthors();
     Assert.assertFalse(caseNoteAuthors.contains(SYSTEM_USER_NAME));
-    
-    updatePortalSetting("HIDE_SYSTEM_NOTES_FROM_HISTORY", "false");
-    caseDetailsPage = openCaseDetails();
-    caseNoteAuthors = caseDetailsPage.getCaseNoteAuthors();
-    Assert.assertTrue(caseNoteAuthors.contains(SYSTEM_USER_NAME));
-    
-    caseNoteHistoryPage = openCaseNoteHistory(caseId);
-    caseNoteAuthors = caseNoteHistoryPage.getNoteAuthors();
-    Assert.assertTrue(caseNoteAuthors.contains(SYSTEM_USER_NAME));
   }
   
   @Test
