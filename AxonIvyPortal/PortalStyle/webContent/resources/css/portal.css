@@ -528,13 +528,62 @@ a.compact-task-start-link .task-start-list-item {
   color: var(--hovered-user-process-start-list-item-icon-color); }
 
 .process-widget .ui-orderlist .ui-orderlist-list .order-list-item .action-icon {
-  font-size: var(--process-icon-font-size);
-}
+  font-size: var(--process-icon-font-size); }
 
 .new-process-dialog .md-inputfield .md-inputwrapper-focus ~ label.new-process-name-label,
 .new-process-dialog .md-inputfield .md-inputwrapper-filled ~ label.new-process-name-label {
-  font-size: var(--small-font-size);
-}
+  font-size: var(--small-font-size); }
+
+.process-start-list-container .grid-view-form .process-grid-view-icon {
+  font-size: var(--process-grid-icon-font-size);
+  padding: 0.7rem;
+  padding-top: 2rem; }
+
+body .process-widget .ui-selectbooleanbutton.ui-state-active {
+  background-color: var(--primary-color);
+  color: var(--ivy-primary-color-white); }
+
+body .process-widget .ui-selectbooleanbutton.ui-state-active .ui-icon {
+  color: var(--ivy-primary-color-white); }
+
+.grid-view-form .process-grid-view-name {
+  font-size: var(--process-grid-name-font-size);
+  font-weight: var(--process-grid-name-font-weight); }
+
+.edit-process-header-group,
+.edit-process-icon-group {
+  border-bottom: 1px solid var(--ivy-primary-color-grey-light); }
+
+.edit-process-dialog .ui-dialog-footer.ui-widget-content{
+  border-top: 1px solid var(--ivy-primary-color-grey-light); }
+
+.edit-process-header-group .edit-process-header-title {
+  overflow: hidden;
+  margin-top: auto;
+  font-size: var(--process-edit-name-font-size);
+  font-weight: var(--process-edit-name-font-weight); }
+
+.edit-process-dialog .edit-process-info-group {
+  overflow: hidden; }
+
+.edit-process-header-group .edit-process-header-sub-title,
+.edit-process-icon-group .edit-process-header-sub-title,
+.edit-process-info-group .edit-process-header-sub-title {
+  margin: auto;
+  font-weight: var(--widget-header-font-weight);
+  font-size: var(--large-font-size); }
+
+.edit-process-icon-group .awesome-icon-selection-panel span {
+  font-size: var(--process-grid-icon-font-size); }
+
+.edit-process-info-group .edit-process-detail-1st-cell,
+.grid-view-form .process-action-group {
+  font-size: var(--small-font-size); }
+
+.edit-process-info-group .edit-process-detail-1st-cell {
+  color: var(--ivy-primary-color-grey-medium); }
+.process-header .process-widget-header-link {
+  font-size: var(--small-font-size); }
 
 /*Style For Task Widget ----------------------------------------------------------------------------------*/
 .filter-selection-form .filter-name:hover,
@@ -1152,7 +1201,8 @@ body .ui-datepicker .ui-timepicker-div dl dd {
 a.case-details-document-add-link,
 a.task-details-document-add-link,
 span.case-details-document-add-link,
-span.task-details-document-add-link {
+span.task-details-document-add-link,
+.related-task-section-header-actions a {
   font-weight: var(--details-document-add-link-font-weight); }
 
 body .ui-inputfield.case-detail-name-input {
@@ -1389,7 +1439,6 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
 
 /*Awesome Icon Selection--------------------------*/
 .ui-commandlink.select-awesome-icon-button {
-  color: var(--link-change-awesome-icon-color);
   font-weight: var(--select-awesome-icon-button-font-weight);
   font-size: var(--small-font-size); }
 
@@ -1488,7 +1537,9 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
   color: var(--active-defined-task-button-text-color); }
 
 .express-work-flow .express-input-switch-selection,
-.ui-inputswitch.ui-widget.ui-widget-content.express-input-switch-selection.ui-inputswitch-checked {
+.ui-inputswitch.ui-widget.ui-widget-content.express-input-switch-selection.ui-inputswitch-checked,
+.process-widget .process-input-switch-selection,
+.ui-inputswitch.ui-widget.ui-widget-content.process-input-switch-selection.ui-inputswitch-checked {
   background-color: var(--express-input-switch-selection-background-color);
   border-color: var(--express-input-switch-selection-border); }
 
@@ -1570,8 +1621,12 @@ body .available-elements-action-btn .ui-button.ui-button-icon-only .ui-icon {
 .task-responsible-link:after {
   font-family: var(--icon-font-family); }
 
-.express-work-flow label.switch-active {
+.express-work-flow label.switch-active,
+.process-widget label.switch-active {
   font-weight: var(--express-workflow-active-switch-label-font-weight); }
+
+.process-widget label.switch-off {
+  color: var(--ivy-primary-color-grey-medium);}
 
 .finished-task-label {
   font-weight: var(--express-finished-task-label-font-weight); }
@@ -1940,12 +1995,14 @@ body.in-dialog .ui-widget-overlay {
 .time-information .si-graphic-tablet-drawing-pen,
 .general-information .si-graphic-tablet-drawing-pen,
 .task-detail-description .si-add-circle,
-.task-detail-description .si-subtract-circle {
+.task-detail-description .si-subtract-circle,
+.case-detail-description .si-add-circle,
+.case-detail-description .si-subtract-circle {
   margin-left: 5px;
   color: var(--primary-color);
 }
 
-.task-details-description-title .si-graphic-tablet-drawing-pen {
+.task-details-description-title .si-graphic-tablet-drawing-pen, .case-details-description-title .si-graphic-tablet-drawing-pen {
   margin: 0 2px;
   color: var(--primary-color);
 }
@@ -1960,4 +2017,40 @@ body.in-dialog .ui-widget-overlay {
 .portal-icon.action-icon.icon-compact-mode,
 .portal-icon.action-link i {
   font-size: var(--portal-icon-font-size);
+}
+/*****CSS FOR DECORATE SCREENSHOT******/
+.marker {
+  position: absolute;
+  z-index: 9999;
+  display: inherit;
+  width: 36px;
+  height: 36px;
+  color: #212121;
+  line-height: 36px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 50%;
+  background-color: #b5e61a;
+}
+
+.overlay-text {
+  position: absolute;
+  z-index: 100;
+  background: transparent;
+}
+
+.red-thick-outline {
+  outline-style: solid;
+  outline-color: red;
+  outline-width: thick;
+}
+
+.red-medium-outline {
+  outline-style: solid;
+  outline-color: red;
+  outline-width: medium;
+}
+
+.red-outline-thick-offset {
+  outline-offset: -5px;
 }

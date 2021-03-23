@@ -48,11 +48,17 @@ public class AnnouncementService extends BusinessDataService<Announcement> {
 
   public List<Announcement> getAnnouncements(){
     List<Announcement> announcements = findAllOrderedByLanguage();
+    // Set language to lower case since migrated announcement has language "EN" instead of "en" 
+    announcements.forEach(announcement -> {
+      String languageLowerCase = announcement.getLanguage() == null? null : announcement.getLanguage().toLowerCase();
+      announcement.setLanguage(languageLowerCase);
+    });
+    
     Map<String, List<Announcement>> languageToAnnouncements =
         announcements.stream().collect(Collectors.groupingBy(Announcement::getLanguage));
     
-    
     IvyLanguageResultDTO ivyLanguage = LanguageService.newInstance().findUserLanguages();
+    
     List<String> supportedLanguages =  ivyLanguage.getIvyLanguage().getSupportedLanguages(); 
     
     return IvyExecutor.executeAsSystem(() -> supportedLanguages.stream().map(language -> {

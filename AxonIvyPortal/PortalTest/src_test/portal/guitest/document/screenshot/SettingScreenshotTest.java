@@ -36,14 +36,20 @@ public class SettingScreenshotTest extends ScreenshotTest {
     
     refreshHomePage();
     AdminSettingsPage adminSettingsPage = homePage.openAdminSettings();
+    ScreenshotUtil.captureElementWithMarginOptionScreenshot(adminSettingsPage.getAdminSettingDialog(), ScreenshotUtil.SETTINGS_FOLDER + "applications", new ScreenshotMargin(20));
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(adminSettingsPage.getAddApplicationDialog(), ScreenshotUtil.SETTINGS_FOLDER + "add-application", new ScreenshotMargin(20));
-    
+
     refreshHomePage();
     adminSettingsPage = homePage.openAdminSettings();
     adminSettingsPage.openSettingTab();
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(adminSettingsPage.getAdminSettingDialog(), ScreenshotUtil.SETTINGS_FOLDER + "global-settings", new ScreenshotMargin(20));
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(adminSettingsPage.getEditSettingDialogOfFirstRow(), ScreenshotUtil.SETTINGS_FOLDER + "edit-global-settings", new ScreenshotMargin(20));
     
+    refreshHomePage();
+    adminSettingsPage = homePage.openAdminSettings();
+    adminSettingsPage.openAnnouncementTab();
+    ScreenshotUtil.captureElementWithMarginOptionScreenshot(adminSettingsPage.getAdminSettingDialog(), ScreenshotUtil.SETTINGS_FOLDER + "announcement", new ScreenshotMargin(20));
+
     refreshHomePage();
     ChangePasswordPage changePasswordPage = homePage.openChangePasswordPage();
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(changePasswordPage.getChangePasswordDialog(), ScreenshotUtil.SETTINGS_FOLDER + "change-password", new ScreenshotMargin(20));

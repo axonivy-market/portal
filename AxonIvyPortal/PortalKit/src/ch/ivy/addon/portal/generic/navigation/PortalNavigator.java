@@ -34,6 +34,7 @@ public final class PortalNavigator extends BaseNavigator{
   private static final String PORTAL_ABSENCE_MANAGEMENT =  "Start Processes/PortalStart/AbsenceManagement.ivp";
   private static final String PORTAL_FORGOT_PASSWORD = "Start Processes/PortalStart/ForgotPasswordPage.ivp";
   private static final String PORTAL_PASSWORD_RESET = "Start Processes/PortalStart/PasswordResetPage.ivp";
+  private static final String PORTAL_CASE_DETAILS_IN_FRAME = "Start Processes/PortalStart/CaseDetailsInIFrame.ivp";
   
   public static String getPortalStartUrl() {
     return getRelativeLink(StandardProcessType.DefaultApplicationHomePage);
@@ -161,6 +162,13 @@ public final class PortalNavigator extends BaseNavigator{
     Map<String, String> params = new HashMap<>();
     params.put("selectedTaskId", String.valueOf(taskId));
     navigateByKeyword("TaskDetailsPageInFrame.ivp", PORTAL_TASK_DETAILS_IN_FRAME, params);
+  }
+  
+  public static void navigateToPortalCaseDetailsInFrame(Long caseId, boolean isBusinessCase) {
+    Map<String, String> params = new HashMap<>();
+    params.put("caseId", String.valueOf(caseId));
+    params.put("isBusinessCase", String.valueOf(isBusinessCase));
+    navigateByKeyword("CaseDetailsPageInFrame.ivp", PORTAL_CASE_DETAILS_IN_FRAME, params);
   }
 
   public static void navigateToPortalGlobalSearch(String keyword) {

@@ -121,13 +121,11 @@ public class PortalPermissionTest extends BaseTest{
     CaseWidgetPage caseWidgetPage = mainMenuPage.openCaseList();
     CaseDetailsPage caseDetailsPage = caseWidgetPage.openDetailsOfCaseHasName("Leave Request");
     Assert.assertFalse(caseDetailsPage.isShowDetailsDisplayed());
-    Assert.assertFalse(caseDetailsPage.isShowAllTasksDisplayed());
     
     grantCasePermissions();
     mainMenuPage.openCaseList();
     caseDetailsPage = caseWidgetPage.openDetailsOfCaseHasName("Leave Request");
     Assert.assertTrue(caseDetailsPage.isShowDetailsDisplayed());
-    Assert.assertTrue(caseDetailsPage.isShowAllTasksDisplayed());
   }
   
   private void grantAccessFullListPermissions() {
@@ -167,7 +165,6 @@ public class PortalPermissionTest extends BaseTest{
   
   private void denyCasePermissions() {
     redirectToRelativeLink(String.format(denySpecificPortalPermissionLink, PortalPermission.SHOW_CASE_DETAILS.getValue()));
-    redirectToRelativeLink(String.format(denySpecificPortalPermissionLink, PortalPermission.SHOW_ALL_TASKS_OF_CASE.getValue()));
   }
   
   private void grantShowHideNotePermissions() {

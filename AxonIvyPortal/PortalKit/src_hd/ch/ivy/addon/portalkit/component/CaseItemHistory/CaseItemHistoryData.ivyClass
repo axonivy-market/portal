@@ -16,3 +16,11 @@ taskId Long #field
 taskId PERSISTENT #fieldModifier
 fullNote String #field
 fullNote PERSISTENT #fieldModifier
+showSystemNotes Boolean #field
+showSystemNotes PERSISTENT #fieldModifier
+showSystemTasks Boolean #field
+showSystemTasks PERSISTENT #fieldModifier
+showSystemNotesChkbox Boolean #field
+showSystemNotesChkbox PERSISTENT #fieldModifier
+showSystemTasksChkbox Boolean #field
+showSystemTasksChkbox PERSISTENT #fieldModifier

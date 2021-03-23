@@ -15,6 +15,7 @@ import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
 
 import portal.guitest.common.BaseTest;
+import portal.guitest.common.TestAccount;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.NoteHistoryPage;
 import portal.guitest.page.TaskDetailsPage;
@@ -73,34 +74,11 @@ public class TaskTemplateTest extends BaseTest {
     createTestData();
     TaskTemplatePage taskTemplatePage = startATaskAndOpenCaseInfo();
 
-    assertTrue(taskTemplatePage.countRelatedTasks() > 0);
-    TaskDetailsPage taskDetailsPage = taskTemplatePage.openFirstRelatedTaskInHistoryArea();
+    getBrowser().getDriver().switchTo().defaultContent();
+    TaskDetailsPage taskDetailsPage = taskTemplatePage.openRelatedTaskInList(1);
     assertEquals("Task: Annual Leave Request", taskDetailsPage.getTaskNameInDialog());
 
     taskDetailsPage.clickBackButton();
-    getBrowser().getDriver().switchTo().defaultContent();
-    taskTemplatePage = new TaskTemplatePage();
-    assertTrue(taskTemplatePage.countRelatedTasks() > 0);
-  }
-
-  @Test
-  public void testOpenTaskListInCaseInfo() {
-    createTestData();
-    TaskTemplatePage taskTemplatePage = startATaskAndOpenCaseInfo();
-    assertTrue(taskTemplatePage.countRelatedTasks() > 0);
-
-    getBrowser().getDriver().switchTo().defaultContent();
-    TaskWidgetPage taskWidgetPage = taskTemplatePage.openRelatedTaskList();
-    assertTrue(taskWidgetPage.countTasks() > 0);
-
-    TaskDetailsPage taskDetailsPage = taskWidgetPage.openTaskDetails(1);
-    assertEquals("Task: Sick Leave Request", taskDetailsPage.getTaskNameInDialog());
-
-    taskDetailsPage.clickBackButton();
-    taskWidgetPage = new TaskWidgetPage();
-    assertTrue(taskWidgetPage.countTasks() > 0);
-
-    taskWidgetPage.clickBack();
     getBrowser().getDriver().switchTo().defaultContent();
     taskTemplatePage = new TaskTemplatePage();
     assertTrue(taskTemplatePage.countRelatedTasks() > 0);
@@ -129,6 +107,10 @@ public class TaskTemplateTest extends BaseTest {
   @Test
   public void testReserveWorkingTaskByClickingOnLogo() {
     createTestData();
+    login(TestAccount.ADMIN_USER);
+    HomePage home = new HomePage();
+    home.waitForPageLoaded();
+    redirectToRelativeLink(createNewPaymentUrl);
     TaskTemplatePage taskTemplatePage = startATaskAndOpenCaseInfo();
     taskTemplatePage.clickOnLogo();
     WorkingTaskDialogPage dialogPage = new WorkingTaskDialogPage();

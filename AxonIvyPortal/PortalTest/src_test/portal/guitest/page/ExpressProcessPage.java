@@ -38,18 +38,17 @@ public class ExpressProcessPage extends TemplatePage {
 		waitAjaxIndicatorDisappear();
 	}
 
-	@SuppressWarnings("deprecation")
   public void createTask(int taskIndex, int typeIndex, String taskName, String taskDescription,
 			List<ExpressResponsible> responsibles) {
+    final String TASK_NAME_FORMAT = "input[id$='%d:task-name']";
+    final int INFORMATION_EMAIL_INDEX = 2;
+
 		chooseTaskType(taskIndex, typeIndex);
 		Sleeper.sleep(1000);
-		waitAjaxIndicatorDisappear();
-		if (typeIndex != 2) { // 2 is INFORMATION_EMAIL_INDEX
-			WaitHelper.typeWithRetry(this, String.format("input[id$='%d:task-name']", taskIndex), taskName);
+		if (typeIndex != INFORMATION_EMAIL_INDEX) {
+			WaitHelper.typeWithRetry(this, String.format(TASK_NAME_FORMAT, taskIndex), taskName);
 			WaitHelper.typeWithRetry(this, String.format("input[id$='%d:task-description']", taskIndex), taskDescription);
 			click(By.id(String.format("form:defined-tasks-list:%d:task-responsible-link", taskIndex)));
-			// waitAjaxIndicatorDisappear();
-			ensureNoBackgroundRequest();
 			waitForElementDisplayed(By.id("choose-responsible-dialog"), true);
 			for (ExpressResponsible responsible : responsibles) {
 				chooseResponsible(responsible.getResponsibleName(), responsible.isGroup());
@@ -115,13 +114,19 @@ public class ExpressProcessPage extends TemplatePage {
 	}
 
   private void chooseTaskType(int taskIndex, int typeIndex) {
-    click(By.id(String.format("form:defined-tasks-list:%d:task-type_label", taskIndex)));
-    waitForElementDisplayed(By.id(String.format("form:defined-tasks-list:%d:task-type_panel", taskIndex)), true);
-    String taskType =
-        findElementByCssSelector(String.format("li[id$=':%d:task-type_%d']", taskIndex, typeIndex)).getText();
-    click(By.xpath(String.format("//*[@id='form:defined-tasks-list:%d:task-type_%d']", taskIndex, typeIndex)));
-    WaitHelper.assertTrueWithWait(() -> taskType.equals(
-        findElementByCssSelector(String.format("label[id$='%d:task-type_label']", taskIndex, taskIndex)).getText()));
+    if (typeIndex == 0) {
+      // If the selected task type is already task type? ignore click on the drop-down
+      return;
+    }
+    
+    final String TASK_TYPE_FORMAT = "li[id$=':%d:task-type_%d']";
+    final String TASK_TYPE_LABEL_FORMAT = "label[id$=':%d:task-type_label']";
+
+    clickByCssSelector(String.format(TASK_TYPE_LABEL_FORMAT, taskIndex));
+    waitForElementDisplayed(By.cssSelector(String.format("[id$=':%d:task-type_panel']", taskIndex)), true);
+    String taskType = findElementByCssSelector(String.format(TASK_TYPE_FORMAT, taskIndex, typeIndex)).getText();
+    clickByCssSelector(String.format(TASK_TYPE_FORMAT, taskIndex, typeIndex));
+    WaitHelper.assertTrueWithWait(() -> taskType.equals(findElementByCssSelector(String.format(TASK_TYPE_LABEL_FORMAT, taskIndex, taskIndex)).getText()));
   }
 
 	@SuppressWarnings("deprecation")
