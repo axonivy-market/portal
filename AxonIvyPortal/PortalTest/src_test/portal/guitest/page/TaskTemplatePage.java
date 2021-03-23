@@ -65,16 +65,6 @@ public class TaskTemplatePage extends TemplatePage {
     ((JavascriptExecutor) driver).executeScript("window.open('" + url + "','_blank');");
   }
 
-  public TaskDetailsPage openFirstRelatedTaskInHistoryArea() {
-    String firstFinishedTaskCssSelector = "a[id$='task-name']";
-    return openATaskInCaseDetails(firstFinishedTaskCssSelector);
-  }
-
-  private TaskDetailsPage openATaskInCaseDetails(String taskCssSelector) {
-    clickByCssSelector(taskCssSelector);
-    return new TaskDetailsPage();
-  }
-
   public int countNoteItems() {
     return findListElementsByCssSelector("a[id$=':note-link']").size();
   }
@@ -85,15 +75,15 @@ public class TaskTemplatePage extends TemplatePage {
 
   public int countRelatedTasks() {
     switchToCaseInfoIframe();
-    waitForElementDisplayed(By.cssSelector("a[id$='task-name']"), true);
-    return findListElementsByCssSelector("a[id$='task-name']").size();
+    waitForElementDisplayed(By.cssSelector("td.related-task-name-column"), true);
+    return findListElementsByCssSelector("td.related-task-name-column").size();
   }
 
-  public TaskWidgetPage openRelatedTaskList() {
+  public TaskDetailsPage openRelatedTaskInList(int index) {
     switchToCaseInfoIframe();
-    waitForElementDisplayed(By.cssSelector("a[id$='show-more-related-tasks']"), true);
-    click(By.cssSelector("a[id$='show-more-related-tasks']"));
-    return new TaskWidgetPage();
+    waitForElementDisplayed(By.cssSelector("td.related-task-name-column"), true);
+    findListElementsByCssSelector("td.related-task-name-column").get(index).click();
+    return new TaskDetailsPage();
   }
 
   public void startSideStep() {
@@ -314,16 +304,8 @@ public class TaskTemplatePage extends TemplatePage {
     click(By.id("content-form:close-btn"));
     driver.switchTo().defaultContent();
   }
-  
-  public TaskWidgetPage openRelatedTask() {
-    switchToCaseInfoIframe();
-    clickByCssSelector("a[id$='show-more-related-tasks']");
-    return new TaskWidgetPage();
-  }
-  
-  public CaseWidgetPage openRelatedCase() {
-    switchToCaseInfoIframe();
-    clickByCssSelector("a[id$='show-more-related-cases']");
-    return new CaseWidgetPage();
+
+  public boolean isCategoryColumnDisplayed() {
+    return findElementByCssSelector("td.category-column").isDisplayed();
   }
 }

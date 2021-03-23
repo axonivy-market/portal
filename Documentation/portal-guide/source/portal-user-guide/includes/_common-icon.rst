@@ -32,3 +32,11 @@
    :width: 15px 
 .. |task-list-icon| image:: ../includes/images/task-list-edit.svg
    :width: 15px   
+.. |undo-icon| image:: ../includes/images/undo.png
+   :width: 15px
+.. |bubble-icon| image:: ../includes/images/messages-bubble.png
+   :width: 15px 
+.. |send-email-icon| image:: ../includes/images/send-email.png
+   :width: 15px 
+.. |pin-icon| image:: ../includes/images/pin.png
+   :width: 15px 

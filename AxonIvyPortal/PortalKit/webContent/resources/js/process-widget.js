@@ -68,25 +68,26 @@ function ProcessWidget() {
       var processNavOuterHeight = processNav.outerHeight(true) - processNav.outerHeight();
       processNav.css("height", (availableHeight - processNavOuterHeight) + "px");
       
-      var processHeaderHeight = $('.js-portal-template-header').outerHeight();
+      var portalHeaderHeight = $('.js-portal-template-header').outerHeight();
+      let processPaddingTop = parseInt($('.js-process-widget').css('padding-top'));
       var availableHeightProcessNavTop = (($('.js-process-header').outerHeight(true)||0) + ($('.layout-topbar').outerHeight(true)||0)
-                                          + (announcementMessageContainer.outerHeight(true)||0) + processHeaderHeight);
+                                          + (announcementMessageContainer.outerHeight(true)||0) + portalHeaderHeight + processPaddingTop);
       processNav.css("top", availableHeightProcessNavTop + "px");
 
       var numberOfDisplayingCharacters = $('.js-process-nav-item').length;
-      var characterContainer = processNav.find('.js-character-container');
+      let characterContainer = processNav.find('.js-character-container');
+      let characterContainerPadding = parseInt(characterContainer.css('padding-top')) + parseInt(characterContainer.css('padding-bottom'));;
       processNav.width(characterContainer.width());
 
       // If there is less than 6 characters displayed, calculate height of character container to make UI look better.
       if (numberOfDisplayingCharacters < 6) {
         var heightForEachCharacter = (processNav.get(0).offsetHeight / numberOfMaximumCharacters) * 2;
         var numberOfDisplayingCharacters = $('.js-process-nav-item').length;
-        characterContainer.height(numberOfDisplayingCharacters * heightForEachCharacter);
+        characterContainer.height((numberOfDisplayingCharacters * heightForEachCharacter) - characterContainerPadding);
       } else {
-        characterContainer.height(processNav.get(0).offsetHeight);
+        characterContainer.height(processNav.get(0).offsetHeight - characterContainerPadding);
       }
-
-
+      $(".js-process-nav-item.selected").removeClass("selected");
     },
 
     detectScrollBarWidth : function() {
@@ -109,10 +110,13 @@ function ProcessWidget() {
       $(processItems).show();
       $.each(processItems, function(index) {
         var processName = $('.js-process-start-list-item-name', this).text().toLowerCase();
-        var processDescription = $('.js-process-start-list-item-description .ui-tooltip-text').get(index).innerText.toLowerCase();
         var keyword = $('.js-filter-process-widget-list-item').val().toLowerCase();
-        if (!contain(processName, keyword) && !contain(processDescription, keyword)) {
-          $(this).hide();
+        let descriptionTooltip = $('.js-process-start-list-item-description .ui-tooltip-text');
+        if (descriptionTooltip.length > 0) {
+          var processDescription = descriptionTooltip.get(index).innerText.toLowerCase();
+          if (!contain(processName, keyword) && !contain(processDescription, keyword)) {
+            $(this).hide();
+          }
         }
         var expressKeyToSearch = "express";
         if (expressKeyToSearch.toLowerCase() === keyword.trim().toLowerCase()
@@ -153,6 +157,7 @@ function ProcessWidget() {
       if (document.getElementsByClassName('process-nav').length !== 0) {
         disableGroupNavigation();
       }
+      this.setupScrollbar();
     }
   };
 }
@@ -238,13 +243,46 @@ function expandOrCollapseAllCategories(shouldExpand) {
   }
 }
 
-function jumpToProcessGroupByCharacter(event) {
+function jumpToProcessGroupByCharacter(event, isCompactMode) {
+  if (isCompactMode === false) {
+    jumpToProcessGroupByCharacterForGridProcess(event);
+    return;
+  }
+
   var clickedCharacter = getClassNameStartsWith(event.target.className, prefixProcessStart).slice(prefixProcessStart.length);
   $(".js-process-nav-item.selected").removeClass("selected");
   var selectedItem = document.getElementById(event.target.id);
   var processGroupSeleted = document.getElementsByClassName(prefixProcessGroup + clickedCharacter)[0];
   
   processGroupSeleted.parentNode.scrollTop = processGroupSeleted.offsetTop - processGroupSeleted.parentNode.offsetTop;
+  setTimeout(function(){ selectedItem.classList.add("selected"); }, 100);
+}
+
+function resetGridViewProcesses(event) {
+  let processList = $('.js-process-start-list-item.js-grid-process-index-group');
+  processList.show();
+  $(".js-process-nav-item.selected").removeClass("selected");
+  let selectedItem = document.getElementById(event.target.id);
+  setTimeout(function(){ selectedItem.classList.add("selected"); }, 100);
+
+  let processWidget = new ProcessWidget();
+  processWidget.setupScrollbar();
+  processWidget.clearSearchField();
+}
+
+function jumpToProcessGroupByCharacterForGridProcess(event) {
+  let processList = $('.js-process-start-list-item.js-grid-process-index-group');
+  processList.show();
+
+  let clickedCharacter = getClassNameStartsWith(event.target.className, prefixProcessStart).slice(prefixProcessStart.length);
+  $(".js-process-nav-item.selected").removeClass("selected");
+  let selectedItem = document.getElementById(event.target.id);
+  let processGroupSeleted = document.getElementsByClassName(prefixProcessGroup + clickedCharacter);
+
+  processList.not(processGroupSeleted).hide();
+  let processWidget = new ProcessWidget();
+  processWidget.setupScrollbar();
+  processWidget.clearSearchField();
   setTimeout(function(){ selectedItem.classList.add("selected"); }, 100);
 }
 

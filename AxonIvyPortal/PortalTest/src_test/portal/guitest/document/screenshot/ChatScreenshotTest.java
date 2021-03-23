@@ -29,10 +29,12 @@ public class ChatScreenshotTest extends ScreenshotTest {
   @Test
   public void screenshotChat() throws IOException {
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+    ScreenshotUtil.resizeBrowser(new Dimension(1500, 600));
+    new HomePage().waitForStatisticRendered();
+    ScreenshotUtil.captureHalfTopRightPageScreenShot(ScreenshotUtil.CHAT_FOLDER + "access-chat");
     TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
     Sleeper.sleep(3000);//wait for chat service initialize
     taskTemplatePage.clickTaskActionMenu();
-    ScreenshotUtil.resizeBrowser(new Dimension(1500, 600));
     executeDecorateJs("highlightJoinGroupChatOption()");
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.CHAT_FOLDER + "create-new-group-chat");
     

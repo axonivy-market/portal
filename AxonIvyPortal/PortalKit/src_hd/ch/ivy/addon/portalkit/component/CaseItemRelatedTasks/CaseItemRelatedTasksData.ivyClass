@@ -1,0 +1,43 @@
+CaseItemRelatedTasksData #class
+ch.ivy.addon.portalkit.component.CaseItemRelatedTasks #namespace
+iCase ch.ivyteam.ivy.workflow.ICase #field
+iCase PERSISTENT #fieldModifier
+isTaskFinished Boolean #field
+isTaskFinished PERSISTENT #fieldModifier
+isWorkingOnTask Boolean #field
+isWorkingOnTask PERSISTENT #fieldModifier
+inFrame Boolean #field
+inFrame PERSISTENT #fieldModifier
+taskId Long #field
+taskId PERSISTENT #fieldModifier
+task ch.ivyteam.ivy.workflow.ITask #field
+task PERSISTENT #fieldModifier
+canUserResumeTask Boolean #field
+canUserResumeTask PERSISTENT #fieldModifier
+currentPortalPage String #field
+currentPortalPage PERSISTENT #fieldModifier
+selectedTask ch.ivyteam.ivy.workflow.ITask #field
+selectedTask 'Task is selected for reset or delegate' #fieldComment
+selectedTask PERSISTENT #fieldModifier
+dataModel ch.ivy.addon.portalkit.datamodel.internal.RelatedTaskLazyDataModel #field
+dataModel PERSISTENT #fieldModifier
+relatedTaskColumnsVisibility java.util.List<String> #field
+relatedTaskColumnsVisibility PERSISTENT #fieldModifier
+exportedFile org.primefaces.model.StreamedContent #field
+exportedFile PERSISTENT #fieldModifier
+taskSearchCriteria ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria #field
+taskSearchCriteria PERSISTENT #fieldModifier
+totalTasks Integer #field
+totalTasks PERSISTENT #fieldModifier
+loopCounter Integer #field
+loopCounter PERSISTENT #fieldModifier
+maxResultNumberPerQuery Integer #field
+maxResultNumberPerQuery PERSISTENT #fieldModifier
+collectedTasksForExporting java.util.List<ch.ivyteam.ivy.workflow.ITask> #field
+collectedTasksForExporting PERSISTENT #fieldModifier
+count Integer #field
+count PERSISTENT #fieldModifier
+startIndex Integer #field
+startIndex PERSISTENT #fieldModifier
+tasks List<ch.ivyteam.ivy.workflow.ITask> #field
+tasks PERSISTENT #fieldModifier
