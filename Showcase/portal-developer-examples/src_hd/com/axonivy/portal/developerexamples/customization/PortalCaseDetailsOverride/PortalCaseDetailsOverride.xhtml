@@ -15,20 +15,15 @@
       !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
 
       <!--!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
-      !!!!!!!!!!!!!!!!!!!!!! TO SHOW /HIDDEN ANY SECTIONS OF CASE DETAILS, YOU CAN TURN TRUE/FALSE FOR BELOW PARAMETERS !!!!!!!!!!!!!!!!!
+      !!!!!!!!!!!!!!!!!!!!!! TO SHOW /HIDDEN CASE DETAILS HEADER, YOU CAN TURN TRUE/FALSE !!!!!!!!!!!!!!!!!
       !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
       <!-- To show the header of case details. By default it's true -->
       <ui:param name="showItemDetailsHeader" value="true" />
-      <!-- To show the Histories component inside Case details body. By default it's true -->
-      <ui:param name="showItemDetailsHistories" value="true" />
-      <!-- To show the Documents component inside Case details body. By default, it's true -->
-      <ui:param name="showItemDetailDocuments" value="true" />
-      <!-- To show the RelatedTask component inside Case details. By default, it's true -->
-      <ui:param name="showItemDetailRelated" value="true" />
 
       <!--!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
-      !!!!!!!!!!! TO ADD YOUR CUSTOMIZATION CODE ON THE CASE DETAILS PAGE, WE PROVIDE 3 SECTIONS AS BELOW HELP YOU CAN DO IT !!!!!!!!!!!!
+      !!!!!!!!!!! TO ADD YOUR CUSTOMIZATION CODE ON THE CASE DETAILS PAGE, WE PROVIDE SECTIONS AS BELOW HELP YOU CAN DO IT !!!!!!!!!!!!
       !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+
       <!-- Add a content as a Custom panel for Case Detail on top section -->
       <ui:define name="caseItemDetailCustomTop">
         <h:panelGroup styleClass="ui-g-12" layout="block">
@@ -47,7 +42,7 @@
         </h:panelGroup>
       </ui:define>
 
-      <!-- Add a content as a Custom panel for Case Detail on middle section, below the General & description box -->
+      <!-- Add a content as a Custom panel for Case Detail on middle section -->
       <ui:define name="caseItemDetailCustomMiddle">
         <h:panelGroup styleClass="ui-g-12" layout="block">
           <div class="card card-w-title case-detail-card">
@@ -82,7 +77,10 @@
           </div>
         </h:panelGroup>
       </ui:define>
-
+      
+    <ui:define name="css">
+      <h:outputStylesheet library="css" name="examples.css" />
+    </ui:define>
   </ui:composition>
 </h:body>
 </html>

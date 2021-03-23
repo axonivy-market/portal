@@ -82,6 +82,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
@@ -1172,10 +1173,9 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
   }
 
   public DisplayName getDisplayNameInUserLanguageForChart(StatisticChart statisticChart) {
-    DisplayName currentDisplayName = statisticChart.getNames().stream()
+    return CollectionUtils.emptyIfNull(statisticChart.getNames()).stream()
         .filter(name -> equalsDisplayNameLocale(name, LanguageService.newInstance().findUserLanguages().getIvyLanguage().getUserLanguage()))
-        .findFirst().get();
-    return currentDisplayName;
+        .findFirst().orElse(new DisplayName());
   }
 
   /**
@@ -1410,10 +1410,11 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
 
   public boolean checkStatisticChartNameExisted(long userId, String chartName, String language) {
     List<StatisticChart> foundCharts = Optional.ofNullable(repo().search(getType()).numberField(USER_ID).isEqualTo(userId).execute().getAll()).orElse(new ArrayList<>());
+    Predicate<? super StatisticChart> predicate = chart -> CollectionUtils.emptyIfNull(chart.getNames()).stream()
+        .filter(name -> equalsDisplayName(chartName, language, name))
+        .findFirst().isPresent();
     return foundCharts.stream()
-        .filter(chart -> chart.getNames().stream()
-            .filter(name -> equalsDisplayName(chartName, language, name))
-            .findFirst().isPresent())
+        .filter(predicate)
         .findFirst().isPresent();
   }
 
@@ -1454,7 +1455,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
   public StatisticChart findStatisticChartByUserIdAndChartNameAndLanguage(long userId, String chartName, String language) {
     List<StatisticChart> foundCharts = Optional.ofNullable(repo().search(getType()).numberField(USER_ID).isEqualTo(userId).execute().getAll()).orElse(new ArrayList<>());
     for (StatisticChart chart : foundCharts) {
-      String displayChartName = chart.getNames().stream()
+      String displayChartName = CollectionUtils.emptyIfNull(chart.getNames()).stream()
           .filter(name -> equalsDisplayNameLocale(name, language))
           .findFirst().orElse(new DisplayName()).getValue();
 

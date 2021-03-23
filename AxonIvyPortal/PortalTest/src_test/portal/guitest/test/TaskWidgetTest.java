@@ -191,34 +191,40 @@ public class TaskWidgetTest extends BaseTest {
 
   @Test
   public void testStartATaskAtHomePage() {
+    login(TestAccount.ADMIN_USER);
+    redirectToRelativeLink(createTestingCaseMapUrl);
     HomePage homePage = new HomePage();
-    String annualLeaveRequest = "Annual Leave Request";
-    String sickRequest = "Sick Leave Request";
+    homePage.waitForPageLoaded();
+    redirectToRelativeLink(createNewPaymentUrl);
+    final String NEW_PAYMENT = "Do New Payment";
+    final String LEAVE_REQUEST = "Case Map Leave Request";
+
+    homePage = new HomePage();
     TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
     //Start first task
     assertFalse(taskWidgetPage.isResumedTask(0));
     TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
     homePage = taskTemplatePage.clickCancelAndLeftButton();
     
-    // Start first task is resumed
+    //First task is resumed
     taskWidgetPage = homePage.getTaskWidget();
     assertTrue(taskWidgetPage.isResumedTask(0));
     taskTemplatePage = taskWidgetPage.startTask(0);
-    assertEquals(annualLeaveRequest, taskTemplatePage.getTaskName());
+    assertEquals(NEW_PAYMENT, taskTemplatePage.getTaskName());
     homePage = taskTemplatePage.clickCancelAndLeftButton();
     
     taskWidgetPage = homePage.getTaskWidget();
     //Start second task
     assertFalse(taskWidgetPage.isResumedTask(1));
     taskTemplatePage = taskWidgetPage.startTask(1);
-    homePage = taskTemplatePage.clickCancelAndLeftButton();
-    
-    // Start second task is resumed
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+    homePage = new HomePage();
+
+    //Second task is resumed
     taskWidgetPage = homePage.getTaskWidget();
     assertTrue(taskWidgetPage.isResumedTask(1));
     taskTemplatePage = taskWidgetPage.startTask(1);
-    assertEquals(sickRequest, taskTemplatePage.getTaskName());
-    taskTemplatePage.clickCancelAndLeftButton();
+    assertEquals(LEAVE_REQUEST, taskTemplatePage.getTaskName());
   }
 
   @Test
@@ -279,12 +285,12 @@ public class TaskWidgetTest extends BaseTest {
     taskWidgetPage.sortTaskListByColumn("Name / Description", 0, "task-name", "Annual Leave Request");
     // Back to Dashboard - compact task list will sort by default column
     taskWidgetPage.clickOnLogo();
+    // Create new task
+    createTestingTasks();
     homePage = new HomePage();
     taskWidgetPage = homePage.getTaskWidget();
     selectedSortColumn = taskWidgetPage.getSelectedCompactSortLable();
     assertTrue(StringUtils.equalsIgnoreCase("Creation date (Newest first)", selectedSortColumn));
-    taskName = taskWidgetPage.getCompactTaskCellValue(0);
-    assertTrue(StringUtils.equalsIgnoreCase("Annual Leave Request", taskName));
     // Change User sort selection
     UserProfilePage userProfilePage = taskWidgetPage.openMyProfilePage();
     userProfilePage.selectTaskSortField("Priority");

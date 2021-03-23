@@ -1,0 +1,5 @@
+co: name={GRID} description={} changed={2021-03-19 03:53:58 CET} changedby={phhung} visualorder={0} guid={177FAEE847F3BA44} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={17815DFAF962860D} datatype={} isdefault={false} langid={fr} description={} validfrom={2021-03-19 03:53:58 CET} validto={} changed={2021-03-19 03:53:58 CET} changedby={phhung} properties={} id={}
+val: guid={177FAEE848181680} datatype={} isdefault={true} langid={en} description={} validfrom={2021-03-19 03:53:58 CET} validto={} changed={2021-03-19 03:53:58 CET} changedby={phhung} properties={} id={}
+val: guid={17815DFAF5A71E16} datatype={} isdefault={false} langid={es} description={} validfrom={2021-03-19 03:53:58 CET} validto={} changed={2021-03-19 03:53:58 CET} changedby={phhung} properties={} id={}
+val: guid={17815DFAEE21FB0C} datatype={} isdefault={false} langid={de} description={} validfrom={2021-03-19 03:53:58 CET} validto={} changed={2021-03-19 03:53:58 CET} changedby={phhung} properties={} id={}

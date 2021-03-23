@@ -176,6 +176,13 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
 
   @SuppressWarnings("deprecation")
   public void saveFilterSet(String filterSetName, boolean isPersonalFilter) {
+    enterDataToSaveFilterSet(filterSetName, isPersonalFilter);
+
+    click(By.id("task-widget:filter-save-form:filter-save-command"));
+    waitAjaxIndicatorDisappear();
+  }
+
+  public void enterDataToSaveFilterSet(String filterSetName, boolean isPersonalFilter) {
     click(By.id("task-widget:filter-save-action"));
     waitAjaxIndicatorDisappear();
     waitForElementDisplayed(By.id("task-widget:filter-save-form:save-filter-set-name-input"), true);
@@ -187,9 +194,6 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
     } else {
       click(filterVisibilityContainer.findElements(By.tagName("LABEL")).get(1));
     }
-
-    click(By.id("task-widget:filter-save-form:filter-save-command"));
-    waitAjaxIndicatorDisappear();
   }
 
   @SuppressWarnings("deprecation")
@@ -331,5 +335,9 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
     Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> {
       return getRowsInTaskTable().size() == size;
     });
+  }
+
+  public WebElement getSavingFilterDialog() {
+    return findElementByCssSelector("div[id$='save-filter-set-dialog']");
   }
 }

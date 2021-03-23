@@ -11,6 +11,8 @@ import org.openqa.selenium.interactions.Actions;
 import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
 
+import portal.guitest.common.WaitHelper;
+
 public class ProcessWidgetPage extends TemplatePage {
 
   private WebElement switchModeButton;
@@ -49,25 +51,61 @@ public class ProcessWidgetPage extends TemplatePage {
     WebElement processItemElement = getProcess(processName);
     click(processItemElement);
   }
-  
+
   public WebElement getProcess(String processName) {
     WebElement processListElement = findElementById(processWidgetId + ":process-list");
-    WebElement processItemElement = findChildElementByXpathExpression(processListElement, "//a[.//text() = '" + processName + "']");
+    if (isGridModeActivated()) {
+      return getStartGridProcess(processName, processListElement);
+    }
+    return findChildElementByXpathExpression(processListElement, "//a[.//text() = '" + processName + "']");
+  }
+
+  public WebElement getStartGridProcess(String processName, WebElement processListElement) {
+    WebElement startProcessItemElement = null;
+    List<WebElement> processItems = findChildElementsByCssSelector(processListElement, ".js-process-start-list-item");
+    for (WebElement process : processItems) {
+      WebElement processNameElement = findChildElementByCssSelector(process, ".js-process-start-list-item-name");
+      if (processNameElement.getText().equalsIgnoreCase(processName)) {
+        startProcessItemElement = findChildElementByCssSelector(process, "[id$=':process-item:start-button']");
+        break;
+      }
+    }
+    return startProcessItemElement;
+  }
+
+  public WebElement getGridProcessItem(String processName) {
+    WebElement processItemElement = null;
+    List<WebElement> processItems = findListElementsByClassName("js-process-start-list-item");
+    for (WebElement process : processItems) {
+      processItemElement = findChildElementByCssSelector(process, ".js-process-start-list-item-name");
+      if (processItemElement.getText().equalsIgnoreCase(processName)) {
+        processItemElement = process;
+        break;
+      }
+    }
     return processItemElement;
   }
-  
+
   public ExpressProcessPage editExpressWF(String wfName) {
     int numberOfRefesh = 5;
     for(int i=0; i< numberOfRefesh; i++) {
       waitForElementDisplayed(By.id(processWidgetId + ":process-search:non-ajax-keyword-filter"), true);
       enterSearchKeyword(wfName);
-      if(isElementDisplayed(By.cssSelector("[id$='edit-express-workflow']"))) {
-        click(By.cssSelector("[id$='edit-express-workflow']"));
-        break;
+      if (isGridModeActivated()) {
+        if (isElementDisplayed(By.cssSelector("[id$=':process-item:edit-link']"))) {
+          clickByCssSelector("[id$=':process-item:edit-link']");
+          waitForElementDisplayed(By.cssSelector("[id$='process-widget:edit-process-dialog']"), true);
+          clickByCssSelector("a[id$='process-widget:edit-process-form:edit-express-workflow']");
+          break;
+        }
+      } else {
+        if(isElementDisplayed(By.cssSelector("[id$='edit-express-workflow']"))) {
+          click(By.cssSelector("[id$='edit-express-workflow']"));
+          break;
+        }
       }
-      else {
-        refresh();
-      }
+
+      refresh();
     }
     return new ExpressProcessPage();
   }
@@ -81,6 +119,10 @@ public class ProcessWidgetPage extends TemplatePage {
   }
   
   public boolean isProcessGroupDisplay(String processGroupCharacter) {
+    if (isGridModeActivated()) {
+      List<WebElement> webElements = findListElementsByClassName("js-grid-process-index-group");
+      return webElements.stream().anyMatch(processItem -> processItem.isDisplayed() && processItem.getAttribute("class").endsWith(processGroupCharacter));
+    }
     List<WebElement> indexGroup = findListElementsByXpath("//legend[@class='ui-fieldset-legend ui-corner-all ui-state-default']");
     return indexGroup.stream().anyMatch(item -> processGroupCharacter.equals(item.getText()));
   }
@@ -174,6 +216,11 @@ public class ProcessWidgetPage extends TemplatePage {
     return findElements.isEmpty();
   }
 
+  public boolean isGridModeActivated() {
+    List<WebElement> findElements = driver.findElements(By.cssSelector("[id$=':grid-process-container']"));
+    return !findElements.isEmpty();
+  }
+
   public void expand() {
     loadSwitchModeButton();
     click(switchModeButton);
@@ -194,17 +241,19 @@ public class ProcessWidgetPage extends TemplatePage {
   }
   
   public void moveFavoriteProcess(int processToMoveIndex, int destinationProcessIndex) {
-    WebElement processToMove = findElementByCssSelector(".ui-orderlist-item:nth-child(" + processToMoveIndex + ")");
-    WebElement destinationProcess =
-        findElementByCssSelector(".ui-orderlist-item:nth-child(" + destinationProcessIndex + ")");
+    WebElement editProcesses = findElementByCssSelector("form[id$=':edit-process-item-form']");
+    List<WebElement> processItems = findChildElementsByCssSelector(editProcesses, ".ui-orderlist-list .ui-orderlist-item");
+    WebElement processToMove = processItems.get(processToMoveIndex - 1);
+    WebElement destinationProcess = processItems.get(destinationProcessIndex - 1);
+
     Actions builder = new Actions(driver);
     Action moveProcessSequence = builder.dragAndDrop(processToMove, destinationProcess).build();
     moveProcessSequence.perform();
   }
   
   public class AddNewExternalLinkDialog {
-    private final String EXTERNAL_LINK_NAME_INPUT_CSS_SELECTOR = "input[id$='external-link-name']";
-    private final String EXTERNAL_LINK_INPUT_CSS_SELECTOR = "input[id$='external-link']";
+    private final String EXTERNAL_LINK_NAME_INPUT_CSS_SELECTOR = "input[id$=':add-external-link-form:external-link-name']";
+    private final String EXTERNAL_LINK_INPUT_CSS_SELECTOR = "input[id$=':add-external-link-form:external-link']";
     private final String ADD_EXTERNAL_LINK_BUTTON_INPUT_CSS_SELECTOR = "button[id$='adding-new-external-link-command']";
     
     private AddNewExternalLinkDialog() {}
@@ -227,7 +276,7 @@ public class ProcessWidgetPage extends TemplatePage {
     
     public void selectExternalLinkType(boolean isPublic) {
       if (isPublic) {
-        WebElement externalCheckboxLabel = findElementByXpath("//label[@for='" + processWidgetId + ":external-link-type-radio:1']");
+        WebElement externalCheckboxLabel = findElementByCssSelector("label[for$=':add-external-link-form:external-link-type-radio:1']");
         externalCheckboxLabel.click();
       }
     }
@@ -260,7 +309,7 @@ public class ProcessWidgetPage extends TemplatePage {
     WebElement deleteExternalIcon = findElementByCssSelector(deleteExternalLinkIconCssSelector);
     deleteExternalIcon.click();
     waitAjaxIndicatorDisappear();
-    findElementByCssSelector("button[id$='delete-external-link-btn']").click();
+    findElementByCssSelector("button[id$=':remove-process-command']").click();
     waitAjaxIndicatorDisappear();
   }
 
@@ -283,6 +332,47 @@ public class ProcessWidgetPage extends TemplatePage {
   
   public void waitUtilProcessWidgetDisplayed() {
     waitForElementDisplayed(By.id("process-widget"), true);
+  }
+
+  public void clickOnSwitchButton() {
+    String currentView = getCurrentViewMode();
+    clickByCssSelector("[id$='process-view-mode:process-view']");
+    WaitHelper.assertTrueWithWait(() -> !currentView.equals(getCurrentViewMode()));
+  }
+
+  public String getCurrentViewMode() {
+    waitForElementDisplayed(By.cssSelector("[id$='process-view-mode'] label.switch-active"), true);
+    WebElement switchMode = findElementByCssSelector("[id$='process-view-mode'] label.switch-active");
+    return switchMode.getText();
+  }
+
+  public void clickOnProcessEditLink(int index) {
+    clickByCssSelector(String.format("[id$=':%d:grid-processes:0:process-item:edit-link']", index));
+    waitForElementDisplayed(By.cssSelector("[id$='process-widget:edit-process-dialog']"), true);
+  }
+  
+  public WebElement getEditProcessDialog() {
+    return findElementByCssSelector("[id$='process-widget:edit-process-dialog']");
+  }
+
+  public void changeProcessIcon() {
+    clickByCssSelector("a[id^='process-widget:edit-process-form:edit-process-icon']");
+    waitForElementDisplayed(By.cssSelector("[id$='process-widget:edit-process-form:edit-process-icon:select-icon-dialog']"), true);
+    clickByCssSelector("[id$=':0:awesome-icon']");
+    clickByCssSelector("[id$='process-widget:save-process-command']");
+    waitForElementDisplayed(By.cssSelector("[id$='process-widget:edit-process-dialog']"), false);
+  }
+
+  public String getProcessItemIcon(int index) {
+    WebElement processItem = findElementByCssSelector(String.format("[id$='grid-process-group-alphabet:%d:grid-processes:0:process-item']", index));
+    return processItem.findElement(By.id("icon")).getAttribute("class");
+  }
+
+  public void deleteProcess(int index) {
+    clickByCssSelector(String.format("[id$=':%d:grid-processes:0:process-item:delete-link']", index));
+    waitForElementDisplayed(By.cssSelector("[id$='process-widget:remove-process-workflow-dialog']"), true);
+    clickByCssSelector("[id$='delete-process-workflow-form:remove-process-command']");
+    waitForElementDisplayed(By.cssSelector("[id$='process-widget:remove-process-workflow-dialog']"), false);
   }
 
 }
