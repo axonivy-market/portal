@@ -16,11 +16,11 @@ displayed. You can customize this by provide your own page.
 Customization
 -------------
 
-1. Create a new UI and start link of the new end page.
+#. Create a new UI and start link of the new end page.
 
    |new-end-page|
 
-2. Create a callable sub process in your project with the
+#. Create a callable sub process in your project with the
    ``handleEndPage()`` signature, make sure this signature is unique in
    your application. It must return start link of new end page you
    define in step 1.

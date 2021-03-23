@@ -13,21 +13,21 @@ In addition 2 templates are described to be used with iframes.
 
 Templates without IFrames:
 
-1. :ref:`Basic template <components-layout-templates-basic-template>`
+#. :ref:`Basic template <components-layout-templates-basic-template>`
 
-2. :ref:`Task template 8 <components-layout-templates-task-template-8>`
+#. :ref:`Task template 8 <components-layout-templates-task-template-8>`
 
-3. :ref:`Task list template <components-layout-templates-task-list-template>`
+#. :ref:`Task list template <components-layout-templates-task-list-template>`
 
-4. :ref:`Case list template <components-layout-templates-case-list-template>`
+#. :ref:`Case list template <components-layout-templates-case-list-template>`
 
-5. :ref:`Default homepage template <components-layout-templates-default-homepage-template>`
+#. :ref:`Default homepage template <components-layout-templates-default-homepage-template>`
 
 Templates to use with IFrame:
 
-1. :ref:`IFrame Task template <components-layout-templates-iframe-task-template>` (Template used internally by portal to configure iframes)
+#. :ref:`IFrame Task template <components-layout-templates-iframe-task-template>` (Template used internally by portal to configure iframes)
 
-2. frame-8 template (Provided by core, use Serenity theme)
+#. frame-8 template (Provided by core, use Serenity theme)
 
 These templates have the same header, which is a menu of applications
 that you configure in Administration page. Since version 8.0, Portal
@@ -63,7 +63,7 @@ template for your process.
 How to use Basic template
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-1. Create a new HTML User Dialog and then use ``ui:composition`` to
+#. Create a new HTML User Dialog and then use ``ui:composition`` to
    define the template inside and reuse the default responsiveness
    behavior. Define the ``pageContent`` section and
    :ref:`Responsiveness <components-layout-templates-responsiveness>`.
@@ -77,7 +77,7 @@ How to use Basic template
       </ui:define>
       </ui:composition>
 
-2. See the result after using Basic template for example:
+#. See the result after using Basic template for example:
 
   |basic-template|
 
@@ -202,21 +202,21 @@ and their details.
 How to use task list template
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-1. Create a new HTML User Dialog and then use ``ui:composition`` to
+#. Create a new HTML User Dialog and then use ``ui:composition`` to
    define template.
 
-  .. code-block:: html
+   .. code-block:: html
   
       <ui:composition template="/layouts/PortalTasksTemplate.xhtml">
       </ui:composition>
 
-2. Data class of this dialog should have an attribute named ``taskView``
+#. Data class of this dialog should have an attribute named ``taskView``
    with type ``ch.ivy.addon.portal.generic.view.TaskView``. By changing
    this attribute, user can modify title of the task list widget,
    collected tasks (through ``dataModel``) and more. The following is a
    sample to build a taskView.
 
-  .. code-block:: java
+   .. code-block:: java
 
       import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
       import ch.ivy.addon.portal.generic.view.TaskView;
@@ -242,21 +242,21 @@ and their details.
 How to use case list template
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-1. Create a new HTML User Dialog and then use ``ui:composition`` to
+#. Create a new HTML User Dialog and then use ``ui:composition`` to
    define template.
 
-  .. code-block:: html
+   .. code-block:: html
  
      <ui:composition template="/layouts/PortalCasesTemplate.xhtml>
      </ui:composition>
 
-2. Data class of this dialog should have an attribute named ``caseView``
+#. Data class of this dialog should have an attribute named ``caseView``
    with type ``ch.ivy.addon.portal.generic.view.CaseView``. By changing
    this attribute, user can modify title of the case list widget,
    collected cases (through ``dataModel``) and more. The following is an
    example to build a caseView.
 
-  .. code-block:: java
+   .. code-block:: java
   
       import ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel;
       import ch.ivy.addon.portal.generic.view.CaseView;
@@ -277,10 +277,10 @@ provide functionality to access page without login by adding the
 How to handle required login in template
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-1. Create a new **HTML User Dialog** and then use ``ui:param`` to define
+#. Create a new **HTML User Dialog** and then use ``ui:param`` to define
    the template inside
 
-  .. code-block:: html
+   .. code-block:: html
   
      <ui:composition template="/layouts/BasicTemplate.xhtml">
      <ui:param name="isNotRequiredLogin" value="#{data.isNotRequiredLogin}" />
@@ -289,7 +289,7 @@ How to handle required login in template
      </ui:define>
      </ui:composition>
 
-2. Result after using template for example (All user settings and
+#. Result after using template for example (All user settings and
    application menus will not visible).
 
 

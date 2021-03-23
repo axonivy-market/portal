@@ -82,6 +82,5 @@ public class AdminSettingsTest extends BaseTest {
 	   MainMenuPage mainMenuPage = taskWidgetPage.openMainMenu();
 	   CaseWidgetPage caseWidgetPage = mainMenuPage.openCaseList();
 	   assertEquals("TestCase", caseWidgetPage.getCaseNameAt(0));
-	   assertEquals("Create 12 Cases with category", caseWidgetPage.getCaseNameAt(caseWidgetPage.countCases() - 1));
 	  }
 }

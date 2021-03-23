@@ -31,6 +31,7 @@ import ch.ivy.addon.portalkit.bo.Process;
 import ch.ivy.addon.portalkit.comparator.UserProcessIndexComparator;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
+import ch.ivy.addon.portalkit.enums.ProcessType;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyLanguageResultDTO;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyProcessResultDTO;
 import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
@@ -45,6 +46,7 @@ import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.service.UserProcessService;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
+import ch.ivy.addon.portalkit.util.ProcessStartUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
@@ -58,6 +60,9 @@ private static final long serialVersionUID = -5889375917550618261L;
   private List<UserProcess> defaultProcesses;
   private List<UserProcess> selectedUserProcesses;
   private List<UserProcess> processesToAdd;
+  private Map<String, Process> ivyProcesses;
+  private Map<String, Process> expressProcesses;
+  private Map<String, Process> externalLinks;
   
   private UserProcessService userProcessService;
   private UserProcess editingProcess;
@@ -88,6 +93,9 @@ private static final long serialVersionUID = -5889375917550618261L;
     } else {
       String isUserFavoritesEnabledGlobalVariable = new GlobalSettingService().findGlobalSettingValue(GlobalVariable.ENABLE_USER_FAVORITES.toString());
       isUserFavoritesEnabled = StringUtils.isNotBlank(isUserFavoritesEnabledGlobalVariable) ? Boolean.parseBoolean(isUserFavoritesEnabledGlobalVariable) : true;
+      ivyProcesses = findProcesses();
+      expressProcesses = findExpressProcesses();
+      externalLinks = findExternalLink();
       userProcesses = findUserProcesses();
       defaultProcesses = findStartableDefaultProcesses();
       isDisplayShowAllProcessesLink = PermissionUtils.checkAccessFullProcessListPermission();
@@ -103,6 +111,9 @@ private static final long serialVersionUID = -5889375917550618261L;
 
   private List<UserProcess> findStartableDefaultProcesses() {
     List<UserProcess> processes = userProcessService.getDefaultUserProcessesFromSubProcess();
+
+    updateLinkForDefaultProcesses(processes);
+
     processes.sort(UserProcessIndexComparator.comparatorNullsLast(UserProcess::getIndex));
     return processes;
   }
@@ -118,38 +129,52 @@ private static final long serialVersionUID = -5889375917550618261L;
      * 1. Update link because since 9.2, saved user favorite processes didn't store this value.
      * 2. Check if link is broken.
      */
-    Map<String, Process> ivyProcesses = findProcesses();
-    Map<String, Process> expressProcesses = findExpressProcesses();
-    Map<String, Process> externalLinks = findExternalLink();
-    Process process;
-    for (UserProcess userProcess : processes) {
-      String processId = userProcess.getProcessId();
-      if (StringUtils.isNotBlank(processId)) {
-        switch (userProcess.getProcessType()) {
-          case IVY_PROCESS:
-            process = ivyProcesses.get(processId);
-            break;
-          case EXPRESS_PROCESS:
-            process = expressProcesses.get(processId);
-            break;
-          case EXTERNAL_LINK:
-            process = externalLinks.get(processId);
-            break;
-          default:
-            process = null;
-            break;
-        }
-        userProcess.setLink(process == null ? "" : process.getStartLink());
-      } else {
-        process = null;
-      }
-      userProcess.setBrokenLink(process == null);
-    }
+    updateLinkForUserProcesses(processes);
 
     processes.sort(UserProcessIndexComparator.comparatorNullsLast(UserProcess::getIndex));
     removeDeletedExpressWorkflowFromUserProcesses(processes);
     removeDeletedExternalLinkFromUserProcesses(processes);
     return processes;
+  }
+
+  private void updateLinkForUserProcesses(List<UserProcess> processes) {
+    Process process;
+    for (UserProcess userProcess : processes) {
+      process = findProcess(userProcess);
+      userProcess.setLink(process == null ? "" : process.getStartLink());
+      userProcess.setBrokenLink(process == null);
+    }
+  }
+
+  private void updateLinkForDefaultProcesses(List<UserProcess> processes) {
+    Process process;
+    for (UserProcess userProcess : processes) {
+      process = findProcess(userProcess);
+      if (process != null) {
+        userProcess.setLink(process.getStartLink());
+      } else {
+        userProcess.setBrokenLink(StringUtils.isBlank(userProcess.getLink()));
+      }
+    }
+  }
+
+  private Process findProcess(UserProcess userProcess) {
+    Process process = null;
+    String processId = userProcess.getProcessId();
+    if (StringUtils.isNotBlank(processId)) {
+      switch (userProcess.getProcessType()) {
+        case IVY_PROCESS:
+          process = ivyProcesses.get(processId);
+          break;
+        case EXPRESS_PROCESS:
+          process = expressProcesses.get(processId);
+          break;
+        case EXTERNAL_LINK:
+          process = externalLinks.get(processId);
+          break;
+      }
+    }
+    return process;
   }
 
   private Map<String, Process> findProcesses() {
@@ -286,16 +311,16 @@ private static final long serialVersionUID = -5889375917550618261L;
   public void startProcess(UserProcess userProcess) throws IOException {
     Objects.requireNonNull(userProcess, "User process must not be null");
     String link = userProcess.getLink();
-    if (userProcess.isExternalLink()) {
+    if (isExternalLink(userProcess)) {
       FacesContext.getCurrentInstance().getExternalContext().redirect(link);
       return;
     }
     
-    if (StringUtils.isNotBlank(userProcess.getWorkflowId())) {
+    if (isExpressProcess(userProcess) && StringUtils.isNotBlank(userProcess.getProcessId())) {
       ProcessStartCollector processStartCollector = new ProcessStartCollector();
       String expressStartLink = processStartCollector.findExpressWorkflowStartLink();
       if (StringUtils.isNotBlank(expressStartLink)) {
-        FacesContext.getCurrentInstance().getExternalContext().redirect(expressStartLink + "?workflowID=" + userProcess.getWorkflowId());
+        FacesContext.getCurrentInstance().getExternalContext().redirect(expressStartLink + "?workflowID=" + userProcess.getProcessId());
         return;
       }
     }
@@ -307,13 +332,13 @@ private static final long serialVersionUID = -5889375917550618261L;
   }
   
   private boolean isUserProcess(UserProcess processToAdd) {
-    return userProcesses.stream().anyMatch(userProcess -> !processToAdd.isExternalLink()
+    return userProcesses.stream().anyMatch(userProcess -> !isExternalLink(processToAdd)
         && StringUtils.equalsIgnoreCase(userProcess.getLink(), processToAdd.getLink()));
   }
   
   private boolean isExternalLinkUserProcess(UserProcess processToAdd) {
-    return userProcesses.stream().anyMatch(userProcess -> userProcess.isExternalLink() && processToAdd.isExternalLink()
-        && StringUtils.equalsIgnoreCase(userProcess.getWorkflowId(), processToAdd.getWorkflowId()));
+    return userProcesses.stream().anyMatch(userProcess -> isExternalLink(userProcess) && isExternalLink(processToAdd)
+        && StringUtils.equalsIgnoreCase(userProcess.getProcessId(), processToAdd.getProcessId()));
   }
 
   private boolean isDefaultUserProcess(UserProcess processToAdd) {
@@ -412,9 +437,8 @@ private static final long serialVersionUID = -5889375917550618261L;
                                       .collect(Collectors.toList());
     
     List<UserProcess> deletedExpressProcesses = processes.stream()
-        .filter(process ->  StringUtils.isNotBlank(process.getWorkflowId()) 
-            && !executableExpressProcessIds.contains(process.getWorkflowId())
-            && !process.isExternalLink())
+        .filter(process ->  isExpressProcess(process) && StringUtils.isNotBlank(process.getProcessId())
+            && !executableExpressProcessIds.contains(process.getProcessId()))
         .collect(Collectors.toList());
 
     userProcessService.deleteAll(deletedExpressProcesses);
@@ -430,7 +454,7 @@ private static final long serialVersionUID = -5889375917550618261L;
         .collect(Collectors.toList());
     
     List<UserProcess> deletedExternalLinks = processes.stream()
-        .filter(process ->  process.isExternalLink() && StringUtils.isNotBlank(process.getWorkflowId()) && !startableExternalLinkIds.contains(process.getWorkflowId().toString()))
+        .filter(process ->  isExternalLink(process) && StringUtils.isNotBlank(process.getProcessId()) && !startableExternalLinkIds.contains(process.getProcessId().toString()))
         .collect(Collectors.toList());
 
     userProcessService.deleteAll(deletedExternalLinks);
@@ -482,7 +506,7 @@ private static final long serialVersionUID = -5889375917550618261L;
   
   public String targetToStartProcess(UserProcess process) {
     String target="_self";
-    if (process.isExternalLink()) {
+    if (isExternalLink(process)) {
       target="_blank";
     }
     return target;
@@ -492,5 +516,13 @@ private static final long serialVersionUID = -5889375917550618261L;
     return IvyExecutor.executeAsSystem(() -> {
       return Ivy.wf().getApplication().getDefaultEMailLanguage();
     });
+  }
+
+  public boolean isExternalLink(UserProcess process) {
+    return process != null && ProcessStartUtils.isExternalLink(process.getProcessType());
+  }
+
+  public boolean isExpressProcess(UserProcess process) {
+    return process != null && ProcessStartUtils.isExpressProcess(process.getProcessType());
   }
 }

@@ -14,5 +14,7 @@ User Guide
    full-case-list/index
    full-statistic-list/index
    my-profile/index
+   admin-settings/index
    axon-ivy-express/index
+   portal-chat/index
    demo-processes/index

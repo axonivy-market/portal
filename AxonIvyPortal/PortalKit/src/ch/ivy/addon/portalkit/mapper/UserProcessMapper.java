@@ -38,7 +38,6 @@ public class UserProcessMapper {
     userProcess.setProcessType(ProcessType.EXPRESS_PROCESS);
     userProcess.setProcessName(stripHtmlTags(expressProcess.getProcessName()));
     userProcess.setLink(startLink);
-    userProcess.setWorkflowId(expressProcess.getId());
     userProcess.setDescription(expressProcess.getProcessDescription());
     return userProcess;
   }
@@ -50,8 +49,6 @@ public class UserProcessMapper {
     userProcess.setProcessName(stripHtmlTags(externalLink.getName()));
     userProcess.setUserId(externalLink.getCreatorId());
     userProcess.setLink(externalLink.getLink());
-    userProcess.setExternalLink(true);
-    userProcess.setWorkflowId(externalLink.getId().toString());
     userProcess.setDescription(externalLink.getLink());
     return userProcess;
   }
