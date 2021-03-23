@@ -191,7 +191,7 @@ public class TaskDetailsPage extends TemplatePage {
   }
   
   public WebElement getResetButtonElement() {
-    return findElementByCssSelector("[id$=':reset-task-details-settings-button']");
+    return findElementByCssSelector("[id$=':reset-details-settings-button']");
   }
 
   public WebElement getAddAttachmentDialog() {
@@ -359,8 +359,8 @@ public class TaskDetailsPage extends TemplatePage {
   }
 
   public void clickOnResetToDefaultButton() {
-    waitForElementDisplayed(By.cssSelector("[id$=':reset-task-details-settings-button']"), true);
-    click(By.cssSelector("[id$=':reset-task-details-settings-button']"));
+    waitForElementDisplayed(By.cssSelector("[id$=':reset-details-settings-button']"), true);
+    click(By.cssSelector("[id$=':reset-details-settings-button']"));
   }
   
   public void clickOnSwitchToEditModeButton() {
@@ -370,6 +370,11 @@ public class TaskDetailsPage extends TemplatePage {
 
   public void waitForSwitchToViewModeButtonDisplayed() {
     waitForElementDisplayed(By.cssSelector("[id$=':switch-to-view-mode-button']"), true);
+  }
+
+  public void clickOnSwitchToViewModeButton() {
+    waitForElementDisplayed(By.cssSelector("[id$=':switch-to-view-mode-button']"), true);
+    click(By.cssSelector("[id$=':switch-to-view-mode-button']"));
   }
 
   public void drapAndDropWidgets(String sourceName, String destinationName) {
@@ -382,11 +387,7 @@ public class TaskDetailsPage extends TemplatePage {
     moveWidget.perform();
   }
 
-  public boolean isResetButtonDisplayed() {
-    try {
-      return isElementDisplayed(findElementByCssSelector("[id$=':reset-task-details-settings-button']"));
-    } catch (NoSuchElementException ex) {
-      return false;
-    }
+  public void waitForResetButtonDisplayed() {
+    waitForElementDisplayed(By.cssSelector("[id$=':reset-details-settings-button']"), true);
   }
 }

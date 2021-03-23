@@ -3,16 +3,16 @@
 Full Task List
 **************
 
-The :guilabel:`Full Task List` page shows you the same tasks you see on your
+The **Full Task List** page shows you the same tasks you see on your
 personal dashboard. However, this page provides you with extended
 information on the tasks, as well as, advanced search and filter
-capabilities. You can reach the page by using the |task-list-icon| **Tasks**
-link in the Axon.ivy Portal menu.
+capabilities. You can reach the page by using the |task-list-icon| :guilabel:`Tasks` 
+link in the Axon Ivy Portal menu.
 
 .. hint:: 
    Depending on the roles you hold
    in the application and the     
-   configuration of the Axon.ivy  
+   configuration of the Axon Ivy  
    Portal, you might see not only 
    the tasks belonging to you but 
    all open tasks.                
@@ -21,60 +21,60 @@ link in the Axon.ivy Portal menu.
 |navigate-to-full-task-list-page|
 
 On the top of the **Full Task List** page you see next to the heading
-**Tasks** in brackets the overall number of tasks shown to you. Below you find the filter feature.
+:guilabel:`Tasks`  in brackets the overall number of tasks shown to you. Below you find the filter feature.
 The usage will be explained in the HowTo’s further down this chapter.
 Finally, you see the list of tasks.
 
 For each task the following key information is shown in the list:
 
-1. Priority
+#. Priority
 
-2. Name and Description
+#. Name and Description
 
-3. Responsible user or role
+#. Responsible user or role
 
-4. Task ID
+#. Task ID
 
-5. Creation Date
+#. Creation Date
 
-6. Expiry Date
+#. Expiry Date
 
-7. Status
+#. Status
 
 |task-key-information|
 
 Furthermore, at the end of each row you find a side step menu of key features in
 handling tasks:
 
-1. Reset Task
+#. Reset Task
 
-2. Delegate Task
+#. Delegate Task
 
-3. Reserve
+#. Reserve
 
-4. Destroy Task
+#. Destroy Task
 
-5. Add Ad-hoc Task
+#. Add Ad-hoc Task
 
 Finally, you have the possibility to access the full set of the task
 data by clicking on the row containing the task Name and Description.
 
-The task details are separated in 3 different sections:
+The task details are separated into 3 different sections:
 
-1. Data and description, you find various metadata concerning the task and
+#. Data and description, you find various metadata concerning the task and
    the respective case it is related to.
 
-|detailed-task-information-data-description|
+   |detailed-task-information-data-description|
 
-2. Histories, you may add additional notes which is described below
+#. Histories, you may add additional notes which are described below
 
-|detailed-task-information-note|
+   |detailed-task-information-note|
 
-3. Documents, these documents once attached to the case are
-   available on all tasks. You may add or delete documents which his
+#. Documents, these documents once attached to the case are
+   available on all tasks. You may add or delete documents 
    described in the HowTo’s below.
 
-|detailed-task-information-documents|
+   |detailed-task-information-documents|
 
 |detailed-task-information|
 
@@ -87,39 +87,39 @@ HowTo: Use existing filter
    there might be no filters available. In this case, you must create a filter
    first. This is described in detail in HowTo: Create new filter.   
 
-1. Click on the **Save Filter** dropdown menu. 
+#. Click on the :guilabel:`Save Filter`  dropdown menu. 
 
-2. Select the filter you want to use.
+#. Select the filter you want to use.
 
 HowTo: Create new filter
 ------------------------
 
-1. Click on the button **More** to select one of the available filters.
-   For a list of available filters, see  `Task filter criterias`_.
+#. Click on the button :guilabel:`More`  to select one of the available filters.
+   For a list of available filters, see  `Task filter criteria`_.
 
-2. Click on the newly added filter and configure it.
+#. Click on the newly added filter and configure it.
 
-3. Add more filters by clicking on the button **Filter** again.
+#. Add more filters by clicking on the button :guilabel:`Filter`  again.
 
-4. Drop filters by clicking on the |delete-circle-icon| **Delete** button next to
+#. Drop filters by clicking on the |delete-circle-icon| icon next to
    the filter.
 
-5. When finished defining your filter, click on the button **Save
+#. When finished defining your filter, click on the button **Save
    filter**.
 
-6. The :guilabel:`Save filter` dialog is opened.
+#. The :guilabel:`Save filter` dialog is opened.
 
-7. Under **Filter name**, provide a recognizable name for the filter.
+#. Under :guilabel:`Filter name`, provide a recognizable name for the filter.
 
-8. Under **Filter visibility**, you can select if the filter is only
+#. Under :guilabel:`Filter visibility`, you can select if the filter is only
    visible for you or shall be available to all users.
 
-9. Save the filter by clicking the button **Ok**.
+#. Save the filter by clicking the button :guilabel:`Ok`.
 
 |how-to-create-task-filter|
 
 
-.. centered:: _`Task filter criterias`
+.. centered:: _`Task filter criteria`
 
 +-----------------------------------+-----------------------------------+
 | Criteria                          | Description                       |
@@ -160,90 +160,91 @@ HowTo: Create new filter
    might only be allowed to save    
    filters for yourself.            
 
+HowTo: Configure displayed tasks in the Full Task List
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-HowTo: Move and Resize Widgets
-------------------------------
+#. To choose columns to display, click on :guilabel:`Manage columns`. Then you could choose displayed columns by checking the related checkboxes.
 
-.. hint:: 
-   Depending on applying configuration file,
-   we can move and resize    
-   widgets for yourself.
+#. To sort data, click on the column header. To change sort direction, click on that column header one more time.
+   Note that some columns do not support sorting.
 
-1. Click on the **Switch to Edit Mode** button to drag, drop and resize widgets.
+HowTo: Move and Resize Widgets in Task Details
+----------------------------------------------
+#. Open the task details of a task
 
-|how-to-switch-to-edit-mode|
+#. Click on the :guilabel:`Edit`  button to drag, drop and resize widgets.
 
-
-2. Click on the **Switch to View Mode** button to switch page to readonly mode.
-
-|how-to-switch-to-view-mode|
+   |how-to-switch-to-edit-mode|
 
 
-3. Click **Reset** button to reset to default configuration, this button is only shown if any changes.
+#. Click on the :guilabel:`Save`  button to save current state of page and switch to readonly mode.
 
-|how-to-reset-to-default|
+   |how-to-switch-to-view-mode|
+
+
+#. Click :guilabel:`Reset`  button to reset to default configuration.
+
+   |how-to-reset-to-default|
 
 
 HowTo: Attach a document to the case
 ------------------------------------
 
-1. Open the task details of a task
+#. Open the task details of a task
+#. Click the link |add-icon| :guilabel:`Add document` 
 
-2. Click the link |add-icon| **Add document**
+#. The :guilabel:`Add document` dialog is opened
 
-3. The :guilabel:`Add document` dialog is opened
-
-4. Upload a file by using the **Select** button or by simply dragging
+#. Upload a file by using the :guilabel:`Select`  button or by simply dragging
    the file into the dialog
 
-5. Click the button **Close** to add the attachment
+#. Click the button :guilabel:`Close`  to close the dialog
 
 |how-to-upload-document|
 
 HowTo: Remove an attachment from the case
 -----------------------------------------
 
-1. Open the task details of a task
+#. Open the task details of a task
 
-2. Click on the |delete-icon| **Delete attachment** link next to the
+#. Click on the |delete-icon| button next to the
    attachment you want to remove
 
-3. A :guilabel:`Confirmation` dialog is opened
+#. A confirmation dialog is opened
 
-4. Confirm the deletion with the button **Delete**
+#. Confirm the deletion with the button :guilabel:`Delete` 
 
 |how-to-delete-document|
 
 HowTo: Add a note to a task
 ---------------------------
 
-1. Open the task details of a task
+#. Open the task details of a task
 
-2. Click on the |add-icon| **Add note** link below the notes section
+#. Click on the |add-icon| :guilabel:`Add note`  link below the notes section
 
-3. The :guilabel:`Add note` dialog is opened
+#. The :guilabel:`Add note` dialog is opened
 
-4. Enter your note
+#. Enter your note
 
-5. Confirm your note by clicking the button :guilabel:`Save`
+#. Confirm your note by clicking the button :guilabel:`Save`
 
 |how-to-add-note|
 
 HowTo: Export a task history
 ----------------------------
 
-1. Open the task details of a task
+#. Open the task details of a task
 
-2. Click on the |show-more-icon| **Show more** link below the notes section
+#. Click on the |show-more-icon| :guilabel:`Show more`  link below the notes section
 
-|how-to-show-note-details|
+   |how-to-show-note-details|
 
-3. A new page with the task history is opened
+#. A new page with the task history is opened
 
-4. You may export the history by clicking on the button **Export to
-   Excel**
+#. You may export the history by clicking on the button :guilabel:`Export to Excel` 
 
-|how-to-export-note-details|
+   |how-to-export-note-details|
 
 
 .. _how-to-show-workflow-events:
@@ -254,17 +255,17 @@ HowTo: Show Workflow Events
 .. note:: 
    User must to has permission ``WORKFLOW_EVENT_READ_ALL`` to see all workflow events of a task
 
-1. Open the task details of a task
+#. Open the task details of a task
 
-2. Click on the |show-more-icon| **Show more** link below the notes section
+#. Click on the |show-more-icon| :guilabel:`Show more`  link below the notes section
 
-|how-to-show-note-details|
+   |how-to-show-note-details|
 
-3. A new page with the task history is opened
+#. A new page with the task history is opened
 
-4. Click **Workflow Events** link on the right side of page to see Workflow Events dialog
+#. Click :guilabel:`Workflow Events`  link on the right side of page to see Workflow Events dialog
 
-|how-to-show-workflow-event|
+   |how-to-show-workflow-event|
 
 **Workflow Events dialog**
 
@@ -295,6 +296,6 @@ You may export the Task List by clicking on the button **Export to Excel**.
 .. |how-to-show-workflow-event| image:: ../../screenshots/task-detail/how-to-show-workflow-event.png
 .. |workflow-events-table| image:: ../../screenshots/task-detail/workflow-events-table.png
 .. |export-to-excel-button| image:: ../../screenshots/task/export-to-excel-button.png
-.. |how-to-switch-to-view-mode| image:: how-to-switch-to-view-mode.png
-.. |how-to-switch-to-edit-mode| image:: how-to-switch-to-edit-mode.png
-.. |how-to-reset-to-default| image:: how-to-reset-to-default.png
+.. |how-to-switch-to-view-mode| image:: ../../screenshots/task-detail/how-to-switch-to-view-mode.png
+.. |how-to-switch-to-edit-mode| image:: ../../screenshots/task-detail/how-to-switch-to-edit-mode.png
+.. |how-to-reset-to-default| image:: ../../screenshots/task-detail/how-to-reset-to-default.png

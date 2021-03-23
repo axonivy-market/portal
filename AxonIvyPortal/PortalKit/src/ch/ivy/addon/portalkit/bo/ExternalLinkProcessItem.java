@@ -1,5 +1,7 @@
 package ch.ivy.addon.portalkit.bo;
 
+import org.apache.commons.lang3.StringUtils;
+
 import ch.ivy.addon.portalkit.enums.ProcessType;
 
 /*
@@ -7,6 +9,7 @@ import ch.ivy.addon.portalkit.enums.ProcessType;
  */
 public class ExternalLinkProcessItem implements Process {
 
+  public static final String DEFAULT_ICON = "si si-hyperlink-3";
   private ExternalLink externalLink;
   
   public ExternalLinkProcessItem(ExternalLink externalLink) {
@@ -46,6 +49,12 @@ public class ExternalLinkProcessItem implements Process {
   @Override
   public String getId() {
     return externalLink.getId().toString();
+  }
+
+  @Override
+  public String getIcon() {
+    String icon = this.externalLink.getIcon();
+    return StringUtils.isBlank(icon) ? DEFAULT_ICON : icon;
   }
 
 }

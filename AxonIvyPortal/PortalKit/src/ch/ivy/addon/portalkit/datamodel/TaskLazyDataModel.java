@@ -872,6 +872,16 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   }
 
   /**
+   * super.setRowIndex(index);
+   * 
+   * @hidden
+   * @param index
+   */
+  public void setRowIndexAtSuper(int index) {
+    super.setRowIndex(index);
+  }
+
+  /**
    * @hidden
    */
   @Override
@@ -885,6 +895,14 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
 
   /**
    * @hidden
+   * @return super.getRowData();
+   */
+  public ITask getRowDataAtSuper() {
+    return super.getRowData();
+  }
+
+  /**
+   * @hidden
    */
   @Override
   public boolean isRowAvailable() {
@@ -893,7 +911,15 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
     }
     return rowIndex >= 0 && rowIndex < data.size();
   }
-  
+
+  /**
+   * @hidden
+   * @return super.isRowAvailable();
+   */
+  public boolean isRowAvailableAtSuper() {
+    return super.isRowAvailable();
+  }
+
   /**
    * <p>
    * Your customized data model needs to override this method if your customized task list has new

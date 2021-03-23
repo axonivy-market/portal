@@ -31,11 +31,13 @@
   <!-- Display Role name as link format, click to show all user of this role -->
   <h:panelGroup rendered="#{renderUserOfRole and !alwaysShowAsText}">
     <p:commandLink id="#{cc.attrs.textId}-activator" styleClass="#{cc.attrs.styleClass} user-fullname-link"
-      value="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(securityMember, cc.attrs.securityMemberName)}"
       update="user-of-role"
       actionListener="#{logic.loadUsersOfRole(securityMember.getMemberName())}"
       oncomplete="PF('users-of-role').show('#{component.clientId}')"
-      process="@this" immediate="true"/>
+      process="@this" immediate="true">
+      <span>#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(securityMember, cc.attrs.securityMemberName)}</span>
+      <i class="si si-information-circle icon-compact-mode"/>
+    </p:commandLink>
     <p:tooltip for="#{cc.attrs.textId}-activator"
       value="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(securityMember, cc.attrs.securityMemberName)} - #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/SecurityMemberDisplayName/tooltipHelper')}"
       trackMouse="true" hideEvent="mouseleave click"/>

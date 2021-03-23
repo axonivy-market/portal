@@ -49,8 +49,9 @@ public class PortalTaskScreenshotTest extends ScreenshotTest {
   
   @Test
   public void screenshotCustomTaskList() throws IOException {
-    login(TestAccount.ADMIN_USER);
     ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 900));
+    login(TestAccount.ADMIN_USER);
+    refreshPage();
     TaskWidgetPage taskWidget = new TaskWidgetPage();
     taskWidget.expand();
     executeDecorateJs("highlightCustomTaskList()");
@@ -76,9 +77,9 @@ public class PortalTaskScreenshotTest extends ScreenshotTest {
   
   @Test
   public void screenshotBasicTaskDetails() throws IOException {
-    login(TestAccount.ADMIN_USER);
     ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 1200));
-    updatePortalSetting("APPLY_JSON_CONFIGURATION_FILE_FOR_TASK_DETAILS", "true");
+    login(TestAccount.ADMIN_USER);
+    refreshPage();
     TaskWidgetPage taskWidget = homePage.openTaskList();
     TaskDetailsPage taskDetails = taskWidget.openTaskDetails(0);
     taskDetails.waitUtilsTaskDetailsDisplayed();
@@ -90,9 +91,9 @@ public class PortalTaskScreenshotTest extends ScreenshotTest {
  
   @Test
   public void screenshotActionButtonsOnTaskDetailsWithJsonFile() throws IOException {
-    login(TestAccount.ADMIN_USER);
     ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 1440));
-    updatePortalSetting("APPLY_JSON_CONFIGURATION_FILE_FOR_TASK_DETAILS", "true");
+    login(TestAccount.ADMIN_USER);
+    refreshPage();
     TaskWidgetPage taskWidget = homePage.openTaskList();
     TaskDetailsPage taskDetails = taskWidget.openTaskDetails(0);
     taskDetails.waitUtilsTaskDetailsDisplayed();
@@ -105,28 +106,27 @@ public class PortalTaskScreenshotTest extends ScreenshotTest {
     taskDetails.clickOnSwitchToEditModeButton();
     taskDetails.waitForSwitchToViewModeButtonDisplayed();
     taskDetails.drapAndDropWidgets("note", "document");
-    taskDetails.drapAndDropWidgets("document", "note");
-    Sleeper.sleep(2000);// wait for focus animation to capture screenshot
-    executeDecorateJs("highlightResetToDefault()");
-    WebElement resetButton = taskDetails.getResetButtonElement();
-    ScreenshotUtil.captureElementWithMarginOptionScreenshot(resetButton,
-        ScreenshotUtil.TASK_DETAIL_FOLDER + "how-to-reset-to-default", new ScreenshotMargin(100, 200));
-
-
-    taskDetails.clickOnResetToDefaultButton();
-    taskDetails.waitForSwitchToViewModeButtonDisplayed();
     Sleeper.sleep(2000);// wait for focus animation to capture screenshot
     executeDecorateJs("highlightSwitchToViewMode()");
     WebElement switchToViewMode = taskDetails.getSwitchToViewModeButtonElement();
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(switchToViewMode,
         ScreenshotUtil.TASK_DETAIL_FOLDER + "how-to-switch-to-view-mode", new ScreenshotMargin(100, 200));
+
+    taskDetails.clickOnSwitchToViewModeButton();
+    taskDetails.clickOnSwitchToEditModeButton();
+    Sleeper.sleep(2000);// wait for focus animation to capture screenshot
+    executeDecorateJs("highlightResetToDefault()");
+    WebElement resetButton = taskDetails.getResetButtonElement();
+    ScreenshotUtil.captureElementWithMarginOptionScreenshot(resetButton,
+        ScreenshotUtil.TASK_DETAIL_FOLDER + "how-to-reset-to-default", new ScreenshotMargin(100, 200));
+    taskDetails.clickOnResetToDefaultButton();
   }
 
   @Test
   public void screenshotTaskDetails() throws IOException {
-    login(TestAccount.ADMIN_USER);
     ScreenshotUtil.resizeBrowser(new Dimension(2560, 1440));
-    updatePortalSetting("APPLY_JSON_CONFIGURATION_FILE_FOR_TASK_DETAILS", "true");
+    login(TestAccount.ADMIN_USER);
+    refreshPage();
     TaskWidgetPage taskWidget = homePage.openTaskList();
     TaskDetailsPage taskDetails = taskWidget.openTaskDetails(0);
     taskDetails.waitUtilsTaskDetailsDisplayed();
@@ -182,6 +182,7 @@ public class PortalTaskScreenshotTest extends ScreenshotTest {
   public void screenshotShowMoreTaskHistories() throws IOException {
     ScreenshotUtil.resizeBrowser(new Dimension(2560, 1000));
     login(TestAccount.ADMIN_USER);
+    refreshPage();
     TaskWidgetPage taskWidget = homePage.openTaskList();
     TaskDetailsPage taskDetails = taskWidget.openTaskDetails(0);
     taskDetails.waitUtilsTaskDetailsDisplayed();
@@ -192,36 +193,14 @@ public class PortalTaskScreenshotTest extends ScreenshotTest {
     refreshPage();
     taskDetails.waitUtilsTaskDetailsDisplayed();
 
-    executeDecorateJs("scrollToBottomOfLayoutContent()");
     executeDecorateJs("highlightShowMoreTaskHistories()");
     WebElement showMoreTaskHistories = taskDetails.getTaskHistories();
-    ScreenshotUtil.captureElementWithMarginOptionScreenshot(showMoreTaskHistories, ScreenshotUtil.TASK_DETAIL_FOLDER + "how-to-show-note-details", new ScreenshotMargin(20));
+    ScreenshotUtil.captureElementWithMarginOptionScreenshot(showMoreTaskHistories, ScreenshotUtil.TASK_DETAIL_FOLDER + "how-to-show-note-details", new ScreenshotMargin(10));
     taskDetails.clickOnShowMoreHistories();
     Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> homePage.countBrowserTab() > 1);
     homePage.switchLastBrowserTab();
     Sleeper.sleep(3000);
     ScreenshotUtil.captureHalfTopPageScreenShot(ScreenshotUtil.TASK_DETAIL_FOLDER + "how-to-export-note-details", new Dimension(SCREENSHOT_WIDTH, 1000));
-  }
-
-  @Deprecated
-  @Test
-  public void screenshotCustomTaskDetails() throws IOException {
-    ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 1200));
-    updatePortalSetting("APPLY_JSON_CONFIGURATION_FILE_FOR_TASK_DETAILS", "false");
-    redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
-
-    TaskWidgetPage taskWidget = homePage.openTaskList();
-    TaskDetailsPage taskDetails = taskWidget.openTaskDetails(0);
-    taskDetails.waitUtilsTaskDetailsDisplayed();
-    executeDecorateJs("highlightCustomTaskDetail()");
-    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.TASK_DETAIL_CUSTOMIZATION_FOLDER + "task-customized-top");
-    
-    refreshPage();
-    taskDetails.waitUtilsTaskDetailsDisplayed();
-    executeDecorateJs("scrollToBottomOfLayoutContent()");
-    Sleeper.sleep(2000);// wait for focus animation to capture screenshot
-    executeDecorateJs("highlightCustomTaskDetail()");
-    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.TASK_DETAIL_CUSTOMIZATION_FOLDER + "task-customized-bottom");
   }
 
   @Test

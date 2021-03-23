@@ -3,26 +3,31 @@
 Portal Header
 *************
 
-Axon.ivy Portal header is always visible. On the top right of the
+Axon Ivy Portal header is always visible. On the top right of the
 header you find two useful features:
 
-1. Name of the user you’re logged in with. Additionally, if you
+#. Name of the user you’re logged in with. Additionally, if you
    click on your username you get a menu with options that allow you to
-   configure the Axon.ivy Portal to your personal needs. See `User Settings in
-   the Axon.ivy Portal`_ for a detailed overview of the configuration options.
+   configure the Axon Ivy Portal to your personal needs. See `User Settings in
+   the Axon Ivy Portal`_ for a detailed overview of the configuration options.
 
-2. Next to your username is a |search-icon| **Search Bar** providing you
+#. Next to your username is a |search-icon| **Search Bar** providing you
    with a portal-wide search. This feature is described in detail in 
    `Global Search`_.
 
 |portal-header|
 
-User Settings in the Axon.ivy Portal
+User Settings in the Axon Ivy Portal
 ------------------------------------
 
-When you click on your username in the top right of the Axon.ivy Portal,
+When you click on your username in the top right of the Axon Ivy Portal,
 a menu is shown allowing you to configure the portal to your personal
 needs. These features are described in the following sections below.
+
+Admin Settings
+--------------
+
+Menu entry :ref:`admin-settings` is only available for users have role AXONIVY_PORTAL_ADMIN.
 
 My profile
 ----------
@@ -32,7 +37,7 @@ Menu entry :ref:`my-profile` contains general setting, user language and email s
 Absences
 --------
 
-Menu entry **Absences** provides you with an absence management
+Menu entry :guilabel:`Absences`  provides you with an absence management
 component. Here you can enter your absence and define delegate for
 tasks assigned to you or one of the roles you hold.
 
@@ -40,56 +45,56 @@ tasks assigned to you or one of the roles you hold.
    Although you can specify         
    delegates for a role you hold, we recommend specifying only delegates for tasks
    assigned personally to you. Roles are normally held by a group of users, so if
-   you’re absent one of your role members is still able to pick up the task.
+   you’re absent one of your role members is still able to pick the task.
 
 |portal-absences|
 
 The dialog shows you all current and upcoming absences. You may show also past
-absences by activating the option **Show absences in the past**. Furthermore,
+absences by activating the option :guilabel:`Show absences in the past`. Furthermore,
 you can edit or delete absences by using the |edit-icon| **Edit** or |trash-icon|
 **Delete** action in the row of the respective absence.
 
-How to: Add absence
-^^^^^^^^^^^^^^^^^^^
+HowTo: Add absence
+^^^^^^^^^^^^^^^^^^
 
-1. Click on the button **Add absence**
+#. Click on the button :guilabel:`Add absence` 
 
-2. The :guilabel:`Add absence` dialog is opened
+#. The :guilabel:`Add absence` dialog is opened
 
-3. Enter start date and end date
+#. Enter :guilabel:`From` and :guilabel:`To` 
 
-4. You may provide an explanatory comment
+#. You may provide an explanatory comment
 
-5. Confirm your absence by clicking button **OK**
+#. Confirm your absence by clicking button :guilabel:`Save` 
 
 |how-to-add-an-absence|
 
-How to: Set deputy
-^^^^^^^^^^^^^^^^^^
+HowTo: Set deputy
+^^^^^^^^^^^^^^^^^
 
-1. You see a list with an entry for your personal tasks and for each
+#. You see a list with an entry for your personal tasks and for each
    role you hold.
 
-2. Specify a deputy by selecting user from the list.
+#. Specify a deputy by selecting a user from the list.
 
-3. With personal task, you can choose **Always** or **During my absence**
+#. With personal task, you can choose :guilabel:`Always`  or :guilabel:`During my absence` 
 
-4. Confirm your deputies with the button **Save**.
+#. Confirm your deputies with the button :guilabel:`Save`.
 
 |how-to-set-absence-deputies|
 
 Change Password
 ---------------
 
-The menu entry **Change password** allows you to set a new password.
+The menu entry :guilabel:`Change password`  allows you to set a new password.
 
 |portal-password-change-dialog|
 
 Info
 ----
 
-The menu entry **Info** provides you with detailed information about the
-Axon.ivy Engine, the Axon.ivy Portal and your companies application. You
+The menu entry :guilabel:`Info`  provides you with detailed information about the
+Axon Ivy Engine, the Axon Ivy Portal and your company's application. You
 might be asked for this information in case you issue a support request.
 
 |portal-version-information|
@@ -97,12 +102,12 @@ might be asked for this information in case you issue a support request.
 Logout
 ------
 
-The menu entry **Logout** will terminate your session in the Axon.ivy
-Portal. You’ll be routed back to the login page of the Axon.ivy
+The menu entry :guilabel:`Logout`  will terminate your session in the Axon Ivy
+Portal. You’ll be routed back to the login page of the Axon Ivy
 Portal.
 
 .. hint:: 
-   The Axon.ivy Portal will also do
+   The Axon Ivy Portal will also do
    an automatic logout if you’re   
    inactive for a certain amount of
    time.                           
@@ -111,17 +116,17 @@ Global Search
 -------------
 
 The Global Search is a convenient tool for you to look up
-information in the whole Axon.ivy Portal. You may search for any
-keyword. By default, the Axon.ivy Portal will search for:
+information in the whole Axon Ivy Portal. You may search for any
+keyword. By default, the Axon Ivy Portal will search for:
 
-1. Processes
+#. Processes
 
-2. Cases
+#. Cases
 
-3. Tasks
+#. Tasks
 
-When you confirm the keyword you’re looking for, the Axon.ivy Portal
-will route you to the :guilabel:`Global Search Results` page. For each category
+When you confirm the keyword you’re looking for, the Axon Ivy Portal
+will route you to the **Global Search Results** page. For each category
 a tab is provided, giving you the results of your search.
 
 |portal-global-search-result-page|
@@ -130,7 +135,7 @@ a tab is provided, giving you the results of your search.
    Your company’s application may   
    provide further search           
    capabilities which are integrated
-   in the Axon.ivy Portal Global    
+   in the Axon Ivy Portal Global    
    Search. You’d find the results on
    the result page accordingly.     
    Contact your administrator for   

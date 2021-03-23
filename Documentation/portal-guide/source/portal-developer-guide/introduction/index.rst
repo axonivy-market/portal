@@ -3,7 +3,7 @@
 Introduction
 ************
 
-Portal Developer Guide provides information to setup, configure, customize 
+Portal Developer Guide provides information to set up, configure, customize 
 Portal so that it could fit customer needs.
 
 .. _introduction-new-and-note-worthy:
@@ -33,6 +33,13 @@ New absence management
 New UI and user can choose deputy as permanent or temporary for personal task.
 
 |absence|
+
+.. _introduction-new-and-note-worthy-task-case-details-configuration:
+
+Task/Case details configuration
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Task/Case details are well structured, user can drag and drop the widgets and they can be configured via Global variable (JSON file).
 
 .. _introduction-new-and-note-worthy-further-improvement:
 

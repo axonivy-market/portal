@@ -15,7 +15,7 @@ Project modules
 ---------------
 
 The application consists of 4 process modules. For detailed information
-of each module, refer to :ref:`architecture` .
+of each module, refer to :ref:`architecture`.
 
 -  PortalStyle
 
@@ -76,7 +76,7 @@ Migration notes
 
 This document informs you in detail about incompatibilities that were
 introduced between Portal versions and tells you what needs to be done
-to make your existing Portal working with current Axon.ivy engine.
+to make your existing Portal working with current Axon Ivy engine.
 
 How to migrate
 --------------
@@ -85,22 +85,22 @@ How to migrate
    If you call any Portal API which is not mentioned in the document. It could be changed or removed without inform. Don't forget
    to re-implement the concerning API in your own project.
 
-   In order to migrate Portal, you need to migrate Axon.ivy, refer
-   `Axon.ivy migration
+   In order to migrate Portal, you need to migrate Axon Ivy, refer
+   `Axon Ivy migration
    notes <https://developer.axonivy.com/doc/9.1/axonivy/migration/index.html>`__.
-   Changes in Axon.ivy could lead to problems if customer project is not
+   Changes in Axon Ivy could lead to problems if customer project is not
    migrated properly.
 
 In designer
 -----------
 
-1. Replace all Portal projects
-2. Update PortalTemplate dependency of customer project in pom.xml.
-3. If PortalStyle is customized, copy logo, customization.scss,
+#. Replace all Portal projects
+#. Update PortalTemplate dependency of customer project in pom.xml.
+#. If PortalStyle is customized, copy logo, customization.scss,
    font-faces.scss, customized stuff from old to new PortalStyle, run
    maven to compile CSS.
-4. Follow detailed migration notes for each version below.
-5. If customization needs copying code from Portal, merge changes
+#. Follow detailed migration notes for each version below.
+#. If customization needs copying code from Portal, merge changes
    between two versions of Portal for copied code.
 
 ..
@@ -108,67 +108,67 @@ In designer
 In engine
 ---------
 
-1. Convert database schema if needed.
+#. Convert database schema if needed.
 
-2. Redeploy Portal projects and customer
+#. Redeploy Portal projects and customer
    project.
-3. Follow detailed migration notes for each version below.
+#. Follow detailed migration notes for each version below.
 
 Migrate 9.1 to 9.2
 ------------------
 
-1. We remove implementation of Portal multiple applications. So that you need to adapt some points below:
+#. Deploy :download:`MigrateData.iar <documents/MigrateData.iar>` project to your ivy application and run it by access link
+   ``your_host/your_application/pro/MigrateData/175F92F71BC45295/startMigrateConfiguration.ivp``
+   
+   If you have many applications, deploy to only one application and run it by access link
+   ``your_host/your_application/pro/MigrateData/175F92F71BC45295/startMigrateConfiguration.ivp``
+   
+   Example: ``https://portal.io/Portal/pro/MigrateData/175F92F71BC45295/startMigrateConfiguration.ivp``
+
+   .. important:: Run migration process only once
+
+#. We remove implementation of Portal multiple applications. So that you need to adapt some points below:
 
    - Adapt start process signature of ``PasswordService`` in ``ChangePassword.mod`` if you overrode this callable.
    - If you are using ``ProcessStartCollector``, replace constructor ``ProcessStartCollector(application)`` with ``ProcessStartCollector()``.
-   - If you have TaskLazyDataModel, CaseLazyDataModel customization, remove ``setInvolvedApplications()`` method, ``setInvolvedUsername`` in search criteria.
+   - If you have TaskLazyDataModel, CaseLazyDataModel customization, remove ``setInvolvedApplications()`` method, ``setInvolvedUsername`` in search criteria.   
 
-2. In PortalNavigatorInFrame.java, change the methods from non-static to static.
+#. In PortalNavigatorInFrame.java, change the methods from non-static to static.
 
-3. CaseDetails component in PortalTemplate is removed.
+#. CaseDetails component in PortalTemplate is removed.
 
-4. Since 9.2, statistic chart has multiple names for supported languages in application. Therefore you must run a migration process by the following steps:
+#. If you have TaskLazyDataModel, CaseLazyDataModel customization, follow :ref:`How to override export feature of Task list <customization-task-widget-how-to-override-export-feature>` and :ref:`How to override export feature of Case list <customization-case-widget-how-to-override-export-feature>` to customize label and value of custom columns that will be exported.
 
-   - Deploy :download:`MigrateStatisticChartTo9.iar <documents/MigrateStatisticChartTo9.iar>` project to your Ivy application. This project requires ``PortalKit`` to run.
-   - Run ``MigrateStatisticChart/MigrateStatisticChart.ivp`` to migrate all statistic charts in your application.
-   - Restart Ivy engine.
+#. Deprecated callable processes: ``OpenPortalSearch.mod``, ``OpenPortalTasks.mod``, ``OpenPortalTaskDetails.mod``, ``OpenPortalCases.mod``, ``OpenPortalCaseDetails.mod`` process.
 
-5. If you have TaskLazyDataModel, CaseLazyDataModel customization, follow :ref:`How to override export feature of Task list <customization-task-widget-how-to-override-export-feature>` and :ref:`How to override export feature of Case list <customization-case-widget-how-to-override-export-feature>` to customize label and value of custom columns that will be exported.
-
-6. Deprecated callable processes: ``OpenPortalSearch.mod``, ``OpenPortalTasks.mod``, ``OpenPortalTaskDetails.mod``, ``OpenPortalCases.mod``, ``OpenPortalCaseDetails.mod`` process.
-
-   Portal recommends using `Axon.ivy HtmlOverride wizard <https://developer.axonivy.com/doc/9.1/designer-guide/how-to/overrides.html?#override-new-wizard>`_ to customize ``Portal HTML Dialog``
+   Portal recommends using `Axon Ivy HtmlOverride wizard <https://developer.axonivy.com/doc/9.1/designer-guide/how-to/overrides.html?#override-new-wizard>`_ to customize ``Portal HTML Dialog``
 
    .. important:: The callable process which is supporting to open customization dialog will be removed in the future, do not use it in the new project
 
-7. We remove ivy-icon.css and replace current classes with new classes from `Streamline icons <https://dev.demo.ivyteam.io/demo-app/faces/view/html-dialog-demos$1/icons.xhtml>`_. So that you need to update your files that are using classes in ivy-icon.css.
+#. We remove ivy-icon.css and replace current classes with new classes from `Streamline icons <https://dev.demo.ivyteam.io/demo-app/faces/view/html-dialog-demos$1/icons.xhtml>`_. So that you need to update your files that are using classes in ivy-icon.css.
 
-8. For :guilabel:`User Favorites`, we will store processId and processType instead of start link and use them to find it's latest link. Therefore you must run a migration process by the following steps:
+#. If you have taskItemDetailCustomPanelTop, taskItemDetailCustomPanelBottom customization, follow :ref:`How to override TaskItemDetail <customization-task-item-details>` to add custom widgets.
 
-   - Deploy :download:`UserFavoriteProcessesMigration.iar <documents/UserFavoriteProcessesMigration.iar>` project to your Ivy application. This project requires ``PortalKit`` to run.
-   - Log in with user that MUST have permission to start all processes of your application (not only favorite processes) to avoid wrong migration.
-   - Run ``MigrateUserFavoriteProcesses/migrateUserFavoriteProcesses.ivp`` to migrate all user favorite processes in your application.
-
-8. The ``APPLY_JSON_CONFIGURATION_FILE_FOR_TASK_DETAILS`` Portal setting will be activated by default. If you don't want to use the task details with new style, please deactivate this portal setting.
+9. If you have ``caseItemDetailCustomTop`` or ``caseItemDetailCustomMiddle`` or ``caseItemDetailCustomBottom`` customization, follow :ref:`How to override CaseItemDetail <customization-case-item-details>` to add these custom widgets.
 
 Migrate 8.x to 9.1
 ------------------
 
-1. Remove the ``views`` field in SubMenuItem.java. Adapt it if you overrode the ``LoadSubMenuItems`` callable process
+#. Remove the ``views`` field in SubMenuItem.java. Adapt it if you overrode the ``LoadSubMenuItems`` callable process
 
-2. Add parameter ``<ui:param name="viewName" value="TASK" />`` to your customized ``PortalTasksTemplate`` to displayed breadcrumb of Task list.
+#. Add parameter ``<ui:param name="viewName" value="TASK" />`` to your customized ``PortalTasksTemplate`` to displayed breadcrumb of Task list.
 
-3. Add parameter ``<ui:param name="viewName" value="CASE" />`` to your customized ``PortalCasesTemplate`` to displayed breadcrumb of Case list.
+#. Add parameter ``<ui:param name="viewName" value="CASE" />`` to your customized ``PortalCasesTemplate`` to displayed breadcrumb of Case list.
 
-4. Ivy core enhanced the Ivy URI, so Portal needs to make a migration. Deploy :download:`PortalUrlMigration.iar <documents/PortalUrlMigration.iar>` project to any Ivy Application then run ``migratePortalUrl.ivp`` once and wait until it is redirected to another page without error (E.g: Homepage). It is recommended to remove it after the migration.
+#. Ivy core enhanced the Ivy URI, so Portal needs to make a migration. Deploy :download:`PortalUrlMigration.iar <documents/PortalUrlMigration.iar>` project to any Ivy Application then run ``migratePortalUrl.ivp`` once and wait until it is redirected to another page without error (E.g: Homepage). It is recommended to remove it after the migration.
 
-5. HOMEPAGE_URL (single Portal app mode) and registered application link (multi Portal app mode) are not available anymore. To let portal know about your new portal home, you have to set default pages to your project, follow this chapter to customize standard processes: `Standard Processes <https://developer.axonivy.com/doc/9.1/engine-guide/administration/standard-processes.html>`_
+#. HOMEPAGE_URL (single Portal app mode) and registered application link (multi Portal app mode) are not available anymore. To let portal know about your new portal home, you have to set default pages to your project, follow this chapter to customize standard processes: `Standard Processes <https://developer.axonivy.com/doc/9.1/engine-guide/administration/standard-processes.html>`_
 
-6. Portal now uses |css_variable| instead of SASS. Therefore you must convert SASS syntax to new CSS variable or use online tool such as |css_variable_convert| to convert it.
+#. Portal now uses |css_variable| instead of SASS. Therefore you must convert SASS syntax to new CSS variable or use online tool such as |css_variable_convert| to convert it.
 
-7. If administrator activate the ``ENABLE_CASE_OWNER`` Portal settings and there is a customized case list, customize this field to this case list, e.g. add filter, column configuration, header.
+#. If administrator activate the ``ENABLE_CASE_OWNER`` Portal settings and there is a customized case list, customize this field to this case list, e.g. add filter, column configuration, header.
 
-8. From 9.1, Ivy engine use new mechanism to synchronize user data, therefore Portal must adapt some data related to users. Some data must be migrated to work properly. Please follow these steps to migrate data of your application:
+#. From 9.1, Ivy engine use new mechanism to synchronize user data, therefore Portal must adapt some data related to users. Some data must be migrated to work properly. Please follow these steps to migrate data of your application:
 
    - Deploy :download:`MigrateRelatedDataOfUserTo9.iar <documents/MigrateRelatedDataOfUserTo9.iar>` project to your Ivy application.
 
@@ -182,11 +182,16 @@ Migrate 8.x to 9.1
 
    - Restart Ivy engine.
 
-9. Use ``pageContent`` to define your section in ``BasicTemplate.xhtml`` instead of ``simplePageContent``.
+#. Use ``pageContent`` to define your section in ``BasicTemplate.xhtml`` instead of ``simplePageContent``.
 
-10. ``TaskTemplate-7`` is removed, change it to ``TaskTemplate-8``. ``TaskTemplate`` is also removed, change it to ``frame-8`` (provided by Ivy).
+#. ``TaskTemplate-7`` is removed, change it to ``TaskTemplate-8``. ``TaskTemplate`` is also removed, change it to ``frame-8`` (provided by Ivy).
 
-11. The ``MenuKind`` enum has one more entry: EXTERNAL_LINK, use it if your item is an external link, and use CUSTOM if yours is an internal link.
+#. The ``MenuKind`` enum has one more entry: EXTERNAL_LINK, use it if your item is an external link, and use CUSTOM if yours is an internal link.
+
+Migrate 8.x to 9.2
+------------------
+
+You need to do all steps in ``Migrate 8.x to 9.1`` and ``Migrate 9.1 to 9.2``
 
 .. _installation-release-notes:
 
@@ -194,7 +199,7 @@ Release notes
 =============
 
 This part lists all relevant changes since the last official product
-releases of Axon.ivy.
+releases of Axon Ivy.
 
 
 Changes in 9.2
@@ -211,8 +216,6 @@ Changes in 9.2
 - Introduce new approach to customize :ref:`Portal Case Item details <customization-case-item-details>`. Now, your case information in Case details page and Case Info dialog is the same
 
 - Introduce new approach to customize :ref:`Portal Task item details <customization-task-item-details>`.
-
-- Introduce new Portal Setting ``APPLY_JSON_CONFIGURATION_FILE_FOR_TASK_DETAILS`` to control visibility of widgets on task details page with new style.
 
 - Introduce new Portal Setting ``SHOW_BUTTON_ICON`` to control visibility of icon of button in Portal.
 
