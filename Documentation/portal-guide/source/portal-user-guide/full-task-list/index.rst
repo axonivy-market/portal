@@ -3,7 +3,7 @@
 Full Task List
 **************
 
-The :guilabel:`Full Task List` page shows you the same tasks you see on your
+The **Full Task List** page shows you the same tasks you see on your
 personal dashboard. However, this page provides you with extended
 information on the tasks, as well as, advanced search and filter
 capabilities. You can reach the page by using the |check-icon| **Tasks**
@@ -29,54 +29,54 @@ Finally, you see the list of tasks.
 
 For each task the following key information is shown in the list:
 
-1. Priority
+#. Priority
 
-2. Name and Description
+#. Name and Description
 
-3. Responsible user or role
+#. Responsible user or role
 
-4. Task ID
+#. Task ID
 
-5. Creation Date
+#. Creation Date
 
-6. Expiry Date
+#. Expiry Date
 
-7. Status
+#. Status
 
 .. figure:: images/task-key-information.png
 
 Furthermore, at the end of each row you find a side step menu of key features in
 handling tasks:
 
-1. Reset Task
+#. Reset Task
 
-2. Delegate Task
+#. Delegate Task
 
-3. Reserve
+#. Reserve
 
-4. Add Ad-hoc Task
+#. Add Ad-hoc Task
 
 Finally, you have the possibility to access the full set of the task
 data by clicking on the row containing the task Name and Description.
 
-The task details are separated in 3 different sections:
+The task details are separated into 3 different sections:
 
-1. Data and description, you find various metadata concerning the task and
+#. Data and description, you find various metadata concerning the task and
    the respective case it is related to.
 
-.. figure:: images/detailed-task-information-data-description.png
+   .. figure:: images/detailed-task-information-data-description.png
 
-2. Note, you may add additional notes which is described below
+#. Note, you may add additional notes which is described below
 
-.. figure:: images/detailed-task-information-note.png
+   .. figure:: images/detailed-task-information-note.png
 
-3. Document, these documents once attached to the case are
+#. Document, these documents once attached to the case are
    available on all tasks. You may add or delete documents which his
    described in the HowTo’s below.
 
-.. figure:: images/detailed-task-information-documents.png
+   .. figure:: images/detailed-task-information-documents.png
 
-.. figure:: images/detailed-task-information.png
+   .. figure:: images/detailed-task-information.png
 
 HowTo: Use existing filter
 --------------------------
@@ -86,34 +86,34 @@ HowTo: Use existing filter
    there might be no filters available. In this case, you must create a filter
    first. This is described in detail in HowTo: Create new filter.   
 
-1. Click on the **Save Filter** dropdown menu. 
+#. Click on the :guilabel:`Save Filter` dropdown menu. 
 
-2. Select the filter you want to use.
+#. Select the filter you want to use.
 
 HowTo: Create new filter
 ------------------------
 
-1. Click on the button **More** to select one of the available filters.
-   For a list of available filters, see  `Task filter criterias`_.
+#. Click on the button :guilabel:`More` to select one of the available filters.
+   For a list of available filters, see `Task filter criterias`_.
 
-2. Click on the newly added filter and configure it.
+#. Click on the newly added filter and configure it.
 
-3. Add more filters by clicking on the button **Filter** again.
+#. Add more filters by clicking on the button :guilabel:`Filter` again.
 
-4. Drop filters by clicking on the |delete-attachment-icon| **Delete** button next to
+#. Drop filters by clicking on the |delete-attachment-icon| icon next to
    the filter.
 
-5. When finished defining your filter, click on the button **Save
-   filter**.
+#. When finished defining your filter, click on the button :guilabel:`Save
+   filter`.
 
-6. The :guilabel:`Save filter` dialog is opened.
+#. The :guilabel:`Save filter` dialog is opened.
 
-7. Under **Filter name**, provide a recognizable name for the filter.
+#. Under :guilabel:`Filter name`, provide a recognizable name for the filter.
 
-8. Under **Filter visibility**, you can select if the filter is only
+#. Under :guilabel:`Filter visibility`, you can select if the filter is only
    visible for you or shall be available to all users.
 
-9. Save the filter by clicking the button **Ok**.
+9. Save the filter by clicking the button :guilabel:`Ok`.
 
 .. figure:: images/how-to-create-task-filter.png
 
@@ -159,64 +159,72 @@ HowTo: Create new filter
    might only be allowed to save    
    filters for yourself.            
 
+HowTo: Configure displayed tasks in the Full Task List
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+#. To choose columns to display, click on :guilabel:`Manage columns`. Then you could choose displayed columns by checking the related checkboxes.
+
+#. To sort data, click on the column header. To change sort direction, click on that column header one more time.
+   Note that some columns do not support sorting.
+
 HowTo: Attach a document to the case
 ------------------------------------
 
-1. Open the task details of a task
+#. Open the task details of a task
 
-2. Click the link |add-icon| **Add document**
+#. Click the link |add-icon| :guilabel:`Add document`
 
-3. The :guilabel:`Add document` dialog is opened
+#. The :guilabel:`Add document` dialog is opened
 
-4. Upload a file by using the **Select** button or by simply dragging
+#. Upload a file by using the :guilabel:`Select` button or by simply dragging
    the file into the dialog
 
-5. Click the button **Close** to add the attachment
+#. Click the button :guilabel:`Close` to add the attachment
 
 .. figure:: images/how-to-upload-document.png
 
 HowTo: Remove an attachment from the case
 -----------------------------------------
 
-1. Open the task details of a task
+#. Open the task details of a task
 
-2. Click on the |delete-icon| **Delete attachment** link next to the
+#. Click on the |delete-icon| **Delete** button next to the
    attachment you want to remove
 
-3. A :guilabel:`Confirmation` dialog is opened
+#. A :guilabel:`Confirmation` dialog is opened
 
-4. Confirm the deletion with the button **Yes**
+#. Confirm the deletion with the button :guilabel:`Yes`
 
 .. figure:: images/how-to-delete-document.png
 
 HowTo: Add a note to a task
 ---------------------------
 
-1. Open the task details of a task
+#. Open the task details of a task
 
-2. Click on the |add-icon| **Add note** link below the notes section
+#. Click on the |add-icon| :guilabel:`Add note` link below the notes section
 
-3. The :guilabel:`Add note` dialog is opened
+#. The :guilabel:`Add note` dialog is opened
 
-4. Enter your note
+#. Enter your note
 
-5. Confirm your note by clicking the button :guilabel:`Save`
+#. Confirm your note by clicking the button :guilabel:`Save`
 
 .. figure:: images/how-to-add-note.png
 
 HowTo: Export a task history
 ----------------------------
 
-1. Open the task details of a task
+#. Open the task details of a task
 
-2. Click on the |show-more-icon| **Show more** link below the notes section
+#. Click on the |show-more-icon| :guilabel:`Show more` link below the notes section
 
-.. figure:: images/how-to-show-note-details.png
+   .. figure:: images/how-to-show-note-details.png
 
-3. A new page with the task history is opened
+#. A new page with the task history is opened
 
-4. You may export the history by clicking on the button **Export to
-   Excel**
+#. You may export the history by clicking on the button :guilabel:`Export to
+   Excel`
 
 .. figure:: images/how-to-export-note-details.png
 
