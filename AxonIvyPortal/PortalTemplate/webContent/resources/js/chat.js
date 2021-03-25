@@ -731,23 +731,27 @@ function View(uri)
       for (var key in participants) {
         if (key != 'users') {
           var participant = participants[key];
-          if (participant.length != 0) {
-            var roleGroupDom = document.createElement('li');
-              var roleName = document.createElement('span');
-              roleName.className = 'js-role-name role-name';
-              roleName.innerHTML = key;
-              roleGroupDom.appendChild(roleName);
+          var roleGroupDom = document.createElement('li');
+          var roleName = document.createElement('span');
+          roleName.className = 'js-role-name role-name';
+          roleName.innerHTML = key;
+          roleGroupDom.appendChild(roleName);
 
-              var userList = document.createElement('ul');
-              userList.className = 'users-in-role';
-              for (var username in participant) {
-                var userDom = document.createElement('li');
-                userDom.innerHTML = participant[username];
-                userList.appendChild(userDom);
-              }
-            roleGroupDom.appendChild(userList)
-              $rolesParticipants.get(0).appendChild(roleGroupDom);
+          var userList = document.createElement('ul');
+          userList.className = 'users-in-role';
+          if (participant.length != 0) {
+            for (var username in participant) {
+              var userDom = document.createElement('li');
+              userDom.innerHTML = participant[username];
+              userList.appendChild(userDom);
+            }
+          } else {
+            var userDom = document.createElement('li');
+            userDom.innerHTML = $('.js-no-users-of-role').val();
+            userList.appendChild(userDom); 
           }
+          roleGroupDom.appendChild(userList)
+          $rolesParticipants.get(0).appendChild(roleGroupDom);
         }
       }
       PF('participants-list-dialog').initPosition();
