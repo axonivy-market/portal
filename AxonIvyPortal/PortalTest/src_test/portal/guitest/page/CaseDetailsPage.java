@@ -61,6 +61,11 @@ public class CaseDetailsPage extends TemplatePage {
         .findElements(By.cssSelector("td.related-task-name-column")).size();
   }
 
+  public int countRelatedCases() {
+    return caseItem.findElement(By.cssSelector("div[id$='related-cases']"))
+        .findElements(By.cssSelector("td.name-column")).size();
+  }
+
   public void addNote(String content) {
     onClickHistoryIcon();
     waitAjaxIndicatorDisappear();
@@ -136,10 +141,38 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public TaskDetailsPage openTasksOfCasePageViaDetailsAction(int index) {
-    String openDetailsCommandButton = String.format("[id$='task-widget:related-tasks:%d:additional-options:task-open-detail-command", index);
+    String openDetailsCommandButton = String.format("[id$='task-widget:related-tasks:%d:additional-options:task-open-detail-command']", index);
     waitForElementDisplayed(By.cssSelector(openDetailsCommandButton), true);
     findElementByCssSelector(openDetailsCommandButton).click();
     return new TaskDetailsPage();
+  }
+
+  public CaseDetailsPage openCasesOfCasePageViaDetailsAction(int index) {
+    String openDetailsCommandButton = String.format("[id$='related-cases-widget:related-cases:%d:action-step-component:case-item-open-detail-link']", index);
+    waitForElementDisplayed(By.cssSelector(openDetailsCommandButton), true);
+    findElementByCssSelector(openDetailsCommandButton).click();
+    return new CaseDetailsPage();
+  }
+
+  public AdditionalCaseDetailsPage openRelatedCaseBusinessDetail(int index) {
+    String openDetailsCommandButton = String.format("[id$='related-cases-widget:related-cases:%d:action-step-component:show-additional-case-details-link']", index);
+    waitForElementDisplayed(By.cssSelector(openDetailsCommandButton), true);
+    findElementByCssSelector(openDetailsCommandButton).click();
+    return new AdditionalCaseDetailsPage();
+  }
+
+  public HomePage clickRelatedCaseSubmitLeaveReason(int index) {
+    WebElement sideSteps = findElementByCssSelector(String.format("[id$='related-cases-widget:related-cases:%d:action-step-component:side-steps']", index));
+    //findChildElementsByCssSelector(sideSteps, "a[id$=':side-step-item']").get(0).click();
+    findChildElementByLinkText(sideSteps, "Submit leave reason").click();
+    return new HomePage();
+  }
+
+  public HomePage clickRelatedCaseUploadAdditionalDocument(int index) {
+    WebElement sideSteps = findElementByCssSelector(String.format("[id$='related-cases-widget:related-cases:%d:action-step-component:side-steps']", index));
+    //findChildElementsByCssSelector(sideSteps, "a[id$=':side-step-item']").get(1).click();
+    findChildElementByLinkText(sideSteps, "Upload additional data").click();
+    return new HomePage();
   }
 
   public String openDoneTask(int index) {
@@ -420,11 +453,19 @@ public class CaseDetailsPage extends TemplatePage {
   public void resetToDefault() {
     waitForElementDisplayed(By.cssSelector("[id$=':reset-details-settings-button']"), true);
     click(By.cssSelector("[id$=':reset-details-settings-button']"));
+    waitAjaxIndicatorDisappear();
+  }
+
+  public void confirmResetToDefault() {
+    waitForElementDisplayed(By.cssSelector("[id='case-item-details:reset-to-default-case-form:confirm-destruction']"), true);
+    click(By.cssSelector("[id='case-item-details:reset-to-default-case-form:confirm-destruction']"));
+    waitAjaxIndicatorDisappear();
   }
   
   public void switchToEditMode() {
     waitForElementDisplayed(By.cssSelector("[id$=':switch-to-edit-mode-button']"), true);
     click(By.cssSelector("[id$=':switch-to-edit-mode-button']"));
+    waitAjaxIndicatorDisappear();
   }
 
   public void waitForSaveButtonDisplayed() {
@@ -434,6 +475,7 @@ public class CaseDetailsPage extends TemplatePage {
   public void saveAndSwitchToViewMode() {
     waitForElementDisplayed(By.cssSelector("[id$=':switch-to-view-mode-button']"), true);
     click(By.cssSelector("[id$=':switch-to-view-mode-button']"));
+    waitAjaxIndicatorDisappear();
   }
 
   public void drapAndDropWidgets(String sourceName, String destinationName) {
@@ -470,10 +512,17 @@ public class CaseDetailsPage extends TemplatePage {
     return new TaskTemplatePage();
   }
 
-  public void sideStepMenuOnActionButton(int index) {
+  public void clickRelatedTaskActionButton(int index) {
     WebElement element = findListElementsByCssSelector(".related-task-more-column .action-link").get(index);
     element.click();
     String actionPanel = String.format("[id$='task-widget:related-tasks:%d:additional-options:side-steps-panel']", index); 
+    waitForElementDisplayed(By.cssSelector(actionPanel), true);
+  }
+
+  public void clickRelatedCaseActionButton(int index) {
+    WebElement element = findListElementsByCssSelector(".related-cases .more-column .action-link").get(index);
+    element.click();
+    String actionPanel = String.format("[id$='related-cases-widget:related-cases:%d:action-step-component:action-steps-panel']", index); 
     waitForElementDisplayed(By.cssSelector(actionPanel), true);
   }
 
@@ -530,9 +579,9 @@ public class CaseDetailsPage extends TemplatePage {
 
   public void openTaskDelegateDialog(int index) {
     try {
-      sideStepMenuOnActionButton(index);
+      clickRelatedTaskActionButton(index);
     } catch (Exception e) {
-      sideStepMenuOnActionButton(index);
+      clickRelatedTaskActionButton(index);
     }
     Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS))
         .until(() -> findElementByCssSelector("a[id$='\\:task-delegate-command']").isDisplayed());
@@ -570,7 +619,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public boolean isTaskDelegateOptionDisable(int index) {
-    sideStepMenuOnActionButton(index);
+    clickRelatedTaskActionButton(index);
     String commandButton = String.format("[id$='task-widget:related-tasks:%d:additional-options:task-delegate-command", index);
     waitForElementDisplayed(By.cssSelector(commandButton), true);
     WebElement delegateButton = findElementByCssSelector(commandButton);
@@ -635,12 +684,12 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public void clickRelatedCaseColumnCheckbox(int columnIndex) {
-    WebElement columnCheckbox = findElementByXpath(String.format("//*[@id=\"case-item-details:widgets:2:related-cases-widget:case-columns-configuration:select-columns-form:columns-checkbox\"]/tbody/tr[%s]/td/div/div[2]", columnIndex));//findElementByCssSelector(String.format("input[id$='related-cases-widget:case-columns-configuration:select-columns-form:columns-checkbox:%d']", columnIndex));
+    WebElement columnCheckbox = findElementByXpath(String.format("//*[contains(@id,\":related-cases-widget:case-columns-configuration:select-columns-form:columns-checkbox\")]/tbody/tr[%s]/td/div/div[2]", columnIndex));//findElementByCssSelector(String.format("input[id$='related-cases-widget:case-columns-configuration:select-columns-form:columns-checkbox:%d']", columnIndex));
     columnCheckbox.click();
   }
 
   public void clickRelatedCaseDefaultCheckbox() {
-    WebElement columnCheckbox = findElementByXpath("//*[@id=\"case-item-details:widgets:2:related-cases-widget:case-columns-configuration:select-columns-form:default-columns\"]/div[2]");//findElementByCssSelector("input[id$='related-cases-widget:case-columns-configuration:select-columns-form:default-columns_input']");
+    WebElement columnCheckbox = findElementByXpath("//*[contains(@id,\":related-cases-widget:case-columns-configuration:select-columns-form:default-columns\")]/div[2]");//findElementByCssSelector("input[id$='related-cases-widget:case-columns-configuration:select-columns-form:default-columns_input']");
     columnCheckbox.click();
     WaitHelper.assertTrueWithWait(() -> !findElementByCssSelector("label[for$='related-cases-widget:case-columns-configuration:select-columns-form:columns-checkbox:3']").getAttribute("class").equals("ui-state-disabled"));
   }
@@ -662,12 +711,12 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public void clickRelatedTaskColumnCheckbox(int columnIndex) {
-    WebElement columnCheckbox = findElementByXpath(String.format("//*[@id=\"case-item-details:widgets:3:task-widget:task-columns-configuration:select-columns-form:columns-checkbox\"]/tbody/tr[%s]/td/div/div[2]", columnIndex));//findElementByCssSelector(String.format("input[id$='related-cases-widget:case-columns-configuration:select-columns-form:columns-checkbox:%d']", columnIndex));
+    WebElement columnCheckbox = findElementByXpath(String.format("//*[contains(@id,\":task-widget:task-columns-configuration:select-columns-form:columns-checkbox\")]/tbody/tr[%s]/td/div/div[2]", columnIndex));//findElementByCssSelector(String.format("input[id$='related-cases-widget:case-columns-configuration:select-columns-form:columns-checkbox:%d']", columnIndex));
     columnCheckbox.click();
   }
 
   public void clickRelatedTaskDefaultCheckbox() {
-    WebElement columnCheckbox = findElementByXpath("//*[@id=\"case-item-details:widgets:3:task-widget:task-columns-configuration:select-columns-form:default-columns\"]/div[2]");//findElementByCssSelector("input[id$='related-cases-widget:case-columns-configuration:select-columns-form:default-columns_input']");
+    WebElement columnCheckbox = findElementByXpath("//*[contains(@id,\":task-widget:task-columns-configuration:select-columns-form:default-columns\")]/div[2]");//findElementByCssSelector("input[id$='related-cases-widget:case-columns-configuration:select-columns-form:default-columns_input']");
     columnCheckbox.click();
     WaitHelper.assertTrueWithWait(() -> !findElementByCssSelector("label[for$='task-widget:task-columns-configuration:select-columns-form:columns-checkbox:5']").getAttribute("class").equals("ui-state-disabled"));
   }
