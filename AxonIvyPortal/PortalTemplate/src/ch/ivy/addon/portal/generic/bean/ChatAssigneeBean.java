@@ -159,22 +159,29 @@ public class ChatAssigneeBean implements Serializable {
       Set<String> assigneeNames = existedGroupChat.getAssigneeNames();
       if (CollectionUtils.isNotEmpty(assigneeNames)) {
         assigneeNames.add(Ivy.session().getSessionUser().getMemberName());
+        String groupChatName = getGroupChatName(existedGroupChat);
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO,
             Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/chat/joinedProcessChat",
-                Arrays.asList(getGroupChatName(existedGroupChat))), null);
+                Arrays.asList(groupChatName)), null);
         CreateGroupChatStatus createGroupChatStatus = CreateGroupChatStatus.FAIL;
+        boolean joinGroup = true;
         try {
           createGroupChatStatus = saveGroupChat(existedGroupChat, true);
         } catch (JsonProcessingException ex) {
           Ivy.log().error("Failure to process json {0}", ex, existedGroupChat.toString());
+          joinGroup = false;
         }
         if (createGroupChatStatus == CreateGroupChatStatus.FAIL
             || createGroupChatStatus == CreateGroupChatStatus.JSON_TOO_LONG) {
           message = generateErrorMessageWhenJoinGroupChat();
+          joinGroup = false;
         }
         FacesContext.getCurrentInstance().addMessage(TASK_TEMPLATE_GROWL_ID, message);
         PrimeFaces.current().ajax().update(TASK_TEMPLATE_GROWL_ID);
         PrimeFaces.current().executeScript("PF('chat-assignee-dialog').hide()");
+        if (joinGroup) {
+          openChatGroup(groupChatName);
+        }
       }
     }
   }
@@ -226,8 +233,10 @@ public class ChatAssigneeBean implements Serializable {
 
     ICase iCase = task.getCase().ensureBusinessCase();
     GroupChat group = initGroupChat(iCase);
+    String groupChatName = getGroupChatName(group);
     FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, Ivy.cms()
-        .co("/ch.ivy.addon.portalkit.ui.jsf/chat/processChatIsCreated", Arrays.asList(getGroupChatName(group))), null);
+        .co("/ch.ivy.addon.portalkit.ui.jsf/chat/processChatIsCreated", Arrays.asList(groupChatName)), null);
+    boolean isCreated = true;
 
     try {
       CreateGroupChatStatus createGroupChatStatus = saveGroupChat(group, false);
@@ -237,14 +246,30 @@ public class ChatAssigneeBean implements Serializable {
         ChatReferencesContainer.getChatService().updateGroupList(group);
       } else {
         message = generateErrorMessageWhenCreateGroupChat();
+        isCreated = false;
       }
     } catch (JsonProcessingException ex) {
       Ivy.log().error("Failure to process json {0}", ex, group.toString());
       message = generateErrorMessageWhenCreateGroupChat();
+      isCreated = false;
     }
     FacesContext.getCurrentInstance().addMessage(TASK_TEMPLATE_GROWL_ID, message);
     PrimeFaces.current().ajax().update(TASK_TEMPLATE_GROWL_ID);
     PrimeFaces.current().executeScript("PF('chat-assignee-dialog').hide()");
+    if (isCreated) {
+      openChatGroup(groupChatName);
+    }
+  }
+
+  private void openChatGroup(String groupChatName) {
+    String function = "$('#toggle-chat-panel-command').click();" + 
+        "var checkExist = setInterval(function() { " + 
+        "   if ($('span[title=\"" + groupChatName + "\"]').length) {" + 
+        "      $('span[title=\"" + groupChatName + "\"]').click();" + 
+        "      clearInterval(checkExist);" + 
+        "   }" + 
+        "}, 100);";
+    PrimeFaces.current().executeScript(function);
   }
 
   private FacesMessage generateErrorMessageWhenCreateGroupChat() {
