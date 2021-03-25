@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
@@ -14,9 +15,12 @@ import org.openqa.selenium.interactions.Actions;
 import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
 
+import ch.ivyteam.ivy.workflow.TaskState;
 import portal.guitest.common.Sleeper;
+import portal.guitest.common.WaitHelper;
 
 public class CaseDetailsPage extends TemplatePage {
+  private static final String CLASS = "class";
   private static final String DONE_TASKS_SELECTOR = "td.related-task-state-column .task-state.done-task-state";
   private static final String DOCUMENT_COMPONENT_ID = "div[id='case-details-document-panel']";
   private static final String HISTORY_COMPONENT_ID = "div[id='case-details-history-panel']";
@@ -128,6 +132,13 @@ public class CaseDetailsPage extends TemplatePage {
   public TaskDetailsPage openTasksOfCasePage(int index) {
     caseItem.findElement(By.cssSelector("div[id$='related-tasks']"))
     .findElements(By.cssSelector("td.related-task-name-column")).get(index).click();
+    return new TaskDetailsPage();
+  }
+
+  public TaskDetailsPage openTasksOfCasePageViaDetailsAction(int index) {
+    String openDetailsCommandButton = String.format("[id$='task-widget:related-tasks:%d:additional-options:task-open-detail-command", index);
+    waitForElementDisplayed(By.cssSelector(openDetailsCommandButton), true);
+    findElementByCssSelector(openDetailsCommandButton).click();
     return new TaskDetailsPage();
   }
 
@@ -446,5 +457,223 @@ public class CaseDetailsPage extends TemplatePage {
   public boolean hasDoneTask() {
     List<WebElement> doneTasks = findListElementsByCssSelector(DONE_TASKS_SELECTOR);
     return CollectionUtils.isNotEmpty(doneTasks);
+  }
+
+  public boolean isRelatedTaskStartEnabled(int index) {
+    WebElement element = findListElementsByCssSelector("[id$='task-action-component']").get(index);
+    return !element.getAttribute(CLASS).contains("ui-state-disabled");
+  }
+
+  public TaskTemplatePage startRelatedTask(int index) {
+    WebElement element = findListElementsByCssSelector("[id$='task-action-component']").get(index);
+    element.click();
+    return new TaskTemplatePage();
+  }
+
+  public void sideStepMenuOnActionButton(int index) {
+    WebElement element = findListElementsByCssSelector(".related-task-more-column .action-link").get(index);
+    element.click();
+    String actionPanel = String.format("[id$='task-widget:related-tasks:%d:additional-options:side-steps-panel']", index); 
+    waitForElementDisplayed(By.cssSelector(actionPanel), true);
+  }
+
+  public void reserveTask(int index) {
+    String reserveCommandButton = String.format("[id$='task-widget:related-tasks:%d:additional-options:task-reserve-command']", index);
+    waitForElementDisplayed(By.cssSelector(reserveCommandButton), true);
+    findElementByCssSelector(reserveCommandButton).click();
+  }
+
+  public void resetTask(int index) {
+    String resetCommandButton = String.format("[id$='task-widget:related-tasks:%d:additional-options:task-reset-command", index);
+    waitForElementDisplayed(By.cssSelector(resetCommandButton), true);
+    findElementByCssSelector(resetCommandButton).click();
+  }
+
+  public boolean isTaskState(int index, TaskState taskState) {
+    WebElement element = findListElementsByCssSelector("td.related-task-state-column span.task-state").get(index);
+    if(element!=null) {
+      String stateClass = element.getAttribute(CLASS);
+      return stateClass.contains(taskState.toString().toLowerCase()+"-task-state");
+    }
+    return false;
+  }
+
+  public boolean isRelatedTaskDestroyEnabled(int index) {
+    WebElement destroyButton = findDestroyCommand(index);
+    return !destroyButton.getAttribute(CLASS).contains("ui-state-disabled");
+  }
+
+  public void destroyTask(int index) {
+    findDestroyCommand(index).click();
+    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
+  }
+
+  public WebElement findDestroyCommand(int index) {
+    String destroyCommandButton = String.format("[id$='task-widget:related-tasks:%d:additional-options:task-destroy-command", index);
+    waitForElementDisplayed(By.cssSelector(destroyCommandButton), true);
+    return findElementByCssSelector(destroyCommandButton);
+  }
+
+  public void confimRelatedTaskDestruction() {
+    String destroyCaseDialogId = "[id$='task-widget:destroy-task-confirmation-dialog']";
+    waitForElementDisplayed(By.cssSelector(destroyCaseDialogId), true);
+    WebElement destroyConfirmationDialog = findElementByCssSelector(destroyCaseDialogId);
+    WebElement confirmButton = findChildElementByCssSelector(destroyConfirmationDialog, "[id$='task-widget:confirm-destruction']");
+    confirmButton.click();
+    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
+  }
+
+  public String getResponsibleOfRelatedTaskAt(int index) {
+    List<WebElement> responsibles = findListElementsByCssSelector("td.related-task-responsible-column");
+    return responsibles.get(index).getText();
+  }
+
+  public void openTaskDelegateDialog(int index) {
+    try {
+      sideStepMenuOnActionButton(index);
+    } catch (Exception e) {
+      sideStepMenuOnActionButton(index);
+    }
+    Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS))
+        .until(() -> findElementByCssSelector("a[id$='\\:task-delegate-command']").isDisplayed());
+    clickByCssSelector("a[id$='\\:task-delegate-command']");
+    waitForElementDisplayed(By.cssSelector("div[id$='task-delegate-dialog']"), true);
+  }
+
+  public boolean isDelegateTypeSelectAvailable() {
+    return isElementPresent(By.cssSelector("div[id$=':activator-panel']"));
+  }
+
+  public void selectDelegateResponsible(String responsibleName, boolean isRole) {
+    if (isRole) {
+      waitForElementDisplayed(By.cssSelector("[id$=':task-delegate-form:activator-type-select']"), true);
+      waitForElementEnabled(By.cssSelector("[id$=':task-delegate-form:activator-type-select:1']"), true, DEFAULT_TIMEOUT);
+      clickByCssSelector("[for$=':task-delegate-form:activator-type-select:1']");
+      waitAjaxIndicatorDisappear();
+      waitForElementDisplayed(By.cssSelector("input[id$='group-activator-select_input']"), true);
+      type(By.cssSelector("input[id$='group-activator-select_input']"), responsibleName);
+      waitForElementDisplayed(By.cssSelector("span[id$='group-activator-select_panel']"), true);
+      List<WebElement> foundRoles =
+          findElementByCssSelector("span[id$='group-activator-select_panel").findElements(By.tagName("li"));
+      foundRoles.get(0).click();
+    } else {
+      waitForElementDisplayed(By.cssSelector("input[id$='user-activator-select_input']"), true);
+      type(By.cssSelector("input[id$='user-activator-select_input']"), responsibleName);
+      waitForElementDisplayed(By.cssSelector("span[id$='user-activator-select_panel']"), true);
+      List<WebElement> foundUsers =
+          findElementByCssSelector("span[id$='user-activator-select_panel']").findElements(By.tagName("tr"));
+      foundUsers.get(0).click();
+    }
+    waitAjaxIndicatorDisappear();
+    click(By.cssSelector("button[id$='proceed-task-delegate-command']"));
+    waitForElementDisplayed(By.cssSelector("div[id$='task-delegate-dialog']"), false);
+  }
+
+  public boolean isTaskDelegateOptionDisable(int index) {
+    sideStepMenuOnActionButton(index);
+    String commandButton = String.format("[id$='task-widget:related-tasks:%d:additional-options:task-delegate-command", index);
+    waitForElementDisplayed(By.cssSelector(commandButton), true);
+    WebElement delegateButton = findElementByCssSelector(commandButton);
+    return delegateButton.getAttribute(CLASS).contains("ui-state-disabled");
+  }
+
+  public void openRelatedTaskWorkflowEvents(int index) {
+    String commandButton = String.format("[id$='task-widget:related-tasks:%d:additional-options:task-workflow-event-command", index);
+    waitForElementDisplayed(By.cssSelector(commandButton), true);
+    findElementByCssSelector(commandButton).click();
+    waitAjaxIndicatorDisappear();
+  }
+
+  public boolean isRelatedTaskWorkflowEventsOpened() {
+    try {
+      waitForElementDisplayed(By.cssSelector("div[id$='task-widget:workflow-event-component:workflow-events-dialog']"), true);
+      return true;
+    } catch (Exception e) {
+      return false;
+    }
+  }
+
+  public ExpressProcessPage addAdHocTask(int index) {
+    String commandButton = String.format("[id$='task-widget:related-tasks:%d:additional-options:task-additional-actions']", index);
+    waitForElementDisplayed(By.cssSelector(commandButton), true);
+    findElementByCssSelector(commandButton).click();
+    return new ExpressProcessPage();
+  }
+
+  public WebElement getExportToExcelLink(String linkId) {
+    return findElementByCssSelector("a[id$=':" + linkId + "']");
+  }
+
+  public void clickExportToExcelLink(String linkId, String statusDialogId) {
+    // Ensure that attribute is removed before downloading
+    JavascriptExecutor js = (JavascriptExecutor) driver;
+    WebElement statusDialog = driver.findElement(By.cssSelector("div[id$=':" + statusDialogId + "']"));
+    js.executeScript("arguments[0].removeAttribute('download-status')", statusDialog);
+
+    // click download
+    WebElement downloadLink = getExportToExcelLink(linkId);
+    if (downloadLink != null) {
+      downloadLink.click();
+    }
+  }
+
+  public boolean isDownloadCompleted(String statusDialogId) {
+    WebElement statusDialog = driver.findElement(By.cssSelector("div[id$=':" + statusDialogId + "']"));
+    WaitHelper.assertTrueWithWait(() -> StringUtils.isNotBlank(statusDialog.getAttribute("download-status")));
+    return StringUtils.equals(statusDialog.getAttribute("download-status"), "completed");
+  }
+
+  public boolean isRelatedCaseListColumnExist(String columnClass) {
+    WebElement column = findElementByCssSelector(".related-cases-container th." + columnClass);
+    return column != null && column.isDisplayed();
+  }
+
+  public void clickRelatedCaseColumnsButton() {
+    clickByCssSelector("a[id$='case-config-button']");
+    waitForElementDisplayedByCssSelector("label[for$='related-cases-widget:case-columns-configuration:select-columns-form:columns-checkbox:3']");
+    waitAjaxIndicatorDisappear();
+  }
+
+  public void clickRelatedCaseColumnCheckbox(int columnIndex) {
+    WebElement columnCheckbox = findElementByXpath(String.format("//*[@id=\"case-item-details:widgets:2:related-cases-widget:case-columns-configuration:select-columns-form:columns-checkbox\"]/tbody/tr[%s]/td/div/div[2]", columnIndex));//findElementByCssSelector(String.format("input[id$='related-cases-widget:case-columns-configuration:select-columns-form:columns-checkbox:%d']", columnIndex));
+    columnCheckbox.click();
+  }
+
+  public void clickRelatedCaseDefaultCheckbox() {
+    WebElement columnCheckbox = findElementByXpath("//*[@id=\"case-item-details:widgets:2:related-cases-widget:case-columns-configuration:select-columns-form:default-columns\"]/div[2]");//findElementByCssSelector("input[id$='related-cases-widget:case-columns-configuration:select-columns-form:default-columns_input']");
+    columnCheckbox.click();
+    WaitHelper.assertTrueWithWait(() -> !findElementByCssSelector("label[for$='related-cases-widget:case-columns-configuration:select-columns-form:columns-checkbox:3']").getAttribute("class").equals("ui-state-disabled"));
+  }
+
+  public void clickRelatedCaseApplyButton() {
+    click(By.cssSelector("button[id$='related-cases-widget:case-columns-configuration:select-columns-form:update-command']"));
+    waitAjaxIndicatorDisappear();
+  }
+
+  public boolean isRelatedTaskListColumnExist(String columnClass) {
+    WebElement column = findElementByCssSelector(".case-details-related-task-table th." + columnClass);
+    return column != null && column.isDisplayed();
+  }
+
+  public void clickRelatedTaskColumnsButton() {
+    clickByCssSelector("a[id$='task-config-command']");
+    waitForElementDisplayedByCssSelector("label[for$='task-widget:task-columns-configuration:select-columns-form:columns-checkbox:5']");
+    waitAjaxIndicatorDisappear();
+  }
+
+  public void clickRelatedTaskColumnCheckbox(int columnIndex) {
+    WebElement columnCheckbox = findElementByXpath(String.format("//*[@id=\"case-item-details:widgets:3:task-widget:task-columns-configuration:select-columns-form:columns-checkbox\"]/tbody/tr[%s]/td/div/div[2]", columnIndex));//findElementByCssSelector(String.format("input[id$='related-cases-widget:case-columns-configuration:select-columns-form:columns-checkbox:%d']", columnIndex));
+    columnCheckbox.click();
+  }
+
+  public void clickRelatedTaskDefaultCheckbox() {
+    WebElement columnCheckbox = findElementByXpath("//*[@id=\"case-item-details:widgets:3:task-widget:task-columns-configuration:select-columns-form:default-columns\"]/div[2]");//findElementByCssSelector("input[id$='related-cases-widget:case-columns-configuration:select-columns-form:default-columns_input']");
+    columnCheckbox.click();
+    WaitHelper.assertTrueWithWait(() -> !findElementByCssSelector("label[for$='task-widget:task-columns-configuration:select-columns-form:columns-checkbox:5']").getAttribute("class").equals("ui-state-disabled"));
+  }
+
+  public void clickRelatedTaskApplyButton() {
+    click(By.cssSelector("button[id$='task-widget:task-columns-configuration:select-columns-form:update-command']"));
+    waitAjaxIndicatorDisappear();
   }
 }
