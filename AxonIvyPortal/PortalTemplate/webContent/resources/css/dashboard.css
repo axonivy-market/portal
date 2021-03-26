@@ -1,4 +1,4 @@
-.dashboar__header {
+.dashboard__header {
 	height: 60px;
 	padding: 0 10px;
 }
@@ -115,7 +115,8 @@
 	margin: 10px 10px 0 10px;	
 }
 
-.dashboard-tasks-container__columns-configuration {
+.dashboard-tasks-container__columns-configuration,
+.dashboard-cases-container__columns-configuration  {
   text-align: right;
   margin-bottom: 10px;
 }
@@ -176,15 +177,25 @@
   border: 1.5px solid #FCC3C3;
 }
 
-.task-configuration.card {
+.task-configuration.card,
+.case-configuration.card,
+.widget-configuration.card {
   width: 450px;
   padding: 20px 15px;
   margin-right: 20px;
   border-right: solid 1px var(--ivy-primary-color-grey-light);
 }
 
+.case-configuration.card {
+  padding: 15px 20px 15px;
+}
+
 .task-configuration.card,
-.task-preview.card {
+.case-configuration.card,
+.widget-configuration.card,
+.task-preview.card,
+.case-preview.card,
+.widget-preview.card {
   box-shadow: var(--card-box-shadow);
 }
 
@@ -239,11 +250,13 @@ body .ui-calendar.task-configuration__calendar .ui-datepicker-trigger {
   width: 190px;
 }
 
-.task-preview {
+.task-preview,
+.case-preview,
+.widget-preview {
   width: calc(100% - 470px);
   align-items: flex-start;
   align-self: stretch;
-  padding: 10px;
+  padding: 20px 15px;
 }
 
 .task-preview__header {
@@ -330,4 +343,45 @@ body .ui-calendar.task-configuration__calendar .ui-datepicker-trigger {
   position: absolute;
   top: 15px;
   right: -13px;
+}
+
+.dashboard-cases--table table thead tr,
+.dashboard-tasks--table table thead tr {
+  border-left: solid 1px var(--case-related-task-content-border);
+  border-right: solid 1px var(--case-related-task-content-border);
+}
+
+.dashboard-cases--table table tbody tr:not(.ui-datatable-empty-message) {
+  height: 53px;
+}
+
+.grid-stack {
+  margin-bottom: 2.5em;
+}
+
+.filter-container {
+  align-self: flex-start;
+}
+
+.filter-container__header h2,
+.widget-preview__header h2 {
+  margin: auto;
+}
+
+.preview-button.ui-button,
+.apply-filter-button.ui-button {
+  width: auto;
+}
+
+.case-preview__header {
+  margin-top: auto;
+  padding-bottom: 0;
+}
+
+.process-widget-component.widget__content {
+  padding: 0 0 0;
+}
+
+.process-widget-component.widget__content .compact-processes-container .process-start-list-item {
+  margin: 10px 10px 12px;
 }

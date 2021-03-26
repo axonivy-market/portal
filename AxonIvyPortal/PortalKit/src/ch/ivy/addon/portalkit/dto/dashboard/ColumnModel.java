@@ -21,8 +21,6 @@ import ch.ivy.addon.portalkit.enums.DashboardFilterType;
 import ch.ivy.addon.portalkit.util.Dates;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.scripting.objects.Recordset;
-import ch.ivyteam.ivy.workflow.ITask;
-import ch.ivyteam.ivy.workflow.custom.field.ICustomFields;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
@@ -70,20 +68,7 @@ public class ColumnModel implements Serializable {
   @JsonIgnore
   protected List<String> userFilterListOptions;
   
-  public void initDefaultValue() {};
-  
-  public Object display(ITask task) {
-    ICustomFields customFields = task.customFields();
-    if (isNumber()) {
-      return customFields.numberField(field).getOrNull();
-    } else if (isDate()) {
-      return customFields.timestampField(field).getOrNull();
-    } else if (isText()) {
-      return customFields.textField(field).getOrNull();
-    } else {
-      return customFields.stringField(field).getOrNull();
-    }
-  }
+  public void initDefaultValue() {}
   
   @JsonIgnore
   public boolean isNumber() {

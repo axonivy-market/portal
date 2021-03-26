@@ -1,0 +1,38 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:jsf="http://xmlns.jcp.org/jsf"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+<h:body>
+  <ui:composition template="/layouts/BasicTemplate.xhtml">
+    <ui:define name="title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/dashboard')}</ui:define>
+
+    <ui:define name="pageContent">
+      <!-- User doesn't have permissions -->
+      <ui:fragment rendered="#{empty managedBean.dashboards}">
+        <h1>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/noPermission')}</h1>
+      </ui:fragment>
+
+      <!-- Dashboard content -->
+      <ui:fragment rendered="#{not empty managedBean.dashboards}">
+        <h:outputStylesheet library="css" name="dashboard.css" />
+        <div class="dashboard__header">
+
+          <c:forEach var="dashboard" items="#{managedBean.dashboards}" varStatus="dashboardStatus">
+            <p:commandLink id="dashboard-title-#{dashboardStatus.index}" actionListener="#{managedBean.onDashboardChange(dashboardStatus.index)}"
+              update="grid-stack" process="@this" styleClass="dashboard__title" oncomplete="loadGrid()" value="#{dashboard.title}" />
+          </c:forEach>
+
+          <ui:insert name="headerAction"></ui:insert>
+        </div>
+
+        <h:panelGroup id="grid-stack" layout="block" styleClass="grid-stack">
+          <ui:insert name="dashboardContent"></ui:insert>
+        </h:panelGroup>
+
+        <h:outputScript library="js" name="dashboard.js" />
+      </ui:fragment>
+    </ui:define>
+  </ui:composition>
+</h:body>
+</html>
