@@ -75,12 +75,14 @@ Now they have the possibility to export any list with one mouse click.
 Redesigned process list
 ^^^^^^^^^^^^^^^^^^^^^^^
 You don’t see the forest for the trees? Not anymore! Switch to the new grid view to display your process list in a more user-friendly way.
-|portal-full-process-list-page|
+
+|portal-process-grid-view-page|
 
 Additional drag and drop widgets in task and case detail pages
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Only you know the details and therefore, any detail page for tasks or cases can be restyled using drag and drop widgets. Create your own detail page with your specific content and without the need of programming.
 |detailed-task-information|
+
 |case-details|
 
 Advanced user specific settings
@@ -96,7 +98,7 @@ Make it your own way with the Axon Ivy Portal. Users can optimize process work a
 .. |login-screen| image:: ../../screenshots/login/login-form.png
 .. |send-email-screen| image:: ../../screenshots/forgot-password/send-email-screen.png
 .. |task-key-information| image:: ../../screenshots/task/task-key-information.png
-.. |portal-full-process-list-page| image:: ../../screenshots/process/portal-full-process-list-page.png
+.. |portal-process-grid-view-page| image:: ../../screenshots/process/portal-process-grid-view-page.png
 .. |detailed-task-information| image:: ../../screenshots/task-detail/detailed-task-information.png
 .. |case-details| image:: ../../screenshots/case-detail/case-details.png
 .. |my-profile-save| image:: ../../screenshots/my-profile/my-profile.png
