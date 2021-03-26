@@ -39,6 +39,11 @@ Ce0 @PushWFArc f5 '' #zField
 Ce0 @PushWFArc f8 '' #zField
 Ce0 @PushWFArc f13 '' #zField
 Ce0 @PushWFArc f15 '' #zField
+Ce0 @GridStep f14 '' #zField
+Ce0 @StartSub f23 '' #zField
+Ce0 @EndSub f16 '' #zField
+Ce0 @PushWFArc f19 '' #zField
+Ce0 @PushWFArc f30 '' #zField
 >Proto Ce0 Ce0 CaseService #zField
 Ce0 f0 inParamDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria caseSearchCriteria,Integer startIndex,Integer count> param;' #txt
 Ce0 f0 inParamTable 'out.caseSearchCriteria=param.caseSearchCriteria;
@@ -57,9 +62,7 @@ Ce0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ce0 f0 81 81 30 30 -89 26 #rect
-Ce0 f0 @|StartSubIcon #fIcon
 Ce0 f1 417 81 30 30 0 15 #rect
-Ce0 f1 @|EndSubIcon #fIcon
 Ce0 f6 actionTable 'out=in;
 ' #txt
 Ce0 f6 actionCode 'import ch.ivy.addon.portalkit.ivydata.dto.IvyCaseResultDTO;
@@ -75,9 +78,7 @@ Ce0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ce0 f6 184 74 112 44 -30 -8 #rect
-Ce0 f6 @|StepIcon #fIcon
 Ce0 f9 417 177 30 30 0 15 #rect
-Ce0 f9 @|EndSubIcon #fIcon
 Ce0 f11 actionTable 'out=in;
 ' #txt
 Ce0 f11 actionCode 'import ch.ivy.addon.portalkit.ivydata.dto.IvyCaseResultDTO;
@@ -93,7 +94,6 @@ Ce0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ce0 f11 184 170 112 44 -35 -8 #rect
-Ce0 f11 @|StepIcon #fIcon
 Ce0 f12 inParamDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria caseSearchCriteria> param;' #txt
 Ce0 f12 inParamTable 'out.caseSearchCriteria=param.caseSearchCriteria;
 ' #txt
@@ -109,7 +109,6 @@ Ce0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ce0 f12 81 177 30 30 -89 26 #rect
-Ce0 f12 @|StartSubIcon #fIcon
 Ce0 f18 inParamDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCategorySearchCriteria caseCategorySearchCriteria> param;' #txt
 Ce0 f18 inParamTable 'out.caseCategorySearchCriteria=param.caseCategorySearchCriteria;
 ' #txt
@@ -125,9 +124,7 @@ Ce0 f18 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ce0 f18 81 273 30 30 -89 28 #rect
-Ce0 f18 @|StartSubIcon #fIcon
 Ce0 f21 417 273 30 30 0 15 #rect
-Ce0 f21 @|EndSubIcon #fIcon
 Ce0 f22 actionTable 'out=in;
 ' #txt
 Ce0 f22 actionCode 'import ch.ivy.addon.portalkit.ivydata.dto.IvyCaseResultDTO;
@@ -143,11 +140,8 @@ Ce0 f22 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ce0 f22 184 266 112 44 -42 -8 #rect
-Ce0 f22 @|StepIcon #fIcon
 Ce0 f40 417 465 30 30 0 15 #rect
-Ce0 f40 @|EndSubIcon #fIcon
 Ce0 f28 417 369 30 30 0 15 #rect
-Ce0 f28 @|EndSubIcon #fIcon
 Ce0 f29 inParamDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria caseSearchCriteria> param;' #txt
 Ce0 f29 inParamTable 'out.caseSearchCriteria=param.caseSearchCriteria;
 ' #txt
@@ -163,7 +157,6 @@ Ce0 f29 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ce0 f29 81 369 30 30 -68 21 #rect
-Ce0 f29 @|StartSubIcon #fIcon
 Ce0 f39 inParamDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria caseSearchCriteria> param;' #txt
 Ce0 f39 inParamTable 'out.caseSearchCriteria=param.caseSearchCriteria;
 ' #txt
@@ -179,7 +172,6 @@ Ce0 f39 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ce0 f39 81 465 30 30 -68 21 #rect
-Ce0 f39 @|StartSubIcon #fIcon
 Ce0 f33 actionTable 'out=in;
 ' #txt
 Ce0 f33 actionCode 'import ch.ivy.addon.portalkit.ivydata.dto.IvyCaseResultDTO;
@@ -195,7 +187,6 @@ Ce0 f33 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ce0 f33 152 458 176 44 -80 -8 #rect
-Ce0 f33 @|StepIcon #fIcon
 Ce0 f34 actionTable 'out=in;
 ' #txt
 Ce0 f34 actionCode 'import ch.ivy.addon.portalkit.ivydata.dto.IvyCaseResultDTO;
@@ -211,7 +202,6 @@ Ce0 f34 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ce0 f34 160 362 160 44 -73 -8 #rect
-Ce0 f34 @|StepIcon #fIcon
 Ce0 f54 expr out #txt
 Ce0 f54 111 96 184 96 #arcP
 Ce0 f2 expr out #txt
@@ -237,9 +227,7 @@ Ce0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ce0 f4 81 561 30 30 -87 34 #rect
-Ce0 f4 @|StartSubIcon #fIcon
 Ce0 f7 417 561 30 30 0 15 #rect
-Ce0 f7 @|EndSubIcon #fIcon
 Ce0 f10 actionTable 'out=in;
 ' #txt
 Ce0 f10 actionCode 'import ch.ivy.addon.portalkit.ivydata.dto.IvyCaseResultDTO;
@@ -255,7 +243,6 @@ Ce0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ce0 f10 168 554 144 44 -66 -8 #rect
-Ce0 f10 @|StepIcon #fIcon
 Ce0 f31 expr out #txt
 Ce0 f31 111 576 168 576 #arcP
 Ce0 f32 expr out #txt
@@ -270,6 +257,40 @@ Ce0 f13 expr out #txt
 Ce0 f13 328 480 417 480 #arcP
 Ce0 f15 expr out #txt
 Ce0 f15 312 576 417 576 #arcP
+Ce0 f14 actionTable 'out=in;
+' #txt
+Ce0 f14 actionCode 'import ch.ivy.addon.portalkit.ivydata.dto.IvyCaseResultDTO;
+import ch.ivy.addon.portalkit.ivydata.service.impl.CaseService;
+
+IvyCaseResultDTO dto = CaseService.newInstance().analyzeCaseCategoryStatistic(in.caseSearchCriteria);
+out.caseCategoryStatistic = dto.caseCategoryStatistic;' #txt
+Ce0 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Analyze case by category</name>
+    </language>
+</elementInfo>
+' #txt
+Ce0 f14 184 682 144 44 -67 -8 #rect
+Ce0 f23 inParamDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria caseSearchCriteria> param;' #txt
+Ce0 f23 inParamTable 'out.caseSearchCriteria=param.caseSearchCriteria;
+' #txt
+Ce0 f23 outParamDecl '<ch.ivy.addon.portalkit.bo.CaseCategoryStatistic caseCategoryStatistic> result;' #txt
+Ce0 f23 outParamTable 'result.caseCategoryStatistic=in.#caseCategoryStatistic;
+' #txt
+Ce0 f23 callSignature analyzeCaseCategoryStatistic(ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria) #txt
+Ce0 f23 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>analyzeCaseCategoryStatistic(CaseSearchCriteria)</name>
+    </language>
+</elementInfo>
+' #txt
+Ce0 f23 81 689 30 30 -68 21 #rect
+Ce0 f16 409 689 30 30 0 15 #rect
+Ce0 f19 328 704 409 704 #arcP
+Ce0 f30 expr out #txt
+Ce0 f30 111 704 184 704 #arcP
 >Proto Ce0 .type ch.ivyteam.wf.processes.CaseServiceData #txt
 >Proto Ce0 .processKind CALLABLE_SUB #txt
 >Proto Ce0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -325,3 +346,7 @@ Ce0 f33 mainOut f13 tail #connect
 Ce0 f13 head f40 mainIn #connect
 Ce0 f10 mainOut f15 tail #connect
 Ce0 f15 head f7 mainIn #connect
+Ce0 f23 mainOut f30 tail #connect
+Ce0 f30 head f14 mainIn #connect
+Ce0 f14 mainOut f19 tail #connect
+Ce0 f19 head f16 mainIn #connect
