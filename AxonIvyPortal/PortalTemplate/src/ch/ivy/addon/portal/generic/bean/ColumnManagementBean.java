@@ -13,19 +13,15 @@ import javax.faces.context.FacesContext;
 
 import org.apache.commons.lang3.StringUtils;
 
+import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
-import ch.ivy.addon.portalkit.dto.dashboard.CreatedDateColumnModel;
-import ch.ivy.addon.portalkit.dto.dashboard.DescriptionColumnModel;
-import ch.ivy.addon.portalkit.dto.dashboard.ExpiryDateColumnModel;
-import ch.ivy.addon.portalkit.dto.dashboard.IdColumnModel;
-import ch.ivy.addon.portalkit.dto.dashboard.NameColumnModel;
-import ch.ivy.addon.portalkit.dto.dashboard.PriorityColumnModel;
-import ch.ivy.addon.portalkit.dto.dashboard.ResponsibleColumnModel;
-import ch.ivy.addon.portalkit.dto.dashboard.StartColumnModel;
-import ch.ivy.addon.portalkit.dto.dashboard.StateColumnModel;
+import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
+import ch.ivy.addon.portalkit.dto.dashboard.casecolumn.CaseColumnModel;
+import ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.TaskColumnModel;
 import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
+import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.custom.field.CustomFieldType;
@@ -35,7 +31,7 @@ import ch.ivyteam.ivy.workflow.custom.field.ICustomFieldNames.Result;
 @ManagedBean
 @ViewScoped
 public class ColumnManagementBean {
-  private TaskDashboardWidget widget;
+  private DashboardWidget widget;
   private List<ColumnModel> columnsBeforeSave;
   private List<DashboardColumnType> fieldTypes;
   private DashboardColumnType selectedFieldType;
@@ -45,7 +41,6 @@ public class ColumnManagementBean {
   private String selectedField;
   private String numberFieldPattern;
   private String fieldDisplayName;
-  private List<String> standardFields;
   
   @PostConstruct
   public void init() {
@@ -53,13 +48,27 @@ public class ColumnManagementBean {
     this.selectedFieldType = DashboardColumnType.STANDARD;
     this.customFieldTypes = Arrays.asList(CustomFieldType.STRING, CustomFieldType.TEXT, CustomFieldType.NUMBER, CustomFieldType.TIMESTAMP);
     this.selectedCustomFieldType = CustomFieldType.STRING;
-    this.standardFields = standardFields();
   }
   
-  public void preRender(TaskDashboardWidget widget) {
+  public void preRender(DashboardWidget widget) {
     this.widget = widget;
-    this.columnsBeforeSave = new ArrayList<>(this.widget.getColumns());
+    if (isTaskWidget(widget)) {
+      TaskDashboardWidget taskWidget = (TaskDashboardWidget) this.widget; 
+      this.columnsBeforeSave = new ArrayList<>(taskWidget.getColumns());
+    }
+    if (isCaseWidget(widget)) {
+      CaseDashboardWidget caseDashboardWidget = (CaseDashboardWidget) this.widget;
+      this.columnsBeforeSave = new ArrayList<>(caseDashboardWidget.getColumns());
+    }
     fetchFields();
+  }
+
+  private boolean isCaseWidget(DashboardWidget widget) {
+    return widget instanceof CaseDashboardWidget;
+  }
+
+  private boolean isTaskWidget(DashboardWidget widget) {
+    return widget instanceof TaskDashboardWidget;
   }
 
   private void resetValues() {
@@ -69,7 +78,18 @@ public class ColumnManagementBean {
   }
   
   public void save() {
-    this.widget.setColumns(columnsBeforeSave);
+    if (isTaskWidget(widget)) {
+      TaskDashboardWidget taskWidget = (TaskDashboardWidget) this.widget;
+      List<TaskColumnModel> taskColumns = new ArrayList<>();
+      columnsBeforeSave.forEach(column -> taskColumns.add((TaskColumnModel) column));
+      taskWidget.setColumns(taskColumns);
+    }
+    if (isCaseWidget(widget)) {
+      CaseDashboardWidget caseDashboardWidget = (CaseDashboardWidget) this.widget;
+      List<CaseColumnModel> caseColumns = new ArrayList<>();
+      columnsBeforeSave.forEach(column -> caseColumns.add((CaseColumnModel) column));
+      caseDashboardWidget.setColumns(caseColumns);
+    }
   }
   
   public void remove(ColumnModel col) {
@@ -78,15 +98,28 @@ public class ColumnManagementBean {
   
   private List<String> standardFields() {
     List<String> standardFields = new ArrayList<>();
-    for (DashboardStandardTaskColumn col : DashboardStandardTaskColumn.values()) {
-      standardFields.add(col.getField());
+    if (isTaskWidget(widget)) {
+      for (DashboardStandardTaskColumn col : DashboardStandardTaskColumn.values()) {
+        standardFields.add(col.getField());
+      }
+    }
+    if (isCaseWidget(widget)) {
+      for (DashboardStandardCaseColumn col : DashboardStandardCaseColumn.values()) {
+        standardFields.add(col.getField());
+      }
     }
     standardFields.sort(StringUtils::compare);
     return standardFields;
   }
-  
+
   public void add() {
-    ColumnModel columnModel = constructColumn();
+    ColumnModel columnModel = new ColumnModel();
+    if (isTaskWidget(widget)) {
+      columnModel = TaskColumnModel.constructColumn(this.selectedFieldType, this.selectedField);
+    }
+    if (isCaseWidget(widget)) {
+      columnModel = CaseColumnModel.constructColumn(this.selectedFieldType, this.selectedField);
+    }
     columnModel.setType(this.selectedFieldType);
     columnModel.setHeader(this.fieldDisplayName);
     columnModel.setField(this.selectedField);
@@ -95,42 +128,23 @@ public class ColumnManagementBean {
       columnModel.setPattern(numberFieldPattern);
     }
     this.columnsBeforeSave.add(columnModel);
-    FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/fieldIsAdded", Arrays.asList(this.selectedField)), null);
+    FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO,
+        Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/fieldIsAdded", Arrays.asList(this.selectedField)), null);
     FacesContext.getCurrentInstance().addMessage("field-msg", msg);
     resetValues();
   }
-  
-  private ColumnModel constructColumn() {
-    ColumnModel column = new ColumnModel();
-    if (this.selectedFieldType == DashboardColumnType.STANDARD) {
-      if (DashboardStandardTaskColumn.START.getField().equalsIgnoreCase(this.selectedField)) {
-        column = new StartColumnModel();
-      } else if (DashboardStandardTaskColumn.PRIORITY.getField().equalsIgnoreCase(this.selectedField)) {
-        column = new PriorityColumnModel();
-      } else if (DashboardStandardTaskColumn.ID.getField().equalsIgnoreCase(this.selectedField)) {
-        column = new IdColumnModel();
-      } else if (DashboardStandardTaskColumn.NAME.getField().equalsIgnoreCase(this.selectedField)) {
-        column = new NameColumnModel();
-      } else if (DashboardStandardTaskColumn.DESCRIPTION.getField().equalsIgnoreCase(this.selectedField)) {
-        column = new DescriptionColumnModel();
-      } else if (DashboardStandardTaskColumn.RESPONSIBLE.getField().equalsIgnoreCase(this.selectedField)) {
-        column = new ResponsibleColumnModel();
-      } else if (DashboardStandardTaskColumn.STATE.getField().equalsIgnoreCase(this.selectedField)) {
-        column = new StateColumnModel();
-      } else if (DashboardStandardTaskColumn.CREATED.getField().equalsIgnoreCase(this.selectedField)) {
-        column = new CreatedDateColumnModel();
-      } else if (DashboardStandardTaskColumn.EXPIRY.getField().equalsIgnoreCase(this.selectedField)) {
-        column = new ExpiryDateColumnModel();
-      }
-    }
-    return column;
-  }
-  
+
   public void fetchFields() {
     if (this.selectedFieldType == DashboardColumnType.STANDARD) {
-      this.fields = this.standardFields;
+      this.fields = standardFields();
     } else {
-      List<Result> customFieldNames = ICustomFieldNames.tasks().type(selectedCustomFieldType).executor().results();
+      List<Result> customFieldNames = new ArrayList<>();
+      if (isTaskWidget(widget)) {
+        customFieldNames = ICustomFieldNames.tasks().type(selectedCustomFieldType).executor().results();
+      }
+      if (isCaseWidget(widget)) {
+        customFieldNames = ICustomFieldNames.cases().type(selectedCustomFieldType).executor().results();
+      }
       this.fields = customFieldNames.stream().filter(this::doesNotExist).map(Result::name).sorted(StringUtils::compareIgnoreCase).collect(Collectors.toList());
     }
   }
@@ -140,7 +154,15 @@ public class ColumnManagementBean {
   }
   
   private boolean doesNotExist(Result customFieldName) {
-    return !this.widget.getColumns().stream().map(ColumnModel::getField).anyMatch(f -> StringUtils.equals(f, customFieldName.name()));
+    if (isTaskWidget(widget)) {
+      TaskDashboardWidget taskWidget = (TaskDashboardWidget) this.widget;
+      return !taskWidget.getColumns().stream().map(ColumnModel::getField).anyMatch(field -> StringUtils.equals(field, customFieldName.name()));
+    }
+    if (isCaseWidget(widget)) {
+      CaseDashboardWidget caseDashboardWidget = (CaseDashboardWidget) this.widget;
+      return !caseDashboardWidget.getColumns().stream().map(ColumnModel::getField).anyMatch(field -> StringUtils.equals(field, customFieldName.name()));
+    }
+    return false;
   }
   
   public List<ColumnModel> getColumnsBeforeSave() {

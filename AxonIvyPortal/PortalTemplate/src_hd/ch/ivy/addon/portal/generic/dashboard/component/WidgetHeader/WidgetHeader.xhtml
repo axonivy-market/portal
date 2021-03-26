@@ -1,0 +1,47 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="status" />
+  <cc:attribute name="widget" />
+  <cc:attribute name="componentToUpdateOnEdit" default="new-widget-configuration-dialog" />
+  <cc:attribute name="isReadOnlyMode" default="false" />
+</cc:interface>
+
+<cc:implementation>
+  <div class="widget__header">
+    <span>#{not empty widget.name ? widget.name : 'Your widget'}</span>
+
+    <div class="widget__header-actions">
+      <span class="u-mar-right-10">
+        <cc:insertFacet name="filterSidebarLink" />
+      </span>
+
+      <p:link id="info-sidebar-link-#{status.index}" href="#"
+        styleClass="si si-information-circle u-mar-right-10"
+        onclick="updateCaseStatisticPannel#{status.index}()" />
+
+      <p:commandLink styleClass="si si-pencil u-mar-right-10" global="false"
+        oncomplete="PF('#{cc.attrs.componentToUpdateOnEdit}').show()"
+        actionListener="#{dashboardConfigurationBean.setEditWidget(widget)}"
+        update="#{cc.attrs.componentToUpdateOnEdit}"
+        rendered="#{!isReadOnlyMode}" />
+
+      <p:commandLink disabled="true" styleClass="si si-arrow-right" />
+
+      <p:remoteCommand name="buildStatisticInfos#{status.index}"
+        actionListener="#{widget.buildStatisticInfos}"
+        update="statistic-filter-accordion-panel-#{status.index}"
+        process="@this" partialSubmit="true" immediate="true" />
+
+      <p:overlayPanel id="info-overlay-panel-#{status.index}" widgetVar="info-overlay-panel-#{status.index}"
+        for="info-sidebar-link-#{status.index}"
+        appendTo="@(body)" styleClass="info-overlay-panel" dismissable="false"
+        onShow="buildStatisticInfos#{status.index}();">
+        <cc:insertFacet name="infoOverlayContent" />
+      </p:overlayPanel>
+    </div>
+  </div>
+
+</cc:implementation>
+</html>
