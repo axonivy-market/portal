@@ -16,38 +16,6 @@ More UX for Axon Ivy Portal 9.2, refer to :ref:`introduction-new-and-note-worthy
 
 .. _introduction-new-and-note-worthy:
 
-New & Noteworthy 9.1
---------------------
-
-Overlay guide
-^^^^^^^^^^^^^
-
-At first login, an introduction will be shown to introduce all main features of Portal.
-
-|overlay-guide|
-
-My profile 
-^^^^^^^^^^
-
-My profile replaces for language setting and email setting. Also, introduce the general setting for you can configure the portal according to your requirements
-
-|my-profile|
-
-New absence management
-^^^^^^^^^^^^^^^^^^^^^^
-
-New UI and user can choose deputy as permanent or temporary for personal task.
-
-|absence|
-
-
-.. _introduction-new-and-note-worthy-further-improvement:
-
-Further improvements
-^^^^^^^^^^^^^^^^^^^^
-
-Filter case by owner in case list and task analysis if case owner is enabled.
-
 .. _introduction-new-and-note-worthy-9.2:
 
 New & Noteworthy 9.2
@@ -91,6 +59,39 @@ Advanced user specific settings
 Make it your own way with the Axon Ivy Portal. Users can optimize process work and customize the Axon Ivy Portal to their own taste.
 
 |my-profile-save|
+
+New & Noteworthy 9.1
+--------------------
+
+Overlay guide
+^^^^^^^^^^^^^
+
+At first login, an introduction will be shown to introduce all main features of Portal.
+
+|overlay-guide|
+
+My profile 
+^^^^^^^^^^
+
+My profile replaces for language setting and email setting. Also, introduce the general setting for you can configure the portal according to your requirements
+
+|my-profile|
+
+New absence management
+^^^^^^^^^^^^^^^^^^^^^^
+
+New UI and user can choose deputy as permanent or temporary for personal task.
+
+|absence|
+
+
+.. _introduction-new-and-note-worthy-further-improvement:
+
+Further improvements
+^^^^^^^^^^^^^^^^^^^^
+
+Filter case by owner in case list and task analysis if case owner is enabled.
+
 
 .. |overlay-guide| image:: ../../screenshots/dashboard/overlay-guide.png
 .. |my-profile| image:: ../../screenshots/my-profile/my-profile.png
