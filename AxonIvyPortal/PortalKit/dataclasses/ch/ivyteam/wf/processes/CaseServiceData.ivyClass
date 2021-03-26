@@ -11,3 +11,4 @@ startIndex Integer #field
 totalCases Long #field
 caseCustomFieldSearchCriteria ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCustomFieldSearchCriteria #field
 customFields java.util.List<String> #field
+caseCategoryStatistic ch.ivy.addon.portalkit.bo.CaseCategoryStatistic #field

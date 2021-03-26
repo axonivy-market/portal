@@ -1,0 +1,4 @@
+PortalDashboardData #class
+ch.ivy.addon.portal.generic #namespace
+isEdit Boolean #field
+isEdit PERSISTENT #fieldModifier

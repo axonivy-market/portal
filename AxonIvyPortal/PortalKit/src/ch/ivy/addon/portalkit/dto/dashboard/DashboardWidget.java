@@ -7,15 +7,15 @@ import org.apache.commons.lang.StringUtils;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import ch.ivy.addon.portalkit.constant.DashboardConfigurationPrefix;
 import ch.ivyteam.ivy.environment.Ivy;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
-
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 @JsonSubTypes({
-  @Type(value = TaskDashboardWidget.class, name = "task"), 
+  @Type(value = TaskDashboardWidget.class, name = "task"),
+  @Type(value = CaseDashboardWidget.class, name = "case"),
   @Type(value = ProcessDashboardWidget.class, name = "process"),
   @Type(value = ActionDashboardWidget.class, name = "action")
 })
@@ -101,6 +101,8 @@ public abstract class DashboardWidget implements Serializable {
   public void setAutoPosition(boolean autoPosition) {
     this.autoPosition = autoPosition;
   }
+  
+  public void buildStatisticInfos() {}
   
   @Override
   public int hashCode() {

@@ -1,0 +1,77 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+<h:form id="#{widgetFormId}">
+  <div class="widget__header">
+    <span>#{not empty widget.name ? widget.name : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/yourWidget')}</span>
+
+    <div class="widget__header-actions">
+      <p:link id="filter-sidebar-link-#{index}"
+        href="#"
+        styleClass="widget__filter-sidebar-link si si-filter-1 u-mar-right-10" />
+
+      <p:link id="info-sidebar-link-#{index}"
+        href="#"
+        styleClass="si si-information-circle u-mar-right-10"
+        onclick="updateCaseStatisticPannel#{index}()" />
+
+      <p:commandLink styleClass="si si-pencil u-mar-right-10"
+        oncomplete="PF('new-widget-configuration-dialog').show()"
+        global="false"
+        actionListener="#{dashboardConfigurationBean.setEditWidget(widget)}"
+        update="new-widget-configuration-dialog"
+        rendered="#{!isReadOnlyMode}" />
+
+      <p:commandLink disabled="true" styleClass="si si-arrow-right" />
+
+      <!-- remote command to load data for info statistic panel -->
+      <p:remoteCommand name="buildStatisticInfos#{index}"
+        actionListener="#{widget.buildStatisticInfos}"
+        update="statistic-filter-accordion-panel-#{index}"
+        process="@this" partialSubmit="true" immediate="true" />
+
+      <!-- remote command to reset state of info accordion panel -->
+      <p:remoteCommand name="updateCaseStatisticPannel#{index}"
+        update="statistic-filter-accordion-panel-#{index}"
+        resetValues="true" global="false" process="@this" partialSubmit="true" immediate="true" />
+
+      <p:overlayPanel id="info-overlay-panel-#{index}"
+        widgetVar="info-overlay-panel-#{index}"
+        for="info-sidebar-link-#{index}"
+        appendTo="@(body)"
+        styleClass="info-overlay-panel"
+        onShow="buildStatisticInfos#{index}();"
+        dismissable="false">
+
+        <p:accordionPanel id="statistic-filter-accordion-panel-#{index}"
+          widgetVar="statistic-filter-accordion-panel-#{index}"
+          styleClass="statistic-filter-accordion-panel widget-info-panel ui-g-12 ui-fluid"
+          multiple="true"
+          onTabShow="#{onStatisticTabShow}">
+
+          <ui:insert name="widgetInformationContent" />
+
+        </p:accordionPanel>
+      </p:overlayPanel>
+
+      <p:overlayPanel widgetVar="filter-overlay-panel-#{index}"
+        for="filter-sidebar-link-#{index}"
+        appendTo="@(body)"
+        styleClass="info-overlay-panel case-filter-overlay-panel"
+        dismissable="false">
+
+        <ui:insert name="widgetFilterContent" />
+
+      </p:overlayPanel>
+    </div>
+  </div>
+
+  <h:panelGroup id="widget-content" styleClass="widget__content #{widget.id} dashboard-widget-panel-container" layout="block">
+
+    <ui:insert name="widgetContent" />
+
+  </h:panelGroup>
+</h:form>
+
+</html>
