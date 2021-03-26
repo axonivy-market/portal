@@ -10,6 +10,7 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
 
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
+import ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.TaskColumnModel;
 import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
 import ch.ivy.addon.portalkit.enums.DashboardFilterType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
@@ -27,7 +28,7 @@ public class DashboardTaskSearchCriteria {
   private boolean canWorkOn;
   private List<String> categories;
   private List<String> userFilterCategories;
-  private List<ColumnModel> columns;
+  private List<TaskColumnModel> columns;
   private String sortField;
   private boolean sortDescending;
   private boolean isInConfiguration;
@@ -403,11 +404,11 @@ public class DashboardTaskSearchCriteria {
     this.userFilterCategories = categories;
   }
   
-  public List<ColumnModel> getColumns() {
+  public List<TaskColumnModel> getColumns() {
     return columns;
   }
   
-  public void setColumns(List<ColumnModel> columns) {
+  public void setColumns(List<TaskColumnModel> columns) {
     this.columns = columns;
   }
 }

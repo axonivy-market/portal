@@ -1,0 +1,82 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:jsf="http://xmlns.jcp.org/jsf"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+<h:body>
+  <ui:composition template="/layouts/restricted/DashboardTemplate.xhtml">
+
+    <ui:param name="managedBean" value="#{dashboardConfigurationBean}" />
+
+    <ui:define name="title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/pageTitle')}</ui:define>
+
+    <ui:define name="headerAction">
+      <p:commandButton id="switch-to-view-mode" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/switchToViewMode')}"
+        styleClass="dashboard__switch-mode" actionListener="#{logic.close}" update="grid-stack @this" process="@this" icon="si si-view-1" />
+    </ui:define>
+
+    <ui:define name="dashboardContent">
+      <h:form>
+        <p:remoteCommand name="saveConfigurationCommand" actionListener="#{dashboardConfigurationBean.save()}" global="false" />
+      </h:form>
+
+      <c:forEach var="widget" items="#{dashboardConfigurationBean.selectedDashboard.widgets}" varStatus="status">
+        <div class="grid-stack-item"
+          data-gs-x="#{widget.axisX}"
+          data-gs-y="#{widget.axisY}"
+          data-gs-id="#{widget.id}"
+          data-gs-width="#{widget.width}"
+          data-gs-height="#{widget.height}"
+          data-gs-autoPosition="#{widget.autoPosition}"
+          data-gs-no-resize="false"
+          data-gs-no-move="false">
+          <div class="grid-stack-item-content card dashboard-card dashboard__widget">
+            <!-- Task widget -->
+            <c:if test="#{fn:startsWith(widget.id, 'task')}">
+              <ic:ch.ivy.addon.portal.generic.dashboard.component.TaskDashboardWidget widget="#{widget}" managedBean="#{dashboardConfigurationBean}"
+                index="#{status.index}"/>
+            </c:if>
+
+            <!-- Case list widget -->
+            <c:if test="#{fn:startsWith(widget.id, 'case')}">
+              <ic:ch.ivy.addon.portal.generic.dashboard.component.CaseDashboardWidget index="#{status.index}" widget="#{widget}"
+                componentToUpdateOnEdit="new-widget-configuration-dialog" managedBean="#{dashboardConfigurationBean}" />
+            </c:if>
+
+            <!-- Process widget -->
+            <c:if test="#{fn:startsWith(widget.id, 'process')}">
+              <div class="widget__header">
+                <span>#{not empty widget.name ? widget.name : ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourProcesses")}</span>
+
+                <div class="widget__header-actions">
+                  <p:commandLink disabled="true">
+                    <i class="si si-arrow-right" />
+                  </p:commandLink>
+                </div>
+              </div>
+              <div class="widget__content process-widget-component">
+                <ic:ch.ivy.addon.portalkit.component.UserProcessWidget id="process-widget-component" />
+              </div>
+            </c:if>
+
+            <!-- Action widget -->
+            <c:if test="#{widget.id eq 'action'}">
+              <div class="widget__content">
+                <h:panelGroup id="actions" layout="block" styleClass="actions-widget">
+                  <p:commandButton id="add-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/addWidget')}" type="button"
+                    styleClass="action-widget__add-button" onclick="PF('new-widget-dialog').show()" icon="si si-add" />
+                  <br />
+                  <p:commandLink id="restore-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/restoreWidget')}"
+                    actionListener="#{dashboardConfigurationBean.restore()}" update="grid-stack" oncomplete="loadGrid()" />
+                </h:panelGroup>
+              </div>
+            </c:if>
+          </div>
+        </div>
+      </c:forEach>
+
+      <ui:include src="PortalDashboardAddNewWidgets.xhtml" />
+
+    </ui:define>
+  </ui:composition>
+</h:body>
+</html>
