@@ -28,3 +28,11 @@ selectedTaskListSortDirection String #field
 selectedTaskListSortDirection PERSISTENT #fieldModifier
 selectedCaseListSortDirection String #field
 selectedCaseListSortDirection PERSISTENT #fieldModifier
+selectedDateFormat String #field
+selectedDateFormat PERSISTENT #fieldModifier
+dateFormats java.util.List<String> #field
+dateFormats PERSISTENT #fieldModifier
+processModes java.util.List<String> #field
+processModes PERSISTENT #fieldModifier
+selectedProcessMode String #field
+selectedProcessMode PERSISTENT #fieldModifier

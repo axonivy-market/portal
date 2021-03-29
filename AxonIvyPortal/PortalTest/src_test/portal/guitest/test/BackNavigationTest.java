@@ -2,11 +2,15 @@ package portal.guitest.test;
 
 import static org.junit.Assert.assertEquals;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 
 import portal.guitest.common.BaseTest;
+import portal.guitest.common.DateTimePattern;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.CaseDetailsPage;
 import portal.guitest.page.CaseWidgetPage;
@@ -75,11 +79,13 @@ public class BackNavigationTest extends BaseTest {
     caseDetailsPage = caseWidgetPage.openCaseDetailsFromActionMenuByCaseName(LEAVE_REQUEST_CASE_NAME);
     assertEquals(CASE_DETAILS_TITLE, caseDetailsPage.getPageTitle());
 
-    TaskDetailsPage taskDetailsPage = caseDetailsPage.openTasksOfCasePage(0);
+    TaskDetailsPage taskDetailsPage = caseDetailsPage.openTasksOfCasePage(1);
     assertEquals(TASK_DETAILS_TITLE, taskDetailsPage.getPageTitle());
 
     TaskTemplatePage taskTemplatePage = taskDetailsPage.clickStartTask();
-    taskTemplatePage.inputFields("tester", "16.05.2019", "17.05.2019", "tester");
+    String today =  LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_PATTERN));
+    String yesterday =  LocalDateTime.now().minusDays(1).format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_PATTERN));
+    taskTemplatePage.inputFields("tester", yesterday, today, "tester");
     taskTemplatePage.clickOnSubmitButton();
 
     caseDetailsPage = new CaseDetailsPage();
@@ -117,21 +123,18 @@ public class BackNavigationTest extends BaseTest {
     caseDetailsPage = caseWidgetPage.openDetailsOfCaseHasName(PAYMENT_CASE_NAME);
     assertEquals(PAYMENT_CASE_NAME, caseDetailsPage.getCaseName());
 
-    taskDetailsPage = caseDetailsPage.openTasksOfCasePage(0);
+    taskDetailsPage = caseDetailsPage.openTasksOfCasePage(1);
     assertEquals(PAYMENT_TASK_NAME, taskDetailsPage.getTaskName());
     caseDetailsPage = taskDetailsPage.backToCaseDetails();
     assertEquals(PAYMENT_CASE_NAME, caseDetailsPage.getCaseName());
 
-    caseDetailsPage.openRelatedCaseOfBusinessCase(0);
-    caseDetailsPage.waitForCaseDetailsReload();
-    assertEquals("Signal create New Payment", caseDetailsPage.getCaseName());
-
-    taskDetailsPage = caseDetailsPage.openTasksOfCasePage(0);
+    taskDetailsPage = caseDetailsPage.openTasksOfCasePage(1);
     assertEquals(PAYMENT_TASK_NAME, taskDetailsPage.getTaskName());
 
     TaskTemplatePage taskTemplatePage = taskDetailsPage.clickStartTask();
     taskTemplatePage.type(By.id("payment-request:fullname"), "Demo");
-    taskTemplatePage.type(By.id("payment-request:from_input"), "30.06.2020");
+    String today =  LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_PATTERN));
+    taskTemplatePage.type(By.id("payment-request:from_input"), today);
     taskTemplatePage.clickOnSubmitButton();
     caseDetailsPage = new CaseDetailsPage();
     caseDetailsPage.waitForCaseDetailsReload();
@@ -149,7 +152,7 @@ public class BackNavigationTest extends BaseTest {
     caseDetailsPage = caseWidgetPage.openDetailsOfCaseHasName(PAYMENT_CASE_NAME);
     assertEquals(PAYMENT_CASE_NAME, caseDetailsPage.getCaseName());
 
-    taskDetailsPage = caseDetailsPage.openTasksOfCasePage(0);
+    taskDetailsPage = caseDetailsPage.openTasksOfCasePage(1);
     assertEquals(PAYMENT_TASK_NAME, taskDetailsPage.getTaskName());
 
     TaskTemplatePage taskTemplatePage = taskDetailsPage.clickStartTask();

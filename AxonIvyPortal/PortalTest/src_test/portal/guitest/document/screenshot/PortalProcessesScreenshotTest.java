@@ -10,6 +10,7 @@ import org.openqa.selenium.WebElement;
 import ch.ivy.addon.portalkit.util.ScreenshotMargin;
 import ch.ivy.addon.portalkit.util.ScreenshotUtil;
 import portal.guitest.common.ScreenshotTest;
+import portal.guitest.common.Sleeper;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.ProcessWidgetPage;
@@ -18,7 +19,7 @@ public class PortalProcessesScreenshotTest extends ScreenshotTest {
 
   private HomePage homePage;
   ProcessWidgetPage processWidget;
-  private static final int SCREENSHOT_WIDTH = 1500;
+  private static final int SCREENSHOT_WIDTH = 1440;
   private static final int SCREENSHOT_HD_WIDTH = 1920;
   private static final int SCREENSHOT_MOBILE_HEIGHT = 500;
   private static final int SCREENSHOT_HEIGHT = 1080;
@@ -43,16 +44,16 @@ public class PortalProcessesScreenshotTest extends ScreenshotTest {
 
   @Test
   public void screenshotAddNewExternalLink() throws IOException {
+    ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, SCREENSHOT_MOBILE_HEIGHT));
     login(TestAccount.ADMIN_USER);
     processWidget = homePage.getProcessWidget();
     processWidget.expand();
-    ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, SCREENSHOT_MOBILE_HEIGHT));
     executeDecorateJs("highlightAddExternalLink()");
     ScreenshotUtil.captureHalfTopPageScreenShot(ScreenshotUtil.PROCESSES_WIDGET_FOLDER + "how-to-add-a-new-external-link", new Dimension(SCREENSHOT_WIDTH, SCREENSHOT_MOBILE_HEIGHT));
-    
-    ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, SCREENSHOT_HEIGHT));
     refreshPage();
     processWidget.waitUtilProcessWidgetDisplayed();
+
+    ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, SCREENSHOT_HEIGHT));
     processWidget.openNewExternalLinkDialog();
     executeDecorateJs("highlightAddExternalDialogItem()");
     WebElement externalDialog = processWidget.getAddExternalLinkDialog();
@@ -61,12 +62,26 @@ public class PortalProcessesScreenshotTest extends ScreenshotTest {
   
   @Test
   public void screenshotPortalFullProcessesList() throws IOException {
+    login(TestAccount.ADMIN_USER);
     processWidget = homePage.getProcessWidget();
     processWidget.expand();
-    ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, SCREENSHOT_HEIGHT));
+    ScreenshotUtil.resizeBrowser(new Dimension(1000, 900));
     processWidget.navigateToProcessIndex("A");
+    executeDecorateJs("highlightEditProcessLink()");
+    processWidget.clickOnProcessEditLink(0);
+    executeDecorateJs("highlightEditProcessIcon()");
+    ScreenshotUtil.captureElementWithMarginOptionScreenshot(processWidget.getEditProcessDialog(), ScreenshotUtil.PROCESSES_WIDGET_FOLDER + "edit-process-dialog", new ScreenshotMargin(150, 200));
+    ScreenshotUtil.resizeBrowser(new Dimension(1366, 800));
+    refreshPage();
+    processWidget.waitUtilProcessWidgetDisplayed();
     executeDecorateJs("highlightProcessItems()");
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.PROCESSES_WIDGET_FOLDER + "portal-full-process-list-page");
+    refreshPage();
+    processWidget.waitUtilProcessWidgetDisplayed();
+    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.PROCESSES_WIDGET_FOLDER + "portal-process-grid-view-page");
+    processWidget.clickOnSwitchButton();
+    Sleeper.sleep(250); /* Wait for css styling */
+    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.PROCESSES_WIDGET_FOLDER + "portal-process-list-view-page");
   }
   
   @Test

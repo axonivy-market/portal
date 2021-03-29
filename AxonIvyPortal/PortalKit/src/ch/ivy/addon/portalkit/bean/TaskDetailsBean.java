@@ -34,14 +34,13 @@ public class TaskDetailsBean implements Serializable {
 
   private static final long serialVersionUID = 8566646437739271552L;
   private static final String TASK_DETAILS_CONFIGURATION_PROPERTY = "task.details.widgets";
-  private static final String PORTAL_TASK_DETAILS_GLOBAL_VARIABLE = "PORTAL_TASK_DETAILS";
+  private static final String PORTAL_TASK_DETAILS_GLOBAL_VARIABLE = "Portal.TaskDetails";
 
   private TaskDetails configuration;
   private List<TaskDetailsWidget> widgets;
   private ObjectMapper mapper = new ObjectMapper().enable(MapperFeature.ACCEPT_CASE_INSENSITIVE_ENUMS);
   private boolean isReadOnlyMode = true;
   private boolean hasShowNotAvailableData;
-  private boolean hasApplyJsonConfigurationFile;
   private boolean hasShowDurationTime;
   private GlobalSettingService globalSettingService = new GlobalSettingService();
 
@@ -57,18 +56,14 @@ public class TaskDetailsBean implements Serializable {
 
   private void loadTaskDetailsSettings() {
     hasShowNotAvailableData = PermissionUtils.isSessionUserHasAdminRole();
-    hasApplyJsonConfigurationFile = Boolean.parseBoolean(globalSettingService
-        .findGlobalSettingValue(GlobalVariable.APPLY_JSON_CONFIGURATION_FILE_FOR_TASK_DETAILS.toString()));
     hasShowDurationTime = Boolean
         .parseBoolean(globalSettingService.findGlobalSettingValue(GlobalVariable.SHOW_TASK_DURATION_TIME.toString()));
   }
 
   private void loadWidgets() throws Exception {
-    if (hasApplyJsonConfigurationFile) {
-      String configurationJson = readConfigurationJsonInProperty();
-      configuration = readConfiguration(configurationJson);
-      widgets = configuration.getWidgets();
-    }
+    String configurationJson = readConfigurationJsonInProperty();
+    configuration = readConfiguration(configurationJson);
+    widgets = configuration.getWidgets();
   }
 
   private String readConfigurationJsonInProperty() {
@@ -98,15 +93,12 @@ public class TaskDetailsBean implements Serializable {
     Ivy.session().getSessionUser().removeProperty(TASK_DETAILS_CONFIGURATION_PROPERTY);
   }
 
-  public void switchToViewMode() {
-    this.isReadOnlyMode = true;
-  }
-
   public void switchToEditMode() {
     this.isReadOnlyMode = false;
   }
 
   public void save() throws JsonMappingException, JsonProcessingException {
+    this.isReadOnlyMode = true;
     configuration.setChanged(true);
     List<TaskDetailsWidget> widgets = getUpdatedWidgets();
     updateToConfiguration(widgets);
@@ -196,14 +188,6 @@ public class TaskDetailsBean implements Serializable {
 
   public void setShowNotAvailableData(boolean hasShowNotAvailableData) {
     this.hasShowNotAvailableData = hasShowNotAvailableData;
-  }
-
-  public boolean isApplyJsonConfigurationFile() {
-    return hasApplyJsonConfigurationFile;
-  }
-
-  public void setApplyJsonConfigurationFile(boolean hasApplyJsonConfigurationFile) {
-    this.hasApplyJsonConfigurationFile = hasApplyJsonConfigurationFile;
   }
 
   public boolean isShowDurationTime() {

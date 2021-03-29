@@ -112,8 +112,11 @@ function highlightAddExternalDialogItem() {
   var visibility = $('#process-widget\\:add-external-link-form\\:external-link-type-radio');
   appendStepAnnotation(visibility, "5", 0, -10);
   
+  var icon = $("[id$='add-external-link-form:external-link-icon:awesome-icon-selection']");
+  appendStepAnnotation(icon, "6", -10, 80);
+  
   var addButton = $("[id$='process-widget:add-external-link-form:adding-new-external-link-command']");
-  appendStepAnnotation(addButton, "6", 0, -35);
+  appendStepAnnotation(addButton, "7", 0, -35);
 }
 
 function highlightProcessItems() {
@@ -121,13 +124,26 @@ function highlightProcessItems() {
   createRedMediumOutline(processSearch);
   appendStepAnnotation(processSearch, "1", -5, processSearch.width() - 40);
   
-  var expressLogo = $('.express-process-logo.si-startup-launch');
+  var expressLogo = $('.is-express .si-startup-launch:eq(0)');
   createRedMediumOutline(expressLogo);
-  appendStepAnnotation(expressLogo, "2", -45, -10);
+  appendStepAnnotation(expressLogo, "2", -15, -30);
   
-  var externalLink = $('.si-hyperlink-3.external-link-icon:eq(0)');
+  var externalLink = $('.is-external-link .si-hyperlink-3:eq(0)');
   createRedMediumOutline(externalLink);
-  appendStepAnnotation(externalLink, "3", -45, -10);
+  appendStepAnnotation(externalLink, "3", -15, -30);
+  
+  createRedMediumOutline($('[id$="process-widget:process-view-mode:process-view"]'));
+  appendStepAnnotation($("[id$='process-widget:process-view-mode'] label[class$='switch-active']"), "4", -10, -40);
+}
+
+function highlightEditProcessIcon() {
+  appendStepAnnotation($("[id$='process-widget:edit-process-form:edit-process-icon:awesome-icon-selection']"), "2", -10, 100);
+}
+
+function highlightEditProcessLink() {
+  let editProcessLink = $('[id$="grid-process-group-alphabet:0:grid-processes:0:process-item:edit-link"]');
+  createRedMediumOutline(editProcessLink);
+  appendStepAnnotation(editProcessLink, "1", -10, -40);
 }
 
 function numberingStatisticWidget() {
@@ -147,7 +163,7 @@ function highlightCaseMenuItem() {
 }
 
 function highlightShowMoreNoteLink() {
-  createRedMediumOutline($('#case-item-details\\:case-histories\\:show-more-note-link'));
+  createRedMediumOutline($('a.js-note-show-more-link'));
 }
 
 function highlightStatisticNavigation() {
@@ -311,7 +327,7 @@ function highlightSwitchToViewMode() {
 }
 
 function highlightResetToDefault() {
-  createRedMediumOutline($("[id$=':reset-task-details-settings-button']"));
+  createRedMediumOutline($("[id$=':reset-details-settings-button']"));
 }
 
 function highlightShowWorkflowEvents() {
@@ -352,20 +368,19 @@ function cleanHighlightExportExpress() {
   $('.marker').remove();
 }
 
+function scrollToMiddleOfLayoutContent() {
+  var layoutContent = $('.js-layout-content'); 
+  layoutContent.scrollTop(layoutContent[0].scrollHeight/2);
+}
+
+function scrollToMiddleOfLayoutContent2() {
+  var layoutContent = $('.js-layout-content');
+  layoutContent.scrollTop(layoutContent[0].scrollHeight/4);
+}
+
 function scrollToBottomOfLayoutContent() {
   var layoutContent = $('.js-layout-content'); 
   layoutContent.scrollTop(layoutContent[0].scrollHeight);
-}
-
-function highlightCustomCaseDetail() {
-  var customTop = $('.custom-task-details-panel-top');
-  appendStepAnnotation(customTop, 1, -45, customTop.width()/2);
-  
-  var customMidle = $('.custom-task-details-panel-middle');
-  appendStepAnnotation(customMidle, 2, -45, customMidle.width()/2);
-  
-  var customBottom = $('.custom-task-details-panel');
-  appendStepAnnotation(customBottom, 3, -45, customBottom.width()/2);
 }
 
 function highlightCustomTaskDetail() {
@@ -391,17 +406,20 @@ function highlightCustomTaskDetailWithNewStyle() {
 }
 
 function highlightCaseDetailComponents() {
-  var general = $('#case-general-information-card');
+  var general = $('#case-details-information-panel');
   appendStepAnnotation(general, 1, 0, general.width()/2);
   
-  var histories = $('#case-item-details\\:history-container');
-  appendStepAnnotation(histories, 2, 0, histories.width()/2);
+  var document = $('#case-details-document-panel');
+  appendStepAnnotation(document, 2, 0, document.width()/2);
   
-  var runningTask = $('#case-item-details\\:case-details-related-running-tasks-card');
-  appendStepAnnotation(runningTask, 3, 0, runningTask.width()/2);
+  var technicalCase = $('#case-details-technicalCase-panel');
+  appendStepAnnotation(technicalCase, 3, 0, technicalCase.width()/2);
   
-  var document = $('#case-item-details\\:case-details-document-card');
-  appendStepAnnotation(document, 4, 0, document.width()/2);
+  var relatedTask = $('#case-details-relatedTask-panel');
+  appendStepAnnotation(relatedTask, 4, 0, relatedTask.width()/2);
+  
+  var histories = $('#case-details-history-panel');
+  appendStepAnnotation(histories, 5, 0, histories.width()/2);
 }
 
 function highlightTaskDetailComponent() {
