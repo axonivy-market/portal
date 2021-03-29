@@ -1,6 +1,9 @@
 package ch.ivy.addon.portal.generic.bean;
 
+import static org.apache.commons.lang3.StringUtils.EMPTY;
+
 import java.io.Serializable;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -17,32 +20,33 @@ import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.dto.SecurityMemberDTO;
 import ch.ivy.addon.portalkit.dto.UserDTO;
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.CaseTreeUtils;
 import ch.ivy.addon.portalkit.util.CategoryUtils;
 import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.CaseState;
-import ch.ivyteam.ivy.workflow.WorkflowPriority;
 
 @ManagedBean
 @ViewScoped
 public class DashboardCaseFilterBean implements Serializable {
 
-  private static final long serialVersionUID = -8452774999524582551L;
+  private static final long serialVersionUID = -5375268615120879916L;
   private List<CaseState> states;
-  private List<WorkflowPriority> priorities;
   private UserDTO selectedUser;
   private List<SecurityMemberDTO> creators;
+  private List<SecurityMemberDTO> owners;
   private CheckboxTreeNode categoryTree;
   private CheckboxTreeNode[] categoryNodes;
   private CaseDashboardWidget widget;
+  private boolean isCaseOwnerEnabled;
 
   @PostConstruct
   public void init() {
     this.states = Arrays.asList(CaseState.values()).stream()
         .sorted((s1, s2) -> StringUtils.compare(s1.toString(), s2.toString())).collect(Collectors.toList());
-    this.priorities = Arrays.asList(WorkflowPriority.values());
     this.creators = new ArrayList<>();
+    this.isCaseOwnerEnabled = new GlobalSettingService().isCaseOwnerEnabled();
   }
 
   public void preRender(CaseDashboardWidget widget) {
@@ -67,29 +71,38 @@ public class DashboardCaseFilterBean implements Serializable {
     this.categoryNodes = CategoryUtils.recoverSelectedCategories(this.categoryTree, this.widget.getCategories());
   }
 
-  public String formatName(SecurityMemberDTO creator) {
-    String creatorName = "";
-    if (creator != null) {
-      if (StringUtils.isBlank(creator.getDisplayName())) {
-        creatorName = creator.getName();
+  public String formatName(SecurityMemberDTO memberDTO) {
+    String memberName = EMPTY;
+    if (memberDTO != null) {
+      if (StringUtils.isBlank(memberDTO.getDisplayName())) {
+        memberName = memberDTO.getName();
       } else {
-        creatorName = String.format("%s (%s)", creator.getDisplayName(), creator.getName());
+        memberName = String.format("%s (%s)", memberDTO.getDisplayName(), memberDTO.getName());
       }
-      return creator.isEnabled() ? creatorName : Ivy.cms().co("/Labels/disabledUserPrefix") + " " + creatorName;
+      return memberDTO.isEnabled() ? memberName : String.format("%s %s", Ivy.cms().co("/Labels/disabledUserPrefix"), memberName);
     }
-    return creatorName;
+    return memberName;
   }
 
   public List<SecurityMemberDTO> completeCreators(String query) {
+    return SecurityMemberUtils.findSecurityMembers(query, 0, PortalConstants.MAX_USERS_IN_AUTOCOMPLETE).stream()
+        .filter(SecurityMemberDTO::isUser).collect(Collectors.toList());
+  }
+
+  public List<SecurityMemberDTO> completeOwners(String query) {
     return SecurityMemberUtils.findSecurityMembers(query, 0, PortalConstants.MAX_USERS_IN_AUTOCOMPLETE);
   }
 
   public String getUserFriendlyCaseState(CaseState state) {
     if (state == null) {
-      return StringUtils.EMPTY;
+      return EMPTY;
     }
     String displayState = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseState/" + state.toString());
     return StringUtils.isBlank(displayState) ? state.name() : displayState;
+  }
+
+  public boolean hasPredefinedFilter(CaseDashboardWidget widget) throws ParseException {
+    return CaseDashboardWidget.hasPredefinedFilter(widget);
   }
 
   public List<CaseState> getStates() {
@@ -98,14 +111,6 @@ public class DashboardCaseFilterBean implements Serializable {
 
   public void setStates(List<CaseState> states) {
     this.states = states;
-  }
-
-  public List<WorkflowPriority> getPriorities() {
-    return priorities;
-  }
-
-  public void setPriorities(List<WorkflowPriority> priorities) {
-    this.priorities = priorities;
   }
 
   public UserDTO getSelectedUser() {
@@ -130,5 +135,21 @@ public class DashboardCaseFilterBean implements Serializable {
 
   public void setCategoryTree(CheckboxTreeNode categoryTree) {
     this.categoryTree = categoryTree;
+  }
+
+  public boolean isCaseOwnerEnabled() {
+    return isCaseOwnerEnabled;
+  }
+
+  public void setCaseOwnerEnabled(boolean isCaseOwnerEnabled) {
+    this.isCaseOwnerEnabled = isCaseOwnerEnabled;
+  }
+
+  public List<SecurityMemberDTO> getOwners() {
+    return owners;
+  }
+
+  public void setOwners(List<SecurityMemberDTO> owners) {
+    this.owners = owners;
   }
 }

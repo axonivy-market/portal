@@ -20,56 +20,56 @@ import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
 import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.workflow.ICase;
 
-public class CreatorColumnModel extends CaseColumnModel implements Serializable {
+public class OwnerColumnModel extends CaseColumnModel implements Serializable {
 
-  private static final long serialVersionUID = -7953754221117810034L;
+  private static final long serialVersionUID = -2458647281596281704L;
 
   @Override
   public void initDefaultValue() {
-    this.header = defaultIfEmpty(this.header, cms("/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATOR"));
-    this.field = DashboardStandardCaseColumn.CREATOR.getField();
+    this.header = defaultIfEmpty(this.header, cms("/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/OWNER"));
+    this.field = DashboardStandardCaseColumn.OWNER.getField();
     this.style = defaultIfEmpty(this.style, EXTRA_WIDTH);
     this.format = DashboardColumnFormat.CUSTOM;
   }
   
   @Override
   public Object display(ICase caze) {
-    if (caze == null || caze.getCreatorUser() == null) {
+    if (caze == null || caze.getOwner() == null) {
       return StringUtils.EMPTY;
     }
-    ISecurityMember member = caze.getCreatorUser();
+    ISecurityMember member = caze.getOwner();
     return SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(member, member.getMemberName());
   }
   
   @JsonIgnore
-  public List<SecurityMemberDTO> getCreators() {
+  public List<SecurityMemberDTO> getOwners() {
     return this.filterList.stream().map(this::findSecurityMember).collect(Collectors.toList());
   }
   
   @JsonIgnore
-  public void setCreators(List<SecurityMemberDTO> creator) {
-    if (creator != null) {
-      this.filterList = creator.stream().map(SecurityMemberDTO::getMemberName).collect(Collectors.toList());
+  public void setOwners(List<SecurityMemberDTO> owner) {
+    if (owner != null) {
+      this.filterList = owner.stream().map(SecurityMemberDTO::getMemberName).collect(Collectors.toList());
     } else {
       this.filterList = new ArrayList<>();
     }
   }
   
   @JsonIgnore
-  public List<SecurityMemberDTO> getUserFilterCreators() {
+  public List<SecurityMemberDTO> getUserFilterOwners() {
     return this.userFilterList.stream().map(this::findSecurityMember).collect(Collectors.toList());
   }
   
   @JsonIgnore
-  public void setUserFilterCreators(List<SecurityMemberDTO> creators) {
-    if (creators != null) {
-      this.userFilterList = creators.stream().map(SecurityMemberDTO::getMemberName).collect(Collectors.toList());
+  public void setUserFilterOwners(List<SecurityMemberDTO> owners) {
+    if (owners != null) {
+      this.userFilterList = owners.stream().map(SecurityMemberDTO::getMemberName).collect(Collectors.toList());
     } else {
       this.userFilterList = new ArrayList<>();
     }
   }
   
-  public List<SecurityMemberDTO> completeUserFilterCreators(String query) {
+  public List<SecurityMemberDTO> completeUserFilterOwners(String query) {
     List<SecurityMemberDTO> options = toSecurityMemberDTOs(getFilterList(), query);
     if (CollectionUtils.isEmpty(options)) {
       options = SecurityMemberUtils.findSecurityMembers(query, 0, PortalConstants.MAX_USERS_IN_AUTOCOMPLETE);
@@ -90,5 +90,4 @@ public class CreatorColumnModel extends CaseColumnModel implements Serializable 
   private SecurityMemberDTO findSecurityMember(String memberName) {
     return ServiceUtilities.findSecurityMemberByName(memberName);
   }
-
 }

@@ -17,8 +17,7 @@ import ch.ivyteam.ivy.workflow.ICase;
 
 public class StateColumnModel extends CaseColumnModel implements Serializable {
 
-  private static final long serialVersionUID = -4315469062114036720L;
-  
+  private static final long serialVersionUID = 654113365187067735L;
   @JsonIgnore
   private
   List<CaseState> userFilterStateOptions;
@@ -27,9 +26,9 @@ public class StateColumnModel extends CaseColumnModel implements Serializable {
   public void initDefaultValue() {
     this.header = defaultIfEmpty(this.header, cms("/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/STATE"));
     this.field = DashboardStandardCaseColumn.STATE.getField();
-    this.style = defaultIfEmpty(this.style, "width: 120px");
-    this.styleClass = defaultIfEmpty(this.styleClass, "dashboard-tasks__state u-text-align-center");
-    this.fieldStyleClass = defaultIfEmpty(this.fieldStyleClass, "dashboard-tasks__state-text");
+    this.style = defaultIfEmpty(this.style, NORMAL_WIDTH);
+    this.styleClass = defaultIfEmpty(this.styleClass, "dashboard-cases__state u-text-align-center");
+    this.fieldStyleClass = defaultIfEmpty(this.fieldStyleClass, "dashboard-cases__state-text");
     this.format = DashboardColumnFormat.CUSTOM;
     initUserFilterStateOptions();
   }

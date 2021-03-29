@@ -2,7 +2,6 @@ package ch.ivy.addon.portal.generic.bean;
 
 import java.io.IOException;
 import java.io.Serializable;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -90,8 +89,14 @@ public class DashboardBean implements Serializable {
       for (DashboardWidget widget : dashboard.getWidgets()) {
         if (widget instanceof TaskDashboardWidget) {
           TaskDashboardWidget.buildColumns((TaskDashboardWidget) widget);
+          if (StringUtils.isBlank(widget.getName())) {
+            widget.setName(translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourTasks"));
+          }
         } else if (widget instanceof CaseDashboardWidget) {
           CaseDashboardWidget.buildColumns((CaseDashboardWidget) widget);
+          if (StringUtils.isBlank(widget.getName())) {
+            widget.setName(translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourCases"));
+          }
         }
       }
     }
@@ -153,24 +158,6 @@ public class DashboardBean implements Serializable {
   public void onDashboardChange(int index) {
     currentDashboardIndex = index;
     selectedDashboard = dashboards.get(index);
-  }
-
-  public boolean hasPredefinedFilter(DashboardWidget widget) throws ParseException {
-    if (widget instanceof TaskDashboardWidget) {
-      return TaskDashboardWidget.hasPredefinedFilter((TaskDashboardWidget) widget);
-    } else if (widget instanceof CaseDashboardWidget) {
-      return CaseDashboardWidget.hasPredefinedFilter((CaseDashboardWidget) widget);
-    }
-
-    return false;
-  }
-
-  public String getTaskStateDisplayName(String state) {
-    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/".concat(state));
-  }
-
-  public String getCaseStateDisplayName(String state) {
-    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseState/".concat(state));
   }
 
   public void startTask(ITask task) throws IOException {

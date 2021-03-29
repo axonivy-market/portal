@@ -27,7 +27,7 @@ public class StateColumnModel extends TaskColumnModel implements Serializable {
   public void initDefaultValue() {
     this.header = defaultIfEmpty(this.header, cms("/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/STATE"));
     this.field = DashboardStandardTaskColumn.STATE.getField();
-    this.style = defaultIfEmpty(this.style, "width: 120px");
+    this.style = defaultIfEmpty(this.style, NORMAL_WIDTH);
     this.styleClass = defaultIfEmpty(this.styleClass, "dashboard-tasks__state u-text-align-center");
     this.fieldStyleClass = defaultIfEmpty(this.fieldStyleClass, "dashboard-tasks__state-text");
     this.format = DashboardColumnFormat.CUSTOM;

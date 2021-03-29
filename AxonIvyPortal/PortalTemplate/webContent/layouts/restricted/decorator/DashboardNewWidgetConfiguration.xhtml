@@ -1,17 +1,28 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
   xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions">
 
+<!-- DASHBOARD ADD NEW WIDGET DECORATOR: USES FOR DISPLAYING THE WIDGET IN DASHBOARD CONFIGURATION POPUP.
+    DEFINED 2 SECTIONS: WIDGET CONFIGURATION AND WIDGET PREVIEW
+    - WIDGET CONFIGURATION: SHOWS WIDGET FILTERS BY DEFINED WIDGETFILTERCONTENT TAG
+    - WIDGET PREVIEW: SHOWS WIDGET CONTENT BY DEFINE WIDGETPREVIEWCONTENT TAG
+    *** REQUIRED PARAMS:
+    * WIDGET: WIDGET MODEL.
+    * COMPONENTTOUPDATEONPREVIEWACTION: COMPONENT ID WHICH WILL BE UPDATED WHEN THE PREVIEW BUTTON IS CLICKED.
+    * COMPONENTTOPROCESSONPREVIEWACTION: COMPONENT ID WHICH WILL BE UPDATED WHEN THE PREVIEW BUTTON IS CLICKED.
+    * ONCOMPLETEPREVIEWACTION: AJAX METHOD WHICH WILL BE CALL WHEN THE PREVIEW BUTTON IS CLICKED.
+-->
+
 <!-- Configuration -->
 <h:panelGroup id="filter-container" layout="block" styleClass="card dashboard-card widget-configuration">
   <div class="filter-container ui-g">
     <div class="ui-g-12 filter-container__header">
       <h2>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/configuration')}</h2>
       <p>
-        #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/configurationDescription', [widget.name])}
+        #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/configurationDescription')}
       </p>
     </div>
 
-    <div class="ui-g-12 u-padding-0 ui-fluid">
+    <h:panelGroup id="widget-title-group" styleClass="ui-g-12 u-padding-0 ui-fluid">
       <div class="ui-g-3">
         <p:outputLabel for="widget-title" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/widgetTitle')}" />
       </div>
@@ -20,7 +31,7 @@
         styleClass="widget-configuration__input-text"
         value="#{widget.name}" />
       </div>
-    </div>
+    </h:panelGroup>
 
     <div class="ui-g-12 MarTop20 u-padding-0">
       <div class="ui-g-4">
@@ -31,7 +42,7 @@
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/preview')}"
           styleClass="Fright preview-button" icon="si si-search"
           update="#{componentToUpdateOnPreviewAction}"
-          process="#{componentToProcessOnPreviewAction}"
+          process="#{componentToProcessOnPreviewAction} widget-title-group"
           oncomplete="#{onCompletePreviewAction}" />
       </div>
     </div>

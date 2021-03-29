@@ -88,7 +88,7 @@ public class DashboardCaseSearchCriteria {
       CaseQuery subQuery = CaseQuery.create();
       IFilterQuery filterQuery = subQuery.where();
       for (String creator : creators) {
-        filterQuery.or().creatorUserName().isEqual(creator);
+        filterQuery.or().creatorUserName().isEqual(creator.replace("#", ""));
       }
 
       query.where().and(subQuery);
@@ -167,10 +167,16 @@ public class DashboardCaseSearchCriteria {
         queryStates(query, states);
       } else if (StringUtils.equals(DashboardStandardCaseColumn.CREATOR.getField(), column.getField())) {
         queryCreator(query, filterList);
+      } else if (StringUtils.equals(DashboardStandardCaseColumn.OWNER.getField(), column.getField())) {
+        queryOwner(query, filterList);
       } else if (StringUtils.equals(DashboardStandardCaseColumn.CREATED.getField(), column.getField())) {
         Date from = Dates.parse(filterFrom);
         Date to = Dates.parse(filterTo);
         queryCreatedDate(query, from, to);
+      } else if (StringUtils.equals(DashboardStandardCaseColumn.FINISHED.getField(), column.getField())) {
+        Date from = Dates.parse(filterFrom);
+        Date to = Dates.parse(filterTo);
+        queryFinishedDate(query, from, to);
       } else if (column.getFilterType() == DashboardFilterType.SELECTION || CollectionUtils.isNotEmpty(filterList)) {
         queryCustomFieldSelection(query, field, filterList);
       } else {
@@ -214,6 +220,32 @@ public class DashboardCaseSearchCriteria {
     }
   }
   
+  private void queryFinishedDate(CaseQuery query, Date from, Date to) {
+    if (from != null || to != null) {
+      CaseQuery subQuery = CaseQuery.create();
+      if (from != null) {
+        subQuery.where().endTimestamp().isGreaterOrEqualThan(from);
+      }
+
+      if (to != null) {
+        subQuery.where().endTimestamp().isLowerOrEqualThan(DateUtils.addDays(to, 1));
+      }
+      query.where().and(subQuery);
+    }
+  }
+
+  private void queryOwner(CaseQuery query, List<String> owners) {
+    if (CollectionUtils.isNotEmpty(owners)) {
+      CaseQuery subQuery = CaseQuery.create();
+      IFilterQuery filterQuery = subQuery.where();
+      for (String owner : owners) {
+        filterQuery.or().ownerName().isEqual(owner);
+      }
+
+      query.where().and(subQuery);
+    }
+  }
+
   public String getSortField() {
     return sortField;
   }

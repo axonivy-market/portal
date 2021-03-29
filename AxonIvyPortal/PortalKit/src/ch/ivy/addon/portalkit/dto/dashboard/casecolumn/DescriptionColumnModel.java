@@ -7,13 +7,13 @@ import ch.ivyteam.ivy.workflow.ICase;
 
 public class DescriptionColumnModel extends CaseColumnModel implements Serializable {
 
-  private static final long serialVersionUID = -4315469062114036720L;
+  private static final long serialVersionUID = 1111740263997339274L;
 
   @Override
   public void initDefaultValue() {
     this.header = defaultIfEmpty(this.header, cms("/ch.ivy.addon.portalkit.ui.jsf/common/description"));
     this.field = DashboardStandardCaseColumn.DESCRIPTION.getField();
-    this.styleClass = defaultIfEmpty(this.styleClass, "dashboard-tasks__description u-text-align-center");
+    this.styleClass = defaultIfEmpty(this.styleClass, "dashboard-cases__description u-text-align-center");
     this.sortable = false;
   }
   
