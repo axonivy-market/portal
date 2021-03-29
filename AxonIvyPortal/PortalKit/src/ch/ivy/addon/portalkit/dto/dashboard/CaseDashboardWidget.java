@@ -24,14 +24,17 @@ import ch.ivy.addon.portalkit.dto.dashboard.casecolumn.CaseColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.casecolumn.CreatedDateColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.casecolumn.CreatorColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.casecolumn.DescriptionColumnModel;
+import ch.ivy.addon.portalkit.dto.dashboard.casecolumn.FinishedDateColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.casecolumn.IdColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.casecolumn.NameColumnModel;
+import ch.ivy.addon.portalkit.dto.dashboard.casecolumn.OwnerColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.casecolumn.StateColumnModel;
 import ch.ivy.addon.portalkit.enums.CaseSortField;
 import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.IvyAdapterService;
 import ch.ivy.addon.portalkit.util.CaseTreeUtils;
 import ch.ivy.addon.portalkit.util.CategoryUtils;
@@ -50,18 +53,19 @@ public class CaseDashboardWidget extends DashboardWidget {
   @JsonIgnore
   private CheckboxTreeNode[] categoryNodes;
   @JsonIgnore
-  private Map<String, Long> caseByStateStatistic;
+  private Map<CaseState, Long> caseByStateStatistic;
   @JsonIgnore
   private Map<String, Long> caseByCategoryStatistic;
 
   public CaseDashboardWidget() {
     dataModel = new DashboardCaseLazyDataModel();
     setColumns(new ArrayList<>());
+    caseByCategoryStatistic = new HashMap<>();
     caseByStateStatistic = new HashMap<>();
-    caseByStateStatistic.put(CaseState.CREATED.name(), 0l);
-    caseByStateStatistic.put(CaseState.DONE.name(), 0l);
-    caseByStateStatistic.put(CaseState.DESTROYED.name(), 0l);
-    caseByStateStatistic.put(CaseState.RUNNING.name(), 0l);
+    caseByStateStatistic.put(CaseState.CREATED, 0l);
+    caseByStateStatistic.put(CaseState.DONE, 0l);
+    caseByStateStatistic.put(CaseState.DESTROYED, 0l);
+    caseByStateStatistic.put(CaseState.RUNNING, 0l);
   }
 
   public CheckboxTreeNode[] getCategoryNodes() {
@@ -104,15 +108,13 @@ public class CaseDashboardWidget extends DashboardWidget {
         params, Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
 
     CaseStateStatistic caseStateStatistic = (CaseStateStatistic) response.get("caseStateStatistic");
-    caseByStateStatistic.put(CaseState.CREATED.name(), caseStateStatistic.getCreated());
-    caseByStateStatistic.put(CaseState.DONE.name(), caseStateStatistic.getDone());
-    caseByStateStatistic.put(CaseState.DESTROYED.name(), caseStateStatistic.getFailed());
-    caseByStateStatistic.put(CaseState.RUNNING.name(), caseStateStatistic.getRunning());
+    caseByStateStatistic.put(CaseState.CREATED, caseStateStatistic.getCreated());
+    caseByStateStatistic.put(CaseState.DONE, caseStateStatistic.getDone());
+    caseByStateStatistic.put(CaseState.DESTROYED, caseStateStatistic.getFailed());
+    caseByStateStatistic.put(CaseState.RUNNING, caseStateStatistic.getRunning());
   }
 
   private void buildCaseByCategoryStatistic() throws ParseException {
-    caseByCategoryStatistic = new HashMap<>();
-
     Map<String, Object> params = new HashMap<>();
     params.put(CRITERIA_PARAM, generateCaseSearchCriteriaWithoutOrderByClause());
 
@@ -134,14 +136,6 @@ public class CaseDashboardWidget extends DashboardWidget {
     return getColumns().stream()
         .filter(col -> !StringUtils.equalsIgnoreCase(col.getField(), DashboardStandardCaseColumn.ID.toString()))
         .collect(Collectors.toList());
-  }
-
-  public boolean getCanWorkOn() {
-    return this.dataModel.getCanWorkOn();
-  }
-
-  public void setCanWorkOn(boolean canWorkOn) {
-    this.dataModel.setCanWorkOn(canWorkOn);
   }
 
   public List<String> getCategories() {
@@ -214,24 +208,19 @@ public class CaseDashboardWidget extends DashboardWidget {
     return this.dataModel.getCriteria().isInConfiguration();
   }
 
+  @JsonIgnore
   public void setInConfiguration(boolean isInConfiguration) {
     this.dataModel.getCriteria().setInConfiguration(isInConfiguration);
   }
 
-  public Map<String, Long> getCaseByStateStatistic() {
+  @JsonIgnore
+  public Map<CaseState, Long> getCaseByStateStatistic() {
     return caseByStateStatistic;
   }
 
-  public void setCaseByStateStatistic(Map<String, Long> caseByStateStatistic) {
-    this.caseByStateStatistic = caseByStateStatistic;
-  }
-
+  @JsonIgnore
   public Map<String, Long> getCaseByCategoryStatistic() {
     return caseByCategoryStatistic;
-  }
-
-  public void setCaseByCategoryStatistic(Map<String, Long> caseByCategoryStatistic) {
-    this.caseByCategoryStatistic = caseByCategoryStatistic;
   }
 
   @JsonIgnore
@@ -268,6 +257,11 @@ public class CaseDashboardWidget extends DashboardWidget {
         column = mapper.convertValue(column, StateColumnModel.class);
       } else if (DashboardStandardCaseColumn.CREATED.getField().equalsIgnoreCase(field)) {
         column = mapper.convertValue(column, CreatedDateColumnModel.class);
+      } else if (DashboardStandardCaseColumn.FINISHED.getField().equalsIgnoreCase(field)) {
+        column = mapper.convertValue(column, FinishedDateColumnModel.class);
+      } else if (DashboardStandardCaseColumn.OWNER.getField().equalsIgnoreCase(field)
+          && new GlobalSettingService().isCaseOwnerEnabled()) {
+        column = mapper.convertValue(column, OwnerColumnModel.class);
       }
       column.initDefaultValue();
       columns.set(i, column);

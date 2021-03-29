@@ -8,7 +8,7 @@ import ch.ivyteam.ivy.workflow.custom.field.ICustomFields;
 
 public class CaseColumnModel extends ColumnModel {
 
-  private static final long serialVersionUID = 3472632813160872246L;
+  private static final long serialVersionUID = 7358059302396225605L;
 
   public Object display(ICase caze) {
     ICustomFields customFields = caze.customFields();
@@ -38,6 +38,10 @@ public class CaseColumnModel extends ColumnModel {
         column = new StateColumnModel();
       } else if (DashboardStandardCaseColumn.CREATED.getField().equalsIgnoreCase(field)) {
         column = new CreatedDateColumnModel();
+      } else if (DashboardStandardCaseColumn.FINISHED.getField().equalsIgnoreCase(field)) {
+        column = new FinishedDateColumnModel();
+      } else if (DashboardStandardCaseColumn.OWNER.getField().equalsIgnoreCase(field)) {
+        column = new OwnerColumnModel();
       }
     }
     return column;

@@ -103,7 +103,7 @@ public abstract class DashboardWidget implements Serializable {
   }
   
   public void buildStatisticInfos() {}
-  
+
   @Override
   public int hashCode() {
     final int prime = 31;

@@ -32,14 +32,14 @@
           <div class="grid-stack-item-content card dashboard-card dashboard__widget">
             <!-- Task widget -->
             <c:if test="#{fn:startsWith(widget.id, 'task')}">
-              <ic:ch.ivy.addon.portal.generic.dashboard.component.TaskDashboardWidget widget="#{widget}" managedBean="#{dashboardConfigurationBean}"
+              <ic:ch.ivy.addon.portal.generic.dashboard.component.TaskDashboardWidget widget="#{widget}" isReadOnlyMode="#{dashboardConfigurationBean.isReadOnlyMode}"
                 index="#{status.index}"/>
             </c:if>
 
             <!-- Case list widget -->
             <c:if test="#{fn:startsWith(widget.id, 'case')}">
               <ic:ch.ivy.addon.portal.generic.dashboard.component.CaseDashboardWidget index="#{status.index}" widget="#{widget}"
-                componentToUpdateOnEdit="new-widget-configuration-dialog" managedBean="#{dashboardConfigurationBean}" />
+                isReadOnlyMode="#{dashboardConfigurationBean.isReadOnlyMode}" />
             </c:if>
 
             <!-- Process widget -->
@@ -65,8 +65,8 @@
                   <p:commandButton id="add-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/addWidget')}" type="button"
                     styleClass="action-widget__add-button" onclick="PF('new-widget-dialog').show()" icon="si si-add" />
                   <br />
-                  <p:commandLink id="restore-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/restoreWidget')}"
-                    actionListener="#{dashboardConfigurationBean.restore()}" update="grid-stack" oncomplete="loadGrid()" />
+                  <p:link id="restore-button" href="#" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/restoreWidget')}"
+                    onclick="PF('restore-confirm-dialog').show()" />
                 </h:panelGroup>
               </div>
             </c:if>
@@ -75,6 +75,47 @@
       </c:forEach>
 
       <ui:include src="PortalDashboardAddNewWidgets.xhtml" />
+
+      <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
+        <ui:param name="id" value="restore-confirm-dialog" />
+        <ui:param name="widgetVar" value="restore-confirm-dialog" />
+        <ui:param name="appendTo" value="@(body)" />
+        <ui:param name="iconClass" value="si si-road-sign-warning" />
+        <ui:param name="iconStyleClass" value="portal-dialog-warning-icon" />
+        <ui:param name="headerText" value="Restore to default widgets?" />
+        <ui:param name="dialogContent" value="If you proceed, you will loose all widgets created by yourself. The standard settings will be applied." />
+
+        <ui:define name="dialogFooter">
+          <p:link href="#" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" onclick="PF('restore-confirm-dialog').hide();"
+            styleClass="u-mar-right-15" />
+          <p:commandButton id="reset-dashboard-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
+            actionListener="#{dashboardConfigurationBean.restore()}"
+            icon="#{visibilityBean.generateButtonIcon('si si-check-1')}"
+            oncomplete="PF('restore-confirm-dialog').hide(); loadGrid()"
+            update="grid-stack"/>
+        </ui:define>
+      </ui:decorate>
+
+<!--       <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml"> -->
+<!--         <ui:param name="id" value="remove-widget-dialog" /> -->
+<!--         <ui:param name="widgetVar" value="remove-widget-dialog" /> -->
+<!--         <ui:param name="appendTo" value="@(body)" /> -->
+<!--         <ui:param name="iconClass" value="si si-road-sign-warning" /> -->
+<!--         <ui:param name="iconStyleClass" value="portal-dialog-warning-icon" /> -->
+<!--         <ui:param name="headerText" value="Remove #{dashboardConfigurationBean.deleteWidget.name} widget?" /> -->
+<!--         <ui:param name="dialogContent" value="If you proceed, your widget will be remove." /> -->
+
+<!--         <ui:define name="dialogFooter"> -->
+<!--           <p:link href="#" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" onclick="PF('remove-widget-dialog').hide();" -->
+<!--             styleClass="u-mar-right-15" /> -->
+<!--           <p:commandButton id="remove-widget-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}" -->
+<!--             actionListener="#{dashboardConfigurationBean.removeWidget()}" -->
+<!--             icon="#{visibilityBean.generateButtonIcon('si si-check-1')}" -->
+<!--             oncomplete="PF('remove-widget-dialog').hide(); loadGrid();" -->
+<!--             update="grid-stack"/> -->
+<!--         </ui:define> -->
+<!--       </ui:decorate> -->
+      
 
     </ui:define>
   </ui:composition>

@@ -7,14 +7,14 @@ import ch.ivyteam.ivy.workflow.ICase;
 
 public class IdColumnModel extends CaseColumnModel implements Serializable {
 
-  private static final long serialVersionUID = -4315469062114036720L;
+  private static final long serialVersionUID = -8721107805389913589L;
 
   @Override
   public void initDefaultValue() {
     this.header = defaultIfEmpty(this.header, cms("/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/ID"));
     this.field = DashboardStandardCaseColumn.ID.getField();
-    this.style = defaultIfEmpty(this.style, "width: 120px");
-    this.styleClass = defaultIfEmpty(this.styleClass, "dashboard-tasks__id u-text-align-center");
+    this.style = defaultIfEmpty(this.style, NORMAL_WIDTH);
+    this.styleClass = defaultIfEmpty(this.styleClass, "dashboard-cases__id u-text-align-center");
   }
   
   @Override

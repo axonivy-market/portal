@@ -9,8 +9,8 @@
   <div class="ui-g">
     <ui:repeat value="#{widget.caseByStateStatistic.entrySet()}" var="entry">
       <div class="ui-g-8">
-        <h:outputText value="#{managedBean.getCaseStateDisplayName(entry.key)}"
-          styleClass="dashboard-cases__state-text--#{entry.key.toLowerCase()} dashboard-cases__state-text" />
+        <h:outputText value="#{dashboardCaseFilterBean.getUserFriendlyCaseState(entry.key)}"
+          styleClass="dashboard-cases__state-text--#{entry.key.name().toLowerCase()} dashboard-cases__state-text" />
       </div>
       <div class="ui-g-4">
         <span>#{entry.value} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/caseWidgetInfo/numberOfCase')}</span>
@@ -23,7 +23,7 @@
   <f:facet name="title">
     <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/caseWidgetInfo/casesByCategory')}" />
   </f:facet>
-  <div class="ui-g">
+  <div class="ui-g" jsf:rendered="#{not empty widget.caseByCategoryStatistic.entrySet()}">
     <ui:repeat value="#{widget.caseByCategoryStatistic.entrySet()}" var="entry" varStatus="status">
       <div class="ui-g-8 u-truncate-text u-default-cursor">
         <h:outputText id="category" value="#{empty entry.key ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noCategory') : entry.key}" />
@@ -35,8 +35,11 @@
       </div>
     </ui:repeat>
   </div>
+  <div class="ui-g" jsf:rendered="#{empty widget.caseByCategoryStatistic.entrySet()}">
+    <h:outputText styleClass="ui-g-12" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/noCategory')}" />
+  </div>
 </p:tab>
-<p:tab id="filter-tab" rendered="#{managedBean.hasPredefinedFilter(widget)}">
+<p:tab id="filter-tab" rendered="#{dashboardCaseFilterBean.hasPredefinedFilter(widget)}">
   <f:facet name="title">
     <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/tasWidgetkInfo/predefinedFilters')}" />
   </f:facet>
