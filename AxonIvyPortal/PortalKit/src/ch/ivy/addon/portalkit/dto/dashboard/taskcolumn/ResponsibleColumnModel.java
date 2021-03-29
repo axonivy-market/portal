@@ -14,9 +14,9 @@ import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.dto.SecurityMemberDTO;
 import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
+import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivy.addon.portalkit.util.SecurityMemberDisplayNameUtils;
 import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
-import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.workflow.ITask;
 
@@ -28,7 +28,7 @@ public class ResponsibleColumnModel extends TaskColumnModel implements Serializa
   public void initDefaultValue() {
     this.header = defaultIfEmpty(this.header, cms("/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR"));
     this.field = DashboardStandardTaskColumn.RESPONSIBLE.getField();
-    this.style = defaultIfEmpty(this.style, "width: 150px");
+    this.style = defaultIfEmpty(this.style, EXTRA_WIDTH);
     this.format = DashboardColumnFormat.CUSTOM;
   }
   
@@ -88,7 +88,6 @@ public class ResponsibleColumnModel extends TaskColumnModel implements Serializa
   }
   
   private SecurityMemberDTO findSecurityMember(String memberName) {
-    ISecurityMember securityMember = Ivy.wf().getApplication().getSecurityContext().findSecurityMember(memberName);
-    return securityMember != null ? new SecurityMemberDTO(securityMember) : null;
+    return ServiceUtilities.findSecurityMemberByName(memberName);
   }
 }

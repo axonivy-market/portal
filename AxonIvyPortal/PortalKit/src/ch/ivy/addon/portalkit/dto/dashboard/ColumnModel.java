@@ -27,6 +27,14 @@ import ch.ivyteam.ivy.workflow.query.TaskQuery;
 public class ColumnModel implements Serializable {
 
   private static final long serialVersionUID = -4315469062114036720L;
+  @JsonIgnore
+  public static final String TINY_WIDTH = "width: 80px";
+  @JsonIgnore
+  public static final String SMALL_WIDTH = "width: 100px";
+  @JsonIgnore
+  public static final String NORMAL_WIDTH = "width: 120px";
+  @JsonIgnore
+  public static final String EXTRA_WIDTH = "width: 150px";
 
   protected String header;
   protected String field;

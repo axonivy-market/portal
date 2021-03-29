@@ -11,101 +11,121 @@
 <cc:implementation>
   <f:event listener="#{dashboardCaseFilterBean.preRender(cc.attrs.caseWidget)}" type="preRenderComponent" />
 
-  <ui:decorate template="/layouts/restricted/decorator/DashboardAddNewWidgets.xhtml">
+  <ui:decorate template="/layouts/restricted/decorator/DashboardNewWidgetConfiguration.xhtml">
     <ui:param name="widget" value="#{cc.attrs.caseWidget}" />
     <ui:param name="componentToUpdateOnPreviewAction" value="#{cc.clientId}:case-widget-preview:dashboard-cases" />
-    <ui:param name="componentToProcessOnPreviewAction" value="filter-container" />
+    <ui:param name="componentToProcessOnPreviewAction" value="user-filter" />
     <ui:param name="onCompletePreviewAction" value="PF('dashboard-cases-#{cc.attrs.caseWidget.id}').filter()" />
 
     <ui:define name="widgetFilterContent">
-      <ui:repeat var="field" value="#{cc.attrs.caseWidget.filterableColumns}">
-        <h:panelGroup rendered="#{field.field eq 'state'}">
-          <div class="ui-g-3">
-            <p:outputLabel value="#{field.header}" />
-          </div>
-          <div class="ui-g-9 ui-fluid">
-            <p:selectCheckboxMenu id="states" value="#{field.states}" multiple="true" filter="true" filterMatchMode="contains"
-              panelStyleClass="case-configuration__selectcheckboxmenu-panel" styleClass="case-configuration__selectcheckboxmenu">
-              <f:selectItems value="#{dashboardCaseFilterBean.states}" var="state" itemValue="#{state}"
-                itemLabel="#{dashboardCaseFilterBean.getUserFriendlyCaseState(state)}" />
-            </p:selectCheckboxMenu>
-          </div>
-        </h:panelGroup>
-
-        <h:panelGroup rendered="#{field.field eq 'creator'}">
-          <div class="ui-g-3">
-            <p:outputLabel value="#{field.header}" />
-          </div>
-          <div class="ui-g-9 ui-fluid">
-            <p:autoComplete id="creators" scrollHeight="210" dropdown="true" size="35" completeMethod="#{dashboardCaseFilterBean.completeCreators}"
-              value="#{field.creators}" var="creator" itemValue="#{creator}" itemLabel="#{creator.briefDisplayNameWithState}"
-              converter="pojoConverter" cache="true" maxResults="100" multiple="true"
-              moreText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..." dynamic="true" styleClass="case-configuration__responsibles"
-              forceSelection="true">
-              <p:column>
-                <i class="fa #{creator.isUser() ? 'fa-user' : 'fa-users'} u-mar-right-5" />
-                <h:outputText value="#{dashboardCaseFilterBean.formatName(creator)}" />
-              </p:column>
-            </p:autoComplete>
-          </div>
-        </h:panelGroup>
-
-        <h:panelGroup rendered="#{field.format eq 'STRING' or field.format eq 'TEXT'}">
-          <div class="ui-g-3">
-            <p:outputLabel value="#{field.header}" />
-          </div>
-          <div class="ui-g-9 ui-fluid">
-            <p:inputText id="text-field-input" styleClass="case-configuration__input-text" value="#{field.filter}"
-              rendered="#{field.filterType eq 'LIKE'}" />
-
-            <p:selectCheckboxMenu id="text-field-selection" value="#{field.filterList}" multiple="true" filter="true" filterMatchMode="contains"
-              panelStyleClass="case-configuration__selectcheckboxmenu-panel" styleClass="case-configuration__selectcheckboxmenu"
-              rendered="#{field.filterType eq 'SELECTION'}">
-              <f:selectItems value="#{field.filterListOptions}" />
-            </p:selectCheckboxMenu>
-          </div>
-        </h:panelGroup>
-
-        <h:panelGroup rendered="#{field.format eq 'NUMBER'}">
-          <div class="ui-g-3">
-            <p:outputLabel value="#{field.header} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')}" />
-          </div>
-          <div class="ui-g-9 ui-fluid">
-            <p:inputNumber id="from-number-field-input" styleClass="case-configuration__input-text" value="#{field.filterFrom}"
-              inputStyleClass="case-configuration__input-number">
-              <f:convertNumber pattern="#{field.pattern}" />
-            </p:inputNumber>
-          </div>
-
-          <div class="ui-g-3">
-            <p:outputLabel value="#{field.header} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')}" />
-          </div>
-          <div class="ui-g-9 ui-fluid">
-            <p:inputNumber id="to-number-field-input" styleClass="case-configuration__input-text" value="#{field.filterTo}"
-              inputStyleClass="case-configuration__input-number">
-              <f:convertNumber pattern="#{field.pattern}" />
-            </p:inputNumber>
-          </div>
-        </h:panelGroup>
-
-        <h:panelGroup rendered="#{field.format eq 'TIMESTAMP'}">
-          <div class="ui-g-3">
-            <p:outputLabel value="#{field.header} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')}" />
-          </div>
-          <div class="ui-g-9 ui-fluid">
-            <p:calendar id="from-date-field-input" showOn="button" styleClass="case-configuration__calendar" value="#{field.dateFilterFrom}"
-              pattern="#{dateTimePatternBean.datePattern}" locale="#{localeBean.locale}" />
-          </div>
-
-          <div class="ui-g-3">
-            <p:outputLabel value="#{field.header} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')}" />
-          </div>
-          <div class="ui-g-9 ui-fluid">
-            <p:calendar id="to-date-field-input" showOn="button" styleClass="case-configuration__calendar" value="#{field.dateFilterTo}"
-              pattern="#{dateTimePatternBean.datePattern}" locale="#{localeBean.locale}" />
-          </div>
-        </h:panelGroup>
-      </ui:repeat>
+      <h:panelGroup id="user-filter" layout="block" styleClass="ui-g">
+        <ui:repeat var="field" value="#{cc.attrs.caseWidget.filterableColumns}">
+          <h:panelGroup rendered="#{field.field eq 'state'}">
+            <div class="ui-g-3">
+              <p:outputLabel value="#{field.header}" />
+            </div>
+            <div class="ui-g-9 ui-fluid">
+              <p:selectCheckboxMenu id="states" value="#{field.states}" multiple="true" filter="true" filterMatchMode="contains"
+                panelStyleClass="case-configuration__selectcheckboxmenu-panel" styleClass="case-configuration__selectcheckboxmenu">
+                <f:selectItems value="#{dashboardCaseFilterBean.states}" var="state" itemValue="#{state}"
+                  itemLabel="#{dashboardCaseFilterBean.getUserFriendlyCaseState(state)}" />
+              </p:selectCheckboxMenu>
+            </div>
+          </h:panelGroup>
+  
+          <h:panelGroup rendered="#{field.field eq 'creator'}">
+            <div class="ui-g-3">
+              <p:outputLabel value="#{field.header}" />
+            </div>
+            <div class="ui-g-9 ui-fluid">
+              <p:autoComplete id="creators" scrollHeight="210" dropdown="true" size="35" completeMethod="#{dashboardCaseFilterBean.completeCreators}"
+                value="#{field.creators}" var="creator" itemValue="#{creator}" itemLabel="#{creator.briefDisplayNameWithState}"
+                converter="pojoConverter" cache="true" maxResults="100" multiple="true"
+                moreText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..." dynamic="true" styleClass="case-configuration__creators"
+                forceSelection="true">
+                <p:column>
+                  <i class="fa #{creator.isUser() ? 'fa-user' : 'fa-users'} u-mar-right-5" />
+                  <h:outputText value="#{dashboardCaseFilterBean.formatName(creator)}" />
+                </p:column>
+              </p:autoComplete>
+            </div>
+          </h:panelGroup>
+  
+          <h:panelGroup rendered="#{field.field eq 'owner' and dashboardCaseFilterBean.caseOwnerEnabled}">
+            <div class="ui-g-3">
+              <p:outputLabel value="#{field.header}" />
+            </div>
+            <div class="ui-g-9 ui-fluid">
+              <p:autoComplete id="owners" scrollHeight="210" dropdown="true" size="35" completeMethod="#{dashboardCaseFilterBean.completeOwners}"
+                value="#{field.owners}" var="owner" itemValue="#{owner}" itemLabel="#{owner.briefDisplayNameWithState}"
+                converter="pojoConverter" cache="true" maxResults="100" multiple="true"
+                moreText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..." dynamic="true" styleClass="case-configuration__owners"
+                forceSelection="true">
+                <p:column>
+                  <i class="fa #{owner.isUser() ? 'fa-user' : 'fa-users'} u-mar-right-5" />
+                  <h:outputText value="#{dashboardCaseFilterBean.formatName(owner)}" />
+                </p:column>
+              </p:autoComplete>
+            </div>
+          </h:panelGroup>
+  
+          <h:panelGroup rendered="#{field.format eq 'STRING' or field.format eq 'TEXT'}">
+            <div class="ui-g-3">
+              <p:outputLabel value="#{field.header}" />
+            </div>
+            <div class="ui-g-9 ui-fluid">
+              <p:inputText id="text-field-input" styleClass="case-configuration__input-text" value="#{field.filter}"
+                rendered="#{field.filterType eq 'LIKE'}" />
+  
+              <p:selectCheckboxMenu id="text-field-selection" value="#{field.filterList}" multiple="true" filter="true" filterMatchMode="contains"
+                panelStyleClass="case-configuration__selectcheckboxmenu-panel" styleClass="case-configuration__selectcheckboxmenu"
+                rendered="#{field.filterType eq 'SELECTION'}">
+                <f:selectItems value="#{field.filterListOptions}" />
+              </p:selectCheckboxMenu>
+            </div>
+          </h:panelGroup>
+  
+          <h:panelGroup rendered="#{field.format eq 'NUMBER'}">
+            <div class="ui-g-3">
+              <p:outputLabel value="#{field.header} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')}" />
+            </div>
+            <div class="ui-g-9 ui-fluid">
+              <p:inputNumber id="from-number-field-input" styleClass="case-configuration__input-text" value="#{field.filterFrom}"
+                inputStyleClass="case-configuration__input-number">
+                <f:convertNumber pattern="#{field.pattern}" />
+              </p:inputNumber>
+            </div>
+  
+            <div class="ui-g-3">
+              <p:outputLabel value="#{field.header} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')}" />
+            </div>
+            <div class="ui-g-9 ui-fluid">
+              <p:inputNumber id="to-number-field-input" styleClass="case-configuration__input-text" value="#{field.filterTo}"
+                inputStyleClass="case-configuration__input-number">
+                <f:convertNumber pattern="#{field.pattern}" />
+              </p:inputNumber>
+            </div>
+          </h:panelGroup>
+  
+          <h:panelGroup rendered="#{field.format eq 'TIMESTAMP'}">
+            <div class="ui-g-3">
+              <p:outputLabel value="#{field.header} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')}" />
+            </div>
+            <div class="ui-g-9 ui-fluid">
+              <p:calendar id="from-date-field-input" showOn="button" styleClass="case-configuration__calendar" value="#{field.dateFilterFrom}"
+                pattern="#{dateTimePatternBean.datePattern}" locale="#{localeBean.locale}" />
+            </div>
+  
+            <div class="ui-g-3">
+              <p:outputLabel value="#{field.header} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')}" />
+            </div>
+            <div class="ui-g-9 ui-fluid">
+              <p:calendar id="to-date-field-input" showOn="button" styleClass="case-configuration__calendar" value="#{field.dateFilterTo}"
+                pattern="#{dateTimePatternBean.datePattern}" locale="#{localeBean.locale}" />
+            </div>
+          </h:panelGroup>
+        </ui:repeat>
+      </h:panelGroup>
       <div class="ui-g-3">
         <p:outputLabel for="category" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/category')}" />
       </div>
@@ -126,7 +146,7 @@
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" update="category-container" />
 
               <p:commandButton id="update-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}" process="category-panel"
-                partialSubmit="true" update="category-container" icon="si si-check-1" style="width: auto;" />
+                partialSubmit="true" update="category-container" icon="si si-check-1" styleClass="update-command" />
             </h:panelGroup>
           </p:overlayPanel>
         </h:panelGroup>

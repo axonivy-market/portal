@@ -27,20 +27,20 @@
           <div class="grid-stack-item-content card dashboard-card dashboard__widget">
             <!-- Task widget -->
             <c:if test="#{fn:startsWith(widget.id, 'task')}">
-              <ic:ch.ivy.addon.portal.generic.dashboard.component.TaskDashboardWidget widget="#{widget}" managedBean="#{dashboardBean}"
+              <ic:ch.ivy.addon.portal.generic.dashboard.component.TaskDashboardWidget widget="#{widget}" isReadOnlyMode="#{dashboardBean.isReadOnlyMode}"
                 index="#{status.index}"/>
             </c:if>
 
             <!-- Case widget -->
             <c:if test="#{fn:startsWith(widget.id, 'case')}">
-              <ic:ch.ivy.addon.portal.generic.dashboard.component.CaseDashboardWidget widget="#{widget}" managedBean="#{dashboardBean}"
+              <ic:ch.ivy.addon.portal.generic.dashboard.component.CaseDashboardWidget widget="#{widget}" isReadOnlyMode="#{dashboardBean.isReadOnlyMode}"
                 index="#{status.index}"/>
             </c:if>
 
             <!-- Process widget -->
             <c:if test="#{fn:startsWith(widget.id, 'process')}">
               <div class="widget__header">
-                <span> #{not empty widget.name ? widget.name : ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourProcesses")} </span>
+                <span>#{not empty widget.name ? widget.name : ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourProcesses")}</span>
 
                 <div class="widget__header-actions">
                   <p:commandLink disabled="true" styleClass="si si-arrow-right" />
