@@ -77,7 +77,6 @@ public class DashboardCaseLazyDataModel extends LazyDataModel<ICase> {
     isFirstTime = true;
   }
 
-
   @Override
   public ICase getRowData(String rowKey) {
     for (ICase caze : cases) {
@@ -123,14 +122,6 @@ public class DashboardCaseLazyDataModel extends LazyDataModel<ICase> {
   
   public void setCriteria(DashboardCaseSearchCriteria criteria) {
     this.criteria = criteria;
-  }
-  
-  public boolean getCanWorkOn() {
-    return criteria.getCanWorkOn();
-  }
-  
-  public void setCanWorkOn(boolean canWorkOn) {
-    criteria.setCanWorkOn(canWorkOn);
   }
 
   public List<String> getCategories() {

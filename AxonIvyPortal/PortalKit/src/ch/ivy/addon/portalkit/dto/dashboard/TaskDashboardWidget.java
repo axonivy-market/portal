@@ -58,7 +58,7 @@ public class TaskDashboardWidget extends DashboardWidget {
   @JsonIgnore
   private CheckboxTreeNode[] categoryNodes;
   @JsonIgnore
-  private Map<String, Long> taskByStateStatistic;
+  private Map<TaskState, Long> taskByStateStatistic;
   @JsonIgnore
   private Map<String, Long> taskByCategoryStatistic;
   @JsonIgnore
@@ -117,7 +117,7 @@ public class TaskDashboardWidget extends DashboardWidget {
     TaskStateStatistic taskStateStatistic = (TaskStateStatistic) response.get("taskStateStatistic");
     for (Entry<Integer, Long> entry : taskStateStatistic.getNumberOfTasksByState().entrySet()) {
       if (entry.getValue() != 0) {
-        taskByStateStatistic.put(TaskState.valueOf(entry.getKey()).name(), entry.getValue());
+        taskByStateStatistic.put(TaskState.valueOf(entry.getKey()), entry.getValue());
       }
     }
   }
@@ -253,12 +253,8 @@ public class TaskDashboardWidget extends DashboardWidget {
     this.dataModel.getCriteria().setInConfiguration(isInConfiguration);
   }
 
-  public Map<String, Long> getTaskByStateStatistic() {
+  public Map<TaskState, Long> getTaskByStateStatistic() {
     return taskByStateStatistic;
-  }
-
-  public void setTaskByStateStatistic(Map<String, Long> taskByStateStatistic) {
-    this.taskByStateStatistic = taskByStateStatistic;
   }
 
   public Long getNumberOfTasksExpireThisWeek() {

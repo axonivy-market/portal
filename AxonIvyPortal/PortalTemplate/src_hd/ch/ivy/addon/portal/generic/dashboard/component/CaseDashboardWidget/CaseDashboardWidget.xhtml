@@ -2,14 +2,12 @@
   xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
   xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 <cc:interface componentType="IvyComponent">
-  <cc:attribute name="managedBean" required="true" />
   <cc:attribute name="index" required="true" />
   <cc:attribute name="widget" required="true" />
-  <cc:attribute name="componentToUpdateOnEdit" />
+  <cc:attribute name="isReadOnlyMode" default="false"/>
 </cc:interface>
 
 <cc:implementation>
-  <c:set var="managedBean" value="#{cc.attrs.managedBean}" />
   <c:set var="index" value="#{cc.attrs.index}" />
   <c:set var="widget" value="#{cc.attrs.widget}" />
 
@@ -17,13 +15,12 @@
     <ui:param name="index" value="#{index}" />
     <ui:param name="widget" value="#{widget}" />
     <ui:param name="widgetFormId" value="case-form-#{index}" />
-    <ui:param name="isReadOnlyMode" value="#{managedBean.isReadOnlyMode}" />
+    <ui:param name="isReadOnlyMode" value="#{cc.attrs.isReadOnlyMode}" />
     <ui:param name="onStatisticTabShow" value="handleFilterCategoryHeight(this);"/>
 
     <ui:define name="widgetInformationContent">
       <ui:include src="CaseInfo.xhtml">
         <ui:param name="widget" value="#{widget}" />
-        <ui:param name="managedBean" value="#{managedBean}" />
       </ui:include>
     </ui:define>
 

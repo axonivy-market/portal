@@ -18,9 +18,7 @@ Ps0 @PushWFArc f2 '' #zField
 Ps0 f0 guid 17065CC71CC27C23 #txt
 Ps0 f0 method start() #txt
 Ps0 f0 inParameterDecl '<> param;' #txt
-Ps0 f0 outParameterDecl '<Boolean isEdit> result;' #txt
-Ps0 f0 outParameterMapAction 'result.isEdit=in.isEdit;
-' #txt
+Ps0 f0 outParameterDecl '<> result;' #txt
 Ps0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -33,7 +31,6 @@ Ps0 f1 211 51 26 26 0 12 #rect
 Ps0 f3 guid 17065CC71E258654 #txt
 Ps0 f3 actionTable 'out=in;
 ' #txt
-Ps0 f3 actionCode 'out.isEdit = true;' #txt
 Ps0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

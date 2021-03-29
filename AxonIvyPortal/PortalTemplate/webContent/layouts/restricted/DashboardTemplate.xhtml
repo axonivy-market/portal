@@ -23,11 +23,11 @@
               update="grid-stack" process="@this" styleClass="dashboard__title" oncomplete="loadGrid()" value="#{dashboard.title}" />
           </c:forEach>
 
-          <ui:insert name="headerAction"></ui:insert>
+          <ui:insert name="headerAction" />
         </div>
 
         <h:panelGroup id="grid-stack" layout="block" styleClass="grid-stack">
-          <ui:insert name="dashboardContent"></ui:insert>
+          <ui:insert name="dashboardContent" />
         </h:panelGroup>
 
         <h:outputScript library="js" name="dashboard.js" />

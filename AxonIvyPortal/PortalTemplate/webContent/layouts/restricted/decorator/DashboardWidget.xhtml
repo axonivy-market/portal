@@ -2,6 +2,20 @@
   xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
   xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
+<!-- DASHBOARD WIDGET DECORATOR: USES FOR DISPLAYING THE WIDGET IN DASHBOARD PAGE.
+    DEFINED 2 SECTIONS: WIDGET HEADER AND WIDGET CONTENT
+    - WIDGET HEADER: INFO, FILTER, EDIT AND DELETE LINK
+    ** DEFINE SPECIFIC CONTENT FOR INFO OVERLAY PANEL BY DEFINE WIDGETINFORMATIONCONTENT TAG
+    ** DEFINE SPECIFIC CONTENT FOR FILTER OVERLAY PANEL BY DEFINE WIDGETFILTERCONTENT TAG
+    - WIDGET CONTENT: SHOWS WIDGET CONTENT BY DEFINE WIDGETCONTENT TAG
+    *** REQUIRED PARAMS:
+    * INDEX: INDEX OF WIDGET IN DASHBOARD PAGE.
+    * WIDGE: WIDGET MODEL.
+    * WIDGETFORMID: ID OF WIDGET FORM.
+    * ISREADONLYMODE: INDICATOR TO SHOW EDIT/DELETE LINK.
+    * ONSTATISTICTABSHOW: AJAX METHOD TO CALL WHEN WIDGET INFO PANEL IS SHOWN ON.
+    -->
+
 <h:form id="#{widgetFormId}">
   <div class="widget__header">
     <span>#{not empty widget.name ? widget.name : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/yourWidget')}</span>
@@ -22,6 +36,13 @@
         actionListener="#{dashboardConfigurationBean.setEditWidget(widget)}"
         update="new-widget-configuration-dialog"
         rendered="#{!isReadOnlyMode}" />
+
+<!--       <p:commandLink styleClass="si si si-recycling-hand-trash u-mar-right-10" -->
+<!--         oncomplete="PF('remove-widget-dialog').show()" -->
+<!--         global="false" -->
+<!--         actionListener="#{dashboardConfigurationBean.setEditWidget(widget)}" -->
+<!--         update="remove-widget-dialog" -->
+<!--         rendered="#{!isReadOnlyMode}" /> -->
 
       <p:commandLink disabled="true" styleClass="si si-arrow-right" />
 
@@ -51,7 +72,6 @@
           onTabShow="#{onStatisticTabShow}">
 
           <ui:insert name="widgetInformationContent" />
-
         </p:accordionPanel>
       </p:overlayPanel>
 
@@ -62,15 +82,13 @@
         dismissable="false">
 
         <ui:insert name="widgetFilterContent" />
-
       </p:overlayPanel>
     </div>
   </div>
 
   <h:panelGroup id="widget-content" styleClass="widget__content #{widget.id} dashboard-widget-panel-container" layout="block">
-
+    <!-- Insert widget content here -->
     <ui:insert name="widgetContent" />
-
   </h:panelGroup>
 </h:form>
 

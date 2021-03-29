@@ -3,8 +3,10 @@
   xmlns:pe="http://primefaces.org/ui/extensions" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:jsf="http://xmlns.jcp.org/jsf"
   xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
-<p:dialog id="new-widget-dialog" widgetVar="new-widget-dialog" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/createWidget')}"
-  appendTo="@(body)" closeOnEscape="true" draggable="false" fitViewport="true" responsive="true" modal="true">
+<p:dialog id="new-widget-dialog" widgetVar="new-widget-dialog"
+  header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/createWidget')}"
+  appendTo="@(body)" closeOnEscape="true" draggable="false"
+  fitViewport="true" responsive="true" modal="true">
 
   <p:dataGrid id="new-widget-dialog-content" var="sample" value="#{dashboardConfigurationBean.samples}" layout="grid" columns="2"
     styleClass="new-widget-dialog__content">
@@ -24,9 +26,13 @@
   </f:facet>
 </p:dialog>
 
-<p:dialog id="new-widget-configuration-dialog" widgetVar="new-widget-configuration-dialog" header="#{dashboardConfigurationBean.newWidgetHeader}"
-  appendTo="@(body)" closeOnEscape="true" draggable="false" dynamic="true" fitViewport="true" responsive="true" modal="true" width="95vw">
+<p:dialog id="new-widget-configuration-dialog" widgetVar="new-widget-configuration-dialog"
+  header="#{dashboardConfigurationBean.newWidgetHeader}"
+  appendTo="@(body)" closeOnEscape="true" draggable="false" dynamic="true"
+  fitViewport="true" responsive="true" modal="true" width="95vw">
   <c:set var="widget" value="#{dashboardConfigurationBean.widget}" />
+  <c:set var="componentToProcess" value="#{widget eq null ? '@this' :
+   'widget-configuration-form:new-widget-configuration-component:user-filter widget-configuration-form:new-widget-configuration-component:widget-title-group'}" />
 
   <h:form id="widget-configuration-form" styleClass="ui-g">
     <c:if test="#{dashboardConfigurationBean.isTaskWidget(widget)}">
@@ -46,8 +52,10 @@
 
     <p:commandButton id="widget-configuration-save-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
       actionListener="#{dashboardConfigurationBean.saveWidget()}" icon="si si-floppy-disk"
-      process="#{widget eq null ? '@this' : 'widget-configuration-form:new-widget-configuration-component:filter-container'}" partialSubmit="true"
-      update="grid-stack" oncomplete="PF('new-widget-configuration-dialog').hide();loadGrid();" />
+      oncomplete="PF('new-widget-configuration-dialog').hide();loadGrid();"
+      process="#{componentToProcess}"
+      partialSubmit="true"
+      update="grid-stack new-widget-configuration-dialog"/>
   </f:facet>
 </p:dialog>
 
