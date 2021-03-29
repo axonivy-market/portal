@@ -99,7 +99,7 @@ Change date time pattern
 
 You can change date pattern by modifying CMS in PortalStyle project:
 ``PortalStyle/patterns/datePattern`` and
-``PortalStyle/patterns/dateTimePattern`` .
+``PortalStyle/patterns/dateTimePattern``.
 
 .. |css_variable| raw:: html
 

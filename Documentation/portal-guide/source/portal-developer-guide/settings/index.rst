@@ -3,54 +3,21 @@
 Settings
 ********
 
-This section covers Portal role, permissions and some settings in User menu
+This section covers Portal role, permissions and some settings.
 
 |portal-header|
 
 .. _settings-admin-settings:
 
-Admin settings
-==============
+Setup Portal settings by configuration file in Designer
+=======================================================
 
-User needs to have role ``AXONIVY_PORTAL_ADMIN`` to see this menu.
+To manually configure Portal settings, refer to :ref:`update-portal-settings`.
 
-How to open Admin Settings
---------------------------
+In development, it is a quite tedious task to configure Portal settings after restarting Designer. Therefore,
+Portal supports modification of Portal settings in Designer by configuration file, it could survive after restarting Designer.
 
-Open ``Admin Settings`` by selecting the item in ``UserMenu`` on the
-topbar, if your page using layout of ``PortalTemplate`` .
-
-|select-admin-settings|
-
-.. important:: 
-   If your application does not use templates of PortalTemplate project, you
-   have to create a page and use AdminSettings component inside.
-
-.. _settings-admin-settings-global-settings:
-
-Global settings
----------------
-
-Global settings for Portal can be set in Settings tab. All available
-settings with their default value and description are listed in this
-place.
-
-|global-settings|
-
-You can edit value for a specific setting
-
-|global-setting-edit|
-
-You can also get back the default value for each setting by clicking
-reset button on each row, or reset all values of all settings by
-clicking ``Restore All To Defaults`` button.
-
-Setup Global settings by configuration file
-"""""""""""""""""""""""""""""""""""""""""""
-.. important:: 
-   This feature only supports modification of Portal settings in Designer.
-
-Process developer can set up global settings of Portal in file ``portal_settings_config.properties`` which put in ``PortalKit``.
+Process developer can set up Portal settings of Portal in file ``portal_settings_config.properties`` which put in ``PortalKit``.
 
    .. code-block:: Python
 
@@ -80,6 +47,9 @@ Process developer can set up global settings of Portal in file ``portal_settings
       #HIDE_TIME = false
       #CLIENT_SIDE_TIMEOUT =
       #REFRESH_TASK_LIST_INTERVAL = 10000
+
+      # Year settings
+      #HIDE_YEAR = false
 
       # Task/case counting functions
       #DISABLE_CASE_COUNT = false
@@ -114,7 +84,6 @@ Process developer can set up global settings of Portal in file ``portal_settings
       #SHOW_BUTTON_ICON = true
       #SHOW_TASK_DURATION_TIME = true
       #SHOW_CASE_DURATION_TIME = true
-      #APPLY_JSON_CONFIGURATION_FILE_FOR_TASK_DETAILS = true
 
 This file already contains list of settings with their default values.
 These settings will be applied once you start Portal.
@@ -134,11 +103,7 @@ If user email language setting is application default, language would be applied
 
 If user selects a language in email setting, language would be appplied by this selection.
 
-To configure languages of Portal applications, select ``My profile`` . 
-
-Select one in dropdown list of ``Selected language``. After the change is saved, new language will be set for whole application.
-
-|language-settings|
+To configure languages of Portal applications, refer to :ref:`language-settings`.
 
 -  For multiple languages, the CMS key ``/AppInfo/SupportedLanguages``
    must exist in your application. This CMS entry is
@@ -301,7 +266,7 @@ Case permission
 - See related tasks of case
 
    To show related tasks action, user needs permission: 
-   ``PortalPermission.SHOW_ALL_TASKS_OF_CASE`` .
+   ``PortalPermission.SHOW_ALL_TASKS_OF_CASE``.
 
    To see related tasks, user needs permission: 
    ``IPermission.TASK_READ_OWN_CASE_TASKS`` or
@@ -322,7 +287,7 @@ Normal users can only see their tasks/cases they can work on.
 
 Administrator can see all tasks/cases in the application.
 
-Permissions needed: ``IPermission.TASK_READ_ALL`` ,
+Permissions needed: ``IPermission.TASK_READ_ALL``,
 ``IPermission.CASE_READ_ALL`` .
 
 Administrator permission can interact with all workflows in the application
@@ -463,7 +428,6 @@ Global variables
 .. |global-settings| image:: ../../screenshots/settings/global-settings.png
 .. |global-setting-edit| image:: ../../screenshots/settings/edit-global-settings.png
 .. |language-precedence| image:: images/settings/language-precedence.png
-.. |language-settings| image:: ../../screenshots/my-profile/my-profile.png
 .. |add-new-language| image:: images/settings/add-new-language.png
 .. |select-admin-settings| image:: ../../screenshots/settings/select-admin-settings.png
 

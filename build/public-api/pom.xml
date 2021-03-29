@@ -89,15 +89,15 @@
 
               <show>package</show>
               <author>false</author>
-              <windowtitle>Axon.ivy Public API </windowtitle>
+              <windowtitle>Axon Ivy Public API </windowtitle>
               <doctitle>
-                <![CDATA[<h1>Axon.ivy Public API</h1>]]>
+                <![CDATA[<h1>Axon Ivy Public API</h1>]]>
               </doctitle>
               <header>
-                <![CDATA[<i><b>Axon.ivy Public API<br>Version ${ivy-version}.${build-datetime}</b></i>]]>
+                <![CDATA[<i><b>Axon Ivy Public API<br>Version ${ivy-version}.${build-datetime}</b></i>]]>
               </header>
               <footer>
-                <![CDATA[<i><b>Axon.ivy Public API<br>Version ${ivy-version}.${build-datetime}</b></i>]]>
+                <![CDATA[<i><b>Axon Ivy Public API<br>Version ${ivy-version}.${build-datetime}</b></i>]]>
               </footer>
               
             </configuration>

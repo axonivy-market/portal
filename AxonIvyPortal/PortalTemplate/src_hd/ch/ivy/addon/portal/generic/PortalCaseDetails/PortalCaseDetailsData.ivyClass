@@ -6,3 +6,5 @@ isShowBackButton Boolean #field
 isShowBackButton PERSISTENT #fieldModifier
 isTaskStartedInDetails Boolean #field
 isTaskStartedInDetails PERSISTENT #fieldModifier
+caseLazyDataModel ch.ivy.addon.portalkit.datamodel.internal.RelatedCaseLazyDataModel #field
+caseLazyDataModel PERSISTENT #fieldModifier

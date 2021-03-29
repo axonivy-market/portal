@@ -17,11 +17,13 @@ import ch.ivy.addon.portalkit.casefilter.impl.CaseFilterData;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.constant.UserProperty;
 import ch.ivy.addon.portalkit.dto.UserDTO;
+import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;
 import ch.ivy.addon.portalkit.service.DateTimeGlobalSettingService;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilter;
 import ch.ivy.addon.portalkit.taskfilter.impl.TaskFilterData;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
+import ch.ivyteam.ivy.request.IHttpRequest;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.security.IUserAbsence;
 import ch.ivyteam.ivy.workflow.IWorkflowSession;
@@ -61,6 +63,7 @@ public class UserUtils {
       }
       getIvySession().setContentLocale(l);
       getIvySession().setFormattingLocale(l);
+      setDefaultDatePattern(sessionUser);
       return null;
     });
   }
@@ -272,4 +275,25 @@ public class UserUtils {
     return false;
   }
 
+  public static void setDefaultDatePattern(IUser sessionUser) {
+    if (StringUtils.isBlank(sessionUser.getProperty(UserProperty.DEFAULT_DATE_FORMAT))) {
+      IHttpRequest request = (IHttpRequest) Ivy.request();
+      Locale locale = request.getHttpServletRequest().getLocale();
+      String defaultPattern = getDefaultPatternByLocale(locale);
+      sessionUser.setProperty(UserProperty.DEFAULT_DATE_FORMAT, defaultPattern);
+      sessionUser.setProperty(UserProperty.DATE_FORMAT, defaultPattern);
+    }
+  }
+
+  private static String getDefaultPatternByLocale(Locale locale) {
+    SimpleDateFormat simpleDateFormat =
+        (SimpleDateFormat) SimpleDateFormat.getDateInstance(SimpleDateFormat.SHORT, locale);
+    return simpleDateFormat.toLocalizedPattern();
+  }
+
+  public static String getSelectedDateFormat(List<String> dateFormats) {
+    String format = UserSettingService.newInstance().getDateFormat();
+    int index = dateFormats.indexOf(format);
+    return index > -1 ? dateFormats.get(index) : dateFormats.get(0);
+  }
 }
