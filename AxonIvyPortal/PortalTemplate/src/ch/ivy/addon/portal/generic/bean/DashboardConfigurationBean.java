@@ -36,10 +36,11 @@ import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 @ManagedBean
 public class DashboardConfigurationBean extends DashboardBean implements Serializable {
 
-  private static final long serialVersionUID = 2996543210850322882L;
-  private static final String WIDGETID_PATTERN = "%s_%s";
+  private static final long serialVersionUID = -7803140491152435429L;
+  private static final String WIDGET_ID_PATTERN = "%s_%s";
   protected List<WidgetSample> samples;
   private String newWidgetHeader;
+  private DashboardWidget deleteWidget;
 
   @PostConstruct
   public void initConfigration() {
@@ -116,6 +117,13 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
     }
   }
 
+  public void removeWidget() throws JsonProcessingException {
+    if (this.deleteWidget != null) {
+      this.selectedDashboard.getWidgets().remove(deleteWidget);
+      saveOrUpdateDashboardToUserProperty(selectedDashboard);
+    }
+  }
+  
   private CaseDashboardWidget getDefaultCaseDashboardWidget() {
     String widgetId = generateNewWidgetId(DashboardWidgetType.CASE);
     String widgetName = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourCases");
@@ -141,21 +149,22 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
   }
 
   public String generateNewWidgetId(DashboardWidgetType type) {
-    final String widgetIdPrefix = String.format(WIDGETID_PATTERN, type.name(), EMPTY).toLowerCase();
+    final String widgetIdPrefix = String.format(WIDGET_ID_PATTERN, type.name(), EMPTY).toLowerCase();
 
     List<String> ids = selectedDashboard.getWidgets().stream()
             .filter(widget -> widget.getId().startsWith(widgetIdPrefix))
             .map(DashboardWidget::getId).collect(Collectors.toList());
     if (CollectionUtils.isNotEmpty(ids)) {
-      Integer maxId = Collections.max(ids.stream().map(id -> Integer.parseInt(id.replace(widgetIdPrefix, "")))
+      Integer maxId = Collections.max(ids.stream()
+                        .map(id -> Integer.parseInt(id.replace(widgetIdPrefix, EMPTY)))
                         .collect(Collectors.toList()));
       if (maxId != null && maxId >= 0) {
         String widgetId = Integer.toString(maxId + 1);
-        return String.format(WIDGETID_PATTERN, type.name(), widgetId).toLowerCase();
+        return String.format(WIDGET_ID_PATTERN, type.name(), widgetId).toLowerCase();
       }
     }
 
-    return String.format(WIDGETID_PATTERN, type.name(), 0).toLowerCase();
+    return String.format(WIDGET_ID_PATTERN, type.name(), 0).toLowerCase();
   }
 
   public void saveWidget() throws JsonProcessingException {
@@ -219,6 +228,14 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
 
   public String getNewWidgetHeader() {
     return newWidgetHeader;
+  }
+
+  public DashboardWidget getDeleteWidget() {
+    return deleteWidget;
+  }
+
+  public void setDeleteWidget(DashboardWidget deleteWidget) {
+    this.deleteWidget = deleteWidget;
   }
 
 }

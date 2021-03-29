@@ -7,13 +7,13 @@ import ch.ivyteam.ivy.workflow.ICase;
 
 public class NameColumnModel extends CaseColumnModel implements Serializable {
 
-  private static final long serialVersionUID = -4315469062114036720L;
+  private static final long serialVersionUID = -8593323636310504629L;
 
   @Override
   public void initDefaultValue() {
-    this.header = defaultIfEmpty(this.header, "Case Name");
+    this.header = defaultIfEmpty(this.header, cms("/ch.ivy.addon.portalkit.ui.jsf/common/caseName"));
     this.field = DashboardStandardCaseColumn.NAME.getField();
-    this.styleClass = defaultIfEmpty(this.styleClass, "dashboard-tasks__name u-text-align-center");
+    this.styleClass = defaultIfEmpty(this.styleClass, "dashboard-cases__name u-text-align-center");
   }
   
   @Override

@@ -29,8 +29,8 @@
   <div class="ui-g">
     <ui:repeat value="#{widget.taskByStateStatistic.entrySet()}" var="entry">
       <div class="ui-g-8">
-        <h:outputText value="#{managedBean.getTaskStateDisplayName(entry.key)}"
-          styleClass="dashboard-tasks__state-text--#{entry.key.toLowerCase()} dashboard-tasks__state-text" />
+        <h:outputText value="#{dashboardTaskFilterBean.getUserFriendlyTaskState(entry.key)}"
+          styleClass="dashboard-tasks__state-text--#{entry.key.name().toLowerCase()} dashboard-tasks__state-text" />
       </div>
       <div class="ui-g-4">
         <span>#{entry.value} #{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/tasks")}</span>
@@ -43,7 +43,7 @@
   <f:facet name="title">
     <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/tasWidgetkInfo/numberOfTasksByCategory')}" />
   </f:facet>
-  <div class="ui-g">
+  <div class="ui-g" jsf:rendered="#{not empty widget.taskByCategoryStatistic.entrySet()}">
     <ui:repeat value="#{widget.taskByCategoryStatistic.entrySet()}" var="entry" varStatus="status">
       <div class="ui-g-8 u-truncate-text u-default-cursor">
         <h:outputText id="category" value="#{empty entry.key ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noCategory') : entry.key}" />
@@ -55,8 +55,11 @@
       </div>
     </ui:repeat>
   </div>
+  <div class="ui-g" jsf:rendered="#{empty widget.taskByCategoryStatistic.entrySet()}">
+    <h:outputText styleClass="ui-g-12" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/noCategory')}" />
+  </div>
 </p:tab>
-<p:tab id="filter-tab" rendered="#{managedBean.hasPredefinedFilter(widget)}">
+<p:tab id="filter-tab" rendered="#{dashboardTaskFilterBean.hasPredefinedFilter(widget)}">
   <f:facet name="title">
     <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/tasWidgetkInfo/predefinedFilters')}" />
   </f:facet>

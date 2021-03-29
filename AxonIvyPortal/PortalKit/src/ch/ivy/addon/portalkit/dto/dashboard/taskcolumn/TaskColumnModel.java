@@ -8,7 +8,7 @@ import ch.ivyteam.ivy.workflow.custom.field.ICustomFields;
 
 public class TaskColumnModel extends ColumnModel {
 
-  private static final long serialVersionUID = 3472632813160872246L;
+  private static final long serialVersionUID = -6363817685343055544L;
 
   public Object display(ITask task) {
     ICustomFields customFields = task.customFields();
