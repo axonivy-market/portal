@@ -105,18 +105,18 @@ The :guilabel:`Email settings` dialog provides you with the following configurat
    configuration for all applications. It is important to note, that in the
    background these settings will be applied to all available applications.
 
-#. The option :guilabel:`For each application` separate allows you to provide
+#. The option :guilabel:`For each application separate` allows you to provide
    individual settings for each available application.
 
-#. The option :guilabel:`Email notification on task assignment` allows you to
+#. The option :guilabel:`Receive email notification on task assignment` allows you to
    specify if you want to receive an instant notification when a task is
    assigned to you or one of the roles you hold.
 
-#. The setting :guilabel:`Daily summary at` allows you to specify the weekdays
+#. The setting :guilabel:`Receive daily summary` allows you to specify the weekdays
    when you receive a summary of all tasks assigned to you or one of
    your roles.
 
-#. The option :guilabel:`Further emails from application` allows you to activate
+#. The option :guilabel:`Receive further emails from application` allows you to activate
    / deactivate further email notifications.
 
 

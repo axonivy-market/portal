@@ -17,9 +17,9 @@ Information
 
 - To use chat, refer to :ref:`portal-chat`
 
-- Chat feature is reimplemented from Ivy 7.4.
+- Chat feature is reimplemented from Axon Ivy 7.4.
 
-- If browsers access Portal through  a reverse proxy Nginx, set Portal setting **CHAT_RESPONSE_TIMEOUT** a number less than Nginx timeout to make chat work properly.
+- If browsers access Portal through a reverse proxy Nginx, set Portal setting **CHAT_RESPONSE_TIMEOUT** a number less than Nginx timeout to make chat work properly.
 
 - Each tab uses one long-polling request for chat. Browsers limit the number of long-polling request for one domain, max number could be six or more.
 
@@ -36,7 +36,7 @@ Information
 Limitation of current Portal chat
 ---------------------------------
 
-Portal Chat does not support cross application chat. That means users are
+Portal chat does not support cross application chat. That means users are
 able to chat with other users in the current application, but they cannot chat
 with users in other application.
 

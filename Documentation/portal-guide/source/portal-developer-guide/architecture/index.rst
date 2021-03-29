@@ -46,11 +46,11 @@ focus/hover color by providing a lot of variables.
 PortalTemplate
 ===============
 
-Provides default portal's templates and pages. This module contains
+Provides default Portal's templates and pages. This module contains
 templates page for Portal's user to use as composition, then they will
-have supporting features such as : top menu, application menu, user
+have supporting features such as top menu, application menu, user
 menu. It also contains some start process links to default page such as
-: Portal home, Portal task list, Portal case list... Portal's user is
+ Portal home, Portal task list, Portal case list... Portal's user is
 advised to depend on this module to use Portal easily.
 
 .. _architecture-axonivy-express:

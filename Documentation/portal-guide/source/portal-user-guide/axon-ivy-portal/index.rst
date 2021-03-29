@@ -4,7 +4,7 @@ Axon Ivy Portal
 ***************
    
 **Axon Ivy Portal** is the centerpiece for your daily work with the
-applications you / your company implemented using the Axon Ivy Digital Business
+applications you / your company implemented using the Axon Ivy 
 Platform. With a web-based, modern interface the Portal provides you with key
 functionalities on all your devices:
 

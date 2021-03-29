@@ -44,8 +44,8 @@ HowTo: Add an external link
 #. For the :guilabel:`Start link`, add the URL of your external link.
 
 #. This step is only for a user granted ``CreatePublicExternalLink`` Portal permission. 
-   This user can set this link as a public link by selecting ``All users``.
-   By default, 'Visibility' field is not displayed and this new external link is a private link.
+   This user can set this link as a public link by selecting :guilabel:`All users`.
+   By default, :guilabel:`Visibility` field is not displayed and this new external link is a private link.
 
 #. Confirm your configuration with the button :guilabel:`Add`.
 
