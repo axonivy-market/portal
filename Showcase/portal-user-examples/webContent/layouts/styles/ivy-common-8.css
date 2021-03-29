@@ -18,11 +18,8 @@ body {
   }
 }
 .container {
-  padding: 0 15px;
+  padding: 1em;
   margin: 0 auto;
-}
-.container.frame {
-  margin: 0;
 }
 .ui-layout-container,
 .ui-layout-unit,
@@ -56,9 +53,19 @@ body {
 .ui-layout-unit-content .ui-inputfield {
   width: 100%;
 }
+.command-btns {
+  float: right;
+  margin-bottom: 20px;
+}
+.command-btn > a {
+  margin-right: 10px;
+  line-height: 30px;
+  color: var(--accent-color, gray);
+}
 
 /* Footer */
 hr {
+  clear: both;
   margin-top: 20px;
   margin-bottom: 20px;
   border: 0;

@@ -81,5 +81,4 @@ public class GlobalSetting extends BusinessEntity {
   public String toString() {
     return "GlobalSetting [key=" + key + ", value=" + value + ", id=" + getId() + "]";
   }
-
 }

@@ -34,12 +34,22 @@ public class SearchResultPage extends TemplatePage {
 	}
 
 	public void startProcess(String name) {
-		ProcessWidgetPage processWidgetPage = new ProcessWidgetPage("search-results-tabview:process-results");
-		processWidgetPage.waitAndStartProcess(name);
+		ProcessWidgetPage processWidgetPage = getProcessWidget();
+		if (processWidgetPage.isGridModeActivated()) {
+		  WebElement processListElement = findElementById("search-results-tabview:process-results");
+		  click(processWidgetPage.getStartGridProcess(name, processListElement));
+		  return;
+		}
+		processWidgetPage.startProcess(name);
 	}
 
 	public String getProcessResult(String name) {
-		ProcessWidgetPage processWidgetPage = new ProcessWidgetPage("search-results-tabview:process-results");
+		ProcessWidgetPage processWidgetPage = getProcessWidget();
+		if (processWidgetPage.isGridModeActivated()) {
+		  WebElement processItem = processWidgetPage.getGridProcessItem(name);
+		  WebElement processNameElement = findChildElementByCssSelector(processItem, ".js-process-start-list-item-name");
+		  return processNameElement.getText();
+		}
 		return processWidgetPage.getProcess(name).getText();
 	}
 
@@ -54,17 +64,21 @@ public class SearchResultPage extends TemplatePage {
 	}
 
 	public String getCaseResult(int index) {
-		CaseWidgetPage caseWidgetPage = new CaseWidgetPage("search-results-tabview:case-results");
+		CaseWidgetPage caseWidgetPage = getCaseWidget();
 		return caseWidgetPage.getCaseNameAt(index);
 	}
 
 	public int countCase() {
-		CaseWidgetPage caseWidgetPage = new CaseWidgetPage("search-results-tabview:case-results");
+		CaseWidgetPage caseWidgetPage = getCaseWidget();
 		return caseWidgetPage.getNumberOfCases();
 	}
 
+  private CaseWidgetPage getCaseWidget() {
+    return new CaseWidgetPage("search-results-tabview:case-results");
+  }
+
 	public boolean isCaseResultEmpty() {
-		CaseWidgetPage caseWidgetPage = new CaseWidgetPage("search-results-tabview:case-results");
+		CaseWidgetPage caseWidgetPage = getCaseWidget();
 		return caseWidgetPage.isEmpty();
 	}
 
@@ -75,30 +89,57 @@ public class SearchResultPage extends TemplatePage {
 	}
 
 	public boolean isProcessGroupDisplay(String group) {
-		ProcessWidgetPage processWidgetPage = new ProcessWidgetPage("search-results-tabview:process-results");
+		ProcessWidgetPage processWidgetPage = getProcessWidget();
 		return processWidgetPage.isProcessGroupDisplay(group);
 	}
 
-	public boolean isInfoWorkflowIcon() {
-		WebElement element = findElementByCssSelector(INFO_EXPRESS_WORKFlOW);	
-		return element.getAttribute("class").contains("si-information-circle");
-	}
-	
-	public boolean isEditExpressWorkflow() {
-		WebElement element = findElementByCssSelector(EDIT_EXPRESS_WORKFlOW);
-		return element.getAttribute("class").contains("si-graphic-tablet-drawing-pen");
-	}
-	
-	public boolean isDeleteExpressWorkflown() {
-		WebElement element = findElementByCssSelector(DELETE_EXPRESS_WORKFlOW);
-		return element.getAttribute("class").contains("si-bin-1");
-	}
-	
-	public boolean isExpressProcessLogo() {
-		WebElement element = findElementByCssSelector(EXPRESS_PROCESS_LOGO);
-		return element.getAttribute("class").contains("si-startup-launch");
-	}
-	
+  private ProcessWidgetPage getProcessWidget() {
+    return new ProcessWidgetPage("search-results-tabview:process-results");
+  }
+
+  public boolean isInfoWorkflowIcon() {
+    ProcessWidgetPage processWidget = getProcessWidget();
+    if (processWidget.isGridModeActivated()) {
+      WebElement expressWorkflow = findElementByClassName("express-workflow");
+      WebElement icon = findChildElementByClassName(expressWorkflow, "process-grid-view-icon");
+      return icon.getAttribute("class").contains("si si si-startup-launch");
+    }
+
+    WebElement element = findElementByCssSelector(INFO_EXPRESS_WORKFlOW);
+    return element.getAttribute("class").contains("si-information-circle");
+  }
+
+  public boolean isEditExpressWorkflow() {
+    ProcessWidgetPage processWidget = getProcessWidget();
+    if (processWidget.isGridModeActivated()) {
+      WebElement expressWorkflow = findElementByClassName("express-workflow");
+      WebElement icon = findChildElementByCssSelector(expressWorkflow, "a[id$=':process-item:edit-link']");
+      return icon.isDisplayed();
+    }
+    WebElement element = findElementByCssSelector(EDIT_EXPRESS_WORKFlOW);
+    return element.getAttribute("class").contains("si-graphic-tablet-drawing-pen");
+  }
+
+  public boolean isDeleteExpressWorkflown() {
+    ProcessWidgetPage processWidget = getProcessWidget();
+    if (processWidget.isGridModeActivated()) {
+      WebElement expressWorkflow = findElementByClassName("express-workflow");
+      WebElement icon = findChildElementByCssSelector(expressWorkflow, "a[id$=':process-item:delete-link']");
+      return icon.isDisplayed();
+    }
+    WebElement element = findElementByCssSelector(DELETE_EXPRESS_WORKFlOW);
+    return element.getAttribute("class").contains("si-bin-1");
+  }
+
+  public boolean isExpressProcessLogo() {
+    ProcessWidgetPage processWidget = getProcessWidget();
+    if (processWidget.isGridModeActivated()) {
+      return isInfoWorkflowIcon();
+    }
+    WebElement element = findElementByCssSelector(EXPRESS_PROCESS_LOGO);
+    return element.getAttribute("class").contains("si-startup-launch");
+  }
+
 	public boolean isTaskCategoryColumnDisplayed() {
 	  return findElementByCssSelector("span[id$=':task-category-cell']").isDisplayed();
   }

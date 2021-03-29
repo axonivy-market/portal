@@ -11,6 +11,7 @@ import javax.faces.context.FacesContext;
 import org.primefaces.PrimeFaces;
 
 import ch.ivy.addon.portalkit.bo.ExternalLink;
+import ch.ivy.addon.portalkit.bo.ExternalLinkProcessItem;
 import ch.ivy.addon.portalkit.enums.Protocol;
 import ch.ivy.addon.portalkit.service.ExternalLinkService;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
@@ -30,13 +31,15 @@ public class ExternalLinkBean implements Serializable {
   }
   
   public void addNewExternalLink(String clientId) {
-    externalLink =  new ExternalLink();
+    externalLink = new ExternalLink();
+    externalLink.setIcon(ExternalLinkProcessItem.DEFAULT_ICON);
     PrimeFaces.current().resetInputs(clientId + ":add-external-link-form");
   }
   
   public ExternalLink saveNewExternalLink() {
     externalLink.setCreatorId(Ivy.session().getSessionUser().getId());
-    correctLink();
+    String processLink = correctLink(externalLink.getLink());
+    externalLink.setLink(processLink);
     externaLinkService.save(externalLink);
     return externalLink;
   }
@@ -45,12 +48,12 @@ public class ExternalLinkBean implements Serializable {
     return PermissionUtils.checkPublicLinkCreationPermission();
   }
   
-  private void correctLink() {
-    String processLink = externalLink.getLink().trim();
+  public String correctLink(String link) {
+    String processLink = link.trim();
     if (!isValidProcessLink(processLink)) {
       processLink = Protocol.HTTP.getValue() + processLink;
-      externalLink.setLink(processLink);
     }
+    return processLink;
   }
 
   private boolean isValidProcessLink(String processLink) {

@@ -16,7 +16,7 @@
     <p:growl id="case-document-global-messages" escape="false" />
     <h:form id="case-document-form" prependId="false" styleClass="ui-g-12 u-padding-0">
       <div class="case-detail-section-title ui-g-12">
-        <div class="ui-g-5 u-truncate-text u-padding-0">
+        <div class="ui-g-5 u-truncate-text u-padding-0 task-details-panel-title">
           <i class="si si-common-file-text" /> #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/documents')}
         </div>
         <h:panelGroup layout="block" styleClass="case-details-document-add ui-g-7 u-padding-0">
@@ -33,7 +33,7 @@
       <div class="ui-g-12 u-padding-0">
         <p:dataTable id="case-details-documents" rendered="#{not empty data.documents}" var="document"
           value="#{data.documents}" paginator="true" paginatorAlwaysVisible="false" pageLinks="3" rows="5"
-          paginatorPosition="top"
+          paginatorPosition="bottom"
           paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
           emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
           currentPageReportTemplate="{currentPage} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/curentReportOf')} {totalPages}">

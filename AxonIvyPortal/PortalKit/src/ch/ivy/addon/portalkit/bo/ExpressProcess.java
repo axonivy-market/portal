@@ -17,6 +17,7 @@ public class ExpressProcess {
   private String processFolder;
   private boolean readyToExecute;
   private List<String> processCoOwners;
+  private String icon;
   
   @JsonIgnore
   private boolean isAbleToEdit;
@@ -107,6 +108,14 @@ public class ExpressProcess {
 
   public void setProcessCoOwners(List<String> processCoOwners) {
     this.processCoOwners = processCoOwners;
+  }
+
+  public String getIcon() {
+    return icon;
+  }
+
+  public void setIcon(String icon) {
+    this.icon = icon;
   }
   
 }
