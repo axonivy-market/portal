@@ -46,3 +46,5 @@ processCoOwners 'This field store which user/role is co owener of express proces
 processCoOwners PERSISTENT #fieldModifier
 processCoOwnersDisplayName String #field
 processCoOwnersDisplayName PERSISTENT #fieldModifier
+processIcon String #field
+processIcon PERSISTENT #fieldModifier

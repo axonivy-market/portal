@@ -109,18 +109,6 @@ public class TaskTemplateIFrameTest extends BaseTest {
   }
   
   @Test
-  public void testShowCategoryInTaskByDefaultIframe() {
-    redirectToRelativeLink("InternalSupport/15B1EA24CCF377E8/saleAndInform.ivp");
-    HomePage homePage = new HomePage();
-    TaskWidgetPage taskWidget = homePage.openTaskList();
-    taskWidget.filterTasksInExpandedModeBy("sale department", 1);
-    TaskTemplatePage startTask = taskWidget.startTask(0);
-    startTask.openCaseInfo();
-    TaskWidgetPage openRelatedTask = startTask.openRelatedTask();
-    assertTrue(openRelatedTask.isCategoryColumnDisplayed());
-  }
-  
-  @Test
   public void testShowCategoryInCaseByDefaultIframe() {
     redirectToRelativeLink("InternalSupport/15B1EA24CCF377E8/saleAndInform.ivp");
     HomePage homePage = new HomePage();
@@ -128,7 +116,7 @@ public class TaskTemplateIFrameTest extends BaseTest {
     taskWidget.filterTasksInExpandedModeBy("sale department", 1);
     TaskTemplatePage startTask = taskWidget.startTask(0);
     startTask.openCaseInfo();
-    CaseWidgetPage openRelatedTask = startTask.openRelatedCase();
-    assertTrue(openRelatedTask.isCategoryColumnDisplayed());
+    startTask.switchToCaseInfoIframe();
+    assertTrue(startTask.isCategoryColumnDisplayed());
   }
 }

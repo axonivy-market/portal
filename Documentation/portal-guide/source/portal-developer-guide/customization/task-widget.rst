@@ -8,10 +8,10 @@ users can interact with. In order to show needed task's information,
 Portal supports overriding concept for TaskWidget. Each TaskWidget
 contains 2 parts:
 
-1. :ref:`UI <customization-task-widget-how-to-overide-ui>`:
+#. :ref:`UI <customization-task-widget-how-to-overide-ui>`:
    TaskHeader and TaskListHeader and TaskFilter
 
-2. :ref:`Data
+#. :ref:`Data
    query <customization-task-widget-how-to-override-data-query>`:
    display the tasks as you want
 
@@ -27,24 +27,24 @@ How to override task widget's UI
 
 Refer to ``portal-developer-examples`` project for examples
 
-1. Introduce an Axon.ivy project which has ``PortalTemplate`` as a
+#. Introduce an Axon Ivy project which has ``PortalTemplate`` as a
    required library.
 
-2. To customize task widget, you must customize Portal Home first. Refer
+#. To customize task widget, you must customize Portal Home first. Refer
    to :ref:`Customize Portal
    home <customization-portal-home>` to set new home
    page.
 
-3. Copy the ``PortalStart`` process from ``PortalTemplate`` to your
+#. Copy the ``PortalStart`` process from ``PortalTemplate`` to your
    project. Point PortalHome element to your custom home page in
    previous step. This process is new home page and administrator should
    register this link by Portal's Admin Settings.
 
-4. Use `Axon.ivy HtmlOverride wizard <https://developer.axonivy.com/doc/9.1/designer-guide/how-to/overrides.html?#override-new-wizard>`_ to override ``PortalTasks`` HTML dialog.
+#. Use `Axon Ivy HtmlOverride wizard <https://developer.axonivy.com/doc/9.1/designer-guide/how-to/overrides.html?#override-new-wizard>`_ to override ``PortalTasks`` HTML dialog.
 
    .. tip:: This action overrides ``Task widget`` in: TaskList page, Task Search result.
 
-5. After previous steps, you can override :ref:`TaskListHeader and
+#. After previous steps, you can override :ref:`TaskListHeader and
    TaskHeader <customization-task-widget-how-to-overide-ui-task-header>`
    and :ref:`TaskFilter <customization-task-widget-how-to-overide-ui-task-filter>`
 
@@ -96,7 +96,7 @@ function of these columns work:
       
          <ic:ch.ivy.addon.portalkit.component.task.column.TaskCustomField id="customer-name-component" componentId="customer-name" column="customVarCharField5" dataModel="#{taskView.dataModel}" labelValue="#{task.customVarCharField5}" />
 
-*  Use Axon.ivy Override to override the ``InitializeTaskDataModel``
+*  Use Axon Ivy Override to override the ``InitializeTaskDataModel``
    callable and initialize data model by your customized one.
 
 *  In your customized portal tasks HTMLDialog, the customized data model
@@ -114,9 +114,9 @@ Task filter
 -  In order to introduce new filter, create a new java class extends
    TaskFilter and override its methods (see javadoc comments)
 
-   1. Filter ``label()`` and ``value()`` method.
-   2. Filter ``resetValue()`` method.
-   3. Filter ``validate()`` method.
+   #. Filter ``label()`` and ``value()`` method.
+   #. Filter ``resetValue()`` method.
+   #. Filter ``validate()`` method.
 
    |task-filter|
 
@@ -131,7 +131,7 @@ Task filter
    ``initFilterContainer`` method and initialize filter container (see
    javadoc comments)
 
--  Use Axon.ivy Override to override the ``InitializeTaskDataModel``
+-  Use Axon Ivy Override to override the ``InitializeTaskDataModel``
    callable and initialize data model by your customized one.
 
 -  In your customized portal tasks HTMLDialog, the customized data model
@@ -200,7 +200,7 @@ How to override task widget's data query
 How to override export feature
 ------------------------------
 
-1. Extend the TaskExporter java class of PortalKit.
+#. Extend the TaskExporter java class of PortalKit.
 
    -  Override the ``getColumnName`` method.
 
@@ -228,7 +228,7 @@ How to override export feature
          }
       }
 
-2. Override the ExportTaskToExcel callable process and apply your extended TaskExporter java class.
+#. Override the ExportTaskToExcel callable process and apply your extended TaskExporter java class.
 
    .. code-block:: java
 
@@ -243,17 +243,17 @@ Custom task delegate
 Portal allows to customize the list of users and roles that a task can
 be delegated to. This can be done following these steps:
 
-1. Introduce a Axon.ivy project which has ``PortalTemplate`` as a
+#. Introduce a Axon Ivy project which has ``PortalTemplate`` as a
    required library and its own ``PortalStart`` process. Refer to step
    1, 2, 3, 4 in :ref:`override task widget's
    UI <customization-task-widget-how-to-overide-ui>` guide.
 
-2. In your project, override the callable subprocess
+#. In your project, override the callable subprocess
    ``CalculateTaskDelegate``
 
    |calculate-task-delegate|
 
-3. The callable subprocess data contains the current user
+#. The callable subprocess data contains the current user
    ``in.currentUser`` and the current task to be delegated ``in.task``.
    The lists ``in.users`` and ``in.roles`` contain all possible users
    and roles that the task can be delegated to. Modify those two to have
@@ -269,7 +269,7 @@ screen sizes, please follow below steps.
 
 You can refer to ``portal-developer-examples`` project for examples
 
-1. Add responsiveStyleClass param (in case you're using Portal
+#. Add responsiveStyleClass param (in case you're using Portal
    component), or styleClass (in case you're using Primefaces or JSF
    component) with the same responsive css class for both taskListHeader
    and taskHeader. You can find responsive class in `this
@@ -328,7 +328,7 @@ You can refer to ``portal-developer-examples`` project for examples
    .. tip:: ``TaskCustomField`` component has default
       responsiveStyleClass is ``u-hidden-sm-down``
 
-2. Responsiveness could be broken when you anchor left menu. In this
+#. Responsiveness could be broken when you anchor left menu. In this
    case, to maintain the responsiveness, you could hide some columns by
    add ``js-hidden-when-expand-menu`` to responsiveStyleClass or
    styleClass param of taskListHeader and taskHeader.

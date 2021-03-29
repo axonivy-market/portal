@@ -21,6 +21,7 @@ import ch.ivyteam.ivy.workflow.IWorkflowSession;
 
 public class PermissionUtils {
   private static final String ADMIN_ROLE = "AXONIVY_PORTAL_ADMIN";
+  private static final String EXTERNAL_ID_PREFIX = " externalId:";
 
   private PermissionUtils() {}
 
@@ -122,13 +123,20 @@ public class PermissionUtils {
     if(memberName == null) {
       return false;
     }
-    ISecurityMember member = Ivy.session().getSecurityContext().findSecurityMember(memberName);
+
+    String memberNameWithoutExternalId = getMemberNameWithoutExternalId(memberName);
+    ISecurityMember member = Ivy.session().getSecurityContext().findSecurityMember(memberNameWithoutExternalId);
     if(member != null) {
       boolean isAssignedUser = member.isUser() && Ivy.session().canActAsUser((IUser) member);
       boolean hasAssignedRole = !member.isUser() && Ivy.session().hasRole((IRole) member, false);
       return isAssignedUser || hasAssignedRole;
     }
     return false;
+  }
+
+  private static String getMemberNameWithoutExternalId(String memberName) {
+    int indexOfExternalId = memberName.indexOf(EXTERNAL_ID_PREFIX);
+    return indexOfExternalId > -1 ? memberName.substring(0, indexOfExternalId) : memberName;
   }
 
   public static boolean isSessionUserHasAdminRole() {
