@@ -40,9 +40,7 @@ Ls0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ls0 f0 86 54 20 20 13 0 #rect
-Ls0 f0 @|UdInitIcon #fIcon
 Ls0 f1 86 182 20 20 13 0 #rect
-Ls0 f1 @|UdProcessEndIcon #fIcon
 Ls0 f2 expr out #txt
 Ls0 f2 96 74 96 182 #arcP
 Ls0 f3 guid 14739DB1F4253947 #txt
@@ -58,10 +56,10 @@ Ls0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ls0 f3 214 54 20 20 13 0 #rect
-Ls0 f3 @|UdEventIcon #fIcon
 Ls0 f5 actionTable 'out=in;
 ' #txt
-Ls0 f5 actionCode 'import javax.faces.context.FacesContext;
+Ls0 f5 actionCode 'import ch.ivy.addon.portalkit.util.UserUtils;
+import javax.faces.context.FacesContext;
 import javax.faces.application.FacesMessage;
 import ch.ivyteam.ivy.security.IUser;
 import java.util.Locale;
@@ -91,6 +89,7 @@ if (!in.loginOk)
 			ivy.session.setFormattingLocale(l);
 	}
 	
+	UserUtils.setDefaultDatePattern(sessionUser);
 }' #txt
 Ls0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -104,7 +103,6 @@ get user settings</name>
 </elementInfo>
 ' #txt
 Ls0 f5 206 116 36 24 20 -2 #rect
-Ls0 f5 @|StepIcon #fIcon
 Ls0 f6 expr out #txt
 Ls0 f6 224 74 224 116 #arcP
 Ls0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -115,7 +113,6 @@ Ls0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ls0 f8 208 208 32 32 0 16 #rect
-Ls0 f8 @|AlternativeIcon #fIcon
 Ls0 f9 expr out #txt
 Ls0 f9 224 140 224 208 #arcP
 Ls0 f10 processCall 'Functional Processes/Login:call()' #txt
@@ -133,12 +130,10 @@ after login</name>
 </elementInfo>
 ' #txt
 Ls0 f10 168 298 112 44 -48 -20 #rect
-Ls0 f10 @|CallSubIcon #fIcon
 Ls0 f11 expr in #txt
 Ls0 f11 outCond in.loginOk #txt
 Ls0 f11 224 240 224 298 #arcP
 Ls0 f13 115 307 26 26 0 12 #rect
-Ls0 f13 @|UdProcessEndIcon #fIcon
 Ls0 f12 expr in #txt
 Ls0 f12 208 224 128 307 #arcP
 Ls0 f12 1 128 224 #addKink
@@ -155,13 +150,11 @@ Ls0 f22 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ls0 f22 160 394 128 44 -58 -8 #rect
-Ls0 f22 @|StepIcon #fIcon
 Ls0 f4 expr out #txt
 Ls0 f4 224 342 224 394 #arcP
 >Proto Ls0 .type ch.ivy.addon.portalkit.singleapp.general.Login.LoginData #txt
 >Proto Ls0 .processKind HTML_DIALOG #txt
 >Proto Ls0 -8 -8 16 16 16 26 #rect
->Proto Ls0 '' #fIcon
 Ls0 f0 mainOut f2 tail #connect
 Ls0 f2 head f1 mainIn #connect
 Ls0 f3 mainOut f6 tail #connect

@@ -106,7 +106,7 @@
                     <div class="ui-g-1 ui-lg-1 ui-md-hidden ui-sm-hidden" />
 
                     <!-- PROCESS OWNER -->
-                    <h:panelGroup id="process-owner-container" styleClass="ui-g-5 ui-lg-5 ui-md-6 ui-sm-12 u-no-padding-top u-no-padding-left">
+                    <h:panelGroup id="process-owner-container" styleClass="ui-g-5 ui-lg-5 ui-md-6 ui-sm-12 u-no-padding-left">
                       <h:panelGroup id="process-owner-content" layout="block" styleClass="ui-g" rendered="#{data.isDisplayProcessOwner}">
                         <div class="ui-g-12 u-no-padding-bottom">
                           <p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/ProcessOwner')}"
@@ -128,6 +128,17 @@
                           </h:panelGroup>
                         </div>
                       </h:panelGroup>
+                    </h:panelGroup>
+
+                    <!-- PROCESS ICON -->
+                    <h:panelGroup id="process-icon-container" styleClass="ui-g-5 ui-lg-5 ui-md-6 ui-sm-12 u-no-padding-left">
+                      <div class="ui-g-12 u-no-padding-bottom">
+                        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/icon')}"
+                          styleClass="express-title-header" />
+                      </div>
+                      <div class="ui-g-12 express-process-icon-selection">
+                        <ic:ch.ivy.addon.portalkit.component.IconSelection value="#{data.data.processIcon}" />
+                      </div>
                     </h:panelGroup>
                   </div>
                 </div>

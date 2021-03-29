@@ -22,11 +22,15 @@ Cs0 @PushWFArc f22 '' #zField
 Cs0 @GridStep f26 '' #zField
 Cs0 @UdProcessEnd f28 '' #zField
 Cs0 @PushWFArc f29 '' #zField
-Cs0 @PushWFArc f24 '' #zField
 Cs0 @GridStep f3 '' #zField
 Cs0 @UdMethod f7 '' #zField
 Cs0 @PushWFArc f25 '' #zField
 Cs0 @PushWFArc f4 '' #zField
+Cs0 @UdMethod f5 '' #zField
+Cs0 @PushWFArc f6 '' #zField
+Cs0 @GridStep f8 '' #zField
+Cs0 @PushWFArc f9 '' #zField
+Cs0 @PushWFArc f10 '' #zField
 >Proto Cs0 Cs0 CaseItemHistoryProcess #zField
 Cs0 f0 guid 167E9D3052E4370B #txt
 Cs0 f0 method start() #txt
@@ -109,13 +113,9 @@ Cs0 f22 280 192 320 192 #arcP
 Cs0 f26 actionTable 'out=in;
 ' #txt
 Cs0 f26 actionCode 'import ch.ivy.addon.portalkit.service.HistoryService;
-import ch.ivy.addon.portalkit.service.GlobalSettingService;
 
 HistoryService historyService = new HistoryService();
-GlobalSettingService globalSettingService = new GlobalSettingService();
-boolean excludeSystemTasks = globalSettingService.findHideSystemTasksFromHistorySettingValue();
-boolean excludeSystemNotes = globalSettingService.findHideSystemNotesFromHistorySettingValue();
-in.histories = historyService.getHistories(in.tasks, in.iCase.getNotes(), excludeSystemTasks, excludeSystemNotes);' #txt
+in.histories = historyService.getHistories(in.tasks, in.iCase.getNotes(), !in.showSystemTasks, !in.showSystemNotes);' #txt
 Cs0 f26 security system #txt
 Cs0 f26 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -125,14 +125,12 @@ from tasks and notes</name>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f26 480 170 144 44 -53 -16 #rect
+Cs0 f26 656 170 144 44 -53 -16 #rect
 Cs0 f26 @|StepIcon #fIcon
-Cs0 f28 659 179 26 26 0 12 #rect
+Cs0 f28 835 179 26 26 0 12 #rect
 Cs0 f28 @|UdProcessEndIcon #fIcon
 Cs0 f29 expr out #txt
-Cs0 f29 624 192 659 192 #arcP
-Cs0 f24 expr out #txt
-Cs0 f24 432 192 480 192 #arcP
+Cs0 f29 800 192 835 192 #arcP
 Cs0 f3 actionTable 'out=in;
 ' #txt
 Cs0 f3 actionCode 'in.iCase.getBusinessCase().createNote(ivy.session, in.noteContent);
@@ -163,9 +161,49 @@ Cs0 f7 @|UdMethodIcon #fIcon
 Cs0 f25 expr out #txt
 Cs0 f25 109 288 168 288 #arcP
 Cs0 f4 expr out #txt
-Cs0 f4 280 288 552 214 #arcP
-Cs0 f4 1 552 288 #addKink
+Cs0 f4 280 288 728 214 #arcP
+Cs0 f4 1 728 288 #addKink
 Cs0 f4 0 0.6911145968878323 0 0 #arcLabel
+Cs0 f5 guid 177234B3CBCDC920 #txt
+Cs0 f5 method loadHistories() #txt
+Cs0 f5 inParameterDecl '<> param;' #txt
+Cs0 f5 outParameterDecl '<> result;' #txt
+Cs0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>loadHistories()</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f5 83 371 26 26 -23 15 #rect
+Cs0 f5 @|UdMethodIcon #fIcon
+Cs0 f6 109 384 728 214 #arcP
+Cs0 f6 1 728 384 #addKink
+Cs0 f6 0 0.6831393451508 0 0 #arcLabel
+Cs0 f8 actionTable 'out=in;
+' #txt
+Cs0 f8 actionCode 'import ch.ivy.addon.portalkit.util.PermissionUtils;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
+GlobalSettingService service = new GlobalSettingService();
+out.showSystemNotesChkbox = !service.findHideSystemNotesFromHistorySettingValue();
+out.showSystemTasksChkbox = !service.findHideSystemTasksFromHistorySettingValue();
+boolean isAdmin = PermissionUtils.isSessionUserHasAdminRole();
+out.showSystemNotes = isAdmin;
+out.showSystemTasks = isAdmin;' #txt
+Cs0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Read Portal settings&#13;
+and default values of&#13;
+system entries</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f8 472 162 128 60 -46 -24 #rect
+Cs0 f8 @|StepIcon #fIcon
+Cs0 f9 expr out #txt
+Cs0 f9 432 192 472 192 #arcP
+Cs0 f10 600 192 656 192 #arcP
 >Proto Cs0 .type ch.ivy.addon.portalkit.component.CaseItemHistory.CaseItemHistoryData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 -8 -8 16 16 16 26 #rect
@@ -178,9 +216,13 @@ Cs0 f19 mainOut f22 tail #connect
 Cs0 f22 head f21 mainIn #connect
 Cs0 f26 mainOut f29 tail #connect
 Cs0 f29 head f28 mainIn #connect
-Cs0 f21 mainOut f24 tail #connect
-Cs0 f24 head f26 mainIn #connect
 Cs0 f7 mainOut f25 tail #connect
 Cs0 f25 head f3 mainIn #connect
 Cs0 f3 mainOut f4 tail #connect
 Cs0 f4 head f26 mainIn #connect
+Cs0 f5 mainOut f6 tail #connect
+Cs0 f6 head f26 mainIn #connect
+Cs0 f21 mainOut f9 tail #connect
+Cs0 f9 head f8 mainIn #connect
+Cs0 f8 mainOut f10 tail #connect
+Cs0 f10 head f26 mainIn #connect

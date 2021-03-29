@@ -9,6 +9,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
@@ -25,11 +26,18 @@ import ch.ivy.addon.portalkit.bo.ExternalLinkProcessItem;
 import ch.ivy.addon.portalkit.bo.IvyProcess;
 import ch.ivy.addon.portalkit.bo.PortalExpressProcess;
 import ch.ivy.addon.portalkit.bo.Process;
+import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
+import ch.ivy.addon.portalkit.enums.ProcessMode;
 import ch.ivy.addon.portalkit.enums.ProcessType;
+import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;
 import ch.ivy.addon.portalkit.jsf.Attrs;
+import ch.ivy.addon.portalkit.jsf.ManagedBeans;
+import ch.ivy.addon.portalkit.persistence.domain.GlobalSetting;
+import ch.ivy.addon.portalkit.service.ExpressProcessService;
 import ch.ivy.addon.portalkit.service.ExpressServiceRegistry;
 import ch.ivy.addon.portalkit.service.ExternalLinkService;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
@@ -45,8 +53,11 @@ public class ProcessWidgetBean implements Serializable {
   private static final String SPECIAL_CHARACTER_KEY = "SPECIAL_CHARACTER";
 
   private String processWidgetComponentId;
-  private Process deletedExpressProcess;
-  private Process deletedExternalLink;
+  private Process deletedProcess;
+  private Process editedProcess;
+  private ExternalLink editedExternalLink;
+  private String selectedIconProcess;
+  private boolean isListMode;
 
   private IProcessStart createExpressWorkflowProcessStart;
   private Map<String, List<Process>> processesByAlphabet;
@@ -55,6 +66,9 @@ public class ProcessWidgetBean implements Serializable {
   @PostConstruct
   public void init() {
     processWidgetComponentId = Attrs.currentContext().getBuildInAttribute("clientId");
+    
+    initProcessViewMode();
+    
     ProcessStartCollector collector = new ProcessStartCollector();
     createExpressWorkflowProcessStart = collector.findExpressCreationProcess();
 
@@ -65,6 +79,17 @@ public class ProcessWidgetBean implements Serializable {
     groupProcessesByAlphabetIndex(portalProcesses);
   }
 
+  private void initProcessViewMode() {
+    String userProcessSetting = UserSettingService.newInstance().getDefaultProcessMode();
+    if (StringUtils.isBlank(userProcessSetting) || StringUtils.equalsIgnoreCase(userProcessSetting, UserSettingService.DEFAULT)) {
+      GlobalSettingService globalSettingService = new GlobalSettingService();
+      GlobalSetting defaultSetting = globalSettingService.findGlobalSettingByKey(GlobalVariable.DEFAULT_PROCESS_MODE.name());
+      userProcessSetting = defaultSetting.getDisplayValue();
+    }
+
+    isListMode = ProcessMode.LIST.getLabel().equalsIgnoreCase(userProcessSetting) ? true : false;
+  }
+
   private void groupProcessesByAlphabetIndex(List<Process> processes) {
     processesByAlphabet = new HashMap<>();
     // Follow Oracle document about regex for punctual character
@@ -72,9 +97,8 @@ public class ProcessWidgetBean implements Serializable {
     String punctualRegex = "\\p{Punct}";
 
     for (Process process : processes) {
-      String processNameUpperCase = StringUtils.trim(process.getName()).toUpperCase();
-      if (StringUtils.isNotEmpty(processNameUpperCase)) {
-        String firstLetter = processNameUpperCase.substring(0, 1);
+      String firstLetter = extractProcessFirstLetter(process.getName());
+      if (StringUtils.isNotEmpty(firstLetter)) {
         if (firstLetter.matches(punctualRegex)) {
           addOrUpdateProcessesByKey(process, SPECIAL_CHARACTER_KEY);
         } else {
@@ -92,6 +116,15 @@ public class ProcessWidgetBean implements Serializable {
     }
   }
 
+  private String extractProcessFirstLetter(String processName) {
+    String firstLetter = "";
+    String processNameUpperCase = StringUtils.trim(processName).toUpperCase();
+    if (StringUtils.isNotEmpty(processNameUpperCase)) {
+      firstLetter = processNameUpperCase.substring(0, 1);
+    }
+    return firstLetter;
+  }
+  
   private void addOrUpdateProcessesByKey(Process process, String key) {
     if (!processesByAlphabet.containsKey(key)) {
       List<Process> processes = new ArrayList<>();
@@ -145,13 +178,97 @@ public class ProcessWidgetBean implements Serializable {
     FacesContext.getCurrentInstance().getExternalContext().redirect(editLink);
   }
 
+  public void deleteProcessWorkflow() {
+    if (this.deletedProcess == null) {
+      return;
+    }
+
+    switch (deletedProcess.getType()) {
+      case EXPRESS_PROCESS:
+        deleteExpressWorkflow();
+        break;
+      case EXTERNAL_LINK:
+        deleteExternalLink();
+        break;
+      default:
+        break;
+    }
+  }
+
   public void deleteExpressWorkflow() {
-     String workflowId = deletedExpressProcess.getId();
-     ExpressServiceRegistry.getProcessService().delete(workflowId);
-     ExpressServiceRegistry.getTaskDefinitionService().deleteByProcessId(workflowId);
-     ExpressServiceRegistry.getFormElementService().deleteByProcessId(workflowId);
-     portalProcesses.remove(portalProcesses.stream().filter(process -> process.getId().equals(deletedExpressProcess.getId())).findFirst().get());
-     groupProcessesByAlphabetIndex(portalProcesses);
+    String workflowId = this.deletedProcess.getId();
+    ExpressServiceRegistry.getProcessService().delete(workflowId);
+    ExpressServiceRegistry.getTaskDefinitionService().deleteByProcessId(workflowId);
+    ExpressServiceRegistry.getFormElementService().deleteByProcessId(workflowId);
+    portalProcesses.remove(portalProcesses.stream().filter(process -> process.getId().equals(deletedProcess.getId())).findFirst().get());
+    groupProcessesByAlphabetIndex(portalProcesses);
+  }
+
+  public void updateProcessData() {
+    if (this.editedProcess == null) {
+      return;
+    }
+    String oldProcessName = this.editedProcess.getName();
+    switch (this.editedProcess.getType()) {
+      case EXPRESS_PROCESS:
+        ExpressProcessService expressProcessService = ExpressServiceRegistry.getProcessService();
+        ExpressProcess expressProcess = expressProcessService.findById(editedProcess.getId());
+        if (expressProcess != null) {
+          expressProcess.setIcon(this.selectedIconProcess);
+          expressProcessService.save(expressProcess);
+        }
+        PermissionUtils.checkAbleToStartAndAbleToEditExpressWorkflow(expressProcess);
+        this.editedProcess = new PortalExpressProcess(expressProcess);
+        break;
+      case EXTERNAL_LINK:
+        ExternalLinkService externalLinkService = ExternalLinkService.getInstance();
+        ExternalLink externalLink = externalLinkService.findById(Long.valueOf(editedProcess.getId()));
+        if (externalLink != null) {
+          externalLink.setIcon(this.selectedIconProcess);
+          externalLink.setName(this.editedExternalLink.getName());
+          ExternalLinkBean externalLinkBean = ManagedBeans.get("externalLinkBean");
+          String correctLink = externalLinkBean.correctLink(this.editedExternalLink.getLink());
+          externalLink.setLink(correctLink);
+          externalLinkService.save(externalLink);
+        }
+        this.editedProcess = new ExternalLinkProcessItem(externalLink);
+        break;
+      default:
+        break;
+    }
+    selectedIconProcess = null;
+    updateStartProcessesList(oldProcessName);
+    this.editedProcess = null;
+  }
+
+  private void updateStartProcessesList(String oldProcessName) {
+    String processId = this.editedProcess.getId();
+    String oldProcessNameFirstLetter = extractProcessFirstLetter(oldProcessName);
+    String firstLetter = extractProcessFirstLetter(this.editedProcess.getName());
+    if (!StringUtils.equals(oldProcessNameFirstLetter, firstLetter)) {
+      if (StringUtils.isNotEmpty(oldProcessNameFirstLetter) && this.processesByAlphabet.containsKey(oldProcessNameFirstLetter)) {
+        List<Process> processes = this.processesByAlphabet.get(oldProcessNameFirstLetter);
+        processes.removeIf(editProcess -> editProcess.getId().equals(processId));
+        sortProcesses(processes);
+        processesByAlphabet.put(oldProcessNameFirstLetter, processes);
+      }
+    }
+
+    if (StringUtils.isNotEmpty(firstLetter)) {
+      List<Process> processes = this.processesByAlphabet.get(firstLetter);
+      if (CollectionUtils.isNotEmpty(processes)) {
+        processes.removeIf(editProcess -> editProcess.getId().equals(processId));
+      } else {
+        processes = new ArrayList<>();
+      }
+      processes.add(editedProcess);
+      sortProcesses(processes);
+      processesByAlphabet.put(firstLetter, processes);
+    }
+  }
+
+  public String getProcessIcon(Process process) {
+    return process != null ? process.getIcon() : Process.DEFAULT_PROCESS_ICON;
   }
   
   public void createNewExternalLink() {
@@ -166,11 +283,10 @@ public class ProcessWidgetBean implements Serializable {
   }
   
   public void deleteExternalLink() {
-    ExternalLinkService.getInstance().delete(Long.parseLong(deletedExternalLink.getId()));
+    ExternalLinkService.getInstance().delete(Long.parseLong(this.deletedProcess.getId()));
     portalProcesses.remove(portalProcesses.stream()
-        .filter(process -> process.getId().equals(deletedExternalLink.getId()))
-        .findFirst()
-        .get());
+        .filter(process -> process.getId().equals(this.deletedProcess.getId()))
+        .findFirst().get());
     groupProcessesByAlphabetIndex(portalProcesses);
   }
 
@@ -202,21 +318,32 @@ public class ProcessWidgetBean implements Serializable {
     // Then this process will open task in IFrame or not based on its "embedInIFrame" String custom field
     FacesContext.getCurrentInstance().getExternalContext().redirect(link + "embedInFrame");
   }
-  
-  public Process getDeletedExpressProcess() {
-    return deletedExpressProcess;
+
+  public Process getDeletedProcess() {
+    return deletedProcess;
   }
 
-  public void setDeletedExpressProcess(Process deletedExpressProcess) {
-    this.deletedExpressProcess = deletedExpressProcess;
-  }
-  
-  public Process getDeletedExternalLink() {
-    return deletedExternalLink;
+  public void setDeletedProcess(Process deletedProcess) {
+    this.deletedProcess = deletedProcess;
   }
 
-  public void setDeletedExternalLink(Process deletedExternalLink) {
-    this.deletedExternalLink = deletedExternalLink;
+  public Process getEditedProcess() {
+    return editedProcess;
+  }
+
+  public void setEditedProcess(Process editedProcess) {
+    this.editedProcess = editedProcess;
+    setSelectedIconProcess(editedProcess.getIcon());
+    if (editedProcess.getType().equals(ProcessType.EXTERNAL_LINK)) {
+      updateSeletedEditExternalLink(editedProcess);
+    }
+  }
+
+  private void updateSeletedEditExternalLink(Process editedProcess) {
+    this.editedExternalLink = new ExternalLink();
+    this.editedExternalLink.setId(Long.valueOf(editedProcess.getId()));
+    this.editedExternalLink.setName(editedProcess.getName());
+    this.editedExternalLink.setLink(editedProcess.getStartLink());
   }
 
   public Map<String, List<Process>> getProcessesByAlphabet() {
@@ -244,12 +371,24 @@ public class ProcessWidgetBean implements Serializable {
     return processGroups;
   }
 
-  public boolean isExpressProcess (Process process) {
-    return process.getType() == ProcessType.EXPRESS_PROCESS;
+  public boolean isListMode() {
+    return isListMode;
+  }
+
+  public void setListMode(boolean isListMode) {
+    this.isListMode = isListMode;
+  }
+
+  public boolean isIvyProcess(Process process) {
+    return !Objects.isNull(process) && process.getType() == ProcessType.IVY_PROCESS;
+  }
+  
+  public boolean isExpressProcess(Process process) {
+    return !Objects.isNull(process) && process.getType() == ProcessType.EXPRESS_PROCESS;
   }
   
   public boolean isExternalLink(Process process) {
-    return process.getType() == ProcessType.EXTERNAL_LINK;
+    return !Objects.isNull(process) && process.getType() == ProcessType.EXTERNAL_LINK;
   }
   
   public String targetToStartProcess(Process process) {
@@ -258,5 +397,25 @@ public class ProcessWidgetBean implements Serializable {
       target="_blank";
     }
     return target;
+  }
+
+  public String getSelectedIconProcess() {
+    return selectedIconProcess;
+  }
+
+  public void setSelectedIconProcess(String selectedIconProcess) {
+    this.selectedIconProcess = selectedIconProcess;
+  }
+
+  public ExternalLink getEditedExternalLink() {
+    return editedExternalLink;
+  }
+
+  public void setEditedExternalLink(ExternalLink editedExternalLink) {
+    this.editedExternalLink = editedExternalLink;
+  }
+
+  public boolean canChangeProcessIcon() {
+    return PermissionUtils.isSessionUserHasAdminRole();
   }
 }

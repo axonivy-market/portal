@@ -1,0 +1,5 @@
+co: name={showSystemTasks} description={} changed={2021-03-19 03:54:01 CET} changedby={phhung} visualorder={0} guid={17724777067C1A6B} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={177247770789B974} datatype={} isdefault={false} langid={es} description={} validfrom={2021-03-19 03:54:01 CET} validto={} changed={2021-03-19 03:54:01 CET} changedby={phhung} properties={} id={}
+val: guid={1772477706A32358} datatype={} isdefault={false} langid={de} description={} validfrom={2021-03-19 03:54:01 CET} validto={} changed={2021-03-19 03:54:01 CET} changedby={phhung} properties={} id={}
+val: guid={1772477707F89115} datatype={} isdefault={false} langid={fr} description={} validfrom={2021-03-19 03:54:01 CET} validto={} changed={2021-03-19 03:54:01 CET} changedby={phhung} properties={} id={}
+val: guid={17724777071868AB} datatype={} isdefault={true} langid={en} description={} validfrom={2021-01-21 11:22:23 CET} validto={} changed={2021-01-21 11:22:23 CET} changedby={dhtlong} properties={} id={}

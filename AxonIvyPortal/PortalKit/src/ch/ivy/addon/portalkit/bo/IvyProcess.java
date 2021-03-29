@@ -47,4 +47,10 @@ public class IvyProcess implements Process {
   public String getId() {
     return StringUtils.EMPTY;
   }
+
+  @Override
+  public String getIcon() {
+    String cssIcon = this.process.customFields().value("cssIcon");
+    return StringUtils.isBlank(cssIcon) ? Process.super.getIcon() : cssIcon;
+  }
 }
