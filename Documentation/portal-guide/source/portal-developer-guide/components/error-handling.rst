@@ -6,13 +6,13 @@ Error handling
 In this section, we introduce 2 kind of errors, when and how to handle
 them in Portal.
 
--  Ajax error : this kind of errors occur during a JSF ajax request,
+-  Ajax error: this kind of errors occur during a JSF ajax request,
    for example when the user clicks on the show full mode button to tell
    the task widget switches to full mode, without handling the end user
    would not get any form of feedback if the action was successfully
    performed or not.
 
--  Non-ajax error : this kind of errors occur when user access to Portal
+-  Non-ajax error: this kind of errors occur when user access to Portal
    from a url which could not be handled successfully by server side, or
    being navigated by a corrupted url. For example, when the user clicks
    on a link to start a task which does not exist.
@@ -33,12 +33,12 @@ When an exception occurs, Portal will show an error notification with
 the exception type and message to end user. The exception details are
 available when user clicks on show details button.
 
-Stacktrace on error messages can be showed/hid depend on ivy system
+Stacktrace on error messages can be shown/hidden based on Ivy system
 property ``Errors.ShowDetailsToEndUser``.
 
 .. note:: 
 
-      This feature is only available if using the portal default template:
+      This feature is only available if using the Portal default template:
       BasicTemplate
       or its extension.
 
@@ -59,8 +59,8 @@ Non-ajax error handling
 Introduction
 ------------
 
-By default, when the server has any error such as : ``HTTP 404``,
-``HTTP 500``, or exception while page's loading, AxonIvyEngine will show
+By default, when the server has any error such as ``HTTP 404``,
+``HTTP 500``, or exception while page's loading, Axon Ivy Engine will show
 an default error page. E.g.:
 
 |default-ivy-error|

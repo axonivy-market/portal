@@ -34,10 +34,10 @@ deployment <https://developer.axonivy.com/doc/8.0/engine-guide/administration/de
 Portal mode
 -----------
 
--  **Single application mode**  : One Portal application on one engine. It must include PortalKit,
+-  **Single application mode**: One Portal application on one engine. It must include PortalKit,
    PortalTemplate and PortalStyle modules.
 
--  **Multi applications mode** : Multiple Portal applications on one engine.
+-  **Multi applications mode**: Multiple Portal applications on one engine.
    Each Portal application must include PortalKit, PortalTemplate and PortalStyle modules.
 
 .. important::
@@ -107,7 +107,7 @@ Migration notes
 
 This document informs you in detail about incompatibilities that were
 introduced between Portal versions and tells you what needs to be done
-to make your existing Portal working with current Axon Ivy engine.
+to make your existing Portal working with current Axon Ivy Engine.
 
 How to migrate
 --------------

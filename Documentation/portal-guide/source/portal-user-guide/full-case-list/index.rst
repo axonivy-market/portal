@@ -6,7 +6,7 @@ Full Case List
 The **Full Case List** page shows you all cases you’re involved in.
 This page provides you with extended information on the cases, as well
 as advanced search and filter capabilities. You can reach the page by
-using the |case-icon| **Cases** link in the Axon Ivy Portal menu.
+using the |case-icon| :guilabel:`Cases` link in the Axon Ivy Portal menu.
 
 .. hint:: 
    Depending on the roles you hold in the application and the configuration of
@@ -69,7 +69,7 @@ The case details are separated into 4 different sections:
    .. figure:: images/case-details-histories.png
 
 #. Documents, you find an area for documents that were
-   attached to the case. You may add or delete documents which his
+   attached to the case. You may add or delete documents 
    described in the HowTo’s below.
 
    .. figure:: images/case-details-documents.png
@@ -95,7 +95,7 @@ HowTo: Create new filter
 ------------------------
 
 #. Click on the button :guilabel:`More` to select one of the available filters.
-   For a list of available filters, see Table 3: Case filter criterias.
+   For a list of available filters, see Table 3: Case filter criteria.
 
 #. Click on the newly added filter and configure it.
 
@@ -118,7 +118,7 @@ HowTo: Create new filter
 .. figure:: images/how-to-create-case-filter.png
 
 
-.. centered:: Case filter criterias
+.. centered:: Case filter criteria
 
 +-----------------------------------+-----------------------------------+
 | Criteria                          | Description                       |
@@ -166,8 +166,8 @@ HowTo: Show all related Tasks
 
 #. Click the :guilabel:`Show all tasks` link.
 
-#. You’re routed to the :guilabel:`Related Tasks List` page. This page resembles
-   the :guilabel:`Full Tasks List` page (see  :ref:`full-task-list`) both in
+#. You’re routed to the **Related Tasks List** page. This page resembles
+   the **Full Tasks List** page (see :ref:`full-task-list`) both in
    appearance and features. The shown tasks are only down selected to the ones
    related to your case already.
 
@@ -187,7 +187,7 @@ HowTo: Attach a document to the case
 #. Upload a file by using the :guilabel:`Select` button or by simply dragging
    the file into the dialog.
 
-#. Click the button :guilabel:`Close` to add the attachment
+#. Click the button :guilabel:`Close` to see the uploaded attachment
 
    .. figure:: images/how-to-attach-document-to-case.png
 

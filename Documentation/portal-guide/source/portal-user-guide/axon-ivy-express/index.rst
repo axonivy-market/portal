@@ -30,15 +30,15 @@ of the key features of Axon Ivy Express are:
    different task types, set responsibilities and due dates and define
    user dialogs for each task.
 
-You can reach the page by either using the **Processes** link
-in the Axon Ivy Portal menu or the quick link **Show all processes** in
+You can reach the page by either using the :guilabel:`Processes` link
+in the Axon Ivy Portal menu or the quick link :guilabel:`Show all processes` in
 your dashboard.
 
 .. figure:: images/navigate-to-axon-ivy-express.png
 
-Below the heading **Processes**, you see the link :guilabel:`Create express
+Next to the heading :guilabel:`Processes`, you see the link :guilabel:`Create express
 workflow`. This feature is explained in detail in `Axon Ivy Express`_. Below
-you find the process category :guilabel:`Express Workflows` with a list of
+you find the process category **Express Workflows** with a list of
 already defined processes.
 
 .. figure:: images/start-link-for-axon-ivy-express.png
@@ -140,7 +140,7 @@ HowTo: Create an Express Workflow
 
 #. The created element appears in the list :guilabel:`Available form elements`
 
-#. You may delete input elements you donâ€™t need using the |trash-icon| :guilabel:`Delete` button
+#. You may delete input elements you don't need using the |trash-icon| :guilabel:`Delete` button
 
 #. Drag and Drop the input elements into one of the areas of the dialog editor
 
@@ -202,7 +202,7 @@ HowTo: Create an Express Workflow
 
 #. You may specify attachments to the email
 
-#. Use the button |arrow-right-icon| **Next** to define the next process step
+#. Use the button |arrow-right-icon| :guilabel:`Next` to define the next process step
 
 Define an information email
 ---------------------------
@@ -210,7 +210,7 @@ Define an information email
 For the information email, the user sees an Email client UI, where
 several information related to the process can be added. Furthermore,
 the user must define a comma separated list of addresses. In
-addition, the user can define a â€œresponse toâ€� email.
+addition, the user can define a "response to" email.
 
 .. figure:: images/express-workflow-email-editor.png
 
@@ -226,7 +226,7 @@ This feature is put in :ref:`Admin Settings <settings-admin-settings>`.
 .. figure:: images/express-management-tab.png
 
 .. note:: 
-  To use this feature, user needs to have role :guilabel:`AXONIVY_PORTAL_ADMIN`.
+  To use this feature, user needs to have role **AXONIVY_PORTAL_ADMIN**.
   
 
 HowTo: Export Express process
@@ -246,7 +246,7 @@ After reviewed and make sure workflows are collected, press :guilabel:`Download`
 
 .. important:: 
 
-  The export file is a JSON file, it contains a version of express and express process data. Donâ€™t edit this file manually.
+  The export file is a JSON file, it contains a version of express and express process data. Don't edit this file manually.
 ..
 
 
@@ -255,7 +255,7 @@ HowTo: Import Express process
 
 Import Express is a function to help Administrator can import the Express process into the Portal system from a backup file.
 
-Press :guilabel:`Import Express` button, Import Express dialog will display.
+Press :guilabel:`Import Express` button, the :guilabel:`Import Express Processes` dialog will display.
 Once :guilabel:`Import Express` dialog is open, press :guilabel:`Select` button and choose the Express JSON file which store workflows you want to import.
 
 .. figure:: images/import-selection.png

@@ -69,9 +69,9 @@ Build your own portal using PortalKit
         That might cause the feature work incorrectly. Actions that lead to
         navigation that user invoke inside Portal area like clicking on a
         link/button, submitting a form will not display any confirmation popup. In
-        some cases, user might use javascript to navigate to another page, for
+        some cases, user might use JavaScript to navigate to another page, for
         example: set value for ``window.location.href`` or call
-        ``location.reload()``. If that happens, add this to your javascript function:
+        ``location.reload()``. If that happens, add this to your JavaScript function:
         ``showConfirmDialogBeforeUnload = false;``
 
 .. |custom-portal-home| image:: images/build-your-own-portal/custom-portal-home.png

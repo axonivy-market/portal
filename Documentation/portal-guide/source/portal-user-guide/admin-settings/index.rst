@@ -18,7 +18,7 @@ HowTo: Add ivy application
 
    .. figure:: images/applications.png
 
-#. Click on :guilabel:`New` to add new ivy applications, then dialog :guilabel:`Add ivy application` is displayed.
+#. Click on :guilabel:`New` to add new ivy applications, then dialog :guilabel:`Add new application` is displayed.
 
    .. figure:: images/add-ivy-application.png
 

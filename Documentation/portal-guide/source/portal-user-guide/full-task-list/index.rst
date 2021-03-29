@@ -6,7 +6,7 @@ Full Task List
 The **Full Task List** page shows you the same tasks you see on your
 personal dashboard. However, this page provides you with extended
 information on the tasks, as well as, advanced search and filter
-capabilities. You can reach the page by using the |check-icon| **Tasks**
+capabilities. You can reach the page by using the |check-icon| :guilabel:`Tasks`
 link in the Axon Ivy Portal menu.
 
 .. hint:: 
@@ -21,7 +21,7 @@ link in the Axon Ivy Portal menu.
 .. figure:: images/navigate-to-full-task-list-page.png
 
 On the top of the **Full Task List** page you see next to the heading
-**Tasks** in brackets the overall number of tasks shown to you. Further
+:guilabel:`Tasks` in brackets the overall number of tasks shown to you. Further
 to the right you find a  search feature which you might use if
 you’re looking for a specific task. Below you find the filter feature.
 The usage will be explained in the HowTo’s further down this chapter.
@@ -71,7 +71,7 @@ The task details are separated into 3 different sections:
    .. figure:: images/detailed-task-information-note.png
 
 #. Document, these documents once attached to the case are
-   available on all tasks. You may add or delete documents which his
+   available on all tasks. You may add or delete documents 
    described in the HowTo’s below.
 
    .. figure:: images/detailed-task-information-documents.png
@@ -94,7 +94,7 @@ HowTo: Create new filter
 ------------------------
 
 #. Click on the button :guilabel:`More` to select one of the available filters.
-   For a list of available filters, see `Task filter criterias`_.
+   For a list of available filters, see `Task filter criteria`_.
 
 #. Click on the newly added filter and configure it.
 
@@ -118,7 +118,7 @@ HowTo: Create new filter
 .. figure:: images/how-to-create-task-filter.png
 
 
-.. centered:: _`Task filter criterias`
+.. centered:: _`Task filter criteria`
 
 +-----------------------------------+-----------------------------------+
 | Criteria                          | Description                       |
@@ -179,7 +179,7 @@ HowTo: Attach a document to the case
 #. Upload a file by using the :guilabel:`Select` button or by simply dragging
    the file into the dialog
 
-#. Click the button :guilabel:`Close` to add the attachment
+#. Click the button :guilabel:`Close` to see the uploaded attachment
 
 .. figure:: images/how-to-upload-document.png
 
@@ -188,7 +188,7 @@ HowTo: Remove an attachment from the case
 
 #. Open the task details of a task
 
-#. Click on the |delete-icon| **Delete** button next to the
+#. Click on the |delete-icon| :guilabel:`Delete` button next to the
    attachment you want to remove
 
 #. A :guilabel:`Confirmation` dialog is opened

@@ -50,7 +50,7 @@ HowTo: Create chart
 
 #. Select one of the available chart types (see Available charts)
 
-#. Select and configure one or more of the available filters (see Chart filter criterias).
+#. Select and configure one or more of the available filters (see Chart filter criteria).
 
 #. Click :guilabel:`Add to dashboard`
 
@@ -95,13 +95,13 @@ HowTo: Create chart
 |                       |                       | categorized by expiry |
 |                       |                       | time (Today, This     |
 |                       |                       | Week, This Month,     |
-|                       |                       | This Year). The valus |
+|                       |                       | This Year). The values|
 |                       |                       | are the sum of tasks  |
 |                       |                       | in the respective     |
 |                       |                       | categories.           |
 +-----------------------+-----------------------+-----------------------+
 | Elapsed time of done  | Bar chart             | Displays the relative |
-| cases.                |                       | elapsed time of all   |
+| cases                 |                       | elapsed time of all   |
 |                       |                       | done cases belonging  |
 |                       |                       | to a user or a role   |
 |                       |                       | categorized by their  |
@@ -133,7 +133,7 @@ HowTo: Create chart
 +-----------------------+-----------------------+-----------------------+
 
 
-.. centered:: Chart filter criterias
+.. centered:: Chart filter criteria
 
 +-----------------------------------+-----------------------------------+
 | Filter                            | Description                       |
@@ -226,7 +226,7 @@ HowTo: Create new filter
 
 #. Under :guilabel:`Filter name`, provide a recognizable name for the filter.
 
-#. Under :guilabel:`Filter visibility` , you can select if the filter is only
+#. Under :guilabel:`Filter visibility`, you can select if the filter is only
    visible to you or shall be available to all users.
 
 #. Save the filter by clicking on :guilabel:`Ok`.

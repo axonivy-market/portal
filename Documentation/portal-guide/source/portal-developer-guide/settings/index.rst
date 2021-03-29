@@ -99,11 +99,11 @@ Multi applications with overview
 |multi-application-with-portal|
 
 
--  Create a new application named ``Portal``. Deploy portal (kit,
-   template ..) to this application.
+-  Create a new application named ``Portal``. Deploy Portal (Kit,
+   Template ..) to this application.
 
--  Create new applications: App1, App2, App3... Deploy portal
-   (kit, template ..) to new applications.
+-  Create new applications: App1, App2, App3... Deploy Portal
+   (Kit, Template ..) to new applications.
 
 -  Configure multi-apps Portal: login by Portal
    Admin, configure applications: App1,
@@ -126,8 +126,8 @@ Multi applications (without overview)
 
 |multi-application-without-portal|
 
--  Create new applications: App1, App2, App3... Deploy portal(kit,
-   template ..) to new applications. Note: must not create an
+-  Create new applications: App1, App2, App3... Deploy Portal (Kit,
+   Template ...) to new applications. Note: must not create an
    application named ``Portal``.
 
 -  Configure multi-apps Portal: login by Portal
@@ -150,7 +150,7 @@ Language settings
    appplied by this selection.
 
 -  To configure languages of Portal applications, select
-   ``Language Settings`` in ``User Settings`` .
+   ``Language Settings`` in ``User Settings``.
 
 -  UI reads current languages settings for all applications.
 
@@ -177,7 +177,7 @@ Language settings
    -  Export all CMS entries of Portal Style to excel file
    -  Add translation of new language for all CMS entries
    -  Import file excel back, then redeploy Portal Style
-   -  This is sample how to add new Spanish to portal
+   -  This is sample how to add new Spanish to Portal
 
       |add-new-language|
 
@@ -233,8 +233,8 @@ Absences
 
    User can read, add, delete absences of all users. This function will
    be disabled if session user does not have all of the following
-   permissions: ``IPermission.USER_CREATE_ABSENCE`` ,
-   ``IPermission.USER_DELETE_ABSENCE`` ,
+   permissions: ``IPermission.USER_CREATE_ABSENCE``,
+   ``IPermission.USER_DELETE_ABSENCE``,
    ``IPermission.USER_READ_ABSENCES``.
 
 Substitute
@@ -388,7 +388,7 @@ Personal case permission
       Case state cannot be DESTROYED.
 
    Link to show all tasks of case will be hidden if session user does
-   not have permission ``PortalPermission.SHOW_ALL_TASKS_OF_CASE`` .
+   not have permission ``PortalPermission.SHOW_ALL_TASKS_OF_CASE``.
    
 -  DISPLAY SHOW DETAILS LINK
 
@@ -481,8 +481,8 @@ Normal users can only see their tasks/cases they can work on.
 
 Administrator can see all tasks/cases in the application.
 
-Permissions needed: ``IPermission.TASK_READ_ALL`` ,
-``IPermission.CASE_READ_ALL`` .
+Permissions needed: ``IPermission.TASK_READ_ALL``,
+``IPermission.CASE_READ_ALL``.
 
 Administrator permission can interact with all workflows in the application
 ---------------------------------------------------------------------------
@@ -499,48 +499,48 @@ Global variables
 
 .. table:: 
 
-   +---------------------------+-------------+---------------------------+
-   | Variable                  | Default     | Description               |
-   |                           | value       |                           |
-   +===========================+=============+===========================+
-   | PortalStartTimeCleanObsol | 0 0 6 \* \* | Cron expression define    |
-   | etedDataExpression        | ?           | the time to clean up data |
-   |                           |             | of obsoleted users. E.g.: |
-   |                           |             | expression for at 6AM     |
-   |                           |             | every day is              |
-   |                           |             | ``0 0 6 * * ?`` . Refer   |
-   |                           |             | to                        |
-   |                           |             | `crontrigger <http://quar |
-   |                           |             | tz-scheduler.org/document |
-   |                           |             | ation/quartz-2.1.7/tutori |
-   |                           |             | als/tutorial-lesson-06.htm|
-   |                           |             | l>`__                     |
-   |                           |             | . Restart Ivy engine      |
-   |                           |             | after changing this       |
-   |                           |             | variable.                 |
-   +---------------------------+-------------+---------------------------+
-   | PortalDeleteAllFinishedHi | false       | If set to ``true``, the   |
-   | ddenCases                 |             | cron job runs daily (at   |
-   |                           |             | 6.AM as default) will     |
-   |                           |             | clean all finished hidden |
-   |                           |             | cases in engine.          |
-   |                           |             | Otherwise, just hidden    |
-   |                           |             | cases which were          |
-   |                           |             | generated by Portal will  |
-   |                           |             | be deleted.               |
-   +---------------------------+-------------+---------------------------+
-   | PortalGroupId             | ch.ivyteam. | Maven group id of Portal. |
-   |                           | ivy.project |                           |
-   |                           | .portal     |                           |
-   +---------------------------+-------------+---------------------------+
-   | PortalHiddenTaskCaseExclu | true        | By default, Portal will   |
-   | ded                       |             | query tasks and cases     |
-   |                           |             | which don't have hide     |
-   |                           |             | information. Set it to    |
-   |                           |             | ``false``, portal will    |
-   |                           |             | ignore this additional    |
-   |                           |             | property.                 |
-   +---------------------------+-------------+---------------------------+
+   +---------------------------------------------+-----------------------------+---------------------------+
+   | Variable                                    | Default                     | Description               |
+   |                                             | value                       |                           |
+   +=============================================+=============================+===========================+
+   | PortalStartTimeCleanObsoletedDataExpression | 0 0 6 \* \*                 | Cron expression define    |
+   |                                             | ?                           | the time to clean up data |
+   |                                             |                             | of obsoleted users. E.g.: |
+   |                                             |                             | expression for at 6AM     |
+   |                                             |                             | every day is              |
+   |                                             |                             | ``0 0 6 * * ?``. Refer    |
+   |                                             |                             | to                        |
+   |                                             |                             | `crontrigger <http://quar |
+   |                                             |                             | tz-scheduler.org/document |
+   |                                             |                             | ation/quartz-2.1.7/tutori |
+   |                                             |                             | als/tutorial-lesson-06.htm|
+   |                                             |                             | l>`__.                    |
+   |                                             |                             | Restart Axon Ivy Engine   |
+   |                                             |                             | after changing this       |
+   |                                             |                             | variable.                 |
+   +---------------------------------------------+-----------------------------+---------------------------+
+   | PortalDeleteAllFinishedHiddenCases          | false                       | If set to ``true``, the   |
+   |                                             |                             | cron job runs daily (at   |
+   |                                             |                             | 6.AM as default) will     |
+   |                                             |                             | clean all finished hidden |
+   |                                             |                             | cases in engine.          |
+   |                                             |                             | Otherwise, just hidden    |
+   |                                             |                             | cases which were          |
+   |                                             |                             | generated by Portal will  |
+   |                                             |                             | be deleted.               |
+   +---------------------------------------------+-----------------------------+---------------------------+
+   | PortalGroupId                               |ch.ivyteam.ivy.project.portal| Maven group id of Portal. |
+   |                                             |                             |                           |
+   |                                             |                             |                           |
+   +---------------------------------------------+-----------------------------+---------------------------+
+   | PortalHiddenTaskCaseExcluded                | true                        | By default, Portal will   |
+   |                                             |                             | query tasks and cases     |
+   |                                             |                             | which don't have hide     |
+   |                                             |                             | information. Set it to    |
+   |                                             |                             | ``false``, portal will    |
+   |                                             |                             | ignore this additional    |
+   |                                             |                             | property.                 |
+   +---------------------------------------------+-----------------------------+---------------------------+
 
 .. |portal-header| image:: images/settings/portal-header.png
 .. |global-settings| image:: images/settings/global-settings.png

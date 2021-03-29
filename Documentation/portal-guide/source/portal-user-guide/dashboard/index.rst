@@ -16,7 +16,7 @@ The dashboard itself is separated into 3 sections:
    section Processes is described in `Process Favorites`_.
 
 #. The **Tasks** section in the center. Here you see all the open tasks
-   assigned to your or your organizational unit. These tasks require
+   assigned to you or your organizational unit. These tasks require
    your personal attention. The section is described in `Personal Tasks`_.
 
 
@@ -56,7 +56,7 @@ HowTo: Add a process as a user favorite
 ---------------------------------------
 
 #. Click on the link :guilabel:`Add new process`  which you find next to the
-   heading :guilabel:`User Favorites` .
+   heading :guilabel:`User Favorites`.
 
 #. The dialog :guilabel:`Add new user process` is opened.
 
@@ -115,7 +115,7 @@ Edit processes
 ^^^^^^^^^^^^^^^^^^
 
 #. To order your processes in an individual order, click on the link
-   :guilabel:`Edit processes`  next to the heading :guilabel:`User Favorites` .
+   :guilabel:`Edit processes`  next to the heading :guilabel:`User Favorites`.
 
 #. To change the order of your processes, drag and drop processes.
 
@@ -140,7 +140,7 @@ from the task list and start working on it.
 
 At first glance, you see the number of tasks right next to the heading
 :guilabel:`Tasks`. Further to the right you find the link :guilabel:`Show full task
-list`. This quick link routes you to the :guilabel:`Task List` page of the
+list`. This quick link routes you to the **Task List** page of the
 Axon Ivy Portal. Please refer to :ref:`full-task-list` for more
 detailed information.
 
@@ -185,21 +185,21 @@ the overall situation at a glance.
 
 
 Next to the heading you find a link :guilabel:`Show all charts`. This quick link
-routes you the :guilabel:`Statistics` page of the Axon Ivy Portal. Please refer
+routes you the **Statistics** page of the Axon Ivy Portal. Refer
 to :ref:`full-statistic-list`  for more detailed information.
 
 Within header of the chart, you find two navigation buttons
 (|pre-icon|, |next-icon|) allowing you to toggle between the available
 charts. Each chart then provides you with the following information:
 
-#. The :guilabel:`Chart Title`  helping you to understand the content of the
+#. The **Chart Title**  helping you to understand the content of the
    chart
 
-#. The :guilabel:`Chart` itself, which gives you a graphical representation of
+#. The **Chart** itself, which gives you a graphical representation of
    the data. Furthermore, you see the exact figures in the chart as
    well.
 
-#. The :guilabel:`Legend` explains the different elements of the charts.
+#. The **Legend** explains the different elements of the charts.
 
 .. figure:: images/statistics-key-information.png
 
