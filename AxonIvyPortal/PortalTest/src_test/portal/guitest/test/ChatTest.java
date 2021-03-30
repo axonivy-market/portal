@@ -136,8 +136,7 @@ public class ChatTest extends BaseTest {
     ChatPage chatPageDemo2 = openChatGroup(TestAccount.DEMO_USER);
     launchBrowserAndGotoRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     joinChatGroupWhichAlreadyHadChatGroup(TestAccount.ADMIN_USER);
-    ChatPage chatPageAdmin1 = new TaskTemplatePage().getChat();
-    chatPageAdmin1.selectPortalDemoUserChatGroup();
+    ChatPage chatPageAdmin1 = new ChatPage();
     launchBrowserAndGotoRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     ChatPage chatPageAdmin2 = openChatGroup(TestAccount.ADMIN_USER);
     chatPageAdmin1.closeChatMessageList();
