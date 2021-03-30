@@ -1088,9 +1088,23 @@ body .ui-datepicker .ui-timepicker-div dl dd {
   }
 
   .task-item-body .ui-datatable thead th:first-child,
-  .case-detail-body .case-details-item .ui-datatable thead th:first-child {
-    border-right: 1px solid #d8d8d8;
+  .case-detail-body .case-details-item .ui-datatable .name-column,
+  .case-detail-body .case-details-item .ui-datatable .history-note {
+    border-right: 1px solid var(--data-table-border-color);
   }
+}
+
+.case-detail-body .name-column .case-name-value,
+.case-detail-body .case-details-related-task-table .related-task-name-column .task-name-value {
+  font-weight: var(--case-item-name-font-weight);
+}
+
+.case-detail-body .name-column .case-description-value,
+.case-detail-body .case-details-related-task-table .related-task-name-column .task-description-value {
+  font-weight: var(--case-item-description-font-weight);
+  font-style: var(--case-item-description-font-style);
+  font-size: var(--case-item-description-font-size);
+  color: var(--case-item-description-cell);
 }
 
 /**Style for Absences and Debuty  --------------------------------------*/
