@@ -2,31 +2,25 @@ package ch.ivy.addon.portalkit.dto.taskdetails;
 
 import java.io.Serializable;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import ch.ivy.addon.portalkit.constant.TaskDetailsWidgetType;
+import ch.ivy.addon.portalkit.dto.WidgetLayout;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 @JsonSubTypes({@Type(value = TaskDetailsInformationWidget.class, name = TaskDetailsWidgetType.INFORMATION),
     @Type(value = TaskDetailsHistoryWidget.class, name = TaskDetailsWidgetType.HISTORY),
     @Type(value = TaskDetailsDocumentWidget.class, name = TaskDetailsWidgetType.DOCUMENT),
     @Type(value = TaskDetailsCustomWidget.class, name = TaskDetailsWidgetType.CUSTOM)})
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public abstract class TaskDetailsWidget implements Serializable {
 
   private static final long serialVersionUID = 5533038246959235330L;
   
   protected String id;
   protected String type;
-  protected String styleClass;
-  protected String style;
-  protected int axisX;
-  protected int axisY;
-  protected int width;
-  protected int height;
+  protected WidgetLayout layout;
 
   public TaskDetailsWidget() {}
 
@@ -46,52 +40,12 @@ public abstract class TaskDetailsWidget implements Serializable {
     this.type = type;
   }
 
-  public String getStyleClass() {
-    return styleClass;
+  public WidgetLayout getLayout() {
+    return layout;
   }
 
-  public void setStyleClass(String styleClass) {
-    this.styleClass = styleClass;
-  }
-
-  public String getStyle() {
-    return style;
-  }
-
-  public void setStyle(String style) {
-    this.style = style;
-  }
-
-  public int getAxisX() {
-    return axisX;
-  }
-
-  public void setAxisX(int axisX) {
-    this.axisX = axisX;
-  }
-
-  public int getAxisY() {
-    return axisY;
-  }
-
-  public void setAxisY(int axisY) {
-    this.axisY = axisY;
-  }
-
-  public int getWidth() {
-    return width;
-  }
-
-  public void setWidth(int width) {
-    this.width = width;
-  }
-
-  public int getHeight() {
-    return height;
-  }
-
-  public void setHeight(int height) {
-    this.height = height;
+  public void setLayout(WidgetLayout layout) {
+    this.layout = layout;
   }
 
   @Override
