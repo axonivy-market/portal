@@ -40,10 +40,10 @@
       styleClass="switch-and-reset-buttons-area ui-g-12">
       <p:commandButton id="switch-to-view-mode-button" rendered="#{not taskDetailsBean.readOnlyMode}"
         value="#{ivy.cms.co('/Dialogs/Tasks/TaskDetail/switchToViewMode')}" onclick="saveTaskDetailsGrid()"
-        icon="#{visibilityBean.generateButtonIcon('si si-floppy-disk')}" update="task-item-body task-details-actions" oncomplete="loadTaskDetailsGrid()" />
+        icon="#{visibilityBean.generateButtonIcon('si si-floppy-disk')}" update="task-item-body task-details-actions" oncomplete="loadTaskDetailsGrid(); enableAllIFrameWhenEditLayout();" />
       <p:commandButton id="switch-to-edit-mode-button" rendered="#{taskDetailsBean.readOnlyMode}"
         value="#{ivy.cms.co('/Dialogs/Tasks/TaskDetail/switchToEditMode')}" actionListener="#{taskDetailsBean.switchToEditMode()}"
-        icon="#{visibilityBean.generateButtonIcon('si si-pencil')}" update="task-item-body task-details-actions" oncomplete="loadTaskDetailsGrid()" />
+        icon="#{visibilityBean.generateButtonIcon('si si-pencil')}" update="task-item-body task-details-actions" oncomplete="loadTaskDetailsGrid(); disableAllIFrameWhenEditLayout();" />
       <p:commandButton id="reset-details-settings-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
         rendered="#{taskDetailsBean.configuration.changed and not taskDetailsBean.readOnlyMode}"
         icon="#{visibilityBean.generateButtonIcon('si si-button-refresh-arrows')}" styleClass="reset-details-settings-button"
@@ -69,9 +69,9 @@
       </c:if>
 
       <ui:repeat var="widget" value="#{taskDetailsBean.widgets}" id="widgets">
-        <div id="task-details-#{widget.id}-panel" class="#{widget.styleClass} grid-stack-item" style="#{widget.style}"
-          widget-type="#{widget.class.simpleName}" data-gs-x="#{widget.axisX}" data-gs-y="#{widget.axisY}" data-gs-width="#{widget.width}"
-          data-gs-height="#{widget.height}" data-gs-id="#{widget.id}" data-gs-no-resize="#{taskDetailsBean.readOnlyMode}"
+        <div id="task-details-#{widget.id}-panel" class="#{widget.layout.styleClass} grid-stack-item" style="#{widget.layout.style}"
+          widget-type="#{widget.class.simpleName}" data-gs-x="#{widget.layout.axisX}" data-gs-y="#{widget.layout.axisY}" data-gs-width="#{widget.layout.width}"
+          data-gs-height="#{widget.layout.height}" data-gs-id="#{widget.id}" data-gs-no-resize="#{taskDetailsBean.readOnlyMode}"
           data-gs-no-move="#{taskDetailsBean.readOnlyMode}">
 
           <!-- General & description box -->
@@ -141,6 +141,12 @@
             rendered="#{widget.class.simpleName eq 'TaskDetailsCustomWidget' and widget.id eq 'taskItemDetailCustomPanelBottom'}"
             styleClass="card task-detail-card grid-stack-item-content #{taskDetailsBean.readOnlyMode ? '' : 'moveable-area'}">
             <cc:renderFacet name="taskItemDetailCustomPanelBottom" />
+          </h:panelGroup>
+
+          <h:panelGroup id="customIframe"
+            rendered="#{(widget.class.simpleName eq 'TaskDetailsCustomWidget') and (not empty widget.data.url)}"
+            styleClass="card task-detail-card grid-stack-item-content #{taskDetailsBean.readOnlyMode ? '' : 'moveable-area'} iframe-widget">
+            <iframe src="#{widget.data.url}" />
           </h:panelGroup>
 
         </div>
