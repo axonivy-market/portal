@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
@@ -242,6 +243,10 @@ public class CaseDashboardWidget extends DashboardWidget {
     ObjectMapper mapper = new ObjectMapper();
     mapper.enable(MapperFeature.ACCEPT_CASE_INSENSITIVE_ENUMS);
     List<CaseColumnModel> columns = caseWidget.getColumns();
+    if (!isOwnerEnabled()) {
+      columns.removeIf(isOwnerColumn());
+    }
+
     for (int i = 0; i < columns.size(); i++) {
       CaseColumnModel column = columns.get(i);
       String field = column.getField();
@@ -259,8 +264,7 @@ public class CaseDashboardWidget extends DashboardWidget {
         column = mapper.convertValue(column, CreatedDateColumnModel.class);
       } else if (DashboardStandardCaseColumn.FINISHED.getField().equalsIgnoreCase(field)) {
         column = mapper.convertValue(column, FinishedDateColumnModel.class);
-      } else if (DashboardStandardCaseColumn.OWNER.getField().equalsIgnoreCase(field)
-          && new GlobalSettingService().isCaseOwnerEnabled()) {
+      } else if (DashboardStandardCaseColumn.OWNER.getField().equalsIgnoreCase(field)) {
         column = mapper.convertValue(column, OwnerColumnModel.class);
       }
       column.initDefaultValue();
@@ -269,10 +273,21 @@ public class CaseDashboardWidget extends DashboardWidget {
     return caseWidget;
   }
 
+  private static Predicate<? super CaseColumnModel> isOwnerColumn() {
+    return column -> column.getField().equalsIgnoreCase(DashboardStandardCaseColumn.OWNER.getField());
+  }
+
+  public static boolean isOwnerEnabled() {
+    return new GlobalSettingService().isCaseOwnerEnabled();
+  }
+
   @JsonIgnore
   public static List<CaseColumnModel> initStandardColumns() {
     List<CaseColumnModel> columnModels = new ArrayList<>();
     for (DashboardStandardCaseColumn col : DashboardStandardCaseColumn.values()) {
+      if (col == DashboardStandardCaseColumn.OWNER && !isOwnerEnabled()) {
+        continue;
+      }
       CaseColumnModel columnModel = new CaseColumnModel();
       columnModel.setField(col.getField());
       columnModels.add(columnModel);

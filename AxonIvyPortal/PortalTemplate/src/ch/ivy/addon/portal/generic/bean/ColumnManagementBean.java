@@ -105,6 +105,9 @@ public class ColumnManagementBean {
     }
     if (isCaseWidget(widget)) {
       for (DashboardStandardCaseColumn col : DashboardStandardCaseColumn.values()) {
+        if (col == DashboardStandardCaseColumn.OWNER && !CaseDashboardWidget.isOwnerEnabled()) {
+          continue;
+        }
         standardFields.add(col.getField());
       }
     }

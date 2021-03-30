@@ -52,6 +52,10 @@
             <h:outputText value="#{column.display(caseItem)}"
               styleClass="#{column.fieldStyleClass} dashboard-tasks__state-text--#{caseItem[column.field].toString().toLowerCase()}" />
           </h:panelGroup>
+          
+          <h:panelGroup rendered="#{column.field eq 'owner'}">
+            <h:outputText value="#{column.display(caseItem)}" styleClass="#{column.fieldStyleClass}" />
+          </h:panelGroup>
 
           <h:panelGroup rendered="#{column.format eq 'STRING' or column.format eq 'TEXT'}">
             <h:outputText value="#{column.display(caseItem)}" styleClass="#{column.fieldStyleClass}" style="#{column.fieldStyle}" />
