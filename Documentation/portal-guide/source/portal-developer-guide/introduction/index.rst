@@ -60,6 +60,17 @@ Make it your own way with the Axon Ivy Portal. Users can optimize process work a
 
 |my-profile-save|
 
+New override approach
+^^^^^^^^^^^^^^^^^^^^^
+
+Portal uses HTML Dialog Override instead of Sub Process Override for customization.
+
+User and role selection component
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+If you need user and role selection, use Portal component instead of implementing yourself. For more details refer to :ref:`components-additional-components-user-selection` 
+and :ref:`components-additional-components-role-selection`.
+
 New & Noteworthy 9.1
 --------------------
 
