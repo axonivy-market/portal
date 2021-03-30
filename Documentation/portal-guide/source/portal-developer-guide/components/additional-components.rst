@@ -430,7 +430,7 @@ Attributes of this component:
   :widths: 1 1 1 3
 
 Portal cron job trigger
-----------------------
+-----------------------
 Portal provides a helpful bean ``ch.ivy.addon.portalkit.util.CronByGlobalVariableTriggerStartEventBean`` using the Quartz framework which help trigger cron job by global variable. The global variable should contains the cron job Pattern, to trigger to process on the right time.
 
 There is a online `Cron Maker <http://www.cronmaker.com>`_ could help you to create your own cron job pattern.
