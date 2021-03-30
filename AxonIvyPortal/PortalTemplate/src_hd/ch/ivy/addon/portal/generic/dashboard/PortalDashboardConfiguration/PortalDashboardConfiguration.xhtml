@@ -84,13 +84,13 @@
         <ui:param name="appendTo" value="@(body)" />
         <ui:param name="iconClass" value="si si-road-sign-warning" />
         <ui:param name="iconStyleClass" value="portal-dialog-warning-icon" />
-        <ui:param name="headerText" value="Restore to default widgets?" />
-        <ui:param name="dialogContent" value="If you proceed, you will loose all widgets created by yourself. The standard settings will be applied." />
+        <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/restoreDefaultHeader')}" />
+        <ui:param name="dialogContent" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/restoreDefaultMessage')}" />
 
         <ui:define name="dialogFooter">
           <p:link href="#" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" onclick="PF('restore-confirm-dialog').hide();"
             styleClass="u-mar-right-15" />
-          <p:commandButton id="reset-dashboard-button" value="Restore"
+          <p:commandButton id="reset-dashboard-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/restore')}"
             actionListener="#{dashboardConfigurationBean.restore()}"
             icon="#{visibilityBean.generateButtonIcon('si si-button-refresh-arrows')}"
             oncomplete="PF('restore-confirm-dialog').hide(); loadGrid(); location.reload(true);"/>
@@ -103,13 +103,13 @@
         <ui:param name="appendTo" value="@(body)" />
         <ui:param name="iconClass" value="si si-road-sign-warning" />
         <ui:param name="iconStyleClass" value="portal-dialog-warning-icon" />
-        <ui:param name="headerText" value="Remove #{dashboardConfigurationBean.deleteWidget.name} widget?" />
-        <ui:param name="dialogContent" value="If you proceed, your widget will be remove." />
+        <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/removeWidgetHeader', [dashboardConfigurationBean.deleteWidget.name])}" />
+        <ui:param name="dialogContent" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/removeWidgetMessage')}" />
 
         <ui:define name="dialogFooter">
           <p:link href="#" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" onclick="PF('remove-widget-dialog').hide();"
             styleClass="u-mar-right-15" />
-          <p:commandButton id="remove-widget-button" value="Delete"
+          <p:commandButton id="remove-widget-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
             actionListener="#{dashboardConfigurationBean.removeWidget()}"
             icon="#{visibilityBean.generateButtonIcon('si si-remove-circle')}"
             oncomplete="PF('remove-widget-dialog').hide(); loadGrid(); location.reload(true);"/>
