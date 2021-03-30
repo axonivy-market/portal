@@ -836,8 +836,8 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   height: 53px;
 }
 
-.case-details-related-task-table .task-header-action-cell {
-  display: inline-block !important;
+.case-details-related-task-table .related-task-more-column .task-header-action-cell {
+  display: inline-block;
 }
 
 .case-detail-body .priority-column {

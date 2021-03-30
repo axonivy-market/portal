@@ -447,6 +447,7 @@
   /*Table */
   --data-table-row-header-color: var(--ivy-primary-color-black);
   --data-table-row-header-bg-color: hsla(180, 1%, 85%, 0.5);
+  --data-table-border-color: #d8d8d8;
   --right-border-inside-data-table: hsla(180, 1%, 61%, 0.5);
   --left-border-inside-data-table: transparent;
   --top-border-outside-data-table-color: hsla(180, 1%, 61%, 0.5);
