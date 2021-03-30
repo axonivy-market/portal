@@ -74,5 +74,3 @@
    :width: 15px 
 .. |send-email-icon| image:: ../includes/images/send-email.png
    :width: 15px 
-.. |pin-icon| image:: ../includes/images/pin.png
-   :width: 15px 
