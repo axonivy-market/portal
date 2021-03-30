@@ -356,9 +356,6 @@ public class ProcessWidgetBean implements Serializable {
     this.editedExternalLink.setName(editedProcess.getName());
     this.editedExternalLink.setLink(editedProcess.getStartLink());
     this.editedExternalLink.setDescription(editedProcess.getDescription());
-    if (StringUtils.isBlank(editedProcess.getDescription())) {
-      this.editedExternalLink.setDescription(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable"));
-    }
   }
 
   public Map<String, List<Process>> getProcessesByAlphabet() {
