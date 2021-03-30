@@ -211,26 +211,11 @@ public class ProcessWidgetBean implements Serializable {
     String oldProcessName = this.editedProcess.getName();
     switch (this.editedProcess.getType()) {
       case EXPRESS_PROCESS:
-        ExpressProcessService expressProcessService = ExpressServiceRegistry.getProcessService();
-        ExpressProcess expressProcess = expressProcessService.findById(editedProcess.getId());
-        if (expressProcess != null) {
-          expressProcess.setIcon(this.selectedIconProcess);
-          expressProcessService.save(expressProcess);
-        }
-        PermissionUtils.checkAbleToStartAndAbleToEditExpressWorkflow(expressProcess);
+        ExpressProcess expressProcess = updateExpressProcess(editedProcess.getId());
         this.editedProcess = new PortalExpressProcess(expressProcess);
         break;
       case EXTERNAL_LINK:
-        ExternalLinkService externalLinkService = ExternalLinkService.getInstance();
-        ExternalLink externalLink = externalLinkService.findById(Long.valueOf(editedProcess.getId()));
-        if (externalLink != null) {
-          externalLink.setIcon(this.selectedIconProcess);
-          externalLink.setName(this.editedExternalLink.getName());
-          ExternalLinkBean externalLinkBean = ManagedBeans.get("externalLinkBean");
-          String correctLink = externalLinkBean.correctLink(this.editedExternalLink.getLink());
-          externalLink.setLink(correctLink);
-          externalLinkService.save(externalLink);
-        }
+        ExternalLink externalLink = updateExternalLink(editedProcess.getId());
         this.editedProcess = new ExternalLinkProcessItem(externalLink);
         break;
       default:
@@ -239,6 +224,32 @@ public class ProcessWidgetBean implements Serializable {
     selectedIconProcess = null;
     updateStartProcessesList(oldProcessName);
     this.editedProcess = null;
+  }
+
+  private ExpressProcess updateExpressProcess(String processId) {
+    ExpressProcessService expressProcessService = ExpressServiceRegistry.getProcessService();
+    ExpressProcess expressProcess = expressProcessService.findById(processId);
+    if (expressProcess != null) {
+      expressProcess.setIcon(this.selectedIconProcess);
+      expressProcessService.save(expressProcess);
+    }
+    PermissionUtils.checkAbleToStartAndAbleToEditExpressWorkflow(expressProcess);
+    return expressProcess;
+  }
+
+  private ExternalLink updateExternalLink(String processId) {
+    ExternalLinkService externalLinkService = ExternalLinkService.getInstance();
+    ExternalLink externalLink = externalLinkService.findById(Long.valueOf(processId));
+    if (externalLink != null) {
+      externalLink.setIcon(this.selectedIconProcess);
+      externalLink.setName(this.editedExternalLink.getName());
+      externalLink.setDescription(this.editedExternalLink.getDescription());
+      ExternalLinkBean externalLinkBean = ManagedBeans.get("externalLinkBean");
+      String correctLink = externalLinkBean.correctLink(this.editedExternalLink.getLink());
+      externalLink.setLink(correctLink);
+      externalLinkService.save(externalLink);
+    }
+    return externalLink;
   }
 
   private void updateStartProcessesList(String oldProcessName) {
@@ -344,6 +355,10 @@ public class ProcessWidgetBean implements Serializable {
     this.editedExternalLink.setId(Long.valueOf(editedProcess.getId()));
     this.editedExternalLink.setName(editedProcess.getName());
     this.editedExternalLink.setLink(editedProcess.getStartLink());
+    this.editedExternalLink.setDescription(editedProcess.getDescription());
+    if (StringUtils.isBlank(editedProcess.getDescription())) {
+      this.editedExternalLink.setDescription(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable"));
+    }
   }
 
   public Map<String, List<Process>> getProcessesByAlphabet() {
