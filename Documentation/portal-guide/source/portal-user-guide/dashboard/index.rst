@@ -3,26 +3,26 @@
 Dashboard
 *********
 
-The Axon Ivy Portal :guilabel:`Dashboard` is the first page you encounter after
+The Axon Ivy Portal Dashboard is the first page you encounter after
 successful login. You can always get back to the dashboard using the 
 **Dashboard** link in the Axon Ivy Portal menu. Alternatively, you can click on
 the Axon Ivy logo in the header.
 
 .. figure:: images/dash-board.png
 
-The dashboard itself is separated in 3 sections:
+The dashboard itself is separated into 3 sections:
 
-   1. The :guilabel:`Processes`  section on the left side. Here you find and
-      manage quick links to the processes you use most often in your daily work. The
-      section Processes is described in detail `Process Favorites`_.
+#. Manage quick links to the processes you use most often in your daily work. The
+   section Processes is described in `Process Favorites`_.
 
-   2. The :guilabel:`Tasks`  section in the center. Here you see all the open tasks
-      assigned to your or your organizational unit. These tasks require
-      your personal attention. The section is described in detail `Personal Tasks`_.
+#. The **Tasks** section in the center. Here you see all the open tasks
+   assigned to you or your organizational unit. These tasks require
+   your personal attention. The section is described in `Personal Tasks`_.
 
-   3. The :guilabel:`Statistics` section on the right side. The charts in this
-      section provide you with basic information on the performance of your
-      cases and tasks. This section is described in detail in `Statistics`_.
+
+#. The **Statistics** section on the right side. The charts in this
+   section provide you with basic information on the performance of your
+   cases and tasks. This section is described in `Statistics`_.
 
 Process Favorites
 -----------------
@@ -55,22 +55,21 @@ Axon Ivy Portal. Please refer to :ref:`full-process-list` for more detail inform
 HowTo: Add a process as a user favorite
 ---------------------------------------
 
-1. Select the link **Add new process** which you find next to the
-   heading **User Favorites**.
+#. Click on the link :guilabel:`Add new process`  which you find next to the
+   heading :guilabel:`User Favorites`.
 
-2. The dialog :guilabel:`Add new user process` is opened.
+#. The dialog :guilabel:`Add new user process` is opened.
 
-3. For the **Selected process** use the dropdown menu to select the process
-   you want to add.
+#. For the :guilabel:`Selected process`  use the dropdown menu to select the process you want to add.
 
-4. The **Display name** is default process name, to add multilingual for favorite process, use **Add languages** button
+#. The :guilabel:`Display name`  is default process name, to add multilingual for favorite process, use :guilabel:`Add languages` button
 
-5. The **Start link** is automatically filled by the Axon Ivy Portal.
+#. The **Start link** is automatically filled by the Axon Ivy Portal.
 
-6. You may change the **Icon** for the process by using the link
-   |change-icon| **Change** and selecting your preferred icon.
+#. You may change the :guilabel:`Icon` for the process by using the link
+   |change-icon| :guilabel:`Change` and selecting your preferred icon.
 
-7. Confirm your configuration with the button **Add**.
+#. Confirm your configuration with the button :guilabel:`Add`.
 
 .. figure:: images/how-to-add-process-favorite.png
 
@@ -89,14 +88,11 @@ HowTo: Add a process as a user favorite
 HowTo: Delete a process as a user favorite
 ------------------------------------------
 
-1. Select the link **Edit processes** next to the heading **User
-   Favorites**.
+#. Click on the link :guilabel:`Edit processes`  next to the heading :guilabel:`User Favorites`.
 
-2. Click on the |trash-icon| **Delete** symbol next to process / processes
-   you wish to remove from your user favorites.
+#. Click on the |trash-icon| :guilabel:`Delete`  symbol next to process / processes
 
-3. Confirm the removal with the link **Save** next to the heading **User
-   Favorites**.
+#. Confirm the removal with the link :guilabel:`Save`  next to the heading :guilabel:`User Favorites`.
 
 .. figure:: images/how-to-delete-process-favorites-1.png
 
@@ -107,30 +103,27 @@ HowTo: Reorder user favorites
 
 There are two ways to order the processes in your :guilabel:`User Favorites`.
 
-I. Sort by name 
+Sort by name 
 ^^^^^^^^^^^^^^^
 
-   To order your processes and external links in an alphabetical order
-   you can use the link **Sort by name** next to the heading **User
-   Favorites**.
+To order your processes and external links in an alphabetical order
+you can use the link :guilabel:`Sort by name`  next to the heading :guilabel:`User Favorites`.
 
 .. figure:: images/how-to-order-process-favorites-by-name.png
 
-II. Edit processes
+Edit processes
 ^^^^^^^^^^^^^^^^^^
 
-1. To order your processes in an individual order, select the link
-   **Edit processes** next to the heading **User Favorites**.
+#. To order your processes in an individual order, click on the link
+   :guilabel:`Edit processes`  next to the heading :guilabel:`User Favorites`.
 
-2. Change the order of your processes using drag and drop.
+#. To change the order of your processes, drag and drop processes.
 
-3. Confirm the reorder with the link **Save** next to the heading **User
-   Favorites**.
+#. Confirm the reorder with the link :guilabel:`Save`  next to the heading :guilabel:`User Favorites`.
 
-.. figure:: images/how-to-delete-process-favorites-1.png
+   .. figure:: images/how-to-delete-process-favorites-1.png
 
-
-.. figure:: images/how-to-order-process-favorites-individually.png
+   .. figure:: images/how-to-order-process-favorites-individually.png
 
 Personal Tasks
 --------------
@@ -138,7 +131,7 @@ Personal Tasks
 The personal tasks you find under the heading :guilabel:`Tasks` in the center of
 your dashboard. You see here all tasks that are assigned to you or any of the
 roles you hold within the application. Therefore, this section is key in
-understanding your workload within the application. You may pick up any task
+understanding your workload within the application. You may pick any task
 from the task list and start working on it.
 
 .. figure:: images/personal-tasks.png
@@ -146,19 +139,19 @@ from the task list and start working on it.
    
 
 At first glance, you see the number of tasks right next to the heading
-:guilabel:`Tasks`. Further to the right you find the link **Show full task
-list**. This quick link routes you to the :guilabel:`Task List` page of the
+:guilabel:`Tasks`. Further to the right you find the link :guilabel:`Show full task
+list`. This quick link routes you to the **Task List** page of the
 Axon Ivy Portal. Please refer to :ref:`full-task-list` for more
 detailed information.
 
 Right below the heading :guilabel:`Task` you find the following features which
 support you in finding the correct tasks:
 
-1. The Axon Ivy Portal searches for your keyword in the task ID, name and
+#. The Axon Ivy Portal searches for your keyword in the task ID, name and
    description of the tasks in your task list.
-2. On the right side of the Tasks section you can find the sort by :guilabel:`Creation Date` :guilabel:`Expiry` :guilabel:`Priority`  
+#. On the right side of the Tasks section you can find the sort by :guilabel:`Creation Date` :guilabel:`Expiry` :guilabel:`Priority`  
 
-.. figure:: images/personal-tasks-sort-and-search-features.png
+   .. figure:: images/personal-tasks-sort-and-search-features.png
 
   
 
@@ -166,20 +159,19 @@ Each task in your task list has an own entry. The entry provides you
 with key information about the task allowing you an easy identification.
 The following information can be found in the task entries:
 
-1. The :guilabel:`Task Priority`
+#. The **Task Priority**
 
-2. The :guilabel:`Task Name` 
+#. The **Task Name**
 
-3. The :guilabel:`Task ID` 
+#. The **Task ID**
 
-4. The :guilabel:`Creation Date`
+#. The **Creation Date**
 
-5. The :guilabel:`Expiry Date` which is the due date until when the task should
-   be completed.
+#. The **Expiry Date** which is the due date until when the task should be completed.
 
-6. The :guilabel:`Task Description`
+#. The **Task Description**
 
-.. figure:: images/personal-tasks-key-information.png
+   .. figure:: images/personal-tasks-key-information.png
 
 
 Statistics
@@ -192,22 +184,22 @@ the overall situation at a glance.
 .. figure:: images/dashboard-statistics-section.png
 
 
-Next to the heading you find a link **Show all charts**. This quick link
-routes you the :guilabel:`Statistics` page of the Axon Ivy Portal. Please refer
+Next to the heading you find a link :guilabel:`Show all charts`. This quick link
+routes you the **Statistics** page of the Axon Ivy Portal. Refer
 to :ref:`full-statistic-list`  for more detailed information.
 
 Within header of the chart, you find two navigation buttons
 (|pre-icon|, |next-icon|) allowing you to toggle between the available
 charts. Each chart then provides you with the following information:
 
-1. The :guilabel:`Chart Title`  helping you to understand the content of the
+#. The **Chart Title**  helping you to understand the content of the
    chart
 
-2. The :guilabel:`Chart` itself, which gives you a graphical representation of
+#. The **Chart** itself, which gives you a graphical representation of
    the data. Furthermore, you see the exact figures in the chart as
    well.
 
-3. The :guilabel:`Legend` explains the different elements of the charts.
+#. The **Legend** explains the different elements of the charts.
 
 .. figure:: images/statistics-key-information.png
 

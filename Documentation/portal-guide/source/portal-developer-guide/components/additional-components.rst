@@ -48,7 +48,7 @@ The value of the attribute ``businessEntityId`` must match the id input
 into the subprocess in the first step.
 
 By default the component will load 20 cases at a time. You can change
-this by setting the attribute ``chunkSize`` to the number you want . You
+this by setting the attribute ``chunkSize`` to the number you want. You
 should use this attribute alongside with the attribute ``scrollHeight``
 to configure the scroll bar of the list.
 
@@ -69,7 +69,7 @@ to configure the scroll bar of the list.
       another process with the option "Attach to Business Case that
       triggered this process" selected, the current case of the process
       will become a technical case and will not be loaded into the process
-      history list. In this case You need to call the
+      history list. In this case you need to call the
       SetBusinessEntityId
       subprocess after the first Trigger or signal sending step.
 
@@ -127,14 +127,14 @@ Introduction
 
 Process Chain component of Portal provides features for users to know
 status of all steps in a process: the step's working, these steps are
-done, these steps is not done. These features are:
+done, these steps are not done. These features are:
 
 1. Support to display all working steps or display only helpful steps as
    begin, last, current, previous current, next current steps.
 
 2. Support to change the sharp of process chain: circle or line.
 
-3. Support to change direction of process chain: horizontal or vertical.
+3. Support to change the direction of process chain: horizontal or vertical.
 
 |process-chain|
 
@@ -429,7 +429,7 @@ Attributes of this component:
   :class: longtable
   :widths: 1 1 1 3
 
-Portal cronjob trigger
+Portal cron job trigger
 ----------------------
 Portal provides a helpful bean ``ch.ivy.addon.portalkit.util.CronByGlobalVariableTriggerStartEventBean`` using the Quartz framework which help trigger cron job by global variable. The global variable should contains the cron job Pattern, to trigger to process on the right time.
 

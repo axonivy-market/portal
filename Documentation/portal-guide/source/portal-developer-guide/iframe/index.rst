@@ -69,7 +69,7 @@ Follow these steps:
 
 - Engine level:
 
-	- Portal Administrator could choose the option that all of the tasks in whole engine are started inside IFrame or not via the ``EMBED_IN_FRAME`` Portal variable in :ref:`Global settings <settings-admin-settings-global-settings>`
+	- Portal Administrator could choose the option that all of the tasks in whole engine are started inside IFrame or not via the ``EMBED_IN_FRAME`` Portal settings, refer to :ref:`update-portal-settings`
 
 .. |task-embedInFrame| image:: images/task-embedInFrame.png
 .. |case-embedInFrame| image:: images/case-embedInFrame.png
