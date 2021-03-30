@@ -1,15 +1,15 @@
 .. _full-statistic-list:
 
-Full Statistics page
+Full Statistics Page
 ********************
 
 One way to consume statistics is through your personal dashboard (see
 :ref:`dashboard`). If you need a deeper insight in what is going on, the
-:guilabel:`Full Statistics` page provides you with the perfect toolset. You can
+**Full Statistics** page provides you with the perfect toolset. You can
 consume statistics and charts here at one glance and have the chance to setup
 your own statistics. You can reach the page by using the 
-**Statistics** link in the Axon Ivy Portal menu or by using the **Show all
-charts** quick link in the statistics section of your dashboard.
+:guilabel:`Statistics` link in the Axon Ivy Portal menu or by using the :guilabel:`Show all
+charts` quick link in the statistics section of your dashboard.
 
 .. hint:: 
    The statistics allow you to evaluate case and task data only. Business data
@@ -18,47 +18,47 @@ charts** quick link in the statistics section of your dashboard.
 
 .. figure:: images/navigate-to-full-statistics-page.png
 
-On the :guilabel:`Full Statistics` page you see all charts that were previously
+On the **Full Statistics** page you see all charts that were previously
 created. Each chart provides you with the following features:
 
 .. figure:: images/full-statistics-page-chart-detail.png
 
-1. The heading of the chart
+#. The heading of the chart
 
-2. An |info-icon| **Info** button, providing you with the configuration of
+#. An |info-icon| :guilabel:`Info` button, providing you with the configuration of
    the chart
 
-.. figure:: images/full-statistics-page-chart-info-detail.png
+   .. figure:: images/full-statistics-page-chart-info-detail.png
 
-3. Arrow buttons (|arrow-right-icon|, |arrow-left-icon|) depending
+#. Arrow buttons (|arrow-right-icon|, |arrow-left-icon|) depending
    on the position of the chart to allow you rearrangement according to
    your personal needs
 
-4. The chart itself. It might provide you with a drill down function
+#. The chart itself. It might provide you with a drill down function
    down to the task level.
 
-5. The legend, explaining the part of the charts
+#. The legend, explaining the part of the charts
 
 .. _howto-create-chart:
 
 HowTo: Create chart
 -------------------
 
-1. Use the link **Add new chart**
+#. Use the link :guilabel:`Add new chart`
 
-2. You are routed to the :guilabel:`Chart Configuration` page
+#. You are routed to the **Chart Configuration** page
 
-3. Select one of the available chart types (see Available charts)
+#. Select one of the available chart types (see Available charts)
 
-4. Select and configure one or more of the available filters (see Chart filter criterias).
+#. Select and configure one or more of the available filters (see Chart filter criteria).
 
-5. Click **Add to dashboard**
+#. Click :guilabel:`Add to dashboard`
 
-6. The :guilabel:`Add statistic chart to dashboard` dialog is opened
+#. The :guilabel:`Add statistic chart to dashboard` dialog is opened
 
-7. Enter unique names in supported languages for the chart
+#. Enter unique names in supported languages for the chart
 
-8. Create the chart with the button **OK**
+#. Create the chart with the button :guilabel:`OK`
 
 .. figure:: images/charts-configuration-page.png
 
@@ -95,13 +95,13 @@ HowTo: Create chart
 |                       |                       | categorized by expiry |
 |                       |                       | time (Today, This     |
 |                       |                       | Week, This Month,     |
-|                       |                       | This Year). The valus |
+|                       |                       | This Year). The values|
 |                       |                       | are the sum of tasks  |
 |                       |                       | in the respective     |
 |                       |                       | categories.           |
 +-----------------------+-----------------------+-----------------------+
 | Elapsed time of done  | Bar chart             | Displays the relative |
-| cases.                |                       | elapsed time of all   |
+| cases                 |                       | elapsed time of all   |
 |                       |                       | done cases belonging  |
 |                       |                       | to a user or a role   |
 |                       |                       | categorized by their  |
@@ -133,7 +133,7 @@ HowTo: Create chart
 +-----------------------+-----------------------+-----------------------+
 
 
-.. centered:: Chart filter criterias
+.. centered:: Chart filter criteria
 
 +-----------------------------------+-----------------------------------+
 | Filter                            | Description                       |
@@ -146,17 +146,17 @@ HowTo: Create chart
 +-----------------------------------+-----------------------------------+
 | Case categories                   | Select which case categories      |
 |                                   | should be included in the chart.  |
-|                                   | If you select “Select all”, also  |
+|                                   | If you select **Select all**, also|
 |                                   | new categories created in the     |
 |                                   | future will be included in the    |
 |                                   | chart.                            |
 +-----------------------------------+-----------------------------------+
 | Roles                             | Select which roles involved in a  |
 |                                   | case/task should be included in   |
-|                                   | the chart. If you select “Select  |
-|                                   | all”, also new roles created in   |
-|                                   | the future will be included in    |
-|                                   | the chart.                        |
+|                                   | the chart. If you select          |
+|                                   | **Select all**, also new roles    |
+|                                   | created in the future will be     |
+|                                   | included in the chart.            |
 +-----------------------------------+-----------------------------------+
 | Workflow states                   | Select which status / statuses    |
 |                                   | shall be analyzed (Created, In    |
@@ -173,5 +173,90 @@ HowTo: Create chart
 +-----------------------------------+-----------------------------------+
 
 
+Task analysis
+-------------
+
+Portal provides lots of statistic charts, but maybe your business needs further analysis. Therefore, Portal provides Task Analysis that
+helps you query tasks with filters, then you could export data to excel for further analysis.
+
+.. important::
+   You need to have Portal permission STATISTIC_ANALYZE_TASK to use this feature.
+
+HowTo: Access task analysis
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+On the Full Statistics page, click on :guilabel:`Task Analysis`.
+
+.. figure:: images/navigate-to-task-analysis.png
+
+Task Analysis page is displayed as below.
+
+.. figure:: images/task-analysis.png
+
+.. _task-analysis-filter-tasks:
+
+HowTo: Filter tasks
+^^^^^^^^^^^^^^^^^^^
+
+#. Click on :guilabel:`More options` of :guilabel:`Task filters` or :guilabel:`More options` of :guilabel:`Case filters` to select one of the available filters.
+
+#. Click on the newly added filter and configure it.
+
+#. Add more filters by clicking on :guilabel:`More options` again.
+
+#. To reset to no filters, click on :guilabel:`Reset`.
+
+#. Drop filters by clicking on the |delete-attachment-icon| icon next to
+   the filter.
+
+#. When finished, click on :guilabel:`Apply filters`.
+
+.. figure:: images/filtered-tasks.png
+
+HowTo: Create new filter
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+#. Filter tasks as described in :ref:`task-analysis-filter-tasks`.
+
+#. Click on :guilabel:`Save filter`.
+
+#. The dialog :guilabel:`Save filter` is opened.
+
+   .. figure:: images/saved-filter.png
+
+#. Under :guilabel:`Filter name`, provide a recognizable name for the filter.
+
+#. Under :guilabel:`Filter visibility`, you can select if the filter is only
+   visible to you or shall be available to all users.
+
+#. Save the filter by clicking on :guilabel:`Ok`.
+
+.. hint:: 
+   #. You may also start the creation of a new filter by selecting an existing
+      filter first, reconfiguring it and saving it. 
+
+   #. Depending on your permissions you might only be allowed to save filters for
+      yourself.
+
+.. _task-analysis-display-tasks:
+
+HowTo: Configure displayed tasks
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+#. To choose columns to display, click on :guilabel:`Manage columns`. Then you could choose displayed columns by checking the related checkboxes.
+
+#. To sort data, click on the column header. To change sort direction, click on that column header one more time.
+   Note that some columns do not support sorting.
+
+HowTo: Export to excel
+^^^^^^^^^^^^^^^^^^^^^^
+
+#. All the data that you filtered with selected columns and sort order will be exported. 
+   Refer to :ref:`task-analysis-filter-tasks` and :ref:`task-analysis-display-tasks` for configuration.
+
+#. In Task Analysis page, click on :guilabel:`Export to Excel`.
+
+#. You could use exported excel file to do further analysis by excel or import it to third-party applications to analyze more.
 
 .. include:: ../includes/_common-icon.rst
+

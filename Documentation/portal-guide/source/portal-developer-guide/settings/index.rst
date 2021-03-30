@@ -3,57 +3,21 @@
 Settings
 ********
 
-This section covers Portal role, permissions and some settings in User menu
+This section covers Portal role, permissions and some settings.
 
 |portal-header|
 
 .. _settings-admin-settings:
 
-Admin settings
-==============
+Setup Portal settings by configuration file in Designer
+=======================================================
 
-User needs to have role ``AXONIVY_PORTAL_ADMIN`` to see this menu item,
-it is used to configure Portal configuration, see different Portal
-configurations in
-:ref:`Portal mode <installation-basic-portal-mode>`
+To manually configure Portal settings, refer to :ref:`update-portal-settings`.
 
-How to open Admin Settings
---------------------------
+In development, it is a quite tedious task to configure Portal settings after restarting Designer. Therefore,
+Portal supports modification of Portal settings in Designer by configuration file, it could survive after restarting Designer.
 
-Open ``Admin Settings`` by selecting the item in ``UserMenu`` on the
-topbar, if your page using layout of ``PortalTemplate`` .
-
-|multi-portal-open-settings|
-
-.. important:: 
-   If your application does not use templates of PortalTemplate project, you
-   have to create a page and use AdminSettings component inside.
-
-.. _settings-admin-settings-global-settings:
-
-Global settings
----------------
-
-Global settings for Portal can be set in Settings tab. All available
-settings with their default value and description are listed in this
-place.
-
-|global-settings|
-
-You can edit value for a specific setting
-
-|global-setting-edit|
-
-You can also get back the default value for each setting by clicking
-reset button on each row, or reset all values of all settings by
-clicking ``Restore All To Defaults`` button.
-
-Setup Global settings by configuration file
-"""""""""""""""""""""""""""""""""""""""""""
-.. important:: 
-   This feature only supports modification of Portal settings in Designer.
-
-Process developer can set up global settings of Portal in file ``portal_settings_config.properties`` which put in ``PortalKit``.
+Process developer can set up Portal settings of Portal in file ``portal_settings_config.properties`` which put in ``PortalKit``.
 
    .. code-block:: Python
 
@@ -135,11 +99,11 @@ Multi applications with overview
 |multi-application-with-portal|
 
 
--  Create a new application named ``Portal``. Deploy portal (kit,
-   template ..) to this application.
+-  Create a new application named ``Portal``. Deploy Portal (Kit,
+   Template ..) to this application.
 
--  Create new applications: App1, App2, App3... Deploy portal
-   (kit, template ..) to new applications.
+-  Create new applications: App1, App2, App3... Deploy Portal
+   (Kit, Template ..) to new applications.
 
 -  Configure multi-apps Portal: login by Portal
    Admin, configure applications: App1,
@@ -162,40 +126,13 @@ Multi applications (without overview)
 
 |multi-application-without-portal|
 
--  Create new applications: App1, App2, App3... Deploy portal(kit,
-   template ..) to new applications. Note: must not create an
+-  Create new applications: App1, App2, App3... Deploy Portal (Kit,
+   Template ...) to new applications. Note: must not create an
    application named ``Portal``.
 
 -  Configure multi-apps Portal: login by Portal
    Admin, configure applications: App1,
    App2, App3...
-
-How to add a new application
-""""""""""""""""""""""""""""
-
-Choose ``Application`` tab on ``Admin Settings`` dialog and click on
-``New`` button to add new application. Here you can choose application
-type either as Ivy application or Third Party application.
-
-|multi-portal-add-application|
-
-.. tip::
-
-   -  Select ``Application`` from dropdown list (see :ref:`Setup Portal multi applications <settings-admin-settings-setup-multi-portals>`). ``Display name`` is the name of the application to be
-      shown on Portal UI.
-
-   -  ``Portal link`` specifies the link will be redirected when
-      selecting the application on the application menu. It could be an
-      absolute link (e.g.
-      http://10.123.1.30:8000/ivy/pro/.../DefaultApplicationHomePage.ivp) or relative
-      link (e.g. /ivy/pro/.../DefaultApplicationHomePage.ivp). If your application
-      could be accessed from multiple domains, use relative link so that
-      you can access the link from different domains.
-
-   -  For multiple languages of application display name, you need to
-      create the "AppInfo/SupportedLanguages" CMS which defines how many
-      languages your application supports. See the below "Language
-      settings" for more details.
 
 .. _settings-language:
 
@@ -213,7 +150,7 @@ Language settings
    appplied by this selection.
 
 -  To configure languages of Portal applications, select
-   ``Language Settings`` in ``User Settings`` .
+   ``Language Settings`` in ``User Settings``.
 
 -  UI reads current languages settings for all applications.
 
@@ -240,7 +177,7 @@ Language settings
    -  Export all CMS entries of Portal Style to excel file
    -  Add translation of new language for all CMS entries
    -  Import file excel back, then redeploy Portal Style
-   -  This is sample how to add new Spanish to portal
+   -  This is sample how to add new Spanish to Portal
 
       |add-new-language|
 
@@ -296,8 +233,8 @@ Absences
 
    User can read, add, delete absences of all users. This function will
    be disabled if session user does not have all of the following
-   permissions: ``IPermission.USER_CREATE_ABSENCE`` ,
-   ``IPermission.USER_DELETE_ABSENCE`` ,
+   permissions: ``IPermission.USER_CREATE_ABSENCE``,
+   ``IPermission.USER_DELETE_ABSENCE``,
    ``IPermission.USER_READ_ABSENCES``.
 
 Substitute
@@ -451,7 +388,7 @@ Personal case permission
       Case state cannot be DESTROYED.
 
    Link to show all tasks of case will be hidden if session user does
-   not have permission ``PortalPermission.SHOW_ALL_TASKS_OF_CASE`` .
+   not have permission ``PortalPermission.SHOW_ALL_TASKS_OF_CASE``.
    
 -  DISPLAY SHOW DETAILS LINK
 
@@ -544,8 +481,8 @@ Normal users can only see their tasks/cases they can work on.
 
 Administrator can see all tasks/cases in the application.
 
-Permissions needed: ``IPermission.TASK_READ_ALL`` ,
-``IPermission.CASE_READ_ALL`` .
+Permissions needed: ``IPermission.TASK_READ_ALL``,
+``IPermission.CASE_READ_ALL``.
 
 Administrator permission can interact with all workflows in the application
 ---------------------------------------------------------------------------
@@ -562,48 +499,48 @@ Global variables
 
 .. table:: 
 
-   +---------------------------+-------------+---------------------------+
-   | Variable                  | Default     | Description               |
-   |                           | value       |                           |
-   +===========================+=============+===========================+
-   | PortalStartTimeCleanObsol | 0 0 6 \* \* | Cron expression define    |
-   | etedDataExpression        | ?           | the time to clean up data |
-   |                           |             | of obsoleted users. E.g.: |
-   |                           |             | expression for at 6AM     |
-   |                           |             | every day is              |
-   |                           |             | ``0 0 6 * * ?`` . Refer   |
-   |                           |             | to                        |
-   |                           |             | `crontrigger <http://quar |
-   |                           |             | tz-scheduler.org/document |
-   |                           |             | ation/quartz-2.1.7/tutori |
-   |                           |             | als/tutorial-lesson-06.htm|
-   |                           |             | l>`__                     |
-   |                           |             | . Restart Ivy engine      |
-   |                           |             | after changing this       |
-   |                           |             | variable.                 |
-   +---------------------------+-------------+---------------------------+
-   | PortalDeleteAllFinishedHi | false       | If set to ``true``, the   |
-   | ddenCases                 |             | cron job runs daily (at   |
-   |                           |             | 6.AM as default) will     |
-   |                           |             | clean all finished hidden |
-   |                           |             | cases in engine.          |
-   |                           |             | Otherwise, just hidden    |
-   |                           |             | cases which were          |
-   |                           |             | generated by Portal will  |
-   |                           |             | be deleted.               |
-   +---------------------------+-------------+---------------------------+
-   | PortalGroupId             | ch.ivyteam. | Maven group id of Portal. |
-   |                           | ivy.project |                           |
-   |                           | .portal     |                           |
-   +---------------------------+-------------+---------------------------+
-   | PortalHiddenTaskCaseExclu | true        | By default, Portal will   |
-   | ded                       |             | query tasks and cases     |
-   |                           |             | which don't have hide     |
-   |                           |             | information. Set it to    |
-   |                           |             | ``false``, portal will    |
-   |                           |             | ignore this additional    |
-   |                           |             | property.                 |
-   +---------------------------+-------------+---------------------------+
+   +---------------------------------------------+-----------------------------+---------------------------+
+   | Variable                                    | Default                     | Description               |
+   |                                             | value                       |                           |
+   +=============================================+=============================+===========================+
+   | PortalStartTimeCleanObsoletedDataExpression | 0 0 6 \* \*                 | Cron expression define    |
+   |                                             | ?                           | the time to clean up data |
+   |                                             |                             | of obsoleted users. E.g.: |
+   |                                             |                             | expression for at 6AM     |
+   |                                             |                             | every day is              |
+   |                                             |                             | ``0 0 6 * * ?``. Refer    |
+   |                                             |                             | to                        |
+   |                                             |                             | `crontrigger <http://quar |
+   |                                             |                             | tz-scheduler.org/document |
+   |                                             |                             | ation/quartz-2.1.7/tutori |
+   |                                             |                             | als/tutorial-lesson-06.htm|
+   |                                             |                             | l>`__.                    |
+   |                                             |                             | Restart Axon Ivy Engine   |
+   |                                             |                             | after changing this       |
+   |                                             |                             | variable.                 |
+   +---------------------------------------------+-----------------------------+---------------------------+
+   | PortalDeleteAllFinishedHiddenCases          | false                       | If set to ``true``, the   |
+   |                                             |                             | cron job runs daily (at   |
+   |                                             |                             | 6.AM as default) will     |
+   |                                             |                             | clean all finished hidden |
+   |                                             |                             | cases in engine.          |
+   |                                             |                             | Otherwise, just hidden    |
+   |                                             |                             | cases which were          |
+   |                                             |                             | generated by Portal will  |
+   |                                             |                             | be deleted.               |
+   +---------------------------------------------+-----------------------------+---------------------------+
+   | PortalGroupId                               |ch.ivyteam.ivy.project.portal| Maven group id of Portal. |
+   |                                             |                             |                           |
+   |                                             |                             |                           |
+   +---------------------------------------------+-----------------------------+---------------------------+
+   | PortalHiddenTaskCaseExcluded                | true                        | By default, Portal will   |
+   |                                             |                             | query tasks and cases     |
+   |                                             |                             | which don't have hide     |
+   |                                             |                             | information. Set it to    |
+   |                                             |                             | ``false``, portal will    |
+   |                                             |                             | ignore this additional    |
+   |                                             |                             | property.                 |
+   +---------------------------------------------+-----------------------------+---------------------------+
 
 .. |portal-header| image:: images/settings/portal-header.png
 .. |global-settings| image:: images/settings/global-settings.png
@@ -614,5 +551,3 @@ Global variables
 .. |language-settings| image:: images/settings/language-settings.png
 .. |add-new-language| image:: images/settings/add-new-language.png
 .. |multi-portal-open-settings| image:: images/settings/multi-portal-open-settings.png
-.. |multi-portal-add-application| image:: images/settings/multi-portal-add-application.png
-

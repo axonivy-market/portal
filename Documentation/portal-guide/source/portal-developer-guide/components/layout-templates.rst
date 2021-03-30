@@ -8,10 +8,10 @@ Layout templates
 Templates for development
 -------------------------
 
-Your Portal Project is dependent on PortalTemplate project, in which there are 7 templates that can be used directly without iframes. 
-In addition 3 templates are described to be used with iframes.
+Your Portal project is dependent on PortalTemplate project, in which there are 7 templates that can be used directly without IFrame. 
+In addition 3 templates are described to be used with IFrame.
 
-Templates without IFrames:
+Templates without IFrame:
 
 1. :ref:`Basic template <components-layout-templates-basic-template>`
 
@@ -29,7 +29,7 @@ Templates without IFrames:
 
 Templates to use with IFrame:
 
-1. :ref:`IFrame Task template <components-layout-templates-iframe-task-template>` (Template used internally by portal to configure iframes)
+1. :ref:`IFrame Task template <components-layout-templates-iframe-task-template>` (Template used internally by portal to configure IFrame)
 
 2. :ref:`Task template (Deprecated) <components-layout-templates-task-template>`
 
@@ -88,7 +88,7 @@ IFrame Task template
 IFrame Task Template is used for displaying task functionality (e.g. process chain) and related case information to support completing the task. 
 It renders your task UI inside IFrame (refer to :ref:`IFrame in Portal <iframe-in-portal>`).
 
-The template is prepared to receive some params passed by javascript. 
+The template is prepared to receive some params passed by JavaScript. 
 Inside your UI, you can configure these parameters which will be rendered by the template automatically:
 
 ::
@@ -276,7 +276,7 @@ Adapt the ``ui:composition`` template to this template.
 +--------------------------------------------+------------------------------------------------+
 | Pros                                       | Cons                                           |
 +============================================+================================================+
-| - Keep the old structure for UIs (TabView) | - Template is deprecated (will remove in v9.0  |
+| - Keep the old structure for UIs (TabView) | - Template is deprecated (will remove in v9.0) |
 | - Use Serenity theme from Portal           | - Few migration effort                         |
 | - Consistent look&feel with Portal         |                                                |
 | - UI styles are taken over from Portal     |                                                |
@@ -395,7 +395,7 @@ How to use case list template
 
 .. _components-layout-templates-handle-required-login-in-templates:
 
-Handle required Login in templates
+Handle required login in templates
 ----------------------------------
 
 All templates require login to access by default. But templates also
@@ -468,7 +468,7 @@ In Portal's new design, the main container's width should be changed
 according to menu state (expand/colapse).
 
 To adapt the change, you need to initialize the ``ResponsiveToolkit``
-Javascript object and introduce 1 object to handle screen resolutions
+JavaScript object and introduce 1 object to handle screen resolutions
 and your object has to implement the ``updateMainContainer`` method.
 
 Portal templates define their own responsiveness, you can redefine the
