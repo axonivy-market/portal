@@ -273,6 +273,10 @@
   --task-note-link-hover-color: var(--ivy-primary-color-grey-dark);
   --case-list-unsortable-header-cell-text-color: var(--ivy-primary-color-grey-medium);
   --case-list-item-background-color: hsla(0, 0%, 100%, 0.2);
+  --case-item-name-font-weight: bold;
+  --case-item-description-font-weight: 400;
+  --case-item-description-font-style: normal;
+  --case-item-description-font-size: 1.4.rem;
   --case-item-description-cell: var(--ivy-primary-color-grey-medium);
   /* Task Widget */
   --task-filter-selection-form-hover-background-color: var(--ivy-primary-color-grey-pale);
@@ -443,6 +447,7 @@
   /*Table */
   --data-table-row-header-color: var(--ivy-primary-color-black);
   --data-table-row-header-bg-color: hsla(180, 1%, 85%, 0.5);
+  --data-table-border-color: #d8d8d8;
   --right-border-inside-data-table: hsla(180, 1%, 61%, 0.5);
   --left-border-inside-data-table: transparent;
   --top-border-outside-data-table-color: hsla(180, 1%, 61%, 0.5);
