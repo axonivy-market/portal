@@ -65,7 +65,7 @@
                   <p:commandButton id="add-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/addWidget')}" type="button"
                     styleClass="action-widget__add-button" onclick="PF('new-widget-dialog').show()" icon="si si-add" />
                   <br />
-                  <p:link id="restore-button" href="#" onclick="PF('restore-confirm-dialog').show()">
+                  <p:link id="restore-button" href="#" onclick="PF('restore-confirm-dialog').show()" styleClass="restore-button">
                     <i class="si si-button-refresh-arrows" />
                     <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/restoreWidget')}</span>
                   </p:link>

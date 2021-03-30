@@ -82,7 +82,7 @@
         <div class="ui-g-12 info-overlay-panel__footer">
           <div class="ui-g-12">
             <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
-              styleClass="Fright" icon="si si-close" process="@none"
+              styleClass="Fright" icon="si si-close" process="@none" global="false"
               onclick="PF('info-overlay-panel-#{index}').hide()"
               oncomplete="updateCaseStatisticPannel#{index}()"/>
           </div>
@@ -106,7 +106,7 @@
         <div class="ui-g-12 filter-overlay-panel__footer">
           <div class="ui-g-12">
             <p:link href="#" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-              styleClass="u-mar-right-15 MarTop5 ui-overlaypanel-footer__cancel"
+              styleClass="u-mar-right-15 ui-overlaypanel-footer__cancel"
               onclick="PF('filter-overlay-panel-#{index}').hide();"/>
 
             <p:commandButton id="apply-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
