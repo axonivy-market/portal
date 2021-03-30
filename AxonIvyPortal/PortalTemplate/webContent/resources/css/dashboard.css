@@ -340,8 +340,10 @@ body .ui-calendar.task-configuration__calendar .ui-datepicker-trigger {
   border-top: solid 1px var(--widget-advanced-filter-overlay-panel-footer);
 }
 
+.restore-button,
 .ui-overlaypanel-footer__cancel {
   display: inline-block;
+  line-height: 3rem
 }
 
 .widget-info-panel {
