@@ -1,0 +1,23 @@
+package ch.ivy.addon.portalkit.dto.taskdetails;
+
+import java.util.List;
+
+import ch.ivyteam.ivy.workflow.TaskState;
+
+public class TaskDetailsFilters {
+  private String taskCategory;
+  private List<TaskState> taskStates;
+
+  public String getTaskCategory() {
+    return taskCategory;
+  }
+  public void setTaskCategory(String taskCategory) {
+    this.taskCategory = taskCategory;
+  }
+  public List<TaskState> getTaskStates() {
+    return taskStates;
+  }
+  public void setTaskStates(List<TaskState> taskStates) {
+    this.taskStates = taskStates;
+  }
+}
