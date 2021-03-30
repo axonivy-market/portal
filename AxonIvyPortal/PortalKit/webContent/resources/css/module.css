@@ -806,6 +806,17 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   width: 100%;
 }
 
+.task-item-body-container .card.task-detail-card.iframe-widget {
+  padding: 5px;
+  overflow: hidden;
+}
+
+.task-detail-card.iframe-widget iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
 .case-history-button-container, .task-history-button-container {
   text-align: right;
 }
