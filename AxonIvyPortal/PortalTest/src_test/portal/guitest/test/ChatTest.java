@@ -131,8 +131,7 @@ public class ChatTest extends BaseTest {
   public void chatGroupMultiTabs() {
     enableChatGroup();
     createChatGroupWithPredifinedGroup(true, TestAccount.DEMO_USER);
-    ChatPage chatPageDemo1 = new TaskTemplatePage().getChat();
-    chatPageDemo1.selectPortalDemoUserChatGroup();
+    ChatPage chatPageDemo1 = new ChatPage();
     launchBrowserAndGotoRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     ChatPage chatPageDemo2 = openChatGroup(TestAccount.DEMO_USER);
     launchBrowserAndGotoRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
