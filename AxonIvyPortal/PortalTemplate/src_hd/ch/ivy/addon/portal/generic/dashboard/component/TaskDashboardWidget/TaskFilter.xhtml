@@ -5,16 +5,6 @@
 
 <f:event listener="#{widget.buildCategoryTree}" type="preRenderComponent" />
 
-<div class="ui-g">
-  <div class="ui-g-4">
-    <strong>#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/availableFilters")}</strong>
-  </div>
-  <div class="ui-g-8">
-    <p:commandButton id="apply-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
-      styleClass="Fright" update="#{updateComponent}" process="filter-container" partialSubmit="true"
-      oncomplete="#{onCompleteApplyingFilters}" icon="si si-check-1" />
-  </div>
-</div>
 <h:panelGroup id="filter-container" layout="block" styleClass="widget-filter-panel">
   <ui:repeat var="field" value="#{widget.filterableColumns}">
     <div class="ui-g">

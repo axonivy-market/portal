@@ -5,15 +5,19 @@
 <!-- DASHBOARD WIDGET DECORATOR: USES FOR DISPLAYING THE WIDGET IN DASHBOARD PAGE.
     DEFINED 2 SECTIONS: WIDGET HEADER AND WIDGET CONTENT
     - WIDGET HEADER: INFO, FILTER, EDIT AND DELETE LINK
-    ** DEFINE SPECIFIC CONTENT FOR INFO OVERLAY PANEL BY DEFINE WIDGETINFORMATIONCONTENT TAG
-    ** DEFINE SPECIFIC CONTENT FOR FILTER OVERLAY PANEL BY DEFINE WIDGETFILTERCONTENT TAG
-    - WIDGET CONTENT: SHOWS WIDGET CONTENT BY DEFINE WIDGETCONTENT TAG
+    ** DEFINE SPECIFIC CONTENT FOR INFO OVERLAY PANEL BY DEFINE widgetInformationContent TAG
+    ** DEFINE SPECIFIC CONTENT FOR FILTER OVERLAY PANEL BY DEFINE widgetFilterContent TAG
+    - WIDGET CONTENT: SHOWS WIDGET CONTENT BY DEFINE widgetContent TAG
     *** REQUIRED PARAMS:
-    * INDEX: INDEX OF WIDGET IN DASHBOARD PAGE.
-    * WIDGE: WIDGET MODEL.
-    * WIDGETFORMID: ID OF WIDGET FORM.
-    * ISREADONLYMODE: INDICATOR TO SHOW EDIT/DELETE LINK.
-    * ONSTATISTICTABSHOW: AJAX METHOD TO CALL WHEN WIDGET INFO PANEL IS SHOWN ON.
+    * index: INDEX OF WIDGET IN DASHBOARD PAGE.
+    * widget: WIDGET MODEL.
+    * widgetFormId: ID OF WIDGET FORM.
+    * isReadOnlyMode: INDICATOR TO SHOW EDIT/DELETE LINK.
+    * onStatisticTabShow: AJAX METHOD TO CALL WHEN WIDGET INFO PANEL IS SHOWN ON.
+    * componentToProcessOnApplyFilter: ID OF COMPONENT WILL BE PROCEED WHEN CLICK ON APPLY BUTTON
+    * componentToUpdateOnApplyFilter: ID OF COMPONENT WILL BE UPDATED WHEN CLICK ON APPLY BUTTON
+    * onCompleteApplyFilters: AJAX METHOD WILL BE CALLED WHEN CLICK APPLY BUTTON
+    
     -->
 
 <h:form id="#{widgetFormId}">
@@ -37,12 +41,12 @@
         update="new-widget-configuration-dialog"
         rendered="#{!isReadOnlyMode}" />
 
-<!--       <p:commandLink styleClass="si si si-recycling-hand-trash u-mar-right-10" -->
-<!--         oncomplete="PF('remove-widget-dialog').show()" -->
-<!--         global="false" -->
-<!--         actionListener="#{dashboardConfigurationBean.setEditWidget(widget)}" -->
-<!--         update="remove-widget-dialog" -->
-<!--         rendered="#{!isReadOnlyMode}" /> -->
+      <p:commandLink styleClass="si si si-recycling-hand-trash u-mar-right-10"
+        oncomplete="PF('remove-widget-dialog').show()"
+        global="false"
+        actionListener="#{dashboardConfigurationBean.setDeleteWidget(widget)}"
+        update="remove-widget-dialog"
+        rendered="#{!isReadOnlyMode}" />
 
       <p:commandLink disabled="true" styleClass="si si-arrow-right" />
 
@@ -63,7 +67,8 @@
         appendTo="@(body)"
         styleClass="info-overlay-panel"
         onShow="buildStatisticInfos#{index}();"
-        dismissable="false">
+        dismissable="false"
+        dynamic="true">
 
         <p:accordionPanel id="statistic-filter-accordion-panel-#{index}"
           widgetVar="statistic-filter-accordion-panel-#{index}"
@@ -71,17 +76,47 @@
           multiple="true"
           onTabShow="#{onStatisticTabShow}">
 
-          <ui:insert name="widgetInformationContent" />
+            <ui:insert name="widgetInformationContent" />
         </p:accordionPanel>
+
+        <div class="ui-g-12 info-overlay-panel__footer">
+          <div class="ui-g-12">
+            <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
+              styleClass="Fright" icon="si si-close" process="@none"
+              onclick="PF('info-overlay-panel-#{index}').hide()"
+              oncomplete="updateCaseStatisticPannel#{index}()"/>
+          </div>
+        </div>
       </p:overlayPanel>
 
       <p:overlayPanel widgetVar="filter-overlay-panel-#{index}"
         for="filter-sidebar-link-#{index}"
         appendTo="@(body)"
-        styleClass="info-overlay-panel case-filter-overlay-panel"
-        dismissable="false">
+        styleClass="filter-overlay-panel"
+        dismissable="false"
+        dynamic="true">
+        <div class="ui-g-12 filter-overlay-panel__header">
+          <strong class="ui-g-12">#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/availableFilters")}</strong>
+        </div>
 
-        <ui:insert name="widgetFilterContent" />
+        <div class="ui-g-12 filter-overlay-panel__content">
+          <ui:insert name="widgetFilterContent" />
+        </div>
+
+        <div class="ui-g-12 filter-overlay-panel__footer">
+          <div class="ui-g-12">
+            <p:link href="#" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+              styleClass="u-mar-right-15 MarTop5 ui-overlaypanel-footer__cancel"
+              onclick="PF('filter-overlay-panel-#{index}').hide();"/>
+
+            <p:commandButton id="apply-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
+              styleClass="Fright" partialSubmit="true"
+              update="#{componentToUpdateOnApplyFilter}"
+              process="#{componentToProcessOnApplyFilter}"
+              oncomplete="#{onCompleteApplyFilters}"
+              icon="si si-check-1" />
+          </div>
+        </div>
       </p:overlayPanel>
     </div>
   </div>
