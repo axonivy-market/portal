@@ -1,5 +1,6 @@
 package ch.ivy.addon.portalkit.dto.dashboard.casecolumn;
 
+import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
@@ -40,10 +41,11 @@ public class CaseColumnModel extends ColumnModel {
         column = new CreatedDateColumnModel();
       } else if (DashboardStandardCaseColumn.FINISHED.getField().equalsIgnoreCase(field)) {
         column = new FinishedDateColumnModel();
-      } else if (DashboardStandardCaseColumn.OWNER.getField().equalsIgnoreCase(field)) {
+      } else if (DashboardStandardCaseColumn.OWNER.getField().equalsIgnoreCase(field) && CaseDashboardWidget.isOwnerEnabled()) {
         column = new OwnerColumnModel();
       }
     }
     return column;
   }
+
 }
