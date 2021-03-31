@@ -160,10 +160,10 @@ customized this process in your project, copy new PortalStart from
 Portal Template to your project and re-apply your customization.
 
 
-Migrate 8.0.7 to 8.0.8
+Migrate 8.0.7 to 8.0.11
 ----------------------
 
-1. Since 8.0.8, statistic chart has multiple names for supported languages in application. Therefore you must run a migration process by the following steps:
+1. Since 8.0.11, statistic chart has multiple names for supported languages in application. Therefore you must run a migration process by the following steps:
 
    - Deploy :download:`MigrateStatisticChartTo8.iar <documents/MigrateStatisticChartTo8.iar>` project to your Ivy application. This project requires ``PortalKit`` to run.
 
