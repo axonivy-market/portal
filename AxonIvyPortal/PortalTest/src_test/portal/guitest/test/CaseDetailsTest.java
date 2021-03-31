@@ -35,8 +35,6 @@ public class CaseDetailsTest extends BaseTest {
 
   private static final String RELATED_TASK_STATE_COLUMN = "related-task-state-column";
   private static final String RELATED_TASK_EXPIRY_COLUMN = "related-task-expiry-column";
-  private static final String RELATED_CASE_STATE_COLUMN = "state-column";
-  private static final String RELATED_CASE_CREATED_COLUMN = "created-column";
   private HomePage homePage;
   private CaseDetailsPage detailsPage;
 
@@ -250,25 +248,6 @@ public class CaseDetailsTest extends BaseTest {
     createTestingCaseContainTechnicalCases();
     detailsPage.clickExportToExcelLink("related-case-export-to-excel", "related-case-status-dialog");
     assertTrue(detailsPage.isDownloadCompleted("related-case-status-dialog"));
-  }
-
-  @Test
-  public void testRelatedCaseEnableAndDisableColumns() {
-    createTestingCaseContainTechnicalCases();
-    assertTrue(detailsPage.isRelatedCaseListColumnExist(RELATED_CASE_CREATED_COLUMN));
-    assertTrue(detailsPage.isRelatedCaseListColumnExist(RELATED_CASE_STATE_COLUMN));
-    detailsPage.clickRelatedCaseColumnsButton();
-    detailsPage.clickRelatedCaseDefaultCheckbox();
-    detailsPage.clickRelatedCaseColumnCheckbox(4);
-    detailsPage.clickRelatedCaseApplyButton();
-    WaitHelper.assertTrueWithWait(() -> !detailsPage.isRelatedCaseListColumnExist(RELATED_CASE_CREATED_COLUMN));
-    WaitHelper.assertTrueWithWait(() -> detailsPage.isRelatedCaseListColumnExist(RELATED_CASE_STATE_COLUMN));
-    detailsPage.clickRelatedCaseColumnsButton();
-    detailsPage.clickRelatedCaseColumnCheckbox(4);
-    detailsPage.clickRelatedCaseColumnCheckbox(6);
-    detailsPage.clickRelatedCaseApplyButton();
-    WaitHelper.assertTrueWithWait(() -> detailsPage.isRelatedCaseListColumnExist(RELATED_CASE_CREATED_COLUMN));
-    WaitHelper.assertTrueWithWait(() -> !detailsPage.isRelatedCaseListColumnExist(RELATED_CASE_STATE_COLUMN));
   }
 
   @Test
