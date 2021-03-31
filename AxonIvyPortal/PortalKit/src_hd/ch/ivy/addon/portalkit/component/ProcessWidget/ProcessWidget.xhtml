@@ -53,7 +53,7 @@
               <label class="#{processWidgetBean.listMode ? 'switch-off':'switch-active'}">#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/Enums/ProcessMode/GRID")}</label>
               <p:inputSwitch id="process-view" styleClass="process-input-switch-selection" value="#{processWidgetBean.listMode}">
                 <p:ajax update="process-view-mode #{cc.clientId}:process-list #{cc.clientId}:process-nav"
-                  oncomplete="processWidget.setupScrollbar(); expandOrCollapseAllCategories(true); return false;" />
+                  oncomplete="processWidget.setup(); return false;" />
               </p:inputSwitch>
               <label class="#{processWidgetBean.listMode ? 'switch-active':'switch-off'}">#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/Enums/ProcessMode/LIST")}</label>
             </h:form>
@@ -123,7 +123,7 @@
 
   <h:form>
     <p:remoteCommand name="updateProcessListOnSaveSuccessfull" update="#{cc.clientId}:process-list #{cc.clientId}:process-nav"
-      oncomplete="processWidget.setupScrollbar();"/>
+      oncomplete="processWidget.setup();"/>
   </h:form>
 
   <script>
