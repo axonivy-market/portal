@@ -185,7 +185,7 @@ public class CaseDetailsTest extends BaseTest {
     createTestingCaseContainTechnicalCases();
     detailsPage.clickRelatedCaseActionButton(0);
     CaseDetailsPage caseDetailsPage = detailsPage.openCasesOfCasePageViaDetailsAction(0);
-    assertEquals("Case Details", caseDetailsPage.getPageTitle());
+    WaitHelper.assertTrueWithWait(() -> "Case Details".equals(caseDetailsPage.getPageTitle()));
   }
 
   @Test
@@ -196,7 +196,7 @@ public class CaseDetailsTest extends BaseTest {
     Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> caseDetailsPage.countBrowserTab() > 1);
     caseDetailsPage.switchLastBrowserTab();
     AdditionalCaseDetailsPage additionalCaseDetailsPage = new AdditionalCaseDetailsPage();
-    assertEquals("Additional Case Details", additionalCaseDetailsPage.getPageTitle());
+    WaitHelper.assertTrueWithWait(() -> "Additional Case Details".equals(additionalCaseDetailsPage.getPageTitle()));
   }
 
   @Test
