@@ -35,6 +35,8 @@ public class CaseWidgetTest extends BaseTest {
   private static final String ORDER_PIZZA = "Order Pizza";
   private static final String CREATED_COLUMN_HEADER = "Created";
   private static final String STATE_COLUMN_HEADER = "State";
+  private static final String RELATED_CASE_STATE_COLUMN = "state-column";
+  private static final String RELATED_CASE_CREATED_COLUMN = "created-column";
   
   private HomePage homePage;
   private MainMenuPage mainMenuPage;
@@ -276,5 +278,27 @@ public class CaseWidgetTest extends BaseTest {
     selectedSortColumn = caseWidgetPage.getSelectedSortColumn();
     assertTrue(StringUtils.equalsIgnoreCase("State", selectedSortColumn));
     assertEquals(CaseState.DONE, caseWidgetPage.getCaseState(0));
+  }
+
+  @Test
+  public void testRelatedCaseEnableAndDisableColumns() {
+    redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
+    HomePage homePage = new HomePage();
+    CaseWidgetPage casePage = homePage.openCaseList();
+    CaseDetailsPage detailsPage = casePage.openDetailsOfCaseHasName(ORDER_PIZZA);
+    assertTrue(detailsPage.isRelatedCaseListColumnExist(RELATED_CASE_CREATED_COLUMN));
+    assertTrue(detailsPage.isRelatedCaseListColumnExist(RELATED_CASE_STATE_COLUMN));
+    detailsPage.clickRelatedCaseColumnsButton();
+    detailsPage.clickRelatedCaseDefaultCheckbox();
+    detailsPage.clickRelatedCaseColumnCheckbox(4);
+    detailsPage.clickRelatedCaseApplyButton();
+    WaitHelper.assertTrueWithWait(() -> !detailsPage.isRelatedCaseListColumnExist(RELATED_CASE_CREATED_COLUMN));
+    WaitHelper.assertTrueWithWait(() -> detailsPage.isRelatedCaseListColumnExist(RELATED_CASE_STATE_COLUMN));
+    detailsPage.clickRelatedCaseColumnsButton();
+    detailsPage.clickRelatedCaseColumnCheckbox(4);
+    detailsPage.clickRelatedCaseColumnCheckbox(6);
+    detailsPage.clickRelatedCaseApplyButton();
+    WaitHelper.assertTrueWithWait(() -> detailsPage.isRelatedCaseListColumnExist(RELATED_CASE_CREATED_COLUMN));
+    WaitHelper.assertTrueWithWait(() -> !detailsPage.isRelatedCaseListColumnExist(RELATED_CASE_STATE_COLUMN));
   }
 }
