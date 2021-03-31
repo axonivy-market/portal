@@ -172,13 +172,11 @@
       </div>
 
       <!-- Description -->
-      <div class="ui-g-12 MarTop10">
-        <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/linkDescription')}" for="external-description" />
-      </div>
-      <div class="ui-g-12 u-no-padding-top ui-fluid">
+      <div class="ui-g-12 ui-fluid MarTop10">
         <div class="md-inputfield">
           <p:inputTextarea id="external-description" value="#{externalLinkBean.externalLink.description}" styleClass="external-description-field"
-            maxlength="200" rows="3"/>
+            maxlength="200" rows="3" />
+          <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/linkDescription')}" for="external-description" />
         </div>
       </div>
 
