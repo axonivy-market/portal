@@ -967,7 +967,7 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 
 /********************************** START PROCESSES **********************************/
 .add-external-link-dialog {
-  min-width: 600px;
+  max-width: 550px;
 }
 
 .process-add-languages {
@@ -1371,16 +1371,11 @@ body .ui-tabs.search-results-tabview .ui-tabs-panel {
   margin-top: 2px !important;
 }
 
-.field-group .external-link-type {
-  line-height: 1.6;
-}
-
-.field-group .external-link-dialog-field {
-  line-height: 1.7;
-}
-
-_:-ms-input-placeholder, :root .field-group .external-link-dialog-field {
-  line-height: 1;
+.external-link-type {
+  padding: .5em;
+  padding-left: 4px;
+  padding-top: 0;
+  width: 100%;
 }
 
 .process-start-list-item-action.is-external-link {
@@ -1388,8 +1383,8 @@ _:-ms-input-placeholder, :root .field-group .external-link-dialog-field {
   flex: 1 0 auto;
 }
 
-_:-ms-input-placeholder, :root .add-external-link-form .ui-g .ui-outputlabel:not(.external-link-type-label) {
-  line-height: 1.4;
+.external-link-type-radio td label {
+  margin-right: 15px;
 }
 
 /********************************** END PROCESSES **********************************/
@@ -3314,6 +3309,7 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   width: 150px;
   text-align: left;
   padding: 6px 0;
+  vertical-align: top;
 }
 
 .edit-process-form .edit-process-detail-2nd-cell {
