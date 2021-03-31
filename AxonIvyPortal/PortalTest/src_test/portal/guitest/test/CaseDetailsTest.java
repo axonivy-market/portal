@@ -177,7 +177,7 @@ public class CaseDetailsTest extends BaseTest {
     createTestingTask();
     detailsPage.clickRelatedTaskActionButton(0);
     TaskDetailsPage taskDetailsPage = detailsPage.openTasksOfCasePageViaDetailsAction(0);
-    assertEquals("Task Details", taskDetailsPage.getPageTitle());
+    WaitHelper.assertTrueWithWait(() -> "Task Details".equals(taskDetailsPage.getPageTitle()));
   }
 
   @Test
