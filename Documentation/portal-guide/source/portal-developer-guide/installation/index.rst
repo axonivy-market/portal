@@ -161,7 +161,7 @@ Portal Template to your project and re-apply your customization.
 
 
 Migrate 8.0.7 to 8.0.11
-----------------------
+-----------------------
 
 1. Since 8.0.11, statistic chart has multiple names for supported languages in application. Therefore you must run a migration process by the following steps:
 
