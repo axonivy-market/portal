@@ -30,6 +30,7 @@ public class OwnerColumnModel extends CaseColumnModel implements Serializable {
     this.field = DashboardStandardCaseColumn.OWNER.getField();
     this.style = defaultIfEmpty(this.style, EXTRA_WIDTH);
     this.format = DashboardColumnFormat.CUSTOM;
+    this.styleClass = defaultIfEmpty(this.styleClass, "dashboard-cases__owner u-text-align-left");
   }
   
   @Override

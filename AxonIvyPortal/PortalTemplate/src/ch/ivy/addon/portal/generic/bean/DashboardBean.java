@@ -13,12 +13,14 @@ import javax.faces.context.FacesContext;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.primefaces.event.SelectEvent;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
@@ -26,6 +28,7 @@ import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUser;
+import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.ITask;
 
 @ViewScoped
@@ -86,17 +89,21 @@ public class DashboardBean implements Serializable {
   
   private void buildWidgetModels() {
     for (Dashboard dashboard : dashboards) {
-      for (DashboardWidget widget : dashboard.getWidgets()) {
-        if (widget instanceof TaskDashboardWidget) {
-          TaskDashboardWidget.buildColumns((TaskDashboardWidget) widget);
-          if (StringUtils.isBlank(widget.getName())) {
-            widget.setName(translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourTasks"));
-          }
-        } else if (widget instanceof CaseDashboardWidget) {
-          CaseDashboardWidget.buildColumns((CaseDashboardWidget) widget);
-          if (StringUtils.isBlank(widget.getName())) {
-            widget.setName(translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourCases"));
-          }
+      buildSubWidgetModels(dashboard.getWidgets());
+    }
+  }
+
+  protected void buildSubWidgetModels(List<DashboardWidget> widgets) {
+    for (DashboardWidget widget : widgets) {
+      if (widget instanceof TaskDashboardWidget) {
+        TaskDashboardWidget.buildColumns((TaskDashboardWidget) widget);
+        if (StringUtils.isBlank(widget.getName())) {
+          widget.setName(translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourTasks"));
+        }
+      } else if (widget instanceof CaseDashboardWidget) {
+        CaseDashboardWidget.buildColumns((CaseDashboardWidget) widget);
+        if (StringUtils.isBlank(widget.getName())) {
+          widget.setName(translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourCases"));
         }
       }
     }
@@ -145,6 +152,17 @@ public class DashboardBean implements Serializable {
     }
 
     currentUser().setProperty(DASHBOARD_PREFIX, this.mapper.writeValueAsString(dashboardSavedList));
+  }
+
+  public void navigateToSelectedTaskDetails(SelectEvent event) {
+    Long taskId = ((ITask) event.getObject()).getId();
+    PortalNavigator.navigateToPortalTaskDetails(taskId);
+
+  }
+
+  public void navigateToSelectedCaseDetails(SelectEvent event) {
+    Long caseId = ((ICase) event.getObject()).getId();
+    PortalNavigator.navigateToPortalCaseDetails(caseId);
   }
 
   private IUser currentUser() {

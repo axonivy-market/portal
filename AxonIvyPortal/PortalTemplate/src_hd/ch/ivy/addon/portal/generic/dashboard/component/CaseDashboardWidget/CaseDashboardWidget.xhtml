@@ -34,7 +34,7 @@
     </ui:define>
 
     <ui:define name="widgetContent">
-      <ic:ch.ivy.addon.portal.generic.dashboard.component.CaseWidget id="case-component" caseWidget="#{widget}" />
+      <ic:ch.ivy.addon.portal.generic.dashboard.component.CaseWidget id="case-component" caseWidget="#{widget}" isReadOnlyMode="#{cc.attrs.isReadOnlyMode}"/>
     </ui:define>
   </ui:decorate>
 

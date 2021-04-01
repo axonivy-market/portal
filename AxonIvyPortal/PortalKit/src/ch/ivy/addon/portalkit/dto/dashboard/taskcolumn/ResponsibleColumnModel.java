@@ -30,6 +30,7 @@ public class ResponsibleColumnModel extends TaskColumnModel implements Serializa
     this.field = DashboardStandardTaskColumn.RESPONSIBLE.getField();
     this.style = defaultIfEmpty(this.style, EXTRA_WIDTH);
     this.format = DashboardColumnFormat.CUSTOM;
+    this.styleClass = defaultIfEmpty(this.styleClass, "dashboard-tasks__responsible u-text-align-left");
   }
   
   @Override

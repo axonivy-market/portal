@@ -30,6 +30,7 @@ public class CreatorColumnModel extends CaseColumnModel implements Serializable 
     this.field = DashboardStandardCaseColumn.CREATOR.getField();
     this.style = defaultIfEmpty(this.style, EXTRA_WIDTH);
     this.format = DashboardColumnFormat.CUSTOM;
+    this.styleClass = defaultIfEmpty(this.styleClass, "dashboard-cases__creator u-text-align-left");
   }
   
   @Override
@@ -74,7 +75,7 @@ public class CreatorColumnModel extends CaseColumnModel implements Serializable 
     if (CollectionUtils.isEmpty(options)) {
       options = SecurityMemberUtils.findSecurityMembers(query, 0, PortalConstants.MAX_USERS_IN_AUTOCOMPLETE);
     }
-    return options;
+    return options.stream().filter(SecurityMemberDTO::isUser).collect(Collectors.toList());
   }
   
   private List<SecurityMemberDTO> toSecurityMemberDTOs(List<String> filters, String query) {
