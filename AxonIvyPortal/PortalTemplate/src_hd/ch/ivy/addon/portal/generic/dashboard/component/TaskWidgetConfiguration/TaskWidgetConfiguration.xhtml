@@ -6,6 +6,7 @@
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="taskWidget" />
   <cc:attribute name="componentToUpdate" />
+  <cc:attribute name="isReadOnlyMode" default="false" />
 </cc:interface>
 
 <cc:implementation>
@@ -158,7 +159,7 @@
       <ic:ch.ivy.addon.portal.generic.dashboard.component.ColumnManagement id="column-management-component" widget="#{widget}"
         componentToUpdate="#{cc.attrs.componentToUpdate}" />
       <ic:ch.ivy.addon.portal.generic.dashboard.component.TaskWidget id="task-widget-preview" taskWidget="#{cc.attrs.taskWidget}"
-        renderColumnConfiguration="true" numberOfRows="5"/>
+        renderColumnConfiguration="true" numberOfRows="5" isReadOnlyMode="#{cc.attrs.isReadOnlyMode}"/>
     </ui:define>
 
   </ui:decorate>

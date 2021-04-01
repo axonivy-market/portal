@@ -10,12 +10,13 @@
   <cc:attribute name="taskWidget" type="ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget" required="true" />
   <cc:attribute name="renderColumnConfiguration" default="false" />
   <cc:attribute name="numberOfRows" default="10" shortDescription="Number of rows to display per page on Case table. Default value is 10." />
+  <cc:attribute name="isReadOnlyMode" default="false" />
 </cc:interface>
 
 <cc:implementation>
   <p:remoteCommand id="rcLoadTaskFirstTime" autoRun="true" actionListener="#{cc.attrs.taskWidget.dataModel.loadFirstTime()}" 
     update="dashboard-tasks-container" global="false" async="true" process="@this"
-    oncomplete="$('.js-loading-#{cc.attrs.taskWidget.id}').addClass('u-display-none');$('.js-dashboard-tasks-container-#{cc.attrs.taskWidget.id}').removeClass('u-display-none');" />
+    oncomplete="loadTaskFirstTime('#{cc.attrs.taskWidget.id}');" />
   <div class="ui-g">
     <h:panelGroup id="loading" styleClass="js-loading-#{cc.attrs.taskWidget.id}">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/loading')}</h:panelGroup>
       
@@ -32,7 +33,10 @@
         rows="#{cc.attrs.numberOfRows}" paginator="true" paginatorPosition="bottom" lazy="true" paginatorTemplate="{PreviousPageLink} {PageLinks} {NextPageLink} {RowsPerPageDropdown}"
         pageLinks="5" sortField="#{cc.attrs.taskWidget.sortField}" sortBy="#{cc.attrs.taskWidget.sortField}"
         sortOrder="#{cc.attrs.taskWidget.sortDescending ? 'descending' : 'ascending'}"
+        rowIndexVar="rowIndex" rowHover="#{cc.attrs.isReadOnlyMode}" selectionMode="single"
         styleClass="dashboard-tasks--table">
+        <p:ajax event="rowSelect" listener="#{dashboardBean.navigateToSelectedTaskDetails}" disabled="#{!cc.attrs.isReadOnlyMode}" />
+
         <p:columns var="column" value="#{cc.attrs.taskWidget.columns}" headerText="#{column.header}" styleClass="#{column.styleClass}"
           visible="#{column.visible}" field="#{column.field}" 
           sortBy="#{column.field}" sortable="#{column.sortable}" 
@@ -73,5 +77,14 @@
       </p:dataTable>
     </h:panelGroup>
   </div>
+
+  <script type="text/javascript">
+    function loadTaskFirstTime(widgetId) {
+      var loadingId = '.js-loading-' + widgetId;
+      var widgetContainer = '.js-dashboard-tasks-container-' + widgetId;
+      $(loadingId).addClass('u-display-none');
+      $(widgetContainer).removeClass('u-display-none');
+    }
+  </script>
 </cc:implementation>
 </html>
