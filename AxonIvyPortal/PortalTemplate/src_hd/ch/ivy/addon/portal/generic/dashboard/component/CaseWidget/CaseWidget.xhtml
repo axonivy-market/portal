@@ -16,7 +16,7 @@
 
   <p:remoteCommand id="rcLoadCaseFirstTime" autoRun="true" actionListener="#{cc.attrs.caseWidget.dataModel.loadFirstTime()}"
     update="dashboard-cases-container" global="false" async="true" process="@this"
-    oncomplete="loadCasefFirstTime('#{caseWidget.id}');" />
+    oncomplete="loadCaseFirstTime('#{caseWidget.id}');" />
   <div class="ui-g">
     <h:panelGroup id="loading" styleClass="js-loading-#{caseWidget.id}">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/loading')}</h:panelGroup>
 
@@ -36,9 +36,9 @@
         paginatorTemplate="{PreviousPageLink} {PageLinks} {NextPageLink} {RowsPerPageDropdown}" pageLinks="5"
         sortField="#{cc.attrs.caseWidget.sortField}" sortBy="#{cc.attrs.caseWidget.sortField}"
         sortOrder="#{cc.attrs.caseWidget.sortDescending ? 'descending' : 'ascending'}"
-        rowIndexVar="rowIndex" rowHover="#{!isReadOnlyMode}" selectionMode="single"
+        rowIndexVar="rowIndex" rowHover="#{isReadOnlyMode}" selectionMode="single"
         styleClass="dashboard-cases--table">
-        <p:ajax event="rowSelect" listener="#{caseDetailsBean.navigateToSelectedCaseDetails}" disabled="#{isReadOnlyMode}" />
+        <p:ajax event="rowSelect" listener="#{dashboardBean.navigateToSelectedCaseDetails}" disabled="#{!isReadOnlyMode}" />
 
         <p:columns var="column" value="#{caseWidget.columns}" headerText="#{column.header}" styleClass="#{column.styleClass}"
           visible="#{column.visible}" field="#{column.field}" sortBy="#{column.field}" sortable="#{column.sortable}"
@@ -50,7 +50,7 @@
 
           <h:panelGroup rendered="#{column.field eq 'state'}">
             <h:outputText value="#{column.display(caseItem)}"
-              styleClass="#{column.fieldStyleClass} dashboard-tasks__state-text--#{caseItem[column.field].toString().toLowerCase()}" />
+              styleClass="#{column.fieldStyleClass} dashboard-cases__state-text--#{caseItem[column.field].toString().toLowerCase()}" />
           </h:panelGroup>
           
           <h:panelGroup rendered="#{column.field eq 'owner'}">
@@ -76,9 +76,9 @@
       </p:dataTable>
     </h:panelGroup>
   </div>
-  
+
   <script type="text/javascript">
-    function loadCasefFirstTime(widgetId) {
+    function loadCaseFirstTime(widgetId) {
       var loadingId = '.js-loading-' + widgetId;
       var widgetContainer = '.js-dashboard-cases-container-' + widgetId;
       $(loadingId).addClass('u-display-none');

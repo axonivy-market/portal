@@ -89,14 +89,7 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
     List<Dashboard> defaultDashboards = this.defaultDashboards();
     this.selectedDashboard = defaultDashboards.get(defaultDashboards.indexOf(this.selectedDashboard));
     this.dashboards.set(this.dashboards.indexOf(this.selectedDashboard), this.selectedDashboard);
-    for (DashboardWidget widget : this.selectedDashboard.getWidgets()) {
-      if (isTaskWidget(widget)) {
-        TaskDashboardWidget.buildColumns((TaskDashboardWidget) widget);
-      }
-      if (isCaseWidget(widget)) {
-        CaseDashboardWidget.buildColumns((CaseDashboardWidget) widget);
-      }
-    }
+    buildSubWidgetModels(this.selectedDashboard.getWidgets());
   }
 
   public void create(WidgetSample sample) {
