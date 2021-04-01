@@ -32,7 +32,7 @@
       <p:link id="info-sidebar-link-#{index}"
         href="#"
         styleClass="si si-information-circle u-mar-right-10"
-        onclick="updateCaseStatisticPannel#{index}()" />
+        onclick="updateWidgetStatisticPannel#{index}()" />
 
       <p:commandLink styleClass="si si-pencil u-mar-right-10"
         oncomplete="PF('new-widget-configuration-dialog').show()"
@@ -57,14 +57,14 @@
         process="@this" partialSubmit="true" immediate="true" />
 
       <!-- remote command to reset state of info accordion panel -->
-      <p:remoteCommand name="updateCaseStatisticPannel#{index}"
+      <p:remoteCommand name="updateWidgetStatisticPannel#{index}"
         update="statistic-filter-accordion-panel-#{index}"
         resetValues="true" global="false" process="@this" partialSubmit="true" immediate="true" />
 
       <p:overlayPanel id="info-overlay-panel-#{index}"
         widgetVar="info-overlay-panel-#{index}"
         for="info-sidebar-link-#{index}"
-        appendTo="@(body)"
+        appendTo="@(#grid-stack)"
         styleClass="info-overlay-panel"
         onShow="buildStatisticInfos#{index}();"
         dismissable="false"
@@ -84,14 +84,14 @@
             <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
               styleClass="Fright" icon="si si-close" process="@none" global="false"
               onclick="PF('info-overlay-panel-#{index}').hide()"
-              oncomplete="updateCaseStatisticPannel#{index}()"/>
+              oncomplete="updateWidgetStatisticPannel#{index}()"/>
           </div>
         </div>
       </p:overlayPanel>
 
       <p:overlayPanel widgetVar="filter-overlay-panel-#{index}"
         for="filter-sidebar-link-#{index}"
-        appendTo="@(body)"
+        appendTo="@(#grid-stack)"
         styleClass="filter-overlay-panel"
         dismissable="false"
         dynamic="true">

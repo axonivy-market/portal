@@ -13,7 +13,7 @@ public class NameColumnModel extends CaseColumnModel implements Serializable {
   public void initDefaultValue() {
     this.header = defaultIfEmpty(this.header, cms("/ch.ivy.addon.portalkit.ui.jsf/common/caseName"));
     this.field = DashboardStandardCaseColumn.NAME.getField();
-    this.styleClass = defaultIfEmpty(this.styleClass, "dashboard-cases__name u-text-align-center");
+    this.styleClass = defaultIfEmpty(this.styleClass, "dashboard-cases__name u-text-align-left");
   }
   
   @Override
