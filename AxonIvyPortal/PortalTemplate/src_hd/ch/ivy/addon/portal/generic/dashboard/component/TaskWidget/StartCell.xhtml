@@ -7,7 +7,4 @@
   disabled="#{!taskActionBean.isNotDone(task) or !taskActionBean.canResume(task)}">
   <span class="si si-controls-play" />
 </p:commandLink>
-<p:commandLink actionListener="#{logic.openDetails(task, cc.attrs.taskWidget.dataModel)}">
-  <span class="si si-search" />
-</p:commandLink>
 </html>

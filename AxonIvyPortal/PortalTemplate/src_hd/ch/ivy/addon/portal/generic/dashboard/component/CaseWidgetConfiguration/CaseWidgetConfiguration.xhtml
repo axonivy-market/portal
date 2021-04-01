@@ -6,6 +6,7 @@
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="caseWidget" />
   <cc:attribute name="componentToUpdate" />
+  <cc:attribute name="isReadOnlyMode" default="false"/>
 </cc:interface>
 
 <cc:implementation>
@@ -156,7 +157,7 @@
     <ui:define name="widgetPreviewContent">
       <ic:ch.ivy.addon.portal.generic.dashboard.component.ColumnManagement id="column-management-component" widget="#{widget}"
         componentToUpdate="#{cc.attrs.componentToUpdate}" />
-      <ic:ch.ivy.addon.portal.generic.dashboard.component.CaseWidget id="case-widget-preview" isReadOnlyMode="true"
+      <ic:ch.ivy.addon.portal.generic.dashboard.component.CaseWidget id="case-widget-preview" isReadOnlyMode="#{cc.attrs.isReadOnlyMode}"
         caseWidget="#{cc.attrs.caseWidget}" renderColumnConfiguration="true" numberOfRows="5" />
     </ui:define>
   </ui:decorate>

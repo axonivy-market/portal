@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import org.apache.commons.lang.StringUtils;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
@@ -42,6 +43,9 @@ public abstract class DashboardWidget implements Serializable {
     this.width = width;
     this.height = height;
   }
+
+  @JsonIgnore
+  public void buildStatisticInfos() {}
 
   public String getId() {
     return id;
@@ -101,8 +105,6 @@ public abstract class DashboardWidget implements Serializable {
   public void setAutoPosition(boolean autoPosition) {
     this.autoPosition = autoPosition;
   }
-  
-  public void buildStatisticInfos() {}
 
   @Override
   public int hashCode() {

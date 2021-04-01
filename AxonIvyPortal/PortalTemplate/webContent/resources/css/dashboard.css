@@ -157,27 +157,49 @@ td.dashboard-cases__name span {
   font-size: var(--default-body-font-size);
   width: fit-content;
   padding: 2px 5px;
+  display: inline-block;
+  border: 1.5px solid transparent;
 }
 
 .dashboard-tasks__state-text--open,
 .dashboard-tasks__state-text--suspended {
   background: #DADADA;
-  border: 1.5px solid #DADADA;
+  border-color: #DADADA;
 }
 
+.dashboard-cases__state-text--running,
 .dashboard-tasks__state-text--resumed {
   background: #FFE896;
-  border: 1.5px solid #FFE896;
+  border-color: #FFE896;
 }
 
+.dashboard-cases__state-text--done,
 .dashboard-tasks__state-text--done {
   background: #D4EBA2;
-  border: 1.5px solid #D4EBA2;
+  border-color: #D4EBA2;
+}
+
+.dashboard-cases__state-text--destroyed,
+.dashboard-cases__state-text--zombie,
+.dashboard-tasks__state-text--destroyed {
+  background: var(--task-state-zombie-destroyed-color);
+  border-color: var(--task-state-zombie-destroyed-color);
+}
+
+.dashboard-tasks__state-text--failed,
+.dashboard-tasks__state-text--join_failed {
+  background: var(--task-state-failed-color);
+  border-color: var(--task-state-failed-color);
+}
+
+.dashboard-tasks__state-text--waiting_for_intermediate_event {
+  background: var(--task-state-waiting-color);
+  border-color: var(--task-state-waiting-color);
 }
 
 .dashboard-tasks__state-text--parked {
   background: #FCC3C3;
-  border: 1.5px solid #FCC3C3;
+  border-color: #FCC3C3;
 }
 
 .task-configuration.card,
@@ -384,7 +406,8 @@ body .ui-calendar.task-configuration__calendar .ui-datepicker-trigger {
   border-right: solid 1px var(--case-related-task-content-border);
 }
 
-.dashboard-cases--table table tbody tr:not(.ui-datatable-empty-message) {
+.dashboard-cases--table table tbody tr:not(.ui-datatable-empty-message),
+.dashboard-tasks--table table tbody tr:not(.ui-datatable-empty-message) {
   height: 53px;
 }
 
@@ -418,4 +441,12 @@ body .ui-calendar.task-configuration__calendar .ui-datepicker-trigger {
 
 .process-widget-component.widget__content .compact-processes-container .process-start-list-item {
   margin: 10px 10px 12px;
+}
+
+.dashboard-tasks__start a {
+  padding: .5em 2em;
+}
+
+body .ui-datatable tbody tr td.dashboard-tasks__state {
+  padding: 0;
 }

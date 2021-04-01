@@ -48,3 +48,9 @@ function toggleCategoryInfo(e) {
   categoryInfo.toggleClass("minimize-content");
   categoryToggle.toggleClass("si-add-circle").toggleClass("si-subtract-circle");
 }
+
+function removeWidgetContent(widgetId) {
+  var removeWidgetId = '.grid-stack-item[data-gs-id="' + widgetId + '"]';
+  $(removeWidgetId).remove();
+  updateDashboardWidget();
+}

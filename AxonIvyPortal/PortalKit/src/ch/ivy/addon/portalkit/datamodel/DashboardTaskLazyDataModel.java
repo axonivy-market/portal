@@ -76,7 +76,46 @@ public class DashboardTaskLazyDataModel extends LazyDataModel<ITask> {
     });
     isFirstTime = true;
   }
-  
+
+  @Override
+  public ITask getRowData(String rowKey) {
+    for (ITask task : tasks) {
+      if (task.getId() == Long.valueOf(rowKey)) {
+        return task;
+      }
+    }
+    return null;
+  }
+
+  @Override
+  public String getRowKey(ITask task) {
+    return String.valueOf(task.getId());
+  }
+
+  /**
+   * @hidden
+   */
+  @Override
+  public void setRowIndex(int index) {
+    super.setRowIndex(index);
+  }
+
+  /**
+   * @hidden
+   */
+  @Override
+  public ITask getRowData() {
+    return super.getRowData();
+  }
+
+  /**
+   * @hidden
+   */
+  @Override
+  public boolean isRowAvailable() {
+    return super.isRowAvailable();
+  }
+
   public DashboardTaskSearchCriteria getCriteria() {
     return criteria;
   }
