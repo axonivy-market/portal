@@ -1,0 +1,91 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:jsf="http://xmlns.jcp.org/jsf"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="caseWidget" type="ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget" required="true" />
+  <cc:attribute name="renderColumnConfiguration" default="false" />
+  <cc:attribute name="numberOfRows" default="10" shortDescription="Number of rows to display per page on Case table. Default value is 10." />
+  <cc:attribute name="isReadOnlyMode" default="false"/>
+  <cc:attribute name="isPreviewMode" default="false"/>
+</cc:interface>
+
+<cc:implementation>
+  <c:set var="caseWidget" value="#{cc.attrs.caseWidget}" />
+  <c:set var="isReadOnlyMode" value="#{cc.attrs.isReadOnlyMode}" />
+  <c:set var="isPreviewMode" value="#{cc.attrs.isPreviewMode}" />
+
+  <p:remoteCommand id="rcLoadCaseFirstTime" autoRun="true" actionListener="#{caseWidget.dataModel.loadFirstTime()}"
+    update="dashboard-cases-container" global="false" async="true" process="@this"
+    oncomplete="loadCaseFirstTime('#{caseWidget.id}');" />
+  <div class="ui-g">
+    <h:panelGroup id="loading" styleClass="js-loading-#{caseWidget.id}">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/loading')}</h:panelGroup>
+
+    <h:panelGroup id="dashboard-cases-container" layout="block"
+      styleClass="ui-g-12 u-padding-0 js-dashboard-cases-container-#{caseWidget.id} u-display-none">
+
+      <h:panelGroup id="columns-configuration" layout="block" rendered="#{cc.attrs.renderColumnConfiguration}"
+        styleClass="dashboard-cases-container__columns-configuration">
+        <p:commandLink id="column-toggler" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/manageColumns')}"
+          update="#{p:component('column-management-dialog')}" oncomplete="PF('column-management-dialog').show()" process="@this" global="false">
+          <p:resetInput target="#{p:component('column-management-dialog')}" />
+        </p:commandLink>
+      </h:panelGroup>
+
+      <p:dataTable id="dashboard-cases" widgetVar="dashboard-cases-#{caseWidget.id}" value="#{caseWidget.dataModel}" var="caseItem"
+        paginatorAlwaysVisible="false" rows="#{cc.attrs.numberOfRows}" paginator="true" paginatorPosition="bottom" lazy="true"
+        paginatorTemplate="{PreviousPageLink} {PageLinks} {NextPageLink} {RowsPerPageDropdown}" pageLinks="5"
+        sortField="#{caseWidget.sortField}" sortBy="#{caseWidget.sortField}"
+        sortOrder="#{caseWidget.sortDescending ? 'descending' : 'ascending'}"
+        rowIndexVar="rowIndex" rowHover="#{isReadOnlyMode}" selectionMode="single"
+        styleClass="dashboard-cases--table #{isReadOnlyMode ? '' : 'dashboard__table--edit'} #{isPreviewMode ? 'dashboard__table--preview' : ''}">
+        <p:ajax event="rowSelect" listener="#{dashboardBean.navigateToSelectedCaseDetails}" disabled="#{!isReadOnlyMode}" />
+
+        <p:columns var="column" value="#{caseWidget.columns}" headerText="#{column.headerText}" styleClass="#{column.styleClass}"
+          visible="#{column.visible}" field="#{column.field}" sortBy="#{column.field}" sortable="#{column.sortable}"
+          style="#{column.format eq 'TIMESTAMP' or column.format eq 'NUMBER' ? 'text-align: center;' : ''} #{column.style}">
+
+          <h:panelGroup rendered="#{column.field eq 'creator'}">
+            <h:outputText value="#{column.display(caseItem)}" styleClass="#{column.fieldStyleClass}" />
+          </h:panelGroup>
+
+          <h:panelGroup rendered="#{column.field eq 'state'}">
+            <h:outputText value="#{column.display(caseItem)}"
+              styleClass="#{column.fieldStyleClass} dashboard-cases__state-text--#{caseItem[column.field].toString().toLowerCase()}" />
+          </h:panelGroup>
+          
+          <h:panelGroup rendered="#{column.field eq 'owner'}">
+            <h:outputText value="#{column.display(caseItem)}" styleClass="#{column.fieldStyleClass}" />
+          </h:panelGroup>
+
+          <h:panelGroup rendered="#{column.format eq 'STRING' or column.format eq 'TEXT'}">
+            <h:outputText value="#{column.display(caseItem)}" styleClass="#{column.fieldStyleClass}" style="#{column.fieldStyle}" />
+          </h:panelGroup>
+
+          <h:panelGroup rendered="#{column.format eq 'TIMESTAMP'}">
+            <h:outputText value="#{column.display(caseItem)}" style="#{column.fieldStyle}">
+              <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
+            </h:outputText>
+          </h:panelGroup>
+
+          <h:panelGroup rendered="#{column.format eq 'NUMBER'}">
+            <h:outputText value="#{column.display(caseItem)}" styleClass="#{column.fieldStyleClass}" style="#{column.fieldStyle}">
+              <f:convertNumber pattern="#{column.pattern}" />
+            </h:outputText>
+          </h:panelGroup>
+        </p:columns>
+      </p:dataTable>
+    </h:panelGroup>
+  </div>
+
+  <script type="text/javascript">
+    function loadCaseFirstTime(widgetId) {
+      var loadingId = '.js-loading-' + widgetId;
+      var widgetContainer = '.js-dashboard-cases-container-' + widgetId;
+      $(loadingId).addClass('u-display-none');
+      $(widgetContainer).removeClass('u-display-none');
+    }
+  </script>
+</cc:implementation>
+</html>

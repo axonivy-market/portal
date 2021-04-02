@@ -8,7 +8,7 @@
 <ui:composition>
   <p:commandLink id="process-item" actionListener="#{compactProcessWidgetBean.startProcess(process)}"
     target="#{compactProcessWidgetBean.targetToStartProcess(process)}" 
-    ajax="#{!process.isExternalLink()}"
+    ajax="#{!compactProcessWidgetBean.isExternalLink(process)}"
     styleClass="process-item">
     <ui:include src="ProcessItem.xhtml">
       <ui:param name="processType" value="process-item" />

@@ -1,5 +1,5 @@
 [Ivy]
-17065CC6FC3BB35C 7.5.0 #module
+17065CC6FC3BB35C 9.2.0 #module
 >Proto >Proto Collection #zClass
 Ps0 PortalDashboardProcess Big #zClass
 Ps0 RD #cInfo
@@ -27,9 +27,7 @@ Ps0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f0 83 51 26 26 -15 15 #rect
-Ps0 f0 @|UdInitIcon #fIcon
 Ps0 f1 211 51 26 26 0 12 #rect
-Ps0 f1 @|UdProcessEndIcon #fIcon
 Ps0 f3 guid 17065CC71E258654 #txt
 Ps0 f3 actionTable 'out=in;
 ' #txt
@@ -41,15 +39,12 @@ Ps0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f3 83 147 26 26 -14 15 #rect
-Ps0 f3 @|UdEventIcon #fIcon
 Ps0 f4 211 147 26 26 0 12 #rect
-Ps0 f4 @|UdExitEndIcon #fIcon
 Ps0 f5 109 160 211 160 #arcP
 Ps0 f2 109 64 211 64 #arcP
 >Proto Ps0 .type ch.ivy.addon.portal.generic.dashboard.PortalDashboard.PortalDashboardData #txt
 >Proto Ps0 .processKind HTML_DIALOG #txt
 >Proto Ps0 -8 -8 16 16 16 26 #rect
->Proto Ps0 '' #fIcon
 Ps0 f3 mainOut f5 tail #connect
 Ps0 f5 head f4 mainIn #connect
 Ps0 f0 mainOut f2 tail #connect
