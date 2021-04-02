@@ -11,9 +11,9 @@ public class IdColumnModel extends CaseColumnModel implements Serializable {
 
   @Override
   public void initDefaultValue() {
-    this.header = defaultIfEmpty(this.header, cms("/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/ID"));
+    this.header = defaultIfEmpty(this.header, "cms:/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/ID");
     this.field = DashboardStandardCaseColumn.ID.getField();
-    this.style = defaultIfEmpty(this.style, NORMAL_WIDTH);
+    this.style = defaultIfEmpty(this.style, SMALL_WIDTH);
     this.styleClass = defaultIfEmpty(this.styleClass, "dashboard-cases__id u-text-align-center");
   }
   

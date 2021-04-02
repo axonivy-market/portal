@@ -94,6 +94,9 @@ public class DashboardBean implements Serializable {
   }
 
   protected void buildSubWidgetModels(List<DashboardWidget> widgets) {
+    if (CollectionUtils.isEmpty(widgets)) {
+      return;
+    }
     for (DashboardWidget widget : widgets) {
       if (widget instanceof TaskDashboardWidget) {
         TaskDashboardWidget.buildColumns((TaskDashboardWidget) widget);
@@ -146,7 +149,9 @@ public class DashboardBean implements Serializable {
     if (StringUtils.isNotEmpty(dashboardSaved)) {
       dashboardSavedList = mappingDashboards(dashboardSaved);
       int indexOfWidget = dashboardSavedList.indexOf(dashboardWidget);
-      dashboardSavedList.set(indexOfWidget, dashboardWidget);
+      if (indexOfWidget >= 0) {
+        dashboardSavedList.set(indexOfWidget, dashboardWidget);
+      }
     } else {
       dashboardSavedList.add(dashboardWidget);
     }

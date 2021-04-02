@@ -12,7 +12,7 @@ public class CreatedDateColumnModel extends CaseColumnModel implements Serializa
 
   @Override
   public void initDefaultValue() {
-    this.header = defaultIfEmpty(this.header, cms("/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATION_TIME"));
+    this.header = defaultIfEmpty(this.header, "cms:/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATION_TIME");
     this.field = DashboardStandardCaseColumn.CREATED.getField();
     this.style = defaultIfEmpty(this.style, SMALL_WIDTH);
     this.styleClass = defaultIfEmpty(this.styleClass, "dashboard-cases__created-date u-text-align-center");

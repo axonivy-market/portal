@@ -11,9 +11,9 @@ public class NameColumnModel extends TaskColumnModel implements Serializable {
 
   @Override
   public void initDefaultValue() {
-    this.header = defaultIfEmpty(this.header, cms("/ch.ivy.addon.portalkit.ui.jsf/common/taskName"));
+    this.header = defaultIfEmpty(this.header, "cms:/ch.ivy.addon.portalkit.ui.jsf/common/taskName");
     this.field = DashboardStandardTaskColumn.NAME.getField();
-    this.styleClass = defaultIfEmpty(this.styleClass, "dashboard-tasks__name u-text-align-left");
+    this.styleClass = defaultIfEmpty(this.styleClass, "dashboard-tasks__name");
   }
   
   @Override
