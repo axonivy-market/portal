@@ -20,7 +20,6 @@ import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.dto.SecurityMemberDTO;
 import ch.ivy.addon.portalkit.dto.UserDTO;
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
-import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.CaseTreeUtils;
 import ch.ivy.addon.portalkit.util.CategoryUtils;
 import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
@@ -39,14 +38,12 @@ public class DashboardCaseFilterBean implements Serializable {
   private CheckboxTreeNode categoryTree;
   private CheckboxTreeNode[] categoryNodes;
   private CaseDashboardWidget widget;
-  private boolean isCaseOwnerEnabled;
 
   @PostConstruct
   public void init() {
     this.states = Arrays.asList(CaseState.values()).stream()
         .sorted((s1, s2) -> StringUtils.compare(s1.toString(), s2.toString())).collect(Collectors.toList());
     this.creators = new ArrayList<>();
-    this.isCaseOwnerEnabled = new GlobalSettingService().isCaseOwnerEnabled();
   }
 
   public void preRender(CaseDashboardWidget widget) {
@@ -135,14 +132,6 @@ public class DashboardCaseFilterBean implements Serializable {
 
   public void setCategoryTree(CheckboxTreeNode categoryTree) {
     this.categoryTree = categoryTree;
-  }
-
-  public boolean isCaseOwnerEnabled() {
-    return isCaseOwnerEnabled;
-  }
-
-  public void setCaseOwnerEnabled(boolean isCaseOwnerEnabled) {
-    this.isCaseOwnerEnabled = isCaseOwnerEnabled;
   }
 
   public List<SecurityMemberDTO> getOwners() {

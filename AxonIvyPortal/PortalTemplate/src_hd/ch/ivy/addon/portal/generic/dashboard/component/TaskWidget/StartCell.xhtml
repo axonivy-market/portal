@@ -3,8 +3,10 @@
   xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
   xmlns:pe="http://primefaces.org/ui/extensions" xmlns:jsf="http://xmlns.jcp.org/jsf">
 
-<p:commandLink actionListener="#{dashboardBean.startTask(task)}"
+<p:commandLink id="start-task" actionListener="#{dashboardBean.startTask(task)}"
   disabled="#{!taskActionBean.isNotDone(task) or !taskActionBean.canResume(task)}">
   <span class="si si-controls-play" />
 </p:commandLink>
+<p:tooltip for="start-task" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/startATask')}" trackMouse="true"
+  hideEvent="mouseleave click" />
 </html>
