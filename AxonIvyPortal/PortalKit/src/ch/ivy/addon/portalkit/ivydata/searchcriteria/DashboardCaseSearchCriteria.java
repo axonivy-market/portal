@@ -9,7 +9,6 @@ import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
 
-import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.casecolumn.CaseColumnModel;
 import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
@@ -168,7 +167,7 @@ public class DashboardCaseSearchCriteria {
         queryStates(query, states);
       } else if (StringUtils.equals(DashboardStandardCaseColumn.CREATOR.getField(), column.getField())) {
         queryCreator(query, filterList);
-      } else if (StringUtils.equals(DashboardStandardCaseColumn.OWNER.getField(), column.getField()) && CaseDashboardWidget.isOwnerEnabled()) {
+      } else if (StringUtils.equals(DashboardStandardCaseColumn.OWNER.getField(), column.getField())) {
         queryOwner(query, filterList);
       } else if (StringUtils.equals(DashboardStandardCaseColumn.CREATED.getField(), column.getField())) {
         Date from = Dates.parse(filterFrom);
