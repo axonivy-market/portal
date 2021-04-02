@@ -69,7 +69,7 @@
       <!-- priority -->
       <h:panelGroup rendered="#{field.field eq 'priority' and not empty field.priorities}">
         <div class="ui-g-4">
-          <h:outputText value="#{field.header}" />
+          <h:outputText value="#{field.headerText}" />
         </div>
         <div class="ui-g-8">
           <ui:repeat var="priority" value="#{field.priorities}">
@@ -81,7 +81,7 @@
       <!-- state -->
       <h:panelGroup rendered="#{field.field eq 'state' and not empty field.states}">
         <div class="ui-g-4">
-          <h:outputText value="#{field.header}" />
+          <h:outputText value="#{field.headerText}" />
         </div>
         <div class="ui-g-8">
           <ui:repeat var="state" value="#{field.states}">
@@ -93,7 +93,7 @@
       <!-- activator -->
       <h:panelGroup rendered="#{field.field eq 'activator' and not empty field.responsibles}">
         <div class="ui-g-4">
-          <h:outputText value="#{field.header}" />
+          <h:outputText value="#{field.headerText}" />
         </div>
         <div class="ui-g-8">
           <ui:repeat var="responsible" value="#{field.responsibles}">
@@ -108,7 +108,7 @@
       <!-- Text and String -->
       <h:panelGroup rendered="#{(field.format eq 'STRING' or field.format eq 'TEXT') and not (empty field.filterList and empty field.filter)}">
         <div class="ui-g-4">
-          <h:outputText value="#{field.header}" />
+          <h:outputText value="#{field.headerText}" />
         </div>
         <div class="ui-g-8">
           <h:outputText value="#{field.filter}" rendered="#{field.filterType eq 'LIKE'}" />
@@ -121,13 +121,13 @@
       <!-- Number -->
       <h:panelGroup rendered="#{field.format eq 'NUMBER' and not (empty field.filterFrom and empty field.filterTo)}">
         <div class="ui-g-4">
-          <h:outputText value="#{field.header} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')}" />
+          <h:outputText value="#{field.headerText} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')}" />
         </div>
         <div class="ui-g-8">
           <h:outputText value="#{field.filterFrom}" />
         </div>
         <div class="ui-g-4">
-          <h:outputText value="#{field.header} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')}" />
+          <h:outputText value="#{field.headerText} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')}" />
         </div>
         <div class="ui-g-8">
           <h:outputText value="#{field.filterTo}" />
@@ -137,7 +137,7 @@
       <!-- Timestamp -->
       <h:panelGroup rendered="#{field.format eq 'TIMESTAMP' and not (empty field.dateFilterFrom and empty field.dateFilterTo)}">
         <div class="ui-g-4">
-          <h:outputText value="#{field.header} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')}" />
+          <h:outputText value="#{field.headerText} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')}" />
         </div>
         <div class="ui-g-8">
           <p:calendar id="from-date-field-input" styleClass="task-configuration__calendar" value="#{field.dateFilterFrom}"
@@ -145,7 +145,7 @@
         </div>
 
         <div class="ui-g-4">
-          <h:outputText value="#{field.header} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')}" />
+          <h:outputText value="#{field.headerText} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')}" />
         </div>
         <div class="ui-g-8">
           <p:calendar id="to-date-field-input" styleClass="task-configuration__calendar" value="#{field.dateFilterTo}"

@@ -12,7 +12,7 @@ public class FinishedDateColumnModel  extends CaseColumnModel implements Seriali
 
   @Override
   public void initDefaultValue() {
-    this.header = defaultIfEmpty(this.header, cms("/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/FINISHED_TIME"));
+    this.header = defaultIfEmpty(this.header, "cms:/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/FINISHED_TIME");
     this.field = DashboardStandardCaseColumn.FINISHED.getField();
     this.style = defaultIfEmpty(this.style, SMALL_WIDTH);
     this.styleClass = defaultIfEmpty(this.styleClass, "dashboard-cases__finished-date u-text-align-center");

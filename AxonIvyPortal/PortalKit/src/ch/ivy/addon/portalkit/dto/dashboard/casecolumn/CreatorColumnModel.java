@@ -26,11 +26,11 @@ public class CreatorColumnModel extends CaseColumnModel implements Serializable 
 
   @Override
   public void initDefaultValue() {
-    this.header = defaultIfEmpty(this.header, cms("/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATOR"));
+    this.header = defaultIfEmpty(this.header, "cms:/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATOR");
     this.field = DashboardStandardCaseColumn.CREATOR.getField();
     this.style = defaultIfEmpty(this.style, EXTRA_WIDTH);
     this.format = DashboardColumnFormat.CUSTOM;
-    this.styleClass = defaultIfEmpty(this.styleClass, "dashboard-cases__creator u-text-align-left");
+    this.styleClass = defaultIfEmpty(this.styleClass, "dashboard-cases__creator");
   }
   
   @Override

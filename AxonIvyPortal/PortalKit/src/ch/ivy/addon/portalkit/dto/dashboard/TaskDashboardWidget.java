@@ -3,8 +3,10 @@ package ch.ivy.addon.portalkit.dto.dashboard;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -43,7 +45,6 @@ import ch.ivy.addon.portalkit.service.IvyAdapterService;
 import ch.ivy.addon.portalkit.util.CategoryUtils;
 import ch.ivy.addon.portalkit.util.TaskTreeUtils;
 import ch.ivy.addon.portalkit.util.TimesUtils;
-import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.TaskState;
 
 public class TaskDashboardWidget extends DashboardWidget {
@@ -92,21 +93,15 @@ public class TaskDashboardWidget extends DashboardWidget {
     this.categoryTree = TaskTreeUtils.buildTaskCategoryCheckboxTreeRoot();
     CategoryUtils.disableSelectionExcept(this.categoryTree, getCategories());
   }
-  
-  @Override
-  public void buildStatisticInfos() {
-    try {
-      buildTaskByStateStatistic();
-      buildTaskExpiryStatistic();
-      buildTaskByCategoryStatistic();
-    } catch (ParseException e) {
-      Ivy.log().error(e);
-    }
-  }
-  
-  private void buildTaskByStateStatistic() throws ParseException {
-    taskByStateStatistic = new HashMap<>();
 
+  @Override
+  public void buildStatisticInfos() throws ParseException {
+    buildTaskByStateStatistic();
+    buildTaskExpiryStatistic();
+    buildTaskByCategoryStatistic();
+  }
+
+  private void buildTaskByStateStatistic() throws ParseException {
     Map<String, Object> params = new HashMap<>();
     params.put(CRITERIA_PARAM, generateTaskSearchCriteriaWithoutOrderByClause());
 
@@ -114,12 +109,16 @@ public class TaskDashboardWidget extends DashboardWidget {
         IvyAdapterService.startSubProcess("analyzeTaskStateStatistic(ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria)", params,
             Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
 
+    Map<TaskState, Long> result = new HashMap<>();
     TaskStateStatistic taskStateStatistic = (TaskStateStatistic) response.get("taskStateStatistic");
     for (Entry<Integer, Long> entry : taskStateStatistic.getNumberOfTasksByState().entrySet()) {
       if (entry.getValue() != 0) {
-        taskByStateStatistic.put(TaskState.valueOf(entry.getKey()), entry.getValue());
+        result.put(TaskState.valueOf(entry.getKey()), entry.getValue());
       }
     }
+    taskByStateStatistic = result.entrySet().stream()
+        .sorted(Comparator.comparingInt(s -> s.getKey().ordinal()))
+        .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (oldValue, newValue) -> oldValue, LinkedHashMap::new));
   }
 
   private void buildTaskExpiryStatistic() throws ParseException {

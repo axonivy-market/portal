@@ -1,6 +1,7 @@
 package ch.ivy.addon.portalkit.dto.dashboard;
 
 import java.io.Serializable;
+import java.text.ParseException;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -17,8 +18,7 @@ import ch.ivyteam.ivy.environment.Ivy;
 @JsonSubTypes({
   @Type(value = TaskDashboardWidget.class, name = "task"),
   @Type(value = CaseDashboardWidget.class, name = "case"),
-  @Type(value = ProcessDashboardWidget.class, name = "process"),
-  @Type(value = ActionDashboardWidget.class, name = "action")
+  @Type(value = ProcessDashboardWidget.class, name = "process")
 })
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public abstract class DashboardWidget implements Serializable {
@@ -45,7 +45,8 @@ public abstract class DashboardWidget implements Serializable {
   }
 
   @JsonIgnore
-  public void buildStatisticInfos() {}
+  @SuppressWarnings("unused")
+  public void buildStatisticInfos() throws ParseException {}
 
   public String getId() {
     return id;
