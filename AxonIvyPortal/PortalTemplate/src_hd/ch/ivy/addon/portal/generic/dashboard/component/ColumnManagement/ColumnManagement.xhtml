@@ -3,11 +3,12 @@
   xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
   xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions">
 <cc:interface componentType="IvyComponent">
-  <cc:attribute name="taskWidget" type="ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget" required="true" />
+  <cc:attribute name="widget" type="ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget" required="true" />
+  <cc:attribute name="componentToUpdate" />
 </cc:interface>
 
 <cc:implementation>
-  <f:event listener="#{columnManagementBean.preRender(cc.attrs.taskWidget)}" type="preRenderComponent" />
+  <f:event listener="#{columnManagementBean.preRender(cc.attrs.widget)}" type="preRenderComponent" />
   <p:dialog id="column-management-dialog" widgetVar="column-management-dialog" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/columnManagement')}"
     appendTo="@(body)" fitViewport="true" width="700" closeOnEscape="true" draggable="false" dynamic="true"
     responsive="true" modal="true">
@@ -26,14 +27,14 @@
           #{column.field}
         </p:column>
           <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/displayName')}">
-          #{column.header}
+          #{column.headerText}
         </p:column>
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reorder')}" width="70" styleClass="u-text-align-center">
           <i class="fa fa-arrows-v" />
         </p:column>
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/remove')}" width="70" styleClass="u-text-align-center">
           <p:commandLink id="remove-link" actionListener="#{columnManagementBean.remove(column)}" global="false" process="@this" update="column-management-datatable">
-            <i class="icon ivyicon-bin-1" />
+            <i class="si si-bin-1" />
           </p:commandLink>
         </p:column>
       </p:dataTable>
@@ -45,7 +46,7 @@
 
       <p:commandButton id="column-management-save-btn" icon="si si-floppy-disk"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
-        actionListener="#{columnManagementBean.save}" update="task-configuration-form"
+        actionListener="#{columnManagementBean.save}" update="#{cc.attrs.componentToUpdate}"
         oncomplete="PF('column-management-dialog').hide();" />
     </f:facet>
   </p:dialog>

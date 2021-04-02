@@ -60,7 +60,7 @@
         <h:panelGroup styleClass="ui-g-3 field-add-fieldset__label" rendered="#{columnManagementBean.selectedCustomFieldType eq 'NUMBER'}">
           <p:outputLabel for="custom-number-field-pattern" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/numberPattern')}" />
           <p:link href="https://docs.oracle.com/javase/tutorial/i18n/format/decimalFormat.html" target="_blank">
-            <i class="icon ivyicon-information-circle" />
+            <i class="si si-information-circle" />
           </p:link>
         </h:panelGroup>
         <h:panelGroup styleClass="ui-g-9" rendered="#{columnManagementBean.selectedCustomFieldType eq 'NUMBER'}">
@@ -80,7 +80,7 @@
       
       <div class="ui-g-12 u-text-align-right">
         <p:commandButton id="field-add-btn" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/addField')}" actionListener="#{columnManagementBean.add}" update="field-add-fieldset column-management-datatable"
-          oncomplete="PF('column-management-dialog').initPosition();" icon="si si-add" />
+          oncomplete="PF('column-management-dialog').initPosition();" icon="si si-add" process="column-management-form"/>
       </div>
     </div>
   </p:fieldset>

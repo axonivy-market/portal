@@ -1,0 +1,136 @@
+[
+	{
+		"id": "1",
+		"title": "cms:/ch.ivy.addon.portalkit.ui.jsf/common/dashboard",
+		"permissions": ["HR", "AXONIVY_PORTAL_ADMIN", "#demo"],
+		"widgets": [
+			{
+				"type": "task",
+				"id": "task_1",
+				"axisX": 0,
+				"axisY": 0,
+				"width": 10,
+				"height": 9,
+				"sortField": "name",
+				"columns": [
+					{
+						"type": "standard",
+						"field": "start"
+					},
+					{
+						"type": "standard",
+						"field": "priority"
+					},
+					{
+						"type": "standard",
+						"field": "id"
+					},
+					{
+						"type": "standard",
+						"field": "name"
+					},
+					{
+						"type": "standard",
+						"field": "description"
+					},
+					{
+						"type": "standard",
+						"field": "activator"
+					},
+					{
+						"type": "standard",
+						"field": "state"
+					},
+					{
+						"type": "standard",
+						"field": "startTimestamp"
+					},
+					{
+						"type": "standard",
+						"field": "expiryTimestamp"
+					},
+					{
+						"type": "custom",
+						"header": "Employee",
+						"field": "CustomVarCharField5",
+						"style": "width: 110px"
+					},
+					{
+						"type": "custom",
+						"header": "Days",
+						"field": "CustomDecimalField2",
+						"style": "width: 80px",
+						"format": "number"
+					},
+					{
+						"type": "custom",
+						"header": "Start Date",
+						"field": "CustomTimestampField1",
+						"style": "width: 120px",
+						"format": "timestamp"
+					}
+				]
+			},
+			{
+				"type": "case",
+				"id": "case_1",
+				"axisX": 0,
+				"axisY": 0,
+				"width": 10,
+				"height": 9,
+				"sortField": "name",
+				"columns": [
+					{
+						"type": "standard",
+						"field": "id"
+					},
+					{
+						"type": "standard",
+						"field": "name"
+					},
+					{
+						"type": "standard",
+						"field": "description"
+					},
+					{
+						"type": "standard",
+						"field": "state"
+					},
+					{
+						"type": "standard",
+						"field": "creator"
+					},
+					{
+						"type": "standard",
+						"field": "startTimestamp"
+					},
+					{
+						"type": "standard",
+						"field": "endTimestamp"
+					},
+					{
+						"type": "custom",
+						"header": "Customer name",
+						"field": "CustomVarCharField5",
+						"style": "width: 110px"
+					},
+					{
+						"type": "custom",
+						"header": "Shipment date",
+						"field": "CustomTimestampField1",
+						"style": "width: 120px",
+						"format": "timestamp"
+					}
+				]
+			},
+			{
+				"type": "process",
+				"id": "process_1",
+				"axisX": 10,
+				"axisY": 0,
+				"width": 2,
+				"height": 4
+			}
+		]
+	}
+]
