@@ -239,7 +239,7 @@ public class CaseDashboardWidget extends DashboardWidget {
     result.setId(id);
     result.setName(name);
     result.setWidth(10);
-    result.setHeight(10);
+    result.setHeight(9);
     result.setAutoPosition(true);
     result.setSortField(CaseSortField.ID.toString());
     result.setSortDescending(true);
