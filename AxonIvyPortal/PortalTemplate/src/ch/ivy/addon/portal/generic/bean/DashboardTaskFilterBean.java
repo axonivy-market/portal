@@ -1,5 +1,6 @@
 package ch.ivy.addon.portal.generic.bean;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -22,6 +23,7 @@ import ch.ivy.addon.portalkit.util.TaskTreeUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivyteam.ivy.workflow.WorkflowPriority;
+import static org.apache.commons.lang3.StringUtils.EMPTY;
 
 @ManagedBean
 @ViewScoped
@@ -64,14 +66,14 @@ public class DashboardTaskFilterBean {
   }
 
   public String formatName(SecurityMemberDTO responsible) {
-    String responsibleName = "";
+    String responsibleName = EMPTY;
     if (responsible != null) {
       if (StringUtils.isBlank(responsible.getDisplayName())) {
         responsibleName = responsible.getName();
       } else {
         responsibleName = String.format("%s (%s)", responsible.getDisplayName(), responsible.getName());
       }
-      return responsible.isEnabled()? responsibleName : Ivy.cms().co("/Labels/disabledUserPrefix") + " " + responsibleName;
+      return responsible.isEnabled()? responsibleName : String.format("%s %s", Ivy.cms().co("/Labels/disabledUserPrefix"), responsibleName);
     }
     return responsibleName;
   }
@@ -82,7 +84,7 @@ public class DashboardTaskFilterBean {
 
   public String getUserFriendlyTaskState(TaskState state) {
     if (state == null) {
-      return StringUtils.EMPTY;
+      return EMPTY;
     }
     String displayState = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/" + state.toString());
     return StringUtils.isBlank(displayState) ? state.name() : displayState;
@@ -90,7 +92,7 @@ public class DashboardTaskFilterBean {
 
   public String getUserFriendlyTaskPriority(WorkflowPriority priority) {
     if (priority == null) {
-      return StringUtils.EMPTY;
+      return EMPTY;
     }
     switch (priority) {
       case LOW:
@@ -102,8 +104,12 @@ public class DashboardTaskFilterBean {
       case EXCEPTION:
         return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskPriority/EXCEPTION_LOWERCASE");
       default:
-        return StringUtils.EMPTY;
+        return EMPTY;
     }
+  }
+
+  public boolean hasPredefinedFilter(TaskDashboardWidget widget) throws ParseException {
+    return TaskDashboardWidget.hasPredefinedFilter(widget);
   }
 
   public List<TaskState> getStates() {

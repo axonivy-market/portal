@@ -1,162 +1,58 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
-  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
-  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:fn="http://java.sun.com/jsp/jstl/functions"
-  xmlns:jsf="http://xmlns.jcp.org/jsf" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:jsf="http://xmlns.jcp.org/jsf"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 <h:body>
-  <ui:composition template="/layouts/BasicTemplate.xhtml">
-    <ui:define name="title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/dashboard')}</ui:define>
-    <ui:define name="pageContent">
-      <ui:fragment rendered="#{empty dashboardBean.dashboards}">
-        <h1>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/noPermission')}</h1>
-      </ui:fragment>
-      
-      <ui:fragment rendered="#{not empty dashboardBean.dashboards}">
-        <h:outputStylesheet library="css" name="dashboard.css" />
-        <div class="dashboar__header">
+  <ui:composition template="/layouts/restricted/DashboardTemplate.xhtml">
 
-        <c:forEach var="dashboard" items="#{dashboardBean.dashboards}" varStatus="dashboardStatus">
-          <p:commandLink id="dashboard-title-#{dashboardStatus.index}" actionListener="#{dashboardBean.onDashboardChange(dashboardStatus.index)}"
-            update="grid-stack" process="@this" styleClass="dashboard__title" oncomplete="loadGrid()">
-            #{dashboard.title}
-          </p:commandLink>
-        </c:forEach>
-        <p:commandButton id="switch-mode" value="#{dashboardBean.switchButtonText}" styleClass="dashboard__switch-mode"
-          actionListener="#{dashboardBean.toggleMode}" update="grid-stack @this" process="@this" partialSubmit="true" oncomplete="loadGrid()"
-          rendered="#{dashboardBean.canEdit}"
-          icon="si #{dashboardBean.isReadOnlyMode ? 'si-pencil' : 'si-view-1'}" />
-        </div>
-        <h:panelGroup id="grid-stack" layout="block" styleClass="grid-stack">
-          <c:forEach var="widget" items="#{dashboardBean.selectedDashboard.widgets}" varStatus="status">
-            <div class="grid-stack-item" data-gs-x="#{widget.axisX}" data-gs-y="#{widget.axisY}" data-gs-id="#{widget.id}"
-              data-gs-width="#{widget.width}" data-gs-height="#{widget.height}" data-gs-autoPosition="#{widget.autoPosition}"
-              data-gs-no-resize="#{dashboardBean.isReadOnlyMode}" data-gs-no-move="#{dashboardBean.isReadOnlyMode}"
-              jsf:rendered="#{widget.id ne 'action' or (widget.id eq 'action' and !dashboardBean.isReadOnlyMode)}">
-              <div class="grid-stack-item-content card dashboard-card dashboard__widget">
-                <c:if test="#{fn:startsWith(widget.id, 'task')}">
-                  <h:form id="task-form-#{status.index}">
-                    <div class="widget__header">
-                      <span>
-                        #{not empty widget.name ? widget.name : ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourTasks")}
-                      </span>
-                      
-                      <div class="widget__header-actions">
-                        <p:link id="filter-sidebar-link-#{status.index}" href="#" styleClass="widget__filter-sidebar-link u-mar-right-5">
-                          <i class="si si-filter-1" />
-                        </p:link>
-                        <p:link id="info-sidebar-link-#{status.index}" href="#" styleClass="u-mar-right-5">
-                          <i class="si si-information-circle" />
-                        </p:link>
-                        <p:remoteCommand name="buildStatisticInfos#{status.index}" actionListener="#{widget.buildStatisticInfos}" update="statistic-filter-accordion-panel" />
-                        <p:commandLink styleClass="u-mar-right-5" oncomplete="PF('task-widget-configuration-dialog').show()" global="false"
-                          actionListener="#{dashboardBean.setWidget(widget)}" update="task-widget-configuration-dialog" rendered="#{!dashboardBean.isReadOnlyMode}">
-                          <i class="si si-pencil" />
-                        </p:commandLink>
-                        <p:commandLink disabled="true">
-                          <i class="si si-arrow-right" />
-                        </p:commandLink>
+    <ui:param name="managedBean" value="#{dashboardBean}" />
 
-                        <p:overlayPanel widgetVar="info-overlay-panel-#{status.index}" for="info-sidebar-link-#{status.index}" appendTo="@(body)" styleClass="info-overlay-panel" onShow="buildStatisticInfos#{status.index}();" dismissable="false">
-                          <ui:include src="TaskInfo.xhtml">
-                            <ui:param name="widget" value="#{widget}" />
-                          </ui:include>
-                        </p:overlayPanel>
-                        <p:overlayPanel widgetVar="filter-overlay-panel-#{status.index}" for="filter-sidebar-link-#{status.index}" appendTo="@(body)" styleClass="info-overlay-panel task-filter-overlay-panel" dismissable="false">
-                          <ui:include src="TaskFilter.xhtml">
-                            <ui:param name="widget" value="#{widget}" />
-                            <ui:param name="updateComponent" value="#{component.parent.namingContainer.clientId}:task-component:dashboard-tasks" />
-                            <ui:param name="onCompleteApplyingFilters" value="PF('filter-overlay-panel-#{status.index}').hide(); PF('dashboard-tasks-#{widget.id}').filter()" />
-                          </ui:include>
-                        </p:overlayPanel>
-                      </div>
-                    </div>
-                    <h:panelGroup id="widget-content" styleClass="widget__content #{widget.id} dashboard-widget-panel-container" layout="block">
-                      <ic:ch.ivy.addon.portal.generic.dashboard.TaskWidget id="task-component" taskWidget="#{widget}" />
-                    </h:panelGroup>
-                  </h:form>
-                </c:if>
-                
-                <c:if test="#{fn:startsWith(widget.id, 'process')}">
-                  <div class="widget__header">
-                    <span>
-                      #{not empty widget.name ? widget.name : ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourProcesses")}
-                    </span>
-                    
-                    <div class="widget__header-actions">
-                      <p:commandLink>
-                        <i class="si si-arrow-right" />
-                      </p:commandLink>
-                    </div>
-                  </div>
-                  <div class="widget__content">
-                    <ic:ch.ivy.addon.portalkit.component.UserProcessWidget id="process-widget-component" />
-                  </div>
-                </c:if>
-                
-                <c:if test="#{widget.id eq 'action'}">
-                  <h:panelGroup id="actions" layout="block" styleClass="actions-widget">
-                    <p:commandButton id="add-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/addWidget')}" type="button" 
-                      styleClass="action-widget__add-button" onclick="PF('new-widget-dialog').show()" icon="si si-add" />
-                    <br />
-                    <p:commandLink id="restore-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/restoreWidget')}" actionListener="#{dashboardBean.restore()}"
-                      update="grid-stack" oncomplete="loadGrid()" />
-                  </h:panelGroup>
-                </c:if>
+    <ui:define name="headerAction">
+      <p:commandButton id="switch-to-edit-mode" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/switchToEditMode')}"
+        actionListener="#{logic.close}" process="@this" update="grid-stack @this"
+        rendered="#{dashboardBean.canEdit}" icon="si si-pencil" />
+    </ui:define>
+
+    <ui:define name="dashboardContent">
+      <c:forEach var="widget" items="#{dashboardBean.selectedDashboard.widgets}" varStatus="status">
+        <div class="grid-stack-item"
+          data-gs-x="#{widget.axisX}"
+          data-gs-y="#{widget.axisY}"
+          data-gs-id="#{widget.id}"
+          data-gs-width="#{widget.width}"
+          data-gs-height="#{widget.height}"
+          data-gs-autoPosition="#{widget.autoPosition}"
+          data-gs-no-resize="true"
+          data-gs-no-move="true">
+          <div class="grid-stack-item-content card dashboard-card dashboard__widget">
+            <!-- Task widget -->
+            <c:if test="#{fn:startsWith(widget.id, 'task')}">
+              <ic:ch.ivy.addon.portal.generic.dashboard.component.TaskDashboardWidget widget="#{widget}" isReadOnlyMode="#{dashboardBean.isReadOnlyMode}"
+                index="#{status.index}"/>
+            </c:if>
+
+            <!-- Case widget -->
+            <c:if test="#{fn:startsWith(widget.id, 'case')}">
+              <ic:ch.ivy.addon.portal.generic.dashboard.component.CaseDashboardWidget widget="#{widget}" isReadOnlyMode="#{dashboardBean.isReadOnlyMode}"
+                index="#{status.index}"/>
+            </c:if>
+
+            <!-- Process widget -->
+            <c:if test="#{fn:startsWith(widget.id, 'process')}">
+              <div class="widget__header">
+                <span>#{not empty widget.name ? widget.name : ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourProcesses")}</span>
+
+                <div class="widget__header-actions">
+                  <p:commandLink disabled="true" styleClass="si si-arrow-right" />
+                </div>
               </div>
-            </div>
-          </c:forEach>
-        </h:panelGroup>
-        
-        <h:form>
-          <p:remoteCommand name="saveConfigurationCommand" actionListener="#{dashboardBean.save()}" global="false" />
-        </h:form>
-        
-        <p:dialog id="new-widget-dialog" widgetVar="new-widget-dialog" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/createWidget')}" appendTo="@(body)"
-          closeOnEscape="true" draggable="false" fitViewport="true" responsive="true" modal="true">
-  
-          <p:dataGrid id="new-widget-dialog-content" var="sample" value="#{dashboardBean.samples}" layout="grid" columns="2"
-            styleClass="new-widget-dialog__content">
-            <p:panel header="#{sample.name}" styleClass="new-widget-dialog__item">
-              <h:panelGrid columns="1">
-                <p:graphicImage library="images" name="#{sample.image}" width="500px" height="300px" />
-                <p:link href="#" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/select')}" rendered="#{sample.type ne 'TASK'}" />
-                <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/select')}" rendered="#{sample.type eq 'TASK'}"
-                  actionListener="#{dashboardBean.create}"
-                  update="task-widget-configuration-dialog"
-                  oncomplete="PF('task-widget-configuration-dialog').show(); PF('new-widget-dialog').hide();" />
-              </h:panelGrid>
-            </p:panel>
-          </p:dataGrid>
-  
-          <f:facet name="footer">
-            <p:commandButton id="new-widget-close-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" type="button"
-              onclick="PF('new-widget-dialog').hide()" />
-          </f:facet>
-        </p:dialog>
-        
-        <p:dialog id="task-widget-configuration-dialog" widgetVar="task-widget-configuration-dialog"
-          header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/taskWidgetConfiguration')}" appendTo="@(body)" closeOnEscape="true" 
-          draggable="false" dynamic="true" fitViewport="true" responsive="true" modal="true" width="95vw">
-          <h:form id="task-configuration-form">
-            <ic:ch.ivy.addon.portal.generic.dashboard.TaskWidgetConfiguration id="task-widget-configuration-component" taskWidget="#{dashboardBean.widget}" />
-          </h:form>
-          <ic:ch.ivy.addon.portal.generic.dashboard.component.ColumnManagement id="column-management-component" taskWidget="#{dashboardBean.widget}" />
-          <f:facet name="footer">
-            <p:link id="task-configuration-cancel-link" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-              styleClass="u-mar-right-10" href="#"
-              onclick="PF('task-widget-configuration-dialog').hide()" />
-              
-            <p:commandButton id="task-configuration-save-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
-              actionListener="#{dashboardBean.saveWidget()}" icon="si si-floppy-disk"
-              process="task-configuration-form:task-widget-configuration-component:filter-container" partialSubmit="true"
-              update="grid-stack"
-              oncomplete="PF('task-widget-configuration-dialog').hide();loadGrid();" />
-              
-          </f:facet>
-        </p:dialog>
-        
-        <h:outputScript library="js" name="dashboard.js" />
-      </ui:fragment>
+              <div class="widget__content process-widget-component">
+                <ic:ch.ivy.addon.portalkit.component.UserProcessWidget id="process-widget-component" />
+              </div>
+            </c:if>
+          </div>
+        </div>
+      </c:forEach>
     </ui:define>
   </ui:composition>
 </h:body>
