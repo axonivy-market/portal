@@ -10,7 +10,7 @@
 				"axisX": 0,
 				"axisY": 0,
 				"width": 10,
-				"height": 10,
+				"height": 9,
 				"sortField": "name",
 				"columns": [
 					{
@@ -77,7 +77,7 @@
 				"axisX": 0,
 				"axisY": 0,
 				"width": 10,
-				"height": 10,
+				"height": 9,
 				"sortField": "name",
 				"columns": [
 					{
