@@ -20,7 +20,7 @@ public class PriorityColumnModel extends TaskColumnModel implements Serializable
 
   @Override
   public void initDefaultValue() {
-    this.header = defaultIfEmpty(this.header, cms("/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/abbreviation/PRIORITY"));
+    this.header = defaultIfEmpty(this.header, "cms:/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/abbreviation/PRIORITY");
     this.field = DashboardStandardTaskColumn.PRIORITY.getField();
     this.style = defaultIfEmpty(this.style, TINY_WIDTH);
     this.styleClass = defaultIfEmpty(this.styleClass, "dashboard-tasks__priority u-text-align-center");

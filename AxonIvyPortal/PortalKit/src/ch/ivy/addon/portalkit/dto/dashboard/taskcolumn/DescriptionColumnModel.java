@@ -11,9 +11,9 @@ public class DescriptionColumnModel extends TaskColumnModel implements Serializa
 
   @Override
   public void initDefaultValue() {
-    this.header = defaultIfEmpty(this.header, cms("/ch.ivy.addon.portalkit.ui.jsf/common/description"));
+    this.header = defaultIfEmpty(this.header, "cms:/ch.ivy.addon.portalkit.ui.jsf/common/description");
     this.field = DashboardStandardTaskColumn.DESCRIPTION.getField();
-    this.styleClass = defaultIfEmpty(this.styleClass, "dashboard-tasks__description u-text-align-left");
+    this.styleClass = defaultIfEmpty(this.styleClass, "dashboard-tasks__description");
     this.sortable = false;
   }
   

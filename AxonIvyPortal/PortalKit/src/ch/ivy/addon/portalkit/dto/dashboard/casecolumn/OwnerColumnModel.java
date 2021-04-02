@@ -26,11 +26,11 @@ public class OwnerColumnModel extends CaseColumnModel implements Serializable {
 
   @Override
   public void initDefaultValue() {
-    this.header = defaultIfEmpty(this.header, cms("/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/OWNER"));
+    this.header = defaultIfEmpty(this.header, "cms:/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/OWNER");
     this.field = DashboardStandardCaseColumn.OWNER.getField();
     this.style = defaultIfEmpty(this.style, EXTRA_WIDTH);
     this.format = DashboardColumnFormat.CUSTOM;
-    this.styleClass = defaultIfEmpty(this.styleClass, "dashboard-cases__owner u-text-align-left");
+    this.styleClass = defaultIfEmpty(this.styleClass, "dashboard-cases__owner");
   }
   
   @Override
