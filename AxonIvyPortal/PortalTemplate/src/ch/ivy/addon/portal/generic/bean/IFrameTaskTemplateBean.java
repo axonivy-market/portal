@@ -99,7 +99,7 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
     if (context != null){
       request = (HttpServletRequest) context.getRequest();
     }
-    
+    keepOverridePortalGrowl();
     if (StringUtils.isNotBlank(url) && OpenRedirectVulnerabilityUtil.isValid(url, request)) {
       FacesContext.getCurrentInstance().getExternalContext().redirect(url);
     }
