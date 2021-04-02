@@ -1,6 +1,5 @@
 .dashboard__header {
-	height: 60px;
-	padding: 0 10px;
+	padding: 10px;
 }
 
 .new-widget-dialog__content .ui-grid.ui-grid-responsive {
@@ -24,14 +23,15 @@
   cursor: move;
 }
 
-.dashboard__switch-mode {
-  top: 10px;
-  float: right;
+.dashboard-header__action {
   z-index: 995;
+  float: right;
+  text-align: right;
 }
 
 .dashboard__title {
   font-size: 1.8rem;
+  margin-right: 10px;
 }
 
 .dashboard__widget {
@@ -55,7 +55,6 @@
 .widget__content {
   flex: auto;
   overflow: auto;
-  margin-bottom: 20px;
   padding: 10px;
 }
 
@@ -152,13 +151,14 @@ td.dashboard-cases__name span {
 
 .dashboard-tasks__state-text,
 .dashboard-cases__state-text {
-  border-radius: 2rem;
+  border-radius: 1rem;
+  line-height: 1.6rem;
   box-sizing: border-box;
-  font-size: var(--default-body-font-size);
+  font-size: var(--small-font-size);
   width: fit-content;
   padding: 2px 5px;
   display: inline-block;
-  border: 1.5px solid transparent;
+  border: 1px solid;
 }
 
 .dashboard-tasks__state-text--open,
@@ -412,7 +412,10 @@ body .ui-calendar.task-configuration__calendar .ui-datepicker-trigger {
 }
 
 .grid-stack {
+  margin-top: .5em;
   margin-bottom: 2.5em;
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .filter-container {
@@ -443,10 +446,22 @@ body .ui-calendar.task-configuration__calendar .ui-datepicker-trigger {
   margin: 10px 10px 12px;
 }
 
-.dashboard-tasks__start a {
+.dashboard-tasks__start .ui-commandlink {
   padding: .5em 2em;
 }
 
-body .ui-datatable tbody tr td.dashboard-tasks__state {
+body .ui-datatable tbody tr td.dashboard-tasks__state,
+body .ui-datatable tbody tr td.dashboard-cases__state {
   padding: 0;
+}
+
+body .dashboard__table--edit.ui-datatable tbody tr.ui-state-highlight,
+body .dashboard__table--edit.ui-datatable tbody tr.ui-state-hover {
+  background: transparent;
+  cursor: move;
+}
+
+body .dashboard__table--preview.ui-datatable tbody tr.ui-state-highlight,
+body .dashboard__table--preview.ui-datatable tbody tr.ui-state-hover {
+  cursor: auto;
 }

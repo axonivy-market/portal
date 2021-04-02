@@ -3,7 +3,9 @@ package ch.ivy.addon.portalkit.dto.dashboard;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -39,7 +41,6 @@ import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.IvyAdapterService;
 import ch.ivy.addon.portalkit.util.CaseTreeUtils;
 import ch.ivy.addon.portalkit.util.CategoryUtils;
-import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.CaseState;
 
 public class CaseDashboardWidget extends DashboardWidget {
@@ -62,11 +63,18 @@ public class CaseDashboardWidget extends DashboardWidget {
     dataModel = new DashboardCaseLazyDataModel();
     setColumns(new ArrayList<>());
     caseByCategoryStatistic = new HashMap<>();
-    caseByStateStatistic = new HashMap<>();
-    caseByStateStatistic.put(CaseState.CREATED, 0l);
-    caseByStateStatistic.put(CaseState.DONE, 0l);
-    caseByStateStatistic.put(CaseState.DESTROYED, 0l);
-    caseByStateStatistic.put(CaseState.RUNNING, 0l);
+    initStateStatistic();
+  }
+
+  private void initStateStatistic() {
+    Map<CaseState, Long> result = new HashMap<>();
+    result.put(CaseState.CREATED, 0L);
+    result.put(CaseState.DONE, 0L);
+    result.put(CaseState.DESTROYED, 0L);
+    result.put(CaseState.RUNNING, 0L);
+    caseByStateStatistic = result.entrySet().stream()
+            .sorted(Comparator.comparingInt(s -> s.getKey().ordinal()))
+            .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (oldValue, newValue) -> oldValue, LinkedHashMap::new));
   }
 
   public CheckboxTreeNode[] getCategoryNodes() {
@@ -92,13 +100,9 @@ public class CaseDashboardWidget extends DashboardWidget {
   }
 
   @Override
-  public void buildStatisticInfos() {
-    try {
-      buildCaseByStateStatistic();
-      buildCaseByCategoryStatistic();
-    } catch (ParseException e) {
-      Ivy.log().error(e);
-    }
+  public void buildStatisticInfos() throws ParseException {
+    buildCaseByStateStatistic();
+    buildCaseByCategoryStatistic();
   }
 
   private void buildCaseByStateStatistic() throws ParseException {
@@ -109,10 +113,15 @@ public class CaseDashboardWidget extends DashboardWidget {
         params, Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
 
     CaseStateStatistic caseStateStatistic = (CaseStateStatistic) response.get("caseStateStatistic");
-    caseByStateStatistic.put(CaseState.CREATED, caseStateStatistic.getCreated());
-    caseByStateStatistic.put(CaseState.DONE, caseStateStatistic.getDone());
-    caseByStateStatistic.put(CaseState.DESTROYED, caseStateStatistic.getFailed());
-    caseByStateStatistic.put(CaseState.RUNNING, caseStateStatistic.getRunning());
+    Map<CaseState, Long> result = new HashMap<>();
+    result.put(CaseState.CREATED, caseStateStatistic.getCreated());
+    result.put(CaseState.DONE, caseStateStatistic.getDone());
+    result.put(CaseState.DESTROYED, caseStateStatistic.getFailed());
+    result.put(CaseState.RUNNING, caseStateStatistic.getRunning());
+    caseByStateStatistic = result.entrySet().stream()
+            .sorted(Comparator.comparingInt(s -> s.getKey().ordinal()))
+            .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (oldValue, newValue) -> oldValue, LinkedHashMap::new));
+    
   }
 
   private void buildCaseByCategoryStatistic() throws ParseException {
