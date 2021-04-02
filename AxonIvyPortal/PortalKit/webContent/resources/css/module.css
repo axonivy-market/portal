@@ -4130,7 +4130,6 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 
 .statistic-filter-accordion-panel {
   border: none !important;
-  padding: 0.5em 0 !important;
 }
 
 body .ui-accordion.statistic-filter-accordion-panel .ui-accordion-header,

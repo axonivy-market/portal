@@ -1,6 +1,5 @@
-.dashboar__header {
-	height: 60px;
-	padding: 0 10px;
+.dashboard__header {
+	padding: 10px;
 }
 
 .new-widget-dialog__content .ui-grid.ui-grid-responsive {
@@ -24,14 +23,20 @@
   cursor: move;
 }
 
-.dashboard__switch-mode {
-  top: 10px;
-  float: right;
+.dashboard-header__action {
   z-index: 995;
+  float: right;
+  text-align: right;
 }
 
 .dashboard__title {
   font-size: 1.8rem;
+  margin-right: 10px;
+  padding-bottom: 5px;
+}
+
+.dashboard__title--active {
+  border-bottom: 2px solid;
 }
 
 .dashboard__widget {
@@ -55,7 +60,6 @@
 .widget__content {
   flex: auto;
   overflow: auto;
-  margin-bottom: 20px;
   padding: 10px;
 }
 
@@ -115,7 +119,8 @@
 	margin: 10px 10px 0 10px;	
 }
 
-.dashboard-tasks-container__columns-configuration {
+.dashboard-tasks-container__columns-configuration,
+.dashboard-cases-container__columns-configuration  {
   text-align: right;
   margin-bottom: 10px;
 }
@@ -134,8 +139,10 @@
   color: red;
 }
 
-.dashboard-tasks__description span,
-.dashboard-tasks__name span {
+td.dashboard-tasks__description span,
+td.dashboard-tasks__name span,
+td.dashboard-cases__description span,
+td.dashboard-cases__name span {
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -147,44 +154,78 @@
 	width: 300px;
 }
 
-.dashboard-tasks__state-text {
-  border-radius: 2rem;
+.dashboard-tasks__state-text,
+.dashboard-cases__state-text {
+  border-radius: 1rem;
+  line-height: 1.6rem;
   box-sizing: border-box;
-  font-size: var(--default-body-font-size);
+  font-size: var(--small-font-size);
   width: fit-content;
   padding: 2px 5px;
+  display: inline-block;
+  border: 1px solid;
 }
 
 .dashboard-tasks__state-text--open,
 .dashboard-tasks__state-text--suspended {
   background: #DADADA;
-  border: 1.5px solid #DADADA;
+  border-color: #DADADA;
 }
 
+.dashboard-cases__state-text--running,
 .dashboard-tasks__state-text--resumed {
   background: #FFE896;
-  border: 1.5px solid #FFE896;
+  border-color: #FFE896;
 }
 
+.dashboard-cases__state-text--done,
 .dashboard-tasks__state-text--done {
   background: #D4EBA2;
-  border: 1.5px solid #D4EBA2;
+  border-color: #D4EBA2;
+}
+
+.dashboard-cases__state-text--destroyed,
+.dashboard-cases__state-text--zombie,
+.dashboard-tasks__state-text--destroyed {
+  background: var(--task-state-zombie-destroyed-color);
+  border-color: var(--task-state-zombie-destroyed-color);
+}
+
+.dashboard-tasks__state-text--failed,
+.dashboard-tasks__state-text--join_failed {
+  background: var(--task-state-failed-color);
+  border-color: var(--task-state-failed-color);
+}
+
+.dashboard-tasks__state-text--waiting_for_intermediate_event {
+  background: var(--task-state-waiting-color);
+  border-color: var(--task-state-waiting-color);
 }
 
 .dashboard-tasks__state-text--parked {
   background: #FCC3C3;
-  border: 1.5px solid #FCC3C3;
+  border-color: #FCC3C3;
 }
 
-.task-configuration.card {
+.task-configuration.card,
+.case-configuration.card,
+.widget-configuration.card {
   width: 450px;
   padding: 20px 15px;
   margin-right: 20px;
   border-right: solid 1px var(--ivy-primary-color-grey-light);
 }
 
+.case-configuration.card {
+  padding: 15px 20px 15px;
+}
+
 .task-configuration.card,
-.task-preview.card {
+.case-configuration.card,
+.widget-configuration.card,
+.task-preview.card,
+.case-preview.card,
+.widget-preview.card {
   box-shadow: var(--card-box-shadow);
 }
 
@@ -239,11 +280,13 @@ body .ui-calendar.task-configuration__calendar .ui-datepicker-trigger {
   width: 190px;
 }
 
-.task-preview {
+.task-preview,
+.case-preview,
+.widget-preview {
   width: calc(100% - 470px);
   align-items: flex-start;
   align-self: stretch;
-  padding: 10px;
+  padding: 20px 15px;
 }
 
 .task-preview__header {
@@ -293,14 +336,44 @@ body .ui-calendar.task-configuration__calendar .ui-datepicker-trigger {
   width: 100%;
 }
 
-.ui-widget-content.info-overlay-panel {
-  max-height: 60vh;
-  overflow: auto;
+.ui-widget-content.info-overlay-panel,
+.filter-overlay-panel.ui-widget-content {
   padding: 0;
 }
 
-.widget-info-panel,
-.widget-filter-panel {
+.filter-overlay-panel.ui-widget-content .ui-overlaypanel-content,
+.ui-widget-content.info-overlay-panel .ui-overlaypanel-content {
+  width: 450px;
+  padding: 0;
+}
+
+.statistic-filter-accordion-panel.widget-info-panel,
+.filter-overlay-panel.ui-widget-content .ui-overlaypanel-content .filter-overlay-panel__content {
+  max-height: 60vh;
+  overflow: auto;
+}
+
+.filter-overlay-panel__header,
+.filter-overlay-panel__content,
+.filter-overlay-panel__footer,
+.info-overlay-panel__footer,
+.statistic-filter-accordion-panel.widget-info-panel {
+  padding: .5em 1em;
+}
+
+.filter-overlay-panel__footer,
+.info-overlay-panel__footer {
+  text-align: right;
+  border-top: solid 1px var(--widget-advanced-filter-overlay-panel-footer);
+}
+
+.restore-button,
+.ui-overlaypanel-footer__cancel {
+  display: inline-block;
+  line-height: 3rem
+}
+
+.widget-info-panel {
   width: 450px;
 }
 
@@ -330,4 +403,70 @@ body .ui-calendar.task-configuration__calendar .ui-datepicker-trigger {
   position: absolute;
   top: 15px;
   right: -13px;
+}
+
+.dashboard-cases--table table thead tr,
+.dashboard-tasks--table table thead tr {
+  border-left: solid 1px var(--case-related-task-content-border);
+  border-right: solid 1px var(--case-related-task-content-border);
+}
+
+.dashboard-cases--table table tbody tr:not(.ui-datatable-empty-message),
+.dashboard-tasks--table table tbody tr:not(.ui-datatable-empty-message) {
+  height: 53px;
+}
+
+.grid-stack {
+  margin-top: .5em;
+  margin-bottom: 2.5em;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.filter-container {
+  align-self: flex-start;
+}
+
+.filter-container__header h2,
+.widget-preview__header h2 {
+  margin: auto;
+}
+
+.preview-button.ui-button,
+.apply-filter-button.ui-button,
+.update-command.ui-button {
+  width: auto;
+}
+
+.case-preview__header {
+  margin-top: auto;
+  padding-bottom: 0;
+}
+
+.process-widget-component.widget__content {
+  padding: 0 0 0;
+}
+
+.process-widget-component.widget__content .compact-processes-container .process-start-list-item {
+  margin: 10px 10px 12px;
+}
+
+.dashboard-tasks__start .ui-commandlink {
+  padding: .5em 2em;
+}
+
+body .ui-datatable tbody tr td.dashboard-tasks__state,
+body .ui-datatable tbody tr td.dashboard-cases__state {
+  padding: 0;
+}
+
+body .dashboard__table--edit.ui-datatable tbody tr.ui-state-highlight,
+body .dashboard__table--edit.ui-datatable tbody tr.ui-state-hover {
+  background: transparent;
+  cursor: move;
+}
+
+body .dashboard__table--preview.ui-datatable tbody tr.ui-state-highlight,
+body .dashboard__table--preview.ui-datatable tbody tr.ui-state-hover {
+  cursor: auto;
 }

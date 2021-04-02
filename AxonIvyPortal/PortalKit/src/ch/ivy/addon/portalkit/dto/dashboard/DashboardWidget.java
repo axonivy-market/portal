@@ -1,23 +1,24 @@
 package ch.ivy.addon.portalkit.dto.dashboard;
 
 import java.io.Serializable;
+import java.text.ParseException;
 
 import org.apache.commons.lang.StringUtils;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import ch.ivy.addon.portalkit.constant.DashboardConfigurationPrefix;
 import ch.ivyteam.ivy.environment.Ivy;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
-
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 @JsonSubTypes({
-  @Type(value = TaskDashboardWidget.class, name = "task"), 
-  @Type(value = ProcessDashboardWidget.class, name = "process"),
-  @Type(value = ActionDashboardWidget.class, name = "action")
+  @Type(value = TaskDashboardWidget.class, name = "task"),
+  @Type(value = CaseDashboardWidget.class, name = "case"),
+  @Type(value = ProcessDashboardWidget.class, name = "process")
 })
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public abstract class DashboardWidget implements Serializable {
@@ -42,6 +43,10 @@ public abstract class DashboardWidget implements Serializable {
     this.width = width;
     this.height = height;
   }
+
+  @JsonIgnore
+  @SuppressWarnings("unused")
+  public void buildStatisticInfos() throws ParseException {}
 
   public String getId() {
     return id;
@@ -101,7 +106,7 @@ public abstract class DashboardWidget implements Serializable {
   public void setAutoPosition(boolean autoPosition) {
     this.autoPosition = autoPosition;
   }
-  
+
   @Override
   public int hashCode() {
     final int prime = 31;

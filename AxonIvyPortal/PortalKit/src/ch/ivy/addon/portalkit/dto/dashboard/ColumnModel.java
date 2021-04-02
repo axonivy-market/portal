@@ -21,14 +21,20 @@ import ch.ivy.addon.portalkit.enums.DashboardFilterType;
 import ch.ivy.addon.portalkit.util.Dates;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.scripting.objects.Recordset;
-import ch.ivyteam.ivy.workflow.ITask;
-import ch.ivyteam.ivy.workflow.custom.field.ICustomFields;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class ColumnModel implements Serializable {
 
   private static final long serialVersionUID = -4315469062114036720L;
+  @JsonIgnore
+  public static final String TINY_WIDTH = "width: 80px";
+  @JsonIgnore
+  public static final String SMALL_WIDTH = "width: 100px";
+  @JsonIgnore
+  public static final String NORMAL_WIDTH = "width: 120px";
+  @JsonIgnore
+  public static final String EXTRA_WIDTH = "width: 150px";
 
   protected String header;
   protected String field;
@@ -70,20 +76,7 @@ public class ColumnModel implements Serializable {
   @JsonIgnore
   protected List<String> userFilterListOptions;
   
-  public void initDefaultValue() {};
-  
-  public Object display(ITask task) {
-    ICustomFields customFields = task.customFields();
-    if (isNumber()) {
-      return customFields.numberField(field).getOrNull();
-    } else if (isDate()) {
-      return customFields.timestampField(field).getOrNull();
-    } else if (isText()) {
-      return customFields.textField(field).getOrNull();
-    } else {
-      return customFields.stringField(field).getOrNull();
-    }
-  }
+  public void initDefaultValue() {}
   
   @JsonIgnore
   public boolean isNumber() {
@@ -109,9 +102,6 @@ public class ColumnModel implements Serializable {
   }
 
   public String getHeader() {
-    if (StringUtils.startsWithIgnoreCase(header, DashboardConfigurationPrefix.CMS)) {
-      return Ivy.cms().co(StringUtils.removeStart(header, DashboardConfigurationPrefix.CMS));
-    }
     return header;
   }
 
@@ -272,6 +262,14 @@ public class ColumnModel implements Serializable {
     this.userFilterTo = userFilterTo;
   }
 
+  @JsonIgnore
+  public String getHeaderText() {
+    if (StringUtils.startsWithIgnoreCase(header, DashboardConfigurationPrefix.CMS)) {
+      return Ivy.cms().co(StringUtils.removeStart(header, DashboardConfigurationPrefix.CMS));
+    }
+    return this.header;
+  }
+  
   public List<String> getFilterListOptions() {
     if (filterListOptions == null) {
       Recordset recordset = TaskQuery.create().groupBy().customField().stringField(field).executor().recordset();
