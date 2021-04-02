@@ -286,7 +286,7 @@ public class TaskDashboardWidget extends DashboardWidget {
     result.setId(id);
     result.setName(name);
     result.setWidth(10);
-    result.setHeight(10);
+    result.setHeight(9);
     result.setAutoPosition(true);
     result.setSortField(TaskSortField.ID.toString());
     result.setSortDescending(true);
