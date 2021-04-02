@@ -103,20 +103,20 @@ function highlightAddExternalDialogItem() {
   var dialogTitle = $('#process-widget\\:add-external-link-dialog_title');
   appendStepAnnotation(dialogTitle, "2", 0, dialogTitle.width());
   
-  var linkName = $('#process-widget\\:add-external-link-form\\:external-link-name');
-  appendStepAnnotation(linkName, "3", 0, -10);
+  var linkName = $("label[for$='add-external-link-form:external-link-name']");
+  appendStepAnnotation(linkName, "3", -5, linkName.width());
   
-  var startLink = $('#process-widget\\:add-external-link-form\\:external-link');
-  appendStepAnnotation(startLink, "4", 0, -10);
+  var startLink = $("label[for$='add-external-link-form:external-link']");
+  appendStepAnnotation(startLink, "4", -5, startLink.width());
   
-  var visibility = $('#process-widget\\:add-external-link-form\\:external-link-type-radio');
-  appendStepAnnotation(visibility, "5", 0, -10);
+  var visibility = $("label[for$='add-external-link-form:external-link-type-radio']");
+  appendStepAnnotation(visibility, "5", -5, visibility.width());
   
   var icon = $("[id$='add-external-link-form:external-link-icon:awesome-icon-selection']");
-  appendStepAnnotation(icon, "6", -10, 80);
+  appendStepAnnotation(icon, "6", -10, icon.width());
   
-  var addButton = $("[id$='process-widget:add-external-link-form:adding-new-external-link-command']");
-  appendStepAnnotation(addButton, "7", 0, -35);
+  var addButton = $("[id$='process-widget:adding-new-external-link-command']");
+  appendStepAnnotation(addButton, "7", -25, -5);
 }
 
 function highlightProcessItems() {
