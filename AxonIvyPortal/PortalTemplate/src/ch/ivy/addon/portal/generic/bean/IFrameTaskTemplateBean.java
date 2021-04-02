@@ -12,6 +12,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.faces.context.Flash;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang3.BooleanUtils;
@@ -19,6 +20,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.publicapi.PortalNavigatorAPI;
+import ch.ivy.addon.portalkit.util.GrowlMessageUtils;
 import ch.ivyteam.ivy.dialog.execution.api.DialogInstance;
 import ch.ivyteam.ivy.request.OpenRedirectVulnerabilityUtil;
 
@@ -28,7 +30,7 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
   
   private static final long serialVersionUID = 1L;
   
-  private static final String TASK_ID_PARAM = "taskId";
+  public static final String TASK_ID_PARAM = "taskId";
   private static final String URL_PARAM = "url";
   private static final String IS_SHOW_ALL_STEPS_PARAM = "isShowAllSteps";
   private static final String PROCESS_CHAIN_SHAPE_PARAM = "processChainShape";
@@ -40,6 +42,7 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
   private static final String IS_HIDE_TASK_NAME = "isHideTaskName";
   private static final String IS_HIDE_TASK_ACTION = "isHideTaskAction";
   private static final String IS_WORKING_ON_A_TASK = "isWorkingOnATask";
+  public static final String PORTAL_GROWL_MESSGE_PARAM = "portalGrowlMessage";
   
   private int currentProcessStep;
   private List<String> processSteps;
@@ -57,6 +60,7 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
   private PortalNavigator navigator = new PortalNavigator();
 
   public void navigateToHomePage() {
+    keepOverridePortalGrowl();
     PortalNavigatorAPI.navigateToPortalHome();
   }
 
@@ -71,9 +75,19 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
   public void navigateToEndPage() {
     Map<String, String> requestParamMap = getRequestParameterMap();
     String taskId = requestParamMap.get(TASK_ID_PARAM);
-    
+    keepOverridePortalGrowl();
     if (StringUtils.isNotBlank(taskId)) {
       navigator.navigateToPortalEndPage(Long.parseLong(taskId));
+    }
+  }
+
+  private void keepOverridePortalGrowl() {
+    Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
+    Boolean overridePortalGrowl = (Boolean) flash.get(GrowlMessageUtils.OVERRIDE_PORTAL_GROWL);
+    if (overridePortalGrowl != null) {
+      flash.put(GrowlMessageUtils.OVERRIDE_PORTAL_GROWL, overridePortalGrowl);
+      flash.setRedirect(true);
+      flash.setKeepMessages(true);
     }
   }
   
