@@ -1,0 +1,123 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:jsf="http://xmlns.jcp.org/jsf"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+<h:body>
+  <ui:composition template="/layouts/restricted/DashboardTemplate.xhtml">
+
+    <ui:param name="managedBean" value="#{dashboardConfigurationBean}" />
+
+    <ui:define name="title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/pageTitle')}</ui:define>
+
+    <ui:define name="headerAction">
+      <p:commandLink id="switch-to-view-mode" styleClass="dashboard__switch-mode u-mar-right-15"
+        actionListener="#{logic.close}"
+        update="grid-stack @this" process="@this">
+        <i class="si si-arrow-left-1" />
+        <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/switchToViewMode')}</span>
+      </p:commandLink>
+
+      <p:commandButton id="restore-button" styleClass="secondary-btn u-mar-right-15"
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/restoreWidget')}"
+        type="button" icon="si si-button-refresh-arrows"
+        onclick="PF('restore-confirm-dialog').show()" />
+
+      <p:commandButton id="add-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/addWidget')}"
+        type="button" icon="si si-add"
+        onclick="PF('new-widget-dialog').show()" />
+    </ui:define>
+
+    <ui:define name="dashboardContent">
+      <h:form prependId="false">
+        <p:remoteCommand name="saveConfigurationCommand" actionListener="#{dashboardConfigurationBean.save()}" global="false" />
+        <p:remoteCommand name="updateDashboardWidget" update="grid-stack" oncomplete="loadGrid(); return false;"/>
+      </h:form>
+
+      <c:forEach var="widget" items="#{dashboardConfigurationBean.selectedDashboard.widgets}" varStatus="status">
+        <div class="grid-stack-item"
+          data-gs-x="#{widget.axisX}"
+          data-gs-y="#{widget.axisY}"
+          data-gs-id="#{widget.id}"
+          data-gs-width="#{widget.width}"
+          data-gs-height="#{widget.height}"
+          data-gs-autoPosition="#{widget.autoPosition}"
+          data-gs-no-resize="false"
+          data-gs-no-move="false">
+          <div class="grid-stack-item-content card dashboard-card dashboard__widget">
+            <!-- Task widget -->
+            <c:if test="#{fn:startsWith(widget.id, 'task')}">
+              <ic:ch.ivy.addon.portal.generic.dashboard.component.TaskDashboardWidget widget="#{widget}"
+                isReadOnlyMode="#{dashboardConfigurationBean.isReadOnlyMode}"
+                index="#{status.index}"/>
+            </c:if>
+
+            <!-- Case list widget -->
+            <c:if test="#{fn:startsWith(widget.id, 'case')}">
+              <ic:ch.ivy.addon.portal.generic.dashboard.component.CaseDashboardWidget widget="#{widget}"
+                isReadOnlyMode="#{dashboardConfigurationBean.isReadOnlyMode}"
+                index="#{status.index}"/>
+            </c:if>
+
+            <!-- Process widget -->
+            <c:if test="#{fn:startsWith(widget.id, 'process')}">
+              <div class="widget__header">
+                <span>#{not empty widget.name ? widget.name : ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourProcesses")}</span>
+
+                <div class="widget__header-actions">
+                  <p:commandLink disabled="true">
+                    <i class="si si-arrow-right" />
+                  </p:commandLink>
+                </div>
+              </div>
+              <div class="widget__content process-widget-component">
+                <ic:ch.ivy.addon.portalkit.component.UserProcessWidget id="process-widget-component" />
+              </div>
+            </c:if>
+          </div>
+        </div>
+      </c:forEach>
+
+      <ui:include src="PortalDashboardAddNewWidgets.xhtml" />
+
+      <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
+        <ui:param name="id" value="restore-confirm-dialog" />
+        <ui:param name="widgetVar" value="restore-confirm-dialog" />
+        <ui:param name="appendTo" value="@(body)" />
+        <ui:param name="iconClass" value="si si-road-sign-warning" />
+        <ui:param name="iconStyleClass" value="portal-dialog-warning-icon" />
+        <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/restoreDefaultHeader')}" />
+        <ui:param name="dialogContent" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/restoreDefaultMessage')}" />
+
+        <ui:define name="dialogFooter">
+          <p:link href="#" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" onclick="PF('restore-confirm-dialog').hide();"
+            styleClass="u-mar-right-15" />
+          <p:commandButton id="reset-dashboard-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/restore')}"
+            actionListener="#{dashboardConfigurationBean.restore()}"
+            icon="#{visibilityBean.generateButtonIcon('si si-button-refresh-arrows')}"
+            oncomplete="PF('restore-confirm-dialog').hide(); updateDashboardWidget();"/>
+        </ui:define>
+      </ui:decorate>
+
+      <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
+        <ui:param name="id" value="remove-widget-dialog" />
+        <ui:param name="widgetVar" value="remove-widget-dialog" />
+        <ui:param name="appendTo" value="@(body)" />
+        <ui:param name="iconClass" value="si si-delete-1" />
+        <ui:param name="iconStyleClass" value="portal-dialog-error-icon portal-dialog-icon" />
+        <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/removeWidgetHeader', [dashboardConfigurationBean.deleteWidget.name])}" />
+        <ui:param name="dialogContent" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/removeWidgetMessage')}" />
+
+        <ui:define name="dialogFooter">
+          <p:link href="#" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" onclick="PF('remove-widget-dialog').hide();"
+            styleClass="u-mar-right-15" />
+          <p:commandButton id="remove-widget-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/remove')}"
+            actionListener="#{dashboardConfigurationBean.removeWidget()}"
+            icon="#{visibilityBean.generateButtonIcon('si si-remove-circle')}"
+            oncomplete="PF('remove-widget-dialog').hide(); removeWidgetContent('#{dashboardConfigurationBean.deleteWidget.id}'); return false;"/>
+        </ui:define>
+      </ui:decorate>
+
+    </ui:define>
+  </ui:composition>
+</h:body>
+</html>
