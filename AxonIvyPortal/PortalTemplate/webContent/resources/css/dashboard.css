@@ -32,6 +32,11 @@
 .dashboard__title {
   font-size: 1.8rem;
   margin-right: 10px;
+  padding-bottom: 5px;
+}
+
+.dashboard__title--active {
+  border-bottom: 2px solid;
 }
 
 .dashboard__widget {
