@@ -11,9 +11,9 @@ public class NameColumnModel extends CaseColumnModel implements Serializable {
 
   @Override
   public void initDefaultValue() {
-    this.header = defaultIfEmpty(this.header, cms("/ch.ivy.addon.portalkit.ui.jsf/common/caseName"));
+    this.header = defaultIfEmpty(this.header, "cms:/ch.ivy.addon.portalkit.ui.jsf/common/caseName");
     this.field = DashboardStandardCaseColumn.NAME.getField();
-    this.styleClass = defaultIfEmpty(this.styleClass, "dashboard-cases__name u-text-align-left");
+    this.styleClass = defaultIfEmpty(this.styleClass, "dashboard-cases__name");
   }
   
   @Override

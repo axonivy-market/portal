@@ -102,9 +102,6 @@ public class ColumnModel implements Serializable {
   }
 
   public String getHeader() {
-    if (StringUtils.startsWithIgnoreCase(header, DashboardConfigurationPrefix.CMS)) {
-      return Ivy.cms().co(StringUtils.removeStart(header, DashboardConfigurationPrefix.CMS));
-    }
     return header;
   }
 
@@ -265,6 +262,14 @@ public class ColumnModel implements Serializable {
     this.userFilterTo = userFilterTo;
   }
 
+  @JsonIgnore
+  public String getHeaderText() {
+    if (StringUtils.startsWithIgnoreCase(header, DashboardConfigurationPrefix.CMS)) {
+      return Ivy.cms().co(StringUtils.removeStart(header, DashboardConfigurationPrefix.CMS));
+    }
+    return this.header;
+  }
+  
   public List<String> getFilterListOptions() {
     if (filterListOptions == null) {
       Recordset recordset = TaskQuery.create().groupBy().customField().stringField(field).executor().recordset();

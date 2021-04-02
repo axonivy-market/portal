@@ -18,20 +18,15 @@ import ch.ivyteam.ivy.workflow.TaskState;
 public class StateColumnModel extends TaskColumnModel implements Serializable {
 
   private static final long serialVersionUID = -4315469062114036720L;
-  
-  @JsonIgnore
-  private
-  List<TaskState> userFilterStateOptions;
-  
+
   @Override
   public void initDefaultValue() {
-    this.header = defaultIfEmpty(this.header, cms("/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/STATE"));
+    this.header = defaultIfEmpty(this.header, "cms:/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/STATE");
     this.field = DashboardStandardTaskColumn.STATE.getField();
     this.style = defaultIfEmpty(this.style, NORMAL_WIDTH);
     this.styleClass = defaultIfEmpty(this.styleClass, "dashboard-tasks__state u-text-align-center");
     this.fieldStyleClass = defaultIfEmpty(this.fieldStyleClass, "dashboard-tasks__state-text");
     this.format = DashboardColumnFormat.CUSTOM;
-    initUserFilterStateOptions();
   }
   
   @Override
@@ -61,10 +56,7 @@ public class StateColumnModel extends TaskColumnModel implements Serializable {
   
   @JsonIgnore
   private void initUserFilterStateOptions() {
-    setUserFilterStateOptions(getStates());
-    if (CollectionUtils.isEmpty(getUserFilterStateOptions())) {
-      setUserFilterStateOptions(Arrays.asList(TaskState.values()).stream().sorted((s1, s2) -> StringUtils.compare(s1.toString(), s2.toString())).collect(Collectors.toList()));
-    }
+
   }
   
   @JsonIgnore
@@ -77,11 +69,13 @@ public class StateColumnModel extends TaskColumnModel implements Serializable {
     this.userFilterList = states.stream().map(TaskState::toString).collect(Collectors.toList());
   }
 
+  @JsonIgnore
   public List<TaskState> getUserFilterStateOptions() {
-    return userFilterStateOptions;
+    List<TaskState> states = getStates();
+    if (CollectionUtils.isEmpty(states)) {
+      states = Arrays.asList(TaskState.values()).stream().sorted((s1, s2) -> StringUtils.compare(s1.toString(), s2.toString())).collect(Collectors.toList());
+    }
+    return states;
   }
 
-  public void setUserFilterStateOptions(List<TaskState> userFilterStateOptions) {
-    this.userFilterStateOptions = userFilterStateOptions;
-  }
 }

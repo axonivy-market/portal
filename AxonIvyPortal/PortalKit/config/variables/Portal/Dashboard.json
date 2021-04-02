@@ -105,6 +105,10 @@
 						"field": "startTimestamp"
 					},
 					{
+						"type": "standard",
+						"field": "endTimestamp"
+					},
+					{
 						"type": "custom",
 						"header": "Customer name",
 						"field": "CustomVarCharField5",
@@ -126,14 +130,6 @@
 				"axisY": 0,
 				"width": 2,
 				"height": 4
-			},
-			{
-				"type": "action",
-				"id": "action",
-				"axisX": 10,
-				"axisY": 4,
-				"width": 2,
-				"height": 2
 			}
 		]
 	}

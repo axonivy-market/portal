@@ -10,9 +10,9 @@ public class StartColumnModel extends TaskColumnModel implements Serializable {
 
   @Override
   public void initDefaultValue() {
-    this.header = defaultIfEmpty(this.header, cms("/ch.ivy.addon.portalkit.ui.jsf/common/start"));
+    this.header = defaultIfEmpty(this.header, "cms:/ch.ivy.addon.portalkit.ui.jsf/common/start");
     this.field = DashboardStandardTaskColumn.START.getField();
-    this.style = defaultIfEmpty(this.style, SMALL_WIDTH);
+    this.style = defaultIfEmpty(this.style, TINY_WIDTH);
     this.styleClass = defaultIfEmpty(this.styleClass, "dashboard-tasks__start u-text-align-center");
     this.sortable = false;
   }

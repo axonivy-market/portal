@@ -18,19 +18,15 @@ import ch.ivyteam.ivy.workflow.ICase;
 public class StateColumnModel extends CaseColumnModel implements Serializable {
 
   private static final long serialVersionUID = 654113365187067735L;
-  @JsonIgnore
-  private
-  List<CaseState> userFilterStateOptions;
   
   @Override
   public void initDefaultValue() {
-    this.header = defaultIfEmpty(this.header, cms("/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/STATE"));
+    this.header = defaultIfEmpty(this.header, "cms:/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/STATE");
     this.field = DashboardStandardCaseColumn.STATE.getField();
     this.style = defaultIfEmpty(this.style, NORMAL_WIDTH);
     this.styleClass = defaultIfEmpty(this.styleClass, "dashboard-cases__state u-text-align-center");
     this.fieldStyleClass = defaultIfEmpty(this.fieldStyleClass, "dashboard-cases__state-text");
     this.format = DashboardColumnFormat.CUSTOM;
-    initUserFilterStateOptions();
   }
   
   @Override
@@ -57,15 +53,7 @@ public class StateColumnModel extends CaseColumnModel implements Serializable {
   public void setStates(List<CaseState> states) {
     this.filterList = states.stream().map(CaseState::toString).collect(Collectors.toList());
   }
-  
-  @JsonIgnore
-  private void initUserFilterStateOptions() {
-    setUserFilterStateOptions(getStates());
-    if (CollectionUtils.isEmpty(getUserFilterStateOptions())) {
-      setUserFilterStateOptions(Arrays.asList(CaseState.values()).stream().sorted((s1, s2) -> StringUtils.compare(s1.toString(), s2.toString())).collect(Collectors.toList()));
-    }
-  }
-  
+
   @JsonIgnore
   public List<CaseState> getUserFilterStates() {
     return this.userFilterList.stream().map(String::toUpperCase).map(CaseState::valueOf).collect(Collectors.toList());
@@ -76,11 +64,13 @@ public class StateColumnModel extends CaseColumnModel implements Serializable {
     this.userFilterList = states.stream().map(CaseState::toString).collect(Collectors.toList());
   }
 
+  @JsonIgnore
   public List<CaseState> getUserFilterStateOptions() {
-    return userFilterStateOptions;
+    List<CaseState> states = getStates();
+    if (CollectionUtils.isEmpty(states)) {
+      states = Arrays.asList(CaseState.values()).stream().sorted((s1, s2) -> StringUtils.compare(s1.toString(), s2.toString())).collect(Collectors.toList());
+    }
+    return states;
   }
 
-  public void setUserFilterStateOptions(List<CaseState> userFilterStateOptions) {
-    this.userFilterStateOptions = userFilterStateOptions;
-  }
 }

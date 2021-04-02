@@ -10,8 +10,21 @@
     <ui:define name="title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/pageTitle')}</ui:define>
 
     <ui:define name="headerAction">
-      <p:commandButton id="switch-to-view-mode" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/switchToViewMode')}"
-        styleClass="dashboard__switch-mode" actionListener="#{logic.close}" update="grid-stack @this" process="@this" icon="si si-view-1" />
+      <p:commandLink id="switch-to-view-mode" styleClass="dashboard__switch-mode u-mar-right-15"
+        actionListener="#{logic.close}"
+        update="grid-stack @this" process="@this">
+        <i class="si si-arrow-left-1" />
+        <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/switchToViewMode')}</span>
+      </p:commandLink>
+
+      <p:commandButton id="restore-button" styleClass="secondary-btn u-mar-right-15"
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/restoreWidget')}"
+        type="button" icon="si si-button-refresh-arrows"
+        onclick="PF('restore-confirm-dialog').show()" />
+
+      <p:commandButton id="add-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/addWidget')}"
+        type="button" icon="si si-add"
+        onclick="PF('new-widget-dialog').show()" />
     </ui:define>
 
     <ui:define name="dashboardContent">
@@ -58,21 +71,6 @@
               </div>
               <div class="widget__content process-widget-component">
                 <ic:ch.ivy.addon.portalkit.component.UserProcessWidget id="process-widget-component" />
-              </div>
-            </c:if>
-
-            <!-- Action widget -->
-            <c:if test="#{widget.id eq 'action'}">
-              <div class="widget__content">
-                <h:panelGroup id="actions" layout="block" styleClass="actions-widget">
-                  <p:commandButton id="add-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/addWidget')}" type="button"
-                    styleClass="action-widget__add-button" onclick="PF('new-widget-dialog').show()" icon="si si-add" />
-                  <br />
-                  <p:link id="restore-button" href="#" onclick="PF('restore-confirm-dialog').show()" styleClass="restore-button">
-                    <i class="si si-button-refresh-arrows" />
-                    <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/restoreWidget')}</span>
-                  </p:link>
-                </h:panelGroup>
               </div>
             </c:if>
           </div>

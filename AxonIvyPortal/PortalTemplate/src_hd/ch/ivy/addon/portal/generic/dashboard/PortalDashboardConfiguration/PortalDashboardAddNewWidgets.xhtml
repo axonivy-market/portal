@@ -13,16 +13,17 @@
     <p:panel header="#{sample.name}" styleClass="new-widget-dialog__item">
       <h:panelGrid columns="1">
         <p:graphicImage library="images" name="#{sample.image}" width="500px" height="300px" />
-        <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/select')}"
+        <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/select')}"
           actionListener="#{dashboardConfigurationBean.create(sample)}" update="new-widget-configuration-dialog"
-          oncomplete="PF('new-widget-configuration-dialog').show(); PF('new-widget-dialog').hide();" />
+          oncomplete="PF('new-widget-configuration-dialog').show(); PF('new-widget-dialog').hide();"
+          icon="si si-arrow-right" />
       </h:panelGrid>
     </p:panel>
   </p:dataGrid>
 
   <f:facet name="footer">
     <p:commandButton id="new-widget-close-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" type="button"
-      onclick="PF('new-widget-dialog').hide()" process="@none" />
+      onclick="PF('new-widget-dialog').hide()" process="@none" icon="si si-close"/>
   </f:facet>
 </p:dialog>
 
