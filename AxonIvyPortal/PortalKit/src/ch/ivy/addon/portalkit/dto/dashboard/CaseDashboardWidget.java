@@ -9,7 +9,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
@@ -37,7 +36,6 @@ import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;
-import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.IvyAdapterService;
 import ch.ivy.addon.portalkit.util.CaseTreeUtils;
 import ch.ivy.addon.portalkit.util.CategoryUtils;
@@ -252,9 +250,6 @@ public class CaseDashboardWidget extends DashboardWidget {
     ObjectMapper mapper = new ObjectMapper();
     mapper.enable(MapperFeature.ACCEPT_CASE_INSENSITIVE_ENUMS);
     List<CaseColumnModel> columns = caseWidget.getColumns();
-    if (!isOwnerEnabled()) {
-      columns.removeIf(isOwnerColumn());
-    }
 
     for (int i = 0; i < columns.size(); i++) {
       CaseColumnModel column = columns.get(i);
@@ -282,21 +277,10 @@ public class CaseDashboardWidget extends DashboardWidget {
     return caseWidget;
   }
 
-  private static Predicate<? super CaseColumnModel> isOwnerColumn() {
-    return column -> column.getField().equalsIgnoreCase(DashboardStandardCaseColumn.OWNER.getField());
-  }
-
-  public static boolean isOwnerEnabled() {
-    return new GlobalSettingService().isCaseOwnerEnabled();
-  }
-
   @JsonIgnore
   public static List<CaseColumnModel> initStandardColumns() {
     List<CaseColumnModel> columnModels = new ArrayList<>();
     for (DashboardStandardCaseColumn col : DashboardStandardCaseColumn.values()) {
-      if (col == DashboardStandardCaseColumn.OWNER && !isOwnerEnabled()) {
-        continue;
-      }
       CaseColumnModel columnModel = new CaseColumnModel();
       columnModel.setField(col.getField());
       columnModels.add(columnModel);
@@ -316,6 +300,9 @@ public class CaseDashboardWidget extends DashboardWidget {
         return true;
       }
       if (col instanceof CreatorColumnModel && !CollectionUtils.isEmpty(((CreatorColumnModel) col).getCreators())) {
+        return true;
+      }
+      if (col instanceof OwnerColumnModel && !CollectionUtils.isEmpty(((OwnerColumnModel) col).getOwners())) {
         return true;
       }
       if ((col.getFormat() == DashboardColumnFormat.TEXT || col.getFormat() == DashboardColumnFormat.STRING)

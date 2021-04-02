@@ -28,27 +28,37 @@
       <p:link id="filter-sidebar-link-#{index}"
         href="#"
         styleClass="widget__filter-sidebar-link si si-filter-1 u-mar-right-10"/>
+      <p:tooltip for="filter-sidebar-link-#{index}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/availableFilters')}"
+        trackMouse="true" hideEvent="mouseleave click" />
 
       <p:link id="info-sidebar-link-#{index}"
         href="#"
         styleClass="si si-information-circle u-mar-right-10"
         onclick="updateWidgetStatisticPannel#{index}()" />
+      <p:tooltip for="info-sidebar-link-#{index}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/widgetInfo')}" trackMouse="true"
+        hideEvent="mouseleave click" />
 
-      <p:commandLink styleClass="si si-pencil u-mar-right-10"
+      <p:commandLink id="edit-widget-#{index}" styleClass="si si-pencil u-mar-right-10"
         oncomplete="PF('new-widget-configuration-dialog').show()"
         global="false"
         actionListener="#{dashboardConfigurationBean.setEditWidget(widget)}"
         update="new-widget-configuration-dialog"
         rendered="#{!isReadOnlyMode}" />
+      <p:tooltip for="edit-widget-#{index}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/editWidget')}" trackMouse="true"
+        hideEvent="mouseleave click" />
 
-      <p:commandLink styleClass="si si-bin-1 u-mar-right-10"
+      <p:commandLink id="delete-widget-#{index}" styleClass="si si-bin-1 u-mar-right-10"
         oncomplete="PF('remove-widget-dialog').show()"
         global="false"
         actionListener="#{dashboardConfigurationBean.setDeleteWidget(widget)}"
         update="remove-widget-dialog"
         rendered="#{!isReadOnlyMode}" />
+      <p:tooltip for="delete-widget-#{index}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/deleteWidget')}" trackMouse="true"
+        hideEvent="mouseleave click" />
 
-      <p:commandLink disabled="true" styleClass="si si-arrow-right" />
+      <p:commandLink id="show-full-widget-#{index}" disabled="true" styleClass="si si-arrow-right" />
+      <p:tooltip for="show-full-widget-#{index}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/showFullWidget')}" trackMouse="true"
+        hideEvent="mouseleave click" />
 
       <!-- remote command to load data for info statistic panel -->
       <p:remoteCommand name="buildStatisticInfos#{index}"
