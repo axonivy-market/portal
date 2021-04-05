@@ -847,23 +847,13 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   height: 53px;
 }
 
-.case-details-related-task-table .u-hidden-lg-down,
-.case-details-related-task-table .u-hidden-md-down,
-.case-details-related-task-table .task-header-action-cell {
-  display: inline-block !important;
+.case-details-related-task-table .related-task-more-column .task-header-action-cell {
+  display: inline-block;
 }
 
 .case-detail-body .priority-column {
   text-align: center;
   width: 80px;
-}
-
-.case-detail-body .name-column {
-  font-weight: bold;
-}
-
-.case-detail-body .description-column {
-  
 }
 
 .case-detail-body .responsible-column, .case-detail-body .owner-column {
@@ -882,17 +872,13 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   text-align: center;
 }
 
-/* Mobile screen */
-@media screen and (max-width: 40em) {
-  .case-detail-body .case-details-related-task-table .related-task-name-column {
-    text-overflow: ellipsis;
-    overflow-y: hidden;
-    white-space: nowrap;
-  }
-}
-
-.case-detail-body .case-details-related-task-table .related-task-name-column {
-  font-weight: bold;
+.case-detail-body .name-column .case-name-value,
+.case-detail-body .name-column .case-description-value,
+.case-detail-body .case-details-related-task-table .related-task-name-column .task-name-value,
+.case-detail-body .case-details-related-task-table .related-task-name-column .task-description-value {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .case-detail-body .case-details-related-task-table .related-task-responsible-column {
@@ -974,11 +960,48 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   border-color: #FCC3C3;
 }
 
+/* Mobile screen */
+@media screen and (max-width: 40em) {
+  .case-detail-body .case-details-related-task-table .related-task-more-column  {
+    width: 60px;
+  }
+
+  .case-detail-body .priority-column {
+    width: 75px;
+  }
+}
+
+@media screen and (max-width: 90.062em) {
+  .case-detail-body .name-column .case-description-value,
+  .case-detail-body .case-details-related-task-table .related-task-name-column .task-description-value {
+    display: block;
+  }
+
+  .case-detail-body .description-column,
+  .case-detail-body .responsible-column,
+  .case-detail-body .owner-column,
+  .case-detail-body .expiry-column,
+  .case-detail-body .category-column,
+  .case-detail-body .related-case-column-config,
+  .case-detail-body .case-details-related-task-table .related-task-description-column,
+  .case-detail-body .case-details-related-task-table .related-task-responsible-column,
+  .case-detail-body .case-details-related-task-table .related-task-created-column,
+  .case-detail-body .related-task-column-config {
+    display: none;
+  }
+}
+@media screen and (min-width: 90.063em) {
+  .case-detail-body .name-column .case-description-value,
+  .case-detail-body .case-details-related-task-table .related-task-name-column .task-description-value {
+    display: none;
+  }
+}
+
 /********************************** END CASE ITEM **********************************/
 
 /********************************** START PROCESSES **********************************/
 .add-external-link-dialog {
-  min-width: 600px;
+  max-width: 550px;
 }
 
 .process-add-languages {
@@ -1382,16 +1405,11 @@ body .ui-tabs.search-results-tabview .ui-tabs-panel {
   margin-top: 2px !important;
 }
 
-.field-group .external-link-type {
-  line-height: 1.6;
-}
-
-.field-group .external-link-dialog-field {
-  line-height: 1.7;
-}
-
-_:-ms-input-placeholder, :root .field-group .external-link-dialog-field {
-  line-height: 1;
+.external-link-type {
+  padding: .5em;
+  padding-left: 4px;
+  padding-top: 0;
+  width: 100%;
 }
 
 .process-start-list-item-action.is-external-link {
@@ -1399,8 +1417,8 @@ _:-ms-input-placeholder, :root .field-group .external-link-dialog-field {
   flex: 1 0 auto;
 }
 
-_:-ms-input-placeholder, :root .add-external-link-form .ui-g .ui-outputlabel:not(.external-link-type-label) {
-  line-height: 1.4;
+.external-link-type-radio td label {
+  margin-right: 15px;
 }
 
 /********************************** END PROCESSES **********************************/
@@ -3325,6 +3343,7 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   width: 150px;
   text-align: left;
   padding: 6px 0;
+  vertical-align: top;
 }
 
 .edit-process-form .edit-process-detail-2nd-cell {
@@ -4788,6 +4807,11 @@ _:-ms-fullscreen, :root .content-link-history {
   padding: 0 !important;
   position: relative;
   white-space: nowrap;
+}
+
+.related-task-export-to-excel,
+.related-case-export-to-excel {
+  margin-left: auto;
 }
 
 .related-task-column-config,
