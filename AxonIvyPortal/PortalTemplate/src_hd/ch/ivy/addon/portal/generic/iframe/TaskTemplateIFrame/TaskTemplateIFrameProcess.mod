@@ -74,8 +74,6 @@ if(overridePortalGrowl) {
 
 	Flash flash = externalContext.getFlash();
 	flash.put(GrowlMessageUtils.OVERRIDE_PORTAL_GROWL, true);
-	//flash.setRedirect(true);
-	flash.setKeepMessages(true);
 }
 
 ITask task = ivy.wf.findTask(Long.valueOf(taskId));
