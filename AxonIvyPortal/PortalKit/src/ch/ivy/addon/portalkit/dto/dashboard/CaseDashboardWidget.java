@@ -61,18 +61,7 @@ public class CaseDashboardWidget extends DashboardWidget {
     dataModel = new DashboardCaseLazyDataModel();
     setColumns(new ArrayList<>());
     caseByCategoryStatistic = new HashMap<>();
-    initStateStatistic();
-  }
-
-  private void initStateStatistic() {
-    Map<CaseState, Long> result = new HashMap<>();
-    result.put(CaseState.CREATED, 0L);
-    result.put(CaseState.DONE, 0L);
-    result.put(CaseState.DESTROYED, 0L);
-    result.put(CaseState.RUNNING, 0L);
-    caseByStateStatistic = result.entrySet().stream()
-            .sorted(Comparator.comparingInt(s -> s.getKey().ordinal()))
-            .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (oldValue, newValue) -> oldValue, LinkedHashMap::new));
+    caseByStateStatistic = new HashMap<>();
   }
 
   public CheckboxTreeNode[] getCategoryNodes() {
@@ -107,19 +96,47 @@ public class CaseDashboardWidget extends DashboardWidget {
     Map<String, Object> params = new HashMap<>();
     params.put(CRITERIA_PARAM, generateCaseSearchCriteriaWithoutOrderByClause());
 
-    Map<String, Object> response = IvyAdapterService.startSubProcess("analyzeCaseStateStatistic(ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria)",
-        params, Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
+    Map<String, Object> response = IvyAdapterService.startSubProcess("analyzeCaseStateStatistic(ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria)", params,
+        Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
 
     CaseStateStatistic caseStateStatistic = (CaseStateStatistic) response.get("caseStateStatistic");
     Map<CaseState, Long> result = new HashMap<>();
-    result.put(CaseState.CREATED, caseStateStatistic.getCreated());
-    result.put(CaseState.DONE, caseStateStatistic.getDone());
-    result.put(CaseState.DESTROYED, caseStateStatistic.getFailed());
-    result.put(CaseState.RUNNING, caseStateStatistic.getRunning());
-    caseByStateStatistic = result.entrySet().stream()
-            .sorted(Comparator.comparingInt(s -> s.getKey().ordinal()))
+    Optional<CaseColumnModel> caseStateColumn = getColumns().stream()
+        .filter(column -> DashboardStandardCaseColumn.STATE.getField().equalsIgnoreCase(column.getField())).findFirst();
+    List<CaseState> selectedStates = null;
+    if (caseStateColumn.isPresent()) {
+      selectedStates = ((StateColumnModel) caseStateColumn.get()).getStates();
+      for (CaseState state : selectedStates) {
+        switch (state) {
+          case CREATED:
+            result.put(CaseState.CREATED, caseStateStatistic.getCreated());
+            break;
+          case DONE:
+            result.put(CaseState.DONE, caseStateStatistic.getDone());
+            break;
+          case RUNNING:
+            result.put(CaseState.RUNNING, caseStateStatistic.getRunning());
+            break;
+          case DESTROYED:
+            result.put(CaseState.DESTROYED, caseStateStatistic.getFailed());
+            break;
+          default:
+            break;
+        }
+      }
+    }
+
+    if (!caseStateColumn.isPresent() || CollectionUtils.isEmpty(selectedStates)) {
+      result.put(CaseState.CREATED, caseStateStatistic.getCreated());
+      result.put(CaseState.DONE, caseStateStatistic.getDone());
+      result.put(CaseState.DESTROYED, caseStateStatistic.getFailed());
+      result.put(CaseState.RUNNING, caseStateStatistic.getRunning());
+    }
+
+    caseByStateStatistic = result.entrySet()
+            .stream().sorted(Comparator.comparingInt(s -> s.getKey().ordinal()))
             .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (oldValue, newValue) -> oldValue, LinkedHashMap::new));
-    
+
   }
 
   private void buildCaseByCategoryStatistic() throws ParseException {
