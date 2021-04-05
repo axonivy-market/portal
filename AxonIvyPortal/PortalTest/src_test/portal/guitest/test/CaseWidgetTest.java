@@ -23,7 +23,6 @@ import portal.guitest.page.CaseDetailsPage;
 import portal.guitest.page.CaseWidgetPage;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.MainMenuPage;
-import portal.guitest.page.TaskDetailsPage;
 import portal.guitest.page.TaskWidgetPage;
 import portal.guitest.page.UserProfilePage;
 
@@ -33,8 +32,11 @@ public class CaseWidgetTest extends BaseTest {
   private static final String INVESTMENT_REQUEST_CUSTOMIZATION_CASE_DETAILS_PAGE_CASE_NAME = "Investment Request";
   private static final String LEAVE_REQUEST_DEFAULT_CASE_DETAILS_PAGE_CASE_NAME = "Leave Request for Default Additional Case Details";
   private static final String LEAVE_REQUEST_CASE_NAME = "Leave Request";
+  private static final String ORDER_PIZZA = "Order Pizza";
   private static final String CREATED_COLUMN_HEADER = "Created";
   private static final String STATE_COLUMN_HEADER = "State";
+  private static final String RELATED_CASE_STATE_COLUMN = "state-column";
+  private static final String RELATED_CASE_CREATED_COLUMN = "created-column";
   
   private HomePage homePage;
   private MainMenuPage mainMenuPage;
@@ -93,8 +95,16 @@ public class CaseWidgetTest extends BaseTest {
     casePage = mainMenuPage.selectCaseMenu();
     caseDetailsPage = casePage.openDetailsOfCaseHasName(LEAVE_REQUEST_CASE_NAME);
     assertEquals(4, caseDetailsPage.countRelatedTasks());
-    TaskDetailsPage taskDetailsPage = caseDetailsPage.openTasksOfCasePage(0);
-    assertEquals("Task Details", taskDetailsPage.getPageTitle());
+  }
+
+  @Test
+  public void testOpenRelatedCasesOfCase() {
+    redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
+    initHomePage(TestAccount.DEMO_USER);
+    mainMenuPage = homePage.openMainMenu();
+    casePage = mainMenuPage.selectCaseMenu();
+    caseDetailsPage = casePage.openDetailsOfCaseHasName(ORDER_PIZZA);
+    assertEquals(1, caseDetailsPage.countRelatedCases());
   }
   
   @Test
@@ -268,5 +278,27 @@ public class CaseWidgetTest extends BaseTest {
     selectedSortColumn = caseWidgetPage.getSelectedSortColumn();
     assertTrue(StringUtils.equalsIgnoreCase("State", selectedSortColumn));
     assertEquals(CaseState.DONE, caseWidgetPage.getCaseState(0));
+  }
+
+  @Test
+  public void testRelatedCaseEnableAndDisableColumns() {
+    redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
+    HomePage homePage = new HomePage();
+    CaseWidgetPage casePage = homePage.openCaseList();
+    CaseDetailsPage detailsPage = casePage.openDetailsOfCaseHasName(ORDER_PIZZA);
+    assertTrue(detailsPage.isRelatedCaseListColumnExist(RELATED_CASE_CREATED_COLUMN));
+    assertTrue(detailsPage.isRelatedCaseListColumnExist(RELATED_CASE_STATE_COLUMN));
+    detailsPage.clickRelatedCaseColumnsButton();
+    detailsPage.clickRelatedCaseDefaultCheckbox();
+    detailsPage.clickRelatedCaseColumnCheckbox(4);
+    detailsPage.clickRelatedCaseApplyButton();
+    WaitHelper.assertTrueWithWait(() -> !detailsPage.isRelatedCaseListColumnExist(RELATED_CASE_CREATED_COLUMN));
+    WaitHelper.assertTrueWithWait(() -> detailsPage.isRelatedCaseListColumnExist(RELATED_CASE_STATE_COLUMN));
+    detailsPage.clickRelatedCaseColumnsButton();
+    detailsPage.clickRelatedCaseColumnCheckbox(4);
+    detailsPage.clickRelatedCaseColumnCheckbox(6);
+    detailsPage.clickRelatedCaseApplyButton();
+    WaitHelper.assertTrueWithWait(() -> detailsPage.isRelatedCaseListColumnExist(RELATED_CASE_CREATED_COLUMN));
+    WaitHelper.assertTrueWithWait(() -> !detailsPage.isRelatedCaseListColumnExist(RELATED_CASE_STATE_COLUMN));
   }
 }
