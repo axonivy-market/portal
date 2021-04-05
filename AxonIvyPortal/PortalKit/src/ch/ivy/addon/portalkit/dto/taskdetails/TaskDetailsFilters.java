@@ -5,19 +5,19 @@ import java.util.List;
 import ch.ivyteam.ivy.workflow.TaskState;
 
 public class TaskDetailsFilters {
-  private String taskCategory;
+  private List<String> taskCategories;
   private List<TaskState> taskStates;
 
-  public String getTaskCategory() {
-    return taskCategory;
-  }
-  public void setTaskCategory(String taskCategory) {
-    this.taskCategory = taskCategory;
-  }
   public List<TaskState> getTaskStates() {
     return taskStates;
   }
   public void setTaskStates(List<TaskState> taskStates) {
     this.taskStates = taskStates;
+  }
+  public List<String> getTaskCategories() {
+    return taskCategories;
+  }
+  public void setTaskCategories(List<String> taskCategories) {
+    this.taskCategories = taskCategories;
   }
 }
