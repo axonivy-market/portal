@@ -196,15 +196,40 @@ After a task is finished, growl message appears as default via the
 
 .. _components-additional-component-global-growl-display-growl-after-finish-task:
 
+Display growl after finishing a task using IFrame
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+If ``DISPLAY_MESSAGE_AFTER_FINISH_TASK`` Portal variable is true, before a task is finished, you can trigger displaying
+standard message after task is finished by calling below API:
+
+::
+
+   import ch.ivy.addon.portalkit.publicapi.PortalGlobalGrowInIFrameAPI;
+
+   PortalGlobalGrowInIFrameAPI api = new PortalGlobalGrowInIFrameAPI();
+   api.displayStandardMessage();
 
 Display growl after leaving a task
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 If ``DISPLAY_MESSAGE_AFTER_FINISH_TASK`` Portal variable is true, growl message will be displayed after a task is left.
 
 |example-global-growl-cancelled-task|
 
 .. _components-additional-component-global-growl-display-growl-after-cancel-task:
+
+Display growl after leaving a task using IFrame
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+If ``DISPLAY_MESSAGE_AFTER_FINISH_TASK`` Portal variable is true, before a task is left, you can trigger displaying
+standard message after task is left by calling below API:
+
+::
+
+   import ch.ivy.addon.portalkit.publicapi.PortalGlobalGrowInIFrameAPI;
+
+   PortalGlobalGrowInIFrameAPI api = new PortalGlobalGrowInIFrameAPI();
+   api.displayStandardMessage();
 
 Customization global growl message
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -235,6 +260,19 @@ It's enough if you want to turn it off. To override the message, add
    flash.put("overridePortalGrowl", true);
    flash.setRedirect(true);
    flash.setKeepMessages(true);
+
+Customization global growl message for task using IFrame
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+If ``DISPLAY_MESSAGE_AFTER_FINISH_TASK`` Portal variable is true, before a task is finished/left, you can trigger displaying
+customized message after task is finished/left by calling below API:
+
+::
+
+   import ch.ivy.addon.portalkit.publicapi.PortalGlobalGrowInIFrameAPI;
+
+   PortalGlobalGrowInIFrameAPI api = new PortalGlobalGrowInIFrameAPI();
+   api.displayCustomizedMessage("Your customized message");
 
 Please refer to GlobalGrowl dialog in portal-developer-examples project for more details.
 
