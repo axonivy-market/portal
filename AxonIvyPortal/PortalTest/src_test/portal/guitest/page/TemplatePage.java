@@ -374,7 +374,7 @@ public abstract class TemplatePage extends AbstractPage {
     return getText(By.id("user-settings-menu"));
   }
 
-  public  ChatPage getChat() {
+  public ChatPage getChat() {
     waitForElementDisplayed(By.id("toggle-chat-panel-command"), true, 5);
     click(findElementById("toggle-chat-panel-command"));
     return new ChatPage();
