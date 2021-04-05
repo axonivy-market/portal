@@ -470,3 +470,7 @@ body .dashboard__table--preview.ui-datatable tbody tr.ui-state-highlight,
 body .dashboard__table--preview.ui-datatable tbody tr.ui-state-hover {
   cursor: auto;
 }
+
+.widget-info__state {
+  margin: 2px;
+}
