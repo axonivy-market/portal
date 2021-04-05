@@ -10,7 +10,6 @@ public class PortalGlobalGrowInIFrameAPI {
 
   public void displayStandardMessage() {
     String statement = "parent.displayPortalGrowlMessageCommand([{name: 'taskId', value: " + Ivy.wfTask().getId() + "},{name: 'overridePortalGrowl', value: false}]);";
-    Ivy.log().error("displayGlobalPortalGrowlStandardMessageCommand: " + Ivy.wfTask().getId());
     PrimeFaces.current().executeScript(statement);
   }
 
