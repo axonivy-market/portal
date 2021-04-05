@@ -9,12 +9,18 @@ function ProcessWidget() {
   }
 
   return {
+    setup : function() {
+      this.clearSearchField();
+      this.setupScrollbar();
+      expandOrCollapseAllCategories(true);
+    },
+
     clearSearchField : function() {
       $('.js-filter-process-widget-list-item').val('');
     },
 
     // setup scroll-bar for process list
-    setupScrollbar : function () {
+    setupScrollbar : function() {
       // Check current page, if called from compact widget then don't need to proceed
       if ($('.js-compact-process-widget').length) {
         return;
@@ -50,7 +56,7 @@ function ProcessWidget() {
     },
 
     // setup scroll-bar for process navigator
-    setupProcessNav: function(processStartListContainer, availableHeight, announcementMessageContainer) {
+    setupProcessNav : function(processStartListContainer, availableHeight, announcementMessageContainer) {
       var processNav = $('.js-process-nav');
       if (!shouldDisplayProcessNav(processNav, availableHeight)) {
         return;
