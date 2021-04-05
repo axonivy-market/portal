@@ -78,7 +78,7 @@ boolean overridePortalGrowl = Boolean.valueOf(externalContext.getRequestParamete
 if (overridePortalGrowl) {
 	String portalGlobalGrowlMessage = externalContext.getRequestParameterMap().get(IFrameTaskTemplateBean.PORTAL_GROWL_MESSGE_PARAM).toString();
 
-	FacesMessage message = new FacesMessage(portalGlobalGrowlMessage);
+	FacesMessage message = new FacesMessage(portalGlobalGrowlMessage, "");
 	FacesContext.getCurrentInstance().addMessage(GrowlMessageUtils.PORTAL_GLOBAL_GROWL_MESSAGE, message);
 
 	Flash flash = externalContext.getFlash();
