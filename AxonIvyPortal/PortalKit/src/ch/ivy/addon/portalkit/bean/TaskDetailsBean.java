@@ -49,7 +49,6 @@ public class TaskDetailsBean implements Serializable {
   private static final String PORTAL_TASK_DETAILS_GLOBAL_VARIABLE = "Portal.TaskDetails";
 
   private TaskDetails configuration;
-  private TaskDetails originalConfiguration;
   private List<TaskDetailsWidget> widgets;
   private ObjectMapper mapper = new ObjectMapper().enable(MapperFeature.ACCEPT_CASE_INSENSITIVE_ENUMS);
   private boolean isReadOnlyMode = true;
@@ -81,18 +80,21 @@ public class TaskDetailsBean implements Serializable {
     boolean foundMatchedConfig = false;
     for (TaskDetails config: configurations) {
       // found configuration for current task by predefined filters
-      boolean isFilteredByCategory = config.getFilters() != null && StringUtils.isNotBlank(config.getFilters().getTaskCategory()) && StringUtils.equals(currentTask.getCategoryPath(), config.getFilters().getTaskCategory());
+      boolean isFilteredByCategory = Optional.ofNullable(config.getFilters()).map(TaskDetailsFilters::getTaskCategories).isPresent() && config.getFilters().getTaskCategories().contains(currentTask.getCategoryPath());
       boolean isFilteredByState = Optional.ofNullable(config.getFilters()).map(TaskDetailsFilters::getTaskStates).isPresent() && config.getFilters().getTaskStates().contains(currentTask.getState());
       if (isFilteredByCategory || isFilteredByState) {
         configuration = config;
-    widgets = configuration.getWidgets();
+        widgets = configuration.getWidgets();
         foundMatchedConfig = true;
         break;
   }
     }
     if (!foundMatchedConfig) {
       // If no configuration matched, load default configuration
-      configuration = defaultConfiguration();
+      configuration = configurations.stream().filter(config -> config.isDefault()).findFirst().get();
+      if (configuration == null) {
+        configuration = defaultConfiguration();
+      }
       widgets = configuration.getWidgets();
     }
 
@@ -105,14 +107,6 @@ public class TaskDetailsBean implements Serializable {
         }
       }
     }
-
-    // Store original configuration which will be used when user reset config
-    originalConfiguration = cloneConfiguration(configuration);
-  }
-
-  private TaskDetails cloneConfiguration(TaskDetails original) throws JsonMappingException, JsonProcessingException {
-    String json = mapper.writeValueAsString(original);
-    return mapper.readValue(json, TaskDetails.class);
   }
 
   private String readConfigurationJsonInProperty() {
@@ -152,7 +146,7 @@ public class TaskDetailsBean implements Serializable {
 
   public void reset() throws IOException {
     removeConfigurationUserProperty();
-    configuration = cloneConfiguration(originalConfiguration);
+    configuration = loadAllConfigurations().stream().filter(config -> config.getId().contentEquals(configuration.getId())).findFirst().get();
     widgets = configuration.getWidgets();
   }
 
@@ -182,7 +176,7 @@ public class TaskDetailsBean implements Serializable {
     configuration.setChanged(true);
     List<TaskDetailsWidget> widgets = getUpdatedWidgets();
     updateToConfiguration(widgets);
-    saveConfigurationToProperty();
+    saveConfigurationsToProperty();
   }
 
   private List<TaskDetailsWidget> getUpdatedWidgets() throws JsonMappingException, JsonProcessingException {
@@ -218,6 +212,12 @@ public class TaskDetailsBean implements Serializable {
         }
       }
     }
+    configuration.setWidgets(widgets);
+    for (TaskDetails config: configurations) {
+      if(StringUtils.compare(config.getId(), configuration.getId()) == 0) {
+        config.setWidgets(configuration.getWidgets());
+      }
+    }
   }
 
   private boolean doesWidgetExist(TaskDetailsWidget widget) {
@@ -235,7 +235,7 @@ public class TaskDetailsBean implements Serializable {
     updatedWidget.getLayout().setStyleClass((Optional.ofNullable(widget.getLayout().getStyleClass()).orElse("")));
   }
 
-  private void saveConfigurationToProperty() throws JsonProcessingException {
+  private void saveConfigurationsToProperty() throws JsonProcessingException {
     String configurationJson = mapper.writeValueAsString(configurations);
     Ivy.session().getSessionUser().setProperty(TASK_DETAILS_CONFIGURATION_PROPERTY, configurationJson);
   }
