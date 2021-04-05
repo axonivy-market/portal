@@ -73,8 +73,8 @@ function saveTaskDetailsGrid() {
     let widgetType = getTaskDetailsWidgetType(node.el.getAttribute("widget-type"));
     serializedData.push({
       id: node.id,
-      axisX: node.x,
-      axisY: node.y,
+      x: node.x,
+      y: node.y,
       width: node.width,
       height: node.height
     });
