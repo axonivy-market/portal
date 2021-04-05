@@ -98,15 +98,7 @@ public class TaskDetailsBean implements Serializable {
       widgets = configuration.getWidgets();
     }
 
-    // get URL for ivy process in custom widgets
-    for(TaskDetailsWidget widget : widgets) {
-      if (widget instanceof TaskDetailsCustomWidget) {
-        TaskDetailsCustomWidget customWidget = (TaskDetailsCustomWidget) widget;
-        if (StringUtils.isNotBlank(customWidget.getData().getIvyProcess())) {
-          customWidget.getData().setUrl(ProcessStartAPI.findStartableLinkByUserFriendlyRequestPath(customWidget.getData().getIvyProcess()));
-        }
-      }
-    }
+    updateUrlForCustomWidget(widgets);
   }
 
   private String readConfigurationJsonInProperty() {
@@ -148,6 +140,7 @@ public class TaskDetailsBean implements Serializable {
     removeConfigurationUserProperty();
     configuration = loadAllConfigurations().stream().filter(config -> config.getId().contentEquals(configuration.getId())).findFirst().get();
     widgets = configuration.getWidgets();
+    updateUrlForCustomWidget(widgets);
   }
 
   private void updateWidgetsType(TaskDetails details) {
@@ -238,6 +231,18 @@ public class TaskDetailsBean implements Serializable {
   private void saveConfigurationsToProperty() throws JsonProcessingException {
     String configurationJson = mapper.writeValueAsString(configurations);
     Ivy.session().getSessionUser().setProperty(TASK_DETAILS_CONFIGURATION_PROPERTY, configurationJson);
+  }
+
+  private void updateUrlForCustomWidget(List<TaskDetailsWidget> widgets) {
+    // get URL for ivy process in custom widgets
+    for(TaskDetailsWidget widget : widgets) {
+      if (widget instanceof TaskDetailsCustomWidget) {
+        TaskDetailsCustomWidget customWidget = (TaskDetailsCustomWidget) widget;
+        if (StringUtils.isNotBlank(customWidget.getData().getIvyProcess())) {
+          customWidget.getData().setUrl(ProcessStartAPI.findStartableLinkByUserFriendlyRequestPath(customWidget.getData().getIvyProcess()));
+        }
+      }
+    }
   }
 
   public int getWidgetPositionByType(String widgetType) {
