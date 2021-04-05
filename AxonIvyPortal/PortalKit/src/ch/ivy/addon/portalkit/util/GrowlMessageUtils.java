@@ -35,8 +35,7 @@ public final class GrowlMessageUtils {
   public static void addFeedbackMessage(Boolean isTaskFinished, ICase iCase) {
     if (isMessageDisplayedAfterFinishTaskEnable() && !Ivy.session().isSessionUserUnknown()) {
       Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
-      Boolean overridePortalGrowl = (Boolean) flash.get(OVERRIDE_PORTAL_GROWL);
-      if (overridePortalGrowl == null || !overridePortalGrowl) {
+      if (!flash.containsKey(OVERRIDE_PORTAL_GROWL)) {
         addMessageToFacesContext(iCase, BooleanUtils.toBoolean(isTaskFinished));
       }
       flash.setRedirect(true);
