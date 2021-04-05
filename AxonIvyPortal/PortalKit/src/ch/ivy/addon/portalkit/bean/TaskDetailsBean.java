@@ -74,9 +74,13 @@ public class TaskDetailsBean implements Serializable {
   }
 
   private void loadWidgets() throws Exception {
+    ITask currentTask = Attrs.currentContext().getAttribute("#{data.task}", ITask.class);
+    if (currentTask == null) {
+      return;
+    }
+
     String configurationJson = readConfigurationJsonInProperty();
     configurations = readConfigurations(configurationJson);
-    ITask currentTask = Attrs.currentContext().getAttribute("#{data.task}", ITask.class);
     boolean foundMatchedConfig = false;
     for (TaskDetails config: configurations) {
       // found configuration for current task by predefined filters
