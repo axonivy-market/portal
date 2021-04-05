@@ -28,7 +28,7 @@ public class ExternalLinkProcessItem implements Process {
 
   @Override
   public String getDescription() {
-    return externalLink.getLink();
+    return externalLink.getDescription();
   }
 
   @Override
