@@ -14,6 +14,7 @@ public class ExternalLink extends BusinessEntity{
   private Long creatorId;
   private boolean isPublic;
   private String icon;
+  private String description;
 
   @Deprecated
   private String creator;
@@ -65,6 +66,14 @@ public class ExternalLink extends BusinessEntity{
     return this.creatorId == Ivy.session().getSessionUser().getId();
   }
   
+  public String getDescription() {
+    return description;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
+  }
+
   @Override
   public String toString() {
     return String.format("ExternalLink {creatorId=%s, name=%s, link=%s, isPublic=%s, icon=%s}", creatorId, name, link, isPublic, icon);
