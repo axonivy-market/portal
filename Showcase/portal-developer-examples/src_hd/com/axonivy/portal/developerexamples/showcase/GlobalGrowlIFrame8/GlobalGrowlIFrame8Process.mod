@@ -68,7 +68,11 @@ Gs0 f9 actionTable 'out=in;
 Gs0 f9 actionCode 'import ch.ivy.addon.portalkit.publicapi.PortalGlobalGrowInIFrameAPI;
 
 PortalGlobalGrowInIFrameAPI api = new PortalGlobalGrowInIFrameAPI();
+
+// To display standard message
 api.displayStandardMessage();
+
+// To display customized message
 api.displayCustomizedMessage("Your customized message");' #txt
 Gs0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -83,7 +87,11 @@ Gs0 f6 actionTable 'out=in;
 Gs0 f6 actionCode 'import ch.ivy.addon.portalkit.publicapi.PortalGlobalGrowInIFrameAPI;
 
 PortalGlobalGrowInIFrameAPI api = new PortalGlobalGrowInIFrameAPI();
+
+// To display standard message
 api.displayStandardMessage();
+
+// To display customized message
 api.displayCustomizedMessage("Your customized message");' #txt
 Gs0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
