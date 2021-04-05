@@ -85,7 +85,8 @@
         </div>
         <div class="ui-g-8">
           <ui:repeat var="state" value="#{field.states}">
-            <div>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskState/'.concat(state.toString()))}</div>
+            <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskState/'.concat(state.toString()))}"
+              styleClass="widget-info__state dashboard-tasks__state-text--#{state.name().toLowerCase()} dashboard-tasks__state-text" />
           </ui:repeat>
         </div>
       </h:panelGroup>
