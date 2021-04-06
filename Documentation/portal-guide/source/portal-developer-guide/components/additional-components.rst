@@ -196,19 +196,6 @@ After a task is finished, growl message appears as default via the
 
 .. _components-additional-component-global-growl-display-growl-after-finish-task:
 
-Display growl after finishing a task using IFrame
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-If ``DISPLAY_MESSAGE_AFTER_FINISH_TASK`` Portal variable is true, before a task is finished, you can trigger displaying
-standard message after task is finished by calling below API:
-
-::
-
-   import ch.ivy.addon.portalkit.publicapi.PortalGlobalGrowInIFrameAPI;
-
-   PortalGlobalGrowInIFrameAPI api = new PortalGlobalGrowInIFrameAPI();
-   api.displayStandardMessage();
-
 Display growl after leaving a task
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -217,19 +204,6 @@ If ``DISPLAY_MESSAGE_AFTER_FINISH_TASK`` Portal variable is true, growl message 
 |example-global-growl-cancelled-task|
 
 .. _components-additional-component-global-growl-display-growl-after-cancel-task:
-
-Display growl after leaving a task using IFrame
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-If ``DISPLAY_MESSAGE_AFTER_FINISH_TASK`` Portal variable is true, before a task is left, you can trigger displaying
-standard message after task is left by calling below API:
-
-::
-
-   import ch.ivy.addon.portalkit.publicapi.PortalGlobalGrowInIFrameAPI;
-
-   PortalGlobalGrowInIFrameAPI api = new PortalGlobalGrowInIFrameAPI();
-   api.displayStandardMessage();
 
 Customization global growl message
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
