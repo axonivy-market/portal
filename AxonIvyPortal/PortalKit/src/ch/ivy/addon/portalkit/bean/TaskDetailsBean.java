@@ -2,6 +2,7 @@ package ch.ivy.addon.portalkit.bean;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -16,17 +17,28 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import ch.ivy.addon.portalkit.constant.TaskDetailsWidgetType;
+import ch.ivy.addon.portalkit.dto.WidgetLayout;
 import ch.ivy.addon.portalkit.dto.taskdetails.TaskDetails;
+import ch.ivy.addon.portalkit.dto.taskdetails.TaskDetailsCustomWidget;
+import ch.ivy.addon.portalkit.dto.taskdetails.TaskDetailsDocumentWidget;
+import ch.ivy.addon.portalkit.dto.taskdetails.TaskDetailsFilters;
+import ch.ivy.addon.portalkit.dto.taskdetails.TaskDetailsHistoryWidget;
+import ch.ivy.addon.portalkit.dto.taskdetails.TaskDetailsInformationWidget;
 import ch.ivy.addon.portalkit.dto.taskdetails.TaskDetailsWidget;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
+import ch.ivy.addon.portalkit.jsf.Attrs;
+import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.globalvars.IGlobalVariableContext;
+import ch.ivyteam.ivy.workflow.ITask;
 
 @ViewScoped
 @ManagedBean
@@ -43,6 +55,7 @@ public class TaskDetailsBean implements Serializable {
   private boolean hasShowNotAvailableData;
   private boolean hasShowDurationTime;
   private GlobalSettingService globalSettingService = new GlobalSettingService();
+  private List<TaskDetails> configurations;
 
   @PostConstruct
   public void init() {
@@ -61,34 +74,98 @@ public class TaskDetailsBean implements Serializable {
   }
 
   private void loadWidgets() throws Exception {
+    ITask currentTask = Attrs.currentContext().getAttribute("#{data.task}", ITask.class);
+    if (currentTask == null) {
+      return;
+    }
+
     String configurationJson = readConfigurationJsonInProperty();
-    configuration = readConfiguration(configurationJson);
-    widgets = configuration.getWidgets();
+    configurations = readConfigurations(configurationJson);
+    boolean foundMatchedConfig = false;
+    for (TaskDetails config: configurations) {
+      // found configuration for current task by predefined filters
+      if (isFilterByTaskCategories(currentTask, config) || isFilterByTaskStates(currentTask, config)) {
+        configuration = config;
+        widgets = configuration.getWidgets();
+        foundMatchedConfig = true;
+        break;
+  }
+    }
+    if (!foundMatchedConfig) {
+      // If no configuration matched, load default configuration
+      configuration = configurations.stream().filter(config -> config.isDefault()).findFirst().get();
+      if (configuration == null) {
+        configuration = defaultConfiguration();
+      }
+      widgets = configuration.getWidgets();
+    }
+
+    updateUrlForCustomWidget(widgets);
+  }
+
+  private boolean isFilterByTaskStates(ITask currentTask, TaskDetails config) {
+    return Optional.ofNullable(config.getFilters()).map(TaskDetailsFilters::getTaskStates).isPresent() && config.getFilters().getTaskStates().contains(currentTask.getState());
+  }
+
+  private boolean isFilterByTaskCategories(ITask currentTask, TaskDetails config) {
+    return Optional.ofNullable(config.getFilters()).map(TaskDetailsFilters::getTaskCategories).isPresent() && config.getFilters().getTaskCategories().contains(currentTask.getCategoryPath());
   }
 
   private String readConfigurationJsonInProperty() {
     return Ivy.session().getSessionUser().getProperty(TASK_DETAILS_CONFIGURATION_PROPERTY);
   }
 
-  private TaskDetails readConfiguration(String configurationJson) throws JsonMappingException, JsonProcessingException, IOException {
-    return StringUtils.isBlank(configurationJson) ? defaultConfiguration() : parseConfigurationJson(configurationJson);
+  private List<TaskDetails> readConfigurations(String configurationJson) throws JsonMappingException, JsonProcessingException, IOException {
+    List<TaskDetails> result = new ArrayList<>();
+    if (StringUtils.isBlank(configurationJson)) {
+      result.addAll(loadAllConfigurations());
+    } else {
+      result.addAll(parseConfigurationJson(configurationJson));
+  }
+    return result;
   }
 
-  private TaskDetails parseConfigurationJson(String configurationJson) throws JsonMappingException, JsonProcessingException {
-    return mapper.readValue(configurationJson, TaskDetails.class);
+  private List<TaskDetails> parseConfigurationJson(String configurationJson) throws JsonMappingException, JsonProcessingException {
+    return mapper.readValue(configurationJson, new TypeReference<List<TaskDetails>>() {});
+  }
+
+  private List<TaskDetails> loadAllConfigurations() throws IOException {
+    String widgetsJsonData = IGlobalVariableContext.current().get(PORTAL_TASK_DETAILS_GLOBAL_VARIABLE);
+    List<TaskDetails> result = mapper.readValue(widgetsJsonData, new TypeReference<List<TaskDetails>>() {});
+    for (TaskDetails details : result) {
+      updateWidgetsType(details);
+    }
+    return result;
   }
 
   private TaskDetails defaultConfiguration() throws IOException {
     String widgetsJsonData = IGlobalVariableContext.current().get(PORTAL_TASK_DETAILS_GLOBAL_VARIABLE);
-    return mapper.readValue(widgetsJsonData, TaskDetails.class);
+    List<TaskDetails> results = mapper.readValue(widgetsJsonData, new TypeReference<List<TaskDetails>>() {});
+    TaskDetails result = results.stream().filter(t -> t.isDefault()).findFirst().orElse(null);
+    updateWidgetsType(result);
+    return result;
   }
 
   public void reset() throws IOException {
     removeConfigurationUserProperty();
-    configuration = defaultConfiguration();
+    configuration = loadAllConfigurations().stream().filter(config -> config.getId().contentEquals(configuration.getId())).findFirst().get();
     widgets = configuration.getWidgets();
+    updateUrlForCustomWidget(widgets);
   }
 
+  private void updateWidgetsType(TaskDetails details) {
+    for (TaskDetailsWidget widget : details.getWidgets()) {
+      if (widget instanceof TaskDetailsHistoryWidget) {
+        widget.setType(TaskDetailsWidgetType.HISTORY);
+      } else if (widget instanceof TaskDetailsDocumentWidget) {
+        widget.setType(TaskDetailsWidgetType.DOCUMENT);
+      } else if (widget instanceof TaskDetailsInformationWidget) {
+        widget.setType(TaskDetailsWidgetType.INFORMATION);
+      } else if (widget instanceof TaskDetailsCustomWidget) {
+        widget.setType(TaskDetailsWidgetType.CUSTOM);
+      }
+    }
+  }
   private void removeConfigurationUserProperty() {
     Ivy.session().getSessionUser().removeProperty(TASK_DETAILS_CONFIGURATION_PROPERTY);
   }
@@ -102,13 +179,26 @@ public class TaskDetailsBean implements Serializable {
     configuration.setChanged(true);
     List<TaskDetailsWidget> widgets = getUpdatedWidgets();
     updateToConfiguration(widgets);
-    saveConfigurationToProperty();
+    saveConfigurationsToProperty();
   }
 
   private List<TaskDetailsWidget> getUpdatedWidgets() throws JsonMappingException, JsonProcessingException {
+    List<TaskDetailsWidget> result = new ArrayList<>();
     Map<String, String> requestParamMap = getRequestParameterMap();
     String nodes = Optional.ofNullable(requestParamMap.get("nodes")).orElse(StringUtils.EMPTY);
-    return Arrays.asList(mapper.readValue(nodes, TaskDetailsWidget[].class));
+    List<WidgetLayout> layouts = Arrays.asList(mapper.readValue(nodes, WidgetLayout[].class));
+
+    if (CollectionUtils.isNotEmpty(layouts)) {
+      for (WidgetLayout layout : layouts) {
+        TaskDetailsWidget currentWidget = widgets.stream().filter(widget -> StringUtils.compare(widget.getId(), layout.getId()) == 0).findFirst().get();
+        currentWidget.getLayout().setAxisX(layout.getAxisX());
+        currentWidget.getLayout().setAxisY(layout.getAxisY());
+        currentWidget.getLayout().setWidth(layout.getWidth());
+        currentWidget.getLayout().setHeight(layout.getHeight());
+        result.add(currentWidget);
+  }
+    }
+    return result;
   }
 
   private Map<String, String> getRequestParameterMap() {
@@ -125,6 +215,12 @@ public class TaskDetailsBean implements Serializable {
         }
       }
     }
+    configuration.setWidgets(widgets);
+    for (TaskDetails config: configurations) {
+      if(StringUtils.compare(config.getId(), configuration.getId()) == 0) {
+        config.setWidgets(configuration.getWidgets());
+      }
+    }
   }
 
   private boolean doesWidgetExist(TaskDetailsWidget widget) {
@@ -133,15 +229,30 @@ public class TaskDetailsBean implements Serializable {
 
   private void updateWidget(TaskDetailsWidget widget) {
     TaskDetailsWidget updatedWidget = widgets.get(widgets.indexOf(widget));
-    updatedWidget.setAxisX(widget.getAxisX());
-    updatedWidget.setAxisY(widget.getAxisY());
-    updatedWidget.setWidth(widget.getWidth());
-    updatedWidget.setHeight(widget.getHeight());
+    updatedWidget.getLayout().setId(Optional.ofNullable(widget.getLayout().getId()).orElse(""));
+    updatedWidget.getLayout().setAxisX(widget.getLayout().getAxisX());
+    updatedWidget.getLayout().setAxisY(widget.getLayout().getAxisY());
+    updatedWidget.getLayout().setWidth(widget.getLayout().getWidth());
+    updatedWidget.getLayout().setHeight(widget.getLayout().getHeight());
+    updatedWidget.getLayout().setStyle((Optional.ofNullable(widget.getLayout().getStyle()).orElse("")));
+    updatedWidget.getLayout().setStyleClass((Optional.ofNullable(widget.getLayout().getStyleClass()).orElse("")));
   }
 
-  private void saveConfigurationToProperty() throws JsonProcessingException {
-    String configurationJson = mapper.writeValueAsString(configuration);
+  private void saveConfigurationsToProperty() throws JsonProcessingException {
+    String configurationJson = mapper.writeValueAsString(configurations);
     Ivy.session().getSessionUser().setProperty(TASK_DETAILS_CONFIGURATION_PROPERTY, configurationJson);
+  }
+
+  private void updateUrlForCustomWidget(List<TaskDetailsWidget> widgets) {
+    // get URL for ivy process in custom widgets
+    for(TaskDetailsWidget widget : widgets) {
+      if (widget instanceof TaskDetailsCustomWidget) {
+        TaskDetailsCustomWidget customWidget = (TaskDetailsCustomWidget) widget;
+        if (StringUtils.isNotBlank(customWidget.getData().getIvyProcess())) {
+          customWidget.getData().setUrl(ProcessStartAPI.findStartableLinkByUserFriendlyRequestPath(customWidget.getData().getIvyProcess()));
+        }
+      }
+    }
   }
 
   public int getWidgetPositionByType(String widgetType) {
