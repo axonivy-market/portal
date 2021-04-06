@@ -84,9 +84,7 @@ public class TaskDetailsBean implements Serializable {
     boolean foundMatchedConfig = false;
     for (TaskDetails config: configurations) {
       // found configuration for current task by predefined filters
-      boolean isFilteredByCategory = Optional.ofNullable(config.getFilters()).map(TaskDetailsFilters::getTaskCategories).isPresent() && config.getFilters().getTaskCategories().contains(currentTask.getCategoryPath());
-      boolean isFilteredByState = Optional.ofNullable(config.getFilters()).map(TaskDetailsFilters::getTaskStates).isPresent() && config.getFilters().getTaskStates().contains(currentTask.getState());
-      if (isFilteredByCategory || isFilteredByState) {
+      if (isFilterByTaskCategories(currentTask, config) || isFilterByTaskStates(currentTask, config)) {
         configuration = config;
         widgets = configuration.getWidgets();
         foundMatchedConfig = true;
@@ -103,6 +101,14 @@ public class TaskDetailsBean implements Serializable {
     }
 
     updateUrlForCustomWidget(widgets);
+  }
+
+  private boolean isFilterByTaskStates(ITask currentTask, TaskDetails config) {
+    return Optional.ofNullable(config.getFilters()).map(TaskDetailsFilters::getTaskStates).isPresent() && config.getFilters().getTaskStates().contains(currentTask.getState());
+  }
+
+  private boolean isFilterByTaskCategories(ITask currentTask, TaskDetails config) {
+    return Optional.ofNullable(config.getFilters()).map(TaskDetailsFilters::getTaskCategories).isPresent() && config.getFilters().getTaskCategories().contains(currentTask.getCategoryPath());
   }
 
   private String readConfigurationJsonInProperty() {
