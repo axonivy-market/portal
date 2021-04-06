@@ -265,7 +265,7 @@ There are **two steps** for adding new custom panels.
 
    ..
 
-#. Refer to the ``taskItemDetailCustomPanel*`` section in ``PortalTaskDetails.xhtml`` of PortalTemplate.
+#. To customize task details which do not use Iframe, refer to the ``taskItemDetailCustomPanel*`` section in ``PortalTaskDetails.xhtml`` of PortalTemplate.
 
    -  We need to define the ``ui:define`` tag with the valid name such as
       ``taskItemDetailCustomPanelTop`` and ``taskItemDetailCustomPanelBottom``.
@@ -350,9 +350,24 @@ There are **two steps** for adding new custom panels.
       |task-customized-top|
       |task-customized-bottom|
 
+#. To customize task details use Iframe, please make sure
+
+   -  Must input parameter ``url`` if you want to use external URL.
+
+   -  Must input parameter ``ivy`` if you want to use ivy start process.
+
+   -  If you use ivy start process, you can predefine paramter for by parameter ``params``.
+
+   Customized task details using external URL
+   |task-customized-iframe-url|
+
+   Customized task details using ivy process start
+   |task-customized-iframe-process|
+
+
 .. |task-standard| image:: ../../screenshots/task-detail/customization/task-standard.png
 .. |task-customized-top| image:: images/customization/task-customized-top.png
 .. |task-customized-bottom| image:: images/customization/task-customized-bottom.png
 .. |edit-variable-portal-task-case-details| image:: images/customization/edit-variable-portal-task-case-details.png
-
-
+.. |task-customized-iframe-url| image:: images/customization/task-customized-iframe-url.png
+.. |task-customized-iframe-process| image:: images/customization/task-customized-iframe-process.png
