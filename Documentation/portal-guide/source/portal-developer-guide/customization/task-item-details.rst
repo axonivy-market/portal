@@ -36,47 +36,74 @@ How to configure widgets in task details
 
    .. code-block:: html
 
-      {
+      [
+         {
+         "id": "default-task-detail",
+         "default": true,
+         "filters": {
+            "taskCategories" : ["support"]
+         },
          "widgets": 
          [
             {
-               "type": "information",
                "id": "information",
-               "axisX": 0,
-               "axisY": 0,
-               "width": 6,
-               "height": 12
+               "type": "information",
+               "layout": {
+                  "x": 0, "y": 0, "width": 6, "height": 6
+               }
             },
             {
-               "type": "document",
-               "id": "document",
-               "axisX": 6,
-               "axisY": 0,
-               "width": 6,
-               "height": 6
-            },
-            {
-               "type": "history",
                "id": "history",
-               "axisX": 6,
-               "axisY": 6,
-               "width": 6,
-               "height": 6
+               "type": "history",
+               "layout": {
+                  "x": 6, "y": 6, "width": 6, "height": 6
+               }
+            },
+            {
+               "id": "document",
+               "type": "document",
+               "layout": {
+                  "x": 6, "y": 0, "width": 6, "height": 6
+               }
+            }
+            {
+               "id": "custom",
+               "type": "custom",
+               "layout": {
+                  "x": 0, "y": 6, "width": 6, "height": 6
+               },
+               "data" : {
+                  "ivy": "Start Processes/Sale/invoiceDetails.ivp",
+                  "params": {
+                     "invoiceId": "000001573"
+                  }
+               }
             }
          ]
-      }
+         }
+      ]
 
    ..
 
--  Structure of each widget in variable **Portal.TaskDetails**:
+-  Structure of each task details layout in variable **Portal.TaskDetails**:
+
+   ``id``: ID which used to identify layout.
+   
+   ``default``: a boolean flag to marked a layout as default.
+
+   ``widgets``: definition of widgets in layout.
+
+   ``filters``: conditions to determine which tasks able to use the layout.
+
+-  Structure of each widget inside task details layout in variable **Portal.TaskDetails**:
 
    ``type``: There are 4 types: ``information``, ``document``, ``history``, ``custom``
 
    ``id``: It's used to detect custom widgets.
 
-   ``axisX``: HTML DOM Style ``left`` will be calculated by formula ``axisX / 12 * 100%``
+   ``x``: HTML DOM Style ``left`` will be calculated by formula ``x / 12 * 100%``
 
-   ``axisY``: HTML DOM Style ``top`` will be calculated by formula ``axisY / 12 * 100%``
+   ``y``: HTML DOM Style ``top`` will be calculated by formula ``y / 12 * 100%``
 
    ``width``: HTML DOM Style ``width`` will be calculated by formula ``60 * width + 20 * (width - 1)``
 
@@ -86,11 +113,20 @@ How to configure widgets in task details
 
    ``style`` (optional): add inline style to HTML DOM
 
+   ``data`` (for custom widget): data for custom widget using iframe.
+
+   ``url`` (for data of custom widget): URL for external website.
+
+   ``ivy`` (for data of custom widget): relative link to the ivy process which will be displayed in custom widget.
+
+   ``param`` (for data of custom widget): paramters for ivy process above.
+
 .. important::
    -  **Do not change** ``type`` and ``id`` of widgets.
-      You can change ``axisX``, ``axisY``, ``width`` and ``height`` to update size and position of widgets.
-   -  ``axisX``, ``axisY``, ``width`` and ``height`` must be **integers**.
-   -  ``axisX + width`` must **not be larger** than **12**.
+      You can change ``x``, ``y``, ``width`` and ``height`` to update size and position of widgets.
+   -  ``x``, ``y``, ``width`` and ``height`` must be **integers**.
+   -  ``x + width`` must **not be larger** than **12**.
+   -  For data of custom widget, if you input ``ivy``, don't input ``url``. You can only use one of them.
 
 
 .. _customization-task-item-details-how-to-overide-ui:
@@ -151,57 +187,83 @@ There are **two steps** for adding new custom panels.
 
    .. _task-details-custom-configuration-variable-example:
    
-   -  Example Portal.TaskDetails with including 2 custom widgets configuration:
+   -  Example Portal.TaskDetails with layout configuration includes 4 custom widgets:
    
-      .. code-block:: html
-   
+   .. code-block:: html
+
+      [
          {
+            "id": "default-task-detail",
+            "default": true,
+            "filters": {
+               "taskCategories" : ["support"]
+            },
             "widgets": 
-            [
-               {
-                  "type": "information",
-                  "id": "information",
-                  "axisX": 0,
-                  "axisY": 4,
-                  "width": 6,
-                  "height": 12
-               },
-               {
-                  "type": "document",
-                  "id": "document",
-                  "axisX": 6,
-                  "axisY": 4,
-                  "width": 6,
-                  "height": 6
-               },
-               {
-                  "type": "history",
-                  "id": "history",
-                  "axisX": 6,
-                  "axisY": 10,
-                  "width": 6,
-                  "height": 6
-               },
-               {
-                  "type": "custom",
-                  "id": "taskItemDetailCustomPanelTop",
-                  "axisX": 0,
-                  "axisY": 0,
-                  "width": 12,
-                  "height": 4
-               },
-               {
-                  "type": "custom",
-                  "id": "taskItemDetailCustomPanelBottom",
-                  "axisX": 0,
-                  "axisY": 16,
-                  "width": 12,
-                  "height": 4
-               }
-            ]
+               [
+                  {
+                     "type": "information",
+                     "id": "information",
+                     "layout": {
+                        "x": 0, "y": 4, "width": 6, "height": 12
+                     }
+                  },
+                  {
+                     "type": "document",
+                     "id": "document",
+                     "layout": {
+                        "x": 6, "y": 4, "width": 6, "height": 6
+                     }
+                  },
+                  {
+                     "type": "history",
+                     "id": "history",
+                     "layout": {
+                        "x": 6, "y": 10, "width": 6, "height": 6
+                     }
+                  },
+                  {
+                     "type": "custom",
+                     "id": "taskItemDetailCustomPanelTop",
+                     "layout": {
+                        "x": 0, "y": 0, "width": 12, "height": 4
+                     }
+                  },
+                  {
+                     "type": "custom",
+                     "id": "taskItemDetailCustomPanelBottom",
+                     "layout": {
+                        "x": 0, "y": 16, "width": 6, "height": 4
+                     }
+                  },
+                  {
+                     "type": "custom",
+                     "id": "customWidgetWithUrl",
+                     "layout": {
+                        "x": 0, "y": 10, "width": 6, "height": 6
+                     },
+                     "data" : {
+                        "url": "https://www.axonivy.com/"
+                     }
+                  },
+                  {
+                     "type": "custom",
+                     "id": "customWidgetWithIvyProcess",
+                     "layout": {
+                        "x": 0, "y": 16, "width": 6, "height": 6
+                     },
+                     "data" : {
+                        "ivy": "Start Processes/Sale/invoiceDetails.ivp",
+                        "params": {
+                           "invoiceId": "000001573"
+                        }
+                     }
+                  }
+               ]
+            }
          }
-   
-      ..
+      ]
+
+   ..
 
 #. Refer to the ``taskItemDetailCustomPanel*`` section in ``PortalTaskDetails.xhtml`` of PortalTemplate.
 
