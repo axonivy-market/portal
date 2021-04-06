@@ -205,8 +205,8 @@ If ``DISPLAY_MESSAGE_AFTER_FINISH_TASK`` Portal variable is true, growl message 
 
 .. _components-additional-component-global-growl-display-growl-after-cancel-task:
 
-Customization global growl message
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Customization global growl message for task not using IFrame
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 For each task, you can turn it off or override it. Firstly, when you
 submit form to interact task, you need to put the ``overridePortalGrowl``
