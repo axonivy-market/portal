@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
@@ -86,10 +87,8 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
 
   private void handleFinishedTask(boolean useTaskInIFrame) {
     if (useTaskInIFrame) {
-      ITask finishedTask = task != null ? Ivy.wf().findTask(task.getId()) : null;
-      if (finishedTask != null) {
-        boolean isTaskFinished = finishedTask.getEndTimestamp() != null;
-        GrowlMessageUtils.addFeedbackMessage(isTaskFinished, finishedTask.getCase());
+      if (task != null) {
+        addFeedbackMessageForTask(task.getId());
       }
     } else {
       Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
@@ -99,6 +98,30 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
         flash.setRedirect(true);
         flash.setKeepMessages(true);
       }
+    }
+  }
+
+  public void displayPortalGrowlMessage() {
+    Map<String, String> requestParamMap = getRequestParameterMap();
+    String taskId = requestParamMap.get(IFrameTaskTemplateBean.TASK_ID_PARAM);
+    boolean overridePortalGrowl = Boolean.valueOf(requestParamMap.get(GrowlMessageUtils.OVERRIDE_PORTAL_GROWL));
+    if (overridePortalGrowl) {
+      String portalGlobalGrowlMessage = requestParamMap.get(IFrameTaskTemplateBean.PORTAL_GROWL_MESSGE_PARAM);
+
+      FacesMessage message = new FacesMessage(portalGlobalGrowlMessage, "");
+      FacesContext.getCurrentInstance().addMessage(GrowlMessageUtils.PORTAL_GLOBAL_GROWL_MESSAGE, message);
+
+      Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
+      flash.put(GrowlMessageUtils.OVERRIDE_PORTAL_GROWL, true);
+    }
+    addFeedbackMessageForTask(Long.valueOf(taskId));
+  }
+
+  private void addFeedbackMessageForTask(Long taskId) {
+    ITask finishedTask = Ivy.wf().findTask(taskId);
+    if (finishedTask != null) {
+      boolean isTaskFinished = finishedTask.getEndTimestamp() != null;
+      GrowlMessageUtils.addFeedbackMessage(isTaskFinished, finishedTask.getCase());
     }
   }
 
