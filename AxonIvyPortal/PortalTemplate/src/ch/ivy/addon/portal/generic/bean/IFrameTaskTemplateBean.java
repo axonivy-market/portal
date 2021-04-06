@@ -22,7 +22,9 @@ import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.publicapi.PortalNavigatorAPI;
 import ch.ivy.addon.portalkit.util.GrowlMessageUtils;
 import ch.ivyteam.ivy.dialog.execution.api.DialogInstance;
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.request.OpenRedirectVulnerabilityUtil;
+import ch.ivyteam.ivy.workflow.ITask;
 
 @ManagedBean(name = "iFrameTaskTemplateBean")
 @ViewScoped
@@ -60,11 +62,12 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
   private PortalNavigator navigator = new PortalNavigator();
 
   public void navigateToHomePage() {
-    keepOverridePortalGrowl();
+    handleFinishedTask(false);
     PortalNavigatorAPI.navigateToPortalHome();
   }
 
   public void useTaskInIFrame() {
+    handleFinishedTask(true);
     Map<String, String> requestParamMap = getRequestParameterMap();
     String url = requestParamMap.get(URL_PARAM);
     if (StringUtils.isNotBlank(url)) {
@@ -73,25 +76,34 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
   }
 
   public void navigateToEndPage() {
+    handleFinishedTask(false);
     Map<String, String> requestParamMap = getRequestParameterMap();
     String taskId = requestParamMap.get(TASK_ID_PARAM);
-    keepOverridePortalGrowl();
     if (StringUtils.isNotBlank(taskId)) {
       navigator.navigateToPortalEndPage(Long.parseLong(taskId));
     }
   }
 
-  private void keepOverridePortalGrowl() {
-    Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
-    Boolean overridePortalGrowl = (Boolean) flash.get(GrowlMessageUtils.OVERRIDE_PORTAL_GROWL);
-    if (overridePortalGrowl != null) {
-      flash.put(GrowlMessageUtils.OVERRIDE_PORTAL_GROWL, overridePortalGrowl);
-      flash.setRedirect(true);
-      flash.setKeepMessages(true);
+  private void handleFinishedTask(boolean useTaskInIFrame) {
+    if (useTaskInIFrame) {
+      ITask finishedTask = task != null ? Ivy.wf().findTask(task.getId()) : null;
+      if (finishedTask != null) {
+        boolean isTaskFinished = finishedTask.getEndTimestamp() != null;
+        GrowlMessageUtils.addFeedbackMessage(isTaskFinished, finishedTask.getCase());
+      }
+    } else {
+      Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
+      Boolean overridePortalGrowl = (Boolean) flash.get(GrowlMessageUtils.OVERRIDE_PORTAL_GROWL);
+      if (overridePortalGrowl != null) {
+        flash.put(GrowlMessageUtils.OVERRIDE_PORTAL_GROWL, overridePortalGrowl);
+        flash.setRedirect(true);
+        flash.setKeepMessages(true);
+      }
     }
   }
-  
+
   public void navigateToUrl() throws IOException {
+    handleFinishedTask(false);
     Map<String, String> requestParamMap = getRequestParameterMap();
     String url = requestParamMap.get(URL_PARAM);
     HttpServletRequest request = null;
@@ -99,7 +111,6 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
     if (context != null){
       request = (HttpServletRequest) context.getRequest();
     }
-    keepOverridePortalGrowl();
     if (StringUtils.isNotBlank(url) && OpenRedirectVulnerabilityUtil.isValid(url, request)) {
       FacesContext.getCurrentInstance().getExternalContext().redirect(url);
     }

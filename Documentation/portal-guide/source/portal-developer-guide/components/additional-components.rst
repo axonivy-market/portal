@@ -196,19 +196,6 @@ After a task is finished, growl message appears as default via the
 
 .. _components-additional-component-global-growl-display-growl-after-finish-task:
 
-Display growl after finishing a task using IFrame
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-If ``DISPLAY_MESSAGE_AFTER_FINISH_TASK`` Portal variable is true, before a task is finished, you can trigger displaying
-standard message after task is finished by calling below API:
-
-::
-
-   import ch.ivy.addon.portalkit.publicapi.PortalGlobalGrowInIFrameAPI;
-
-   PortalGlobalGrowInIFrameAPI api = new PortalGlobalGrowInIFrameAPI();
-   api.displayStandardMessage();
-
 Display growl after leaving a task
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -217,19 +204,6 @@ If ``DISPLAY_MESSAGE_AFTER_FINISH_TASK`` Portal variable is true, growl message 
 |example-global-growl-cancelled-task|
 
 .. _components-additional-component-global-growl-display-growl-after-cancel-task:
-
-Display growl after leaving a task using IFrame
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-If ``DISPLAY_MESSAGE_AFTER_FINISH_TASK`` Portal variable is true, before a task is left, you can trigger displaying
-standard message after task is left by calling below API:
-
-::
-
-   import ch.ivy.addon.portalkit.publicapi.PortalGlobalGrowInIFrameAPI;
-
-   PortalGlobalGrowInIFrameAPI api = new PortalGlobalGrowInIFrameAPI();
-   api.displayStandardMessage();
 
 Customization global growl message
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -274,7 +248,7 @@ customized message after task is finished/left by calling below API:
    PortalGlobalGrowInIFrameAPI api = new PortalGlobalGrowInIFrameAPI();
    api.displayCustomizedMessage("Your customized message");
 
-Please refer to GlobalGrowl dialog in portal-developer-examples project for more details.
+Please refer to GlobalGrowl Start Process in PortalExamples project for more details.
 
 .. _components-additional-component-document-table:
 
@@ -289,7 +263,7 @@ download and delete.
 You can override the ``GetDocumentList``, ``UploadDocument``,
 ``DeleteDocument``, ``DownloadDocument`` sub processes to extend these
 features, and add more columns, remove default columns in document
-table. Refer to the ``DocumentTableComponent`` process in portal-developer-examples
+table. Refer to the ``DocumentTableComponent`` process in PortalExamples
 project
 
 .. _components-additional-components-user-selection:
@@ -367,7 +341,7 @@ I want to display user in dropdown list with format <Full name> (<username>) and
          </f:facet>
       </ic:ch.ivy.addon.portalkit.component.UserSelection>
 
-Please refer to ``UserSelectionExample.xhtml`` in ``portal-developer-examples`` for more details.
+Please refer to ``UserSelectionExample.xhtml`` in ``PortalExamples`` for more details.
 
 Attributes of this component:
 
@@ -457,7 +431,7 @@ I want to display role in dropdown list with format <Display Name> (<Member Name
          </f:facet>
       </ic:ch.ivy.addon.portalkit.component.RoleSelection>
 
-Please refer to ``RoleSelectionExample.xhtml`` in ``portal-developer-examples`` for more details.
+Please refer to ``RoleSelectionExample.xhtml`` in ``PortalExamples`` for more details.
 
 Attributes of this component:
 
