@@ -105,12 +105,7 @@ Gs0 f14 actionTable 'out=in;
 Gs0 f14 actionCode 'import ch.ivy.addon.portalkit.publicapi.PortalGlobalGrowInIFrameAPI;
 
 PortalGlobalGrowInIFrameAPI api = new PortalGlobalGrowInIFrameAPI();
-
-// To display standard message
-api.displayStandardMessage();
-
-// To display customized message
-api.displayCustomizedMessage("Your customized message");' #txt
+api.displayCustomizedMessage("Task is cancelled");' #txt
 Gs0 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -129,12 +124,7 @@ Gs0 f10 actionTable 'out=in;
 Gs0 f10 actionCode 'import ch.ivy.addon.portalkit.publicapi.PortalGlobalGrowInIFrameAPI;
 
 PortalGlobalGrowInIFrameAPI api = new PortalGlobalGrowInIFrameAPI();
-
-// To display standard message
-api.displayStandardMessage();
-
-// To display customized message
-api.displayCustomizedMessage("Your customized message");' #txt
+api.displayCustomizedMessage("Task is finished");' #txt
 Gs0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
