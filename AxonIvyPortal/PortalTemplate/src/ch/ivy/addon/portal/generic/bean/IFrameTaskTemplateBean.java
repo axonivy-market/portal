@@ -63,12 +63,11 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
   private PortalNavigator navigator = new PortalNavigator();
 
   public void navigateToHomePage() {
-    handleFinishedTask(false);
+    keepOverridePortalGrowl();
     PortalNavigatorAPI.navigateToPortalHome();
   }
 
   public void useTaskInIFrame() {
-    handleFinishedTask(true);
     Map<String, String> requestParamMap = getRequestParameterMap();
     String url = requestParamMap.get(URL_PARAM);
     if (StringUtils.isNotBlank(url)) {
@@ -77,7 +76,7 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
   }
 
   public void navigateToEndPage() {
-    handleFinishedTask(false);
+    keepOverridePortalGrowl();
     Map<String, String> requestParamMap = getRequestParameterMap();
     String taskId = requestParamMap.get(TASK_ID_PARAM);
     if (StringUtils.isNotBlank(taskId)) {
@@ -85,19 +84,13 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
     }
   }
 
-  private void handleFinishedTask(boolean useTaskInIFrame) {
-    if (useTaskInIFrame) {
-      if (task != null) {
-        addFeedbackMessageForTask(task.getId());
-      }
-    } else {
-      Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
-      Boolean overridePortalGrowl = (Boolean) flash.get(GrowlMessageUtils.OVERRIDE_PORTAL_GROWL);
-      if (overridePortalGrowl != null) {
-        flash.put(GrowlMessageUtils.OVERRIDE_PORTAL_GROWL, overridePortalGrowl);
-        flash.setRedirect(true);
-        flash.setKeepMessages(true);
-      }
+  private void keepOverridePortalGrowl() {
+    Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
+    Boolean overridePortalGrowl = (Boolean) flash.get(GrowlMessageUtils.OVERRIDE_PORTAL_GROWL);
+    if (overridePortalGrowl != null) {
+      flash.put(GrowlMessageUtils.OVERRIDE_PORTAL_GROWL, overridePortalGrowl);
+      flash.setRedirect(true);
+      flash.setKeepMessages(true);
     }
   }
 
@@ -126,7 +119,7 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
   }
 
   public void navigateToUrl() throws IOException {
-    handleFinishedTask(false);
+    keepOverridePortalGrowl();
     Map<String, String> requestParamMap = getRequestParameterMap();
     String url = requestParamMap.get(URL_PARAM);
     HttpServletRequest request = null;
