@@ -36,7 +36,7 @@
 
       <p:link id="info-sidebar-link-#{index}"
         href="#"
-        styleClass="si si-information-circle u-mar-right-15"
+        styleClass="si si-statistics-daytum u-mar-right-15"
         onclick="updateWidgetStatisticPannel#{index}()" />
       <p:tooltip for="info-sidebar-link-#{index}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/widgetInfo')}" trackMouse="true"
         hideEvent="mouseleave click" />
@@ -128,9 +128,9 @@
 
             <p:commandButton id="reset-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
               styleClass="secondary-btn u-mar-right-15" partialSubmit="true"
-              update="#{componentToUpdateOnResetFilter} widget-filter-content"
+              update="#{componentToUpdateOnResetFilter} widget-filter-content widget-header-actions"
               process="#{componentToProcessOnResetFilter}"
-              oncomplete="#{onCompleteResetFilters} #{onCompleteApplyFilters}"
+              oncomplete="#{onCompleteResetFilters}; #{onCompleteApplyFilters}; PF('filter-overlay-panel-#{index}').hide();"
               actionListener="#{widget.resetUserFilters()}"
               icon="si si-button-refresh-arrows" resetValues="true"/>
 
@@ -138,7 +138,7 @@
               partialSubmit="true"
               update="#{componentToUpdateOnApplyFilter} widget-header-actions"
               process="#{componentToProcessOnApplyFilter}"
-              oncomplete="PF('filter-overlay-panel-#{index}').hide(); #{onCompleteApplyFilters}"
+              oncomplete="PF('filter-overlay-panel-#{index}').hide(); #{onCompleteApplyFilters};"
               actionListener="#{widget.onApplyUserFilters()}"
               icon="si si-check-1" />
           </div>

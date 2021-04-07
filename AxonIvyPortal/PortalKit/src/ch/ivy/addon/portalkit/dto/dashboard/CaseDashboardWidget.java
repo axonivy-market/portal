@@ -393,6 +393,7 @@ public class CaseDashboardWidget extends DashboardWidget {
   @Override
   @JsonIgnore
   public void resetUserFilters() {
+    super.resetUserFilters();
     this.setInConfiguration(false);
     for (ColumnModel column : this.getColumns()) {
       column.setUserFilter(StringUtils.EMPTY);
