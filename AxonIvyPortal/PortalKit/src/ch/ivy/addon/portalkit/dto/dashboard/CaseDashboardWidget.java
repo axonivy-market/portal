@@ -34,6 +34,7 @@ import ch.ivy.addon.portalkit.dto.dashboard.casecolumn.StateColumnModel;
 import ch.ivy.addon.portalkit.enums.CaseSortField;
 import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
+import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;
 import ch.ivy.addon.portalkit.service.IvyAdapterService;
@@ -58,6 +59,7 @@ public class CaseDashboardWidget extends DashboardWidget {
   private Map<String, Long> caseByCategoryStatistic;
 
   public CaseDashboardWidget() {
+    this.setType(DashboardWidgetType.CASE);
     dataModel = new DashboardCaseLazyDataModel();
     setColumns(new ArrayList<>());
     caseByCategoryStatistic = new HashMap<>();
@@ -248,6 +250,12 @@ public class CaseDashboardWidget extends DashboardWidget {
     return caseByCategoryStatistic;
   }
 
+  @Override
+  @JsonIgnore
+  public void onApplyUserFilters() throws ParseException {
+    this.userDefinedFiltersCount = countDefinedUserFilter(this);
+  }
+
   @JsonIgnore
   public static CaseDashboardWidget buildDefaultWidget(String id, String name) {
     CaseDashboardWidget result = new CaseDashboardWidget();
@@ -316,26 +324,82 @@ public class CaseDashboardWidget extends DashboardWidget {
       if (col instanceof StateColumnModel && !CollectionUtils.isEmpty(((StateColumnModel) col).getStates())) {
         return true;
       }
-      if (col instanceof CreatorColumnModel && !CollectionUtils.isEmpty(((CreatorColumnModel) col).getCreators())) {
+      else if (col instanceof CreatorColumnModel && !CollectionUtils.isEmpty(((CreatorColumnModel) col).getCreators())) {
         return true;
       }
-      if (col instanceof OwnerColumnModel && !CollectionUtils.isEmpty(((OwnerColumnModel) col).getOwners())) {
+      else if (col instanceof OwnerColumnModel && !CollectionUtils.isEmpty(((OwnerColumnModel) col).getOwners())) {
         return true;
       }
-      if ((col.getFormat() == DashboardColumnFormat.TEXT || col.getFormat() == DashboardColumnFormat.STRING)
+      else if ((col.getFormat() == DashboardColumnFormat.TEXT || col.getFormat() == DashboardColumnFormat.STRING)
           && !(CollectionUtils.isEmpty(col.getFilterList()) && StringUtils.isBlank(col.getFilter()))) {
         return true;
       }
-      if (col.getFormat() == DashboardColumnFormat.NUMBER
+      else if (col.getFormat() == DashboardColumnFormat.NUMBER
           && !(StringUtils.isBlank(col.getFilterFrom()) && StringUtils.isBlank(col.getFilterTo()))) {
         return true;
       }
-      if (col.getFormat() == DashboardColumnFormat.TIMESTAMP
+      else if (col.getFormat() == DashboardColumnFormat.TIMESTAMP
           && !(col.getDateFilterFrom() == null && col.getDateFilterTo() == null)) {
         return true;
       }
     }
-
+    if (CollectionUtils.isNotEmpty(widget.getCategories())) {
+      return true;
+    }
     return false;
   }
+
+  @Override
+  public void buildPredefinedFilterData() throws ParseException {
+    setHasPredefinedFilter(hasPredefinedFilter(this));
+  }
+
+  @JsonIgnore
+  public static Optional<String> countDefinedUserFilter(CaseDashboardWidget widget) throws ParseException {
+    int numberOfFilters = 0;
+    List<ColumnModel> filterableColumns = widget.getFilterableColumns();
+    if (CollectionUtils.isEmpty(filterableColumns)) {
+      return Optional.empty();
+    }
+    for (ColumnModel col : filterableColumns) {
+      if (StringUtils.isNotEmpty(col.getUserFilter())
+          ||StringUtils.isNotEmpty(col.getUserFilterFrom())
+          ||StringUtils.isNotEmpty(col.getUserFilterTo())
+          ||col.getUserDateFilterFrom() != null
+          ||col.getUserDateFilterTo() != null
+          ||CollectionUtils.isNotEmpty(col.getUserFilterList())) {
+        numberOfFilters++;
+        if (numberOfFilters > MAX_NOTI_FILTERS) {
+          break;
+        }
+      }
+    }
+    if (CollectionUtils.isNotEmpty(widget.getDataModel().getCriteria().getUserFilterCategories())
+        && numberOfFilters < MAX_NOTI_FILTERS) {
+      numberOfFilters++;
+    }
+    
+    if (numberOfFilters > MAX_NOTI_FILTERS) {
+      return Optional.of(String.format(MAX_NOTI_PATTERN, MAX_NOTI_FILTERS));
+    }
+    
+    if (numberOfFilters == 0) {
+      return Optional.empty();
+    }
+    
+    return Optional.of(String.valueOf(numberOfFilters));
+  }
+
+  @Override
+  @JsonIgnore
+  public void resetUserFilters() {
+    this.setInConfiguration(false);
+    for (ColumnModel column : this.getColumns()) {
+      column.setUserFilter(StringUtils.EMPTY);
+      column.setUserFilterList(new ArrayList<>());
+      column.setUserFilterFrom(StringUtils.EMPTY);
+      column.setUserFilterTo(StringUtils.EMPTY);
+    }
+  }
+
 }
