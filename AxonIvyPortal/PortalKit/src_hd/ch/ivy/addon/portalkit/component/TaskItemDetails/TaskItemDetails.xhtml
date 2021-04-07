@@ -212,7 +212,7 @@
         <p:commandButton id="confirm-destruction" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
           icon="#{visibilityBean.generateButtonIcon('si si-button-refresh-arrows')}"
           actionListener="#{taskDetailsBean.reset()}" update="task-detail-template:task-details-actions task-detail-template:task-item-body"
-          oncomplete="PF('reset-to-default-task-dialog').hide(); loadTaskDetailsGrid();" />
+          oncomplete="PF('reset-to-default-task-dialog').hide(); loadTaskDetailsGrid(); disableAllIFrameWhenEditLayout();" />
       </h:form>
     </ui:define>
 
