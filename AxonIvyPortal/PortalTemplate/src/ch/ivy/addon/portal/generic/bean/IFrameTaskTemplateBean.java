@@ -80,30 +80,36 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
 
   private void handleFinishedTask() {
     if (task != null) {
-      Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
-      Boolean overridePortalGrowl = (Boolean) flash.get(GrowlMessageUtils.OVERRIDE_PORTAL_GROWL);
-      if (overridePortalGrowl != null) {
-        flash.put(GrowlMessageUtils.OVERRIDE_PORTAL_GROWL, overridePortalGrowl);
-        flash.setRedirect(true);
-        flash.setKeepMessages(true);
-        addFeedbackMessageForTask(task.getId());
+      synchronized (task) {
+        Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
+        Boolean overridePortalGrowl = (Boolean) flash.get(GrowlMessageUtils.OVERRIDE_PORTAL_GROWL);
+        if (overridePortalGrowl != null) {
+          flash.put(GrowlMessageUtils.OVERRIDE_PORTAL_GROWL, overridePortalGrowl);
+          flash.setRedirect(true);
+          flash.setKeepMessages(true);
+          addFeedbackMessageForTask(task.getId());
+        }
       }
     }
   }
 
   public void displayPortalGrowlMessage() {
-    Map<String, String> requestParamMap = getRequestParameterMap();
-    boolean overridePortalGrowl = Boolean.valueOf(requestParamMap.get(GrowlMessageUtils.OVERRIDE_PORTAL_GROWL));
-    if (overridePortalGrowl) {
-      String portalGlobalGrowlMessage = requestParamMap.get(IFrameTaskTemplateBean.PORTAL_GROWL_MESSGE_PARAM);
+    if (task != null) {
+      synchronized (task) {
+        Map<String, String> requestParamMap = getRequestParameterMap();
+        boolean overridePortalGrowl = Boolean.valueOf(requestParamMap.get(GrowlMessageUtils.OVERRIDE_PORTAL_GROWL));
+        if (overridePortalGrowl) {
+          String portalGlobalGrowlMessage = requestParamMap.get(IFrameTaskTemplateBean.PORTAL_GROWL_MESSGE_PARAM);
 
-      FacesMessage message = new FacesMessage(portalGlobalGrowlMessage, "");
-      FacesContext.getCurrentInstance().addMessage(GrowlMessageUtils.PORTAL_GLOBAL_GROWL_MESSAGE, message);
+          FacesMessage message = new FacesMessage(portalGlobalGrowlMessage, "");
+          FacesContext.getCurrentInstance().addMessage(GrowlMessageUtils.PORTAL_GLOBAL_GROWL_MESSAGE, message);
 
-      Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
-      flash.put(GrowlMessageUtils.OVERRIDE_PORTAL_GROWL, true);
-      flash.setRedirect(true);
-      flash.setKeepMessages(true);
+          Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
+          flash.put(GrowlMessageUtils.OVERRIDE_PORTAL_GROWL, true);
+          flash.setRedirect(true);
+          flash.setKeepMessages(true);
+        }
+      }
     }
   }
 
