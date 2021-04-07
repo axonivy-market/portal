@@ -47,6 +47,7 @@ public class TaskDetailsBean implements Serializable {
   private static final long serialVersionUID = 8566646437739271552L;
   private static final String TASK_DETAILS_CONFIGURATION_PROPERTY = "task.details.widgets";
   private static final String PORTAL_TASK_DETAILS_GLOBAL_VARIABLE = "Portal.TaskDetails";
+  private static final String PORTAL_DEFAULT_TASK_DETAILS_GLOBAL_VARIABLE = "Portal.DefaultTaskDetails";
 
   private TaskDetails configuration;
   private List<TaskDetailsWidget> widgets;
@@ -84,19 +85,17 @@ public class TaskDetailsBean implements Serializable {
     boolean foundMatchedConfig = false;
     for (TaskDetails config: configurations) {
       // found configuration for current task by predefined filters
-      if (isFilterByTaskCategories(currentTask, config) || isFilterByTaskStates(currentTask, config)) {
+      if (isFilterByTaskCategories(currentTask, config) || isFilterByTaskStates(currentTask, config) || config.getFilters() == null) {
         configuration = config;
         widgets = configuration.getWidgets();
         foundMatchedConfig = true;
-        break;
   }
     }
-    if (!foundMatchedConfig) {
-      // If no configuration matched, load default configuration
-      configuration = configurations.stream().filter(config -> config.isDefault()).findFirst().get();
-      if (configuration == null) {
-        configuration = defaultConfiguration();
-      }
+
+    // If no configuration matched, load default configuration
+    if (!foundMatchedConfig || configuration == null) {
+      
+      configuration = loadDefaultConfigurations();
       widgets = configuration.getWidgets();
     }
 
@@ -138,17 +137,14 @@ public class TaskDetailsBean implements Serializable {
     return result;
   }
 
-  private TaskDetails defaultConfiguration() throws IOException {
-    String widgetsJsonData = IGlobalVariableContext.current().get(PORTAL_TASK_DETAILS_GLOBAL_VARIABLE);
-    List<TaskDetails> results = mapper.readValue(widgetsJsonData, new TypeReference<List<TaskDetails>>() {});
-    TaskDetails result = results.stream().filter(t -> t.isDefault()).findFirst().orElse(null);
-    updateWidgetsType(result);
-    return result;
+  private TaskDetails loadDefaultConfigurations() throws IOException {
+    String widgetsJsonData = IGlobalVariableContext.current().get(PORTAL_DEFAULT_TASK_DETAILS_GLOBAL_VARIABLE);
+    return mapper.readValue(widgetsJsonData, TaskDetails.class);
   }
 
   public void reset() throws IOException {
     removeConfigurationUserProperty();
-    configuration = loadAllConfigurations().stream().filter(config -> config.getId().contentEquals(configuration.getId())).findFirst().get();
+    configuration = loadAllConfigurations().stream().filter(config -> config.getId().contentEquals(configuration.getId())).findFirst().orElse(new TaskDetails());
     widgets = configuration.getWidgets();
     updateUrlForCustomWidget(widgets);
   }
@@ -248,8 +244,8 @@ public class TaskDetailsBean implements Serializable {
     for(TaskDetailsWidget widget : widgets) {
       if (widget instanceof TaskDetailsCustomWidget) {
         TaskDetailsCustomWidget customWidget = (TaskDetailsCustomWidget) widget;
-        if (StringUtils.isNotBlank(customWidget.getData().getIvyProcess())) {
-          customWidget.getData().setUrl(ProcessStartAPI.findStartableLinkByUserFriendlyRequestPath(customWidget.getData().getIvyProcess()));
+        if (StringUtils.isNotBlank(customWidget.getData().getProcessStart())) {
+          customWidget.getData().setUrl(ProcessStartAPI.findStartableLinkByUserFriendlyRequestPath(customWidget.getData().getProcessStart()));
         }
       }
     }

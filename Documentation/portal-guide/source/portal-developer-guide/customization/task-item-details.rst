@@ -39,7 +39,6 @@ How to configure widgets in task details
       [
          {
          "id": "default-task-detail",
-         "default": true,
          "filters": {
             "taskCategories" : ["support"]
          },
@@ -49,31 +48,31 @@ How to configure widgets in task details
                "id": "information",
                "type": "information",
                "layout": {
-                  "x": 0, "y": 0, "width": 6, "height": 6
+                  "x": 0, "y": 0, "w": 6, "h": 6
                }
             },
             {
                "id": "history",
                "type": "history",
                "layout": {
-                  "x": 6, "y": 6, "width": 6, "height": 6
+                  "x": 6, "y": 6, "w": 6, "h": 6
                }
             },
             {
                "id": "document",
                "type": "document",
                "layout": {
-                  "x": 6, "y": 0, "width": 6, "height": 6
+                  "x": 6, "y": 0, "w": 6, "h": 6
                }
             }
             {
                "id": "custom",
                "type": "custom",
                "layout": {
-                  "x": 0, "y": 6, "width": 6, "height": 6
+                  "x": 0, "y": 6, "w": 6, "h": 6
                },
                "data" : {
-                  "ivy": "Start Processes/Sale/invoiceDetails.ivp",
+                  "processStart": "Start Processes/Sale/invoiceDetails.ivp",
                   "params": {
                      "invoiceId": "000001573"
                   }
@@ -88,8 +87,6 @@ How to configure widgets in task details
 -  Structure of each task details layout in variable **Portal.TaskDetails**:
 
    ``id``: ID which used to identify layout.
-   
-   ``default``: a boolean flag to marked a layout as default.
 
    ``widgets``: definition of widgets in layout.
 
@@ -99,15 +96,13 @@ How to configure widgets in task details
 
    ``type``: There are 4 types: ``information``, ``document``, ``history``, ``custom``
 
-   ``id``: It's used to detect custom widgets.
-
    ``x``: HTML DOM Style ``left`` will be calculated by formula ``x / 12 * 100%``
 
    ``y``: HTML DOM Style ``top`` will be calculated by formula ``y / 12 * 100%``
 
-   ``width``: HTML DOM Style ``width`` will be calculated by formula ``60 * width + 20 * (width - 1)``
+   ``w``: HTML DOM Style ``width`` will be calculated by formula ``60 * w + 20 * (w - 1)``
 
-   ``height``: HTML DOM Style ``height`` will be calculated by formula ``60 * height + 20 * (height - 1)``
+   ``h``: HTML DOM Style ``height`` will be calculated by formula ``60 * h + 20 * (h - 1)``
 
    ``styleClass`` (optional): add CSS Classes to HTML DOM
 
@@ -115,18 +110,20 @@ How to configure widgets in task details
 
    ``data`` (for custom widget): data for custom widget using iframe.
 
+   ``type`` (for data of custom widget): type of custom widget which is not using Iframe. There are two type ``taskItemDetailCustomPanelTop`` and ``taskItemDetailCustomPanelBottom``.
+
    ``url`` (for data of custom widget): URL for external website.
 
-   ``ivy`` (for data of custom widget): relative link to the ivy process which will be displayed in custom widget.
+   ``processStart`` (for data of custom widget): relative link to the ivy process which will be displayed in custom widget.
 
    ``param`` (for data of custom widget): paramters for ivy process above.
 
 .. important::
-   -  **Do not change** ``type`` and ``id`` of widgets.
-      You can change ``x``, ``y``, ``width`` and ``height`` to update size and position of widgets.
-   -  ``x``, ``y``, ``width`` and ``height`` must be **integers**.
-   -  ``x + width`` must **not be larger** than **12**.
-   -  For data of custom widget, if you input ``ivy``, don't input ``url``. You can only use one of them.
+   -  **Do not change** ``type`` of widgets.
+      You can change ``x``, ``y``, ``w`` and ``h`` to update size and position of widgets.
+   -  ``x``, ``y``, ``w`` and ``h`` must be **integers**.
+   -  ``x + w`` must **not be larger** than **12**.
+   -  For data of custom widget, if you input ``processStart``, don't input ``url``. You can only use one of them.
 
 
 .. _customization-task-item-details-how-to-overide-ui:
@@ -194,68 +191,42 @@ There are **two steps** for adding new custom panels.
       [
          {
             "id": "default-task-detail",
-            "default": true,
-            "filters": {
-               "taskCategories" : ["support"]
-            },
             "widgets": 
                [
                   {
                      "type": "information",
-                     "id": "information",
                      "layout": {
-                        "x": 0, "y": 4, "width": 6, "height": 12
+                        "x": 0, "y": 4, "w": 6, "h": 12
                      }
                   },
                   {
                      "type": "document",
-                     "id": "document",
                      "layout": {
-                        "x": 6, "y": 4, "width": 6, "height": 6
+                        "x": 6, "y": 4, "w": 6, "h": 6
                      }
                   },
                   {
                      "type": "history",
-                     "id": "history",
                      "layout": {
-                        "x": 6, "y": 10, "width": 6, "height": 6
+                        "x": 6, "y": 10, "w": 6, "h": 6
                      }
                   },
                   {
                      "type": "custom",
-                     "id": "taskItemDetailCustomPanelTop",
                      "layout": {
-                        "x": 0, "y": 0, "width": 12, "height": 4
-                     }
-                  },
-                  {
-                     "type": "custom",
-                     "id": "taskItemDetailCustomPanelBottom",
-                     "layout": {
-                        "x": 0, "y": 16, "width": 6, "height": 4
-                     }
-                  },
-                  {
-                     "type": "custom",
-                     "id": "customWidgetWithUrl",
-                     "layout": {
-                        "x": 0, "y": 10, "width": 6, "height": 6
+                        "x": 0, "y": 0, "w": 12, "h": 4
                      },
                      "data" : {
-                        "url": "https://www.axonivy.com/"
+                        "type": "taskItemDetailCustomPanelTop"
                      }
                   },
                   {
                      "type": "custom",
-                     "id": "customWidgetWithIvyProcess",
                      "layout": {
-                        "x": 0, "y": 16, "width": 6, "height": 6
+                        "x": 0, "y": 16, "w": 6, "h": 4
                      },
                      "data" : {
-                        "ivy": "Start Processes/Sale/invoiceDetails.ivp",
-                        "params": {
-                           "invoiceId": "000001573"
-                        }
+                        "type": "taskItemDetailCustomPanelBottom"
                      }
                   }
                ]
@@ -358,11 +329,76 @@ There are **two steps** for adding new custom panels.
 
    -  If you use ivy start process, you can predefine paramter for by parameter ``params``.
 
-   Customized task details using external URL
-   |task-customized-iframe-url|
+      Customized task details using external URL
 
-   Customized task details using ivy process start
-   |task-customized-iframe-process|
+      .. code-block:: html
+
+         [
+            {
+            "id": "task-detail",
+            "widgets": [
+               {
+                  "type": "information",
+                  "layout": {
+                  "x": 0, "y": 0, "w": 4, "h": 12
+                  }
+               },
+               {
+                  "type": "custom",
+                  "layout": {
+                  "x": 6, "y": 0, "w": 8, "h": 6
+                  },
+                  "data" : {
+                  "url": "https://www.axonivy.com/"
+                  }
+               }
+            ]
+            }
+         ]
+
+      Result
+
+      |task-customized-iframe-url|
+
+      Customized task details using ivy process start
+
+      .. code-block:: html
+
+            [
+               {
+               "id": "task-detail",
+               "widgets": [
+                  {
+                     "type": "information",
+                     "layout": {
+                     "x": 0, "y": 0, "w": 6, "h": 12
+                     }
+                  },
+                  {
+                     "type": "history",
+                     "layout": {
+                     "x": 6, "y": 6, "w": 6, "h": 6
+                     }
+                  },
+                  {
+                     "type": "custom",
+                     "layout": {
+                     "x": 0, "y": 6, "w": 6, "h": 6
+                     },
+                     "data" : {
+                     "processStart": "Start Processes/Sale/invoiceDetails.ivp",
+                     "params": {
+                        "invoiceId": "000001573"
+                     }
+                     }
+                  }
+               ]
+               }
+            ]
+
+      Result
+
+      |task-customized-iframe-process|
 
 
 .. |task-standard| image:: ../../screenshots/task-detail/customization/task-standard.png

@@ -131,14 +131,14 @@
 
           <!-- taskItemDetailCustomPanelTop box -->
           <h:panelGroup id="taskItemDetailCustomPanelTop"
-            rendered="#{widget.class.simpleName eq 'TaskDetailsCustomWidget' and widget.id eq 'taskItemDetailCustomPanelTop'}"
+            rendered="#{widget.class.simpleName eq 'TaskDetailsCustomWidget' and widget.data.type eq 'taskItemDetailCustomPanelTop'}"
             styleClass="card task-detail-card grid-stack-item-content #{taskDetailsBean.readOnlyMode ? '' : 'moveable-area'}">
             <cc:renderFacet name="taskItemDetailCustomPanelTop" />
           </h:panelGroup>
 
           <!-- taskItemDetailCustomPanelBottom box -->
           <h:panelGroup id="taskItemDetailCustomPanelBottom"
-            rendered="#{widget.class.simpleName eq 'TaskDetailsCustomWidget' and widget.id eq 'taskItemDetailCustomPanelBottom'}"
+            rendered="#{widget.class.simpleName eq 'TaskDetailsCustomWidget' and widget.data.type eq 'taskItemDetailCustomPanelBottom'}"
             styleClass="card task-detail-card grid-stack-item-content #{taskDetailsBean.readOnlyMode ? '' : 'moveable-area'}">
             <cc:renderFacet name="taskItemDetailCustomPanelBottom" />
           </h:panelGroup>
