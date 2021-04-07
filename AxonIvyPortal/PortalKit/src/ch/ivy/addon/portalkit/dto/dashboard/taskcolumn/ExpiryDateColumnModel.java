@@ -15,7 +15,7 @@ public class ExpiryDateColumnModel extends TaskColumnModel implements Serializab
     this.header = defaultIfEmpty(this.header, "cms:/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/EXPIRY_TIME");
     this.field = DashboardStandardTaskColumn.EXPIRY.getField();
     this.style = defaultIfEmpty(this.style, NORMAL_WIDTH);
-    this.styleClass = defaultIfEmpty(this.styleClass, "dashboard-tasks__expiry-date u-text-align-center");
+    this.styleClass = defaultIfEmpty(this.styleClass, "dashboard-tasks__expiry-date u-text-align-center u-padding-0");
     this.format = DashboardColumnFormat.TIMESTAMP;
   }
   
