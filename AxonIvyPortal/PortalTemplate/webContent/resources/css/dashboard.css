@@ -42,7 +42,6 @@
 .dashboard__widget {
   display: flex;
   flex-direction: column;
-  box-shadow: var(--card-box-shadow);
 }
 
 .widget__header {
@@ -217,15 +216,6 @@ td.dashboard-cases__name span {
 
 .case-configuration.card {
   padding: 15px 20px 15px;
-}
-
-.task-configuration.card,
-.case-configuration.card,
-.widget-configuration.card,
-.task-preview.card,
-.case-preview.card,
-.widget-preview.card {
-  box-shadow: var(--card-box-shadow);
 }
 
 .task-configuration__chbox-work-on {
