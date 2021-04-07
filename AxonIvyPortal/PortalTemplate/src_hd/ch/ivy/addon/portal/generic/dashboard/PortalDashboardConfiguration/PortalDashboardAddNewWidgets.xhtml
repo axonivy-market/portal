@@ -35,7 +35,7 @@
   <c:set var="componentToProcess" value="#{widget eq null ? '@this' :
    'widget-configuration-form:new-widget-configuration-component:user-filter widget-configuration-form:new-widget-configuration-component:widget-title-group'}" />
 
-  <h:form id="widget-configuration-form" styleClass="ui-g">
+  <h:form id="widget-configuration-form" styleClass="ui-g portal-card-container">
     <c:if test="#{widget.type eq 'TASK'}">
       <ic:ch.ivy.addon.portal.generic.dashboard.component.TaskWidgetConfiguration id="new-widget-configuration-component" taskWidget="#{widget}"
         componentToUpdate="widget-configuration-form" isReadOnlyMode="#{dashboardConfigurationBean.isReadOnlyMode}"/>
