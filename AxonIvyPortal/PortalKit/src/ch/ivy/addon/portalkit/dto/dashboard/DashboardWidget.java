@@ -2,6 +2,7 @@ package ch.ivy.addon.portalkit.dto.dashboard;
 
 import java.io.Serializable;
 import java.text.ParseException;
+import java.util.Optional;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -12,6 +13,7 @@ import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import ch.ivy.addon.portalkit.constant.DashboardConfigurationPrefix;
+import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivyteam.ivy.environment.Ivy;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
@@ -25,13 +27,22 @@ public abstract class DashboardWidget implements Serializable {
 
   private static final long serialVersionUID = 4580715578128184706L;
 
+  @JsonIgnore
+  public static final int MAX_NOTI_FILTERS = 9;
+  @JsonIgnore
+  public static final String MAX_NOTI_PATTERN = "%d+";
+  
   protected String id;
+  protected DashboardWidgetType type;
   protected String name;
   protected int axisX;
   protected int axisY;
   protected int width;
   protected int height;
   protected boolean autoPosition;
+  protected boolean hasPredefinedFilter;
+  @JsonIgnore
+  protected Optional<String> userDefinedFiltersCount;
 
   public DashboardWidget() {}
 
@@ -47,6 +58,17 @@ public abstract class DashboardWidget implements Serializable {
   @JsonIgnore
   @SuppressWarnings("unused")
   public void buildStatisticInfos() throws ParseException {}
+
+  @JsonIgnore
+  public void resetUserFilters() {}
+  
+  @JsonIgnore
+  @SuppressWarnings("unused")
+  public void onApplyUserFilters() throws ParseException {}
+
+  @JsonIgnore
+  @SuppressWarnings("unused")
+  public void buildPredefinedFilterData() throws ParseException {}
 
   public String getId() {
     return id;
@@ -105,6 +127,30 @@ public abstract class DashboardWidget implements Serializable {
   
   public void setAutoPosition(boolean autoPosition) {
     this.autoPosition = autoPosition;
+  }
+
+  public boolean isHasPredefinedFilter() {
+    return hasPredefinedFilter;
+  }
+
+  public void setHasPredefinedFilter(boolean hasPredefinedFilter) {
+    this.hasPredefinedFilter = hasPredefinedFilter;
+  }
+
+  public Optional<String> getUserDefinedFiltersCount() {
+    return userDefinedFiltersCount;
+  }
+
+  public void setUserDefinedFiltersCount(Optional<String> userDefinedFiltersCount) {
+    this.userDefinedFiltersCount = userDefinedFiltersCount;
+  }
+
+  public DashboardWidgetType getType() {
+    return type;
+  }
+
+  public void setType(DashboardWidgetType type) {
+    this.type = type;
   }
 
   @Override

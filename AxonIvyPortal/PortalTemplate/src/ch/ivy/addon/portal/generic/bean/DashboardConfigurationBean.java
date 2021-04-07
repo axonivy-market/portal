@@ -4,28 +4,22 @@ import static org.apache.commons.lang3.StringUtils.EMPTY;
 
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.text.ParseException;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
-import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
@@ -67,20 +61,6 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
   private WidgetSample processSample() {
     return new WidgetSample(translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/processList"), DashboardWidgetType.PROCESS,
         "process-widget-prototype.png");
-  }
-
-  public void save() throws JsonParseException, JsonMappingException, IOException {
-    Map<String, String> requestParamMap = getRequestParameterMap();
-    String nodes = Optional.ofNullable(requestParamMap.get("nodes")).orElse(StringUtils.EMPTY);
-    List<DashboardWidget> widgets = Arrays.asList(mapper.readValue(nodes, DashboardWidget[].class));
-    for (DashboardWidget widget : widgets) {
-      DashboardWidget updatedWidget = selectedDashboard.getWidgets().get(selectedDashboard.getWidgets().indexOf(widget));
-      updatedWidget.setAxisX(widget.getAxisX());
-      updatedWidget.setAxisY(widget.getAxisY());
-      updatedWidget.setWidth(widget.getWidth());
-      updatedWidget.setHeight(widget.getHeight());
-    }
-    saveOrUpdateDashboardToUserProperty(selectedDashboard);
   }
 
   public void restore() throws IOException {
@@ -129,10 +109,6 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
     return TaskDashboardWidget.buildDefaultWidget(widgetId, widgetName);
   }
 
-  private Map<String, String> getRequestParameterMap() {
-    return FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
-  }
-
   public boolean isTaskWidget(DashboardWidget widget) {
     return widget instanceof TaskDashboardWidget;
   }
@@ -160,9 +136,10 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
     return String.format(WIDGET_ID_PATTERN, type.name(), 0).toLowerCase();
   }
 
-  public void saveWidget() throws JsonProcessingException {
+  public void saveWidget() throws JsonProcessingException, ParseException {
     List<DashboardWidget> widgets = this.selectedDashboard.getWidgets();
-    resetUserFilters();
+    this.widget.resetUserFilters();
+    this.widget.buildPredefinedFilterData();
     if (widgets.contains(this.widget)) {
       widgets.set(widgets.indexOf(this.widget), this.widget);
     } else {
@@ -179,40 +156,10 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
     }
   }
 
-  private void resetUserFilters() {
-    if (widget instanceof TaskDashboardWidget) {
-      TaskDashboardWidget taskWidget = ((TaskDashboardWidget) widget);
-      taskWidget.setInConfiguration(false);
-      for (ColumnModel column : taskWidget.getColumns()) {
-        column.setUserFilter(StringUtils.EMPTY);
-        column.setUserFilterList(new ArrayList<>());
-        column.setUserFilterFrom(StringUtils.EMPTY);
-        column.setUserFilterTo(StringUtils.EMPTY);
-      }
-    } else if (widget instanceof CaseDashboardWidget) {
-      CaseDashboardWidget caseWidget = (CaseDashboardWidget) widget;
-      caseWidget.setInConfiguration(false);
-      for (ColumnModel column : caseWidget.getColumns()) {
-        column.setUserFilter(StringUtils.EMPTY);
-        column.setUserFilterList(new ArrayList<>());
-        column.setUserFilterFrom(StringUtils.EMPTY);
-        column.setUserFilterTo(StringUtils.EMPTY);
-      }
-    }
-  }
-
   public void setEditWidget(DashboardWidget widget) {
-    this.newWidgetHeader = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/newWidgetHeader", Arrays.asList(EMPTY));
     this.setWidget(widget);
-
-    if (isTaskWidget(widget)) {
-      this.newWidgetHeader = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/newWidgetHeader",
-          Arrays.asList(translate("/ch.ivy.addon.portalkit.ui.jsf/common/tasks")));
-    }
-    else if (isCaseWidget(widget)) {
-      this.newWidgetHeader = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/newWidgetHeader",
-          Arrays.asList(translate("/ch.ivy.addon.portalkit.ui.jsf/common/case")));
-    }
+    this.newWidgetHeader = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/editWidgetHeader",
+        Arrays.asList(widget.getName()));
   }
 
   public List<WidgetSample> getSamples() {

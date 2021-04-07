@@ -39,7 +39,7 @@
     <h:outputText styleClass="ui-g-12" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/noCategory')}" />
   </div>
 </p:tab>
-<p:tab id="filter-tab" rendered="#{dashboardCaseFilterBean.hasPredefinedFilter(widget)}">
+<p:tab id="filter-tab" rendered="#{widget.hasPredefinedFilter}">
   <f:facet name="title">
     <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/tasWidgetkInfo/predefinedFilters')}" />
   </f:facet>
