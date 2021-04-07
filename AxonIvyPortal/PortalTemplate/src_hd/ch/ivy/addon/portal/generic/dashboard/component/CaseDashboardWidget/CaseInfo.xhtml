@@ -39,7 +39,7 @@
     <h:outputText styleClass="ui-g-12" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/noCategory')}" />
   </div>
 </p:tab>
-<p:tab id="filter-tab" rendered="#{dashboardCaseFilterBean.hasPredefinedFilter(widget)}">
+<p:tab id="filter-tab" rendered="#{widget.hasPredefinedFilter}">
   <f:facet name="title">
     <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/tasWidgetkInfo/predefinedFilters')}" />
   </f:facet>
@@ -52,7 +52,8 @@
         </div>
         <div class="ui-g-8">
           <ui:repeat var="state" value="#{field.states}">
-            <div>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseState/'.concat(state.toString()))}</div>
+            <h:outputText styleClass="widget-info__state dashboard-cases__state-text dashboard-cases__state-text--#{state.toString().toLowerCase()}"
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseState/'.concat(state.toString()))}" />
           </ui:repeat>
         </div>
       </h:panelGroup>
@@ -72,7 +73,7 @@
         </div>
       </h:panelGroup>
 
-      <h:panelGroup rendered="#{field.field eq 'owner'}">
+      <h:panelGroup rendered="#{field.field eq 'owner' and not empty field.owners}">
         <div class="ui-g-4">
           <p:outputLabel value="#{field.headerText}" />
         </div>
