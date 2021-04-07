@@ -503,3 +503,9 @@ body .dashboard__table--preview.ui-datatable tbody tr.ui-state-hover {
 .column-management-datatable__reorder {
   cursor: move;
 }
+
+.dashboard-tasks__id,
+.dashboard-cases__id,
+.dashboard-cases__finished-date {
+  width: 110px;
+}
