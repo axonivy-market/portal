@@ -213,7 +213,6 @@ td.dashboard-cases__name span {
   width: 450px;
   padding: 20px 15px;
   margin-right: 20px;
-  border-right: solid 1px var(--ivy-primary-color-grey-light);
 }
 
 .case-configuration.card {
@@ -395,7 +394,7 @@ body .ui-calendar.task-configuration__calendar .ui-datepicker-trigger {
 }
 
 .category-panel .category-filter-info.minimize-content {
-  height: 160px;
+  max-height: 160px;
   overflow: hidden;
 }
 
@@ -469,4 +468,44 @@ body .dashboard__table--edit.ui-datatable tbody tr.ui-state-hover {
 body .dashboard__table--preview.ui-datatable tbody tr.ui-state-highlight,
 body .dashboard__table--preview.ui-datatable tbody tr.ui-state-hover {
   cursor: auto;
+}
+
+.widget-info__state {
+  margin: 2px;
+}
+
+.widget__filter-sidebar-link {
+  position: relative;
+}
+
+.widget__filter-noti-number {
+  position: absolute;
+  top: -6px;
+  left: 8px;
+  z-index: 999;
+  background: var(--ivy-tertinary-color-red-medium);
+  padding: 1px 3px;
+  border-radius: 50%;
+  font-size: var(--default-font-size);
+  border: 1px solid var(--ivy-tertinary-color-red-medium);
+  color: var(--ivy-primary-color-white);
+}
+
+.widget-infor--type {
+  padding: 1em 1em 0;
+}
+
+.widget-infor-type--label {
+  padding-left: 25px;
+  font-weight: bold;
+}
+.column-management-datatable__reorder i {
+  cursor: move;
+  padding: 4px 10px;
+}
+
+.dashboard-tasks__id,
+.dashboard-cases__id,
+.dashboard-cases__finished-date {
+  width: 110px;
 }

@@ -32,9 +32,56 @@
           </span>
         </div>
 
-        <h:panelGroup id="grid-stack" layout="block" styleClass="grid-stack ui-g-12">
-          <c:if test="#{not empty managedBean.selectedDashboard.widgets}">
-            <ui:insert name="dashboardContent" />
+          <h:form prependId="false">
+            <p:remoteCommand name="saveConfigurationCommand" actionListener="#{managedBean.save()}" global="false" />
+            <p:remoteCommand name="updateDashboardWidget" update="grid-stack" oncomplete="loadGrid(); return false;" />
+          </h:form>
+
+          <h:panelGroup id="grid-stack" layout="block" styleClass="grid-stack ui-g-12">
+            <c:if test="#{not empty managedBean.selectedDashboard.widgets}">
+              <c:forEach var="widget" items="#{managedBean.selectedDashboard.widgets}" varStatus="status">
+                <div class="grid-stack-item"
+                  data-gs-x="#{widget.axisX}"
+                  data-gs-y="#{widget.axisY}"
+                  data-gs-id="#{widget.id}"
+                  data-gs-width="#{widget.width}"
+                  data-gs-height="#{widget.height}"
+                  data-gs-autoPosition="#{widget.autoPosition}"
+                  data-gs-no-resize="#{managedBean.isReadOnlyMode}"
+                  data-gs-no-move="#{managedBean.isReadOnlyMode}">
+                  <div class="grid-stack-item-content card dashboard-card dashboard__widget">
+                    <!-- Task widget -->
+                    <c:if test="#{fn:startsWith(widget.id, 'task')}">
+                      <ic:ch.ivy.addon.portal.generic.dashboard.component.TaskDashboardWidget widget="#{widget}"
+                        isReadOnlyMode="#{managedBean.isReadOnlyMode}"
+                        index="#{status.index}" />
+                    </c:if>
+
+                    <!-- Case widget -->
+                    <c:if test="#{fn:startsWith(widget.id, 'case')}">
+                      <ic:ch.ivy.addon.portal.generic.dashboard.component.CaseDashboardWidget widget="#{widget}"
+                        isReadOnlyMode="#{managedBean.isReadOnlyMode}"
+                        index="#{status.index}" />
+                    </c:if>
+
+                    <!-- Process widget -->
+                    <c:if test="#{fn:startsWith(widget.id, 'process')}">
+                      <div class="widget__header">
+                        <span>#{not empty widget.name ? widget.name : ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourProcesses")}</span>
+
+                        <div class="widget__header-actions">
+                          <p:commandLink disabled="true" styleClass="si si-arrow-right" />
+                        </div>
+                      </div>
+                      <div class="widget__content process-widget-component">
+                        <ic:ch.ivy.addon.portalkit.component.UserProcessWidget id="process-widget-component" />
+                      </div>
+                    </c:if>
+                  </div>
+                </div>
+              </c:forEach>
+
+              <ui:insert name="dashboardContent" />
           </c:if>
           <c:if test="#{empty managedBean.selectedDashboard.widgets}">
             <p class="ui-g-12">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/noWidget')}</p>

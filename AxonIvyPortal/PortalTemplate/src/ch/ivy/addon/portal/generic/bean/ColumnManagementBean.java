@@ -83,12 +83,14 @@ public class ColumnManagementBean {
       List<TaskColumnModel> taskColumns = new ArrayList<>();
       columnsBeforeSave.forEach(column -> taskColumns.add((TaskColumnModel) column));
       taskWidget.setColumns(taskColumns);
+      TaskDashboardWidget.buildColumns(taskWidget);
     }
     if (isCaseWidget(widget)) {
       CaseDashboardWidget caseDashboardWidget = (CaseDashboardWidget) this.widget;
       List<CaseColumnModel> caseColumns = new ArrayList<>();
       columnsBeforeSave.forEach(column -> caseColumns.add((CaseColumnModel) column));
       caseDashboardWidget.setColumns(caseColumns);
+      CaseDashboardWidget.buildColumns(caseDashboardWidget);
     }
   }
   
