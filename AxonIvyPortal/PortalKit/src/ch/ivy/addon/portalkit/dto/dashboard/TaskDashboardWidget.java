@@ -69,7 +69,6 @@ public class TaskDashboardWidget extends DashboardWidget {
   private Long numberOfTasksExpireToday;
   
   public TaskDashboardWidget() {
-    this.setType(DashboardWidgetType.TASK);
     dataModel = new DashboardTaskLazyDataModel();
     setColumns(new ArrayList<>());
   }
@@ -435,5 +434,10 @@ public class TaskDashboardWidget extends DashboardWidget {
       column.setUserFilterFrom(StringUtils.EMPTY);
       column.setUserFilterTo(StringUtils.EMPTY);
     }
+  }
+
+  @Override
+  public DashboardWidgetType getType() {
+    return DashboardWidgetType.TASK;
   }
 }
