@@ -102,17 +102,23 @@ public class DashboardBean implements Serializable {
       return;
     }
     for (DashboardWidget widget : widgets) {
-      if (widget instanceof TaskDashboardWidget) {
-        TaskDashboardWidget.buildColumns((TaskDashboardWidget) widget);
-        if (StringUtils.isBlank(widget.getName())) {
-          widget.setName(translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourTasks"));
-        }
-      } else if (widget instanceof CaseDashboardWidget) {
-        CaseDashboardWidget.buildColumns((CaseDashboardWidget) widget);
-        if (StringUtils.isBlank(widget.getName())) {
-          widget.setName(translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourCases"));
-        }
+      switch (widget.getType()) {
+        case TASK:
+          TaskDashboardWidget.buildColumns((TaskDashboardWidget) widget);
+          if (StringUtils.isBlank(widget.getName())) {
+            widget.setName(translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourTasks"));
+          }
+          break;
+        case CASE:
+          CaseDashboardWidget.buildColumns((CaseDashboardWidget) widget);
+          if (StringUtils.isBlank(widget.getName())) {
+            widget.setName(translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourCases"));
+          }
+          break;
+        default:
+          break;
       }
+
       try {
         widget.buildPredefinedFilterData();
       } catch (ParseException e) {

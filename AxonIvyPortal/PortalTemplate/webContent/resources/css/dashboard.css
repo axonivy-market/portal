@@ -509,3 +509,7 @@ body .dashboard__table--preview.ui-datatable tbody tr.ui-state-hover {
 .dashboard-cases__finished-date {
   width: 110px;
 }
+
+.widget-preview__header--description {
+  margin-bottom: auto;
+}
