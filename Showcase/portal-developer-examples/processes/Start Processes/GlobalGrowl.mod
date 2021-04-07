@@ -39,6 +39,26 @@ Gl0 @TkArc f24 '' #zField
 Gl0 @TkArc f17 '' #zField
 Gl0 @TkArc f20 '' #zField
 Gl0 @PushWFArc f40 '' #zField
+Gl0 @UserDialog f9 '' #zField
+Gl0 @StartRequest f10 '' #zField
+Gl0 @UserDialog f12 '' #zField
+Gl0 @TaskSwitchSimple f14 '' #zField
+Gl0 @TaskSwitchSimple f16 '' #zField
+Gl0 @TaskSwitchSimple f26 '' #zField
+Gl0 @StartRequest f27 '' #zField
+Gl0 @TaskSwitchSimple f28 '' #zField
+Gl0 @UserDialog f29 '' #zField
+Gl0 @TkArc f30 '' #zField
+Gl0 @TkArc f31 '' #zField
+Gl0 @TkArc f32 '' #zField
+Gl0 @TkArc f33 '' #zField
+Gl0 @PushWFArc f41 '' #zField
+Gl0 @PushWFArc f42 '' #zField
+Gl0 @PushWFArc f43 '' #zField
+Gl0 @PushWFArc f44 '' #zField
+Gl0 @UserDialog f46 '' #zField
+Gl0 @PushWFArc f47 '' #zField
+Gl0 @PushWFArc f45 '' #zField
 >Proto Gl0 Gl0 GlobalGrowl #zField
 Gl0 f0 outLink start.ivp #txt
 Gl0 f0 inParamDecl '<> param;' #txt
@@ -93,8 +113,10 @@ Gl0 f6 208 64 264 64 #arcP
 Gl0 f2 expr out #txt
 Gl0 f2 376 64 433 64 #arcP
 Gl0 f7 dialogId com.axonivy.portal.developerexamples.showcase.GlobalGrowlIFrame8 #txt
-Gl0 f7 startMethod start() #txt
-Gl0 f7 requestActionDecl '<> param;' #txt
+Gl0 f7 startMethod start(Boolean) #txt
+Gl0 f7 requestActionDecl '<Boolean isCustomized> param;' #txt
+Gl0 f7 requestMappingAction 'param.isCustomized=true;
+' #txt
 Gl0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -103,17 +125,18 @@ Gl0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Gl0 f7 256 106 128 44 -57 -8 #rect
-Gl0 f36 outLink frame8.ivp #txt
+Gl0 f36 outLink frame8CustomizedMessage.ivp #txt
 Gl0 f36 inParamDecl '<> param;' #txt
 Gl0 f36 requestEnabled true #txt
 Gl0 f36 triggerEnabled false #txt
-Gl0 f36 callSignature frame8() #txt
-Gl0 f36 startName 'Display growl message for task using IFrame' #txt
+Gl0 f36 callSignature frame8CustomizedMessage() #txt
+Gl0 f36 startName 'Display growl customized message for task using IFrame' #txt
+Gl0 f36 taskData TaskTriggered.NAM=frame8CustomizedMessage #txt
 Gl0 f36 caseData businessCase.attach=true #txt
 Gl0 f36 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>frame8.ivp</name>
+        <name>frame8CustomizedMessage.ivp</name>
     </language>
 </elementInfo>
 ' #txt
@@ -121,28 +144,31 @@ Gl0 f36 @C|.responsibility Everybody #txt
 Gl0 f36 81 177 30 30 -21 17 #rect
 Gl0 f18 actionTable 'out=in1;
 ' #txt
-Gl0 f18 taskData 'TaskA.NAM=frame8
+Gl0 f18 taskData 'TaskA.NAM=frame8CustomizedMessageAndSkipTasklist
 TaskA.SKIP_TASK_LIST=true' #txt
 Gl0 f18 433 113 30 30 0 16 #rect
-Gl0 f8 outLink fram8skiptasklist.ivp #txt
+Gl0 f8 outLink frame8CustomizedMessageAndSkipTasklist.ivp #txt
 Gl0 f8 inParamDecl '<> param;' #txt
 Gl0 f8 requestEnabled true #txt
 Gl0 f8 triggerEnabled false #txt
-Gl0 f8 callSignature fram8skiptasklist() #txt
-Gl0 f8 startName 'Display growl message for task using IFrame and enable Skip Tasklist' #txt
+Gl0 f8 callSignature frame8CustomizedMessageAndSkipTasklist() #txt
+Gl0 f8 startName 'Display growl customized message for task using IFrame and enable Skip Tasklist' #txt
+Gl0 f8 taskData TaskTriggered.NAM=frame8CustomizedMessageAndSkipTasklist #txt
 Gl0 f8 caseData businessCase.attach=true #txt
 Gl0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>fram8skiptasklist.ivp</name>
+        <name>frame8CustomizedMessageAndSkipTasklist.ivp</name>
     </language>
 </elementInfo>
 ' #txt
 Gl0 f8 @C|.responsibility Everybody #txt
 Gl0 f8 81 113 30 30 -21 17 #rect
 Gl0 f22 dialogId com.axonivy.portal.developerexamples.showcase.GlobalGrowlIFrame8 #txt
-Gl0 f22 startMethod start() #txt
-Gl0 f22 requestActionDecl '<> param;' #txt
+Gl0 f22 startMethod start(Boolean) #txt
+Gl0 f22 requestActionDecl '<Boolean isCustomized> param;' #txt
+Gl0 f22 requestMappingAction 'param.isCustomized=true;
+' #txt
 Gl0 f22 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -152,8 +178,10 @@ Gl0 f22 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Gl0 f22 760 106 128 44 -57 -8 #rect
 Gl0 f34 dialogId com.axonivy.portal.developerexamples.showcase.GlobalGrowlIFrame8 #txt
-Gl0 f34 startMethod start() #txt
-Gl0 f34 requestActionDecl '<> param;' #txt
+Gl0 f34 startMethod start(Boolean) #txt
+Gl0 f34 requestActionDecl '<Boolean isCustomized> param;' #txt
+Gl0 f34 requestMappingAction 'param.isCustomized=true;
+' #txt
 Gl0 f34 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -163,8 +191,10 @@ Gl0 f34 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Gl0 f34 256 170 128 44 -57 -8 #rect
 Gl0 f19 dialogId com.axonivy.portal.developerexamples.showcase.GlobalGrowlIFrame8 #txt
-Gl0 f19 startMethod start() #txt
-Gl0 f19 requestActionDecl '<> param;' #txt
+Gl0 f19 startMethod start(Boolean) #txt
+Gl0 f19 requestActionDecl '<Boolean isCustomized> param;' #txt
+Gl0 f19 requestMappingAction 'param.isCustomized=true;
+' #txt
 Gl0 f19 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -173,26 +203,28 @@ Gl0 f19 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Gl0 f19 512 106 128 44 -57 -8 #rect
-Gl0 f11 953 145 30 30 0 15 #rect
+Gl0 f11 945 201 30 30 0 15 #rect
 Gl0 f13 actionTable 'out=in1;
 ' #txt
-Gl0 f13 taskData 'TaskA.NAM=frame8
+Gl0 f13 taskData 'TaskA.NAM=frame8CustomizedMessageAndSkipTasklist
 TaskA.SKIP_TASK_LIST=false' #txt
 Gl0 f13 177 113 30 30 0 16 #rect
 Gl0 f35 actionTable 'out=in1;
 ' #txt
-Gl0 f35 taskData 'TaskA.NAM=frame8
+Gl0 f35 taskData 'TaskA.NAM=frame8CustomizedMessage
 TaskA.SKIP_TASK_LIST=false' #txt
 Gl0 f35 177 177 30 30 0 16 #rect
 Gl0 f21 actionTable 'out=in1;
 ' #txt
-Gl0 f21 taskData 'TaskA.NAM=frame8
+Gl0 f21 taskData 'TaskA.NAM=frame8CustomizedMessageAndSkipTasklist
 TaskA.SKIP_TASK_LIST=true' #txt
 Gl0 f21 681 113 30 30 0 16 #rect
 Gl0 f38 207 192 256 192 #arcP
-Gl0 f25 888 128 953 160 #arcP
+Gl0 f25 888 128 951 204 #arcP
+Gl0 f25 1 896 128 #addKink
+Gl0 f25 1 0.10322934513648001 0 0 #arcLabel
 Gl0 f37 111 192 177 192 #arcP
-Gl0 f39 384 192 953 160 #arcP
+Gl0 f39 384 192 945 216 #arcP
 Gl0 f39 1 888 192 #addKink
 Gl0 f39 0 0.7106799004308919 0 0 #arcLabel
 Gl0 f15 207 128 256 128 #arcP
@@ -202,6 +234,128 @@ Gl0 f24 0 0.5000000000000001 0 0 #arcLabel
 Gl0 f17 640 128 681 128 #arcP
 Gl0 f20 111 128 177 128 #arcP
 Gl0 f40 463 128 512 128 #arcP
+Gl0 f9 dialogId com.axonivy.portal.developerexamples.showcase.GlobalGrowlIFrame8 #txt
+Gl0 f9 startMethod start(Boolean) #txt
+Gl0 f9 requestActionDecl '<Boolean isCustomized> param;' #txt
+Gl0 f9 requestMappingAction 'param.isCustomized=false;
+' #txt
+Gl0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>GlobalGrowlIFrame8</name>
+    </language>
+</elementInfo>
+' #txt
+Gl0 f9 760 234 128 44 -57 -8 #rect
+Gl0 f10 outLink frame8StandardMessageAndSkipTasklist.ivp #txt
+Gl0 f10 inParamDecl '<> param;' #txt
+Gl0 f10 requestEnabled true #txt
+Gl0 f10 triggerEnabled false #txt
+Gl0 f10 callSignature frame8StandardMessageAndSkipTasklist() #txt
+Gl0 f10 startName 'Display growl standard message for task using IFrame and enable Skip Tasklist' #txt
+Gl0 f10 taskData TaskTriggered.NAM=frame8StandardMessageAndSkipTasklist #txt
+Gl0 f10 caseData businessCase.attach=true #txt
+Gl0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>frame8StandardMessageAndSkipTasklist.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Gl0 f10 @C|.responsibility Everybody #txt
+Gl0 f10 81 241 30 30 -21 17 #rect
+Gl0 f12 dialogId com.axonivy.portal.developerexamples.showcase.GlobalGrowlIFrame8 #txt
+Gl0 f12 startMethod start(Boolean) #txt
+Gl0 f12 requestActionDecl '<Boolean isCustomized> param;' #txt
+Gl0 f12 requestMappingAction 'param.isCustomized=false;
+' #txt
+Gl0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>GlobalGrowlIFrame8</name>
+    </language>
+</elementInfo>
+' #txt
+Gl0 f12 512 234 128 44 -57 -8 #rect
+Gl0 f14 actionTable 'out=in1;
+' #txt
+Gl0 f14 taskData 'TaskA.NAM=frame8StandardMessageAndSkipTasklist
+TaskA.SKIP_TASK_LIST=true' #txt
+Gl0 f14 433 241 30 30 0 16 #rect
+Gl0 f16 actionTable 'out=in1;
+' #txt
+Gl0 f16 taskData 'TaskA.NAM=frame8StandardMessageAndSkipTasklist
+TaskA.SKIP_TASK_LIST=true' #txt
+Gl0 f16 681 241 30 30 0 16 #rect
+Gl0 f26 actionTable 'out=in1;
+' #txt
+Gl0 f26 taskData 'TaskA.NAM=frame8StandardMessageAndSkipTasklist
+TaskA.SKIP_TASK_LIST=false' #txt
+Gl0 f26 177 241 30 30 0 16 #rect
+Gl0 f27 outLink frame8StandardMessage.ivp #txt
+Gl0 f27 inParamDecl '<> param;' #txt
+Gl0 f27 requestEnabled true #txt
+Gl0 f27 triggerEnabled false #txt
+Gl0 f27 callSignature frame8StandardMessage() #txt
+Gl0 f27 startName 'Display growl standard message for task using IFrame' #txt
+Gl0 f27 taskData TaskTriggered.NAM=frame8StandardMessage #txt
+Gl0 f27 caseData businessCase.attach=true #txt
+Gl0 f27 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>frame8StandardMessage.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Gl0 f27 @C|.responsibility Everybody #txt
+Gl0 f27 81 305 30 30 -21 17 #rect
+Gl0 f28 actionTable 'out=in1;
+' #txt
+Gl0 f28 taskData 'TaskA.NAM=frame8StandardMessage
+TaskA.SKIP_TASK_LIST=false' #txt
+Gl0 f28 177 305 30 30 0 16 #rect
+Gl0 f29 dialogId com.axonivy.portal.developerexamples.showcase.GlobalGrowlIFrame8 #txt
+Gl0 f29 startMethod start(Boolean) #txt
+Gl0 f29 requestActionDecl '<Boolean isCustomized> param;' #txt
+Gl0 f29 requestMappingAction 'param.isCustomized=false;
+' #txt
+Gl0 f29 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>GlobalGrowlIFrame8</name>
+    </language>
+</elementInfo>
+' #txt
+Gl0 f29 256 234 128 44 -57 -8 #rect
+Gl0 f30 384 256 433 256 #arcP
+Gl0 f30 0 0.5000000000000001 0 0 #arcLabel
+Gl0 f31 111 320 177 320 #arcP
+Gl0 f32 111 256 177 256 #arcP
+Gl0 f33 640 256 681 256 #arcP
+Gl0 f41 711 256 760 256 #arcP
+Gl0 f42 207 256 256 256 #arcP
+Gl0 f43 463 256 512 256 #arcP
+Gl0 f44 888 256 947 224 #arcP
+Gl0 f44 1 896 256 #addKink
+Gl0 f44 1 0.14657129761042534 0 0 #arcLabel
+Gl0 f46 dialogId com.axonivy.portal.developerexamples.showcase.GlobalGrowlIFrame8 #txt
+Gl0 f46 startMethod start(Boolean) #txt
+Gl0 f46 requestActionDecl '<Boolean isCustomized> param;' #txt
+Gl0 f46 requestMappingAction 'param.isCustomized=false;
+' #txt
+Gl0 f46 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>GlobalGrowlIFrame8</name>
+    </language>
+</elementInfo>
+' #txt
+Gl0 f46 256 298 128 44 -57 -8 #rect
+Gl0 f47 207 320 256 320 #arcP
+Gl0 f47 0 0.7721686881656019 0 0 #arcLabel
+Gl0 f45 384 320 960 231 #arcP
+Gl0 f45 1 896 320 #addKink
+Gl0 f45 0 0.7721686881656019 0 0 #arcLabel
 >Proto Gl0 .type com.axonivy.portal.developerexamples.GlobalGrowlData #txt
 >Proto Gl0 .processKind NORMAL #txt
 >Proto Gl0 0 0 32 24 18 0 #rect
@@ -232,3 +386,23 @@ Gl0 f35 out f38 tail #connect
 Gl0 f38 head f34 mainIn #connect
 Gl0 f34 mainOut f39 tail #connect
 Gl0 f39 head f11 mainIn #connect
+Gl0 f10 mainOut f32 tail #connect
+Gl0 f32 head f26 in #connect
+Gl0 f26 out f42 tail #connect
+Gl0 f42 head f29 mainIn #connect
+Gl0 f14 out f43 tail #connect
+Gl0 f43 head f12 mainIn #connect
+Gl0 f16 out f41 tail #connect
+Gl0 f41 head f9 mainIn #connect
+Gl0 f29 mainOut f30 tail #connect
+Gl0 f30 head f14 in #connect
+Gl0 f12 mainOut f33 tail #connect
+Gl0 f33 head f16 in #connect
+Gl0 f27 mainOut f31 tail #connect
+Gl0 f31 head f28 in #connect
+Gl0 f9 mainOut f44 tail #connect
+Gl0 f44 head f11 mainIn #connect
+Gl0 f28 out f47 tail #connect
+Gl0 f47 head f46 mainIn #connect
+Gl0 f46 mainOut f45 tail #connect
+Gl0 f45 head f11 mainIn #connect
