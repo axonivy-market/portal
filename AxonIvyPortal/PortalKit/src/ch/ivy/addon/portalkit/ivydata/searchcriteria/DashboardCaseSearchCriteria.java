@@ -290,11 +290,27 @@ public class DashboardCaseSearchCriteria {
       appendSortByIdIfSet(criteria);
       appendSortByCreationDateIfSet(criteria);
       appendSortByStateIfSet(criteria);
+      appendSortByOwnerIfSet(criteria);
+      appendSortByEndDateIfSet(criteria);
       appendSortByCustomFieldIfSet(criteria);
       if (criteria.isSortDescending()) {
         order.descending();
       }
       return this;
+    }
+
+    private void appendSortByEndDateIfSet(DashboardCaseSearchCriteria criteria) {
+      if (DashboardStandardCaseColumn.FINISHED.getField().equalsIgnoreCase(criteria.getSortField())) {
+        order = query.orderBy().endTimestamp();
+        sortStandardColumn = true;
+      }
+    }
+
+    private void appendSortByOwnerIfSet(DashboardCaseSearchCriteria criteria) {
+      if (DashboardStandardCaseColumn.OWNER.getField().equalsIgnoreCase(criteria.getSortField())) {
+        order = query.orderBy().ownerDisplayName();
+        sortStandardColumn = true;
+      }
     }
 
     private void appendSortByNameIfSet(DashboardCaseSearchCriteria criteria) {
