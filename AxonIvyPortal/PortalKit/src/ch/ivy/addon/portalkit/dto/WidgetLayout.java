@@ -11,12 +11,13 @@ public class WidgetLayout implements Serializable {
   private String id;
   private String styleClass;
   private String style;
-  private int width;
-  private int height;
 
+  @JsonProperty("w")
+  private int width;
+  @JsonProperty("h")
+  private int height;
   @JsonProperty("x")
   private int axisX;
-
   @JsonProperty("y")
   private int axisY;
 

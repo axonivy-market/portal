@@ -1,8 +1,10 @@
 package ch.ivy.addon.portalkit.dto.taskdetails;
 
 import java.io.Serializable;
+import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
@@ -17,14 +19,19 @@ import ch.ivy.addon.portalkit.dto.WidgetLayout;
 public abstract class TaskDetailsWidget implements Serializable {
 
   private static final long serialVersionUID = 5533038246959235330L;
-  
+
+  @JsonIgnore
   protected String id;
+
   protected String type;
   protected WidgetLayout layout;
 
   public TaskDetailsWidget() {}
 
   public String getId() {
+    if (id == null) {
+      id = UUID.randomUUID().toString();
+    }
     return id;
   }
 
