@@ -36,12 +36,12 @@
    'widget-configuration-form:new-widget-configuration-component:user-filter widget-configuration-form:new-widget-configuration-component:widget-title-group'}" />
 
   <h:form id="widget-configuration-form" styleClass="ui-g">
-    <c:if test="#{dashboardConfigurationBean.isTaskWidget(widget)}">
+    <c:if test="#{widget.type eq 'TASK'}">
       <ic:ch.ivy.addon.portal.generic.dashboard.component.TaskWidgetConfiguration id="new-widget-configuration-component" taskWidget="#{widget}"
         componentToUpdate="widget-configuration-form" isReadOnlyMode="#{dashboardConfigurationBean.isReadOnlyMode}"/>
     </c:if>
 
-    <c:if test="#{dashboardConfigurationBean.isCaseWidget(widget)}">
+    <c:if test="#{widget.type eq 'CASE'}">
       <ic:ch.ivy.addon.portal.generic.dashboard.component.CaseWidgetConfiguration id="new-widget-configuration-component" caseWidget="#{widget}"
         componentToUpdate="widget-configuration-form" isReadOnlyMode="#{dashboardConfigurationBean.isReadOnlyMode}"/>
     </c:if>

@@ -51,21 +51,21 @@
                   data-gs-no-move="#{managedBean.isReadOnlyMode}">
                   <div class="grid-stack-item-content card dashboard-card dashboard__widget">
                     <!-- Task widget -->
-                    <c:if test="#{fn:startsWith(widget.id, 'task')}">
+                    <c:if test="#{widget.type eq 'TASK'}">
                       <ic:ch.ivy.addon.portal.generic.dashboard.component.TaskDashboardWidget widget="#{widget}"
                         isReadOnlyMode="#{managedBean.isReadOnlyMode}"
                         index="#{status.index}" />
                     </c:if>
 
                     <!-- Case widget -->
-                    <c:if test="#{fn:startsWith(widget.id, 'case')}">
+                    <c:if test="#{widget.type eq 'CASE'}">
                       <ic:ch.ivy.addon.portal.generic.dashboard.component.CaseDashboardWidget widget="#{widget}"
                         isReadOnlyMode="#{managedBean.isReadOnlyMode}"
                         index="#{status.index}" />
                     </c:if>
 
                     <!-- Process widget -->
-                    <c:if test="#{fn:startsWith(widget.id, 'process')}">
+                    <c:if test="#{widget.type eq 'PROCESS'}">
                       <div class="widget__header">
                         <span>#{not empty widget.name ? widget.name : ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourProcesses")}</span>
 

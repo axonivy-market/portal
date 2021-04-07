@@ -59,7 +59,6 @@ public class CaseDashboardWidget extends DashboardWidget {
   private Map<String, Long> caseByCategoryStatistic;
 
   public CaseDashboardWidget() {
-    this.setType(DashboardWidgetType.CASE);
     dataModel = new DashboardCaseLazyDataModel();
     setColumns(new ArrayList<>());
     caseByCategoryStatistic = new HashMap<>();
@@ -401,6 +400,11 @@ public class CaseDashboardWidget extends DashboardWidget {
       column.setUserFilterFrom(StringUtils.EMPTY);
       column.setUserFilterTo(StringUtils.EMPTY);
     }
+  }
+
+  @Override
+  public DashboardWidgetType getType() {
+    return DashboardWidgetType.CASE;
   }
 
 }

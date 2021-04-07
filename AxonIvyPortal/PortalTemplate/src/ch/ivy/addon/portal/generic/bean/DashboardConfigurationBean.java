@@ -109,14 +109,6 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
     return TaskDashboardWidget.buildDefaultWidget(widgetId, widgetName);
   }
 
-  public boolean isTaskWidget(DashboardWidget widget) {
-    return widget instanceof TaskDashboardWidget;
-  }
-
-  public boolean isCaseWidget(DashboardWidget widget) {
-    return widget instanceof CaseDashboardWidget;
-  }
-
   public String generateNewWidgetId(DashboardWidgetType type) {
     final String widgetIdPrefix = String.format(WIDGET_ID_PATTERN, type.name(), EMPTY).toLowerCase();
 

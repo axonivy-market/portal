@@ -33,7 +33,6 @@ public abstract class DashboardWidget implements Serializable {
   public static final String MAX_NOTI_PATTERN = "%d+";
   
   protected String id;
-  protected DashboardWidgetType type;
   protected String name;
   protected int axisX;
   protected int axisY;
@@ -147,13 +146,8 @@ public abstract class DashboardWidget implements Serializable {
     this.userDefinedFiltersCount = userDefinedFiltersCount;
   }
 
-  public DashboardWidgetType getType() {
-    return type;
-  }
-
-  public void setType(DashboardWidgetType type) {
-    this.type = type;
-  }
+  @JsonIgnore
+  public abstract DashboardWidgetType getType();
 
   @Override
   public int hashCode() {
