@@ -17,6 +17,8 @@ import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ICase;
 
 public final class GrowlMessageUtils {
+  public static final String PORTAL_GLOBAL_GROWL_MESSAGE = "portal-global-growl-message";
+  public static final String OVERRIDE_PORTAL_GROWL = "overridePortalGrowl";
   private static final String TASK_LEFT_WITH_DETAILS =
       "/ch.ivy.addon.portalkit.ui.jsf/common/taskCanceledAndLeftSuccessfullyWithDetails";
   private static final String TASK_FINISHED_WITH_DETAILS =
@@ -33,7 +35,7 @@ public final class GrowlMessageUtils {
   public static void addFeedbackMessage(Boolean isTaskFinished, ICase iCase) {
     if (isMessageDisplayedAfterFinishTaskEnable() && !Ivy.session().isSessionUserUnknown()) {
       Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
-      if (!flash.containsKey("overridePortalGrowl")) {
+      if (!flash.containsKey(OVERRIDE_PORTAL_GROWL)) {
         addMessageToFacesContext(iCase, BooleanUtils.toBoolean(isTaskFinished));
       }
       flash.setRedirect(true);
@@ -49,7 +51,7 @@ public final class GrowlMessageUtils {
     } else {
       message = addMessageWithCaseDetails(isTaskFinished, caseDetailsUrl);
     }
-    FacesContext.getCurrentInstance().addMessage("portal-global-growl-message", message);
+    FacesContext.getCurrentInstance().addMessage(PORTAL_GLOBAL_GROWL_MESSAGE, message);
   }
 
   private static FacesMessage addMessageWithoutCaseDetails(boolean isTaskFinished) {
