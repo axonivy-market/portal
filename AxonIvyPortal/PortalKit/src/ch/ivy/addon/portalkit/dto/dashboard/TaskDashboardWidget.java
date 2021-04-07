@@ -38,6 +38,7 @@ import ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.StateColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.TaskColumnModel;
 import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
+import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria;
@@ -68,6 +69,7 @@ public class TaskDashboardWidget extends DashboardWidget {
   private Long numberOfTasksExpireToday;
   
   public TaskDashboardWidget() {
+    this.setType(DashboardWidgetType.TASK);
     dataModel = new DashboardTaskLazyDataModel();
     setColumns(new ArrayList<>());
   }
@@ -280,6 +282,17 @@ public class TaskDashboardWidget extends DashboardWidget {
     this.taskByCategoryStatistic = taskByCategoryStatistic;
   }
 
+  @Override
+  @JsonIgnore
+  public void onApplyUserFilters() throws ParseException {
+    this.userDefinedFiltersCount = countDefinedUserFilter(this);
+  }
+
+  @Override
+  public void buildPredefinedFilterData() throws ParseException {
+    setHasPredefinedFilter(hasPredefinedFilter(this));
+  }
+
   @JsonIgnore
   public static TaskDashboardWidget buildDefaultWidget(String id, String name) {
     TaskDashboardWidget result = new TaskDashboardWidget();
@@ -348,27 +361,79 @@ public class TaskDashboardWidget extends DashboardWidget {
       if (col instanceof PriorityColumnModel && !CollectionUtils.isEmpty(((PriorityColumnModel) col).getPriorities())) {
         return true;
       }
-      if (col instanceof StateColumnModel && !CollectionUtils.isEmpty(((StateColumnModel) col).getStates())) {
+      else if (col instanceof StateColumnModel && !CollectionUtils.isEmpty(((StateColumnModel) col).getStates())) {
         return true;
       }
-      if (col instanceof ResponsibleColumnModel
+      else if (col instanceof ResponsibleColumnModel
           && !CollectionUtils.isEmpty(((ResponsibleColumnModel) col).getResponsibles())) {
         return true;
       }
-      if ((col.getFormat() == DashboardColumnFormat.TEXT || col.getFormat() == DashboardColumnFormat.STRING)
+      else if ((col.getFormat() == DashboardColumnFormat.TEXT || col.getFormat() == DashboardColumnFormat.STRING)
           && !(CollectionUtils.isEmpty(col.getFilterList()) && StringUtils.isBlank(col.getFilter()))) {
         return true;
       }
-      if (col.getFormat() == DashboardColumnFormat.NUMBER
+      else if (col.getFormat() == DashboardColumnFormat.NUMBER
           && !(StringUtils.isBlank(col.getFilterFrom()) && StringUtils.isBlank(col.getFilterTo()))) {
         return true;
       }
-      if (col.getFormat() == DashboardColumnFormat.TIMESTAMP
+      else if (col.getFormat() == DashboardColumnFormat.TIMESTAMP
           && !(col.getDateFilterFrom() == null && col.getDateFilterTo() == null)) {
         return true;
       }
     }
 
+    if (CollectionUtils.isNotEmpty(widget.getCategories())) {
+      return true;
+    }
+
     return false;
+  }
+
+  @JsonIgnore
+  public static Optional<String> countDefinedUserFilter(TaskDashboardWidget widget) throws ParseException {
+    int numberOfFilters = 0;
+    List<ColumnModel> filterableColumns = widget.getFilterableColumns();
+    if (CollectionUtils.isEmpty(filterableColumns)) {
+      return Optional.empty();
+    }
+    for (ColumnModel col : filterableColumns) {
+      if (StringUtils.isNotEmpty(col.getUserFilter())
+          ||StringUtils.isNotEmpty(col.getUserFilterFrom())
+          ||StringUtils.isNotEmpty(col.getUserFilterTo())
+          ||col.getUserDateFilterFrom() != null
+          ||col.getUserDateFilterTo() != null
+          ||CollectionUtils.isNotEmpty(col.getUserFilterList())) {
+        numberOfFilters++;
+        if (numberOfFilters > MAX_NOTI_FILTERS) {
+          break;
+        }
+      }
+    }
+    if (CollectionUtils.isNotEmpty(widget.getDataModel().getCriteria().getUserFilterCategories())
+        && numberOfFilters < MAX_NOTI_FILTERS) {
+      numberOfFilters++;
+    }
+    
+    if (numberOfFilters > MAX_NOTI_FILTERS) {
+      return Optional.of(String.format(MAX_NOTI_PATTERN, MAX_NOTI_FILTERS));
+    }
+    if (numberOfFilters == 0) {
+      return Optional.empty();
+    }
+    
+    return Optional.of(String.valueOf(numberOfFilters));
+  }
+
+  @Override
+  @JsonIgnore
+  public void resetUserFilters() {
+    super.resetUserFilters();
+    this.setInConfiguration(false);
+    for (ColumnModel column : this.getColumns()) {
+      column.setUserFilter(StringUtils.EMPTY);
+      column.setUserFilterList(new ArrayList<>());
+      column.setUserFilterFrom(StringUtils.EMPTY);
+      column.setUserFilterTo(StringUtils.EMPTY);
+    }
   }
 }
