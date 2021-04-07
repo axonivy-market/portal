@@ -1,0 +1,4 @@
+GlobalGrowlIFrame8Data #class
+ch.ivyteam.ivy.project.portal.examples.GlobalGrowlIFrame8 #namespace
+field String #field
+field PERSISTENT #fieldModifier
