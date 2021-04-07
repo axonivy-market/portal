@@ -40,7 +40,8 @@ How to configure widgets in task details
          {
          "id": "default-task-detail",
          "filters": {
-            "taskCategories" : ["support"]
+            "taskCategories" : ["support"],
+            "taskStates" : ["DONE", "SUSPENDED"]
          },
          "widgets": 
          [
@@ -124,7 +125,7 @@ How to configure widgets in task details
    -  ``x``, ``y``, ``w`` and ``h`` must be **integers**.
    -  ``x + w`` must **not be larger** than **12**.
    -  For data of custom widget, if you input ``processStart``, don't input ``url``. You can only use one of them.
-   -  We support all task states for filter type ``taskState``.
+   -  We support all task states for filter type ``taskState``. Please refer to `Task States <https://developer.axonivy.com/doc/9.2/public-api/ch/ivyteam/ivy/workflow/TaskState.html>`_ to check for avaiable task states.
 
 
 .. _customization-task-item-details-how-to-overide-ui:
