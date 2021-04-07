@@ -90,7 +90,7 @@ How to configure widgets in task details
 
    ``widgets``: definition of widgets in layout.
 
-   ``filters``: conditions to determine which tasks able to use the layout.
+   ``filters``: conditions to determine which tasks able to use the layout. There are 2 types of filter ``taskCategory`` (task category) and ``taskState`` (task state).
 
 -  Structure of each widget inside task details layout in variable **Portal.TaskDetails**:
 
@@ -108,15 +108,15 @@ How to configure widgets in task details
 
    ``style`` (optional): add inline style to HTML DOM
 
-   ``data`` (for custom widget): data for custom widget using iframe.
+   ``data`` (for custom widget): data for custom widget using iframe
 
-   ``type`` (for data of custom widget): type of custom widget which is not using Iframe. There are two type ``taskItemDetailCustomPanelTop`` and ``taskItemDetailCustomPanelBottom``.
+   ``type`` (for data of custom widget): type of custom widget which is not using Iframe. There are two type ``taskItemDetailCustomPanelTop`` and ``taskItemDetailCustomPanelBottom``
 
-   ``url`` (for data of custom widget): URL for external website.
+   ``url`` (for data of custom widget): URL for external website
 
-   ``processStart`` (for data of custom widget): relative link to the ivy process which will be displayed in custom widget.
+   ``processStart`` (for data of custom widget): relative link to the ivy process which will be displayed in custom widget
 
-   ``param`` (for data of custom widget): paramters for ivy process above.
+   ``param`` (for data of custom widget): paramters for ivy process above
 
 .. important::
    -  **Do not change** ``type`` of widgets.
@@ -124,6 +124,7 @@ How to configure widgets in task details
    -  ``x``, ``y``, ``w`` and ``h`` must be **integers**.
    -  ``x + w`` must **not be larger** than **12**.
    -  For data of custom widget, if you input ``processStart``, don't input ``url``. You can only use one of them.
+   -  We support all task states for filter type ``taskState``.
 
 
 .. _customization-task-item-details-how-to-overide-ui:

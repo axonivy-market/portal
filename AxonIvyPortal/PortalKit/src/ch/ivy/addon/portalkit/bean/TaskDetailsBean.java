@@ -143,7 +143,6 @@ public class TaskDetailsBean implements Serializable {
   }
 
   public void reset() throws IOException {
-    removeConfigurationUserProperty();
     configuration = loadAllConfigurations().stream().filter(config -> config.getId().contentEquals(configuration.getId())).findFirst().orElse(null);
     if (configuration == null) {
       configuration = loadDefaultConfiguration();
@@ -164,9 +163,6 @@ public class TaskDetailsBean implements Serializable {
         widget.setType(TaskDetailsWidgetType.CUSTOM);
       }
     }
-  }
-  private void removeConfigurationUserProperty() {
-    Ivy.session().getSessionUser().removeProperty(TASK_DETAILS_CONFIGURATION_PROPERTY);
   }
 
   public void switchToEditMode() {
