@@ -45,7 +45,7 @@
         value="#{ivy.cms.co('/Dialogs/Tasks/TaskDetail/switchToEditMode')}" actionListener="#{taskDetailsBean.switchToEditMode()}"
         icon="#{visibilityBean.generateButtonIcon('si si-pencil')}" update="task-item-body task-details-actions" oncomplete="loadTaskDetailsGrid(); disableAllIFrameWhenEditLayout();" />
       <p:commandButton id="reset-details-settings-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
-        rendered="#{taskDetailsBean.configuration.changed and not taskDetailsBean.readOnlyMode}"
+        rendered="#{taskDetailsBean.configuration.changed and not taskDetailsBean.readOnlyMode}" ajax="false" type="button"
         icon="#{visibilityBean.generateButtonIcon('si si-button-refresh-arrows')}" styleClass="reset-details-settings-button"
         immediate="true" onclick="PF('reset-to-default-task-dialog').show()" />
     </h:panelGroup>
@@ -208,7 +208,7 @@
     <ui:define name="dialogFooter">
       <h:form id="reset-to-default-task-form">
         <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-          onclick="PF('reset-to-default-task-dialog').hide();" styleClass="u-mar-right-15" />
+          onclick="PF('reset-to-default-task-dialog').hide();" styleClass="u-mar-right-15" ajax="false" type="button" />
         <p:commandButton id="confirm-destruction" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
           icon="#{visibilityBean.generateButtonIcon('si si-button-refresh-arrows')}"
           actionListener="#{taskDetailsBean.reset()}" update="task-detail-template:task-details-actions task-detail-template:task-item-body"
