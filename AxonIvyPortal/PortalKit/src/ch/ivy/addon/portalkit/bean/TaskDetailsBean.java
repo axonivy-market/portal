@@ -95,7 +95,7 @@ public class TaskDetailsBean implements Serializable {
     // If no configuration matched, load default configuration
     if (!foundMatchedConfig || configuration == null) {
       
-      configuration = loadDefaultConfigurations();
+      configuration = loadDefaultConfiguration();
       widgets = configuration.getWidgets();
     }
 
@@ -137,14 +137,17 @@ public class TaskDetailsBean implements Serializable {
     return result;
   }
 
-  private TaskDetails loadDefaultConfigurations() throws IOException {
+  private TaskDetails loadDefaultConfiguration() throws IOException {
     String widgetsJsonData = IGlobalVariableContext.current().get(PORTAL_DEFAULT_TASK_DETAILS_GLOBAL_VARIABLE);
     return mapper.readValue(widgetsJsonData, TaskDetails.class);
   }
 
   public void reset() throws IOException {
     removeConfigurationUserProperty();
-    configuration = loadAllConfigurations().stream().filter(config -> config.getId().contentEquals(configuration.getId())).findFirst().orElse(new TaskDetails());
+    configuration = loadAllConfigurations().stream().filter(config -> config.getId().contentEquals(configuration.getId())).findFirst().orElse(null);
+    if (configuration == null) {
+      configuration = loadDefaultConfiguration();
+    }
     widgets = configuration.getWidgets();
     updateUrlForCustomWidget(widgets);
   }
@@ -235,6 +238,11 @@ public class TaskDetailsBean implements Serializable {
   }
 
   private void saveConfigurationsToProperty() throws JsonProcessingException {
+    // Save default layout if user updated
+    if (configurations.stream().filter(config -> config.getId().contentEquals(configuration.getId())).count() == 0) {
+      configurations.add(0, configuration);
+    }
+
     String configurationJson = mapper.writeValueAsString(configurations);
     Ivy.session().getSessionUser().setProperty(TASK_DETAILS_CONFIGURATION_PROPERTY, configurationJson);
   }
