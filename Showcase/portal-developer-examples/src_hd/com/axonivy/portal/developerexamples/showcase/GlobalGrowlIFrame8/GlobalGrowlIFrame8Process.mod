@@ -28,13 +28,15 @@ Gs0 @PushWFArc f18 '' #zField
 Gs0 @PushWFArc f19 '' #zField
 >Proto Gs0 Gs0 GlobalGrowlIFrame8Process #zField
 Gs0 f0 guid 178A0F7DDBA91996 #txt
-Gs0 f0 method start() #txt
-Gs0 f0 inParameterDecl '<> param;' #txt
+Gs0 f0 method start(Boolean) #txt
+Gs0 f0 inParameterDecl '<Boolean isCustomized> param;' #txt
+Gs0 f0 inParameterMapAction 'out.isCustomized=param.isCustomized;
+' #txt
 Gs0 f0 outParameterDecl '<> result;' #txt
 Gs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>start()</name>
+        <name>start(Boolean)</name>
     </language>
 </elementInfo>
 ' #txt
@@ -66,9 +68,10 @@ Gs0 f7 83 115 26 26 -14 15 #rect
 Gs0 f9 actionTable 'out=in;
 ' #txt
 Gs0 f9 actionCode 'import ch.ivy.addon.portalkit.publicapi.PortalGlobalGrowInIFrameAPI;
-
-PortalGlobalGrowInIFrameAPI api = new PortalGlobalGrowInIFrameAPI();
-api.displayCustomizedMessage("Task is cancelled");' #txt
+if (in.isCustomized) {
+	PortalGlobalGrowInIFrameAPI api = new PortalGlobalGrowInIFrameAPI();
+	api.displayCustomizedMessage("Task is cancelled");
+}' #txt
 Gs0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -80,9 +83,10 @@ Gs0 f9 184 170 112 44 -35 -8 #rect
 Gs0 f6 actionTable 'out=in;
 ' #txt
 Gs0 f6 actionCode 'import ch.ivy.addon.portalkit.publicapi.PortalGlobalGrowInIFrameAPI;
-
-PortalGlobalGrowInIFrameAPI api = new PortalGlobalGrowInIFrameAPI();
-api.displayCustomizedMessage("Task is finished");' #txt
+if (in.isCustomized) {
+	PortalGlobalGrowInIFrameAPI api = new PortalGlobalGrowInIFrameAPI();
+	api.displayCustomizedMessage("Task is finished");
+}' #txt
 Gs0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
