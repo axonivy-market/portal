@@ -11,7 +11,6 @@ public class TaskDetails implements Serializable {
   private static final long serialVersionUID = -8424800742022240884L;
 
   private String id;
-  private boolean isDefault;
   private List<TaskDetailsWidget> widgets;
   private TaskDetailsFilters filters;
   private boolean changed;
@@ -46,13 +45,5 @@ public class TaskDetails implements Serializable {
 
   public void setFilters(TaskDetailsFilters filters) {
     this.filters = filters;
-  }
-
-  public boolean isDefault() {
-    return isDefault;
-  }
-
-  public void setDefault(boolean isDefault) {
-    this.isDefault = isDefault;
   }
 }
