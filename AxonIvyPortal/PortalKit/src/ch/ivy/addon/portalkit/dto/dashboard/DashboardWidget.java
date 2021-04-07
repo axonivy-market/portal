@@ -60,7 +60,9 @@ public abstract class DashboardWidget implements Serializable {
   public void buildStatisticInfos() throws ParseException {}
 
   @JsonIgnore
-  public void resetUserFilters() {}
+  public void resetUserFilters() {
+    this.setUserDefinedFiltersCount(Optional.empty());
+  }
   
   @JsonIgnore
   @SuppressWarnings("unused")
