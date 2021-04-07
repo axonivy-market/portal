@@ -2,9 +2,12 @@ package ch.ivy.addon.portal.generic.bean;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -15,6 +18,7 @@ import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.event.SelectEvent;
 
+import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.MapperFeature;
@@ -109,6 +113,11 @@ public class DashboardBean implements Serializable {
           widget.setName(translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourCases"));
         }
       }
+      try {
+        widget.buildPredefinedFilterData();
+      } catch (ParseException e) {
+        Ivy.log().error(e);
+      }
     }
   }
 
@@ -143,6 +152,20 @@ public class DashboardBean implements Serializable {
     return dashboards;
   }
 
+  public void save() throws JsonParseException, JsonMappingException, IOException {
+    Map<String, String> requestParamMap = getRequestParameterMap();
+    String nodes = Optional.ofNullable(requestParamMap.get("nodes")).orElse(StringUtils.EMPTY);
+    List<DashboardWidget> widgets = Arrays.asList(mapper.readValue(nodes, DashboardWidget[].class));
+    for (DashboardWidget widget : widgets) {
+      DashboardWidget updatedWidget = selectedDashboard.getWidgets().get(selectedDashboard.getWidgets().indexOf(widget));
+      updatedWidget.setAxisX(widget.getAxisX());
+      updatedWidget.setAxisY(widget.getAxisY());
+      updatedWidget.setWidth(widget.getWidth());
+      updatedWidget.setHeight(widget.getHeight());
+    }
+    saveOrUpdateDashboardToUserProperty(selectedDashboard);
+  }
+
   protected void saveOrUpdateDashboardToUserProperty(Dashboard dashboardWidget) throws JsonProcessingException {
     List<Dashboard> dashboardSavedList = new ArrayList<>();
     String dashboardSaved = readDashboardBySessionUser(DASHBOARD_PREFIX);
@@ -157,6 +180,10 @@ public class DashboardBean implements Serializable {
     }
 
     currentUser().setProperty(DASHBOARD_PREFIX, this.mapper.writeValueAsString(dashboardSavedList));
+  }
+
+  private Map<String, String> getRequestParameterMap() {
+    return FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
   }
 
   public void navigateToSelectedTaskDetails(SelectEvent event) {

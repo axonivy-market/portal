@@ -16,7 +16,7 @@
       <ui:include src="FieldAdd.xhtml" />
 
       <p:dataTable id="column-management-datatable" value="#{columnManagementBean.columnsBeforeSave}" var="column"
-        draggableRows="true" rowDragSelector="i.fa-arrows-v">
+        draggableRows="true" rowDragSelector="i.si-move-expand-vertical">
         <p:ajax event="rowReorder" global="false" />
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/visible')}" width="70" styleClass="u-text-align-center">
           <p:selectBooleanCheckbox id="column-visibility-checkbox" value="#{column.visible}">
@@ -29,8 +29,8 @@
           <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/displayName')}">
           #{column.headerText}
         </p:column>
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reorder')}" width="70" styleClass="u-text-align-center">
-          <i class="fa fa-arrows-v" />
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reorder')}" width="70" styleClass="u-text-align-center column-management-datatable__reorder">
+          <i class="si si-move-expand-vertical" />
         </p:column>
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/remove')}" width="70" styleClass="u-text-align-center">
           <p:commandLink id="remove-link" actionListener="#{columnManagementBean.remove(column)}" global="false" process="@this" update="column-management-datatable">
