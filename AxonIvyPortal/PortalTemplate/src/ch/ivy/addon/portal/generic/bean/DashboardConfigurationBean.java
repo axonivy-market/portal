@@ -130,7 +130,7 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
 
   public void saveWidget() throws JsonProcessingException, ParseException {
     List<DashboardWidget> widgets = this.selectedDashboard.getWidgets();
-    this.widget.resetUserFilters();
+    resetUserFilter();
     this.widget.buildPredefinedFilterData();
     if (widgets.contains(this.widget)) {
       widgets.set(widgets.indexOf(this.widget), this.widget);
@@ -146,6 +146,16 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
         saveOrUpdateDashboardToUserProperty(dashboard);
       }
     }
+  }
+
+  private void resetUserFilter() {
+    if (this.widget.getType() == DashboardWidgetType.TASK) {
+      ((TaskDashboardWidget) this.widget).setInConfiguration(false);
+    }
+    if (this.widget.getType() == DashboardWidgetType.CASE) {
+      ((CaseDashboardWidget) this.widget).setInConfiguration(false);
+    }
+    this.widget.resetUserFilters();
   }
 
   public void setEditWidget(DashboardWidget widget) {
