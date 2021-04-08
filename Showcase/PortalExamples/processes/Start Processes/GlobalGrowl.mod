@@ -39,6 +39,26 @@ Gl0 @PushWFArc f16 '' #zField
 Gl0 @TkArc f37 '' #zField
 Gl0 @PushWFArc f20 '' #zField
 Gl0 @TkArc f40 '' #zField
+Gl0 @TaskSwitchSimple f8 '' #zField
+Gl0 @UserDialog f12 '' #zField
+Gl0 @UserDialog f13 '' #zField
+Gl0 @UserDialog f15 '' #zField
+Gl0 @StartRequest f17 '' #zField
+Gl0 @TaskSwitchSimple f26 '' #zField
+Gl0 @StartRequest f27 '' #zField
+Gl0 @TaskSwitchSimple f28 '' #zField
+Gl0 @TaskSwitchSimple f29 '' #zField
+Gl0 @UserDialog f30 '' #zField
+Gl0 @TkArc f31 '' #zField
+Gl0 @TkArc f32 '' #zField
+Gl0 @PushWFArc f33 '' #zField
+Gl0 @PushWFArc f41 '' #zField
+Gl0 @TkArc f42 '' #zField
+Gl0 @PushWFArc f43 '' #zField
+Gl0 @TkArc f44 '' #zField
+Gl0 @PushWFArc f45 '' #zField
+Gl0 @PushWFArc f46 '' #zField
+Gl0 @PushWFArc f47 '' #zField
 >Proto Gl0 Gl0 GlobalGrowl #zField
 Gl0 f0 outLink start.ivp #txt
 Gl0 f0 inParamDecl '<> param;' #txt
@@ -91,13 +111,15 @@ Gl0 f2 expr out #txt
 Gl0 f2 376 64 433 64 #arcP
 Gl0 f21 actionTable 'out=in1;
 ' #txt
-Gl0 f21 taskData 'TaskA.NAM=frame8
+Gl0 f21 taskData 'TaskA.NAM=frame8CustomizedMessageAndSkipTasklist 
 TaskA.SKIP_TASK_LIST=true' #txt
 Gl0 f21 689 113 30 30 0 16 #rect
 Gl0 f21 @|TaskSwitchSimpleIcon #fIcon
 Gl0 f22 dialogId ch.ivyteam.ivy.project.portal.examples.GlobalGrowlIFrame8 #txt
-Gl0 f22 startMethod start() #txt
-Gl0 f22 requestActionDecl '<> param;' #txt
+Gl0 f22 startMethod start(Boolean) #txt
+Gl0 f22 requestActionDecl '<Boolean isCustomized> param;' #txt
+Gl0 f22 requestMappingAction 'param.isCustomized=true;
+' #txt
 Gl0 f22 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -108,8 +130,10 @@ Gl0 f22 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Gl0 f22 768 106 128 44 -57 -8 #rect
 Gl0 f22 @|UserDialogIcon #fIcon
 Gl0 f19 dialogId ch.ivyteam.ivy.project.portal.examples.GlobalGrowlIFrame8 #txt
-Gl0 f19 startMethod start() #txt
-Gl0 f19 requestActionDecl '<> param;' #txt
+Gl0 f19 startMethod start(Boolean) #txt
+Gl0 f19 requestActionDecl '<Boolean isCustomized> param;' #txt
+Gl0 f19 requestMappingAction 'param.isCustomized=true;
+' #txt
 Gl0 f19 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -120,8 +144,10 @@ Gl0 f19 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Gl0 f19 512 106 128 44 -57 -8 #rect
 Gl0 f19 @|UserDialogIcon #fIcon
 Gl0 f34 dialogId ch.ivyteam.ivy.project.portal.examples.GlobalGrowlIFrame8 #txt
-Gl0 f34 startMethod start() #txt
-Gl0 f34 requestActionDecl '<> param;' #txt
+Gl0 f34 startMethod start(Boolean) #txt
+Gl0 f34 requestActionDecl '<Boolean isCustomized> param;' #txt
+Gl0 f34 requestMappingAction 'param.isCustomized=true;
+' #txt
 Gl0 f34 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -133,27 +159,28 @@ Gl0 f34 256 170 128 44 -57 -8 #rect
 Gl0 f34 @|UserDialogIcon #fIcon
 Gl0 f7 actionTable 'out=in1;
 ' #txt
-Gl0 f7 taskData 'TaskA.NAM=frame8
+Gl0 f7 taskData 'TaskA.NAM=frame8CustomizedMessageAndSkipTasklist 
 TaskA.SKIP_TASK_LIST=false' #txt
 Gl0 f7 177 113 30 30 0 16 #rect
 Gl0 f7 @|TaskSwitchSimpleIcon #fIcon
 Gl0 f35 actionTable 'out=in1;
 ' #txt
-Gl0 f35 taskData 'TaskA.NAM=frame8
+Gl0 f35 taskData 'TaskA.NAM=frame8CustomizedMessage
 TaskA.SKIP_TASK_LIST=false' #txt
 Gl0 f35 177 177 30 30 0 16 #rect
 Gl0 f35 @|TaskSwitchSimpleIcon #fIcon
-Gl0 f36 outLink frame8.ivp #txt
+Gl0 f36 outLink frame8CustomizedMessage.ivp #txt
 Gl0 f36 inParamDecl '<> param;' #txt
 Gl0 f36 requestEnabled true #txt
 Gl0 f36 triggerEnabled false #txt
-Gl0 f36 callSignature frame8() #txt
-Gl0 f36 startName 'Display growl message for task using IFrame' #txt
+Gl0 f36 callSignature frame8CustomizedMessage() #txt
+Gl0 f36 startName 'Display growl customized message for task using IFrame' #txt
+Gl0 f36 taskData TaskTriggered.NAM=frame8CustomizedMessage #txt
 Gl0 f36 caseData businessCase.attach=true #txt
 Gl0 f36 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>frame8.ivp</name>
+        <name>frame8CustomizedMessage.ivp</name>
     </language>
 </elementInfo>
 ' #txt
@@ -161,8 +188,10 @@ Gl0 f36 @C|.responsibility Everybody #txt
 Gl0 f36 81 177 30 30 -21 17 #rect
 Gl0 f36 @|StartRequestIcon #fIcon
 Gl0 f9 dialogId ch.ivyteam.ivy.project.portal.examples.GlobalGrowlIFrame8 #txt
-Gl0 f9 startMethod start() #txt
-Gl0 f9 requestActionDecl '<> param;' #txt
+Gl0 f9 startMethod start(Boolean) #txt
+Gl0 f9 requestActionDecl '<Boolean isCustomized> param;' #txt
+Gl0 f9 requestMappingAction 'param.isCustomized=true;
+' #txt
 Gl0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -172,44 +201,174 @@ Gl0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Gl0 f9 256 106 128 44 -57 -8 #rect
 Gl0 f9 @|UserDialogIcon #fIcon
-Gl0 f10 outLink fram8skiptasklist.ivp #txt
+Gl0 f10 outLink frame8CustomizedMessageAndSkipTasklist.ivp #txt
 Gl0 f10 inParamDecl '<> param;' #txt
 Gl0 f10 requestEnabled true #txt
 Gl0 f10 triggerEnabled false #txt
-Gl0 f10 callSignature fram8skiptasklist() #txt
-Gl0 f10 startName 'Display growl message for task using IFrame and enable Skip Tasklist' #txt
+Gl0 f10 callSignature frame8CustomizedMessageAndSkipTasklist() #txt
+Gl0 f10 startName 'Display growl customized message for task using IFrame and enable Skip Tasklist' #txt
+Gl0 f10 taskData 'TaskTriggered.NAM=frame8CustomizedMessageAndSkipTasklist ' #txt
 Gl0 f10 caseData businessCase.attach=true #txt
 Gl0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>fram8skiptasklist.ivp</name>
+        <name>frame8CustomizedMessageAndSkipTasklist.ivp</name>
     </language>
 </elementInfo>
 ' #txt
 Gl0 f10 @C|.responsibility Everybody #txt
 Gl0 f10 81 113 30 30 -21 17 #rect
 Gl0 f10 @|StartRequestIcon #fIcon
-Gl0 f11 953 145 30 30 0 15 #rect
+Gl0 f11 977 209 30 30 0 15 #rect
 Gl0 f11 @|EndIcon #fIcon
 Gl0 f18 actionTable 'out=in1;
 ' #txt
-Gl0 f18 taskData 'TaskA.NAM=frame8
+Gl0 f18 taskData 'TaskA.NAM=frame8CustomizedMessageAndSkipTasklist 
 TaskA.SKIP_TASK_LIST=true' #txt
 Gl0 f18 433 113 30 30 0 16 #rect
 Gl0 f18 @|TaskSwitchSimpleIcon #fIcon
 Gl0 f38 207 192 256 192 #arcP
-Gl0 f39 384 192 954 165 #arcP
-Gl0 f39 1 888 192 #addKink
+Gl0 f39 384 192 977 219 #arcP
+Gl0 f39 1 896 192 #addKink
 Gl0 f39 0 0.7086103002064744 0 0 #arcLabel
 Gl0 f14 640 128 689 128 #arcP
 Gl0 f23 719 128 768 128 #arcP
-Gl0 f25 896 128 953 156 #arcP
+Gl0 f25 896 128 981 213 #arcP
 Gl0 f24 384 128 433 128 #arcP
 Gl0 f24 0 0.5000000000000001 0 0 #arcLabel
 Gl0 f16 207 128 256 128 #arcP
 Gl0 f37 111 192 177 192 #arcP
 Gl0 f20 463 128 512 128 #arcP
 Gl0 f40 111 128 177 128 #arcP
+Gl0 f8 actionTable 'out=in1;
+' #txt
+Gl0 f8 taskData 'TaskA.NAM=frame8StandardMessageAndSkipTasklist
+TaskA.SKIP_TASK_LIST=true' #txt
+Gl0 f8 433 241 30 30 0 16 #rect
+Gl0 f8 @|TaskSwitchSimpleIcon #fIcon
+Gl0 f12 dialogId ch.ivyteam.ivy.project.portal.examples.GlobalGrowlIFrame8 #txt
+Gl0 f12 startMethod start(Boolean) #txt
+Gl0 f12 requestActionDecl '<Boolean isCustomized> param;' #txt
+Gl0 f12 requestMappingAction 'param.isCustomized=false;
+' #txt
+Gl0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>GlobalGrowlIFrame8</name>
+    </language>
+</elementInfo>
+' #txt
+Gl0 f12 512 234 128 44 -57 -8 #rect
+Gl0 f12 @|UserDialogIcon #fIcon
+Gl0 f13 dialogId ch.ivyteam.ivy.project.portal.examples.GlobalGrowlIFrame8 #txt
+Gl0 f13 startMethod start(Boolean) #txt
+Gl0 f13 requestActionDecl '<Boolean isCustomized> param;' #txt
+Gl0 f13 requestMappingAction 'param.isCustomized=false;
+' #txt
+Gl0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>GlobalGrowlIFrame8</name>
+    </language>
+</elementInfo>
+' #txt
+Gl0 f13 768 234 128 44 -57 -8 #rect
+Gl0 f13 @|UserDialogIcon #fIcon
+Gl0 f15 dialogId ch.ivyteam.ivy.project.portal.examples.GlobalGrowlIFrame8 #txt
+Gl0 f15 startMethod start(Boolean) #txt
+Gl0 f15 requestActionDecl '<Boolean isCustomized> param;' #txt
+Gl0 f15 requestMappingAction 'param.isCustomized=false;
+' #txt
+Gl0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>GlobalGrowlIFrame8</name>
+    </language>
+</elementInfo>
+' #txt
+Gl0 f15 256 298 128 44 -57 -8 #rect
+Gl0 f15 @|UserDialogIcon #fIcon
+Gl0 f17 outLink frame8StandardMessage.ivp #txt
+Gl0 f17 inParamDecl '<> param;' #txt
+Gl0 f17 requestEnabled true #txt
+Gl0 f17 triggerEnabled false #txt
+Gl0 f17 callSignature frame8StandardMessage() #txt
+Gl0 f17 startName 'Display growl standard message for task using IFrame' #txt
+Gl0 f17 taskData TaskTriggered.NAM=frame8StandardMessage #txt
+Gl0 f17 caseData businessCase.attach=true #txt
+Gl0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>frame8StandardMessage.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Gl0 f17 @C|.responsibility Everybody #txt
+Gl0 f17 81 305 30 30 -21 17 #rect
+Gl0 f17 @|StartRequestIcon #fIcon
+Gl0 f26 actionTable 'out=in1;
+' #txt
+Gl0 f26 taskData 'TaskA.NAM=frame8StandardMessageAndSkipTasklist
+TaskA.SKIP_TASK_LIST=false' #txt
+Gl0 f26 177 241 30 30 0 16 #rect
+Gl0 f26 @|TaskSwitchSimpleIcon #fIcon
+Gl0 f27 outLink frame8StandardMessageAndSkipTasklist.ivp #txt
+Gl0 f27 inParamDecl '<> param;' #txt
+Gl0 f27 requestEnabled true #txt
+Gl0 f27 triggerEnabled false #txt
+Gl0 f27 callSignature frame8StandardMessageAndSkipTasklist() #txt
+Gl0 f27 startName 'Display growl standard message for task using IFrame and enable Skip Tasklist' #txt
+Gl0 f27 taskData TaskTriggered.NAM=frame8StandardMessageAndSkipTasklist #txt
+Gl0 f27 caseData businessCase.attach=true #txt
+Gl0 f27 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>frame8StandardMessageAndSkipTasklist.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Gl0 f27 @C|.responsibility Everybody #txt
+Gl0 f27 81 241 30 30 -21 17 #rect
+Gl0 f27 @|StartRequestIcon #fIcon
+Gl0 f28 actionTable 'out=in1;
+' #txt
+Gl0 f28 taskData 'TaskA.NAM=frame8StandardMessageAndSkipTasklist
+TaskA.SKIP_TASK_LIST=true' #txt
+Gl0 f28 689 241 30 30 0 16 #rect
+Gl0 f28 @|TaskSwitchSimpleIcon #fIcon
+Gl0 f29 actionTable 'out=in1;
+' #txt
+Gl0 f29 taskData 'TaskA.NAM=frame8StandardMessage
+TaskA.SKIP_TASK_LIST=false' #txt
+Gl0 f29 177 305 30 30 0 16 #rect
+Gl0 f29 @|TaskSwitchSimpleIcon #fIcon
+Gl0 f30 dialogId ch.ivyteam.ivy.project.portal.examples.GlobalGrowlIFrame8 #txt
+Gl0 f30 startMethod start(Boolean) #txt
+Gl0 f30 requestActionDecl '<Boolean isCustomized> param;' #txt
+Gl0 f30 requestMappingAction 'param.isCustomized=false;
+' #txt
+Gl0 f30 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>GlobalGrowlIFrame8</name>
+    </language>
+</elementInfo>
+' #txt
+Gl0 f30 256 234 128 44 -57 -8 #rect
+Gl0 f30 @|UserDialogIcon #fIcon
+Gl0 f31 384 256 433 256 #arcP
+Gl0 f31 0 0.5000000000000001 0 0 #arcLabel
+Gl0 f32 111 256 177 256 #arcP
+Gl0 f33 207 256 256 256 #arcP
+Gl0 f41 207 320 256 320 #arcP
+Gl0 f42 111 320 177 320 #arcP
+Gl0 f43 719 256 768 256 #arcP
+Gl0 f44 640 256 689 256 #arcP
+Gl0 f45 463 256 512 256 #arcP
+Gl0 f46 896 256 977 226 #arcP
+Gl0 f47 384 320 981 234 #arcP
+Gl0 f47 1 896 320 #addKink
+Gl0 f47 0 0.7595096117729628 0 0 #arcLabel
 >Proto Gl0 .type ch.ivyteam.ivy.project.portal.examples.GlobalGrowlData #txt
 >Proto Gl0 .processKind NORMAL #txt
 >Proto Gl0 0 0 32 24 18 0 #rect
@@ -240,3 +399,23 @@ Gl0 f35 out f38 tail #connect
 Gl0 f38 head f34 mainIn #connect
 Gl0 f34 mainOut f39 tail #connect
 Gl0 f39 head f11 mainIn #connect
+Gl0 f27 mainOut f32 tail #connect
+Gl0 f32 head f26 in #connect
+Gl0 f26 out f33 tail #connect
+Gl0 f33 head f30 mainIn #connect
+Gl0 f8 out f45 tail #connect
+Gl0 f45 head f12 mainIn #connect
+Gl0 f28 out f43 tail #connect
+Gl0 f43 head f13 mainIn #connect
+Gl0 f30 mainOut f31 tail #connect
+Gl0 f31 head f8 in #connect
+Gl0 f12 mainOut f44 tail #connect
+Gl0 f44 head f28 in #connect
+Gl0 f17 mainOut f42 tail #connect
+Gl0 f42 head f29 in #connect
+Gl0 f29 out f41 tail #connect
+Gl0 f41 head f15 mainIn #connect
+Gl0 f13 mainOut f46 tail #connect
+Gl0 f46 head f11 mainIn #connect
+Gl0 f15 mainOut f47 tail #connect
+Gl0 f47 head f11 mainIn #connect
