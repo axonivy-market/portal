@@ -60,7 +60,7 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
   private boolean isHideTaskName = true;
   private boolean isHideCaseInfo = true;
   private boolean isWorkingOnATask = true;
-  Map<String, Object> overridePortalGrowlMap = new HashMap<>();
+  private Map<String, Object> overridePortalGrowlMap = new HashMap<>();
 
   public void useTaskInIFrame() {
     keepOverridePortalGrowl();
