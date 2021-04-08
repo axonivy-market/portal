@@ -12,7 +12,7 @@
 <cc:implementation>
   <f:event listener="#{dashboardTaskFilterBean.preRender(cc.attrs.taskWidget)}" type="preRenderComponent" />
 
-  <ui:decorate template="/layouts/restricted/decorator/DashboardNewWidgetConfiguration.xhtml">
+  <ui:decorate template="/layouts/restricted/decorator/TableWidgetConfiguration.xhtml">
     <ui:param name="widget" value="#{cc.attrs.taskWidget}" />
     <ui:param name="componentToUpdateOnPreviewAction" value="#{cc.clientId}:task-widget-preview:dashboard-tasks" />
     <ui:param name="componentToProcessOnPreviewAction" value="user-filter" />

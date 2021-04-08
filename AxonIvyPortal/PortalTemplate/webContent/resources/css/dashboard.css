@@ -60,6 +60,7 @@
   flex: auto;
   overflow: auto;
   padding: 10px;
+  padding-bottom: 0;
 }
 
 .widget__filter-sidebar-mask,
