@@ -1094,6 +1094,10 @@ body .ui-datepicker .ui-timepicker-div dl dd {
   .case-detail-body .case-details-item .ui-datatable .history-note {
     border-right: 1px solid var(--data-table-border-color);
   }
+
+  .case-detail-body .case-details-related-task-table .related-task-name-column {
+    border-left: 1px solid var(--data-table-border-color);
+  }
 }
 
 .case-detail-body .name-column .case-name-value,
