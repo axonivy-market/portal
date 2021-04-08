@@ -47,7 +47,7 @@
         <p:ajax event="rowSelect" listener="#{caseDetailsBean.navigateToSelectedTaskDetails}" />
         <p:column
           headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/abbreviation/PRIORITY')}"
-          styleClass="priority-column" field="PRIORITY" sortBy="#{PRIORITY}"
+          styleClass="priority-column ui-sm-hidden" field="PRIORITY" sortBy="#{PRIORITY}"
           visible="#{data.dataModel.isSelectedColumn(masterDataBean.taskSortFieldPriority)}">
           <ui:include src="PriorityCell.xhtml" />
         </p:column>
