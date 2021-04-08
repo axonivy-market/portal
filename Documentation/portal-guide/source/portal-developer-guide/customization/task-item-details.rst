@@ -91,7 +91,7 @@ How to configure widgets in task details
 
    ``widgets``: definition of widgets in layout.
 
-   ``filters``: conditions to determine which tasks able to use the layout. There are 2 types of filter ``taskCategory`` (task category) and ``taskState`` (task state).
+   ``filters``: conditions to determine which tasks able to use the layout. There are 2 types of filter ``taskCategories`` (task categories) and ``taskStates`` (task states).
 
 -  Structure of each widget inside task details layout in variable **Portal.TaskDetails**:
 
@@ -125,7 +125,7 @@ How to configure widgets in task details
    -  ``x``, ``y``, ``w`` and ``h`` must be **integers**.
    -  ``x + w`` must **not be larger** than **12**.
    -  For data of custom widget, if you input ``processStart``, don't input ``url``. You can only use one of them.
-   -  We support all task states for filter type ``taskState``. Please refer to `Task States <https://developer.axonivy.com/doc/9.2/public-api/ch/ivyteam/ivy/workflow/TaskState.html>`_ to check for avaiable task states.
+   -  We support all task states for filter type ``taskStates``. Please refer to `Task States <https://developer.axonivy.com/doc/9.2/public-api/ch/ivyteam/ivy/workflow/TaskState.html>`_ to check for avaiable task states.
 
 
 .. _customization-task-item-details-how-to-overide-ui:
