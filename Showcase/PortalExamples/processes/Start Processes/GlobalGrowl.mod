@@ -174,7 +174,7 @@ Gl0 f36 inParamDecl '<> param;' #txt
 Gl0 f36 requestEnabled true #txt
 Gl0 f36 triggerEnabled false #txt
 Gl0 f36 callSignature frame8CustomizedMessage() #txt
-Gl0 f36 startName 'Display growl customized message for task using IFrame' #txt
+Gl0 f36 startName 'Display growl Customized message for task using IFrame' #txt
 Gl0 f36 taskData TaskTriggered.NAM=frame8CustomizedMessage #txt
 Gl0 f36 caseData businessCase.attach=true #txt
 Gl0 f36 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -206,7 +206,7 @@ Gl0 f10 inParamDecl '<> param;' #txt
 Gl0 f10 requestEnabled true #txt
 Gl0 f10 triggerEnabled false #txt
 Gl0 f10 callSignature frame8CustomizedMessageAndSkipTasklist() #txt
-Gl0 f10 startName 'Display growl customized message for task using IFrame and enable Skip Tasklist' #txt
+Gl0 f10 startName 'Display growl Customized message for task using IFrame and enable Skip Tasklist' #txt
 Gl0 f10 taskData 'TaskTriggered.NAM=frame8CustomizedMessageAndSkipTasklist ' #txt
 Gl0 f10 caseData businessCase.attach=true #txt
 Gl0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
