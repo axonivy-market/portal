@@ -84,7 +84,7 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
     if (task != null) {
       long taskId = task.getId();
       Boolean overridePortalGrowl = (Boolean) overridePortalGrowlMap.get(GrowlMessageUtils.OVERRIDE_PORTAL_GROWL + taskId);
-      if (overridePortalGrowl) {
+      if (overridePortalGrowl != null && overridePortalGrowl) {
         String portalGlobalGrowlMessage = String.valueOf(overridePortalGrowlMap.get(IFrameTaskTemplateBean.PORTAL_GROWL_MESSGE_PARAM + taskId));
         FacesMessage message = new FacesMessage(portalGlobalGrowlMessage, "");
         FacesContext.getCurrentInstance().addMessage(GrowlMessageUtils.PORTAL_GLOBAL_GROWL_MESSAGE, message);
