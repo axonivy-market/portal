@@ -40,7 +40,7 @@
       <div class="ui-g-8">
         <p:commandButton id="preview-button"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/preview')}"
-          styleClass="Fright preview-button" icon="si si-search"
+          styleClass="Fright preview-button u-hidden-sm-down" icon="si si-search"
           update="#{componentToUpdateOnPreviewAction}"
           process="#{componentToProcessOnPreviewAction} widget-title-group"
           oncomplete="#{onCompletePreviewAction}" />
@@ -53,7 +53,7 @@
 </h:panelGroup>
 
 <!-- Table configuration -->
-<h:panelGroup id="widget-preview" styleClass="card widget-preview" layout="block">
+<h:panelGroup id="widget-preview" styleClass="card widget-preview u-hidden-sm-down" layout="block">
   <div class="ui-g">
     <div class="ui-g-12 widget-preview__header">
       <h2>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/tableConfiguration')}</h2>
