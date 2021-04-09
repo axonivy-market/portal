@@ -83,10 +83,6 @@ public class TaskWidgetBean implements Serializable {
     return HtmlParser.sanitizeHTML(text);
   }
 
-  public String createTaskDescriptionInTaskStart(String text) {
-    return HtmlParser.extractTextFromHtml(text);
-  }
-
   public boolean isDeleteFilterEnabledFor(TaskFilterData filterData) {
     TaskFilterService filterService = new TaskFilterService();
     return filterService.isDeleteFilterEnabledFor(filterData);
