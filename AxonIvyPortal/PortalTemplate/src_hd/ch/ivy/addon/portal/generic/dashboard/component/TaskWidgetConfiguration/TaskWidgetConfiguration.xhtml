@@ -158,8 +158,8 @@
     <ui:define name="widgetPreviewContent">
       <ic:ch.ivy.addon.portal.generic.dashboard.component.ColumnManagement id="column-management-component" widget="#{widget}"
         componentToUpdate="#{cc.attrs.componentToUpdate}" />
-      <ic:ch.ivy.addon.portal.generic.dashboard.component.TaskWidget id="task-widget-preview" taskWidget="#{cc.attrs.taskWidget}"
-        renderColumnConfiguration="true" numberOfRows="5" isReadOnlyMode="#{cc.attrs.isReadOnlyMode}" isPreviewMode="true"/>
+      <ic:ch.ivy.addon.portal.generic.dashboard.component.TaskWidget id="task-widget-preview" taskWidget="#{widget}"
+        renderColumnConfiguration="true" isReadOnlyMode="#{cc.attrs.isReadOnlyMode}" isPreviewMode="true"/>
     </ui:define>
 
   </ui:decorate>

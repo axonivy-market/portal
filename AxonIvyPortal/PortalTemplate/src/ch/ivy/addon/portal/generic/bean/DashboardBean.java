@@ -172,6 +172,18 @@ public class DashboardBean implements Serializable {
     saveOrUpdateDashboardToUserProperty(selectedDashboard);
   }
 
+  public void saveSelectedWidget() throws JsonProcessingException {
+    this.dashboards.set(this.dashboards.indexOf(this.selectedDashboard), this.selectedDashboard);
+    String dashboardInUserProperty = readDashboardBySessionUser(this.dashboardPropertyPrefix);
+    if (StringUtils.isNotEmpty(dashboardInUserProperty)) {
+      saveOrUpdateDashboardToUserProperty(this.selectedDashboard);
+    } else {
+      for (Dashboard dashboard : this.dashboards) {
+        saveOrUpdateDashboardToUserProperty(dashboard);
+      }
+    }
+  }
+
   protected void saveOrUpdateDashboardToUserProperty(Dashboard dashboardWidget) throws JsonProcessingException {
     List<Dashboard> dashboardSavedList = new ArrayList<>();
     String dashboardSaved = readDashboardBySessionUser(DASHBOARD_PREFIX);

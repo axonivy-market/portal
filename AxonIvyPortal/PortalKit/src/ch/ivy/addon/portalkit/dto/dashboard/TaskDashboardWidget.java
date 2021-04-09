@@ -67,6 +67,7 @@ public class TaskDashboardWidget extends DashboardWidget {
   private Long numberOfTasksExpireThisWeek;
   @JsonIgnore
   private Long numberOfTasksExpireToday;
+  private int rowsPerPage = 10;
   
   public TaskDashboardWidget() {
     dataModel = new DashboardTaskLazyDataModel();
@@ -439,5 +440,13 @@ public class TaskDashboardWidget extends DashboardWidget {
   @Override
   public DashboardWidgetType getType() {
     return DashboardWidgetType.TASK;
+  }
+
+  public int getRowsPerPage() {
+    return rowsPerPage;
+  }
+
+  public void setRowsPerPage(int rowsPerPage) {
+    this.rowsPerPage = rowsPerPage;
   }
 }

@@ -487,7 +487,6 @@ body .dashboard__table--preview.ui-datatable tbody tr.ui-state-hover {
 }
 
 .widget-infor-type--label {
-  padding-left: 25px;
   font-weight: bold;
 }
 .column-management-datatable__reorder i {
