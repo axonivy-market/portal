@@ -497,4 +497,11 @@
   /* Portal Global Ajax Status */
   --ajax-loading-bg: hsla(0, 0%, 100%, 0.9);
   --general-config-description-color: var(--ivy-primary-color-grey-medium);
+
+  /* New Dashboard */
+  --dashboard-table-column-small-screen-name-font-weight: bold;
+  --dashboard-table-column-small-screen-description-font-weight: 400;
+  --dashboard-table-column-small-screen-description-font-style: normal;
+  --dashboard-table-column-small-screen-description-font-size: 1.4.rem;
+  --dashboard-table-column-small-screen-description-color: var(--ivy-primary-color-grey-medium);
   }

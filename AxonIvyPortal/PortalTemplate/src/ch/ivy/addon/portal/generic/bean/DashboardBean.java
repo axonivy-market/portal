@@ -29,6 +29,7 @@ import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
+import ch.ivy.addon.portalkit.support.HtmlParser;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUser;
@@ -230,6 +231,10 @@ public class DashboardBean implements Serializable {
 
   public void startTask(ITask task) throws IOException {
     FacesContext.getCurrentInstance().getExternalContext().redirect(task.getStartLinkEmbedded().getRelative());
+  }
+
+  public String createExtractedTextFromHtml(String text) {
+    return HtmlParser.extractTextFromHtml(text);
   }
 
   public int getCurrentTabIndex() {
