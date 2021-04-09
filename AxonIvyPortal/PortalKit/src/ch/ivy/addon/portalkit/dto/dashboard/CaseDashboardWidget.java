@@ -57,6 +57,7 @@ public class CaseDashboardWidget extends DashboardWidget {
   private Map<CaseState, Long> caseByStateStatistic;
   @JsonIgnore
   private Map<String, Long> caseByCategoryStatistic;
+  private int rowsPerPage = 10;
 
   public CaseDashboardWidget() {
     dataModel = new DashboardCaseLazyDataModel();
@@ -405,6 +406,14 @@ public class CaseDashboardWidget extends DashboardWidget {
   @Override
   public DashboardWidgetType getType() {
     return DashboardWidgetType.CASE;
+  }
+
+  public int getRowsPerPage() {
+    return rowsPerPage;
+  }
+
+  public void setRowsPerPage(int rowsPerPage) {
+    this.rowsPerPage = rowsPerPage;
   }
 
 }
