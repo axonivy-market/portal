@@ -10,7 +10,7 @@
     <div class="ui-g">
       <h:panelGroup rendered="#{field.field eq 'priority'}">
         <div class="ui-g-3">
-          <p:outputLabel value="#{field.headerText}" />
+          <h:outputLabel value="#{field.headerText}" />
         </div>
         <div class="ui-g-9">
           <p:selectCheckboxMenu id="priorities" value="#{field.userFilterPriorities}" multiple="true" dynamic="true" onShow="removeDuplicatedValues(this)"
@@ -23,7 +23,7 @@
 
       <h:panelGroup rendered="#{field.field eq 'state'}">
         <div class="ui-g-3">
-          <p:outputLabel value="#{field.headerText}" />
+          <h:outputLabel value="#{field.headerText}" />
         </div>
         <div class="ui-g-9">
           <p:selectCheckboxMenu id="states" value="#{field.userFilterStates}" multiple="true" filter="true" dynamic="true" onShow="removeDuplicatedValues(this)"
@@ -36,7 +36,7 @@
 
       <h:panelGroup rendered="#{field.field eq 'activator'}">
         <div class="ui-g-3">
-          <p:outputLabel value="#{field.headerText}" />
+          <h:outputLabel value="#{field.headerText}" />
         </div>
         <div class="ui-g-9">
           <p:autoComplete id="responsibles" scrollHeight="210" dropdown="true" size="35"
@@ -55,7 +55,7 @@
 
       <h:panelGroup rendered="#{field.format eq 'STRING' or field.format eq 'TEXT'}">
         <div class="ui-g-3">
-          <p:outputLabel value="#{field.headerText}" />
+          <h:outputLabel value="#{field.headerText}" />
         </div>
         <div class="ui-g-9">
           <p:inputText id="text-field-input" styleClass="task-configuration__input-text" value="#{field.userFilter}"
@@ -71,7 +71,7 @@
 
       <h:panelGroup rendered="#{field.format eq 'NUMBER'}">
         <div class="ui-g-3">
-          <p:outputLabel value="#{field.headerText} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')}" />
+          <h:outputLabel value="#{field.headerText} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')}" />
         </div>
         <div class="ui-g-9">
           <p:inputNumber id="from-number-field-input" styleClass="task-configuration__input-text" value="#{field.userFilterFrom}"
@@ -81,7 +81,7 @@
         </div>
 
         <div class="ui-g-3">
-          <p:outputLabel value="#{field.headerText} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')}" />
+          <h:outputLabel value="#{field.headerText} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')}" />
         </div>
         <div class="ui-g-9">
           <p:inputNumber id="to-number-field-input" styleClass="task-configuration__input-text" value="#{field.userFilterTo}"
@@ -93,7 +93,7 @@
 
       <h:panelGroup rendered="#{field.format eq 'TIMESTAMP'}">
         <div class="ui-g-3">
-          <p:outputLabel value="#{field.headerText} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')}" />
+          <h:outputLabel value="#{field.headerText} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')}" />
         </div>
         <div class="ui-g-9">
           <p:calendar id="from-date-field-input" showOn="button" styleClass="task-configuration__calendar"
@@ -102,7 +102,7 @@
         </div>
 
         <div class="ui-g-3">
-          <p:outputLabel value="#{field.headerText} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')}" />
+          <h:outputLabel value="#{field.headerText} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')}" />
         </div>
         <div class="ui-g-9">
           <p:calendar id="to-date-field-input" showOn="button" styleClass="task-configuration__calendar"
