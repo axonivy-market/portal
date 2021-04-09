@@ -14,7 +14,7 @@
       <h:panelGrid columns="1">
         <p:graphicImage library="images" name="#{sample.image}" width="500px" height="300px" />
         <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/select')}"
-          actionListener="#{dashboardConfigurationBean.create(sample)}" update="new-widget-configuration-dialog"
+          actionListener="#{dashboardConfigurationBean.create(sample)}" update="new-widget-configuration-dialog widget-configuration-form"
           oncomplete="PF('new-widget-configuration-dialog').show(); PF('new-widget-dialog').hide();"
           icon="si si-arrow-right" />
       </h:panelGrid>
