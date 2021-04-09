@@ -23,7 +23,7 @@
         <ui:repeat var="field" value="#{cc.attrs.caseWidget.filterableColumns}">
           <h:panelGroup rendered="#{field.field eq 'state'}">
             <div class="ui-g-3">
-              <p:outputLabel value="#{field.headerText}" />
+              <h:outputLabel value="#{field.headerText}" />
             </div>
             <div class="ui-g-9 ui-fluid">
               <p:selectCheckboxMenu id="states" value="#{field.states}" multiple="true" filter="true" filterMatchMode="contains"
@@ -36,7 +36,7 @@
   
           <h:panelGroup rendered="#{field.field eq 'creator'}">
             <div class="ui-g-3">
-              <p:outputLabel value="#{field.headerText}" />
+              <h:outputLabel value="#{field.headerText}" />
             </div>
             <div class="ui-g-9 ui-fluid">
               <p:autoComplete id="creators" scrollHeight="210" dropdown="true" size="35" completeMethod="#{dashboardCaseFilterBean.completeCreators}"
@@ -54,7 +54,7 @@
   
           <h:panelGroup rendered="#{field.field eq 'owner'}">
             <div class="ui-g-3">
-              <p:outputLabel value="#{field.headerText}" />
+              <h:outputLabel value="#{field.headerText}" />
             </div>
             <div class="ui-g-9 ui-fluid">
               <p:autoComplete id="owners" scrollHeight="210" dropdown="true" size="35" completeMethod="#{dashboardCaseFilterBean.completeOwners}"
@@ -72,7 +72,7 @@
   
           <h:panelGroup rendered="#{field.format eq 'STRING' or field.format eq 'TEXT'}">
             <div class="ui-g-3">
-              <p:outputLabel value="#{field.headerText}" />
+              <h:outputLabel value="#{field.headerText}" />
             </div>
             <div class="ui-g-9 ui-fluid">
               <p:inputText id="text-field-input" styleClass="case-configuration__input-text" value="#{field.filter}"
@@ -88,7 +88,7 @@
   
           <h:panelGroup rendered="#{field.format eq 'NUMBER'}">
             <div class="ui-g-3">
-              <p:outputLabel value="#{field.headerText} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')}" />
+              <h:outputLabel value="#{field.headerText} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')}" />
             </div>
             <div class="ui-g-9 ui-fluid">
               <p:inputNumber id="from-number-field-input" styleClass="case-configuration__input-text" value="#{field.filterFrom}"
@@ -98,7 +98,7 @@
             </div>
   
             <div class="ui-g-3">
-              <p:outputLabel value="#{field.headerText} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')}" />
+              <h:outputLabel value="#{field.headerText} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')}" />
             </div>
             <div class="ui-g-9 ui-fluid">
               <p:inputNumber id="to-number-field-input" styleClass="case-configuration__input-text" value="#{field.filterTo}"
@@ -110,7 +110,7 @@
   
           <h:panelGroup rendered="#{field.format eq 'TIMESTAMP'}">
             <div class="ui-g-3">
-              <p:outputLabel value="#{field.headerText} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')}" />
+              <h:outputLabel value="#{field.headerText} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')}" />
             </div>
             <div class="ui-g-9 ui-fluid">
               <p:calendar id="from-date-field-input" showOn="button" styleClass="case-configuration__calendar" value="#{field.dateFilterFrom}"
@@ -118,7 +118,7 @@
             </div>
   
             <div class="ui-g-3">
-              <p:outputLabel value="#{field.headerText} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')}" />
+              <h:outputLabel value="#{field.headerText} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')}" />
             </div>
             <div class="ui-g-9 ui-fluid">
               <p:calendar id="to-date-field-input" showOn="button" styleClass="case-configuration__calendar" value="#{field.dateFilterTo}"
@@ -128,7 +128,7 @@
         </ui:repeat>
       </h:panelGroup>
       <div class="ui-g-3">
-        <p:outputLabel for="category" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/category')}" />
+        <h:outputLabel for="category" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/category')}" />
       </div>
       <div class="ui-g-9 ui-fluid">
         <h:panelGroup id="category-container" styleClass="case-configuration__category">
