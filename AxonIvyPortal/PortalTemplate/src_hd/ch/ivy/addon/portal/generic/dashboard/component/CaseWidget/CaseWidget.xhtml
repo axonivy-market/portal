@@ -44,7 +44,7 @@
         <p:ajax event="page" oncomplete="saveWidgetState()" />
         <p:ajax event="rowSelect" listener="#{dashboardBean.navigateToSelectedCaseDetails}" disabled="#{!isReadOnlyMode}" />
 
-        <p:columns var="column" value="#{caseWidget.columns}" headerText="#{column.headerText}" styleClass="#{column.styleClass}"
+        <p:columns var="column" value="#{caseWidget.columns}" headerText="#{column.headerText}" styleClass="#{column.styleClass} u-hidden-sm-down"
           visible="#{column.visible}" field="#{column.field}" sortBy="#{column.field}" sortable="#{column.sortable}"
           style="#{column.format eq 'TIMESTAMP' or column.format eq 'NUMBER' ? 'text-align: center;' : ''} #{column.style}">
 
@@ -77,6 +77,10 @@
             </h:outputText>
           </h:panelGroup>
         </p:columns>
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/NAME')}" styleClass="u-hidden-md-up dashboard-cases__column-small-screen" width="100%">
+          <h:outputText value="#{caseItem.name}" title="#{caseItem.name}" styleClass="dashboard-cases__column-small-screen-name"/>
+          <h:outputText value="#{dashboardBean.createExtractedTextFromHtml(caseItem.description)}" styleClass="dashboard-cases__column-small-screen-description"/>
+        </p:column>
       </p:dataTable>
     </h:panelGroup>
   </div>
