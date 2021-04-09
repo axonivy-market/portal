@@ -42,6 +42,7 @@
 .dashboard__widget {
   display: flex;
   flex-direction: column;
+  box-shadow: var(--card-box-shadow);
 }
 
 .widget__header {
@@ -60,7 +61,6 @@
   flex: auto;
   overflow: auto;
   padding: 10px;
-  padding-bottom: 0;
 }
 
 .widget__filter-sidebar-mask,
@@ -215,8 +215,25 @@ td.dashboard-cases__name span {
   margin-right: 20px;
 }
 
+@media screen and (max-width: 40em) {
+  .task-configuration.card,
+  .case-configuration.card,
+  .widget-configuration.card {
+    margin-right: 0;
+  }
+}
+
 .case-configuration.card {
   padding: 15px 20px 15px;
+}
+
+.task-configuration.card,
+.case-configuration.card,
+.widget-configuration.card,
+.task-preview.card,
+.case-preview.card,
+.widget-preview.card {
+  box-shadow: var(--card-box-shadow);
 }
 
 .task-configuration__chbox-work-on {
@@ -236,7 +253,6 @@ td.dashboard-cases__name span {
 body .ui-selectcheckboxmenu.task-configuration__selectcheckboxmenu {
   float: right;
   background-image: none;
-  width: 90%;
 }
 
 body .ui-selectcheckboxmenu.task-configuration__selectcheckboxmenu .ui-selectcheckboxmenu-trigger .ui-icon {
@@ -262,6 +278,17 @@ body .ui-calendar.task-configuration__calendar .ui-datepicker-trigger {
   right: -92%;
 }
 
+@media screen and (max-width: 40em) {
+  body .ui-calendar.task-configuration__calendar .ui-datepicker-trigger {
+    right: -89%;
+  }
+
+  .filter-container .task-configuration__calendar .ui-inputfield.hasDatepicker,
+  .filter-container .case-configuration__calendar .ui-inputfield.hasDatepicker {
+    width: 100% !important;
+  }
+}
+
 .task-configuration__calendar .ui-datepicker-trigger.ui-button-icon-only .ui-button-text {
   line-height: normal;
 }
@@ -279,6 +306,14 @@ body .ui-calendar.task-configuration__calendar .ui-datepicker-trigger {
   padding: 20px 15px;
 }
 
+@media screen and (max-width: 40em) {
+  .task-preview,
+  .case-preview,
+  .widget-preview {
+    width: 100%;
+  }
+}
+
 .task-preview__header {
   margin: 0;
 }
@@ -293,7 +328,6 @@ body .ui-calendar.task-configuration__calendar .ui-datepicker-trigger {
 }
 
 .task-configuration__responsibles.ui-autocomplete {
-  width: 90%;
   float: right;
 }
 
@@ -337,6 +371,13 @@ body .ui-calendar.task-configuration__calendar .ui-datepicker-trigger {
   padding: 0;
 }
 
+@media screen and (max-width: 40em) {
+  .filter-overlay-panel.ui-widget-content .ui-overlaypanel-content,
+  .ui-widget-content.info-overlay-panel .ui-overlaypanel-content {
+    width: 70vw;
+  }
+}
+
 .statistic-filter-accordion-panel.widget-info-panel,
 .filter-overlay-panel.ui-widget-content .ui-overlaypanel-content .filter-overlay-panel__content {
   max-height: 60vh;
@@ -357,6 +398,12 @@ body .ui-calendar.task-configuration__calendar .ui-datepicker-trigger {
   border-top: solid 1px var(--widget-advanced-filter-overlay-panel-footer);
 }
 
+@media screen and (max-width: 40em) {
+  .filter-overlay-panel__footer {
+    padding: .5em 0;
+  }
+}
+
 .restore-button,
 .ui-overlaypanel-footer__cancel {
   display: inline-block;
@@ -365,6 +412,12 @@ body .ui-calendar.task-configuration__calendar .ui-datepicker-trigger {
 
 .widget-info-panel {
   width: 450px;
+}
+
+@media screen and (max-width: 40em) {
+  .widget-info-panel {
+    width: auto;
+  }
 }
 
 .widget-info-panel.statistic-filter-accordion-panel .ui-accordion-content {
@@ -487,6 +540,7 @@ body .dashboard__table--preview.ui-datatable tbody tr.ui-state-hover {
 }
 
 .widget-infor-type--label {
+  padding-left: 25px;
   font-weight: bold;
 }
 .column-management-datatable__reorder i {
@@ -502,4 +556,28 @@ body .dashboard__table--preview.ui-datatable tbody tr.ui-state-hover {
 
 .widget-preview__header--description {
   margin-bottom: auto;
+}
+
+.dashboard-tasks__column-small-screen,
+.dashboard-cases__column-small-screen {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dashboard-tasks__column-small-screen-name,
+.dashboard-cases__column-small-screen-name {
+  font-weight: var(--dashboard-table-column-small-screen-name-font-weight);
+}
+
+.dashboard-tasks__column-small-screen-description,
+.dashboard-cases__column-small-screen-description {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-weight: var(--dashboard-table-column-small-screen-description-font-weight);
+  font-style: var(--dashboard-table-column-small-screen-description-font-style);
+  font-size: var(--dashboard-table-column-small-screen-description-font-size);
+  color: var(--dashboard-table-column-small-screen-description-color);
 }
