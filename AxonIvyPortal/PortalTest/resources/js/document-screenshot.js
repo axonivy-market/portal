@@ -423,13 +423,13 @@ function highlightCaseDetailComponents() {
 }
 
 function highlightTaskDetailComponent() {
-  var information = $('#task-details-information-panel');
+  var information = $("[id $= 'task-detail-general-container']").parent();
   appendStepAnnotation(information, 1, 0, information.width()/2);
 
-  var document = $('#task-details-document-panel');
+  var document = $("[id $= 'task-detail-document-container']").parent();
   appendStepAnnotation(document, 2, 0, document.width()/2);
 
-  var histories = $('#task-details-history-panel');
+  var histories = $("[id $= 'task-detail-note-container']").parent();
   appendStepAnnotation(histories, 3, 0, histories.width()/2);
 }
 
