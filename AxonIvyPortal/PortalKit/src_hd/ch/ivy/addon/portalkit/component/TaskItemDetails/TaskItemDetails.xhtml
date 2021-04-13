@@ -69,7 +69,7 @@
       </c:if>
 
       <ui:repeat var="widget" value="#{taskDetailsBean.widgets}" id="widgets">
-        <div id="task-details-#{widget.id}-panel" class="#{widget.layout.styleClass} grid-stack-item" style="#{widget.layout.style}"
+        <div id="task-details-#{widget.type}-panel" class="#{widget.layout.styleClass} grid-stack-item" style="#{widget.layout.style}"
           widget-type="#{widget.class.simpleName}" data-gs-x="#{widget.layout.axisX}" data-gs-y="#{widget.layout.axisY}" data-gs-width="#{widget.layout.width}"
           data-gs-height="#{widget.layout.height}" data-gs-id="#{widget.id}" data-gs-no-resize="#{taskDetailsBean.readOnlyMode}"
           data-gs-no-move="#{taskDetailsBean.readOnlyMode}">
