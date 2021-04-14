@@ -69,7 +69,7 @@ to configure the scroll bar of the list.
       another process with the option "Attach to Business Case that
       triggered this process" selected, the current case of the process
       will become a technical case and will not be loaded into the process
-      history list. In this case You need to call the
+      history list. In this case you need to call the
       SetBusinessEntityId
       subprocess after the first Trigger or signal sending step.
 
@@ -127,14 +127,14 @@ Introduction
 
 Process Chain component of Portal provides features for users to know
 status of all steps in a process: the step's working, these steps are
-done, these steps is not done. These features are:
+done, these steps are not done. These features are:
 
 #. Support to display all working steps or display only helpful steps as
    begin, last, current, previous current, next current steps.
 
-#. Support to change the sharp of process chain: circle or line.
+#. Support to change the shape of process chain: circle or line.
 
-#. Support to change direction of process chain: horizontal or vertical.
+#. Support to change the direction of process chain: horizontal or vertical.
 
 |process-chain|
 

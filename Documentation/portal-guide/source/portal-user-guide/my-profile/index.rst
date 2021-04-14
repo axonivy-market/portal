@@ -102,7 +102,7 @@ Portal:
    language of the application. E.g.
    if your application only supports
    English, but you select Spanish  
-   as the portal language, your     
+   as the Portal language, your     
    application specific dialogs will
    still be shown in English.    
 
@@ -117,12 +117,12 @@ Engine.
    If configured by your company’s application, you might also be able to configure application specific email notifications.   
 ..
 
-Toggle button :guilabel:`Receive email notification on task assignment`  allows you to 
+Toggle button :guilabel:`Receive email notification on task assignment` allows you to 
 specify if you want to receive an instant notification when a task is assigned to you or one of the roles you hold.
 
-Toggle button :guilabel:`Receive further emails from application`  allows you to activate / deactivate further email notifications.
+Toggle button :guilabel:`Receive further emails from application` allows you to activate / deactivate further email notifications.
 
-Toggle button :guilabel:`Receive daily summary at`  allows you to specify the weekdays 
+Toggle button :guilabel:`Receive daily summary at` allows you to specify the weekdays 
 when you receive a summary of all tasks assigned to you or one of your roles.
 
 Date format configuration
