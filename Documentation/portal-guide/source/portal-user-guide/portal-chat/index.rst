@@ -27,7 +27,7 @@ HowTo: Create a process chat related to a case
 
    |create-new-process-chat|
 
-#. If the login user belongs to pre-defined roles, you would see :guilabel:`Add users to chat`  dialog. You could choose members of process chat.
+#. If the login user belongs to pre-defined roles, you would see :guilabel:`Add users to chat` dialog. You could choose members of process chat.
    Members could be users or roles. With each selection, click :guilabel:`Add`. After adding members, click :guilabel:`Create process chat`.
 
    |chat-process-assignee|

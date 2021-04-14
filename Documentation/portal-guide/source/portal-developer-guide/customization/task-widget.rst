@@ -99,7 +99,7 @@ function of these columns work:
 *  Use Axon Ivy Override to override the ``InitializeTaskDataModel``
    callable and initialize data model by your customized one.
 
-*  In your customized portal tasks HTMLDialog, the customized data model
+*  In your customized Portal tasks HTMLDialog, the customized data model
    should be passed as a parameter to components (refer to
    ``PortalTasks.xhtml``).
 
@@ -134,7 +134,7 @@ Task filter
 -  Use Axon Ivy Override to override the ``InitializeTaskDataModel``
    callable and initialize data model by your customized one.
 
--  In your customized portal tasks HTMLDialog, the customized data model
+-  In your customized Portal tasks HTMLDialog, the customized data model
    and filter container should be passed as parameters to components
    (refer to ``PortalTasks.xhtml``).
 
