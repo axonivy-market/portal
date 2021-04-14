@@ -1051,6 +1051,7 @@ As0 f51 actionTable 'out=in;
 As0 f51 actionCode 'import ch.ivy.addon.portalkit.util.DeputyRoleUtils;
 
 in.substitutes = DeputyRoleUtils.getSubstitutesFromDeputyRoles(in.deputyRoles);' #txt
+As0 f51 security system #txt
 As0 f51 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
