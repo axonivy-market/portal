@@ -3071,6 +3071,70 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 .absence-management .show-absence-in-the-past-panel span.ui-chkbox-label {
   margin-right: 0;
 }
+
+/* SELECT DEPUTY DIALOG */
+.deputy-selection-panel {
+  width: 100%;
+}
+
+.deputy-selection-panel, .deputy-selection-panel tbody tr td {
+  border: none !important;
+}
+
+.deputy-selection-panel .select-deputy .ui-autocomplete {
+  width: 100%;
+}
+
+.deputy-selection-panel .select-deputy .ui-autocomplete-input {
+  width: 100%;
+}
+
+.deputy-selection-panel .add-deputy-button {
+  float: right;
+  margin-top: 15px;
+}
+
+.deputy-selection-panel .selected-deputy-panel .deputy-selection {
+  width: 100%;
+  border: none !important;
+  margin: 0;
+}
+
+.selected-deputy-panel .ui-fieldset-content {
+  max-height: 35vh;
+  overflow-y: auto;
+}
+
+.deputy-selection-panel .delete-deputy {
+  font-size: 1.4rem;
+  padding-right: 5px;
+}
+
+.deputy-selection-panel .deputy-name-col {
+  width: 90%;
+  padding-left: 0 !important;
+}
+
+.deputy-selection-panel .deputy-type-col .fa {
+  text-align: center;
+  width: 3rem;
+  font-size: 1.8rem;
+}
+
+.deputy-selection-panel .save-deputy-button {
+  margin-top: 10px;
+}
+
+.choose-deputy-dialog {
+  min-width: 600px;
+}
+
+@media screen and (max-width: 40em) {
+  .choose-deputy-dialog {
+    min-width: 100%;
+  }
+}
+
 /**********************************END ABSENCES AND DEPUTY **********************************/
 .application-language-header {
   width: 20%;
