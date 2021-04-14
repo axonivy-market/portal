@@ -3,12 +3,8 @@ package portal.guitest.page;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
-
-import portal.guitest.common.WaitHelper;
 
 public class AbsencePage extends TemplatePage {
 
@@ -51,32 +47,27 @@ public class AbsencePage extends TemplatePage {
     return noteAuthorElements.stream().map(w -> w.getText()).collect(Collectors.toList());
   }
   
-	@SuppressWarnings("deprecation")
-  public void setDeputy(String fullName) {
-		String usernameSelector = "input[id$='substitute-username_input']";
-		waitForElementPresent(By.cssSelector(usernameSelector), true);
-		WebElement usernameInput = findElementByCssSelector(usernameSelector);
-		//We have javascript behavior to clear input when the text is No deputy,
-		//so strange behavior when clear this input => need to find it again because DOM is changed in background
-		if(StringUtils.isEmpty(usernameInput.getAttribute("value")) || "No deputy".equals(usernameInput.getAttribute("value"))) {
-		  usernameInput.click();
-		}
-		else {
-		  usernameInput.sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
-		}
-    WaitHelper.retryAction(() -> {
-      WebElement input = findElementByCssSelector(usernameSelector);
-      input.clear();
-      clickByCssSelector(usernameSelector);
-      input.sendKeys(fullName);
-    });
-
-		waitAjaxIndicatorDisappear();
-		String itemSelector = "tr[data-item-label*='" + fullName + "']";
-		waitForElementDisplayed(By.cssSelector(itemSelector), true);
-		clickByCssSelector(itemSelector);
-		waitAjaxIndicatorDisappear();
+  public void setDeputy(List<String> fullNames) {
+    String deputiesSelector = "a[id$='absences-management-form:substitute-table:0:selected-deputies-link']";
+    waitForElementPresent(By.cssSelector(deputiesSelector), true);
+    WebElement deputiesLink = findElementByCssSelector(deputiesSelector);
+    deputiesLink.click();
+    waitForElementDisplayed(By.id("choose-deputy-dialog"), true);
+    for (String fullName : fullNames) {
+      selectDeputy(fullName);
+    }
+    click(By.id("deputy-selection-form:save-deputy-button"));
+    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
 	}
+
+  private void selectDeputy(String responsible) {
+    type(By.id("deputy-selection-form:user-selection-component:user-selection_input"), responsible);
+    waitForElementDisplayed(By.id("deputy-selection-form:user-selection-component:user-selection_panel"), true);
+    click(By.xpath("//*[@id='deputy-selection-form:user-selection-component:user-selection_panel']/table/tbody/tr"));
+    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
+    click(By.id("deputy-selection-form:add-deputy-button"));
+    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
+  }
 
 	@SuppressWarnings("deprecation")
   public void setSubstitutedByAdmin(String substitutedUser) {

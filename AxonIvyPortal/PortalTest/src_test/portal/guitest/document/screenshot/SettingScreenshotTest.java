@@ -2,6 +2,7 @@ package portal.guitest.document.screenshot;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.Arrays;
 
 import org.junit.Test;
 import org.openqa.selenium.Dimension;
@@ -99,7 +100,7 @@ public class SettingScreenshotTest extends ScreenshotTest {
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(absencePage.getAddAbsenceDialog(), ScreenshotUtil.SETTINGS_FOLDER + "new-absence", new ScreenshotMargin(20));
     newAbsencePage.closeAddAbsenceDialog();
     ScreenshotUtil.captureElementScreenshot(absencePage.getAbsenceForm(), ScreenshotUtil.SETTINGS_FOLDER + "absence");
-    absencePage.setDeputy(TestAccount.DEMO_USER.getFullName());
+    absencePage.setDeputy(Arrays.asList(TestAccount.DEMO_USER.getFullName(), TestAccount.GUEST_USER.getFullName()));
     ScreenshotUtil.captureElementScreenshot(absencePage.getAbsenceForm(), ScreenshotUtil.SETTINGS_FOLDER + "set-deputy");
   }
   

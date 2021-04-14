@@ -73,9 +73,9 @@ HowTo: Set deputy
 ^^^^^^^^^^^^^^^^^
 
 #. You see a list with an entry for your personal tasks and for each
-   role you hold.
+   role you hold. For each entry, you can specify multiple deputies.
 
-#. Specify a deputy by selecting a user from the list.
+#. Specify deputies by clicking on link ends with |si-notes-quill|.
 
 #. With personal task, you can choose :guilabel:`Always`  or :guilabel:`During my absence` 
 
