@@ -62,7 +62,6 @@ As0 @PushWFArc f131 '' #zField
 As0 @PushWFArc f36 '' #zField
 As0 @PushWFArc f84 '' #zField
 As0 @PushWFArc f33 '' #zField
-As0 @PushWFArc f151 '' #zField
 As0 @PushWFArc f16 '' #zField
 As0 @PushWFArc f91 '' #zField
 As0 @PushWFArc f148 '' #zField
@@ -107,6 +106,30 @@ As0 @PushWFArc f25 '' #zField
 As0 @PushWFArc f42 '' #zField
 As0 @PushWFArc f59 '' #zField
 As0 @PushWFArc f24 '' #zField
+As0 @UdMethod f34 '' #zField
+As0 @UdProcessEnd f41 '' #zField
+As0 @GridStep f44 '' #zField
+As0 @PushWFArc f68 '' #zField
+As0 @UdProcessEnd f69 '' #zField
+As0 @UdMethod f70 '' #zField
+As0 @PushWFArc f71 '' #zField
+As0 @UdEvent f72 '' #zField
+As0 @UdMethod f73 '' #zField
+As0 @GridStep f74 '' #zField
+As0 @GridStep f75 '' #zField
+As0 @UdProcessEnd f76 '' #zField
+As0 @UdMethod f77 '' #zField
+As0 @GridStep f78 '' #zField
+As0 @PushWFArc f79 '' #zField
+As0 @PushWFArc f80 '' #zField
+As0 @PushWFArc f81 '' #zField
+As0 @PushWFArc f82 '' #zField
+As0 @PushWFArc f83 '' #zField
+As0 @PushWFArc f85 '' #zField
+As0 @PushWFArc f29 '' #zField
+As0 @GridStep f51 '' #zField
+As0 @PushWFArc f62 '' #zField
+As0 @PushWFArc f64 '' #zField
 >Proto As0 As0 AbsenceManagementProcess #zField
 Ct2 @TextInP .type .type #zField
 Ct2 @TextInP .processKind .processKind #zField
@@ -144,7 +167,6 @@ As0 S20 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 S20 616 74 176 44 -82 -8 #rect
-As0 S20 @|BIcon #fIcon
 As0 S10 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language lang="en">
@@ -153,7 +175,6 @@ As0 S10 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 S10 400 74 112 44 -41 -8 #rect
-As0 S10 @|BIcon #fIcon
 As0 f86 actionTable 'out=in;
 ' #txt
 As0 f86 actionCode 'import java.util.Arrays;
@@ -661,7 +682,7 @@ As0 f101 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f101 280 402 112 44 -45 -8 #rect
+As0 f101 472 402 112 44 -45 -8 #rect
 As0 f48 processCall 'Ivy Data Processes/SecurityService:findUsers(String,Integer,Integer,java.util.List<String>,java.util.List<String>)' #txt
 As0 f48 requestActionDecl '<String query,Integer startIndex,Integer count,java.util.List<String> fromRoles,java.util.List<String> excludedUsernames> param;' #txt
 As0 f48 requestMappingAction 'param.query=in.queryAutoComplete;
@@ -706,8 +727,6 @@ As0 f84 717 1056 808 976 #arcP
 As0 f84 1 808 1056 #addKink
 As0 f84 0 0.7315307908545355 0 0 #arcLabel
 As0 f33 717 768 864 768 #arcP
-As0 f151 expr out #txt
-As0 f151 117 424 280 424 #arcP
 As0 f16 1024 592 1088 592 #arcP
 As0 f91 expr out #txt
 As0 f91 717 960 792 960 #arcP
@@ -873,7 +892,176 @@ As0 f25 1 456 216 #addKink
 As0 f25 0 0.858310473048035 0 0 #arcLabel
 As0 f42 512 96 616 96 #arcP
 As0 f59 792 96 891 96 #arcP
-As0 f24 392 424 660 424 #arcP
+As0 f24 584 424 660 424 #arcP
+As0 f34 guid 178C51E41C8D1372 #txt
+As0 f34 method addDeputy() #txt
+As0 f34 inParameterDecl '<> param;' #txt
+As0 f34 outParameterDecl '<> result;' #txt
+As0 f34 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>addDeputy()</name>
+    </language>
+</elementInfo>
+' #txt
+As0 f34 83 1139 26 26 -40 15 #rect
+As0 f41 659 1139 26 26 0 12 #rect
+As0 f44 actionTable 'out=in;
+' #txt
+As0 f44 actionCode 'import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+import ch.ivyteam.ivy.security.ISecurityMember;
+
+ISecurityMember selectedAssignee = in.#selectedDeputy is initialized ? ivy.wf.getSecurityContext().findSecurityMember(in.selectedDeputy.getMemberName()) : null;
+if (!(#selectedAssignee is initialized) || in.selectedDeputies.contains(selectedAssignee)) {
+	FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "", ivy.cms.co("/Dialogs/agileBPM/define_WF/ErrorSelectInvalidAssignee")));
+} else {
+	in.selectedDeputies.add(selectedAssignee);
+}
+' #txt
+As0 f44 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Add deputy</name>
+    </language>
+</elementInfo>
+' #txt
+As0 f44 192 1130 112 44 -30 -8 #rect
+As0 f68 expr out #txt
+As0 f68 109 1152 192 1152 #arcP
+As0 f69 659 1235 26 26 0 12 #rect
+As0 f70 guid 178C53ACFA8D53DD #txt
+As0 f70 method removeDeputy(ch.ivyteam.ivy.security.ISecurityMember) #txt
+As0 f70 inParameterDecl '<ch.ivyteam.ivy.security.ISecurityMember assignee> param;' #txt
+As0 f70 inActionCode out.selectedDeputies.remove(param.assignee); #txt
+As0 f70 outParameterDecl '<> result;' #txt
+As0 f70 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>removeDeputy(ISecurityMember)</name>
+    </language>
+</elementInfo>
+' #txt
+As0 f70 83 1235 26 26 -86 16 #rect
+As0 f71 expr out #txt
+As0 f71 109 1248 659 1248 #arcP
+As0 f72 guid 0178C5540F2D37A3 #txt
+As0 f72 actionTable 'out=in;
+' #txt
+As0 f72 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>closeDialog</name>
+        <nameStyle>11,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+As0 f72 83 1459 26 26 -33 15 #rect
+As0 f73 guid 178C5540F2DA7BD2 #txt
+As0 f73 method updateSelectedDeputies() #txt
+As0 f73 inParameterDecl '<> param;' #txt
+As0 f73 outParameterDecl '<> result;' #txt
+As0 f73 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>updateSelectedDeputies()</name>
+    </language>
+</elementInfo>
+' #txt
+As0 f73 83 1395 26 26 -62 15 #rect
+As0 f74 actionTable 'out=in;
+' #txt
+As0 f74 actionCode 'import ch.ivy.addon.portalkit.util.DeputyRoleUtils;
+
+in.selectedDeputies = in.selectedDeputyRole.getDeputies();
+' #txt
+As0 f74 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Initialize dialog</name>
+    </language>
+</elementInfo>
+' #txt
+As0 f74 192 1290 112 44 -40 -8 #rect
+As0 f75 actionTable 'out=in;
+' #txt
+As0 f75 actionCode in.selectedDeputyRole.setDeputies(in.selectedDeputies); #txt
+As0 f75 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>update selected deputies</name>
+    </language>
+</elementInfo>
+' #txt
+As0 f75 184 1386 144 44 -69 -8 #rect
+As0 f76 659 1299 26 26 0 12 #rect
+As0 f77 guid 178C5540F2DB1373 #txt
+As0 f77 method initSelectedDeputies(ch.ivy.addon.portalkit.dto.DeputyRole) #txt
+As0 f77 inParameterDecl '<ch.ivy.addon.portalkit.dto.DeputyRole deputyRole> param;' #txt
+As0 f77 inParameterMapAction 'out.selectedDeputyRole=param.deputyRole;
+' #txt
+As0 f77 inActionCode 'int indexOfSelectedDeputyRole = out.deputyRoles.indexOf(param.deputyRole);
+out.selectedDeputyRoleId = "absences-management-form:substitute-table:" + indexOfSelectedDeputyRole + ":selected-deputies-link";
+' #txt
+As0 f77 outParameterDecl '<> result;' #txt
+As0 f77 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>initSelectedDeputies(DeputyRole)</name>
+    </language>
+</elementInfo>
+' #txt
+As0 f77 83 1299 26 26 -70 15 #rect
+As0 f78 actionTable 'out=in;
+' #txt
+As0 f78 actionCode 'import java.util.ArrayList;
+
+out.selectedDeputies = new ArrayList();
+out.selectedDeputy = null;' #txt
+As0 f78 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Reset dialog inputs</name>
+    </language>
+</elementInfo>
+' #txt
+As0 f78 384 1386 112 44 -53 -8 #rect
+As0 f79 expr out #txt
+As0 f79 109 1472 440 1430 #arcP
+As0 f79 1 440 1472 #addKink
+As0 f79 0 0.8593296567373708 0 0 #arcLabel
+As0 f80 expr out #txt
+As0 f80 328 1408 384 1408 #arcP
+As0 f80 0 0.6592264889893998 0 0 #arcLabel
+As0 f81 expr out #txt
+As0 f81 496 1408 672 1325 #arcP
+As0 f81 1 672 1408 #addKink
+As0 f81 0 0.6592264889893998 0 0 #arcLabel
+As0 f82 expr out #txt
+As0 f82 304 1312 659 1312 #arcP
+As0 f83 expr out #txt
+As0 f83 109 1312 192 1312 #arcP
+As0 f85 expr out #txt
+As0 f85 109 1408 184 1408 #arcP
+As0 f85 0 0.6592264889893998 0 0 #arcLabel
+As0 f29 304 1152 659 1152 #arcP
+As0 f51 actionTable 'out=in;
+' #txt
+As0 f51 actionCode 'import ch.ivy.addon.portalkit.util.DeputyRoleUtils;
+
+in.substitutes = DeputyRoleUtils.getSubstitutesFromDeputyRoles(in.deputyRoles);' #txt
+As0 f51 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>update substitutes</name>
+    </language>
+</elementInfo>
+' #txt
+As0 f51 280 402 112 44 -51 -8 #rect
+As0 f62 expr out #txt
+As0 f62 117 424 280 424 #arcP
+As0 f64 392 424 472 424 #arcP
 >Proto As0 .type ch.ivy.addon.portal.setting.AbsenceManagement.AbsenceManagementData #txt
 >Proto As0 .processKind HTML_DIALOG #txt
 >Proto As0 -8 -8 16 16 16 26 #rect
@@ -899,6 +1087,7 @@ Ct2 f115 requestMappingAction 'param.username=in.selectedAbsenceUser.name;
 Ct2 f115 responseActionDecl 'ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData out;
 ' #txt
 Ct2 f115 responseMappingAction 'out=in;
+out.deputyRoles=ch.ivy.addon.portalkit.util.DeputyRoleUtils.getDeputyRolesFromSubstitutes(result.substitutes);
 out.substitutes=result.substitutes;
 ' #txt
 Ct2 f115 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1065,8 +1254,6 @@ As0 f98 out f106 tail #connect
 As0 f106 head f137 mainIn #connect
 As0 f98 out f107 tail #connect
 As0 f107 head f111 mainIn #connect
-As0 f96 mainOut f151 tail #connect
-As0 f151 head f101 mainIn #connect
 As0 f39 mainOut f22 tail #connect
 As0 f22 head f9 mainIn #connect
 As0 f45 mainOut f15 tail #connect
@@ -1109,6 +1296,28 @@ As0 f59 head f117 mainIn #connect
 As0 S10 g1 f42 tail #connect
 As0 f101 mainOut f24 tail #connect
 As0 f24 head f32 mainIn #connect
+As0 f34 mainOut f68 tail #connect
+As0 f68 head f44 mainIn #connect
+As0 f70 mainOut f71 tail #connect
+As0 f71 head f69 mainIn #connect
+As0 f73 mainOut f85 tail #connect
+As0 f85 head f75 mainIn #connect
+As0 f75 mainOut f80 tail #connect
+As0 f80 head f78 mainIn #connect
+As0 f78 mainOut f81 tail #connect
+As0 f81 head f76 mainIn #connect
+As0 f77 mainOut f83 tail #connect
+As0 f83 head f74 mainIn #connect
+As0 f74 mainOut f82 tail #connect
+As0 f82 head f76 mainIn #connect
+As0 f72 mainOut f79 tail #connect
+As0 f79 head f78 mainIn #connect
+As0 f44 mainOut f29 tail #connect
+As0 f29 head f41 mainIn #connect
+As0 f96 mainOut f62 tail #connect
+As0 f62 head f51 mainIn #connect
+As0 f51 mainOut f64 tail #connect
+As0 f64 head f101 mainIn #connect
 Ct2 f115 mainOut f29 tail #connect
 Ct2 f29 head f105 mainIn #connect
 Ct2 g0 m f0 tail #connect
