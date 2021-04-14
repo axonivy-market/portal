@@ -21,7 +21,7 @@ link in the Axon Ivy Portal menu.
 |navigate-to-full-task-list-page|
 
 On the top of the **Full Task List** page you see next to the heading
-:guilabel:`Tasks`  in brackets the overall number of tasks shown to you. Below you find the filter feature.
+:guilabel:`Tasks` in brackets the overall number of tasks shown to you. Below you find the filter feature.
 The usage will be explained in the HowTo’s further down this chapter.
 Finally, you see the list of tasks.
 
@@ -87,19 +87,19 @@ HowTo: Use existing filter
    there might be no filters available. In this case, you must create a filter
    first. This is described in detail in HowTo: Create new filter.   
 
-#. Click on the :guilabel:`Save Filter`  dropdown menu. 
+#. Click on the :guilabel:`Save Filter` dropdown menu. 
 
 #. Select the filter you want to use.
 
 HowTo: Create new filter
 ------------------------
 
-#. Click on the button :guilabel:`More`  to select one of the available filters.
+#. Click on the button :guilabel:`More` to select one of the available filters.
    For a list of available filters, see  `Task filter criteria`_.
 
 #. Click on the newly added filter and configure it.
 
-#. Add more filters by clicking on the button :guilabel:`Filter`  again.
+#. Add more filters by clicking on the button :guilabel:`Filter` again.
 
 #. Drop filters by clicking on the |delete-circle-icon| icon next to
    the filter.
@@ -172,17 +172,17 @@ HowTo: Move and Resize Widgets in Task Details
 ----------------------------------------------
 #. Open the task details of a task
 
-#. Click on the :guilabel:`Edit`  button to drag, drop and resize widgets.
+#. Click on the :guilabel:`Edit` button to drag, drop and resize widgets.
 
    |how-to-switch-to-edit-mode|
 
 
-#. Click on the :guilabel:`Save`  button to save current state of page and switch to readonly mode.
+#. Click on the :guilabel:`Save` button to save current state of page and switch to readonly mode.
 
    |how-to-switch-to-view-mode|
 
 
-#. Click :guilabel:`Reset`  button to reset to default configuration.
+#. Click :guilabel:`Reset` button to reset to default configuration.
 
    |how-to-reset-to-default|
 
@@ -195,10 +195,10 @@ HowTo: Attach a document to the case
 
 #. The :guilabel:`Add document` dialog is opened
 
-#. Upload a file by using the :guilabel:`Select`  button or by simply dragging
+#. Upload a file by using the :guilabel:`Select` button or by simply dragging
    the file into the dialog
 
-#. Click the button :guilabel:`Close`  to close the dialog
+#. Click the button :guilabel:`Close` to close the dialog
 
 |how-to-upload-document|
 
@@ -221,7 +221,7 @@ HowTo: Add a note to a task
 
 #. Open the task details of a task
 
-#. Click on the |add-icon| :guilabel:`Add note`  link below the notes section
+#. Click on the |add-icon| :guilabel:`Add note` link below the notes section
 
 #. The :guilabel:`Add note` dialog is opened
 
@@ -236,7 +236,7 @@ HowTo: Export a task history
 
 #. Open the task details of a task
 
-#. Click on the |show-more-icon| :guilabel:`Show more`  link below the notes section
+#. Click on the |show-more-icon| :guilabel:`Show more` link below the notes section
 
    |how-to-show-note-details|
 
@@ -257,13 +257,13 @@ HowTo: Show Workflow Events
 
 #. Open the task details of a task
 
-#. Click on the |show-more-icon| :guilabel:`Show more`  link below the notes section
+#. Click on the |show-more-icon| :guilabel:`Show more` link below the notes section
 
    |how-to-show-note-details|
 
 #. A new page with the task history is opened
 
-#. Click :guilabel:`Workflow Events`  link on the right side of page to see Workflow Events dialog
+#. Click :guilabel:`Workflow Events` link on the right side of page to see Workflow Events dialog
 
    |how-to-show-workflow-event|
 

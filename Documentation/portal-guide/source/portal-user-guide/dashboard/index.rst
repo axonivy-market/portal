@@ -62,18 +62,18 @@ and re-add correct process by following :ref:`HowTo: Add a process as a user fav
 HowTo: Add a process as a user favorite
 ---------------------------------------
 
-#. Click on the link :guilabel:`Add new process`  which you find next to the
+#. Click on the link :guilabel:`Add new process` which you find next to the
    heading :guilabel:`User Favorites`.
 
 #. The dialog :guilabel:`Add new user process` is opened.
 
-#. For the :guilabel:`Selected process`  use the dropdown menu to select the process
+#. For the :guilabel:`Selected process` use the dropdown menu to select the process
    you want to add.
 
-#. The :guilabel:`Display name`  is default process name, to add multilingual for favorite process, use :guilabel:`Add languages`  button
+#. The :guilabel:`Display name` is default process name, to add multilingual for favorite process, use :guilabel:`Add languages` button
 
-#. You may change the :guilabel:`Icon`  for the process by using the link
-   |change-icon| :guilabel:`Change`  and selecting your preferred icon.
+#. You may change the :guilabel:`Icon` for the process by using the link
+   |change-icon| :guilabel:`Change` and selecting your preferred icon.
 
 #. Confirm your configuration with the button :guilabel:`Add`.
 
@@ -96,12 +96,12 @@ HowTo: Add a process as a user favorite
 HowTo: Delete a process as a user favorite
 ------------------------------------------
 
-#. Click on the link :guilabel:`Edit processes`  next to the heading :guilabel:`User Favorites`.
+#. Click on the link :guilabel:`Edit processes` next to the heading :guilabel:`User Favorites`.
 
-#. Click on the |trash-icon| :guilabel:`Delete`  symbol next to process / processes
+#. Click on the |trash-icon| :guilabel:`Delete` symbol next to process / processes
    you wish to remove from your user favorites.
 
-#. Confirm the removal with the link :guilabel:`Save`  next to the heading :guilabel:`User Favorites`.
+#. Confirm the removal with the link :guilabel:`Save` next to the heading :guilabel:`User Favorites`.
 
 |how-to-delete-process-favorites-1|
 
@@ -116,7 +116,7 @@ Sort by name
 ^^^^^^^^^^^^
 
 To order your processes and external links in an alphabetical order
-you can use the link :guilabel:`Sort by name`  next to the heading :guilabel:`User Favorites`.
+you can use the link :guilabel:`Sort by name` next to the heading :guilabel:`User Favorites`.
 
 |how-to-order-process-favorites-by-name|
 
@@ -124,11 +124,11 @@ Edit processes
 ^^^^^^^^^^^^^^
 
 #. To order your processes in an individual order, click on the link
-   :guilabel:`Edit processes`  next to the heading :guilabel:`User Favorites`.
+   :guilabel:`Edit processes` next to the heading :guilabel:`User Favorites`.
 
 #. To change the order of your processes, drag and drop processes.
 
-#. Confirm the reorder with the link :guilabel:`Save`  next to the heading :guilabel:`User Favorites`.
+#. Confirm the reorder with the link :guilabel:`Save` next to the heading :guilabel:`User Favorites`.
 
 |how-to-delete-process-favorites-1|
 
@@ -159,7 +159,7 @@ support you in finding the correct tasks:
 
 #. The Axon Ivy Portal searches for your keyword in the task ID, name and
    description of the tasks in your task list.
-#. On the right side of the Tasks section you can find the sort by :guilabel:`Creation Date` :guilabel:`Expiry` :guilabel:`Priority`  
+#. On the right side of the Tasks section you can find the sort by :guilabel:`Creation Date` :guilabel:`Expiry` :guilabel:`Priority` 
 
 |personal-tasks-sort-and-search-features|
 
@@ -195,13 +195,13 @@ the overall situation at a glance.
 
 Next to the heading you find a link :guilabel:`Show all charts`. This quick link
 routes you the :guilabel:`Statistics` page of the Axon Ivy Portal. Please refer
-to :ref:`full-statistic-list`  for more detailed information.
+to :ref:`full-statistic-list` for more detailed information.
 
 Within header of the chart, you find two navigation buttons
 (|pre-icon|, |next-icon|) allowing you to toggle between the available
 charts. Each chart then provides you with the following information:
 
-#. The :guilabel:`Chart Title`  helping you to understand the content of the
+#. The :guilabel:`Chart Title` helping you to understand the content of the
    chart
 
 #. The :guilabel:`Chart` itself, which gives you a graphical representation of
