@@ -40,3 +40,5 @@
    :width: 15px 
 .. |pin-icon| image:: ../includes/images/pin.png
    :width: 15px 
+.. |si-notes-quill| image:: ../includes/images/si-notes-quill.png
+   :width: 15px 
