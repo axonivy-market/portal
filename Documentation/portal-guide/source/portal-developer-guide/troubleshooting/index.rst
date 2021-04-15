@@ -47,7 +47,7 @@ adding that site to the Trusted sites zone in Internet Explorer.
 Portal install with IIS
 =======================
 
-It could be a problem when install portal with IIS with proxy, depends
+It could be a problem when install Portal with IIS with proxy, depends
 on your environment. Consider to configure if your IIS is called via
 proxy. Add ``-Dhttp.proxyHost`` to ``VM argument`` could help.
 
@@ -62,7 +62,7 @@ For example, below is the default setting:
 .. literalinclude:: files/app-designer.yaml
   :language: yaml
 
-And your portal project has different package and name, such as: ``com.example:customizedPortal``. Then you can change the configuration as below:
+And your Portal project has different package and name, such as: ``com.example:customizedPortal``. Then you can change the configuration as below:
 
 .. literalinclude:: files/app-designer-customized.yaml
   :language: yaml
