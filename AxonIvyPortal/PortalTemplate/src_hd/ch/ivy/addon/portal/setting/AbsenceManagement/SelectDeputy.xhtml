@@ -9,6 +9,7 @@
       <h:panelGroup id="select-deputy" layout="block" styleClass="select-deputy">
         <ic:ch.ivy.addon.portalkit.component.UserSelection
           id="user-selection-component"
+          completeMethod="#{logic.autoCompleteForSubstituteOnApp}"
           selectedUser="#{data.selectedDeputy}" queryDelay="500" isRenderedMessage="false" >
           <p:column>
             <h:outputText value="#{securityMemberDisplayNameFormatBean.generateFullDisplayNameForUserDTO(user)}" />

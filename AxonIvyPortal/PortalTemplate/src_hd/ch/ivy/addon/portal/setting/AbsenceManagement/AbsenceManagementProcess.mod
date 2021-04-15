@@ -336,8 +336,6 @@ As0 f17 outParameterDecl '<java.util.List<ch.ivy.addon.portalkit.dto.UserDTO> us
 As0 f17 outActionCode 'import ch.ivy.addon.portalkit.dto.UserDTO;
 import ch.ivy.addon.portalkit.util.UserUtils;
 
-result.users.add(0, null);
-
 java.util.List<UserDTO> users = UserUtils.filterOut(in.users, in.selectedAbsenceUser);
 result.users.addAll(users);' #txt
 As0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
