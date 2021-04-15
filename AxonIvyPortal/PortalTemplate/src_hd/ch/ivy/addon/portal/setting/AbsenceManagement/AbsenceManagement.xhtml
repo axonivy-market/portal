@@ -303,18 +303,6 @@
         <p:ajax event="close" listener="#{logic.closeDialog}" global="false" immediate="true" />
         <ui:include src="SelectDeputy.xhtml" />
       </p:dialog>
-
-      <script type="text/javascript">
-              $('.js-substitute-input').focusout(function() {
-                if ($(this).val() === '') {
-                  $(this).val("#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/noDeputy')}");
-                }
-              }).focusin(function() {
-                if ($(this).val() === "#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/noDeputy')}") {
-                  $(this).val("");
-                }
-              });
-      </script>
     </ui:define>
   </ui:composition>
 </h:body>
