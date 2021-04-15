@@ -582,8 +582,11 @@ body .process-widget .ui-selectbooleanbutton.ui-state-active .ui-icon {
 .grid-view-form .process-action-group {
   font-size: var(--small-font-size); }
 
+.task-detail-column-title,
 .edit-process-info-group .edit-process-detail-1st-cell {
-  color: var(--ivy-primary-color-grey-medium); }
+  opacity: 0.65;
+  font-size: var(--small-font-size); }
+
 .process-header .process-widget-header-link {
   font-size: var(--small-font-size); }
 
@@ -1400,7 +1403,7 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
 .filter-container .filter-selection-label,
 .filter-container .selected-filters-label {
   color: var(--widget-advanced-filter-label-color);
-}
+  font-size: var(--small-font-size); }
 
 .task-widget .filter-add-container:hover,
 .task-widget .filter-reset-action:hover,

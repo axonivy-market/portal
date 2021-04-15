@@ -4679,10 +4679,6 @@ _:-ms-fullscreen, :root .content-link-history {
   margin-bottom: 10px
 }
 
-.task-detail-column-title {
-  opacity: 0.65;
-}
-
 .task-detail-title {
   font-weight: bold;
   padding: 10px 0 5px 0 !important;
