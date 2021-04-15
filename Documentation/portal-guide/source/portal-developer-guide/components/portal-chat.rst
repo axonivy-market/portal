@@ -1,6 +1,6 @@
 .. _components-portal-chat:
 
-Portal chat
+Portal Chat
 ===========
 
 .. _components-portal-chat-chat-feature:
@@ -29,7 +29,7 @@ Information
 
 .. _components-portal-chat-limitation:
 
-Limitation of current Portal chat
+Limitation of current Portal Chat
 ---------------------------------
 
 Portal Chat does not support cross application chat. That means users are
