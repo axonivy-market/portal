@@ -1,11 +1,11 @@
 .. _customization-build-your-own-portal:
 
-Build your own portal
+Build your own Portal
 =====================
 
 .. _customization-build-your-own-portal-build-your-own-portal-using-portal-kit:
 
-Build your own portal using PortalKit
+Build your own Portal using PortalKit
 -------------------------------------
 
 #. Create a new project that depends on ``PortalTemplate``.
@@ -29,7 +29,7 @@ Build your own portal using PortalKit
 
      |custom-portal-home|
 
-     .. tip:: Your new homepage is the default portal homepage. You can
+     .. tip:: Your new homepage is the default Portal homepage. You can
                customize it. Reference at :ref:`Portal home <customization-portal-home>`.
 
 #. Set category for tasks

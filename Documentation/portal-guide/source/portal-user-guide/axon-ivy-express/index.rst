@@ -29,8 +29,8 @@ of the key features of Axon Ivy Express are:
    different task types, set responsibilities and due dates and define
    user dialogs for each task.
 
-You can reach the page by either using the :guilabel:`Processes`  link
-in the Axon Ivy Portal menu or the quick link :guilabel:`Show all processes`  in
+You can reach the page by either using the :guilabel:`Processes` link
+in the Axon Ivy Portal menu or the quick link :guilabel:`Show all processes` in
 your dashboard.
 
 |navigate-to-axon-ivy-express|
@@ -82,22 +82,22 @@ HowTo: Create an Express Workflow
 
 #.  You may delete unnecessary process steps using the button :guilabel:`Remove process step` 
 
-#. For each process step, select the :guilabel:`Task Type`  (see `Express Workflow task types`_).
+#. For each process step, select the :guilabel:`Task Type` (see `Express Workflow task types`_).
 
 #. For each process step, provide a speaking name under :guilabel:`Task Name` 
 
 #. For each process step, you may provide a description under :guilabel:`Task description`.
 
 #. For *One time* process type, the first process step defines the users or roles under
-   :guilabel:`Able to start`  who can start the process
+   :guilabel:`Able to start` who can start the process
 
    |express-able-to-start|
 
-#. For all other process steps define under :guilabel:`Responsible`  the user or roles who are responsible to execute the task.
+#. For all other process steps define under :guilabel:`Responsible` the user or roles who are responsible to execute the task.
 
    |express-task-responsible|
 
-#. For each process step except the first define under :guilabel:`Expiry in days`  the time before the task expires
+#. For each process step except the first define under :guilabel:`Expiry in days` the time before the task expires
 
 #. End the configuration of your process steps with the button :guilabel:`Next` 
 
@@ -138,22 +138,22 @@ HowTo: Create an Express Workflow
 
 #. Select if the input of this date is required or not
 
-#. Use the button |add-icon| :guilabel:`Create`  to create the input element
+#. Use the button |add-icon| :guilabel:`Create` to create the input element
 
 #. The created element appears in the list :guilabel:`Available form elements` 
 
 #. You may delete input elements you don’t need using the |trash-icon|
-    :guilabel:`Delete`  button
+    :guilabel:`Delete` button
 
 #. Drag and Drop the input elements into one of the areas of the dialog
    editor
 
 #. You may remove the input element from the dialog using the
-   |trash-icon| :guilabel:`Delete`  button
+   |trash-icon| :guilabel:`Delete` button
 
-#. You may preview your dialog using the |search-icon| :guilabel:`Preview`  button
+#. You may preview your dialog using the |search-icon| :guilabel:`Preview` button
 
-#. Use the button |arrow-right-icon| :guilabel:`Next`  to define the next process step
+#. Use the button |arrow-right-icon| :guilabel:`Next` to define the next process step
 
    |express-workflow-dialog-editor|
 
@@ -207,7 +207,7 @@ HowTo: Create an Express Workflow
 
 #. You may specify attachments to the email
 
-#. Use the button |arrow-right-icon| :guilabel:`Next`  to define the next process step
+#. Use the button |arrow-right-icon| :guilabel:`Next` to define the next process step
 
 Define an information email
 ---------------------------
@@ -231,9 +231,9 @@ For express case, after you had done a workflow, you can recheck the summary dat
 HowTo: Show Business summary
 """"""""""""""""""""""""""""
 
-#. Firstly, you should go to the :ref:`Case List <full-case-list>` page and open :guilabel:`Action`  link of your case.
+#. Firstly, you should go to the :ref:`Case List <full-case-list>` page and open :guilabel:`Action` link of your case.
 
-#. Find the :guilabel:`Show Business details`  link and click on it.
+#. Find the :guilabel:`Show Business details` link and click on it.
 
    |express-case|
 

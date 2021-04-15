@@ -21,7 +21,7 @@ User Settings in the Axon Ivy Portal
 ------------------------------------
 
 When you click on your username in the top right of the Axon Ivy Portal,
-a menu is shown allowing you to configure the portal to your personal
+a menu is shown allowing you to configure the Portal to your personal
 needs. These features are described in the following sections below.
 
 Admin Settings
@@ -37,7 +37,7 @@ Menu entry :ref:`my-profile` contains general setting, user language and email s
 Absences
 --------
 
-Menu entry :guilabel:`Absences`  provides you with an absence management
+Menu entry :guilabel:`Absences` provides you with an absence management
 component. Here you can enter your absence and define delegate for
 tasks assigned to you or one of the roles you hold.
 
@@ -77,7 +77,7 @@ HowTo: Set deputy
 
 #. Specify deputies by clicking on link ends with |si-notes-quill|.
 
-#. With personal task, you can choose :guilabel:`Always`  or :guilabel:`During my absence` 
+#. With personal task, you can choose :guilabel:`Always` or :guilabel:`During my absence` 
 
 #. Confirm your deputies with the button :guilabel:`Save`.
 
@@ -86,14 +86,14 @@ HowTo: Set deputy
 Change Password
 ---------------
 
-The menu entry :guilabel:`Change password`  allows you to set a new password.
+The menu entry :guilabel:`Change password` allows you to set a new password.
 
 |portal-password-change-dialog|
 
 Info
 ----
 
-The menu entry :guilabel:`Info`  provides you with detailed information about the
+The menu entry :guilabel:`Info` provides you with detailed information about the
 Axon Ivy Engine, the Axon Ivy Portal and your company's application. You
 might be asked for this information in case you issue a support request.
 
@@ -102,7 +102,7 @@ might be asked for this information in case you issue a support request.
 Logout
 ------
 
-The menu entry :guilabel:`Logout`  will terminate your session in the Axon Ivy
+The menu entry :guilabel:`Logout` will terminate your session in the Axon Ivy
 Portal. You’ll be routed back to the login page of the Axon Ivy
 Portal.
 

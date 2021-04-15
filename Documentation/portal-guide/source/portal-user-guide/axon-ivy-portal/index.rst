@@ -24,7 +24,7 @@ overview about the Axon Ivy Portal, its features and functionalities.
 .. Hint::
 	The look and feel shown in the screenshots of this document, as well as the
 	presented features are part of the default standard Axon Ivy Portal. However,
-	the Axon Ivy Portal is highly configurable, thus your company’s portal might
+	the Axon Ivy Portal is highly configurable, thus your company’s Portal might
 	have a different look and feel, and some features might be disabled by your
 	administrator.
 
@@ -39,7 +39,7 @@ credentials.
    by the single-sign-on (SSO). In this case you’ll directly be forwarded to the
    Axon Ivy Portal Dashboard. 
 
-   If ivy Security System is used, you can click on :guilabel:`Forgot my password`  to reset
+   If ivy Security System is used, you can click on :guilabel:`Forgot my password` to reset
    in case you forget it.
 
 After successful login, you’ll see the Axon Ivy Portal Homepage and your
@@ -47,8 +47,8 @@ personal dashboard. All your activities can be managed from this central entry
 point. In detail these are:
 
 #. The Axon Ivy Portal header on the top is always visible and provides
-   you with a global search, key information about the portal and options to
-   configure your personal user account. See  :ref:`portal-header`  for
+   you with a global search, key information about the Portal and options to
+   configure your personal user account. See  :ref:`portal-header` for
    details.
    
    |axon-ivy-portal-header|
