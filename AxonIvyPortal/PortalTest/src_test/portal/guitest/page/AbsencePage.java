@@ -1,10 +1,14 @@
 package portal.guitest.page;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+
+import com.jayway.awaitility.Awaitility;
+import com.jayway.awaitility.Duration;
 
 public class AbsencePage extends TemplatePage {
 
@@ -37,10 +41,11 @@ public class AbsencePage extends TemplatePage {
 		}
 	}
 
-	public String getMyDeputy() {
-		waitForElementDisplayed(By.cssSelector("input[id*='substitute-username_input']"), true);
-		return findElementByCssSelector("input[id*='substitute-username_input']").getAttribute("value");
-	}
+  public String getMyDeputy() {
+    String deputiesSelector = "a[id$='absences-management-form:substitute-table:0:selected-deputies-link']";
+    waitForElementDisplayed(By.cssSelector(deputiesSelector), true);
+    return findElementByCssSelector(deputiesSelector).getText();
+  }
   
 	public List<String> getIAMDeputyFor() {
     List<WebElement> noteAuthorElements = findListElementsByCssSelector("tbody[id*='substitution-table_data'] > tr > td");
@@ -48,17 +53,32 @@ public class AbsencePage extends TemplatePage {
   }
   
   public void setDeputy(List<String> fullNames) {
-    String deputiesSelector = "a[id$='absences-management-form:substitute-table:0:selected-deputies-link']";
-    waitForElementPresent(By.cssSelector(deputiesSelector), true);
-    WebElement deputiesLink = findElementByCssSelector(deputiesSelector);
-    deputiesLink.click();
-    waitForElementDisplayed(By.id("choose-deputy-dialog"), true);
+    try {
+      clickSelectedDeputiesLink();
+    } catch (Exception e) {
+      clickSelectedDeputiesLink();
+    }
     for (String fullName : fullNames) {
       selectDeputy(fullName);
     }
     click(By.id("deputy-selection-form:save-deputy-button"));
     waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
 	}
+
+  private void clickSelectedDeputiesLink() {
+    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
+    String deputiesSelector = "a[id$='absences-management-form:substitute-table:0:selected-deputies-link']";
+    waitForElementDisplayed(By.cssSelector(deputiesSelector), true);
+    Awaitility.await().atMost(new Duration(10, TimeUnit.SECONDS)).until(() -> {
+      try {
+        WebElement deputiesLink = findElementByCssSelector(deputiesSelector);
+        deputiesLink.click();
+      } catch (Exception e) {
+        // to avoid choose-deputy-dialog displays before deputiesLink is clicked
+      }
+      return findElementById("choose-deputy-dialog").isDisplayed();
+    });
+  }
 
   private void selectDeputy(String responsible) {
     type(By.id("deputy-selection-form:user-selection-component:user-selection_input"), responsible);
@@ -69,18 +89,17 @@ public class AbsencePage extends TemplatePage {
     waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
   }
 
-	@SuppressWarnings("deprecation")
   public void setSubstitutedByAdmin(String substitutedUser) {
 		String selectedUserInput = "input[id$=':user-absence-selection-component:user-absence_input']";
 		waitForElementDisplayed(By.cssSelector(selectedUserInput), true);
 		WebElement substituted = findElementByCssSelector(selectedUserInput);
 		substituted.clear();
 		substituted.sendKeys(substitutedUser);
-		waitAjaxIndicatorDisappear();
+		waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
 		String itemSelector = "tr[data-item-label*='" + substitutedUser + "']";
 		waitForElementDisplayed(By.cssSelector(itemSelector), true);
 		clickByCssSelector(itemSelector);
-		waitAjaxIndicatorDisappear();
+		waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
 	}
 	
 	public String getSubstitutedByAdmin(int rowIndex) {
