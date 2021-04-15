@@ -6,7 +6,7 @@ Full Process List
 The **Full Process List** page gives you an overview of all the
 processes in the application that are accessible to you. You can reach
 the page by either using the :guilabel:`Processes` link in the
-Axon Ivy Portal menu or the quick link :guilabel:`Show all processes`  in your
+Axon Ivy Portal menu or the quick link :guilabel:`Show all processes` in your
 dashboard.
 
 |navigate-to-full-process-list|
@@ -58,9 +58,9 @@ List`.
 HowTo: Edit process icon in Grid mode
 -------------------------------------
 
-#. Click on :guilabel:`Edit`  link in the process card item.
+#. Click on :guilabel:`Edit` link in the process card item.
 #. The dialog **Edit process information** is opened.
-#. Click on :guilabel:`Change`  link, besides the current icon.
+#. Click on :guilabel:`Change` link, besides the current icon.
 #. The dialog :guilabel:`Selecting icon` is opened, and choose new icon.
 #. Press on :guilabel:`Save` button, and process icon is changed
 
@@ -69,7 +69,7 @@ HowTo: Edit process icon in Grid mode
 HowTo: Add an external link
 ---------------------------
 
-#. Click on :guilabel:`Add external link`  which is in Process list header.
+#. Click on :guilabel:`Add external link` which is in Process list header.
 
 #. The dialog :guilabel:`Add external link` is opened.
 
@@ -79,7 +79,7 @@ HowTo: Add an external link
 
 #. This step is only for a user granted ``CreatePublicExternalLink`` Portal permission. 
    This user can set this link as a public link by selecting :guilabel:`All users` .
-   By default, :guilabel:`Visibility`  field is not displayed and this new external link is a private link.
+   By default, :guilabel:`Visibility` field is not displayed and this new external link is a private link.
 
 #. For the :guilabel:`Icon`, change the best icon for it.
 
