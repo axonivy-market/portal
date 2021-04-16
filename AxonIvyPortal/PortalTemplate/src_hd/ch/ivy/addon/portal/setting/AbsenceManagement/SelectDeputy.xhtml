@@ -25,7 +25,7 @@
       </h:panelGroup>
 
       <p:fieldset id="selected-deputy-fieldset" styleClass="selected-deputy-panel"
-        legend="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/ChooseAssignee/SelectedAssigneesFieldSet')}">
+        legend="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/selectedDeputies')}">
         <ui:repeat var="deputy" value="#{data.selectedDeputies}">
           <p:panelGrid id="selected-deputy-panel" styleClass="deputy-selection">
             <p:column styleClass="deputy-type-col">

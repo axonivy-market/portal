@@ -19,7 +19,6 @@ import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.security.IUser;
 
 public class DeputyRoleUtils {
-  private static final String PERSONAL_ASSIGNED_TASK = DeputyRoleType.PERSONAL_ASSIGNED_TASK.toString();
 
   private DeputyRoleUtils() {}
 
@@ -28,6 +27,7 @@ public class DeputyRoleUtils {
     if (CollectionUtils.isNotEmpty(ivySubstitutes)) {
       Map<String, DeputyRole> deputyRoleMap = new HashMap<>();
       String deputyRoleKey = "";
+      String personalAssignedTaskKey = DeputyRoleType.PERSONAL_ASSIGNED_TASK.toString();
       for (IvySubstitute ivySubstitute : ivySubstitutes) {
         IRole substitutionRole = ivySubstitute.getSubstitionRole();
         DeputyRoleType deputyRoleType = null;
@@ -35,18 +35,13 @@ public class DeputyRoleUtils {
           deputyRoleKey = String.valueOf(substitutionRole.getId());
           deputyRoleType = DeputyRoleType.TASK_FOR_ROLE;
         } else {
-          deputyRoleKey = PERSONAL_ASSIGNED_TASK;
+          deputyRoleKey = personalAssignedTaskKey;
           deputyRoleType = DeputyRoleType.PERSONAL_ASSIGNED_TASK;
         }
 
         DeputyRole deputyRole = deputyRoleMap.get(deputyRoleKey);
         if (deputyRole == null) {
-          deputyRole = new DeputyRole();
-          deputyRole.setDeputyRoleType(deputyRoleType);
-          deputyRole.setSubstitutionRole(substitutionRole);
-          deputyRole.setSubstitutionType(ivySubstitute.getSubstitutionType());
-          deputyRole.setDescription(ivySubstitute.getDescription());
-          deputyRole.setOwnerUser(ivySubstitute.getOwnerUser());
+          deputyRole = initDeputyRole(ivySubstitute, substitutionRole, deputyRoleType);
           deputyRoleMap.put(deputyRoleKey, deputyRole);
         }
 
@@ -62,37 +57,52 @@ public class DeputyRoleUtils {
     return deputyRoles;
   }
 
-  public static List<IvySubstitute> getSubstitutesFromDeputyRoles(List<DeputyRole> deputyRoles) {
+  private static DeputyRole initDeputyRole(IvySubstitute ivySubstitute, IRole substitutionRole,
+      DeputyRoleType deputyRoleType) {
+    DeputyRole deputyRole = new DeputyRole();
+    deputyRole.setDeputyRoleType(deputyRoleType);
+    deputyRole.setSubstitutionRole(substitutionRole);
+    deputyRole.setSubstitutionType(ivySubstitute.getSubstitutionType());
+    deputyRole.setDescription(ivySubstitute.getDescription());
+    deputyRole.setOwnerUser(ivySubstitute.getOwnerUser());
+    return deputyRole;
+  }
+
+  public static List<IvySubstitute> getSubstitutesFromDeputyRoles(List<DeputyRole> deputyRoles, IApplication application) {
     List<IvySubstitute> ivySubstitutes = new ArrayList<>();
     if (CollectionUtils.isNotEmpty(deputyRoles)) {
       for (DeputyRole deputyRole : deputyRoles) {
-        ivySubstitutes.addAll(getSubstitutesFromDeputyRole(deputyRole));
+        ivySubstitutes.addAll(getSubstitutesFromDeputyRole(deputyRole, application));
       }
     }
     return ivySubstitutes;
   }
 
-  public static List<IvySubstitute> getSubstitutesFromDeputyRole(DeputyRole deputyRole) {
+  public static List<IvySubstitute> getSubstitutesFromDeputyRole(DeputyRole deputyRole, IApplication application) {
     List<IvySubstitute> ivySubstitutes = new ArrayList<>();
     if (deputyRole != null && CollectionUtils.isNotEmpty(deputyRole.getDeputies())) {
-      IApplication application = Ivy.wf().getApplication();
       for (ISecurityMember securityMember : deputyRole.getDeputies()) {
         IUser substituteUser = ServiceUtilities.findUser(securityMember.getName(), application);
         if (substituteUser != null) {
-          IvySubstitute ivySubstitute = new IvySubstitute();
-          if (DeputyRoleType.TASK_FOR_ROLE.equals(deputyRole.getDeputyRoleType())) {
-            ivySubstitute.setSubstitionRole(deputyRole.getSubstitutionRole());
-            ivySubstitute.setSubstitionRoleDisplayName(deputyRole.getSubstitutionRole().getDisplayName());
-          }
-          ivySubstitute.setSubstituteUser(new UserDTO(substituteUser));
-          ivySubstitute.setDescription(deputyRole.getDescription());
-          ivySubstitute.setSubstitutionType(deputyRole.getSubstitutionType());
-          ivySubstitute.setOwnerUser(deputyRole.getOwnerUser());
+          IvySubstitute ivySubstitute = initIvySubstitute(deputyRole, substituteUser);
 
           ivySubstitutes.add(ivySubstitute);
         }
       }
     }
     return ivySubstitutes;
+  }
+
+  private static IvySubstitute initIvySubstitute(DeputyRole deputyRole, IUser substituteUser) {
+    IvySubstitute ivySubstitute = new IvySubstitute();
+    if (DeputyRoleType.TASK_FOR_ROLE.equals(deputyRole.getDeputyRoleType())) {
+      ivySubstitute.setSubstitionRole(deputyRole.getSubstitutionRole());
+      ivySubstitute.setSubstitionRoleDisplayName(deputyRole.getSubstitutionRole().getDisplayName());
+    }
+    ivySubstitute.setSubstituteUser(new UserDTO(substituteUser));
+    ivySubstitute.setDescription(deputyRole.getDescription());
+    ivySubstitute.setSubstitutionType(deputyRole.getSubstitutionType());
+    ivySubstitute.setOwnerUser(deputyRole.getOwnerUser());
+    return ivySubstitute;
   }
 }

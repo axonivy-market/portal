@@ -3,7 +3,6 @@ package ch.ivy.addon.portalkit.dto;
 import java.util.ArrayList;
 import java.util.List;
 
-import ch.ivy.addon.portalkit.util.SecurityMemberDisplayNameUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.ISecurityMember;
@@ -83,13 +82,5 @@ public class DeputyRole {
 
   public void setOwnerUser(IUser ownerUser) {
     this.ownerUser = ownerUser;
-  }
-
-  public String getDeputiesDisplayNames() {
-    List<String> responsibleNames = new ArrayList<>();
-    for (ISecurityMember securityMember : deputies) {
-      responsibleNames.add(SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(securityMember, securityMember.getName()));
-    }
-    return String.join(", ", responsibleNames);
   }
 }

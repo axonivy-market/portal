@@ -1,6 +1,7 @@
 package ch.ivy.addon.portalkit.bean;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
@@ -35,5 +36,9 @@ public class SecurityMemberDisplayNameFormatBean implements Serializable {
   public boolean isDisplayNameNotAvailable(ISecurityMember member, String securityMemberName) {
     String generatedBriefDisplayName =  generateBriefDisplayNameForSecurityMember(member, securityMemberName);
     return Ivy.cms().co(NOT_AVAILABLE_CMS).equals(generatedBriefDisplayName);
+  }
+
+  public String joinSecurityMemberNames(List<ISecurityMember> securityMembers) {
+    return SecurityMemberDisplayNameUtils.joinSecurityMemberNames(securityMembers);
   }
 }
