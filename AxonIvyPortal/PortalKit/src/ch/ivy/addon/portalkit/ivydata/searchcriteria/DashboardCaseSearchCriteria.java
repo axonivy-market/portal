@@ -39,7 +39,7 @@ public class DashboardCaseSearchCriteria {
   }
 
   public CaseQuery buildQueryWithoutOrderByClause() throws ParseException {
-    CaseQuery query = CaseQuery.create();
+    CaseQuery query = CaseQuery.businessCases();
     queryFilters(query);
     queryCategory(query);
     return query;
