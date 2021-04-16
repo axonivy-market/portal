@@ -16,6 +16,7 @@ import ch.ivy.addon.portalkit.service.AdhocHistoryService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
+import ch.ivy.addon.portalkit.util.ProcessStartUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.casemap.runtime.ICaseMapService;
@@ -23,10 +24,10 @@ import ch.ivyteam.ivy.casemap.runtime.model.ICaseMap;
 import ch.ivyteam.ivy.casemap.runtime.model.IStage;
 import ch.ivyteam.ivy.casemap.runtime.model.IStartableSideStep;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.htmldialog.IHtmlDialogContext;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.security.query.UserQuery;
 import ch.ivyteam.ivy.workflow.ICase;
+import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivyteam.ivy.workflow.ITask;
 
 public abstract class AbstractTaskTemplateBean implements Serializable {
@@ -192,12 +193,12 @@ public abstract class AbstractTaskTemplateBean implements Serializable {
   }
 
   public void generateCaseDetailInFrame(ICase currentCase) {
-    IHtmlDialogContext context = IHtmlDialogContext.current();
-    String requestPath = context.startRef("Start Processes/PortalStart/CaseDetailsInIFrame.ivp");
+    IProcessStart processStart = ProcessStartUtils.findProcessStartByUserFriendlyRequestPath("Start Processes/PortalStart/CaseDetailsInIFrame.ivp");
+    String requestPath = processStart.getLink().getRelative();
 
     String paramStr = "caseId=" +  currentCase.getId() + "&embedInFrame=true";
     setCaseDetailsLink(requestPath + "?" + paramStr);
-    }
+  }
 
   public Long getIntervalForPollingWhenOpenCaseDetails() {
     String clientSideTimeoutInMinute = new GlobalSettingService().findGlobalSettingValue(GlobalVariable.CLIENT_SIDE_TIMEOUT.toString());
