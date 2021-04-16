@@ -3004,14 +3004,6 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   .substitute-table .substition-role-display-name {
     display: block;
   }
-  .substitute-table .user-selection-autocomplete-panel {
-    display: inline-block;
-    width: 100%;
-  }
-
-  .substitute-table .user-selection-autocomplete-panel .ui-inputfield {
-    width: 100%;
-  }
 
   .absence-management .add-absence-panel button.small-add-absence {
     max-width: 75px;
@@ -3072,59 +3064,7 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   margin-right: 0;
 }
 
-/* SELECT DEPUTY DIALOG */
-.deputy-selection-panel {
-  width: 100%;
-}
-
-.deputy-selection-panel, .deputy-selection-panel tbody tr td {
-  border: none !important;
-}
-
-.deputy-selection-panel .select-deputy .ui-autocomplete {
-  width: 100%;
-}
-
-.deputy-selection-panel .select-deputy .ui-autocomplete-input {
-  width: 100%;
-}
-
-.deputy-selection-panel .add-deputy-button {
-  float: right;
-  margin-top: 15px;
-}
-
-.deputy-selection-panel .selected-deputy-panel .deputy-selection {
-  width: 100%;
-  border: none !important;
-  margin: 0;
-}
-
-.selected-deputy-panel .ui-fieldset-content {
-  max-height: 35vh;
-  overflow-y: auto;
-}
-
-.deputy-selection-panel .delete-deputy {
-  font-size: 1.4rem;
-  padding-right: 5px;
-}
-
-.deputy-selection-panel .deputy-name-col {
-  width: 90%;
-  padding-left: 0 !important;
-}
-
-.deputy-selection-panel .deputy-type-col .fa {
-  text-align: center;
-  width: 3rem;
-  font-size: 1.8rem;
-}
-
-.deputy-selection-panel .save-deputy-button {
-  margin-top: 10px;
-}
-
+/* CHOOSE DEPUTY DIALOG */
 .choose-deputy-dialog {
   min-width: 600px;
 }
@@ -3133,6 +3073,52 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   .choose-deputy-dialog {
     min-width: 100%;
   }
+}
+
+.choose-deputy-dialog .deputy-selection-panel {
+  width: 100%;
+}
+
+.choose-deputy-dialog .deputy-selection-panel,
+.choose-deputy-dialog .deputy-selection-panel tbody tr td {
+  border: none;
+}
+
+.choose-deputy-dialog .deputy-selection-panel .select-deputy .ui-autocomplete {
+  width: 100%;
+}
+
+.choose-deputy-dialog .deputy-selection-panel .select-deputy .ui-autocomplete-input {
+  width: 100%;
+}
+
+.choose-deputy-dialog .deputy-selection-panel .add-deputy-button {
+  float: right;
+  margin-top: 15px;
+}
+
+.choose-deputy-dialog .deputy-selection-panel .selected-deputy-panel .deputy-selection {
+  width: 100%;
+  border: none;
+  margin: 0;
+}
+
+.choose-deputy-dialog .deputy-selection-panel .selected-deputy-panel .ui-fieldset-content {
+  max-height: 35vh;
+  overflow-y: auto;
+}
+
+.choose-deputy-dialog .deputy-selection-panel .delete-deputy {
+  padding-right: 5px;
+}
+
+.choose-deputy-dialog .deputy-selection-panel .deputy-name-col {
+  width: 90%;
+  padding-left: 0;
+}
+
+.choose-deputy-dialog .deputy-selection-panel .save-deputy-button {
+  margin-top: 10px;
 }
 
 .ui-autocomplete-panel .ui-autocomplete-items .ui-autocomplete-moretext.ui-state-highlight,
@@ -3285,6 +3271,10 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 .deputy-for-active-period,
 .deputy-for-next-absence {
   width: inherit;
+}
+
+.substitute-table .task-responsible-link {
+  white-space: normal;
 }
 
 .substitute-table .active-period-option {

@@ -912,7 +912,7 @@ import ch.ivyteam.ivy.security.ISecurityMember;
 
 ISecurityMember selectedAssignee = in.#selectedDeputy is initialized ? ivy.wf.getSecurityContext().findSecurityMember(in.selectedDeputy.getMemberName()) : null;
 if (!(#selectedAssignee is initialized) || in.selectedDeputies.contains(selectedAssignee)) {
-	FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "", ivy.cms.co("/Dialogs/agileBPM/define_WF/ErrorSelectInvalidAssignee")));
+	FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "", ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/errorSelectInvalidDeputy")));
 } else {
 	in.selectedDeputies.add(selectedAssignee);
 }
@@ -1048,7 +1048,7 @@ As0 f51 actionTable 'out=in;
 ' #txt
 As0 f51 actionCode 'import ch.ivy.addon.portalkit.util.DeputyRoleUtils;
 
-in.substitutes = DeputyRoleUtils.getSubstitutesFromDeputyRoles(in.deputyRoles);' #txt
+in.substitutes = DeputyRoleUtils.getSubstitutesFromDeputyRoles(in.deputyRoles, ivy.wf.getApplication());' #txt
 As0 f51 security system #txt
 As0 f51 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
