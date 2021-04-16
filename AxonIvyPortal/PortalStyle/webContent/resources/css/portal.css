@@ -1456,6 +1456,9 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
 .substituted-user-text {
   color: var(--substituted-user-text-color); }
 
+.choose-deputy-dialog .deputy-selection-panel .delete-deputy {
+  font-size: var(--delete-deputy-icon-font-size); }
+
 /*Awesome Icon Selection--------------------------*/
 .ui-commandlink.select-awesome-icon-button {
   font-weight: var(--select-awesome-icon-button-font-weight);
