@@ -162,8 +162,9 @@
                       <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/deputies')}"
                         styleClass="ui-fluid">
                         <div class="absence-column-value">
+                          <c:set var="deputiesDisplayNames" value="#{securityMemberDisplayNameFormatBean.joinSecurityMemberNames(deputyRole.deputies)}" />
                           <p:commandLink id="selected-deputies-link" immediate="true" styleClass="task-responsible-link"
-                            value="#{not empty deputyRole.getDeputiesDisplayNames() ? deputyRole.getDeputiesDisplayNames() : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/noDeputy')}"
+                            value="#{not empty deputiesDisplayNames ? deputiesDisplayNames : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/noDeputy')}"
                             actionListener="#{logic.initSelectedDeputies(deputyRole)}" oncomplete="PF('choose-deputy-dialog').show();"
                             update="deputy-selection-form:deputy-selection-panel" global="false">
                             <i class="si si-notes-quill" />
@@ -298,7 +299,7 @@
       </c:if>
 
       <p:dialog id="choose-deputy-dialog" styleClass="choose-deputy-dialog"
-        header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/selectUsers')}" widgetVar="choose-deputy-dialog"
+        header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/selectDeputies')}" widgetVar="choose-deputy-dialog"
         modal="true" appendTo="@(body)" resizable="false" responsive="true">
         <p:ajax event="close" listener="#{logic.closeDialog}" global="false" immediate="true" />
         <ui:include src="SelectDeputy.xhtml" />
