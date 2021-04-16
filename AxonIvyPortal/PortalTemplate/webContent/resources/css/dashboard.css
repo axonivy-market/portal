@@ -565,12 +565,15 @@ body .dashboard__table--preview.ui-datatable tbody tr.ui-state-hover {
   top: -6px;
   left: 8px;
   z-index: 999;
-  background: var(--ivy-tertinary-color-red-medium);
-  padding: 1px 3px;
+  background: var(--widget-filter-noti-background-color);
   border-radius: 50%;
-  font-size: var(--default-font-size);
-  border: 1px solid var(--ivy-tertinary-color-red-medium);
-  color: var(--ivy-primary-color-white);
+  font-size: var(--widget-filter-noti-font-size);
+  color: var(--widget-filter-noti-color);
+  width: 15px;
+  height: 15px;
+  line-height: 15px;
+  text-align: center;
+  font-weight: var(--widget-filter-noti-font-weight);
 }
 
 .widget-infor--type {
