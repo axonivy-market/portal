@@ -4238,7 +4238,7 @@ body .ui-accordion.statistic-filter-accordion-panel.ui-accordion .ui-accordion-c
 
 /* Small screen */
 @media (max-width: 1365px) {
-  .filter-container .ui-inputfield.hasDatepicker {
+  .filter-container:not(.dashboard-configuration-filter-container) .ui-inputfield.hasDatepicker {
     width: 15.5rem !important;
   }
   .statistic-filter-container {
