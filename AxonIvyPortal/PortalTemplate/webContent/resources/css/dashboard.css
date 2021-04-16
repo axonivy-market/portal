@@ -35,6 +35,23 @@
   padding-bottom: 5px;
 }
 
+@media screen and (max-width: 767px) {
+  .dashboard__title-dropdown-container {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .dashboard__title-dropdown {
+    min-width: 100% !important;
+    margin-bottom: 15px;
+    margin-right: 5px;
+  }
+
+  .dashboard-header__action {
+    margin-left: auto;
+  }
+}
+
 .dashboard__title--active {
   border-bottom: 2px solid;
 }
@@ -215,6 +232,16 @@ td.dashboard-cases__name span {
   margin-right: 20px;
 }
 
+@media screen and (min-width: 40.063em) and (max-width: 64.062em) {
+  .task-configuration.card,
+  .case-configuration.card,
+  .widget-configuration.card {
+    width: 350px;
+    padding: 10px;
+    margin-right: 20px;
+  }
+}
+
 @media screen and (max-width: 40em) {
   .task-configuration.card,
   .case-configuration.card,
@@ -304,6 +331,17 @@ body .ui-calendar.task-configuration__calendar .ui-datepicker-trigger {
   align-items: flex-start;
   align-self: stretch;
   padding: 20px 15px;
+}
+
+@media screen and (min-width: 40.063em) and (max-width: 64.062em) {
+  .task-preview,
+  .case-preview,
+  .widget-preview {
+    width: calc(100% - 370px);
+    align-items: flex-start;
+    align-self: stretch;
+    padding: 10px;
+  }
 }
 
 @media screen and (max-width: 40em) {
@@ -558,11 +596,20 @@ body .dashboard__table--preview.ui-datatable tbody tr.ui-state-hover {
   margin-bottom: auto;
 }
 
-.dashboard-tasks__column-small-screen,
-.dashboard-cases__column-small-screen {
+.dashboard-cases__name,
+.dashboard-tasks__name {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  width: 300px;
+}
+
+@media screen and (max-width: 40em) {
+  .dashboard-cases__name,
+  .dashboard-tasks__name {
+    width: 100%;
+    border-right: 1px solid #d8d8d8 !important;
+  }
 }
 
 .dashboard-tasks__column-small-screen-name,
@@ -580,4 +627,16 @@ body .dashboard__table--preview.ui-datatable tbody tr.ui-state-hover {
   font-style: var(--dashboard-table-column-small-screen-description-font-style);
   font-size: var(--dashboard-table-column-small-screen-description-font-size);
   color: var(--dashboard-table-column-small-screen-description-color);
+}
+
+.new-widget-dialog__image {
+	width: 500px;
+	height: 300px;
+}
+
+@media screen and (min-width: 40.063em) and (max-width: 64.062em) {
+  .new-widget-dialog__image {
+	width: 300px;
+	height: 200px;
+  }
 }

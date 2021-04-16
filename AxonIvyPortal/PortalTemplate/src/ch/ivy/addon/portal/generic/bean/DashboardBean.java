@@ -45,6 +45,7 @@ public class DashboardBean implements Serializable {
   public static final String DASHBOARD_VARIABLE = "Portal.Dashboard";
   protected List<Dashboard> dashboards;
   protected Dashboard selectedDashboard;
+  private String selectedDashboardId;
   protected ObjectMapper mapper;
   protected DashboardWidget widget;
   protected boolean isReadOnlyMode;
@@ -164,20 +165,20 @@ public class DashboardBean implements Serializable {
     String nodes = Optional.ofNullable(requestParamMap.get("nodes")).orElse(StringUtils.EMPTY);
     List<DashboardWidget> widgets = Arrays.asList(mapper.readValue(nodes, DashboardWidget[].class));
     for (DashboardWidget widget : widgets) {
-      DashboardWidget updatedWidget = selectedDashboard.getWidgets().get(selectedDashboard.getWidgets().indexOf(widget));
+      DashboardWidget updatedWidget = getSelectedDashboard().getWidgets().get(getSelectedDashboard().getWidgets().indexOf(widget));
       updatedWidget.setAxisX(widget.getAxisX());
       updatedWidget.setAxisY(widget.getAxisY());
       updatedWidget.setWidth(widget.getWidth());
       updatedWidget.setHeight(widget.getHeight());
     }
-    saveOrUpdateDashboardToUserProperty(selectedDashboard);
+    saveOrUpdateDashboardToUserProperty(getSelectedDashboard());
   }
 
   public void saveSelectedWidget() throws JsonProcessingException {
-    this.dashboards.set(this.dashboards.indexOf(this.selectedDashboard), this.selectedDashboard);
+    this.dashboards.set(this.dashboards.indexOf(this.getSelectedDashboard()), this.getSelectedDashboard());
     String dashboardInUserProperty = readDashboardBySessionUser(this.dashboardPropertyPrefix);
     if (StringUtils.isNotEmpty(dashboardInUserProperty)) {
-      saveOrUpdateDashboardToUserProperty(this.selectedDashboard);
+      saveOrUpdateDashboardToUserProperty(this.getSelectedDashboard());
     } else {
       for (Dashboard dashboard : this.dashboards) {
         saveOrUpdateDashboardToUserProperty(dashboard);
@@ -229,6 +230,13 @@ public class DashboardBean implements Serializable {
     selectedDashboard = dashboards.get(index);
   }
 
+  public void  onDashboardChangeByDropdown() {
+    if (selectedDashboardId != null) {
+      currentDashboardIndex = dashboards.indexOf(dashboards.stream().filter(dashboard -> dashboard.getId().contentEquals(selectedDashboardId)).findFirst().orElse(null));
+      selectedDashboard = dashboards.get(currentDashboardIndex);
+    }
+  }
+
   public void startTask(ITask task) throws IOException {
     FacesContext.getCurrentInstance().getExternalContext().redirect(task.getStartLinkEmbedded().getRelative());
   }
@@ -238,7 +246,7 @@ public class DashboardBean implements Serializable {
   }
 
   public int getCurrentTabIndex() {
-    return dashboards.indexOf(selectedDashboard);
+    return dashboards.indexOf(getSelectedDashboard());
   }
 
   public DashboardWidget getWidget() {
@@ -283,5 +291,13 @@ public class DashboardBean implements Serializable {
 
   public void setReadOnlyMode(boolean isReadOnlyMode) {
     this.isReadOnlyMode = isReadOnlyMode;
+  }
+
+  public String getSelectedDashboardId() {
+    return selectedDashboardId;
+  }
+
+  public void setSelectedDashboardId(String selectedDashboardId) {
+    this.selectedDashboardId = selectedDashboardId;
   }
 }
