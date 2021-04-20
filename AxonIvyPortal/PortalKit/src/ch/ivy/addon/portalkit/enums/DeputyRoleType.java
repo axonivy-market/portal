@@ -3,9 +3,9 @@ package ch.ivy.addon.portalkit.enums;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public enum DeputyRoleType {
-  PERSONAL_TASK_PERMANENT_DEPUTIES("/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/personalTaskPermanentDeputies"),
-  PERSONAL_TASK_DURING_ABSENCE_DEPUTIES("/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/personalTaskDuringAbsenceDeputies"),
-  TASK_FOR_ROLE_DEPUTIES("/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/taskForRole");
+  PERSONAL_TASK_PERMANENT("/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/personalTaskPermanentDeputies"),
+  PERSONAL_TASK_DURING_ABSENCE("/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/personalTaskDuringAbsenceDeputies"),
+  TASK_FOR_ROLE("/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/taskForRole");
 
   private final String cmsURI;
 
