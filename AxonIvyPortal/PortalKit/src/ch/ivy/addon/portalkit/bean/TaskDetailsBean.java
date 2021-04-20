@@ -120,7 +120,7 @@ public class TaskDetailsBean implements Serializable {
       result.addAll(loadAllConfigurations());
     } else {
       result.addAll(parseConfigurationJson(configurationJson));
-  }
+    }
     return result;
   }
 
@@ -143,12 +143,36 @@ public class TaskDetailsBean implements Serializable {
   }
 
   public void reset() throws IOException {
-    configuration = loadAllConfigurations().stream().filter(config -> config.getId().contentEquals(configuration.getId())).findFirst().orElse(null);
+    List<TaskDetails> allConfigurations = loadAllConfigurations();
+    TaskDetails configurationFromVariable = allConfigurations.stream().filter(config -> config.getId().contentEquals(configuration.getId())).findFirst().orElse(null);
+    ITask currentTask = Attrs.currentContext().getAttribute("#{data.task}", ITask.class);
+
+    // If old configuration is deleted, find proper configuration from file
+    if (configurationFromVariable == null) {
+      configurations.remove(configurations.stream().filter(c -> c.getId().contentEquals(configuration.getId())).findFirst().get());
+      boolean foundMatchedConfig = false;
+      for (TaskDetails config: allConfigurations) {
+        // found configuration for current task by predefined filters
+        if (isFilterByTaskCategories(currentTask, config) || isFilterByTaskStates(currentTask, config) || config.getFilters() == null) {
+          configuration = config;
+          foundMatchedConfig = true;
+        }
+      }
+      if (!foundMatchedConfig || configuration == null) {
+        configuration = loadDefaultConfiguration();
+      }
+    }
+
+    // If filters of old configuration are changed, reload configuration from json file
+    else if (configurationFromVariable.getFilters() == null || (isFilterByTaskCategories(currentTask, configurationFromVariable) || isFilterByTaskStates(currentTask, configurationFromVariable))) {
+      configuration = configurationFromVariable;
+    }
+
     if (configuration == null) {
       configuration = loadDefaultConfiguration();
     }
-    widgets = configuration.getWidgets();
-    updateUrlForCustomWidget(widgets);
+    this.widgets = configuration.getWidgets();
+    updateUrlForCustomWidget(this.widgets);
   }
 
   private void updateWidgetsType(TaskDetails details) {
@@ -185,6 +209,7 @@ public class TaskDetailsBean implements Serializable {
 
     if (CollectionUtils.isNotEmpty(layouts)) {
       for (WidgetLayout layout : layouts) {
+    	Ivy.log().error("layout id: " + layout.getId());
         TaskDetailsWidget currentWidget = widgets.stream().filter(widget -> StringUtils.compare(widget.getId(), layout.getId()) == 0).findFirst().get();
         currentWidget.getLayout().setAxisX(layout.getAxisX());
         currentWidget.getLayout().setAxisY(layout.getAxisY());
