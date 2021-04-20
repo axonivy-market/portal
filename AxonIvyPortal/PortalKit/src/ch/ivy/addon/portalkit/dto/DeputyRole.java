@@ -47,7 +47,7 @@ public class DeputyRole {
   }
 
   public String getDeputyRoleDisplayName() {
-    this.deputyRoleDisplayName = DeputyRoleType.TASK_FOR_ROLE_DEPUTIES.equals(this.deputyRoleType) ? this.deputyRoleType.getLabel().concat(substitutionRole.getDisplayName()) : this.deputyRoleType.getLabel();
+    this.deputyRoleDisplayName = DeputyRoleType.TASK_FOR_ROLE.equals(this.deputyRoleType) ? this.deputyRoleType.getLabel().concat(substitutionRole.getDisplayName()) : this.deputyRoleType.getLabel();
     return deputyRoleDisplayName;
   }
 
