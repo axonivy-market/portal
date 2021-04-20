@@ -77,8 +77,6 @@ HowTo: Set deputy
 
 #. Specify deputies by clicking on link ends with |si-notes-quill|.
 
-#. With personal task, you can choose :guilabel:`Always` or :guilabel:`During my absence` 
-
 #. Confirm your deputies with the button :guilabel:`Save`.
 
 |how-to-set-absence-deputies|
