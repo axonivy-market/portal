@@ -3,7 +3,7 @@ package ch.ivy.addon.portalkit.dto;
 import java.util.ArrayList;
 import java.util.List;
 
-import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivy.addon.portalkit.enums.DeputyRoleType;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.security.IUser;
@@ -47,17 +47,7 @@ public class DeputyRole {
   }
 
   public String getDeputyRoleDisplayName() {
-    switch (this.deputyRoleType) {
-      case TASK_FOR_ROLE_DEPUTIES:
-        this.deputyRoleDisplayName = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/taskForRole").concat(substitutionRole.getDisplayName());
-        break;
-      case PERSONAL_TASK_PERMANENT_DEPUTIES:
-        this.deputyRoleDisplayName = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/personalTaskPermanentDeputies");
-        break;
-      default:
-        this.deputyRoleDisplayName = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/personalTaskDuringAbsenceDeputies");
-        break;
-    }
+    this.deputyRoleDisplayName = DeputyRoleType.TASK_FOR_ROLE_DEPUTIES.equals(this.deputyRoleType) ? this.deputyRoleType.getLabel().concat(substitutionRole.getDisplayName()) : this.deputyRoleType.getLabel();
     return deputyRoleDisplayName;
   }
 
