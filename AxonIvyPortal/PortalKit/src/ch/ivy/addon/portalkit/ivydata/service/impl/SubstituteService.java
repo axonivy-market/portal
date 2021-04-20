@@ -1,6 +1,7 @@
 package ch.ivy.addon.portalkit.ivydata.service.impl;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
@@ -18,6 +19,7 @@ import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.security.IUserSubstitute;
+import ch.ivyteam.ivy.security.SubstitutionType;
 
 public class SubstituteService implements ISubstituteService {
 
@@ -67,7 +69,7 @@ public class SubstituteService implements ISubstituteService {
     
     boolean doesPersonalSubstituteExist = substitutes.stream().anyMatch(substitute -> substitute.getSubstitionRole() == null);
     if (!doesPersonalSubstituteExist) {
-      substitutes.add(createPersonalSubstitute());
+      substitutes.addAll(createPersonalSubstitutes());
     }
     substitutes.addAll(iRoles.stream().map(this::newIvySubtitute).collect(Collectors.toList()));
     
@@ -81,8 +83,8 @@ public class SubstituteService implements ISubstituteService {
         .collect(Collectors.toList());
   }
   
-  private IvySubstitute createPersonalSubstitute() {
-    return new IvySubstitute();
+  private List<IvySubstitute> createPersonalSubstitutes() {
+    return Arrays.asList(new IvySubstitute(SubstitutionType.PERMANENT), new IvySubstitute(SubstitutionType.ON_ABSENCE));
   }
   
   private IvySubstitute newIvySubtitute(IRole role) {
