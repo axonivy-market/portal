@@ -17,6 +17,7 @@ import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.security.IUser;
+import ch.ivyteam.ivy.security.SubstitutionType;
 
 public class DeputyRoleUtils {
 
@@ -27,16 +28,20 @@ public class DeputyRoleUtils {
     if (CollectionUtils.isNotEmpty(ivySubstitutes)) {
       Map<String, DeputyRole> deputyRoleMap = new HashMap<>();
       String deputyRoleKey = "";
-      String personalAssignedTaskKey = DeputyRoleType.PERSONAL_ASSIGNED_TASK.toString();
+      String personalTaskPermanentDeputiesKey = DeputyRoleType.PERSONAL_TASK_PERMANENT_DEPUTIES.toString();
+      String personalTaskDuringAbsenceDeputiesKey = DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE_DEPUTIES.toString();
       for (IvySubstitute ivySubstitute : ivySubstitutes) {
         IRole substitutionRole = ivySubstitute.getSubstitionRole();
         DeputyRoleType deputyRoleType = null;
         if (substitutionRole != null) {
           deputyRoleKey = String.valueOf(substitutionRole.getId());
-          deputyRoleType = DeputyRoleType.TASK_FOR_ROLE;
+          deputyRoleType = DeputyRoleType.TASK_FOR_ROLE_DEPUTIES;
+        } else if(SubstitutionType.PERMANENT.equals(ivySubstitute.getSubstitutionType())) {
+          deputyRoleKey = personalTaskPermanentDeputiesKey;
+          deputyRoleType = DeputyRoleType.PERSONAL_TASK_PERMANENT_DEPUTIES;
         } else {
-          deputyRoleKey = personalAssignedTaskKey;
-          deputyRoleType = DeputyRoleType.PERSONAL_ASSIGNED_TASK;
+          deputyRoleKey = personalTaskDuringAbsenceDeputiesKey;
+          deputyRoleType = DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE_DEPUTIES;
         }
 
         DeputyRole deputyRole = deputyRoleMap.get(deputyRoleKey);
@@ -95,7 +100,7 @@ public class DeputyRoleUtils {
 
   private static IvySubstitute initIvySubstitute(DeputyRole deputyRole, IUser substituteUser) {
     IvySubstitute ivySubstitute = new IvySubstitute();
-    if (DeputyRoleType.TASK_FOR_ROLE.equals(deputyRole.getDeputyRoleType())) {
+    if (DeputyRoleType.TASK_FOR_ROLE_DEPUTIES.equals(deputyRole.getDeputyRoleType())) {
       ivySubstitute.setSubstitionRole(deputyRole.getSubstitutionRole());
       ivySubstitute.setSubstitionRoleDisplayName(deputyRole.getSubstitutionRole().getDisplayName());
     }
