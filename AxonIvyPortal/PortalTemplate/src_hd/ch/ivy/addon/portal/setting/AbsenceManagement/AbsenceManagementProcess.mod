@@ -916,10 +916,10 @@ import ch.ivyteam.ivy.security.ISecurityMember;
 ISecurityMember selectedAssignee = in.#selectedDeputy is initialized ? ivy.wf.getSecurityContext().findSecurityMember(in.selectedDeputy.getMemberName()) : null;
 if (!(#selectedAssignee is initialized) || in.selectedDeputies.contains(selectedAssignee)) {
 	FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "", ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/errorSelectInvalidDeputy")));
-} else if (DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE_DEPUTIES.equals(in.selectedDeputyRole.deputyRoleType) && DeputyRoleUtils.isSecurityMemberSelectedInDeputyRoleByType(in.deputyRoles, DeputyRoleType.PERSONAL_TASK_PERMANENT_DEPUTIES, selectedAssignee)) {
+} else if (DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE.equals(in.selectedDeputyRole.deputyRoleType) && DeputyRoleUtils.isSecurityMemberSelectedInDeputyRoleByType(in.deputyRoles, DeputyRoleType.PERSONAL_TASK_PERMANENT, selectedAssignee)) {
 	String errorMessage = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/errorSelectedInPersonalTaskPermanentDeputies", Arrays.asList(ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/personalTaskPermanentDeputies")));
 	FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "", errorMessage));
-} else if (DeputyRoleType.PERSONAL_TASK_PERMANENT_DEPUTIES.equals(in.selectedDeputyRole.deputyRoleType) && DeputyRoleUtils.isSecurityMemberSelectedInDeputyRoleByType(in.deputyRoles, DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE_DEPUTIES, selectedAssignee)) {
+} else if (DeputyRoleType.PERSONAL_TASK_PERMANENT.equals(in.selectedDeputyRole.deputyRoleType) && DeputyRoleUtils.isSecurityMemberSelectedInDeputyRoleByType(in.deputyRoles, DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE, selectedAssignee)) {
 	String errorMessage = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/errorSelectedInPersonalTaskPermanentDeputies", Arrays.asList(ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/personalTaskDuringAbsenceDeputies")));
 	FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "", errorMessage));
 } else {
