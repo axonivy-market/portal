@@ -907,7 +907,7 @@ As0 f41 659 1139 26 26 0 12 #rect
 As0 f44 actionTable 'out=in;
 ' #txt
 As0 f44 actionCode 'import java.util.Arrays;
-import ch.ivy.addon.portalkit.dto.DeputyRoleType;
+import ch.ivy.addon.portalkit.enums.DeputyRoleType;
 import ch.ivy.addon.portalkit.util.DeputyRoleUtils;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
