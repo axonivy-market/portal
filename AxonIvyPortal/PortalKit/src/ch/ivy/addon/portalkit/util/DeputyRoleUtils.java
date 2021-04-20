@@ -110,4 +110,21 @@ public class DeputyRoleUtils {
     ivySubstitute.setOwnerUser(deputyRole.getOwnerUser());
     return ivySubstitute;
   }
+
+  public static DeputyRole findDeputyRoleByType(List<DeputyRole> deputyRoles, DeputyRoleType deputyRoleType) {
+    if (CollectionUtils.isNotEmpty(deputyRoles) && deputyRoleType != null) {
+      for (DeputyRole deputyRole : deputyRoles) {
+        if (deputyRoleType.equals(deputyRole.getDeputyRoleType())) {
+          return deputyRole;
+        }
+      }
+    }
+    return null;
+  }
+
+  public static boolean isSecurityMemberSelectedInDeputyRoleByType(List<DeputyRole> deputyRoles,
+      DeputyRoleType deputyRoleType, ISecurityMember securityMember) {
+    DeputyRole deputyRole = findDeputyRoleByType(deputyRoles, deputyRoleType);
+    return deputyRole != null && deputyRole.getDeputies().contains(securityMember);
+  }
 }
