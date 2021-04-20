@@ -1,7 +1,6 @@
 package ch.ivy.addon.portalkit.ivydata.service.impl;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
@@ -67,10 +66,15 @@ public class SubstituteService implements ISubstituteService {
         .filter(role -> !existRoles.contains(role))
         .collect(Collectors.toList());
     
-    boolean doesPersonalSubstituteExist = substitutes.stream().anyMatch(substitute -> substitute.getSubstitionRole() == null);
-    if (!doesPersonalSubstituteExist) {
-      substitutes.addAll(createPersonalSubstitutes());
+    boolean isPersonalPermanentExist = substitutes.stream().anyMatch(substitute -> substitute.getSubstitionRole() == null && SubstitutionType.PERMANENT.equals(substitute.getSubstitutionType()));
+    if (!isPersonalPermanentExist) {
+      substitutes.add(new IvySubstitute(SubstitutionType.PERMANENT));
     }
+    boolean isPersonalOnAbsenceExist = substitutes.stream().anyMatch(substitute -> substitute.getSubstitionRole() == null && SubstitutionType.ON_ABSENCE.equals(substitute.getSubstitutionType()));
+    if (!isPersonalOnAbsenceExist) {
+      substitutes.add(new IvySubstitute(SubstitutionType.ON_ABSENCE));
+    }
+
     substitutes.addAll(iRoles.stream().map(this::newIvySubtitute).collect(Collectors.toList()));
     
     return substitutes;
@@ -81,10 +85,6 @@ public class SubstituteService implements ISubstituteService {
         .stream()
         .map(this::getIvySubstitute)
         .collect(Collectors.toList());
-  }
-  
-  private List<IvySubstitute> createPersonalSubstitutes() {
-    return Arrays.asList(new IvySubstitute(SubstitutionType.PERMANENT), new IvySubstitute(SubstitutionType.ON_ABSENCE));
   }
   
   private IvySubstitute newIvySubtitute(IRole role) {
