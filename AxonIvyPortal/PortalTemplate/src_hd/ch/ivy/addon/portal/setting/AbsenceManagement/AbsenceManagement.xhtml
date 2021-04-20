@@ -171,28 +171,6 @@
                           </p:commandLink>
                         </div>
                       </p:column>
-                      <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/activePeriod')}">
-                        <div class="absence-column-value">
-                          <p:selectOneRadio id="active-period" value="#{deputyRole.substitutionType}"
-                            rendered="#{deputyRole.substitutionRole == null}"
-                            layout="custom">
-                            <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/always')}"
-                              itemValue="PERMANENT" />
-                            <f:selectItem itemLabel="#{ivy.cms.co(data.isSupervisor ? '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/duringTheAbsence' : '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/duringMyAbsence')}"
-                              itemValue="ON_ABSENCE" />
-                          </p:selectOneRadio>
-                          <div class="ui-g" jsf:rendered="#{deputyRole.substitutionRole == null}">
-                            <span class="u-mar-right-20 active-period-option">
-                            <p:radioButton id="permanent-option" for="active-period" itemIndex="0" />
-                            <h:outputLabel for="permanent-option" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/always')}" />
-                            </span>
-                            <span class="active-period-option">
-                            <p:radioButton id="on-absence-option" for="active-period" itemIndex="1" />
-                            <h:outputLabel for="on-absence-option" value="#{ivy.cms.co(data.isSupervisor ? '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/duringTheAbsence' : '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/duringMyAbsence')}" />
-                            </span>
-                          </div>
-                        </div>
-                      </p:column>
                     </p:dataTable>
                   </div>
                 </div>
@@ -228,12 +206,7 @@
                     </p:column>
                     <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/applicationAndRole')}"
                       sortBy="#{substitution.substitionRoleDisplayName}">
-                      <h:outputText value="#{substitution.substitionRoleDisplayName}" styleClass="absence-column-value"/>
-                    </p:column>
-                    <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/activePeriod')}"
-                      styleClass="deputy-for-active-period">
-                      <h:outputText rendered="#{substitution.substitionRole == null}" styleClass="absence-column-value"
-                        value="#{ivy.cms.co(substitution.substitutionType eq 'PERMANENT' ? '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/always' : '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/duringTheAbsence')}"/>
+                      <h:outputText value="#{substitution.substitionRoleDisplayName}" styleClass="substition-role-display-name absence-column-value"/>
                     </p:column>
                     <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/nextAbsence')}"
                       styleClass="deputy-for-next-absence"

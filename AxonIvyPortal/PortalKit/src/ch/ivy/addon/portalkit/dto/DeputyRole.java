@@ -47,8 +47,17 @@ public class DeputyRole {
   }
 
   public String getDeputyRoleDisplayName() {
-    this.deputyRoleDisplayName = DeputyRoleType.TASK_FOR_ROLE.equals(this.deputyRoleType) ? Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/taskForRole").concat(substitutionRole.getDisplayName())
-        : Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/personalTask");
+    switch (this.deputyRoleType) {
+      case TASK_FOR_ROLE_DEPUTIES:
+        this.deputyRoleDisplayName = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/taskForRole").concat(substitutionRole.getDisplayName());
+        break;
+      case PERSONAL_TASK_PERMANENT_DEPUTIES:
+        this.deputyRoleDisplayName = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/personalTaskPermanentDeputies");
+        break;
+      default:
+        this.deputyRoleDisplayName = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/personalTaskDuringAbsenceDeputies");
+        break;
+    }
     return deputyRoleDisplayName;
   }
 
