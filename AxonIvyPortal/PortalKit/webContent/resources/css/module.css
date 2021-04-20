@@ -3268,17 +3268,14 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   text-align: right;
 }
 
-.deputy-for-active-period,
 .deputy-for-next-absence {
   width: inherit;
 }
 
-.substitute-table .task-responsible-link {
+.absences-management-container .substitute-table tbody.ui-datatable-data .substition-role-display-name,
+.substitute-table .task-responsible-link,
+.absences-management-container .substitution-table tbody.ui-datatable-data .substition-role-display-name {
   white-space: normal;
-}
-
-.substitute-table .active-period-option {
-  padding: 3px 0;
 }
 
 @media screen and (max-width: 40em) {
@@ -3308,7 +3305,6 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 }
 
 @media screen and (min-width: 90.063em) {
-  .deputy-for-active-period,
   .deputy-for-next-absence {
     width: 250px;
   }
