@@ -1,5 +1,0 @@
-package ch.ivy.addon.portalkit.dto;
-
-public enum DeputyRoleType {
-  PERSONAL_TASK_PERMANENT_DEPUTIES, PERSONAL_TASK_DURING_ABSENCE_DEPUTIES, TASK_FOR_ROLE_DEPUTIES;
-}
