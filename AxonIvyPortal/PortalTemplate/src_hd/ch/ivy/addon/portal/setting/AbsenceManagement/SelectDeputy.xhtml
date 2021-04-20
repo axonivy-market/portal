@@ -3,7 +3,9 @@
   xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="http://java.sun.com/jsp/jstl/core">
 <h:body>
   <h:form id="deputy-selection-form">
-    <p:messages id="error-message" showSummary="false" showDetail="true" />
+    <p:messages id="error-message" showSummary="false" showDetail="true">
+      <p:autoUpdate/>
+    </p:messages>
     <p:panelGrid id="deputy-selection-panel" columns="1" styleClass="deputy-selection-panel">
 
       <h:panelGroup id="select-deputy" layout="block" styleClass="select-deputy">

@@ -906,13 +906,22 @@ As0 f34 83 1139 26 26 -40 15 #rect
 As0 f41 659 1139 26 26 0 12 #rect
 As0 f44 actionTable 'out=in;
 ' #txt
-As0 f44 actionCode 'import javax.faces.application.FacesMessage;
+As0 f44 actionCode 'import java.util.Arrays;
+import ch.ivy.addon.portalkit.dto.DeputyRoleType;
+import ch.ivy.addon.portalkit.util.DeputyRoleUtils;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import ch.ivyteam.ivy.security.ISecurityMember;
 
 ISecurityMember selectedAssignee = in.#selectedDeputy is initialized ? ivy.wf.getSecurityContext().findSecurityMember(in.selectedDeputy.getMemberName()) : null;
 if (!(#selectedAssignee is initialized) || in.selectedDeputies.contains(selectedAssignee)) {
 	FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "", ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/errorSelectInvalidDeputy")));
+} else if (DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE_DEPUTIES.equals(in.selectedDeputyRole.deputyRoleType) && DeputyRoleUtils.isSecurityMemberSelectedInDeputyRoleByType(in.deputyRoles, DeputyRoleType.PERSONAL_TASK_PERMANENT_DEPUTIES, selectedAssignee)) {
+	String errorMessage = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/errorSelectedInPersonalTaskPermanentDeputies", Arrays.asList(ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/personalTaskPermanentDeputies")));
+	FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "", errorMessage));
+} else if (DeputyRoleType.PERSONAL_TASK_PERMANENT_DEPUTIES.equals(in.selectedDeputyRole.deputyRoleType) && DeputyRoleUtils.isSecurityMemberSelectedInDeputyRoleByType(in.deputyRoles, DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE_DEPUTIES, selectedAssignee)) {
+	String errorMessage = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/errorSelectedInPersonalTaskPermanentDeputies", Arrays.asList(ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/personalTaskDuringAbsenceDeputies")));
+	FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "", errorMessage));
 } else {
 	in.selectedDeputies.add(selectedAssignee);
 }
