@@ -15,6 +15,13 @@ public class IvySubstitute {
   private SubstitutionType substitutionType;
   private IUser ownerUser;
 
+  public IvySubstitute() {
+  }
+
+  public IvySubstitute(SubstitutionType substitutionType) {
+    this.substitutionType = substitutionType;
+  }
+
   public IRole getSubstitionRole() {
     return substitionRole;
   }
@@ -24,8 +31,13 @@ public class IvySubstitute {
   }
 
   public String getSubstitionRoleDisplayName() {
-    substitionRoleDisplayName = substitionRole != null ? Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/taskForRole").concat(substitionRole.getDisplayName()) : 
-        Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/personalTask");
+    if (substitionRole != null) {
+      this.substitionRoleDisplayName = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/taskForRole").concat(substitionRole.getDisplayName());
+    } else if (SubstitutionType.PERMANENT.equals(getSubstitutionType())) {
+      this.substitionRoleDisplayName = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/personalTaskPermanentDeputies");
+    } else {
+      this.substitionRoleDisplayName = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/personalTaskDuringAbsenceDeputies");
+    }
     return substitionRoleDisplayName;
   }
 

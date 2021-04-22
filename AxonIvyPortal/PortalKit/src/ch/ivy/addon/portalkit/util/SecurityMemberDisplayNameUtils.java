@@ -1,6 +1,11 @@
 package ch.ivy.addon.portalkit.util;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
+import org.apache.logging.log4j.util.Strings;
 
 import ch.ivy.addon.portalkit.dto.UserDTO;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -118,5 +123,17 @@ public class SecurityMemberDisplayNameUtils {
 
   private static String stripSharpCharacterFromSecurityMemberName(String username) {
     return username.startsWith("#") ? username.substring(1) : username;
+  }
+
+  public static String joinSecurityMemberNames(List<ISecurityMember> securityMembers) {
+    if (CollectionUtils.isNotEmpty(securityMembers)) {
+      List<String> responsibleNames = new ArrayList<>();
+      for (ISecurityMember securityMember : securityMembers) {
+        responsibleNames.add(SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(securityMember,
+            securityMember.getName()));
+      }
+      return String.join(", ", responsibleNames);
+    }
+    return Strings.EMPTY;
   }
 }
