@@ -158,6 +158,7 @@
                       <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/applicationAndRole')}"
                         sortBy="#{deputyRole.deputyRoleDisplayName}">
                         <h:outputText value="#{deputyRole.deputyRoleDisplayName}" styleClass="substition-role-display-name absence-column-value" />
+                        <span class="substition-role-type" deputy-role-type="#{deputyRole.deputyRoleType.toString()}" />
                       </p:column>
                       <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/deputies')}"
                         styleClass="ui-fluid">
