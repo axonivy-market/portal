@@ -161,10 +161,11 @@ public class CaseWidgetPage extends TemplatePage {
     return selectedCaseIdElement.getText();
   }
 
-	public boolean isCaseDisplayed(String name) {
-		List<WebElement> caseNameElements = findListElementsByClassName("case-header-name-cell");
-		return caseNameElements.stream().anyMatch(caseNameElement -> name.equals(caseNameElement.getText()));
-	}
+  public boolean isCaseDisplayed(String name) {
+    waitForElementDisplayed(By.cssSelector("div[id='case-widget:case-list-scroller']"), true);
+    List<WebElement> caseNameElements = findListElementsByClassName("case-header-name-cell");
+    return caseNameElements.stream().anyMatch(caseNameElement -> name.equals(caseNameElement.getText()));
+  }
 
 	public boolean isCaseListColumnExist(String columnHeaderText) {
 		WebElement taskListHeader = findElementById(caseWidgetId + ":widget-column-header");
