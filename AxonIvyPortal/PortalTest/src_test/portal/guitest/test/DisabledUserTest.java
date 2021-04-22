@@ -87,7 +87,7 @@ public class DisabledUserTest extends BaseTest {
     redirectToRelativeLink(cleanUpAbsencesAndSubstituesLink);
     AbsencePage absencePage = new HomePage().openAbsencePage();
     absencePage.setSubstitutedByAdmin(VISIBILITY_USER_FULL_NAME);
-    absencePage.setDeputy(Arrays.asList(TestAccount.DEMO_USER.getFullName()));
+    absencePage.setDeputy(Arrays.asList(TestAccount.DEMO_USER.getFullName()), 0);
     absencePage.saveSubstitute();
     redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     absencePage = new HomePage().openAbsencePage();
@@ -96,6 +96,6 @@ public class DisabledUserTest extends BaseTest {
     redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     absencePage = new HomePage().openAbsencePage();
     absencePage.setSubstitutedByAdmin(VISIBILITY_USER_FULL_NAME);
-    assertEquals(TestAccount.DEMO_USER.getFullName(), absencePage.getMyDeputy());
+    assertEquals(TestAccount.DEMO_USER.getFullName(), absencePage.getMyDeputy(0));
   }
 }
