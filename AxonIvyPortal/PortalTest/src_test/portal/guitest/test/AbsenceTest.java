@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.time.LocalDate;
+import java.util.Arrays;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -79,7 +80,7 @@ public class AbsenceTest extends BaseTest {
   @Test
   public void testDeputyAsNormalUser() {
     AbsencePage absencePage = openAbsencePage();
-    absencePage.setDeputy("caseOwnerUser");
+    absencePage.setDeputy(Arrays.asList("caseOwnerUser"));
     absencePage.saveSubstitute();
     absencePage.waitForAbsencesGrowlMessageDisplay();
     assertEquals("caseOwnerUser", absencePage.getMyDeputy());
@@ -90,7 +91,7 @@ public class AbsenceTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     AbsencePage absencePage = openAbsencePage();
     absencePage.setSubstitutedByAdmin(TestAccount.DEMO_USER.getFullName());
-    absencePage.setDeputy("caseOwnerUser");
+    absencePage.setDeputy(Arrays.asList("caseOwnerUser"));
     absencePage.saveSubstitute();
     absencePage.waitForAbsencesGrowlMessageDisplay();
     absencePage.setSubstitutedByAdmin(TestAccount.DEMO_USER.getFullName());
@@ -104,7 +105,7 @@ public class AbsenceTest extends BaseTest {
     AbsencePage absencePage = openAbsencePage(profile);
     createAbsenceForCurrentUser(TOMORROW, TOMORROW, "For Family", absencePage);
 
-    absencePage.setDeputy(TestAccount.DEMO_USER.getFullName());
+    absencePage.setDeputy(Arrays.asList(TestAccount.DEMO_USER.getFullName()));
     absencePage.saveSubstitute();
     login(TestAccount.DEMO_USER);
     absencePage = openAbsencePage(profile);
