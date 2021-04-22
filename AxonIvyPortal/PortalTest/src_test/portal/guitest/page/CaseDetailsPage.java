@@ -208,10 +208,28 @@ public class CaseDetailsPage extends TemplatePage {
 
   public void changeCaseDescription(String newDescription) {
     onClickDescriptionEditIcon();
-    onClickDescriptionInplace();
     onChangeDescriptionInput(newDescription);
     onSubmitDescriptionInplaceEditor();
     waitForPageLoaded();
+  }
+
+  private void onClickDescriptionEditIcon() {
+    waitForElementDisplayed(By.cssSelector("a[id$='general-information:description:edit-description-link']"), true);
+    click(By.cssSelector("a[id$='general-information:description:edit-description-link']"));
+  }
+
+  private void onChangeDescriptionInput(String newDescription) {
+    WebElement caseDescriptionInput = findElementByCssSelector("textarea[id$='general-information:description:case-description-form:case-description-input']");
+    waitForElementDisplayed(caseDescriptionInput, true);
+    caseDescriptionInput.clear();
+    caseDescriptionInput.sendKeys(newDescription);
+  }
+
+  private void onSubmitDescriptionInplaceEditor() {
+    WebElement editor = findElementByCssSelector("span[id$='general-information:description:case-description-form:case-description-inplace_editor']");
+    WebElement saveButton = findChildElementByClassName(editor, "ui-inplace-save");
+    saveButton.click();
+    waitAjaxIndicatorDisappear();
   }
 
   public String getDescription() {
@@ -228,30 +246,6 @@ public class CaseDetailsPage extends TemplatePage {
   public CaseWidgetPage goBackToCaseListFromCaseDetails() {
     clickBackButton();
     return new CaseWidgetPage();
-  }
-  
-  private void onSubmitDescriptionInplaceEditor() {
-    WebElement editor = findElementById("case-item-details:widgets:0:general-information:description:case-description-form:case-description-inplace_editor");
-    WebElement saveButton = findChildElementByClassName(editor, "ui-inplace-save");
-    click(saveButton);
-    waitAjaxIndicatorDisappear();
-  }
-
-  private void onChangeDescriptionInput(String newDescription) {
-    WebElement caseDescriptionInput = findElementByCssSelector("textarea[id='case-item-details:widgets:0:general-information:description:case-description-form:case-description-input']");
-    waitForElementDisplayed(caseDescriptionInput, true);
-    caseDescriptionInput.clear();
-    caseDescriptionInput.sendKeys(newDescription);
-  }
-
-  private void onClickDescriptionInplace() {
-    WebElement caseDescriptionInplace = findElementByCssSelector("[id$='case-description-output']");
-    waitForElementDisplayed(caseDescriptionInplace, true);
-    click(caseDescriptionInplace);
-  }
-
-  private void onClickDescriptionEditIcon() {
-    click(By.id("case-item-details:widgets:0:general-information:description:edit-description-link"));
   }
 
   public void onClickHistoryIcon() {

@@ -18,6 +18,7 @@ import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.security.IUserSubstitute;
+import ch.ivyteam.ivy.security.SubstitutionType;
 
 public class SubstituteService implements ISubstituteService {
 
@@ -65,10 +66,15 @@ public class SubstituteService implements ISubstituteService {
         .filter(role -> !existRoles.contains(role))
         .collect(Collectors.toList());
     
-    boolean doesPersonalSubstituteExist = substitutes.stream().anyMatch(substitute -> substitute.getSubstitionRole() == null);
-    if (!doesPersonalSubstituteExist) {
-      substitutes.add(createPersonalSubstitute());
+    boolean isPersonalPermanentExist = substitutes.stream().anyMatch(substitute -> substitute.getSubstitionRole() == null && SubstitutionType.PERMANENT.equals(substitute.getSubstitutionType()));
+    if (!isPersonalPermanentExist) {
+      substitutes.add(new IvySubstitute(SubstitutionType.PERMANENT));
     }
+    boolean isPersonalOnAbsenceExist = substitutes.stream().anyMatch(substitute -> substitute.getSubstitionRole() == null && SubstitutionType.ON_ABSENCE.equals(substitute.getSubstitutionType()));
+    if (!isPersonalOnAbsenceExist) {
+      substitutes.add(new IvySubstitute(SubstitutionType.ON_ABSENCE));
+    }
+
     substitutes.addAll(iRoles.stream().map(this::newIvySubtitute).collect(Collectors.toList()));
     
     return substitutes;
@@ -79,10 +85,6 @@ public class SubstituteService implements ISubstituteService {
         .stream()
         .map(this::getIvySubstitute)
         .collect(Collectors.toList());
-  }
-  
-  private IvySubstitute createPersonalSubstitute() {
-    return new IvySubstitute();
   }
   
   private IvySubstitute newIvySubtitute(IRole role) {
