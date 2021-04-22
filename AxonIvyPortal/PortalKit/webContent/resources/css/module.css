@@ -3272,6 +3272,10 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   width: inherit;
 }
 
+.substitute-table .substition-role-type {
+  display: none;
+}
+
 .absences-management-container .substitute-table tbody.ui-datatable-data .substition-role-display-name,
 .substitute-table .task-responsible-link,
 .absences-management-container .substitution-table tbody.ui-datatable-data .substition-role-display-name {
