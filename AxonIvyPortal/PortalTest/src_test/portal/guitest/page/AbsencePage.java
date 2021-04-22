@@ -4,11 +4,14 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
+
+import ch.ivy.addon.portalkit.enums.DeputyRoleType;
 
 public class AbsencePage extends TemplatePage {
 
@@ -41,8 +44,8 @@ public class AbsencePage extends TemplatePage {
 		}
 	}
 
-  public String getMyDeputy() {
-    String deputiesSelector = "a[id$='absences-management-form:substitute-table:0:selected-deputies-link']";
+  public String getMyDeputy(int deputyRoleIndex) {
+    String deputiesSelector = String.format("a[id$='absences-management-form:substitute-table:%d:selected-deputies-link']", deputyRoleIndex);
     waitForElementDisplayed(By.cssSelector(deputiesSelector), true);
     return findElementByCssSelector(deputiesSelector).getText();
   }
@@ -51,23 +54,52 @@ public class AbsencePage extends TemplatePage {
     List<WebElement> noteAuthorElements = findListElementsByCssSelector("tbody[id*='substitution-table_data'] > tr > td");
     return noteAuthorElements.stream().map(w -> w.getText()).collect(Collectors.toList());
   }
-  
-  public void setDeputy(List<String> fullNames) {
+
+  public int indexOfDeputyRole(DeputyRoleType deputyRoleType) {
+    String deputyRoleTypeSelector = ".substitute-table .substition-role-type";
+    List<WebElement> elements = findListElementsByCssSelector(deputyRoleTypeSelector);
+    if (CollectionUtils.isNotEmpty(elements)) {
+      for (int index = 0; index < elements.size(); index++) {
+        WebElement element = elements.get(index);
+        String deputyRoleTypeValue = element.getAttribute("deputy-role-type");
+        if (deputyRoleTypeValue != null && deputyRoleTypeValue.equals(String.valueOf(deputyRoleType))) {
+          return index;
+        }
+      }
+    }
+    return -1;
+  }
+
+  public void setDeputy(List<String> fullNames, DeputyRoleType deputyRoleType) {
+    setDeputy(fullNames, indexOfDeputyRole(deputyRoleType), true);
+  }
+
+  public void setDeputy(List<String> fullNames, DeputyRoleType deputyRoleType, boolean saveSelectedDeputies) {
+    setDeputy(fullNames, indexOfDeputyRole(deputyRoleType), saveSelectedDeputies);
+  }
+
+  public void setDeputy(List<String> fullNames, int deputyRoleIndex) {
+    setDeputy(fullNames, deputyRoleIndex, true);
+  }
+
+  public void setDeputy(List<String> fullNames, int deputyRoleIndex, boolean saveSelectedDeputies) {
     try {
-      clickSelectedDeputiesLink();
+      clickSelectedDeputiesLink(deputyRoleIndex);
     } catch (Exception e) {
-      clickSelectedDeputiesLink();
+      clickSelectedDeputiesLink(deputyRoleIndex);
     }
     for (String fullName : fullNames) {
       selectDeputy(fullName);
     }
-    click(By.id("deputy-selection-form:save-deputy-button"));
-    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
-	}
+    if (saveSelectedDeputies) {
+      click(By.id("deputy-selection-form:save-deputy-button"));
+      waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
+    }
+  }
 
-  private void clickSelectedDeputiesLink() {
+  private void clickSelectedDeputiesLink(int deputyRoleIndex) {
     waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
-    String deputiesSelector = "a[id$='absences-management-form:substitute-table:0:selected-deputies-link']";
+    String deputiesSelector = String.format("a[id$='absences-management-form:substitute-table:%d:selected-deputies-link']", deputyRoleIndex);
     waitForElementDisplayed(By.cssSelector(deputiesSelector), true);
     Awaitility.await().atMost(new Duration(10, TimeUnit.SECONDS)).until(() -> {
       try {
@@ -87,6 +119,12 @@ public class AbsencePage extends TemplatePage {
     waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
     click(By.id("deputy-selection-form:add-deputy-button"));
     waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
+  }
+
+  public String getChooseDeputyDialogError() {
+    String errorMessageDiv = "div[id$='deputy-selection-form:error-message']";
+    waitForElementDisplayed(By.cssSelector(errorMessageDiv), true);
+    return findChildElementByCssSelector(findElementByCssSelector(errorMessageDiv), ".ui-messages-error-detail").getText();
   }
 
   public void setSubstitutedByAdmin(String substitutedUser) {
