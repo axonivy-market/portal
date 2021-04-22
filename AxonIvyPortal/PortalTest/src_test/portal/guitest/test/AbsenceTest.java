@@ -5,10 +5,12 @@ import static org.junit.Assert.assertTrue;
 
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
 
+import ch.ivy.addon.portalkit.enums.DeputyRoleType;
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.DateTimePattern;
 import portal.guitest.common.TestAccount;
@@ -80,10 +82,14 @@ public class AbsenceTest extends BaseTest {
   @Test
   public void testDeputyAsNormalUser() {
     AbsencePage absencePage = openAbsencePage();
-    absencePage.setDeputy(Arrays.asList("caseOwnerUser"));
+    List<String> personalTaskDuringAbsenceDeputyNames = Arrays.asList(TestAccount.CASE_OWNER_USER.getFullName(), TestAccount.GUEST_USER.getFullName());
+    absencePage.setDeputy(personalTaskDuringAbsenceDeputyNames, DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE);
+    List<String> personalTaskPermanentDeputyNames = Arrays.asList(TestAccount.ADMIN_USER.getFullName(), TestAccount.HR_ROLE_USER.getFullName());
+    absencePage.setDeputy(personalTaskPermanentDeputyNames, DeputyRoleType.PERSONAL_TASK_PERMANENT);
     absencePage.saveSubstitute();
     absencePage.waitForAbsencesGrowlMessageDisplay();
-    assertEquals("caseOwnerUser", absencePage.getMyDeputy());
+    assertEquals(joinDeputyNames(personalTaskDuringAbsenceDeputyNames), absencePage.getMyDeputy(absencePage.indexOfDeputyRole(DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE)));
+    assertEquals(joinDeputyNames(personalTaskPermanentDeputyNames), absencePage.getMyDeputy(absencePage.indexOfDeputyRole(DeputyRoleType.PERSONAL_TASK_PERMANENT)));
   }
 
   @Test
@@ -91,11 +97,41 @@ public class AbsenceTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     AbsencePage absencePage = openAbsencePage();
     absencePage.setSubstitutedByAdmin(TestAccount.DEMO_USER.getFullName());
-    absencePage.setDeputy(Arrays.asList("caseOwnerUser"));
+    List<String> personalTaskDuringAbsenceDeputyNames = Arrays.asList(TestAccount.CASE_OWNER_USER.getFullName(), TestAccount.GUEST_USER.getFullName());
+    absencePage.setDeputy(personalTaskDuringAbsenceDeputyNames, DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE);
+    List<String> personalTaskPermanentDeputyNames = Arrays.asList(TestAccount.ADMIN_USER.getFullName(), TestAccount.HR_ROLE_USER.getFullName());
+    absencePage.setDeputy(personalTaskPermanentDeputyNames, DeputyRoleType.PERSONAL_TASK_PERMANENT);
     absencePage.saveSubstitute();
     absencePage.waitForAbsencesGrowlMessageDisplay();
     absencePage.setSubstitutedByAdmin(TestAccount.DEMO_USER.getFullName());
-    assertEquals("caseOwnerUser", absencePage.getMyDeputy());
+    assertEquals(joinDeputyNames(personalTaskDuringAbsenceDeputyNames), absencePage.getMyDeputy(absencePage.indexOfDeputyRole(DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE)));
+    assertEquals(joinDeputyNames(personalTaskPermanentDeputyNames), absencePage.getMyDeputy(absencePage.indexOfDeputyRole(DeputyRoleType.PERSONAL_TASK_PERMANENT)));
+  }
+
+  private String joinDeputyNames(List<String> deputyNames) {
+    return String.join(", ", deputyNames);
+  }
+
+  @Test
+  public void testAddDeputyInPermanentToDuringAbsence() {
+    login(TestAccount.ADMIN_USER);
+    AbsencePage absencePage = openAbsencePage();
+    absencePage.setSubstitutedByAdmin(TestAccount.DEMO_USER.getFullName());
+    List<String> deputyNames = Arrays.asList(TestAccount.CASE_OWNER_USER.getFullName());
+    absencePage.setDeputy(deputyNames, DeputyRoleType.PERSONAL_TASK_PERMANENT);
+    absencePage.setDeputy(deputyNames, DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE, false);
+    assertTrue(absencePage.getChooseDeputyDialogError().startsWith("Deputy is already selected in"));
+  }
+
+  @Test
+  public void testAddDeputyInDuringAbsenceToPermanent() {
+    login(TestAccount.ADMIN_USER);
+    AbsencePage absencePage = openAbsencePage();
+    absencePage.setSubstitutedByAdmin(TestAccount.DEMO_USER.getFullName());
+    List<String> deputyNames = Arrays.asList(TestAccount.CASE_OWNER_USER.getFullName());
+    absencePage.setDeputy(deputyNames, DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE);
+    absencePage.setDeputy(deputyNames, DeputyRoleType.PERSONAL_TASK_PERMANENT, false);
+    assertTrue(absencePage.getChooseDeputyDialogError().startsWith("Deputy is already selected in"));
   }
 
   @Test
@@ -105,7 +141,7 @@ public class AbsenceTest extends BaseTest {
     AbsencePage absencePage = openAbsencePage(profile);
     createAbsenceForCurrentUser(TOMORROW, TOMORROW, "For Family", absencePage);
 
-    absencePage.setDeputy(Arrays.asList(TestAccount.DEMO_USER.getFullName()));
+    absencePage.setDeputy(Arrays.asList(TestAccount.DEMO_USER.getFullName()), 0);
     absencePage.saveSubstitute();
     login(TestAccount.DEMO_USER);
     absencePage = openAbsencePage(profile);
