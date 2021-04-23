@@ -18,28 +18,39 @@
 <cc:implementation>
   <c:set var="alwaysShowAsText" value="#{empty cc.attrs.alwaysShowAsText ? false : cc.attrs.alwaysShowAsText}" />
   <c:set var="securityMember" value="#{cc.attrs.securityMember}" />
-  <c:set var="renderUserOfRole" value="#{data.isShowAllUser and securityMember != null and !securityMember.isUser()}"/>
+  <f:event listener="#{securityMemberDisplayNameBean.preRender(securityMember)}" type="preRenderComponent"/>
 
   <!-- Display User name as text format -->
-  <h:panelGroup rendered="#{!renderUserOfRole or alwaysShowAsText}">
+  <h:panelGroup rendered="#{!securityMemberDisplayNameBean.renderUserOfRole or alwaysShowAsText}">
     <h:outputText id="#{cc.attrs.textId}" styleClass="#{cc.attrs.styleClass}"
-      value="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(securityMember, cc.attrs.securityMemberName)}" />
-    <p:tooltip rendered="#{not empty securityMember}" for="#{cc.attrs.textId}"
-      value="#{securityMemberDisplayNameFormatBean.generateFullDisplayNameForSecurityMember(securityMember, cc.attrs.securityMemberName)}" trackMouse="true" hideEvent="mouseleave click"/>
+      value="#{securityMemberDisplayNameBean.getBriefDisplayName(securityMember, cc.attrs.securityMemberName)}" />
+    <p:tooltip rendered="#{not empty securityMember and !securityMemberDisplayNameBean.renderUserOfRole}"
+      for="#{cc.attrs.textId}"
+      value="#{securityMemberDisplayNameBean.getFullDisplayName(securityMember, cc.attrs.securityMemberName)}"
+      hideEvent="mouseleave click"
+      styleClass="security-member-tooltip"/>
+    <ui:fragment rendered="#{alwaysShowAsText and securityMemberDisplayNameBean.renderUserOfRole}">
+      <f:event listener="#{securityMemberDisplayNameBean.loadUsersForTooltip(securityMember)}" type="preRenderComponent"/>
+      <p:tooltip for="#{cc.attrs.textId}"
+        value="#{securityMemberDisplayNameBean.usersInTooltips}"
+        escape="false"
+        styleClass="security-member-tooltip"
+        hideEvent="mouseleave click"/>
+    </ui:fragment>
   </h:panelGroup>
 
   <!-- Display Role name as link format, click to show all user of this role -->
-  <h:panelGroup rendered="#{renderUserOfRole and !alwaysShowAsText}">
+  <h:panelGroup rendered="#{securityMemberDisplayNameBean.renderUserOfRole and !alwaysShowAsText}">
     <p:commandLink id="#{cc.attrs.textId}-activator" styleClass="#{cc.attrs.styleClass} user-fullname-link"
       update="user-of-role"
-      actionListener="#{logic.loadUsersOfRole(securityMember.getMemberName())}"
+      actionListener="#{securityMemberDisplayNameBean.loadUsersOfRole(securityMember.getMemberName())}"
       oncomplete="PF('users-of-role').show('#{component.clientId}')"
       process="@this" immediate="true">
-      <span>#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(securityMember, cc.attrs.securityMemberName)}</span>
+      <span>#{securityMemberDisplayNameBean.getBriefDisplayName(securityMember, cc.attrs.securityMemberName)}</span>
       <i class="si si-information-circle icon-compact-mode"/>
     </p:commandLink>
     <p:tooltip for="#{cc.attrs.textId}-activator"
-      value="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(securityMember, cc.attrs.securityMemberName)} - #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/SecurityMemberDisplayName/tooltipHelper')}"
+      value="#{securityMemberDisplayNameBean.getBriefDisplayName(securityMember, cc.attrs.securityMemberName)} - #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/SecurityMemberDisplayName/tooltipHelper')}"
       trackMouse="true" hideEvent="mouseleave click"/>
 
     <p:overlayPanel id="user-of-role" widgetVar="users-of-role"
@@ -60,18 +71,19 @@
               icon="fa fa-filter"
               placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/SecurityMemberDisplayName/filterByUsername')}"
               styleClass="widget-header-filter-input"
-              keywordStoresIn="#{data.keyword}"
-              listener="#{logic.filterUserByName(data.keyword)}"
+              keywordStoresIn="#{securityMemberDisplayNameBean.keyword}"
+              listener="#{securityMemberDisplayNameBean.filterUserByName(securityMemberDisplayNameBean.keyword)}"
               updateComponent="#{cc.clientId}:user-form:user-data-container"/>
           </div>
 
-          <c:set var="totalMember" value="#{data.memberNames.size()}" />
+          <c:set var="totalMember" value="#{securityMemberDisplayNameBean.memberNames.size()}" />
           <p:dataScroller id="user-data" widgetVar="user-data"
-            value="#{data.memberNames}" var="user" chunkSize="21"
-            rendered="#{not empty data.memberNames}"
+            value="#{securityMemberDisplayNameBean.memberNames}"
+            var="user" chunkSize="21"
+            rendered="#{not empty securityMemberDisplayNameBean.memberNames}"
             styleClass="user-data-scroller ui-g-12 u-no-padding-top">
             <h:outputText rendered="#{not empty user.name}"
-              value="#{securityMemberDisplayNameFormatBean.generateFullDisplayNameForUserDTO(user)}"
+              value="#{securityMemberDisplayNameBean.getFullDisplayName(user)}"
               styleClass="user-name"/>
             <h:outputText rendered="#{totalMember >= 100 and empty user.name}" value="#{user.displayName}"/>
             <f:facet name="loader">
@@ -81,7 +93,7 @@
               </p:link>
             </f:facet>
           </p:dataScroller>
-          <h:outputText rendered="#{empty data.memberNames}"
+          <h:outputText rendered="#{empty securityMemberDisplayNameBean.memberNames}"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/SecurityMemberDisplayName/noUser')}"
             styleClass="ui-g-12"/>
         </h:panelGroup>
