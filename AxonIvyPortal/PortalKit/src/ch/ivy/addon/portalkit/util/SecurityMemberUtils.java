@@ -13,6 +13,7 @@ import ch.ivy.addon.portalkit.dto.SecurityMemberDTO;
 import ch.ivy.addon.portalkit.dto.UserDTO;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.persistence.query.IPagedResult;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.ISecurityMember;
@@ -109,25 +110,32 @@ public class SecurityMemberUtils {
     return Ivy.cms().co(securityMemberCms);
   }
 
-  public static String buildTooltipFromUsers(IRole role, List<IUser> users, long totalCount) {
-    String fullnameOfRole = formatWithTip(role.getDisplayName(), role.getName());
-    String header = cms("userOfRoleTitle", Arrays.asList(fullnameOfRole)).concat(":");
-    StringBuilder usersBuilder = new StringBuilder();
-    if (CollectionUtils.isEmpty(users)) {
-      String noUsers = cms("noUser");
-      usersBuilder.append(cms("roleMemberLineFormat", Arrays.asList(noUsers)));
-      return cms("roleMembersTooltipFormat", Arrays.asList(header, "no-user", usersBuilder));
-    }
+  public static String buildTooltipFromUsers(String roleName) {
+    return IvyExecutor.executeAsSystem(() -> {
+      IRole role = Ivy.wf().getSecurityContext().findRole(roleName);
+      IPagedResult<IUser> result = role.users().assignedPaged(10);
+      List<IUser> users = result.page(1);
+      long totalCount = result.count();
 
-    for (IUser user : users) {
-      String fullnameOfUser = formatWithTip(user.getDisplayName(), user.getName());
-      usersBuilder.append(cms("roleMemberItemFormat", Arrays.asList(fullnameOfUser)));
-    }
-    if (totalCount > 10) {
-      usersBuilder.append(cms("roleMemberLineFormat",
-          Arrays.asList(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/more").concat(" ..."))));
-    }
-    return cms("roleMembersTooltipFormat", Arrays.asList(header, "", usersBuilder));
+      String fullnameOfRole = formatWithTip(role.getDisplayName(), role.getName());
+      String header = cms("userOfRoleTitle", Arrays.asList(fullnameOfRole)).concat(":");
+      StringBuilder usersBuilder = new StringBuilder();
+      if (CollectionUtils.isEmpty(users)) {
+        String noUsers = cms("noUser");
+        usersBuilder.append(cms("roleMemberLineFormat", Arrays.asList(noUsers)));
+        return cms("roleMembersTooltipFormat", Arrays.asList(header, "no-user", usersBuilder));
+      }
+  
+      for (IUser user : users) {
+        String fullnameOfUser = formatWithTip(user.getDisplayName(), user.getName());
+        usersBuilder.append(cms("roleMemberItemFormat", Arrays.asList(fullnameOfUser)));
+      }
+      if (totalCount > 10) {
+        usersBuilder.append(cms("roleMemberLineFormat",
+            Arrays.asList(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/more").concat(" ..."))));
+      }
+      return cms("roleMembersTooltipFormat", Arrays.asList(header, "", usersBuilder));
+    });
   }
   
   private static String formatWithTip(String fullName, String username) {
