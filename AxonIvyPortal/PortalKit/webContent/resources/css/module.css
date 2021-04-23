@@ -5655,3 +5655,7 @@ body span.ui-commandlink .si {
 .security-member-tooltip .tooltip-body {
   padding-left: 14px;
 }
+
+.security-member-tooltip .tooltip-body.no-user {
+  padding-left: 0;
+}
