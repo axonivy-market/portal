@@ -18,13 +18,13 @@
       </p:commandLink>
 
       <p:commandButton id="restore-button" styleClass="secondary-btn u-mar-right-15"
-        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/restoreWidget')}"
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
         type="button" icon="si si-button-refresh-arrows"
         onclick="PF('restore-confirm-dialog').show()" />
 
       <p:commandButton id="add-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/addWidget')}"
         type="button" icon="si si-add"
-        onclick="PF('new-widget-dialog').show()" />
+        onclick="PF('new-widget-dialog').show()" styleClass="u-hidden-md-down" />
     </ui:define>
 
     <ui:define name="dashboardContent">
