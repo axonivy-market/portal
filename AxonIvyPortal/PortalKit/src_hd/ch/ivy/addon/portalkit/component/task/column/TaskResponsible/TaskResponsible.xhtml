@@ -5,6 +5,7 @@
   <cc:attribute name="componentId" default="task-responsible" />
   <cc:attribute name="fullName" />
   <cc:attribute name="userName" required="true" />
+  <cc:attribute name="securityMember" />
   <cc:attribute name="styleClass" />
   <cc:attribute name="dataModel" />
   <cc:attribute name="responsiveStyleClass" default="u-hidden-md-down js-hidden-when-expand-menu" 
@@ -13,8 +14,10 @@
 
 <cc:implementation>
   <h:panelGroup rendered="#{cc.attrs.dataModel.isSelectedColumn('ACTIVATOR')}">
-    <ic:ch.ivy.addon.portalkit.component.UserFullnameDisplayText textId="#{cc.attrs.componentId}" fullname="#{cc.attrs.fullName}"
-      username="#{cc.attrs.userName}" styleClass="responsible-cell #{cc.attrs.styleClass} #{cc.attrs.responsiveStyleClass}" />
+    <ic:ch.ivy.addon.portalkit.component.SecurityMemberDisplayName textId="#{cc.attrs.componentId}"
+      fullname="#{cc.attrs.fullName}" securityMemberName="#{cc.attrs.userName}"
+      securityMember="#{cc.attrs.securityMember}" alwaysShowAsText="true"
+      styleClass="responsible-cell #{cc.attrs.styleClass} #{cc.attrs.responsiveStyleClass}"/>
   </h:panelGroup>
 </cc:implementation>
 </html>
