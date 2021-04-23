@@ -6,7 +6,6 @@
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="caseWidget" type="ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget" required="true" />
   <cc:attribute name="renderColumnConfiguration" default="false" />
-  <cc:attribute name="numberOfRows" default="10" shortDescription="Number of rows to display per page on Case table. Default value is 10." />
   <cc:attribute name="isReadOnlyMode" default="false"/>
   <cc:attribute name="isPreviewMode" default="false"/>
 </cc:interface>
@@ -34,15 +33,18 @@
       </h:panelGroup>
 
       <p:dataTable id="dashboard-cases" widgetVar="dashboard-cases-#{caseWidget.id}" value="#{caseWidget.dataModel}" var="caseItem"
-        paginatorAlwaysVisible="false" rows="#{cc.attrs.numberOfRows}" paginator="true" paginatorPosition="bottom" lazy="true"
+        paginatorAlwaysVisible="false" paginator="true" paginatorPosition="bottom" lazy="true"
         paginatorTemplate="{PreviousPageLink} {PageLinks} {NextPageLink} {RowsPerPageDropdown}" pageLinks="5"
+        rows="#{caseWidget.rowsPerPage}"
+        rowsPerPageTemplate="5,10,20,50"
         sortField="#{caseWidget.sortField}" sortBy="#{caseWidget.sortField}"
         sortOrder="#{caseWidget.sortDescending ? 'descending' : 'ascending'}"
         rowIndexVar="rowIndex" rowHover="#{isReadOnlyMode}" selectionMode="single"
         styleClass="dashboard-cases--table #{isReadOnlyMode ? '' : 'dashboard__table--edit'} #{isPreviewMode ? 'dashboard__table--preview' : ''}">
+        <p:ajax event="page" oncomplete="saveWidgetState()" />
         <p:ajax event="rowSelect" listener="#{dashboardBean.navigateToSelectedCaseDetails}" disabled="#{!isReadOnlyMode}" />
 
-        <p:columns var="column" value="#{caseWidget.columns}" headerText="#{column.headerText}" styleClass="#{column.styleClass}"
+        <p:columns var="column" value="#{caseWidget.columns}" headerText="#{column.headerText}" styleClass="#{column.styleClass} #{column.field eq 'name' ? 'dashboard-cases__column-small-screen' : 'u-hidden-sm-down'}"
           visible="#{column.visible}" field="#{column.field}" sortBy="#{column.field}" sortable="#{column.sortable}"
           style="#{column.format eq 'TIMESTAMP' or column.format eq 'NUMBER' ? 'text-align: center;' : ''} #{column.style}">
 
@@ -59,7 +61,11 @@
             <h:outputText value="#{column.display(caseItem)}" styleClass="#{column.fieldStyleClass}" />
           </h:panelGroup>
 
-          <h:panelGroup rendered="#{column.format eq 'STRING' or column.format eq 'TEXT'}">
+          <h:panelGroup rendered="#{column.field eq 'name'}">
+            <ui:include src="NameCell.xhtml" />
+          </h:panelGroup>
+
+          <h:panelGroup rendered="#{(column.format eq 'STRING' or column.format eq 'TEXT') and column.field ne 'name'}">
             <h:outputText value="#{column.display(caseItem)}" styleClass="#{column.fieldStyleClass}" style="#{column.fieldStyle}" />
           </h:panelGroup>
 

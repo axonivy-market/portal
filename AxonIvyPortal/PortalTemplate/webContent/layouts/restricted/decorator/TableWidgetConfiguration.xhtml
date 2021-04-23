@@ -14,7 +14,7 @@
 
 <!-- Configuration -->
 <h:panelGroup id="filter-container" layout="block" styleClass="card dashboard-card widget-configuration">
-  <div class="filter-container ui-g">
+  <div class="filter-container ui-g dashboard-configuration-filter-container">
     <div class="ui-g-12 filter-container__header">
       <h2>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/configuration')}</h2>
       <p>
@@ -23,10 +23,10 @@
     </div>
 
     <h:panelGroup id="widget-title-group" styleClass="ui-g-12 u-padding-0 ui-fluid">
-      <div class="ui-g-3">
+      <div class="ui-g-3 ui-md-4">
         <p:outputLabel for="widget-title" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/widgetTitle')}" />
       </div>
-      <div class="ui-g-9">
+      <div class="ui-g-9 ui-md-8">
         <p:inputText id="widget-title"
         styleClass="widget-configuration__input-text"
         value="#{widget.name}" />
@@ -34,13 +34,13 @@
     </h:panelGroup>
 
     <div class="ui-g-12 MarTop20 u-padding-0">
-      <div class="ui-g-4">
+      <div class="ui-g-4 ui-md-5">
         <strong>#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/availableFilters")}</strong>
       </div>
-      <div class="ui-g-8">
+      <div class="ui-g-8 ui-md-7">
         <p:commandButton id="preview-button"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/preview')}"
-          styleClass="Fright preview-button" icon="si si-search"
+          styleClass="Fright preview-button u-hidden-sm-down" icon="si si-search"
           update="#{componentToUpdateOnPreviewAction}"
           process="#{componentToProcessOnPreviewAction} widget-title-group"
           oncomplete="#{onCompletePreviewAction}" />
@@ -53,11 +53,11 @@
 </h:panelGroup>
 
 <!-- Table configuration -->
-<h:panelGroup id="widget-preview" styleClass="card widget-preview" layout="block">
+<h:panelGroup id="widget-preview" styleClass="card widget-preview u-hidden-sm-down" layout="block">
   <div class="ui-g">
     <div class="ui-g-12 widget-preview__header">
       <h2>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/tableConfiguration')}</h2>
-      <p>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/tableConfigurationDesc')}</p>
+      <p class="widget-preview__header--description">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/tableConfigurationDesc')}</p>
     </div>
 
     <!-- Widget data -->
