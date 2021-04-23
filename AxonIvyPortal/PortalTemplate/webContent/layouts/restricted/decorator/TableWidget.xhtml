@@ -41,7 +41,7 @@
       <p:tooltip for="info-sidebar-link-#{index}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/widgetInfo')}" trackMouse="true"
         hideEvent="mouseleave click" />
 
-      <p:commandLink id="edit-widget-#{index}" styleClass="si si-pencil u-mar-right-15"
+      <p:commandLink id="edit-widget-#{index}" styleClass="si si-pencil u-mar-right-15 u-hidden-sm-down"
         oncomplete="PF('new-widget-configuration-dialog').show()"
         global="false"
         actionListener="#{dashboardConfigurationBean.setEditWidget(widget)}"
@@ -82,7 +82,8 @@
         styleClass="info-overlay-panel"
         onShow="buildStatisticInfos#{index}();"
         dismissable="false"
-        dynamic="true">
+        dynamic="true"
+        at="right top">
         <div class="ui-g widget-infor--type">
           <h:outputLabel styleClass="ui-g-8 widget-infor-type--label u-no-padding-bottom" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/widgetType')}" />
           <h:outputLabel styleClass="ui-g-4 u-no-padding-bottom u-no-padding-left" value="#{widget.type.label}" />

@@ -70,9 +70,9 @@
 
       <ui:repeat var="widget" value="#{taskDetailsBean.widgets}" id="widgets">
         <div id="task-details-#{widget.id}-panel" class="#{widget.styleClass} grid-stack-item" style="#{widget.style}"
-          widget-type="#{widget.class.simpleName}" data-gs-x="#{widget.axisX}" data-gs-y="#{widget.axisY}" data-gs-width="#{widget.width}"
-          data-gs-height="#{widget.height}" data-gs-id="#{widget.id}" data-gs-no-resize="#{taskDetailsBean.readOnlyMode}"
-          data-gs-no-move="#{taskDetailsBean.readOnlyMode}">
+          widget-type="#{widget.class.simpleName}" gs-x="#{widget.axisX}" gs-y="#{widget.axisY}" gs-w="#{widget.width}"
+          gs-h="#{widget.height}" gs-id="#{widget.id}" gs-no-resize="#{taskDetailsBean.readOnlyMode}"
+          gs-no-move="#{taskDetailsBean.readOnlyMode}">
 
           <!-- General & description box -->
           <h:panelGroup id="task-detail-general-container" layout="block" rendered="#{widget.class.simpleName eq 'TaskDetailsInformationWidget'}"

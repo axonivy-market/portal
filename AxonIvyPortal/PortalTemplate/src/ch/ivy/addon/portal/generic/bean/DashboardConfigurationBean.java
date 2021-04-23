@@ -67,9 +67,9 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
     removeDashboardInUserProperty(DASHBOARD_PREFIX);
 
     List<Dashboard> defaultDashboards = this.defaultDashboards();
-    this.selectedDashboard = defaultDashboards.get(defaultDashboards.indexOf(this.selectedDashboard));
-    this.dashboards.set(this.dashboards.indexOf(this.selectedDashboard), this.selectedDashboard);
-    buildSubWidgetModels(this.selectedDashboard.getWidgets());
+    this.selectedDashboard = defaultDashboards.get(defaultDashboards.indexOf(this.getSelectedDashboard()));
+    this.dashboards.set(this.dashboards.indexOf(this.getSelectedDashboard()), this.getSelectedDashboard());
+    buildSubWidgetModels(this.getSelectedDashboard().getWidgets());
   }
 
   public void create(WidgetSample sample) {
@@ -92,8 +92,8 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
 
   public void removeWidget() throws JsonProcessingException {
     if (this.deleteWidget != null) {
-      this.selectedDashboard.getWidgets().remove(deleteWidget);
-      saveOrUpdateDashboardToUserProperty(selectedDashboard);
+      this.getSelectedDashboard().getWidgets().remove(deleteWidget);
+      saveOrUpdateDashboardToUserProperty(getSelectedDashboard());
     }
   }
   
@@ -112,8 +112,8 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
   public String generateNewWidgetId(DashboardWidgetType type) {
     final String widgetIdPrefix = String.format(WIDGET_ID_PATTERN, type.name(), EMPTY).toLowerCase();
 
-    if (CollectionUtils.isNotEmpty(selectedDashboard.getWidgets())) {
-      List<String> ids = selectedDashboard.getWidgets().stream()
+    if (CollectionUtils.isNotEmpty(getSelectedDashboard().getWidgets())) {
+      List<String> ids = getSelectedDashboard().getWidgets().stream()
               .filter(widget -> widget.getId().startsWith(widgetIdPrefix))
               .map(DashboardWidget::getId).collect(Collectors.toList());
       if (CollectionUtils.isNotEmpty(ids)) {
@@ -133,10 +133,10 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
   public void saveWidget() throws JsonProcessingException, ParseException {
     resetUserFilter();
     this.widget.buildPredefinedFilterData();
-    if (CollectionUtils.isEmpty(this.selectedDashboard.getWidgets())) {
-      this.selectedDashboard.setWidgets(new ArrayList<>());
+    if (CollectionUtils.isEmpty(this.getSelectedDashboard().getWidgets())) {
+      this.getSelectedDashboard().setWidgets(new ArrayList<>());
     }
-    List<DashboardWidget> widgets = this.selectedDashboard.getWidgets();
+    List<DashboardWidget> widgets = this.getSelectedDashboard().getWidgets();
     if (widgets.contains(this.widget)) {
       widgets.set(widgets.indexOf(this.widget), this.widget);
     } else {
