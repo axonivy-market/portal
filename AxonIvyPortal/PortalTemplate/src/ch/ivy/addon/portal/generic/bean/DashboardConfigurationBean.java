@@ -5,6 +5,7 @@ import static org.apache.commons.lang3.StringUtils.EMPTY;
 import java.io.IOException;
 import java.io.Serializable;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -15,7 +16,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.lang3.StringUtils;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
@@ -67,9 +67,9 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
     removeDashboardInUserProperty(DASHBOARD_PREFIX);
 
     List<Dashboard> defaultDashboards = this.defaultDashboards();
-    this.selectedDashboard = defaultDashboards.get(defaultDashboards.indexOf(this.selectedDashboard));
-    this.dashboards.set(this.dashboards.indexOf(this.selectedDashboard), this.selectedDashboard);
-    buildSubWidgetModels(this.selectedDashboard.getWidgets());
+    this.selectedDashboard = defaultDashboards.get(defaultDashboards.indexOf(this.getSelectedDashboard()));
+    this.dashboards.set(this.dashboards.indexOf(this.getSelectedDashboard()), this.getSelectedDashboard());
+    buildSubWidgetModels(this.getSelectedDashboard().getWidgets());
   }
 
   public void create(WidgetSample sample) {
@@ -92,8 +92,8 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
 
   public void removeWidget() throws JsonProcessingException {
     if (this.deleteWidget != null) {
-      this.selectedDashboard.getWidgets().remove(deleteWidget);
-      saveOrUpdateDashboardToUserProperty(selectedDashboard);
+      this.getSelectedDashboard().getWidgets().remove(deleteWidget);
+      saveOrUpdateDashboardToUserProperty(getSelectedDashboard());
     }
   }
   
@@ -109,27 +109,21 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
     return TaskDashboardWidget.buildDefaultWidget(widgetId, widgetName);
   }
 
-  public boolean isTaskWidget(DashboardWidget widget) {
-    return widget instanceof TaskDashboardWidget;
-  }
-
-  public boolean isCaseWidget(DashboardWidget widget) {
-    return widget instanceof CaseDashboardWidget;
-  }
-
   public String generateNewWidgetId(DashboardWidgetType type) {
     final String widgetIdPrefix = String.format(WIDGET_ID_PATTERN, type.name(), EMPTY).toLowerCase();
 
-    List<String> ids = selectedDashboard.getWidgets().stream()
-            .filter(widget -> widget.getId().startsWith(widgetIdPrefix))
-            .map(DashboardWidget::getId).collect(Collectors.toList());
-    if (CollectionUtils.isNotEmpty(ids)) {
-      Integer maxId = Collections.max(ids.stream()
-                        .map(id -> Integer.parseInt(id.replace(widgetIdPrefix, EMPTY)))
-                        .collect(Collectors.toList()));
-      if (maxId != null && maxId >= 0) {
-        String widgetId = Integer.toString(maxId + 1);
-        return String.format(WIDGET_ID_PATTERN, type.name(), widgetId).toLowerCase();
+    if (CollectionUtils.isNotEmpty(getSelectedDashboard().getWidgets())) {
+      List<String> ids = getSelectedDashboard().getWidgets().stream()
+              .filter(widget -> widget.getId().startsWith(widgetIdPrefix))
+              .map(DashboardWidget::getId).collect(Collectors.toList());
+      if (CollectionUtils.isNotEmpty(ids)) {
+        Integer maxId = Collections.max(ids.stream()
+                          .map(id -> Integer.parseInt(id.replace(widgetIdPrefix, EMPTY)))
+                          .collect(Collectors.toList()));
+        if (maxId != null && maxId >= 0) {
+          String widgetId = Integer.toString(maxId + 1);
+          return String.format(WIDGET_ID_PATTERN, type.name(), widgetId).toLowerCase();
+        }
       }
     }
 
@@ -137,23 +131,29 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
   }
 
   public void saveWidget() throws JsonProcessingException, ParseException {
-    List<DashboardWidget> widgets = this.selectedDashboard.getWidgets();
-    this.widget.resetUserFilters();
+    resetUserFilter();
     this.widget.buildPredefinedFilterData();
+    if (CollectionUtils.isEmpty(this.getSelectedDashboard().getWidgets())) {
+      this.getSelectedDashboard().setWidgets(new ArrayList<>());
+    }
+    List<DashboardWidget> widgets = this.getSelectedDashboard().getWidgets();
     if (widgets.contains(this.widget)) {
       widgets.set(widgets.indexOf(this.widget), this.widget);
     } else {
       widgets.add(widget);
     }
-    this.dashboards.set(this.dashboards.indexOf(this.selectedDashboard), this.selectedDashboard);
-    String dashboardInUserProperty = readDashboardBySessionUser(this.dashboardPropertyPrefix);
-    if (StringUtils.isNotEmpty(dashboardInUserProperty)) {
-      saveOrUpdateDashboardToUserProperty(this.selectedDashboard);
-    } else {
-      for (Dashboard dashboard : this.dashboards) {
-        saveOrUpdateDashboardToUserProperty(dashboard);
-      }
+    saveSelectedWidget();
+    this.widget = null;
+  }
+
+  private void resetUserFilter() {
+    if (this.widget.getType() == DashboardWidgetType.TASK) {
+      ((TaskDashboardWidget) this.widget).setInConfiguration(false);
     }
+    if (this.widget.getType() == DashboardWidgetType.CASE) {
+      ((CaseDashboardWidget) this.widget).setInConfiguration(false);
+    }
+    this.widget.resetUserFilters();
   }
 
   public void setEditWidget(DashboardWidget widget) {
