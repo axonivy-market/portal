@@ -72,10 +72,14 @@ HowTo: Add absence
 HowTo: Set deputy
 ^^^^^^^^^^^^^^^^^
 
-#. You see a list with an entry for your personal tasks and for each
+#. You see a list with 2 entries for your personal tasks and for each
    role you hold. For each entry, you can specify multiple deputies.
 
 #. Specify deputies by clicking on link ends with |si-notes-quill|.
+
+   .. note:: 
+
+         With 2 entries for your personal tasks, a deputy can only be selected in 1 entries.
 
 #. Confirm your deputies with the button :guilabel:`Save`.
 
