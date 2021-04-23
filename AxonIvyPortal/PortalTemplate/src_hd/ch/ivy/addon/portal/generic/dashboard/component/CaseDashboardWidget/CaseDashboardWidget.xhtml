@@ -12,7 +12,7 @@
   <c:set var="widget" value="#{cc.attrs.widget}" />
   <c:set var="isReadOnlyMode" value="#{cc.attrs.isReadOnlyMode}"/>
 
-  <ui:decorate template="/layouts/restricted/decorator/DashboardWidget.xhtml">
+  <ui:decorate template="/layouts/restricted/decorator/TableWidget.xhtml">
     <ui:param name="index" value="#{index}" />
     <ui:param name="widget" value="#{widget}" />
     <ui:param name="widgetFormId" value="case-form-#{index}" />

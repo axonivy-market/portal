@@ -57,9 +57,9 @@ public class CaseDashboardWidget extends DashboardWidget {
   private Map<CaseState, Long> caseByStateStatistic;
   @JsonIgnore
   private Map<String, Long> caseByCategoryStatistic;
+  private int rowsPerPage = 10;
 
   public CaseDashboardWidget() {
-    this.setType(DashboardWidgetType.CASE);
     dataModel = new DashboardCaseLazyDataModel();
     setColumns(new ArrayList<>());
     caseByCategoryStatistic = new HashMap<>();
@@ -362,31 +362,30 @@ public class CaseDashboardWidget extends DashboardWidget {
       return Optional.empty();
     }
     for (ColumnModel col : filterableColumns) {
-      if (StringUtils.isNotEmpty(col.getUserFilter())
-          ||StringUtils.isNotEmpty(col.getUserFilterFrom())
-          ||StringUtils.isNotEmpty(col.getUserFilterTo())
-          ||col.getUserDateFilterFrom() != null
-          ||col.getUserDateFilterTo() != null
-          ||CollectionUtils.isNotEmpty(col.getUserFilterList())) {
+      if (StringUtils.isNotEmpty(col.getUserFilter()) || StringUtils.isNotEmpty(col.getUserFilterFrom())
+          || col.getUserDateFilterFrom() != null || CollectionUtils.isNotEmpty(col.getUserFilterList())) {
         numberOfFilters++;
-        if (numberOfFilters > MAX_NOTI_FILTERS) {
-          break;
-        }
+      }
+      if (StringUtils.isNotEmpty(col.getUserFilterTo()) || col.getUserDateFilterTo() != null) {
+        numberOfFilters++;
+      }
+      if (numberOfFilters > MAX_NOTI_FILTERS) {
+        break;
       }
     }
     if (CollectionUtils.isNotEmpty(widget.getDataModel().getCriteria().getUserFilterCategories())
         && numberOfFilters < MAX_NOTI_FILTERS) {
       numberOfFilters++;
     }
-    
+
     if (numberOfFilters > MAX_NOTI_FILTERS) {
       return Optional.of(String.format(MAX_NOTI_PATTERN, MAX_NOTI_FILTERS));
     }
-    
+
     if (numberOfFilters == 0) {
       return Optional.empty();
     }
-    
+
     return Optional.of(String.valueOf(numberOfFilters));
   }
 
@@ -394,13 +393,27 @@ public class CaseDashboardWidget extends DashboardWidget {
   @JsonIgnore
   public void resetUserFilters() {
     super.resetUserFilters();
-    this.setInConfiguration(false);
     for (ColumnModel column : this.getColumns()) {
       column.setUserFilter(StringUtils.EMPTY);
       column.setUserFilterList(new ArrayList<>());
       column.setUserFilterFrom(StringUtils.EMPTY);
       column.setUserFilterTo(StringUtils.EMPTY);
+      column.setUserDateFilterFrom(null);
+      column.setUserDateFilterTo(null);
     }
+  }
+
+  @Override
+  public DashboardWidgetType getType() {
+    return DashboardWidgetType.CASE;
+  }
+
+  public int getRowsPerPage() {
+    return rowsPerPage;
+  }
+
+  public void setRowsPerPage(int rowsPerPage) {
+    this.rowsPerPage = rowsPerPage;
   }
 
 }

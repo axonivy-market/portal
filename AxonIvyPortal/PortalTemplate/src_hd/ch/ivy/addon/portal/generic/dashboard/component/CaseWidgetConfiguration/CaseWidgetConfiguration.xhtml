@@ -12,7 +12,7 @@
 <cc:implementation>
   <f:event listener="#{dashboardCaseFilterBean.preRender(cc.attrs.caseWidget)}" type="preRenderComponent" />
 
-  <ui:decorate template="/layouts/restricted/decorator/DashboardNewWidgetConfiguration.xhtml">
+  <ui:decorate template="/layouts/restricted/decorator/TableWidgetConfiguration.xhtml">
     <ui:param name="widget" value="#{cc.attrs.caseWidget}" />
     <ui:param name="componentToUpdateOnPreviewAction" value="#{cc.clientId}:case-widget-preview:dashboard-cases" />
     <ui:param name="componentToProcessOnPreviewAction" value="user-filter" />
@@ -22,10 +22,10 @@
       <h:panelGroup id="user-filter" layout="block" styleClass="ui-g">
         <ui:repeat var="field" value="#{cc.attrs.caseWidget.filterableColumns}">
           <h:panelGroup rendered="#{field.field eq 'state'}">
-            <div class="ui-g-3">
-              <p:outputLabel value="#{field.headerText}" />
+            <div class="ui-g-3 ui-md-4 ui-sm-4">
+              <h:outputLabel value="#{field.headerText}" />
             </div>
-            <div class="ui-g-9 ui-fluid">
+            <div class="ui-g-9 ui-md-8 ui-sm-8 ui-fluid">
               <p:selectCheckboxMenu id="states" value="#{field.states}" multiple="true" filter="true" filterMatchMode="contains"
                 panelStyleClass="case-configuration__selectcheckboxmenu-panel" styleClass="case-configuration__selectcheckboxmenu">
                 <f:selectItems value="#{dashboardCaseFilterBean.states}" var="state" itemValue="#{state}"
@@ -35,10 +35,10 @@
           </h:panelGroup>
   
           <h:panelGroup rendered="#{field.field eq 'creator'}">
-            <div class="ui-g-3">
-              <p:outputLabel value="#{field.headerText}" />
+            <div class="ui-g-3 ui-md-4 ui-sm-4">
+              <h:outputLabel value="#{field.headerText}" />
             </div>
-            <div class="ui-g-9 ui-fluid">
+            <div class="ui-g-9 ui-md-8 ui-sm-8 ui-fluid">
               <p:autoComplete id="creators" scrollHeight="210" dropdown="true" size="35" completeMethod="#{dashboardCaseFilterBean.completeCreators}"
                 value="#{field.creators}" var="creator" itemValue="#{creator}" itemLabel="#{creator.briefDisplayNameWithState}"
                 converter="pojoConverter" cache="true" maxResults="100" multiple="true"
@@ -53,10 +53,10 @@
           </h:panelGroup>
   
           <h:panelGroup rendered="#{field.field eq 'owner'}">
-            <div class="ui-g-3">
-              <p:outputLabel value="#{field.headerText}" />
+            <div class="ui-g-3 ui-md-4 ui-sm-4">
+              <h:outputLabel value="#{field.headerText}" />
             </div>
-            <div class="ui-g-9 ui-fluid">
+            <div class="ui-g-9 ui-md-8 ui-sm-8 ui-fluid">
               <p:autoComplete id="owners" scrollHeight="210" dropdown="true" size="35" completeMethod="#{dashboardCaseFilterBean.completeOwners}"
                 value="#{field.owners}" var="owner" itemValue="#{owner}" itemLabel="#{owner.briefDisplayNameWithState}"
                 converter="pojoConverter" cache="true" maxResults="100" multiple="true"
@@ -71,10 +71,10 @@
           </h:panelGroup>
   
           <h:panelGroup rendered="#{field.format eq 'STRING' or field.format eq 'TEXT'}">
-            <div class="ui-g-3">
-              <p:outputLabel value="#{field.headerText}" />
+            <div class="ui-g-3 ui-md-4 ui-sm-4">
+              <h:outputLabel value="#{field.headerText}" />
             </div>
-            <div class="ui-g-9 ui-fluid">
+            <div class="ui-g-9 ui-md-8 ui-sm-8 ui-fluid">
               <p:inputText id="text-field-input" styleClass="case-configuration__input-text" value="#{field.filter}"
                 rendered="#{field.filterType eq 'LIKE'}" />
   
@@ -87,20 +87,20 @@
           </h:panelGroup>
   
           <h:panelGroup rendered="#{field.format eq 'NUMBER'}">
-            <div class="ui-g-3">
-              <p:outputLabel value="#{field.headerText} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')}" />
+            <div class="ui-g-3 ui-md-4 ui-sm-4">
+              <h:outputLabel value="#{field.headerText} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')}" />
             </div>
-            <div class="ui-g-9 ui-fluid">
+            <div class="ui-g-9 ui-md-8 ui-sm-8 ui-fluid">
               <p:inputNumber id="from-number-field-input" styleClass="case-configuration__input-text" value="#{field.filterFrom}"
                 inputStyleClass="case-configuration__input-number">
                 <f:convertNumber pattern="#{field.pattern}" />
               </p:inputNumber>
             </div>
   
-            <div class="ui-g-3">
-              <p:outputLabel value="#{field.headerText} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')}" />
+            <div class="ui-g-3 ui-md-4 ui-sm-4">
+              <h:outputLabel value="#{field.headerText} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')}" />
             </div>
-            <div class="ui-g-9 ui-fluid">
+            <div class="ui-g-9 ui-md-8 ui-sm-8 ui-fluid">
               <p:inputNumber id="to-number-field-input" styleClass="case-configuration__input-text" value="#{field.filterTo}"
                 inputStyleClass="case-configuration__input-number">
                 <f:convertNumber pattern="#{field.pattern}" />
@@ -109,28 +109,28 @@
           </h:panelGroup>
   
           <h:panelGroup rendered="#{field.format eq 'TIMESTAMP'}">
-            <div class="ui-g-3">
-              <p:outputLabel value="#{field.headerText} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')}" />
+            <div class="ui-g-3 ui-md-4 ui-sm-4">
+              <h:outputLabel value="#{field.headerText} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')}" />
             </div>
-            <div class="ui-g-9 ui-fluid">
+            <div class="ui-g-9 ui-md-8 ui-sm-8 ui-fluid">
               <p:calendar id="from-date-field-input" showOn="button" styleClass="case-configuration__calendar" value="#{field.dateFilterFrom}"
                 pattern="#{dateTimePatternBean.datePattern}" locale="#{localeBean.locale}" />
             </div>
   
-            <div class="ui-g-3">
-              <p:outputLabel value="#{field.headerText} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')}" />
+            <div class="ui-g-3 ui-md-4 ui-sm-4">
+              <h:outputLabel value="#{field.headerText} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')}" />
             </div>
-            <div class="ui-g-9 ui-fluid">
+            <div class="ui-g-9 ui-md-8 ui-sm-8 ui-fluid">
               <p:calendar id="to-date-field-input" showOn="button" styleClass="case-configuration__calendar" value="#{field.dateFilterTo}"
                 pattern="#{dateTimePatternBean.datePattern}" locale="#{localeBean.locale}" />
             </div>
           </h:panelGroup>
         </ui:repeat>
       </h:panelGroup>
-      <div class="ui-g-3">
-        <p:outputLabel for="category" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/category')}" />
+      <div class="ui-g-3 ui-md-4 ui-sm-4">
+        <h:outputLabel for="category" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/category')}" />
       </div>
-      <div class="ui-g-9 ui-fluid">
+      <div class="ui-g-9 ui-md-8 ui-sm-8 ui-fluid">
         <h:panelGroup id="category-container" styleClass="case-configuration__category">
           <p:inputText id="category" styleClass="case-configuration__input-text" value="#{cc.attrs.caseWidget.getDisplayCategories()}" readonly="true" />
           <p:overlayPanel id="category-panel" for="category" appendTo="category-container" styleClass="case-configuration__category-panel"
@@ -158,7 +158,7 @@
       <ic:ch.ivy.addon.portal.generic.dashboard.component.ColumnManagement id="column-management-component" widget="#{widget}"
         componentToUpdate="#{cc.attrs.componentToUpdate}" />
       <ic:ch.ivy.addon.portal.generic.dashboard.component.CaseWidget id="case-widget-preview" isReadOnlyMode="#{cc.attrs.isReadOnlyMode}"
-        caseWidget="#{cc.attrs.caseWidget}" renderColumnConfiguration="true" numberOfRows="5" isPreviewMode="true"/>
+        caseWidget="#{widget}" renderColumnConfiguration="true" isPreviewMode="true"/>
     </ui:define>
   </ui:decorate>
 
