@@ -5637,3 +5637,29 @@ body span.ui-commandlink .si {
   -ms-touch-action: initial !important; 
   touch-action: auto !important;
 }
+
+.security-member-tooltip.ui-tooltip {
+  max-width: 300px;
+  font-size: 12px;
+  border: solid 1px #004C97;
+  border-radius: 0;
+  word-wrap: break-word;
+  padding: 0;
+  opacity: 1;
+}
+
+.security-member-tooltip.ui-tooltip .ui-tooltip-text {
+  background-color: #FFFFFF;
+  color: #212121;
+}
+
+.security-member-tooltip .tooltip-header {
+  margin: auto;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.security-member-tooltip .tooltip-body-item {
+  margin: auto;
+  font-size: 10px;
+}
