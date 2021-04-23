@@ -44,9 +44,9 @@
         <p:ajax event="page" oncomplete="saveWidgetState()" />
         <p:ajax event="rowSelect" listener="#{dashboardBean.navigateToSelectedTaskDetails}" disabled="#{!isReadOnlyMode}" />
 
-        <p:columns var="column" value="#{taskWidget.columns}" headerText="#{column.headerText}" styleClass="#{column.styleClass}"
+        <p:columns var="column" value="#{taskWidget.columns}" headerText="#{column.headerText}" styleClass="#{column.styleClass} #{(column.field eq 'start' or column.field eq 'name') ? '' : 'u-hidden-sm-down'}"
           visible="#{column.visible}" field="#{column.field}" 
-          sortBy="#{column.field}" sortable="#{column.sortable}" 
+          sortBy="#{column.field}" sortable="#{column.sortable}"
           style="#{column.format eq 'TIMESTAMP' or column.format eq 'NUMBER' ? 'text-align: center;' : ''} #{column.style}">
 
           <h:panelGroup rendered="#{column.field eq 'start'}">
@@ -65,7 +65,11 @@
             <ui:include src="StateCell.xhtml" />
           </h:panelGroup>
           
-          <h:panelGroup rendered="#{column.format eq 'STRING' or column.format eq 'TEXT'}">
+          <h:panelGroup rendered="#{column.field eq 'name'}">
+            <ui:include src="NameCell.xhtml" />
+          </h:panelGroup>
+          
+          <h:panelGroup rendered="#{(column.format eq 'STRING' or column.format eq 'TEXT') and column.field ne 'name'}">
             <h:outputText value="#{column.display(task)}" styleClass="#{column.fieldStyleClass}" style="#{column.fieldStyle}" />
           </h:panelGroup>
           
