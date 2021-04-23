@@ -7,6 +7,8 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
+
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.publicapi.TaskAPI;
@@ -18,9 +20,16 @@ import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.IWorkflowSession;
 import ch.ivyteam.ivy.workflow.TaskState;
+import ch.ivyteam.ivy.workflow.custom.field.ICustomField;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
 public final class TaskUtils {
+  private static final String TASK_CATEGORY = "category";
+  private static final String TASK_ID = "id";
+  private static final String TASK_CUSTOM_FIELD = "custom";
+  private static final String TASK_PROPERTY = "task";
+  private static final String TASK_PROPERTY_KEY_PATTERN_DELIMITER = "\\.";
+
   private TaskUtils() {}
 
   public static void resetTask(final ITask task) {
@@ -172,6 +181,40 @@ public final class TaskUtils {
         return Void.class;
       });
     }
+  }
+
+  public static String getTaskPropertyByKeyPattern(ITask task, String keyPattern) {
+    if (task != null) {
+      String[] keyParts = keyPattern.split(TASK_PROPERTY_KEY_PATTERN_DELIMITER);
+      if (keyParts.length == 2) {
+        switch (keyParts[0]) {
+          case TASK_PROPERTY:
+            return getTaskPropertyByKey(task, keyParts[1]);
+          case TASK_CUSTOM_FIELD:
+            return getTaskCustomFieldByKey(task, keyParts[1]);
+          default:
+            return keyPattern;
+        }
+      }
+    }
+    return keyPattern;
+  }
+
+  private static String getTaskPropertyByKey(ITask task, String key) {
+    switch (key) {
+      case TASK_ID:
+        return String.valueOf(task.getId());
+      case TASK_CATEGORY:
+        return String.valueOf(task.getCategory().getPath());
+      default:
+        return StringUtils.EMPTY;
+    }
+  }
+
+  private static String getTaskCustomFieldByKey(ITask task, String key) {
+    ICustomField<?> customField = task.customFields().all().stream().filter(field -> field.name().equals(key)).findFirst().orElse(null);
+    Object customFieldValue = customField != null ? customField.getOrNull() : null;
+    return customFieldValue != null ? String.valueOf(customFieldValue) : StringUtils.EMPTY;
   }
 
 }
