@@ -44,7 +44,7 @@
         <p:ajax event="page" oncomplete="saveWidgetState()" />
         <p:ajax event="rowSelect" listener="#{dashboardBean.navigateToSelectedCaseDetails}" disabled="#{!isReadOnlyMode}" />
 
-        <p:columns var="column" value="#{caseWidget.columns}" headerText="#{column.headerText}" styleClass="#{column.styleClass}"
+        <p:columns var="column" value="#{caseWidget.columns}" headerText="#{column.headerText}" styleClass="#{column.styleClass} #{column.field eq 'name' ? 'dashboard-cases__column-small-screen' : 'u-hidden-sm-down'}"
           visible="#{column.visible}" field="#{column.field}" sortBy="#{column.field}" sortable="#{column.sortable}"
           style="#{column.format eq 'TIMESTAMP' or column.format eq 'NUMBER' ? 'text-align: center;' : ''} #{column.style}">
 
@@ -61,7 +61,11 @@
             <h:outputText value="#{column.display(caseItem)}" styleClass="#{column.fieldStyleClass}" />
           </h:panelGroup>
 
-          <h:panelGroup rendered="#{column.format eq 'STRING' or column.format eq 'TEXT'}">
+          <h:panelGroup rendered="#{column.field eq 'name'}">
+            <ui:include src="NameCell.xhtml" />
+          </h:panelGroup>
+
+          <h:panelGroup rendered="#{(column.format eq 'STRING' or column.format eq 'TEXT') and column.field ne 'name'}">
             <h:outputText value="#{column.display(caseItem)}" styleClass="#{column.fieldStyleClass}" style="#{column.fieldStyle}" />
           </h:panelGroup>
 

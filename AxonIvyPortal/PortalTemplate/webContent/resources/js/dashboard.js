@@ -3,7 +3,8 @@ loadGrid();
 
 function loadGrid() {
   grids = GridStack.initAll({
-    column: 12, 
+    column: 12,
+    cellHeight: 100,
     resizable: {
       handles: 'e, se, s, sw, w'
     }
@@ -18,14 +19,16 @@ function loadGrid() {
           id: node.id,
           axisX: node.x,
           axisY: node.y,
-          width: node.width,
-          height: node.height
+          width: node.w,
+          height: node.h
         });
       });
-      saveConfigurationCommand([{
-        name : 'nodes',
-        value : JSON.stringify(serializedData, null, '')
-      }]);
+      if (grid.opts.minWidth < grid.el.clientWidth) {
+        saveConfigurationCommand([{
+          name : 'nodes',
+          value : JSON.stringify(serializedData, null, '')
+        }]);
+      }
     });
   });
 }
@@ -50,7 +53,7 @@ function toggleCategoryInfo(e) {
 }
 
 function removeWidgetContent(widgetId) {
-  var removeWidgetId = '.grid-stack-item[data-gs-id="' + widgetId + '"]';
+  var removeWidgetId = '.grid-stack-item[gs-id="' + widgetId + '"]';
   $(removeWidgetId).remove();
   updateDashboardWidget();
 }
