@@ -28,6 +28,15 @@ Ts0 @PushWFArc f2 '' #zField
 Ts0 @GridStep f15 '' #zField
 Ts0 @PushWFArc f16 '' #zField
 Ts0 @PushWFArc f5 '' #zField
+Ts0 @UdMethod f17 '' #zField
+Ts0 @UdProcessEnd f18 '' #zField
+Ts0 @UdProcessEnd f20 '' #zField
+Ts0 @Alternative f21 '' #zField
+Ts0 @PushWFArc f22 '' #zField
+Ts0 @PushWFArc f23 '' #zField
+Ts0 @GridStep f24 '' #zField
+Ts0 @PushWFArc f25 '' #zField
+Ts0 @PushWFArc f19 '' #zField
 >Proto Ts0 Ts0 SecurityMemberDisplayNameProcess #zField
 Ts0 f0 guid 15493AB38F1A359C #txt
 Ts0 f0 method start() #txt
@@ -131,7 +140,7 @@ import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 
 GlobalSettingService service = new GlobalSettingService();
-String showAllUserConfig = service.findGlobalSettingValue(GlobalVariable.DISPLAY_ALL_USERS_OF_TASK_ACTIVATOR.name());
+String showAllUserConfig = service.findGlobalSettingValue(GlobalVariable.DISPLAY_USERS_OF_ROLE.name());
 in.isShowAllUser = BooleanUtils.toBoolean(showAllUserConfig);' #txt
 Ts0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -164,6 +173,61 @@ Ts0 f15 464 202 112 44 -51 -8 #rect
 Ts0 f15 @|StepIcon #fIcon
 Ts0 f16 400 224 464 224 #arcP
 Ts0 f5 576 224 635 224 #arcP
+Ts0 f17 guid 178FE4592368A822 #txt
+Ts0 f17 method loadUsersForTooltip(ch.ivyteam.ivy.security.ISecurityMember) #txt
+Ts0 f17 inParameterDecl '<ch.ivyteam.ivy.security.ISecurityMember securityMember> param;' #txt
+Ts0 f17 inActionCode 'if (param.securityMember != null) {
+	out.isRenderUserOfRole = !param.securityMember.isUser();
+	out.roleName = param.securityMember.getName();
+}' #txt
+Ts0 f17 outParameterDecl '<> result;' #txt
+Ts0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>loadUsersForTooltip(ISecurityMember)</name>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f17 83 467 26 26 -83 16 #rect
+Ts0 f17 @|UdMethodIcon #fIcon
+Ts0 f18 435 467 26 26 0 12 #rect
+Ts0 f18 @|UdProcessEndIcon #fIcon
+Ts0 f20 299 563 26 26 0 12 #rect
+Ts0 f20 @|UdProcessEndIcon #fIcon
+Ts0 f21 176 464 32 32 0 16 #rect
+Ts0 f21 @|AlternativeIcon #fIcon
+Ts0 f22 109 480 176 480 #arcP
+Ts0 f23 expr in #txt
+Ts0 f23 192 496 299 576 #arcP
+Ts0 f23 1 192 576 #addKink
+Ts0 f23 0 0.6781710119583497 0 0 #arcLabel
+Ts0 f24 actionTable 'out=in;
+' #txt
+Ts0 f24 actionCode 'import ch.ivyteam.ivy.persistence.query.IPagedResult;
+import ch.ivyteam.ivy.security.IUser;
+import ch.ivyteam.ivy.security.IRole;
+import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
+
+IRole role = ivy.wf.getSecurityContext().findRole(in.roleName);
+IPagedResult<IUser> result = role.users().assignedPaged(10);
+List<IUser> users = result.page(1);
+long totalCount = result.count();
+
+in.usersInTooltips = SecurityMemberUtils.buildTooltipFromUsers(role, users, totalCount);' #txt
+Ts0 f24 security system #txt
+Ts0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Load 10 users for tooltip</name>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f24 248 458 144 44 -66 -8 #rect
+Ts0 f24 @|StepIcon #fIcon
+Ts0 f25 expr in #txt
+Ts0 f25 outCond 'in.isShowAllUser && in.isRenderUserOfRole' #txt
+Ts0 f25 208 480 248 480 #arcP
+Ts0 f19 392 480 435 480 #arcP
 >Proto Ts0 .type ch.ivy.addon.portalkit.component.SecurityMemberDisplayName.SecurityMemberDisplayNameData #txt
 >Proto Ts0 .processKind HTML_DIALOG #txt
 >Proto Ts0 -8 -8 16 16 16 26 #rect
@@ -182,3 +246,11 @@ Ts0 f8 mainOut f16 tail #connect
 Ts0 f16 head f15 mainIn #connect
 Ts0 f15 mainOut f5 tail #connect
 Ts0 f5 head f4 mainIn #connect
+Ts0 f17 mainOut f22 tail #connect
+Ts0 f22 head f21 in #connect
+Ts0 f23 head f20 mainIn #connect
+Ts0 f21 out f25 tail #connect
+Ts0 f25 head f24 mainIn #connect
+Ts0 f21 out f23 tail #connect
+Ts0 f24 mainOut f19 tail #connect
+Ts0 f19 head f18 mainIn #connect

@@ -4541,3 +4541,25 @@ body .ui-dialog.ui-widget.export-express-dialog {
     max-height: 180px;
   }
 }
+
+.security-member-tooltip.ui-tooltip {
+  max-width: 80vw;
+  border-radius: 0;
+  word-wrap: break-word;
+  padding: 0;
+  opacity: 1;
+}
+
+.security-member-tooltip .tooltip-header,
+.security-member-tooltip .tooltip-body,
+.security-member-tooltip .tooltip-body-item {
+  margin: auto;
+}
+
+.security-member-tooltip .tooltip-body {
+  padding-left: 14px;
+}
+
+.security-member-tooltip .tooltip-body.no-user {
+  padding-left: 0;
+}
