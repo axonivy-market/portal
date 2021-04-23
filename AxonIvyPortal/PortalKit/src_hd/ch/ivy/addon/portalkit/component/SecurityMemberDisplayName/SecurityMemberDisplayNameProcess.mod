@@ -32,11 +32,13 @@ Ts0 @UdMethod f17 '' #zField
 Ts0 @UdProcessEnd f18 '' #zField
 Ts0 @UdProcessEnd f20 '' #zField
 Ts0 @Alternative f21 '' #zField
-Ts0 @PushWFArc f22 '' #zField
 Ts0 @PushWFArc f23 '' #zField
 Ts0 @GridStep f24 '' #zField
 Ts0 @PushWFArc f25 '' #zField
 Ts0 @PushWFArc f19 '' #zField
+Ts0 @GridStep f26 '' #zField
+Ts0 @PushWFArc f27 '' #zField
+Ts0 @PushWFArc f22 '' #zField
 >Proto Ts0 Ts0 SecurityMemberDisplayNameProcess #zField
 Ts0 f0 guid 15493AB38F1A359C #txt
 Ts0 f0 method start() #txt
@@ -176,10 +178,8 @@ Ts0 f5 576 224 635 224 #arcP
 Ts0 f17 guid 178FE4592368A822 #txt
 Ts0 f17 method loadUsersForTooltip(ch.ivyteam.ivy.security.ISecurityMember) #txt
 Ts0 f17 inParameterDecl '<ch.ivyteam.ivy.security.ISecurityMember securityMember> param;' #txt
-Ts0 f17 inActionCode 'if (param.securityMember != null) {
-	out.isRenderUserOfRole = !param.securityMember.isUser();
-	out.roleName = param.securityMember.getName();
-}' #txt
+Ts0 f17 inParameterMapAction 'out.securityMember=param.securityMember;
+' #txt
 Ts0 f17 outParameterDecl '<> result;' #txt
 Ts0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -190,30 +190,21 @@ Ts0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ts0 f17 83 467 26 26 -83 16 #rect
 Ts0 f17 @|UdMethodIcon #fIcon
-Ts0 f18 435 467 26 26 0 12 #rect
+Ts0 f18 595 467 26 26 0 12 #rect
 Ts0 f18 @|UdProcessEndIcon #fIcon
-Ts0 f20 299 563 26 26 0 12 #rect
+Ts0 f20 459 563 26 26 0 12 #rect
 Ts0 f20 @|UdProcessEndIcon #fIcon
-Ts0 f21 176 464 32 32 0 16 #rect
+Ts0 f21 336 464 32 32 0 16 #rect
 Ts0 f21 @|AlternativeIcon #fIcon
-Ts0 f22 109 480 176 480 #arcP
 Ts0 f23 expr in #txt
-Ts0 f23 192 496 299 576 #arcP
-Ts0 f23 1 192 576 #addKink
+Ts0 f23 352 496 459 576 #arcP
+Ts0 f23 1 352 576 #addKink
 Ts0 f23 0 0.6781710119583497 0 0 #arcLabel
 Ts0 f24 actionTable 'out=in;
 ' #txt
-Ts0 f24 actionCode 'import ch.ivyteam.ivy.persistence.query.IPagedResult;
-import ch.ivyteam.ivy.security.IUser;
-import ch.ivyteam.ivy.security.IRole;
-import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
+Ts0 f24 actionCode 'import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
 
-IRole role = ivy.wf.getSecurityContext().findRole(in.roleName);
-IPagedResult<IUser> result = role.users().assignedPaged(10);
-List<IUser> users = result.page(1);
-long totalCount = result.count();
-
-in.usersInTooltips = SecurityMemberUtils.buildTooltipFromUsers(role, users, totalCount);' #txt
+in.usersInTooltips = SecurityMemberUtils.buildTooltipFromUsers(in.roleName);' #txt
 Ts0 f24 security system #txt
 Ts0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -222,12 +213,29 @@ Ts0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f24 248 458 144 44 -66 -8 #rect
+Ts0 f24 408 458 144 44 -66 -8 #rect
 Ts0 f24 @|StepIcon #fIcon
 Ts0 f25 expr in #txt
 Ts0 f25 outCond 'in.isShowAllUser && in.isRenderUserOfRole' #txt
-Ts0 f25 208 480 248 480 #arcP
-Ts0 f19 392 480 435 480 #arcP
+Ts0 f25 368 480 408 480 #arcP
+Ts0 f19 552 480 595 480 #arcP
+Ts0 f26 actionTable 'out=in;
+' #txt
+Ts0 f26 actionCode 'in.isRenderUserOfRole = !in.securityMember.isUser();
+in.roleName = in.securityMember.getName();
+' #txt
+Ts0 f26 security system #txt
+Ts0 f26 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Check SecurityMember</name>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f26 152 458 144 44 -63 -8 #rect
+Ts0 f26 @|StepIcon #fIcon
+Ts0 f27 109 480 152 480 #arcP
+Ts0 f22 296 480 336 480 #arcP
 >Proto Ts0 .type ch.ivy.addon.portalkit.component.SecurityMemberDisplayName.SecurityMemberDisplayNameData #txt
 >Proto Ts0 .processKind HTML_DIALOG #txt
 >Proto Ts0 -8 -8 16 16 16 26 #rect
@@ -246,11 +254,13 @@ Ts0 f8 mainOut f16 tail #connect
 Ts0 f16 head f15 mainIn #connect
 Ts0 f15 mainOut f5 tail #connect
 Ts0 f5 head f4 mainIn #connect
-Ts0 f17 mainOut f22 tail #connect
-Ts0 f22 head f21 in #connect
 Ts0 f23 head f20 mainIn #connect
 Ts0 f21 out f25 tail #connect
 Ts0 f25 head f24 mainIn #connect
 Ts0 f21 out f23 tail #connect
 Ts0 f24 mainOut f19 tail #connect
 Ts0 f19 head f18 mainIn #connect
+Ts0 f17 mainOut f27 tail #connect
+Ts0 f27 head f26 mainIn #connect
+Ts0 f26 mainOut f22 tail #connect
+Ts0 f22 head f21 in #connect
