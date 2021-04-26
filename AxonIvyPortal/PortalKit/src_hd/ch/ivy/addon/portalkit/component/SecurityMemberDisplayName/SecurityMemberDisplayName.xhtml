@@ -24,8 +24,19 @@
   <h:panelGroup rendered="#{!renderUserOfRole or alwaysShowAsText}">
     <h:outputText id="#{cc.attrs.textId}" styleClass="#{cc.attrs.styleClass}"
       value="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(securityMember, cc.attrs.securityMemberName)}" />
-    <p:tooltip rendered="#{not empty securityMember}" for="#{cc.attrs.textId}"
-      value="#{securityMemberDisplayNameFormatBean.generateFullDisplayNameForSecurityMember(securityMember, cc.attrs.securityMemberName)}" trackMouse="true" hideEvent="mouseleave click"/>
+    <p:tooltip rendered="#{not empty securityMember and !renderUserOfRole}"
+      for="#{cc.attrs.textId}"
+      value="#{securityMemberDisplayNameFormatBean.generateFullDisplayNameForSecurityMember(securityMember, cc.attrs.securityMemberName)}"
+      hideEvent="mouseleave click"
+      styleClass="security-member-tooltip"/>
+    <ui:fragment rendered="#{alwaysShowAsText and renderUserOfRole}">
+      <f:event listener="#{logic.loadUsersForTooltip(securityMember)}" type="preRenderComponent"/>
+      <p:tooltip for="#{cc.attrs.textId}"
+        value="#{data.usersInTooltips}"
+        escape="false"
+        styleClass="security-member-tooltip"
+        hideEvent="mouseleave click"/>
+    </ui:fragment>
   </h:panelGroup>
 
   <!-- Display Role name as link format, click to show all user of this role -->
@@ -55,7 +66,7 @@
               styleClass="role-name" />
           </div>
 
-          <div class="ui-g-12 u-no-padding-bottom">
+          <h:panelGroup layout="block" styleClass="ui-g-12 u-no-padding-bottom" rendered="#{not empty data.memberNames}">
             <ic:ch.ivy.addon.portalkit.component.Filter id="filter-container"
               icon="fa fa-filter"
               placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/SecurityMemberDisplayName/filterByUsername')}"
@@ -63,7 +74,7 @@
               keywordStoresIn="#{data.keyword}"
               listener="#{logic.filterUserByName(data.keyword)}"
               updateComponent="#{cc.clientId}:user-form:user-data-container"/>
-          </div>
+          </h:panelGroup>
 
           <c:set var="totalMember" value="#{data.memberNames.size()}" />
           <p:dataScroller id="user-data" widgetVar="user-data"

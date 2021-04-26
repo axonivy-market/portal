@@ -498,4 +498,12 @@
   /* Portal Global Ajax Status */
   --ajax-loading-bg: hsla(0, 0%, 100%, 0.9);
   --general-config-description-color: var(--ivy-primary-color-grey-medium);
+
+  /* Security member display name */
+  --security-member-background-color: var(--ivy-primary-color-white);
+  --security-member-color: var(--ivy-primary-color-black);
+  --security-member-header-font-size: 12px;
+  --security-member-item-font-size: 10px;
+  --security-member-header-font-weight: bold;
+  --security-member-border-color: #004C97;
   }
