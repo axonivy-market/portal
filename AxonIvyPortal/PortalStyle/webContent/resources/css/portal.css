@@ -2040,3 +2040,22 @@ body.in-dialog .ui-widget-overlay {
 .portal-icon.action-link i {
   font-size: var(--portal-icon-font-size);
 }
+
+.security-member-tooltip.ui-tooltip {
+  font-size: var(--security-member-header-font-size);
+  border: solid 1px var(--security-member-border-color);
+}
+
+.security-member-tooltip.ui-tooltip .ui-tooltip-text {
+  background-color: var(--security-member-background-color);
+  color: var(--security-member-color);
+}
+
+.security-member-tooltip .tooltip-header {
+  font-weight: var(--security-member-header-font-weight);
+  font-size: var(--security-member-header-font-size);
+}
+
+.security-member-tooltip .tooltip-body-item {
+  font-size: var(--security-member-item-font-size);
+}

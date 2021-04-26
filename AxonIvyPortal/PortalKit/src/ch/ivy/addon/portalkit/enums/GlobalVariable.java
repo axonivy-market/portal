@@ -50,7 +50,7 @@ public enum GlobalVariable {
   DEFAULT_SORT_FIELD_OF_CASE_LIST(GlobalVariableType.EXTERNAL_SELECTION, CaseSortField.ID.name(), "defaultSortFieldOfCaseList", getCaseListSortFields()),
   DEFAULT_SORT_DIRECTION_OF_CASE_LIST(GlobalVariableType.EXTERNAL_SELECTION, SortDirection.DESC.name(), "defaultSortDirectionOfCaseList", getSortDirections()),
   DEFAULT_HOMEPAGE(GlobalVariableType.EXTERNAL_SELECTION, StringUtils.capitalize(HomepageType.DASHBOARD.name().toLowerCase()), "defaultHomepage"),
-  DISPLAY_ALL_USERS_OF_TASK_ACTIVATOR(GlobalVariableType.SELECTION, Option.FALSE.toString(), "displayAllUsersOfTaskActivator"),
+  DISPLAY_USERS_OF_ROLE(GlobalVariableType.SELECTION, Option.FALSE.toString(), "displayAllUsersOfTaskActivator"),
   HIDE_YEAR(GlobalVariableType.SELECTION, Option.FALSE.toString(), "hideYear"),
   DEFAULT_PROCESS_MODE(GlobalVariableType.EXTERNAL_SELECTION, ProcessMode.GRID.name(), "defaultProcessMode", getProcessMode());
   
