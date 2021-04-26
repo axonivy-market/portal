@@ -72,8 +72,17 @@ HowTo: Add absence
 HowTo: Set deputy
 ^^^^^^^^^^^^^^^^^
 
-#. You see a list with an entry for your personal tasks and for each
-   role you hold. For each entry, you can specify multiple deputies.
+#. You see a list with 2 entries for your personal tasks and for each
+   role you hold.
+
+   For each role, you can choose multiple deputies.
+
+   For your personal tasks, you can choose multiple deputies and there are two types of deputy:
+
+   - Permanent deputies for personally assigned tasks.
+   - Deputies for personally assigned tasks during the absence.
+
+   A deputy can only belonged to one type.
 
 #. Specify deputies by clicking on link ends with |si-notes-quill|.
 
