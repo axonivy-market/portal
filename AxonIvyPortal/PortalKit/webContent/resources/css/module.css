@@ -5651,9 +5651,7 @@ body span.ui-commandlink .si {
 
 .security-member-tooltip.ui-tooltip {
   max-width: 80vw;
-  border-radius: 0;
   word-wrap: break-word;
-  padding: 0;
   opacity: 1;
 }
 
