@@ -289,7 +289,7 @@
                   <i jsf:rendered="#{!cc.attrs.readOnly}" class="si si-graphic-tablet-drawing-pen" />
                 </f:facet>
 
-                <p:ajax event="save" listener="#{logic.updateDeadline(task)}"
+                <p:ajax event="save" listener="#{logic.updateExpiryTime(task)}"
                   update="expiry-form #{cc.attrs.componentToUpdate}" process="@this expiry-calendar"/>
                 <p:calendar id="expiry-calendar" styleClass="task-details-data-expiry" value="#{data.expiryTimestamp}"
                   pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}">
