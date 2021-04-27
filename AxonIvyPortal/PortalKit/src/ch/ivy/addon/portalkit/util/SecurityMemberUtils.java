@@ -62,30 +62,31 @@ public class SecurityMemberUtils {
   }
 
   public static String buildTooltipFromUsers(String roleName) {
-    IRole role = Ivy.wf().getSecurityContext().findRole(roleName);
-    IPagedResult<IUser> result = role.users().assignedPaged(10);
-    List<IUser> users = result.page(1);
+    return IvyExecutor.executeAsSystem(() -> {
+      IRole role = Ivy.wf().getSecurityContext().findRole(roleName);
+      IPagedResult<IUser> result = role.users().assignedPaged(10);
+      List<IUser> users = result.page(1);
+      long totalCount = result.count();
 
-    String fullnameOfRole = SecurityMemberDisplayNameUtils.generateFullDisplayNameForRole(role.getDisplayName(), role.getName());
-    String header = cms("userOfRoleTitle",
-        Arrays.asList(fullnameOfRole)).concat(":");
+      String fullnameOfRole = SecurityMemberDisplayNameUtils.generateFullDisplayNameForRole(role.getDisplayName(), role.getName());
+      String header = cms("userOfRoleTitle", Arrays.asList(fullnameOfRole)).concat(":");
+      StringBuilder usersBuilder = new StringBuilder();
+      if (CollectionUtils.isEmpty(users)) {
+        String noUsers = cms("noUser");
+        usersBuilder.append(cms("roleMemberLineFormat", Arrays.asList(noUsers)));
+        return cms("roleMembersTooltipFormat", Arrays.asList(header, "no-user", usersBuilder));
+      }
 
-    StringBuilder usersBuilder = new StringBuilder();
-    if (CollectionUtils.isEmpty(users)) {
-      String noUsers = cms("noUser");
-      usersBuilder.append(cms("roleMemberLineFormat", Arrays.asList(noUsers)));
-    } else {
       for (IUser user : users) {
         String fullnameOfUser = SecurityMemberDisplayNameUtils.generateFullDisplayNameForUser(user, user.getName());
         usersBuilder.append(cms("roleMemberItemFormat", Arrays.asList(fullnameOfUser)));
       }
-    }
-    if (result.count() > 10) {
-      usersBuilder.append(cms("roleMemberLineFormat",
-          Arrays.asList(cms("/ch.ivy.addon.portalkit.ui.jsf/common/more").concat(" ..."))));
-    }
-
-    return cms("roleMembersTooltipFormat", Arrays.asList(header, usersBuilder));
+      if (totalCount > 10) {
+        usersBuilder.append(cms("roleMemberLineFormat",
+            Arrays.asList(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/more").concat(" ..."))));
+      }
+      return cms("roleMembersTooltipFormat", Arrays.asList(header, "", usersBuilder));
+    });
   }
 
   private static String cms(String url, List<Object> params) {
@@ -94,7 +95,8 @@ public class SecurityMemberUtils {
   }
 
   private static String cms(String url) {
-    return Ivy.cms().co(url);
+    String securityMemberCms = "/ch.ivy.addon.portalkit.ui.jsf/components/SecurityMemberDisplayName/".concat(url);
+    return Ivy.cms().co(securityMemberCms);
   }
 
 }
