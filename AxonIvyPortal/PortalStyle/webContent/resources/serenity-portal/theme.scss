@@ -1753,12 +1753,6 @@ body .ui-growl .ui-growl-item .ui-growl-message a {
 /* Security member display name */
 .security-member-tooltip.ui-tooltip {
   font-size: $securityMemberHeaderFontSize;
-  border: solid 1px $securityMemberBorderColor;
-}
-
-.security-member-tooltip.ui-tooltip .ui-tooltip-text {
-  background-color: $securityMemberBackgroundColor;
-  color: $securityMemberColor;
 }
 
 .security-member-tooltip .tooltip-header {
@@ -1768,4 +1762,12 @@ body .ui-growl .ui-growl-item .ui-growl-message a {
 
 .security-member-tooltip .tooltip-body-item {
   font-size: $securityMemberItemFontSize;
+}
+
+.security-member-tooltip.ui-tooltip.ui-tooltip-right .ui-tooltip-arrow {
+  border-right-color: $securityMemberTooltipArrowColor;
+}
+
+.security-member-tooltip.ui-tooltip.ui-tooltip-left .ui-tooltip-arrow {
+  border-left-color: $securityMemberTooltipArrowColor;
 }
