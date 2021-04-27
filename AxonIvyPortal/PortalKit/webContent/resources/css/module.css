@@ -2132,6 +2132,10 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
     max-width: 80%;
   }
 }
+
+.task-expiry-activator-edit {
+  margin-left: 5px;
+}
 /********************************** END TASK DETAIL **********************************/
 
 /********************************** CASE DETAIL **********************************/
@@ -4955,6 +4959,7 @@ _:-ms-fullscreen, :root .content-link-history {
 .case-upload-dialog, .case-view-note-dialog, .document-upload-dialog, .task-note-dialog,
 .task-upload-dialog {
   min-width: 50vw;
+  max-width: 70vw;
 }
 
 @media screen and (max-width: 40em) {
@@ -4965,7 +4970,8 @@ _:-ms-fullscreen, :root .content-link-history {
     padding: 0 !important;
   }
   .case-upload-dialog, .case-view-note-dialog, .task-upload-dialog, .document-upload-dialog, .task-note-dialog {
-    min-width: 96vw;
+    min-width: 70vw;
+    max-width: 96vw;
   }
 
   .adhoc-task-history-dialog .ui-dialog-content.ui-widget-content {
@@ -5632,6 +5638,11 @@ body span.ui-commandlink .si {
   }
 }
 
+.task-escalation-activator-dialog {
+  min-width: 250px;
+  min-height: 200px;
+}
+
 /* Allow users to scroll on mobile when use gridstack library*/
 .grid-stack-item-content.ui-draggable-handle {
   -ms-touch-action: initial !important; 
@@ -5658,4 +5669,37 @@ body span.ui-commandlink .si {
 
 .security-member-tooltip .tooltip-body.no-user {
   padding-left: 0;
+}
+
+/* Activator selection */
+.task-escalation-activator-dialog {
+  max-width: 600px;
+  min-width: 300px;
+  min-height: 200px;
+}
+
+.task-escalation-activator-dialog .task-escalation-activator-form,
+.task-escalation-activator-form .activator-type-label,
+.task-escalation-activator-form .task-escalation-activator-panel,
+.task-escalation-activator-form .select-assignee-panel,
+.assign-comment-panel .assign-comment-label,
+.assign-comment-panel .assign-comment-input {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.task-escalation-activator-form .select-assignee-panel.ui-fluid .ui-inputfield[size] {
+  width: 100%;
+}
+
+.task-escalation-activator-form .activator-type-select tbody tr td {
+  padding-right: 15px;
+}
+
+@media screen and (max-width: 40em) {
+  .task-escalation-activator-dialog {
+    min-width: auto;
+    max-width: 95vw;
+  }
+
 }
