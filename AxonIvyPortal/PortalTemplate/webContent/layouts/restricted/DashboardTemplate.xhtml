@@ -19,7 +19,7 @@
         <h:outputStylesheet library="css" name="dashboard.css" />
         <div class="dashboard__header ui-g-12 ui-g">
 
-          <h:panelGroup id="dashboard-title-container" styleClass="u-hidden-sm-down ui-md-12">
+          <h:panelGroup id="dashboard-title-container" styleClass="u-hidden-sm-down ui-lg-9 ui-md-7 dashboard__title-container">
             <c:forEach var="dashboard" items="#{managedBean.dashboards}" varStatus="dashboardStatus">
               <p:commandLink id="dashboard-title-#{dashboardStatus.index}" actionListener="#{managedBean.onDashboardChange(dashboardStatus.index)}"
                 update="grid-stack dashboard-title-container dashboard-title-dropdown-container" process="@this" oncomplete="loadGrid()" value="#{dashboard.title}"
@@ -35,7 +35,7 @@
             
           </h:panelGroup>
 
-          <span class="dashboard-header__action ui-md-12">
+          <span class="dashboard-header__action ui-lg-3 ui-md-5 ui-sm-12">
             <ui:insert name="headerAction" />
           </span>
         </div>
