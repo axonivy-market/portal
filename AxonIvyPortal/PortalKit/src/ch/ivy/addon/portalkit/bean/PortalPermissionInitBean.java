@@ -92,6 +92,7 @@ public class PortalPermissionInitBean extends AbstractProcessStartEventBean {
         IPermission.TASK_WRITE_EXPIRY_TIMESTAMP, IPermission.TASK_WRITE_ORIGINAL_PRIORITY,
         IPermission.TASK_WRITE_DESCRIPTION, IPermission.TASK_WRITE_NAME, IPermission.TASK_READ_OWN_CASE_TASKS,
         IPermission.TASK_DESTROY, IPermission.TASK_WRITE_DELAY_TIMESTAMP,
+        IPermission.TASK_WRITE_EXPIRY_ACTIVATOR,
         createPermission(PortalPermission.TASK_RESET_READY_FOR_JOIN)));
     return result;
   }
