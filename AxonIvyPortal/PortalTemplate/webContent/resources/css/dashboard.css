@@ -2,6 +2,10 @@
 	padding: 10px;
 }
 
+.dashboard__title-container {
+  line-height: 2;
+}
+
 .new-widget-dialog__content .ui-grid.ui-grid-responsive {
   padding: 0;
   border: none;
@@ -107,6 +111,16 @@
   overflow-y: auto;
   overflow-x: hidden;
   display: none;
+}
+
+.dashboard__restore-button {
+  margin-right: 15px;
+}
+
+@media screen and (max-width: 991px) {
+  .dashboard__restore-button {
+    margin-right: 0;
+  }
 }
 
 .actions-widget {
@@ -412,7 +426,7 @@ body .ui-calendar.task-configuration__calendar .ui-datepicker-trigger {
 @media screen and (max-width: 40em) {
   .filter-overlay-panel.ui-widget-content .ui-overlaypanel-content,
   .ui-widget-content.info-overlay-panel .ui-overlaypanel-content {
-    width: 70vw;
+    width: 80vw;
   }
 }
 
@@ -601,9 +615,6 @@ body .dashboard__table--preview.ui-datatable tbody tr.ui-state-hover {
 
 .dashboard-cases__name,
 .dashboard-tasks__name {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
   width: 300px;
 }
 
