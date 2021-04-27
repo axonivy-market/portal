@@ -61,6 +61,19 @@ public final class TaskUtils {
   }
 
   /**
+   * Remove deadline time of task
+   * 
+   * @param task : Task
+   * @return Boolean
+   */
+  public static Boolean removeTaskDeadline(final ITask task) {
+    return IvyExecutor.executeAsSystem(() -> {
+      task.setExpiryTimestamp(null);
+      return true;
+    });
+  }
+
+  /**
    * Get finished tasks by {@link ICase}
    * 
    * @param iCase object as {@link ICase}
@@ -89,6 +102,19 @@ public final class TaskUtils {
     IvyExecutor.executeAsSystem(() -> {
       iTask.setActivator(iSecurityMember);
       iTask.customFields().timestampField(CUSTOM_TIMESTAMP_FIELD5).set(new Date());
+      return Void.class;
+    });
+  }
+
+  /**
+   * Delegate a task after escalation
+   * 
+   * @param iTask task need to delegate
+   * @param iSecurityMember
+   */
+  public static void delegateTaskAfterEscalation(final ITask iTask, final ISecurityMember iSecurityMember) {
+    IvyExecutor.executeAsSystem(() -> {
+      iTask.setExpiryActivator(iSecurityMember);
       return Void.class;
     });
   }

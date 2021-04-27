@@ -17,6 +17,10 @@ public class TaskInforActionService {
     List<Object> parameters = Arrays.asList(fullNameOfUser, userNameOfUser, taskId.toString(), formattedDate);
     return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/setDeadlineNote", parameters);
   }
+
+  public String prepareRemoveExpiryTimeNoteContent(String fullNameOfUser, String userNameOfUser, Long taskId) {
+    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/removeExpiryTimeNote", Arrays.asList(fullNameOfUser, userNameOfUser, taskId));
+  }
   
   public String prepareChangeDelayNoteContent(String fullNameOfUser, String userNameOfUser, Date datetime,
       Long taskId) {
