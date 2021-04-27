@@ -50,7 +50,7 @@ Ts0 f1 307 83 26 26 0 12 #rect
 Ts0 f2 expr out #txt
 Ts0 f2 109 96 307 96 #arcP
 Ts0 f5 guid 16826946D7BC78E5 #txt
-Ts0 f5 method updateDeadline(ch.ivyteam.ivy.workflow.ITask) #txt
+Ts0 f5 method updateExpiryTime(ch.ivyteam.ivy.workflow.ITask) #txt
 Ts0 f5 inParameterDecl '<ch.ivyteam.ivy.workflow.ITask task> param;' #txt
 Ts0 f5 inParameterMapAction 'out.task=param.task;
 ' #txt
@@ -58,7 +58,7 @@ Ts0 f5 outParameterDecl '<> result;' #txt
 Ts0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>updateDeadline(ITask)</name>
+        <name>updateExpiryTime(ITask)</name>
     </language>
 </elementInfo>
 ' #txt
@@ -88,7 +88,7 @@ if (!in.#expiryTimestamp is initialized) {
 	in.changeDeadlineNoteContent = service.prepareRemoveExpiryTimeNoteContent(fullName, userName, in.task.getId());
 } else {
 	in.task.setExpiryTimestamp(in.expiryTimestamp);
-	in.changeDeadlineNoteContent = service.prepareChangeDeadlineNoteContent(fullName, userName, in.task.expiryTimestamp, in.task.getId());
+	in.changeDeadlineNoteContent = service.prepareChangeExpiryNoteContent(fullName, userName, in.task.expiryTimestamp, in.task.getId());
 }
 
 if (isUpdateExpiryActivator) {
