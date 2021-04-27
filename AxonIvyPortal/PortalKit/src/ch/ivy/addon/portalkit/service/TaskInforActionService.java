@@ -11,7 +11,7 @@ import ch.ivyteam.ivy.environment.Ivy;
 public class TaskInforActionService {
   private DateTimeGlobalSettingService dateTimeGlobalSettingService = new DateTimeGlobalSettingService();
 
-  public String prepareChangeDeadlineNoteContent(String fullNameOfUser, String userNameOfUser, Date datetime,
+  public String prepareChangeExpiryNoteContent(String fullNameOfUser, String userNameOfUser, Date datetime,
       Long taskId) {
     String formattedDate = formatDate(datetime);
     List<Object> parameters = Arrays.asList(fullNameOfUser, userNameOfUser, taskId.toString(), formattedDate);
