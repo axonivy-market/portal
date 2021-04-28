@@ -78,7 +78,7 @@ public class TaskDetailsTest extends BaseTest {
     taskDetailsPage = openDetailsPageOfFirstTask();
     taskDetailsPage.changeExpiryOfTaskAt(tomorrowStringLiteral);
     assertTrue(StringUtils.equalsIgnoreCase(tomorrowStringLiteral, taskDetailsPage.getExpiryOfTaskAt()));
-    assertTrue(StringUtils.contains(taskDetailsPage.getFirstTaskNoteComment(), "Portal Admin User (admin) has set deadline to task"));
+    assertTrue(StringUtils.contains(taskDetailsPage.getFirstTaskNoteComment(), "Portal Admin User (admin) has set expiry time to task"));
     assertTrue(StringUtils.contains(taskDetailsPage.getFirstTaskNoteComment(), "assign Everybody as the task escalation activator"));
   }
 
@@ -91,7 +91,7 @@ public class TaskDetailsTest extends BaseTest {
     assertTrue(taskDetailsPage.isClearDeadlineDisplayed());
     taskDetailsPage.clickOnClearDeadlineTime();
     assertTrue(StringUtils.equalsIgnoreCase("N/A", taskDetailsPage.getExpiryOfTaskAt()));
-    assertTrue(StringUtils.contains(taskDetailsPage.getFirstTaskNoteComment(), "Portal Admin User (admin) has removed deadline of task"));
+    assertTrue(StringUtils.contains(taskDetailsPage.getFirstTaskNoteComment(), "Portal Admin User (admin) has removed expiry time of task"));
   }
 
   @Test
@@ -100,7 +100,7 @@ public class TaskDetailsTest extends BaseTest {
     taskDetailsPage = openDetailsPageOfFirstTask();
     taskDetailsPage.changeEscaltionActivatorTo("HR", false);
     assertTrue(StringUtils.equalsIgnoreCase("Human resources department", taskDetailsPage.getAfterEscalation()));
-    assertTrue(StringUtils.contains(taskDetailsPage.getFirstTaskNoteComment(), "changed the task escalation activator from Everybody to Human resources department"));
+    assertTrue(StringUtils.contains(taskDetailsPage.getFirstTaskNoteComment(), "changed from Everybody to Human resources department"));
   }
 
   @Test
