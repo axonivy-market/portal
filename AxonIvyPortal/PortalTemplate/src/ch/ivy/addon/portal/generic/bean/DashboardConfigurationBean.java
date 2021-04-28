@@ -44,7 +44,7 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
     HttpServletRequest request =(HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
     String userAgent = request.getHeader("user-agent");
 
-    this.isReadOnlyMode = false || userAgent.matches("Android|webOS|iPhone|iPad|Mac|Macintosh|iPod|BlackBerry|IEMobile|Opera Mini");
+    this.isReadOnlyMode = userAgent.matches(".*Android.*|.*webOS.*|.*iPhone.*|.*iPad.*|.*iPod.*|.*BlackBerry.*|.*IEMobile.*|.*Opera Mini.*");
 
     samples = List.of(taskSample(), caseSample(), statisticSample(), processSample());
   }
