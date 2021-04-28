@@ -426,7 +426,7 @@ body .ui-calendar.task-configuration__calendar .ui-datepicker-trigger {
 @media screen and (max-width: 40em) {
   .filter-overlay-panel.ui-widget-content .ui-overlaypanel-content,
   .ui-widget-content.info-overlay-panel .ui-overlaypanel-content {
-    width: 80vw;
+    width: 70vw;
   }
 }
 
