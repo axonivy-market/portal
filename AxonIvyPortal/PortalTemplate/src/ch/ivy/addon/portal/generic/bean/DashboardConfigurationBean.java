@@ -14,6 +14,8 @@ import java.util.stream.Collectors;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.collections.CollectionUtils;
 
@@ -39,7 +41,11 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
   @PostConstruct
   public void initConfigration() {
     super.init();
-    this.isReadOnlyMode = false;
+    HttpServletRequest request =(HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
+    String userAgent = request.getHeader("user-agent");
+
+    this.isReadOnlyMode = false || userAgent.matches("Android|webOS|iPhone|iPad|Mac|Macintosh|iPod|BlackBerry|IEMobile|Opera Mini");
+
     samples = List.of(taskSample(), caseSample(), statisticSample(), processSample());
   }
 
