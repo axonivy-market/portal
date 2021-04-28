@@ -20,7 +20,10 @@ import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.security.IUser;
 
 public class SecurityMemberUtils {
-  
+
+  private static final String NONAME_PATTERN = "<%s> (%s)";
+  private static final String TIP_PATTERN = "%s (%s)";
+
   public static SecurityMemberDTO getCurrentSessionUserAsSecurityMemberDTO() {
     return IvyExecutor.executeAsSystem(() -> {
       return new SecurityMemberDTO(Ivy.session().getSessionUser());
@@ -142,11 +145,10 @@ public class SecurityMemberUtils {
     if (StringUtils.isBlank(username)) {
       return StringUtils.EMPTY;
     }
-
     String formattedUsername = username.startsWith("#") ? username.substring(1) : username;
     if (StringUtils.isBlank(fullName)) {
-      return "<" + Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/noName") + ">" + " (" + formattedUsername + ")";
+      return String.format(NONAME_PATTERN, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/noName"), formattedUsername);
     }
-    return fullName + " (" + formattedUsername + ")";
+    return String.format(TIP_PATTERN, fullName, formattedUsername);
   }
 }
