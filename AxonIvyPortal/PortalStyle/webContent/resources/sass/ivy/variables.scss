@@ -520,9 +520,7 @@ $ajaxLoaderBackgroundColor: hsla(0, 0%, 100%, 0.9) !default;
 $ajaxLoaderBorderColor: $primaryColor !default;
 
 /* Security member display name */
-$securityMemberBackgroundColor: $white !default;
-$securityMemberColor: #212121 !default;
+$securityMemberTooltipArrowColor: $white !default;
 $securityMemberHeaderFontSize: 12px !default;
 $securityMemberItemFontSize: 10px !default;
 $securityMemberHeaderFontWeight: bold !default;
-$securityMemberBorderColor: #004C97 !default;
