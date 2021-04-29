@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 
+import ch.ivy.addon.portalkit.constant.TaskDetailsCustomWidgetParam;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.publicapi.TaskAPI;
@@ -24,11 +25,6 @@ import ch.ivyteam.ivy.workflow.custom.field.ICustomField;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
 public final class TaskUtils {
-  private static final String TASK_CATEGORY = "category";
-  private static final String TASK_ID = "id";
-  private static final String TASK_CUSTOM_FIELD = "custom";
-  private static final String TASK_PROPERTY = "task";
-  private static final String TASK_PROPERTY_KEY_PATTERN_DELIMITER = "\\.";
 
   private TaskUtils() {}
 
@@ -185,12 +181,12 @@ public final class TaskUtils {
 
   public static String getTaskPropertyByKeyPattern(ITask task, String keyPattern) {
     if (task != null) {
-      String[] keyParts = keyPattern.split(TASK_PROPERTY_KEY_PATTERN_DELIMITER);
+      String[] keyParts = keyPattern.split(TaskDetailsCustomWidgetParam.TASK_PROPERTY_KEY_PATTERN_DELIMITER);
       if (keyParts.length == 2) {
         switch (keyParts[0]) {
-          case TASK_PROPERTY:
+          case TaskDetailsCustomWidgetParam.TASK_PROPERTY_PREFIX:
             return getTaskPropertyByKey(task, keyParts[1]);
-          case TASK_CUSTOM_FIELD:
+          case TaskDetailsCustomWidgetParam.TASK_CUSTOM_FIELD_PREFIX:
             return getTaskCustomFieldByKey(task, keyParts[1]);
           default:
             return keyPattern;
@@ -202,9 +198,9 @@ public final class TaskUtils {
 
   private static String getTaskPropertyByKey(ITask task, String key) {
     switch (key) {
-      case TASK_ID:
+      case TaskDetailsCustomWidgetParam.TASK_ID:
         return String.valueOf(task.getId());
-      case TASK_CATEGORY:
+      case TaskDetailsCustomWidgetParam.TASK_CATEGORY:
         return String.valueOf(task.getCategory().getPath());
       default:
         return StringUtils.EMPTY;
