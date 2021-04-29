@@ -73,7 +73,7 @@ How to configure widgets in task details
                   "x": 0, "y": 6, "w": 6, "h": 6
                },
                "data" : {
-                  "processStart": "Start Processes/Sale/invoiceDetails.ivp",
+                  "processStart": "Start Processes/TaskDetailsCustomWidgetExample/invoiceDetails.ivp",
                   "params": {
                      "startedTaskId": "task.id",
                      "startedTaskCategory": "task.category",
@@ -373,7 +373,7 @@ There are **two steps** for adding new custom panels.
 
       |task-customized-iframe-url|
 
-      Customized task details using ivy process start
+      Customized task details using ivy process start, please refer to ``TaskDetailsCustomWidgetExample`` process in ``portal-developer-examples`` for more details
 
       .. code-block:: html
 
@@ -399,7 +399,7 @@ There are **two steps** for adding new custom panels.
                      "x": 0, "y": 6, "w": 6, "h": 6
                      },
                      "data" : {
-                        "processStart": "Start Processes/Sale/invoiceDetails.ivp",
+                        "processStart": "Start Processes/TaskDetailsCustomWidgetExample/invoiceDetails.ivp",
                         "params": {
                            "startedTaskId": "task.id",
                            "startedTaskCategory": "task.category",
