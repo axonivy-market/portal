@@ -36,7 +36,7 @@ import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
-import ch.ivy.addon.portalkit.util.TaskUtils;
+import ch.ivy.addon.portalkit.util.TaskDetailsCustomWidgetUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.globalvars.IGlobalVariableContext;
 import ch.ivyteam.ivy.workflow.ITask;
@@ -339,6 +339,6 @@ public class TaskDetailsBean implements Serializable {
   }
 
   public static String getTaskPropertyByKeyPattern(ITask task, String keyPattern) {
-    return TaskUtils.getTaskPropertyByKeyPattern(task, keyPattern);
+    return TaskDetailsCustomWidgetUtils.getTaskPropertyByKeyPattern(task, keyPattern);
   }
 }

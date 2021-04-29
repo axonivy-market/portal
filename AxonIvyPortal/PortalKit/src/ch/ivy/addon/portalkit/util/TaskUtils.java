@@ -7,9 +7,6 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
-import org.apache.commons.lang3.StringUtils;
-
-import ch.ivy.addon.portalkit.constant.TaskDetailsCustomWidgetParam;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.publicapi.TaskAPI;
@@ -21,7 +18,6 @@ import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.IWorkflowSession;
 import ch.ivyteam.ivy.workflow.TaskState;
-import ch.ivyteam.ivy.workflow.custom.field.ICustomField;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
 public final class TaskUtils {
@@ -177,40 +173,6 @@ public final class TaskUtils {
         return Void.class;
       });
     }
-  }
-
-  public static String getTaskPropertyByKeyPattern(ITask task, String keyPattern) {
-    if (task != null) {
-      String[] keyParts = keyPattern.split(TaskDetailsCustomWidgetParam.TASK_PROPERTY_KEY_PATTERN_DELIMITER);
-      if (keyParts.length == 2) {
-        switch (keyParts[0]) {
-          case TaskDetailsCustomWidgetParam.TASK_PROPERTY_PREFIX:
-            return getTaskPropertyByKey(task, keyParts[1]);
-          case TaskDetailsCustomWidgetParam.TASK_CUSTOM_FIELD_PREFIX:
-            return getTaskCustomFieldByKey(task, keyParts[1]);
-          default:
-            return keyPattern;
-        }
-      }
-    }
-    return keyPattern;
-  }
-
-  private static String getTaskPropertyByKey(ITask task, String key) {
-    switch (key) {
-      case TaskDetailsCustomWidgetParam.TASK_ID:
-        return String.valueOf(task.getId());
-      case TaskDetailsCustomWidgetParam.TASK_CATEGORY:
-        return String.valueOf(task.getCategory().getPath());
-      default:
-        return StringUtils.EMPTY;
-    }
-  }
-
-  private static String getTaskCustomFieldByKey(ITask task, String key) {
-    ICustomField<?> customField = task.customFields().all().stream().filter(field -> field.name().equals(key)).findFirst().orElse(null);
-    Object customFieldValue = customField != null ? customField.getOrNull() : null;
-    return customFieldValue != null ? String.valueOf(customFieldValue) : StringUtils.EMPTY;
   }
 
 }
