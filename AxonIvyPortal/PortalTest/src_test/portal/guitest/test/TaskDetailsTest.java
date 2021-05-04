@@ -78,8 +78,9 @@ public class TaskDetailsTest extends BaseTest {
     taskDetailsPage = openDetailsPageOfFirstTask();
     taskDetailsPage.changeExpiryOfTaskAt(tomorrowStringLiteral);
     assertTrue(StringUtils.equalsIgnoreCase(tomorrowStringLiteral, taskDetailsPage.getExpiryOfTaskAt()));
-    assertTrue(StringUtils.contains(taskDetailsPage.getFirstTaskNoteComment(), "Portal Admin User (admin) has set expiry time to task"));
-    assertTrue(StringUtils.contains(taskDetailsPage.getFirstTaskNoteComment(), "assign Everybody as the task escalation activator"));
+    String firstTaskNoteComment = taskDetailsPage.getFirstTaskNoteComment();
+    assertTrue(StringUtils.contains(firstTaskNoteComment, "Portal Admin User (admin) has set deadline to task"));
+    assertTrue(StringUtils.contains(firstTaskNoteComment, "assign Everybody as the task escalation activator"));
   }
 
   @Test
