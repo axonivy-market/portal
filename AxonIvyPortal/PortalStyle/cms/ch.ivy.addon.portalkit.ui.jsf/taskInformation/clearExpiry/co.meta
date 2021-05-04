@@ -1,5 +1,5 @@
-co: name={clearExpiry} description={} changed={2021-04-27 08:59:37 CEST} changedby={nqhoan} visualorder={0} guid={179121FD8495039D} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={179121FD851684BE} datatype={} isdefault={false} langid={fr} description={} validfrom={2021-04-20 06:03:13 CEST} validto={} changed={2021-04-27 08:59:37 CEST} changedby={nqhoan} properties={} id={}
-val: guid={179121FD862CAF2B} datatype={} isdefault={true} langid={en} description={} validfrom={2021-04-20 06:03:01 CEST} validto={} changed={2021-04-27 08:59:37 CEST} changedby={nqhoan} properties={} id={}
-val: guid={179121FD869ED1DA} datatype={} isdefault={false} langid={de} description={} validfrom={2021-04-20 06:03:16 CEST} validto={} changed={2021-04-27 08:59:37 CEST} changedby={nqhoan} properties={} id={}
-val: guid={179121FD85AFCEE5} datatype={} isdefault={false} langid={es} description={} validfrom={2021-04-20 06:03:18 CEST} validto={} changed={2021-04-27 08:59:37 CEST} changedby={nqhoan} properties={} id={}
+co: name={clearExpiry} description={} changed={2021-05-04 04:20:49 CEST} changedby={phhung} visualorder={0} guid={179121FD8495039D} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={179121FD851684BE} datatype={} isdefault={false} langid={fr} description={} validfrom={2021-05-04 04:20:49 CEST} validto={} changed={2021-05-04 04:20:49 CEST} changedby={phhung} properties={} id={}
+val: guid={179121FD862CAF2B} datatype={} isdefault={true} langid={en} description={} validfrom={2021-05-04 04:20:49 CEST} validto={} changed={2021-05-04 04:20:49 CEST} changedby={phhung} properties={} id={}
+val: guid={179121FD869ED1DA} datatype={} isdefault={false} langid={de} description={} validfrom={2021-05-04 04:20:49 CEST} validto={} changed={2021-05-04 04:20:49 CEST} changedby={phhung} properties={} id={}
+val: guid={179121FD85AFCEE5} datatype={} isdefault={false} langid={es} description={} validfrom={2021-05-04 04:20:49 CEST} validto={} changed={2021-05-04 04:20:49 CEST} changedby={phhung} properties={} id={}
