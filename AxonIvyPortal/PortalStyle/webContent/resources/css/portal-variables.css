@@ -500,10 +500,8 @@
   --general-config-description-color: var(--ivy-primary-color-grey-medium);
 
   /* Security member display name */
-  --security-member-background-color: var(--ivy-primary-color-white);
-  --security-member-color: var(--ivy-primary-color-black);
+  --security-member-tooltip-arrow-color: var(--ivy-primary-color-white);
   --security-member-header-font-size: 12px;
   --security-member-item-font-size: 10px;
   --security-member-header-font-weight: bold;
-  --security-member-border-color: #004C97;
   }

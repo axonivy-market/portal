@@ -109,7 +109,8 @@
             <h:panelGroup id="task-detail-data-description-container" styleClass="ui-g-12 u-padding-0 grid-stack-item-content">
               <ic:ch.ivy.addon.portalkit.component.TaskItemGeneralInfo id="general-information" task="#{task}"
                 componentToUpdate="#{historyWidgetComponent} #{informationWidgetComponent}"
-                onWorkflowEventComplete="initWorkflowEventData()" readOnly="#{cc.attrs.readOnly}" />
+                onWorkflowEventComplete="initWorkflowEventData()" readOnly="#{cc.attrs.readOnly}"
+                onEditTaskExpiryActivator="showTaskEscalationActivatorDialog();" />
             </h:panelGroup>
           </h:panelGroup>
 
@@ -224,6 +225,10 @@
 
   <!-- Workflow Event of Task -->
   <ic:ch.ivy.addon.portalkit.component.TaskItemWorkflowEvents id="workflow-event-component" taskId="#{task.id}" />
+
+  <!-- Task Exipy Activator Selection Dialog -->
+  <ic:ch.ivy.addon.portalkit.component.TaskExpiryActivatorSelection task="#{task}"
+    componentToUpdate="#{informationWidgetComponent} #{historyWidgetComponent}"/>
 
   <h:outputScript name="task-details.js" library="js" />
 </cc:implementation>
