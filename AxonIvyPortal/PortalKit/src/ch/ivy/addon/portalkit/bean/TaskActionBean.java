@@ -134,7 +134,7 @@ public class TaskActionBean implements Serializable {
   }
 
   public boolean canChangeExpiry(ITask task) {
-    return (hasPermission(task, IPermission.TASK_WRITE_EXPIRY_TIMESTAMP) && task.getExpiryActivator() != null)
+    return hasPermission(task, IPermission.TASK_WRITE_EXPIRY_TIMESTAMP)
         || (task != null && StringUtils.isNotBlank(task.getExpiryTaskStartElementPid()));
   }
   
@@ -172,6 +172,10 @@ public class TaskActionBean implements Serializable {
     return hasPermission(task, IPermission.TASK_DESTROY) && !taskStates.contains(task.getState());
   }
 
+  public boolean canChangeTaskExpiryActivator(ITask task) {
+    return hasPermission(task, IPermission.TASK_WRITE_EXPIRY_ACTIVATOR) && isNotDone(task);
+  }
+  
   public boolean isNotDone(ITask task) {
     if (task == null) {
       return false;
@@ -250,6 +254,10 @@ public class TaskActionBean implements Serializable {
 
   public boolean showClearDelayTime(ITask task) {
     return TaskState.DELAYED.equals(task.getState()) && task.getDelayTimestamp() != null;
+  }
+
+  public boolean showClearExpiryTime(ITask task) {
+    return canChangeExpiry(task) && task.getExpiryTimestamp() != null;
   }
 
   public boolean noActionAvailable(ITask task) {

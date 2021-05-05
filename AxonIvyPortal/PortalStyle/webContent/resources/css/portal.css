@@ -881,9 +881,7 @@ body .task-item-body .task-details-item-note .ui-paginator a.ui-state-active, .t
 body .task-item-body .task-details-item-note .ui-paginator a.ui-paginator-page.ui-state-hover, body .task-item-body .task-details-item-note .ui-paginator a.ui-paginator-page.ui-state-active, body .task-item-body .task-details-item-note .ui-paginator a.ui-paginator-page.ui-state-hover, body .task-item-body .task-details-item-note .ui-paginator a.ui-paginator-page.ui-state-active, body .task-item-body .task-details-item-note a.ui-paginator-first.ui-state-hover, body .task-item-body .task-details-item-note a.ui-paginator-first.ui-state-active, body .task-item-body .task-details-item-note a.ui-paginator-prev.ui-state-hover, body .task-item-body .task-details-item-note a.ui-paginator-prev.ui-state-active, body .task-item-body .task-details-item-note a.ui-paginator-next.ui-state-hover, body .task-item-body .task-details-item-note a.ui-paginator-next.ui-state-active, body .task-item-body .task-details-item-note a.ui-paginator-last.ui-state-hover, body .task-item-body .task-details-item-note a.ui-paginator-last.ui-state-active, .task-item-body .task-details-item-document .ui-paginator a.ui-paginator-page.ui-state-hover, .task-item-body .task-details-item-document .ui-paginator a.ui-paginator-page.ui-state-active, .task-item-body .task-details-item-document .ui-paginator a.ui-paginator-page.ui-state-hover, .task-item-body .task-details-item-document .ui-paginator a.ui-paginator-page.ui-state-active, .task-item-body .task-details-item-document a.ui-paginator-first.ui-state-hover, .task-item-body .task-details-item-document a.ui-paginator-first.ui-state-active, .task-item-body .task-details-item-document a.ui-paginator-prev.ui-state-hover, .task-item-body .task-details-item-document a.ui-paginator-prev.ui-state-active, .task-item-body .task-details-item-document a.ui-paginator-next.ui-state-hover, .task-item-body .task-details-item-document a.ui-paginator-next.ui-state-active, .task-item-body .task-details-item-document a.ui-paginator-last.ui-state-hover, .task-item-body .task-details-item-document a.ui-paginator-last.ui-state-active {
   background-color: var(--task-detail-paginator-hovered-button-background-color); }
 
-.task-description-inplace .ui-inplace-display.ui-state-highlight, .edit-priority-inplace .ui-inplace-display.ui-state-highlight, .task-name-inplace .ui-inplace-display.ui-state-highlight,
-.expiry-edit-inplace .ui-inplace-display.ui-state-highlight,
-.delay-edit-inplace .ui-inplace-display.ui-state-highlight {
+.portal-edit-inplace .ui-inplace-display.ui-state-highlight {
   background-color: var(--task-highlighted-inplace-field-background-color);
   color: var(--task-highlighted-inplace-field-text-color); }
 
@@ -2043,12 +2041,6 @@ body.in-dialog .ui-widget-overlay {
 
 .security-member-tooltip.ui-tooltip {
   font-size: var(--security-member-header-font-size);
-  border: solid 1px var(--security-member-border-color);
-}
-
-.security-member-tooltip.ui-tooltip .ui-tooltip-text {
-  background-color: var(--security-member-background-color);
-  color: var(--security-member-color);
 }
 
 .security-member-tooltip .tooltip-header {
@@ -2058,4 +2050,12 @@ body.in-dialog .ui-widget-overlay {
 
 .security-member-tooltip .tooltip-body-item {
   font-size: var(--security-member-item-font-size);
+}
+
+.security-member-tooltip.ui-tooltip.ui-tooltip-right .ui-tooltip-arrow {
+  border-right-color: var(--security-member-tooltip-arrow-color);
+}
+
+.security-member-tooltip.ui-tooltip.ui-tooltip-left .ui-tooltip-arrow {
+  border-left-color: var(--security-member-tooltip-arrow-color);
 }
