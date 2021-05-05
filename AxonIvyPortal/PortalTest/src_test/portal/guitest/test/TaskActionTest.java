@@ -92,7 +92,7 @@ public class TaskActionTest extends BaseTest {
     taskWidgetPage = taskDetailsPage.goBackToTaskListFromTaskDetails();
 
     // Delayed
-    assertTaskActionsByTaskState("Delayed", Arrays.asList("Delegate", "Clear the delay", "Destroy", "Add Ad-hoc Task"));
+    assertTaskActionsByTaskState("Delayed", Arrays.asList("Delegate", "Clear delay", "Destroy", "Add Ad-hoc Task"));
     taskWidgetPage = taskDetailsPage.goBackToTaskListFromTaskDetails();
 
     // Destroyed
