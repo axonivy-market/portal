@@ -33,5 +33,5 @@
 	<classpathentry kind="lib" path="lib_test/mockito-core-2.23.0.jar"/>
 	<classpathentry kind="lib" path="lib_test/objenesis-3.0.1.jar"/>
 	<classpathentry kind="lib" path="lib_test/powermock-mockito2-2.0.2-full.jar"/>
-	<classpathentry kind="output" path="target/classes"/>
+	<classpathentry kind="output" path="classes"/>
 </classpath>
