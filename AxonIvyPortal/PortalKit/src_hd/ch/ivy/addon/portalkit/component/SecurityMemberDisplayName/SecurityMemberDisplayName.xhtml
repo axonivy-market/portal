@@ -13,6 +13,7 @@
   <cc:attribute name="securityMemberName" required="true" />
   <cc:attribute name="alwaysShowAsText" default="false" shortDescription="To force display the user name with simple text format"/>
   <cc:attribute name="styleClass" />
+  <cc:attribute name="roleNameStyleClass" />
 </cc:interface>
 
 <cc:implementation>
@@ -21,7 +22,7 @@
   <c:set var="renderUserOfRole" value="#{data.isShowAllUser and securityMember != null and !securityMember.isUser()}"/>
 
   <!-- Display User name as text format -->
-  <h:panelGroup rendered="#{!renderUserOfRole or alwaysShowAsText}">
+  <h:panelGroup>
     <h:outputText id="#{cc.attrs.textId}" styleClass="#{cc.attrs.styleClass}"
       value="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(securityMember, cc.attrs.securityMemberName)}" />
     <p:tooltip rendered="#{not empty securityMember and !renderUserOfRole}"
@@ -40,13 +41,12 @@
   </h:panelGroup>
 
   <!-- Display Role name as link format, click to show all user of this role -->
-  <h:panelGroup rendered="#{renderUserOfRole and !alwaysShowAsText}">
+  <h:panelGroup rendered="#{renderUserOfRole and !alwaysShowAsText}" styleClass="#{cc.attrs.roleNameStyleClass}">
     <p:commandLink id="#{cc.attrs.textId}-activator" styleClass="#{cc.attrs.styleClass} user-fullname-link"
       update="user-of-role"
       actionListener="#{logic.loadUsersOfRole(securityMember.getMemberName())}"
       oncomplete="PF('users-of-role').show('#{component.clientId}')"
       process="@this" immediate="true">
-      <span>#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(securityMember, cc.attrs.securityMemberName)}</span>
       <i class="si si-information-circle icon-compact-mode"/>
     </p:commandLink>
     <p:tooltip for="#{cc.attrs.textId}-activator"

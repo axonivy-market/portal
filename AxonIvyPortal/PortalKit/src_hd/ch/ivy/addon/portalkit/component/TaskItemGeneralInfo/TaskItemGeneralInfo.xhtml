@@ -10,6 +10,7 @@
   <cc:attribute name="componentToUpdate" />
   <cc:attribute name="styleClass" />
   <cc:attribute name="onWorkflowEventComplete" />
+  <cc:attribute name="onEditTaskExpiryActivator" />
   <cc:attribute name="readOnly" default="false" />
 </cc:interface>
 
@@ -44,7 +45,7 @@
           <h:panelGroup styleClass="task-details-priority">
             <ui:fragment rendered="#{taskActionBean.canChangePriority(task)}">
               <h:form id="priority-form" styleClass="task-priority-form">
-                <p:inplace id="edit-priority-inplace" effectSpeed="fast" styleClass="edit-priority-inplace"
+                <p:inplace id="edit-priority-inplace" effectSpeed="fast" styleClass="edit-priority-inplace portal-edit-inplace"
                   disabled="#{cc.attrs.readOnly}"
                   saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
                   cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" editor="true">
@@ -152,9 +153,15 @@
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/afterEscalation')}" />
         </div>
         <div class="ui-xl-9 ui-lg-8 ui-md-8 ui-sm-8 ui-g-4 u-no-padding-left text-ellipsis">
-          <ic:ch.ivy.addon.portalkit.component.SecurityMemberDisplayName id="task-expiry-activator"
-            securityMember="#{task.getExpiryActivator()}" securityMemberName="#{task.getExpiryActivatorName()}"
-            styleClass="text-ellipsis"/>
+          <ic:ch.ivy.addon.portalkit.component.SecurityMemberDisplayName id="task-expiry-activator-name" securityMember="#{task.getExpiryActivator()}"
+            securityMemberName="#{task.getExpiryActivatorName()}" styleClass="text-ellipsis task-expiry-activator-name"
+            roleNameStyleClass="ui-md-hidden ui-sm-hidden"/>
+          <p:link rendered="#{taskActionBean.canChangeTaskExpiryActivator(task) and !cc.attrs.readOnly}"
+            styleClass="task-expiry-activator-edit"
+            href="#"
+            onclick="#{cc.attrs.onEditTaskExpiryActivator}; return false;">
+            <i class="si si-graphic-tablet-drawing-pen icon-compact-mode" />
+          </p:link>
         </div>
       </h:panelGroup>
     </div>
@@ -242,7 +249,7 @@
         </div>
         <div class="ui-xl-9 ui-lg-8 ui-md-8 ui-sm-8 ui-g-4 u-no-padding-left">
           <h:form id="delay-form">
-            <p:inplace id="delay-date" styleClass="delay-edit-inplace" editor="true"
+            <p:inplace id="delay-date" styleClass="delay-edit-inplace portal-edit-inplace" editor="true"
               saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
               cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
               disabled="#{!taskActionBean.canChangeDelayTimestamp(task) or cc.attrs.readOnly}">
@@ -273,7 +280,7 @@
         <div class="ui-xl-9 ui-lg-8 ui-md-8 ui-sm-8 ui-g-4 u-no-padding-left">
           <ui:fragment rendered="#{taskBean.isNotDone(task)}">
             <h:form id="expiry-form">
-              <p:inplace id="edit-inplace" styleClass="expiry-edit-inplace" editor="true"
+              <p:inplace id="edit-inplace" styleClass="expiry-edit-inplace portal-edit-inplace" editor="true"
                 saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
                 cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
                 disabled="#{cc.attrs.readOnly}" rendered="#{taskActionBean.canChangeExpiry(task)}">
@@ -282,9 +289,9 @@
                   <i jsf:rendered="#{!cc.attrs.readOnly}" class="si si-graphic-tablet-drawing-pen" />
                 </f:facet>
 
-                <p:ajax event="save" listener="#{logic.updateDeadline(task)}"
-                  update="expiry-form #{cc.attrs.componentToUpdate}" />
-                <p:calendar id="expiry-calendar" styleClass="task-details-data-expiry" value="#{task.expiryTimestamp}"
+                <p:ajax event="save" listener="#{logic.updateExpiryTime(task)}"
+                  update="expiry-form #{cc.attrs.componentToUpdate}" process="@this expiry-calendar"/>
+                <p:calendar id="expiry-calendar" styleClass="task-details-data-expiry" value="#{data.expiryTimestamp}"
                   pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}">
                   <f:validator validatorId="taskExpiryTimestampValidator" />
                 </p:calendar>
