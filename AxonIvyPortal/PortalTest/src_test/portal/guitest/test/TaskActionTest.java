@@ -41,21 +41,21 @@ public class TaskActionTest extends BaseTest {
     taskWidgetPage = taskDetailsPage.goBackToTaskListFromTaskDetails();
 
     // Suspended
-    assertTaskActionsByTaskState("Suspended", Arrays.asList("Delegate", "Reserve", "Add Ad-hoc Task"));
+    assertTaskActionsByTaskState("Suspended", Arrays.asList("Delegate", "Reserve", "Clear expiry", "Add Ad-hoc Task"));
     taskWidgetPage = taskDetailsPage.goBackToTaskListFromTaskDetails();
 
     // Reserved
     taskWidgetPage.clickOnTaskActionLink(0);
     taskWidgetPage.reserveTask(0);
     taskWidgetPage.waitAjaxIndicatorDisappear();
-    assertTaskActionsByTaskState("Reserved", Arrays.asList("Delegate", "Reset", "Add Ad-hoc Task"));
+    assertTaskActionsByTaskState("Reserved", Arrays.asList("Delegate", "Reset", "Clear expiry", "Add Ad-hoc Task"));
 
     // In progress
     TaskTemplatePage taskTemplatePage = taskDetailsPage.clickStartTask();
     taskTemplatePage.clickCancelLink();
     taskDetailsPage = new TaskDetailsPage();
     taskWidgetPage = taskDetailsPage.goBackToTaskListFromTaskDetails();
-    assertTaskActionsByTaskState("In progress", Arrays.asList("Reserve", "Reset", "Add Ad-hoc Task"));
+    assertTaskActionsByTaskState("In progress", Arrays.asList("Reserve", "Reset", "Clear expiry", "Add Ad-hoc Task"));
     taskWidgetPage = taskDetailsPage.goBackToTaskListFromTaskDetails();
   }
 
@@ -70,21 +70,21 @@ public class TaskActionTest extends BaseTest {
     taskWidgetPage = taskDetailsPage.goBackToTaskListFromTaskDetails();
 
     // Suspended
-    assertTaskActionsByTaskState("Suspended", Arrays.asList("Delegate", "Reserve", "Destroy", "Add Ad-hoc Task"));
+    assertTaskActionsByTaskState("Suspended", Arrays.asList("Delegate", "Reserve", "Clear expiry", "Destroy", "Add Ad-hoc Task"));
     taskWidgetPage = taskDetailsPage.goBackToTaskListFromTaskDetails();
 
     // Reserved
     taskWidgetPage.clickOnTaskActionLink(0);
     taskWidgetPage.reserveTask(0);
     taskWidgetPage.waitAjaxIndicatorDisappear();
-    assertTaskActionsByTaskState("Reserved", Arrays.asList("Delegate", "Reset", "Destroy", "Add Ad-hoc Task"));
+    assertTaskActionsByTaskState("Reserved", Arrays.asList("Delegate", "Reset", "Clear expiry", "Destroy", "Add Ad-hoc Task"));
 
     // In progress
     TaskTemplatePage taskTemplatePage = taskDetailsPage.clickStartTask();
     taskTemplatePage.clickCancelLink();
     taskDetailsPage = new TaskDetailsPage();
     taskWidgetPage = taskDetailsPage.goBackToTaskListFromTaskDetails();
-    assertTaskActionsByTaskState("In progress", Arrays.asList("Reserve", "Reset", "Destroy", "Add Ad-hoc Task"));
+    assertTaskActionsByTaskState("In progress", Arrays.asList("Reserve", "Reset", "Clear expiry", "Destroy", "Add Ad-hoc Task"));
     taskWidgetPage = taskDetailsPage.goBackToTaskListFromTaskDetails();
 
     // Done
@@ -92,7 +92,7 @@ public class TaskActionTest extends BaseTest {
     taskWidgetPage = taskDetailsPage.goBackToTaskListFromTaskDetails();
 
     // Delayed
-    assertTaskActionsByTaskState("Delayed", Arrays.asList("Delegate", "Clear the delay", "Destroy", "Add Ad-hoc Task"));
+    assertTaskActionsByTaskState("Delayed", Arrays.asList("Delegate", "Clear delay", "Destroy", "Add Ad-hoc Task"));
     taskWidgetPage = taskDetailsPage.goBackToTaskListFromTaskDetails();
 
     // Destroyed
