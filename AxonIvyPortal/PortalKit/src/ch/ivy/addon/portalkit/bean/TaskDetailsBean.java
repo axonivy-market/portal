@@ -36,6 +36,7 @@ import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
+import ch.ivy.addon.portalkit.util.TaskDetailsCustomWidgetUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.globalvars.IGlobalVariableContext;
 import ch.ivyteam.ivy.workflow.ITask;
@@ -212,7 +213,6 @@ public class TaskDetailsBean implements Serializable {
 
     if (CollectionUtils.isNotEmpty(layouts)) {
       for (WidgetLayout layout : layouts) {
-    	Ivy.log().error("layout id: " + layout.getId());
         TaskDetailsWidget currentWidget = widgets.stream().filter(widget -> StringUtils.compare(widget.getId(), layout.getId()) == 0).findFirst().get();
         currentWidget.getLayout().setAxisX(layout.getAxisX());
         currentWidget.getLayout().setAxisY(layout.getAxisY());
@@ -335,5 +335,9 @@ public class TaskDetailsBean implements Serializable {
 
   public void setShowDurationTime(boolean hasShowDurationTime) {
     this.hasShowDurationTime = hasShowDurationTime;
+  }
+
+  public static String getTaskPropertyByKeyPattern(ITask task, String keyPattern) {
+    return TaskDetailsCustomWidgetUtils.getTaskPropertyByKeyPattern(task, keyPattern);
   }
 }
