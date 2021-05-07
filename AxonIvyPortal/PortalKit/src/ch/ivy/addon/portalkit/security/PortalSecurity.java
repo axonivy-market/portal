@@ -41,6 +41,7 @@ public enum PortalSecurity {
             IPermission.TASK_WRITE_DESCRIPTION,
             IPermission.TASK_WRITE_NAME,
             IPermission.TASK_WRITE_ORIGINAL_PRIORITY,
+            IPermission.TASK_WRITE_EXPIRY_ACTIVATOR,
             IPermission.TASK_WRITE_EXPIRY_TIMESTAMP,
             IPermission.TASK_WRITE_DELAY_TIMESTAMP,
             IPermission.TASK_RESET_OWN_WORKING_TASK,
