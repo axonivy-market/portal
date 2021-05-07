@@ -70,6 +70,47 @@ public class TaskDetailsTest extends BaseTest {
     assertTrue(StringUtils.equalsIgnoreCase(tomorrowStringLiteral, taskDetailsPage.getExpiryOfTaskAt()));
   }
 
+  @Test
+  public void testChangeTaskDeadlineWithAfterEscalationIsNA() {
+    login(TestAccount.ADMIN_USER);
+    redirectToRelativeLink(createTestingCaseMapUrl);
+    String tomorrowStringLiteral = prepareTomorrowAsString();
+    taskDetailsPage = openDetailsPageOfFirstTask();
+    taskDetailsPage.changeExpiryOfTaskAt(tomorrowStringLiteral);
+    assertTrue(StringUtils.equalsIgnoreCase(tomorrowStringLiteral, taskDetailsPage.getExpiryOfTaskAt()));
+    String firstTaskNoteComment = taskDetailsPage.getFirstTaskNoteComment();
+    assertTrue(StringUtils.contains(firstTaskNoteComment, "Portal Admin User (admin) has set deadline to task"));
+    assertTrue(StringUtils.contains(firstTaskNoteComment, "assign Everybody as the task escalation activator"));
+  }
+
+  @Test
+  public void testRemoveTaskDeadline() {
+    login(TestAccount.ADMIN_USER);
+    redirectToRelativeLink(createTestingTasksUrl);
+    taskDetailsPage = openDetailsPageOfFirstTask();
+    taskDetailsPage.openActionPanel();
+    assertTrue(taskDetailsPage.isClearDeadlineDisplayed());
+    taskDetailsPage.clickOnClearDeadlineTime();
+    assertTrue(StringUtils.equalsIgnoreCase("N/A", taskDetailsPage.getExpiryOfTaskAt()));
+    assertTrue(StringUtils.contains(taskDetailsPage.getFirstTaskNoteComment(), "Portal Admin User (admin) has removed expiry time of task"));
+  }
+
+  @Test
+  public void testChangeTaskEscaltionActivator() {
+    login(TestAccount.ADMIN_USER);
+    taskDetailsPage = openDetailsPageOfFirstTask();
+    taskDetailsPage.changeEscaltionActivatorTo("HR", false);
+    assertTrue(StringUtils.equalsIgnoreCase("Human resources department", taskDetailsPage.getAfterEscalation()));
+    assertTrue(StringUtils.contains(taskDetailsPage.getFirstTaskNoteComment(), "changed from Everybody to Human resources department"));
+  }
+
+  @Test
+  public void testCannotChangeTaskEscaltionActivator() {
+    login(TestAccount.DEMO_USER);
+    taskDetailsPage = openDetailsPageOfFirstTask();
+    assertFalse(taskDetailsPage.canChangeEscalationActivator());
+  }
+
   private String prepareTomorrowAsString() {
     LocalDateTime tomorrow = LocalDateTime.now().plusDays(1);
     return tomorrow.format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN));
