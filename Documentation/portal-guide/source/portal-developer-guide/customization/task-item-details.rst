@@ -73,9 +73,12 @@ How to configure widgets in task details
                   "x": 0, "y": 6, "w": 6, "h": 6
                },
                "data" : {
-                  "processStart": "Start Processes/Sale/invoiceDetails.ivp",
+                  "processStart": "Start Processes/TaskDetailsCustomWidgetExample/invoiceDetails.ivp",
                   "params": {
-                     "invoiceId": "000001573"
+                     "startedTaskId": "task.id",
+                     "startedTaskCategory": "task.category",
+                     "invoiceId": "000001573",
+                     "invoiceDescription": "custom.invoiceDescription"
                   }
                }
             }
@@ -111,13 +114,21 @@ How to configure widgets in task details
 
    ``data`` (for custom widget): data for custom widget using iframe
 
-   ``type`` (for data of custom widget): type of custom widget which is not using Iframe. There are two type ``taskItemDetailCustomPanelTop`` and ``taskItemDetailCustomPanelBottom``
+      ``type``: type of custom widget which is not using Iframe. There are two type ``taskItemDetailCustomPanelTop`` and ``taskItemDetailCustomPanelBottom``
 
-   ``url`` (for data of custom widget): URL for external website
+      ``url``: URL for external website
 
-   ``processStart`` (for data of custom widget): relative link to the ivy process which will be displayed in custom widget
+      ``processStart``: relative link to the ivy process which will be displayed in custom widget
 
-   ``param`` (for data of custom widget): paramters for ivy process above
+      ``params``: paramters for ivy process above, each parameter can be defined as follows:
+
+         - Key name that will be parameter name for ivy process above. Note: don't use ``taskId``.
+
+         - Key value for task: must start with ``task.``. Support 2 values: ``task.id``, ``task.category``.
+
+         - Key value for task custom fields: must start with ``custom.``, follow by custom field name.
+
+         - Other key value will be treated as hard code value.
 
 .. important::
    -  **Do not change** ``type`` of widgets.
@@ -329,7 +340,7 @@ There are **two steps** for adding new custom panels.
 
    -  Must input parameter ``ivy`` if you want to use ivy start process.
 
-   -  If you use ivy start process, you can predefine paramter for by parameter ``params``.
+   -  If you use ivy start process, you can predefine parameter for ``params``.
 
       Customized task details using external URL
 
@@ -362,7 +373,7 @@ There are **two steps** for adding new custom panels.
 
       |task-customized-iframe-url|
 
-      Customized task details using ivy process start
+      Customized task details using ivy process start, please refer to ``TaskDetailsCustomWidgetExample`` process in ``portal-developer-examples`` for more details
 
       .. code-block:: html
 
@@ -388,15 +399,26 @@ There are **two steps** for adding new custom panels.
                      "x": 0, "y": 6, "w": 6, "h": 6
                      },
                      "data" : {
-                     "processStart": "Start Processes/Sale/invoiceDetails.ivp",
-                     "params": {
-                        "invoiceId": "000001573"
-                     }
+                        "processStart": "Start Processes/TaskDetailsCustomWidgetExample/invoiceDetails.ivp",
+                        "params": {
+                           "startedTaskId": "task.id",
+                           "startedTaskCategory": "task.category",
+                           "invoiceId": "000001573",
+                           "invoiceDescription": "custom.invoiceDescription"
+                        }
                      }
                   }
                ]
                }
             ]
+
+      Provide task custom field
+
+      |task-customized-iframe-process-custom-field|
+
+      Map parameters to process data
+
+      |task-customized-iframe-process-input-mapping|
 
       Result
 
@@ -409,3 +431,5 @@ There are **two steps** for adding new custom panels.
 .. |edit-variable-portal-task-case-details| image:: images/customization/edit-variable-portal-task-case-details.png
 .. |task-customized-iframe-url| image:: images/customization/task-customized-iframe-url.png
 .. |task-customized-iframe-process| image:: images/customization/task-customized-iframe-process.png
+.. |task-customized-iframe-process-custom-field| image:: images/customization/task-customized-iframe-process-custom-field.png
+.. |task-customized-iframe-process-input-mapping| image:: images/customization/task-customized-iframe-process-input-mapping.png

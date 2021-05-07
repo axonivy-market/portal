@@ -21,6 +21,7 @@ import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
 public final class TaskUtils {
+
   private TaskUtils() {}
 
   public static void resetTask(final ITask task) {
