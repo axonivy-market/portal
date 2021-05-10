@@ -1,0 +1,77 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:ic="http://ivyteam.ch/jsf/component"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:pe="http://primefaces.org/ui/extensions">
+<h:body>
+    <ui:composition template="/layouts/frame-8.xhtml">
+        <ui:define name="title">InvoiceDetails</ui:define>
+        <ui:define name="content">
+            <div class="ui-g">
+                <div class="ui-g-12">
+                    <h3>Invoice</h3>
+                </div>
+                <div class="ui-g-3 ui-sm-6">
+                    <p:outputLabel for="invoice-id" value="Invoice ID" />
+                </div>
+                <div class="ui-g-8 ui-sm-6">
+                    <h:outputText id="invoice-id" value="#{data.invoice.id}" />
+                </div>
+                <div class="ui-g-3 ui-sm-6">
+                    <p:outputLabel for="invoice-description" value="Invoice Description" />
+                </div>
+                <div class="ui-g-8 ui-sm-6">
+                    <h:outputText id="invoice-description" value="#{data.invoice.description}" />
+                </div>
+                <div class="ui-g-3 ui-sm-6">
+                    <p:outputLabel for="invoice-task-id" value="Task ID" />
+                </div>
+                <div class="ui-g-8 ui-sm-6">
+                    <h:outputText id="invoice-task-id" value="#{data.invoice.taskId}" />
+                </div>
+                <div class="ui-g-3 ui-sm-6">
+                    <p:outputLabel for="invoice-task-category" value="Task Category" />
+                </div>
+                <div class="ui-g-8 ui-sm-6">
+                    <h:outputText id="invoice-task-category" value="#{data.invoice.taskCategory}" />
+                </div>
+                <p:spacer height="10" />
+                <div class="ui-g-12">
+                    <h3>Customer Info</h3>
+                </div>
+                <div class="ui-g-3 ui-sm-6">
+                    <p:outputLabel for="customer-id" value="Customer ID" />
+                </div>
+                <div class="ui-g-8 ui-sm-6">
+                    <h:outputText id="customer-id" value="#{data.invoice.customer.id}" />
+                </div>
+                <div class="ui-g-3 ui-sm-6">
+                    <p:outputLabel for="customer-name" value="Name" />
+                </div>
+                <div class="ui-g-8 ui-sm-6">
+                    <h:outputText id="customer-name" value="#{data.invoice.customer.name}" />
+                </div>
+                <p:spacer height="10" />
+                <div class="ui-g-12">
+                    <h3>Invoices</h3>
+                </div>
+                <div class="ui-g-12">
+                    <p:dataTable value="#{data.invoice.items}" var="item" reflow="true">
+                        <p:column headerText="ID" width="100">
+                            <h:outputText value="#{item.id}" />
+                        </p:column>
+                        <p:column headerText="Name">
+                            <h:outputText value="#{item.name}" />
+                        </p:column>
+                        <p:column headerText="Quantity">
+                            <h:outputText value="#{item.quantity}" />
+                        </p:column>
+                    </p:dataTable>
+                </div>
+            </div>
+        </ui:define>
+    </ui:composition>
+</h:body>
+</html>
