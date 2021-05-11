@@ -1012,6 +1012,10 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   margin-right: 25px;
 }
 
+.process-widget .loading-text {
+  padding-left: 15px;
+}
+
 /* Mobile screen */
 @media screen and (max-width: 40em) {
   .process-widget .process-nav .process-nav-item {

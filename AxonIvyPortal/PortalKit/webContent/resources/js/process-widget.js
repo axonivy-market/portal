@@ -436,3 +436,11 @@ var FavouritesProcess = {
   }
 
 };
+
+function showLoadingText() {
+  $('.js-loading-text').show();
+}
+
+function hideLoadingText() {
+  $('.js-loading-text').hide();
+}
