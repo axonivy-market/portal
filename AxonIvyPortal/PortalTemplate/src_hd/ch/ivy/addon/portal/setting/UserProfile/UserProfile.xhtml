@@ -5,6 +5,7 @@
 <h:body>
   <ui:composition template="/layouts/BasicTemplate.xhtml">
     <ui:param name="viewName" value="USER_PROFILE" />
+    <ui:param name="loadGridStack" value="false" />
     <ui:define name="title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/userProfile/myProfileTitle')}</ui:define>
     <ui:define name="pageContent">
       <f:event listener="#{logic.initSettings}" type="preRenderComponent" />

@@ -22,6 +22,8 @@
     <link rel="shortcut icon" href="#{resource['ivy-cms:/images/logo/faviconLogo']}" type="image/png" />
   </ui:fragment>
 
+  <c:set var="loadGridStack" value="#{loadGridStack == 'false' ? 'false' : 'true'}" />
+
   <h:outputStylesheet library="css" name="utility.css" />
 
   <h:outputStylesheet name="css/nanoscroller.css" library="serenity-layout" />
@@ -29,8 +31,8 @@
   <h:outputStylesheet name="css/grid.css" library="serenity-layout" />
   <h:outputStylesheet name="css/layout-ivy.css" library="serenity-layout" />
 
-  <h:outputStylesheet library="css" name="gridstack.min.css" />
-  <h:outputStylesheet library="css" name="gridstack-extra.css" />
+  <h:outputStylesheet library="css" name="gridstack.min.css" rendered="#{loadGridStack}" />
+  <h:outputStylesheet library="css" name="gridstack-extra.css" rendered="#{loadGridStack}" />
 
   <h:outputStylesheet library="css" name="portal-variables.css" />
   <h:outputStylesheet library="css" name="template.css" />
@@ -39,8 +41,8 @@
 
   <h:outputStylesheet library="css" name="customization.css" />
 
-  <h:outputScript library="js" name="gridstack.min.js" />
-  <h:outputScript library="js" name="gridstack.jQueryUI.min.js" />
+  <h:outputScript library="js" name="gridstack.min.js" rendered="#{loadGridStack}" />
+  <h:outputScript library="js" name="gridstack.jQueryUI.min.js" rendered="#{loadGridStack}" />
   <h:outputScript name="js/nanoscroller.js" library="serenity-layout" />
   <h:outputScript name="js/ripple.js" library="serenity-layout" />
   <h:outputScript name="js/layout.js" library="serenity-layout" />
