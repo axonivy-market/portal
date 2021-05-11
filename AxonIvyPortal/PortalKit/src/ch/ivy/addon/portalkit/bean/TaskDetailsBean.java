@@ -130,12 +130,14 @@ public class TaskDetailsBean implements Serializable {
 
   private List<TaskDetails> loadAllConfigurations() throws IOException {
     String widgetsJsonData = Ivy.var().get(PORTAL_TASK_DETAILS_GLOBAL_VARIABLE);
+    List<TaskDetails> result = new ArrayList<>();
     if (StringUtils.isBlank(widgetsJsonData)) {
-    	widgetsJsonData = Ivy.var().variable(PORTAL_TASK_DETAILS_GLOBAL_VARIABLE).defaultValue();
-    }
-    List<TaskDetails> result = mapper.readValue(widgetsJsonData, new TypeReference<List<TaskDetails>>() {});
-    for (TaskDetails details : result) {
-      updateWidgetsType(details);
+      result.add(loadDefaultConfiguration());
+    } else {
+      result = mapper.readValue(widgetsJsonData, new TypeReference<List<TaskDetails>>() {});
+      for (TaskDetails details : result) {
+        updateWidgetsType(details);
+      }
     }
     return result;
   }
