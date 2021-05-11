@@ -38,7 +38,6 @@ import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.TaskDetailsCustomWidgetUtils;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.globalvars.IGlobalVariableContext;
 import ch.ivyteam.ivy.workflow.ITask;
 
 @ViewScoped
@@ -48,7 +47,7 @@ public class TaskDetailsBean implements Serializable {
   private static final long serialVersionUID = 8566646437739271552L;
   private static final String TASK_DETAILS_CONFIGURATION_PROPERTY = "task.details.widgets";
   private static final String PORTAL_TASK_DETAILS_GLOBAL_VARIABLE = "Portal.TaskDetails";
-  private static final String PORTAL_DEFAULT_TASK_DETAILS_GLOBAL_VARIABLE = "Portal.DefaultTaskDetails";
+  private static final String PORTAL_DEFAULT_TASK_DETAILS_GLOBAL_VARIABLE = "/ch.ivy.addon.portalkit/variables/DefaultTaskDetailsJson";
 
   private TaskDetails configuration;
   private List<TaskDetailsWidget> widgets;
@@ -131,18 +130,20 @@ public class TaskDetailsBean implements Serializable {
 
   private List<TaskDetails> loadAllConfigurations() throws IOException {
     String widgetsJsonData = Ivy.var().get(PORTAL_TASK_DETAILS_GLOBAL_VARIABLE);
+    List<TaskDetails> result = new ArrayList<>();
     if (StringUtils.isBlank(widgetsJsonData)) {
-    	widgetsJsonData = Ivy.var().variable(PORTAL_TASK_DETAILS_GLOBAL_VARIABLE).defaultValue();
-    }
-    List<TaskDetails> result = mapper.readValue(widgetsJsonData, new TypeReference<List<TaskDetails>>() {});
-    for (TaskDetails details : result) {
-      updateWidgetsType(details);
+      result.add(loadDefaultConfiguration());
+    } else {
+      result = mapper.readValue(widgetsJsonData, new TypeReference<List<TaskDetails>>() {});
+      for (TaskDetails details : result) {
+        updateWidgetsType(details);
+      }
     }
     return result;
   }
 
   private TaskDetails loadDefaultConfiguration() throws IOException {
-    String widgetsJsonData = IGlobalVariableContext.current().get(PORTAL_DEFAULT_TASK_DETAILS_GLOBAL_VARIABLE);
+    String widgetsJsonData = Ivy.cms().co(PORTAL_DEFAULT_TASK_DETAILS_GLOBAL_VARIABLE);
     return mapper.readValue(widgetsJsonData, TaskDetails.class);
   }
 
