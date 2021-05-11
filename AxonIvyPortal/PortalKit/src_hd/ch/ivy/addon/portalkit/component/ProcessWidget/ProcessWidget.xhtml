@@ -17,47 +17,44 @@
   <div class="ui-g">
     <div id="#{cc.clientId}" class="widget process-widget js-process-widget ui-g-12 u-no-padding-bottom">
       <!-- Process header -->
-      <h:panelGroup layout="block" class="process-header js-process-header" rendered="#{!cc.attrs.hideHeader}">
+      <h:panelGroup layout="block" class="process-header js-process-header ui-g-12 u-padding-0 ui-g" rendered="#{!cc.attrs.hideHeader}">
+        <div class="ui-sm-3 u-hidden-sm-up">
+          <span class="process-header-title widget-header-main-title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/processes')}</span>
+        </div>
+        <div class="ui-sm-9 ui-md-8 ui-lg-3 ui-xl-4 process-widget-filter">
+          <ic:ch.ivy.addon.portalkit.component.Filter id="process-search" listener="processWidget.filter()" ajax="false"
+                placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processFilterPlaceHolder')}"
+                styleClass="js-filter-process-widget-list-item" />
+        </div>
+        <div class="ui-sm-hidden ui-md-hidden ui-lg-6 ui-xl-4">
+          <h:panelGroup id="create-express-link"
+            rendered="#{!cc.attrs.hideExpressCreation and processWidgetBean.canCreateExpessWorkflow()}"
+            styleClass="create-express-link u-mar-right-10">
+            <p:commandLink id="create-express-workflow"
+              actionListener="#{processWidgetBean.startExpressWorkflowCreationLink()}">
+              <i class="si si-startup-launch" />
+              <span class="process-widget-header-link">#{processWidgetBean.createExpressWorkflowProcessStart.name}</span>
+            </p:commandLink>
+          </h:panelGroup>
+          <h:panelGroup styleClass="add-external-link-command">
+            <p:commandLink id="add-external-link-command"
+              actionListener="#{externalLinkBean.addNewExternalLink(cc.clientId)}"
+              update="#{cc.clientId}:add-external-link-dialog" oncomplete="PF('add-external-link-dialog').show()">
+              <i class="si si-hyperlink-3" aria-hidden="true" />
+              <span class="process-widget-header-link">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/addExternalLink')}</span>
+            </p:commandLink>
+          </h:panelGroup>
+        </div>
 
-        <div class="ui-g-12 u-padding-0 ui-g">
-          <div class="ui-sm-3 u-hidden-sm-up">
-            <span class="process-header-title widget-header-main-title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/processes')}</span>
-          </div>
-          <div class="ui-sm-9 ui-md-8 ui-lg-3 ui-xl-4 process-widget-filter">
-            <ic:ch.ivy.addon.portalkit.component.Filter id="process-search" listener="processWidget.filter()" ajax="false"
-                  placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processFilterPlaceHolder')}"
-                  styleClass="js-filter-process-widget-list-item" />
-          </div>
-          <div class="ui-sm-hidden ui-md-hidden ui-lg-6 ui-xl-4">
-            <h:panelGroup id="create-express-link"
-              rendered="#{!cc.attrs.hideExpressCreation and processWidgetBean.canCreateExpessWorkflow()}"
-              styleClass="create-express-link u-mar-right-10">
-              <p:commandLink id="create-express-workflow"
-                actionListener="#{processWidgetBean.startExpressWorkflowCreationLink()}">
-                <i class="si si-startup-launch" />
-                <span class="process-widget-header-link">#{processWidgetBean.createExpressWorkflowProcessStart.name}</span>
-              </p:commandLink>
-            </h:panelGroup>
-            <h:panelGroup styleClass="add-external-link-command">
-              <p:commandLink id="add-external-link-command"
-                actionListener="#{externalLinkBean.addNewExternalLink(cc.clientId)}"
-                update="#{cc.clientId}:add-external-link-dialog" oncomplete="PF('add-external-link-dialog').show()">
-                <i class="si si-hyperlink-3" aria-hidden="true" />
-                <span class="process-widget-header-link">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/addExternalLink')}</span>
-              </p:commandLink>
-            </h:panelGroup>
-          </div>
-
-          <div class="u-hidden-sm-down ui-md-4 ui-lg-3 ui-xl-4 u-no-padding-right">
-            <h:form id="process-view-mode" class="md-inputfiled ui-g-12 TexAlRight u-no-padding-right u-no-padding-top md-inputfiled">
-              <label class="#{processWidgetBean.listMode ? 'switch-off':'switch-active'}">#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/Enums/ProcessMode/GRID")}</label>
-              <p:inputSwitch id="process-view" styleClass="process-input-switch-selection" value="#{processWidgetBean.listMode}">
-                <p:ajax update="process-view-mode #{cc.clientId}:process-list #{cc.clientId}:process-nav"
-                  oncomplete="processWidget.setup(); return false;" />
-              </p:inputSwitch>
-              <label class="#{processWidgetBean.listMode ? 'switch-active':'switch-off'}">#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/Enums/ProcessMode/LIST")}</label>
-            </h:form>
-          </div>
+        <div class="u-hidden-sm-down ui-md-4 ui-lg-3 ui-xl-4 u-no-padding-right">
+          <h:form id="process-view-mode" class="md-inputfiled ui-g-12 TexAlRight u-no-padding-right u-no-padding-top md-inputfiled">
+            <label class="#{processWidgetBean.listMode ? 'switch-off':'switch-active'}">#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/Enums/ProcessMode/GRID")}</label>
+            <p:inputSwitch id="process-view" styleClass="process-input-switch-selection" value="#{processWidgetBean.listMode}">
+              <p:ajax update="process-view-mode #{cc.clientId}:process-list #{cc.clientId}:process-nav"
+                oncomplete="processWidget.setup(); return false;" />
+            </p:inputSwitch>
+            <label class="#{processWidgetBean.listMode ? 'switch-active':'switch-off'}">#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/Enums/ProcessMode/LIST")}</label>
+          </h:form>
         </div>
       </h:panelGroup>
 
