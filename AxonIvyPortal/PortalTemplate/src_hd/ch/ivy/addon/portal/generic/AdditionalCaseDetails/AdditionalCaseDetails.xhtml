@@ -8,6 +8,7 @@
 <h:body>
   <ui:composition template="/layouts/BasicTemplate.xhtml">
     <ui:param name="isNotRequiredLogin" value="false" />
+    <ui:param name="loadGridStack" value="false" />
     <ui:define name="title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/additionalCaseDetailsTitle')}</ui:define>
     <ui:define name="pageContent">
       <div class="grid-item-header">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/additionalCaseDetailsTitle')}</div>

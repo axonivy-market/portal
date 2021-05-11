@@ -5,6 +5,7 @@
 <h:body>
   <ui:composition template="/layouts/BasicTemplate.xhtml">
     <ui:param name="isNotRequiredLogin" value="false" />
+    <ui:param name="loadGridStack" value="false" />
     <ui:define name="title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/taskHistoryPageTitle')}</ui:define>
     <ui:define name="pageContent">
       <div class="ui-g" id="task-note-history">
