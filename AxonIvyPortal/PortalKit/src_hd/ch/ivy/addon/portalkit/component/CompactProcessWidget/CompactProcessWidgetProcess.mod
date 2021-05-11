@@ -46,14 +46,12 @@ Ps0 f1 outParameterDecl '<> result;' #txt
 Ps0 f1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>start(String)</name>
+        <name>start</name>
     </language>
 </elementInfo>
 ' #txt
 Ps0 f1 83 83 26 26 -32 15 #rect
-Ps0 f1 @|UdInitIcon #fIcon
 Ps0 f3 307 83 26 26 0 12 #rect
-Ps0 f3 @|UdProcessEndIcon #fIcon
 Ps0 f4 expr out #txt
 Ps0 f4 109 96 307 96 #arcP
 Ps0 f0 guid 167CF9865BEC5C1B #txt
@@ -70,7 +68,6 @@ Ps0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f0 83 179 26 26 -48 16 #rect
-Ps0 f0 @|UdMethodIcon #fIcon
 Ps0 f6 processCall 'Ivy Data Processes/ProcessService:findProcesses()' #txt
 Ps0 f6 requestActionDecl '<> param;' #txt
 Ps0 f6 responseActionDecl 'ch.ivy.addon.portalkit.component.CompactProcessWidget.CompactProcessWidgetData out;
@@ -86,9 +83,7 @@ Ps0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f6 176 170 112 44 -43 -8 #rect
-Ps0 f6 @|CallSubIcon #fIcon
 Ps0 f8 667 179 26 26 0 12 #rect
-Ps0 f8 @|UdProcessEndIcon #fIcon
 Ps0 f10 actionTable 'out=in;
 ' #txt
 Ps0 f10 actionCode 'import ch.ivy.addon.portalkit.mapper.UserProcessMapper;
@@ -118,7 +113,6 @@ workflow</name>
 </elementInfo>
 ' #txt
 Ps0 f10 328 170 128 44 -41 -16 #rect
-Ps0 f10 @|StepIcon #fIcon
 Ps0 f11 expr out #txt
 Ps0 f11 288 192 328 192 #arcP
 Ps0 f12 actionTable 'out=in;
@@ -138,7 +132,6 @@ Ps0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f12 504 170 128 44 -56 -8 #rect
-Ps0 f12 @|StepIcon #fIcon
 Ps0 f9 expr out #txt
 Ps0 f9 456 192 504 192 #arcP
 Ps0 f13 632 192 667 192 #arcP
@@ -156,7 +149,6 @@ Ps0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f2 83 307 26 26 -79 21 #rect
-Ps0 f2 @|UdMethodIcon #fIcon
 Ps0 f5 actionTable 'out=in;
 ' #txt
 Ps0 f5 actionCode 'import org.apache.commons.lang3.StringUtils;
@@ -174,10 +166,8 @@ Ps0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f5 184 298 128 44 -54 -8 #rect
-Ps0 f5 @|StepIcon #fIcon
 Ps0 f7 109 320 184 320 #arcP
 Ps0 f15 723 307 26 26 0 12 #rect
-Ps0 f15 @|UdProcessEndIcon #fIcon
 Ps0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -186,7 +176,6 @@ Ps0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f17 384 304 32 32 -70 -40 #rect
-Ps0 f17 @|AlternativeIcon #fIcon
 Ps0 f18 312 320 384 320 #arcP
 Ps0 f21 actionTable 'out=in;
 ' #txt
@@ -203,7 +192,6 @@ Ps0 f21 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f21 504 298 144 44 -67 -8 #rect
-Ps0 f21 @|StepIcon #fIcon
 Ps0 f16 648 320 723 320 #arcP
 Ps0 f24 guid 1762D45E9B96E592 #txt
 Ps0 f24 method processDisplayNames() #txt
@@ -217,9 +205,7 @@ Ps0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f24 83 435 26 26 -72 20 #rect
-Ps0 f24 @|UdMethodIcon #fIcon
 Ps0 f25 419 435 26 26 0 12 #rect
-Ps0 f25 @|UdProcessEndIcon #fIcon
 Ps0 f27 actionTable 'out=in;
 ' #txt
 Ps0 f27 actionCode 'import org.apache.commons.lang3.StringUtils;
@@ -247,7 +233,6 @@ Ps0 f27 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f27 192 426 128 44 -61 -8 #rect
-Ps0 f27 @|StepIcon #fIcon
 Ps0 f28 109 448 192 448 #arcP
 Ps0 f26 320 448 419 448 #arcP
 Ps0 f20 expr in #txt
@@ -260,7 +245,6 @@ Ps0 f19 2 736 368 #addKink
 >Proto Ps0 .type ch.ivy.addon.portalkit.component.CompactProcessWidget.CompactProcessWidgetData #txt
 >Proto Ps0 .processKind HTML_DIALOG #txt
 >Proto Ps0 -8 -8 16 16 16 26 #rect
->Proto Ps0 '' #fIcon
 Ps0 f1 mainOut f4 tail #connect
 Ps0 f4 head f3 mainIn #connect
 Ps0 f6 mainOut f11 tail #connect
