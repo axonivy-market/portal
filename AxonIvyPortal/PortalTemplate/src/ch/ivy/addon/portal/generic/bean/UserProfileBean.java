@@ -76,7 +76,8 @@ public class UserProfileBean implements Serializable {
 
   private String getDefaultSelection(GlobalVariable defaultOption) {
     GlobalSettingService globalSettingService = new GlobalSettingService();
-    return Ivy.cms().co(DEFAULT_OPTION, Arrays.asList(globalSettingService.findGlobalSettingByKey(defaultOption.name()).getDisplayValue()));
+    return Ivy.cms().co(DEFAULT_OPTION,
+        Arrays.asList(globalSettingService.findGlobalSettingByGlobalVariable(defaultOption).getDisplayValue()));
   }
 
   public String getDisplayDatePattern(String selectedPattern) {

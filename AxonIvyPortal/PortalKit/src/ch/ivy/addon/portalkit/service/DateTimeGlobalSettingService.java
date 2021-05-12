@@ -17,7 +17,7 @@ public class DateTimeGlobalSettingService {
   }
 
   private boolean isTimeHidden() {
-    String dateTimeGlobalSetting = globalSettingService.findGlobalSettingValue(GlobalVariable.HIDE_TIME.toString());
+    String dateTimeGlobalSetting = globalSettingService.findGlobalSettingValue(GlobalVariable.HIDE_TIME);
     return Boolean.valueOf(dateTimeGlobalSetting);
   }
 
@@ -35,7 +35,7 @@ public class DateTimeGlobalSettingService {
   }
 
   private boolean isYearHidden() {
-    return Boolean.parseBoolean(globalSettingService.findGlobalSettingValue(GlobalVariable.HIDE_YEAR.toString()));
+    return Boolean.parseBoolean(globalSettingService.findGlobalSettingValue(GlobalVariable.HIDE_YEAR));
   }
 
   private String getDateWithoutYearPattern(String pattern) {

@@ -2,6 +2,7 @@ package portal.guitest.test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static portal.guitest.common.Variable.HIDE_YEAR;
 
 import java.time.LocalDate;
 import java.util.Arrays;
@@ -28,7 +29,7 @@ public class AbsenceTest extends BaseTest {
   @Before
   public void setup() {
     super.setupWithAlternativeLinkAndAccount(cleanUpAbsencesAndSubstituesLink, TestAccount.DEMO_USER);
-    updatePortalSetting("HIDE_YEAR", "false");
+    updatePortalSetting(HIDE_YEAR.getKey(), "false");
   }
 
   private UserProfilePage changeDateFormat() {

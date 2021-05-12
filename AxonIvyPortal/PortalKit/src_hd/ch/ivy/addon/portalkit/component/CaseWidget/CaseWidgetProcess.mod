@@ -103,9 +103,7 @@ Cs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f0 53 85 22 22 14 0 #rect
-Cs0 f0 @|UdInitIcon #fIcon
 Cs0 f1 525 85 22 22 14 0 #rect
-Cs0 f1 @|UdProcessEndIcon #fIcon
 Cs0 f6 guid 167E4C8566B6B6EA #txt
 Cs0 f6 method findCases(ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria,java.lang.Integer,java.lang.Integer) #txt
 Cs0 f6 inParameterDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria caseSearchCriteria,Integer startIndex,Integer count> param;' #txt
@@ -124,7 +122,6 @@ Cs0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f6 51 179 26 26 -48 13 #rect
-Cs0 f6 @|UdMethodIcon #fIcon
 Cs0 f7 processCall 'Ivy Data Processes/CaseService:findCasesByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria,Integer,Integer)' #txt
 Cs0 f7 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria caseSearchCriteria,Integer startIndex,Integer count> param;' #txt
 Cs0 f7 requestMappingAction 'param.caseSearchCriteria=in.caseSearchCriteria;
@@ -144,11 +141,9 @@ Cs0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f7 200 170 112 44 -35 -8 #rect
-Cs0 f7 @|CallSubIcon #fIcon
 Cs0 f8 expr out #txt
 Cs0 f8 77 192 200 192 #arcP
 Cs0 f9 435 179 26 26 0 12 #rect
-Cs0 f9 @|UdProcessEndIcon #fIcon
 Cs0 f10 expr out #txt
 Cs0 f10 312 192 435 192 #arcP
 Cs0 f15 guid 167E4DD6005674EC #txt
@@ -167,7 +162,6 @@ Cs0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f15 51 275 26 26 -45 14 #rect
-Cs0 f15 @|UdMethodIcon #fIcon
 Cs0 f18 processCall 'Ivy Data Processes/CaseService:countCasesByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria)' #txt
 Cs0 f18 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria caseSearchCriteria> param;' #txt
 Cs0 f18 requestMappingAction 'param.caseSearchCriteria=in.caseSearchCriteria;
@@ -185,11 +179,9 @@ Cs0 f18 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f18 200 266 112 44 -35 -8 #rect
-Cs0 f18 @|CallSubIcon #fIcon
 Cs0 f19 expr out #txt
 Cs0 f19 77 288 200 288 #arcP
 Cs0 f20 435 275 26 26 0 12 #rect
-Cs0 f20 @|UdProcessEndIcon #fIcon
 Cs0 f21 expr out #txt
 Cs0 f21 312 288 435 288 #arcP
 Cs0 f2 actionTable 'out=in;
@@ -210,7 +202,6 @@ Cs0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f2 328 74 112 44 -37 -8 #rect
-Cs0 f2 @|StepIcon #fIcon
 Cs0 f4 expr out #txt
 Cs0 f4 440 96 525 96 #arcP
 Cs0 f5 guid 1680C6A623A9C767 #txt
@@ -224,7 +215,6 @@ Cs0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f5 51 371 26 26 -30 17 #rect
-Cs0 f5 @|UdEventIcon #fIcon
 Cs0 f47 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -236,9 +226,7 @@ existed?</name>
 </elementInfo>
 ' #txt
 Cs0 f47 288 368 32 32 -23 18 #rect
-Cs0 f47 @|AlternativeIcon #fIcon
 Cs0 f29 555 467 26 26 0 12 #rect
-Cs0 f29 @|UdProcessEndIcon #fIcon
 Cs0 f45 actionTable 'out=in;
 ' #txt
 Cs0 f45 actionCode 'import javax.faces.application.FacesMessage;
@@ -263,9 +251,7 @@ Cs0 f45 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f45 120 362 112 44 -21 -8 #rect
-Cs0 f45 @|StepIcon #fIcon
 Cs0 f50 547 323 26 26 0 12 #rect
-Cs0 f50 @|UdProcessEndIcon #fIcon
 Cs0 f31 actionTable 'out=in;
 ' #txt
 Cs0 f31 actionCode 'import ch.ivy.addon.portalkit.enums.FilterType;
@@ -281,7 +267,6 @@ Cs0 f31 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f31 376 458 112 44 -28 -8 #rect
-Cs0 f31 @|StepIcon #fIcon
 Cs0 f24 actionTable 'out=in;
 ' #txt
 Cs0 f24 actionCode 'import ch.ivy.addon.portalkit.service.CaseFilterService;
@@ -309,7 +294,6 @@ Cs0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f24 376 362 112 44 -36 -8 #rect
-Cs0 f24 @|StepIcon #fIcon
 Cs0 f25 expr in #txt
 Cs0 f25 outCond 'in.isFilterExisted == false' #txt
 Cs0 f25 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -356,7 +340,6 @@ Cs0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f28 51 467 26 26 -58 15 #rect
-Cs0 f28 @|UdEventIcon #fIcon
 Cs0 f12 expr out #txt
 Cs0 f12 77 480 376 480 #arcP
 Cs0 f35 actionTable 'out=in;
@@ -366,7 +349,7 @@ import ch.ivy.addon.portalkit.casefilter.impl.CaseFilterData;
 import ch.ivy.addon.portalkit.service.CaseFilterService;
 
 CaseFilterService service = new CaseFilterService();
-service.delete(in.filterDataToBeDeleted.getId());
+service.delete(in.filterDataToBeDeleted);
 
 if(in.filterDataToBeDeleted.type == FilterType.ONLY_ME) {
 	in.privateFilters.remove(in.filterDataToBeDeleted);
@@ -388,9 +371,7 @@ Cs0 f35 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f35 160 554 112 44 -33 -8 #rect
-Cs0 f35 @|StepIcon #fIcon
 Cs0 f36 339 563 26 26 0 12 #rect
-Cs0 f36 @|UdProcessEndIcon #fIcon
 Cs0 f40 expr out #txt
 Cs0 f40 272 576 339 576 #arcP
 Cs0 f13 guid 1680C75019258C12 #txt
@@ -404,7 +385,6 @@ Cs0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f13 51 563 26 26 -21 16 #rect
-Cs0 f13 @|UdEventIcon #fIcon
 Cs0 f14 expr out #txt
 Cs0 f14 77 576 160 576 #arcP
 Cs0 f16 guid 1680C78D11AA28AB #txt
@@ -422,9 +402,7 @@ Cs0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f16 51 659 26 26 -49 16 #rect
-Cs0 f16 @|UdMethodIcon #fIcon
 Cs0 f17 339 659 26 26 0 12 #rect
-Cs0 f17 @|UdProcessEndIcon #fIcon
 Cs0 f22 expr out #txt
 Cs0 f22 77 672 339 672 #arcP
 Cs0 f23 guid 168A2BE8E0F76EC9 #txt
@@ -441,9 +419,7 @@ Cs0 f23 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f23 51 755 26 26 -58 17 #rect
-Cs0 f23 @|UdMethodIcon #fIcon
 Cs0 f27 339 755 26 26 0 12 #rect
-Cs0 f27 @|UdProcessEndIcon #fIcon
 Cs0 f32 expr out #txt
 Cs0 f32 77 768 339 768 #arcP
 Cs0 f33 guid 16FA1C4BE95D211D #txt
@@ -458,7 +434,6 @@ Cs0 f33 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f33 51 851 26 26 -23 15 #rect
-Cs0 f33 @|UdMethodIcon #fIcon
 Cs0 f64 actionTable 'out=in;
 ' #txt
 Cs0 f64 actionCode in.dataModel.updateDisableCaseCount(); #txt
@@ -470,10 +445,8 @@ Cs0 f64 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f64 144 842 144 44 -67 -8 #rect
-Cs0 f64 @|StepIcon #fIcon
 Cs0 f34 77 864 144 864 #arcP
 Cs0 f37 339 851 26 26 0 12 #rect
-Cs0 f37 @|UdProcessEndIcon #fIcon
 Cs0 f38 288 864 339 864 #arcP
 Cs0 f71 guid 17033D428A3BF344 #txt
 Cs0 f71 method restoreDefaultFilterSet() #txt
@@ -489,9 +462,7 @@ Cs0 f71 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f71 51 955 26 26 -25 15 #rect
-Cs0 f71 @|UdMethodIcon #fIcon
 Cs0 f73 339 955 26 26 0 12 #rect
-Cs0 f73 @|UdProcessEndIcon #fIcon
 Cs0 f74 77 968 339 968 #arcP
 Cs0 f77 guid 17554B22FBEBCA3F #txt
 Cs0 f77 method getExportedFile(java.util.List<String>) #txt
@@ -509,7 +480,6 @@ Cs0 f77 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f77 51 1043 26 26 -46 15 #rect
-Cs0 f77 @|UdMethodIcon #fIcon
 Cs0 f81 processCall 'Functional Processes/ExportCaseToExcel:exportToExcel(java.util.List<ch.ivyteam.ivy.workflow.ICase>,java.util.List<String>)' #txt
 Cs0 f81 requestActionDecl '<java.util.List<ch.ivyteam.ivy.workflow.ICase> collectedCasesForExporting,java.util.List<String> columnsVisibility> param;' #txt
 Cs0 f81 requestMappingAction 'param.collectedCasesForExporting=in.collectedCasesForExporting;
@@ -526,7 +496,6 @@ Cs0 f81 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f81 584 1034 112 44 -38 -8 #rect
-Cs0 f81 @|CallSubIcon #fIcon
 Cs0 f80 processCall 'Ivy Data Processes/CaseService:countCasesByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria)' #txt
 Cs0 f80 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria caseSearchCriteria> param;' #txt
 Cs0 f80 requestMappingAction 'param.caseSearchCriteria=in.caseSearchCriteria;
@@ -544,7 +513,6 @@ Cs0 f80 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f80 144 1034 112 44 -33 -8 #rect
-Cs0 f80 @|CallSubIcon #fIcon
 Cs0 f76 actionTable 'out=in;
 ' #txt
 Cs0 f76 actionCode 'import java.util.ArrayList;
@@ -559,11 +527,8 @@ Cs0 f76 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f76 288 1034 112 44 -21 -8 #rect
-Cs0 f76 @|StepIcon #fIcon
 Cs0 f79 819 1043 26 26 0 12 #rect
-Cs0 f79 @|UdProcessEndIcon #fIcon
 Cs0 f78 432 1040 32 32 0 16 #rect
-Cs0 f78 @|AlternativeIcon #fIcon
 Cs0 f82 actionTable 'out=in;
 ' #txt
 Cs0 f82 actionCode in.loopCounter++; #txt
@@ -575,7 +540,6 @@ Cs0 f82 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f82 544 1162 112 44 -27 -8 #rect
-Cs0 f82 @|StepIcon #fIcon
 Cs0 f87 expr out #txt
 Cs0 f87 77 1056 144 1056 #arcP
 Cs0 f92 400 1056 432 1056 #arcP
@@ -608,7 +572,6 @@ Cs0 f75 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f75 392 1162 112 44 -28 -8 #rect
-Cs0 f75 @|CallSubIcon #fIcon
 Cs0 f39 actionTable 'out=in;
 ' #txt
 Cs0 f39 actionCode 'import ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel;
@@ -633,7 +596,6 @@ Cs0 f39 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f39 144 74 112 44 -40 -8 #rect
-Cs0 f39 @|StepIcon #fIcon
 Cs0 f41 expr out #txt
 Cs0 f41 75 96 144 96 #arcP
 Cs0 f3 256 96 328 96 #arcP
@@ -651,7 +613,6 @@ Cs0 f96 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f96 1088 74 128 44 -54 -8 #rect
-Cs0 f96 @|CallSubIcon #fIcon
 Cs0 f93 guid 17592C22E751C221 #txt
 Cs0 f93 method backToCaseDetails() #txt
 Cs0 f93 inParameterDecl '<> param;' #txt
@@ -664,9 +625,7 @@ Cs0 f93 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f93 819 83 26 26 -25 15 #rect
-Cs0 f93 @|UdMethodIcon #fIcon
 Cs0 f95 1299 83 26 26 0 12 #rect
-Cs0 f95 @|UdProcessEndIcon #fIcon
 Cs0 f94 actionTable 'out=in;
 ' #txt
 Cs0 f94 actionCode 'import ch.ivyteam.ivy.workflow.ICase;
@@ -683,14 +642,12 @@ Cs0 f94 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f94 920 74 112 44 -22 -8 #rect
-Cs0 f94 @|StepIcon #fIcon
 Cs0 f98 1032 96 1088 96 #arcP
 Cs0 f99 1216 96 1299 96 #arcP
 Cs0 f97 845 96 920 96 #arcP
 >Proto Cs0 .type ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 -8 -8 16 16 16 26 #rect
->Proto Cs0 '' #fIcon
 Cs0 f6 mainOut f8 tail #connect
 Cs0 f8 head f7 mainIn #connect
 Cs0 f7 mainOut f10 tail #connect

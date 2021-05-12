@@ -201,10 +201,15 @@ public abstract class AbstractTaskTemplateBean implements Serializable {
   }
 
   public Long getIntervalForPollingWhenOpenCaseDetails() {
-    String clientSideTimeoutInMinute = new GlobalSettingService().findGlobalSettingValue(GlobalVariable.CLIENT_SIDE_TIMEOUT.toString());
+    String clientSideTimeoutInMinute =
+        new GlobalSettingService().findGlobalSettingValue(GlobalVariable.CLIENT_SIDE_TIMEOUT);
       if (StringUtils.isNotBlank(clientSideTimeoutInMinute)) {
+        Long timeoutInMinute = Long.valueOf(clientSideTimeoutInMinute);
+        if (timeoutInMinute < 1) {
+          return null;
+        }
         // interval value should be one minute and 5 seconds before client side timeout to hide Extend session dialog
-        Long intervalValue = (Long.valueOf(clientSideTimeoutInMinute) - 1)*60 - 5;
+        Long intervalValue = (timeoutInMinute - 1)*60 - 5;
         return intervalValue < 0 ? null : intervalValue;
       }
     return null;

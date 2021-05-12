@@ -1,36 +1,23 @@
 package ch.ivy.addon.portalkit.bo;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class ExpressTaskDefinition {
+import com.fasterxml.jackson.annotation.JsonInclude;
 
-  private String id;
-  private String processID;
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class ExpressTaskDefinition implements Serializable {
+
+  private static final long serialVersionUID = 6708062804413815719L;
   private String type;
   private List<String> responsibles;
   private String subject;
-  private String prio;
   private String description;
   private int taskPosition;
   private int untilDays;
   private String responsibleDisplayName;
   private ExpressUserEmail email;
-
-  public String getId() {
-    return id;
-  }
-
-  public void setId(String id) {
-    this.id = id;
-  }
-
-  public String getProcessID() {
-    return processID;
-  }
-
-  public void setProcessID(String processID) {
-    this.processID = processID;
-  }
+  private List<ExpressFormElement> formElements;
 
   public String getType() {
     return type;
@@ -54,14 +41,6 @@ public class ExpressTaskDefinition {
 
   public void setSubject(String subject) {
     this.subject = subject;
-  }
-
-  public String getPrio() {
-    return prio;
-  }
-
-  public void setPrio(String prio) {
-    this.prio = prio;
   }
 
   public String getDescription() {
@@ -102,6 +81,14 @@ public class ExpressTaskDefinition {
 
   public void setEmail(ExpressUserEmail email) {
     this.email = email;
+  }
+
+  public List<ExpressFormElement> getFormElements() {
+    return formElements;
+  }
+
+  public void setFormElements(List<ExpressFormElement> formElements) {
+    this.formElements = formElements;
   }
 
 }

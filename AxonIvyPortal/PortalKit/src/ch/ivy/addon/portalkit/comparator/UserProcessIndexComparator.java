@@ -3,7 +3,7 @@ package ch.ivy.addon.portalkit.comparator;
 import java.util.Comparator;
 import java.util.function.Function;
 
-import ch.ivy.addon.portalkit.persistence.domain.UserProcess;
+import ch.ivy.addon.portalkit.configuration.UserProcess;
 
 public class UserProcessIndexComparator {
 
