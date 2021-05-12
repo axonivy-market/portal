@@ -2,7 +2,7 @@ package ch.ivy.addon.portalkit.comparator;
 
 import java.util.Comparator;
 
-import ch.ivy.addon.portalkit.persistence.domain.Application;
+import ch.ivy.addon.portalkit.configuration.Application;
 
 public class ApplicationIndexAscendingComparator implements Comparator<Application> {
 

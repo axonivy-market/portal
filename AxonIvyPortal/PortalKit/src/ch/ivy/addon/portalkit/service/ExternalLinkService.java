@@ -1,40 +1,36 @@
 package ch.ivy.addon.portalkit.service;
 
-import java.util.List;
+import org.apache.commons.lang3.StringUtils;
 
-import ch.ivy.addon.portalkit.bo.ExternalLink;
-import ch.ivy.addon.portalkit.persistence.dao.ExternalLinkDao;
+import ch.ivy.addon.portalkit.configuration.ExternalLink;
 
-public class ExternalLinkService extends AbstractService<ExternalLink> {
+public class ExternalLinkService extends JsonConfigurationService<ExternalLink>{
+  private static final String EXTERNAL_LINKS = "Portal.Processes.ExternalLinks";
+  private static ExternalLinkService instance;
 
-  private static ExternalLinkService externalLinkServiceInstance;
-  
-  public ExternalLinkService() {
-    super(new ExternalLinkDao());
-  }
-  
+  private ExternalLinkService() {}
+
   public static ExternalLinkService getInstance() {
-    if (externalLinkServiceInstance == null) {
-      externalLinkServiceInstance = new ExternalLinkService();
+    if (instance == null) {
+      instance = new ExternalLinkService();
     }
-    return externalLinkServiceInstance;
+    return instance;
   }
   
-  @Override
-  protected ExternalLinkDao getDao() {
-    return (ExternalLinkDao) super.getDao();
-  }
-  
-  public List<ExternalLink> findStartableLink(Long userId) {
-    return getDao().findStartableLink(userId);
-  }
-
   public ExternalLink findExternalLinkByName(String externalLinkName) {
-    return getDao().findExternalLinkByName(externalLinkName);
+    if (StringUtils.isBlank(externalLinkName)) {
+      return null;
+    }
+    return findAll().stream().filter(link -> externalLinkName.equals(link.getName())).findFirst().orElse(null);
   }
 
-  public void delete(long id) {
-    getDao().delete(id);
+  @Override
+  public Class<ExternalLink> getType() {
+    return ExternalLink.class;
   }
 
+  @Override
+  public String getConfigKey() {
+    return EXTERNAL_LINKS;
+  }
 }

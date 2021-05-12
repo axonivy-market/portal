@@ -5,9 +5,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
-import ch.ivy.addon.portalkit.bo.ExternalLink;
+import ch.ivy.addon.portalkit.configuration.ExternalLink;
+import ch.ivy.addon.portalkit.configuration.UserProcess;
 import ch.ivy.addon.portalkit.enums.ProcessType;
-import ch.ivy.addon.portalkit.persistence.domain.UserProcess;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 public class UserProcessMapper {
@@ -48,7 +48,6 @@ public class UserProcessMapper {
     userProcess.setProcessId(externalLink.getId().toString());
     userProcess.setProcessType(ProcessType.EXTERNAL_LINK);
     userProcess.setProcessName(stripHtmlTags(externalLink.getName()));
-    userProcess.setUserId(externalLink.getCreatorId());
     userProcess.setLink(externalLink.getLink());
     userProcess.setDescription(externalLink.getLink());
     return userProcess;

@@ -230,7 +230,7 @@ Ts0 f35 actionCode 'import ch.ivy.addon.portalkit.enums.FilterType;
 import ch.ivy.addon.portalkit.taskfilter.impl.TaskAnalysisFilterData;
 import ch.ivy.addon.portalkit.service.TaskAnalysisFilterService;
 TaskAnalysisFilterService service = new TaskAnalysisFilterService();
-service.delete(in.taskFilterDataToBeRemoved.getId());
+service.delete(in.taskFilterDataToBeRemoved);
 if(in.taskFilterDataToBeRemoved.type == FilterType.ONLY_ME) {
 	in.taskPrivateFilters.remove(in.taskFilterDataToBeRemoved);
 } else {

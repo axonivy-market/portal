@@ -22,8 +22,8 @@ import portal.guitest.page.HomePage;
 import portal.guitest.page.ProcessWidgetPage;
 import portal.guitest.page.ProcessWidgetPage.AddNewExternalLinkDialog;
 import portal.guitest.page.UserFavoriteProcessPage;
-import portal.guitest.page.UserProfilePage;
 import portal.guitest.page.UserFavoriteProcessPage.SettingProcessLanguageDialog;
+import portal.guitest.page.UserProfilePage;
 
 public class ProcessWidgetTest extends BaseTest {
 
@@ -141,10 +141,10 @@ public class ProcessWidgetTest extends BaseTest {
     redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
     processWidget = new ProcessWidgetPage();
     assertEquals(ALPHA_HISTORY_TASK, processWidget.getProcessNameFromDefaultProcessList(0));
-    assertEquals("Favorite Express Process Display Name", processWidget.getProcessNameFromDefaultProcessList(1));
-    assertEquals("Favorite External Process Display Name", processWidget.getProcessNameFromDefaultProcessList(2));
-    assertEquals(VIEW_ALPHA_HISTORY, processWidget.getProcessNameFromDefaultProcessList(3));
-    assertEquals(VIEW_ALPHA_HISTORY_IN_DIALOG, processWidget.getProcessNameFromDefaultProcessList(4));
+    assertEquals(VIEW_ALPHA_HISTORY, processWidget.getProcessNameFromDefaultProcessList(1));
+    assertEquals(VIEW_ALPHA_HISTORY_IN_DIALOG, processWidget.getProcessNameFromDefaultProcessList(2));
+    assertEquals("Favorite Express Process Display Name", processWidget.getProcessNameFromDefaultProcessList(3));
+    assertEquals("Favorite External Process Display Name", processWidget.getProcessNameFromDefaultProcessList(4));
   }
 
   @Test

@@ -225,7 +225,7 @@ public class CaseDetailsBean implements Serializable {
    * If null or empty, will return false
    */
   public void getHideCaseDocumentConfiguration() {
-    isHideCaseDocument = new GlobalSettingService().findGlobalSettingValueAsBoolean(GlobalVariable.HIDE_CASE_DOCUMENT.toString());
+    isHideCaseDocument = new GlobalSettingService().findGlobalSettingValueAsBoolean(GlobalVariable.HIDE_CASE_DOCUMENT);
   }
 
   public boolean isHideCaseDocument() {
