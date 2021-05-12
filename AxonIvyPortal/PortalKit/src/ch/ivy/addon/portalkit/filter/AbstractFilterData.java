@@ -3,6 +3,9 @@ package ch.ivy.addon.portalkit.filter;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+import ch.ivy.addon.portalkit.configuration.AbstractConfiguration;
 import ch.ivy.addon.portalkit.enums.FilterType;
 
 /**
@@ -10,8 +13,8 @@ import ch.ivy.addon.portalkit.enums.FilterType;
  *
  * @param <T> subclass of {@link AbstractFilter}
  */
-public abstract class AbstractFilterData<T extends AbstractFilter<?>> {
-  private String id;
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
+public abstract class AbstractFilterData<T extends AbstractFilter<?>> extends AbstractConfiguration {
   private List<T> filters = new ArrayList<>();
   private String keyword;
   private String filterName;
@@ -25,22 +28,6 @@ public abstract class AbstractFilterData<T extends AbstractFilter<?>> {
    * @hidden
    */
   public AbstractFilterData() {}
-
-  /**
-   * Getter for id
-   * @return Id of filter
-   */
-  public String getId() {
-    return id;
-  }
-
-  /**
-   * Setter for id
-   * @param id
-   */
-  public void setId(String id) {
-    this.id = id;
-  }
 
   /**
    * Getter for filter list

@@ -38,7 +38,7 @@ pipeline {
             utils.extractEngine(v['engineDir'], params.engineDownloadURL)
           }
           echo "====================Build Portal modules===================="
-          def modules = ['AxonIvyPortal/PortalStyle', 'AxonIvyPortal/PortalKit', 'AxonIvyPortal/PortalTemplate', 'AxonIvyPortal/AxonIvyExpress', 'AxonIvyPortal/PortalKitTestHelper', 'Showcase/portal-user-examples', 'Showcase/portal-developer-examples', 'Showcase/InternalSupport', 'AxonIvyPortal/PortalApp']
+          def modules = ['AxonIvyPortal/PortalStyle', 'AxonIvyPortal/PortalKit', 'AxonIvyPortal/PortalTemplate', 'AxonIvyPortal/AxonIvyExpress', 'AxonIvyPortal/PortalKitTestHelper', 'Showcase/portal-user-examples', 'Showcase/portal-developer-examples', 'Showcase/InternalSupport', 'AxonIvyPortal/PortalApp', 'Showcase/demo-portal-app']
           for (module in modules) {
             bat "mvn clean install -f ${module}/pom.xml -Divy.engine.directory=${masterNodeDir}"
           }
@@ -68,10 +68,8 @@ pipeline {
           echo "====================Deploy Portal modules===================="
           println powershell(returnStdout: true, script: """
             \$DEPLOYMENT= "${configs['node1']['engineDir']}\\deploy\\Portal"
-            Copy-Item AxonIvyPortal\\PortalApp\\target\\*zip -Destination \$DEPLOYMENT
+            Copy-Item Showcase\\demo-portal-app\\target\\*zip -Destination \$DEPLOYMENT
             Start-Sleep 6
-            Copy-Item Showcase\\portal-user-examples\\target\\*iar -Destination \$DEPLOYMENT
-            Start-Sleep 2
             Copy-Item Showcase\\portal-developer-examples\\target\\*iar -Destination \$DEPLOYMENT
             Start-Sleep 2
             Copy-Item AxonIvyPortal\\PortalKitTestHelper\\target\\*iar -Destination \$DEPLOYMENT

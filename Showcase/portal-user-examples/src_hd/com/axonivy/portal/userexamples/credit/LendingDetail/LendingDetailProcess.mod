@@ -74,8 +74,8 @@ Ls0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ls0 f7 83 339 26 26 -28 15 #rect
 Ls0 f7 @|UdMethodIcon #fIcon
 Ls0 f8 dialogId com.axonivy.portal.userexamples.credit.LendingOverview #txt
-Ls0 f8 startMethod start(ch.ivy.addon.portalkit.persistence.domain.UserProcess) #txt
-Ls0 f8 requestActionDecl '<ch.ivy.addon.portalkit.persistence.domain.UserProcess userProcess> param;' #txt
+Ls0 f8 startMethod start(ch.ivy.addon.portalkit.configuration.UserProcess) #txt
+Ls0 f8 requestActionDecl '<ch.ivy.addon.portalkit.configuration.UserProcess userProcess> param;' #txt
 Ls0 f8 requestMappingAction 'param.userProcess=in.userProcess;
 ' #txt
 Ls0 f8 responseMappingAction 'out=in;
@@ -125,7 +125,7 @@ Ls0 f6 83 243 26 26 -25 15 #rect
 Ls0 f6 @|UdMethodIcon #fIcon
 Ls0 f12 actionTable 'out=in;
 ' #txt
-Ls0 f12 actionCode 'import ch.ivy.addon.portalkit.persistence.domain.UserProcess;
+Ls0 f12 actionCode 'import ch.ivy.addon.portalkit.configuration.UserProcess;
 
 in.userProcess = new UserProcess();
 in.userProcess.setLink(in.caseMapDetail.startLink);

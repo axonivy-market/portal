@@ -15,7 +15,6 @@ import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
 
 import portal.guitest.common.BaseTest;
-import portal.guitest.common.TaskState;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.CaseDetailsPage;
 import portal.guitest.page.CaseWidgetPage;
@@ -23,7 +22,6 @@ import portal.guitest.page.HomePage;
 import portal.guitest.page.MainMenuPage;
 import portal.guitest.page.NoteHistoryPage;
 import portal.guitest.page.TaskDetailsPage;
-import portal.guitest.page.TaskWidgetPage;
 
 public class ShowRelatedTasksTest extends BaseTest {
   

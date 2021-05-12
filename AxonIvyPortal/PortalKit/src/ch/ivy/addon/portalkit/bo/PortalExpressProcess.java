@@ -25,10 +25,7 @@ public class PortalExpressProcess implements Process {
 
   public PortalExpressProcess(ExpressProcess process) {
     this.process = process;
-
-    ExpressManagementUtils utils = new ExpressManagementUtils();
-
-    String processOwner = utils.getValidMemberName(process.getProcessOwner());
+    String processOwner = ExpressManagementUtils.getValidMemberName(process.getProcessOwner());
     String processOwnerName = StringUtils.isNotBlank(processOwner) ? processOwner.substring(1) : null;
 
     IUser user = processOwnerName != null ? Ivy.session().getSecurityContext().users().find(processOwnerName) : null;
