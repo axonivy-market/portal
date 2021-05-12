@@ -78,7 +78,7 @@ How to configure widgets in task details
                      "startedTaskId": "task.id",
                      "startedTaskCategory": "task.category",
                      "invoiceId": "000001573",
-                     "invoiceDescription": "custom.invoiceDescription"
+                     "invoiceDescription": "task.customFields.invoiceDescription"
                   }
                }
             }
@@ -126,7 +126,7 @@ How to configure widgets in task details
 
          - Key value for task: must start with ``task.``. Support 2 values: ``task.id``, ``task.category``.
 
-         - Key value for task custom fields: must start with ``custom.``, follow by custom field name.
+         - Key value for task custom fields: must start with ``task.customFields.``, follow by custom field name.
 
          - Other key value will be treated as hard code value.
 
@@ -404,7 +404,7 @@ There are **two steps** for adding new custom panels.
                            "startedTaskId": "task.id",
                            "startedTaskCategory": "task.category",
                            "invoiceId": "000001573",
-                           "invoiceDescription": "custom.invoiceDescription"
+                           "invoiceDescription": "task.customFields.invoiceDescription"
                         }
                      }
                   }
