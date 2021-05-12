@@ -2844,9 +2844,20 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   max-width: 900px;
 }
 
+.substitute-container .substitute-container-table table thead tr th.substitute-role {
+  height: auto;
+}
 .substitute-role {
-  width: 40%;
-  height: 30px !important;
+  display: flex;
+}
+
+.substitute-role .ui-treetable-indent {
+  flex-shrink: 0;
+}
+
+.substitute-role .substitute-role-name {
+  white-space: normal;
+  line-break: anywhere;
 }
 
 .substitute-deputy {
