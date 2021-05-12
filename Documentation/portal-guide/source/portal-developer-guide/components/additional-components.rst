@@ -190,7 +190,7 @@ Display growl after finishing a task
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 After a task is finished, growl message appears as default via the
-``DISPLAY_MESSAGE_AFTER_FINISH_TASK`` Portal variable.
+``Portal.DisplayMessageAfterFinishTask`` Portal variable.
 
 |example-global-growl-finished-task|
 
@@ -199,7 +199,7 @@ After a task is finished, growl message appears as default via the
 Display growl after leaving a task
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-If ``DISPLAY_MESSAGE_AFTER_FINISH_TASK`` Portal variable is true, growl message will be displayed after a task is left.
+If ``Portal.DisplayMessageAfterFinishTask`` Portal variable is true, growl message will be displayed after a task is left.
 
 |example-global-growl-cancelled-task|
 
@@ -240,7 +240,7 @@ It's enough if you want to turn it off. To override the message, add
 Customization global growl message for task using IFrame
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-If ``DISPLAY_MESSAGE_AFTER_FINISH_TASK`` Portal variable is true, before a task is finished/left, you can trigger displaying
+If ``Portal.DisplayMessageAfterFinishTask`` Portal variable is true, before a task is finished/left, you can trigger displaying
 customized message after task is finished/left by calling below API:
 
 ::

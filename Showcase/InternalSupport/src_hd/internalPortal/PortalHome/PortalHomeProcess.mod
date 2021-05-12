@@ -38,9 +38,7 @@ Ps0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f0 83 51 26 26 -16 15 #rect
-Ps0 f0 @|UdInitIcon #fIcon
 Ps0 f10 461 53 22 22 14 0 #rect
-Ps0 f10 @|UdProcessEndIcon #fIcon
 Ps0 f1 expr out #txt
 Ps0 f1 109 64 461 64 #arcP
 Ps0 f2 guid 15BAD5F2E0E9E835 #txt
@@ -66,20 +64,17 @@ Ps0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f2 88 150 22 22 14 0 #rect
-Ps0 f2 @|UdMethodIcon #fIcon
 Ps0 f3 216 150 22 22 14 0 #rect
-Ps0 f3 @|UdProcessEndIcon #fIcon
 Ps0 f4 expr out #txt
 Ps0 f4 110 161 216 161 #arcP
 Ps0 f5 221 218 22 22 14 0 #rect
-Ps0 f5 @|UdProcessEndIcon #fIcon
 Ps0 f6 guid 1609AC4B919D7836 #txt
 Ps0 f6 method getStatisticCharts() #txt
 Ps0 f6 inParameterDecl '<> param;' #txt
 Ps0 f6 inActionCode 'import ch.ivy.addon.portalkit.service.StatisticService;
 
-StatisticService service = new StatisticService();
-out.statisticChartList = service.findStatisticChartsByUserId(ivy.session.getSessionUser().getId());' #txt
+StatisticService service = StatisticService.getInstance();
+out.statisticChartList = service.findStatisticCharts();' #txt
 Ps0 f6 outParameterDecl '<java.util.List<ch.ivy.addon.portalkit.statistics.StatisticChart> statisticChartList> result;' #txt
 Ps0 f6 outParameterMapAction 'result.statisticChartList=in.statisticChartList;
 ' #txt
@@ -93,13 +88,11 @@ Ps0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f6 93 218 22 22 14 0 #rect
-Ps0 f6 @|UdMethodIcon #fIcon
 Ps0 f7 expr out #txt
 Ps0 f7 115 229 221 229 #arcP
 >Proto Ps0 .type internalPortal.PortalHome.PortalHomeData #txt
 >Proto Ps0 .processKind HTML_DIALOG #txt
 >Proto Ps0 -8 -8 16 16 16 26 #rect
->Proto Ps0 '' #fIcon
 Ps0 f0 mainOut f1 tail #connect
 Ps0 f1 head f10 mainIn #connect
 Ps0 f2 mainOut f4 tail #connect

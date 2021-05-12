@@ -21,8 +21,8 @@ Ls0 @UserDialog f9 '' #zField
 Ls0 @PushWFArc f10 '' #zField
 >Proto Ls0 Ls0 LeaveRequestOverviewProcess #zField
 Ls0 f0 guid 172591B4F815A757 #txt
-Ls0 f0 method start(ch.ivy.addon.portalkit.persistence.domain.UserProcess) #txt
-Ls0 f0 inParameterDecl '<ch.ivy.addon.portalkit.persistence.domain.UserProcess userProcess> param;' #txt
+Ls0 f0 method start(ch.ivy.addon.portalkit.configuration.UserProcess) #txt
+Ls0 f0 inParameterDecl '<ch.ivy.addon.portalkit.configuration.UserProcess userProcess> param;' #txt
 Ls0 f0 inParameterMapAction 'out.userProcess=param.userProcess;
 ' #txt
 Ls0 f0 outParameterDecl '<> result;' #txt

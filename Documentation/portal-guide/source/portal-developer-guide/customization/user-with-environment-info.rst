@@ -3,7 +3,7 @@
 User with environment info
 ==========================
 
-This component shows environment info when the ``SHOW_ENVIRONMENT_INFO`` variable value is TRUE.
+This component shows environment info when the ``Portal.ShowEnvironmentInfo`` variable value is TRUE.
 
 |user-with-environment-info|
 

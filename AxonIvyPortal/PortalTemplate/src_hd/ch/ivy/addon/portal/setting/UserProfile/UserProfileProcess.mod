@@ -503,7 +503,7 @@ Ct7 f1 296 160 371 160 #arcP
 Ct6 f11 actionTable 'out=in;
 ' #txt
 Ct6 f11 actionCode 'import ch.ivy.addon.portalkit.enums.GlobalVariable;
-import ch.ivy.addon.portalkit.persistence.domain.GlobalSetting;
+import ch.ivy.addon.portalkit.configuration.GlobalSetting;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;
@@ -511,7 +511,7 @@ import ch.ivy.addon.portalkit.enums.ProcessMode;
 
 in.processModes.clear();
 GlobalSettingService globalSettingService = new GlobalSettingService();
-GlobalSetting defaultSetting = globalSettingService.findGlobalSettingByKey(GlobalVariable.DEFAULT_PROCESS_MODE.name());
+GlobalSetting defaultSetting = globalSettingService.findGlobalSettingByGlobalVariable(GlobalVariable.DEFAULT_PROCESS_MODE);
 
 String defaultProcessModeSetting = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/MyProfile/defaultOption", [defaultSetting.getDisplayValue()]);
 in.processModes.add(defaultProcessModeSetting);

@@ -54,4 +54,9 @@ public class TaskAnalysisFilterService extends AbstractFilterService<TaskAnalysi
       }
     }
   }
+
+  @Override
+  public String getConfigKey() {
+    return "Portal.TaskAnalysisFilters";
+  }
 }

@@ -39,13 +39,13 @@
                             actionListener="#{logic.selectChart(chart)}" update="#{p:component('chart-details-dialog')}" oncomplete="PF('chart-details-dialog').show();" />
                       </h:panelGroup>
 
-                      <h:panelGroup layout="block" styleClass="chart-actions-container portal-icon-container" rendered="#{!cc.attrs.isDrilldownExpiryChart}">
+                      <h:panelGroup layout="block" styleClass="chart-actions-container portal-icon-container" rendered="#{!cc.attrs.isDrilldownExpiryChart and !chart.isPublic}">
                         <p:commandLink styleClass="si si-arrow-left-1 chart-action ui-sm-hidden" actionListener="#{logic.moveLeft(chart)}"
-                          update="@([id$='statistic-container'])" rendered="#{chartStatus.index != 0}" />
+                          update="@([id$='statistic-container'])" rendered="#{chartStatus.index > data.numberOfDefaultCharts}" />
                         <p:commandLink styleClass="si si-arrow-right-1 chart-action ui-sm-hidden" actionListener="#{logic.moveRight(chart)}"
                           update="@([id$='statistic-container'])" rendered="#{chartStatus.index != data.statisticChartList.size() -1 and data.isFinishLoadCharts}" />
 
-                        <p:commandLink id="delete-chart-link" styleClass="si si-remove chart-action" rendered="#{chart.defaultChart == 'false'}">
+                        <p:commandLink id="delete-chart-link" styleClass="si si-remove chart-action">
                           <p:ajax event="click" listener="#{logic.selectChart(chart)}" oncomplete="PF('delete-confirmation-dialog').show();" />
                         </p:commandLink>
                       </h:panelGroup>

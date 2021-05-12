@@ -127,11 +127,6 @@ Dt0 @PushWFArc f69 '' #zField
 Dt0 @TaskSwitch f112 '' #zField
 Dt0 @TkArc f113 '' #zField
 Dt0 @PushWFArc f75 '' #zField
-Dt0 @StartRequest f114 '' #zField
-Dt0 @EndTask f115 '' #zField
-Dt0 @GridStep f117 '' #zField
-Dt0 @PushWFArc f116 '' #zField
-Dt0 @PushWFArc f118 '' #zField
 Dt0 @StartRequest f119 '' #zField
 Dt0 @GridStep f120 '' #zField
 Dt0 @PushWFArc f121 '' #zField
@@ -214,13 +209,9 @@ Dt0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Dt0 f0 @C|.responsibility Everybody #txt
 Dt0 f0 35 323 26 26 14 0 #rect
-Dt0 f0 @|StartRequestIcon #fIcon
 Dt0 f1 467 203 26 26 14 0 #rect
-Dt0 f1 @|EndIcon #fIcon
 Dt0 f5 467 243 26 26 14 0 #rect
-Dt0 f5 @|EndIcon #fIcon
 Dt0 f6 467 275 26 26 14 0 #rect
-Dt0 f6 @|EndIcon #fIcon
 Dt0 f23 actionTable 'out=in;
 ' #txt
 Dt0 f23 actionCode 'import org.apache.commons.lang3.StringUtils;
@@ -236,7 +227,6 @@ Dt0 f23 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Dt0 f23 182 324 36 24 -33 -36 #rect
-Dt0 f23 @|StepIcon #fIcon
 Dt0 f25 outLink createTestDataWithCategory.ivp #txt
 Dt0 f25 inParamDecl '<> param;' #txt
 Dt0 f25 requestEnabled true #txt
@@ -264,7 +254,6 @@ Dt0 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Dt0 f25 @C|.responsibility Everybody #txt
 Dt0 f25 35 83 26 26 -39 20 #rect
-Dt0 f25 @|StartRequestIcon #fIcon
 Dt0 f28 processCall 'Start Processes/DataCreation:createTasks(String)' #txt
 Dt0 f28 requestActionDecl '<String taskStructureInfo> param;' #txt
 Dt0 f28 requestMappingAction 'param.taskStructureInfo=in.handler.getNextTaskStructureInfo();
@@ -283,7 +272,6 @@ Dt0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Dt0 f28 622 84 36 24 20 -2 #rect
-Dt0 f28 @|TriggerIcon #fIcon
 Dt0 f30 actionTable 'out=in;
 ' #txt
 Dt0 f30 actionCode 'import ch.ivy.addon.portalkit.test.util.DataCreationHandler;
@@ -303,13 +291,10 @@ Dt0 f30 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Dt0 f30 334 84 36 24 -29 -36 #rect
-Dt0 f30 @|StepIcon #fIcon
 Dt0 f32 402 82 28 28 14 0 #rect
-Dt0 f32 @|AlternativeIcon #fIcon
 Dt0 f33 expr out #txt
 Dt0 f33 370 96 402 96 #arcP
 Dt0 f34 403 155 26 26 14 0 #rect
-Dt0 f34 @|EndIcon #fIcon
 Dt0 f35 expr in #txt
 Dt0 f35 416 110 416 155 #arcP
 Dt0 f35 0 0.9664375715922109 0 0 #arcLabel
@@ -321,7 +306,6 @@ Dt0 f27 responseActionDecl 'portalKit_test.DataCreationData out;
 Dt0 f27 responseMappingAction 'out=in;
 ' #txt
 Dt0 f27 382 252 36 24 20 -2 #rect
-Dt0 f27 @|UserDialogIcon #fIcon
 Dt0 f2 expr out #txt
 Dt0 f2 418 253 468 222 #arcP
 Dt0 f41 actionTable 'out=in;
@@ -338,7 +322,6 @@ triggering new process</name>
 </elementInfo>
 ' #txt
 Dt0 f41 446 36 36 24 28 -17 #rect
-Dt0 f41 @|StepIcon #fIcon
 Dt0 f42 expr out #txt
 Dt0 f42 640 84 482 48 #arcP
 Dt0 f42 1 640 48 #addKink
@@ -370,7 +353,6 @@ Dt0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Dt0 f24 246 84 36 24 -70 -34 #rect
-Dt0 f24 @|UserDialogIcon #fIcon
 Dt0 f37 expr out #txt
 Dt0 f37 61 96 246 96 #arcP
 Dt0 f31 expr out #txt
@@ -409,7 +391,6 @@ TaskC.SKIP_TASK_LIST=false
 TaskC.TYPE=0' #txt
 Dt0 f3 template "" #txt
 Dt0 f3 274 322 28 28 14 0 #rect
-Dt0 f3 @|TaskSwitchIcon #fIcon
 Dt0 f4 expr out #txt
 Dt0 f4 type portalKit_test.DataCreationData #txt
 Dt0 f4 var in1 #txt
@@ -447,9 +428,7 @@ Dt0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Dt0 f10 @C|.responsibility Everybody #txt
 Dt0 f10 35 467 26 26 14 0 #rect
-Dt0 f10 @|StartRequestIcon #fIcon
 Dt0 f11 307 467 26 26 14 0 #rect
-Dt0 f11 @|EndIcon #fIcon
 Dt0 f13 dialogId ch.ivy.addon.portalkit.showroom.multiapp.tasks.DestroyTaskPage #txt
 Dt0 f13 startMethod start() #txt
 Dt0 f13 requestActionDecl '<> param;' #txt
@@ -458,7 +437,6 @@ Dt0 f13 responseActionDecl 'portalKit_test.DataCreationData out;
 Dt0 f13 responseMappingAction 'out=in;
 ' #txt
 Dt0 f13 174 468 36 24 20 -2 #rect
-Dt0 f13 @|UserDialogIcon #fIcon
 Dt0 f14 expr out #txt
 Dt0 f14 61 480 174 480 #arcP
 Dt0 f12 expr out #txt
@@ -489,7 +467,6 @@ Dt0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Dt0 f15 @C|.responsibility Everybody #txt
 Dt0 f15 81 561 30 30 -51 17 #rect
-Dt0 f15 @|StartRequestIcon #fIcon
 Dt0 f16 actionTable 'out=in;
 ' #txt
 Dt0 f16 actionCode 'import java.util.Locale;
@@ -499,9 +476,7 @@ if (ivy.wf.getSecurityContext().findUser("test_change_password_user") != null) {
 ivy.wf.getSecurityContext().createUser("test_change_password_user", "Elton", "123", Locale.ENGLISH, "", "");' #txt
 Dt0 f16 security system #txt
 Dt0 f16 152 554 112 44 0 -8 #rect
-Dt0 f16 @|StepIcon #fIcon
 Dt0 f17 321 561 30 30 0 15 #rect
-Dt0 f17 @|EndIcon #fIcon
 Dt0 f18 expr out #txt
 Dt0 f18 264 576 321 576 #arcP
 Dt0 f19 expr out #txt
@@ -529,9 +504,7 @@ Dt0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Dt0 f20 @C|.responsibility Everybody #txt
 Dt0 f20 65 721 30 30 -75 23 #rect
-Dt0 f20 @|StartRequestIcon #fIcon
 Dt0 f21 337 721 30 30 0 15 #rect
-Dt0 f21 @|EndIcon #fIcon
 Dt0 f22 actionTable 'out=in;
 ' #txt
 Dt0 f22 actionCode 'if (ivy.wf.getSecurityContext().findUser("test_related_tasks_user") != null) {
@@ -540,7 +513,6 @@ Dt0 f22 actionCode 'if (ivy.wf.getSecurityContext().findUser("test_related_tasks
 ivy.wf.getSecurityContext().createUser("test_related_tasks_user", "Related Tasks User", "+d3m0++", java.util.Locale.ENGLISH, "", "");' #txt
 Dt0 f22 security system #txt
 Dt0 f22 168 714 112 44 0 -8 #rect
-Dt0 f22 @|StepIcon #fIcon
 Dt0 f36 expr out #txt
 Dt0 f36 95 736 168 736 #arcP
 Dt0 f38 expr out #txt
@@ -573,7 +545,6 @@ Dt0 f48 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Dt0 f48 @C|.responsibility Everybody #txt
 Dt0 f48 593 369 30 30 -55 17 #rect
-Dt0 f48 @|StartRequestIcon #fIcon
 Dt0 f55 dialogId ch.ivy.addon.portalkit.test.CreateMultipleTestUsers #txt
 Dt0 f55 startMethod start() #txt
 Dt0 f55 requestActionDecl '<> param;' #txt
@@ -592,11 +563,9 @@ Dt0 f55 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Dt0 f55 720 362 128 44 -57 -8 #rect
-Dt0 f55 @|UserDialogIcon #fIcon
 Dt0 f56 expr out #txt
 Dt0 f56 623 384 720 384 #arcP
 Dt0 f59 1080 368 32 32 0 16 #rect
-Dt0 f59 @|AlternativeIcon #fIcon
 Dt0 f60 actionTable 'out=in;
 ' #txt
 Dt0 f60 actionCode 'import ch.ivyteam.ivy.security.query.UserQuery;
@@ -621,7 +590,6 @@ in application</name>
 </elementInfo>
 ' #txt
 Dt0 f60 904 362 128 44 -42 -16 #rect
-Dt0 f60 @|StepIcon #fIcon
 Dt0 f61 actionTable 'out=in;
 ' #txt
 Dt0 f61 actionCode 'import java.util.Locale;
@@ -644,11 +612,8 @@ Dt0 f61 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Dt0 f61 1160 362 112 44 -44 -8 #rect
-Dt0 f61 @|StepIcon #fIcon
 Dt0 f62 1329 433 30 30 0 15 #rect
-Dt0 f62 @|EndIcon #fIcon
 Dt0 f63 1328 368 32 32 0 16 #rect
-Dt0 f63 @|AlternativeIcon #fIcon
 Dt0 f64 expr in #txt
 Dt0 f64 1096 400 1329 448 #arcP
 Dt0 f64 1 1096 448 #addKink
@@ -684,7 +649,6 @@ Dt0 f39 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Dt0 f39 922 554 112 44 -38 -8 #rect
-Dt0 f39 @|StepIcon #fIcon
 Dt0 f40 actionTable 'out=in1;
 ' #txt
 Dt0 f40 outLinks "TaskA.ivp" #txt
@@ -700,9 +664,7 @@ TaskA.SKIP_TASK_LIST=true
 TaskA.TYPE=0' #txt
 Dt0 f40 template "" #txt
 Dt0 f40 841 561 30 30 0 16 #rect
-Dt0 f40 @|TaskSwitchSimpleIcon #fIcon
 Dt0 f44 1073 561 30 30 0 15 #rect
-Dt0 f44 @|EndIcon #fIcon
 Dt0 f45 actionTable 'out=in;
 ' #txt
 Dt0 f45 actionCode 'import ch.ivy.addon.portalkit.publicapi.TaskAPI;
@@ -718,7 +680,6 @@ Dt0 f45 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Dt0 f45 680 554 112 44 -36 -8 #rect
-Dt0 f45 @|StepIcon #fIcon
 Dt0 f46 outLink createHiddenTaskAndCase.ivp #txt
 Dt0 f46 inParamDecl '<> param;' #txt
 Dt0 f46 requestEnabled true #txt
@@ -749,7 +710,6 @@ Dt0 f46 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Dt0 f46 @C|.responsibility Everybody #txt
 Dt0 f46 601 561 30 30 -91 22 #rect
-Dt0 f46 @|StartRequestIcon #fIcon
 Dt0 f47 expr out #txt
 Dt0 f47 1034 576 1073 576 #arcP
 Dt0 f49 expr out #txt
@@ -789,7 +749,6 @@ Dt0 f52 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Dt0 f52 @C|.responsibility Everybody #txt
 Dt0 f52 897 81 30 30 -92 17 #rect
-Dt0 f52 @|StartRequestIcon #fIcon
 Dt0 f53 dialogId ch.ivy.addon.portalkit.test.CreateHiddenTasksAndCases #txt
 Dt0 f53 startMethod start() #txt
 Dt0 f53 requestActionDecl '<> param;' #txt
@@ -808,7 +767,6 @@ Dt0 f53 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Dt0 f53 1024 74 128 44 -61 -8 #rect
-Dt0 f53 @|UserDialogIcon #fIcon
 Dt0 f54 expr out #txt
 Dt0 f54 927 96 1024 96 #arcP
 Dt0 f58 actionTable 'out=in;
@@ -827,9 +785,7 @@ Dt0 f58 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Dt0 f58 1288 74 112 44 -30 -8 #rect
-Dt0 f58 @|StepIcon #fIcon
 Dt0 f70 1456 80 32 32 0 16 #rect
-Dt0 f70 @|AlternativeIcon #fIcon
 Dt0 f71 expr out #txt
 Dt0 f71 1400 96 1456 96 #arcP
 Dt0 f72 processCall 'Start Processes/DataCreation:createHiddenTaskAndCase()' #txt
@@ -846,12 +802,10 @@ Dt0 f72 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Dt0 f72 1528 74 112 44 -36 -8 #rect
-Dt0 f72 @|TriggerIcon #fIcon
 Dt0 f73 expr in #txt
 Dt0 f73 outCond 'in.counter <= in.numberOfCases' #txt
 Dt0 f73 1488 96 1528 96 #arcP
 Dt0 f74 1457 273 30 30 0 15 #rect
-Dt0 f74 @|EndIcon #fIcon
 Dt0 f76 actionTable 'out=in;
 ' #txt
 Dt0 f76 actionCode in.counter++; #txt
@@ -865,7 +819,6 @@ Dt0 f76 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Dt0 f76 1672 74 112 44 -44 -8 #rect
-Dt0 f76 @|StepIcon #fIcon
 Dt0 f77 expr out #txt
 Dt0 f77 1640 96 1672 96 #arcP
 Dt0 f78 expr out #txt
@@ -900,11 +853,9 @@ Dt0 f79 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Dt0 f79 @C|.responsibility Everybody #txt
 Dt0 f79 33 209 30 30 -8 19 #rect
-Dt0 f79 @|StartRequestIcon #fIcon
 Dt0 f80 expr out #txt
 Dt0 f80 60 232 184 324 #arcP
 Dt0 f81 496 80 32 32 0 16 #rect
-Dt0 f81 @|AlternativeIcon #fIcon
 Dt0 f82 expr in #txt
 Dt0 f82 outCond in.handler.createMoreTasks() #txt
 Dt0 f82 430 96 496 96 #arcP
@@ -929,7 +880,6 @@ Dt0 f83 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Dt0 f83 584 138 112 44 -36 -8 #rect
-Dt0 f83 @|TriggerIcon #fIcon
 Dt0 f84 expr in #txt
 Dt0 f84 512 112 584 160 #arcP
 Dt0 f84 1 512 160 #addKink
@@ -956,9 +906,7 @@ Dt0 f86 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Dt0 f86 @C|.responsibility Everybody #txt
 Dt0 f86 49 849 30 30 -77 17 #rect
-Dt0 f86 @|StartRequestIcon #fIcon
 Dt0 f87 497 849 30 30 0 15 #rect
-Dt0 f87 @|EndIcon #fIcon
 Dt0 f88 dialogId ch.ivy.addon.portalkit.test.HideOrUnHideTaskCase #txt
 Dt0 f88 startMethod start() #txt
 Dt0 f88 requestActionDecl '<> param;' #txt
@@ -974,7 +922,6 @@ Dt0 f88 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Dt0 f88 216 842 144 44 -68 -8 #rect
-Dt0 f88 @|UserDialogIcon #fIcon
 Dt0 f89 expr out #txt
 Dt0 f89 79 864 216 864 #arcP
 Dt0 f90 expr out #txt
@@ -997,7 +944,6 @@ Dt0 f91 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Dt0 f91 @C|.responsibility Everybody #txt
 Dt0 f91 57 977 30 30 -99 26 #rect
-Dt0 f91 @|StartRequestIcon #fIcon
 Dt0 f92 outLink createCaseWithSpecificCategory.ivp #txt
 Dt0 f92 inParamDecl '<String caseCategory> param;' #txt
 Dt0 f92 inParamTable 'out.caseCategory=param.caseCategory;
@@ -1019,17 +965,14 @@ Dt0 f92 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Dt0 f92 @C|.responsibility Everybody #txt
 Dt0 f92 593 721 30 30 -148 26 #rect
-Dt0 f92 @|StartRequestIcon #fIcon
 Dt0 f95 actionTable 'out=in;
 ' #txt
 Dt0 f95 actionCode 'ivy.case.setCategoryPath(in.caseCategory);
 ivy.case.setName("Case with category path: " + in.caseCategory);' #txt
 Dt0 f95 680 714 112 44 0 -8 #rect
-Dt0 f95 @|StepIcon #fIcon
 Dt0 f96 expr out #txt
 Dt0 f96 623 736 680 736 #arcP
 Dt0 f97 1073 721 30 30 0 15 #rect
-Dt0 f97 @|EndIcon #fIcon
 Dt0 f93 actionTable 'out=in1;
 ' #txt
 Dt0 f93 taskData 'TaskA.NAM=System Task
@@ -1037,7 +980,6 @@ TaskA.ROL=SYSTEM
 TaskA.TYPE=0' #txt
 Dt0 f93 template "" #txt
 Dt0 f93 865 721 30 30 0 16 #rect
-Dt0 f93 @|TaskSwitchSimpleIcon #fIcon
 Dt0 f94 expr out #txt
 Dt0 f94 792 736 865 736 #arcP
 Dt0 f98 expr in #txt
@@ -1060,7 +1002,6 @@ with specific category</name>
 </elementInfo>
 ' #txt
 Dt0 f99 456 970 144 44 -53 -16 #rect
-Dt0 f99 @|TriggerIcon #fIcon
 Dt0 f100 actionTable 'out=in;
 ' #txt
 Dt0 f100 actionCode 'in.caseCatagories.add("/Test/ETest_1");
@@ -1078,19 +1019,15 @@ Dt0 f100 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Dt0 f100 184 970 112 44 -38 -8 #rect
-Dt0 f100 @|StepIcon #fIcon
 Dt0 f101 expr out #txt
 Dt0 f101 87 992 184 992 #arcP
 Dt0 f102 368 976 32 32 0 16 #rect
-Dt0 f102 @|AlternativeIcon #fIcon
 Dt0 f103 expr out #txt
 Dt0 f103 296 992 368 992 #arcP
 Dt0 f105 369 1041 30 30 0 15 #rect
-Dt0 f105 @|EndIcon #fIcon
 Dt0 f106 expr in #txt
 Dt0 f106 384 1008 384 1041 #arcP
 Dt0 f107 816 976 32 32 0 16 #rect
-Dt0 f107 @|AlternativeIcon #fIcon
 Dt0 f109 expr in #txt
 Dt0 f109 832 976 384 976 #arcP
 Dt0 f109 1 832 920 #addKink
@@ -1107,7 +1044,6 @@ Dt0 f110 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Dt0 f110 640 970 112 44 -46 -8 #rect
-Dt0 f110 @|StepIcon #fIcon
 Dt0 f104 expr in #txt
 Dt0 f104 outCond 'in.counter < in.numOfCats' #txt
 Dt0 f104 400 992 456 992 #arcP
@@ -1122,152 +1058,12 @@ Dt0 f112 actionTable 'out=in1;
 Dt0 f112 outLinks "TaskA.ivp" #txt
 Dt0 f112 template "" #txt
 Dt0 f112 1456 176 32 32 0 16 #rect
-Dt0 f112 @|TaskSwitchIcon #fIcon
 Dt0 f113 expr in #txt
 Dt0 f113 var in1 #txt
 Dt0 f113 1472 112 1472 176 #arcP
 Dt0 f75 expr data #txt
 Dt0 f75 outCond ivp=="TaskA.ivp" #txt
 Dt0 f75 1472 208 1472 273 #arcP
-Dt0 f114 outLink createDataForObsoletedData.ivp #txt
-Dt0 f114 inParamDecl '<> param;' #txt
-Dt0 f114 requestEnabled true #txt
-Dt0 f114 triggerEnabled false #txt
-Dt0 f114 callSignature createDataForObsoletedData() #txt
-Dt0 f114 startName 'Create obsoleted data to test clean up job' #txt
-Dt0 f114 caseData businessCase.attach=true #txt
-Dt0 f114 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>createObsoletedDataToTestCleanUpJob.ivp</name>
-    </language>
-</elementInfo>
-' #txt
-Dt0 f114 @C|.responsibility Everybody #txt
-Dt0 f114 49 1193 30 30 -51 25 #rect
-Dt0 f114 @|StartRequestIcon #fIcon
-Dt0 f115 449 1193 30 30 0 15 #rect
-Dt0 f115 @|EndIcon #fIcon
-Dt0 f117 actionTable 'out=in;
-' #txt
-Dt0 f117 actionCode 'import java.util.Locale;
-import ch.ivy.addon.portalkit.dto.DisplayName;
-import java.util.ArrayList;
-import java.util.Map;
-import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
-import java.util.HashMap;
-import ch.ivy.addon.portalkit.service.StatisticService;
-import ch.ivy.addon.portalkit.service.TaskColumnsConfigurationService;
-import ch.ivy.addon.portalkit.service.CaseColumnsConfigurationService;
-import ch.ivy.addon.portalkit.service.TaskFilterService;
-import ch.ivy.addon.portalkit.service.UserProcessService;
-import ch.ivy.addon.portalkit.persistence.domain.UserProcess;
-import ch.ivy.addon.portalkit.taskfilter.impl.TaskFilterData;
-import ch.ivy.addon.portalkit.enums.FilterType;
-import ch.ivy.addon.portalkit.casefilter.CaseFilter;
-import ch.ivyteam.ivy.business.data.store.BusinessDataInfo;
-import ch.ivy.addon.portalkit.service.CaseFilterService;
-import ch.ivy.addon.portalkit.casefilter.impl.CaseFilterData;
-import ch.ivy.addon.portalkit.bo.CaseColumnsConfiguration;
-import ch.ivy.addon.portalkit.bo.TaskColumnsConfiguration;
-import ch.ivy.addon.portalkit.enums.StatisticChartType;
-import ch.ivy.addon.portalkit.statistics.StatisticFilter;
-import ch.ivy.addon.portalkit.statistics.StatisticChart;
-
-String testUsername = "test_obsolete_data_user";
-long testUserId = -1;
-
-// Create user process
-UserProcessService userProcessService = new UserProcessService();
-for (int i = 0; i < 930; i++) {
-	UserProcess userProcess = new UserProcess();
-	userProcess.setApplicationId(ivy.request.getApplication().getId());
-	userProcess.setUserId(testUserId);
-	userProcess.setIndex(i);
-	userProcess.setDescription("Test user process - " + i);
-	userProcess.setProcessName("Test user process - " + i);
-	userProcessService.save(userProcess);
-}
-
-// Create task filter
-TaskFilterService taskFilterService = new TaskFilterService();
-for (int i = 0; i < 830; i++) {
-    TaskFilterData filterData = new TaskFilterData();
-    filterData.setKeyword("Test task filter-" + i);
-    filterData.setUserId(testUserId);
-    filterData.setFilterGroupId(1);
-    filterData.setFilterName("Test task filter-" + i);
-    filterData.setType(FilterType.ONLY_ME);
-    taskFilterService.save(filterData);
-}
-
-// Create case filter
-CaseFilterService caseFilterService = new CaseFilterService();
-for (int i = 0; i < 900; i++) {
-    CaseFilterData filterData = new CaseFilterData();
-    filterData.setKeyword("Test case filter-" + i);
-    filterData.setUserId(testUserId);
-    filterData.setFilterGroupId(1);
-    filterData.setFilterName("Test case filter-" + i);
-    filterData.setType(FilterType.ONLY_ME);
-    caseFilterService.save(filterData);
-}
-
-// Create for task config
-Long applicationId = ivy.request.getApplication().getId();
-TaskColumnsConfiguration taskConfig = new TaskColumnsConfiguration();
-taskConfig.setApplicationId(applicationId);
-taskConfig.setUserId(testUserId);
-taskConfig.setAutoHideColumns(false);
-taskConfig.setProcessModelId(ivy.request.getProcessModel().getId());
-TaskColumnsConfigurationService taskService = new TaskColumnsConfigurationService();
-taskService.save(taskConfig);
-
-// Create for case config
-CaseColumnsConfiguration caseConfig = new CaseColumnsConfiguration();
-caseConfig.setApplicationId(applicationId);
-caseConfig.setUserId(testUserId);
-caseConfig.setAutoHideColumns(false);
-caseConfig.setProcessModelId(ivy.request.getProcessModel().getId());
-CaseColumnsConfigurationService caseService = new CaseColumnsConfigurationService();
-caseService.save(caseConfig);
-
-// Create statistic chart
-StatisticService statisticService = new StatisticService();
-
-
-List<String> languages = LanguageService.newInstance().findUserLanguages().ivyLanguage.supportedLanguages;
-
-
-for (int i = 0; i < 800; i++) {
-	List chartNames = new ArrayList();
-	for (String language : languages) {
-		DisplayName chartName = new DisplayName();
-		chartName.locale = Locale.forLanguageTag(language);
-		chartName.value = "Test chart-" + i;
-		chartNames.add(chartName);
-	}
-	StatisticChart chart = new StatisticChart();
-	chart.setDefaultChart("false");
-	chart.setFilter(new StatisticFilter());
-	chart.setType(StatisticChartType.TASK_BY_PRIORITY);
-	chart.setNames(chartNames);
-	chart.setPosition(i);
-	chart.setUserId(testUserId);
-	statisticService.save(chart);
-}
-' #txt
-Dt0 f117 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Create Data</name>
-    </language>
-</elementInfo>
-' #txt
-Dt0 f117 192 1186 112 44 -33 -8 #rect
-Dt0 f117 @|StepIcon #fIcon
-Dt0 f116 79 1208 192 1208 #arcP
-Dt0 f118 304 1208 449 1208 #arcP
 Dt0 f119 outLink disableVisibilityUser.ivp #txt
 Dt0 f119 inParamDecl '<> param;' #txt
 Dt0 f119 requestEnabled true #txt
@@ -1284,7 +1080,6 @@ Dt0 f119 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Dt0 f119 @C|.responsibility Everybody #txt
 Dt0 f119 977 905 30 30 -75 18 #rect
-Dt0 f119 @|StartRequestIcon #fIcon
 Dt0 f120 actionTable 'out=in;
 ' #txt
 Dt0 f120 actionCode 'import ch.ivyteam.ivy.security.user.NewUser;
@@ -1310,10 +1105,8 @@ Dt0 f120 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Dt0 f120 1056 898 128 44 -58 -8 #rect
-Dt0 f120 @|StepIcon #fIcon
 Dt0 f121 1007 920 1056 920 #arcP
 Dt0 f122 1233 905 30 30 0 15 #rect
-Dt0 f122 @|EndIcon #fIcon
 Dt0 f123 1184 920 1233 920 #arcP
 Dt0 f129 outLink createTaskAndCaseForDisabledUser.ivp #txt
 Dt0 f129 inParamDecl '<> param;' #txt
@@ -1332,23 +1125,19 @@ Dt0 f129 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Dt0 f129 @C|.responsibility Everybody #txt
 Dt0 f129 977 993 30 30 -100 24 #rect
-Dt0 f129 @|StartRequestIcon #fIcon
 Dt0 f130 actionTable 'out=in1;
 ' #txt
 Dt0 f130 taskData 'TaskA.NAM=Task for disabled user
 TaskA.ROL="visibility_test_user"
 TaskA.TYPE=3' #txt
 Dt0 f130 1233 993 30 30 0 16 #rect
-Dt0 f130 @|TaskSwitchSimpleIcon #fIcon
 Dt0 f132 1361 993 30 30 0 15 #rect
-Dt0 f132 @|EndIcon #fIcon
 Dt0 f133 1263 1008 1361 1008 #arcP
 Dt0 f134 actionTable 'out=in;
 ' #txt
 Dt0 f134 actionCode ivy.case.setCreatorUser(ivy.wf.getSecurityContext().users().find("visibility_test_user")); #txt
 Dt0 f134 security system #txt
 Dt0 f134 1064 986 112 44 0 -8 #rect
-Dt0 f134 @|StepIcon #fIcon
 Dt0 f135 1007 1008 1064 1008 #arcP
 Dt0 f131 1176 1008 1233 1008 #arcP
 Dt0 f124 outLink enableVisibilityUser.ivp #txt
@@ -1367,7 +1156,6 @@ Dt0 f124 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Dt0 f124 @C|.responsibility Everybody #txt
 Dt0 f124 977 833 30 30 -76 17 #rect
-Dt0 f124 @|StartRequestIcon #fIcon
 Dt0 f125 actionTable 'out=in;
 ' #txt
 Dt0 f125 actionCode 'import ch.ivyteam.ivy.security.user.NewUser;
@@ -1392,13 +1180,10 @@ Dt0 f125 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Dt0 f125 1056 826 128 44 -56 -8 #rect
-Dt0 f125 @|StepIcon #fIcon
 Dt0 f126 1007 848 1056 848 #arcP
 Dt0 f127 1233 833 30 30 0 15 #rect
-Dt0 f127 @|EndIcon #fIcon
 Dt0 f128 1184 848 1233 848 #arcP
 Dt0 f137 433 1305 30 30 0 15 #rect
-Dt0 f137 @|EndIcon #fIcon
 Dt0 S10 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language lang="en">
@@ -1407,7 +1192,6 @@ Dt0 S10 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Dt0 S10 160 1298 192 44 -89 -8 #rect
-Dt0 S10 @|BIcon #fIcon
 Dt0 f136 outLink createTaskWithSystemState.ivp #txt
 Dt0 f136 inParamDecl '<> param;' #txt
 Dt0 f136 requestEnabled true #txt
@@ -1426,7 +1210,6 @@ Dt0 f136 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Dt0 f136 @C|.responsibility Everybody #txt
 Dt0 f136 49 1305 30 30 -45 28 #rect
-Dt0 f136 @|StartRequestIcon #fIcon
 Dt0 f139 79 1320 160 1320 #arcP
 Dt0 f138 352 1320 433 1320 #arcP
 Dt0 f140 outLink createTestUserFavoriteProcess.ivp #txt
@@ -1445,21 +1228,19 @@ Dt0 f140 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Dt0 f140 @C|.responsibility Everybody #txt
 Dt0 f140 808 1192 32 32 -114 25 #rect
-Dt0 f140 @|StartRequestIcon #fIcon
 Dt0 f141 1097 1193 30 30 0 15 #rect
-Dt0 f141 @|EndIcon #fIcon
 Dt0 f142 actionTable 'out=in;
 ' #txt
 Dt0 f142 actionCode 'import ch.ivy.addon.portalkit.enums.ProcessType;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivy.addon.portalkit.service.ExternalLinkService;
-import ch.ivy.addon.portalkit.bo.ExternalLink;
+import ch.ivy.addon.portalkit.configuration.ExternalLink;
 import ch.ivy.addon.portalkit.service.ExpressProcessService;
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
-import ch.ivy.addon.portalkit.persistence.domain.UserProcess;
+import ch.ivy.addon.portalkit.configuration.UserProcess;
 import ch.ivy.addon.portalkit.service.UserProcessService;
 // Create user process
-UserProcessService userProcessService = new UserProcessService();
+UserProcessService userProcessService = UserProcessService.getInstance();
 Long testUserId = ivy.session.getSessionUser().getId();
 IApplication application = ivy.wf.getApplication();
 String applicationName = application.getName();
@@ -1467,8 +1248,6 @@ String applicationName = application.getName();
 UserProcess userProcess = new UserProcess();
 userProcess.setProcessId(applicationName + "/InternalSupport/Business Processes/testCaseMaps/caseMapLeaves.icm");
 userProcess.setProcessType(ProcessType.IVY_PROCESS);
-userProcess.setApplicationId(ivy.request.getApplication().getId());
-userProcess.setUserId(testUserId);
 userProcess.setIndex(1);
 userProcess.setDescription("Case Map: Leave Request");
 userProcess.setProcessName("Case Map: Leave Request");
@@ -1478,8 +1257,6 @@ userProcessService.save(userProcess);
 userProcess = new UserProcess();
 userProcess.setProcessId(applicationName + "/InternalSupport/Business Processes/testProcesses/TestTaskFlow/CreateSupportTicket.ivp");
 userProcess.setProcessType(ProcessType.IVY_PROCESS);
-userProcess.setApplicationId(ivy.request.getApplication().getId());
-userProcess.setUserId(testUserId);
 userProcess.setIndex(2);
 userProcess.setDescription("Create Support Ticket");
 userProcess.setProcessName("Create Support Ticket");
@@ -1489,8 +1266,6 @@ userProcessService.save(userProcess);
 userProcess = new UserProcess();
 userProcess.setProcessId(applicationName + "/InternalSupport/Business Processes/testCaseMaps/testProcesses/ApproveLeave/Appraisal.ivp");
 userProcess.setProcessType(ProcessType.IVY_PROCESS);
-userProcess.setApplicationId(ivy.request.getApplication().getId());
-userProcess.setUserId(testUserId);
 userProcess.setIndex(3);
 userProcess.setDescription("Appraisal");
 userProcess.setProcessName("Appraisal");
@@ -1512,9 +1287,9 @@ expressProcessService.save(expressProcess);
 ExternalLink externalLink = new ExternalLink();
 externalLink.name = "A sample for External link to Google";
 externalLink.creatorId = ivy.wf.getSecurityContext().users().find("demo").getId();
-externalLink.public = true;
+externalLink.setIsPublic(true);
 externalLink.link = "google.com";
-ExternalLinkService externalLinkService = new ExternalLinkService();
+ExternalLinkService externalLinkService = ExternalLinkService.getInstance();
 externalLinkService.save(externalLink);' #txt
 Dt0 f142 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -1524,7 +1299,6 @@ Dt0 f142 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Dt0 f142 920 1186 128 44 -56 -8 #rect
-Dt0 f142 @|StepIcon #fIcon
 Dt0 f143 1048 1208 1097 1208 #arcP
 Dt0 f144 840 1208 920 1208 #arcP
 Dt0 f145 outLink createSampleExpressWorkflowProcess.ivp #txt
@@ -1545,19 +1319,17 @@ Dt0 f145 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Dt0 f145 @C|.responsibility Everybody #txt
 Dt0 f145 801 1297 30 30 -121 29 #rect
-Dt0 f145 @|StartRequestIcon #fIcon
 Dt0 f146 1105 1297 30 30 0 15 #rect
-Dt0 f146 @|EndIcon #fIcon
 Dt0 f147 actionTable 'out=in;
 ' #txt
-Dt0 f147 actionCode 'import org.apache.commons.collections4.map.HashedMap;
+Dt0 f147 actionCode 'import java.util.Map;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import ch.ivy.addon.portalkit.util.ExpressManagementUtils;
 
-ExpressManagementUtils utils = new ExpressManagementUtils();
+Map output = ExpressManagementUtils.initOutputMessage();
 InputStream inputstream = new FileInputStream(in.expressExportFilePath);
-utils.installExpressWorkflows(inputstream, new StringBuilder(), new HashedMap());
+ExpressManagementUtils.installExpressWorkflows(inputstream, output);
 ' #txt
 Dt0 f147 security system #txt
 Dt0 f147 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1568,7 +1340,6 @@ Dt0 f147 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Dt0 f147 912 1290 144 44 -65 -8 #rect
-Dt0 f147 @|StepIcon #fIcon
 Dt0 f148 831 1312 912 1312 #arcP
 Dt0 f149 1056 1312 1105 1312 #arcP
 Dt0 f150 outLink createThirdPartyApp.ivp #txt
@@ -1588,16 +1359,14 @@ Dt0 f150 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Dt0 f150 @C|.responsibility Everybody #txt
 Dt0 f150 49 1457 30 30 -21 17 #rect
-Dt0 f150 @|StartRequestIcon #fIcon
 Dt0 f151 433 1457 30 30 0 15 #rect
-Dt0 f151 @|EndIcon #fIcon
 Dt0 f152 actionTable 'out=in;
 ' #txt
 Dt0 f152 actionCode 'import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
 import ch.ivy.addon.portalkit.service.IvyCacheService;
 import ch.ivy.addon.portalkit.util.Locales;
 import ch.ivy.addon.portalkit.util.DisplayNameConvertor;
-import ch.ivy.addon.portalkit.persistence.domain.Application;
+import ch.ivy.addon.portalkit.configuration.Application;
 import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 
 DisplayNameConvertor convertor = new DisplayNameConvertor();
@@ -1610,10 +1379,9 @@ app.menuIcon = "fa fa-play";
 app.menuOrdinal = 99;
 app.name = convertor.toJson();
 
-RegisteredApplicationService applicationService = new RegisteredApplicationService();
+RegisteredApplicationService applicationService = RegisteredApplicationService.getInstance();
 app = applicationService.save(app) as Application;
-// Invalidate SessionCache
-IvyCacheService.newInstance().invalidateSessionGroup(IvyCacheIdentifier.THIRD_PARTY_APPLICATIONS);
+
 ' #txt
 Dt0 f152 security system #txt
 Dt0 f152 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1624,7 +1392,6 @@ Dt0 f152 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Dt0 f152 184 1450 112 44 -39 -8 #rect
-Dt0 f152 @|StepIcon #fIcon
 Dt0 f153 79 1472 184 1472 #arcP
 Dt0 f154 296 1472 433 1472 #arcP
 >Proto Dt0 .type portalKit_test.DataCreationData #txt
@@ -1637,9 +1404,7 @@ Dt0 f154 296 1472 433 1472 #arcP
 >Proto Dt0 0 0 32 24 18 0 #rect
 >Proto Dt0 @|BIcon #fIcon
 Ct0 g0 51 243 26 26 -50 18 #rect
-Ct0 g0 @|MIGIcon #fIcon
 Ct0 g1 723 243 26 26 0 5 #rect
-Ct0 g1 @|MOGIcon #fIcon
 Ct0 f1 actionTable 'out=in1;
 ' #txt
 Ct0 f1 outLinks "TaskA.ivp","TaskB.ivp","TaskC.ivp" #txt
@@ -1653,7 +1418,6 @@ TaskC.DEL=new Duration(50000)
 TaskC.NAM=Task Switch C
 TaskC.SKIP_TASK_LIST=true' #txt
 Ct0 f1 192 240 32 32 0 16 #rect
-Ct0 f1 @|TaskSwitchIcon #fIcon
 Ct0 f2 var in1 #txt
 Ct0 f2 77 256 192 256 #arcP
 Ct0 f3 actionTable 'out=in;
@@ -1669,7 +1433,6 @@ Ct0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ct0 f3 304 234 272 44 -127 -8 #rect
-Ct0 f3 @|StepIcon #fIcon
 Ct0 f4 expr data #txt
 Ct0 f4 outCond ivp=="TaskA.ivp" #txt
 Ct0 f4 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1685,14 +1448,12 @@ Ct0 f5 actionTable 'out=in1;
 ' #txt
 Ct0 f5 outLinks "TaskA.ivp" #txt
 Ct0 f5 624 240 32 32 0 16 #rect
-Ct0 f5 @|TaskSwitchIcon #fIcon
 Ct0 f6 var in1 #txt
 Ct0 f6 576 256 624 256 #arcP
 Ct0 f0 expr data #txt
 Ct0 f0 outCond ivp=="TaskA.ivp" #txt
 Ct0 f0 656 256 723 256 #arcP
 Ct0 f10 625 145 30 30 0 15 #rect
-Ct0 f10 @|EndIcon #fIcon
 Ct0 f11 expr data #txt
 Ct0 f11 outCond ivp=="TaskB.ivp" #txt
 Ct0 f11 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1829,10 +1590,6 @@ Dt0 f70 out f113 tail #connect
 Dt0 f113 head f112 in #connect
 Dt0 f112 out f75 tail #connect
 Dt0 f75 head f74 mainIn #connect
-Dt0 f114 mainOut f116 tail #connect
-Dt0 f116 head f117 mainIn #connect
-Dt0 f117 mainOut f118 tail #connect
-Dt0 f118 head f115 mainIn #connect
 Dt0 f119 mainOut f121 tail #connect
 Dt0 f121 head f120 mainIn #connect
 Dt0 f120 mainOut f123 tail #connect

@@ -14,6 +14,7 @@ import org.openqa.selenium.WebElement;
 
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
+import portal.guitest.common.Variable;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.MainMenuPage;
 import portal.guitest.page.StatisticWidgetPage;
@@ -21,6 +22,7 @@ import portal.guitest.page.TaskAnalysisWidgetPage;
 
 public class TaskAnalysisWidgetTest extends BaseTest {
 
+  private static final String ENABLE_CASE_OWNER_SETTING = Variable.ENABLE_CASE_OWNER.getKey();
   private HomePage homePage;
   private StatisticWidgetPage statisticWidgetPage;
   private MainMenuPage mainMenuPage;
@@ -178,7 +180,7 @@ public class TaskAnalysisWidgetTest extends BaseTest {
   
   @Test
   public void testApplyCaseOwnerFilter() {
-    updatePortalSetting("ENABLE_CASE_OWNER", "true");
+    updatePortalSetting(ENABLE_CASE_OWNER_SETTING, "true");
     redirectToRelativeLink(userIsOwnerUrl);
     homePage = new HomePage();
     mainMenuPage = homePage.openMainMenu();
@@ -189,13 +191,13 @@ public class TaskAnalysisWidgetTest extends BaseTest {
 
     List<WebElement> results = taskAnalysisWidgetPage.getRowsInTaskTable();
     assertEquals(2, results.size());
-    updatePortalSetting("ENABLE_CASE_OWNER", "false");
+    updatePortalSetting(ENABLE_CASE_OWNER_SETTING, "false");
   }
   
   @SuppressWarnings("deprecation")
   @Test
   public void testAddCaseOwnerColumn() {
-    updatePortalSetting("ENABLE_CASE_OWNER", "true");
+    updatePortalSetting(ENABLE_CASE_OWNER_SETTING, "true");
     homePage = new HomePage();
     mainMenuPage = homePage.openMainMenu();
     statisticWidgetPage = mainMenuPage.selectStatisticDashboard();
@@ -215,7 +217,7 @@ public class TaskAnalysisWidgetTest extends BaseTest {
       }
     });
     taskAnalysisWidgetPage.isElementDisplayed(By.id("task-widget:statistic-result-form:task-table:case-owner"));
-    updatePortalSetting("ENABLE_CASE_OWNER", "false");
+    updatePortalSetting(ENABLE_CASE_OWNER_SETTING, "false");
   }
 
   @Test

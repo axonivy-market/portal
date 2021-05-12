@@ -1,6 +1,8 @@
 package portal.guitest.test;
 
 import static org.junit.Assert.assertFalse;
+import static portal.guitest.common.Variable.HIDE_SYSTEM_TASKS_FROM_HISTORY;
+import static portal.guitest.common.Variable.HIDE_SYSTEM_TASKS_FROM_HISTORY_ADMINISTRATOR;
 
 import org.junit.Test;
 
@@ -22,7 +24,7 @@ public class SystemTaskHistoryVisibilityTest extends BaseTest {
 
   @Test
   public void testSystemTaskVisibilityInCaseHistory() {
-    updatePortalSetting("HIDE_SYSTEM_TASKS_FROM_HISTORY", "true");
+    updatePortalSetting(HIDE_SYSTEM_TASKS_FROM_HISTORY.getKey(), "true");
     HomePage homePage = new HomePage();
     CaseWidgetPage caseWidgetPage = homePage.openCaseList();
     CaseDetailsPage caseDetailsPage = caseWidgetPage.openCaseDetailsFromActionMenuByCaseName("Create New Payment");
@@ -31,7 +33,7 @@ public class SystemTaskHistoryVisibilityTest extends BaseTest {
     NoteHistoryPage noteHistoryPage = new NoteHistoryPage();
     assertFalse(noteHistoryPage.getNoteAuthors().contains("System user"));
     
-    updatePortalSetting("HIDE_SYSTEM_TASKS_FROM_HISTORY", "false");
+    updatePortalSetting(HIDE_SYSTEM_TASKS_FROM_HISTORY.getKey(), "false");
     WaitHelper.assertTrueWithRefreshPage(homePage, () -> {
       goToCaseNoteHistoryPage(caseId);
       return new NoteHistoryPage().getNoteAuthors().contains("System user");
@@ -41,7 +43,7 @@ public class SystemTaskHistoryVisibilityTest extends BaseTest {
   @Test
   public void testSystemTaskVisibilityInCaseHistoryForAdmin() {
     login(TestAccount.ADMIN_USER);
-    updatePortalSetting("HIDE_SYSTEM_TASKS_FROM_HISTORY_ADMINISTRATOR", "false");
+    updatePortalSetting(HIDE_SYSTEM_TASKS_FROM_HISTORY_ADMINISTRATOR.getKey(), "false");
     HomePage homePage = new HomePage();
     CaseWidgetPage caseWidgetPage = homePage.openCaseList();
     CaseDetailsPage caseDetailsPage = caseWidgetPage.openCaseDetailsFromActionMenuByCaseName("Create New Payment");
@@ -51,7 +53,7 @@ public class SystemTaskHistoryVisibilityTest extends BaseTest {
       return new NoteHistoryPage().getNoteAuthors().contains("System user");
     });
     
-    updatePortalSetting("HIDE_SYSTEM_TASKS_FROM_HISTORY_ADMINISTRATOR", "true");
+    updatePortalSetting(HIDE_SYSTEM_TASKS_FROM_HISTORY_ADMINISTRATOR.getKey(), "true");
     goToCaseNoteHistoryPage(caseId);
     assertFalse(new NoteHistoryPage().getNoteAuthors().contains("System user"));
   }

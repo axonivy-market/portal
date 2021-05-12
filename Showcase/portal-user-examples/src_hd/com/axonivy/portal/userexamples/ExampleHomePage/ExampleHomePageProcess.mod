@@ -59,7 +59,7 @@ Hs0 f6 actionTable 'out=in;
 Hs0 f6 actionCode 'import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 import org.apache.commons.lang3.StringUtils;
-import ch.ivy.addon.portalkit.persistence.domain.UserProcess;
+import ch.ivy.addon.portalkit.configuration.UserProcess;
 
 String leaveRequestStartLink = ProcessStartAPI.findStartableLinkByUserFriendlyRequestPath("Start Processes/LeaveRequest/start.ivp");
 if (!StringUtils.isEmpty(leaveRequestStartLink)){	
@@ -120,8 +120,8 @@ Hs0 f6 208 42 112 44 -35 -8 #rect
 Hs0 f7 109 64 208 64 #arcP
 Hs0 f2 320 64 403 64 #arcP
 Hs0 f9 dialogId com.axonivy.portal.userexamples.leaverequest.LeaveRequestOverview #txt
-Hs0 f9 startMethod start(ch.ivy.addon.portalkit.persistence.domain.UserProcess) #txt
-Hs0 f9 requestActionDecl '<ch.ivy.addon.portalkit.persistence.domain.UserProcess userProcess> param;' #txt
+Hs0 f9 startMethod start(ch.ivy.addon.portalkit.configuration.UserProcess) #txt
+Hs0 f9 requestActionDecl '<ch.ivy.addon.portalkit.configuration.UserProcess userProcess> param;' #txt
 Hs0 f9 requestMappingAction 'param.userProcess=in.process;
 ' #txt
 Hs0 f9 responseMappingAction 'out=in;
@@ -140,8 +140,8 @@ Hs0 f12 536 256 672 339 #arcP
 Hs0 f12 1 672 256 #addKink
 Hs0 f12 0 0.7256302308797495 0 0 #arcLabel
 Hs0 f13 guid 1725039A6FEBEA96 #txt
-Hs0 f13 method navigate(ch.ivy.addon.portalkit.persistence.domain.UserProcess) #txt
-Hs0 f13 inParameterDecl '<ch.ivy.addon.portalkit.persistence.domain.UserProcess process> param;' #txt
+Hs0 f13 method navigate(ch.ivy.addon.portalkit.configuration.UserProcess) #txt
+Hs0 f13 inParameterDecl '<ch.ivy.addon.portalkit.configuration.UserProcess process> param;' #txt
 Hs0 f13 inParameterMapAction 'out.process=param.process;
 ' #txt
 Hs0 f13 outParameterDecl '<> result;' #txt
@@ -168,8 +168,8 @@ Hs0 f15 1 288 256 #addKink
 Hs0 f15 1 0.35833333333333334 0 -11 #arcLabel
 Hs0 f16 109 352 272 352 #arcP
 Hs0 f8 dialogId com.axonivy.portal.userexamples.credit.LendingOverview #txt
-Hs0 f8 startMethod start(ch.ivy.addon.portalkit.persistence.domain.UserProcess) #txt
-Hs0 f8 requestActionDecl '<ch.ivy.addon.portalkit.persistence.domain.UserProcess userProcess> param;' #txt
+Hs0 f8 startMethod start(ch.ivy.addon.portalkit.configuration.UserProcess) #txt
+Hs0 f8 requestActionDecl '<ch.ivy.addon.portalkit.configuration.UserProcess userProcess> param;' #txt
 Hs0 f8 requestMappingAction 'param.userProcess=in.process;
 ' #txt
 Hs0 f8 responseMappingAction 'out=in;

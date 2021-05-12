@@ -287,7 +287,7 @@ public class UserUtils {
 
   private static String getDefaultPatternByLocale(Locale locale) {
     SimpleDateFormat simpleDateFormat =
-        (SimpleDateFormat) SimpleDateFormat.getDateInstance(SimpleDateFormat.SHORT, locale);
+        (SimpleDateFormat) DateFormat.getDateInstance(DateFormat.SHORT, locale);
     return simpleDateFormat.toLocalizedPattern();
   }
 

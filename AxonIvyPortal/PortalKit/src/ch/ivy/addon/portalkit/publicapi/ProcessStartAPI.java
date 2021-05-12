@@ -6,10 +6,10 @@ import java.util.stream.Stream;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
-import ch.ivy.addon.portalkit.bo.ExternalLink;
+import ch.ivy.addon.portalkit.configuration.ExternalLink;
+import ch.ivy.addon.portalkit.configuration.UserProcess;
 import ch.ivy.addon.portalkit.enums.ProcessType;
-import ch.ivy.addon.portalkit.persistence.domain.UserProcess;
-import ch.ivy.addon.portalkit.service.ExpressServiceRegistry;
+import ch.ivy.addon.portalkit.service.ExpressProcessService;
 import ch.ivy.addon.portalkit.service.ExternalLinkService;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivyteam.ivy.application.ActivityState;
@@ -91,8 +91,7 @@ public final class ProcessStartAPI {
   }
 
   private static String findExpressProcessIdByExpressProcessName(String expressProcessName) {
-    ExpressProcess expressProcess =
-        ExpressServiceRegistry.getProcessService().findReadyToExecuteProcessByName(expressProcessName);
+    ExpressProcess expressProcess = ExpressProcessService.getInstance().findReadyToExecuteProcessByName(expressProcessName);
     return expressProcess != null ? expressProcess.getId() : StringUtils.EMPTY;
   }
 
