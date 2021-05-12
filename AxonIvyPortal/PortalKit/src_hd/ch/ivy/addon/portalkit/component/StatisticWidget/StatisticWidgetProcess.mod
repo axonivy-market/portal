@@ -33,9 +33,7 @@ Cs0 @PushWFArc f14 '' #zField
 Cs0 @UdMethod f21 '' #zField
 Cs0 @UdProcessEnd f22 '' #zField
 Cs0 @PushWFArc f23 '' #zField
-Cs0 @CallSub f24 '' #zField
 Cs0 @GridStep f26 '' #zField
-Cs0 @PushWFArc f27 '' #zField
 Cs0 @UdEvent f28 '' #zField
 Cs0 @GridStep f31 '' #zField
 Cs0 @PushWFArc f32 '' #zField
@@ -57,9 +55,9 @@ Cs0 @PushWFArc f45 '' #zField
 Cs0 @PushWFArc f6 '' #zField
 Cs0 @CallSub f46 '' #zField
 Cs0 @PushWFArc f48 '' #zField
-Cs0 @PushWFArc f8 '' #zField
 Cs0 @UdProcessEnd f47 '' #zField
 Cs0 @PushWFArc f49 '' #zField
+Cs0 @PushWFArc f43 '' #zField
 >Proto Cs0 Cs0 StatisticWidgetProcess #zField
 Cs0 f0 guid 16034D800DC77D9C #txt
 Cs0 f0 method start(java.util.List<ch.ivy.addon.portalkit.statistics.StatisticChart>) #txt
@@ -69,8 +67,8 @@ Cs0 f0 inParameterMapAction 'out.createMode=false;
 Cs0 f0 inActionCode 'import ch.ivy.addon.portalkit.service.StatisticService;
 
 if(!param.#statisticChartList is initialized) {
-	StatisticService service = new StatisticService();
-	out.statisticChartList = service.findStatisticChartsByUserId(ivy.session.getSessionUser().getId());
+	StatisticService service = StatisticService.getInstance();
+	out.statisticChartList = service.findStatisticCharts();
 } else {	
 	out.statisticChartList = param.statisticChartList;
 }' #txt
@@ -210,26 +208,11 @@ Cs0 f21 81 691 26 26 -68 15 #rect
 Cs0 f22 251 691 26 26 0 12 #rect
 Cs0 f23 expr out #txt
 Cs0 f23 107 704 251 704 #arcP
-Cs0 f24 processCall 'Functional Processes/DefaultChart:createDefaultChart()' #txt
-Cs0 f24 requestActionDecl '<> param;' #txt
-Cs0 f24 responseActionDecl 'ch.ivy.addon.portalkit.component.StatisticWidget.StatisticWidgetData out;
-' #txt
-Cs0 f24 responseMappingAction 'out=in;
-out.defaultCharts=result.charts;
-' #txt
-Cs0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>DefaultChart</name>
-        <nameStyle>12,5,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Cs0 f24 592 138 112 44 -34 -8 #rect
 Cs0 f26 actionTable 'out=in;
 ' #txt
-Cs0 f26 actionCode 'in.statisticChartList.addAll(in.defaultCharts);
+Cs0 f26 actionCode 'import ch.ivy.addon.portalkit.service.StatisticService;
+
+in.statisticChartList.addAll(StatisticService.getInstance().getPublicConfig());
 ' #txt
 Cs0 f26 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -239,8 +222,6 @@ Cs0 f26 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f26 768 138 112 44 -41 -8 #rect
-Cs0 f27 expr out #txt
-Cs0 f27 704 160 768 160 #arcP
 Cs0 f28 guid 163AF4A8A1BFD729 #txt
 Cs0 f28 actionTable 'out=in;
 ' #txt
@@ -259,8 +240,8 @@ import ch.ivy.addon.portalkit.service.StatisticService;
 
 in.statisticChartList.clear();
 
-StatisticService service = new StatisticService();
-service.removeStatisticChartsByUserId(ivy.session.getSessionUser().getId());
+StatisticService service = StatisticService.getInstance();
+service.deletePrivateConfig();
 ' #txt
 Cs0 f31 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -305,9 +286,9 @@ Cs0 f36 actionTable 'out=in;
 ' #txt
 Cs0 f36 actionCode 'import ch.ivy.addon.portalkit.service.StatisticService;
 
-StatisticService service = new StatisticService();
+StatisticService service = StatisticService.getInstance();
 if(!in.#statisticChartList is initialized || in.statisticChartList.isEmpty()) {
-	in.statisticChartList = service.findStatisticChartsByUserId(ivy.session.getSessionUser().getId());
+	in.statisticChartList = service.findStatisticCharts();
 	in.hasDefaultChart = service.isDefaultChart(in.statisticChartList);
 } else {
 	in.hasDefaultChart = service.isDefaultChart(in.statisticChartList);
@@ -403,7 +384,7 @@ out.chartColors=result.chartColors;
 ' #txt
 Cs0 f46 responseActionCode 'import ch.ivy.addon.portalkit.service.StatisticService;
 
-StatisticService service = new StatisticService();
+StatisticService service = StatisticService.getInstance();
 service.setStatisticsColors(result.chartColors);' #txt
 Cs0 f46 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -415,11 +396,11 @@ Cs0 f46 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Cs0 f46 376 138 112 44 -53 -8 #rect
 Cs0 f48 expr out #txt
 Cs0 f48 316 160 376 160 #arcP
-Cs0 f8 488 160 592 160 #arcP
 Cs0 f47 251 51 26 26 0 12 #rect
 Cs0 f49 expr out #txt
 Cs0 f49 107 64 251 64 #arcP
 Cs0 f49 0 0.5808494517759799 0 0 #arcLabel
+Cs0 f43 488 160 768 160 #arcP
 >Proto Cs0 .type ch.ivy.addon.portalkit.component.StatisticWidget.StatisticWidgetData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 -8 -8 16 16 16 26 #rect
@@ -435,8 +416,6 @@ Cs0 f9 mainOut f14 tail #connect
 Cs0 f14 head f11 mainIn #connect
 Cs0 f21 mainOut f23 tail #connect
 Cs0 f23 head f22 mainIn #connect
-Cs0 f24 mainOut f27 tail #connect
-Cs0 f27 head f26 mainIn #connect
 Cs0 f28 mainOut f32 tail #connect
 Cs0 f32 head f31 mainIn #connect
 Cs0 f4 mainOut f35 tail #connect
@@ -459,7 +438,7 @@ Cs0 f44 mainOut f6 tail #connect
 Cs0 f6 head f5 mainIn #connect
 Cs0 f31 mainOut f48 tail #connect
 Cs0 f48 head f46 mainIn #connect
-Cs0 f46 mainOut f8 tail #connect
-Cs0 f8 head f24 mainIn #connect
 Cs0 f0 mainOut f49 tail #connect
 Cs0 f49 head f47 mainIn #connect
+Cs0 f46 mainOut f43 tail #connect
+Cs0 f43 head f26 mainIn #connect

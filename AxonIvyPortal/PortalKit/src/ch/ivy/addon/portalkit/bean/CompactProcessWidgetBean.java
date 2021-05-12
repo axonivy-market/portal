@@ -22,24 +22,23 @@ import org.apache.commons.collections4.map.HashedMap;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
-import ch.ivy.addon.portalkit.bo.ExternalLink;
 import ch.ivy.addon.portalkit.bo.ExternalLinkProcessItem;
 import ch.ivy.addon.portalkit.bo.GuidePool;
 import ch.ivy.addon.portalkit.bo.IvyProcess;
 import ch.ivy.addon.portalkit.bo.PortalExpressProcess;
 import ch.ivy.addon.portalkit.bo.Process;
 import ch.ivy.addon.portalkit.comparator.UserProcessIndexComparator;
+import ch.ivy.addon.portalkit.configuration.ExternalLink;
+import ch.ivy.addon.portalkit.configuration.UserProcess;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
-import ch.ivy.addon.portalkit.enums.ProcessType;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyLanguageResultDTO;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyProcessResultDTO;
 import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
 import ch.ivy.addon.portalkit.ivydata.service.impl.ProcessService;
 import ch.ivy.addon.portalkit.jsf.Attrs;
-import ch.ivy.addon.portalkit.persistence.domain.UserProcess;
 import ch.ivy.addon.portalkit.service.DummyProcessService;
-import ch.ivy.addon.portalkit.service.ExpressServiceRegistry;
+import ch.ivy.addon.portalkit.service.ExpressProcessService;
 import ch.ivy.addon.portalkit.service.ExternalLinkService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
@@ -67,7 +66,6 @@ private static final long serialVersionUID = -5889375917550618261L;
   private UserProcessService userProcessService;
   private UserProcess editingProcess;
   private UserProcess selectedProcess;
-  private Long userId;
   
   private boolean editMode;
   private boolean isUserFavoritesEnabled;
@@ -84,14 +82,14 @@ private static final long serialVersionUID = -5889375917550618261L;
   
   public void preRender() {
     isGuide = GuidePool.instance().guide(Ivy.session().getSessionUserName()).isGuideShown();
-    userProcessService = new UserProcessService();
+    userProcessService = UserProcessService.getInstance();
     selectedUserProcesses = new ArrayList<>();
-    userId = Ivy.session().getSessionUser().getId();
     
     if (isGuide) {
       createDummyDataForGuide();
     } else {
-      String isUserFavoritesEnabledGlobalVariable = new GlobalSettingService().findGlobalSettingValue(GlobalVariable.ENABLE_USER_FAVORITES.toString());
+      String isUserFavoritesEnabledGlobalVariable =
+          new GlobalSettingService().findGlobalSettingValue(GlobalVariable.ENABLE_USER_FAVORITES);
       isUserFavoritesEnabled = StringUtils.isNotBlank(isUserFavoritesEnabledGlobalVariable) ? Boolean.parseBoolean(isUserFavoritesEnabledGlobalVariable) : true;
       ivyProcesses = findProcesses();
       expressProcesses = findExpressProcesses();
@@ -110,7 +108,7 @@ private static final long serialVersionUID = -5889375917550618261L;
   }
 
   private List<UserProcess> findStartableDefaultProcesses() {
-    List<UserProcess> processes = userProcessService.getDefaultUserProcessesFromSubProcess();
+    List<UserProcess> processes = userProcessService.getPublicConfig();
 
     updateLinkForDefaultProcesses(processes);
 
@@ -123,7 +121,7 @@ private static final long serialVersionUID = -5889375917550618261L;
       return new ArrayList<>();
     }
     
-    List<UserProcess> processes = userProcessService.findByUserIdInCurrentApplication(userId);
+    List<UserProcess> processes = userProcessService.getPrivateConfig();
 
     /*
      * 1. Update link because since 9.2, saved user favorite processes didn't store this value.
@@ -190,7 +188,7 @@ private static final long serialVersionUID = -5889375917550618261L;
     ProcessStartCollector processStartCollector = new ProcessStartCollector();
     String expressStartLink = processStartCollector.findExpressWorkflowStartLink();
     if (StringUtils.isNotBlank(expressStartLink)) {
-      List<ExpressProcess> workflows = ExpressServiceRegistry.getProcessService().findReadyToExecuteProcessOrderByName();
+      List<ExpressProcess> workflows = ExpressProcessService.getInstance().findReadyToExecuteProcessOrderByName();
       for (ExpressProcess wf : workflows) {
         if (PermissionUtils.checkAbleToStartAndAbleToEditExpressWorkflow(wf)) {
           processes.add(wf);
@@ -203,7 +201,7 @@ private static final long serialVersionUID = -5889375917550618261L;
   }
 
   private Map<String, Process> findExternalLink() {
-    List<ExternalLink> externalLinks = ExternalLinkService.getInstance().findStartableLink(Ivy.session().getSessionUser().getId());
+    List<ExternalLink> externalLinks = ExternalLinkService.getInstance().findAll();
     Map<String, Process> defaultPortalProcesses = new HashedMap<>();
     externalLinks.forEach(externalLink -> defaultPortalProcesses.put(externalLink.getId().toString(), new ExternalLinkProcessItem(externalLink)));
     return defaultPortalProcesses;
@@ -217,8 +215,8 @@ private static final long serialVersionUID = -5889375917550618261L;
     }
   }
 
-  public void onSelectUserProcess() throws CloneNotSupportedException {
-    this.editingProcess = this.selectedProcess.clone();
+  public void onSelectUserProcess() {
+    this.editingProcess = new UserProcess(this.selectedProcess);
   }
 
   public void clearProcessDisplayNames() {
@@ -277,8 +275,6 @@ private static final long serialVersionUID = -5889375917550618261L;
 
 
   public void saveNewUserProcess() {
-    editingProcess.setApplicationId(Ivy.request().getApplication().getId());
-    editingProcess.setUserId(userId);
     editingProcess.setIndex(userProcesses.size());
 
     // Since 9.2, we will store processId and processType instead of start link and use them to find it's latest link.
@@ -375,22 +371,10 @@ private static final long serialVersionUID = -5889375917550618261L;
     return editMode;
   }
 
-  public void saveProcesses() throws CloneNotSupportedException {
-    if (!selectedUserProcesses.isEmpty()) {
-      userProcessService.deleteAll(selectedUserProcesses);
-    }
+  public void saveProcesses() {
     userProcesses.removeAll(selectedUserProcesses);
     setIndex(userProcesses);
-
-    // Since 9.2, we will store processId and processType instead of start link and use them to find it's latest link.
-    List<UserProcess> userProcessesWithoutLink = new ArrayList<>();
-    for (UserProcess userProcess : userProcesses) {
-      UserProcess cloneUserProcess = userProcess.clone();
-      cloneUserProcess.setLink("");
-      userProcessesWithoutLink.add(cloneUserProcess);
-    }
-
-    userProcessService.saveAll(userProcessesWithoutLink);
+    UserProcessService.getInstance().setPrivateConfig(userProcesses);
     editMode = false;
   }
 
@@ -431,33 +415,28 @@ private static final long serialVersionUID = -5889375917550618261L;
   }
   
   private void removeDeletedExpressWorkflowFromUserProcesses(List<UserProcess> processes) {
-    List<String> executableExpressProcessIds = ExpressServiceRegistry.getProcessService()
-                                      .findReadyToExecuteProcessOrderByName()
-                                      .stream().map(ExpressProcess::getId)
-                                      .collect(Collectors.toList());
-    
+    List<String> executableExpressProcessIds = expressProcesses.values().stream()
+        .map(Process::getId).collect(Collectors.toList());
+
     List<UserProcess> deletedExpressProcesses = processes.stream()
-        .filter(process ->  isExpressProcess(process) && StringUtils.isNotBlank(process.getProcessId())
-            && !executableExpressProcessIds.contains(process.getProcessId()))
+        .filter(process -> isExpressProcess(process) && StringUtils.isNotBlank(process.getProcessId()) && !executableExpressProcessIds.contains(process.getProcessId()))
         .collect(Collectors.toList());
 
-    userProcessService.deleteAll(deletedExpressProcesses);
+    userProcessService.deleteFromPrivateConfig(deletedExpressProcesses);
     processes.removeAll(deletedExpressProcesses);
     setIndex(processes);
   }
-  
+
   private void removeDeletedExternalLinkFromUserProcesses(List<UserProcess> processes) {
-    List<String> startableExternalLinkIds = ExternalLinkService.getInstance()
-        .findStartableLink(Ivy.session().getSessionUser().getId())
-        .stream()
-        .map(link -> link.getId().toString())
+    List<String> startableExternalLinkIds = externalLinks.values().stream()
+        .map(Process::getId)
         .collect(Collectors.toList());
     
     List<UserProcess> deletedExternalLinks = processes.stream()
         .filter(process ->  isExternalLink(process) && StringUtils.isNotBlank(process.getProcessId()) && !startableExternalLinkIds.contains(process.getProcessId().toString()))
         .collect(Collectors.toList());
 
-    userProcessService.deleteAll(deletedExternalLinks);
+    userProcessService.deleteFromPrivateConfig(deletedExternalLinks);
     processes.removeAll(deletedExternalLinks);
     setIndex(processes);
   }
@@ -525,4 +504,5 @@ private static final long serialVersionUID = -5889375917550618261L;
   public boolean isExpressProcess(UserProcess process) {
     return process != null && ProcessStartUtils.isExpressProcess(process.getProcessType());
   }
+  
 }

@@ -2,5 +2,5 @@ LeaveRequestOverviewData #class
 com.axonivy.portal.userexamples.leaverequest.LeaveRequestOverview #namespace
 processSteps java.util.List<ch.ivy.addon.portalkit.bo.ProcessStep> #field
 processSteps PERSISTENT #fieldModifier
-userProcess ch.ivy.addon.portalkit.persistence.domain.UserProcess #field
+userProcess ch.ivy.addon.portalkit.configuration.UserProcess #field
 userProcess PERSISTENT #fieldModifier

@@ -1,13 +1,15 @@
 package ch.ivy.addon.portalkit.bo;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class ExpressFormElement {
+import com.fasterxml.jackson.annotation.JsonInclude;
 
-  private String id;
-  private String processID;
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class ExpressFormElement implements Serializable {
+
+  private static final long serialVersionUID = -1048666544578490353L;
   private String elementID;
-  private int taskPosition;
   private String name;
   private String label;
   private boolean required;
@@ -16,23 +18,6 @@ public class ExpressFormElement {
   private List<String> optionStrs;
   private String elementPosition;
   private int indexInPanel;
-  private int counter;
-
-  public String getId() {
-    return id;
-  }
-
-  public void setId(String id) {
-    this.id = id;
-  }
-
-  public String getProcessID() {
-    return processID;
-  }
-
-  public void setProcessID(String processID) {
-    this.processID = processID;
-  }
 
   public String getElementID() {
     return elementID;
@@ -40,14 +25,6 @@ public class ExpressFormElement {
 
   public void setElementID(String elementID) {
     this.elementID = elementID;
-  }
-
-  public int getTaskPosition() {
-    return taskPosition;
-  }
-
-  public void setTaskPosition(int taskPosition) {
-    this.taskPosition = taskPosition;
   }
 
   public String getName() {
@@ -96,14 +73,6 @@ public class ExpressFormElement {
 
   public void setElementPosition(String elementPosition) {
     this.elementPosition = elementPosition;
-  }
-
-  public int getCounter() {
-    return counter;
-  }
-
-  public void setCounter(int counter) {
-    this.counter = counter;
   }
 
   public List<String> getOptionStrs() {

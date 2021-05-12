@@ -6,6 +6,8 @@
 </cc:interface>
 
 <cc:implementation>
+  <f:event listener="#{expressManagementBean.initWorkflowSummaryTable()}" type="preRenderComponent" />
+
   <h:form id="express-management-form" styleClass="express-management-form">
     <div class="ui-g">
       <div class="ui-g-12 TexAlRight u-padding-0">

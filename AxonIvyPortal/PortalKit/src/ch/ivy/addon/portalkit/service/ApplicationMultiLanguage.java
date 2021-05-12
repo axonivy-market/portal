@@ -10,7 +10,7 @@ import java.util.Set;
 
 import org.primefaces.json.JSONException;
 
-import ch.ivy.addon.portalkit.persistence.domain.Application;
+import ch.ivy.addon.portalkit.configuration.Application;
 import ch.ivy.addon.portalkit.publicapi.ApplicationMultiLanguageAPI;
 import ch.ivy.addon.portalkit.util.DisplayNameAdaptor;
 import ch.ivy.addon.portalkit.util.Locales;

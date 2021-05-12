@@ -24,11 +24,6 @@ public class UserSettingService {
 
   public void saveDefaultSortFieldOfTaskList(String fieldName, String sortDirection) {
     IUser user = getSessionUser();
-    if (StringUtils.equals(fieldName, DEFAULT)) {
-      user.removeProperty(UserProperty.DEFAULT_SORT_FIELD_OF_TASK_LIST);
-      user.removeProperty(UserProperty.DEFAULT_SORT_DIRECTION_OF_TASK_LIST);
-    }
-    
     user.setProperty(UserProperty.DEFAULT_SORT_FIELD_OF_TASK_LIST, fieldName);
     user.setProperty(UserProperty.DEFAULT_SORT_DIRECTION_OF_TASK_LIST, sortDirection);
 
@@ -45,11 +40,6 @@ public class UserSettingService {
 
   public void saveDefaultSortFieldOfCaseList(String fieldName, String sortDirection) {
     IUser user = getSessionUser();
-    if (StringUtils.equals(fieldName, DEFAULT)) {
-      user.removeProperty(UserProperty.DEFAULT_SORT_FIELD_OF_CASE_LIST);
-      user.removeProperty(UserProperty.DEFAULT_SORT_DIRECTION_OF_CASE_LIST);
-    }
-
     user.setProperty(UserProperty.DEFAULT_SORT_FIELD_OF_CASE_LIST, fieldName);
     user.setProperty(UserProperty.DEFAULT_SORT_DIRECTION_OF_CASE_LIST, sortDirection);
 
