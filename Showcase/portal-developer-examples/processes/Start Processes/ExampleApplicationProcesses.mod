@@ -35,8 +35,12 @@ Es0 f1 337 49 30 30 0 15 #rect
 Es0 f3 actionTable 'out=in;
 ' #txt
 Es0 f3 actionCode 'import ch.ivy.addon.portalkit.service.UserProcessService;
+String appName = ivy.wf.getApplication().getName();
 String defaultUserProcesses =
-    "[{\"id\":\"1\",\"processType\":\"IVY_PROCESS\",\"processName\":\"Alpha Company Task\",\"icon\":\"fa-building\",\"processId\":\"designer/portal-developer-examples/Start Processes/ProcessHistoryComponent/createAlphaCompany.ivp\",\"index\":1},{\"id\":\"2\",\"processType\":\"IVY_PROCESS\",\"processName\":\"View Alpha Process History\",\"icon\":\"fa-list-alt\",\"processId\":\"designer/portal-developer-examples/Start Processes/ProcessHistoryComponent/viewProcessHistoryOfAlphaCompany.ivp\",\"index\":2},{\"id\":\"3\",\"processType\":\"IVY_PROCESS\",\"processName\":\"View Alpha Process History in Dialog\",\"icon\":\"fa-asterisk\",\"processId\":\"designer/portal-developer-examples/Start Processes/ProcessHistoryComponent/viewProcessHistoryOfAlphaCompanyInDialog.ivp\",\"index\":3},{\"id\":\"4\",\"processType\":\"EXPRESS_PROCESS\",\"processName\":\"Favorite Express Process Display Name\",\"icon\":\"fa fa-play\",\"processId\":\"Your Express Process Name\",\"index\":4},{\"id\":\"5\",\"processType\":\"EXTERNAL_LINK\",\"processName\":\"Favorite External Process Display Name\",\"icon\":\"fa fa-play\",\"processId\":\"Your External Link Name\",\"index\":5}]";
+    "[{\"id\":\"1\",\"processType\":\"IVY_PROCESS\",\"processName\":\"Alpha Company Task\",\"icon\":\"fa-building\",\"processId\":\""+ appName + 
+    "/portal-developer-examples/Start Processes/ProcessHistoryComponent/createAlphaCompany.ivp\",\"index\":1},{\"id\":\"2\",\"processType\":\"IVY_PROCESS\",\"processName\":\"View Alpha Process History\",\"icon\":\"fa-list-alt\",\"processId\":\"" + appName + 
+    "/portal-developer-examples/Start Processes/ProcessHistoryComponent/viewProcessHistoryOfAlphaCompany.ivp\",\"index\":2},{\"id\":\"3\",\"processType\":\"IVY_PROCESS\",\"processName\":\"View Alpha Process History in Dialog\",\"icon\":\"fa-asterisk\",\"processId\":\"" + appName +
+    "/portal-developer-examples/Start Processes/ProcessHistoryComponent/viewProcessHistoryOfAlphaCompanyInDialog.ivp\",\"index\":3},{\"id\":\"4\",\"processType\":\"EXPRESS_PROCESS\",\"processName\":\"Favorite Express Process Display Name\",\"icon\":\"fa fa-play\",\"processId\":\"Your Express Process Name\",\"index\":4},{\"id\":\"5\",\"processType\":\"EXTERNAL_LINK\",\"processName\":\"Favorite External Process Display Name\",\"icon\":\"fa fa-play\",\"processId\":\"Your External Link Name\",\"index\":5}]";
 ivy.var.set(UserProcessService.getInstance().getConfigKey(), defaultUserProcesses);
 ' #txt
 Es0 f3 168 42 112 44 0 -8 #rect
