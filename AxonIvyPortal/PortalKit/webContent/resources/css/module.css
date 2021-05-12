@@ -3284,6 +3284,7 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 .substitute-table .task-responsible-link,
 .absences-management-container .substitution-table tbody.ui-datatable-data .substition-role-display-name {
   white-space: normal;
+  line-break: anywhere;
 }
 
 @media screen and (max-width: 40em) {
