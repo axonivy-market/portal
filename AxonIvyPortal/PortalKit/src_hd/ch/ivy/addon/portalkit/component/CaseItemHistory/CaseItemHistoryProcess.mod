@@ -66,11 +66,9 @@ import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivy.addon.portalkit.service.HistoryService;
 
 List<ITask> finishedTasks = new ArrayList();
-for(ITask task : in.iCase.tasks().all()) {
-	if(task.getState() == TaskState.DONE
-	|| task.getState() == TaskState.CREATED 
-	|| task.getState() == TaskState.DESTROYED 
-	|| task.getState() == TaskState.ZOMBIE) {
+for (ITask task : in.iCase.tasks().all()) {
+	if (task.getState() == TaskState.DONE
+	|| task.getState() == TaskState.DESTROYED) {
 		finishedTasks.add(task);
 	}
 }
