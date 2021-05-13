@@ -2851,13 +2851,14 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   display: flex;
 }
 
-.substitute-role .ui-treetable-indent {
+.substitute-role .ui-treetable-indent,
+.substitute-role .ui-treetable-toggler {
   flex-shrink: 0;
 }
 
 .substitute-role .substitute-role-name {
   white-space: normal;
-  line-break: anywhere;
+  word-break: break-all;
 }
 
 .substitute-deputy {
