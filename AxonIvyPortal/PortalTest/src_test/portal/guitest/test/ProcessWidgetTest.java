@@ -27,6 +27,7 @@ import portal.guitest.page.UserProfilePage;
 
 public class ProcessWidgetTest extends BaseTest {
 
+  private static final String EXAMPLE_APPLICATION_PROCESSES = "portal-developer-examples/178ED537303DFF8E/start.ivp";
   private static final String CLEAN_ALL_FAVORITE_PROCESSES = "(For autotest) Clean all favorite processes";
   private static final String CASE_MAP_LEAVES = "Case Map: Leave Request";
   private static final String APPRAISAL = "Appraisal";
@@ -126,7 +127,7 @@ public class ProcessWidgetTest extends BaseTest {
 
   @Test
   public void testSortDefaultProcessByName() {
-    redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
+    redirectToRelativeLink(EXAMPLE_APPLICATION_PROCESSES);
     processWidget = new ProcessWidgetPage();
     processWidget.clickSortDefaultProcessByName();
     assertEquals(ALPHA_HISTORY_TASK, processWidget.getProcessNameFromDefaultProcessList(0));
@@ -138,7 +139,7 @@ public class ProcessWidgetTest extends BaseTest {
 
   @Test
   public void testSortDefaultProcessByIndex() {
-    redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
+    redirectToRelativeLink(EXAMPLE_APPLICATION_PROCESSES);
     processWidget = new ProcessWidgetPage();
     assertEquals(ALPHA_HISTORY_TASK, processWidget.getProcessNameFromDefaultProcessList(0));
     assertEquals(VIEW_ALPHA_HISTORY, processWidget.getProcessNameFromDefaultProcessList(1));
