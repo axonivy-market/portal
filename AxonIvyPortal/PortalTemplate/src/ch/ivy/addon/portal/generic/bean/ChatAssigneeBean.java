@@ -235,7 +235,9 @@ public class ChatAssigneeBean implements Serializable {
       if (createGroupChatStatus == CreateGroupChatStatus.ALREADY_EXIST) {
         message = new FacesMessage(FacesMessage.SEVERITY_ERROR, getGroupChatExistMessage(), null);
       } else if (createGroupChatStatus == CreateGroupChatStatus.SUSCCESS) {
-        ChatReferencesContainer.getChatService().updateGroupList(group);
+        if (ChatReferencesContainer.getChatService() != null) {
+          ChatReferencesContainer.getChatService().updateGroupList(group);
+        }
       } else {
         message = generateErrorMessageWhenCreateGroupChat();
       }
