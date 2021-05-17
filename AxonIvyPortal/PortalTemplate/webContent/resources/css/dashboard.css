@@ -62,12 +62,18 @@
   box-shadow: var(--card-box-shadow);
 }
 
+.table-widget-form {
+  position: relative;
+  overflow: hidden;
+}
+
 .widget__header {
   flex: 0 0 30px;
   padding: 10px;
-  font-size: 18px;
-  border-bottom: 2px solid lightgrey;
+  font-size: var(--widget-header-font-size);
+  border-bottom: 2px solid var(--ivy-primary-color-grey-light);
   font-weight: bold;
+  height: 44px;
 }
 
 .widget__header-actions {
@@ -78,6 +84,8 @@
   flex: auto;
   overflow: auto;
   padding: 10px;
+  height: auto;
+  max-height: calc(100% - 44px);
 }
 
 .widget__filter-sidebar-mask,
