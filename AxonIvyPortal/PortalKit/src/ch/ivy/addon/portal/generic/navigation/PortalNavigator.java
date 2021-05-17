@@ -35,6 +35,8 @@ public final class PortalNavigator extends BaseNavigator{
   private static final String PORTAL_FORGOT_PASSWORD = "Start Processes/PortalStart/ForgotPasswordPage.ivp";
   private static final String PORTAL_PASSWORD_RESET = "Start Processes/PortalStart/PasswordResetPage.ivp";
   private static final String PORTAL_CASE_DETAILS_IN_FRAME = "Start Processes/PortalStart/CaseDetailsInIFrame.ivp";
+  private static final String PORTAL_NEW_DASHBOARD = "Start Processes/PortalDashboard/dashboard.ivp";
+  private static final String PORTAL_NEW_DASHBOARD_CONFIGURATION = "Start Processes/PortalDashboard/dashboardConfiguration.ivp";
   
   public static String getPortalStartUrl() {
     return getRelativeLink(StandardProcessType.DefaultApplicationHomePage);
@@ -179,6 +181,14 @@ public final class PortalNavigator extends BaseNavigator{
   
   public static void navigateToUserProfile() {
     navigate(PORTAL_USER_PROFILE, new HashMap<>());
+  }
+
+  public static void navigateToNewDashboard() {
+    navigate(PORTAL_NEW_DASHBOARD, new HashMap<>());
+  }
+
+  public static void navigateToNewDashboardConfiguration() {
+    navigate(PORTAL_NEW_DASHBOARD_CONFIGURATION, new HashMap<>());
   }
 
   public static String buildUserProfileUrl() {
