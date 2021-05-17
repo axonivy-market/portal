@@ -33,7 +33,7 @@
         </p:commandLink>
       </h:panelGroup>
       
-      <p:dataTable id="dashboard-tasks" widgetVar="dashboard-tasks-#{taskWidget.id}" value="#{taskWidget.dataModel}" var="task" paginatorAlwaysVisible="false"
+      <p:dataTable id="dashboard-tasks" widgetVar="dashboard-tasks-#{taskWidget.id}" value="#{taskWidget.dataModel}" var="task"
         paginator="true" paginatorPosition="bottom" lazy="true" paginatorTemplate="{PreviousPageLink} {PageLinks} {NextPageLink} {RowsPerPageDropdown}"
         rows="#{taskWidget.rowsPerPage}"
         rowsPerPageTemplate="5,10,20,50"
