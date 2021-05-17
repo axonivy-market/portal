@@ -33,7 +33,7 @@
       </h:panelGroup>
 
       <p:dataTable id="dashboard-cases" widgetVar="dashboard-cases-#{caseWidget.id}" value="#{caseWidget.dataModel}" var="caseItem"
-        paginatorAlwaysVisible="false" paginator="true" paginatorPosition="bottom" lazy="true"
+        paginator="true" paginatorPosition="bottom" lazy="true"
         paginatorTemplate="{PreviousPageLink} {PageLinks} {NextPageLink} {RowsPerPageDropdown}" pageLinks="5"
         rows="#{caseWidget.rowsPerPage}"
         rowsPerPageTemplate="5,10,20,50"
