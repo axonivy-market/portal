@@ -9,7 +9,7 @@
 
     <ui:define name="headerAction">
       <p:commandButton id="switch-to-edit-mode" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}"
-        actionListener="#{logic.close}" process="@this" update="grid-stack @this"
+        actionListener="#{dashboardBean.navigatetoConfigurationPage}" process="@this" update="grid-stack @this"
         rendered="#{dashboardBean.canEdit}" icon="si si-pencil" />
     </ui:define>
 
