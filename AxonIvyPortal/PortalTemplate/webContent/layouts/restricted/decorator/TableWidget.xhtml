@@ -36,8 +36,7 @@
 
       <p:link id="info-sidebar-link-#{index}"
         href="#"
-        styleClass="si si-statistics-daytum u-mar-right-15"
-        onclick="updateWidgetStatisticPannel#{index}()" />
+        styleClass="si si-statistics-daytum u-mar-right-15" />
       <p:tooltip for="info-sidebar-link-#{index}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/widgetInfo')}" trackMouse="true"
         hideEvent="mouseleave click" />
 
@@ -71,16 +70,18 @@
         process="@this" partialSubmit="true" immediate="true" />
 
       <!-- remote command to reset state of info accordion panel -->
-      <p:remoteCommand name="updateWidgetStatisticPannel#{index}"
+      <p:remoteCommand id="reset-statistic-filter-accordion-panel-state-#{index}"
+        name="updateWidgetStatisticPannel#{index}"
         update="statistic-filter-accordion-panel-#{index}"
-        resetValues="true" global="false" process="@this" partialSubmit="true" immediate="true" />
+        global="false" process="@none" partialSubmit="true" immediate="true" />
 
       <p:overlayPanel id="info-overlay-panel-#{index}"
         widgetVar="info-overlay-panel-#{index}"
         for="info-sidebar-link-#{index}"
         appendTo="@(#grid-stack)"
         styleClass="info-overlay-panel"
-        onShow="buildStatisticInfos#{index}();"
+        onShow="buildStatisticInfos#{index}(); return false;"
+        onHide="updateWidgetStatisticPannel#{index}(); return false;"
         dismissable="false"
         dynamic="true"
         at="right top">
@@ -102,7 +103,7 @@
           <div class="ui-g-12">
             <p:link styleClass="Fright"
               href="#"
-              onclick="PF('info-overlay-panel-#{index}').hide(); updateWidgetStatisticPannel#{index}()"
+              onclick="PF('info-overlay-panel-#{index}').hide();"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" />
           </div>
         </div>
