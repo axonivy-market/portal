@@ -1,5 +1,4 @@
-/* Empty file, you can put your own styles.
-   You should take a look at variables.scss file to see how many variables that Portal supports for customizing.
-   E.g. $primaryColor: green;
+/* Empty file, you can put your own specific styles.
    After customizing, you should run a maven command ("mvn libsass:compile") to compile these SCSS files.
-   And then, refresh PortalStyle project to see the changing */
+   And then, refresh PortalStyle project to see the changing.
+   If you want to customize Portal's variables, please add your changes in variable-customization.scss instead. */
