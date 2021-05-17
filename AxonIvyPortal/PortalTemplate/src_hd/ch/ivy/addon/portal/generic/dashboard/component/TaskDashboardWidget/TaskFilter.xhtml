@@ -13,7 +13,7 @@
           <h:outputLabel value="#{field.headerText}" />
         </div>
         <div class="ui-g-9 ui-sm-12 ui-fluid">
-          <p:selectCheckboxMenu id="priorities" value="#{field.userFilterPriorities}" multiple="true" dynamic="true" onShow="removeDuplicatedValues(this)"
+          <p:selectCheckboxMenu id="priorities" value="#{field.userFilterPriorities}" multiple="true" onShow="removeDuplicatedValues(this)"
             panelStyleClass="task-configuration__selectcheckboxmenu-panel" styleClass="task-configuration__selectcheckboxmenu">
             <f:selectItems value="#{field.userFilterPriorityOptions}" var="priority" itemValue="#{priority}"
               itemLabel="#{dashboardTaskFilterBean.getUserFriendlyTaskPriority(priority)}" />
@@ -26,8 +26,9 @@
           <h:outputLabel value="#{field.headerText}" />
         </div>
         <div class="ui-g-9 ui-sm-12 ui-fluid">
-          <p:selectCheckboxMenu id="states" value="#{field.userFilterStates}" multiple="true" filter="true" dynamic="true" onShow="removeDuplicatedValues(this)"
-            filterMatchMode="contains" panelStyleClass="task-configuration__selectcheckboxmenu-panel" styleClass="task-configuration__selectcheckboxmenu">
+          <p:selectCheckboxMenu id="states" value="#{field.userFilterStates}" multiple="true" filter="true" onShow="removeDuplicatedValues(this)"
+            filterMatchMode="contains" panelStyleClass="task-configuration__selectcheckboxmenu-panel" styleClass="task-configuration__selectcheckboxmenu"
+            >
             <f:selectItems value="#{field.userFilterStateOptions}" var="state" itemValue="#{state}"
               itemLabel="#{dashboardTaskFilterBean.getUserFriendlyTaskState(state)}" />
           </p:selectCheckboxMenu>
