@@ -11,7 +11,7 @@
 
     <ui:define name="headerAction">
       <p:commandLink id="switch-to-view-mode" styleClass="dashboard__switch-mode u-mar-right-15"
-        actionListener="#{logic.close}"
+        actionListener="#{dashboardConfigurationBean.navigatetoDashboardPage}"
         update="grid-stack @this" process="@this">
         <i class="si si-arrow-left-1" />
         <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/switchToViewMode')}</span>

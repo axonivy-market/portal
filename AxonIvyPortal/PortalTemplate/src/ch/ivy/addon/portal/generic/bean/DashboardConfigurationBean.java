@@ -21,6 +21,7 @@ import org.apache.commons.collections.CollectionUtils;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
+import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
@@ -184,4 +185,7 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
     this.deleteWidget = deleteWidget;
   }
 
+  public void navigatetoDashboardPage() {
+    PortalNavigator.navigateToNewDashboard();
+  }
 }
