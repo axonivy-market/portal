@@ -57,6 +57,40 @@ public class CaseDetailsPage extends TemplatePage {
         .findElements(By.cssSelector("td.related-task-name-column")).size();
   }
 
+  public int countRelatedDoneTasks() {
+    return caseItem.findElement(By.cssSelector("div[id$='related-tasks']"))
+        .findElements(By.cssSelector(".task-state.done-task-state")).size();
+  }
+
+  public boolean checkDoneTasksOfHistory() {
+    List<WebElement> taskNames = caseItem.findElement(By.cssSelector("div[id$='related-tasks']"))
+        .findElements(By.cssSelector("span.task-name-value"));
+    List<WebElement> taskStates = caseItem.findElement(By.cssSelector("div[id$='related-tasks']"))
+        .findElements(By.cssSelector("span.task-state"));
+    List<WebElement> histories = caseItem.findElement(By.cssSelector("div[id$='case-histories']"))
+        .findElements(By.cssSelector("a.task-note-link"));
+    if (CollectionUtils.isNotEmpty(taskStates)) {
+      String DONE = "Done";
+      for (int i = 0; i < taskStates.size(); i++) {
+        if (DONE.equals(taskStates.get(i).getText()) && !isHistoryExistent(histories, taskNames.get(i).getText())) {
+          System.out.println(taskStates.get(i).getText());
+          return false;
+        }
+      }
+    }
+    return true;
+  }
+
+  private boolean isHistoryExistent(List<WebElement> histories, String historyContent) {
+    for (WebElement history : histories) {
+      System.out.println(history.getText() + " - " + historyContent );
+      if (history.getText().equals(historyContent)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   public void addNote(String content) {
     onClickHistoryIcon();
     waitAjaxIndicatorDisappear();

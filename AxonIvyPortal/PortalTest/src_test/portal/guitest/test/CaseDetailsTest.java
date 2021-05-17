@@ -3,10 +3,15 @@ package portal.guitest.test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.util.concurrent.TimeUnit;
+
 import org.apache.commons.lang.StringUtils;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import com.jayway.awaitility.Awaitility;
+import com.jayway.awaitility.Duration;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import portal.guitest.common.BaseTest;
@@ -16,12 +21,14 @@ import portal.guitest.page.CaseDetailsPage;
 import portal.guitest.page.CaseWidgetPage;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.MainMenuPage;
+import portal.guitest.page.NoteHistoryPage;
 
 public class CaseDetailsTest extends BaseTest {
 
   private HomePage homePage;
   private CaseDetailsPage detailsPage;
 
+  private static final String BUSINESS_CASE_MAP_LEAVE_REQUEST = "Business Case Map: Leave Request";
   private static final String LEAVE_REQUEST_CASE_NAME = "Leave Request";
   private static final String ORDER_PIZZA = "Order Pizza";
 
@@ -86,6 +93,23 @@ public class CaseDetailsTest extends BaseTest {
     detailsPage.addNote("Consider the remaining annual leaves before the approval");
     detailsPage.clickViewNote();
     assertTrue(detailsPage.isViewNoteDialogPresented());
+  }
+
+  @Test
+  public void testHistoryShowDoneTasks() {
+    redirectToRelativeLink(createTestingCaseMapUrl);
+    login(TestAccount.DEMO_USER);
+    MainMenuPage mainMenuPage = homePage.openMainMenu();
+    CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
+    detailsPage = casePage.openCaseDetailsFromActionMenuByCaseName(BUSINESS_CASE_MAP_LEAVE_REQUEST);
+    assertTrue(detailsPage.checkDoneTasksOfHistory());
+
+    int relatedDoneTasks = detailsPage.countRelatedDoneTasks();
+    detailsPage.showNoteHistory();
+    Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> detailsPage.countBrowserTab() > 1);
+    detailsPage.switchLastBrowserTab();
+    NoteHistoryPage caseHistoryPage = new NoteHistoryPage();
+    assertEquals(relatedDoneTasks, caseHistoryPage.countDoneTasks());
   }
   
   @Test

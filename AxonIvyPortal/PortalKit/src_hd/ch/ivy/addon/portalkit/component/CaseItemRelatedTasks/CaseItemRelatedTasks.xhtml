@@ -54,7 +54,7 @@
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}"
           styleClass="related-task-name-column u-truncate-text" field="NAME" sortBy="#{NAME}"
           rendered="#{data.dataModel.isSelectedColumn(masterDataBean.taskSortFieldName)}">
-          <h:outputText value="#{task.name}" title="#{task.name}"/>
+          <h:outputText value="#{task.name}" title="#{task.name}" styleClass="task-name-value"/>
         </p:column>
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}" sortable="false"
           styleClass="u-hidden-sm-down related-task-description-column u-truncate-text">
