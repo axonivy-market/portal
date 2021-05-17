@@ -61,6 +61,38 @@ public class CaseDetailsPage extends TemplatePage {
         .findElements(By.cssSelector("td.related-task-name-column")).size();
   }
 
+  public int countRelatedDoneTasks() {
+    return caseItem.findElement(By.cssSelector("div[id$='related-tasks']"))
+        .findElements(By.cssSelector(".task-state.done-task-state")).size();
+  }
+
+  public boolean checkDoneTasksOfHistory() {
+    List<WebElement> taskNames = caseItem.findElement(By.cssSelector("div[id$='related-tasks']"))
+        .findElements(By.cssSelector("span.task-name-value"));
+    List<WebElement> taskStates = caseItem.findElement(By.cssSelector("div[id$='related-tasks']"))
+        .findElements(By.cssSelector("span.task-state"));
+    List<WebElement> histories = caseItem.findElement(By.cssSelector("div[id$='case-histories']"))
+        .findElements(By.cssSelector("a.task-note-link"));
+    if (CollectionUtils.isNotEmpty(taskStates)) {
+      String DONE = "Done";
+      for (int i = 0; i < taskStates.size(); i++) {
+        if (DONE.equals(taskStates.get(i).getText()) && !isHistoryExistent(histories, taskNames.get(i).getText())) {
+          return false;
+        }
+      }
+    }
+    return true;
+  }
+
+  private boolean isHistoryExistent(List<WebElement> histories, String historyContent) {
+    for (WebElement history : histories) {
+      if (history.getText().equals(historyContent)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   public int countRelatedCases() {
     return caseItem.findElement(By.cssSelector("div[id$='related-cases']"))
         .findElements(By.cssSelector("td.name-column")).size();
@@ -447,19 +479,19 @@ public class CaseDetailsPage extends TemplatePage {
   public void resetToDefault() {
     waitForElementDisplayed(By.cssSelector("[id$=':reset-details-settings-button']"), true);
     click(By.cssSelector("[id$=':reset-details-settings-button']"));
-    waitAjaxIndicatorDisappear();
+    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
   }
 
   public void confirmResetToDefault() {
     waitForElementDisplayed(By.cssSelector("[id='case-item-details:reset-to-default-case-form:confirm-destruction']"), true);
     click(By.cssSelector("[id='case-item-details:reset-to-default-case-form:confirm-destruction']"));
-    waitAjaxIndicatorDisappear();
+    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
   }
   
   public void switchToEditMode() {
     waitForElementDisplayed(By.cssSelector("[id$=':switch-to-edit-mode-button']"), true);
     click(By.cssSelector("[id$=':switch-to-edit-mode-button']"));
-    waitAjaxIndicatorDisappear();
+    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
   }
 
   public void waitForSaveButtonDisplayed() {
@@ -469,7 +501,7 @@ public class CaseDetailsPage extends TemplatePage {
   public void saveAndSwitchToViewMode() {
     waitForElementDisplayed(By.cssSelector("[id$=':switch-to-view-mode-button']"), true);
     click(By.cssSelector("[id$=':switch-to-view-mode-button']"));
-    waitAjaxIndicatorDisappear();
+    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
   }
 
   public void drapAndDropWidgets(String sourceName, String destinationName) {
@@ -524,12 +556,14 @@ public class CaseDetailsPage extends TemplatePage {
     String reserveCommandButton = String.format("[id$='task-widget:related-tasks:%d:additional-options:task-reserve-command']", index);
     waitForElementDisplayed(By.cssSelector(reserveCommandButton), true);
     findElementByCssSelector(reserveCommandButton).click();
+    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
   }
 
   public void resetTask(int index) {
     String resetCommandButton = String.format("[id$='task-widget:related-tasks:%d:additional-options:task-reset-command", index);
     waitForElementDisplayed(By.cssSelector(resetCommandButton), true);
     findElementByCssSelector(resetCommandButton).click();
+    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
   }
 
   public boolean isTaskState(int index, TaskState taskState) {
@@ -592,7 +626,7 @@ public class CaseDetailsPage extends TemplatePage {
       waitForElementDisplayed(By.cssSelector("[id$=':task-delegate-form:activator-type-select']"), true);
       waitForElementEnabled(By.cssSelector("[id$=':task-delegate-form:activator-type-select:1']"), true, DEFAULT_TIMEOUT);
       clickByCssSelector("[for$=':task-delegate-form:activator-type-select:1']");
-      waitAjaxIndicatorDisappear();
+      waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
       waitForElementDisplayed(By.cssSelector("input[id$='group-activator-select_input']"), true);
       type(By.cssSelector("input[id$='group-activator-select_input']"), responsibleName);
       waitForElementDisplayed(By.cssSelector("span[id$='group-activator-select_panel']"), true);
@@ -607,7 +641,7 @@ public class CaseDetailsPage extends TemplatePage {
           findElementByCssSelector("span[id$='user-activator-select_panel']").findElements(By.tagName("tr"));
       foundUsers.get(0).click();
     }
-    waitAjaxIndicatorDisappear();
+    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
     click(By.cssSelector("button[id$='proceed-task-delegate-command']"));
     waitForElementDisplayed(By.cssSelector("div[id$='task-delegate-dialog']"), false);
   }
@@ -624,7 +658,7 @@ public class CaseDetailsPage extends TemplatePage {
     String commandButton = String.format("[id$='task-widget:related-tasks:%d:additional-options:task-workflow-event-command", index);
     waitForElementDisplayed(By.cssSelector(commandButton), true);
     findElementByCssSelector(commandButton).click();
-    waitAjaxIndicatorDisappear();
+    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
   }
 
   public boolean isRelatedTaskWorkflowEventsOpened() {
@@ -674,7 +708,7 @@ public class CaseDetailsPage extends TemplatePage {
   public void clickRelatedCaseColumnsButton() {
     clickByCssSelector("a[id$='case-config-button']");
     waitForElementDisplayedByCssSelector("label[for$='related-cases-widget:case-columns-configuration:select-columns-form:columns-checkbox:3']");
-    waitAjaxIndicatorDisappear();
+    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
   }
 
   public void clickRelatedCaseColumnCheckbox(int columnIndex) {
@@ -690,7 +724,7 @@ public class CaseDetailsPage extends TemplatePage {
 
   public void clickRelatedCaseApplyButton() {
     click(By.cssSelector("button[id$='related-cases-widget:case-columns-configuration:select-columns-form:update-command']"));
-    waitAjaxIndicatorDisappear();
+    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
   }
 
   public boolean isRelatedTaskListColumnExist(String columnClass) {
@@ -701,7 +735,7 @@ public class CaseDetailsPage extends TemplatePage {
   public void clickRelatedTaskColumnsButton() {
     clickByCssSelector("a[id$='task-config-command']");
     waitForElementDisplayedByCssSelector("label[for$='task-widget:task-columns-configuration:select-columns-form:columns-checkbox:5']");
-    waitAjaxIndicatorDisappear();
+    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
   }
 
   public void clickRelatedTaskColumnCheckbox(int columnIndex) {
@@ -717,6 +751,6 @@ public class CaseDetailsPage extends TemplatePage {
 
   public void clickRelatedTaskApplyButton() {
     click(By.cssSelector("button[id$='task-widget:task-columns-configuration:select-columns-form:update-command']"));
-    waitAjaxIndicatorDisappear();
+    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
   }
 }
