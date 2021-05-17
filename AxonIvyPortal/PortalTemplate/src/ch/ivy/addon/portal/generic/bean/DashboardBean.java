@@ -300,4 +300,8 @@ public class DashboardBean implements Serializable {
   public void setSelectedDashboardId(String selectedDashboardId) {
     this.selectedDashboardId = selectedDashboardId;
   }
+
+  public void navigatetoConfigurationPage() {
+    PortalNavigator.navigateToNewDashboardConfiguration();
+  }
 }
