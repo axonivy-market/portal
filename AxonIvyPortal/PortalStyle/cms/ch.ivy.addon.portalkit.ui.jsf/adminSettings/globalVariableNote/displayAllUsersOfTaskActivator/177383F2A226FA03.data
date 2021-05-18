@@ -1,1 +1,1 @@
-Définir à true pour montrer à tous les utilisateurs de task activator, appliquer quand task activator est un rôle
+TODO This setting is using for SecurityMemberDisplayName component. If the SecurityMember is a role, set this setting to true to list out all users of this role. If set to true, icon info is shown beside the role name.

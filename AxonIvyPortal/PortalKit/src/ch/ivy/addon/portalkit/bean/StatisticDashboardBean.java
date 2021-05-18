@@ -42,7 +42,7 @@ public class StatisticDashboardBean implements Serializable {
   private static final String GREATER_EQUAL = ">= %s";
   private static final String LESS_EQUAL = "<= %s";
   private static final String DASH = "%s - %s";
-  private StatisticService statisticService = new StatisticService();
+  private StatisticService statisticService = StatisticService.getInstance();
   private ItemSelectEvent taskByExpiryItemSelectEvent;
 
 
@@ -147,7 +147,7 @@ public class StatisticDashboardBean implements Serializable {
     StatisticChart emptyChart = new StatisticChart();
     emptyChart.setNames(generateNamesForEmptyChart());
     emptyChart.setType(StatisticChartType.TASK_BY_PRIORITY);
-    StatisticService service = new StatisticService();
+    StatisticService service = StatisticService.getInstance();
     DonutChartModel model = service.createDonutChartPlaceholder();
     model.getOptions().getTitle().setText(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/emptystate/defaultEmptyMessages"));
     emptyChart.setDonutChartModel(model);

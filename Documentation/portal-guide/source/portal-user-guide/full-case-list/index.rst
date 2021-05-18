@@ -6,7 +6,7 @@ Full Case List
 The **Full Case List** page shows you all cases you’re involved in.
 This page provides you with extended information on the cases, as well
 as advanced search and filter capabilities. You can reach the page by
-using the |case-icon| :guilabel:`Cases`  link in the Axon Ivy Portal menu.
+using the |case-icon| :guilabel:`Cases` link in the Axon Ivy Portal menu.
 
 .. hint:: 
    Depending on the roles you hold in the application and the configuration of
@@ -40,7 +40,7 @@ handling cases:
 
 #. Detail
 
-#. :guilabel:`Actions`  for further actions
+#. :guilabel:`Actions` for further actions
 
 Finally, you have the possibility to access the full set of the case
 data by clinking the case Name/Description.
@@ -84,7 +84,7 @@ HowTo: Use existing filter
    first. This is described in detail in :ref:`howto-create-new-filter-1`.
    
 
-#. Click on the :guilabel:`Save Filter`  dropdown menu.
+#. Click on the :guilabel:`Save Filter` dropdown menu.
 
 #. Select the filter you want to use.
 
@@ -93,12 +93,12 @@ HowTo: Use existing filter
 HowTo: Create new filter
 ------------------------
 
-#. Click on the button :guilabel:`More`  to select one of the available filters.
+#. Click on the button :guilabel:`More` to select one of the available filters.
    For a list of available filters, see Table 3: Case filter criteria.
 
 #. Click on the newly added filter and configure it.
 
-#. Add more filters by clicking on the button :guilabel:`More`  again.
+#. Add more filters by clicking on the button :guilabel:`More` again.
 
 #. Drop filters by clicking on the |delete-circle-icon| icon next to
    the filter.
@@ -213,9 +213,9 @@ HowTo: Add a note to a case
 
 #. Open the case details of a case
 
-#. Click on the |add-icon| :guilabel:`Add note`  link below the notes section.
+#. Click on the |add-icon| :guilabel:`Add note` link below the notes section.
 
-#. The :guilabel:`Add note`  dialog is opened.
+#. The :guilabel:`Add note` dialog is opened.
 
 #. Enter your note.
 
@@ -228,7 +228,7 @@ HowTo: Export a case history
 
 #. Open the case details of a case
 
-#. Click on the |show-more-icon| :guilabel:`Show more`  link below the notes section
+#. Click on the |show-more-icon| :guilabel:`Show more` link below the notes section
 
    |how-to-show-note-details|
 

@@ -25,7 +25,7 @@ Templates without IFrames:
 
 Templates to use with IFrame:
 
-#. :ref:`IFrame Task template <components-layout-templates-iframe-task-template>` (Template used internally by portal to configure iframes)
+#. :ref:`IFrame Task template <components-layout-templates-iframe-task-template>` (Template used internally by Portal to configure iframes)
 
 #. frame-8 template (Provided by core, use Serenity theme)
 
@@ -183,7 +183,7 @@ Refer to ``TaskTemplate-8.xhtml`` for params and template areas.
 +========================================+===============================+
 | - Use Serenity theme                   | - Some migration effort       |
 | - Usage improvements are considered    |                               |
-| - Consistent look&feel with Portal     |                               |
+| - Consistent look and feel with Portal |                               |
 | - UI styles are taken over from Portal |                               |
 +----------------------------------------+-------------------------------+
 
@@ -265,7 +265,7 @@ How to use case list template
 
 .. _components-layout-templates-handle-required-login-in-templates:
 
-Handle required Login in templates
+Handle required login in templates
 ----------------------------------
 
 All templates require login to access by default. But templates also
@@ -338,7 +338,7 @@ In Portal's new design, the main container's width should be changed
 according to menu state (expand/colapse).
 
 To adapt the change, you need to initialize the ``ResponsiveToolkit``
-Javascript object and introduce 1 object to handle screen resolutions
+javascript object and introduce 1 object to handle screen resolutions
 and your object has to implement the ``updateMainContainer`` method.
 
 Portal templates define their own responsiveness, you can redefine the

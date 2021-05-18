@@ -23,7 +23,7 @@ public class DummyStatisticService {
     
     PriorityStatistic data = new PriorityStatistic();
     data.setNormal(1);
-    StatisticService service = new StatisticService();
+    StatisticService service = StatisticService.getInstance();
     DonutChartModel model = service.generateTaskByPriorityModel(data, true);
     dummyChart.setDonutChartModel(model);
     return dummyChart;

@@ -1,6 +1,6 @@
 .. _components-portal-chat:
 
-Portal chat
+Portal Chat
 ===========
 
 .. _components-portal-chat-chat-feature:
@@ -19,17 +19,17 @@ Information
 
 - Chat feature is reimplemented from Ivy 7.4.
 
-- If browsers access Portal through  a reverse proxy Nginx, set Portal setting **CHAT_RESPONSE_TIMEOUT** a number less than Nginx timeout to make chat work properly.
+- If browsers access Portal through  a reverse proxy Nginx, set Portal setting **Portal.Chat.ResponseTimeout** a number less than Nginx timeout to make chat work properly.
 
 - Each tab uses one long-polling request for chat. Browsers limit the number of long-polling request for one domain, max number could be six or more.
-  To handle this limitation, Portal introduces Portal setting **CHAT_MAX_CONNECTION**, default value is 3. If fourth tab is open, chat in one inactive tab will be deactivated.
+  To handle this limitation, Portal introduces Portal setting **Portal.Chat.MaxConnection**, default value is 3. If fourth tab is open, chat in one inactive tab will be deactivated.
   If you select deactivated chat tab again, all chat information will be refreshed and chat is activated again, then chat in another tab will be deactivated.
 
 - Group chat supports some customizations, refer to :ref:`Group chat customization <customization-group-chat>` for more details.
 
 .. _components-portal-chat-limitation:
 
-Limitation of current Portal chat
+Limitation of current Portal Chat
 ---------------------------------
 
 Portal Chat does not support cross application chat. That means users are

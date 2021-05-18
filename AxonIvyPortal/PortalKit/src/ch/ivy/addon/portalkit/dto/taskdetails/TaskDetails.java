@@ -10,9 +10,19 @@ public class TaskDetails implements Serializable {
 
   private static final long serialVersionUID = -8424800742022240884L;
 
+  private String id;
   private List<TaskDetailsWidget> widgets;
+  private TaskDetailsFilters filters;
   private boolean changed;
 
+
+  public String getId() {
+    return id;
+  }
+
+  public void setId(String id) {
+    this.id = id;
+  }
   public List<TaskDetailsWidget> getWidgets() {
     return widgets;
   }
@@ -27,5 +37,13 @@ public class TaskDetails implements Serializable {
   
   public void setChanged(boolean changed) {
     this.changed = changed;
+  }
+
+  public TaskDetailsFilters getFilters() {
+    return filters;
+  }
+
+  public void setFilters(TaskDetailsFilters filters) {
+    this.filters = filters;
   }
 }

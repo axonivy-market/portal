@@ -19,10 +19,10 @@ import org.primefaces.model.menu.MenuItem;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.comparator.ApplicationIndexAscendingComparator;
+import ch.ivy.addon.portalkit.configuration.Application;
 import ch.ivy.addon.portalkit.enums.BreadCrumbKind;
 import ch.ivy.addon.portalkit.enums.MenuKind;
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
-import ch.ivy.addon.portalkit.persistence.domain.Application;
 import ch.ivy.addon.portalkit.publicapi.PortalNavigatorAPI;
 import ch.ivy.addon.portalkit.service.IvyAdapterService;
 import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
@@ -100,8 +100,8 @@ public class PortalMenuNavigator {
   }
 
   public static List<Application> getThirdPartyApps() {
-    RegisteredApplicationService service = new RegisteredApplicationService();
-    List<Application> applications = service.findAllThirdPartyApplication();
+    RegisteredApplicationService service = RegisteredApplicationService.getInstance();
+    List<Application> applications = service.getPublicConfig();
     Collections.sort(applications, new ApplicationIndexAscendingComparator());
     return applications;
   }

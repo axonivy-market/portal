@@ -69,7 +69,7 @@ to configure the scroll bar of the list.
       another process with the option "Attach to Business Case that
       triggered this process" selected, the current case of the process
       will become a technical case and will not be loaded into the process
-      history list. In this case You need to call the
+      history list. In this case you need to call the
       SetBusinessEntityId
       subprocess after the first Trigger or signal sending step.
 
@@ -127,14 +127,14 @@ Introduction
 
 Process Chain component of Portal provides features for users to know
 status of all steps in a process: the step's working, these steps are
-done, these steps is not done. These features are:
+done, these steps are not done. These features are:
 
 #. Support to display all working steps or display only helpful steps as
    begin, last, current, previous current, next current steps.
 
-#. Support to change the sharp of process chain: circle or line.
+#. Support to change the shape of process chain: circle or line.
 
-#. Support to change direction of process chain: horizontal or vertical.
+#. Support to change the direction of process chain: horizontal or vertical.
 
 |process-chain|
 
@@ -190,24 +190,23 @@ Display growl after finishing a task
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 After a task is finished, growl message appears as default via the
-``DISPLAY_MESSAGE_AFTER_FINISH_TASK`` Portal variable.
+``Portal.DisplayMessageAfterFinishTask`` Portal variable.
 
 |example-global-growl-finished-task|
 
 .. _components-additional-component-global-growl-display-growl-after-finish-task:
 
-
 Display growl after leaving a task
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-If ``DISPLAY_MESSAGE_AFTER_FINISH_TASK`` Portal variable is true, growl message will be displayed after a task is left.
+If ``Portal.DisplayMessageAfterFinishTask`` Portal variable is true, growl message will be displayed after a task is left.
 
 |example-global-growl-cancelled-task|
 
 .. _components-additional-component-global-growl-display-growl-after-cancel-task:
 
-Customization global growl message
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Customization global growl message for task not using IFrame
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 For each task, you can turn it off or override it. Firstly, when you
 submit form to interact task, you need to put the ``overridePortalGrowl``
@@ -238,7 +237,20 @@ It's enough if you want to turn it off. To override the message, add
    flash.setRedirect(true);
    flash.setKeepMessages(true);
 
-Please refer to GlobalGrowl dialog in portal-developer-examples project for more details.
+Customization global growl message for task using IFrame
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+If ``Portal.DisplayMessageAfterFinishTask`` Portal variable is true, before a task is finished/left, you can trigger displaying
+customized message after task is finished/left by calling below API:
+
+::
+
+   import ch.ivy.addon.portalkit.publicapi.PortalGlobalGrowInIFrameAPI;
+
+   PortalGlobalGrowInIFrameAPI api = new PortalGlobalGrowInIFrameAPI();
+   api.displayCustomizedMessage("Your customized message");
+
+Please refer to GlobalGrowl Start Process in portal-developer-examples project for more details.
 
 .. _components-additional-component-document-table:
 

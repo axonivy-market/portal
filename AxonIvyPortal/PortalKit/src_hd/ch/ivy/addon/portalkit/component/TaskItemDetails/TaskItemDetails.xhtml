@@ -40,12 +40,12 @@
       styleClass="switch-and-reset-buttons-area ui-g-12">
       <p:commandButton id="switch-to-view-mode-button" rendered="#{not taskDetailsBean.readOnlyMode}"
         value="#{ivy.cms.co('/Dialogs/Tasks/TaskDetail/switchToViewMode')}" onclick="saveTaskDetailsGrid()"
-        icon="#{visibilityBean.generateButtonIcon('si si-floppy-disk')}" update="task-item-body task-details-actions" oncomplete="loadTaskDetailsGrid()" />
+        icon="#{visibilityBean.generateButtonIcon('si si-floppy-disk')}" update="task-item-body task-details-actions" oncomplete="loadTaskDetailsGrid(); enableAllIFrameWhenEditLayout();" />
       <p:commandButton id="switch-to-edit-mode-button" rendered="#{taskDetailsBean.readOnlyMode}"
         value="#{ivy.cms.co('/Dialogs/Tasks/TaskDetail/switchToEditMode')}" actionListener="#{taskDetailsBean.switchToEditMode()}"
-        icon="#{visibilityBean.generateButtonIcon('si si-pencil')}" update="task-item-body task-details-actions" oncomplete="loadTaskDetailsGrid()" />
+        icon="#{visibilityBean.generateButtonIcon('si si-pencil')}" update="task-item-body task-details-actions" oncomplete="loadTaskDetailsGrid(); disableAllIFrameWhenEditLayout();" />
       <p:commandButton id="reset-details-settings-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
-        rendered="#{taskDetailsBean.configuration.changed and not taskDetailsBean.readOnlyMode}"
+        rendered="#{taskDetailsBean.configuration.changed and not taskDetailsBean.readOnlyMode}" ajax="false" type="button"
         icon="#{visibilityBean.generateButtonIcon('si si-button-refresh-arrows')}" styleClass="reset-details-settings-button"
         immediate="true" onclick="PF('reset-to-default-task-dialog').show()" />
     </h:panelGroup>
@@ -69,10 +69,10 @@
       </c:if>
 
       <ui:repeat var="widget" value="#{taskDetailsBean.widgets}" id="widgets">
-        <div id="task-details-#{widget.id}-panel" class="#{widget.styleClass} grid-stack-item" style="#{widget.style}"
-          widget-type="#{widget.class.simpleName}" gs-x="#{widget.axisX}" gs-y="#{widget.axisY}" gs-w="#{widget.width}"
-          gs-h="#{widget.height}" gs-id="#{widget.id}" gs-no-resize="#{taskDetailsBean.readOnlyMode}"
-          gs-no-move="#{taskDetailsBean.readOnlyMode}">
+        <div id="task-details-#{widget.type}-panel" class="#{widget.layout.styleClass} grid-stack-item" style="#{widget.layout.style}"
+          widget-type="#{widget.class.simpleName}" data-gs-x="#{widget.layout.axisX}" data-gs-y="#{widget.layout.axisY}" data-gs-width="#{widget.layout.width}"
+          data-gs-height="#{widget.layout.height}" data-gs-id="#{widget.id}" data-gs-no-resize="#{taskDetailsBean.readOnlyMode}"
+          data-gs-no-move="#{taskDetailsBean.readOnlyMode}">
 
           <!-- General & description box -->
           <h:panelGroup id="task-detail-general-container" layout="block" rendered="#{widget.class.simpleName eq 'TaskDetailsInformationWidget'}"
@@ -109,7 +109,8 @@
             <h:panelGroup id="task-detail-data-description-container" styleClass="ui-g-12 u-padding-0 grid-stack-item-content">
               <ic:ch.ivy.addon.portalkit.component.TaskItemGeneralInfo id="general-information" task="#{task}"
                 componentToUpdate="#{historyWidgetComponent} #{informationWidgetComponent}"
-                onWorkflowEventComplete="initWorkflowEventData()" readOnly="#{cc.attrs.readOnly}" />
+                onWorkflowEventComplete="initWorkflowEventData()" readOnly="#{cc.attrs.readOnly}"
+                onEditTaskExpiryActivator="showTaskEscalationActivatorDialog();" />
             </h:panelGroup>
           </h:panelGroup>
 
@@ -131,16 +132,37 @@
 
           <!-- taskItemDetailCustomPanelTop box -->
           <h:panelGroup id="taskItemDetailCustomPanelTop"
-            rendered="#{widget.class.simpleName eq 'TaskDetailsCustomWidget' and widget.id eq 'taskItemDetailCustomPanelTop'}"
+            rendered="#{widget.class.simpleName eq 'TaskDetailsCustomWidget' and widget.data.type eq 'taskItemDetailCustomPanelTop'}"
             styleClass="card task-detail-card grid-stack-item-content #{taskDetailsBean.readOnlyMode ? '' : 'moveable-area'}">
             <cc:renderFacet name="taskItemDetailCustomPanelTop" />
           </h:panelGroup>
 
           <!-- taskItemDetailCustomPanelBottom box -->
           <h:panelGroup id="taskItemDetailCustomPanelBottom"
-            rendered="#{widget.class.simpleName eq 'TaskDetailsCustomWidget' and widget.id eq 'taskItemDetailCustomPanelBottom'}"
+            rendered="#{widget.class.simpleName eq 'TaskDetailsCustomWidget' and widget.data.type eq 'taskItemDetailCustomPanelBottom'}"
             styleClass="card task-detail-card grid-stack-item-content #{taskDetailsBean.readOnlyMode ? '' : 'moveable-area'}">
             <cc:renderFacet name="taskItemDetailCustomPanelBottom" />
+          </h:panelGroup>
+
+          <h:panelGroup id="custom-iframe"
+            rendered="#{(widget.class.simpleName eq 'TaskDetailsCustomWidget') and (not empty widget.data.url)}"
+            styleClass="card task-detail-card grid-stack-item-content #{taskDetailsBean.readOnlyMode ? '' : 'moveable-area'} iframe-widget">
+            <ui:fragment rendered="#{not empty widget.data.processStart}">
+              <form id="custom-widget-iframe-data" target="custom-widget-iframe" action="#{widget.data.url}" method="post">
+                <ui:repeat var="entry" value="#{widget.data.params.entrySet()}">
+                  <input type="hidden" name="#{entry.key}" value="#{taskDetailsBean.getTaskPropertyByKeyPattern(task, entry.value)}" />
+                </ui:repeat >
+              </form>
+              <iframe name="custom-widget-iframe" />
+              <script type="text/javascript">
+                $(function() {
+                    $('form[id="custom-widget-iframe-data"]').submit();
+                });
+              </script>
+            </ui:fragment>
+            <ui:fragment rendered="#{empty widget.data.processStart}">
+              <iframe src="#{widget.data.url}" />
+            </ui:fragment>
           </h:panelGroup>
 
         </div>
@@ -202,11 +224,11 @@
     <ui:define name="dialogFooter">
       <h:form id="reset-to-default-task-form">
         <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-          onclick="PF('reset-to-default-task-dialog').hide();" styleClass="u-mar-right-15" />
+          onclick="PF('reset-to-default-task-dialog').hide();" styleClass="u-mar-right-15" ajax="false" type="button" />
         <p:commandButton id="confirm-destruction" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
           icon="#{visibilityBean.generateButtonIcon('si si-button-refresh-arrows')}"
           actionListener="#{taskDetailsBean.reset()}" update="task-detail-template:task-details-actions task-detail-template:task-item-body"
-          oncomplete="PF('reset-to-default-task-dialog').hide(); loadTaskDetailsGrid();" />
+          oncomplete="PF('reset-to-default-task-dialog').hide(); loadTaskDetailsGrid(); disableAllIFrameWhenEditLayout();" />
       </h:form>
     </ui:define>
 
@@ -218,6 +240,10 @@
 
   <!-- Workflow Event of Task -->
   <ic:ch.ivy.addon.portalkit.component.TaskItemWorkflowEvents id="workflow-event-component" taskId="#{task.id}" />
+
+  <!-- Task Exipy Activator Selection Dialog -->
+  <ic:ch.ivy.addon.portalkit.component.TaskExpiryActivatorSelection task="#{task}"
+    componentToUpdate="#{informationWidgetComponent} #{historyWidgetComponent}"/>
 
   <h:outputScript name="task-details.js" library="js" />
 </cc:implementation>

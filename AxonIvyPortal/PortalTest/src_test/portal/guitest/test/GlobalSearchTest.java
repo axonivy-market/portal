@@ -1,5 +1,7 @@
 package portal.guitest.test;
 
+import static portal.guitest.common.Variable.SHOW_GLOBAL_SEARCH;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -26,11 +28,10 @@ public class GlobalSearchTest extends BaseTest{
   
   @Test
   public void testHideGlobalSearch() {
-    updatePortalSetting("SHOW_GLOBAL_SEARCH", "false");
+    updatePortalSetting(SHOW_GLOBAL_SEARCH.getKey(), "false");
     redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     homePage = new HomePage();
     globalSearch = homePage.getGlobalSearch();
     Assert.assertFalse(globalSearch.isPresent());
-    updatePortalSetting("SHOW_GLOBAL_SEARCH", "true");
   }
 }

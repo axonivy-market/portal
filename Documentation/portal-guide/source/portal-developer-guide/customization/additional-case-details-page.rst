@@ -43,7 +43,7 @@ Customization
 
    |customization-additional-case-details-page-iframe|
 
-   In your custom start process, create a custom string field name for case with name : ``embedInFrame``, value ``true``
+   In your custom start process, create a custom string field name for case with name: ``embedInFrame``, value ``true``
 
    |start-case-details-page-iframe|
 
