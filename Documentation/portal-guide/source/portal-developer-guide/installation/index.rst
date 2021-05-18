@@ -227,6 +227,7 @@ Changes in 9.2
 
 - Portal supports multilingual user favorites
 
+- Portal supports logos in SVG format.
 
 Changes in 9.1
 --------------
