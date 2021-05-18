@@ -102,7 +102,7 @@
                     </div>
                   </div>
 
-                  <div class="ui-g-12 u-padding-0">
+                  <h:panelGroup class="ui-g-12 u-padding-0" rendered="#{data.isDisplayProcessOwner or !data.data.isAdhocProcess}">
                     <div class="ui-g-1 ui-lg-1 ui-md-hidden ui-sm-hidden" />
 
                     <!-- PROCESS OWNER -->
@@ -131,7 +131,7 @@
                     </h:panelGroup>
 
                     <!-- PROCESS ICON -->
-                    <h:panelGroup id="process-icon-container" styleClass="ui-g-5 ui-lg-5 ui-md-6 ui-sm-12 u-no-padding-left">
+                    <h:panelGroup id="process-icon-container" styleClass="ui-g-5 ui-lg-5 ui-md-6 ui-sm-12 u-no-padding-left" rendered="#{!data.data.isAdhocProcess}">
                       <div class="ui-g-12 u-no-padding-bottom">
                         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/icon')}"
                           styleClass="express-title-header" />
@@ -140,7 +140,7 @@
                         <ic:ch.ivy.addon.portalkit.component.IconSelection value="#{data.data.processIcon}" />
                       </div>
                     </h:panelGroup>
-                  </div>
+                  </h:panelGroup>
                 </div>
               </div>
             </div>

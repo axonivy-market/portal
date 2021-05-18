@@ -84,7 +84,7 @@ public class HomepageUtils {
   }
 
   private static String findHomepageSetting() {
-    return new GlobalSettingService().findGlobalSettingValue(GlobalVariable.DEFAULT_HOMEPAGE.toString());
+    return new GlobalSettingService().findGlobalSettingValue(GlobalVariable.DEFAULT_HOMEPAGE);
   }
   
   public static Map<String, String> getHomepageOptionsForAdminSettings() {

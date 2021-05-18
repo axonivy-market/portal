@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
@@ -105,43 +104,6 @@ public class IvyCacheService {
       return entry.getValue();
     }
     return null; 
-  }
-  
-  /**
-   * Get all global settings in application cache
-   * @return global settings in cache
-   */
-  public List<IDataCacheEntry> getAllGlobalSettingsFromCache() {
-    IDataCacheGroup group = applicationCache().getGroup(IvyCacheIdentifier.GLOBAL_SETTING_CACHE_GROUP_NAME);
-    if (group != null && CollectionUtils.isNotEmpty(group.getEntries())){
-      return group.getEntries();
-    }
-    return null;
-  }
-  
-  /**
-   * Get a global setting from application cache with attributeName
-   * @param attributeName
-   * @return value of global setting
-   */
-  public Object getGlobalSettingFromCache(String attributeName) {
-    return getApplicationCache(IvyCacheIdentifier.GLOBAL_SETTING_CACHE_GROUP_NAME, attributeName);
-  }
-
-  /**
-   * Add or update a setting to application cache by name of setting
-   * @param name
-   * @param value
-   */
-  public void cacheGlobalSetting(String name, Object value) {
-    setApplicationCache(IvyCacheIdentifier.GLOBAL_SETTING_CACHE_GROUP_NAME, name, value);
-  }
-
-  /**
-   * Invalidate cache of global settings
-   */
-  public void invalidateGlobalSettingCache() {
-    invalidateApplicationCacheByGroupName(IvyCacheIdentifier.GLOBAL_SETTING_CACHE_GROUP_NAME);
   }
 
   public void invalidateApplicationCacheByGroupName(String groupName) {

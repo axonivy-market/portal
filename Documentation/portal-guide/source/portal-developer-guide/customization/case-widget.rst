@@ -102,7 +102,7 @@ function of these columns work:
 -  Use Axon Ivy Override to override the ``InitializeCaseDataModel``
    callable and initialize data model by your customized one.
 
--  In your customized portal cases HTMLDialog, the customized data model
+-  In your customized Portal cases HTMLDialog, the customized data model
    should be passed as a parameter to components (refer to
    ``PortalCases.xhtml``).
 
@@ -137,7 +137,7 @@ Case filter
 -  Use Axon Ivy Override to override the ``InitializeCaseDataModel``
    callable and initialize data model by your customized one.
 
--  In your customized portal cases HTMLDialog, the customized data model
+-  In your customized Portal cases HTMLDialog, the customized data model
    and filter container should be passed as parameters to components
    (refer to ``PortalCases.xhtml``).
 

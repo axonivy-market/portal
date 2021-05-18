@@ -10,9 +10,7 @@ import java.util.stream.Stream;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.enums.PortalPermissionGroup;
-import ch.ivy.addon.portalkit.loader.PortalSettingLoader;
 import ch.ivy.addon.portalkit.security.PortalSecurity;
-import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.eventstart.AbstractProcessStartEventBean;
 import ch.ivyteam.ivy.process.eventstart.IProcessStartEventBeanRuntime;
@@ -34,20 +32,11 @@ public class PortalPermissionInitBean extends AbstractProcessStartEventBean {
     super.initialize(eventRuntime, configuration);
     getEventBeanRuntime().setPollTimeInterval(0);
     initPermissions();
-
-    if (SecurityServiceUtils.isDesigner()) {
-      initPortalSettings();
-    }
   }
 
   private void initPermissions() {
     recreateAndGrantPermissions();
     PortalSecurity.INSTANCE.assignPermissionsToDefaultUsers();
-  }
-
-  private void initPortalSettings() {
-    PortalSettingLoader loader = new PortalSettingLoader();
-    loader.loadPortalSettings();
   }
 
   private void recreateAndGrantPermissions() {
@@ -92,6 +81,7 @@ public class PortalPermissionInitBean extends AbstractProcessStartEventBean {
         IPermission.TASK_WRITE_EXPIRY_TIMESTAMP, IPermission.TASK_WRITE_ORIGINAL_PRIORITY,
         IPermission.TASK_WRITE_DESCRIPTION, IPermission.TASK_WRITE_NAME, IPermission.TASK_READ_OWN_CASE_TASKS,
         IPermission.TASK_DESTROY, IPermission.TASK_WRITE_DELAY_TIMESTAMP,
+        IPermission.TASK_WRITE_EXPIRY_ACTIVATOR,
         createPermission(PortalPermission.TASK_RESET_READY_FOR_JOIN)));
     return result;
   }

@@ -1,6 +1,7 @@
 package portal.guitest.test;
 
 import static org.junit.Assert.assertTrue;
+import static portal.guitest.common.Variable.ENABLE_CASE_OWNER;
 
 import org.junit.After;
 import org.junit.Before;
@@ -25,12 +26,12 @@ public class CaseOwnerTest extends BaseTest {
   @Before
   public void setup() {
     super.setup();
-    updatePortalSetting("ENABLE_CASE_OWNER", "true");
+    updatePortalSetting(ENABLE_CASE_OWNER.getKey(), "true");
   }
   
   @After
   public void destroy() {
-    updatePortalSetting("ENABLE_CASE_OWNER", "false");
+    updatePortalSetting(ENABLE_CASE_OWNER.getKey(), "false");
   }
   
   @Test

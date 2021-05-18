@@ -3,6 +3,7 @@ package portal.guitest.test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static portal.guitest.common.Variable.DISABLE_TASK_COUNT;
 
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Assert;
@@ -24,7 +25,7 @@ import portal.guitest.page.UserProfilePage;
 
 public class TaskWidgetTest extends BaseTest {
 
-  private static final String DISABLE_TASK_COUNT_SETTING = "DISABLE_TASK_COUNT";
+  private static final String DISABLE_TASK_COUNT_SETTING = DISABLE_TASK_COUNT.getKey();
   private static final String GRANT_DELEGATE_OWN_TASK_PERMISSION_PROCESS_URL =
       "portalKitTestHelper/14DE09882B540AD5/grantOnlyDelegateOwnTasksPermission.ivp";
   private static final String DENY_DELEGATE_OWN_TASK_PERMISSION_PROCESS_URL =

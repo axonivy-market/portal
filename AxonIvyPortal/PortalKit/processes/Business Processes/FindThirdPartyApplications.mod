@@ -16,7 +16,7 @@ Fr0 @PushWFArc f4 '' #zField
 Fr0 @PushWFArc f2 '' #zField
 >Proto Fr0 Fr0 FindApplicationsByUser #zField
 Fr0 f0 inParamDecl '<> param;' #txt
-Fr0 f0 outParamDecl '<List<ch.ivy.addon.portalkit.persistence.domain.Application> applications> result;' #txt
+Fr0 f0 outParamDecl '<List<ch.ivy.addon.portalkit.configuration.Application> applications> result;' #txt
 Fr0 f0 outParamTable 'result.applications=in.applications;
 ' #txt
 Fr0 f0 callSignature findThirdPartyApplications() #txt
@@ -28,15 +28,13 @@ Fr0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Fr0 f0 171 51 26 26 14 0 #rect
-Fr0 f0 @|StartSubIcon #fIcon
 Fr0 f1 171 243 26 26 14 0 #rect
-Fr0 f1 @|EndSubIcon #fIcon
 Fr0 f3 actionTable 'out=in;
 ' #txt
 Fr0 f3 actionCode 'import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 
-RegisteredApplicationService service = new RegisteredApplicationService();
-in.applications = service.findAllThirdPartyApplication();' #txt
+RegisteredApplicationService service = RegisteredApplicationService.getInstance();
+in.applications = service.getPublicConfig();' #txt
 Fr0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -47,7 +45,6 @@ Fr0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Fr0 f3 166 116 36 24 20 -2 #rect
-Fr0 f3 @|StepIcon #fIcon
 Fr0 f4 expr out #txt
 Fr0 f4 184 77 184 116 #arcP
 Fr0 f2 expr out #txt

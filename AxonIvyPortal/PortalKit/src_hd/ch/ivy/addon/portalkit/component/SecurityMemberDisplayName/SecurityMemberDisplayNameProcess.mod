@@ -25,6 +25,17 @@ Ss0 @PushWFArc f2 '' #zField
 Ss0 @PushWFArc f16 '' #zField
 Ss0 @PushWFArc f5 '' #zField
 Ss0 @PushWFArc f10 '' #zField
+Ss0 @UdMethod f17 '' #zField
+Ss0 @UdProcessEnd f18 '' #zField
+Ss0 @Alternative f20 '' #zField
+Ss0 @UdProcessEnd f22 '' #zField
+Ss0 @PushWFArc f23 '' #zField
+Ss0 @GridStep f24 '' #zField
+Ss0 @PushWFArc f25 '' #zField
+Ss0 @PushWFArc f19 '' #zField
+Ss0 @GridStep f26 '' #zField
+Ss0 @PushWFArc f27 '' #zField
+Ss0 @PushWFArc f21 '' #zField
 >Proto Ss0 Ss0 SecurityMemberDisplayNameProcess #zField
 Ss0 f13 processCall 'Ivy Data Processes/SecurityService:findUsers(String,Integer,Integer,java.util.List<String>,java.util.List<String>)' #txt
 Ss0 f13 requestActionDecl '<String query,Integer startIndex,Integer count,java.util.List<String> fromRoles,java.util.List<String> excludedUsernames> param;' #txt
@@ -51,7 +62,7 @@ import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 
 GlobalSettingService service = new GlobalSettingService();
-String showAllUserConfig = service.findGlobalSettingValue(GlobalVariable.DISPLAY_ALL_USERS_OF_TASK_ACTIVATOR.name());
+String showAllUserConfig = service.findGlobalSettingValue(GlobalVariable.DISPLAY_USERS_OF_ROLE.name());
 in.isShowAllUser = BooleanUtils.toBoolean(showAllUserConfig);' #txt
 Ss0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -149,6 +160,60 @@ Ss0 f2 336 96 397 96 #arcP
 Ss0 f16 432 224 496 224 #arcP
 Ss0 f5 608 224 667 224 #arcP
 Ss0 f10 432 352 499 352 #arcP
+Ss0 f17 guid 178FE0B1B5C9810F #txt
+Ss0 f17 method loadUsersForTooltip(ch.ivyteam.ivy.security.ISecurityMember) #txt
+Ss0 f17 inParameterDecl '<ch.ivyteam.ivy.security.ISecurityMember securityMember> param;' #txt
+Ss0 f17 inParameterMapAction 'out.securityMember=param.securityMember;
+' #txt
+Ss0 f17 outParameterDecl '<> result;' #txt
+Ss0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>loadUsersForTooltip(ISecurityMember)</name>
+    </language>
+</elementInfo>
+' #txt
+Ss0 f17 115 467 26 26 -100 20 #rect
+Ss0 f18 627 467 26 26 0 12 #rect
+Ss0 f20 368 464 32 32 0 16 #rect
+Ss0 f22 499 563 26 26 0 12 #rect
+Ss0 f23 expr in #txt
+Ss0 f23 384 496 499 576 #arcP
+Ss0 f23 1 384 576 #addKink
+Ss0 f23 0 0.8342814809298646 0 0 #arcLabel
+Ss0 f24 actionTable 'out=in;
+' #txt
+Ss0 f24 actionCode 'import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
+in.usersInTooltips = SecurityMemberUtils.buildTooltipFromUsers(in.roleName);' #txt
+Ss0 f24 security system #txt
+Ss0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Load 10 users for tooltip</name>
+    </language>
+</elementInfo>
+' #txt
+Ss0 f24 440 458 144 44 -66 -8 #rect
+Ss0 f25 expr in #txt
+Ss0 f25 outCond 'in.isShowAllUser && in.isRenderUserOfRole' #txt
+Ss0 f25 400 480 440 480 #arcP
+Ss0 f19 584 480 627 480 #arcP
+Ss0 f26 actionTable 'out=in;
+' #txt
+Ss0 f26 actionCode 'in.isRenderUserOfRole = !in.securityMember.isUser();
+in.roleName = in.securityMember.getName();
+' #txt
+Ss0 f26 security system #txt
+Ss0 f26 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Check SecurityMember</name>
+    </language>
+</elementInfo>
+' #txt
+Ss0 f26 184 458 144 44 -63 -8 #rect
+Ss0 f27 141 480 184 480 #arcP
+Ss0 f21 328 480 368 480 #arcP
 >Proto Ss0 .type ch.ivy.addon.portalkit.component.SecurityMemberDisplayName.SecurityMemberDisplayNameData #txt
 >Proto Ss0 .processKind HTML_DIALOG #txt
 >Proto Ss0 -8 -8 16 16 16 26 #rect
@@ -166,3 +231,13 @@ Ss0 f8 mainOut f16 tail #connect
 Ss0 f16 head f15 mainIn #connect
 Ss0 f15 mainOut f5 tail #connect
 Ss0 f5 head f4 mainIn #connect
+Ss0 f23 head f22 mainIn #connect
+Ss0 f20 out f25 tail #connect
+Ss0 f25 head f24 mainIn #connect
+Ss0 f20 out f23 tail #connect
+Ss0 f24 mainOut f19 tail #connect
+Ss0 f19 head f18 mainIn #connect
+Ss0 f17 mainOut f27 tail #connect
+Ss0 f27 head f26 mainIn #connect
+Ss0 f26 mainOut f21 tail #connect
+Ss0 f21 head f20 in #connect

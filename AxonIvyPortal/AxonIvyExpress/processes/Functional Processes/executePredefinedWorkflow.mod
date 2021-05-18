@@ -139,14 +139,12 @@ Bk5 @PushTrueWFInG-01 g0 '' #zField
 Bk5 @PushTrueWFOutG-01 g1 '' #zField
 Bk5 @PushTrueWFInG-01 g2 '' #zField
 Bk5 @PushWFArc f10 '' #zField
-Bk5 @PushWFArc f29 '' #zField
-Bk5 @GridStep f5 '' #zField
 Bk5 @GridStep f8 '' #zField
 Bk5 @GridStep f11 '' #zField
 Bk5 @PushWFArc f1 '' #zField
-Bk5 @PushWFArc f3 '' #zField
 Bk5 @PushWFArc f0 '' #zField
 Bk5 @PushWFArc f2 '' #zField
+Bk5 @PushWFArc f4 '' #zField
 >Proto Bk5 Bk1 BpmnServiceTask #zField
 Bk6 @TextInP .type .type #zField
 Bk6 @TextInP .processKind .processKind #zField
@@ -1151,31 +1149,14 @@ Bk5 g1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Bk5 g1 627 403 26 26 -27 18 #rect
 Bk5 g2 51 307 26 26 -4 -48 #rect
 Bk5 f10 77 320 184 320 #arcP
-Bk5 f29 expr out #txt
-Bk5 f29 264 236 264 298 #arcP
-Bk5 f5 actionTable 'out=in;
-' #txt
-Bk5 f5 actionCode 'import ch.ivy.gawfs.ExpressProcessUtils;
-
-ExpressProcessUtils utils = new ch.ivy.gawfs.ExpressProcessUtils();
-in.definedTasks = utils.getDefinedTasks(in.workflowID);' #txt
-Bk5 f5 security system #txt
-Bk5 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Get defined tasks</name>
-    </language>
-</elementInfo>
-' #txt
-Bk5 f5 208 192 112 44 -48 -8 #rect
 Bk5 f8 actionTable 'out=in;
 ' #txt
-Bk5 f8 actionCode 'import ch.ivy.gawfs.enums.ProcessType;
-import ch.ivy.addon.portalkit.service.ExpressServiceRegistry;
+Bk5 f8 actionCode 'import ch.ivy.addon.portalkit.service.ExpressProcessService;
+import ch.ivy.gawfs.enums.ProcessType;
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
+import ch.ivy.gawfs.ExpressProcessUtils;
 
-
-ExpressProcess workflow = ExpressServiceRegistry.getProcessService().findById(in.workflowID) as ExpressProcess;
+ExpressProcess workflow = ExpressProcessService.getInstance().findById(in.workflowID) as ExpressProcess;
 
 in.workflowDescription = workflow.processDescription;
 in.workflowName = workflow.processName;
@@ -1184,7 +1165,9 @@ for(ProcessType type : ProcessType.values()) {
 	if (type.getValue() == workflow.processType) {
 	 	in.workflowType = type;
 	}
-}' #txt
+}
+
+in.definedTasks = ExpressProcessUtils.convertExpressTaskDefinitionToTaskDef(workflow.taskDefinitions);' #txt
 Bk5 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1194,7 +1177,7 @@ Bk5 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Bk5 f8 192 98 144 44 -68 -8 #rect
+Bk5 f8 192 138 144 44 -68 -8 #rect
 Bk5 f11 actionTable 'out=in;
 ' #txt
 Bk5 f11 actionCode 'import ch.ivy.addon.portalkit.util.PredefinedWorkflowUtils;
@@ -1222,13 +1205,13 @@ Bk5 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Bk5 f11 376 394 160 44 -70 -8 #rect
 Bk5 f1 expr out #txt
 Bk5 f1 536 416 627 416 #arcP
-Bk5 f3 expr out #txt
-Bk5 f3 264 142 264 192 #arcP
-Bk5 f0 264 45 264 98 #arcP
+Bk5 f0 264 45 264 138 #arcP
 Bk5 f2 expr out #txt
 Bk5 f2 264 342 376 416 #arcP
 Bk5 f2 1 264 416 #addKink
 Bk5 f2 1 0.2314443862725309 0 0 #arcLabel
+Bk5 f4 expr out #txt
+Bk5 f4 264 182 264 298 #arcP
 >Proto Bk1 0 0 32 24 18 0 #rect
 >Proto Bk1 @|BIcon #fIcon
 Bk6 g0 51 179 26 26 0 5 #rect
@@ -1286,7 +1269,7 @@ Bk7 f29 actionTable 'out=in;
 ' #txt
 Bk7 f29 actionCode 'import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
-String useExpressEndPage = new GlobalSettingService().findGlobalSettingValue(GlobalVariable.EXPRESS_END_PAGE.toString());
+String useExpressEndPage = new GlobalSettingService().findGlobalSettingValue(GlobalVariable.EXPRESS_END_PAGE);
 
 in.useExpressEndPage = useExpressEndPage.isEmpty()? true : Boolean.valueOf(useExpressEndPage);' #txt
 Bk7 f29 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1764,18 +1747,16 @@ Bk4 f7 head f5 in #connect
 Bk4 f6 out f10 tail #connect
 Bk4 f10 head f5 in #connect
 Bk4 0 0 1152 1280 0 #ivRect
-Bk5 f5 mainOut f29 tail #connect
-Bk5 f29 head f28 mainIn #connect
 Bk5 g2 m f10 tail #connect
 Bk5 f10 head f28 mainIn #connect
 Bk5 f11 mainOut f1 tail #connect
 Bk5 f1 head g1 m #connect
-Bk5 f8 mainOut f3 tail #connect
-Bk5 f3 head f5 mainIn #connect
 Bk5 g0 m f0 tail #connect
 Bk5 f0 head f8 mainIn #connect
 Bk5 f28 mainOut f2 tail #connect
 Bk5 f2 head f11 mainIn #connect
+Bk5 f8 mainOut f4 tail #connect
+Bk5 f4 head f28 mainIn #connect
 Bk5 0 0 896 520 0 #ivRect
 Bk6 g0 m f4 tail #connect
 Bk6 f4 head f3 mainIn #connect

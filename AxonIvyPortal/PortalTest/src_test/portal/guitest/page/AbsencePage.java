@@ -1,14 +1,17 @@
 package portal.guitest.page;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.collections4.CollectionUtils;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 
-import portal.guitest.common.WaitHelper;
+import com.jayway.awaitility.Awaitility;
+import com.jayway.awaitility.Duration;
+
+import ch.ivy.addon.portalkit.enums.DeputyRoleType;
 
 public class AbsencePage extends TemplatePage {
 
@@ -41,55 +44,100 @@ public class AbsencePage extends TemplatePage {
 		}
 	}
 
-	public String getMyDeputy() {
-		waitForElementDisplayed(By.cssSelector("input[id*='substitute-username_input']"), true);
-		return findElementByCssSelector("input[id*='substitute-username_input']").getAttribute("value");
-	}
+  public String getMyDeputy(int deputyRoleIndex) {
+    String deputiesSelector = String.format("a[id$='absences-management-form:substitute-table:%d:selected-deputies-link']", deputyRoleIndex);
+    waitForElementDisplayed(By.cssSelector(deputiesSelector), true);
+    return findElementByCssSelector(deputiesSelector).getText();
+  }
   
 	public List<String> getIAMDeputyFor() {
     List<WebElement> noteAuthorElements = findListElementsByCssSelector("tbody[id*='substitution-table_data'] > tr > td");
     return noteAuthorElements.stream().map(w -> w.getText()).collect(Collectors.toList());
   }
-  
-	@SuppressWarnings("deprecation")
-  public void setDeputy(String fullName) {
-		String usernameSelector = "input[id$='substitute-username_input']";
-		waitForElementPresent(By.cssSelector(usernameSelector), true);
-		WebElement usernameInput = findElementByCssSelector(usernameSelector);
-		//We have javascript behavior to clear input when the text is No deputy,
-		//so strange behavior when clear this input => need to find it again because DOM is changed in background
-		if(StringUtils.isEmpty(usernameInput.getAttribute("value")) || "No deputy".equals(usernameInput.getAttribute("value"))) {
-		  usernameInput.click();
-		}
-		else {
-		  usernameInput.sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
-		}
-    WaitHelper.retryAction(() -> {
-      WebElement input = findElementByCssSelector(usernameSelector);
-      input.clear();
-      clickByCssSelector(usernameSelector);
-      input.sendKeys(fullName);
+
+  public int indexOfDeputyRole(DeputyRoleType deputyRoleType) {
+    String deputyRoleTypeSelector = ".substitute-table .substition-role-type";
+    List<WebElement> elements = findListElementsByCssSelector(deputyRoleTypeSelector);
+    if (CollectionUtils.isNotEmpty(elements)) {
+      for (int index = 0; index < elements.size(); index++) {
+        WebElement element = elements.get(index);
+        String deputyRoleTypeValue = element.getAttribute("deputy-role-type");
+        if (deputyRoleTypeValue != null && deputyRoleTypeValue.equals(String.valueOf(deputyRoleType))) {
+          return index;
+        }
+      }
+    }
+    return -1;
+  }
+
+  public void setDeputy(List<String> fullNames, DeputyRoleType deputyRoleType) {
+    setDeputy(fullNames, indexOfDeputyRole(deputyRoleType), true);
+  }
+
+  public void setDeputy(List<String> fullNames, DeputyRoleType deputyRoleType, boolean saveSelectedDeputies) {
+    setDeputy(fullNames, indexOfDeputyRole(deputyRoleType), saveSelectedDeputies);
+  }
+
+  public void setDeputy(List<String> fullNames, int deputyRoleIndex) {
+    setDeputy(fullNames, deputyRoleIndex, true);
+  }
+
+  public void setDeputy(List<String> fullNames, int deputyRoleIndex, boolean saveSelectedDeputies) {
+    try {
+      clickSelectedDeputiesLink(deputyRoleIndex);
+    } catch (Exception e) {
+      clickSelectedDeputiesLink(deputyRoleIndex);
+    }
+    for (String fullName : fullNames) {
+      selectDeputy(fullName);
+    }
+    if (saveSelectedDeputies) {
+      click(By.id("deputy-selection-form:save-deputy-button"));
+      waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
+    }
+  }
+
+  private void clickSelectedDeputiesLink(int deputyRoleIndex) {
+    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
+    String deputiesSelector = String.format("a[id$='absences-management-form:substitute-table:%d:selected-deputies-link']", deputyRoleIndex);
+    waitForElementDisplayed(By.cssSelector(deputiesSelector), true);
+    Awaitility.await().atMost(new Duration(10, TimeUnit.SECONDS)).until(() -> {
+      try {
+        WebElement deputiesLink = findElementByCssSelector(deputiesSelector);
+        deputiesLink.click();
+      } catch (Exception e) {
+        // to avoid choose-deputy-dialog displays before deputiesLink is clicked
+      }
+      return findElementById("choose-deputy-dialog").isDisplayed();
     });
+  }
 
-		waitAjaxIndicatorDisappear();
-		String itemSelector = "tr[data-item-label*='" + fullName + "']";
-		waitForElementDisplayed(By.cssSelector(itemSelector), true);
-		clickByCssSelector(itemSelector);
-		waitAjaxIndicatorDisappear();
-	}
+  private void selectDeputy(String responsible) {
+    type(By.id("deputy-selection-form:user-selection-component:user-selection_input"), responsible);
+    waitForElementDisplayed(By.id("deputy-selection-form:user-selection-component:user-selection_panel"), true);
+    click(By.xpath("//*[@id='deputy-selection-form:user-selection-component:user-selection_panel']/table/tbody/tr"));
+    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
+    click(By.id("deputy-selection-form:add-deputy-button"));
+    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
+  }
 
-	@SuppressWarnings("deprecation")
+  public String getChooseDeputyDialogError() {
+    String errorMessageDiv = "div[id$='deputy-selection-form:error-message']";
+    waitForElementDisplayed(By.cssSelector(errorMessageDiv), true);
+    return findChildElementByCssSelector(findElementByCssSelector(errorMessageDiv), ".ui-messages-error-detail").getText();
+  }
+
   public void setSubstitutedByAdmin(String substitutedUser) {
 		String selectedUserInput = "input[id$=':user-absence-selection-component:user-absence_input']";
 		waitForElementDisplayed(By.cssSelector(selectedUserInput), true);
 		WebElement substituted = findElementByCssSelector(selectedUserInput);
 		substituted.clear();
 		substituted.sendKeys(substitutedUser);
-		waitAjaxIndicatorDisappear();
+		waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
 		String itemSelector = "tr[data-item-label*='" + substitutedUser + "']";
 		waitForElementDisplayed(By.cssSelector(itemSelector), true);
 		clickByCssSelector(itemSelector);
-		waitAjaxIndicatorDisappear();
+		waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
 	}
 	
 	public String getSubstitutedByAdmin(int rowIndex) {
