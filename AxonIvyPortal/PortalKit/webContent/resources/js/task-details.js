@@ -72,12 +72,11 @@ function saveTaskDetailsGrid() {
   taskDetailsGrid.engine.nodes.forEach((node) => {
     let widgetType = getTaskDetailsWidgetType(node.el.getAttribute("widget-type"));
     serializedData.push({
-      type: widgetType,
       id: node.id,
-      axisX: node.x,
-      axisY: node.y,
-      width: node.width,
-      height: node.height
+      x: node.x,
+      y: node.y,
+      w: node.width,
+      h: node.height
     });
     if (widgetType === "document" || widgetType === "history") {
       responsiveATableInPanel(node.el);
@@ -88,4 +87,18 @@ function saveTaskDetailsGrid() {
     name: "nodes",
     value: JSON.stringify(serializedData, null, "")
   }]);
+}
+
+function disableAllIFrameWhenEditLayout() {
+  var iframes = $("iframe");
+  if (iframes.length > 0) {
+    iframes.css('pointer-events', 'none');
+  }
+}
+
+function enableAllIFrameWhenEditLayout() {
+  var iframes = $("iframe");
+  if (iframes.length > 0) {
+    iframes.css('pointer-events', 'auto');
+  }
 }

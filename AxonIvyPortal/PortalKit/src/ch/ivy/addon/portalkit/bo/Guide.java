@@ -32,7 +32,8 @@ public class Guide {
   }
   
   public void readShowGuideProperty() {
-    boolean showGuideSetting = Boolean.parseBoolean(globalSettingService.findGlobalSettingValue(GlobalVariable.SHOW_USER_GUIDE.toString()));
+    boolean showGuideSetting =
+        Boolean.parseBoolean(globalSettingService.findGlobalSettingValue(GlobalVariable.SHOW_USER_GUIDE));
     if (!showGuideSetting) {
       isGuideShown = false;
       return;

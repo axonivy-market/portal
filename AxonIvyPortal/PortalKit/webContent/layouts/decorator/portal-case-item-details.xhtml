@@ -32,7 +32,7 @@
       update="case-detail-body case-details-actions" oncomplete="loadCaseDetailsGrid()" />
     <p:commandButton id="reset-details-settings-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
       rendered="#{caseDetailsBean.configuration.changed and not caseDetailsBean.readOnlyMode}" onclick="PF('reset-to-default-case-dialog').show()"
-      icon="#{visibilityBean.generateButtonIcon('si si-button-refresh-arrows')}" styleClass="reset-details-settings-button" immediate="true" />
+      icon="#{visibilityBean.generateButtonIcon('si si-button-refresh-arrows')}" styleClass="reset-details-settings-button" immediate="true" ajax="false" type="button" />
   </h:panelGroup>
   
   <h:panelGroup layout="block" styleClass="case-detail-body portal-card-container ui-g-12" id="case-detail-body">
@@ -168,7 +168,7 @@
     <ui:define name="dialogFooter">
       <h:form id="reset-to-default-case-form">
         <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-          onclick="PF('reset-to-default-case-dialog').hide();" styleClass="u-mar-right-15" />
+          onclick="PF('reset-to-default-case-dialog').hide();" styleClass="u-mar-right-15" type="button" ajax="false" />
         <p:commandButton id="confirm-destruction" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
           icon="#{visibilityBean.generateButtonIcon('si si-button-refresh-arrows')}"
           actionListener="#{caseDetailsBean.reset()}" update="case-item-details"

@@ -52,7 +52,7 @@ public class UserMenuBean implements Serializable {
   public void init() {
     globalSettingService = new GlobalSettingService();
     if (!Ivy.session().isSessionUserUnknown()) {
-      String format = globalSettingService.findGlobalSettingValue(GlobalVariable.LOGGED_IN_USER_FORMAT.toString());
+      String format = globalSettingService.findGlobalSettingValue(GlobalVariable.LOGGED_IN_USER_FORMAT);
       GlobalVariable.Option option = GlobalVariable.Option.valueOf(format);
       String fullName = Ivy.session().getSessionUser().getFullName();
       String userName = Ivy.session().getSessionUserName();
@@ -72,27 +72,29 @@ public class UserMenuBean implements Serializable {
           break;
       }
     }
-    isShowGlobalSearch = Boolean.parseBoolean(globalSettingService.findGlobalSettingValue(GlobalVariable.SHOW_GLOBAL_SEARCH.toString()));
+    isShowGlobalSearch =
+        Boolean.parseBoolean(globalSettingService.findGlobalSettingValue(GlobalVariable.SHOW_GLOBAL_SEARCH));
   }
 
   public boolean isShowCaseDurationTime() {
-    return Boolean.parseBoolean(globalSettingService.findGlobalSettingValue(GlobalVariable.SHOW_CASE_DURATION_TIME.toString()));
+    return Boolean.parseBoolean(globalSettingService.findGlobalSettingValue(GlobalVariable.SHOW_CASE_DURATION_TIME));
   }
 
   public boolean isShowServerInformation() {
-    return Boolean.parseBoolean(globalSettingService.findGlobalSettingValue(GlobalVariable.SHOW_ENVIRONMENT_INFO.toString()));
+    return Boolean.parseBoolean(globalSettingService.findGlobalSettingValue(GlobalVariable.SHOW_ENVIRONMENT_INFO));
   }
 
   public boolean isHiddenLogout() {
-    return Boolean.parseBoolean(globalSettingService.findGlobalSettingValue(GlobalVariable.HIDE_LOGOUT_BUTTON.toString()));
+    return Boolean.parseBoolean(globalSettingService.findGlobalSettingValue(GlobalVariable.HIDE_LOGOUT_BUTTON));
   }
 
   public boolean isHiddenChangePassword() {
-    return Boolean.parseBoolean(globalSettingService.findGlobalSettingValue(GlobalVariable.HIDE_CHANGE_PASSWORD_BUTTON.toString()));
+    return Boolean
+        .parseBoolean(globalSettingService.findGlobalSettingValue(GlobalVariable.HIDE_CHANGE_PASSWORD_BUTTON));
   }
 
   public boolean isHiddenStatisticWidget() {
-    return BooleanUtils.toBoolean(globalSettingService.findGlobalSettingValue(GlobalVariable.HIDE_STATISTIC_WIDGET.toString()));
+    return BooleanUtils.toBoolean(globalSettingService.findGlobalSettingValue(GlobalVariable.HIDE_STATISTIC_WIDGET));
   }
   
   public boolean getIsShowGlobalSearch() {
@@ -100,9 +102,12 @@ public class UserMenuBean implements Serializable {
   }
 
   public long getClientSideTimeout() {
-    String clientSideTimeoutInMinute = globalSettingService.findGlobalSettingValue(GlobalVariable.CLIENT_SIDE_TIMEOUT.toString());
+    String clientSideTimeoutInMinute = globalSettingService.findGlobalSettingValue(GlobalVariable.CLIENT_SIDE_TIMEOUT);
     if (StringUtils.isNotBlank(clientSideTimeoutInMinute)) {
-      return Integer.valueOf(clientSideTimeoutInMinute) * DateUtils.MILLIS_PER_MINUTE;
+      Long timeoutInMinute = Long.valueOf(clientSideTimeoutInMinute);
+      if (timeoutInMinute > 0) {
+        return timeoutInMinute * DateUtils.MILLIS_PER_MINUTE;
+      }
     }
     return getDefaultClientSideTimeout();
   }
@@ -190,7 +195,7 @@ public class UserMenuBean implements Serializable {
   }
 
   public String getAnnouncement() {
-    return AnnouncementService.getInstance().getAnnouncement();
+    return AnnouncementService.getInstance().getAnnouncementMessage();
   }
 
   public boolean isAnnouncementActivated() {

@@ -21,8 +21,7 @@ import portal.guitest.page.StatisticWidgetPage;
 
 public class DefaultChartTest extends BaseTest {
 
-  private static final String DEFAULT_NAME_1 = "My default chart 1";
-  private static final String DEFAULT_NAME_2 = "My default chart 2";
+  private static final String DEFAULT_CHART = "Tasks by Priority";
   private static final String RESTORE_DEFAULT = "Restore default";
   
   @Override
@@ -51,8 +50,7 @@ public class DefaultChartTest extends BaseTest {
     Set<String> chartNames = statisticWidgetPage.getAllChartNames();
     statisticWidgetPage.findListElementsByCssSelector("div[id$=':chart-name-container'] .chart-name").stream().map(e -> e.getText()).collect(Collectors.toSet());
     System.out.println("All default chart names " + chartNames);
-    assertTrue(chartNames.contains(DEFAULT_NAME_1));
-    assertTrue(chartNames.contains(DEFAULT_NAME_2));
+    assertTrue(chartNames.contains(DEFAULT_CHART));
     assertEquals(RESTORE_DEFAULT, statisticWidgetPage.getRestoreDefaultButtonName());
   }
   
@@ -72,8 +70,7 @@ public class DefaultChartTest extends BaseTest {
     } catch (Exception ex) {
     }
     
-    assertEquals(DEFAULT_NAME_1, statisticWidgetPage.getChartName(0));
-    assertEquals(DEFAULT_NAME_2, statisticWidgetPage.getChartName(1));
+    assertEquals(DEFAULT_CHART, statisticWidgetPage.getChartName(0));
     assertEquals(null, taskByExpiryChartName3);
   }
   

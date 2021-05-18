@@ -29,4 +29,9 @@ public class CaseFilterService extends AbstractFilterService<CaseFilterData> {
       }
     }
   }
+
+  @Override
+  public String getConfigKey() {
+    return "Portal.Cases.CaseFilters";
+  }
 }

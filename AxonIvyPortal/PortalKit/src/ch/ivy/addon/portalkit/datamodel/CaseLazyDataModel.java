@@ -1,5 +1,8 @@
 package ch.ivy.addon.portalkit.datamodel;
 
+import static ch.ivy.addon.portalkit.enums.FilterType.ALL_ADMINS;
+import static ch.ivy.addon.portalkit.enums.FilterType.ALL_USERS;
+
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -36,7 +39,6 @@ import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.SortFieldUtil;
 import ch.ivy.addon.portalkit.util.UserUtils;
-import ch.ivyteam.ivy.business.data.store.BusinessDataInfo;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.security.IUser;
@@ -142,7 +144,7 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
    * @hidden
    */
   public void updateDisableCaseCount() {
-    disableCaseCount = new GlobalSettingService().findGlobalSettingValueAsBoolean(GlobalVariable.DISABLE_CASE_COUNT.toString());
+    disableCaseCount = new GlobalSettingService().findGlobalSettingValueAsBoolean(GlobalVariable.DISABLE_CASE_COUNT);
   }
 
   /**
@@ -335,9 +337,12 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
     filterData.setFilterGroupId(filterGroupId);
     filterData.setFilterName(filterName);
     filterData.setType(filterType);
+    boolean isPublic = ALL_USERS == filterData.getType() || ALL_ADMINS == filterData.getType();
+    filterData.setIsPublic(isPublic);
     CaseFilterService filterService = new CaseFilterService();
-    BusinessDataInfo<CaseFilterData> info = filterService.save(filterData);
-    filterData = filterService.findById(info.getId());
+    filterService.save(filterData);
+    filterData = isPublic ? filterService.findPublicFilter(filterData.getId(), filterGroupId)
+        : filterService.findPrivateFilter(filterData.getId(), filterGroupId);
     UserUtils.setSessionSelectedCaseFilterSetAttribute(filterData);
     UserUtils.setSessionSelectedDefaultCaseFilterSetAttribute(isSelectedDefaultFilter);
     return filterData;
@@ -500,7 +505,7 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
     String defaultSortField = UserSettingService.newInstance().getDefaultSortFieldOfCaseList();
     if (StringUtils.isBlank(defaultSortField) || UserSettingService.DEFAULT.equals(defaultSortField)) {
       GlobalSettingService globalSettingService = new GlobalSettingService();
-      defaultSortField = globalSettingService.findGlobalSettingValue(GlobalVariable.DEFAULT_SORT_FIELD_OF_CASE_LIST.name());
+      defaultSortField = globalSettingService.findGlobalSettingValue(GlobalVariable.DEFAULT_SORT_FIELD_OF_CASE_LIST);
     }
     return defaultSortField;
    }
@@ -509,7 +514,8 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
     String defaultSortDirection = UserSettingService.newInstance().getDefaultSortDirectionOfCaseList();
     if (StringUtils.isBlank(defaultSortDirection) || UserSettingService.DEFAULT.equals(defaultSortDirection)) {
       GlobalSettingService globalSettingService = new GlobalSettingService();
-      defaultSortDirection = globalSettingService.findGlobalSettingValue(GlobalVariable.DEFAULT_SORT_DIRECTION_OF_CASE_LIST.name());
+      defaultSortDirection =
+          globalSettingService.findGlobalSettingValue(GlobalVariable.DEFAULT_SORT_DIRECTION_OF_CASE_LIST);
     }
     
     return !SortFieldUtil.isAscendingSort(defaultSortDirection);
@@ -562,12 +568,11 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
   }
 
   protected void initSelectedColumns() {
-    CaseColumnsConfigurationService service = new CaseColumnsConfigurationService();
+    CaseColumnsConfigurationService service = CaseColumnsConfigurationService.getInstance();
     Long userId = Optional.ofNullable(Ivy.session().getSessionUser()).map(IUser::getId).orElse(null);
-    Long applicationId = Ivy.request().getApplication().getId();
     Long processModelId = Ivy.request().getProcessModel().getId();
     if (userId != null) {
-      CaseColumnsConfiguration configData = service.getConfiguration(applicationId, userId, processModelId);
+      CaseColumnsConfiguration configData = service.getConfiguration(processModelId);
       if (configData != null) {
         selectedColumns = configData.getSelectedColumns();
       }
@@ -590,11 +595,9 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
       }
     }
     setAutoHideColumns(isDisableSelectionCheckboxes);
-    CaseColumnsConfigurationService service = new CaseColumnsConfigurationService();
-    Long applicationId = Ivy.request().getApplication().getId();
+    CaseColumnsConfigurationService service = CaseColumnsConfigurationService.getInstance();
     Long processModelId = Ivy.request().getProcessModel().getId();
-    CaseColumnsConfiguration caseColumnsConfiguration = service.getConfiguration(applicationId,
-        Ivy.session().getSessionUser().getId(), processModelId);
+    CaseColumnsConfiguration caseColumnsConfiguration = service.getConfiguration(processModelId);
     if (caseColumnsConfiguration != null) {
       updateCaseColumnsConfiguration(caseColumnsConfiguration);
     } else {
@@ -607,8 +610,6 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
   private CaseColumnsConfiguration createNewCaseColumnsConfigurationData() {
     CaseColumnsConfiguration caseColumnsConfiguration = new CaseColumnsConfiguration();
     caseColumnsConfiguration.setProcessModelId(Ivy.request().getProcessModel().getId());
-    caseColumnsConfiguration.setUserId(Ivy.session().getSessionUser().getId());
-    caseColumnsConfiguration.setApplicationId(Ivy.request().getApplication().getId());
     caseColumnsConfiguration.setSelectedColumns(new ArrayList<>());
     updateCaseColumnsConfiguration(caseColumnsConfiguration);
     return caseColumnsConfiguration;

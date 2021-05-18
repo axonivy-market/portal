@@ -7,7 +7,7 @@
   <packaging>iar</packaging>
   <properties>
     <build.plugin.version>9.2.2</build.plugin.version>
-    <ivy.engine.version>9.2.0</ivy.engine.version>
+    <ivy.engine.version>9.3.0</ivy.engine.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <powermock.version>2.0.2</powermock.version>
   </properties>
@@ -42,11 +42,7 @@
     </dependency>
   </dependencies>
   <build>
-    <sourceDirectory>${basedir}/src/</sourceDirectory>
     <testSourceDirectory>${basedir}/src_test/</testSourceDirectory>
-    <outputDirectory>${basedir}/classes</outputDirectory>
-    <testOutputDirectory>${basedir}/classes/</testOutputDirectory>
-    <directory>${basedir}/target</directory>
     <plugins>
       <plugin>
         <groupId>com.axonivy.ivy.ci</groupId>

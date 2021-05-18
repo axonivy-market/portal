@@ -1,33 +1,33 @@
 package ch.ivy.addon.portalkit.bo;
 
+import java.io.Serializable;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
-public class ExpressProcess {
+import ch.ivy.addon.portalkit.configuration.AbstractConfiguration;
 
-  private String id;
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class ExpressProcess extends AbstractConfiguration implements Serializable {
+
+  private static final long serialVersionUID = -7412792174579848169L;
   private String processName;
   private String processDescription;
   private String processType;
   private List<String> processPermissions;
-  //processOwner is processCreator
   private String processOwner;
   private boolean isUseDefaultUI;
   private String processFolder;
   private boolean readyToExecute;
   private List<String> processCoOwners;
   private String icon;
-  
   @JsonIgnore
   private boolean isAbleToEdit;
-  
-  public String getId() {
-    return id;
-  }
+  private List<ExpressTaskDefinition> taskDefinitions;
 
-  public void setId(String id) {
-    this.id = id;
+  public ExpressProcess() {
+    setIsPublic(true);
   }
 
   public String getProcessName() {
@@ -117,5 +117,12 @@ public class ExpressProcess {
   public void setIcon(String icon) {
     this.icon = icon;
   }
-  
+
+  public List<ExpressTaskDefinition> getTaskDefinitions() {
+    return taskDefinitions;
+  }
+
+  public void setTaskDefinitions(List<ExpressTaskDefinition> taskDefinitions) {
+    this.taskDefinitions = taskDefinitions;
+  }
 }

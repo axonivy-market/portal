@@ -1,13 +1,19 @@
 package ch.ivy.addon.portalkit.bo;
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import ch.ivy.addon.portalkit.dto.ExpressAttachment;
 
-public class ExpressUserEmail {
-	private String recipients;
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class ExpressUserEmail implements Serializable {
+
+  private static final long serialVersionUID = 55870461406887925L;
+  private String recipients;
 	private String responseTo;
 	private String subject;
 	private String content;
