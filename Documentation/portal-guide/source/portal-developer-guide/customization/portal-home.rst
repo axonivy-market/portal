@@ -47,8 +47,8 @@ Following these steps to have your own Portal Home:
 
 #. Create a new process start named ``DefaultApplicationHomePage.ivp`` for the new
    home page. Now you will use this process start as the entry point of
-   your portal instead of the default one. To let portal know about
-   your new portal home, you have to set default pages to your project, follow this chapter to customize standard processes:
+   your Portal instead of the default one. To let Portal know about
+   your new Portal home, you have to set default pages to your project, follow this chapter to customize standard processes:
    `Standard Processes <https://developer.axonivy.com/doc/9.1/engine-guide/administration/standard-processes.html>`_      
 
 

@@ -9,86 +9,15 @@ This section covers Portal role, permissions and some settings.
 
 .. _settings-admin-settings:
 
-Setup Portal settings by configuration file in Designer
-=======================================================
+Configure Portal settings
+=========================
 
 To manually configure Portal settings, refer to :ref:`update-portal-settings`.
 
-In development, it is a quite tedious task to configure Portal settings after restarting Designer. Therefore,
-Portal supports modification of Portal settings in Designer by configuration file, it could survive after restarting Designer.
+Portal settings are stored as `Variables <https://developer.axonivy.com/doc/9.2/designer-guide/configuration/variables.html>`_.
 
-Process developer can set up Portal settings of Portal in file ``portal_settings_config.properties`` which put in ``PortalKit``.
-
-   .. code-block:: Python
-
-      # This file is for developer configure values for Portal settings.
-      # As developer, you only need to remove comment mark of corresponding settings and modify their values.
-      # Portal will apply setting values once you start designer.
-
-      # System tasks visibility
-      #HIDE_SYSTEM_TASKS_FROM_HISTORY = true
-      #HIDE_SYSTEM_TASKS_FROM_HISTORY_ADMINISTRATOR = false
-
-      #System notes visibility
-      #HIDE_SYSTEM_NOTES_FROM_HISTORY = true
-      #HIDE_SYSTEM_NOTES_FROM_HISTORY_ADMINISTRATOR = false
-
-      # Portal chat settings
-      #ENABLE_GROUP_CHAT = false
-      #ENABLE_PRIVATE_CHAT = false
-      #CHAT_RESPONSE_TIMEOUT =
-      #CHAT_MAX_CONNECTION = 3
-
-      # Documents security settings
-      #ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT = false
-      #UPLOAD_DOCUMENT_WHITELIST_EXTENSION = doc, docx, xls, xlsx, xlsm, csv, pdf, ppt, pptx, txt, zip, jpg, jpeg, bmp, png
-
-      # Time settings
-      #HIDE_TIME = false
-      #CLIENT_SIDE_TIMEOUT =
-      #REFRESH_TASK_LIST_INTERVAL = 10000
-
-      # Year settings
-      #HIDE_YEAR = false
-
-      # Task/case counting functions
-      #DISABLE_CASE_COUNT = false
-      #DISABLE_TASK_COUNT = false
-
-      # IFrame setting
-      #EMBED_IN_FRAME = true
-      
-      # Logged in user format, available values: USERNAME, DISPLAY_NAME, DISPLAY_NAME_USERNAME, USERNAME_DISPLAYNAME
-      #LOGGED_IN_USER_FORMAT = DISPLAY_NAME
-
-      # Task/case detail document component setting
-      #HIDE_TASK_DOCUMENT = false
-      #HIDE_CASE_DOCUMENT = false
-      
-      # Available standard values: dashboard, process, task, case, statistics.
-      # If you want your customized SubMenuIitem to be the default homepage, fill its name which is set in the overridden LoadSubMenuItems process.
-      #DEFAULT_HOMEPAGE =
-
-      # Others
-      #SHOW_ENVIRONMENT_INFO = false
-      #ENABLE_CASE_OWNER = false
-      #EXPRESS_END_PAGE = true
-      #HIDE_CHANGE_PASSWORD_BUTTON = false
-      #HIDE_LOGOUT_BUTTON = false
-      #HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE = false
-      #HIDE_STATISTIC_WIDGET = false
-      #ENABLE_USER_FAVORITES = true
-      #DISPLAY_MESSAGE_AFTER_FINISH_TASK = true
-      #SHOW_USER_GUIDE = true
-      #SHOW_GLOBAL_SEARCH = true
-      #SHOW_BUTTON_ICON = true
-      #SHOW_TASK_DURATION_TIME = true
-      #SHOW_CASE_DURATION_TIME = true
-
-This file already contains list of settings with their default values.
-These settings will be applied once you start Portal.
-
-If you change configuration file while coding, please stop engine in designer and start engine again to apply changes.
+In development, it is a quite tedious task to configure Portal settings after restarting Designer. You could update value of Variables in
+``PortalKit/config/variables.yaml`` for the settings that you want to configure, it could survive after restarting Designer.
 
 .. _settings-language:
 
@@ -369,59 +298,59 @@ Global variables
 
 .. table:: 
 
-   +---------------------------------------------+-------------+-----------------------------+
-   | Variable                                    | Default     | Description                 |
-   |                                             | value       |                             |
-   +=============================================+=============+=============================+
-   | PortalStartTimeCleanObsoletedDataExpression | 0 0 6 \* \* | Cron expression define      |
-   |                                             | ?           | the time to clean up data   |
-   |                                             |             | of obsoleted users. E.g.:   |
-   |                                             |             | expression for at 6AM       |
-   |                                             |             | every day is                |
-   |                                             |             | ``0 0 6 * * ?`` . Refer     |
-   |                                             |             | to                          |
-   |                                             |             | `crontrigger <http://quar   |
-   |                                             |             | tz-scheduler.org/document   |
-   |                                             |             | ation/quartz-2.1.7/tutori   |
-   |                                             |             | als/tutorial-lesson-06.htm  |
-   |                                             |             | l>`__                       |
-   |                                             |             | . Restart Ivy engine        |
-   |                                             |             | after changing this         |
-   |                                             |             | variable.                   |
-   +---------------------------------------------+-------------+-----------------------------+
-   | PortalDeleteAllFinishedHiddenCases          | false       | If set to ``true``, the     |
-   |                                             |             | cron job runs daily (at     |
-   |                                             |             | 6.AM as default) will       |
-   |                                             |             | clean all finished hidden   |
-   |                                             |             | cases in engine.            |
-   |                                             |             | Otherwise, just hidden      |
-   |                                             |             | cases which were            |
-   |                                             |             | generated by Portal will    |
-   |                                             |             | be deleted.                 |
-   +---------------------------------------------+-------------+-----------------------------+
-   | PortalGroupId                               | ch.ivyteam. | Maven group id of Portal.   |
-   |                                             | ivy.project |                             |
-   |                                             | .portal     |                             |
-   +---------------------------------------------+-------------+-----------------------------+
-   | PortalHiddenTaskCaseExcluded                | true        | By default, Portal will     |
-   |                                             |             | query tasks and cases       |
-   |                                             |             | which don't have hide       |
-   |                                             |             | information. Set it to      |
-   |                                             |             | ``false``, portal will      |
-   |                                             |             | ignore this additional      |
-   |                                             |             | property.                   |
-   +---------------------------------------------+-------------+-----------------------------+
-   |PortalLoginPageDisplay                       |true         |By default, Portal will      |
-   |                                             |             |redirect to Login Page if    |
-   |                                             |             |login is required and user   |
-   |                                             |             |is unknown. Set it to false  |
-   |                                             |             |to redirect to login error   |
-   |                                             |             |page and hide Logout in      |
-   |                                             |             |User menu when you are using |
-   |                                             |             |external authentication and  |
-   |                                             |             |the user is not created in   |
-   |                                             |             |your application user list.  |
-   +---------------------------------------------+-------------+-----------------------------+
+   +---------------------------------------------+-------------------------------+-----------------------------+
+   | Variable                                    | Default                       | Description                 |
+   |                                             | value                         |                             |
+   +=============================================+===============================+=============================+
+   | PortalStartTimeCleanObsoletedDataExpression | 0 0 6 \* \* ?                 | Cron expression define      |
+   |                                             |                               | the time to clean up data   |
+   |                                             |                               | of obsoleted users. E.g.:   |
+   |                                             |                               | expression for at 6AM       |
+   |                                             |                               | every day is                |
+   |                                             |                               | ``0 0 6 * * ?`` . Refer     |
+   |                                             |                               | to                          |
+   |                                             |                               | `crontrigger <http://quar   |
+   |                                             |                               | tz-scheduler.org/document   |
+   |                                             |                               | ation/quartz-2.1.7/tutori   |
+   |                                             |                               | als/tutorial-lesson-06.htm  |
+   |                                             |                               | l>`__                       |
+   |                                             |                               | . Restart Ivy engine        |
+   |                                             |                               | after changing this         |
+   |                                             |                               | variable.                   |
+   +---------------------------------------------+-------------------------------+-----------------------------+
+   | PortalDeleteAllFinishedHiddenCases          | false                         | If set to ``true``, the     |
+   |                                             |                               | cron job runs daily (at     |
+   |                                             |                               | 6.AM as default) will       |
+   |                                             |                               | clean all finished hidden   |
+   |                                             |                               | cases in engine.            |
+   |                                             |                               | Otherwise, just hidden      |
+   |                                             |                               | cases which were            |
+   |                                             |                               | generated by Portal will    |
+   |                                             |                               | be deleted.                 |
+   +---------------------------------------------+-------------------------------+-----------------------------+
+   | PortalGroupId                               | ch.ivyteam.ivy.project.portal | Maven group id of Portal.   |
+   |                                             |                               |                             |
+   |                                             |                               |                             |
+   +---------------------------------------------+-------------------------------+-----------------------------+
+   | PortalHiddenTaskCaseExcluded                | true                          | By default, Portal will     |
+   |                                             |                               | query tasks and cases       |
+   |                                             |                               | which don't have hide       |
+   |                                             |                               | information. Set it to      |
+   |                                             |                               | ``false``, Portal will      |
+   |                                             |                               | ignore this additional      |
+   |                                             |                               | property.                   |
+   +---------------------------------------------+-------------------------------+-----------------------------+
+   |PortalLoginPageDisplay                       |true                           |By default, Portal will      |
+   |                                             |                               |redirect to Login Page if    |
+   |                                             |                               |login is required and user   |
+   |                                             |                               |is unknown. Set it to false  |
+   |                                             |                               |to redirect to login error   |
+   |                                             |                               |page and hide Logout in      |
+   |                                             |                               |User menu when you are using |
+   |                                             |                               |external authentication and  |
+   |                                             |                               |the user is not created in   |
+   |                                             |                               |your application user list.  |
+   +---------------------------------------------+-------------------------------+-----------------------------+
 
 
 .. |portal-header| image:: ../../screenshots/settings/user-settings.png

@@ -46,13 +46,11 @@ Ts0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ts0 f0 83 83 26 26 -16 15 #rect
-Ts0 f0 @|UdInitIcon #fIcon
 Ts0 f1 307 83 26 26 0 12 #rect
-Ts0 f1 @|UdProcessEndIcon #fIcon
 Ts0 f2 expr out #txt
 Ts0 f2 109 96 307 96 #arcP
 Ts0 f5 guid 16826946D7BC78E5 #txt
-Ts0 f5 method updateDeadline(ch.ivyteam.ivy.workflow.ITask) #txt
+Ts0 f5 method updateExpiryTime(ch.ivyteam.ivy.workflow.ITask) #txt
 Ts0 f5 inParameterDecl '<ch.ivyteam.ivy.workflow.ITask task> param;' #txt
 Ts0 f5 inParameterMapAction 'out.task=param.task;
 ' #txt
@@ -60,35 +58,53 @@ Ts0 f5 outParameterDecl '<> result;' #txt
 Ts0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>updateDeadline(ITask)</name>
+        <name>updateExpiryTime(ITask)</name>
     </language>
 </elementInfo>
 ' #txt
 Ts0 f5 83 275 26 26 -63 15 #rect
-Ts0 f5 @|UdMethodIcon #fIcon
 Ts0 f13 actionTable 'out=in;
 ' #txt
-Ts0 f13 actionCode 'import org.apache.commons.lang3.StringUtils;
+Ts0 f13 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
+import java.util.Arrays;
+import org.apache.commons.lang3.StringUtils;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivy.addon.portalkit.service.TaskInforActionService;
+
+// Behind the scene, Portal sets expiry activator to the current responsible then set expiry time.
+boolean isUpdateExpiryActivator = false;
+if (in.task.getExpiryActivator() == null) {
+	in.task.setExpiryActivator(in.task.getActivator());
+	isUpdateExpiryActivator = true;
+}
 
 TaskInforActionService service = new TaskInforActionService();
 IUser user = ivy.session.getSessionUser();
 String fullName = user.getFullName();
 String userName = StringUtils.substring(user.getMemberName(), 1);
-in.changeDeadlineNoteContent = service.prepareChangeDeadlineNoteContent(fullName, userName, in.task.expiryTimestamp, in.task.getId());' #txt
+
+if (!in.#expiryTimestamp is initialized) {
+	TaskUtils.removeTaskDeadline(in.task);
+	in.changeDeadlineNoteContent = service.prepareRemoveExpiryTimeNoteContent(fullName, userName, in.task.getId());
+} else {
+	in.task.setExpiryTimestamp(in.expiryTimestamp);
+	in.changeDeadlineNoteContent = service.prepareChangeExpiryNoteContent(fullName, userName, in.task.expiryTimestamp, in.task.getId());
+}
+
+if (isUpdateExpiryActivator) {
+	in.changeDeadlineNoteContent = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/taskDetails/setExpiryActivatorAndTimeNotes", Arrays.asList(in.changeDeadlineNoteContent, in.task.getExpiryActivator().getDisplayName()));
+}' #txt
 Ts0 f13 security system #txt
 Ts0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>Prepare note content</name>
+        <name>Change task expiry</name>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f13 160 266 128 44 -57 -8 #rect
-Ts0 f13 @|StepIcon #fIcon
+Ts0 f13 168 266 112 44 -52 -8 #rect
 Ts0 f14 expr out #txt
-Ts0 f14 109 288 160 288 #arcP
+Ts0 f14 109 288 168 288 #arcP
 Ts0 f15 actionTable 'out=in;
 ' #txt
 Ts0 f15 actionCode 'in.task.getCase().getBusinessCase().createNote(ivy.session, in.changeDeadlineNoteContent);' #txt
@@ -101,15 +117,12 @@ Ts0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ts0 f15 328 266 112 44 -24 -8 #rect
-Ts0 f15 @|StepIcon #fIcon
 Ts0 f17 expr out #txt
-Ts0 f17 288 288 328 288 #arcP
+Ts0 f17 280 288 328 288 #arcP
 Ts0 f19 499 275 26 26 0 12 #rect
-Ts0 f19 @|UdProcessEndIcon #fIcon
 Ts0 f20 expr out #txt
 Ts0 f20 440 288 499 288 #arcP
 Ts0 f11 499 179 26 26 0 12 #rect
-Ts0 f11 @|UdProcessEndIcon #fIcon
 Ts0 f7 actionTable 'out=in;
 ' #txt
 Ts0 f7 actionCode 'import ch.ivy.addon.portalkit.dto.GlobalCaseId;
@@ -124,7 +137,6 @@ Ts0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ts0 f7 160 170 128 44 -61 -8 #rect
-Ts0 f7 @|StepIcon #fIcon
 Ts0 f12 expr out #txt
 Ts0 f12 440 192 499 192 #arcP
 Ts0 f9 processCall 'Functional Processes/Navigator:viewCase(ch.ivy.addon.portalkit.dto.GlobalCaseId)' #txt
@@ -143,7 +155,6 @@ Ts0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ts0 f9 328 170 112 44 -26 -8 #rect
-Ts0 f9 @|CallSubIcon #fIcon
 Ts0 f16 guid 1720D0EE85E5021E #txt
 Ts0 f16 method navigateToRelatedCase(ch.ivyteam.ivy.workflow.ICase) #txt
 Ts0 f16 inParameterDecl '<ch.ivyteam.ivy.workflow.ICase selectedCase> param;' #txt
@@ -158,7 +169,6 @@ Ts0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ts0 f16 83 179 26 26 -63 20 #rect
-Ts0 f16 @|UdMethodIcon #fIcon
 Ts0 f3 109 192 160 192 #arcP
 Ts0 f6 guid 172FDEB375661428 #txt
 Ts0 f6 method updateDelayTimestamp(ch.ivyteam.ivy.workflow.ITask) #txt
@@ -174,9 +184,7 @@ Ts0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ts0 f6 83 403 26 26 -76 27 #rect
-Ts0 f6 @|UdMethodIcon #fIcon
 Ts0 f18 427 403 26 26 0 12 #rect
-Ts0 f18 @|UdProcessEndIcon #fIcon
 Ts0 f22 actionTable 'out=in;
 ' #txt
 Ts0 f22 actionCode 'import org.apache.commons.lang3.StringUtils;
@@ -198,7 +206,6 @@ Ts0 f22 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ts0 f22 200 394 112 44 -25 -8 #rect
-Ts0 f22 @|StepIcon #fIcon
 Ts0 f23 109 416 200 416 #arcP
 Ts0 f21 312 416 427 416 #arcP
 Ts0 f24 expr out #txt
@@ -206,7 +213,6 @@ Ts0 f24 288 192 328 192 #arcP
 >Proto Ts0 .type ch.ivy.addon.portalkit.component.TaskItemGeneralInfo.TaskItemGeneralInfoData #txt
 >Proto Ts0 .processKind HTML_DIALOG #txt
 >Proto Ts0 -8 -8 16 16 16 26 #rect
->Proto Ts0 '' #fIcon
 Ts0 f0 mainOut f2 tail #connect
 Ts0 f2 head f1 mainIn #connect
 Ts0 f9 mainOut f12 tail #connect

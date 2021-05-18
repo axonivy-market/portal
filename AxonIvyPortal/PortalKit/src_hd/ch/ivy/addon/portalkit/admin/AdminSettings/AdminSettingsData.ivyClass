@@ -1,8 +1,8 @@
 AdminSettingsData #class
 ch.ivy.addon.portalkit.admin.AdminSettings #namespace
-application ch.ivy.addon.portalkit.persistence.domain.Application #field
+application ch.ivy.addon.portalkit.configuration.Application #field
 application PERSISTENT #fieldModifier
-applicationList List<ch.ivy.addon.portalkit.persistence.domain.Application> #field
+applicationList List<ch.ivy.addon.portalkit.configuration.Application> #field
 applicationList PERSISTENT #fieldModifier
 confirmMsg String #field
 confirmMsg PERSISTENT #fieldModifier
@@ -15,11 +15,11 @@ duplicateApp PERSISTENT #fieldModifier
 isAddMode Boolean #field
 isAddMode PERSISTENT #fieldModifier
 languages List<String> #field
-selectedApp ch.ivy.addon.portalkit.persistence.domain.Application #field
+selectedApp ch.ivy.addon.portalkit.configuration.Application #field
 selectedApp PERSISTENT #fieldModifier
-selectedSetting ch.ivy.addon.portalkit.persistence.domain.GlobalSetting #field
+selectedSetting ch.ivy.addon.portalkit.configuration.GlobalSetting #field
 selectedSetting PERSISTENT #fieldModifier
-settingList List<ch.ivy.addon.portalkit.persistence.domain.GlobalSetting> #field
+settingList List<ch.ivy.addon.portalkit.configuration.GlobalSetting> #field
 settingList PERSISTENT #fieldModifier
 supportedLanguages List<ch.ivy.addon.portalkit.dto.DisplayName> #field
 tabIndexActive java.lang.Integer #field
@@ -34,13 +34,13 @@ dropDownValues PERSISTENT #fieldModifier
 externalDropDownValues java.util.Map #field
 externalDropDownValues 'external options, for example: homepages, task/case columns sorting' #fieldComment
 externalDropDownValues PERSISTENT #fieldModifier
-filteredSettingList List<ch.ivy.addon.portalkit.persistence.domain.GlobalSetting> #field
+filteredSettingList List<ch.ivy.addon.portalkit.configuration.GlobalSetting> #field
 filteredSettingList PERSISTENT #fieldModifier
 settingTabOpened Boolean #field
 settingTabOpened PERSISTENT #fieldModifier
-announcements java.util.List<ch.ivy.addon.portalkit.bo.Announcement> #field
-announcements PERSISTENT #fieldModifier
 isDefaultApplicationLanguage Boolean #field
 isDefaultApplicationLanguage PERSISTENT #fieldModifier
 isAnnouncementActivated Boolean #field
 isAnnouncementActivated PERSISTENT #fieldModifier
+announcement ch.ivy.addon.portalkit.configuration.Announcement #field
+announcement PERSISTENT #fieldModifier

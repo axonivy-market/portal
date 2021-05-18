@@ -1,5 +1,8 @@
 package portal.guitest.document.screenshot;
 
+import static portal.guitest.common.Variable.ENABLE_GROUP_CHAT;
+import static portal.guitest.common.Variable.ENABLE_PRIVATE_CHAT;
+
 import java.io.IOException;
 
 import org.junit.Test;
@@ -21,8 +24,8 @@ public class ChatScreenshotTest extends ScreenshotTest {
   public void setup() {
     super.setup();
     login(TestAccount.HR_ROLE_USER);
-    updatePortalSetting("ENABLE_GROUP_CHAT", "true");
-    updatePortalSetting("ENABLE_PRIVATE_CHAT", "true");
+    updatePortalSetting(ENABLE_GROUP_CHAT.getKey(), "true");
+    updatePortalSetting(ENABLE_PRIVATE_CHAT.getKey(), "true");
     redirectToRelativeLink(createTestingTasksUrl);
   }
 

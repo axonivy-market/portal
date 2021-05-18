@@ -84,15 +84,12 @@ Ca0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ca0 f0 @C|.responsibility Everybody #txt
 Ca0 f0 51 83 26 26 -57 -34 #rect
-Ca0 f0 @|StartRequestIcon #fIcon
 Ca0 f1 51 275 26 26 14 0 #rect
-Ca0 f1 @|EndIcon #fIcon
 Ca0 f3 actionTable 'out=in;
 ' #txt
 Ca0 f3 actionCode 'import ch.ivy.addon.portalkit.test.util.TaskUtils;
 TaskUtils.deleteCompletedCases();' #txt
 Ca0 f3 46 188 36 24 20 -2 #rect
-Ca0 f3 @|StepIcon #fIcon
 Ca0 f4 expr out #txt
 Ca0 f4 64 109 64 188 #arcP
 Ca0 f2 expr out #txt
@@ -100,13 +97,17 @@ Ca0 f2 64 212 64 275 #arcP
 Ca0 f5 actionTable 'out=in;
 ' #txt
 Ca0 f5 actionCode 'import ch.ivy.addon.portalkit.service.UserProcessService;
-UserProcessService userProcess =new UserProcessService();
-userProcess.deleteAll(userProcess.findAll());' #txt
+import ch.ivyteam.ivy.security.IUser;
+import ch.ivy.addon.portalkit.test.util.SecurityUtils;
+
+List users = SecurityUtils.findAllUsers();
+String key = UserProcessService.getInstance().getConfigKey();
+for (IUser user : users) {
+	user.removeProperty(key);
+}' #txt
 Ca0 f5 security system #txt
 Ca0 f5 222 188 36 24 20 -2 #rect
-Ca0 f5 @|StepIcon #fIcon
 Ca0 f6 227 275 26 26 14 0 #rect
-Ca0 f6 @|EndIcon #fIcon
 Ca0 f7 outLink CleanFavoriteProcess.ivp #txt
 Ca0 f7 inParamDecl '<> param;' #txt
 Ca0 f7 requestEnabled true #txt
@@ -133,13 +134,11 @@ Ca0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ca0 f7 @C|.responsibility Everybody #txt
 Ca0 f7 227 83 26 26 -70 -36 #rect
-Ca0 f7 @|StartRequestIcon #fIcon
 Ca0 f8 expr out #txt
 Ca0 f8 240 109 240 188 #arcP
 Ca0 f9 expr out #txt
 Ca0 f9 240 212 240 275 #arcP
 Ca0 f59 395 275 26 26 14 0 #rect
-Ca0 f59 @|EndIcon #fIcon
 Ca0 f57 actionTable 'out=in;
 ' #txt
 Ca0 f57 actionCode 'import ch.ivy.addon.portalkit.test.util.BusinessDataUtils;
@@ -159,7 +158,6 @@ Ca0 f57 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ca0 f57 390 188 36 24 20 -2 #rect
-Ca0 f57 @|StepIcon #fIcon
 Ca0 f61 outLink cleanAllCasesByDestroying.ivp #txt
 Ca0 f61 inParamDecl '<> param;' #txt
 Ca0 f61 requestEnabled true #txt
@@ -187,7 +185,6 @@ Ca0 f61 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ca0 f61 @C|.responsibility Everybody #txt
 Ca0 f61 395 83 26 26 -58 -39 #rect
-Ca0 f61 @|StartRequestIcon #fIcon
 Ca0 f60 expr out #txt
 Ca0 f60 408 212 408 275 #arcP
 Ca0 f56 expr out #txt
@@ -215,16 +212,13 @@ Ca0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ca0 f10 @C|.responsibility Everybody #txt
 Ca0 f10 587 83 26 26 -57 -34 #rect
-Ca0 f10 @|StartRequestIcon #fIcon
 Ca0 f11 actionTable 'out=in;
 ' #txt
 Ca0 f11 actionCode 'import ch.ivy.addon.portalkit.test.util.AbsenceUtils;
 AbsenceUtils.cleanAllAbsencesAndSubstitutes();' #txt
 Ca0 f11 security system #txt
 Ca0 f11 582 188 36 24 20 -2 #rect
-Ca0 f11 @|StepIcon #fIcon
 Ca0 f12 587 275 26 26 14 0 #rect
-Ca0 f12 @|EndIcon #fIcon
 Ca0 f13 expr out #txt
 Ca0 f13 600 109 600 188 #arcP
 Ca0 f14 expr out #txt
@@ -255,7 +249,6 @@ Ca0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ca0 f15 @C|.responsibility Everybody #txt
 Ca0 f15 723 99 26 26 -43 -32 #rect
-Ca0 f15 @|StartRequestIcon #fIcon
 Ca0 f16 actionTable 'out=in;
 ' #txt
 Ca0 f16 actionCode 'import ch.ivy.addon.portalkit.test.util.BusinessDataUtils;
@@ -265,11 +258,9 @@ BusinessDataUtils.clearAllBusinessData();
 ivy.datacache.getAppCache().invalidate();' #txt
 Ca0 f16 security system #txt
 Ca0 f16 718 180 36 24 20 -2 #rect
-Ca0 f16 @|StepIcon #fIcon
 Ca0 f18 expr out #txt
 Ca0 f18 736 125 736 180 #arcP
 Ca0 f17 723 275 26 26 14 0 #rect
-Ca0 f17 @|EndIcon #fIcon
 Ca0 f19 expr out #txt
 Ca0 f19 736 204 736 275 #arcP
 Ca0 f20 outLink cleanupGlobalVars.ivp #txt
@@ -297,17 +288,14 @@ Ca0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ca0 f20 @C|.responsibility Everybody #txt
 Ca0 f20 849 81 30 30 -57 -32 #rect
-Ca0 f20 @|StartRequestIcon #fIcon
 Ca0 f21 849 273 30 30 0 15 #rect
-Ca0 f21 @|EndIcon #fIcon
 Ca0 f23 actionTable 'out=in;
 ' #txt
 Ca0 f23 actionCode 'import ch.ivy.addon.portalkit.service.GlobalSettingService;
 GlobalSettingService globalSettingService = new GlobalSettingService();
-globalSettingService.deleteAll(globalSettingService.findAll());' #txt
+globalSettingService.resetAll();' #txt
 Ca0 f23 security system #txt
 Ca0 f23 808 170 112 44 0 -8 #rect
-Ca0 f23 @|StepIcon #fIcon
 Ca0 f24 expr out #txt
 Ca0 f24 864 111 864 170 #arcP
 Ca0 f22 expr out #txt
@@ -338,9 +326,7 @@ Ca0 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ca0 f25 @C|.responsibility Everybody #txt
 Ca0 f25 1041 81 30 30 -65 -38 #rect
-Ca0 f25 @|StartRequestIcon #fIcon
 Ca0 f26 1041 273 30 30 0 15 #rect
-Ca0 f26 @|EndIcon #fIcon
 Ca0 f28 actionTable 'out=in;
 ' #txt
 Ca0 f28 actionCode 'import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;
@@ -365,7 +351,6 @@ for (PortalPermissionGroup group : PortalPermissionGroup.values()) {
   }
 }' #txt
 Ca0 f28 1000 170 112 44 0 -8 #rect
-Ca0 f28 @|StepIcon #fIcon
 Ca0 f29 expr out #txt
 Ca0 f29 1056 111 1056 170 #arcP
 Ca0 f27 expr out #txt
@@ -394,7 +379,6 @@ Ca0 f30 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ca0 f30 @C|.responsibility Everybody #txt
 Ca0 f30 1209 81 30 30 -65 -38 #rect
-Ca0 f30 @|StartRequestIcon #fIcon
 Ca0 f31 actionTable 'out=in;
 ' #txt
 Ca0 f31 actionCode 'import java.util.Locale;
@@ -403,21 +387,18 @@ Locale default = ivy.request.getApplication().getDefaultEMailLanguage();
 ivy.session.getSessionUser().setEMailLanguage(default);
 ' #txt
 Ca0 f31 1168 170 112 44 0 -8 #rect
-Ca0 f31 @|StepIcon #fIcon
 Ca0 f32 1209 273 30 30 0 15 #rect
-Ca0 f32 @|EndIcon #fIcon
 Ca0 f33 expr out #txt
 Ca0 f33 1224 111 1224 170 #arcP
 Ca0 f34 expr out #txt
 Ca0 f34 1224 214 1224 273 #arcP
 Ca0 f35 51 547 26 26 14 0 #rect
-Ca0 f35 @|EndIcon #fIcon
 Ca0 f36 actionTable 'out=in;
 ' #txt
 Ca0 f36 actionCode 'import ch.ivy.addon.portalkit.constant.UserProperty;
 import ch.ivyteam.ivy.security.IUser;
 import org.apache.commons.collections4.CollectionUtils;
-import ch.ivy.addon.portalkit.bo.ExternalLink;
+import ch.ivy.addon.portalkit.configuration.ExternalLink;
 import ch.ivy.addon.portalkit.service.ExternalLinkService;
 import ch.ivy.addon.portalkit.test.util.BusinessDataUtils;
 import ch.ivy.addon.portalkit.test.util.CaseUtils;
@@ -429,33 +410,24 @@ CaseUtils.deleteAllCases();
 BusinessDataUtils.clearAllBusinessData();
 ivy.datacache.getAppCache().invalidate();
 
-UserProcessService userProcess =new UserProcessService();
-userProcess.deleteAll(userProcess.findAll());
+UserProcessService userProcess = UserProcessService.getInstance();
 
 SecurityUtils.updatePermissionsOfTestUsers();
 
 GlobalSettingService globalSettingService = new GlobalSettingService();
-globalSettingService.deleteAll(globalSettingService.findAll());
-
-
-List<ExternalLink> privateExternalLinks = ExternalLinkService.getInstance().findStartableLink(ivy.wf.getSecurityContext().users().find("demo").getId());
-if (CollectionUtils.isNotEmpty(privateExternalLinks)) {
-  for (int i = 0; i < privateExternalLinks.size(); i++) {
-    if (privateExternalLinks.get(i).isPublic()) {
-      privateExternalLinks.remove(privateExternalLinks.get(i));
-    }
-  }
+globalSettingService.resetAll();
+List excludedResetVars = [UserProcessService.getInstance().getConfigKey()];
+for (String varName : ivy.var.names()) {
+	if (!excludedResetVars.contains(varName)) {
+	  ivy.var.reset(varName);
+	}
 }
-
-ExternalLinkService.getInstance().deleteAll(privateExternalLinks);
 
 List<IUser> users = SecurityUtils.findAllUsers();
 for (IUser user : users) {
-	user.removeProperty(UserProperty.HOMEPAGE);
-	user.removeProperty(UserProperty.DEFAULT_SORT_FIELD_OF_TASK_LIST);
-	user.removeProperty(UserProperty.DEFAULT_SORT_DIRECTION_OF_TASK_LIST);
-	user.removeProperty(UserProperty.DEFAULT_SORT_FIELD_OF_CASE_LIST);
-	user.removeProperty(UserProperty.DEFAULT_SORT_DIRECTION_OF_CASE_LIST);
+	for (String propertyName : user.getAllPropertyNames()) {
+		user.removeProperty(propertyName);
+	}
 }' #txt
 Ca0 f36 security system #txt
 Ca0 f36 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -466,7 +438,6 @@ Ca0 f36 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ca0 f36 46 404 36 24 20 -2 #rect
-Ca0 f36 @|StepIcon #fIcon
 Ca0 f37 outLink cleanData.ivp #txt
 Ca0 f37 inParamDecl '<> param;' #txt
 Ca0 f37 requestEnabled true #txt
@@ -490,7 +461,6 @@ Ca0 f37 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ca0 f37 @C|.responsibility Everybody #txt
 Ca0 f37 51 355 26 26 -57 -34 #rect
-Ca0 f37 @|StartRequestIcon #fIcon
 Ca0 f38 expr out #txt
 Ca0 f38 64 381 64 404 #arcP
 Ca0 f40 actionTable 'out=in;
@@ -542,7 +512,6 @@ Ca0 f40 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ca0 f40 8 466 112 44 -13 -8 #rect
-Ca0 f40 @|StepIcon #fIcon
 Ca0 f41 expr out #txt
 Ca0 f41 64 428 64 466 #arcP
 Ca0 f39 64 510 64 547 #arcP

@@ -1,1 +1,1 @@
-Tiempo límite de desconexión de la aplicación deberá ser mayor a 1 y menor que el tiempo límite de desconexión del servidor. Si esta propiedad no está definida, se applicará el tiempo del servidor menos 3 minutos. 
+TODO Client side timeout in minute, must be more than 0 and less than server side timeout (e.g. 25). Default value is 0, it means default client side timeout is applied. Default client side timeout is server side timeout minus 3 minutes.

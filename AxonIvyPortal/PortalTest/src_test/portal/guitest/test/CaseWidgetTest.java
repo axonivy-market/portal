@@ -3,6 +3,7 @@ package portal.guitest.test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static portal.guitest.common.Variable.DISABLE_CASE_COUNT;
 
 import java.util.concurrent.TimeUnit;
 
@@ -28,7 +29,6 @@ import portal.guitest.page.UserProfilePage;
 
 public class CaseWidgetTest extends BaseTest {
 
-  private static final String DISABLE_CASE_COUNT_SETTING = "DISABLE_CASE_COUNT";
   private static final String INVESTMENT_REQUEST_CUSTOMIZATION_CASE_DETAILS_PAGE_CASE_NAME = "Investment Request";
   private static final String LEAVE_REQUEST_DEFAULT_CASE_DETAILS_PAGE_CASE_NAME = "Leave Request for Default Additional Case Details";
   private static final String LEAVE_REQUEST_CASE_NAME = "Leave Request";
@@ -180,7 +180,7 @@ public class CaseWidgetTest extends BaseTest {
   
   @Test
   public void testDisableCaseCount() {
-    updatePortalSetting(DISABLE_CASE_COUNT_SETTING, "true");
+    updatePortalSetting(DISABLE_CASE_COUNT.getKey(), "true");
     initHomePage(TestAccount.ADMIN_USER);
 
     mainMenuPage = homePage.openMainMenu();

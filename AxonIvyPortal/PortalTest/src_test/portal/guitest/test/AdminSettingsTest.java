@@ -3,6 +3,11 @@ package portal.guitest.test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static portal.guitest.common.Variable.DEFAULT_SORT_DIRECTION_OF_CASE_LIST;
+import static portal.guitest.common.Variable.DEFAULT_SORT_DIRECTION_OF_TASK_LIST;
+import static portal.guitest.common.Variable.DEFAULT_SORT_FIELD_OF_CASE_LIST;
+import static portal.guitest.common.Variable.DEFAULT_SORT_FIELD_OF_TASK_LIST;
+import static portal.guitest.common.Variable.SHOW_ENVIRONMENT_INFO;
 
 import org.junit.Test;
 
@@ -17,12 +22,6 @@ import portal.guitest.page.MainMenuPage;
 import portal.guitest.page.TaskWidgetPage;
 
 public class AdminSettingsTest extends BaseTest {
-
-	private static final String SHOW_ENVIRONMENT_INFO_SETTING = "SHOW_ENVIRONMENT_INFO";
-	private static final String DEFAULT_SORT_FIELD_OF_TASK_LIST = "DEFAULT_SORT_FIELD_OF_TASK_LIST";
-	private static final String DEFAULT_SORT_DIRECTION_OF_TASK_LIST = "DEFAULT_SORT_DIRECTION_OF_TASK_LIST";
-	private static final String DEFAULT_SORT_FIELD_OF_CASE_LIST = "DEFAULT_SORT_FIELD_OF_CASE_LIST";
-  private static final String DEFAULT_SORT_DIRECTION_OF_CASE_LIST = "DEFAULT_SORT_DIRECTION_OF_CASE_LIST";
 
   @Test
 	public void whenLoginAsAdminThenAdminMenuItemDisplayed() {
@@ -50,7 +49,7 @@ public class AdminSettingsTest extends BaseTest {
 	
 	@Test
 	public void testCustomizedEnvironmentInfo() {
-	  updatePortalSetting(SHOW_ENVIRONMENT_INFO_SETTING, "true");
+    updatePortalSetting(SHOW_ENVIRONMENT_INFO.getKey(), "true");
 		login(TestAccount.ADMIN_USER);
 		HomePage homePage = new HomePage();
 		//Customize environment info in portal example 
@@ -61,8 +60,8 @@ public class AdminSettingsTest extends BaseTest {
 
 	@Test
 	public void testDefaultSortOptionsForTaskList() {
-    updatePortalSetting(DEFAULT_SORT_FIELD_OF_TASK_LIST, "PRIORITY");
-    updatePortalSetting(DEFAULT_SORT_DIRECTION_OF_TASK_LIST, SortDirection.ASC.name());
+    updatePortalSetting(DEFAULT_SORT_FIELD_OF_TASK_LIST.getKey(), "PRIORITY");
+    updatePortalSetting(DEFAULT_SORT_DIRECTION_OF_TASK_LIST.getKey(), SortDirection.ASC.name());
     redirectToRelativeLink(cleanSessionCacheUrl);
 
     createTestingTasks();
@@ -75,8 +74,8 @@ public class AdminSettingsTest extends BaseTest {
 	 @Test
 	  public void testDefaultSortOptionsForCaseList() {
 	   redirectToRelativeLink(create12CasesWithCategoryUrl); 
-	   updatePortalSetting(DEFAULT_SORT_FIELD_OF_CASE_LIST, "NAME");
-	   updatePortalSetting(DEFAULT_SORT_DIRECTION_OF_CASE_LIST, SortDirection.DESC.name());
+     updatePortalSetting(DEFAULT_SORT_FIELD_OF_CASE_LIST.getKey(), "NAME");
+     updatePortalSetting(DEFAULT_SORT_DIRECTION_OF_CASE_LIST.getKey(), SortDirection.DESC.name());
 
 	   TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
 	   MainMenuPage mainMenuPage = taskWidgetPage.openMainMenu();

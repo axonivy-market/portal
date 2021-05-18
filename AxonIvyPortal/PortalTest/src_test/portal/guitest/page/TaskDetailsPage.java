@@ -307,6 +307,15 @@ public class TaskDetailsPage extends TemplatePage {
     waitForElementDisplayed(By.cssSelector("[id$=':additional-options:side-steps-panel']"), false);
   }
 
+  public boolean isClearDeadlineDisplayed() {
+    return isElementDisplayed(findElementByCssSelector("[id$=':additional-options:task-clear-expiry-command']"));
+  }
+
+  public void clickOnClearDeadlineTime() {
+    findElementByCssSelector("a[id$=':additional-options:task-clear-expiry-command']").click();
+    waitForElementDisplayed(By.cssSelector("[id$=':additional-options:side-steps-panel']"), false);
+  }
+
   public String getTaskState() {
     WebElement taskStateComponent = findElementByCssSelector("[id$=':general-information:task-detail-state']");
     return taskStateComponent.findElement(By.cssSelector("span[class*='task-detail-state']")).getText();
@@ -389,5 +398,49 @@ public class TaskDetailsPage extends TemplatePage {
 
   public void waitForResetButtonDisplayed() {
     waitForElementDisplayed(By.cssSelector("[id$=':reset-details-settings-button']"), true);
+  }
+
+  public void changeEscaltionActivatorTo(String activatorName, boolean isUser) {
+    boolean canEditExpiryActivator = canChangeEscalationActivator();
+    if (canEditExpiryActivator) {
+      clickOnEditEscaltionEditIcon();
+      if (isUser) {
+        waitForElementDisplayed(By.cssSelector("input[id$=':user-expiry-activator-select_input']"), true);
+        type(By.cssSelector("input[id$=':user-expiry-activator-select_input']"), activatorName);
+        waitForElementDisplayed(By.cssSelector("span[id$=':user-expiry-activator-select_panel']"), true);
+        List<WebElement> foundUsers = findElementByCssSelector("span[id$=':user-expiry-activator-select_panel']")
+            .findElements(By.tagName("tr"));
+        click(foundUsers.get(0));
+      } else {
+        List<WebElement> radioButtonLabels = findListElementsByCssSelector("table[id$='task-escalation-activator-form:activator-type-select'] label");
+        click(radioButtonLabels.get(1));
+        waitForElementDisplayed(By.cssSelector("input[id$=':group-expiry-activator-select_input']"), true);
+        type(By.cssSelector("input[id$=':group-expiry-activator-select_input']"), activatorName);
+        waitForElementDisplayed(By.cssSelector("span[id$=':group-expiry-activator-select_panel']"), true);
+        List<WebElement> foundRoles = findElementByCssSelector("span[id$=':group-expiry-activator-select_panel").findElements(By.tagName("li"));
+        click(foundRoles.get(0));
+      }
+      waitForElementEnabled(By.cssSelector("button[id$=':task-escalation-activator-form:assign-task-command']"), true, DEFAULT_TIMEOUT);
+      clickByCssSelector("button[id$=':task-escalation-activator-form:assign-task-command']");
+      waitForElementDisplayed(By.cssSelector("div[id$='task-escalation-activator-dialog']"), false);
+    }
+  }
+
+  private void clickOnEditEscaltionEditIcon() {
+    waitForElementDisplayed(By.className("task-expiry-activator-edit"), true);
+    clickByCssSelector("a[class$='task-expiry-activator-edit']");
+    waitForElementDisplayed(By.cssSelector("form[id$=':task-escalation-activator-form']"), true);
+  }
+
+  public boolean canChangeEscalationActivator() {
+    try {
+      return isElementDisplayed(findElementByClassName("task-expiry-activator-edit"));
+    } catch (NoSuchElementException ex) {
+      return false;
+    }
+  }
+
+  public String getAfterEscalation() {
+    return findElementByClassName("task-expiry-activator-name").getText();
   }
 }

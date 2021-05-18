@@ -24,10 +24,11 @@ public class VisibilityBean implements Serializable {
   }
   
   public boolean isShowButtonIcon() {
-    return globalSettingService.findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_BUTTON_ICON.toString());
+    return globalSettingService.findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_BUTTON_ICON);
   }
   
   public String generateButtonIcon(String iconClass) {
-    return globalSettingService.findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_BUTTON_ICON.toString())? iconClass : StringUtils.EMPTY;
+    return globalSettingService.findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_BUTTON_ICON) ? iconClass
+        : StringUtils.EMPTY;
   }
 }

@@ -3,6 +3,7 @@ package portal.guitest.test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static portal.guitest.common.Variable.ENABLE_CASE_OWNER;
 
 import org.apache.commons.codec.binary.StringUtils;
 import org.junit.Before;
@@ -15,7 +16,8 @@ import portal.guitest.page.HomePage;
 import portal.guitest.page.MainMenuPage;
 
 public class CaseFilterTest extends BaseTest {
-	@Override
+
+  @Override
 	@Before
 	public void setup() {
 		super.setup();
@@ -24,7 +26,7 @@ public class CaseFilterTest extends BaseTest {
 
   @Test
   public void testCaseOwnerFilter() {
-    updatePortalSetting("ENABLE_CASE_OWNER", "true");
+    updatePortalSetting(ENABLE_CASE_OWNER.getKey(), "true");
     redirectToRelativeLink(userIsOwnerUrl);
     login(TestAccount.ADMIN_USER);
     HomePage homePage = new HomePage();
@@ -34,7 +36,7 @@ public class CaseFilterTest extends BaseTest {
     casePage.openAdvancedFilter("Owner", "owner");
     casePage.filterByOwner("Demo");
     assertEquals(1, casePage.getNumberOfCases());
-    updatePortalSetting("ENABLE_CASE_OWNER", "false");
+    updatePortalSetting(ENABLE_CASE_OWNER.getKey(), "false");
   }
 	
 	@Test

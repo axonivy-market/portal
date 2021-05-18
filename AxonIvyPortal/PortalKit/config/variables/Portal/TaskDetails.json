@@ -1,29 +1,26 @@
+[
 {
+  "id": "default-task-detail",
   "widgets": 
   [
     {
       "type": "information",
-      "id": "information",
-      "axisX": 0,
-      "axisY": 0,
-      "width": 6,
-      "height": 12
-    },
-    {
-      "type": "document",
-      "id": "document",
-      "axisX": 6,
-      "axisY": 0,
-      "width": 6,
-      "height": 6
+      "layout": {
+        "x": 0, "y": 0, "w": 6, "h": 12
+      }
     },
     {
       "type": "history",
-      "id": "history",
-      "axisX": 6,
-      "axisY": 6,
-      "width": 6,
-      "height": 6
+      "layout": {
+        "x": 6, "y": 6, "w": 6, "h": 6
+      }
+    },
+    {
+      "type": "document",
+      "layout": {
+        "x": 6, "y": 0, "w": 6, "h": 6
+      }
     }
   ]
 }
+]
