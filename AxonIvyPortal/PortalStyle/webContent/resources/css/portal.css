@@ -582,8 +582,11 @@ body .process-widget .ui-selectbooleanbutton.ui-state-active .ui-icon {
 .grid-view-form .process-action-group {
   font-size: var(--small-font-size); }
 
+.task-detail-column-title,
 .edit-process-info-group .edit-process-detail-1st-cell {
-  color: var(--ivy-primary-color-grey-medium); }
+  opacity: 0.65;
+  font-size: var(--small-font-size); }
+
 .process-header .process-widget-header-link {
   font-size: var(--small-font-size); }
 
@@ -690,9 +693,6 @@ _::-moz-progress-bar, body:last-child .statistic-carousel .ui-carousel-header .u
 .chart-info-container label {
   font-weight: var(--chart-name-font-weight); }
 
-.dashboard-widget-panel-container .card {
-  box-shadow: var(--card-box-shadow); }
-
 .statistic-filter-accordion-panel .ui-accordion-content {
   border: solid 1px var(--statistic-filter-accordion-panel-border); }
 
@@ -702,8 +702,7 @@ _::-moz-progress-bar, body:last-child .statistic-carousel .ui-carousel-header .u
 
   body .ui-accordion.statistic-filter-accordion-panel.ui-accordion .ui-accordion-header.ui-tabs-outline,
   body .ui-accordion.statistic-filter-accordion-panel.ui-accordion .ui-accordion-header.ui-state-hover,
-  body .ui-accordion.statistic-filter-accordion-panel.ui-accordion .ui-accordion-header.ui-state-active.ui-tabs-outline,
-  body .widget-info-panel.statistic-filter-accordion-panel .ui-accordion-header:hover {
+  body .ui-accordion.statistic-filter-accordion-panel.ui-accordion .ui-accordion-header.ui-state-active.ui-tabs-outline {
     background: var(--compact-task-start-list-item-hover-background-color);
     border: var(--compact-task-start-list-item-hover-border);
   }
@@ -882,9 +881,7 @@ body .task-item-body .task-details-item-note .ui-paginator a.ui-state-active, .t
 body .task-item-body .task-details-item-note .ui-paginator a.ui-paginator-page.ui-state-hover, body .task-item-body .task-details-item-note .ui-paginator a.ui-paginator-page.ui-state-active, body .task-item-body .task-details-item-note .ui-paginator a.ui-paginator-page.ui-state-hover, body .task-item-body .task-details-item-note .ui-paginator a.ui-paginator-page.ui-state-active, body .task-item-body .task-details-item-note a.ui-paginator-first.ui-state-hover, body .task-item-body .task-details-item-note a.ui-paginator-first.ui-state-active, body .task-item-body .task-details-item-note a.ui-paginator-prev.ui-state-hover, body .task-item-body .task-details-item-note a.ui-paginator-prev.ui-state-active, body .task-item-body .task-details-item-note a.ui-paginator-next.ui-state-hover, body .task-item-body .task-details-item-note a.ui-paginator-next.ui-state-active, body .task-item-body .task-details-item-note a.ui-paginator-last.ui-state-hover, body .task-item-body .task-details-item-note a.ui-paginator-last.ui-state-active, .task-item-body .task-details-item-document .ui-paginator a.ui-paginator-page.ui-state-hover, .task-item-body .task-details-item-document .ui-paginator a.ui-paginator-page.ui-state-active, .task-item-body .task-details-item-document .ui-paginator a.ui-paginator-page.ui-state-hover, .task-item-body .task-details-item-document .ui-paginator a.ui-paginator-page.ui-state-active, .task-item-body .task-details-item-document a.ui-paginator-first.ui-state-hover, .task-item-body .task-details-item-document a.ui-paginator-first.ui-state-active, .task-item-body .task-details-item-document a.ui-paginator-prev.ui-state-hover, .task-item-body .task-details-item-document a.ui-paginator-prev.ui-state-active, .task-item-body .task-details-item-document a.ui-paginator-next.ui-state-hover, .task-item-body .task-details-item-document a.ui-paginator-next.ui-state-active, .task-item-body .task-details-item-document a.ui-paginator-last.ui-state-hover, .task-item-body .task-details-item-document a.ui-paginator-last.ui-state-active {
   background-color: var(--task-detail-paginator-hovered-button-background-color); }
 
-.task-description-inplace .ui-inplace-display.ui-state-highlight, .edit-priority-inplace .ui-inplace-display.ui-state-highlight, .task-name-inplace .ui-inplace-display.ui-state-highlight,
-.expiry-edit-inplace .ui-inplace-display.ui-state-highlight,
-.delay-edit-inplace .ui-inplace-display.ui-state-highlight {
+.portal-edit-inplace .ui-inplace-display.ui-state-highlight {
   background-color: var(--task-highlighted-inplace-field-background-color);
   color: var(--task-highlighted-inplace-field-text-color); }
 
@@ -1097,6 +1094,10 @@ body .ui-datepicker .ui-timepicker-div dl dd {
   .case-detail-body .case-details-item .ui-datatable .name-column,
   .case-detail-body .case-details-item .ui-datatable .history-note {
     border-right: 1px solid var(--data-table-border-color);
+  }
+
+  .case-detail-body .case-details-related-task-table .related-task-name-column {
+    border-left: 1px solid var(--data-table-border-color);
   }
 }
 
@@ -1418,7 +1419,7 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
 .filter-container .filter-selection-label,
 .filter-container .selected-filters-label {
   color: var(--widget-advanced-filter-label-color);
-}
+  font-size: var(--small-font-size); }
 
 .task-widget .filter-add-container:hover,
 .task-widget .filter-reset-action:hover,
@@ -1452,6 +1453,9 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
 /* Absences and Debuty -------------------------*/
 .substituted-user-text {
   color: var(--substituted-user-text-color); }
+
+.choose-deputy-dialog .deputy-selection-panel .delete-deputy {
+  font-size: var(--delete-deputy-icon-font-size); }
 
 /*Awesome Icon Selection--------------------------*/
 .ui-commandlink.select-awesome-icon-button {
@@ -2033,4 +2037,25 @@ body.in-dialog .ui-widget-overlay {
 .portal-icon.action-icon.icon-compact-mode,
 .portal-icon.action-link i {
   font-size: var(--portal-icon-font-size);
+}
+
+.security-member-tooltip.ui-tooltip {
+  font-size: var(--security-member-header-font-size);
+}
+
+.security-member-tooltip .tooltip-header {
+  font-weight: var(--security-member-header-font-weight);
+  font-size: var(--security-member-header-font-size);
+}
+
+.security-member-tooltip .tooltip-body-item {
+  font-size: var(--security-member-item-font-size);
+}
+
+.security-member-tooltip.ui-tooltip.ui-tooltip-right .ui-tooltip-arrow {
+  border-right-color: var(--security-member-tooltip-arrow-color);
+}
+
+.security-member-tooltip.ui-tooltip.ui-tooltip-left .ui-tooltip-arrow {
+  border-left-color: var(--security-member-tooltip-arrow-color);
 }

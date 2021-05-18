@@ -37,6 +37,11 @@ Ts0 @PushWFArc f14 '' #zField
 Ts0 @PushWFArc f8 '' #zField
 Ts0 @CallSub f15 '' #zField
 Ts0 @PushWFArc f19 '' #zField
+Ts0 @UdMethod f20 '' #zField
+Ts0 @UdProcessEnd f21 '' #zField
+Ts0 @GridStep f24 '' #zField
+Ts0 @PushWFArc f25 '' #zField
+Ts0 @PushWFArc f23 '' #zField
 >Proto Ts0 Ts0 SideStepProcess #zField
 Ts0 f17 -106 1334 20 20 13 0 #rect
 Ts0 f62 339 275 26 26 0 12 #rect
@@ -239,6 +244,49 @@ Ts0 f19 expr in #txt
 Ts0 f19 320 416 472 496 #arcP
 Ts0 f19 1 320 496 #addKink
 Ts0 f19 1 0.21965692365617775 0 0 #arcLabel
+Ts0 f20 guid 178ED5B91C3C3247 #txt
+Ts0 f20 method clearExpiryTime(ch.ivyteam.ivy.workflow.ITask) #txt
+Ts0 f20 inParameterDecl '<ch.ivyteam.ivy.workflow.ITask task> param;' #txt
+Ts0 f20 inParameterMapAction 'out.task=param.task;
+' #txt
+Ts0 f20 outParameterDecl '<> result;' #txt
+Ts0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>clearExpiryTime(ITask)</name>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f20 83 691 26 26 -50 18 #rect
+Ts0 f21 371 691 26 26 0 12 #rect
+Ts0 f24 actionTable 'out=in;
+' #txt
+Ts0 f24 actionCode 'in.task.setExpiryTimestamp(null);
+
+import ch.ivy.addon.portalkit.util.TaskUtils;
+import org.apache.commons.lang3.StringUtils;
+import ch.ivyteam.ivy.security.IUser;
+import ch.ivy.addon.portalkit.service.TaskInforActionService;
+
+boolean isSuccess = TaskUtils.removeTaskDeadline(in.task);
+if (isSuccess) {
+	TaskInforActionService service = new TaskInforActionService();
+	IUser user = ivy.session.getSessionUser();
+	String fullName = user.getFullName();
+	String userName = StringUtils.substring(user.getMemberName(), 1);
+	String notes = service.prepareRemoveExpiryTimeNoteContent(fullName, userName, in.task.getId());
+	in.task.getCase().getBusinessCase().createNote(ivy.session, notes);
+}' #txt
+Ts0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>remove expiry time</name>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f24 176 682 112 44 -51 -8 #rect
+Ts0 f25 109 704 176 704 #arcP
+Ts0 f23 288 704 371 704 #arcP
 >Proto Ts0 .type ch.ivy.addon.portalkit.component.SideStep.SideStepData #txt
 >Proto Ts0 .processKind HTML_DIALOG #txt
 >Proto Ts0 -8 -8 16 16 16 26 #rect
@@ -262,3 +310,7 @@ Ts0 f13 out f8 tail #connect
 Ts0 f8 head f7 mainIn #connect
 Ts0 f13 out f19 tail #connect
 Ts0 f19 head f15 mainIn #connect
+Ts0 f20 mainOut f25 tail #connect
+Ts0 f25 head f24 mainIn #connect
+Ts0 f24 mainOut f23 tail #connect
+Ts0 f23 head f21 mainIn #connect

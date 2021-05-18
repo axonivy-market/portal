@@ -36,61 +36,107 @@ How to configure widgets in task details
 
    .. code-block:: html
 
-      {
+      [
+         {
+         "id": "default-task-detail",
+         "filters": {
+            "taskCategories" : ["support"],
+            "taskStates" : ["DONE", "SUSPENDED"]
+         },
          "widgets": 
          [
             {
-               "type": "information",
                "id": "information",
-               "axisX": 0,
-               "axisY": 0,
-               "width": 6,
-               "height": 12
+               "type": "information",
+               "layout": {
+                  "x": 0, "y": 0, "w": 6, "h": 6
+               }
             },
             {
-               "type": "document",
-               "id": "document",
-               "axisX": 6,
-               "axisY": 0,
-               "width": 6,
-               "height": 6
-            },
-            {
-               "type": "history",
                "id": "history",
-               "axisX": 6,
-               "axisY": 6,
-               "width": 6,
-               "height": 6
+               "type": "history",
+               "layout": {
+                  "x": 6, "y": 6, "w": 6, "h": 6
+               }
+            },
+            {
+               "id": "document",
+               "type": "document",
+               "layout": {
+                  "x": 6, "y": 0, "w": 6, "h": 6
+               }
+            }
+            {
+               "id": "custom",
+               "type": "custom",
+               "layout": {
+                  "x": 0, "y": 6, "w": 6, "h": 6
+               },
+               "data" : {
+                  "processStart": "Start Processes/TaskDetailsCustomWidgetExample/invoiceDetails.ivp",
+                  "params": {
+                     "startedTaskId": "task.id",
+                     "startedTaskCategory": "task.category",
+                     "invoiceId": "000001573",
+                     "invoiceDescription": "task.customFields.invoiceDescription"
+                  }
+               }
             }
          ]
-      }
+         }
+      ]
 
    ..
 
--  Structure of each widget in variable **Portal.TaskDetails**:
+-  Structure of each task details layout in variable **Portal.TaskDetails**:
+
+   ``id``: ID which used to identify layout.
+
+   ``widgets``: definition of widgets in layout.
+
+   ``filters``: conditions to determine which tasks able to use the layout. There are 2 types of filter ``taskCategories`` (task categories) and ``taskStates`` (task states).
+
+-  Structure of each widget inside task details layout in variable **Portal.TaskDetails**:
 
    ``type``: There are 4 types: ``information``, ``document``, ``history``, ``custom``
 
-   ``id``: It's used to detect custom widgets.
+   ``x``: HTML DOM Style ``left`` will be calculated by formula ``x / 12 * 100%``
 
-   ``axisX``: HTML DOM Style ``left`` will be calculated by formula ``axisX / 12 * 100%``
+   ``y``: HTML DOM Style ``top`` will be calculated by formula ``y / 12 * 100%``
 
-   ``axisY``: HTML DOM Style ``top`` will be calculated by formula ``axisY / 12 * 100%``
+   ``w``: HTML DOM Style ``width`` will be calculated by formula ``60 * w + 20 * (w - 1)``
 
-   ``width``: HTML DOM Style ``width`` will be calculated by formula ``60 * width + 20 * (width - 1)``
-
-   ``height``: HTML DOM Style ``height`` will be calculated by formula ``60 * height + 20 * (height - 1)``
+   ``h``: HTML DOM Style ``height`` will be calculated by formula ``60 * h + 20 * (h - 1)``
 
    ``styleClass`` (optional): add CSS Classes to HTML DOM
 
    ``style`` (optional): add inline style to HTML DOM
 
+   ``data`` (for custom widget): data for custom widget using iframe
+
+      ``type``: type of custom widget which is not using Iframe. There are two type ``taskItemDetailCustomPanelTop`` and ``taskItemDetailCustomPanelBottom``
+
+      ``url``: URL for external website
+
+      ``processStart``: relative link to the ivy process which will be displayed in custom widget
+
+      ``params``: paramters for ivy process above, each parameter can be defined as follows:
+
+         - Key name that will be parameter name for ivy process above. Note: don't use ``taskId``.
+
+         - Key value for task: must start with ``task.``. Support 2 values: ``task.id``, ``task.category``.
+
+         - Key value for task custom fields: must start with ``task.customFields.``, follow by custom field name.
+
+         - Other key value will be treated as hard code value.
+
 .. important::
-   -  **Do not change** ``type`` and ``id`` of widgets.
-      You can change ``axisX``, ``axisY``, ``width`` and ``height`` to update size and position of widgets.
-   -  ``axisX``, ``axisY``, ``width`` and ``height`` must be **integers**.
-   -  ``axisX + width`` must **not be larger** than **12**.
+   -  **Do not change** ``type`` of widgets.
+      You can change ``x``, ``y``, ``w`` and ``h`` to update size and position of widgets.
+   -  ``x``, ``y``, ``w`` and ``h`` must be **integers**.
+   -  ``x + w`` must **not be larger** than **12**.
+   -  For data of custom widget, if you input ``processStart``, don't input ``url``. You can only use one of them.
+   -  We support all task states for filter type ``taskStates``. Please refer to `Task States <https://developer.axonivy.com/doc/9.2/public-api/ch/ivyteam/ivy/workflow/TaskState.html>`_ to check for avaiable task states.
 
 
 .. _customization-task-item-details-how-to-overide-ui:
@@ -151,59 +197,59 @@ There are **two steps** for adding new custom panels.
 
    .. _task-details-custom-configuration-variable-example:
    
-   -  Example Portal.TaskDetails with including 2 custom widgets configuration:
+   -  Example Portal.TaskDetails with layout configuration includes 4 custom widgets:
    
-      .. code-block:: html
-   
-         {
-            "widgets": 
-            [
-               {
-                  "type": "information",
-                  "id": "information",
-                  "axisX": 0,
-                  "axisY": 4,
-                  "width": 6,
-                  "height": 12
-               },
-               {
-                  "type": "document",
-                  "id": "document",
-                  "axisX": 6,
-                  "axisY": 4,
-                  "width": 6,
-                  "height": 6
-               },
-               {
-                  "type": "history",
-                  "id": "history",
-                  "axisX": 6,
-                  "axisY": 10,
-                  "width": 6,
-                  "height": 6
-               },
-               {
-                  "type": "custom",
-                  "id": "taskItemDetailCustomPanelTop",
-                  "axisX": 0,
-                  "axisY": 0,
-                  "width": 12,
-                  "height": 4
-               },
-               {
-                  "type": "custom",
-                  "id": "taskItemDetailCustomPanelBottom",
-                  "axisX": 0,
-                  "axisY": 16,
-                  "width": 12,
-                  "height": 4
-               }
-            ]
-         }
-   
-      ..
+   .. code-block:: html
 
-#. Refer to the ``taskItemDetailCustomPanel*`` section in ``PortalTaskDetails.xhtml`` of PortalTemplate.
+      [
+         {
+            "id": "default-task-detail",
+            "widgets": 
+               [
+                  {
+                     "type": "information",
+                     "layout": {
+                        "x": 0, "y": 4, "w": 6, "h": 12
+                     }
+                  },
+                  {
+                     "type": "document",
+                     "layout": {
+                        "x": 6, "y": 4, "w": 6, "h": 6
+                     }
+                  },
+                  {
+                     "type": "history",
+                     "layout": {
+                        "x": 6, "y": 10, "w": 6, "h": 6
+                     }
+                  },
+                  {
+                     "type": "custom",
+                     "layout": {
+                        "x": 0, "y": 0, "w": 12, "h": 4
+                     },
+                     "data" : {
+                        "type": "taskItemDetailCustomPanelTop"
+                     }
+                  },
+                  {
+                     "type": "custom",
+                     "layout": {
+                        "x": 0, "y": 16, "w": 6, "h": 4
+                     },
+                     "data" : {
+                        "type": "taskItemDetailCustomPanelBottom"
+                     }
+                  }
+               ]
+            }
+         }
+      ]
+
+   ..
+
+#. To customize task details which do not use Iframe, refer to the ``taskItemDetailCustomPanel*`` section in ``PortalTaskDetails.xhtml`` of PortalTemplate.
 
    -  We need to define the ``ui:define`` tag with the valid name such as
       ``taskItemDetailCustomPanelTop`` and ``taskItemDetailCustomPanelBottom``.
@@ -288,9 +334,102 @@ There are **two steps** for adding new custom panels.
       |task-customized-top|
       |task-customized-bottom|
 
+#. To customize task details use Iframe, please make sure
+
+   -  Must input parameter ``url`` if you want to use external URL.
+
+   -  Must input parameter ``ivy`` if you want to use ivy start process.
+
+   -  If you use ivy start process, you can predefine parameter for ``params``.
+
+      Customized task details using external URL
+
+      .. code-block:: html
+
+         [
+            {
+            "id": "task-detail",
+            "widgets": [
+               {
+                  "type": "information",
+                  "layout": {
+                  "x": 0, "y": 0, "w": 4, "h": 12
+                  }
+               },
+               {
+                  "type": "custom",
+                  "layout": {
+                  "x": 6, "y": 0, "w": 8, "h": 6
+                  },
+                  "data" : {
+                  "url": "https://www.axonivy.com/"
+                  }
+               }
+            ]
+            }
+         ]
+
+      Result
+
+      |task-customized-iframe-url|
+
+      Customized task details using ivy process start, please refer to ``TaskDetailsCustomWidgetExample`` process in ``portal-developer-examples`` for more details
+
+      .. code-block:: html
+
+            [
+               {
+               "id": "task-detail",
+               "widgets": [
+                  {
+                     "type": "information",
+                     "layout": {
+                     "x": 0, "y": 0, "w": 6, "h": 12
+                     }
+                  },
+                  {
+                     "type": "history",
+                     "layout": {
+                     "x": 6, "y": 6, "w": 6, "h": 6
+                     }
+                  },
+                  {
+                     "type": "custom",
+                     "layout": {
+                     "x": 0, "y": 6, "w": 6, "h": 6
+                     },
+                     "data" : {
+                        "processStart": "Start Processes/TaskDetailsCustomWidgetExample/invoiceDetails.ivp",
+                        "params": {
+                           "startedTaskId": "task.id",
+                           "startedTaskCategory": "task.category",
+                           "invoiceId": "000001573",
+                           "invoiceDescription": "task.customFields.invoiceDescription"
+                        }
+                     }
+                  }
+               ]
+               }
+            ]
+
+      Provide task custom field
+
+      |task-customized-iframe-process-custom-field|
+
+      Map parameters to process data
+
+      |task-customized-iframe-process-input-mapping|
+
+      Result
+
+      |task-customized-iframe-process|
+
+
 .. |task-standard| image:: ../../screenshots/task-detail/customization/task-standard.png
 .. |task-customized-top| image:: images/customization/task-customized-top.png
 .. |task-customized-bottom| image:: images/customization/task-customized-bottom.png
 .. |edit-variable-portal-task-case-details| image:: images/customization/edit-variable-portal-task-case-details.png
-
-
+.. |task-customized-iframe-url| image:: images/customization/task-customized-iframe-url.png
+.. |task-customized-iframe-process| image:: images/customization/task-customized-iframe-process.png
+.. |task-customized-iframe-process-custom-field| image:: images/customization/task-customized-iframe-process-custom-field.png
+.. |task-customized-iframe-process-input-mapping| image:: images/customization/task-customized-iframe-process-input-mapping.png

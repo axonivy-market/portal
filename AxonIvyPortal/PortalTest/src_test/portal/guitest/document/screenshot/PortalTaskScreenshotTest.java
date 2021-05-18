@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebElement;
 
@@ -83,6 +84,7 @@ public class PortalTaskScreenshotTest extends ScreenshotTest {
     TaskWidgetPage taskWidget = homePage.openTaskList();
     TaskDetailsPage taskDetails = taskWidget.openTaskDetails(0);
     taskDetails.waitUtilsTaskDetailsDisplayed();
+    taskDetails.waitForElementDisplayed(By.id("task-details-information-panel"), true);
 
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.TASK_DETAIL_FOLDER + "detailed-task-information");
     executeDecorateJs("highlightTaskDetailComponent()");

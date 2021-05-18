@@ -45,17 +45,17 @@ public class ExpressManagementBean implements Serializable {
   private String importStatus;
   private FacesMessage validateMessage;
   private Boolean isError;
-  private ExpressManagementUtils expressManagementUtils;
 
   @PostConstruct
   public void initManagement() {
-    activeMemberList = findAllActiveUser();
-    ProcessStartCollector collector = new ProcessStartCollector();
-    isShowExpressManagementTab = collector.findExpressCreationProcess() != null;
-    expressManagementUtils = new ExpressManagementUtils();
-    setExpressProcesses(expressManagementUtils.findExpressProcesses());
+    isShowExpressManagementTab = new ProcessStartCollector().findExpressCreationProcess() != null;
   }
 
+  public void initWorkflowSummaryTable() {
+    activeMemberList = findAllActiveUser();
+    setExpressProcesses(ExpressManagementUtils.findExpressProcesses());
+  }
+  
   @SuppressWarnings("unchecked")
   private List<SecurityMemberDTO> findAllActiveUser() {
     if (activeMemberList == null) {
@@ -109,8 +109,7 @@ public class ExpressManagementBean implements Serializable {
   
   public StreamedContent exportExpress() {
     if (selectedExpressProcesses != null && !selectedExpressProcesses.isEmpty()) {
-      ExpressManagementUtils utils = new ExpressManagementUtils();  
-      exportExpressFile = utils.exportExpressProcess(selectedExpressProcesses);
+      exportExpressFile = ExpressManagementUtils.exportExpressProcess(selectedExpressProcesses);
     }
     return exportExpressFile;
   }
@@ -135,7 +134,7 @@ public class ExpressManagementBean implements Serializable {
   
   @SuppressWarnings("unchecked")
   private void importExpressProcesses() {
-    Map<ExpressMessageType, Object> results = expressManagementUtils.importExpressProcesses(importExpressFile);
+    Map<ExpressMessageType, Object> results = ExpressManagementUtils.importExpressProcesses(importExpressFile);
     try {
       importStatus = results.get(ExpressMessageType.IMPORT_STATUS).toString();
       importOutput = results.get(ExpressMessageType.IMPORT_RESULT).toString();

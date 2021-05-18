@@ -32,9 +32,7 @@ Ls0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ls0 f0 81 137 30 30 16 11 #rect
-Ls0 f0 @|StartSubIcon #fIcon
 Ls0 f1 81 361 30 30 0 15 #rect
-Ls0 f1 @|EndSubIcon #fIcon
 Ls0 f3 actionTable 'out=in;
 ' #txt
 Ls0 f3 actionCode 'import org.apache.commons.lang3.StringUtils;
@@ -58,7 +56,7 @@ if(PermissionUtils.checkAccessFullCaseListPermission()) {
 }
 if(PermissionUtils.checkAccessFullStatisticsListPermission()) {
 	GlobalSettingService globalSettingService = new GlobalSettingService();
-	String isHideStatisticStr = globalSettingService.findGlobalSettingValue(GlobalVariable.HIDE_STATISTIC_WIDGET.toString());
+	String isHideStatisticStr = globalSettingService.findGlobalSettingValue(GlobalVariable.HIDE_STATISTIC_WIDGET);
 	boolean isHideStatistic = StringUtils.isNotBlank(isHideStatisticStr) ? Boolean.parseBoolean(isHideStatisticStr) : false;
 	if (!isHideStatistic) {
   	in.subMenuItems.add(new StatisticSubMenuItem());
@@ -74,7 +72,6 @@ Ls0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ls0 f3 40 226 112 44 -48 -8 #rect
-Ls0 f3 @|StepIcon #fIcon
 Ls0 f4 expr out #txt
 Ls0 f4 96 167 96 226 #arcP
 Ls0 f2 expr out #txt
@@ -119,7 +116,7 @@ NOTE:&#13;
 If you want to hide Statistic widget, please copy these line of code into your overrided process&#13;
 &#13;
 GlobalSettingService globalSettingService = new GlobalSettingService();&#13;
-String isHideStatisticStr = globalSettingService.findGlobalSettingValue(GlobalVariable.HIDE_STATISTIC_WIDGET.toString());&#13;
+String isHideStatisticStr = globalSettingService.findGlobalSettingValue(GlobalVariable.HIDE_STATISTIC_WIDGET);&#13;
 boolean isHideStatistic = StringUtils.isNotBlank(isHideStatisticStr) ? Boolean.parseBoolean(isHideStatisticStr) : false;&#13;
 if (!isHideStatistic) {&#13;
   in.subMenuItems.add(new StatisticSubMenuItem());&#13;
@@ -127,9 +124,8 @@ if (!isHideStatistic) {&#13;
     </language>
 </elementInfo>
 ' #txt
-Ls0 f5 296 50 656 684 -323 -336 #rect
-Ls0 f5 @|IBIcon #fIcon
-Ls0 f6 296 392 96 270 #arcP
+Ls0 f5 296 50 656 684 -321 -336 #rect
+Ls0 f6 296 392 152 248 #arcP
 Ls0 f6 0 0.27018937996533715 0 0 #arcLabel
 >Proto Ls0 .type ch.ivy.addon.portal.generic.LoadSubMenuItemsData #txt
 >Proto Ls0 .processKind CALLABLE_SUB #txt

@@ -8,7 +8,7 @@ Express external data provider
 Introduction
 ------------
 
-In portal express we can provide the external data for checkbox values
+In Portal express we can provide the external data for checkbox values
 when creating form, like a product catalogue can be maintained in the
 background and the process calls this data provider.
 

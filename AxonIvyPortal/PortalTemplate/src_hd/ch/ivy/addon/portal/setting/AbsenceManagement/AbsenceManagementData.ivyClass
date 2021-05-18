@@ -29,3 +29,13 @@ substitutions java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvySubstitute> #f
 substitutions PERSISTENT #fieldModifier
 message String #field
 message PERSISTENT #fieldModifier
+deputyRoles java.util.List<ch.ivy.addon.portalkit.dto.DeputyRole> #field
+deputyRoles PERSISTENT #fieldModifier
+selectedDeputyRole ch.ivy.addon.portalkit.dto.DeputyRole #field
+selectedDeputyRole PERSISTENT #fieldModifier
+selectedDeputyRoleId String #field
+selectedDeputyRoleId PERSISTENT #fieldModifier
+selectedDeputy ch.ivy.addon.portalkit.dto.UserDTO #field
+selectedDeputy PERSISTENT #fieldModifier
+selectedDeputies java.util.List<ch.ivyteam.ivy.security.ISecurityMember> #field
+selectedDeputies PERSISTENT #fieldModifier

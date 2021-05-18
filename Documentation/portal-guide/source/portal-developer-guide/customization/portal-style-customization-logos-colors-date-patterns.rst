@@ -11,22 +11,35 @@ Change Portal's logos
 You can change logo and login logo by modifying default logo in
 PortalStyle project.
 
--  Modify cms entry ``PortalStyle/images/logo/CorporateLogo.png`` to
-   update homepage logo when menu is expanded.
+-  Modify cms entry ``PortalStyle/images/logo/CorporateLogoSvg`` to
+   update homepage logo when menu is expanded. File type is SVG. This approach is highly recommended.
+
+-  Modify cms entry ``PortalStyle/images/logo/CorporateLogo`` to
+   update homepage logo when menu is expanded. Only use this approach if you don't have SVG file. File type is PNG.
 
    .. tip:: We recommend you to use an image with width size is 168 pixel to fit the left menu size when it's expanded
+
    
 
--  Modify cms entry ``PortalStyle/images/logo/SmallCorporateLogo.png`` to
-   update homepage logo when menu is collapsed.
+-  Modify cms entry ``PortalStyle/images/logo/SmallCorporateLogoSvg`` to
+   update homepage logo when menu is collapsed. File type is SVG. This approach is highly recommended.
+
+-  Modify cms entry ``PortalStyle/images/logo/SmallCorporateLogo`` to
+   update homepage logo when menu is collapsed. Only use this approach if you don't have SVG file. File type is PNG.
 
    .. tip:: We recommend you to use an image with width size is 42 pixel to fit the left menu size when it's collapsed
 
--  Modify cms entry ``PortalStyle/images/logo/loginLogo.png`` to update
-   login logo.
+-  Modify cms entry ``PortalStyle/images/logo/loginLogoSvg`` to update
+   login logo. File type is SVG. This approach is highly recommended.
 
--  Modify cms entry ``PortalStyle/images/logo/faviconLogo.png`` to update
-   favicon logo. Recommended size for favicon: 16x16 or 32x32 pixels.
+-  Modify cms entry ``PortalStyle/images/logo/loginLogo`` to update
+   login logo. Only use this approach if you don't have SVG file. File type is PNG.
+
+-  Modify cms entry ``PortalStyle/images/logo/faviconLogoSvg`` to update
+   favicon logo. File type is SVG. This approach is highly recommended.
+
+-  Modify cms entry ``PortalStyle/images/logo/faviconLogo`` to update
+   favicon logo. Recommended size for favicon: 16x16 or 32x32 pixels. Only use this approach if you don't have SVG file. File type is PNG.
 
 -  Override CSS variables: ``--login-logo-height``, ``--home-logo-height`` in
    ``customization.css`` to scale your logos.

@@ -14,6 +14,14 @@ More UX for Axon Ivy Portal 9.2, refer to :ref:`introduction-new-and-note-worthy
 - Additional drag and drop widgets in task and case detail pages
 - Advanced user specific settings 
 
+New & Noteworthy 9.3
+--------------------
+
+Customization global growl message for task using IFrame
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+A new API is introduced to support customizing global growl message for task using IFrame.
+
 .. _introduction-new-and-note-worthy:
 
 .. _introduction-new-and-note-worthy-9.2:
@@ -84,7 +92,7 @@ At first login, an introduction will be shown to introduce all main features of 
 My profile 
 ^^^^^^^^^^
 
-My profile replaces for language setting and email setting. Also, introduce the general setting for you can configure the portal according to your requirements
+My profile replaces for language setting and email setting. Also, introduce the general setting for you can configure the Portal according to your requirements
 
 |my-profile|
 

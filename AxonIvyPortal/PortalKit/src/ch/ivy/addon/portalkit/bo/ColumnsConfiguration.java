@@ -2,20 +2,19 @@ package ch.ivy.addon.portalkit.bo;
 
 import java.util.List;
 
-public abstract class ColumnsConfiguration {
+import com.fasterxml.jackson.annotation.JsonInclude;
 
-  private Long applicationId;
-  private Long userId;
+import ch.ivy.addon.portalkit.configuration.AbstractConfiguration;
+
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
+public abstract class ColumnsConfiguration extends AbstractConfiguration {
+
   private List<String> selectedColumns;
   private boolean isAutoHideColumns;
   private Long processModelId;
 
-  public Long getUserId() {
-    return userId;
-  }
-
-  public void setUserId(Long userId) {
-    this.userId = userId;
+  public ColumnsConfiguration() {
+    setIsPublic(false);
   }
 
   public List<String> getSelectedColumns() {
@@ -32,14 +31,6 @@ public abstract class ColumnsConfiguration {
 
   public void setAutoHideColumns(boolean isAutoHideColumns) {
     this.isAutoHideColumns = isAutoHideColumns;
-  }
-
-  public Long getApplicationId() {
-    return applicationId;
-  }
-
-  public void setApplicationId(Long applicationId) {
-    this.applicationId = applicationId;
   }
 
   public Long getProcessModelId() {

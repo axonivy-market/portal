@@ -3,6 +3,8 @@ package portal.guitest.test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.util.Arrays;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -85,13 +87,15 @@ public class DisabledUserTest extends BaseTest {
     redirectToRelativeLink(cleanUpAbsencesAndSubstituesLink);
     AbsencePage absencePage = new HomePage().openAbsencePage();
     absencePage.setSubstitutedByAdmin(VISIBILITY_USER_FULL_NAME);
-    absencePage.setDeputy(TestAccount.DEMO_USER.getFullName());
+    absencePage.setDeputy(Arrays.asList(TestAccount.DEMO_USER.getFullName()), 0);
     absencePage.saveSubstitute();
-    absencePage.openAbsencePage();
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+    absencePage = new HomePage().openAbsencePage();
     absencePage.setSubstitutedByAdmin(TestAccount.DEMO_USER.getFullName());
     assertEquals(DISABLED_VISIBILITY_USER_BRIEF_DISPLAY_NAME, absencePage.getSubstitutedByAdmin(0));
-    absencePage.openAbsencePage();
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+    absencePage = new HomePage().openAbsencePage();
     absencePage.setSubstitutedByAdmin(VISIBILITY_USER_FULL_NAME);
-    assertEquals(TestAccount.DEMO_USER.getFullName(), absencePage.getMyDeputy());
+    assertEquals(TestAccount.DEMO_USER.getFullName(), absencePage.getMyDeputy(0));
   }
 }

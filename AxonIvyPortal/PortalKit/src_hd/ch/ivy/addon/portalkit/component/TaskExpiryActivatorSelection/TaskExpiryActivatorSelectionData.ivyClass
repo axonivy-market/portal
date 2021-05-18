@@ -1,0 +1,26 @@
+TaskExpiryActivatorSelectionData #class
+ch.ivy.addon.portalkit.component.TaskExpiryActivatorSelection #namespace
+canChangeTaskActivator Boolean #field
+canChangeTaskActivator PERSISTENT #fieldModifier
+users java.util.List<ch.ivy.addon.portalkit.dto.UserDTO> #field
+users PERSISTENT #fieldModifier
+roles java.util.List<ch.ivy.addon.portalkit.dto.RoleDTO> #field
+roles PERSISTENT #fieldModifier
+selectedActivator ch.ivyteam.ivy.security.ISecurityMember #field
+selectedActivator PERSISTENT #fieldModifier
+queryAutoComplete String #field
+queryAutoComplete PERSISTENT #fieldModifier
+task ch.ivyteam.ivy.workflow.ITask #field
+task PERSISTENT #fieldModifier
+selectedUser ch.ivy.addon.portalkit.dto.UserDTO #field
+selectedUser PERSISTENT #fieldModifier
+selectedRole ch.ivy.addon.portalkit.dto.RoleDTO #field
+selectedRole PERSISTENT #fieldModifier
+comment String #field
+comment PERSISTENT #fieldModifier
+notes String #field
+notes PERSISTENT #fieldModifier
+isUserAssigned Boolean #field
+isUserAssigned PERSISTENT #fieldModifier
+isDisabledAssignButton Boolean #field
+isDisabledAssignButton PERSISTENT #fieldModifier

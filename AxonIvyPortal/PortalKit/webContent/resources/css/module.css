@@ -806,6 +806,17 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   width: 100%;
 }
 
+.task-item-body-container .card.task-detail-card.iframe-widget {
+  padding: 5px;
+  overflow: hidden;
+}
+
+.task-detail-card.iframe-widget iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
 .case-history-button-container, .task-history-button-container {
   text-align: right;
 }
@@ -2121,6 +2132,10 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
     max-width: 80%;
   }
 }
+
+.task-expiry-activator-edit {
+  margin-left: 5px;
+}
 /********************************** END TASK DETAIL **********************************/
 
 /********************************** CASE DETAIL **********************************/
@@ -2993,14 +3008,6 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   .substitute-table .substition-role-display-name {
     display: block;
   }
-  .substitute-table .user-selection-autocomplete-panel {
-    display: inline-block;
-    width: 100%;
-  }
-
-  .substitute-table .user-selection-autocomplete-panel .ui-inputfield {
-    width: 100%;
-  }
 
   .absence-management .add-absence-panel button.small-add-absence {
     max-width: 75px;
@@ -3060,6 +3067,69 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 .absence-management .show-absence-in-the-past-panel span.ui-chkbox-label {
   margin-right: 0;
 }
+
+/* CHOOSE DEPUTY DIALOG */
+.choose-deputy-dialog {
+  min-width: 600px;
+}
+
+@media screen and (max-width: 40em) {
+  .choose-deputy-dialog {
+    min-width: 100%;
+  }
+}
+
+.choose-deputy-dialog .deputy-selection-panel {
+  width: 100%;
+}
+
+.choose-deputy-dialog .deputy-selection-panel,
+.choose-deputy-dialog .deputy-selection-panel tbody tr td {
+  border: none;
+}
+
+.choose-deputy-dialog .deputy-selection-panel .select-deputy .ui-autocomplete {
+  width: 100%;
+}
+
+.choose-deputy-dialog .deputy-selection-panel .select-deputy .ui-autocomplete-input {
+  width: 100%;
+}
+
+.choose-deputy-dialog .deputy-selection-panel .add-deputy-button {
+  float: right;
+  margin-top: 15px;
+}
+
+.choose-deputy-dialog .deputy-selection-panel .selected-deputy-panel .deputy-selection {
+  width: 100%;
+  border: none;
+  margin: 0;
+}
+
+.choose-deputy-dialog .deputy-selection-panel .selected-deputy-panel .ui-fieldset-content {
+  max-height: 35vh;
+  overflow-y: auto;
+}
+
+.choose-deputy-dialog .deputy-selection-panel .delete-deputy {
+  padding-right: 5px;
+}
+
+.choose-deputy-dialog .deputy-selection-panel .deputy-name-col {
+  width: 90%;
+  padding-left: 0;
+}
+
+.choose-deputy-dialog .deputy-selection-panel .save-deputy-button {
+  margin-top: 10px;
+}
+
+.ui-autocomplete-panel .ui-autocomplete-items .ui-autocomplete-moretext.ui-state-highlight,
+.ui-autocomplete-panel .ui-autocomplete-items .ui-autocomplete-moretext.ui-state-highlight td {
+  cursor: default;
+}
+
 /**********************************END ABSENCES AND DEPUTY **********************************/
 .application-language-header {
   width: 20%;
@@ -3202,13 +3272,19 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   text-align: right;
 }
 
-.deputy-for-active-period,
 .deputy-for-next-absence {
   width: inherit;
 }
 
-.substitute-table .active-period-option {
-  padding: 3px 0;
+.substitute-table .substition-role-type {
+  display: none;
+}
+
+.absences-management-container .substitute-table tbody.ui-datatable-data .substition-role-display-name,
+.substitute-table .task-responsible-link,
+.absences-management-container .substitution-table tbody.ui-datatable-data .substition-role-display-name {
+  white-space: normal;
+  line-break: anywhere;
 }
 
 @media screen and (max-width: 40em) {
@@ -3238,7 +3314,6 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 }
 
 @media screen and (min-width: 90.063em) {
-  .deputy-for-active-period,
   .deputy-for-next-absence {
     width: 250px;
   }
@@ -4701,10 +4776,6 @@ _:-ms-fullscreen, :root .content-link-history {
   margin-bottom: 10px
 }
 
-.task-detail-column-title {
-  opacity: 0.65;
-}
-
 .task-detail-title {
   font-weight: bold;
   padding: 10px 0 5px 0 !important;
@@ -4888,6 +4959,7 @@ _:-ms-fullscreen, :root .content-link-history {
 .case-upload-dialog, .case-view-note-dialog, .document-upload-dialog, .task-note-dialog,
 .task-upload-dialog {
   min-width: 50vw;
+  max-width: 70vw;
 }
 
 @media screen and (max-width: 40em) {
@@ -4898,7 +4970,8 @@ _:-ms-fullscreen, :root .content-link-history {
     padding: 0 !important;
   }
   .case-upload-dialog, .case-view-note-dialog, .task-upload-dialog, .document-upload-dialog, .task-note-dialog {
-    min-width: 96vw;
+    min-width: 70vw;
+    max-width: 96vw;
   }
 
   .adhoc-task-history-dialog .ui-dialog-content.ui-widget-content {
@@ -5565,8 +5638,66 @@ body span.ui-commandlink .si {
   }
 }
 
+.task-escalation-activator-dialog {
+  min-width: 250px;
+  min-height: 200px;
+}
+
 /* Allow users to scroll on mobile when use gridstack library*/
 .grid-stack-item-content.ui-draggable-handle {
   -ms-touch-action: initial !important; 
   touch-action: auto !important;
+}
+
+.security-member-tooltip.ui-tooltip {
+  max-width: 80vw;
+  word-wrap: break-word;
+  opacity: 1;
+}
+
+.security-member-tooltip .tooltip-header,
+.security-member-tooltip .tooltip-body,
+.security-member-tooltip .tooltip-body-item {
+  margin: auto;
+}
+
+.security-member-tooltip .tooltip-body {
+  padding-left: 14px;
+}
+
+.security-member-tooltip .tooltip-body.no-user {
+  padding-left: 0;
+}
+
+/* Activator selection */
+.task-escalation-activator-dialog {
+  max-width: 600px;
+  min-width: 300px;
+  min-height: 200px;
+}
+
+.task-escalation-activator-dialog .task-escalation-activator-form,
+.task-escalation-activator-form .activator-type-label,
+.task-escalation-activator-form .task-escalation-activator-panel,
+.task-escalation-activator-form .select-assignee-panel,
+.assign-comment-panel .assign-comment-label,
+.assign-comment-panel .assign-comment-input {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.task-escalation-activator-form .select-assignee-panel.ui-fluid .ui-inputfield[size] {
+  width: 100%;
+}
+
+.task-escalation-activator-form .activator-type-select tbody tr td {
+  padding-right: 15px;
+}
+
+@media screen and (max-width: 40em) {
+  .task-escalation-activator-dialog {
+    min-width: auto;
+    max-width: 95vw;
+  }
+
 }

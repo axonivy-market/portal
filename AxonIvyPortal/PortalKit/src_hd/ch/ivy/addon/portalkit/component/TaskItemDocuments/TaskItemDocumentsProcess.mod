@@ -72,9 +72,7 @@ Ts0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ts0 f0 83 83 26 26 -16 15 #rect
-Ts0 f0 @|UdInitIcon #fIcon
 Ts0 f1 371 83 26 26 0 12 #rect
-Ts0 f1 @|UdProcessEndIcon #fIcon
 Ts0 f6 guid 1682717F2DAE7E7A #txt
 Ts0 f6 method initData(ch.ivyteam.ivy.workflow.ITask) #txt
 Ts0 f6 inParameterDecl '<ch.ivyteam.ivy.workflow.ITask task> param;' #txt
@@ -89,7 +87,6 @@ Ts0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ts0 f6 83 179 26 26 -40 15 #rect
-Ts0 f6 @|UdMethodIcon #fIcon
 Ts0 f64 actionTable 'out=in;
 ' #txt
 Ts0 f64 actionCode 'import ch.ivy.addon.portalkit.enums.GlobalVariable;
@@ -97,7 +94,7 @@ import ch.ivy.addon.portalkit.service.GlobalSettingService;
 
 GlobalSettingService globalSettingService = new GlobalSettingService();
 String isHideUploadDocumentForDoneCaseString =
-        globalSettingService.findGlobalSettingValue(GlobalVariable.HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE.toString());
+        globalSettingService.findGlobalSettingValue(GlobalVariable.HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE);
 in.isHideUploadDocumentForDoneCase = Boolean.parseBoolean(isHideUploadDocumentForDoneCaseString);' #txt
 Ts0 f64 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -108,11 +105,9 @@ add document</name>
 </elementInfo>
 ' #txt
 Ts0 f64 544 170 112 44 -39 -16 #rect
-Ts0 f64 @|StepIcon #fIcon
 Ts0 f17 expr out #txt
 Ts0 f17 109 96 371 96 #arcP
 Ts0 f8 707 179 26 26 0 12 #rect
-Ts0 f8 @|UdProcessEndIcon #fIcon
 Ts0 f37 expr out #txt
 Ts0 f37 656 192 707 192 #arcP
 Ts0 f10 guid 16827249E7B1FA94 #txt
@@ -129,9 +124,7 @@ Ts0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ts0 f10 83 275 26 26 -86 17 #rect
-Ts0 f10 @|UdMethodIcon #fIcon
 Ts0 f18 651 371 26 26 0 12 #rect
-Ts0 f18 @|UdProcessEndIcon #fIcon
 Ts0 f41 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -140,11 +133,8 @@ Ts0 f41 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ts0 f41 392 272 32 32 -54 -39 #rect
-Ts0 f41 @|AlternativeIcon #fIcon
 Ts0 f67 392 368 32 32 0 16 #rect
-Ts0 f67 @|AlternativeIcon #fIcon
 Ts0 f68 859 275 26 26 0 12 #rect
-Ts0 f68 @|UdProcessEndIcon #fIcon
 Ts0 f76 actionTable 'out=in;
 ' #txt
 Ts0 f76 actionCode 'import javax.faces.application.FacesMessage;
@@ -159,7 +149,6 @@ Ts0 f76 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ts0 f76 488 362 128 44 -58 -8 #rect
-Ts0 f76 @|StepIcon #fIcon
 Ts0 f77 expr in #txt
 Ts0 f77 424 384 488 384 #arcP
 Ts0 f77 0 0.3194444444444444 0 -10 #arcLabel
@@ -168,7 +157,6 @@ Ts0 f86 408 304 408 368 #arcP
 Ts0 f89 expr out #txt
 Ts0 f89 616 384 651 384 #arcP
 Ts0 f4 403 435 26 26 0 12 #rect
-Ts0 f4 @|UdProcessEndIcon #fIcon
 Ts0 f5 guid 16827286AC6AA280 #txt
 Ts0 f5 method downloadDocument(ch.ivy.addon.portalkit.ivydata.bo.IvyDocument) #txt
 Ts0 f5 inParameterDecl '<ch.ivy.addon.portalkit.ivydata.bo.IvyDocument document> param;' #txt
@@ -185,7 +173,6 @@ Ts0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ts0 f5 83 435 26 26 -89 15 #rect
-Ts0 f5 @|UdMethodIcon #fIcon
 Ts0 f12 guid 168272AA0A252382 #txt
 Ts0 f12 method resetMessageUploadDocument() #txt
 Ts0 f12 inParameterDecl '<> param;' #txt
@@ -198,9 +185,7 @@ Ts0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ts0 f12 83 531 26 26 -79 21 #rect
-Ts0 f12 @|UdMethodIcon #fIcon
 Ts0 f21 403 531 26 26 0 12 #rect
-Ts0 f21 @|UdProcessEndIcon #fIcon
 Ts0 f13 actionTable 'out=in;
 ' #txt
 Ts0 f13 actionCode 'import java.util.Iterator;
@@ -221,7 +206,6 @@ Ts0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ts0 f13 192 522 112 44 -48 -8 #rect
-Ts0 f13 @|StepIcon #fIcon
 Ts0 f23 expr out #txt
 Ts0 f23 304 544 403 544 #arcP
 Ts0 f14 expr out #txt
@@ -238,9 +222,7 @@ Ts0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ts0 f3 83 627 26 26 -49 15 #rect
-Ts0 f3 @|UdMethodIcon #fIcon
 Ts0 f22 755 627 26 26 0 12 #rect
-Ts0 f22 @|UdProcessEndIcon #fIcon
 Ts0 f46 actionTable 'out=in;
 ' #txt
 Ts0 f46 actionCode 'import javax.faces.application.FacesMessage;
@@ -256,7 +238,6 @@ message</name>
 </elementInfo>
 ' #txt
 Ts0 f46 488 266 128 44 -40 -16 #rect
-Ts0 f46 @|StepIcon #fIcon
 Ts0 f27 expr in #txt
 Ts0 f27 outCond 'in.uploadDocumentCheckStatus == ch.ivy.addon.portalkit.enums.UploadDocumentCheckStatus.OK' #txt
 Ts0 f27 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -285,7 +266,6 @@ message</name>
 </elementInfo>
 ' #txt
 Ts0 f50 384 618 128 44 -40 -16 #rect
-Ts0 f50 @|StepIcon #fIcon
 Ts0 f30 processCall 'Functional Processes/GetDocumentList:call(ch.ivyteam.ivy.workflow.ICase)' #txt
 Ts0 f30 requestActionDecl '<ch.ivyteam.ivy.workflow.ICase businessCase> param;' #txt
 Ts0 f30 requestMappingAction 'param.businessCase=in.businessCase;
@@ -303,7 +283,6 @@ Ts0 f30 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ts0 f30 384 170 112 44 -44 -8 #rect
-Ts0 f30 @|CallSubIcon #fIcon
 Ts0 f2 expr out #txt
 Ts0 f2 496 192 544 192 #arcP
 Ts0 f31 expr out #txt
@@ -322,7 +301,6 @@ Ts0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ts0 f9 208 170 128 44 -54 -8 #rect
-Ts0 f9 @|StepIcon #fIcon
 Ts0 f16 processCall 'Functional Processes/GetDocumentList:call(ch.ivyteam.ivy.workflow.ICase)' #txt
 Ts0 f16 requestActionDecl '<ch.ivyteam.ivy.workflow.ICase businessCase> param;' #txt
 Ts0 f16 requestMappingAction 'param.businessCase=in.businessCase;
@@ -340,7 +318,6 @@ Ts0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ts0 f16 696 266 112 44 -44 -8 #rect
-Ts0 f16 @|CallSubIcon #fIcon
 Ts0 f28 expr out #txt
 Ts0 f28 616 288 696 288 #arcP
 Ts0 f33 expr out #txt
@@ -366,7 +343,6 @@ Ts0 f32 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ts0 f32 216 266 112 44 -48 -8 #rect
-Ts0 f32 @|CallSubIcon #fIcon
 Ts0 f35 expr out #txt
 Ts0 f35 109 288 216 288 #arcP
 Ts0 f36 expr out #txt
@@ -389,7 +365,6 @@ Ts0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ts0 f7 192 426 128 44 -58 -8 #rect
-Ts0 f7 @|CallSubIcon #fIcon
 Ts0 f11 expr out #txt
 Ts0 f11 109 448 192 448 #arcP
 Ts0 f20 expr out #txt
@@ -411,7 +386,6 @@ Ts0 f38 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ts0 f38 576 618 112 44 -44 -8 #rect
-Ts0 f38 @|CallSubIcon #fIcon
 Ts0 f39 expr out #txt
 Ts0 f39 512 640 576 640 #arcP
 Ts0 f24 expr out #txt
@@ -434,7 +408,6 @@ Ts0 f19 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ts0 f19 192 618 112 44 -48 -8 #rect
-Ts0 f19 @|CallSubIcon #fIcon
 Ts0 f25 expr out #txt
 Ts0 f25 109 640 192 640 #arcP
 Ts0 f26 expr out #txt
@@ -442,7 +415,6 @@ Ts0 f26 304 640 384 640 #arcP
 >Proto Ts0 .type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
 >Proto Ts0 .processKind HTML_DIALOG #txt
 >Proto Ts0 -8 -8 16 16 16 26 #rect
->Proto Ts0 '' #fIcon
 Ts0 f0 mainOut f17 tail #connect
 Ts0 f17 head f1 mainIn #connect
 Ts0 f64 mainOut f37 tail #connect
