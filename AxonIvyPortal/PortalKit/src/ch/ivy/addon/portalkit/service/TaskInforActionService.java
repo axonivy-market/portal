@@ -9,7 +9,6 @@ import java.util.List;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public class TaskInforActionService {
-  private DateTimeGlobalSettingService dateTimeGlobalSettingService = new DateTimeGlobalSettingService();
 
   public String prepareChangeExpiryNoteContent(String fullNameOfUser, String userNameOfUser, Date datetime,
       Long taskId) {
@@ -35,8 +34,8 @@ public class TaskInforActionService {
   }
 
   private String formatDate(Date datetime) {
-    String dateTimePattern = dateTimeGlobalSettingService.getDateTimePattern();
-    DateFormat formatter = new SimpleDateFormat(dateTimePattern);
+    String dateTimePattern = DateTimeGlobalSettingService.getInstance().getDateTimePattern();
+    DateFormat formatter = new SimpleDateFormat(dateTimePattern, Ivy.session().getContentLocale());
     return formatter.format(datetime);
   }
 }
