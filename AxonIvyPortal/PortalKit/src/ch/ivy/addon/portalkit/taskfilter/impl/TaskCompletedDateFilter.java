@@ -27,8 +27,7 @@ public class TaskCompletedDateFilter extends TaskFilter {
 
 	@Override
 	public String value() {
-		DateTimeGlobalSettingService service = new DateTimeGlobalSettingService();
-		DateFormat formatter = new SimpleDateFormat(service.getDateTimePattern());
+		DateFormat formatter = new SimpleDateFormat(DateTimeGlobalSettingService.getInstance().getDateTimePattern(), Ivy.session().getContentLocale());
 		if (fromCompletedDate != null && toCompletedDate != null) {
 			return String.format(DASH, formatter.format(fromCompletedDate), formatter.format(toCompletedDate));
 		}

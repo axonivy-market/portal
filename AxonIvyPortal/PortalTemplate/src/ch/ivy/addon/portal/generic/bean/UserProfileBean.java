@@ -92,7 +92,7 @@ public class UserProfileBean implements Serializable {
   }
 
   public String prepareDisplayCurrentDate(String pattern) {
-    SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
+    SimpleDateFormat dateFormat = new SimpleDateFormat(pattern, Ivy.session().getContentLocale());
     return " (" + dateFormat.format(new Date()) + ")";
   }
 }
