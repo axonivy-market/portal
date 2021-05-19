@@ -13,7 +13,7 @@ import portal.guitest.page.TaskWidgetPage;
 
 public class DateTimeDisplayTest extends BaseTest {
   
-  private static final String DATE_TIME_REGEX_PATTERN = "\\d{1,2}\\/\\d{1,2}\\/\\d{2} \\d{2}:\\d{2}";
+  private static final String DATE_TIME_REGEX_PATTERN = "^\\D{3}\\s\\d{2},\\s\\d{4}\\s\\d{2}:\\d{2}$"; //Matched date: May 19, 2021 15:00
   private HomePage homePage;
   
   @Override
