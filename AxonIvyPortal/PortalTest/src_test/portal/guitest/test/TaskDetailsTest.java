@@ -113,7 +113,7 @@ public class TaskDetailsTest extends BaseTest {
 
   private String prepareTomorrowAsString() {
     LocalDateTime tomorrow = LocalDateTime.now().plusDays(1);
-    return tomorrow.format(DateTimeFormatter.ofPattern(DateTimePattern.DEFAULT_DATE_TIME_PATTERN_EN));
+    return tomorrow.format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN));
   }
 
   @Test
@@ -136,7 +136,7 @@ public class TaskDetailsTest extends BaseTest {
     assertTrue(StringUtils.equalsIgnoreCase("DELAYED", taskDetailsPage.getTaskState()));
     refreshPage();
     taskDetailsPage = new TaskDetailsPage();
-    String yesterday = LocalDateTime.now().minusDays(1).format(DateTimeFormatter.ofPattern(DateTimePattern.DEFAULT_DATE_TIME_PATTERN_EN));
+    String yesterday = LocalDateTime.now().minusDays(1).format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN));
     taskDetailsPage.updateDelayTimestamp(yesterday);
     assertTrue(StringUtils.equalsIgnoreCase("SUSPENDED", taskDetailsPage.getTaskState()));
   }
@@ -179,7 +179,7 @@ public class TaskDetailsTest extends BaseTest {
   }
 
   private void filterByDateType(String dateType) {
-    DateFormat dateFormat = new SimpleDateFormat(DateTimePattern.DEFAULT_DATE_TIME_PATTERN_EN);
+    DateFormat dateFormat = new SimpleDateFormat(DateTimePattern.DATE_TIME_PATTERN);
     Calendar calendar = Calendar.getInstance();
     Date today = new Date();
     calendar.setTime(today);
