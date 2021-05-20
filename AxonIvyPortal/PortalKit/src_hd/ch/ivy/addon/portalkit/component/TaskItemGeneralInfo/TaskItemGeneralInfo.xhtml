@@ -229,7 +229,7 @@
         </div>
         <div class="ui-xl-9 ui-lg-8 ui-md-8 ui-sm-8 ui-g-4 u-no-padding-left text-ellipsis">
           <h:outputText id="start-date" value="#{task.startTimestamp}">
-            <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
+            <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}" />
           </h:outputText>
         </div>
       </h:panelGroup>
@@ -294,12 +294,12 @@
             <h:outputText id="no-expiry-available"
               value="#{empty task.expiryTimestamp ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable') : task.expiryTimestamp}"
               rendered="#{!taskActionBean.canChangeExpiry(task)}">
-              <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
+              <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}" />
             </h:outputText>
           </ui:fragment>
           <ui:fragment rendered="#{taskBean.isDone(task)}">
             <h:outputText rendered="#{task.expiryTimestamp ne null}" value="#{task.expiryTimestamp}" >
-              <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
+              <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}" />
             </h:outputText>
             <h:outputText rendered="#{task.expiryTimestamp eq null}"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable')}" />
@@ -315,7 +315,7 @@
         </div>
         <div class="ui-xl-9 ui-lg-8 ui-md-8 ui-sm-8 ui-g-4 u-no-padding-left text-ellipsis">
           <h:outputText id="end-date" value="#{task.endTimestamp}" rendered="#{not empty task.endTimestamp}">
-            <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
+            <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}" />
           </h:outputText>
         </div>
       </h:panelGroup>

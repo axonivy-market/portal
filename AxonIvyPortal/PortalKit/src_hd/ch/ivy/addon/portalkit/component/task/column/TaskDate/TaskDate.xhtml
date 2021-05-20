@@ -11,7 +11,7 @@
 <cc:implementation>
   <h:outputText id="#{cc.attrs.componentId}" value="#{cc.attrs.value}" rendered="#{cc.attrs.rendered}"
     styleClass="default-task-cell #{cc.attrs.styleClass} #{cc.attrs.responsiveStyleClass}">
-    <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
+    <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}" />
   </h:outputText>
 </cc:implementation>
 </html>

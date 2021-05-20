@@ -90,7 +90,7 @@
       <h:panelGroup styleClass="customized-case-header-column js-hidden-when-expand-menu u-hidden-lg-down" rendered="#{caseView.dataModel.isSelectedColumn('customTimestampField1')}">
         <h:outputText value="#{case.customFields().timestampField('CustomTimestampField1').getOrNull()}"
           styleClass="case-header-default-cell">
-          <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
+          <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}" />
         </h:outputText>
       </h:panelGroup>
     </ui:define>

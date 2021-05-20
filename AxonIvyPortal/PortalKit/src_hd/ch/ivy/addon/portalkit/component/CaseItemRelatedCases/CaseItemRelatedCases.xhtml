@@ -72,14 +72,14 @@
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATION_TIME')}" field="CREATION_TIME" sortBy="#{CREATION_TIME}" styleClass="created-column"
           visible="#{caseDetailsBean.isDisplayColumn(data.caseLazyDataModel, 'CREATION_TIME')}" >
           <h:outputText value="#{case.startTimestamp}">
-            <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
+            <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}" />
           </h:outputText>
         </p:column>
         
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/FINISHED_TIME')}" field="FINISHED_TIME" sortBy="#{FINISHED_TIME}" styleClass="expiry-column"
           visible="#{caseDetailsBean.isDisplayColumn(data.caseLazyDataModel, 'FINISHED_TIME')}">
           <h:outputText value="#{case.endTimestamp}">
-            <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
+            <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}" />
           </h:outputText>
         </p:column>
         

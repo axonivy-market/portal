@@ -7,6 +7,15 @@ import ch.ivyteam.ivy.environment.Ivy;
 public class DateTimeGlobalSettingService {
   private final String SPACE_CHARACTER = " ";
   private GlobalSettingService globalSettingService;
+  private static DateTimeGlobalSettingService instance;
+
+  public static DateTimeGlobalSettingService getInstance() {
+    if (instance == null) {
+      instance = new DateTimeGlobalSettingService();
+    }
+    
+    return instance;
+  }
 
   public DateTimeGlobalSettingService() {
     globalSettingService = new GlobalSettingService();

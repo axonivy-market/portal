@@ -40,6 +40,7 @@ import ch.ivy.addon.portalkit.bo.ExpressWorkflow;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.dto.SecurityMemberDTO;
 import ch.ivy.addon.portalkit.enums.ExpressMessageType;
+import ch.ivy.addon.portalkit.service.DateTimeGlobalSettingService;
 import ch.ivy.addon.portalkit.service.ExpressServiceRegistry;
 import ch.ivyteam.ivy.business.data.store.BusinessDataInfo;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -313,7 +314,8 @@ public class ExpressManagementUtils {
   }
 
   private String addResultLog(StringBuilder importExpressResult, String message, ExpressMessageType messageType) {
-    String curentDate = new SimpleDateFormat(PATTERN).format(new Date());
+    String pattern = DateTimeGlobalSettingService.getInstance().getDatePattern();
+    String curentDate = new SimpleDateFormat(pattern).format(new Date());
     importExpressResult.append(curentDate).append(StringUtils.SPACE);
 
     switch (messageType) {

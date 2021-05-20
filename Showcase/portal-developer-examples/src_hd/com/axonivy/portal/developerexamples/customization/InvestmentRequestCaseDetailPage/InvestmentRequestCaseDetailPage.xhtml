@@ -26,7 +26,7 @@
                 <f:convertNumber type="number" integerOnly="true" pattern="#,##0.00" />
               </h:outputText>
               <h:outputText id="timestamp-value" value="#{item.getOrNull()}" rendered="#{item.type() eq 'TIMESTAMP'}">
-                <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
+                <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}" />
               </h:outputText>
               <h:outputText id="value" value="#{item.getOrNull()}" rendered="#{item.type() ne 'TIMESTAMP' and item.type() ne 'NUMBER'}" />
             </p:column>

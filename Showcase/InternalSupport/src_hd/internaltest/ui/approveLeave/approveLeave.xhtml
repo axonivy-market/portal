@@ -30,12 +30,12 @@
 					
 					<p:outputLabel for="von" value="#{ivy.cms.co('/ProcessPages/ProcessLeaves/ProcessLeave/from')}"/>
 					<p:calendar id="von" value="#{data.Von}" locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.datePattern}" size="10">
-						<f:convertDateTime pattern="#{dateTimePatternBean.datePattern}" />
+						<f:convertDateTime pattern="#{dateTimePatternBean.datePattern}" locale="#{localeBean.locale}" />
 					</p:calendar>
 					
 					<p:outputLabel for="bis" value="#{ivy.cms.co('/ProcessPages/ProcessLeaves/ProcessLeave/to')}"/>
 					<p:calendar id="bis" value="#{data.Bis}" locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.datePattern}" size="10">
-						<f:convertDateTime pattern="#{dateTimePatternBean.datePattern}" />
+						<f:convertDateTime pattern="#{dateTimePatternBean.datePattern}" locale="#{localeBean.locale}" />
 					</p:calendar>
 					
 					<p:outputLabel for="genehmigt" value="#{ivy.cms.co('/ProcessPages/ProcessLeaves/ProcessLeave/approved')}"/>

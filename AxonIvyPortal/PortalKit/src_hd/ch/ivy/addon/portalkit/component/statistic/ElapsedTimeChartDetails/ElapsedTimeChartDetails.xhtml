@@ -47,14 +47,14 @@
         <p:column id="case-created" styleClass="case-created js-elapsed-case" 
           headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATION_TIME')}" sortBy="false">
           <h:outputText value="#{elapsedTimeDetail.getStartTimestamp()}">
-            <f:convertDateTime pattern="#{dateTimePatternBean.datePattern}" />
+            <f:convertDateTime pattern="#{dateTimePatternBean.datePattern}" locale="#{localeBean.locale}" />
           </h:outputText>
         </p:column>
 
         <p:column id="case-finished" styleClass="case-finished js-elapsed-case"
           headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/FINISHED_TIME')}" sortBy="false">
           <h:outputText value="#{elapsedTimeDetail.getEndTimestamp()}">
-            <f:convertDateTime pattern="#{dateTimePatternBean.datePattern}" />
+            <f:convertDateTime pattern="#{dateTimePatternBean.datePattern}" locale="#{localeBean.locale}" />
           </h:outputText>
         </p:column>
 

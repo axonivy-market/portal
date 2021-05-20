@@ -267,7 +267,7 @@
             </p:column>
             <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/timestamp')}">
               <h:outputText value="#{history.timestamp}">
-                <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
+                <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}"locale="#{localeBean.locale}" />
               </h:outputText>
             </p:column>
             <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/taskName')}">

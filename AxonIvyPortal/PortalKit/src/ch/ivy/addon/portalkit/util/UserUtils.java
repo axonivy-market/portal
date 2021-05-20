@@ -42,6 +42,8 @@ public class UserUtils {
   private static final String FILTER_GROUP_ID = "FILTER_GROUP_ID";
   private static final String SELECTED_DEFAULT_TASK_FILTER_SET = "SELECTED_DEFAULT_TASK_FILTER_SET";
   private static final String SELECTED_DEFAULT_CASE_FILTER_SET = "SELECTED_DEFAULT_CASE_FILTER_SET";
+  private static final String SHORT_YEAR_PATTERN = "y";
+  private static final String FULL_YEAR_PATTERN = "yyyy";
 
   private UserUtils() {
   }
@@ -88,9 +90,7 @@ public class UserUtils {
   }
   
   public static String findNextAbsenceOfUser(IUser iUser) {
-    DateTimeGlobalSettingService service = new DateTimeGlobalSettingService();
-    DateFormat formatter = new SimpleDateFormat(service.getDatePattern());
-    
+    DateFormat formatter = new SimpleDateFormat(DateTimeGlobalSettingService.getInstance().getDatePattern());
     List<IUserAbsence> findAbsenceOfUser = findAbsenceOfUser(iUser);
     String returnString = "";
     Date foundDate = null;
@@ -280,6 +280,7 @@ public class UserUtils {
       IHttpRequest request = (IHttpRequest) Ivy.request();
       Locale locale = request.getHttpServletRequest().getLocale();
       String defaultPattern = getDefaultPatternByLocale(locale);
+      defaultPattern = formatToPrimeFacesPattern(defaultPattern);
       sessionUser.setProperty(UserProperty.DEFAULT_DATE_FORMAT, defaultPattern);
       sessionUser.setProperty(UserProperty.DATE_FORMAT, defaultPattern);
     }
@@ -287,8 +288,14 @@ public class UserUtils {
 
   private static String getDefaultPatternByLocale(Locale locale) {
     SimpleDateFormat simpleDateFormat =
-        (SimpleDateFormat) SimpleDateFormat.getDateInstance(SimpleDateFormat.SHORT, locale);
+        (SimpleDateFormat) SimpleDateFormat.getDateInstance(SimpleDateFormat.DEFAULT, locale);
     return simpleDateFormat.toLocalizedPattern();
+  }
+
+  private static String formatToPrimeFacesPattern(String pattern) {
+    return StringUtils.countMatches(pattern.toLowerCase(), SHORT_YEAR_PATTERN) == 1
+        ? pattern.replaceAll(SHORT_YEAR_PATTERN, FULL_YEAR_PATTERN)
+        : pattern;
   }
 
   public static String getSelectedDateFormat(List<String> dateFormats) {
