@@ -1,5 +1,5 @@
 [Ivy]
-17543E0AD6B3539A 9.2.0 #module
+17543E0AD6B3539A 9.3.0 #module
 >Proto >Proto Collection #zClass
 Us0 RoleSelectionProcess Big #zClass
 Us0 RD #cInfo
@@ -24,13 +24,10 @@ Us0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Us0 f0 83 51 26 26 -16 15 #rect
-Us0 f0 @|UdInitIcon #fIcon
 Us0 f1 211 51 26 26 0 12 #rect
-Us0 f1 @|UdProcessEndIcon #fIcon
 Us0 f2 109 64 211 64 #arcP
 >Proto Us0 .type ch.ivy.addon.portalkit.component.RoleSelection.RoleSelectionData #txt
 >Proto Us0 .processKind HTML_DIALOG #txt
 >Proto Us0 -8 -8 16 16 16 26 #rect
->Proto Us0 '' #fIcon
 Us0 f0 mainOut f2 tail #connect
 Us0 f2 head f1 mainIn #connect

@@ -1,5 +1,5 @@
 [Ivy]
-176CC890308520A8 9.2.0 #module
+176CC890308520A8 9.3.0 #module
 >Proto >Proto Collection #zClass
 Ps0 SearchResultsProcess Big #zClass
 Ps0 RD #cInfo
@@ -37,9 +37,7 @@ Ps0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f0 53 85 22 22 -16 13 #rect
-Ps0 f0 @|UdInitIcon #fIcon
 Ps0 f1 333 85 22 22 14 0 #rect
-Ps0 f1 @|UdProcessEndIcon #fIcon
 Ps0 f2 expr out #txt
 Ps0 f2 75 96 333 96 #arcP
 Ps0 f3 guid 163AFE8CC44DFD15 #txt
@@ -59,15 +57,12 @@ Ps0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f3 51 179 26 26 -52 19 #rect
-Ps0 f3 @|UdInitIcon #fIcon
 Ps0 f4 339 179 26 26 0 12 #rect
-Ps0 f4 @|UdProcessEndIcon #fIcon
 Ps0 f5 expr out #txt
 Ps0 f5 77 192 339 192 #arcP
 >Proto Ps0 .type com.axonivy.portal.developerexamples.customization.SearchResults.SearchResultsData #txt
 >Proto Ps0 .processKind HTML_DIALOG #txt
 >Proto Ps0 -8 -8 16 16 16 26 #rect
->Proto Ps0 '' #fIcon
 Ps0 f0 mainOut f2 tail #connect
 Ps0 f2 head f1 mainIn #connect
 Ps0 f3 mainOut f5 tail #connect

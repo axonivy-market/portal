@@ -1,5 +1,5 @@
 [Ivy]
-1603506A872272C6 9.2.0 #module
+1603506A872272C6 9.3.0 #module
 >Proto >Proto Collection #zClass
 Cy0 CaseNoteHistory Big #zClass
 Cy0 B #cInfo
@@ -58,9 +58,7 @@ from tasks and notes</name>
 </elementInfo>
 ' #txt
 Cy0 f17 216 66 144 60 -53 -24 #rect
-Cy0 f17 @|StepIcon #fIcon
 Cy0 f16 593 81 30 30 0 15 #rect
-Cy0 f16 @|EndIcon #fIcon
 Cy0 f20 dialogId ch.ivy.addon.portal.generic.CaseNoteHistory #txt
 Cy0 f20 startMethod start(java.util.List<ch.ivy.addon.portalkit.bo.History>,String,ch.ivyteam.ivy.workflow.ICase) #txt
 Cy0 f20 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.bo.History> histories,String exportedFileName,ch.ivyteam.ivy.workflow.ICase ivyCase> param;' #txt
@@ -82,7 +80,6 @@ Cy0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cy0 f20 424 74 112 44 -48 -8 #rect
-Cy0 f20 @|UserDialogIcon #fIcon
 Cy0 f21 expr out #txt
 Cy0 f21 360 96 424 96 #arcP
 Cy0 f19 expr out #txt
@@ -106,7 +103,6 @@ Cy0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Cy0 f0 @C|.responsibility Everybody #txt
 Cy0 f0 65 81 30 30 -71 17 #rect
-Cy0 f0 @|StartRequestIcon #fIcon
 Cy0 f1 expr out #txt
 Cy0 f1 95 96 216 96 #arcP
 >Proto Cy0 .type ch.ivy.addon.portal.generic.CaseNoteHistoryData #txt

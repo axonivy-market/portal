@@ -1,5 +1,5 @@
 [Ivy]
-161936E158EBC57F 9.2.0 #module
+161936E158EBC57F 9.3.0 #module
 >Proto >Proto Collection #zClass
 Sd0 SetBusinessEntityId Big #zClass
 Sd0 B #cInfo
@@ -30,9 +30,7 @@ Sd0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Sd0 f0 81 49 30 30 -29 17 #rect
-Sd0 f0 @|StartSubIcon #fIcon
 Sd0 f1 417 49 30 30 0 15 #rect
-Sd0 f1 @|EndSubIcon #fIcon
 Sd0 f3 actionTable 'out=in;
 ' #txt
 Sd0 f3 actionCode 'import ch.ivy.addon.portalkit.enums.AdditionalProperty;
@@ -48,7 +46,6 @@ Sd0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Sd0 f3 176 42 176 44 -80 -8 #rect
-Sd0 f3 @|StepIcon #fIcon
 Sd0 f4 expr out #txt
 Sd0 f4 111 64 176 64 #arcP
 Sd0 f2 expr out #txt

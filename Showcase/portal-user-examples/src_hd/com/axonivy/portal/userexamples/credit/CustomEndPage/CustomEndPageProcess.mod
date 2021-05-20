@@ -1,5 +1,5 @@
 [Ivy]
-17099FEAF8325AA8 9.2.0 #module
+17099FEAF8325AA8 9.3.0 #module
 >Proto >Proto Collection #zClass
 Cs0 CustomEndPageProcess Big #zClass
 Cs0 RD #cInfo
@@ -45,9 +45,7 @@ Cs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f0 83 51 26 26 -16 15 #rect
-Cs0 f0 @|UdInitIcon #fIcon
 Cs0 f1 339 51 26 26 0 12 #rect
-Cs0 f1 @|UdProcessEndIcon #fIcon
 Cs0 f3 guid 17099FEAF9411114 #txt
 Cs0 f3 actionTable 'out=in;
 out.caseId=in.caseId;
@@ -60,9 +58,7 @@ Cs0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f3 83 147 26 26 -15 15 #rect
-Cs0 f3 @|UdEventIcon #fIcon
 Cs0 f4 363 147 26 26 0 12 #rect
-Cs0 f4 @|UdExitEndIcon #fIcon
 Cs0 S40 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language lang="en">
@@ -78,7 +74,6 @@ Cs0 f5 109 160 168 160 #arcP
 >Proto Cs0 .type com.axonivy.portal.userexamples.credit.CustomEndPage.CustomEndPageData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 -8 -8 16 16 16 26 #rect
->Proto Cs0 '' #fIcon
 Bk1 f106 actionTable 'out=in;
 ' #txt
 Bk1 f106 actionCode 'import ch.ivyteam.ivy.workflow.ICase;
@@ -94,7 +89,6 @@ Bk1 f106 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Bk1 f106 136 138 112 44 -28 -8 #rect
-Bk1 f106 @|StepIcon #fIcon
 Bk1 f104 processCall 'Functional Processes/OpenPortalCaseDetailsHook:call(ch.ivyteam.ivy.workflow.ICase,Boolean)' #txt
 Bk1 f104 requestActionDecl '<ch.ivyteam.ivy.workflow.ICase caseData,Boolean isShowBackButton> param;' #txt
 Bk1 f104 requestMappingAction 'param.caseData=in.caseSelected;
@@ -112,7 +106,6 @@ Bk1 f104 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Bk1 f104 288 138 144 44 -65 -8 #rect
-Bk1 f104 @|CallSubIcon #fIcon
 Bk1 f107 expr out #txt
 Bk1 f107 248 160 288 160 #arcP
 Bk1 g0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -123,7 +116,6 @@ Bk1 g0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Bk1 g0 51 147 26 26 0 5 #rect
-Bk1 g0 @|MIGIcon #fIcon
 Bk1 f0 77 160 136 160 #arcP
 Bk1 g1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -133,7 +125,6 @@ Bk1 g1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Bk1 g1 499 147 26 26 0 5 #rect
-Bk1 g1 @|MOGIcon #fIcon
 Bk1 f1 expr out #txt
 Bk1 f1 432 160 499 160 #arcP
 >Proto Bk1 0 0 32 24 18 0 #rect

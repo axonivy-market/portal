@@ -1,5 +1,5 @@
 [Ivy]
-17326FC2F133FBEA 9.2.0 #module
+17326FC2F133FBEA 9.3.0 #module
 >Proto >Proto Collection #zClass
 Et0 ExpressStart Big #zClass
 Et0 B #cInfo
@@ -32,9 +32,7 @@ Et0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Et0 f0 @C|.responsibility Everybody #txt
 Et0 f0 81 49 30 30 -69 22 #rect
-Et0 f0 @|StartRequestIcon #fIcon
 Et0 f1 625 49 30 30 0 15 #rect
-Et0 f1 @|EndIcon #fIcon
 Et0 f5 dialogId ch.ivy.addon.express.generic.ExpressBusinessView #txt
 Et0 f5 startMethod start(Long) #txt
 Et0 f5 requestActionDecl '<Long caseId> param;' #txt
@@ -50,7 +48,6 @@ Et0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Et0 f5 264 42 176 44 -78 -8 #rect
-Et0 f5 @|UserDialogIcon #fIcon
 Et0 f2 440 64 625 64 #arcP
 Et0 f3 111 64 264 64 #arcP
 >Proto Et0 .type gawfs.ExpressStartData #txt

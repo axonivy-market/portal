@@ -1,5 +1,5 @@
 [Ivy]
-16B266ED2EA90665 9.2.0 #module
+16B266ED2EA90665 9.3.0 #module
 >Proto >Proto Collection #zClass
 Dt0 DeleteDocument Big #zClass
 Dt0 B #cInfo
@@ -33,9 +33,7 @@ Dt0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Dt0 f0 81 49 30 30 -81 26 #rect
-Dt0 f0 @|StartSubIcon #fIcon
 Dt0 f1 337 49 30 30 0 15 #rect
-Dt0 f1 @|EndSubIcon #fIcon
 Dt0 f3 actionTable 'out=in;
 ' #txt
 Dt0 f3 actionCode 'import java.util.Arrays;
@@ -51,7 +49,6 @@ Dt0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Dt0 f3 168 42 112 44 -47 -8 #rect
-Dt0 f3 @|StepIcon #fIcon
 Dt0 f4 expr out #txt
 Dt0 f4 111 64 168 64 #arcP
 Dt0 f2 expr out #txt

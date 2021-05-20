@@ -1,5 +1,5 @@
 [Ivy]
-15EF0843F1DB39F2 9.2.0 #module
+15EF0843F1DB39F2 9.3.0 #module
 >Proto >Proto Collection #zClass
 Lt0 Logout Big #zClass
 Lt0 B #cInfo
@@ -31,9 +31,7 @@ Lt0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Lt0 f0 81 49 30 30 -36 17 #rect
-Lt0 f0 @|StartSubIcon #fIcon
 Lt0 f1 353 49 30 30 0 15 #rect
-Lt0 f1 @|EndSubIcon #fIcon
 Lt0 f3 actionTable 'out=in;
 ' #txt
 Lt0 f3 actionCode 'import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
@@ -58,7 +56,6 @@ Lt0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Lt0 f3 184 42 112 44 -19 -8 #rect
-Lt0 f3 @|StepIcon #fIcon
 Lt0 f2 expr out #txt
 Lt0 f2 296 64 353 64 #arcP
 Lt0 f4 expr out #txt
