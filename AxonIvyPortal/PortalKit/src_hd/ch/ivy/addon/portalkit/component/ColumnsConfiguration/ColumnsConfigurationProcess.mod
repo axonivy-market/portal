@@ -1,5 +1,5 @@
 [Ivy]
-160101D95BD7F924 9.2.0 #module
+160101D95BD7F924 9.3.0 #module
 >Proto >Proto Collection #zClass
 Ts0 ColumnsConfigurationProcess Big #zClass
 Ts0 RD #cInfo
@@ -30,9 +30,7 @@ Ts0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ts0 f0 83 51 26 26 -16 15 #rect
-Ts0 f0 @|UdInitIcon #fIcon
 Ts0 f1 211 51 26 26 0 12 #rect
-Ts0 f1 @|UdProcessEndIcon #fIcon
 Ts0 f2 expr out #txt
 Ts0 f2 109 64 211 64 #arcP
 Ts0 f3 guid 160101D960D45C5D #txt
@@ -46,15 +44,12 @@ Ts0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ts0 f3 83 147 26 26 -15 12 #rect
-Ts0 f3 @|UdEventIcon #fIcon
 Ts0 f4 211 147 26 26 0 12 #rect
-Ts0 f4 @|UdExitEndIcon #fIcon
 Ts0 f5 expr out #txt
 Ts0 f5 109 160 211 160 #arcP
 >Proto Ts0 .type ch.ivy.addon.portalkit.component.ColumnsConfiguration.ColumnsConfigurationData #txt
 >Proto Ts0 .processKind HTML_DIALOG #txt
 >Proto Ts0 -8 -8 16 16 16 26 #rect
->Proto Ts0 '' #fIcon
 Ts0 f0 mainOut f2 tail #connect
 Ts0 f2 head f1 mainIn #connect
 Ts0 f3 mainOut f5 tail #connect

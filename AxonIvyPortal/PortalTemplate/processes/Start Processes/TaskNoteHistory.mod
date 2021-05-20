@@ -1,5 +1,5 @@
 [Ivy]
-16044EDBC0E23859 9.2.0 #module
+16044EDBC0E23859 9.3.0 #module
 >Proto >Proto Collection #zClass
 Ty0 TaskNoteHistory Big #zClass
 Ty0 B #cInfo
@@ -46,9 +46,7 @@ Ty0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ty0 f0 @C|.responsibility Everybody #txt
 Ty0 f0 113 113 30 30 -69 17 #rect
-Ty0 f0 @|StartRequestIcon #fIcon
 Ty0 f1 705 113 30 30 0 15 #rect
-Ty0 f1 @|EndIcon #fIcon
 Ty0 f11 dialogId ch.ivy.addon.portal.generic.TaskNoteHistory #txt
 Ty0 f11 startMethod start(java.util.List<ch.ivyteam.ivy.workflow.INote>,String,ch.ivyteam.ivy.workflow.ITask) #txt
 Ty0 f11 requestActionDecl '<java.util.List<ch.ivyteam.ivy.workflow.INote> notes,String exportedFileName,ch.ivyteam.ivy.workflow.ITask task> param;' #txt
@@ -70,7 +68,6 @@ Ty0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ty0 f11 480 106 112 44 -48 -8 #rect
-Ty0 f11 @|UserDialogIcon #fIcon
 Ty0 f2 expr out #txt
 Ty0 f2 592 128 705 128 #arcP
 Ty0 f17 actionTable 'out=in;
@@ -99,7 +96,6 @@ Ty0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ty0 f17 256 106 112 44 -27 -8 #rect
-Ty0 f17 @|StepIcon #fIcon
 Ty0 f3 expr out #txt
 Ty0 f3 143 128 256 128 #arcP
 Ty0 f4 368 128 480 128 #arcP

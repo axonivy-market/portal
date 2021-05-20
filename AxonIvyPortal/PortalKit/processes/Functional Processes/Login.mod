@@ -1,5 +1,5 @@
 [Ivy]
-1694805B8DB28D00 9.2.0 #module
+1694805B8DB28D00 9.3.0 #module
 >Proto >Proto Collection #zClass
 Ln0 Login Big #zClass
 Ln0 B #cInfo
@@ -26,9 +26,7 @@ Ln0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ln0 f0 81 49 30 30 -13 17 #rect
-Ln0 f0 @|StartSubIcon #fIcon
 Ln0 f1 337 49 30 30 0 15 #rect
-Ln0 f1 @|EndSubIcon #fIcon
 Ln0 f2 expr out #txt
 Ln0 f2 111 64 337 64 #arcP
 >Proto Ln0 .type ch.ivy.add.portalkit.LoginData #txt

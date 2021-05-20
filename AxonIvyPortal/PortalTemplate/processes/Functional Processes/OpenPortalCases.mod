@@ -1,5 +1,5 @@
 [Ivy]
-1540379C4B7261E4 9.2.0 #module
+1540379C4B7261E4 9.3.0 #module
 >Proto >Proto Collection #zClass
 Ot0 OpenPortalCases Big #zClass
 Ot0 B #cInfo
@@ -39,9 +39,7 @@ Ot0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ot0 f0 179 115 26 26 -41 -31 #rect
-Ot0 f0 @|StartSubIcon #fIcon
 Ot0 f1 851 115 26 26 14 0 #rect
-Ot0 f1 @|EndSubIcon #fIcon
 Ot0 f3 dialogId ch.ivy.addon.portal.generic.PortalCases #txt
 Ot0 f3 startMethod useView(CaseView) #txt
 Ot0 f3 requestActionDecl '<ch.ivy.addon.portal.generic.view.CaseView caseView> param;' #txt
@@ -59,7 +57,6 @@ Ot0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ot0 f3 456 106 112 44 -34 -8 #rect
-Ot0 f3 @|UserDialogIcon #fIcon
 Ot0 f4 expr out #txt
 Ot0 f4 205 128 456 128 #arcP
 Ot0 f2 expr out #txt
@@ -77,9 +74,7 @@ Ot0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ot0 f5 179 523 26 26 -54 -32 #rect
-Ot0 f5 @|StartSubIcon #fIcon
 Ot0 f6 851 523 26 26 14 0 #rect
-Ot0 f6 @|EndSubIcon #fIcon
 Ot0 f7 dialogId ch.ivy.addon.portal.component.iframe.PortalCaseListInFrame #txt
 Ot0 f7 startMethod useView(ch.ivy.addon.portal.generic.view.CaseView) #txt
 Ot0 f7 requestActionDecl '<ch.ivy.addon.portal.generic.view.CaseView caseView> param;' #txt
@@ -97,7 +92,6 @@ Ot0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ot0 f7 440 514 144 44 -64 -8 #rect
-Ot0 f7 @|UserDialogIcon #fIcon
 Ot0 f8 expr out #txt
 Ot0 f8 584 536 851 536 #arcP
 Ot0 f9 expr out #txt
@@ -118,7 +112,6 @@ To override Portal case widget''s UI: you should use Axon Ivy HTMLOverride Dialo
 </elementInfo>
 ' #txt
 Ot0 f10 264 194 672 76 -332 -34 #rect
-Ot0 f10 @|IBIcon #fIcon
 Ot0 f11 264 232 199 138 #arcP
 Ot0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -136,7 +129,6 @@ To override Portal case widget''s UI: you should use Axon Ivy HTMLOverride Dialo
 </elementInfo>
 ' #txt
 Ot0 f12 264 610 736 76 -362 -34 #rect
-Ot0 f12 @|IBIcon #fIcon
 Ot0 f13 264 648 199 546 #arcP
 >Proto Ot0 .type ch.ivy.addon.portal.generic.OpenPortalCasesData #txt
 >Proto Ot0 .processKind CALLABLE_SUB #txt

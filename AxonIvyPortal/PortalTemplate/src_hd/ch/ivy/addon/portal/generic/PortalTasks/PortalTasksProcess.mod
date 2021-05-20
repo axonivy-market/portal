@@ -1,5 +1,5 @@
 [Ivy]
-1520FC11167E4897 9.2.0 #module
+1520FC11167E4897 9.3.0 #module
 >Proto >Proto Collection #zClass
 Ps0 PortalTasksProcess Big #zClass
 Ps0 RD #cInfo
@@ -16,7 +16,6 @@ Ps0 @UdInit f2 '' #zField
 Ps0 @PushWFArc f3 '' #zField
 >Proto Ps0 Ps0 PortalTasksProcess #zField
 Ps0 f1 229 133 22 22 14 0 #rect
-Ps0 f1 @|UdProcessEndIcon #fIcon
 Ps0 f2 guid 1573377403EC1C55 #txt
 Ps0 f2 method useTaskView(TaskView) #txt
 Ps0 f2 inParameterDecl '<ch.ivy.addon.portal.generic.view.TaskView taskView> param;' #txt
@@ -31,12 +30,10 @@ Ps0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f2 77 133 22 22 -36 17 #rect
-Ps0 f2 @|UdInitIcon #fIcon
 Ps0 f3 expr out #txt
 Ps0 f3 99 144 229 144 #arcP
 >Proto Ps0 .type ch.ivy.addon.portal.generic.PortalTasks.PortalTasksData #txt
 >Proto Ps0 .processKind HTML_DIALOG #txt
 >Proto Ps0 -8 -8 16 16 16 26 #rect
->Proto Ps0 '' #fIcon
 Ps0 f2 mainOut f3 tail #connect
 Ps0 f3 head f1 mainIn #connect

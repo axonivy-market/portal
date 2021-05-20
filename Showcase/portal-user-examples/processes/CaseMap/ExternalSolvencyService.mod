@@ -1,5 +1,5 @@
 [Ivy]
-17032237DA934868 9.2.0 #module
+17032237DA934868 9.3.0 #module
 >Proto >Proto Collection #zClass
 Ek0 ExternalSolvencyService Big #zClass
 Ek0 B #cInfo
@@ -44,9 +44,7 @@ Ek0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ek0 f0 @C|.responsibility Everybody #txt
 Ek0 f0 81 49 30 30 -21 17 #rect
-Ek0 f0 @|StartRequestIcon #fIcon
 Ek0 f1 337 49 30 30 0 15 #rect
-Ek0 f1 @|EndIcon #fIcon
 Ek0 f3 dialogId com.axonivy.portal.userexamples.credit.ExternalSolvencyService #txt
 Ek0 f3 startMethod start() #txt
 Ek0 f3 requestActionDecl '<> param;' #txt
@@ -60,7 +58,6 @@ Ek0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ek0 f3 152 42 144 44 -66 -8 #rect
-Ek0 f3 @|UserDialogIcon #fIcon
 Ek0 f4 expr out #txt
 Ek0 f4 111 64 152 64 #arcP
 Ek0 f2 296 64 337 64 #arcP

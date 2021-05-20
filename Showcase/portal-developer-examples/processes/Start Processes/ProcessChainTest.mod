@@ -1,5 +1,5 @@
 [Ivy]
-164DB506D12B25CF 9.2.0 #module
+164DB506D12B25CF 9.3.0 #module
 >Proto >Proto Collection #zClass
 Pt0 ProcessChainTest Big #zClass
 Pt0 B #cInfo
@@ -47,9 +47,7 @@ Pt0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Pt0 f0 @C|.responsibility Everybody #txt
 Pt0 f0 81 49 30 30 -85 17 #rect
-Pt0 f0 @|StartRequestIcon #fIcon
 Pt0 f1 481 49 30 30 0 15 #rect
-Pt0 f1 @|EndIcon #fIcon
 Pt0 f3 dialogId com.axonivy.portal.developerexamples.customization.ProcessChainTest #txt
 Pt0 f3 startMethod start() #txt
 Pt0 f3 requestActionDecl '<> param;' #txt
@@ -67,7 +65,6 @@ Pt0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Pt0 f3 208 42 192 44 -92 -8 #rect
-Pt0 f3 @|UserDialogIcon #fIcon
 Pt0 f4 expr out #txt
 Pt0 f4 111 64 208 64 #arcP
 Pt0 f2 expr out #txt
@@ -87,7 +84,6 @@ Pt0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Pt0 f5 160 130 368 92 -181 -40 #rect
-Pt0 f5 @|IBIcon #fIcon
 >Proto Pt0 .type com.axonivy.portal.developerexamples.Data #txt
 >Proto Pt0 .processKind NORMAL #txt
 >Proto Pt0 0 0 32 24 18 0 #rect
