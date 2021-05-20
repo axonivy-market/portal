@@ -1,5 +1,5 @@
 [Ivy]
-15AE9A62C6A66DD8 9.2.0 #module
+15AE9A62C6A66DD8 9.3.0 #module
 >Proto >Proto Collection #zClass
 Ts0 TaskNameProcess Big #zClass
 Ts0 RD #cInfo
@@ -35,9 +35,7 @@ Ts0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ts0 f0 83 83 26 26 -16 15 #rect
-Ts0 f0 @|UdInitIcon #fIcon
 Ts0 f1 371 83 26 26 0 12 #rect
-Ts0 f1 @|UdProcessEndIcon #fIcon
 Ts0 f2 expr out #txt
 Ts0 f2 109 96 371 96 #arcP
 Ts0 f3 guid 1681204C698BF8C7 #txt
@@ -54,9 +52,7 @@ Ts0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ts0 f3 83 179 26 26 -86 15 #rect
-Ts0 f3 @|UdMethodIcon #fIcon
 Ts0 f4 371 179 26 26 0 12 #rect
-Ts0 f4 @|UdProcessEndIcon #fIcon
 Ts0 f5 expr out #txt
 Ts0 f5 109 192 371 192 #arcP
 Ts0 f6 guid 16812056797ABC4C #txt
@@ -73,7 +69,6 @@ Ts0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ts0 f6 83 275 26 26 -51 15 #rect
-Ts0 f6 @|UdMethodIcon #fIcon
 Ts0 f7 actionTable 'out=in;
 ' #txt
 Ts0 f7 actionCode 'import java.util.Arrays;
@@ -88,17 +83,14 @@ Ts0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ts0 f7 200 266 112 44 -24 -8 #rect
-Ts0 f7 @|StepIcon #fIcon
 Ts0 f8 expr out #txt
 Ts0 f8 109 288 200 288 #arcP
 Ts0 f9 371 275 26 26 0 12 #rect
-Ts0 f9 @|UdProcessEndIcon #fIcon
 Ts0 f10 expr out #txt
 Ts0 f10 312 288 371 288 #arcP
 >Proto Ts0 .type ch.ivy.addon.portalkit.component.task.column.TaskName.TaskNameData #txt
 >Proto Ts0 .processKind HTML_DIALOG #txt
 >Proto Ts0 -8 -8 16 16 16 26 #rect
->Proto Ts0 '' #fIcon
 Ts0 f0 mainOut f2 tail #connect
 Ts0 f2 head f1 mainIn #connect
 Ts0 f3 mainOut f5 tail #connect

@@ -1,5 +1,5 @@
 [Ivy]
-170322322BB5393B 9.2.0 #module
+170322322BB5393B 9.3.0 #module
 >Proto >Proto Collection #zClass
 A20 ApproveLevel2 Big #zClass
 A20 B #cInfo
@@ -46,9 +46,7 @@ A20 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 A20 f0 @C|.responsibility Everybody #txt
 A20 f0 81 49 30 30 -21 17 #rect
-A20 f0 @|StartRequestIcon #fIcon
 A20 f1 337 49 30 30 0 15 #rect
-A20 f1 @|EndIcon #fIcon
 A20 f3 dialogId com.axonivy.portal.userexamples.credit.ApproveLevel2 #txt
 A20 f3 startMethod start() #txt
 A20 f3 requestActionDecl '<> param;' #txt
@@ -57,7 +55,6 @@ A20 f3 responseActionDecl 'workflow.humantask.Data out;
 A20 f3 responseMappingAction 'out=in;
 ' #txt
 A20 f3 168 42 112 44 0 -8 #rect
-A20 f3 @|UserDialogIcon #fIcon
 A20 f4 expr out #txt
 A20 f4 111 64 168 64 #arcP
 A20 f2 expr out #txt

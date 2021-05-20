@@ -1,5 +1,5 @@
 [Ivy]
-1624C1C79661758C 9.2.0 #module
+1624C1C79661758C 9.3.0 #module
 >Proto >Proto Collection #zClass
 Pt0 ProcessHistoryComponent Big #zClass
 Pt0 B #cInfo
@@ -124,9 +124,7 @@ Pt0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Pt0 f0 @C|.responsibility Everybody #txt
 Pt0 f0 217 593 30 30 -111 17 #rect
-Pt0 f0 @|StartRequestIcon #fIcon
 Pt0 f1 689 593 30 30 0 15 #rect
-Pt0 f1 @|EndIcon #fIcon
 Pt0 f6 outLink createAlphaCompany.ivp #txt
 Pt0 f6 inParamDecl '<> param;' #txt
 Pt0 f6 requestEnabled true #txt
@@ -156,11 +154,8 @@ Pt0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Pt0 f6 @C|.responsibility Everybody #txt
 Pt0 f6 217 154 30 30 -68 17 #rect
-Pt0 f6 @|StartRequestIcon #fIcon
 Pt0 f8 689 153 30 30 0 15 #rect
-Pt0 f8 @|EndIcon #fIcon
 Pt0 f12 689 449 30 30 0 15 #rect
-Pt0 f12 @|EndIcon #fIcon
 Pt0 f14 outLink viewProcessHistoryOfAlphaCompanyInDialog.ivp #txt
 Pt0 f14 inParamDecl '<> param;' #txt
 Pt0 f14 requestEnabled true #txt
@@ -187,7 +182,6 @@ Pt0 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Pt0 f14 @C|.responsibility Everybody #txt
 Pt0 f14 217 449 30 30 -108 17 #rect
-Pt0 f14 @|StartRequestIcon #fIcon
 Pt0 f33 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -207,7 +201,6 @@ HOW TO RUN THIS EXAMPLE:&#13;
 </elementInfo>
 ' #txt
 Pt0 f33 824 68 848 184 -417 -48 #rect
-Pt0 f33 @|IBIcon #fIcon
 Pt0 f35 expr out #txt
 Pt0 f35 246 168 416 168 #arcP
 Pt0 S11 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -245,7 +238,6 @@ Pt0 S31 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Pt0 S31 416 586 112 44 -48 -8 #rect
 Pt0 S31 @|BpmnUserTaskIcon #fIcon
 Pt0 f2 689 273 30 30 0 15 #rect
-Pt0 f2 @|EndIcon #fIcon
 Pt0 f3 outLink startCreateNewCase.ivp #txt
 Pt0 f3 inParamDecl '<String caseStructureInfo> param;' #txt
 Pt0 f3 inParamTable 'out.caseStructureInfo=param.caseStructureInfo;
@@ -269,7 +261,6 @@ Pt0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Pt0 f3 @C|.responsibility Everybody #txt
 Pt0 f3 217 273 30 30 -21 17 #rect
-Pt0 f3 @|StartRequestIcon #fIcon
 Pt0 f16 247 288 416 288 #arcP
 Pt0 f19 528 288 689 288 #arcP
 Pt0 S41 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -316,7 +307,6 @@ code name</name>
 </elementInfo>
 ' #txt
 Bk0 f19 352 202 112 44 -33 -16 #rect
-Bk0 f19 @|StepIcon #fIcon
 Bk0 f5 processCall 'Functional Processes/SetBusinessEntityId:call(String)' #txt
 Bk0 f5 requestActionDecl '<String businessEntityId> param;' #txt
 Bk0 f5 requestMappingAction 'param.businessEntityId="alpha";
@@ -335,7 +325,6 @@ Bk0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Bk0 f5 512 202 128 44 -55 -8 #rect
-Bk0 f5 @|CallSubIcon #fIcon
 Bk0 g0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language lang="en">
@@ -344,7 +333,6 @@ Bk0 g0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Bk0 g0 83 211 26 26 -53 5 #rect
-Bk0 g0 @|MIGIcon #fIcon
 Bk0 g1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language lang="en">
@@ -353,7 +341,6 @@ Bk0 g1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Bk0 g1 1331 211 26 26 0 5 #rect
-Bk0 g1 @|MOGIcon #fIcon
 Bk0 f4 464 224 512 224 #arcP
 Bk0 f6 processCall 'Start Processes/ProcessHistoryComponent:startCreateNewCase(String)' #txt
 Bk0 f6 requestActionDecl '<String caseStructureInfo> param;' #txt
@@ -369,7 +356,6 @@ Bk0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Bk0 f6 892 200 56 48 0 -8 #rect
-Bk0 f6 @|TriggerIcon #fIcon
 Bk0 f10 actionTable 'out=in;
 ' #txt
 Bk0 f10 actionCode '
@@ -388,7 +374,6 @@ Bk0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Bk0 f10 160 202 128 44 -54 -8 #rect
-Bk0 f10 @|StepIcon #fIcon
 Bk0 f11 109 224 160 224 #arcP
 Bk0 f7 actionTable 'out=in;
 ' #txt
@@ -403,7 +388,6 @@ Bk0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Bk0 f7 704 202 128 44 -54 -8 #rect
-Bk0 f7 @|StepIcon #fIcon
 Bk0 f16 832 224 892 224 #arcP
 Bk0 f13 actionTable 'out=in;
 ' #txt
@@ -416,9 +400,7 @@ Bk0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Bk0 f13 1024 202 112 44 -49 -8 #rect
-Bk0 f13 @|StepIcon #fIcon
 Bk0 f21 1200 208 32 32 0 16 #rect
-Bk0 f21 @|AlternativeIcon #fIcon
 Bk0 f22 1136 224 1200 224 #arcP
 Bk0 f23 expr in #txt
 Bk0 f23 1232 224 1331 224 #arcP
@@ -459,7 +441,6 @@ Bk2 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Bk2 f13 240 138 240 44 -114 -8 #rect
-Bk2 f13 @|UserDialogIcon #fIcon
 Bk2 g0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language lang="en">
@@ -468,7 +449,6 @@ Bk2 g0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Bk2 g0 51 147 26 26 0 5 #rect
-Bk2 g0 @|MIGIcon #fIcon
 Bk2 f0 77 160 240 160 #arcP
 Bk2 g1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -478,7 +458,6 @@ Bk2 g1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Bk2 g1 627 147 26 26 0 5 #rect
-Bk2 g1 @|MOGIcon #fIcon
 Bk2 f1 expr out #txt
 Bk2 f1 480 160 627 160 #arcP
 >Proto Bk1 0 0 32 24 18 0 #rect
@@ -500,7 +479,6 @@ Bk3 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Bk3 f3 224 138 192 44 -88 -8 #rect
-Bk3 f3 @|UserDialogIcon #fIcon
 Bk3 g0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language lang="en">
@@ -509,7 +487,6 @@ Bk3 g0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Bk3 g0 51 147 26 26 0 5 #rect
-Bk3 g0 @|MIGIcon #fIcon
 Bk3 f0 77 160 224 160 #arcP
 Bk3 g1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -519,7 +496,6 @@ Bk3 g1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Bk3 g1 547 147 26 26 0 5 #rect
-Bk3 g1 @|MOGIcon #fIcon
 Bk3 f1 expr out #txt
 Bk3 f1 416 160 547 160 #arcP
 >Proto Bk2 0 0 32 24 18 0 #rect
@@ -542,7 +518,6 @@ Bk4 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Bk4 f17 336 138 128 44 -55 -8 #rect
-Bk4 f17 @|CallSubIcon #fIcon
 Bk4 f18 248 160 336 160 #arcP
 Bk4 f15 actionTable 'out=in;
 ' #txt
@@ -557,7 +532,6 @@ code name</name>
 </elementInfo>
 ' #txt
 Bk4 f15 136 138 112 44 -33 -16 #rect
-Bk4 f15 @|StepIcon #fIcon
 Bk4 g0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language lang="en">
@@ -566,7 +540,6 @@ Bk4 g0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Bk4 g0 51 147 26 26 0 5 #rect
-Bk4 g0 @|MIGIcon #fIcon
 Bk4 f0 77 160 136 160 #arcP
 Bk4 g1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -576,7 +549,6 @@ Bk4 g1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Bk4 g1 531 147 26 26 0 5 #rect
-Bk4 g1 @|MOGIcon #fIcon
 Bk4 f1 464 160 531 160 #arcP
 >Proto Bk3 0 0 32 24 18 0 #rect
 >Proto Bk3 @|BIcon #fIcon

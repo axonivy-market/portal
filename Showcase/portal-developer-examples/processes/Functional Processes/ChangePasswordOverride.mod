@@ -1,5 +1,5 @@
 [Ivy]
-1657FC622FD937C4 9.2.0 #module
+1657FC622FD937C4 9.3.0 #module
 >Proto >Proto Collection #zClass
 Cd0 ChangePassword Big #zClass
 Cd0 B #cInfo
@@ -44,9 +44,7 @@ Cd0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cd0 f0 169 49 30 30 -86 17 #rect
-Cd0 f0 @|StartSubIcon #fIcon
 Cd0 f1 169 625 30 30 0 15 #rect
-Cd0 f1 @|EndSubIcon #fIcon
 Cd0 f14 processCall 'Ivy Data Processes/PasswordService:updatePassword(String)' #txt
 Cd0 f14 requestActionDecl '<String newPassword> param;' #txt
 Cd0 f14 requestMappingAction 'param.newPassword=in.newPassword;
@@ -66,7 +64,6 @@ Cd0 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cd0 f14 128 330 112 44 -48 -8 #rect
-Cd0 f14 @|CallSubIcon #fIcon
 Cd0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -79,7 +76,6 @@ character.</name>
 </elementInfo>
 ' #txt
 Cd0 f5 416 154 608 60 -297 -24 #rect
-Cd0 f5 @|IBIcon #fIcon
 Cd0 f6 actionTable 'out=in;
 ' #txt
 Cd0 f6 actionCode 'import ch.ivy.addon.portalkit.enums.ChangePasswordStatus;
@@ -105,18 +101,15 @@ Cd0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cd0 f6 97 165 176 44 -84 -8 #rect
-Cd0 f6 @|StepIcon #fIcon
 Cd0 f7 expr out #txt
 Cd0 f7 184 78 185 165 #arcP
 Cd0 f3 168 256 32 32 0 16 #rect
-Cd0 f3 @|AlternativeIcon #fIcon
 Cd0 f8 expr out #txt
 Cd0 f8 185 209 184 256 #arcP
 Cd0 f10 expr in #txt
 Cd0 f10 outCond 'in.status != ch.ivy.addon.portalkit.enums.ChangePasswordStatus.FAIL' #txt
 Cd0 f10 184 288 184 330 #arcP
 Cd0 f11 168 528 32 32 0 16 #rect
-Cd0 f11 @|AlternativeIcon #fIcon
 Cd0 f2 expr in #txt
 Cd0 f2 184 560 184 625 #arcP
 Cd0 f9 actionTable 'out=in;
@@ -140,7 +133,6 @@ Cd0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cd0 f9 112 426 144 44 -64 -8 #rect
-Cd0 f9 @|StepIcon #fIcon
 Cd0 f12 expr out #txt
 Cd0 f12 184 374 184 426 #arcP
 Cd0 f4 expr out #txt

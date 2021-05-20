@@ -1,5 +1,5 @@
 [Ivy]
-1473A12DE00609FB 9.2.0 #module
+1473A12DE00609FB 9.3.0 #module
 >Proto >Proto Collection #zClass
 Pt0 ProcessService Big #zClass
 Pt0 B #cInfo
@@ -28,9 +28,7 @@ Pt0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Pt0 f15 81 81 30 30 -53 17 #rect
-Pt0 f15 @|StartSubIcon #fIcon
 Pt0 f19 377 81 30 30 0 15 #rect
-Pt0 f19 @|EndSubIcon #fIcon
 Pt0 f24 actionTable 'out=in;
 ' #txt
 Pt0 f24 actionCode 'import ch.ivy.addon.portalkit.ivydata.dto.IvyProcessResultDTO;
@@ -46,7 +44,6 @@ Pt0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Pt0 f24 176 74 112 44 -43 -8 #rect
-Pt0 f24 @|StepIcon #fIcon
 Pt0 f0 expr out #txt
 Pt0 f0 111 96 176 96 #arcP
 Pt0 f1 expr out #txt
