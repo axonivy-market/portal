@@ -1,5 +1,5 @@
 [Ivy]
-15AF019B09976068 9.2.0 #module
+15AF019B09976068 9.3.0 #module
 >Proto >Proto Collection #zClass
 Ts0 TaskColumnHeaderProcess Big #zClass
 Ts0 RD #cInfo
@@ -38,9 +38,7 @@ Ts0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ts0 f0 53 85 22 22 14 0 #rect
-Ts0 f0 @|UdInitIcon #fIcon
 Ts0 f1 53 213 22 22 14 0 #rect
-Ts0 f1 @|UdProcessEndIcon #fIcon
 Ts0 f4 guid 15AF4FD86A995BBD #txt
 Ts0 f4 method sort(String,Boolean) #txt
 Ts0 f4 inParameterDecl '<String field,Boolean isDescending> param;' #txt
@@ -56,7 +54,6 @@ Ts0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ts0 f4 276 86 22 22 14 0 #rect
-Ts0 f4 @|UdMethodIcon #fIcon
 Ts0 f6 actionTable 'out=in;
 ' #txt
 Ts0 f6 actionCode 'in.dataModel.setSortField(in.field, in.isDescending);' #txt
@@ -71,12 +68,10 @@ by type</name>
 </elementInfo>
 ' #txt
 Ts0 f6 269 149 36 24 20 -2 #rect
-Ts0 f6 @|StepIcon #fIcon
 Ts0 f8 expr out #txt
 Ts0 f8 287 108 287 149 #arcP
 Ts0 f8 0 0.40933572710951527 0 0 #arcLabel
 Ts0 f3 277 213 22 22 14 0 #rect
-Ts0 f3 @|UdProcessEndIcon #fIcon
 Ts0 f5 expr out #txt
 Ts0 f5 287 173 287 213 #arcP
 Ts0 f10 actionTable 'out=in;
@@ -101,7 +96,6 @@ if empty</name>
 </elementInfo>
 ' #txt
 Ts0 f10 46 146 36 24 20 -2 #rect
-Ts0 f10 @|StepIcon #fIcon
 Ts0 f11 expr out #txt
 Ts0 f11 64 107 64 146 #arcP
 Ts0 f2 expr out #txt
@@ -109,7 +103,6 @@ Ts0 f2 64 170 64 213 #arcP
 >Proto Ts0 .type ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader.TaskColumnHeaderData #txt
 >Proto Ts0 .processKind HTML_DIALOG #txt
 >Proto Ts0 -8 -8 16 16 16 26 #rect
->Proto Ts0 '' #fIcon
 Ts0 f4 mainOut f8 tail #connect
 Ts0 f8 head f6 mainIn #connect
 Ts0 f6 mainOut f5 tail #connect

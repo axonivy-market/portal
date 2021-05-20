@@ -1,5 +1,5 @@
 [Ivy]
-176CBB3B60DD7FF2 9.2.0 #module
+176CBB3B60DD7FF2 9.3.0 #module
 >Proto >Proto Collection #zClass
 Ps0 ProcessHistoryDialogComponentProcess Big #zClass
 Ps0 RD #cInfo
@@ -23,7 +23,6 @@ Ps0 @PushWFArc f14 '' #zField
 Ps0 @PushWFArc f15 '' #zField
 >Proto Ps0 Ps0 ProcessHistoryDialogComponentProcess #zField
 Ps0 f6 659 91 26 26 0 12 #rect
-Ps0 f6 @|UdProcessEndIcon #fIcon
 Ps0 f7 actionTable 'out=in;
 ' #txt
 Ps0 f7 actionCode 'import ch.ivy.addon.portalkit.enums.AdditionalProperty;
@@ -48,7 +47,6 @@ Ps0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f7 200 82 112 44 -44 -8 #rect
-Ps0 f7 @|StepIcon #fIcon
 Ps0 f10 processCall 'Ivy Data Processes/CaseService:countCasesByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria)' #txt
 Ps0 f10 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria caseSearchCriteria> param;' #txt
 Ps0 f10 requestMappingAction 'param.caseSearchCriteria=in.criteria;
@@ -64,7 +62,6 @@ Ps0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f10 400 82 112 44 -52 -8 #rect
-Ps0 f10 @|CallSubIcon #fIcon
 Ps0 f8 guid 176F4A23AB3CA924 #txt
 Ps0 f8 method start() #txt
 Ps0 f8 inParameterDecl '<> param;' #txt
@@ -77,9 +74,7 @@ Ps0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f8 115 91 26 26 -16 15 #rect
-Ps0 f8 @|UdInitIcon #fIcon
 Ps0 f9 243 187 26 26 0 12 #rect
-Ps0 f9 @|UdExitEndIcon #fIcon
 Ps0 f11 guid 176F4A23AB335D4F #txt
 Ps0 f11 actionTable 'out=in;
 ' #txt
@@ -91,7 +86,6 @@ Ps0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f11 115 187 26 26 -15 12 #rect
-Ps0 f11 @|UdEventIcon #fIcon
 Ps0 f12 expr out #txt
 Ps0 f12 141 104 200 104 #arcP
 Ps0 f13 expr out #txt
@@ -101,7 +95,6 @@ Ps0 f15 312 104 400 104 #arcP
 >Proto Ps0 .type com.axonivy.portal.developerexamples.customization.ProcessHistoryDialogComponent.ProcessHistoryDialogComponentData #txt
 >Proto Ps0 .processKind HTML_DIALOG #txt
 >Proto Ps0 -8 -8 16 16 16 26 #rect
->Proto Ps0 '' #fIcon
 Ps0 f11 mainOut f13 tail #connect
 Ps0 f13 head f9 mainIn #connect
 Ps0 f8 mainOut f12 tail #connect

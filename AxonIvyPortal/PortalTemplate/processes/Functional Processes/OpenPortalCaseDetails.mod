@@ -1,5 +1,5 @@
 [Ivy]
-16BD4CADD9FCEB4E 9.2.0 #module
+16BD4CADD9FCEB4E 9.3.0 #module
 >Proto >Proto Collection #zClass
 Os0 OpenPortalCaseDetails Big #zClass
 Os0 B #cInfo
@@ -41,9 +41,7 @@ Os0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Os0 f0 113 81 30 30 -40 -37 #rect
-Os0 f0 @|StartSubIcon #fIcon
 Os0 f1 849 81 30 30 0 15 #rect
-Os0 f1 @|EndSubIcon #fIcon
 Os0 f2 dialogId ch.ivy.addon.portal.generic.PortalCaseDetails #txt
 Os0 f2 startMethod start(ch.ivyteam.ivy.workflow.ICase,Boolean) #txt
 Os0 f2 requestActionDecl '<ch.ivyteam.ivy.workflow.ICase caseInfo,Boolean isShowBackButton> param;' #txt
@@ -60,7 +58,6 @@ Os0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Os0 f2 440 74 112 44 -50 -8 #rect
-Os0 f2 @|UserDialogIcon #fIcon
 Os0 f3 143 96 440 96 #arcP
 Os0 f4 552 96 849 96 #arcP
 Os0 f5 inParamDecl '<ch.ivyteam.ivy.workflow.ICase caseData,Boolean isShowBackButton> param;' #txt
@@ -77,9 +74,7 @@ Os0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Os0 f5 113 401 30 30 -64 -37 #rect
-Os0 f5 @|StartSubIcon #fIcon
 Os0 f6 849 401 30 30 0 15 #rect
-Os0 f6 @|EndSubIcon #fIcon
 Os0 f7 dialogId ch.ivy.addon.portal.component.iframe.CaseInformationInIFrame #txt
 Os0 f7 startMethod start(Long,Boolean) #txt
 Os0 f7 requestActionDecl '<Long caseId,Boolean showBackButton> param;' #txt
@@ -96,7 +91,6 @@ Os0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Os0 f7 416 394 160 44 -70 -8 #rect
-Os0 f7 @|UserDialogIcon #fIcon
 Os0 f8 143 416 416 416 #arcP
 Os0 f9 576 416 849 416 #arcP
 Os0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -115,7 +109,6 @@ To override PortalCase item details UI: you should use Axon Ivy HTMLOverride Dia
 </elementInfo>
 ' #txt
 Os0 f10 224 162 720 76 -357 -34 #rect
-Os0 f10 @|IBIcon #fIcon
 Os0 f11 224 200 138 107 #arcP
 Os0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -133,7 +126,6 @@ To override PortalCase item details UI: you should use Axon Ivy HTMLOverride Dia
 </elementInfo>
 ' #txt
 Os0 f12 224 482 768 76 -378 -34 #rect
-Os0 f12 @|IBIcon #fIcon
 Os0 f13 224 520 138 427 #arcP
 >Proto Os0 .type ch.ivy.addon.portal.generic.OpenPortalCaseDetailsData #txt
 >Proto Os0 .processKind CALLABLE_SUB #txt

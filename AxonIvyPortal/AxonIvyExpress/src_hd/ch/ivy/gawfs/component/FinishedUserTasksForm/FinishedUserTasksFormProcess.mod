@@ -1,5 +1,5 @@
 [Ivy]
-163716C0F2A365F7 9.2.0 #module
+163716C0F2A365F7 9.3.0 #module
 >Proto >Proto Collection #zClass
 Fs0 FinishedUserTasksFormProcess Big #zClass
 Fs0 RD #cInfo
@@ -32,9 +32,7 @@ Fs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Fs0 f0 83 51 26 26 -16 15 #rect
-Fs0 f0 @|UdInitIcon #fIcon
 Fs0 f1 211 51 26 26 0 12 #rect
-Fs0 f1 @|UdProcessEndIcon #fIcon
 Fs0 f2 expr out #txt
 Fs0 f2 109 64 211 64 #arcP
 Fs0 f3 guid 163716C0F598630B #txt
@@ -48,15 +46,12 @@ Fs0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Fs0 f3 83 147 26 26 -15 12 #rect
-Fs0 f3 @|UdEventIcon #fIcon
 Fs0 f4 211 147 26 26 0 12 #rect
-Fs0 f4 @|UdExitEndIcon #fIcon
 Fs0 f5 expr out #txt
 Fs0 f5 109 160 211 160 #arcP
 >Proto Fs0 .type ch.ivy.gawfs.component.FinishedUserTasksForm.FinishedUserTasksFormData #txt
 >Proto Fs0 .processKind HTML_DIALOG #txt
 >Proto Fs0 -8 -8 16 16 16 26 #rect
->Proto Fs0 '' #fIcon
 Fs0 f0 mainOut f2 tail #connect
 Fs0 f2 head f1 mainIn #connect
 Fs0 f3 mainOut f5 tail #connect

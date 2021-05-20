@@ -1,5 +1,5 @@
 [Ivy]
-1703223B24A42DAC 9.2.0 #module
+1703223B24A42DAC 9.3.0 #module
 >Proto >Proto Collection #zClass
 Ik0 InternalSolvencyCheck Big #zClass
 Ik0 B #cInfo
@@ -48,9 +48,7 @@ Ik0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ik0 f0 @C|.responsibility Everybody #txt
 Ik0 f0 81 49 30 30 -21 17 #rect
-Ik0 f0 @|StartRequestIcon #fIcon
 Ik0 f1 497 49 30 30 0 15 #rect
-Ik0 f1 @|EndIcon #fIcon
 Ik0 f3 actionTable 'out=in;
 ' #txt
 Ik0 f3 actionCode 'import org.hibernate.validator.constraints.CreditCardNumber;
@@ -75,7 +73,6 @@ evaluation</name>
 </elementInfo>
 ' #txt
 Ik0 f3 328 42 112 44 -28 -16 #rect
-Ik0 f3 @|StepIcon #fIcon
 Ik0 f2 expr out #txt
 Ik0 f2 440 64 497 64 #arcP
 Ik0 f5 dialogId com.axonivy.portal.userexamples.credit.CheckInternalSolvency #txt
@@ -91,7 +88,6 @@ Ik0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ik0 f5 152 42 144 44 -65 -8 #rect
-Ik0 f5 @|UserDialogIcon #fIcon
 Ik0 f6 expr out #txt
 Ik0 f6 111 64 152 64 #arcP
 Ik0 f4 296 64 328 64 #arcP

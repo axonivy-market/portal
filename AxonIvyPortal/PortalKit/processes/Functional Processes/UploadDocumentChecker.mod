@@ -1,5 +1,5 @@
 [Ivy]
-16285772A1F890EE 9.2.0 #module
+16285772A1F890EE 9.3.0 #module
 >Proto >Proto Collection #zClass
 Ur0 UploadDocumentChecker Big #zClass
 Ur0 B #cInfo
@@ -40,9 +40,7 @@ Ur0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ur0 f0 81 49 30 30 -50 17 #rect
-Ur0 f0 @|StartSubIcon #fIcon
 Ur0 f1 81 513 30 30 0 15 #rect
-Ur0 f1 @|EndSubIcon #fIcon
 Ur0 f3 actionTable 'out=in;
 ' #txt
 Ur0 f3 actionCode 'import ch.ivy.addon.portalkit.enums.UploadDocumentCheckStatus;
@@ -65,7 +63,6 @@ Ur0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ur0 f3 24 346 144 44 -67 -8 #rect
-Ur0 f3 @|StepIcon #fIcon
 Ur0 f2 expr out #txt
 Ur0 f2 96 390 96 513 #arcP
 Ur0 f5 actionTable 'out=in;
@@ -89,7 +86,6 @@ in whitelist</name>
 </elementInfo>
 ' #txt
 Ur0 f5 24 154 144 44 -51 -16 #rect
-Ur0 f5 @|StepIcon #fIcon
 Ur0 f6 expr out #txt
 Ur0 f6 96 79 96 154 #arcP
 Ur0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -101,7 +97,6 @@ in upload file</desc>
 </elementInfo>
 ' #txt
 Ur0 f7 80 256 32 32 0 16 #rect
-Ur0 f7 @|AlternativeIcon #fIcon
 Ur0 f8 expr out #txt
 Ur0 f8 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

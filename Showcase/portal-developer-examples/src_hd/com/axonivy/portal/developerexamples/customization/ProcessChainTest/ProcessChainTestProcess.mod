@@ -1,5 +1,5 @@
 [Ivy]
-164DB519052DCBE0 9.2.0 #module
+164DB519052DCBE0 9.3.0 #module
 >Proto >Proto Collection #zClass
 Ps0 ProcessChainTestProcess Big #zClass
 Ps0 RD #cInfo
@@ -35,9 +35,7 @@ Ps0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f0 83 51 26 26 -16 15 #rect
-Ps0 f0 @|UdInitIcon #fIcon
 Ps0 f1 339 51 26 26 0 12 #rect
-Ps0 f1 @|UdProcessEndIcon #fIcon
 Ps0 f3 guid 164DB51906E4FABC #txt
 Ps0 f3 actionTable 'out=in;
 ' #txt
@@ -49,9 +47,7 @@ Ps0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f3 83 147 26 26 -15 12 #rect
-Ps0 f3 @|UdEventIcon #fIcon
 Ps0 f4 211 147 26 26 0 12 #rect
-Ps0 f4 @|UdExitEndIcon #fIcon
 Ps0 f5 expr out #txt
 Ps0 f5 109 160 211 160 #arcP
 Ps0 f6 guid 164DB553C94F9CE9 #txt
@@ -72,9 +68,7 @@ Ps0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f6 83 243 26 26 -11 15 #rect
-Ps0 f6 @|UdEventIcon #fIcon
 Ps0 f7 211 243 26 26 0 12 #rect
-Ps0 f7 @|UdProcessEndIcon #fIcon
 Ps0 f8 expr out #txt
 Ps0 f8 109 256 211 256 #arcP
 Ps0 f9 actionTable 'out=in;
@@ -88,7 +82,6 @@ Ps0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f9 168 42 112 44 -21 -8 #rect
-Ps0 f9 @|StepIcon #fIcon
 Ps0 f10 expr out #txt
 Ps0 f10 109 64 168 64 #arcP
 Ps0 f2 expr out #txt
@@ -96,7 +89,6 @@ Ps0 f2 280 64 339 64 #arcP
 >Proto Ps0 .type com.axonivy.portal.developerexamples.customization.ProcessChainTest.ProcessChainTestData #txt
 >Proto Ps0 .processKind HTML_DIALOG #txt
 >Proto Ps0 -8 -8 16 16 16 26 #rect
->Proto Ps0 '' #fIcon
 Ps0 f3 mainOut f5 tail #connect
 Ps0 f5 head f4 mainIn #connect
 Ps0 f6 mainOut f8 tail #connect

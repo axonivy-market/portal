@@ -1,5 +1,5 @@
 [Ivy]
-1703222F64196D27 9.2.0 #module
+1703222F64196D27 9.3.0 #module
 >Proto >Proto Collection #zClass
 Ca0 CollectPersonalData Big #zClass
 Ca0 B #cInfo
@@ -51,9 +51,7 @@ Ca0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ca0 f0 @C|.responsibility Everybody #txt
 Ca0 f0 81 49 30 30 -21 17 #rect
-Ca0 f0 @|StartRequestIcon #fIcon
 Ca0 f1 625 49 30 30 0 15 #rect
-Ca0 f1 @|EndIcon #fIcon
 Ca0 f3 actionTable 'out=in;
 ' #txt
 Ca0 f3 actionCode 'ivy.log.info("Business Process is in Stage " + ivy.case.getBusinessCase().getStage().getName());
@@ -68,7 +66,6 @@ Ca0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ca0 f3 472 42 112 44 -25 -8 #rect
-Ca0 f3 @|StepIcon #fIcon
 Ca0 f2 expr out #txt
 Ca0 f2 584 64 625 64 #arcP
 Ca0 f5 dialogId com.axonivy.portal.userexamples.credit.CollectPersonData #txt
@@ -77,7 +74,6 @@ Ca0 f5 requestActionDecl '<> param;' #txt
 Ca0 f5 responseActionDecl 'workflow.humantask.Data out;
 ' #txt
 Ca0 f5 328 42 112 44 0 -8 #rect
-Ca0 f5 @|UserDialogIcon #fIcon
 Ca0 f4 expr out #txt
 Ca0 f4 440 64 472 64 #arcP
 Ca0 f7 actionTable 'out=in;
@@ -94,7 +90,6 @@ Ca0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ca0 f7 152 42 144 44 -68 -8 #rect
-Ca0 f7 @|StepIcon #fIcon
 Ca0 f8 expr out #txt
 Ca0 f8 111 64 152 64 #arcP
 Ca0 f6 expr out #txt

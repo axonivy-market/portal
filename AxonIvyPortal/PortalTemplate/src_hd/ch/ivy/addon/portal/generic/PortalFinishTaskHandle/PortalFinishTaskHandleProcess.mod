@@ -1,5 +1,5 @@
 [Ivy]
-16EF3459A3FCF253 9.2.0 #module
+16EF3459A3FCF253 9.3.0 #module
 >Proto >Proto Collection #zClass
 Ps0 PortalFinishTaskHandleProcess Big #zClass
 Ps0 RD #cInfo
@@ -37,9 +37,7 @@ Ps0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f0 83 51 26 26 -16 15 #rect
-Ps0 f0 @|UdInitIcon #fIcon
 Ps0 f1 211 51 26 26 0 12 #rect
-Ps0 f1 @|UdProcessEndIcon #fIcon
 Ps0 f2 expr out #txt
 Ps0 f2 109 64 211 64 #arcP
 Ps0 f8 actionTable 'out=in;
@@ -56,9 +54,7 @@ finish or leave task</name>
 </elementInfo>
 ' #txt
 Ps0 f8 152 138 144 44 -54 -16 #rect
-Ps0 f8 @|StepIcon #fIcon
 Ps0 f4 339 147 26 26 0 12 #rect
-Ps0 f4 @|UdExitEndIcon #fIcon
 Ps0 f5 296 160 339 160 #arcP
 Ps0 f3 guid 16EF347B4B0F3ECF #txt
 Ps0 f3 method close() #txt
@@ -72,7 +68,6 @@ Ps0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f3 83 147 26 26 -23 15 #rect
-Ps0 f3 @|UdMethodIcon #fIcon
 Ps0 f6 109 160 152 160 #arcP
 Ps0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -83,12 +78,10 @@ start a task &gt; finish the task</name>
 </elementInfo>
 ' #txt
 Ps0 f7 184 202 160 44 -74 -16 #rect
-Ps0 f7 @|IBIcon #fIcon
 Ps0 f9 264 202 224 182 #arcP
 >Proto Ps0 .type ch.ivy.addon.portal.generic.PortalFinishTaskHandle.PortalFinishTaskHandleData #txt
 >Proto Ps0 .processKind HTML_DIALOG #txt
 >Proto Ps0 -8 -8 16 16 16 26 #rect
->Proto Ps0 '' #fIcon
 Ps0 f0 mainOut f2 tail #connect
 Ps0 f2 head f1 mainIn #connect
 Ps0 f8 mainOut f5 tail #connect

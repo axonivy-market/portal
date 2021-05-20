@@ -1,5 +1,5 @@
 [Ivy]
-17032234FD387594 9.2.0 #module
+17032234FD387594 9.3.0 #module
 >Proto >Proto Collection #zClass
 Cn0 ContractCreation Big #zClass
 Cn0 B #cInfo
@@ -48,9 +48,7 @@ Cn0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Cn0 f0 @C|.responsibility Everybody #txt
 Cn0 f0 81 49 30 30 -21 17 #rect
-Cn0 f0 @|StartRequestIcon #fIcon
 Cn0 f1 497 49 30 30 0 15 #rect
-Cn0 f1 @|EndIcon #fIcon
 Cn0 f3 dialogId com.axonivy.portal.userexamples.credit.ContractCreation #txt
 Cn0 f3 startMethod start() #txt
 Cn0 f3 requestActionDecl '<> param;' #txt
@@ -64,7 +62,6 @@ Cn0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cn0 f3 168 42 112 44 -46 -8 #rect
-Cn0 f3 @|UserDialogIcon #fIcon
 Cn0 f4 expr out #txt
 Cn0 f4 111 64 168 64 #arcP
 Cn0 f28 actionTable 'out=in;
@@ -89,7 +86,6 @@ Cn0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cn0 f28 344 42 112 44 -34 -8 #rect
-Cn0 f28 @|StepIcon #fIcon
 Cn0 f2 280 64 344 64 #arcP
 Cn0 f5 456 64 497 64 #arcP
 >Proto Cn0 .type com.axonivy.portal.userexamples.Data #txt

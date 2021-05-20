@@ -1,5 +1,5 @@
 [Ivy]
-14B2FC03D2E87141 9.2.0 #module
+14B2FC03D2E87141 9.3.0 #module
 >Proto >Proto Collection #zClass
 Tt0 TestTaskFlow Big #zClass
 Tt0 B #cInfo
@@ -190,9 +190,7 @@ Tt0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Tt0 f0 @C|.responsibility Everybody #txt
 Tt0 f0 531 51 26 26 25 -2 #rect
-Tt0 f0 @|StartRequestIcon #fIcon
 Tt0 f22 531 403 26 26 14 0 #rect
-Tt0 f22 @|EndIcon #fIcon
 Tt0 f23 actionTable 'out=in1;
 ' #txt
 Tt0 f23 outLinks "TaskA.ivp" #txt
@@ -222,7 +220,6 @@ Tt0 f23 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Tt0 f23 530 274 28 28 21 -3 #rect
-Tt0 f23 @|TaskSwitchIcon #fIcon
 Tt0 f25 expr data #txt
 Tt0 f25 outCond ivp=="TaskA.ivp" #txt
 Tt0 f25 544 302 544 403 #arcP
@@ -244,7 +241,6 @@ add contactfolder id link</name>
 </elementInfo>
 ' #txt
 Tt0 f1 524 180 40 24 20 -2 #rect
-Tt0 f1 @|StepIcon #fIcon
 Tt0 f2 expr out #txt
 Tt0 f2 544 77 544 180 #arcP
 Tt0 f8 actionTable 'out=in1;
@@ -262,9 +258,7 @@ TaskA.SKIP_TASK_LIST=false
 TaskA.TYPE=0' #txt
 Tt0 f8 template "" #txt
 Tt0 f8 1059 155 26 26 13 0 #rect
-Tt0 f8 @|TaskSwitchSimpleIcon #fIcon
 Tt0 f10 1059 243 26 26 14 0 #rect
-Tt0 f10 @|EndIcon #fIcon
 Tt0 f21 expr data #txt
 Tt0 f21 outCond ivp=="TaskA.ivp" #txt
 Tt0 f21 1072 181 1072 243 #arcP
@@ -290,7 +284,6 @@ Tt0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Tt0 f6 @C|.responsibility Everybody #txt
 Tt0 f6 1059 51 26 26 14 0 #rect
-Tt0 f6 @|StartRequestIcon #fIcon
 Tt0 f16 expr out #txt
 Tt0 f16 type internaltest.Data #txt
 Tt0 f16 var in1 #txt
@@ -313,7 +306,6 @@ Task Form</name>
 </elementInfo>
 ' #txt
 Tt0 f24 1628 272 36 24 20 -2 #rect
-Tt0 f24 @|UserDialogIcon #fIcon
 Tt0 f26 dialogId com.axonivy.portal.developerexamples.testdata.LeaveRequestForm #txt
 Tt0 f26 startMethod start() #txt
 Tt0 f26 requestActionDecl '<> param;' #txt
@@ -333,7 +325,6 @@ Task Form</name>
 </elementInfo>
 ' #txt
 Tt0 f26 1364 272 36 24 20 -2 #rect
-Tt0 f26 @|UserDialogIcon #fIcon
 Tt0 f27 actionTable 'out=in1;
 ' #txt
 Tt0 f27 outLinks "TaskA.ivp","TaskB.ivp","TaskC.ivp" #txt
@@ -394,7 +385,6 @@ Tt0 f27 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Tt0 f27 1496 166 28 28 9 -21 #rect
-Tt0 f27 @|TaskSwitchIcon #fIcon
 Tt0 f28 dialogId com.axonivy.portal.developerexamples.testdata.LeaveRequestForm #txt
 Tt0 f28 startMethod start() #txt
 Tt0 f28 requestActionDecl '<> param;' #txt
@@ -413,7 +403,6 @@ Task Form</name>
 </elementInfo>
 ' #txt
 Tt0 f28 1492 272 36 24 20 -2 #rect
-Tt0 f28 @|UserDialogIcon #fIcon
 Tt0 f29 outLink TestRelatedTaskWithNoResponsible.ivp #txt
 Tt0 f29 inParamDecl '<> param;' #txt
 Tt0 f29 requestEnabled true #txt
@@ -449,7 +438,6 @@ Tt0 f29 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Tt0 f29 @C|.responsibility Everybody #txt
 Tt0 f29 1497 39 26 26 14 0 #rect
-Tt0 f29 @|StartRequestIcon #fIcon
 Tt0 f31 expr data #txt
 Tt0 f31 outCond ivp=="TaskC.ivp" #txt
 Tt0 f31 1524 180 1646 272 #arcP
@@ -479,7 +467,6 @@ Tt0 f38 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Tt0 f38 787 59 26 26 14 0 #rect
-Tt0 f38 @|ExceptionIcon #fIcon
 Tt0 f39 actionTable 'out=in;
 ' #txt
 Tt0 f39 actionCode 'import ch.ivyteam.ivy.workflow.WorkflowPriority;
@@ -494,7 +481,6 @@ Tt0 f39 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Tt0 f39 782 188 36 24 20 -2 #rect
-Tt0 f39 @|StepIcon #fIcon
 Tt0 f40 expr out #txt
 Tt0 f40 800 85 800 188 #arcP
 Tt0 f41 actionTable 'out=in1;
@@ -526,9 +512,7 @@ Tt0 f41 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Tt0 f41 787 275 26 26 13 0 #rect
-Tt0 f41 @|TaskSwitchSimpleIcon #fIcon
 Tt0 f42 787 403 26 26 14 0 #rect
-Tt0 f42 @|EndIcon #fIcon
 Tt0 f43 expr out #txt
 Tt0 f43 type internaltest.Data #txt
 Tt0 f43 var in1 #txt
@@ -541,7 +525,6 @@ Tt0 f3 type internaltest.Data #txt
 Tt0 f3 var in1 #txt
 Tt0 f3 544 204 544 274 #arcP
 Tt0 f20 1497 403 26 26 14 0 #rect
-Tt0 f20 @|EndIcon #fIcon
 Tt0 f46 expr out #txt
 Tt0 f46 1510 296 1510 403 #arcP
 Tt0 f36 expr out #txt
@@ -576,7 +559,6 @@ Tt0 f30 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Tt0 f30 @C|.responsibility Everybody #txt
 Tt0 f30 179 499 26 26 14 0 #rect
-Tt0 f30 @|StartRequestIcon #fIcon
 Tt0 f32 actionTable 'out=in1;
 ' #txt
 Tt0 f32 outLinks "TaskA.ivp","TaskB.ivp" #txt
@@ -611,11 +593,8 @@ Tt0 f32 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Tt0 f32 178 562 28 28 14 0 #rect
-Tt0 f32 @|TaskSwitchIcon #fIcon
 Tt0 f47 123 691 26 26 14 0 #rect
-Tt0 f47 @|EndIcon #fIcon
 Tt0 f48 235 691 26 26 14 0 #rect
-Tt0 f48 @|EndIcon #fIcon
 Tt0 f49 expr out #txt
 Tt0 f49 type internaltest.Data #txt
 Tt0 f49 var in1 #txt
@@ -654,9 +633,7 @@ Tt0 f66 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Tt0 f66 @C|.responsibility Everybody #txt
 Tt0 f66 737 489 30 30 -92 17 #rect
-Tt0 f66 @|StartRequestIcon #fIcon
 Tt0 f67 737 649 30 30 0 15 #rect
-Tt0 f67 @|EndIcon #fIcon
 Tt0 f69 dialogId internaltest.TestPortalCustomErrorHandler #txt
 Tt0 f69 startMethod start() #txt
 Tt0 f69 requestActionDecl '<> param;' #txt
@@ -665,7 +642,6 @@ Tt0 f69 responseActionDecl 'internaltest.Data out;
 Tt0 f69 responseMappingAction 'out=in;
 ' #txt
 Tt0 f69 704 560 96 48 0 -8 #rect
-Tt0 f69 @|UserDialogIcon #fIcon
 Tt0 f70 expr out #txt
 Tt0 f70 752 519 752 560 #arcP
 Tt0 f68 expr out #txt
@@ -688,7 +664,6 @@ Task Form</name>
 </elementInfo>
 ' #txt
 Tt0 f86 992 672 36 24 20 -2 #rect
-Tt0 f86 @|UserDialogIcon #fIcon
 Tt0 f87 dialogId com.axonivy.portal.developerexamples.testdata.LeaveRequestForm #txt
 Tt0 f87 startMethod start() #txt
 Tt0 f87 requestActionDecl '<> param;' #txt
@@ -707,9 +682,7 @@ Task Form</name>
 </elementInfo>
 ' #txt
 Tt0 f87 1128 672 36 24 20 -2 #rect
-Tt0 f87 @|UserDialogIcon #fIcon
 Tt0 f89 997 735 26 26 14 0 #rect
-Tt0 f89 @|EndIcon #fIcon
 Tt0 f90 actionTable 'out=in1;
 ' #txt
 Tt0 f90 outLinks "TaskB.ivp","TaskA.ivp","TaskC.ivp" #txt
@@ -767,7 +740,6 @@ Tt0 f90 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Tt0 f90 996 614 28 28 9 -21 #rect
-Tt0 f90 @|TaskSwitchIcon #fIcon
 Tt0 f91 dialogId com.axonivy.portal.developerexamples.testdata.LeaveRequestForm #txt
 Tt0 f91 startMethod start() #txt
 Tt0 f91 requestActionDecl '<> param;' #txt
@@ -787,7 +759,6 @@ Task Form</name>
 </elementInfo>
 ' #txt
 Tt0 f91 864 672 36 24 20 -2 #rect
-Tt0 f91 @|UserDialogIcon #fIcon
 Tt0 f92 outLink DefaultAdditionalCaseDetails.ivp #txt
 Tt0 f92 inParamDecl '<> param;' #txt
 Tt0 f92 requestEnabled true #txt
@@ -831,7 +802,6 @@ Tt0 f92 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Tt0 f92 @C|.responsibility Everybody #txt
 Tt0 f92 997 500 26 26 14 0 #rect
-Tt0 f92 @|StartRequestIcon #fIcon
 Tt0 f94 expr data #txt
 Tt0 f94 outCond ivp=="TaskB.ivp" #txt
 Tt0 f94 1010 642 1010 672 #arcP
@@ -922,7 +892,6 @@ Tt0 f93 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Tt0 f93 177 889 28 28 9 -21 #rect
-Tt0 f93 @|TaskSwitchIcon #fIcon
 Tt0 f100 outLink TestCaseListPermissions.ivp #txt
 Tt0 f100 inParamDecl '<> param;' #txt
 Tt0 f100 requestEnabled true #txt
@@ -971,7 +940,6 @@ Tt0 f100 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Tt0 f100 @C|.responsibility Everybody #txt
 Tt0 f100 178 759 26 26 14 0 #rect
-Tt0 f100 @|StartRequestIcon #fIcon
 Tt0 f101 dialogId com.axonivy.portal.developerexamples.testdata.LeaveRequestForm #txt
 Tt0 f101 startMethod start() #txt
 Tt0 f101 requestActionDecl '<> param;' #txt
@@ -990,7 +958,6 @@ Task Form</name>
 </elementInfo>
 ' #txt
 Tt0 f101 309 947 36 24 20 -2 #rect
-Tt0 f101 @|UserDialogIcon #fIcon
 Tt0 f103 dialogId com.axonivy.portal.developerexamples.testdata.LeaveRequestForm #txt
 Tt0 f103 startMethod start() #txt
 Tt0 f103 requestActionDecl '<> param;' #txt
@@ -1010,7 +977,6 @@ Task Form</name>
 </elementInfo>
 ' #txt
 Tt0 f103 45 947 36 24 20 -2 #rect
-Tt0 f103 @|UserDialogIcon #fIcon
 Tt0 f104 dialogId com.axonivy.portal.developerexamples.testdata.LeaveRequestForm #txt
 Tt0 f104 startMethod start() #txt
 Tt0 f104 requestActionDecl '<> param;' #txt
@@ -1029,9 +995,7 @@ Task Form</name>
 </elementInfo>
 ' #txt
 Tt0 f104 173 947 36 24 20 -2 #rect
-Tt0 f104 @|UserDialogIcon #fIcon
 Tt0 f105 178 1010 26 26 14 0 #rect
-Tt0 f105 @|EndIcon #fIcon
 Tt0 f107 expr out #txt
 Tt0 f107 63 971 178 1023 #arcP
 Tt0 f107 1 63 1023 #addKink
@@ -1078,7 +1042,6 @@ Task Form</name>
 </elementInfo>
 ' #txt
 Tt0 f106 438 947 36 24 20 -2 #rect
-Tt0 f106 @|UserDialogIcon #fIcon
 Tt0 f111 expr data #txt
 Tt0 f111 outCond ivp=="TaskD.ivp" #txt
 Tt0 f111 205 903 456 947 #arcP
@@ -1115,9 +1078,7 @@ Tt0 f130 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Tt0 f130 @C|.responsibility Everybody #txt
 Tt0 f130 609 801 30 30 -54 17 #rect
-Tt0 f130 @|StartRequestIcon #fIcon
 Tt0 f131 609 1009 30 30 0 15 #rect
-Tt0 f131 @|EndIcon #fIcon
 Tt0 f132 dialogId internaltest.ui.SaleDepartment #txt
 Tt0 f132 startMethod start() #txt
 Tt0 f132 requestActionDecl '<> param;' #txt
@@ -1134,7 +1095,6 @@ TaskA.ROL=Everybody
 TaskA.SKIP_TASK_LIST=false
 TaskA.TYPE=0' #txt
 Tt0 f132 568 906 112 44 0 -8 #rect
-Tt0 f132 @|UserTaskIcon #fIcon
 Tt0 f133 expr out #txt
 Tt0 f133 type internaltest.Data #txt
 Tt0 f133 var in1 #txt
@@ -1166,7 +1126,6 @@ Tt0 f135 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Tt0 f135 @C|.responsibility Everybody #txt
 Tt0 f135 193 1121 30 30 22 8 #rect
-Tt0 f135 @|StartRequestIcon #fIcon
 Tt0 f136 actionTable 'out=in1;
 ' #txt
 Tt0 f136 outLinks "TaskA.ivp" #txt
@@ -1180,9 +1139,7 @@ TaskA.SKIP_TASK_LIST=false
 TaskA.TYPE=3' #txt
 Tt0 f136 template "" #txt
 Tt0 f136 193 1233 30 30 0 16 #rect
-Tt0 f136 @|TaskSwitchSimpleIcon #fIcon
 Tt0 f137 193 1329 30 30 0 15 #rect
-Tt0 f137 @|EndIcon #fIcon
 Tt0 f138 expr out #txt
 Tt0 f138 type internaltest.Data #txt
 Tt0 f138 var in1 #txt
@@ -1217,7 +1174,6 @@ Tt0 f140 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Tt0 f140 @C|.responsibility Everybody #txt
 Tt0 f140 449 1169 30 30 -93 17 #rect
-Tt0 f140 @|StartRequestIcon #fIcon
 Tt0 f141 actionTable 'out=in1;
 ' #txt
 Tt0 f141 outLinks "TaskA.ivp" #txt
@@ -1231,13 +1187,11 @@ TaskA.SKIP_TASK_LIST=false
 TaskA.TYPE=0' #txt
 Tt0 f141 template "" #txt
 Tt0 f141 593 1169 30 30 0 16 #rect
-Tt0 f141 @|TaskSwitchSimpleIcon #fIcon
 Tt0 f142 expr out #txt
 Tt0 f142 type internaltest.Data #txt
 Tt0 f142 var in1 #txt
 Tt0 f142 479 1184 593 1184 #arcP
 Tt0 f145 1481 1137 30 30 0 15 #rect
-Tt0 f145 @|EndIcon #fIcon
 Tt0 f147 actionTable 'out=in1;
 ' #txt
 Tt0 f147 outLinks "TaskB.ivp","TaskA.ivp","TaskC.ivp" #txt
@@ -1267,7 +1221,6 @@ TaskC.PRI=2
 TaskC.EXROL=Everybody' #txt
 Tt0 f147 template "" #txt
 Tt0 f147 848 1168 32 32 0 16 #rect
-Tt0 f147 @|TaskSwitchIcon #fIcon
 Tt0 f144 actionTable 'out=in1;
 ' #txt
 Tt0 f144 outLinks "TaskA.ivp" #txt
@@ -1281,9 +1234,7 @@ TaskA.SKIP_TASK_LIST=false
 TaskA.TYPE=0' #txt
 Tt0 f144 template "" #txt
 Tt0 f144 985 1265 30 30 0 16 #rect
-Tt0 f144 @|TaskSwitchSimpleIcon #fIcon
 Tt0 f149 1209 1265 30 30 0 15 #rect
-Tt0 f149 @|EndIcon #fIcon
 Tt0 f151 dialogId internaltest.ui.SaleDepartment #txt
 Tt0 f151 startMethod start() #txt
 Tt0 f151 requestActionDecl '<> param;' #txt
@@ -1292,7 +1243,6 @@ Tt0 f151 responseActionDecl 'internaltest.Data out;
 Tt0 f151 responseMappingAction 'out=in;
 ' #txt
 Tt0 f151 720 1172 32 24 0 -8 #rect
-Tt0 f151 @|UserDialogIcon #fIcon
 Tt0 f152 expr data #txt
 Tt0 f152 outCond ivp=="TaskA.ivp" #txt
 Tt0 f152 623 1184 720 1184 #arcP
@@ -1308,7 +1258,6 @@ Tt0 f153 responseActionDecl 'internaltest.Data out;
 Tt0 f153 responseMappingAction 'out=in;
 ' #txt
 Tt0 f153 972 1172 40 24 0 -8 #rect
-Tt0 f153 @|UserDialogIcon #fIcon
 Tt0 f154 expr data #txt
 Tt0 f154 outCond ivp=="TaskA.ivp" #txt
 Tt0 f154 880 1184 972 1184 #arcP
@@ -1320,7 +1269,6 @@ Tt0 f155 responseActionDecl 'internaltest.Data out;
 Tt0 f155 responseMappingAction 'out=in;
 ' #txt
 Tt0 f155 844 1268 40 24 0 -8 #rect
-Tt0 f155 @|UserDialogIcon #fIcon
 Tt0 f156 expr data #txt
 Tt0 f156 outCond ivp=="TaskB.ivp" #txt
 Tt0 f156 864 1200 864 1268 #arcP
@@ -1336,7 +1284,6 @@ Tt0 f157 responseActionDecl 'internaltest.Data out;
 Tt0 f157 responseMappingAction 'out=in;
 ' #txt
 Tt0 f157 1076 1268 40 24 0 -8 #rect
-Tt0 f157 @|UserDialogIcon #fIcon
 Tt0 f158 expr data #txt
 Tt0 f158 outCond ivp=="TaskA.ivp" #txt
 Tt0 f158 1015 1280 1076 1280 #arcP
@@ -1350,7 +1297,6 @@ Tt0 f159 responseActionDecl 'internaltest.Data out;
 Tt0 f159 responseMappingAction 'out=in;
 ' #txt
 Tt0 f159 969 1115 40 24 0 -8 #rect
-Tt0 f159 @|UserDialogIcon #fIcon
 Tt0 f160 expr data #txt
 Tt0 f160 outCond ivp=="TaskC.ivp" #txt
 Tt0 f160 864 1168 969 1127 #arcP
@@ -1369,7 +1315,6 @@ TaskA.SKIP_TASK_LIST=false
 TaskA.TYPE=0' #txt
 Tt0 f161 template "" #txt
 Tt0 f161 1168 1136 32 32 0 16 #rect
-Tt0 f161 @|TaskSwitchIcon #fIcon
 Tt0 f162 expr out #txt
 Tt0 f162 type internaltest.Data #txt
 Tt0 f162 var in1 #txt
@@ -1395,7 +1340,6 @@ TaskA.SKIP_TASK_LIST=true
 TaskA.TYPE=0' #txt
 Tt0 f163 template "" #txt
 Tt0 f163 1265 1137 30 30 0 16 #rect
-Tt0 f163 @|TaskSwitchSimpleIcon #fIcon
 Tt0 f164 expr data #txt
 Tt0 f164 outCond ivp=="TaskA.ivp" #txt
 Tt0 f164 type internaltest.Data #txt
@@ -1409,7 +1353,6 @@ Tt0 f165 responseActionDecl 'internaltest.Data out;
 Tt0 f165 responseMappingAction 'out=in;
 ' #txt
 Tt0 f165 1376 1140 32 24 0 -8 #rect
-Tt0 f165 @|UserDialogIcon #fIcon
 Tt0 f166 expr data #txt
 Tt0 f166 outCond ivp=="TaskA.ivp" #txt
 Tt0 f166 1295 1152 1376 1152 #arcP
@@ -1440,9 +1383,7 @@ Tt0 f168 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Tt0 f168 @C|.responsibility Everybody #txt
 Tt0 f168 840 904 32 32 -77 17 #rect
-Tt0 f168 @|StartRequestIcon #fIcon
 Tt0 f169 1689 905 30 30 0 15 #rect
-Tt0 f169 @|EndIcon #fIcon
 Tt0 f170 actionTable 'out=in;
 ' #txt
 Tt0 f170 actionCode 'ivy.case.createNote(ivy.session, "System note");' #txt
@@ -1454,7 +1395,6 @@ Tt0 f170 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Tt0 f170 1056 892 112 56 -53 -8 #rect
-Tt0 f170 @|StepIcon #fIcon
 Tt0 f171 actionTable 'out=in1;
 ' #txt
 Tt0 f171 outLinks "TaskA.ivp" #txt
@@ -1468,7 +1408,6 @@ TaskA.SKIP_TASK_LIST=true
 TaskA.TYPE=0' #txt
 Tt0 f171 template "" #txt
 Tt0 f171 1272 904 32 32 0 16 #rect
-Tt0 f171 @|TaskSwitchSimpleIcon #fIcon
 Tt0 f172 actionTable 'out=in1;
 ' #txt
 Tt0 f172 outLinks "TaskA.ivp" #txt
@@ -1482,7 +1421,6 @@ TaskA.SKIP_TASK_LIST=false
 TaskA.TYPE=0' #txt
 Tt0 f172 template "" #txt
 Tt0 f172 984 904 32 32 0 16 #rect
-Tt0 f172 @|TaskSwitchSimpleIcon #fIcon
 Tt0 f174 expr out #txt
 Tt0 f174 type internaltest.Data #txt
 Tt0 f174 var in1 #txt
@@ -1505,7 +1443,6 @@ Tt0 f177 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Tt0 f177 1360 896 112 48 -46 -8 #rect
-Tt0 f177 @|StepIcon #fIcon
 Tt0 f178 expr data #txt
 Tt0 f178 outCond ivp=="TaskA.ivp" #txt
 Tt0 f178 1304 920 1360 920 #arcP
@@ -1517,7 +1454,6 @@ Tt0 f179 responseActionDecl 'internaltest.Data out;
 Tt0 f179 responseMappingAction 'out=in;
 ' #txt
 Tt0 f179 1520 898 112 44 0 -8 #rect
-Tt0 f179 @|UserDialogIcon #fIcon
 Tt0 f180 expr out #txt
 Tt0 f180 1472 920 1520 920 #arcP
 Tt0 f173 expr out #txt
@@ -1535,9 +1471,7 @@ Tt0 f64 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Tt0 f64 472 558 144 44 -69 -8 #rect
-Tt0 f64 @|StepIcon #fIcon
 Tt0 f62 529 729 30 30 0 15 #rect
-Tt0 f62 @|EndIcon #fIcon
 Tt0 f65 expr out #txt
 Tt0 f65 544 527 544 558 #arcP
 Tt0 f59 outLink leaveRequest.ivp #txt
@@ -1565,7 +1499,6 @@ Tt0 f59 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Tt0 f59 @C|.responsibility Everybody #txt
 Tt0 f59 529 497 30 30 -49 17 #rect
-Tt0 f59 @|StartRequestIcon #fIcon
 Tt0 f63 expr data #txt
 Tt0 f63 outCond ivp=="TaskA.ivp" #txt
 Tt0 f63 544 686 544 729 #arcP
@@ -1598,7 +1531,6 @@ Tt0 f60 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Tt0 f60 480 642 128 44 -58 -8 #rect
-Tt0 f60 @|UserTaskIcon #fIcon
 Tt0 f9 dialogId com.axonivy.portal.developerexamples.testdata.LeaveRequestForm #txt
 Tt0 f9 startMethod start() #txt
 Tt0 f9 requestActionDecl '<> param;' #txt
@@ -1618,7 +1550,6 @@ Task Form</name>
 </elementInfo>
 ' #txt
 Tt0 f9 54 284 36 24 20 -2 #rect
-Tt0 f9 @|UserDialogIcon #fIcon
 Tt0 f11 dialogId com.axonivy.portal.developerexamples.testdata.LeaveRequestForm #txt
 Tt0 f11 startMethod start() #txt
 Tt0 f11 requestActionDecl '<> param;' #txt
@@ -1637,7 +1568,6 @@ Task Form</name>
 </elementInfo>
 ' #txt
 Tt0 f11 182 284 36 24 20 -2 #rect
-Tt0 f11 @|UserDialogIcon #fIcon
 Tt0 f5 outLink CategoriedLeaveRequest.ivp #txt
 Tt0 f5 inParamDecl '<> param;' #txt
 Tt0 f5 requestEnabled true #txt
@@ -1673,7 +1603,6 @@ Tt0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Tt0 f5 @C|.responsibility Everybody #txt
 Tt0 f5 187 51 26 26 14 0 #rect
-Tt0 f5 @|StartRequestIcon #fIcon
 Tt0 f12 dialogId com.axonivy.portal.developerexamples.testdata.LeaveRequestForm #txt
 Tt0 f12 startMethod start() #txt
 Tt0 f12 requestActionDecl '<> param;' #txt
@@ -1692,7 +1621,6 @@ Task Form</name>
 </elementInfo>
 ' #txt
 Tt0 f12 318 284 36 24 20 -2 #rect
-Tt0 f12 @|UserDialogIcon #fIcon
 Tt0 f19 expr out #txt
 Tt0 f19 336 308 213 416 #arcP
 Tt0 f19 1 336 416 #addKink
@@ -1704,7 +1632,6 @@ Tt0 f18 1 0.040404381211362396 0 0 #arcLabel
 Tt0 f17 expr out #txt
 Tt0 f17 200 308 200 403 #arcP
 Tt0 f45 187 403 26 26 14 0 #rect
-Tt0 f45 @|EndIcon #fIcon
 Tt0 f4 expr out #txt
 Tt0 f4 type internaltest.Data #txt
 Tt0 f4 var in1 #txt
@@ -1787,7 +1714,6 @@ Tt0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Tt0 f7 186 178 28 28 9 -21 #rect
-Tt0 f7 @|TaskSwitchIcon #fIcon
 Tt0 f52 outLink IFrameInCaseLevel.ivp #txt
 Tt0 f52 inParamDecl '<> param;' #txt
 Tt0 f52 requestEnabled true #txt
@@ -1815,9 +1741,7 @@ Tt0 f52 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Tt0 f52 @C|.responsibility Everybody #txt
 Tt0 f52 1377 521 30 30 -21 17 #rect
-Tt0 f52 @|StartRequestIcon #fIcon
 Tt0 f54 1377 745 30 30 0 15 #rect
-Tt0 f54 @|EndIcon #fIcon
 Tt0 f56 1392 686 1392 745 #arcP
 Tt0 f53 dialogId internaltest.ui.SaleDepartment #txt
 Tt0 f53 startMethod start() #txt
@@ -1835,7 +1759,6 @@ TaskA.ROL=Everybody
 TaskA.SKIP_TASK_LIST=false
 TaskA.TYPE=0' #txt
 Tt0 f53 1336 642 112 44 0 -8 #rect
-Tt0 f53 @|UserTaskIcon #fIcon
 Tt0 f55 1392 551 1392 642 #arcP
 >Proto Tt0 .type internaltest.Data #txt
 >Proto Tt0 .processKind NORMAL #txt

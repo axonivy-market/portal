@@ -1,5 +1,5 @@
 [Ivy]
-16B2C77DAA249F4E 9.2.0 #module
+16B2C77DAA249F4E 9.3.0 #module
 >Proto >Proto Collection #zClass
 Gs0 GetGroupChatParams Big #zClass
 Gs0 B #cInfo
@@ -36,9 +36,7 @@ Gs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Gs0 f0 81 49 30 30 -64 17 #rect
-Gs0 f0 @|StartSubIcon #fIcon
 Gs0 f1 337 49 30 30 0 15 #rect
-Gs0 f1 @|EndSubIcon #fIcon
 Gs0 f3 actionTable 'out=in;
 ' #txt
 Gs0 f3 actionCode 'out.params.put("groupChatCreator", ivy.session.getSessionUser().getDisplayName());
@@ -54,7 +52,6 @@ Gs0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Gs0 f3 168 42 112 44 -32 -8 #rect
-Gs0 f3 @|StepIcon #fIcon
 Gs0 f4 expr out #txt
 Gs0 f4 111 64 168 64 #arcP
 Gs0 f2 expr out #txt
@@ -70,7 +67,6 @@ out.params.put("accountHolder", &lt;VALUE&gt;);</name>
 </elementInfo>
 ' #txt
 Gs0 f5 176 154 256 44 -125 -16 #rect
-Gs0 f5 @|IBIcon #fIcon
 Gs0 f6 304 154 224 86 #arcP
 >Proto Gs0 .type _com.axonivy.portal.developerexamples.GetGroupChatParamsOverrideData #txt
 >Proto Gs0 .processKind CALLABLE_SUB #txt
