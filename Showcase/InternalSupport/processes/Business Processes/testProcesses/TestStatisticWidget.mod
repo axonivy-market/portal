@@ -1,5 +1,5 @@
 [Ivy]
-16150F67EE2A7F31 9.2.0 #module
+16150F67EE2A7F31 9.3.0 #module
 >Proto >Proto Collection #zClass
 Tt0 TestStatisticWidget Big #zClass
 Tt0 B #cInfo
@@ -33,9 +33,7 @@ Tt0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Tt0 f0 @C|.responsibility Everybody #txt
 Tt0 f0 81 49 30 30 -21 17 #rect
-Tt0 f0 @|StartRequestIcon #fIcon
 Tt0 f1 337 49 30 30 0 15 #rect
-Tt0 f1 @|EndIcon #fIcon
 Tt0 f3 dialogId internalPortal.TestStatisticWidgetPage #txt
 Tt0 f3 startMethod start() #txt
 Tt0 f3 requestActionDecl '<> param;' #txt
@@ -44,7 +42,6 @@ Tt0 f3 responseActionDecl 'internaltest.TestStatisticWidgetData out;
 Tt0 f3 responseMappingAction 'out=in;
 ' #txt
 Tt0 f3 168 42 112 44 0 -8 #rect
-Tt0 f3 @|UserDialogIcon #fIcon
 Tt0 f4 expr out #txt
 Tt0 f4 111 64 168 64 #arcP
 Tt0 f2 expr out #txt

@@ -1,5 +1,5 @@
 [Ivy]
-153358BE9219FD4C 9.2.0 #module
+153358BE9219FD4C 9.3.0 #module
 >Proto >Proto Collection #zClass
 Cs0 CaseItemRelatedTaskProcess Big #zClass
 Cs0 RD #cInfo
@@ -69,9 +69,7 @@ Cs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f0 83 83 26 26 -16 15 #rect
-Cs0 f0 @|UdInitIcon #fIcon
 Cs0 f1 275 83 26 26 0 12 #rect
-Cs0 f1 @|UdProcessEndIcon #fIcon
 Cs0 f3 expr out #txt
 Cs0 f3 109 96 275 96 #arcP
 Cs0 f6 guid 167E9A777AB171EA #txt
@@ -88,15 +86,12 @@ Cs0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f6 83 179 26 26 -41 15 #rect
-Cs0 f6 @|UdMethodIcon #fIcon
 Cs0 f7 731 179 26 26 0 12 #rect
-Cs0 f7 @|UdProcessEndIcon #fIcon
 Cs0 f8 actionTable 'out1=in;
 out1.iCase=in.iCase;
 out2.iCase=in.iCase;
 ' #txt
 Cs0 f8 176 176 32 32 0 16 #rect
-Cs0 f8 @|ThreadIcon #fIcon
 Cs0 f9 actionTable 'out=in1;
 out.relatedTasks=in1.relatedTasks;
 out.technicalCases=in2.technicalCases;
@@ -104,7 +99,6 @@ out.totalRelatedCases=in2.totalRelatedCases;
 out.totalRelatedTasks=in1.totalRelatedTasks;
 ' #txt
 Cs0 f9 632 176 32 32 0 16 #rect
-Cs0 f9 @|JoinIcon #fIcon
 Cs0 f10 expr out #txt
 Cs0 f10 664 192 731 192 #arcP
 Cs0 f12 expr out #txt
@@ -158,7 +152,6 @@ Cs0 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f14 336 170 112 44 -49 -8 #rect
-Cs0 f14 @|StepIcon #fIcon
 Cs0 f15 expr out1 #txt
 Cs0 f15 208 192 336 192 #arcP
 Cs0 f13 expr out #txt
@@ -185,7 +178,6 @@ search criteria</name>
 </elementInfo>
 ' #txt
 Cs0 f17 240 266 112 44 -39 -16 #rect
-Cs0 f17 @|StepIcon #fIcon
 Cs0 f18 expr out2 #txt
 Cs0 f18 192 208 240 288 #arcP
 Cs0 f18 1 192 288 #addKink
@@ -209,7 +201,6 @@ Cs0 f19 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f19 408 266 112 44 -35 -8 #rect
-Cs0 f19 @|CallSubIcon #fIcon
 Cs0 f20 expr out #txt
 Cs0 f20 352 288 408 288 #arcP
 Cs0 f23 processCall 'Functional Processes/Navigator:viewCase(ch.ivy.addon.portalkit.dto.GlobalCaseId)' #txt
@@ -228,7 +219,6 @@ Cs0 f23 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f23 800 746 128 44 -61 -8 #rect
-Cs0 f23 @|CallSubIcon #fIcon
 Cs0 f26 processCall 'Functional Processes/Navigator:viewTechnicalCasesOfBusniessCase(String,ch.ivy.addon.portalkit.dto.GlobalCaseId)' #txt
 Cs0 f26 requestActionDecl '<String businessCaseName,ch.ivy.addon.portalkit.dto.GlobalCaseId businessCaseId> param;' #txt
 Cs0 f26 requestMappingAction 'param.businessCaseName=ch.ivy.addon.portalkit.util.PermissionUtils.getCaseName(in.selectedTechnicalCase);
@@ -246,7 +236,6 @@ Cs0 f26 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f26 800 570 176 44 -81 -8 #rect
-Cs0 f26 @|CallSubIcon #fIcon
 Cs0 f28 processCall 'Ivy Data Processes/CaseService:countCasesByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria)' #txt
 Cs0 f28 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria caseSearchCriteria> param;' #txt
 Cs0 f28 requestMappingAction 'param.caseSearchCriteria=in.caseSearchCriteria;
@@ -264,7 +253,6 @@ Cs0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f28 584 266 128 44 -61 -8 #rect
-Cs0 f28 @|CallSubIcon #fIcon
 Cs0 f29 expr out #txt
 Cs0 f29 520 288 584 288 #arcP
 Cs0 f29 0 NaN 0 0 #arcLabel
@@ -285,7 +273,6 @@ Cs0 f33 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f33 168 466 160 44 -76 -8 #rect
-Cs0 f33 @|StepIcon #fIcon
 Cs0 f4 actionTable 'out=in;
 ' #txt
 Cs0 f4 actionCode 'import ch.ivy.addon.portalkit.util.PermissionUtils;
@@ -304,7 +291,6 @@ Cs0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f4 392 362 112 44 -50 -8 #rect
-Cs0 f4 @|StepIcon #fIcon
 Cs0 f31 actionTable 'out=in;
 ' #txt
 Cs0 f31 actionCode 'import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
@@ -322,7 +308,6 @@ Cs0 f31 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f31 384 464 176 48 -59 -8 #rect
-Cs0 f31 @|StepIcon #fIcon
 Cs0 f39 actionTable 'out=in;
 ' #txt
 Cs0 f39 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
@@ -338,7 +323,6 @@ Cs0 f39 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f39 456 570 176 44 -82 -8 #rect
-Cs0 f39 @|StepIcon #fIcon
 Cs0 f36 328 488 384 488 #arcP
 Cs0 f34 actionTable 'out=in;
 ' #txt
@@ -355,7 +339,6 @@ Cs0 f34 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f34 456 746 176 44 -82 -8 #rect
-Cs0 f34 @|StepIcon #fIcon
 Cs0 f45 guid 1720C62D9BF92EB1 #txt
 Cs0 f45 method navigateToSelectedTaskDetails(Long,Boolean,Boolean) #txt
 Cs0 f45 inParameterDecl '<Long taskId,Boolean isWorkingOnTask,Boolean inFrame> param;' #txt
@@ -372,7 +355,6 @@ Cs0 f45 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f45 83 475 26 26 -77 20 #rect
-Cs0 f45 @|UdMethodIcon #fIcon
 Cs0 f47 109 488 168 488 #arcP
 Cs0 f47 0 0.5541990710792534 0 0 #arcLabel
 Cs0 f43 guid 1720C5CCA7DA3932 #txt
@@ -390,7 +372,6 @@ Cs0 f43 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f43 83 371 26 26 -78 23 #rect
-Cs0 f43 @|UdMethodIcon #fIcon
 Cs0 f2 guid 1720CC0AEC970FA8 #txt
 Cs0 f2 method navigateToTechnicalCasesOfBusinessCase(ch.ivyteam.ivy.workflow.ICase,Boolean,Boolean) #txt
 Cs0 f2 inParameterDecl '<ch.ivyteam.ivy.workflow.ICase selectedTechnicalCase,Boolean isWorkingOnTask,Boolean inFrame> param;' #txt
@@ -407,7 +388,6 @@ Cs0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f2 83 579 26 26 -90 19 #rect
-Cs0 f2 @|UdMethodIcon #fIcon
 Cs0 f25 guid 1720CC59596D550D #txt
 Cs0 f25 method navigateToRelatedCaseDetails(ch.ivyteam.ivy.workflow.ICase,Boolean,Boolean) #txt
 Cs0 f25 inParameterDecl '<ch.ivyteam.ivy.workflow.ICase selectedTechnicalCase,Boolean isWorkingOnTask,Boolean inFrame> param;' #txt
@@ -424,7 +404,6 @@ Cs0 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f25 83 755 26 26 -78 20 #rect
-Cs0 f25 @|UdMethodIcon #fIcon
 Cs0 f22 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -433,7 +412,6 @@ Cs0 f22 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f22 688 752 32 32 -74 -46 #rect
-Cs0 f22 @|AlternativeIcon #fIcon
 Cs0 f24 632 768 688 768 #arcP
 Cs0 f30 expr in #txt
 Cs0 f30 outCond !in.inFrame #txt
@@ -454,7 +432,6 @@ Cs0 f32 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f32 800 850 176 44 -85 -8 #rect
-Cs0 f32 @|CallSubIcon #fIcon
 Cs0 f38 expr in #txt
 Cs0 f38 704 784 800 872 #arcP
 Cs0 f38 1 704 872 #addKink
@@ -467,7 +444,6 @@ Cs0 f46 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f46 688 576 32 32 -72 -46 #rect
-Cs0 f46 @|AlternativeIcon #fIcon
 Cs0 f48 632 592 688 592 #arcP
 Cs0 f40 expr in #txt
 Cs0 f40 outCond !in.inFrame #txt
@@ -489,7 +465,6 @@ Cs0 f49 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f49 800 658 224 44 -105 -8 #rect
-Cs0 f49 @|CallSubIcon #fIcon
 Cs0 f50 expr in #txt
 Cs0 f50 704 608 800 680 #arcP
 Cs0 f50 1 704 680 #addKink
@@ -501,7 +476,6 @@ Cs0 f5 109 768 456 768 #arcP
 >Proto Cs0 .type ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseItemRelatedTaskData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 -8 -8 16 16 16 26 #rect
->Proto Cs0 '' #fIcon
 Cs0 f0 mainOut f3 tail #connect
 Cs0 f3 head f1 mainIn #connect
 Cs0 f9 mainOut f10 tail #connect

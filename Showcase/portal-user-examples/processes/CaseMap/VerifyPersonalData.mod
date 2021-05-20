@@ -1,5 +1,5 @@
 [Ivy]
-1703223F7785EC9A 9.2.0 #module
+1703223F7785EC9A 9.3.0 #module
 >Proto >Proto Collection #zClass
 Ca0 VerifyPersonalData Big #zClass
 Ca0 B #cInfo
@@ -47,9 +47,7 @@ Ca0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ca0 f0 @C|.responsibility Everybody #txt
 Ca0 f0 81 49 30 30 -21 17 #rect
-Ca0 f0 @|StartRequestIcon #fIcon
 Ca0 f1 505 49 30 30 0 15 #rect
-Ca0 f1 @|EndIcon #fIcon
 Ca0 f3 actionTable 'out=in;
 ' #txt
 Ca0 f3 actionCode 'ivy.log.info("Business Process is in Stage " + ivy.case.getBusinessCase().getStage().getName());
@@ -64,7 +62,6 @@ Ca0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ca0 f3 328 42 112 44 -25 -8 #rect
-Ca0 f3 @|StepIcon #fIcon
 Ca0 f4 expr out #txt
 Ca0 f4 440 64 505 64 #arcP
 Ca0 f5 dialogId com.axonivy.portal.userexamples.credit.VerifyPersonalData #txt
@@ -80,7 +77,6 @@ Ca0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ca0 f5 168 42 112 44 -52 -8 #rect
-Ca0 f5 @|UserDialogIcon #fIcon
 Ca0 f6 111 64 168 64 #arcP
 Ca0 f2 280 64 328 64 #arcP
 >Proto Ca0 .type com.axonivy.portal.userexamples.Data #txt

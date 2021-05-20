@@ -1,5 +1,5 @@
 [Ivy]
-165A2A9C745EDB5F 9.2.0 #module
+165A2A9C745EDB5F 9.3.0 #module
 >Proto >Proto Collection #zClass
 Ee0 ToCustomizedExpressEndPage Big #zClass
 Ee0 B #cInfo
@@ -44,9 +44,7 @@ Ee0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ee0 f0 @C|.responsibility Everybody #txt
 Ee0 f0 81 49 30 30 -21 17 #rect
-Ee0 f0 @|StartRequestIcon #fIcon
 Ee0 f1 321 49 30 30 0 15 #rect
-Ee0 f1 @|EndIcon #fIcon
 Ee0 f3 dialogId com.axonivy.portal.developerexamples.customization.CustomizedExpressEndPage #txt
 Ee0 f3 startMethod start() #txt
 Ee0 f3 requestActionDecl '<> param;' #txt
@@ -64,7 +62,6 @@ Ee0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ee0 f3 160 42 112 44 -48 -8 #rect
-Ee0 f3 @|UserDialogIcon #fIcon
 Ee0 f2 expr out #txt
 Ee0 f2 272 64 321 64 #arcP
 Ee0 f4 111 64 160 64 #arcP

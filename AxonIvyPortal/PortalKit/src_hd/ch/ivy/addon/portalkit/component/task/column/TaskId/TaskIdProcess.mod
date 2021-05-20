@@ -1,5 +1,5 @@
 [Ivy]
-15AE9D13DE0B9D4A 9.2.0 #module
+15AE9D13DE0B9D4A 9.3.0 #module
 >Proto >Proto Collection #zClass
 Ts0 TaskIdProcess Big #zClass
 Ts0 RD #cInfo
@@ -30,9 +30,7 @@ Ts0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ts0 f0 53 85 22 22 14 0 #rect
-Ts0 f0 @|UdInitIcon #fIcon
 Ts0 f1 53 213 22 22 14 0 #rect
-Ts0 f1 @|UdProcessEndIcon #fIcon
 Ts0 f2 expr out #txt
 Ts0 f2 64 107 64 213 #arcP
 Ts0 f3 guid 15AE9A0BAC670820 #txt
@@ -46,15 +44,12 @@ Ts0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ts0 f3 149 85 22 22 14 0 #rect
-Ts0 f3 @|UdEventIcon #fIcon
 Ts0 f4 149 213 22 22 14 0 #rect
-Ts0 f4 @|UdExitEndIcon #fIcon
 Ts0 f5 expr out #txt
 Ts0 f5 160 107 160 213 #arcP
 >Proto Ts0 .type ch.ivy.addon.portalkit.component.task.column.TaskId.TaskIdData #txt
 >Proto Ts0 .processKind HTML_DIALOG #txt
 >Proto Ts0 -8 -8 16 16 16 26 #rect
->Proto Ts0 '' #fIcon
 Ts0 f0 mainOut f2 tail #connect
 Ts0 f2 head f1 mainIn #connect
 Ts0 f3 mainOut f5 tail #connect

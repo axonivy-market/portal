@@ -1,5 +1,5 @@
 [Ivy]
-1703362EB1E55CE2 9.2.0 #module
+1703362EB1E55CE2 9.3.0 #module
 >Proto >Proto Collection #zClass
 Ls0 LeaveRequestApprovalProcess Big #zClass
 Ls0 RD #cInfo
@@ -35,9 +35,7 @@ Ls0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ls0 f0 83 51 26 26 -16 15 #rect
-Ls0 f0 @|UdInitIcon #fIcon
 Ls0 f1 339 51 26 26 0 12 #rect
-Ls0 f1 @|UdProcessEndIcon #fIcon
 Ls0 f3 guid 1703362EB326CA89 #txt
 Ls0 f3 actionTable 'out=in;
 out.leaveRequestData.isApproved=true;
@@ -50,9 +48,7 @@ Ls0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ls0 f3 83 147 26 26 -15 15 #rect
-Ls0 f3 @|UdEventIcon #fIcon
 Ls0 f4 339 147 26 26 0 12 #rect
-Ls0 f4 @|UdExitEndIcon #fIcon
 Ls0 f6 actionTable 'out=in;
 ' #txt
 Ls0 f6 actionCode 'import ch.ivy.addon.portalkit.dto.UserDTO;
@@ -70,7 +66,6 @@ Ls0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ls0 f6 168 42 112 44 -25 -8 #rect
-Ls0 f6 @|StepIcon #fIcon
 Ls0 f7 109 64 168 64 #arcP
 Ls0 f2 280 64 339 64 #arcP
 Ls0 f8 guid 1703877F503D6F8C #txt
@@ -85,7 +80,6 @@ Ls0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ls0 f8 83 243 26 26 -21 16 #rect
-Ls0 f8 @|UdEventIcon #fIcon
 Ls0 f10 actionTable 'out=in;
 ' #txt
 Ls0 f10 actionCode ivy.repo.save(in.leaveRequestData); #txt
@@ -98,7 +92,6 @@ Ls0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ls0 f10 168 138 112 44 -26 -8 #rect
-Ls0 f10 @|StepIcon #fIcon
 Ls0 f11 109 160 168 160 #arcP
 Ls0 f5 280 160 339 160 #arcP
 Ls0 f12 109 256 224 182 #arcP
@@ -107,7 +100,6 @@ Ls0 f12 0 0.8791178448605111 0 0 #arcLabel
 >Proto Ls0 .type com.axonivy.portal.userexamples.leaverequest.LeaveRequestApproval.LeaveRequestApprovalData #txt
 >Proto Ls0 .processKind HTML_DIALOG #txt
 >Proto Ls0 -8 -8 16 16 16 26 #rect
->Proto Ls0 '' #fIcon
 Ls0 f0 mainOut f7 tail #connect
 Ls0 f7 head f6 mainIn #connect
 Ls0 f6 mainOut f2 tail #connect
