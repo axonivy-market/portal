@@ -75,14 +75,14 @@
           styleClass="related-task-created-column" field="CREATION_TIME" sortBy="#{CREATION_TIME}"
           rendered="#{data.dataModel.isSelectedColumn(masterDataBean.taskSortFieldCreationTime)}">
           <h:outputText value="#{task.startTimestamp}">
-            <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
+            <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}" />
           </h:outputText>
         </p:column>
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/EXPIRY_TIME')}"
           styleClass="related-task-expiry-column" field="EXPIRY_TIME" sortBy="#{EXPIRY_TIME}"
           rendered="#{data.dataModel.isSelectedColumn(masterDataBean.taskSortFieldExpiryTime)}">
           <h:outputText value="#{task.expiryTimestamp}">
-            <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
+            <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}" />
           </h:outputText>
         </p:column>
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/STATE')}"

@@ -101,7 +101,7 @@
           visible="#{taskAnalysisWidgetBean.columns['TASK_CREATION_TIME']}"
           exportable="#{taskAnalysisWidgetBean.columns['TASK_CREATION_TIME']}">
           <h:outputText value="#{task.getStartTimestamp()}">
-            <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
+            <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}" />
           </h:outputText>
         </p:column>
 
@@ -109,7 +109,7 @@
           visible="#{taskAnalysisWidgetBean.columns['TASK_EXPIRY_TIME']}"
           exportable="#{taskAnalysisWidgetBean.columns['TASK_EXPIRY_TIME']}">
           <h:outputText value="#{task.getExpiryTimestamp()}">
-            <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
+            <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}" />
           </h:outputText>
         </p:column>
 
@@ -117,7 +117,7 @@
           visible="#{taskAnalysisWidgetBean.columns['TASK_FINISHED_TIME']}"
           exportable="#{taskAnalysisWidgetBean.columns['TASK_FINISHED_TIME']}">
           <h:outputText value="#{task.getEndTimestamp()}">
-            <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
+            <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}" />
           </h:outputText>
         </p:column>
 

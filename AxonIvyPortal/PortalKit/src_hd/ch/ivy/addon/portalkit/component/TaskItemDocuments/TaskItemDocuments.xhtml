@@ -62,7 +62,7 @@
           <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/creationDate')}" styleClass="task-history-date u-truncate-text ui-sm-hidden"
             sortBy="#{document.creation.timestamp}">
             <h:outputText value="#{document.creation.timestamp}">
-              <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
+              <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}" />
             </h:outputText>
           </p:column>
         </p:dataTable>

@@ -17,7 +17,7 @@ public class DateTimePatternBean implements Serializable {
   
   @PostConstruct
   public void init() {
-    dateTimePatternService = new DateTimeGlobalSettingService();
+    dateTimePatternService = DateTimeGlobalSettingService.getInstance();
   }
   
   public String getConfiguredPattern() {

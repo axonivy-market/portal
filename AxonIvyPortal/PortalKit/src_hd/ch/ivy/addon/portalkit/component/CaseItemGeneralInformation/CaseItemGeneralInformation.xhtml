@@ -102,7 +102,7 @@
         </div>
         <div class="ui-xl-9 ui-lg-8 ui-md-8 ui-sm-8 ui-g-4 u-no-padding-left text-ellipsis">
           <h:outputText id="case-start-time" value="#{case.startTimestamp}">
-            <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
+            <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}" />
           </h:outputText>
         </div>
       </h:panelGroup>
@@ -115,7 +115,7 @@
         </div>
         <div class="ui-xl-9 ui-lg-8 ui-md-8 ui-sm-8 ui-g-4 u-no-padding-left text-ellipsis">
           <h:outputText id="case-end-time" value="#{case.endTimestamp}" rendered="#{not empty case.endTimestamp}">
-            <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
+            <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}" />
           </h:outputText>
            <h:outputText id="empty-case-end-time" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable')}" rendered="#{empty case.endTimestamp}" />
         </div>

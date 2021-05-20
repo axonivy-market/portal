@@ -194,8 +194,8 @@ public class StatisticDashboardBean implements Serializable {
 
     Date createdDateForm = filter.getCreatedDateFrom();
     Date createdDateTo = filter.getCreatedDateTo();
-    DateTimeGlobalSettingService service = new DateTimeGlobalSettingService();
-    DateFormat formatter = new SimpleDateFormat(service.getDateTimePattern());
+    String pattern = DateTimeGlobalSettingService.getInstance().getDateTimePattern();
+    DateFormat formatter = new SimpleDateFormat(pattern, Ivy.session().getContentLocale());
 
     if (createdDateForm != null && createdDateTo != null) {
       return String.format(DASH, formatter.format(createdDateForm), formatter.format(createdDateTo));

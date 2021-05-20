@@ -138,7 +138,7 @@ public class TaskDetailsTest extends BaseTest {
   }
 
   private void filterByDateType(String dateType) {
-    DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy hh:mm");
+    DateFormat dateFormat = new SimpleDateFormat(DateTimePattern.DATE_TIME_PATTERN);
     Calendar calendar = Calendar.getInstance();
     Date today = new Date();
     calendar.setTime(today);
