@@ -10,11 +10,11 @@
         <div class="center ui-g-6 ui-xl-8 ui-lg-12 ui-md-12 ui-sm-12">
           <ui:insert name="header">
             <!-- Put header here -->
-            <h1>Place header here</h1>
-            <h:outputText value="Place description here" />
+            <h1>#{process.processName}</h1>
+            <h:outputText value="#{process.description}" />
           </ui:insert>
           <p:spacer height="25px" styleClass="ui-sm-hidden"/>
-          <div class="ui-g-12 portal-card-container">
+          <h:panelGroup layout="block" styleClass="ui-g-12 portal-card-container" rendered="#{not empty processSteps}">
             <div class="card ui-g-12">
               <div class="ui-g-12">
                 <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/theProcess')}" styleClass="title-text"/>
@@ -33,7 +33,7 @@
                         <ui:repeat var="desc" value="#{step.descriptions}">
                           <div class="ui-g-12">
                             <div class="ui-g-2 TexAlCenter">
-                              <p:graphicImage library="ivy-cms" name="/Images/check-circle-1" height="20rem" />
+                              <i id="icon" class="si si-check-circle-1 process-step-icon" />
                             </div>
                             <div class="ui-g-10">
                               <h:outputText value="#{desc}" escape="false" styleClass="process-step-description" />
@@ -45,9 +45,9 @@
                   </div>
                 </h:panelGroup>
               </ui:repeat>
-  
             </div>
-          </div>
+          </h:panelGroup>
+          <ui:insert name="processInfo" />
           <div class="ui-g-12 TexAlRight">
             <ui:insert name="actionButtons">
             </ui:insert>
