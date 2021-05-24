@@ -165,6 +165,11 @@ Pt0 @PushWFArc f129 '' #zField
 Pt0 @CallSub f122 '' #zField
 Pt0 @StartRequest f130 '' #zField
 Pt0 @PushWFArc f131 '' #zField
+Pt0 @StartRequest f132 '' #zField
+Pt0 @EndTask f133 '' #zField
+Pt0 @UserDialog f134 '' #zField
+Pt0 @PushWFArc f135 '' #zField
+Pt0 @PushWFArc f136 '' #zField
 >Proto Pt0 Pt0 PortalStart #zField
 Bk0 @TextInP .type .type #zField
 Bk0 @TextInP .processKind .processKind #zField
@@ -1494,6 +1499,42 @@ Pt0 f130 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Pt0 f130 @C|.responsibility Everybody #txt
 Pt0 f130 81 2385 30 30 -68 21 #rect
 Pt0 f131 111 2400 216 2400 #arcP
+Pt0 f132 outLink ProcessInformation.ivp #txt
+Pt0 f132 inParamDecl '<String processKey> param;' #txt
+Pt0 f132 inParamTable 'out.processId=param.processKey;
+' #txt
+Pt0 f132 requestEnabled true #txt
+Pt0 f132 triggerEnabled false #txt
+Pt0 f132 callSignature ProcessInformation(String) #txt
+Pt0 f132 caseData businessCase.attach=true #txt
+Pt0 f132 showInStartList 0 #txt
+Pt0 f132 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>ProcessInformation.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f132 @C|.responsibility Everybody #txt
+Pt0 f132 81 2513 30 30 -21 17 #rect
+Pt0 f133 433 2513 30 30 0 15 #rect
+Pt0 f134 dialogId ch.ivy.addon.portal.component.ProcessInformation #txt
+Pt0 f134 startMethod start(String) #txt
+Pt0 f134 requestActionDecl '<String processId> param;' #txt
+Pt0 f134 requestMappingAction 'param.processId=in.processId;
+' #txt
+Pt0 f134 responseMappingAction 'out=in;
+' #txt
+Pt0 f134 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>ProcessInformation</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f134 224 2506 112 44 -53 -8 #rect
+Pt0 f135 111 2528 224 2528 #arcP
+Pt0 f136 336 2528 433 2528 #arcP
 >Proto Pt0 .type ch.ivy.addon.portal.generic.PortalStartData #txt
 >Proto Pt0 .processKind NORMAL #txt
 >Proto Pt0 0 0 32 24 18 0 #rect
@@ -2322,6 +2363,10 @@ Pt0 f120 mainOut f129 tail #connect
 Pt0 f129 head f21 in #connect
 Pt0 f130 mainOut f131 tail #connect
 Pt0 f131 head f122 mainIn #connect
+Pt0 f132 mainOut f135 tail #connect
+Pt0 f135 head f134 mainIn #connect
+Pt0 f134 mainOut f136 tail #connect
+Pt0 f136 head f133 mainIn #connect
 Bk0 f17 mainOut f26 tail #connect
 Bk0 f26 head f23 mainIn #connect
 Bk0 f19 mainOut f39 tail #connect

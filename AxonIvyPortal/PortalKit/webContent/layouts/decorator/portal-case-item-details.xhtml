@@ -70,8 +70,20 @@
                   <span class="display-full-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/showAdditionalPage')}</span>
                   <span class="display-short-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}</span>
                 </p:link>
+                
                 <p:tooltip for="show-additional-case-details-link"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/showAdditionalPage')}" trackMouse="true"
+                  hideEvent="mouseleave click" />
+                  
+                <p:link id="show-process-overview-link" styleClass="additional-case-details-link" target="_blank"
+                  rendered="#{caseWidgetBean.showProcessOverviewLink(case)}"
+                  href="#{caseWidgetBean.getProcessOverviewPageUri(case)}">
+                  <i class="si si-cog-double-2" />
+                  <span class="display-full-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/showProcessOverview')}</span>
+                </p:link>
+                
+                <p:tooltip for="show-process-overview-link"
+                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/showProcessOverview')}" trackMouse="true"
                   hideEvent="mouseleave click" />
               </h:panelGroup>
             </div>

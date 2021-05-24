@@ -5539,3 +5539,8 @@ body span.ui-commandlink .si {
   -ms-touch-action: initial !important; 
   touch-action: auto !important;
 }
+
+/* Process information page */
+.process-overview-layout-content .process-info-icon {
+  line-height: 1.5;
+}

@@ -30,3 +30,6 @@ Variables:
   # Refer to http://quartz-scheduler.org/documentation/quartz-2.1.x/tutorials/crontrigger
   PortalStartTimeCleanObsoletedDataExpression: '0 0 6 * * ?'
 
+  Processes:
+    # Set to true to disable link to Show Information of process on Processes page (grid mode) and Case Details.
+    ShowInformation: true
