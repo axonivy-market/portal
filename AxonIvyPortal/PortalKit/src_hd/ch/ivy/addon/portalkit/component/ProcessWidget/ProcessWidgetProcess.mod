@@ -74,7 +74,7 @@ Ps0 f4 actionTable 'out=in;
 Ps0 f4 actionCode 'import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 
-in.showInformationLink = GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_PROCESS_INFORMATION);' #txt
+in.showInformationLink = new GlobalSettingService().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_PROCESS_INFORMATION.name());' #txt
 Ps0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

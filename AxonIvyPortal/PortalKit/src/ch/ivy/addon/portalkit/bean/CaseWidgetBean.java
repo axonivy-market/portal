@@ -109,7 +109,7 @@ public class CaseWidgetBean implements Serializable {
   }
 
   public boolean showProcessOverviewLink(ICase iCase) {
-    return GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_PROCESS_INFORMATION) && !isExpressCase(iCase);
+    return new GlobalSettingService().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_PROCESS_INFORMATION.name()) && !isExpressCase(iCase);
   }
 
   /**

@@ -44,7 +44,7 @@
           <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/startProcess')}" id="start-button"
             actionListener="#{processWidgetBean.startProcess(process)}" icon="si si-arrow-right-1"
             ajax="#{!isExternalLink}" />
-          <p:link value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/MoreInformation')}" styleClass="process-more-info-link" href="#{processWidgetBean.getProcessInformationPageUrl(process)}"
+          <p:link id="process-more-info-link" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/MoreInformation')}" styleClass="process-more-info-link" href="#{processWidgetBean.getProcessInformationPageUrl(process)}"
             rendered="#{data.showInformationLink and !isExpress and !isExternalLink and !isCaseMap}" />
         </div>
       </h:form>

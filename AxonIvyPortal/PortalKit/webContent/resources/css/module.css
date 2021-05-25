@@ -1099,6 +1099,11 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   height: auto;
 }
 
+.process-widget .process-more-info-link {
+  display: block;
+  margin-top: 20px;
+}
+
 .process-widget .process-nav .character-container {
   display: flex;
   flex-flow: column;

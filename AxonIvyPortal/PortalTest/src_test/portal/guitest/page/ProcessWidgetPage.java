@@ -375,4 +375,9 @@ public class ProcessWidgetPage extends TemplatePage {
     waitForElementDisplayed(By.cssSelector("[id$='process-widget:remove-process-workflow-dialog']"), false);
   }
 
+  public void clickMoreInformationLink(String processName) {
+    WebElement process = getProcess(processName);
+    click(process.findElement(By.cssSelector("a")));
+  }
+
 }

@@ -6,5 +6,5 @@ processId String #field
 processId PERSISTENT #fieldModifier
 userProcesses java.util.List<ch.ivyteam.ivy.workflow.start.IWebStartable> #field
 userProcesses PERSISTENT #fieldModifier
-selectedProcess ch.ivy.addon.portalkit.configuration.UserProcess #field
+selectedProcess ch.ivy.addon.portalkit.persistence.domain.UserProcess #field
 selectedProcess PERSISTENT #fieldModifier
