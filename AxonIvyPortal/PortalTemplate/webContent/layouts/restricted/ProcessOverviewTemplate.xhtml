@@ -11,7 +11,7 @@
           <ui:insert name="header">
             <!-- Put header here -->
             <h1>#{process.processName}</h1>
-            <h:outputText value="#{process.description}" />
+            <h:outputText id="process-description" value="#{process.description}" />
           </ui:insert>
           <p:spacer height="25px" styleClass="ui-sm-hidden"/>
           <h:panelGroup layout="block" styleClass="ui-g-12 portal-card-container" rendered="#{not empty processSteps}">
