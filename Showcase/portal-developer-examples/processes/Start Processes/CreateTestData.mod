@@ -454,6 +454,9 @@ Cs0 f11 326 508 36 24 20 -2 #rect
 Cs0 f11 @|UserDialogIcon #fIcon
 Cs0 f12 actionTable 'out=in1;
 ' #txt
+Cs0 f12 actionCode 'import ch.ivy.addon.portalkit.enums.AdditionalProperty;
+
+ivy.case.getBusinessCase().customFields().textField(AdditionalProperty.CASE_BUSINESS_ENTITY_PROPERTY.toString()).set("leave_request");' #txt
 Cs0 f12 outLinks "TaskB.ivp","TaskA.ivp","TaskC.ivp" #txt
 Cs0 f12 caseData 'case.category=LeaveRequest
 case.name=Leave Request
@@ -525,6 +528,7 @@ Cs0 f14 triggerEnabled false #txt
 Cs0 f14 callSignature CategoriedLeaveRequest() #txt
 Cs0 f14 persist false #txt
 Cs0 f14 startName 'Categoried Leave Request' #txt
+Cs0 f14 startDescription 'This is a short description what you can expect behind this “Leave Request” example.' #txt
 Cs0 f14 taskData 'TaskTriggered.EXPRI=2
 TaskTriggered.EXROL=Everybody
 TaskTriggered.EXTYPE=0

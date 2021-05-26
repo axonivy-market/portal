@@ -492,4 +492,9 @@
   /* Portal Global Ajax Status */
   --ajax-loading-bg: hsla(0, 0%, 100%, 0.9);
   --general-config-description-color: var(--ivy-primary-color-grey-medium);
+
+  /* Process information page */
+  --process-info-icon-font-size: 4rem;
+  --process-info-step-icon-font-size: 2rem;
+  --process-info-step-icon-font-color: var(--primary-color);
   }

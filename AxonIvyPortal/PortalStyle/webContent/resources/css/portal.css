@@ -2055,3 +2055,13 @@ body.in-dialog .ui-widget-overlay {
 .red-outline-thick-offset {
   outline-offset: -5px;
 }
+
+/* Process information page */
+.process-overview-layout-content .process-info-icon {
+  font-size: var(--process-info-icon-font-size);
+}
+
+.process-overview-layout-content .process-step-icon {
+  font-size: var(--process-info-step-icon-font-size);
+  color: var(--process-info-step-icon-font-color);
+}

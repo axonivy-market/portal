@@ -52,7 +52,8 @@ public enum GlobalVariable {
   DEFAULT_HOMEPAGE(GlobalVariableType.EXTERNAL_SELECTION, StringUtils.capitalize(HomepageType.DASHBOARD.name().toLowerCase()), "defaultHomepage"),
   DISPLAY_ALL_USERS_OF_TASK_ACTIVATOR(GlobalVariableType.SELECTION, Option.FALSE.toString(), "displayAllUsersOfTaskActivator"),
   HIDE_YEAR(GlobalVariableType.SELECTION, Option.FALSE.toString(), "hideYear"),
-  DEFAULT_PROCESS_MODE(GlobalVariableType.EXTERNAL_SELECTION, ProcessMode.GRID.name(), "defaultProcessMode", getProcessMode());
+  DEFAULT_PROCESS_MODE(GlobalVariableType.EXTERNAL_SELECTION, ProcessMode.GRID.name(), "defaultProcessMode", getProcessMode()),
+  SHOW_PROCESS_INFORMATION(GlobalVariableType.SELECTION, Option.TRUE.toString(), "showProcessInformation");
   
   private GlobalVariableType type;
   private String defaultValue;

@@ -29,4 +29,3 @@ Variables:
   # Ex. expression for at 6AM every day  is '0 0 6 * * ?'
   # Refer to http://quartz-scheduler.org/documentation/quartz-2.1.x/tutorials/crontrigger
   PortalStartTimeCleanObsoletedDataExpression: '0 0 6 * * ?'
-

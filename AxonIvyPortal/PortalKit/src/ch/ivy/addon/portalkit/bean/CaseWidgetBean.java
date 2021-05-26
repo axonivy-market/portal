@@ -13,6 +13,7 @@ import javax.faces.bean.ViewScoped;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.casefilter.CaseFilter;
 import ch.ivy.addon.portalkit.casefilter.impl.CaseFilterData;
 import ch.ivy.addon.portalkit.casefilter.impl.CaseStateFilter;
@@ -20,11 +21,13 @@ import ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel;
 import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.enums.CaseSortField;
+import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivy.addon.portalkit.exporter.Exporter;
 import ch.ivy.addon.portalkit.service.CaseFilterService;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.support.HtmlParser;
 import ch.ivy.addon.portalkit.util.CaseUtils;
@@ -79,7 +82,7 @@ public class CaseWidgetBean implements Serializable {
 
   public String getAdditionalCaseDetailsPageUri(ICase iCase) {
     String additionalCaseDetailsPageUri = StringUtils.EMPTY;
-    if (BooleanUtils.toBoolean(iCase.customFields().stringField("isExpress").getOrNull())) {
+    if (isExpressCase(iCase)) {
       ProcessStartCollector processStartCollector =  new ProcessStartCollector();
       additionalCaseDetailsPageUri = processStartCollector.findExpressBusinessViewStartLink() + "?caseId=" + iCase.getId();
     } else {
@@ -92,6 +95,21 @@ public class CaseWidgetBean implements Serializable {
       }
     }
     return additionalCaseDetailsPageUri;
+  }
+
+  public String getProcessOverviewPageUri(ICase iCase) {
+    String processOverviewPageUri = StringUtils.EMPTY;
+
+    processOverviewPageUri = PortalNavigator.buildProcessInfoUrl(iCase.getApplication().getName().concat("/").concat(iCase.getProcessStart().getFullUserFriendlyRequestPath()));
+    return processOverviewPageUri;
+  }
+
+  private boolean isExpressCase(ICase iCase) {
+    return BooleanUtils.toBoolean(iCase.customFields().stringField("isExpress").getOrNull());
+  }
+
+  public boolean showProcessOverviewLink(ICase iCase) {
+    return new GlobalSettingService().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_PROCESS_INFORMATION.name()) && !isExpressCase(iCase);
   }
 
   /**

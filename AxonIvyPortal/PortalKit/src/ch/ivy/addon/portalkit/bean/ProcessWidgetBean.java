@@ -20,6 +20,7 @@ import javax.faces.context.FacesContext;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
 import ch.ivy.addon.portalkit.bo.ExternalLink;
 import ch.ivy.addon.portalkit.bo.ExternalLinkProcessItem;
@@ -77,6 +78,16 @@ public class ProcessWidgetBean implements Serializable {
     portalProcesses.addAll(findExternalLink());
     sortProcesses(portalProcesses);
     groupProcessesByAlphabetIndex(portalProcesses);
+  }
+
+  public String getProcessInformationPageUrl(Process process) {
+    String processId = StringUtils.EMPTY;
+    
+    Object nestedProcess = process.getProcess();
+    if (nestedProcess instanceof IWebStartable) {
+      processId = ((IWebStartable) nestedProcess).getId();
+    }
+    return PortalNavigator.buildProcessInfoUrl(processId);
   }
 
   private void initProcessViewMode() {
@@ -401,6 +412,11 @@ public class ProcessWidgetBean implements Serializable {
   
   public boolean isExternalLink(Process process) {
     return !Objects.isNull(process) && process.getType() == ProcessType.EXTERNAL_LINK;
+  }
+  
+  public boolean isCaseMap(Process process) {
+    return !Objects.isNull(process) && process.getStartLink().endsWith(".icm");
+    
   }
   
   public String targetToStartProcess(Process process) {

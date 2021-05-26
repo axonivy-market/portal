@@ -53,6 +53,18 @@
               
               <h:panelGroup class="case-history-button-container u-truncate-text ui-g-8"
                 rendered="#{caseDetailsBean.showCaseDetails}" layout="block">
+
+                <p:link id="show-process-overview-link" styleClass="additional-case-details-link"
+                  rendered="#{caseWidgetBean.showProcessOverviewLink(case)}"
+                  href="#{caseWidgetBean.getProcessOverviewPageUri(case)}">
+                  <i class="si si-cog-double-2" />
+                  <span class="display-full-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/showProcessOverview')}</span>
+                </p:link>
+
+                <p:tooltip for="show-process-overview-link"
+                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/showProcessOverview')}" trackMouse="true"
+                  hideEvent="mouseleave click" />
+
                 <p:commandLink id="destroy-case-link"
                   rendered="#{caseActionBean.canDestroy(case) and case.state ne 'DONE' and case.state ne 'DESTROYED'}"
                   styleClass="additional-case-details-link" immediate="true" onclick="PF('destroy-case-dialog').show()" disabled="#{readOnly}">
@@ -63,13 +75,14 @@
                 <p:tooltip for="destroy-case-link"
                   value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/CaseDetail/destroyCase')}"
                   trackMouse="true" hideEvent="mouseleave click" />
-    
+
                 <p:link id="show-additional-case-details-link" styleClass="additional-case-details-link" target="_blank"
                   href="#{caseWidgetBean.getAdditionalCaseDetailsPageUri(case)}">
                   <i class="si si-business-contract-handshake-sign" />
                   <span class="display-full-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/showAdditionalPage')}</span>
                   <span class="display-short-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}</span>
                 </p:link>
+                
                 <p:tooltip for="show-additional-case-details-link"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/showAdditionalPage')}" trackMouse="true"
                   hideEvent="mouseleave click" />

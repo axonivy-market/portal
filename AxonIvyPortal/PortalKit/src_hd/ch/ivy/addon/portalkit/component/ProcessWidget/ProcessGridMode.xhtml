@@ -5,6 +5,7 @@
 <ui:composition>
   <c:set var="isExpress" value="#{processWidgetBean.isExpressProcess(process)}" />
   <c:set var="isExternalLink" value="#{processWidgetBean.isExternalLink(process)}" />
+  <c:set var="isCaseMap" value="#{processWidgetBean.isCaseMap(process)}" />
 
   <h:panelGroup layout="block"
     styleClass="js-process-start-list-item ui-g-2 ui-xl-2 ui-lg-3 ui-md-6 ui-sm-12 portal-card-container process-grid-item #{groupCode}">
@@ -43,6 +44,8 @@
           <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/startProcess')}" id="start-button"
             actionListener="#{processWidgetBean.startProcess(process)}" icon="si si-arrow-right-1"
             ajax="#{!isExternalLink}" />
+          <p:link id="process-more-info-link" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/MoreInformation')}" styleClass="process-more-info-link" href="#{processWidgetBean.getProcessInformationPageUrl(process)}"
+            rendered="#{data.showInformationLink and !isExpress and !isExternalLink and !isCaseMap}" />
         </div>
       </h:form>
     </div>
