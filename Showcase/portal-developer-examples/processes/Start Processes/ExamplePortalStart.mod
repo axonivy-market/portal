@@ -162,6 +162,11 @@ Pt0 @PushWFArc f116 '' #zField
 Pt0 @PushWFArc f49 '' #zField
 Pt0 @PushWFArc f117 '' #zField
 Pt0 @PushWFArc f25 '' #zField
+Pt0 @StartRequest f132 '' #zField
+Pt0 @EndTask f133 '' #zField
+Pt0 @UserDialog f134 '' #zField
+Pt0 @PushWFArc f136 '' #zField
+Pt0 @PushWFArc f135 '' #zField
 >Proto Pt0 Pt0 ExamplePortalStart #zField
 Bk2 @TextInP .type .type #zField
 Bk2 @TextInP .processKind .processKind #zField
@@ -1459,6 +1464,42 @@ Pt0 f117 1024 896 1136 976 #arcP
 Pt0 f117 1 1024 976 #addKink
 Pt0 f117 1 0.24473129722455964 0 0 #arcLabel
 Pt0 f25 304 496 369 496 #arcP
+Pt0 f132 outLink ProcessInformation.ivp #txt
+Pt0 f132 inParamDecl '<String processKey> param;' #txt
+Pt0 f132 inParamTable 'out.processId=param.processKey;
+' #txt
+Pt0 f132 requestEnabled true #txt
+Pt0 f132 triggerEnabled false #txt
+Pt0 f132 callSignature ProcessInformation(String) #txt
+Pt0 f132 caseData businessCase.attach=true #txt
+Pt0 f132 showInStartList 0 #txt
+Pt0 f132 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>ProcessInformation.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f132 @C|.responsibility Everybody #txt
+Pt0 f132 81 2353 30 30 -64 17 #rect
+Pt0 f133 433 2353 30 30 0 15 #rect
+Pt0 f134 dialogId ch.ivy.addon.portal.component.ProcessInformation #txt
+Pt0 f134 startMethod start(String) #txt
+Pt0 f134 requestActionDecl '<String processId> param;' #txt
+Pt0 f134 requestMappingAction 'param.processId=in.processId;
+' #txt
+Pt0 f134 responseMappingAction 'out=in;
+' #txt
+Pt0 f134 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>ProcessInformation</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f134 224 2346 112 44 -53 -8 #rect
+Pt0 f136 336 2368 433 2368 #arcP
+Pt0 f135 111 2368 224 2368 #arcP
 >Proto Pt0 .type ch.ivy.addon.portal.generic.PortalStartData #txt
 >Proto Pt0 .processKind NORMAL #txt
 >Proto Pt0 0 0 32 24 18 0 #rect
@@ -2282,6 +2323,10 @@ Pt0 f127 out f114 tail #connect
 Pt0 f114 head f118 mainIn #connect
 Pt0 f120 mainOut f129 tail #connect
 Pt0 f129 head f21 in #connect
+Pt0 f132 mainOut f135 tail #connect
+Pt0 f135 head f134 mainIn #connect
+Pt0 f134 mainOut f136 tail #connect
+Pt0 f136 head f133 mainIn #connect
 Bk2 f4 mainOut f31 tail #connect
 Bk2 f31 head f7 mainIn #connect
 Bk2 f47 out f49 tail #connect
