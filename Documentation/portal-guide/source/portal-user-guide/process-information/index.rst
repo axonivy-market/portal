@@ -28,7 +28,7 @@ can reach this page by using:
 -   :guilabel:`Show process overview` link in Case details page of a case started by the process.
 
 
-[process-overview-link]
+|process-overview-link|
 
 Process steps
 ^^^^^^^^^^^^^
