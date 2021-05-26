@@ -27,6 +27,7 @@ public class CaseDetailsPage extends TemplatePage {
       "a[id='case-item-details:widgets:4:case-histories:case-histories:0:note-link']";
   private static final String GENERAL_INFORMATION_COMPONENT_ID = "div[id='case-details-information-panel']";
   private static final String ADDITIONAL_CASE_DETAILS_URL_CSS_SELECTOR = "a[id$='additional-case-details-link']";
+  private static final String PROCESS_OVERVIEW_URL_CSS_SELECTOR = "a[id$='show-process-overview-link']";
   private static final String AUTHOR_USER_CSS_SELECTOR = "span[class='history-fullname']";
   private static final String VIEW_NOTE_DIALOG_ID = "case-item-details:widgets:4:case-histories:view-note-dialog";
   private WebElement caseItem;
@@ -113,6 +114,10 @@ public class CaseDetailsPage extends TemplatePage {
 
   public void openAdditionalCaseDetailsPage() {
     click(caseItem.findElement(By.cssSelector(ADDITIONAL_CASE_DETAILS_URL_CSS_SELECTOR)));
+  }
+
+  public void openProcessOverviewPage() {
+    click(caseItem.findElement(By.cssSelector(PROCESS_OVERVIEW_URL_CSS_SELECTOR)));
   }
 
   private WebElement getGeneralInformationComponent() {
