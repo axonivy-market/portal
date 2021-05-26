@@ -3,11 +3,14 @@
 Process Information
 *******************
 
-The **Process Information** page shows you information of the 
-personal dashboard. However, this page provides you with extended
-information on the tasks, as well as, advanced search and filter
-capabilities. You can reach the page by using the |task-list-icon| :guilabel:`Tasks` 
-link in the Axon Ivy Portal menu.
+The **Process Information** page shows you information of the selected process.
+Beside basic information such as process name and description, you can see
+advance information such as process steps and more.
+
+Process steps is a list of steps you will perform after you start process.
+These process steps are defined by process developer and designed to help
+you understand details of process better.
+
 
 Basic information
 ^^^^^^^^^^^^^^^^^
@@ -18,9 +21,13 @@ detailed information of the process in form of process steps. You
 can reach this page by using:
 
 -   :guilabel:`Show information` link of a process in full Process List (grid mode).
+
+
 |more-information-link|
 
 -   :guilabel:`Show process overview` link in Case details page of a case started by the process.
+
+
 [process-overview-link]
 
 Process steps
