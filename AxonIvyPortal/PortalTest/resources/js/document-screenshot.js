@@ -274,7 +274,7 @@ function highlightProcessMoreInformationLink() {
            return $(this);
   });
   
-  createRedMediumOutline(displayingProcessItem.find(process-more-info-link));
+  createRedMediumOutline(displayingProcessItem.find(".process-more-info-link"));
 }
 
 // Task
