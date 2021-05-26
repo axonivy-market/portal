@@ -20,7 +20,7 @@ of the selected process such as process name, description, but also
 detailed information of the process in form of process steps. You
 can reach this page by using:
 
--   :guilabel:`Show information` link of a process in full Process List (grid mode).
+-   :guilabel:`More information` link of a process in full Process List (grid mode).
 
 
 |more-information-link|
