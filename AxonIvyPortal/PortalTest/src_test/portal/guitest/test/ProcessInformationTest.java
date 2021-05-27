@@ -66,12 +66,12 @@ public class ProcessInformationTest extends BaseTest {
 
     processInformationPage = new ProcessInformationPage();
     assertEquals(PROCESS_NAME, processInformationPage.getProcessName());
-    assertEquals(PROCESS_NAME, processInformationPage.getProcessDescription());
+    assertEquals(PROCESS_DESCRIPTION, processInformationPage.getProcessDescription());
 
     processInformationPage.back();
     caseDetails = new CaseDetailsPage();
     assertEquals("Case Details", caseDetails.getPageTitle());
-    assertEquals(PROCESS_DESCRIPTION, caseDetails.getDescription());
+    assertEquals(PROCESS_NAME, caseDetails.getDescription());
   }
 
   private void navigateToProcessInformationPage() {
