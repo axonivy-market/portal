@@ -14,7 +14,7 @@ public class DefaultTaskFilterContainer extends TaskFilterContainer {
   private TaskResponsibleFilter responsibleFilter = new TaskResponsibleFilter();
   private TaskCategoryFilter categoryFilter = new TaskCategoryFilter();
   private TaskCompletedDateFilter completedDateFilter = new TaskCompletedDateFilter();
-
+  private TaskForUnavailableActivatorFilter unavailableActivatorFilter = new TaskForUnavailableActivatorFilter();
 
   public DefaultTaskFilterContainer() {
     super();
@@ -25,6 +25,21 @@ public class DefaultTaskFilterContainer extends TaskFilterContainer {
     filters.add(responsibleFilter);
     filters.add(completedDateFilter);
     filters.add(categoryFilter);
+    Collections.sort(filters, new TaskFilterComparator());
+  }
+  
+  public DefaultTaskFilterContainer(boolean filterForUnavailableActivator) {
+    super();
+    filters.add(priorityFilter);
+    filters.add(descriptionFilter);
+    filters.add(creationDateFilter);
+    filters.add(expiredDateFilter);
+    filters.add(responsibleFilter);
+    filters.add(completedDateFilter);
+    filters.add(categoryFilter);
+    if (filterForUnavailableActivator) {
+      filters.add(unavailableActivatorFilter);
+    }
     Collections.sort(filters, new TaskFilterComparator());
   }
   
@@ -83,5 +98,13 @@ public class DefaultTaskFilterContainer extends TaskFilterContainer {
 
   public void setCategoryFilter(TaskCategoryFilter categoryFilter) {
     this.categoryFilter = categoryFilter;
+  }
+  
+  public TaskForUnavailableActivatorFilter getDisabledUserFilter() {
+    return unavailableActivatorFilter;
+  }
+
+  public void setDisabledUserFilter(TaskForUnavailableActivatorFilter disabledUserFilter) {
+    this.unavailableActivatorFilter = disabledUserFilter;
   }
 }

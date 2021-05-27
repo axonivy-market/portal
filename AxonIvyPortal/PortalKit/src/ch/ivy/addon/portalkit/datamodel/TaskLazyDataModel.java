@@ -167,7 +167,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
    * </p>
    */
   public void initFilterContainer() {
-    filterContainer = new DefaultTaskFilterContainer();
+    filterContainer = new DefaultTaskFilterContainer(criteria.isAdminQuery());
   }
 
   /**
