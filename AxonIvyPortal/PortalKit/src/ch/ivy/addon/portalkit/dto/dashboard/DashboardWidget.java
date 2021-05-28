@@ -13,6 +13,7 @@ import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import ch.ivy.addon.portalkit.constant.DashboardConfigurationPrefix;
+import ch.ivy.addon.portalkit.dto.WidgetLayout;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivyteam.ivy.environment.Ivy;
 
@@ -34,10 +35,8 @@ public abstract class DashboardWidget implements Serializable {
   
   protected String id;
   protected String name;
-  protected int axisX;
-  protected int axisY;
-  protected int width;
-  protected int height;
+  private WidgetLayout layout;
+
   protected boolean autoPosition;
   protected boolean hasPredefinedFilter;
   @JsonIgnore
@@ -45,13 +44,10 @@ public abstract class DashboardWidget implements Serializable {
 
   public DashboardWidget() {}
 
-  public DashboardWidget(String id, String name, int axisX, int axisY, int width, int height) {
+  public DashboardWidget(String id, String name, WidgetLayout layout) {
     this.id = id;
     this.name = name;
-    this.axisX = axisX;
-    this.axisY = axisY;
-    this.width = width;
-    this.height = height;
+    this.layout = layout;
   }
 
   @JsonIgnore
@@ -90,36 +86,12 @@ public abstract class DashboardWidget implements Serializable {
     this.name = name;
   }
 
-  public int getAxisX() {
-    return axisX;
+  public WidgetLayout getLayout() {
+    return layout;
   }
 
-  public void setAxisX(int axisX) {
-    this.axisX = axisX;
-  }
-
-  public int getAxisY() {
-    return axisY;
-  }
-
-  public void setAxisY(int axisY) {
-    this.axisY = axisY;
-  }
-
-  public int getWidth() {
-    return width;
-  }
-
-  public void setWidth(int width) {
-    this.width = width;
-  }
-
-  public int getHeight() {
-    return height;
-  }
-
-  public void setHeight(int height) {
-    this.height = height;
+  public void setLayout(WidgetLayout layout) {
+    this.layout = layout;
   }
   
   public boolean getAutoPosition() {
