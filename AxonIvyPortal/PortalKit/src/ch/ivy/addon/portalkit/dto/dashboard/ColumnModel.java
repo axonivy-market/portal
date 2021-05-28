@@ -38,7 +38,7 @@ public class ColumnModel implements Serializable {
 
   protected String header;
   protected String field;
-  protected DashboardColumnType type = DashboardColumnType.STANDARD;
+  
   protected String styleClass;
   protected String fieldStyleClass;
   protected String style;
@@ -55,6 +55,8 @@ public class ColumnModel implements Serializable {
   protected boolean sorted;
   protected boolean sortDescending;
   
+  @JsonIgnore
+  private DashboardColumnType type = DashboardColumnType.STANDARD;
   @JsonIgnore
   protected String userFilter;
   @JsonIgnore
@@ -340,5 +342,4 @@ public class ColumnModel implements Serializable {
     this.userDateFilterTo = userDateFilterTo;
     this.userFilterTo = Dates.format(userDateFilterTo);
   }
-  
 }
