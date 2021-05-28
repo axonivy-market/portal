@@ -807,7 +807,6 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 }
 
 .task-item-body-container .card.task-detail-card.iframe-widget {
-  padding: 5px;
   overflow: hidden;
 }
 
