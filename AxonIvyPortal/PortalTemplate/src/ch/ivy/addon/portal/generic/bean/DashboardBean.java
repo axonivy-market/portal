@@ -178,14 +178,18 @@ public class DashboardBean implements Serializable {
   public void save() throws JsonParseException, JsonMappingException, IOException {
     Map<String, String> requestParamMap = getRequestParameterMap();
     String nodes = Optional.ofNullable(requestParamMap.get("nodes")).orElse(StringUtils.EMPTY);
-    List<DashboardWidget> widgets = Arrays.asList(mapper.readValue(nodes, DashboardWidget[].class));
-    for (DashboardWidget widget : widgets) {
-      DashboardWidget updatedWidget = getSelectedDashboard().getWidgets().get(getSelectedDashboard().getWidgets().indexOf(widget));
+    List<WidgetLayout> layouts = Arrays.asList(mapper.readValue(nodes, WidgetLayout[].class));
+    for (WidgetLayout layout : layouts) {
+      DashboardWidget updatedWidget = getSelectedDashboard().getWidgets().stream()
+          .filter(w -> w.getId().contentEquals(layout.getId()))
+          .findFirst().get();
+
       WidgetLayout updatedLayout = new WidgetLayout();
-      updatedLayout.setAxisX(widget.getLayout().getAxisX());
-      updatedLayout.setAxisY(widget.getLayout().getAxisY());
-      updatedLayout.setWidth(widget.getLayout().getWidth());
-      updatedLayout.setHeight(widget.getLayout().getHeight());
+      updatedLayout.setAxisX(layout.getAxisX());
+      updatedLayout.setAxisY(layout.getAxisY());
+      updatedLayout.setWidth(layout.getWidth());
+      updatedLayout.setHeight(layout.getHeight());
+
       updatedWidget.setLayout(updatedLayout);
     }
     saveOrUpdateDashboardToUserProperty(getSelectedDashboard());
