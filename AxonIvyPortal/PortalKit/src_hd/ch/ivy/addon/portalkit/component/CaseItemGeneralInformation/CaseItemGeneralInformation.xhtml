@@ -102,7 +102,7 @@
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/businessCase')}" />
         </div>
         <div class="ui-xl-9 ui-lg-8 ui-md-8 ui-sm-8 ui-g-4 u-no-padding-left u-truncate-text">
-          <p:commandLink id="related-case" styleClass="case-detail-business-case" disabled="#{cc.attrs.readOnly}"
+          <p:commandLink id="related-business-case" styleClass="case-detail-business-case" disabled="#{cc.attrs.readOnly}"
             value="##{case.getBusinessCase().id} #{case.getBusinessCase().getName()}"
             actionListener="#{caseDetailsBean.navigateToCaseDetails(case.getBusinessCase().id)}"
             rendered="#{not empty case.getBusinessCase().id}">
@@ -155,5 +155,9 @@
     
     <ic:ch.ivy.addon.portalkit.component.CaseItemDescription id="description" case="#{case}" />
   </div>
+  
+  <p:tooltip for="related-business-case"
+    value="##{case.getBusinessCase().id} #{case.getBusinessCase().name} (#{caseBean.getState(case.getBusinessCase()).toUpperCase()})"
+    trackMouse="true" hideEvent="mouseleave click" />
 </cc:implementation>
 </html>
