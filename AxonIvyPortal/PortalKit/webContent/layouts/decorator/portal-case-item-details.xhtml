@@ -40,7 +40,7 @@
       rendered="#{not empty caseDetailsBean.widgets}">
       <ui:repeat var="widget" value="#{caseDetailsBean.widgets}" id="widgets">
         <div id="case-details-#{widget.id}-panel" class="#{widget.styleClass} grid-stack-item" style="#{widget.style}" widget-type="#{widget.class.simpleName}"
-          gs-x="#{widget.axisX}" gs-y="#{widget.axisY}" gs-w="#{widget.width}" gs-h="#{widget.height}" gs-id="#{widget.id}"
+          gs-x="#{widget.layout.axisX}" gs-y="#{widget.layout.axisY}" gs-w="#{widget.layout.width}" gs-h="#{widget.layout.height}" gs-id="#{widget.id}"
           gs-no-resize="#{caseDetailsBean.readOnlyMode}" gs-no-move="#{caseDetailsBean.readOnlyMode}"
           jsf:rendered="#{not (widget.class.simpleName eq 'CaseDetailsTechnicalCaseWidget' and not caseDetailsBean.hasTechnicalCases(case))}">
           <!-- General & description box -->

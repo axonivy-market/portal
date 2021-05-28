@@ -25,10 +25,13 @@ import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
+import ch.ivy.addon.portalkit.dto.WidgetLayout;
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
+import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
+import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.support.HtmlParser;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -41,6 +44,7 @@ import ch.ivyteam.ivy.workflow.ITask;
 public class DashboardBean implements Serializable {
 
   private static final long serialVersionUID = -4224901891867040688L;
+
   public static final String DASHBOARD_PREFIX = "dashboard.widgets";
   public static final String DASHBOARD_VARIABLE = "Portal.Dashboard";
   protected List<Dashboard> dashboards;
@@ -107,12 +111,22 @@ public class DashboardBean implements Serializable {
       switch (widget.getType()) {
         case TASK:
           TaskDashboardWidget.buildColumns((TaskDashboardWidget) widget);
+
+          for (ColumnModel columnModel : ((TaskDashboardWidget) widget).getColumns()) {
+            updateTypeForCustomColumn(columnModel);
+          }
+
           if (StringUtils.isBlank(widget.getName())) {
             widget.setName(translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourTasks"));
           }
           break;
         case CASE:
           CaseDashboardWidget.buildColumns((CaseDashboardWidget) widget);
+
+          for (ColumnModel columnModel : ((CaseDashboardWidget) widget).getColumns()) {
+            updateTypeForCustomColumn(columnModel);
+          }
+
           if (StringUtils.isBlank(widget.getName())) {
             widget.setName(translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourCases"));
           }
@@ -146,6 +160,7 @@ public class DashboardBean implements Serializable {
         }
       }
       if (!canRead) {
+        // Remove dashboard which user doesn't have permission to see
         dashboards.remove(i);
       }
     }
@@ -166,10 +181,12 @@ public class DashboardBean implements Serializable {
     List<DashboardWidget> widgets = Arrays.asList(mapper.readValue(nodes, DashboardWidget[].class));
     for (DashboardWidget widget : widgets) {
       DashboardWidget updatedWidget = getSelectedDashboard().getWidgets().get(getSelectedDashboard().getWidgets().indexOf(widget));
-      updatedWidget.setAxisX(widget.getAxisX());
-      updatedWidget.setAxisY(widget.getAxisY());
-      updatedWidget.setWidth(widget.getWidth());
-      updatedWidget.setHeight(widget.getHeight());
+      WidgetLayout updatedLayout = new WidgetLayout();
+      updatedLayout.setAxisX(widget.getLayout().getAxisX());
+      updatedLayout.setAxisY(widget.getLayout().getAxisY());
+      updatedLayout.setWidth(widget.getLayout().getWidth());
+      updatedLayout.setHeight(widget.getLayout().getHeight());
+      updatedWidget.setLayout(updatedLayout);
     }
     saveOrUpdateDashboardToUserProperty(getSelectedDashboard());
   }
@@ -303,5 +320,13 @@ public class DashboardBean implements Serializable {
 
   public void navigatetoConfigurationPage() {
     PortalNavigator.navigateToNewDashboardConfiguration();
+  }
+
+  private void updateTypeForCustomColumn(ColumnModel columnModel) {
+    if (columnModel.getFormat() != null) {
+      columnModel.setType(DashboardColumnType.CUSTOM);
+    } else {
+      columnModel.setType(DashboardColumnType.STANDARD);
+    }
   }
 }
