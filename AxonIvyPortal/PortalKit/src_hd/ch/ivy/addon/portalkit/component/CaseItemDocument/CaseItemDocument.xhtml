@@ -43,7 +43,7 @@
               <p:commandLink ajax="false" id="download"
                 styleClass="download-command case-document-name-text u-truncate-text">
                 <p:fileDownload value="#{logic.downloadDocument(document)}" />
-                <ic:ch.ivy.addon.portalkit.component.document.DocumentNameWithIcon fileName="#{document.name}" fileSize="#{masterDataBean.getHumanReadableFileSize(document.size)}"
+                <ic:ch.ivy.addon.portalkit.component.document.DocumentNameWithIcon fileName="#{document.name}" fileSize="#{masterDataBean.getReadableFileSize(document.size)}"
                   symbolStyleClass="case-details-document-download-icon" 
                   fileNameStyleClass="js-document-name document-name"
                   fileSizeStyleClass="document-size" />
