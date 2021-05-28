@@ -17,10 +17,10 @@ function loadGrid() {
         serializedData.push({
           type: node.id.split('_')[0],
           id: node.id,
-          axisX: node.x,
-          axisY: node.y,
-          width: node.w,
-          height: node.h
+          x: node.x,
+          y: node.y,
+          w: node.w,
+          h: node.h
         });
       });
       if (grid.opts.minWidth < grid.el.clientWidth) {
