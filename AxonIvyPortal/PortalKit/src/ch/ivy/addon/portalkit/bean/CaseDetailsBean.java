@@ -342,6 +342,14 @@ public class CaseDetailsBean implements Serializable {
       PortalNavigator.navigateToPortalCaseDetails(caseId);
     }
   }
+  
+  public void navigateToCaseDetails(Long caseId) {
+    if (inFrame) {
+      PortalNavigator.navigateToPortalCaseDetailsInFrame(caseId, false);
+    } else {
+      PortalNavigator.navigateToPortalCaseDetails(caseId);
+    }
+  }
 
   public boolean isInFrame() {
     return inFrame;
