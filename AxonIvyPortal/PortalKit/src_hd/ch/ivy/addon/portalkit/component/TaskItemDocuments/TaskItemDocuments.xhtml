@@ -41,8 +41,10 @@
             <h:panelGroup layout="block" rendered="#{document ne null}" styleClass="task-document-name">
               <p:commandLink ajax="false" id="download" styleClass="download-command task-document-name-text u-truncate-text">
                 <p:fileDownload value="#{logic.downloadDocument(document)}" />
-                <ic:ch.ivy.addon.portalkit.component.document.DocumentNameWithIcon fileName="#{document.name}"
-                  symbolStyleClass="task-details-document-download-icon" />
+                <ic:ch.ivy.addon.portalkit.component.document.DocumentNameWithIcon fileName="#{document.name}" fileSize="#{masterDataBean.getHumanReadableFileSize(document.size)}"
+                  symbolStyleClass="task-details-document-download-icon"
+                  fileNameStyleClass="document-name"
+                  fileSizeStyleClass="document-size" />
               </p:commandLink>
               <p:commandLink id="delete-file" actionListener="#{data.setDocument(document)}"
                 rendered="#{!(data.businessCase.state eq 'DONE' and data.isHideUploadDocumentForDoneCase) and taskActionBean.canWriteDocument(data.task)}"
