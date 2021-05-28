@@ -29,7 +29,7 @@ pipeline {
             }
 
             docker.image('maven:3.6.3-jdk-11-slim').inside {
-              def phase = env.BRANCH_NAME == 'master' ? 'deploy' : 'install'
+              def phase = env.BRANCH_NAME == 'release/9.2' ? 'deploy' : 'install'
               maven cmd: "clean ${phase} -f Documentation/pom.xml"
             }
           }
