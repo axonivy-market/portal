@@ -2146,6 +2146,11 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   margin-bottom: 6px;
 }
 
+.task-and-case-information .case-detail-business-case {
+  margin-top: 0px;
+  display: inline;
+}
+
 .case-detail-description {
   display: inline-flex;
   max-height: 150px;
