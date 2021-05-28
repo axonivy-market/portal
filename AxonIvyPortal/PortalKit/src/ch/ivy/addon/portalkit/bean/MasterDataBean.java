@@ -78,4 +78,8 @@ public class MasterDataBean implements Serializable {
   public DocumentType[] getDocumentTypes() {
     return BasicDocumentType.values();
   }
+
+  public String getHumanReadableFileSize(Long fileSize) {
+    return FileUtils.byteCountToDisplaySize(fileSize);
+  }
 }
