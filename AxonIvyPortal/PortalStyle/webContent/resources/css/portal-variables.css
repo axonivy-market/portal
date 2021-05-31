@@ -517,4 +517,11 @@
   --dashboard-table-column-small-screen-description-font-style: normal;
   --dashboard-table-column-small-screen-description-font-size: 1.4.rem;
   --dashboard-table-column-small-screen-description-color: var(--ivy-primary-color-grey-medium);
+
+  /* Process Start Widget*/
+  --combined-normal-button-tab-color: hsla(0, 0%, 11%, 0.56);
+  --combined-normal-button-tab-border-color: hsla(0, 0%, 11%, 0.32);
+  --combined-active-button-tab-color: hsla(0, 0%, 11%, 1);
+  --combined-button-tab-background-hover: rgba(144, 221, 233, 1);
+  --combined-button-tab-background-focus: rgba(144, 221, 233, 0.5);
   }
