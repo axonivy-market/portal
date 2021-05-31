@@ -18,6 +18,7 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
@@ -25,9 +26,14 @@ import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
+import ch.ivy.addon.portalkit.dto.dashboard.ProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.WidgetSample;
+import ch.ivy.addon.portalkit.dto.dashboard.process.DashboardProcess;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
+import ch.ivy.addon.portalkit.enums.ProcessWidgetMode;
+import ch.ivy.addon.portalkit.jsf.ManagedBeans;
+import ch.ivy.addon.portalkit.util.CategoryUtils;
 
 @ViewScoped
 @ManagedBean
@@ -92,6 +98,11 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
             Arrays.asList(translate("/ch.ivy.addon.portalkit.ui.jsf/common/tasks")));
         this.widget = getDefaultTaskDashboardWidget();
         break;
+      case PROCESS:
+        this.newWidgetHeader = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/newWidgetHeader",
+            Arrays.asList(translate("/ch.ivy.addon.portalkit.ui.jsf/common/processes")));
+        this.widget = getDefaultProcessDashboardWidget();
+        break;
       default:
         break;
     }
@@ -116,6 +127,12 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
     return TaskDashboardWidget.buildDefaultWidget(widgetId, widgetName);
   }
 
+  public ProcessDashboardWidget getDefaultProcessDashboardWidget() {
+    String widgetId = generateNewWidgetId(DashboardWidgetType.PROCESS);
+    String widgetName = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourProcesses");
+    return ProcessDashboardWidget.buildDefaultWidget(widgetId, widgetName);
+  }
+
   public String generateNewWidgetId(DashboardWidgetType type) {
     final String widgetIdPrefix = String.format(WIDGET_ID_PATTERN, type.name(), EMPTY).toLowerCase();
 
@@ -138,6 +155,32 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
   }
 
   public void saveWidget() throws JsonProcessingException, ParseException {
+    if (this.widget.getType() == DashboardWidgetType.PROCESS) {
+      ProcessDashboardWidget processWidget = (ProcessDashboardWidget) this.widget;
+      if (processWidget.getDisplayMode() == ProcessWidgetMode.FULL_MODE) {
+        processWidget.setHeight(4);
+        processWidget.setWidth(2);
+        processWidget.setName(processWidget.getProcess() != null ? processWidget.getProcess().getName() : "");
+        processWidget.setDisplayProcesses(new ArrayList<>());
+        processWidget.setProcesses(new ArrayList<>());
+      } else if (processWidget.getDisplayMode() == ProcessWidgetMode.COMBINED_MODE) {
+        processWidget.setHeight(6);
+        processWidget.setWidth(5);
+        processWidget.setDisplayProcesses(new ArrayList<>());
+        processWidget.setProcesses(new ArrayList<>());
+        processWidget.setName(processWidget.getProcess() != null ? processWidget.getProcess().getName() : "");
+      } else {
+        processWidget.setHeight(6);
+        processWidget.setWidth(2);
+        processWidget.setProcess(null);
+        processWidget.getUserFilter().setCategories(processWidget.getCategories());
+        boolean isAllProcessesSelected = CollectionUtils.isEmpty(processWidget.getCategories())
+            && (CollectionUtils.isEmpty(processWidget.getProcesses())
+                || getAllPortalProcesses().size() == processWidget.getProcesses().size()); 
+        processWidget.setSelectedAllProcess(isAllProcessesSelected);
+        updateProcessesOfWidget(processWidget);
+      }
+    }
     resetUserFilter();
     this.widget.buildPredefinedFilterData();
     if (CollectionUtils.isEmpty(this.getSelectedDashboard().getWidgets())) {
@@ -153,6 +196,35 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
     this.widget = null;
   }
 
+  private void updateProcessesOfWidget(ProcessDashboardWidget widget) {
+    List<DashboardProcess> displayProcesses;
+    if (widget.isSelectedAllProcess()) {
+      displayProcesses = getAllPortalProcesses();
+      widget.setProcesses(new ArrayList<>());
+    } else if (CollectionUtils.isNotEmpty(widget.getProcesses())) {
+      displayProcesses = widget.getProcesses();
+      widget.setProcesses(displayProcesses);
+    } else {
+      List<DashboardProcess> allPortalProcesses = getAllPortalProcesses();
+      displayProcesses = allPortalProcesses.stream()
+          .filter(process -> isProcessMatchedCategory(process, widget.getCategories())).collect(Collectors.toList());
+    }
+
+    widget.setDisplayProcesses(displayProcesses);
+    widget.setOriginalDisplayProcesses(displayProcesses);
+  }
+
+  private boolean isProcessMatchedCategory(DashboardProcess process, List<String> categories) {
+    boolean hasNoCategory = categories.indexOf(CategoryUtils.NO_CATEGORY) > -1;
+    return categories.indexOf(process.getCategory()) > -1
+        || (StringUtils.isBlank(process.getCategory()) && hasNoCategory);
+  }
+
+  private List<DashboardProcess> getAllPortalProcesses() {
+    DashboardProcessBean dashboardProcessBean = ManagedBeans.get("dashboardProcessBean");
+    return dashboardProcessBean == null ? new ArrayList<>() : dashboardProcessBean.getAllPortalProcesses();
+  }
+
   private void resetUserFilter() {
     if (this.widget.getType() == DashboardWidgetType.TASK) {
       ((TaskDashboardWidget) this.widget).setInConfiguration(false);
@@ -165,8 +237,7 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
 
   public void setEditWidget(DashboardWidget widget) {
     this.setWidget(widget);
-    this.newWidgetHeader = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/editWidgetHeader",
-        Arrays.asList(widget.getName()));
+    this.newWidgetHeader = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/editWidgetHeader");
   }
 
   public List<WidgetSample> getSamples() {
