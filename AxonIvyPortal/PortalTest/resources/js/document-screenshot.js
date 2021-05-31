@@ -268,6 +268,15 @@ function highlightSortUserProcess() {
   createRedMediumOutline($("[id$=':user-process-action-form:name-sort-command']"));
 }
 
+function highlightProcessMoreInformationLink() {
+  var displayingProcessItem = $(".js-process-start-list-item").filter(function() {
+    if($(this).css('display') != 'none')
+           return $(this);
+  });
+  
+  createRedMediumOutline(displayingProcessItem.find(".process-more-info-link"));
+}
+
 // Task
 function highlightCustomTaskList() {
   var caseHeader = $("[id$='task-widget:task-widget-sub-header']");
@@ -460,4 +469,10 @@ function highlightTaskExportToExcelButton() {
 
 function highlightCaseExportToExcelButton() {
   createRedMediumOutline($("a[id$=':case-export-to-excel']"));
+}
+
+function highlightProcessOverviewLink() {
+  $(".task-detail-section-title").removeClass("u-truncate-text");
+  $(".case-history-button-container").removeClass("u-truncate-text");
+  createRedMediumOutline($("a[id$=':show-process-overview-link']"));
 }
