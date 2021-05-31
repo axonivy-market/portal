@@ -35,6 +35,7 @@ public final class PortalNavigator extends BaseNavigator{
   private static final String PORTAL_FORGOT_PASSWORD = "Start Processes/PortalStart/ForgotPasswordPage.ivp";
   private static final String PORTAL_PASSWORD_RESET = "Start Processes/PortalStart/PasswordResetPage.ivp";
   private static final String PORTAL_CASE_DETAILS_IN_FRAME = "Start Processes/PortalStart/CaseDetailsInIFrame.ivp";
+  private static final String PORTAL_PROCESS_INFO = "Start Processes/PortalStart/ProcessInformation.ivp";
   
   public static String getPortalStartUrl() {
     return getRelativeLink(StandardProcessType.DefaultApplicationHomePage);
@@ -193,6 +194,18 @@ public final class PortalNavigator extends BaseNavigator{
     Map<String, String> params = new HashMap<>();
     params.put("caseId", String.valueOf(caseId));
     return buildUrlByKeyword("CaseDetailsPage.ivp", PORTAL_CASE_DETAILS, params);
+  }
+  
+  /**
+   * Generate URL for process information page of selected process
+   * 
+   * @param processId
+   * @return URL of process information page
+   */
+  public static String buildProcessInfoUrl(String processId) {
+    Map<String, String> params = new HashMap<>();
+    params.put("processKey", processId);
+    return buildUrlByKeyword("ProcessInformation.ivp", PORTAL_PROCESS_INFO, params);
   }
   
   public static String buildUrlByKeyword(String keyword, String defaultFriendlyRequestPath, Map<String, String> param) {

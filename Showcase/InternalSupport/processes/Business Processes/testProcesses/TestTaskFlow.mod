@@ -1,5 +1,5 @@
 [Ivy]
-14B2FC03D2E87141 9.3.0 #module
+14B2FC03D2E87141 9.2.0 #module
 >Proto >Proto Collection #zClass
 Tt0 TestTaskFlow Big #zClass
 Tt0 B #cInfo
@@ -158,6 +158,13 @@ Tt0 @EndTask f54 '' #zField
 Tt0 @PushWFArc f56 '' #zField
 Tt0 @UserTask f53 '' #zField
 Tt0 @TkArc f55 '' #zField
+Tt0 @StartRequest f57 '' #zField
+Tt0 @EndTask f58 '' #zField
+Tt0 @TaskSwitch f71 '' #zField
+Tt0 @TkArc f72 '' #zField
+Tt0 @UserDialog f74 '' #zField
+Tt0 @PushWFArc f75 '' #zField
+Tt0 @PushWFArc f73 '' #zField
 >Proto Tt0 Tt0 TestTaskFlow #zField
 Tt0 f0 outLink CreateSupportTicket.ivp #txt
 Tt0 f0 inParamDecl '<> param;' #txt
@@ -1760,6 +1767,61 @@ TaskA.SKIP_TASK_LIST=false
 TaskA.TYPE=0' #txt
 Tt0 f53 1336 642 112 44 0 -8 #rect
 Tt0 f55 1392 551 1392 642 #arcP
+Tt0 f57 outLink ProcessWithProcessSteps.ivp #txt
+Tt0 f57 inParamDecl '<> param;' #txt
+Tt0 f57 requestEnabled true #txt
+Tt0 f57 triggerEnabled false #txt
+Tt0 f57 callSignature ProcessWithProcessSteps() #txt
+Tt0 f57 startName 'Process With Process Steps' #txt
+Tt0 f57 startDescription 'Create task for a process with three process steps which can be show in Porcess Information page' #txt
+Tt0 f57 caseData businessCase.attach=true #txt
+Tt0 f57 showInStartList 1 #txt
+Tt0 f57 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>ProcessWithProcessSteps.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Tt0 f57 @C|.responsibility Everybody #txt
+Tt0 f57 177 1457 30 30 -69 19 #rect
+Tt0 f58 593 1457 30 30 0 15 #rect
+Tt0 f71 actionTable 'out=in1;
+' #txt
+Tt0 f71 outLinks "TaskA.ivp" #txt
+Tt0 f71 caseData 'case.description=Process With Process Steps
+case.name=Process With Process Steps' #txt
+Tt0 f71 taskData 'TaskA.DESC=Process With Process Steps
+TaskA.NAM=Process With Process Steps
+TaskA.ROL=CREATOR
+TaskA.SKIP_TASK_LIST=false
+TaskA.TYPE=0' #txt
+Tt0 f71 304 1456 32 32 0 16 #rect
+Tt0 f72 var in1 #txt
+Tt0 f72 207 1472 304 1472 #arcP
+Tt0 f74 dialogId com.axonivy.portal.developerexamples.testdata.LeaveRequestForm #txt
+Tt0 f74 startMethod start() #txt
+Tt0 f74 requestActionDecl '<> param;' #txt
+Tt0 f74 responseActionDecl 'internaltest.Data out;
+' #txt
+Tt0 f74 responseMappingAction 'out=in;
+' #txt
+Tt0 f74 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Show 
+Task Form</name>
+        <nameStyle>6,7
+9,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Tt0 f74 454 1459 36 24 20 -2 #rect
+Tt0 f75 expr data #txt
+Tt0 f75 outCond ivp=="TaskA.ivp" #txt
+Tt0 f75 336 1472 454 1471 #arcP
+Tt0 f73 490 1471 593 1472 #arcP
 >Proto Tt0 .type internaltest.Data #txt
 >Proto Tt0 .processKind NORMAL #txt
 >Proto Tt0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1919,3 +1981,9 @@ Tt0 f52 mainOut f55 tail #connect
 Tt0 f55 head f53 in #connect
 Tt0 f53 out f56 tail #connect
 Tt0 f56 head f54 mainIn #connect
+Tt0 f57 mainOut f72 tail #connect
+Tt0 f72 head f71 in #connect
+Tt0 f71 out f75 tail #connect
+Tt0 f75 head f74 mainIn #connect
+Tt0 f74 mainOut f73 tail #connect
+Tt0 f73 head f58 mainIn #connect

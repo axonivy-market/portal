@@ -13,6 +13,7 @@ import portal.guitest.common.ScreenshotTest;
 import portal.guitest.common.Sleeper;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.HomePage;
+import portal.guitest.page.ProcessInformationPage;
 import portal.guitest.page.ProcessWidgetPage;
 
 public class PortalProcessesScreenshotTest extends ScreenshotTest {
@@ -117,4 +118,23 @@ public class PortalProcessesScreenshotTest extends ScreenshotTest {
     ScreenshotUtil.captureHalfLeftPageScreenShot(ScreenshotUtil.PROCESSES_WIDGET_FOLDER + "how-to-order-process-favorites-by-name");
   }
 
+  @Test
+  public void screenshotMoreInfoOnProcessList() throws IOException {
+    ScreenshotUtil.resizeBrowser(new Dimension(1920, 800));
+    processWidget = homePage.getProcessWidget();
+    processWidget.expand();
+    processWidget.enterSearchKeyword("Process With Process Steps");
+    executeDecorateJs("highlightProcessMoreInformationLink()");
+    ScreenshotUtil.captureHalfLeftPageScreenShot(ScreenshotUtil.PROCESSES_INFORMATION_WIDGET_FOLDER + "more-information-link");
+  }
+
+  @Test
+  public void screenshotProcessInformation() throws IOException {
+    processWidget = homePage.getProcessWidget();
+    processWidget.expand();
+    processWidget.clickMoreInformationLink("Process With Process Steps");
+    ProcessInformationPage processInformationPage = new ProcessInformationPage();
+    processInformationPage.getPageTitle();
+    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.PROCESSES_INFORMATION_WIDGET_FOLDER + "process-information");
+  }
 }
