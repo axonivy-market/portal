@@ -3344,6 +3344,7 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   display: flex;
 }
 
+.process-grid-view__description,
 .grid-view-form .process-description {
   height: 9rem;
   overflow: hidden;

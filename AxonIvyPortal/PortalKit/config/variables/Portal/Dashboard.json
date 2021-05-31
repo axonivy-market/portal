@@ -129,7 +129,9 @@
 				"axisX": 10,
 				"axisY": 0,
 				"width": 2,
-				"height": 4
+				"height": 9,
+				"displayMode": "COMPACT_MODE",
+				"selectedAllProcess": true
 			}
 		]
 	},
