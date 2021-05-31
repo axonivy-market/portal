@@ -6,16 +6,20 @@
 
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="fileName" shortDescription="The name of document file" />
+  <cc:attribute name="fileSize" shortDescription="The size of document file" />
   <cc:attribute name="fileNameStyleClass" shortDescription="Style class for filename" />
+  <cc:attribute name="fileSizeStyleClass" shortDescription="Style class for filesize" />
   <cc:attribute name="symbolStyleClass" shortDescription="Style class for symbol icon" />
   <cc:attribute name="hideSymbol" type="java.lang.Boolean" default="false" />
 </cc:interface>
 
 <cc:implementation>
   <c:set var="name" value="#{cc.attrs.fileName}" />
+  <c:set var="size" value="#{cc.attrs.fileSize}" />
   
   <h:outputText class="#{documentIconBean.getIconCssClass(name)} #{cc.attrs.symbolStyleClass}"
     rendered="#{empty cc.attrs.hideSymbol or not cc.attrs.hideSymbol}" />
   <h:outputText value="#{name}" styleClass="#{cc.attrs.fileNameStyleClass}" />
+  <h:outputText value="#{size}" styleClass="#{cc.attrs.fileSizeStyleClass}" />
 </cc:implementation>
 </html>
