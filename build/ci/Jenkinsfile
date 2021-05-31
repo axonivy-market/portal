@@ -4,10 +4,6 @@ pipeline {
   options {
     buildDiscarder(logRotator(numToKeepStr: '60', artifactNumToKeepStr: '5'))
   }
-  
-  triggers {
-    pollSCM 'H/15 * * * *'
-  }
 
   tools { 
       maven '3.6' 
@@ -25,7 +21,7 @@ pipeline {
       steps {
         script {
           builtModules = []
-          config = [singleAppEngine: [applications: ['Portal'], engineDir : 'D:/tools/ivy-server/trunk'] ,multiAppsEngine: [applications: ['Portal', 'App1', 'App2'], , engineDir : 'D:/tools/ivy-server/trunk-1']]
+          config = [singleAppEngine: [applications: ['Portal_Dashboard'], engineDir : 'D:/tools/ivy-server/trunk'] ,multiAppsEngine: [applications: ['Portal', 'App1', 'App2'], , engineDir : 'D:/tools/ivy-server/trunk-1']]
           applications = config[params.engine]['applications']
           engineDir = config[params.engine]['engineDir']
 
