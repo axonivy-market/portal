@@ -513,7 +513,9 @@ in.processModes.clear();
 GlobalSettingService globalSettingService = new GlobalSettingService();
 GlobalSetting defaultSetting = globalSettingService.findGlobalSettingByKey(GlobalVariable.DEFAULT_PROCESS_MODE.name());
 
-String defaultProcessModeSetting = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/MyProfile/defaultOption", [defaultSetting.getDisplayValue()]);
+ProcessMode defaultSettingEnum = ProcessMode.valueOf(defaultSetting.value);
+
+String defaultProcessModeSetting = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/MyProfile/defaultOption", [defaultSettingEnum == null ? "" : defaultSettingEnum.getLabel()]);
 in.processModes.add(defaultProcessModeSetting);
 
 for (ProcessMode mode : ProcessMode.values()) {
