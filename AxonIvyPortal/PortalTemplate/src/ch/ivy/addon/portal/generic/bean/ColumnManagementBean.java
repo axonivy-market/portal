@@ -61,6 +61,7 @@ public class ColumnManagementBean {
       CaseDashboardWidget caseDashboardWidget = (CaseDashboardWidget) this.widget;
       this.columnsBeforeSave = new ArrayList<>(caseDashboardWidget.getColumns());
     }
+
     fetchFields();
   }
 

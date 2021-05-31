@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -28,8 +29,14 @@ import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
+import ch.ivy.addon.portalkit.dto.dashboard.ProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
+import ch.ivy.addon.portalkit.dto.dashboard.process.DashboardProcess;
+import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
+import ch.ivy.addon.portalkit.enums.ProcessWidgetMode;
+import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.support.HtmlParser;
+import ch.ivy.addon.portalkit.util.CategoryUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUser;
@@ -62,13 +69,15 @@ public class DashboardBean implements Serializable {
     dashboards = new ArrayList<>();
     mapper = new ObjectMapper();
     mapper.enable(MapperFeature.ACCEPT_CASE_INSENSITIVE_ENUMS);
-
     String dashboardInUserProperty = readDashboardBySessionUser(DASHBOARD_PREFIX);
     try {
       dashboards = defaultDashboards();
       if (StringUtils.isNoneEmpty(dashboardInUserProperty)) {
         List<Dashboard> dashboardSavedList = mappingDashboards(dashboardInUserProperty);
         for (Dashboard d : dashboardSavedList) {
+          if (CollectionUtils.isNotEmpty(d.getWidgets())) {
+            loadWidgets(d.getWidgets());
+          }
           dashboards.set(dashboards.indexOf(d), d);
         }
       }
@@ -81,7 +90,8 @@ public class DashboardBean implements Serializable {
     }
   }
 
-  private ArrayList<Dashboard> mappingDashboards(String dashboardJSON) throws JsonProcessingException, JsonMappingException {
+  private ArrayList<Dashboard> mappingDashboards(String dashboardJSON)
+      throws JsonProcessingException, JsonMappingException {
     return new ArrayList<>(Arrays.asList(mapper.readValue(dashboardJSON, Dashboard[].class)));
   }
 
@@ -92,7 +102,15 @@ public class DashboardBean implements Serializable {
   protected void removeDashboardInUserProperty(String dashboardProperty) {
     currentUser().removeProperty(dashboardProperty);
   }
-  
+
+  private void loadWidgets(List<DashboardWidget> widgets) {
+    for (DashboardWidget widget : widgets) {
+      if (widget.getType().equals(DashboardWidgetType.PROCESS)) {
+        loadProcessesOfWidget(widget);
+      }
+    }
+  }
+
   private void buildWidgetModels() {
     for (Dashboard dashboard : dashboards) {
       buildSubWidgetModels(dashboard.getWidgets());
@@ -117,6 +135,12 @@ public class DashboardBean implements Serializable {
             widget.setName(translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourCases"));
           }
           break;
+        case PROCESS:
+          loadProcessesOfWidget(widget);
+          if (StringUtils.isBlank(widget.getName())) {
+            widget.setName(translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourProcesses"));
+          }
+          break;
         default:
           break;
       }
@@ -127,6 +151,47 @@ public class DashboardBean implements Serializable {
         Ivy.log().error(e);
       }
     }
+  }
+
+  private void loadProcessesOfWidget(DashboardWidget widget) {
+    ProcessDashboardWidget processWidget = (ProcessDashboardWidget) widget;
+    if (processWidget.getDisplayMode().equals(ProcessWidgetMode.COMPACT_MODE)) {
+      loadProcesses(processWidget);
+    }
+  }
+
+  private void loadProcesses(ProcessDashboardWidget processWidget) {
+    List<DashboardProcess> processes;
+    if (processWidget.isSelectedAllProcess()) {
+      processes = getAllPortalProcesses();
+    } else if (CollectionUtils.isNotEmpty(processWidget.getProcesses())) {
+      processes = processWidget.getProcesses();
+      processWidget.setProcesses(processes);
+    } else {
+      if (CollectionUtils.isNotEmpty(processWidget.getCategories())) {
+        List<DashboardProcess> allPortalProcesses = getAllPortalProcesses();
+        processes = allPortalProcesses.stream()
+            .filter(process -> isProcessMatchedCategory(process, processWidget.getCategories()))
+            .collect(Collectors.toList());
+      } else {
+        processes = getAllPortalProcesses();
+      }
+    }
+
+    processWidget.setDisplayProcesses(processes);
+    processWidget.setOriginalDisplayProcesses(processes);
+  }
+
+  private List<DashboardProcess> getAllPortalProcesses() {
+    DashboardProcessBean dashboardProcessBean = ManagedBeans.get("dashboardProcessBean");
+    return dashboardProcessBean == null ? new ArrayList<>() : dashboardProcessBean.getAllPortalProcesses();
+  }
+
+  private boolean isProcessMatchedCategory(DashboardProcess process, List<String> categories) {
+    
+    boolean hasNoCategory = categories.indexOf(CategoryUtils.NO_CATEGORY) > -1;
+    return categories.indexOf(process.getCategory()) > -1
+        || (StringUtils.isBlank(process.getCategory()) && hasNoCategory);
   }
 
   protected List<Dashboard> defaultDashboards() throws IOException {
@@ -153,7 +218,8 @@ public class DashboardBean implements Serializable {
   }
 
   private boolean isSessionUserHasPermisson(String permission) {
-    return StringUtils.startsWith(permission, "#") ? StringUtils.equals(currentUser().getMemberName(), permission) : PermissionUtils.doesSessionUserHaveRole(permission);
+    return StringUtils.startsWith(permission, "#") ? StringUtils.equals(currentUser().getMemberName(), permission)
+        : PermissionUtils.doesSessionUserHaveRole(permission);
   }
 
   public List<Dashboard> getDashboards() {
@@ -165,7 +231,8 @@ public class DashboardBean implements Serializable {
     String nodes = Optional.ofNullable(requestParamMap.get("nodes")).orElse(StringUtils.EMPTY);
     List<DashboardWidget> widgets = Arrays.asList(mapper.readValue(nodes, DashboardWidget[].class));
     for (DashboardWidget widget : widgets) {
-      DashboardWidget updatedWidget = getSelectedDashboard().getWidgets().get(getSelectedDashboard().getWidgets().indexOf(widget));
+      DashboardWidget updatedWidget =
+          getSelectedDashboard().getWidgets().get(getSelectedDashboard().getWidgets().indexOf(widget));
       updatedWidget.setAxisX(widget.getAxisX());
       updatedWidget.setAxisY(widget.getAxisY());
       updatedWidget.setWidth(widget.getWidth());
@@ -230,9 +297,10 @@ public class DashboardBean implements Serializable {
     selectedDashboard = dashboards.get(index);
   }
 
-  public void  onDashboardChangeByDropdown() {
+  public void onDashboardChangeByDropdown() {
     if (selectedDashboardId != null) {
-      currentDashboardIndex = dashboards.indexOf(dashboards.stream().filter(dashboard -> dashboard.getId().contentEquals(selectedDashboardId)).findFirst().orElse(null));
+      currentDashboardIndex = dashboards.indexOf(dashboards.stream()
+          .filter(dashboard -> dashboard.getId().contentEquals(selectedDashboardId)).findFirst().orElse(null));
       selectedDashboard = dashboards.get(currentDashboardIndex);
     }
   }
@@ -280,7 +348,7 @@ public class DashboardBean implements Serializable {
   protected String translate(String cms) {
     return Ivy.cms().co(cms);
   }
-  
+
   protected String translate(String cms, List<Object> params) {
     return Ivy.cms().co(cms, params);
   }
