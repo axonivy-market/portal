@@ -28,3 +28,4 @@ passwordResetUsername String #field
 isValidResetUrl Boolean #field
 passwordResetMessage String #field
 isShowDashboard Boolean #field
+processId String #field
