@@ -504,4 +504,9 @@
   --security-member-header-font-size: 12px;
   --security-member-item-font-size: 10px;
   --security-member-header-font-weight: bold;
+
+  /* Process information page */
+  --process-info-icon-font-size: 4rem;
+  --process-info-step-icon-font-size: 2rem;
+  --process-info-step-icon-font-color: var(--primary-color);
   }

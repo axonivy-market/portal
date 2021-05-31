@@ -1132,6 +1132,11 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   height: auto;
 }
 
+.process-widget .process-more-info-link {
+  display: block;
+  margin-top: 20px;
+}
+
 .process-widget .process-nav .character-container {
   display: flex;
   flex-flow: column;
@@ -5711,4 +5716,9 @@ body span.ui-commandlink .si {
     max-width: 95vw;
   }
 
+}
+
+/* Process information page */
+.process-overview-layout-content .process-info-icon {
+  line-height: 1.5;
 }
