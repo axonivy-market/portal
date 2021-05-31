@@ -22,6 +22,7 @@ import portal.guitest.common.TestAccount;
 import portal.guitest.page.CaseDetailsPage;
 import portal.guitest.page.CaseWidgetPage;
 import portal.guitest.page.HomePage;
+import portal.guitest.page.ProcessWidgetPage;
 
 public class PortalCasesScreenshotTest extends ScreenshotTest {
 
@@ -209,5 +210,22 @@ public class PortalCasesScreenshotTest extends ScreenshotTest {
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(resetButton,
         ScreenshotUtil.CASE_DETAIL_FOLDER + "how-to-reset-to-default", new ScreenshotMargin(100, 200));
     caseDetailsPage.resetToDefault();
+  }
+
+  @Test
+  public void screenshotProcessOverviewLink() throws IOException {
+    ScreenshotUtil.resizeBrowser(new Dimension(1920, 900));
+    login(TestAccount.ADMIN_USER);
+    ProcessWidgetPage processWidget = homePage.getProcessWidget();
+    processWidget.expand();
+    processWidget.startProcess("Process With Process Steps");
+    
+    homePage = new HomePage();
+    caseWidget = homePage.openCaseList();
+    CaseDetailsPage caseDetailsPage = caseWidget.openDetailsOfCaseHasName("Process With Process Steps");
+    caseDetailsPage.waitForCaseDetailsDisplay();
+    
+    executeDecorateJs("highlightProcessOverviewLink()");
+    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.PROCESSES_INFORMATION_WIDGET_FOLDER + "process-overview-link");
   }
 }

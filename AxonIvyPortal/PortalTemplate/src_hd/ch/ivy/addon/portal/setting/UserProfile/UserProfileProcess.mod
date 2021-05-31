@@ -1,5 +1,5 @@
 [Ivy]
-172546E1FDEB1FF7 9.3.0 #module
+172546E1FDEB1FF7 9.2.0 #module
 >Proto >Proto Collection #zClass
 Us0 UserProfileProcess Big #zClass
 Us0 RD #cInfo
@@ -513,7 +513,9 @@ in.processModes.clear();
 GlobalSettingService globalSettingService = new GlobalSettingService();
 GlobalSetting defaultSetting = globalSettingService.findGlobalSettingByGlobalVariable(GlobalVariable.DEFAULT_PROCESS_MODE);
 
-String defaultProcessModeSetting = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/MyProfile/defaultOption", [defaultSetting.getDisplayValue()]);
+ProcessMode defaultSettingEnum = ProcessMode.valueOf(defaultSetting.value);
+
+String defaultProcessModeSetting = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/MyProfile/defaultOption", [defaultSettingEnum == null ? "" : defaultSettingEnum.getLabel()]);
 in.processModes.add(defaultProcessModeSetting);
 
 for (ProcessMode mode : ProcessMode.values()) {
