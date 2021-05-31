@@ -23,17 +23,14 @@ can reach this page by using:
 -   :guilabel:`More information` link of a process in full Process List (grid mode).
 
 
-|more-information-link|
 
 -   :guilabel:`Show process overview` link in Case details page of a case started by the process.
 
 
-|process-overview-link|
 
 Process steps
 ^^^^^^^^^^^^^
 
-|process-information|
 
 On the top of the **Process Information** page you see basic information of the process
 such as process name and description.
@@ -42,7 +39,3 @@ Depend on the process, you can see process steps which are defined by developers
 These process steps can give you a clear vision about the flow of the process so
 you can have better knowledge and work more efficiency with it.
 
-
-.. |more-information-link| image:: ../../screenshots/process/information/more-information-link.png
-.. |process-overview-link| image:: ../../screenshots/process/information/process-overview-link.png
-.. |process-information| image:: ../../screenshots/process/information/process-information.png
