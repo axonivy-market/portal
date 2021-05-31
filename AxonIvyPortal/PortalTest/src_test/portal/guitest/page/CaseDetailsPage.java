@@ -52,6 +52,16 @@ public class CaseDetailsPage extends TemplatePage {
     return caseItem.findElement(By.cssSelector("span[id$='case-category']")).getText();
   }
 
+  public boolean isTechnicalCaseInformationSectionDisplayed() {
+    return isElementDisplayed(By.cssSelector("div[id$='technical-case-information']"));
+  }
+
+  public CaseDetailsPage openBusinessCaseFromTechnicalCase() {
+    caseItem.findElement(By.cssSelector("a[id$='related-business-case']")).click();
+    waitForElementPresent(By.cssSelector("div[id$='technical-case-information']"), false);
+    return new CaseDetailsPage();
+  }
+
   public int getNumberOfHistory() {
     return caseItem.findElements(By.cssSelector(HISTORY_LIST_CSS_SELECTOR)).size();
   }
@@ -183,6 +193,7 @@ public class CaseDetailsPage extends TemplatePage {
     String openDetailsCommandButton = String.format("[id$='related-cases-widget:related-cases:%d:action-step-component:case-item-open-detail-link']", index);
     waitForElementDisplayed(By.cssSelector(openDetailsCommandButton), true);
     findElementByCssSelector(openDetailsCommandButton).click();
+    waitForElementPresent(By.cssSelector(openDetailsCommandButton), false);
     return new CaseDetailsPage();
   }
 
