@@ -2071,3 +2071,13 @@ body.in-dialog .ui-widget-overlay {
 .security-member-tooltip.ui-tooltip.ui-tooltip-left .ui-tooltip-arrow {
   border-left-color: var(--security-member-tooltip-arrow-color);
 }
+
+/* Process information page */
+.process-overview-layout-content .process-info-icon {
+  font-size: var(--process-info-icon-font-size);
+}
+
+.process-overview-layout-content .process-step-icon {
+  font-size: var(--process-info-step-icon-font-size);
+  color: var(--process-info-step-icon-font-color);
+}
