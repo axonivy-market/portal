@@ -3,7 +3,10 @@ package ch.ivy.addon.portalkit.mapper;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.apache.commons.lang3.StringUtils;
+
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
+import ch.ivy.addon.portalkit.bo.Process;
 import ch.ivy.addon.portalkit.configuration.ExternalLink;
 import ch.ivy.addon.portalkit.configuration.UserProcess;
 import ch.ivy.addon.portalkit.enums.ProcessType;
@@ -28,6 +31,11 @@ public class UserProcessMapper {
     userProcess.setProcessName(stripHtmlTags(process.getDisplayName()));
     userProcess.setLink(process.getLink().getRelativeEncoded());
     userProcess.setDescription(process.getDescription());
+    String icon = process.customFields().value("cssIcon");
+    if (StringUtils.isEmpty(icon)) {
+      icon = Process.DEFAULT_PROCESS_ICON;
+    }
+    userProcess.setIcon(icon);
     return userProcess;
   }
 
@@ -39,6 +47,7 @@ public class UserProcessMapper {
     userProcess.setProcessName(stripHtmlTags(expressProcess.getProcessName()));
     userProcess.setLink(startLink);
     userProcess.setDescription(expressProcess.getProcessDescription());
+    userProcess.setIcon(expressProcess.getIcon());
     return userProcess;
   }
 
@@ -48,7 +57,8 @@ public class UserProcessMapper {
     userProcess.setProcessType(ProcessType.EXTERNAL_LINK);
     userProcess.setProcessName(stripHtmlTags(externalLink.getName()));
     userProcess.setLink(externalLink.getLink());
-    userProcess.setDescription(externalLink.getLink());
+    userProcess.setDescription(externalLink.getDescription());
+    userProcess.setIcon(externalLink.getIcon());
     return userProcess;
   }
 
