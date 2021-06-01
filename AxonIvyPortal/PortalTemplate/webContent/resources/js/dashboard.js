@@ -15,7 +15,6 @@ function loadGrid() {
       var serializedData = [];
       grid.engine.nodes.forEach(function(node) {
         serializedData.push({
-          type: node.id.split('_')[0],
           id: node.id,
           x: node.x,
           y: node.y,

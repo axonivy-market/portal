@@ -154,11 +154,13 @@
       </div>
     </ui:define>
 
+    <ui:param name="widgetPreviewStyleClass" value="case-preview" />
     <ui:define name="widgetPreviewContent">
       <ic:ch.ivy.addon.portal.generic.dashboard.component.ColumnManagement id="column-management-component" widget="#{widget}"
         componentToUpdate="#{cc.attrs.componentToUpdate}" />
       <ic:ch.ivy.addon.portal.generic.dashboard.component.CaseWidget id="case-widget-preview" isReadOnlyMode="#{cc.attrs.isReadOnlyMode}"
-        caseWidget="#{widget}" renderColumnConfiguration="true" isPreviewMode="true"/>
+        caseWidget="#{widget}" renderColumnConfiguration="true" isPreviewMode="true"
+        onCompleteLoadWidget="PF('new-widget-configuration-dialog').initPosition();"/>
     </ui:define>
   </ui:decorate>
 
