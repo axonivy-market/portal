@@ -377,4 +377,5 @@ public class ProcessWidgetPage extends TemplatePage {
 
   public void clickMoreInformationLink(String processName) {
     click(getGridProcessItem(processName).findElement(By.cssSelector(".process-more-info-link")));
+  }
 }
