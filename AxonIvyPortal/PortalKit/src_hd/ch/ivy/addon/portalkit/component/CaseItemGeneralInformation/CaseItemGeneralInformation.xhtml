@@ -90,9 +90,9 @@
       </h:panelGroup>
     </div>
     
-    <h:panelGroup id="technical-case-information" class="ui-g task-and-case-information" layout="block" rendered="#{!case.isBusinessCase()}">
+    <h:panelGroup id="business-case-information" class="ui-g task-and-case-information" layout="block" rendered="#{!case.isBusinessCase()}">
       <div class="ui-g-12 case-detail-title">
-        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/TechnicalCaseInformation')}" styleClass="text-ellipsis" />
+        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/BusinessCaseInformation')}" styleClass="text-ellipsis" />
       </div>
 
       <h:panelGroup styleClass="ui-g-12 content-field" layout="block"
