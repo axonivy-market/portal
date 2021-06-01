@@ -22,12 +22,24 @@
 
 <h:form id="#{widgetFormId}" styleClass="table-widget-form">
   <div class="widget__header">
-    <span>#{not empty widget.name ? widget.name : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/yourWidget')}</span>
+    <h:panelGroup id="widget__header" class="widget__header-title text-ellipsis">#{not empty widget.name ? widget.name : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/yourWidget')}</h:panelGroup>
+    <p:tooltip for="widget__header" value="#{not empty widget.name ? widget.name : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/yourWidget')}" trackMouse="true" hideEvent="mouseleave click"/>
 
     <h:panelGroup id="widget-header-actions" styleClass="widget__header-actions" layout="block">
+      <!-- remote command to load data for info statistic panel -->
+      <p:remoteCommand name="buildStatisticInfos#{index}"
+        actionListener="#{widget.buildStatisticInfos}"
+        update="statistic-filter-accordion-panel-#{index}"
+        process="@this" partialSubmit="true" immediate="true" />
+
+      <!-- remote command to reset state of info accordion panel -->
+      <p:remoteCommand name="updateWidgetStatisticPannel#{index}"
+        update="statistic-filter-accordion-panel-#{index}"
+        resetValues="true" global="false" process="@this" partialSubmit="true" immediate="true" />
+
       <p:link id="filter-sidebar-link-#{index}"
         href="#"
-        styleClass="widget__filter-sidebar-link si si-filter-1 u-mar-right-15 #{widget.userDefinedFiltersCount.isPresent()}">
+        styleClass="widget__filter-sidebar-link si si-filter-1 #{widget.userDefinedFiltersCount.isPresent()}  u-mar-right-15">
         <h:outputText rendered="#{widget.userDefinedFiltersCount.isPresent()}" value="#{widget.userDefinedFiltersCount.get()}"
           styleClass="widget__filter-noti-number"/>
       </p:link>
@@ -36,31 +48,30 @@
 
       <p:link id="info-sidebar-link-#{index}"
         href="#"
-        styleClass="si si-statistics-daytum u-mar-right-15" />
+        styleClass="si si-statistics-daytum #{isReadOnlyMode ? '' : 'u-mar-right-15'}" />
       <p:tooltip for="info-sidebar-link-#{index}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/widgetInfo')}" trackMouse="true"
         hideEvent="mouseleave click" />
 
-      <p:commandLink id="edit-widget-#{index}" styleClass="si si-pencil u-mar-right-15 u-hidden-sm-down"
+      <p:commandLink id="edit-widget-#{index}" styleClass="si si-pencil u-hidden-sm-down u-mar-right-15"
         oncomplete="PF('new-widget-configuration-dialog').show()"
         global="false"
         actionListener="#{dashboardConfigurationBean.setEditWidget(widget)}"
         update="new-widget-configuration-dialog"
         rendered="#{!isReadOnlyMode}"
-        resetValues="true" />
+        process="@this"
+        partialSubmit="true" />
       <p:tooltip for="edit-widget-#{index}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/editWidget')}" trackMouse="true"
         hideEvent="mouseleave click" />
 
-      <p:commandLink id="delete-widget-#{index}" styleClass="si si-bin-1 u-mar-right-15"
+      <p:commandLink id="delete-widget-#{index}" styleClass="si si-bin-1"
         oncomplete="PF('remove-widget-dialog').show()"
         global="false"
         actionListener="#{dashboardConfigurationBean.setDeleteWidget(widget)}"
         update="remove-widget-dialog"
-        rendered="#{!isReadOnlyMode}" />
+        rendered="#{!isReadOnlyMode}"
+        process="@this"
+        partialSubmit="true" />
       <p:tooltip for="delete-widget-#{index}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/deleteWidget')}" trackMouse="true"
-        hideEvent="mouseleave click" />
-
-      <p:commandLink id="show-full-widget-#{index}" disabled="true" styleClass="si si-arrow-right" />
-      <p:tooltip for="show-full-widget-#{index}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/showFullWidget')}" trackMouse="true"
         hideEvent="mouseleave click" />
 
       <!-- remote command to load data for info statistic panel -->
@@ -95,7 +106,6 @@
           styleClass="statistic-filter-accordion-panel widget-info-panel ui-g-12 ui-fluid"
           multiple="true"
           onTabShow="#{onStatisticTabShow}">
-
             <ui:insert name="widgetInformationContent" />
         </p:accordionPanel>
 
@@ -132,7 +142,6 @@
             <p:commandButton id="reset-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
               styleClass="secondary-btn u-mar-right-15" partialSubmit="true"
               update="#{componentToUpdateOnResetFilter} widget-filter-content widget-header-actions"
-              process="#{componentToProcessOnResetFilter}"
               oncomplete="#{onCompleteResetFilters}; #{onCompleteApplyFilters}; PF('filter-overlay-panel-#{index}').hide();"
               actionListener="#{widget.resetUserFilters()}"
               icon="si si-button-refresh-arrows" resetValues="true"/>
@@ -150,7 +159,7 @@
     </h:panelGroup>
   </div>
 
-  <h:panelGroup id="widget-content" styleClass="widget__content #{widget.id} dashboard-widget-panel-container" layout="block">
+  <h:panelGroup id="widget-content" styleClass="widget__content #{widget.id} #{widgetContentStylyClass} dashboard-widget-panel-container" layout="block">
     <!-- Insert widget content here -->
     <ui:insert name="widgetContent" />
   </h:panelGroup>

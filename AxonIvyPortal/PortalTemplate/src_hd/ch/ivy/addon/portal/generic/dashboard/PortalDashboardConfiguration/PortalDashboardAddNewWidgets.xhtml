@@ -28,9 +28,10 @@
 </p:dialog>
 
 <p:dialog id="new-widget-configuration-dialog" widgetVar="new-widget-configuration-dialog"
+  styleClass="new-widget-configuration-dialog"
   header="#{dashboardConfigurationBean.newWidgetHeader}"
-  appendTo="@(body)" closeOnEscape="true" draggable="false" dynamic="true"
-  fitViewport="true" responsive="true" modal="true" width="95vw">
+  appendTo="@(body)" closeOnEscape="true" dynamic="true"
+  fitViewport="true" responsive="true" modal="true">
   <c:set var="widget" value="#{dashboardConfigurationBean.widget}" />
   <c:set var="componentToProcess" value="#{widget eq null ? '@this' :
    'widget-configuration-form:new-widget-configuration-component:user-filter widget-configuration-form:new-widget-configuration-component:widget-title-group'}" />
@@ -43,6 +44,11 @@
 
     <c:if test="#{widget.type eq 'CASE'}">
       <ic:ch.ivy.addon.portal.generic.dashboard.component.CaseWidgetConfiguration id="new-widget-configuration-component" caseWidget="#{widget}"
+        componentToUpdate="widget-configuration-form" isReadOnlyMode="#{dashboardConfigurationBean.isReadOnlyMode}"/>
+    </c:if>
+
+    <c:if test="#{widget.type eq 'PROCESS'}">
+      <ic:ch.ivy.addon.portal.generic.dashboard.component.ProcessWidgetConfiguration id="new-widget-configuration-component" processWidget="#{widget}"
         componentToUpdate="widget-configuration-form" isReadOnlyMode="#{dashboardConfigurationBean.isReadOnlyMode}"/>
     </c:if>
   </h:form>

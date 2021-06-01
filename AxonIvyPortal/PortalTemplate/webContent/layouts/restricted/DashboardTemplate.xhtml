@@ -76,16 +76,9 @@
 
                     <!-- Process widget -->
                     <c:if test="#{widget.type eq 'PROCESS'}">
-                      <div class="widget__header">
-                        <span>#{not empty widget.name ? widget.name : ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourProcesses")}</span>
-
-                        <div class="widget__header-actions">
-                          <p:commandLink disabled="true" styleClass="si si-arrow-right" />
-                        </div>
-                      </div>
-                      <div class="widget__content process-widget-component">
-                        <ic:ch.ivy.addon.portalkit.component.UserProcessWidget id="process-widget-component" />
-                      </div>
+                      <ic:ch.ivy.addon.portal.generic.dashboard.component.ProcessDashboardWidget widget="#{widget}"
+                        isReadOnlyMode="#{managedBean.isReadOnlyMode}"
+                        index="#{status.index}" />
                     </c:if>
                   </div>
                 </div>

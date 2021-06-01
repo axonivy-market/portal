@@ -8,6 +8,7 @@
   <cc:attribute name="renderColumnConfiguration" default="false" />
   <cc:attribute name="isReadOnlyMode" default="false"/>
   <cc:attribute name="isPreviewMode" default="false"/>
+  <cc:attribute name="onCompleteLoadWidget" />
 </cc:interface>
 
 <cc:implementation>
@@ -17,7 +18,7 @@
 
   <p:remoteCommand id="rcLoadCaseFirstTime" autoRun="true" actionListener="#{caseWidget.dataModel.loadFirstTime()}"
     update="dashboard-cases-container" global="false" async="true" process="@this"
-    oncomplete="loadCaseFirstTime('#{caseWidget.id}');" />
+    oncomplete="loadCaseFirstTime('#{caseWidget.id}'); #{cc.attrs.onCompleteLoadWidget}" />
   <div class="ui-g">
     <h:panelGroup id="loading" styleClass="js-loading-#{caseWidget.id}">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/loading')}</h:panelGroup>
 
