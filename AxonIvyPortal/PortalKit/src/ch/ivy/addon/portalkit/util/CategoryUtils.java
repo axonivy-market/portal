@@ -88,4 +88,20 @@ public class CategoryUtils {
     }
     node.getChildren().forEach(child -> disableSelectionExcept((CheckboxTreeNode) child, selectablePaths));
   }
+  
+  public static void disableSelectionWithoutSelectingExcept(CheckboxTreeNode node, List<String> selectablePaths) {
+    if (node == null || CollectionUtils.isEmpty(selectablePaths)) {
+      return;
+    }
+    node.setSelectable(false);
+    node.setSelected(false);
+    CategoryNode nodeData = (CategoryNode) node.getData();
+    for (String path : selectablePaths) {
+      if (path.equals(nodeData.getCategory())) {
+        node.setSelectable(true);
+        node.setSelected(false);
+      }
+    }
+    node.getChildren().forEach(child -> disableSelectionWithoutSelectingExcept((CheckboxTreeNode) child, selectablePaths));
+  }
 }
