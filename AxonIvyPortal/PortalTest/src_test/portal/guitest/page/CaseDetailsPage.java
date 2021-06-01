@@ -53,13 +53,13 @@ public class CaseDetailsPage extends TemplatePage {
     return caseItem.findElement(By.cssSelector("span[id$='case-category']")).getText();
   }
 
-  public boolean isTechnicalCaseInformationSectionDisplayed() {
-    return isElementDisplayed(By.cssSelector("div[id$='technical-case-information']"));
+  public boolean isBusinessCaseInformationSectionDisplayed() {
+    return isElementDisplayed(By.cssSelector("div[id$='business-case-information']"));
   }
 
   public CaseDetailsPage openBusinessCaseFromTechnicalCase() {
     caseItem.findElement(By.cssSelector("a[id$='related-business-case']")).click();
-    waitForElementPresent(By.cssSelector("div[id$='technical-case-information']"), false);
+    waitForElementPresent(By.cssSelector("div[id$='business-case-information']"), false);
     return new CaseDetailsPage();
   }
 

@@ -114,8 +114,8 @@ public class CaseDetailsTest extends BaseTest {
     MainMenuPage mainMenuPage = homePage.openMainMenu();
     CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
     detailsPage = casePage.openCaseDetailsFromActionMenuByCaseName(BUSINESS_CASE_MAP_LEAVE_REQUEST);
-    // check technical case information is hidden in business case details
-    assertFalse(detailsPage.isTechnicalCaseInformationSectionDisplayed());
+    // check business case information is hidden in business case details
+    assertFalse(detailsPage.isBusinessCaseInformationSectionDisplayed());
 
     // keep business case id
     String originalBusinessCaseId = detailsPage.getCaseId();
@@ -125,8 +125,8 @@ public class CaseDetailsTest extends BaseTest {
     CaseDetailsPage technicalCaseDetailsPage = detailsPage.openCasesOfCasePageViaDetailsAction(0);
     WaitHelper.assertTrueWithWait(() -> "Case Details".equals(technicalCaseDetailsPage.getPageTitle()));
 
-    // check technical case information is displayed in technical case
-    WaitHelper.assertTrueWithWait(() -> detailsPage.isTechnicalCaseInformationSectionDisplayed());
+    // check business case information is displayed in technical case
+    WaitHelper.assertTrueWithWait(() -> detailsPage.isBusinessCaseInformationSectionDisplayed());
 
     // open business case detail from technical case details
     CaseDetailsPage businessCaseDetailsPage = technicalCaseDetailsPage.openBusinessCaseFromTechnicalCase();
