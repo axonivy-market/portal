@@ -163,7 +163,7 @@ public class TaskDashboardWidget extends DashboardWidget {
 
   private TaskSearchCriteria generateTaskSearchCriteriaWithoutOrderByClause() throws ParseException {
     TaskSearchCriteria taskSearchCriteria = new TaskSearchCriteria();
-    taskSearchCriteria.setFinalTaskQuery(dataModel.getCriteria().buildQueryWithoutOrderByClause());
+    taskSearchCriteria.setFinalTaskQuery(dataModel.getCriteria().buildQuery());
     return taskSearchCriteria;
   }
 
