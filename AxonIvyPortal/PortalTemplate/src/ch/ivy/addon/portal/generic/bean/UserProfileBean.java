@@ -45,8 +45,8 @@ public class UserProfileBean implements Serializable {
       GlobalSettingService globalSettingService = new GlobalSettingService();
       String defaultSortField = globalSettingService.findGlobalSettingByKey(GlobalVariable.DEFAULT_SORT_FIELD_OF_TASK_LIST.name()).getValue();
 
-      String diplaySortField = sortFieldNames.contains(defaultSortField) ? TaskSortField.valueOf(defaultSortField).getLabel() : defaultSortField;
-      return getDefaultSelection(diplaySortField);
+      String displaySortField = sortFieldNames.contains(defaultSortField) ? TaskSortField.valueOf(defaultSortField).getLabel() : defaultSortField;
+      return getDefaultSelection(displaySortField);
     }
 
     return sortFieldNames.contains(sortField) ? TaskSortField.valueOf(sortField).getLabel() : sortField;
@@ -58,8 +58,8 @@ public class UserProfileBean implements Serializable {
       GlobalSettingService globalSettingService = new GlobalSettingService();
       String defaultSortField = globalSettingService.findGlobalSettingByKey(GlobalVariable.DEFAULT_SORT_FIELD_OF_CASE_LIST.name()).getValue();
 
-      String diplaySortField = sortFieldNames.contains(defaultSortField) ? CaseSortField.valueOf(defaultSortField).getLabel() : defaultSortField;
-      return getDefaultSelection(diplaySortField);
+      String displaySortField = sortFieldNames.contains(defaultSortField) ? CaseSortField.valueOf(defaultSortField).getLabel() : defaultSortField;
+      return getDefaultSelection(displaySortField);
     }
 
     return sortFieldNames.contains(sortField) ? CaseSortField.valueOf(sortField).getLabel() : sortField;
@@ -71,8 +71,8 @@ public class UserProfileBean implements Serializable {
       GlobalSettingService globalSettingService = new GlobalSettingService();
       String defaultDirection = globalSettingService.findGlobalSettingByKey(GlobalVariable.DEFAULT_SORT_DIRECTION_OF_TASK_LIST.name()).getValue();
 
-      String diplayDirection = sortDirectionNames.contains(defaultDirection) ? SortDirection.valueOf(defaultDirection).getLabel() : "";
-      return getDefaultSelection(diplayDirection);
+      String displayDirection = sortDirectionNames.contains(defaultDirection) ? SortDirection.valueOf(defaultDirection).getLabel() : "";
+      return getDefaultSelection(displayDirection);
     }
 
     return sortDirectionNames.contains(sortDirection) ? SortDirection.valueOf(sortDirection).getLabel() : "";
@@ -84,8 +84,8 @@ public class UserProfileBean implements Serializable {
       GlobalSettingService globalSettingService = new GlobalSettingService();
       String defaultDirection = globalSettingService.findGlobalSettingByKey(GlobalVariable.DEFAULT_SORT_DIRECTION_OF_CASE_LIST.name()).getValue();
       
-      String diplayDirection = sortDirectionNames.contains(defaultDirection) ? SortDirection.valueOf(defaultDirection).getLabel() : "";
-      return getDefaultSelection(diplayDirection);
+      String displayDirection = sortDirectionNames.contains(defaultDirection) ? SortDirection.valueOf(defaultDirection).getLabel() : "";
+      return getDefaultSelection(displayDirection);
     }
 
     
