@@ -594,7 +594,7 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public boolean isExistedFilter(String filterName) {
-    click(findElementById("task-widget:filter-selection-form:filter-name"));
+    findElementById("task-widget:filter-selection-form:filter-name").click();
     List<WebElement> saveFilters = findListElementsByCssSelector("a[id$='user-defined-filter']");
     return saveFilters.stream().anyMatch(filter -> StringUtils.equals(filter.getText(), filterName));
   }
@@ -919,5 +919,19 @@ public class TaskWidgetPage extends TemplatePage {
       }
     }
     return false;
+  }
+  
+  public void openNoActivatorFilter(String filterName) {
+    click(By.cssSelector("[id$='filter-add-action']"));
+    WebElement filterSelectionElement = findElementById(taskWidgetId + ":filter-add-form:filter-selection");
+    List<WebElement> elements = findChildElementsByTagName(filterSelectionElement, "LABEL");
+    for (WebElement element : elements) {
+      if (element.getText().equals(filterName)) {
+        element.click();
+        click(By.cssSelector("[id$='task-widget:filter-add-form:update-filter-selected-command']"));
+        break;
+      }
+    }
+    waitForNumberOfTasks(1);
   }
 }

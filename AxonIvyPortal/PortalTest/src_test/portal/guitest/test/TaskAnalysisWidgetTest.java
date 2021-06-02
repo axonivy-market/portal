@@ -1,6 +1,7 @@
 package portal.guitest.test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ import portal.guitest.page.HomePage;
 import portal.guitest.page.MainMenuPage;
 import portal.guitest.page.StatisticWidgetPage;
 import portal.guitest.page.TaskAnalysisWidgetPage;
+import portal.guitest.page.TaskWidgetPage;
 
 public class TaskAnalysisWidgetTest extends BaseTest {
 
@@ -323,5 +325,14 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     
     assertTrue(taskAnalysisWidgetPage.getUser("responsible").contains("Demo"));
     assertTrue(taskAnalysisWidgetPage.getUser("creator").contains("Demo"));
+  }
+  
+  @Test
+  public void testTaskFilterForUnavailableActivator() {
+    TaskAnalysisWidgetPage taskAnalysisWidgetPage = statisticWidgetPage.navigateToTaskAnalysisPage();
+    taskAnalysisWidgetPage.openNoActivatorFilter("Tasks of unavailable activators");
+    taskAnalysisWidgetPage.clickApplyFilter();
+    List<WebElement> results = taskAnalysisWidgetPage.getRowsInTaskTable();
+    assertEquals(2, results.size());
   }
 }
