@@ -44,6 +44,7 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
   protected List<WidgetSample> samples;
   private String newWidgetHeader;
   private DashboardWidget deleteWidget;
+  private List<String> categories;
 
   @PostConstruct
   public void initConfigration() {
@@ -54,6 +55,8 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
     this.isReadOnlyMode = userAgent.matches(".*Android.*|.*webOS.*|.*iPhone.*|.*iPad.*|.*iPod.*|.*BlackBerry.*|.*IEMobile.*|.*Opera Mini.*");
 
     samples = List.of(taskSample(), caseSample(), statisticSample(), processSample());
+
+    backupCategories();
   }
 
   private WidgetSample taskSample() {
@@ -74,6 +77,18 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
   private WidgetSample processSample() {
     return new WidgetSample(translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/processList"), DashboardWidgetType.PROCESS,
         "process-widget-prototype.png");
+  }
+
+  private void backupCategories() {
+    this.categories = new ArrayList<>();
+    if (this.widget instanceof TaskDashboardWidget) {
+      TaskDashboardWidget taskWidget = (TaskDashboardWidget) this.widget;
+      this.categories = taskWidget.getDataModel().getCategories();
+      
+    } else if (this.widget instanceof CaseDashboardWidget) {
+      CaseDashboardWidget caseWidget = (CaseDashboardWidget) this.widget;
+      this.categories = caseWidget.getDataModel().getCategories();
+    }
   }
 
   public void restore() throws IOException {
@@ -240,6 +255,15 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
     this.newWidgetHeader = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/editWidgetHeader");
   }
 
+
+  public void restoreWidgetData() {
+    if (this.widget instanceof CaseDashboardWidget) {
+      ((CaseDashboardWidget)this.widget).getDataModel().setCategories(this.categories);
+    } else if (this.widget instanceof TaskDashboardWidget) {
+      ((TaskDashboardWidget)this.widget).getDataModel().setCategories(this.categories);
+    }
+  }
+
   public List<WidgetSample> getSamples() {
     return samples;
   }
@@ -258,5 +282,13 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
 
   public void navigatetoDashboardPage() {
     PortalNavigator.navigateToNewDashboard();
+  }
+
+  public List<String> getCategories() {
+    return categories;
+  }
+
+  public void setCategories(List<String> categories) {
+    this.categories = categories;
   }
 }
