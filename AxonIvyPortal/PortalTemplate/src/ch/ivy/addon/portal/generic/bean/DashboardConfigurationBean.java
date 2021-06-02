@@ -195,6 +195,10 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
         processWidget.setSelectedAllProcess(isAllProcessesSelected);
         updateProcessesOfWidget(processWidget);
       }
+    } else if (this.widget.getType() == DashboardWidgetType.TASK) {
+      updateTaskWidgetAfterSave();
+    }  else if (this.widget.getType() == DashboardWidgetType.CASE) {
+      updateCaseWidgetAfterSave();
     }
     resetUserFilter();
     this.widget.buildPredefinedFilterData();
@@ -209,6 +213,40 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
     }
     saveSelectedWidget();
     this.widget = null;
+  }
+
+  private void updateCaseWidgetAfterSave() {
+    CaseDashboardWidget caseWidget = (CaseDashboardWidget) this.widget;
+    List<String> userFilters = caseWidget.getDataModel().getUserFilterCategories();
+    if (CollectionUtils.isNotEmpty(userFilters)) {
+      List<String> userFiltersToRemove = new ArrayList<>();
+      for (String userFilter : userFilters) {
+        if (!caseWidget.getDataModel().getCategories().contains(userFilter)) {
+          userFiltersToRemove.add(userFilter);
+        }
+      }
+      caseWidget.getDataModel().getUserFilterCategories().removeAll(userFiltersToRemove);
+      if (CollectionUtils.isEmpty(caseWidget.getDataModel().getUserFilterCategories())) {
+        caseWidget.setUserDefinedFiltersCount(null);
+      }
+    }
+  }
+
+  private void updateTaskWidgetAfterSave() {
+    TaskDashboardWidget taskWidget = (TaskDashboardWidget) this.widget;
+    List<String> userFilters = taskWidget.getDataModel().getUserFilterCategories();
+    if (CollectionUtils.isNotEmpty(userFilters)) {
+      List<String> userFiltersToRemove = new ArrayList<>();
+      for (String userFilter : userFilters) {
+        if (!taskWidget.getDataModel().getCategories().contains(userFilter)) {
+          userFiltersToRemove.add(userFilter);
+        }
+      }
+      taskWidget.getDataModel().getUserFilterCategories().removeAll(userFiltersToRemove);
+      if (CollectionUtils.isEmpty(taskWidget.getDataModel().getUserFilterCategories())) {
+        taskWidget.setUserDefinedFiltersCount(null);
+      }
+    }
   }
 
   private void updateProcessesOfWidget(ProcessDashboardWidget widget) {
