@@ -54,8 +54,9 @@
   </h:form>
 
   <f:facet name="footer">
-    <p:link id="task-configuration-cancel-link" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" styleClass="u-mar-right-10"
-      href="#" onclick="PF('new-widget-configuration-dialog').hide()" />
+    <p:commandLink id="task-configuration-cancel-link" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" styleClass="u-mar-right-10"
+      onclick="PF('new-widget-configuration-dialog').hide()" actionListener="#{dashboardConfigurationBean.restoreWidgetData()}">
+    </p:commandLink>
 
     <p:commandButton id="widget-configuration-save-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
       actionListener="#{dashboardConfigurationBean.saveWidget()}" icon="si si-floppy-disk"
