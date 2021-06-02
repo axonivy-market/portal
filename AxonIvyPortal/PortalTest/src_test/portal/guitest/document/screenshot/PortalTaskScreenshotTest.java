@@ -214,4 +214,13 @@ public class PortalTaskScreenshotTest extends ScreenshotTest {
     executeDecorateJs("highlightTaskExportToExcelButton()");
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.TASK_WIDGET_FOLDER + "export-to-excel-button");
   }
+  
+  @Test
+  public void screenshotTaskFilterMoreOption() throws IOException {
+    ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 1200));
+    login(TestAccount.ADMIN_USER);
+    TaskWidgetPage taskWidget = homePage.openTaskList();
+    taskWidget.openMoreOptionFilter();
+    ScreenshotUtil.captureHalfTopRightPageScreenShot(ScreenshotUtil.TASK_WIDGET_FOLDER + "task-filter-more-option");
+  }
 }
