@@ -934,4 +934,8 @@ public class TaskWidgetPage extends TemplatePage {
     }
     waitForNumberOfTasks(1);
   }
+  
+  public void openMoreOptionFilter() {
+    click(By.cssSelector("[id$='filter-add-action']"));
+  }
 }
