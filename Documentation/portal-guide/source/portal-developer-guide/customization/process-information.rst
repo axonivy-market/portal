@@ -21,7 +21,7 @@ You can describe details and steps of each process easily by define
 process steps for it.
 
 #. Create a CMS object with type ``source`` in your project with this path:
-   ``Processes\your_process_name\processSteps``
+   ``Processes\your_process_name\processStep``
 
 #. Format of process step:
 
