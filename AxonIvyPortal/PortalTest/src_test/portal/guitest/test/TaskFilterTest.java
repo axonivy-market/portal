@@ -120,6 +120,7 @@ public class TaskFilterTest extends BaseTest {
     mainMenuPage = homePage.openMainMenu();
     taskWidgetPage = mainMenuPage.openTaskList();
     assertFalse(taskWidgetPage.isExistedFilter(filterName));
+    
   }
 
 	@Test
@@ -283,4 +284,26 @@ public class TaskFilterTest extends BaseTest {
 		
 		assertTrue(taskWidgetPage.getFilterName().contains("Default filter"));
 	}
+	
+	@Test
+  public void testTaskFilterForUnavailableActivator() {
+    login(TestAccount.ADMIN_USER);
+
+    MainMenuPage mainMenuPage = new MainMenuPage();
+    TaskWidgetPage taskWidgetPage = mainMenuPage.openTaskList();
+
+    String filterName = "For admins";
+    taskWidgetPage.openNoActivatorFilter("Tasks of unavailable activators");
+    assertEquals(1, taskWidgetPage.countTasks());
+
+    WebElement saveFilterDialog = taskWidgetPage.openSaveFilterDialog();
+    assertEquals("All users", saveFilterDialog.findElement(By.cssSelector("label[for='task-widget:filter-save-form:save-filter-type-radio:1']")).getText());
+    taskWidgetPage.saveAdminFilter("admin filter");
+
+    login(TestAccount.DEMO_USER);
+    HomePage homePage = new HomePage();
+    mainMenuPage = homePage.openMainMenu();
+    taskWidgetPage = mainMenuPage.openTaskList();
+    assertFalse(taskWidgetPage.isExistedFilter(filterName));
+  }
 }

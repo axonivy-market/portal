@@ -341,4 +341,16 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
   public WebElement getSavingFilterDialog() {
     return findElementByCssSelector("div[id$='save-filter-set-dialog']");
   }
+  
+  public void openNoActivatorFilter(String filterName) {
+    findTaskFilterButton().click();
+    WebElement filterSelectionElement = findElementById("task-widget:task-filter-add-form:task-filter-selection");
+    for (WebElement filterElement : findChildElementsByTagName(filterSelectionElement, "LABEL")) {
+      if (filterName.equals(filterElement.getText())) {
+        filterElement.click();
+        click(By.cssSelector("button[id$='task-widget:task-filter-add-form:update-task-filter-selected-command']"));
+        break;
+      }
+    }
+  }
 }
