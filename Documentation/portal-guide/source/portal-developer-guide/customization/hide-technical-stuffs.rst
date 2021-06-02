@@ -1,7 +1,7 @@
 .. _customization-hideTechnicalStuffs:
 
-Hide technical stuffs
-=====================
+Hide technical stuff
+====================
 
 Hide technical roles
 --------------------
