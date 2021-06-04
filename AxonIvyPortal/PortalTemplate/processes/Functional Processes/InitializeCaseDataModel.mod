@@ -1,5 +1,5 @@
 [Ivy]
-15FA059633297DF9 9.2.0 #module
+15FA059633297DF9 9.3.0 #module
 >Proto >Proto Collection #zClass
 Il0 InitializeCaseDataModel Big #zClass
 Il0 B #cInfo
@@ -32,9 +32,7 @@ Il0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Il0 f0 81 49 30 30 -13 17 #rect
-Il0 f0 @|StartSubIcon #fIcon
 Il0 f1 337 49 30 30 0 15 #rect
-Il0 f1 @|EndSubIcon #fIcon
 Il0 f3 actionTable 'out=in;
 ' #txt
 Il0 f3 actionCode 'import ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel;
@@ -49,7 +47,6 @@ Il0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Il0 f3 152 42 144 44 -69 -8 #rect
-Il0 f3 @|StepIcon #fIcon
 Il0 f4 expr out #txt
 Il0 f4 111 64 152 64 #arcP
 Il0 f2 expr out #txt

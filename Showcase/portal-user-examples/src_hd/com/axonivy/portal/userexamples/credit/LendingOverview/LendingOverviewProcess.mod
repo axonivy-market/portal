@@ -1,5 +1,5 @@
 [Ivy]
-172598595FEC9964 9.2.0 #module
+172598595FEC9964 9.3.0 #module
 >Proto >Proto Collection #zClass
 Ls0 LendingOverviewProcess Big #zClass
 Ls0 RD #cInfo
@@ -37,9 +37,7 @@ Ls0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ls0 f0 83 51 26 26 -16 15 #rect
-Ls0 f0 @|UdInitIcon #fIcon
 Ls0 f1 395 51 26 26 0 12 #rect
-Ls0 f1 @|UdProcessEndIcon #fIcon
 Ls0 f3 guid 1725985961185C80 #txt
 Ls0 f3 actionTable 'out=in;
 ' #txt
@@ -51,9 +49,7 @@ Ls0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ls0 f3 83 147 26 26 -15 15 #rect
-Ls0 f3 @|UdEventIcon #fIcon
 Ls0 f4 211 147 26 26 0 12 #rect
-Ls0 f4 @|UdExitEndIcon #fIcon
 Ls0 f5 109 160 211 160 #arcP
 Ls0 f6 actionTable 'out=in;
 ' #txt
@@ -152,7 +148,6 @@ Ls0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ls0 f6 224 42 112 44 -21 -8 #rect
-Ls0 f6 @|StepIcon #fIcon
 Ls0 f7 109 64 224 64 #arcP
 Ls0 f2 336 64 395 64 #arcP
 Ls0 f8 guid 1725FD5F6C762123 #txt
@@ -169,7 +164,6 @@ Ls0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ls0 f8 83 243 26 26 -25 15 #rect
-Ls0 f8 @|UdMethodIcon #fIcon
 Ls0 f9 dialogId com.axonivy.portal.userexamples.credit.LendingDetail #txt
 Ls0 f9 startMethod start(ch.ivy.addon.portalkit.bo.CaseMapDetail,Integer) #txt
 Ls0 f9 requestActionDecl '<ch.ivy.addon.portalkit.bo.CaseMapDetail caseMapDetail,Integer index> param;' #txt
@@ -186,7 +180,6 @@ Ls0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ls0 f9 232 234 112 44 -38 -8 #rect
-Ls0 f9 @|UserDialogIcon #fIcon
 Ls0 f10 109 256 232 256 #arcP
 Ls0 f11 guid 17298009F9A705DB #txt
 Ls0 f11 actionTable 'out=in;
@@ -199,7 +192,6 @@ Ls0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ls0 f11 83 339 26 26 -14 15 #rect
-Ls0 f11 @|UdEventIcon #fIcon
 Ls0 f12 dialogId com.axonivy.portal.userexamples.ExampleHomePage #txt
 Ls0 f12 startMethod start() #txt
 Ls0 f12 requestActionDecl '<> param;' #txt
@@ -213,12 +205,10 @@ Ls0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ls0 f12 224 330 128 44 -55 -8 #rect
-Ls0 f12 @|UserDialogIcon #fIcon
 Ls0 f13 109 352 224 352 #arcP
 >Proto Ls0 .type com.axonivy.portal.userexamples.credit.LendingOverview.LendingOverviewData #txt
 >Proto Ls0 .processKind HTML_DIALOG #txt
 >Proto Ls0 -8 -8 16 16 16 26 #rect
->Proto Ls0 '' #fIcon
 Ls0 f3 mainOut f5 tail #connect
 Ls0 f5 head f4 mainIn #connect
 Ls0 f0 mainOut f7 tail #connect

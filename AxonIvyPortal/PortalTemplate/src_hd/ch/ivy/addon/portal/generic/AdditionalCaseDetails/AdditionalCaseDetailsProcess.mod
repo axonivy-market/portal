@@ -1,5 +1,5 @@
 [Ivy]
-160FD493AA8D5416 9.2.0 #module
+160FD493AA8D5416 9.3.0 #module
 >Proto >Proto Collection #zClass
 As0 AdditionalCaseDetailsProcess Big #zClass
 As0 RD #cInfo
@@ -29,14 +29,11 @@ As0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f0 83 51 26 26 -53 15 #rect
-As0 f0 @|UdInitIcon #fIcon
 As0 f1 211 51 26 26 0 12 #rect
-As0 f1 @|UdProcessEndIcon #fIcon
 As0 f2 expr out #txt
 As0 f2 109 64 211 64 #arcP
 >Proto As0 .type ch.ivy.addon.portal.generic.AdditionalCaseDetails.AdditionalCaseDetailsData #txt
 >Proto As0 .processKind HTML_DIALOG #txt
 >Proto As0 -8 -8 16 16 16 26 #rect
->Proto As0 '' #fIcon
 As0 f0 mainOut f2 tail #connect
 As0 f2 head f1 mainIn #connect

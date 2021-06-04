@@ -1,5 +1,5 @@
 [Ivy]
-17495493468117BD 9.2.0 #module
+17495493468117BD 9.3.0 #module
 >Proto >Proto Collection #zClass
 Ls0 LoginErrorPageProcess Big #zClass
 Ls0 RD #cInfo
@@ -27,9 +27,7 @@ Ls0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ls0 f0 83 51 26 26 -16 15 #rect
-Ls0 f0 @|UdInitIcon #fIcon
 Ls0 f1 211 51 26 26 0 12 #rect
-Ls0 f1 @|UdProcessEndIcon #fIcon
 Ls0 f2 109 64 211 64 #arcP
 Ls0 f3 guid 17495493487574FD #txt
 Ls0 f3 actionTable 'out=in;
@@ -42,14 +40,11 @@ Ls0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ls0 f3 83 147 26 26 -15 15 #rect
-Ls0 f3 @|UdEventIcon #fIcon
 Ls0 f4 211 147 26 26 0 12 #rect
-Ls0 f4 @|UdExitEndIcon #fIcon
 Ls0 f5 109 160 211 160 #arcP
 >Proto Ls0 .type ch.ivy.addon.portalkit.LoginErrorPage.LoginErrorPageData #txt
 >Proto Ls0 .processKind HTML_DIALOG #txt
 >Proto Ls0 -8 -8 16 16 16 26 #rect
->Proto Ls0 '' #fIcon
 Ls0 f0 mainOut f2 tail #connect
 Ls0 f2 head f1 mainIn #connect
 Ls0 f3 mainOut f5 tail #connect

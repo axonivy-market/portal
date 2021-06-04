@@ -784,6 +784,12 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   flex: 0 0 auto;
 }
 
+.case-detail-section-title-container .case-history-button-container .ui-link {
+  display: inline;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .case-detail-section-title,
 .task-detail-section-title {
   margin-bottom: 14px;
@@ -807,7 +813,6 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 }
 
 .task-item-body-container .card.task-detail-card.iframe-widget {
-  padding: 5px;
   overflow: hidden;
 }
 
@@ -1131,6 +1136,11 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   position: absolute !important;
   right: 0;
   height: auto;
+}
+
+.process-widget .process-more-info-link {
+  display: block;
+  margin-top: 20px;
 }
 
 .process-widget .process-nav .character-container {
@@ -2102,7 +2112,9 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   margin-top: 10px;
 }
 
-.task-details-document-download-icon {
+.task-details-document-download-icon,
+.case-document-name .document-name,
+.task-document-name .document-name {
   margin-right: 5px;
 }
 
@@ -2143,6 +2155,11 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   font-weight: bold;
   padding: 10px 0 5px 0 !important;
   margin-bottom: 6px;
+}
+
+.task-and-case-information .case-detail-business-case {
+  margin-top: 0px;
+  display: inline;
 }
 
 .case-detail-description {
@@ -2268,7 +2285,6 @@ _:-ms-input-placeholder, :root .case-details>* {
 
 .additional-case-details-link {
   margin-left: 10px;
-  display: inline-block;
 }
 /* override on IE */
 _:-ms-fullscreen, :root .additional-case-details-link {
@@ -3246,6 +3262,10 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 
 .my-profile-container .sort-field-selection {
   width: 160px;
+}
+
+.my-profile-container .my-profile-selection-menu .ui-selectonemenu-label {
+  text-overflow: ellipsis;
 }
 
 @media screen and (max-width: 40em) {
@@ -5701,4 +5721,9 @@ body span.ui-commandlink .si {
     max-width: 95vw;
   }
 
+}
+
+/* Process information page */
+.process-overview-layout-content .process-info-icon {
+  line-height: 1.5;
 }

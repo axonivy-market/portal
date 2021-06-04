@@ -1,5 +1,5 @@
 [Ivy]
-15E0CEDE89CC1D0E 9.2.0 #module
+15E0CEDE89CC1D0E 9.3.0 #module
 >Proto >Proto Collection #zClass
 Pe0 PasswordService Big #zClass
 Pe0 B #cInfo
@@ -32,9 +32,7 @@ Pe0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Pe0 f0 81 81 30 30 -86 17 #rect
-Pe0 f0 @|StartSubIcon #fIcon
 Pe0 f1 425 81 30 30 0 15 #rect
-Pe0 f1 @|EndSubIcon #fIcon
 Pe0 f6 actionTable 'out=in;
 ' #txt
 Pe0 f6 actionCode 'import ch.ivy.addon.portalkit.ivydata.service.impl.PasswordService;
@@ -49,7 +47,6 @@ Pe0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Pe0 f6 232 74 112 44 -51 -8 #rect
-Pe0 f6 @|StepIcon #fIcon
 Pe0 f4 111 96 232 96 #arcP
 Pe0 f2 344 96 425 96 #arcP
 >Proto Pe0 .type ch.ivyteam.wf.processes.PasswordServiceData #txt
