@@ -108,7 +108,11 @@ public class AbsencePage extends TemplatePage {
       } catch (Exception e) {
         // to avoid choose-deputy-dialog displays before deputiesLink is clicked
       }
-      return findElementById("choose-deputy-dialog").isDisplayed();
+      try {
+        return findElementById("choose-deputy-dialog").isDisplayed();
+      } catch (Exception e) {
+        return false;
+      }
     });
   }
 
