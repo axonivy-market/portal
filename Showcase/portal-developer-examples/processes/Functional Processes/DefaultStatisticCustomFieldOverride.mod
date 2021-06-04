@@ -1,5 +1,5 @@
 [Ivy]
-16A914CEF46EA5B8 9.2.0 #module
+16A914CEF46EA5B8 9.3.0 #module
 >Proto >Proto Collection #zClass
 Dd0 DefaultStatisticCustomField Big #zClass
 Dd0 B #cInfo
@@ -31,9 +31,7 @@ Dd0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Dd0 f0 81 49 30 30 34 -10 #rect
-Dd0 f0 @|StartSubIcon #fIcon
 Dd0 f1 81 305 30 30 0 15 #rect
-Dd0 f1 @|EndSubIcon #fIcon
 Dd0 f3 actionTable 'out=in;
 ' #txt
 Dd0 f3 actionCode 'import java.util.Arrays;
@@ -47,7 +45,6 @@ Dd0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Dd0 f3 32 170 128 44 -61 -8 #rect
-Dd0 f3 @|StepIcon #fIcon
 Dd0 f4 expr out #txt
 Dd0 f4 96 79 96 170 #arcP
 Dd0 f2 expr out #txt
@@ -65,7 +62,6 @@ in.customFields = Arrays.asList("MyCustomStringField1", "MyCustomStringField2");
 </elementInfo>
 ' #txt
 Dd0 f5 320 130 768 108 -379 -48 #rect
-Dd0 f5 @|IBIcon #fIcon
 >Proto Dd0 .type _com.axonivy.portal.developerexamples.DefaultStatisticCustomFieldOverrideData #txt
 >Proto Dd0 .processKind CALLABLE_SUB #txt
 >Proto Dd0 0 0 32 24 18 0 #rect

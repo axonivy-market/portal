@@ -1,5 +1,5 @@
 [Ivy]
-1636734E13CEC872 9.2.0 #module
+1636734E13CEC872 9.3.0 #module
 >Proto >Proto Collection #zClass
 Ln0 Login Big #zClass
 Ln0 B #cInfo
@@ -18,7 +18,6 @@ Ln0 @PushWFArc f4 '' #zField
 Ln0 @StartRequest f0 '' #zField
 >Proto Ln0 Ln0 Login #zField
 Ln0 f1 337 49 30 30 0 15 #rect
-Ln0 f1 @|EndIcon #fIcon
 Ln0 f3 actionTable 'out=in;
 ' #txt
 Ln0 f3 actionCode 'boolean isLoggedIn = ivy.session.loginSessionUser(in.username, in.password);
@@ -44,7 +43,6 @@ Ln0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ln0 f3 168 42 112 44 -13 -8 #rect
-Ln0 f3 @|StepIcon #fIcon
 Ln0 f2 expr out #txt
 Ln0 f2 280 64 337 64 #arcP
 Ln0 f4 expr out #txt
@@ -75,7 +73,6 @@ Ln0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ln0 f0 @C|.responsibility Everybody #txt
 Ln0 f0 81 49 30 30 -22 17 #rect
-Ln0 f0 @|StartRequestIcon #fIcon
 >Proto Ln0 .type portalKit_test.LoginData #txt
 >Proto Ln0 .processKind NORMAL #txt
 >Proto Ln0 0 0 32 24 18 0 #rect

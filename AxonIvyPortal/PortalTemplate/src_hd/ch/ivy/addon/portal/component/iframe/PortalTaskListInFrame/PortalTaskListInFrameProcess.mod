@@ -1,5 +1,5 @@
 [Ivy]
-1754E87196DBC6F3 9.2.0 #module
+1754E87196DBC6F3 9.3.0 #module
 >Proto >Proto Collection #zClass
 Ps0 PortalTaskListInFrameProcess Big #zClass
 Ps0 RD #cInfo
@@ -29,9 +29,7 @@ Ps0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f0 83 51 26 26 -16 15 #rect
-Ps0 f0 @|UdInitIcon #fIcon
 Ps0 f1 211 51 26 26 0 12 #rect
-Ps0 f1 @|UdProcessEndIcon #fIcon
 Ps0 f2 109 64 211 64 #arcP
 Ps0 f3 guid 1754E8719883B318 #txt
 Ps0 f3 actionTable 'out=in;
@@ -44,14 +42,11 @@ Ps0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f3 83 147 26 26 -15 15 #rect
-Ps0 f3 @|UdEventIcon #fIcon
 Ps0 f4 211 147 26 26 0 12 #rect
-Ps0 f4 @|UdExitEndIcon #fIcon
 Ps0 f5 109 160 211 160 #arcP
 >Proto Ps0 .type ch.ivy.addon.portal.component.iframe.PortalTaskListInFrame.PortalTaskListInFrameData #txt
 >Proto Ps0 .processKind HTML_DIALOG #txt
 >Proto Ps0 -8 -8 16 16 16 26 #rect
->Proto Ps0 '' #fIcon
 Ps0 f0 mainOut f2 tail #connect
 Ps0 f2 head f1 mainIn #connect
 Ps0 f3 mainOut f5 tail #connect

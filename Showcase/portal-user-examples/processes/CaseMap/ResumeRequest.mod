@@ -1,5 +1,5 @@
 [Ivy]
-1703223D3B2BFDE3 9.2.0 #module
+1703223D3B2BFDE3 9.3.0 #module
 >Proto >Proto Collection #zClass
 Rt0 ResumeRequest Big #zClass
 Rt0 B #cInfo
@@ -41,9 +41,7 @@ Rt0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Rt0 f0 @C|.responsibility Everybody #txt
 Rt0 f0 81 49 30 30 -21 17 #rect
-Rt0 f0 @|StartRequestIcon #fIcon
 Rt0 f1 337 49 30 30 0 15 #rect
-Rt0 f1 @|EndIcon #fIcon
 Rt0 f2 expr out #txt
 Rt0 f2 111 64 337 64 #arcP
 >Proto Rt0 .type com.axonivy.portal.userexamples.Data #txt
