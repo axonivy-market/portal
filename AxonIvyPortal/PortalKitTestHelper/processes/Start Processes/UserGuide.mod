@@ -1,5 +1,5 @@
 [Ivy]
-1725F65445A6A111 9.2.0 #module
+1725F65445A6A111 9.3.0 #module
 >Proto >Proto Collection #zClass
 Ue0 UserGuide Big #zClass
 Ue0 B #cInfo
@@ -30,9 +30,7 @@ Ue0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ue0 f0 @C|.responsibility Everybody #txt
 Ue0 f0 81 49 30 30 -20 17 #rect
-Ue0 f0 @|StartRequestIcon #fIcon
 Ue0 f1 337 49 30 30 0 15 #rect
-Ue0 f1 @|EndIcon #fIcon
 Ue0 f3 dialogId ch.ivy.addon.portalkit.test.UserGuide #txt
 Ue0 f3 startMethod start() #txt
 Ue0 f3 requestActionDecl '<> param;' #txt
@@ -46,7 +44,6 @@ Ue0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ue0 f3 168 42 112 44 -27 -8 #rect
-Ue0 f3 @|UserDialogIcon #fIcon
 Ue0 f4 111 64 168 64 #arcP
 Ue0 f2 280 64 337 64 #arcP
 >Proto Ue0 .type portalKit_test.Data #txt

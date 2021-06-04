@@ -1,5 +1,5 @@
 [Ivy]
-16DCDC775655EFD5 9.2.0 #module
+16DCDC775655EFD5 9.3.0 #module
 >Proto >Proto Collection #zClass
 Ok0 OpenPortalCaseDetailsHook Big #zClass
 Ok0 B #cInfo
@@ -29,12 +29,9 @@ Ok0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ok0 f0 81 49 30 30 -13 17 #rect
-Ok0 f0 @|StartSubIcon #fIcon
 Ok0 f1 337 49 30 30 0 15 #rect
-Ok0 f1 @|EndSubIcon #fIcon
 Ok0 f2 111 64 337 64 #arcP
 Ok0 f3 337 177 30 30 0 15 #rect
-Ok0 f3 @|EndSubIcon #fIcon
 Ok0 f4 inParamDecl '<ch.ivyteam.ivy.workflow.ICase caseData,Boolean isShowBackButton> param;' #txt
 Ok0 f4 inParamTable 'out.caseView=param.caseData;
 out.isShowBackButton=param.isShowBackButton;
@@ -49,7 +46,6 @@ Ok0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ok0 f4 81 177 30 30 -13 17 #rect
-Ok0 f4 @|StartSubIcon #fIcon
 Ok0 f5 111 192 337 192 #arcP
 >Proto Ok0 .type ch.ivy.add.portalkit.OpenPortalCaseDetailsHookData #txt
 >Proto Ok0 .processKind CALLABLE_SUB #txt

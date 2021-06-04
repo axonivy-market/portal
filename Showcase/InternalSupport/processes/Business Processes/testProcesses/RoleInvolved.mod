@@ -1,5 +1,5 @@
 [Ivy]
-171E2BB0DB49C362 9.2.0 #module
+171E2BB0DB49C362 9.3.0 #module
 >Proto >Proto Collection #zClass
 Rd0 RoleInvolved Big #zClass
 Rd0 B #cInfo
@@ -32,9 +32,7 @@ Rd0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Rd0 f0 @C|.responsibility Everybody #txt
 Rd0 f0 81 49 30 30 -37 17 #rect
-Rd0 f0 @|StartRequestIcon #fIcon
 Rd0 f1 273 49 30 30 0 15 #rect
-Rd0 f1 @|EndIcon #fIcon
 Rd0 f3 actionTable 'out=in1;
 ' #txt
 Rd0 f3 outLinks "TaskA.ivp" #txt
@@ -42,7 +40,6 @@ Rd0 f3 taskData 'TaskA.NAM=Task for role involved
 TaskA.ROL=TestRoleInvolved
 TaskA.TYPE=0' #txt
 Rd0 f3 176 48 32 32 0 16 #rect
-Rd0 f3 @|TaskSwitchIcon #fIcon
 Rd0 f4 var in1 #txt
 Rd0 f4 111 64 176 64 #arcP
 Rd0 f7 expr data #txt

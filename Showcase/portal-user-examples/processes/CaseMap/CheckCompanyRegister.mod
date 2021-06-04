@@ -1,5 +1,5 @@
 [Ivy]
-1703222D60B87C28 9.2.0 #module
+1703222D60B87C28 9.3.0 #module
 >Proto >Proto Collection #zClass
 Cr0 CheckCompanyRegister Big #zClass
 Cr0 B #cInfo
@@ -44,9 +44,7 @@ Cr0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Cr0 f0 @C|.responsibility Everybody #txt
 Cr0 f0 81 49 30 30 -21 17 #rect
-Cr0 f0 @|StartRequestIcon #fIcon
 Cr0 f1 433 49 30 30 0 15 #rect
-Cr0 f1 @|EndIcon #fIcon
 Cr0 f3 actionTable 'out=in;
 ' #txt
 Cr0 f3 actionCode 'ivy.log.info("Business Process is in Stage " + ivy.case.getBusinessCase().getStage().getName());' #txt
@@ -60,7 +58,6 @@ Cr0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cr0 f3 217 42 112 44 -25 -8 #rect
-Cr0 f3 @|StepIcon #fIcon
 Cr0 f2 expr out #txt
 Cr0 f2 111 64 217 64 #arcP
 Cr0 f4 expr out #txt

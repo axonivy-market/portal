@@ -32,8 +32,7 @@ public class CaseFinishedDateFilter extends CaseFilter {
 
   @Override
   public String value() {
-    DateTimeGlobalSettingService service = new DateTimeGlobalSettingService();
-    DateFormat formatter = new SimpleDateFormat(service.getDateTimePattern());
+    DateFormat formatter = new SimpleDateFormat(DateTimeGlobalSettingService.getInstance().getDateTimePattern(), Ivy.session().getContentLocale());
     if (fromFinishedDate != null && toFinishedDate != null) {
       return String.format(DASH, formatter.format(fromFinishedDate), formatter.format(toFinishedDate));
     }

@@ -1,5 +1,5 @@
 [Ivy]
-16B3FA08E0ADDCE6 9.2.0 #module
+16B3FA08E0ADDCE6 9.3.0 #module
 >Proto >Proto Collection #zClass
 At0 AssignRolesGroupChat Big #zClass
 At0 B #cInfo
@@ -33,9 +33,7 @@ At0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 At0 f0 57 17 30 30 5 17 #rect
-At0 f0 @|StartSubIcon #fIcon
 At0 f1 57 225 30 30 0 15 #rect
-At0 f1 @|EndSubIcon #fIcon
 At0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -51,7 +49,6 @@ if (processPath.contains("Start Processes/CreateTestData/CategoriedLeaveRequest.
 </elementInfo>
 ' #txt
 At0 f3 136 74 512 140 -250 -64 #rect
-At0 f3 @|IBIcon #fIcon
 At0 f5 actionTable 'out=in;
 ' #txt
 At0 f5 actionCode 'import java.util.ArrayList;
@@ -68,7 +65,6 @@ At0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 At0 f5 16 106 112 44 -27 -8 #rect
-At0 f5 @|StepIcon #fIcon
 At0 f6 expr out #txt
 At0 f6 72 47 72 106 #arcP
 At0 f2 expr out #txt

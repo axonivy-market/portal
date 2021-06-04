@@ -1,5 +1,5 @@
 [Ivy]
-15493AEB89F5A807 9.2.0 #module
+15493AEB89F5A807 9.3.0 #module
 >Proto >Proto Collection #zClass
 Os0 OpenPortalTasks Big #zClass
 Os0 B #cInfo
@@ -39,9 +39,7 @@ Os0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Os0 f0 83 99 26 26 14 -22 #rect
-Os0 f0 @|StartSubIcon #fIcon
 Os0 f1 627 99 26 26 14 0 #rect
-Os0 f1 @|EndSubIcon #fIcon
 Os0 f3 dialogId ch.ivy.addon.portal.generic.PortalTasks #txt
 Os0 f3 startMethod useTaskView(TaskView) #txt
 Os0 f3 requestActionDecl '<ch.ivy.addon.portal.generic.view.TaskView taskView> param;' #txt
@@ -59,7 +57,6 @@ Os0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Os0 f3 312 90 112 44 -33 -8 #rect
-Os0 f3 @|UserDialogIcon #fIcon
 Os0 f2 expr out #txt
 Os0 f2 424 112 627 112 #arcP
 Os0 f2 0 0.49728593711698305 0 0 #arcLabel
@@ -78,9 +75,7 @@ Os0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Os0 f4 83 371 26 26 9 -30 #rect
-Os0 f4 @|StartSubIcon #fIcon
 Os0 f5 627 371 26 26 14 0 #rect
-Os0 f5 @|EndSubIcon #fIcon
 Os0 f6 dialogId ch.ivy.addon.portal.component.iframe.PortalTaskListInFrame #txt
 Os0 f6 startMethod start(ch.ivy.addon.portal.generic.view.TaskView) #txt
 Os0 f6 requestActionDecl '<ch.ivy.addon.portal.generic.view.TaskView taskView> param;' #txt
@@ -98,7 +93,6 @@ Os0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Os0 f6 304 362 144 44 -62 -8 #rect
-Os0 f6 @|UserDialogIcon #fIcon
 Os0 f8 expr out #txt
 Os0 f8 109 384 304 384 #arcP
 Os0 f8 0 0.5000000000000001 0 0 #arcLabel
@@ -120,7 +114,6 @@ To override Portal task widget''s UI: you should use Axon Ivy HTMLOverride Dialo
 </elementInfo>
 ' #txt
 Os0 f10 144 458 736 76 -358 -34 #rect
-Os0 f10 @|IBIcon #fIcon
 Os0 f11 144 496 101 395 #arcP
 Os0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -138,7 +131,6 @@ To override Portal task widget''s UI: you should use Axon Ivy HTMLOverride Dialo
 </elementInfo>
 ' #txt
 Os0 f12 152 170 672 76 -329 -34 #rect
-Os0 f12 @|IBIcon #fIcon
 Os0 f13 152 208 102 123 #arcP
 >Proto Os0 .type ch.ivy.addon.portal.generic.OpenPortalTasksData #txt
 >Proto Os0 .processKind CALLABLE_SUB #txt

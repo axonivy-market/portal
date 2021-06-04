@@ -1,5 +1,5 @@
 [Ivy]
-15E13D0DD56B6D3B 9.2.0 #module
+15E13D0DD56B6D3B 9.3.0 #module
 >Proto >Proto Collection #zClass
 Cd0 ChangePassword Big #zClass
 Cd0 B #cInfo
@@ -46,9 +46,7 @@ Cd0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cd0 f0 81 49 30 30 -86 17 #rect
-Cd0 f0 @|StartSubIcon #fIcon
 Cd0 f1 81 625 30 30 0 15 #rect
-Cd0 f1 @|EndSubIcon #fIcon
 Cd0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -67,7 +65,6 @@ OUTPUT:
 </elementInfo>
 ' #txt
 Cd0 f5 360 106 368 156 -180 -72 #rect
-Cd0 f5 @|IBIcon #fIcon
 Cd0 f6 actionTable 'out=in;
 ' #txt
 Cd0 f6 actionCode 'in.isCurrentPasswordCorrect = ivy.session.checkPassword(in.currentPassword);' #txt
@@ -83,15 +80,12 @@ password</name>
 </elementInfo>
 ' #txt
 Cd0 f6 49 163 96 48 -38 -16 #rect
-Cd0 f6 @|StepIcon #fIcon
 Cd0 f7 expr out #txt
 Cd0 f7 96 78 97 163 #arcP
 Cd0 f3 80 256 32 32 0 16 #rect
-Cd0 f3 @|AlternativeIcon #fIcon
 Cd0 f8 expr out #txt
 Cd0 f8 97 211 96 256 #arcP
 Cd0 f11 80 528 32 32 0 16 #rect
-Cd0 f11 @|AlternativeIcon #fIcon
 Cd0 f2 expr in #txt
 Cd0 f2 96 560 96 625 #arcP
 Cd0 f9 actionTable 'out=in;
@@ -115,7 +109,6 @@ Cd0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cd0 f9 24 426 144 44 -64 -8 #rect
-Cd0 f9 @|StepIcon #fIcon
 Cd0 f4 expr out #txt
 Cd0 f4 96 470 96 528 #arcP
 Cd0 f15 actionTable 'out=in;
@@ -137,7 +130,6 @@ message</name>
 </elementInfo>
 ' #txt
 Cd0 f15 176 362 128 44 -43 -16 #rect
-Cd0 f15 @|StepIcon #fIcon
 Cd0 f16 expr in #txt
 Cd0 f16 112 272 240 362 #arcP
 Cd0 f16 1 240 272 #addKink
@@ -167,7 +159,6 @@ Cd0 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cd0 f14 40 330 112 44 -48 -8 #rect
-Cd0 f14 @|CallSubIcon #fIcon
 Cd0 f10 expr in #txt
 Cd0 f10 outCond in.isCurrentPasswordCorrect #txt
 Cd0 f10 96 288 96 330 #arcP

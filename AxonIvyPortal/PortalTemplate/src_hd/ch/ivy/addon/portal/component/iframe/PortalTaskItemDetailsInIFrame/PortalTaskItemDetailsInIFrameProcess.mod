@@ -1,5 +1,5 @@
 [Ivy]
-1754F760476EA790 9.2.0 #module
+1754F760476EA790 9.3.0 #module
 >Proto >Proto Collection #zClass
 Ps0 PortalTaskItemDetailsInIFrameProcess Big #zClass
 Ps0 RD #cInfo
@@ -34,9 +34,7 @@ Ps0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f0 83 51 26 26 -75 29 #rect
-Ps0 f0 @|UdInitIcon #fIcon
 Ps0 f1 371 51 26 26 0 12 #rect
-Ps0 f1 @|UdProcessEndIcon #fIcon
 Ps0 f3 guid 1754F7604DB51E56 #txt
 Ps0 f3 actionTable 'out=in;
 ' #txt
@@ -48,9 +46,7 @@ Ps0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f3 83 147 26 26 -15 15 #rect
-Ps0 f3 @|UdEventIcon #fIcon
 Ps0 f4 371 147 26 26 0 12 #rect
-Ps0 f4 @|UdExitEndIcon #fIcon
 Ps0 f5 109 160 371 160 #arcP
 Ps0 f6 actionTable 'out=in;
 ' #txt
@@ -65,13 +61,11 @@ Ps0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f6 192 42 128 44 -57 -8 #rect
-Ps0 f6 @|StepIcon #fIcon
 Ps0 f7 109 64 192 64 #arcP
 Ps0 f2 320 64 371 64 #arcP
 >Proto Ps0 .type ch.ivy.addon.portal.component.iframe.PortalTaskItemDetailsInIFrame.PortalTaskItemDetailsInIFrameData #txt
 >Proto Ps0 .processKind HTML_DIALOG #txt
 >Proto Ps0 -8 -8 16 16 16 26 #rect
->Proto Ps0 '' #fIcon
 Ps0 f3 mainOut f5 tail #connect
 Ps0 f5 head f4 mainIn #connect
 Ps0 f0 mainOut f7 tail #connect
