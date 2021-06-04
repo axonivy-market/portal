@@ -1,5 +1,5 @@
 [Ivy]
-14E9B792756E0040 9.2.0 #module
+14E9B792756E0040 9.3.0 #module
 >Proto >Proto Collection #zClass
 Ls0 CustomLoginProcess Big #zClass
 Ls0 RD #cInfo
@@ -34,9 +34,7 @@ Ls0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ls0 f0 86 54 20 20 13 0 #rect
-Ls0 f0 @|UdInitIcon #fIcon
 Ls0 f1 86 182 20 20 13 0 #rect
-Ls0 f1 @|UdProcessEndIcon #fIcon
 Ls0 f2 expr out #txt
 Ls0 f2 96 74 96 182 #arcP
 Ls0 f3 guid 14739DB1F4253947 #txt
@@ -52,9 +50,7 @@ Ls0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ls0 f3 182 54 20 20 13 0 #rect
-Ls0 f3 @|UdEventIcon #fIcon
 Ls0 f4 182 198 20 20 13 0 #rect
-Ls0 f4 @|UdExitEndIcon #fIcon
 Ls0 f5 actionTable 'out=in;
 ' #txt
 Ls0 f5 actionCode 'import javax.faces.context.FacesContext;
@@ -102,7 +98,6 @@ get user settings</name>
 </elementInfo>
 ' #txt
 Ls0 f5 174 116 36 24 20 -2 #rect
-Ls0 f5 @|StepIcon #fIcon
 Ls0 f6 expr out #txt
 Ls0 f6 192 74 192 116 #arcP
 Ls0 f7 expr out #txt
@@ -110,7 +105,6 @@ Ls0 f7 192 140 192 198 #arcP
 >Proto Ls0 .type internaltest.ui.CustomLogin.CustomLoginData #txt
 >Proto Ls0 .processKind HTML_DIALOG #txt
 >Proto Ls0 -8 -8 16 16 16 26 #rect
->Proto Ls0 '' #fIcon
 Ls0 f0 mainOut f2 tail #connect
 Ls0 f2 head f1 mainIn #connect
 Ls0 f3 mainOut f6 tail #connect

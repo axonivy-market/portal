@@ -1,5 +1,5 @@
 [Ivy]
-14BCA45FFAD46D2B 9.2.0 #module
+14BCA45FFAD46D2B 9.3.0 #module
 >Proto >Proto Collection #zClass
 Ps0 ProcessChainProcess Big #zClass
 Ps0 RD #cInfo
@@ -28,9 +28,7 @@ Ps0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f0 86 54 20 20 13 0 #rect
-Ps0 f0 @|UdInitIcon #fIcon
 Ps0 f1 86 150 20 20 13 0 #rect
-Ps0 f1 @|UdProcessEndIcon #fIcon
 Ps0 f2 expr out #txt
 Ps0 f2 96 74 96 150 #arcP
 Ps0 f3 guid 176981E34798AC09 #txt
@@ -53,14 +51,11 @@ Ps0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f3 83 243 26 26 -25 15 #rect
-Ps0 f3 @|UdMethodIcon #fIcon
 Ps0 f4 339 243 26 26 0 12 #rect
-Ps0 f4 @|UdProcessEndIcon #fIcon
 Ps0 f5 109 256 339 256 #arcP
 >Proto Ps0 .type ch.ivy.addon.portalkit.singleapp.process.ProcessChain.ProcessChainData #txt
 >Proto Ps0 .processKind HTML_DIALOG #txt
 >Proto Ps0 -8 -8 16 16 16 26 #rect
->Proto Ps0 '' #fIcon
 Ps0 f0 mainOut f2 tail #connect
 Ps0 f2 head f1 mainIn #connect
 Ps0 f3 mainOut f5 tail #connect

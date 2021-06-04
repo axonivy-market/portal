@@ -1,5 +1,5 @@
 [Ivy]
-1747BF67941CE352 9.2.0 #module
+1747BF67941CE352 9.3.0 #module
 >Proto >Proto Collection #zClass
 Ts0 TaskItemWorkflowEventsProcess Big #zClass
 Ts0 RD #cInfo
@@ -29,7 +29,6 @@ Ts0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ts0 f0 83 51 26 26 -16 15 #rect
-Ts0 f0 @|UdInitIcon #fIcon
 Ts0 f8 actionTable 'out=in;
 ' #txt
 Ts0 f8 actionCode 'import ch.ivy.addon.portalkit.bo.History;
@@ -58,11 +57,8 @@ Ts0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ts0 f8 224 170 112 44 -32 -8 #rect
-Ts0 f8 @|StepIcon #fIcon
 Ts0 f11 427 179 26 26 0 12 #rect
-Ts0 f11 @|UdProcessEndIcon #fIcon
 Ts0 f9 259 51 26 26 0 12 #rect
-Ts0 f9 @|UdProcessEndIcon #fIcon
 Ts0 f10 guid 1747C052FA32B78C #txt
 Ts0 f10 method getWorkflowEvents(Long) #txt
 Ts0 f10 inParameterDecl '<Long taskId> param;' #txt
@@ -79,14 +75,12 @@ Ts0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ts0 f10 83 179 26 26 -52 18 #rect
-Ts0 f10 @|UdMethodIcon #fIcon
 Ts0 f13 336 192 427 192 #arcP
 Ts0 f1 109 64 259 64 #arcP
 Ts0 f2 109 192 224 192 #arcP
 >Proto Ts0 .type ch.ivy.addon.portalkit.component.TaskItemWorkflowEvents.TaskItemWorkflowEventsData #txt
 >Proto Ts0 .processKind HTML_DIALOG #txt
 >Proto Ts0 -8 -8 16 16 16 26 #rect
->Proto Ts0 '' #fIcon
 Ts0 f8 mainOut f13 tail #connect
 Ts0 f13 head f11 mainIn #connect
 Ts0 f0 mainOut f1 tail #connect

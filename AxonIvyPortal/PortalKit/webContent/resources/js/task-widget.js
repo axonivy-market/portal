@@ -83,6 +83,12 @@ function TaskWidget() {
     },
 
     updateTaskCountToBreadcrumb: function() {
+      var $hiddenTaskCountElem = $(".js-hidden-task-count");
+      // $hiddenTaskCountElem is not rendered if task count is disabled. So that do not update task count to breadcrumb.
+      if ($hiddenTaskCountElem.length === 0) {
+        return;
+      }
+
       var $breadCrumbTaskElem = $("[id $= ':breadcrumb'] li").last().find(".ui-menuitem-link");
       if ($breadCrumbTaskElem.length == 0) {
         return;

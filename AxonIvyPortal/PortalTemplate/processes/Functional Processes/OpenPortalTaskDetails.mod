@@ -1,5 +1,5 @@
 [Ivy]
-16D28A867A2A1802 9.2.0 #module
+16D28A867A2A1802 9.3.0 #module
 >Proto >Proto Collection #zClass
 Os0 OpenPortalTaskDetailsHook Big #zClass
 Os0 B #cInfo
@@ -49,9 +49,7 @@ Os0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Os0 f0 81 113 30 30 -43 -36 #rect
-Os0 f0 @|StartSubIcon #fIcon
 Os0 f1 753 113 30 30 0 15 #rect
-Os0 f1 @|EndSubIcon #fIcon
 Os0 f2 dialogId ch.ivy.addon.portal.generic.PortalTaskDetails #txt
 Os0 f2 startMethod start(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,ch.ivy.addon.portalkit.enums.PortalPage,Boolean) #txt
 Os0 f2 requestActionDecl '<ch.ivyteam.ivy.workflow.ITask task,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel dataModel,ch.ivy.addon.portalkit.enums.PortalPage portalPage,Boolean isFromTaskList> param;' #txt
@@ -70,7 +68,6 @@ Os0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Os0 f2 400 106 112 44 -49 -8 #rect
-Os0 f2 @|UserDialogIcon #fIcon
 Os0 f3 111 128 400 128 #arcP
 Os0 f4 512 128 753 128 #arcP
 Os0 f5 inParamDecl '<ch.ivyteam.ivy.workflow.ITask task,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel dataModel,ch.ivy.addon.portalkit.enums.PortalPage portalPage,Boolean isFromTaskList> param;' #txt
@@ -89,9 +86,7 @@ Os0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Os0 f5 81 465 30 30 -74 -36 #rect
-Os0 f5 @|StartSubIcon #fIcon
 Os0 f6 753 465 30 30 0 15 #rect
-Os0 f6 @|EndSubIcon #fIcon
 Os0 f7 dialogId ch.ivy.addon.portal.component.iframe.PortalTaskItemDetailsInIFrame #txt
 Os0 f7 startMethod start(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,ch.ivy.addon.portalkit.enums.PortalPage,Boolean) #txt
 Os0 f7 requestActionDecl '<ch.ivyteam.ivy.workflow.ITask task,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel model,ch.ivy.addon.portalkit.enums.PortalPage portalPage,Boolean isFromTaskList> param;' #txt
@@ -110,7 +105,6 @@ Os0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Os0 f7 368 458 176 44 -85 -8 #rect
-Os0 f7 @|UserDialogIcon #fIcon
 Os0 f8 111 480 368 480 #arcP
 Os0 f9 544 480 753 480 #arcP
 Os0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -131,7 +125,6 @@ To override Portal task item details UI: you should use Axon Ivy HTMLOverride Di
 </elementInfo>
 ' #txt
 Os0 f10 160 202 720 76 -354 -34 #rect
-Os0 f10 @|IBIcon #fIcon
 Os0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -150,7 +143,6 @@ To override Portal task item details UI: you should use Axon Ivy HTMLOverride Di
 </elementInfo>
 ' #txt
 Os0 f12 152 554 800 76 -391 -34 #rect
-Os0 f12 @|IBIcon #fIcon
 Os0 f13 152 592 102 493 #arcP
 Os0 f11 160 240 103 141 #arcP
 Os0 f14 inParamDecl '<ch.ivyteam.ivy.workflow.ITask task,ch.ivy.addon.portalkit.datamodel.DashboardTaskLazyDataModel dataModel,ch.ivy.addon.portalkit.enums.PortalPage portalPage,Boolean isFromTaskList> param;' #txt

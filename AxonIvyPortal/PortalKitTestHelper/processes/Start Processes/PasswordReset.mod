@@ -1,5 +1,5 @@
 [Ivy]
-176463FD4BBF6C93 9.2.0 #module
+176463FD4BBF6C93 9.3.0 #module
 >Proto >Proto Collection #zClass
 Pt0 PasswordReset Big #zClass
 Pt0 B #cInfo
@@ -29,9 +29,7 @@ Pt0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Pt0 f0 @C|.responsibility Everybody #txt
 Pt0 f0 81 49 30 30 -21 17 #rect
-Pt0 f0 @|StartRequestIcon #fIcon
 Pt0 f1 433 49 30 30 0 15 #rect
-Pt0 f1 @|EndIcon #fIcon
 Pt0 f3 actionTable 'out=in;
 ' #txt
 Pt0 f3 actionCode 'import java.util.Calendar;
@@ -64,7 +62,6 @@ Pt0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Pt0 f3 216 42 112 44 -42 -8 #rect
-Pt0 f3 @|StepIcon #fIcon
 Pt0 f4 111 64 216 64 #arcP
 Pt0 f2 328 64 433 64 #arcP
 >Proto Pt0 .type portalKit_test.Data #txt

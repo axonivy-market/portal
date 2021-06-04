@@ -1,5 +1,5 @@
 [Ivy]
-1764BD56C1021D5F 9.2.0 #module
+1764BD56C1021D5F 9.3.0 #module
 >Proto >Proto Collection #zClass
 Rd0 ResetPassword Big #zClass
 Rd0 B #cInfo
@@ -33,9 +33,7 @@ Rd0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Rd0 f0 81 49 30 30 -82 17 #rect
-Rd0 f0 @|StartSubIcon #fIcon
 Rd0 f1 433 49 30 30 0 15 #rect
-Rd0 f1 @|EndSubIcon #fIcon
 Rd0 f16 actionTable 'out=in;
 ' #txt
 Rd0 f16 actionCode 'import ch.ivy.addon.portalkit.util.UserUtils;
@@ -85,7 +83,6 @@ Rd0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Rd0 f16 216 42 112 44 -43 -8 #rect
-Rd0 f16 @|StepIcon #fIcon
 Rd0 f3 111 64 216 64 #arcP
 Rd0 f2 328 64 433 64 #arcP
 >Proto Rd0 .type _com.axonivy.portal.developerexamples.ResetPasswordOverrideData #txt

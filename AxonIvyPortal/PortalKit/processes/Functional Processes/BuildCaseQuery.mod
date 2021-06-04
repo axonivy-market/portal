@@ -1,5 +1,5 @@
 [Ivy]
-15F95D721D0C7224 9.2.0 #module
+15F95D721D0C7224 9.3.0 #module
 >Proto >Proto Collection #zClass
 By0 BuildCaseQuery Big #zClass
 By0 B #cInfo
@@ -34,9 +34,7 @@ By0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 By0 f0 77 49 30 30 -48 17 #rect
-By0 f0 @|StartSubIcon #fIcon
 By0 f1 469 49 30 30 0 15 #rect
-By0 f1 @|EndSubIcon #fIcon
 By0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -50,7 +48,6 @@ out.caseQuery = CaseQuery.businessCases().where().customField().stringField("Cus
 </elementInfo>
 ' #txt
 By0 f5 28 148 752 76 -371 -32 #rect
-By0 f5 @|IBIcon #fIcon
 By0 f2 actionTable 'out=in;
 ' #txt
 By0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -61,7 +58,6 @@ By0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 By0 f2 232 42 112 44 -45 -8 #rect
-By0 f2 @|StepIcon #fIcon
 By0 f3 expr out #txt
 By0 f3 107 64 232 64 #arcP
 By0 f4 expr out #txt

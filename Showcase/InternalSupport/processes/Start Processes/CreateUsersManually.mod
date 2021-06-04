@@ -1,5 +1,5 @@
 [Ivy]
-15F80B590709168C 9.2.0 #module
+15F80B590709168C 9.3.0 #module
 >Proto >Proto Collection #zClass
 Cy0 CreateUsersManually Big #zClass
 Cy0 B #cInfo
@@ -47,9 +47,7 @@ Cy0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Cy0 f0 @C|.responsibility Everybody #txt
 Cy0 f0 81 49 30 30 -53 17 #rect
-Cy0 f0 @|StartRequestIcon #fIcon
 Cy0 f1 337 49 30 30 0 15 #rect
-Cy0 f1 @|EndIcon #fIcon
 Cy0 f3 actionTable 'out=in;
 ' #txt
 Cy0 f3 actionCode 'for (int i = 1; i < 30001; i++) {
@@ -106,7 +104,6 @@ Cy0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cy0 f3 160 42 128 44 -56 -8 #rect
-Cy0 f3 @|StepIcon #fIcon
 Cy0 f4 expr out #txt
 Cy0 f4 111 64 160 64 #arcP
 Cy0 f2 expr out #txt
@@ -136,7 +133,6 @@ Cy0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Cy0 f5 @C|.responsibility Everybody #txt
 Cy0 f5 81 145 30 30 -55 17 #rect
-Cy0 f5 @|StartRequestIcon #fIcon
 Cy0 f6 actionTable 'out=in;
 ' #txt
 Cy0 f6 actionCode 'for (int i = 1; i < 30001; i++) {
@@ -181,9 +177,7 @@ Cy0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cy0 f6 160 138 112 44 -47 -8 #rect
-Cy0 f6 @|StepIcon #fIcon
 Cy0 f7 337 145 30 30 0 15 #rect
-Cy0 f7 @|EndIcon #fIcon
 Cy0 f8 expr out #txt
 Cy0 f8 111 160 160 160 #arcP
 Cy0 f9 expr out #txt

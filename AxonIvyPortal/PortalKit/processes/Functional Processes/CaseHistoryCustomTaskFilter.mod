@@ -1,5 +1,5 @@
 [Ivy]
-14E52ACF4B6D37BF 9.2.0 #module
+14E52ACF4B6D37BF 9.3.0 #module
 >Proto >Proto Collection #zClass
 Cr0 CaseHistoryCustomTaskFilter Big #zClass
 Cr0 B #cInfo
@@ -33,9 +33,7 @@ Cr0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cr0 f0 51 83 26 26 17 -6 #rect
-Cr0 f0 @|StartSubIcon #fIcon
 Cr0 f1 51 339 26 26 14 0 #rect
-Cr0 f1 @|EndSubIcon #fIcon
 Cr0 f2 expr out #txt
 Cr0 f2 64 109 64 339 #arcP
 Cr0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -52,7 +50,6 @@ in between. (e.g. remove system tasks)</name>
 </elementInfo>
 ' #txt
 Cr0 f7 136 146 224 92 -107 -40 #rect
-Cr0 f7 @|IBIcon #fIcon
 >Proto Cr0 .type ch.ivy.add.portalkit.CaseHistoryCustomTaskFilterData #txt
 >Proto Cr0 .processKind CALLABLE_SUB #txt
 >Proto Cr0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
