@@ -1,5 +1,5 @@
 [Ivy]
-161504784DDFCFC7 9.2.0 #module
+161504784DDFCFC7 9.3.0 #module
 >Proto >Proto Collection #zClass
 Es0 ElapsedTimeChartDetailsProcess Big #zClass
 Es0 RD #cInfo
@@ -44,9 +44,7 @@ Es0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Es0 f3 83 147 26 26 -15 12 #rect
-Es0 f3 @|UdEventIcon #fIcon
 Es0 f4 211 147 26 26 0 12 #rect
-Es0 f4 @|UdExitEndIcon #fIcon
 Es0 f5 expr out #txt
 Es0 f5 109 160 211 160 #arcP
 Es0 f15 guid 16AD339444C2C97E #txt
@@ -65,9 +63,7 @@ Es0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Es0 f15 83 339 26 26 -45 14 #rect
-Es0 f15 @|UdMethodIcon #fIcon
 Es0 f20 563 339 26 26 0 12 #rect
-Es0 f20 @|UdProcessEndIcon #fIcon
 Es0 f6 guid 16AD339444E6AFE5 #txt
 Es0 f6 method findCases(ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria,Integer,Integer) #txt
 Es0 f6 inParameterDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria caseSearchCriteria,Integer startIndex,Integer count> param;' #txt
@@ -86,7 +82,6 @@ Es0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Es0 f6 84 244 24 24 -74 14 #rect
-Es0 f6 @|UdMethodIcon #fIcon
 Es0 f7 processCall 'Ivy Data Processes/CaseService:findCasesByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria,Integer,Integer)' #txt
 Es0 f7 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria caseSearchCriteria,Integer startIndex,Integer count> param;' #txt
 Es0 f7 requestMappingAction 'param.caseSearchCriteria=in.caseSearchCriteria;
@@ -106,9 +101,7 @@ Es0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Es0 f7 304 234 112 44 -35 -8 #rect
-Es0 f7 @|CallSubIcon #fIcon
 Es0 f9 563 243 26 26 0 12 #rect
-Es0 f9 @|UdProcessEndIcon #fIcon
 Es0 f18 processCall 'Ivy Data Processes/CaseService:countCasesByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria)' #txt
 Es0 f18 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria caseSearchCriteria> param;' #txt
 Es0 f18 requestMappingAction 'param.caseSearchCriteria=in.caseSearchCriteria;
@@ -126,13 +119,11 @@ Es0 f18 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Es0 f18 304 330 112 44 -35 -8 #rect
-Es0 f18 @|CallSubIcon #fIcon
 Es0 f8 expr out #txt
 Es0 f8 108 256 304 256 #arcP
 Es0 f19 expr out #txt
 Es0 f19 109 352 304 352 #arcP
 Es0 f1 565 85 22 22 14 0 #rect
-Es0 f1 @|UdProcessEndIcon #fIcon
 Es0 f0 guid 16AD3D99ECE5523E #txt
 Es0 f0 method start() #txt
 Es0 f0 inParameterDecl '<> param;' #txt
@@ -145,7 +136,6 @@ Es0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Es0 f0 85 85 22 22 14 0 #rect
-Es0 f0 @|UdInitIcon #fIcon
 Es0 f2 expr out #txt
 Es0 f2 107 96 565 96 #arcP
 Es0 f11 expr out #txt
@@ -166,9 +156,7 @@ Es0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Es0 f12 83 435 26 26 -42 15 #rect
-Es0 f12 @|UdMethodIcon #fIcon
 Es0 f13 563 435 26 26 0 12 #rect
-Es0 f13 @|UdProcessEndIcon #fIcon
 Es0 f16 actionTable 'out=in;
 ' #txt
 Es0 f16 actionCode 'import ch.ivy.addon.portalkit.datamodel.internal.ElapsedTimeLazyDataModel;
@@ -187,7 +175,6 @@ Es0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Es0 f16 200 426 112 44 -46 -8 #rect
-Es0 f16 @|StepIcon #fIcon
 Es0 f17 expr out #txt
 Es0 f17 109 448 200 448 #arcP
 Es0 f14 expr out #txt
@@ -195,7 +182,6 @@ Es0 f14 312 448 563 448 #arcP
 >Proto Es0 .type ch.ivy.addon.portalkit.component.statistic.ElapsedTimeChartDetails.ElapsedTimeChartDetailsData #txt
 >Proto Es0 .processKind HTML_DIALOG #txt
 >Proto Es0 -8 -8 16 16 16 26 #rect
->Proto Es0 '' #fIcon
 Es0 f3 mainOut f5 tail #connect
 Es0 f5 head f4 mainIn #connect
 Es0 f6 mainOut f8 tail #connect

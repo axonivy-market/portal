@@ -1,5 +1,5 @@
 [Ivy]
-16BF472CA9DB7AAE 9.2.0 #module
+16BF472CA9DB7AAE 9.3.0 #module
 >Proto >Proto Collection #zClass
 Ps0 PortalTaskDetailsProcess Big #zClass
 Ps0 RD #cInfo
@@ -26,7 +26,6 @@ Ps0 @PushWFArc f11 '' #zField
 Ps0 @PushWFArc f12 '' #zField
 >Proto Ps0 Ps0 PortalTaskDetailsProcess #zField
 Ps0 f1 339 51 26 26 0 12 #rect
-Ps0 f1 @|UdProcessEndIcon #fIcon
 Ps0 f3 guid 16BF472CAB588371 #txt
 Ps0 f3 actionTable 'out=in;
 ' #txt
@@ -38,9 +37,7 @@ Ps0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f3 83 275 26 26 -15 12 #rect
-Ps0 f3 @|UdEventIcon #fIcon
 Ps0 f4 211 275 26 26 0 12 #rect
-Ps0 f4 @|UdExitEndIcon #fIcon
 Ps0 f5 expr out #txt
 Ps0 f5 109 288 211 288 #arcP
 Ps0 f0 guid 16BF472CAB02934E #txt
@@ -60,7 +57,6 @@ Ps0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f0 83 51 26 26 -79 25 #rect
-Ps0 f0 @|UdInitIcon #fIcon
 Ps0 f6 actionTable 'out=in;
 ' #txt
 Ps0 f6 actionCode 'import ch.ivy.addon.portalkit.enums.SessionAttribute;
@@ -74,7 +70,6 @@ Ps0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f6 160 42 128 44 -57 -8 #rect
-Ps0 f6 @|StepIcon #fIcon
 Ps0 f7 expr out #txt
 Ps0 f7 109 64 160 64 #arcP
 Ps0 f2 288 64 339 64 #arcP
@@ -118,7 +113,6 @@ Ps0 f12 288 192 339 192 #arcP
 >Proto Ps0 .type ch.ivy.addon.portal.generic.PortalTaskDetails.PortalTaskDetailsData #txt
 >Proto Ps0 .processKind HTML_DIALOG #txt
 >Proto Ps0 -8 -8 16 16 16 26 #rect
->Proto Ps0 '' #fIcon
 Ps0 f3 mainOut f5 tail #connect
 Ps0 f5 head f4 mainIn #connect
 Ps0 f0 mainOut f7 tail #connect

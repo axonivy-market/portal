@@ -1,5 +1,5 @@
 [Ivy]
-14E53233041A883D 9.2.0 #module
+14E53233041A883D 9.3.0 #module
 >Proto >Proto Collection #zClass
 Cr0 CaseHistoryCustomTaskFilter Big #zClass
 Cr0 B #cInfo
@@ -35,9 +35,7 @@ Cr0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cr0 f0 51 83 26 26 17 -6 #rect
-Cr0 f0 @|StartSubIcon #fIcon
 Cr0 f1 51 323 26 26 14 0 #rect
-Cr0 f1 @|EndSubIcon #fIcon
 Cr0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -52,7 +50,6 @@ in between. (e.g. remove system tasks)</name>
 </elementInfo>
 ' #txt
 Cr0 f7 168 154 224 92 -107 -40 #rect
-Cr0 f7 @|IBIcon #fIcon
 Cr0 f3 actionTable 'out=in;
 ' #txt
 Cr0 f3 actionCode 'import ch.ivyteam.ivy.workflow.TaskState;
@@ -77,7 +74,6 @@ list of tasks</name>
 </elementInfo>
 ' #txt
 Cr0 f3 46 197 36 22 23 -18 #rect
-Cr0 f3 @|StepIcon #fIcon
 Cr0 f4 expr out #txt
 Cr0 f4 64 109 64 197 #arcP
 Cr0 f2 expr out #txt

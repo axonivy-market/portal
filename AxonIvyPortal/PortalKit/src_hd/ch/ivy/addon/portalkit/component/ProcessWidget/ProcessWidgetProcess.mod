@@ -18,6 +18,8 @@ Ps0 @CallSub f6 '' #zField
 Ps0 @UdProcessEnd f8 '' #zField
 Ps0 @PushWFArc f14 '' #zField
 Ps0 @PushWFArc f9 '' #zField
+Ps0 @GridStep f4 '' #zField
+Ps0 @PushWFArc f5 '' #zField
 Ps0 @PushWFArc f2 '' #zField
 >Proto Ps0 Ps0 ProcessWidgetProcess #zField
 Ps0 f1 guid 167CEF3C0BEA1F15 #txt
@@ -32,7 +34,7 @@ Ps0 f1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f1 83 83 26 26 -12 16 #rect
-Ps0 f3 339 83 26 26 0 12 #rect
+Ps0 f3 403 83 26 26 0 12 #rect
 Ps0 f0 guid 167CF9865BEC5C1B #txt
 Ps0 f0 method collectProcesses() #txt
 Ps0 f0 inParameterDecl '<> param;' #txt
@@ -61,13 +63,29 @@ Ps0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ps0 f6 168 170 112 44 -43 -8 #rect
-Ps0 f8 347 179 26 26 0 12 #rect
+Ps0 f6 192 170 112 44 -43 -8 #rect
+Ps0 f8 403 179 26 26 0 12 #rect
 Ps0 f14 expr out #txt
-Ps0 f14 280 192 347 192 #arcP
+Ps0 f14 304 192 403 192 #arcP
 Ps0 f9 expr out #txt
-Ps0 f9 109 192 168 192 #arcP
-Ps0 f2 109 96 339 96 #arcP
+Ps0 f9 109 192 192 192 #arcP
+Ps0 f4 actionTable 'out=in;
+' #txt
+Ps0 f4 actionCode 'import ch.ivy.addon.portalkit.enums.GlobalVariable;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
+
+in.showInformationLink = GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_PROCESS_INFORMATION);' #txt
+Ps0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Hide/show&#13;
+Information link</name>
+    </language>
+</elementInfo>
+' #txt
+Ps0 f4 192 74 128 44 -41 -16 #rect
+Ps0 f5 109 96 192 96 #arcP
+Ps0 f2 320 96 403 96 #arcP
 >Proto Ps0 .type ch.ivy.addon.portalkit.component.ProcessWidget.ProcessWidgetData #txt
 >Proto Ps0 .processKind HTML_DIALOG #txt
 >Proto Ps0 -8 -8 16 16 16 26 #rect
@@ -75,5 +93,7 @@ Ps0 f6 mainOut f14 tail #connect
 Ps0 f14 head f8 mainIn #connect
 Ps0 f0 mainOut f9 tail #connect
 Ps0 f9 head f6 mainIn #connect
-Ps0 f1 mainOut f2 tail #connect
+Ps0 f1 mainOut f5 tail #connect
+Ps0 f5 head f4 mainIn #connect
+Ps0 f4 mainOut f2 tail #connect
 Ps0 f2 head f3 mainIn #connect

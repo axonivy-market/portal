@@ -1,5 +1,5 @@
 [Ivy]
-176CBAC0BEF174DD 9.2.0 #module
+176CBAC0BEF174DD 9.3.0 #module
 >Proto >Proto Collection #zClass
 Us0 UserSelectionExampleProcess Big #zClass
 Us0 RD #cInfo
@@ -34,9 +34,7 @@ Us0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Us0 f0 83 51 26 26 -16 15 #rect
-Us0 f0 @|UdInitIcon #fIcon
 Us0 f1 339 51 26 26 0 12 #rect
-Us0 f1 @|UdProcessEndIcon #fIcon
 Us0 f3 guid 17051468929E66C4 #txt
 Us0 f3 actionTable 'out=in;
 ' #txt
@@ -48,9 +46,7 @@ Us0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Us0 f3 83 211 26 26 -15 15 #rect
-Us0 f3 @|UdEventIcon #fIcon
 Us0 f4 211 211 26 26 0 12 #rect
-Us0 f4 @|UdExitEndIcon #fIcon
 Us0 f5 109 224 211 224 #arcP
 Us0 f6 actionTable 'out=in;
 ' #txt
@@ -81,11 +77,9 @@ Us0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Us0 f6 168 42 112 44 -21 -8 #rect
-Us0 f6 @|StepIcon #fIcon
 Us0 f2 109 64 168 64 #arcP
 Us0 f7 280 64 339 64 #arcP
 Us0 f9 339 147 26 26 0 12 #rect
-Us0 f9 @|UdProcessEndIcon #fIcon
 Us0 f11 guid 1708567B27C2B686 #txt
 Us0 f11 actionTable 'out=in;
 ' #txt
@@ -105,12 +99,10 @@ Us0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Us0 f11 84 148 24 24 -40 14 #rect
-Us0 f11 @|UdEventIcon #fIcon
 Us0 f8 108 160 339 160 #arcP
 >Proto Us0 .type com.axonivy.portal.developerexamples.showcase.UserSelectionExample.UserSelectionExampleData #txt
 >Proto Us0 .processKind HTML_DIALOG #txt
 >Proto Us0 -8 -8 16 16 16 26 #rect
->Proto Us0 '' #fIcon
 Us0 f3 mainOut f5 tail #connect
 Us0 f5 head f4 mainIn #connect
 Us0 f2 head f6 mainIn #connect

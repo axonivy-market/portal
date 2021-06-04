@@ -1,5 +1,5 @@
 [Ivy]
-16E5DB746865BCEC 9.2.0 #module
+16E5DB746865BCEC 9.3.0 #module
 >Proto >Proto Collection #zClass
 Ie0 IFrameExample Big #zClass
 Ie0 B #cInfo
@@ -45,9 +45,7 @@ Ie0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ie0 f20 368 80 32 32 -77 276 #rect
-Ie0 f20 @|TaskSwitchIcon #fIcon
 Ie0 f13 873 177 30 30 0 15 #rect
-Ie0 f13 @|EndIcon #fIcon
 Ie0 f15 dialogId com.axonivy.portal.developerexamples.testdata.Approve #txt
 Ie0 f15 startMethod start(com.axonivy.portal.developerexamples.ExampleIFrameData) #txt
 Ie0 f15 requestActionDecl '<com.axonivy.portal.developerexamples.ExampleIFrameData investmentRequest> param;' #txt
@@ -65,7 +63,6 @@ Ie0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ie0 f15 560 74 112 44 -22 -8 #rect
-Ie0 f15 @|UserDialogIcon #fIcon
 Ie0 f12 outLink CreateInvestment.ivp #txt
 Ie0 f12 inParamDecl '<> param;' #txt
 Ie0 f12 requestEnabled true #txt
@@ -87,7 +84,6 @@ Ie0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ie0 f12 @C|.responsibility Everybody #txt
 Ie0 f12 81 81 30 30 -50 19 #rect
-Ie0 f12 @|StartRequestIcon #fIcon
 Ie0 f24 expr data #txt
 Ie0 f24 outCond ivp=="TaskA.ivp" #txt
 Ie0 f24 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -112,7 +108,6 @@ Ie0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ie0 f0 560 170 112 44 -47 -8 #rect
-Ie0 f0 @|UserDialogIcon #fIcon
 Ie0 f1 expr data #txt
 Ie0 f1 outCond ivp=="TaskB.ivp" #txt
 Ie0 f1 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -140,7 +135,6 @@ Ie0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ie0 f3 737 81 30 30 -44 22 #rect
-Ie0 f3 @|TaskSwitchSimpleIcon #fIcon
 Ie0 f4 expr out #txt
 Ie0 f4 672 96 737 96 #arcP
 Ie0 f6 dialogId com.axonivy.portal.developerexamples.testdata.Review #txt
@@ -158,7 +152,6 @@ Ie0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ie0 f6 832 74 112 44 -20 -8 #rect
-Ie0 f6 @|UserDialogIcon #fIcon
 Ie0 f7 767 96 832 96 #arcP
 Ie0 f5 888 118 888 177 #arcP
 Ie0 f19 expr out #txt
@@ -181,7 +174,6 @@ Ie0 f21 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ie0 f21 192 74 112 44 -50 -8 #rect
-Ie0 f21 @|UserDialogIcon #fIcon
 >Proto Ie0 .type com.axonivy.portal.developerexamples.ExampleIFrameData #txt
 >Proto Ie0 .processKind NORMAL #txt
 >Proto Ie0 0 0 32 24 18 0 #rect

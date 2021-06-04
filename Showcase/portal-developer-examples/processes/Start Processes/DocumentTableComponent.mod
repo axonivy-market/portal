@@ -1,5 +1,5 @@
 [Ivy]
-16B447235433958E 9.2.0 #module
+16B447235433958E 9.3.0 #module
 >Proto >Proto Collection #zClass
 Dt0 DocumentTableComponent Big #zClass
 Dt0 B #cInfo
@@ -36,9 +36,7 @@ Dt0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Dt0 f0 @C|.responsibility Everybody #txt
 Dt0 f0 81 49 30 30 -21 17 #rect
-Dt0 f0 @|StartRequestIcon #fIcon
 Dt0 f1 337 49 30 30 0 15 #rect
-Dt0 f1 @|EndIcon #fIcon
 Dt0 f3 dialogId com.axonivy.portal.developerexamples.showcase.DocumentTableUsage #txt
 Dt0 f3 startMethod start() #txt
 Dt0 f3 requestActionDecl '<> param;' #txt
@@ -54,7 +52,6 @@ Dt0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Dt0 f3 152 42 144 44 -62 -8 #rect
-Dt0 f3 @|UserDialogIcon #fIcon
 Dt0 f4 expr out #txt
 Dt0 f4 111 64 152 64 #arcP
 Dt0 f2 expr out #txt

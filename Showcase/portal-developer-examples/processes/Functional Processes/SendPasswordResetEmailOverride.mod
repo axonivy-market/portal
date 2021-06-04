@@ -1,5 +1,5 @@
 [Ivy]
-1764BD49A4B3CE69 9.2.0 #module
+1764BD49A4B3CE69 9.3.0 #module
 >Proto >Proto Collection #zClass
 Sl0 SendPasswordResetEmail Big #zClass
 Sl0 B #cInfo
@@ -38,9 +38,7 @@ Sl0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Sl0 f0 81 49 30 30 -13 17 #rect
-Sl0 f0 @|StartSubIcon #fIcon
 Sl0 f1 945 49 30 30 0 15 #rect
-Sl0 f1 @|EndSubIcon #fIcon
 Sl0 f16 actionTable 'out=in;
 ' #txt
 Sl0 f16 actionCode 'import ch.ivy.addon.portalkit.util.UrlUtils;
@@ -94,7 +92,6 @@ Sl0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Sl0 f16 216 42 112 44 -41 -8 #rect
-Sl0 f16 @|StepIcon #fIcon
 Sl0 f11 actionTable 'out=in;
 ' #txt
 Sl0 f11 actionCode 'import javax.faces.application.FacesMessage;
@@ -110,7 +107,6 @@ Sl0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Sl0 f11 736 42 128 44 -61 -8 #rect
-Sl0 f11 @|StepIcon #fIcon
 Sl0 f9 beanConfig '"{/emailSubject ""<%=ivy.cms.co(\\""/ch.ivy.addon.portalkit.ui.jsf/forgotPassword/passwordResetEmailSubject\\"")%>""/emailFrom """"/emailReplyTo """"/emailTo ""<%=in.user.eMailAddress%>""/emailCC """"/emailBCC """"/exceptionMissingEmailAttachments ""false""/emailMessage ""<%=in.emailContent%>""/emailAttachments * }"' #txt
 Sl0 f9 type _com.axonivy.portal.developerexamples.SendPasswordResetEmailOverrideData #txt
 Sl0 f9 timeout 0 #txt
@@ -122,7 +118,6 @@ Sl0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Sl0 f9 552 42 112 44 -31 -8 #rect
-Sl0 f9 @|EMailIcon #fIcon
 Sl0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -131,7 +126,6 @@ Sl0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Sl0 f13 416 48 32 32 0 16 #rect
-Sl0 f13 @|AlternativeIcon #fIcon
 Sl0 f10 expr in #txt
 Sl0 f10 outCond in.isValid #txt
 Sl0 f10 448 64 552 64 #arcP
@@ -160,12 +154,10 @@ Sl0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Sl0 f6 688 106 224 44 -105 -8 #rect
-Sl0 f6 @|StepIcon #fIcon
 Sl0 f5 actionTable 'out=in;
 ' #txt
 Sl0 f5 attachedToRef 1764BD49A4B3CE69-f9 #txt
 Sl0 f5 625 81 30 30 0 15 #rect
-Sl0 f5 @|ErrorBoundaryEventIcon #fIcon
 Sl0 f7 640 111 688 128 #arcP
 Sl0 f7 1 640 128 #addKink
 Sl0 f7 1 0.19697680567278672 0 0 #arcLabel

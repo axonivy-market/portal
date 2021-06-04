@@ -1,5 +1,5 @@
 [Ivy]
-14B2A3DC7173EA26 9.2.0 #module
+14B2A3DC7173EA26 9.3.0 #module
 >Proto >Proto Collection #zClass
 cs0 createARangeOfTasks Big #zClass
 cs0 B #cInfo
@@ -71,7 +71,6 @@ cs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 cs0 f0 @C|.responsibility Everybody #txt
 cs0 f0 195 211 26 26 14 0 #rect
-cs0 f0 @|StartRequestIcon #fIcon
 cs0 f1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -82,7 +81,6 @@ cs0 f1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 cs0 f1 194 330 28 28 14 0 #rect
-cs0 f1 @|AlternativeIcon #fIcon
 cs0 f2 actionTable 'out=in1;
 ' #txt
 cs0 f2 outLinks "TaskA.ivp","TaskB.ivp" #txt
@@ -106,11 +104,8 @@ TaskB.SKIP_TASK_LIST=false
 TaskB.TYPE=0' #txt
 cs0 f2 template "" #txt
 cs0 f2 194 418 28 28 14 0 #rect
-cs0 f2 @|TaskSwitchIcon #fIcon
 cs0 f3 83 331 26 26 14 0 #rect
-cs0 f3 @|EndIcon #fIcon
 cs0 f4 195 483 26 26 14 0 #rect
-cs0 f4 @|EndIcon #fIcon
 cs0 f6 expr in #txt
 cs0 f6 outCond 'in.taskCounter < in.to' #txt
 cs0 f6 type ch.ivy.add.portalkit.task.TaskGenerationDataRange #txt
@@ -134,7 +129,6 @@ cs0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 cs0 f9 334 420 36 24 20 -2 #rect
-cs0 f9 @|StepIcon #fIcon
 cs0 f10 expr data #txt
 cs0 f10 outCond ivp=="TaskB.ivp" #txt
 cs0 f10 222 432 334 432 #arcP
@@ -155,7 +149,6 @@ cs0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 cs0 f12 190 276 36 24 20 -2 #rect
-cs0 f12 @|StepIcon #fIcon
 cs0 f13 expr out #txt
 cs0 f13 208 237 208 276 #arcP
 cs0 f5 expr out #txt
@@ -170,9 +163,7 @@ cs0 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 cs0 f14 594 338 28 28 14 0 #rect
-cs0 f14 @|AlternativeIcon #fIcon
 cs0 f15 595 547 26 26 14 0 #rect
-cs0 f15 @|EndIcon #fIcon
 cs0 f16 actionTable 'out=in1;
 ' #txt
 cs0 f16 outLinks "TaskA.ivp","TaskB.ivp" #txt
@@ -192,7 +183,6 @@ TaskB.SKIP_TASK_LIST=false
 TaskB.TYPE=0' #txt
 cs0 f16 template "" #txt
 cs0 f16 594 426 28 28 14 0 #rect
-cs0 f16 @|TaskSwitchIcon #fIcon
 cs0 f17 actionTable 'out=in;
 ' #txt
 cs0 f17 actionCode 'in.from += 10;
@@ -208,9 +198,7 @@ from + 10</name>
 </elementInfo>
 ' #txt
 cs0 f17 734 428 36 24 20 -2 #rect
-cs0 f17 @|StepIcon #fIcon
 cs0 f18 483 339 26 26 14 0 #rect
-cs0 f18 @|EndIcon #fIcon
 cs0 f19 outLink splitTaskGeneration.ivp #txt
 cs0 f19 inParamDecl '<ch.ivy.add.portalkit.task.TaskGenerationDataRange rangeData> param;' #txt
 cs0 f19 inParamTable 'out=param.rangeData;
@@ -237,7 +225,6 @@ cs0 f19 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 cs0 f19 @C|.responsibility Everybody #txt
 cs0 f19 595 211 26 26 14 0 #rect
-cs0 f19 @|StartRequestIcon #fIcon
 cs0 f20 actionTable 'out=in;
 ' #txt
 cs0 f20 actionCode 'in.taskCounter = in.from+10;' #txt
@@ -251,7 +238,6 @@ cs0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 cs0 f20 590 276 36 24 20 -2 #rect
-cs0 f20 @|StepIcon #fIcon
 cs0 f21 expr in #txt
 cs0 f21 outCond 'in.taskCounter <= in.to' #txt
 cs0 f21 type ch.ivy.add.portalkit.task.TaskGenerationDataRange #txt
@@ -292,7 +278,6 @@ from-&gt;counter</name>
 </elementInfo>
 ' #txt
 cs0 f28 590 484 36 24 20 -2 #rect
-cs0 f28 @|TriggerIcon #fIcon
 cs0 f29 expr data #txt
 cs0 f29 outCond ivp=="TaskA.ivp" #txt
 cs0 f29 608 454 608 484 #arcP
@@ -324,9 +309,7 @@ cs0 f30 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 cs0 f30 @C|.responsibility Everybody #txt
 cs0 f30 947 211 26 26 14 0 #rect
-cs0 f30 @|StartRequestIcon #fIcon
 cs0 f31 947 419 26 26 14 0 #rect
-cs0 f31 @|EndIcon #fIcon
 cs0 f33 actionTable 'out=in1;
 ' #txt
 cs0 f33 outLinks "TaskA.ivp" #txt
@@ -342,7 +325,6 @@ TaskA.SKIP_TASK_LIST=false
 TaskA.TYPE=0' #txt
 cs0 f33 template "" #txt
 cs0 f33 947 307 26 26 13 0 #rect
-cs0 f33 @|TaskSwitchSimpleIcon #fIcon
 cs0 f34 expr out #txt
 cs0 f34 type ch.ivy.add.portalkit.task.TaskGenerationDataRange #txt
 cs0 f34 var in1 #txt

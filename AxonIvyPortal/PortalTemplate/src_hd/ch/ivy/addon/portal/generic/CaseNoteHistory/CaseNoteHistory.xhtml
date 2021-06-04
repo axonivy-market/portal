@@ -61,18 +61,22 @@
               <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/creationDate')}" />
             </f:facet>
             <h:outputText value="#{history.timestamp}">
-              <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
+              <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}"/>
             </h:outputText>
           </p:column>
         </p:dataTable>
         </div>
         </div>
-        
-        <p:commandButton ajax="false" styleClass="note-history-export-button"
-          icon="#{visibilityBean.generateButtonIcon('si si-office-file-xls-1')}"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}">
-          <p:fileDownload value="#{caseTaskNoteHistoryBean.getStreamedContentOfCaseNoteHistory(data.filteredHistories, data.ivyCase, data.exportedFileName)}" />
-        </p:commandButton>
+
+        <div class="ui-g">
+          <div class="ui-g-12 u-no-padding-top">
+            <p:commandButton ajax="false" styleClass="note-history-export-button"
+              icon="#{visibilityBean.generateButtonIcon('si si-office-file-xls-1')}"
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}">
+              <p:fileDownload value="#{caseTaskNoteHistoryBean.getStreamedContentOfCaseNoteHistory(data.filteredHistories, data.ivyCase, data.exportedFileName)}" />
+            </p:commandButton>
+          </div>
+        </div>
       </h:form>
 
     </ui:define>

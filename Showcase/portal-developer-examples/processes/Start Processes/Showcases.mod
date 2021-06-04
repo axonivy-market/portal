@@ -1,5 +1,5 @@
 [Ivy]
-169BDE2F368D6EC4 9.2.0 #module
+169BDE2F368D6EC4 9.3.0 #module
 >Proto >Proto Collection #zClass
 Ss0 Showcases Big #zClass
 Ss0 B #cInfo
@@ -74,9 +74,7 @@ Ss0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ss0 f0 @C|.responsibility Everybody #txt
 Ss0 f0 81 49 30 30 -69 17 #rect
-Ss0 f0 @|StartRequestIcon #fIcon
 Ss0 f1 337 49 30 30 0 15 #rect
-Ss0 f1 @|EndIcon #fIcon
 Ss0 f3 dialogId com.axonivy.portal.developerexamples.showcase.ApplicationDialog #txt
 Ss0 f3 startMethod start(com.axonivy.portal.developerexamples.showcase.GdprRequest) #txt
 Ss0 f3 requestActionDecl '<com.axonivy.portal.developerexamples.showcase.GdprRequest gdprRequest> param;' #txt
@@ -87,13 +85,11 @@ Ss0 f3 responseActionDecl 'com.axonivy.portal.developerexamples.showcase.Data ou
 Ss0 f3 responseMappingAction 'out=in;
 ' #txt
 Ss0 f3 168 42 112 44 0 -8 #rect
-Ss0 f3 @|UserDialogIcon #fIcon
 Ss0 f4 expr out #txt
 Ss0 f4 111 64 168 64 #arcP
 Ss0 f2 expr out #txt
 Ss0 f2 280 64 337 64 #arcP
 Ss0 f5 337 145 30 30 0 15 #rect
-Ss0 f5 @|EndIcon #fIcon
 Ss0 f6 outLink DataTableShowcase.ivp #txt
 Ss0 f6 inParamDecl '<> param;' #txt
 Ss0 f6 requestEnabled true #txt
@@ -118,7 +114,6 @@ Ss0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ss0 f6 @C|.responsibility Everybody #txt
 Ss0 f6 81 145 30 30 -64 19 #rect
-Ss0 f6 @|StartRequestIcon #fIcon
 Ss0 f7 dialogId com.axonivy.portal.developerexamples.showcase.PrimefacesDataTable #txt
 Ss0 f7 startMethod start() #txt
 Ss0 f7 requestActionDecl '<> param;' #txt
@@ -127,7 +122,6 @@ Ss0 f7 responseActionDecl 'portal.show.Data out;
 Ss0 f7 responseMappingAction 'out=in;
 ' #txt
 Ss0 f7 168 138 112 44 0 -8 #rect
-Ss0 f7 @|UserDialogIcon #fIcon
 Ss0 f8 expr out #txt
 Ss0 f8 280 160 337 160 #arcP
 Ss0 f9 expr out #txt
@@ -140,7 +134,6 @@ Ss0 f10 responseActionDecl 'portal.show.Data out;
 Ss0 f10 responseMappingAction 'out=in;
 ' #txt
 Ss0 f10 168 234 112 44 0 -8 #rect
-Ss0 f10 @|UserDialogIcon #fIcon
 Ss0 f11 outLink CustomizedUIShowcase.ivp #txt
 Ss0 f11 inParamDecl '<> param;' #txt
 Ss0 f11 requestEnabled true #txt
@@ -165,9 +158,7 @@ Ss0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ss0 f11 @C|.responsibility Everybody #txt
 Ss0 f11 81 241 30 30 -77 19 #rect
-Ss0 f11 @|StartRequestIcon #fIcon
 Ss0 f12 337 241 30 30 0 15 #rect
-Ss0 f12 @|EndIcon #fIcon
 Ss0 f13 expr out #txt
 Ss0 f13 111 256 168 256 #arcP
 Ss0 f14 expr out #txt
@@ -196,9 +187,7 @@ Ss0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ss0 f15 @C|.responsibility Everybody #txt
 Ss0 f15 81 337 30 30 -59 30 #rect
-Ss0 f15 @|StartRequestIcon #fIcon
 Ss0 f16 337 337 30 30 0 15 #rect
-Ss0 f16 @|EndIcon #fIcon
 Ss0 f17 dialogId com.axonivy.portal.developerexamples.showcase.PrimefacesElements #txt
 Ss0 f17 startMethod start() #txt
 Ss0 f17 requestActionDecl '<> param;' #txt
@@ -207,7 +196,6 @@ Ss0 f17 responseActionDecl 'portal.show.Data out;
 Ss0 f17 responseMappingAction 'out=in;
 ' #txt
 Ss0 f17 168 330 112 44 0 -8 #rect
-Ss0 f17 @|UserDialogIcon #fIcon
 Ss0 f18 expr out #txt
 Ss0 f18 111 352 168 352 #arcP
 Ss0 f19 expr out #txt
@@ -240,9 +228,7 @@ Ss0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ss0 f20 @C|.responsibility Everybody #txt
 Ss0 f20 65 465 30 30 -70 29 #rect
-Ss0 f20 @|StartRequestIcon #fIcon
 Ss0 f21 561 465 30 30 0 15 #rect
-Ss0 f21 @|EndIcon #fIcon
 Ss0 f25 actionTable 'out=in;
 ' #txt
 Ss0 f25 actionCode 'import org.apache.commons.lang3.StringUtils;
@@ -264,7 +250,6 @@ Ss0 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ss0 f25 136 458 144 44 -67 -8 #rect
-Ss0 f25 @|StepIcon #fIcon
 Ss0 f26 expr out #txt
 Ss0 f26 95 480 136 480 #arcP
 Ss0 f23 dialogId com.axonivy.portal.developerexamples.showcase.CustomTaskTemplate #txt
@@ -282,7 +267,6 @@ Ss0 f23 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ss0 f23 344 458 112 44 -52 -8 #rect
-Ss0 f23 @|UserDialogIcon #fIcon
 Ss0 f24 280 480 344 480 #arcP
 Ss0 f22 456 480 561 480 #arcP
 Ss0 f32 outLink StartShowIvyErrorPage.ivp #txt
@@ -302,9 +286,7 @@ Ss0 f32 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ss0 f32 @C|.responsibility Everybody #txt
 Ss0 f32 721 145 30 30 -79 19 #rect
-Ss0 f32 @|StartRequestIcon #fIcon
 Ss0 f33 977 145 30 30 0 15 #rect
-Ss0 f33 @|EndIcon #fIcon
 Ss0 f34 751 160 977 160 #arcP
 Ss0 f35 outLink PortalDialogExamples.ivp #txt
 Ss0 f35 inParamDecl '<> param;' #txt
@@ -324,9 +306,7 @@ Ss0 f35 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ss0 f35 @C|.responsibility Everybody #txt
 Ss0 f35 721 241 30 30 -82 18 #rect
-Ss0 f35 @|StartRequestIcon #fIcon
 Ss0 f36 977 241 30 30 0 15 #rect
-Ss0 f36 @|EndIcon #fIcon
 Ss0 f37 dialogId com.axonivy.portal.developerexamples.showcase.PortalDialogExample #txt
 Ss0 f37 startMethod start() #txt
 Ss0 f37 requestActionDecl '<> param;' #txt
@@ -340,7 +320,6 @@ Ss0 f37 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ss0 f37 800 234 128 44 -58 -8 #rect
-Ss0 f37 @|UserDialogIcon #fIcon
 Ss0 f38 751 256 800 256 #arcP
 Ss0 f39 928 256 977 256 #arcP
 >Proto Ss0 .type com.axonivy.portal.developerexamples.showcase.Data #txt
