@@ -1,5 +1,5 @@
 [Ivy]
-1543CB1F7FCE2CC1 9.2.0 #module
+1543CB1F7FCE2CC1 9.3.0 #module
 >Proto >Proto Collection #zClass
 Nr0 Navigator Big #zClass
 Nr0 B #cInfo
@@ -71,9 +71,7 @@ Nr0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Nr0 f0 51 83 26 26 14 0 #rect
-Nr0 f0 @|StartSubIcon #fIcon
 Nr0 f1 51 339 26 26 14 0 #rect
-Nr0 f1 @|EndSubIcon #fIcon
 Nr0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -93,7 +91,6 @@ is put in PortalTemplate.</name>
 </elementInfo>
 ' #txt
 Nr0 f3 128 162 496 172 -238 -84 #rect
-Nr0 f3 @|IBIcon #fIcon
 Nr0 f2 expr out #txt
 Nr0 f2 64 109 64 339 #arcP
 Nr0 f4 128 248 64 224 #arcP
@@ -110,9 +107,7 @@ Nr0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Nr0 f5 51 411 26 26 14 0 #rect
-Nr0 f5 @|StartSubIcon #fIcon
 Nr0 f6 51 555 26 26 14 0 #rect
-Nr0 f6 @|EndSubIcon #fIcon
 Nr0 f7 expr out #txt
 Nr0 f7 64 437 64 555 #arcP
 Nr0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -134,7 +129,6 @@ is put in PortalTemplate.</name>
 </elementInfo>
 ' #txt
 Nr0 f11 128 498 496 172 -238 -84 #rect
-Nr0 f11 @|IBIcon #fIcon
 Nr0 f12 128 584 64 496 #arcP
 Nr0 f8 inParamDecl '<String chartName,ch.ivyteam.ivy.workflow.query.TaskQuery taskQuery> param;' #txt
 Nr0 f8 outParamDecl '<> result;' #txt
@@ -149,9 +143,7 @@ Nr0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Nr0 f8 724 407 26 26 14 0 #rect
-Nr0 f8 @|StartSubIcon #fIcon
 Nr0 f9 724 551 26 26 14 0 #rect
-Nr0 f9 @|EndSubIcon #fIcon
 Nr0 f10 expr out #txt
 Nr0 f10 737 433 737 551 #arcP
 Nr0 f13 inParamDecl '<String chartName,ch.ivyteam.ivy.workflow.query.CaseQuery caseQuery> param;' #txt
@@ -167,9 +159,7 @@ Nr0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Nr0 f13 724 84 26 26 14 0 #rect
-Nr0 f13 @|StartSubIcon #fIcon
 Nr0 f14 724 340 26 26 14 0 #rect
-Nr0 f14 @|EndSubIcon #fIcon
 Nr0 f15 expr out #txt
 Nr0 f15 737 110 737 340 #arcP
 Nr0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -191,7 +181,6 @@ is put in PortalTemplate.</name>
 </elementInfo>
 ' #txt
 Nr0 f16 815 163 496 172 -238 -84 #rect
-Nr0 f16 @|IBIcon #fIcon
 Nr0 f17 815 249 737 225 #arcP
 Nr0 f18 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -212,7 +201,6 @@ is put in PortalTemplate.</name>
 </elementInfo>
 ' #txt
 Nr0 f18 857 497 496 172 -238 -84 #rect
-Nr0 f18 @|IBIcon #fIcon
 Nr0 f19 857 583 737 492 #arcP
 Nr0 f20 inParamDecl '<String businessCaseName,ch.ivy.addon.portalkit.dto.GlobalCaseId businessCaseId> param;' #txt
 Nr0 f20 outParamDecl '<> result;' #txt
@@ -225,9 +213,7 @@ Nr0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Nr0 f20 1521 81 30 30 -164 17 #rect
-Nr0 f20 @|StartSubIcon #fIcon
 Nr0 f21 1521 337 30 30 0 15 #rect
-Nr0 f21 @|EndSubIcon #fIcon
 Nr0 f22 expr out #txt
 Nr0 f22 1536 111 1536 337 #arcP
 Nr0 f53 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -248,7 +234,6 @@ is put in PortalTemplate.</name>
 </elementInfo>
 ' #txt
 Nr0 f53 1632 147 496 172 -238 -84 #rect
-Nr0 f53 @|IBIcon #fIcon
 Nr0 f23 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -268,7 +253,6 @@ is put in PortalTemplate.</name>
 </elementInfo>
 ' #txt
 Nr0 f23 1600 498 496 172 -238 -84 #rect
-Nr0 f23 @|IBIcon #fIcon
 Nr0 f24 inParamDecl '<Long taskId> param;' #txt
 Nr0 f24 outParamDecl '<> result;' #txt
 Nr0 f24 callSignature viewRelatedTask(Long) #txt
@@ -282,9 +266,7 @@ Nr0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Nr0 f24 1523 411 26 26 14 0 #rect
-Nr0 f24 @|StartSubIcon #fIcon
 Nr0 f25 1523 555 26 26 14 0 #rect
-Nr0 f25 @|EndSubIcon #fIcon
 Nr0 f26 expr out #txt
 Nr0 f26 1536 437 1536 555 #arcP
 Nr0 f27 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -306,9 +288,7 @@ is put in PortalTemplate.</name>
 </elementInfo>
 ' #txt
 Nr0 f27 128 842 496 172 -238 -84 #rect
-Nr0 f27 @|IBIcon #fIcon
 Nr0 f28 51 899 26 26 14 0 #rect
-Nr0 f28 @|EndSubIcon #fIcon
 Nr0 f29 inParamDecl '<Long taskId,ch.ivy.addon.portalkit.dto.GlobalCaseId caseId,String caseName> param;' #txt
 Nr0 f29 outParamDecl '<> result;' #txt
 Nr0 f29 callSignature viewTaskInFrame(Long,ch.ivy.addon.portalkit.dto.GlobalCaseId,String) #txt
@@ -323,7 +303,6 @@ Nr0 f29 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Nr0 f29 51 755 26 26 14 0 #rect
-Nr0 f29 @|StartSubIcon #fIcon
 Nr0 f30 expr out #txt
 Nr0 f30 64 781 64 899 #arcP
 Nr0 f32 inParamDecl '<ch.ivy.addon.portalkit.dto.GlobalCaseId caseId> param;' #txt
@@ -337,14 +316,11 @@ Nr0 f32 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Nr0 f32 724 751 26 26 14 0 #rect
-Nr0 f32 @|StartSubIcon #fIcon
 Nr0 f33 724 895 26 26 14 0 #rect
-Nr0 f33 @|EndSubIcon #fIcon
 Nr0 f34 expr out #txt
 Nr0 f34 737 777 737 895 #arcP
 Nr0 f31 128 928 64 840 #arcP
 Nr0 f35 1523 899 26 26 14 0 #rect
-Nr0 f35 @|EndSubIcon #fIcon
 Nr0 f36 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -364,7 +340,6 @@ is put in PortalTemplate.</name>
 </elementInfo>
 ' #txt
 Nr0 f36 1600 842 496 172 -238 -84 #rect
-Nr0 f36 @|IBIcon #fIcon
 Nr0 f37 inParamDecl '<Long taskId> param;' #txt
 Nr0 f37 outParamDecl '<> result;' #txt
 Nr0 f37 callSignature viewRelatedTaskInFrame(Long) #txt
@@ -379,11 +354,9 @@ Nr0 f37 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Nr0 f37 1523 755 26 26 14 0 #rect
-Nr0 f37 @|StartSubIcon #fIcon
 Nr0 f38 expr out #txt
 Nr0 f38 1536 781 1536 899 #arcP
 Nr0 f39 49 1329 30 30 0 15 #rect
-Nr0 f39 @|EndSubIcon #fIcon
 Nr0 f40 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -402,7 +375,6 @@ is put in PortalTemplate.</name>
 </elementInfo>
 ' #txt
 Nr0 f40 160 1139 496 172 -238 -84 #rect
-Nr0 f40 @|IBIcon #fIcon
 Nr0 f41 inParamDecl '<String businessCaseName,ch.ivy.addon.portalkit.dto.GlobalCaseId businessCaseId> param;' #txt
 Nr0 f41 outParamDecl '<> result;' #txt
 Nr0 f41 callSignature viewTechnicalCasesOfBusniessCaseInFrame(String,ch.ivy.addon.portalkit.dto.GlobalCaseId) #txt
@@ -414,7 +386,6 @@ Nr0 f41 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Nr0 f41 49 1073 30 30 34 3 #rect
-Nr0 f41 @|StartSubIcon #fIcon
 Nr0 f42 expr out #txt
 Nr0 f42 64 1103 64 1329 #arcP
 Nr0 f43 1600 584 1536 496 #arcP

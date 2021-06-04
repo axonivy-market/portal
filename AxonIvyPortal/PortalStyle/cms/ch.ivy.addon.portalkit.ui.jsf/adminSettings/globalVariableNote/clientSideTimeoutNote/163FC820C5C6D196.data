@@ -1,1 +1,1 @@
-TODO Client side timeout in minute, must be more than 0 and less than server side timeout (e.g. 25). Default value is 0, it means default client side timeout is applied. Default client side timeout is server side timeout minus 3 minutes.
+Délai d'attente côté client en minutes, doit être supérieur à 0 et inférieur au délai d'attente côté serveur (par exemple 25 secondes). La valeur par défaut est 0, ce qui signifie que le délai d'attente côté client par défaut est appliqué. Le délai d'attente côté client par défaut est le délai d'attente côté serveur moins 3 minutes.

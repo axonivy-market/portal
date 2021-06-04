@@ -1,5 +1,5 @@
 [Ivy]
-14B7775CB7A22AF4 9.2.0 #module
+14B7775CB7A22AF4 9.3.0 #module
 >Proto >Proto Collection #zClass
 Cs0 ConfirmationProcess Big #zClass
 Cs0 RD #cInfo
@@ -38,9 +38,7 @@ Cs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f0 86 54 20 20 13 0 #rect
-Cs0 f0 @|UdInitIcon #fIcon
 Cs0 f1 86 150 20 20 13 0 #rect
-Cs0 f1 @|UdProcessEndIcon #fIcon
 Cs0 f2 expr out #txt
 Cs0 f2 96 74 96 150 #arcP
 Cs0 f3 guid 14B7779EAF2248BE #txt
@@ -57,9 +55,7 @@ Cs0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f3 278 54 20 20 13 0 #rect
-Cs0 f3 @|UdEventIcon #fIcon
 Cs0 f6 278 150 20 20 13 0 #rect
-Cs0 f6 @|UdExitEndIcon #fIcon
 Cs0 f4 expr out #txt
 Cs0 f4 288 74 288 150 #arcP
 Cs0 f5 guid 14B777E67484A564 #txt
@@ -76,15 +72,12 @@ Cs0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f5 406 54 20 20 13 0 #rect
-Cs0 f5 @|UdEventIcon #fIcon
 Cs0 f7 406 150 20 20 13 0 #rect
-Cs0 f7 @|UdExitEndIcon #fIcon
 Cs0 f8 expr out #txt
 Cs0 f8 416 74 416 150 #arcP
 >Proto Cs0 .type ch.ivy.addon.portalkit.test.Confirmation.ConfirmationData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 -8 -8 16 16 16 26 #rect
->Proto Cs0 '' #fIcon
 Cs0 f0 mainOut f2 tail #connect
 Cs0 f2 head f1 mainIn #connect
 Cs0 f3 mainOut f4 tail #connect

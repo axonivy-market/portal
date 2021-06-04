@@ -135,7 +135,6 @@ Cs0 S30 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 S30 448 1010 336 44 -158 -8 #rect
-Cs0 S30 @|BIcon #fIcon
 Cs0 S20 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language lang="en">
@@ -144,7 +143,6 @@ Cs0 S20 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 S20 516 912 200 48 -53 -8 #rect
-Cs0 S20 @|BIcon #fIcon
 Cs0 S10 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language lang="en">
@@ -153,7 +151,6 @@ Cs0 S10 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 S10 520 816 208 48 -70 -8 #rect
-Cs0 S10 @|BIcon #fIcon
 Cs0 f0 outLink createTasksForTaskListCustomization.ivp #txt
 Cs0 f0 inParamDecl '<> param;' #txt
 Cs0 f0 requestEnabled true #txt
@@ -179,13 +176,9 @@ Cs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Cs0 f0 @C|.responsibility Everybody #txt
 Cs0 f0 81 81 30 30 -80 20 #rect
-Cs0 f0 @|StartRequestIcon #fIcon
 Cs0 f1 403 83 30 30 0 15 #rect
-Cs0 f1 @|EndIcon #fIcon
 Cs0 f4 403 19 30 30 0 15 #rect
-Cs0 f4 @|EndIcon #fIcon
 Cs0 f5 403 147 30 30 0 15 #rect
-Cs0 f5 @|EndIcon #fIcon
 Cs0 f7 actionTable 'out=in1;
 ' #txt
 Cs0 f7 outLinks "TaskA.ivp","TaskB.ivp","TaskC.ivp" #txt
@@ -245,7 +238,6 @@ Cs0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f7 243 82 28 28 9 -21 #rect
-Cs0 f7 @|TaskSwitchIcon #fIcon
 Cs0 f2 expr out #txt
 Cs0 f2 type com.axonivy.portal.developerexamples.Data #txt
 Cs0 f2 var in1 #txt
@@ -277,7 +269,6 @@ This process will create 3 tasks, each task has filled customVarCharField5 and c
 </elementInfo>
 ' #txt
 Cs0 f13 632 66 592 92 -288 -40 #rect
-Cs0 f13 @|IBIcon #fIcon
 Cs0 f9 outLink createCasesForCaseListCustomization.ivp #txt
 Cs0 f9 inParamDecl '<> param;' #txt
 Cs0 f9 inParamTable 'out.caseNumber=12;
@@ -310,9 +301,7 @@ Cs0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Cs0 f9 @C|.responsibility Everybody #txt
 Cs0 f9 81 241 30 30 -72 18 #rect
-Cs0 f9 @|StartRequestIcon #fIcon
 Cs0 f46 700 239 32 32 0 16 #rect
-Cs0 f46 @|AlternativeIcon #fIcon
 Cs0 f45 processCall 'Start Processes/CreateTestData:startACase(Integer)' #txt
 Cs0 f45 requestActionDecl '<Integer count> param;' #txt
 Cs0 f45 requestMappingAction 'param.count=in.count;
@@ -331,16 +320,12 @@ Cs0 f45 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f45 372 233 112 44 -43 -8 #rect
-Cs0 f45 @|TriggerIcon #fIcon
 Cs0 f48 829 240 30 30 0 15 #rect
-Cs0 f48 @|EndIcon #fIcon
 Cs0 f52 actionTable 'out=in;
 ' #txt
 Cs0 f52 actionCode in.count++; #txt
 Cs0 f52 532 233 112 44 0 -8 #rect
-Cs0 f52 @|StepIcon #fIcon
 Cs0 f50 196 239 32 32 0 16 #rect
-Cs0 f50 @|AlternativeIcon #fIcon
 Cs0 f57 expr in #txt
 Cs0 f57 716 239 212 239 #arcP
 Cs0 f57 1 716 192 #addKink
@@ -388,9 +373,7 @@ Cs0 f43 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Cs0 f43 @C|.responsibility Everybody #txt
 Cs0 f43 77 369 30 30 -53 17 #rect
-Cs0 f43 @|StartRequestIcon #fIcon
 Cs0 f54 477 369 30 30 0 15 #rect
-Cs0 f54 @|EndIcon #fIcon
 Cs0 f58 actionTable 'out=in;
 ' #txt
 Cs0 f58 actionCode 'String a;
@@ -407,7 +390,6 @@ if(in.count % 3 == 0){
 ivy.case.setCategoryPath(a);
 ' #txt
 Cs0 f58 164 362 112 44 0 -8 #rect
-Cs0 f58 @|StepIcon #fIcon
 Cs0 f47 actionTable 'out=in1;
 ' #txt
 Cs0 f47 outLinks "TaskA.ivp" #txt
@@ -423,7 +405,6 @@ TaskA.SKIP_TASK_LIST=false
 TaskA.TYPE=0' #txt
 Cs0 f47 template "" #txt
 Cs0 f47 333 369 30 30 0 16 #rect
-Cs0 f47 @|TaskSwitchSimpleIcon #fIcon
 Cs0 f59 expr out #txt
 Cs0 f59 107 384 164 384 #arcP
 Cs0 f53 expr out #txt
@@ -451,9 +432,11 @@ Task Form</name>
 </elementInfo>
 ' #txt
 Cs0 f11 326 508 36 24 20 -2 #rect
-Cs0 f11 @|UserDialogIcon #fIcon
 Cs0 f12 actionTable 'out=in1;
 ' #txt
+Cs0 f12 actionCode 'import ch.ivy.addon.portalkit.enums.AdditionalProperty;
+
+ivy.case.getBusinessCase().customFields().textField(AdditionalProperty.CASE_BUSINESS_ENTITY_PROPERTY.toString()).set("leave_request");' #txt
 Cs0 f12 outLinks "TaskB.ivp","TaskA.ivp","TaskC.ivp" #txt
 Cs0 f12 caseData 'case.category=LeaveRequest
 case.name=Leave Request
@@ -517,7 +500,6 @@ Cs0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f12 202 506 28 28 -39 -35 #rect
-Cs0 f12 @|TaskSwitchIcon #fIcon
 Cs0 f14 outLink CategoriedLeaveRequest.ivp #txt
 Cs0 f14 inParamDecl '<> param;' #txt
 Cs0 f14 requestEnabled true #txt
@@ -525,6 +507,7 @@ Cs0 f14 triggerEnabled false #txt
 Cs0 f14 callSignature CategoriedLeaveRequest() #txt
 Cs0 f14 persist false #txt
 Cs0 f14 startName 'Categoried Leave Request' #txt
+Cs0 f14 startDescription 'This is a short description what you can expect behind this “Leave Request” example.' #txt
 Cs0 f14 taskData 'TaskTriggered.EXPRI=2
 TaskTriggered.EXROL=Everybody
 TaskTriggered.EXTYPE=0
@@ -552,7 +535,6 @@ Cs0 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Cs0 f14 @C|.responsibility Everybody #txt
 Cs0 f14 83 507 26 26 -73 16 #rect
-Cs0 f14 @|StartRequestIcon #fIcon
 Cs0 f15 dialogId com.axonivy.portal.developerexamples.testdata.LeaveRequestForm #txt
 Cs0 f15 startMethod start() #txt
 Cs0 f15 requestActionDecl '<> param;' #txt
@@ -571,9 +553,7 @@ Task Form</name>
 </elementInfo>
 ' #txt
 Cs0 f15 326 564 36 24 20 -2 #rect
-Cs0 f15 @|UserDialogIcon #fIcon
 Cs0 f16 595 507 26 26 14 0 #rect
-Cs0 f16 @|EndIcon #fIcon
 Cs0 f17 dialogId com.axonivy.portal.developerexamples.testdata.LeaveRequestForm #txt
 Cs0 f17 startMethod start() #txt
 Cs0 f17 requestActionDecl '<> param;' #txt
@@ -593,7 +573,6 @@ Task Form</name>
 </elementInfo>
 ' #txt
 Cs0 f17 326 444 36 24 20 -2 #rect
-Cs0 f17 @|UserDialogIcon #fIcon
 Cs0 f18 expr out #txt
 Cs0 f18 type internaltest.Data #txt
 Cs0 f18 var in1 #txt
@@ -646,7 +625,6 @@ Cs0 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Cs0 f25 @C|.responsibility Everybody #txt
 Cs0 f25 81 673 30 30 -65 17 #rect
-Cs0 f25 @|StartRequestIcon #fIcon
 Cs0 f26 actionTable 'out=in;
 ' #txt
 Cs0 f26 actionCode 'import ch.ivyteam.ivy.process.model.value.SignalCode;
@@ -664,9 +642,7 @@ Cs0 f26 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f26 248 666 176 44 -84 -8 #rect
-Cs0 f26 @|StepIcon #fIcon
 Cs0 f27 593 673 30 30 0 15 #rect
-Cs0 f27 @|EndIcon #fIcon
 Cs0 f28 processCall 'Functional Processes/SetBusinessEntityId:call(String)' #txt
 Cs0 f28 requestActionDecl '<String businessEntityId> param;' #txt
 Cs0 f28 requestMappingAction 'param.businessEntityId="payment";
@@ -685,9 +661,7 @@ Cs0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f28 856 666 128 44 -55 -8 #rect
-Cs0 f28 @|CallSubIcon #fIcon
 Cs0 f29 1305 673 30 30 0 15 #rect
-Cs0 f29 @|EndIcon #fIcon
 Cs0 f31 signalCode ch:axonivy:portal:example:createnewpayment #txt
 Cs0 f31 attachToBusinessCase true #txt
 Cs0 f31 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -700,7 +674,6 @@ Cs0 f31 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f31 753 673 30 30 -78 17 #rect
-Cs0 f31 @|SignalStartEventIcon #fIcon
 Cs0 f34 783 688 856 688 #arcP
 Cs0 f35 expr out #txt
 Cs0 f35 424 688 593 688 #arcP
@@ -720,7 +693,6 @@ Cs0 f32 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f32 1096 666 112 44 -36 -8 #rect
-Cs0 f32 @|UserTaskIcon #fIcon
 Cs0 f33 984 688 1096 688 #arcP
 Cs0 f36 1208 688 1305 688 #arcP
 Cs0 f41 outLink createTechnicalStateTasks.ivp #txt
@@ -744,11 +716,9 @@ Cs0 f41 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Cs0 f41 @C|.responsibility Everybody #txt
 Cs0 f41 89 921 30 30 -87 21 #rect
-Cs0 f41 @|StartRequestIcon #fIcon
 Cs0 f51 actionTable 'out1=in;
 ' #txt
 Cs0 f51 208 920 32 32 0 16 #rect
-Cs0 f51 @|ThreadIcon #fIcon
 Cs0 f60 119 936 208 936 #arcP
 Cs0 f61 expr out1 #txt
 Cs0 f61 224 920 520 840 #arcP
@@ -765,7 +735,6 @@ Cs0 f68 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f68 276 1020 72 24 -29 -8 #rect
-Cs0 f68 @|StepIcon #fIcon
 Cs0 f39 expr out3 #txt
 Cs0 f39 224 952 276 1032 #arcP
 Cs0 f39 1 224 1032 #addKink
@@ -784,7 +753,6 @@ Ct2 f63 caseData 'case.name=Task in state WAITING_FOR_INTERMEDIATE_EVENT' #txt
 Ct2 f63 taskData 'TaskA.DESC=Task in state WAITING_FOR_INTERMEDIATE_EVENT
 TaskA.NAM=Task in state WAITING_FOR_INTERMEDIATE_EVENT' #txt
 Ct2 f63 633 185 30 30 0 16 #rect
-Ct2 f63 @|TaskSwitchSimpleIcon #fIcon
 Ct2 f2 actionTable 'out=in;
 ' #txt
 Ct2 f2 eventIdConfig "in.eventId" #txt
@@ -796,7 +764,6 @@ ivp.NAM=Example ProcessIntermediateEventBean Task' #txt
 Ct2 f2 eventBeanClass "ch.ivyteam.ivy.process.intermediateevent.TestProcessIntermediateEventBean" #txt
 Ct2 f2 eventBeanConfig "" #txt
 Ct2 f2 393 185 30 30 0 16 #rect
-Ct2 f2 @|IntermediateEventIcon #fIcon
 Ct2 f0 423 200 633 200 #arcP
 Ct2 g2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -806,15 +773,12 @@ Ct2 g2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ct2 g2 163 187 26 26 -69 22 #rect
-Ct2 g2 @|MIGIcon #fIcon
 Ct2 f4 189 200 393 200 #arcP
 Ct2 f7 769 185 30 30 0 15 #rect
-Ct2 f7 @|EndIcon #fIcon
 Ct2 f8 663 200 769 200 #arcP
 >Proto Ct0 0 0 32 24 18 0 #rect
 >Proto Ct0 @|BIcon #fIcon
 Ct1 f41 425 281 30 30 0 15 #rect
-Ct1 f41 @|EndIcon #fIcon
 Ct1 f51 signalCode ch:axonivy:portal:example:createtaskfailed #txt
 Ct1 f51 attachToBusinessCase true #txt
 Ct1 f51 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -827,7 +791,6 @@ Ct1 f51 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ct1 f51 169 281 30 30 -78 17 #rect
-Ct1 f51 @|SignalStartEventIcon #fIcon
 Ct1 f60 actionTable 'out=in;
 ' #txt
 Ct1 f60 actionCode 'import ch.ivyteam.ivy.process.model.value.SignalCode;
@@ -846,7 +809,6 @@ Ct1 f60 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ct1 f60 280 138 208 44 -97 -8 #rect
-Ct1 f60 @|StepIcon #fIcon
 Ct1 g2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -855,10 +817,8 @@ Ct1 g2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ct1 g2 115 147 26 26 -85 28 #rect
-Ct1 g2 @|MIGIcon #fIcon
 Ct1 f2 141 160 280 160 #arcP
 Ct1 f4 721 145 30 30 0 15 #rect
-Ct1 f4 @|EndIcon #fIcon
 Ct1 f5 expr out #txt
 Ct1 f5 488 160 721 160 #arcP
 Ct1 f3 actionTable 'out=in;
@@ -879,7 +839,6 @@ Ct1 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ct1 f3 248 274 128 44 -56 -8 #rect
-Ct1 f3 @|StepIcon #fIcon
 Ct1 f6 199 296 248 296 #arcP
 Ct1 f1 376 296 425 296 #arcP
 >Proto Ct1 0 0 32 24 18 0 #rect
@@ -887,7 +846,6 @@ Ct1 f1 376 296 425 296 #arcP
 Ct0 f74 expr out #txt
 Ct0 f74 416 208 520 208 #arcP
 Ct0 f69 721 329 30 30 0 15 #rect
-Ct0 f69 @|EndIcon #fIcon
 Ct0 f73 signalCode ch:axonivy:portal:example:createtechnicaltask #txt
 Ct0 f73 attachToBusinessCase true #txt
 Ct0 f73 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -900,7 +858,6 @@ Ct0 f73 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ct0 f73 305 329 30 30 -78 17 #rect
-Ct0 f73 @|SignalStartEventIcon #fIcon
 Ct0 f71 actionTable 'out=in;
 ' #txt
 Ct0 f71 actionCode 'import ch.ivyteam.ivy.process.model.value.SignalCode;
@@ -915,7 +872,6 @@ Ct0 f71 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ct0 f71 520 186 208 44 -97 -8 #rect
-Ct0 f71 @|StepIcon #fIcon
 Ct0 f67 actionTable 'out=in;
 ' #txt
 Ct0 f67 actionCode 'ivy.case.setCategoryPath("Technical Task");' #txt
@@ -929,7 +885,6 @@ code name</name>
 </elementInfo>
 ' #txt
 Ct0 f67 304 186 112 44 -33 -16 #rect
-Ct0 f67 @|StepIcon #fIcon
 Ct0 g2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -938,11 +893,9 @@ Ct0 g2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ct0 g2 139 195 26 26 -85 38 #rect
-Ct0 g2 @|MIGIcon #fIcon
 Ct0 f2 165 208 304 208 #arcP
 Ct0 f2 0 0.49069289127713717 0 0 #arcLabel
 Ct0 f4 889 193 30 30 0 15 #rect
-Ct0 f4 @|EndIcon #fIcon
 Ct0 f5 expr out #txt
 Ct0 f5 728 208 889 208 #arcP
 Ct0 f1 actionTable 'out=in1;
@@ -954,7 +907,6 @@ TaskA.SCRIPT=5/0;
 TaskA.SKIP_TASK_LIST=true
 TaskA.TYPE=0' #txt
 Ct0 f1 457 329 30 30 0 16 #rect
-Ct0 f1 @|TaskSwitchSimpleIcon #fIcon
 Ct0 f6 335 344 457 344 #arcP
 Ct0 f7 487 344 721 344 #arcP
 >Proto Ct2 0 0 32 24 18 0 #rect

@@ -1,5 +1,5 @@
 [Ivy]
-163FDC32C09892B4 9.2.0 #module
+163FDC32C09892B4 9.3.0 #module
 >Proto >Proto Collection #zClass
 Ts0 TaskWorkerFilterProcess Big #zClass
 Ts0 RD #cInfo
@@ -27,14 +27,11 @@ Ts0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ts0 f0 83 83 26 26 -16 15 #rect
-Ts0 f0 @|UdInitIcon #fIcon
 Ts0 f1 243 83 26 26 0 12 #rect
-Ts0 f1 @|UdProcessEndIcon #fIcon
 Ts0 f2 expr out #txt
 Ts0 f2 109 96 243 96 #arcP
 >Proto Ts0 .type ch.ivy.addon.portalkit.component.task.filter.TaskWorkerFilter.TaskWorkerFilterData #txt
 >Proto Ts0 .processKind HTML_DIALOG #txt
 >Proto Ts0 -8 -8 16 16 16 26 #rect
->Proto Ts0 '' #fIcon
 Ts0 f0 mainOut f2 tail #connect
 Ts0 f2 head f1 mainIn #connect

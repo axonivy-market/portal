@@ -1,5 +1,5 @@
 [Ivy]
-1754F17410CDFE4E 9.2.0 #module
+1754F17410CDFE4E 9.3.0 #module
 >Proto >Proto Collection #zClass
 El0 ExportTaskToExcel Big #zClass
 El0 B #cInfo
@@ -30,9 +30,7 @@ El0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 El0 f0 81 49 30 30 -58 17 #rect
-El0 f0 @|StartSubIcon #fIcon
 El0 f1 433 49 30 30 0 15 #rect
-El0 f1 @|EndSubIcon #fIcon
 El0 f81 actionTable 'out=in;
 ' #txt
 El0 f81 actionCode 'import ch.ivy.addon.portalkit.exporter.TaskExporter;
@@ -48,7 +46,6 @@ El0 f81 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 El0 f81 224 42 112 44 -32 -8 #rect
-El0 f81 @|StepIcon #fIcon
 El0 f3 111 64 224 64 #arcP
 El0 f2 336 64 433 64 #arcP
 >Proto El0 .type portalkit.ExportTaskToExcelData #txt

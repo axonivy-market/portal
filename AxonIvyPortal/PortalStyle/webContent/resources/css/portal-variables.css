@@ -505,6 +505,11 @@
   --security-member-item-font-size: 10px;
   --security-member-header-font-weight: bold;
 
+  /* Process information page */
+  --process-info-icon-font-size: 4rem;
+  --process-info-step-icon-font-size: 2rem;
+  --process-info-step-icon-font-color: var(--primary-color);
+
   /* Widget header */
   --widget-filter-noti-background-color: var(--ivy-tertinary-color-red-medium);
   --widget-filter-noti-font-size: var(--default-font-size);
