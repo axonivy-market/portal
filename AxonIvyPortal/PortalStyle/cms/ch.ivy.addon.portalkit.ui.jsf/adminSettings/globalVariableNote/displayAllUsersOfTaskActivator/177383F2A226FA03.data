@@ -1,1 +1,1 @@
-TODO This setting is using for SecurityMemberDisplayName component. If the SecurityMember is a role, set this setting to true to list out all users of this role. If set to true, icon info is shown beside the role name.
+Ce paramètre est utilisé pour le composant SecurityMemberDisplayName. Si le SecurityMember est un rôle, définissez ce paramètre sur true pour afficher la liste de tous les utilisateurs de ce rôle. Si ce paramètre a la valeur true, des informations sur l'icône sont affichées à côté du nom du rôle.

@@ -1,5 +1,5 @@
 [Ivy]
-176EF69EC66B4E37 9.2.0 #module
+176EF69EC66B4E37 9.3.0 #module
 >Proto >Proto Collection #zClass
 Ps0 PortalCaseDetailsOverrideProcess Big #zClass
 Ps0 RD #cInfo
@@ -35,9 +35,7 @@ Ps0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f0 83 51 26 26 -16 15 #rect
-Ps0 f0 @|UdInitIcon #fIcon
 Ps0 f1 467 51 26 26 0 12 #rect
-Ps0 f1 @|UdProcessEndIcon #fIcon
 Ps0 f3 guid 16BBB5AA8D8DEFBB #txt
 Ps0 f3 actionTable 'out=in;
 ' #txt
@@ -49,9 +47,7 @@ Ps0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f3 83 147 26 26 -15 12 #rect
-Ps0 f3 @|UdEventIcon #fIcon
 Ps0 f4 211 147 26 26 0 12 #rect
-Ps0 f4 @|UdExitEndIcon #fIcon
 Ps0 f5 expr out #txt
 Ps0 f5 109 160 211 160 #arcP
 Ps0 f6 actionTable 'out=in;
@@ -67,14 +63,12 @@ Ps0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f6 224 42 176 44 -82 -8 #rect
-Ps0 f6 @|StepIcon #fIcon
 Ps0 f7 expr out #txt
 Ps0 f7 109 64 224 64 #arcP
 Ps0 f2 400 64 467 64 #arcP
 >Proto Ps0 .type com.axonivy.portal.developerexamples.customization.PortalCaseDetailsOverride.PortalCaseDetailsOverrideData #txt
 >Proto Ps0 .processKind HTML_DIALOG #txt
 >Proto Ps0 -8 -8 16 16 16 26 #rect
->Proto Ps0 '' #fIcon
 Ps0 f3 mainOut f5 tail #connect
 Ps0 f5 head f4 mainIn #connect
 Ps0 f0 mainOut f7 tail #connect

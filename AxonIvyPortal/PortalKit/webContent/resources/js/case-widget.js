@@ -59,6 +59,12 @@ function CaseWidget() {
     },
 
     updateCaseCountToBreadcrumb: function() {
+      var $hiddenCaseCountElem = $(".js-hidden-case-count");
+      // $hiddenCaseCountElem is not rendered if case count is disabled. So that do not update case count to breadcrumb.
+      if ($hiddenCaseCountElem.length === 0) {
+        return;
+      }
+
       var $breadCrumbTaskElem = $("[id$=':breadcrumb'] li").last().find(".ui-menuitem-link");
       if ($breadCrumbTaskElem.length === 0) {
         return;

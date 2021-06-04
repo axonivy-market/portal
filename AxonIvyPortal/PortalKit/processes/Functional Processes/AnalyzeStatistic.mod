@@ -1,5 +1,5 @@
 [Ivy]
-1602F513613E1225 9.2.0 #module
+1602F513613E1225 9.3.0 #module
 >Proto >Proto Collection #zClass
 ac0 AnalyzeStatistic Big #zClass
 ac0 B #cInfo
@@ -67,9 +67,7 @@ ac0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 ac0 f0 113 49 30 30 -94 17 #rect
-ac0 f0 @|StartSubIcon #fIcon
 ac0 f1 561 49 30 30 0 15 #rect
-ac0 f1 @|EndSubIcon #fIcon
 ac0 f3 inParamDecl '<ch.ivyteam.ivy.workflow.query.CaseQuery caseQuery> param;' #txt
 ac0 f3 inParamTable 'out.caseSearchCriteria.customCaseQuery=param.caseQuery;
 ' #txt
@@ -85,7 +83,6 @@ ac0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 ac0 f3 113 145 30 30 -106 17 #rect
-ac0 f3 @|StartSubIcon #fIcon
 ac0 f4 inParamDecl '<ch.ivyteam.ivy.workflow.query.TaskQuery taskQuery> param;' #txt
 ac0 f4 inParamTable 'out.taskSearchCriteria.customTaskQuery=param.taskQuery;
 ' #txt
@@ -101,11 +98,8 @@ ac0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 ac0 f4 113 241 30 30 -91 17 #rect
-ac0 f4 @|StartSubIcon #fIcon
 ac0 f5 561 145 30 30 0 15 #rect
-ac0 f5 @|EndSubIcon #fIcon
 ac0 f6 561 241 30 30 0 15 #rect
-ac0 f6 @|EndSubIcon #fIcon
 ac0 f11 processCall 'Ivy Data Processes/TaskService:analyzePriorityStatistic(ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria)' #txt
 ac0 f11 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria taskSearchCriteria> param;' #txt
 ac0 f11 requestMappingAction 'param.taskSearchCriteria=in.taskSearchCriteria;
@@ -125,7 +119,6 @@ ac0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 ac0 f11 384 42 112 44 -33 -8 #rect
-ac0 f11 @|CallSubIcon #fIcon
 ac0 f2 expr out #txt
 ac0 f2 496 64 561 64 #arcP
 ac0 f15 processCall 'Ivy Data Processes/CaseService:analyzeCaseStateStatistic(ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria)' #txt
@@ -147,7 +140,6 @@ ac0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 ac0 f15 384 138 112 44 -35 -8 #rect
-ac0 f15 @|CallSubIcon #fIcon
 ac0 f7 expr out #txt
 ac0 f7 496 160 561 160 #arcP
 ac0 f19 processCall 'Ivy Data Processes/TaskService:analyzeExpiryStatistic(ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria)' #txt
@@ -169,7 +161,6 @@ ac0 f19 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 ac0 f19 384 234 112 44 -33 -8 #rect
-ac0 f19 @|CallSubIcon #fIcon
 ac0 f8 expr out #txt
 ac0 f8 496 256 561 256 #arcP
 ac0 f27 inParamDecl '<ch.ivyteam.ivy.workflow.query.CaseQuery caseQuery> param;' #txt
@@ -187,7 +178,6 @@ ac0 f27 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 ac0 f27 113 337 30 30 -114 17 #rect
-ac0 f27 @|StartSubIcon #fIcon
 ac0 f28 processCall 'Ivy Data Processes/CaseService:analyzeElapsedTimeByCaseCategory(ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria)' #txt
 ac0 f28 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria caseSearchCriteria> param;' #txt
 ac0 f28 requestMappingAction 'param.caseSearchCriteria=in.caseSearchCriteria;
@@ -207,9 +197,7 @@ ac0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 ac0 f28 386 330 112 44 -35 -8 #rect
-ac0 f28 @|CallSubIcon #fIcon
 ac0 f30 563 337 30 30 0 15 #rect
-ac0 f30 @|EndSubIcon #fIcon
 ac0 f33 expr out #txt
 ac0 f33 498 352 563 352 #arcP
 ac0 f36 inParamDecl '<ch.ivyteam.ivy.workflow.query.CaseQuery caseQuery> param;' #txt
@@ -227,9 +215,7 @@ ac0 f36 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 ac0 f36 113 433 30 30 -90 17 #rect
-ac0 f36 @|StartSubIcon #fIcon
 ac0 f37 561 433 30 30 0 15 #rect
-ac0 f37 @|EndSubIcon #fIcon
 ac0 f39 processCall 'Ivy Data Processes/CaseService:findCategoriesByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCategorySearchCriteria)' #txt
 ac0 f39 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCategorySearchCriteria caseCategorySearchCriteria> param;' #txt
 ac0 f39 responseActionDecl 'ch.ivy.add.portalkit.AnalyzeStatisticData out;
@@ -247,7 +233,6 @@ ac0 f39 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 ac0 f39 384 426 112 44 -35 -8 #rect
-ac0 f39 @|CallSubIcon #fIcon
 ac0 f44 expr out #txt
 ac0 f44 496 448 561 448 #arcP
 ac0 f22 expr out #txt
@@ -277,7 +262,6 @@ ac0 f23 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 ac0 f23 224 138 112 44 -22 -8 #rect
-ac0 f23 @|StepIcon #fIcon
 ac0 f31 actionTable 'out=in;
 ' #txt
 ac0 f31 actionCode 'import ch.ivy.addon.portalkit.util.PermissionUtils;
@@ -295,7 +279,6 @@ ac0 f31 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 ac0 f31 226 330 112 44 -22 -8 #rect
-ac0 f31 @|StepIcon #fIcon
 ac0 f25 actionTable 'out=in;
 ' #txt
 ac0 f25 actionCode 'import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria;
@@ -320,7 +303,6 @@ ac0 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 ac0 f25 224 234 112 44 -22 -8 #rect
-ac0 f25 @|StepIcon #fIcon
 ac0 f21 actionTable 'out=in;
 ' #txt
 ac0 f21 actionCode 'import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria;
@@ -342,7 +324,6 @@ ac0 f21 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 ac0 f21 224 42 112 44 -22 -8 #rect
-ac0 f21 @|StepIcon #fIcon
 ac0 f41 actionTable 'out=in;
 ' #txt
 ac0 f41 actionCode 'import ch.ivy.addon.portalkit.util.PermissionUtils;
@@ -359,7 +340,6 @@ ac0 f41 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 ac0 f41 224 426 112 44 -22 -8 #rect
-ac0 f41 @|StepIcon #fIcon
 ac0 f9 expr out #txt
 ac0 f9 336 64 384 64 #arcP
 ac0 f10 expr out #txt
@@ -371,7 +351,6 @@ ac0 f13 338 352 386 352 #arcP
 ac0 f14 expr out #txt
 ac0 f14 336 448 384 448 #arcP
 ac0 f38 561 529 30 30 0 15 #rect
-ac0 f38 @|EndSubIcon #fIcon
 ac0 f40 inParamDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCustomFieldSearchCriteria caseCustomFieldSearchCriteria> param;' #txt
 ac0 f40 inParamTable 'out.caseCustomFieldSearchCriteria=param.caseCustomFieldSearchCriteria;
 ' #txt
@@ -387,7 +366,6 @@ ac0 f40 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 ac0 f40 113 529 30 30 -117 17 #rect
-ac0 f40 @|StartSubIcon #fIcon
 ac0 f51 processCall 'Ivy Data Processes/CaseService:findValuesOfCustomField(ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCustomFieldSearchCriteria)' #txt
 ac0 f51 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCustomFieldSearchCriteria caseCustomFieldSearchCriteria> param;' #txt
 ac0 f51 requestMappingAction 'param.caseCustomFieldSearchCriteria=in.caseCustomFieldSearchCriteria;
@@ -405,7 +383,6 @@ ac0 f51 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 ac0 f51 384 522 112 44 -35 -8 #rect
-ac0 f51 @|CallSubIcon #fIcon
 ac0 f54 expr out #txt
 ac0 f54 496 544 561 544 #arcP
 ac0 f16 expr out #txt

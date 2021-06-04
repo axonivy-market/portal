@@ -1,5 +1,5 @@
 [Ivy]
-16250B8F9D64A11E 9.2.0 #module
+16250B8F9D64A11E 9.3.0 #module
 >Proto >Proto Collection #zClass
 Il0 InitializeTaskDataModel Big #zClass
 Il0 B #cInfo
@@ -34,9 +34,7 @@ Il0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Il0 f0 81 49 30 30 -13 17 #rect
-Il0 f0 @|StartSubIcon #fIcon
 Il0 f1 337 49 30 30 0 15 #rect
-Il0 f1 @|EndSubIcon #fIcon
 Il0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -51,7 +49,6 @@ in.dataModel = new &lt;CUSTOMIZED_DATA_MODEL&gt;();</name>
 </elementInfo>
 ' #txt
 Il0 f16 160 164 480 92 -230 -40 #rect
-Il0 f16 @|IBIcon #fIcon
 Il0 f5 400 164 224 86 #arcP
 Il0 f2 expr out #txt
 Il0 f2 288 64 337 64 #arcP
@@ -73,7 +70,6 @@ lazy data model</name>
 </elementInfo>
 ' #txt
 Il0 f3 160 42 128 44 -41 -16 #rect
-Il0 f3 @|StepIcon #fIcon
 >Proto Il0 .type _com.axonivy.portal.developerexamples.InitializeTaskDataModelOverrideData #txt
 >Proto Il0 .processKind CALLABLE_SUB #txt
 >Proto Il0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

@@ -1,5 +1,5 @@
 [Ivy]
-15C7B1DACB6CCA9D 9.2.0 #module
+15C7B1DACB6CCA9D 9.3.0 #module
 >Proto >Proto Collection #zClass
 Ua0 UploadAdditionalData Big #zClass
 Ua0 B #cInfo
@@ -30,9 +30,7 @@ Ua0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ua0 f0 @C|.responsibility Everybody #txt
 Ua0 f0 81 49 30 30 -21 17 #rect
-Ua0 f0 @|StartRequestIcon #fIcon
 Ua0 f1 337 49 30 30 0 15 #rect
-Ua0 f1 @|EndIcon #fIcon
 Ua0 f2 111 64 337 64 #arcP
 >Proto Ua0 .type internaltest.Data #txt
 >Proto Ua0 .processKind NORMAL #txt

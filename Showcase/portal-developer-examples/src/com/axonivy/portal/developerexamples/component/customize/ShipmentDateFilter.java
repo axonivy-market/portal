@@ -33,8 +33,7 @@ public class ShipmentDateFilter extends TaskFilter {
 
   @Override
   public String value() {
-    DateTimeGlobalSettingService service = new DateTimeGlobalSettingService();
-    DateFormat formatter = new SimpleDateFormat(service.getDateTimePattern());
+    DateFormat formatter = new SimpleDateFormat(DateTimeGlobalSettingService.getInstance().getDateTimePattern(), Ivy.session().getContentLocale());
     if (fromShipmentDate != null && toShipmentDate != null) {
       return String.format(DASH, formatter.format(fromShipmentDate), formatter.format(toShipmentDate));
     }

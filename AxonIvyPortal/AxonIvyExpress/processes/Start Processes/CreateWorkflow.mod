@@ -1,5 +1,5 @@
 [Ivy]
-15798655494F25E1 9.2.0 #module
+15798655494F25E1 9.3.0 #module
 >Proto >Proto Collection #zClass
 cw0 CreateWorkflow Big #zClass
 cw0 B #cInfo
@@ -56,9 +56,7 @@ cw0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 cw0 f0 @C|.responsibility Everybody #txt
 cw0 f0 81 49 30 30 -60 17 #rect
-cw0 f0 @|StartRequestIcon #fIcon
 cw0 f1 569 49 30 30 0 15 #rect
-cw0 f1 @|EndIcon #fIcon
 cw0 f3 processCall 'Functional Processes/editWorkflow:newWorkflow()' #txt
 cw0 f3 requestActionDecl '<> param;' #txt
 cw0 f3 responseActionDecl 'gawfs.createWorkflowData out;
@@ -75,7 +73,6 @@ cw0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 cw0 f3 384 42 112 44 -35 -8 #rect
-cw0 f3 @|CallSubIcon #fIcon
 cw0 f2 expr out #txt
 cw0 f2 496 64 569 64 #arcP
 cw0 f5 outLink AxonIvyExpressAdhocWF.ivp #txt
@@ -97,7 +94,6 @@ cw0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 cw0 f5 @C|.responsibility Everybody #txt
 cw0 f5 81 177 30 30 -73 24 #rect
-cw0 f5 @|StartRequestIcon #fIcon
 cw0 f6 processCall 'Functional Processes/editWorkflow:newAdhocWorkflow(Long)' #txt
 cw0 f6 requestActionDecl '<Long originalTaskId> param;' #txt
 cw0 f6 requestMappingAction 'param.originalTaskId=in.originalTaskId;
@@ -114,9 +110,7 @@ cw0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 cw0 f6 392 170 112 44 -46 -8 #rect
-cw0 f6 @|CallSubIcon #fIcon
 cw0 f8 577 177 30 30 0 15 #rect
-cw0 f8 @|EndIcon #fIcon
 cw0 f9 expr out #txt
 cw0 f9 504 192 577 192 #arcP
 cw0 f10 actionTable 'out=in;
@@ -131,7 +125,6 @@ cw0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 cw0 f10 224 42 112 44 -53 -8 #rect
-cw0 f10 @|StepIcon #fIcon
 cw0 f11 expr out #txt
 cw0 f11 111 64 224 64 #arcP
 cw0 f4 336 64 384 64 #arcP
@@ -147,7 +140,6 @@ cw0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 cw0 f12 224 170 112 44 -53 -8 #rect
-cw0 f12 @|StepIcon #fIcon
 cw0 f13 expr out #txt
 cw0 f13 111 192 224 192 #arcP
 cw0 f7 336 192 392 192 #arcP

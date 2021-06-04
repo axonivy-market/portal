@@ -1,5 +1,5 @@
 [Ivy]
-15DBB7002BEF4583 9.2.0 #module
+15DBB7002BEF4583 9.3.0 #module
 >Proto >Proto Collection #zClass
 Ps0 PasswordSettingProcess Big #zClass
 Ps0 RD #cInfo
@@ -34,9 +34,7 @@ Ps0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f0 83 51 26 26 -16 16 #rect
-Ps0 f0 @|UdInitIcon #fIcon
 Ps0 f1 275 51 26 26 0 12 #rect
-Ps0 f1 @|UdProcessEndIcon #fIcon
 Ps0 f2 expr out #txt
 Ps0 f2 109 64 275 64 #arcP
 Ps0 f6 guid 15DBB787242E846A #txt
@@ -51,9 +49,7 @@ Ps0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f6 83 147 26 26 -44 18 #rect
-Ps0 f6 @|UdMethodIcon #fIcon
 Ps0 f7 595 147 26 26 0 12 #rect
-Ps0 f7 @|UdProcessEndIcon #fIcon
 Ps0 f10 actionTable 'out=in;
 ' #txt
 Ps0 f10 actionCode 'import ch.ivy.addon.portalkit.enums.ChangePasswordStatus;
@@ -79,7 +75,6 @@ Ps0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f10 216 138 112 44 -51 -8 #rect
-Ps0 f10 @|StepIcon #fIcon
 Ps0 f11 expr out #txt
 Ps0 f11 109 160 216 160 #arcP
 Ps0 f3 actionTable 'out=in;
@@ -103,7 +98,6 @@ Ps0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f3 392 138 112 44 -46 -8 #rect
-Ps0 f3 @|StepIcon #fIcon
 Ps0 f4 expr out #txt
 Ps0 f4 328 160 392 160 #arcP
 Ps0 f5 expr out #txt
@@ -111,7 +105,6 @@ Ps0 f5 504 160 595 160 #arcP
 >Proto Ps0 .type ch.ivy.addon.portalkit.multiapp.settings.PasswordSetting.PasswordSettingData #txt
 >Proto Ps0 .processKind HTML_DIALOG #txt
 >Proto Ps0 -8 -8 16 16 16 26 #rect
->Proto Ps0 '' #fIcon
 Ps0 f0 mainOut f2 tail #connect
 Ps0 f2 head f1 mainIn #connect
 Ps0 f6 mainOut f11 tail #connect

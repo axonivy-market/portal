@@ -94,6 +94,9 @@ Variables:
       # [file: json]
       ExpressProcesses:
 
+      # Set to true to disable link to Show Information of process on Processes page (grid mode) and Case Details.
+      ShowInformation: true
+
     Tasks:
       # The standard sets of filters that will be used as the public filters in the task list.
       # [file: json]
