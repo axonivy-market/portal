@@ -1,5 +1,5 @@
 [Ivy]
-17236DB1D3DA14C0 9.2.0 #module
+17236DB1D3DA14C0 9.3.0 #module
 >Proto >Proto Collection #zClass
 Ue0 UserExampleGuide Big #zClass
 Ue0 B #cInfo
@@ -32,9 +32,7 @@ Ue0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ue0 f0 @C|.responsibility Everybody #txt
 Ue0 f0 81 49 30 30 -21 17 #rect
-Ue0 f0 @|StartRequestIcon #fIcon
 Ue0 f1 721 49 30 30 0 15 #rect
-Ue0 f1 @|EndIcon #fIcon
 Ue0 f3 dialogId com.axonivy.portal.userexamples.ExampleHomePage #txt
 Ue0 f3 startMethod start() #txt
 Ue0 f3 requestActionDecl '<> param;' #txt
@@ -48,7 +46,6 @@ Ue0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ue0 f3 296 42 128 44 -55 -8 #rect
-Ue0 f3 @|UserDialogIcon #fIcon
 Ue0 f2 424 64 721 64 #arcP
 Ue0 f11 111 64 296 64 #arcP
 >Proto Ue0 .type com.axonivy.portal.userexamples.UserExampleGuideData #txt

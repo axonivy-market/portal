@@ -1,5 +1,5 @@
 [Ivy]
-15B8089000CE1FF7 9.2.0 #module
+15B8089000CE1FF7 9.3.0 #module
 >Proto >Proto Collection #zClass
 Ce0 CalculateTaskDelegate Big #zClass
 Ce0 B #cInfo
@@ -38,7 +38,6 @@ Ce0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ce0 f0 51 83 26 26 -51 21 #rect
-Ce0 f0 @|StartSubIcon #fIcon
 Ce0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -54,7 +53,6 @@ if ("admin".equalsIgnoreCase(in.currentUser.getDisplayName()) &amp;&amp; "System
 </elementInfo>
 ' #txt
 Ce0 f7 120 151 688 108 -335 -48 #rect
-Ce0 f7 @|IBIcon #fIcon
 Ce0 f6 actionTable 'out=in;
 ' #txt
 Ce0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -65,12 +63,10 @@ Ce0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ce0 f6 160 74 112 44 -26 -8 #rect
-Ce0 f6 @|StepIcon #fIcon
 Ce0 f1 expr out #txt
 Ce0 f1 77 96 160 96 #arcP
 Ce0 f2 464 151 216 118 #arcP
 Ce0 f3 337 81 30 30 0 15 #rect
-Ce0 f3 @|EndSubIcon #fIcon
 Ce0 f4 expr out #txt
 Ce0 f4 272 96 337 96 #arcP
 >Proto Ce0 .type ch.ivy.add.portalkit.CaculateTaskDelegateData #txt

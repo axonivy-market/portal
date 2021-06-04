@@ -1,5 +1,5 @@
 [Ivy]
-156A1AA176DE2A21 9.2.0 #module
+156A1AA176DE2A21 9.3.0 #module
 >Proto >Proto Collection #zClass
 As0 ApplicationSelectionMenuProcess Big #zClass
 As0 RD #cInfo
@@ -55,7 +55,6 @@ As0 f74 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f74 92 172 24 24 14 0 #rect
-As0 f74 @|UdInitIcon #fIcon
 As0 f87 guid 15FB36E87031CAD2 #txt
 As0 f87 method start() #txt
 As0 f87 inParameterDecl '<> param;' #txt
@@ -68,7 +67,6 @@ As0 f87 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f87 92 84 24 24 13 0 #rect
-As0 f87 @|UdInitIcon #fIcon
 As0 f91 actionTable 'out=in;
 ' #txt
 As0 f91 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
@@ -85,7 +83,6 @@ As0 f91 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f91 192 458 112 44 -36 -8 #rect
-As0 f91 @|StepIcon #fIcon
 As0 f14 actionTable 'out=in;
 ' #txt
 As0 f14 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
@@ -101,9 +98,7 @@ reset task</name>
 </elementInfo>
 ' #txt
 As0 f14 192 556 112 40 -30 -16 #rect
-As0 f14 @|StepIcon #fIcon
 As0 f9 307 83 26 26 0 12 #rect
-As0 f9 @|UdProcessEndIcon #fIcon
 As0 f3 guid 16E3A96DE4048374 #txt
 As0 f3 method leave(ITask) #txt
 As0 f3 inParameterDecl '<ch.ivyteam.ivy.workflow.ITask workingTask> param;' #txt
@@ -118,7 +113,6 @@ As0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f3 83 563 26 26 -24 14 #rect
-As0 f3 @|UdMethodIcon #fIcon
 As0 f8 109 576 192 576 #arcP
 As0 f12 guid 16E3A985548930F5 #txt
 As0 f12 method reserveTask(ITask) #txt
@@ -134,7 +128,6 @@ As0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f12 83 467 26 26 -47 16 #rect
-As0 f12 @|UdMethodIcon #fIcon
 As0 f18 109 480 192 480 #arcP
 As0 f19 actionTable 'out=in;
 ' #txt
@@ -150,7 +143,6 @@ finish or leave task</name>
 </elementInfo>
 ' #txt
 As0 f19 408 458 144 44 -54 -16 #rect
-As0 f19 @|StepIcon #fIcon
 As0 f13 304 576 480 502 #arcP
 As0 f13 1 480 576 #addKink
 As0 f13 0 0.8907686408955474 0 0 #arcLabel
@@ -171,9 +163,7 @@ As0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f2 91 275 26 26 -70 17 #rect
-As0 f2 @|UdMethodIcon #fIcon
 As0 f41 307 275 26 26 0 12 #rect
-As0 f41 @|UdProcessEndIcon #fIcon
 As0 f45 guid 1734B654FF31BF39 #txt
 As0 f45 method init(Boolean,ch.ivyteam.ivy.workflow.ITask) #txt
 As0 f45 inParameterDecl '<Boolean isWorkingOnATask,ch.ivyteam.ivy.workflow.ITask workingTask> param;' #txt
@@ -189,9 +179,7 @@ As0 f45 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f45 595 83 26 26 -53 16 #rect
-As0 f45 @|UdMethodIcon #fIcon
 As0 f46 915 83 26 26 0 12 #rect
-As0 f46 @|UdProcessEndIcon #fIcon
 As0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -201,7 +189,6 @@ start a task &gt; click on menu &gt; leave the task</name>
 </elementInfo>
 ' #txt
 As0 f4 568 554 256 44 -118 -16 #rect
-As0 f4 @|IBIcon #fIcon
 As0 f26 568 576 480 502 #arcP
 As0 f25 expr out #txt
 As0 f25 116 184 320 109 #arcP
@@ -225,9 +212,7 @@ As0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f5 664 458 112 44 -40 -8 #rect
-As0 f5 @|StepIcon #fIcon
 As0 f29 907 467 26 26 0 12 #rect
-As0 f29 @|UdProcessEndIcon #fIcon
 As0 f33 776 480 907 480 #arcP
 As0 f1 552 480 664 480 #arcP
 As0 f1 0 0.9609045819708579 0 0 #arcLabel
@@ -246,7 +231,6 @@ As0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f6 720 74 112 44 -42 -8 #rect
-As0 f6 @|StepIcon #fIcon
 As0 f30 621 96 720 96 #arcP
 As0 f40 832 96 915 96 #arcP
 As0 f0 guid 17698241579FF362 #txt
@@ -264,9 +248,7 @@ As0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f0 91 371 26 26 -64 15 #rect
-As0 f0 @|UdMethodIcon #fIcon
 As0 f15 307 371 26 26 0 12 #rect
-As0 f15 @|UdProcessEndIcon #fIcon
 As0 f17 117 384 307 384 #arcP
 As0 f10 117 288 307 288 #arcP
 >Proto As0 .type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
@@ -290,7 +272,6 @@ As0 f10 117 288 307 288 #arcP
 </elementInfo>
 ' #txt
 >Proto As0 -8 -8 16 16 16 26 #rect
->Proto As0 '' #fIcon
 As0 f3 mainOut f8 tail #connect
 As0 f8 head f14 mainIn #connect
 As0 f12 mainOut f18 tail #connect

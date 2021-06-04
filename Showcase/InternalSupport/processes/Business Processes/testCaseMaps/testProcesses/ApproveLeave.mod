@@ -1,5 +1,5 @@
 [Ivy]
-15C7B30FB93C827E 9.2.0 #module
+15C7B30FB93C827E 9.3.0 #module
 >Proto >Proto Collection #zClass
 Ae0 ApproveLeave Big #zClass
 Ae0 B #cInfo
@@ -89,9 +89,7 @@ Ae0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ae0 f0 @C|.responsibility Everybody #txt
 Ae0 f0 81 49 30 30 -21 17 #rect
-Ae0 f0 @|StartRequestIcon #fIcon
 Ae0 f1 337 49 30 30 0 15 #rect
-Ae0 f1 @|EndIcon #fIcon
 Ae0 f3 dialogId internaltest.ui.approveLeave #txt
 Ae0 f3 startMethod start(String,Date,Date,Boolean,String,internalPortal.ProcessStatus) #txt
 Ae0 f3 requestActionDecl '<String Mitarbeiter,Date Von,Date Bis,Boolean beantragt,String Vertretung,internalPortal.ProcessStatus processStatus> param;' #txt
@@ -100,7 +98,6 @@ Ae0 f3 responseActionDecl 'internaltest.Data out;
 Ae0 f3 responseMappingAction 'out=in;
 ' #txt
 Ae0 f3 168 42 112 44 0 -8 #rect
-Ae0 f3 @|UserDialogIcon #fIcon
 Ae0 f4 expr out #txt
 Ae0 f4 111 64 168 64 #arcP
 Ae0 f2 expr out #txt
@@ -132,9 +129,7 @@ Ae0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ae0 f8 @C|.responsibility Everybody #txt
 Ae0 f8 73 153 30 30 -36 17 #rect
-Ae0 f8 @|StartRequestIcon #fIcon
 Ae0 f11 529 153 30 30 0 15 #rect
-Ae0 f11 @|EndIcon #fIcon
 Ae0 f13 outLink installOperationSystem.ivp #txt
 Ae0 f13 inParamDecl '<> param;' #txt
 Ae0 f13 requestEnabled false #txt
@@ -163,9 +158,7 @@ Ae0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ae0 f13 @C|.responsibility Everybody #txt
 Ae0 f13 65 265 30 30 -67 17 #rect
-Ae0 f13 @|StartRequestIcon #fIcon
 Ae0 f14 513 265 30 30 0 15 #rect
-Ae0 f14 @|EndIcon #fIcon
 Ae0 f16 processCall 'Business Processes/testCaseMaps/testProcesses/ApproveLeave:installOperationSystem()' #txt
 Ae0 f16 requestActionDecl '<> param;' #txt
 Ae0 f16 responseActionDecl 'internaltest.Data out;
@@ -180,7 +173,6 @@ Ae0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ae0 f16 320 146 112 44 -38 -8 #rect
-Ae0 f16 @|TriggerIcon #fIcon
 Ae0 f12 expr out #txt
 Ae0 f12 432 168 529 168 #arcP
 Ae0 f15 actionTable 'out=in1;
@@ -205,7 +197,6 @@ Ae0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ae0 f15 345 265 30 30 -16 17 #rect
-Ae0 f15 @|TaskSwitchSimpleIcon #fIcon
 Ae0 f19 expr data #txt
 Ae0 f19 outCond ivp=="TaskA.ivp" #txt
 Ae0 f19 375 280 513 280 #arcP
@@ -227,7 +218,6 @@ Ae0 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ae0 f25 160 146 112 44 -48 -8 #rect
-Ae0 f25 @|CallSubIcon #fIcon
 Ae0 f26 expr out #txt
 Ae0 f26 103 168 160 168 #arcP
 Ae0 f17 expr out #txt
@@ -257,7 +247,6 @@ Ae0 f27 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ae0 f27 @C|.responsibility Everybody #txt
 Ae0 f27 73 361 30 30 -35 17 #rect
-Ae0 f27 @|StartRequestIcon #fIcon
 Ae0 f29 processCall 'Business Processes/testCaseMaps/testProcesses/ApproveLeave:RequestForm()' #txt
 Ae0 f29 requestActionDecl '<> param;' #txt
 Ae0 f29 responseActionDecl 'internaltest.Data out;
@@ -274,9 +263,7 @@ Ae0 f29 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ae0 f29 280 354 112 44 -37 -8 #rect
-Ae0 f29 @|TriggerIcon #fIcon
 Ae0 f30 553 361 30 30 0 15 #rect
-Ae0 f30 @|EndIcon #fIcon
 Ae0 f31 expr out #txt
 Ae0 f31 392 376 553 376 #arcP
 Ae0 f28 expr out #txt
@@ -305,7 +292,6 @@ Ae0 f32 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ae0 f32 @C|.responsibility Everybody #txt
 Ae0 f32 73 441 30 30 -42 17 #rect
-Ae0 f32 @|StartRequestIcon #fIcon
 Ae0 f33 actionTable 'out=in1;
 ' #txt
 Ae0 f33 outLinks "TaskA.ivp" #txt
@@ -329,9 +315,7 @@ Ae0 f33 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ae0 f33 329 441 30 30 -37 17 #rect
-Ae0 f33 @|TaskSwitchSimpleIcon #fIcon
 Ae0 f35 441 441 30 30 0 15 #rect
-Ae0 f35 @|EndIcon #fIcon
 Ae0 f36 expr data #txt
 Ae0 f36 outCond ivp=="TaskA.ivp" #txt
 Ae0 f36 359 456 441 456 #arcP
@@ -351,7 +335,6 @@ Ae0 f37 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ae0 f37 160 434 112 44 -48 -8 #rect
-Ae0 f37 @|CallSubIcon #fIcon
 Ae0 f38 expr out #txt
 Ae0 f38 103 456 160 456 #arcP
 Ae0 f34 expr out #txt
@@ -374,7 +357,6 @@ Ae0 f39 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ae0 f39 176 258 112 44 -48 -8 #rect
-Ae0 f39 @|CallSubIcon #fIcon
 Ae0 f40 expr out #txt
 Ae0 f40 95 280 176 280 #arcP
 Ae0 f18 expr out #txt
@@ -411,16 +393,12 @@ Ae0 f41 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ae0 f41 @C|.responsibility Everybody #txt
 Ae0 f41 73 601 30 30 -88 17 #rect
-Ae0 f41 @|StartRequestIcon #fIcon
 Ae0 f46 672 600 32 32 0 16 #rect
-Ae0 f46 @|AlternativeIcon #fIcon
 Ae0 f48 801 601 30 30 0 15 #rect
-Ae0 f48 @|EndIcon #fIcon
 Ae0 f49 expr in #txt
 Ae0 f49 outCond 'in.count == in.caseNumber' #txt
 Ae0 f49 704 616 801 616 #arcP
 Ae0 f50 168 600 32 32 0 16 #rect
-Ae0 f50 @|AlternativeIcon #fIcon
 Ae0 f51 expr out #txt
 Ae0 f51 103 616 168 616 #arcP
 Ae0 f45 processCall 'Business Processes/testCaseMaps/testProcesses/ApproveLeave:startACase(Integer)' #txt
@@ -441,7 +419,6 @@ Ae0 f45 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ae0 f45 344 594 112 44 -38 -8 #rect
-Ae0 f45 @|TriggerIcon #fIcon
 Ae0 f42 expr in #txt
 Ae0 f42 200 616 344 616 #arcP
 Ae0 f43 outLink startACase.ivp #txt
@@ -473,7 +450,6 @@ Ae0 f43 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ae0 f43 @C|.responsibility Everybody #txt
 Ae0 f43 57 825 30 30 -53 17 #rect
-Ae0 f43 @|StartRequestIcon #fIcon
 Ae0 f47 actionTable 'out=in1;
 ' #txt
 Ae0 f47 outLinks "TaskA.ivp" #txt
@@ -489,9 +465,7 @@ TaskA.SKIP_TASK_LIST=false
 TaskA.TYPE=0' #txt
 Ae0 f47 template "" #txt
 Ae0 f47 313 825 30 30 0 16 #rect
-Ae0 f47 @|TaskSwitchSimpleIcon #fIcon
 Ae0 f54 457 825 30 30 0 15 #rect
-Ae0 f54 @|EndIcon #fIcon
 Ae0 f55 expr data #txt
 Ae0 f55 outCond ivp=="TaskA.ivp" #txt
 Ae0 f55 343 840 457 840 #arcP
@@ -499,7 +473,6 @@ Ae0 f52 actionTable 'out=in;
 ' #txt
 Ae0 f52 actionCode in.count++; #txt
 Ae0 f52 504 594 112 44 0 -8 #rect
-Ae0 f52 @|StepIcon #fIcon
 Ae0 f56 expr out #txt
 Ae0 f56 456 616 504 616 #arcP
 Ae0 f44 expr out #txt
@@ -524,7 +497,6 @@ if(in.count % 3 == 0){
 }
 ivy.case.setCategoryPath(a);' #txt
 Ae0 f58 144 818 112 44 0 -8 #rect
-Ae0 f58 @|StepIcon #fIcon
 Ae0 f59 expr out #txt
 Ae0 f59 87 840 144 840 #arcP
 Ae0 f53 expr out #txt

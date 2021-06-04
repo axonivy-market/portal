@@ -1,5 +1,5 @@
 [Ivy]
-16A68510A341BE6E 9.2.0 #module
+16A68510A341BE6E 9.3.0 #module
 >Proto >Proto Collection #zClass
 Cr0 CaseOwner Big #zClass
 Cr0 B #cInfo
@@ -46,9 +46,7 @@ Cr0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Cr0 f0 @C|.responsibility Everybody #txt
 Cr0 f0 81 49 30 30 -38 15 #rect
-Cr0 f0 @|StartRequestIcon #fIcon
 Cr0 f1 433 49 30 30 0 15 #rect
-Cr0 f1 @|EndIcon #fIcon
 Cr0 f3 actionTable 'out=in;
 ' #txt
 Cr0 f3 actionCode ivy.case.setOwner(ivy.wf.getSecurityContext().findUser("demo")); #txt
@@ -62,7 +60,6 @@ as owner</name>
 </elementInfo>
 ' #txt
 Cr0 f3 160 42 128 44 -40 -16 #rect
-Cr0 f3 @|StepIcon #fIcon
 Cr0 f4 expr out #txt
 Cr0 f4 111 64 160 64 #arcP
 Cr0 f5 actionTable 'out=in1;
@@ -74,7 +71,6 @@ TaskA.ROL=CREATOR
 TaskA.TYPE=0' #txt
 Cr0 f5 template "" #txt
 Cr0 f5 336 48 32 32 0 16 #rect
-Cr0 f5 @|TaskSwitchIcon #fIcon
 Cr0 f6 expr out #txt
 Cr0 f6 var in1 #txt
 Cr0 f6 288 64 336 64 #arcP
@@ -100,7 +96,6 @@ Cr0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Cr0 f7 @C|.responsibility Everybody #txt
 Cr0 f7 81 145 30 30 -45 17 #rect
-Cr0 f7 @|StartRequestIcon #fIcon
 Cr0 f8 actionTable 'out=in1;
 ' #txt
 Cr0 f8 outLinks "TaskA.ivp" #txt
@@ -110,9 +105,7 @@ TaskA.ROL=CREATOR
 TaskA.TYPE=0' #txt
 Cr0 f8 template "" #txt
 Cr0 f8 336 144 32 32 0 16 #rect
-Cr0 f8 @|TaskSwitchIcon #fIcon
 Cr0 f9 433 145 30 30 0 15 #rect
-Cr0 f9 @|EndIcon #fIcon
 Cr0 f10 actionTable 'out=in;
 ' #txt
 Cr0 f10 actionCode ivy.case.setOwner(ivy.wf.getSecurityContext().findRole("CaseOwner")); #txt
@@ -126,7 +119,6 @@ as owner</name>
 </elementInfo>
 ' #txt
 Cr0 f10 152 138 144 44 -51 -16 #rect
-Cr0 f10 @|StepIcon #fIcon
 Cr0 f11 expr data #txt
 Cr0 f11 outCond ivp=="TaskA.ivp" #txt
 Cr0 f11 368 160 433 160 #arcP

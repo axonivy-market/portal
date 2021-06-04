@@ -1,5 +1,5 @@
 [Ivy]
-160FD01492D362BE 9.2.0 #module
+160FD01492D362BE 9.3.0 #module
 >Proto >Proto Collection #zClass
 Cs0 CaseWidget Big #zClass
 Cs0 B #cInfo
@@ -44,9 +44,7 @@ Cs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Cs0 f0 @C|.responsibility Everybody #txt
 Cs0 f0 81 49 30 30 -85 17 #rect
-Cs0 f0 @|StartRequestIcon #fIcon
 Cs0 f1 673 49 30 30 0 15 #rect
-Cs0 f1 @|EndIcon #fIcon
 Cs0 f6 dialogId ch.ivy.addon.portal.generic.AdditionalCaseDetails #txt
 Cs0 f6 startMethod start(ch.ivyteam.ivy.workflow.ICase) #txt
 Cs0 f6 requestActionDecl '<ch.ivyteam.ivy.workflow.ICase iCase> param;' #txt
@@ -68,7 +66,6 @@ Case Details</name>
 </elementInfo>
 ' #txt
 Cs0 f6 416 42 128 44 -42 -16 #rect
-Cs0 f6 @|UserDialogIcon #fIcon
 Cs0 f4 expr out #txt
 Cs0 f4 544 64 673 64 #arcP
 Cs0 f2 actionTable 'out=in;
@@ -83,7 +80,6 @@ Cs0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f2 200 42 112 44 -41 -8 #rect
-Cs0 f2 @|StepIcon #fIcon
 Cs0 f3 expr out #txt
 Cs0 f3 111 64 200 64 #arcP
 Cs0 f5 expr out #txt

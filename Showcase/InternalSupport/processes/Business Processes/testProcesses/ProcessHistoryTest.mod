@@ -1,5 +1,5 @@
 [Ivy]
-16193718E2B3D6C4 9.2.0 #module
+16193718E2B3D6C4 9.3.0 #module
 >Proto >Proto Collection #zClass
 Pt0 ProcessHistoryTest Big #zClass
 Pt0 B #cInfo
@@ -57,9 +57,7 @@ Pt0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Pt0 f0 @C|.responsibility Everybody #txt
 Pt0 f0 129 49 30 30 -96 17 #rect
-Pt0 f0 @|StartRequestIcon #fIcon
 Pt0 f1 433 49 30 30 0 15 #rect
-Pt0 f1 @|EndIcon #fIcon
 Pt0 f3 outLink InspectResource.ivp #txt
 Pt0 f3 inParamDecl '<> param;' #txt
 Pt0 f3 requestEnabled true #txt
@@ -87,7 +85,6 @@ Pt0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Pt0 f3 @C|.responsibility Everybody #txt
 Pt0 f3 105 265 30 30 -56 17 #rect
-Pt0 f3 @|StartRequestIcon #fIcon
 Pt0 f4 processCall 'Functional Processes/SetBusinessEntityId:call(String)' #txt
 Pt0 f4 requestActionDecl '<String businessEntityId> param;' #txt
 Pt0 f4 requestMappingAction 'param.businessEntityId="resource1";
@@ -104,9 +101,7 @@ Pt0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Pt0 f4 344 258 128 44 -55 -8 #rect
-Pt0 f4 @|CallSubIcon #fIcon
 Pt0 f8 713 265 30 30 0 15 #rect
-Pt0 f8 @|EndIcon #fIcon
 Pt0 f6 actionTable 'out=in1;
 ' #txt
 Pt0 f6 outLinks "TaskA.ivp" #txt
@@ -129,7 +124,6 @@ Pt0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Pt0 f6 585 265 30 30 -48 17 #rect
-Pt0 f6 @|TaskSwitchSimpleIcon #fIcon
 Pt0 f7 expr out #txt
 Pt0 f7 type internaltest.Data #txt
 Pt0 f7 var in1 #txt
@@ -154,7 +148,6 @@ Pt0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Pt0 f17 264 42 112 44 -43 -8 #rect
-Pt0 f17 @|UserDialogIcon #fIcon
 Pt0 f18 expr out #txt
 Pt0 f18 159 64 264 64 #arcP
 Pt0 f2 expr out #txt
@@ -172,13 +165,11 @@ code name</name>
 </elementInfo>
 ' #txt
 Pt0 f19 192 258 112 44 -33 -16 #rect
-Pt0 f19 @|StepIcon #fIcon
 Pt0 f20 expr out #txt
 Pt0 f20 135 280 192 280 #arcP
 Pt0 f5 expr out #txt
 Pt0 f5 304 280 344 280 #arcP
 Pt0 f10 425 134 30 30 0 15 #rect
-Pt0 f10 @|EndIcon #fIcon
 Pt0 f11 dialogId internaltest.ProcessHistoryAsDialogOfResource #txt
 Pt0 f11 startMethod start() #txt
 Pt0 f11 requestActionDecl '<> param;' #txt
@@ -196,7 +187,6 @@ Pt0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Pt0 f11 256 127 112 44 -43 -8 #rect
-Pt0 f11 @|UserDialogIcon #fIcon
 Pt0 f12 outLink viewProcessHistoryAsDialogOfResource.ivp #txt
 Pt0 f12 inParamDecl '<> param;' #txt
 Pt0 f12 requestEnabled true #txt
@@ -223,7 +213,6 @@ Pt0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Pt0 f12 @C|.responsibility Everybody #txt
 Pt0 f12 121 134 30 30 -121 17 #rect
-Pt0 f12 @|StartRequestIcon #fIcon
 Pt0 f13 expr out #txt
 Pt0 f13 368 149 425 149 #arcP
 Pt0 f14 expr out #txt

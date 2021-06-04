@@ -1,5 +1,5 @@
 [Ivy]
-16B2C7BB1F583777 9.2.0 #module
+16B2C7BB1F583777 9.3.0 #module
 >Proto >Proto Collection #zClass
 Se0 SetGroupChatName Big #zClass
 Se0 B #cInfo
@@ -34,9 +34,7 @@ Se0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Se0 f0 81 49 30 30 -59 17 #rect
-Se0 f0 @|StartSubIcon #fIcon
 Se0 f1 337 49 30 30 0 15 #rect
-Se0 f1 @|EndSubIcon #fIcon
 Se0 f3 actionTable 'out=in;
 out.name=ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/case") + "-{caseId} {caseName}" + " {groupChatCreator}";
 ' #txt
@@ -50,7 +48,6 @@ Se0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Se0 f3 160 42 128 44 -57 -8 #rect
-Se0 f3 @|StepIcon #fIcon
 Se0 f4 expr out #txt
 Se0 f4 111 64 160 64 #arcP
 Se0 f2 expr out #txt
@@ -68,7 +65,6 @@ They are available in GroupChat.java and you can add more by overriding the GetG
 </elementInfo>
 ' #txt
 Se0 f5 160 130 656 76 -318 -32 #rect
-Se0 f5 @|IBIcon #fIcon
 Se0 f6 488 130 224 86 #arcP
 >Proto Se0 .type _com.axonivy.portal.developerexamples.SetGroupChatNameOverrideData #txt
 >Proto Se0 .processKind CALLABLE_SUB #txt

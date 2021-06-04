@@ -1,5 +1,5 @@
 [Ivy]
-163AFDE4C30836BD 9.2.0 #module
+163AFDE4C30836BD 9.3.0 #module
 >Proto >Proto Collection #zClass
 Cs0 GlobalSearchProcess Big #zClass
 Cs0 RD #cInfo
@@ -36,13 +36,10 @@ Cs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f0 51 83 26 26 -16 15 #rect
-Cs0 f0 @|UdInitIcon #fIcon
 Cs0 f1 307 83 26 26 0 12 #rect
-Cs0 f1 @|UdProcessEndIcon #fIcon
 Cs0 f2 expr out #txt
 Cs0 f2 77 96 307 96 #arcP
 Cs0 f4 571 211 26 26 0 12 #rect
-Cs0 f4 @|UdProcessEndIcon #fIcon
 Cs0 f8 actionTable 'out=in;
 ' #txt
 Cs0 f8 actionCode 'import ch.ivy.addon.portalkit.util.GrowlMessageUtils;
@@ -60,7 +57,6 @@ finish or leave task</name>
 </elementInfo>
 ' #txt
 Cs0 f8 144 202 144 44 -54 -16 #rect
-Cs0 f8 @|StepIcon #fIcon
 Cs0 f3 guid 16FA88E321FFCEB1 #txt
 Cs0 f3 method search(Boolean,ch.ivyteam.ivy.workflow.ICase) #txt
 Cs0 f3 inParameterDecl '<Boolean isWorkingOnTask,ch.ivyteam.ivy.workflow.ICase iCase> param;' #txt
@@ -76,7 +72,6 @@ Cs0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f3 51 211 26 26 -25 15 #rect
-Cs0 f3 @|UdMethodIcon #fIcon
 Cs0 f9 77 224 144 224 #arcP
 Cs0 f31 actionTable 'out=in;
 ' #txt
@@ -91,7 +86,6 @@ Cs0 f31 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f31 352 202 128 44 -59 -8 #rect
-Cs0 f31 @|StepIcon #fIcon
 Cs0 f5 288 224 352 224 #arcP
 Cs0 f6 480 224 571 224 #arcP
 Cs0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -103,12 +97,10 @@ start a task &gt; perform global search</name>
 </elementInfo>
 ' #txt
 Cs0 f7 152 266 208 44 -97 -16 #rect
-Cs0 f7 @|IBIcon #fIcon
 Cs0 f10 256 266 216 246 #arcP
 >Proto Cs0 .type ch.ivy.addon.portal.generic.GlobalSearch.GlobalSearchData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 -8 -8 16 16 16 26 #rect
->Proto Cs0 '' #fIcon
 Cs0 f0 mainOut f2 tail #connect
 Cs0 f2 head f1 mainIn #connect
 Cs0 f3 mainOut f9 tail #connect
