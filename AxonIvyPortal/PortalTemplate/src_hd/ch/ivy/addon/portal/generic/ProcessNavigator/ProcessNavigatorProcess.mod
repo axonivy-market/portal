@@ -1,5 +1,5 @@
 [Ivy]
-15F6AF4140FEAD47 9.2.0 #module
+15F6AF4140FEAD47 9.3.0 #module
 >Proto >Proto Collection #zClass
 Ps0 ProcessNavigatorProcess Big #zClass
 Ps0 RD #cInfo
@@ -30,9 +30,7 @@ Ps0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f0 83 51 26 26 -16 15 #rect
-Ps0 f0 @|UdInitIcon #fIcon
 Ps0 f1 211 51 26 26 0 12 #rect
-Ps0 f1 @|UdProcessEndIcon #fIcon
 Ps0 f2 expr out #txt
 Ps0 f2 109 64 211 64 #arcP
 Ps0 f6 guid 15F6AF4C4B321D1E #txt
@@ -48,7 +46,6 @@ Ps0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f6 83 131 26 26 -37 15 #rect
-Ps0 f6 @|UdEventIcon #fIcon
 Ps0 f33 dialogId ch.ivy.addon.portal.generic.Processes #txt
 Ps0 f33 startMethod start() #txt
 Ps0 f33 requestActionDecl '<> param;' #txt
@@ -66,13 +63,11 @@ Ps0 f33 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f33 184 120 112 48 -22 -8 #rect
-Ps0 f33 @|UserDialogIcon #fIcon
 Ps0 f7 expr out #txt
 Ps0 f7 109 144 184 144 #arcP
 >Proto Ps0 .type ch.ivy.addon.portal.generic.ProcessNavigator.ProcessNavigatorData #txt
 >Proto Ps0 .processKind HTML_DIALOG #txt
 >Proto Ps0 -8 -8 16 16 16 26 #rect
->Proto Ps0 '' #fIcon
 Ps0 f0 mainOut f2 tail #connect
 Ps0 f2 head f1 mainIn #connect
 Ps0 f6 mainOut f7 tail #connect

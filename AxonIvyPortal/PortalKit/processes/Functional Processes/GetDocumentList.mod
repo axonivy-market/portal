@@ -1,5 +1,5 @@
 [Ivy]
-16A7C7CEF44FB794 9.2.0 #module
+16A7C7CEF44FB794 9.3.0 #module
 >Proto >Proto Collection #zClass
 Gt0 GetDocumentList Big #zClass
 Gt0 B #cInfo
@@ -35,9 +35,7 @@ Gt0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Gt0 f0 81 49 30 30 -32 24 #rect
-Gt0 f0 @|StartSubIcon #fIcon
 Gt0 f1 337 49 30 30 0 15 #rect
-Gt0 f1 @|EndSubIcon #fIcon
 Gt0 f3 actionTable 'out=in;
 ' #txt
 Gt0 f3 actionCode 'import ch.ivy.addon.portalkit.document.DocumentCustomField;
@@ -71,7 +69,6 @@ Gt0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Gt0 f3 168 42 112 44 -47 -8 #rect
-Gt0 f3 @|StepIcon #fIcon
 Gt0 f4 expr out #txt
 Gt0 f4 111 64 168 64 #arcP
 Gt0 f2 expr out #txt
@@ -89,7 +86,6 @@ Some mandatory fields when mapping:&#xD;
 </elementInfo>
 ' #txt
 Gt0 f5 56 186 576 108 -278 -48 #rect
-Gt0 f5 @|IBIcon #fIcon
 Gt0 f6 344 186 109 71 #arcP
 >Proto Gt0 .type ch.ivy.add.portalkit.GetDocumentListData #txt
 >Proto Gt0 .processKind CALLABLE_SUB #txt

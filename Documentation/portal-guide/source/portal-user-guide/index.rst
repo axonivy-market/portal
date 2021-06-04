@@ -10,6 +10,7 @@ User Guide
    dashboard/index
    portal-header/index
    full-process-list/index
+   process-information/index
    full-task-list/index
    full-case-list/index
    full-statistic-list/index

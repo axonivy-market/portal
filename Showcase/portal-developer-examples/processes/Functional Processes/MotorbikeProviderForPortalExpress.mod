@@ -1,5 +1,5 @@
 [Ivy]
-16B40A95DA8F858E 9.2.0 #module
+16B40A95DA8F858E 9.3.0 #module
 >Proto >Proto Collection #zClass
 Ds0 MotorbikeProviderForPortalExpress Big #zClass
 Ds0 B #cInfo
@@ -31,9 +31,7 @@ Ds0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ds0 f0 81 49 30 30 24 -1 #rect
-Ds0 f0 @|StartSubIcon #fIcon
 Ds0 f1 81 273 30 30 0 15 #rect
-Ds0 f1 @|EndSubIcon #fIcon
 Ds0 f3 actionTable 'out=in;
 out.items=java.util.Arrays.asList("BMW", "Harley Davidson", "Honda", "Agusta", "Triumph");
 ' #txt
@@ -45,7 +43,6 @@ Ds0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ds0 f3 40 162 112 44 -27 -8 #rect
-Ds0 f3 @|StepIcon #fIcon
 Ds0 f4 expr out #txt
 Ds0 f4 96 79 96 162 #arcP
 Ds0 f2 expr out #txt
@@ -59,7 +56,6 @@ The callable subprocess has signature "portalExpressDataProvider" and return the
 </elementInfo>
 ' #txt
 Ds0 f5 208 170 528 44 -261 -16 #rect
-Ds0 f5 @|IBIcon #fIcon
 >Proto Ds0 .type com.axonivy.portal.developerexamples.DataProviderForPortalExpressData #txt
 >Proto Ds0 .processKind CALLABLE_SUB #txt
 >Proto Ds0 0 0 32 24 18 0 #rect

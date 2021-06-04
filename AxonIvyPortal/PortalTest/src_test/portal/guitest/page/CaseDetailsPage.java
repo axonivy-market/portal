@@ -31,6 +31,7 @@ public class CaseDetailsPage extends TemplatePage {
       "a[id='case-item-details:widgets:4:case-histories:case-histories:0:note-link']";
   private static final String GENERAL_INFORMATION_COMPONENT_ID = "div[id='case-details-information-panel']";
   private static final String ADDITIONAL_CASE_DETAILS_URL_CSS_SELECTOR = "a[id$='additional-case-details-link']";
+  private static final String PROCESS_OVERVIEW_URL_CSS_SELECTOR = "a[id$='show-process-overview-link']";
   private static final String AUTHOR_USER_CSS_SELECTOR = "span[class='history-fullname']";
   private static final String VIEW_NOTE_DIALOG_ID = "case-item-details:widgets:4:case-histories:view-note-dialog";
   private WebElement caseItem;
@@ -50,6 +51,16 @@ public class CaseDetailsPage extends TemplatePage {
 
   public String getCaseCategory() {
     return caseItem.findElement(By.cssSelector("span[id$='case-category']")).getText();
+  }
+
+  public boolean isBusinessCaseInformationSectionDisplayed() {
+    return isElementDisplayed(By.cssSelector("div[id$='business-case-information']"));
+  }
+
+  public CaseDetailsPage openBusinessCaseFromTechnicalCase() {
+    caseItem.findElement(By.cssSelector("a[id$='related-business-case']")).click();
+    waitForElementPresent(By.cssSelector("div[id$='business-case-information']"), false);
+    return new CaseDetailsPage();
   }
 
   public int getNumberOfHistory() {
@@ -122,6 +133,10 @@ public class CaseDetailsPage extends TemplatePage {
     click(caseItem.findElement(By.cssSelector(ADDITIONAL_CASE_DETAILS_URL_CSS_SELECTOR)));
   }
 
+  public void openProcessOverviewPage() {
+    click(caseItem.findElement(By.cssSelector(PROCESS_OVERVIEW_URL_CSS_SELECTOR)));
+  }
+
   private WebElement getGeneralInformationComponent() {
     return findElementByCssSelector(GENERAL_INFORMATION_COMPONENT_ID);
   }
@@ -183,6 +198,7 @@ public class CaseDetailsPage extends TemplatePage {
     String openDetailsCommandButton = String.format("[id$='related-cases-widget:related-cases:%d:action-step-component:case-item-open-detail-link']", index);
     waitForElementDisplayed(By.cssSelector(openDetailsCommandButton), true);
     findElementByCssSelector(openDetailsCommandButton).click();
+    waitForElementPresent(By.cssSelector(openDetailsCommandButton), false);
     return new CaseDetailsPage();
   }
 

@@ -1,5 +1,5 @@
 [Ivy]
-14BDDCD00C5EA267 9.2.0 #module
+14BDDCD00C5EA267 9.3.0 #module
 >Proto >Proto Collection #zClass
 Se0 AbsenceService Big #zClass
 Se0 B #cInfo
@@ -45,9 +45,7 @@ Se0 f81 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Se0 f81 81 49 30 30 -57 17 #rect
-Se0 f81 @|StartSubIcon #fIcon
 Se0 f82 419 49 30 30 0 15 #rect
-Se0 f82 @|EndSubIcon #fIcon
 Se0 f86 actionTable 'out=in;
 ' #txt
 Se0 f86 actionCode 'import ch.ivy.addon.portalkit.ivydata.dto.IvyAbsenceResultDTO;
@@ -64,7 +62,6 @@ Se0 f86 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Se0 f86 210 42 112 44 -41 -8 #rect
-Se0 f86 @|StepIcon #fIcon
 Se0 f0 inParamDecl '<String username,java.util.Set ivyAbsences> param;' #txt
 Se0 f0 inParamTable 'out.absences=param.ivyAbsences;
 out.username=param.username;
@@ -79,7 +76,6 @@ Se0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Se0 f0 81 241 30 30 -70 18 #rect
-Se0 f0 @|StartSubIcon #fIcon
 Se0 f3 actionTable 'out=in;
 ' #txt
 Se0 f3 actionCode 'import ch.ivy.addon.portalkit.ivydata.service.impl.AbsenceService;
@@ -94,9 +90,7 @@ Se0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Se0 f3 210 234 112 44 -42 -8 #rect
-Se0 f3 @|StepIcon #fIcon
 Se0 f7 419 241 30 30 0 15 #rect
-Se0 f7 @|EndSubIcon #fIcon
 Se0 f9 inParamDecl '<ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence ivyAbsence> param;' #txt
 Se0 f9 inParamTable 'out.absence=param.ivyAbsence;
 ' #txt
@@ -110,9 +104,7 @@ Se0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Se0 f9 81 337 30 30 -75 17 #rect
-Se0 f9 @|StartSubIcon #fIcon
 Se0 f10 419 337 30 30 0 15 #rect
-Se0 f10 @|EndSubIcon #fIcon
 Se0 f13 actionTable 'out=in;
 ' #txt
 Se0 f13 actionCode 'import ch.ivy.addon.portalkit.ivydata.service.impl.AbsenceService;
@@ -127,9 +119,7 @@ Se0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Se0 f13 210 330 112 44 -43 -8 #rect
-Se0 f13 @|StepIcon #fIcon
 Se0 f18 419 145 30 30 0 15 #rect
-Se0 f18 @|EndSubIcon #fIcon
 Se0 f20 actionTable 'out=in;
 ' #txt
 Se0 f20 actionCode 'import ch.ivy.addon.portalkit.ivydata.service.impl.AbsenceService;
@@ -144,7 +134,6 @@ Se0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Se0 f20 210 138 112 44 -44 -8 #rect
-Se0 f20 @|StepIcon #fIcon
 Se0 f21 inParamDecl '<ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence absence> param;' #txt
 Se0 f21 inParamTable 'out.absence=param.absence;
 ' #txt
@@ -158,7 +147,6 @@ Se0 f21 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Se0 f21 81 145 30 30 -75 19 #rect
-Se0 f21 @|StartSubIcon #fIcon
 Se0 f27 111 64 210 64 #arcP
 Se0 f22 111 160 210 160 #arcP
 Se0 f1 111 256 210 256 #arcP

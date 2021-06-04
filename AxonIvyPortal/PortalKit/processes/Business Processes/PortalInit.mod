@@ -1,5 +1,5 @@
 [Ivy]
-1633E7FE0C8BCFA6 9.2.0 #module
+1633E7FE0C8BCFA6 9.3.0 #module
 >Proto >Proto Collection #zClass
 Pt0 PortalInit Big #zClass
 Pt0 B #cInfo
@@ -29,9 +29,7 @@ Pt0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Pt0 f0 @C|.responsibility Everybody #txt
 Pt0 f0 145 145 30 30 -62 17 #rect
-Pt0 f0 @|StartEventIcon #fIcon
 Pt0 f1 337 145 30 30 0 15 #rect
-Pt0 f1 @|EndIcon #fIcon
 Pt0 f2 expr out #txt
 Pt0 f2 175 160 337 160 #arcP
 >Proto Pt0 .type ch.ivy.add.portalkit.Data #txt

@@ -1,5 +1,5 @@
 [Ivy]
-169C7900CA1DBEF8 9.2.0 #module
+169C7900CA1DBEF8 9.3.0 #module
 >Proto >Proto Collection #zClass
 Ps0 PrimefacesElementsProcess Big #zClass
 Ps0 RD #cInfo
@@ -24,10 +24,8 @@ Ps0 @PushWFArc f11 '' #zField
 Ps0 @PushWFArc f2 '' #zField
 >Proto Ps0 Ps0 PrimefacesElementsProcess #zField
 Ps0 f9 531 115 26 26 0 12 #rect
-Ps0 f9 @|UdProcessEndIcon #fIcon
 Ps0 f9 -1|-1|-9671572 #nodeStyle
 Ps0 f8 207 209 26 26 0 12 #rect
-Ps0 f8 @|UdProcessEndIcon #fIcon
 Ps0 f8 -1|-1|-9671572 #nodeStyle
 Ps0 f10 guid 169C790C82463D89 #txt
 Ps0 f10 actionTable 'out=in;
@@ -42,10 +40,8 @@ Ps0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f10 79 209 26 26 -14 12 #rect
-Ps0 f10 @|UdEventIcon #fIcon
 Ps0 f10 -1|-1|-9671572 #nodeStyle
 Ps0 f4 211 51 26 26 0 12 #rect
-Ps0 f4 @|UdExitEndIcon #fIcon
 Ps0 f3 guid 169C790C824A369F #txt
 Ps0 f3 actionTable 'out=in;
 ' #txt
@@ -57,7 +53,6 @@ Ps0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f3 83 51 26 26 -15 12 #rect
-Ps0 f3 @|UdEventIcon #fIcon
 Ps0 f6 guid 169C790C82413383 #txt
 Ps0 f6 method start() #txt
 Ps0 f6 inParameterDecl '<> param;' #txt
@@ -70,7 +65,6 @@ Ps0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f6 79 113 26 26 -16 15 #rect
-Ps0 f6 @|UdInitIcon #fIcon
 Ps0 f6 -1|-1|-9671572 #nodeStyle
 Ps0 f1 actionTable 'out=in;
 ' #txt
@@ -126,7 +120,6 @@ Ps0 f1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f1 256 106 112 44 -8 -8 #rect
-Ps0 f1 @|StepIcon #fIcon
 Ps0 f5 expr out #txt
 Ps0 f5 109 64 211 64 #arcP
 Ps0 f0 expr out #txt
@@ -138,7 +131,6 @@ Ps0 f2 104 126 256 128 #arcP
 >Proto Ps0 .type com.axonivy.portal.developerexamples.showcase.PrimefacesElements.PrimefacesElementsData #txt
 >Proto Ps0 .processKind HTML_DIALOG #txt
 >Proto Ps0 -8 -8 16 16 16 26 #rect
->Proto Ps0 '' #fIcon
 Ps0 f3 mainOut f5 tail #connect
 Ps0 f5 head f4 mainIn #connect
 Ps0 f10 mainOut f11 tail #connect
