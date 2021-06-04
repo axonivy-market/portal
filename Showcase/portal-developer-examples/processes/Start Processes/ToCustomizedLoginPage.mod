@@ -1,5 +1,5 @@
 [Ivy]
-1657B2041502A14A 9.2.0 #module
+1657B2041502A14A 9.3.0 #module
 >Proto >Proto Collection #zClass
 Te0 ToCustomizedLoginPage Big #zClass
 Te0 B #cInfo
@@ -44,9 +44,7 @@ Te0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Te0 f0 @C|.responsibility Everybody #txt
 Te0 f0 81 49 30 30 -92 17 #rect
-Te0 f0 @|StartRequestIcon #fIcon
 Te0 f1 433 49 30 30 0 15 #rect
-Te0 f1 @|EndIcon #fIcon
 Te0 f3 dialogId com.axonivy.portal.developerexamples.customization.WelcomePage #txt
 Te0 f3 startMethod start() #txt
 Te0 f3 requestActionDecl '<> param;' #txt
@@ -62,7 +60,6 @@ Te0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Te0 f3 208 42 192 44 -88 -8 #rect
-Te0 f3 @|UserDialogIcon #fIcon
 Te0 f4 expr out #txt
 Te0 f4 111 64 208 64 #arcP
 Te0 f2 expr out #txt
@@ -80,7 +77,6 @@ Open toPageWithCustomLoginPage.ivp in portal-developer-examples without a login 
 </elementInfo>
 ' #txt
 Te0 f5 522 29 896 76 -442 -32 #rect
-Te0 f5 @|IBIcon #fIcon
 >Proto Te0 .type com.axonivy.portal.developerexamples.Data #txt
 >Proto Te0 .processKind NORMAL #txt
 >Proto Te0 0 0 32 24 18 0 #rect

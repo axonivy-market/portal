@@ -1,0 +1,5 @@
+co: name={processStep} description={} changed={2021-05-24 10:08:46 CEST} changedby={mnhnam} visualorder={0} guid={1799C526227B065B} parentguid={} typeguid={E6AFEA203ACD23E6} id={} parentid={} typeid={}
+val: guid={1799D6651529B6B4} datatype={} isdefault={false} langid={de} description={} validfrom={2021-05-24 10:00:31 CEST} validto={} changed={2021-05-24 10:03:19 CEST} changedby={mnhnam} properties={} id={}
+val: guid={1799D665332DD885} datatype={} isdefault={false} langid={fr} description={} validfrom={2021-05-24 10:00:29 CEST} validto={} changed={2021-05-24 10:06:48 CEST} changedby={mnhnam} properties={} id={}
+val: guid={1799D6653258F03D} datatype={} isdefault={false} langid={es} description={} validfrom={2021-05-24 10:00:34 CEST} validto={} changed={2021-05-24 10:08:29 CEST} changedby={mnhnam} properties={} id={}
+val: guid={1799C52622D28C09} datatype={} isdefault={true} langid={en} description={} validfrom={2021-05-24 05:01:55 CEST} validto={} changed={2021-05-24 10:08:46 CEST} changedby={mnhnam} properties={} id={}

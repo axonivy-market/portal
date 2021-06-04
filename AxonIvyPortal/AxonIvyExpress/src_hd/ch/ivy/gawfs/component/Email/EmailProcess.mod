@@ -1,5 +1,5 @@
 [Ivy]
-162CC7D866220C4A 9.2.0 #module
+162CC7D866220C4A 9.3.0 #module
 >Proto >Proto Collection #zClass
 Es0 EmailProcess Big #zClass
 Es0 RD #cInfo
@@ -30,9 +30,7 @@ Es0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Es0 f0 83 51 26 26 -16 15 #rect
-Es0 f0 @|UdInitIcon #fIcon
 Es0 f1 211 51 26 26 0 12 #rect
-Es0 f1 @|UdProcessEndIcon #fIcon
 Es0 f2 expr out #txt
 Es0 f2 109 64 211 64 #arcP
 Es0 f3 guid 162CC7D876F4B77C #txt
@@ -46,15 +44,12 @@ Es0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Es0 f3 83 147 26 26 -15 12 #rect
-Es0 f3 @|UdEventIcon #fIcon
 Es0 f4 211 147 26 26 0 12 #rect
-Es0 f4 @|UdExitEndIcon #fIcon
 Es0 f5 expr out #txt
 Es0 f5 109 160 211 160 #arcP
 >Proto Es0 .type ch.ivy.gawfs.component.Email.EmailData #txt
 >Proto Es0 .processKind HTML_DIALOG #txt
 >Proto Es0 -8 -8 16 16 16 26 #rect
->Proto Es0 '' #fIcon
 Es0 f0 mainOut f2 tail #connect
 Es0 f2 head f1 mainIn #connect
 Es0 f3 mainOut f5 tail #connect

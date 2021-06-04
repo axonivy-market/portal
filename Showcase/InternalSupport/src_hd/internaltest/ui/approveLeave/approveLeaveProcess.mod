@@ -1,5 +1,5 @@
 [Ivy]
-1475D5F3DD0B29B3 9.2.0 #module
+1475D5F3DD0B29B3 9.3.0 #module
 >Proto >Proto Collection #zClass
 as0 approveLeaveProcess Big #zClass
 as0 RD #cInfo
@@ -48,10 +48,8 @@ as0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 as0 f0 51 51 26 26 -103 15 #rect
-as0 f0 @|UdInitIcon #fIcon
 as0 f0 -1|-1|-9671572 #nodeStyle
 as0 f1 243 51 26 26 0 12 #rect
-as0 f1 @|UdProcessEndIcon #fIcon
 as0 f1 -1|-1|-9671572 #nodeStyle
 as0 f2 expr out #txt
 as0 f2 77 64 243 64 #arcP
@@ -68,10 +66,8 @@ as0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 as0 f3 51 147 26 26 -15 12 #rect
-as0 f3 @|UdEventIcon #fIcon
 as0 f3 -1|-1|-9671572 #nodeStyle
 as0 f4 307 147 26 26 0 12 #rect
-as0 f4 @|UdExitEndIcon #fIcon
 as0 f4 -1|-1|-9671572 #nodeStyle
 as0 f6 actionTable 'out=in;
 ' #txt
@@ -86,7 +82,6 @@ as0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 as0 f6 120 138 144 44 -68 -8 #rect
-as0 f6 @|StepIcon #fIcon
 as0 f7 expr out #txt
 as0 f7 77 160 120 160 #arcP
 as0 f5 expr out #txt
@@ -94,7 +89,6 @@ as0 f5 264 160 307 160 #arcP
 >Proto as0 .type internaltest.ui.approveLeave.approveLeaveData #txt
 >Proto as0 .processKind HTML_DIALOG #txt
 >Proto as0 -8 -8 16 16 16 26 #rect
->Proto as0 '' #fIcon
 as0 f0 mainOut f2 tail #connect
 as0 f2 head f1 mainIn #connect
 as0 f3 mainOut f7 tail #connect

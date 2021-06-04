@@ -1,5 +1,5 @@
 [Ivy]
-16B3F9C285F4279D 9.2.0 #module
+16B3F9C285F4279D 9.3.0 #module
 >Proto >Proto Collection #zClass
 Ss0 TestDataProviderForPortalExpress Big #zClass
 Ss0 B #cInfo
@@ -28,9 +28,7 @@ Ss0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ss0 f0 81 49 30 30 -73 27 #rect
-Ss0 f0 @|StartSubIcon #fIcon
 Ss0 f1 337 49 30 30 0 15 #rect
-Ss0 f1 @|EndSubIcon #fIcon
 Ss0 f2 expr out #txt
 Ss0 f2 111 64 337 64 #arcP
 >Proto Ss0 .type portalKit_test.TestDataProviderForPortalExpressData #txt

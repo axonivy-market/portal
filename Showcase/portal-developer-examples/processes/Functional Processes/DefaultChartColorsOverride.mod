@@ -1,5 +1,5 @@
 [Ivy]
-16DB01132AFEAB36 9.2.0 #module
+16DB01132AFEAB36 9.3.0 #module
 >Proto >Proto Collection #zClass
 Ds0 DefaultChartColors Big #zClass
 Ds0 B #cInfo
@@ -28,9 +28,7 @@ Ds0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ds0 f0 81 49 30 30 -13 17 #rect
-Ds0 f0 @|StartSubIcon #fIcon
 Ds0 f1 81 313 30 30 0 15 #rect
-Ds0 f1 @|EndSubIcon #fIcon
 Ds0 f3 actionTable 'out=in;
 ' #txt
 Ds0 f3 actionCode 'import ch.ivy.addon.portalkit.statistics.StatisticColors;
@@ -56,7 +54,6 @@ Ds0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ds0 f3 40 170 112 44 -53 -8 #rect
-Ds0 f3 @|StepIcon #fIcon
 Ds0 f4 96 79 96 170 #arcP
 Ds0 f2 96 214 96 313 #arcP
 Ds0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -100,7 +97,6 @@ in.chartColors = chartColor;</desc>
 </elementInfo>
 ' #txt
 Ds0 f5 200 20 496 328 -213 -136 #rect
-Ds0 f5 @|IBIcon #fIcon
 >Proto Ds0 .type _com.axonivy.portal.developerexamples.DefaultChartColorsOverrideData #txt
 >Proto Ds0 .processKind CALLABLE_SUB #txt
 >Proto Ds0 0 0 32 24 18 0 #rect
