@@ -37,7 +37,7 @@
         
         <div class="ui-g">
         <div class="ui-g-12 TexAlRight u-no-padding-top">
-          <p:commandLink ajax="false" styleClass="note-history-export-button u-mar-right-15">
+          <p:commandLink ajax="false" styleClass="note-history-export-button">
             <i class="#{visibilityBean.generateButtonIcon('si si-office-file-xls-1')}" />
             <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}</span>
             <p:fileDownload value="#{caseTaskNoteHistoryBean.getStreamedContentOfCaseNoteHistory(data.filteredHistories, data.ivyCase, data.exportedFileName)}" />
