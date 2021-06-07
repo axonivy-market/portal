@@ -22,6 +22,7 @@ You could find project ``portal-developer-examples`` in engine demo mode or impo
    forgot-password
    menu
    portal-home
+   new-dashboard
    task-widget
    task-item-details
    case-widget
