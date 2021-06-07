@@ -784,6 +784,12 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   flex: 0 0 auto;
 }
 
+.case-detail-section-title-container .case-history-button-container .ui-link {
+  display: inline;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .case-detail-section-title,
 .task-detail-section-title {
   margin-bottom: 14px;
@@ -2279,7 +2285,6 @@ _:-ms-input-placeholder, :root .case-details>* {
 
 .additional-case-details-link {
   margin-left: 10px;
-  display: inline-block;
 }
 /* override on IE */
 _:-ms-fullscreen, :root .additional-case-details-link {
