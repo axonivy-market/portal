@@ -49,9 +49,10 @@ public abstract class TemplatePage extends AbstractPage {
     Awaitility.await().atMost(new Duration(timeout, TimeUnit.SECONDS)).until(() -> {
       try {
         super.waitForElementDisplayed(locator, expected, timeout);
-        return;
-      } catch (WebDriverException e) {
+        return true;
+      } catch (WebDriverException | NullPointerException e) {
         System.out.println("Exception when waiting for element displayed, try again.");
+        return false;
       }
     });
   }
