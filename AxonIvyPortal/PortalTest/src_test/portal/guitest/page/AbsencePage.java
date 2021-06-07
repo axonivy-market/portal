@@ -100,7 +100,7 @@ public class AbsencePage extends TemplatePage {
   private void clickSelectedDeputiesLink(int deputyRoleIndex) {
     waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
     String deputiesSelector = String.format("a[id$='absences-management-form:substitute-table:%d:selected-deputies-link']", deputyRoleIndex);
-    waitForElementDisplayed(By.cssSelector(deputiesSelector), true);
+    waitForElementReallyDisplayed(By.cssSelector(deputiesSelector), true);
     Awaitility.await().atMost(new Duration(10, TimeUnit.SECONDS)).until(() -> {
       try {
         WebElement deputiesLink = findElementByCssSelector(deputiesSelector);
