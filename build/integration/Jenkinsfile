@@ -12,9 +12,9 @@ pipeline {
 
   parameters {
       string(name: 'testPatternToRun', defaultValue: 'portal.guitest.userexample.test.*Test,portal.guitest.test.*Test', description: 'Test pattern to run.')
-      string(name: 'engineDownloadURL', defaultValue: '-Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly/axonivy-engine-windows.zip', description: '''Where to download engine? e.g.
+      string(name: 'engineDownloadURL', defaultValue: '-Divy.engine.download.url=https://developer.axonivy.com/permalink/dev/axonivy-engine-windows.zip', description: '''Where to download engine? e.g.
         -Divy.engine.download.url=-Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly/axonivy-engine-windows.zip for nightly master
-        -Divy.engine.list.url=https://jenkins.ivyteam.io/job/ivy-core_product/job/master/lastSuccessfulBuild/artifact/workspace/ch.ivyteam.ivy.server.product/target/products/ -Divy.engine.os.arch=Windows_x64 for last successful build master
+        -Divy.engine.download.url=-Divy.engine.download.url=https://developer.axonivy.com/permalink/dev/axonivy-engine-windows.zip for dev master
         -Divy.engine.download.url=file:///C:/wawa/engine/AxonIvyEngineX.X.X.X_Windows_x64.zip for downloaded engine
       ''')
       booleanParam(name: 'skipReplacePortal', defaultValue: false, description: 'Should skip replace Portal artifacts in the engine? TRUE: keep built-in Portal of the engine, FALSE: replace built-in Portal of the engine by the latest successful release.')
@@ -58,9 +58,8 @@ pipeline {
             powershell '''
               $DEPLOYMENT= $env:engineDir + "/system/demo-applications/demo-portal"
               rmdir $DEPLOYMENT/* -recurse
-              Copy-Item $env:releaseDir/AxonIvyPortal/PortalApp/target/*zip -Destination $DEPLOYMENT
+              Copy-Item $env:releaseDir/Showcase/portal-demo-app/target/*zip -Destination $DEPLOYMENT
               Copy-Item $env:releaseDir/Showcase/portal-developer-examples/target/*iar -Destination $DEPLOYMENT
-              Copy-Item $env:releaseDir/Showcase/portal-user-examples/target/*iar -Destination $DEPLOYMENT
             '''
           } else {
             powershell '''
@@ -83,9 +82,8 @@ pipeline {
 
 
           echo '====================Test Portal===================='
-          bat """
-            mvn clean test -f AxonIvyPortal/PortalTest/customized_pom.xml -Dtest=%testPatternToRun% -DbrowserType=${props.browserType} -DtrimStackTrace=false -Divy.engine.directory=%engineDir% -Divy.deploy.timeout.seconds=60 -Divy.compiler.engine.start.timeout=120
-          """
+          bat "mvn clean test -f AxonIvyPortal/PortalTest/customized_pom.xml -Dtest=%testPatternToRun% -DbrowserType=${props.browserType} -DtrimStackTrace=false -Divy.engine.directory=%engineDir% -Divy.deploy.timeout.seconds=60 -Divy.compiler.engine.start.timeout=120"
+          utils.cleanDisk()
 
           node('master') {
             utils.closeAllRemoteDesktopConnections()

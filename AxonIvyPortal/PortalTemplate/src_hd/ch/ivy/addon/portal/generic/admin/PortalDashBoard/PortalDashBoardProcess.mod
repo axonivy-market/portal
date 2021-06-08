@@ -1,5 +1,5 @@
 [Ivy]
-14EB4D799BBF04C8 9.2.0 #module
+14EB4D799BBF04C8 9.3.0 #module
 >Proto >Proto Collection #zClass
 Ps0 PortalDashBoardProcess Big #zClass
 Ps0 RD #cInfo
@@ -31,15 +31,13 @@ Ps0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f0 101 53 22 22 -16 12 #rect
-Ps0 f0 @|UdInitIcon #fIcon
 Ps0 f1 309 53 22 22 14 0 #rect
-Ps0 f1 @|UdProcessEndIcon #fIcon
 Ps0 f2 actionTable 'out=in;
 ' #txt
 Ps0 f2 actionCode 'import ch.ivy.addon.portalkit.service.StatisticService;
 
-StatisticService service = new StatisticService();
-in.statisticChartList = service.findStatisticChartsByUserId(ivy.session.getSessionUser().getId());' #txt
+StatisticService service = StatisticService.getInstance();
+in.statisticChartList = service.findStatisticCharts();' #txt
 Ps0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -50,7 +48,6 @@ Ps0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f2 209 52 36 24 -49 14 #rect
-Ps0 f2 @|StepIcon #fIcon
 Ps0 f9 expr out #txt
 Ps0 f9 245 64 309 64 #arcP
 Ps0 f7 expr out #txt
@@ -70,7 +67,6 @@ Ps0 f7 123 64 209 64 #arcP
 </elementInfo>
 ' #txt
 >Proto Ps0 -8 -8 16 16 16 26 #rect
->Proto Ps0 '' #fIcon
 Ps0 f2 mainOut f9 tail #connect
 Ps0 f9 head f1 mainIn #connect
 Ps0 f0 mainOut f7 tail #connect

@@ -11,17 +11,24 @@ import ch.ivyteam.ivy.workflow.custom.field.ICustomField;
 public class TaskDetailsCustomWidgetUtils {
   public static final String TASK_PROPERTY_KEY_PATTERN_DELIMITER = "\\.";
   public static final String TASK_PROPERTY_PREFIX = "task";
-  public static final String TASK_CUSTOM_FIELD_PREFIX = "custom";
+  public static final String TASK_CUSTOM_FIELD_PREFIX = "customFields";
 
   public static String getTaskPropertyByKeyPattern(ITask task, String keyPattern) {
     if (task != null) {
       String[] keyParts = keyPattern.split(TASK_PROPERTY_KEY_PATTERN_DELIMITER);
-      if (keyParts.length == 2) {
+      if (keyParts.length >= 2) {
         switch (keyParts[0]) {
           case TASK_PROPERTY_PREFIX:
-            return getTaskPropertyByKey(task, keyParts[1]);
-          case TASK_CUSTOM_FIELD_PREFIX:
-            return getTaskCustomFieldByKey(task, keyParts[1]);
+            if(keyParts.length >= 3) {
+              switch (keyParts[1]) {
+                case TASK_CUSTOM_FIELD_PREFIX:
+                  return getTaskCustomFieldByKey(task, keyParts[2]);
+                default:
+                  return StringUtils.EMPTY;
+              }
+            } else {
+              return getTaskPropertyByKey(task, keyParts[1]);
+            }
           default:
             return keyPattern;
         }

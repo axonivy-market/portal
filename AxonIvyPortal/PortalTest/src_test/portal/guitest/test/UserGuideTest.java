@@ -2,6 +2,7 @@ package portal.guitest.test;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static portal.guitest.common.Variable.SHOW_USER_GUIDE;
 
 import org.junit.After;
 import org.junit.Before;
@@ -19,7 +20,7 @@ public class UserGuideTest extends BaseTest {
   @Before
   public void setup() {
     super.setup();
-    updatePortalSetting("SHOW_USER_GUIDE", "true");
+    updatePortalSetting(SHOW_USER_GUIDE.getKey(), "true");
     login(TestAccount.DEMO_USER);
   }
 
@@ -36,11 +37,11 @@ public class UserGuideTest extends BaseTest {
   
   @Test
   public void testChangeShowUserGuideInGeneralSetting() {
-    updatePortalSetting("SHOW_USER_GUIDE", "false");
+    updatePortalSetting(SHOW_USER_GUIDE.getKey(), "false");
     HomePage homePage = new HomePage();
     UserProfilePage userProfilePage = homePage.openMyProfilePage();
     assertTrue(userProfilePage.isDisableShowTutorialCheckbox());
-    updatePortalSetting("SHOW_USER_GUIDE", "true");
+    updatePortalSetting(SHOW_USER_GUIDE.getKey(), "true");
     homePage = new HomePage();
     userProfilePage = homePage.openMyProfilePage();
     assertFalse(userProfilePage.isDisableShowTutorialCheckbox());
@@ -55,6 +56,6 @@ public class UserGuideTest extends BaseTest {
   
   @After
   public void destroy() {
-    updatePortalSetting("SHOW_USER_GUIDE", "false");
+    updatePortalSetting(SHOW_USER_GUIDE.getKey(), "false");
   }
 }

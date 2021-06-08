@@ -1,5 +1,5 @@
 [Ivy]
-14BE80F25BC9033C 9.2.0 #module
+14BE80F25BC9033C 9.3.0 #module
 >Proto >Proto Collection #zClass
 Ee0 LanguageService Big #zClass
 Ee0 B #cInfo
@@ -38,9 +38,7 @@ Ee0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ee0 f0 81 49 30 30 -31 19 #rect
-Ee0 f0 @|StartSubIcon #fIcon
 Ee0 f4 521 49 30 30 0 15 #rect
-Ee0 f4 @|EndSubIcon #fIcon
 Ee0 f17 actionTable 'out=in;
 ' #txt
 Ee0 f17 actionCode 'import ch.ivy.addon.portalkit.ivydata.dto.IvyLanguageResultDTO;
@@ -57,9 +55,7 @@ Ee0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ee0 f17 208 234 240 44 -113 -8 #rect
-Ee0 f17 @|StepIcon #fIcon
 Ee0 f18 521 241 30 30 0 15 #rect
-Ee0 f18 @|EndSubIcon #fIcon
 Ee0 f23 inParamDecl '<> param;' #txt
 Ee0 f23 outParamDecl '<ch.ivy.addon.portalkit.ivydata.bo.IvyLanguage supportedLanguge> result;' #txt
 Ee0 f23 outParamTable 'result.supportedLanguge=in.language;
@@ -73,11 +69,9 @@ Ee0 f23 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ee0 f23 81 241 30 30 -66 21 #rect
-Ee0 f23 @|StartSubIcon #fIcon
 Ee0 f16 expr out #txt
 Ee0 f16 111 256 208 256 #arcP
 Ee0 f32 521 145 30 30 0 15 #rect
-Ee0 f32 @|EndSubIcon #fIcon
 Ee0 f33 actionTable 'out=in;
 ' #txt
 Ee0 f33 actionCode 'import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
@@ -91,7 +85,6 @@ Ee0 f33 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ee0 f33 208 138 128 44 -58 -8 #rect
-Ee0 f33 @|StepIcon #fIcon
 Ee0 f34 inParamDecl '<ch.ivy.addon.portalkit.ivydata.bo.IvyLanguage language> param;' #txt
 Ee0 f34 inParamTable 'out.language=param.language;
 ' #txt
@@ -105,7 +98,6 @@ Ee0 f34 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ee0 f34 81 145 30 30 -67 24 #rect
-Ee0 f34 @|StartSubIcon #fIcon
 Ee0 f38 expr out #txt
 Ee0 f38 111 160 208 160 #arcP
 Ee0 f2 actionTable 'out=in;
@@ -123,7 +115,6 @@ Ee0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ee0 f2 208 42 128 44 -57 -8 #rect
-Ee0 f2 @|StepIcon #fIcon
 Ee0 f5 111 64 208 64 #arcP
 Ee0 f7 expr out #txt
 Ee0 f7 336 64 521 64 #arcP

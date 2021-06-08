@@ -10,24 +10,25 @@ import javax.faces.context.FacesContext;
 
 import org.primefaces.PrimeFaces;
 
-import ch.ivy.addon.portalkit.bo.ExternalLink;
 import ch.ivy.addon.portalkit.bo.ExternalLinkProcessItem;
+import ch.ivy.addon.portalkit.configuration.ExternalLink;
 import ch.ivy.addon.portalkit.enums.Protocol;
 import ch.ivy.addon.portalkit.service.ExternalLinkService;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.security.IUser;
 
 @ManagedBean
 @ViewScoped
 public class ExternalLinkBean implements Serializable {
 
-  private static final long serialVersionUID = 4772777911430826945L;
+private static final long serialVersionUID = 4772777911430826945L;
   private ExternalLink externalLink;
   private ExternalLinkService externaLinkService;
   
   @PostConstruct
   public void init() {
-    externaLinkService = new ExternalLinkService();
+    externaLinkService = ExternalLinkService.getInstance();
   }
   
   public void addNewExternalLink(String clientId) {
@@ -35,15 +36,17 @@ public class ExternalLinkBean implements Serializable {
     externalLink.setIcon(ExternalLinkProcessItem.DEFAULT_ICON);
     PrimeFaces.current().resetInputs(clientId + ":add-external-link-form");
   }
-  
+
   public ExternalLink saveNewExternalLink() {
-    externalLink.setCreatorId(Ivy.session().getSessionUser().getId());
+    IUser sessionUser = Ivy.session().getSessionUser();
+    externalLink.setCreatorId(sessionUser.getId());
     String processLink = correctLink(externalLink.getLink());
     externalLink.setLink(processLink);
+
     externaLinkService.save(externalLink);
     return externalLink;
   }
-  
+
   public boolean hasPublicLinkCreationPermission() {
     return PermissionUtils.checkPublicLinkCreationPermission();
   }

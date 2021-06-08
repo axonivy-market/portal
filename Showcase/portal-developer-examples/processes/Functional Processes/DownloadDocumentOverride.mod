@@ -1,5 +1,5 @@
 [Ivy]
-16AD35D75A4DFC51 9.2.0 #module
+16AD35D75A4DFC51 9.3.0 #module
 >Proto >Proto Collection #zClass
 Dt0 DownloadDocument Big #zClass
 Dt0 B #cInfo
@@ -35,9 +35,7 @@ Dt0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Dt0 f0 81 49 30 30 -61 28 #rect
-Dt0 f0 @|StartSubIcon #fIcon
 Dt0 f1 337 49 30 30 0 15 #rect
-Dt0 f1 @|EndSubIcon #fIcon
 Dt0 f3 actionTable 'out=in;
 ' #txt
 Dt0 f3 actionCode 'import ch.ivy.addon.portalkit.service.CaseDocumentService;
@@ -53,7 +51,6 @@ Dt0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Dt0 f3 160 42 128 44 -57 -8 #rect
-Dt0 f3 @|StepIcon #fIcon
 Dt0 f4 expr out #txt
 Dt0 f4 111 64 160 64 #arcP
 Dt0 f2 expr out #txt
@@ -66,7 +63,6 @@ Dt0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Dt0 f5 120 177 288 30 -141 -8 #rect
-Dt0 f5 @|IBIcon #fIcon
 Dt0 f6 120 192 98 78 #arcP
 >Proto Dt0 .type _com.axonivy.portal.developerexamples.DownloadDocumentOverrideData #txt
 >Proto Dt0 .processKind CALLABLE_SUB #txt

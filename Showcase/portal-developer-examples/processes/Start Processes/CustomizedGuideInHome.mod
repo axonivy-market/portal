@@ -1,5 +1,5 @@
 [Ivy]
-17279884C45FC0CE 9.2.0 #module
+17279884C45FC0CE 9.3.0 #module
 >Proto >Proto Collection #zClass
 Ce0 CustomizedGuideInHome Big #zClass
 Ce0 B #cInfo
@@ -34,7 +34,6 @@ Ce0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ce0 f0 @C|.responsibility Everybody #txt
 Ce0 f0 81 49 30 30 -20 17 #rect
-Ce0 f0 @|StartRequestIcon #fIcon
 Ce0 f22 actionTable 'out=in;
 ' #txt
 Ce0 f22 actionCode 'import ch.ivy.addon.portal.generic.view.TaskView;
@@ -49,9 +48,7 @@ Ce0 f22 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ce0 f22 352 42 112 44 -38 -8 #rect
-Ce0 f22 @|StepIcon #fIcon
 Ce0 f1 689 49 30 30 0 15 #rect
-Ce0 f1 @|EndIcon #fIcon
 Ce0 f3 dialogId com.axonivy.portal.developerexamples.customization.CustomizedGuide #txt
 Ce0 f3 startMethod start(ch.ivy.addon.portal.generic.view.TaskView) #txt
 Ce0 f3 requestActionDecl '<ch.ivy.addon.portal.generic.view.TaskView taskView> param;' #txt
@@ -67,7 +64,6 @@ Ce0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ce0 f3 504 42 144 44 -67 -8 #rect
-Ce0 f3 @|UserDialogIcon #fIcon
 Ce0 f9 processCall 'Functional Processes/InitializeTaskDataModel:call()' #txt
 Ce0 f9 requestActionDecl '<> param;' #txt
 Ce0 f9 responseActionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
@@ -86,7 +82,6 @@ Ce0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ce0 f9 160 42 144 44 -65 -8 #rect
-Ce0 f9 @|CallSubIcon #fIcon
 Ce0 f5 304 64 352 64 #arcP
 Ce0 f4 464 64 504 64 #arcP
 Ce0 f6 111 64 160 64 #arcP

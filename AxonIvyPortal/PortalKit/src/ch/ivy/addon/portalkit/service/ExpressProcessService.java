@@ -1,68 +1,72 @@
 package ch.ivy.addon.portalkit.service;
 
-
-import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
 import ch.ivy.addon.portalkit.util.ExpressManagementUtils;
-import ch.ivyteam.ivy.business.data.store.search.Filter;
-import ch.ivyteam.ivy.business.data.store.search.Result;
-import ch.ivyteam.ivy.environment.Ivy;
 
-public class ExpressProcessService extends BusinessDataService<ExpressProcess> {
-  
-  private static final String PROCESS_TYPE = "processType";
+public class ExpressProcessService extends JsonConfigurationService<ExpressProcess> {
+
+  private static final String EXPRESS_PROCESSES = "Portal.Processes.ExpressProcesses";
+  private static ExpressProcessService instance;
+
+  public static ExpressProcessService getInstance() {
+    if (instance == null) {
+      instance = new ExpressProcessService();
+    }
+    return instance;
+  }
 
   public List<ExpressProcess> findReadyToExecuteProcessOrderByName() {
-    Result<ExpressProcess> queryResult = repo().search(getType()).orderBy().textField("processName").ascending().limit(LIMIT_20).execute();
-    long totalCount = queryResult.totalCount();
-    if(totalCount > LIMIT_20) {
-      queryResult = repo().search(getType()).orderBy().textField("processName").ascending().limit(Math.toIntExact(totalCount)).execute();
-    }
-    return queryResult.getAll().stream().filter(ExpressProcess::isReadyToExecute).collect(Collectors.toList());
+    List<ExpressProcess> expressProcesses = findAll();
+    return expressProcesses.stream()
+        .filter(ExpressProcess::isReadyToExecute)
+        .sorted(Comparator.comparing(ExpressProcess::getProcessName))
+        .collect(Collectors.toList());
   }
 
   public ExpressProcess findReadyToExecuteProcessByName(String processName) {
-    ExpressProcess process = repo().search(getType()).textField("processName").isEqualToIgnoringCase(processName).limit(LIMIT_1).execute().getFirst();
-    return process != null && process.isReadyToExecute() ? process : null;
+    List<ExpressProcess> readyToExecuteProcesses = findReadyToExecuteProcessOrderByName();
+    return readyToExecuteProcesses.stream()
+        .filter(filterByName(processName))
+        .findFirst().orElse(null);
+  }
+
+  private Predicate<? super ExpressProcess> filterByName(String processName) {
+    return process -> process.getProcessName().equals(processName);
   }
   
   public ExpressProcess findExpressProcessByName(String processName) {
-    Filter<ExpressProcess> filter = repo().search(getType()).textField("processName").isEqualToIgnoringCase(processName);
-    return filter.limit(1).execute().getFirst();
+    return findAll().stream().filter(filterByName(processName)).findFirst().orElse(null);
   }
-  
+
+  public List<ExpressProcess> findReadyToExecuteProcessByProcessType(String processType) {
+    List<ExpressProcess> readyToExecuteProcesses = findReadyToExecuteProcessOrderByName();
+    return readyToExecuteProcesses.stream()
+        .filter(process -> process.getProcessType().equals(processType))
+        .collect(Collectors.toList());
+  }
+
+  public ExpressProcess findExpressProcessById(String id) {
+    ExpressProcess result = findById(id);
+    if (result != null) {
+      result.setProcessOwner(ExpressManagementUtils.getValidMemberName(result.getProcessOwner()));
+      result.setProcessCoOwners(ExpressManagementUtils.getValidMemberNames(result.getProcessCoOwners()));
+      result.setProcessPermissions(ExpressManagementUtils.getValidMemberNames(result.getProcessPermissions()));
+    }
+    return result;
+  }
+
   @Override
   public Class<ExpressProcess> getType() {
     return ExpressProcess.class;
   }
 
-  public List<ExpressProcess> findReadyToExecuteProcessByProcessType(String processType) {
-    try {
-      Filter<ExpressProcess> publicFilterQuery =
-          repo().search(getType()).textField(PROCESS_TYPE).isEqualToIgnoringCase(processType);
-      Result<ExpressProcess> queryResult = publicFilterQuery.orderBy().textField("processName").ascending().limit(LIMIT_20).execute();
-      long totalCount = queryResult.totalCount();
-      if(totalCount > LIMIT_20) {
-        queryResult = publicFilterQuery.orderBy().textField("processName").ascending().limit(Math.toIntExact(totalCount)).execute();
-      }
-      return queryResult.getAll().stream().filter(ExpressProcess::isReadyToExecute).collect(Collectors.toList());
-    } catch (Exception e) {
-      Ivy.log().error(e);
-    }
-    return new ArrayList<>();
-  }
-
-  public ExpressProcess findExpressProcessById(String id) {
-    ExpressProcess result = super.findById(id);
-    if (result != null) {
-      ExpressManagementUtils utils = new ExpressManagementUtils();
-      result.setProcessOwner(utils.getValidMemberName(result.getProcessOwner()));
-      result.setProcessCoOwners(utils.getValidMemberNames(result.getProcessCoOwners()));
-      result.setProcessPermissions(utils.getValidMemberNames(result.getProcessPermissions()));
-    }
-    return result;
+  @Override
+  public String getConfigKey() {
+    return EXPRESS_PROCESSES;
   }
 }

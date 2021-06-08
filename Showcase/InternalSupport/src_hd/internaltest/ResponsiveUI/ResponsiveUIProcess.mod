@@ -1,5 +1,5 @@
 [Ivy]
-169809A4D695C561 9.2.0 #module
+169809A4D695C561 9.3.0 #module
 >Proto >Proto Collection #zClass
 Rs0 ResponsiveUIProcess Big #zClass
 Rs0 RD #cInfo
@@ -30,9 +30,7 @@ Rs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Rs0 f0 83 51 26 26 -16 15 #rect
-Rs0 f0 @|UdInitIcon #fIcon
 Rs0 f1 211 51 26 26 0 12 #rect
-Rs0 f1 @|UdProcessEndIcon #fIcon
 Rs0 f2 expr out #txt
 Rs0 f2 109 64 211 64 #arcP
 Rs0 f3 guid 169809A4E051BFEA #txt
@@ -46,15 +44,12 @@ Rs0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Rs0 f3 83 147 26 26 -15 12 #rect
-Rs0 f3 @|UdEventIcon #fIcon
 Rs0 f4 211 147 26 26 0 12 #rect
-Rs0 f4 @|UdExitEndIcon #fIcon
 Rs0 f5 expr out #txt
 Rs0 f5 109 160 211 160 #arcP
 >Proto Rs0 .type internaltest.ResponsiveUI.ResponsiveUIData #txt
 >Proto Rs0 .processKind HTML_DIALOG #txt
 >Proto Rs0 -8 -8 16 16 16 26 #rect
->Proto Rs0 '' #fIcon
 Rs0 f0 mainOut f2 tail #connect
 Rs0 f2 head f1 mainIn #connect
 Rs0 f3 mainOut f5 tail #connect

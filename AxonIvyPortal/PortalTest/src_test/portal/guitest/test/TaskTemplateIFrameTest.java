@@ -10,7 +10,6 @@ import org.openqa.selenium.By;
 
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.WaitHelper;
-import portal.guitest.page.CaseWidgetPage;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.TaskTemplatePage;
 import portal.guitest.page.TaskWidgetPage;

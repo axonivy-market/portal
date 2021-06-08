@@ -1,5 +1,5 @@
 [Ivy]
-16583DA46E986FE1 9.2.0 #module
+16583DA46E986FE1 9.3.0 #module
 >Proto >Proto Collection #zClass
 Cn0 CreateTaskWithNavigateBackButton Big #zClass
 Cn0 B #cInfo
@@ -45,9 +45,7 @@ Cn0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Cn0 f0 @C|.responsibility Everybody #txt
 Cn0 f0 169 49 30 30 -108 17 #rect
-Cn0 f0 @|StartRequestIcon #fIcon
 Cn0 f1 681 49 30 30 0 15 #rect
-Cn0 f1 @|EndIcon #fIcon
 Cn0 f3 actionTable 'out=in1;
 ' #txt
 Cn0 f3 outLinks "TaskA.ivp" #txt
@@ -63,7 +61,6 @@ TaskA.TYPE=0
 TaskA.customFields.STRING.embedInFrame="false"' #txt
 Cn0 f3 template "" #txt
 Cn0 f3 337 49 30 30 0 16 #rect
-Cn0 f3 @|TaskSwitchSimpleIcon #fIcon
 Cn0 f4 expr out #txt
 Cn0 f4 type com.axonivy.portal.developerexamples.Data #txt
 Cn0 f4 var in1 #txt
@@ -83,7 +80,6 @@ Cn0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cn0 f5 432 42 176 44 -84 -8 #rect
-Cn0 f5 @|UserDialogIcon #fIcon
 Cn0 f6 expr data #txt
 Cn0 f6 outCond ivp=="TaskA.ivp" #txt
 Cn0 f6 367 64 432 64 #arcP
@@ -105,7 +101,6 @@ In the task UI, if you click on the "Back" button, you will be redirected to the
 </elementInfo>
 ' #txt
 Cn0 f7 64 162 784 108 -386 -48 #rect
-Cn0 f7 @|IBIcon #fIcon
 >Proto Cn0 .type com.axonivy.portal.developerexamples.Data #txt
 >Proto Cn0 .processKind NORMAL #txt
 >Proto Cn0 0 0 32 24 18 0 #rect

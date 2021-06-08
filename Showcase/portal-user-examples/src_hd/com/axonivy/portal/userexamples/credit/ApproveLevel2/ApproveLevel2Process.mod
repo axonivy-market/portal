@@ -1,5 +1,5 @@
 [Ivy]
-1703246DF653A6CD 9.2.0 #module
+1703246DF653A6CD 9.3.0 #module
 >Proto >Proto Collection #zClass
 As0 ApproveLevel2Process Big #zClass
 As0 RD #cInfo
@@ -36,9 +36,7 @@ As0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f0 83 51 26 26 -16 15 #rect
-As0 f0 @|UdInitIcon #fIcon
 As0 f1 339 51 26 26 0 12 #rect
-As0 f1 @|UdProcessEndIcon #fIcon
 As0 f3 guid 15B3845CC6181BED #txt
 As0 f3 actionTable 'out=in;
 out.dossier.decision.level2Approved=true;
@@ -53,9 +51,7 @@ As0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f3 83 147 26 26 -25 15 #rect
-As0 f3 @|UdEventIcon #fIcon
 As0 f4 339 147 26 26 0 12 #rect
-As0 f4 @|UdExitEndIcon #fIcon
 As0 f6 actionTable 'out=in;
 out.dossier=ivy.repo.get(com.axonivy.portal.userexamples.credit.CreditDossier.class) as com.axonivy.portal.userexamples.credit.CreditDossier;
 ' #txt
@@ -69,7 +65,6 @@ As0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f6 168 42 112 44 -40 -8 #rect
-As0 f6 @|StepIcon #fIcon
 As0 f7 expr out #txt
 As0 f7 109 64 168 64 #arcP
 As0 f2 expr out #txt
@@ -87,7 +82,6 @@ As0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f8 168 138 112 44 -36 -8 #rect
-As0 f8 @|StepIcon #fIcon
 As0 f9 expr out #txt
 As0 f9 109 160 168 160 #arcP
 As0 f5 expr out #txt
@@ -106,7 +100,6 @@ As0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f10 81 224 26 26 -22 15 #rect
-As0 f10 @|UdEventIcon #fIcon
 As0 f11 expr out #txt
 As0 f11 107 237 224 182 #arcP
 As0 f11 1 224 237 #addKink
@@ -114,7 +107,6 @@ As0 f11 0 0.7579026201260659 0 0 #arcLabel
 >Proto As0 .type com.axonivy.portal.userexamples.credit.ApproveLevel2.ApproveLevel2Data #txt
 >Proto As0 .processKind HTML_DIALOG #txt
 >Proto As0 -8 -8 16 16 16 26 #rect
->Proto As0 '' #fIcon
 As0 f0 mainOut f7 tail #connect
 As0 f7 head f6 mainIn #connect
 As0 f6 mainOut f2 tail #connect

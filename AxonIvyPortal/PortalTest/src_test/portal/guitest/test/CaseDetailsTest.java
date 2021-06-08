@@ -28,6 +28,7 @@ import portal.guitest.page.CaseWidgetPage;
 import portal.guitest.page.ExpressProcessPage;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.MainMenuPage;
+import portal.guitest.page.NoteHistoryPage;
 import portal.guitest.page.TaskDetailsPage;
 import portal.guitest.page.TaskTemplatePage;
 
@@ -107,6 +108,35 @@ public class CaseDetailsTest extends BaseTest {
   }
 
   @Test
+  public void testShowBusinessCaseInTechnicalCase() {
+    redirectToRelativeLink(createTestingCaseMapUrl);
+    login(TestAccount.DEMO_USER);
+    MainMenuPage mainMenuPage = homePage.openMainMenu();
+    CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
+    detailsPage = casePage.openCaseDetailsFromActionMenuByCaseName(BUSINESS_CASE_MAP_LEAVE_REQUEST);
+    // check business case information is hidden in business case details
+    assertFalse(detailsPage.isBusinessCaseInformationSectionDisplayed());
+
+    // keep business case id
+    String originalBusinessCaseId = detailsPage.getCaseId();
+
+    // open related case detail - technical case detail
+    detailsPage.clickRelatedCaseActionButton(0);
+    CaseDetailsPage technicalCaseDetailsPage = detailsPage.openCasesOfCasePageViaDetailsAction(0);
+    WaitHelper.assertTrueWithWait(() -> "Case Details".equals(technicalCaseDetailsPage.getPageTitle()));
+
+    // check business case information is displayed in technical case
+    WaitHelper.assertTrueWithWait(() -> detailsPage.isBusinessCaseInformationSectionDisplayed());
+
+    // open business case detail from technical case details
+    CaseDetailsPage businessCaseDetailsPage = technicalCaseDetailsPage.openBusinessCaseFromTechnicalCase();
+
+    // compare business case id
+    String businessCaseId = businessCaseDetailsPage.getCaseId();
+    assertEquals(originalBusinessCaseId, businessCaseId);
+  }
+
+  @Test
   public void testRelatedTaskStartButtonStatus() {
     createTestingTask();
     assertFalse(detailsPage.isRelatedTaskStartEnabled(1));
@@ -125,12 +155,10 @@ public class CaseDetailsTest extends BaseTest {
     createTestingTask();
     detailsPage.clickRelatedTaskActionButton(2);
     detailsPage.reserveTask(2);
-    detailsPage.waitAjaxIndicatorDisappear();
     assertTrue(detailsPage.isTaskState(2, TaskState.PARKED));
 
     detailsPage.clickRelatedTaskActionButton(2);
     detailsPage.resetTask(2);
-    detailsPage.waitAjaxIndicatorDisappear();
     assertTrue(detailsPage.isTaskState(2, TaskState.SUSPENDED));
   }
 
@@ -141,7 +169,6 @@ public class CaseDetailsTest extends BaseTest {
     Assert.assertTrue(detailsPage.isRelatedTaskDestroyEnabled(2));
     detailsPage.destroyTask(2);
     detailsPage.confimRelatedTaskDestruction();
-    detailsPage.waitAjaxIndicatorDisappear();
     assertTrue(detailsPage.isTaskState(2, TaskState.DESTROYED));
   }
 
@@ -274,6 +301,23 @@ public class CaseDetailsTest extends BaseTest {
     createTestingTask();
     detailsPage.addNote("Sample case note");
     assertEquals(TestAccount.ADMIN_USER.getFullName(), detailsPage.getHistoryAuthor());
+  }
+
+  @Test
+  public void testHistoryShowDoneTasks() {
+    redirectToRelativeLink(createTestingCaseMapUrl);
+    login(TestAccount.DEMO_USER);
+    MainMenuPage mainMenuPage = homePage.openMainMenu();
+    CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
+    detailsPage = casePage.openCaseDetailsFromActionMenuByCaseName(BUSINESS_CASE_MAP_LEAVE_REQUEST);
+    assertTrue(detailsPage.checkDoneTasksOfHistory());
+
+    int relatedDoneTasks = detailsPage.countRelatedDoneTasks();
+    detailsPage.showNoteHistory();
+    Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> detailsPage.countBrowserTab() > 1);
+    detailsPage.switchLastBrowserTab();
+    NoteHistoryPage caseHistoryPage = new NoteHistoryPage();
+    assertEquals(relatedDoneTasks, caseHistoryPage.countDoneTasks());
   }
 
   @Test

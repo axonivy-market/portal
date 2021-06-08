@@ -1,3 +1,0 @@
-DefaultChartOverrideData #class
-_com.axonivy.portal.developerexamples #namespace
-defaultCharts java.util.List<ch.ivy.addon.portalkit.statistics.StatisticChart> #field

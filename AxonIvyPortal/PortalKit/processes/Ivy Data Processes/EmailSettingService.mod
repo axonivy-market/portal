@@ -1,5 +1,5 @@
 [Ivy]
-14BDEA64F884ED76 9.2.0 #module
+14BDEA64F884ED76 9.3.0 #module
 >Proto >Proto Collection #zClass
 Ee0 EmailSettingService Big #zClass
 Ee0 B #cInfo
@@ -37,9 +37,7 @@ Ee0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ee0 f9 168 26 112 44 -49 -8 #rect
-Ee0 f9 @|StepIcon #fIcon
 Ee0 f12 369 33 30 30 0 15 #rect
-Ee0 f12 @|EndSubIcon #fIcon
 Ee0 f13 inParamDecl '<> param;' #txt
 Ee0 f13 outParamDecl '<ch.ivy.addon.portalkit.ivydata.bo.IvyEmailSetting ivyEmailSetting> result;' #txt
 Ee0 f13 outParamTable 'result.ivyEmailSetting=in.ivyEmailSetting;
@@ -53,7 +51,6 @@ Ee0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ee0 f13 65 33 30 30 -55 19 #rect
-Ee0 f13 @|StartSubIcon #fIcon
 Ee0 f8 95 48 168 48 #arcP
 Ee0 f15 inParamDecl '<ch.ivy.addon.portalkit.ivydata.bo.IvyEmailSetting emailSetting> param;' #txt
 Ee0 f15 inParamTable 'out.ivyEmailSetting=param.emailSetting;
@@ -68,9 +65,7 @@ Ee0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ee0 f15 65 113 30 30 -63 20 #rect
-Ee0 f15 @|StartSubIcon #fIcon
 Ee0 f18 369 113 30 30 0 15 #rect
-Ee0 f18 @|EndSubIcon #fIcon
 Ee0 f19 actionTable 'out=in;
 ' #txt
 Ee0 f19 actionCode 'import ch.ivy.addon.portalkit.ivydata.service.impl.EmailSettingService;
@@ -86,7 +81,6 @@ Ee0 f19 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ee0 f19 168 106 112 44 -50 -8 #rect
-Ee0 f19 @|StepIcon #fIcon
 Ee0 f23 expr out #txt
 Ee0 f23 95 128 168 128 #arcP
 Ee0 f0 expr out #txt
