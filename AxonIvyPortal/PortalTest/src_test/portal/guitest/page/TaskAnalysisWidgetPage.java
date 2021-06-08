@@ -353,4 +353,16 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
       }
     }
   }
+  
+  public void filterByUnavailableActivator() {
+    waitForElementDisplayed(By.cssSelector("button[id$='available-activator-filter:filter-open-form:advanced-filter-command']"),
+        true);
+    click(By.cssSelector("button[id$='available-activator-filter:filter-open-form:advanced-filter-command']"));
+
+    waitForElementDisplayed(By.cssSelector("[id$='available-activator-filter:filter-input-form:available-activator']"),
+        true);
+    WebElement displayOnlyUnavailableTaskCheckbox = findElementByCssSelector("[id$='available-activator-filter:filter-input-form:available-activator']");
+    displayOnlyUnavailableTaskCheckbox.click();
+    click(By.cssSelector("button[id$='available-activator-filter:filter-input-form:update-command']"));
+  }
 }
