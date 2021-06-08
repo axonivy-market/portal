@@ -1,5 +1,5 @@
 [Ivy]
-16B267B1A01CFA7E 9.2.0 #module
+16B267B1A01CFA7E 9.3.0 #module
 >Proto >Proto Collection #zClass
 Ut0 UploadDocument Big #zClass
 Ut0 B #cInfo
@@ -54,9 +54,7 @@ Ut0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ut0 f0 81 105 30 30 -76 15 #rect
-Ut0 f0 @|StartSubIcon #fIcon
 Ut0 f1 1257 105 30 30 0 15 #rect
-Ut0 f1 @|EndSubIcon #fIcon
 Ut0 f36 actionTable 'out=in;
 ' #txt
 Ut0 f36 actionCode 'import ch.ivy.addon.portalkit.enums.UploadDocumentCheckStatus;
@@ -88,7 +86,6 @@ Ut0 f36 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ut0 f36 200 98 112 44 -22 -8 #rect
-Ut0 f36 @|StepIcon #fIcon
 Ut0 f72 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -97,7 +94,6 @@ Ut0 f72 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ut0 f72 904 104 32 32 -27 -34 #rect
-Ut0 f72 @|AlternativeIcon #fIcon
 Ut0 f71 actionTable 'out=in;
 ' #txt
 Ut0 f71 actionCode 'import ch.ivy.addon.portalkit.util.DocumentFileUtils;
@@ -123,7 +119,6 @@ Ut0 f71 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ut0 f71 1008 98 112 44 -49 -8 #rect
-Ut0 f71 @|StepIcon #fIcon
 Ut0 f38 actionTable 'out=in;
 ' #txt
 Ut0 f38 actionCode 'import ch.ivy.addon.portalkit.util.DocumentFileUtils;
@@ -147,11 +142,8 @@ Ut0 f38 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ut0 f38 736 98 112 44 -31 -8 #rect
-Ut0 f38 @|StepIcon #fIcon
 Ut0 f74 648 200 32 32 0 16 #rect
-Ut0 f74 @|AlternativeIcon #fIcon
 Ut0 f73 904 200 32 32 0 16 #rect
-Ut0 f73 @|AlternativeIcon #fIcon
 Ut0 f70 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -162,7 +154,6 @@ Ut0 f70 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ut0 f70 362 106 28 28 -30 -34 #rect
-Ut0 f70 @|AlternativeIcon #fIcon
 Ut0 f53 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -173,7 +164,6 @@ Ut0 f53 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ut0 f53 648 104 32 32 -54 -37 #rect
-Ut0 f53 @|AlternativeIcon #fIcon
 Ut0 f75 processCall 'Functional Processes/UploadDocumentChecker:call(org.primefaces.model.UploadedFile)' #txt
 Ut0 f75 requestActionDecl '<org.primefaces.model.UploadedFile uploadFile> param;' #txt
 Ut0 f75 requestMappingAction 'param.uploadFile=in.uploadedFile;
@@ -194,7 +184,6 @@ Ut0 f75 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ut0 f75 440 98 160 44 -71 -8 #rect
-Ut0 f75 @|CallSubIcon #fIcon
 Ut0 f92 expr in #txt
 Ut0 f92 680 216 904 216 #arcP
 Ut0 f92 0 0.3194444444444444 0 -10 #arcLabel

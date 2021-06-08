@@ -1,5 +1,5 @@
 [Ivy]
-167F3CD1442A57A4 9.2.0 #module
+167F3CD1442A57A4 9.3.0 #module
 >Proto >Proto Collection #zClass
 Se0 SideStepService Big #zClass
 Se0 B #cInfo
@@ -32,9 +32,7 @@ Se0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Se0 f0 81 49 30 30 -92 32 #rect
-Se0 f0 @|StartSubIcon #fIcon
 Se0 f1 433 49 30 30 0 15 #rect
-Se0 f1 @|EndSubIcon #fIcon
 Se0 f3 actionTable 'out=in;
 ' #txt
 Se0 f3 actionCode 'import ch.ivy.addon.portalkit.ivydata.dto.IvySideStepResultDTO;
@@ -50,7 +48,6 @@ Se0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Se0 f3 248 42 112 44 -42 -8 #rect
-Se0 f3 @|StepIcon #fIcon
 Se0 f4 expr out #txt
 Se0 f4 111 64 248 64 #arcP
 Se0 f6 expr out #txt

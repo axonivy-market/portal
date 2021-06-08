@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import ch.ivy.addon.portalkit.constant.DummyProcess;
-import ch.ivy.addon.portalkit.persistence.domain.UserProcess;
+import ch.ivy.addon.portalkit.configuration.UserProcess;
 
 public class DummyProcessService {
 

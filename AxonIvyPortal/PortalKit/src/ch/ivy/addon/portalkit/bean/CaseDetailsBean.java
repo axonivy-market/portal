@@ -225,7 +225,7 @@ public class CaseDetailsBean implements Serializable {
    * If null or empty, will return false
    */
   public void getHideCaseDocumentConfiguration() {
-    isHideCaseDocument = new GlobalSettingService().findGlobalSettingValueAsBoolean(GlobalVariable.HIDE_CASE_DOCUMENT.toString());
+    isHideCaseDocument = new GlobalSettingService().findGlobalSettingValueAsBoolean(GlobalVariable.HIDE_CASE_DOCUMENT);
   }
 
   public boolean isHideCaseDocument() {
@@ -336,6 +336,14 @@ public class CaseDetailsBean implements Serializable {
   
   public void navigateToSelectedCaseDetails(SelectEvent event) {
     Long caseId = ((ICase) event.getObject()).getId();
+    if (inFrame) {
+      PortalNavigator.navigateToPortalCaseDetailsInFrame(caseId, false);
+    } else {
+      PortalNavigator.navigateToPortalCaseDetails(caseId);
+    }
+  }
+  
+  public void navigateToCaseDetails(Long caseId) {
     if (inFrame) {
       PortalNavigator.navigateToPortalCaseDetailsInFrame(caseId, false);
     } else {

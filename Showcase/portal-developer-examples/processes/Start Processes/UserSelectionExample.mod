@@ -1,5 +1,5 @@
 [Ivy]
-170514494945ADB9 9.2.0 #module
+170514494945ADB9 9.3.0 #module
 >Proto >Proto Collection #zClass
 Ue0 UserSelectionExample Big #zClass
 Ue0 B #cInfo
@@ -35,9 +35,7 @@ Ue0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ue0 f0 @C|.responsibility Everybody #txt
 Ue0 f0 81 49 30 30 -21 17 #rect
-Ue0 f0 @|StartRequestIcon #fIcon
 Ue0 f1 433 49 30 30 0 15 #rect
-Ue0 f1 @|EndIcon #fIcon
 Ue0 f3 dialogId com.axonivy.portal.developerexamples.showcase.UserSelectionExample #txt
 Ue0 f3 startMethod start() #txt
 Ue0 f3 requestActionDecl '<> param;' #txt
@@ -52,7 +50,6 @@ Ue0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ue0 f3 152 42 144 44 -63 -8 #rect
-Ue0 f3 @|UserDialogIcon #fIcon
 Ue0 f4 111 64 152 64 #arcP
 Ue0 f5 actionTable 'out=in1;
 ' #txt
@@ -61,7 +58,6 @@ TaskA.NAM=Task created by User Selection Component Example
 TaskA.ROL=in1.selectedUser.getName()
 TaskA.TYPE=3' #txt
 Ue0 f5 353 49 30 30 0 16 #rect
-Ue0 f5 @|TaskSwitchSimpleIcon #fIcon
 Ue0 f6 296 64 353 64 #arcP
 Ue0 f2 383 64 433 64 #arcP
 >Proto Ue0 .type com.axonivy.portal.developerexamples.UserSelectionExampleData #txt

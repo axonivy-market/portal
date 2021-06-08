@@ -1,5 +1,5 @@
 [Ivy]
-16BFA568D95D2EA0 9.2.0 #module
+16BFA568D95D2EA0 9.3.0 #module
 >Proto >Proto Collection #zClass
 Cs0 TaskItemDetailsProcess Big #zClass
 Cs0 RD #cInfo
@@ -76,9 +76,7 @@ Cs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f0 83 51 26 26 -16 15 #rect
-Cs0 f0 @|UdInitIcon #fIcon
 Cs0 f1 211 51 26 26 0 12 #rect
-Cs0 f1 @|UdProcessEndIcon #fIcon
 Cs0 f2 expr out #txt
 Cs0 f2 109 64 211 64 #arcP
 Cs0 f6 guid 16C0845B607C6BC7 #txt
@@ -95,9 +93,7 @@ Cs0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f6 83 147 26 26 -86 15 #rect
-Cs0 f6 @|UdMethodIcon #fIcon
 Cs0 f7 371 147 26 26 0 12 #rect
-Cs0 f7 @|UdProcessEndIcon #fIcon
 Cs0 f8 actionTable 'out=in;
 ' #txt
 Cs0 f8 actionCode 'import java.util.Arrays;
@@ -112,7 +108,6 @@ Cs0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f8 200 234 112 44 -24 -8 #rect
-Cs0 f8 @|StepIcon #fIcon
 Cs0 f9 guid 16C0845B60E83C7D #txt
 Cs0 f9 method updateTask() #txt
 Cs0 f9 inParameterDecl '<> param;' #txt
@@ -125,9 +120,7 @@ Cs0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f9 83 243 26 26 -51 15 #rect
-Cs0 f9 @|UdMethodIcon #fIcon
 Cs0 f10 371 243 26 26 0 12 #rect
-Cs0 f10 @|UdProcessEndIcon #fIcon
 Cs0 f11 expr out #txt
 Cs0 f11 109 256 200 256 #arcP
 Cs0 f12 expr out #txt
@@ -146,7 +139,6 @@ Cs0 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f14 83 467 26 26 -46 17 #rect
-Cs0 f14 @|UdMethodIcon #fIcon
 Cs0 f45 actionTable 'out=in;
 ' #txt
 Cs0 f45 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
@@ -166,15 +158,11 @@ Cs0 f45 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f45 160 458 128 44 -56 -8 #rect
-Cs0 f45 @|StepIcon #fIcon
 Cs0 f15 579 467 26 26 0 12 #rect
-Cs0 f15 @|UdProcessEndIcon #fIcon
 Cs0 f16 expr out #txt
 Cs0 f16 109 480 160 480 #arcP
 Cs0 f77 338 466 28 28 14 0 #rect
-Cs0 f77 @|AlternativeIcon #fIcon
 Cs0 f68 595 563 26 26 0 12 #rect
-Cs0 f68 @|UdProcessEndIcon #fIcon
 Cs0 f66 actionTable 'out=in;
 ' #txt
 Cs0 f66 actionCode 'import org.primefaces.PrimeFaces;
@@ -212,7 +200,6 @@ Cs0 f66 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f66 424 554 112 44 -35 -8 #rect
-Cs0 f66 @|StepIcon #fIcon
 Cs0 f49 actionTable 'out=in;
 ' #txt
 Cs0 f49 actionCode 'import ch.ivy.addon.portalkit.enums.PortalPage;
@@ -243,9 +230,7 @@ Start task</name>
 </elementInfo>
 ' #txt
 Cs0 f49 416 458 128 44 -44 -16 #rect
-Cs0 f49 @|StepIcon #fIcon
 Cs0 f99 336 560 32 32 0 16 #rect
-Cs0 f99 @|AlternativeIcon #fIcon
 Cs0 f71 expr out #txt
 Cs0 f71 536 576 595 576 #arcP
 Cs0 f67 expr in #txt
@@ -268,7 +253,6 @@ Cs0 f30 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f30 83 355 26 26 -57 15 #rect
-Cs0 f30 @|UdMethodIcon #fIcon
 Cs0 f35 actionTable 'out=in;
 ' #txt
 Cs0 f35 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
@@ -282,13 +266,10 @@ Cs0 f35 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f35 168 346 112 44 -29 -8 #rect
-Cs0 f35 @|StepIcon #fIcon
 Cs0 f64 expr out #txt
 Cs0 f64 109 368 168 368 #arcP
 Cs0 f79 336 656 32 32 0 16 #rect
-Cs0 f79 @|AlternativeIcon #fIcon
 Cs0 f98 467 659 26 26 0 12 #rect
-Cs0 f98 @|UdProcessEndIcon #fIcon
 Cs0 f97 guid 16D4E1A305331132 #txt
 Cs0 f97 method validate(ch.ivyteam.ivy.workflow.ITask) #txt
 Cs0 f97 inParameterDecl '<ch.ivyteam.ivy.workflow.ITask task> param;' #txt
@@ -303,7 +284,6 @@ Cs0 f97 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f97 83 659 26 26 -60 16 #rect
-Cs0 f97 @|UdMethodIcon #fIcon
 Cs0 f80 actionTable 'out=in;
 ' #txt
 Cs0 f80 actionCode 'import ch.ivy.addon.portalkit.jsf.ManagedBeans;
@@ -321,7 +301,6 @@ Cs0 f80 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f80 160 650 128 44 -56 -8 #rect
-Cs0 f80 @|StepIcon #fIcon
 Cs0 f92 expr in #txt
 Cs0 f92 outCond in.canUserResumeTask #txt
 Cs0 f92 368 672 467 672 #arcP
@@ -351,9 +330,7 @@ Cs0 f18 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f18 83 787 26 26 -84 23 #rect
-Cs0 f18 @|UdMethodIcon #fIcon
 Cs0 f19 499 787 26 26 0 12 #rect
-Cs0 f19 @|UdProcessEndIcon #fIcon
 Cs0 f22 actionTable 'out=in;
 ' #txt
 Cs0 f22 actionCode 'import ch.ivy.addon.portalkit.enums.GlobalVariable;
@@ -361,7 +338,7 @@ import ch.ivy.addon.portalkit.service.GlobalSettingService;
 
 // Get the latest configuration of HIDE_TASK_DOCUMENT in GlobalSettingService
 // If null or empty, will return false
-in.isHideTaskDocument = new GlobalSettingService().findGlobalSettingValueAsBoolean(GlobalVariable.HIDE_TASK_DOCUMENT.toString());' #txt
+in.isHideTaskDocument = new GlobalSettingService().findGlobalSettingValueAsBoolean(GlobalVariable.HIDE_TASK_DOCUMENT);' #txt
 Cs0 f22 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -370,7 +347,6 @@ Cs0 f22 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f22 192 778 256 44 -121 -8 #rect
-Cs0 f22 @|StepIcon #fIcon
 Cs0 f23 109 800 192 800 #arcP
 Cs0 f21 448 800 499 800 #arcP
 Cs0 f24 guid 172BB67713C7C1B0 #txt
@@ -387,9 +363,7 @@ Cs0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f24 83 915 26 26 -25 15 #rect
-Cs0 f24 @|UdMethodIcon #fIcon
 Cs0 f25 355 915 26 26 0 12 #rect
-Cs0 f25 @|UdProcessEndIcon #fIcon
 Cs0 f27 actionTable 'out=in;
 ' #txt
 Cs0 f27 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
@@ -406,13 +380,11 @@ Cs0 f27 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f27 184 906 112 44 -34 -8 #rect
-Cs0 f27 @|StepIcon #fIcon
 Cs0 f28 109 928 184 928 #arcP
 Cs0 f26 296 928 355 928 #arcP
 >Proto Cs0 .type ch.ivy.addon.portalkit.component.TaskItemDetails.TaskItemDetailsData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 -8 -8 16 16 16 26 #rect
->Proto Cs0 '' #fIcon
 Cs0 f0 mainOut f2 tail #connect
 Cs0 f2 head f1 mainIn #connect
 Cs0 f6 mainOut f13 tail #connect

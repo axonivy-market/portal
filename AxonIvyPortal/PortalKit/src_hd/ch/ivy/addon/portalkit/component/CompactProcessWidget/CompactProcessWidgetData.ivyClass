@@ -1,6 +1,6 @@
 CompactProcessWidgetData #class
 ch.ivy.addon.portalkit.component.CompactProcessWidget #namespace
-userProcesses List<ch.ivy.addon.portalkit.persistence.domain.UserProcess> #field
+userProcesses List<ch.ivy.addon.portalkit.configuration.UserProcess> #field
 userProcesses PERSISTENT #fieldModifier
 displayNames List<ch.ivy.addon.portalkit.dto.DisplayName> #field
 displayNames PERSISTENT #fieldModifier

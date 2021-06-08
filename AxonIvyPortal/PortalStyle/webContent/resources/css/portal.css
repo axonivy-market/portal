@@ -1198,7 +1198,19 @@ body .ui-datepicker .ui-timepicker-div dl dd {
   color: var(--task-note-link-hover-color); }
 
 .case-document-name a, .task-document-name a {
-  color: var(--case-task-document-name-color); }
+  color: var(--case-task-document-name-color);
+  display: flex;
+  flex-wrap: nowrap; }
+
+.case-document-name .document-name, .task-document-name .document-name {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden; }
+
+.case-document-name .document-size, .task-document-name .document-size {
+  opacity: 0.65;
+  font-size: var(--small-font-size);
+  margin: auto 0px; }
 
 :-ms-input-placeholder, :root .case-detail-body .history-note a {
   display: inline; }
@@ -2060,4 +2072,14 @@ body.in-dialog .ui-widget-overlay {
 
 .security-member-tooltip.ui-tooltip.ui-tooltip-left .ui-tooltip-arrow {
   border-left-color: var(--security-member-tooltip-arrow-color);
+}
+
+/* Process information page */
+.process-overview-layout-content .process-info-icon {
+  font-size: var(--process-info-icon-font-size);
+}
+
+.process-overview-layout-content .process-step-icon {
+  font-size: var(--process-info-step-icon-font-size);
+  color: var(--process-info-step-icon-font-color);
 }

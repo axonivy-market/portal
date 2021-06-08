@@ -1,5 +1,5 @@
 [Ivy]
-14DE09882B540AD5 9.2.0 #module
+14DE09882B540AD5 9.3.0 #module
 >Proto >Proto Collection #zClass
 Is0 GrantPermissions Big #zClass
 Is0 B #cInfo
@@ -134,9 +134,7 @@ Is0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Is0 f0 @C|.responsibility Everybody #txt
 Is0 f0 67 83 26 26 -61 -36 #rect
-Is0 f0 @|StartRequestIcon #fIcon
 Is0 f1 67 339 26 26 14 0 #rect
-Is0 f1 @|EndIcon #fIcon
 Is0 f3 actionTable 'out=in;
 ' #txt
 Is0 f3 actionCode 'import ch.ivyteam.ivy.security.IPermission;
@@ -152,7 +150,6 @@ Is0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Is0 f3 62 212 36 24 20 -2 #rect
-Is0 f3 @|StepIcon #fIcon
 Is0 f4 expr out #txt
 Is0 f4 80 109 80 212 #arcP
 Is0 f2 expr out #txt
@@ -181,7 +178,6 @@ Is0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Is0 f10 @C|.responsibility Everybody #txt
 Is0 f10 395 83 26 26 -78 -31 #rect
-Is0 f10 @|StartRequestIcon #fIcon
 Is0 f14 actionTable 'out=in;
 ' #txt
 Is0 f14 actionCode 'import ch.ivy.addon.portalkit.test.util.SecurityUtils;
@@ -196,11 +192,9 @@ Is0 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Is0 f14 390 181 36 24 20 -2 #rect
-Is0 f14 @|StepIcon #fIcon
 Is0 f15 expr out #txt
 Is0 f15 408 109 408 181 #arcP
 Is0 f11 395 339 26 26 14 0 #rect
-Is0 f11 @|EndIcon #fIcon
 Is0 f12 expr out #txt
 Is0 f12 408 205 408 339 #arcP
 Is0 f5 outLink grantTaskReadAllPermissionsToCurrentUser.ivp #txt
@@ -229,7 +223,6 @@ Is0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Is0 f5 @C|.responsibility Everybody #txt
 Is0 f5 66 451 26 26 -61 -33 #rect
-Is0 f5 @|StartRequestIcon #fIcon
 Is0 f6 actionTable 'out=in;
 ' #txt
 Is0 f6 actionCode 'import ch.ivyteam.ivy.security.IPermission;
@@ -245,7 +238,6 @@ Is0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Is0 f6 149 452 36 24 20 -2 #rect
-Is0 f6 @|StepIcon #fIcon
 Is0 f8 expr out #txt
 Is0 f8 92 464 149 464 #arcP
 Is0 f13 outLink grantCaseReadAllPermissionsToCurrentUser.ivp #txt
@@ -274,7 +266,6 @@ Is0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Is0 f13 @C|.responsibility Everybody #txt
 Is0 f13 66 514 26 26 -62 -31 #rect
-Is0 f13 @|StartRequestIcon #fIcon
 Is0 f17 actionTable 'out=in;
 ' #txt
 Is0 f17 actionCode 'import ch.ivyteam.ivy.security.IPermission;
@@ -290,7 +281,6 @@ Is0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Is0 f17 157 515 36 24 20 -2 #rect
-Is0 f17 @|StepIcon #fIcon
 Is0 f19 expr out #txt
 Is0 f19 92 527 157 527 #arcP
 Is0 f20 actionTable 'out=in;
@@ -308,7 +298,6 @@ Is0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Is0 f20 157 582 36 24 20 -2 #rect
-Is0 f20 @|StepIcon #fIcon
 Is0 f21 outLink grantTaskReadOwnCaseTaskPermissionsToCurrentUser.ivp #txt
 Is0 f21 inParamDecl '<> param;' #txt
 Is0 f21 requestEnabled true #txt
@@ -335,11 +324,9 @@ Is0 f21 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Is0 f21 @C|.responsibility Everybody #txt
 Is0 f21 66 581 26 26 -70 -33 #rect
-Is0 f21 @|StartRequestIcon #fIcon
 Is0 f24 expr out #txt
 Is0 f24 92 594 157 594 #arcP
 Is0 f7 393 513 30 30 16 0 #rect
-Is0 f7 @|EndIcon #fIcon
 Is0 f9 expr out #txt
 Is0 f9 185 464 408 513 #arcP
 Is0 f9 1 408 464 #addKink
@@ -367,7 +354,6 @@ Is0 f22 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Is0 f22 158 641 36 24 20 -2 #rect
-Is0 f22 @|StepIcon #fIcon
 Is0 f23 outLink denyReadAllPermissionFromCurrentUser.ivp #txt
 Is0 f23 inParamDecl '<> param;' #txt
 Is0 f23 requestEnabled true #txt
@@ -394,7 +380,6 @@ Is0 f23 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Is0 f23 @C|.responsibility Everybody #txt
 Is0 f23 67 640 26 26 -70 -33 #rect
-Is0 f23 @|StartRequestIcon #fIcon
 Is0 f25 expr out #txt
 Is0 f25 93 653 158 653 #arcP
 Is0 f26 expr out #txt
@@ -424,7 +409,6 @@ Is0 f27 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Is0 f27 @C|.responsibility Everybody #txt
 Is0 f27 65 689 30 30 -62 20 #rect
-Is0 f27 @|StartRequestIcon #fIcon
 Is0 f28 outLink denyDocumentOfInvolvedCaseWritePemission.ivp #txt
 Is0 f28 inParamDecl '<> param;' #txt
 Is0 f28 requestEnabled true #txt
@@ -448,7 +432,6 @@ Is0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Is0 f28 @C|.responsibility Everybody #txt
 Is0 f28 65 753 30 30 -60 15 #rect
-Is0 f28 @|StartRequestIcon #fIcon
 Is0 f31 actionTable 'out=in;
 ' #txt
 Is0 f31 actionCode 'import ch.ivyteam.ivy.security.IPermission;
@@ -458,7 +441,6 @@ ivy.task.getApplication().getSecurityDescriptor().grantPermission(IPermission.DO
 ' #txt
 Is0 f31 security system #txt
 Is0 f31 156 692 40 24 0 -8 #rect
-Is0 f31 @|StepIcon #fIcon
 Is0 f32 expr out #txt
 Is0 f32 95 704 156 704 #arcP
 Is0 f32 0 0.7960339943342776 0 0 #arcLabel
@@ -475,7 +457,6 @@ ivy.task.getApplication().getSecurityDescriptor().denyPermission(IPermission.DOC
 ' #txt
 Is0 f33 security system #txt
 Is0 f33 156 756 40 24 0 -8 #rect
-Is0 f33 @|StepIcon #fIcon
 Is0 f34 expr out #txt
 Is0 f34 95 768 156 768 #arcP
 Is0 f34 0 0.8741317568482905 0 0 #arcLabel
@@ -508,7 +489,6 @@ Is0 f35 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Is0 f35 @C|.responsibility Everybody #txt
 Is0 f35 49 833 30 30 -55 26 #rect
-Is0 f35 @|StartRequestIcon #fIcon
 Is0 f37 actionTable 'out=in;
 ' #txt
 Is0 f37 actionCode 'import ch.ivy.addon.portalkit.enums.PortalPermission;
@@ -522,7 +502,6 @@ if(#delegateOwnTaskPermission is initialized) {
 ivy.wf.getApplication().getSecurityDescriptor().denyPermission(IPermission.TASK_WRITE_ACTIVATOR, ivy.session.getSessionUser());' #txt
 Is0 f37 security system #txt
 Is0 f37 156 836 40 24 0 -8 #rect
-Is0 f37 @|StepIcon #fIcon
 Is0 f38 expr out #txt
 Is0 f38 79 848 156 848 #arcP
 Is0 f38 0 0.978319783197832 0 0 #arcLabel
@@ -555,7 +534,6 @@ Is0 f39 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Is0 f39 @C|.responsibility Everybody #txt
 Is0 f39 40 928 32 32 -41 25 #rect
-Is0 f39 @|StartRequestIcon #fIcon
 Is0 f41 actionTable 'out=in;
 ' #txt
 Is0 f41 actionCode 'import ch.ivy.addon.portalkit.enums.PortalPermission;
@@ -569,7 +547,6 @@ if(#delegateOwnTaskPermission is initialized) {
 ivy.wf.getApplication().getSecurityDescriptor().grantPermission(IPermission.TASK_WRITE_ACTIVATOR, ivy.session.getSessionUser());' #txt
 Is0 f41 security system #txt
 Is0 f41 156 932 40 24 0 -8 #rect
-Is0 f41 @|StepIcon #fIcon
 Is0 f42 expr out #txt
 Is0 f42 72 944 156 944 #arcP
 Is0 f42 0 0.08158561403068428 0 0 #arcLabel
@@ -600,7 +577,6 @@ Is0 f43 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Is0 f43 @C|.responsibility Everybody #txt
 Is0 f43 33 1025 30 30 -33 21 #rect
-Is0 f43 @|StartRequestIcon #fIcon
 Is0 f47 outLink grantPortalPermission.ivp #txt
 Is0 f47 inParamDecl '<> param;' #txt
 Is0 f47 requestEnabled true #txt
@@ -624,7 +600,6 @@ Is0 f47 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Is0 f47 @C|.responsibility Everybody #txt
 Is0 f47 33 1121 30 30 -24 30 #rect
-Is0 f47 @|StartRequestIcon #fIcon
 Is0 f49 actionTable 'out=in;
 ' #txt
 Is0 f49 actionCode 'import java.util.Objects;
@@ -687,7 +662,6 @@ iPermission = IPermissionRepository.get().findByName(PortalPermission.STATISTIC_
     }' #txt
 Is0 f49 security system #txt
 Is0 f49 180 1124 40 24 0 -8 #rect
-Is0 f49 @|StepIcon #fIcon
 Is0 f48 expr out #txt
 Is0 f48 63 1136 180 1136 #arcP
 Is0 f50 expr out #txt
@@ -773,7 +747,6 @@ IPermission iPermission = IPermissionRepository.get().findByName(PortalPermissio
     }' #txt
 Is0 f53 security system #txt
 Is0 f53 452 324 40 24 0 -8 #rect
-Is0 f53 @|StepIcon #fIcon
 Is0 f60 outLink denySpecificPortalPermission.ivp #txt
 Is0 f60 inParamDecl '<String portalPermission> param;' #txt
 Is0 f60 inParamTable 'out.portalPermission=param.portalPermission;
@@ -793,7 +766,6 @@ Is0 f60 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Is0 f60 @C|.responsibility Everybody #txt
 Is0 f60 33 1217 30 30 -26 18 #rect
-Is0 f60 @|StartRequestIcon #fIcon
 Is0 f63 actionTable 'out=in;
 ' #txt
 Is0 f63 actionCode 'import java.util.Objects;
@@ -807,7 +779,6 @@ if (Objects.nonNull(iPermission)){
 }' #txt
 Is0 f63 security system #txt
 Is0 f63 180 1220 40 24 0 -8 #rect
-Is0 f63 @|StepIcon #fIcon
 Is0 f64 expr out #txt
 Is0 f64 63 1232 180 1232 #arcP
 Is0 f66 expr out #txt
@@ -827,7 +798,6 @@ if (Objects.nonNull(iPermission)){
 }' #txt
 Is0 f62 security system #txt
 Is0 f62 180 1284 40 24 0 -8 #rect
-Is0 f62 @|StepIcon #fIcon
 Is0 f67 expr out #txt
 Is0 f67 220 1296 408 543 #arcP
 Is0 f67 1 408 1296 #addKink
@@ -893,7 +863,6 @@ IPermission iPermission = IPermissionRepository.get().findByName(PortalPermissio
     }' #txt
 Is0 f45 security system #txt
 Is0 f45 180 1028 40 24 0 -8 #rect
-Is0 f45 @|StepIcon #fIcon
 Is0 f44 expr out #txt
 Is0 f44 63 1040 180 1040 #arcP
 Is0 f46 expr out #txt
@@ -919,7 +888,6 @@ Is0 f61 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Is0 f61 @C|.responsibility Everybody #txt
 Is0 f61 33 1281 30 30 -23 20 #rect
-Is0 f61 @|StartRequestIcon #fIcon
 Is0 f51 outLink denyAccessFullListPermissions.ivp #txt
 Is0 f51 inParamDecl '<> param;' #txt
 Is0 f51 requestEnabled true #txt
@@ -937,7 +905,6 @@ Is0 f51 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Is0 f51 @C|.responsibility Everybody #txt
 Is0 f51 33 1345 30 30 -23 21 #rect
-Is0 f51 @|StartRequestIcon #fIcon
 Is0 f52 outLink grantAccessFullListPermissions.ivp #txt
 Is0 f52 inParamDecl '<> param;' #txt
 Is0 f52 requestEnabled true #txt
@@ -955,7 +922,6 @@ Is0 f52 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Is0 f52 @C|.responsibility Everybody #txt
 Is0 f52 33 1409 30 30 -24 18 #rect
-Is0 f52 @|StartRequestIcon #fIcon
 Is0 f57 actionTable 'out=in;
 ' #txt
 Is0 f57 actionCode 'import java.util.Objects;
@@ -984,7 +950,6 @@ if (Objects.nonNull(iPermission)){
 }' #txt
 Is0 f57 security system #txt
 Is0 f57 180 1348 40 24 0 -8 #rect
-Is0 f57 @|StepIcon #fIcon
 Is0 f58 expr out #txt
 Is0 f58 63 1360 180 1360 #arcP
 Is0 f59 expr out #txt
@@ -1025,7 +990,6 @@ if (Objects.nonNull(iPermission)){
 }' #txt
 Is0 f54 security system #txt
 Is0 f54 180 1412 40 24 0 -8 #rect
-Is0 f54 @|StepIcon #fIcon
 Is0 f65 expr out #txt
 Is0 f65 63 1296 180 1296 #arcP
 Is0 f68 outLink denySpecificPermission.ivp #txt
@@ -1047,7 +1011,6 @@ Is0 f68 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Is0 f68 @C|.responsibility Everybody #txt
 Is0 f68 33 1473 30 30 -26 18 #rect
-Is0 f68 @|StartRequestIcon #fIcon
 Is0 f69 actionTable 'out=in;
 ' #txt
 Is0 f69 actionCode 'import java.util.Objects;
@@ -1061,7 +1024,6 @@ if (Objects.nonNull(iPermission)){
 }' #txt
 Is0 f69 security system #txt
 Is0 f69 284 1476 40 24 0 -8 #rect
-Is0 f69 @|StepIcon #fIcon
 Is0 f70 outLink grantSpecificPermission.ivp #txt
 Is0 f70 inParamDecl '<String portalPermission> param;' #txt
 Is0 f70 inParamTable 'out.portalPermission=param.portalPermission;
@@ -1081,7 +1043,6 @@ Is0 f70 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Is0 f70 @C|.responsibility Everybody #txt
 Is0 f70 33 1537 30 30 -23 20 #rect
-Is0 f70 @|StartRequestIcon #fIcon
 Is0 f71 actionTable 'out=in;
 ' #txt
 Is0 f71 actionCode 'import java.util.Objects;
@@ -1095,7 +1056,6 @@ if (Objects.nonNull(iPermission)){
 }' #txt
 Is0 f71 security system #txt
 Is0 f71 284 1540 40 24 0 -8 #rect
-Is0 f71 @|StepIcon #fIcon
 Is0 f74 expr out #txt
 Is0 f74 324 1488 408 543 #arcP
 Is0 f74 1 408 1488 #addKink
@@ -1122,7 +1082,6 @@ Is0 f76 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Is0 f76 104 1466 144 44 -64 -8 #rect
-Is0 f76 @|UserDialogIcon #fIcon
 Is0 f77 expr out #txt
 Is0 f77 63 1488 104 1488 #arcP
 Is0 f72 expr out #txt
@@ -1145,7 +1104,6 @@ Is0 f78 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Is0 f78 104 1530 144 44 -65 -8 #rect
-Is0 f78 @|UserDialogIcon #fIcon
 Is0 f79 expr out #txt
 Is0 f79 63 1552 104 1552 #arcP
 Is0 f73 expr out #txt
@@ -1165,7 +1123,6 @@ Is0 f80 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Is0 f80 @C|.responsibility Everybody #txt
 Is0 f80 881 449 30 30 16 0 #rect
-Is0 f80 @|StartRequestIcon #fIcon
 Is0 f81 actionTable 'out=in;
 ' #txt
 Is0 f81 actionCode 'import java.util.Objects;
@@ -1179,7 +1136,6 @@ if (Objects.nonNull(iPermission)){
 }' #txt
 Is0 f81 security system #txt
 Is0 f81 668 452 40 24 0 -8 #rect
-Is0 f81 @|StepIcon #fIcon
 Is0 f82 881 464 708 464 #arcP
 Is0 f83 668 464 408 513 #arcP
 Is0 f83 1 408 464 #addKink
@@ -1197,7 +1153,6 @@ if (Objects.nonNull(iPermission)){
 }' #txt
 Is0 f84 security system #txt
 Is0 f84 664 516 48 24 0 -8 #rect
-Is0 f84 @|StepIcon #fIcon
 Is0 f85 664 528 423 528 #arcP
 Is0 f86 outLink grantResetTaskReadyForJoin.ivp #txt
 Is0 f86 inParamDecl '<> param;' #txt
@@ -1214,7 +1169,6 @@ Is0 f86 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Is0 f86 @C|.responsibility Everybody #txt
 Is0 f86 881 513 30 30 16 0 #rect
-Is0 f86 @|StartRequestIcon #fIcon
 Is0 f87 881 528 712 528 #arcP
 Is0 f88 outLink grantDestroyTaskPermission.ivp #txt
 Is0 f88 inParamDecl '<> param;' #txt
@@ -1231,7 +1185,6 @@ Is0 f88 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Is0 f88 @C|.responsibility Everybody #txt
 Is0 f88 881 577 30 30 16 0 #rect
-Is0 f88 @|StartRequestIcon #fIcon
 Is0 f90 actionTable 'out=in;
 ' #txt
 Is0 f90 actionCode 'import ch.ivyteam.ivy.security.IPermission;
@@ -1239,7 +1192,6 @@ Is0 f90 actionCode 'import ch.ivyteam.ivy.security.IPermission;
 ivy.task.getApplication().getSecurityDescriptor().grantPermission(IPermission.TASK_DESTROY, ivy.session.getSessionUser());' #txt
 Is0 f90 security system #txt
 Is0 f90 660 580 56 24 0 -8 #rect
-Is0 f90 @|StepIcon #fIcon
 Is0 f91 881 592 716 592 #arcP
 Is0 f89 660 592 408 543 #arcP
 Is0 f89 1 408 592 #addKink
@@ -1259,7 +1211,6 @@ Is0 f92 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Is0 f92 @C|.responsibility Everybody #txt
 Is0 f92 881 641 30 30 16 0 #rect
-Is0 f92 @|StartRequestIcon #fIcon
 Is0 f94 actionTable 'out=in;
 ' #txt
 Is0 f94 actionCode 'import ch.ivyteam.ivy.security.IPermission;
@@ -1267,7 +1218,6 @@ Is0 f94 actionCode 'import ch.ivyteam.ivy.security.IPermission;
 ivy.task.getApplication().getSecurityDescriptor().denyPermission(IPermission.TASK_DESTROY, ivy.session.getSessionUser());' #txt
 Is0 f94 security system #txt
 Is0 f94 668 644 40 24 0 -8 #rect
-Is0 f94 @|StepIcon #fIcon
 Is0 f95 881 656 708 656 #arcP
 Is0 f93 668 656 408 543 #arcP
 Is0 f93 1 408 656 #addKink

@@ -24,8 +24,6 @@ import ch.ivyteam.ivy.workflow.INote;
 
 public class NoteHistoryExporter {
 
-  private DateTimeGlobalSettingService dateTimeGlobalSettingService = new DateTimeGlobalSettingService();
-
   public StreamedContent getStreamedContentOfTaskNoteHistory(List<INote> taskNoteHistory, String fileName) {
     List<List<Object>> rows = generateDataForTaskNoteHistory(taskNoteHistory);
     ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
@@ -123,8 +121,7 @@ public class NoteHistoryExporter {
   }
 
   private String formatDate(Date datetime) {
-    String pattern = dateTimeGlobalSettingService.getDateTimePattern();
-    return new SimpleDateFormat(pattern).format(datetime);
+    return new SimpleDateFormat(DateTimeGlobalSettingService.getInstance().getDateTimePattern(), Ivy.session().getContentLocale()).format(datetime);
   }
 
 }

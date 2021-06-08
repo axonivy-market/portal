@@ -1,5 +1,5 @@
 [Ivy]
-14FEEC123381CEF1 9.2.0 #module
+14FEEC123381CEF1 9.3.0 #module
 >Proto >Proto Collection #zClass
 Is0 IconSelectionProcess Big #zClass
 Is0 RD #cInfo
@@ -30,9 +30,7 @@ Is0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Is0 f0 53 85 22 22 14 0 #rect
-Is0 f0 @|UdInitIcon #fIcon
 Is0 f1 53 213 22 22 14 0 #rect
-Is0 f1 @|UdProcessEndIcon #fIcon
 Is0 f2 expr out #txt
 Is0 f2 64 107 64 213 #arcP
 Is0 f3 guid 14FEDE84398C93DB #txt
@@ -44,15 +42,12 @@ Is0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Is0 f3 149 85 22 22 14 0 #rect
-Is0 f3 @|UdEventIcon #fIcon
 Is0 f4 149 213 22 22 14 0 #rect
-Is0 f4 @|UdExitEndIcon #fIcon
 Is0 f5 expr out #txt
 Is0 f5 160 107 160 213 #arcP
 >Proto Is0 .type ch.ivy.addon.portalkit.component.IconSelection.IconSelectionData #txt
 >Proto Is0 .processKind HTML_DIALOG #txt
 >Proto Is0 -8 -8 16 16 16 26 #rect
->Proto Is0 '' #fIcon
 Is0 f0 mainOut f2 tail #connect
 Is0 f2 head f1 mainIn #connect
 Is0 f3 mainOut f5 tail #connect

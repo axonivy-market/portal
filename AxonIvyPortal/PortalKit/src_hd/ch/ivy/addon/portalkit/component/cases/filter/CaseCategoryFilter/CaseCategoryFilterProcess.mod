@@ -1,5 +1,5 @@
 [Ivy]
-163FC6A2452CF497 9.2.0 #module
+163FC6A2452CF497 9.3.0 #module
 >Proto >Proto Collection #zClass
 Cs0 CaseCategoryFilterProcess Big #zClass
 Cs0 RD #cInfo
@@ -30,9 +30,7 @@ Cs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f0 83 51 26 26 -16 15 #rect
-Cs0 f0 @|UdInitIcon #fIcon
 Cs0 f1 275 51 26 26 0 12 #rect
-Cs0 f1 @|UdProcessEndIcon #fIcon
 Cs0 f3 guid 163FC6A24A2973B5 #txt
 Cs0 f3 actionTable 'out=in;
 ' #txt
@@ -44,9 +42,7 @@ Cs0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f3 83 147 26 26 -15 12 #rect
-Cs0 f3 @|UdEventIcon #fIcon
 Cs0 f4 211 147 26 26 0 12 #rect
-Cs0 f4 @|UdExitEndIcon #fIcon
 Cs0 f5 expr out #txt
 Cs0 f5 109 160 211 160 #arcP
 Cs0 f2 expr out #txt
@@ -54,7 +50,6 @@ Cs0 f2 109 64 275 64 #arcP
 >Proto Cs0 .type ch.ivy.addon.portalkit.component.cases.filter.CaseCategoryFilter.CaseCategoryFilterData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 -8 -8 16 16 16 26 #rect
->Proto Cs0 '' #fIcon
 Cs0 f3 mainOut f5 tail #connect
 Cs0 f5 head f4 mainIn #connect
 Cs0 f0 mainOut f2 tail #connect

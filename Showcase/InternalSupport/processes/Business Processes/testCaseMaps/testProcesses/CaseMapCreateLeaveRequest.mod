@@ -1,5 +1,5 @@
 [Ivy]
-16E3F9428CFA3D20 9.2.0 #module
+16E3F9428CFA3D20 9.3.0 #module
 >Proto >Proto Collection #zClass
 Ct0 CaseMapCreateLeaveRequest Big #zClass
 Ct0 B #cInfo
@@ -35,9 +35,7 @@ Ct0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ct0 f0 @C|.responsibility Everybody #txt
 Ct0 f0 81 49 30 30 -21 17 #rect
-Ct0 f0 @|StartRequestIcon #fIcon
 Ct0 f1 497 49 30 30 0 15 #rect
-Ct0 f1 @|EndIcon #fIcon
 Ct0 f3 dialogId internaltest.ui.NewLeaveRequest #txt
 Ct0 f3 startMethod start() #txt
 Ct0 f3 requestActionDecl '<> param;' #txt
@@ -54,7 +52,6 @@ Ct0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ct0 f3 328 42 112 44 -52 -8 #rect
-Ct0 f3 @|UserTaskIcon #fIcon
 Ct0 f2 440 64 497 64 #arcP
 Ct0 f5 actionTable 'out=in;
 ' #txt
@@ -68,7 +65,6 @@ Ct0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ct0 f5 168 42 112 44 -41 -8 #rect
-Ct0 f5 @|StepIcon #fIcon
 Ct0 f6 111 64 168 64 #arcP
 Ct0 f9 280 64 328 64 #arcP
 >Proto Ct0 .type internaltest.CaseMapCreateLeaveRequestData #txt

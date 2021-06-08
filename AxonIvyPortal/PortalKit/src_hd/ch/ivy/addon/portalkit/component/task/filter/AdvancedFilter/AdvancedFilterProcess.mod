@@ -1,5 +1,5 @@
 [Ivy]
-15DC16CB8B32F2B4 9.2.0 #module
+15DC16CB8B32F2B4 9.3.0 #module
 >Proto >Proto Collection #zClass
 Ss0 AdvancedFilterProcess Big #zClass
 Ss0 RD #cInfo
@@ -32,9 +32,7 @@ Ss0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ss0 f0 53 85 22 22 14 0 #rect
-Ss0 f0 @|UdInitIcon #fIcon
 Ss0 f1 213 85 22 22 14 0 #rect
-Ss0 f1 @|UdProcessEndIcon #fIcon
 Ss0 f2 expr out #txt
 Ss0 f2 75 96 213 96 #arcP
 Ss0 f3 guid 15DA7A98A57644D7 #txt
@@ -53,9 +51,7 @@ Ss0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ss0 f3 51 179 26 26 -60 15 #rect
-Ss0 f3 @|UdMethodIcon #fIcon
 Ss0 f4 307 179 26 26 0 12 #rect
-Ss0 f4 @|UdProcessEndIcon #fIcon
 Ss0 f5 actionTable 'out=in;
 ' #txt
 Ss0 f5 actionCode 'import org.primefaces.PrimeFaces;
@@ -75,7 +71,6 @@ validation passed</name>
 </elementInfo>
 ' #txt
 Ss0 f5 144 170 128 44 -44 -16 #rect
-Ss0 f5 @|StepIcon #fIcon
 Ss0 f6 expr out #txt
 Ss0 f6 77 192 144 192 #arcP
 Ss0 f7 expr out #txt
@@ -83,7 +78,6 @@ Ss0 f7 272 192 307 192 #arcP
 >Proto Ss0 .type ch.ivy.addon.portalkit.component.task.filter.AdvancedFilter.AdvancedFilterData #txt
 >Proto Ss0 .processKind HTML_DIALOG #txt
 >Proto Ss0 -8 -8 16 16 16 26 #rect
->Proto Ss0 '' #fIcon
 Ss0 f0 mainOut f2 tail #connect
 Ss0 f2 head f1 mainIn #connect
 Ss0 f3 mainOut f6 tail #connect

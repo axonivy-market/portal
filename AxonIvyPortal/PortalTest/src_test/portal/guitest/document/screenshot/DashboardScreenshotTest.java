@@ -1,5 +1,9 @@
 package portal.guitest.document.screenshot;
 
+import static portal.guitest.common.Variable.ENABLE_GROUP_CHAT;
+import static portal.guitest.common.Variable.SHOW_ENVIRONMENT_INFO;
+import static portal.guitest.common.Variable.SHOW_USER_GUIDE;
+
 import java.io.IOException;
 
 import org.junit.Before;
@@ -23,7 +27,7 @@ public class DashboardScreenshotTest extends ScreenshotTest {
   @Before
   public void setup() {
     super.setup();
-    updatePortalSetting("ENABLE_GROUP_CHAT", "true");
+    updatePortalSetting(ENABLE_GROUP_CHAT.getKey(), "true");
     redirectToRelativeLink(createTestingTasksUrl);
     redirectToRelativeLink(createTestingTasksUrl);
     redirectToRelativeLink(createUserFavoriteProcess);
@@ -35,7 +39,7 @@ public class DashboardScreenshotTest extends ScreenshotTest {
   @Test
   public void takeScreenshotOverlayGuide() throws IOException {
     ScreenshotUtil.resizeBrowser(new Dimension(1200, 800));
-    updatePortalSetting("SHOW_USER_GUIDE", "true");
+    updatePortalSetting(SHOW_USER_GUIDE.getKey(), "true");
     homePage = new HomePage();
     Sleeper.sleep(500); // wait for js calculate resize event
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.DASHBOARD_FOLDER + "overlay-guide");
@@ -43,7 +47,7 @@ public class DashboardScreenshotTest extends ScreenshotTest {
   
   @Test
   public void takeScreenshotWithEnvironmentInfo() throws IOException {
-    updatePortalSetting("SHOW_ENVIRONMENT_INFO", "true");
+    updatePortalSetting(SHOW_ENVIRONMENT_INFO.getKey(), "true");
     homePage = new HomePage();
     ScreenshotUtil.resizeBrowser(new Dimension(1200, 500));
     Sleeper.sleep(500); // wait for js render scrollbar

@@ -1,6 +1,8 @@
 package portal.guitest.test;
 
 import static org.junit.Assert.assertTrue;
+import static portal.guitest.common.Variable.ENABLE_GROUP_CHAT;
+import static portal.guitest.common.Variable.ENABLE_PRIVATE_CHAT;
 
 import java.util.Arrays;
 
@@ -22,8 +24,8 @@ public class ChatTest extends BaseTest {
   private static final String ADMIN1_1 = "admin1-1";
   private static final String DEMO1_2 = "demo1-2";
   private static final String DEMO1_1 = "demo1-1";
-  private static final String ENABLE_PRIVATE_CHAT_SETTING = "ENABLE_PRIVATE_CHAT";
-  private static final String ENABLE_GROUP_CHAT_SETTING = "ENABLE_GROUP_CHAT";
+  private static final String ENABLE_PRIVATE_CHAT_SETTING = ENABLE_PRIVATE_CHAT.getKey();
+  private static final String ENABLE_GROUP_CHAT_SETTING = ENABLE_GROUP_CHAT.getKey();
   private static final String CHAT_MESSAGE_USER_DEMO = "Hi i'm demo user";
   private static final String CHAT_MESSAGE_USER_ADMIN = "Hi i'm admin user";
   ExpressResponsible chatUser1 = new ExpressResponsible(TestAccount.ADMIN_USER.getUsername(), false);

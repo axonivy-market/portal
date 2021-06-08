@@ -1,5 +1,5 @@
 [Ivy]
-17501D6F0762D9A7 9.2.0 #module
+17501D6F0762D9A7 9.3.0 #module
 >Proto >Proto Collection #zClass
 Ls0 LoginProcess Big #zClass
 Ls0 RD #cInfo
@@ -26,13 +26,10 @@ Ls0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ls0 f0 83 51 26 26 -15 15 #rect
-Ls0 f0 @|UdInitIcon #fIcon
 Ls0 f1 211 51 26 26 0 12 #rect
-Ls0 f1 @|UdProcessEndIcon #fIcon
 Ls0 f2 109 64 211 64 #arcP
 >Proto Ls0 .type ch.ivy.addon.portal.generic.Login.LoginData #txt
 >Proto Ls0 .processKind HTML_DIALOG #txt
 >Proto Ls0 -8 -8 16 16 16 26 #rect
->Proto Ls0 '' #fIcon
 Ls0 f0 mainOut f2 tail #connect
 Ls0 f2 head f1 mainIn #connect
