@@ -932,10 +932,20 @@ public class TaskWidgetPage extends TemplatePage {
         break;
       }
     }
-    waitForNumberOfTasks(1);
   }
   
-  public void openMoreOptionFilter() {
-    click(By.cssSelector("[id$='filter-add-action']"));
+  public void filterByUnavailableActivator(boolean waitForNumberOfTask) {
+    waitForElementDisplayed(By.cssSelector("button[id$='available-activator-filter:filter-open-form:advanced-filter-command']"),
+        true);
+    click(By.cssSelector("button[id$='available-activator-filter:filter-open-form:advanced-filter-command']"));
+
+    waitForElementDisplayed(By.cssSelector("[id$='available-activator-filter:filter-input-form:available-activator']"),
+        true);
+    WebElement displayOnlyUnavailableTaskCheckbox = findElementByCssSelector("[id$='available-activator-filter:filter-input-form:available-activator']");
+    displayOnlyUnavailableTaskCheckbox.click();
+    click(By.cssSelector("button[id$='available-activator-filter:filter-input-form:update-command']"));
+    if (waitForNumberOfTask) {
+      waitForNumberOfTasks(1);
+    }
   }
 }
