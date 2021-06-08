@@ -1,5 +1,5 @@
 [Ivy]
-15DC1795219AF4F0 9.2.0 #module
+15DC1795219AF4F0 9.3.0 #module
 >Proto >Proto Collection #zClass
 Ts0 TaskResponsibleFilterProcess Big #zClass
 Ts0 RD #cInfo
@@ -38,9 +38,7 @@ Ts0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ts0 f6 83 179 26 26 -57 13 #rect
-Ts0 f6 @|UdMethodIcon #fIcon
 Ts0 f7 275 179 26 26 0 12 #rect
-Ts0 f7 @|UdProcessEndIcon #fIcon
 Ts0 f8 expr out #txt
 Ts0 f8 109 192 275 192 #arcP
 Ts0 f0 guid 16827CB81F8394D6 #txt
@@ -55,15 +53,12 @@ Ts0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ts0 f0 83 83 26 26 -16 15 #rect
-Ts0 f0 @|UdInitIcon #fIcon
 Ts0 f1 275 83 26 26 0 12 #rect
-Ts0 f1 @|UdProcessEndIcon #fIcon
 Ts0 f2 expr out #txt
 Ts0 f2 109 96 275 96 #arcP
 >Proto Ts0 .type ch.ivy.addon.portalkit.component.task.filter.TaskResponsibleFilter.TaskResponsibleFilterData #txt
 >Proto Ts0 .processKind HTML_DIALOG #txt
 >Proto Ts0 -8 -8 16 16 16 26 #rect
->Proto Ts0 '' #fIcon
 Ts0 f6 mainOut f8 tail #connect
 Ts0 f8 head f7 mainIn #connect
 Ts0 f0 mainOut f2 tail #connect

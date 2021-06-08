@@ -9,34 +9,24 @@ import org.primefaces.model.charts.bar.BarChartModel;
 import org.primefaces.model.charts.donut.DonutChartModel;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
+import ch.ivy.addon.portalkit.configuration.AbstractConfiguration;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.enums.StatisticChartType;
 
-public class StatisticChart {
-  private String id;
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
+public class StatisticChart extends AbstractConfiguration {
   private List<DisplayName> names;
-  private long userId;
-  private String defaultChart;
   private StatisticChartType type;
-  @JsonIgnore
-  private String jsonQuery;
   private StatisticFilter filter;
   private long position;
   @JsonIgnore
   private DonutChartModel donutChartModel;
   @JsonIgnore
   private BarChartModel barChartModel;
-
+  @JsonIgnore
   private String name;
-
-  public String getId() {
-    return id;
-  }
-
-  public void setId(String id) {
-    this.id = id;
-  }
 
   public List<DisplayName> getNames() {
     return names;
@@ -44,14 +34,6 @@ public class StatisticChart {
 
   public void setNames(List<DisplayName> names) {
     this.names = names;
-  }
-
-  public long getUserId() {
-    return userId;
-  }
-
-  public void setUserId(long userId) {
-    this.userId = userId;
   }
 
   public StatisticChartType getType() {
@@ -94,14 +76,6 @@ public class StatisticChart {
     this.filter = filter;
   }
 
-  public String getDefaultChart() {
-    return defaultChart;
-  }
-
-  public void setDefaultChart(String defaultChart) {
-    this.defaultChart = defaultChart;
-  }
-  
   @Override
   public boolean equals(Object o) {
     StatisticChart chart = (StatisticChart) o;

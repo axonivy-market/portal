@@ -1,5 +1,5 @@
 [Ivy]
-1600AC95D2CA7CEA 9.2.0 #module
+1600AC95D2CA7CEA 9.3.0 #module
 >Proto >Proto Collection #zClass
 Ss0 StatisticDashboardWidgetProcess Big #zClass
 Ss0 RD #cInfo
@@ -95,13 +95,11 @@ Ct0 @TextInP .xml .xml #zField
 Ct0 @TextInP .responsibility .responsibility #zField
 Ct0 @CallSub f74 '' #zField
 Ct0 @GridStep f73 '' #zField
-Ct0 @CallSub f60 '' #zField
 Ct0 @PushTrueWFOutG-01 g2 '' #zField
 Ct0 @PushWFArc f2 '' #zField
-Ct0 @PushWFArc f0 '' #zField
-Ct0 @PushWFArc f3 '' #zField
 Ct0 @PushTrueWFInG-01 g1 '' #zField
 Ct0 @PushWFArc f4 '' #zField
+Ct0 @PushWFArc f1 '' #zField
 >Proto Ct0 Ct0 Component #zField
 Ss0 S10 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -111,7 +109,6 @@ Ss0 S10 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ss0 S10 800 266 128 44 -56 -8 #rect
-Ss0 S10 @|BIcon #fIcon
 Ss0 f11 guid 1604F11B5BA97CC5 #txt
 Ss0 f11 method start() #txt
 Ss0 f11 inParameterDecl '<> param;' #txt
@@ -168,7 +165,7 @@ Ss0 f19 actionTable 'out=in;
 Ss0 f19 actionCode 'import ch.ivy.addon.portalkit.service.StatisticService;
 import ch.ivy.addon.portalkit.statistics.StatisticChart;
 
-StatisticService service = new StatisticService();
+StatisticService service = StatisticService.getInstance();
 
 for(StatisticChart chart : in.statisticChartList) {
 		int newPosition = in.statisticChartList.indexOf(chart);
@@ -208,7 +205,7 @@ Ss0 f26 actionTable 'out=in;
 Ss0 f26 actionCode 'import ch.ivy.addon.portalkit.statistics.StatisticChart;
 import ch.ivy.addon.portalkit.service.StatisticService;
 
-StatisticService service = new StatisticService();
+StatisticService service = StatisticService.getInstance();
 
 in.statisticChartList.remove(in.selectedStatisticChart);
 service.delete(in.selectedStatisticChart.id);
@@ -237,7 +234,7 @@ Ss0 f30 actionTable 'out=in;
 Ss0 f30 actionCode 'import java.util.ArrayList;
 import ch.ivy.addon.portalkit.service.StatisticService;
 
-StatisticService service = new StatisticService();
+StatisticService service = StatisticService.getInstance();
 if (in.statisticChartList.size() != 0) {
 	in.hasStatistic = true;
 	if(in.selectedItemOfDrilldown.isEmpty()){
@@ -299,7 +296,7 @@ if (StatisticService.selectMonthOfYear(in.selectedItemOfDrilldown))  {
 	in.previousSelectedDay = in.selectedItemOfDrilldown;
 }
 
-StatisticService service = new StatisticService();
+StatisticService service = StatisticService.getInstance();
 in.chartNameOfCurrentLanguage = service.getDisplayNameInUserLanguageForChart(in.selectedStatisticChart).getValue();
 
 in.taskListName = in.chartNameOfCurrentLanguage + " - " + in.selectedItemOfDrilldown;
@@ -415,7 +412,7 @@ import ch.ivy.addon.portalkit.statistics.StatisticChart;
 import ch.ivy.addon.portalkit.service.StatisticService;
 
 if (in.statisticChartList.size() != 0) {
-	StatisticService service = new StatisticService();
+	StatisticService service = StatisticService.getInstance();
 	service.generateChartModelForStatisticCharts(in.statisticChartList);
 	in.hasStatistic = true;
 } else {
@@ -466,13 +463,13 @@ import ch.ivy.addon.portalkit.bean.StatisticDashboardBean;
 import ch.ivy.addon.portalkit.statistics.StatisticChart;
 import ch.ivy.addon.portalkit.service.StatisticService;
 
-StatisticService service = new StatisticService();
+StatisticService service = StatisticService.getInstance();
 	
 if (in.isBackFromDrilldown) {
 	in.selectedItemOfDrilldown = null;
 	in.isFinishLoadCharts = false;
 	
-	in.statisticChartList = service.findStatisticChartsByUserId(ivy.session.getSessionUser().getId());
+	in.statisticChartList = service.findStatisticCharts();
 }
 
 if (!in.isDrilldownExpiryChart) {
@@ -506,7 +503,7 @@ if (in.isReloadChartContent && StringUtils.isEmpty(in.selectedItemOfDrilldown)) 
 	in.isReloadChartContent = false;
 }
 
-
+in.numberOfDefaultCharts = service.getNumberOfDefaultCharts();
 ' #txt
 Ss0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -558,7 +555,7 @@ import ch.ivy.addon.portalkit.service.StatisticService;
 import java.util.ArrayList;
 import ch.ivy.addon.portalkit.service.DummyStatisticService;
 
-StatisticService service = new StatisticService();
+StatisticService service = StatisticService.getInstance();
 in.isGuide = ch.ivy.addon.portalkit.bo.GuidePool.instance().guide(ivy.session.getSessionUserName()).isGuideShown();
 if (in.isGuide) {
 	in.statisticChartList = [DummyStatisticService.createDummyChartForGuide()];
@@ -711,7 +708,7 @@ Ss0 f49 actionCode 'import ch.ivy.addon.portalkit.service.DummyStatisticService;
 import java.util.ArrayList;
 import ch.ivy.addon.portalkit.service.StatisticService;
 
-StatisticService service = new StatisticService();
+StatisticService service = StatisticService.getInstance();
 service.fetchStatisticColor();
 in.statisticChartList = [DummyStatisticService.createDummyChartForGuide()];
 in.prevStatisticList = new ArrayList(in.statisticChartList);' #txt
@@ -740,7 +737,7 @@ Ss0 f50 outCond in.statisticChartList.isEmpty() #txt
 Ss0 f50 1010 302 1136 384 #arcP
 Ss0 f50 1 1024 384 #addKink
 Ss0 f54 expr in #txt
-Ss0 f54 outCond 'in.isFinishLoadCharts && new ch.ivy.addon.portalkit.service.StatisticService().isSame(in.prevStatisticList, in.statisticChartList)' #txt
+Ss0 f54 outCond 'in.isFinishLoadCharts && ch.ivy.addon.portalkit.service.StatisticService.getInstance().isSame(in.prevStatisticList, in.statisticChartList)' #txt
 Ss0 f54 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -815,7 +812,7 @@ out.chartColors=result.chartColors;
 ' #txt
 Ct0 f74 responseActionCode 'import ch.ivy.addon.portalkit.service.StatisticService;
 
-StatisticService service = new StatisticService();
+StatisticService service = StatisticService.getInstance();
 service.setStatisticsColors(result.chartColors);' #txt
 Ct0 f74 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -831,8 +828,8 @@ Ct0 f73 actionCode 'import ch.ivy.addon.portalkit.service.StatisticService;
 import ch.ivy.addon.portalkit.statistics.StatisticChart;
 import java.util.ArrayList;
 
-StatisticService service = new StatisticService();
-in.statisticChartList = service.updateExistedChartsWithNewCharts(in.statisticChartList, in.defaultCharts);
+StatisticService service = StatisticService.getInstance();
+in.statisticChartList = service.updateExistedChartsWithNewCharts(in.statisticChartList);
 ' #txt
 Ct0 f73 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -842,29 +839,11 @@ Ct0 f73 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ct0 f73 568 138 112 44 -41 -8 #rect
-Ct0 f60 processCall 'Functional Processes/DefaultChart:createDefaultChart()' #txt
-Ct0 f60 requestActionDecl '<> param;' #txt
-Ct0 f60 responseActionDecl 'ch.ivy.addon.portalkit.component.StatisticWidget.StatisticWidgetData out;
-' #txt
-Ct0 f60 responseMappingAction 'out=in;
-out.defaultCharts=result.charts;
-' #txt
-Ct0 f60 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>DefaultChart</name>
-        <nameStyle>12,5,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Ct0 f60 376 138 112 44 -34 -8 #rect
 Ct0 g2 779 147 26 26 0 5 #rect
 Ct0 f2 680 160 779 160 #arcP
-Ct0 f0 304 160 376 160 #arcP
-Ct0 f3 488 160 568 160 #arcP
 Ct0 g1 75 147 26 26 -47 5 #rect
 Ct0 f4 101 160 192 160 #arcP
+Ct0 f1 304 160 568 160 #arcP
 >Proto Ct0 0 0 32 24 18 0 #rect
 >Proto Ct0 @|BIcon #fIcon
 Ss0 f19 mainOut f20 tail #connect
@@ -939,10 +918,8 @@ Ss0 f63 mainOut f58 tail #connect
 Ss0 f58 head S10 g1 #connect
 Ct0 f73 mainOut f2 tail #connect
 Ct0 f2 head g2 m #connect
-Ct0 f74 mainOut f0 tail #connect
-Ct0 f0 head f60 mainIn #connect
-Ct0 f60 mainOut f3 tail #connect
-Ct0 f3 head f73 mainIn #connect
 Ct0 g1 m f4 tail #connect
 Ct0 f4 head f74 mainIn #connect
+Ct0 f74 mainOut f1 tail #connect
+Ct0 f1 head f73 mainIn #connect
 Ct0 0 0 928 328 0 #ivRect

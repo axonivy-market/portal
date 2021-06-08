@@ -3,9 +3,15 @@ package ch.ivy.addon.portalkit.dto;
 
 import ch.ivy.addon.portalkit.enums.ExpressEmailAttachmentStatus;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.io.Serializable;
 
-public class ExpressAttachment {
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class ExpressAttachment implements Serializable {
+
+  private static final long serialVersionUID = 7156983624283465272L;
   private String name;
   @JsonIgnore
   private byte[] content;

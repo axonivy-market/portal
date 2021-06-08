@@ -1,5 +1,5 @@
 [Ivy]
-176CBB4874D688E6 9.2.0 #module
+176CBB4874D688E6 9.3.0 #module
 >Proto >Proto Collection #zClass
 Ps0 PortalTaskDetailsOverrideProcess Big #zClass
 Ps0 RD #cInfo
@@ -37,9 +37,7 @@ Ps0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f0 83 83 26 26 -66 25 #rect
-Ps0 f0 @|UdInitIcon #fIcon
 Ps0 f4 411 83 26 26 0 12 #rect
-Ps0 f4 @|UdProcessEndIcon #fIcon
 Ps0 f3 guid 16C45AE394A575BF #txt
 Ps0 f3 actionTable 'out=in;
 ' #txt
@@ -51,9 +49,7 @@ Ps0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f3 83 179 26 26 -15 12 #rect
-Ps0 f3 @|UdEventIcon #fIcon
 Ps0 f1 211 179 26 26 0 12 #rect
-Ps0 f1 @|UdExitEndIcon #fIcon
 Ps0 f2 expr out #txt
 Ps0 f2 109 192 211 192 #arcP
 Ps0 f6 actionTable 'out=in;
@@ -69,14 +65,12 @@ Ps0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f6 192 74 128 44 -57 -8 #rect
-Ps0 f6 @|StepIcon #fIcon
 Ps0 f7 expr out #txt
 Ps0 f7 109 96 192 96 #arcP
 Ps0 f5 320 96 411 96 #arcP
 >Proto Ps0 .type com.axonivy.portal.developerexamples.customization.PortalTaskDetailsOverride.PortalTaskDetailsOverrideData #txt
 >Proto Ps0 .processKind HTML_DIALOG #txt
 >Proto Ps0 -8 -8 16 16 16 26 #rect
->Proto Ps0 '' #fIcon
 Ps0 f3 mainOut f2 tail #connect
 Ps0 f2 head f1 mainIn #connect
 Ps0 f0 mainOut f7 tail #connect

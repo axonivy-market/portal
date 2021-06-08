@@ -21,8 +21,8 @@ public class FormattingNullWrapperBean implements Serializable {
     if (date == null) {
       return DEFAULT_VALUE_IF_NULL;
     }
-    DateTimeGlobalSettingService dateTimePatternService = new DateTimeGlobalSettingService();
-    SimpleDateFormat simpleDateFormat = new SimpleDateFormat(dateTimePatternService.getGlobalSettingPattern());
+    String pattern = DateTimeGlobalSettingService.getInstance().getGlobalSettingPattern();
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern, Ivy.session().getContentLocale());
     return simpleDateFormat.format(date);
   }
 }

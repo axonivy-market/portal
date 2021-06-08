@@ -1,5 +1,10 @@
 package portal.guitest.test;
 
+import static portal.guitest.common.Variable.HIDE_SYSTEM_NOTES_FROM_HISTORY;
+import static portal.guitest.common.Variable.HIDE_SYSTEM_NOTES_FROM_HISTORY_ADMINISTRATOR;
+import static portal.guitest.common.Variable.HIDE_SYSTEM_TASKS_FROM_HISTORY;
+import static portal.guitest.common.Variable.HIDE_SYSTEM_TASKS_FROM_HISTORY_ADMINISTRATOR;
+
 import java.util.List;
 
 import org.junit.Assert;
@@ -26,8 +31,8 @@ public class SystemNoteVisibilityTest extends BaseTest {
   public void setup() {
     super.setup();
     //hide all system task in history to avoid effecting to test assertion
-    updatePortalSetting("HIDE_SYSTEM_TASKS_FROM_HISTORY", "true");
-    updatePortalSetting("HIDE_SYSTEM_TASKS_FROM_HISTORY_ADMINISTRATOR", "true");
+    updatePortalSetting(HIDE_SYSTEM_TASKS_FROM_HISTORY.getKey(), "true");
+    updatePortalSetting(HIDE_SYSTEM_TASKS_FROM_HISTORY_ADMINISTRATOR.getKey(), "true");
     redirectToRelativeLink(CREATE_TESTING_TASK_URL);
   }
 
@@ -59,7 +64,7 @@ public class SystemNoteVisibilityTest extends BaseTest {
   
   @Test
   public void testSystemNoteVisibilityInTaskForAdmin() {
-    updatePortalSetting("HIDE_SYSTEM_NOTES_FROM_HISTORY_ADMINISTRATOR", "false");
+    updatePortalSetting(HIDE_SYSTEM_NOTES_FROM_HISTORY_ADMINISTRATOR.getKey(), "false");
     login(TestAccount.ADMIN_USER);
     
     TaskDetailsPage taskDetailsPage = openTaskDetails();
@@ -71,7 +76,7 @@ public class SystemNoteVisibilityTest extends BaseTest {
     taskNoteAuthors = taskNoteHistoryPage.getNoteAuthors();
     Assert.assertTrue(taskNoteAuthors.contains(SYSTEM_USER_NAME));
     
-    updatePortalSetting("HIDE_SYSTEM_NOTES_FROM_HISTORY_ADMINISTRATOR", "true");
+    updatePortalSetting(HIDE_SYSTEM_NOTES_FROM_HISTORY_ADMINISTRATOR.getKey(), "true");
     taskDetailsPage = openTaskDetails();
     taskNoteAuthors = taskDetailsPage.getTaskNoteAuthors();
     Assert.assertFalse(taskNoteAuthors.contains(SYSTEM_USER_NAME));
@@ -83,7 +88,7 @@ public class SystemNoteVisibilityTest extends BaseTest {
 
   @Test
   public void testSystemNoteVisibilityInTaskDetailForNormalUser() {
-    updatePortalSetting("HIDE_SYSTEM_NOTES_FROM_HISTORY", "true");
+    updatePortalSetting(HIDE_SYSTEM_NOTES_FROM_HISTORY.getKey(), "true");
     TaskDetailsPage taskDetailsPage = openTaskDetails();
     String taskId = taskDetailsPage.getTaskId();
     List<String> taskNoteAuthors = taskDetailsPage.getTaskNoteAuthors();
@@ -93,7 +98,7 @@ public class SystemNoteVisibilityTest extends BaseTest {
     taskNoteAuthors = taskNoteHistoryPage.getNoteAuthors();
     Assert.assertFalse(taskNoteAuthors.contains(SYSTEM_USER_NAME));
     
-    updatePortalSetting("HIDE_SYSTEM_NOTES_FROM_HISTORY", "false");
+    updatePortalSetting(HIDE_SYSTEM_NOTES_FROM_HISTORY.getKey(), "false");
     taskDetailsPage = openTaskDetails();
     taskNoteHistoryPage.clickOnCheckboxShowSystemNotes();
     taskNoteHistoryPage.waitForNoteTableDisplayed();

@@ -18,13 +18,12 @@ import ch.ivy.addon.portalkit.bo.ExpressTaskDefinition;
 import ch.ivy.addon.portalkit.bo.ExpressUserEmail;
 import ch.ivy.addon.portalkit.dto.ExpressAttachment;
 import ch.ivy.addon.portalkit.enums.ExpressEmailAttachmentStatus;
-import ch.ivy.addon.portalkit.service.ExpressServiceRegistry;
+import ch.ivy.addon.portalkit.service.ExpressProcessService;
 import ch.ivy.addon.portalkit.util.ExpressManagementUtils;
 import ch.ivy.addon.portalkit.util.SecurityMemberDisplayNameUtils;
 import ch.ivy.gawfs.enums.FormElementType;
 import ch.ivy.gawfs.enums.TaskType;
 import ch.ivy.gawfs.mail.MailAttachment;
-import ch.ivyteam.ivy.business.data.store.BusinessDataInfo;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.ISubProcessStart;
 import ch.ivyteam.ivy.process.call.SubProcessRunner;
@@ -45,129 +44,107 @@ public class ExpressProcessUtils {
   private static final String RIGHT_PANEL = "RIGHTPANEL";
 
   /**
-   * Save Express process to repository as business data
+   * Save Express process
    * 
    * @param expressData
    * @return Express process after saved
    */
-  public ExpressProcess saveProcess(Data expressData) {
-    ExpressProcess processRepository =
-        Optional.ofNullable(ExpressServiceRegistry.getProcessService().findById(expressData.getProcessID())).orElse(
-            new ExpressProcess());
-
-    processRepository.setProcessName(expressData.getProcessName());
-    processRepository.setProcessDescription(expressData.getProcessDescription());
-    processRepository.setProcessType(expressData.getProcessType().getValue());
-    processRepository.setUseDefaultUI(expressData.getIsUseDefaultUI());
-    processRepository.setIcon(expressData.getProcessIcon());
-
-    ExpressManagementUtils expressManagementUtils = new ExpressManagementUtils();
-    if(StringUtils.isBlank(processRepository.getProcessOwner())) {
-      String ownerName = Ivy.session().getSessionUser().getMemberName();
-      processRepository.setProcessOwner(expressManagementUtils.updateExternalIdToSecurityMemberName(ownerName));
-    }
-
-    processRepository.setProcessPermissions(expressManagementUtils.updateExternalIdsToSecurityMemberNames(expressData.getDefinedTasks().get(0).getResponsibles()));
-    processRepository.setProcessCoOwners(expressManagementUtils.updateExternalIdsToSecurityMemberNames(expressData.getProcessCoOwners()));
-    processRepository.setProcessFolder(expressData.getProcessFolder());
-    processRepository.setReadyToExecute(expressData.getReadyToExecute());
-
-    BusinessDataInfo<ExpressProcess> info = ExpressServiceRegistry.getProcessService().save(processRepository);
-    processRepository.setId(info.getId());
-
-    saveDefinedTasks(processRepository.getId(), expressData.getDefinedTasks());
-    return processRepository;
+  public static ExpressProcess saveProcess(Data expressData) {
+    return saveOrUpdateWorkflow(expressData);
   }
 
   /**
-   * Save defined tasks to repository as business data
+   * Save or update Express process to Variable External File
    * 
-   * @param processId
-   * @param definedTasks
+   * @param expressData
+   * @return Express process after saved
    */
-  private void saveDefinedTasks(String processId, List<TaskDef> definedTasks) {
-    // Delete old tasks and form elements
-    ExpressServiceRegistry.getTaskDefinitionService().deleteByProcessId(processId);
-    ExpressServiceRegistry.getFormElementService().deleteByProcessId(processId);
-
-    ExpressManagementUtils expressManagementUtils = new ExpressManagementUtils();
-    // Save the task definition with the order of the tasks
-    for (TaskDef taskDef : definedTasks) {
-      ExpressTaskDefinition expressTaskDef = new ExpressTaskDefinition();
-      expressTaskDef.setType(taskDef.getTaskType().name());
-      expressTaskDef.setSubject(taskDef.getSubject());
-      expressTaskDef.setDescription(taskDef.getDescription());
-      expressTaskDef.setResponsibles(expressManagementUtils.updateExternalIdsToSecurityMemberNames(taskDef.getResponsibles()));
-      expressTaskDef.setUntilDays(taskDef.getUntilDays().intValue());
-      expressTaskDef.setProcessID(processId);
-      expressTaskDef.setTaskPosition(taskDef.getPosition());
-      expressTaskDef.setEmail(taskDef.getEmail());
-      ExpressServiceRegistry.getTaskDefinitionService().save(expressTaskDef);
-      if (taskDef.getTaskType() != TaskType.EMAIL && taskDef.getTaskType() != TaskType.APPROVAL) {
-        saveFormElements(processId, taskDef.getPosition(), taskDef.getDragAndDropController());
-      }
+  public static ExpressProcess saveOrUpdateWorkflow(Data expressData) {
+    ExpressProcess processSaved = ExpressProcessService.getInstance().findById(expressData.getProcessID());
+    if (processSaved == null) {
+      processSaved =  new ExpressProcess();
     }
+    processSaved.setProcessName(expressData.getProcessName());
+    processSaved.setProcessDescription(expressData.getProcessDescription());
+    processSaved.setProcessType(expressData.getProcessType().getValue());
+    processSaved.setUseDefaultUI(expressData.getIsUseDefaultUI());
+    processSaved.setIcon(expressData.getProcessIcon());
+
+    if(StringUtils.isBlank(processSaved.getProcessOwner())) {
+      String ownerName = Ivy.session().getSessionUser().getMemberName();
+      processSaved.setProcessOwner(ExpressManagementUtils.updateExternalIdToSecurityMemberName(ownerName));
+    }
+
+    processSaved.setProcessPermissions(ExpressManagementUtils.updateExternalIdsToSecurityMemberNames(expressData.getDefinedTasks().get(0).getResponsibles()));
+    processSaved.setProcessCoOwners(ExpressManagementUtils.updateExternalIdsToSecurityMemberNames(expressData.getProcessCoOwners()));
+    processSaved.setProcessFolder(expressData.getProcessFolder());
+    processSaved.setReadyToExecute(expressData.getReadyToExecute());
+    processSaved.setTaskDefinitions(buildDefinedTasks(expressData.getDefinedTasks()));
+    return ExpressProcessService.getInstance().save(processSaved);
   }
 
   /**
-   * Save all form elements with Id, location, and order
+   * Build defined tasks from TaskDef
    * 
-   * @param processId
-   * @param taskPosition
+   * @param definedTasks
+   * @return taskDefinitions of process
+   */
+  private static List<ExpressTaskDefinition> buildDefinedTasks(List<TaskDef> definedTasks) {
+    List<ExpressTaskDefinition> taskDefinitions = new ArrayList<>();
+    for (TaskDef taskDef : definedTasks) {
+      ExpressTaskDefinition taskDefinition = new ExpressTaskDefinition();
+      taskDefinition.setType(taskDef.getTaskType().name());
+      taskDefinition.setSubject(taskDef.getSubject());
+      taskDefinition.setDescription(taskDef.getDescription());
+      taskDefinition.setResponsibles(ExpressManagementUtils.updateExternalIdsToSecurityMemberNames(taskDef.getResponsibles()));
+      taskDefinition.setUntilDays(taskDef.getUntilDays().intValue());
+      taskDefinition.setTaskPosition(taskDef.getPosition());
+      taskDefinition.setEmail(taskDef.getEmail());
+
+      if (taskDef.getTaskType() != TaskType.EMAIL && taskDef.getTaskType() != TaskType.APPROVAL) {
+        taskDefinition.setFormElements(buildExpressFormElements(taskDef.getDragAndDropController()));
+      }
+      taskDefinitions.add(taskDefinition);
+    }
+    return taskDefinitions;
+  }
+
+  /**
+   * Build form elements with location, and order
+   * 
    * @param controller
    */
-  private void saveFormElements(String processId, int taskPosition, DragAndDropController controller) {
-    processAndSaveFormElements(controller.getSelectedFormelementsHeader(), taskPosition, processId, HEADER_PANEL);
-    processAndSaveFormElements(controller.getSelectedFormelementsLeftPanel(), taskPosition, processId, LEFT_PANEL);
-    processAndSaveFormElements(controller.getSelectedFormelementsRightPanel(), taskPosition, processId, RIGHT_PANEL);
-    processAndSaveFormElements(controller.getSelectedFormelementsFooter(), taskPosition, processId, FOOTER_PANEL);
+  private static List<ExpressFormElement> buildExpressFormElements(DragAndDropController controller) {
+    List<ExpressFormElement> expressFormElements = new ArrayList<>();
+    expressFormElements.addAll(createElementsByLocation(controller.getSelectedFormelementsHeader(), HEADER_PANEL));
+    expressFormElements.addAll(createElementsByLocation(controller.getSelectedFormelementsLeftPanel(), LEFT_PANEL));
+    expressFormElements.addAll(createElementsByLocation(controller.getSelectedFormelementsRightPanel(), RIGHT_PANEL));
+    expressFormElements.addAll(createElementsByLocation(controller.getSelectedFormelementsFooter(), FOOTER_PANEL));
+    return expressFormElements;
   }
-  
-  private void processAndSaveFormElements(List<Formelement> formElements, int taskPosition, String processId,  String location) {
-    if (CollectionUtils.isNotEmpty(formElements)){
-      int indexInPanel = 0;
+
+  private static List<ExpressFormElement> createElementsByLocation(List<Formelement> formElements, String location) {
+    List<ExpressFormElement> expressFormElements = new ArrayList<>();
+    if (CollectionUtils.isNotEmpty(formElements)) {
       for (Formelement element : formElements) {
-        element.setTaskPosition(taskPosition);
-        element.setIndexInPanel(indexInPanel++);
-        saveFormElement(element, location, processId);
+        ExpressFormElement expressFormElement = new ExpressFormElement();
+        expressFormElement.setElementID(element.getId());
+        expressFormElement.setElementPosition(location);
+        expressFormElement.setElementType(element.getType().getValue());
+        expressFormElement.setIntSetting(Optional.ofNullable(element.getIntSetting()).orElse(0));
+        expressFormElement.setLabel(element.getLabel());
+        expressFormElement.setRequired(Optional.ofNullable(element.getRequired()).orElse(false));
+        expressFormElement.setOptionStrs(element.getOptionsStr());
+        expressFormElement.setIndexInPanel(expressFormElements.size());
+
+        expressFormElements.add(expressFormElement);
       }
     }
+    return expressFormElements;
   }
 
-  /**
-   * Save form element to repository as business data
-   * 
-   * @param element
-   * @param location
-   * @param processId
-   */
-  private void saveFormElement(Formelement element, String location, String processId) {
-    ExpressFormElement expressFormElement = new ExpressFormElement();
-    expressFormElement.setElementID(element.getId());
-    expressFormElement.setElementPosition(location);
-    expressFormElement.setElementType(element.getType().getValue());
-    expressFormElement.setIntSetting(Optional.ofNullable(element.getIntSetting()).orElse(0));
-    expressFormElement.setLabel(element.getLabel());
-    expressFormElement.setRequired(Optional.ofNullable(element.getRequired()).orElse(false));
-    expressFormElement.setProcessID(processId);
-    expressFormElement.setOptionStrs(element.getOptionsStr());
-    expressFormElement.setTaskPosition(element.getTaskPosition());
-    expressFormElement.setIndexInPanel(element.getIndexInPanel());
-
-    ExpressServiceRegistry.getFormElementService().save(expressFormElement);
-  }
-
-  /**
-   * Get defined tasks by process ID from repository
-   * 
-   * @param processId
-   * @return List of defined tasks
-   */
-  public List<TaskDef> getDefinedTasks(String processId) {
+  public static List<TaskDef> convertExpressTaskDefinitionToTaskDef(List<ExpressTaskDefinition> expressTaskDefinitions) {
     List<TaskDef> taskDefinitions = new ArrayList<>();
-    List<ExpressTaskDefinition> expressTaskDefinitions =
-        ExpressServiceRegistry.getTaskDefinitionService().findByProcessId(processId);
-
     for (ExpressTaskDefinition expressTaskDef : expressTaskDefinitions) {
       TaskDef taskDef = new TaskDef();
       taskDef.setResponsibles(getValidSecurityMembers(expressTaskDef.getResponsibles()));
@@ -179,20 +156,19 @@ public class ExpressProcessUtils {
       taskDef.setEmail(expressTaskDef.getEmail());
       taskDef.setResponsibleDisplayName(generateResponsibleDisplayName(taskDef.getResponsibles()));
 
-      initializeControllersForTaskDef(processId, taskDef);
+      initializeControllersForTaskDef(taskDef, expressTaskDef);
       taskDefinitions.add(taskDef);
     }
-
     return Helper.sortTasks(taskDefinitions);
   }
-
+  
   /**
    * Get merged display name of responsibles
    * 
    * @param responsibleNames
    * @return merged display name
    */
-  public String generateResponsibleDisplayName(List<String> responsibleNames) {
+  public static String generateResponsibleDisplayName(List<String> responsibleNames) {
     return CollectionUtils.emptyIfNull(responsibleNames)
       .stream()
       .map(responsibleName -> Ivy.session().getSecurityContext().findSecurityMember(responsibleName))
@@ -207,15 +183,14 @@ public class ExpressProcessUtils {
    * @param responsibleNames
    * @return security members
    */
-  private List<String> getValidSecurityMembers(List<String> responsibleNames) {
+  private static List<String> getValidSecurityMembers(List<String> responsibleNames) {
     if (CollectionUtils.isEmpty(responsibleNames)) {
       return new ArrayList<>();
     }
 
-    ExpressManagementUtils utils = new ExpressManagementUtils();
     List<String> result = new ArrayList<>();
     responsibleNames.forEach(responsibleName -> {
-      String validMemberName = utils.getValidMemberName(responsibleName);
+      String validMemberName = ExpressManagementUtils.getValidMemberName(responsibleName);
       if (StringUtils.isNotBlank(validMemberName)) {
         result.add(validMemberName);
       }
@@ -260,11 +235,11 @@ public class ExpressProcessUtils {
   /**
    * Initialize controllers for task definition
    * 
-   * @param processId
    * @param taskDef
+   * @param expressTaskDefinition 
    * @return initialized task definition
    */
-  private TaskDef initializeControllersForTaskDef(String processId, TaskDef taskDef) {
+  private static TaskDef initializeControllersForTaskDef(TaskDef taskDef, ExpressTaskDefinition expressTaskDefinition) {
     DragAndDropController dragAndDropController = new DragAndDropController();
     DynaFormController dynaFormController = new DynaFormController(dragAndDropController);
     dragAndDropController.setDynaFormController(dynaFormController);
@@ -272,23 +247,15 @@ public class ExpressProcessUtils {
 
     taskDef.setDynaFormController(dynaFormController);
     taskDef.setDragAndDropController(dragAndDropController);
-    updateDragAndDropController(processId, taskDef.getDragAndDropController(), taskDef.getPosition());
-
+    if (taskDef.getTaskType() != TaskType.EMAIL && taskDef.getTaskType() != TaskType.APPROVAL) {
+      updateDragAndDropController(taskDef, expressTaskDefinition);
+    }
     return taskDef;
   }
 
-  /**
-   * Update controller with form elements get from repository by process ID and task position
-   * 
-   * @param processId
-   * @param controller
-   */
-  private void updateDragAndDropController(String processId, DragAndDropController controller, int taskPosition) {
-    List<ExpressFormElement> expressFormElements =
-        ExpressServiceRegistry.getFormElementService().findByProcessId(processId);
-    expressFormElements =
-        expressFormElements.stream().filter(element -> element.getTaskPosition() == taskPosition)
-            .collect(Collectors.toList());
+  private static void updateDragAndDropController(TaskDef taskDef, ExpressTaskDefinition expressTaskDefinition) {
+    DragAndDropController controller = taskDef.getDragAndDropController();
+    List<ExpressFormElement> expressFormElements = expressTaskDefinition.getFormElements();
 
     for (ExpressFormElement expressElement : expressFormElements) {
       Formelement element = new Formelement();
@@ -296,7 +263,6 @@ public class ExpressProcessUtils {
       element.setIntSetting(expressElement.getIntSetting());
       element.setLabel(expressElement.getLabel());
       element.setRequired(expressElement.isRequired());
-      element.setTaskPosition(taskPosition);
       element.setIndexInPanel(expressElement.getIndexInPanel());
 
       for (FormElementType type : FormElementType.values()) {
@@ -328,7 +294,7 @@ public class ExpressProcessUtils {
     sortIndexInPanels(controller);
   }
   
-  private void sortIndexInPanels(DragAndDropController controller) {
+  private static void sortIndexInPanels(DragAndDropController controller) {
     controller.setSelectedFormelementsHeader(controller.getSelectedFormelementsHeader().stream().sorted(Comparator.comparingInt(Formelement::getIndexInPanel)).collect(Collectors.toList()));
     controller.setSelectedFormelementsLeftPanel(controller.getSelectedFormelementsLeftPanel().stream().sorted(Comparator.comparingInt(Formelement::getIndexInPanel)).collect(Collectors.toList()));
     controller.setSelectedFormelementsRightPanel(controller.getSelectedFormelementsRightPanel().stream().sorted(Comparator.comparingInt(Formelement::getIndexInPanel)).collect(Collectors.toList()));
@@ -471,13 +437,13 @@ public class ExpressProcessUtils {
    * @return true if process name was used, false if process name is available
    */
   public boolean isProcessNameDuplicated(String processName) {
-    return ExpressServiceRegistry.getProcessService().findExpressProcessByName(processName) != null;
+    return ExpressProcessService.getInstance().findExpressProcessByName(processName) != null;
   }
 
   public List<ExternalDataProvider> findDataProviders() {
     Builder subprocessFilter = SubProcessSearchFilter.create();
-    SubProcessSearchFilter filter =
-        subprocessFilter.setSignature("portalExpressDataProvider()").setSearchInAllProjects(true)
+    SubProcessSearchFilter filter = subprocessFilter.setSignature("portalExpressDataProvider()")
+        .setSearchInAllProjects(true)
         .setSearchInDependentProjects(false).toFilter();
     return SubProcessRunner.findSubProcessStarts(filter).stream().map(this::toDataProvider).collect(Collectors.toList());
   }

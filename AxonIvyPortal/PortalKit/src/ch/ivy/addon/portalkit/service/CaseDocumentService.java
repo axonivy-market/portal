@@ -16,7 +16,7 @@ import ch.ivy.addon.portalkit.document.DocumentDetector;
 import ch.ivy.addon.portalkit.document.DocumentDetectorFactory;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.ivydata.bo.IvyDocument;
-import ch.ivy.addon.portalkit.persistence.domain.GlobalSetting;
+import ch.ivy.addon.portalkit.configuration.GlobalSetting;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.persistence.PersistencyException;
@@ -118,7 +118,7 @@ public class CaseDocumentService {
   public static boolean enableScriptCheckingForUploadedDocument() {
     GlobalSettingService globalSettingService = new GlobalSettingService();
     String enableScriptCheckingForUploadedDocument = globalSettingService
-        .findGlobalSettingValue(GlobalVariable.ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT.toString());
+        .findGlobalSettingValue(GlobalVariable.ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT);
     return Boolean.parseBoolean(enableScriptCheckingForUploadedDocument);
   }
 
@@ -140,7 +140,8 @@ public class CaseDocumentService {
 
   private static List<String> getAllowedUploadFileType() {
     GlobalSettingService globalSettingService = new GlobalSettingService();
-    GlobalSetting documentSetting = globalSettingService.findGlobalSettingByKey(GlobalVariable.UPLOAD_DOCUMENT_WHITELIST_EXTENSION.toString());
+    GlobalSetting documentSetting =
+        globalSettingService.findGlobalSettingByGlobalVariable(GlobalVariable.UPLOAD_DOCUMENT_WHITELIST_EXTENSION);
     if (StringUtils.isBlank(documentSetting.getValue())) {
       return new ArrayList<>();
     } else {

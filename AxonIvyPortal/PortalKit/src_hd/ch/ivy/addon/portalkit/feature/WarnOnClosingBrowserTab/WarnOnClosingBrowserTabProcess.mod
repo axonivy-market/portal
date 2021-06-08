@@ -1,5 +1,5 @@
 [Ivy]
-14F86CFEA4C6690D 9.2.0 #module
+14F86CFEA4C6690D 9.3.0 #module
 >Proto >Proto Collection #zClass
 Ws0 WarnOnClosingBrowserTabProcess Big #zClass
 Ws0 RD #cInfo
@@ -25,14 +25,11 @@ Ws0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ws0 f0 86 54 20 20 13 0 #rect
-Ws0 f0 @|UdInitIcon #fIcon
 Ws0 f1 86 150 20 20 13 0 #rect
-Ws0 f1 @|UdProcessEndIcon #fIcon
 Ws0 f2 expr out #txt
 Ws0 f2 96 74 96 150 #arcP
 >Proto Ws0 .type ch.ivy.addon.portalkit.feature.WarnOnClosingBrowserTab.WarnOnClosingBrowserTabData #txt
 >Proto Ws0 .processKind HTML_DIALOG #txt
 >Proto Ws0 -8 -8 16 16 16 26 #rect
->Proto Ws0 '' #fIcon
 Ws0 f0 mainOut f2 tail #connect
 Ws0 f2 head f1 mainIn #connect

@@ -166,7 +166,7 @@ Migrate 8.x to 9.1
 
 #. Portal now uses |css_variable| instead of SASS. Therefore you must convert SASS syntax to new CSS variable or use online tool such as |css_variable_convert| to convert it.
 
-#. If administrator activate the ``ENABLE_CASE_OWNER`` Portal settings and there is a customized case list, customize this field to this case list, e.g. add filter, column configuration, header.
+#. If administrator activate the ``Portal.Cases.EnableOwner`` Portal settings and there is a customized case list, customize this field to this case list, e.g. add filter, column configuration, header.
 
 #. From 9.1, Ivy engine use new mechanism to synchronize user data, therefore Portal must adapt some data related to users. Some data must be migrated to work properly. Please follow these steps to migrate data of your application:
 
@@ -211,13 +211,13 @@ Changes in 9.2
 
 - Introduce :ref:`Workflow Events table <how-to-show-workflow-events>`, user who has permission ``WORKFLOW_EVENT_READ_ALL`` can see all ``WORKFLOW_EVENTS``.
 
-- Introduce the ``DEFAULT_HOMEPAGE`` Portal setting to set the default homepage, each user can change it via user profile. 
+- Introduce the ``Portal.Homepage`` Portal setting to set the default homepage, each user can change it via user profile. 
 
 - Introduce new approach to customize :ref:`Portal Case Item details <customization-case-item-details>`. Now, your case information in Case details page and Case Info dialog is the same
 
 - Introduce new approach to customize :ref:`Portal Task item details <customization-task-item-details>`.
 
-- Introduce new Portal Setting ``SHOW_BUTTON_ICON`` to control visibility of icon of button in Portal.
+- Introduce new Portal Setting ``Portal.ShowButtonIcon`` to control visibility of icon of button in Portal.
 
 - Introduce new global variable named ``PortalLoginPageDisplay`` to show Login page or hide it then show error page instead.
 
@@ -227,16 +227,17 @@ Changes in 9.2
 
 - Portal supports multilingual user favorites
 
+- Portal supports logos in SVG format.
 
 Changes in 9.1
 --------------
 
 - Refactor style customization approach. From now on, Portal use CSS Variable as technology to customize CSS.
 
-- Introduce the User Guide feature, using the ``SHOW_USER_GUIDE`` Portal Setting to activate/deactivate it, 
+- Introduce the User Guide feature, using the ``Portal.Dashboard.ShowUserGuide`` Portal Setting to activate/deactivate it, 
   and follow :ref:`Customize user guide <customization-portal-home-user-guide>` for your customization.
 
-- Introduce new Portal Setting ``SHOW_BUTTON_ICON`` to control visibility of icon of button in Portal.
+- Introduce new Portal Setting ``Portal.ShowButtonIcon`` to control visibility of icon of button in Portal.
 
 - Introduce new Portal dialog with icon decorator. Refer to :ref:`this section <components-additional-portal-dialog-with-icon>` for more detail.
 

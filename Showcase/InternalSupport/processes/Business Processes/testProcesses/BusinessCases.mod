@@ -1,5 +1,5 @@
 [Ivy]
-15B1EA24CCF377E8 9.2.0 #module
+15B1EA24CCF377E8 9.3.0 #module
 >Proto >Proto Collection #zClass
 Be0 BusinessCases Big #zClass
 Be0 B #cInfo
@@ -88,9 +88,7 @@ Be0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Be0 f0 @C|.responsibility Everybody #txt
 Be0 f0 51 83 26 26 14 0 #rect
-Be0 f0 @|StartRequestIcon #fIcon
 Be0 f1 51 339 26 26 14 0 #rect
-Be0 f1 @|EndIcon #fIcon
 Be0 f3 signalCode ch:axonivy:portal:internalsupport:updatecheckintime #txt
 Be0 f3 attachToBusinessCase true #txt
 Be0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -103,9 +101,7 @@ Be0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Be0 f3 275 83 26 26 14 0 #rect
-Be0 f3 @|SignalStartEventIcon #fIcon
 Be0 f4 275 339 26 26 14 0 #rect
-Be0 f4 @|EndIcon #fIcon
 Be0 f5 actionTable 'out=in1;
 ' #txt
 Be0 f5 outLinks "TaskA.ivp" #txt
@@ -120,7 +116,6 @@ TaskA.SKIP_TASK_LIST=false
 TaskA.TYPE=0' #txt
 Be0 f5 template "" #txt
 Be0 f5 274 210 28 28 14 0 #rect
-Be0 f5 @|TaskSwitchIcon #fIcon
 Be0 f7 expr data #txt
 Be0 f7 outCond ivp=="TaskA.ivp" #txt
 Be0 f7 288 238 288 339 #arcP
@@ -140,7 +135,6 @@ Be0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Be0 f8 46 180 36 24 20 -2 #rect
-Be0 f8 @|StepIcon #fIcon
 Be0 f9 expr out #txt
 Be0 f9 64 109 64 180 #arcP
 Be0 f12 expr out #txt
@@ -150,7 +144,6 @@ Be0 f2 actionTable 'out=in;
 Be0 f2 actionCode 'out.caseName = "TECH: Update checkin time";
 out.taskName = "Update checkin time of case " +  ivy.case.getBusinessCase().getId();' #txt
 Be0 f2 270 148 36 24 20 -2 #rect
-Be0 f2 @|StepIcon #fIcon
 Be0 f10 288 109 288 148 #arcP
 Be0 f6 expr out #txt
 Be0 f6 type internaltest.Data #txt
@@ -183,7 +176,6 @@ Be0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Be0 f11 @C|.responsibility Everybody #txt
 Be0 f11 435 83 26 26 14 0 #rect
-Be0 f11 @|StartRequestIcon #fIcon
 Be0 f13 processCall 'Business Processes/testProcesses/BusinessCases:takeOrder()' #txt
 Be0 f13 requestActionDecl '<> param;' #txt
 Be0 f13 responseActionDecl 'internaltest.Data out;
@@ -200,11 +192,9 @@ Be0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Be0 f13 430 180 36 24 20 -2 #rect
-Be0 f13 @|TriggerIcon #fIcon
 Be0 f14 expr out #txt
 Be0 f14 448 109 448 180 #arcP
 Be0 f17 435 339 26 26 14 0 #rect
-Be0 f17 @|EndIcon #fIcon
 Be0 f19 outLink takeOrder.ivp #txt
 Be0 f19 inParamDecl '<> param;' #txt
 Be0 f19 requestEnabled false #txt
@@ -230,7 +220,6 @@ Be0 f19 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Be0 f19 @C|.responsibility Everybody #txt
 Be0 f19 599 83 26 26 14 0 #rect
-Be0 f19 @|StartRequestIcon #fIcon
 Be0 f20 actionTable 'out=in1;
 ' #txt
 Be0 f20 outLinks "TaskA.ivp" #txt
@@ -244,13 +233,11 @@ TaskA.SKIP_TASK_LIST=false
 TaskA.TYPE=0' #txt
 Be0 f20 template "" #txt
 Be0 f20 598 178 28 28 14 0 #rect
-Be0 f20 @|TaskSwitchIcon #fIcon
 Be0 f21 expr out #txt
 Be0 f21 type internaltest.Data #txt
 Be0 f21 var in1 #txt
 Be0 f21 612 109 612 178 #arcP
 Be0 f22 599 339 26 26 14 0 #rect
-Be0 f22 @|EndIcon #fIcon
 Be0 f24 signalCode ivy:portal:pizza:delivery #txt
 Be0 f24 attachToBusinessCase true #txt
 Be0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -263,9 +250,7 @@ Be0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Be0 f24 883 83 26 26 14 0 #rect
-Be0 f24 @|SignalStartEventIcon #fIcon
 Be0 f25 883 339 26 26 14 0 #rect
-Be0 f25 @|EndIcon #fIcon
 Be0 f27 actionTable 'out=in1;
 ' #txt
 Be0 f27 outLinks "TaskA.ivp" #txt
@@ -288,7 +273,6 @@ Be0 f27 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Be0 f27 434 274 28 28 14 0 #rect
-Be0 f27 @|TaskSwitchIcon #fIcon
 Be0 f18 expr data #txt
 Be0 f18 outCond ivp=="TaskA.ivp" #txt
 Be0 f18 448 302 448 339 #arcP
@@ -310,7 +294,6 @@ Be0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Be0 f16 594 276 36 24 20 -2 #rect
-Be0 f16 @|TriggerIcon #fIcon
 Be0 f28 expr data #txt
 Be0 f28 outCond ivp=="TaskA.ivp" #txt
 Be0 f28 612 206 612 276 #arcP
@@ -341,9 +324,7 @@ Be0 f29 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Be0 f29 @C|.responsibility Everybody #txt
 Be0 f29 755 83 26 26 14 0 #rect
-Be0 f29 @|StartRequestIcon #fIcon
 Be0 f30 755 339 26 26 14 0 #rect
-Be0 f30 @|EndIcon #fIcon
 Be0 f32 actionTable 'out=in;
 ' #txt
 Be0 f32 actionCode ivy.wf.signals().send("ivy:portal:pizza:delivery"); #txt
@@ -357,7 +338,6 @@ Be0 f32 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Be0 f32 750 212 36 24 20 -2 #rect
-Be0 f32 @|StepIcon #fIcon
 Be0 f33 expr out #txt
 Be0 f33 768 109 768 212 #arcP
 Be0 f31 expr out #txt
@@ -376,7 +356,6 @@ TaskA.SKIP_TASK_LIST=false
 TaskA.TYPE=0' #txt
 Be0 f34 template "" #txt
 Be0 f34 882 210 28 28 14 0 #rect
-Be0 f34 @|TaskSwitchIcon #fIcon
 Be0 f35 type internaltest.Data #txt
 Be0 f35 var in1 #txt
 Be0 f35 896 109 896 210 #arcP
@@ -402,7 +381,6 @@ Be0 f36 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Be0 f36 @C|.responsibility Everybody #txt
 Be0 f36 1105 81 30 30 16 0 #rect
-Be0 f36 @|StartRequestIcon #fIcon
 Be0 f37 dialogId internaltest.ui.SaleDepartment #txt
 Be0 f37 startMethod start() #txt
 Be0 f37 requestActionDecl '<> param;' #txt
@@ -419,9 +397,7 @@ Be0 f37 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Be0 f37 1064 266 112 44 -45 -8 #rect
-Be0 f37 @|UserTaskIcon #fIcon
 Be0 f39 1105 401 30 30 16 0 #rect
-Be0 f39 @|EndIcon #fIcon
 Be0 f40 1120 310 1120 401 #arcP
 Be0 f41 actionTable 'out=in;
 ' #txt
@@ -434,7 +410,6 @@ Be0 f41 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Be0 f41 1064 170 112 44 -36 -8 #rect
-Be0 f41 @|StepIcon #fIcon
 Be0 f42 1120 111 1120 170 #arcP
 Be0 f38 1120 214 1120 266 #arcP
 Be0 f43 signalCode sale:inform #txt
@@ -447,16 +422,13 @@ Be0 f43 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Be0 f43 1281 81 30 30 16 0 #rect
-Be0 f43 @|SignalStartEventIcon #fIcon
 Be0 f44 actionTable 'out=in1;
 ' #txt
 Be0 f44 caseData 'case.category=SALE/SENDMAIL
 case.name=Send mail inform' #txt
 Be0 f44 taskData 'TaskA.NAM=Send email inform ' #txt
 Be0 f44 1281 177 30 30 15 0 #rect
-Be0 f44 @|TaskSwitchSimpleIcon #fIcon
 Be0 f45 1281 401 30 30 16 0 #rect
-Be0 f45 @|EndIcon #fIcon
 Be0 f46 1296 111 1296 177 #arcP
 Be0 f47 1296 207 1296 401 #arcP
 >Proto Be0 .type internaltest.Data #txt

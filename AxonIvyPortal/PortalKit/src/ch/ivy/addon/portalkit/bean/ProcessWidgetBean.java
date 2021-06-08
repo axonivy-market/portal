@@ -20,12 +20,14 @@ import javax.faces.context.FacesContext;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
-import ch.ivy.addon.portalkit.bo.ExternalLink;
 import ch.ivy.addon.portalkit.bo.ExternalLinkProcessItem;
 import ch.ivy.addon.portalkit.bo.IvyProcess;
 import ch.ivy.addon.portalkit.bo.PortalExpressProcess;
 import ch.ivy.addon.portalkit.bo.Process;
+import ch.ivy.addon.portalkit.configuration.ExternalLink;
+import ch.ivy.addon.portalkit.configuration.GlobalSetting;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.enums.ProcessMode;
@@ -33,15 +35,12 @@ import ch.ivy.addon.portalkit.enums.ProcessType;
 import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;
 import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
-import ch.ivy.addon.portalkit.persistence.domain.GlobalSetting;
 import ch.ivy.addon.portalkit.service.ExpressProcessService;
-import ch.ivy.addon.portalkit.service.ExpressServiceRegistry;
 import ch.ivy.addon.portalkit.service.ExternalLinkService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
-import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
@@ -79,11 +78,21 @@ public class ProcessWidgetBean implements Serializable {
     groupProcessesByAlphabetIndex(portalProcesses);
   }
 
+  public String getProcessInformationPageUrl(Process process) {
+    String processId = StringUtils.EMPTY;
+    
+    Object nestedProcess = process.getProcess();
+    if (nestedProcess instanceof IWebStartable) {
+      processId = ((IWebStartable) nestedProcess).getId();
+    }
+    return PortalNavigator.buildProcessInfoUrl(processId);
+  }
+
   private void initProcessViewMode() {
     String userProcessSetting = UserSettingService.newInstance().getDefaultProcessMode();
     if (StringUtils.isBlank(userProcessSetting) || StringUtils.equalsIgnoreCase(userProcessSetting, UserSettingService.DEFAULT)) {
       GlobalSettingService globalSettingService = new GlobalSettingService();
-      GlobalSetting defaultSetting = globalSettingService.findGlobalSettingByKey(GlobalVariable.DEFAULT_PROCESS_MODE.name());
+      GlobalSetting defaultSetting = globalSettingService.findGlobalSettingByGlobalVariable(GlobalVariable.DEFAULT_PROCESS_MODE);
       userProcessSetting = defaultSetting.getDisplayValue();
     }
 
@@ -149,7 +158,7 @@ public class ProcessWidgetBean implements Serializable {
     ProcessStartCollector processStartCollector = new ProcessStartCollector();
     String expressStartLink = processStartCollector.findExpressWorkflowStartLink();
     if (StringUtils.isNotBlank(expressStartLink)) {
-      List<ExpressProcess> workflows = ExpressServiceRegistry.getProcessService().findReadyToExecuteProcessOrderByName();
+      List<ExpressProcess> workflows = ExpressProcessService.getInstance().findReadyToExecuteProcessOrderByName();
       for (ExpressProcess wf : workflows) {
         if (PermissionUtils.checkAbleToStartAndAbleToEditExpressWorkflow(wf)) {
           processes.add(wf);
@@ -162,7 +171,7 @@ public class ProcessWidgetBean implements Serializable {
   }
   
   private List<Process> findExternalLink() {
-    List<ExternalLink> externalLinks = ExternalLinkService.getInstance().findStartableLink(Ivy.session().getSessionUser().getId());
+    List<ExternalLink> externalLinks = ExternalLinkService.getInstance().findAll();
     List<Process> defaultPortalProcesses = new ArrayList<>();
     externalLinks.forEach(externalLink -> defaultPortalProcesses.add(new ExternalLinkProcessItem(externalLink)));
     return defaultPortalProcesses;
@@ -197,9 +206,7 @@ public class ProcessWidgetBean implements Serializable {
 
   public void deleteExpressWorkflow() {
     String workflowId = this.deletedProcess.getId();
-    ExpressServiceRegistry.getProcessService().delete(workflowId);
-    ExpressServiceRegistry.getTaskDefinitionService().deleteByProcessId(workflowId);
-    ExpressServiceRegistry.getFormElementService().deleteByProcessId(workflowId);
+    ExpressProcessService.getInstance().delete(workflowId);
     portalProcesses.remove(portalProcesses.stream().filter(process -> process.getId().equals(deletedProcess.getId())).findFirst().get());
     groupProcessesByAlphabetIndex(portalProcesses);
   }
@@ -227,11 +234,11 @@ public class ProcessWidgetBean implements Serializable {
   }
 
   private ExpressProcess updateExpressProcess(String processId) {
-    ExpressProcessService expressProcessService = ExpressServiceRegistry.getProcessService();
-    ExpressProcess expressProcess = expressProcessService.findById(processId);
+    ExpressProcessService service = ExpressProcessService.getInstance();
+    ExpressProcess expressProcess = service.findById(processId);
     if (expressProcess != null) {
       expressProcess.setIcon(this.selectedIconProcess);
-      expressProcessService.save(expressProcess);
+      service.save(expressProcess);
     }
     PermissionUtils.checkAbleToStartAndAbleToEditExpressWorkflow(expressProcess);
     return expressProcess;
@@ -239,7 +246,7 @@ public class ProcessWidgetBean implements Serializable {
 
   private ExternalLink updateExternalLink(String processId) {
     ExternalLinkService externalLinkService = ExternalLinkService.getInstance();
-    ExternalLink externalLink = externalLinkService.findById(Long.valueOf(processId));
+    ExternalLink externalLink = externalLinkService.findById(processId);
     if (externalLink != null) {
       externalLink.setIcon(this.selectedIconProcess);
       externalLink.setName(this.editedExternalLink.getName());
@@ -294,7 +301,7 @@ public class ProcessWidgetBean implements Serializable {
   }
   
   public void deleteExternalLink() {
-    ExternalLinkService.getInstance().delete(Long.parseLong(this.deletedProcess.getId()));
+    ExternalLinkService.getInstance().delete(this.deletedProcess.getId());
     portalProcesses.remove(portalProcesses.stream()
         .filter(process -> process.getId().equals(this.deletedProcess.getId()))
         .findFirst().get());
@@ -352,7 +359,7 @@ public class ProcessWidgetBean implements Serializable {
 
   private void updateSeletedEditExternalLink(Process editedProcess) {
     this.editedExternalLink = new ExternalLink();
-    this.editedExternalLink.setId(Long.valueOf(editedProcess.getId()));
+    this.editedExternalLink.setId(editedProcess.getId());
     this.editedExternalLink.setName(editedProcess.getName());
     this.editedExternalLink.setLink(editedProcess.getStartLink());
     this.editedExternalLink.setDescription(editedProcess.getDescription());
@@ -401,6 +408,11 @@ public class ProcessWidgetBean implements Serializable {
   
   public boolean isExternalLink(Process process) {
     return !Objects.isNull(process) && process.getType() == ProcessType.EXTERNAL_LINK;
+  }
+  
+  public boolean isCaseMap(Process process) {
+    return !Objects.isNull(process) && process.getStartLink().endsWith(".icm");
+    
   }
   
   public String targetToStartProcess(Process process) {

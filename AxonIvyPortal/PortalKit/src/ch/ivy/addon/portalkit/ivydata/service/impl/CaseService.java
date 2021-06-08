@@ -85,7 +85,7 @@ public class CaseService implements ICaseService {
   }
 
   private boolean isCaseOwnerEnabled() {
-    return Boolean.parseBoolean(new GlobalSettingService().findGlobalSettingValue(GlobalVariable.ENABLE_CASE_OWNER.toString()));
+    return Boolean.parseBoolean(new GlobalSettingService().findGlobalSettingValue(GlobalVariable.ENABLE_CASE_OWNER));
   }
   
   @Override

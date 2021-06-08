@@ -1,5 +1,5 @@
 [Ivy]
-160070C3BA6D3702 9.2.0 #module
+160070C3BA6D3702 9.3.0 #module
 >Proto >Proto Collection #zClass
 Ce0 HandleEndPage Big #zClass
 Ce0 B #cInfo
@@ -19,7 +19,6 @@ Ce0 @PushWFArc f7 '' #zField
 Ce0 @InfoButton f0 '' #zField
 >Proto Ce0 Ce0 HandleEndPage #zField
 Ce0 f3 378 185 30 30 0 15 #rect
-Ce0 f3 @|EndSubIcon #fIcon
 Ce0 f4 actionTable 'out=in;
 ' #txt
 Ce0 f4 actionCode 'in.callbackUrl = ivy.html.startRef("1600BDF7CC0AE52F/start.ivp");
@@ -35,7 +34,6 @@ Ce0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ce0 f4 209 178 112 44 -44 -8 #rect
-Ce0 f4 @|StepIcon #fIcon
 Ce0 f5 inParamDecl '<> param;' #txt
 Ce0 f5 outParamDecl '<String callbackUrl> result;' #txt
 Ce0 f5 outParamTable 'result.callbackUrl=in.callbackUrl;
@@ -51,7 +49,6 @@ Ce0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ce0 f5 74 185 30 30 -48 17 #rect
-Ce0 f5 @|StartSubIcon #fIcon
 Ce0 f6 expr out #txt
 Ce0 f6 104 200 209 200 #arcP
 Ce0 f7 expr out #txt
@@ -73,7 +70,6 @@ OUT: callbackUrl : String</name>
 </elementInfo>
 ' #txt
 Ce0 f0 40 18 688 140 -339 -64 #rect
-Ce0 f0 @|IBIcon #fIcon
 >Proto Ce0 .type ch.ivy.addon.express.generic.HandleEndPageData #txt
 >Proto Ce0 .processKind CALLABLE_SUB #txt
 >Proto Ce0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

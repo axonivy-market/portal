@@ -1,5 +1,5 @@
 [Ivy]
-176465FBFE257CF3 9.2.0 #module
+176465FBFE257CF3 9.3.0 #module
 >Proto >Proto Collection #zClass
 Ae0 AdditionalCaseDetailPageIframe Big #zClass
 Ae0 B #cInfo
@@ -36,7 +36,6 @@ Ae0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ae0 f10 296 42 112 44 -41 -8 #rect
-Ae0 f10 @|StepIcon #fIcon
 Ae0 f0 outLink createInvestmentRequestIframe.ivp #txt
 Ae0 f0 inParamDecl '<> param;' #txt
 Ae0 f0 requestEnabled true #txt
@@ -71,9 +70,7 @@ Ae0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ae0 f0 @C|.responsibility Everybody #txt
 Ae0 f0 121 169 30 30 -79 17 #rect
-Ae0 f0 @|StartRequestIcon #fIcon
 Ae0 f1 585 169 30 30 0 15 #rect
-Ae0 f1 @|EndIcon #fIcon
 Ae0 f9 dialogId com.axonivy.portal.developerexamples.customization.InvestmentRequestCaseDetailPageIframe #txt
 Ae0 f9 startMethod start(ch.ivyteam.ivy.workflow.ICase) #txt
 Ae0 f9 requestActionDecl '<ch.ivyteam.ivy.workflow.ICase ivyCase> param;' #txt
@@ -94,7 +91,6 @@ Additional Case Details Page</name>
 </elementInfo>
 ' #txt
 Ae0 f9 476 42 192 44 -76 -16 #rect
-Ae0 f9 @|UserDialogIcon #fIcon
 Ae0 f5 processCall 'Functional Processes/SetAdditonalCaseDetailPage:call(String)' #txt
 Ae0 f5 requestActionDecl '<String linkToAddtionalCaseDetailPage> param;' #txt
 Ae0 f5 requestMappingAction 'param.linkToAddtionalCaseDetailPage="Start Processes/AdditionalCaseDetailPageIframe/showInvestmentRequestCustomFieldIframe.ivp";
@@ -113,7 +109,6 @@ Ae0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ae0 f5 280 162 176 44 -80 -8 #rect
-Ae0 f5 @|CallSubIcon #fIcon
 Ae0 f3 actionTable 'out=in1;
 ' #txt
 Ae0 f3 outLinks "TaskA.ivp" #txt
@@ -127,7 +122,6 @@ TaskA.SKIP_TASK_LIST=false
 TaskA.TYPE=0' #txt
 Ae0 f3 template "" #txt
 Ae0 f3 489 169 30 30 0 16 #rect
-Ae0 f3 @|TaskSwitchSimpleIcon #fIcon
 Ae0 f7 outLink showInvestmentRequestCustomFieldIframe.ivp #txt
 Ae0 f7 inParamDecl '<Long caseId> param;' #txt
 Ae0 f7 inParamTable 'out.caseId=param.caseId;
@@ -154,9 +148,7 @@ Ae0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ae0 f7 @C|.responsibility Everybody #txt
 Ae0 f7 129 49 30 30 -116 17 #rect
-Ae0 f7 @|StartRequestIcon #fIcon
 Ae0 f8 701 49 30 30 0 15 #rect
-Ae0 f8 @|EndIcon #fIcon
 Ae0 f14 expr out #txt
 Ae0 f14 408 64 476 64 #arcP
 Ae0 f6 expr out #txt
@@ -201,7 +193,6 @@ HOW TO RUN THIS EXAMPLE:&#13;
 </elementInfo>
 ' #txt
 Ae0 f13 744 18 768 316 -375 -152 #rect
-Ae0 f13 @|IBIcon #fIcon
 >Proto Ae0 .type com.axonivy.portal.developerexamples.customization.AdditionalCaseDetailPageIframeData #txt
 >Proto Ae0 .processKind NORMAL #txt
 >Proto Ae0 0 0 32 24 18 0 #rect
