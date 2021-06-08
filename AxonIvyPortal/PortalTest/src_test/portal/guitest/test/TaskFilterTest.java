@@ -293,7 +293,9 @@ public class TaskFilterTest extends BaseTest {
     TaskWidgetPage taskWidgetPage = mainMenuPage.openTaskList();
 
     String filterName = "For admins";
-    taskWidgetPage.openNoActivatorFilter("Tasks of unavailable activators");
+    taskWidgetPage.openNoActivatorFilter("Task for unavailable activator");
+    assertEquals(4, taskWidgetPage.countTasks());
+    taskWidgetPage.filterByUnavailableActivator(true);
     assertEquals(1, taskWidgetPage.countTasks());
 
     WebElement saveFilterDialog = taskWidgetPage.openSaveFilterDialog();
