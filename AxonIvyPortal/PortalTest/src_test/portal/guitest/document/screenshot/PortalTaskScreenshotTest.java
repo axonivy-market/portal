@@ -220,7 +220,8 @@ public class PortalTaskScreenshotTest extends ScreenshotTest {
     ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 1200));
     login(TestAccount.ADMIN_USER);
     TaskWidgetPage taskWidget = homePage.openTaskList();
-    taskWidget.openMoreOptionFilter();
+    taskWidget.openNoActivatorFilter("Task for unavailable activator");
+    taskWidget.filterByUnavailableActivator(false);
     ScreenshotUtil.captureHalfTopRightPageScreenShot(ScreenshotUtil.TASK_WIDGET_FOLDER + "task-filter-more-option");
   }
 }
