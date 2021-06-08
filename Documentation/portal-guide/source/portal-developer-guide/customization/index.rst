@@ -44,6 +44,8 @@ You could find project ``portal-developer-examples`` in engine demo mode or impo
    change-group-id
    user-with-environment-info
    page-header-footer
+   process-information
+   
    
 
 .. |engine-demo-mode| image:: images/customization/engine-demo-mode.png

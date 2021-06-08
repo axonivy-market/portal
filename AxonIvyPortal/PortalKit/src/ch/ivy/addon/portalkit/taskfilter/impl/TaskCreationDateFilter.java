@@ -31,8 +31,7 @@ public class TaskCreationDateFilter extends TaskFilter {
 
   @Override
   public String value() {
-    DateTimeGlobalSettingService service = new DateTimeGlobalSettingService();
-    DateFormat formatter = new SimpleDateFormat(service.getDateTimePattern());
+    DateFormat formatter = new SimpleDateFormat(DateTimeGlobalSettingService.getInstance().getDateTimePattern(), Ivy.session().getContentLocale());
     if (fromCreationDate != null && toCreationDate != null) {
       return String.format(DASH, formatter.format(fromCreationDate), formatter.format(toCreationDate));
     }

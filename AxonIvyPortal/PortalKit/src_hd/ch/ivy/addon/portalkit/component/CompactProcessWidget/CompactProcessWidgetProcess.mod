@@ -1,5 +1,5 @@
 [Ivy]
-167CFB0D927CF955 9.2.0 #module
+167CFB0D927CF955 9.3.0 #module
 >Proto >Proto Collection #zClass
 Ps0 CompactProcessWidgetProcess Big #zClass
 Ps0 RD #cInfo
@@ -57,7 +57,7 @@ Ps0 f4 109 96 307 96 #arcP
 Ps0 f0 guid 167CF9865BEC5C1B #txt
 Ps0 f0 method collectProcesses() #txt
 Ps0 f0 inParameterDecl '<> param;' #txt
-Ps0 f0 outParameterDecl '<java.util.List<ch.ivy.addon.portalkit.persistence.domain.UserProcess> userProcesses> result;' #txt
+Ps0 f0 outParameterDecl '<java.util.List<ch.ivy.addon.portalkit.configuration.UserProcess> userProcesses> result;' #txt
 Ps0 f0 outParameterMapAction 'result.userProcesses=in.userProcesses;
 ' #txt
 Ps0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -86,18 +86,18 @@ Ps0 f6 176 170 112 44 -43 -8 #rect
 Ps0 f8 667 179 26 26 0 12 #rect
 Ps0 f10 actionTable 'out=in;
 ' #txt
-Ps0 f10 actionCode 'import ch.ivy.addon.portalkit.mapper.UserProcessMapper;
+Ps0 f10 actionCode 'import ch.ivy.addon.portalkit.service.ExpressProcessService;
+import ch.ivy.addon.portalkit.mapper.UserProcessMapper;
 import ch.ivy.addon.portalkit.util.ProcessStartUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import org.apache.commons.lang3.StringUtils;
-import ch.ivy.addon.portalkit.service.ExpressServiceRegistry;
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 
 ProcessStartCollector processStartCollector = new ProcessStartCollector();
 String expressStartLink = processStartCollector.findExpressWorkflowStartLink();
 if (StringUtils.isNotBlank(expressStartLink)) {
-	List<ExpressProcess> workflows = ExpressServiceRegistry.getProcessService().findReadyToExecuteProcessOrderByName();
+	List<ExpressProcess> workflows = ExpressProcessService.getInstance().findReadyToExecuteProcessOrderByName();
 	for(ExpressProcess wf : workflows) {
 		if (PermissionUtils.checkAbleToStartAndAbleToEditExpressWorkflow(wf) && !ProcessStartUtils.isExpressProcessAdded(wf, in.userProcesses)) {
 		  in.userProcesses.add(UserProcessMapper.toUserProcess(wf, expressStartLink));
@@ -119,11 +119,11 @@ Ps0 f12 actionTable 'out=in;
 ' #txt
 Ps0 f12 actionCode 'import ch.ivy.addon.portalkit.mapper.UserProcessMapper;
 import ch.ivy.addon.portalkit.service.ExternalLinkService;
-import ch.ivy.addon.portalkit.persistence.domain.UserProcess;
+import ch.ivy.addon.portalkit.configuration.UserProcess;
 import java.util.ArrayList;
-import ch.ivy.addon.portalkit.bo.ExternalLink;
+import ch.ivy.addon.portalkit.configuration.ExternalLink;
 
-in.userProcesses.addAll(UserProcessMapper.externalLinksToUserProcesses(ExternalLinkService.getInstance().findStartableLink(ivy.session.getSessionUser().getId())));' #txt
+in.userProcesses.addAll(UserProcessMapper.externalLinksToUserProcesses(ExternalLinkService.getInstance().findAll()));' #txt
 Ps0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

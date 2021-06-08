@@ -3,6 +3,7 @@ package ch.ivy.addon.portalkit.bo;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.enums.ProcessType;
+import ch.ivy.addon.portalkit.configuration.ExternalLink;
 
 /*
  * Used for merging external link and ivy process into a process list

@@ -1,5 +1,5 @@
 [Ivy]
-15797DC22608DA55 9.2.0 #module
+15797DC22608DA55 9.3.0 #module
 >Proto >Proto Collection #zClass
 Gt0 GenericPredefinedWorkflowStart Big #zClass
 Gt0 B #cInfo
@@ -58,7 +58,6 @@ Gt0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Gt0 f0 @C|.responsibility Everybody #txt
 Gt0 f0 81 49 30 30 -96 17 #rect
-Gt0 f0 @|StartRequestIcon #fIcon
 Gt0 f3 processCall 'Functional Processes/executePredefinedWorkflow:call(Integer,String)' #txt
 Gt0 f3 requestActionDecl '<Integer actualStepIndex,String workflowID> param;' #txt
 Gt0 f3 requestMappingAction 'param.actualStepIndex=in.actualStepIndex;
@@ -78,7 +77,6 @@ Gt0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Gt0 f3 408 42 160 44 -76 -8 #rect
-Gt0 f3 @|CallSubIcon #fIcon
 Gt0 f6 outLink GenericEditProcessStart.ivp #txt
 Gt0 f6 inParamDecl '<String workflowID> param;' #txt
 Gt0 f6 inParamTable 'out.workflowID=param.workflowID;
@@ -113,7 +111,6 @@ Gt0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Gt0 f6 @C|.responsibility Everybody #txt
 Gt0 f6 81 145 30 30 -76 17 #rect
-Gt0 f6 @|StartRequestIcon #fIcon
 Gt0 f12 processCall 'Functional Processes/editWorkflow:editWorkflow(String)' #txt
 Gt0 f12 requestActionDecl '<String workflowID> param;' #txt
 Gt0 f12 requestMappingAction 'param.workflowID=in.workflowID;
@@ -132,9 +129,7 @@ Gt0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Gt0 f12 416 136 160 48 -10 -8 #rect
-Gt0 f12 @|CallSubIcon #fIcon
 Gt0 f10 608 144 32 32 0 16 #rect
-Gt0 f10 @|AlternativeIcon #fIcon
 Gt0 f16 expr out #txt
 Gt0 f16 568 64 624 144 #arcP
 Gt0 f16 1 624 64 #addKink
@@ -143,7 +138,6 @@ Gt0 f2 expr out #txt
 Gt0 f2 576 160 608 160 #arcP
 Gt0 f2 0 0.477567298105683 0 0 #arcLabel
 Gt0 f17 705 145 30 30 0 15 #rect
-Gt0 f17 @|EndIcon #fIcon
 Gt0 f1 expr in #txt
 Gt0 f1 640 160 705 160 #arcP
 Gt0 f5 actionTable 'out=in;
@@ -158,7 +152,6 @@ Gt0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Gt0 f5 224 42 112 44 -53 -8 #rect
-Gt0 f5 @|StepIcon #fIcon
 Gt0 f7 expr out #txt
 Gt0 f7 111 64 224 64 #arcP
 Gt0 f4 336 64 408 64 #arcP
@@ -175,7 +168,6 @@ Gt0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Gt0 f9 224 138 112 44 -53 -8 #rect
-Gt0 f9 @|StepIcon #fIcon
 Gt0 f11 expr out #txt
 Gt0 f11 111 160 224 160 #arcP
 Gt0 f8 336 160 416 160 #arcP

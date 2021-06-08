@@ -1,5 +1,8 @@
 package portal.guitest.page;
 
+import static portal.guitest.common.Variable.CLIENT_SIDE_TIMEOUT;
+import static portal.guitest.common.Variable.SHOW_ENVIRONMENT_INFO;
+
 import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
@@ -77,12 +80,12 @@ public class AdminSettingsPage extends TemplatePage {
   public void closeInformConfigDialog() {
     String closeButtonId = "close-dialog-button";
     click(findElementById(closeButtonId));
-    waitForElementDisplayed(By.id(closeButtonId), false);
+    waitForElementReallyDisplayed(By.id(closeButtonId), false);
   }
 
   public void setClientSideTimeout(String timeout) {
     openSettingTab();
-    editGlobalVariable("CLIENT_SIDE_TIMEOUT", timeout, false);
+    editGlobalVariable(CLIENT_SIDE_TIMEOUT.getKey(), timeout, false);
     closeConfirmationDialog();
   }
 
@@ -93,7 +96,7 @@ public class AdminSettingsPage extends TemplatePage {
 
   public void setEnviromentInfo() {
     openSettingTab();
-    editGlobalVariable("SHOW_ENVIRONMENT_INFO", "true", true);
+    editGlobalVariable(SHOW_ENVIRONMENT_INFO.getKey(), "true", true);
     closeConfirmationDialog();
   }
   

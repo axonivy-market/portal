@@ -1,5 +1,5 @@
 [Ivy]
-16812A78CEF8FB1A 9.2.0 #module
+16812A78CEF8FB1A 9.3.0 #module
 >Proto >Proto Collection #zClass
 By0 BuildTaskQuery Big #zClass
 By0 B #cInfo
@@ -36,9 +36,7 @@ By0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 By0 f0 77 49 30 30 -47 17 #rect
-By0 f0 @|StartSubIcon #fIcon
 By0 f1 469 49 30 30 0 15 #rect
-By0 f1 @|EndSubIcon #fIcon
 By0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -58,7 +56,6 @@ if (in.isQueryForHomePage) { // in home page
 </elementInfo>
 ' #txt
 By0 f5 204 140 688 172 -340 -80 #rect
-By0 f5 @|IBIcon #fIcon
 By0 f2 actionTable 'out=in;
 ' #txt
 By0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -69,7 +66,6 @@ By0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 By0 f2 232 42 112 44 -43 -8 #rect
-By0 f2 @|StepIcon #fIcon
 By0 f3 expr out #txt
 By0 f3 107 64 232 64 #arcP
 By0 f4 expr out #txt
@@ -90,7 +86,6 @@ By0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 By0 f7 81 145 30 30 -70 17 #rect
-By0 f7 @|StartSubIcon #fIcon
 By0 f8 expr out #txt
 By0 f8 109 153 244 86 #arcP
 >Proto By0 .type ch.ivy.add.portalkit.BuildTaskQueryData #txt

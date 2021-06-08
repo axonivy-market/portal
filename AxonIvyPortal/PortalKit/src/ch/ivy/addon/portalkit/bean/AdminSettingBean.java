@@ -11,7 +11,7 @@ import org.primefaces.event.ReorderEvent;
 import org.primefaces.event.TabChangeEvent;
 
 import ch.ivy.addon.portalkit.jsf.Attrs;
-import ch.ivy.addon.portalkit.persistence.domain.Application;
+import ch.ivy.addon.portalkit.configuration.Application;
 
 @ManagedBean
 @ViewScoped

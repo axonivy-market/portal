@@ -1,37 +1,27 @@
 package ch.ivy.addon.portalkit.service;
 
-import static ch.ivy.addon.portalkit.constant.IvyCacheIdentifier.THIRD_PARTY_APPLICATIONS;
+import ch.ivy.addon.portalkit.configuration.Application;
 
-import java.util.List;
-import java.util.Optional;
+public class RegisteredApplicationService extends JsonConfigurationService<Application> {
 
-import ch.ivy.addon.portalkit.persistence.dao.ApplicationDao;
-import ch.ivy.addon.portalkit.persistence.domain.Application;
+  private static final String THIRD_PARTY_APPLICATIONS = "Portal.ThirdPartyApplications";
+  private static RegisteredApplicationService instance;
 
-public class RegisteredApplicationService extends AbstractService<Application> {
+  private RegisteredApplicationService() {}
 
-  public RegisteredApplicationService() {
-    super(new ApplicationDao());
+  public static RegisteredApplicationService getInstance() {
+    if (instance == null) {
+      instance = new RegisteredApplicationService();
+    }
+    return instance;
+  }
+  @Override
+  public Class<Application> getType() {
+    return Application.class;
   }
 
   @Override
-  protected ApplicationDao getDao() {
-    return (ApplicationDao) super.getDao();
-  }
-
-  /**
-   * Find all register 3rd party apps
-   * @return all register 3rd party apps
-   */
-  @SuppressWarnings("unchecked")
-  public List<Application> findAllThirdPartyApplication(){
-    Optional<Object> sessionCache = IvyCacheService.newInstance().getSessionCacheValue(THIRD_PARTY_APPLICATIONS, THIRD_PARTY_APPLICATIONS);
-    if (sessionCache.isEmpty()) {
-      List<Application> applications = getDao().findAllThirdPartyApplications();
-      IvyCacheService.newInstance().setSessionCache(THIRD_PARTY_APPLICATIONS, THIRD_PARTY_APPLICATIONS, applications);
-      return applications;
-    } else {
-      return (List<Application>) sessionCache.get();
-    }
+  public String getConfigKey() {
+    return THIRD_PARTY_APPLICATIONS;
   }
 }

@@ -1,5 +1,5 @@
 [Ivy]
-169B2A4D199FA6EA 9.2.0 #module
+169B2A4D199FA6EA 9.3.0 #module
 >Proto >Proto Collection #zClass
 At0 AssignRolesGroupChat Big #zClass
 At0 B #cInfo
@@ -32,9 +32,7 @@ At0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 At0 f0 33 25 30 30 5 17 #rect
-At0 f0 @|StartSubIcon #fIcon
 At0 f1 33 233 30 30 0 15 #rect
-At0 f1 @|EndSubIcon #fIcon
 At0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -53,7 +51,6 @@ if (processPath.contains("Start Processes/CreateTestData/CategoriedLeaveRequest.
 </elementInfo>
 ' #txt
 At0 f3 72 82 512 140 -250 -64 #rect
-At0 f3 @|IBIcon #fIcon
 At0 f2 expr out #txt
 At0 f2 48 55 48 233 #arcP
 At0 f4 72 152 48 144 #arcP

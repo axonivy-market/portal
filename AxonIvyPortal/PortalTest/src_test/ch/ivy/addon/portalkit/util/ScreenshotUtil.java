@@ -27,6 +27,7 @@ public class ScreenshotUtil {
   public static final String EXPRESS_FOLDER = "/express/";
   public static final String EXPRESS_MANAGEMENT_FOLDER = "/express-management/";
   public static final String PROCESSES_WIDGET_FOLDER = "/process/";
+  public static final String PROCESSES_INFORMATION_WIDGET_FOLDER = "/process/information/";
   public static final String TASK_WIDGET_FOLDER = "/task/";
   public static final String TASK_WIDGET_CUSTOMIZATION_FOLDER = "/task/customization/";
   public static final String TASK_DETAIL_FOLDER = "/task-detail/";
@@ -218,7 +219,7 @@ public class ScreenshotUtil {
     File fileScreenShot = new File(SCREENSHOT_FOLDER + screenshotName + SCREENSHOT_EXTENSION);
     FileUtils.copyFile(screenshot, fileScreenShot);
   }
-  
+
   public static void captureHalfTopPageScreenShot(String screenshotName, Dimension size) throws IOException {
     WebDriver driver = Browser.getBrowser().getDriver();
     resizeBrowser(size);

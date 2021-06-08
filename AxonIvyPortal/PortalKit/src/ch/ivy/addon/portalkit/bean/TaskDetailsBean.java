@@ -71,7 +71,7 @@ public class TaskDetailsBean implements Serializable {
   private void loadTaskDetailsSettings() {
     hasShowNotAvailableData = PermissionUtils.isSessionUserHasAdminRole();
     hasShowDurationTime = Boolean
-        .parseBoolean(globalSettingService.findGlobalSettingValue(GlobalVariable.SHOW_TASK_DURATION_TIME.toString()));
+        .parseBoolean(globalSettingService.findGlobalSettingValue(GlobalVariable.SHOW_TASK_DURATION_TIME));
   }
 
   private void loadWidgets() throws Exception {

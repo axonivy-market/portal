@@ -39,44 +39,61 @@ public class UserProfileBean implements Serializable {
   }
   
   public String getDisplayNameOfTaskSortField(String sortField) {
+    List<String> sortFieldNames = Stream.of(TaskSortField.values()).map(Enum::name).collect(Collectors.toList());
+
     if (StringUtils.equals(sortField, DEFAULT)) {
-      return getDefaultSelection(GlobalVariable.DEFAULT_SORT_FIELD_OF_TASK_LIST);
+      GlobalSettingService globalSettingService = new GlobalSettingService();
+      String defaultSortField = globalSettingService.findGlobalSettingByGlobalVariable(GlobalVariable.DEFAULT_SORT_FIELD_OF_TASK_LIST).getValue();
+
+      String displaySortField = sortFieldNames.contains(defaultSortField) ? TaskSortField.valueOf(defaultSortField).getLabel() : defaultSortField;
+      return getDefaultSelection(displaySortField);
     }
 
-    List<String> sortFieldNames = Stream.of(TaskSortField.values()).map(Enum::name).collect(Collectors.toList());
     return sortFieldNames.contains(sortField) ? TaskSortField.valueOf(sortField).getLabel() : sortField;
   }
 
   public String getDisplayNameOfCaseSortField(String sortField) {
+    List<String> sortFieldNames = Stream.of(CaseSortField.values()).map(Enum::name).collect(Collectors.toList());
     if (StringUtils.equals(sortField, DEFAULT)) {
-      return getDefaultSelection(GlobalVariable.DEFAULT_SORT_FIELD_OF_CASE_LIST);
+      GlobalSettingService globalSettingService = new GlobalSettingService();
+      String defaultSortField = globalSettingService.findGlobalSettingByGlobalVariable(GlobalVariable.DEFAULT_SORT_FIELD_OF_CASE_LIST).getValue();
+
+      String displaySortField = sortFieldNames.contains(defaultSortField) ? CaseSortField.valueOf(defaultSortField).getLabel() : defaultSortField;
+      return getDefaultSelection(displaySortField);
     }
 
-    List<String> sortFieldNames = Stream.of(CaseSortField.values()).map(Enum::name).collect(Collectors.toList());
     return sortFieldNames.contains(sortField) ? CaseSortField.valueOf(sortField).getLabel() : sortField;
   }
 
   public String getDisplayNameOfTaskSortDirection(String sortDirection) {
+    List<String> sortDirectionNames = Stream.of(SortDirection.values()).map(Enum::name).collect(Collectors.toList());
     if (StringUtils.equals(sortDirection, DEFAULT)) {
-      return getDefaultSelection(GlobalVariable.DEFAULT_SORT_DIRECTION_OF_TASK_LIST);
+      GlobalSettingService globalSettingService = new GlobalSettingService();
+      String defaultDirection = globalSettingService.findGlobalSettingByGlobalVariable(GlobalVariable.DEFAULT_SORT_DIRECTION_OF_TASK_LIST).getValue();
+
+      String displayDirection = sortDirectionNames.contains(defaultDirection) ? SortDirection.valueOf(defaultDirection).getLabel() : "";
+      return getDefaultSelection(displayDirection);
     }
 
-    List<String> sortDirectionNames = Stream.of(SortDirection.values()).map(Enum::name).collect(Collectors.toList());
     return sortDirectionNames.contains(sortDirection) ? SortDirection.valueOf(sortDirection).getLabel() : "";
   }
 
   public String getDisplayNameOfCaseSortDirection(String sortDirection) {
+    List<String> sortDirectionNames = Stream.of(SortDirection.values()).map(Enum::name).collect(Collectors.toList());
     if (StringUtils.equals(sortDirection, DEFAULT)) {
-      return getDefaultSelection(GlobalVariable.DEFAULT_SORT_DIRECTION_OF_CASE_LIST);
+      GlobalSettingService globalSettingService = new GlobalSettingService();
+      String defaultDirection = globalSettingService.findGlobalSettingByGlobalVariable(GlobalVariable.DEFAULT_SORT_DIRECTION_OF_CASE_LIST).getValue();
+      
+      String displayDirection = sortDirectionNames.contains(defaultDirection) ? SortDirection.valueOf(defaultDirection).getLabel() : "";
+      return getDefaultSelection(displayDirection);
     }
 
-    List<String> sortDirectionNames = Stream.of(SortDirection.values()).map(Enum::name).collect(Collectors.toList());
+    
     return sortDirectionNames.contains(sortDirection) ? SortDirection.valueOf(sortDirection).getLabel() : "";
   }
 
-  private String getDefaultSelection(GlobalVariable defaultOption) {
-    GlobalSettingService globalSettingService = new GlobalSettingService();
-    return Ivy.cms().co(DEFAULT_OPTION, Arrays.asList(globalSettingService.findGlobalSettingByKey(defaultOption.name()).getDisplayValue()));
+  private String getDefaultSelection(String sortFieldName) {
+    return Ivy.cms().co(DEFAULT_OPTION, Arrays.asList(sortFieldName));
   }
 
   public String getDisplayDatePattern(String selectedPattern) {
@@ -91,7 +108,7 @@ public class UserProfileBean implements Serializable {
   }
 
   public String prepareDisplayCurrentDate(String pattern) {
-    SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
+    SimpleDateFormat dateFormat = new SimpleDateFormat(pattern, Ivy.session().getContentLocale());
     return " (" + dateFormat.format(new Date()) + ")";
   }
 }

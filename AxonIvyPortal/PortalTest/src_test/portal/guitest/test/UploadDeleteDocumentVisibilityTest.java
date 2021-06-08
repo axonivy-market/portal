@@ -1,5 +1,7 @@
 package portal.guitest.test;
 
+import static portal.guitest.common.Variable.HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -12,7 +14,6 @@ import portal.guitest.page.TaskWidgetPage;
 
 public class UploadDeleteDocumentVisibilityTest extends BaseTest {
 
-  private static final String HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE_SETTING = "HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE";
   private HomePage homePage;
   private CaseWidgetPage casePage;
   private CaseDetailsPage caseDetailsPage;
@@ -44,7 +45,7 @@ public class UploadDeleteDocumentVisibilityTest extends BaseTest {
     redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.startTaskWithoutUI(0);
-    updatePortalSetting(HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE_SETTING, "true");
+    updatePortalSetting(HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE.getKey(), "true");
     redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
 
     casePage = homePage.openCaseList();

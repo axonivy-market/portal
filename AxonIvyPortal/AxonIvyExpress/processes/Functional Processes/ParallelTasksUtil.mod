@@ -1,5 +1,5 @@
 [Ivy]
-1549EAD7E9C3125A 9.2.0 #module
+1549EAD7E9C3125A 9.3.0 #module
 >Proto >Proto Collection #zClass
 Pl0 ParallelTasksUtil Big #zClass
 Pl0 B #cInfo
@@ -36,7 +36,6 @@ Pl0 @PushWFArc f6 '' #zField
 Pl0 @PushWFArc f7 '' #zField
 >Proto Pl0 Pl0 ParallelTasksUtil #zField
 Pl0 f1 129 321 30 30 0 15 #rect
-Pl0 f1 @|EndSubIcon #fIcon
 Pl0 f17 actionTable 'out=in;
 ' #txt
 Pl0 f17 actionCode in.counter++; #txt
@@ -50,7 +49,6 @@ Pl0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Pl0 f17 254 188 36 24 20 -2 #rect
-Pl0 f17 @|StepIcon #fIcon
 Pl0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -61,7 +59,6 @@ Pl0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Pl0 f12 130 130 28 28 14 0 #rect
-Pl0 f12 @|AlternativeIcon #fIcon
 Pl0 f15 actionTable 'out=in;
 ' #txt
 Pl0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -75,7 +72,6 @@ task</name>
 </elementInfo>
 ' #txt
 Pl0 f15 126 196 36 24 -68 -8 #rect
-Pl0 f15 @|StepIcon #fIcon
 Pl0 f18 actionTable 'out=in1;
 ' #txt
 Pl0 f18 outLinks "TaskA.ivp","TaskB.ivp" #txt
@@ -97,7 +93,6 @@ TaskB.SKIP_TASK_LIST=false
 TaskB.TYPE=0' #txt
 Pl0 f18 template "" #txt
 Pl0 f18 130 258 28 28 14 0 #rect
-Pl0 f18 @|TaskSwitchIcon #fIcon
 Pl0 f23 inParamDecl '<Number numberOfTasks> param;' #txt
 Pl0 f23 inParamTable 'out.numberOfTasks=param.numberOfTasks;
 ' #txt
@@ -115,7 +110,6 @@ Pl0 f23 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Pl0 f23 129 49 30 30 16 0 #rect
-Pl0 f23 @|StartSubIcon #fIcon
 Pl0 f19 expr out #txt
 Pl0 f19 type gawfs.ParallelTasksUtilData #txt
 Pl0 f19 var in1 #txt
@@ -137,12 +131,10 @@ Pl0 f16 144 158 144 196 #arcP
 Pl0 f0 expr out #txt
 Pl0 f0 144 79 144 130 #arcP
 Pl0 f10 33 129 30 30 16 0 #rect
-Pl0 f10 @|EndIcon #fIcon
 Pl0 f11 expr in #txt
 Pl0 f11 outCond 'in.counter >= in.numberOfTasks' #txt
 Pl0 f11 130 144 63 144 #arcP
 Pl0 f32 515 291 26 26 14 0 #rect
-Pl0 f32 @|EndSubIcon #fIcon
 Pl0 f34 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -153,7 +145,6 @@ Pl0 f34 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Pl0 f34 514 226 28 28 -45 -42 #rect
-Pl0 f34 @|AlternativeIcon #fIcon
 Pl0 f35 inParamDecl '<> param;' #txt
 Pl0 f35 outParamDecl '<> result;' #txt
 Pl0 f35 callSignature join() #txt
@@ -165,9 +156,7 @@ Pl0 f35 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Pl0 f35 516 55 26 26 14 0 #rect
-Pl0 f35 @|StartSubIcon #fIcon
 Pl0 f36 625 225 30 30 16 0 #rect
-Pl0 f36 @|EndIcon #fIcon
 Pl0 f4 actionTable 'out=in;
 ' #txt
 Pl0 f4 actionCode 'out.numberOfTasks = ivy.case.tasks().allActive().size();' #txt
@@ -180,7 +169,6 @@ Pl0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Pl0 f4 456 122 144 44 -69 -8 #rect
-Pl0 f4 @|StepIcon #fIcon
 Pl0 f5 expr out #txt
 Pl0 f5 528 80 528 122 #arcP
 Pl0 f3 528 166 528 226 #arcP

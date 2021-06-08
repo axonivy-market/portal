@@ -1,5 +1,8 @@
 package ch.ivy.addon.portalkit.datamodel;
 
+import static ch.ivy.addon.portalkit.enums.FilterType.ALL_ADMINS;
+import static ch.ivy.addon.portalkit.enums.FilterType.ALL_USERS;
+
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -39,7 +42,6 @@ import ch.ivy.addon.portalkit.taskfilter.impl.TaskStateFilter;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.SortFieldUtil;
 import ch.ivy.addon.portalkit.util.UserUtils;
-import ch.ivyteam.ivy.business.data.store.BusinessDataInfo;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.security.IUser;
@@ -151,7 +153,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
    * @hidden
    */
   public void updateDisableTaskCount() {
-    disableTaskCount = new GlobalSettingService().findGlobalSettingValueAsBoolean(GlobalVariable.DISABLE_TASK_COUNT.toString());
+    disableTaskCount = new GlobalSettingService().findGlobalSettingValueAsBoolean(GlobalVariable.DISABLE_TASK_COUNT);
   }
 
   /**
@@ -365,7 +367,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
    String defaultSortField = UserSettingService.newInstance().getDefaultSortFieldOfTaskList();
    if (StringUtils.isBlank(defaultSortField) || UserSettingService.DEFAULT.equals(defaultSortField)) {
      GlobalSettingService globalSettingService = new GlobalSettingService();
-     defaultSortField = globalSettingService.findGlobalSettingValue(GlobalVariable.DEFAULT_SORT_FIELD_OF_TASK_LIST.name());
+     defaultSortField = globalSettingService.findGlobalSettingValue(GlobalVariable.DEFAULT_SORT_FIELD_OF_TASK_LIST);
    }
    return defaultSortField;
   }
@@ -374,7 +376,8 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
     String defaultSortDirection = UserSettingService.newInstance().getDefaultSortDirectionOfTaskList();
     if (StringUtils.isBlank(defaultSortDirection) || UserSettingService.DEFAULT.equals(defaultSortDirection)) {
       GlobalSettingService globalSettingService = new GlobalSettingService();
-      defaultSortDirection = globalSettingService.findGlobalSettingValue(GlobalVariable.DEFAULT_SORT_DIRECTION_OF_TASK_LIST.name());
+      defaultSortDirection =
+          globalSettingService.findGlobalSettingValue(GlobalVariable.DEFAULT_SORT_DIRECTION_OF_TASK_LIST);
     }
     
     return !SortFieldUtil.isAscendingSort(defaultSortDirection);
@@ -686,9 +689,13 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
     taskFilterData.setFilterGroupId(taskFilterGroupId);
     taskFilterData.setFilterName(filterName);
     taskFilterData.setType(filterType);
+    boolean isPublic = ALL_USERS == taskFilterData.getType() || ALL_ADMINS == taskFilterData.getType();
+    taskFilterData.setIsPublic(isPublic);
     TaskFilterService taskFilterService = new TaskFilterService();
-    BusinessDataInfo<TaskFilterData> info = taskFilterService.save(taskFilterData);
-    taskFilterData = taskFilterService.findById(info.getId());
+    taskFilterService.save(taskFilterData);
+    taskFilterData =
+        isPublic ? taskFilterService.findPublicFilter(taskFilterData.getId(), taskFilterGroupId)
+            : taskFilterService.findPrivateFilter(taskFilterData.getId(), taskFilterGroupId);
     UserUtils.setSessionSelectedTaskFilterSetAttribute(taskFilterData);
     UserUtils.setSessionSelectedDefaultTaskFilterSetAttribute(isSelectedDefaultFilter);
     return taskFilterData;
@@ -842,12 +849,11 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   }
 
   protected void initSelectedColumns() {
-    TaskColumnsConfigurationService service = new TaskColumnsConfigurationService();
+    TaskColumnsConfigurationService service = TaskColumnsConfigurationService.getInstance();
     Long userId = Optional.ofNullable(Ivy.session().getSessionUser()).map(IUser::getId).orElse(null);
-    Long applicationId = Ivy.request().getApplication().getId();
     Long processModelId = Ivy.request().getProcessModel().getId();
     if (userId != null) {
-      TaskColumnsConfiguration configData = service.getConfiguration(applicationId, userId, processModelId);
+      TaskColumnsConfiguration configData = service.getConfiguration(processModelId);
       if (configData != null) {
         selectedColumns = configData.getSelectedColumns();
       }
@@ -968,11 +974,9 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
       }
     }
     setAutoHideColumns(isDisableSelectionCheckboxes);
-    TaskColumnsConfigurationService service = new TaskColumnsConfigurationService();
-    Long applicationId = Ivy.request().getApplication().getId();
+    TaskColumnsConfigurationService service = TaskColumnsConfigurationService.getInstance();
     Long processModelId = Ivy.request().getProcessModel().getId();
-    TaskColumnsConfiguration taskColumnsConfiguration =
-        service.getConfiguration(applicationId, Ivy.session().getSessionUser().getId(), processModelId);
+    TaskColumnsConfiguration taskColumnsConfiguration = service.getConfiguration(processModelId);
     if (taskColumnsConfiguration != null) {
       updateTaskColumnsConfiguration(taskColumnsConfiguration);
     } else {
@@ -985,8 +989,6 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   private TaskColumnsConfiguration createNewTaskColumnsConfigurationData() {
     TaskColumnsConfiguration taskColumnsConfiguration = new TaskColumnsConfiguration();
     taskColumnsConfiguration.setProcessModelId(Ivy.request().getProcessModel().getId());
-    taskColumnsConfiguration.setUserId(Ivy.session().getSessionUser().getId());
-    taskColumnsConfiguration.setApplicationId(Ivy.request().getApplication().getId());
     updateTaskColumnsConfiguration(taskColumnsConfiguration);
     return taskColumnsConfiguration;
   }

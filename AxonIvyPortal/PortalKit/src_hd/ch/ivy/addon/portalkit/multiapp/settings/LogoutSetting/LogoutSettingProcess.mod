@@ -1,5 +1,5 @@
 [Ivy]
-15EF07D454EF13E4 9.2.0 #module
+15EF07D454EF13E4 9.3.0 #module
 >Proto >Proto Collection #zClass
 Ps0 LogoutSettingProcess Big #zClass
 Ps0 RD #cInfo
@@ -52,9 +52,7 @@ Ps0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f0 51 51 26 26 -16 15 #rect
-Ps0 f0 @|UdInitIcon #fIcon
 Ps0 f1 307 51 26 26 0 12 #rect
-Ps0 f1 @|UdProcessEndIcon #fIcon
 Ps0 f2 expr out #txt
 Ps0 f2 77 64 307 64 #arcP
 Ps0 f3 guid 15EF07E1D7F2C49C #txt
@@ -71,9 +69,7 @@ Ps0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f3 51 147 26 26 -21 15 #rect
-Ps0 f3 @|UdMethodIcon #fIcon
 Ps0 f4 563 147 26 26 0 12 #rect
-Ps0 f4 @|UdProcessEndIcon #fIcon
 Ps0 f8 processCall 'Functional Processes/Logout:call(Boolean,ITask)' #txt
 Ps0 f8 requestActionDecl '<Boolean isTaskReserve,ch.ivyteam.ivy.workflow.ITask task> param;' #txt
 Ps0 f8 requestMappingAction 'param.isTaskReserve=false;
@@ -93,7 +89,6 @@ Ps0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f8 232 138 112 44 -37 -8 #rect
-Ps0 f8 @|CallSubIcon #fIcon
 Ps0 f10 guid 15EF0CF6DE58BE72 #txt
 Ps0 f10 method reserveTask(ITask) #txt
 Ps0 f10 inParameterDecl '<ch.ivyteam.ivy.workflow.ITask task> param;' #txt
@@ -108,7 +103,6 @@ Ps0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f10 51 437 26 26 -38 15 #rect
-Ps0 f10 @|UdMethodIcon #fIcon
 Ps0 f11 processCall 'Functional Processes/Logout:call(Boolean,ITask)' #txt
 Ps0 f11 requestActionDecl '<Boolean isTaskReserve,ch.ivyteam.ivy.workflow.ITask task> param;' #txt
 Ps0 f11 requestMappingAction 'param.isTaskReserve=true;
@@ -128,15 +122,12 @@ Ps0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f11 137 427 112 44 -37 -8 #rect
-Ps0 f11 @|CallSubIcon #fIcon
 Ps0 f14 expr out #txt
 Ps0 f14 76 449 137 449 #arcP
 Ps0 f15 307 437 26 26 0 12 #rect
-Ps0 f15 @|UdProcessEndIcon #fIcon
 Ps0 f6 expr out #txt
 Ps0 f6 249 449 307 449 #arcP
 Ps0 f7 144 144 32 32 0 16 #rect
-Ps0 f7 @|AlternativeIcon #fIcon
 Ps0 f12 expr out #txt
 Ps0 f12 77 160 144 160 #arcP
 Ps0 f9 expr in #txt
@@ -155,7 +146,6 @@ Ps0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f13 224 234 128 44 -58 -8 #rect
-Ps0 f13 @|StepIcon #fIcon
 Ps0 f16 expr in #txt
 Ps0 f16 160 176 224 256 #arcP
 Ps0 f16 1 160 256 #addKink
@@ -176,7 +166,6 @@ Ps0 f18 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f18 392 138 112 44 -53 -8 #rect
-Ps0 f18 @|StepIcon #fIcon
 Ps0 f19 expr out #txt
 Ps0 f19 344 160 392 160 #arcP
 Ps0 f5 504 160 563 160 #arcP
@@ -194,9 +183,7 @@ Ps0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f20 51 339 26 26 -23 15 #rect
-Ps0 f20 @|UdMethodIcon #fIcon
 Ps0 f21 307 339 26 26 0 12 #rect
-Ps0 f21 @|UdProcessEndIcon #fIcon
 Ps0 f22 processCall 'Functional Processes/Logout:call(Boolean,ITask)' #txt
 Ps0 f22 requestActionDecl '<Boolean isTaskReserve,ch.ivyteam.ivy.workflow.ITask task> param;' #txt
 Ps0 f22 requestMappingAction 'param.isTaskReserve=false;
@@ -216,7 +203,6 @@ Ps0 f22 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f22 137 330 112 44 -37 -8 #rect
-Ps0 f22 @|CallSubIcon #fIcon
 Ps0 f23 expr out #txt
 Ps0 f23 249 352 307 352 #arcP
 Ps0 f24 77 352 137 352 #arcP
@@ -234,14 +220,11 @@ Ps0 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f25 435 51 26 26 -23 15 #rect
-Ps0 f25 @|UdMethodIcon #fIcon
 Ps0 f26 627 51 26 26 0 12 #rect
-Ps0 f26 @|UdProcessEndIcon #fIcon
 Ps0 f27 461 64 627 64 #arcP
 >Proto Ps0 .type ch.ivy.addon.portalkit.multiapp.settings.LogoutSetting.LogoutSettingData #txt
 >Proto Ps0 .processKind HTML_DIALOG #txt
 >Proto Ps0 -8 -8 16 16 16 26 #rect
->Proto Ps0 '' #fIcon
 Ps0 f0 mainOut f2 tail #connect
 Ps0 f2 head f1 mainIn #connect
 Ps0 f10 mainOut f14 tail #connect

@@ -2,6 +2,8 @@ package portal.guitest.test;
 
 import static org.junit.Assert.assertEquals;
 import static portal.guitest.common.FileHelper.getAbsolutePathToTestFile;
+import static portal.guitest.common.Variable.ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT;
+import static portal.guitest.common.Variable.UPLOAD_DOCUMENT_WHITELIST_EXTENSION;
 
 import java.util.List;
 
@@ -126,14 +128,14 @@ public class UploadDocumentTest extends BaseTest{
   }
   
   private void updateFileExtensionWhiteListInPortalSetting() {
-    updatePortalSetting("UPLOAD_DOCUMENT_WHITELIST_EXTENSION", ", abc, pdf, doc");
+    updatePortalSetting(UPLOAD_DOCUMENT_WHITELIST_EXTENSION.getKey(), ", abc, pdf, doc");
   }
   
   private void disableScriptCheckingInPortalSetting() {
-    updatePortalSetting("ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT", "false");
+    updatePortalSetting(ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT.getKey(), "false");
   }
   
   private void enableScriptCheckingInPortalSetting() {
-    updatePortalSetting("ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT", "true");
+    updatePortalSetting(ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT.getKey(), "true");
   }
 }

@@ -1,5 +1,8 @@
 package ch.ivy.addon.portalkit.datamodel.internal;
 
+import static ch.ivy.addon.portalkit.enums.FilterType.ALL_ADMINS;
+import static ch.ivy.addon.portalkit.enums.FilterType.ALL_USERS;
+
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +33,6 @@ import ch.ivy.addon.portalkit.taskfilter.impl.TaskAnalysisTaskFilterContainer;
 import ch.ivy.addon.portalkit.taskfilter.impl.TaskFilterData;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
-import ch.ivyteam.ivy.business.data.store.BusinessDataInfo;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.workflow.ITask;
@@ -193,9 +195,13 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
     taskAnalysisFilterData.setFilterGroupId(taskFilterGroupId);
     taskAnalysisFilterData.setFilterName(filterName);
     taskAnalysisFilterData.setType(filterType);
+    boolean isPublic = ALL_USERS == taskAnalysisFilterData.getType() || ALL_ADMINS == taskAnalysisFilterData.getType();
+    taskAnalysisFilterData.setIsPublic(isPublic);
     TaskAnalysisFilterService taskFilterService = new TaskAnalysisFilterService();
-    BusinessDataInfo<TaskAnalysisFilterData> info = taskFilterService.save(taskAnalysisFilterData);
-    taskAnalysisFilterData = taskFilterService.findById(info.getId());
+    taskFilterService.save(taskAnalysisFilterData);
+    taskAnalysisFilterData = isPublic
+        ? taskFilterService.findPublicFilter(taskAnalysisFilterData.getId(), taskFilterGroupId)
+        : taskFilterService.findPrivateFilter(taskAnalysisFilterData.getId(), taskFilterGroupId);
     return taskAnalysisFilterData;
   }
 

@@ -1,5 +1,5 @@
 [Ivy]
-15F6AF64009AFF42 9.2.0 #module
+15F6AF64009AFF42 9.3.0 #module
 >Proto >Proto Collection #zClass
 Ss0 StatisticNavigatorProcess Big #zClass
 Ss0 RD #cInfo
@@ -33,9 +33,7 @@ Ss0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ss0 f0 83 51 26 26 -16 15 #rect
-Ss0 f0 @|UdInitIcon #fIcon
 Ss0 f1 211 51 26 26 0 12 #rect
-Ss0 f1 @|UdProcessEndIcon #fIcon
 Ss0 f2 expr out #txt
 Ss0 f2 109 64 211 64 #arcP
 Ss0 f3 guid 15F6AF640293ADA2 #txt
@@ -49,9 +47,7 @@ Ss0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ss0 f3 83 195 26 26 -15 12 #rect
-Ss0 f3 @|UdEventIcon #fIcon
 Ss0 f4 211 195 26 26 0 12 #rect
-Ss0 f4 @|UdExitEndIcon #fIcon
 Ss0 f5 expr out #txt
 Ss0 f5 109 208 211 208 #arcP
 Ss0 f6 guid 15F6AF6A8AA1F6F5 #txt
@@ -67,7 +63,6 @@ Ss0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ss0 f6 80 132 26 26 -35 15 #rect
-Ss0 f6 @|UdEventIcon #fIcon
 Ss0 f32 dialogId ch.ivy.addon.portal.generic.admin.PortalDashBoard #txt
 Ss0 f32 startMethod start() #txt
 Ss0 f32 requestActionDecl '<> param;' #txt
@@ -85,13 +80,11 @@ Ss0 f32 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ss0 f32 182 122 112 44 -21 -8 #rect
-Ss0 f32 @|UserDialogIcon #fIcon
 Ss0 f7 expr out #txt
 Ss0 f7 105 144 182 144 #arcP
 >Proto Ss0 .type ch.ivy.addon.portal.generic.StatisticNavigator.StatisticNavigatorData #txt
 >Proto Ss0 .processKind HTML_DIALOG #txt
 >Proto Ss0 -8 -8 16 16 16 26 #rect
->Proto Ss0 '' #fIcon
 Ss0 f0 mainOut f2 tail #connect
 Ss0 f2 head f1 mainIn #connect
 Ss0 f3 mainOut f5 tail #connect

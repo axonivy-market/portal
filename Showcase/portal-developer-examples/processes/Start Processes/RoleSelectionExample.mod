@@ -1,5 +1,5 @@
 [Ivy]
-175495F02A2BCEB2 9.2.0 #module
+175495F02A2BCEB2 9.3.0 #module
 >Proto >Proto Collection #zClass
 Re0 RoleSelectionExample Big #zClass
 Re0 B #cInfo
@@ -34,9 +34,7 @@ Re0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Re0 f0 @C|.responsibility Everybody #txt
 Re0 f0 81 49 30 30 -21 17 #rect
-Re0 f0 @|StartRequestIcon #fIcon
 Re0 f1 433 49 30 30 0 15 #rect
-Re0 f1 @|EndIcon #fIcon
 Re0 f3 dialogId com.axonivy.portal.developerexamples.showcase.RoleSelectionExample #txt
 Re0 f3 startMethod start() #txt
 Re0 f3 requestActionDecl '<> param;' #txt
@@ -51,7 +49,6 @@ Re0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Re0 f3 152 42 144 44 -62 -8 #rect
-Re0 f3 @|UserDialogIcon #fIcon
 Re0 f4 111 64 152 64 #arcP
 Re0 f5 actionTable 'out=in1;
 ' #txt
@@ -60,7 +57,6 @@ TaskA.NAM=Task created by Role Selection Component Example
 TaskA.ROL=in1.selectedRole.getMemberName()
 TaskA.TYPE=2' #txt
 Re0 f5 353 49 30 30 0 16 #rect
-Re0 f5 @|TaskSwitchSimpleIcon #fIcon
 Re0 f6 296 64 353 64 #arcP
 Re0 f2 383 64 433 64 #arcP
 >Proto Re0 .type com.axonivy.portal.developerexamples.RoleSelectionExampleData #txt

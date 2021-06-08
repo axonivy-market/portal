@@ -1,5 +1,5 @@
 [Ivy]
-16FA8B451814E32A 9.2.0 #module
+16FA8B451814E32A 9.3.0 #module
 >Proto >Proto Collection #zClass
 Gt0 GlobalGrowlSkipTaskList Big #zClass
 Gt0 B #cInfo
@@ -33,9 +33,7 @@ Gt0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Gt0 f0 @C|.responsibility Everybody #txt
 Gt0 f0 81 49 30 30 -21 17 #rect
-Gt0 f0 @|StartRequestIcon #fIcon
 Gt0 f1 433 49 30 30 0 15 #rect
-Gt0 f1 @|EndIcon #fIcon
 Gt0 f3 actionTable 'out=in1;
 ' #txt
 Gt0 f3 outLinks "TaskA.ivp" #txt
@@ -43,7 +41,6 @@ Gt0 f3 taskData 'TaskA.NAM=Global Growl Skip Task List
 TaskA.SKIP_TASK_LIST=true
 TaskA.customFields.STRING.embedInFrame="false"' #txt
 Gt0 f3 176 48 32 32 0 16 #rect
-Gt0 f3 @|TaskSwitchIcon #fIcon
 Gt0 f4 var in1 #txt
 Gt0 f4 111 64 176 64 #arcP
 Gt0 f5 dialogId com.axonivy.portal.developerexamples.testdata.LeaveRequestForm #txt
@@ -59,7 +56,6 @@ Gt0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Gt0 f5 256 42 128 44 -54 -8 #rect
-Gt0 f5 @|UserDialogIcon #fIcon
 Gt0 f6 expr data #txt
 Gt0 f6 outCond ivp=="TaskA.ivp" #txt
 Gt0 f6 208 64 256 64 #arcP

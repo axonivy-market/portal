@@ -1,5 +1,5 @@
 [Ivy]
-176CBB45115F7981 9.2.0 #module
+176CBB45115F7981 9.3.0 #module
 >Proto >Proto Collection #zClass
 Cs0 CaseWidgetProcess Big #zClass
 Cs0 RD #cInfo
@@ -16,7 +16,6 @@ Cs0 @UdInit f7 '' #zField
 Cs0 @PushWFArc f8 '' #zField
 >Proto Cs0 Cs0 CaseWidgetProcess #zField
 Cs0 f6 373 85 22 22 14 0 #rect
-Cs0 f6 @|UdProcessEndIcon #fIcon
 Cs0 f7 guid 176CC20160848611 #txt
 Cs0 f7 method useView(CaseView) #txt
 Cs0 f7 inParameterDecl '<ch.ivy.addon.portal.generic.view.CaseView caseView> param;' #txt
@@ -33,12 +32,10 @@ Cs0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f7 85 85 22 22 14 0 #rect
-Cs0 f7 @|UdInitIcon #fIcon
 Cs0 f8 expr out #txt
 Cs0 f8 107 96 373 96 #arcP
 >Proto Cs0 .type com.axonivy.portal.developerexamples.customization.CaseWidget.CaseWidgetData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 -8 -8 16 16 16 26 #rect
->Proto Cs0 '' #fIcon
 Cs0 f7 mainOut f8 tail #connect
 Cs0 f8 head f6 mainIn #connect

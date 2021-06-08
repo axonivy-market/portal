@@ -4,3 +4,5 @@ processes java.util.List<ch.ivyteam.ivy.workflow.start.IWebStartable> #field
 processes PERSISTENT #fieldModifier
 expressProcesses java.util.List<ch.ivy.addon.portalkit.bo.ExpressProcess> #field
 expressProcesses PERSISTENT #fieldModifier
+showInformationLink Boolean #field
+showInformationLink PERSISTENT #fieldModifier
