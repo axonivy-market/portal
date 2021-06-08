@@ -1,10 +1,12 @@
 package ch.ivy.addon.portalkit.taskfilter.impl;
 
+import org.apache.commons.lang.WordUtils;
+
 import ch.ivy.addon.portalkit.taskfilter.TaskFilter;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
-public class TaskForUnavailableActivatorFilter extends TaskFilter {
+public class TaskForAvailableActivatorFilter extends TaskFilter {
 
   private boolean queryTaskForUnavailableActivator;
   
@@ -15,13 +17,15 @@ public class TaskForUnavailableActivatorFilter extends TaskFilter {
 
   @Override
   public String value() {
-    return null;
+    return WordUtils.capitalize(String.valueOf(queryTaskForUnavailableActivator));
   }
 
   @Override
   public TaskQuery buildQuery() {
-    TaskQuery query = TaskQuery.create().where().activatorAvailable().isFalse();
-    return query;
+    if (queryTaskForUnavailableActivator) {
+      return TaskQuery.create().where().activatorAvailable().isFalse();
+    }
+    return null;
   }
 
   @Override
