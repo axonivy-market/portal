@@ -16,7 +16,6 @@ processType ch.ivy.gawfs.enums.ProcessType #field
 processType 'Process type' #fieldComment
 processType PERSISTENT #fieldModifier
 wfusers List<ch.ivyteam.ivy.security.IUser> #field
-processRepository ch.ivy.addon.portalkit.bo.ExpressProcess #field
 taskRepository ch.ivy.addon.portalkit.bo.ExpressTaskDefinition #field
 formelementRepository ch.ivy.addon.portalkit.bo.ExpressFormElement #field
 backFlag Boolean #field

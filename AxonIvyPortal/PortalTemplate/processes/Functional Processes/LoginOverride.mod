@@ -1,5 +1,5 @@
 [Ivy]
-16B1CEA6AF5F7E2C 9.2.0 #module
+16B1CEA6AF5F7E2C 9.3.0 #module
 >Proto >Proto Collection #zClass
 Ln0 Login Big #zClass
 Ln0 B #cInfo
@@ -28,9 +28,7 @@ Ln0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ln0 f0 81 49 30 30 -13 17 #rect
-Ln0 f0 @|StartSubIcon #fIcon
 Ln0 f1 337 49 30 30 0 15 #rect
-Ln0 f1 @|EndSubIcon #fIcon
 Ln0 f3 actionTable 'out=in;
 ' #txt
 Ln0 f3 actionCode 'import ch.ivy.addon.portal.chat.ClusterChatEventSender;
@@ -40,7 +38,7 @@ import ch.ivy.addon.portal.chat.ChatReferencesContainer;
 import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 
-String isEnableChatGlobalVariable = new GlobalSettingService().findGlobalSettingValue(GlobalVariable.ENABLE_PRIVATE_CHAT.toString());
+String isEnableChatGlobalVariable = new GlobalSettingService().findGlobalSettingValue(GlobalVariable.ENABLE_PRIVATE_CHAT);
 boolean isEnableChat = StringUtils.isNotBlank(isEnableChatGlobalVariable) ? Boolean.parseBoolean(isEnableChatGlobalVariable) : true;
 if (isEnableChat) {
   if (ChatReferencesContainer.getChatService() != null && ChatService.IS_STANDARD_MODE) {
@@ -58,7 +56,6 @@ if private chat enabled</name>
 </elementInfo>
 ' #txt
 Ln0 f3 152 42 144 44 -53 -16 #rect
-Ln0 f3 @|StepIcon #fIcon
 Ln0 f4 expr out #txt
 Ln0 f4 111 64 152 64 #arcP
 Ln0 f2 expr out #txt

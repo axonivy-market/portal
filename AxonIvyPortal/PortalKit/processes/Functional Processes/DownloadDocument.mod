@@ -1,5 +1,5 @@
 [Ivy]
-16AB5FD24113C5D2 9.2.0 #module
+16AB5FD24113C5D2 9.3.0 #module
 >Proto >Proto Collection #zClass
 Dt0 DownloadDocument Big #zClass
 Dt0 B #cInfo
@@ -35,9 +35,7 @@ Dt0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Dt0 f0 81 49 30 30 -76 30 #rect
-Dt0 f0 @|StartSubIcon #fIcon
 Dt0 f1 337 49 30 30 0 15 #rect
-Dt0 f1 @|EndSubIcon #fIcon
 Dt0 f3 actionTable 'out=in;
 ' #txt
 Dt0 f3 actionCode 'import ch.ivy.addon.portalkit.service.CaseDocumentService;
@@ -52,7 +50,6 @@ Dt0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Dt0 f3 160 42 128 44 -57 -8 #rect
-Dt0 f3 @|StepIcon #fIcon
 Dt0 f4 expr out #txt
 Dt0 f4 111 64 160 64 #arcP
 Dt0 f2 expr out #txt
@@ -65,7 +62,6 @@ Dt0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Dt0 f5 168 185 288 30 -141 -8 #rect
-Dt0 f5 @|IBIcon #fIcon
 Dt0 f6 312 185 109 70 #arcP
 Dt0 f6 1 328 184 #addKink
 Dt0 f6 1 0.17730234612572468 0 0 #arcLabel

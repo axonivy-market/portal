@@ -29,4 +29,9 @@ public class TaskFilterService extends AbstractFilterService<TaskFilterData> {
       }
     }
   }
+
+  @Override
+  public String getConfigKey() {
+    return "Portal.Tasks.TaskFilters";
+  }
 }

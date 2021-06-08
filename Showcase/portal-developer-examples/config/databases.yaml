@@ -1,0 +1,5 @@
+Databases:
+  IvyDatabase:
+    Url: jdbc:hsqldb:mem:AxonIvySystemDatabase
+    Driver: org.hsqldb.jdbcDriver
+    UserName: ''

@@ -18,6 +18,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
 
+import portal.guitest.common.PortalGUITestException;
 import portal.guitest.common.Sleeper;
 import portal.guitest.common.UrlHelpers;
 import portal.guitest.common.WaitHelper;
@@ -43,17 +44,36 @@ public abstract class TemplatePage extends AbstractPage {
     waitForElementDisplayed(locator, true, getTimeOutForLocator());
   }
 
-
   @Override
   public <T> void waitForElementDisplayed(T locator, boolean expected, long timeout) {
-    Awaitility.await().atMost(new Duration(timeout, TimeUnit.SECONDS)).until(() -> {
-      try {
-        super.waitForElementDisplayed(locator, expected, timeout);
-        return;
-      } catch (WebDriverException e) {
-        System.out.println("Exception when waiting for element displayed, try again.");
-      }
-    });
+    try {
+      Awaitility.await().atMost(new Duration(timeout, TimeUnit.SECONDS)).until(() -> {
+        try {
+          super.waitForElementDisplayed(locator, expected, timeout);
+          return;
+        } catch (WebDriverException e) {
+          System.out.println("Exception when waiting for element displayed, try again.");
+        }
+      });
+    } catch (Exception e) {
+      throw new PortalGUITestException(e);
+    }
+  }
+
+  public <T> void waitForElementReallyDisplayed(T locator, boolean expected, long timeout) {
+    try {
+      Awaitility.await().atMost(new Duration(timeout, TimeUnit.SECONDS)).until(() -> {
+        try {
+          super.waitForElementDisplayed(locator, expected, timeout);
+          return true;
+        } catch (WebDriverException | NullPointerException e) {
+          System.out.println("Exception when waiting for element displayed, try again.");
+          return false;
+        }
+      });
+    } catch (Exception e) {
+      throw new PortalGUITestException(e);
+    }
   }
 
   public void waitForElementExisted(String cssSelector, boolean expected, long timeout) {
@@ -138,6 +158,11 @@ public abstract class TemplatePage extends AbstractPage {
   public <T> void waitForElementDisplayed(T locator, boolean expected) {
     waitForElementDisplayed(locator, expected, getTimeOutForLocator());
   }
+
+  public <T> void waitForElementReallyDisplayed(T locator, boolean expected) {
+    waitForElementReallyDisplayed(locator, expected, getTimeOutForLocator());
+  }
+
 
   public <T> void waitForElementPresent(T locator, boolean expected) {
     waitForElementPresent(locator, expected, getTimeOutForLocator());

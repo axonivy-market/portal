@@ -1,5 +1,5 @@
 [Ivy]
-16A76A01ED2FA2D0 9.2.0 #module
+16A76A01ED2FA2D0 9.3.0 #module
 >Proto >Proto Collection #zClass
 Cs0 CustomFieldProcess Big #zClass
 Cs0 RD #cInfo
@@ -38,9 +38,7 @@ Cs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f0 83 51 26 26 -16 15 #rect
-Cs0 f0 @|UdInitIcon #fIcon
 Cs0 f1 211 51 26 26 0 12 #rect
-Cs0 f1 @|UdProcessEndIcon #fIcon
 Cs0 f2 expr out #txt
 Cs0 f2 109 64 211 64 #arcP
 Cs0 f3 guid 16A76A01F317AB59 #txt
@@ -54,9 +52,7 @@ Cs0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f3 83 147 26 26 -15 12 #rect
-Cs0 f3 @|UdEventIcon #fIcon
 Cs0 f4 211 147 26 26 0 12 #rect
-Cs0 f4 @|UdExitEndIcon #fIcon
 Cs0 f5 expr out #txt
 Cs0 f5 109 160 211 160 #arcP
 Cs0 f12 actionTable 'out=in;
@@ -67,9 +63,7 @@ Cs0 f12 actionCode 'if(!in.tempSelectedCustomValues.contains(in.selectedCustomVa
 }
 ' #txt
 Cs0 f12 169 236 112 44 0 -8 #rect
-Cs0 f12 @|StepIcon #fIcon
 Cs0 f10 340 245 26 26 0 12 #rect
-Cs0 f10 @|UdProcessEndIcon #fIcon
 Cs0 f9 guid 16A76A3527AC714D #txt
 Cs0 f9 method addCustomVal() #txt
 Cs0 f9 inParameterDecl '<> param;' #txt
@@ -84,13 +78,11 @@ Cs0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f9 84 245 26 26 -45 15 #rect
-Cs0 f9 @|UdMethodIcon #fIcon
 Cs0 f11 expr out #txt
 Cs0 f11 281 258 340 258 #arcP
 Cs0 f13 expr out #txt
 Cs0 f13 110 258 169 258 #arcP
 Cs0 f7 211 339 26 26 0 12 #rect
-Cs0 f7 @|UdProcessEndIcon #fIcon
 Cs0 f14 guid 16ADE4E91DC3CB1F #txt
 Cs0 f14 method cleanUp() #txt
 Cs0 f14 inParameterDecl '<> param;' #txt
@@ -106,13 +98,11 @@ Cs0 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f14 83 339 26 26 -27 15 #rect
-Cs0 f14 @|UdMethodIcon #fIcon
 Cs0 f15 expr out #txt
 Cs0 f15 109 352 211 352 #arcP
 >Proto Cs0 .type ch.ivy.addon.portalkit.component.statistic.CustomField.CustomFieldData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 -8 -8 16 16 16 26 #rect
->Proto Cs0 '' #fIcon
 Cs0 f0 mainOut f2 tail #connect
 Cs0 f2 head f1 mainIn #connect
 Cs0 f3 mainOut f5 tail #connect

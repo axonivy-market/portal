@@ -1,5 +1,5 @@
 [Ivy]
-1718293B3F6E5478 9.2.0 #module
+1718293B3F6E5478 9.3.0 #module
 >Proto >Proto Collection #zClass
 Cs0 CustomParamForTaskTemplates Big #zClass
 Cs0 B #cInfo
@@ -35,9 +35,7 @@ Cs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Cs0 f0 @C|.responsibility Everybody #txt
 Cs0 f0 81 49 30 30 -21 17 #rect
-Cs0 f0 @|StartRequestIcon #fIcon
 Cs0 f1 489 49 30 30 0 15 #rect
-Cs0 f1 @|EndIcon #fIcon
 Cs0 f3 actionTable 'out=in1;
 ' #txt
 Cs0 f3 outLinks "TaskB.ivp","TaskA.ivp" #txt
@@ -45,7 +43,6 @@ Cs0 f3 taskData 'TaskB.NAM=Task template 8 with custom params
 TaskB.customFields.STRING.embedInFrame="false"
 TaskA.NAM=IFrame task with custom params' #txt
 Cs0 f3 176 48 32 32 0 16 #rect
-Cs0 f3 @|TaskSwitchIcon #fIcon
 Cs0 f4 var in1 #txt
 Cs0 f4 111 64 176 64 #arcP
 Cs0 f5 dialogId com.axonivy.portal.developerexamples.testdata.CustomParamsForIFrame #txt
@@ -61,7 +58,6 @@ Cs0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f5 264 42 160 44 -72 -8 #rect
-Cs0 f5 @|UserDialogIcon #fIcon
 Cs0 f6 expr data #txt
 Cs0 f6 outCond ivp=="TaskA.ivp" #txt
 Cs0 f6 208 64 264 64 #arcP
@@ -79,7 +75,6 @@ Cs0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f7 248 138 208 44 -96 -8 #rect
-Cs0 f7 @|UserDialogIcon #fIcon
 Cs0 f8 expr data #txt
 Cs0 f8 outCond ivp=="TaskB.ivp" #txt
 Cs0 f8 192 80 248 160 #arcP

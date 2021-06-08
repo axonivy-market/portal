@@ -187,6 +187,7 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
     waitAjaxIndicatorDisappear();
     waitForElementDisplayed(By.id("task-widget:filter-save-form:save-filter-set-name-input"), true);
     enterKeys(findElementById("task-widget:filter-save-form:save-filter-set-name-input"), filterSetName);
+    waitUntilAnimationFinished(DEFAULT_TIMEOUT, "save-filter-set-dialog .ui-inputtext", "class");
 
     WebElement filterVisibilityContainer = findElementById("task-widget:filter-save-form:save-filter-type-radio");
     if (isPersonalFilter) {

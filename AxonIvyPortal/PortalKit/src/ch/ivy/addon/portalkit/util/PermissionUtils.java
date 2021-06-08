@@ -90,8 +90,7 @@ public class PermissionUtils {
    * @return True: has permission to start Express workflow, False: Do not have permission to start Express workflow
    */
   public static boolean checkAbleToStartAndAbleToEditExpressWorkflow(ExpressProcess workflow) {
-    ExpressManagementUtils utils = new ExpressManagementUtils();
-    String validProcessOwnerName = utils.getValidMemberName(workflow.getProcessOwner());
+    String validProcessOwnerName = ExpressManagementUtils.getValidMemberName(workflow.getProcessOwner());
     boolean isWorkflowOwner = StringUtils.isNotBlank(validProcessOwnerName) ? Ivy.session().canActAsUser(
         Ivy.request().getApplication().getSecurityContext().users().find(validProcessOwnerName.substring(1))) : false;
     boolean hasAdminRole = isSessionUserHasAdminRole();

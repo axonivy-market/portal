@@ -1,5 +1,5 @@
 [Ivy]
-15791C23B125821B 9.2.0 #module
+15791C23B125821B 9.3.0 #module
 >Proto >Proto Collection #zClass
 ew0 editWorkflow Big #zClass
 ew0 B #cInfo
@@ -78,13 +78,11 @@ Ct0 @MessageFlowInP-0n messageIn messageIn #zField
 Ct0 @MessageFlowOutP-0n messageOut messageOut #zField
 Ct0 @TextInP .xml .xml #zField
 Ct0 @TextInP .responsibility .responsibility #zField
-Ct0 @GridStep f25 '' #zField
 Ct0 @GridStep f26 '' #zField
 Ct0 @PushTrueWFInG-01 g0 '' #zField
 Ct0 @PushTrueWFOutG-01 g1 '' #zField
-Ct0 @PushWFArc f1 '' #zField
 Ct0 @PushWFArc f0 '' #zField
-Ct0 @PushWFArc f2 '' #zField
+Ct0 @PushWFArc f1 '' #zField
 >Proto Ct0 Ct0 Component #zField
 ew0 S10 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -153,8 +151,7 @@ ew0 f9 actionTable 'out=in;
 ew0 f9 actionCode 'import ch.ivy.gawfs.ExpressProcessUtils;
 
 //save workflowdescription
-ExpressProcessUtils utils = new ExpressProcessUtils();
-in.processRepository = utils.saveProcess(in);' #txt
+ExpressProcessUtils.saveProcess(in);' #txt
 ew0 f9 security system #txt
 ew0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -568,31 +565,16 @@ ew0 f58 0 0.3125 13 0 #arcLabel
 >Proto ew0 .processKind CALLABLE_SUB #txt
 >Proto ew0 0 0 32 24 18 0 #rect
 >Proto ew0 @|BIcon #fIcon
-Ct0 f25 actionTable 'out=in;
-' #txt
-Ct0 f25 actionCode 'import ch.ivy.gawfs.ExpressProcessUtils;
-
-ExpressProcessUtils utils = new ExpressProcessUtils();
-in.definedTasks = utils.getDefinedTasks(in.processID);' #txt
-Ct0 f25 security system #txt
-Ct0 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Get defined tasks</name>
-    </language>
-</elementInfo>
-' #txt
-Ct0 f25 152 290 112 44 -48 -8 #rect
 Ct0 f26 actionTable 'out=in;
 ' #txt
-Ct0 f26 actionCode 'import java.util.ArrayList;
+Ct0 f26 actionCode 'import ch.ivy.addon.portalkit.service.ExpressProcessService;
+import java.util.ArrayList;
 import org.apache.commons.collections.CollectionUtils;
 import ch.ivy.gawfs.enums.ProcessType;
-import ch.ivy.addon.portalkit.service.ExpressServiceRegistry;
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
 import ch.ivy.gawfs.ExpressProcessUtils;
 
-ExpressProcess workflow = ExpressServiceRegistry.getProcessService().findExpressProcessById(in.processID) as ExpressProcess;
+ExpressProcess workflow = ExpressProcessService.getInstance().findExpressProcessById(in.processID) as ExpressProcess;
 
 in.processDescription = workflow.processDescription;
 in.processName = workflow.processName;
@@ -613,7 +595,11 @@ for(ProcessType type : ProcessType.values()) {
 	if (type.getValue() == workflow.processType) {
 	 	in.processType = type;
 	}
-}' #txt
+}
+
+import ch.ivy.gawfs.ExpressProcessUtils;
+
+in.definedTasks = ExpressProcessUtils.convertExpressTaskDefinitionToTaskDef(workflow.taskDefinitions);' #txt
 Ct0 f26 security system #txt
 Ct0 f26 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -624,7 +610,7 @@ Ct0 f26 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ct0 f26 136 194 144 44 -68 -8 #rect
+Ct0 f26 136 234 144 44 -68 -8 #rect
 Ct0 g0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language lang="en">
@@ -641,11 +627,9 @@ Ct0 g1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ct0 g1 195 403 26 26 0 5 #rect
-Ct0 f1 expr out #txt
-Ct0 f1 208 334 208 403 #arcP
-Ct0 f0 208 117 208 194 #arcP
-Ct0 f2 expr out #txt
-Ct0 f2 208 238 208 290 #arcP
+Ct0 f0 208 117 208 234 #arcP
+Ct0 f1 208 278 208 403 #arcP
+Ct0 f1 0 0.6446808510638298 0 0 #arcLabel
 >Proto Ct0 0 0 32 24 18 0 #rect
 >Proto Ct0 @|BIcon #fIcon
 ew0 f5 mainOut f14 tail #connect
@@ -708,10 +692,8 @@ ew0 f55 head f54 mainIn #connect
 ew0 f18 out f24 tail #connect
 ew0 f54 mainOut f58 tail #connect
 ew0 f58 head f20 mainIn #connect
-Ct0 f1 head g1 m #connect
-Ct0 f25 mainOut f1 tail #connect
 Ct0 g0 m f0 tail #connect
 Ct0 f0 head f26 mainIn #connect
-Ct0 f26 mainOut f2 tail #connect
-Ct0 f2 head f25 mainIn #connect
+Ct0 f26 mainOut f1 tail #connect
+Ct0 f1 head g1 m #connect
 Ct0 0 0 424 512 0 #ivRect

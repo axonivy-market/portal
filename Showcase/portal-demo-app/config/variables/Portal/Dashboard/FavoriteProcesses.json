@@ -1,0 +1,28 @@
+[
+  {
+    "id": "1",
+    "processType": "IVY_PROCESS",
+    "processName": "User example guide",
+    "names": [
+      {
+        "locale": "de",
+        "value": "User Example Guide"
+      },
+      {
+        "locale": "en",
+        "value": "User example guide"
+      },
+      {
+        "locale": "fr",
+        "value": "Guide d'exemple d'utilisateur"
+      },
+      {
+        "locale": "es",
+        "value": "Guía para los ejemplos"
+      }
+    ],
+    "icon": "fa-ticket",
+    "processId": "demo-portal/portal-user-examples/Start Processes/UserExampleGuide/userExampleGuide.ivp",
+    "index": 1
+  }
+]

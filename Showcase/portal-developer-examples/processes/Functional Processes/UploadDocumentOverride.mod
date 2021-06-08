@@ -1,5 +1,5 @@
 [Ivy]
-16B448019DA1C83E 9.2.0 #module
+16B448019DA1C83E 9.3.0 #module
 >Proto >Proto Collection #zClass
 Ut0 UploadDocument Big #zClass
 Ut0 B #cInfo
@@ -58,9 +58,7 @@ Ut0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ut0 f0 81 113 30 30 -76 15 #rect
-Ut0 f0 @|StartSubIcon #fIcon
 Ut0 f1 1361 113 30 30 0 15 #rect
-Ut0 f1 @|EndSubIcon #fIcon
 Ut0 f36 actionTable 'out=in;
 ' #txt
 Ut0 f36 actionCode 'import ch.ivy.addon.portalkit.enums.UploadDocumentCheckStatus;
@@ -92,7 +90,6 @@ Ut0 f36 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ut0 f36 200 106 112 44 -22 -8 #rect
-Ut0 f36 @|StepIcon #fIcon
 Ut0 f72 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -101,7 +98,6 @@ Ut0 f72 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ut0 f72 904 112 32 32 -27 -34 #rect
-Ut0 f72 @|AlternativeIcon #fIcon
 Ut0 f71 actionTable 'out=in;
 ' #txt
 Ut0 f71 actionCode 'import ch.ivy.addon.portalkit.service.CaseDocumentService;
@@ -131,7 +127,6 @@ and create note</name>
 </elementInfo>
 ' #txt
 Ut0 f71 1024 106 128 44 -44 -16 #rect
-Ut0 f71 @|StepIcon #fIcon
 Ut0 f38 actionTable 'out=in;
 ' #txt
 Ut0 f38 actionCode 'import ch.ivy.addon.portalkit.enums.UploadDocumentCheckStatus;
@@ -153,11 +148,8 @@ Ut0 f38 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ut0 f38 736 106 112 44 -31 -8 #rect
-Ut0 f38 @|StepIcon #fIcon
 Ut0 f74 648 208 32 32 0 16 #rect
-Ut0 f74 @|AlternativeIcon #fIcon
 Ut0 f73 904 208 32 32 0 16 #rect
-Ut0 f73 @|AlternativeIcon #fIcon
 Ut0 f70 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -168,7 +160,6 @@ Ut0 f70 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ut0 f70 362 114 28 28 -30 -34 #rect
-Ut0 f70 @|AlternativeIcon #fIcon
 Ut0 f53 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -179,7 +170,6 @@ Ut0 f53 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ut0 f53 648 112 32 32 -54 -37 #rect
-Ut0 f53 @|AlternativeIcon #fIcon
 Ut0 f75 processCall 'Functional Processes/UploadDocumentChecker:call(org.primefaces.model.UploadedFile)' #txt
 Ut0 f75 requestActionDecl '<org.primefaces.model.UploadedFile uploadFile> param;' #txt
 Ut0 f75 requestMappingAction 'param.uploadFile=in.uploadedFile;
@@ -200,7 +190,6 @@ Ut0 f75 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ut0 f75 440 106 160 44 -71 -8 #rect
-Ut0 f75 @|CallSubIcon #fIcon
 Ut0 f92 expr in #txt
 Ut0 f92 680 224 904 224 #arcP
 Ut0 f92 0 0.3194444444444444 0 -10 #arcLabel
@@ -267,7 +256,6 @@ This sub process also contains some validation, so if you override it, you have 
 </elementInfo>
 ' #txt
 Ut0 f5 184 322 640 44 -310 -16 #rect
-Ut0 f5 @|IBIcon #fIcon
 Ut0 f6 184 344 101 141 #arcP
 Ut0 f15 expr in #txt
 Ut0 f15 outCond 'in.status == ch.ivy.addon.portalkit.enums.UploadDocumentCheckStatus.OK' #txt
@@ -302,7 +290,6 @@ customer info</name>
 </elementInfo>
 ' #txt
 Ut0 f4 1184 106 128 44 -41 -16 #rect
-Ut0 f4 @|StepIcon #fIcon
 Ut0 f8 expr out #txt
 Ut0 f8 1152 128 1184 128 #arcP
 Ut0 f2 expr out #txt

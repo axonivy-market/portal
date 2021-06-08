@@ -1,5 +1,5 @@
 [Ivy]
-1749B87B8C1B77BE 9.2.0 #module
+1749B87B8C1B77BE 9.3.0 #module
 >Proto >Proto Collection #zClass
 Pr0 PortalGlobalVariableHelper Big #zClass
 Pr0 B #cInfo
@@ -15,7 +15,6 @@ Pr0 @PushWFArc f9 '' #zField
 Pr0 @PushWFArc f8 '' #zField
 >Proto Pr0 Pr0 PortalGlobalVariableHelper #zField
 Pr0 f6 321 65 30 30 0 15 #rect
-Pr0 f6 @|EndIcon #fIcon
 Pr0 f7 actionTable 'out=in;
 ' #txt
 Pr0 f7 actionCode 'ivy.session.logoutSessionUser();
@@ -29,7 +28,6 @@ Pr0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Pr0 f7 128 58 144 44 -63 -8 #rect
-Pr0 f7 @|StepIcon #fIcon
 Pr0 f5 outLink updateGlobalVariable.ivp #txt
 Pr0 f5 inParamDecl '<String variableName,String variableValue> param;' #txt
 Pr0 f5 inParamTable 'out.variableName=param.variableName;
@@ -49,7 +47,6 @@ Pr0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Pr0 f5 @C|.responsibility Everybody #txt
 Pr0 f5 65 65 30 30 -67 21 #rect
-Pr0 f5 @|StartRequestIcon #fIcon
 Pr0 f9 272 80 321 80 #arcP
 Pr0 f8 95 80 128 80 #arcP
 >Proto Pr0 .type portalKit_test.PortalGlobalVariableHelperData #txt

@@ -1,5 +1,5 @@
 [Ivy]
-163D97C604D3D4C9 9.2.0 #module
+163D97C604D3D4C9 9.3.0 #module
 >Proto >Proto Collection #zClass
 Ts0 TaskAnalysis Big #zClass
 Ts0 B #cInfo
@@ -47,9 +47,7 @@ Ts0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ts0 f0 @C|.responsibility Everybody #txt
 Ts0 f0 81 49 30 30 -21 17 #rect
-Ts0 f0 @|StartRequestIcon #fIcon
 Ts0 f1 617 49 30 30 0 15 #rect
-Ts0 f1 @|EndIcon #fIcon
 Ts0 f5 dialogId ch.ivy.addon.portal.generic.TaskAnalysis #txt
 Ts0 f5 startMethod start() #txt
 Ts0 f5 requestActionDecl '<> param;' #txt
@@ -67,7 +65,6 @@ Ts0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ts0 f5 440 42 128 44 -56 -8 #rect
-Ts0 f5 @|UserDialogIcon #fIcon
 Ts0 f2 expr out #txt
 Ts0 f2 568 64 617 64 #arcP
 Ts0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -80,7 +77,6 @@ Ts0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ts0 f3 320 48 32 32 -47 18 #rect
-Ts0 f3 @|AlternativeIcon #fIcon
 Ts0 f6 expr in #txt
 Ts0 f6 outCond in.hasPermission #txt
 Ts0 f6 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -122,7 +118,6 @@ Ts0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ts0 f8 168 42 112 44 -49 -8 #rect
-Ts0 f8 @|StepIcon #fIcon
 Ts0 f9 expr out #txt
 Ts0 f9 111 64 168 64 #arcP
 Ts0 f4 expr out #txt

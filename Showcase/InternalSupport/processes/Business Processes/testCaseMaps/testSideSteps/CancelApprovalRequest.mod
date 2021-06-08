@@ -1,5 +1,5 @@
 [Ivy]
-15D4E4EBDE11BDC2 9.2.0 #module
+15D4E4EBDE11BDC2 9.3.0 #module
 >Proto >Proto Collection #zClass
 ct0 cancelApprovalRequest Big #zClass
 ct0 B #cInfo
@@ -44,9 +44,7 @@ ct0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 ct0 f0 @C|.responsibility Everybody #txt
 ct0 f0 65 57 30 30 -21 17 #rect
-ct0 f0 @|StartRequestIcon #fIcon
 ct0 f1 321 57 30 30 0 15 #rect
-ct0 f1 @|EndIcon #fIcon
 ct0 f3 dialogId internaltest.ui.CancelApprovalRequest #txt
 ct0 f3 startMethod start() #txt
 ct0 f3 requestActionDecl '<> param;' #txt
@@ -64,7 +62,6 @@ ct0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 ct0 f3 136 50 144 44 -69 -8 #rect
-ct0 f3 @|UserDialogIcon #fIcon
 ct0 f2 expr out #txt
 ct0 f2 95 72 136 72 #arcP
 ct0 f4 expr out #txt
