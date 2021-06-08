@@ -95,7 +95,7 @@ HowTo: Create new filter
 ------------------------
 
 #. Click on the button :guilabel:`More` to select one of the available filters.
-   For a list of available filters, see  `Task filter criteria`_.
+   For a list of available filters, see  `Task filter`_.
 
 #. Click on the newly added filter and configure it.
 
@@ -119,33 +119,44 @@ HowTo: Create new filter
 |how-to-create-task-filter|
 
 
-.. centered:: _`Task filter criteria`
+.. centered:: _`Task filter`
 
 +-----------------------------------+-----------------------------------+
 | Criteria                          | Description                       |
 +===================================+===================================+
-| Created (from / to)               | The filter lets you specify in    |
+| Completed on (from / to)          | This filter lets you specify task |
+|                                   | complete period.                  |
++-----------------------------------+-----------------------------------+
+| Created (from / to)               | This filter lets you specify in   |
 |                                   | which time period the task was    |
 |                                   | created.                          |
 +-----------------------------------+-----------------------------------+
-| Description                       | The filter lets you search for    |
+| Description                       | This filter lets you search for   |
 |                                   | keywords within the task          |
 |                                   | description.                      |
 +-----------------------------------+-----------------------------------+
-| Expiry (from / to)                | The filter lets you specify in    |
+| Expiry (from / to)                | Thisfilter lets you specify in    |
 |                                   | which time period the task will   |
 |                                   | expire.                           |
 +-----------------------------------+-----------------------------------+
-| Priority                          | The filter lets you specify the   |
+| Priority                          | This filter lets you specify the  |
 |                                   | priority of the tasks to be       |
 |                                   | shown.                            |
 +-----------------------------------+-----------------------------------+
-| Responsible                       | The filter lets you specify a     |
+| Responsible                       | This filter lets you specify a    |
 |                                   | user or role which is responsible |
 |                                   | for the task.                     |
 +-----------------------------------+-----------------------------------+
-| State                             | The filter lets you specify the   |
+| State                             | This filter lets you specify the  |
 |                                   | task state.                       |
++-----------------------------------+-----------------------------------+
+| Category                          | This filter lets you specify      |
+|                                   | the task category.                |
++-----------------------------------+-----------------------------------+
+| Available Activator               | This filter is only for Admin and |
+|                                   | lets you find tasks which have no |
+|                                   | activator, activator is not found |
+|                                   | or is disabled.                   |
 +-----------------------------------+-----------------------------------+
 
 
