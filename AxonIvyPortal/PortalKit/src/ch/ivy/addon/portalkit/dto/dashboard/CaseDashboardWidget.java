@@ -37,6 +37,7 @@ import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;
+import ch.ivy.addon.portalkit.ivydata.searchcriteria.DashboardCaseSearchCriteria;
 import ch.ivy.addon.portalkit.service.IvyAdapterService;
 import ch.ivy.addon.portalkit.util.CaseTreeUtils;
 import ch.ivy.addon.portalkit.util.CategoryUtils;
@@ -400,6 +401,11 @@ public class CaseDashboardWidget extends DashboardWidget {
       column.setUserFilterTo(StringUtils.EMPTY);
       column.setUserDateFilterFrom(null);
       column.setUserDateFilterTo(null);
+    }
+    if (Optional.ofNullable(dataModel)
+        .map(DashboardCaseLazyDataModel::getCriteria)
+        .map(DashboardCaseSearchCriteria::getUserFilterCategories).isPresent()) {
+      dataModel.getCriteria().getUserFilterCategories().clear();
     }
   }
 
