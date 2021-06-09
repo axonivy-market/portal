@@ -1,7 +1,8 @@
-@import '../sass/ivy/customization';
+@import '../sass/ivy/variables-customization';
 @import '../sass/ivy/variables';
 @import '../sass/ivy/font-faces';
 @import '../sass/theme/_theme';
+@import '../sass/ivy/customization';
 
 /*Style For Logos --------------------------------------------------------------------------------------*/
 body .layout-wrapper .layout-sidebar .sidebar-logo img.portal-home-logo {
@@ -1748,4 +1749,26 @@ ul.participants-list li {
 body .ui-growl .ui-growl-item .ui-growl-message a {
   color: #ffffff;
   text-decoration: underline;
+}
+
+/* Security member display name */
+.security-member-tooltip.ui-tooltip {
+  font-size: $securityMemberHeaderFontSize;
+}
+
+.security-member-tooltip .tooltip-header {
+  font-weight: $securityMemberHeaderFontWeight;
+  font-size: $securityMemberHeaderFontSize;
+}
+
+.security-member-tooltip .tooltip-body-item {
+  font-size: $securityMemberItemFontSize;
+}
+
+.security-member-tooltip.ui-tooltip.ui-tooltip-right .ui-tooltip-arrow {
+  border-right-color: $securityMemberTooltipArrowColor;
+}
+
+.security-member-tooltip.ui-tooltip.ui-tooltip-left .ui-tooltip-arrow {
+  border-left-color: $securityMemberTooltipArrowColor;
 }

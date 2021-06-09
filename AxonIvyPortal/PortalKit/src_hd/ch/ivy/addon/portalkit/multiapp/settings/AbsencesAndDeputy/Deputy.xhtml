@@ -30,7 +30,9 @@
       var="substituteNode" emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}">
       <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/role')}"
         styleClass="substitute-role">
-        <h:outputText value="#{substituteNode.name}" />
+        <h:panelGroup styleClass="substitute-role-name">
+          <h:outputText value="#{substituteNode.name}" />
+        </h:panelGroup>
       </p:column>
       <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/deputy')}"
         styleClass="substitute-deputy">

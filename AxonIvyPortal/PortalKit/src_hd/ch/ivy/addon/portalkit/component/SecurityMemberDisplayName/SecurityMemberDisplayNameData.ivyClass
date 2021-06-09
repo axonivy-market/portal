@@ -8,3 +8,9 @@ keyword String #field
 keyword PERSISTENT #fieldModifier
 isShowAllUser Boolean #field
 isShowAllUser PERSISTENT #fieldModifier
+isRenderUserOfRole Boolean #field
+isRenderUserOfRole PERSISTENT #fieldModifier
+usersInTooltips String #field
+usersInTooltips PERSISTENT #fieldModifier
+securityMember ch.ivyteam.ivy.security.ISecurityMember #field
+securityMember PERSISTENT #fieldModifier

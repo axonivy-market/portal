@@ -2844,9 +2844,21 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   max-width: 900px;
 }
 
+.substitute-container .substitute-container-table table thead tr th.substitute-role {
+  height: auto;
+}
 .substitute-role {
-  width: 40%;
-  height: 30px !important;
+  display: flex;
+}
+
+.substitute-role .ui-treetable-indent,
+.substitute-role .ui-treetable-toggler {
+  flex-shrink: 0;
+}
+
+.substitute-role .substitute-role-name {
+  white-space: normal;
+  word-break: break-all;
 }
 
 .substitute-deputy {
@@ -4540,4 +4552,24 @@ body .ui-dialog.ui-widget.export-express-dialog {
   .ui-overlaypanel.user-of-role .user-data-scroller .ui-datascroller-content.ui-widget-content {
     max-height: 180px;
   }
+}
+
+.security-member-tooltip.ui-tooltip {
+  max-width: 80vw;
+  word-wrap: break-word;
+  opacity: 1;
+}
+
+.security-member-tooltip .tooltip-header,
+.security-member-tooltip .tooltip-body,
+.security-member-tooltip .tooltip-body-item {
+  margin: auto;
+}
+
+.security-member-tooltip .tooltip-body {
+  padding-left: 14px;
+}
+
+.security-member-tooltip .tooltip-body.no-user {
+  padding-left: 0;
 }
