@@ -53,7 +53,7 @@ proxy. Add ``-Dhttp.proxyHost`` to ``VM argument`` could help.
 
 Update default pages
 ====================
-If you copy ``PortalStart.mod`` to your project for customization, or :ref:`change the group id of Portal artifact <customization-change-group-id>`,
+If you copy ``PortalStart.mod`` to your project for customization, 
 you need to follow this chapter to customize standard processes in your designer and engine:
 `Standard Processes <https://developer.axonivy.com/doc/8.0/engine-guide/administration/standard-processes.html>`_
 
