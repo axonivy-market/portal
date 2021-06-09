@@ -607,10 +607,6 @@ body .process-widget .ui-selectbooleanbutton.ui-state-active .ui-icon {
 .task-state-done {
   color: var(--task-state-done-color); }
 
-.case-state-zombie-destroyed,
-.task-state-zombie-destroyed {
-  color: var(--task-state-zombie-destroyed-color); }
-
 .task-state-failed {
   color: var(--task-state-failed-color);}
 
@@ -638,6 +634,14 @@ body .process-widget .ui-selectbooleanbutton.ui-state-active .ui-icon {
 
 .task-priority-exception {
   color: var(--task-priority-exception-color); }
+
+.task-start-list .description-cell {
+  font-size: var(--task-item-description-font-size);
+  line-height: var(--task-item-description-line-height); }
+
+.task-start-list .name-cell {
+  font-weight: var(--task-item-name-font-weight);
+  line-height: var(--task-item-name-line-height); }
 
 /*Style For Statistic Widget -----------------------------------------------------------------------------*/
 body .statistic-carousel .ui-widget-header.ui-carousel-header {
@@ -1114,6 +1118,60 @@ body .ui-datepicker .ui-timepicker-div dl dd {
   color: var(--case-item-description-cell);
 }
 
+.priority-cell .priority,
+.case-detail-body .priority {
+  font-size: var(--priority-font-size); }
+
+.priority-cell .low-priority,
+.case-detail-body .low-priority {
+  color: var(--task-low-priority-color); }
+
+.priority-cell .normal-priority,
+.case-detail-body .normal-priority {
+  color: var(--task-normal-priority-color); }
+
+.priority-cell .high-priority,
+.case-detail-body .high-priority {
+  color: var(--task-high-priority-color); }
+
+.priority-cell .exception-priority,
+.case-detail-body .exception-priority {
+  color: var(--task-exception-priority-color); }
+
+.state-cell .task-state,
+.state-column .case-state, .case-detail-body .task-state {
+  border-radius: var(--task-state-border-radius);
+  font-size: var(--task-state-font-size);
+  line-height: var(--task-state-line-height);
+  border: 1px solid; }
+
+.state-cell .suspended-task-state,
+.state-column .open-task-state, .case-detail-body .suspended-task-state {
+  background: var(--task-state-suspended-background);
+  border-color: var(--task-state-suspended-background); }
+
+.state-cell .resumed-task-state,
+.state-column .running-case-state, .case-detail-body .resumed-task-state {
+  background: var(--task-state-resumed-background);
+  border-color: var(--task-state-resumed-background); }
+
+.state-cell .done-task-state,
+.state-column .done-case-state, .case-detail-body .done-task-state {
+  background: var(--task-state-done-background);
+  border-color: var(--task-state-done-background); }
+
+.state-cell .parked-task-state,
+.state-column .parked-task-state {
+  background: var(--task-state-parked-background);
+  border-color: var(--task-state-parked-background); }
+
+.state-cell .created-case-state,
+.state-cell .created-task-state,
+.state-column .created-case-state,
+.state-column .created-task-state{
+  background: var(--task-state-open-color);
+  border-color: var(--task-state-open-color); }
+
 /**Style for Absences and Debuty  --------------------------------------*/
 .substituted-user-text {
   font-size: var(--large-font-size); }
@@ -1261,7 +1319,9 @@ body .ui-inputfield.case-detail-name-input {
   color: var(--task-widget-header-column);  }
 
 .case-header-name-desc-cell .case-header-desc-cell {
-  color: var(--case-item-description-cell); }
+  color: var(--case-item-description-cell); 
+  font-size: var(--case-item-description-font-size);
+  line-height: var(--case-item-description-line-height); }
 
 .action-steps-panel .ui-overlaypanel-content {
   background-color: var(--case-action-steps-contents-background-color); }
@@ -1301,6 +1361,10 @@ body .ui-inputfield.case-detail-name-input {
 
 .action-steps-panel .action-icon {
   font-size: var(--large-font-size); }
+
+.case-header-name-desc-cell .case-header-name-cell {
+  font-weight: var(--case-item-name-font-weight);
+  line-height: var(--case-item-name-line-height); }
 
 /*Process --------------------------------------*/
 .process-widget .process-nav .process-nav-item {

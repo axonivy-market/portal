@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
@@ -206,8 +207,10 @@ public class TaskWidgetPage extends TemplatePage {
   public TaskState getTaskState(int taskRowIndex) {
     WebElement stateCell = findElementById(String.format(TASK_STATE_COMPONENT_ID, taskRowIndex));
     if (stateCell != null) {
-      String stateClass = stateCell.findElement(By.className("si")).getAttribute(CLASS);
-      return TaskState.fromClass(stateClass.substring(stateClass.indexOf("task-state-")));
+      String stateClass = stateCell.findElement(By.className("task-state")).getAttribute(CLASS);
+      String[] stateClasses = stateClass.trim().split(" ");
+      String state = Stream.of(stateClasses).filter(clazz -> clazz.endsWith("-task-state")).findFirst().orElse("");
+      return TaskState.fromClass(state);
     }
     return null;
   }
@@ -254,12 +257,12 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public String getPriorityOfTask(int row) {
-    String priorityClassName = findElementByCssSelector("span[id$='" + row +":task-item:task-priority-component:task-priority'] > span").getAttribute("class");
-    if (priorityClassName.contains("task-priority-low")) {
+    String priorityClassName = findElementByCssSelector("span[id$='" + row +":task-item:task-priority-component:task-priority'] > span > i").getAttribute("class");
+    if (priorityClassName.contains("low-priority")) {
       return "low";
-    } else if (priorityClassName.contains("task-priority-normal")) {
+    } else if (priorityClassName.contains("normal-priority")) {
       return "normal";
-    } else if (priorityClassName.contains("task-priority-high")) {
+    } else if (priorityClassName.contains("high-priority")) {
       return "high";
     } else {
       return "exception";
@@ -695,7 +698,7 @@ public class TaskWidgetPage extends TemplatePage {
   public boolean isTaskStateOpen(int index) {
     try {
       WebElement stateComponent = findElementById(String.format(TASK_STATE_COMPONENT_ID, index));
-      stateComponent.findElement(By.className("task-state-open"));
+      stateComponent.findElement(By.className("suspended-task-state"));
     } catch (NoSuchElementException e) {
       return false;
     }
@@ -705,7 +708,7 @@ public class TaskWidgetPage extends TemplatePage {
   public boolean isTaskStateReserved(int index) {
     try {
       WebElement stateComponent = findElementById(String.format(TASK_STATE_COMPONENT_ID, index));
-      stateComponent.findElement(By.className("task-state-reserved"));
+      stateComponent.findElement(By.className("parked-task-state"));
     } catch (NoSuchElementException e) {
       return false;
     }
