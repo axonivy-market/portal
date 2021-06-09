@@ -576,7 +576,7 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 }
 
 .case-header-data .case-header-default-cell {
-  flex: 0 0 90px;
+  flex: 0 0 100px;
   text-align: center;
 }
 
@@ -870,6 +870,23 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   text-align: center;
 }
 
+.state-with-indicator {
+  display: inline-flex;
+  align-items: center;
+  float: left;
+  width: 100%;
+}
+
+.state-with-indicator .case-state.state-indicator,
+.state-with-indicator .task-state.state-indicator {
+  display: inline-block;
+  flex: 0 0 12px;
+  height: 12px;
+  width: 12px;
+  padding: 0;
+  margin-right: 3px;
+}
+
 .case-detail-body .id-column,
 .case-detail-body .created-column, 
 .case-detail-body .expiry-column {
@@ -916,53 +933,20 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 	display: inline-block;
 }
 
-.case-detail-body .priority {
-  font-size: 2rem;
-}
-
-.case-detail-body .low-priority {
-  color: #90DDE9;
-}
-
-.case-detail-body .normal-priority {
-  color: #49BAD6;
-}
-
-.case-detail-body .high-priority {
-  color: #007095;
-}
-
-.case-detail-body .exception-priority {
-  color: #EE4A52;
-}
-
-.case-detail-body .case-state, .case-detail-body .task-state {
-  border-radius: 8px;
+.state-cell .task-state,
+.state-column .case-state, .case-detail-body .task-state {
+  display: inline-block;
+  white-space: nowrap;
   box-sizing: border-box;
-  font-size: 1.2rem;
   width: fit-content;
-  padding: 2px 5px;
-  border: 1.5px solid;
+  padding: 0 8px;
 }
 
-.case-detail-body .open-task-state, .case-detail-body .suspended-task-state {
-  background: #DADADA;
-  border-color: #DADADA;
-}
-
-.case-detail-body .running-case-state, .case-detail-body .resumed-task-state {
-  background: #FFE896;
-  border-color: #FFE896;
-}
-
-.case-detail-body .done-case-state, .case-detail-body .done-task-state {
-  background: #D4EBA2;
-  border-color: #D4EBA2;
-}
-
-.case-detail-body .parked-task-state {
-  background: #FCC3C3;
-  border-color: #FCC3C3;
+.state-column .case-state.ellipsis-state, 
+.state-cell .task-state.ellipsis-state {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-width: 90px;
 }
 
 /* Mobile screen */
@@ -1745,7 +1729,7 @@ a.compact-task-start-link .task-start-list-item {
   border-radius: 5px;
   margin: auto .5em;
   margin-bottom: 12px;
-  height: 78px;
+  height: 74px;
   padding: 6px 0;
   display: flex;
   align-items: center;
@@ -1830,7 +1814,21 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 }
 
 .task-start-list .priority-cell {
-  padding: 0 22px;
+  padding: 0 20px;
+}
+
+.priority-cell {
+  display: inline-block;
+}
+
+.priority-cell .priority-icon {
+  display: flex;
+  align-items: center;
+  float: left;
+}
+
+.priority-cell .priority-text {
+  margin-left:5px;
 }
 
 .no-task-message, .case-widget-empty-message {
@@ -1839,7 +1837,6 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 
 .task-start-list .name-cell {
   display: block;
-  padding-bottom: 2px;
 }
 
 .task-start-list .description-cell {
@@ -4921,6 +4918,10 @@ _:-ms-fullscreen, :root .content-link-history {
 
 .edit-priority-inplace .ui-inplace-editor {
   display: block !important;
+}
+
+.edit-priority-inplace .ui-inplace-display {
+  float: left;
 }
 
 .truncate-note {

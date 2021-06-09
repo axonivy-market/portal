@@ -86,8 +86,7 @@
         
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/STATE')}" field="STATE" sortBy="#{STATE}" styleClass="state-column u-hidden-md-down"
           visible="#{caseDetailsBean.isDisplayColumn(data.caseLazyDataModel, 'STATE')}">
-          <h:outputText value="#{caseBean.getState(case)}" 
-            styleClass="case-state #{case.state.toString().toLowerCase()}-case-state" />
+          <ic:ch.ivy.addon.portalkit.component.cases.column.CaseState case="#{case}" alwaysShowState="true"/>
         </p:column>
         
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CATEGORY')}" sortable="false" styleClass="category-column u-truncate-text"

@@ -77,7 +77,7 @@ public class TaskBean implements Serializable {
   }
 
   public String getPriority(WorkflowPriority priority) {
-    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskPriority/" + priority.name());
+    return cms("/ch.ivy.addon.portalkit.ui.jsf/taskPriority/" + priority.name());
   }
 
   public boolean isNotDone(ITask task) {
@@ -102,7 +102,7 @@ public class TaskBean implements Serializable {
     if (state == null) {
       return StringUtils.EMPTY;
     }
-    return Ivy.cms().co(TASKSTATE_CMS_PATH + state);
+    return cms(TASKSTATE_CMS_PATH + state);
   }
 
   public String displayRelatedTaskToolTip(ITask task) {
@@ -121,52 +121,61 @@ public class TaskBean implements Serializable {
     }
     switch (state) {
       case SUSPENDED:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/OPEN");
+        return cms("/ch.ivy.addon.portalkit.ui.jsf/taskState/SUSPENDED");
       case CREATED:
+        return cms("/ch.ivy.addon.portalkit.ui.jsf/taskState/OPEN");
       case RESUMED:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/INPROGRESS");
+        return cms("/ch.ivy.addon.portalkit.ui.jsf/taskState/INPROGRESS");
       case DONE:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/DONE_UPPERCASE");
+        return cms("/ch.ivy.addon.portalkit.ui.jsf/taskState/DONE_UPPERCASE");
       case PARKED:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/RESERVED");
+        return cms("/ch.ivy.addon.portalkit.ui.jsf/taskState/RESERVED");
       case DESTROYED:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/DESTROYED_UPPERCASE");
+        return cms("/ch.ivy.addon.portalkit.ui.jsf/taskState/DESTROYED_UPPERCASE");
       case DELAYED:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/DELAYED_UPPERCASE");
+        return cms("/ch.ivy.addon.portalkit.ui.jsf/taskState/DELAYED_UPPERCASE");
       case READY_FOR_JOIN:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/READY_FOR_JOIN_UPPERCASE");
+        return cms("/ch.ivy.addon.portalkit.ui.jsf/taskState/READY_FOR_JOIN_UPPERCASE");
       case ZOMBIE:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/ZOMBIE");
+        return cms("/ch.ivy.addon.portalkit.ui.jsf/taskState/ZOMBIE");
       default:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/SYSTEM");
+        return cms("/ch.ivy.addon.portalkit.ui.jsf/taskState/SYSTEM");
     }
   }
-  
+
+  private String cms(String uri) {
+    return Ivy.cms().co(uri);
+  }
+
   public String getUserFriendlyTaskStateInCapitalization(TaskState state) {
     if (state == null) {
       return StringUtils.EMPTY;
     }
-    switch (state) {
-      case SUSPENDED:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/SUSPENDED");
-      case CREATED:
-      case RESUMED:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/RESUMED");
-      case DONE:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/DONE");
-      case PARKED:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/PARKED");
-      case DESTROYED:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/DESTROYED");
-      case DELAYED:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/DELAYED");
-      case READY_FOR_JOIN:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/READY_FOR_JOIN");
-      case ZOMBIE:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/ZOMBIE");
-      default:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/SYSTEM");
+
+    if (state == TaskState.SUSPENDED || state == TaskState.CREATED || state == TaskState.RESUMED
+        || state == TaskState.DONE || state == TaskState.PARKED || state == TaskState.DESTROYED
+        || state == TaskState.DELAYED || state == TaskState.READY_FOR_JOIN || state == TaskState.ZOMBIE) {
+      return cms("/ch.ivy.addon.portalkit.ui.jsf/taskState/" + state);
     }
+
+    return cms("/ch.ivy.addon.portalkit.ui.jsf/taskState/SYSTEM");
+  }
+
+  public String shortenTaskState(TaskState state) {
+    if (state == null) {
+      return StringUtils.EMPTY;
+    }
+    if (state == TaskState.READY_FOR_JOIN || state == TaskState.JOINING) {
+      return cms("/ch.ivy.addon.portalkit.ui.jsf/taskState/JOINING");
+    }
+    if (state == TaskState.WAITING_FOR_INTERMEDIATE_EVENT) {
+      return cms("/ch.ivy.addon.portalkit.ui.jsf/taskState/WAITING");
+    }
+    if (state == TaskState.JOIN_FAILED || state == TaskState.FAILED) {
+      return cms("/ch.ivy.addon.portalkit.ui.jsf/taskState/" + state);
+    }
+
+    return getUserFriendlyTaskStateInCapitalization(state);
   }
 
   public String displayCaseName(ITask task) {

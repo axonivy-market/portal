@@ -5,13 +5,13 @@ public enum CaseState {
 
   public static CaseState fromClass(String stateClass) {
     switch (stateClass.trim()) {
-      case "case-state-in-progress":
+      case "running-case-state":
         return IN_PROGRESS;
 
-      case "case-state-done":
+      case "done-case-state":
         return DONE;
 
-      case "case-state-zombie-destroyed":
+      case "destroyed-case-state":
         return DESTROYED;
       default:
         return CREATED;

@@ -10,21 +10,26 @@
   <cc:attribute name="stateTooltipStyleClass" />
   <cc:attribute name="dataModel" />
   <cc:attribute name="responsiveStyleClass" default="u-hidden-sm-down" />
+  <cc:attribute name="alwaysShowState" type="java.lang.Boolean" default="false" shortDescription="This is alternative param to show the case state without datamodel"/>
+  <cc:attribute name="showIndicatorBesideText" type="java.lang.Boolean" default="false"/>
+  <cc:attribute name="ellipsisText" type="java.lang.Boolean" default="true" />
 </cc:interface>
 
 <cc:implementation>
   <c:set var="case" value="#{cc.attrs.case}" />
   <c:set var="componentId" value="#{cc.attrs.componentId}" />
-  <c:set var="dataModel" value="#{cc.attrs.dataModel}" />
+  <c:set var="ellipsisText" value="#{cc.attrs.ellipsisText}" />
+  <c:set var="showIndicatorBesideText" value="#{cc.attrs.showIndicatorBesideText}" />
+  <c:set var="showState" value="#{cc.attrs.alwaysShowState or cc.attrs.dataModel.isSelectedColumn('STATE') or showIndicatorBesideText}" />
 
-  <h:panelGroup rendered="#{dataModel.isSelectedColumn('STATE')}" id="#{componentId}" 
-    styleClass="case-header-default-cell #{cc.attrs.stateStyleClass} #{cc.attrs.responsiveStyleClass}">
-    <h:panelGroup id="#{componentId}-in-progress" styleClass="si si-hourglass case-state-in-progress #{cc.attrs.stateIconStyleClass}"
-      rendered="#{case.state eq 'CREATED' or case.state eq 'RUNNING'}" />
-    <h:panelGroup id="#{componentId}-done" styleClass="si si-check-circle-1 case-state-done #{cc.attrs.stateIconStyleClass}"
-      rendered="#{case.state eq 'DONE'}" />
-    <h:panelGroup id="#{componentId}-destroyed" rendered="#{case.state eq 'DESTROYED' or case.state eq 'ZOMBIE'}"
-      styleClass="si si-alert-circle case-state-zombie-destroyed #{cc.attrs.stateIconStyleClass}" />
+  <h:panelGroup rendered="#{showState}" id="#{componentId}"
+    styleClass="case-header-default-cell state-column #{cc.attrs.stateStyleClass} #{cc.attrs.responsiveStyleClass}">
+    <h:outputText rendered="#{!showIndicatorBesideText}" value="#{caseBean.getState(case)}"
+      styleClass="case-state #{case.state.toString().toLowerCase()}-case-state #{cc.attrs.stateIconStyleClass} #{ellipsisText ? 'ellipsis-state':''}" />
+    <h:panelGroup rendered="#{showIndicatorBesideText}" styleClass="state-with-indicator">
+      <i class="case-state #{case.state.toString().toLowerCase()}-case-state state-indicator" />
+      <span class="#{ellipsisText ? 'text-ellipsis':''}">#{caseBean.getState(case)}</span>
+    </h:panelGroup>
   </h:panelGroup>
   <p:tooltip for="#{componentId}" value="#{caseBean.getState(case)}" styleClass="#{cc.attrs.stateTooltipStyleClass}" trackMouse="true" hideEvent="mouseleave click"/>
 </cc:implementation>
