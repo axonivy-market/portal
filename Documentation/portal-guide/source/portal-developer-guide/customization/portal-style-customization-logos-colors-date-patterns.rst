@@ -37,12 +37,12 @@ Change Portal styles
 --------------------
 
 Portal applies |sass_framework| framework to support
-you in customizing styles of Portal. They are ``theme.scss`` and ``variables.scss``.
+you in customizing styles of Portal. They are ``variables-customization.scss`` and ``customization.scss``.
 
-   - ``theme.scss`` in ``PortalStyle/webContent/resources/serenity-portal``
-   - ``variables.scss`` in ``PortalStyle/webContent/resources/sass/ivy``
+   - ``variables-customization.scss`` in ``PortalStyle/webContent/resources/sass/ivy``. Please put customization for Portal style variables to this file.
+   - ``customization.scss`` in ``PortalStyle/webContent/resources/sass/ivy``. Please put your specific style customization to this file.
 
-.. caution:: Please do not modify directly on these files because they can be changed by new Portal version for upgrade.
+.. caution:: Please do not modify ``theme.scss`` and ``variables.scss`` because they can be changed by new Portal version for upgrade.
 
 ..
 

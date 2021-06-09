@@ -518,3 +518,9 @@ $noItemHeaderFontSize: 2rem !default;
 /* Portal Global Ajax Status */
 $ajaxLoaderBackgroundColor: hsla(0, 0%, 100%, 0.9) !default;
 $ajaxLoaderBorderColor: $primaryColor !default;
+
+/* Security member display name */
+$securityMemberTooltipArrowColor: $white !default;
+$securityMemberHeaderFontSize: 12px !default;
+$securityMemberItemFontSize: 10px !default;
+$securityMemberHeaderFontWeight: bold !default;
