@@ -48,7 +48,7 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public void expand() {
-    waitForElementExisted("a[id$=':task-list-link:task-list-link']", true, 5);
+    waitForElementExisted("a[id$=':task-list-link:task-list-link']", true, 10);
     WebElement fullModeButton = findElementById(taskWidgetId + ":task-list-link:task-list-link");
     click(fullModeButton);
     waitForElementExisted("[id$=':filter-save-action']", true, 10);
