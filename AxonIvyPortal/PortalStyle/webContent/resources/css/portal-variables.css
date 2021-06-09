@@ -78,12 +78,11 @@
   --task-priority-exception-color: #ff5a5a;
 
   /* Task state color */
-  --task-state-open-color: #078cff;
+  --task-state-open-color: #C9C9C9;
   --task-state-in-progress-color: var(--ivy-tertinary-color-yellow-dark);
   --task-state-done-color: #4eb41c;
   --task-state-reserved-color: rgba(black, 0.4);
   --task-state-system-color: rgba(black, 0.4);
-  --task-state-zombie-destroyed-color: #ff6464;
   --task-state-failed-color: #ff6464;
   --task-state-waiting-color: var(--ivy-tertinary-color-yellow-dark);
   --task-state-reserved-font-size: 1.8rem;
@@ -257,6 +256,7 @@
   --case-detail-name-text-color-hight-light: var(--ivy-primary-color-black);
   /* Case List */
   --case-odd-row-background-color: var(--ivy-primary-color-grey-pale);
+  --priority-font-size: 1.8rem;
   /* Case Item */
   --history-note-color: var(--ivy-primary-color-black);
   --case-task-document-name-color: var(--ivy-primary-color-black);
@@ -278,6 +278,10 @@
   --case-item-description-font-style: normal;
   --case-item-description-font-size: 1.4.rem;
   --case-item-description-cell: var(--ivy-primary-color-grey-medium);
+  --case-item-description-font-size: var(--small-font-size);
+  --case-item-description-line-height: 1.6rem;
+  --case-item-name-line-height: 2rem;
+  --case-item-name-font-weight: 700;
   /* Task Widget */
   --task-filter-selection-form-hover-background-color: var(--ivy-primary-color-grey-pale);
   --compact-task-start-list-item-hover-background-color: var(--item-background-hover);
@@ -294,6 +298,10 @@
   --task-start-list-description-cell: var(--ivy-primary-color-grey-medium);
   --task-filter-delete-user-defined-icon-hover-color: var(--primary-color);
   --task-in-progress-checkbox-label-color: var(--primary-text-color);
+  --task-item-description-font-size: var(--small-font-size);
+  --task-item-description-line-height: 1.6rem;
+  --task-item-name-line-height: 2rem;
+  --task-item-name-font-weight: 700;
   /* Task Detail */
   --task-detail-paginator-color: var(--ivy-primary-color-black);
   --task-detail-paginator-header-corner-top-border-color: var(--ivy-primary-color-grey-light);
@@ -307,6 +315,17 @@
   --task-name-input-font-weight: bold;
   --task-highlighted-inplace-field-background-color: var(--ivy-primary-color-grey-pale);
   --task-highlighted-inplace-field-text-color: var(--ivy-primary-color-black);
+  --task-low-priority-color: #90DDE9;
+  --task-normal-priority-color: #49BAD6;
+  --task-high-priority-color: #007095;
+  --task-exception-priority-color: #EE4A52;
+  --task-state-border-radius: 10px;
+  --task-state-font-size: 1.2rem;
+  --task-state-line-height: 1.6rem;
+  --task-state-suspended-background: #DADADA;
+  --task-state-resumed-background: #FFE896;
+  --task-state-done-background: #D4EBA2;
+  --task-state-parked-background: rgba(0, 112, 149, 0.2);
   /* Task Action Item */
   --task-action-item-widget-header-color: var(--ivy-primary-color-white);
   --task-action-item-label-font-weight: normal;
