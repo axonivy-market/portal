@@ -55,8 +55,6 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
     this.isReadOnlyMode = userAgent.matches(".*Android.*|.*webOS.*|.*iPhone.*|.*iPad.*|.*iPod.*|.*BlackBerry.*|.*IEMobile.*|.*Opera Mini.*");
 
     samples = List.of(taskSample(), caseSample(), statisticSample(), processSample());
-
-    backupCategories();
   }
 
   private WidgetSample taskSample() {
@@ -197,8 +195,10 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
       }
     } else if (this.widget.getType() == DashboardWidgetType.TASK) {
       updateTaskWidgetAfterSave();
+      backupCategories();
     }  else if (this.widget.getType() == DashboardWidgetType.CASE) {
       updateCaseWidgetAfterSave();
+      backupCategories();
     }
     resetUserFilter();
     this.widget.buildPredefinedFilterData();

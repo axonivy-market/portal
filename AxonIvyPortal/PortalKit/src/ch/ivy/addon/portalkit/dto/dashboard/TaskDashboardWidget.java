@@ -41,6 +41,7 @@ import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
+import ch.ivy.addon.portalkit.ivydata.searchcriteria.DashboardTaskSearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria;
 import ch.ivy.addon.portalkit.service.IvyAdapterService;
 import ch.ivy.addon.portalkit.util.CategoryUtils;
@@ -434,6 +435,11 @@ public class TaskDashboardWidget extends DashboardWidget {
       column.setUserFilterTo(StringUtils.EMPTY);
       column.setUserDateFilterFrom(null);
       column.setUserDateFilterTo(null);
+    }
+    if (Optional.ofNullable(dataModel)
+        .map(DashboardTaskLazyDataModel::getCriteria)
+        .map(DashboardTaskSearchCriteria::getUserFilterCategories).isPresent()) {
+      dataModel.getCriteria().getUserFilterCategories().clear();
     }
   }
 
