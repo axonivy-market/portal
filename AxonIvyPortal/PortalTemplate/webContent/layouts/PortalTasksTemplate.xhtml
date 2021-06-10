@@ -11,7 +11,6 @@
     <ui:param name="viewName" value="#{data.taskView.isRelatedTaskView() ? 'RELATED_TASK' : 'TASK'}" />
     <ui:param name="filterGroupId" value="#{ivy.request.processModel.id}" />
     <ui:param name="announcementContainerStyleClass" value="announcement-container-in-task-list" />
-    <ui:param name="loadGridStack" value="false" />
     <ui:define name="title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/tasks')}</ui:define>
     <ui:define name="pageContent">
     <div class="task-list-container js-task-list-container">

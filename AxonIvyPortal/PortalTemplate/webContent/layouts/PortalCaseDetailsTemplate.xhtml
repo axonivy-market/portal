@@ -6,6 +6,7 @@
   <ui:composition template="/layouts/BasicTemplate.xhtml">
   <ui:param name="viewName" value="CASE_DETAIL" />
   <ui:param name="case" value="#{caseInfo}" />
+  <ui:param name="loadGridStack" value="true" />
     <ui:define name="title">#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/CaseDetail/CaseDetailTitle')}</ui:define>
     <ui:define name="pageContent">
 
