@@ -10,7 +10,6 @@
     <ui:param name="viewName" value="#{data.caseView.isTechnicalCaseView() ? 'TECHNICAL_CASE' : 'CASE'}" />
     <ui:param name="filterGroupId" value="#{ivy.request.processModel.id}" />
     <ui:param name="announcementContainerStyleClass" value="announcement-container-in-case-list" />
-    <ui:param name="loadGridStack" value="false" />
 
     <ui:define name="title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/cases')}</ui:define>
     <ui:define name="pageContent">
