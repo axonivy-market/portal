@@ -41,9 +41,11 @@ import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.support.HtmlParser;
 import ch.ivy.addon.portalkit.util.CategoryUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
+import ch.ivy.addon.portalkit.util.ProcessStartUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.workflow.ICase;
+import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivyteam.ivy.workflow.ITask;
 
 @ViewScoped
@@ -171,9 +173,23 @@ public class DashboardBean implements Serializable {
     ProcessDashboardWidget processWidget = (ProcessDashboardWidget) widget;
     if (processWidget.getDisplayMode().equals(ProcessWidgetMode.COMPACT_MODE)) {
       loadProcesses(processWidget);
+    } else {
+      loadProcessByPath(processWidget);
     }
   }
 
+  private void loadProcessByPath(ProcessDashboardWidget processWidget) {
+    List<DashboardProcess> processes = getAllPortalProcesses();
+    IProcessStart foundProcess = ProcessStartUtils.findProcessStartByUserFriendlyRequestPath(processWidget.getProcessPath());
+    
+    for (DashboardProcess process : processes) {
+      if (process.getId().contains(foundProcess.getFullUserFriendlyRequestPath())) {
+        processWidget.setProcess(process);
+        break;
+      }
+    }
+  }
+  
   private void loadProcesses(ProcessDashboardWidget processWidget) {
     List<DashboardProcess> processes;
     if (processWidget.isSelectedAllProcess()) {

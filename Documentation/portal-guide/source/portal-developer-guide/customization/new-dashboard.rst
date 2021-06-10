@@ -99,3 +99,4 @@ They will help you understand how to configure widgets efficiency.
 
    new-dashboard-task-widget
    new-dashboard-case-widget
+   new-dashboard-process-widget
