@@ -29,11 +29,14 @@ public class ProcessDashboardWidget extends DashboardWidget {
 
   private static final long serialVersionUID = 3048837559125720787L;
   private ProcessWidgetMode displayMode = ProcessWidgetMode.COMPACT_MODE;
-  private List<DashboardProcess> processes;
   private boolean isSelectedAllProcess;
-  private DashboardProcess process;
   private List<String> categories;
-
+  private String processPath;
+  
+  @JsonIgnore
+  private List<DashboardProcess> processes;
+  @JsonIgnore
+  private DashboardProcess process;
   @JsonIgnore
   private List<DashboardProcess> displayProcesses;
   @JsonIgnore
@@ -255,5 +258,13 @@ public class ProcessDashboardWidget extends DashboardWidget {
 
   public void setOriginalDisplayProcesses(List<DashboardProcess> originalDisplayProcesses) {
     this.originalDisplayProcesses = originalDisplayProcesses;
+  }
+
+  public String getProcessPath() {
+    return processPath;
+  }
+
+  public void setProcessPath(String processPath) {
+    this.processPath = processPath;
   }
 }
