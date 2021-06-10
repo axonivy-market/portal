@@ -9,7 +9,6 @@
   <ui:composition template="/layouts/BasicTemplate.xhtml">
     <ui:param name="updatedComponentAfterGuide" 
       value="#{not empty updatedComponentAfterGuide ? updatedComponentAfterGuide : 'process-widget task-widget statistic-widget-container'}" />
-    <ui:param name="loadGridStack" value="false" />
     <ui:define name="title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/dashboard')}</ui:define>
     <ui:define name="pageContent">
       <c:set var="displayProcessWidget" value="#{not empty displayProcessWidget ? displayProcessWidget : true}" />

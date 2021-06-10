@@ -5,7 +5,6 @@
 
 <h:body>
   <ui:composition template="/layouts/BasicTemplate.xhtml">
-    <ui:param name="loadGridStack" value="false" />
     <ui:define name="title">PortalUrlCallback</ui:define>
     <ui:define name="pageContent">
       <f:event type="preRenderView" listener="#{logic.redirect}" />

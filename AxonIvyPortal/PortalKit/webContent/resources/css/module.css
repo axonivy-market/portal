@@ -1019,6 +1019,7 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 
 .process-widget .loading-text {
   padding-left: 15px;
+  padding-top: 10px;
 }
 
 /* Mobile screen */
