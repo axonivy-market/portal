@@ -17,8 +17,11 @@
 <cc:implementation>
   <ic:ch.ivy.addon.portalkit.component.task.filter.AdvancedFilter id="#{cc.attrs.componentId}" taskFilter="#{cc.attrs.filter}" 
     selectedFilters="#{cc.attrs.selectedFilters}" resultContainerUpdated="#{cc.attrs.resultContainerUpdated}" dataModel="#{cc.attrs.dataModel}">
-    <p:selectBooleanCheckbox id="available-activator" itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/showOnlyTaskForUnavailableFilter')}" 
-      value="#{cc.attrs.filter.queryTaskForUnavailableActivator}" styleClass="available-activator-filter" />
+    <h:panelGrid columns="1" cellpadding="5" styleClass="ui-fluid missing-activator-filter">
+      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/showOnlyTaskForMissingActivatorDesc')}" />
+      <p:selectBooleanCheckbox id="available-activator" itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/showOnlyTaskForMissingActivator')}" 
+        value="#{cc.attrs.filter.queryTaskForUnavailableActivator}"  />
+    </h:panelGrid>
   </ic:ch.ivy.addon.portalkit.component.task.filter.AdvancedFilter>
 </cc:implementation>
 </html>

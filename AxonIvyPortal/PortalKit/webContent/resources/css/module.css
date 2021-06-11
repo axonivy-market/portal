@@ -4524,8 +4524,12 @@ body .ui-widget-content.filter-name-overlay-panel {
     display: none !important;
   }
 }
-.available-activator-filter span.ui-chkbox-label{
+.missing-activator-filter span.ui-chkbox-label{
 margin-top: 2px;
+}
+
+.missing-activator-filter td{
+width:320px;	
 }
 
 /*********** SEARCH ICON ***********/

@@ -192,16 +192,18 @@ public class TaskFilterTest extends BaseTest {
 		TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
 		taskWidgetPage.expand();
 		String taskCategoryId = "task-category";
-		taskWidgetPage.openAdvancedFilter("Task category", taskCategoryId);
-		assertEquals("Task category: All", taskWidgetPage.getFilterValue(taskCategoryId + "-filter"));
+		taskWidgetPage.openAdvancedFilter("Category", taskCategoryId);
+		assertEquals("Category: All", taskWidgetPage.getFilterValue(taskCategoryId + "-filter"));
 		taskWidgetPage.openCategoryFilter();
 		assertTrue(taskWidgetPage.isAllCategoriesSelected());
 
 		taskWidgetPage.toggleNoCategory();
+		
 		assertTrue(taskWidgetPage.isAllCategoriesUnselected());
 
 		taskWidgetPage.applyCategoryFilter();
-		assertNotEquals("Task category: All", taskWidgetPage.getFilterValue(taskCategoryId + "-filter"));
+		
+		assertNotEquals("Category: All", taskWidgetPage.getFilterValue(taskCategoryId + "-filter"));
 	}
 
 	@Test
@@ -293,7 +295,7 @@ public class TaskFilterTest extends BaseTest {
     TaskWidgetPage taskWidgetPage = mainMenuPage.openTaskList();
 
     String filterName = "For admins";
-    taskWidgetPage.openNoActivatorFilter("Task for unavailable activator");
+    taskWidgetPage.openNoActivatorFilter("Missing activator");
     assertEquals(4, taskWidgetPage.countTasks());
     taskWidgetPage.filterByUnavailableActivator(true);
     assertEquals(1, taskWidgetPage.countTasks());
