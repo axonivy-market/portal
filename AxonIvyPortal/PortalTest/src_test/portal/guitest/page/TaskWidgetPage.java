@@ -755,10 +755,9 @@ public class TaskWidgetPage extends TemplatePage {
     }
   }
 
-  @SuppressWarnings("deprecation")
   public void applyCategoryFilter() {
     click(By.cssSelector("button[id$='task-category-filter:filter-input-form:update-command']"));
-    waitAjaxIndicatorDisappear();
+    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
   }
 
   @SuppressWarnings("deprecation")
