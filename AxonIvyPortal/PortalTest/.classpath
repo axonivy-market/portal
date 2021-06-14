@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry exported="true" kind="lib" path="lib_test/junit-4.13.jar"/>
 	<classpathentry kind="src" path="src">
 		<attributes>
 			<attribute name="optional" value="true"/>
@@ -11,9 +10,11 @@
 			<attribute name="optional" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="src" path="src_test">
+	<classpathentry kind="src" output="target/test-classes" path="src_test">
 		<attributes>
 			<attribute name="optional" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="test" value="true"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-11">
@@ -30,8 +31,5 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="lib_test/mockito-core-2.23.0.jar"/>
-	<classpathentry kind="lib" path="lib_test/objenesis-3.0.1.jar"/>
-	<classpathentry kind="lib" path="lib_test/powermock-mockito2-2.0.2-full.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
