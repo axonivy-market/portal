@@ -15,6 +15,8 @@ import ch.ivyteam.ivy.environment.Ivy;
 
 public class IvyComponentLogicCaller<T> {
 
+  private static boolean isCorePre8017;
+  
   @SuppressWarnings("unchecked")
   public T invokeComponentLogic(String componentId, String methodSignature, Object[] paramValues) {
     FacesContext fc = FacesContext.getCurrentInstance();
@@ -42,12 +44,31 @@ public class IvyComponentLogicCaller<T> {
    */
   private void setTargetComponent(MethodExpression componentMethod, UIComponent component) {
     try {
-      Field cc = componentMethod.getClass().getDeclaredField("compositeComponent");
-      cc.setAccessible(true);
-      cc.set(componentMethod, component);
+      if (isCorePre8017) {
+        setTargetComponentPreCore8017(componentMethod, component);
+        return;
+      }
+      try {
+        setTargetComponentPostCore8017(componentMethod, component);
+      }
+      catch(NoSuchFieldException ex) {
+        setTargetComponentPreCore8017(componentMethod, component);
+        isCorePre8017 = true;
+      }
     } catch (Exception ex) {
       Ivy.log().error(ex);
     }
   }
 
+  private void setTargetComponentPostCore8017(MethodExpression componentMethod, UIComponent component) throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
+    Field cc = componentMethod.getClass().getDeclaredField("compositeComponentId");
+    cc.setAccessible(true);
+    cc.set(componentMethod, component.getId());
+  }
+
+  private void setTargetComponentPreCore8017(MethodExpression componentMethod, UIComponent component) throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
+    Field cc = componentMethod.getClass().getDeclaredField("compositeComponent");
+    cc.setAccessible(true);
+    cc.set(componentMethod, component);
+  }
 }
