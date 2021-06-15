@@ -16,6 +16,7 @@ import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria;
+import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.util.HiddenTasksCasesConfig;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -90,7 +91,8 @@ public class RelatedTaskLazyDataModel extends TaskLazyDataModel {
     }
     UIComponent component = findRelatedTaskComponent();
     if (component != null) {
-      return findTaskCaller.invokeComponentLogic(component, "#{logic.findTasks}", new Object[] {criteria, startIndex, count});
+      String componentId = Attrs.currentContext().getBuildInAttribute("clientId");
+      return findTaskCaller.invokeComponentLogic(componentId, "#{logic.findTasks}", new Object[] {criteria, startIndex, count});
     }
     return new ArrayList<>();
   }
@@ -105,7 +107,8 @@ public class RelatedTaskLazyDataModel extends TaskLazyDataModel {
     IvyComponentLogicCaller<Long> countTaskCaller = new IvyComponentLogicCaller<>();
     UIComponent component = findRelatedTaskComponent();
     if (component != null) {
-      Long taskCount = countTaskCaller.invokeComponentLogic(component, "#{logic.countTasks}", new Object[] {criteria});
+      String componentId = Attrs.currentContext().getBuildInAttribute("clientId");
+      Long taskCount = countTaskCaller.invokeComponentLogic(componentId, "#{logic.countTasks}", new Object[] {criteria});
       return taskCount.intValue();
     }
     return 0;
