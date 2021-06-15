@@ -23,6 +23,7 @@
   <c:set var="isExpress" value="#{dashboardProcessBean.isExpressProcess(process)}" />
   <c:set var="isExternalLink" value="#{dashboardProcessBean.isExternalLink(process)}" />
   <c:set var="processTarget" value="#{dashboardProcessBean.targetToStartProcess(process)}"/>
+  <c:set var="isCaseMap" value="#{dashboardProcessBean.isCaseMap(process)}" />
 
   <h:form id="process-item" styleClass="ui-g-12 process-grid-item u-padding-0"
     target="#{processTarget}">
@@ -48,6 +49,8 @@
           <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/startProcess')}" id="start-button"
             actionListener="#{dashboardProcessBean.startProcessWithFullMode(process)}" icon="si si-arrow-right-1"
             ajax="#{!isExternalLink}" disabled="#{!isReadOnlyMode or isInConfiguration}" process="process-item" partialSubmit="true"/>
+          <p:link value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/MoreInformation')}" styleClass="process-more-info-link" href="#{dashboardProcessBean.getProcessInformationPageUrl(process)}"
+            rendered="#{data.showInformationLink and !isExpress and !isExternalLink and !isCaseMap}" disabled="#{!isReadOnlyMode or isInConfiguration}"/>
         </div>
       </h:panelGroup>
     </div>
