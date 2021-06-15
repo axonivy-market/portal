@@ -146,7 +146,8 @@ public class ProcessWidgetBean implements Serializable {
 
   private List<Process> findProcesses() {
     IvyComponentLogicCaller<List<IWebStartable>> ivyComponentLogicCaller = new IvyComponentLogicCaller<>();
-    List<IWebStartable> processes = ivyComponentLogicCaller.invokeComponentLogic(processWidgetComponentId,
+    String componentId = Attrs.currentContext().getBuildInAttribute("clientId");
+    List<IWebStartable> processes = ivyComponentLogicCaller.invokeComponentLogic(componentId,
         "#{logic.collectProcesses}", new Object[] {});
     List<Process> defaultPortalProcesses = new ArrayList<>();
     processes.forEach(process -> defaultPortalProcesses.add(new IvyProcess(process)));

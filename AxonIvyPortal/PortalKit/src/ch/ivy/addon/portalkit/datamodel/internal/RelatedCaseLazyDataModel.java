@@ -15,6 +15,7 @@ import org.primefaces.model.SortOrder;
 import ch.ivy.addon.portalkit.bean.IvyComponentLogicCaller;
 import ch.ivy.addon.portalkit.enums.CaseSortField;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;
+import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.CaseState;
@@ -91,7 +92,8 @@ public class RelatedCaseLazyDataModel extends LazyDataModel<ICase> {
     }
     UIComponent component = findRelatedCaseComponent();
     if (component != null) {
-      return findCaseCaller.invokeComponentLogic(component, "#{logic.findCases}", new Object[] {criteria, startIndex, count});
+      String componentId = Attrs.currentContext().getBuildInAttribute("clientId");
+      return findCaseCaller.invokeComponentLogic(componentId, "#{logic.findCases}", new Object[] {criteria, startIndex, count});
     }
     return new ArrayList<>();
   }
@@ -111,7 +113,8 @@ public class RelatedCaseLazyDataModel extends LazyDataModel<ICase> {
     IvyComponentLogicCaller<Long> countCaseCaller = new IvyComponentLogicCaller<>();
     UIComponent component = findRelatedCaseComponent();
     if (component != null) {
-      Long caseCount = countCaseCaller.invokeComponentLogic(component, "#{logic.countCases}", new Object[] {criteria});
+      String componentId = Attrs.currentContext().getBuildInAttribute("clientId");
+      Long caseCount = countCaseCaller.invokeComponentLogic(componentId, "#{logic.countCases}", new Object[] {criteria});
       return caseCount.intValue();
     }
     return 0;

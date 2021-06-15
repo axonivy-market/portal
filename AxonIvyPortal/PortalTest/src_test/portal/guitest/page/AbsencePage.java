@@ -100,7 +100,7 @@ public class AbsencePage extends TemplatePage {
   private void clickSelectedDeputiesLink(int deputyRoleIndex) {
     waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
     String deputiesSelector = String.format("a[id$='absences-management-form:substitute-table:%d:selected-deputies-link']", deputyRoleIndex);
-    waitForElementDisplayed(By.cssSelector(deputiesSelector), true);
+    waitForElementReallyDisplayed(By.cssSelector(deputiesSelector), true);
     Awaitility.await().atMost(new Duration(10, TimeUnit.SECONDS)).until(() -> {
       try {
         WebElement deputiesLink = findElementByCssSelector(deputiesSelector);
@@ -108,7 +108,11 @@ public class AbsencePage extends TemplatePage {
       } catch (Exception e) {
         // to avoid choose-deputy-dialog displays before deputiesLink is clicked
       }
-      return findElementById("choose-deputy-dialog").isDisplayed();
+      try {
+        return findElementById("choose-deputy-dialog").isDisplayed();
+      } catch (Exception e) {
+        return false;
+      }
     });
   }
 
