@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
+import ch.ivy.addon.portalkit.enums.ExternalVariable;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilter;
 import ch.ivy.addon.portalkit.taskfilter.impl.TaskFilterData;
 
@@ -32,6 +33,6 @@ public class TaskFilterService extends AbstractFilterService<TaskFilterData> {
 
   @Override
   public String getConfigKey() {
-    return "Portal.Tasks.TaskFilters";
+    return ExternalVariable.TASK_FILTER.key;
   }
 }

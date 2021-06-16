@@ -1,45 +1,135 @@
-{
-  "widgets": 
-  [
-    {
-      "type": "information",
-      "id": "information",
-      "axisX": 0,
-      "axisY": 0,
-      "width": 6,
-      "height": 8
-    },
-    {
-      "type": "document",
-      "id": "document",
-      "axisX": 6,
-      "axisY": 0,
-      "width": 6,
-      "height": 8
-    },
-    {
-      "type": "technicalCase",
-      "id": "technicalCase",
-      "axisX": 0,
-      "axisY": 8,
-      "width": 12,
-      "height": 6
-    },
-    {
-      "type": "relatedTask",
-      "id": "relatedTask",
-      "axisX": 0,
-      "axisY": 14,
-      "width": 12,
-      "height": 6
-    },
-    {
-      "type": "history",
-      "id": "history",
-      "axisX": 0,
-      "axisY": 20,
-      "width": 12,
-      "height": 6
-    }
-  ]
-}
+[
+	{
+		"id": "default-case-detail",
+		"widgets": [{
+				"type": "information",
+				"id": "information",
+				"layout": {
+					"w": 6, "h": 8, "x": 0, "y": 0
+				}
+			}, {
+				"type": "document",
+				"id": "document",
+				"layout": {
+					"w": 6, "h": 8, "x": 6, "y": 0
+				}
+			}, {
+				"type": "technicalCase",
+				"id": "technicalCase",
+				"layout": {
+					"w": 12, "h": 6, "x": 0, "y": 8
+				}
+			}, {
+				"type": "relatedTask",
+				"id": "relatedTask",
+				"layout": {
+					"w": 12, "h": 6, "x": 0, "y": 14
+				}
+			}, {
+				"type": "history",
+				"id": "history",
+				"layout": {
+					"w": 12, "h": 6, "x": 0, "y": 20
+				}
+			}
+		]
+	},
+	{
+		"id": "done-case-detail",
+		"filters": {
+			"states": ["DONE"]
+		},
+		"widgets": [{
+				"type": "information",
+				"id": "information",
+				"layout": {
+					"w": 6, "h": 8, "x": 0, "y": 0
+				}
+			}, {
+				"type": "document",
+				"id": "document",
+				"layout": {
+					"w": 6, "h": 8, "x": 6, "y": 0
+				}
+			}, {
+				"type": "history",
+				"id": "history",
+				"layout": {
+					"w": 12, "h": 6, "x": 0, "y": 8
+				}
+			}, {
+				"id": "custom",
+				"type": "custom",
+				"layout": {
+					"x": 0, "y": 8, "w": 12, "h": 6
+				},
+				"data" : {
+	                  "type": "caseItemDetailCustomTop"
+	            }
+	        }
+		]
+	},
+	{
+		"id": "running-case-detail",
+		"filters": {
+			"states": ["DESTROYED"]
+		},
+		"widgets": [{
+				"type": "information",
+				"id": "information",
+				"layout": {
+					"w": 6, "h": 8, "x": 0, "y": 0
+				}
+			}, {
+				"type": "document",
+				"id": "document",
+				"layout": {
+					"w": 6, "h": 8, "x": 6, "y": 0
+				}
+			}, {
+				"id": "custom",
+				"type": "custom",
+				"layout": {
+					"x": 0, "y": 8, "w": 6, "h": 6
+				},
+				"data": {
+					"processStart": "Start Processes/TaskDetailsCustomWidgetExample/invoiceDetails.ivp",
+					"params": {
+						"startedTaskId": "case.id",
+						"startedTaskCategory": "case.category",
+						"invoiceId": "000001573",
+						"invoiceDescription": "case.customFields.invoiceDescription"
+					}
+				}
+			}
+		]
+	},
+	{
+		"id": "leave-request-case-detail",
+		"filters": {
+			"categories": ["LeaveRequest"]
+		},
+		"widgets": [{
+				"type": "information",
+				"id": "information",
+				"layout": {
+					"w": 6, "h": 8, "x": 0, "y": 0
+				}
+			}, {
+				"type": "custom",
+				"layout": {
+					"x": 6, "y": 0, "w": 6, "h": 8
+				},
+				"data": {
+					"url": "https://www.axonivy.com/"
+				}
+			}, {
+				"type": "history",
+				"id": "history",
+				"layout": {
+					"w": 12, "h": 6, "x": 0, "y": 8
+				}
+			}
+		]
+	}
+]
