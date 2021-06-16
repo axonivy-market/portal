@@ -2,22 +2,40 @@ package ch.ivy.addon.portalkit.dto.taskdetails;
 
 import java.util.List;
 
-import ch.ivyteam.ivy.workflow.TaskState;
+import com.fasterxml.jackson.annotation.JsonGetter;
+import com.fasterxml.jackson.annotation.JsonSetter;
 
-public class TaskDetailsFilters {
-  private List<String> taskCategories;
-  private List<TaskState> taskStates;
+import ch.ivy.addon.portalkit.dto.AbstractWidgetFilter;
 
-  public List<TaskState> getTaskStates() {
-    return taskStates;
+public class TaskDetailsFilters extends AbstractWidgetFilter {
+
+  private static final long serialVersionUID = -3200596568431055148L;
+
+  public TaskDetailsFilters() {}
+
+  @Override
+  @JsonSetter("taskCategories")
+  public void setCategories(List<String> categories) {
+    super.setCategories(categories);
   }
-  public void setTaskStates(List<TaskState> taskStates) {
-    this.taskStates = taskStates;
+
+  @Override
+  @JsonGetter("taskCategories")
+  public List<String> getCategories() {
+    return super.getCategories();
   }
-  public List<String> getTaskCategories() {
-    return taskCategories;
+
+  @Override
+  @JsonGetter("taskStates")
+  public List<String> getStates() {
+    return this.states;
   }
-  public void setTaskCategories(List<String> taskCategories) {
-    this.taskCategories = taskCategories;
+
+  @Override
+  @JsonSetter("taskStates")
+  public void setStates(List<String> taskStates) {
+    this.states = taskStates;
   }
+
+
 }
