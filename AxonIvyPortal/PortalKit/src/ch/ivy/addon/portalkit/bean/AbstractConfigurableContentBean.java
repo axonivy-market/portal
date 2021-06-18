@@ -1,5 +1,7 @@
 package ch.ivy.addon.portalkit.bean;
 
+import static org.apache.commons.lang3.StringUtils.EMPTY;
+
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -40,8 +42,6 @@ import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUser;
 
-import static org.apache.commons.lang3.StringUtils.EMPTY;
-
 public abstract class AbstractConfigurableContentBean<T extends AbstractConfigurableContent> implements Serializable {
 
   private static final long serialVersionUID = -5019885123920232407L;
@@ -57,7 +57,7 @@ public abstract class AbstractConfigurableContentBean<T extends AbstractConfigur
 
   protected abstract Class<T> getConfigurationType();
 
-  public void init() {
+  public void initConfig() {
     if (mapper == null) {
       mapper = new ObjectMapper().enable(MapperFeature.ACCEPT_CASE_INSENSITIVE_ENUMS);
       mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
@@ -107,6 +107,7 @@ public abstract class AbstractConfigurableContentBean<T extends AbstractConfigur
     if (configuration == null) {
       configuration = getDefaultPortalConfig();
     }
+    configuration.setChanged(false);
     this.widgets = configuration.getWidgets();
     updateWidgetsType(widgets);
     updateUrlForCustomWidget(this.widgets);
