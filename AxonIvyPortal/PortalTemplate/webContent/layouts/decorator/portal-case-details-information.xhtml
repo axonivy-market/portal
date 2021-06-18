@@ -7,16 +7,25 @@
 <!-- THIS DECORATOR IS ONLY USED BY PORTAL. DON'T MODIFY -->
 
 <div id="#{id}" class="ui-g">
-  <ui:decorate template="/layouts/decorator/portal-case-item-details.xhtml">
+  <ic:ch.ivy.addon.portalkit.component.CaseItemDetails id="case-details-container"
+    case="#{caseDetailsBean.selectedCase}"
+    showItemBackButton="#{caseDetailsBean.showBackButton}"
+    isTaskStartedInDetails="#{caseDetailsBean.taskStartedInDetails}"
+    inFrame="#{inFrame == null ? false : inFrame}"
+    showItemDetailsHeader="#{showItemDetailsHeader == null ? true:showItemDetailsHeader}"
+    readOnly="#{readOnly == null ? false:readOnly}">
+    <f:facet name="caseItemDetailCustomTop">
+      <ui:insert name="caseItemDetailCustomTop" />
+    </f:facet>
 
-    <ui:param name="case" value="#{caseDetailsBean.selectedCase}" />
-    <ui:param name="showItemBackButton" value="#{caseDetailsBean.showBackButton}"/>
-    <ui:param name="isTaskStartedInDetails" value="#{caseDetailsBean.taskStartedInDetails}" />
-    <ui:param name="inFrame" value="#{inFrame == null ? false : inFrame}" />
-  
-    <ui:param name="showItemDetailsHeader" value="#{showItemDetailsHeader == null ? true:showItemDetailsHeader}" />
-    <ui:param name="readOnly" value="#{readOnly == null ? false:readOnly}"/>
-  </ui:decorate>
+    <f:facet name="caseItemDetailCustomMiddle">
+      <ui:insert name="caseItemDetailCustomMiddle" />
+    </f:facet>
+
+    <f:facet name="caseItemDetailCustomBottom">
+      <ui:insert name="caseItemDetailCustomBottom" />
+    </f:facet>
+  </ic:ch.ivy.addon.portalkit.component.CaseItemDetails>
 </div>
 
 </html>

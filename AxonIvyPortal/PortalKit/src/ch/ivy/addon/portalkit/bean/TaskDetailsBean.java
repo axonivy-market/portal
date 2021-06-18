@@ -21,10 +21,9 @@ public class TaskDetailsBean extends AbstractConfigurableContentBean<TaskDetails
   private static final long serialVersionUID = 8566646437739271552L;
   private boolean hasShowDurationTime;
 
-  @Override
   @PostConstruct
   public void init() {
-    super.init();
+    super.initConfig();
     try {
       hasShowDurationTime = Boolean.parseBoolean(globalSettingService.findGlobalSettingValue(GlobalVariable.SHOW_TASK_DURATION_TIME));
       loadWidgets();
