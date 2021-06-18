@@ -5543,6 +5543,7 @@ body span.ui-commandlink .si {
   min-width: 85px;
 }
 
+.case-item-body-container,
 .task-item-body-container {
   display: block;
   margin: 7px -3px;
@@ -5611,6 +5612,7 @@ body span.ui-commandlink .si {
   display: block;
 }
 
+.case-item-body-container .card,
 .task-item-body-container .card {
   padding: 24px;
 }
