@@ -48,26 +48,32 @@ public class CaseDetailsBean extends AbstractConfigurableContentBean<CaseDetails
   private ICase selectedCase;
   private CaseActionBean caseActionBean;
   private boolean inFrame;
+  private boolean isFirstTime;
 
-  @Override
   @PostConstruct
   public void init() {
-    super.init();
+    super.initConfig();
     isShowCaseDetails = PermissionUtils.hasPortalPermission(PortalPermission.SHOW_CASE_DETAILS);
+    isHideCaseDocument = new GlobalSettingService().findGlobalSettingValueAsBoolean(GlobalVariable.HIDE_CASE_DOCUMENT);
     caseActionBean = ManagedBeans.get("caseActionBean");
-    try {
-      loadWidgets();
-    } catch (Exception e) {
-      Ivy.log().error("Exception at method init of Class CaseDetailsBean", e);
-    }
+    isFirstTime = true;
   }
 
   public void preRender(ICase selectedCase, boolean showBackButton) {
     this.selectedCase = selectedCase;
     this.showBackButton = showBackButton;
     this.isTaskStartedInDetails = BooleanUtils.toBooleanDefaultIfNull((Boolean) Ivy.session().getAttribute(SessionAttribute.IS_TASK_STARTED_IN_DETAILS.toString()), false);
+    
+    if (isFirstTime) {
+      isFirstTime = false;
+      try {
+        loadWidgets();
+      } catch (Exception e) {
+        Ivy.log().error("Exception at method preRender of class CaseDetailsBean", e);
+      }
+    }
   }
-  
+
   public boolean hasTechnicalCases(ICase iCase) {
     CaseQuery caseQuery = CaseQuery.subCases().where().businessCaseId().isEqual(iCase.getId());
     return Ivy.wf().getCaseQueryExecutor().getFirstResult(caseQuery) != null;
@@ -89,54 +95,6 @@ public class CaseDetailsBean extends AbstractConfigurableContentBean<CaseDetails
     return caseActionBean.canDestroy(caseItem)
         && caseItem.getState() != CaseState.DONE
         && caseItem.getState() != CaseState.DESTROYED;
-  }
-
-  /**
-   * Get the latest configuration of HIDE_CASE_DOCUMENT in GlobalSettingService
-   * If null or empty, will return false
-   */
-  public void getHideCaseDocumentConfiguration() {
-    isHideCaseDocument = new GlobalSettingService().findGlobalSettingValueAsBoolean(GlobalVariable.HIDE_CASE_DOCUMENT);
-  }
-
-  public boolean isHideCaseDocument() {
-    return isHideCaseDocument;
-  }
-
-  public void setHideCaseDocument(boolean isHideCaseDocument) {
-    this.isHideCaseDocument = isHideCaseDocument;
-  }
-
-  public boolean isShowCaseDetails() {
-    return isShowCaseDetails;
-  }
-
-  public void setShowCaseDetails(boolean isShowCaseDetails) {
-    this.isShowCaseDetails = isShowCaseDetails;
-  }
-
-  public boolean isTaskStartedInDetails() {
-    return isTaskStartedInDetails;
-  }
-
-  public void setTaskStartedInDetails(boolean isTaskStartedInDetails) {
-    this.isTaskStartedInDetails = isTaskStartedInDetails;
-  }
-
-  public boolean isShowBackButton() {
-    return showBackButton;
-  }
-
-  public void setShowBackButton(boolean showBackButton) {
-    this.showBackButton = showBackButton;
-  }
-
-  public ICase getSelectedCase() {
-    return selectedCase;
-  }
-
-  public void setSelectedCase(ICase selectedCase) {
-    this.selectedCase = selectedCase;
   }
 
   /**
@@ -194,14 +152,6 @@ public class CaseDetailsBean extends AbstractConfigurableContentBean<CaseDetails
     }
   }
 
-  public boolean isInFrame() {
-    return inFrame;
-  }
-
-  public void setInFrame(boolean inFrame) {
-    this.inFrame = inFrame;
-  }
-
   @Override
   protected boolean findConfigByPredefinedFilters(List<CaseDetails> configurations) {
     ICase caseInfo = Objects.isNull(this.selectedCase) ? getCaseInfoFromData() : this.selectedCase;
@@ -223,6 +173,14 @@ public class CaseDetailsBean extends AbstractConfigurableContentBean<CaseDetails
     return Attrs.currentContext().getAttribute("#{data.caseInfo}", ICase.class);
   }
 
+  public String getHistoryWidgetComponentId(String clientId) {
+    int widgetPosition = getWidgetPositionByType("HistoryWidget");
+    if (widgetPosition > -1) {
+      return clientId + ":widgets:" + widgetPosition +":history-container";
+    }
+    return "";
+  }
+
   @Override
   protected Class<CaseDetails> getConfigurationType() {
     return CaseDetails.class;
@@ -236,5 +194,53 @@ public class CaseDetailsBean extends AbstractConfigurableContentBean<CaseDetails
   @Override
   protected String getDefaultConfigId() {
     return "default-case-detail";
+  }
+
+  public boolean isHideCaseDocument() {
+    return isHideCaseDocument;
+  }
+
+  public void setHideCaseDocument(boolean isHideCaseDocument) {
+    this.isHideCaseDocument = isHideCaseDocument;
+  }
+
+  public boolean isShowCaseDetails() {
+    return isShowCaseDetails;
+  }
+
+  public void setShowCaseDetails(boolean isShowCaseDetails) {
+    this.isShowCaseDetails = isShowCaseDetails;
+  }
+
+  public boolean isTaskStartedInDetails() {
+    return isTaskStartedInDetails;
+  }
+
+  public void setTaskStartedInDetails(boolean isTaskStartedInDetails) {
+    this.isTaskStartedInDetails = isTaskStartedInDetails;
+  }
+
+  public boolean isShowBackButton() {
+    return showBackButton;
+  }
+
+  public void setShowBackButton(boolean showBackButton) {
+    this.showBackButton = showBackButton;
+  }
+
+  public ICase getSelectedCase() {
+    return selectedCase;
+  }
+
+  public void setSelectedCase(ICase selectedCase) {
+    this.selectedCase = selectedCase;
+  }
+
+  public boolean isInFrame() {
+    return inFrame;
+  }
+
+  public void setInFrame(boolean inFrame) {
+    this.inFrame = inFrame;
   }
 }
