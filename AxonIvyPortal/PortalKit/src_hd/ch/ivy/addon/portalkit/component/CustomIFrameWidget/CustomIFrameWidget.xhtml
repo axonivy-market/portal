@@ -32,7 +32,7 @@
        </script>
     </ui:fragment>
     <ui:fragment rendered="#{empty widget.data.processStart}">
-      <iframe src="#{widget.data.url}" />
+      <iframe name="custom-widget-iframe-url" src="#{widget.data.url}" />
     </ui:fragment>
   </h:panelGroup>
 
