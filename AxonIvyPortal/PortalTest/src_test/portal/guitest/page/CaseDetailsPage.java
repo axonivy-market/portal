@@ -26,19 +26,18 @@ public class CaseDetailsPage extends TemplatePage {
   private static final String HISTORY_COMPONENT_ID = "div[id='case-details-history-panel']";
   private static final String RELATED_TASKS_COMPONENT_ID = "div[id='case-details-relatedTask-panel']";
   private static final String RELATED_CASES_COMPONENT_ID = "div[id='case-details-technicalCase-panel']";
-  private static final String HISTORY_LIST_CSS_SELECTOR = "a[id^='case-item-details:widgets:4:case-histories:case-histories']";
-  private static final String LATEST_HISTORY_LIST_CSS_SELECTOR =
-      "a[id='case-item-details:widgets:4:case-histories:case-histories:0:note-link']";
+  private static final String HISTORY_LIST_CSS_SELECTOR = "a[id*=':case-histories:case-histories:']";
+  private static final String LATEST_HISTORY_LIST_CSS_SELECTOR = "a[id*=':case-histories:case-histories:0:note-link']";
   private static final String GENERAL_INFORMATION_COMPONENT_ID = "div[id='case-details-information-panel']";
   private static final String ADDITIONAL_CASE_DETAILS_URL_CSS_SELECTOR = "a[id$='additional-case-details-link']";
   private static final String PROCESS_OVERVIEW_URL_CSS_SELECTOR = "a[id$='show-process-overview-link']";
   private static final String AUTHOR_USER_CSS_SELECTOR = "span[class='history-fullname']";
-  private static final String VIEW_NOTE_DIALOG_ID = "case-item-details:widgets:4:case-histories:view-note-dialog";
+  private static final String VIEW_NOTE_DIALOG_SELECTOR = "[id$=':case-histories:view-note-dialog']";
   private WebElement caseItem;
 
   @Override
   protected String getLoadedLocator() {
-    return "id('case-item-details:case-detail-body')";
+    return "id('case-item-details:case-details-container:case-detail-body')";
   }
 
   public CaseDetailsPage() {
@@ -251,7 +250,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   private WebElement getViewNoteDialog() {
-    return findElementById(VIEW_NOTE_DIALOG_ID);
+    return findElementByCssSelector(VIEW_NOTE_DIALOG_SELECTOR);
   }
 
   public void changeCaseDescription(String newDescription) {
@@ -297,19 +296,19 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public void onClickHistoryIcon() {
-    click(findElementById("case-item-details:widgets:4:case-histories:add-note-command"));
+    click(findElementByCssSelector("a[id$=':case-histories:add-note-command']"));
     waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
   }
 
   public void onClickDestroyCase() {
-    click(findElementById("case-item-details:widgets:0:destroy-case-link"));
+    click(findElementByCssSelector("a[id$=':destroy-case-link']"));
   }
   
   public void confimDestruction() {
-    String destroyCaseDialogId = "case-item-details:destroy-case-confirmation-dialog";
-    waitForElementDisplayed(By.id(destroyCaseDialogId), true);
-    WebElement destroyConfirmationDialog = findElementById(destroyCaseDialogId);
-    WebElement confirmButton = findChildElementById(destroyConfirmationDialog, "case-item-details:confirm-destruction");
+    String destroyCaseDialogSelector = "[id$=':destroy-case-confirmation-dialog']";
+    waitForElementDisplayed(By.cssSelector(destroyCaseDialogSelector), true);
+    WebElement destroyConfirmationDialog = findElementByCssSelector(destroyCaseDialogSelector);
+    WebElement confirmButton = findChildElementByCssSelector(destroyConfirmationDialog, "[id$=':confirm-destruction']");
     click(confirmButton);
   }
   
@@ -477,7 +476,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
   
   public void waitForCaseDetailsDisplay() {
-    waitForElementDisplayed(By.id("case-item-details:case-detail-body"), true);
+    waitForElementDisplayed(By.id("case-item-details:case-details-container:case-detail-body"), true);
   }
 
   public WebElement getSwitchToEditModeButton() {
@@ -499,8 +498,8 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public void confirmResetToDefault() {
-    waitForElementDisplayed(By.cssSelector("[id='case-item-details:reset-to-default-case-form:confirm-destruction']"), true);
-    click(By.cssSelector("[id='case-item-details:reset-to-default-case-form:confirm-destruction']"));
+    waitForElementDisplayed(By.cssSelector("[id$=':reset-to-default-case-form:confirm-destruction']"), true);
+    click(By.cssSelector("[id$=':reset-to-default-case-form:confirm-destruction']"));
     waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
   }
   
@@ -531,11 +530,11 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public void waitForResetButtonDisplayed() {
-    waitForElementDisplayed(By.cssSelector("[id='case-item-details:reset-details-settings-button']"), true);
+    waitForElementDisplayed(By.cssSelector("[id$=':reset-details-settings-button']"), true);
   }
   
   public void waitForResetButtonNotPresent() {
-    waitForElementPresent(By.cssSelector("[id='case-item-details:reset-details-settings-button']"), false);
+    waitForElementPresent(By.cssSelector("[id$=':reset-details-settings-button']"), false);
   }
 
   public boolean hasDoneTask() {
@@ -768,5 +767,34 @@ public class CaseDetailsPage extends TemplatePage {
   public void clickRelatedTaskApplyButton() {
     click(By.cssSelector("button[id$='task-widget:task-columns-configuration:select-columns-form:update-command']"));
     waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
+  }
+
+  public boolean iframeCustomWidgetIsDisplayed() {
+    return findElementByCssSelector("iframe[name='custom-widget-iframe']").isDisplayed();
+  }
+
+  public String getProcessLinkInCustomIFrameWidget() {
+    WebElement formInFrame = findElementByCssSelector("form[id='custom-widget-iframe-data']");
+    return formInFrame.getAttribute("action");
+  }
+
+  public String getIFrameURLOfCustomWidget() {
+    WebElement iframe = findElementByCssSelector("[id$=':custom-iframe']");
+    return iframe.findElement(By.tagName("iframe")).getAttribute("src");
+  }
+
+  public boolean isCustomMiddlePanelDisplay() {
+    return findElementByCssSelector("[id$=':caseItemDetailCustomMiddle']").isDisplayed();
+  }
+
+  public void waitForIFrameWidgetLoad() {
+    driver.switchTo().frame("custom-widget-iframe");
+    WaitHelper.assertTrueWithWait(() -> findElementByCssSelector("form[id='content-form']").isDisplayed());
+  }
+
+  public void waitForIFrameURLWidgetLoad() {
+    driver.switchTo().frame("custom-widget-iframe-url");
+    WaitHelper.assertTrueWithWait(() -> findElementByCssSelector("a[href='https://www.axonivy.com']").isDisplayed());
+    
   }
 }
