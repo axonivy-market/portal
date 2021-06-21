@@ -4,3 +4,5 @@ investment com.axonivy.portal.developerexamples.Investment #field
 investment PERSISTENT #fieldModifier
 decision com.axonivy.portal.developerexamples.Decision #field
 decision PERSISTENT #fieldModifier
+isReadOnly Boolean #field
+isReadOnly PERSISTENT #fieldModifier
