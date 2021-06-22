@@ -18,9 +18,7 @@ Es0 @GridStep f96 '' #zField
 Es0 @GridStep f94 '' #zField
 Es0 @UdMethod f89 '' #zField
 Es0 @GridStep f16 '' #zField
-Es0 @PushWFArc f15 '' #zField
 Es0 @PushWFArc f11 '' #zField
-Es0 @PushWFArc f4 '' #zField
 Es0 @PushWFArc f14 '' #zField
 Es0 @PushWFArc f17 '' #zField
 Es0 @PushWFArc f18 '' #zField
@@ -32,6 +30,10 @@ Es0 @UdProcessEnd f6 '' #zField
 Es0 @PushWFArc f7 '' #zField
 Es0 @PushWFArc f12 '' #zField
 Es0 @PushWFArc f2 '' #zField
+Es0 @GridStep f33 '' #zField
+Es0 @PushWFArc f19 '' #zField
+Es0 @PushWFArc f15 '' #zField
+Es0 @PushWFArc f21 '' #zField
 >Proto Es0 Es0 ExpressManagementProcess #zField
 Es0 f1 267 83 26 26 0 12 #rect
 Es0 f1 @|UdProcessEndIcon #fIcon
@@ -175,12 +177,7 @@ Es0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Es0 f16 456 266 112 44 -46 -8 #rect
 Es0 f16 @|StepIcon #fIcon
-Es0 f15 568 288 768 371 #arcP
-Es0 f15 1 768 288 #addKink
-Es0 f15 1 0.23780487804878048 0 -21 #arcLabel
 Es0 f11 109 384 168 384 #arcP
-Es0 f4 584 384 755 384 #arcP
-Es0 f4 0 0.43627200676149086 0 0 #arcLabel
 Es0 f14 280 384 336 384 #arcP
 Es0 f17 expr in #txt
 Es0 f17 outCond in.isError #txt
@@ -233,12 +230,31 @@ Es0 f6 @|UdProcessEndIcon #fIcon
 Es0 f7 109 192 168 192 #arcP
 Es0 f12 109 96 267 96 #arcP
 Es0 f2 280 192 339 192 #arcP
+Es0 f33 actionTable 'out=in;
+' #txt
+Es0 f33 actionCode '// Do not store JSF Event in a Html Dialog data field
+out.importExpressFile = null;' #txt
+Es0 f33 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Release JSF Event</name>
+    </language>
+</elementInfo>
+' #txt
+Es0 f33 616 266 112 44 -52 -8 #rect
+Es0 f33 @|StepIcon #fIcon
+Es0 f19 568 288 616 288 #arcP
+Es0 f19 0 0.7764586744807378 -21 0 #arcLabel
+Es0 f15 728 288 768 371 #arcP
+Es0 f15 1 768 288 #addKink
+Es0 f15 0 0.9395405286076128 0 0 #arcLabel
+Es0 f21 584 384 672 310 #arcP
+Es0 f21 1 672 384 #addKink
+Es0 f21 0 0.6361670253123877 0 0 #arcLabel
 >Proto Es0 .type ch.ivy.addon.portalkit.component.ExpressManagement.ExpressManagementData #txt
 >Proto Es0 .processKind HTML_DIALOG #txt
 >Proto Es0 -8 -8 16 16 16 26 #rect
 >Proto Es0 '' #fIcon
-Es0 f94 mainOut f4 tail #connect
-Es0 f4 head f3 mainIn #connect
 Es0 f96 mainOut f9 tail #connect
 Es0 f9 head f3 mainIn #connect
 Es0 f89 mainOut f11 tail #connect
@@ -246,8 +262,6 @@ Es0 f11 head f10 mainIn #connect
 Es0 f10 mainOut f14 tail #connect
 Es0 f14 head f13 in #connect
 Es0 f17 head f16 mainIn #connect
-Es0 f16 mainOut f15 tail #connect
-Es0 f15 head f3 mainIn #connect
 Es0 f90 mainOut f18 tail #connect
 Es0 f18 head f96 mainIn #connect
 Es0 f13 out f17 tail #connect
@@ -259,3 +273,9 @@ Es0 f0 mainOut f12 tail #connect
 Es0 f12 head f1 mainIn #connect
 Es0 f20 mainOut f2 tail #connect
 Es0 f2 head f6 mainIn #connect
+Es0 f16 mainOut f19 tail #connect
+Es0 f19 head f33 mainIn #connect
+Es0 f33 mainOut f15 tail #connect
+Es0 f15 head f3 mainIn #connect
+Es0 f94 mainOut f21 tail #connect
+Es0 f21 head f33 mainIn #connect

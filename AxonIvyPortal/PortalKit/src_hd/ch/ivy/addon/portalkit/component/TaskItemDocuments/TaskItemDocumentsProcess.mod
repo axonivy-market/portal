@@ -19,14 +19,12 @@ Ts0 @PushWFArc f17 '' #zField
 Ts0 @UdProcessEnd f8 '' #zField
 Ts0 @PushWFArc f37 '' #zField
 Ts0 @UdMethod f10 '' #zField
-Ts0 @UdProcessEnd f18 '' #zField
 Ts0 @Alternative f41 '' #zField
 Ts0 @Alternative f67 '' #zField
 Ts0 @UdProcessEnd f68 '' #zField
 Ts0 @GridStep f76 '' #zField
 Ts0 @PushWFArc f77 '' #zField
 Ts0 @PushWFArc f86 '' #zField
-Ts0 @PushWFArc f89 '' #zField
 Ts0 @UdProcessEnd f4 '' #zField
 Ts0 @UdMethod f5 '' #zField
 Ts0 @UdMethod f12 '' #zField
@@ -45,7 +43,6 @@ Ts0 @PushWFArc f31 '' #zField
 Ts0 @GridStep f9 '' #zField
 Ts0 @CallSub f16 '' #zField
 Ts0 @PushWFArc f28 '' #zField
-Ts0 @PushWFArc f33 '' #zField
 Ts0 @PushWFArc f34 '' #zField
 Ts0 @CallSub f32 '' #zField
 Ts0 @PushWFArc f35 '' #zField
@@ -59,6 +56,10 @@ Ts0 @PushWFArc f24 '' #zField
 Ts0 @CallSub f19 '' #zField
 Ts0 @PushWFArc f25 '' #zField
 Ts0 @PushWFArc f26 '' #zField
+Ts0 @GridStep f15 '' #zField
+Ts0 @PushWFArc f29 '' #zField
+Ts0 @PushWFArc f33 '' #zField
+Ts0 @PushWFArc f40 '' #zField
 >Proto Ts0 Ts0 TaskItemDocumentsProcess #zField
 Ts0 f0 guid 1682717B951993D3 #txt
 Ts0 f0 method start() #txt
@@ -130,8 +131,6 @@ Ts0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ts0 f10 83 275 26 26 -86 17 #rect
 Ts0 f10 @|UdMethodIcon #fIcon
-Ts0 f18 651 371 26 26 0 12 #rect
-Ts0 f18 @|UdProcessEndIcon #fIcon
 Ts0 f41 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -143,7 +142,7 @@ Ts0 f41 392 272 32 32 -54 -39 #rect
 Ts0 f41 @|AlternativeIcon #fIcon
 Ts0 f67 392 368 32 32 0 16 #rect
 Ts0 f67 @|AlternativeIcon #fIcon
-Ts0 f68 859 275 26 26 0 12 #rect
+Ts0 f68 1075 275 26 26 0 12 #rect
 Ts0 f68 @|UdProcessEndIcon #fIcon
 Ts0 f76 actionTable 'out=in;
 ' #txt
@@ -165,8 +164,6 @@ Ts0 f77 424 384 488 384 #arcP
 Ts0 f77 0 0.3194444444444444 0 -10 #arcLabel
 Ts0 f86 expr in #txt
 Ts0 f86 408 304 408 368 #arcP
-Ts0 f89 expr out #txt
-Ts0 f89 616 384 651 384 #arcP
 Ts0 f4 403 435 26 26 0 12 #rect
 Ts0 f4 @|UdProcessEndIcon #fIcon
 Ts0 f5 guid 16827286AC6AA280 #txt
@@ -343,8 +340,6 @@ Ts0 f16 696 266 112 44 -44 -8 #rect
 Ts0 f16 @|CallSubIcon #fIcon
 Ts0 f28 expr out #txt
 Ts0 f28 616 288 696 288 #arcP
-Ts0 f33 expr out #txt
-Ts0 f33 808 288 859 288 #arcP
 Ts0 f34 expr out #txt
 Ts0 f34 109 192 208 192 #arcP
 Ts0 f32 processCall 'Functional Processes/UploadDocument:call(ch.ivyteam.ivy.workflow.ICase,org.primefaces.model.UploadedFile)' #txt
@@ -439,6 +434,24 @@ Ts0 f25 expr out #txt
 Ts0 f25 109 640 192 640 #arcP
 Ts0 f26 expr out #txt
 Ts0 f26 304 640 384 640 #arcP
+Ts0 f15 actionTable 'out=in;
+' #txt
+Ts0 f15 actionCode '// Do not store JSF Event in a Html Dialog data field
+out.documentUploadEvent = null;' #txt
+Ts0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Release JSF Event</name>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f15 888 266 112 44 -52 -8 #rect
+Ts0 f15 @|StepIcon #fIcon
+Ts0 f29 expr out #txt
+Ts0 f29 808 288 888 288 #arcP
+Ts0 f33 1000 288 1075 288 #arcP
+Ts0 f40 expr out #txt
+Ts0 f40 616 384 888 288 #arcP
 >Proto Ts0 .type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
 >Proto Ts0 .processKind HTML_DIALOG #txt
 >Proto Ts0 -8 -8 16 16 16 26 #rect
@@ -447,8 +460,6 @@ Ts0 f0 mainOut f17 tail #connect
 Ts0 f17 head f1 mainIn #connect
 Ts0 f64 mainOut f37 tail #connect
 Ts0 f37 head f8 mainIn #connect
-Ts0 f76 mainOut f89 tail #connect
-Ts0 f89 head f18 mainIn #connect
 Ts0 f67 out f77 tail #connect
 Ts0 f77 head f76 mainIn #connect
 Ts0 f86 head f67 in #connect
@@ -465,8 +476,6 @@ Ts0 f30 mainOut f2 tail #connect
 Ts0 f2 head f64 mainIn #connect
 Ts0 f46 mainOut f28 tail #connect
 Ts0 f28 head f16 mainIn #connect
-Ts0 f16 mainOut f33 tail #connect
-Ts0 f33 head f68 mainIn #connect
 Ts0 f6 mainOut f34 tail #connect
 Ts0 f34 head f9 mainIn #connect
 Ts0 f10 mainOut f35 tail #connect
@@ -485,3 +494,9 @@ Ts0 f3 mainOut f25 tail #connect
 Ts0 f25 head f19 mainIn #connect
 Ts0 f19 mainOut f26 tail #connect
 Ts0 f26 head f50 mainIn #connect
+Ts0 f16 mainOut f29 tail #connect
+Ts0 f29 head f15 mainIn #connect
+Ts0 f15 mainOut f33 tail #connect
+Ts0 f33 head f68 mainIn #connect
+Ts0 f76 mainOut f40 tail #connect
+Ts0 f40 head f15 mainIn #connect

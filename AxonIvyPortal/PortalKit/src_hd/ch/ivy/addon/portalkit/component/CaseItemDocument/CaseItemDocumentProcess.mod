@@ -20,8 +20,6 @@ Cs0 @UdMethod f63 '' #zField
 Cs0 @UdProcessEnd f69 '' #zField
 Cs0 @UdMethod f7 '' #zField
 Cs0 @GridStep f9 '' #zField
-Cs0 @UdProcessEnd f15 '' #zField
-Cs0 @PushWFArc f17 '' #zField
 Cs0 @UdProcessEnd f51 '' #zField
 Cs0 @UdMethod f8 '' #zField
 Cs0 @UdProcessEnd f24 '' #zField
@@ -47,7 +45,6 @@ Cs0 @PushWFArc f56 '' #zField
 Cs0 @PushWFArc f16 '' #zField
 Cs0 @CallSub f14 '' #zField
 Cs0 @PushWFArc f32 '' #zField
-Cs0 @PushWFArc f34 '' #zField
 Cs0 @CallSub f13 '' #zField
 Cs0 @PushWFArc f19 '' #zField
 Cs0 @PushWFArc f29 '' #zField
@@ -57,6 +54,10 @@ Cs0 @PushWFArc f25 '' #zField
 Cs0 @CallSub f5 '' #zField
 Cs0 @PushWFArc f6 '' #zField
 Cs0 @PushWFArc f30 '' #zField
+Cs0 @GridStep f33 '' #zField
+Cs0 @PushWFArc f35 '' #zField
+Cs0 @PushWFArc f34 '' #zField
+Cs0 @PushWFArc f37 '' #zField
 >Proto Cs0 Cs0 CaseItemDocumentProcess #zField
 Cs0 f64 actionTable 'out=in;
 ' #txt
@@ -143,11 +144,7 @@ Cs0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Cs0 f9 568 362 128 44 -58 -8 #rect
 Cs0 f9 @|StepIcon #fIcon
-Cs0 f15 747 371 26 26 0 12 #rect
-Cs0 f15 @|UdProcessEndIcon #fIcon
-Cs0 f17 expr out #txt
-Cs0 f17 696 384 747 384 #arcP
-Cs0 f51 939 275 26 26 0 12 #rect
+Cs0 f51 1107 275 26 26 0 12 #rect
 Cs0 f51 @|UdProcessEndIcon #fIcon
 Cs0 f8 guid 1680301B2BFFF8D6 #txt
 Cs0 f8 method downloadDocument(ch.ivy.addon.portalkit.ivydata.bo.IvyDocument) #txt
@@ -348,8 +345,6 @@ Cs0 f14 752 266 112 44 -44 -8 #rect
 Cs0 f14 @|CallSubIcon #fIcon
 Cs0 f32 expr out #txt
 Cs0 f32 696 288 752 288 #arcP
-Cs0 f34 expr out #txt
-Cs0 f34 864 288 939 288 #arcP
 Cs0 f13 processCall 'Functional Processes/UploadDocument:call(ch.ivyteam.ivy.workflow.ICase,org.primefaces.model.UploadedFile)' #txt
 Cs0 f13 requestActionDecl '<ch.ivyteam.ivy.workflow.ICase businessCase,org.primefaces.model.UploadedFile uploadedFile> param;' #txt
 Cs0 f13 requestMappingAction 'param.businessCase=in.iCase;
@@ -420,6 +415,24 @@ Cs0 f6 expr out #txt
 Cs0 f6 109 640 192 640 #arcP
 Cs0 f30 expr out #txt
 Cs0 f30 304 640 392 640 #arcP
+Cs0 f33 actionTable 'out=in;
+' #txt
+Cs0 f33 actionCode '// Do not store JSF Event in a Html Dialog data field
+out.documentUploadEvent = null;' #txt
+Cs0 f33 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Release JSF Event</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f33 936 266 112 44 -52 -8 #rect
+Cs0 f33 @|StepIcon #fIcon
+Cs0 f35 expr out #txt
+Cs0 f35 864 288 936 288 #arcP
+Cs0 f34 1048 288 1107 288 #arcP
+Cs0 f37 expr out #txt
+Cs0 f37 696 384 936 288 #arcP
 >Proto Cs0 .type ch.ivy.addon.portalkit.component.CaseItemDocument.CaseItemDocumentData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 -8 -8 16 16 16 26 #rect
@@ -428,8 +441,6 @@ Cs0 f0 mainOut f1 tail #connect
 Cs0 f1 head f64 mainIn #connect
 Cs0 f64 mainOut f62 tail #connect
 Cs0 f62 head f2 mainIn #connect
-Cs0 f9 mainOut f17 tail #connect
-Cs0 f17 head f15 mainIn #connect
 Cs0 f3 mainOut f18 tail #connect
 Cs0 f18 head f12 mainIn #connect
 Cs0 f12 mainOut f23 tail #connect
@@ -450,8 +461,6 @@ Cs0 f31 mainOut f16 tail #connect
 Cs0 f16 head f10 mainIn #connect
 Cs0 f46 mainOut f32 tail #connect
 Cs0 f32 head f14 mainIn #connect
-Cs0 f14 mainOut f34 tail #connect
-Cs0 f34 head f51 mainIn #connect
 Cs0 f7 mainOut f19 tail #connect
 Cs0 f19 head f13 mainIn #connect
 Cs0 f13 mainOut f29 tail #connect
@@ -464,3 +473,9 @@ Cs0 f4 mainOut f6 tail #connect
 Cs0 f6 head f5 mainIn #connect
 Cs0 f5 mainOut f30 tail #connect
 Cs0 f30 head f50 mainIn #connect
+Cs0 f14 mainOut f35 tail #connect
+Cs0 f35 head f33 mainIn #connect
+Cs0 f33 mainOut f34 tail #connect
+Cs0 f34 head f51 mainIn #connect
+Cs0 f9 mainOut f37 tail #connect
+Cs0 f37 head f33 mainIn #connect

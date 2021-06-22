@@ -208,7 +208,9 @@ iFile.createNewFile();
 gdprFile.file = iFile;
 gdprFile.isNewAdded = true;
 out.gdprRequest.files.add(gdprFile);
-' #txt
+
+// Do not store JSF Event in a Html Dialog data field
+out.uploadEvent = null;' #txt
 As0 f24 outParameterDecl '<> result;' #txt
 As0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

@@ -117,7 +117,10 @@ import ch.ivy.addon.portalkit.dto.GlobalCaseId;
 import org.primefaces.component.commandlink.CommandLink;
 
 out.selectedCase = out.commandLink.getAttributes().get("caseView") as ICase;
-in.globalCaseId = GlobalCaseId.caseId(in.selectedCase.getId()).build();' #txt
+in.globalCaseId = GlobalCaseId.caseId(in.selectedCase.getId()).build();
+
+// Do not bind a UIComponent to a Html Dialog data field
+out.commandLink = null;' #txt
 Ts0 f7 security system #txt
 Ts0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
