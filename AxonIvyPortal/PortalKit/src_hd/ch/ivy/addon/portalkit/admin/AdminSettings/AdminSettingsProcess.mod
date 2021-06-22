@@ -150,7 +150,6 @@ As0 @PushWFArc f43 '' #zField
 As0 @PushWFArc f4 '' #zField
 As0 @GridStep f46 '' #zField
 As0 @PushWFArc f49 '' #zField
-As0 @PushWFArc f50 '' #zField
 As0 @PushWFArc f83 '' #zField
 As0 @PushWFArc f84 '' #zField
 As0 @PushWFArc f51 '' #zField
@@ -188,6 +187,9 @@ As0 @PushWFArc f95 '' #zField
 As0 @PushWFArc f96 '' #zField
 As0 @PushWFArc f99 '' #zField
 As0 @PushWFArc f101 '' #zField
+As0 @GridStep f23 '' #zField
+As0 @PushWFArc f24 '' #zField
+As0 @PushWFArc f25 '' #zField
 >Proto As0 As0 AdminUIProcess #zField
 Ct0 @TextInP .type .type #zField
 Ct0 @TextInP .processKind .processKind #zField
@@ -678,7 +680,7 @@ As0 f176 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 As0 f176 1438 390 20 20 13 0 #rect
 As0 f176 @|UdMethodIcon #fIcon
-As0 f177 1438 662 20 20 13 0 #rect
+As0 f177 1438 718 20 20 13 0 #rect
 As0 f177 @|UdProcessEndIcon #fIcon
 As0 f179 actionTable 'out=in;
 ' #txt
@@ -1521,8 +1523,6 @@ As0 f46 1392 578 112 44 -44 -8 #rect
 As0 f46 @|StepIcon #fIcon
 As0 f49 expr out #txt
 As0 f49 1448 532 1448 578 #arcP
-As0 f50 expr out #txt
-As0 f50 1448 622 1448 662 #arcP
 As0 f83 expr out #txt
 As0 f83 536 1598 536 1658 #arcP
 As0 f84 536 1702 536 1763 #arcP
@@ -1766,6 +1766,22 @@ As0 f99 expr in #txt
 As0 f99 480 512 526 512 #arcP
 As0 f101 expr out #txt
 As0 f101 544 410 544 444 #arcP
+As0 f23 actionTable 'out=in;
+' #txt
+As0 f23 actionCode '// Do not store JSF Event in a Html Dialog data field
+out.reorderEvent = null;' #txt
+As0 f23 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Release JSF Event</name>
+    </language>
+</elementInfo>
+' #txt
+As0 f23 1392 650 112 44 -52 -8 #rect
+As0 f23 @|StepIcon #fIcon
+As0 f24 expr out #txt
+As0 f24 1448 622 1448 650 #arcP
+As0 f25 1448 694 1448 718 #arcP
 >Proto As0 .type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 >Proto As0 .processKind HTML_DIALOG #txt
 >Proto As0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1973,8 +1989,6 @@ As0 f42 mainOut f4 tail #connect
 As0 f4 head f38 mainIn #connect
 As0 f231 mainOut f49 tail #connect
 As0 f49 head f46 mainIn #connect
-As0 f46 mainOut f50 tail #connect
-As0 f50 head f177 mainIn #connect
 As0 f83 head S10 g0 #connect
 As0 S10 g1 f84 tail #connect
 As0 f84 head f277 mainIn #connect
@@ -2015,6 +2029,10 @@ As0 f62 out f99 tail #connect
 As0 f99 head f113 mainIn #connect
 As0 f37 mainOut f101 tail #connect
 As0 f101 head f20 mainIn #connect
+As0 f46 mainOut f24 tail #connect
+As0 f24 head f23 mainIn #connect
+As0 f23 mainOut f25 tail #connect
+As0 f25 head f177 mainIn #connect
 Ct0 g0 m f0 tail #connect
 Ct0 f0 head f51 mainIn #connect
 Ct0 f1 head g1 m #connect
