@@ -81,7 +81,10 @@ if (in.event.getItemIndex() == 0) {
 	dataModel.getCriteria().setCustomTaskQuery(chartView.getIn3Days());
 }
 
-out.taskView = TaskView.create().dataModel(dataModel).showHeaderToolbar(false).createNewTaskView();' #txt
+out.taskView = TaskView.create().dataModel(dataModel).showHeaderToolbar(false).createNewTaskView();
+
+// Do not store JSF Event in a Html Dialog data field
+out.event = null;' #txt
 Ds0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

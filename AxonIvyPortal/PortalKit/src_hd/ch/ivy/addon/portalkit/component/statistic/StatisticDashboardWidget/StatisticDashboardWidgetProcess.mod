@@ -64,7 +64,6 @@ Ss0 @PushWFArc f54 '' #zField
 Ss0 @PushWFArc f55 '' #zField
 Ss0 @UdEvent f56 '' #zField
 Ss0 @PushWFArc f57 '' #zField
-Ss0 @PushWFArc f47 '' #zField
 Ss0 @UdEvent f58 '' #zField
 Ss0 @PushWFArc f59 '' #zField
 Ss0 @UdMethod f63 '' #zField
@@ -97,6 +96,7 @@ Ss0 @PushWFArc f12 '' #zField
 Ss0 @UdMethod f68 '' #zField
 Ss0 @UdProcessEnd f78 '' #zField
 Ss0 @PushWFArc f82 '' #zField
+Ss0 @PushWFArc f85 '' #zField
 >Proto Ss0 Ss0 StatisticDashboardWidgetProcess #zField
 Ct0 @TextInP .type .type #zField
 Ct0 @TextInP .processKind .processKind #zField
@@ -127,7 +127,10 @@ Ss0 f8 actionTable 'out=in;
 Ss0 f8 actionCode 'import ch.ivy.addon.portalkit.statistics.StatisticChartQueryUtils;
 
 in.taskQuery = StatisticChartQueryUtils.getQueryForSelectedItemOfTaskByPriorityChart(in.event, in.selectedStatisticChart);
-in.taskListName = in.selectedStatisticChart.name;' #txt
+in.taskListName = in.selectedStatisticChart.name;
+
+// Do not store JSF Event in a Html Dialog data field
+out.event = null;' #txt
 Ss0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -416,6 +419,9 @@ if (StatisticService.selectHourOfDay(in.selectedItemOfDrilldown)) {
 	in.taskListName += " " + ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByExpiry/hour");
 }
 in.selectedItemOfDrilldown = StringUtils.EMPTY;
+
+// Do not store JSF Event in a Html Dialog data field
+out.event = null;
 ' #txt
 Ss0 f36 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -436,7 +442,10 @@ Ss0 f40 actionTable 'out=in;
 ' #txt
 Ss0 f40 actionCode 'import ch.ivy.addon.portalkit.statistics.StatisticChartQueryUtils;
 
-in.caseQuery = StatisticChartQueryUtils.getQueryForSelectedItemByCaseByState(in.event, in.selectedStatisticChart);' #txt
+in.caseQuery = StatisticChartQueryUtils.getQueryForSelectedItemByCaseByState(in.event, in.selectedStatisticChart);
+
+// Do not store JSF Event in a Html Dialog data field
+out.event = null;' #txt
 Ss0 f40 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -593,7 +602,11 @@ for (StatisticChart chart : out.statisticChartList) {
 		out.selectedStatisticChart = chart;
 		break;
 	}
-}' #txt
+}
+
+// Do not store JSF Event in a Html Dialog data field
+out.event = null;
+' #txt
 Ss0 f50 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -649,7 +662,10 @@ for (StatisticChart chart : out.statisticChartList) {
 		out.selectedStatisticChart = chart;
 		break;
 	}
-}' #txt
+}
+
+// Do not store JSF Event in a Html Dialog data field
+out.event = null;' #txt
 Ss0 f53 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -686,10 +702,6 @@ Ss0 f57 expr out #txt
 Ss0 f57 149 352 352 294 #arcP
 Ss0 f57 1 352 352 #addKink
 Ss0 f57 0 0.6889232284912005 0 0 #arcLabel
-Ss0 f47 expr in #txt
-Ss0 f47 232 256 539 208 #arcP
-Ss0 f47 1 232 208 #addKink
-Ss0 f47 1 0.30783775632694704 0 0 #arcLabel
 Ss0 f58 guid 16421D52DC7B863C #txt
 Ss0 f58 actionTable 'out=in;
 ' #txt
@@ -985,6 +997,10 @@ Ss0 f68 @|UdMethodIcon #fIcon
 Ss0 f78 1011 659 26 26 0 12 #rect
 Ss0 f78 @|UdProcessEndIcon #fIcon
 Ss0 f82 717 672 1011 672 #arcP
+Ss0 f85 expr in #txt
+Ss0 f85 232 256 539 208 #arcP
+Ss0 f85 1 232 208 #addKink
+Ss0 f85 1 0.30783775632694704 0 0 #arcLabel
 >Proto Ss0 .type ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData #txt
 >Proto Ss0 .processKind HTML_DIALOG #txt
 >Proto Ss0 -8 -8 16 16 16 26 #rect
@@ -1089,8 +1105,6 @@ Ss0 f53 mainOut f55 tail #connect
 Ss0 f55 head f52 mainIn #connect
 Ss0 f56 mainOut f57 tail #connect
 Ss0 f57 head f36 mainIn #connect
-Ss0 f39 out f47 tail #connect
-Ss0 f47 head f46 mainIn #connect
 Ss0 f58 mainOut f59 tail #connect
 Ss0 f59 head f36 mainIn #connect
 Ss0 S10 g2 f1 tail #connect
@@ -1129,6 +1143,8 @@ Ss0 f3 out f12 tail #connect
 Ss0 f12 head f30 mainIn #connect
 Ss0 f68 mainOut f82 tail #connect
 Ss0 f82 head f78 mainIn #connect
+Ss0 f39 out f85 tail #connect
+Ss0 f85 head f46 mainIn #connect
 Ct0 f60 mainOut f76 tail #connect
 Ct0 f76 head f73 mainIn #connect
 Ct0 f74 mainOut f75 tail #connect
