@@ -795,6 +795,5 @@ public class CaseDetailsPage extends TemplatePage {
   public void waitForIFrameURLWidgetLoad() {
     driver.switchTo().frame("custom-widget-iframe-url");
     WaitHelper.assertTrueWithWait(() -> findElementByCssSelector("a[href='https://www.axonivy.com']").isDisplayed());
-    
   }
 }
