@@ -476,3 +476,7 @@ function highlightProcessOverviewLink() {
   $(".case-history-button-container").removeClass("u-truncate-text");
   createRedMediumOutline($("a[id$=':show-process-overview-link']"));
 }
+
+function highlightCustomWidgetInCaseDetails() {
+  createRedMediumOutline($(".custom-widget-card"));
+}
