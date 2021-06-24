@@ -184,12 +184,13 @@ public class PortalCasesScreenshotTest extends ScreenshotTest {
     redirectToRelativeLink(CaseDetailsTest.CREATE_EVENT_TEST_URL);
     CaseDetailsPage detailsPage = setupCaseDetailsWithIFrameProcess();
     detailsPage.closeMainMenu();
+    executeDecorateJs("highlightCustomWidgetInCaseDetails()");
     detailsPage.waitForIFrameWidgetLoad();
-    
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.CASE_DETAIL_CUSTOMIZATION_FOLDER + "case-customized-iframe-process");
     
     setupCaseDetailsWithIFrameURL();
     detailsPage.closeMainMenu();
+    executeDecorateJs("highlightCustomWidgetInCaseDetails()");
     detailsPage.waitForIFrameURLWidgetLoad();
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.CASE_DETAIL_CUSTOMIZATION_FOLDER + "case-customized-iframe-url");
   }
