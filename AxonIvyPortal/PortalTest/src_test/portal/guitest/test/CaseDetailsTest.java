@@ -3,9 +3,14 @@ package portal.guitest.test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assume.assumeTrue;
 
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.StringUtils;
 import org.junit.After;
 import org.junit.Assert;
@@ -19,8 +24,10 @@ import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivyteam.ivy.workflow.TaskState;
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.CaseState;
+import portal.guitest.common.FileHelper;
 import portal.guitest.common.TestAccount;
 import portal.guitest.common.TestRole;
+import portal.guitest.common.Variable;
 import portal.guitest.common.WaitHelper;
 import portal.guitest.page.AdditionalCaseDetailsPage;
 import portal.guitest.page.CaseDetailsPage;
@@ -46,6 +53,8 @@ public class CaseDetailsTest extends BaseTest {
       "portalKitTestHelper/14DE09882B540AD5/grantOnlyDelegateOwnTasksPermission.ivp";
   private static final String DENY_DELEGATE_OWN_TASK_PERMISSION_PROCESS_URL =
       "portalKitTestHelper/14DE09882B540AD5/undoOnlyDelegateOwnTasksPermission.ivp";
+  public static final String CUSTOM_CASE_WIDGET_NAME = "Create Event: Test custom case details";
+  public static final String CREATE_EVENT_TEST_URL ="portal-developer-examples/17A2C6D73AB4186E/CreateEventTest.ivp";
 
   @Override
   @Before
@@ -341,6 +350,59 @@ public class CaseDetailsTest extends BaseTest {
     detailsPage.resetToDefault();
     detailsPage.confirmResetToDefault();
     detailsPage.saveAndSwitchToViewMode();
+  }
+  
+  @Test
+  public void testCustomIframeCaseDetails() throws IOException {
+    redirectToRelativeLink(CREATE_EVENT_TEST_URL);
+
+    setupCaseDetailsWithIFrameProcess();
+    assumeTrue("iframe CustomWidget is displayed", detailsPage.iframeCustomWidgetIsDisplayed());
+    String processLink = detailsPage.getProcessLinkInCustomIFrameWidget();
+    assertTrue(processLink.contains("portal-developer-examples/17A2C6D73AB4186E/startReview.ivp"));
+    
+    setupCaseDetailsWithIFrameURL();
+    String url = detailsPage.getIFrameURLOfCustomWidget();
+    assertTrue(url.contains("www.axonivy.com"));
+    
+    setupCaseDetailsWith2Panels();
+    assertTrue(detailsPage.isCustomMiddlePanelDisplay());
+  }
+
+  public void setupCaseDetailsWith2Panels() throws IOException {
+    CaseWidgetPage casePage;
+    updateCaseDetailsSetting("custom-case-details-with-panel.json");
+    casePage = goToCaseList();
+    detailsPage = casePage.openDetailsOfCaseHasName(CUSTOM_CASE_WIDGET_NAME);
+  }
+
+  public void setupCaseDetailsWithIFrameURL() throws IOException {
+    CaseWidgetPage casePage;
+    updateCaseDetailsSetting("custom-case-details-with-url.json");
+    casePage = goToCaseList();
+    detailsPage = casePage.openDetailsOfCaseHasName(CUSTOM_CASE_WIDGET_NAME);
+  }
+
+  public void setupCaseDetailsWithIFrameProcess() throws IOException {
+    updateCaseDetailsSetting("custom-case-details.json");
+    CaseWidgetPage casePage = goToCaseList();
+    detailsPage = casePage.openDetailsOfCaseHasName(CUSTOM_CASE_WIDGET_NAME);
+  }
+
+  public CaseWidgetPage goToCaseList() {
+    login(TestAccount.ADMIN_USER);
+    redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
+    homePage = new HomePage();
+    MainMenuPage mainMenuPage = homePage.openMainMenu();
+    CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
+    return casePage;
+  }
+
+  public void updateCaseDetailsSetting(String fileConfig) throws IOException {
+    String customCaseDetais = FileHelper.getAbsolutePathToTestFile(fileConfig);
+    Path path = Paths.get(customCaseDetais);
+    String jsonContent = FileUtils.readFileToString(path.toFile(), "UTF-8");
+    updateGlobalVariable(Variable.CASE_DETAIL.getKey(), jsonContent);
   }
 
   @After

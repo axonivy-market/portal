@@ -1,32 +1,42 @@
-package ch.ivy.addon.portalkit.dto.taskdetails;
+package ch.ivy.addon.portalkit.dto.widget;
 
 import java.io.Serializable;
 import java.util.UUID;
 
-import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
-import ch.ivy.addon.portalkit.constant.TaskDetailsWidgetType;
+import ch.ivy.addon.portalkit.constant.WidgetType;
 import ch.ivy.addon.portalkit.dto.WidgetLayout;
 
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
-@JsonSubTypes({@Type(value = TaskDetailsInformationWidget.class, name = TaskDetailsWidgetType.INFORMATION),
-    @Type(value = TaskDetailsHistoryWidget.class, name = TaskDetailsWidgetType.HISTORY),
-    @Type(value = TaskDetailsDocumentWidget.class, name = TaskDetailsWidgetType.DOCUMENT),
-    @Type(value = TaskDetailsCustomWidget.class, name = TaskDetailsWidgetType.CUSTOM)})
-public abstract class TaskDetailsWidget implements Serializable {
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type", visible = false)
+@JsonSubTypes({@Type(value = InformationWidget.class, name = WidgetType.INFORMATION),
+    @Type(value = HistoryWidget.class, name = WidgetType.HISTORY),
+    @Type(value = DocumentWidget.class, name = WidgetType.DOCUMENT),
+    @Type(value = RelatedTaskWidget.class, name = WidgetType.RELATED_TASK),
+    @Type(value = TechnicalCaseWidget.class, name = WidgetType.TECHINCAL_CASE),
+    @Type(value = CustomWidget.class, name = WidgetType.CUSTOM)
+})
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
+public abstract class AbstractWidget implements Serializable {
 
-  private static final long serialVersionUID = 5533038246959235330L;
+  private static final long serialVersionUID = -6401247494366299573L;
 
-  @JsonIgnore
   protected String id;
-
+  @JsonIgnore
   protected String type;
   protected WidgetLayout layout;
 
-  public TaskDetailsWidget() {}
+  public AbstractWidget() {}
+  
+  public AbstractWidget(String id, String type, WidgetLayout layout) {
+    this.id = id;
+    this.type = type;
+    this.layout = layout;
+  }
 
   public String getId() {
     if (id == null) {
@@ -71,7 +81,7 @@ public abstract class TaskDetailsWidget implements Serializable {
       return false;
     if (getClass() != obj.getClass())
       return false;
-    TaskDetailsWidget other = (TaskDetailsWidget) obj;
+    AbstractWidget other = (AbstractWidget) obj;
     if (id == null) {
       if (other.id != null)
         return false;
