@@ -96,7 +96,7 @@ public class RelatedTaskLazyDataModel extends TaskLazyDataModel {
   }
 
   private UIComponent findRelatedTaskComponent() {
-    List<UIComponent> children = FacesContext.getCurrentInstance().getViewRoot().findComponent(":case-item-details:widgets:case-details-related-running-tasks-card").getChildren();
+    List<UIComponent> children = FacesContext.getCurrentInstance().getViewRoot().findComponent("case-item-details:case-details-container:widgets:case-details-related-running-tasks-card").getChildren();
     return children.stream().filter(child -> child.getId().equals(taskWidgetComponentId)).findFirst().orElse(null);
   }
 
