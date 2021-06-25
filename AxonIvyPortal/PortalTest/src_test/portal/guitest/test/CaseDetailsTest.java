@@ -6,11 +6,8 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assume.assumeTrue;
 
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.concurrent.TimeUnit;
 
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.StringUtils;
 import org.junit.After;
 import org.junit.Assert;
@@ -21,10 +18,10 @@ import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
+import ch.ivy.addon.portalkit.util.ConfigurationJSONUtil;
 import ch.ivyteam.ivy.workflow.TaskState;
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.CaseState;
-import portal.guitest.common.FileHelper;
 import portal.guitest.common.TestAccount;
 import portal.guitest.common.TestRole;
 import portal.guitest.common.Variable;
@@ -353,7 +350,7 @@ public class CaseDetailsTest extends BaseTest {
   }
   
   @Test
-  public void testCustomIframeCaseDetails() throws IOException {
+  public void testCustomWidgetsInCaseDetails() throws IOException {
     redirectToRelativeLink(CREATE_EVENT_TEST_URL);
 
     setupCaseDetailsWithIFrameProcess();
@@ -370,23 +367,18 @@ public class CaseDetailsTest extends BaseTest {
   }
 
   public void setupCaseDetailsWith2Panels() throws IOException {
-    CaseWidgetPage casePage;
-    updateCaseDetailsSetting("custom-case-details-with-panel.json");
-    casePage = goToCaseList();
-    detailsPage = casePage.openDetailsOfCaseHasName(CUSTOM_CASE_WIDGET_NAME);
+    ConfigurationJSONUtil.updateJSONSetting("custom-case-details-with-panel.json", Variable.CASE_DETAIL);
+    detailsPage = goToCaseList().openDetailsOfCaseHasName(CUSTOM_CASE_WIDGET_NAME);
   }
 
   public void setupCaseDetailsWithIFrameURL() throws IOException {
-    CaseWidgetPage casePage;
-    updateCaseDetailsSetting("custom-case-details-with-url.json");
-    casePage = goToCaseList();
-    detailsPage = casePage.openDetailsOfCaseHasName(CUSTOM_CASE_WIDGET_NAME);
+    ConfigurationJSONUtil.updateJSONSetting("custom-case-details-with-url.json", Variable.CASE_DETAIL);
+    detailsPage = goToCaseList().openDetailsOfCaseHasName(CUSTOM_CASE_WIDGET_NAME);
   }
 
   public void setupCaseDetailsWithIFrameProcess() throws IOException {
-    updateCaseDetailsSetting("custom-case-details.json");
-    CaseWidgetPage casePage = goToCaseList();
-    detailsPage = casePage.openDetailsOfCaseHasName(CUSTOM_CASE_WIDGET_NAME);
+    ConfigurationJSONUtil.updateJSONSetting("custom-case-details.json", Variable.CASE_DETAIL);
+    detailsPage = goToCaseList().openDetailsOfCaseHasName(CUSTOM_CASE_WIDGET_NAME);
   }
 
   public CaseWidgetPage goToCaseList() {
@@ -396,13 +388,6 @@ public class CaseDetailsTest extends BaseTest {
     MainMenuPage mainMenuPage = homePage.openMainMenu();
     CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
     return casePage;
-  }
-
-  public void updateCaseDetailsSetting(String fileConfig) throws IOException {
-    String customCaseDetais = FileHelper.getAbsolutePathToTestFile(fileConfig);
-    Path path = Paths.get(customCaseDetais);
-    String jsonContent = FileUtils.readFileToString(path.toFile(), "UTF-8");
-    updateGlobalVariable(Variable.CASE_DETAIL.getKey(), jsonContent);
   }
 
   @After
