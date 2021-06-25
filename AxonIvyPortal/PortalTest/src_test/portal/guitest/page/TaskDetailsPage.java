@@ -446,4 +446,14 @@ public class TaskDetailsPage extends TemplatePage {
   public String getAfterEscalation() {
     return findElementByClassName("task-expiry-activator-name").getText();
   }
+
+  public void waitForIFrameWidgetLoad() {
+    driver.switchTo().frame("custom-widget-iframe");
+    WaitHelper.assertTrueWithWait(() -> findElementByCssSelector(".container.frame").isDisplayed());
+  }
+
+  public void waitForIFrameURLWidgetLoad() {
+    driver.switchTo().frame("custom-widget-iframe-url");
+    WaitHelper.assertTrueWithWait(() -> findElementByCssSelector("a[href='https://www.axonivy.com']").isDisplayed());
+  }
 }
