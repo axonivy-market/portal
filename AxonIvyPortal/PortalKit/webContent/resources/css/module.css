@@ -806,17 +806,17 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   padding: 0 !important;
 }
 
-.case-detail-card, .task-detail-card {
+.case-detail-card, .task-detail-card, .custom-widget-card {
   display: block;
   float: left;
   width: 100%;
 }
 
-.task-item-body-container .card.task-detail-card.iframe-widget {
+.card.custom-widget-card.iframe-widget {
   overflow: hidden;
 }
 
-.task-detail-card.iframe-widget iframe {
+.custom-widget-card.iframe-widget iframe {
   width: 100%;
   height: 100%;
   border: none;
@@ -5543,6 +5543,7 @@ body span.ui-commandlink .si {
   min-width: 85px;
 }
 
+.case-item-body-container,
 .task-item-body-container {
   display: block;
   margin: 7px -3px;
@@ -5611,6 +5612,7 @@ body span.ui-commandlink .si {
   display: block;
 }
 
+.case-item-body-container .card,
 .task-item-body-container .card {
   padding: 24px;
 }
