@@ -193,10 +193,14 @@ public abstract class AbstractConfigurableContentBean<T extends AbstractConfigur
 
   protected List<T> loadGlobalConfigurations() throws JsonMappingException, JsonProcessingException {
     var configurationJsonData = Ivy.var().get(getVariableKey());
-    if (StringUtils.isBlank(configurationJsonData)) {
-      return loadDefaultGlobalConfigurations();
+    if (StringUtils.isNotBlank(configurationJsonData)) {
+      try {
+        return parseConfigurationJson(configurationJsonData);
+      } catch (IOException e) {
+        Ivy.log().debug("ParseUserConfiguration error: " + e);
+      }
     }
-    return parseConfigurationJson(configurationJsonData);
+    return loadDefaultGlobalConfigurations();
   }
 
   protected void updateWidgetsType(List<? extends AbstractWidget> widgets) {
