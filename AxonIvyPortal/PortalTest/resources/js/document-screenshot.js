@@ -476,3 +476,21 @@ function highlightProcessOverviewLink() {
   $(".case-history-button-container").removeClass("u-truncate-text");
   createRedMediumOutline($("a[id$=':show-process-overview-link']"));
 }
+
+function highlightCustomWidgetInCaseDetails() {
+  createRedMediumOutline($(".custom-widget-card"));
+}
+
+function addStepToCustomWidgetTopTaskDetails() {
+  var topWidget = $(".custom-task-details-panel-top");
+  appendStepAnnotation(topWidget, 1, -30, topWidget.width()/2)
+}
+
+function addStepTCustomWidgetTopTaskDetails() {
+  var bottomWidget = $(".custom-task-details-panel-bottom");
+  appendStepAnnotation(bottomWidget, 2, -30, bottomWidget.width()/2)
+}
+
+function highlightIFrameWidgetTaskDetails() {
+  createRedMediumOutline($(".custom-widget-card.task-detail-card"));
+}
