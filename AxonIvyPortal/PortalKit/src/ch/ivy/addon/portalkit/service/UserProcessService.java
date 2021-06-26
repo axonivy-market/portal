@@ -1,10 +1,11 @@
 package ch.ivy.addon.portalkit.service;
 
 import ch.ivy.addon.portalkit.configuration.UserProcess;
+import ch.ivy.addon.portalkit.enums.ExternalVariable;
 
 public class UserProcessService extends JsonConfigurationService<UserProcess> {
 
-  private static final String FAVORITE_PROCESSES = "Portal.Dashboard.FavoriteProcesses";
+  private static final String FAVORITE_PROCESSES = ExternalVariable.FAVORITE_PROCESS.key;
 
   private static UserProcessService instance;
 
