@@ -1,13 +1,13 @@
 package ch.ivy.addon.portalkit.enums;
 
-public enum TaskDetailsCustomWidgetParam {
+public enum CustomWidgetParam {
 
   ID("id"),
   CATEGORY("category");
 
   private final String value;
 
-  TaskDetailsCustomWidgetParam(String value) {
+  CustomWidgetParam(String value) {
     this.value = value;
   }
 

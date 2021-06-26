@@ -14,11 +14,13 @@ import org.openqa.selenium.WebElement;
 import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
 
+import ch.ivy.addon.portalkit.util.ConfigurationJSONUtil;
 import ch.ivy.addon.portalkit.util.ScreenshotMargin;
 import ch.ivy.addon.portalkit.util.ScreenshotUtil;
 import portal.guitest.common.ScreenshotTest;
 import portal.guitest.common.Sleeper;
 import portal.guitest.common.TestAccount;
+import portal.guitest.common.Variable;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.TaskDetailsPage;
 import portal.guitest.page.TaskWidgetPage;
@@ -214,14 +216,41 @@ public class PortalTaskScreenshotTest extends ScreenshotTest {
     executeDecorateJs("highlightTaskExportToExcelButton()");
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.TASK_WIDGET_FOLDER + "export-to-excel-button");
   }
-  
+
   @Test
-  public void screenshotTaskFilterMoreOption() throws IOException {
-    ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 1200));
-    login(TestAccount.ADMIN_USER);
-    TaskWidgetPage taskWidget = homePage.openTaskList();
-    taskWidget.openNoActivatorFilter("Task for unavailable activator");
-    taskWidget.filterByUnavailableActivator(false);
-    ScreenshotUtil.captureHalfTopRightPageScreenShot(ScreenshotUtil.TASK_WIDGET_FOLDER + "task-filter-more-option");
+  public void screenshotCustomTaskDetails() throws IOException {
+    redirectToRelativeLink("portal-developer-examples/1791D27754935B10/SaleManagment.ivp");
+    TaskDetailsPage taskDetails = setupCustomWidgetByJSONFile("task-details-custom-panel.json");
+    executeDecorateJs("addStepToCustomWidgetTopTaskDetails()");
+    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.TASK_DETAIL_CUSTOMIZATION_FOLDER + "task-customized-top");
+    refreshPage();
+    taskDetails.waitUtilsTaskDetailsDisplayed();
+    executeDecorateJs("scrollToBottomOfLayoutContent()");
+    executeDecorateJs("addStepTCustomWidgetTopTaskDetails()");
+    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.TASK_DETAIL_CUSTOMIZATION_FOLDER + "task-customized-bottom");
+
+    setupCustomWidgetByJSONFile("task-details-custom-iframe.json");
+    executeDecorateJs("highlightIFrameWidgetTaskDetails()");
+    taskDetails.waitForIFrameURLWidgetLoad();
+    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.TASK_DETAIL_CUSTOMIZATION_FOLDER + "task-customized-iframe-url");
+
+    setupCustomWidgetByJSONFile("task-details-custom-process-iframe.json");
+    executeDecorateJs("highlightIFrameWidgetTaskDetails()");
+    taskDetails.waitForIFrameWidgetLoad();
+    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.TASK_DETAIL_CUSTOMIZATION_FOLDER + "task-customized-iframe-process");
   }
+
+  private TaskDetailsPage setupCustomWidgetByJSONFile(String configFile) throws IOException {
+    ConfigurationJSONUtil.updateJSONSetting(configFile, Variable.TASK_DETAIL);
+    login(TestAccount.ADMIN_USER);
+    redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
+    homePage = new HomePage();
+    ScreenshotUtil.resizeBrowser(new Dimension(1366, 1200));
+    TaskWidgetPage taskWidgetPage = homePage.openTaskList();
+    TaskDetailsPage taskDetails = taskWidgetPage.openTaskDetails(0);
+    taskDetails.waitUtilsTaskDetailsDisplayed();
+    taskWidgetPage.closeMainMenu();
+    return taskDetails;
+  }
+
 }

@@ -31,10 +31,10 @@ function saveCaseDetailsGrid() {
     serializedData.push({
       type: widgetType,
       id: node.id,
-      axisX: node.x,
-      axisY: node.y,
-      width: node.width,
-      height: node.height
+      x: node.x,
+      y: node.y,
+      w: node.width,
+      h: node.height
     });
     if (widgetType === "document" || widgetType === "history") {
       responsiveATableInPanel(node.el);
@@ -49,12 +49,12 @@ function saveCaseDetailsGrid() {
 function getCaseDetailsWidgetType(caseDetailsWidgetName) {
   let type = "";
   switch (caseDetailsWidgetName) {
-    case "CaseDetailsInformationWidget": type = "information"; break;
-    case "CaseDetailsDocumentWidget": type = "document"; break;
-    case "CaseDetailsTechnicalCaseWidget": type = "technicalCase"; break;
-    case "CaseDetailsRelatedTaskWidget": type = "relatedTask"; break;
-    case "CaseDetailsHistoryWidget": type = "history"; break;
-    case "CaseDetailsCustomWidget": type = "custom"; break;
+    case "InformationWidget": type = "information"; break;
+    case "DocumentWidget": type = "document"; break;
+    case "TechnicalCaseWidget": type = "technicalCase"; break;
+    case "RelatedTaskWidget": type = "relatedTask"; break;
+    case "HistoryWidget": type = "history"; break;
+    case "CustomWidget": type = "custom"; break;
     default:
   }
 

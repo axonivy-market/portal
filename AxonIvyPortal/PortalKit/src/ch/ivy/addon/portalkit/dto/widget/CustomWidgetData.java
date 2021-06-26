@@ -1,9 +1,9 @@
-package ch.ivy.addon.portalkit.dto.taskdetails;
+package ch.ivy.addon.portalkit.dto.widget;
 
 import java.io.Serializable;
 import java.util.Map;
 
-public class TaskDetailsCustomWidgetData implements Serializable {
+public class CustomWidgetData implements Serializable {
 
   private static final long serialVersionUID = 8763058243562205725L;
 

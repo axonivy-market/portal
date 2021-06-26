@@ -8,9 +8,11 @@
   <ui:composition template="/layouts/restricted/IFrameWithoutMenuTemplate.xhtml">
     <ui:define name="pageContent">
       <f:event listener="#{caseDetailsBean.preRender(data.currentCase, data.showBackButton)}" type="preRenderView" />
-      <ic:ch.ivy.addon.portal.component.CaseInformation case="#{data.currentCase}" id="case-item-details" 
-        showItemBackButton="#{data.showBackButton}" isWorkingOnTask="true" inFrame="true"
-        showItemDetailsHeader="#{data.showBackButton}" readOnly="#{data.readOnly}" />
+      <ic:ch.ivy.addon.portal.component.CaseInformation id="case-item-details"
+        isWorkingOnTask="true"
+        inFrame="true"
+        showItemDetailsHeader="#{data.showBackButton}"
+        readOnly="#{data.readOnly}" />
     </ui:define>
   </ui:composition>
 </h:body>
