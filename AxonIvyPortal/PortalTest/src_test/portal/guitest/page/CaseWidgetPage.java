@@ -4,6 +4,7 @@ import static portal.guitest.common.WaitHelper.assertTrueWithWait;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Stream;
 
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
@@ -397,8 +398,10 @@ public class CaseWidgetPage extends TemplatePage {
 
   public CaseState getCaseState(int caseIndex) {
     List<WebElement> caseStateCells = findListElementsByCssSelector("span[id$=':case-state-cell']");
-    String stateClass = caseStateCells.get(caseIndex).findElement(By.className("si")).getAttribute("class");
-    return CaseState.fromClass(stateClass.substring(stateClass.indexOf("case-state-")));
+    String stateClass = caseStateCells.get(caseIndex).findElement(By.className("case-state")).getAttribute("class");
+    String[] stateClasses = stateClass.trim().split(" ");
+    String state = Stream.of(stateClasses).filter(clazz -> clazz.endsWith("-case-state")).findFirst().orElse("");
+    return CaseState.fromClass(state);
   }
   
   @SuppressWarnings("deprecation")
