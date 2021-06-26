@@ -23,10 +23,10 @@ function initTaskDetailsGrid() {
 function getTaskDetailsWidgetType(taskDetailsWidgetName) {
   let type = "";
   switch (taskDetailsWidgetName) {
-    case "TaskDetailsInformationWidget": type = "information"; break;
-    case "TaskDetailsDocumentWidget": type = "document"; break;
-    case "TaskDetailsHistoryWidget": type = "history"; break;
-    case "TaskDetailsCustomWidget": type = "custom"; break;
+    case "InformationWidget": type = "information"; break;
+    case "DocumentWidget": type = "document"; break;
+    case "HistoryWidget": type = "history"; break;
+    case "CustomWidget": type = "custom"; break;
     default:
   }
 

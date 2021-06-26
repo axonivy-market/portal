@@ -95,6 +95,7 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
     click(By.cssSelector("[id$='task-name-filter:filter-open-form:advanced-filter-command']"));
     WebElement nameInput =
         findElementByCssSelector("input[id$='task-name-filter:filter-input-form:name']");
+    waitForElementReallyDisplayed(nameInput, true);
     enterKeys(nameInput, text);
     click(By.cssSelector("[id$='task-name-filter:filter-input-form:update-command']"));
     waitAjaxIndicatorDisappear();

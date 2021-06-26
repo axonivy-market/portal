@@ -47,9 +47,9 @@ public class IvyComponentLogicCaller<T> {
    */
   private void setTargetComponent(MethodExpression componentMethod, UIComponent component) {
     try {
-      Field cc = componentMethod.getClass().getDeclaredField("compositeComponent");
+      Field cc = componentMethod.getClass().getDeclaredField("compositeComponentId");
       cc.setAccessible(true);
-      cc.set(componentMethod, component);
+      cc.set(componentMethod, component.getId());
     } catch (Exception ex) {
       Ivy.log().error(ex);
     }
