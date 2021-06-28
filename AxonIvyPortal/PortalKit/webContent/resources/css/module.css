@@ -4521,6 +4521,13 @@ body .ui-widget-content.filter-name-overlay-panel {
     display: none !important;
   }
 }
+.missing-activator-filter span.ui-chkbox-label{
+margin-top: 2px;
+}
+
+.missing-activator-filter td{
+width:320px;	
+}
 
 /*********** SEARCH ICON ***********/
 .search-icon-name-container {
@@ -4562,7 +4569,6 @@ body .ui-widget-content.filter-name-overlay-panel {
     display: inline-block !important;
   }
 }
-
 /* =================== RESPONSIVE GRID ====================== */
 .case-related-command-link {
   margin: auto !important;

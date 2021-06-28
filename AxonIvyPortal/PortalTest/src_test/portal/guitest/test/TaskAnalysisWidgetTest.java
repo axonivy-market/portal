@@ -159,7 +159,7 @@ public class TaskAnalysisWidgetTest extends BaseTest {
   @Test
   public void testApplyTaskCategoryFilter() {
     TaskAnalysisWidgetPage taskAnalysisWidgetPage = statisticWidgetPage.navigateToTaskAnalysisPage();
-    taskAnalysisWidgetPage.openAdvancedTaskFilter("Task category", "task-category");
+    taskAnalysisWidgetPage.openAdvancedTaskFilter("Category", "task-category");
     taskAnalysisWidgetPage.filterByTaskCategory("Other Leave");
     taskAnalysisWidgetPage.clickApplyFilter();
     List<WebElement> results = taskAnalysisWidgetPage.getRowsInTaskTable();
@@ -272,7 +272,7 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     taskAnalysisWidgetPage.openAdvancedTaskFilter("Name", "name");
     taskAnalysisWidgetPage.filterByTaskName(taskNameKeyword);
 
-    taskAnalysisWidgetPage.openAdvancedTaskFilter("Task category", "task-category");
+    taskAnalysisWidgetPage.openAdvancedTaskFilter("Category", "task-category");
     taskAnalysisWidgetPage.filterByTaskCategory(taskCategory);
 
     taskAnalysisWidgetPage.openAdvancedCaseFilter("Name", "case-name");
@@ -323,5 +323,15 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     
     assertTrue(taskAnalysisWidgetPage.getUser("responsible").contains("Demo"));
     assertTrue(taskAnalysisWidgetPage.getUser("creator").contains("Demo"));
+  }
+  
+  @Test
+  public void testTaskFilterForUnavailableActivator() {
+    TaskAnalysisWidgetPage taskAnalysisWidgetPage = statisticWidgetPage.navigateToTaskAnalysisPage();
+    taskAnalysisWidgetPage.openNoActivatorFilter("Missing activator");
+    taskAnalysisWidgetPage.filterByUnavailableActivator();
+    taskAnalysisWidgetPage.clickApplyFilter();
+    List<WebElement> results = taskAnalysisWidgetPage.getRowsInTaskTable();
+    assertEquals(2, results.size());
   }
 }
