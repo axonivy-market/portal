@@ -3,6 +3,7 @@ package portal.guitest.page;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
@@ -334,20 +335,24 @@ public class ProcessWidgetPage extends TemplatePage {
     waitForElementDisplayed(By.id("process-widget"), true);
   }
 
-  public void clickOnSwitchButton() {
-    String currentView = getCurrentViewMode();
-    clickByCssSelector("[id$='process-view-mode:process-view']");
-    WaitHelper.assertTrueWithWait(() -> !currentView.equals(getCurrentViewMode()));
-  }
-
   public String getCurrentViewMode() {
-    waitForElementDisplayed(By.cssSelector("[id$='process-view-mode'] label.switch-active"), true);
-    WebElement switchMode = findElementByCssSelector("[id$='process-view-mode'] label.switch-active");
-    return switchMode.getText();
+    waitForElementDisplayed(By.cssSelector("[id$='process-widget:process-view-mode:view-mode-selection'] div.ui-button.ui-widget.ui-state-default.ui-button-text-only.ui-state-active"), true);
+    WebElement activeModeElement = findElementByCssSelector("[id$='process-widget:process-view-mode:view-mode-selection'] div.ui-button.ui-widget.ui-state-default.ui-button-text-only.ui-state-active");
+    WebElement activeSpanElement = activeModeElement.findElement(By.cssSelector(".ui-button-text.ui-c"));
+    return activeSpanElement.getText();
   }
 
   public void clickOnProcessEditLink(int index) {
     clickByCssSelector(String.format("[id$=':%d:grid-processes:0:process-item:edit-link']", index));
+    waitForElementDisplayed(By.cssSelector("[id$='process-widget:edit-process-dialog']"), true);
+  }
+
+  public WebElement getProcessEditMenu(int index) {
+    return findElementByCssSelector(String.format("[id$='process-widget:image-process-group-alphabet:0:image-processes:%d:process-item:process-edit']", index));
+  }
+
+  public void clickOnProcessEditMenu(int index) {
+    clickByCssSelector(String.format("[id$='process-widget:image-process-group-alphabet:0:image-processes:%d:process-item:process-edit']", index));
     waitForElementDisplayed(By.cssSelector("[id$='process-widget:edit-process-dialog']"), true);
   }
   
@@ -369,7 +374,8 @@ public class ProcessWidgetPage extends TemplatePage {
   }
 
   public void deleteProcess(int index) {
-    clickByCssSelector(String.format("[id$=':%d:grid-processes:0:process-item:delete-link']", index));
+    
+    clickByCssSelector(String.format("[id$='process-widget:grid-process-group-alphabet:%d:grid-processes:0:process-item:process-delete']", index));
     waitForElementDisplayed(By.cssSelector("[id$='process-widget:remove-process-workflow-dialog']"), true);
     clickByCssSelector("[id$='delete-process-workflow-form:remove-process-command']");
     waitForElementDisplayed(By.cssSelector("[id$='process-widget:remove-process-workflow-dialog']"), false);
@@ -377,5 +383,63 @@ public class ProcessWidgetPage extends TemplatePage {
 
   public void clickMoreInformationLink(String processName) {
     click(getGridProcessItem(processName).findElement(By.cssSelector(".process-more-info-link")));
+  }
+  
+  public void waitForGridProcessListDisplayed() {
+    waitForElementDisplayed(By.cssSelector("[id$='process-widget:grid-process-container']"), true);
+  }
+
+  public void waitForCompactProcessListDisplayed() {
+    waitForElementDisplayed(By.cssSelector("[id$='process-widget:process-list']"), true);
+  }
+
+  public void selectViewMode(String viewMode) {
+    waitForElementDisplayed(By.cssSelector("[id$='process-widget:process-view-mode:view-mode-selection']"), true);
+    WebElement viewModeElement = findElementByCssSelector("[id$='process-widget:process-view-mode:view-mode-selection']");
+    List<WebElement> webElements = viewModeElement.findElements(By.cssSelector("span.ui-button-text.ui-c"));
+    if (CollectionUtils.isNotEmpty(webElements)) {
+      for(WebElement webElement: webElements) {
+        if(webElement.getText().equalsIgnoreCase(viewMode)) {
+          webElement.click();
+          return;
+        }
+      }
+    }
+  }
+
+  public void clickMoreButton() {
+    waitForElementDisplayed(
+        By.cssSelector("[id$='process-widget:image-process-group-alphabet:0:image-processes:0:process-item:dynaButton']"),
+        true);
+    WebElement webElement = findElementByCssSelector(
+        "[id$='process-widget:image-process-group-alphabet:0:image-processes:0:process-item:dynaButton']");
+    webElement.click();
+  }
+  
+  public WebElement getMoreMenuButton(int index) {
+    return findElementByCssSelector(String.format("[id$='process-widget:image-process-group-alphabet:0:image-processes:%d:process-item:dynaButton']", index));
+  } 
+
+  public void waitForMenuActionsDisplayed() {
+    waitForElementDisplayed(
+        By.cssSelector(
+            "[id$='process-widget:image-process-group-alphabet:0:image-processes:0:process-item:process-action-menu']"),
+        true);
+  }
+  
+  public void clickMoreButtonOnGridMode() {
+    waitForElementDisplayed(
+        By.cssSelector("[id$='process-widget:grid-process-group-alphabet:0:grid-processes:0:process-item:dynaButton']"),
+        true);
+    WebElement webElement = findElementByCssSelector(
+        "[id$='process-widget:grid-process-group-alphabet:0:grid-processes:0:process-item:dynaButton']");
+    webElement.click();
+  }
+
+  public void waitForMenuActionsOnGridModeDisplayed() {
+    waitForElementDisplayed(
+        By.cssSelector(
+            "[id$='process-widget:grid-process-group-alphabet:0:grid-processes:0:process-item:process-delete']"),
+        true);
   }
 }
