@@ -16,8 +16,6 @@ import vn.wawa.guitest.base.client.Browser;
 
 public class ConfigurationJSONUtil {
 
-  private static Browser browser;
-
   public static void updateJSONSetting(String fileConfig, Variable variableName) throws IOException {
     String customCaseDetais = FileHelper.getAbsolutePathToTestFile(fileConfig);
     Path path = Paths.get(customCaseDetais);
@@ -33,10 +31,7 @@ public class ConfigurationJSONUtil {
   }
 
   public static void redirectToRelativeLink(String relativeProcessStartUrl) {
-    if (browser == null) {
-      browser = Browser.getBrowser();
-    }
-
+    Browser browser = Browser.getBrowser();
     try {
       browser.goHome(UrlHelpers.generateAbsoluteProcessStartLink(relativeProcessStartUrl));
     } catch (Exception e) {
