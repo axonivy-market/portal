@@ -3,7 +3,7 @@
 Process default image
 =====================
 
-.. _customization-process-default-image:
+.. _customization-process-default-image-introduction:
 
 Introduction
 ------------
