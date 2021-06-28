@@ -29,7 +29,7 @@ In the **Full Process List**, we provided three modes for displaying the process
 By default, **Image mode** is activated. You can change the default process mode in :guilabel:`My Profile` page.
 
 Image mode
-^^^^^^^^^
+^^^^^^^^^^
 
 |portal-process-image-view-page|
 
@@ -76,7 +76,7 @@ Values of Portal Setting **Portal.Processes.DefaultImage**
 |process-default-image-values|
 
 HowTo: Edit process icon in Image mode
--------------------------------------
+--------------------------------------
 #. Click on more menu item in the process card item.
 #. Click on |edit-icon| :guilabel:`Edit` menu item.
 #. The dialog **Edit process information** is opened.
