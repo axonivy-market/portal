@@ -153,7 +153,7 @@ HowTo: Create new filter
 | Category                          | This filter lets you specify      |
 |                                   | the task category.                |
 +-----------------------------------+-----------------------------------+
-| Available Activator               | This filter is only for Admin and |
+| Missing Activator                 | This filter is only for Admin and |
 |                                   | lets you find tasks which have no |
 |                                   | activator, activator is not found |
 |                                   | or is disabled.                   |
