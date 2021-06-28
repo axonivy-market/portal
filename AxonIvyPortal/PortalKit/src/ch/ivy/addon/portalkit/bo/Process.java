@@ -11,6 +11,9 @@ public interface Process {
   public ProcessType getType();
   public String getTypeName();
   public String getId();
+  public String getCategory();
+  public String getImageUrl();
+  public String getDefaultImageSrc();
 
   default public String getIcon() {
     return DEFAULT_PROCESS_ICON;

@@ -1,0 +1,29 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions">
+<h:body>
+  <ui:composition template="/layouts/BasicTemplate.xhtml">
+    <ui:define name="title">PhotoLibraryOfDefaultProcessImageExample</ui:define>
+    <ui:define name="pageContent">
+      <h1>Photo Library Of Default Process Image Example</h1>
+      <h:panelGroup id="image-process-container" layout="block" styleClass="ui-g process-group image-process-container">
+        <ui:repeat value="#{data.photoNames}" var="photo">
+          <ui:fragment id="image-view">
+            <div class="ui-g-2 ui-xl-2 ui-lg-3 ui-md-6 ui-sm-12 portal-card-container">
+              <div class="card-item card ui-g-12 u-padding-0 photo-item-example">
+                <p:graphicImage id="default-process-image" styleClass="default-process-image" library="ivy-cms" name="#{photo.path}" />
+                <div class="mg-10">
+                  <div>Portal.Processes.DefaultImage:</div>
+                  <div class="font-weight-bold">#{photo}</div>
+                </div>
+              </div>
+            </div>
+          </ui:fragment>
+        </ui:repeat>
+      </h:panelGroup>
+    </ui:define>
+    <ui:define name="css">
+      <h:outputStylesheet library="css" name="examples.css" />
+    </ui:define>
+  </ui:composition>
+</h:body>
+</html>
