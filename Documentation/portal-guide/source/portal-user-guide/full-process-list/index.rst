@@ -25,8 +25,19 @@ Express workflows are described in detail in :ref:`axon-ivy-express`.
 Process mode
 ------------
 
-In the **Full Process List**, we provided two modes for displaying the process list.
-By default, **Grid mode** is activated. You can change the default process mode in :guilabel:`My Profile` page.
+In the **Full Process List**, we provided three modes for displaying the process list.
+By default, **Image mode** is activated. You can change the default process mode in :guilabel:`My Profile` page.
+
+Image mode
+^^^^^^^^^
+
+|portal-process-image-view-page|
+
+.. hint:: 
+   You can change process default image by changing
+   value of Portal Setting **Portal.Processes.DefaultImage**.
+   
+   See :ref:`values_of_default_image`.
 
 Grid mode
 ^^^^^^^^^
@@ -34,15 +45,15 @@ Grid mode
 |portal-process-grid-view-page|
 
 
-List Mode
-^^^^^^^^^
+Compact Mode
+^^^^^^^^^^^^
 
 |portal-process-list-view-page|
 
 
 If you’re looking for a specific process, you can search your keyword in search field 
-marked in the image above. The search will look up your keyword in process names 
-and process descriptions, then filter the process list accordingly.
+marked in the image above. The search will look up your keyword in process names, 
+process descriptions and process categories, then filter the process list accordingly.
 
 .. warning:: 
    Don’t confuse the process search
@@ -55,15 +66,25 @@ Please be aware, that after you finished your activities in the case you will be
 re-directed to the **Dashboard**  and not the :guilabel:`Full Process
 List`.
 
-HowTo: Edit process icon in Grid mode
--------------------------------------
+.. _values_of_default_image:
 
-#. Click on :guilabel:`Edit` link in the process card item.
+Values of Portal Setting **Portal.Processes.DefaultImage**
+----------------------------------------------------------
+#. You could refer to project ``portal-developer-examples`` for examples.
+#. Start Process ``PhotoLibraryOfDefaultProcessImageExample``
+
+|process-default-image-values|
+
+HowTo: Edit process icon in Image mode
+-------------------------------------
+#. Click on more menu item in the process card item.
+#. Click on |edit-icon| :guilabel:`Edit` menu item.
 #. The dialog **Edit process information** is opened.
 #. Click on :guilabel:`Change` link, besides the current icon.
 #. The dialog :guilabel:`Selecting icon` is opened, and choose new icon.
 #. Press on :guilabel:`Save` button, and process icon is changed
 
+   |edit-process-menu-item|
    |edit-process-icon-dialog|
 
 HowTo: Add an external link
@@ -103,6 +124,9 @@ HowTo: Add an external link
 .. |portal-full-process-list-page| image:: ../../screenshots/process/portal-full-process-list-page.png
 .. |how-to-add-a-new-external-link| image:: ../../screenshots/process/how-to-add-a-new-external-link.png
 .. |add-external-link-dialog| image:: ../../screenshots/process/add-external-link-dialog.png
+.. |portal-process-image-view-page| image:: ../../screenshots/process/portal-process-image-view-page.png
 .. |portal-process-grid-view-page| image:: ../../screenshots/process/portal-process-grid-view-page.png
 .. |portal-process-list-view-page| image:: ../../screenshots/process/portal-process-list-view-page.png
+.. |edit-process-menu-item| image:: ../../screenshots/process/edit-process-menu-item.png
 .. |edit-process-icon-dialog| image:: ../../screenshots/process/edit-process-dialog.png
+.. |process-default-image-values| image:: images/process-default-image-values.png

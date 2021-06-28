@@ -253,6 +253,8 @@ public class PortalCasesScreenshotTest extends ScreenshotTest {
     login(TestAccount.ADMIN_USER);
     ProcessWidgetPage processWidget = homePage.getProcessWidget();
     processWidget.expand();
+    processWidget.selectViewMode("GRID");
+    processWidget.waitForGridProcessListDisplayed();
     processWidget.startProcess("Process With Process Steps");
     
     homePage = new HomePage();
