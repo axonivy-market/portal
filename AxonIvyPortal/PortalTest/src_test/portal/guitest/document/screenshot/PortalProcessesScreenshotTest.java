@@ -66,25 +66,36 @@ public class PortalProcessesScreenshotTest extends ScreenshotTest {
     login(TestAccount.ADMIN_USER);
     processWidget = homePage.getProcessWidget();
     processWidget.expand();
-    ScreenshotUtil.resizeBrowser(new Dimension(1000, 900));
     processWidget.navigateToProcessIndex("A");
+    executeDecorateJs("highlightProcessMoreMenuButton()");
+    processWidget.clickMoreButton();
+    processWidget.waitForMenuActionsDisplayed();
     executeDecorateJs("highlightEditProcessLink()");
-    processWidget.clickOnProcessEditLink(0);
+    ScreenshotUtil.captureElementWithMarginOptionScreenshot(processWidget.getProcessEditMenu(0), ScreenshotUtil.PROCESSES_WIDGET_FOLDER + "edit-process-menu-item", new ScreenshotMargin(150, 200));
+    processWidget.clickOnProcessEditMenu(0);
+    executeDecorateJs("highlightEditProcessDialog()");
     executeDecorateJs("highlightEditProcessIcon()");
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(processWidget.getEditProcessDialog(), ScreenshotUtil.PROCESSES_WIDGET_FOLDER + "edit-process-dialog", new ScreenshotMargin(150, 200));
     ScreenshotUtil.resizeBrowser(new Dimension(1366, 800));
     refreshPage();
     processWidget.waitUtilProcessWidgetDisplayed();
     executeDecorateJs("highlightProcessItems()");
+    Sleeper.sleep(250); /* Wait for css styling */
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.PROCESSES_WIDGET_FOLDER + "portal-full-process-list-page");
     refreshPage();
     processWidget.waitUtilProcessWidgetDisplayed();
+    Sleeper.sleep(250); /* Wait for css styling */
+    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.PROCESSES_WIDGET_FOLDER + "portal-process-image-view-page");
+    processWidget.selectViewMode("GRID");
+    processWidget.waitForGridProcessListDisplayed();
+    Sleeper.sleep(250); /* Wait for css styling */
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.PROCESSES_WIDGET_FOLDER + "portal-process-grid-view-page");
-    processWidget.clickOnSwitchButton();
+    processWidget.selectViewMode("COMPACT");
+    processWidget.waitForCompactProcessListDisplayed();
     Sleeper.sleep(250); /* Wait for css styling */
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.PROCESSES_WIDGET_FOLDER + "portal-process-list-view-page");
   }
-  
+
   @Test
   public void screenshotHowtoAddProcessFavorite() throws IOException {
     processWidget = homePage.getProcessWidget();
@@ -123,6 +134,8 @@ public class PortalProcessesScreenshotTest extends ScreenshotTest {
     ScreenshotUtil.resizeBrowser(new Dimension(1920, 800));
     processWidget = homePage.getProcessWidget();
     processWidget.expand();
+    processWidget.selectViewMode("GRID");
+    processWidget.waitForGridProcessListDisplayed();
     processWidget.enterSearchKeyword("Process With Process Steps");
     executeDecorateJs("highlightProcessMoreInformationLink()");
     ScreenshotUtil.captureHalfLeftPageScreenShot(ScreenshotUtil.PROCESSES_INFORMATION_WIDGET_FOLDER + "more-information-link");
@@ -132,6 +145,8 @@ public class PortalProcessesScreenshotTest extends ScreenshotTest {
   public void screenshotProcessInformation() throws IOException {
     processWidget = homePage.getProcessWidget();
     processWidget.expand();
+    processWidget.selectViewMode("GRID");
+    processWidget.waitForGridProcessListDisplayed();
     processWidget.clickMoreInformationLink("Process With Process Steps");
     ProcessInformationPage processInformationPage = new ProcessInformationPage();
     processInformationPage.getPageTitle();
