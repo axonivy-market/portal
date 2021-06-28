@@ -215,3 +215,23 @@
 .process-history-component .process-history-dialog .ui-dialog-content.ui-widget-content {
   padding: 0;
 }
+
+.default-process-image {
+  height: 296px;
+  position: relative;
+  object-fit: cover;
+  width: inherit;
+  border-radius: 5px;
+}
+
+.font-weight-bold {
+  font-weight: bold;
+}
+
+.mg-10 {
+  margin: 10px;
+}
+
+.card-item.card.photo-item-example {
+  height: 354px;
+}

@@ -3394,6 +3394,18 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   }
 }
 
+@supports (-webkit-line-clamp: 3) {
+  .line-clamp-text-3 {
+    overflow:hidden;
+    text-overflow: ellipsis;
+    white-space: initial;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    margin: auto;
+  }
+}
+
 .grid-view-form .process-action-group {
   position: absolute;
   right: 0;
@@ -5730,6 +5742,192 @@ body span.ui-commandlink .si {
     max-width: 95vw;
   }
 
+}
+
+.view-mode-text {
+  opacity: 0.56;
+  color: var(--ivy-primary-color-black);
+  padding-right: 8px;
+  font-size: var(--small-font-size);
+  position: relative;
+  top: -11px;
+}
+
+.ui-button.ui-button-icon-only.icon-more-menu-button {
+  background-color: var(--image-process-header-background-color);
+  height: 34px;
+  width: 34px;
+  margin: 0 0 0 8px;
+}
+
+.ui-button.ui-button-icon-only.icon-more-menu-button.ui-state-hover {
+  background-color: var(--image-process-header-background-color-hover);
+}
+
+.ui-button.ui-button-icon-only.icon-more-menu-button .si.si-navigation-menu-horizontal {
+  color: var(--image-process-header-color);
+}
+
+.image-view-form {
+  position: relative;
+}
+
+.image-view-form .more-information {
+  text-align: center;
+  position: absolute;
+  top: -20px;
+  width: 100%;
+  height: 16px;
+}
+
+.grid-view-form .process-action-group {
+  position: absolute;
+  padding: 9px;
+  width: 100%;
+  display: inline-flex;
+  justify-content: flex-end;
+}
+
+.image-view-form .process-action-group {
+  position: absolute;
+  right: 0;
+  top: -500px;
+  padding: 16px;
+  width: 100%;
+  display: inline-flex;
+  justify-content: flex-end;
+}
+
+.grid-view-form .process-action-group .grid-process-category,
+.image-view-form .process-action-group .image-process-category {
+  border-radius: 20px;
+  background-color: var(--image-process-header-background-color);
+  color: var(--image-process-header-color);
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 6px 8px 6px 9px;
+  margin: 0px;
+  height: 34px;
+  max-width: 100%;
+}
+
+.grid-view-form .process-action-group .grid-process-category.has-menu-button,
+.image-view-form .process-action-group .image-process-category.has-menu-button {
+  max-width: calc(100% - 40px);
+}
+
+.grid-view-form .process-action-group .grid-process-category .grid-process-category-content,
+.image-view-form .process-action-group .image-process-category .image-process-category-content {
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 22px;
+  align-items: center;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  flex-grow: 0;
+  margin: 0px 10px;
+}
+
+.image-process-item  .process-name .process-image-view-name {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  height: 40px;
+  color: var(--ivy-primary-color-white);
+  word-break: break-word;
+  vertical-align: middle;
+  
+}
+
+.image-view-form .process-description {
+  padding: 24px;
+  overflow: hidden;
+  position: absolute;
+  top: -202px;
+  left: 0;
+}
+
+.image-view-form .start-process {
+  padding: 32px 24px 16px 24px;
+  overflow: hidden;
+  position: absolute;
+  top: -106px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+}
+
+.image-view-form .start-process button {
+  height: 40px;
+}
+
+.image-view-form .process-description .process-item-description {
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.01em;
+  word-break: break-word;
+}
+
+.image-process-container .image-process-item .card-item.card {
+  height: 520px;
+}
+
+.image-process-item .image-process-item-image {
+  height: 296px;
+  position: relative;
+  object-fit: cover;
+  width: inherit;
+  border-radius: 5px;
+}
+
+.image-process-item .overlay-title {
+  position: relative;
+  top: -204px;
+  left: 0;
+  width: 100%;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background: linear-gradient(180deg, rgba(27, 27, 27, 0) 21.68%, rgba(27, 27, 27, 0.8) 100%);
+  background-size: 100% 50%;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+}
+
+.image-process-item .overlay-title .process-icon-and-name {
+  display: inline-flex;
+  width: 100%;
+  padding: 0 24px;
+  position: relative;
+  top: -24px;
+}
+
+.image-process-item .overlay-title .process-icon-and-name .process-name {
+  margin: 4px 0;
+}
+
+.image-process-item .overlay-title .process-icon-and-name .image-process-icon {
+  margin-right: 18px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: var(--ivy-primary-color-white);
+  color: var(--ivy-primary-color-black);
+}
+
+.image-process-icon .process-image-view-icon {
+  font-size: 24px;
+  margin: 12px;
+}
+
+.image-process-item .card-item.card {
+  margin-bottom: 0px;
+}
+
+.compact-process-category {
+  display: none;
 }
 
 /* Process information page */
