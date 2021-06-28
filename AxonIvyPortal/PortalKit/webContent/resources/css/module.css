@@ -5890,7 +5890,7 @@ body span.ui-commandlink .si {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  background: linear-gradient(180deg, rgba(27, 27, 27, 0) 21.68%, rgba(27, 27, 27, 0.8) 100%);
+  background: linear-gradient(180deg, rgba(27, 27, 27, 0) 21.68%, rgba(27, 27, 27, 1) 100%);
   background-size: 100% 50%;
   background-position: 0 100%;
   background-repeat: no-repeat;
