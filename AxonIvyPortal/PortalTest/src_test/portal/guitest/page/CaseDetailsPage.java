@@ -419,12 +419,8 @@ public class CaseDetailsPage extends TemplatePage {
     click(By.cssSelector(".portal-breadcrumb ul li:nth-of-type(3) .ui-menuitem-link"));
   }
   
-  public boolean isBackButtonDisplayed() {
-    return isElementDisplayedById("case-item-details:case-detail-title-form:back-to-cases");
-  }
-  
   public void clickBackButton() {
-    click(findElementById("case-item-details:back-to-cases"));
+    click(findElementById("case-item-details:case-details-container:back-to-cases"));
   }
 
   public void openRelatedCaseOfBusinessCase(int index) {
