@@ -59,6 +59,8 @@ public class ProcessWidgetTest extends BaseTest {
     assertTrue(processWidget.isCompactMode());
     processWidget.expand();
     assertTrue(processWidget.isExpandedMode());
+    processWidget.selectViewMode("GRID");
+    processWidget.waitForGridProcessListDisplayed();
     assertNotNull(processWidget.getProcess(CASE_MAP_LEAVES));
     resetLanguageOfCurrentUser();
   }
@@ -94,8 +96,10 @@ public class ProcessWidgetTest extends BaseTest {
     
     processWidget = homePage.getProcessWidget();
     processWidget.expand();
-    processWidget.clickOnSwitchButton();
-    processWidget.deleteExternalLinkByFieldsetIndexAndIndex(0, 0);
+    processWidget.selectViewMode("GRID");
+    processWidget.waitForGridProcessListDisplayed();
+    processWidget.clickMoreButtonOnGridMode();
+    processWidget.deleteProcess(0);
     backToCompactProcessWidget();
     
     assertEquals(0, processWidget.getNumberOfFavoriteUserProcesses());

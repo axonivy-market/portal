@@ -225,6 +225,8 @@ public class ExpressManagementTest extends BaseTest {
     processWidget = homePage.getProcessWidget();
     processWidget.expand();
     assertTrue(processWidget.isExpandedMode());
+    processWidget.selectViewMode("GRID");
+    processWidget.waitForGridProcessListDisplayed();
     processWidget.enterSearchKeyword(processName);
     Awaitility.await().atMost(new Duration(10, TimeUnit.SECONDS)).until(() -> processWidget.isProcessDisplay(processName));
     processWidget.startProcess(processName);
