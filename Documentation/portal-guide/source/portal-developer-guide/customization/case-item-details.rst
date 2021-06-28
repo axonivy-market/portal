@@ -234,9 +234,8 @@ There are **two steps** for adding new custom panels.
                    }
                 }
              ]
-         }
-      ]
-      ..
+           }
+        ]
 
 
 #. Refer to the ``caseItemDetailCustom*`` section in ``CaseInformation.xhtml`` of PortalTemplate.

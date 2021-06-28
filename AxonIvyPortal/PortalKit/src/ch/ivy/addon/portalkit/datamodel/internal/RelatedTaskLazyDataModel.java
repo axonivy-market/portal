@@ -45,7 +45,7 @@ public class RelatedTaskLazyDataModel extends TaskLazyDataModel {
   @Override
   public List<String> getDefaultColumns() {
     return Arrays.asList(TaskSortField.PRIORITY.name(), TaskSortField.NAME.name(), TaskSortField.ACTIVATOR.name(), TaskSortField.ID.name(),
-        TaskSortField.CREATION_TIME.name(), TaskSortField.EXPIRY_TIME.name(), TaskSortField.STATE.name());
+        TaskSortField.CREATION_TIME.name(), TaskSortField.EXPIRY_TIME.name(),TaskSortField.COMPLETED_ON.name(), TaskSortField.STATE.name());
   }
 
   private void updateCriteria() {
