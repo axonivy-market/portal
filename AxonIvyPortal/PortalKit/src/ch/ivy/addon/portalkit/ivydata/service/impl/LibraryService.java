@@ -11,7 +11,7 @@ import ch.ivyteam.ivy.application.ILibrary;
 import ch.ivyteam.ivy.application.ReleaseState;
 import ch.ivyteam.ivy.environment.Ivy;
 
-public class NoRegisteredAppLibraryService implements ILibraryService {
+public class LibraryService implements ILibraryService {
 
   @Override
   public Map<String, List<ILibrary>> collectLibraries() {
