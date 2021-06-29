@@ -330,8 +330,8 @@ There are **two steps** for adding new custom panels.
    
       ``taskItemDetailCustomPanelBottom (2)``
    
-      |task-customized-top|
-      |task-customized-bottom|
+     
+    
 
 #. To customize task details use Iframe, please make sure
 
@@ -370,7 +370,7 @@ There are **two steps** for adding new custom panels.
 
       Result
 
-      |task-customized-iframe-url|
+
 
       Customized task details using ivy process start, please refer to ``TaskDetailsCustomWidgetExample`` process in ``portal-developer-examples`` for more details
 
@@ -421,14 +421,12 @@ There are **two steps** for adding new custom panels.
 
       Result
 
-      |task-customized-iframe-process|
 
 
 .. |task-standard| image:: ../../screenshots/task-detail/customization/task-standard.png
-.. |task-customized-top| image:: ../../screenshots/task-detail/customization/task-customized-top.png
-.. |task-customized-bottom| image:: ../../screenshots/task-detail/customization/task-customized-bottom.png
+
+
 .. |edit-variable-portal-task-case-details| image:: images/customization/edit-variable-portal-task-case-details.png
-.. |task-customized-iframe-url| image:: ../../screenshots/task-detail/customization/task-customized-iframe-url.png
-.. |task-customized-iframe-process| image:: ../../screenshots/task-detail/customization/task-customized-iframe-process.png
+
 .. |task-customized-iframe-process-custom-field| image:: images/customization/task-customized-iframe-process-custom-field.png
 .. |task-customized-iframe-process-input-mapping| image:: images/customization/task-customized-iframe-process-input-mapping.png
