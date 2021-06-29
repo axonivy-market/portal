@@ -42,12 +42,9 @@ Ss0 @PushWFArc f29 '' #zField
 Ss0 @GridStep f30 '' #zField
 Ss0 @PushWFArc f12 '' #zField
 Ss0 @CallSub f7 '' #zField
-Ss0 @PushWFArc f10 '' #zField
 Ss0 @GridStep f36 '' #zField
-Ss0 @PushWFArc f38 '' #zField
 Ss0 @GridStep f40 '' #zField
 Ss0 @CallSub f42 '' #zField
-Ss0 @PushWFArc f43 '' #zField
 Ss0 @RichDialogProcessStart f6 '' #zField
 Ss0 @PushWFArc f9 '' #zField
 Ss0 @RichDialogProcessStart f44 '' #zField
@@ -60,10 +57,8 @@ Ss0 @Alternative f39 '' #zField
 Ss0 @PushWFArc f41 '' #zField
 Ss0 @PushWFArc f37 '' #zField
 Ss0 @RichDialogProcessEnd f46 '' #zField
-Ss0 @PushWFArc f47 '' #zField
 Ss0 @RichDialogProcessStart f50 '' #zField
 Ss0 @RichDialogProcessEnd f48 '' #zField
-Ss0 @PushWFArc f49 '' #zField
 Ss0 @Alternative f51 '' #zField
 Ss0 @PushWFArc f52 '' #zField
 Ss0 @PushWFArc f31 '' #zField
@@ -73,6 +68,19 @@ Ss0 @GridStep f55 '' #zField
 Ss0 @PushWFArc f56 '' #zField
 Ss0 @RichDialogProcessEnd f57 '' #zField
 Ss0 @PushWFArc f58 '' #zField
+Ss0 @GridStep f59 '' #zField
+Ss0 @PushWFArc f60 '' #zField
+Ss0 @PushWFArc f47 '' #zField
+Ss0 @GridStep f61 '' #zField
+Ss0 @PushWFArc f62 '' #zField
+Ss0 @PushWFArc f38 '' #zField
+Ss0 @PushWFArc f63 '' #zField
+Ss0 @GridStep f10 '' #zField
+Ss0 @PushWFArc f64 '' #zField
+Ss0 @PushWFArc f43 '' #zField
+Ss0 @GridStep f65 '' #zField
+Ss0 @PushWFArc f66 '' #zField
+Ss0 @PushWFArc f49 '' #zField
 >Proto Ss0 Ss0 StatisticDashboardWidgetProcess #zField
 Ss0 f3 guid 1600AC95D5A96D44 #txt
 Ss0 f3 type ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData #txt
@@ -443,10 +451,8 @@ Ss0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ss0 f7 488 522 112 44 -26 -8 #rect
+Ss0 f7 640 522 112 44 -26 -8 #rect
 Ss0 f7 @|CallSubIcon #fIcon
-Ss0 f10 expr out #txt
-Ss0 f10 400 544 488 544 #arcP
 Ss0 f36 actionDecl 'ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData out;
 ' #txt
 Ss0 f36 actionTable 'out=in;
@@ -475,10 +481,6 @@ Ss0 f36 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ss0 f36 288 434 112 44 -43 -8 #rect
 Ss0 f36 @|StepIcon #fIcon
-Ss0 f38 expr out #txt
-Ss0 f38 400 456 544 522 #arcP
-Ss0 f38 1 544 456 #addKink
-Ss0 f38 0 0.7876935071335653 0 0 #arcLabel
 Ss0 f40 actionDecl 'ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData out;
 ' #txt
 Ss0 f40 actionTable 'out=in;
@@ -522,10 +524,8 @@ Ss0 f42 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ss0 f42 488 602 112 44 -26 -8 #rect
+Ss0 f42 640 602 112 44 -26 -8 #rect
 Ss0 f42 @|CallSubIcon #fIcon
-Ss0 f43 expr out #txt
-Ss0 f43 400 624 488 624 #arcP
 Ss0 f6 guid 1608CEAE326E61AC #txt
 Ss0 f6 type ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData #txt
 Ss0 f6 actionDecl 'ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData out;
@@ -674,12 +674,8 @@ Ss0 f37 expr in #txt
 Ss0 f37 outCond 'in.showTaskListImmediately || in.isDrilldownToTaskList' #txt
 Ss0 f37 240 456 288 456 #arcP
 Ss0 f46 type ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData #txt
-Ss0 f46 531 363 26 26 0 12 #rect
+Ss0 f46 531 379 26 26 0 12 #rect
 Ss0 f46 @|RichDialogProcessEndIcon #fIcon
-Ss0 f47 expr in #txt
-Ss0 f47 224 440 531 376 #arcP
-Ss0 f47 1 224 376 #addKink
-Ss0 f47 1 0.29963636363636365 0 0 #arcLabel
 Ss0 f50 guid 161BBDE048B4425D #txt
 Ss0 f50 type ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData #txt
 Ss0 f50 actionDecl 'ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData out;
@@ -715,8 +711,6 @@ Ss0 f50 @|RichDialogProcessStartIcon #fIcon
 Ss0 f48 type ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData #txt
 Ss0 f48 534 691 26 26 0 12 #rect
 Ss0 f48 @|RichDialogProcessEndIcon #fIcon
-Ss0 f49 expr out #txt
-Ss0 f49 144 704 534 704 #arcP
 Ss0 f51 type ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData #txt
 Ss0 f51 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -811,6 +805,104 @@ Ss0 f57 531 307 26 26 0 12 #rect
 Ss0 f57 @|RichDialogProcessEndIcon #fIcon
 Ss0 f58 expr out #txt
 Ss0 f58 432 320 531 320 #arcP
+Ss0 f59 actionDecl 'ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData out;
+' #txt
+Ss0 f59 actionTable 'out=in;
+' #txt
+Ss0 f59 actionCode '// Do not store JSF Event in a Html Dialog data field
+out.event = null;
+' #txt
+Ss0 f59 type ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData #txt
+Ss0 f59 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Release JSF event</name>
+        <nameStyle>17,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ss0 f59 288 370 112 44 -51 -8 #rect
+Ss0 f59 @|StepIcon #fIcon
+Ss0 f60 expr in #txt
+Ss0 f60 224 440 288 392 #arcP
+Ss0 f60 1 224 392 #addKink
+Ss0 f60 1 0.29963636363636365 0 0 #arcLabel
+Ss0 f47 expr out #txt
+Ss0 f47 400 392 531 392 #arcP
+Ss0 f61 actionDecl 'ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData out;
+' #txt
+Ss0 f61 actionTable 'out=in;
+' #txt
+Ss0 f61 actionCode '// Do not store JSF Event in a Html Dialog data field
+out.event = null;
+' #txt
+Ss0 f61 type ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData #txt
+Ss0 f61 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Release JSF event</name>
+        <nameStyle>17,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ss0 f61 480 522 112 44 -51 -8 #rect
+Ss0 f61 @|StepIcon #fIcon
+Ss0 f62 expr out #txt
+Ss0 f62 400 456 536 522 #arcP
+Ss0 f62 1 536 456 #addKink
+Ss0 f62 0 0.7876935071335653 0 0 #arcLabel
+Ss0 f38 expr out #txt
+Ss0 f38 592 544 640 544 #arcP
+Ss0 f63 expr out #txt
+Ss0 f63 400 544 480 544 #arcP
+Ss0 f10 actionDecl 'ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData out;
+' #txt
+Ss0 f10 actionTable 'out=in;
+' #txt
+Ss0 f10 actionCode '// Do not store JSF Event in a Html Dialog data field
+out.event = null;
+' #txt
+Ss0 f10 type ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData #txt
+Ss0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Release JSF event</name>
+        <nameStyle>17,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ss0 f10 480 602 112 44 -51 -8 #rect
+Ss0 f10 @|StepIcon #fIcon
+Ss0 f64 expr out #txt
+Ss0 f64 400 624 480 624 #arcP
+Ss0 f43 expr out #txt
+Ss0 f43 592 624 640 624 #arcP
+Ss0 f65 actionDecl 'ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData out;
+' #txt
+Ss0 f65 actionTable 'out=in;
+' #txt
+Ss0 f65 actionCode '// Do not store JSF Event in a Html Dialog data field
+out.event = null;
+' #txt
+Ss0 f65 type ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData #txt
+Ss0 f65 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Release JSF event</name>
+        <nameStyle>17,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ss0 f65 288 682 112 44 -51 -8 #rect
+Ss0 f65 @|StepIcon #fIcon
+Ss0 f66 expr out #txt
+Ss0 f66 144 704 288 704 #arcP
+Ss0 f49 expr out #txt
+Ss0 f49 400 704 534 704 #arcP
 >Proto Ss0 .type ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData #txt
 >Proto Ss0 .processKind HTML_DIALOG #txt
 >Proto Ss0 -8 -8 16 16 16 26 #rect
@@ -835,12 +927,6 @@ Ss0 f26 mainOut f29 tail #connect
 Ss0 f29 head f28 mainIn #connect
 Ss0 f30 mainOut f12 tail #connect
 Ss0 f12 head f2 mainIn #connect
-Ss0 f8 mainOut f10 tail #connect
-Ss0 f10 head f7 mainIn #connect
-Ss0 f36 mainOut f38 tail #connect
-Ss0 f38 head f7 mainIn #connect
-Ss0 f40 mainOut f43 tail #connect
-Ss0 f43 head f42 mainIn #connect
 Ss0 f6 mainOut f9 tail #connect
 Ss0 f9 head f8 mainIn #connect
 Ss0 f45 mainOut f35 tail #connect
@@ -851,10 +937,6 @@ Ss0 f44 mainOut f41 tail #connect
 Ss0 f41 head f39 in #connect
 Ss0 f39 out f37 tail #connect
 Ss0 f37 head f36 mainIn #connect
-Ss0 f39 out f47 tail #connect
-Ss0 f47 head f46 mainIn #connect
-Ss0 f50 mainOut f49 tail #connect
-Ss0 f49 head f48 mainIn #connect
 Ss0 f1 mainOut f52 tail #connect
 Ss0 f52 head f51 in #connect
 Ss0 f51 out f31 tail #connect
@@ -865,3 +947,21 @@ Ss0 f54 mainOut f56 tail #connect
 Ss0 f56 head f55 mainIn #connect
 Ss0 f55 mainOut f58 tail #connect
 Ss0 f58 head f57 mainIn #connect
+Ss0 f39 out f60 tail #connect
+Ss0 f60 head f59 mainIn #connect
+Ss0 f59 mainOut f47 tail #connect
+Ss0 f47 head f46 mainIn #connect
+Ss0 f36 mainOut f62 tail #connect
+Ss0 f62 head f61 mainIn #connect
+Ss0 f61 mainOut f38 tail #connect
+Ss0 f38 head f7 mainIn #connect
+Ss0 f8 mainOut f63 tail #connect
+Ss0 f63 head f61 mainIn #connect
+Ss0 f40 mainOut f64 tail #connect
+Ss0 f64 head f10 mainIn #connect
+Ss0 f10 mainOut f43 tail #connect
+Ss0 f43 head f42 mainIn #connect
+Ss0 f50 mainOut f66 tail #connect
+Ss0 f66 head f65 mainIn #connect
+Ss0 f65 mainOut f49 tail #connect
+Ss0 f49 head f48 mainIn #connect

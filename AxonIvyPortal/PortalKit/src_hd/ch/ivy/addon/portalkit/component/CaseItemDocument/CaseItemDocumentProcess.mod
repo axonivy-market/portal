@@ -59,7 +59,6 @@ Cs0 @GridStep f46 '' #zField
 Cs0 @PushWFArc f50 '' #zField
 Cs0 @PushWFArc f40 '' #zField
 Cs0 @GridStep f51 '' #zField
-Cs0 @PushWFArc f15 '' #zField
 Cs0 @CallSub f54 '' #zField
 Cs0 @PushWFArc f57 '' #zField
 Cs0 @PushWFArc f13 '' #zField
@@ -80,9 +79,12 @@ Cs0 @PushWFArc f69 '' #zField
 Cs0 @PushWFArc f36 '' #zField
 Cs0 @PushWFArc f45 '' #zField
 Cs0 @PushWFArc f61 '' #zField
-Cs0 @PushWFArc f19 '' #zField
 Cs0 @GridStep f41 '' #zField
+Cs0 @GridStep f17 '' #zField
+Cs0 @PushWFArc f30 '' #zField
 Cs0 @PushWFArc f9 '' #zField
+Cs0 @PushWFArc f15 '' #zField
+Cs0 @PushWFArc f19 '' #zField
 >Proto Cs0 Cs0 CaseItemDocumentProcess #zField
 Cs0 f0 guid 1533610171B77F44 #txt
 Cs0 f0 type ch.ivy.addon.portalkit.component.CaseItemDocument.CaseItemDocumentData #txt
@@ -206,7 +208,7 @@ Cs0 f56 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Cs0 f56 414 468 36 24 -69 16 #rect
 Cs0 f56 @|StepIcon #fIcon
 Cs0 f11 type ch.ivy.addon.portalkit.component.CaseItemDocument.CaseItemDocumentData #txt
-Cs0 f11 517 917 22 22 14 0 #rect
+Cs0 f11 517 1029 22 22 14 0 #rect
 Cs0 f11 @|RichDialogProcessEndIcon #fIcon
 Cs0 f43 type ch.ivy.addon.portalkit.component.CaseItemDocument.CaseItemDocumentData #txt
 Cs0 f43 processCall MultiPortal/CaseService:findDocuments(ch.ivy.addon.portalkit.persistence.domain.Server,Long) #txt
@@ -621,8 +623,6 @@ Cs0 f51 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Cs0 f51 472 842 112 44 -11 -8 #rect
 Cs0 f51 @|StepIcon #fIcon
-Cs0 f15 expr out #txt
-Cs0 f15 528 886 528 917 #arcP
 Cs0 f54 type ch.ivy.addon.portalkit.component.CaseItemDocument.CaseItemDocumentData #txt
 Cs0 f54 processCall 'Functional Processes/UploadDocumentChecker:call(org.primefaces.model.UploadedFile)' #txt
 Cs0 f54 doCall true #txt
@@ -790,10 +790,6 @@ Cs0 f61 expr in #txt
 Cs0 f61 448 384 624 428 #arcP
 Cs0 f61 1 624 384 #addKink
 Cs0 f61 0 0.6617402888171451 0 0 #arcLabel
-Cs0 f19 expr out #txt
-Cs0 f19 624 452 539 928 #arcP
-Cs0 f19 1 624 928 #addKink
-Cs0 f19 1 0.8365402140487286 0 0 #arcLabel
 Cs0 f41 actionDecl 'ch.ivy.addon.portalkit.component.CaseItemDocument.CaseItemDocumentData out;
 ' #txt
 Cs0 f41 actionTable 'out=in;
@@ -814,10 +810,37 @@ Cs0 f41 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Cs0 f41 608 428 32 24 -40 22 #rect
 Cs0 f41 @|StepIcon #fIcon
-Cs0 f9 expr in #txt
-Cs0 f9 432 686 517 928 #arcP
-Cs0 f9 1 432 928 #addKink
-Cs0 f9 0 0.6756198347107438 0 0 #arcLabel
+Cs0 f17 actionDecl 'ch.ivy.addon.portalkit.component.CaseItemDocument.CaseItemDocumentData out;
+' #txt
+Cs0 f17 actionTable 'out=in;
+' #txt
+Cs0 f17 actionCode '// Do not store JSF Event in a Html Dialog data field
+out.documentUploadEvent = null;
+' #txt
+Cs0 f17 type ch.ivy.addon.portalkit.component.CaseItemDocument.CaseItemDocumentData #txt
+Cs0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Release JSF event</name>
+        <nameStyle>17,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f17 472 938 112 44 -51 -8 #rect
+Cs0 f17 @|StepIcon #fIcon
+Cs0 f30 expr in #txt
+Cs0 f30 432 686 472 960 #arcP
+Cs0 f30 1 432 960 #addKink
+Cs0 f30 0 0.9158144200365784 0 0 #arcLabel
+Cs0 f9 expr out #txt
+Cs0 f9 528 886 528 938 #arcP
+Cs0 f15 expr out #txt
+Cs0 f15 624 452 584 960 #arcP
+Cs0 f15 1 624 960 #addKink
+Cs0 f15 1 0.8365402140487286 0 0 #arcLabel
+Cs0 f19 expr out #txt
+Cs0 f19 528 982 528 1029 #arcP
 >Proto Cs0 .type ch.ivy.addon.portalkit.component.CaseItemDocument.CaseItemDocumentData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 -8 -8 16 16 16 26 #rect
@@ -849,14 +872,10 @@ Cs0 f6 mainOut f5 tail #connect
 Cs0 f5 head f4 mainIn #connect
 Cs0 f34 mainOut f39 tail #connect
 Cs0 f39 head f80 mainIn #connect
-Cs0 f41 mainOut f19 tail #connect
-Cs0 f19 head f11 mainIn #connect
 Cs0 f80 mainOut f50 tail #connect
 Cs0 f50 head f46 mainIn #connect
 Cs0 f46 mainOut f40 tail #connect
 Cs0 f40 head f37 mainIn #connect
-Cs0 f51 mainOut f15 tail #connect
-Cs0 f15 head f11 mainIn #connect
 Cs0 f56 mainOut f57 tail #connect
 Cs0 f57 head f58 mainIn #connect
 Cs0 f35 out f13 tail #connect
@@ -886,5 +905,11 @@ Cs0 f69 head f68 mainIn #connect
 Cs0 f68 mainOut f36 tail #connect
 Cs0 f36 head f33 mainIn #connect
 Cs0 f28 out f44 tail #connect
-Cs0 f28 out f9 tail #connect
-Cs0 f9 head f11 mainIn #connect
+Cs0 f28 out f30 tail #connect
+Cs0 f30 head f17 mainIn #connect
+Cs0 f51 mainOut f9 tail #connect
+Cs0 f9 head f17 mainIn #connect
+Cs0 f41 mainOut f15 tail #connect
+Cs0 f15 head f17 mainIn #connect
+Cs0 f17 mainOut f19 tail #connect
+Cs0 f19 head f11 mainIn #connect

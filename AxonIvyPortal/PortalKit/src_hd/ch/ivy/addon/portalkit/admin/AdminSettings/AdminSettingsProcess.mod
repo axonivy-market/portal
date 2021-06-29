@@ -189,7 +189,6 @@ As0 @GridStep f225 '' #zField
 As0 @PushWFArc f226 '' #zField
 As0 @PushWFArc f227 '' #zField
 As0 @GridStep f231 '' #zField
-As0 @PushWFArc f187 '' #zField
 As0 @PushWFArc f180 '' #zField
 As0 @PushWFArc f181 '' #zField
 As0 @GridStep f104 '' #zField
@@ -283,6 +282,9 @@ As0 @PushWFArc f268 '' #zField
 As0 @PushWFArc f248 '' #zField
 As0 @RichDialogProcessEnd f269 '' #zField
 As0 @PushWFArc f270 '' #zField
+As0 @GridStep f271 '' #zField
+As0 @PushWFArc f272 '' #zField
+As0 @PushWFArc f187 '' #zField
 >Proto As0 As0 AdminUIProcess #zField
 As0 f0 guid 14B6C3C6330883A7 #txt
 As0 f0 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
@@ -1649,7 +1651,7 @@ As0 f176 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 As0 f176 1422 830 20 20 13 0 #rect
 As0 f176 @|RichDialogMethodStartIcon #fIcon
 As0 f177 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
-As0 f177 1422 1014 20 20 13 0 #rect
+As0 f177 1422 1070 20 20 13 0 #rect
 As0 f177 @|RichDialogProcessEndIcon #fIcon
 As0 f179 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
 ' #txt
@@ -2377,8 +2379,6 @@ As0 f231 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 As0 f231 1414 948 36 24 20 -2 #rect
 As0 f231 @|StepIcon #fIcon
-As0 f187 expr out #txt
-As0 f187 1432 972 1432 1014 #arcP
 As0 f180 expr out #txt
 As0 f180 1432 850 1432 884 #arcP
 As0 f181 expr out #txt
@@ -2875,7 +2875,7 @@ As0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f2 1421 1085 22 22 14 0 #rect
+As0 f2 1421 1109 22 22 14 0 #rect
 As0 f2 @|RichDialogMethodStartIcon #fIcon
 As0 f94 guid 151E789774273A4D #txt
 As0 f94 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
@@ -2923,21 +2923,21 @@ As0 f98 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f98 1613 861 22 22 14 0 #rect
+As0 f98 1621 1109 22 22 14 0 #rect
 As0 f98 @|RichDialogMethodStartIcon #fIcon
 As0 f99 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
-As0 f99 1421 1197 22 22 14 0 #rect
+As0 f99 1421 1205 22 22 14 0 #rect
 As0 f99 @|RichDialogProcessEndIcon #fIcon
 As0 f100 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
-As0 f100 1613 973 22 22 14 0 #rect
+As0 f100 1621 1205 22 22 14 0 #rect
 As0 f100 @|RichDialogProcessEndIcon #fIcon
 As0 f123 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f123 1421 1349 22 22 14 0 #rect
 As0 f123 @|RichDialogProcessEndIcon #fIcon
 As0 f153 expr out #txt
-As0 f153 1432 1107 1432 1197 #arcP
+As0 f153 1432 1131 1432 1205 #arcP
 As0 f154 expr out #txt
-As0 f154 1624 883 1624 973 #arcP
+As0 f154 1632 1131 1632 1205 #arcP
 As0 f182 expr out #txt
 As0 f182 1432 1275 1432 1349 #arcP
 As0 f183 guid 155A5B05CA4C248A #txt
@@ -3282,6 +3282,28 @@ As0 f269 1363 1763 26 26 0 12 #rect
 As0 f269 @|RichDialogProcessEndIcon #fIcon
 As0 f270 expr in #txt
 As0 f270 1232 1776 1363 1776 #arcP
+As0 f271 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
+' #txt
+As0 f271 actionTable 'out=in;
+' #txt
+As0 f271 actionCode '// Do not store JSF Event in a Html Dialog data field
+out.reorderEvent= null;' #txt
+As0 f271 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
+As0 f271 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>release JSF event</name>
+        <nameStyle>17,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+As0 f271 1414 1012 36 24 20 -2 #rect
+As0 f271 @|StepIcon #fIcon
+As0 f272 expr out #txt
+As0 f272 1432 972 1432 1012 #arcP
+As0 f187 expr out #txt
+As0 f187 1432 1036 1432 1070 #arcP
 >Proto As0 .type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 >Proto As0 .processKind HTML_DIALOG #txt
 >Proto As0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -3442,8 +3464,6 @@ As0 f200 mainOut f226 tail #connect
 As0 f226 head f225 mainIn #connect
 As0 f225 mainOut f227 tail #connect
 As0 f227 head f216 mainIn #connect
-As0 f231 mainOut f187 tail #connect
-As0 f187 head f177 mainIn #connect
 As0 f179 mainOut f181 tail #connect
 As0 f181 head f231 mainIn #connect
 As0 f52 mainOut f101 tail #connect
@@ -3555,3 +3575,7 @@ As0 f254 out f248 tail #connect
 As0 f248 head f253 mainIn #connect
 As0 f254 out f270 tail #connect
 As0 f270 head f269 mainIn #connect
+As0 f231 mainOut f272 tail #connect
+As0 f272 head f271 mainIn #connect
+As0 f271 mainOut f187 tail #connect
+As0 f187 head f177 mainIn #connect

@@ -1,5 +1,4 @@
 [Ivy]
-[>Created: Fri May 19 15:31:44 ICT 2017]
 15C1FA307D3E1AB1 3.20 #module
 >Proto >Proto Collection #zClass
 Ds0 DrillDownChartsProcess Big #zClass
@@ -22,6 +21,8 @@ Ds0 @RichDialogMethodStart f3 '' #zField
 Ds0 @GridStep f4 '' #zField
 Ds0 @PushWFArc f6 '' #zField
 Ds0 @RichDialogEnd f8 '' #zField
+Ds0 @GridStep f5 '' #zField
+Ds0 @PushWFArc f7 '' #zField
 Ds0 @PushWFArc f9 '' #zField
 >Proto Ds0 Ds0 DrillDownChartsProcess #zField
 Ds0 f0 guid 15C1FA307E9AFFBE #txt
@@ -116,10 +117,30 @@ Ds0 f6 expr out #txt
 Ds0 f6 109 160 168 160 #arcP
 Ds0 f8 type internaltest.DrillDownCharts.DrillDownChartsData #txt
 Ds0 f8 guid 15C1FD5734CD43A3 #txt
-Ds0 f8 339 147 26 26 0 12 #rect
+Ds0 f8 499 147 26 26 0 12 #rect
 Ds0 f8 @|RichDialogEndIcon #fIcon
+Ds0 f5 actionDecl 'internaltest.DrillDownCharts.DrillDownChartsData out;
+' #txt
+Ds0 f5 actionTable 'out=in;
+' #txt
+Ds0 f5 actionCode '// Do not store JSF Event in a Html Dialog data field
+out.event = null;' #txt
+Ds0 f5 type internaltest.DrillDownCharts.DrillDownChartsData #txt
+Ds0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Release JSF Event</name>
+        <nameStyle>17,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ds0 f5 328 138 112 44 -52 -8 #rect
+Ds0 f5 @|StepIcon #fIcon
+Ds0 f7 expr out #txt
+Ds0 f7 280 160 328 160 #arcP
 Ds0 f9 expr out #txt
-Ds0 f9 280 160 339 160 #arcP
+Ds0 f9 440 160 499 160 #arcP
 >Proto Ds0 .type internaltest.DrillDownCharts.DrillDownChartsData #txt
 >Proto Ds0 .processKind HTML_DIALOG #txt
 >Proto Ds0 -8 -8 16 16 16 26 #rect
@@ -128,5 +149,7 @@ Ds0 f0 mainOut f2 tail #connect
 Ds0 f2 head f1 mainIn #connect
 Ds0 f3 mainOut f6 tail #connect
 Ds0 f6 head f4 mainIn #connect
-Ds0 f4 mainOut f9 tail #connect
+Ds0 f4 mainOut f7 tail #connect
+Ds0 f7 head f5 mainIn #connect
+Ds0 f5 mainOut f9 tail #connect
 Ds0 f9 head f8 mainIn #connect

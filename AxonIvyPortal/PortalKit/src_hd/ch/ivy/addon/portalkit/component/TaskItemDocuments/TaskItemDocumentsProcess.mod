@@ -59,7 +59,6 @@ Ts0 @PushWFArc f55 '' #zField
 Ts0 @PushWFArc f63 '' #zField
 Ts0 @PushWFArc f61 '' #zField
 Ts0 @GridStep f4 '' #zField
-Ts0 @PushWFArc f7 '' #zField
 Ts0 @GridStep f8 '' #zField
 Ts0 @PushWFArc f9 '' #zField
 Ts0 @CallSub f11 '' #zField
@@ -79,6 +78,9 @@ Ts0 @PushWFArc f66 '' #zField
 Ts0 @PushWFArc f3 '' #zField
 Ts0 @GridStep f67 '' #zField
 Ts0 @PushWFArc f68 '' #zField
+Ts0 @GridStep f31 '' #zField
+Ts0 @PushWFArc f32 '' #zField
+Ts0 @PushWFArc f7 '' #zField
 Ts0 @PushWFArc f20 '' #zField
 Ts0 @PushWFArc f30 '' #zField
 >Proto Ts0 Ts0 TaskItemDocumentsProcess #zField
@@ -332,7 +334,7 @@ downloadDocument</name>
 Ts0 f24 726 140 36 24 23 -8 #rect
 Ts0 f24 @|CallSubIcon #fIcon
 Ts0 f54 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
-Ts0 f54 477 709 22 22 14 0 #rect
+Ts0 f54 477 789 22 22 14 0 #rect
 Ts0 f54 @|RichDialogProcessEndIcon #fIcon
 Ts0 f28 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
 Ts0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -584,10 +586,6 @@ message</name>
 ' #txt
 Ts0 f4 312 436 32 24 -65 18 #rect
 Ts0 f4 @|StepIcon #fIcon
-Ts0 f7 expr out #txt
-Ts0 f7 328 460 477 720 #arcP
-Ts0 f7 1 328 720 #addKink
-Ts0 f7 1 0.1 -12 0 #arcLabel
 Ts0 f8 actionDecl 'ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData out;
 ' #txt
 Ts0 f8 actionTable 'out=in;
@@ -805,13 +803,38 @@ Ts0 f67 470 652 36 24 20 -2 #rect
 Ts0 f67 @|StepIcon #fIcon
 Ts0 f68 expr out #txt
 Ts0 f68 488 620 488 652 #arcP
-Ts0 f20 expr out #txt
-Ts0 f20 488 676 488 709 #arcP
-Ts0 f30 expr in #txt
-Ts0 f30 502 552 499 720 #arcP
-Ts0 f30 1 664 552 #addKink
-Ts0 f30 2 664 720 #addKink
-Ts0 f30 1 0.5089285714285714 0 0 #arcLabel
+Ts0 f31 actionDecl 'ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData out;
+' #txt
+Ts0 f31 actionTable 'out=in;
+' #txt
+Ts0 f31 actionCode '// Do not store JSF Event in a Html Dialog data field
+out.documentUploadEvent = null;
+' #txt
+Ts0 f31 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
+Ts0 f31 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Release JSF event</name>
+        <nameStyle>17,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f31 432 714 112 44 -51 -8 #rect
+Ts0 f31 @|StepIcon #fIcon
+Ts0 f32 expr out #txt
+Ts0 f32 328 460 432 736 #arcP
+Ts0 f32 1 328 736 #addKink
+Ts0 f32 0 0.15851645574847079 9 8 #arcLabel
+Ts0 f7 expr out #txt
+Ts0 f7 488 676 488 714 #arcP
+Ts0 f20 expr in #txt
+Ts0 f20 502 552 544 736 #arcP
+Ts0 f20 1 664 552 #addKink
+Ts0 f20 2 664 736 #addKink
+Ts0 f20 1 0.5089285714285714 0 0 #arcLabel
+Ts0 f30 expr out #txt
+Ts0 f30 488 758 488 789 #arcP
 >Proto Ts0 .type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
 >Proto Ts0 .processKind HTML_DIALOG #txt
 >Proto Ts0 -8 -8 16 16 16 26 #rect
@@ -850,8 +873,6 @@ Ts0 f57 mainOut f63 tail #connect
 Ts0 f63 head f62 mainIn #connect
 Ts0 f62 mainOut f61 tail #connect
 Ts0 f61 head f60 mainIn #connect
-Ts0 f4 mainOut f7 tail #connect
-Ts0 f7 head f54 mainIn #connect
 Ts0 f16 mainOut f9 tail #connect
 Ts0 f9 head f8 mainIn #connect
 Ts0 f35 out f12 tail #connect
@@ -876,7 +897,11 @@ Ts0 f65 mainOut f3 tail #connect
 Ts0 f3 head f40 mainIn #connect
 Ts0 f13 mainOut f68 tail #connect
 Ts0 f68 head f67 mainIn #connect
-Ts0 f67 mainOut f20 tail #connect
-Ts0 f20 head f54 mainIn #connect
-Ts0 f28 out f30 tail #connect
+Ts0 f4 mainOut f32 tail #connect
+Ts0 f32 head f31 mainIn #connect
+Ts0 f67 mainOut f7 tail #connect
+Ts0 f7 head f31 mainIn #connect
+Ts0 f28 out f20 tail #connect
+Ts0 f20 head f31 mainIn #connect
+Ts0 f31 mainOut f30 tail #connect
 Ts0 f30 head f54 mainIn #connect
