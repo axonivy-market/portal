@@ -50,18 +50,18 @@ public class ProcessWidgetPage extends TemplatePage {
 
   public void startProcess(String processName) {
     WebElement processItemElement = getProcess(processName);
-    click(processItemElement);
+    processItemElement.click();
   }
 
   public WebElement getProcess(String processName) {
     WebElement processListElement = findElementById(processWidgetId + ":process-list");
-    if (isGridModeActivated()) {
-      return getStartGridProcess(processName, processListElement);
+    if (isImageModeActivated()) {
+      return getStartImageProcess(processName, processListElement);
     }
     return findChildElementByXpathExpression(processListElement, "//a[.//text() = '" + processName + "']");
   }
 
-  public WebElement getStartGridProcess(String processName, WebElement processListElement) {
+  public WebElement getStartImageProcess(String processName, WebElement processListElement) {
     WebElement startProcessItemElement = null;
     List<WebElement> processItems = findChildElementsByCssSelector(processListElement, ".js-process-start-list-item");
     for (WebElement process : processItems) {
@@ -74,7 +74,7 @@ public class ProcessWidgetPage extends TemplatePage {
     return startProcessItemElement;
   }
 
-  public WebElement getGridProcessItem(String processName) {
+  public WebElement getProcessItem(String processName) {
     WebElement processItemElement = null;
     List<WebElement> processItems = findListElementsByClassName("js-process-start-list-item");
     for (WebElement process : processItems) {
@@ -89,18 +89,27 @@ public class ProcessWidgetPage extends TemplatePage {
 
   public ExpressProcessPage editExpressWF(String wfName) {
     int numberOfRefesh = 5;
-    for(int i=0; i< numberOfRefesh; i++) {
+    for (int i = 0; i < numberOfRefesh; i++) {
       waitForElementDisplayed(By.id(processWidgetId + ":process-search:non-ajax-keyword-filter"), true);
       enterSearchKeyword(wfName);
-      if (isGridModeActivated()) {
-        if (isElementDisplayed(By.cssSelector("[id$=':process-item:edit-link']"))) {
-          clickByCssSelector("[id$=':process-item:edit-link']");
+      if (isImageModeActivated()) {
+        waitForElementDisplayed(
+            By.cssSelector(
+                "[id$='process-widget:image-process-group-alphabet:13:image-processes:2:process-item:dynaButton']"),
+            true);
+        WebElement webElement = findElementByCssSelector(
+            "[id$='process-widget:image-process-group-alphabet:13:image-processes:2:process-item:dynaButton']");
+        webElement.click();
+        if (isElementDisplayed(By.cssSelector("div[id$='process-widget:image-process-group-alphabet:13:image-processes:2:process-item:process-action-menu']"))) {
+          WebElement actionMenu = findElementByCssSelector("div[id$='process-widget:image-process-group-alphabet:13:image-processes:2:process-item:process-action-menu']");
+          WebElement icon = findChildElementByCssSelector(actionMenu, "a[id$=':process-item:process-edit']");
+          icon.click();
           waitForElementDisplayed(By.cssSelector("[id$='process-widget:edit-process-dialog']"), true);
           clickByCssSelector("a[id$='process-widget:edit-process-form:edit-express-workflow']");
           break;
         }
       } else {
-        if(isElementDisplayed(By.cssSelector("[id$='edit-express-workflow']"))) {
+        if (isElementDisplayed(By.cssSelector("[id$='edit-express-workflow']"))) {
           click(By.cssSelector("[id$='edit-express-workflow']"));
           break;
         }
@@ -120,7 +129,7 @@ public class ProcessWidgetPage extends TemplatePage {
   }
   
   public boolean isProcessGroupDisplay(String processGroupCharacter) {
-    if (isGridModeActivated()) {
+    if (isImageModeActivated()) {
       List<WebElement> webElements = findListElementsByClassName("js-grid-process-index-group");
       return webElements.stream().anyMatch(processItem -> processItem.isDisplayed() && processItem.getAttribute("class").endsWith(processGroupCharacter));
     }
@@ -217,8 +226,8 @@ public class ProcessWidgetPage extends TemplatePage {
     return findElements.isEmpty();
   }
 
-  public boolean isGridModeActivated() {
-    List<WebElement> findElements = driver.findElements(By.cssSelector("[id$=':grid-process-container']"));
+  public boolean isImageModeActivated() {
+    List<WebElement> findElements = driver.findElements(By.cssSelector("[id$=':image-process-container']"));
     return !findElements.isEmpty();
   }
 
@@ -382,7 +391,8 @@ public class ProcessWidgetPage extends TemplatePage {
   }
 
   public void clickMoreInformationLink(String processName) {
-    click(getGridProcessItem(processName).findElement(By.cssSelector(".process-more-info-link")));
+    WebElement processItem = getProcessItem(processName);
+    processItem.findElement(By.cssSelector(".more-information")).click();
   }
   
   public void waitForGridProcessListDisplayed() {

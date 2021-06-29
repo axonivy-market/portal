@@ -33,20 +33,21 @@ public class SearchResultPage extends TemplatePage {
 		waitAjaxIndicatorDisappear();
 	}
 
-	public void startProcess(String name) {
-		ProcessWidgetPage processWidgetPage = getProcessWidget();
-		if (processWidgetPage.isGridModeActivated()) {
-		  WebElement processListElement = findElementById("search-results-tabview:process-results");
-		  click(processWidgetPage.getStartGridProcess(name, processListElement));
-		  return;
-		}
-		processWidgetPage.startProcess(name);
-	}
+  public void startProcess(String name) {
+    ProcessWidgetPage processWidgetPage = getProcessWidget();
+    if (processWidgetPage.isImageModeActivated()) {
+      WebElement processListElement = findElementById("search-results-tabview:process-results");
+      WebElement processItemElement = processWidgetPage.getStartImageProcess(name, processListElement);
+      processItemElement.click();
+      return;
+    }
+    processWidgetPage.startProcess(name);
+  }
 
 	public String getProcessResult(String name) {
 		ProcessWidgetPage processWidgetPage = getProcessWidget();
-		if (processWidgetPage.isGridModeActivated()) {
-		  WebElement processItem = processWidgetPage.getGridProcessItem(name);
+		if (processWidgetPage.isImageModeActivated()) {
+		  WebElement processItem = processWidgetPage.getProcessItem(name);
 		  WebElement processNameElement = findChildElementByCssSelector(processItem, ".js-process-start-list-item-name");
 		  return processNameElement.getText();
 		}
@@ -99,9 +100,9 @@ public class SearchResultPage extends TemplatePage {
 
   public boolean isInfoWorkflowIcon() {
     ProcessWidgetPage processWidget = getProcessWidget();
-    if (processWidget.isGridModeActivated()) {
+    if (processWidget.isImageModeActivated()) {
       WebElement expressWorkflow = findElementByClassName("express-workflow");
-      WebElement icon = findChildElementByClassName(expressWorkflow, "process-grid-view-icon");
+      WebElement icon = findChildElementByClassName(expressWorkflow, "process-image-view-icon");
       return icon.getAttribute("class").contains("si si si-startup-launch");
     }
 
@@ -111,9 +112,9 @@ public class SearchResultPage extends TemplatePage {
 
   public boolean isEditExpressWorkflow() {
     ProcessWidgetPage processWidget = getProcessWidget();
-    if (processWidget.isGridModeActivated()) {
-      WebElement expressWorkflow = findElementByClassName("express-workflow");
-      WebElement icon = findChildElementByCssSelector(expressWorkflow, "a[id$=':process-item:edit-link']");
+    if (processWidget.isImageModeActivated()) {
+      WebElement actionMenu = findElementByCssSelector("div[id$='search-results-tabview:process-results:image-process-group-alphabet:13:image-processes:1:process-item:process-action-menu']");
+      WebElement icon = findChildElementByCssSelector(actionMenu, "a[id$=':process-item:process-edit']");
       return icon.isDisplayed();
     }
     WebElement element = findElementByCssSelector(EDIT_EXPRESS_WORKFlOW);
@@ -122,9 +123,9 @@ public class SearchResultPage extends TemplatePage {
 
   public boolean isDeleteExpressWorkflown() {
     ProcessWidgetPage processWidget = getProcessWidget();
-    if (processWidget.isGridModeActivated()) {
-      WebElement expressWorkflow = findElementByClassName("express-workflow");
-      WebElement icon = findChildElementByCssSelector(expressWorkflow, "a[id$=':process-item:delete-link']");
+    if (processWidget.isImageModeActivated()) {
+      WebElement actionMenu = findElementByCssSelector("div[id$='search-results-tabview:process-results:image-process-group-alphabet:13:image-processes:1:process-item:process-action-menu']");
+      WebElement icon = findChildElementByCssSelector(actionMenu, "a[id$=':process-item:process-delete']");
       return icon.isDisplayed();
     }
     WebElement element = findElementByCssSelector(DELETE_EXPRESS_WORKFlOW);
@@ -133,7 +134,7 @@ public class SearchResultPage extends TemplatePage {
 
   public boolean isExpressProcessLogo() {
     ProcessWidgetPage processWidget = getProcessWidget();
-    if (processWidget.isGridModeActivated()) {
+    if (processWidget.isImageModeActivated()) {
       return isInfoWorkflowIcon();
     }
     WebElement element = findElementByCssSelector(EXPRESS_PROCESS_LOGO);
