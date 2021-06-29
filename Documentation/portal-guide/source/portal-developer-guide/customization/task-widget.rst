@@ -58,7 +58,7 @@ Refer to the ``taskListHeader (1)`` and ``taskHeader (2)`` sections in
 new columns, you should override TaskLazyDataModel to make the sort
 function of these columns work:
 
-
+|task-list|
 
 *  Introduce a java class extends TaskLazyDataModel
 
@@ -67,6 +67,7 @@ function of these columns work:
 
 *  Default taskList supports user to config display/hide column: ``Custom SortFields (1)``, ``Custom checkboxes (2)`` and ``Custom header column (3)``
 
+   |task-columns-configuration|
 
    *  In case you have new columns, override method
       ``getDefaultColumns`` of the extended class from TaskLazyDataModel
@@ -388,7 +389,8 @@ You can refer to ``portal-developer-examples`` project for examples
 
 .. |task-filter| image:: ../../screenshots/task/customization/task-filter.png
 .. |calculate-task-delegate| image:: images/task-widget/calculate-task-delegate.png
-
+.. |task-columns-configuration| image:: ../../screenshots/task/customization/task-columns-configuration.png
+.. |task-list| image:: ../../screenshots/task/customization/task-list.png
 .. |task-sort-override| image:: images/task-widget/task-sort-override.png
 
 
