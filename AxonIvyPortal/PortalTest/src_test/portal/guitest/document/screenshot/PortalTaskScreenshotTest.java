@@ -50,24 +50,24 @@ public class PortalTaskScreenshotTest extends ScreenshotTest {
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(saveTaskFilterDialog, ScreenshotUtil.TASK_WIDGET_FOLDER + "how-to-create-task-filter",new ScreenshotMargin(100, 200));
   }
   
-  @Test
-  public void screenshotCustomTaskList() throws IOException {
-    ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 900));
-    login(TestAccount.ADMIN_USER);
-    refreshPage();
-    TaskWidgetPage taskWidget = new TaskWidgetPage();
-    taskWidget.expand();
-    executeDecorateJs("highlightCustomTaskList()");
-    ScreenshotUtil.captureHalfTopPageScreenShot(ScreenshotUtil.TASK_WIDGET_CUSTOMIZATION_FOLDER + "task-list");
-    
-    redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
-    ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 800));
-    taskWidget = new TaskWidgetPage();
-    taskWidget.expand();
-    taskWidget.clickColumnsButton();
-    executeDecorateJs("highlightCustomColumnsConfigOnTaskList()");
-    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.TASK_WIDGET_CUSTOMIZATION_FOLDER + "task-columns-configuration");
-  }
+//  @Test
+//  public void screenshotCustomTaskList() throws IOException {
+//    ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 900));
+//    login(TestAccount.ADMIN_USER);
+//    refreshPage();
+//    TaskWidgetPage taskWidget = new TaskWidgetPage();
+//    taskWidget.expand();
+//    executeDecorateJs("highlightCustomTaskList()");
+//    ScreenshotUtil.captureHalfTopPageScreenShot(ScreenshotUtil.TASK_WIDGET_CUSTOMIZATION_FOLDER + "task-list");
+//    
+//    redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
+//    ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 800));
+//    taskWidget = new TaskWidgetPage();
+//    taskWidget.expand();
+//    taskWidget.clickColumnsButton();
+//    executeDecorateJs("highlightCustomColumnsConfigOnTaskList()");
+//    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.TASK_WIDGET_CUSTOMIZATION_FOLDER + "task-columns-configuration");
+//  }
   
   @Test
   public void screenshotTaskFilter() throws IOException {
@@ -217,28 +217,28 @@ public class PortalTaskScreenshotTest extends ScreenshotTest {
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.TASK_WIDGET_FOLDER + "export-to-excel-button");
   }
 
-  @Test
-  public void screenshotCustomTaskDetails() throws IOException {
-    redirectToRelativeLink("portal-developer-examples/1791D27754935B10/SaleManagment.ivp");
-    TaskDetailsPage taskDetails = setupCustomWidgetByJSONFile("task-details-custom-panel.json");
-    executeDecorateJs("addStepToCustomWidgetTopTaskDetails()");
-    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.TASK_DETAIL_CUSTOMIZATION_FOLDER + "task-customized-top");
-    refreshPage();
-    taskDetails.waitUtilsTaskDetailsDisplayed();
-    executeDecorateJs("scrollToBottomOfLayoutContent()");
-    executeDecorateJs("addStepTCustomWidgetTopTaskDetails()");
-    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.TASK_DETAIL_CUSTOMIZATION_FOLDER + "task-customized-bottom");
-
-    setupCustomWidgetByJSONFile("task-details-custom-iframe.json");
-    executeDecorateJs("highlightIFrameWidgetTaskDetails()");
-    taskDetails.waitForIFrameURLWidgetLoad();
-    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.TASK_DETAIL_CUSTOMIZATION_FOLDER + "task-customized-iframe-url");
-
-    setupCustomWidgetByJSONFile("task-details-custom-process-iframe.json");
-    executeDecorateJs("highlightIFrameWidgetTaskDetails()");
-    taskDetails.waitForIFrameWidgetLoad();
-    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.TASK_DETAIL_CUSTOMIZATION_FOLDER + "task-customized-iframe-process");
-  }
+//  @Test
+//  public void screenshotCustomTaskDetails() throws IOException {
+//    redirectToRelativeLink("portal-developer-examples/1791D27754935B10/SaleManagment.ivp");
+//    TaskDetailsPage taskDetails = setupCustomWidgetByJSONFile("task-details-custom-panel.json");
+//    executeDecorateJs("addStepToCustomWidgetTopTaskDetails()");
+//    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.TASK_DETAIL_CUSTOMIZATION_FOLDER + "task-customized-top");
+//    refreshPage();
+//    taskDetails.waitUtilsTaskDetailsDisplayed();
+//    executeDecorateJs("scrollToBottomOfLayoutContent()");
+//    executeDecorateJs("addStepTCustomWidgetTopTaskDetails()");
+//    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.TASK_DETAIL_CUSTOMIZATION_FOLDER + "task-customized-bottom");
+//
+//    setupCustomWidgetByJSONFile("task-details-custom-iframe.json");
+//    executeDecorateJs("highlightIFrameWidgetTaskDetails()");
+//    taskDetails.waitForIFrameURLWidgetLoad();
+//    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.TASK_DETAIL_CUSTOMIZATION_FOLDER + "task-customized-iframe-url");
+//
+//    setupCustomWidgetByJSONFile("task-details-custom-process-iframe.json");
+//    executeDecorateJs("highlightIFrameWidgetTaskDetails()");
+//    taskDetails.waitForIFrameWidgetLoad();
+//    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.TASK_DETAIL_CUSTOMIZATION_FOLDER + "task-customized-iframe-process");
+//  }
 
   private TaskDetailsPage setupCustomWidgetByJSONFile(String configFile) throws IOException {
     ConfigurationJSONUtil.updateJSONSetting(configFile, Variable.TASK_DETAIL);
