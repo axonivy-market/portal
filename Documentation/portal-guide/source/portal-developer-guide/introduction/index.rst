@@ -26,7 +26,7 @@ Enhance task filter
 ^^^^^^^^^^^^^^^^^^^
 
 Portal admin can query for tasks which have unavailable activator. Those tasks could have no responsible, responsible is disabled or not exists.
-|task-filter-missing-activator|
+
 
 .. _introduction-new-and-note-worthy:
 
@@ -128,4 +128,3 @@ Filter case by owner in case list and task analysis if case owner is enabled.
 .. |detailed-task-information| image:: ../../screenshots/task-detail/detailed-task-information.png
 .. |case-details| image:: ../../screenshots/case-detail/case-details.png
 .. |my-profile-save| image:: ../../screenshots/my-profile/my-profile.png
-.. |task-filter-missing-activator| image:: ../../screenshots/task/task-filter-missing-activator.png
