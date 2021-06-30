@@ -296,7 +296,7 @@ public class CaseDetailsTest extends BaseTest {
     WaitHelper.assertTrueWithWait(() -> detailsPage.isRelatedTaskListColumnExist(RELATED_TASK_STATE_COLUMN));
     detailsPage.clickRelatedTaskColumnsButton();
     detailsPage.clickRelatedTaskColumnCheckbox(6);
-    detailsPage.clickRelatedTaskColumnCheckbox(7);
+    detailsPage.clickRelatedTaskColumnCheckbox(8);
     detailsPage.clickRelatedTaskApplyButton();
     WaitHelper.assertTrueWithWait(() -> detailsPage.isRelatedTaskListColumnExist(RELATED_TASK_EXPIRY_COLUMN));
     WaitHelper.assertTrueWithWait(() -> !detailsPage.isRelatedTaskListColumnExist(RELATED_TASK_STATE_COLUMN));
