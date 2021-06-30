@@ -64,6 +64,9 @@ public abstract class DashboardWidget implements Serializable {
   }
   
   @JsonIgnore
+  public void onCancelUserFilters() {}
+  
+  @JsonIgnore
   @SuppressWarnings("unused")
   public void onApplyUserFilters() throws ParseException {}
 
