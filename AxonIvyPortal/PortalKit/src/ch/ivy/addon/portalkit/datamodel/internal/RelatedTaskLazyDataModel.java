@@ -16,7 +16,6 @@ import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria;
-import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.util.HiddenTasksCasesConfig;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -46,7 +45,7 @@ public class RelatedTaskLazyDataModel extends TaskLazyDataModel {
   @Override
   public List<String> getDefaultColumns() {
     return Arrays.asList(TaskSortField.PRIORITY.name(), TaskSortField.NAME.name(), TaskSortField.ACTIVATOR.name(), TaskSortField.ID.name(),
-        TaskSortField.CREATION_TIME.name(), TaskSortField.EXPIRY_TIME.name(), TaskSortField.STATE.name());
+        TaskSortField.CREATION_TIME.name(), TaskSortField.EXPIRY_TIME.name(),TaskSortField.COMPLETED_ON.name(), TaskSortField.STATE.name());
   }
 
   private void updateCriteria() {
@@ -91,14 +90,13 @@ public class RelatedTaskLazyDataModel extends TaskLazyDataModel {
     }
     UIComponent component = findRelatedTaskComponent();
     if (component != null) {
-      String componentId = Attrs.currentContext().getBuildInAttribute("clientId");
-      return findTaskCaller.invokeComponentLogic(componentId, "#{logic.findTasks}", new Object[] {criteria, startIndex, count});
+      return findTaskCaller.invokeComponentLogic(component, "#{logic.findTasks}", new Object[] {criteria, startIndex, count});
     }
     return new ArrayList<>();
   }
 
   private UIComponent findRelatedTaskComponent() {
-    List<UIComponent> children = FacesContext.getCurrentInstance().getViewRoot().findComponent(":case-item-details:widgets:case-details-related-running-tasks-card").getChildren();
+    List<UIComponent> children = FacesContext.getCurrentInstance().getViewRoot().findComponent("case-item-details:case-details-container:widgets:case-details-related-running-tasks-card").getChildren();
     return children.stream().filter(child -> child.getId().equals(taskWidgetComponentId)).findFirst().orElse(null);
   }
 
@@ -107,8 +105,7 @@ public class RelatedTaskLazyDataModel extends TaskLazyDataModel {
     IvyComponentLogicCaller<Long> countTaskCaller = new IvyComponentLogicCaller<>();
     UIComponent component = findRelatedTaskComponent();
     if (component != null) {
-      String componentId = Attrs.currentContext().getBuildInAttribute("clientId");
-      Long taskCount = countTaskCaller.invokeComponentLogic(componentId, "#{logic.countTasks}", new Object[] {criteria});
+      Long taskCount = countTaskCaller.invokeComponentLogic(component, "#{logic.countTasks}", new Object[] {criteria});
       return taskCount.intValue();
     }
     return 0;

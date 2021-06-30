@@ -9,7 +9,9 @@
   <div class="ui-g-4 ui-lg-4 ui-md-6 ui-sm-12 u-no-padding-top u-no-padding-left js-process-start-list-item">
     <h:form id="process-item-form"
       styleClass="process-start-list-item #{isExpress ? 'express-workflow' : ''} #{isExternalLink ? 'js-external-link-process-item' : ''}">
-
+        <h:panelGroup id="compact-process-category" styleClass="js-process-category compact-process-category">
+          <h:panelGroup id="grid-process-category-content" styleClass="grid-process-category-content u-truncate-text" layout="block">#{processWidgetBean.getDisplayProcessCategory(process)}</h:panelGroup>
+        </h:panelGroup>
       <p:commandLink id="process-item" actionListener="#{processWidgetBean.startProcess(process)}" styleClass="process-item"
         target="#{processWidgetBean.targetToStartProcess(process)}" ajax="#{!isExternalLink}">
 

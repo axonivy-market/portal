@@ -45,7 +45,8 @@ public enum GlobalVariable {
   HIDE_CASE_DOCUMENT("Portal.CaseDetails.HideDocument", GlobalVariableType.SELECTION, Option.FALSE.toString(), "hideCaseDocument"),
   SHOW_CASE_DURATION_TIME("Portal.CaseDetails.ShowDurationTime", GlobalVariableType.SELECTION, Option.TRUE.toString(), "showCaseDurationTime"),
   HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE("Portal.CaseDetails.HideUploadDocumentForDoneCase", GlobalVariableType.SELECTION, Option.FALSE.toString(), "hideUploadDocumentForDoneCaseNote"),
-  DEFAULT_PROCESS_MODE("Portal.Processes.Mode", GlobalVariableType.EXTERNAL_SELECTION, ProcessMode.GRID.name(), "defaultProcessMode", getProcessMode()),
+  DEFAULT_PROCESS_MODE("Portal.Processes.Mode", GlobalVariableType.EXTERNAL_SELECTION, ProcessMode.IMAGE.name(), "defaultProcessMode", getProcessMode()),
+  DEFAULT_PROCESS_IMAGE("Portal.Processes.DefaultImage", GlobalVariableType.EXTERNAL_SELECTION, DefaultImage.DEFAULT.name(), "defaultProcessImage", getDefaultProcessImage()),
   DISPLAY_MESSAGE_AFTER_FINISH_TASK("Portal.DisplayMessageAfterFinishTask", GlobalVariableType.SELECTION, Option.TRUE.toString(), "displayMessageAfterFinishOrLeaveTask"),
   EXPRESS_END_PAGE("Portal.ExpressEndPage", GlobalVariableType.SELECTION, Option.TRUE.toString(), "expressEndPageNote"),
   CLIENT_SIDE_TIMEOUT("Portal.ClientSideTimeout", GlobalVariableType.NUMBER, "0", "clientSideTimeoutNote"),
@@ -181,6 +182,14 @@ public enum GlobalVariable {
     Map<String, String> result = new HashMap<>();
     for (ProcessMode mode : ProcessMode.values()) {
       result.put(mode.name(), mode.getLabel());
+    }
+    return result;
+  }
+
+  private static Map<String, String> getDefaultProcessImage() {
+    Map<String, String> result = new HashMap<>();
+    for (DefaultImage defaultImage : DefaultImage.values()) {
+      result.put(defaultImage.name(), defaultImage.name());
     }
     return result;
   }

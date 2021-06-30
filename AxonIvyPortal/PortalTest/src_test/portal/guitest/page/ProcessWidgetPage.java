@@ -3,6 +3,7 @@ package portal.guitest.page;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
@@ -49,18 +50,18 @@ public class ProcessWidgetPage extends TemplatePage {
 
   public void startProcess(String processName) {
     WebElement processItemElement = getProcess(processName);
-    click(processItemElement);
+    processItemElement.click();
   }
 
   public WebElement getProcess(String processName) {
     WebElement processListElement = findElementById(processWidgetId + ":process-list");
-    if (isGridModeActivated()) {
-      return getStartGridProcess(processName, processListElement);
+    if (isImageModeActivated()) {
+      return getStartImageProcess(processName, processListElement);
     }
     return findChildElementByXpathExpression(processListElement, "//a[.//text() = '" + processName + "']");
   }
 
-  public WebElement getStartGridProcess(String processName, WebElement processListElement) {
+  public WebElement getStartImageProcess(String processName, WebElement processListElement) {
     WebElement startProcessItemElement = null;
     List<WebElement> processItems = findChildElementsByCssSelector(processListElement, ".js-process-start-list-item");
     for (WebElement process : processItems) {
@@ -73,7 +74,7 @@ public class ProcessWidgetPage extends TemplatePage {
     return startProcessItemElement;
   }
 
-  public WebElement getGridProcessItem(String processName) {
+  public WebElement getProcessItem(String processName) {
     WebElement processItemElement = null;
     List<WebElement> processItems = findListElementsByClassName("js-process-start-list-item");
     for (WebElement process : processItems) {
@@ -88,18 +89,27 @@ public class ProcessWidgetPage extends TemplatePage {
 
   public ExpressProcessPage editExpressWF(String wfName) {
     int numberOfRefesh = 5;
-    for(int i=0; i< numberOfRefesh; i++) {
+    for (int i = 0; i < numberOfRefesh; i++) {
       waitForElementDisplayed(By.id(processWidgetId + ":process-search:non-ajax-keyword-filter"), true);
       enterSearchKeyword(wfName);
-      if (isGridModeActivated()) {
-        if (isElementDisplayed(By.cssSelector("[id$=':process-item:edit-link']"))) {
-          clickByCssSelector("[id$=':process-item:edit-link']");
+      if (isImageModeActivated()) {
+        waitForElementDisplayed(
+            By.cssSelector(
+                "[id$='process-widget:image-process-group-alphabet:13:image-processes:2:process-item:dynaButton']"),
+            true);
+        WebElement webElement = findElementByCssSelector(
+            "[id$='process-widget:image-process-group-alphabet:13:image-processes:2:process-item:dynaButton']");
+        webElement.click();
+        if (isElementDisplayed(By.cssSelector("div[id$='process-widget:image-process-group-alphabet:13:image-processes:2:process-item:process-action-menu']"))) {
+          WebElement actionMenu = findElementByCssSelector("div[id$='process-widget:image-process-group-alphabet:13:image-processes:2:process-item:process-action-menu']");
+          WebElement icon = findChildElementByCssSelector(actionMenu, "a[id$=':process-item:process-edit']");
+          icon.click();
           waitForElementDisplayed(By.cssSelector("[id$='process-widget:edit-process-dialog']"), true);
           clickByCssSelector("a[id$='process-widget:edit-process-form:edit-express-workflow']");
           break;
         }
       } else {
-        if(isElementDisplayed(By.cssSelector("[id$='edit-express-workflow']"))) {
+        if (isElementDisplayed(By.cssSelector("[id$='edit-express-workflow']"))) {
           click(By.cssSelector("[id$='edit-express-workflow']"));
           break;
         }
@@ -119,7 +129,7 @@ public class ProcessWidgetPage extends TemplatePage {
   }
   
   public boolean isProcessGroupDisplay(String processGroupCharacter) {
-    if (isGridModeActivated()) {
+    if (isImageModeActivated()) {
       List<WebElement> webElements = findListElementsByClassName("js-grid-process-index-group");
       return webElements.stream().anyMatch(processItem -> processItem.isDisplayed() && processItem.getAttribute("class").endsWith(processGroupCharacter));
     }
@@ -216,8 +226,8 @@ public class ProcessWidgetPage extends TemplatePage {
     return findElements.isEmpty();
   }
 
-  public boolean isGridModeActivated() {
-    List<WebElement> findElements = driver.findElements(By.cssSelector("[id$=':grid-process-container']"));
+  public boolean isImageModeActivated() {
+    List<WebElement> findElements = driver.findElements(By.cssSelector("[id$=':image-process-container']"));
     return !findElements.isEmpty();
   }
 
@@ -334,20 +344,24 @@ public class ProcessWidgetPage extends TemplatePage {
     waitForElementDisplayed(By.id("process-widget"), true);
   }
 
-  public void clickOnSwitchButton() {
-    String currentView = getCurrentViewMode();
-    clickByCssSelector("[id$='process-view-mode:process-view']");
-    WaitHelper.assertTrueWithWait(() -> !currentView.equals(getCurrentViewMode()));
-  }
-
   public String getCurrentViewMode() {
-    waitForElementDisplayed(By.cssSelector("[id$='process-view-mode'] label.switch-active"), true);
-    WebElement switchMode = findElementByCssSelector("[id$='process-view-mode'] label.switch-active");
-    return switchMode.getText();
+    waitForElementDisplayed(By.cssSelector("[id$='process-widget:process-view-mode:view-mode-selection'] div.ui-button.ui-widget.ui-state-default.ui-button-text-only.ui-state-active"), true);
+    WebElement activeModeElement = findElementByCssSelector("[id$='process-widget:process-view-mode:view-mode-selection'] div.ui-button.ui-widget.ui-state-default.ui-button-text-only.ui-state-active");
+    WebElement activeSpanElement = activeModeElement.findElement(By.cssSelector(".ui-button-text.ui-c"));
+    return activeSpanElement.getText();
   }
 
   public void clickOnProcessEditLink(int index) {
     clickByCssSelector(String.format("[id$=':%d:grid-processes:0:process-item:edit-link']", index));
+    waitForElementDisplayed(By.cssSelector("[id$='process-widget:edit-process-dialog']"), true);
+  }
+
+  public WebElement getProcessEditMenu(int index) {
+    return findElementByCssSelector(String.format("[id$='process-widget:image-process-group-alphabet:0:image-processes:%d:process-item:process-edit']", index));
+  }
+
+  public void clickOnProcessEditMenu(int index) {
+    clickByCssSelector(String.format("[id$='process-widget:image-process-group-alphabet:0:image-processes:%d:process-item:process-edit']", index));
     waitForElementDisplayed(By.cssSelector("[id$='process-widget:edit-process-dialog']"), true);
   }
   
@@ -369,13 +383,73 @@ public class ProcessWidgetPage extends TemplatePage {
   }
 
   public void deleteProcess(int index) {
-    clickByCssSelector(String.format("[id$=':%d:grid-processes:0:process-item:delete-link']", index));
+    
+    clickByCssSelector(String.format("[id$='process-widget:grid-process-group-alphabet:%d:grid-processes:0:process-item:process-delete']", index));
     waitForElementDisplayed(By.cssSelector("[id$='process-widget:remove-process-workflow-dialog']"), true);
     clickByCssSelector("[id$='delete-process-workflow-form:remove-process-command']");
     waitForElementDisplayed(By.cssSelector("[id$='process-widget:remove-process-workflow-dialog']"), false);
   }
 
   public void clickMoreInformationLink(String processName) {
-    click(getGridProcessItem(processName).findElement(By.cssSelector(".process-more-info-link")));
+    WebElement processItem = getProcessItem(processName);
+    processItem.findElement(By.cssSelector(".more-information")).click();
+  }
+  
+  public void waitForGridProcessListDisplayed() {
+    waitForElementDisplayed(By.cssSelector("[id$='process-widget:grid-process-container']"), true);
+  }
+
+  public void waitForCompactProcessListDisplayed() {
+    waitForElementDisplayed(By.cssSelector("[id$='process-widget:process-list']"), true);
+  }
+
+  public void selectViewMode(String viewMode) {
+    waitForElementDisplayed(By.cssSelector("[id$='process-widget:process-view-mode:view-mode-selection']"), true);
+    WebElement viewModeElement = findElementByCssSelector("[id$='process-widget:process-view-mode:view-mode-selection']");
+    List<WebElement> webElements = viewModeElement.findElements(By.cssSelector("span.ui-button-text.ui-c"));
+    if (CollectionUtils.isNotEmpty(webElements)) {
+      for(WebElement webElement: webElements) {
+        if(webElement.getText().equalsIgnoreCase(viewMode)) {
+          webElement.click();
+          return;
+        }
+      }
+    }
+  }
+
+  public void clickMoreButton() {
+    waitForElementDisplayed(
+        By.cssSelector("[id$='process-widget:image-process-group-alphabet:0:image-processes:0:process-item:dynaButton']"),
+        true);
+    WebElement webElement = findElementByCssSelector(
+        "[id$='process-widget:image-process-group-alphabet:0:image-processes:0:process-item:dynaButton']");
+    webElement.click();
+  }
+  
+  public WebElement getMoreMenuButton(int index) {
+    return findElementByCssSelector(String.format("[id$='process-widget:image-process-group-alphabet:0:image-processes:%d:process-item:dynaButton']", index));
+  } 
+
+  public void waitForMenuActionsDisplayed() {
+    waitForElementDisplayed(
+        By.cssSelector(
+            "[id$='process-widget:image-process-group-alphabet:0:image-processes:0:process-item:process-action-menu']"),
+        true);
+  }
+  
+  public void clickMoreButtonOnGridMode() {
+    waitForElementDisplayed(
+        By.cssSelector("[id$='process-widget:grid-process-group-alphabet:0:grid-processes:0:process-item:dynaButton']"),
+        true);
+    WebElement webElement = findElementByCssSelector(
+        "[id$='process-widget:grid-process-group-alphabet:0:grid-processes:0:process-item:dynaButton']");
+    webElement.click();
+  }
+
+  public void waitForMenuActionsOnGridModeDisplayed() {
+    waitForElementDisplayed(
+        By.cssSelector(
+            "[id$='process-widget:grid-process-group-alphabet:0:grid-processes:0:process-item:process-delete']"),
+        true);
   }
 }
