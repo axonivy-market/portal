@@ -22,16 +22,13 @@ Ds0 @UdMethod f10 '' #zField
 Ds0 @Alternative f28 '' #zField
 Ds0 @GridStep f11 '' #zField
 Ds0 @UdProcessEnd f51 '' #zField
-Ds0 @UdProcessEnd f15 '' #zField
 Ds0 @CallSub f13 '' #zField
 Ds0 @GridStep f46 '' #zField
 Ds0 @PushWFArc f29 '' #zField
-Ds0 @PushWFArc f17 '' #zField
 Ds0 @PushWFArc f2 '' #zField
 Ds0 @UdMethod f3 '' #zField
 Ds0 @UdProcessEnd f4 '' #zField
 Ds0 @PushWFArc f18 '' #zField
-Ds0 @PushWFArc f14 '' #zField
 Ds0 @UdMethod f19 '' #zField
 Ds0 @CallSub f20 '' #zField
 Ds0 @GridStep f50 '' #zField
@@ -59,6 +56,10 @@ Ds0 @PushWFArc f41 '' #zField
 Ds0 @UdMethod f42 '' #zField
 Ds0 @UdProcessEnd f43 '' #zField
 Ds0 @PushWFArc f44 '' #zField
+Ds0 @GridStep f45 '' #zField
+Ds0 @PushWFArc f47 '' #zField
+Ds0 @PushWFArc f14 '' #zField
+Ds0 @PushWFArc f15 '' #zField
 >Proto Ds0 Ds0 DocumentTableProcess #zField
 Ds0 f0 guid 016B0CFC3D7D6069 #txt
 Ds0 f0 method start(ch.ivyteam.ivy.workflow.ICase) #txt
@@ -146,8 +147,7 @@ Ds0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ds0 f11 576 458 128 44 -58 -8 #rect
-Ds0 f51 915 371 26 26 0 12 #rect
-Ds0 f15 755 467 26 26 0 12 #rect
+Ds0 f51 1075 371 26 26 0 12 #rect
 Ds0 f13 processCall 'Functional Processes/UploadDocument:call(ch.ivyteam.ivy.workflow.ICase,org.primefaces.model.UploadedFile)' #txt
 Ds0 f13 requestActionDecl '<ch.ivyteam.ivy.workflow.ICase businessCase,org.primefaces.model.UploadedFile uploadedFile> param;' #txt
 Ds0 f13 requestMappingAction 'param.businessCase=in.ivyCase;
@@ -185,8 +185,6 @@ message</name>
 Ds0 f46 736 362 128 44 -40 -16 #rect
 Ds0 f29 expr out #txt
 Ds0 f29 440 384 496 384 #arcP
-Ds0 f17 expr out #txt
-Ds0 f17 704 480 755 480 #arcP
 Ds0 f2 expr out #txt
 Ds0 f2 109 96 339 96 #arcP
 Ds0 f3 guid 16B2047AE0419DBD #txt
@@ -206,8 +204,6 @@ Ds0 f3 83 531 26 26 -55 15 #rect
 Ds0 f4 339 531 26 26 0 12 #rect
 Ds0 f18 expr out #txt
 Ds0 f18 109 544 339 544 #arcP
-Ds0 f14 expr out #txt
-Ds0 f14 864 384 915 384 #arcP
 Ds0 f19 guid 16B213CA436B66B2 #txt
 Ds0 f19 method delete() #txt
 Ds0 f19 inParameterDecl '<> param;' #txt
@@ -398,6 +394,24 @@ Ds0 f42 83 179 26 26 -91 17 #rect
 Ds0 f43 339 179 26 26 0 12 #rect
 Ds0 f44 expr out #txt
 Ds0 f44 109 192 339 192 #arcP
+Ds0 f45 actionTable 'out=in;
+' #txt
+Ds0 f45 actionCode '// Do not store JSF Event in a Html Dialog data field
+out.event = null;' #txt
+Ds0 f45 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Release JSF Event</name>
+    </language>
+</elementInfo>
+' #txt
+Ds0 f45 920 362 112 44 -52 -8 #rect
+Ds0 f47 expr out #txt
+Ds0 f47 864 384 920 384 #arcP
+Ds0 f14 1032 384 1075 384 #arcP
+Ds0 f15 704 480 976 406 #arcP
+Ds0 f15 1 976 480 #addKink
+Ds0 f15 0 0.6984634855635686 0 0 #arcLabel
 >Proto Ds0 .type ch.ivy.addon.portalkit.component.document.DocumentTable.DocumentTableData #txt
 >Proto Ds0 .processKind HTML_DIALOG #txt
 >Proto Ds0 -8 -8 16 16 16 26 #rect
@@ -405,16 +419,12 @@ Ds0 f5 mainOut f8 tail #connect
 Ds0 f8 head f6 mainIn #connect
 Ds0 f6 mainOut f9 tail #connect
 Ds0 f9 head f7 mainIn #connect
-Ds0 f11 mainOut f17 tail #connect
-Ds0 f17 head f15 mainIn #connect
 Ds0 f13 mainOut f29 tail #connect
 Ds0 f29 head f28 in #connect
 Ds0 f0 mainOut f2 tail #connect
 Ds0 f2 head f1 mainIn #connect
 Ds0 f3 mainOut f18 tail #connect
 Ds0 f18 head f4 mainIn #connect
-Ds0 f46 mainOut f14 tail #connect
-Ds0 f14 head f51 mainIn #connect
 Ds0 f20 mainOut f30 tail #connect
 Ds0 f30 head f50 mainIn #connect
 Ds0 f19 mainOut f21 tail #connect
@@ -443,3 +453,9 @@ Ds0 f39 mainOut f41 tail #connect
 Ds0 f41 head f46 mainIn #connect
 Ds0 f42 mainOut f44 tail #connect
 Ds0 f44 head f43 mainIn #connect
+Ds0 f46 mainOut f47 tail #connect
+Ds0 f47 head f45 mainIn #connect
+Ds0 f45 mainOut f14 tail #connect
+Ds0 f14 head f51 mainIn #connect
+Ds0 f11 mainOut f15 tail #connect
+Ds0 f15 head f45 mainIn #connect

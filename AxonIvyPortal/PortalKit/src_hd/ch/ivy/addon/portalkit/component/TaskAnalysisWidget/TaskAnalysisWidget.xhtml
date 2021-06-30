@@ -110,6 +110,8 @@
             dataModel="#{data.dataModel}" selectedFilters="#{data.dataModel.selectedTaskFilters}" resultContainerUpdated="#{false}" />
           <ic:ch.ivy.addon.portalkit.component.task.filter.TaskCategoryFilter filter="#{filterContainer.categoryFilter}"
             dataModel="#{data.dataModel}" selectedFilters="#{data.dataModel.selectedTaskFilters}" resultContainerUpdated="#{false}" />
+          <ic:ch.ivy.addon.portalkit.component.task.filter.TaskAvailableActivatorFilter filter="#{filterContainer.availableActivatorFilter}" 
+            dataModel="#{data.dataModel}" selectedFilters="#{data.dataModel.selectedTaskFilters}" resultContainerUpdated="#{false}" />
 
           <h:panelGroup id="task-filter-add-container" styleClass="filter-add-container" style="order: #{data.dataModel.selectedTaskFilters.size()}">
             <p:commandLink id="task-filter-add-action" styleClass="filter-add-button" global="false">

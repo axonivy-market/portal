@@ -53,7 +53,7 @@ public class StatisticWidgetPage extends TemplatePage {
     waitForElementDisplayed(By.id(taskAnalysisLinkString), true, DEFAULT_TIMEOUT);
     WebElement taskAnalysisLink = findElementById(taskAnalysisLinkString);
 
-    click(taskAnalysisLink);
+    taskAnalysisLink.click();
     waitForElementDisplayed(By.id("task-widget"), true, DEFAULT_TIMEOUT);
 
     return new TaskAnalysisWidgetPage();
