@@ -36,7 +36,7 @@ pipeline {
           }
           for (module in modules) {
             // if (changeLog.contains(module) || params.modulesMustBeBuilt.contains(module.split('/')[1]) || params.engine == 'multiAppsEngine') {
-            //  builtModules.add(module)
+              builtModules.add(module)
               bat "mvn clean install -f ${module}/pom.xml"
             //}
           }
