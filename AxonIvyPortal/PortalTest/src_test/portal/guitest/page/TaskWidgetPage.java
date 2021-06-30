@@ -597,7 +597,7 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public boolean isExistedFilter(String filterName) {
-    click(findElementById("task-widget:filter-selection-form:filter-name"));
+    findElementById("task-widget:filter-selection-form:filter-name").click();
     List<WebElement> saveFilters = findListElementsByCssSelector("a[id$='user-defined-filter']");
     return saveFilters.stream().anyMatch(filter -> StringUtils.equals(filter.getText(), filterName));
   }
@@ -758,10 +758,9 @@ public class TaskWidgetPage extends TemplatePage {
     }
   }
 
-  @SuppressWarnings("deprecation")
   public void applyCategoryFilter() {
     click(By.cssSelector("button[id$='task-category-filter:filter-input-form:update-command']"));
-    waitAjaxIndicatorDisappear();
+    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
   }
 
   @SuppressWarnings("deprecation")
@@ -922,5 +921,33 @@ public class TaskWidgetPage extends TemplatePage {
       }
     }
     return false;
+  }
+  
+  public void openNoActivatorFilter(String filterName) {
+    click(By.cssSelector("[id$='filter-add-action']"));
+    WebElement filterSelectionElement = findElementById(taskWidgetId + ":filter-add-form:filter-selection");
+    List<WebElement> elements = findChildElementsByTagName(filterSelectionElement, "LABEL");
+    for (WebElement element : elements) {
+      if (element.getText().equals(filterName)) {
+        element.click();
+        click(By.cssSelector("[id$='task-widget:filter-add-form:update-filter-selected-command']"));
+        break;
+      }
+    }
+  }
+  
+  public void filterByUnavailableActivator(boolean waitForNumberOfTask) {
+    waitForElementDisplayed(By.cssSelector("button[id$='available-activator-filter:filter-open-form:advanced-filter-command']"),
+        true);
+    click(By.cssSelector("button[id$='available-activator-filter:filter-open-form:advanced-filter-command']"));
+
+    waitForElementDisplayed(By.cssSelector("[id$='available-activator-filter:filter-input-form:available-activator']"),
+        true);
+    WebElement displayOnlyUnavailableTaskCheckbox = findElementByCssSelector("[id$='available-activator-filter:filter-input-form:available-activator']");
+    displayOnlyUnavailableTaskCheckbox.click();
+    click(By.cssSelector("button[id$='available-activator-filter:filter-input-form:update-command']"));
+    if (waitForNumberOfTask) {
+      waitForNumberOfTasks(1);
+    }
   }
 }

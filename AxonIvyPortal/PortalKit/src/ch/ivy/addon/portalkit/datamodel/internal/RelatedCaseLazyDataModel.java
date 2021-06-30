@@ -15,7 +15,6 @@ import org.primefaces.model.SortOrder;
 import ch.ivy.addon.portalkit.bean.IvyComponentLogicCaller;
 import ch.ivy.addon.portalkit.enums.CaseSortField;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;
-import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.CaseState;
@@ -92,14 +91,13 @@ public class RelatedCaseLazyDataModel extends LazyDataModel<ICase> {
     }
     UIComponent component = findRelatedCaseComponent();
     if (component != null) {
-      String componentId = Attrs.currentContext().getBuildInAttribute("clientId");
-      return findCaseCaller.invokeComponentLogic(componentId, "#{logic.findCases}", new Object[] {criteria, startIndex, count});
+      return findCaseCaller.invokeComponentLogic(component, "#{logic.findCases}", new Object[] {criteria, startIndex, count});
     }
     return new ArrayList<>();
   }
 
   private UIComponent findRelatedCaseComponent() {
-    List<UIComponent> children = FacesContext.getCurrentInstance().getViewRoot().findComponent(":case-item-details:widgets:case-details-technical-case-card").getChildren();
+    List<UIComponent> children = FacesContext.getCurrentInstance().getViewRoot().findComponent("case-item-details:case-details-container:widgets:case-details-technical-case-card").getChildren();
     return children.stream().filter(child -> child.getId().equals(caseWidgetComponentId)).findFirst().orElse(null);
   }
 
@@ -113,8 +111,7 @@ public class RelatedCaseLazyDataModel extends LazyDataModel<ICase> {
     IvyComponentLogicCaller<Long> countCaseCaller = new IvyComponentLogicCaller<>();
     UIComponent component = findRelatedCaseComponent();
     if (component != null) {
-      String componentId = Attrs.currentContext().getBuildInAttribute("clientId");
-      Long caseCount = countCaseCaller.invokeComponentLogic(componentId, "#{logic.countCases}", new Object[] {criteria});
+      Long caseCount = countCaseCaller.invokeComponentLogic(component, "#{logic.countCases}", new Object[] {criteria});
       return caseCount.intValue();
     }
     return 0;

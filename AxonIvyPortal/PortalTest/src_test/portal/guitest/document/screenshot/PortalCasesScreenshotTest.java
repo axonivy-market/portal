@@ -14,15 +14,19 @@ import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
+import ch.ivy.addon.portalkit.util.ConfigurationJSONUtil;
 import ch.ivy.addon.portalkit.util.ScreenshotMargin;
 import ch.ivy.addon.portalkit.util.ScreenshotUtil;
 import portal.guitest.common.ScreenshotTest;
 import portal.guitest.common.Sleeper;
 import portal.guitest.common.TestAccount;
+import portal.guitest.common.Variable;
 import portal.guitest.page.CaseDetailsPage;
 import portal.guitest.page.CaseWidgetPage;
 import portal.guitest.page.HomePage;
+import portal.guitest.page.MainMenuPage;
 import portal.guitest.page.ProcessWidgetPage;
+import portal.guitest.test.CaseDetailsTest;
 
 public class PortalCasesScreenshotTest extends ScreenshotTest {
 
@@ -171,6 +175,37 @@ public class PortalCasesScreenshotTest extends ScreenshotTest {
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.CASE_DETAIL_CUSTOMIZATION_FOLDER + "case-standard-2");
   }
   
+  @Test
+  public void testCustomWidgetInCaseDetails() throws IOException {
+    ScreenshotUtil.resizeBrowser(new Dimension(1366, 1000));
+    redirectToRelativeLink(CaseDetailsTest.CREATE_EVENT_TEST_URL);
+    CaseDetailsPage detailsPage = setupCustomWidgetByJSONFile("custom-case-details.json");
+    executeDecorateJs("highlightCustomWidgetInCaseDetails()");
+    detailsPage.waitForIFrameWidgetLoad();
+    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.CASE_DETAIL_CUSTOMIZATION_FOLDER + "case-customized-iframe-process");
+    
+    setupCustomWidgetByJSONFile("custom-case-details-with-url.json");
+    executeDecorateJs("highlightCustomWidgetInCaseDetails()");
+    detailsPage.waitForIFrameURLWidgetLoad();
+    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.CASE_DETAIL_CUSTOMIZATION_FOLDER + "case-customized-iframe-url");
+  }
+
+  public CaseDetailsPage setupCustomWidgetByJSONFile(String configFile) throws IOException {
+    ConfigurationJSONUtil.updateJSONSetting(configFile, Variable.CASE_DETAIL);
+    CaseDetailsPage detailsPage = goToCaseList().openDetailsOfCaseHasName(CaseDetailsTest.CUSTOM_CASE_WIDGET_NAME);
+    detailsPage.closeMainMenu();
+    return detailsPage;
+  }
+
+  public CaseWidgetPage goToCaseList() {
+    login(TestAccount.DEMO_USER);
+    redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
+    homePage = new HomePage();
+    MainMenuPage mainMenuPage = homePage.openMainMenu();
+    CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
+    return casePage;
+  }
+
   @Test
   public void screenshotExportToExcel() throws IOException {
     ScreenshotUtil.resizeBrowser(new Dimension(1366, 600));

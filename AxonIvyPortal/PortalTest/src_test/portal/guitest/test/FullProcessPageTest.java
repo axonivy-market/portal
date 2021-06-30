@@ -31,7 +31,8 @@ public class FullProcessPageTest extends BaseTest{
   
   @Test
   public void testFindProcess() {
-    processWidgetPage.clickOnSwitchButton();
+    processWidgetPage.selectViewMode("COMPACT");
+    processWidgetPage.waitForCompactProcessListDisplayed();
     processWidgetPage.enterSearchKeyword("Alpha Company");
     assertTrue(processWidgetPage.isProcessDisplay("Create Alpha Company"));
     assertTrue(processWidgetPage.isProcessGroupDisplay("C"));
@@ -43,7 +44,7 @@ public class FullProcessPageTest extends BaseTest{
   @Test
   public void testChangeProcessViewMode() {
     String currentView = processWidgetPage.getCurrentViewMode();
-    processWidgetPage.clickOnSwitchButton();
+    processWidgetPage.selectViewMode("GRID");
     String newView = processWidgetPage.getCurrentViewMode();
     assertFalse("Current view is not changed", StringUtils.equals(currentView, newView));
   }
@@ -55,14 +56,23 @@ public class FullProcessPageTest extends BaseTest{
     MainMenuPage mainMenuPage = homePage.openMainMenu();
     processWidgetPage = mainMenuPage.selectProcessesMenu();
     createExternalTestProcess(AAGOOGLE_LINK, AAGOOGLE_LINK, false);
+    processWidgetPage.selectViewMode("GRID");
+    processWidgetPage.waitForGridProcessListDisplayed();
     processWidgetPage.enterSearchKeyword("link");
     String currentIcon = processWidgetPage.getProcessItemIcon(0);
-    processWidgetPage.clickOnProcessEditLink(0);
+    processWidgetPage.selectViewMode("IMAGE");
+    processWidgetPage.clickMoreButton();
+    processWidgetPage.waitForMenuActionsDisplayed();
+    processWidgetPage.clickOnProcessEditMenu(0);
     processWidgetPage.changeProcessIcon();
+    processWidgetPage.waitAjaxIndicatorDisappear();
+    processWidgetPage.selectViewMode("GRID");
+    processWidgetPage.waitForGridProcessListDisplayed();
     processWidgetPage.enterSearchKeyword("link");
     String newIcon = processWidgetPage.getProcessItemIcon(0);
     assertFalse("Current Icon is not changed", StringUtils.equals(currentIcon, newIcon));
-    
+    processWidgetPage.clickMoreButtonOnGridMode();
+    processWidgetPage.waitForMenuActionsOnGridModeDisplayed();
     processWidgetPage.deleteProcess(0);
     processWidgetPage.enterSearchKeyword("link");
     assertTrue("Still see processes", processWidgetPage.isNoProcessFound());

@@ -523,6 +523,12 @@
   --security-member-header-font-size: 12px;
   --security-member-item-font-size: 10px;
   --security-member-header-font-weight: bold;
+  
+  /* Image Process Item */
+  --image-process-header-background-color: hsla(0, 0%, 96%, 1);
+  --image-process-header-background-color-hover: hsla(0, 0%, 86%, 1);
+  --image-process-header-color: hsla(0, 0%, 49%, 1);
+  --image-process-header-font-size: 12px;
 
   /* Process information page */
   --process-info-icon-font-size: 4rem;
