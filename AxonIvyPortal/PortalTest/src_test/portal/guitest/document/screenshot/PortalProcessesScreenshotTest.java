@@ -145,8 +145,6 @@ public class PortalProcessesScreenshotTest extends ScreenshotTest {
   public void screenshotProcessInformation() throws IOException {
     processWidget = homePage.getProcessWidget();
     processWidget.expand();
-    processWidget.selectViewMode("GRID");
-    processWidget.waitForGridProcessListDisplayed();
     processWidget.clickMoreInformationLink("Process With Process Steps");
     ProcessInformationPage processInformationPage = new ProcessInformationPage();
     processInformationPage.getPageTitle();
