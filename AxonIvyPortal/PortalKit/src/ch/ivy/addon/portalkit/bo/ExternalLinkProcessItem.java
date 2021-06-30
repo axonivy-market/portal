@@ -2,6 +2,7 @@ package ch.ivy.addon.portalkit.bo;
 
 import org.apache.commons.lang3.StringUtils;
 
+import ch.ivy.addon.portalkit.enums.DefaultImage;
 import ch.ivy.addon.portalkit.enums.ProcessType;
 import ch.ivy.addon.portalkit.configuration.ExternalLink;
 
@@ -58,4 +59,18 @@ public class ExternalLinkProcessItem implements Process {
     return StringUtils.isBlank(icon) ? DEFAULT_ICON : icon;
   }
 
+  @Override
+  public String getCategory() {
+    return StringUtils.EMPTY;
+  }
+  
+  @Override
+  public String getImageUrl() {
+    return DefaultImage.ARROWRIGHT.getPath();
+  }
+
+  @Override
+  public String getDefaultImageSrc() {
+    return StringUtils.EMPTY;
+  }
 }

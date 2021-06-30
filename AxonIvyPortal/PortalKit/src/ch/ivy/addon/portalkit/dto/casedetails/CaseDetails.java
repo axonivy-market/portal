@@ -1,31 +1,31 @@
 package ch.ivy.addon.portalkit.dto.casedetails;
 
 import java.io.Serializable;
-import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+import ch.ivy.addon.portalkit.dto.AbstractWidgetFilter;
+import ch.ivy.addon.portalkit.dto.AbstractConfigurableContent;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-public class CaseDetails implements Serializable {
+public class CaseDetails extends AbstractConfigurableContent implements Serializable {
 
   private static final long serialVersionUID = -8424800742022240884L;
 
-  private List<CaseDetailsWidget> widgets;
-  private boolean changed;
+  public CaseDetails() {}
 
-  public List<CaseDetailsWidget> getWidgets() {
-    return widgets;
+  @Override
+  @JsonSerialize(as = CaseDetailsFilters.class)
+  public CaseDetailsFilters getFilters() {
+    return (CaseDetailsFilters) this.filters;
   }
-  
-  public void setWidgets(List<CaseDetailsWidget> widgets) {
-    this.widgets = widgets;
+
+  @Override
+  @JsonDeserialize(as = CaseDetailsFilters.class)
+  public void setFilters(AbstractWidgetFilter filters) {
+    this.filters = filters;
   }
-  
-  public boolean isChanged() {
-    return changed;
-  }
-  
-  public void setChanged(boolean changed) {
-    this.changed = changed;
-  }
+
 }

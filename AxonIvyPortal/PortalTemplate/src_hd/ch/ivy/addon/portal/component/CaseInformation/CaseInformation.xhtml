@@ -35,79 +35,68 @@
     <!--!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     !!!!!!!! START: TO ADD YOUR CUSTOMIZATION CODE ON THE CASE DETAILS PAGE, WE PROVIDE 3 SECTIONS AS BELOW HELP YOU CAN DO IT !!!!!!!!
     !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
-
     <!-- Add a content as a Custom panel for Case Detail on top section -->
-    <ui:define name="caseItemDetailCustomTop">
-      <!-- Remove cc:renderFacet tag to override Custom panel for Case Detail on top section -->
-      <cc:renderFacet name="caseItemDetailCustomTop" />
-
-      <!-- Remove the ui:remove tag to render below example code  -->
-      <ui:remove>
-        <h:panelGroup styleClass="ui-g-12" layout="block">
-          <div class="card card-w-title case-detail-card">
-            <div class="case-detail-section-title u-truncate-text">
-              <h:outputText value="This is custom panel on top section" />
+    <!-- Remove the ui:remove tag to render below example code  -->
+    <ui:remove>
+      <ui:define name="caseItemDetailCustomTop">
+          <h:panelGroup styleClass="ui-g-12" layout="block">
+            <div class="card card-w-title case-detail-card">
+              <div class="case-detail-section-title u-truncate-text">
+                <h:outputText value="This is custom panel on top section" />
+              </div>
+              <div class="Separator" />
+  
+              <div class="custom-task-details-panel-top">
+                <h1>This is custom content on top</h1>
+                <p>Custom height to auto</p>
+                <p>Custom font size to 1.6rem</p>
+              </div>
             </div>
-            <div class="Separator" />
-
-            <div class="custom-task-details-panel-top">
-              <h1>This is custom content on top</h1>
-              <p>Custom height to auto</p>
-              <p>Custom font size to 1.6rem</p>
-            </div>
-          </div>
-        </h:panelGroup>
-      </ui:remove>
-    </ui:define>
+          </h:panelGroup>
+      </ui:define>
+    </ui:remove> 
 
     <!-- Add a content as a Custom panel for Case Detail on middle section, below the General & description box -->
-    <ui:define name="caseItemDetailCustomMiddle">
-      <!-- Remove cc:renderFacet tag to override Custom panel for Case Detail on middle section -->
-      <cc:renderFacet name="caseItemDetailCustomMiddle" />
-
-      <!-- Remove the comment tag to render below example code -->
-      <ui:remove>
-        <h:panelGroup styleClass="ui-g-12" layout="block">
-          <div class="card card-w-title case-detail-card">
-            <div class="case-detail-section-title u-truncate-text">
-              <h:outputText value="This is custom panel on middle section" />
+    <!-- Remove the ui:remove tag to render below example code -->
+    <ui:remove>
+      <ui:define name="caseItemDetailCustomMiddle">
+          <h:panelGroup styleClass="ui-g-12" layout="block">
+            <div class="card card-w-title case-detail-card">
+              <div class="case-detail-section-title u-truncate-text">
+                <h:outputText value="This is custom panel on middle section" />
+              </div>
+              <div class="Separator" />
+  
+              <div class="custom-task-details-panel-middle">
+                <h1>This is custom content on middle</h1>
+                <p>Custom height to auto</p>
+                <p>Custom font size to 1.6rem</p>
+              </div>
             </div>
-            <div class="Separator" />
-
-            <div class="custom-task-details-panel-middle">
-              <h1>This is custom content on middle</h1>
-              <p>Custom height to auto</p>
-              <p>Custom font size to 1.6rem</p>
-            </div>
-          </div>
-        </h:panelGroup>
-      </ui:remove>
-    </ui:define>
+          </h:panelGroup>
+      </ui:define>
+    </ui:remove>
 
     <!-- Add a content as a Custom panel for Case Detail on bottom section -->
-    <ui:define name="caseItemDetailCustomBottom">
-      <!-- Remove cc:renderFacet tag to override Custom panel for Case Detail on bottom section -->
-      <cc:renderFacet name="caseItemDetailCustomBottom" />
-
-      <!-- Remove the comment tag to render below example code -->
-      <ui:remove>
-        <h:panelGroup styleClass="ui-g-12" layout="block">
-          <div class="card card-w-title case-detail-card">
-            <div class="case-detail-section-title u-truncate-text">
-              <h:outputText value="This is custom panel on bottom section" />
+    <!-- Remove the ui:remove tag to render below example code -->
+    <ui:remove>
+      <ui:define name="caseItemDetailCustomBottom">
+          <h:panelGroup styleClass="ui-g-12" layout="block">
+            <div class="card card-w-title case-detail-card">
+              <div class="case-detail-section-title u-truncate-text">
+                <h:outputText value="This is custom panel on bottom section" />
+              </div>
+              <div class="Separator" />
+  
+              <div class="custom-task-details-panel">
+                <h1>This is custom content on bottom</h1>
+                <p>Custom height to auto</p>
+                <p>Custom font size to 1.6rem</p>
+              </div>
             </div>
-            <div class="Separator" />
-
-            <div class="custom-task-details-panel">
-              <h1>This is custom content on bottom</h1>
-              <p>Custom height to auto</p>
-              <p>Custom font size to 1.6rem</p>
-            </div>
-          </div>
-        </h:panelGroup>
-      </ui:remove>
-    </ui:define>
-
+          </h:panelGroup>
+      </ui:define>
+    </ui:remove>
     <!-- !!!!!!!! END ADD YOUR CUSTOMIZATION !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
     <!-- !!!! END: AREA SHOULD BE CUSTOMIZED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
 

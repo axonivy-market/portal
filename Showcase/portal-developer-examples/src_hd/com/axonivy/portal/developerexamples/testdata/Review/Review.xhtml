@@ -94,9 +94,9 @@
           </p:tab>
           <p:tab title="Additional">Additional information</p:tab>
         </p:tabView>
-        <div style="width: 100%; margin-top: 20px; float: right">
+        <h:panelGroup layout="block" rendered="#{!data.investmentRequest.isReadOnly}" style="width: 100%; margin-top: 20px; float: right">
           <p:commandButton id="close-btn" value="Close" actionListener="#{logic.close}" update="@(form)" />
-        </div>
+        </h:panelGroup>
       </h:form>
       <script>
         window.processSteps = ["Create Investment Request", "Approve Investment Request", "Review Request"];
