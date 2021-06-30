@@ -47,7 +47,6 @@ public class CategoryUtils {
     }
     return nodePaths;
   }
-  
 
   public static CheckboxTreeNode[] recoverSelectedCategories(CheckboxTreeNode node, List<String> paths) {
     List<CheckboxTreeNode> selectedCategories = new ArrayList<>();

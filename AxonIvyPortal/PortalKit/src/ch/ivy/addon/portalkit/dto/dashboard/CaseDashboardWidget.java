@@ -48,6 +48,7 @@ public class CaseDashboardWidget extends DashboardWidget {
   private static final long serialVersionUID = 3048837559125720787L;
   private static final String CRITERIA_PARAM = "caseSearchCriteria";
 
+  private int rowsPerPage = 10;
   @JsonIgnore
   private DashboardCaseLazyDataModel dataModel;
   @JsonIgnore
@@ -58,7 +59,8 @@ public class CaseDashboardWidget extends DashboardWidget {
   private Map<CaseState, Long> caseByStateStatistic;
   @JsonIgnore
   private Map<String, Long> caseByCategoryStatistic;
-  private int rowsPerPage = 10;
+  @JsonIgnore
+  private List<String> prevUserFilterCategories;
 
   public CaseDashboardWidget() {
     dataModel = new DashboardCaseLazyDataModel();
@@ -87,6 +89,9 @@ public class CaseDashboardWidget extends DashboardWidget {
   public void buildCategoryTree() {
     this.categoryTree = CaseTreeUtils.buildCaseCategoryCheckboxTreeRoot();
     CategoryUtils.disableSelectionExcept(this.categoryTree, getCategories());
+    if (CollectionUtils.isNotEmpty(getUserFilterCategories())) {
+      CategoryUtils.recoverSelectedCategories(this.categoryTree, getUserFilterCategories());
+    }
   }
 
   @Override
@@ -255,6 +260,7 @@ public class CaseDashboardWidget extends DashboardWidget {
   @JsonIgnore
   public void onApplyUserFilters() throws ParseException {
     this.userDefinedFiltersCount = countDefinedUserFilter(this);
+    this.prevUserFilterCategories = getUserFilterCategories();
   }
 
   @JsonIgnore
@@ -422,4 +428,16 @@ public class CaseDashboardWidget extends DashboardWidget {
     this.rowsPerPage = rowsPerPage;
   }
 
+  public void backupPrevUserFilterCategories() {
+    this.prevUserFilterCategories = getUserFilterCategories();
+  }
+  
+  public void restoreUserFilterCategories() {
+    setUserFilterCategories(this.prevUserFilterCategories);
+  }
+
+  @Override
+  public void onCancelUserFilters() {
+    restoreUserFilterCategories();
+  }
 }

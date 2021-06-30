@@ -54,6 +54,7 @@ public class TaskDashboardWidget extends DashboardWidget {
   private static final long serialVersionUID = 3048837559125720787L;
   private static final String CRITERIA_PARAM = "criteria";
 
+  private int rowsPerPage = 10;
   @JsonIgnore
   private DashboardTaskLazyDataModel dataModel;
   @JsonIgnore
@@ -68,7 +69,8 @@ public class TaskDashboardWidget extends DashboardWidget {
   private Long numberOfTasksExpireThisWeek;
   @JsonIgnore
   private Long numberOfTasksExpireToday;
-  private int rowsPerPage = 10;
+  @JsonIgnore
+  private List<String> prevUserFilterCategories;
   
   public TaskDashboardWidget() {
     dataModel = new DashboardTaskLazyDataModel();
@@ -95,6 +97,9 @@ public class TaskDashboardWidget extends DashboardWidget {
   public void buildCategoryTree() {
     this.categoryTree = TaskTreeUtils.buildTaskCategoryCheckboxTreeRoot();
     CategoryUtils.disableSelectionExcept(this.categoryTree, getCategories());
+    if (CollectionUtils.isNotEmpty(getUserFilterCategories())) {
+      CategoryUtils.recoverSelectedCategories(this.categoryTree, getUserFilterCategories());
+    }
   }
 
   @Override
@@ -454,5 +459,17 @@ public class TaskDashboardWidget extends DashboardWidget {
 
   public void setRowsPerPage(int rowsPerPage) {
     this.rowsPerPage = rowsPerPage;
+  }
+  public void backupPrevUserFilterCategories() {
+    this.prevUserFilterCategories = getUserFilterCategories();
+  }
+  
+  public void restoreUserFilterCategories() {
+    setUserFilterCategories(this.prevUserFilterCategories);
+  }
+
+  @Override
+  public void onCancelUserFilters() {
+    restoreUserFilterCategories();
   }
 }
