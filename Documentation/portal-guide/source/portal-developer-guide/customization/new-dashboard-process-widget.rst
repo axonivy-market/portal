@@ -6,16 +6,17 @@ Customize Process widget
 Define Process widget
 ---------------------
 
-Process widget of Portal dashboard is an flexible Process list with three modes.
-Please refer to (link to process widget of dashboard) for more details.
+Process widget of Portal dashboard is a flexible Process list with three modes.
+Refer to (link to process widget of the dashboard) for more details.
 
-Basic JSON structure of Process widget:
+Basic JSON structure of process widget:
 
    .. code-block:: html
 
       {
          "type": "process",
          "id": "process-widget",
+         "name": "Process Widget",
          "displayMode": "FULL_MODE",
          "layout": {
             "x": 10, "y": 0, "w": 2, "h": 4
@@ -23,14 +24,14 @@ Basic JSON structure of Process widget:
       }
    ..
 
-Beside basic attributes of Dashboard's widget, Process widget has required attribute `displayMode`.
-This attribute is used to define display mode of widget.
+Besides basic attributes of Dashboard's widget, the process widget has required attribute `displayMode`.
+This attribute is used to define the display mode of the widget.
 
-There are three display mode for Process widget: ``FULL_MODE`` (full mode), ``COMPACT_MODE``
+There are three display modes for the process widget: ``FULL_MODE`` (full mode), ``COMPACT_MODE``
 (compact mode), and ``COMBINED_MODE`` (combined mode).
 
-Each mode have differences in their JSON definition. Please read below sections to understand
-how to deine Process widget in these mode properly.
+Each mode has differences in its JSON definition. Refer to the below sections to understand
+how to define the process widget in these modes properly.
 
 Compact mode
 ------------
@@ -42,6 +43,7 @@ Below is a standard JSON definition of Process widget compact mode
       {
          "type": "process",
          "id": "compact_mode",
+         "name": "Process Widget",
          "displayMode": "COMPACT_MODE",
          "layout": {
             "x": 10, "y": 0, "w": 2, "h": 4
@@ -50,10 +52,10 @@ Below is a standard JSON definition of Process widget compact mode
       }
    ..
 
-``categories``: categories of processes which you want to show.
-Process widget will show all processes belong to these categories.
-If you dont define this attribute, Process widget will show all
-avaiable processes by default.
+``categories``: categories of processes that you want to show.
+Process widget will show all processes that belonged to these categories.
+If you don't define this attribute, the process widget will show all
+available processes by default.
 
 Full mode
 ---------
@@ -65,6 +67,7 @@ Below is a standard JSON definition of Process widget full mode
       {
          "type": "process",
          "id": "full_mode",
+         "name": "Process Widget",
          "displayMode": "FULL_MODE",
          "layout": {
             "x": 10, "y": 0, "w": 2, "h": 4
@@ -85,6 +88,7 @@ Below is a standard JSON definition of Process widget combined mode
       {
          "type": "process",
          "id": "combined_mode",
+         "name": "Process Widget",
          "displayMode": "COMBINED_MODE",
          "layout": {
             "x": 10, "y": 0, "w": 2, "h": 4
