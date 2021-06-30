@@ -33,6 +33,7 @@ public class ProcessDashboardWidget extends DashboardWidget {
   private DashboardProcess process;
   private List<String> categories;
 
+  private int rowsPerPage = 5;
   @JsonIgnore
   private List<DashboardProcess> displayProcesses;
   @JsonIgnore
@@ -47,9 +48,6 @@ public class ProcessDashboardWidget extends DashboardWidget {
   private boolean showCases;
   @JsonIgnore
   private DashboardProcessUserFilter userFilter;
-  @JsonIgnore
-  protected Optional<String> userDefinedFiltersCount;
-  private int rowsPerPage = 5;
 
   public ProcessDashboardWidget() {
     this.displayMode = ProcessWidgetMode.COMPACT_MODE;
@@ -213,14 +211,6 @@ public class ProcessDashboardWidget extends DashboardWidget {
 
   public void setDisplayProcesses(List<DashboardProcess> displayProcesses) {
     this.displayProcesses = displayProcesses;
-  }
-
-  public Optional<String> getUserDefinedFiltersCount() {
-    return userDefinedFiltersCount;
-  }
-
-  public void setUserDefinedFiltersCount(Optional<String> userDefinedFiltersCount) {
-    this.userDefinedFiltersCount = userDefinedFiltersCount;
   }
 
   public boolean isSelectedAllProcess() {
