@@ -1,8 +1,6 @@
-[
-  {
+{
     "id": "1",
     "title": "cms:/ch.ivy.addon.portalkit.ui.jsf/common/dashboard",
-    "permissions": ["#demo","#Developer"],
     "widgets": [
       {
         "type": "task",
@@ -10,16 +8,13 @@
         "layout": {
           "x": 0, "y": 0, "w": 10, "h": 9
         },
-        "rowsPerPage": 20,
         "sortField": "name",
         "columns": [
           {
             "field": "start"
           },
           {
-            "field": "priority",
-            "filterList": ["LOW","NORMAL"],
-            "visible": "false"
+            "field": "priority"
           },
           {
             "field": "id"
@@ -37,30 +32,10 @@
             "field": "state"
           },
           {
-            "field": "startTimestamp",
-            "filterFrom": "04/11/2021",
-            "filterTo": "05/28/2021"
+            "field": "startTimestamp"
           },
           {
             "field": "expiryTimestamp"
-          },
-          {
-            "format": "string",
-            "header": "Employee",
-            "field": "CustomVarCharField5",
-            "style": "width: 110px"
-          },
-          {
-            "format": "number",
-            "header": "Days",
-            "field": "CustomDecimalField2",
-            "style": "width: 80px"
-          },
-          {
-            "format": "timestamp",
-            "header": "Start Date",
-            "field": "CustomTimestampField1",
-            "style": "width: 120px"
           }
         ]
       },
@@ -92,18 +67,6 @@
           },
           {
             "field": "endTimestamp"
-          },
-          {
-            "format": "string",
-            "header": "Customer name",
-            "field": "CustomVarCharField5",
-            "style": "width: 110px"
-          },
-          {
-            "format": "timestamp",
-            "header": "Shipment date",
-            "field": "CustomTimestampField1",
-            "style": "width: 120px"
           }
         ]
       },
@@ -115,5 +78,4 @@
         }
       }
     ]
-  }
-]
+}
