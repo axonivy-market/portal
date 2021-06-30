@@ -9,6 +9,7 @@ import ch.ivy.addon.portalkit.taskfilter.impl.TaskCompletedDateFilter;
 import ch.ivy.addon.portalkit.taskfilter.impl.TaskCreationDateFilter;
 import ch.ivy.addon.portalkit.taskfilter.impl.TaskDescriptionFilter;
 import ch.ivy.addon.portalkit.taskfilter.impl.TaskExpiredDateFilter;
+import ch.ivy.addon.portalkit.taskfilter.impl.TaskForAvailableActivatorFilter;
 import ch.ivy.addon.portalkit.taskfilter.impl.TaskPriorityFilter;
 import ch.ivy.addon.portalkit.taskfilter.impl.TaskResponsibleFilter;
 
@@ -27,6 +28,7 @@ public class CustomizedTaskFilterContainer extends TaskFilterContainer {
   private ShipmentDateFilter shipmentDateFilter = new ShipmentDateFilter();
   private TaskCategoryFilter categoryFilter = new TaskCategoryFilter();
   private TaskCompletedDateFilter completedDateFilter = new TaskCompletedDateFilter();
+  private TaskForAvailableActivatorFilter availableActivatorFilter = new TaskForAvailableActivatorFilter();
   
   public CustomizedTaskFilterContainer() {
     filters.add(priorityFilter);
@@ -111,6 +113,14 @@ public class CustomizedTaskFilterContainer extends TaskFilterContainer {
 
   public void setCompletedDateFilter(TaskCompletedDateFilter completedDateFilter) {
     this.completedDateFilter = completedDateFilter;
+  }
+
+  public TaskForAvailableActivatorFilter getAvailableActivatorFilter() {
+    return availableActivatorFilter;
+  }
+
+  public void setAvailableActivatorFilter(TaskForAvailableActivatorFilter availableActivatorFilter) {
+    this.availableActivatorFilter = availableActivatorFilter;
   }
 
 }
