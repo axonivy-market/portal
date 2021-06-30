@@ -2,7 +2,7 @@
   {
     "id": "1",
     "title": "cms:/ch.ivy.addon.portalkit.ui.jsf/common/dashboard",
-    "permissions": ["HR", "AXONIVY_PORTAL_ADMIN", "#demo", "#Developer"],
+    "permissions": ["#demo","#Developer"],
     "widgets": [
       {
         "type": "task",
@@ -10,6 +10,7 @@
         "layout": {
           "x": 0, "y": 0, "w": 10, "h": 9
         },
+        "rowsPerPage": 20,
         "sortField": "name",
         "columns": [
           {

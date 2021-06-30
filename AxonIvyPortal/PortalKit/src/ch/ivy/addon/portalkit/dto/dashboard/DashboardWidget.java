@@ -37,7 +37,9 @@ public abstract class DashboardWidget implements Serializable {
   protected String name;
   private WidgetLayout layout;
 
+  @JsonIgnore
   protected boolean autoPosition;
+  @JsonIgnore
   protected boolean hasPredefinedFilter;
   @JsonIgnore
   protected Optional<String> userDefinedFiltersCount;
