@@ -59,8 +59,6 @@ public class ProcessWidgetTest extends BaseTest {
     assertTrue(processWidget.isCompactMode());
     processWidget.expand();
     assertTrue(processWidget.isExpandedMode());
-    processWidget.selectViewMode("GRID");
-    processWidget.waitForGridProcessListDisplayed();
     assertNotNull(processWidget.getProcess(CASE_MAP_LEAVES));
     resetLanguageOfCurrentUser();
   }
