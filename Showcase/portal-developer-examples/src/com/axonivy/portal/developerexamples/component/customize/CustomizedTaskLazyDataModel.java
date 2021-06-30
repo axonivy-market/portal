@@ -61,6 +61,7 @@ public class CustomizedTaskLazyDataModel extends TaskLazyDataModel {
   @Override
   public void initFilterContainer() {
     filterContainer = new CustomizedTaskFilterContainer();
+//    filterContainer = new CustomizedTaskFilterContainer(criteria.isAdminQuery());
   }
   
   /**
