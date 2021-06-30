@@ -19,8 +19,8 @@ Each CaseItemDetails contains
 
 - **CaseItemDetailsHistories** ``5``
 
--  CaseItemDetail custom panel: caseItemDetailCustomTop,
-   caseItemDetailCustomMiddle, caseItemDetailCustomBottom
+-  Case details custom panel: ``caseItemDetailCustomTop``,
+   ``caseItemDetailCustomMiddle``, ``caseItemDetailCustomBottom``
 
 |case-standard-1|
 
@@ -79,7 +79,6 @@ How to configure widgets in case details
     ]
 
 
-   ..
 
    -  Structure of each case details layout in variable **Portal.CaseDetails**:
 
@@ -90,30 +89,36 @@ How to configure widgets in case details
       ``filters``: conditions to determine which cases able to use the layout. There are 2 types of filter:
       ``categories`` (case categories), ``states`` (case states).
 
-      ``type``: There are 6 types: ``information``, ``document``, ``technicalCase``, ``relatedTask``, ``history``, ``custom``
-
    -  Structure of each widget inside case details layout in variable **Portal.CaseDetails**:
 
       ``id``: ID of widget.
 
-      ``x``: HTML DOM Style ``left`` will be calculated by formula ``x / 12 * 100%``
+      ``type``: type of widget, there are 6 types: ``information``, ``document``, ``technicalCase``, ``relatedTask``, ``history``, ``custom``.
 
-      ``y``: HTML DOM Style ``top`` will be calculated by formula ``y / 12 * 100%``
+      ``layout``: definition of the UI styling of the widget.
 
-      ``w``: HTML DOM Style ``width`` will be calculated by formula ``60 * w + 20 * (width - 1)``
+         ``x``: HTML DOM Style ``left`` will be calculated by formula ``x / 12 * 100%``.
 
-      ``h``: HTML DOM Style ``height`` will be calculated by formula ``60 * h + 20 * (height - 1)``
+         ``y``: HTML DOM Style ``top`` will be calculated by formula ``y / 12 * 100%``.
 
-      ``styleClass`` (optional): add CSS Classes to HTML DOM
+         ``w``: HTML DOM Style ``width`` will be calculated by formula ``60 * w + 20 * (width - 1)``.
 
-      ``style`` (optional): add inline style to HTML DOM
+         ``h``: HTML DOM Style ``height`` will be calculated by formula ``60 * h + 20 * (height - 1)``.
+
+         ``styleClass`` (optional): add CSS Classes to HTML DOM.
+
+         ``style`` (optional): add inline style to HTML DOM.
+
+      ``data`` (for custom widget): data for custom widget, refer to :ref:`Show custom widgets <customization-case-item-details-how-to-override-ui-custom-body>`
 
    .. important::
       - **Do not change** ``type`` and ``id`` of widgets.
       - You can change ``x``, ``y``, ``w`` and ``h`` to update size and position of widgets.
       - ``x``, ``y``, ``w`` and ``h`` must be **integers**.
       - ``x + w`` must **not be larger** than **12**.
-      
+      - We support all case states for filter type ``states``.
+
+
    .. _customization-case-item-details-how-to-override-ui:
 
 How to custom Case details UI
@@ -166,7 +171,32 @@ List valid parameters:
 Show custom widgets
 -------------------
 
-There are **two steps** for adding new custom panels.
+For the custom widget, we have a new node is ``data`` inside of case details widget. The structure of ``data`` on each custom widget will be:
+
+   - ``type``: type of custom widget panel, there are 3 types: ``caseItemDetailCustomTop``, ``caseItemDetailCustomMiddle``, ``caseItemDetailCustomBottom``.
+
+   - ``url``: URL for external website
+
+   - ``processStart``: relative link to the ivy process which will be displayed in custom widget
+
+   - ``params``: paramters for ivy process above, each parameter can be defined as follows:
+
+      - Key name that will be parameter name for ivy process above. Note: don't use ``caseId``.
+
+      - Key value for case: must start with ``case.``. Support 2 values: ``case.id``, ``case.category``.
+
+      - Key value for case custom fields: must start with ``case.customFields.``, follow by custom field name.
+
+      - Other key value will be treated as hard code value.
+
+   .. important::
+      If you input ``processStart``, don't input ``url``. You can only use one of them.
+
+
+Adding new custom panels
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+There are two steps for adding new custom panels.
 
 #. **Cockpit admin** must configure global variable :ref:`Portal.CaseDetails<case-details-configuration-variable>`
    on Cockpit Page to add custom widgets.
@@ -322,9 +352,9 @@ There are **two steps** for adding new custom panels.
 
 #. To customize case details use **IFrame**, please make sure
 
-   -  Must input parameter ``url`` if you want to use external URL.
+   -  Must input parameter ``url`` in ``data`` node if you want to use external URL.
 
-   -  Must input parameter ``processStart`` if you want to use ivy start process. And you can predefine parameter for the process via ``params`` key.
+   -  Must input parameter ``processStart`` in ``data`` node if you want to use ivy start process. And you can predefine parameter for the process via ``params`` in ``data`` node.
 
       Customized case details using external URL:
 
@@ -385,7 +415,7 @@ There are **two steps** for adding new custom panels.
                   "type": "custom",
                   "id": "customIvyProcess",
                   "layout": {
-                  "x": 0, "y": 6, "w": 12, "h": 8
+                     "x": 0, "y": 6, "w": 12, "h": 8
                   },
                   "data": {
                      "processStart": "Start Processes/CaseDetailsCustomWidgetExample/startReview.ivp",
