@@ -38,51 +38,51 @@ How to configure widgets in task details
 
       [
          {
-         "id": "default-task-detail",
-         "filters": {
-            "taskCategories" : ["support"],
-            "taskStates" : ["DONE", "SUSPENDED"]
-         },
-         "widgets": 
-         [
-            {
-               "id": "information",
-               "type": "information",
-               "layout": {
-                  "x": 0, "y": 0, "w": 6, "h": 6
-               }
+            "id": "default-task-detail",
+            "filters": {
+               "taskCategories" : ["support"],
+               "taskStates" : ["DONE", "SUSPENDED"]
             },
-            {
-               "id": "history",
-               "type": "history",
-               "layout": {
-                  "x": 6, "y": 6, "w": 6, "h": 6
-               }
-            },
-            {
-               "id": "document",
-               "type": "document",
-               "layout": {
-                  "x": 6, "y": 0, "w": 6, "h": 6
-               }
-            }
-            {
-               "id": "custom",
-               "type": "custom",
-               "layout": {
-                  "x": 0, "y": 6, "w": 6, "h": 6
+            "widgets": 
+            [
+               {
+                  "id": "information",
+                  "type": "information",
+                  "layout": {
+                     "x": 0, "y": 0, "w": 6, "h": 6
+                  }
                },
-               "data" : {
-                  "processStart": "Start Processes/TaskDetailsCustomWidgetExample/invoiceDetails.ivp",
-                  "params": {
-                     "startedTaskId": "task.id",
-                     "startedTaskCategory": "task.category",
-                     "invoiceId": "000001573",
-                     "invoiceDescription": "task.customFields.invoiceDescription"
+               {
+                  "id": "history",
+                  "type": "history",
+                  "layout": {
+                     "x": 6, "y": 6, "w": 6, "h": 6
+                  }
+               },
+               {
+                  "id": "document",
+                  "type": "document",
+                  "layout": {
+                     "x": 6, "y": 0, "w": 6, "h": 6
+                  }
+               },
+               {
+                  "id": "custom",
+                  "type": "custom",
+                  "layout": {
+                     "x": 0, "y": 6, "w": 6, "h": 6
+                  },
+                  "data" : {
+                     "processStart": "Start Processes/TaskDetailsCustomWidgetExample/invoiceDetails.ivp",
+                     "params": {
+                        "startedTaskId": "task.id",
+                        "startedTaskCategory": "task.category",
+                        "invoiceId": "000001573",
+                        "invoiceDescription": "task.customFields.invoiceDescription"
+                     }
                   }
                }
-            }
-         ]
+            ]
          }
       ]
 
@@ -244,8 +244,7 @@ There are **two steps** for adding new custom panels.
                   }
                ]
             }
-         }
-      ]
+        ]
 
    ..
 
@@ -348,24 +347,24 @@ There are **two steps** for adding new custom panels.
 
          [
             {
-            "id": "task-detail",
-            "widgets": [
-               {
-                  "type": "information",
-                  "layout": {
-                  "x": 0, "y": 0, "w": 4, "h": 12
-                  }
-               },
-               {
-                  "type": "custom",
-                  "layout": {
-                  "x": 6, "y": 0, "w": 8, "h": 6
+               "id": "task-detail",
+               "widgets": [
+                  {
+                     "type": "information",
+                     "layout": {
+                     "x": 0, "y": 0, "w": 4, "h": 12
+                     }
                   },
-                  "data" : {
-                  "url": "https://www.axonivy.com/"
+                  {
+                     "type": "custom",
+                     "layout": {
+                     "x": 6, "y": 0, "w": 8, "h": 6
+                     },
+                     "data" : {
+                     "url": "https://www.axonivy.com/"
+                     }
                   }
-               }
-            ]
+               ]
             }
          ]
 
@@ -379,36 +378,36 @@ There are **two steps** for adding new custom panels.
 
             [
                {
-               "id": "task-detail",
-               "widgets": [
-                  {
-                     "type": "information",
-                     "layout": {
-                     "x": 0, "y": 0, "w": 6, "h": 12
-                     }
-                  },
-                  {
-                     "type": "history",
-                     "layout": {
-                     "x": 6, "y": 6, "w": 6, "h": 6
-                     }
-                  },
-                  {
-                     "type": "custom",
-                     "layout": {
-                     "x": 0, "y": 6, "w": 6, "h": 6
+                  "id": "task-detail",
+                  "widgets": [
+                     {
+                        "type": "information",
+                        "layout": {
+                        "x": 0, "y": 0, "w": 6, "h": 12
+                        }
                      },
-                     "data" : {
-                        "processStart": "Start Processes/TaskDetailsCustomWidgetExample/invoiceDetails.ivp",
-                        "params": {
-                           "startedTaskId": "task.id",
-                           "startedTaskCategory": "task.category",
-                           "invoiceId": "000001573",
-                           "invoiceDescription": "task.customFields.invoiceDescription"
+                     {
+                        "type": "history",
+                        "layout": {
+                        "x": 6, "y": 6, "w": 6, "h": 6
+                        }
+                     },
+                     {
+                        "type": "custom",
+                        "layout": {
+                        "x": 0, "y": 6, "w": 6, "h": 6
+                        },
+                        "data" : {
+                           "processStart": "Start Processes/TaskDetailsCustomWidgetExample/invoiceDetails.ivp",
+                           "params": {
+                              "startedTaskId": "task.id",
+                              "startedTaskCategory": "task.category",
+                              "invoiceId": "000001573",
+                              "invoiceDescription": "task.customFields.invoiceDescription"
+                           }
                         }
                      }
-                  }
-               ]
+                  ]
                }
             ]
 
@@ -426,10 +425,10 @@ There are **two steps** for adding new custom panels.
 
 
 .. |task-standard| image:: ../../screenshots/task-detail/customization/task-standard.png
-.. |task-customized-top| image:: images/customization/task-customized-top.png
-.. |task-customized-bottom| image:: images/customization/task-customized-bottom.png
+.. |task-customized-top| image:: ../../screenshots/task-detail/customization/task-customized-top.png
+.. |task-customized-bottom| image:: ../../screenshots/task-detail/customization/task-customized-bottom.png
 .. |edit-variable-portal-task-case-details| image:: images/customization/edit-variable-portal-task-case-details.png
-.. |task-customized-iframe-url| image:: images/customization/task-customized-iframe-url.png
-.. |task-customized-iframe-process| image:: images/customization/task-customized-iframe-process.png
+.. |task-customized-iframe-url| image:: ../../screenshots/task-detail/customization/task-customized-iframe-url.png
+.. |task-customized-iframe-process| image:: ../../screenshots/task-detail/customization/task-customized-iframe-process.png
 .. |task-customized-iframe-process-custom-field| image:: images/customization/task-customized-iframe-process-custom-field.png
 .. |task-customized-iframe-process-input-mapping| image:: images/customization/task-customized-iframe-process-input-mapping.png

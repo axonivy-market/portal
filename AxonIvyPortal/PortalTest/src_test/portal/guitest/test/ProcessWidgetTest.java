@@ -94,8 +94,10 @@ public class ProcessWidgetTest extends BaseTest {
     
     processWidget = homePage.getProcessWidget();
     processWidget.expand();
-    processWidget.clickOnSwitchButton();
-    processWidget.deleteExternalLinkByFieldsetIndexAndIndex(0, 0);
+    processWidget.selectViewMode("GRID");
+    processWidget.waitForGridProcessListDisplayed();
+    processWidget.clickMoreButtonOnGridMode();
+    processWidget.deleteProcess(0);
     backToCompactProcessWidget();
     
     assertEquals(0, processWidget.getNumberOfFavoriteUserProcesses());

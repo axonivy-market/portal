@@ -13,20 +13,24 @@
       <h:form id="process-item" target="#{processWidgetBean.targetToStartProcess(process)}"
         styleClass="grid-view-form TexAlCenter #{isExpress ? 'is-express' : ''} #{isExternalLink ? 'is-external-link' : ''}">
         <!-- Action -->
-        <h:panelGroup id="process-action-group" styleClass="process-action-group" layout="block"
-          rendered="#{!processWidgetBean.isIvyProcess(process) and process.getProcess().ableToEdit}">
-          <p:commandLink id="edit-link" styleClass="u-mar-right-10" oncomplete="PF('edit-process-dialog').show();"
-            actionListener="#{processWidgetBean.setEditedProcess(process)}" update="#{cc.clientId}:edit-process-dialog">
-            <i class="si si-graphic-tablet-drawing-pen" />
-            <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}</span>
-          </p:commandLink>
-          <p:commandLink id="delete-link" oncomplete="PF('remove-process-workflow-dialog').show();"
-            actionListener="#{processWidgetBean.setDeletedProcess(process)}"
-            update="#{cc.clientId}:remove-process-workflow-dialog">
-            <i class="si si-bin-1" />
-            <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}</span>
-          </p:commandLink>
+          <h:panelGroup id="process-action-group" styleClass="process-action-group" layout="block">
+          <h:panelGroup id="grid-process-category" rendered="#{process.category ne ''}"
+            styleClass="js-process-category grid-process-category #{!processWidgetBean.isIvyProcess(process) and process.getProcess().ableToEdit ? 'has-menu-button' : ''}"
+            layout="block">
+            <h:panelGroup id="grid-process-category-content" styleClass="grid-process-category-content u-truncate-text" layout="block">#{processWidgetBean.getDisplayProcessCategory(process)}</h:panelGroup>
+            <p:tooltip id="grid-process-category-content-tooltip" for="grid-process-category-content" value="#{process.category}" trackMouse="true"
+              hideEvent="mouseleave click" />
+          </h:panelGroup>
+          <p:commandButton id="dynaButton" type="button" styleClass="ui-button-icon-only icon-more-menu-button" icon="si si-navigation-menu-horizontal"
+            rendered="#{!processWidgetBean.isIvyProcess(process) and process.getProcess().ableToEdit}" />
+          <p:menu id="process-action-menu" overlay="true" trigger="dynaButton" my="right top" at="right bottom" styleClass="ui-menu-overlay-process">
+            <p:menuitem id="process-edit" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}" icon="si si-graphic-tablet-drawing-pen" oncomplete="PF('edit-process-dialog').show();"
+              actionListener="#{processWidgetBean.setEditedProcess(process)}" update="#{cc.clientId}:edit-process-dialog" />
+            <p:menuitem id="process-delete" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}" icon="si si-bin-1" oncomplete="PF('remove-process-workflow-dialog').show();"
+              actionListener="#{processWidgetBean.setDeletedProcess(process)}" update="#{cc.clientId}:remove-process-workflow-dialog" />
+          </p:menu>
         </h:panelGroup>
+        
         <!-- Process Icon -->
         <i id="icon" class="#{iconSelectionBean.generateIconWithFontFamily(process.getIcon())} process-grid-view-icon" />
         <!-- Process Name -->
@@ -44,7 +48,8 @@
           <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/startProcess')}" id="start-button"
             actionListener="#{processWidgetBean.startProcess(process)}" icon="si si-arrow-right-1"
             ajax="#{!isExternalLink}" />
-          <p:link value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/MoreInformation')}" styleClass="process-more-info-link" href="#{processWidgetBean.getProcessInformationPageUrl(process)}"
+          <p:link value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/MoreInformation')}"
+            styleClass="process-more-info-link" href="#{processWidgetBean.getProcessInformationPageUrl(process)}"
             rendered="#{data.showInformationLink and !isExpress and !isExternalLink and !isCaseMap}" />
         </div>
       </h:form>
