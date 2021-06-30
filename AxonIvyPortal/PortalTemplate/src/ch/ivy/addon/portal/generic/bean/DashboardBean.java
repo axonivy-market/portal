@@ -56,6 +56,7 @@ public class DashboardBean implements Serializable {
 
   public static final String DASHBOARD_PREFIX = "dashboard.widgets";
   public static final String DASHBOARD_VARIABLE = "Portal.Dashboard";
+  public static final String DEFAULT_DASHBOARD_JSON_URI = "/ch.ivy.addon.portalkit/variables/DefaultDashboardJson";
   protected List<Dashboard> dashboards;
   protected Dashboard selectedDashboard;
   private String selectedDashboardId;
@@ -244,6 +245,12 @@ public class DashboardBean implements Serializable {
         // Remove dashboard which user doesn't have permission to see
         dashboards.remove(i);
       }
+    }
+    
+    // If user does not have permission to read any dashboard, load default dashboard stored in CMS
+    if (CollectionUtils.isEmpty(dashboards)) {
+      Dashboard defaultDashboard = mapper.readValue(Ivy.cms().co(DEFAULT_DASHBOARD_JSON_URI), Dashboard.class);
+      dashboards.add(Optional.ofNullable(defaultDashboard).orElse(new Dashboard()));
     }
     return dashboards;
   }
