@@ -538,7 +538,12 @@ a.compact-task-start-link .task-start-list-item {
   font-size: var(--process-grid-icon-font-size);
   padding: 0.7rem;
   margin-top: 20px;
-  padding-top: 2rem; }
+  padding-top: 2rem;
+}
+
+.process-start-list-container .grid-view-form .process-grid-view-icon.si.si-hierarchy-6.si-rotate-270 {
+  margin-right: 20px;
+}
 
 body .process-widget .ui-selectbooleanbutton.ui-state-active {
   background-color: var(--primary-color);
