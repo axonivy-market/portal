@@ -618,7 +618,7 @@ String library = PortalLibrary.PORTAL_TEMPLATE.getValue();
 
 String defaultEndPage = ivy.wf.getStandardProcessImplementationLibrary(StandardProcessType.DEFAULT_PAGES_PROCESS_TYPES);
 
-if (StringUtils.isBlank(defaultEndPage)) {
+if (StringUtils.isBlank(defaultEndPage) || !library.equals(defaultEndPage)) {
 	ivy.wf.setStandardProcessImplementationLibrary(StandardProcessType.DEFAULT_PAGES_PROCESS_TYPES, library);
 }' #txt
 Pt0 f37 security system #txt
