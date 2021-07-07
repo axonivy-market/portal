@@ -41,7 +41,6 @@ You could find project ``portal-developer-examples`` in engine demo mode or impo
    document-processes
    responsive-css
    group-chat-customization
-   change-group-id
    user-with-environment-info
    page-header-footer
    process-information
