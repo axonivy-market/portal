@@ -1,10 +1,11 @@
 package ch.ivy.addon.portalkit.service;
 
 import ch.ivy.addon.portalkit.configuration.Application;
+import ch.ivy.addon.portalkit.enums.ExternalVariable;
 
 public class RegisteredApplicationService extends JsonConfigurationService<Application> {
 
-  private static final String THIRD_PARTY_APPLICATIONS = "Portal.ThirdPartyApplications";
+  private static final String THIRD_PARTY_APPLICATIONS = ExternalVariable.THIRD_PARTY_APP.key;
   private static RegisteredApplicationService instance;
 
   private RegisteredApplicationService() {}

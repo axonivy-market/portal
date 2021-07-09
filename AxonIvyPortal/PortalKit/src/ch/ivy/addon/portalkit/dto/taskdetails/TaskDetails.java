@@ -1,49 +1,33 @@
 package ch.ivy.addon.portalkit.dto.taskdetails;
 
 import java.io.Serializable;
-import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+import ch.ivy.addon.portalkit.dto.AbstractWidgetFilter;
+import ch.ivy.addon.portalkit.dto.AbstractConfigurableContent;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-public class TaskDetails implements Serializable {
+public class TaskDetails extends AbstractConfigurableContent implements Serializable {
 
   private static final long serialVersionUID = -8424800742022240884L;
 
-  private String id;
-  private List<TaskDetailsWidget> widgets;
-  private TaskDetailsFilters filters;
-  private boolean changed;
-
-
-  public String getId() {
-    return id;
+  public TaskDetails() {
+    super();
   }
 
-  public void setId(String id) {
-    this.id = id;
-  }
-  public List<TaskDetailsWidget> getWidgets() {
-    return widgets;
-  }
-  
-  public void setWidgets(List<TaskDetailsWidget> widgets) {
-    this.widgets = widgets;
-  }
-  
-  public boolean isChanged() {
-    return changed;
-  }
-  
-  public void setChanged(boolean changed) {
-    this.changed = changed;
-  }
-
+  @Override
+  @JsonSerialize(as = TaskDetailsFilters.class)
   public TaskDetailsFilters getFilters() {
-    return filters;
+    return (TaskDetailsFilters) this.filters;
   }
 
-  public void setFilters(TaskDetailsFilters filters) {
+  @Override
+  @JsonDeserialize(as = TaskDetailsFilters.class)
+  public void setFilters(AbstractWidgetFilter filters) {
     this.filters = filters;
   }
+
 }

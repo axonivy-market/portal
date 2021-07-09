@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
@@ -47,7 +48,7 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public void expand() {
-    waitForElementExisted("a[id$=':task-list-link:task-list-link']", true, 5);
+    waitForElementExisted("a[id$=':task-list-link:task-list-link']", true, 10);
     WebElement fullModeButton = findElementById(taskWidgetId + ":task-list-link:task-list-link");
     click(fullModeButton);
     waitForElementExisted("[id$=':filter-save-action']", true, 10);
@@ -206,8 +207,10 @@ public class TaskWidgetPage extends TemplatePage {
   public TaskState getTaskState(int taskRowIndex) {
     WebElement stateCell = findElementById(String.format(TASK_STATE_COMPONENT_ID, taskRowIndex));
     if (stateCell != null) {
-      String stateClass = stateCell.findElement(By.className("si")).getAttribute(CLASS);
-      return TaskState.fromClass(stateClass.substring(stateClass.indexOf("task-state-")));
+      String stateClass = stateCell.findElement(By.className("task-state")).getAttribute(CLASS);
+      String[] stateClasses = stateClass.trim().split(" ");
+      String state = Stream.of(stateClasses).filter(clazz -> clazz.endsWith("-task-state")).findFirst().orElse("");
+      return TaskState.fromClass(state);
     }
     return null;
   }
@@ -254,12 +257,12 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public String getPriorityOfTask(int row) {
-    String priorityClassName = findElementByCssSelector("span[id$='" + row +":task-item:task-priority-component:task-priority'] > span").getAttribute("class");
-    if (priorityClassName.contains("task-priority-low")) {
+    String priorityClassName = findElementByCssSelector("span[id$='" + row +":task-item:task-priority-component:task-priority'] > span > i").getAttribute("class");
+    if (priorityClassName.contains("low-priority")) {
       return "low";
-    } else if (priorityClassName.contains("task-priority-normal")) {
+    } else if (priorityClassName.contains("normal-priority")) {
       return "normal";
-    } else if (priorityClassName.contains("task-priority-high")) {
+    } else if (priorityClassName.contains("high-priority")) {
       return "high";
     } else {
       return "exception";
@@ -594,7 +597,7 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public boolean isExistedFilter(String filterName) {
-    click(findElementById("task-widget:filter-selection-form:filter-name"));
+    findElementById("task-widget:filter-selection-form:filter-name").click();
     List<WebElement> saveFilters = findListElementsByCssSelector("a[id$='user-defined-filter']");
     return saveFilters.stream().anyMatch(filter -> StringUtils.equals(filter.getText(), filterName));
   }
@@ -695,7 +698,7 @@ public class TaskWidgetPage extends TemplatePage {
   public boolean isTaskStateOpen(int index) {
     try {
       WebElement stateComponent = findElementById(String.format(TASK_STATE_COMPONENT_ID, index));
-      stateComponent.findElement(By.className("task-state-open"));
+      stateComponent.findElement(By.className("suspended-task-state"));
     } catch (NoSuchElementException e) {
       return false;
     }
@@ -705,7 +708,7 @@ public class TaskWidgetPage extends TemplatePage {
   public boolean isTaskStateReserved(int index) {
     try {
       WebElement stateComponent = findElementById(String.format(TASK_STATE_COMPONENT_ID, index));
-      stateComponent.findElement(By.className("task-state-reserved"));
+      stateComponent.findElement(By.className("parked-task-state"));
     } catch (NoSuchElementException e) {
       return false;
     }
@@ -755,10 +758,9 @@ public class TaskWidgetPage extends TemplatePage {
     }
   }
 
-  @SuppressWarnings("deprecation")
   public void applyCategoryFilter() {
     click(By.cssSelector("button[id$='task-category-filter:filter-input-form:update-command']"));
-    waitAjaxIndicatorDisappear();
+    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
   }
 
   @SuppressWarnings("deprecation")
@@ -919,5 +921,33 @@ public class TaskWidgetPage extends TemplatePage {
       }
     }
     return false;
+  }
+  
+  public void openNoActivatorFilter(String filterName) {
+    click(By.cssSelector("[id$='filter-add-action']"));
+    WebElement filterSelectionElement = findElementById(taskWidgetId + ":filter-add-form:filter-selection");
+    List<WebElement> elements = findChildElementsByTagName(filterSelectionElement, "LABEL");
+    for (WebElement element : elements) {
+      if (element.getText().equals(filterName)) {
+        element.click();
+        click(By.cssSelector("[id$='task-widget:filter-add-form:update-filter-selected-command']"));
+        break;
+      }
+    }
+  }
+  
+  public void filterByUnavailableActivator(boolean waitForNumberOfTask) {
+    waitForElementDisplayed(By.cssSelector("button[id$='available-activator-filter:filter-open-form:advanced-filter-command']"),
+        true);
+    click(By.cssSelector("button[id$='available-activator-filter:filter-open-form:advanced-filter-command']"));
+
+    waitForElementDisplayed(By.cssSelector("[id$='available-activator-filter:filter-input-form:available-activator']"),
+        true);
+    WebElement displayOnlyUnavailableTaskCheckbox = findElementByCssSelector("[id$='available-activator-filter:filter-input-form:available-activator']");
+    displayOnlyUnavailableTaskCheckbox.click();
+    click(By.cssSelector("button[id$='available-activator-filter:filter-input-form:update-command']"));
+    if (waitForNumberOfTask) {
+      waitForNumberOfTasks(1);
+    }
   }
 }
