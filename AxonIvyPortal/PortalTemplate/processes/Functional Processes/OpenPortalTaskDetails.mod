@@ -26,6 +26,12 @@ Os0 @InfoButton f10 '' #zField
 Os0 @InfoButton f12 '' #zField
 Os0 @AnnotationArc f13 '' #zField
 Os0 @AnnotationArc f11 '' #zField
+Os0 @StartSub f14 '' #zField
+Os0 @InfoButton f15 '' #zField
+Os0 @EndSub f16 '' #zField
+Os0 @UserDialog f17 '' #zField
+Os0 @PushWFArc f18 '' #zField
+Os0 @PushWFArc f19 '' #zField
 >Proto Os0 Os0 OpenPortalTaskDetailsHook #zField
 Os0 f0 inParamDecl '<ch.ivyteam.ivy.workflow.ITask task,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel dataModel,ch.ivy.addon.portalkit.enums.PortalPage portalPage,Boolean isFromTaskList> param;' #txt
 Os0 f0 inParamTable 'out.dataModel=param.dataModel;
@@ -139,6 +145,65 @@ To override Portal task item details UI: you should use Axon Ivy HTMLOverride Di
 Os0 f12 152 554 800 76 -391 -34 #rect
 Os0 f13 152 592 102 493 #arcP
 Os0 f11 160 240 103 141 #arcP
+Os0 f14 inParamDecl '<ch.ivyteam.ivy.workflow.ITask task,ch.ivy.addon.portalkit.datamodel.DashboardTaskLazyDataModel dataModel,ch.ivy.addon.portalkit.enums.PortalPage portalPage,Boolean isFromTaskList> param;' #txt
+Os0 f14 inParamTable 'out.dashboardDataModel=param.dataModel;
+out.isFromTaskList=param.#isFromTaskList is initialized ? param.isFromTaskList : true;
+out.portalPage=param.portalPage;
+out.task=param.task;
+' #txt
+Os0 f14 outParamDecl '<> result;' #txt
+Os0 f14 callSignature callFromDashboard(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.DashboardTaskLazyDataModel,ch.ivy.addon.portalkit.enums.PortalPage,Boolean) #txt
+Os0 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>callFromDashboard(ITask,DashboardTaskLazyDataModel,PortalPage,Boolean)</name>
+    </language>
+</elementInfo>
+' #txt
+Os0 f14 1041 113 30 30 -95 -42 #rect
+Os0 f14 @|StartSubIcon #fIcon
+Os0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Deprecated Note&#13;
+&#13;
+This callable will be removed from Portal 11.&#13;
+To override Portal task item details UI: you should use Axon.ivy HTMLOverride Dialog to override the PortalTaskDetails Html dialog.</name>
+        <nameStyle>10,5,8,0
+1,5,8
+4,5,8,0
+4,5
+45,5,0
+133,5
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Os0 f15 1120 202 720 76 -354 -34 #rect
+Os0 f15 @|IBIcon #fIcon
+Os0 f16 1713 113 30 30 0 15 #rect
+Os0 f16 @|EndSubIcon #fIcon
+Os0 f17 dialogId ch.ivy.addon.portal.generic.PortalTaskDetails #txt
+Os0 f17 startMethod startFromDashboard(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.DashboardTaskLazyDataModel,ch.ivy.addon.portalkit.enums.PortalPage,Boolean) #txt
+Os0 f17 requestActionDecl '<ch.ivyteam.ivy.workflow.ITask task,ch.ivy.addon.portalkit.datamodel.DashboardTaskLazyDataModel dataModel,ch.ivy.addon.portalkit.enums.PortalPage portalPage,Boolean isFromTaskList> param;' #txt
+Os0 f17 requestMappingAction 'param.task=in.task;
+param.dataModel=in.dashboardDataModel;
+param.portalPage=in.portalPage;
+param.isFromTaskList=in.isFromTaskList;
+' #txt
+Os0 f17 responseMappingAction 'out=in;
+' #txt
+Os0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>PortalTaskDetails</name>
+    </language>
+</elementInfo>
+' #txt
+Os0 f17 1360 106 112 44 -49 -8 #rect
+Os0 f17 @|UserDialogIcon #fIcon
+Os0 f18 1071 128 1360 128 #arcP
+Os0 f19 1472 128 1713 128 #arcP
 >Proto Os0 .type ch.ivy.addon.portal.generic.OpenPortalTaskDetailsData #txt
 >Proto Os0 .processKind CALLABLE_SUB #txt
 >Proto Os0 0 0 32 24 18 0 #rect
@@ -155,3 +220,7 @@ Os0 f12 ao f13 tail #connect
 Os0 f13 head f5 @CG|ai #connect
 Os0 f10 ao f11 tail #connect
 Os0 f11 head f0 @CG|ai #connect
+Os0 f14 mainOut f18 tail #connect
+Os0 f18 head f17 mainIn #connect
+Os0 f17 mainOut f19 tail #connect
+Os0 f19 head f16 mainIn #connect
