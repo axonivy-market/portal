@@ -4,31 +4,31 @@
         "type": "information",
         "id": "information",
         "layout": {
-          "x": 0, "y": 0, "w": 6, "h": 8
+          "x": 0, "y": 0, "w": 6, "h": 5
         }
       }, {
         "type": "document",
         "id": "document",
         "layout": {
-          "x": 6, "y": 0, "w": 6, "h": 8
+          "x": 6, "y": 0, "w": 6, "h": 5
         }
       }, {
         "type": "technicalCase",
         "id": "technicalCase",
         "layout": {
-          "x": 0, "y": 8, "w": 12, "h": 6
+          "x": 0, "y": 8, "w": 12, "h": 4
         }
       }, {
         "type": "relatedTask",
         "id": "relatedTask",
         "layout": {
-          "x": 0, "y": 14, "w": 12, "h": 6
+          "x": 0, "y": 14, "w": 12, "h": 4
         }
       }, {
         "type": "history",
         "id": "history",
         "layout": {
-          "x": 0, "y": 20, "w": 12, "h": 6
+          "x": 0, "y": 20, "w": 12, "h": 4
         }
       }
     ]
