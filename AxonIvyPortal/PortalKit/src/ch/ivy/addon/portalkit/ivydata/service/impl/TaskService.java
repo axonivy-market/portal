@@ -12,6 +12,8 @@ import org.apache.commons.lang3.time.DateUtils;
 
 import ch.ivy.addon.portalkit.bo.ExpiryStatistic;
 import ch.ivy.addon.portalkit.bo.PriorityStatistic;
+import ch.ivy.addon.portalkit.bo.TaskCategoryStatistic;
+import ch.ivy.addon.portalkit.bo.TaskStateStatistic;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyTaskResultDTO;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskCategorySearchCriteria;
@@ -132,6 +134,59 @@ public class TaskService implements ITaskService {
     });
   }
   
+  @Override
+  public IvyTaskResultDTO analyzeTaskStateStatistic(TaskSearchCriteria criteria) {
+    return IvyExecutor.executeAsSystem(() -> {
+      IvyTaskResultDTO result = new IvyTaskResultDTO();
+      TaskQuery finalQuery = extendQueryWithInvolvedUser(criteria);
+      finalQuery.aggregate().countRows().groupBy().state();
+
+      Recordset recordSet = taskQueryExecutor().getRecordset(finalQuery);
+      TaskStateStatistic taskStateStatistic = createTaskStateStatistic(recordSet);
+      result.setTaskStateStatistic(taskStateStatistic);
+      return result;
+    });
+  }
+  
+  private TaskStateStatistic createTaskStateStatistic(Recordset recordSet) {
+    TaskStateStatistic taskStateStatistic = new TaskStateStatistic();
+    taskStateStatistic.setNumberOfTasksByState(new HashMap<>());
+    if (recordSet != null) {
+      recordSet.getRecords().forEach(record -> {
+        int state = Integer.parseInt(record.getField("STATE").toString());
+        long numberOfTasks = Long.parseLong(record.getField("COUNT").toString());
+        taskStateStatistic.getNumberOfTasksByState().put(state, numberOfTasks);
+      });
+    }
+    return taskStateStatistic;
+  }
+
+  @Override
+  public IvyTaskResultDTO analyzeTaskCategoryStatistic(TaskSearchCriteria criteria) {
+    return IvyExecutor.executeAsSystem(() -> {
+      IvyTaskResultDTO result = new IvyTaskResultDTO();
+      TaskQuery finalQuery = extendQueryWithInvolvedUser(criteria);
+      finalQuery.aggregate().countRows().groupBy().category().orderBy().category();
+
+      Recordset recordSet = taskQueryExecutor().getRecordset(finalQuery);
+      TaskCategoryStatistic taskStateStatistic = createTaskCategoryStatistic(recordSet);
+      result.setTaskCategoryStatistic(taskStateStatistic);
+      return result;
+    });
+  }
+
+  private TaskCategoryStatistic createTaskCategoryStatistic(Recordset recordSet) {
+    TaskCategoryStatistic taskCategoryStatistic = new TaskCategoryStatistic();
+    taskCategoryStatistic.setNumberOfTasksByCategory(new HashMap<>());
+    if (recordSet != null) {
+      recordSet.getRecords().forEach(record -> {
+        long numberOfTasks = Long.parseLong(record.getField("COUNT").toString());
+        taskCategoryStatistic.getNumberOfTasksByCategory().put(record.getField("CATEGORY").toString(), numberOfTasks);
+      });
+    }
+    return taskCategoryStatistic;
+  }
+
   private ExpiryStatistic createExpiryTimeStampToCountMap(Recordset recordSet) throws ParseException {
     ExpiryStatistic expiryStatistic = new ExpiryStatistic();
     Map<Date, Long> numberOfTasksByExpiryTime = new HashMap<>();
