@@ -184,6 +184,11 @@
 .u-no-padding-bottom {
   padding-bottom: 0 !important;
 }
+@media ( max-width : 767px) {
+  .u-no-padding-bottom-sm-down {
+    padding-bottom: 0 !important;
+  }
+}
 
 .u-no-padding-left {
   padding-left: 0 !important;
@@ -372,3 +377,7 @@
   font-weight: bold;
 }
 /* For Serenity theme - End */
+
+.u-default-cursor {
+  cursor: default;
+}

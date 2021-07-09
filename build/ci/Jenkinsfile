@@ -25,7 +25,7 @@ pipeline {
       steps {
         script {
           builtModules = []
-          config = [singleAppEngine: [applications: ['Portal'], engineDir : 'D:/tools/ivy-server/trunk'] ,multiAppsEngine: [applications: ['Portal', 'App1', 'App2'], , engineDir : 'D:/tools/ivy-server/trunk-1']]
+          config = [singleAppEngine: [applications: ['Portal_Dashboard'], engineDir : 'D:/tools/ivy-server/trunk'] ,multiAppsEngine: [applications: ['Portal', 'App1', 'App2'], , engineDir : 'D:/tools/ivy-server/trunk-1']]
           applications = config[params.engine]['applications']
           engineDir = config[params.engine]['engineDir']
 
@@ -35,10 +35,10 @@ pipeline {
             changeLog = bat(script: "git diff --name-only ${env.GIT_COMMIT} ${env.GIT_PREVIOUS_SUCCESSFUL_COMMIT}", returnStdout: true)
           }
           for (module in modules) {
-            if (changeLog.contains(module) || params.modulesMustBeBuilt.contains(module.split('/')[1]) || params.engine == 'multiAppsEngine') {
+            // if (changeLog.contains(module) || params.modulesMustBeBuilt.contains(module.split('/')[1]) || params.engine == 'multiAppsEngine') {
               builtModules.add(module)
               bat "mvn clean install -f ${module}/pom.xml"
-            }
+            //}
           }
           bat "mvn clean test -f AxonIvyPortal/PortalTest/pom.xml -Dtest=ch.ivy.addon.**.*Test"
           archiveArtifacts artifacts: "*/*/target/*.iar", allowEmptyArchive: true
