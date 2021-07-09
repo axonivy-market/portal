@@ -26,7 +26,8 @@ public class AdminSettingBean implements Serializable {
       Integer activeTabIndex = tabView.getChildren().indexOf(tabChangeEvent.getTab());
 
       IvyComponentLogicCaller<String> adminSettingTabChange = new IvyComponentLogicCaller<>();
-      adminSettingTabChange.invokeComponentLogic(ADMIN_TAB_VIEW_ID, "#{logic.onTabChange}", new Object[] {activeTabIndex});
+      String componentId = Attrs.currentContext().getBuildInAttribute("clientId");
+      adminSettingTabChange.invokeComponentLogic(componentId, "#{logic.onTabChange}", new Object[] {activeTabIndex});
     }
   }
 
@@ -43,7 +44,8 @@ public class AdminSettingBean implements Serializable {
     }
 
     IvyComponentLogicCaller<String> applicationReorder = new IvyComponentLogicCaller<>();
-    applicationReorder.invokeComponentLogic(ADMIN_TAB_VIEW_ID, "#{logic.onApplicationReorder}",
+    String componentId = Attrs.currentContext().getBuildInAttribute("clientId");
+    applicationReorder.invokeComponentLogic(componentId, "#{logic.onApplicationReorder}",
         new Object[] {applicationList, selectedApp});
   }
 }

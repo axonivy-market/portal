@@ -51,10 +51,9 @@
                   cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" editor="true">
                   <f:facet name="output">
                     <h:panelGroup id="priority-icon">
-                      <h:panelGroup
-                        styleClass="fa fa-circle task-priority-#{task.priority.toString().toLowerCase()} task-details-data-priority-icon" />
-                      <h:outputText value="#{taskBean.getPriority(task.priority)}" />
-                      <i jsf:rendered="#{!cc.attrs.readOnly}" class="si si-graphic-tablet-drawing-pen" />
+                      <ic:ch.ivy.addon.portalkit.component.task.column.TaskPriority
+                        id="task-priority-component" priority="#{task.priority}"
+                        showIconWithText="true" showEditIcon="#{!cc.attrs.readOnly}"/>
                     </h:panelGroup>
                   </f:facet>
                   <p:ajax event="save" update="priority-form" />
@@ -72,9 +71,8 @@
               </h:form>
             </ui:fragment>
             <ui:fragment rendered="#{not taskActionBean.canChangePriority(task)}">
-              <h:panelGroup
-                styleClass="fa fa-circle task-priority-#{task.priority.toString().toLowerCase()} task-details-data-priority-icon" />
-              <h:outputText value="#{taskBean.getPriority(task.priority)}" />
+              <ic:ch.ivy.addon.portalkit.component.task.column.TaskPriority
+                priority="#{task.priority}" showIconWithText="true" />
             </ui:fragment>
           </h:panelGroup>
         </div>
@@ -87,8 +85,8 @@
         </div>
         <div class="ui-g-12 no-padding-column text-content last-line text-ellipsis">
           <h:panelGroup id="task-detail-state" styleClass="state-cell default-task-cell">
-            <h:panelGroup id="task-detail-state-icon" styleClass="#{taskBean.getStateIcon(state)}" />
-            <h:outputText value="#{taskBean.getTranslatedState(state)}" styleClass="task-detail-state" />
+            <ic:ch.ivy.addon.portalkit.component.task.column.TaskState
+              state="#{task.state}" showIndicatorBesideText="true"/>
           </h:panelGroup>
           <p:tooltip rendered="#{state == 'FAILED' or state == 'JOIN_FAILED'}" for="task-detail-state"
             value="#{taskBean.getTaskFailedReason(task)}" trackMouse="true" hideEvent="mouseleave click" />
