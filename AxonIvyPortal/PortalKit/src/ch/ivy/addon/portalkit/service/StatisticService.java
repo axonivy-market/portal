@@ -113,6 +113,7 @@ import ch.ivy.addon.portalkit.bo.PriorityStatistic;
 import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.dto.DisplayName;
+import ch.ivy.addon.portalkit.enums.ExternalVariable;
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.enums.StatisticChartType;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCustomFieldSearchCriteria;
@@ -1402,6 +1403,6 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
 
   @Override
   public String getConfigKey() {
-    return "Portal.StatisticCharts";
+    return ExternalVariable.STATISTIC_CHART.key;
   }
 }

@@ -17,7 +17,9 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.model.CheckboxTreeNode;
 
+import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
+import ch.ivy.addon.portalkit.bo.Process;
 import ch.ivy.addon.portalkit.configuration.ExternalLink;
 import ch.ivy.addon.portalkit.dto.dashboard.ProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.process.DashboardProcess;
@@ -276,6 +278,14 @@ public class DashboardProcessBean implements Serializable {
     } else {
       FacesContext.getCurrentInstance().getExternalContext().redirect(link);
     }
+  }
+
+  public boolean isCaseMap(DashboardProcess process) {
+    return !Objects.isNull(process) && process.getStartLink().endsWith(".icm");
+  }
+
+  public String getProcessInformationPageUrl(DashboardProcess process) {
+    return PortalNavigator.buildProcessInfoUrl(process.getId());
   }
 
   public void updateProcessStartId() {

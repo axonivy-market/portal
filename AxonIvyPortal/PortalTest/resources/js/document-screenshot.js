@@ -20,6 +20,10 @@ function createRedMediumOutline($element) {
   $element.addClass("red-medium-outline");
 }
 
+function createRedMediumBorder($element) {
+  $element.addClass("red-medium-border");
+}
+
 function createRedThickOutlineWithOffset($element) {
   $element.addClass("red-thick-outline");
   $element.addClass("red-outline-thick-offset");
@@ -120,30 +124,41 @@ function highlightAddExternalDialogItem() {
 }
 
 function highlightProcessItems() {
-  var processSearch = $('#process-widget\\:process-search');
+  var processSearch = $('[id$="process-widget:process-search"]');
   createRedMediumOutline(processSearch);
   appendStepAnnotation(processSearch, "1", -5, processSearch.width() - 40);
   
-  var expressLogo = $('.is-express .si-startup-launch:eq(0)');
+  var expressLogo = $('.express-workflow .image-process-icon:eq(0)');
   createRedMediumOutline(expressLogo);
   appendStepAnnotation(expressLogo, "2", -15, -30);
   
-  var externalLink = $('.is-external-link .si-hyperlink-3:eq(0)');
+  var externalLink = $('.js-external-link-process-item .image-process-icon:eq(0)');
   createRedMediumOutline(externalLink);
   appendStepAnnotation(externalLink, "3", -15, -30);
   
-  createRedMediumOutline($('[id$="process-widget:process-view-mode:process-view"]'));
-  appendStepAnnotation($("[id$='process-widget:process-view-mode'] label[class$='switch-active']"), "4", -10, -40);
+  createRedMediumOutline($('[id$="process-widget:process-view-mode:view-mode-selection"]'));
+  appendStepAnnotation($("[id$='process-widget:process-view-mode:view-mode-selection'] div[class$='ui-state-active']"), "4", -10, -40);
 }
 
 function highlightEditProcessIcon() {
-  appendStepAnnotation($("[id$='process-widget:edit-process-form:edit-process-icon:awesome-icon-selection']"), "2", -10, 100);
+  appendStepAnnotation($("[id$='process-widget:edit-process-form:edit-process-icon:awesome-icon-selection']"), "4", -10, 100);
+}
+
+function highlightEditProcessDialog() {
+  var dialogTitle = $('#process-widget\\:edit-process-dialog_title');
+  appendStepAnnotation(dialogTitle, "3", 0, dialogTitle.width());
 }
 
 function highlightEditProcessLink() {
-  let editProcessLink = $('[id$="grid-process-group-alphabet:0:grid-processes:0:process-item:edit-link"]');
-  createRedMediumOutline(editProcessLink);
-  appendStepAnnotation(editProcessLink, "1", -10, -40);
+  let editProcessLink = $('[id$="process-widget:image-process-group-alphabet:0:image-processes:0:process-item:process-edit"]');
+  createRedMediumBorder(editProcessLink);
+  appendStepAnnotation(editProcessLink, "2", -10, -40);
+}
+
+function highlightProcessMoreMenuButton() {
+  let processMoreMenuButton = $('[id$="process-widget:image-process-group-alphabet:0:image-processes:0:process-item:dynaButton"]');
+  createRedMediumBorder(processMoreMenuButton);
+  appendStepAnnotation(processMoreMenuButton, "1", -10, -40);
 }
 
 function numberingStatisticWidget() {
@@ -475,4 +490,22 @@ function highlightProcessOverviewLink() {
   $(".task-detail-section-title").removeClass("u-truncate-text");
   $(".case-history-button-container").removeClass("u-truncate-text");
   createRedMediumOutline($("a[id$=':show-process-overview-link']"));
+}
+
+function highlightCustomWidgetInCaseDetails() {
+  createRedMediumOutline($(".custom-widget-card"));
+}
+
+function addStepToCustomWidgetTopTaskDetails() {
+  var topWidget = $(".custom-task-details-panel-top");
+  appendStepAnnotation(topWidget, 1, -30, topWidget.width()/2)
+}
+
+function addStepTCustomWidgetTopTaskDetails() {
+  var bottomWidget = $(".custom-task-details-panel-bottom");
+  appendStepAnnotation(bottomWidget, 2, -30, bottomWidget.width()/2)
+}
+
+function highlightIFrameWidgetTaskDetails() {
+  createRedMediumOutline($(".custom-widget-card.task-detail-card"));
 }

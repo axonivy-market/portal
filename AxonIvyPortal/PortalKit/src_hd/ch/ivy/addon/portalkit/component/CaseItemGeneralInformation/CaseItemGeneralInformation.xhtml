@@ -38,8 +38,7 @@
         </div>
         <div class="ui-g-12 no-padding-column text-content last-line text-ellipsis">
           <h:panelGroup id="case-state" styleClass="case-header-default-cell">
-            <span class="#{caseBean.getCaseStateIcon(case.state)}" />
-            <h:outputText value="#{caseBean.getState(case)}" styleClass="case-details-state" />
+            <ic:ch.ivy.addon.portalkit.component.cases.column.CaseState case="#{case}" showIndicatorBesideText="true" />
           </h:panelGroup>
         </div>
       </div>

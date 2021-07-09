@@ -55,27 +55,27 @@
     <h:panelGroup class="task-item-body-container task-details-widgets u-padding-0 grid-stack" id="task-details-widgets"
       rendered="#{not empty taskDetailsBean.widgets}">
 
-      <c:if test="#{taskDetailsBean.getWidgetPositionByType('TaskDetailsInformationWidget') gt -1}">
+      <c:if test="#{taskDetailsBean.getWidgetPositionByType('InformationWidget') gt -1}">
         <c:set var="informationWidgetComponent"
-          value="#{cc.clientId}:widgets:#{taskDetailsBean.getWidgetPositionByType('TaskDetailsInformationWidget')}:task-detail-general-container" />
+          value="#{cc.clientId}:widgets:#{taskDetailsBean.getWidgetPositionByType('InformationWidget')}:task-detail-general-container" />
       </c:if>
-      <c:if test="#{taskDetailsBean.getWidgetPositionByType('TaskDetailsDocumentWidget') gt -1}">
+      <c:if test="#{taskDetailsBean.getWidgetPositionByType('DocumentWidget') gt -1}">
         <c:set var="documentWidgetComponent"
-          value="#{cc.clientId}:widgets:#{taskDetailsBean.getWidgetPositionByType('TaskDetailsDocumentWidget')}:task-documents:task-details-documents" />
+          value="#{cc.clientId}:widgets:#{taskDetailsBean.getWidgetPositionByType('DocumentWidget')}:task-documents:task-details-documents" />
       </c:if>
-      <c:if test="#{taskDetailsBean.getWidgetPositionByType('TaskDetailsHistoryWidget') gt -1}">
+      <c:if test="#{taskDetailsBean.getWidgetPositionByType('HistoryWidget') gt -1}">
         <c:set var="historyWidgetComponent"
-          value="#{cc.clientId}:widgets:#{taskDetailsBean.getWidgetPositionByType('TaskDetailsHistoryWidget')}:task-detail-note-container" />
+          value="#{cc.clientId}:widgets:#{taskDetailsBean.getWidgetPositionByType('HistoryWidget')}:task-detail-note-container" />
       </c:if>
 
       <ui:repeat var="widget" value="#{taskDetailsBean.widgets}" id="widgets">
         <div id="task-details-#{widget.type}-panel" class="#{widget.layout.styleClass} grid-stack-item" style="#{widget.layout.style}"
-          widget-type="#{widget.class.simpleName}" data-gs-x="#{widget.layout.axisX}" data-gs-y="#{widget.layout.axisY}" data-gs-width="#{widget.layout.width}"
+          widget-type="#{widget.type}" data-gs-x="#{widget.layout.axisX}" data-gs-y="#{widget.layout.axisY}" data-gs-width="#{widget.layout.width}"
           data-gs-height="#{widget.layout.height}" data-gs-id="#{widget.id}" data-gs-no-resize="#{taskDetailsBean.readOnlyMode}"
           data-gs-no-move="#{taskDetailsBean.readOnlyMode}">
 
           <!-- General & description box -->
-          <h:panelGroup id="task-detail-general-container" layout="block" rendered="#{widget.class.simpleName eq 'TaskDetailsInformationWidget'}"
+          <h:panelGroup id="task-detail-general-container" layout="block" rendered="#{widget.type eq 'information'}"
             styleClass="card custom-general-panel grid-stack-item-content #{taskDetailsBean.readOnlyMode ? '' : 'moveable-area'}">
             <div class="task-detail-section-title u-truncate-text ui-g-12 ui-xl-12 ui-lg-12 ui-md-12 ui-sm-12 u-padding-0 ">
               <div class="task-details-description-title u-truncate-text ui-g-7 task-details-panel-title">
@@ -117,7 +117,7 @@
           <!-- Document box -->
           <f:event listener="#{logic.getHideTaskDocumentConfiguration}" type="preRenderComponent" />
           <h:panelGroup id="task-detail-document-container"
-            rendered="#{cc.attrs.showItemDetailDocuments and !data.isHideTaskDocument and widget.class.simpleName eq 'TaskDetailsDocumentWidget'}"
+            rendered="#{cc.attrs.showItemDetailDocuments and !data.isHideTaskDocument and widget.type eq 'document'}"
             styleClass="card task-detail-card grid-stack-item-content #{taskDetailsBean.readOnlyMode ? '' : 'moveable-area'}">
             <ic:ch.ivy.addon.portalkit.component.TaskItemDocuments id="task-documents" task="#{task}"
               componentToUpdate="#{informationWidgetComponent} #{historyWidgetComponent}" />
@@ -125,45 +125,27 @@
 
           <!-- Notes box -->
           <h:panelGroup id="task-detail-note-container"
-            rendered="#{cc.attrs.showItemDetailsNotes and widget.class.simpleName eq 'TaskDetailsHistoryWidget'}"
+            rendered="#{cc.attrs.showItemDetailsNotes and widget.type eq 'history'}"
             styleClass="card task-detail-card grid-stack-item-content #{taskDetailsBean.readOnlyMode ? '' : 'moveable-area'}">
             <ic:ch.ivy.addon.portalkit.component.TaskItemNotes id="task-notes" task="#{task}" />
           </h:panelGroup>
 
           <!-- taskItemDetailCustomPanelTop box -->
           <h:panelGroup id="taskItemDetailCustomPanelTop"
-            rendered="#{widget.class.simpleName eq 'TaskDetailsCustomWidget' and widget.data.type eq 'taskItemDetailCustomPanelTop'}"
+            rendered="#{widget.type eq 'custom' and widget.data.type eq 'taskItemDetailCustomPanelTop'}"
             styleClass="card task-detail-card grid-stack-item-content #{taskDetailsBean.readOnlyMode ? '' : 'moveable-area'}">
             <cc:renderFacet name="taskItemDetailCustomPanelTop" />
           </h:panelGroup>
 
           <!-- taskItemDetailCustomPanelBottom box -->
           <h:panelGroup id="taskItemDetailCustomPanelBottom"
-            rendered="#{widget.class.simpleName eq 'TaskDetailsCustomWidget' and widget.data.type eq 'taskItemDetailCustomPanelBottom'}"
+            rendered="#{widget.type eq 'custom' and widget.data.type eq 'taskItemDetailCustomPanelBottom'}"
             styleClass="card task-detail-card grid-stack-item-content #{taskDetailsBean.readOnlyMode ? '' : 'moveable-area'}">
             <cc:renderFacet name="taskItemDetailCustomPanelBottom" />
           </h:panelGroup>
 
-          <h:panelGroup id="custom-iframe"
-            rendered="#{(widget.class.simpleName eq 'TaskDetailsCustomWidget') and (not empty widget.data.url)}"
-            styleClass="card task-detail-card grid-stack-item-content #{taskDetailsBean.readOnlyMode ? '' : 'moveable-area'} iframe-widget">
-            <ui:fragment rendered="#{not empty widget.data.processStart}">
-              <form id="custom-widget-iframe-data" target="custom-widget-iframe" action="#{widget.data.url}" method="post">
-                <ui:repeat var="entry" value="#{widget.data.params.entrySet()}">
-                  <input type="hidden" name="#{entry.key}" value="#{taskDetailsBean.getTaskPropertyByKeyPattern(task, entry.value)}" />
-                </ui:repeat >
-              </form>
-              <iframe name="custom-widget-iframe" />
-              <script type="text/javascript">
-                $(function() {
-                    $('form[id="custom-widget-iframe-data"]').submit();
-                });
-              </script>
-            </ui:fragment>
-            <ui:fragment rendered="#{empty widget.data.processStart}">
-              <iframe src="#{widget.data.url}" />
-            </ui:fragment>
-          </h:panelGroup>
+          <ic:ch.ivy.addon.portalkit.component.CustomIFrameWidget widget="#{widget}" referenceId="#{task.id}"
+            managedBean="#{taskDetailsBean}" widgetStyleClass="task-detail-card" />
 
         </div>
       </ui:repeat>

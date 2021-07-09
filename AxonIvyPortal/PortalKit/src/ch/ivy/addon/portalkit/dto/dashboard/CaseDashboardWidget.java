@@ -38,6 +38,7 @@ import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;
+import ch.ivy.addon.portalkit.ivydata.searchcriteria.DashboardCaseSearchCriteria;
 import ch.ivy.addon.portalkit.service.IvyAdapterService;
 import ch.ivy.addon.portalkit.util.CaseTreeUtils;
 import ch.ivy.addon.portalkit.util.CategoryUtils;
@@ -48,6 +49,7 @@ public class CaseDashboardWidget extends DashboardWidget {
   private static final long serialVersionUID = 3048837559125720787L;
   private static final String CRITERIA_PARAM = "caseSearchCriteria";
 
+  private int rowsPerPage = 10;
   @JsonIgnore
   private DashboardCaseLazyDataModel dataModel;
   @JsonIgnore
@@ -58,7 +60,8 @@ public class CaseDashboardWidget extends DashboardWidget {
   private Map<CaseState, Long> caseByStateStatistic;
   @JsonIgnore
   private Map<String, Long> caseByCategoryStatistic;
-  private int rowsPerPage = 10;
+  @JsonIgnore
+  private List<String> prevUserFilterCategories;
 
   public CaseDashboardWidget() {
     dataModel = new DashboardCaseLazyDataModel();
@@ -87,6 +90,9 @@ public class CaseDashboardWidget extends DashboardWidget {
   public void buildCategoryTree() {
     this.categoryTree = CaseTreeUtils.buildCaseCategoryCheckboxTreeRoot();
     CategoryUtils.disableSelectionExcept(this.categoryTree, getCategories());
+    if (CollectionUtils.isNotEmpty(getUserFilterCategories())) {
+      CategoryUtils.recoverSelectedCategories(this.categoryTree, getUserFilterCategories());
+    }
   }
 
   @Override
@@ -255,6 +261,7 @@ public class CaseDashboardWidget extends DashboardWidget {
   @JsonIgnore
   public void onApplyUserFilters() throws ParseException {
     this.userDefinedFiltersCount = countDefinedUserFilter(this);
+    this.prevUserFilterCategories = getUserFilterCategories();
   }
 
   @JsonIgnore
@@ -406,6 +413,11 @@ public class CaseDashboardWidget extends DashboardWidget {
       column.setUserDateFilterFrom(null);
       column.setUserDateFilterTo(null);
     }
+    if (Optional.ofNullable(dataModel)
+        .map(DashboardCaseLazyDataModel::getCriteria)
+        .map(DashboardCaseSearchCriteria::getUserFilterCategories).isPresent()) {
+      dataModel.getCriteria().getUserFilterCategories().clear();
+    }
   }
 
   @Override
@@ -421,4 +433,16 @@ public class CaseDashboardWidget extends DashboardWidget {
     this.rowsPerPage = rowsPerPage;
   }
 
+  public void backupPrevUserFilterCategories() {
+    this.prevUserFilterCategories = getUserFilterCategories();
+  }
+  
+  public void restoreUserFilterCategories() {
+    setUserFilterCategories(this.prevUserFilterCategories);
+  }
+
+  @Override
+  public void onCancelUserFilters() {
+    restoreUserFilterCategories();
+  }
 }

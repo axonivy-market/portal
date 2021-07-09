@@ -1,0 +1,41 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="widget" required="true" />
+  <cc:attribute name="managedBean" required="true" shortDescription="The bean is extending from AbstractConfigurableContentBean"/>
+  <cc:attribute name="referenceId" required="true" type="java.lang.Long" shortDescription="The ID of task or case, which is calling this widget" />
+  <cc:attribute name="widgetStyleClass" />
+</cc:interface>
+
+<cc:implementation>
+  <c:set var="widget" value="#{cc.attrs.widget}" />
+  <c:set var="referenceId" value="#{cc.attrs.referenceId}" />
+  <c:set var="managedBean" value="#{cc.attrs.managedBean}" />
+
+  <h:panelGroup id="custom-iframe" rendered="#{(widget.type eq 'custom') and (not empty widget.data.url)}"
+    styleClass="card custom-widget-card #{cc.attrs.widgetStyleClass} grid-stack-item-content #{managedBean.readOnlyMode ? '' : 'moveable-area'} iframe-widget">
+    <ui:fragment rendered="#{not empty widget.data.processStart}">
+      <form id="custom-widget-iframe-data" target="custom-widget-iframe" action="#{widget.data.url}" method="post">
+        <ui:repeat var="entry" value="#{widget.data.params.entrySet()}">
+          <input type="hidden" name="#{entry.key}"
+            value="#{managedBean.getPropertyByKeyPattern(referenceId, entry.value)}" />
+        </ui:repeat>
+      </form>
+      <iframe name="custom-widget-iframe" />
+      <script type="text/javascript">
+         $(function() {
+             $('form[id="custom-widget-iframe-data"]').submit();
+         });
+       </script>
+    </ui:fragment>
+    <ui:fragment rendered="#{empty widget.data.processStart}">
+      <iframe name="custom-widget-iframe-url" src="#{widget.data.url}" />
+    </ui:fragment>
+  </h:panelGroup>
+
+</cc:implementation>
+
+</html>
