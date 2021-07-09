@@ -235,3 +235,10 @@
 .card-item.card.photo-item-example {
   height: 354px;
 }
+
+.custom-style-class>.card.case-detail-card {
+  background: hsl(195deg 100% 29%/ 75%);
+  outline: #007095;
+  outline-width: 2px;
+  outline-style: auto;
+}
