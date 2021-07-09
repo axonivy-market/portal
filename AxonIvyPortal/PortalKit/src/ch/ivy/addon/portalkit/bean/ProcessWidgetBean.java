@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.text.Collator;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -28,6 +29,7 @@ import ch.ivy.addon.portalkit.bo.PortalExpressProcess;
 import ch.ivy.addon.portalkit.bo.Process;
 import ch.ivy.addon.portalkit.configuration.ExternalLink;
 import ch.ivy.addon.portalkit.configuration.GlobalSetting;
+import ch.ivy.addon.portalkit.enums.DefaultImage;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.enums.ProcessMode;
@@ -41,6 +43,8 @@ import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
+import ch.ivyteam.ivy.application.IProcessModel;
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
@@ -50,24 +54,29 @@ public class ProcessWidgetBean implements Serializable {
 
   private static final long serialVersionUID = -5889375917550618261L;
   private static final String SPECIAL_CHARACTER_KEY = "SPECIAL_CHARACTER";
+  private static final String DEFAULT_IMAGE_URI_CMS = "/images/process/DEFAULTIMAGE";
+  private static final String DEFAULT_IMAGE_CMS_FOLDER = "/images/process/";
+  private static final int LAST_POSITION_OF_PROCESS_MODEL_NAME_IN_START_LINK = 3;
 
-  private String processWidgetComponentId;
+  private static final String SLASH = "/";
   private Process deletedProcess;
   private Process editedProcess;
   private ExternalLink editedExternalLink;
   private String selectedIconProcess;
-  private boolean isListMode;
+  private String viewMode;
+  private List<ProcessMode> processViewModes;
 
   private IProcessStart createExpressWorkflowProcessStart;
   private Map<String, List<Process>> processesByAlphabet;
   List<Process> portalProcesses;
 
+  private String defaultImage = StringUtils.EMPTY;
+  private String defaultImageType = DefaultImage.DEFAULT.name();
+
   @PostConstruct
   public void init() {
-    processWidgetComponentId = Attrs.currentContext().getBuildInAttribute("clientId");
-    
     initProcessViewMode();
-    
+    initDefaultProcessImage();
     ProcessStartCollector collector = new ProcessStartCollector();
     createExpressWorkflowProcessStart = collector.findExpressCreationProcess();
 
@@ -76,11 +85,12 @@ public class ProcessWidgetBean implements Serializable {
     portalProcesses.addAll(findExternalLink());
     sortProcesses(portalProcesses);
     groupProcessesByAlphabetIndex(portalProcesses);
+
   }
 
   public String getProcessInformationPageUrl(Process process) {
     String processId = StringUtils.EMPTY;
-    
+
     Object nestedProcess = process.getProcess();
     if (nestedProcess instanceof IWebStartable) {
       processId = ((IWebStartable) nestedProcess).getId();
@@ -90,13 +100,31 @@ public class ProcessWidgetBean implements Serializable {
 
   private void initProcessViewMode() {
     String userProcessSetting = UserSettingService.newInstance().getDefaultProcessMode();
-    if (StringUtils.isBlank(userProcessSetting) || StringUtils.equalsIgnoreCase(userProcessSetting, UserSettingService.DEFAULT)) {
+    viewMode = getViewModeFromUserProcessSetting(userProcessSetting);
+  }
+
+  private String getViewModeFromUserProcessSetting(String userProcessSetting) {
+    if (StringUtils.isBlank(userProcessSetting)
+        || StringUtils.equalsIgnoreCase(userProcessSetting, UserSettingService.DEFAULT)) {
       GlobalSettingService globalSettingService = new GlobalSettingService();
-      GlobalSetting defaultSetting = globalSettingService.findGlobalSettingByGlobalVariable(GlobalVariable.DEFAULT_PROCESS_MODE);
-      userProcessSetting = defaultSetting.getDisplayValue();
+      GlobalSetting defaultSetting =
+          globalSettingService.findGlobalSettingByGlobalVariable(GlobalVariable.DEFAULT_PROCESS_MODE);
+      return getProcessModeByLabel(defaultSetting.getDisplayValue());
     }
 
-    isListMode = ProcessMode.LIST.getLabel().equalsIgnoreCase(userProcessSetting) ? true : false;
+    return getProcessModeByLabel(userProcessSetting);
+  }
+
+  private String getProcessModeByLabel(String processLabel) {
+    return Arrays.stream(ProcessMode.values()).filter(e -> processLabel.equalsIgnoreCase(e.getLabel())).findFirst()
+        .orElse(ProcessMode.IMAGE).toString();
+  }
+
+  private void initDefaultProcessImage() {
+    GlobalSettingService globalSettingService = new GlobalSettingService();
+    GlobalSetting defaultSetting =
+        globalSettingService.findGlobalSettingByGlobalVariable(GlobalVariable.DEFAULT_PROCESS_IMAGE);
+    defaultImageType = defaultSetting.getDisplayValue().toUpperCase();
   }
 
   private void groupProcessesByAlphabetIndex(List<Process> processes) {
@@ -133,7 +161,7 @@ public class ProcessWidgetBean implements Serializable {
     }
     return firstLetter;
   }
-  
+
   private void addOrUpdateProcessesByKey(Process process, String key) {
     if (!processesByAlphabet.containsKey(key)) {
       List<Process> processes = new ArrayList<>();
@@ -146,11 +174,55 @@ public class ProcessWidgetBean implements Serializable {
 
   private List<Process> findProcesses() {
     IvyComponentLogicCaller<List<IWebStartable>> ivyComponentLogicCaller = new IvyComponentLogicCaller<>();
-    List<IWebStartable> processes = ivyComponentLogicCaller.invokeComponentLogic(processWidgetComponentId,
-        "#{logic.collectProcesses}", new Object[] {});
+    String componentId = Attrs.currentContext().getBuildInAttribute("clientId");
+    List<IWebStartable> processes =
+        ivyComponentLogicCaller.invokeComponentLogic(componentId, "#{logic.collectProcesses}", new Object[] {});
     List<Process> defaultPortalProcesses = new ArrayList<>();
-    processes.forEach(process -> defaultPortalProcesses.add(new IvyProcess(process)));
+    processes.forEach(iWebStartable -> {
+      IvyProcess ivyProcess = new IvyProcess(iWebStartable);
+      updateDefaultProcessImage(ivyProcess);
+      defaultPortalProcesses.add(ivyProcess);
+    });
     return defaultPortalProcesses;
+  }
+
+  private void updateDefaultProcessImage(IvyProcess ivyProcess) {
+    if (this.defaultImageType.equals(DefaultImage.DEFAULT.name())) {
+      if (StringUtils.isBlank(this.defaultImage)) {
+        this.defaultImage = findProcessDefaultImageSrc(ivyProcess);
+      }
+      ivyProcess.setDefaultImageSrc(this.defaultImage);
+    } else {
+      ivyProcess.setDefaultImageCms(DEFAULT_IMAGE_CMS_FOLDER + this.defaultImageType);
+      ivyProcess.setDefaultImageSrc(StringUtils.EMPTY);
+    }
+  }
+
+  private String findProcessDefaultImageSrc(IvyProcess process) {
+    if (process == null || StringUtils.isBlank(process.getStartLink())) {
+      return StringUtils.EMPTY;
+    }
+
+    String[] processParts = process.getStartLink().split(SLASH);
+    String processModelName = processParts[processParts.length - LAST_POSITION_OF_PROCESS_MODEL_NAME_IN_START_LINK];
+    return IvyExecutor.executeAsSystem(() -> {
+      return getDefaultImageUri(processModelName);
+    });
+  }
+
+  private String getDefaultImageUri(String processModelName) {
+    String defaultImageUri = StringUtils.EMPTY;
+    IProcessModel pm = Ivy.wf().getApplication().findProcessModel(processModelName);
+    if (pm != null) {
+      defaultImageUri =
+          Ivy.cms().getContentManagement().findCms(pm.getReleasedProcessModelVersion()).co(DEFAULT_IMAGE_URI_CMS);
+      if (StringUtils.isNotBlank(defaultImageUri)) {
+        int indexOfDefaultImageUri = defaultImageUri.indexOf("/cm");
+        defaultImageUri = defaultImageUri.substring(indexOfDefaultImageUri).replaceAll("\"/>", StringUtils.EMPTY);
+      }
+    }
+
+    return defaultImageUri;
   }
 
   private List<Process> findExpressProcesses() {
@@ -169,14 +241,14 @@ public class ProcessWidgetBean implements Serializable {
     processes.forEach(process -> defaultPortalProcesses.add(new PortalExpressProcess(process)));
     return defaultPortalProcesses;
   }
-  
+
   private List<Process> findExternalLink() {
     List<ExternalLink> externalLinks = ExternalLinkService.getInstance().findAll();
     List<Process> defaultPortalProcesses = new ArrayList<>();
     externalLinks.forEach(externalLink -> defaultPortalProcesses.add(new ExternalLinkProcessItem(externalLink)));
     return defaultPortalProcesses;
   }
-  
+
   private void sortProcesses(List<Process> processes) {
     processes.sort((process1, process2) -> StringUtils.compareIgnoreCase(process1.getName(), process2.getName()));
   }
@@ -207,7 +279,8 @@ public class ProcessWidgetBean implements Serializable {
   public void deleteExpressWorkflow() {
     String workflowId = this.deletedProcess.getId();
     ExpressProcessService.getInstance().delete(workflowId);
-    portalProcesses.remove(portalProcesses.stream().filter(process -> process.getId().equals(deletedProcess.getId())).findFirst().get());
+    portalProcesses.remove(
+        portalProcesses.stream().filter(process -> process.getId().equals(deletedProcess.getId())).findFirst().get());
     groupProcessesByAlphabetIndex(portalProcesses);
   }
 
@@ -264,7 +337,8 @@ public class ProcessWidgetBean implements Serializable {
     String oldProcessNameFirstLetter = extractProcessFirstLetter(oldProcessName);
     String firstLetter = extractProcessFirstLetter(this.editedProcess.getName());
     if (!StringUtils.equals(oldProcessNameFirstLetter, firstLetter)) {
-      if (StringUtils.isNotEmpty(oldProcessNameFirstLetter) && this.processesByAlphabet.containsKey(oldProcessNameFirstLetter)) {
+      if (StringUtils.isNotEmpty(oldProcessNameFirstLetter)
+          && this.processesByAlphabet.containsKey(oldProcessNameFirstLetter)) {
         List<Process> processes = this.processesByAlphabet.get(oldProcessNameFirstLetter);
         processes.removeIf(editProcess -> editProcess.getId().equals(processId));
         sortProcesses(processes);
@@ -288,32 +362,30 @@ public class ProcessWidgetBean implements Serializable {
   public String getProcessIcon(Process process) {
     return process != null ? process.getIcon() : Process.DEFAULT_PROCESS_ICON;
   }
-  
+
   public void createNewExternalLink() {
-    ExternalLinkBean externalLinkBean = (ExternalLinkBean) FacesContext.getCurrentInstance()
-        .getApplication()
-        .getELResolver()
-        .getValue(FacesContext.getCurrentInstance().getELContext(), null, "externalLinkBean");
+    ExternalLinkBean externalLinkBean = (ExternalLinkBean) FacesContext.getCurrentInstance().getApplication()
+        .getELResolver().getValue(FacesContext.getCurrentInstance().getELContext(), null, "externalLinkBean");
     externalLinkBean.saveNewExternalLink();
     portalProcesses.add(new ExternalLinkProcessItem(externalLinkBean.getExternalLink()));
     sortProcesses(portalProcesses);
     groupProcessesByAlphabetIndex(portalProcesses);
   }
-  
+
   public void deleteExternalLink() {
     ExternalLinkService.getInstance().delete(this.deletedProcess.getId());
     portalProcesses.remove(portalProcesses.stream()
-        .filter(process -> process.getId().equals(this.deletedProcess.getId()))
-        .findFirst().get());
+        .filter(process -> process.getId().equals(this.deletedProcess.getId())).findFirst().get());
     groupProcessesByAlphabetIndex(portalProcesses);
   }
 
   public String getCreateExpessWorkflowLink() {
     return IvyExecutor.executeAsSystem(() -> {
-      return (createExpressWorkflowProcessStart != null) ? createExpressWorkflowProcessStart.getLink().getRelative() : StringUtils.EMPTY;
+      return (createExpressWorkflowProcessStart != null) ? createExpressWorkflowProcessStart.getLink().getRelative()
+          : StringUtils.EMPTY;
     });
   }
-  
+
   public void startExpressWorkflowCreationLink() throws IOException {
     FacesContext.getCurrentInstance().getExternalContext().redirect(getCreateExpessWorkflowLink());
     return;
@@ -330,7 +402,7 @@ public class ProcessWidgetBean implements Serializable {
       FacesContext.getCurrentInstance().getExternalContext().redirect(link);
       return;
     }
-     
+
     link += link.contains("?") ? "&" : "?";
     // Put the "embedInIFrame" param to the task start link to open it in the DefaultFramePage process
     // Then this process will open task in IFrame or not based on its "embedInIFrame" String custom field
@@ -386,41 +458,36 @@ public class ProcessWidgetBean implements Serializable {
         processGroups.put(SPECIAL_CHARACTER_KEY, "#");
       }
     }
-    
+
     return processGroups;
   }
 
-  public boolean isListMode() {
-    return isListMode;
+  public String getViewMode() {
+    return viewMode;
   }
 
-  public void setListMode(boolean isListMode) {
-    this.isListMode = isListMode;
+  public void setViewMode(String viewMode) {
+    this.viewMode = viewMode;
   }
 
   public boolean isIvyProcess(Process process) {
     return !Objects.isNull(process) && process.getType() == ProcessType.IVY_PROCESS;
   }
-  
+
   public boolean isExpressProcess(Process process) {
     return !Objects.isNull(process) && process.getType() == ProcessType.EXPRESS_PROCESS;
   }
-  
+
   public boolean isExternalLink(Process process) {
     return !Objects.isNull(process) && process.getType() == ProcessType.EXTERNAL_LINK;
   }
-  
+
   public boolean isCaseMap(Process process) {
     return !Objects.isNull(process) && process.getStartLink().endsWith(".icm");
-    
   }
-  
+
   public String targetToStartProcess(Process process) {
-    String target="_self";
-    if (process.getType() == ProcessType.EXTERNAL_LINK) {
-      target="_blank";
-    }
-    return target;
+    return process.getType() == ProcessType.EXTERNAL_LINK ? "_blank" : "_self";
   }
 
   public String getSelectedIconProcess() {
@@ -442,4 +509,20 @@ public class ProcessWidgetBean implements Serializable {
   public boolean canChangeProcessIcon() {
     return PermissionUtils.isSessionUserHasAdminRole();
   }
+
+  public List<ProcessMode> getProcessViewModes() {
+    return CollectionUtils.isEmpty(processViewModes) ? Arrays.asList(ProcessMode.values()) : new ArrayList<>();
+  }
+
+  public void setProcessViewModes(List<ProcessMode> processViewModes) {
+    this.processViewModes = processViewModes;
+  }
+
+  public String getDisplayProcessCategory(Process process) {
+    String categoryFullPath = process.getCategory();
+    String[] arrayOfCategoyPaths = categoryFullPath.split(SLASH);
+    int lengthOfCategoryPaths = arrayOfCategoyPaths.length;
+    return lengthOfCategoryPaths > 0 ? arrayOfCategoyPaths[lengthOfCategoryPaths - 1] : StringUtils.EMPTY;
+  }
+
 }

@@ -695,6 +695,10 @@ body .dashboard__table--preview.ui-datatable tbody tr.ui-state-hover {
   max-height: 90vh;
 }
 
+.new-widget-configuration-dialog .ui-dialog-content.ui-widget-content {
+  max-height: calc(90vh - 100px) !important;
+}
+
 .new-widget-configuration-dialog_content .widget-preview.widget-preview--process {
   min-width: 450px;
 }
