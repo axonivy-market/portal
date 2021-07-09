@@ -31,5 +31,11 @@ public enum PortalLibrary {
       
       return String.format("%s:%s", groupId, value);
     });
+    
+  }
+  
+  public String getProjectId() {
+    return value;
   }
 }
+
