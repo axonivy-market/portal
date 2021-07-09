@@ -5918,6 +5918,7 @@ body span.ui-commandlink .si {
 }
 
 .image-process-icon .process-image-view-icon {
+  width: 24px;
   font-size: 24px;
   margin: 12px;
 }
