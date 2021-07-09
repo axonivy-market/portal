@@ -74,7 +74,11 @@ public class UserSettingService {
   public String getDefaultProcessMode() {
     return getUserProperty(UserProperty.DEFAULT_PROCESS_MODE);
   }
-  
+
+  public String getDefaultProcessImage() {
+    return getUserProperty(UserProperty.DEFAULT_PROCESS_IMAGE);
+  }
+
   private String getUserProperty(String property) {
     if (Ivy.session().isSessionUserUnknown()) {
       return StringUtils.EMPTY;

@@ -9,6 +9,7 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.WebElement;
 
 import portal.guitest.bean.ExpressResponsible;
 import portal.guitest.common.BaseTest;
@@ -212,44 +213,60 @@ public class PortalExpressTest extends BaseTest {
 		startExpressProcess("Test approval");
 	}
 
-	@Test
-	public void testUserAdminCanViewEditDeleteProcess() {
-		createAdministratedWorkflow("Test approval", Arrays.asList(responsible1, groupHr), false);
-		login(TestAccount.ADMIN_USER);
-		GlobalSearch globalSearch = homePage.getGlobalSearch();
-		SearchResultPage searchResultPage = globalSearch.inputSearchKeyword("Test approval");
+  @Test
+  public void testUserAdminCanViewEditDeleteProcess() {
+    createAdministratedWorkflow("Test approval", Arrays.asList(responsible1, groupHr), false);
+    login(TestAccount.ADMIN_USER);
+    GlobalSearch globalSearch = homePage.getGlobalSearch();
+    SearchResultPage searchResultPage = globalSearch.inputSearchKeyword("Test approval");
 
-		assertTrue(searchResultPage.isInfoWorkflowIcon());
-		assertTrue(searchResultPage.isEditExpressWorkflow());
-		assertTrue(searchResultPage.isDeleteExpressWorkflown());
-		assertTrue(searchResultPage.isExpressProcessLogo());
-	}
+    WebElement expressWorkflow = searchResultPage.findElementByClassName("express-workflow");
+    WebElement moreMenuButton =
+        searchResultPage.findChildElementByCssSelector(expressWorkflow, "button[id$=':process-item:dynaButton']");
+    moreMenuButton.click();
 
-	@Test
-	public void testUserCreatorCanViewEditDeleteProcess() {
-		createAdministratedWorkflow("Test approval", Arrays.asList(responsible1, groupHr), false);
-		GlobalSearch globalSearch = homePage.getGlobalSearch();
-		SearchResultPage searchResultPage = globalSearch.inputSearchKeyword("Test approval");
+    assertTrue(searchResultPage.isInfoWorkflowIcon());
+    assertTrue(searchResultPage.isEditExpressWorkflow());
+    assertTrue(searchResultPage.isDeleteExpressWorkflown());
+    assertTrue(searchResultPage.isExpressProcessLogo());
+  }
 
-		assertTrue(searchResultPage.isInfoWorkflowIcon());
-		assertTrue(searchResultPage.isEditExpressWorkflow());
-		assertTrue(searchResultPage.isDeleteExpressWorkflown());
-		assertTrue(searchResultPage.isExpressProcessLogo());
-	}
+  @Test
+  public void testUserCreatorCanViewEditDeleteProcess() {
+    createAdministratedWorkflow("Test approval", Arrays.asList(responsible1, groupHr), false);
+    GlobalSearch globalSearch = homePage.getGlobalSearch();
+    SearchResultPage searchResultPage = globalSearch.inputSearchKeyword("Test approval");
 
-	@Test
-	public void testProcessOwnerCanViewAndEditProcess() {
-		createAdministratedWorkflow("Test approval", Arrays.asList(responsible1, groupHr), false);
-		login(TestAccount.HR_ROLE_USER);
-		GlobalSearch globalSearch = homePage.getGlobalSearch();
-		SearchResultPage searchResultPage = globalSearch.inputSearchKeyword("Test approval");
+    WebElement expressWorkflow = searchResultPage.findElementByClassName("express-workflow");
+    WebElement moreMenuButton =
+        searchResultPage.findChildElementByCssSelector(expressWorkflow, "button[id$=':process-item:dynaButton']");
+    moreMenuButton.click();
 
-		assertTrue(searchResultPage.isInfoWorkflowIcon());
-		assertTrue(searchResultPage.isExpressProcessLogo());
-		assertTrue(searchResultPage.isEditExpressWorkflow());
-		assertTrue(searchResultPage.isDeleteExpressWorkflown());
-	}
-	
+    assertTrue(searchResultPage.isInfoWorkflowIcon());
+    assertTrue(searchResultPage.isEditExpressWorkflow());
+    assertTrue(searchResultPage.isDeleteExpressWorkflown());
+    assertTrue(searchResultPage.isExpressProcessLogo());
+  }
+
+  @Test
+  public void testProcessOwnerCanViewAndEditProcess() {
+    createAdministratedWorkflow("Test approval", Arrays.asList(responsible1, groupHr), false);
+    login(TestAccount.HR_ROLE_USER);
+    GlobalSearch globalSearch = homePage.getGlobalSearch();
+    SearchResultPage searchResultPage = globalSearch.inputSearchKeyword("Test approval");
+
+    assertTrue(searchResultPage.isInfoWorkflowIcon());
+    assertTrue(searchResultPage.isExpressProcessLogo());
+
+    WebElement expressWorkflow = searchResultPage.findElementByClassName("express-workflow");
+    WebElement moreMenuButton =
+        searchResultPage.findChildElementByCssSelector(expressWorkflow, "button[id$=':process-item:dynaButton']");
+    moreMenuButton.click();
+
+    assertTrue(searchResultPage.isEditExpressWorkflow());
+    assertTrue(searchResultPage.isDeleteExpressWorkflown());
+  }
+
 	@Test
   public void testAbleToStartCanViewProcess() {
     login(TestAccount.ADMIN_USER);
