@@ -11,6 +11,9 @@ import org.apache.commons.lang.StringUtils;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 import org.primefaces.model.UploadedFile;
+import org.primefaces.virusscan.VirusException;
+import org.primefaces.virusscan.VirusScanner;
+import org.primefaces.virusscan.VirusScannerService;
 
 import ch.ivy.addon.portalkit.document.DocumentDetector;
 import ch.ivy.addon.portalkit.document.DocumentDetectorFactory;
@@ -114,12 +117,33 @@ public class CaseDocumentService {
     }
     return false;
   }
+  
+  public static boolean isDocumentTypeHasVirus(UploadedFile uploadedFile) {
+	  VirusScannerService service = new VirusScannerService(VirusScanner.class.getClassLoader());
+	  try {
+		service.performVirusScan(uploadedFile.getInputstream());
+	  } catch (VirusException e) {
+		 Ivy.log().error(e);
+         return true;
+	  } catch (IOException e) {
+		 Ivy.log().error(e);
+         return true;
+	  }
+	  return false;
+  }
 
   public static boolean enableScriptCheckingForUploadedDocument() {
     GlobalSettingService globalSettingService = new GlobalSettingService();
     String enableScriptCheckingForUploadedDocument = globalSettingService
         .findGlobalSettingValue(GlobalVariable.ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT);
     return Boolean.parseBoolean(enableScriptCheckingForUploadedDocument);
+  }
+  
+  public static boolean enableVirusScannerForUploadedDocument() {
+	    GlobalSettingService globalSettingService = new GlobalSettingService();
+	    String enableVirusScannerForUploadedDocument = globalSettingService
+	        .findGlobalSettingValue(GlobalVariable.ENABLE_VIRUS_SCANNER_FOR_UPLOADED_DOCUMENT);
+	    return Boolean.parseBoolean(enableVirusScannerForUploadedDocument);
   }
 
   private IDocumentService documentsOf(ICase iCase) {
