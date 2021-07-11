@@ -29,6 +29,11 @@ public class ResourceLoader {
     return Optional.ofNullable(pmv.getProject().getFile("pom.xml")).map(IFile::getLocationURI)
         .map(Paths::get).filter(Files::exists);
   }
+  
+  public Optional<Path> getWidgetConfiguration() {
+    return Optional.ofNullable(pmv.getProject().getFile("resources/dashboard.json")).map(IFile::getLocationURI)
+        .map(Paths::get).filter(Files::exists);
+  }
 
   public Optional<Path> getTaskDetailsWidgetConfiguration() {
    return Optional.ofNullable(pmv.getProject().getFile("resources/task-details.json")).map(IFile::getLocationURI)
