@@ -1,0 +1,45 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="index" required="true" />
+  <cc:attribute name="widget" required="true" />
+  <cc:attribute name="isReadOnlyMode" default="false"/>
+</cc:interface>
+
+<cc:implementation>
+  <c:set var="index" value="#{cc.attrs.index}" />
+  <c:set var="widget" value="#{cc.attrs.widget}" />
+  <c:set var="isReadOnlyMode" value="#{cc.attrs.isReadOnlyMode}"/>
+
+  <ui:decorate template="/layouts/restricted/decorator/TableWidget.xhtml">
+    <ui:param name="index" value="#{index}" />
+    <ui:param name="widget" value="#{widget}" />
+    <ui:param name="widgetFormId" value="case-form-#{index}" />
+    <ui:param name="isReadOnlyMode" value="#{isReadOnlyMode}" />
+    <ui:param name="onStatisticTabShow" value="handleFilterCategoryHeight(this);"/>
+    <ui:param name="componentToProcessOnApplyFilter" value="filter-container" />
+    <ui:param name="componentToUpdateOnApplyFilter" value="#{component.parent.namingContainer.clientId}:case-component:dashboard-cases" />
+    <ui:param name="componentToUpdateOnResetFilter" value="#{component.parent.namingContainer.clientId}:case-component:dashboard-cases" />
+    <ui:param name="onCompleteApplyFilters" value="PF('dashboard-cases-#{widget.id}').filter()" />
+    <ui:param name="onFilterOverlayPanelShow" value="#{widget.backupPrevUserFilterCategories()}" />
+
+    <ui:define name="widgetInformationContent">
+      <ui:include src="CaseInfo.xhtml">
+        <ui:param name="widget" value="#{widget}" />
+      </ui:include>
+    </ui:define>
+
+    <ui:define name="widgetFilterContent">
+      <ui:include src="CaseFilter.xhtml">
+        <ui:param name="widget" value="#{widget}" />
+      </ui:include>
+    </ui:define>
+
+    <ui:define name="widgetContent">
+      <ic:ch.ivy.addon.portal.generic.dashboard.component.CaseWidget id="case-component" caseWidget="#{widget}" isReadOnlyMode="#{isReadOnlyMode}"/>
+    </ui:define>
+  </ui:decorate>
+
+</cc:implementation>
+</html>

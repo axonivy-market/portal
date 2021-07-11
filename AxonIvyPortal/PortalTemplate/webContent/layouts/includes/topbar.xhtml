@@ -117,7 +117,7 @@
     <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/dialogclosinginformation/dialogHeader')}" width="50%"
       closeOnEscape="true" widgetVar="dialogClosingInformation" id="dialog-closing-information" resizable="false" modal="true" draggable="false"
       appendTo="@(body)" dynamic="true" styleClass="dialog-closing-information" responsive="true">
-      <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/dialogclosinginformation/informMessage')}" />
+      <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/dialogclosinginformation/informMessage')}" for="dialog-closing-information"/>
       <f:facet name="footer">
         <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" id="close-dialog-button"
           icon="#{visibilityBean.generateButtonIcon('si si-check-1')}" type="button" onclick="window.location.reload();" />

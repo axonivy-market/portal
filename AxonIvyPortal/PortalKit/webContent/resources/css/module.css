@@ -3361,6 +3361,7 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   display: flex;
 }
 
+.process-grid-view__description,
 .grid-view-form .process-description {
   height: 9rem;
   overflow: hidden;
@@ -4253,7 +4254,6 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 
 .statistic-filter-accordion-panel {
   border: none !important;
-  padding: 0.5em 0 !important;
 }
 
 body .ui-accordion.statistic-filter-accordion-panel .ui-accordion-header,
@@ -4343,7 +4343,7 @@ body .ui-accordion.statistic-filter-accordion-panel.ui-accordion .ui-accordion-c
 
 /* Small screen */
 @media (max-width: 1365px) {
-  .filter-container .ui-inputfield.hasDatepicker {
+  .filter-container:not(.dashboard-configuration-filter-container) .ui-inputfield.hasDatepicker {
     width: 15.5rem !important;
   }
   .statistic-filter-container {
