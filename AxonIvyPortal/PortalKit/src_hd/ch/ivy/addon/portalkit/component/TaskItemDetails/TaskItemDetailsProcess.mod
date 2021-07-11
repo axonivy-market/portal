@@ -59,6 +59,9 @@ Cs0 @UdProcessEnd f25 '' #zField
 Cs0 @GridStep f27 '' #zField
 Cs0 @PushWFArc f28 '' #zField
 Cs0 @PushWFArc f26 '' #zField
+Cs0 @UdInit f31 '' #zField
+Cs0 @UdProcessEnd f29 '' #zField
+Cs0 @PushWFArc f32 '' #zField
 >Proto Cs0 Cs0 TaskItemDetailsProcess #zField
 Cs0 f0 guid 16BBB5787F4A8092 #txt
 Cs0 f0 method start(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,ch.ivy.addon.portalkit.enums.PortalPage) #txt
@@ -382,6 +385,25 @@ Cs0 f27 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Cs0 f27 184 906 112 44 -34 -8 #rect
 Cs0 f28 109 928 184 928 #arcP
 Cs0 f26 296 928 355 928 #arcP
+Cs0 f31 guid 1773CE142B3C51EE #txt
+Cs0 f31 method startFromDashboard(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.enums.PortalPage) #txt
+Cs0 f31 inParameterDecl '<ch.ivyteam.ivy.workflow.ITask task,ch.ivy.addon.portalkit.enums.PortalPage portalPage> param;' #txt
+Cs0 f31 inParameterMapAction 'out.portalPage=param.portalPage;
+out.task=param.task;
+' #txt
+Cs0 f31 outParameterDecl '<> result;' #txt
+Cs0 f31 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>startFromDashboard(ITask,PortalPage)</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f31 627 51 26 26 -16 15 #rect
+Cs0 f31 @|UdInitIcon #fIcon
+Cs0 f29 915 51 26 26 0 12 #rect
+Cs0 f29 @|UdProcessEndIcon #fIcon
+Cs0 f32 653 64 915 64 #arcP
 >Proto Cs0 .type ch.ivy.addon.portalkit.component.TaskItemDetails.TaskItemDetailsData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 -8 -8 16 16 16 26 #rect
@@ -427,3 +449,5 @@ Cs0 f24 mainOut f28 tail #connect
 Cs0 f28 head f27 mainIn #connect
 Cs0 f27 mainOut f26 tail #connect
 Cs0 f26 head f25 mainIn #connect
+Cs0 f31 mainOut f32 tail #connect
+Cs0 f32 head f29 mainIn #connect

@@ -1,0 +1,166 @@
+package ch.ivy.addon.portalkit.dto.dashboard.process;
+
+import java.io.Serializable;
+import java.util.List;
+import java.util.Locale;
+
+import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+import ch.ivy.addon.portalkit.bo.ExpressProcess;
+import ch.ivy.addon.portalkit.configuration.ExternalLink;
+import ch.ivy.addon.portalkit.bo.ExternalLinkProcessItem;
+import ch.ivy.addon.portalkit.bo.PortalExpressProcess;
+import ch.ivy.addon.portalkit.bo.Process;
+import ch.ivy.addon.portalkit.dto.DisplayName;
+import ch.ivy.addon.portalkit.enums.ProcessType;
+import ch.ivy.addon.portalkit.service.ProcessStartCollector;
+import ch.ivy.addon.portalkit.util.Locales;
+import ch.ivyteam.ivy.workflow.start.IWebStartable;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class DashboardProcess implements Serializable {
+
+  private static final long serialVersionUID = 8913620704821885752L;
+  private static final String EXPRESS_WORKFLOW_ID_PARAM = "?workflowID=";
+  private static final String EXPRESS_CATEGORY_PRE_FIX = "ExpressWorkflow";
+  private String id;
+  private Long processStartId;
+  private ProcessType type;
+  private String name;
+  private String description;
+  private List<DisplayName> names;
+  private String startLink;
+  private String icon;
+  private String category;
+
+  public DashboardProcess() {}
+
+  public DashboardProcess(IWebStartable process) {
+    this.id = process.getId();
+    this.type = ProcessType.IVY_PROCESS;
+    this.name = process.getDisplayName();
+    this.description = process.getDescription();
+    this.startLink = process.getLink().getRelative();
+    this.icon = process.customFields().value("cssIcon");
+    this.category = process.getCategory().getPath();
+  }
+
+  public DashboardProcess(ExpressProcess process) {
+    this.id = process.getId();
+    this.type = ProcessType.EXPRESS_PROCESS;
+    this.name = process.getProcessName();
+    this.description = process.getProcessDescription();
+    this.icon = process.getIcon();
+    this.category = EXPRESS_CATEGORY_PRE_FIX + "/" + process.getProcessName();
+  }
+
+  public DashboardProcess(ExternalLink externalLink) {
+    this.id = String.valueOf(externalLink.getId());
+    this.type = ProcessType.EXTERNAL_LINK;
+    this.name = externalLink.getName();
+    this.description = externalLink.getDescription();
+    this.startLink = externalLink.getLink();
+    this.icon = externalLink.getIcon();
+  }
+
+  public String getId() {
+    return id;
+  }
+
+  public void setId(String id) {
+    this.id = id;
+  }
+
+  public ProcessType getType() {
+    return type;
+  }
+
+  public void setType(ProcessType type) {
+    this.type = type;
+  }
+
+  public String getName() {
+    if (CollectionUtils.isNotEmpty(this.names)) {
+      return getActiveDisplayName();
+    }
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public String getDescription() {
+    return description;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
+  }
+
+  public List<DisplayName> getNames() {
+    return names;
+  }
+
+  public void setNames(List<DisplayName> names) {
+    this.names = names;
+  }
+
+  public String getStartLink() {
+    if (this.type == ProcessType.EXPRESS_PROCESS) {
+      return generateWorkflowStartLink();
+    }
+    return startLink;
+  }
+
+  public void setStartLink(String startLink) {
+    this.startLink = startLink;
+  }
+
+  public String getIcon() {
+    if (StringUtils.isBlank(icon)) {
+      if (this.type == ProcessType.IVY_PROCESS) {
+        return Process.DEFAULT_PROCESS_ICON;
+      } else if (this.type == ProcessType.EXPRESS_PROCESS) {
+        return PortalExpressProcess.DEFAULT_ICON;
+      } else if (this.type == ProcessType.EXTERNAL_LINK) {
+        return ExternalLinkProcessItem.DEFAULT_ICON;
+      }
+    }
+    return icon;
+  }
+
+  public void setIcon(String icon) {
+    this.icon = icon;
+  }
+
+  private String getActiveDisplayName() {
+    Locale currentLocale = new Locales().getCurrentLocale();
+    return names.stream().filter(displayName -> displayName.getLocale().equals(currentLocale))
+        .map(DisplayName::getValue).findFirst().orElse(this.name);
+  }
+
+  private String generateWorkflowStartLink() {
+    ProcessStartCollector processStartCollector = new ProcessStartCollector();
+    return processStartCollector.findExpressWorkflowStartLink() + EXPRESS_WORKFLOW_ID_PARAM + this.id;
+  }
+
+  public Long getProcessStartId() {
+    return processStartId;
+  }
+
+  public void setProcessStartId(Long processStartId) {
+    this.processStartId = processStartId;
+  }
+
+  public String getCategory() {
+    return category;
+  }
+
+  public void setCategory(String category) {
+    this.category = category;
+  }
+}

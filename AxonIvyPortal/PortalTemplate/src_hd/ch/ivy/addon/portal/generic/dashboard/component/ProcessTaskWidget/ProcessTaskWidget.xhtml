@@ -1,0 +1,75 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:jsf="http://xmlns.jcp.org/jsf"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+  xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="widget" type="ch.ivy.addon.portalkit.dto.dashboard.ProcessDashboardWidget" required="true" />
+  <cc:attribute name="isReadOnlyMode" default="false" />
+  <cc:attribute name="isPreviewMode" default="false"/>
+  <cc:attribute name="onCompleteLoadWidget" />
+</cc:interface>
+
+<cc:implementation>
+  <c:set var="widget" value="#{cc.attrs.widget}" />
+  <c:set var="isReadOnlyMode" value="#{cc.attrs.isReadOnlyMode}" />
+  <c:set var="isPreviewMode" value="#{cc.attrs.isPreviewMode}" />
+
+  <p:remoteCommand id="rcLoadTaskFirstTime" autoRun="true" actionListener="#{widget.taskDataModel.loadFirstTime()}" 
+    update="dashboard-tasks-container" global="false" async="true" process="@this"
+    oncomplete="loadTaskFirstTime('#{widget.id}'); #{cc.attrs.onCompleteLoadWidget}" />
+  <div class="ui-g">
+    <h:panelGroup id="loading" styleClass="js-loading-#{widget.id}">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/loading')}</h:panelGroup>
+      
+    <h:panelGroup id="dashboard-tasks-container" layout="block" 
+      styleClass="ui-g-12 u-padding-0 js-dashboard-tasks-container-#{widget.id} u-display-none">
+      <p:dataTable id="dashboard-tasks" value="#{widget.taskDataModel}" var="task" paginatorAlwaysVisible="false"
+        rows="#{widget.rowsPerPage}" paginator="true" paginatorPosition="bottom" lazy="true" paginatorTemplate="{PreviousPageLink} {PageLinks} {NextPageLink} {RowsPerPageDropdown}"
+        rowsPerPageTemplate="5,10,20,50"
+        pageLinks="5" sortField="name" sortBy="name"
+        rowIndexVar="rowIndex" rowHover="#{isReadOnlyMode}" selectionMode="single"
+        styleClass="dashboard-tasks--table #{isReadOnlyMode ? '' : 'dashboard__table--edit'} #{isPreviewMode ? 'dashboard__table--preview' : ''}">
+        <p:ajax event="rowSelect" listener="#{dashboardBean.navigateToSelectedTaskDetails}" disabled="#{!isReadOnlyMode or isPreviewMode}" />
+        
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}" sortable="true" sortBy="#{name}" field="name"
+          styleClass="revelent-tasks__name">
+          <span><h:outputText value="#{task.name}" /></span>
+        </p:column>
+        
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}" sortable="true" sortBy="#{description}" field="description" styleClass="dashboard-cases__description">
+          <span><h:outputText value="#{task.description}" /></span>
+        </p:column>
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/EXPIRY_TIME')}" sortable="true" sortBy="#{expiryTimestamp}" field="expiryTimestamp" styleClass="revelent-tasks__expiry">
+          <span><h:outputText styleClass="u-text-align-center" value="#{task.expiryTimestamp}"><f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}"/></h:outputText></span>
+        </p:column>
+        
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}"
+          styleClass="revelent-tasks__more">
+          <div id="action-cell-#{rowIndex}" class="task-header-action-cell">
+            <div class="action-container">
+              <p:commandLink id="task-action-component" disabled="#{!taskActionBean.isNotDone(task) or !taskActionBean.canResume(task) or isPreviewMode or !isReadOnlyMode}"
+                onstart="event.stopPropagation();" styleClass="task-action-item start-task-action"  actionListener="#{dashboardBean.startTask(task)}">
+                <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}" styleClass="task-action-item-label u-hidden-lg-down" />
+                <i class="si si-arrow-right-1 icon-compact-mode" />
+              </p:commandLink>
+            </div>
+          </div>
+        </p:column>
+        
+      </p:dataTable>
+    </h:panelGroup>
+  </div>
+
+  <script type="text/javascript">
+    function loadTaskFirstTime(widgetId) {
+      var loadingId = '.js-loading-' + widgetId;
+      var widgetContainer = '.js-dashboard-tasks-container-' + widgetId;
+      $(loadingId).addClass('u-display-none');
+      $(widgetContainer).removeClass('u-display-none');
+    }
+  </script>
+</cc:implementation>
+</html>

@@ -12,9 +12,9 @@ import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.configuration.UserProcess;
 
-@FacesConverter("userProcessAutoCompleteConverter")
-public class UserProcessAutoCompleteConverter implements Converter {
-  private static final String UNIQUE_CONVERTER_IDENTIFIER = UserProcessAutoCompleteConverter.class.getName();
+@FacesConverter("userProcessConverter")
+public class UserProcessConverter implements Converter {
+  private static final String UNIQUE_CONVERTER_IDENTIFIER = UserProcessConverter.class.getName();
   private static final String KEY_DELIMITER = ":::";
   private static final String MAP_KEY_TEMPLATE = UNIQUE_CONVERTER_IDENTIFIER + KEY_DELIMITER + "%s" + KEY_DELIMITER
       + "%s";

@@ -54,6 +54,10 @@ public class TaskWidgetBean implements Serializable {
   }
   
   public void preRender(TaskLazyDataModel dataModel) {
+    if (dataModel == null) {
+      isGuide = false;
+      return;
+    }
     isGuide = GuidePool.instance().guide(Ivy.session().getSessionUserName()).isGuideShown();
     dataModel.setIsGuide(isGuide);
   }
