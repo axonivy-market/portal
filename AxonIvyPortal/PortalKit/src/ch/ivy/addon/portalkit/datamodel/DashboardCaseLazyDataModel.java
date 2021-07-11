@@ -1,0 +1,142 @@
+package ch.ivy.addon.portalkit.datamodel;
+
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.CompletableFuture;
+
+import org.primefaces.model.LazyDataModel;
+import org.primefaces.model.SortOrder;
+
+import ch.ivy.addon.portalkit.ivydata.searchcriteria.DashboardCaseSearchCriteria;
+import ch.ivy.addon.portalkit.service.exception.PortalException;
+import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.workflow.ICase;
+import ch.ivyteam.ivy.workflow.query.CaseQuery;
+import ch.ivyteam.util.threadcontext.IvyThreadContext;
+
+public class DashboardCaseLazyDataModel extends LazyDataModel<ICase> {
+
+  private static final long serialVersionUID = -6615871274830927272L;
+  
+  private static final int QUERY_PAGES_AT_FIRST_TIME = 5;
+  private static final int QUERY_PAGES = 3;
+  
+  private DashboardCaseSearchCriteria criteria;
+  private boolean isFirstTime = true;
+  private List<ICase> cases;
+  private CompletableFuture<Void> future;
+  private CaseQuery query;
+
+  public DashboardCaseLazyDataModel() {
+    criteria = new DashboardCaseSearchCriteria();
+    cases = new ArrayList<>();
+  }
+  
+  @Override
+  public List<ICase> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
+    if (isFirstTime) {
+      isFirstTime = false;
+      if (future != null) {
+        try {
+          future.get();
+        } catch (Exception e) {
+          throw new PortalException(e);
+        }
+      }
+    } else {
+      if (first == 0) {
+        criteria.setSortField(sortField);
+        criteria.setSortDescending(sortOrder == SortOrder.DESCENDING);
+        try {
+          query = criteria.buildQuery();
+        } catch (ParseException e) {
+          throw new PortalException(e);
+        }
+      }
+      cases = Ivy.wf().getCaseQueryExecutor().getResults(query, first, pageSize * (first <= pageSize ? QUERY_PAGES_AT_FIRST_TIME : QUERY_PAGES));
+    }
+    int rowCount = cases.size() + first;
+    List<ICase> result = new ArrayList<>();
+    for (int i = 0; i < Math.min(pageSize, cases.size()); i++) {
+      result.add(cases.get(i));
+    }
+    setRowCount(rowCount);
+    return result;
+  }
+  
+  public void loadFirstTime() throws ParseException {
+    query = criteria.buildQuery();
+    Object memento = IvyThreadContext.saveToMemento();
+    future = CompletableFuture.runAsync(() -> {
+      IvyThreadContext.restoreFromMemento(memento);
+      cases = Ivy.wf().getCaseQueryExecutor().getResults(query, 0, getPageSize() * QUERY_PAGES_AT_FIRST_TIME);
+      IvyThreadContext.reset();
+    });
+    isFirstTime = true;
+  }
+
+  @Override
+  public ICase getRowData(String rowKey) {
+    for (ICase caze : cases) {
+      if (caze.getId() == Long.valueOf(rowKey)) {
+        return caze;
+      }
+    }
+    return null;
+  }
+
+  @Override
+  public String getRowKey(ICase caze) {
+    return String.valueOf(caze.getId());
+  }
+
+  /**
+   * @hidden
+   */
+  @Override
+  public void setRowIndex(int index) {
+    super.setRowIndex(index);
+  }
+
+  /**
+   * @hidden
+   */
+  @Override
+  public ICase getRowData() {
+    return super.getRowData();
+  }
+
+  /**
+   * @hidden
+   */
+  @Override
+  public boolean isRowAvailable() {
+    return super.isRowAvailable();
+  }
+
+  public DashboardCaseSearchCriteria getCriteria() {
+    return criteria;
+  }
+  
+  public void setCriteria(DashboardCaseSearchCriteria criteria) {
+    this.criteria = criteria;
+  }
+
+  public List<String> getCategories() {
+    return criteria.getCategories();
+  }
+
+  public void setCategories(List<String> categories) {
+    criteria.setCategories(categories);
+  }
+  
+  public List<String> getUserFilterCategories() {
+    return criteria.getUserFilterCategories();
+  }
+
+  public void setUserFilterCategories(List<String> categories) {
+    criteria.setUserFilterCategories(categories);
+  }
+}

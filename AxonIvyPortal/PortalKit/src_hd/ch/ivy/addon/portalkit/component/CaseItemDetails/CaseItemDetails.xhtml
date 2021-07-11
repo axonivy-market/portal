@@ -59,10 +59,17 @@
       <c:set var="historyWidgetComponent" value="#{caseDetailsBean.getHistoryWidgetComponentId(cc.clientId)}" />
 
       <ui:repeat var="widget" value="#{caseDetailsBean.widgets}" id="widgets">
-        <div id="case-details-#{widget.id}-panel" class="#{widget.layout.styleClass} grid-stack-item" style="#{widget.layout.style}"
-          widget-type="#{widget.type}" data-gs-x="#{widget.layout.axisX}" data-gs-y="#{widget.layout.axisY}"
-          data-gs-width="#{widget.layout.width}" data-gs-height="#{widget.layout.height}" data-gs-id="#{widget.id}"
-          data-gs-no-resize="#{caseDetailsBean.readOnlyMode}" data-gs-no-move="#{caseDetailsBean.readOnlyMode}"
+        <div id="case-details-#{widget.id}-panel"
+          class="#{widget.layout.styleClass} grid-stack-item"
+          style="#{widget.layout.style}"
+          widget-type="#{widget.type}"
+          gs-x="#{widget.layout.axisX}"
+          gs-y="#{widget.layout.axisY}"
+          gs-w="#{widget.layout.width}"
+          gs-h="#{widget.layout.height}"
+          gs-id="#{widget.id}"
+          gs-no-resize="#{caseDetailsBean.readOnlyMode}"
+          gs-no-move="#{caseDetailsBean.readOnlyMode}"
           jsf:rendered="#{not (widget.type eq 'technicalCase' and not caseDetailsBean.hasTechnicalCases(case))}">
           <!-- General & description box -->
           <h:panelGroup id="case-detail-general-container" layout="block"

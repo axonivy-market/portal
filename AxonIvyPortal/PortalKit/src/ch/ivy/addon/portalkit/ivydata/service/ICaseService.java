@@ -18,4 +18,6 @@ public interface ICaseService {
   IvyCaseResultDTO analyzeElapsedTimeByCaseCategory(CaseSearchCriteria criteria);
   
   IvyCaseResultDTO findValuesOfCustomString(CaseCustomFieldSearchCriteria criteria);
+  
+  IvyCaseResultDTO analyzeCaseCategoryStatistic(CaseSearchCriteria criteria);
 }

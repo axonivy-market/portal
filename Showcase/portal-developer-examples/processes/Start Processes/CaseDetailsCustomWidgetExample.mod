@@ -32,14 +32,19 @@ Ce0 @PushWFArc f18 '' #zField
 Ce0 @GridStep f21 '' #zField
 Ce0 @PushWFArc f22 '' #zField
 Ce0 @PushWFArc f20 '' #zField
+Ce0 @StartRequest f30 '' #zField
+Ce0 @GridStep f29 '' #zField
+Ce0 @TaskSwitchSimple f23 '' #zField
+Ce0 @TkArc f24 '' #zField
+Ce0 @PushWFArc f25 '' #zField
 >Proto Ce0 Ce0 CaseDetailsCustomWidgetExample #zField
 Ce0 f0 outLink CreateEventTest.ivp #txt
 Ce0 f0 inParamDecl '<> param;' #txt
 Ce0 f0 requestEnabled true #txt
 Ce0 f0 triggerEnabled false #txt
 Ce0 f0 callSignature CreateEventTest() #txt
-Ce0 f0 startName 'Create Event for test' #txt
-Ce0 f0 startDescription 'Test custom widget for case details' #txt
+Ce0 f0 startName 'Create Event for test "Custom Case Details"' #txt
+Ce0 f0 startDescription 'Create a case with category is "customWidget" to test filters by categories for case details' #txt
 Ce0 f0 caseData 'businessCase.attach=true
 case.category=customWidget
 case.description=Test custom widgets for case details
@@ -89,16 +94,16 @@ Ce0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ce0 f9 81 197 30 30 0 15 #rect
-Ce0 f10 449 197 30 30 0 15 #rect
+Ce0 f9 257 197 30 30 0 15 #rect
+Ce0 f10 577 197 30 30 0 15 #rect
 Ce0 f12 actionTable 'out=in1;
 ' #txt
 Ce0 f12 caseData 'case.name=Signal case of Custom case details' #txt
 Ce0 f12 taskData 'TaskA.DESC=Test custom widget case details
 TaskA.NAM=Send email' #txt
-Ce0 f12 265 197 30 30 0 16 #rect
-Ce0 f13 111 212 265 212 #arcP
-Ce0 f11 295 212 449 212 #arcP
+Ce0 f12 433 197 30 30 0 16 #rect
+Ce0 f13 287 212 433 212 #arcP
+Ce0 f11 463 212 577 212 #arcP
 Ce0 f14 actionTable 'out=in;
 ' #txt
 Ce0 f14 actionCode '// send simple signal
@@ -138,7 +143,7 @@ Ce0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ce0 f16 @C|.responsibility Everybody #txt
 Ce0 f16 81 325 30 30 -21 17 #rect
-Ce0 f17 625 325 30 30 0 15 #rect
+Ce0 f17 577 325 30 30 0 15 #rect
 Ce0 f19 dialogId com.axonivy.portal.developerexamples.testdata.Review #txt
 Ce0 f19 startMethod start(com.axonivy.portal.developerexamples.ExampleIFrameData) #txt
 Ce0 f19 requestActionDecl '<com.axonivy.portal.developerexamples.ExampleIFrameData investmentRequest> param;' #txt
@@ -153,8 +158,8 @@ Ce0 f19 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ce0 f19 432 318 112 44 -20 -8 #rect
-Ce0 f18 544 340 625 340 #arcP
+Ce0 f19 400 318 112 44 -20 -8 #rect
+Ce0 f18 512 340 577 340 #arcP
 Ce0 f21 actionTable 'out=in;
 ' #txt
 Ce0 f21 actionCode 'ivy.log.debug("Data from case json: " + in.exampleIFrameData);
@@ -174,9 +179,60 @@ Ce0 f21 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ce0 f21 224 318 112 44 -40 -8 #rect
-Ce0 f22 111 340 224 340 #arcP
-Ce0 f20 336 340 432 340 #arcP
+Ce0 f21 192 318 112 44 -40 -8 #rect
+Ce0 f22 111 340 192 340 #arcP
+Ce0 f20 304 340 400 340 #arcP
+Ce0 f30 outLink CreatePersonalRequest.ivp #txt
+Ce0 f30 inParamDecl '<> param;' #txt
+Ce0 f30 requestEnabled true #txt
+Ce0 f30 triggerEnabled false #txt
+Ce0 f30 callSignature CreatePersonalRequest() #txt
+Ce0 f30 persist false #txt
+Ce0 f30 startName 'Create Personal Request for test "Custom Case Details"' #txt
+Ce0 f30 startDescription 'Create a Destroyed case to test filters by states in case details page' #txt
+Ce0 f30 taskData 'TaskTriggered.EXPRI=2
+TaskTriggered.EXROL=Everybody
+TaskTriggered.EXTYPE=0
+TaskTriggered.PRI=2
+TaskTriggered.ROL=Everybody
+TaskTriggered.TYPE=0' #txt
+Ce0 f30 caseData businessCase.attach=true #txt
+Ce0 f30 showInStartList 1 #txt
+Ce0 f30 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>CreatePersonalRequest.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Ce0 f30 @C|.responsibility Everybody #txt
+Ce0 f30 91 467 26 26 -31 24 #rect
+Ce0 f29 actionTable 'out=in;
+' #txt
+Ce0 f29 actionCode 'import ch.ivy.addon.portalkit.publicapi.PortalNavigatorAPI;
+
+ivy.case.destroy();
+
+PortalNavigatorAPI.navigateToPortalHome();' #txt
+Ce0 f29 security system #txt
+Ce0 f29 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>destroy case&#13;
+redirect to homepage</name>
+    </language>
+</elementInfo>
+' #txt
+Ce0 f29 288 458 144 44 -53 -16 #rect
+Ce0 f23 actionTable 'out=in1;
+' #txt
+Ce0 f23 taskData TaskA.SKIP_TASK_LIST=true #txt
+Ce0 f23 185 465 30 30 0 16 #rect
+Ce0 f24 expr out #txt
+Ce0 f24 117 480 185 480 #arcP
+Ce0 f24 0 0.5000000000000001 0 0 #arcLabel
+Ce0 f25 215 480 288 480 #arcP
+Ce0 f25 0 0.5000000000000001 0 0 #arcLabel
 >Proto Ce0 .type com.axonivy.portal.developerexamples.Data #txt
 >Proto Ce0 .processKind NORMAL #txt
 >Proto Ce0 0 0 32 24 18 0 #rect
@@ -201,3 +257,7 @@ Ce0 f16 mainOut f22 tail #connect
 Ce0 f22 head f21 mainIn #connect
 Ce0 f21 mainOut f20 tail #connect
 Ce0 f20 head f19 mainIn #connect
+Ce0 f30 mainOut f24 tail #connect
+Ce0 f24 head f23 in #connect
+Ce0 f23 out f25 tail #connect
+Ce0 f25 head f29 mainIn #connect
