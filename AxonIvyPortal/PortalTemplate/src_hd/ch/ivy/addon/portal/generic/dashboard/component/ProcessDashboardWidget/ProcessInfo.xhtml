@@ -1,0 +1,26 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+<p:tab id="type-tab">
+  <f:facet name="title">
+    <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/processWidgetInfo/numberOfProcessesByType')}" />
+  </f:facet>
+  <div class="ui-g" jsf:rendered="#{!widget.processByTypeStatistic.isEmpty()}">
+    <ui:repeat value="#{widget.processByTypeStatistic.entrySet()}" var="entry">
+      <div class="ui-g-8">
+        <h:outputText value="#{dashboardProcessFilterBean.getUserFriendlyProcessType(entry.key)}"
+          styleClass="dashboard-processes__type-text--#{entry.key.name().toLowerCase()} dashboard-processes__type-text" />
+      </div>
+      <div class="ui-g-4">
+        <h:outputText rendered="#{entry.value gt 1}">#{entry.value} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/processes')}</h:outputText>
+        <h:outputText rendered="#{entry.value le 1}">#{entry.value} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/process')}</h:outputText>
+      </div>
+    </ui:repeat>
+  </div>
+  <div class="ui-g" jsf:rendered="#{widget.processByTypeStatistic.isEmpty()}">
+    <h:outputText styleClass="ui-g-12" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/processWidgetInfo/noProcess')}" />
+  </div>
+</p:tab>
+
+</html>

@@ -11,14 +11,18 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 
+import ch.ivy.addon.portalkit.bo.CaseCategoryStatistic;
 import ch.ivy.addon.portalkit.bo.CaseStateStatistic;
 import ch.ivy.addon.portalkit.bo.ElapsedTimeStatistic;
+import ch.ivy.addon.portalkit.bo.TaskCategoryStatistic;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyCaseResultDTO;
+import ch.ivy.addon.portalkit.ivydata.dto.IvyTaskResultDTO;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCategorySearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCustomFieldSearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;
+import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.service.ICaseService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
@@ -28,6 +32,7 @@ import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.category.CategoryTree;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
+import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
 public class CaseService implements ICaseService {
 
@@ -221,5 +226,31 @@ public class CaseService implements ICaseService {
       result.setCustomFields(customFields);
       return result;
     });
+  }
+
+  @Override
+  public IvyCaseResultDTO analyzeCaseCategoryStatistic(CaseSearchCriteria criteria) {
+    return IvyExecutor.executeAsSystem(() -> {
+      IvyCaseResultDTO result = new IvyCaseResultDTO();
+      CaseQuery finalQuery = extendQuery(criteria);
+      finalQuery.aggregate().countRows().groupBy().category().orderBy().category();
+
+      Recordset recordSet = Ivy.wf().getCaseQueryExecutor().getRecordset(finalQuery);
+      CaseCategoryStatistic caseCategoryStatistic = createCaseCategoryStatistic(recordSet);
+      result.setCaseCategoryStatistic(caseCategoryStatistic);
+      return result;
+    });
+  }
+
+  private CaseCategoryStatistic createCaseCategoryStatistic(Recordset recordSet) {
+    CaseCategoryStatistic caseCategoryStatistic = new CaseCategoryStatistic();
+    caseCategoryStatistic.setNumberOfCasesByCategory(new HashMap<>());
+    if (recordSet != null) {
+      recordSet.getRecords().forEach(record -> {
+        long numberOfCases = Long.parseLong(record.getField("COUNT").toString());
+        caseCategoryStatistic.getNumberOfCasesByCategory().put(record.getField("CATEGORY").toString(), numberOfCases);
+      });
+    }
+    return caseCategoryStatistic;
   }
 }
