@@ -1,0 +1,45 @@
+{
+   "widgets":
+   [
+      {
+         "type": "information",
+         "id": "information",
+         "axisX": 0,
+         "axisY": 4,
+         "width": 6,
+         "height": 12
+      },
+      {
+         "type": "document",
+         "id": "document",
+         "axisX": 6,
+         "axisY": 4,
+         "width": 6,
+         "height": 6
+      },
+      {
+         "type": "history",
+         "id": "history",
+         "axisX": 6,
+         "axisY": 10,
+         "width": 6,
+         "height": 6
+      },
+      {
+         "type": "custom",
+         "id": "taskItemDetailCustomPanelTop",
+         "axisX": 0,
+         "axisY": 0,
+         "width": 12,
+         "height": 4
+      },
+      {
+         "type": "custom",
+         "id": "taskItemDetailCustomPanelBottom",
+         "axisX": 0,
+         "axisY": 16,
+         "width": 12,
+         "height": 4
+      }
+   ]
+}

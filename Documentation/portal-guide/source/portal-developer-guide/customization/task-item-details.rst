@@ -144,6 +144,21 @@ List of valid ``ui:param``:
 Show Custom Panels (Widgets)
 ----------------------------
 
+
+.. tip:: 
+   To quickly understand how the JSON of custom task details looks like.
+
+   - Refer to ``variables.Portal.TaskDetails.json`` file in ``portal-developer-examples/resources/files`` project.
+   - Copy to the corresponding application folder located in the designer.
+
+      - e.g: AxonIvyDesigner/configuration/applications/designer
+
+   - Create some tasks and go to the example homepage by the process ``Start Processes/ExamplePortalStart/DefaultApplicationHomePage.ivp``
+   - And then go to task details to check the new custom layout.
+
+   About how to configure Global Var, refer to `Axon Ivy Global Variables <https://developer.axonivy.com/releases/ivy/9.1/documents/designer-guide/configuration/global-variables.html>`_
+
+
 There are **two steps** for adding new custom panels.
 
 #. **Cockpit admin** must configure global variable :ref:`Portal.TaskDetails<task-details-configuration-variable>`

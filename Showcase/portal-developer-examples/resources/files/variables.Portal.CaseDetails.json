@@ -1,0 +1,69 @@
+{
+  "widgets":
+  [
+    {
+      "type": "information",
+      "id": "information",
+      "axisX": 0,
+      "axisY": 6,
+      "width": 6,
+      "height": 8
+    },
+    {
+      "type": "document",
+      "id": "document",
+      "axisX": 6,
+      "axisY": 6,
+      "width": 6,
+      "height": 8
+    },
+    {
+      "type": "technicalCase",
+      "id": "technicalCase",
+      "axisX": 0,
+      "axisY": 20,
+      "width": 12,
+      "height": 6
+    },
+    {
+      "type": "relatedTask",
+      "id": "relatedTask",
+      "axisX": 0,
+      "axisY": 26,
+      "width": 12,
+      "height": 6
+    },
+    {
+      "type": "history",
+      "id": "history",
+      "axisX": 0,
+      "axisY": 32,
+      "width": 12,
+      "height": 6
+    },
+    {
+      "type": "custom",
+      "id": "caseItemDetailCustomTop",
+      "axisX": 0,
+      "axisY": 0,
+      "width": 12,
+      "height": 6
+    },
+    {
+      "type": "custom",
+      "id": "caseItemDetailCustomMiddle",
+      "axisX": 0,
+      "axisY": 14,
+      "width": 12,
+      "height": 6
+    },
+    {
+      "type": "custom",
+      "id": "caseItemDetailCustomBottom",
+      "axisX": 0,
+      "axisY": 38,
+      "width": 12,
+      "height": 6
+    }
+  ]
+}

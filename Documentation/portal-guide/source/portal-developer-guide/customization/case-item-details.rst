@@ -171,6 +171,22 @@ List valid parameters:
 Show custom widgets
 -------------------
 
+
+.. tip:: 
+      To quickly understand how the JSON of custom case details looks like.
+   
+      - Refer to ``variables.Portal.CaseDetails.json`` file in ``portal-developer-examples/resources/files`` project.
+      - Copy to the corresponding application folder located in the designer.
+
+          - e.g: AxonIvyDesigner/configuration/applications/designer.
+
+      - Create some cases and go to the example homepage by the process ``Start Processes/ExamplePortalStart/DefaultApplicationHomePage.ivp``.
+      - And then go to case details to check the new custom layout.
+   
+      About how to configure Global Var, refer to `Axon Ivy Global Variables <https://developer.axonivy.com/releases/ivy/9.1/documents/designer-guide/configuration/global-variables.html>`_
+   
+
+
 There are **two steps** for adding new custom panels.
 
 1. **Cockpit admin** must configure global variable :ref:`Portal.CaseDetails<case-details-configuration-variable>`
