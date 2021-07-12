@@ -1,45 +1,36 @@
-{
-  "widgets": 
-  [
-    {
-      "type": "information",
-      "id": "information",
-      "axisX": 0,
-      "axisY": 0,
-      "width": 6,
-      "height": 8
-    },
-    {
-      "type": "document",
-      "id": "document",
-      "axisX": 6,
-      "axisY": 0,
-      "width": 6,
-      "height": 8
-    },
-    {
-      "type": "technicalCase",
-      "id": "technicalCase",
-      "axisX": 0,
-      "axisY": 8,
-      "width": 12,
-      "height": 6
-    },
-    {
-      "type": "relatedTask",
-      "id": "relatedTask",
-      "axisX": 0,
-      "axisY": 14,
-      "width": 12,
-      "height": 6
-    },
-    {
-      "type": "history",
-      "id": "history",
-      "axisX": 0,
-      "axisY": 20,
-      "width": 12,
-      "height": 6
-    }
-  ]
-}
+[{
+    "id": "default-case-detail",
+    "widgets": [{
+        "type": "information",
+        "id": "information",
+        "layout": {
+          "x": 0, "y": 0, "w": 6, "h": 5
+        }
+      }, {
+        "type": "document",
+        "id": "document",
+        "layout": {
+          "x": 6, "y": 0, "w": 6, "h": 5
+        }
+      }, {
+        "type": "technicalCase",
+        "id": "technicalCase",
+        "layout": {
+          "x": 0, "y": 8, "w": 12, "h": 4
+        }
+      }, {
+        "type": "relatedTask",
+        "id": "relatedTask",
+        "layout": {
+          "x": 0, "y": 14, "w": 12, "h": 4
+        }
+      }, {
+        "type": "history",
+        "id": "history",
+        "layout": {
+          "x": 0, "y": 20, "w": 12, "h": 4
+        }
+      }
+    ]
+  }
+]

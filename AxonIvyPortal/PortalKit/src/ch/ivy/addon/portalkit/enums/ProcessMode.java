@@ -5,7 +5,7 @@ import org.apache.commons.lang3.StringUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public enum ProcessMode {
-  LIST, GRID;
+  IMAGE, GRID, COMPACT;
 
   public String getLabel() {
     String label = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/Enums/ProcessMode/" + name());

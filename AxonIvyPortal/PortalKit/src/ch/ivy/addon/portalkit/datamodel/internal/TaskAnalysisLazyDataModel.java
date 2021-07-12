@@ -82,7 +82,7 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
 
   @Override
   public void initFilterContainer() {
-    filterContainer = new TaskAnalysisTaskFilterContainer();
+    filterContainer = new TaskAnalysisTaskFilterContainer(criteria.isAdminQuery());
   }
 
   @Override

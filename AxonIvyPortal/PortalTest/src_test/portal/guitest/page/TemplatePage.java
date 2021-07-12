@@ -151,7 +151,12 @@ public abstract class TemplatePage extends AbstractPage {
       }
     }
     if (displayed) {
-      waitForElementDisplayed(ajaxIndicatorStartState, false);
+      try {
+        waitForElementDisplayed(ajaxIndicatorStartState, false);
+      } catch (NullPointerException e) {
+        System.out.println("Error when waitAjaxIndicatorDisappear");
+        e.printStackTrace();
+      }
     }
   }
   

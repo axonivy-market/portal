@@ -22,6 +22,7 @@ import ch.ivyteam.ivy.workflow.ICase;
 public class CaseBean implements Serializable {
   private static final long serialVersionUID = 1L;
 
+  private static final String STATE_CMS_PATH = "/ch.ivy.addon.portalkit.ui.jsf/caseState/";
   private static final String OPEN_CASES_LIST = "Start Processes/PortalStart/CaseListPage.ivp";
 
   /**
@@ -63,10 +64,17 @@ public class CaseBean implements Serializable {
   }
 
   private String getDisplayState(CaseState caseState) {
-    if (caseState == CaseState.CREATED || caseState == CaseState.RUNNING) {
-      return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseState/RUNNING");
+    if (caseState == CaseState.CREATED) {
+      return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseState/OPEN");
     }
     return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseState/" + caseState);
+  }
+  
+  public String getTranslatedState(CaseState state) {
+    if (state == null) {
+      return StringUtils.EMPTY;
+    }
+    return Ivy.cms().co(STATE_CMS_PATH + state);
   }
 
   public void backToCasesList() {
