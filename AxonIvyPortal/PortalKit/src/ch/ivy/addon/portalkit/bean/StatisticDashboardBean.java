@@ -86,7 +86,8 @@ public class StatisticDashboardBean implements Serializable {
         .findFirst().orElse("");
 
     IvyComponentLogicCaller<String> drillDownTaskByPriority = new IvyComponentLogicCaller<>();
-    drillDownTaskByPriority.invokeComponentLogic(STATISTIC_DASHBOARD_WIDGET_COMPONENT_ID,
+    String componentId = Attrs.currentContext().getBuildInAttribute("clientId");
+    drillDownTaskByPriority.invokeComponentLogic(componentId,
         "#{logic.drilldownTaskByPriority}", new Object[] {chartName, taskQuery});
   }
 
@@ -94,7 +95,8 @@ public class StatisticDashboardBean implements Serializable {
     StatisticChart selectedStatisticChart = getSelectedStatisticChart(event);
     CaseQuery caseQuery = StatisticChartQueryUtils.getQueryForSelectedItemByCaseByState(event, selectedStatisticChart);
     IvyComponentLogicCaller<String> drilldownCaseByState = new IvyComponentLogicCaller<>();
-    drilldownCaseByState.invokeComponentLogic(STATISTIC_DASHBOARD_WIDGET_COMPONENT_ID, "#{logic.drilldownCaseByState}",
+    String componentId = Attrs.currentContext().getBuildInAttribute("clientId");
+    drilldownCaseByState.invokeComponentLogic(componentId, "#{logic.drilldownCaseByState}",
         new Object[] {selectedStatisticChart, caseQuery});
   }
 
@@ -102,7 +104,8 @@ public class StatisticDashboardBean implements Serializable {
     StatisticChart selectedStatisticChart = getSelectedStatisticChart(event);
     String selectedCaseCategory = StatisticService.getSelectedValueOfBarChart(event);
     IvyComponentLogicCaller<String> drilldownElapsedTime = new IvyComponentLogicCaller<>();
-    drilldownElapsedTime.invokeComponentLogic(STATISTIC_DASHBOARD_WIDGET_COMPONENT_ID, "#{logic.drilldownElapsedTime}",
+    String componentId = Attrs.currentContext().getBuildInAttribute("clientId");
+    drilldownElapsedTime.invokeComponentLogic(componentId, "#{logic.drilldownElapsedTime}",
         new Object[] {selectedStatisticChart, selectedCaseCategory});
   }
 
@@ -115,7 +118,8 @@ public class StatisticDashboardBean implements Serializable {
     TaskQuery taskQuery = generateQueryForTaskByExpiry(event, selectedStatisticChart);
     taskByExpiryItemSelectEvent = event;
     IvyComponentLogicCaller<String> onSelectDrilldownTaskByExpiry = new IvyComponentLogicCaller<>();
-    onSelectDrilldownTaskByExpiry.invokeComponentLogic(STATISTIC_DASHBOARD_WIDGET_COMPONENT_ID,
+    String componentId = Attrs.currentContext().getBuildInAttribute("clientId");
+    onSelectDrilldownTaskByExpiry.invokeComponentLogic(componentId,
         "#{logic.onSelectDrilldownTaskByExpiry}",
         new Object[] {isDrilldownToTaskList, selectedItemOfDrilldown, selectedStatisticChart, taskQuery});
   }
@@ -125,13 +129,15 @@ public class StatisticDashboardBean implements Serializable {
     StatisticChart selectedStatisticChart = getSelectedStatisticChart(event);
     TaskQuery taskQuery = generateQueryForTaskByExpiry(event, selectedStatisticChart);
     IvyComponentLogicCaller<String> toTaskByExpiryTaskList = new IvyComponentLogicCaller<>();
-    toTaskByExpiryTaskList.invokeComponentLogic(STATISTIC_DASHBOARD_WIDGET_COMPONENT_ID,
+    String componentId = Attrs.currentContext().getBuildInAttribute("clientId");
+    toTaskByExpiryTaskList.invokeComponentLogic(componentId,
         "#{logic.toTaskByExpiryTaskList}", new Object[] {selectedItemOfDrilldown, selectedStatisticChart, taskQuery});
   }
 
   // It's used for "Go to task list" selection from Statistic Dashboard
   public void goToExpiriedTaskList() {
     toTaskByExpiryTaskList(taskByExpiryItemSelectEvent);
+    releaseJSFEvent();
   }
 
   public void drilldownTaskByExpiry() {
@@ -139,10 +145,17 @@ public class StatisticDashboardBean implements Serializable {
     StatisticChart selectedStatisticChart = getSelectedStatisticChart(taskByExpiryItemSelectEvent);
 
     IvyComponentLogicCaller<String> drilldownTaskByExpiry = new IvyComponentLogicCaller<>();
-    drilldownTaskByExpiry.invokeComponentLogic(STATISTIC_DASHBOARD_WIDGET_COMPONENT_ID,
+    String componentId = Attrs.currentContext().getBuildInAttribute("clientId");
+    drilldownTaskByExpiry.invokeComponentLogic(componentId,
         "#{logic.drilldownTaskByExpiry}", new Object[] {selectedStatisticChart, selectedItemOfDrilldown});
+    releaseJSFEvent();
   }
-  
+
+  private void releaseJSFEvent() {
+    // Do not store JSF Event in a JSF bean that is not bound to request scope
+    this.taskByExpiryItemSelectEvent = null;
+  }
+
   public StatisticChart createDefaultEmptyChart() {
     StatisticChart emptyChart = new StatisticChart();
     emptyChart.setNames(generateNamesForEmptyChart());

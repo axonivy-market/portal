@@ -49,7 +49,8 @@
           headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/abbreviation/PRIORITY')}"
           styleClass="priority-column ui-sm-hidden" field="PRIORITY" sortBy="#{PRIORITY}"
           visible="#{data.dataModel.isSelectedColumn(masterDataBean.taskSortFieldPriority)}">
-          <ui:include src="PriorityCell.xhtml" />
+          <ic:ch.ivy.addon.portalkit.component.task.column.TaskPriority id="task-priority-component"
+            priority="#{task.priority}" dataModel="#{data.dataModel}" />
         </p:column>
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}"
           styleClass="related-task-name-column u-truncate-text ui-sm-10" field="NAME" sortBy="#{NAME}"
@@ -86,11 +87,18 @@
             <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}"/>
           </h:outputText>
         </p:column>
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/COMPLETED_ON')}"
+          styleClass="related-task-complete-on-column u-hidden-md-down" field="COMPLETED_ON" sortBy="#{COMPLETED_ON}"
+          visible="#{data.dataModel.isSelectedColumn(masterDataBean.taskSortFieldCompletedTime)}">
+          <h:outputText value="#{task.endTimestamp}">
+            <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}"/>
+          </h:outputText>
+        </p:column>
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/STATE')}"
-          styleClass="related-task-state-column u-hidden-md-down" field="STATE" sortBy="#{STATE}"
+          styleClass="related-task-state-column state-column u-hidden-md-down" field="STATE" sortBy="#{STATE}"
           visible="#{data.dataModel.isSelectedColumn(masterDataBean.taskSortFieldState)}">
-          <h:outputText value="#{taskBean.getUserFriendlyTaskStateInCapitalization(task.state)}"
-            styleClass="task-state #{task.state.toString().toLowerCase()}-task-state" />
+          <ic:ch.ivy.addon.portalkit.component.task.column.TaskState id="task-state-component"
+            dataModel="#{data.dataModel}" state="#{task.state}" />
         </p:column>
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}"
           styleClass="related-task-more-column">

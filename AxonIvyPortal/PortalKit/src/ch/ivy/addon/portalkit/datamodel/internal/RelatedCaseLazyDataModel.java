@@ -97,7 +97,7 @@ public class RelatedCaseLazyDataModel extends LazyDataModel<ICase> {
   }
 
   private UIComponent findRelatedCaseComponent() {
-    List<UIComponent> children = FacesContext.getCurrentInstance().getViewRoot().findComponent(":case-item-details:widgets:case-details-technical-case-card").getChildren();
+    List<UIComponent> children = FacesContext.getCurrentInstance().getViewRoot().findComponent("case-item-details:case-details-container:widgets:case-details-technical-case-card").getChildren();
     return children.stream().filter(child -> child.getId().equals(caseWidgetComponentId)).findFirst().orElse(null);
   }
 

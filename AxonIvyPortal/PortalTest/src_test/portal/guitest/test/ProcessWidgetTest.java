@@ -7,10 +7,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.concurrent.TimeUnit;
 
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.jayway.awaitility.Awaitility;
@@ -53,6 +50,7 @@ public class ProcessWidgetTest extends BaseTest {
     assertTrue(processWidget.isCompactMode());
     processWidget.expand();
     assertTrue(processWidget.isExpandedMode());
+    resetLanguageOfCurrentUser();
   }
 
   @Test
@@ -62,6 +60,7 @@ public class ProcessWidgetTest extends BaseTest {
     processWidget.expand();
     assertTrue(processWidget.isExpandedMode());
     assertNotNull(processWidget.getProcess(CASE_MAP_LEAVES));
+    resetLanguageOfCurrentUser();
   }
 
   @Test
@@ -95,11 +94,14 @@ public class ProcessWidgetTest extends BaseTest {
     
     processWidget = homePage.getProcessWidget();
     processWidget.expand();
-    processWidget.clickOnSwitchButton();
-    processWidget.deleteExternalLinkByFieldsetIndexAndIndex(0, 0);
+    processWidget.selectViewMode("GRID");
+    processWidget.waitForGridProcessListDisplayed();
+    processWidget.clickMoreButtonOnGridMode();
+    processWidget.deleteProcess(0);
     backToCompactProcessWidget();
     
     assertEquals(0, processWidget.getNumberOfFavoriteUserProcesses());
+    resetLanguageOfCurrentUser();
   }
 
   @Test
@@ -123,6 +125,7 @@ public class ProcessWidgetTest extends BaseTest {
     assertEquals(CLEAN_ALL_FAVORITE_PROCESSES, processWidget.getProcessNameFromFavoriteProcessList(0));
     assertEquals(processName, processWidget.getProcessNameFromFavoriteProcessList(1));
     assertEquals(CASE_MAP_LEAVES, processWidget.getProcessNameFromFavoriteProcessList(2));
+    resetLanguageOfCurrentUser();
   }
 
   @Test
@@ -135,6 +138,7 @@ public class ProcessWidgetTest extends BaseTest {
     assertEquals("Favorite External Process Display Name", processWidget.getProcessNameFromDefaultProcessList(2));
     assertEquals(VIEW_ALPHA_HISTORY, processWidget.getProcessNameFromDefaultProcessList(3));
     assertEquals(VIEW_ALPHA_HISTORY_IN_DIALOG, processWidget.getProcessNameFromDefaultProcessList(4));
+    resetLanguageOfCurrentUser();
   }
 
   @Test
@@ -146,6 +150,7 @@ public class ProcessWidgetTest extends BaseTest {
     assertEquals(VIEW_ALPHA_HISTORY_IN_DIALOG, processWidget.getProcessNameFromDefaultProcessList(2));
     assertEquals("Favorite Express Process Display Name", processWidget.getProcessNameFromDefaultProcessList(3));
     assertEquals("Favorite External Process Display Name", processWidget.getProcessNameFromDefaultProcessList(4));
+    resetLanguageOfCurrentUser();
   }
 
   @Test
@@ -184,6 +189,7 @@ public class ProcessWidgetTest extends BaseTest {
     addNewProcessDialog.selectProcessByName(AAGOOGLE_LINK);
     addNewProcessDialog.submitForm();
     assertEquals(processName, processWidget.getProcessNameFromFavoriteProcessList(3));
+    resetLanguageOfCurrentUser();
   }
 
   @Test
@@ -207,6 +213,7 @@ public class ProcessWidgetTest extends BaseTest {
     homePage.switchLastBrowserTab();
     Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> homePage.getPageTitle().length() > 1);
     assertEquals("Google", homePage.getPageTitle());
+    resetLanguageOfCurrentUser();
   }
 
   @Test
@@ -216,6 +223,7 @@ public class ProcessWidgetTest extends BaseTest {
     addNewProcessDialog.selectProcessByName(CLEAN_ALL_FAVORITE_PROCESSES);
     addNewProcessDialog.submitForm();
     assertNotNull(processWidget.getProcess(CLEAN_ALL_FAVORITE_PROCESSES));
+    resetLanguageOfCurrentUser();
   }
 
   @Test
@@ -234,6 +242,7 @@ public class ProcessWidgetTest extends BaseTest {
     
     processWidget = homePage.getProcessWidget();
     assertNotNull(processWidget.getProcess(String.format("%s - %s", APPRAISAL, "German Name")));
+    resetLanguageOfCurrentUser();
   }
 
   private void changeLanguage(int selectionIndex) {
@@ -249,6 +258,7 @@ public class ProcessWidgetTest extends BaseTest {
     String processName = "Axon Ivy Selfservice";
     UserFavoriteProcessPage addNewProcessDialog = processWidget.openNewProcessDialog();
     assertFalse(addNewProcessDialog.isIvyProcessByNameSearchable(processName));
+    resetLanguageOfCurrentUser();
   }
 
   @Test
@@ -258,6 +268,7 @@ public class ProcessWidgetTest extends BaseTest {
     addNewProcessDialog.selectProcessByName(CASE_MAP_LEAVES);
     addNewProcessDialog.submitForm();
     assertNotNull(processWidget.getProcess(CASE_MAP_LEAVES));
+    resetLanguageOfCurrentUser();
   }
 
   @Test
@@ -265,6 +276,7 @@ public class ProcessWidgetTest extends BaseTest {
     processWidget = homePage.getProcessWidget();
     UserFavoriteProcessPage addNewProcessDialog = processWidget.openNewProcessDialog();
     assertTrue(addNewProcessDialog.isDefaultIcon());
+    resetLanguageOfCurrentUser();
   }
 
   @Test
@@ -274,6 +286,7 @@ public class ProcessWidgetTest extends BaseTest {
     addNewProcessDialog.clickChangeIconButton();
     addNewProcessDialog.inputSearchedIconName("area chart");
     assertEquals(1, addNewProcessDialog.getDisplayedIconAmount());
+    resetLanguageOfCurrentUser();
   }
 
   @Test
@@ -283,6 +296,7 @@ public class ProcessWidgetTest extends BaseTest {
     addNewProcessDialog.clickChangeIconButton();
     addNewProcessDialog.inputSearchedIconName("chart1");
     assertEquals(0, addNewProcessDialog.getDisplayedIconAmount());
+    resetLanguageOfCurrentUser();
   }
 
   @Test
@@ -294,6 +308,7 @@ public class ProcessWidgetTest extends BaseTest {
     processWidget.goToHomeFromBreadcrumb();
     homePage = new HomePage();
     assertEquals(true, homePage.isDisplayed());
+    resetLanguageOfCurrentUser();
   }
 
   private void createExternalTestProcess(String processName, String processLink, boolean isPublic) {
@@ -306,16 +321,5 @@ public class ProcessWidgetTest extends BaseTest {
     redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     homePage = new HomePage();
     processWidget = homePage.getProcessWidget();
-  }
-  
-  @AfterClass
-  @BeforeClass
-  public static void cleanUpBrowsers() {
-    killBrowsers();
-  }
-  
-  @After
-  public void revertChanges() {
-    resetLanguageOfCurrentUser();
   }
 }
