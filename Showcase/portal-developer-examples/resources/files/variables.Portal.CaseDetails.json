@@ -1,0 +1,119 @@
+[{
+    "id": "default-case-detail",
+    "widgets": [{
+        "type": "information",
+        "id": "information",
+        "layout": {
+          "x": 0, "y": 0, "w": 6, "h": 8
+        }
+      }, {
+        "type": "document",
+        "id": "document",
+        "layout": {
+          "x": 6, "y": 0, "w": 6, "h": 8
+        }
+      }, {
+        "type": "technicalCase",
+        "id": "technicalCase",
+        "layout": {
+          "x": 0, "y": 8, "w": 12, "h": 6
+        }
+      }, {
+        "type": "relatedTask",
+        "id": "relatedTask",
+        "layout": {
+          "x": 0, "y": 14, "w": 12, "h": 6
+        }
+      }, {
+        "type": "history",
+        "id": "history",
+        "layout": {
+          "x": 0, "y": 20, "w": 12, "h": 6
+        }
+      }
+    ]
+  }, {
+    "id": "destroyed-case-detail",
+    "filters": {
+      "states": ["DESTROYED"]
+    },
+    "widgets": [{
+        "type": "information",
+        "id": "information",
+        "layout": {
+          "x": 0, "y": 0, "w": 6, "h": 8
+        }
+      }, {
+        "type": "custom",
+        "id": "custom-top",
+        "layout": {
+          "x": 6, "y": 0, "w": 6, "h": 5
+        },
+        "data": {
+          "type": "caseItemDetailCustomTop"
+        }
+      }, {
+        "type": "history",
+        "id": "history",
+        "layout": {
+          "x": 0, "y": 8, "w": 6, "h": 8
+        }
+      }, {
+        "type": "custom",
+        "id": "custom-url",
+        "layout": {
+          "x": 6, "y": 8, "w": 6, "h": 11
+        },
+        "data": {
+          "url": "https://www.axonivy.com/"
+        }
+      }
+    ]
+  }, {
+    "id": "custom-case-detail",
+    "filters": {
+      "categories": ["customWidget"]
+    },
+    "widgets": [{
+        "type": "information",
+        "id": "information",
+        "layout": {
+          "x": 0, "y": 0, "w": 6, "h": 8
+        }
+      }, {
+        "type": "custom",
+        "id": "custom-ivy-process",
+        "layout": {
+          "x": 6, "y": 0, "w": 6, "h": 8
+        },
+        "data": {
+          "processStart": "Start Processes/CaseDetailsCustomWidgetExample/startReview.ivp",
+          "params": {
+            "startedCaseId": "case.id",
+            "startedCaseCategory": "case.category",
+            "investmentId": "1573111",
+            "investmentDescription": "case.customFields.investmentDescription"
+          }
+        }
+      }, {
+        "type": "custom",
+        "id": "custom-middle",
+        "layout": {
+          "x": 0, "y": 8, "w": 6, "h": 5
+        },
+        "data": {
+          "type": "caseItemDetailCustomMiddle"
+        }
+      }, {
+        "type": "custom",
+        "id": "custom-bottom",
+        "layout": {
+          "x": 6, "y": 8, "w": 6, "h": 5
+        },
+        "data": {
+          "type": "caseItemDetailCustomBottom"
+        }
+      }
+    ]
+  }
+]

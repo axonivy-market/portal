@@ -1,0 +1,154 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:jsf="http://xmlns.jcp.org/jsf"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="processWidget" />
+  <cc:attribute name="componentToUpdate" />
+</cc:interface>
+
+<cc:implementation>
+  <c:set var="processWidget" value="#{cc.attrs.processWidget}" />
+  <c:set var="widget" value="#{processWidget}" />
+  <c:set var="isCompact" value="#{widget.displayMode eq 'COMPACT_MODE'}" />
+  <c:set var="isCombined" value="#{widget.displayMode eq 'COMBINED_MODE'}" />
+  <c:set var="isFull" value="#{widget.displayMode eq 'FULL_MODE'}" />
+
+  <f:event listener="#{dashboardProcessBean.preRender(processWidget)}" type="preRenderComponent" />
+
+  <!-- Configuration -->
+  <h:panelGroup id="filter-container" layout="block" styleClass="card dashboard-card widget-configuration">
+    <div class="filter-container ui-g">
+      <div class="ui-g-12 filter-container__header">
+        <h2>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/configuration')}</h2>
+        <p>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/processConfigurationDescription')}</p>
+      </div>
+
+      <h:panelGroup id="widget-title-group" styleClass="ui-g-12 u-padding-0 ui-fluid" rendered="#{isCompact}">
+        <div class="ui-g-3">
+          <p:outputLabel for="widget-title" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/widgetTitle')}" />
+        </div>
+        <div class="ui-g-9">
+          <p:inputText id="widget-title" styleClass="widget-configuration__input-text" value="#{widget.name}" />
+        </div>
+      </h:panelGroup>
+
+      <div class="ui-g-12 MarTop20 u-padding-0">
+        <div class="ui-g-4">
+          <strong>#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/availableFilters")}</strong>
+        </div>
+        <div class="ui-g-8">
+          <p:commandButton id="preview-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/preview')}" styleClass="Fright preview-button" icon="si si-search" actionListener="#{dashboardProcessBean.preview()}"
+            update="#{cc.clientId}:preview-process #{cc.clientId}:widget-preview" process="user-filter widget-title-group" oncomplete="PF('new-widget-configuration-dialog').initPosition();" />
+        </div>
+      </div>
+
+      <!-- Widget Filters -->
+      <h:panelGroup id="user-filter" layout="block" styleClass="ui-g-12 u-padding-0">
+        <h:panelGroup id="widget-display-mode-group" styleClass="ui-g-12 u-padding-0 ui-fluid">
+          <div class="ui-g-3">
+            <p:outputLabel for="process-display-mode" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/displayMode')}" />
+          </div>
+          <div class="ui-g-9">
+            <p:selectOneMenu id="process-display-mode" value="#{cc.attrs.processWidget.displayMode}">
+              <f:selectItems value="#{dashboardProcessBean.displayModes}" var="mode" itemLabel="#{mode.label}" itemValue="#{mode}" />
+              <p:ajax event="change" update="filter-container" />
+            </p:selectOneMenu>
+          </div>
+        </h:panelGroup>
+
+        <h:panelGroup id="compact-filter" rendered="#{isCompact}">
+          <div class="ui-g-3">
+            <p:outputLabel for="category" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/categories')}" />
+          </div>
+          <div class="ui-g-9 ui-fluid">
+            <h:panelGroup id="category-container" styleClass="process-configuration__category">
+              <p:inputText id="category" styleClass="process-configuration__input-text" value="#{dashboardProcessBean.displayCategories}" readonly="true" />
+              <p:overlayPanel id="category-panel" for="category" appendTo="category-container" styleClass="process-configuration__category-panel"
+                onHide="$(this.targetElement).parents('.process-configuration__category').find('.portal-cancel-button').click();" dynamic="true">
+                <p:tree id="process-category-filter-tree" value="#{dashboardProcessBean.categoryTree}" var="node" styleClass="filter-category-checkbox-tree" selectionMode="checkbox"
+                  selection="#{dashboardProcessBean.categoryNodes}" filterMatchMode="contains" filterBy="#{node}">
+                  <p:treeNode>
+                    <h:outputText value="#{node.value}" />
+                  </p:treeNode>
+                </p:tree>
+
+                <h:panelGroup id="category-panel-footer" layout="block" styleClass="process-configuration__category-panel-footer">
+                  <p:commandLink id="cancel-command" styleClass="portal-cancel-button u-mar-right-10" process="@this" global="false"
+                    value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" update="category-container" />
+
+                  <p:commandButton id="update-command" styleClass="update-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}" process="category-panel" partialSubmit="true"
+                    update="category-container processes-list" icon="si si-check-1" actionListener="#{dashboardProcessBean.setCategoryNodes()}" />
+                </h:panelGroup>
+              </p:overlayPanel>
+            </h:panelGroup>
+          </div>
+
+          <div class="ui-g-3">
+            <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/processes')}" for="processes-list" />
+          </div>
+          <div class="ui-g-9 ui-fluid">
+            <p:selectCheckboxMenu id="processes-list" value="#{widget.processes}" multiple="true" filter="true" filterMatchMode="contains" panelStyleClass="process-selection__panel"
+              styleClass="process-configuration__select-process" converter="processSelectionConverter">
+              <f:selectItems value="#{dashboardProcessBean.portalProcesses}" var="process" itemValue="#{process}" itemLabel="#{process.name}" />
+              <p:ajax event="toggleSelect" listener="#{dashboardProcessBean.toggleSelectAllProcesses()}" oncomplete="PF('new-widget-configuration-dialog').initPosition();" />
+              <p:ajax oncomplete="PF('new-widget-configuration-dialog').initPosition();" />
+            </p:selectCheckboxMenu>
+          </div>
+        </h:panelGroup>
+
+        <h:panelGroup id="full-filter" rendered="#{isFull}">
+          <div class="ui-g-3">
+            <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/process')}" for="selected-full-process" />
+          </div>
+          <div class="ui-g-9 ui-fluid">
+            <p:autoComplete id="selected-full-process" styleClass="process-configuration__selected-process" dropdown="true" scrollHeight="300" forceSelection="true"
+              completeMethod="#{dashboardProcessBean.completeProcesses}" value="#{widget.process}" var="process" itemValue="#{process}" itemLabel="#{process.name}" queryDelay="500" cache="true"
+              minQueryLength="2" itemtipAtPosition="right top" converter="processSelectionConverter">
+              <p:ajax event="query" global="false" />
+              <p:column>
+                <h:outputText styleClass="autocomplete-tooltip" value="#{process.name}" title="#{process.description}" />
+              </p:column>
+            </p:autoComplete>
+          </div>
+        </h:panelGroup>
+
+        <h:panelGroup id="combined-filter" rendered="#{isCombined}">
+          <div class="ui-g-3">
+            <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/process')}" for="selected-combined-process" />
+          </div>
+          <div class="ui-g-9 ui-fluid">
+            <p:autoComplete id="selected-combined-process" styleClass="process-configuration__selected-process" dropdown="true" scrollHeight="300" forceSelection="true"
+              completeMethod="#{dashboardProcessBean.completeProcessesWithoutExternalLink}" value="#{widget.process}" var="process" itemValue="#{process}" itemLabel="#{process.name}" queryDelay="500"
+              cache="true" minQueryLength="2" itemtipAtPosition="right top" converter="processSelectionConverter">
+              <p:ajax event="query" global="false" />
+              <p:ajax event="itemSelect" listener="#{dashboardProcessBean.updateProcessStartId()}" global="false" />
+              <p:column>
+                <h:outputText styleClass="autocomplete-tooltip" value="#{process.name}" title="#{process.description}" />
+              </p:column>
+            </p:autoComplete>
+          </div>
+        </h:panelGroup>
+      </h:panelGroup>
+    </div>
+  </h:panelGroup>
+
+  <!-- Preview -->
+  <h:panelGroup id="widget-preview" styleClass="card widget-preview widget-preview--process" layout="block">
+    <div class="ui-g #{isCompact ? 'widget-preview--compact' : ''} #{isFull ? 'widget-preview--full' : ''} #{isCombined ? 'widget-preview--combined' : ''}">
+      <div class="ui-g-12 widget-preview__header">
+        <h2>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/preview')}</h2>
+      </div>
+
+      <!-- Widget data -->
+      <div class="ui-g-12">
+        <h:panelGroup id="preview-process" class="ui-g-12 u-padding-0">
+          <ic:ch.ivy.addon.portal.generic.dashboard.component.ProcessWidget processWidget="#{widget}" isReadOnlyMode="true" isInConfiguration="true" />
+        </h:panelGroup>
+      </div>
+    </div>
+  </h:panelGroup>
+
+</cc:implementation>
+</html>

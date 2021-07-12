@@ -6,6 +6,7 @@ import java.util.List;
 import ch.ivy.addon.portalkit.casefilter.CaseFilter;
 import ch.ivy.addon.portalkit.casefilter.impl.CaseFilterData;
 import ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel;
+import ch.ivy.addon.portalkit.enums.ExternalVariable;
 
 public class CaseFilterService extends AbstractFilterService<CaseFilterData> {
 
@@ -32,6 +33,6 @@ public class CaseFilterService extends AbstractFilterService<CaseFilterData> {
 
   @Override
   public String getConfigKey() {
-    return "Portal.Cases.CaseFilters";
+    return ExternalVariable.CASE_FILTER.key;
   }
 }

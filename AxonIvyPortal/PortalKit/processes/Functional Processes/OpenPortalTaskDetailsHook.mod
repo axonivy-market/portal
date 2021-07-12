@@ -17,6 +17,9 @@ Os0 @PushWFArc f2 '' #zField
 Os0 @EndSub f3 '' #zField
 Os0 @StartSub f4 '' #zField
 Os0 @PushWFArc f5 '' #zField
+Os0 @EndSub f6 '' #zField
+Os0 @StartSub f7 '' #zField
+Os0 @PushWFArc f8 '' #zField
 >Proto Os0 Os0 OpenPortalTaskDetailsHook #zField
 Os0 f0 inParamDecl '<ch.ivyteam.ivy.workflow.ITask task,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel dataModel,ch.ivy.addon.portalkit.enums.PortalPage portalPage,Boolean isFromTaskList> param;' #txt
 Os0 f0 inParamTable 'out.dataModel=param.dataModel;
@@ -56,6 +59,27 @@ Os0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Os0 f4 81 145 30 30 -64 15 #rect
 Os0 f5 expr out #txt
 Os0 f5 111 160 337 160 #arcP
+Os0 f6 337 273 30 30 0 15 #rect
+Os0 f6 @|EndSubIcon #fIcon
+Os0 f7 inParamDecl '<ch.ivyteam.ivy.workflow.ITask task,ch.ivy.addon.portalkit.datamodel.DashboardTaskLazyDataModel dataModel,ch.ivy.addon.portalkit.enums.PortalPage portalPage,Boolean isFromTaskList> param;' #txt
+Os0 f7 inParamTable 'out.dashboardDataModel=param.dataModel;
+out.isFromTaskList=param.#isFromTaskList is initialized ? param.isFromTaskList : true;
+out.portalPage=param.portalPage;
+out.task=param.task;
+' #txt
+Os0 f7 outParamDecl '<> result;' #txt
+Os0 f7 callSignature callFromDashboard(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.DashboardTaskLazyDataModel,ch.ivy.addon.portalkit.enums.PortalPage,Boolean) #txt
+Os0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>callFromDashboard(ITask,DashboardTaskLazyDataModel,PortalPage,Boolean)</name>
+    </language>
+</elementInfo>
+' #txt
+Os0 f7 81 273 30 30 -64 15 #rect
+Os0 f7 @|StartSubIcon #fIcon
+Os0 f8 expr out #txt
+Os0 f8 111 288 337 288 #arcP
 >Proto Os0 .type ch.ivy.add.portalkit.OpenPortalTaskDetailsData #txt
 >Proto Os0 .processKind CALLABLE_SUB #txt
 >Proto Os0 0 0 32 24 18 0 #rect
@@ -64,3 +88,5 @@ Os0 f0 mainOut f2 tail #connect
 Os0 f2 head f1 mainIn #connect
 Os0 f4 mainOut f5 tail #connect
 Os0 f5 head f3 mainIn #connect
+Os0 f7 mainOut f8 tail #connect
+Os0 f8 head f6 mainIn #connect
