@@ -3,6 +3,7 @@ package portal.guitest.page;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
@@ -14,6 +15,7 @@ import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
 
 import portal.guitest.common.Sleeper;
+import portal.guitest.common.TaskState;
 import portal.guitest.common.WaitHelper;
 
 public class TaskDetailsPage extends TemplatePage {
@@ -318,7 +320,8 @@ public class TaskDetailsPage extends TemplatePage {
 
   public String getTaskState() {
     WebElement taskStateComponent = findElementByCssSelector("[id$=':general-information:task-detail-state']");
-    return taskStateComponent.findElement(By.cssSelector("span[class*='task-detail-state']")).getText();
+    String stateStyleClass = taskStateComponent.findElement(By.cssSelector("i[class*='task-state']")).getAttribute("class");
+    return TaskState.fromClass(Stream.of(stateStyleClass.trim().split(" ")).filter(style -> style.endsWith("-task-state")).findFirst().orElse("")).name();
   }
 
   public String getTaskDelayTime() {
@@ -442,5 +445,15 @@ public class TaskDetailsPage extends TemplatePage {
 
   public String getAfterEscalation() {
     return findElementByClassName("task-expiry-activator-name").getText();
+  }
+
+  public void waitForIFrameWidgetLoad() {
+    driver.switchTo().frame("custom-widget-iframe");
+    WaitHelper.assertTrueWithWait(() -> findElementByCssSelector(".container.frame").isDisplayed());
+  }
+
+  public void waitForIFrameURLWidgetLoad() {
+    driver.switchTo().frame("custom-widget-iframe-url");
+    WaitHelper.assertTrueWithWait(() -> findElementByCssSelector("a[href='https://www.axonivy.com']").isDisplayed());
   }
 }

@@ -39,6 +39,11 @@ Ce0 @PushWFArc f5 '' #zField
 Ce0 @PushWFArc f8 '' #zField
 Ce0 @PushWFArc f13 '' #zField
 Ce0 @PushWFArc f15 '' #zField
+Ce0 @GridStep f14 '' #zField
+Ce0 @StartSub f23 '' #zField
+Ce0 @EndSub f16 '' #zField
+Ce0 @PushWFArc f19 '' #zField
+Ce0 @PushWFArc f30 '' #zField
 >Proto Ce0 Ce0 CaseService #zField
 Ce0 f0 inParamDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria caseSearchCriteria,Integer startIndex,Integer count> param;' #txt
 Ce0 f0 inParamTable 'out.caseSearchCriteria=param.caseSearchCriteria;
@@ -252,6 +257,40 @@ Ce0 f13 expr out #txt
 Ce0 f13 328 480 417 480 #arcP
 Ce0 f15 expr out #txt
 Ce0 f15 312 576 417 576 #arcP
+Ce0 f14 actionTable 'out=in;
+' #txt
+Ce0 f14 actionCode 'import ch.ivy.addon.portalkit.ivydata.dto.IvyCaseResultDTO;
+import ch.ivy.addon.portalkit.ivydata.service.impl.CaseService;
+
+IvyCaseResultDTO dto = CaseService.newInstance().analyzeCaseCategoryStatistic(in.caseSearchCriteria);
+out.caseCategoryStatistic = dto.caseCategoryStatistic;' #txt
+Ce0 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Analyze case by category</name>
+    </language>
+</elementInfo>
+' #txt
+Ce0 f14 184 682 144 44 -67 -8 #rect
+Ce0 f23 inParamDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria caseSearchCriteria> param;' #txt
+Ce0 f23 inParamTable 'out.caseSearchCriteria=param.caseSearchCriteria;
+' #txt
+Ce0 f23 outParamDecl '<ch.ivy.addon.portalkit.bo.CaseCategoryStatistic caseCategoryStatistic> result;' #txt
+Ce0 f23 outParamTable 'result.caseCategoryStatistic=in.#caseCategoryStatistic;
+' #txt
+Ce0 f23 callSignature analyzeCaseCategoryStatistic(ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria) #txt
+Ce0 f23 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>analyzeCaseCategoryStatistic(CaseSearchCriteria)</name>
+    </language>
+</elementInfo>
+' #txt
+Ce0 f23 81 689 30 30 -68 21 #rect
+Ce0 f16 409 689 30 30 0 15 #rect
+Ce0 f19 328 704 409 704 #arcP
+Ce0 f30 expr out #txt
+Ce0 f30 111 704 184 704 #arcP
 >Proto Ce0 .type ch.ivyteam.wf.processes.CaseServiceData #txt
 >Proto Ce0 .processKind CALLABLE_SUB #txt
 >Proto Ce0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -307,3 +346,7 @@ Ce0 f33 mainOut f13 tail #connect
 Ce0 f13 head f40 mainIn #connect
 Ce0 f10 mainOut f15 tail #connect
 Ce0 f15 head f7 mainIn #connect
+Ce0 f23 mainOut f30 tail #connect
+Ce0 f30 head f14 mainIn #connect
+Ce0 f14 mainOut f19 tail #connect
+Ce0 f19 head f16 mainIn #connect

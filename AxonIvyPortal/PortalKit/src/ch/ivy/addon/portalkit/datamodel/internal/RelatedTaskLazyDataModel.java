@@ -45,7 +45,7 @@ public class RelatedTaskLazyDataModel extends TaskLazyDataModel {
   @Override
   public List<String> getDefaultColumns() {
     return Arrays.asList(TaskSortField.PRIORITY.name(), TaskSortField.NAME.name(), TaskSortField.ACTIVATOR.name(), TaskSortField.ID.name(),
-        TaskSortField.CREATION_TIME.name(), TaskSortField.EXPIRY_TIME.name(), TaskSortField.STATE.name());
+        TaskSortField.CREATION_TIME.name(), TaskSortField.EXPIRY_TIME.name(),TaskSortField.COMPLETED_ON.name(), TaskSortField.STATE.name());
   }
 
   private void updateCriteria() {
@@ -96,7 +96,7 @@ public class RelatedTaskLazyDataModel extends TaskLazyDataModel {
   }
 
   private UIComponent findRelatedTaskComponent() {
-    List<UIComponent> children = FacesContext.getCurrentInstance().getViewRoot().findComponent(":case-item-details:widgets:case-details-related-running-tasks-card").getChildren();
+    List<UIComponent> children = FacesContext.getCurrentInstance().getViewRoot().findComponent("case-item-details:case-details-container:widgets:case-details-related-running-tasks-card").getChildren();
     return children.stream().filter(child -> child.getId().equals(taskWidgetComponentId)).findFirst().orElse(null);
   }
 

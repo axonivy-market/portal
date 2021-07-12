@@ -96,7 +96,7 @@
                 var="userProcess" itemValue="#{userProcess}" itemLabel="#{userProcess.processName}"
                 queryDelay="500" cache="true" minQueryLength="2"
                 itemtipAtPosition="right top"
-                converter="userProcessAutoCompleteConverter">
+                converter="userProcessConverter">
                 <p:ajax event="query" global="false" />
                 <p:ajax event="itemSelect" update="add-new-process-form" resetValues="true" listener="#{compactProcessWidgetBean.onSelectUserProcess}"/>
                 <p:column>

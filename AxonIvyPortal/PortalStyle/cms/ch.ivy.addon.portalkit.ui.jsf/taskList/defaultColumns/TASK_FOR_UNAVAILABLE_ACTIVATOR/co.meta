@@ -1,0 +1,5 @@
+co: name={TASK_FOR_UNAVAILABLE_ACTIVATOR} description={} changed={2021-07-05 11:03:06 CEST} changedby={mnhnam} visualorder={0} guid={1798D446E7137B36} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={1798D44DCD9BFC0D} datatype={} isdefault={false} langid={fr} description={} validfrom={2021-07-05 11:03:06 CEST} validto={} changed={2021-07-05 11:03:06 CEST} changedby={mnhnam} properties={} id={}
+val: guid={1798D44DC18783DF} datatype={} isdefault={false} langid={de} description={} validfrom={2021-07-05 11:03:06 CEST} validto={} changed={2021-07-05 11:03:06 CEST} changedby={mnhnam} properties={} id={}
+val: guid={1798D446E78F9DA8} datatype={} isdefault={true} langid={en} description={} validfrom={2021-05-21 06:52:22 CEST} validto={} changed={2021-06-10 12:01:08 CEST} changedby={chnam} properties={} id={}
+val: guid={1798D44DC9F4D48C} datatype={} isdefault={false} langid={es} description={} validfrom={2021-07-05 11:03:06 CEST} validto={} changed={2021-07-05 11:03:06 CEST} changedby={mnhnam} properties={} id={}

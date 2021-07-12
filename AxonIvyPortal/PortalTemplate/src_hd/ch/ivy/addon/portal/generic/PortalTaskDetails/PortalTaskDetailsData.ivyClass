@@ -11,3 +11,5 @@ isFromTaskList 'true: opened from TASK_LIST or SEARCH_RESULTS; false: back from 
 isFromTaskList PERSISTENT #fieldModifier
 isTaskStartedInDetails Boolean #field
 isTaskStartedInDetails PERSISTENT #fieldModifier
+dashboardDataModel ch.ivy.addon.portalkit.datamodel.DashboardTaskLazyDataModel #field
+dashboardDataModel PERSISTENT #fieldModifier

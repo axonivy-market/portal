@@ -2,24 +2,27 @@ package portal.guitest.common;
 
 public enum TaskState {
   
-  OPEN, IN_PROGRESS, RESERVED, DONE, DESTROYED;
+  OPEN, IN_PROGRESS, RESERVED, DONE, DESTROYED, DELAYED, SUSPENDED;
   
   public static TaskState fromClass(String stateClass) {
     switch (stateClass.trim()) {
-      case "task-state-open":
-        return OPEN;
+      case "suspended-task-state":
+        return SUSPENDED;
 
-      case "task-state-in-progress":
+      case "resumed-task-state":
         return IN_PROGRESS;
         
-      case "task-state-reserved":
+      case "parked-task-state":
         return RESERVED;
         
-      case "task-state-done":
+      case "done-task-state":
         return DONE;
 
-      case "task-state-zombie-destroyed":
+      case "destroyed-task-state":
         return DESTROYED;
+        
+      case "delayed-task-state":
+        return DELAYED;
       default:
         return OPEN;
     }

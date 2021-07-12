@@ -135,6 +135,12 @@ function ProcessWidget() {
         		&& $(this.children).hasClass("js-external-link-process-item")) {
         	$(this).show();
         }
+        
+        var categoryElement = $('.js-image-process-category', this);
+        if (categoryElement.length > 0
+          && contain(categoryElement[0].textContent.trim().toLowerCase(), keyword.trim().toLowerCase())) {
+          $(this).show();
+        }
       });
 
       var processAlphabetGroups = $('.js-process-index-group');
