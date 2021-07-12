@@ -87,17 +87,19 @@ private static final long serialVersionUID = -5889375917550618261L;
     
     if (isGuide) {
       createDummyDataForGuide();
-    } else {
-      String isUserFavoritesEnabledGlobalVariable =
-          new GlobalSettingService().findGlobalSettingValue(GlobalVariable.ENABLE_USER_FAVORITES);
-      isUserFavoritesEnabled = StringUtils.isNotBlank(isUserFavoritesEnabledGlobalVariable) ? Boolean.parseBoolean(isUserFavoritesEnabledGlobalVariable) : true;
-      ivyProcesses = findProcesses();
-      expressProcesses = findExpressProcesses();
-      externalLinks = findExternalLink();
-      userProcesses = findUserProcesses();
-      defaultProcesses = findStartableDefaultProcesses();
-      isDisplayShowAllProcessesLink = PermissionUtils.checkAccessFullProcessListPermission();
     }
+  }
+  
+  public void initProcesses() {
+    String isUserFavoritesEnabledGlobalVariable =
+        new GlobalSettingService().findGlobalSettingValue(GlobalVariable.ENABLE_USER_FAVORITES);
+    isUserFavoritesEnabled = StringUtils.isNotBlank(isUserFavoritesEnabledGlobalVariable) ? Boolean.parseBoolean(isUserFavoritesEnabledGlobalVariable) : true;
+    ivyProcesses = findProcesses();
+    expressProcesses = findExpressProcesses();
+    externalLinks = findExternalLink();
+    userProcesses = findUserProcesses();
+    defaultProcesses = findStartableDefaultProcesses();
+    isDisplayShowAllProcessesLink = PermissionUtils.checkAccessFullProcessListPermission();
   }
   
   private void createDummyDataForGuide() {
