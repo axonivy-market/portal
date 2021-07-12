@@ -35,10 +35,7 @@ Ls0 f0 81 137 30 30 16 11 #rect
 Ls0 f1 81 361 30 30 0 15 #rect
 Ls0 f3 actionTable 'out=in;
 ' #txt
-Ls0 f3 actionCode 'import ch.ivy.addon.portalkit.enums.MenuKind;
-import ch.addon.portal.generic.menu.SubMenuItem;
-import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
-import org.apache.commons.lang3.StringUtils;
+Ls0 f3 actionCode 'import org.apache.commons.lang3.StringUtils;
 import Boolean;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
@@ -64,8 +61,7 @@ if(PermissionUtils.checkAccessFullStatisticsListPermission()) {
 	if (!isHideStatistic) {
   	in.subMenuItems.add(new StatisticSubMenuItem());
 	}
-}
-' #txt
+}' #txt
 Ls0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
