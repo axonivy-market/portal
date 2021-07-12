@@ -617,7 +617,9 @@ import ch.ivyteam.ivy.workflow.StandardProcessType;
 String library = PortalLibrary.PORTAL_TEMPLATE.getValue();
 
 String defaultEndPage = ivy.wf.getStandardProcessImplementationLibrary(StandardProcessType.DEFAULT_PAGES_PROCESS_TYPES);
-if (StringUtils.isBlank(defaultEndPage)) {
+
+// if default endpage is null or is portal template but has different group ID
+if (StringUtils.isBlank(defaultEndPage) || (defaultEndPage.endsWith(PortalLibrary.PORTAL_TEMPLATE.getProjectId()) && !library.equals(defaultEndPage))) {
 	ivy.wf.setStandardProcessImplementationLibrary(StandardProcessType.DEFAULT_PAGES_PROCESS_TYPES, library);
 }' #txt
 Pt0 f37 security system #txt
@@ -1524,7 +1526,9 @@ import ch.ivyteam.ivy.workflow.StandardProcessType;
 String library = PortalLibrary.PORTAL_TEMPLATE.getValue();
 
 String defaultEndPage = ivy.wf.getStandardProcessImplementationLibrary(StandardProcessType.DEFAULT_PAGES_PROCESS_TYPES);
-if (StringUtils.isBlank(defaultEndPage)) {
+
+// if default endpage is null or is portal template but has different group ID
+if (StringUtils.isBlank(defaultEndPage) || (defaultEndPage.endsWith(PortalLibrary.PORTAL_TEMPLATE.getProjectId()) && !library.equals(defaultEndPage))) {
 	ivy.wf.setStandardProcessImplementationLibrary(StandardProcessType.DEFAULT_PAGES_PROCESS_TYPES, library);
 }' #txt
 Bk5 f20 security system #txt
