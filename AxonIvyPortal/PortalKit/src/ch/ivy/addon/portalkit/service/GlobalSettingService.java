@@ -2,7 +2,6 @@ package ch.ivy.addon.portalkit.service;
 
 import static java.util.stream.Collectors.toList;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -89,14 +88,8 @@ public class GlobalSettingService {
   private Stream<Variable> getPortalVariableStream() {
     List<String> names =
         Stream.of(GlobalVariable.values()).map(v -> v.getKey()).collect(Collectors.toList());
-    //TODO to workaround for find all global var
-    //return Ivy.var().all().stream()
-    //    .filter(v -> v.name().startsWith("Portal.") && names.contains(v.name()));
-    List<Variable> portalVarsStream = new ArrayList<>();
-    names.forEach(name -> {
-    	portalVarsStream.add(Ivy.var().variable(name));
-    });
-    return portalVarsStream.stream();
+    return Ivy.var().all().stream()
+        .filter(v -> v.name().startsWith("Portal.") && names.contains(v.name()));
   }
 
   public void resetAll() {
