@@ -6,11 +6,12 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
+import ch.ivy.addon.portalkit.enums.ExternalVariable;
 import ch.ivy.addon.portalkit.util.ExpressManagementUtils;
 
 public class ExpressProcessService extends JsonConfigurationService<ExpressProcess> {
 
-  private static final String EXPRESS_PROCESSES = "Portal.Processes.ExpressProcesses";
+  private static final String EXPRESS_PROCESSES = ExternalVariable.EXPRESS_PROCESS.key;
   private static ExpressProcessService instance;
 
   public static ExpressProcessService getInstance() {

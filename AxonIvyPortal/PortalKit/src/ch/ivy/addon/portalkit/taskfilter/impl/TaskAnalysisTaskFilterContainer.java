@@ -15,6 +15,13 @@ public class TaskAnalysisTaskFilterContainer extends DefaultTaskFilterContainer 
     filters.add(workerFilter);
     Collections.sort(filters, new TaskFilterComparator());
   }
+  
+  public TaskAnalysisTaskFilterContainer(boolean filterForUnavailableActivator) {
+    super(filterForUnavailableActivator);
+    filters.add(nameFilter);
+    filters.add(workerFilter);
+    Collections.sort(filters, new TaskFilterComparator());
+  }
 
   public TaskWorkerFilter getWorkerFilter() {
     return workerFilter;

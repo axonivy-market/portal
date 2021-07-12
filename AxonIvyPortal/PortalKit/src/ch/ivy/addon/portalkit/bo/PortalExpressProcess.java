@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import org.apache.commons.lang3.StringUtils;
 
+import ch.ivy.addon.portalkit.enums.DefaultImage;
 import ch.ivy.addon.portalkit.enums.ProcessType;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.util.ExpressManagementUtils;
@@ -17,6 +18,7 @@ import ch.ivyteam.ivy.security.IUser;
 public class PortalExpressProcess implements Process {
 
   public static final String DEFAULT_ICON = "si si-startup-launch";
+  private static final String EXPRESS_CATEGORY_PRE_FIX = "ExpressWorkflow";
   private static final String NOT_AVAILABLE_CMS = "/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable";
   private static final String EXPRESS_WORKFLOW_ID_PARAM = "?workflowID=";
   private ExpressProcess process;
@@ -108,4 +110,18 @@ public class PortalExpressProcess implements Process {
     this.ableToStart = ableToStart;
   }
 
+  @Override
+  public String getCategory() {
+    return EXPRESS_CATEGORY_PRE_FIX + "/" + process.getProcessName();
+  }
+
+  @Override
+  public String getImageUrl() {
+    return DefaultImage.NASASTART.getPath();
+  }
+
+  @Override
+  public String getDefaultImageSrc() {
+    return StringUtils.EMPTY;
+  }
 }
