@@ -196,11 +196,11 @@ For the custom widget, we have a new node is ``data`` inside of case details wid
       - Refer to ``variables.Portal.CaseDetails.json`` file in ``portal-developer-examples/resources/files`` project.
       - Copy to the corresponding application folder located in the designer.
 
-          - e.g: AxonIvyDesigner9.3.0/configuration/applications/designer.
+          - e.g: AxonIvyDesigner/configuration/applications/designer.
 
       - Create some destroyed case or start the process ``Start Processes/CaseDetailsCustomWidgetExample/CreateEventTest.ivp`` in ``portal-developer-examples`` project.
       - Go to the example homepage by the process ``Start Processes/ExamplePortalStart/DefaultApplicationHomePage.ivp``.
-      - And then go to case details to check new custom layour.
+      - And then go to case details to check the new custom layout.
    
       About how to configure Global Var, refer to `Axon Ivy Global Variables <https://developer.axonivy.com/releases/ivy/9.1/documents/designer-guide/configuration/global-variables.html>`_
    
