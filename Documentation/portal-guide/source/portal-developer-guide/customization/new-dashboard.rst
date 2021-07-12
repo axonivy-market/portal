@@ -46,10 +46,13 @@ Below is a JSON example for the configuration of dashboards.
             {
                "type": "task",
                "id": "task_1",
-               "axisX": 0,
-               "axisY": 0,
-               "width": 10,
-               "height": 9
+               "layout": {
+                  "x": 0,
+                  "y": 0,
+                  "w": 10,
+                  "h": 9,
+                  "styleClass": "your-widget-class"
+               }
             }
          ]
       },
@@ -60,11 +63,13 @@ Below is a JSON example for the configuration of dashboards.
          "widgets": [
             {
                "type": "task",
-               "id": "task_2",
-               "axisX": 0,
-               "axisY": 0,
-               "width": 10,
-               "height": 9
+               "id": "task_1",
+               "layout": {
+                  "x": 0,
+                  "y": 0,
+                  "w": 10,
+                  "h": 9
+               }
             }
          ]
       },
@@ -99,3 +104,16 @@ They will help you understand how to configure widget efficiency.
    new-dashboard-task-widget
    new-dashboard-case-widget
    new-dashboard-process-widget
+
+.. tip:: 
+   To quickly understand how the JSON of custom dashboard looks like.
+
+   - Refer to ``variables.Portal.Dashboard.json`` file in ``portal-developer-examples/resources/files`` project.
+   - Copy to the corresponding application folder located in the designer.
+
+      - e.g: AxonIvyDesigner9.3.0/configuration/applications/designer
+
+   - Start the process ``Start Processes/CreateTestData/CreateTestDataForCustomizedDashboard.ivp`` in ``portal-developer-examples`` project.
+   - Open Portal new dashboard to check new custom layout.
+
+   About how to configure Global Variable, refer to `Axon Ivy Global Variables <https://developer.axonivy.com/releases/ivy/9.1/documents/designer-guide/configuration/global-variables.html>`_
