@@ -26,6 +26,7 @@ import ch.ivy.addon.portalkit.bo.ExpiryStatistic;
 import ch.ivy.addon.portalkit.bo.TaskCategoryStatistic;
 import ch.ivy.addon.portalkit.bo.TaskStateStatistic;
 import ch.ivy.addon.portalkit.datamodel.DashboardTaskLazyDataModel;
+import ch.ivy.addon.portalkit.dto.WidgetLayout;
 import ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.CreatedDateColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.DescriptionColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.ExpiryDateColumnModel;
@@ -71,6 +72,7 @@ public class TaskDashboardWidget extends DashboardWidget {
   private Long numberOfTasksExpireToday;
   @JsonIgnore
   private List<String> prevUserFilterCategories;
+  
   
   public TaskDashboardWidget() {
     dataModel = new DashboardTaskLazyDataModel();
@@ -304,8 +306,12 @@ public class TaskDashboardWidget extends DashboardWidget {
     TaskDashboardWidget result = new TaskDashboardWidget();
     result.setId(id);
     result.setName(name);
-    result.setWidth(10);
-    result.setHeight(9);
+
+    WidgetLayout layout = new WidgetLayout();
+    layout.setWidth(10);
+    layout.setHeight(9);
+    result.setLayout(layout);
+
     result.setAutoPosition(true);
     result.setSortField(TaskSortField.ID.toString());
     result.setSortDescending(true);
