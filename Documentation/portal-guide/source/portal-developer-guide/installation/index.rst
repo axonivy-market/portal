@@ -201,6 +201,11 @@ Release notes
 This part lists all relevant changes since the last official product
 releases of Axon Ivy.
 
+Changes in 9.3
+--------------
+
+- No need to update PortalGroupId variable when you change group id of Portal.
+
 
 Changes in 9.2
 --------------
