@@ -171,20 +171,20 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
     if (this.widget.getType() == DashboardWidgetType.PROCESS) {
       ProcessDashboardWidget processWidget = (ProcessDashboardWidget) this.widget;
       if (processWidget.getDisplayMode() == ProcessWidgetMode.FULL_MODE) {
-        processWidget.setHeight(4);
-        processWidget.setWidth(2);
+        processWidget.getLayout().setHeight(4);
+        processWidget.getLayout().setWidth(2);
         processWidget.setName(processWidget.getProcess() != null ? processWidget.getProcess().getName() : "");
         processWidget.setDisplayProcesses(new ArrayList<>());
         processWidget.setProcesses(new ArrayList<>());
       } else if (processWidget.getDisplayMode() == ProcessWidgetMode.COMBINED_MODE) {
-        processWidget.setHeight(6);
-        processWidget.setWidth(5);
+        processWidget.getLayout().setHeight(6);
+        processWidget.getLayout().setWidth(5);
         processWidget.setDisplayProcesses(new ArrayList<>());
         processWidget.setProcesses(new ArrayList<>());
         processWidget.setName(processWidget.getProcess() != null ? processWidget.getProcess().getName() : "");
       } else {
-        processWidget.setHeight(6);
-        processWidget.setWidth(2);
+        processWidget.getLayout().setHeight(6);
+        processWidget.getLayout().setWidth(2);
         processWidget.setProcess(null);
         processWidget.getUserFilter().setCategories(processWidget.getCategories());
         boolean isAllProcessesSelected = CollectionUtils.isEmpty(processWidget.getCategories())

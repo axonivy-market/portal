@@ -16,6 +16,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 import ch.ivy.addon.portalkit.datamodel.DashboardProcessCaseLazyDataModel;
 import ch.ivy.addon.portalkit.datamodel.DashboardProcessTaskLazyDataModel;
+import ch.ivy.addon.portalkit.dto.WidgetLayout;
 import ch.ivy.addon.portalkit.dto.dashboard.process.DashboardProcess;
 import ch.ivy.addon.portalkit.dto.dashboard.process.DashboardProcessUserFilter;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
@@ -28,12 +29,15 @@ public class ProcessDashboardWidget extends DashboardWidget {
 
   private static final long serialVersionUID = 3048837559125720787L;
   private ProcessWidgetMode displayMode = ProcessWidgetMode.COMPACT_MODE;
-  private List<DashboardProcess> processes;
   private boolean isSelectedAllProcess;
-  private DashboardProcess process;
   private List<String> categories;
-
+  private String processPath;
+  
   private int rowsPerPage = 5;
+  @JsonIgnore
+  private List<DashboardProcess> processes;
+  @JsonIgnore
+  private DashboardProcess process;
   @JsonIgnore
   private List<DashboardProcess> displayProcesses;
   @JsonIgnore
@@ -69,10 +73,11 @@ public class ProcessDashboardWidget extends DashboardWidget {
     ProcessDashboardWidget result = new ProcessDashboardWidget();
     result.setId(id);
     result.setName(name);
-    result.setWidth(2);
-    result.setHeight(6);
-    result.setAxisX(0);
-    result.setAxisY(0);
+    result.setLayout(new WidgetLayout());
+    result.getLayout().setWidth(2);
+    result.getLayout().setHeight(6);
+    result.getLayout().setAxisX(0);
+    result.getLayout().setAxisY(0);
     result.setAutoPosition(true);
     result.setSelectedAllProcess(true);
     return result;
@@ -243,5 +248,13 @@ public class ProcessDashboardWidget extends DashboardWidget {
 
   public void setOriginalDisplayProcesses(List<DashboardProcess> originalDisplayProcesses) {
     this.originalDisplayProcesses = originalDisplayProcesses;
+  }
+
+  public String getProcessPath() {
+    return processPath;
+  }
+
+  public void setProcessPath(String processPath) {
+    this.processPath = processPath;
   }
 }
