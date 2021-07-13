@@ -34,7 +34,7 @@ How to configure widgets in task details
 
 -  Default configuration includes 3 widgets.
 
-   .. code-block:: json
+   .. code-block:: html
 
       [
          {
@@ -216,7 +216,7 @@ There are **two steps** for adding new custom panels.
    
    -  Example Portal.TaskDetails with layout configuration includes 4 custom widgets:
    
-   .. code-block:: json
+   .. code-block:: html
 
       [
          {
@@ -278,7 +278,7 @@ There are **two steps** for adding new custom panels.
    
    -  Example code for overriding custom panel box of task details:
    
-      .. code-block:: json
+      .. code-block:: html
    
                
          <!-- In this HTML dialog, we override task list header, task header, task filter, and task body -->
@@ -360,7 +360,7 @@ There are **two steps** for adding new custom panels.
 
       Customized task details using external URL
 
-      .. code-block:: json
+      .. code-block:: html
 
          [
             {
@@ -391,7 +391,7 @@ There are **two steps** for adding new custom panels.
 
       Customized task details using ivy process start, please refer to ``TaskDetailsCustomWidgetExample`` process in ``portal-developer-examples`` for more details
 
-      .. code-block:: json
+      .. code-block:: html
 
             [
                {
