@@ -75,8 +75,8 @@ function saveTaskDetailsGrid() {
       id: node.id,
       x: node.x,
       y: node.y,
-      w: node.width,
-      h: node.height
+      w: node.w,
+      h: node.h
     });
     if (widgetType === "document" || widgetType === "history") {
       responsiveATableInPanel(node.el);
