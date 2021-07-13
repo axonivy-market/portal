@@ -5,6 +5,7 @@
 <h:body>
   <ui:composition template="/layouts/BasicTemplate.xhtml">
     <ui:param name="viewName" value="TASK_DETAIL" />
+    <ui:param name="loadGridStack" value="true" />
     <ui:define name="title">#{ivy.cms.co('/Labels/TaskItemDetail')}</ui:define>
     <ui:define name="pageContent">
       <ic:ch.ivy.addon.portalkit.component.TaskItemDetails id="task-detail-template" task="#{task}" showItemDetailsHeader="#{showItemDetailsHeader}"

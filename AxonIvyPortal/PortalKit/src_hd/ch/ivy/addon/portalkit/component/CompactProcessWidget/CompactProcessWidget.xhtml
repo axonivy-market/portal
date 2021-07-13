@@ -13,14 +13,22 @@
 
 <cc:implementation>
   <f:event listener="#{compactProcessWidgetBean.preRender}" type="preRenderComponent" />
+
+  <p:remoteCommand id="init-processes" name="initProcesses" autoRun="true"
+      onstart="showLoadingText();" oncomplete="hideLoadingText();"
+      update="#{cc.clientId}-all-processes-container"
+      global="false" action="#{compactProcessWidgetBean.initProcesses()}" async="true"
+      immediate="true" process="@this" partialSubmit="true"/>
+
   <h:outputScript library="js" name="process-widget.js" />
-  <div id="#{cc.clientId}" class="widget process-widget ui-g js-compact-process-widget">
+  <h:panelGroup id="#{cc.clientId}" layout="block" styleClass="widget process-widget ui-g js-compact-process-widget">
     <ui:include src="Header.xhtml" />
-    <div id="all-processes-container" class="ui-g-12 ui-sm-hidden all-processes-container u-no-padding-top u-no-padding-bottom">
+    <h:outputText id="loading-text" styleClass="js-loading-text loading-text" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/loading')}..." />
+    <h:panelGroup id="#{cc.clientId}-all-processes-container" styleClass="ui-g-12 ui-sm-hidden all-processes-container u-no-padding-top u-no-padding-bottom">
       <ui:include src="UserProcesses.xhtml" />
       <ui:include src="DefaultProcesses.xhtml" />
-    </div>
-  </div>
+    </h:panelGroup>
+  </h:panelGroup>
   
   <script type="text/javascript">
        $(function() {

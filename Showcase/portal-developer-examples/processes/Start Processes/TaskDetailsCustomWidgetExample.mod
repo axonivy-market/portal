@@ -92,16 +92,17 @@ TaskA.NAM=Support Customer
 TaskC.CATEGORY=system
 TaskC.NAM=Proceed Invoice' #txt
 Te0 f8 192 96 32 32 0 16 #rect
-Te0 f7 outLink SaleManagment.ivp #txt
+Te0 f7 outLink SalesManagement.ivp #txt
 Te0 f7 inParamDecl '<> param;' #txt
 Te0 f7 requestEnabled true #txt
 Te0 f7 triggerEnabled false #txt
-Te0 f7 callSignature SaleManagment() #txt
+Te0 f7 callSignature SalesManagement() #txt
+Te0 f7 startName 'Sales Management' #txt
 Te0 f7 caseData businessCase.attach=true #txt
 Te0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>SaleManagment.ivp</name>
+        <name>SalesManagement.ivp</name>
     </language>
 </elementInfo>
 ' #txt

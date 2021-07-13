@@ -69,10 +69,17 @@
       </c:if>
 
       <ui:repeat var="widget" value="#{taskDetailsBean.widgets}" id="widgets">
-        <div id="task-details-#{widget.type}-panel" class="#{widget.layout.styleClass} grid-stack-item" style="#{widget.layout.style}"
-          widget-type="#{widget.type}" data-gs-x="#{widget.layout.axisX}" data-gs-y="#{widget.layout.axisY}" data-gs-width="#{widget.layout.width}"
-          data-gs-height="#{widget.layout.height}" data-gs-id="#{widget.id}" data-gs-no-resize="#{taskDetailsBean.readOnlyMode}"
-          data-gs-no-move="#{taskDetailsBean.readOnlyMode}">
+        <div id="task-details-#{widget.type}-panel"
+          class="#{widget.layout.styleClass} grid-stack-item"
+          style="#{widget.layout.style}"
+          widget-type="#{widget.type}"
+          gs-x="#{widget.layout.axisX}"
+          gs-y="#{widget.layout.axisY}"
+          gs-w="#{widget.layout.width}"
+          gs-h="#{widget.layout.height}"
+          gs-id="#{widget.id}"
+          gs-no-resize="#{taskDetailsBean.readOnlyMode}"
+          gs-no-move="#{taskDetailsBean.readOnlyMode}">
 
           <!-- General & description box -->
           <h:panelGroup id="task-detail-general-container" layout="block" rendered="#{widget.type eq 'information'}"
