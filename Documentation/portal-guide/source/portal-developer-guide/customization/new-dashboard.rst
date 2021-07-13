@@ -35,7 +35,7 @@ inside each of them.
 
 Below is a JSON example for the configuration of dashboards.
 
-.. code-block:: html
+.. code-block:: json
 
    [
       {
@@ -47,10 +47,7 @@ Below is a JSON example for the configuration of dashboards.
                "type": "task",
                "id": "task_1",
                "layout": {
-                  "x": 0,
-                  "y": 0,
-                  "w": 10,
-                  "h": 9,
+                  "x": 0, "y": 0, "w": 10, "h": 9,
                   "styleClass": "your-widget-class"
                }
             }
@@ -65,10 +62,7 @@ Below is a JSON example for the configuration of dashboards.
                "type": "task",
                "id": "task_1",
                "layout": {
-                  "x": 0,
-                  "y": 0,
-                  "w": 10,
-                  "h": 9
+                  "x": 0, "y": 0, "w": 10, "h": 9
                }
             }
          ]

@@ -1,4 +1,4 @@
-{
+[{
     "id": "1",
     "title": "cms:/ch.ivy.addon.portalkit.ui.jsf/common/dashboard",
     "widgets": [
@@ -78,4 +78,4 @@
         }
       }
     ]
-}
+}]
