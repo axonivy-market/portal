@@ -147,8 +147,9 @@ Refer to ``portal-developer-examples`` project for examples.
    - To show/hide, please using ``showItemDetailsHeader`` and ``showItemBackButton`` code. For more details, please refer to
      :ref:`Show/Hide components <customization-case-details-how-to-override-ui-show-hidden-ui>`.
 
-   - And to add a new elements, please refer to :ref:`Show custom widgets <customization-case-item-details-how-to-override-ui-custom-body>`
-     code
+   - And to show a new elements in ``CaseInformation`` customized, please refer to :ref:`Show custom widgets <customization-case-item-details-how-to-override-ui-custom-body>`
+     code.
+
 
 .. _customization-case-details-how-to-override-ui-show-hidden-ui:
 
@@ -189,9 +190,20 @@ For the custom widget, we have a new node is ``data`` inside of case details wid
 
       - Other key value will be treated as hard code value.
 
-   .. important::
-      If you input ``processStart``, don't input ``url``. You can only use one of them.
+.. tip:: 
+      To quickly understand how the JSON of custom case details looks like.
+   
+      - Refer to ``variables.Portal.CaseDetails.json`` file in ``portal-developer-examples/resources/files`` project.
+      - Copy to the corresponding application folder located in the designer.
 
+          - e.g: AxonIvyDesigner/configuration/applications/designer.
+
+      - Create some destroyed case or start the process ``Start Processes/CaseDetailsCustomWidgetExample/CreateEventTest.ivp`` in ``portal-developer-examples`` project.
+      - Go to the example homepage by the process ``Start Processes/ExamplePortalStart/DefaultApplicationHomePage.ivp``.
+      - And then go to case details to check the new custom layout.
+   
+      About how to configure Global Var, refer to `Axon Ivy Global Variables <https://developer.axonivy.com/releases/ivy/9.1/documents/designer-guide/configuration/global-variables.html>`_
+   
 
 Adding new custom panels
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -355,6 +367,10 @@ There are two steps for adding new custom panels.
    -  Must input parameter ``url`` in ``data`` node if you want to use external URL.
 
    -  Must input parameter ``processStart`` in ``data`` node if you want to use ivy start process. And you can predefine parameter for the process via ``params`` in ``data`` node.
+
+      .. important::
+         If you input ``processStart``, don't input ``url``. You can only use one of them.
+
 
       Customized case details using external URL:
 
