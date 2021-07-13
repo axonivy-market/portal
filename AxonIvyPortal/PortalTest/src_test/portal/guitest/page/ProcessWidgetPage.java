@@ -12,14 +12,14 @@ import org.openqa.selenium.interactions.Actions;
 import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
 
-import portal.guitest.common.WaitHelper;
-
 public class ProcessWidgetPage extends TemplatePage {
 
   private WebElement switchModeButton;
   private WebElement liveSearchTextField;
   private WebElement processWidget;
   private String processWidgetId;
+  
+  private static final String COMPACT_PROCESS_WIDGET_ID = "process-widget:process-widget";
 
   public ProcessWidgetPage() {
     this("process-widget");
@@ -27,7 +27,12 @@ public class ProcessWidgetPage extends TemplatePage {
   
   public ProcessWidgetPage(String processWidgetId) {
     this.processWidgetId = processWidgetId;
-    processWidget = findElementById(this.processWidgetId);
+    if(isElementDisplayed(this.processWidgetId)) {
+      processWidget = findElementById(this.processWidgetId);
+    } else {
+      this.processWidgetId = COMPACT_PROCESS_WIDGET_ID;
+        processWidget = findElementById(this.processWidgetId);
+    }
   }
   
   @Override
