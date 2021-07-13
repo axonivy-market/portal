@@ -23,7 +23,7 @@
   }, {
     "id": "destroyed-task-detail",
     "filters": {
-      "taskStates": ["DESTROYED"]
+      "states": ["DESTROYED"]
     },
     "widgets": [{
         "type": "custom",
@@ -63,7 +63,7 @@
   }, {
     "id": "custom-task-detail",
     "filters": {
-      "taskCategories": ["manage"]
+      "categories": ["manage"]
     },
     "widgets": [{
         "type": "information",
