@@ -22,6 +22,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import ch.ivy.addon.portalkit.bo.CaseCategoryStatistic;
 import ch.ivy.addon.portalkit.bo.CaseStateStatistic;
 import ch.ivy.addon.portalkit.datamodel.DashboardCaseLazyDataModel;
+import ch.ivy.addon.portalkit.dto.WidgetLayout;
 import ch.ivy.addon.portalkit.dto.dashboard.casecolumn.CaseColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.casecolumn.CreatedDateColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.casecolumn.CreatorColumnModel;
@@ -268,8 +269,12 @@ public class CaseDashboardWidget extends DashboardWidget {
     CaseDashboardWidget result = new CaseDashboardWidget();
     result.setId(id);
     result.setName(name);
-    result.setWidth(10);
-    result.setHeight(9);
+
+    WidgetLayout layout = new WidgetLayout();
+    layout.setWidth(10);
+    layout.setHeight(9);
+    result.setLayout(layout);
+
     result.setAutoPosition(true);
     result.setSortField(CaseSortField.ID.toString());
     result.setSortDescending(true);
