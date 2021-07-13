@@ -26,21 +26,26 @@ import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
+import ch.ivy.addon.portalkit.dto.WidgetLayout;
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
+import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.ProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.process.DashboardProcess;
+import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.enums.ProcessWidgetMode;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.support.HtmlParser;
 import ch.ivy.addon.portalkit.util.CategoryUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
+import ch.ivy.addon.portalkit.util.ProcessStartUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.workflow.ICase;
+import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivyteam.ivy.workflow.ITask;
 
 @ViewScoped
@@ -48,8 +53,10 @@ import ch.ivyteam.ivy.workflow.ITask;
 public class DashboardBean implements Serializable {
 
   private static final long serialVersionUID = -4224901891867040688L;
+
   public static final String DASHBOARD_PREFIX = "dashboard.widgets";
   public static final String DASHBOARD_VARIABLE = "Portal.Dashboard";
+  public static final String DEFAULT_DASHBOARD_JSON_URI = "/ch.ivy.addon.portalkit/variables/DefaultDashboardJson";
   protected List<Dashboard> dashboards;
   protected Dashboard selectedDashboard;
   private String selectedDashboardId;
@@ -102,7 +109,7 @@ public class DashboardBean implements Serializable {
   protected void removeDashboardInUserProperty(String dashboardProperty) {
     currentUser().removeProperty(dashboardProperty);
   }
-
+  
   private void loadWidgets(List<DashboardWidget> widgets) {
     for (DashboardWidget widget : widgets) {
       if (widget.getType().equals(DashboardWidgetType.PROCESS)) {
@@ -125,12 +132,22 @@ public class DashboardBean implements Serializable {
       switch (widget.getType()) {
         case TASK:
           TaskDashboardWidget.buildColumns((TaskDashboardWidget) widget);
+
+          for (ColumnModel columnModel : ((TaskDashboardWidget) widget).getColumns()) {
+            updateTypeForCustomColumn(columnModel);
+          }
+
           if (StringUtils.isBlank(widget.getName())) {
             widget.setName(translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourTasks"));
           }
           break;
         case CASE:
           CaseDashboardWidget.buildColumns((CaseDashboardWidget) widget);
+
+          for (ColumnModel columnModel : ((CaseDashboardWidget) widget).getColumns()) {
+            updateTypeForCustomColumn(columnModel);
+          }
+
           if (StringUtils.isBlank(widget.getName())) {
             widget.setName(translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourCases"));
           }
@@ -157,9 +174,23 @@ public class DashboardBean implements Serializable {
     ProcessDashboardWidget processWidget = (ProcessDashboardWidget) widget;
     if (processWidget.getDisplayMode().equals(ProcessWidgetMode.COMPACT_MODE)) {
       loadProcesses(processWidget);
+    } else {
+      loadProcessByPath(processWidget);
     }
   }
 
+  private void loadProcessByPath(ProcessDashboardWidget processWidget) {
+    List<DashboardProcess> processes = getAllPortalProcesses();
+    IProcessStart foundProcess = ProcessStartUtils.findProcessStartByUserFriendlyRequestPath(processWidget.getProcessPath());
+    
+    for (DashboardProcess process : processes) {
+      if (process.getId().contains(foundProcess.getFullUserFriendlyRequestPath())) {
+        processWidget.setProcess(process);
+        break;
+      }
+    }
+  }
+  
   private void loadProcesses(ProcessDashboardWidget processWidget) {
     List<DashboardProcess> processes;
     if (processWidget.isSelectedAllProcess()) {
@@ -211,8 +242,15 @@ public class DashboardBean implements Serializable {
         }
       }
       if (!canRead) {
+        // Remove dashboard which user doesn't have permission to see
         dashboards.remove(i);
       }
+    }
+    
+    // If user does not have permission to read any dashboard, load default dashboard stored in CMS
+    if (CollectionUtils.isEmpty(dashboards)) {
+      Dashboard defaultDashboard = mapper.readValue(Ivy.cms().co(DEFAULT_DASHBOARD_JSON_URI), Dashboard.class);
+      dashboards.add(Optional.ofNullable(defaultDashboard).orElse(new Dashboard()));
     }
     return dashboards;
   }
@@ -229,14 +267,19 @@ public class DashboardBean implements Serializable {
   public void save() throws JsonParseException, JsonMappingException, IOException {
     Map<String, String> requestParamMap = getRequestParameterMap();
     String nodes = Optional.ofNullable(requestParamMap.get("nodes")).orElse(StringUtils.EMPTY);
-    List<DashboardWidget> widgets = Arrays.asList(mapper.readValue(nodes, DashboardWidget[].class));
-    for (DashboardWidget widget : widgets) {
-      DashboardWidget updatedWidget =
-          getSelectedDashboard().getWidgets().get(getSelectedDashboard().getWidgets().indexOf(widget));
-      updatedWidget.setAxisX(widget.getAxisX());
-      updatedWidget.setAxisY(widget.getAxisY());
-      updatedWidget.setWidth(widget.getWidth());
-      updatedWidget.setHeight(widget.getHeight());
+    List<WidgetLayout> layouts = Arrays.asList(mapper.readValue(nodes, WidgetLayout[].class));
+    for (WidgetLayout layout : layouts) {
+      DashboardWidget updatedWidget = getSelectedDashboard().getWidgets().stream()
+          .filter(w -> w.getId().contentEquals(layout.getId()))
+          .findFirst().get();
+
+      WidgetLayout updatedLayout = new WidgetLayout();
+      updatedLayout.setAxisX(layout.getAxisX());
+      updatedLayout.setAxisY(layout.getAxisY());
+      updatedLayout.setWidth(layout.getWidth());
+      updatedLayout.setHeight(layout.getHeight());
+
+      updatedWidget.setLayout(updatedLayout);
     }
     saveOrUpdateDashboardToUserProperty(getSelectedDashboard());
   }
@@ -297,7 +340,7 @@ public class DashboardBean implements Serializable {
     selectedDashboard = dashboards.get(index);
   }
 
-  public void onDashboardChangeByDropdown() {
+  public void  onDashboardChangeByDropdown() {
     if (selectedDashboardId != null) {
       currentDashboardIndex = dashboards.indexOf(dashboards.stream()
           .filter(dashboard -> dashboard.getId().contentEquals(selectedDashboardId)).findFirst().orElse(null));
@@ -348,7 +391,7 @@ public class DashboardBean implements Serializable {
   protected String translate(String cms) {
     return Ivy.cms().co(cms);
   }
-
+  
   protected String translate(String cms, List<Object> params) {
     return Ivy.cms().co(cms, params);
   }
@@ -371,5 +414,13 @@ public class DashboardBean implements Serializable {
 
   public void navigatetoConfigurationPage() {
     PortalNavigator.navigateToNewDashboardConfiguration();
+  }
+
+  private void updateTypeForCustomColumn(ColumnModel columnModel) {
+    if (columnModel.getFormat() != null) {
+      columnModel.setType(DashboardColumnType.CUSTOM);
+    } else {
+      columnModel.setType(DashboardColumnType.STANDARD);
+    }
   }
 }
