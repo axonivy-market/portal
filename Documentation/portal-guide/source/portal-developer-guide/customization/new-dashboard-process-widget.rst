@@ -11,7 +11,7 @@ Refer to (link to process widget of the dashboard) for more details.
 
 Basic JSON structure of process widget:
 
-   .. code-block:: html
+   .. code-block:: json
 
       {
          "type": "process",
@@ -38,7 +38,7 @@ Compact mode
 
 Below is a standard JSON definition of Process widget compact mode
 
-   .. code-block:: html
+   .. code-block:: json
 
       {
          "type": "process",
@@ -62,7 +62,7 @@ Full mode
 
 Below is a standard JSON definition of Process widget full mode
 
-   .. code-block:: html
+   .. code-block:: json
 
       {
          "type": "process",
@@ -83,7 +83,7 @@ Combined mode
 
 Below is a standard JSON definition of Process widget combined mode
 
-   .. code-block:: html
+   .. code-block:: json
 
       {
          "type": "process",
