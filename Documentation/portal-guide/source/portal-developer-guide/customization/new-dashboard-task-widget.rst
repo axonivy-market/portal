@@ -11,17 +11,14 @@ to (link to task widget of the dashboard) for more details.
 
 Below is a standard JSON definition of the task widget in the Portal dashboard
 
-.. code-block:: html
+.. code-block:: json
 
    {
       "type": "task",
       "id": "task-widget",
       "name": "Task Widget",
       "layout": {
-         "x": 0,
-         "y": 0,
-         "w": 10,
-         "h": 9,
+         "x": 0, "y": 0, "w": 10, "h": 9,
          "style": "color: red;",
          "styleClass": "your-widget-class"
       },
@@ -123,7 +120,7 @@ You can show them on the Task widget in form of a column.
 More, you can predefine which column to show, and other attributes such as header,
 filter, format. Below is a standard JSON of a custom column.
 
-.. code-block:: html
+.. code-block:: json
 
    {
       ...
@@ -157,7 +154,7 @@ Below is the list of filterable columns and their corresponding filter condition
 
    - ``activator``
 
-      .. code-block:: html
+      .. code-block:: json
 
          {
             ...
@@ -180,7 +177,7 @@ Below is the list of filterable columns and their corresponding filter condition
 
    - ``name``
 
-      .. code-block:: html
+      .. code-block:: json
 
          {
             ...
@@ -200,7 +197,7 @@ Below is the list of filterable columns and their corresponding filter condition
 
    - ``description``
 
-      .. code-block:: html
+      .. code-block:: json
 
          {
             ...
@@ -221,7 +218,7 @@ Below is the list of filterable columns and their corresponding filter condition
 
    - ``priority``
 
-      .. code-block:: html
+      .. code-block:: json
 
          {
             ...
@@ -245,7 +242,7 @@ Below is the list of filterable columns and their corresponding filter condition
 
    - ``state``
 
-      .. code-block:: html
+      .. code-block:: json
 
          {
             ...
@@ -269,7 +266,7 @@ Below is the list of filterable columns and their corresponding filter condition
 
    - ``startTimestamp``
 
-      .. code-block:: html
+      .. code-block:: json
 
          {
             ...
@@ -293,7 +290,7 @@ Below is the list of filterable columns and their corresponding filter condition
 
    - ``expiryTimestamp``
 
-      .. code-block:: html
+      .. code-block:: json
 
          {
             ...
