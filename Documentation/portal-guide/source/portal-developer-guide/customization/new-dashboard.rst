@@ -35,7 +35,7 @@ inside each of them.
 
 Below is a JSON example for the configuration of dashboards.
 
-.. code-block:: json
+.. code-block:: html
 
    [
       {

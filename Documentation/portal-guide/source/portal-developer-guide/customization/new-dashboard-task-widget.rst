@@ -11,7 +11,7 @@ to (link to task widget of the dashboard) for more details.
 
 Below is a standard JSON definition of the task widget in the Portal dashboard
 
-.. code-block:: json
+.. code-block:: html
 
    {
       "type": "task",
@@ -120,7 +120,7 @@ You can show them on the Task widget in form of a column.
 More, you can predefine which column to show, and other attributes such as header,
 filter, format. Below is a standard JSON of a custom column.
 
-.. code-block:: json
+.. code-block:: html
 
    {
       ...
@@ -154,7 +154,7 @@ Below is the list of filterable columns and their corresponding filter condition
 
    - ``activator``
 
-      .. code-block:: json
+      .. code-block:: html
 
          {
             ...
@@ -177,7 +177,7 @@ Below is the list of filterable columns and their corresponding filter condition
 
    - ``name``
 
-      .. code-block:: json
+      .. code-block:: html
 
          {
             ...
@@ -197,7 +197,7 @@ Below is the list of filterable columns and their corresponding filter condition
 
    - ``description``
 
-      .. code-block:: json
+      .. code-block:: html
 
          {
             ...
@@ -218,7 +218,7 @@ Below is the list of filterable columns and their corresponding filter condition
 
    - ``priority``
 
-      .. code-block:: json
+      .. code-block:: html
 
          {
             ...
@@ -242,7 +242,7 @@ Below is the list of filterable columns and their corresponding filter condition
 
    - ``state``
 
-      .. code-block:: json
+      .. code-block:: html
 
          {
             ...
@@ -266,7 +266,7 @@ Below is the list of filterable columns and their corresponding filter condition
 
    - ``startTimestamp``
 
-      .. code-block:: json
+      .. code-block:: html
 
          {
             ...
@@ -290,7 +290,7 @@ Below is the list of filterable columns and their corresponding filter condition
 
    - ``expiryTimestamp``
 
-      .. code-block:: json
+      .. code-block:: html
 
          {
             ...
