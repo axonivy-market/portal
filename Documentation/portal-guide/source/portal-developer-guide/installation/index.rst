@@ -227,6 +227,11 @@ Release notes
 This part lists all relevant changes since the last official product
 releases of Axon Ivy.
 
+Changes in 8.0.18
+-----------------
+
+- No need to update PortalGroupId variable when you change group id of Portal.
+
 Changes in 8.0.12
 -----------------
 -  Portal supports multilingual user favorites
