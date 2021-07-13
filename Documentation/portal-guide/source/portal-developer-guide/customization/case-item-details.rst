@@ -39,7 +39,7 @@ How to configure widgets in case details
 
 -  Default configuration includes 5 widgets.
 
-   .. code-block:: html
+   .. code-block:: json
 
     [{
        "id": "default-case-detail",
@@ -217,7 +217,7 @@ There are two steps for adding new custom panels.
 
    -  Example **Portal.CaseDetails** with including 3 custom widgets configuration:
 
-      .. code-block:: html
+      .. code-block:: json
 
          [{
             "id": "default-case-detail",
@@ -285,7 +285,7 @@ There are two steps for adding new custom panels.
 
    -  Below is example code for adding custom widgets to case details
 
-   .. code-block:: html
+   .. code-block:: json
 
       <!--!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
          !!!! START: AREA SHOULD BE CUSTOMIZED !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -374,7 +374,7 @@ There are two steps for adding new custom panels.
 
       Customized case details using external URL:
 
-      .. code-block:: html
+      .. code-block:: json
 
          [
             {
@@ -408,7 +408,7 @@ There are two steps for adding new custom panels.
 
       Customized case details using ivy process start, please refer to ``CaseDetailsCustomWidgetExample`` process in ``portal-developer-examples`` for more details
 
-      .. code-block:: html
+      .. code-block:: json
 
        [{
             "id": "case-detail",

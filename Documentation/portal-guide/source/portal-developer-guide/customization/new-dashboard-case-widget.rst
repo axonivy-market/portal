@@ -11,17 +11,14 @@ to (link to case widget of the dashboard) for more details.
 
 Below is a standard JSON definition of the case widget in the Portal dashboard.
 
-.. code-block:: html
+.. code-block:: json
 
    {
       "type": "case",
       "id": "case-widget",
       "name": "Case Widget",
       "layout": {
-         "x": 0,
-         "y": 0,
-         "w": 10,
-         "h": 9,
+         "x": 0, "y": 0, "w": 10, "h": 9,
          "style": "text-color: blue;",
          "styleClass": "your-widget-class"
       },
@@ -121,7 +118,7 @@ You can show them on the case widget in form of a column.
 More, you can predefine which column to show, and other attributes such as header,
 filter, format. Below is a standard JSON of a custom column.
 
-.. code-block:: html
+.. code-block:: json
 
    {
       ...
@@ -155,7 +152,7 @@ Below is the list of filterable columns and their corresponding filter condition
 
    - ``name``
 
-      .. code-block:: html
+      .. code-block:: json
 
          {
             ...
@@ -176,7 +173,7 @@ Below is the list of filterable columns and their corresponding filter condition
 
    - ``description``
 
-      .. code-block:: html
+      .. code-block:: json
 
          {
             ...
@@ -197,7 +194,7 @@ Below is the list of filterable columns and their corresponding filter condition
 
    - ``state``: Case state
 
-      .. code-block:: html
+      .. code-block:: json
 
          {
             ...
@@ -220,7 +217,7 @@ Below is the list of filterable columns and their corresponding filter condition
 
    - ``creator``
 
-      .. code-block:: html
+      .. code-block:: json
 
          {
             ...
@@ -243,7 +240,7 @@ Below is the list of filterable columns and their corresponding filter condition
 
    - ``startTimestamp``: Case's created date
 
-      .. code-block:: html
+      .. code-block:: json
 
          {
             ...
@@ -267,7 +264,7 @@ Below is the list of filterable columns and their corresponding filter condition
 
    - ``expiryTimestamp``: Case's expiry date
 
-      .. code-block:: html
+      .. code-block:: json
 
          {
             ...
