@@ -176,12 +176,14 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
         processWidget.setName(processWidget.getProcess() != null ? processWidget.getProcess().getName() : "");
         processWidget.setDisplayProcesses(new ArrayList<>());
         processWidget.setProcesses(new ArrayList<>());
+        processWidget.setProcessPath(processWidget.getProcess().getId());
       } else if (processWidget.getDisplayMode() == ProcessWidgetMode.COMBINED_MODE) {
         processWidget.getLayout().setHeight(6);
         processWidget.getLayout().setWidth(5);
         processWidget.setDisplayProcesses(new ArrayList<>());
         processWidget.setProcesses(new ArrayList<>());
         processWidget.setName(processWidget.getProcess() != null ? processWidget.getProcess().getName() : "");
+        processWidget.setProcessPath(processWidget.getProcess().getId());
       } else {
         processWidget.getLayout().setHeight(6);
         processWidget.getLayout().setWidth(2);
