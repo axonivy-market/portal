@@ -11,7 +11,7 @@ to (link to case widget of the dashboard) for more details.
 
 Below is a standard JSON definition of the case widget in the Portal dashboard.
 
-.. code-block:: json
+.. code-block:: html
 
    {
       "type": "case",
@@ -118,7 +118,7 @@ You can show them on the case widget in form of a column.
 More, you can predefine which column to show, and other attributes such as header,
 filter, format. Below is a standard JSON of a custom column.
 
-.. code-block:: json
+.. code-block:: html
 
    {
       ...
@@ -152,7 +152,7 @@ Below is the list of filterable columns and their corresponding filter condition
 
    - ``name``
 
-      .. code-block:: json
+      .. code-block:: html
 
          {
             ...
@@ -173,7 +173,7 @@ Below is the list of filterable columns and their corresponding filter condition
 
    - ``description``
 
-      .. code-block:: json
+      .. code-block:: html
 
          {
             ...
@@ -194,7 +194,7 @@ Below is the list of filterable columns and their corresponding filter condition
 
    - ``state``: Case state
 
-      .. code-block:: json
+      .. code-block:: html
 
          {
             ...
@@ -217,7 +217,7 @@ Below is the list of filterable columns and their corresponding filter condition
 
    - ``creator``
 
-      .. code-block:: json
+      .. code-block:: html
 
          {
             ...
@@ -240,7 +240,7 @@ Below is the list of filterable columns and their corresponding filter condition
 
    - ``startTimestamp``: Case's created date
 
-      .. code-block:: json
+      .. code-block:: html
 
          {
             ...
@@ -264,7 +264,7 @@ Below is the list of filterable columns and their corresponding filter condition
 
    - ``expiryTimestamp``: Case's expiry date
 
-      .. code-block:: json
+      .. code-block:: html
 
          {
             ...
