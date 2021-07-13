@@ -4,17 +4,18 @@
   xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 <h:body>
   <ui:composition template="/layouts/BasicTemplate.xhtml">
-    <ui:param name="viewName" value="CASE_DETAIL" />
-    <ui:param name="case" value="#{caseInfo}" />
+  <ui:param name="viewName" value="CASE_DETAIL" />
+  <ui:param name="case" value="#{caseInfo}" />
+  <ui:param name="loadGridStack" value="true" />
     <ui:define name="title">#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/CaseDetail/CaseDetailTitle')}</ui:define>
 
     <ui:define name="pageContent">
-      <f:event listener="#{caseDetailsBean.preRender(caseInfo, isShowBackButton)}" type="preRenderView" />
+    <f:event listener="#{caseDetailsBean.preRender(caseInfo, isShowBackButton)}" type="preRenderView" />
 
-      <ic:ch.ivy.addon.portal.component.CaseInformation id="case-item-details"
-        descriptionComponentToUpdate="#{descriptionComponentToUpdate}"
-        showItemDetailsHeader="#{showItemDetailsHeader}"
-        isWorkingOnTask="#{isWorkingOnTask}">
+    <ic:ch.ivy.addon.portal.component.CaseInformation id="case-item-details"
+      descriptionComponentToUpdate="#{descriptionComponentToUpdate}"
+      showItemDetailsHeader="#{showItemDetailsHeader}"
+      isWorkingOnTask="#{isWorkingOnTask}">
 
         <f:facet name="caseItemDetailCustomTop">
           <ui:insert name="caseItemDetailCustomTop" />
