@@ -82,6 +82,19 @@ Cs0 @GridStep f68 '' #zField
 Cs0 @PushWFArc f39 '' #zField
 Cs0 @PushWFArc f62 '' #zField
 Cs0 @PushWFArc f63 '' #zField
+Cs0 @UserDialog f37 '' #zField
+Cs0 @TaskSwitch f38 '' #zField
+Cs0 @UserDialog f40 '' #zField
+Cs0 @UserDialog f64 '' #zField
+Cs0 @EndTask f65 '' #zField
+Cs0 @StartRequest f66 '' #zField
+Cs0 @PushWFArc f67 '' #zField
+Cs0 @PushWFArc f69 '' #zField
+Cs0 @TkArc f70 '' #zField
+Cs0 @PushWFArc f71 '' #zField
+Cs0 @PushWFArc f72 '' #zField
+Cs0 @PushWFArc f73 '' #zField
+Cs0 @PushWFArc f74 '' #zField
 >Proto Cs0 Cs0 CreateTestData #zField
 Ct2 @TextInP .type .type #zField
 Ct2 @TextInP .processKind .processKind #zField
@@ -743,6 +756,182 @@ Cs0 f62 348 1032 448 1032 #arcP
 Cs0 f62 0 0.3511512534965784 0 0 #arcLabel
 Cs0 f63 expr out2 #txt
 Cs0 f63 240 936 516 936 #arcP
+Cs0 f37 dialogId com.axonivy.portal.developerexamples.testdata.LeaveRequestForm #txt
+Cs0 f37 startMethod start() #txt
+Cs0 f37 requestActionDecl '<> param;' #txt
+Cs0 f37 responseActionDecl 'internaltest.Data out;
+' #txt
+Cs0 f37 responseMappingAction 'out=in;
+' #txt
+Cs0 f37 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Show 
+Task Form</name>
+        <nameStyle>15,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f37 398 1204 36 24 20 -2 #rect
+Cs0 f38 actionTable 'out=in1;
+' #txt
+Cs0 f38 actionCode 'import ch.ivy.addon.portalkit.enums.AdditionalProperty;
+
+ivy.case.getBusinessCase().customFields().textField(AdditionalProperty.CASE_BUSINESS_ENTITY_PROPERTY.toString()).set("leave_request");' #txt
+Cs0 f38 outLinks "TaskB.ivp","TaskA.ivp","TaskC.ivp" #txt
+Cs0 f38 caseData 'case.category=CostObject
+case.name=Leave Request
+customFields.STRING.responsibleEmployee="Patricia Wells"
+customFields.TIMESTAMP.shipmentDate=new DateTime()' #txt
+Cs0 f38 taskData 'TaskB.CATEGORY=OtherLeave/SickLeave/Long
+TaskB.DESC=Sick Leave Request Description
+TaskB.EXPRI=2
+TaskB.EXROL=Everybody
+TaskB.EXTYPE=0
+TaskB.NAM=Sick Leave Request
+TaskB.PRI=1
+TaskB.ROL=Everybody
+TaskB.SKIP_TASK_LIST=false
+TaskB.TYPE=0
+TaskB.customFields.STRING.embedInFrame="false"
+TaskB.customFields.STRING.employee="Tung Le"
+TaskA.CATEGORY=AnnualLeave
+TaskA.DESC=Cost object task description
+TaskA.EXPRI=2
+TaskA.EXROL=Everybody
+TaskA.EXTYPE=0
+TaskA.NAM=Cost object task
+TaskA.PRI=2
+TaskA.ROL=CostObject
+TaskA.SKIP_TASK_LIST=false
+TaskA.TYPE=0
+TaskA.customFields.STRING.embedInFrame="false"
+TaskA.customFields.STRING.employee="Long Do"
+TaskA.customFields.TIMESTAMP.days=new DateTime()
+TaskC.DESC=Task for General manager 1
+TaskC.EXPRI=2
+TaskC.EXROL=Everybody
+TaskC.EXTYPE=0
+TaskC.NAM=Task for General manager 1
+TaskC.PRI=3
+TaskC.ROL="gm1"
+TaskC.SKIP_TASK_LIST=false
+TaskC.TYPE=3
+TaskC.customFields.STRING.embedInFrame="false"
+TaskC.customFields.STRING.employee="Anh Nguyen"' #txt
+Cs0 f38 template "" #txt
+Cs0 f38 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Create tasks</name>
+        <nameStyle>12,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f38 274 1202 28 28 -39 -35 #rect
+Cs0 f40 dialogId com.axonivy.portal.developerexamples.testdata.LeaveRequestForm #txt
+Cs0 f40 startMethod start() #txt
+Cs0 f40 requestActionDecl '<> param;' #txt
+Cs0 f40 responseActionDecl 'internaltest.Data out;
+' #txt
+Cs0 f40 responseMappingAction 'out=in;
+' #txt
+Cs0 f40 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Show 
+Task Form</name>
+        <nameStyle>6,7
+9,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f40 398 1140 36 24 20 -2 #rect
+Cs0 f64 dialogId com.axonivy.portal.developerexamples.testdata.LeaveRequestForm #txt
+Cs0 f64 startMethod start() #txt
+Cs0 f64 requestActionDecl '<> param;' #txt
+Cs0 f64 responseActionDecl 'internaltest.Data out;
+' #txt
+Cs0 f64 responseMappingAction 'out=in;
+' #txt
+Cs0 f64 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Show 
+Task Form</name>
+        <nameStyle>15,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f64 398 1260 36 24 20 -2 #rect
+Cs0 f65 667 1203 26 26 14 0 #rect
+Cs0 f66 outLink CreateTestDataForCustomizedDashboard.ivp #txt
+Cs0 f66 inParamDecl '<> param;' #txt
+Cs0 f66 requestEnabled true #txt
+Cs0 f66 triggerEnabled false #txt
+Cs0 f66 callSignature CreateTestDataForCustomizedDashboard() #txt
+Cs0 f66 persist false #txt
+Cs0 f66 startName 'Create Test Data For Customized Dashboard' #txt
+Cs0 f66 startDescription 'This is the process to create data for customized Portal dashboard.' #txt
+Cs0 f66 startCategory CostObject #txt
+Cs0 f66 taskData 'TaskTriggered.EXPRI=2
+TaskTriggered.EXROL=Everybody
+TaskTriggered.EXTYPE=0
+TaskTriggered.PRI=2
+TaskTriggered.ROL=Everybody
+TaskTriggered.TYPE=0' #txt
+Cs0 f66 caseData 'case.description=Leave Request Description
+case.name=Leave Request
+customFields.STRING.CustomVarCharField1="Leave Request CustomVarCharField1"
+customFields.STRING.CustomVarCharField2="Leave Request CustomVarCharField2"
+customFields.STRING.CustomVarCharField3="Leave Request CustomVarCharField3"
+customFields.STRING.CustomVarCharField4="Leave Request CustomVarCharField4"
+customFields.STRING.ProcessCategoryCode="pubRequested"
+customFields.STRING.ProcessCategoryName="Publication Requested"
+customFields.STRING.ProcessCode="pubRequested"
+customFields.STRING.ProcessName="Publication Requested"
+customFields.STRING.embedInFrame="false"' #txt
+Cs0 f66 showInStartList 1 #txt
+Cs0 f66 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>CreateTestDataForCustomizedDashboard.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f66 @C|.responsibility Everybody #txt
+Cs0 f66 83 1203 26 26 -73 16 #rect
+Cs0 f67 expr data #txt
+Cs0 f67 outCond ivp=="TaskC.ivp" #txt
+Cs0 f67 288 1230 398 1272 #arcP
+Cs0 f67 1 288 1272 #addKink
+Cs0 f67 1 0.24859679354129646 0 0 #arcLabel
+Cs0 f69 expr out #txt
+Cs0 f69 434 1216 667 1216 #arcP
+Cs0 f70 expr out #txt
+Cs0 f70 type internaltest.Data #txt
+Cs0 f70 var in1 #txt
+Cs0 f70 109 1216 274 1216 #arcP
+Cs0 f71 expr data #txt
+Cs0 f71 outCond ivp=="TaskA.ivp" #txt
+Cs0 f71 288 1202 398 1152 #arcP
+Cs0 f71 1 288 1152 #addKink
+Cs0 f71 1 0.21540035677224453 0 0 #arcLabel
+Cs0 f72 expr data #txt
+Cs0 f72 outCond ivp=="TaskB.ivp" #txt
+Cs0 f72 302 1216 398 1216 #arcP
+Cs0 f73 expr out #txt
+Cs0 f73 434 1152 680 1203 #arcP
+Cs0 f73 1 680 1152 #addKink
+Cs0 f73 0 0.936929200171276 0 0 #arcLabel
+Cs0 f74 expr out #txt
+Cs0 f74 434 1272 680 1229 #arcP
+Cs0 f74 1 680 1272 #addKink
+Cs0 f74 0 0.4489837825296078 0 0 #arcLabel
 >Proto Cs0 .type com.axonivy.portal.developerexamples.Data #txt
 >Proto Cs0 .processKind NORMAL #txt
 >Proto Cs0 0 0 32 24 18 0 #rect
@@ -971,6 +1160,20 @@ Cs0 f68 mainOut f62 tail #connect
 Cs0 f62 head S30 g2 #connect
 Cs0 f51 out f63 tail #connect
 Cs0 f63 head S20 g2 #connect
+Cs0 f38 out f71 tail #connect
+Cs0 f71 head f40 mainIn #connect
+Cs0 f38 out f72 tail #connect
+Cs0 f72 head f37 mainIn #connect
+Cs0 f38 out f67 tail #connect
+Cs0 f67 head f64 mainIn #connect
+Cs0 f66 mainOut f70 tail #connect
+Cs0 f70 head f38 in #connect
+Cs0 f37 mainOut f69 tail #connect
+Cs0 f69 head f65 mainIn #connect
+Cs0 f40 mainOut f73 tail #connect
+Cs0 f73 head f65 mainIn #connect
+Cs0 f64 mainOut f74 tail #connect
+Cs0 f74 head f65 mainIn #connect
 Ct2 f2 mainOut f0 tail #connect
 Ct2 f0 head f63 in #connect
 Ct2 g2 m f4 tail #connect
