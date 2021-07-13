@@ -1,9 +1,5 @@
 Variables:
   Portal:
-    # You can configure the look and feel for dashboard according to your needs via this json file.
-    # This setting will be taken over for all other dashboard.
-    # [file: json]
-    Dashboard:
     # To set the standard homepage which will be redirect to when click on home icon or logo.
     # This setting also affects to the ends page after finished a task.
     Homepage: Dashboard
@@ -66,6 +62,9 @@ Variables:
       # Set to true, the change password option in top menu will be hidden, otherwise it will be shown.
       HideChangePasswordMenu: false
 
+    # You can configure the look and feel for dashboard according to your needs via this json file.
+    # This setting will be taken over for all other dashboard.
+    # [file: json]
     Dashboard:
       # Activates the interactive user guide "first steps" in the portal at first login.
       ShowUserGuide: true

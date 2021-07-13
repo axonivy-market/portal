@@ -1885,7 +1885,9 @@ ul.participants-list li {
 
 .process-widget-action .name-sort-command,
 .editing-switch-command,
-.show-adding-dialog-commmand {
+.show-adding-dialog-commmand,
+.save-process-command,
+.cancel-editing-process-command {
   font-size: var(--small-font-size);
   line-height: 18px; }
 

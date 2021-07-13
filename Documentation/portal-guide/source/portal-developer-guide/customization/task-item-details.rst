@@ -198,11 +198,11 @@ Show Custom Panels (Widgets)
    - Refer to ``variables.Portal.TaskDetails.json`` file in ``portal-developer-examples/resources/files`` project.
    - Copy to the corresponding application folder located in the designer.
 
-      - e.g: AxonIvyDesigner9.3.0/configuration/applications/designer
+      - e.g: AxonIvyDesigner/configuration/applications/designer
 
-   - Create some destroyed task or start the process ``Start Processes/TaskDetailsCustomWidgetExample/SaleManagment.ivp`` in ``portal-developer-examples`` project.
+   - Create some destroyed task or start the process ``Start Processes/TaskDetailsCustomWidgetExample/SalesManagement.ivp`` in ``portal-developer-examples`` project.
    - Go to the example homepage by the process ``Start Processes/ExamplePortalStart/DefaultApplicationHomePage.ivp``
-   - And then go to task details to check new custom layour.
+   - And then go to task details to check the new custom layout.
 
    About how to configure Global Var, refer to `Axon Ivy Global Variables <https://developer.axonivy.com/releases/ivy/9.1/documents/designer-guide/configuration/global-variables.html>`_
 
