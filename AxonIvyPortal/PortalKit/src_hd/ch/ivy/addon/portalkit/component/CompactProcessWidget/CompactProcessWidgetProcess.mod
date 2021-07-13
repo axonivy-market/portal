@@ -46,7 +46,7 @@ Ps0 f1 outParameterDecl '<> result;' #txt
 Ps0 f1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>start(String)</name>
+        <name>start</name>
     </language>
 </elementInfo>
 ' #txt
