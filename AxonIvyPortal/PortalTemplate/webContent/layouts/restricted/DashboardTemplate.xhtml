@@ -52,11 +52,11 @@
             <c:if test="#{not empty managedBean.selectedDashboard.widgets}">
               <c:forEach var="widget" items="#{managedBean.selectedDashboard.widgets}" varStatus="status">
                 <div class="grid-stack-item portal-card-container"
-                  gs-x="#{widget.axisX}"
-                  gs-y="#{widget.axisY}"
+                  gs-x="#{widget.layout.axisX}"
+                  gs-y="#{widget.layout.axisY}"
                   gs-id="#{widget.id}"
-                  gs-w="#{widget.width}"
-                  gs-h="#{widget.height}"
+                  gs-w="#{widget.layout.width}"
+                  gs-h="#{widget.layout.height}"
                   gs-autoPosition="#{widget.autoPosition}"
                   gs-no-resize="#{managedBean.isReadOnlyMode}"
                   gs-no-move="#{managedBean.isReadOnlyMode}">
