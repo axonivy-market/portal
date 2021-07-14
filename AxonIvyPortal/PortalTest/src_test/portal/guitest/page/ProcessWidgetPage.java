@@ -19,7 +19,6 @@ public class ProcessWidgetPage extends TemplatePage {
   private WebElement processWidget;
   private String processWidgetId;
   
-  private static final String COMPACT_PROCESS_WIDGET_ID = "process-widget:process-widget";
 
   public ProcessWidgetPage() {
     this("process-widget");
@@ -27,12 +26,7 @@ public class ProcessWidgetPage extends TemplatePage {
   
   public ProcessWidgetPage(String processWidgetId) {
     this.processWidgetId = processWidgetId;
-    if(isElementDisplayed(this.processWidgetId)) {
-      processWidget = findElementById(this.processWidgetId);
-    } else {
-      this.processWidgetId = COMPACT_PROCESS_WIDGET_ID;
-        processWidget = findElementById(this.processWidgetId);
-    }
+    processWidget = findElementById(this.processWidgetId);
   }
   
   @Override
