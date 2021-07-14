@@ -1180,6 +1180,14 @@ body .ui-datepicker .ui-timepicker-div dl dd {
   background: var(--task-state-open-color);
   border-color: var(--task-state-open-color); }
 
+.state-cell .failed-task-state,
+.state-column .failed-task-state,
+.state-cell .join_failed-task-state,
+.state-column .join_failed-task-state {
+  background: var(--task-state-failed-background);
+  border-color: var(--task-state-failed-background);
+  color: var(--task-state-failed-text-color) }
+
 /**Style for Absences and Debuty  --------------------------------------*/
 .substituted-user-text {
   font-size: var(--large-font-size); }
