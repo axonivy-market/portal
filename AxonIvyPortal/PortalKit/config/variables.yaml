@@ -193,7 +193,7 @@ Variables:
       # Set to true to enable script checking for uploaded document. Currently this function supports checking for PDF, Excel, Word.
       EnableScriptChecking: false
       
-      # Set to true to enable virus scanner for uploaded document. Currently this function using API VIRUSTOTAL.
+      # Set to true to enable virus scanner for uploaded document. Currently this function is using API VIRUSTOTAL.
       EnableVirusScanner: false
 
       # Leave value empty if you allow all extensions.
