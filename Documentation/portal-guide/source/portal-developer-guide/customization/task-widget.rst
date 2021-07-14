@@ -103,6 +103,14 @@ function of these columns work:
    should be passed as a parameter to components (refer to
    ``PortalTasks.xhtml``).
 
+.. important:: 
+   The sort options of the compact task list on the dashboard that is depending on the default columns which are defined in the ``TaskLazyDataModel``.
+   
+   That means if you removed some default columns in the ``getDefaultColumns()`` method, make sure that columns are removed in the compact task sort option, by overriding the ``getPortalTaskSort()`` method.
+
+   -  e.g: If you removed ``EXPIRY_TIME`` column from ``getDefaultColumns()``, then remove it in ``getPortalTaskSort()`` with 2 items: ``EXPIRY_TIME_AS``, ``EXPIRY_TIME_DESC``.
+
+
 .. _customization-task-widget-how-to-overide-ui-task-filter:
 
 Task filter
