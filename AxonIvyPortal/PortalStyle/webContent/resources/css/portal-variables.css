@@ -83,7 +83,7 @@
   --task-state-done-color: #4eb41c;
   --task-state-reserved-color: rgba(black, 0.4);
   --task-state-system-color: rgba(black, 0.4);
-  --task-state-failed-color: #ff6464;
+  --task-state-failed-color: #EE4A52;
   --task-state-waiting-color: var(--ivy-tertinary-color-yellow-dark);
   --task-state-reserved-font-size: 1.8rem;
   --task-state-system-font-size: 1.8rem;
@@ -326,6 +326,8 @@
   --task-state-resumed-background: #FFE896;
   --task-state-done-background: #D4EBA2;
   --task-state-parked-background: rgba(0, 112, 149, 0.2);
+  --task-state-failed-background: #EE4A52;
+  --task-state-failed-text-color: var(--ivy-primary-color-white);
   /* Task Action Item */
   --task-action-item-widget-header-color: var(--ivy-primary-color-white);
   --task-action-item-label-font-weight: normal;
