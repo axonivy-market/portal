@@ -118,14 +118,11 @@ public class CaseDocumentService {
     return false;
   }
   
-  public static boolean isDocumentTypeHasVirus(UploadedFile uploadedFile) {
+  public static boolean isDocumentTypeHasVirus(UploadedFile uploadedFile) throws IOException {
 	  VirusScannerService service = new VirusScannerService(VirusScanner.class.getClassLoader());
 	  try {
 		service.performVirusScan(uploadedFile.getInputstream());
 	  } catch (VirusException e) {
-		 Ivy.log().error(e);
-         return true;
-	  } catch (IOException e) {
 		 Ivy.log().error(e);
          return true;
 	  }
@@ -134,9 +131,8 @@ public class CaseDocumentService {
 
   public static boolean enableScriptCheckingForUploadedDocument() {
     GlobalSettingService globalSettingService = new GlobalSettingService();
-    String enableScriptCheckingForUploadedDocument = globalSettingService
-        .findGlobalSettingValue(GlobalVariable.ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT);
-    return Boolean.parseBoolean(enableScriptCheckingForUploadedDocument);
+    return globalSettingService
+        .findGlobalSettingValueAsBoolean(GlobalVariable.ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT);
   }
   
   public static boolean enableVirusScannerForUploadedDocument() {
