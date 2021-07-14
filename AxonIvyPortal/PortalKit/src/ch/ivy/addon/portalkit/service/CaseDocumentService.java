@@ -131,15 +131,15 @@ public class CaseDocumentService {
 
   public static boolean enableScriptCheckingForUploadedDocument() {
     GlobalSettingService globalSettingService = new GlobalSettingService();
-    return globalSettingService
-        .findGlobalSettingValueAsBoolean(GlobalVariable.ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT);
+    String enableScriptCheckingForUploadedDocument = globalSettingService
+        .findGlobalSettingValue(GlobalVariable.ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT);
+    return Boolean.parseBoolean(enableScriptCheckingForUploadedDocument);
   }
   
   public static boolean enableVirusScannerForUploadedDocument() {
 	    GlobalSettingService globalSettingService = new GlobalSettingService();
-	    String enableVirusScannerForUploadedDocument = globalSettingService
-	        .findGlobalSettingValue(GlobalVariable.ENABLE_VIRUS_SCANNER_FOR_UPLOADED_DOCUMENT);
-	    return Boolean.parseBoolean(enableVirusScannerForUploadedDocument);
+	    return globalSettingService
+	        .findGlobalSettingValueAsBoolean(GlobalVariable.ENABLE_VIRUS_SCANNER_FOR_UPLOADED_DOCUMENT);
   }
 
   private IDocumentService documentsOf(ICase iCase) {
