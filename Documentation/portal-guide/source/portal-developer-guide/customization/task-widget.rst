@@ -120,6 +120,13 @@ function of these columns work:
 
 .. _customization-task-widget-how-to-overide-ui-task-filter:
 
+.. important:: 
+   The sort options of the compact task list depend on the default columns defined in the ``TaskLazyDataModel``.
+   
+   That means if you removed a default column in the ``getDefaultColumns()`` method, make sure that options related to that column are removed from the compact task sort options, by overriding the ``getPortalTaskSort()`` method.
+
+   -  e.g: If you removed ``EXPIRY_TIME`` column from ``getDefaultColumns()``, remove two options related to ``EXPIRY_TIME`` in ``getPortalTaskSort()`` method: ``EXPIRY_TIME_AS``, ``EXPIRY_TIME_DESC``.
+
 Task filter
 -----------
 
