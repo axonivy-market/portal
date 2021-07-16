@@ -42,7 +42,6 @@ As0 @UdExitEnd f25 '' #zField
 As0 @PushWFArc f27 '' #zField
 >Proto As0 As0 ApplicationDialogProcess #zField
 As0 f17 467 283 26 26 0 12 #rect
-As0 f17 @|UdProcessEndIcon #fIcon
 As0 f6 actionTable 'out=in;
 ' #txt
 As0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -53,7 +52,6 @@ As0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f6 200 42 112 44 -8 -8 #rect
-As0 f6 @|StepIcon #fIcon
 As0 f9 guid 169C76B36E1DA3A7 #txt
 As0 f9 method delete(com.axonivy.portal.developerexamples.showcase.GdprFile) #txt
 As0 f9 inParameterDecl '<com.axonivy.portal.developerexamples.showcase.GdprFile file> param;' #txt
@@ -68,7 +66,6 @@ As0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f9 83 475 26 26 -52 15 #rect
-As0 f9 @|UdMethodIcon #fIcon
 As0 f13 actionTable 'out=in;
 ' #txt
 As0 f13 actionCode 'try{
@@ -90,7 +87,6 @@ As0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f13 232 466 112 44 -18 -8 #rect
-As0 f13 @|StepIcon #fIcon
 As0 f28 guid 169C76B36E1CC2C6 #txt
 As0 f28 actionTable 'out=in;
 ' #txt
@@ -102,9 +98,7 @@ As0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f28 83 539 26 26 -47 15 #rect
-As0 f28 @|UdEventIcon #fIcon
 As0 f1 371 51 26 26 0 12 #rect
-As0 f1 @|UdProcessEndIcon #fIcon
 As0 f11 actionTable 'out=in;
 ' #txt
 As0 f11 actionCode 'import org.apache.commons.io.FileUtils;
@@ -135,7 +129,6 @@ As0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f11 232 274 112 44 -23 -8 #rect
-As0 f11 @|StepIcon #fIcon
 As0 f10 guid 169C76B36E183099 #txt
 As0 f10 actionTable 'out=in;
 ' #txt
@@ -147,7 +140,6 @@ As0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f10 83 283 26 26 -47 15 #rect
-As0 f10 @|UdEventIcon #fIcon
 As0 f0 guid 169C76B36E187A99 #txt
 As0 f0 method start(com.axonivy.portal.developerexamples.showcase.GdprRequest) #txt
 As0 f0 inParameterDecl '<com.axonivy.portal.developerexamples.showcase.GdprRequest gdprRequest> param;' #txt
@@ -162,7 +154,6 @@ As0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f0 83 51 26 26 -16 15 #rect
-As0 f0 @|UdInitIcon #fIcon
 As0 f3 guid 169C76B36E13A297 #txt
 As0 f3 actionTable 'out=in;
 ' #txt
@@ -174,7 +165,6 @@ As0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f3 83 155 26 26 -15 12 #rect
-As0 f3 @|UdEventIcon #fIcon
 As0 f24 guid 169C76B36E1C02EC #txt
 As0 f24 method handleFileUploader(org.primefaces.event.FileUploadEvent) #txt
 As0 f24 inParameterDecl '<org.primefaces.event.FileUploadEvent event> param;' #txt
@@ -193,7 +183,9 @@ iFile.createNewFile();
 gdprFile.file = iFile;
 gdprFile.isNewAdded = true;
 out.gdprRequest.files.add(gdprFile);
-' #txt
+
+// Do not store JSF Event in a Html Dialog data field
+out.uploadEvent = null;' #txt
 As0 f24 outParameterDecl '<> result;' #txt
 As0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -203,13 +195,9 @@ As0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f24 83 219 26 26 -103 15 #rect
-As0 f24 @|UdMethodIcon #fIcon
 As0 f4 243 155 26 26 0 12 #rect
-As0 f4 @|UdExitEndIcon #fIcon
 As0 f23 467 219 26 26 0 12 #rect
-As0 f23 @|UdProcessEndIcon #fIcon
 As0 f19 467 475 26 26 0 12 #rect
-As0 f19 @|UdProcessEndIcon #fIcon
 As0 f22 expr out #txt
 As0 f22 344 488 467 488 #arcP
 As0 f16 expr out #txt
@@ -258,11 +246,9 @@ As0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f12 232 352 112 48 -28 -8 #rect
-As0 f12 @|StepIcon #fIcon
 As0 f21 expr out #txt
 As0 f21 344 376 467 376 #arcP
 As0 f18 467 363 26 26 0 12 #rect
-As0 f18 @|UdProcessEndIcon #fIcon
 As0 f15 expr out #txt
 As0 f15 109 376 232 376 #arcP
 As0 f8 guid 169C76B36E2BC446 #txt
@@ -279,16 +265,13 @@ As0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f8 83 363 26 26 -52 15 #rect
-As0 f8 @|UdMethodIcon #fIcon
 As0 f25 459 539 26 26 0 12 #rect
-As0 f25 @|UdExitEndIcon #fIcon
 As0 f27 expr out #txt
 As0 f27 109 552 459 552 #arcP
 As0 f27 0 0.5126441679273225 0 0 #arcLabel
 >Proto As0 .type com.axonivy.portal.developerexamples.showcase.ApplicationDialog.ApplicationDialogData #txt
 >Proto As0 .processKind HTML_DIALOG #txt
 >Proto As0 -8 -8 16 16 16 26 #rect
->Proto As0 '' #fIcon
 As0 f3 mainOut f5 tail #connect
 As0 f5 head f4 mainIn #connect
 As0 f6 mainOut f2 tail #connect

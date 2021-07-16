@@ -132,6 +132,7 @@ public class StatisticDashboardBean implements Serializable {
   // It's used for "Go to task list" selection from Statistic Dashboard
   public void goToExpiriedTaskList() {
     toTaskByExpiryTaskList(taskByExpiryItemSelectEvent);
+    releaseJSFEvent();
   }
 
   public void drilldownTaskByExpiry() {
@@ -141,6 +142,12 @@ public class StatisticDashboardBean implements Serializable {
     IvyComponentLogicCaller<String> drilldownTaskByExpiry = new IvyComponentLogicCaller<>();
     drilldownTaskByExpiry.invokeComponentLogic(STATISTIC_DASHBOARD_WIDGET_COMPONENT_ID,
         "#{logic.drilldownTaskByExpiry}", new Object[] {selectedStatisticChart, selectedItemOfDrilldown});
+    releaseJSFEvent();
+  }
+
+  private void releaseJSFEvent() {
+    // Do not store JSF Event in a JSF bean that is not bound to request scope
+    this.taskByExpiryItemSelectEvent = null;
   }
   
   public StatisticChart createDefaultEmptyChart() {
