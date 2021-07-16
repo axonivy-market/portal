@@ -194,7 +194,7 @@ Variables:
       EnableScriptChecking: false
       
       # Set to true to enable virus scanner for uploaded document. Currently this function is using API VIRUSTOTAL.
-      EnableVirusScanner: false
+      EnableVirusScanner: true
 
       # Leave value empty if you allow all extensions.
       # If just allow some extensions, list out extensions here, separated by comma. Example: pdf, txt, doc, docx.
