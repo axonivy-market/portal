@@ -1,0 +1,186 @@
+/* Basic */
+* {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
+}
+
+.container {  
+  padding: 0 15px;
+  margin: 0 auto;
+}
+
+.container.frame {
+  margin: 0;
+}
+
+.container
+.container table 
+{
+  width: 100%;
+}
+
+.container td
+{
+  padding: 0.5em;
+}
+
+.ivy-logo img {
+  height: 46px;
+  margin: 16px 25px 16px 0;  
+}
+
+body {
+  font-family: "Roboto", "Helvetica Neue", sans-serif;
+	font-size:14px;
+  text-decoration: none;
+  background-color: #fff;
+}
+
+body a {
+  color: #007095;
+  text-decoration: none;
+}
+
+hr {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: 0;
+  border-top: 1px solid #eee;
+}
+
+/* ------------------ Form ------------------ */
+input
+{	
+    background: transparent no-repeat;
+    background-size: 0px 2px, 100% 1px;
+    background-position: 50% 100%, 50% 100%;
+    transition: background-size 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+    border-width: 0;
+    padding: 2px 2px 2px 2px;
+		margin: 0px 0px 0px 0px; 
+    -moz-border-radius: 0px;
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
+}
+
+textarea
+{	
+		font-family: "Roboto", "Helvetica Neue", sans-serif;  
+		font-size:14px;
+ 		text-decoration: none;  
+		background: transparent no-repeat;
+    background-size: 0px 2px, 100% 1px;
+    background-position: 50% 100%, 50% 100%;
+    transition: background-size 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+    border: 1px solid rgb(189, 189, 189);
+    padding: 2px 2px 2px 2px;
+		margin: 0px 0px 0px 0px; 
+    -moz-border-radius: 0px;
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
+}
+
+select
+{	
+    background: transparent no-repeat;
+    background-size: 0px 2px, 100% 1px;
+    background-position: 50% 100%, 50% 100%;
+    transition: background-size 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+    border: 1px solid rgb(189, 189, 189);
+    padding: 2px 2px 2px 2px;
+		margin: 0px 0px 2px 0px; 
+    -moz-border-radius: 0px;
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
+}
+
+input:focus
+{
+		border-width: 0px;
+		background-size: 100% 2px, 100% 1px;
+		outline: none;
+		padding-bottom: 2px;
+}
+
+input[type="Text"], input[type="Password"], textarea
+{
+    background-image: linear-gradient(rgb(0, 112, 149), rgb(0, 112, 149)), linear-gradient(rgb(189, 189, 189), rgb(189, 189, 189));
+}
+
+input[type="Checkbox"], input[type="Radio"]
+{
+    border: 2px solid rgb(189, 189, 189);
+    width: 20px;
+		height: 20px;
+		margin: 0px 4px 0px 0px;
+    position: relative;
+  	vertical-align: bottom;
+}
+
+input[type="Checkbox"] input ,
+input[type="Radio"] input
+{
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+input[type="Submit"], input[type="Reset"]
+{
+    overflow: hidden;
+    background-color: #007095;
+    color: #ffffff;
+    height: 30px;
+    padding: 0 14px;
+    border: 0 none;
+    -moz-box-shadow: 0 1px 2.5px 0 rgba(0, 0, 0, 0.26), 0 1px 5px 0 rgba(0, 0, 0, 0.16);
+    -webkit-box-shadow: 0 1px 2.5px 0 rgba(0, 0, 0, 0.26), 0 1px 5px 0 rgba(0, 0, 0, 0.16);
+    box-shadow: 0px 1px 2.5px 0px rgba(0,0,0,0.26), 0px 1px 5px 0px rgba(0,0,0,0.16);
+    -moz-transition: background-color 0.3s;
+    -o-transition: background-color 0.3s;
+    -webkit-transition: background-color 0.3s;
+    transition: background-color 0.3s;
+}
+
+input::-ms-browse 
+{
+    overflow: hidden;
+    background-color: #007095;
+    color: #ffffff;
+    height: 30px;
+    padding: 0 14px;
+    border: 0 none;
+    -moz-box-shadow: 0 1px 2.5px 0 rgba(0, 0, 0, 0.26), 0 1px 5px 0 rgba(0, 0, 0, 0.16);
+    -webkit-box-shadow: 0 1px 2.5px 0 rgba(0, 0, 0, 0.26), 0 1px 5px 0 rgba(0, 0, 0, 0.16);
+    box-shadow: 0px 1px 2.5px 0px rgba(0,0,0,0.26), 0px 1px 5px 0px rgba(0,0,0,0.16);
+    -moz-transition: background-color 0.3s;
+    -o-transition: background-color 0.3s;
+    -webkit-transition: background-color 0.3s;
+    transition: background-color 0.3s;
+}
+
+
+input[type="submit"]:focus,
+input[type="submit"]:hover, 
+input[type="reset"]:focus,
+input[type="reset"]:hover
+{
+    background-color: #004d66;
+}
