@@ -11,6 +11,7 @@ public enum GlobalVariable {
   HIDE_CHANGE_PASSWORD_BUTTON(GlobalVariableType.SELECTION, Option.FALSE.toString(), "hideChangePasswordButtonNote"), 
   HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE(GlobalVariableType.SELECTION, Option.FALSE.toString(), "hideUploadDocumentForDoneCaseNote"),
   ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT(GlobalVariableType.SELECTION, Option.FALSE.toString(), "enableScriptCheckingForUploadedDocumentNote"),
+  ENABLE_VIRUS_SCANNER_FOR_UPLOADED_DOCUMENT(GlobalVariableType.SELECTION, Option.FALSE.toString(), "enableVirusScannerForUploadedDocumentNote"),
   HIDE_TIME(GlobalVariableType.SELECTION, Option.FALSE.toString(), "hideTimeNote"),
   EXPRESS_END_PAGE(GlobalVariableType.SELECTION, Option.TRUE.toString(), "expressEndPageNote"),
   REFRESH_TASK_LIST_INTERVAL(GlobalVariableType.NUMBER, String.valueOf(TaskWidgetBean.DEFAULT_TASK_LIST_REFRESH_INTERVAL), "refreshTaskListIntervalNote"),
