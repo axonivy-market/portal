@@ -6,6 +6,7 @@ public enum Variable {
   HIDE_CHANGE_PASSWORD_BUTTON("Portal.UserMenu.HideChangePasswordMenu"),
   SHOW_ENVIRONMENT_INFO("Portal.ShowEnvironmentInfo"),
   ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT("Portal.Document.EnableScriptChecking"),
+  ENABLE_VIRUS_SCANNER_FOR_UPLOADED_DOCUMENT("Portal.Document.EnableVirusScanner"),
   UPLOAD_DOCUMENT_WHITELIST_EXTENSION("Portal.Document.WhitelistExtension"),
   HIDE_TIME("Portal.DateTimeFormat.HideTime"),
   HIDE_YEAR("Portal.DateTimeFormat.HideYear"),
