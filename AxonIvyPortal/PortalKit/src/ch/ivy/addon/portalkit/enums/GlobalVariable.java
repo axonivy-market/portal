@@ -17,6 +17,7 @@ public enum GlobalVariable {
   HIDE_CHANGE_PASSWORD_BUTTON(GlobalVariableType.SELECTION, Option.FALSE.toString(), "hideChangePasswordButtonNote"), 
   HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE(GlobalVariableType.SELECTION, Option.FALSE.toString(), "hideUploadDocumentForDoneCaseNote"),
   ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT(GlobalVariableType.SELECTION, Option.FALSE.toString(), "enableScriptCheckingForUploadedDocumentNote"),
+  ENABLE_VIRUS_SCANNER_FOR_UPLOADED_DOCUMENT(GlobalVariableType.SELECTION, Option.FALSE.toString(), "enableVirusScannerForUploadedDocumentNote"),
   HIDE_TIME(GlobalVariableType.SELECTION, Option.FALSE.toString(), "hideTimeNote"),
   SHOW_TASK_DURATION_TIME(GlobalVariableType.SELECTION, Option.TRUE.toString(), "showTaskDurationTime"),
   SHOW_CASE_DURATION_TIME(GlobalVariableType.SELECTION, Option.TRUE.toString(), "showCaseDurationTime"),
