@@ -4,25 +4,25 @@
         "type": "information",
         "id": "information",
         "layout": {
-          "x": 0, "y": 0, "w": 6, "h": 5
+          "x": 0, "y": 0, "w": 6, "h": 6
         }
       }, {
         "type": "document",
         "id": "document",
         "layout": {
-          "x": 6, "y": 0, "w": 6, "h": 5
+          "x": 6, "y": 0, "w": 6, "h": 6
         }
       }, {
         "type": "technicalCase",
         "id": "technicalCase",
         "layout": {
-          "x": 0, "y": 8, "w": 12, "h": 4
+          "x": 0, "y": 8, "w": 12, "h": 5
         }
       }, {
         "type": "relatedTask",
         "id": "relatedTask",
         "layout": {
-          "x": 0, "y": 14, "w": 12, "h": 4
+          "x": 0, "y": 14, "w": 12, "h": 5
         }
       }, {
         "type": "history",
