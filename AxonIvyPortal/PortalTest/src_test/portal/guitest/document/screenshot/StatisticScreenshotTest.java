@@ -9,7 +9,6 @@ import org.openqa.selenium.WebElement;
 import ch.ivy.addon.portalkit.util.ScreenshotMargin;
 import ch.ivy.addon.portalkit.util.ScreenshotUtil;
 import portal.guitest.common.ScreenshotTest;
-import portal.guitest.common.Sleeper;
 import portal.guitest.common.WaitHelper;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.MainMenuPage;
@@ -54,7 +53,6 @@ public class StatisticScreenshotTest extends ScreenshotTest {
     ScreenshotUtil.maximizeBrowser();
 
     WebElement chartCreationDialog = statisticWidgetPage.getCaseByFinishedTaskCreationDialog();
-    Sleeper.sleep(1000);//Wait for focus animation finish before capture screenshot
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(chartCreationDialog, ScreenshotUtil.STATISTIC_WIDGET_FOLDER + "chart-creation-dialog", new ScreenshotMargin(100, 100));
     
     refreshPage();
@@ -63,6 +61,8 @@ public class StatisticScreenshotTest extends ScreenshotTest {
     statisticWidgetPage.waitForAllChartLoaded();
     executeDecorateJs("numberingChartPanel()");
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(statisticWidgetPage.getChartPanelByIndex(1), ScreenshotUtil.STATISTIC_WIDGET_FOLDER + "chart-detail-with-annotation", new ScreenshotMargin(20, 10));
+    refreshPage();
+    statisticWidgetPage.waitForAllChartLoaded();
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(statisticWidgetPage.getChartInfoDialogOfChart(1), ScreenshotUtil.STATISTIC_WIDGET_FOLDER + "chart-info-dialog", new ScreenshotMargin(20, 10));
   }
   
