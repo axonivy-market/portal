@@ -48,6 +48,7 @@ public class TaskAnalysisScreenshotTest extends ScreenshotTest {
     // statisticWidgetPage.switchCreateMode();
     // statisticWidgetPage.waitForAllChartLoaded();
     statisticWidgetPage.closeMainMenu();
+    executeDecorateJs("highlightTaskAnalysisNavigationLink()");
     ScreenshotUtil.captureHalfTopRightPageScreenShot(ScreenshotUtil.TASK_ANALYSIS_FOLDER + "navigate-to-task-analysis");
     // ScreenshotUtil.resizeBrowser(new Dimension(1366, 1366));
     TaskAnalysisWidgetPage taskAnalysisWidgetPage = statisticWidgetPage.navigateToTaskAnalysisPage();

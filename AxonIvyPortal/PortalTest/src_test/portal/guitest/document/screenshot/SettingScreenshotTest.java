@@ -32,9 +32,12 @@ public class SettingScreenshotTest extends ScreenshotTest {
     login(TestAccount.ADMIN_USER);
     homePage = new HomePage();
     homePage.waitForStatisticRendered();
+    ScreenshotUtil.resizeBrowser(new Dimension(1100, 800));
     homePage.getUserSettings();
-    ScreenshotUtil.captureHalfTopPageScreenShot(ScreenshotUtil.SETTINGS_FOLDER + "user-settings", new Dimension(1366, 800));
+    executeDecorateJs("highlightUserName()");
+    ScreenshotUtil.captureHalfTopPageScreenShot(ScreenshotUtil.SETTINGS_FOLDER + "user-settings", new Dimension(1100, 800));
     
+    ScreenshotUtil.resizeBrowser(new Dimension(1366, 800));
     refreshHomePage();
     AdminSettingsPage adminSettingsPage = homePage.openAdminSettings();
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(adminSettingsPage.getAdminSettingDialog(), ScreenshotUtil.SETTINGS_FOLDER + "applications", new ScreenshotMargin(20));
@@ -79,11 +82,12 @@ public class SettingScreenshotTest extends ScreenshotTest {
     ScreenshotUtil.resizeBrowser(new Dimension(1400, 1400));
     Sleeper.sleep(500);//Wait for focus animation finish before capture screenshot
     ScreenshotUtil.captureElementScreenshot(userProfilePage.getUserSettingCard(), ScreenshotUtil.MY_PROFILE_FOLDER + "my-profile");
-    ScreenshotUtil.resizeBrowser(new Dimension(1500, 800));
+    ScreenshotUtil.resizeBrowser(new Dimension(1500, 900));
     userProfilePage.switchOnEmailOnTaskAssignmentSetting();
     userProfilePage.switchOnFurtherEmailFromAppSetting();
     Sleeper.sleep(500);//Wait for focus animation finish before capture screenshot
-    ScreenshotUtil.captureElementScreenshot(userProfilePage.getUserSettingCard(), ScreenshotUtil.MY_PROFILE_FOLDER + "email-settings");
+    executeDecorateJs("highlightEmailSettings()");
+    ScreenshotUtil.captureHalfRightPageScreenShot(ScreenshotUtil.MY_PROFILE_FOLDER + "email-settings");
   }
   
   @Test

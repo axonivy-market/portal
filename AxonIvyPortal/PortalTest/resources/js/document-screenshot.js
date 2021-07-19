@@ -186,13 +186,17 @@ function highlightStatisticNavigation() {
    createRedMediumOutline($('#statistics-widget\\:statistic-link\\:statistic-link'));
 }
 
+function highlightTaskAnalysisNavigationLink() {
+  createRedMediumOutline($("a[id$=':task-analysis-page-navigation-link']"));
+}
+
 function numberingChartPanel() {
   var chartName = $('.chart-name:eq(1)');
   appendStepAnnotation(chartName, "1", -30, -25);
   var chartInfo = $('.chart-info:eq(1)');
   appendStepAnnotation(chartInfo, "2", -20, 25);
-  var chartActions = $('.chart-actions-container:eq(1)');
-  appendStepAnnotation(chartActions, "3", -20, -25);
+  var chartActions = $('.chart-actions-container:eq(0)');
+  appendStepAnnotation(chartActions, "3", -20, 0);
   var chartCanvas = $('.chartjs-render-monitor:eq(1)');
   appendStepAnnotation(chartCanvas, "4", chartCanvas.width()/4, chartCanvas.height()/2 + 10);
   appendStepAnnotation(chartCanvas, "5", 15, chartCanvas.width()*0.8);
@@ -489,7 +493,10 @@ function highlightCaseExportToExcelButton() {
 function highlightProcessOverviewLink() {
   $(".task-detail-section-title").removeClass("u-truncate-text");
   $(".case-history-button-container").removeClass("u-truncate-text");
-  createRedMediumOutline($("a[id$=':show-process-overview-link']"));
+  var processOverviewLink = $("a[id$=':show-process-overview-link']");
+  processOverviewLink.css("outline-width", "thin");
+  processOverviewLink.css("outline-offset", "-1px")
+  createRedMediumOutline(processOverviewLink);
 }
 
 function highlightCustomWidgetInCaseDetails() {
@@ -508,4 +515,16 @@ function addStepTCustomWidgetTopTaskDetails() {
 
 function highlightIFrameWidgetTaskDetails() {
   createRedMediumOutline($(".custom-widget-card.task-detail-card"));
+}
+
+function highlightEmailSettings() {
+  createRedMediumOutline($("div[id$='email-setting-container']"));
+}
+
+function highlightUserName() {
+  createRedMediumOutline($('#user-settings-menu .user-name'));
+}
+
+function highlightServerInfo() {
+  createRedMediumOutline($("#server-infor"));
 }

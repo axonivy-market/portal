@@ -74,7 +74,7 @@ public class PortalCasesScreenshotTest extends ScreenshotTest {
   public void screenshotCaseDetails() throws IOException {
     caseWidget = homePage.openCaseList();
     homePage.closeMainMenu();
-    ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 1000));
+    ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 1400));
     CaseDetailsPage detailsPage = caseWidget.openDetailsOfCaseHasName("Order Pizza");
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.CASE_DETAIL_FOLDER + "case-details");
     
@@ -259,8 +259,9 @@ public class PortalCasesScreenshotTest extends ScreenshotTest {
     caseWidget = homePage.openCaseList();
     CaseDetailsPage caseDetailsPage = caseWidget.openDetailsOfCaseHasName("Process With Process Steps");
     caseDetailsPage.waitForCaseDetailsDisplay();
+    caseDetailsPage.closeMainMenu();
     
     executeDecorateJs("highlightProcessOverviewLink()");
-    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.PROCESSES_INFORMATION_WIDGET_FOLDER + "process-overview-link");
+    ScreenshotUtil.captureHalfLeftPageScreenShot(ScreenshotUtil.PROCESSES_INFORMATION_WIDGET_FOLDER + "process-overview-link");
   }
 }
