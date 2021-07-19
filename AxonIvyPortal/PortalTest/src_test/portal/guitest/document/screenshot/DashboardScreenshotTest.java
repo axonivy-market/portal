@@ -51,6 +51,7 @@ public class DashboardScreenshotTest extends ScreenshotTest {
     homePage = new HomePage();
     ScreenshotUtil.resizeBrowser(new Dimension(1200, 500));
     Sleeper.sleep(500); // wait for js render scrollbar
+    executeDecorateJs("highlightServerInfo()");
     ScreenshotUtil.captureHalfRightPageScreenShot(ScreenshotUtil.DASHBOARD_FOLDER + "environment-info");
   }
   
