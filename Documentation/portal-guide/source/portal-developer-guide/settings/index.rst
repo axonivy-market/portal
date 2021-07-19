@@ -41,6 +41,7 @@ Process developer can set up Portal settings of Portal in file ``portal_settings
 
       # Documents security settings
       #ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT = false
+      #ENABLE_VIRUS_SCANNER_FOR_UPLOADED_DOCUMENT = false
       #UPLOAD_DOCUMENT_WHITELIST_EXTENSION = doc, docx, xls, xlsx, xlsm, csv, pdf, ppt, pptx, txt, zip, jpg, jpeg, bmp, png
 
       # Time settings
@@ -363,6 +364,33 @@ Other permissions
  |           | add it to User Favorite         |                                                    |
  +-----------+---------------------------------+----------------------------------------------------+
 
+Virus Scanning Setting 
+======================
+
+PrimeFaces is delivered with one implementation of that interface that uses
+`VirusTotal <https://www.virustotal.com/>`_. To enable `VirusTotal
+<https://www.virustotal.com/>`_ you need to create a community account at the
+`VirusTotal website <https://www.virustotal.com/>`_. You receive an API key once
+you have an account. To configure the API key add the following snippet to the
+configuration/web.xml file:
+
+   .. code-block:: xml
+
+      <context-param>
+      <param-name>primefaces.virusscan.VIRUSTOTAL_KEY</param-name>
+      <param-value>PUT YOUR API KEY HERE</param-value> 
+      </context-param>
+
+   ..
+
+By default after configured context-param in the web XML file, the Virus
+Scanning is disabled. You could update the value of the variable
+``ENABLE_VIRUS_SCANNER_FOR_UPLOADED_DOCUMENT`` to ``true`` in ``portal_settings_config.properties`` that
+you want to enable.
+
+
+Reference: `How to check if uploaded files contain a virus
+<https://community.axonivy.com/d/144-how-to-check-if-a-uploaded-files-contain-a-virus/>`_.
 
 Global variables
 ================
