@@ -56,7 +56,8 @@
 
                 <p:link id="show-process-overview-link" styleClass="additional-case-details-link ui-md-hidden ui-sm-hidden"
                   rendered="#{caseWidgetBean.showProcessOverviewLink(case)}"
-                  href="#{caseWidgetBean.getProcessOverviewPageUri(case)}">
+                  href="#{caseWidgetBean.getProcessOverviewPageUri(case)}"
+                  disabled="#{inFrame}">
                   <i class="si si-cog-double-2" />
                   <span class="display-full-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/showProcessOverview')}</span>
                 </p:link>
