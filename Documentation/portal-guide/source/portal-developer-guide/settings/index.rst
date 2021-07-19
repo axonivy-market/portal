@@ -312,7 +312,7 @@ configuration/web.xml file:
    ..
 
 By default after configured context-param in the web XML file, the Virus
-Scanning is enabled. You could update the value of variable
+Scanning is enabled. You could update the value of the variable
 ``EnableVirusScanner`` to ``false`` in ``PortalKit/config/variables.yaml`` that
 you want to disable.
 
