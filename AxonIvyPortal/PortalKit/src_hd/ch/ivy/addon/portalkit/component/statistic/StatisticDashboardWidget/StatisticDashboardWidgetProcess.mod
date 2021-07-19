@@ -87,7 +87,10 @@ Ss0 @PushWFArc f21 '' #zField
 Ss0 @GridStep f22 '' #zField
 Ss0 @PushWFArc f23 '' #zField
 Ss0 @PushWFArc f24 '' #zField
-Ss0 @PushWFArc f58 '' #zField
+Ss0 @Alternative f59 '' #zField
+Ss0 @PushWFArc f60 '' #zField
+Ss0 @PushWFArc f68 '' #zField
+Ss0 @PushWFArc f67 '' #zField
 >Proto Ss0 Ss0 StatisticDashboardWidgetProcess #zField
 Ct0 @TextInP .type .type #zField
 Ct0 @TextInP .processKind .processKind #zField
@@ -110,8 +113,7 @@ Ss0 S10 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ss0 S10 800 266 128 44 -56 -8 #rect
-Ss0 S10 @|BIcon #fIcon
+Ss0 S10 872 266 128 44 -56 -8 #rect
 Ss0 f11 guid 1604F11B5BA97CC5 #txt
 Ss0 f11 method start() #txt
 Ss0 f11 inParameterDecl '<> param;' #txt
@@ -129,7 +131,7 @@ Ss0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ss0 f11 123 51 26 26 -16 15 #rect
 Ss0 f14 275 51 26 26 0 12 #rect
-Ss0 f2 1395 275 26 26 0 12 #rect
+Ss0 f2 1467 275 26 26 0 12 #rect
 Ss0 f16 guid 16052B0B212D3060 #txt
 Ss0 f16 method moveLeft(ch.ivy.addon.portalkit.statistics.StatisticChart) #txt
 Ss0 f16 inParameterDecl '<ch.ivy.addon.portalkit.statistics.StatisticChart statisticChart> param;' #txt
@@ -260,7 +262,7 @@ Ss0 f30 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ss0 f30 1136 264 144 48 -72 -8 #rect
+Ss0 f30 1208 264 144 48 -72 -8 #rect
 Ss0 f7 processCall 'Functional Processes/Navigator:viewTaskForAnalytic(String,ch.ivyteam.ivy.workflow.query.TaskQuery)' #txt
 Ss0 f7 requestActionDecl '<String chartName,ch.ivyteam.ivy.workflow.query.TaskQuery taskQuery> param;' #txt
 Ss0 f7 requestMappingAction 'param.chartName=in.taskListName;
@@ -433,7 +435,7 @@ Ss0 f65 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ss0 f65 1136 200 144 48 -67 -8 #rect
+Ss0 f65 1208 200 144 48 -67 -8 #rect
 Ss0 f66 1219 51 26 26 0 12 #rect
 Ss0 f70 guid 16F16B7D136FCEC1 #txt
 Ss0 f70 method initialize(java.util.List<ch.ivy.addon.portalkit.statistics.StatisticChart>,Boolean,Boolean,Boolean,Boolean) #txt
@@ -455,8 +457,8 @@ Ss0 f70 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ss0 f70 699 51 26 26 -27 16 #rect
 Ss0 f62 784 48 32 32 0 16 #rect
-Ss0 f3 992 272 32 32 0 16 #rect
-Ss0 f1 928 288 992 288 #arcP
+Ss0 f3 1064 272 32 32 0 16 #rect
+Ss0 f1 1000 288 1064 288 #arcP
 Ss0 f5 actionTable 'out=in;
 ' #txt
 Ss0 f5 actionCode 'import java.util.ArrayList;
@@ -540,15 +542,15 @@ Ss0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ss0 f4 1136 360 144 48 -61 -8 #rect
-Ss0 f64 1280 384 1408 301 #arcP
-Ss0 f64 1 1408 384 #addKink
+Ss0 f4 1208 360 144 48 -61 -8 #rect
+Ss0 f64 1352 384 1480 301 #arcP
+Ss0 f64 1 1480 384 #addKink
 Ss0 f64 1 0.03651860630634248 0 0 #arcLabel
 Ss0 f80 expr out #txt
-Ss0 f80 1280 288 1395 288 #arcP
+Ss0 f80 1352 288 1467 288 #arcP
 Ss0 f80 0 0.8471095959837521 0 0 #arcLabel
-Ss0 f77 1280 224 1408 275 #arcP
-Ss0 f77 1 1408 224 #addKink
+Ss0 f77 1352 224 1480 275 #arcP
+Ss0 f77 1 1480 224 #addKink
 Ss0 f77 0 0.05614676741636741 0 0 #arcLabel
 Ss0 f69 725 64 784 64 #arcP
 Ss0 f72 actionTable 'out=in;
@@ -722,7 +724,7 @@ Ss0 f49 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ss0 f49 1152 426 112 44 -53 -8 #rect
+Ss0 f49 1224 426 112 44 -53 -8 #rect
 Ss0 f51 expr in #txt
 Ss0 f51 outCond in.isGuide #txt
 Ss0 f51 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -732,13 +734,13 @@ Ss0 f51 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ss0 f51 1009 303 1152 448 #arcP
-Ss0 f51 1 1016 448 #addKink
+Ss0 f51 1080 304 1224 448 #arcP
+Ss0 f51 1 1088 448 #addKink
 Ss0 f51 1 0.2734375 0 -14 #arcLabel
 Ss0 f50 expr in #txt
 Ss0 f50 outCond in.statisticChartList.isEmpty() #txt
-Ss0 f50 1010 302 1136 384 #arcP
-Ss0 f50 1 1024 384 #addKink
+Ss0 f50 1080 304 1208 384 #arcP
+Ss0 f50 1 1096 384 #addKink
 Ss0 f54 expr in #txt
 Ss0 f54 outCond 'in.isFinishLoadCharts && new ch.ivy.addon.portalkit.service.StatisticService().isSame(in.prevStatisticList, in.statisticChartList)' #txt
 Ss0 f54 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -748,17 +750,17 @@ Ss0 f54 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ss0 f54 1012 300 1408 301 #arcP
-Ss0 f54 1 1024 336 #addKink
-Ss0 f54 2 1408 336 #addKink
+Ss0 f54 1084 300 1480 301 #arcP
+Ss0 f54 1 1096 336 #addKink
+Ss0 f54 2 1480 336 #addKink
 Ss0 f56 expr in #txt
 Ss0 f56 outCond in.isCompactMode #txt
-Ss0 f56 1011 275 1136 224 #arcP
-Ss0 f56 1 1024 224 #addKink
+Ss0 f56 1083 275 1208 224 #arcP
+Ss0 f56 1 1096 224 #addKink
 Ss0 f57 expr in #txt
-Ss0 f57 1024 288 1136 288 #arcP
-Ss0 f12 1264 448 1408 301 #arcP
-Ss0 f12 1 1408 448 #addKink
+Ss0 f57 1096 288 1208 288 #arcP
+Ss0 f12 1336 448 1480 301 #arcP
+Ss0 f12 1 1480 448 #addKink
 Ss0 f12 0 0.6951177187602995 0 0 #arcLabel
 Ss0 f13 actionTable 'out=in;
 ' #txt
@@ -804,7 +806,15 @@ Ss0 f23 0 0.7583859937504577 0 0 #arcLabel
 Ss0 f24 888 768 992 694 #arcP
 Ss0 f24 1 992 768 #addKink
 Ss0 f24 0 0.7583859937504577 0 0 #arcLabel
-Ss0 f58 725 288 800 288 #arcP
+Ss0 f59 792 272 32 32 0 16 #rect
+Ss0 f60 725 288 792 288 #arcP
+Ss0 f68 expr in #txt
+Ss0 f68 outCond in.isFinishLoadCharts #txt
+Ss0 f68 808 272 1080 272 #arcP
+Ss0 f68 1 808 232 #addKink
+Ss0 f68 2 1080 232 #addKink
+Ss0 f67 expr in #txt
+Ss0 f67 824 288 872 288 #arcP
 >Proto Ss0 .type ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData #txt
 >Proto Ss0 .processKind HTML_DIALOG #txt
 >Proto Ss0 -8 -8 16 16 16 26 #rect
@@ -935,8 +945,12 @@ Ss0 f17 mainOut f23 tail #connect
 Ss0 f23 head f22 mainIn #connect
 Ss0 f22 mainOut f24 tail #connect
 Ss0 f24 head f19 mainIn #connect
-Ss0 f63 mainOut f58 tail #connect
-Ss0 f58 head S10 g1 #connect
+Ss0 f63 mainOut f60 tail #connect
+Ss0 f60 head f59 in #connect
+Ss0 f59 out f68 tail #connect
+Ss0 f68 head f3 in #connect
+Ss0 f59 out f67 tail #connect
+Ss0 f67 head S10 g1 #connect
 Ct0 f73 mainOut f2 tail #connect
 Ct0 f2 head g2 m #connect
 Ct0 f74 mainOut f0 tail #connect
