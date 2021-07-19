@@ -293,7 +293,7 @@ Other permissions
  +-----------+---------------------------------+----------------------------------------------------+
 
 Virus Scanning Setting 
-================
+======================
 
 PrimeFaces is delivered with one implementation of that interface that uses
 `VirusTotal <https://www.virustotal.com/>`_. To enable `VirusTotal
