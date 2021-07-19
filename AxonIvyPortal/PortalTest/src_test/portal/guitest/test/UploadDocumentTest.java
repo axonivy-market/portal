@@ -3,7 +3,6 @@ package portal.guitest.test;
 import static org.junit.Assert.assertEquals;
 import static portal.guitest.common.FileHelper.getAbsolutePathToTestFile;
 import static portal.guitest.common.Variable.ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT;
-import static portal.guitest.common.Variable.ENABLE_VIRUS_SCANNER_FOR_UPLOADED_DOCUMENT;
 import static portal.guitest.common.Variable.UPLOAD_DOCUMENT_WHITELIST_EXTENSION;
 
 import java.util.List;
@@ -62,17 +61,6 @@ public class UploadDocumentTest extends BaseTest{
     error = caseDetailsPage.uploadDocumentWithError(getAbsolutePathToTestFile("test-no-files-with-js.pdf"));
     assertEquals("This file is not allowed to upload because it contains some script!", error);
     disableScriptCheckingInPortalSetting();
-  }
-  
-  @Test
-  public void uploadScriptDocumentContainsVirusAndGetError() {
-	enableVirusScannerInPortalSetting();
-    initHomePage(TestAccount.ADMIN_USER);
-    casePage = homePage.openCaseList();
-    caseDetailsPage = casePage.openDetailsOfCaseHasName("Leave Request");
-    String error = caseDetailsPage.uploadDocumentWithError(getAbsolutePathToTestFile("test-no-files-with-js.pdf"));
-    assertEquals("This file is not allowed to be uploaded because it seems to be einfected with a virus!", error);
-    disableVirusScannerInPortalSetting();
   }
   
   @Test
@@ -149,13 +137,5 @@ public class UploadDocumentTest extends BaseTest{
   
   private void enableScriptCheckingInPortalSetting() {
     updatePortalSetting(ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT.getKey(), "true");
-  }
-  
-  private void disableVirusScannerInPortalSetting() {
-	    updatePortalSetting(ENABLE_VIRUS_SCANNER_FOR_UPLOADED_DOCUMENT.getKey(), "false");
-  }
-	  
-  private void enableVirusScannerInPortalSetting() {
-    updatePortalSetting(ENABLE_VIRUS_SCANNER_FOR_UPLOADED_DOCUMENT.getKey(), "true");
   }
 }
