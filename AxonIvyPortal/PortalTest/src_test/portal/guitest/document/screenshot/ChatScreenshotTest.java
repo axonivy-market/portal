@@ -50,7 +50,7 @@ public class ChatScreenshotTest extends ScreenshotTest {
     HomePage homePage = new HomePage();
     ChatPage chatPage= homePage.getChat();
     chatPage.openFirstGroupChat();
-    ScreenshotUtil.resizeBrowser(new Dimension(1500, 800));
+    ScreenshotUtil.resizeBrowser(new Dimension(1200, 800));
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.CHAT_FOLDER + "chat");
     
   }
