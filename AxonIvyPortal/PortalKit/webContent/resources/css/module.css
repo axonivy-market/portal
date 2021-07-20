@@ -5943,8 +5943,8 @@ body span.ui-commandlink .si {
 }
 
 @media screen and (min-width: 90.063em) {
-  .portal-card-container.image-process-item,
-  .portal-card-container.process-grid-item {
+  .process-group.image-process-container .portal-card-container.image-process-item,
+  .process-group.grid-process-container .portal-card-container.process-grid-item {
     width: 20%;
   }
 }
