@@ -862,7 +862,7 @@ Pt0 f72 requestEnabled true #txt
 Pt0 f72 triggerEnabled false #txt
 Pt0 f72 callSignature Error500Page() #txt
 Pt0 f72 caseData businessCase.attach=true #txt
-Pt0 f72 showInStartList 1 #txt
+Pt0 f72 showInStartList 0 #txt
 Pt0 f72 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -879,7 +879,7 @@ Pt0 f73 requestEnabled true #txt
 Pt0 f73 triggerEnabled false #txt
 Pt0 f73 callSignature Error404Page() #txt
 Pt0 f73 caseData businessCase.attach=true #txt
-Pt0 f73 showInStartList 1 #txt
+Pt0 f73 showInStartList 0 #txt
 Pt0 f73 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
