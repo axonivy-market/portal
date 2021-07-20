@@ -1,7 +1,7 @@
 package ch.ivy.addon.portalkit.service;
 
 import ch.ivy.addon.portalkit.bo.TaskColumnsConfiguration;
-import ch.ivy.addon.portalkit.enums.ExternalVariable;
+import ch.ivy.addon.portalkit.enums.JsonVariable;
 
 public class TaskColumnsConfigurationService extends JsonConfigurationService<TaskColumnsConfiguration> {
 
@@ -41,6 +41,6 @@ public class TaskColumnsConfigurationService extends JsonConfigurationService<Ta
 
   @Override
   public String getConfigKey() {
-    return ExternalVariable.TASK_COLUMN.key;
+    return JsonVariable.TASK_COLUMN.key;
   }
 }

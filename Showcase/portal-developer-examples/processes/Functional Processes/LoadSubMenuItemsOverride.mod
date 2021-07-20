@@ -78,7 +78,7 @@ if (!StringUtils.isEmpty(userExampleGuideLink)){
 	in.subMenuItems.add(userExampleGuide);
 }
 
-String dashboardLink = ProcessStartAPI.findStartableLinkByUserFriendlyRequestPath("Start Processes/PortalDashboard/dashboard.ivp");
+String dashboardLink = ProcessStartAPI.findStartableLinkByUserFriendlyRequestPath("Start Processes/PortalDashboard/Dashboard.ivp");
 if (!StringUtils.isEmpty(dashboardLink)){	
 	SubMenuItem userExampleGuide = new SubMenuItem();
 	userExampleGuide.setIcon("si si-layout-dashboard");
