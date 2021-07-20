@@ -5941,3 +5941,10 @@ body span.ui-commandlink .si {
 .process-overview-layout-content .process-info-icon {
   line-height: 1.5;
 }
+
+@media screen and (min-width: 90.063em) {
+  .portal-card-container.image-process-item,
+  .portal-card-container.process-grid-item {
+    width: 20%;
+  }
+}
