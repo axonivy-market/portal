@@ -36,6 +36,7 @@ import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.process.DashboardProcess;
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
+import ch.ivy.addon.portalkit.enums.JsonVariable;
 import ch.ivy.addon.portalkit.enums.ProcessWidgetMode;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.support.HtmlParser;
@@ -52,8 +53,6 @@ public class DashboardBean implements Serializable {
 
   private static final long serialVersionUID = -4224901891867040688L;
 
-  public static final String DASHBOARD_PREFIX = "dashboard.widgets";
-  public static final String DASHBOARD_VARIABLE = "Portal.Dashboard";
   public static final String DEFAULT_DASHBOARD_JSON_URI = "/ch.ivy.addon.portalkit/variables/DefaultDashboardJson";
   protected List<Dashboard> dashboards;
   protected Dashboard selectedDashboard;
@@ -63,18 +62,18 @@ public class DashboardBean implements Serializable {
   protected boolean isReadOnlyMode;
   private int currentDashboardIndex;
   private boolean canEdit;
-  protected String dashboardPropertyPrefix;
 
   @PostConstruct
   public void init() {
-    dashboardPropertyPrefix = DASHBOARD_PREFIX;
     canEdit = PermissionUtils.hasDashboardWritePermission();
     currentDashboardIndex = 0;
     isReadOnlyMode = true;
     dashboards = new ArrayList<>();
-    mapper = new ObjectMapper();
-    mapper.enable(MapperFeature.ACCEPT_CASE_INSENSITIVE_ENUMS);
-    String dashboardInUserProperty = readDashboardBySessionUser(DASHBOARD_PREFIX);
+    if (mapper == null) {
+      mapper = new ObjectMapper();
+      mapper.enable(MapperFeature.ACCEPT_CASE_INSENSITIVE_ENUMS);
+    }
+    String dashboardInUserProperty = readDashboardBySessionUser();
     try {
       dashboards = defaultDashboards();
       if (StringUtils.isNoneEmpty(dashboardInUserProperty)) {
@@ -100,12 +99,12 @@ public class DashboardBean implements Serializable {
     return new ArrayList<>(Arrays.asList(mapper.readValue(dashboardJSON, Dashboard[].class)));
   }
 
-  protected String readDashboardBySessionUser(String dashboardPrefix) {
-    return currentUser().getProperty(dashboardPrefix);
+  protected String readDashboardBySessionUser() {
+    return currentUser().getProperty(JsonVariable.DASHBOARD.key);
   }
 
-  protected void removeDashboardInUserProperty(String dashboardProperty) {
-    currentUser().removeProperty(dashboardProperty);
+  protected void removeDashboardInUserProperty() {
+    currentUser().removeProperty(JsonVariable.DASHBOARD.key);
   }
   
   private void loadWidgets(List<DashboardWidget> widgets) {
@@ -179,15 +178,25 @@ public class DashboardBean implements Serializable {
 
   private void loadProcessByPath(ProcessDashboardWidget processWidget) {
     List<DashboardProcess> processes = getAllPortalProcesses();
-    
+
     for (DashboardProcess process : processes) {
       if (process.getId().contains(processWidget.getProcessPath())) {
+        updateProcessStartIdForCombined(processWidget, process);
         processWidget.setProcess(process);
         break;
       }
     }
   }
-  
+
+  public void updateProcessStartIdForCombined(ProcessDashboardWidget processWidget, DashboardProcess process) {
+    if (processWidget.getDisplayMode().equals(ProcessWidgetMode.COMBINED_MODE) && process.getProcessStartId() == null) {
+      long processStartId = Ivy.session().getStartableProcessStarts().stream()
+          .filter(processStart -> processStart.getLink().getRelative().equals(process.getStartLink())).findFirst()
+          .get().getId();
+      process.setProcessStartId(processStartId);
+    }
+  }
+
   private void loadProcesses(ProcessDashboardWidget processWidget) {
     List<DashboardProcess> processes;
     if (processWidget.isSelectedAllProcess()) {
@@ -223,7 +232,7 @@ public class DashboardBean implements Serializable {
   }
 
   protected List<Dashboard> defaultDashboards() throws IOException {
-    String dashboardJson = Ivy.var().get(DASHBOARD_VARIABLE);
+    String dashboardJson = Ivy.var().get(JsonVariable.DASHBOARD.key);
     List<Dashboard> dashboards = mappingDashboards(dashboardJson);
     for (int i = 0; i < dashboards.size(); i++) {
       boolean canRead = false;
@@ -283,7 +292,7 @@ public class DashboardBean implements Serializable {
 
   public void saveSelectedWidget() throws JsonProcessingException {
     this.dashboards.set(this.dashboards.indexOf(this.getSelectedDashboard()), this.getSelectedDashboard());
-    String dashboardInUserProperty = readDashboardBySessionUser(this.dashboardPropertyPrefix);
+    String dashboardInUserProperty = readDashboardBySessionUser();
     if (StringUtils.isNotEmpty(dashboardInUserProperty)) {
       saveOrUpdateDashboardToUserProperty(this.getSelectedDashboard());
     } else {
@@ -295,7 +304,7 @@ public class DashboardBean implements Serializable {
 
   protected void saveOrUpdateDashboardToUserProperty(Dashboard dashboardWidget) throws JsonProcessingException {
     List<Dashboard> dashboardSavedList = new ArrayList<>();
-    String dashboardSaved = readDashboardBySessionUser(DASHBOARD_PREFIX);
+    String dashboardSaved = readDashboardBySessionUser();
     if (StringUtils.isNotEmpty(dashboardSaved)) {
       dashboardSavedList = mappingDashboards(dashboardSaved);
       int indexOfWidget = dashboardSavedList.indexOf(dashboardWidget);
@@ -306,7 +315,7 @@ public class DashboardBean implements Serializable {
       dashboardSavedList.add(dashboardWidget);
     }
 
-    currentUser().setProperty(DASHBOARD_PREFIX, this.mapper.writeValueAsString(dashboardSavedList));
+    currentUser().setProperty(JsonVariable.DASHBOARD.key, this.mapper.writeValueAsString(dashboardSavedList));
   }
 
   private Map<String, String> getRequestParameterMap() {
@@ -316,7 +325,6 @@ public class DashboardBean implements Serializable {
   public void navigateToSelectedTaskDetails(SelectEvent event) {
     Long taskId = ((ITask) event.getObject()).getId();
     PortalNavigator.navigateToPortalTaskDetails(taskId);
-
   }
 
   public void navigateToSelectedCaseDetails(SelectEvent event) {
@@ -326,10 +334,6 @@ public class DashboardBean implements Serializable {
 
   private IUser currentUser() {
     return Ivy.session().getSessionUser();
-  }
-
-  protected String dashboardProperty(Dashboard dashboard) {
-    return dashboardPropertyPrefix + "." + dashboard.getId();
   }
 
   public void onDashboardChange(int index) {

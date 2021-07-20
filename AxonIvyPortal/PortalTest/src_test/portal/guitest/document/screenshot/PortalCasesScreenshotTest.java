@@ -14,7 +14,7 @@ import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
-import ch.ivy.addon.portalkit.util.ConfigurationJSONUtil;
+import ch.ivy.addon.portalkit.util.ConfigurationJsonUtil;
 import ch.ivy.addon.portalkit.util.ScreenshotMargin;
 import ch.ivy.addon.portalkit.util.ScreenshotUtil;
 import portal.guitest.common.ScreenshotTest;
@@ -191,7 +191,7 @@ public class PortalCasesScreenshotTest extends ScreenshotTest {
   }
 
   public CaseDetailsPage setupCustomWidgetByJSONFile(String configFile) throws IOException {
-    ConfigurationJSONUtil.updateJSONSetting(configFile, Variable.CASE_DETAIL);
+    ConfigurationJsonUtil.updateJSONSetting(configFile, Variable.CASE_DETAIL);
     CaseDetailsPage detailsPage = goToCaseList().openDetailsOfCaseHasName(CaseDetailsTest.CUSTOM_CASE_WIDGET_NAME);
     detailsPage.closeMainMenu();
     return detailsPage;

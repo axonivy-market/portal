@@ -35,8 +35,8 @@ public final class PortalNavigator extends BaseNavigator{
   private static final String PORTAL_FORGOT_PASSWORD = "Start Processes/PortalStart/ForgotPasswordPage.ivp";
   private static final String PORTAL_PASSWORD_RESET = "Start Processes/PortalStart/PasswordResetPage.ivp";
   private static final String PORTAL_CASE_DETAILS_IN_FRAME = "Start Processes/PortalStart/CaseDetailsInIFrame.ivp";
-  private static final String PORTAL_NEW_DASHBOARD = "Start Processes/PortalDashboard/dashboard.ivp";
-  private static final String PORTAL_NEW_DASHBOARD_CONFIGURATION = "Start Processes/PortalDashboard/dashboardConfiguration.ivp";
+  private static final String PORTAL_NEW_DASHBOARD = "Start Processes/PortalDashboard/Dashboard.ivp";
+  private static final String PORTAL_NEW_DASHBOARD_CONFIGURATION = "Start Processes/PortalDashboard/DashboardConfiguration.ivp";
   private static final String PORTAL_PROCESS_INFO = "Start Processes/PortalStart/ProcessInformation.ivp";
   
   public static String getPortalStartUrl() {

@@ -534,7 +534,7 @@ a.compact-task-start-link .task-start-list-item {
 .new-process-dialog .md-inputfield .md-inputwrapper-filled ~ label.new-process-name-label {
   font-size: var(--small-font-size); }
 
-.process-widget--full .grid-view-form .process-grid-view__icon,
+.process-widget--full .process-grid-view__icon,
 .process-start-list-container .grid-view-form .process-grid-view-icon {
   font-size: var(--process-grid-icon-font-size);
   padding: 0.7rem;
