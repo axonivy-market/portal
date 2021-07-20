@@ -27,6 +27,7 @@ import ch.ivy.addon.portalkit.enums.TaskAssigneeType;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;
+import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.service.DummyTaskService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.TaskColumnsConfigurationService;
@@ -320,7 +321,8 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
       startIndex = 0;
       count = first + pageSize;
     }
-    return findTaskCaller.invokeComponentLogic(taskWidgetComponentId, "#{logic.findTasks}",
+    String componentId = Attrs.currentContext().getBuildInAttribute("clientId");
+    return findTaskCaller.invokeComponentLogic(componentId, "#{logic.findTasks}",
         new Object[] {criteria, startIndex, count});
   }
 
@@ -342,8 +344,9 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
    */
   protected int getTaskCount(TaskSearchCriteria criteria) {
     IvyComponentLogicCaller<Long> countTaskCaller = new IvyComponentLogicCaller<>();
+    String componentId = Attrs.currentContext().getBuildInAttribute("clientId");
     Long taskCount =
-        countTaskCaller.invokeComponentLogic(taskWidgetComponentId, "#{logic.countTasks}", new Object[] {criteria});
+        countTaskCaller.invokeComponentLogic(componentId, "#{logic.countTasks}", new Object[] {criteria});
     return taskCount.intValue();
   }
 

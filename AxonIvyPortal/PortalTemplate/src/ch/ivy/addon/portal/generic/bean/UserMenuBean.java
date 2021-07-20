@@ -21,6 +21,7 @@ import ch.ivy.addon.portalkit.bean.IvyComponentLogicCaller;
 import ch.ivy.addon.portalkit.bean.PortalExceptionBean;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
+import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.service.AnnouncementService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
@@ -161,7 +162,8 @@ public class UserMenuBean implements Serializable {
   public void reserveTaskAndNavigateWithGrowl(ITask task) throws IOException {
     IvyComponentLogicCaller<ITask> reserveTask = new IvyComponentLogicCaller<>();
     ITask relatedTask = task != null ? task : Ivy.wfTask();
-    reserveTask.invokeComponentLogic(TASK_LEAVE_WARNING_COMPONENT, "#{logic.reserve}", new Object[] {relatedTask.getCase()});
+    String componentId = Attrs.currentContext().getBuildInAttribute("clientId");
+    reserveTask.invokeComponentLogic(componentId, "#{logic.reserve}", new Object[] {relatedTask.getCase()});
     TaskUtils.parkTask(relatedTask);
     navigateToTargetPage();
   }
@@ -169,7 +171,8 @@ public class UserMenuBean implements Serializable {
   public void resetTaskAndNavigateWithGrowl(ITask task) throws IOException {
     IvyComponentLogicCaller<ITask> leaveTask = new IvyComponentLogicCaller<>();
     ITask relatedTask = task != null ? task : Ivy.wfTask();
-    leaveTask.invokeComponentLogic(TASK_LEAVE_WARNING_COMPONENT, "#{logic.leave}", new Object[] {relatedTask.getCase()});
+    String componentId = Attrs.currentContext().getBuildInAttribute("clientId");
+    leaveTask.invokeComponentLogic(componentId, "#{logic.leave}", new Object[] {relatedTask.getCase()});
     TaskUtils.resetTask(relatedTask);
     navigateToTargetPage();
   }

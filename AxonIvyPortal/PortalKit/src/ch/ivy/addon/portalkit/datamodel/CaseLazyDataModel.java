@@ -30,6 +30,7 @@ import ch.ivy.addon.portalkit.enums.FilterType;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;
+import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.service.CaseColumnsConfigurationService;
 import ch.ivy.addon.portalkit.service.CaseFilterService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
@@ -456,7 +457,8 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
       startIndex = 0;
       count = first + pageSize;
     }
-    return findCaseCaller.invokeComponentLogic(caseWidgetComponentId, "#{logic.findCases}",
+    String componentId = Attrs.currentContext().getBuildInAttribute("clientId");
+    return findCaseCaller.invokeComponentLogic(componentId, "#{logic.findCases}",
         new Object[] {criteria, startIndex, count});
   }
 
@@ -472,7 +474,8 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
 
   private int getCaseCount(CaseSearchCriteria criteria) {
     IvyComponentLogicCaller<Long> countCaseCaller = new IvyComponentLogicCaller<>();
-    Long caseCount = countCaseCaller.invokeComponentLogic(caseWidgetComponentId, "#{logic.countCases}", new Object[] { criteria });
+    String componentId = Attrs.currentContext().getBuildInAttribute("clientId");
+    Long caseCount = countCaseCaller.invokeComponentLogic(componentId, "#{logic.countCases}", new Object[] { criteria });
     return caseCount.intValue();
   }
 

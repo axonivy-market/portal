@@ -53,7 +53,6 @@ public class ProcessWidgetBean implements Serializable {
   private static final long serialVersionUID = -5889375917550618261L;
   private static final String SPECIAL_CHARACTER_KEY = "SPECIAL_CHARACTER";
 
-  private String processWidgetComponentId;
   private Process deletedProcess;
   private Process editedProcess;
   private ExternalLink editedExternalLink;
@@ -66,8 +65,6 @@ public class ProcessWidgetBean implements Serializable {
 
   @PostConstruct
   public void init() {
-    processWidgetComponentId = Attrs.currentContext().getBuildInAttribute("clientId");
-    
     initProcessViewMode();
     
     ProcessStartCollector collector = new ProcessStartCollector();
@@ -148,7 +145,8 @@ public class ProcessWidgetBean implements Serializable {
 
   private List<Process> findProcesses() {
     IvyComponentLogicCaller<List<IWebStartable>> ivyComponentLogicCaller = new IvyComponentLogicCaller<>();
-    List<IWebStartable> processes = ivyComponentLogicCaller.invokeComponentLogic(processWidgetComponentId,
+    String componentId = Attrs.currentContext().getBuildInAttribute("clientId");
+    List<IWebStartable> processes = ivyComponentLogicCaller.invokeComponentLogic(componentId,
         "#{logic.collectProcesses}", new Object[] {});
     List<Process> defaultPortalProcesses = new ArrayList<>();
     processes.forEach(process -> defaultPortalProcesses.add(new IvyProcess(process)));
