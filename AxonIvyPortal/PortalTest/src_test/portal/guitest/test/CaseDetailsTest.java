@@ -18,7 +18,7 @@ import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
-import ch.ivy.addon.portalkit.util.ConfigurationJSONUtil;
+import ch.ivy.addon.portalkit.util.ConfigurationJsonUtil;
 import ch.ivyteam.ivy.workflow.TaskState;
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.CaseState;
@@ -367,17 +367,17 @@ public class CaseDetailsTest extends BaseTest {
   }
 
   public void setupCaseDetailsWith2Panels() throws IOException {
-    ConfigurationJSONUtil.updateJSONSetting("custom-case-details-with-panel.json", Variable.CASE_DETAIL);
+    ConfigurationJsonUtil.updateJSONSetting("custom-case-details-with-panel.json", Variable.CASE_DETAIL);
     detailsPage = goToCaseList().openDetailsOfCaseHasName(CUSTOM_CASE_WIDGET_NAME);
   }
 
   public void setupCaseDetailsWithIFrameURL() throws IOException {
-    ConfigurationJSONUtil.updateJSONSetting("custom-case-details-with-url.json", Variable.CASE_DETAIL);
+    ConfigurationJsonUtil.updateJSONSetting("custom-case-details-with-url.json", Variable.CASE_DETAIL);
     detailsPage = goToCaseList().openDetailsOfCaseHasName(CUSTOM_CASE_WIDGET_NAME);
   }
 
   public void setupCaseDetailsWithIFrameProcess() throws IOException {
-    ConfigurationJSONUtil.updateJSONSetting("custom-case-details.json", Variable.CASE_DETAIL);
+    ConfigurationJsonUtil.updateJSONSetting("custom-case-details.json", Variable.CASE_DETAIL);
     detailsPage = goToCaseList().openDetailsOfCaseHasName(CUSTOM_CASE_WIDGET_NAME);
   }
 

@@ -8,7 +8,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import ch.ivy.addon.portalkit.dto.taskdetails.TaskDetails;
-import ch.ivy.addon.portalkit.enums.ExternalVariable;
+import ch.ivy.addon.portalkit.enums.JsonVariable;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -56,7 +56,7 @@ public class TaskDetailsBean extends AbstractConfigurableContentBean<TaskDetails
 
   @Override
   public String getVariableKey() {
-    return ExternalVariable.TASK_DETAIL.key;
+    return JsonVariable.TASK_DETAIL.key;
   }
 
   @Override

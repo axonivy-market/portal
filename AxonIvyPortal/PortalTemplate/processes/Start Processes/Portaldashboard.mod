@@ -1,5 +1,5 @@
 [Ivy]
-17065D04AF6FF0C0 9.2.0 #module
+17065D04AF6FF0C0 9.3.0 #module
 >Proto >Proto Collection #zClass
 Pd0 PortalDashboard Big #zClass
 Pd0 B #cInfo
@@ -19,18 +19,18 @@ Pd0 @PushWFArc f9 '' #zField
 Pd0 @EndTask f6 '' #zField
 Pd0 @PushWFArc f1 '' #zField
 >Proto Pd0 Pd0 PortalDashboard #zField
-Pd0 f0 outLink dashboard.ivp #txt
+Pd0 f0 outLink Dashboard.ivp #txt
 Pd0 f0 inParamDecl '<> param;' #txt
 Pd0 f0 requestEnabled true #txt
 Pd0 f0 triggerEnabled false #txt
-Pd0 f0 callSignature dashboard() #txt
+Pd0 f0 callSignature Dashboard() #txt
 Pd0 f0 startName Dashboard #txt
 Pd0 f0 caseData businessCase.attach=true #txt
 Pd0 f0 showInStartList 1 #txt
 Pd0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>dashboard.ivp</name>
+        <name>Dashboard.ivp</name>
     </language>
 </elementInfo>
 ' #txt
@@ -50,17 +50,17 @@ Pd0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Pd0 f3 224 74 112 44 -44 -8 #rect
 Pd0 f4 143 96 224 96 #arcP
-Pd0 f2 outLink dashboardConfiguration.ivp #txt
+Pd0 f2 outLink DashboardConfiguration.ivp #txt
 Pd0 f2 inParamDecl '<> param;' #txt
 Pd0 f2 requestEnabled true #txt
 Pd0 f2 triggerEnabled false #txt
-Pd0 f2 callSignature dashboardConfiguration() #txt
+Pd0 f2 callSignature DashboardConfiguration() #txt
 Pd0 f2 caseData businessCase.attach=true #txt
-Pd0 f2 showInStartList 1 #txt
+Pd0 f2 showInStartList 0 #txt
 Pd0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>dashboardConfiguration.ivp</name>
+        <name>DashboardConfiguration.ivp</name>
     </language>
 </elementInfo>
 ' #txt
