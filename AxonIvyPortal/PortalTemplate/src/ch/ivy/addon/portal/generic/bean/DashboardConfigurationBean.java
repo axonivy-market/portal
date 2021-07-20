@@ -59,22 +59,22 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
 
   private WidgetSample taskSample() {
     return new WidgetSample(translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/taskList"), DashboardWidgetType.TASK,
-        "task-widget-prototype.png");
+        "task-widget-sample.png");
   }
 
   private WidgetSample caseSample() {
     return new WidgetSample(translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/caseList"), DashboardWidgetType.CASE,
-        "case-widget-prototype.png");
+        "case-widget-sample.png");
   }
 
   private WidgetSample statisticSample() {
     return new WidgetSample(translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/statisticWidget"), DashboardWidgetType.STATISTIC,
-        "statistic-widget-prototype.png");
+        "statistic-widget-sample.png");
   }
 
   private WidgetSample processSample() {
     return new WidgetSample(translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/processList"), DashboardWidgetType.PROCESS,
-        "process-widget-prototype.png");
+        "process-widget-sample.png");
   }
 
   private void backupCategories() {
@@ -90,7 +90,7 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
   }
 
   public void restore() throws IOException {
-    removeDashboardInUserProperty(DASHBOARD_PREFIX);
+    removeDashboardInUserProperty();
 
     List<Dashboard> defaultDashboards = this.defaultDashboards();
     this.selectedDashboard = defaultDashboards.get(defaultDashboards.indexOf(this.getSelectedDashboard()));
@@ -115,6 +115,9 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
         this.newWidgetHeader = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/newWidgetHeader",
             Arrays.asList(translate("/ch.ivy.addon.portalkit.ui.jsf/common/processes")));
         this.widget = getDefaultProcessDashboardWidget();
+        break;
+      case STATISTIC:
+        this.widget = null;
         break;
       default:
         break;

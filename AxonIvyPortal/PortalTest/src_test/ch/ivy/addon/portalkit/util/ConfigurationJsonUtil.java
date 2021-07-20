@@ -14,7 +14,7 @@ import portal.guitest.common.UrlHelpers;
 import portal.guitest.common.Variable;
 import vn.wawa.guitest.base.client.Browser;
 
-public class ConfigurationJSONUtil {
+public class ConfigurationJsonUtil {
 
   public static void updateJSONSetting(String fileConfig, Variable variableName) throws IOException {
     String customCaseDetais = FileHelper.getAbsolutePathToTestFile(fileConfig);

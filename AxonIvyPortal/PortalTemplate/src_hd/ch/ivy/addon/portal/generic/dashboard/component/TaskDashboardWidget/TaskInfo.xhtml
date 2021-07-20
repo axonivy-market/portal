@@ -29,8 +29,8 @@
   <div class="ui-g">
     <ui:repeat value="#{widget.taskByStateStatistic.entrySet()}" var="entry">
       <div class="ui-g-8">
-        <h:outputText value="#{dashboardTaskFilterBean.getUserFriendlyTaskState(entry.key)}"
-          styleClass="dashboard-tasks__state-text--#{entry.key.name().toLowerCase()} dashboard-tasks__state-text" />
+        <ic:ch.ivy.addon.portalkit.component.task.column.TaskState state="#{entry.key}"
+          alwaysShowState="true" />
       </div>
       <div class="ui-g-4">
         <span>#{entry.value} #{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/tasks")}</span>
@@ -85,8 +85,8 @@
         </div>
         <div class="ui-g-8">
           <ui:repeat var="state" value="#{field.states}">
-            <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskState/'.concat(state.toString()))}"
-              styleClass="widget-info__state dashboard-tasks__state-text--#{state.name().toLowerCase()} dashboard-tasks__state-text" />
+            <ic:ch.ivy.addon.portalkit.component.task.column.TaskState state="#{state}"
+              alwaysShowState="true" stateStyleClass="u-mar-right-5"/>
           </ui:repeat>
         </div>
       </h:panelGroup>

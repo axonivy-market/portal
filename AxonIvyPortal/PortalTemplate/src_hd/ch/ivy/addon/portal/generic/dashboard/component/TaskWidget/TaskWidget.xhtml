@@ -38,6 +38,7 @@
         paginator="true" paginatorPosition="bottom" lazy="true" paginatorTemplate="{PreviousPageLink} {PageLinks} {NextPageLink} {RowsPerPageDropdown}"
         rows="#{taskWidget.rowsPerPage}"
         rowsPerPageTemplate="5,10,20,50"
+        paginatorAlwaysVisible="false"
         pageLinks="5" sortField="#{taskWidget.sortField}" sortBy="#{taskWidget.sortField}"
         sortOrder="#{taskWidget.sortDescending ? 'descending' : 'ascending'}"
         rowIndexVar="rowIndex" rowHover="#{isReadOnlyMode}" selectionMode="single"
@@ -55,7 +56,7 @@
           </h:panelGroup>
           
           <h:panelGroup rendered="#{column.field eq 'priority'}">
-            <ui:include src="PriorityCell.xhtml" />
+            <ic:ch.ivy.addon.portalkit.component.task.column.TaskPriority priority="#{task.priority}" alwaysShowPriority="true" />
           </h:panelGroup>
           
           <h:panelGroup rendered="#{column.field eq 'activator'}">
@@ -63,7 +64,8 @@
           </h:panelGroup>
           
           <h:panelGroup rendered="#{column.field eq 'state'}">
-            <ui:include src="StateCell.xhtml" />
+            <ic:ch.ivy.addon.portalkit.component.task.column.TaskState state="#{task.state}"
+            stateStyleClass="#{column.fieldStyleClass}" alwaysShowState="true"/>
           </h:panelGroup>
           
           <h:panelGroup rendered="#{column.field eq 'name'}">
