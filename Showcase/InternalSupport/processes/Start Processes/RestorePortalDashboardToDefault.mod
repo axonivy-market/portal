@@ -1,5 +1,5 @@
 [Ivy]
-176A77E608A844A8 9.2.0 #module
+176A77E608A844A8 9.3.0 #module
 >Proto >Proto Collection #zClass
 Cd0 RestorePortalDashboardToDefault Big #zClass
 Cd0 B #cInfo
@@ -30,9 +30,7 @@ Cd0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Cd0 f0 @C|.responsibility Everybody #txt
 Cd0 f0 81 49 30 30 -20 17 #rect
-Cd0 f0 @|StartRequestIcon #fIcon
 Cd0 f1 337 49 30 30 0 15 #rect
-Cd0 f1 @|EndIcon #fIcon
 Cd0 f3 actionTable 'out=in;
 ' #txt
 Cd0 f3 actionCode 'import ch.ivyteam.ivy.application.property.ICustomProperty;
@@ -43,7 +41,6 @@ for (ICustomProperty property : properties) {
 }' #txt
 Cd0 f3 security system #txt
 Cd0 f3 168 42 112 44 0 -8 #rect
-Cd0 f3 @|StepIcon #fIcon
 Cd0 f4 111 64 168 64 #arcP
 Cd0 f2 280 64 337 64 #arcP
 >Proto Cd0 .type internaltest.Data #txt
