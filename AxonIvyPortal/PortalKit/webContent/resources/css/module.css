@@ -1127,6 +1127,7 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   height: auto;
 }
 
+.process-grid-item .process-more-info-link,
 .process-widget .process-more-info-link {
   display: block;
   margin-top: 20px;

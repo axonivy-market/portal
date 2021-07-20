@@ -1,0 +1,96 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="process" required="true" type="ch.ivy.addon.portalkit.bo.Process"/>
+  <cc:attribute name="managedBean" required="true" />
+  <cc:attribute name="groupCode" />
+  <cc:attribute name="status" />
+  <cc:attribute name="showInformationLink" />
+  <cc:attribute name="oncompleteEditProcess" shortDescription="Javascript handler to execute when clicking on the edit button is completed."/>
+  <cc:attribute name="componentToUpdateOnEditProcess" shortDescription="Client side id of the component(s) to be updated after clicked on the Edit button" />
+  <cc:attribute name="editActionListener" shortDescription="An actionlistener to process when the Edit button is executed." />
+  <cc:attribute name="oncompleteRemoveProcess" shortDescription="Javascript handler to execute when clicking on the Remove button is completed."/>
+  <cc:attribute name="componentToUpdateOnRemoveProcess" shortDescription="Client side id of the component(s) to be updated after clicked on the Remove button" />
+  <cc:attribute name="removeActionListener" shortDescription="An actionlistener to process when the Remove button is executed." />
+  <cc:attribute name="readOnlyMode" />
+  <cc:attribute name="ableToEdit" />
+  <cc:attribute name="processStyleClass" />
+  <cc:attribute name="processIconStyleClass" />
+</cc:interface>
+
+<cc:implementation>
+  <c:set var="process" value="#{cc.attrs.process}" />
+  <c:set var="managedBean" value="#{cc.attrs.managedBean}" />
+  <c:set var="isExpress" value="#{managedBean.isExpressProcess(process)}" />
+  <c:set var="isExternalLink" value="#{managedBean.isExternalLink(process)}" />
+  <c:set var="isCaseMap" value="#{managedBean.isCaseMap(process)}" />
+  <c:set var="processTarget" value="#{managedBean.targetToStartProcess(process)}"/>
+  <c:set var="groupCode" value="#{cc.attrs.groupCode}"/>
+  <c:set var="status" value="#{cc.attrs.status}"/>
+
+  <h:panelGroup layout="block"
+    styleClass="portal-card-container #{cc.attrs.processStyleClass} process-grid-item #{groupCode}">
+    <div class="card-item card ui-g-12 #{isExpress ? 'express-workflow' : ''} #{isExternalLink ? 'js-external-link-process-item' : ''}">
+      <h:form id="process-item" target="#{processTarget}"
+        styleClass="grid-view-form TexAlCenter #{isExpress ? 'is-express' : ''} #{isExternalLink ? 'is-external-link' : ''}">
+        <!-- Action -->
+        <h:panelGroup id="process-action-group" styleClass="process-action-group" layout="block">
+          <h:panelGroup id="grid-process-category" rendered="#{process.category ne ''}"
+            styleClass="js-process-category grid-process-category #{cc.attrs.ableToEdit ? 'has-menu-button' : ''}"
+            layout="block">
+            <h:panelGroup id="grid-process-category-content" styleClass="grid-process-category-content u-truncate-text"
+              layout="block">#{managedBean.getDisplayProcessCategory(process)}</h:panelGroup>
+            <p:tooltip id="grid-process-category-content-tooltip" for="grid-process-category-content"
+              value="#{process.category}" trackMouse="true" hideEvent="mouseleave click" />
+          </h:panelGroup>
+          <h:panelGroup rendered="#{cc.attrs.ableToEdit}">
+            <p:commandButton id="process-action-button" type="button" styleClass="ui-button-icon-only icon-more-menu-button"
+              icon="si si-navigation-menu-horizontal" />
+            <p:menu id="process-action-menu" overlay="true" trigger="process-action-button" my="right top" at="right bottom"
+              styleClass="ui-menu-overlay-process">
+              <p:menuitem id="process-edit" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}"
+                icon="si si-graphic-tablet-drawing-pen" oncomplete="#{cc.attrs.oncompleteEditProcess}"
+                actionListener="#{cc.attrs.editActionListener}"
+                update="#{cc.attrs.componentToUpdateOnEditProcess}" />
+              <p:menuitem id="process-delete" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
+                icon="si si-bin-1" oncomplete="#{cc.attrs.oncompleteRemoveProcess}"
+                actionListener="#{cc.attrs.removeActionListener}"
+                update="#{cc.attrs.componentToUpdateOnRemoveProcess}" />
+            </p:menu>
+          </h:panelGroup>
+        </h:panelGroup>
+
+        <!-- Process Icon -->
+        <i id="icon" class="#{iconSelectionBean.generateIconWithFontFamily(process.getIcon())} process-grid-view-icon #{cc.attrs.processIconStyleClass}" />
+        <!-- Process Name -->
+        <div class="ui-g-12 process-name js-process-start-list-item-name">
+          <h:outputText value="#{process.getName()}" styleClass="line-clamp-text-2 process-grid-view-name" />
+        </div>
+        <!-- Process Description -->
+        <div class="ui-g-12 process-description js-process-start-list-item-description">
+          <h:outputText id="process-description" value="#{process.description}"
+            styleClass="TexAlCenter line-clamp-text-5" />
+          <p:tooltip id="info-workflow-tooltip" for="process-description" value="#{process.description}" position="top"
+            trackMouse="true" hideEvent="mouseleave click" styleClass="js-process-start-list-item-description" />
+        </div>
+        <!-- Start process -->
+        <div class="ui-g-12 MarTop10" id="start-button-wrap-#{status.index}">
+          <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/startProcess')}"
+            id="start-button" actionListener="#{managedBean.startProcess(process)}" icon="si si-arrow-right-1"
+            ajax="#{!isExternalLink}"
+            disabled="#{cc.attrs.readOnlyMode}" />
+          <p:link value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/MoreInformation')}"
+            styleClass="process-more-info-link" href="#{managedBean.getProcessInformationPageUrl(process)}"
+            rendered="#{cc.attrs.showInformationLink and !isExpress and !isExternalLink and !isCaseMap}"
+            disabled="#{cc.attrs.readOnlyMode}" />
+        </div>
+      </h:form>
+    </div>
+  </h:panelGroup>
+
+</cc:implementation>
+
+</html>
