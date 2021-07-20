@@ -1,5 +1,6 @@
 package ch.ivy.addon.portalkit.bean;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
@@ -23,6 +24,7 @@ import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.dto.SecurityMemberDTO;
 import ch.ivy.addon.portalkit.enums.ExpressMessageType;
 import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
+import ch.ivy.addon.portalkit.service.CaseDocumentService;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.util.ExpressManagementUtils;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -97,7 +99,7 @@ public class ExpressManagementBean implements Serializable {
     return displayName;
   }
   
-  public void importExpress(FileUploadEvent event) {
+  public void importExpress(FileUploadEvent event) throws IOException {
     importExpressFile = event.getFile();
     validate();
     if (isError) {
@@ -114,13 +116,19 @@ public class ExpressManagementBean implements Serializable {
     return exportExpressFile;
   }
 
-  private void validate() {
+  private void validate() throws IOException {
     isError = false;
     importOutput = StringUtils.EMPTY;
 
     if (importExpressFile == null || importExpressFile.getSize() == 0) {
       isError = true;
       validateMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/fileEmptyMessage"), null);
+    } else if (CaseDocumentService.isDocumentTypeHasVirus(importExpressFile)) {
+      isError = true;
+      validateMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/documentFiles/fileContainVirus"), null);
+    } else if (!CaseDocumentService.isDocumentSafe(importExpressFile)) {
+      isError = true;
+      validateMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/documentFiles/fileContainScript"), null);
     } else if (!FilenameUtils.isExtension(importExpressFile.getFileName(), "json")) {
       isError = true;
       validateMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, Ivy.cms().co("/Dialogs/components/CaseDocument/invalidFileMessage"), null);
