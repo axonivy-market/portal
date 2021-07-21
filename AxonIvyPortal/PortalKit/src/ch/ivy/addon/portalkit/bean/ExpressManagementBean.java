@@ -123,10 +123,10 @@ public class ExpressManagementBean implements Serializable {
     if (importExpressFile == null || importExpressFile.getSize() == 0) {
       isError = true;
       validateMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/fileEmptyMessage"), null);
-    } else if (CaseDocumentService.isDocumentTypeHasVirus(importExpressFile)) {
+    } else if (CaseDocumentService.enableVirusScannerForUploadedDocument() && CaseDocumentService.isDocumentTypeHasVirus(importExpressFile)) {
       isError = true;
       validateMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/documentFiles/fileContainVirus"), null);
-    } else if (!CaseDocumentService.isDocumentSafe(importExpressFile)) {
+    } else if (CaseDocumentService.enableScriptCheckingForUploadedDocument() && !CaseDocumentService.isDocumentSafe(importExpressFile)) {
       isError = true;
       validateMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/documentFiles/fileContainScript"), null);
     } else if (!FilenameUtils.isExtension(importExpressFile.getFileName(), "json")) {
