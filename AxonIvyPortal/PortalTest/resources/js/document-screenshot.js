@@ -150,13 +150,13 @@ function highlightEditProcessDialog() {
 }
 
 function highlightEditProcessLink() {
-  let editProcessLink = $('[id$="process-widget:image-process-group-alphabet:0:image-processes:0:process-item:process-item:process-edit"]');
+  let editProcessLink = $('[id$="process-widget:image-process-group-alphabet:0:image-processes:0:process-item:process-edit"]');
   createRedMediumBorder(editProcessLink);
   appendStepAnnotation(editProcessLink, "2", -10, -40);
 }
 
 function highlightProcessMoreMenuButton() {
-  let processMoreMenuButton = $('[id$="process-widget:image-process-group-alphabet:0:image-processes:0:process-item:process-item:process-action-button"]');
+  let processMoreMenuButton = $('[id$="process-widget:image-process-group-alphabet:0:image-processes:0:process-item:process-action-button"]');
   createRedMediumBorder(processMoreMenuButton);
   appendStepAnnotation(processMoreMenuButton, "1", -10, -40);
 }
