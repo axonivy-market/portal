@@ -1,7 +1,77 @@
 [
   {
-    "id": "1",
+    "id": "default-dashboard",
     "title": "cms:/ch.ivy.addon.portalkit.ui.jsf/common/dashboard",
+    "widgets": [
+      {
+        "type": "task",
+        "id": "task_1",
+        "layout": {
+          "x": 0, "y": 0, "w": 9, "h": 4
+        },
+        "columns": [
+          {
+            "field": "start"
+          },
+          {
+            "field": "priority"
+          },
+          {
+            "field": "id"
+          },
+          {
+            "field": "name"
+          },
+          {
+            "field": "activator"
+          },
+          {
+            "field": "state"
+          }
+        ]
+      },
+      {
+        "type": "case",
+        "id": "case_1",
+        "layout": {
+          "x": 0, "y": 0, "w": 9, "h": 4
+        },
+        "sortField": "name",
+        "columns": [
+          {
+            "field": "id"
+          },
+          {
+            "field": "name"
+          },
+          {
+            "field": "description"
+          },
+          {
+            "field": "state"
+          },
+          {
+            "field": "creator"
+          },
+          {
+            "field": "startTimestamp"
+          }
+        ]
+      },
+      {
+        "type": "process",
+        "id": "compact_mode",
+        "name": "Process Widget",
+        "displayMode": "COMPACT_MODE",
+        "layout": {
+          "x": 10, "y": 0, "w": 3, "h": 4
+        }
+      }
+    ]
+  },
+  {
+    "id": "customized-dashboard",
+    "title": "Custom Dashboard",
     "permissions": ["#gm1","CostObject"],
     "widgets": [
       {
