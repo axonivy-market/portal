@@ -43,7 +43,7 @@
         "type": "case",
         "id": "case_1",
         "layout": {
-          "x": 0, "y": 0, "w": 10, "h": 8
+          "x": 0, "y": 8, "w": 10, "h": 8
         },
         "sortField": "name",
         "columns": [

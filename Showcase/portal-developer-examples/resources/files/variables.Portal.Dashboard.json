@@ -34,7 +34,7 @@
         "type": "case",
         "id": "case_1",
         "layout": {
-          "x": 0, "y": 0, "w": 9, "h": 4
+          "x": 0, "y": 4, "w": 9, "h": 4
         },
         "sortField": "name",
         "columns": [
@@ -64,7 +64,7 @@
         "name": "Process Widget",
         "displayMode": "COMPACT_MODE",
         "layout": {
-          "x": 10, "y": 0, "w": 3, "h": 4
+          "x": 9, "y": 0, "w": 3, "h": 4
         }
       }
     ]
@@ -125,7 +125,7 @@
         "type": "case",
         "id": "case_1",
         "layout": {
-          "x": 0, "y": 0, "w": 9, "h": 4
+          "x": 0, "y": 4, "w": 9, "h": 4
         },
         "sortField": "name",
         "columns": [
@@ -170,7 +170,7 @@
         "name": "Process Widget",
         "displayMode": "COMPACT_MODE",
         "layout": {
-          "x": 10, "y": 0, "w": 3, "h": 4
+          "x": 9, "y": 0, "w": 3, "h": 4
         },
         "categories": ["CostObject"]
       }
