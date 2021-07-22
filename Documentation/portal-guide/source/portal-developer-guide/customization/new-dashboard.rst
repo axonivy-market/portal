@@ -8,7 +8,7 @@ Portal dashboard
 Introduction
 ------------
 
-Portal dashboard is a flexible page, user can add, remove and edit widgets filters.
+Portal Dashboard is a flexible page, user can add, remove and edit widgets filters.
 Users can custom layout just by drag & drop in multiple dashboards.
 
 More, there is an easy way for users to predefine a lot of details for each dashboard,
@@ -30,8 +30,10 @@ by configuring Global Variable **Portal.Dashboard**.
 Define your own dashboards
 --------------------------
 
+Portal support multiple dashboards, they will be displayed as tabs.
+
 You can predefine dashboards id, title, permissions to access, and widgets
-inside each of them.
+for each dashboard.
 
 Below is a JSON example for the configuration of dashboards.
 
@@ -39,9 +41,8 @@ Below is a JSON example for the configuration of dashboards.
 
    [
       {
-         "id": "portal-dashboard",
-         "title": "cms:/dashboard/ITDepartmentDashboard",
-         "permissions": ["IT_Engineer", "CIO", "#daniel"],
+         "id": "default-dashboard",
+         "title": "cms:/dashboard/DefaultDashboard",
          "widgets": [
             {
                "type": "task",
@@ -50,13 +51,20 @@ Below is a JSON example for the configuration of dashboards.
                   "x": 0, "y": 0, "w": 10, "h": 9,
                   "styleClass": "your-widget-class"
                }
+            },
+            {
+               "type": "case",
+               "id": "case_1",
+               "layout": {
+                  "x": 0, "y": 10, "w": 10, "h": 9
+               }
             }
          ]
       },
       {
-         "id": "2",
+         "id": "general-dashboard",
          "title": "General Dashboard",
-         "permissions": ["Employee"],
+         "permissions": ["Employee", "CIO", "#daniel"],
          "widgets": [
             {
                "type": "task",
@@ -81,6 +89,9 @@ Structure of JSON for each dashboard:
 
    ``permissions``: roles and users can access the dashboard. To define
    users, use the hashtag as a prefix of username, for example, ``#your_username``
+
+   .. tip:: 
+      If you don't define ``permissions`` for a dashboard, every user can see it.
 
    ``widgets``: definition of widgets dashboard. There are four types of
    widget ``task``, ``case``, ``process``, and ``custom``. Refer
