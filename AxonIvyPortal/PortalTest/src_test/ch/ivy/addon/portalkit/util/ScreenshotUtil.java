@@ -28,6 +28,7 @@ public class ScreenshotUtil {
   public static final String EXPRESS_MANAGEMENT_FOLDER = "/express-management/";
   public static final String PROCESSES_WIDGET_FOLDER = "/process/";
   public static final String PROCESSES_INFORMATION_WIDGET_FOLDER = "/process/information/";
+  public static final String PROCESSES_PROCESS_IMAGE_FOLDER = "/process-image/customization/";
   public static final String TASK_WIDGET_FOLDER = "/task/";
   public static final String TASK_WIDGET_CUSTOMIZATION_FOLDER = "/task/customization/";
   public static final String TASK_DETAIL_FOLDER = "/task-detail/";
