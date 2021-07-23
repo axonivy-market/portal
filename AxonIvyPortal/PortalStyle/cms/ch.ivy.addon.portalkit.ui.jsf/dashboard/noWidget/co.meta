@@ -1,5 +1,5 @@
-co: name={noWidget} description={} changed={2021-04-02 11:04:24 CEST} changedby={nqhoan} visualorder={0} guid={17891D230F84EE61} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={17891D38DB81F414} datatype={} isdefault={false} langid={fr} description={} validfrom={2021-04-02 11:04:15 CEST} validto={} changed={2021-04-02 11:04:23 CEST} changedby={nqhoan} properties={} id={}
-val: guid={17891D38D02D1F51} datatype={} isdefault={false} langid={de} description={} validfrom={2021-04-02 11:04:17 CEST} validto={} changed={2021-04-02 11:04:23 CEST} changedby={nqhoan} properties={} id={}
-val: guid={17891D38D7D7C6FD} datatype={} isdefault={false} langid={es} description={} validfrom={2021-04-02 11:04:19 CEST} validto={} changed={2021-04-02 11:04:23 CEST} changedby={nqhoan} properties={} id={}
-val: guid={17891D23101B028F} datatype={} isdefault={true} langid={en} description={} validfrom={2021-04-02 11:02:54 CEST} validto={} changed={2021-04-02 11:04:24 CEST} changedby={nqhoan} properties={} id={}
+co: name={noWidget} description={} changed={2021-07-23 12:13:02 CEST} changedby={nqhoan} visualorder={0} guid={17891D230F84EE61} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={17891D38DB81F414} datatype={} isdefault={false} langid={fr} description={} validfrom={2021-07-23 12:13:02 CEST} validto={} changed={2021-07-23 12:13:02 CEST} changedby={nqhoan} properties={} id={}
+val: guid={17891D38D02D1F51} datatype={} isdefault={false} langid={de} description={} validfrom={2021-07-23 12:13:02 CEST} validto={} changed={2021-07-23 12:13:02 CEST} changedby={nqhoan} properties={} id={}
+val: guid={17891D38D7D7C6FD} datatype={} isdefault={false} langid={es} description={} validfrom={2021-07-23 12:13:02 CEST} validto={} changed={2021-07-23 12:13:02 CEST} changedby={nqhoan} properties={} id={}
+val: guid={17891D23101B028F} datatype={} isdefault={true} langid={en} description={} validfrom={2021-07-23 12:13:02 CEST} validto={} changed={2021-07-23 12:13:02 CEST} changedby={nqhoan} properties={} id={}
