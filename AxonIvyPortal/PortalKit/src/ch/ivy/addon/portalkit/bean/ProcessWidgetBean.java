@@ -52,7 +52,6 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
 
   private static final long serialVersionUID = -5889375917550618261L;
   private static final String SPECIAL_CHARACTER_KEY = "SPECIAL_CHARACTER";
-  private static final String DEFAULT_IMAGE_URI_CMS = "/images/process/DEFAULTIMAGE";
   private static final String DEFAULT_IMAGE_CMS_FOLDER = "/images/process/";
   private static final int LAST_POSITION_OF_PROCESS_MODEL_NAME_IN_START_LINK = 3;
 
@@ -66,7 +65,6 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
   private IProcessStart createExpressWorkflowProcessStart;
   private Map<String, List<Process>> processesByAlphabet;
 
-  private String defaultImage = StringUtils.EMPTY;
   private String defaultImageType = DefaultImage.DEFAULT.name();
 
   @Override
@@ -169,18 +167,21 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
   }
 
   private void updateDefaultProcessImage(IvyProcess ivyProcess) {
-    if (this.defaultImageType.equals(DefaultImage.DEFAULT.name())) {
-      if (StringUtils.isBlank(this.defaultImage)) {
-        this.defaultImage = findProcessDefaultImageSrc(ivyProcess);
-      }
-      ivyProcess.setDefaultImageSrc(this.defaultImage);
-    } else {
+    String customFieldProcessImage = ivyProcess.getCustomFieldImageProcess();
+    if (StringUtils.isNotBlank(customFieldProcessImage)) {
+      String imageSrc = findProcessDefaultImageSrc(ivyProcess, customFieldProcessImage);
+      ivyProcess.setDefaultImageSrc(imageSrc);
+      ivyProcess.setDefaultImageCms(StringUtils.EMPTY);
+      return;
+    }
+
+    if (!this.defaultImageType.equals(DefaultImage.DEFAULT.name())) {
       ivyProcess.setDefaultImageCms(DEFAULT_IMAGE_CMS_FOLDER + this.defaultImageType);
       ivyProcess.setDefaultImageSrc(StringUtils.EMPTY);
     }
   }
 
-  private String findProcessDefaultImageSrc(IvyProcess process) {
+  private String findProcessDefaultImageSrc(IvyProcess process, String processImage) {
     if (process == null || StringUtils.isBlank(process.getStartLink())) {
       return StringUtils.EMPTY;
     }
@@ -188,16 +189,15 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
     String[] processParts = process.getStartLink().split(SLASH);
     String processModelName = processParts[processParts.length - LAST_POSITION_OF_PROCESS_MODEL_NAME_IN_START_LINK];
     return IvyExecutor.executeAsSystem(() -> {
-      return getDefaultImageUri(processModelName);
+      return getDefaultImageUri(processModelName, processImage);
     });
   }
 
-  private String getDefaultImageUri(String processModelName) {
+  private String getDefaultImageUri(String processModelName, String processImage) {
     String defaultImageUri = StringUtils.EMPTY;
     IProcessModel pm = Ivy.wf().getApplication().findProcessModel(processModelName);
     if (pm != null) {
-      defaultImageUri =
-          Ivy.cms().getContentManagement().findCms(pm.getReleasedProcessModelVersion()).co(DEFAULT_IMAGE_URI_CMS);
+      defaultImageUri = Ivy.cms().getContentManagement().findCms(pm.getReleasedProcessModelVersion()).co(processImage);
       if (StringUtils.isNotBlank(defaultImageUri)) {
         int indexOfDefaultImageUri = defaultImageUri.indexOf("/cm");
         defaultImageUri = defaultImageUri.substring(indexOfDefaultImageUri).replaceAll("\"/>", StringUtils.EMPTY);

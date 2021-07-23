@@ -150,4 +150,13 @@ public class PortalProcessesScreenshotTest extends ScreenshotTest {
     processInformationPage.getPageTitle();
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.PROCESSES_INFORMATION_WIDGET_FOLDER + "process-information");
   }
+
+  @Test
+  public void screenshotProcessImageCustomization() throws IOException {
+    ScreenshotUtil.resizeBrowser(new Dimension(1920, 800));
+    processWidget = homePage.getProcessWidget();
+    processWidget.expand();
+    processWidget.enterSearchKeyword("Default Process Image selection example");
+    ScreenshotUtil.captureHalfLeftPageScreenShot(ScreenshotUtil.PROCESSES_PROCESS_IMAGE_FOLDER + "image-process-list");
+  }
 }
