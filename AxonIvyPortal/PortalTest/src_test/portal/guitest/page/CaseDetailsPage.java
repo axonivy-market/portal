@@ -203,7 +203,6 @@ public class CaseDetailsPage extends TemplatePage {
 
   public void changeCaseDescription(String newDescription) {
     onClickDescriptionEditIcon();
-    onClickDescriptionInplace();
     onChangeDescriptionInput(newDescription);
     onSubmitDescriptionInplaceEditor();
     waitForPageLoaded();
@@ -239,12 +238,6 @@ public class CaseDetailsPage extends TemplatePage {
     caseDescriptionInput.sendKeys(newDescription);
   }
 
-  private void onClickDescriptionInplace() {
-    WebElement caseDescriptionInplace = findElementByCssSelector("[id$='case-description-output']");
-    waitForElementDisplayed(caseDescriptionInplace, true);
-    click(caseDescriptionInplace);
-  }
-
   private void onClickDescriptionEditIcon() {
     click(By.id("case-item-details:widgets:0:general-information:description:edit-description-link"));
   }
@@ -266,7 +259,6 @@ public class CaseDetailsPage extends TemplatePage {
     click(confirmButton);
   }
   
-  @SuppressWarnings("deprecation")
   @Override
   public void waitAjaxIndicatorDisappear() {
     WebElement ajaxIndicatorStartState = findElementById("ajax-indicator:ajax-indicator-ajax-indicator_start");
