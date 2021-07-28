@@ -1,7 +1,5 @@
 package ch.ivy.addon.portalkit.ivydata.searchcriteria;
 
-import java.text.ParseException;
-
 import ch.ivy.addon.portalkit.constant.CustomFields;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivyteam.ivy.workflow.category.CategoryPath;
@@ -21,26 +19,26 @@ public class DashboardProcessTaskSearchCriteria {
     this.processName = processName;
   }
 
-  public TaskQuery buildQuery() throws ParseException {
+  public TaskQuery buildQuery() {
     TaskQuery query = buildQueryWithoutOrderByClause();
     TaskSortingQueryAppender appender = new TaskSortingQueryAppender(query);
     query = appender.appendSorting(this).toQuery();
     return query;
   }
 
-  public TaskQuery buildQueryWithoutOrderByClause() throws ParseException {
+  public TaskQuery buildQueryWithoutOrderByClause() {
     TaskQuery query = TaskQuery.create();
-    CaseQuery caseQuery = this.processStartId != null ? queryProcessStartId(query) : queryExpressProcessCasesByCategoryPath(query);
+    CaseQuery caseQuery = this.processStartId != null ? queryProcessStartId() : queryExpressProcessCasesByCategoryPath();
     query.where().cases(caseQuery);
     queryCanWorkOn(query);
     return query;
   }
 
-  private CaseQuery queryProcessStartId(TaskQuery query) {
+  private CaseQuery queryProcessStartId() {
     return CaseQuery.businessCases().where().taskStartId().isEqual(processStartId);
   }
 
-  private CaseQuery queryExpressProcessCasesByCategoryPath(TaskQuery query) {
+  private CaseQuery queryExpressProcessCasesByCategoryPath() {
     String categoryPath = new CategoryPath("ExpressWorkflow/" + this.processName).getValidRawPath();
     CaseQuery caseQuery = CaseQuery.businessCases();
     caseQuery.where().customField().stringField(CustomFields.IS_EXPRESS_PROCESS).isEqual("true");
