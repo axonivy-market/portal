@@ -1,6 +1,5 @@
 package ch.ivy.addon.portalkit.bean;
 
-import java.io.IOException;
 import java.io.Serializable;
 
 import javax.faces.bean.ManagedBean;
@@ -17,7 +16,7 @@ public class LogoBean implements Serializable {
   private static final String LOGIN_LOGO_CMS = "/images/logo/loginLogo";
   private static final String FAVICON_LOGO_CMS = "/images/logo/faviconLogo";
 
-  public boolean hasCorporateLogoImage() throws IOException {
+  public boolean hasCorporateLogoImage() {
     return checkDefaultContentExist(CORPORATE_LOGO_CMS);
   }
 

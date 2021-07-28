@@ -24,7 +24,7 @@ import org.quartz.SchedulerException;
 import org.quartz.SchedulerFactory;
 import org.quartz.impl.StdSchedulerFactory;
 
-import ch.ivyteam.ivy.application.restricted.IGlobalVariable;
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.persistence.PersistencyException;
 import ch.ivyteam.ivy.process.eventstart.AbstractProcessStartEventBean;
 import ch.ivyteam.ivy.process.eventstart.IProcessStartEventBeanRuntime;
@@ -32,6 +32,7 @@ import ch.ivyteam.ivy.process.extension.IProcessExtensionConfigurationEditorEnvi
 import ch.ivyteam.ivy.process.extension.impl.AbstractProcessExtensionConfigurationEditor;
 import ch.ivyteam.ivy.request.RequestException;
 import ch.ivyteam.ivy.service.ServiceException;
+import ch.ivyteam.ivy.vars.Variable;
 
 /**
  * Cron Expsression Start Event Bean. This bean gets a cron expression via the
@@ -65,9 +66,9 @@ public class CronByGlobalVariableTriggerStartEventBean extends AbstractProcessSt
     eventRuntime.setPollTimeInterval(0);
 
     try {
-      IGlobalVariable var = eventRuntime.getProcessModelVersion().getApplication().findGlobalVariable(configuration);
+      Variable var = Ivy.var().variable(configuration);
       if (var != null) {
-        String pattern = var.getValue();
+        String pattern = var.value();
         SchedulerFactory sf = new StdSchedulerFactory();
         if (pattern != null && pattern.length() > 0) {
           // sf.getScheduler() method has to be called inside synchronized block to
@@ -77,7 +78,7 @@ public class CronByGlobalVariableTriggerStartEventBean extends AbstractProcessSt
           synchronized (SYN_OBJECT) {
             sched = sf.getScheduler();
           }
-          triggerIdentifier = String.format("CronJobIdentifier:%s", var.getName());
+          triggerIdentifier = String.format("CronJobIdentifier:%s", var.name());
 
           job = newJob(CronByGlobalVariableTriggerStartEventBean.class).withIdentity(triggerIdentifier).build();
 
