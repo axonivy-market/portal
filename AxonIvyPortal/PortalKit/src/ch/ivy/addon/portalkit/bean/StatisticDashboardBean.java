@@ -34,7 +34,6 @@ import ch.ivyteam.ivy.workflow.query.TaskQuery;
 @ViewScoped
 public class StatisticDashboardBean implements Serializable {
   private static final long serialVersionUID = 1L;
-  private static final String STATISTIC_DASHBOARD_WIDGET_COMPONENT_ID = "statistics-widget:statistic-dashboard-widget";
   private static final int YEAR_CHART_WIDTH = 750;
   private static final int MONTH_CHART_WIDTH = 500;
   private static final int WEEK_CHART_WIDTH = 600;

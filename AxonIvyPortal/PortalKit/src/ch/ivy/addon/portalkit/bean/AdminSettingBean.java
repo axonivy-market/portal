@@ -10,15 +10,14 @@ import org.primefaces.component.tabview.TabView;
 import org.primefaces.event.ReorderEvent;
 import org.primefaces.event.TabChangeEvent;
 
-import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.configuration.Application;
+import ch.ivy.addon.portalkit.jsf.Attrs;
 
 @ManagedBean
 @ViewScoped
 public class AdminSettingBean implements Serializable {
 
   private static final long serialVersionUID = 1506137118077215366L;
-  private final String ADMIN_TAB_VIEW_ID = "adminui:adminTabView";
 
   public void onTabChange(TabChangeEvent tabChangeEvent) {
     if (tabChangeEvent.getComponent() instanceof TabView) {
