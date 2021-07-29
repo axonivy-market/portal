@@ -25,6 +25,7 @@ public class ProcessInformationPage extends TemplatePage {
     clickByCssSelector("[id$='start-process-button']");
   }
 
+  @Override
   public void back() {
     clickByCssSelector("[id$='back-link']");
   }
