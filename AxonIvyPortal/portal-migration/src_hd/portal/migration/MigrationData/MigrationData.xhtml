@@ -1,0 +1,48 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions">
+<h:body>
+  <ui:composition template="/layouts/basic-8.xhtml">
+    <ui:define name="title">Migration Portal Data</ui:define>
+    <ui:define name="content">
+      <h:form id="form">
+        <p:messages showSummary="true" showDetail="true"/>
+
+        <h1>Migrate data to the latest structure of Portal</h1>
+        <h4>The latest Portal version is #{data.portalVersion}.</h4>
+        
+        <h:panelGroup layout="block" rendered="#{data.mustMigrateData}">
+          <h4>Your engine has some Portal apps which have version is obsoleted.</h4>
+          <h4>Please start the migration to make sure everything is working fine!</h4>
+          <h4>Restart ivy engine after the finish.</h4>
+        </h:panelGroup>
+        
+        <h:panelGroup layout="block" rendered="#{!data.mustMigrateData}" style="color:green;">
+          <h4>Your data is good, don't need to migrate.</h4>
+          <h4>Please close this dialog!</h4>
+        </h:panelGroup>
+
+      </h:form>
+
+      <br />
+      <div class="command-btns">
+        <p:commandLink id="close" actionListener="#{logic.close}" value="Close" />
+        <p:spacer width="10px" />
+        <p:commandButton id="proceed" actionListener="#{logic.proceed}" widgetVar="proceed" value="Migrate data" onclick="disableClick()"
+          oncomplete="enableClose();" update="form" process="form" disabled="#{!data.mustMigrateData}" />
+      </div>
+      <script>
+        function disableClick() {
+          PF('proceed').disable();
+          $("[id$='form:close']").toggleClass("ui-state-disabled");
+        };
+        
+        function enableClose() {
+          $("[id$='form:close']").toggleClass("ui-state-disabled");
+        };
+      </script>
+
+    </ui:define>
+  </ui:composition>
+</h:body>
+</html>
