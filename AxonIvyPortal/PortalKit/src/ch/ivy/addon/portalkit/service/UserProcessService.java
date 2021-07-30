@@ -1,11 +1,9 @@
 package ch.ivy.addon.portalkit.service;
 
 import ch.ivy.addon.portalkit.configuration.UserProcess;
-import ch.ivy.addon.portalkit.enums.JsonVariable;
+import ch.ivy.addon.portalkit.enums.PortalVariable;
 
 public class UserProcessService extends JsonConfigurationService<UserProcess> {
-
-  private static final String FAVORITE_PROCESSES = JsonVariable.FAVORITE_PROCESS.key;
 
   private static UserProcessService instance;
 
@@ -24,7 +22,7 @@ public class UserProcessService extends JsonConfigurationService<UserProcess> {
 
   @Override
   public String getConfigKey() {
-    return FAVORITE_PROCESSES;
+    return PortalVariable.FAVORITE_PROCESS.key;
   }
 
 }
