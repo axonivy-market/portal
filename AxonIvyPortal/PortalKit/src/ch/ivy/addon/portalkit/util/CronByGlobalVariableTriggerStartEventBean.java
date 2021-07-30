@@ -24,7 +24,6 @@ import org.quartz.SchedulerException;
 import org.quartz.SchedulerFactory;
 import org.quartz.impl.StdSchedulerFactory;
 
-import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.persistence.PersistencyException;
 import ch.ivyteam.ivy.process.eventstart.AbstractProcessStartEventBean;
 import ch.ivyteam.ivy.process.eventstart.IProcessStartEventBeanRuntime;
@@ -33,6 +32,7 @@ import ch.ivyteam.ivy.process.extension.impl.AbstractProcessExtensionConfigurati
 import ch.ivyteam.ivy.request.RequestException;
 import ch.ivyteam.ivy.service.ServiceException;
 import ch.ivyteam.ivy.vars.Variable;
+import ch.ivyteam.ivy.vars.Variables;
 
 /**
  * Cron Expsression Start Event Bean. This bean gets a cron expression via the
@@ -66,7 +66,7 @@ public class CronByGlobalVariableTriggerStartEventBean extends AbstractProcessSt
     eventRuntime.setPollTimeInterval(0);
 
     try {
-      Variable var = Ivy.var().variable(configuration);
+      Variable var = Variables.of(eventRuntime.getProcessModelVersion().getApplication()).variable(configuration);
       if (var != null) {
         String pattern = var.value();
         SchedulerFactory sf = new StdSchedulerFactory();
