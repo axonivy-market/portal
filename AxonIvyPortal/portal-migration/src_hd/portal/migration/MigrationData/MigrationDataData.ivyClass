@@ -4,7 +4,5 @@ hasError Boolean #field
 hasError PERSISTENT #fieldModifier
 errors java.util.List<String> #field
 errors PERSISTENT #fieldModifier
-portalVersion Integer #field
-portalVersion PERSISTENT #fieldModifier
 mustMigrateData Boolean #field
 mustMigrateData PERSISTENT #fieldModifier

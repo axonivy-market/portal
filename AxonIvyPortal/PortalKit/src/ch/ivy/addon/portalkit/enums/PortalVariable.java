@@ -14,8 +14,7 @@ public enum PortalVariable {
   CASE_COLUMN("Portal.Cases.CaseColumn"),
   CASE_FILTER( "Portal.Cases.CaseFilters"),
   CASE_DETAIL("Portal.CaseDetails"),
-  DASHBOARD("Portal.Dashboard"),
-  VERSION("Portal.Version");
+  DASHBOARD("Portal.Dashboard");
 
   public String key;
 
