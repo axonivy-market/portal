@@ -78,7 +78,7 @@ import portal.migration.service.PortalMigrationService;
 FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Migration finished", "Completed");
 FacesContext.getCurrentInstance().addMessage(null, message);
 
-in.mustMigrateData = true;' #txt
+in.mustMigrateData = false;' #txt
 Ms0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
