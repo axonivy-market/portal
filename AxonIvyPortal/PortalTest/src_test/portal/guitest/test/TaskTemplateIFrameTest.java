@@ -9,6 +9,7 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 
 import portal.guitest.common.BaseTest;
+import portal.guitest.common.Sleeper;
 import portal.guitest.common.WaitHelper;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.TaskTemplatePage;
@@ -52,6 +53,7 @@ public class TaskTemplateIFrameTest extends BaseTest {
   @Test
   public void testDisplayWarningInIFrameTaskTemplate() {
     redirectToRelativeLink(IFRAME_TASK_URL);
+    waitForTemplateRender();
     final TaskTemplatePage taskTemplatePage = new TaskTemplatePage();
     taskTemplatePage.clickOnLogo();
     By leaveButton = By.id("task-leave-warning-component:leave-button");
@@ -61,6 +63,7 @@ public class TaskTemplateIFrameTest extends BaseTest {
   @Test
   public void testNotDisplayWarningInIFrameTaskTemplate() {
     redirectToRelativeLink(IFRAME_TASK_URL);
+    waitForTemplateRender();
     TaskTemplatePage taskTemplatePage1 = new TaskTemplatePage();
     TaskWidgetPage taskWidgetPage = taskTemplatePage1.finishCreateInvestmentTask();
     taskWidgetPage.filterTasksBy("Approve Investment", 1);
@@ -73,6 +76,7 @@ public class TaskTemplateIFrameTest extends BaseTest {
   @Test
   public void testRedirectToApplicationHome() {
     redirectToRelativeLink(IFRAME_TASK_URL);
+    waitForTemplateRender();
     TaskTemplatePage taskTemplatePage1 = new TaskTemplatePage();
     TaskWidgetPage taskWidgetPage = taskTemplatePage1.finishCreateInvestmentTask();
     taskWidgetPage.filterTasksBy("Approve Investment", 1);
@@ -85,6 +89,7 @@ public class TaskTemplateIFrameTest extends BaseTest {
   @Test
   public void testStickyTaskList() {
     redirectToRelativeLink(IFRAME_TASK_URL);
+    waitForTemplateRender();
     TaskTemplatePage taskTemplatePage1 = new TaskTemplatePage();
     TaskWidgetPage taskWidgetPage1 = taskTemplatePage1.finishCreateInvestmentTask();
     taskWidgetPage1 = taskWidgetPage1.openTaskList();
@@ -95,9 +100,14 @@ public class TaskTemplateIFrameTest extends BaseTest {
         .assertTrueWithWait(() -> taskWidgetPage2.isElementDisplayed(By.cssSelector("[id$='task-config-command']")));
   }
 
+  public void waitForTemplateRender() {
+    WaitHelper.waitForPresenceOfElementLocatedInFrame(this.getBrowser().getDriver(), "[class$='task-template-container']");
+  }
+
   @Test
   public void testTextOutIFrameChangeWithSkipTaskList() {
     redirectToRelativeLink(IFRAME_TASK_URL);
+    waitForTemplateRender();
     TaskTemplatePage taskTemplatePage1 = new TaskTemplatePage();
     TaskWidgetPage taskWidgetPage1 = taskTemplatePage1.finishCreateInvestmentTask();
     taskWidgetPage1 = taskWidgetPage1.openTaskList();
