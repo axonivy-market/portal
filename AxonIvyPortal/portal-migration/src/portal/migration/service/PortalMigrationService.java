@@ -20,11 +20,6 @@ public class PortalMigrationService {
   public static final String SLASH = "/";
   private static boolean isLegacySystem;
 
-  /**
-   * Steps:
-   * - Migrate data from current portal version to latest portal version
-   * @return error when migrating
-   */
   public static List<String> migrate() {
     List<String> result = null;
     List<IApplication> portalIApplications = getPortalApps();
