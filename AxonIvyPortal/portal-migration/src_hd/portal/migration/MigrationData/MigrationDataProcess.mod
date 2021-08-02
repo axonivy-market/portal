@@ -26,13 +26,13 @@ Ms0 @UdProcessEnd f9 '' #zField
 Ms0 @GridStep f11 '' #zField
 Ms0 @PushWFArc f12 '' #zField
 Ms0 @PushWFArc f10 '' #zField
-Ms0 @GridStep f13 '' #zField
-Ms0 @PushWFArc f14 '' #zField
 Ms0 @PushWFArc f2 '' #zField
 >Proto Ms0 Ms0 MigrationDataProcess #zField
 Ms0 f0 guid 175F959BFAA127EB #txt
 Ms0 f0 method start() #txt
 Ms0 f0 inParameterDecl '<> param;' #txt
+Ms0 f0 inParameterMapAction 'out.mustMigrateData=true;
+' #txt
 Ms0 f0 outParameterDecl '<> result;' #txt
 Ms0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -42,7 +42,7 @@ Ms0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ms0 f0 75 51 26 26 -16 15 #rect
-Ms0 f1 331 51 26 26 0 12 #rect
+Ms0 f1 211 51 26 26 0 12 #rect
 Ms0 f3 guid 175F959BFB013917 #txt
 Ms0 f3 actionTable 'out=in;
 ' #txt
@@ -78,7 +78,7 @@ import portal.migration.service.PortalMigrationService;
 FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Migration finished", "Completed");
 FacesContext.getCurrentInstance().addMessage(null, message);
 
-in.mustMigrateData = PortalMigrationService.mustMigrateData();' #txt
+in.mustMigrateData = true;' #txt
 Ms0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -138,22 +138,7 @@ Ms0 f11 288 250 112 44 -22 -8 #rect
 Ms0 f12 expr in #txt
 Ms0 f12 344 192 344 250 #arcP
 Ms0 f10 344 294 344 355 #arcP
-Ms0 f13 actionTable 'out=in;
-' #txt
-Ms0 f13 actionCode 'import portal.migration.service.PortalMigrationService;
-
-in.mustMigrateData = PortalMigrationService.mustMigrateData();
-in.portalVersion = PortalMigrationService.LATEST_VERSION;' #txt
-Ms0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Get Portal Version</name>
-    </language>
-</elementInfo>
-' #txt
-Ms0 f13 160 42 112 44 -49 -8 #rect
-Ms0 f14 101 64 160 64 #arcP
-Ms0 f2 272 64 331 64 #arcP
+Ms0 f2 101 64 211 64 #arcP
 >Proto Ms0 .type portal.migration.MigrationData.MigrationDataData #txt
 >Proto Ms0 .processKind HTML_DIALOG #txt
 >Proto Ms0 -8 -8 16 16 16 26 #rect
@@ -171,7 +156,5 @@ Ms0 f6 out f12 tail #connect
 Ms0 f12 head f11 mainIn #connect
 Ms0 f11 mainOut f10 tail #connect
 Ms0 f10 head f9 mainIn #connect
-Ms0 f0 mainOut f14 tail #connect
-Ms0 f14 head f13 mainIn #connect
-Ms0 f13 mainOut f2 tail #connect
+Ms0 f0 mainOut f2 tail #connect
 Ms0 f2 head f1 mainIn #connect

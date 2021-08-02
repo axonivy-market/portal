@@ -1,102 +1,47 @@
 package portal.migration.service;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
-import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.math.NumberUtils;
 
 import ch.ivyteam.ivy.application.ActivityState;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.application.IApplicationConfigurationManager;
 import ch.ivyteam.ivy.application.ILibrary;
 import ch.ivyteam.ivy.server.ServerFactory;
-import ch.ivyteam.ivy.vars.Variables;
 import portal.migration.enums.PortalLibrary;
-import portal.migration.enums.PortalVariable;
 import portal.migration.version91.migrate.config.service.ApplicationPropertyMigrationService;
 import portal.migration.version91.migrate.statistic.service.StatisticMigrationService;
 import portal.migration.version93.service.PortalProcessMigrationService;
 
 public class PortalMigrationService {
 
-  public static int LATEST_VERSION = 93;
   public static final String SLASH = "/";
   private static boolean isLegacySystem;
 
-  public static boolean mustMigrateData() {
-    return !getObsoletePortalApps().isEmpty();
-  }
-  
   /**
    * Steps:
-   * - Check current version
    * - Migrate data from current portal version to latest portal version
-   * - Update PortalVariable.VERSION to latest
    * @return error when migrating
    */
   public static List<String> migrate() {
     List<String> result = null;
-    Map<Long, Integer> portalAppVersionMap = getObsoletePortalApps();
-
-    for (Long appId : portalAppVersionMap.keySet()) {
-      int currentVersion = portalAppVersionMap.get(appId);
-      while (currentVersion < LATEST_VERSION) {
-
-        result = startMigratingToTargetVersion(currentVersion, findAppById(appId));
-
-        currentVersion++;
-      }
-
-      if (CollectionUtils.isEmpty(result)) {
-        updatePortalVersion(portalAppVersionMap.keySet());
-      }
+    List<IApplication> portalIApplications = getPortalApps();
+    for (IApplication app : portalIApplications) {
+      result = startMigratingToTargetVersion(app);
     }
-
     return result;
-  }
-
-  private static IApplication findAppById(Long appId) {
-    return applicationManager().findApplication(appId);
-  }
-
-  private static Map<Long, Integer> getObsoletePortalApps() {
-    Map<Long, Integer> obsoleteAppVersionMap = new HashMap<>();
-    List<IApplication> applications = getPortalApps();
-    for (IApplication app : applications) {
-      var portalVersion = Variables.of(app).variable(PortalVariable.VERSION.key);
-      String version = "";
-      if (portalVersion == null || StringUtils.isEmpty(portalVersion.value())) {
-        // This is first version: 9.3
-        version = "92";
-      } else {
-        version = portalVersion.value();
-      }
-
-      if (NumberUtils.isCreatable(version)) {
-        int currentVersion = NumberUtils.toInt(version);
-        if (currentVersion < LATEST_VERSION) {
-          obsoleteAppVersionMap.put(app.getId(), currentVersion);
-        }
-      }
-    }
-
-    return obsoleteAppVersionMap;
   }
 
   /**
    * Write migrtion code here
-   * @param currentVersion is version of portal need to migrated
+   * @param app is ivy apps that depend on portal
    */
-  private static List<String> startMigratingToTargetVersion(int currentVersion, IApplication app) {
+  private static List<String> startMigratingToTargetVersion(IApplication app) {
     List<String> errors = new ArrayList<>();
-    if (currentVersion == 92) {
-      migratePortalProcesses(app, errors);
-    }
+
+    migratePortalProcesses(app, errors);
 
     // From 9.1 -> 9.2
     // This is legacy code, to keep track of the history.
@@ -113,12 +58,6 @@ public class PortalMigrationService {
   private static void migrate91to92() {
     ApplicationPropertyMigrationService.migrate();
     new StatisticMigrationService().migrateStatisticCharts();
-  }
-
-  private static void updatePortalVersion(Set<Long> appIds) {
-    for (Long appId : appIds) {
-      Variables.of(findAppById(appId)).set(PortalVariable.VERSION.key, String.valueOf(LATEST_VERSION));
-    }
   }
 
   protected static List<IApplication> getPortalApps() {
@@ -139,5 +78,4 @@ public class PortalMigrationService {
   private static IApplicationConfigurationManager applicationManager() {
     return ServerFactory.getServer().getApplicationConfigurationManager();
   }
-
 }
