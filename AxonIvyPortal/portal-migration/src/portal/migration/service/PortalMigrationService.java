@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -43,21 +44,24 @@ public class PortalMigrationService {
     Map<Long, Integer> portalAppVersionMap = getObsoletePortalApps();
 
     for (Long appId : portalAppVersionMap.keySet()) {
-      IApplication migrateApp = applicationManager().findApplication(appId);
       int currentVersion = portalAppVersionMap.get(appId);
       while (currentVersion < LATEST_VERSION) {
 
-        result = startMigratingToTargetVersion(currentVersion, migrateApp);
+        result = startMigratingToTargetVersion(currentVersion, findAppById(appId));
 
         currentVersion++;
       }
 
       if (CollectionUtils.isEmpty(result)) {
-        updatePortalVersion();
+        updatePortalVersion(portalAppVersionMap.keySet());
       }
     }
 
     return result;
+  }
+
+  private static IApplication findAppById(Long appId) {
+    return applicationManager().findApplication(appId);
   }
 
   private static Map<Long, Integer> getObsoletePortalApps() {
@@ -90,7 +94,7 @@ public class PortalMigrationService {
    */
   private static List<String> startMigratingToTargetVersion(int currentVersion, IApplication app) {
     List<String> errors = new ArrayList<>();
-    if (currentVersion == 93) {
+    if (currentVersion == 92) {
       migratePortalProcesses(app, errors);
     }
 
@@ -111,8 +115,10 @@ public class PortalMigrationService {
     new StatisticMigrationService().migrateStatisticCharts();
   }
 
-  private static void updatePortalVersion() {
-    
+  private static void updatePortalVersion(Set<Long> appIds) {
+    for (Long appId : appIds) {
+      Variables.of(findAppById(appId)).set(PortalVariable.VERSION.key, String.valueOf(LATEST_VERSION));
+    }
   }
 
   protected static List<IApplication> getPortalApps() {
