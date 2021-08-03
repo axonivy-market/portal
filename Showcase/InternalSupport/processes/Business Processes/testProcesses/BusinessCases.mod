@@ -327,7 +327,10 @@ Be0 f29 755 83 26 26 14 0 #rect
 Be0 f30 755 339 26 26 14 0 #rect
 Be0 f32 actionTable 'out=in;
 ' #txt
-Be0 f32 actionCode ivy.wf.signals().send("ivy:portal:pizza:delivery"); #txt
+Be0 f32 actionCode 'import ch.ivyteam.ivy.process.model.value.SignalCode;
+
+SignalCode code = new SignalCode("ivy:portal:pizza:delivery");
+ivy.wf.signals().send(code);' #txt
 Be0 f32 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -401,7 +404,10 @@ Be0 f39 1105 401 30 30 16 0 #rect
 Be0 f40 1120 310 1120 401 #arcP
 Be0 f41 actionTable 'out=in;
 ' #txt
-Be0 f41 actionCode ivy.wf.signals().send("sale:inform"); #txt
+Be0 f41 actionCode 'import ch.ivyteam.ivy.process.model.value.SignalCode;
+
+SignalCode code = new SignalCode("sale:inform");
+ivy.wf.signals().send(code);' #txt
 Be0 f41 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
