@@ -9,7 +9,6 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 
 import portal.guitest.common.BaseTest;
-import portal.guitest.common.Sleeper;
 import portal.guitest.common.WaitHelper;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.TaskTemplatePage;
