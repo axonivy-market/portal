@@ -182,13 +182,11 @@ public class TaskTemplatePage extends TemplatePage {
   }
 
   public void clickOnSubmitButton() {
-    String submitButton = "button[id$='button-submit']";
-    clickByCssSelector(submitButton);
+    clickByCssSelector("button[id$='button-submit']");
   }
 
   public HomePage clickCancelAndLeftButton() {
-    String cancelButton = "a[id$='button-cancel']";
-    clickByCssSelector(cancelButton);
+    clickByCssSelector("a[id$='button-cancel']");
     return new HomePage();
   }
 
