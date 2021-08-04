@@ -52,13 +52,22 @@ Be0 @UserTask f37 '' #zField
 Be0 @EndTask f39 '' #zField
 Be0 @PushWFArc f40 '' #zField
 Be0 @GridStep f41 '' #zField
-Be0 @PushWFArc f42 '' #zField
 Be0 @TkArc f38 '' #zField
 Be0 @SignalStartEvent f43 '' #zField
 Be0 @TaskSwitchSimple f44 '' #zField
 Be0 @EndTask f45 '' #zField
 Be0 @TkArc f46 '' #zField
 Be0 @PushWFArc f47 '' #zField
+Be0 @TaskSwitchSimple f48 '' #zField
+Be0 @TkArc f49 '' #zField
+Be0 @StartRequest f50 '' #zField
+Be0 @EndTask f51 '' #zField
+Be0 @TaskSwitchSimple f53 '' #zField
+Be0 @TkArc f54 '' #zField
+Be0 @PushWFArc f52 '' #zField
+Be0 @Trigger f55 '' #zField
+Be0 @PushWFArc f56 '' #zField
+Be0 @PushWFArc f42 '' #zField
 >Proto Be0 Be0 BusinessCases #zField
 Be0 f0 outLink updateCheckInTime.ivp #txt
 Be0 f0 inParamDecl '<> param;' #txt
@@ -399,9 +408,9 @@ Be0 f37 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Be0 f37 1064 266 112 44 -45 -8 #rect
-Be0 f39 1105 401 30 30 16 0 #rect
-Be0 f40 1120 310 1120 401 #arcP
+Be0 f37 1064 458 112 44 -45 -8 #rect
+Be0 f39 1105 593 30 30 16 0 #rect
+Be0 f40 1120 502 1120 593 #arcP
 Be0 f41 actionTable 'out=in;
 ' #txt
 Be0 f41 actionCode 'import ch.ivyteam.ivy.process.model.value.SignalCode;
@@ -415,9 +424,8 @@ Be0 f41 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Be0 f41 1064 170 112 44 -36 -8 #rect
-Be0 f42 1120 111 1120 170 #arcP
-Be0 f38 1120 214 1120 266 #arcP
+Be0 f41 1064 362 112 44 -36 -8 #rect
+Be0 f38 1120 406 1120 458 #arcP
 Be0 f43 signalCode sale:inform #txt
 Be0 f43 attachToBusinessCase true #txt
 Be0 f43 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -427,16 +435,64 @@ Be0 f43 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Be0 f43 1281 81 30 30 16 0 #rect
+Be0 f43 1281 193 30 30 16 0 #rect
 Be0 f44 actionTable 'out=in1;
 ' #txt
 Be0 f44 caseData 'case.category=SALE/SENDMAIL
 case.name=Send mail inform' #txt
 Be0 f44 taskData 'TaskA.NAM=Send email inform ' #txt
-Be0 f44 1281 177 30 30 15 0 #rect
+Be0 f44 1281 289 30 30 15 0 #rect
 Be0 f45 1281 401 30 30 16 0 #rect
-Be0 f46 1296 111 1296 177 #arcP
-Be0 f47 1296 207 1296 401 #arcP
+Be0 f46 1296 223 1296 289 #arcP
+Be0 f47 1296 319 1296 401 #arcP
+Be0 f48 actionTable 'out=in1;
+' #txt
+Be0 f48 taskData 'TaskA.NAM=Submit request
+TaskA.SKIP_TASK_LIST=true' #txt
+Be0 f48 1105 177 30 30 15 0 #rect
+Be0 f49 1120 111 1120 177 #arcP
+Be0 f50 outLink startTriggerMail.ivp #txt
+Be0 f50 inParamDecl '<> param;' #txt
+Be0 f50 requestEnabled true #txt
+Be0 f50 triggerEnabled true #txt
+Be0 f50 callSignature startTriggerMail() #txt
+Be0 f50 taskData 'TaskTriggered.ROL=SYSTEM
+TaskTriggered.TYPE=0' #txt
+Be0 f50 caseData businessCase.attach=true #txt
+Be0 f50 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>startTriggerMail.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Be0 f50 @C|.responsibility Everybody #txt
+Be0 f50 1425 193 30 30 16 0 #rect
+Be0 f51 1425 401 30 30 16 0 #rect
+Be0 f53 actionTable 'out=in1;
+' #txt
+Be0 f53 caseData 'case.category=SALE/SENDMAIL
+case.name=Trigger mail' #txt
+Be0 f53 taskData 'TaskA.CATEGORY=SALE/SENDMAIL
+TaskA.NAM=Trigger mail
+TaskA.SKIP_TASK_LIST=true' #txt
+Be0 f53 1425 289 30 30 15 0 #rect
+Be0 f54 1440 223 1440 289 #arcP
+Be0 f52 1440 319 1440 401 #arcP
+Be0 f55 processCall 'Business Processes/testProcesses/BusinessCases:startTriggerMail()' #txt
+Be0 f55 requestActionDecl '<> param;' #txt
+Be0 f55 responseMappingAction 'out=in;
+' #txt
+Be0 f55 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Trigger mail</name>
+    </language>
+</elementInfo>
+' #txt
+Be0 f55 1064 266 112 44 -33 -8 #rect
+Be0 f56 1120 207 1120 266 #arcP
+Be0 f42 1120 310 1120 362 #arcP
 >Proto Be0 .type internaltest.Data #txt
 >Proto Be0 .processKind NORMAL #txt
 >Proto Be0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -490,11 +546,19 @@ Be0 f34 out f26 tail #connect
 Be0 f26 head f25 mainIn #connect
 Be0 f37 out f40 tail #connect
 Be0 f40 head f39 mainIn #connect
-Be0 f36 mainOut f42 tail #connect
-Be0 f42 head f41 mainIn #connect
 Be0 f41 mainOut f38 tail #connect
 Be0 f38 head f37 in #connect
 Be0 f43 mainOut f46 tail #connect
 Be0 f46 head f44 in #connect
 Be0 f44 out f47 tail #connect
 Be0 f47 head f45 mainIn #connect
+Be0 f36 mainOut f49 tail #connect
+Be0 f49 head f48 in #connect
+Be0 f50 mainOut f54 tail #connect
+Be0 f54 head f53 in #connect
+Be0 f53 out f52 tail #connect
+Be0 f52 head f51 mainIn #connect
+Be0 f48 out f56 tail #connect
+Be0 f56 head f55 mainIn #connect
+Be0 f55 mainOut f42 tail #connect
+Be0 f42 head f41 mainIn #connect

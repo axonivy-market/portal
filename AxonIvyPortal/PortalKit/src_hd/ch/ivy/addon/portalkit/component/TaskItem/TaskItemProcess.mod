@@ -168,7 +168,8 @@ Ts0 f100 0 0.6038825846613081 0 0 #arcLabel
 Ts0 f99 336 312 32 32 0 16 #rect
 Ts0 f49 actionTable 'out=in;
 ' #txt
-Ts0 f49 actionCode 'import ch.ivy.addon.portalkit.enums.PortalPage;
+Ts0 f49 actionCode 'import ch.ivy.addon.portalkit.util.RequestUtil;
+import ch.ivy.addon.portalkit.enums.PortalPage;
 import ch.ivy.addon.portalkit.enums.NavigationHistory;
 import ch.ivy.addon.portalkit.dto.TaskEndInfo;
 import ch.ivy.addon.portalkit.service.StickyTaskListService;
@@ -184,7 +185,7 @@ SecurityServiceUtils.setSessionAttribute(taskEndInfoSessionAttributeKey, taskEnd
 
 // Put the "embedInIFrame" param to the task start link to open it in the DefaultFramePage process
 // Then this process will open task in IFrame or not based on its "embedInIFrame" String custom field
-FacesContext.getCurrentInstance().getExternalContext().redirect(in.task.getStartLinkEmbedded().getRelative());' #txt
+RequestUtil.redirect(in.task.getStartLinkEmbedded().getRelative());' #txt
 Ts0 f49 security system #txt
 Ts0 f49 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
