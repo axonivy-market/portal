@@ -38,13 +38,20 @@ public final class PortalNavigator extends BaseNavigator{
   private static final String PORTAL_NEW_DASHBOARD = "Start Processes/PortalDashboard/Dashboard.ivp";
   private static final String PORTAL_NEW_DASHBOARD_CONFIGURATION = "Start Processes/PortalDashboard/DashboardConfiguration.ivp";
   private static final String PORTAL_PROCESS_INFO = "Start Processes/PortalStart/ProcessInformation.ivp";
+
+  public static final String PORTAL_DASHBOARD_START = "/DefaultDashboardPage.ivp";
+  public static final String PORTAL_PROCESS_START = "/DefaultProcessStartListPage.ivp";
+  public static final String PORTAL_TASK_START = "/DefaultTaskListPage.ivp";
+  public static final String PORTAL_CASE_START = "/CaseListPage.ivp";
+  public static final String PORTAL_STATISTIC_START = "/StatisticPage.ivp";
+  public static final String PORTAL_USER_PROFILE_START =  "/UserProfile.ivp";
   
   public static String getPortalStartUrl() {
     return getRelativeLink(StandardProcessType.DefaultApplicationHomePage);
   }
 
   public static String getPortalDashboardPageUrl(Map<String, String> params) {
-    String customizePortalFriendlyRequestPath = SecurityServiceUtils.findFriendlyRequestPathContainsKeyword("DefaultDashboardPage.ivp");
+    String customizePortalFriendlyRequestPath = SecurityServiceUtils.findFriendlyRequestPathContainsKeyword(PORTAL_DASHBOARD_START);
     return buildUrl(StringUtils.defaultIfBlank(customizePortalFriendlyRequestPath, PORTAL_DASHBOARD), params);
   }
 
@@ -109,19 +116,19 @@ public final class PortalNavigator extends BaseNavigator{
   }
 
   public static void navigateToPortalProcess() {
-    navigateByKeyword("DefaultProcessStartListPage.ivp", PORTAL_PROCESS, new HashMap<>());
+    navigateByKeyword(PORTAL_PROCESS_START, PORTAL_PROCESS, new HashMap<>());
   }
 
   public static void navigateToPortalCase() {
-    navigateByKeyword("CaseListPage.ivp", PORTAL_CASE, new HashMap<>());
+    navigateByKeyword(PORTAL_CASE_START, PORTAL_CASE, new HashMap<>());
   }
 
   public static void navigateToPortalTask() {
-    navigateByKeyword("DefaultTaskListPage.ivp", PORTAL_TASK, new HashMap<>());
+    navigateByKeyword(PORTAL_TASK_START, PORTAL_TASK, new HashMap<>());
   }
 
   public static void navigateToPortalStatistic() {
-    navigateByKeyword("StatisticPage.ivp", PORTAL_STATISTIC, new HashMap<>());
+    navigateByKeyword(PORTAL_STATISTIC_START, PORTAL_STATISTIC, new HashMap<>());
   }
 
   /**
@@ -181,7 +188,7 @@ public final class PortalNavigator extends BaseNavigator{
   }
   
   public static void navigateToUserProfile() {
-    navigate(PORTAL_USER_PROFILE, new HashMap<>());
+    navigateByKeyword(PORTAL_USER_PROFILE_START, PORTAL_USER_PROFILE, new HashMap<>());
   }
 
   public static void navigateToNewDashboard() {
