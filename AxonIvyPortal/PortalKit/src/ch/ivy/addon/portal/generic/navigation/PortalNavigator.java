@@ -35,10 +35,11 @@ public final class PortalNavigator extends BaseNavigator{
   private static final String PORTAL_FORGOT_PASSWORD = "Start Processes/PortalStart/ForgotPasswordPage.ivp";
   private static final String PORTAL_PASSWORD_RESET = "Start Processes/PortalStart/PasswordResetPage.ivp";
   private static final String PORTAL_CASE_DETAILS_IN_FRAME = "Start Processes/PortalStart/CaseDetailsInIFrame.ivp";
-  private static final String PORTAL_NEW_DASHBOARD = "Start Processes/PortalDashboard/Dashboard.ivp";
-  private static final String PORTAL_NEW_DASHBOARD_CONFIGURATION = "Start Processes/PortalDashboard/DashboardConfiguration.ivp";
+  private static final String PORTAL_NEW_DASHBOARD_CONFIGURATION = "Start Processes/PortalStart/PortalDashboardConfiguration.ivp";
   private static final String PORTAL_PROCESS_INFO = "Start Processes/PortalStart/ProcessInformation.ivp";
+  private static final String PORTAL_NEW_DASHBOARD = "Start Processes/PortalStart/PortalDashboard.ivp";
 
+  public static final String PORTAL_NEW_DASHBOARD_START = "/PortalDashboard.ivp";
   public static final String PORTAL_DASHBOARD_START = "/DefaultDashboardPage.ivp";
   public static final String PORTAL_PROCESS_START = "/DefaultProcessStartListPage.ivp";
   public static final String PORTAL_TASK_START = "/DefaultTaskListPage.ivp";
@@ -192,7 +193,7 @@ public final class PortalNavigator extends BaseNavigator{
   }
 
   public static void navigateToNewDashboard() {
-    navigate(PORTAL_NEW_DASHBOARD, new HashMap<>());
+    navigateByKeyword(PORTAL_NEW_DASHBOARD_START, PORTAL_NEW_DASHBOARD, new HashMap<>());
   }
 
   public static void navigateToNewDashboardConfiguration() {

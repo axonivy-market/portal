@@ -78,17 +78,6 @@ if (!StringUtils.isEmpty(userExampleGuideLink)){
 	in.subMenuItems.add(userExampleGuide);
 }
 
-String dashboardLink = ProcessStartAPI.findStartableLinkByUserFriendlyRequestPath("Start Processes/PortalDashboard/Dashboard.ivp");
-if (!StringUtils.isEmpty(dashboardLink)){	
-	SubMenuItem userExampleGuide = new SubMenuItem();
-	userExampleGuide.setIcon("si si-layout-dashboard");
-	userExampleGuide.setName("NewDashboard");
-	userExampleGuide.setLabel("New Dashboard");
-	userExampleGuide.setMenuKind(MenuKind.CUSTOM);
-	userExampleGuide.setLink(dashboardLink);
-	in.subMenuItems.add(userExampleGuide);
-}
-
 SubMenuItem google = new SubMenuItem();
 google.setIcon("si si-information-circle");
 google.setLabel("Google");
