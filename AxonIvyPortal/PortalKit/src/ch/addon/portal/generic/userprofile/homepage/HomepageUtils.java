@@ -14,8 +14,10 @@ import ch.ivy.addon.portalkit.constant.UserProperty;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.MenuKind;
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
+import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.IvyAdapterService;
+import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public class HomepageUtils {
@@ -43,6 +45,12 @@ public class HomepageUtils {
     dashboard.setType(HomepageType.DASHBOARD);
     return dashboard;
   }
+
+  private static String findRelativeUrlByKeywork(String keyword) {
+    String friendlyRequestPath = SecurityServiceUtils.findFriendlyRequestPathContainsKeyword(keyword);
+    String newDashboardLink = ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(friendlyRequestPath);
+    return newDashboardLink;
+  }
   
   public static Homepage findHomepageInMyProfile() {
     Homepage homepage = new Homepage();
@@ -62,9 +70,34 @@ public class HomepageUtils {
     Homepage homepage = new Homepage();
     homepage.setName(getHomepageName());
     if (homepages.contains(homepage)) {
-      return homepages.get(homepages.indexOf(homepage));
+      Homepage seletedHomepage = homepages.get(homepages.indexOf(homepage));
+      adjustHomepageStartLink(seletedHomepage);
+      return seletedHomepage;
     } else {
       return homepage;
+    }
+  }
+
+  private static void adjustHomepageStartLink(Homepage homepage) {
+    String relativeUrl = "";
+    switch (homepage.getType()) {
+      case PROCESS:
+        relativeUrl = findRelativeUrlByKeywork(PortalNavigator.PORTAL_PROCESS_START);
+        break;
+      case TASK:
+        relativeUrl = findRelativeUrlByKeywork(PortalNavigator.PORTAL_TASK_START);
+        break;
+      case CASE:
+        relativeUrl = findRelativeUrlByKeywork(PortalNavigator.PORTAL_CASE_START);
+        break;
+      case STATISTICS:
+        relativeUrl = findRelativeUrlByKeywork(PortalNavigator.PORTAL_STATISTIC_START);
+        break;
+      default:
+        break;
+    }
+    if (StringUtils.isNotEmpty(relativeUrl)) {
+      homepage.setLink(relativeUrl);
     }
   }
 
