@@ -38,6 +38,7 @@ public final class PortalNavigator extends BaseNavigator{
   private static final String PORTAL_NEW_DASHBOARD_CONFIGURATION = "Start Processes/PortalStart/PortalDashboardConfiguration.ivp";
   private static final String PORTAL_PROCESS_INFO = "Start Processes/PortalStart/ProcessInformation.ivp";
   private static final String PORTAL_NEW_DASHBOARD = "Start Processes/PortalStart/PortalDashboard.ivp";
+  private static final String PORTAL_NEW_DASHBOARD_CONFIGURATION_START = "/PortalDashboardConfiguration.ivp";
 
   public static final String PORTAL_NEW_DASHBOARD_START = "/PortalDashboard.ivp";
   public static final String PORTAL_DASHBOARD_START = "/DefaultDashboardPage.ivp";
@@ -197,7 +198,7 @@ public final class PortalNavigator extends BaseNavigator{
   }
 
   public static void navigateToNewDashboardConfiguration() {
-    navigate(PORTAL_NEW_DASHBOARD_CONFIGURATION, new HashMap<>());
+    navigateByKeyword(PORTAL_NEW_DASHBOARD_CONFIGURATION_START, PORTAL_NEW_DASHBOARD_CONFIGURATION, new HashMap<>());
   }
 
   public static String buildUserProfileUrl() {
