@@ -54,3 +54,11 @@ function CaseListScreenHandler() {
     caseListToolKit.responsive();
   }
 };
+
+/***************************Handle responsive for Dashboard**********************************/
+function DashboardScreenHandler() {
+  this.updateMainContainer = function(){
+    var dashboardToolKit = DashboardToolKit();
+    dashboardToolKit.responsive();
+  }
+};
