@@ -65,21 +65,24 @@
                     <c:if test="#{widget.type eq 'TASK'}">
                       <ic:ch.ivy.addon.portal.generic.dashboard.component.TaskDashboardWidget widget="#{widget}"
                         isReadOnlyMode="#{managedBean.isReadOnlyMode}"
-                        index="#{status.index}" />
+                        index="#{status.index}"
+                        id="task-#{widget.id}" />
                     </c:if>
 
                     <!-- Case widget -->
                     <c:if test="#{widget.type eq 'CASE'}">
                       <ic:ch.ivy.addon.portal.generic.dashboard.component.CaseDashboardWidget widget="#{widget}"
                         isReadOnlyMode="#{managedBean.isReadOnlyMode}"
-                        index="#{status.index}" />
+                        index="#{status.index}"
+                        id="case-#{widget.id}" />
                     </c:if>
 
                     <!-- Process widget -->
                     <c:if test="#{widget.type eq 'PROCESS'}">
                       <ic:ch.ivy.addon.portal.generic.dashboard.component.ProcessDashboardWidget widget="#{widget}"
                         isReadOnlyMode="#{managedBean.isReadOnlyMode}"
-                        index="#{status.index}" />
+                        index="#{status.index}"
+                        id="process-#{widget.id}" />
                     </c:if>
                   </div>
                 </div>
