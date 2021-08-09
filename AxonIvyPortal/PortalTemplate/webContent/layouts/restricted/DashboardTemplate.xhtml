@@ -18,7 +18,7 @@
       <!-- Dashboard content -->
       <ui:fragment rendered="#{not empty managedBean.dashboards}">
         <h:outputStylesheet library="css" name="dashboard.css" />
-        <div class="dashboard__header ui-g-12 ui-g">
+        <div class="dashboard__header ui-g-12 js-dashboard__header">
 
           <h:panelGroup id="dashboard-title-container" styleClass="u-hidden-sm-down ui-lg-8 ui-md-7 dashboard__title-container">
             <c:forEach var="dashboard" items="#{managedBean.dashboards}" varStatus="dashboardStatus">
@@ -47,7 +47,7 @@
             <p:remoteCommand name="saveWidgetState" actionListener="#{managedBean.saveSelectedWidget()}" global="false"/>
           </h:form>
 
-
+        <div class="dashboard__body ui-g-12 js-dashboard__body">
           <h:panelGroup id="grid-stack" layout="block" styleClass="grid-stack ui-g-12">
             <c:if test="#{not empty managedBean.selectedDashboard.widgets}">
               <c:forEach var="widget" items="#{managedBean.selectedDashboard.widgets}" varStatus="status">
@@ -84,14 +84,23 @@
                   </div>
                 </div>
               </c:forEach>
-          </c:if>
-          <c:if test="#{empty managedBean.selectedDashboard.widgets}">
-            <p class="ui-g-12">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/noWidget')}</p>
-          </c:if>
-          <ui:insert name="dashboardContent" />
-        </h:panelGroup>
-
+            </c:if>
+            <c:if test="#{empty managedBean.selectedDashboard.widgets}">
+              <p class="ui-g-12">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/noWidget')}</p>
+            </c:if>
+            <ui:insert name="dashboardContent" />
+          </h:panelGroup>
+        </div>
         <h:outputScript library="js" name="dashboard.js" />
+
+        <script type="text/javascript">
+            $(function() {
+              var simpleScreen = new DashboardScreenHandler();
+              var responsiveToolkit = ResponsiveToolkit(simpleScreen);
+              Portal.init(responsiveToolkit);
+            });
+        </script>
+
       </ui:fragment>
       </div>
     </ui:define>
