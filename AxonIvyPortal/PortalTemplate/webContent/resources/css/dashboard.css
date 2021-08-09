@@ -35,6 +35,25 @@
   padding-bottom: 5px;
 }
 
+.dashboard__header,
+.dashboard__body {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.dashboard__title-container {
+  padding-left: 0;
+}
+
+.dashboard-header__action {
+  padding-right: 0;
+}
+
+.dashboard__body {
+  overflow: auto;
+  padding-top: 0;
+}
+
 @media screen and (max-width: 767px) {
   .dashboard__title-dropdown-container {
     padding-left: 0;
@@ -471,8 +490,9 @@ body .ui-calendar.task-configuration__calendar .ui-datepicker-trigger {
 }
 
 .grid-stack {
-  margin-top: .5em;
+  margin-top: 0;
   margin-bottom: 2.5em;
+  padding-top: 0;
   padding-left: 0;
   padding-right: 0;
 }
