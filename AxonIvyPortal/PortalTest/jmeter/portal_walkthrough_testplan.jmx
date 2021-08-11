@@ -6064,7 +6064,8 @@
           </hashTree>
         </hashTree>
         <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="NewDashboard" enabled="true">
-          <boolProp name="TransactionController.parent">true</boolProp>
+          <boolProp name="TransactionController.parent">false</boolProp>
+          <boolProp name="TransactionController.includeTimers">false</boolProp>
         </TransactionController>
         <hashTree>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="NavigateToDashboard" enabled="true">
