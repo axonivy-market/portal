@@ -292,6 +292,10 @@ public class TaskWidgetPage extends TemplatePage {
     WaitHelper.assertTrueWithWait(() -> getTaskListCustomCellValue(rowIndex, columnId).equals(expectedValue));
   }
 
+  public void WaitUntilSortDownIconDiplayed() {
+    waitForElementDisplayed(By.cssSelector("i.sort-icon.fa.fa-angle-down"), true);
+  }
+
   public String getTaskListCustomCellValue(int index, String columnId) {
     WebElement cell = findElementById(
         String.format(taskWidgetId + ":task-list-scroller:%d:task-item:%s-component:%s", index, columnId, columnId));
