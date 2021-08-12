@@ -293,7 +293,7 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public void WaitUntilSortDownIconDiplayed() {
-    waitForElementDisplayed(By.cssSelector("i.sort-icon.fa.fa-angle-down"), true);
+    waitForElementDisplayed(By.cssSelector("i.sort-icon.fa.fa-angle-up"), true);
   }
 
   public String getTaskListCustomCellValue(int index, String columnId) {
