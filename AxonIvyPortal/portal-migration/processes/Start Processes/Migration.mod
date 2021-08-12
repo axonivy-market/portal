@@ -46,7 +46,7 @@ Mn0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Mn0 f3 168 42 112 44 -38 -8 #rect
 Mn0 f4 111 64 168 64 #arcP
 Mn0 f2 280 64 337 64 #arcP
->Proto Mn0 .type portal.migration.Data #txt
+>Proto Mn0 .type portalmigration.Data #txt
 >Proto Mn0 .processKind NORMAL #txt
 >Proto Mn0 0 0 32 24 18 0 #rect
 >Proto Mn0 @|BIcon #fIcon
