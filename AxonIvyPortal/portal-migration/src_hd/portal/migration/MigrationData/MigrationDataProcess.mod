@@ -73,7 +73,6 @@ Ms0 f17 actionTable 'out=in;
 Ms0 f17 actionCode 'import javax.faces.context.FacesContext;
 import javax.faces.application.FacesMessage;
 import org.primefaces.component.message.Message;
-import portal.migration.service.PortalMigrationService;
 
 FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Migration finished", "Completed");
 FacesContext.getCurrentInstance().addMessage(null, message);
@@ -89,7 +88,7 @@ Ms0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ms0 f17 416 154 112 44 -48 -8 #rect
 Ms0 f18 actionTable 'out=in;
 ' #txt
-Ms0 f18 actionCode 'import portal.migration.service.PortalMigrationService;
+Ms0 f18 actionCode 'import portalmigration.service.PortalMigrationService;
 
 List<String> result = PortalMigrationService.migrate();
 in.hasError = result.isEmpty() ? false : true;
