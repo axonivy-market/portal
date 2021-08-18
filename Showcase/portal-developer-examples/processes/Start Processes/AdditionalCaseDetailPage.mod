@@ -26,9 +26,6 @@ Ae0 @InfoButton f13 '' #zField
 Ae0 @GridStep f10 '' #zField
 Ae0 @PushWFArc f12 '' #zField
 Ae0 @PushWFArc f14 '' #zField
-Ae0 @StartRequest f15 '' #zField
-Ae0 @EndTask f16 '' #zField
-Ae0 @PushWFArc f17 '' #zField
 >Proto Ae0 Ae0 AdditionalCaseDetailPage #zField
 Ae0 f0 outLink createInvestmentRequest.ivp #txt
 Ae0 f0 inParamDecl '<> param;' #txt
@@ -200,23 +197,6 @@ Ae0 f12 expr out #txt
 Ae0 f12 159 64 296 64 #arcP
 Ae0 f14 expr out #txt
 Ae0 f14 408 64 476 64 #arcP
-Ae0 f15 outLink start.ivp #txt
-Ae0 f15 inParamDecl '<> param;' #txt
-Ae0 f15 requestEnabled true #txt
-Ae0 f15 triggerEnabled false #txt
-Ae0 f15 callSignature start() #txt
-Ae0 f15 caseData businessCase.attach=true #txt
-Ae0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>start.ivp</name>
-    </language>
-</elementInfo>
-' #txt
-Ae0 f15 @C|.responsibility Everybody #txt
-Ae0 f15 145 417 30 30 -21 17 #rect
-Ae0 f16 561 433 30 30 0 15 #rect
-Ae0 f17 175 432 561 448 #arcP
 >Proto Ae0 .type com.axonivy.portal.developerexamples.customization.AdditionalCaseDetailPage #txt
 >Proto Ae0 .processKind NORMAL #txt
 >Proto Ae0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -238,5 +218,3 @@ Ae0 f7 mainOut f12 tail #connect
 Ae0 f12 head f10 mainIn #connect
 Ae0 f10 mainOut f14 tail #connect
 Ae0 f14 head f9 mainIn #connect
-Ae0 f15 mainOut f17 tail #connect
-Ae0 f17 head f16 mainIn #connect
