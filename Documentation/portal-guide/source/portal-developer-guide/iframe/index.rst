@@ -45,5 +45,35 @@ Follow these steps:
    
    	- Portal Administrator could choose the option that all of the tasks in whole engine are started inside IFrame or not via the ``Portal.EmbedInFrame`` Portal settings, refer to :ref:`update-portal-settings`
 
+
+Customization
+=============
+
+In case you had built your own portal and had copied the ``PortalStart`` process from ``PortalTemplate`` to your project.
+
+You must do some important steps below to make your process/task could be started inside IFrame:
+
+  1. Make sure your own project depends on the ``PortalTemplate``
+
+     - E.g: ``CustomizedPortal`` depends on the ``PortalTemplate``
+
+  2. Create another project that contains all business processes, this project depends on your portal customized project.
+
+     - E.g: ``BusinessProject`` depends on ``CustomizedPortal``
+
+  3. Change the ``DefaultPages`` in ``Standard Processes`` to your portal customized project library id, refer to `Standard Processes <https://developer.axonivy.com/doc/8.0/engine-guide/administration/standard-processes.html>`_ doc.
+
+     - E.g: DefaultPages: ``CustomizedPortal`` id.
+
+  4. Now, create your start process inside your second project. For example, it is ``BusinessProject`` and creates your HTML Dialog with template ``frame-8.xhtml``.
+
+.. important:: 
+    We must create 2 projects: ``CustomizedPortal`` and ``BusinessProject`` and create your process start in ``BusinessProject``, not in ``CustomizedPortal``.
+
+    Because you copied ``PortalStart.mod`` and this mod contains the ``DefaultFramePage.ivp`` start.
+    So every process start which is in the same **PMV** as the ``DefaultFramePage.ivp`` is not opened in the IFrame, to avoid recursion.
+    This means that not the Frame Dialog itself is opened again in an IFrame and so on.
+
+
 .. |task-embedInFrame| image:: images/task-embedInFrame.png
 .. |case-embedInFrame| image:: images/case-embedInFrame.png
