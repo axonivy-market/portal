@@ -175,6 +175,37 @@ Pt0 Bk10 S20 'Sub 2' #zField
 Pt0 Bk11 S40 'Sub 4' #zField
 Pt0 Bk12 S50 'Sub 5' #zField
 Pt0 Bk13 S70 'Sub 7' #zField
+Pt0 @EndTask f138 '' #zField
+Pt0 @UserDialog f142 '' #zField
+Pt0 @GridStep f143 '' #zField
+Pt0 @StartRequest f144 '' #zField
+Pt0 @PushWFArc f145 '' #zField
+Pt0 @PushWFArc f146 '' #zField
+Pt0 @PushWFArc f147 '' #zField
+Pt0 @EndTask f148 '' #zField
+Pt0 @StartRequest f149 '' #zField
+Pt0 @UserDialog f151 '' #zField
+Pt0 @GridStep f152 '' #zField
+Pt0 @PushWFArc f153 '' #zField
+Pt0 @PushWFArc f154 '' #zField
+Pt0 @PushWFArc f155 '' #zField
+Pt0 @UserDialog f156 '' #zField
+Pt0 @EndTask f157 '' #zField
+Pt0 @GridStep f158 '' #zField
+Pt0 @StartRequest f159 '' #zField
+Pt0 @PushWFArc f160 '' #zField
+Pt0 @PushWFArc f161 '' #zField
+Pt0 @PushWFArc f162 '' #zField
+Pt0 @StartRequest f163 '' #zField
+Pt0 @EndTask f164 '' #zField
+Pt0 @Alternative f165 '' #zField
+Pt0 @UserDialog f166 '' #zField
+Pt0 @GridStep f167 '' #zField
+Pt0 @PushWFArc f168 '' #zField
+Pt0 @PushWFArc f169 '' #zField
+Pt0 @PushWFArc f170 '' #zField
+Pt0 @PushWFArc f171 '' #zField
+Pt0 @PushWFArc f172 '' #zField
 >Proto Pt0 Pt0 PortalStart #zField
 Bk7 @TextInP .type .type #zField
 Bk7 @TextInP .processKind .processKind #zField
@@ -219,7 +250,7 @@ Bk8 @PushWFArc f3 '' #zField
 Bk8 @PushWFArc f4 '' #zField
 Bk8 @PushWFArc f5 '' #zField
 Bk8 @PushWFArc f1 '' #zField
->Proto Bk8 Bk4 BpmnUserTask #zField
+>Proto Bk8 Bk0 BpmnUserTask #zField
 Bk9 @TextInP .type .type #zField
 Bk9 @TextInP .processKind .processKind #zField
 Bk9 @TextInP .xml .xml #zField
@@ -233,7 +264,7 @@ Bk9 @PushTrueWFInG-01 g0 '' #zField
 Bk9 @PushWFArc f0 '' #zField
 Bk9 @PushTrueWFOutG-01 g1 '' #zField
 Bk9 @PushWFArc f1 '' #zField
->Proto Bk9 Bk0 BpmnUserTask #zField
+>Proto Bk9 Bk1 BpmnUserTask #zField
 Bk10 @TextInP .type .type #zField
 Bk10 @TextInP .processKind .processKind #zField
 Bk10 @TextInP .xml .xml #zField
@@ -259,7 +290,7 @@ Bk11 @PushTrueWFInG-01 g0 '' #zField
 Bk11 @PushWFArc f0 '' #zField
 Bk11 @PushTrueWFOutG-01 g1 '' #zField
 Bk11 @PushWFArc f1 '' #zField
->Proto Bk11 Bk1 BpmnUserTask #zField
+>Proto Bk11 Bk3 BpmnUserTask #zField
 Bk12 @AnnotationInP-0n ai ai #zField
 Bk12 @TextInP .type .type #zField
 Bk12 @TextInP .processKind .processKind #zField
@@ -275,7 +306,7 @@ Bk12 @UserDialog f145 '' #zField
 Bk12 @UserDialog f143 '' #zField
 Bk12 @PushTrueWFInG-01 g0 '' #zField
 Bk12 @PushWFArc f0 '' #zField
->Proto Bk12 Bk3 BpmnUserTask #zField
+>Proto Bk12 Bk4 BpmnUserTask #zField
 Bk13 @TextInP .type .type #zField
 Bk13 @TextInP .processKind .processKind #zField
 Bk13 @TextInP .xml .xml #zField
@@ -1605,6 +1636,335 @@ after finish task</name>
 </elementInfo>
 ' #txt
 Pt0 S70 760 272 144 64 -47 -28 #rect
+Pt0 f138 1537 1713 30 30 0 15 #rect
+Pt0 f142 dialogId ch.ivy.addon.portal.generic.CaseNoteHistory #txt
+Pt0 f142 startMethod start(java.util.List<ch.ivy.addon.portalkit.bo.History>,String,ch.ivyteam.ivy.workflow.ICase) #txt
+Pt0 f142 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.bo.History> histories,String exportedFileName,ch.ivyteam.ivy.workflow.ICase ivyCase> param;' #txt
+Pt0 f142 requestMappingAction 'param.histories=in.histories;
+param.exportedFileName=ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/noteHistory/caseExportedFileNamePrefix", java.util.Arrays.asList(ch.ivy.addon.portalkit.util.PermissionUtils.getCaseName(in.caseSelected)));
+param.ivyCase=in.caseSelected;
+' #txt
+Pt0 f142 responseActionDecl 'ch.ivy.addon.portal.generic.CaseNoteHistoryData out;
+' #txt
+Pt0 f142 responseMappingAction 'out=in;
+' #txt
+Pt0 f142 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Case note history</name>
+        <nameStyle>17,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f142 1360 1706 112 44 -48 -8 #rect
+Pt0 f143 actionTable 'out=in;
+' #txt
+Pt0 f143 actionCode 'import ch.ivyteam.ivy.workflow.ICase;
+import ch.ivyteam.ivy.workflow.query.CaseQuery;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
+import java.util.ArrayList;
+import ch.ivyteam.ivy.workflow.TaskState;
+import ch.ivyteam.ivy.workflow.ITask;
+import ch.ivy.addon.portalkit.service.HistoryService;
+
+List<ITask> finishedTasks = new ArrayList();
+in.caseSelected = ivy.wf.getCaseQueryExecutor().getFirstResult(CaseQuery.create().where().caseId().isEqual(in.caseId)) as ICase;
+for(ITask task : in.caseSelected.tasks().all()) {
+	if(task.getState() == TaskState.DONE
+	|| task.getState() == TaskState.CREATED 
+	|| task.getState() == TaskState.DESTROYED 
+	|| task.getState() == TaskState.ZOMBIE) {
+		finishedTasks.add(task);
+	}
+}
+
+HistoryService historyService = new HistoryService();
+GlobalSettingService globalSettingService = new GlobalSettingService();
+boolean excludeSystemTasks = globalSettingService.findHideSystemTasksFromHistorySettingValue();
+boolean excludeSystemNotes = globalSettingService.findHideSystemNotesFromHistorySettingValue();
+in.histories = historyService.getHistories(finishedTasks, in.caseSelected.getNotes(), excludeSystemTasks, excludeSystemNotes);' #txt
+Pt0 f143 security system #txt
+Pt0 f143 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>get case
+create histories 
+from tasks and notes</name>
+        <nameStyle>47,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f143 1032 1698 144 60 -53 -24 #rect
+Pt0 f144 outLink showCaseNoteHistory.ivp #txt
+Pt0 f144 inParamDecl '<Long caseId> param;' #txt
+Pt0 f144 inParamTable 'out.caseId=param.caseId;
+' #txt
+Pt0 f144 requestEnabled true #txt
+Pt0 f144 triggerEnabled false #txt
+Pt0 f144 callSignature showCaseNoteHistory(Long) #txt
+Pt0 f144 persist false #txt
+Pt0 f144 caseData businessCase.attach=true #txt
+Pt0 f144 showInStartList 0 #txt
+Pt0 f144 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>showCaseNoteHistory.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f144 @C|.responsibility Everybody #txt
+Pt0 f144 897 1713 30 30 -71 17 #rect
+Pt0 f145 expr out #txt
+Pt0 f145 927 1728 1032 1728 #arcP
+Pt0 f146 expr out #txt
+Pt0 f146 1472 1728 1537 1728 #arcP
+Pt0 f147 expr out #txt
+Pt0 f147 1176 1728 1360 1728 #arcP
+Pt0 f148 1537 1809 30 30 0 15 #rect
+Pt0 f149 outLink showTaskNoteHistory.ivp #txt
+Pt0 f149 inParamDecl '<Long selectedTaskId> param;' #txt
+Pt0 f149 inParamTable 'out.taskId=param.selectedTaskId;
+' #txt
+Pt0 f149 requestEnabled true #txt
+Pt0 f149 triggerEnabled false #txt
+Pt0 f149 callSignature showTaskNoteHistory(Long) #txt
+Pt0 f149 persist false #txt
+Pt0 f149 taskData 'TaskTriggered.EXPRI=2
+TaskTriggered.EXROL=Everybody
+TaskTriggered.EXTYPE=0
+TaskTriggered.PRI=2
+TaskTriggered.ROL=Everybody
+TaskTriggered.TYPE=0' #txt
+Pt0 f149 caseData businessCase.attach=true #txt
+Pt0 f149 showInStartList 0 #txt
+Pt0 f149 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>showTaskNoteHistory.ivp</name>
+        <nameStyle>23,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f149 @C|.responsibility Everybody #txt
+Pt0 f149 897 1809 30 30 -69 17 #rect
+Pt0 f151 dialogId ch.ivy.addon.portal.generic.TaskNoteHistory #txt
+Pt0 f151 startMethod start(java.util.List<ch.ivyteam.ivy.workflow.INote>,String,ch.ivyteam.ivy.workflow.ITask) #txt
+Pt0 f151 requestActionDecl '<java.util.List<ch.ivyteam.ivy.workflow.INote> notes,String exportedFileName,ch.ivyteam.ivy.workflow.ITask task> param;' #txt
+Pt0 f151 requestMappingAction 'param.notes=in.notes;
+param.exportedFileName=ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/noteHistory/taskExportedFileNamePrefix", java.util.Arrays.asList(ch.ivy.addon.portalkit.util.PermissionUtils.getTaskName(in.taskSelected)));
+param.task=in.taskSelected;
+' #txt
+Pt0 f151 responseActionDecl 'ch.ivy.addon.portal.generic.TaskNoteHistoryData out;
+' #txt
+Pt0 f151 responseMappingAction 'out=in;
+' #txt
+Pt0 f151 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Task Note History</name>
+        <nameStyle>17,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f151 1360 1802 112 44 -48 -8 #rect
+Pt0 f152 actionTable 'out=in;
+' #txt
+Pt0 f152 actionCode 'import ch.ivyteam.ivy.workflow.INote;
+import ch.ivyteam.ivy.workflow.query.TaskQuery;
+import ch.ivyteam.ivy.workflow.ITask;
+import ch.ivy.addon.portalkit.util.CaseUtils;
+import ch.ivyteam.ivy.workflow.ICase;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
+import ch.ivy.addon.portalkit.comparator.NoteComparator;
+
+in.taskSelected = ivy.wf.getGlobalContext().getTaskQueryExecutor().getFirstResult(TaskQuery.create().where().taskId().isEqual(in.taskId)) as ITask;
+ICase iCase = in.taskSelected.getCase().getBusinessCase();
+GlobalSettingService globalSettingService = new GlobalSettingService();
+boolean excludeSystemNotes = globalSettingService.findHideSystemNotesFromHistorySettingValue();
+in.notes = CaseUtils.findNotes(iCase, excludeSystemNotes);
+in.notes.sort(new NoteComparator());
+' #txt
+Pt0 f152 security system #txt
+Pt0 f152 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>find notes</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f152 1048 1802 112 44 -27 -8 #rect
+Pt0 f153 expr out #txt
+Pt0 f153 1472 1824 1537 1824 #arcP
+Pt0 f154 1160 1824 1360 1824 #arcP
+Pt0 f155 expr out #txt
+Pt0 f155 927 1824 1048 1824 #arcP
+Pt0 f156 dialogId ch.ivy.addon.portal.generic.AdditionalCaseDetails #txt
+Pt0 f156 startMethod start(ch.ivyteam.ivy.workflow.ICase) #txt
+Pt0 f156 requestActionDecl '<ch.ivyteam.ivy.workflow.ICase iCase> param;' #txt
+Pt0 f156 requestMappingAction 'param.iCase=in.caseSelected;
+' #txt
+Pt0 f156 responseActionDecl 'ch.ivy.addon.portal.generic.CaseWidgetData out;
+' #txt
+Pt0 f156 responseMappingAction 'out=in;
+' #txt
+Pt0 f156 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Show Additional
+Case Details</name>
+        <nameStyle>5,7
+23,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f156 1352 1898 128 44 -42 -16 #rect
+Pt0 f157 1537 1905 30 30 0 15 #rect
+Pt0 f158 actionTable 'out=in;
+' #txt
+Pt0 f158 actionCode 'out.caseSelected = ivy.wf.findCase(in.caseId);' #txt
+Pt0 f158 security system #txt
+Pt0 f158 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Find case by id</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f158 1048 1898 112 44 -41 -8 #rect
+Pt0 f159 outLink showAdditionalCaseDetails.ivp #txt
+Pt0 f159 inParamDecl '<Long caseId> param;' #txt
+Pt0 f159 inParamTable 'out.caseId=param.caseId;
+' #txt
+Pt0 f159 requestEnabled true #txt
+Pt0 f159 triggerEnabled false #txt
+Pt0 f159 callSignature showAdditionalCaseDetails(Long) #txt
+Pt0 f159 persist false #txt
+Pt0 f159 taskData 'TaskTriggered.EXPRI=2
+TaskTriggered.EXROL=Everybody
+TaskTriggered.EXTYPE=0
+TaskTriggered.PRI=2
+TaskTriggered.ROL=Everybody
+TaskTriggered.TYPE=0' #txt
+Pt0 f159 caseData businessCase.attach=true #txt
+Pt0 f159 showInStartList 0 #txt
+Pt0 f159 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>showAdditionalCaseDetails.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f159 @C|.responsibility Everybody #txt
+Pt0 f159 897 1905 30 30 -85 17 #rect
+Pt0 f160 expr out #txt
+Pt0 f160 927 1920 1048 1920 #arcP
+Pt0 f161 expr out #txt
+Pt0 f161 1160 1920 1352 1920 #arcP
+Pt0 f162 expr out #txt
+Pt0 f162 1480 1920 1537 1920 #arcP
+Pt0 f163 outLink showTaskAnalysis.ivp #txt
+Pt0 f163 inParamDecl '<> param;' #txt
+Pt0 f163 requestEnabled true #txt
+Pt0 f163 triggerEnabled false #txt
+Pt0 f163 callSignature showTaskAnalysis() #txt
+Pt0 f163 persist false #txt
+Pt0 f163 taskData 'TaskTriggered.EXPRI=2
+TaskTriggered.EXROL=Everybody
+TaskTriggered.EXTYPE=0
+TaskTriggered.PRI=2
+TaskTriggered.ROL=Everybody
+TaskTriggered.TYPE=0' #txt
+Pt0 f163 caseData businessCase.attach=true #txt
+Pt0 f163 showInStartList 0 #txt
+Pt0 f163 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>showTaskAnalysis.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f163 @C|.responsibility Everybody #txt
+Pt0 f163 897 2001 30 30 -21 17 #rect
+Pt0 f164 1537 2001 30 30 0 15 #rect
+Pt0 f165 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>has permission?</name>
+        <nameStyle>15,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f165 1248 2000 32 32 -47 18 #rect
+Pt0 f166 dialogId ch.ivy.addon.portal.generic.TaskAnalysis #txt
+Pt0 f166 startMethod start() #txt
+Pt0 f166 requestActionDecl '<> param;' #txt
+Pt0 f166 responseActionDecl 'ch.ivy.addon.portal.generic.TaskAnalysisData out;
+' #txt
+Pt0 f166 responseMappingAction 'out=in;
+' #txt
+Pt0 f166 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Task Analysis dialog</name>
+        <nameStyle>20
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f166 1352 1994 128 44 -56 -8 #rect
+Pt0 f167 actionTable 'out=in;
+' #txt
+Pt0 f167 actionCode 'import ch.ivy.addon.portalkit.util.PermissionUtils;
+import ch.ivy.addon.portalkit.enums.PortalPermission;
+
+in.hasPermission = PermissionUtils.hasPermission(PortalPermission.STATISTIC_ANALYZE_TASK.getPermission());' #txt
+Pt0 f167 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>check permission</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f167 1048 1994 112 44 -49 -8 #rect
+Pt0 f168 expr out #txt
+Pt0 f168 927 2016 1048 2016 #arcP
+Pt0 f169 expr out #txt
+Pt0 f169 1480 2016 1537 2016 #arcP
+Pt0 f170 expr out #txt
+Pt0 f170 1160 2016 1248 2016 #arcP
+Pt0 f171 expr in #txt
+Pt0 f171 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>no</name>
+        <nameStyle>2,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f171 1264 2032 1552 2031 #arcP
+Pt0 f171 1 1264 2064 #addKink
+Pt0 f171 2 1552 2064 #addKink
+Pt0 f171 1 0.23529411764705882 0 -10 #arcLabel
+Pt0 f172 expr in #txt
+Pt0 f172 outCond in.hasPermission #txt
+Pt0 f172 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>yes</name>
+        <nameStyle>3,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f172 1280 2016 1352 2016 #arcP
+Pt0 f172 0 0.4166666666666667 0 -11 #arcLabel
 >Proto Pt0 .type ch.ivy.addon.portal.generic.PortalStartData #txt
 >Proto Pt0 .processKind NORMAL #txt
 >Proto Pt0 0 0 32 24 18 0 #rect
@@ -1924,8 +2284,8 @@ Bk8 f5 224 112 352 480 #arcP
 Bk8 f5 1 224 480 #addKink
 Bk8 f5 1 0.32297169520409286 0 0 #arcLabel
 Bk8 f1 109 96 208 96 #arcP
->Proto Bk4 0 0 32 24 18 0 #rect
->Proto Bk4 @|BpmnUserTaskIcon #fIcon
+>Proto Bk0 0 0 32 24 18 0 #rect
+>Proto Bk0 @|BpmnUserTaskIcon #fIcon
 Bk9 f60 expr out #txt
 Bk9 f60 416 160 488 160 #arcP
 Bk9 f61 expr out #txt
@@ -2006,8 +2366,8 @@ Bk9 g1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Bk9 g1 659 147 26 26 0 5 #rect
 Bk9 f1 expr out #txt
 Bk9 f1 600 160 659 160 #arcP
->Proto Bk0 0 0 32 24 18 0 #rect
->Proto Bk0 @|BpmnUserTaskIcon #fIcon
+>Proto Bk1 0 0 32 24 18 0 #rect
+>Proto Bk1 @|BpmnUserTaskIcon #fIcon
 Bk10 f69 actionTable 'out=in;
 ' #txt
 Bk10 f69 actionCode 'import ch.ivy.addon.portalkit.enums.TaskAssigneeType;
@@ -2144,8 +2504,8 @@ Bk11 g1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Bk11 g1 499 147 26 26 0 5 #rect
 Bk11 f1 expr out #txt
 Bk11 f1 432 160 499 160 #arcP
->Proto Bk1 0 0 32 24 18 0 #rect
->Proto Bk1 @|BpmnUserTaskIcon #fIcon
+>Proto Bk3 0 0 32 24 18 0 #rect
+>Proto Bk3 @|BpmnUserTaskIcon #fIcon
 Bk12 f138 465 305 30 30 0 15 #rect
 Bk12 f142 outLink PortalDashboardConfiguration.ivp #txt
 Bk12 f142 inParamDecl '<> param;' #txt
@@ -2202,8 +2562,8 @@ Bk12 g0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Bk12 g0 115 147 26 26 -9 13 #rect
 Bk12 f0 141 160 224 160 #arcP
->Proto Bk3 0 0 32 24 18 0 #rect
->Proto Bk3 @|BpmnUserTaskIcon #fIcon
+>Proto Bk4 0 0 32 24 18 0 #rect
+>Proto Bk4 @|BpmnUserTaskIcon #fIcon
 Bk13 f47 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -2438,6 +2798,34 @@ Pt0 S40 g1 f27 tail #connect
 Pt0 f150 head S50 g0 #connect
 Pt0 f36 head S70 g0 #connect
 Pt0 S70 g1 f40 tail #connect
+Pt0 f143 mainOut f147 tail #connect
+Pt0 f147 head f142 mainIn #connect
+Pt0 f142 mainOut f146 tail #connect
+Pt0 f146 head f138 mainIn #connect
+Pt0 f144 mainOut f145 tail #connect
+Pt0 f145 head f143 mainIn #connect
+Pt0 f151 mainOut f153 tail #connect
+Pt0 f153 head f148 mainIn #connect
+Pt0 f149 mainOut f155 tail #connect
+Pt0 f155 head f152 mainIn #connect
+Pt0 f152 mainOut f154 tail #connect
+Pt0 f154 head f151 mainIn #connect
+Pt0 f156 mainOut f162 tail #connect
+Pt0 f162 head f157 mainIn #connect
+Pt0 f159 mainOut f160 tail #connect
+Pt0 f160 head f158 mainIn #connect
+Pt0 f158 mainOut f161 tail #connect
+Pt0 f161 head f156 mainIn #connect
+Pt0 f166 mainOut f169 tail #connect
+Pt0 f169 head f164 mainIn #connect
+Pt0 f165 out f172 tail #connect
+Pt0 f172 head f166 mainIn #connect
+Pt0 f165 out f171 tail #connect
+Pt0 f171 head f164 mainIn #connect
+Pt0 f163 mainOut f168 tail #connect
+Pt0 f168 head f167 mainIn #connect
+Pt0 f167 mainOut f170 tail #connect
+Pt0 f170 head f165 in #connect
 Bk7 f3 ao f8 tail #connect
 Bk7 f8 head f36 @CG|ai #connect
 Bk7 f22 mainOut f43 tail #connect
