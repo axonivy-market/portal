@@ -35,6 +35,7 @@ public class SecurityServiceUtils {
     Ivy.session().removeAttribute(name);
   }
 
+  @Deprecated(since = "9.3", forRemoval = true)
   public static String findFriendlyRequestPathContainsKeyword(String keyword){
     return IvyExecutor.executeAsSystem(() -> {
       ProcessStartCollector collector = new ProcessStartCollector();
