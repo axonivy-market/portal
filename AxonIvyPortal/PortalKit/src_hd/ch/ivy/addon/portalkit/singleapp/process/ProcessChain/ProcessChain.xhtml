@@ -32,7 +32,7 @@
 </cc:interface>
 
 <cc:implementation>
-  <f:event listener="#{logic.validate(cc.attrs.steps, cc.attrs.actualStepIndex)}" type="preRenderComponent" />
+  <f:event listener="#{logic.validate(cc.attrs.steps.size(), cc.attrs.actualStepIndex)}" type="preRenderComponent" />
   <!-- Process chain of axon express -->
   <c:set var="isShapeCircle" value="#{cc.attrs.shape eq 'CIRCLE'}" />
   <c:set var="isDirectionHorizontal" value="#{cc.attrs.direction eq 'HORIZONTAL'}" />

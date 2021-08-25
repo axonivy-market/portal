@@ -33,12 +33,12 @@ Ps0 f1 246 54 20 20 13 0 #rect
 Ps0 f1 @|UdProcessEndIcon #fIcon
 Ps0 f2 106 64 246 64 #arcP
 Ps0 f3 guid 1769416CED6AA844 #txt
-Ps0 f3 method validate(java.util.List<String>,Integer) #txt
-Ps0 f3 inParameterDecl '<java.util.List<String> steps,Integer currentStep> param;' #txt
+Ps0 f3 method validate(Integer,Integer) #txt
+Ps0 f3 inParameterDecl '<Integer stepsSize,Integer currentStep> param;' #txt
 Ps0 f3 inActionCode 'import java.util.Arrays;
 import javax.faces.context.FacesContext;
 import javax.faces.application.FacesMessage;
-if (param.currentStep < 0 || param.currentStep >= param.steps.size() && !(param.currentStep == 0 && param.steps.size() ==0)) {
+if (param.currentStep < 0 || param.currentStep >= param.stepsSize && !(param.currentStep == 0 && param.stepsSize ==0)) {
 	FacesMessage error = new javax.faces.application.FacesMessage(FacesMessage.SEVERITY_ERROR, ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/components/processChain/currentStepIsNotDefined", Arrays.asList(param.currentStep)), ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/components/processChain/currentStepIsNotDefined", Arrays.asList(param.currentStep)));
 	FacesContext.getCurrentInstance().addMessage("portal-global-growl-message", error);
 	FacesContext.getCurrentInstance().validationFailed();
@@ -47,7 +47,7 @@ Ps0 f3 outParameterDecl '<> result;' #txt
 Ps0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>validate(List&lt;String&gt;,Integer)</name>
+        <name>validate(Integer,Integer)</name>
     </language>
 </elementInfo>
 ' #txt
