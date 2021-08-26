@@ -51,7 +51,7 @@ Customization
 
 In case you had built your own portal and **had copied the** ``PortalStart`` **process** from ``<PortalTemplate>`` to your project.
 
-You must follow some important steps to ensure that your process/task can be rendered inside an iFrame:
+You must follow some important steps to ensure that your processes/tasks can be rendered inside an iFrame:
 
   1. Make sure your own portal project depends on the ``<PortalTemplate>``
 
@@ -59,24 +59,26 @@ You must follow some important steps to ensure that your process/task can be ren
 
   2. Create a business project that contains all business processes.
 
-     - E.g: ``<BusinessProject>``
+     a. E.g: A project name ``<BusinessProject>``
 
-     - If your business project (``<BusinessProject>``) needs some data/ressources from the portal project (``<CustomizedPortal>``) 
-       then create a dependency between these two projects. If not, **skip this step**. E.g. ``<BusinessProject>`` depends on ``<CustomizedPortal>``
+     b. If your business project (``<BusinessProject>``) needs some data/ressources from the portal project (``<CustomizedPortal>``) 
+        then create a dependency between these two projects. If not, please **skip step 2.b**.
+
+       * E.g. ``<BusinessProject>`` depends on ``<CustomizedPortal>``
 
   3. Change the ``DefaultPages`` in ``StandardProcesses`` to your customized portal project library id.
      Refer to `Standard Processes <https://developer.axonivy.com/doc/9.2/engine-guide/deployment/advanced/index.html>`_ documentation.
 
-     - E.g: DefaultPages: ``CustomizedPortal`` ID.
+     - E.g: DefaultPages: ``<CustomizedPortal>`` ID.
 
-  4. Now you can develop your own processes inside the ``<BusinessProject>`` and the dialogs will be rendered automatically using iFrames.
+Now you can develop your own processes inside the ``<BusinessProject>`` and the dialogs will be rendered automatically using iFrame.
 
 .. important:: 
-    We must create 2 projects: ``CustomizedPortal`` and ``BusinessProject`` and create your process start in ``BusinessProject``, not in ``CustomizedPortal``.
+    We must create 2 projects: ``<CustomizedPortal>`` and ``<BusinessProject>`` and create your process start in ``<BusinessProject>``, not in ``<CustomizedPortal>``.
 
     Because you copied ``PortalStart.mod`` and this mod contains the ``DefaultFramePage.ivp`` start.
     So every process start which is in the same **PMV** as the ``DefaultFramePage.ivp`` is not opened in the IFrame, to avoid recursion.
-    This means that not the Frame Dialog itself is opened again in an IFrame and so on.
+    This means that not the iFrame Dialog itself is opened again in an IFrame and so on.
 
 
 .. |task-embedInFrame| image:: images/task-embedInFrame.png
