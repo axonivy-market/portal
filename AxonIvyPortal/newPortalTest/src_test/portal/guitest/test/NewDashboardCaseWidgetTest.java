@@ -3,16 +3,13 @@ package portal.guitest.test;
 import static com.codeborne.selenide.CollectionCondition.*;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
-import static org.junit.Assert.assertEquals;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.ivy.webtest.engine.EngineUrl;
@@ -21,10 +18,8 @@ import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
 
 import portal.guitest.common.BaseTest;
-import portal.guitest.common.CaseState;
 import portal.guitest.common.PortalGUITestException;
 import portal.guitest.common.TestAccount;
-import portal.guitest.page.HomePage;
 import portal.guitest.page.NewDashBoardPage;
 
 /**
@@ -45,7 +40,7 @@ import portal.guitest.page.NewDashBoardPage;
  * </p>
  */
 @IvyWebTest(headless = false)
-public class NewDashboardTest extends BaseTest {
+public class NewDashboardCaseWidgetTest extends BaseTest {
 
   // URL
   private final static String NEW_DASHBOARD_URL_PATTERN = "/PortalTemplate/17065D04AF6FF0C0/dashboard.ivp";
@@ -60,9 +55,17 @@ public class NewDashboardTest extends BaseTest {
   private static final String LEAVE_REQUEST_CASE_NAME = "Leave Request";
   private static final String ORDER_PIZZA = "Order Pizza";
   private static final String HIDE_CASE = "Repair Computer";
+  private static final String LEAVE_REQUEST_DEFAULT_CASE= "Leave Request for Default Additional Case Details";
+  private static final String INVESTMENT_REQUEST_CUSTOMIZATION_CASE = "Investment Request";
+  private static final String CREATE_12_CASES_WITH_CATEGORY_CASE = "Create 12 Cases with category";
 
   // TASKS
   private static final String REPORT_HIDE_CASE = "Report and hide case";
+  
+  //FILTER
+  private static final String FILTER_TASK_NAME = "Task name";
+  private static final String FILTER_CASE_NAME = "Case name";
+  private static final String FILTER_CASE_STATE = "State";
 
   private NewDashBoardPage newDashBoardPage;
 
@@ -101,9 +104,9 @@ public class NewDashboardTest extends BaseTest {
     openNewDashBoard();
     newDashBoardPage.getWidget(YOUR_TASKS_WIDGET).shouldHave(sizeGreaterThanOrEqual(1));
     newDashBoardPage.getFilterWidget(YOUR_TASKS_WIDGET).shouldBe(getClickableCondition()).click();
-    newDashBoardPage.getFilterTasksName(YOUR_TASKS_WIDGET).sendKeys(REPORT_HIDE_CASE);
+    newDashBoardPage.getFilterInput(YOUR_TASKS_WIDGET,FILTER_TASK_NAME).sendKeys(REPORT_HIDE_CASE);
     newDashBoardPage.getApplyButtonFilter(YOUR_TASKS_WIDGET).shouldBe(getClickableCondition()).click();
-    newDashBoardPage.getTaskOfTaskWidgetByIndex(0).shouldBe(getClickableCondition()).click();
+    newDashBoardPage.getTaskOfTaskWidgetByIndex(0,"Start").shouldBe(getClickableCondition()).click();
     openNewDashBoard();
     newDashBoardPage.getCasesOfCaseWidgetHasName(HIDE_CASE).shouldHaveSize(0);
   }
@@ -145,8 +148,69 @@ public class NewDashboardTest extends BaseTest {
     login(TestAccount.DEMO_USER);
     openNewDashBoard();
     newDashBoardPage.getWidget(YOUR_CASES_WIDGET).shouldHave(sizeGreaterThanOrEqual(1));
-    newDashBoardPage.getCasesOfCaseWidgetHasName(ORDER_PIZZA).first().shouldBe(getClickableCondition()).click();;
+    newDashBoardPage.getCasesOfCaseWidgetHasName(ORDER_PIZZA).first().shouldBe(getClickableCondition()).click();
     newDashBoardPage.countRelatedCases().shouldHaveSize(1);
   }
-
+  
+  @Test
+  public void testOpenAdditionalCaseDetailsPage() {
+    redirectToRelativeLink(createTestingCaseUrlForDefaultAdditionalCaseDetails);
+    login(TestAccount.ADMIN_USER);
+    openNewDashBoard();
+    newDashBoardPage.getWidget(YOUR_CASES_WIDGET).shouldHave(sizeGreaterThanOrEqual(1));
+    newDashBoardPage.getFilterWidget(YOUR_CASES_WIDGET).shouldBe(getClickableCondition()).click();
+    newDashBoardPage.getFilterInput(YOUR_CASES_WIDGET, FILTER_CASE_NAME)
+        .sendKeys(LEAVE_REQUEST_DEFAULT_CASE);
+    newDashBoardPage.getApplyButtonFilter(YOUR_TASKS_WIDGET).shouldBe(getClickableCondition()).click();
+    newDashBoardPage.getCaseOfCaseWidgetHasIndex(0).shouldBe(getClickableCondition()).click();
+    newDashBoardPage.getAdditionalCaseDetailsPage().shouldBe(getClickableCondition()).click();
+    Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> newDashBoardPage.countBrowserTab() > 1);
+    newDashBoardPage.switchLastBrowserTab();
+    newDashBoardPage.getAdditionalFieldsPage().shouldHaveSize(15);
+    newDashBoardPage.getAdditionalFieldsPage().first().shouldBe(text("CustomVarCharField 1"));
+  }
+  
+  @Test
+  public void testOpenCustomizationAdditionalCaseDetailsPage() {
+    redirectToRelativeLink(createTestingCaseUrlForCustomizationAdditionalCaseDetails);
+    login(TestAccount.ADMIN_USER);
+    openNewDashBoard();
+    newDashBoardPage.getWidget(YOUR_CASES_WIDGET).shouldHave(sizeGreaterThanOrEqual(1));
+    newDashBoardPage.getFilterWidget(YOUR_CASES_WIDGET).shouldBe(getClickableCondition()).click();
+    newDashBoardPage.getFilterInput(YOUR_CASES_WIDGET, FILTER_CASE_NAME)
+        .sendKeys(INVESTMENT_REQUEST_CUSTOMIZATION_CASE);
+    newDashBoardPage.getApplyButtonFilter(YOUR_CASES_WIDGET).shouldBe(getClickableCondition()).click();
+    newDashBoardPage.getCaseOfCaseWidgetHasIndex(0).shouldBe(getClickableCondition()).click();
+    newDashBoardPage.getAdditionalCaseDetailsPage().shouldBe(getClickableCondition()).click();
+    Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> newDashBoardPage.countBrowserTab() > 1);
+    newDashBoardPage.switchLastBrowserTab();
+    newDashBoardPage.getAdditionalFieldsPage().shouldHaveSize(7);
+    newDashBoardPage.getAdditionalFieldsPage().first().shouldBe(text("Apartment A"));
+  }
+  
+  @Test
+  public void testStickyFilterCaseList() {
+    redirectToRelativeLink(create12CasesWithCategoryUrl);
+    login(TestAccount.DEMO_USER);
+    openNewDashBoard();
+    newDashBoardPage.getWidget(YOUR_CASES_WIDGET).shouldHave(sizeGreaterThanOrEqual(1));   
+    //Filter Case Name
+    newDashBoardPage.getFilterWidget(YOUR_CASES_WIDGET).shouldBe(getClickableCondition()).click();
+    newDashBoardPage.getFilterInput(YOUR_CASES_WIDGET, FILTER_CASE_NAME)
+        .sendKeys("TestCase");
+    newDashBoardPage.getApplyButtonFilter(YOUR_CASES_WIDGET).shouldBe(getClickableCondition()).click();
+    newDashBoardPage.getCasesOfCaseWidgetHasName("TestCase").shouldHaveSize(10);
+    newDashBoardPage.getNextPageWidget(YOUR_CASES_WIDGET).shouldBe(getClickableCondition()).click();
+    newDashBoardPage.getCasesOfCaseWidgetHasName("TestCase").shouldHaveSize(2);   
+    //Filter State
+    newDashBoardPage.getFilterWidget(YOUR_CASES_WIDGET).shouldBe(getClickableCondition()).click();
+    newDashBoardPage.getFilterInput(YOUR_CASES_WIDGET, FILTER_CASE_NAME).clear();
+    newDashBoardPage.getFilterInput(YOUR_CASES_WIDGET, FILTER_CASE_NAME).sendKeys(CREATE_12_CASES_WITH_CATEGORY_CASE);
+    newDashBoardPage.getFilterCheckBox(YOUR_CASES_WIDGET, FILTER_CASE_STATE).shouldBe(getClickableCondition()).click();
+    newDashBoardPage.getValueOfCheckBox("Done").shouldBe(getClickableCondition()).click();
+    newDashBoardPage.getCloseCheckBox().shouldBe(getClickableCondition()).click();
+    newDashBoardPage.getApplyButtonFilter(YOUR_CASES_WIDGET).shouldBe(getClickableCondition()).click();
+    newDashBoardPage.getColumnOfCaseHasIndex(0,"state").shouldHave(text("Done"));
+  }
+  
 }
