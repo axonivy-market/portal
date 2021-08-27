@@ -1,41 +1,38 @@
 package portal.guitest.page;
 
-import static com.codeborne.selenide.CollectionCondition.*;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
 
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 
 public class NewDashBoardPage extends TemplatePage {
 
   // WIDGET SELECTOR
-  private static final String WIDGET_CONTAINER_ID = "#grid-stack";
-  private static final String WIDGET_HEADER_TITLE_CLASS = ".widget__header-title";
-  private static final String WIDGET_HEADER_COLUMNS_CLASS = "table thead tr th";
+  private static final String WIDGET_CONTAINER = "#grid-stack";
+  private static final String WIDGET_HEADER_TITLE = "span.widget__header-title";
+  private static final String WIDGET_HEADER_COLUMNS = "table thead tr th";
   private static final String WIDGET_COLUMNS_CLASS = "table tbody tr td";
   private static final String WIDGET_ROWS_CLASS = "table tbody tr";
-  private static final String DASHBOARD_CASE_TABLE_CLASS = ".dashboard-cases--table";
-  private static final String DASHBOARD_TASK_TABLE_CLASS = ".dashboard-tasks--table";
+  private static final String DASHBOARD_CASE_TABLE = "div[id$='dashboard-cases']";
+  private static final String DASHBOARD_TASK_TABLE = "div[id$='dashboard-tasks']";
 
   // ATTRIBUTE
   private static final String INNER_HTML = "innerHTML";
 
   // FILTER WIDGET
-  private static final String FILTER_TASK_NAME = "Task name";
   private static final String APPLY_BUTTON = "Apply";
 
   // TIME OUT
   private final long DEFAULT_TIMEOUT = getTimeOutForLocator() * 1000;
   
   private SelenideElement getWidgetContainer() {
-    return $(WIDGET_CONTAINER_ID);
+    return $(WIDGET_CONTAINER);
   }
   
   private int getIndexWidgetByColumn(String columnName, String widgetName) {
     ElementsCollection elementsTH =
-        getWidgetContainer().$(widgetName).waitUntil(appear, DEFAULT_TIMEOUT).$$(WIDGET_HEADER_COLUMNS_CLASS);
+        getWidgetContainer().$(widgetName).waitUntil(appear, DEFAULT_TIMEOUT).$$(WIDGET_HEADER_COLUMNS);
     for (int i = 0; i < elementsTH.size(); i++) {
       if (elementsTH.get(i).getText().equalsIgnoreCase(columnName)) {
         return i;
@@ -55,21 +52,27 @@ public class NewDashBoardPage extends TemplatePage {
   }
   
   public ElementsCollection getWidget(String widgetName) {
-    return  getWidgetContainer().waitUntil(appear, DEFAULT_TIMEOUT).$$(WIDGET_HEADER_TITLE_CLASS)
+    return  getWidgetContainer().waitUntil(appear, DEFAULT_TIMEOUT).$$(WIDGET_HEADER_TITLE)
         .filter(attribute(INNER_HTML, widgetName));
   }
 
   public ElementsCollection getCasesOfCaseWidgetHasName(String caseName) {
-    return getColumnsOfTableWidget(DASHBOARD_CASE_TABLE_CLASS).filter(text(caseName));
+    return getColumnsOfTableWidget(DASHBOARD_CASE_TABLE).filter(text(caseName));
   }
 
   public SelenideElement getCaseOfCaseWidgetHasIndex(int index) {
-    return getColumnsOfTableWidget(DASHBOARD_CASE_TABLE_CLASS).get(index);
+    return getColumnsOfTableWidget(DASHBOARD_CASE_TABLE).get(index);
   }
 
   public SelenideElement getColumnOfCaseHasIndex(int index,String columnName) {
-    int startIndex = getIndexWidgetByColumn(columnName,DASHBOARD_CASE_TABLE_CLASS);
-    return getColumnOfTableWidget(DASHBOARD_CASE_TABLE_CLASS,0).get(startIndex);
+    int startIndex = getIndexWidgetByColumn(columnName,DASHBOARD_CASE_TABLE);
+    return getColumnOfTableWidget(DASHBOARD_CASE_TABLE,index).get(startIndex);
+  }
+  
+
+  public SelenideElement getTaskOfTaskWidgetByIndex(int index,String columnName) {
+    int startIndex = getIndexWidgetByColumn(columnName,DASHBOARD_TASK_TABLE);
+    return getColumnOfTableWidget(DASHBOARD_TASK_TABLE,index).get(startIndex);
   }
 
   public ElementsCollection countRelatedTasks() {
@@ -81,24 +84,33 @@ public class NewDashBoardPage extends TemplatePage {
   }
 
   public SelenideElement getFilterWidget(String widgetName) {
-    return  getWidgetContainer().$$(".table-widget-form").filter(text(widgetName)).first()
-        .$(".widget__filter-sidebar-link").waitUntil(appear, DEFAULT_TIMEOUT);
+    return  getWidgetContainer().$$("form.table-widget-form").filter(text(widgetName)).first()
+        .$("a.widget__filter-sidebar-link").waitUntil(appear, DEFAULT_TIMEOUT);
   }
 
-  public SelenideElement getFilterTasksName(String widgetName) {
-    return $(".filter-overlay-panel").waitUntil(appear, DEFAULT_TIMEOUT).$(".filter-overlay-panel__content")
-        .$$(".widget-filter-panel .ui-g").filter(text(FILTER_TASK_NAME)).first().$(".ui-inputfield");
+  public SelenideElement getFilterInput(String widgetName,String inputField) {
+    return $("div[id$='widget-filter-content']").waitUntil(appear, DEFAULT_TIMEOUT)
+        .$$("div.widget-filter-panel div.ui-g").filter(text(inputField)).first().$("input.ui-inputfield");
+  }
+  
+  public SelenideElement getFilterCheckBox(String widgetName,String inputField) {
+    return $("div[id$='widget-filter-content']").waitUntil(appear, DEFAULT_TIMEOUT)
+        .$$("div.widget-filter-panel div.ui-g").filter(text(inputField)).first();
+  }
+  
+  public SelenideElement getCloseCheckBox() {
+    return $("div.ui-selectcheckboxmenu-panel").waitUntil(appear, DEFAULT_TIMEOUT)
+        .$("a.ui-selectcheckboxmenu-close");
+  }
+  
+  public SelenideElement getValueOfCheckBox(String value) {
+    return $("div.ui-selectcheckboxmenu-items-wrapper").waitUntil(appear, DEFAULT_TIMEOUT)
+        .$$("li.ui-selectcheckboxmenu-item").filter(text(value)).first().$("div.ui-chkbox-box");
   }
 
   public SelenideElement getApplyButtonFilter(String widgetName) {
-    return $(".filter-overlay-panel__footer").waitUntil(appear, DEFAULT_TIMEOUT).$$("button").filter(text(APPLY_BUTTON))
+    return $("div.filter-overlay-panel__footer").waitUntil(appear, DEFAULT_TIMEOUT).$$("button[id$='apply-button']").filter(text(APPLY_BUTTON))
         .first();
-  }
-
-  public SelenideElement getTaskOfTaskWidgetByIndex(int index) {
-    int startIndex = getIndexWidgetByColumn("Start",DASHBOARD_TASK_TABLE_CLASS);
-    return  getWidgetContainer().$(DASHBOARD_TASK_TABLE_CLASS).waitUntil(appear, DEFAULT_TIMEOUT).$$(WIDGET_ROWS_CLASS)
-        .get(index).$$("td").get(startIndex);
   }
 
   public SelenideElement getDestroyLink() {
@@ -108,5 +120,18 @@ public class NewDashBoardPage extends TemplatePage {
   public SelenideElement getConfirmDestroyButton() {
     return $("div[id$='destroy-case-confirmation-dialog']").waitUntil(appear, DEFAULT_TIMEOUT)
         .$("button[id$='confirm-destruction']");
+  }
+  
+  public SelenideElement getAdditionalCaseDetailsPage() {
+    return $("a[id$='additional-case-details-link']");
+  }
+  
+  public ElementsCollection getAdditionalFieldsPage() {
+    return $("div[id$='additional-case-detail-table']").waitUntil(appear, DEFAULT_TIMEOUT).$$(WIDGET_ROWS_CLASS);
+  }
+  
+  public SelenideElement getNextPageWidget(String widgetName) {
+    return  getWidgetContainer().$$("form.table-widget-form").filter(text(widgetName)).first()
+        .$("a.ui-paginator-next");
   }
 }
