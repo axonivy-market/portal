@@ -9,6 +9,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.junit.Before;
 import org.junit.Rule;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
 import org.openqa.selenium.JavascriptExecutor;
@@ -43,6 +44,11 @@ public class BaseTest {
     } else {
       browserType = BrowserType.valueOf(PropertyLoader.getBrowserType());
     }
+  }
+  
+  @AfterEach
+  public void tearDown() {
+    WebDriverRunner.getWebDriver().quit();
   }
   
   public Browser getBrowser() {
@@ -125,7 +131,7 @@ public class BaseTest {
 
   public void launchBrowserAndGotoRelativeLink(String relativeProcessStartLink) {
     try {
-      //browser.initWebDriver(WebDriverRunner.getWebDriver());
+      //browser.initWebDriver(browserType, getDriverPath());
       //browser.launch(browserType, UrlHelpers.generateAbsoluteProcessStartLink(relativeProcessStartLink), getDriverPath());
       open(UrlHelpers.generateAbsoluteProcessStartLink(relativeProcessStartLink));
     } catch (Exception e) {

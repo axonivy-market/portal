@@ -123,7 +123,7 @@ public class NewDashBoardPage extends TemplatePage {
   }
   
   public SelenideElement getAdditionalCaseDetailsPage() {
-    return $("a[id$='additional-case-details-link']");
+    return $("a[id$='additional-case-details-link']").waitUntil(appear, DEFAULT_TIMEOUT);
   }
   
   public ElementsCollection getAdditionalFieldsPage() {
