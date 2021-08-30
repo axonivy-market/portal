@@ -114,6 +114,13 @@ In engine
    project.
 #. Follow detailed migration notes for each version below.
 
+Migrate 9.2 to 9.3
+------------------
+
+We changed the way to navigate to Task Analysis component. Process ``Start Processes/TaskAnalysis/start.ivp`` is moved to new place ``Start Processes/PortalStart/showTaskAnalysis.ivp``. 
+Refer to :ref:`Task Analysis call<components-additional-component-task-analysis-how-to-use>` for more details.
+
+
 Migrate 9.1 to 9.2
 ------------------
 
