@@ -1,5 +1,0 @@
-CaseNoteHistoryData #class
-ch.ivy.addon.portal.generic #namespace
-caseId Long #field
-histories List<ch.ivy.addon.portalkit.bo.History> #field
-internalCase ch.ivyteam.ivy.workflow.ICase #field
