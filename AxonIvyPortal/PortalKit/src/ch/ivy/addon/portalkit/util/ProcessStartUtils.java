@@ -7,9 +7,11 @@ import java.util.Optional;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
-import ch.ivy.addon.portalkit.enums.ProcessType;
 import ch.ivy.addon.portalkit.configuration.UserProcess;
+import ch.ivy.addon.portalkit.enums.ProcessType;
+import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
+import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivyteam.ivy.application.ActivityState;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.application.IProcessModel;
@@ -88,5 +90,13 @@ public class ProcessStartUtils {
 
   public static boolean isExpressProcess(ProcessType processType) {
     return ProcessType.EXPRESS_PROCESS.equals(processType);
+  }
+  
+  public static String findFriendlyRequestPathContainsKeyword(String keyword){
+    return IvyExecutor.executeAsSystem(() -> {
+      ProcessStartCollector collector = new ProcessStartCollector();
+      Object portalStartPmvId = Ivy.session().getAttribute(SessionAttribute.PORTAL_START_PMV_ID.toString());
+      return collector.findFriendlyRequestPathContainsKeyword(keyword, portalStartPmvId);
+    });
   }
 }

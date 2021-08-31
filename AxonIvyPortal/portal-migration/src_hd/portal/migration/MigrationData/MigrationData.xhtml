@@ -5,41 +5,58 @@
   <ui:composition template="/layouts/basic-8.xhtml">
     <ui:define name="title">Migration Portal Data</ui:define>
     <ui:define name="content">
-      <h:form id="form">
-        <p:messages showSummary="true" showDetail="true"/>
-
-        <h1>Migrate data to the latest structure of Portal</h1>
+      <style>
+        .migration-content { margin: auto 1em; }
         
-        <h:panelGroup layout="block" rendered="#{data.mustMigrateData}">
-          <h4>Your engine has some Portal apps which have version is obsoleted.</h4>
-          <h4>Please start the migration to make sure everything is working fine!</h4>
+        .pre { color: red;
+            font-style: italic; }
+      </style>
+
+      <h:form id="migration-form" styleClass="card ui-g container">
+        <h2 class="ui-g-12">
+          <i class="si si-help-wheel" /> Migrate old Portal configuration
+        </h2>
+
+        <h:panelGroup id="migration-content" layout="block" styleClass="ui-g-12 migration-content">
+          <p>
+            This process informs you in detail about incompatibilities that were introduced between Portal versions and
+            helps you what needs to be done to make your existing Portal working with the current Axon Ivy Engine by
+            clicking on <a href="#migration-form:proceed"><b>Start Migration</b></a> button.
+          </p>
           <h4>Restart ivy engine after the finish.</h4>
-        </h:panelGroup>
-        
-        <h:panelGroup layout="block" rendered="#{!data.mustMigrateData}" style="color:green;">
-          <h4>Your data is good, don't need to run migrate.</h4>
-          <h4>Please close this dialog!</h4>
-        </h:panelGroup>
 
+          <p:messages styleClass="ui-g-12" showSummary="true" showDetail="true" />
+
+          <div class="ui-g-12">
+            <h:panelGroup id="command-btns" layout="block" styleClass="command-btns">
+              <p:commandLink id="close" actionListener="#{logic.close}" value="Close" />
+              <p:spacer width="10px" />
+              <p:commandButton id="proceed" actionListener="#{logic.proceed}" widgetVar="proceed"
+                value="Start Migration" update="migration-form" process="migration-form"
+                disabled="#{!data.mustMigrateData}"
+                icon="si si-cog-play" />
+            </h:panelGroup>
+          </div>
+
+          <br />
+          <div class="ui-g-12">
+            <div class="section">
+              <h2>Details</h2>
+              <h3>
+                <i class="si si-navigation-menu-horizontal" /> Migrate to 9.3
+              </h3>
+              <ul>
+                <li>Migrate Announcement</li>
+                <li>Migrate Task/Case filters</li>
+                <li>Migrate Express processes</li>
+                <li>Migrate Charts</li>
+                <li>Migrate Task analysis filters</li>
+              </ul>
+            </div>
+          </div>
+
+        </h:panelGroup>
       </h:form>
-
-      <br />
-      <div class="command-btns">
-        <p:commandLink id="close" actionListener="#{logic.close}" value="Close" />
-        <p:spacer width="10px" />
-        <p:commandButton id="proceed" actionListener="#{logic.proceed}" widgetVar="proceed" value="Migrate data" onclick="disableClick()"
-          oncomplete="enableClose();" update="form" process="form" disabled="#{!data.mustMigrateData}" />
-      </div>
-      <script>
-        function disableClick() {
-          PF('proceed').disable();
-          $("[id$='form:close']").toggleClass("ui-state-disabled");
-        };
-        
-        function enableClose() {
-          $("[id$='form:close']").toggleClass("ui-state-disabled");
-        };
-      </script>
 
     </ui:define>
   </ui:composition>

@@ -111,9 +111,13 @@ with following code:
 
 .. code-block:: java
 
-		import javax.faces.context.FacesContext;
-		String taskAnalysisUrl = ivy.html.startRef("Start Processes/TaskAnalysis/start.ivp");
-		FacesContext.getCurrentInstance().getExternalContext().redirect(taskAnalysisUrl);
+      import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
+      import java.util.HashMap;
+      import javax.faces.context.FacesContext;
+
+      String taskAnalysisUrl = PortalNavigator.buildUrlByKeyword("showTaskAnalysis.ivp", "Start Processes/PortalStart/showTaskAnalysis.ivp", new HashMap());
+      FacesContext.getCurrentInstance().getExternalContext().redirect(taskAnalysisUrl);
+
 
 .. _components-additional-component-process-chain:
 
