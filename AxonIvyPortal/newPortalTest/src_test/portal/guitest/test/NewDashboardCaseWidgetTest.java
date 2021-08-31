@@ -39,7 +39,7 @@ import portal.guitest.page.NewDashBoardPage;
  * <a href="https://developer.axonivy.com/doc/dev/concepts/testing/web-testing.html">WebTesting docs</a>
  * </p>
  */
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class NewDashboardCaseWidgetTest extends BaseTest {
 
   // URL
