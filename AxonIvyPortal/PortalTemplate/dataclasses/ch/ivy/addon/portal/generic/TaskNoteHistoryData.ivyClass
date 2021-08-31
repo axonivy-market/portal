@@ -1,6 +1,0 @@
-TaskNoteHistoryData #class
-ch.ivy.addon.portal.generic #namespace
-excludeSystemNotes Boolean #field
-notes java.util.List<ch.ivyteam.ivy.workflow.INote> #field
-task ch.ivyteam.ivy.workflow.ITask #field
-taskId Long #field
