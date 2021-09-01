@@ -15,7 +15,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.configuration.Announcement;
 import ch.ivy.addon.portalkit.configuration.LocalizationContent;
-import ch.ivy.addon.portalkit.enums.JsonVariable;
+import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyLanguageResultDTO;
 import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
@@ -23,7 +23,7 @@ import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public class AnnouncementService {
-  private static final String ANNOUNCEMENT = JsonVariable.ANNOUNCEMENT.key;
+  private static final String ANNOUNCEMENT = PortalVariable.ANNOUNCEMENT.key;
   private static final String ANNOUNCEMENT_CACHE_ENTRY = "ANNOUNCEMENT";
   private static AnnouncementService instance;
 

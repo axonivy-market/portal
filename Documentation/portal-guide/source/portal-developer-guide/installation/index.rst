@@ -114,6 +114,21 @@ In engine
    project.
 #. Follow detailed migration notes for each version below.
 
+
+Migrate to 9.3
+--------------
+
+#. Deploy :download:`portal-migration.iar <documents/portal-migration-1.0.0-SNAPSHOT.iar>` project to your Ivy application and run it by access link
+   ``your_host/your_application/pro/portal-migration/175F92F71BC45295/startMigrateConfiguration.ivp``
+   
+   If you have many applications, deploy to only one application and run it by access link
+   ``your_host/your_application/pro/portal-migration/175F92F71BC45295/startMigrateConfiguration.ivp``
+   
+   Example: ``https://portal.io/Portal/pro/portal-migration/175F92F71BC45295/startMigrateConfiguration.ivp``
+
+   .. important:: Run migration process only once
+
+
 Migrate 9.2 to 9.3
 ------------------
 

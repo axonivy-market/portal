@@ -1,7 +1,7 @@
 package ch.ivy.addon.portalkit.service;
 
 import ch.ivy.addon.portalkit.bo.CaseColumnsConfiguration;
-import ch.ivy.addon.portalkit.enums.JsonVariable;
+import ch.ivy.addon.portalkit.enums.PortalVariable;
 
 public class CaseColumnsConfigurationService extends JsonConfigurationService<CaseColumnsConfiguration> {
 
@@ -42,6 +42,6 @@ public class CaseColumnsConfigurationService extends JsonConfigurationService<Ca
 
   @Override
   public String getConfigKey() {
-    return JsonVariable.CASE_COLUMN.key;
+    return PortalVariable.CASE_COLUMN.key;
   }
 }
