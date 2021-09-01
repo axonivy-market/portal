@@ -33,6 +33,9 @@ public abstract class AbstractFilterService<T extends AbstractFilterData<?>> ext
 
   public List<T> getPublicFilter(Long filterGroupId) {
     try {
+      // Will be removed on Portal 10
+      DeprecatedFilterService.recoverOldFiler(getType(), filterGroupId, true);
+
       Filter<T> publicFilterQuery =
           repo().search(getType()).textField(FILTER_TYPE).isEqualToIgnoringCase(ALL_USERS.name()).and()
               .numberField(FILTER_GROUP_ID).isEqualTo(filterGroupId);
@@ -50,6 +53,9 @@ public abstract class AbstractFilterService<T extends AbstractFilterData<?>> ext
 
   public List<T> getPublicFilterForAdmin(Long filterGroupId) {
     try {
+      // Will be removed on Portal 10
+      DeprecatedFilterService.recoverOldFiler(getType(), filterGroupId, true);
+      
       Filter<T> publicFilterQuery =
           repo().search(getType()).textField(FILTER_TYPE).isEqualToIgnoringCase(ALL_USERS.name()).or().textField(FILTER_TYPE).isEqualToIgnoringCase(ALL_ADMINS.name()).and()
               .numberField(FILTER_GROUP_ID).isEqualTo(filterGroupId);
@@ -67,6 +73,9 @@ public abstract class AbstractFilterService<T extends AbstractFilterData<?>> ext
 
   public List<T> getPrivateFilterForCurrentUser(Long filterGroupId) {
     try {
+      // Will be removed on Portal 10
+      DeprecatedFilterService.recoverOldFiler(getType(), filterGroupId, false);
+      
       Filter<T> privateFilterQuery =
           repo().search(getType()).numberField(USER_ID).isEqualTo(Ivy.session().getSessionUser().getId()).and()
               .textField(FILTER_TYPE).isEqualToIgnoringCase(ONLY_ME.name()).and().numberField(FILTER_GROUP_ID)
