@@ -70,7 +70,7 @@ pipeline {
 
   post {
     always {
-      archiveArtifacts artifacts: "AxonIvyPortal/newPortalTest/target/*/*/*.jpg, AxonIvyPortal/newPortalTest/target/testEngineOut.log", allowEmptyArchive: true
+      archiveArtifacts artifacts: "AxonIvyPortal/newPortalTest/target/selenide/reports/**, AxonIvyPortal/newPortalTest/target/testEngineOut.log", allowEmptyArchive: true
       junit allowEmptyResults: true, testResults: '**/surefire-reports/TEST-*.xml'
     }
   }
