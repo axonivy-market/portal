@@ -42,6 +42,7 @@ import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.MARCH_CM
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.MAY_CMS;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.MONDAY_CMS;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.NAME;
+import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.NEW_CHART_CMS;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.NORMAL_PRIORITY_KEY;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.NOVEMBER_CMS;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.NO_CATEGORY_CMS;
@@ -64,7 +65,6 @@ import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.TODAY_EX
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.TUESDAY_CMS;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.USER_ID;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.WEDNESDAY_CMS;
-import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.NEW_CHART_CMS;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -1174,11 +1174,14 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
   }
 
   public DisplayName getDisplayNameInUserLanguageForChart(StatisticChart statisticChart) {
+    DisplayName defaultDisplayName = new DisplayName();
+    defaultDisplayName.setLocale(Ivy.session().getContentLocale());
+    defaultDisplayName.setValue("");
     List<String> appLanguages = Arrays.asList(Ivy.wf().getApplication().getName());
     String userName = Ivy.session().getSessionUserName();
     DisplayName currentDisplayName = CollectionUtils.emptyIfNull(statisticChart.getNames()).stream()
         .filter(name -> StatisticService.equalsDisplayNameLocale(name, LanguageService.newInstance().findUserLanguages(userName, appLanguages).getIvyLanguages().get(0).getUserLanguage()))
-        .findFirst().get();
+        .findFirst().orElse(defaultDisplayName);
     return currentDisplayName;
   }
 
