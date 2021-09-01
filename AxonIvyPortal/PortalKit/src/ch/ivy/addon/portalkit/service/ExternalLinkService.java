@@ -3,10 +3,10 @@ package ch.ivy.addon.portalkit.service;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.configuration.ExternalLink;
-import ch.ivy.addon.portalkit.enums.JsonVariable;
+import ch.ivy.addon.portalkit.enums.PortalVariable;
 
 public class ExternalLinkService extends JsonConfigurationService<ExternalLink>{
-  private static final String EXTERNAL_LINKS = JsonVariable.EXTERNAL_LINK.key;
+  private static final String EXTERNAL_LINKS = PortalVariable.EXTERNAL_LINK.key;
   private static ExternalLinkService instance;
 
   private ExternalLinkService() {}
