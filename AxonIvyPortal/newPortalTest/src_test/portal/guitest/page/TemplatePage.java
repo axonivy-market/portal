@@ -1,5 +1,9 @@
 package portal.guitest.page;
 
+import static com.codeborne.selenide.Condition.and;
+import static com.codeborne.selenide.Condition.exist;
+import static com.codeborne.selenide.Condition.visible;
+
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
@@ -15,6 +19,7 @@ import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.WebDriverRunner;
 import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
@@ -31,6 +36,7 @@ public abstract class TemplatePage extends AbstractPage {
   public static final String CLASS_PROPERTY = "class";
   private static final String HOME_BREADCRUMB_SELECTOR = ".portal-breadcrumb .ui-menuitem-link:first-child";
   public static final String CURRENT_BREADCRUMB_SELECTOR = ".portal-breadcrumb li:last-child .ui-menuitem-link.ui-state-disabled";
+  public final long DEFAULT_TIMEOUT = getTimeOutForLocator() * 1000;
 
   public TemplatePage() {
     super.init(WebDriverRunner.getWebDriver());
@@ -40,6 +46,10 @@ public abstract class TemplatePage extends AbstractPage {
   //If page load more than 45s, mark it failed by timeout
   protected long getTimeOutForLocator() {
     return 45L;
+  }
+  
+  protected Condition getClickableCondition() {
+    return and("should be clickable", visible, exist);
   }
 
   protected void waitForLocatorDisplayed(String locator) {
