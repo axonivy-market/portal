@@ -1,6 +1,6 @@
-package ch.ivy.addon.portalkit.enums;
+package portalmigration.enums;
 
-public enum JsonVariable {
+public enum PortalVariable {
   ANNOUNCEMENT("Portal.Announcement"),
   TASK_ANALYSIS_FILTER("Portal.TaskAnalysisFilters"),
   THIRD_PARTY_APP("Portal.ThirdPartyApplications"),
@@ -18,7 +18,7 @@ public enum JsonVariable {
 
   public String key;
 
-  private JsonVariable(String key) {
+  private PortalVariable(String key) {
     this.key = key;
   }
 
