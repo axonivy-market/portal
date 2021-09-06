@@ -17,4 +17,19 @@ public class NewDashBoardPage extends TemplatePage {
     $("button[id='switch-to-edit-mode']").waitUntil(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
   }
 
+  public void addWidget() {
+    $("button[id='add-button']").waitUntil(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+  }
+
+  private void addWidgetByName(String name) {
+    $("div[id='new-widget-dialog-content_content']").waitUntil(appear, DEFAULT_TIMEOUT)
+        .$$("div.new-widget-dialog__item").filter(text(name)).first().$("div.ui-widget-content")
+        .$("button[id^='new-widget-dialog-content']").shouldBe(getClickableCondition()).click();
+  }
+
+  public CaseEditWidgetNewDashBoardPage addNewCaseWidget() {
+    addWidgetByName("Case List");
+    return new CaseEditWidgetNewDashBoardPage();
+  }
+
 }
