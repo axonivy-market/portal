@@ -84,7 +84,7 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public ElementsCollection countRelatedCases() {
-    return $("div[id$='related-cases']").$$("td.name-column");
+    return $("div[id$='related-cases']").waitUntil(appear, DEFAULT_TIMEOUT).$$("td.name-column");
   }
 
   public void openFilterWidget() {
