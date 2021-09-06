@@ -71,7 +71,6 @@ public class NewDashboardCaseWidgetTest extends BaseTest {
   public void setup() {
     super.setup();
     newDashBoardPage = new NewDashBoardPage();
-    createTestingTasks();
   }
 
   private void openNewDashBoard() {
@@ -109,7 +108,8 @@ public class NewDashboardCaseWidgetTest extends BaseTest {
 
   @Test
   public void testDestroyCaseWithPermission() {
-    login(TestAccount.ADMIN_USER);
+    redirectToRelativeLink(createTestingTasksUrl);
+    login(TestAccount.ADMIN_USER);  
     openNewDashBoard();
     CaseWidgetNewDashBoardPage caseWidget = newDashBoardPage.openCaseWidget(YOUR_CASES_WIDGET);
     caseWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
@@ -122,6 +122,7 @@ public class NewDashboardCaseWidgetTest extends BaseTest {
 
   @Test
   public void testDestroyCaseWithoutPermission() {
+    redirectToRelativeLink(createTestingTasksUrl);
     login(TestAccount.DEMO_USER);
     openNewDashBoard();
     CaseWidgetNewDashBoardPage caseWidget = newDashBoardPage.openCaseWidget(YOUR_CASES_WIDGET);
@@ -132,6 +133,7 @@ public class NewDashboardCaseWidgetTest extends BaseTest {
 
   @Test
   public void testOpenRelatedTasksOfCase() {
+    redirectToRelativeLink(createTestingTasksUrl);
     login(TestAccount.DEMO_USER);
     openNewDashBoard();
     CaseWidgetNewDashBoardPage caseWidget = newDashBoardPage.openCaseWidget(YOUR_CASES_WIDGET);
@@ -221,6 +223,8 @@ public class NewDashboardCaseWidgetTest extends BaseTest {
     CaseEditWidgetNewDashBoardPage caseEditWidget = caseWidget.openEditWidget();
     caseEditWidget.changeWidgetTitle("New Your Cases");
     caseEditWidget.filterCaseName("TestCase");
+    caseEditWidget.filterCaseState();
+    caseEditWidget.selectStateAsInProgress();
     caseEditWidget.preview();
     caseEditWidget.countCases().shouldHaveSize(10);
     caseEditWidget.nextPageTable();
@@ -232,6 +236,20 @@ public class NewDashboardCaseWidgetTest extends BaseTest {
     caseWidgetEdited.countCases("TestCase").shouldHaveSize(10);
     caseWidgetEdited.nextPageTable();
     caseWidgetEdited.countCases("TestCase").shouldHaveSize(2); 
+  }
+  
+  @Test
+  public void testAddNewCaseList() {
+    redirectToRelativeLink(createTestingTasksUrl);
+    login(TestAccount.ADMIN_USER);
+    openNewDashBoard();
+    newDashBoardPage.switchToEditMode();
+    newDashBoardPage.addWidget();
+    CaseEditWidgetNewDashBoardPage newCaseWidget = newDashBoardPage.addNewCaseWidget();
+    newCaseWidget.changeWidgetTitle("New Your Cases");
+    newCaseWidget.save();
+    CaseWidgetNewDashBoardPage caseWidget = newDashBoardPage.openCaseWidget("New Your Cases");
+    caseWidget.expand().shouldHaveSize(1);
   }
   
 }
