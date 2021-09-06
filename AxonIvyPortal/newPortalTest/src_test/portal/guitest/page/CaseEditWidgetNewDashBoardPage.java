@@ -37,6 +37,27 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
     return $(caseEditWidgetId).waitUntil(appear, DEFAULT_TIMEOUT).$("div[id$='user-filter']").$$("div").get(index + 1)
         .$("input");
   }
+  
+  private SelenideElement getAvailableFilterCheckbox(String filterName) {
+    int index = getIndexFiltertByName(filterName);
+    return $(caseEditWidgetId).waitUntil(appear, DEFAULT_TIMEOUT).$("div[id$='user-filter']").$$("div").get(index + 1)
+        .$(".ui-selectcheckboxmenu");
+  }
+  
+  
+  private SelenideElement getValueOfCheckBox(String value) {
+    return $("div.ui-selectcheckboxmenu-items-wrapper").waitUntil(appear, DEFAULT_TIMEOUT)
+        .$$("li.ui-selectcheckboxmenu-item").filter(text(value)).first().$("div.ui-chkbox-box");
+  }
+  
+  private SelenideElement getCloseCheckBox() {
+    return $("div.ui-selectcheckboxmenu-panel").waitUntil(appear, DEFAULT_TIMEOUT).$("a.ui-selectcheckboxmenu-close");
+  }
+  
+  public void selectStateAsInProgress() {
+    getValueOfCheckBox("In progress").shouldBe(getClickableCondition()).click();
+    getCloseCheckBox().shouldBe(getClickableCondition()).click();
+  }
 
   private SelenideElement widgetTitle() {
     return $(caseEditWidgetId).waitUntil(appear, DEFAULT_TIMEOUT).$("span[id$='widget-title-group']")
@@ -55,6 +76,10 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
 
   public void filterCaseName(String caseName) {
     getAvailableFilterInput(FILTER_CASE_NAME).sendKeys(caseName);
+  }
+  
+  public void filterCaseState() {
+    getAvailableFilterCheckbox(FILTER_CASE_STATE).shouldBe(getClickableCondition()).click();
   }
 
   private ElementsCollection getRowOfTableCasePreview() {
