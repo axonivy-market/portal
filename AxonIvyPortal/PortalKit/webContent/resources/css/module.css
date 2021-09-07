@@ -4511,6 +4511,16 @@ body .ui-dialog.ui-widget.export-express-dialog {
 .portal-exception-detail-group .error-value {
   word-break: break-all;
 }
+
+.message-details {
+  display: none;
+}
+
+.message-details .message,
+.message-details .stack-trace {
+  font-weight: bold;
+  padding: 0;
+}
 /*==================== END EXCEPTION ===================*/
 
 /* Fix bug: calendar button jumped when clicked (Edge, Chrome) */
