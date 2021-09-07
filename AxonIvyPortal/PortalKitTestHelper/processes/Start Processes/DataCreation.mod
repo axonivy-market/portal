@@ -137,6 +137,16 @@ Dt0 @EndTask f123 '' #zField
 Dt0 @StartRequest f126 '' #zField
 Dt0 @PushWFArc f144 '' #zField
 Dt0 @PushWFArc f119 '' #zField
+Dt0 @StartRequest f120 '' #zField
+Dt0 @EndTask f121 '' #zField
+Dt0 @UserDialog f124 '' #zField
+Dt0 @PushWFArc f125 '' #zField
+Dt0 @PushWFArc f122 '' #zField
+Dt0 @StartRequest f127 '' #zField
+Dt0 @EndTask f128 '' #zField
+Dt0 @GridStep f130 '' #zField
+Dt0 @PushWFArc f131 '' #zField
+Dt0 @PushWFArc f129 '' #zField
 >Proto Dt0 Dt0 DataCreation #zField
 Ct0 @TextInP .type .type #zField
 Ct0 @TextInP .processKind .processKind #zField
@@ -1246,6 +1256,74 @@ Dt0 f126 49 1345 30 30 -37 24 #rect
 Dt0 f126 @|StartRequestIcon #fIcon
 Dt0 f144 79 1360 192 1360 #arcP
 Dt0 f119 384 1360 473 1360 #arcP
+Dt0 f120 outLink testThrowableError.ivp #txt
+Dt0 f120 inParamDecl '<> param;' #txt
+Dt0 f120 requestEnabled true #txt
+Dt0 f120 triggerEnabled false #txt
+Dt0 f120 callSignature testThrowableError() #txt
+Dt0 f120 caseData businessCase.attach=true #txt
+Dt0 f120 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>testThrowableError.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Dt0 f120 @C|.responsibility Everybody #txt
+Dt0 f120 49 1505 30 30 -50 23 #rect
+Dt0 f120 @|StartRequestIcon #fIcon
+Dt0 f121 305 1505 30 30 0 15 #rect
+Dt0 f121 @|EndIcon #fIcon
+Dt0 f124 dialogId ch.ivy.addon.portalkit.component.IconSelection #txt
+Dt0 f124 startMethod start() #txt
+Dt0 f124 requestActionDecl '<> param;' #txt
+Dt0 f124 responseMappingAction 'out=in;
+' #txt
+Dt0 f124 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Test throwable</name>
+    </language>
+</elementInfo>
+' #txt
+Dt0 f124 136 1498 112 44 -40 -8 #rect
+Dt0 f124 @|UserDialogIcon #fIcon
+Dt0 f125 79 1520 136 1520 #arcP
+Dt0 f122 248 1520 305 1520 #arcP
+Dt0 f127 outLink startTest500.ivp #txt
+Dt0 f127 inParamDecl '<> param;' #txt
+Dt0 f127 requestEnabled true #txt
+Dt0 f127 triggerEnabled false #txt
+Dt0 f127 callSignature startTest500() #txt
+Dt0 f127 caseData businessCase.attach=true #txt
+Dt0 f127 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>startTest500.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Dt0 f127 @C|.responsibility Everybody #txt
+Dt0 f127 49 1617 30 30 -21 17 #rect
+Dt0 f127 @|StartRequestIcon #fIcon
+Dt0 f128 305 1617 30 30 0 15 #rect
+Dt0 f128 @|EndIcon #fIcon
+Dt0 f130 actionTable 'out=in;
+' #txt
+Dt0 f130 actionCode 'import ch.ivyteam.ivy.bpm.error.BpmError;
+BpmError.create("frame:unsupported:url").withMessage("only relative urls are supported (security reasons)").throwError();' #txt
+Dt0 f130 security system #txt
+Dt0 f130 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Test 500 error</name>
+    </language>
+</elementInfo>
+' #txt
+Dt0 f130 136 1610 112 44 -38 -8 #rect
+Dt0 f130 @|StepIcon #fIcon
+Dt0 f131 79 1632 136 1632 #arcP
+Dt0 f129 248 1632 305 1632 #arcP
 >Proto Dt0 .type portalKit_test.DataCreationData #txt
 >Proto Dt0 .processKind NORMAL #txt
 >Proto Dt0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1473,6 +1551,14 @@ Dt0 f144 head S10 g0 #connect
 Dt0 f126 mainOut f144 tail #connect
 Dt0 S10 g1 f119 tail #connect
 Dt0 f119 head f123 mainIn #connect
+Dt0 f120 mainOut f125 tail #connect
+Dt0 f125 head f124 mainIn #connect
+Dt0 f124 mainOut f122 tail #connect
+Dt0 f122 head f121 mainIn #connect
+Dt0 f127 mainOut f131 tail #connect
+Dt0 f131 head f130 mainIn #connect
+Dt0 f130 mainOut f129 tail #connect
+Dt0 f129 head f128 mainIn #connect
 Ct0 f139 head f127 mainIn #connect
 Ct0 f141 head f122 in #connect
 Ct0 g0 m f0 tail #connect
