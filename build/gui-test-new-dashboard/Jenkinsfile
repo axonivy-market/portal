@@ -16,7 +16,7 @@ pipeline {
   }
 
   parameters {
-      string(name: 'testPatternToRun', defaultValue: 'portal.guitest.userexample.test.*Test,portal.guitest.test.*Test', description: 'Test pattern to run')
+      string(name: 'testPatternToRun', defaultValue: 'om.axonivy.portal.selenium.test.*Test', description: 'Test pattern to run')
       string(name: 'engineDownloadURL', defaultValue: '-Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly/axonivy-engine-windows.zip', description: '''Where to download engine? e.g.
         -Divy.engine.download.url=-Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly/axonivy-engine-windows.zip for nightly master
         -Divy.engine.download.url=-Divy.engine.download.url=https://developer.axonivy.com/permalink/dev/axonivy-engine-windows.zip for dev master
@@ -25,7 +25,7 @@ pipeline {
   }
 
   environment {
-    engineDir = "$env.WORKSPACE/AxonIvyPortal/newPortalTest/engine"
+    engineDir = "$env.WORKSPACE/AxonIvyPortal/portal-selenium-test/engine"
   }
 
   stages {
@@ -57,7 +57,7 @@ pipeline {
           utils.killUnnecessaryProcessesToRunTest()
 
           echo '====================Execute maven for testing===================='
-          bat "mvn clean test -f AxonIvyPortal/newPortalTest/customized_pom.xml %engineDownloadURL% -Dtest=${params.testPatternToRun} -DbrowserType=${props.browserType} -DtrimStackTrace=false -Divy.engine.directory=engine -Divy.deploy.timeout.seconds=60 -Divy.compiler.engine.start.timeout=120"
+          bat "mvn clean test -f AxonIvyPortal/portal-selenium-test/customized_pom.xml %engineDownloadURL% -Dtest=${params.testPatternToRun} -DbrowserType=${props.browserType} -DtrimStackTrace=false -Divy.engine.directory=engine -Divy.deploy.timeout.seconds=60 -Divy.compiler.engine.start.timeout=120"
           utils.cleanDisk()
 
           node('master') {
@@ -70,7 +70,7 @@ pipeline {
 
   post {
     always {
-      archiveArtifacts artifacts: "AxonIvyPortal/newPortalTest/target/selenide/reports/*/*/*.png, AxonIvyPortal/newPortalTest/target/testEngineOut.log", allowEmptyArchive: true
+      archiveArtifacts artifacts: "AxonIvyPortal/portal-selenium-test/target/selenide/reports/*/*/*.png, AxonIvyPortal/portal-selenium-test/target/testEngineOut.log", allowEmptyArchive: true
       junit allowEmptyResults: true, testResults: '**/surefire-reports/TEST-*.xml'
     }
   }
