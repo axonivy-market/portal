@@ -164,6 +164,16 @@ Dt0 @EndTask f151 '' #zField
 Dt0 @GridStep f152 '' #zField
 Dt0 @PushWFArc f153 '' #zField
 Dt0 @PushWFArc f154 '' #zField
+Dt0 @StartRequest f114 '' #zField
+Dt0 @EndTask f115 '' #zField
+Dt0 @StartRequest f117 '' #zField
+Dt0 @EndTask f118 '' #zField
+Dt0 @UserDialog f156 '' #zField
+Dt0 @PushWFArc f157 '' #zField
+Dt0 @PushWFArc f116 '' #zField
+Dt0 @GridStep f158 '' #zField
+Dt0 @PushWFArc f159 '' #zField
+Dt0 @PushWFArc f155 '' #zField
 >Proto Dt0 Dt0 DataCreation #zField
 Ct0 @TextInP .type .type #zField
 Ct0 @TextInP .processKind .processKind #zField
@@ -1183,7 +1193,7 @@ Dt0 f125 1056 826 128 44 -56 -8 #rect
 Dt0 f126 1007 848 1056 848 #arcP
 Dt0 f127 1233 833 30 30 0 15 #rect
 Dt0 f128 1184 848 1233 848 #arcP
-Dt0 f137 433 1305 30 30 0 15 #rect
+Dt0 f137 433 1137 30 30 0 15 #rect
 Dt0 S10 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language lang="en">
@@ -1191,7 +1201,7 @@ Dt0 S10 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Dt0 S10 160 1298 192 44 -89 -8 #rect
+Dt0 S10 160 1130 192 44 -89 -8 #rect
 Dt0 f136 outLink createTaskWithSystemState.ivp #txt
 Dt0 f136 inParamDecl '<> param;' #txt
 Dt0 f136 requestEnabled true #txt
@@ -1209,9 +1219,9 @@ Dt0 f136 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Dt0 f136 @C|.responsibility Everybody #txt
-Dt0 f136 49 1305 30 30 -45 28 #rect
-Dt0 f139 79 1320 160 1320 #arcP
-Dt0 f138 352 1320 433 1320 #arcP
+Dt0 f136 49 1137 30 30 -45 28 #rect
+Dt0 f139 79 1152 160 1152 #arcP
+Dt0 f138 352 1152 433 1152 #arcP
 Dt0 f140 outLink createTestUserFavoriteProcess.ivp #txt
 Dt0 f140 inParamDecl '<> param;' #txt
 Dt0 f140 requestEnabled true #txt
@@ -1227,8 +1237,8 @@ Dt0 f140 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Dt0 f140 @C|.responsibility Everybody #txt
-Dt0 f140 808 1192 32 32 -114 25 #rect
-Dt0 f141 1097 1193 30 30 0 15 #rect
+Dt0 f140 808 1136 32 32 -114 25 #rect
+Dt0 f141 1097 1137 30 30 0 15 #rect
 Dt0 f142 actionTable 'out=in;
 ' #txt
 Dt0 f142 actionCode 'import ch.ivy.addon.portalkit.enums.ProcessType;
@@ -1298,9 +1308,9 @@ Dt0 f142 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Dt0 f142 920 1186 128 44 -56 -8 #rect
-Dt0 f143 1048 1208 1097 1208 #arcP
-Dt0 f144 840 1208 920 1208 #arcP
+Dt0 f142 920 1130 128 44 -56 -8 #rect
+Dt0 f143 1048 1152 1097 1152 #arcP
+Dt0 f144 840 1152 920 1152 #arcP
 Dt0 f145 outLink createSampleExpressWorkflowProcess.ivp #txt
 Dt0 f145 inParamDecl '<String filePath> param;' #txt
 Dt0 f145 inParamTable 'out.expressExportFilePath=param.filePath;
@@ -1318,8 +1328,8 @@ Dt0 f145 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Dt0 f145 @C|.responsibility Everybody #txt
-Dt0 f145 801 1297 30 30 -121 29 #rect
-Dt0 f146 1105 1297 30 30 0 15 #rect
+Dt0 f145 801 1265 30 30 -121 29 #rect
+Dt0 f146 1105 1265 30 30 0 15 #rect
 Dt0 f147 actionTable 'out=in;
 ' #txt
 Dt0 f147 actionCode 'import java.util.Map;
@@ -1339,9 +1349,9 @@ Dt0 f147 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Dt0 f147 912 1290 144 44 -65 -8 #rect
-Dt0 f148 831 1312 912 1312 #arcP
-Dt0 f149 1056 1312 1105 1312 #arcP
+Dt0 f147 912 1258 144 44 -65 -8 #rect
+Dt0 f148 831 1280 912 1280 #arcP
+Dt0 f149 1056 1280 1105 1280 #arcP
 Dt0 f150 outLink createThirdPartyApp.ivp #txt
 Dt0 f150 inParamDecl '<> param;' #txt
 Dt0 f150 requestEnabled true #txt
@@ -1358,8 +1368,8 @@ Dt0 f150 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Dt0 f150 @C|.responsibility Everybody #txt
-Dt0 f150 49 1457 30 30 -21 17 #rect
-Dt0 f151 433 1457 30 30 0 15 #rect
+Dt0 f150 49 1265 30 30 -21 17 #rect
+Dt0 f151 433 1265 30 30 0 15 #rect
 Dt0 f152 actionTable 'out=in;
 ' #txt
 Dt0 f152 actionCode 'import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
@@ -1391,9 +1401,71 @@ Dt0 f152 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Dt0 f152 184 1450 112 44 -39 -8 #rect
-Dt0 f153 79 1472 184 1472 #arcP
-Dt0 f154 296 1472 433 1472 #arcP
+Dt0 f152 184 1258 112 44 -39 -8 #rect
+Dt0 f153 79 1280 184 1280 #arcP
+Dt0 f154 296 1280 433 1280 #arcP
+Dt0 f114 outLink testThrowableError.ivp #txt
+Dt0 f114 inParamDecl '<> param;' #txt
+Dt0 f114 requestEnabled true #txt
+Dt0 f114 triggerEnabled false #txt
+Dt0 f114 callSignature testThrowableError() #txt
+Dt0 f114 caseData businessCase.attach=true #txt
+Dt0 f114 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>testThrowableError.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Dt0 f114 @C|.responsibility Everybody #txt
+Dt0 f114 49 1393 30 30 -21 17 #rect
+Dt0 f115 369 1393 30 30 0 15 #rect
+Dt0 f117 outLink startTest500.ivp #txt
+Dt0 f117 inParamDecl '<> param;' #txt
+Dt0 f117 requestEnabled true #txt
+Dt0 f117 triggerEnabled false #txt
+Dt0 f117 callSignature startTest500() #txt
+Dt0 f117 caseData businessCase.attach=true #txt
+Dt0 f117 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>startTest500.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Dt0 f117 @C|.responsibility Everybody #txt
+Dt0 f117 49 1521 30 30 -24 17 #rect
+Dt0 f118 369 1521 30 30 0 15 #rect
+Dt0 f156 dialogId ch.ivy.addon.portalkit.component.IconSelection #txt
+Dt0 f156 startMethod start() #txt
+Dt0 f156 requestActionDecl '<> param;' #txt
+Dt0 f156 responseMappingAction 'out=in;
+' #txt
+Dt0 f156 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Test throwable</name>
+    </language>
+</elementInfo>
+' #txt
+Dt0 f156 176 1386 112 44 -40 -8 #rect
+Dt0 f157 79 1408 176 1408 #arcP
+Dt0 f116 288 1408 369 1408 #arcP
+Dt0 f158 actionTable 'out=in;
+' #txt
+Dt0 f158 actionCode 'import ch.ivyteam.ivy.bpm.error.BpmError;
+BpmError.create("frame:unsupported:url").withMessage("only relative urls are supported (security reasons)").throwError();' #txt
+Dt0 f158 security system #txt
+Dt0 f158 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Test 500</name>
+    </language>
+</elementInfo>
+' #txt
+Dt0 f158 152 1514 112 44 -24 -8 #rect
+Dt0 f159 79 1536 152 1536 #arcP
+Dt0 f155 264 1536 369 1536 #arcP
 >Proto Dt0 .type portalKit_test.DataCreationData #txt
 >Proto Dt0 .processKind NORMAL #txt
 >Proto Dt0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1620,6 +1692,14 @@ Dt0 f150 mainOut f153 tail #connect
 Dt0 f153 head f152 mainIn #connect
 Dt0 f152 mainOut f154 tail #connect
 Dt0 f154 head f151 mainIn #connect
+Dt0 f114 mainOut f157 tail #connect
+Dt0 f157 head f156 mainIn #connect
+Dt0 f156 mainOut f116 tail #connect
+Dt0 f116 head f115 mainIn #connect
+Dt0 f117 mainOut f159 tail #connect
+Dt0 f159 head f158 mainIn #connect
+Dt0 f158 mainOut f155 tail #connect
+Dt0 f155 head f118 mainIn #connect
 Ct0 g0 m f2 tail #connect
 Ct0 f2 head f1 in #connect
 Ct0 f1 out f4 tail #connect
