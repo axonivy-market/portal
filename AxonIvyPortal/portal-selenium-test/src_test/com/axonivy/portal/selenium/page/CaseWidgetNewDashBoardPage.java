@@ -58,16 +58,18 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
     return getColumnsOfTableWidget().get(index);
   }
 
-  public void startCase(String caseName) {
+  public CaseDetailsWidgetNewDashBoardPage openDetailsCase(String caseName) {
     getCasesOfCaseWidgetHasName(caseName).first().shouldBe(getClickableCondition()).click();
+    return new CaseDetailsWidgetNewDashBoardPage();
   }
 
   public ElementsCollection countCases(String caseName) {
     return getCasesOfCaseWidgetHasName(caseName);
   }
 
-  public void startFirstCase() {
+  public CaseDetailsWidgetNewDashBoardPage openDetailsFirstCase() {
     getCaseOfCaseWidgetHasIndex(0).shouldBe(getClickableCondition()).click();
+    return new CaseDetailsWidgetNewDashBoardPage();
   }
 
   private SelenideElement getColumnOfCaseHasIndex(int index, String columnName) {
@@ -77,14 +79,6 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
 
   public SelenideElement stateOfFirstCase() {
     return getColumnOfCaseHasIndex(0, "state");
-  }
-
-  public ElementsCollection countRelatedTasks() {
-    return $("div[id$='related-tasks']").$$("td.related-task-name-column");
-  }
-
-  public ElementsCollection countRelatedCases() {
-    return $("div[id$='related-cases']").waitUntil(appear, DEFAULT_TIMEOUT).$$("td.name-column");
   }
 
   public void openFilterWidget() {
@@ -139,34 +133,10 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
         .filter(text("Apply")).first().shouldBe(getClickableCondition()).click();
   }
 
-  public void openAdditionalCaseDetailsPage() {
-    $("a[id$='additional-case-details-link']").waitUntil(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition())
-        .click();
-  }
-
-  public ElementsCollection countAdditionalFieldsPage() {
-    return $("div[id$='additional-case-detail-table']").waitUntil(appear, DEFAULT_TIMEOUT).$$("table tbody tr");
-  }
-
-  public SelenideElement firstAdditionalFieldsPage() {
-    return countAdditionalFieldsPage().first();
-  }
-
   public void nextPageTable() {
     $$("form.table-widget-form").filter(text(caseWidgetName)).first().$("a.ui-paginator-next")
         .shouldBe(getClickableCondition()).click();
   }
 
-  public SelenideElement destroyLink() {
-    return $("a[id$='destroy-case-link']");
-  }
-
-  public void openDestroyLink() {
-    destroyLink().shouldBe(getClickableCondition()).click();
-  }
-
-  public void confirmDestroy() {
-    $("div[id$='destroy-case-confirmation-dialog']").waitUntil(appear, DEFAULT_TIMEOUT)
-        .$("button[id$='confirm-destruction']").shouldBe(getClickableCondition()).click();
-  }
+  
 }

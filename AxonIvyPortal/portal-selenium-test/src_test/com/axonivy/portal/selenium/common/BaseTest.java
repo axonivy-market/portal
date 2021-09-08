@@ -23,7 +23,7 @@ import static com.codeborne.selenide.Selenide.*;
 public class BaseTest {
 
   private String designerLogoutUrl = "http://localhost:8081/designer/logout";
-  private final static String LOGIN_URL_PATTERN = "portalKitTestHelper/1636734E13CEC872/login.ivp?username=%s&password=%s";
+  private final static String LOGIN_URL_PATTERN = "/PortalKitTestHelper/1636734E13CEC872/login.ivp?username=%s&password=%s";
   private final static String NEW_DASHBOARD_URL_PATTERN = "/PortalTemplate/17065D04AF6FF0C0/dashboard.ivp";
   private BrowserType browserType;
 
@@ -75,7 +75,7 @@ public class BaseTest {
   protected String createExpressProcess = "axonIvyExpress/15798655494F25E1/AxonIvyExpressWF.ivp";
   protected String cleanSessionCacheUrl = "http://localhost:8081/designer/pro/PortalKitTestHelper/17208192E0AF4185/cleanSessionCache.ivp";
 
-  protected void openNewDashBoard() {
+  protected void redirectToNewDashBoard() {
     open(EngineUrl.createProcessUrl(NEW_DASHBOARD_URL_PATTERN));
   }
 
