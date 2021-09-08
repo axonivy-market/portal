@@ -5,11 +5,11 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class NewDashBoardPage extends TemplatePage {
 
-  public CaseWidgetNewDashBoardPage openCaseWidget(String caseWidgetName) {
+  public CaseWidgetNewDashBoardPage selectCaseWidget(String caseWidgetName) {
     return new CaseWidgetNewDashBoardPage(caseWidgetName);
   }
 
-  public TaskWidgetNewDashBoardPage openTaskWidget(String taskWidgetName) {
+  public TaskWidgetNewDashBoardPage selectTaskWidget(String taskWidgetName) {
     return new TaskWidgetNewDashBoardPage(taskWidgetName);
   }
 
