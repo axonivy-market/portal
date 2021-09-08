@@ -2,6 +2,7 @@ package portal.guitest.page;
 
 import static portal.guitest.common.Variable.CLIENT_SIDE_TIMEOUT;
 import static portal.guitest.common.Variable.SHOW_ENVIRONMENT_INFO;
+import static portal.guitest.common.Variable.SHOW_LEGACY_UI;
 
 import java.util.List;
 
@@ -55,6 +56,35 @@ public class AdminSettingsPage extends TemplatePage {
     }
   }
 
+  private void resetGlobalVariable(String variableName) {
+    WebElement table = findElementById("adminui:adminTabView:settingTable");
+    List<WebElement> tableRows = table.findElements(By.tagName("tr"));
+    for (WebElement row : tableRows) {
+      List<WebElement> columns = row.findElements(By.tagName("td"));
+      if (!CollectionUtils.isEmpty(columns)) {
+        WebElement keyColumn = columns.get(0);
+        if (keyColumn.getText().equals(variableName)) {
+          WebElement editButton = row.findElement(By.cssSelector("a[id$=reset]"));
+          click(editButton);
+          waitForElementPresent(By.id("adminui:resetConfirmationDialog"), true);
+          WebElement restoreButton = findElementById("adminui:reset-setting");
+          click(restoreButton);
+          return;
+        }
+      }
+    }
+  }
+
+  public void resetAllSettings() {
+    openSettingTab();
+    WebElement restoreAllToDefaultButton = findElementById("adminui:adminTabView:restore-all-to-default-button");
+    click(restoreAllToDefaultButton);
+    waitForElementPresent(By.id("adminui:reset-settings"), true);
+    WebElement restoreButton = findElementById("adminui:reset-settings");
+    click(restoreButton);
+    closeConfirmationDialog();
+  }
+
   private void saveGlobalVariable(String value, boolean isBooleanType) {
     if (!isBooleanType) {
       WebElement valueInput = findElementById("adminui:valueSetting");
@@ -97,6 +127,18 @@ public class AdminSettingsPage extends TemplatePage {
   public void setEnviromentInfo() {
     openSettingTab();
     editGlobalVariable(SHOW_ENVIRONMENT_INFO.getKey(), "true", true);
+    closeConfirmationDialog();
+  }
+
+  public void setShowLegacyUI() {
+    openSettingTab();
+    editGlobalVariable(SHOW_LEGACY_UI.getKey(), "true", true);
+    closeConfirmationDialog();
+  }
+
+  public void resetShowLegacyUI() {
+    openSettingTab();
+    resetGlobalVariable(SHOW_LEGACY_UI.getKey());
     closeConfirmationDialog();
   }
   
