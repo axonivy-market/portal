@@ -216,7 +216,6 @@ Bk7 @UserDialog f36 '' #zField
 Bk7 @GridStep f22 '' #zField
 Bk7 @Alternative f54 '' #zField
 Bk7 @PushWFArc f43 '' #zField
-Bk7 @PushWFArc f6 '' #zField
 Bk7 @InfoButton f3 '' #zField
 Bk7 @PushTrueWFInG-01 g0 '' #zField
 Bk7 @GridStep f1 '' #zField
@@ -224,6 +223,11 @@ Bk7 @PushWFArc f0 '' #zField
 Bk7 @GridStep f4 '' #zField
 Bk7 @PushWFArc f5 '' #zField
 Bk7 @PushWFArc f11 '' #zField
+Bk7 @Alternative f2 '' #zField
+Bk7 @PushWFArc f7 '' #zField
+Bk7 @PushWFArc f6 '' #zField
+Bk7 @UserDialog f9 '' #zField
+Bk7 @PushWFArc f10 '' #zField
 >Proto Bk7 Bk7 BpmnUserTask #zField
 Bk8 @TextInP .type .type #zField
 Bk8 @TextInP .processKind .processKind #zField
@@ -1969,7 +1973,7 @@ Pt0 f172 0 0.4166666666666667 0 -11 #arcLabel
 >Proto Pt0 .processKind NORMAL #txt
 >Proto Pt0 0 0 32 24 18 0 #rect
 >Proto Pt0 @|BIcon #fIcon
-Bk7 f8 704 160 660 160 #arcP
+Bk7 f8 704 160 716 160 #arcP
 Bk7 f36 dialogId ch.ivy.addon.portal.generic.PortalHome #txt
 Bk7 f36 startMethod start(ch.ivy.addon.portal.generic.view.TaskView) #txt
 Bk7 f36 requestActionDecl '<ch.ivy.addon.portal.generic.view.TaskView taskView> param;' #txt
@@ -1986,7 +1990,7 @@ Bk7 f36 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Bk7 f36 548 138 112 44 -45 -8 #rect
+Bk7 f36 604 138 112 44 -45 -8 #rect
 Bk7 f22 actionTable 'out=in;
 ' #txt
 Bk7 f22 actionCode 'import ch.ivyteam.ivy.request.IHttpRequest;
@@ -2001,20 +2005,9 @@ Bk7 f22 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Bk7 f22 396 138 112 44 -38 -8 #rect
+Bk7 f22 452 138 112 44 -38 -8 #rect
 Bk7 f54 268 144 32 32 0 16 #rect
-Bk7 f43 508 160 548 160 #arcP
-Bk7 f6 expr in #txt
-Bk7 f6 outCond 'ch.addon.portal.generic.userprofile.homepage.HomepageUtils.isShowDashboard(in.#homepage, in.#isShowDashboard)' #txt
-Bk7 f6 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>dashboard</name>
-    </language>
-</elementInfo>
-' #txt
-Bk7 f6 300 160 396 160 #arcP
-Bk7 f6 0 0.40625 0 -12 #arcLabel
+Bk7 f43 564 160 604 160 #arcP
 Bk7 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -2072,6 +2065,39 @@ Bk7 f5 284 176 340 256 #arcP
 Bk7 f5 1 284 256 #addKink
 Bk7 f5 1 0.42857142857142855 0 -10 #arcLabel
 Bk7 f11 77 160 124 160 #arcP
+Bk7 f2 364 144 32 32 0 16 #rect
+Bk7 f7 expr in #txt
+Bk7 f7 outCond 'ch.addon.portal.generic.userprofile.homepage.HomepageUtils.isShowDashboard(in.#homepage, in.#isShowDashboard)' #txt
+Bk7 f7 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>dashboard</name>
+    </language>
+</elementInfo>
+' #txt
+Bk7 f7 300 160 364 160 #arcP
+Bk7 f7 0 0.40625 0 -12 #arcLabel
+Bk7 f6 expr in #txt
+Bk7 f6 outCond ch.ivy.addon.portalkit.service.GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(ch.ivy.addon.portalkit.enums.GlobalVariable.SHOW_LEGACY_UI) #txt
+Bk7 f6 396 160 452 160 #arcP
+Bk7 f9 dialogId ch.ivy.addon.portal.generic.dashboard.PortalDashboard #txt
+Bk7 f9 startMethod start() #txt
+Bk7 f9 requestActionDecl '<> param;' #txt
+Bk7 f9 responseMappingAction 'out=in;
+' #txt
+Bk7 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>PortalDashboard</name>
+    </language>
+</elementInfo>
+' #txt
+Bk7 f9 584 58 112 44 -47 -8 #rect
+Bk7 f10 expr in #txt
+Bk7 f10 396 160 584 80 #arcP
+Bk7 f10 1 496 160 #addKink
+Bk7 f10 2 496 80 #addKink
+Bk7 f10 1 0.425 0 0 #arcLabel
 >Proto Bk7 -8 -8 16 16 16 26 #rect
 >Proto Bk7 @|BpmnUserTaskIcon #fIcon
 Bk8 f17 actionTable 'out=in;
@@ -2830,14 +2856,18 @@ Bk7 f3 ao f8 tail #connect
 Bk7 f8 head f36 @CG|ai #connect
 Bk7 f22 mainOut f43 tail #connect
 Bk7 f43 head f36 mainIn #connect
-Bk7 f54 out f6 tail #connect
-Bk7 f6 head f22 mainIn #connect
 Bk7 f1 mainOut f0 tail #connect
 Bk7 f0 head f54 in #connect
-Bk7 f54 out f5 tail #connect
 Bk7 f5 head f4 mainIn #connect
 Bk7 g0 m f11 tail #connect
 Bk7 f11 head f1 mainIn #connect
+Bk7 f54 out f7 tail #connect
+Bk7 f7 head f2 in #connect
+Bk7 f54 out f5 tail #connect
+Bk7 f2 out f6 tail #connect
+Bk7 f6 head f22 mainIn #connect
+Bk7 f2 out f10 tail #connect
+Bk7 f10 head f9 mainIn #connect
 Bk7 0 0 944 320 0 #ivRect
 Bk8 f17 mainOut f26 tail #connect
 Bk8 f26 head f23 mainIn #connect

@@ -28,7 +28,7 @@ public class HomepageUtils {
     Map<String, Object> response = IvyAdapterService.startSubProcess("loadSubMenuItems()", null, Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
     List<SubMenuItem> subMenuItems = (List<SubMenuItem>) response.get("subMenuItems");
     homepages.add(initDashboard());
-    homepages.add(initNewDashboard());
+    //homepages.add(initNewDashboard());
     for (SubMenuItem item : subMenuItems) {
       if (item.getMenuKind() != MenuKind.EXTERNAL_LINK) {
         homepages.add(HomepageMapper.toHomepage(item));
