@@ -775,7 +775,10 @@ As0 f15 actionCode 'import ch.ivy.addon.portalkit.configuration.GlobalSetting;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 
 GlobalSettingService globalSettingService= new GlobalSettingService();
-in.selectedSetting = globalSettingService.save(in.selectedSetting) as GlobalSetting;' #txt
+in.selectedSetting = globalSettingService.save(in.selectedSetting) as GlobalSetting;
+
+// update related Setting
+globalSettingService.updateRelatedGlobalSettingByGlobalSetting(in.selectedSetting);' #txt
 As0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -854,7 +857,10 @@ As0 f63 actionTable 'out=in;
 As0 f63 actionCode 'import ch.ivy.addon.portalkit.service.GlobalSettingService;
 GlobalSettingService globalSettingService = new GlobalSettingService();
 globalSettingService.resetGlobalSetting(in.selectedSetting.getKey());
-in.selectedSetting.setValueToDefault();' #txt
+in.selectedSetting.setValueToDefault();
+
+// update related Setting
+globalSettingService.updateRelatedGlobalSettingByGlobalSetting(in.selectedSetting);' #txt
 As0 f63 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
