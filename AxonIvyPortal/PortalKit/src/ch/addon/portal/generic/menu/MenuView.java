@@ -72,7 +72,7 @@ public class MenuView implements Serializable {
       DefaultMenuItem item = buildSubMenuItem(subMenu);
       mainMenuModel.addElement(item);
     }
-    mainMenuModel.addElement(buildNewDashboardItem());
+    //mainMenuModel.addElement(buildNewDashboardItem());
 
     List<Application> thirdPartyApps = PortalMenuNavigator.getThirdPartyApps();
     for (Application app : thirdPartyApps) {
