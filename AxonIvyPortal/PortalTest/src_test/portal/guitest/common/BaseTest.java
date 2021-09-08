@@ -1,6 +1,7 @@
 package portal.guitest.common;
 
 import static portal.guitest.common.Variable.SHOW_USER_GUIDE;
+import static portal.guitest.common.Variable.SHOW_LEGACY_UI;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -107,6 +108,7 @@ public class BaseTest {
     browser = Browser.getBrowser();
     launchBrowserAndGotoRelativeLink(cleanupDataLink);
     updatePortalSetting(SHOW_USER_GUIDE.getKey(), "false");
+    updatePortalSetting(SHOW_LEGACY_UI .getKey(), "true");
   }
   
   /**
