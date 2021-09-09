@@ -87,8 +87,9 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public CaseEditWidgetNewDashBoardPage openEditWidget() {
-    $$("form.table-widget-form div.widget__header").filter(text(caseWidgetName)).first().waitUntil(appear, DEFAULT_TIMEOUT)
-        .$("a[id*='edit-widget']").shouldBe(getClickableCondition()).click();
+    $$("form.table-widget-form div.widget__header").filter(text(caseWidgetName)).first()
+        .waitUntil(appear, DEFAULT_TIMEOUT).$("div[id$='widget-header-actions']").$("a[id*='edit-widget']")
+        .shouldBe(getClickableCondition()).click();
     return new CaseEditWidgetNewDashBoardPage();
   }
 
