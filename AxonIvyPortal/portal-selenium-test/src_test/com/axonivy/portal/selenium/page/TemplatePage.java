@@ -7,12 +7,9 @@ import java.util.ArrayList;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.WebDriverRunner;
 
-import vn.wawa.guitest.base.page.AbstractPage;
-
 public abstract class TemplatePage extends AbstractPage {
   
   private static final String TEMPLATE_PAGE_LOCATOR = "id('global-search-component:global-search-data')";
-  public static final long DEFAULT_TIMEOUT  = 45000;
 
   public TemplatePage() {
   }
