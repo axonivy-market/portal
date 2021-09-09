@@ -28,7 +28,7 @@ public class CaseDetailsWidgetNewDashBoardPage extends TemplatePage {
   }
   
   public ElementsCollection countRelatedTasks() {
-    return $("div[id$='related-tasks']").$$("td.related-task-name-column");
+    return $("div[id$='related-tasks']").waitUntil(appear, DEFAULT_TIMEOUT).$$("td.related-task-name-column");
   }
 
   public ElementsCollection countRelatedCases() {
