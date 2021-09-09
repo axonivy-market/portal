@@ -4,14 +4,12 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
-import org.junit.Before;
 import org.junit.jupiter.api.AfterEach;
 
 import com.axonivy.ivy.webtest.engine.EngineUrl;
 import com.codeborne.selenide.WebDriverRunner;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
-import vn.wawa.guitest.base.enums.BrowserType;
 
 import static com.axonivy.portal.selenium.common.Variable.SHOW_USER_GUIDE;
 import static com.codeborne.selenide.Selenide.*;
@@ -79,8 +77,6 @@ public class BaseTest {
     open(EngineUrl.createProcessUrl(NEW_DASHBOARD_URL_PATTERN));
   }
 
-  
-  @Before
   /**
    * Default setup for each test
    * It will clean up all test data and login with account demo
