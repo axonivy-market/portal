@@ -75,8 +75,12 @@ public class IvyProcess implements Process {
   public String getDefaultImageSrc() {
     return this.defaultImageSrc;
   }
-  
+
   public void setDefaultImageCms(String defaultImageCms) {
     this.defaultImageCms = defaultImageCms;
+  }
+
+  public String getCustomFieldImageProcess() {
+    return this.process.customFields().value("processImage");
   }
 }

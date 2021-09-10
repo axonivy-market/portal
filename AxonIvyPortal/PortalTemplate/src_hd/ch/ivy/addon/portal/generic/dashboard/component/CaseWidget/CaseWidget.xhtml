@@ -38,6 +38,7 @@
         paginatorTemplate="{PreviousPageLink} {PageLinks} {NextPageLink} {RowsPerPageDropdown}" pageLinks="5"
         rows="#{caseWidget.rowsPerPage}"
         rowsPerPageTemplate="5,10,20,50"
+        paginatorAlwaysVisible="false"
         sortField="#{caseWidget.sortField}" sortBy="#{caseWidget.sortField}"
         sortOrder="#{caseWidget.sortDescending ? 'descending' : 'ascending'}"
         rowIndexVar="rowIndex" rowHover="#{isReadOnlyMode}" selectionMode="single"
@@ -54,8 +55,8 @@
           </h:panelGroup>
 
           <h:panelGroup rendered="#{column.field eq 'state'}">
-            <h:outputText value="#{column.display(caseItem)}"
-              styleClass="#{column.fieldStyleClass} dashboard-cases__state-text--#{caseItem[column.field].toString().toLowerCase()}" />
+            <ic:ch.ivy.addon.portalkit.component.cases.column.CaseState case="#{caseItem}"
+              alwaysShowState="true" stateStyleClass="#{column.fieldStyleClass}" />
           </h:panelGroup>
           
           <h:panelGroup rendered="#{column.field eq 'owner'}">

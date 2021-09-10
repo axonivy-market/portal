@@ -46,7 +46,7 @@
       <div class="ui-g-12">
         <p:outputLabel for="email-content" styleClass="ui-g-12" value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/Email/EmailText')}: " />
         <div class="md-inputfield">
-          <p:textEditor id="email-content" styleClass="ui-g-12 text-editor-send-email" height="300" value="#{email.content}" required="#{param['skipValidator'] == null}"
+          <p:textEditor id="email-content" styleClass="ui-g-12 text-editor-send-email" height="300" value="#{email.content}" required="#{param['skipValidator'] == null}" secure="false"
             requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/Email/EmailText')}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}">
             <f:facet name="toolbar">
               <span class="ql-formats">

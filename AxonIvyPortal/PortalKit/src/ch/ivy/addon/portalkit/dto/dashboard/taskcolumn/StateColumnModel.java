@@ -25,7 +25,7 @@ public class StateColumnModel extends TaskColumnModel implements Serializable {
     this.field = DashboardStandardTaskColumn.STATE.getField();
     this.style = defaultIfEmpty(this.style, NORMAL_WIDTH);
     this.styleClass = defaultIfEmpty(this.styleClass, "dashboard-tasks__state u-text-align-center");
-    this.fieldStyleClass = defaultIfEmpty(this.fieldStyleClass, "dashboard-tasks__state-text");
+    this.fieldStyleClass = defaultIfEmpty(this.fieldStyleClass, StringUtils.EMPTY);
     this.format = DashboardColumnFormat.CUSTOM;
   }
   

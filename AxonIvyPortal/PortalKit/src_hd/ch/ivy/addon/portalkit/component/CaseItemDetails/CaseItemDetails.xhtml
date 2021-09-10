@@ -84,7 +84,7 @@
                 rendered="#{caseDetailsBean.showCaseDetails}" layout="block">
                 <p:link id="show-process-overview-link"
                   styleClass="additional-case-details-link ui-md-hidden ui-sm-hidden"
-                  rendered="#{caseWidgetBean.showProcessOverviewLink(case)}"
+                  rendered="#{caseWidgetBean.showProcessOverviewLink(case) and !inFrame}"
                   href="#{caseWidgetBean.getProcessOverviewPageUri(case)}">
                   <i class="si si-hierarchy-6 si-rotate-270" />
                   <span class="display-full-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/showProcessOverview')}</span>

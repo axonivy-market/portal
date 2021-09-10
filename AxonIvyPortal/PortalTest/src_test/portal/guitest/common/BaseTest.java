@@ -75,8 +75,8 @@ public class BaseTest {
   protected String roleSelectionComponentShowcaseUrl = "portal-developer-examples/175495F02A2BCEB2/start.ivp";
   protected String startUserExampleProcess = "portal-user-examples/17236DB1D3DA14C0/userExampleGuide.ivp";
   protected String userIsOwnerUrl = "internalSupport/16A68510A341BE6E/userIsOwner.ivp";
-  protected String showTaskNoteHistoryUrl = "portalTemplate/16044EDBC0E23859/showTaskNoteHistory.ivp?selectedTaskId=%s";
-  protected String showCaseNoteHistoryUrl = "portalTemplate/1603506A872272C6/showCaseNoteHistory.ivp?caseId=%s";
+  protected String showTaskNoteHistoryUrl = "PortalTemplate/1549F58C18A6C562/showTaskNoteHistory.ivp?selectedTaskId=%s";
+  protected String showCaseNoteHistoryUrl = "PortalTemplate/1549F58C18A6C562/showCaseNoteHistory.ivp?caseId=%s";
   protected String createTaskWithSystemState = "portalKitTestHelper/153CACC26D0D4C3D/createTaskWithSystemState.ivp";
   protected String createTechnicalStateUrl = "portal-developer-examples/162511D2577DBA88/createTechnicalStateTasks.ivp";
   protected String portalKitTestHelperPasswordResetUrl = "portalKitTestHelper/176463FD4BBF6C93/PasswordReset.ivp";

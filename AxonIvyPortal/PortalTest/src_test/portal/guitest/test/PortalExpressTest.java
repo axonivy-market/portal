@@ -222,7 +222,7 @@ public class PortalExpressTest extends BaseTest {
 
     WebElement expressWorkflow = searchResultPage.findElementByClassName("express-workflow");
     WebElement moreMenuButton =
-        searchResultPage.findChildElementByCssSelector(expressWorkflow, "button[id$=':process-item:dynaButton']");
+        searchResultPage.findChildElementByCssSelector(expressWorkflow, "button[id$=':process-item:process-action-button']");
     moreMenuButton.click();
 
     assertTrue(searchResultPage.isInfoWorkflowIcon());
@@ -239,7 +239,7 @@ public class PortalExpressTest extends BaseTest {
 
     WebElement expressWorkflow = searchResultPage.findElementByClassName("express-workflow");
     WebElement moreMenuButton =
-        searchResultPage.findChildElementByCssSelector(expressWorkflow, "button[id$=':process-item:dynaButton']");
+        searchResultPage.findChildElementByCssSelector(expressWorkflow, "button[id$=':process-item:process-action-button']");
     moreMenuButton.click();
 
     assertTrue(searchResultPage.isInfoWorkflowIcon());
@@ -260,7 +260,7 @@ public class PortalExpressTest extends BaseTest {
 
     WebElement expressWorkflow = searchResultPage.findElementByClassName("express-workflow");
     WebElement moreMenuButton =
-        searchResultPage.findChildElementByCssSelector(expressWorkflow, "button[id$=':process-item:dynaButton']");
+        searchResultPage.findChildElementByCssSelector(expressWorkflow, "button[id$=':process-item:process-action-button']");
     moreMenuButton.click();
 
     assertTrue(searchResultPage.isEditExpressWorkflow());

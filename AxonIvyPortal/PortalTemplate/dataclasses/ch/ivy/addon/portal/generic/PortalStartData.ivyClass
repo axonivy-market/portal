@@ -29,3 +29,7 @@ isValidResetUrl Boolean #field
 passwordResetMessage String #field
 isShowDashboard Boolean #field
 processId String #field
+histories java.util.List<ch.ivy.addon.portalkit.bo.History> #field
+taskId Long #field
+notes java.util.List<ch.ivyteam.ivy.workflow.INote> #field
+hasPermission Boolean #field

@@ -1,6 +1,5 @@
 package ch.ivy.addon.portalkit.dto.dashboard.process;
 
-import java.io.Serializable;
 import java.util.List;
 import java.util.Locale;
 
@@ -10,10 +9,10 @@ import org.apache.commons.lang3.StringUtils;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
-import ch.ivy.addon.portalkit.configuration.ExternalLink;
 import ch.ivy.addon.portalkit.bo.ExternalLinkProcessItem;
 import ch.ivy.addon.portalkit.bo.PortalExpressProcess;
 import ch.ivy.addon.portalkit.bo.Process;
+import ch.ivy.addon.portalkit.configuration.ExternalLink;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.enums.ProcessType;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
@@ -21,9 +20,8 @@ import ch.ivy.addon.portalkit.util.Locales;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class DashboardProcess implements Serializable {
+public class DashboardProcess implements Process {
 
-  private static final long serialVersionUID = 8913620704821885752L;
   private static final String EXPRESS_WORKFLOW_ID_PARAM = "?workflowID=";
   private static final String EXPRESS_CATEGORY_PRE_FIX = "ExpressWorkflow";
   private String id;
@@ -35,8 +33,18 @@ public class DashboardProcess implements Serializable {
   private String startLink;
   private String icon;
   private String category;
-
+  
   public DashboardProcess() {}
+
+  public DashboardProcess(Process process) {
+    this.id = process.getId();
+    this.type = process.getType();
+    this.name = process.getName();
+    this.description = process.getDescription();
+    this.startLink = process.getStartLink();
+    this.icon = process.getIcon();
+    this.category = process.getCategory();
+  }
 
   public DashboardProcess(IWebStartable process) {
     this.id = process.getId();
@@ -66,6 +74,7 @@ public class DashboardProcess implements Serializable {
     this.icon = externalLink.getIcon();
   }
 
+  @Override
   public String getId() {
     return id;
   }
@@ -74,6 +83,7 @@ public class DashboardProcess implements Serializable {
     this.id = id;
   }
 
+  @Override
   public ProcessType getType() {
     return type;
   }
@@ -82,6 +92,7 @@ public class DashboardProcess implements Serializable {
     this.type = type;
   }
 
+  @Override
   public String getName() {
     if (CollectionUtils.isNotEmpty(this.names)) {
       return getActiveDisplayName();
@@ -93,6 +104,7 @@ public class DashboardProcess implements Serializable {
     this.name = name;
   }
 
+  @Override
   public String getDescription() {
     return description;
   }
@@ -109,6 +121,7 @@ public class DashboardProcess implements Serializable {
     this.names = names;
   }
 
+  @Override
   public String getStartLink() {
     if (this.type == ProcessType.EXPRESS_PROCESS) {
       return generateWorkflowStartLink();
@@ -120,6 +133,7 @@ public class DashboardProcess implements Serializable {
     this.startLink = startLink;
   }
 
+  @Override
   public String getIcon() {
     if (StringUtils.isBlank(icon)) {
       if (this.type == ProcessType.IVY_PROCESS) {
@@ -156,11 +170,32 @@ public class DashboardProcess implements Serializable {
     this.processStartId = processStartId;
   }
 
+  @Override
   public String getCategory() {
     return category;
   }
 
   public void setCategory(String category) {
     this.category = category;
+  }
+
+  @Override
+  public Object getProcess() {
+    return this;
+  }
+
+  @Override
+  public String getTypeName() {
+    return this.type.name();
+  }
+
+  @Override
+  public String getImageUrl() {
+    return StringUtils.EMPTY;
+  }
+
+  @Override
+  public String getDefaultImageSrc() {
+    return StringUtils.EMPTY;
   }
 }

@@ -22,7 +22,7 @@ public class HandleErrorPageScreenshotTest extends ScreenshotTest {
   
   @Test
   public void screenshotErrorPages() throws IOException {
-    ScreenshotUtil.resizeBrowser(new Dimension(1200, 600));
+    ScreenshotUtil.resizeBrowser(new Dimension(1200, 800));
     HomePage homePage = new HomePage();
     redirectToRelativeLink(portalCustomErrorUrl);
     homePage.waitUntilLayoutWrapperDisplayed();

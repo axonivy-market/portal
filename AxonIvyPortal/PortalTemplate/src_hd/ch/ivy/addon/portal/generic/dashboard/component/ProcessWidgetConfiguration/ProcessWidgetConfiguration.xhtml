@@ -144,7 +144,8 @@
       <!-- Widget data -->
       <div class="ui-g-12">
         <h:panelGroup id="preview-process" class="ui-g-12 u-padding-0">
-          <ic:ch.ivy.addon.portal.generic.dashboard.component.ProcessWidget processWidget="#{widget}" isReadOnlyMode="true" isInConfiguration="true" />
+          <ic:ch.ivy.addon.portal.generic.dashboard.component.ProcessWidget processWidget="#{widget}" isReadOnlyMode="true" isInConfiguration="true"
+            onLoadProcessComplete="PF('new-widget-configuration-dialog').initPosition();" />
         </h:panelGroup>
       </div>
     </div>
