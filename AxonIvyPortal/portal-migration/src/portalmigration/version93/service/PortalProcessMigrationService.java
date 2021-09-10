@@ -2,6 +2,7 @@ package portalmigration.version93.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -24,7 +25,7 @@ public class PortalProcessMigrationService extends PortalMigrationService {
 
   private static int pageSize = 1000;
 
-  public static List<String> startMigration(IApplication app) {
+  public static List<String> startMigration(IApplication app, Map<String, Object> options) {
     List<String> error = new ArrayList<>();
     
     migratePublicExternalLink(app);
@@ -32,7 +33,21 @@ public class PortalProcessMigrationService extends PortalMigrationService {
     migrateUserProcess(app, error);
     
     migrateUserExternalLink(app);
+
+    configUIMode(app, options);
+
     return error;
+  }
+
+  private static void configUIMode(IApplication app, Map<String, Object> options) {
+    Boolean showLegacyUI = (Boolean) options.get(PortalVariable.SHOW_LEGACY_UI.key);
+    if (showLegacyUI) {
+      Variables.of(app).set(PortalVariable.SHOW_LEGACY_UI.key, "true");
+      Variables.of(app).set(PortalVariable.DEFAULT_PROCESS_MODE.key, "COMPACT");
+    } else {
+      Variables.of(app).set(PortalVariable.SHOW_LEGACY_UI.key, "false");
+      Variables.of(app).set(PortalVariable.DEFAULT_PROCESS_MODE.key, "IMAGE");
+    }
   }
 
   private static void migratePublicExternalLink(IApplication app) {

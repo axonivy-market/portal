@@ -14,6 +14,23 @@
           <h4>Your engine has some Portal apps which have version is obsoleted.</h4>
           <h4>Please start the migration to make sure everything is working fine!</h4>
           <h4>Restart ivy engine after the finish.</h4>
+
+          <div class="ui-g-12">
+            <div class="ui-g-12">
+              <p:outputLabel id="show-legacy-ui-label"
+                for="show-legacy-ui-radio"
+                value="Please select which Portal UI you want to use. Note that you still can change your selection in Portal Admin Setting:" />
+            </div>
+            <div class="ui-g-12">
+              <p:selectOneRadio id="show-legacy-ui-radio"
+                value="#{data.showLegacyUI}" required="true">
+                <f:selectItem id="new-ui-mode" itemValue="false"
+                  itemLabel="Use new UI" />
+                <f:selectItem id="legacy-ui-mode" itemValue="true"
+                  itemLabel="Use legacy UI" />
+              </p:selectOneRadio>
+            </div>
+          </div>
         </h:panelGroup>
         
         <h:panelGroup layout="block" rendered="#{!data.mustMigrateData}" style="color:green;">

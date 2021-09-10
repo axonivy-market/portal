@@ -32,6 +32,7 @@ Ms0 f0 guid 175F959BFAA127EB #txt
 Ms0 f0 method start() #txt
 Ms0 f0 inParameterDecl '<> param;' #txt
 Ms0 f0 inParameterMapAction 'out.mustMigrateData=true;
+out.showLegacyUI=false;
 ' #txt
 Ms0 f0 outParameterDecl '<> result;' #txt
 Ms0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -88,9 +89,15 @@ Ms0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ms0 f17 416 154 112 44 -48 -8 #rect
 Ms0 f18 actionTable 'out=in;
 ' #txt
-Ms0 f18 actionCode 'import portalmigration.service.PortalMigrationService;
+Ms0 f18 actionCode 'import portalmigration.enums.PortalVariable;
+import java.util.HashMap;
+import java.util.Map;
+import portalmigration.service.PortalMigrationService;
 
-List<String> result = PortalMigrationService.migrate();
+Map options = new HashMap();
+options.put(PortalVariable.SHOW_LEGACY_UI.key, in.showLegacyUI);
+
+List<String> result = PortalMigrationService.migrate(options);
 in.hasError = result.isEmpty() ? false : true;
 in.errors = result;' #txt
 Ms0 f18 security system #txt
