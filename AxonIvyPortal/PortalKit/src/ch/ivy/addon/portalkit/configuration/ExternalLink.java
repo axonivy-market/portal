@@ -1,5 +1,8 @@
 package ch.ivy.addon.portalkit.configuration;
 
+import org.apache.commons.lang3.ObjectUtils;
+import org.apache.commons.lang3.math.NumberUtils;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
@@ -40,7 +43,7 @@ public class ExternalLink extends AbstractConfiguration {
 
   @JsonIgnore
   public boolean isAbleToEdit() {
-    return this.creatorId == Ivy.session().getSessionUser().getId();
+    return this.creatorId == null ? true : this.creatorId == Ivy.session().getSessionUser().getId();
   }
 
   public String getDescription() {

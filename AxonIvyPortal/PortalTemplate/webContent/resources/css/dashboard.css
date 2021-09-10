@@ -35,6 +35,25 @@
   padding-bottom: 5px;
 }
 
+.dashboard__header,
+.dashboard__body {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.dashboard__title-container {
+  padding-left: 0;
+}
+
+.dashboard-header__action {
+  padding-right: 0;
+}
+
+.dashboard__body {
+  overflow: auto;
+  padding-top: 0;
+}
+
 @media screen and (max-width: 767px) {
   .dashboard__title-dropdown-container {
     padding-left: 0;
@@ -179,10 +198,6 @@
   display: block;
 }
 
-.dashboard-tasks__priority--exception {
-  color: red;
-}
-
 td.dashboard-tasks__name span,
 td.dashboard-cases__name span {
   font-weight: var(--process-grid-name-font-weight);
@@ -201,59 +216,6 @@ td.dashboard-cases__name span {
 .prototype-task-table .default-column {
 	max-width: 300px;
 	width: 300px;
-}
-
-.dashboard-tasks__state-text,
-.dashboard-cases__state-text {
-  border-radius: 1rem;
-  line-height: 1.6rem;
-  box-sizing: border-box;
-  font-size: var(--small-font-size);
-  width: fit-content;
-  padding: 2px 5px;
-  display: inline-block;
-  border: 1px solid;
-}
-
-.dashboard-tasks__state-text--open,
-.dashboard-tasks__state-text--suspended {
-  background: #DADADA;
-  border-color: #DADADA;
-}
-
-.dashboard-cases__state-text--running,
-.dashboard-tasks__state-text--resumed {
-  background: #FFE896;
-  border-color: #FFE896;
-}
-
-.dashboard-cases__state-text--done,
-.dashboard-tasks__state-text--done {
-  background: #D4EBA2;
-  border-color: #D4EBA2;
-}
-
-.dashboard-cases__state-text--destroyed,
-.dashboard-cases__state-text--zombie,
-.dashboard-tasks__state-text--destroyed {
-  background: var(--task-state-zombie-destroyed-color);
-  border-color: var(--task-state-zombie-destroyed-color);
-}
-
-.dashboard-tasks__state-text--failed,
-.dashboard-tasks__state-text--join_failed {
-  background: var(--task-state-failed-color);
-  border-color: var(--task-state-failed-color);
-}
-
-.dashboard-tasks__state-text--waiting_for_intermediate_event {
-  background: var(--task-state-waiting-color);
-  border-color: var(--task-state-waiting-color);
-}
-
-.dashboard-tasks__state-text--parked {
-  background: #FCC3C3;
-  border-color: #FCC3C3;
 }
 
 .task-configuration.card,
@@ -528,8 +490,9 @@ body .ui-calendar.task-configuration__calendar .ui-datepicker-trigger {
 }
 
 .grid-stack {
-  margin-top: .5em;
+  margin-top: 0;
   margin-bottom: 2.5em;
+  padding-top: 0;
   padding-left: 0;
   padding-right: 0;
 }
@@ -718,6 +681,7 @@ body .dashboard__table--preview.ui-datatable tbody tr.ui-state-hover {
 
 .widget-preview.widget-preview--process .widget-preview--full {
   max-width: 450px;
+  margin: auto;
 }
 
 .process-configuration__category-panel-footer {
@@ -782,8 +746,15 @@ body .dashboard__table--preview.ui-datatable tbody tr.ui-state-hover {
   margin-top: 32px;
 }
 
+.process-widget--full {
+  height: 100%;
+}
 
-.process-widget--full .grid-view-form .process-grid-view__icon.process-grid-view__icon--combined {
+.process-widget--full .card-item.card {
+  margin: 0;
+}
+
+.process-widget--full .process-grid-view__icon.process-grid-view__icon--combined {
   font-size: 5.6rem;
   padding-bottom: 2rem;
 }

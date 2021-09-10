@@ -1,7 +1,5 @@
 package ch.ivy.addon.portalkit.ivydata.searchcriteria;
 
-import java.text.ParseException;
-
 import ch.ivy.addon.portalkit.constant.CustomFields;
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 import ch.ivyteam.ivy.workflow.category.CategoryPath;
@@ -20,14 +18,14 @@ public class DashboardProcessCaseSearchCriteria {
     this.processName = processName;
   }
 
-  public CaseQuery buildQuery() throws ParseException {
+  public CaseQuery buildQuery() {
     CaseQuery query = buildQueryWithoutOrderByClause();
     CaseSortingQueryAppender appender = new CaseSortingQueryAppender(query);
     query = appender.appendSorting(this).toQuery();
     return query;
   }
 
-  public CaseQuery buildQueryWithoutOrderByClause() throws ParseException {
+  public CaseQuery buildQueryWithoutOrderByClause() {
     CaseQuery query = CaseQuery.businessCases();
     if (this.processStartId != null) {
       queryProcessStartId(query);

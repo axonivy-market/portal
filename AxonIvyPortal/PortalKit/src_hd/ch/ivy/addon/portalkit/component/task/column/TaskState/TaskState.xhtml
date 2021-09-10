@@ -11,14 +11,16 @@
   <cc:attribute name="responsiveStyleClass" default="u-hidden-sm-down" />
   <cc:attribute name="showIndicatorBesideText" type="java.lang.Boolean" default="false"/>
   <cc:attribute name="ellipsisText" type="java.lang.Boolean" default="true" />
+  <cc:attribute name="alwaysShowState" type="java.lang.Boolean" default="false" shortDescription="This is alternative param to show the state without datamodel"/>
 </cc:interface>
 
 <cc:implementation>
   <c:set var="ellipsisText" value="#{cc.attrs.ellipsisText}" />
   <c:set var="state" value="#{cc.attrs.state}" />
   <c:set var="showIndicatorBesideText" value="#{cc.attrs.showIndicatorBesideText}" />
+  <c:set var="showState" value="#{cc.attrs.alwaysShowState or cc.attrs.dataModel.isSelectedColumn('STATE') or showIndicatorBesideText}" />
 
-  <h:panelGroup rendered="#{cc.attrs.dataModel.isSelectedColumn('STATE') or showIndicatorBesideText}">
+  <h:panelGroup rendered="#{showState}">
     <h:panelGroup id="#{cc.attrs.componentId}" styleClass="state-cell default-task-cell #{cc.attrs.stateStyleClass} #{cc.attrs.responsiveStyleClass}">
       <h:outputText rendered="#{!showIndicatorBesideText}" value="#{taskBean.shortenTaskState(state)}"
         styleClass="#{cc.attrs.stateIconStyleClass} task-state #{state.toString().toLowerCase()}-task-state #{ellipsisText ? 'ellipsis-state':''}" />
@@ -28,7 +30,7 @@
       </h:panelGroup>
     </h:panelGroup>
   </h:panelGroup>
-  <p:tooltip id="state-tooltip" for="#{cc.attrs.componentId}"
+  <p:tooltip rendered="#{showState}" id="state-tooltip" for="#{cc.attrs.componentId}"
     value="#{taskBean.getUserFriendlyTaskState(state)} (#{taskBean.getTranslatedState(state)})" styleClass="#{cc.attrs.stateTooltipStyleClass}"
     trackMouse="true" hideEvent="mouseleave click" />
 </cc:implementation>

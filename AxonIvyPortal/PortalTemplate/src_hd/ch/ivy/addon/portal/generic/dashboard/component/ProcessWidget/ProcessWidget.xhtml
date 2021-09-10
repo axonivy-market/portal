@@ -29,11 +29,20 @@
         </ui:include>
       </c:if>
       <c:if test="#{widget.displayMode eq 'FULL_MODE'}">
-        <ui:include src="FullModeProcess.xhtml">
-          <ui:param name="widget" value="#{widget}" />
-          <ui:param name="isReadOnlyMode" value="#{isReadOnlyMode}" />
-          <ui:param name="isInConfiguration" value="#{cc.attrs.isInConfiguration}" />
-        </ui:include>
+        <ic:ch.ivy.addon.portalkit.component.process.ProcessGridItem id="process-grid-item"
+          process="#{widget.process}" managedBean="#{dashboardProcessBean}"
+          readOnlyMode="#{cc.attrs.isInConfiguration}"
+          ableToEdit="#{!isReadOnlyMode}"
+          oncompleteEditProcess="PF('new-widget-configuration-dialog').show()"
+          componentToUpdateOnEditProcess="new-widget-configuration-dialog"
+          editActionListener="#{dashboardConfigurationBean.setEditWidget(widget)}"
+          oncompleteRemoveProcess="PF('remove-widget-dialog').show()"
+          componentToUpdateOnRemoveProcess="remove-widget-dialog"
+          removeActionListener="#{dashboardConfigurationBean.setDeleteWidget(widget)}"
+          showInformationLink="#{data.showInformationLink}"
+          processStyleClass="ui-g-12 u-padding-0 process-widget--full"
+          processIconStyleClass="process-grid-view__icon" />
+        
       </c:if>
       <c:if test="#{widget.displayMode eq 'COMBINED_MODE'}">
         <ui:include src="CombinedModeProcess.xhtml">

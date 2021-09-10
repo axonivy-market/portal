@@ -14,8 +14,10 @@ import ch.ivy.addon.portalkit.constant.UserProperty;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.MenuKind;
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
+import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.IvyAdapterService;
+import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public class HomepageUtils {
@@ -25,8 +27,8 @@ public class HomepageUtils {
     List<Homepage> homepages = new ArrayList<>();
     Map<String, Object> response = IvyAdapterService.startSubProcess("loadSubMenuItems()", null, Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
     List<SubMenuItem> subMenuItems = (List<SubMenuItem>) response.get("subMenuItems");
-    Homepage dashboard = initDashboard();
-    homepages.add(dashboard);
+    homepages.add(initDashboard());
+    homepages.add(initNewDashboard());
     for (SubMenuItem item : subMenuItems) {
       if (item.getMenuKind() != MenuKind.EXTERNAL_LINK) {
         homepages.add(HomepageMapper.toHomepage(item));
@@ -42,6 +44,24 @@ public class HomepageUtils {
     dashboard.setLink(PortalNavigator.getPortalStartUrl());
     dashboard.setType(HomepageType.DASHBOARD);
     return dashboard;
+  }
+
+  private static Homepage initNewDashboard() {
+    Homepage dashboard = new Homepage();
+    dashboard.setName(HomepageType.NEW_DASHBOARD.name());
+    dashboard.setLabel(String.format("%s (%s)",
+        Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/dashboard"),
+        Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/new")));
+    String newDashboardLink = findRelativeUrlByKeywork(PortalNavigator.PORTAL_NEW_DASHBOARD_START);
+    dashboard.setLink(newDashboardLink);
+    dashboard.setType(HomepageType.NEW_DASHBOARD);
+    return dashboard;
+  }
+
+  private static String findRelativeUrlByKeywork(String keyword) {
+    String friendlyRequestPath = SecurityServiceUtils.findFriendlyRequestPathContainsKeyword(keyword);
+    String newDashboardLink = ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(friendlyRequestPath);
+    return newDashboardLink;
   }
   
   public static Homepage findHomepageInMyProfile() {
@@ -62,9 +82,37 @@ public class HomepageUtils {
     Homepage homepage = new Homepage();
     homepage.setName(getHomepageName());
     if (homepages.contains(homepage)) {
-      return homepages.get(homepages.indexOf(homepage));
+      Homepage seletedHomepage = homepages.get(homepages.indexOf(homepage));
+      adjustHomepageStartLink(seletedHomepage);
+      return seletedHomepage;
     } else {
       return homepage;
+    }
+  }
+
+  private static void adjustHomepageStartLink(Homepage homepage) {
+    String relativeUrl = "";
+    switch (homepage.getType()) {
+      case NEW_DASHBOARD:
+        relativeUrl = findRelativeUrlByKeywork(PortalNavigator.PORTAL_NEW_DASHBOARD_START);
+        break;
+      case PROCESS:
+        relativeUrl = findRelativeUrlByKeywork(PortalNavigator.PORTAL_PROCESS_START);
+        break;
+      case TASK:
+        relativeUrl = findRelativeUrlByKeywork(PortalNavigator.PORTAL_TASK_START);
+        break;
+      case CASE:
+        relativeUrl = findRelativeUrlByKeywork(PortalNavigator.PORTAL_CASE_START);
+        break;
+      case STATISTICS:
+        relativeUrl = findRelativeUrlByKeywork(PortalNavigator.PORTAL_STATISTIC_START);
+        break;
+      default:
+        break;
+    }
+    if (StringUtils.isNotEmpty(relativeUrl)) {
+      homepage.setLink(relativeUrl);
     }
   }
 

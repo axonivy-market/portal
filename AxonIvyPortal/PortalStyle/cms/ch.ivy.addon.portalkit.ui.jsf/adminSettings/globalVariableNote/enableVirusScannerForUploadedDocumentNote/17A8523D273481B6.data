@@ -1,1 +1,1 @@
-TODO Set to true to enable virus scanner for uploaded document. Currently this function is using API VIRUSTOTAL.
+Cambiar a "true" para habilitar el escáner de virus para el documento cargado. Actualmente esta función utiliza la API VIRUSTOTAL.

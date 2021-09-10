@@ -68,11 +68,19 @@
           <ui:repeat id="grid-process-group-alphabet" var="entryProcess" value="#{processWidgetBean.processesByAlphabet.entrySet().toArray()}">
             <ui:repeat id="grid-processes" varStatus="status" var="process" value="#{entryProcess.value}">
               <ui:fragment id="grid-view">
-                <ui:include src="ProcessGridMode.xhtml">
-                  <ui:param name="process" value="#{process}" />
-                  <ui:param name="status" value="#{status}" />
-                  <ui:param name="groupCode" value="js-grid-process-index-group js-process-group-#{entryProcess.key}" />
-                </ui:include>
+                <ic:ch.ivy.addon.portalkit.component.process.ProcessGridItem id="process-grid-item"
+                  process="#{process}" managedBean="#{processWidgetBean}"
+                  groupCode="js-grid-process-index-group js-process-group-#{entryProcess.key}"
+                  status="#{status}"
+                  ableToEdit="#{!processWidgetBean.isIvyProcess(process) and process.getProcess().ableToEdit}"
+                  showInformationLink="#{data.showInformationLink}"
+                  oncompleteEditProcess="PF('edit-process-dialog').show();"
+                  componentToUpdateOnEditProcess="#{cc.clientId}:edit-process-dialog"
+                  editActionListener="#{processWidgetBean.setEditedProcess(process)}"
+                  oncompleteRemoveProcess="PF('remove-process-workflow-dialog').show();"
+                  componentToUpdateOnRemoveProcess="#{cc.clientId}:remove-process-workflow-dialog"
+                  removeActionListener="#{processWidgetBean.setDeletedProcess(process)}"
+                  processStyleClass="js-process-start-list-item ui-g-2 ui-xl-2 ui-lg-3 ui-md-6 ui-sm-12" />
               </ui:fragment>
             </ui:repeat>
           </ui:repeat>

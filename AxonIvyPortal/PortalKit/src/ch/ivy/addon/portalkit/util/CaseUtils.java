@@ -44,6 +44,7 @@ public final class CaseUtils {
     iCase.customFields().stringField(AdditionalProperty.HIDE.toString()).set(null);
   }
 
+  @Deprecated(since = "9.3")
   public static String getProcessStartUriWithCaseParameters(ICase iCase, String requestPath) {
     String urlParameters = "?caseId=" + iCase.getId();
     return ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(requestPath) + urlParameters;

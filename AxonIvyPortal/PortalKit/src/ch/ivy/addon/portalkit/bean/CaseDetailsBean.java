@@ -17,7 +17,7 @@ import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.datamodel.internal.RelatedCaseLazyDataModel;
 import ch.ivy.addon.portalkit.dto.casedetails.CaseDetails;
 import ch.ivy.addon.portalkit.enums.CaseSortField;
-import ch.ivy.addon.portalkit.enums.ExternalVariable;
+import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
@@ -188,7 +188,7 @@ public class CaseDetailsBean extends AbstractConfigurableContentBean<CaseDetails
 
   @Override
   public String getVariableKey() {
-    return ExternalVariable.CASE_DETAIL.key;
+    return PortalVariable.CASE_DETAIL.key;
   }
 
   @Override
