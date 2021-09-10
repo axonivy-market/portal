@@ -58,7 +58,7 @@ public enum Variable {
   CASE_COLUMN("Portal.Cases.CaseColumn"),
   CASE_FILTER( "Portal.Cases.CaseFilters"),
   CASE_DETAIL("Portal.CaseDetails"),
-  SHOW_LEGACY_UI("Portal.ShowLegacyUI"),;
+  SHOW_LEGACY_UI("Portal.ShowLegacyUI");
 
   private String key;
 
