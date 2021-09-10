@@ -1,4 +1,0 @@
-CaseWidgetData #class
-ch.ivy.addon.portal.generic #namespace
-caseId Long #field
-iCase ch.ivyteam.ivy.workflow.ICase #field

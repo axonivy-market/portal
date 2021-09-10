@@ -5,6 +5,7 @@
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="componentId" default="case-state-cell" />
   <cc:attribute name="case" required="true" />
+  <cc:attribute name="state" type="ch.ivyteam.ivy.workflow.CaseState" />
   <cc:attribute name="stateStyleClass" />
   <cc:attribute name="stateIconStyleClass" />
   <cc:attribute name="stateTooltipStyleClass" />
@@ -16,21 +17,21 @@
 </cc:interface>
 
 <cc:implementation>
-  <c:set var="case" value="#{cc.attrs.case}" />
   <c:set var="componentId" value="#{cc.attrs.componentId}" />
   <c:set var="ellipsisText" value="#{cc.attrs.ellipsisText}" />
   <c:set var="showIndicatorBesideText" value="#{cc.attrs.showIndicatorBesideText}" />
   <c:set var="showState" value="#{cc.attrs.alwaysShowState or cc.attrs.dataModel.isSelectedColumn('STATE') or showIndicatorBesideText}" />
+  <c:set var="state" value="#{empty cc.attrs.case ? cc.attrs.state : cc.attrs.case.state}" />
 
   <h:panelGroup rendered="#{showState}" id="#{componentId}"
     styleClass="case-header-default-cell state-column #{cc.attrs.stateStyleClass} #{cc.attrs.responsiveStyleClass}">
-    <h:outputText rendered="#{!showIndicatorBesideText}" value="#{caseBean.getState(case)}"
-      styleClass="case-state #{case.state.toString().toLowerCase()}-case-state #{cc.attrs.stateIconStyleClass} #{ellipsisText ? 'ellipsis-state':''}" />
+    <h:outputText rendered="#{!showIndicatorBesideText}" value="#{caseBean.getDisplayState(state)}"
+      styleClass="case-state #{state.toString().toLowerCase()}-case-state #{cc.attrs.stateIconStyleClass} #{ellipsisText ? 'ellipsis-state':''}" />
     <h:panelGroup rendered="#{showIndicatorBesideText}" styleClass="state-with-indicator">
-      <i class="case-state #{case.state.toString().toLowerCase()}-case-state state-indicator" />
-      <span class="#{ellipsisText ? 'text-ellipsis':''}">#{caseBean.getState(case)}</span>
+      <i class="case-state #{state.toString().toLowerCase()}-case-state state-indicator" />
+      <span class="#{ellipsisText ? 'text-ellipsis':''}">#{caseBean.getDisplayState(state)}</span>
     </h:panelGroup>
   </h:panelGroup>
-  <p:tooltip for="#{componentId}" value="#{caseBean.getState(case)}" styleClass="#{cc.attrs.stateTooltipStyleClass}" trackMouse="true" hideEvent="mouseleave click"/>
+  <p:tooltip rendered="#{showState}" for="#{componentId}" value="#{caseBean.getDisplayState(state)}" styleClass="#{cc.attrs.stateTooltipStyleClass}" trackMouse="true" hideEvent="mouseleave click"/>
 </cc:implementation>
 </html>

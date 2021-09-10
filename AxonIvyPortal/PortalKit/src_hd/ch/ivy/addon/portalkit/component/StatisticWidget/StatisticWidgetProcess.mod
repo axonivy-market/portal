@@ -330,10 +330,11 @@ Cs0 f29 83 771 26 26 -81 15 #rect
 Cs0 f37 467 771 26 26 0 12 #rect
 Cs0 f41 actionTable 'out=in;
 ' #txt
-Cs0 f41 actionCode 'import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
+Cs0 f41 actionCode 'import java.util.HashMap;
+import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import javax.faces.context.FacesContext;
 
-String taskAnalysisUrl = ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath("Start Processes/TaskAnalysis/start.ivp");
+String taskAnalysisUrl = PortalNavigator.buildUrlByKeyword("showTaskAnalysis.ivp", "Start Processes/PortalStart/showTaskAnalysis.ivp", new HashMap());
 FacesContext.getCurrentInstance().getExternalContext().redirect(taskAnalysisUrl);' #txt
 Cs0 f41 security system #txt
 Cs0 f41 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

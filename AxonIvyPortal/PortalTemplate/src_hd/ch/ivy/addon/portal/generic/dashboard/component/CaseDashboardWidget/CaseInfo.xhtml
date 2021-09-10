@@ -9,8 +9,8 @@
   <div class="ui-g">
     <ui:repeat value="#{widget.caseByStateStatistic.entrySet()}" var="entry">
       <div class="ui-g-8">
-        <h:outputText value="#{dashboardCaseFilterBean.getUserFriendlyCaseState(entry.key)}"
-          styleClass="dashboard-cases__state-text--#{entry.key.name().toLowerCase()} dashboard-cases__state-text" />
+        <ic:ch.ivy.addon.portalkit.component.cases.column.CaseState case="" state="#{entry.key}"
+          alwaysShowState="true"/>
       </div>
       <div class="ui-g-4">
         <span>#{entry.value} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/caseWidgetInfo/numberOfCase')}</span>
@@ -52,8 +52,8 @@
         </div>
         <div class="ui-g-8">
           <ui:repeat var="state" value="#{field.states}">
-            <h:outputText styleClass="widget-info__state dashboard-cases__state-text dashboard-cases__state-text--#{state.toString().toLowerCase()}"
-              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseState/'.concat(state.toString()))}" />
+            <ic:ch.ivy.addon.portalkit.component.cases.column.CaseState case="" state="#{state}"
+              alwaysShowState="true" stateStyleClass="u-mar-right-5"/>
           </ui:repeat>
         </div>
       </h:panelGroup>

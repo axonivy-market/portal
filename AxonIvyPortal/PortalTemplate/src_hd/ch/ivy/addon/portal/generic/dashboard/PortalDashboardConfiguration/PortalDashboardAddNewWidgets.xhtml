@@ -51,6 +51,11 @@
       <ic:ch.ivy.addon.portal.generic.dashboard.component.ProcessWidgetConfiguration id="new-widget-configuration-component" processWidget="#{widget}"
         componentToUpdate="widget-configuration-form" isReadOnlyMode="#{dashboardConfigurationBean.isReadOnlyMode}"/>
     </c:if>
+
+    <c:if test="#{widget.type ne 'TASK' and widget.type ne 'CASE' and widget.type ne 'PROCESS'}">
+      <!-- This is a sample text, will be removed when STATISTIC is implemented -->
+      <h3 id="placeholder-text"><i class="si si-alert-circle u-mar-right-10"/>This feature will come soon, please select another widget!</h3>
+    </c:if>
   </h:form>
 
   <f:facet name="footer">
@@ -63,7 +68,8 @@
       oncomplete="PF('new-widget-configuration-dialog').hide();loadGrid();"
       process="#{componentToProcess}"
       partialSubmit="true"
-      update="grid-stack new-widget-configuration-dialog"/>
+      update="grid-stack new-widget-configuration-dialog"
+      disabled="#{empty widget}"/>
   </f:facet>
 </p:dialog>
 

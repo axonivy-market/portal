@@ -35,6 +35,7 @@
   <h:outputStylesheet name="css/layout-ivy.css" library="serenity-layout" />
   <h:outputStylesheet library="css" name="gridstack.min.css" rendered="#{loadGridStack}" />
   <h:outputStylesheet library="css" name="gridstack-extra.min.css" rendered="#{loadGridStack}" />
+  <h:outputScript library="js" name="gridstack-h5.js" rendered="#{loadGridStack}" />
 
   <h:outputStylesheet library="css" name="portal-variables.css" />
   <h:outputStylesheet library="css" name="template.css" />
@@ -43,13 +44,10 @@
 
   <h:outputStylesheet library="css" name="customization.css" />
 
-  <h:outputScript library="js" name="gridstack-h5.js" />
-
   <h:outputScript name="js/nanoscroller.js" library="serenity-layout" />
   <h:outputScript name="js/ripple.js" library="serenity-layout" />
   <h:outputScript name="js/layout.js" library="serenity-layout" />
   <h:outputScript name="js/swipe.js" library="serenity-layout" />
-  <h:outputScript name="js/css-vars-ponyfill.min.js" library="serenity-layout" />
   
   <script src="#{resource['ivy-webcontent:layouts/js/cookie-helper.js']}" />
   <script src="#{resource['ivy-webcontent:layouts/js/primefaces-calendar-en-us.js']}" />

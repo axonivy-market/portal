@@ -12,6 +12,7 @@ function loadTaskDetailsGrid() {
 function initTaskDetailsGrid() {
   taskDetailsGrid = GridStack.init({
     column: 12,
+    cellHeight: 100,
     resizable: {
       handles: "e, se, s, sw, w"
     },

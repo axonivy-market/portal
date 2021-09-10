@@ -43,8 +43,7 @@
         
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/STATE')}" sortable="true" sortBy="#{state}" field="state"
           styleClass="dashboard-cases__state u-text-align-center" width="120">
-          <h:outputText value="#{caseBean.getTranslatedState(caseItem.state)}"
-            styleClass="dashboard-cases__state-text dashboard-cases__state-text--#{caseItem.state.toString().toLowerCase()}" />
+          <ic:ch.ivy.addon.portalkit.component.cases.column.CaseState case="#{caseItem}" alwaysShowState="true" />
         </p:column>
         
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATOR')}" sortable="true" sortBy="#{creator}" field="creator"

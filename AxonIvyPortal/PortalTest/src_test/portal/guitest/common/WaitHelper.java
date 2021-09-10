@@ -4,7 +4,10 @@ import java.util.concurrent.TimeUnit;
 import java.util.function.Supplier;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
@@ -99,5 +102,17 @@ public final class WaitHelper {
       input.sendKeys(value);
       return input.getAttribute("value").equals(value);
     });
+  }
+  
+  public static void waitForIFrameAvailable(WebDriver driver, String frameId) {
+    wait(driver).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(frameId));
+  }
+  
+  public static WebDriverWait wait(WebDriver driver) {
+    return new WebDriverWait(driver, 45);
+  }
+  
+  public static void waitForPresenceOfElementLocatedInFrame(WebDriver driver, String cssSelector) {
+    wait(driver).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(cssSelector)));
   }
 }

@@ -1127,6 +1127,7 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   height: auto;
 }
 
+.process-grid-item .process-more-info-link,
 .process-widget .process-more-info-link {
   display: block;
   margin-top: 20px;
@@ -5500,6 +5501,16 @@ body span.ui-commandlink .si {
 .portal-exception-detail-group .error-value {
   padding: 6px 0;
 }
+
+.message-details {
+  display: none;
+}
+
+.message-details .message,
+.message-details .stack-trace {
+  font-weight: bold;
+  padding: 0;
+}
 /* ===================== END EXCEPTION ===================== */
 
 /** Case information iframe ---- Start-----**/
@@ -5939,4 +5950,11 @@ body span.ui-commandlink .si {
 /* Process information page */
 .process-overview-layout-content .process-info-icon {
   line-height: 1.5;
+}
+
+@media screen and (min-width: 90.063em) {
+  .process-group.image-process-container .portal-card-container.image-process-item,
+  .process-group.grid-process-container .portal-card-container.process-grid-item {
+    width: 20%;
+  }
 }
