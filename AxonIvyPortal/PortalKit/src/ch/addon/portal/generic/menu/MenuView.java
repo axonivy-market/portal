@@ -23,10 +23,13 @@ import ch.addon.portal.generic.menu.PortalMenuItem.PortalMenuBuilder;
 import ch.addon.portal.generic.userprofile.homepage.HomepageType;
 import ch.addon.portal.generic.userprofile.homepage.HomepageUtils;
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
+import ch.ivy.addon.portalkit.configuration.Application;
 import ch.ivy.addon.portalkit.enums.BreadCrumbKind;
 import ch.ivy.addon.portalkit.enums.MenuKind;
-import ch.ivy.addon.portalkit.configuration.Application;
+import ch.ivy.addon.portalkit.publicapi.ApplicationMultiLanguageAPI;
+import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
 import ch.ivy.addon.portalkit.service.ApplicationMultiLanguage;
+import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivy.addon.portalkit.util.UrlUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ICase;
@@ -69,12 +72,27 @@ public class MenuView implements Serializable {
       DefaultMenuItem item = buildSubMenuItem(subMenu);
       mainMenuModel.addElement(item);
     }
+    mainMenuModel.addElement(buildNewDashboardItem());
 
     List<Application> thirdPartyApps = PortalMenuNavigator.getThirdPartyApps();
     for (Application app : thirdPartyApps) {
       DefaultMenuItem item = buildThirdPartyItem(app);
       mainMenuModel.addElement(item);
     }
+  }
+
+  private DefaultMenuItem buildNewDashboardItem() {
+    String label = String.format("%s (%s)",
+        translate(DASHBOARD),
+        translate("/ch.ivy.addon.portalkit.ui.jsf/common/new"));
+    String friendlyRequestPath = SecurityServiceUtils.findFriendlyRequestPathContainsKeyword(PortalNavigator.PORTAL_NEW_DASHBOARD_START);
+    String newDashboardLink = ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(friendlyRequestPath);
+
+    return new PortalMenuBuilder(label, MenuKind.NEW_DASHBOARD, this.isWorkingOnATask)
+        .icon(PortalMenuItem.DEFAULT_DASHBOARD_ICON)
+        .url(newDashboardLink)
+        .workingTaskId(this.workingTaskId)
+        .build();
   }
 
   private void initTaskParams(ITask workingTask, boolean isWorkingOnATask) {
@@ -122,7 +140,7 @@ public class MenuView implements Serializable {
       dashboardLink = PortalNavigator.getPortalDashboardPageUrl(params);
     }
 
-    return new PortalMenuBuilder(Ivy.cms().co(DASHBOARD), MenuKind.DASHBOARD, this.isWorkingOnATask)
+    return new PortalMenuBuilder(translate(DASHBOARD), MenuKind.DASHBOARD, this.isWorkingOnATask)
         .icon(PortalMenuItem.DEFAULT_DASHBOARD_ICON)
         .url(dashboardLink)
         .workingTaskId(this.workingTaskId)
@@ -345,4 +363,7 @@ public class MenuView implements Serializable {
     breadcrumbModel.getElements().add(buildPortalHomeMenuItem());
   }
 
+  private String translate(String cmsURI) {
+    return ApplicationMultiLanguageAPI.getCmsValueByUserLocale(cmsURI);
+  }
 }

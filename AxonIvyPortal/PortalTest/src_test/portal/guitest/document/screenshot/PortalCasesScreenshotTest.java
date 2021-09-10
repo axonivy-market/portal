@@ -14,7 +14,7 @@ import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
-import ch.ivy.addon.portalkit.util.ConfigurationJSONUtil;
+import ch.ivy.addon.portalkit.util.ConfigurationJsonUtil;
 import ch.ivy.addon.portalkit.util.ScreenshotMargin;
 import ch.ivy.addon.portalkit.util.ScreenshotUtil;
 import portal.guitest.common.ScreenshotTest;
@@ -74,7 +74,7 @@ public class PortalCasesScreenshotTest extends ScreenshotTest {
   public void screenshotCaseDetails() throws IOException {
     caseWidget = homePage.openCaseList();
     homePage.closeMainMenu();
-    ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 1000));
+    ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 1400));
     CaseDetailsPage detailsPage = caseWidget.openDetailsOfCaseHasName("Order Pizza");
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.CASE_DETAIL_FOLDER + "case-details");
     
@@ -191,7 +191,7 @@ public class PortalCasesScreenshotTest extends ScreenshotTest {
   }
 
   public CaseDetailsPage setupCustomWidgetByJSONFile(String configFile) throws IOException {
-    ConfigurationJSONUtil.updateJSONSetting(configFile, Variable.CASE_DETAIL);
+    ConfigurationJsonUtil.updateJSONSetting(configFile, Variable.CASE_DETAIL);
     CaseDetailsPage detailsPage = goToCaseList().openDetailsOfCaseHasName(CaseDetailsTest.CUSTOM_CASE_WIDGET_NAME);
     detailsPage.closeMainMenu();
     return detailsPage;
@@ -259,8 +259,9 @@ public class PortalCasesScreenshotTest extends ScreenshotTest {
     caseWidget = homePage.openCaseList();
     CaseDetailsPage caseDetailsPage = caseWidget.openDetailsOfCaseHasName("Process With Process Steps");
     caseDetailsPage.waitForCaseDetailsDisplay();
+    caseDetailsPage.closeMainMenu();
     
     executeDecorateJs("highlightProcessOverviewLink()");
-    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.PROCESSES_INFORMATION_WIDGET_FOLDER + "process-overview-link");
+    ScreenshotUtil.captureHalfLeftPageScreenShot(ScreenshotUtil.PROCESSES_INFORMATION_WIDGET_FOLDER + "process-overview-link");
   }
 }

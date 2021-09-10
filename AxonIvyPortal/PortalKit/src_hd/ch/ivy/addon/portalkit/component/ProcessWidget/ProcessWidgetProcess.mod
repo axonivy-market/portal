@@ -18,9 +18,9 @@ Ps0 @CallSub f6 '' #zField
 Ps0 @UdProcessEnd f8 '' #zField
 Ps0 @PushWFArc f14 '' #zField
 Ps0 @PushWFArc f9 '' #zField
-Ps0 @GridStep f4 '' #zField
-Ps0 @PushWFArc f5 '' #zField
 Ps0 @PushWFArc f2 '' #zField
+Ps0 @PushWFArc f5 '' #zField
+Ps0 @GridStep f4 '' #zField
 >Proto Ps0 Ps0 ProcessWidgetProcess #zField
 Ps0 f1 guid 167CEF3C0BEA1F15 #txt
 Ps0 f1 method start() #txt
@@ -69,6 +69,8 @@ Ps0 f14 expr out #txt
 Ps0 f14 304 192 403 192 #arcP
 Ps0 f9 expr out #txt
 Ps0 f9 109 192 192 192 #arcP
+Ps0 f2 320 96 403 96 #arcP
+Ps0 f5 109 96 192 96 #arcP
 Ps0 f4 actionTable 'out=in;
 ' #txt
 Ps0 f4 actionCode 'import ch.ivy.addon.portalkit.enums.GlobalVariable;
@@ -84,8 +86,6 @@ Information link</name>
 </elementInfo>
 ' #txt
 Ps0 f4 192 74 128 44 -41 -16 #rect
-Ps0 f5 109 96 192 96 #arcP
-Ps0 f2 320 96 403 96 #arcP
 >Proto Ps0 .type ch.ivy.addon.portalkit.component.ProcessWidget.ProcessWidgetData #txt
 >Proto Ps0 .processKind HTML_DIALOG #txt
 >Proto Ps0 -8 -8 16 16 16 26 #rect

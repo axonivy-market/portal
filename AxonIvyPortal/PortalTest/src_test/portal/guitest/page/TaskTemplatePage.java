@@ -22,10 +22,8 @@ public class TaskTemplatePage extends TemplatePage {
     driver.switchTo().defaultContent();
   }
 
-  @SuppressWarnings("deprecation")
   public void switchToCaseInfoIframe() {
-    waitAjaxIndicatorDisappear();
-    driver.switchTo().frame(CASE_INFO_IFRAME_ID);
+    WaitHelper.waitForIFrameAvailable(driver, CASE_INFO_IFRAME_ID);
   }
 
   public void clickOnAdditionalBusinessDetailLink() {
@@ -184,13 +182,11 @@ public class TaskTemplatePage extends TemplatePage {
   }
 
   public void clickOnSubmitButton() {
-    String submitButton = "button[id$='button-submit']";
-    clickByCssSelector(submitButton);
+    clickByCssSelector("button[id$='button-submit']");
   }
 
   public HomePage clickCancelAndLeftButton() {
-    String cancelButton = "a[id$='button-cancel']";
-    clickByCssSelector(cancelButton);
+    clickByCssSelector("a[id$='button-cancel']");
     return new HomePage();
   }
 
@@ -260,11 +256,12 @@ public class TaskTemplatePage extends TemplatePage {
   }
 
   public TaskWidgetPage finishCreateInvestmentTask() {
-    driver.switchTo().frame("iFrame");
+    WaitHelper.waitForIFrameAvailable(driver, "iFrame");
     waitForElementDisplayed(By.id("form:invested-amount"), true);
     type(By.id("form:invested-amount"), "1");
     click(By.id("form:save-btn"));
     driver.switchTo().defaultContent();
+    WaitHelper.waitForPresenceOfElementLocatedInFrame(driver, "[id$='global-search-component:global-search-data']");
     return new TaskWidgetPage();
   }
 

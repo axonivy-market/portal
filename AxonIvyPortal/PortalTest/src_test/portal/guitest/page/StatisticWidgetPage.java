@@ -245,6 +245,8 @@ public class StatisticWidgetPage extends TemplatePage {
     click(createCaseByFinishedTaskLink);
     waitAjaxIndicatorDisappear();
     waitForElementDisplayed(By.cssSelector("div[id$='add-chart-dialog']"), true);
+    inputNameForSupportedLanguages(CASE_BY_FINISHED_TASK_CHART_NAME);
+    waitUntilAnimationFinished(DEFAULT_TIMEOUT, "statistics-widget\\\\:chart-creation-widget\\\\:add-statistic-form\\\\:chart-name-list\\\\:3\\\\:chart-name-input", "id");
     return findElementByCssSelector("div[id$='add-chart-dialog']");
   }
   

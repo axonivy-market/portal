@@ -32,7 +32,6 @@ function loadGrid() {
   });
 }
 
-
 function handleFilterCategoryHeight(e) {
   var filterTab = $(document.getElementById(e.id)).find("[id$=':filter-tab']");
   if (filterTab.lenght > 0 && filterTab.get(0).ariaHidden == "false") {
@@ -55,4 +54,32 @@ function removeWidgetContent(widgetId) {
   var removeWidgetId = '.grid-stack-item[gs-id="' + widgetId + '"]';
   $(removeWidgetId).remove();
   updateDashboardWidget();
+}
+
+function DashboardToolKit() {
+  return {
+    setupScrollbar: function() {
+      setupScrollbar();
+    },
+
+    responsive: function() {
+      this.setupScrollbar();
+    }
+  };
+}
+
+function setupScrollbar() {
+  var gridstackItems = $('.grid-stack-item');
+  if (gridstackItems.length > 0) {
+    var container = $('.js-dashboard__body');
+    var headerContainer = ($('.js-dashboard__header').outerHeight(true)||0);
+    var announcementMessageContainer = ($('.js-announcement-message').outerHeight(true)||0);
+    var layoutContentPadding = ($('.layout-content').outerHeight(true)||0) - ($('.layout-content').height()||0);
+    var mainScreenHeight = ($('.js-layout-content').outerHeight(true)||0);
+
+    var availableHeight = mainScreenHeight - headerContainer - announcementMessageContainer - layoutContentPadding;
+    if (!!availableHeight) {
+      container.outerHeight(availableHeight);
+    }
+  }
 }

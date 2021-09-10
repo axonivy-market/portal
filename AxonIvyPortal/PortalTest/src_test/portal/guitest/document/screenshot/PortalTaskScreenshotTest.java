@@ -14,7 +14,7 @@ import org.openqa.selenium.WebElement;
 import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
 
-import ch.ivy.addon.portalkit.util.ConfigurationJSONUtil;
+import ch.ivy.addon.portalkit.util.ConfigurationJsonUtil;
 import ch.ivy.addon.portalkit.util.ScreenshotMargin;
 import ch.ivy.addon.portalkit.util.ScreenshotUtil;
 import portal.guitest.common.ScreenshotTest;
@@ -241,7 +241,7 @@ public class PortalTaskScreenshotTest extends ScreenshotTest {
   }
 
   private TaskDetailsPage setupCustomWidgetByJSONFile(String configFile) throws IOException {
-    ConfigurationJSONUtil.updateJSONSetting(configFile, Variable.TASK_DETAIL);
+    ConfigurationJsonUtil.updateJSONSetting(configFile, Variable.TASK_DETAIL);
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
     homePage = new HomePage();

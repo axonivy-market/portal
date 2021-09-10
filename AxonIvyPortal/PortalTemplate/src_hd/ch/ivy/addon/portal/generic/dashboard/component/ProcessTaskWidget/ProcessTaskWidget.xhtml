@@ -36,14 +36,16 @@
         
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}" sortable="true" sortBy="#{name}" field="name"
           styleClass="revelent-tasks__name">
-          <span><h:outputText value="#{task.name}" /></span>
+          <h:outputText value="#{task.name}" />
         </p:column>
         
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}" sortable="true" sortBy="#{description}" field="description" styleClass="dashboard-cases__description">
-          <span><h:outputText value="#{task.description}" /></span>
+          <h:outputText value="#{task.description}" />
         </p:column>
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/EXPIRY_TIME')}" sortable="true" sortBy="#{expiryTimestamp}" field="expiryTimestamp" styleClass="revelent-tasks__expiry">
-          <span><h:outputText styleClass="u-text-align-center" value="#{task.expiryTimestamp}"><f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}"/></h:outputText></span>
+          <h:outputText styleClass="u-text-align-center" value="#{task.expiryTimestamp}">
+            <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}"/>
+          </h:outputText>
         </p:column>
         
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}"

@@ -45,7 +45,7 @@ You could find project ``portal-developer-examples`` in engine demo mode or impo
    user-with-environment-info
    page-header-footer
    process-information
-   process-default-image
+   process-image
 
 .. |engine-demo-mode| image:: images/customization/engine-demo-mode.png
 .. |import-portal-examples| image:: images/customization/import-portal-examples.png

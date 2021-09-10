@@ -25,7 +25,7 @@ public class StateColumnModel extends CaseColumnModel implements Serializable {
     this.field = DashboardStandardCaseColumn.STATE.getField();
     this.style = defaultIfEmpty(this.style, NORMAL_WIDTH);
     this.styleClass = defaultIfEmpty(this.styleClass, "dashboard-cases__state u-text-align-center");
-    this.fieldStyleClass = defaultIfEmpty(this.fieldStyleClass, "dashboard-cases__state-text");
+    this.fieldStyleClass = defaultIfEmpty(this.fieldStyleClass, StringUtils.EMPTY);
     this.format = DashboardColumnFormat.CUSTOM;
   }
   
