@@ -63,7 +63,7 @@ public class CaseBean implements Serializable {
     return getDisplayState(iCase.getState());
   }
 
-  private String getDisplayState(CaseState caseState) {
+  public String getDisplayState(CaseState caseState) {
     if (caseState == CaseState.CREATED) {
       return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseState/OPEN");
     }

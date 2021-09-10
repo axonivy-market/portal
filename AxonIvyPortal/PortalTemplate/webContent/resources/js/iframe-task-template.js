@@ -2,11 +2,34 @@ $(document).ready(function() {
   $.removeCookie('serenity_expandeditems', {path: '/'});
 });
 
-loadIframe();
-function loadIframe() {
+loadIframe(false);
+var recheckFrameTimer;
+function loadIframe(recheckIndicator) {
   var iframe = document.getElementById('iFrame');
-  var window = iframe.contentWindow;
-  $(iframe).on('load', function() {
+
+  if (!recheckIndicator) {
+    $(iframe).on('load', function() {
+    processIFrameData(iframe);
+    clearTimeout(recheckFrameTimer);
+    return;
+    });
+  }
+  else {
+    iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+    if (iframeDoc.readyState == 'complete') {
+    processIFrameData(iframe);
+    clearTimeout(recheckFrameTimer);
+    return;
+    }
+  }
+
+  recheckFrameTimer = setTimeout(() => {
+    loadIframe(true);
+  }, 500);
+}
+
+function processIFrameData(iframe) {
+    var window = iframe.contentWindow;
     checkUrl(iframe);
     getDataFromIFrame([{
       name : 'currentProcessStep',
@@ -42,7 +65,6 @@ function loadIframe() {
       name : 'viewName',
       value : window.viewName
     }]);
-  });
 }
 
 function checkUrl(iFrame) {

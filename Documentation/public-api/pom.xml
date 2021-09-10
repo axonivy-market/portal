@@ -5,7 +5,7 @@
   <artifactId>public-api</artifactId>
   <version>9.1.0.0-SNAPSHOT</version>
   <properties>
-    <build.plugin.version>9.2.2</build.plugin.version>
+    <build.plugin.version>9.3.0-SNAPSHOT</build.plugin.version>
     <ivy.engine.version>9.3.0</ivy.engine.version>
   </properties>
   <distributionManagement>
@@ -97,4 +97,20 @@
       </plugin>
     </plugins>
   </build>
+  <pluginRepositories>
+    <pluginRepository>
+      <id>sonatype-snapshot</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+      <snapshots>
+        <updatePolicy>always</updatePolicy>
+      </snapshots>
+    </pluginRepository>
+    <pluginRepository>
+      <id>sonatype-releases</id>
+      <url>https://oss.sonatype.org/content/repositories/releases</url>
+      <releases>
+        <updatePolicy>always</updatePolicy>
+      </releases>
+    </pluginRepository>
+  </pluginRepositories>
 </project>
