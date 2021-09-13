@@ -1,7 +1,8 @@
 package com.axonivy.portal.selenium.test;
 
-import static com.codeborne.selenide.CollectionCondition.*;
-import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
+import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.visible;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,24 +16,7 @@ import com.axonivy.portal.selenium.page.CaseWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.NewDashBoardPage;
 import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
 
-/**
- * This sample WebTest orchestrates a real browser to verify that your workflow application and especially it's Html
- * Dialogs are running as expected.
- * 
- * <p>
- * The test can either be run
- * <ul>
- * <li>in the Designer IDE ( <code>right click > run as > JUnit Test </code> )</li>
- * <li>or in a Maven continuous integration build pipeline ( <code>mvn clean verify</code> )</li>
- * </ul>
- * </p>
- * 
- * <p>
- * Detailed guidance on writing these kind of tests can be found in our
- * <a href="https://developer.axonivy.com/doc/dev/concepts/testing/web-testing.html">WebTesting docs</a>
- * </p>
- */
-@IvyWebTest
+@IvyWebTest(headless = false)
 public class NewDashboardCaseWidgetTest extends BaseTest {
 
   // WIDGET
