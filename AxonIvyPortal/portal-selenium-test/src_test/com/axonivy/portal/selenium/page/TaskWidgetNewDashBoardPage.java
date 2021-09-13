@@ -1,7 +1,9 @@
 package com.axonivy.portal.selenium.page;
 
-import static com.codeborne.selenide.Condition.*;
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Condition.appear;
+import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
@@ -37,24 +39,12 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
     return 0;
   }
 
-  private ElementsCollection getColumnsOfTableWidget() {
-    return $(taskWidgetId).waitUntil(appear, DEFAULT_TIMEOUT).$$("table tbody tr td");
-  }
-
   private ElementsCollection getColumnOfTableWidget(int rowIndex) {
     return $(taskWidgetId).waitUntil(appear, DEFAULT_TIMEOUT).$$("table tbody tr").get(rowIndex).$$("td");
   }
 
   public ElementsCollection expand() {
     return $$("div.widget__header").filter(text(taskWidgetName));
-  }
-
-  private ElementsCollection getTasksOfTaskWidgetHasName(String caseName) {
-    return getColumnsOfTableWidget().filter(text(caseName));
-  }
-
-  private SelenideElement getTaskOfTaskWidgetHasIndex(int index) {
-    return getColumnsOfTableWidget().get(index);
   }
 
   private SelenideElement getColumnOfTaskHasIndex(int index, String columnName) {
@@ -82,20 +72,6 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
 
   public void filterTaskName(String input) {
     getFilterInput(FILTER_TASK_NAME).sendKeys(input);
-  }
-
-  private SelenideElement getFilterCheckBox(String inputField) {
-    return $("div[id$='widget-filter-content']").waitUntil(appear, DEFAULT_TIMEOUT)
-        .$$("div.widget-filter-panel div.ui-g").filter(text(inputField)).first();
-  }
-
-  private SelenideElement getCloseCheckBox() {
-    return $("div.ui-selectcheckboxmenu-panel").waitUntil(appear, DEFAULT_TIMEOUT).$("a.ui-selectcheckboxmenu-close");
-  }
-
-  private SelenideElement getValueOfCheckBox(String value) {
-    return $("div.ui-selectcheckboxmenu-items-wrapper").waitUntil(appear, DEFAULT_TIMEOUT)
-        .$$("li.ui-selectcheckboxmenu-item").filter(text(value)).first().$("div.ui-chkbox-box");
   }
 
   public void applyFilter() {
