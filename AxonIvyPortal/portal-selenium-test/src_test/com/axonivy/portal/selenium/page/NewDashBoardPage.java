@@ -15,6 +15,7 @@ public class NewDashBoardPage extends TemplatePage {
 
   public void switchToEditMode() {
     $("button[id='switch-to-edit-mode']").waitUntil(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    $("a[id='switch-to-view-mode']").waitUntil(appear, DEFAULT_TIMEOUT).should(appear);
   }
 
   public void addWidget() {
