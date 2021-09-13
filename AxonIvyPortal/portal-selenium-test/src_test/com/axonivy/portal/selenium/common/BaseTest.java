@@ -1,6 +1,9 @@
 package com.axonivy.portal.selenium.common;
 
-import java.io.IOException;
+import static com.axonivy.portal.selenium.common.Variable.SHOW_USER_GUIDE;
+import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.refresh;
+
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
@@ -10,9 +13,6 @@ import com.axonivy.ivy.webtest.engine.EngineUrl;
 import com.codeborne.selenide.WebDriverRunner;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
-
-import static com.axonivy.portal.selenium.common.Variable.SHOW_USER_GUIDE;
-import static com.codeborne.selenide.Selenide.*;
 /**
  * A base test that other tests extend it. It will test on browser IE by default. It provides feature to take screenshot
  * of failed tests and utility methods.
@@ -23,16 +23,8 @@ public class BaseTest {
   private String designerLogoutUrl = "http://localhost:8081/designer/logout";
   private final static String LOGIN_URL_PATTERN = "/PortalKitTestHelper/1636734E13CEC872/login.ivp?username=%s&password=%s";
   private final static String NEW_DASHBOARD_URL_PATTERN = "/PortalTemplate/17065D04AF6FF0C0/dashboard.ivp";
-  private BrowserType browserType;
 
-  public BaseTest() {
-    String vmArgPath = System.getProperty("browserType");
-    if (vmArgPath != null) {
-      browserType = BrowserType.valueOf(vmArgPath);
-    } else {
-      browserType = BrowserType.valueOf(PropertyLoader.getBrowserType());
-    }
-  }
+  public BaseTest() {}
   
   @AfterEach
   public void tearDown() {
@@ -187,21 +179,6 @@ public class BaseTest {
     } catch (UnsupportedEncodingException e) {
       throw new PortalGUITestException(e);
     }
-  }
-  
-  public static void killBrowsers() {
-    try {
-      System.out.println("Kill all open browsers");
-      Runtime.getRuntime().exec("taskkill /F /IM iexplore.exe");
-      Runtime.getRuntime().exec("taskkill /F /IM firefox.exe");
-      Sleeper.sleep(5000);
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-  }
-  
-  private String getDriverPath() {
-    return browserType.getConfiguration().getDriverPath();
   }
 
   public void updatePortalSetting(String portalSettingName, String portalSettingValue) {
