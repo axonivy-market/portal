@@ -30,6 +30,7 @@ public class BaseNavigator {
   
   protected static void redirectURL(String url) {
     try {
+      Ivy.log().error("go to redirect URL");
       RequestUtil.redirect(url);
     } catch (IOException ex) {
       throw new PortalException(ex);
@@ -39,8 +40,10 @@ public class BaseNavigator {
   protected static String getRelativeLink(StandardProcessType standardProcess) {
     return IvyExecutor.executeAsSystem(() ->
       {
+        Ivy.log().error("go to getRelativeLink");
         IProcessStart standardProcessImplementation = Ivy.wf().getStandardProcessImplementation(standardProcess);
         if (standardProcessImplementation != null) {
+          Ivy.log().error("go to standardProcessImplementation.getLink().getRelative()");
           return standardProcessImplementation.getLink().getRelative();
         }
         return StringUtils.EMPTY;
