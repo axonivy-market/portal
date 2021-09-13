@@ -27,6 +27,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.JsonNodeType;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.fasterxml.jackson.databind.node.TextNode;
 
 import ch.ivy.addon.portalkit.enums.FilterType;
 import ch.ivyteam.ivy.application.IApplication;
@@ -36,6 +37,7 @@ import ch.ivyteam.ivy.business.data.store.BusinessDataRepository;
 import ch.ivyteam.ivy.business.data.store.search.Filter;
 import ch.ivyteam.ivy.business.data.store.search.Query;
 import ch.ivyteam.ivy.business.data.store.search.Result;
+import ch.ivyteam.ivy.business.data.store.search.restricted.json.ElasticSearchJsonConverter;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.security.query.UserQuery;
@@ -52,7 +54,10 @@ public class BusinessDataMigrationService {
   public static final String DATA_NODE = "data";
   public static final String CLASS_NODE = "@class";
   
-  private static final String DATA_PATTERN = "{\"configurations\": [\"Class<java.util.ArrayList>\", %s]}";
+  public static final String REF_ID = "@id";
+  
+  public static final String FILTER_NODE =  "filters";
+  
   private static final String FILTER_CLASS_PATTERN = "Class<%s>";
   
   private static ObjectMapper objectMapper;
@@ -224,7 +229,7 @@ public class BusinessDataMigrationService {
         filterByGroupID.put(groupID, filterData);
       }
       
-      StringWriter stringWriter = buildJSONWriter(filterByGroupID);
+      var stringWriter = buildJSONWriter(filterByGroupID);
       
       /// write
       IUser user = Ivy.wf().getSecurityContext().users().find(userId);
@@ -240,111 +245,72 @@ public class BusinessDataMigrationService {
       return;
     }
     
-    StringWriter stringWriter = buildJSONWriter(publicFilterMap);
+    var stringWriter = buildJSONWriter(publicFilterMap);
 
     /// write
     Variables.of(app).set(PortalVariable.CASE_FILTER.key, stringWriter.toString());
   }
 
-  private static StringWriter buildJSONWriter(Map<Long, FilterDataInfo> publicFilterMap)
+  private static ArrayNode buildJSONWriter(Map<Long, FilterDataInfo> filterDataInfoMap)
       throws IOException, JsonProcessingException, JsonMappingException {
-    StringWriter stringWriter = new StringWriter();
-    JsonFactory factory = new JsonFactory();
-    JsonGenerator generator = factory.createGenerator(stringWriter);
-    generator.writeStartArray();
-    
-    for (Long filterGroupId : publicFilterMap.keySet()) {
-      var filterDataInfo = publicFilterMap.get(filterGroupId);
-      generator.writeStartObject();
-      generator.writeFieldName(FILTER_GROUP_ID);
-      generator.writeNumber(filterGroupId);
-      generator.writeFieldName(DATA_NODE);
-      
-      // write sub
-      ArrayNode configurationNode = objectMapper.createArrayNode();
-//      ObjectNode objectNode = objectMapper.createObjectNode();
+    var filtersDataNode = createArrayNode();
+    for (Long filterGroupId : filterDataInfoMap.keySet()) {
+      var filterDataInfo = filterDataInfoMap.get(filterGroupId);
+      var filterByGroupIdNode = createObjectNode();
+      filterByGroupIdNode.put(FILTER_GROUP_ID, filterGroupId);
 
-      
-      int refIndex = 1;
+      var configurationsNode = createArrayNode();
+
       for (String rawValue : filterDataInfo.getRawValues()) {
-        ObjectNode objectNode = objectMapper.createObjectNode();
+        ObjectNode objectNode = createObjectNode();
         objectNode.put(CLASS_NODE, String.format(FILTER_CLASS_PATTERN, filterDataInfo.getObjectType()));
-          
-        JsonNode filter = objectMapper.readTree(rawValue);
-        Iterator<String> fieldNames = filter.fieldNames();
-        while (fieldNames.hasNext()) {
-          String fieldName = fieldNames.next();
-          if (fieldName.equalsIgnoreCase("@id")) {
-            
-            var idvalue = filter.get(fieldName).asText();
-            var valuers = idvalue.split("-");
-            var text = valuers[0] + "-" + refIndex;
-            
-            objectNode.put(fieldName, text);
-            continue;
-          }
-//          if (fieldName.equalsIgnoreCase("filters")) {
-//            ArrayNode eleArray = objectMapper.createArrayNode();
-//            Iterator<JsonNode> eleFilters = filter.get("filters").elements();
-//            while (eleFilters.hasNext()) {
-//              ObjectNode ele = objectMapper.createObjectNode();
-//              JsonNode element = eleFilters.next();
-//              JsonNodeType type = element.getNodeType();
-//              
-//              if (JsonNodeType.OBJECT
-//              
-//              ele.remove("@id");
-//              
-//              eleArray.add(ele);
-//            }
-//            
-//            objectNode.set(fieldName, eleArray);
-//            continue;
-//          }
 
-
-          
-          objectNode.set(fieldName, filter.get(fieldName));
+        JsonNode filterRaw = objectMapper.readTree(rawValue);
+        cleanRefID(filterRaw);
+        if (JsonNodeType.OBJECT.equals(filterRaw.getNodeType()) && filterRaw.has(FILTER_NODE)) {
+          cleanRefID(filterRaw.get(FILTER_NODE));
         }
-        
-        configurationNode.add(objectNode);
-        refIndex++;
+        objectNode.setAll((ObjectNode) filterRaw);
+        configurationsNode.add(objectNode);
       }
-
-      String configurationAsString = String.format(DATA_PATTERN, configurationNode.toString());
+      ObjectNode configParentNode = createObjectNode();
+      ArrayNode configValueNode = createArrayNode();
+      TextNode configTypeField = new TextNode("Class<java.util.ArrayList>");
+      configValueNode.add(configTypeField);
+      configValueNode.add(configurationsNode);
+      configParentNode.set("configurations", configValueNode);
       // end sub
 
-      generator.writeRawValue(configurationAsString);
-      generator.writeEndObject();
+      filterByGroupIdNode.set(DATA_NODE, configParentNode);
+      filtersDataNode.add(filterByGroupIdNode);
     }
-
-    generator.writeEndArray();
-    generator.close();
-    return stringWriter;
+    return filtersDataNode;
   }
 
-//  private static StringWriter buildJsonStringWriter() throws IOException {
-//    StringWriter stringWriter = new StringWriter();
-//    JsonFactory factory = new JsonFactory();
-//    JsonGenerator generator = factory.createGenerator(stringWriter);
-//    generator.writeStartArray();
-//
-//    // Write modified data to JSON
-//    
-//    
-//    generator.writeStartObject();
-//    generator.writeFieldName(FILTER_GROUP_ID);
-//    generator.writeNumber(filterGroupId);
-//    generator.writeFieldName(DATA);
-//    generator.writeRawValue(filterAsString);
-//    generator.writeEndObject();
-//    
-//    
-//    
-//    generator.writeEndArray();
-//    generator.close();
-//    return stringWriter;
-//  }
+  private static ObjectNode createObjectNode() {
+    return objectMapper.createObjectNode();
+  }
+
+  private static ArrayNode createArrayNode() {
+    return objectMapper.createArrayNode();
+  }
+
+  private static void cleanRefID(JsonNode jsonNode) {
+    if (jsonNode == null) {
+      return;
+    }
+
+    if (JsonNodeType.OBJECT.equals(jsonNode.getNodeType()) && jsonNode.has(REF_ID)) {
+      ((ObjectNode) jsonNode).remove(REF_ID); // remove field @id in JSON
+      return;
+    }
+
+    if (JsonNodeType.ARRAY.equals(jsonNode.getNodeType())) {
+      ((ArrayNode) jsonNode).forEach(childNode -> {
+        cleanRefID(childNode);
+      });
+    }
+  }
 
   private static void migrateTaskFilters(IApplication app, List<String> errors) {
 
