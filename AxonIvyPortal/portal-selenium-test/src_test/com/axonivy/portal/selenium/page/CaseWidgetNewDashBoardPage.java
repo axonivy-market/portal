@@ -88,7 +88,7 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
 
   public CaseEditWidgetNewDashBoardPage openEditWidget() {
     $$("form.table-widget-form div.widget__header").filter(text(caseWidgetName)).first()
-        .waitUntil(appear, DEFAULT_TIMEOUT).$("div[id$='widget-header-actions']").$("a[id*='edit-widget']")
+        .waitUntil(appear, DEFAULT_TIMEOUT).$("div[id$='widget-header-actions']").$("a[class^='ui-commandlink'][id*='edit-widget']")
         .shouldBe(getClickableCondition()).click();
     return new CaseEditWidgetNewDashBoardPage();
   }
