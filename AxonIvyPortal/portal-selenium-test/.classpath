@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<classpath>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><classpath>
 	<classpathentry kind="src" path="src">
 		<attributes>
 			<attribute name="optional" value="true"/>
