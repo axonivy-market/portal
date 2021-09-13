@@ -11,15 +11,15 @@ import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
+import ch.ivy.addon.portalkit.util.ProcessStartUtils;
 import ch.ivy.addon.portalkit.util.RequestUtil;
-import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivyteam.ivy.workflow.StandardProcessType;
 
 public class BaseNavigator {
   protected static void navigateByKeyword(String keyword, String defaultFriendlyRequestPath, Map<String, String> param) {
-    String customizePortalFriendlyRequestPath = SecurityServiceUtils.findFriendlyRequestPathContainsKeyword(keyword);
+    String customizePortalFriendlyRequestPath = ProcessStartUtils.findFriendlyRequestPathContainsKeyword(keyword);
     String friendlyRequestPath = StringUtils.defaultIfBlank(customizePortalFriendlyRequestPath, defaultFriendlyRequestPath);
     redirectURL(buildUrl(friendlyRequestPath, param));
   }
