@@ -11,6 +11,7 @@ public class ExternalLink extends AbstractConfiguration {
   private String name;
   private String link;
   private Long creatorId;
+  private String creator;
   private String icon;
   private String description;
 
@@ -49,6 +50,14 @@ public class ExternalLink extends AbstractConfiguration {
 
   public void setDescription(String description) {
     this.description = description;
+  }
+
+  public String getCreator() {
+    return creator;
+  }
+
+  public void setCreator(String creator) {
+    this.creator = creator;
   }
 
   @Override

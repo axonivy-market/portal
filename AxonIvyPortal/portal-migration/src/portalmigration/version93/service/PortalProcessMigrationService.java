@@ -3,18 +3,21 @@ package portalmigration.version93.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.security.query.UserQuery;
 import ch.ivyteam.ivy.security.query.UserQuery.FilterLink;
+import ch.ivyteam.ivy.vars.Variables;
 import ch.ivyteam.ivy.workflow.WorkflowNavigationUtil;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 import portalmigration.enums.PortalVariable;
 import portalmigration.enums.ProcessType;
 import portalmigration.persistence.converter.BusinessEntityConverter;
 import portalmigration.service.PortalMigrationService;
+import portalmigration.version93.configuration.ExternalLink;
 import portalmigration.version93.configuration.UserProcess;
 
 public class PortalProcessMigrationService extends PortalMigrationService {
@@ -23,8 +26,31 @@ public class PortalProcessMigrationService extends PortalMigrationService {
 
   public static List<String> startMigration(IApplication app) {
     List<String> error = new ArrayList<>();
+    
+    migratePublicExternalLink(app);
+    
     migrateUserProcess(app, error);
+    
+    migrateUserExternalLink(app);
     return error;
+  }
+
+  private static void migratePublicExternalLink(IApplication app) {
+    var externalLinkJSON = Variables.of(app).get(PortalVariable.EXTERNAL_LINK.key);
+    List<ExternalLink> externalLinks = BusinessEntityConverter.jsonValueToEntities(externalLinkJSON, ExternalLink.class);
+    if (CollectionUtils.isEmpty(externalLinks)) {
+      return;
+    }
+    
+    for (ExternalLink externalLink : externalLinks) {
+      externalLink.setIsPublic(true);
+      IUser user = findUserInAppByName(app.getId(), externalLink.getCreator());
+      if (user != null) {
+        externalLink.setCreatorId(user.getId());
+      }
+    }
+    
+    Variables.of(app).set(PortalVariable.EXTERNAL_LINK.key, BusinessEntityConverter.entityToJsonValue(externalLinks));
   }
 
   private static void migrateUserProcess(IApplication application, List<String> error) {
@@ -40,6 +66,36 @@ public class PortalProcessMigrationService extends PortalMigrationService {
 
     } while (index == totalCount);
   }
+  
+  private static void migrateUserExternalLink(IApplication application) {
+    int index = 0;
+    long totalCount = countActiveUserByApp(application.getId());
+
+    do {
+      List<IUser> users = queryActiveUserByApp(index, pageSize, application.getId());
+
+      updateUserExternalProperties(users);
+
+      index += pageSize;
+
+    } while (index == totalCount);
+  }
+
+  private static void updateUserExternalProperties(List<IUser> users) {
+    for (IUser user : users) {
+      var externalLinkJSON = user.getProperty(PortalVariable.EXTERNAL_LINK.key);
+      List<ExternalLink> externalLinks = BusinessEntityConverter.jsonValueToEntities(externalLinkJSON, ExternalLink.class);
+      for (ExternalLink externalLink : externalLinks) {
+        externalLink.setIsPublic(false);
+        if (externalLink.getCreatorId() == null) {
+          externalLink.setCreatorId(user.getId());
+        }
+        externalLink.setCreator(null);
+      }
+
+      user.setProperty(PortalVariable.EXTERNAL_LINK.key, BusinessEntityConverter.entityToJsonValue(externalLinks));
+    }
+  }
 
   private static List<IUser> queryActiveUserByApp(int index, int pageSize, long appId) {
     return createQueryActiveUserByApp(appId).executor().resultsPaged().window(index, pageSize);
@@ -53,6 +109,13 @@ public class PortalProcessMigrationService extends PortalMigrationService {
     return UserQuery.create().where().enabled().isTrue().and().applicationId().isEqual(appId);
   }
 
+  private static IUser findUserInAppByName(long appId, String userName) {
+    return UserQuery.create().where()
+        .applicationId().isEqual(appId).and()
+        .name().isEqualIgnoreCase(userName)
+        .executor().firstResult();
+  }
+  
   private static void updateProcessProperties(List<IUser> users, IApplication app,
       @SuppressWarnings("unused") List<String> error) {
 

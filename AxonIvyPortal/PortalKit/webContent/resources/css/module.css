@@ -5501,6 +5501,16 @@ body span.ui-commandlink .si {
 .portal-exception-detail-group .error-value {
   padding: 6px 0;
 }
+
+.message-details {
+  display: none;
+}
+
+.message-details .message,
+.message-details .stack-trace {
+  font-weight: bold;
+  padding: 0;
+}
 /* ===================== END EXCEPTION ===================== */
 
 /** Case information iframe ---- Start-----**/
