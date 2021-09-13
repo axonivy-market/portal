@@ -13,7 +13,6 @@ import ch.ivyteam.ivy.server.ServerFactory;
 import portalmigration.enums.PortalLibrary;
 import portalmigration.version91.migrate.config.service.ApplicationPropertyMigrationService;
 import portalmigration.version91.migrate.statistic.service.StatisticMigrationService;
-import portalmigration.version93.service.BusinessDataMigrationService;
 import portalmigration.version93.service.PortalProcessMigrationService;
 
 public class PortalMigrationService {
@@ -36,8 +35,6 @@ public class PortalMigrationService {
    */
   private static List<String> startMigratingToTargetVersion(IApplication app) {
     List<String> errors = new ArrayList<>();
-    
-    migrateBusinessConfiguration(app, errors);
 
     migratePortalProcesses(app, errors);
 
@@ -47,10 +44,6 @@ public class PortalMigrationService {
       migrate91to92();
     }
     return errors;
-  }
-
-  private static void migrateBusinessConfiguration(IApplication app, List<String> errors) {
-    BusinessDataMigrationService.startMigrationData(app, errors);
   }
 
   private static void migratePortalProcesses(IApplication app, List<String> errors) {
