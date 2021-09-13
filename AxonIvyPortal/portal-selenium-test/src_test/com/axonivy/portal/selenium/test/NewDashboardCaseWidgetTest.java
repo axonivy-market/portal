@@ -16,7 +16,7 @@ import com.axonivy.portal.selenium.page.CaseWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.NewDashBoardPage;
 import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class NewDashboardCaseWidgetTest extends BaseTest {
 
   // WIDGET
