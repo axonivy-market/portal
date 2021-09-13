@@ -22,7 +22,7 @@ public class BaseTest {
 
   private String designerLogoutUrl = "http://localhost:8081/designer/logout";
   private final static String LOGIN_URL_PATTERN = "/PortalKitTestHelper/1636734E13CEC872/login.ivp?username=%s&password=%s";
-  private final static String NEW_DASHBOARD_URL_PATTERN = "/PortalTemplate/17065D04AF6FF0C0/dashboard.ivp";
+  private final static String NEW_DASHBOARD_URL_PATTERN = "/PortalTemplate/1549F58C18A6C562/PortalDashboard.ivp";
 
   public BaseTest() {}
   
