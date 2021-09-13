@@ -58,7 +58,6 @@ public final class PortalNavigator extends BaseNavigator{
   }
 
   public static void navigateToPortalLoginPage() {
-    Ivy.log().error("go to login");
     IHttpRequest request = (IHttpRequest) Ivy.request();
     String loginPage = getRelativeLink(StandardProcessType.DefaultLoginPage);
     String originalUrl = URLEncoder.encode(request.getHttpServletRequest().getRequestURI(), StandardCharsets.ISO_8859_1);
