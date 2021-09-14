@@ -40,6 +40,7 @@ import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.SortFieldUtil;
 import ch.ivy.addon.portalkit.util.UserUtils;
+import ch.ivyteam.ivy.business.data.store.BusinessDataInfo;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.security.IUser;
@@ -342,8 +343,8 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
     filterData.setIsPublic(isPublic);
     CaseFilterService filterService = new CaseFilterService();
     filterService.save(filterData);
-    filterData = isPublic ? filterService.findPublicFilter(filterData.getId(), filterGroupId)
-        : filterService.findPrivateFilter(filterData.getId(), filterGroupId);
+    BusinessDataInfo<CaseFilterData> info = filterService.save(filterData);
+    filterData = filterService.findById(info.getId());
     UserUtils.setSessionSelectedCaseFilterSetAttribute(filterData);
     UserUtils.setSessionSelectedDefaultCaseFilterSetAttribute(isSelectedDefaultFilter);
     return filterData;
@@ -573,9 +574,10 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
   protected void initSelectedColumns() {
     CaseColumnsConfigurationService service = CaseColumnsConfigurationService.getInstance();
     Long userId = Optional.ofNullable(Ivy.session().getSessionUser()).map(IUser::getId).orElse(null);
+    Long applicationId = Ivy.request().getApplication().getId();
     Long processModelId = Ivy.request().getProcessModel().getId();
     if (userId != null) {
-      CaseColumnsConfiguration configData = service.getConfiguration(processModelId);
+      CaseColumnsConfiguration configData = service.getConfiguration(applicationId, userId, processModelId);
       if (configData != null) {
         selectedColumns = configData.getSelectedColumns();
       }
@@ -600,7 +602,9 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
     setAutoHideColumns(isDisableSelectionCheckboxes);
     CaseColumnsConfigurationService service = CaseColumnsConfigurationService.getInstance();
     Long processModelId = Ivy.request().getProcessModel().getId();
-    CaseColumnsConfiguration caseColumnsConfiguration = service.getConfiguration(processModelId);
+    Long applicationId = Ivy.request().getApplication().getId();
+    CaseColumnsConfiguration caseColumnsConfiguration = service.getConfiguration(applicationId,
+        Ivy.session().getSessionUser().getId(), processModelId);
     if (caseColumnsConfiguration != null) {
       updateCaseColumnsConfiguration(caseColumnsConfiguration);
     } else {
