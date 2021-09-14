@@ -20,7 +20,7 @@ import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
 import ch.ivy.addon.portalkit.util.DateTimeFormatterUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
-import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
+import ch.ivy.addon.portalkit.util.ProcessStartUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivy.addon.portalkit.util.TimesUtils;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -275,7 +275,7 @@ public class TaskActionBean implements Serializable {
   }
   
   private void backToTaskList(ITask task) {
-    String friendlyRequestPath = SecurityServiceUtils.findFriendlyRequestPathContainsKeyword("BackFromTaskDetails.ivp");
+    String friendlyRequestPath = ProcessStartUtils.findFriendlyRequestPathContainsKeyword("BackFromTaskDetails.ivp");
     if (StringUtils.isEmpty(friendlyRequestPath)) {
       friendlyRequestPath = BACK_FROM_TASK_DETAILS;
     }

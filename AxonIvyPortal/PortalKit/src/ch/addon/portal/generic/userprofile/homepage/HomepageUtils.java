@@ -17,7 +17,7 @@ import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.IvyAdapterService;
-import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
+import ch.ivy.addon.portalkit.util.ProcessStartUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public class HomepageUtils {
@@ -59,7 +59,7 @@ public class HomepageUtils {
   }
 
   private static String findRelativeUrlByKeywork(String keyword) {
-    String friendlyRequestPath = SecurityServiceUtils.findFriendlyRequestPathContainsKeyword(keyword);
+    String friendlyRequestPath = ProcessStartUtils.findFriendlyRequestPathContainsKeyword(keyword);
     String newDashboardLink = ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(friendlyRequestPath);
     return newDashboardLink;
   }
