@@ -1,83 +1,37 @@
 package portalmigration.version93.service;
 
-import java.io.IOException;
-import java.io.StringWriter;
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
-import org.apache.commons.beanutils.BeanUtils;
-import org.apache.commons.beanutils.PropertyUtils;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.BooleanUtils;
-import org.apache.commons.lang3.EnumUtils;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.JsonFactory;
-import com.fasterxml.jackson.core.JsonGenerator;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ArrayNode;
-import com.fasterxml.jackson.databind.node.JsonNodeType;
-import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.fasterxml.jackson.databind.node.TextNode;
-
-import ch.ivy.addon.portalkit.enums.FilterType;
 import ch.ivyteam.ivy.application.IApplication;
-import ch.ivyteam.ivy.application.IProcessModel;
 import ch.ivyteam.ivy.business.data.store.BusinessDataInfo;
 import ch.ivyteam.ivy.business.data.store.BusinessDataRepository;
 import ch.ivyteam.ivy.business.data.store.search.Filter;
-import ch.ivyteam.ivy.business.data.store.search.Query;
-import ch.ivyteam.ivy.business.data.store.search.Result;
-import ch.ivyteam.ivy.business.data.store.search.restricted.json.ElasticSearchJsonConverter;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUser;
-import ch.ivyteam.ivy.security.query.UserQuery;
 import ch.ivyteam.ivy.vars.Variables;
-import portalmigration.enums.PortalVariable;
-import portalmigration.version93.dto.FilterDataInfo;
+
 
 public class BusinessDataMigrationService {
 
-  private static final String USER_ID = "userId";
-  private static final String FILTER_GROUP_ID = "filterGroupId";
-  private static final String FILTER_TYPE = "type";
-  
-  public static final String DATA_NODE = "data";
-  public static final String CLASS_NODE = "@class";
-  
-  public static final String REF_ID = "@id";
-  
-  public static final String FILTER_NODE =  "filters";
-  
-  private static final String FILTER_CLASS_PATTERN = "Class<%s>";
-  
-  private static ObjectMapper objectMapper;
-  
+  private static final String EXPRESS_PROCESS_ID = "processID";
+
   public static void startMigrationData(IApplication app, List<String> errors) {
-    objectMapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-    
     Ivy.log().info("***Start migrating PortalBusinessData");
-    
     Ivy.log().info("***Migrating Portal Announcement");
     migrateAnnouncement(app);
 
-    Ivy.log().info("***Migrating Portal Case filters");
-    migrateCaseFilters(app, errors);
-    
-    Ivy.log().info("***Migrating Portal Task filters");
-    migrateTaskFilters(app, errors);
-    
-    Ivy.log().info("***Migrating Portal TaskAnalysis filters");
-    migrateTaskAnalysisFilters(app, errors);
+    Ivy.log().info("***Migrating Portal Express processes");
+    migrateExpressProcesses(app);
+
+    Ivy.log().info("***Migrating Portal Statistic Charts");
+    migrateStatisticCharts(app);
 
     if (errors.isEmpty()) {
       Ivy.log().info("***End migrating Portal Data successfully");
@@ -86,488 +40,224 @@ public class BusinessDataMigrationService {
     Ivy.log().error("***End migrating Portal Data with {0} error(s)", errors.size());
   }
 
+  private static void migrateStatisticCharts(IApplication app) {
+    var removeIds = new ArrayList<String>();
+    var newDefaultCharts = new ArrayList<portalmigration.version93.configuration.StatisticChart>();
+    var newChartByUserMap = new HashMap<Long, List<portalmigration.version93.configuration.StatisticChart>>();
+
+    for (var savedChart : findAllByAppID(ch.ivy.addon.portalkit.statistics.StatisticChart.class, app.getId())) {
+
+      var isDefaultChart = BooleanUtils.toBoolean(savedChart.getDefaultChart());
+      var newChart = new portalmigration.version93.configuration.StatisticChart();
+      newChart.setFilter(savedChart.getFilter());
+      newChart.setName(savedChart.getName());
+      newChart.setNames(savedChart.getNames());
+      newChart.setPosition(savedChart.getPosition());
+      newChart.setType(savedChart.getType());
+
+      if (isDefaultChart) {
+        newChart.setIsPublic(true);
+        newDefaultCharts.add(newChart);
+      } else {
+        var userCharts = new ArrayList<portalmigration.version93.configuration.StatisticChart>();
+        var userId = savedChart.getUserId();
+        if (newChartByUserMap.containsKey(userId)) {
+          userCharts.addAll(newChartByUserMap.get(userId));
+        }
+        userCharts.add(newChart);
+        newChartByUserMap.put(userId, userCharts);
+      }
+
+      removeIds.add(savedChart.getId());
+    }
+
+    if (CollectionUtils.isNotEmpty(newDefaultCharts)) {
+      createVariable(app, portalmigration.enums.PortalVariable.STATISTIC_CHART, newDefaultCharts);
+    }
+
+    if (!newChartByUserMap.isEmpty()) {
+      newChartByUserMap.keySet().forEach(userId -> {
+        var user = findUserById(app, userId);
+        if (user != null) {
+          user.setProperty(portalmigration.enums.PortalVariable.STATISTIC_CHART.key,
+              toJsonValue(newChartByUserMap.get(userId)));
+        }
+      });
+    }
+
+    deleteBusinessData(removeIds, "Statistic Chart");
+  }
+
+  private static String toJsonValue(Object object) {
+    return portalmigration.persistence.converter.BusinessEntityConverter.entityToJsonValue(object);
+  }
+
+  private static IUser findUserById(IApplication app, Long userId) {
+    return app.getSecurityContext().users().find(userId);
+  }
+
+  private static void migrateExpressProcesses(IApplication app) {
+    var removeIds = new ArrayList<String>();
+    var newAxonExpressProcesses = new ArrayList<portalmigration.version93.bo.ExpressProcess>();
+
+    for (var savedProcess : findAllByAppID(ch.ivy.addon.portalkit.bo.ExpressProcess.class, app.getId())) {
+
+      var processId = savedProcess.getId();
+      var newExpressProcess = new portalmigration.version93.bo.ExpressProcess();
+      newExpressProcess.setIcon(savedProcess.getIcon());
+      newExpressProcess.setProcessCoOwners(savedProcess.getProcessCoOwners());
+      newExpressProcess.setProcessDescription(savedProcess.getProcessDescription());
+      newExpressProcess.setProcessFolder(savedProcess.getProcessFolder());
+      newExpressProcess.setProcessName(savedProcess.getProcessName());
+      newExpressProcess.setProcessOwner(savedProcess.getProcessOwner());
+      newExpressProcess.setProcessPermissions(savedProcess.getProcessPermissions());
+      newExpressProcess.setProcessType(savedProcess.getProcessType());
+      newExpressProcess.setReadyToExecute(savedProcess.isReadyToExecute());
+      newExpressProcess.setUseDefaultUI(savedProcess.isUseDefaultUI());
+      newExpressProcess.setTaskDefinitions(convertExpressTaskDefinition(removeIds, processId));
+
+      newAxonExpressProcesses.add(newExpressProcess);
+      removeIds.add(processId);
+    }
+
+    createVariable(app, portalmigration.enums.PortalVariable.EXPRESS_PROCESS, newAxonExpressProcesses);
+
+    deleteBusinessData(removeIds, "Axon Express");
+  }
+
+  private static void createVariable(IApplication app, portalmigration.enums.PortalVariable varName, Object varObject) {
+    Variables.of(app).set(varName.key, toJsonValue(varObject));
+  }
+
+  private static List<portalmigration.version93.bo.ExpressTaskDefinition> convertExpressTaskDefinition(
+      ArrayList<String> removeIds, String processId) {
+    var newTaskDefinitions = new ArrayList<portalmigration.version93.bo.ExpressTaskDefinition>();
+    var queryTaskDef = repo().search(ch.ivy.addon.portalkit.bo.ExpressTaskDefinition.class)
+        .textField(EXPRESS_PROCESS_ID).isEqualToIgnoringCase(processId);
+    for (var savedTaskDefinition : searchAll(queryTaskDef)) {
+      var newTaskDef = new portalmigration.version93.bo.ExpressTaskDefinition();
+      newTaskDef.setDescription(savedTaskDefinition.getDescription());
+      newTaskDef.setResponsibleDisplayName(savedTaskDefinition.getResponsibleDisplayName());
+      newTaskDef.setResponsibles(savedTaskDefinition.getResponsibles());
+      newTaskDef.setSubject(savedTaskDefinition.getSubject());
+      newTaskDef.setTaskPosition(savedTaskDefinition.getTaskPosition());
+      newTaskDef.setType(savedTaskDefinition.getType());
+      newTaskDef.setUntilDays(savedTaskDefinition.getUntilDays());
+      newTaskDef.setEmail(convertEmailTask(savedTaskDefinition.getEmail()));
+      newTaskDef.setFormElements(convertExpressFormElement(removeIds, processId));
+
+      newTaskDefinitions.add(newTaskDef);
+      removeIds.add(savedTaskDefinition.getId());
+    }
+
+    return newTaskDefinitions;
+  }
+
+  private static portalmigration.version93.bo.ExpressUserEmail convertEmailTask(ch.ivy.addon.portalkit.bo.ExpressUserEmail savedEmail) {
+    var newEmail = new portalmigration.version93.bo.ExpressUserEmail();
+    if (savedEmail != null) {
+      newEmail.setContent(savedEmail.getContent());
+      newEmail.setRecipients(savedEmail.getRecipients());
+      newEmail.setResponseTo(savedEmail.getResponseTo());
+      newEmail.setSubject(savedEmail.getSubject());
+      // mapping attachments
+      var newAttachments = new ArrayList<portalmigration.version93.dto.ExpressAttachment>();
+      var saveEmailAttachments = savedEmail.getAttachments();
+      if (CollectionUtils.isNotEmpty(saveEmailAttachments)) {
+        for (var savedAttach : saveEmailAttachments) {
+          var newAttach = new portalmigration.version93.dto.ExpressAttachment();
+          newAttach.setContent(savedAttach.getContent());
+          newAttach.setContentType(savedAttach.getContentType());
+          newAttach.setName(savedAttach.getName());
+          newAttach.setPath(savedAttach.getPath());
+          newAttach.setSize(savedAttach.getSize());
+          newAttach.setStatus(savedAttach.getStatus());
+
+          newAttachments.add(newAttach);
+        }
+      }
+      newEmail.setAttachments(newAttachments);
+    }
+    return newEmail;
+  }
+
+  private static List<portalmigration.version93.bo.ExpressFormElement> convertExpressFormElement(
+      ArrayList<String> removeIds, String processId) {
+    var newFormElements = new ArrayList<portalmigration.version93.bo.ExpressFormElement>();
+    var queryFormElement = repo().search(ch.ivy.addon.portalkit.bo.ExpressFormElement.class)
+        .textField(EXPRESS_PROCESS_ID).isEqualToIgnoringCase(processId);
+
+    for (var savedForm : searchAll(queryFormElement)) {
+
+      var newForm = new portalmigration.version93.bo.ExpressFormElement();
+      newForm.setElementID(savedForm.getElementID());
+      newForm.setElementPosition(savedForm.getElementPosition());
+      newForm.setElementType(savedForm.getElementType());
+      newForm.setIndexInPanel(savedForm.getIndexInPanel());
+      newForm.setIntSetting(savedForm.getIntSetting());
+      newForm.setLabel(savedForm.getLabel());
+      newForm.setName(savedForm.getName());
+      newForm.setOptionStrs(savedForm.getOptionStrs());
+      newForm.setRequired(savedForm.isRequired());
+
+      newFormElements.add(newForm);
+      removeIds.add(savedForm.getId());
+    }
+    return newFormElements;
+  }
+
   private static void migrateAnnouncement(IApplication app) {
+    var removeIds = new ArrayList<String>();
     var status = findLatestObjectByAppID(ch.ivy.addon.portalkit.bo.AnnouncementStatus.class, app.getId());
     portalmigration.version93.configuration.Announcement newAnnouncement = null;
 
-    for (ch.ivy.addon.portalkit.bo.Announcement announcement : findAllByAppID(
-        ch.ivy.addon.portalkit.bo.Announcement.class, app.getId())) {
+    for (var announcement : findAllByAppID(ch.ivy.addon.portalkit.bo.Announcement.class, app.getId())) {
 
       if (newAnnouncement == null) {
         newAnnouncement = new portalmigration.version93.configuration.Announcement();
         newAnnouncement.setContents(new ArrayList<>());
       }
+      if (status != null) {
+        newAnnouncement.setEnabled(BooleanUtils.toBoolean(status.getEnabled()));
+      }
 
-      newAnnouncement.setEnabled(BooleanUtils.toBoolean(status.getEnabled()));
       newAnnouncement.getContents().add(new portalmigration.version93.configuration.LocalizationContent(
           announcement.getLanguage(), announcement.getValue()));
+      removeIds.add(announcement.getId());
     }
 
     if (newAnnouncement == null) {
       return;
     }
-    
-    Variables.of(app).set(portalmigration.enums.PortalVariable.ANNOUNCEMENT.key,
-        portalmigration.persistence.converter.BusinessEntityConverter.entityToJsonValue(newAnnouncement));
+
+    createVariable(app, portalmigration.enums.PortalVariable.ANNOUNCEMENT, newAnnouncement);
+
+    if (status != null) {
+      deleteById(status.getId());
+      Ivy.log().info("***Migrating Portal: removed Announcement Status with id {0} in BusinessData", status.getId());
+    }
+
+    deleteBusinessData(removeIds, "Announcement");
   }
 
-  private static void migrateCaseFilters(IApplication app, List<String> errors) {
-    List<String> removeFilterIds = new ArrayList<>();
-
-    Ivy.log().info("***Migrating old CaseFilters");
-    var publicFilterMap = new HashMap<Long, FilterDataInfo>();
-    var privateFilterMap = new HashMap<Long, List<FilterDataInfo>>();
-
-    for (var savedFilterDataInfo : findAllBusinessInfoByAppID(ch.ivy.addon.portalkit.casefilter.impl.CaseFilterData.class, app.getId())) {
-      Ivy.log().info("***Migrating CaseFilter id: {0}", savedFilterDataInfo.getId());
-      
-      try {
-        JsonNode jsonTree = objectMapper.readTree(savedFilterDataInfo.getRawValue());
-        
-        var filterGroupId = jsonTree.get(FILTER_GROUP_ID).asLong();
-        var type = jsonTree.get(FILTER_TYPE).asText();
-        
-        var filterType = EnumUtils.getEnum(ch.ivy.addon.portalkit.enums.FilterType.class, type);
-        var filterDataInfo = new FilterDataInfo();
-        filterDataInfo.setObjectType(savedFilterDataInfo.getTypeName());
-        
-        // private filter
-        if (FilterType.ONLY_ME.equals(filterType)) {
-          var listFilterbygroup = new ArrayList<FilterDataInfo>();
-          
-          var userId = jsonTree.get(USER_ID).asLong();
-          if (privateFilterMap.containsKey(userId)) {
-            var filters = privateFilterMap.get(userId);
-            var sameGroupFilter = filters.stream().filter(filterdata -> filterdata.getFilterGroupId() == filterGroupId)
-                  .findFirst().orElseGet(null);
-            if (sameGroupFilter != null) {
-              sameGroupFilter.getRawValues().add(savedFilterDataInfo.getRawValue());
-            } else {
-              filterDataInfo.setUserId(userId);
-              filterDataInfo.setFilterGroupId(filterGroupId);
-              filterDataInfo.setRawValues(new ArrayList<>());
-              filterDataInfo.getRawValues().add(savedFilterDataInfo.getRawValue());
-              listFilterbygroup.add(filterDataInfo);
-            }
-            //
-            listFilterbygroup.addAll(filters);
-          }
-          else {
-            filterDataInfo.setUserId(userId);
-            filterDataInfo.setFilterGroupId(filterGroupId);
-            filterDataInfo.setRawValues(new ArrayList<>());
-            filterDataInfo.getRawValues().add(savedFilterDataInfo.getRawValue());
-            listFilterbygroup.add(filterDataInfo);
-          }
-
-          privateFilterMap.put(userId, listFilterbygroup);
-        }
-        
-        // public filter
-        else {
-          if (publicFilterMap.containsKey(filterGroupId)) {
-            filterDataInfo = publicFilterMap.get(filterGroupId);
-          }
-          else {
-            filterDataInfo.setFilterGroupId(filterGroupId);
-            filterDataInfo.setRawValues(new ArrayList<>());
-          }
-          
-          filterDataInfo.getRawValues().add(savedFilterDataInfo.getRawValue());
-          publicFilterMap.put(filterGroupId, filterDataInfo);
-        }
-
-      } catch (JsonProcessingException e) {
-        Ivy.log().error("***Cannot migrate old CaseFilter id: " + savedFilterDataInfo.getId(), e);
-        errors.add("CaseFilters:::Cannot migrate filter id: " + savedFilterDataInfo.getId() + e.getLocalizedMessage());
-        continue;
-      }
-    }
-    
-    try {
-      writePublicFilterToApp(publicFilterMap, app);
-      
-      writePrivateFilterToUserProperty(privateFilterMap);
-      
-    } catch (IOException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-    }
-    
-    removeFilterIds.forEach(filterId -> {
-      Ivy.log().info("***Removing CaseFilter id: {0}", filterId);
-      deleteById(filterId);
+  private static void deleteBusinessData(ArrayList<String> removeIds, String type) {
+    removeIds.forEach(id -> {
+      deleteById(id);
+      Ivy.log().info("***Migrating Portal: removed {0} content with id {1} in BusinessData", type, id);
     });
   }
 
-  private static void writePrivateFilterToUserProperty(Map<Long, List<FilterDataInfo>> privateFilterMap) throws JsonMappingException, JsonProcessingException, IOException {
-    // TODO Auto-generated method stub
-    if (privateFilterMap.keySet().isEmpty()) {
-      return;
-    }
-    
-    Map<Long, FilterDataInfo> filterByGroupID = new HashMap<>();
-    
-    for (Long userId : privateFilterMap.keySet()) {
-      filterByGroupID = new HashMap<>();
-      var filtersbygroup = privateFilterMap.get(userId);
-      
-      for (FilterDataInfo filteruser : filtersbygroup) {
-        var groupID = filteruser.getFilterGroupId();
-        
-        var filterData = new FilterDataInfo();
-        filterData.setFilterGroupId(groupID);
-        filterData.setObjectType(filteruser.getObjectType());
-        filterData.setRawValues(new ArrayList<>());
-        
-        if (filterByGroupID.containsKey(groupID)) {
-          filterData.setRawValues(filterByGroupID.get(groupID).getRawValues());
-        }
-        
-        filterData.getRawValues().addAll(filteruser.getRawValues());
-
-        filterByGroupID.put(groupID, filterData);
-      }
-      
-      var stringWriter = buildJSONWriter(filterByGroupID);
-      
-      /// write
-      IUser user = Ivy.wf().getSecurityContext().users().find(userId);
-      if (user != null) {
-        user.setProperty(PortalVariable.CASE_FILTER.key, stringWriter.toString());
-      }
-    }
-  }
-
-  private static void writePublicFilterToApp(Map<Long, FilterDataInfo> publicFilterMap, IApplication app) throws IOException {
-    // TODO Auto-generated method stub
-    if (publicFilterMap.keySet().isEmpty()) {
-      return;
-    }
-    
-    var stringWriter = buildJSONWriter(publicFilterMap);
-
-    /// write
-    Variables.of(app).set(PortalVariable.CASE_FILTER.key, stringWriter.toString());
-  }
-
-  private static ArrayNode buildJSONWriter(Map<Long, FilterDataInfo> filterDataInfoMap)
-      throws IOException, JsonProcessingException, JsonMappingException {
-    var filtersDataNode = createArrayNode();
-    for (Long filterGroupId : filterDataInfoMap.keySet()) {
-      var filterDataInfo = filterDataInfoMap.get(filterGroupId);
-      var filterByGroupIdNode = createObjectNode();
-      filterByGroupIdNode.put(FILTER_GROUP_ID, filterGroupId);
-
-      var configurationsNode = createArrayNode();
-
-      for (String rawValue : filterDataInfo.getRawValues()) {
-        ObjectNode objectNode = createObjectNode();
-        objectNode.put(CLASS_NODE, String.format(FILTER_CLASS_PATTERN, filterDataInfo.getObjectType()));
-
-        JsonNode filterRaw = objectMapper.readTree(rawValue);
-        cleanRefID(filterRaw);
-        if (JsonNodeType.OBJECT.equals(filterRaw.getNodeType()) && filterRaw.has(FILTER_NODE)) {
-          cleanRefID(filterRaw.get(FILTER_NODE));
-        }
-        objectNode.setAll((ObjectNode) filterRaw);
-        configurationsNode.add(objectNode);
-      }
-      ObjectNode configParentNode = createObjectNode();
-      ArrayNode configValueNode = createArrayNode();
-      TextNode configTypeField = new TextNode("Class<java.util.ArrayList>");
-      configValueNode.add(configTypeField);
-      configValueNode.add(configurationsNode);
-      configParentNode.set("configurations", configValueNode);
-      // end sub
-
-      filterByGroupIdNode.set(DATA_NODE, configParentNode);
-      filtersDataNode.add(filterByGroupIdNode);
-    }
-    return filtersDataNode;
-  }
-
-  private static ObjectNode createObjectNode() {
-    return objectMapper.createObjectNode();
-  }
-
-  private static ArrayNode createArrayNode() {
-    return objectMapper.createArrayNode();
-  }
-
-  private static void cleanRefID(JsonNode jsonNode) {
-    if (jsonNode == null) {
-      return;
-    }
-
-    if (JsonNodeType.OBJECT.equals(jsonNode.getNodeType()) && jsonNode.has(REF_ID)) {
-      ((ObjectNode) jsonNode).remove(REF_ID); // remove field @id in JSON
-      return;
-    }
-
-    if (JsonNodeType.ARRAY.equals(jsonNode.getNodeType())) {
-      ((ArrayNode) jsonNode).forEach(childNode -> {
-        cleanRefID(childNode);
-      });
-    }
-  }
-
-  private static void migrateTaskFilters(IApplication app, List<String> errors) {
-
-    List<String> removeFilterIds = new ArrayList<>();
-    ch.ivy.addon.portalkit.taskfilter.impl.TaskFilterData newFilterData = null;
-
-    Ivy.log().info("***Migrating old TaskFilters");
-
-    for (var savedFilterData : findAllFiltersByApp(app, ch.ivy.addon.portalkit.taskfilter.TaskFilterData.class)) {
-
-      Ivy.log().info("***Migrating TaskFilter id: {0}", savedFilterData.getId());
-
-      newFilterData = new ch.ivy.addon.portalkit.taskfilter.impl.TaskFilterData();
-      try {
-        newFilterData.setFilters(copyTaskFilters(savedFilterData.getFilters()));
-      } catch (ReflectiveOperationException e) {
-        Ivy.log().error("***Cannot migrate old TaskFilter id: " + savedFilterData.getId(), e);
-        errors.add("TaskFilters:::Cannot migrate filter id: " + savedFilterData.getId() + e.getLocalizedMessage());
-        continue;
-      }
-//      mergeCommonFields(newFilterData, savedFilterData);
-
-      var updatedFilterId = saveToRepo(newFilterData);
-      removeFilterIds.add(savedFilterData.getId());
-
-      Ivy.log().info("***Inserted new TaskFilter id: {0}", updatedFilterId);
-    }
-
-    removeFilterIds.forEach(filterId -> {
-      Ivy.log().info("***Removing TaskFilter id: {0}", filterId);
-      deleteById(filterId);
-    });
-  }
-
-  private static void migrateTaskAnalysisFilters(IApplication app, List<String> errors) {
-
-    List<String> removeFilterIds = new ArrayList<>();
-    ch.ivy.addon.portalkit.taskfilter.impl.TaskAnalysisFilterData newFilterData = null;
-
-    Ivy.log().info("***Migrating old TaskAnalysis filters");
-
-    for (var savedFilterData : findAllFiltersByApp(app, ch.ivy.addon.portalkit.taskfilter.TaskAnalysisFilterData.class)) {
-
-      Ivy.log().info("***Migrating TaskAnalysis filter id: {0}", savedFilterData.getId());
-
-      newFilterData = new ch.ivy.addon.portalkit.taskfilter.impl.TaskAnalysisFilterData();
-      try {
-        newFilterData.setTaskFilters(copyTaskFilters(savedFilterData.getTaskFilters()));
-        newFilterData.setCaseFilters(copyCaseFilters(savedFilterData.getCaseFilters()));
-
-      } catch (ReflectiveOperationException e) {
-        Ivy.log().error("***Cannot migrate old TaskAnalysis filter id: " + savedFilterData.getId(), e);
-        errors.add("TaskAnalysisFilters:::Cannot migrate filter id: " + savedFilterData.getId() + e.getLocalizedMessage());
-        continue;
-      }
-      mergeCommonFields(newFilterData, savedFilterData);
-
-      var updatedFilterId = saveToRepo(newFilterData);
-      removeFilterIds.add(savedFilterData.getId());
-
-      Ivy.log().info("***Inserted new TaskAnalysis filter id: {0}", updatedFilterId);
-    }
-
-    removeFilterIds.forEach(filterId -> {
-      Ivy.log().info("***Removing TaskAnalysis filter id: {0}", filterId);
-      deleteById(filterId);
-    });
-  }
-
-  private static ch.ivy.addon.portalkit.filter.AbstractFilterData<?> mergeCommonFields(
-      ch.ivy.addon.portalkit.filter.AbstractFilterData<?> newFilterData,
-      ch.ivy.addon.portalkit.filter.AbstractFilterData<?> savedFilterData) {
-    newFilterData.setFilterGroupId(savedFilterData.getFilterGroupId());
-    newFilterData.setFilterName(savedFilterData.getFilterName());
-    newFilterData.setKeyword(savedFilterData.getKeyword());
-    newFilterData.setType(savedFilterData.getType());
-    newFilterData.setUserId(savedFilterData.getUserId());
-    return newFilterData;
-  }
-
-  private static List<ch.ivy.addon.portalkit.taskfilter.TaskFilter> copyTaskFilters(
-      List<ch.ivy.addon.portalkit.taskfilter.TaskFilter> savedFilters) throws ReflectiveOperationException {
-
-    var filters = new ArrayList<ch.ivy.addon.portalkit.taskfilter.TaskFilter>();
-
-    for (ch.ivy.addon.portalkit.taskfilter.TaskFilter savedFilter : savedFilters) {
-      
-      if (savedFilter.getClass().getSimpleName().equals(ch.ivy.addon.portalkit.taskfilter.impl.TaskCategoryFilter.class.getSimpleName())) {
-        Ivy.log().info("***Migrating to new TaskCategoryFilter");
-        var filter = new ch.ivy.addon.portalkit.taskfilter.impl.TaskCategoryFilter();
-        copyFilterValues(filter, savedFilter);
-        filters.add(filter);
-      }
-
-      else if (savedFilter.getClass().getSimpleName().equals(ch.ivy.addon.portalkit.taskfilter.impl.TaskCreationDateFilter.class.getSimpleName())) {
-        Ivy.log().info("***Migrating to new TaskCreationDateFilter");
-        var filter = new ch.ivy.addon.portalkit.taskfilter.impl.TaskCreationDateFilter();
-        copyFilterValues(filter, savedFilter);
-        filters.add(filter);
-      }
-
-      else if (savedFilter.getClass().getSimpleName().equals(ch.ivy.addon.portalkit.taskfilter.impl.TaskResponsibleFilter.class.getSimpleName())) {
-        Ivy.log().info("***Migrating to new TaskResponsibleFilter");
-        var filter = new ch.ivy.addon.portalkit.taskfilter.impl.TaskResponsibleFilter();
-        copyFilterValues(filter, savedFilter);
-        filters.add(filter);
-      }
-
-      else if (savedFilter.getClass().getSimpleName().equals(ch.ivy.addon.portalkit.taskfilter.impl.TaskDescriptionFilter.class.getSimpleName())) {
-        Ivy.log().info("***Migrating to new TaskDescriptionFilter");
-        var filter = new ch.ivy.addon.portalkit.taskfilter.impl.TaskDescriptionFilter();
-        copyFilterValues(filter, savedFilter);
-        filters.add(filter);
-      }
-
-      else if (savedFilter.getClass().getSimpleName().equals(ch.ivy.addon.portalkit.taskfilter.impl.TaskExpiredDateFilter.class.getSimpleName())) {
-        Ivy.log().info("***Migrating to new TaskExpiredDateFilter");
-        var filter = new ch.ivy.addon.portalkit.taskfilter.impl.TaskExpiredDateFilter();
-        copyFilterValues(filter, savedFilter);
-        filters.add(filter);
-      }
-
-      else if (savedFilter.getClass().getSimpleName().equals(ch.ivy.addon.portalkit.taskfilter.impl.TaskNameFilter.class.getSimpleName())) {
-        Ivy.log().info("***Migrating to new TaskNameFilter");
-        var filter = new ch.ivy.addon.portalkit.taskfilter.impl.TaskNameFilter();
-        copyFilterValues(filter, savedFilter);
-        filters.add(filter);
-      }
-
-      else if (savedFilter.getClass().getSimpleName().equals(ch.ivy.addon.portalkit.taskfilter.impl.TaskStateFilter.class.getSimpleName())) {
-        Ivy.log().info("***Migrating to new TaskStateFilter");
-        var filter = new ch.ivy.addon.portalkit.taskfilter.impl.TaskStateFilter();
-        copyFilterValues(filter, savedFilter);
-        filters.add(filter);
-      }
-
-      else if (savedFilter.getClass().getSimpleName().equals(ch.ivy.addon.portalkit.taskfilter.impl.TaskWorkerFilter.class.getSimpleName())) {
-        Ivy.log().info("***Migrating to new TaskWorkerFilter");
-        var filter = new ch.ivy.addon.portalkit.taskfilter.impl.TaskWorkerFilter();
-        copyFilterValues(filter, savedFilter);
-        filters.add(filter);
-      }
-
-      else if (savedFilter.getClass().getSimpleName().equals(ch.ivy.addon.portalkit.taskfilter.impl.TaskPriorityFilter.class.getSimpleName())) {
-        Ivy.log().info("***Migrating to new TaskPriorityFilter");
-        var filter = new ch.ivy.addon.portalkit.taskfilter.impl.TaskPriorityFilter();
-        copyFilterValues(filter, savedFilter);
-        filters.add(filter);
-      }
-
-      else {
-        Ivy.log().info("***Copying custom taskfilter");
-        filters.add(savedFilter);
-      }
-    }
-    
-    return filters;
-  }
-
-  private static List<ch.ivy.addon.portalkit.casefilter.CaseFilter> copyCaseFilters(
-      List<ch.ivy.addon.portalkit.casefilter.CaseFilter> savedFilters) throws ReflectiveOperationException {
-
-    var filters = new ArrayList<ch.ivy.addon.portalkit.casefilter.CaseFilter>();
-
-    for (ch.ivy.addon.portalkit.casefilter.CaseFilter savedFilter : savedFilters) {
-      
-      if (savedFilter.getClass().getSimpleName().equals(ch.ivy.addon.portalkit.casefilter.impl.CaseCategoryFilter.class.getSimpleName())) {
-        Ivy.log().info("***Migrating to new CaseCategoryFilter");
-        var filter = new ch.ivy.addon.portalkit.casefilter.impl.CaseCategoryFilter();
-        copyFilterValues(filter, savedFilter);
-        filters.add(filter);
-      }
-
-      else if (savedFilter.getClass().getSimpleName().equals(ch.ivy.addon.portalkit.casefilter.impl.CaseCreationDateFilter.class.getSimpleName())) {
-        Ivy.log().info("***Migrating to new CaseCreationDateFilter");
-        var filter = new ch.ivy.addon.portalkit.casefilter.impl.CaseCreationDateFilter();
-        copyFilterValues(filter, savedFilter);
-        filters.add(filter);
-      }
-
-      else if (savedFilter.getClass().getSimpleName().equals(ch.ivy.addon.portalkit.casefilter.impl.CaseCreatorFilter.class.getSimpleName())) {
-        Ivy.log().info("***Migrating to new CaseCreatorFilter");
-        var filter = new ch.ivy.addon.portalkit.casefilter.impl.CaseCreatorFilter();
-        copyFilterValues(filter, savedFilter);
-        filters.add(filter);
-      }
-
-      else if (savedFilter.getClass().getSimpleName().equals(ch.ivy.addon.portalkit.casefilter.impl.CaseDescriptionFilter.class.getSimpleName())) {
-        Ivy.log().info("***Migrating to new CaseDescriptionFilter");
-        var filter = new ch.ivy.addon.portalkit.casefilter.impl.CaseDescriptionFilter();
-        copyFilterValues(filter, savedFilter);
-        filters.add(filter);
-      }
-
-      else if (savedFilter.getClass().getSimpleName().equals(ch.ivy.addon.portalkit.casefilter.impl.CaseFinishedDateFilter.class.getSimpleName())) {
-        Ivy.log().info("***Migrating to new CaseFinishedDateFilter");
-        var filter = new ch.ivy.addon.portalkit.casefilter.impl.CaseFinishedDateFilter();
-        copyFilterValues(filter, savedFilter);
-        filters.add(filter);
-      }
-
-      else if (savedFilter.getClass().getSimpleName().equals(ch.ivy.addon.portalkit.casefilter.impl.CaseNameFilter.class.getSimpleName())) {
-        Ivy.log().info("***Migrating to new CaseNameFilter");
-        var filter = new ch.ivy.addon.portalkit.casefilter.impl.CaseNameFilter();
-        copyFilterValues(filter, savedFilter);
-        filters.add(filter);
-      }
-
-      else if (savedFilter.getClass().getSimpleName().equals(ch.ivy.addon.portalkit.casefilter.impl.CaseStateFilter.class.getSimpleName())) {
-        Ivy.log().info("***Migrating to new CaseStateFilter");
-        var filter = new ch.ivy.addon.portalkit.casefilter.impl.CaseStateFilter();
-        copyFilterValues(filter, savedFilter);
-        filters.add(filter);
-      }
-
-      else {
-        Ivy.log().info("***Copying custom casefilter");
-        filters.add(savedFilter);
-      }
-    }
-    
-    return filters;
-  }
-
-  public static void copyFilterValues(ch.ivy.addon.portalkit.filter.AbstractFilter<?> filter,
-      ch.ivy.addon.portalkit.filter.AbstractFilter<?> savedFilter) throws ReflectiveOperationException {
-    Field[] fields = filter.getClass().getDeclaredFields();
-    for (Field field : fields) {
-      if (field.getAnnotation(JsonIgnore.class) == null) {
-        String fieldName = field.getName();
-        BeanUtils.copyProperty(filter, fieldName, PropertyUtils.getProperty(savedFilter, fieldName));
-      }
-    }
-  }
-
-  public static <T> List<T> findAll(Class<T> classType) {
+  private static <T> List<T> findAllByAppID(Class<T> classType, long appID) {
     return portalmigration.util.IvyExecutor.executeAsSystem(() -> {
-      Query<T> query = repo().search(classType);
-      Result<T> result = query.limit(5).execute();
-      long totalCount = result.totalCount();
+      var query = repo().search(classType);
+      var totalCount = query.limit(10).execute().totalCount();
       Ivy.log().info("***Total count of {0} in repo is {1}", classType, totalCount);
-      return query.limit((int) totalCount).execute().getAll();
-    });
-  }
 
-  public static <T> List<T> findAllByAppID(Class<T> classType, long appID) {
-    return portalmigration.util.IvyExecutor.executeAsSystem(() -> {
-      Query<T> query = repo().search(classType);
-      long totalCount = query.limit(10).execute().totalCount();
-      Ivy.log().info("***Total count of {0} in repo is {1}", classType, totalCount);
-      
       var resultInfos = query.limit((int) totalCount).execute().getAllInfos();
       var resultIds = resultInfos.stream().filter(info -> info.getCreatedByAppId() == appID)
-          .map(BusinessDataInfo::getId)
-          .collect(Collectors.toList());
-      
-      List<T> result = new ArrayList<>();
+          .map(BusinessDataInfo::getId).collect(Collectors.toList());
+
+      var result = new ArrayList<T>();
       resultIds.forEach(entityId -> {
         Ivy.log().info("***Find entity in repo by ID {1}", entityId);
         var entity = repo().find(entityId, classType);
@@ -579,74 +269,19 @@ public class BusinessDataMigrationService {
       return result;
     });
   }
-  
-  public static <T> List<BusinessDataInfo<T>> findAllBusinessInfoByAppID(Class<T> classType, long appID) {
-    return portalmigration.util.IvyExecutor.executeAsSystem(() -> {
-      Query<T> query = repo().search(classType);
-      long totalCount = query.limit(10).execute().totalCount();
-      Ivy.log().info("***Total count of {0} in repo is {1}", classType, totalCount);
-      
-      var resultInfos = query.limit((int) totalCount).execute().getAllInfos();
-      var businessDataInfos = resultInfos.stream().filter(info -> info.getCreatedByAppId() == appID)
-          .collect(Collectors.toList());
-      
-      Ivy.log().info("***Total count of {0} in return list", businessDataInfos.size());
-      return businessDataInfos;
-    });
-  }
 
-  public static <T> T findLatestObjectByAppID(Class<T> classType, long appID) {
+  private static <T> T findLatestObjectByAppID(Class<T> classType, long appID) {
     return portalmigration.util.IvyExecutor.executeAsSystem(() -> {
-      Query<T> query = repo().search(classType);
-      long totalCount = query.limit(10).execute().totalCount();
+      var query = repo().search(classType);
+      var totalCount = query.limit(10).execute().totalCount();
       Ivy.log().info("***Total count of {0} in repo is {1}", classType, totalCount);
-      
+
       var resultInfos = query.limit((int) totalCount).execute().getAllInfos();
       var resultId = resultInfos.stream().filter(info -> info.getCreatedByAppId() == appID)
-          .sorted(Comparator.comparingLong(BusinessDataInfo::getVersion))
-          .map(BusinessDataInfo::getId)
-          .sorted(Comparator.reverseOrder())
-          .findFirst().orElse("");
+          .sorted(Comparator.comparingLong(BusinessDataInfo::getVersion)).map(BusinessDataInfo::getId)
+          .sorted(Comparator.reverseOrder()).findFirst().orElse("");
       Ivy.log().info("***findLatestObjectByAppID: Found ID {0} of {1}", resultId, classType);
       return repo().find(resultId, classType);
-    });
-  }
-
-  public static <T> List<T> findAllFiltersByApp(IApplication app, Class<T> classType) {
-    return portalmigration.util.IvyExecutor.executeAsSystem(() -> {
-      Result<T> result = repo().search(classType).limit(5).execute();
-      long totalCount = result.totalCount();
-      Ivy.log().info("***Total count of {0} in repo is {1}", classType, totalCount);
-  
-      Filter<T> filter = null;
-      for (Long processId : getProcessModelIds(app)) {
-        Ivy.log().info("***Filter data by processModel ID {0}", processId);
-        if (filter == null) {
-          filter = repo().search(classType).numberField(FILTER_GROUP_ID).isEqualTo(processId);
-          continue;
-        }
-  
-        filter.or().numberField(FILTER_GROUP_ID).isEqualTo(processId);
-      }
-
-      if (filter != null) {
-        totalCount = filter.limit(5).execute().totalCount();
-        Ivy.log().info("***Total count of {0} in app {1} is {2}", classType, Ivy.request().getApplication().getName(), totalCount);
-        return filter.limit((int) totalCount).execute().getAll();
-      }
-      return new ArrayList<>();
-    });
-  }
-
-  private static List<Long> getProcessModelIds(IApplication app) {
-    return portalmigration.util.IvyExecutor.executeAsSystem(() -> {
-      return app.getProcessModelsSortedByName().stream().map(IProcessModel::getId).collect(Collectors.toList());
-    });
-  }
-
-  private static <T> String saveToRepo(T entity) {
-    return portalmigration.util.IvyExecutor.executeAsSystem(() -> {
-      return repo().save(entity).getId();
     });
   }
 
@@ -655,6 +290,16 @@ public class BusinessDataMigrationService {
       repo().deleteById(id);
       return Void.class;
     });
+  }
+
+  private static <T> List<T> searchAll(Filter<T> query) {
+    var queryResult = query.execute();
+    var totalCount = queryResult.totalCount();
+    if (totalCount > 10) {
+      queryResult = query.limit(Math.toIntExact(totalCount)).execute();
+    }
+    var result = queryResult.getAll();
+    return CollectionUtils.isEmpty(result) ? new ArrayList<>() : result;
   }
 
   public static BusinessDataRepository repo() {
