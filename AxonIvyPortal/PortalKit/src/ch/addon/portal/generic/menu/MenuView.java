@@ -29,7 +29,7 @@ import ch.ivy.addon.portalkit.enums.MenuKind;
 import ch.ivy.addon.portalkit.publicapi.ApplicationMultiLanguageAPI;
 import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
 import ch.ivy.addon.portalkit.service.ApplicationMultiLanguage;
-import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
+import ch.ivy.addon.portalkit.util.ProcessStartUtils;
 import ch.ivy.addon.portalkit.util.UrlUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ICase;
@@ -85,7 +85,7 @@ public class MenuView implements Serializable {
     String label = String.format("%s (%s)",
         translate(DASHBOARD),
         translate("/ch.ivy.addon.portalkit.ui.jsf/common/new"));
-    String friendlyRequestPath = SecurityServiceUtils.findFriendlyRequestPathContainsKeyword(PortalNavigator.PORTAL_NEW_DASHBOARD_START);
+    String friendlyRequestPath = ProcessStartUtils.findFriendlyRequestPathContainsKeyword(PortalNavigator.PORTAL_NEW_DASHBOARD_START);
     String newDashboardLink = ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(friendlyRequestPath);
 
     return new PortalMenuBuilder(label, MenuKind.NEW_DASHBOARD, this.isWorkingOnATask)
