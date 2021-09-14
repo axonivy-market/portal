@@ -13,12 +13,14 @@ import portal.guitest.common.ScreenshotTest;
 import portal.guitest.common.Sleeper;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.HomePage;
+import portal.guitest.page.NewDashboardPage;
 import portal.guitest.page.ProcessInformationPage;
 import portal.guitest.page.ProcessWidgetPage;
 
 public class PortalProcessesScreenshotTest extends ScreenshotTest {
 
   private HomePage homePage;
+  private NewDashboardPage newDashboardPage;
   ProcessWidgetPage processWidget;
   private static final int SCREENSHOT_WIDTH = 1440;
   private static final int SCREENSHOT_HD_WIDTH = 1920;
@@ -36,8 +38,9 @@ public class PortalProcessesScreenshotTest extends ScreenshotTest {
 
   @Test
   public void screenshotProcessNavigate() throws IOException {
-    homePage.waitForStatisticRendered();
-    homePage.openMainMenu();
+    showNewDashboard();
+    newDashboardPage = new NewDashboardPage();
+    newDashboardPage.openMainMenu();
     ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_HD_WIDTH, 700));
     executeDecorateJs("highlightProcessNavigation()");
     ScreenshotUtil.captureHalfLeftPageScreenShot(ScreenshotUtil.PROCESSES_WIDGET_FOLDER + "navigate-to-full-process-list");

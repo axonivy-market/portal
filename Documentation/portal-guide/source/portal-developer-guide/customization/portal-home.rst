@@ -1,7 +1,7 @@
 .. _customization-portal-home:
 
-Portal home
-===========
+Legacy Portal home
+==================
 
 .. _customization-portal-home-before-beginning:
 
