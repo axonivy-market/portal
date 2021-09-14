@@ -10,17 +10,12 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import ch.ivy.addon.portalkit.configuration.ConfigurationWrapper;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
-import ch.ivyteam.di.restricted.DiCore;
-import ch.ivyteam.ivy.business.data.store.restricted.BusinessDataTypeLoader;
-import ch.ivyteam.ivy.business.data.store.serializer.restricted.jackson.JacksonSerializer;
 import ch.ivyteam.ivy.environment.Ivy;
 
 /**
  * This class provides method to convert Business entity object into JSON value and reverse
  */
-@SuppressWarnings("restriction")
 public class BusinessEntityConverter {
 
   public BusinessEntityConverter() {}
@@ -57,32 +52,5 @@ public class BusinessEntityConverter {
       Ivy.log().error("Can't read json value", e);
       throw new PortalException(e);
     }
-  }
-
-  public static String configurationToJson(ConfigurationWrapper configuration) {
-    JacksonSerializer<ConfigurationWrapper> serializer = buildConfigurationWrapperSerializer();
-    return serializer.serialize(configuration);
-  }
-
-  @SuppressWarnings({"unchecked"})
-  public static <T> List<T> jsonToConfigurations(String json) {
-    ConfigurationWrapper wrapper = jsonToConfigurationWrapper(json);
-    List<T> configurations = (List<T>) wrapper.getConfigurations();
-    if (configurations == null) {
-      return new ArrayList<>();
-    }
-    return configurations;
-  }  
-
-  public static ConfigurationWrapper jsonToConfigurationWrapper(String json) {
-    JacksonSerializer<ConfigurationWrapper> serializer = buildConfigurationWrapperSerializer();
-    ConfigurationWrapper wrapper = serializer.deserialize(json);
-    return wrapper;
-  }
-
-  private static JacksonSerializer<ConfigurationWrapper> buildConfigurationWrapperSerializer() {
-    BusinessDataTypeLoader typeLoader = DiCore.getGlobalInjector().getInstance(BusinessDataTypeLoader.class);
-    return JacksonSerializer.forType(ConfigurationWrapper.class)
-        .withContextClassLoader(typeLoader.getContextClassLoader(ConfigurationWrapper.class));
   }
 }
