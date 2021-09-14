@@ -32,6 +32,11 @@ Portal admin can query for tasks which have unavailable activator. Those tasks c
 
 .. _introduction-new-and-note-worthy-9.2:
 
+New Dashboard and support legacy mode
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Portal provides new look and feel Dashboard, refer to :ref:`customization-new-dashboard`.
+And also supports ``Portal.ShowLegacyUI`` option in Admin Settings to switch back to legacy Portal Home.
+
 New & Noteworthy 9.2
 --------------------
 

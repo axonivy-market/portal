@@ -3,9 +3,7 @@
 Full Task List
 **************
 
-The **Full Task List** page shows you the same tasks you see on your
-personal dashboard. However, this page provides you with extended
-information on the tasks, as well as, advanced search and filter
+The **Full Task List** page shows you the tasks, as well as, advanced search and filter
 capabilities. You can reach the page by using the |task-list-icon| :guilabel:`Tasks` 
 link in the Axon Ivy Portal menu.
 
