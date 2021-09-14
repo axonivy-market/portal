@@ -51,15 +51,32 @@ Ls0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ls0 f6 85 173 20 20 -9 13 #rect
 Ls0 f8 actionTable 'out=in;
 ' #txt
-Ls0 f8 actionCode 'import javax.faces.context.FacesContext;
+Ls0 f8 actionCode 'import org.apache.commons.lang3.StringUtils;
+import ch.ivyteam.ivy.security.IRole;
+import javax.faces.context.FacesContext;
 import javax.faces.application.FacesMessage;
 
 in.loginOk = ivy.session.loginSessionUser(in.username, in.password);
 out.password = null;
-if (!in.loginOk) 
+boolean hasPermission = false;
+if (in.loginOk)
 {
-	FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Login failed", ""));
+	List<IRole> userRoles = ivy.session.getSessionUser().getRoles();
+	for (IRole role : userRoles) {
+		if (StringUtils.equalsIgnoreCase("AXONIVY_PORTAL_ADMIN", role.getName()))
+		{
+			hasPermission = true;
+			break;
+		}
+	}
+}
+
+if (!in.loginOk || !hasPermission) 
+{
+	String message = in.loginOk ? "You do not have permission to start this link" : "Login failed";
+	FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, message, ""));
 	FacesContext.getCurrentInstance().validationFailed();
+	in.loginOk = false;
 }' #txt
 Ls0 f8 security system #txt
 Ls0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -87,7 +104,7 @@ Ls0 f4 expr out #txt
 Ls0 f4 304 183 368 183 #arcP
 Ls0 f12 507 170 26 26 0 12 #rect
 Ls0 f13 expr in #txt
-Ls0 f13 outCond ivy.session.isSessionUserUnknown() #txt
+Ls0 f13 outCond !in.loginOk #txt
 Ls0 f13 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

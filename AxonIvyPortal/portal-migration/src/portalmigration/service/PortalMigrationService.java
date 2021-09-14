@@ -9,10 +9,12 @@ import ch.ivyteam.ivy.application.ActivityState;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.application.IApplicationConfigurationManager;
 import ch.ivyteam.ivy.application.ILibrary;
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.server.ServerFactory;
 import portalmigration.enums.PortalLibrary;
 import portalmigration.version91.migrate.config.service.ApplicationPropertyMigrationService;
 import portalmigration.version91.migrate.statistic.service.StatisticMigrationService;
+import portalmigration.version93.service.BusinessDataMigrationService;
 import portalmigration.version93.service.PortalProcessMigrationService;
 
 public class PortalMigrationService {
@@ -30,12 +32,14 @@ public class PortalMigrationService {
   }
 
   /**
-   * Write migrtion code here
-   * @param app is ivy apps that depend on portal
+   * Write migration code here
+   * @param app is ivy application that depend on portal
    */
   private static List<String> startMigratingToTargetVersion(IApplication app) {
     List<String> errors = new ArrayList<>();
 
+    Ivy.log().info("***Start migrating to Portal 9.3");
+    migratePortalBusinessData(app, errors);
     migratePortalProcesses(app, errors);
 
     // From 9.1 -> 9.2
@@ -44,6 +48,10 @@ public class PortalMigrationService {
       migrate91to92();
     }
     return errors;
+  }
+
+  private static void migratePortalBusinessData(IApplication app, List<String> errors) {
+    BusinessDataMigrationService.startMigrationData(app, errors);
   }
 
   private static void migratePortalProcesses(IApplication app, List<String> errors) {

@@ -349,7 +349,7 @@ import ch.ivy.addon.portalkit.casefilter.impl.CaseFilterData;
 import ch.ivy.addon.portalkit.service.CaseFilterService;
 
 CaseFilterService service = new CaseFilterService();
-service.delete(in.filterDataToBeDeleted);
+service.delete(in.filterDataToBeDeleted.id);
 
 if(in.filterDataToBeDeleted.type == FilterType.ONLY_ME) {
 	in.privateFilters.remove(in.filterDataToBeDeleted);
