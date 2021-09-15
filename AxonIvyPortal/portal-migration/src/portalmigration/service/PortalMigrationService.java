@@ -26,6 +26,7 @@ public class PortalMigrationService {
     List<String> result = null;
     List<IApplication> portalIApplications = getPortalApps();
     for (IApplication app : portalIApplications) {
+      Ivy.log().info("***Start migrating configuration for app {0}", app.getName());
       result = startMigratingToTargetVersion(app);
     }
     return result;
@@ -71,6 +72,7 @@ public class PortalMigrationService {
       for (ILibrary lib : libraries) {
         if (StringUtils.endsWith(lib.getId(), PortalLibrary.PORTAL_TEMPLATE.getProjectId())
             && app.getActivityState() == ActivityState.ACTIVE) {
+          Ivy.log().info("***Found app {0} is depending on Portal", app.getName());
           portalApps.add(app);
         }
       }

@@ -995,6 +995,8 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   private TaskColumnsConfiguration createNewTaskColumnsConfigurationData() {
     TaskColumnsConfiguration taskColumnsConfiguration = new TaskColumnsConfiguration();
     taskColumnsConfiguration.setProcessModelId(Ivy.request().getProcessModel().getId());
+    taskColumnsConfiguration.setUserId(Ivy.session().getSessionUser().getId());
+    taskColumnsConfiguration.setApplicationId(Ivy.request().getApplication().getId());
     updateTaskColumnsConfiguration(taskColumnsConfiguration);
     return taskColumnsConfiguration;
   }
