@@ -20,13 +20,13 @@ Ms0 @UdProcessEnd f19 '' #zField
 Ms0 @PushWFArc f20 '' #zField
 Ms0 @PushWFArc f22 '' #zField
 Ms0 @Alternative f6 '' #zField
-Ms0 @PushWFArc f7 '' #zField
 Ms0 @PushWFArc f8 '' #zField
 Ms0 @UdProcessEnd f9 '' #zField
 Ms0 @GridStep f11 '' #zField
 Ms0 @PushWFArc f12 '' #zField
 Ms0 @PushWFArc f10 '' #zField
 Ms0 @PushWFArc f2 '' #zField
+Ms0 @PushWFArc f7 '' #zField
 >Proto Ms0 Ms0 MigrationDataProcess #zField
 Ms0 f0 guid 175F959BFAA127EB #txt
 Ms0 f0 method start() #txt
@@ -106,7 +106,6 @@ Ms0 f19 587 163 26 26 0 12 #rect
 Ms0 f20 101 176 160 176 #arcP
 Ms0 f22 528 176 587 176 #arcP
 Ms0 f6 328 160 32 32 0 16 #rect
-Ms0 f7 272 176 328 176 #arcP
 Ms0 f8 expr in #txt
 Ms0 f8 outCond !in.hasError #txt
 Ms0 f8 360 176 416 176 #arcP
@@ -138,6 +137,7 @@ Ms0 f12 expr in #txt
 Ms0 f12 344 192 344 250 #arcP
 Ms0 f10 344 294 344 355 #arcP
 Ms0 f2 101 64 211 64 #arcP
+Ms0 f7 272 176 328 176 #arcP
 >Proto Ms0 .type portal.migration.MigrationData.MigrationDataData #txt
 >Proto Ms0 .processKind HTML_DIALOG #txt
 >Proto Ms0 -8 -8 16 16 16 26 #rect
@@ -147,8 +147,6 @@ Ms0 f15 mainOut f20 tail #connect
 Ms0 f20 head f18 mainIn #connect
 Ms0 f17 mainOut f22 tail #connect
 Ms0 f22 head f19 mainIn #connect
-Ms0 f18 mainOut f7 tail #connect
-Ms0 f7 head f6 in #connect
 Ms0 f6 out f8 tail #connect
 Ms0 f8 head f17 mainIn #connect
 Ms0 f6 out f12 tail #connect
@@ -157,3 +155,5 @@ Ms0 f11 mainOut f10 tail #connect
 Ms0 f10 head f9 mainIn #connect
 Ms0 f0 mainOut f2 tail #connect
 Ms0 f2 head f1 mainIn #connect
+Ms0 f18 mainOut f7 tail #connect
+Ms0 f7 head f6 in #connect

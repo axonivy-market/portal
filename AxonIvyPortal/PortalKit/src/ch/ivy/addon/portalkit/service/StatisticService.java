@@ -136,7 +136,7 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
   private static final String CHART_LEGEND_POSITION_BOTTOM = "bottom";
   private static StatisticColors statisticColors = new StatisticColors();
   private int numberOfDefaultCharts;
-  private String LOADING_MESSAGE = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/loadingCharts");
+  private final static String LOADING_MESSAGE = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/loadingCharts";
 
   private static StatisticService instance;
 
@@ -1153,7 +1153,7 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
     ChartData data = new ChartData();
     BarChartDataSet dataSet = new BarChartDataSet();
     dataSet.setData(new ArrayList<>());
-    dataSet.setLabel(LOADING_MESSAGE);
+    dataSet.setLabel(Ivy.cms().co(LOADING_MESSAGE));
     data.addChartDataSet(dataSet);
     model.setData(data);
     return model;
@@ -1168,7 +1168,7 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
     DonutChartModel model = new DonutChartModel();
     Title title = new Title();
     title.setDisplay(true);
-    title.setText(LOADING_MESSAGE);
+    title.setText(Ivy.cms().co(LOADING_MESSAGE));
     model.setOptions(new DonutChartOptions());
     model.getOptions().setTitle(title);
     return model;

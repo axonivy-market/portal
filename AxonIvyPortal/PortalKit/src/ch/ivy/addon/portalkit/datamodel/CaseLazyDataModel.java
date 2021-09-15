@@ -617,6 +617,8 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
   private CaseColumnsConfiguration createNewCaseColumnsConfigurationData() {
     CaseColumnsConfiguration caseColumnsConfiguration = new CaseColumnsConfiguration();
     caseColumnsConfiguration.setProcessModelId(Ivy.request().getProcessModel().getId());
+    caseColumnsConfiguration.setUserId(Ivy.session().getSessionUser().getId());
+    caseColumnsConfiguration.setApplicationId(Ivy.request().getApplication().getId());
     caseColumnsConfiguration.setSelectedColumns(new ArrayList<>());
     updateCaseColumnsConfiguration(caseColumnsConfiguration);
     return caseColumnsConfiguration;
