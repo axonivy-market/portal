@@ -74,7 +74,7 @@ if (in.loginOk)
 if (!in.loginOk || !hasPermission) 
 {
 	String message = in.loginOk ? "You do not have permission to start this link" : "Login failed";
-	FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, message, ""));
+	FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "", message));
 	FacesContext.getCurrentInstance().validationFailed();
 	in.loginOk = false;
 }' #txt
