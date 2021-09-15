@@ -118,22 +118,20 @@ In engine
 Migrate to 9.3
 --------------
 
-#. Deploy :download:`portal-migration.iar <documents/portal-migration-1.0.0-SNAPSHOT.iar>` project to your Ivy application and run it by access link
+#. Deploy :download:`portal-migration.iar <documents/portal-migration-9.3.0.iar>` project to your Ivy application and run it by access link
    ``your_host/your_application/pro/portal-migration/175F92F71BC45295/startMigrateConfiguration.ivp``
-   
-   If you have many applications, deploy to only one application and run it by access link
-   ``your_host/your_application/pro/portal-migration/175F92F71BC45295/startMigrateConfiguration.ivp``
-   
-   Example: ``https://portal.io/Portal/pro/portal-migration/175F92F71BC45295/startMigrateConfiguration.ivp``
 
-   .. important:: Run migration process only once
+   .. important::
+      * If you have many applications, deploy to only one application and run it by access the migration link,
+        for example: ``https://portal.io/Portal/pro/portal-migration/175F92F71BC45295/startMigrateConfiguration.ivp``
 
+      * Use an administrator account to sign in
+      * Run migration process only once
 
-Migrate 9.2 to 9.3
-------------------
+#. We changed the way to navigate to Task Analysis component. Process ``Start Processes/TaskAnalysis/start.ivp`` is moved to new place ``Start Processes/PortalStart/showTaskAnalysis.ivp``. 
+   Refer to :ref:`Task Analysis call<components-additional-component-task-analysis-how-to-use>` for more details.
 
-We changed the way to navigate to Task Analysis component. Process ``Start Processes/TaskAnalysis/start.ivp`` is moved to new place ``Start Processes/PortalStart/showTaskAnalysis.ivp``. 
-Refer to :ref:`Task Analysis call<components-additional-component-task-analysis-how-to-use>` for more details.
+#. We moved the configuration of announcement, thirdparty applications, default statistic charts, application favorite processes, public external links and express processes from the BusinessData to ivy variables.
 
 
 Migrate 9.1 to 9.2
