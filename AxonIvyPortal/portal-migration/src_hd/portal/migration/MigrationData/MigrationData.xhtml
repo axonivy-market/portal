@@ -34,7 +34,8 @@
               <p:commandButton id="proceed" actionListener="#{logic.proceed}" widgetVar="proceed"
                 value="Start Migration" update="migration-form" process="migration-form"
                 disabled="#{!data.mustMigrateData}"
-                icon="si si-cog-play" />
+                icon="si si-cog-play"
+                onclick="PF('proceed').disable()" />
             </h:panelGroup>
           </div>
 
@@ -47,8 +48,10 @@
               </h3>
               <ul>
                 <li>Migrate Announcement</li>
-                <li>Migrate Express processes</li>
-                <li>Migrate Charts</li>
+                <li>Migrate express processes</li>
+                <li>Migrate charts</li>
+                <li>Migrate external links</li>
+                <li>Migrate user processes</li>
               </ul>
             </div>
           </div>

@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.BooleanUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.business.data.store.BusinessDataInfo;
@@ -16,6 +17,8 @@ import ch.ivyteam.ivy.business.data.store.search.Filter;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.vars.Variables;
+import portalmigration.dto.DisplayName;
+import portalmigration.version93.configuration.StatisticChart;
 
 
 public class BusinessDataMigrationService {
@@ -57,7 +60,9 @@ public class BusinessDataMigrationService {
 
       if (isDefaultChart) {
         newChart.setIsPublic(true);
-        newDefaultCharts.add(newChart);
+        if (!checkDuplicateDefaultChart(newDefaultCharts, newChart)) {
+          newDefaultCharts.add(newChart);
+        }
       } else {
         var userCharts = new ArrayList<portalmigration.version93.configuration.StatisticChart>();
         var userId = savedChart.getUserId();
@@ -86,6 +91,28 @@ public class BusinessDataMigrationService {
     }
 
     deleteBusinessData(removeIds, "Statistic Chart");
+  }
+
+  private static boolean checkDuplicateDefaultChart(ArrayList<StatisticChart> newDefaultCharts,
+      StatisticChart newChart) {
+    var sameChartsType = newDefaultCharts.stream()
+              .filter(chart -> chart.getType() == newChart.getType())
+              .filter(chart -> StringUtils.equalsIgnoreCase(chart.getName(), newChart.getName()))
+              .collect(Collectors.toList());
+    if (CollectionUtils.isEmpty(sameChartsType)) {
+      return false;
+    }
+
+    for (var chart : sameChartsType) {
+      if (CollectionUtils.isNotEmpty(chart.getNames()) && CollectionUtils.isNotEmpty(newChart.getNames())) {
+        var chartNameMap = chart.getNames().stream().collect(Collectors.toMap(DisplayName::getLocale, DisplayName::getValue));
+        var newChartNameMap = newChart.getNames().stream().collect(Collectors.toMap(DisplayName::getLocale, DisplayName::getValue));
+        if (chartNameMap.equals(newChartNameMap)) {
+          return true;
+        }
+      }
+    }
+    return false;
   }
 
   private static String toJsonValue(Object object) {
@@ -259,7 +286,7 @@ public class BusinessDataMigrationService {
 
       var result = new ArrayList<T>();
       resultIds.forEach(entityId -> {
-        Ivy.log().info("***Find entity in repo by ID {1}", entityId);
+        Ivy.log().info("***Find entity in repo by ID {0}", entityId);
         var entity = repo().find(entityId, classType);
         if (entity != null) {
           result.add(entity);
