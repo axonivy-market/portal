@@ -8,6 +8,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import ch.ivyteam.ivy.environment.Ivy;
 
+
+/**
+ * Use the new model {@link ch.ivy.addon.portalkit.configuration.Announcement}
+ *
+ */
+@Deprecated
 public class Announcement {
 
   private String id;
