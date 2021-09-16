@@ -53,7 +53,9 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void startFirstTask() {
+    $$("span.widget__filter-noti-number").first().waitUntil(appear, DEFAULT_TIMEOUT);
     getColumnOfTaskHasIndex(0, "Start").shouldBe(getClickableCondition()).click();
+    $$("div[id$='task-widget']").first().waitUntil(appear, DEFAULT_TIMEOUT);
   }
 
   public ElementsCollection countRelatedCases() {
@@ -78,5 +80,4 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
     $("div.filter-overlay-panel__footer").waitUntil(appear, DEFAULT_TIMEOUT).$$("button[id$='apply-button']")
         .filter(text("Apply")).first().shouldBe(getClickableCondition()).click();
   }
-
 }
