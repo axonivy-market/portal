@@ -39,7 +39,7 @@ public class PortalMigrationService {
   private static List<String> startMigratingToTargetVersion(IApplication app) {
     List<String> errors = new ArrayList<>();
 
-    Ivy.log().info("***Start migrating to Portal 9.3");
+    Ivy.log().info("***Start migrating to latest Portal");
     migratePortalBusinessData(app, errors);
     migratePortalProcesses(app, errors);
 

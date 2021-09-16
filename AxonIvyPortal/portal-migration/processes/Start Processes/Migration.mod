@@ -15,6 +15,7 @@ Mn0 @EndTask f1 '' #zField
 Mn0 @PushWFArc f4 '' #zField
 Mn0 @PushWFArc f11 '' #zField
 Mn0 Bk0 S11 'Sub 1' #zField
+Mn0 @InfoButton f2 '' #zField
 >Proto Mn0 Mn0 Migration #zField
 Bk0 @AnnotationInP-0n ai ai #zField
 Bk0 @TextInP .type .type #zField
@@ -47,10 +48,10 @@ Mn0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Mn0 f0 @C|.responsibility Everybody #txt
-Mn0 f0 81 49 30 30 -21 17 #rect
-Mn0 f1 529 49 30 30 0 15 #rect
-Mn0 f4 111 64 272 64 #arcP
-Mn0 f11 400 64 529 64 #arcP
+Mn0 f0 81 177 30 30 -21 17 #rect
+Mn0 f1 529 177 30 30 0 15 #rect
+Mn0 f4 111 192 272 192 #arcP
+Mn0 f11 400 192 529 192 #arcP
 Mn0 S11 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language lang="en">
@@ -58,7 +59,18 @@ Mn0 S11 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Mn0 S11 272 42 128 44 -57 -8 #rect
+Mn0 S11 272 170 128 44 -57 -8 #rect
+Mn0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>This is migration process for Portal configuration&#13;
+Details in the stories: IVYPORTAL-12037, IVYPORTAL-12210</name>
+        <nameStyle>50,5,8,0
+58,5</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Mn0 f2 80 66 384 44 -186 -18 #rect
 >Proto Mn0 .type portalmigration.Data #txt
 >Proto Mn0 .processKind NORMAL #txt
 >Proto Mn0 0 0 32 24 18 0 #rect
