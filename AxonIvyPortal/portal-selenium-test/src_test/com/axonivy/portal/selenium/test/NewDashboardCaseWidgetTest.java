@@ -5,7 +5,6 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
@@ -45,7 +44,6 @@ public class NewDashboardCaseWidgetTest extends BaseTest {
   }
 
   @Test()
-  @Disabled("The feature does not work properly. When the feature works, bring this test back.")
   public void testHideCase() {
     redirectToRelativeLink(hideCaseUrl);
     login(TestAccount.ADMIN_USER);
