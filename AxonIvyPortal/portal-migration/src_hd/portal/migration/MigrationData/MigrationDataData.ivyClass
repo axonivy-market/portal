@@ -6,5 +6,3 @@ errors java.util.List<String> #field
 errors PERSISTENT #fieldModifier
 mustMigrateData Boolean #field
 mustMigrateData PERSISTENT #fieldModifier
-showLegacyUI Boolean #field
-showLegacyUI PERSISTENT #fieldModifier
