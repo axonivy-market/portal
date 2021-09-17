@@ -253,14 +253,14 @@ public class BusinessDataMigrationService {
       return;
     }
 
-    var newLacalizationContents = new ArrayList<portalmigration.version93.configuration.LocalizationContent>();
+    var newLocalizationContents = new ArrayList<portalmigration.version93.configuration.LocalizationContent>();
     languageToAnnouncements.values().forEach(announcement -> {
-      newLacalizationContents.add(new portalmigration.version93.configuration.LocalizationContent(announcement.getLanguage(),
+      newLocalizationContents.add(new portalmigration.version93.configuration.LocalizationContent(announcement.getLanguage(),
           announcement.getValue()));
     });
 
     var newAnnouncement = new portalmigration.version93.configuration.Announcement();
-    newAnnouncement.setContents(newLacalizationContents);
+    newAnnouncement.setContents(newLocalizationContents);
     if (status != null) {
       newAnnouncement.setEnabled(BooleanUtils.toBoolean(status.getEnabled()));
       removeIds.add(status.getId());
