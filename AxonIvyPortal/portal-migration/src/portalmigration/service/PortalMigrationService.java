@@ -2,7 +2,6 @@ package portalmigration.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -21,11 +20,11 @@ public class PortalMigrationService {
   public static final String SLASH = "/";
   private static boolean isLegacySystem;
 
-  public static List<String> migrate(Map<String, Object> options) {
+  public static List<String> migrate() {
     List<String> result = null;
     List<IApplication> portalIApplications = getPortalApps();
     for (IApplication app : portalIApplications) {
-      result = startMigratingToTargetVersion(app, options);
+      result = startMigratingToTargetVersion(app);
     }
     return result;
   }
@@ -34,10 +33,10 @@ public class PortalMigrationService {
    * Write migrtion code here
    * @param app is ivy apps that depend on portal
    */
-  private static List<String> startMigratingToTargetVersion(IApplication app, Map<String, Object> options) {
+  private static List<String> startMigratingToTargetVersion(IApplication app) {
     List<String> errors = new ArrayList<>();
 
-    migratePortalProcesses(app, options, errors);
+    migratePortalProcesses(app, errors);
 
     // From 9.1 -> 9.2
     // This is legacy code, to keep track of the history.
@@ -47,8 +46,8 @@ public class PortalMigrationService {
     return errors;
   }
 
-  private static void migratePortalProcesses(IApplication app, Map<String, Object> options, List<String> errors) {
-    errors.addAll(PortalProcessMigrationService.startMigration(app, options));
+  private static void migratePortalProcesses(IApplication app, List<String> errors) {
+    errors.addAll(PortalProcessMigrationService.startMigration(app));
   }
 
   private static void migrate91to92() {
