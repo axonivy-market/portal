@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
@@ -18,8 +21,6 @@ import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.vars.Variables;
 import portalmigration.dto.DisplayName;
-import portalmigration.version93.configuration.StatisticChart;
-
 
 public class BusinessDataMigrationService {
 
@@ -93,8 +94,8 @@ public class BusinessDataMigrationService {
     deleteBusinessData(removeIds, "Statistic Chart");
   }
 
-  private static boolean checkDuplicateDefaultChart(ArrayList<StatisticChart> newDefaultCharts,
-      StatisticChart newChart) {
+  private static boolean checkDuplicateDefaultChart(List<portalmigration.version93.configuration.StatisticChart> newDefaultCharts,
+      portalmigration.version93.configuration.StatisticChart newChart) {
     var sameChartsType = newDefaultCharts.stream()
               .filter(chart -> chart.getType() == newChart.getType())
               .filter(chart -> StringUtils.equalsIgnoreCase(chart.getName(), newChart.getName()))
@@ -105,14 +106,18 @@ public class BusinessDataMigrationService {
 
     for (var chart : sameChartsType) {
       if (CollectionUtils.isNotEmpty(chart.getNames()) && CollectionUtils.isNotEmpty(newChart.getNames())) {
-        var chartNameMap = chart.getNames().stream().collect(Collectors.toMap(DisplayName::getLocale, DisplayName::getValue));
-        var newChartNameMap = newChart.getNames().stream().collect(Collectors.toMap(DisplayName::getLocale, DisplayName::getValue));
+        var chartNameMap = chart.getNames().stream().collect(toDisplayNameMap());
+        var newChartNameMap = newChart.getNames().stream().collect(toDisplayNameMap());
         if (chartNameMap.equals(newChartNameMap)) {
           return true;
         }
       }
     }
     return false;
+  }
+
+  private static Collector<DisplayName, ?, Map<Locale, String>> toDisplayNameMap() {
+    return Collectors.toMap(portalmigration.dto.DisplayName::getLocale, portalmigration.dto.DisplayName::getValue);
   }
 
   private static String toJsonValue(Object object) {
@@ -235,34 +240,33 @@ public class BusinessDataMigrationService {
 
   private static void migrateAnnouncement(IApplication app) {
     var removeIds = new ArrayList<String>();
+    var languageToAnnouncements = new HashMap<String, ch.ivy.addon.portalkit.bo.Announcement>();
+
     var status = findLatestObjectByAppID(ch.ivy.addon.portalkit.bo.AnnouncementStatus.class, app.getId());
-    portalmigration.version93.configuration.Announcement newAnnouncement = null;
 
     for (var announcement : findAllByAppID(ch.ivy.addon.portalkit.bo.Announcement.class, app.getId())) {
-
-      if (newAnnouncement == null) {
-        newAnnouncement = new portalmigration.version93.configuration.Announcement();
-        newAnnouncement.setContents(new ArrayList<>());
-      }
-      if (status != null) {
-        newAnnouncement.setEnabled(BooleanUtils.toBoolean(status.getEnabled()));
-      }
-
-      newAnnouncement.getContents().add(new portalmigration.version93.configuration.LocalizationContent(
-          announcement.getLanguage(), announcement.getValue()));
+      languageToAnnouncements.put(StringUtils.lowerCase(announcement.getLanguage().toLowerCase()), announcement);
       removeIds.add(announcement.getId());
     }
 
-    if (newAnnouncement == null) {
+    if (languageToAnnouncements.isEmpty()) {
       return;
     }
 
-    createVariable(app, portalmigration.enums.PortalVariable.ANNOUNCEMENT, newAnnouncement);
+    var newLacalizationContents = new ArrayList<portalmigration.version93.configuration.LocalizationContent>();
+    languageToAnnouncements.values().forEach(announcement -> {
+      newLacalizationContents.add(new portalmigration.version93.configuration.LocalizationContent(announcement.getLanguage(),
+          announcement.getValue()));
+    });
 
+    var newAnnouncement = new portalmigration.version93.configuration.Announcement();
+    newAnnouncement.setContents(newLacalizationContents);
     if (status != null) {
-      deleteById(status.getId());
-      Ivy.log().info("***Migrating Portal: removed Announcement Status with id {0} in BusinessData", status.getId());
+      newAnnouncement.setEnabled(BooleanUtils.toBoolean(status.getEnabled()));
+      removeIds.add(status.getId());
     }
+
+    createVariable(app, portalmigration.enums.PortalVariable.ANNOUNCEMENT, newAnnouncement);
 
     deleteBusinessData(removeIds, "Announcement");
   }
