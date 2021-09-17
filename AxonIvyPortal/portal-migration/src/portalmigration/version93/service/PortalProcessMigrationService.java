@@ -44,7 +44,7 @@ public class PortalProcessMigrationService extends PortalMigrationService {
     
     for (ExternalLink externalLink : externalLinks) {
       externalLink.setIsPublic(true);
-      IUser user = findUserInAppByName(app.getId(), externalLink.getCreator());
+      IUser user = findUserInAppByName(app, externalLink.getCreator());
       if (user != null) {
         externalLink.setCreatorId(user.getId());
       }
@@ -109,11 +109,8 @@ public class PortalProcessMigrationService extends PortalMigrationService {
     return UserQuery.create().where().enabled().isTrue().and().applicationId().isEqual(appId);
   }
 
-  private static IUser findUserInAppByName(long appId, String userName) {
-    return UserQuery.create().where()
-        .applicationId().isEqual(appId).and()
-        .name().isEqualIgnoreCase(userName)
-        .executor().firstResult();
+  private static IUser findUserInAppByName(IApplication app, String userName) {
+    return app.getSecurityContext().users().find(userName);
   }
   
   private static void updateProcessProperties(List<IUser> users, IApplication app,
