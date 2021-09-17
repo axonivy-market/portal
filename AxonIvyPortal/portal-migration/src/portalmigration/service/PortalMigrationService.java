@@ -20,7 +20,6 @@ import portalmigration.version93.service.PortalProcessMigrationService;
 public class PortalMigrationService {
 
   public static final String SLASH = "/";
-  private static boolean isLegacySystem;
 
   public static List<String> migrate() {
     List<String> result = null;
@@ -41,13 +40,11 @@ public class PortalMigrationService {
 
     Ivy.log().info("***Start migrating to latest Portal");
     migratePortalBusinessData(app, errors);
+
     migratePortalProcesses(app, errors);
 
-    // From 9.1 -> 9.2
-    // This is legacy code, to keep track of the history.
-    if (isLegacySystem) { // This condition is always FALSE
-      migrate91to92();
-    }
+    migrate91to92();
+
     return errors;
   }
 
@@ -59,9 +56,14 @@ public class PortalMigrationService {
     errors.addAll(PortalProcessMigrationService.startMigration(app));
   }
 
-  private static void migrate91to92() {
-    ApplicationPropertyMigrationService.migrate();
-    new StatisticMigrationService().migrateStatisticCharts();
+  /** Migrate from 9.1 -> 9.2
+   * This is legacy code, to keep track of the history.
+   */
+  protected static void migrate91to92() {
+    if (Boolean.FALSE) {
+      ApplicationPropertyMigrationService.migrate();
+      new StatisticMigrationService().migrateStatisticCharts();
+    }
   }
 
   protected static List<IApplication> getPortalApps() {
