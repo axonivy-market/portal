@@ -587,8 +587,7 @@ if(CollectionUtils.isEmpty(in.processCoOwners)) {
 	in.processCoOwners.add(workflow.processOwner);
 }
 
-ExpressProcessUtils util = new ExpressProcessUtils();
-in.processCoOwnersDisplayName = util.generateResponsibleDisplayName(in.processCoOwners);
+in.processCoOwnersDisplayName = ExpressProcessUtils.generateResponsibleDisplayName(in.processCoOwners);
 in.isUseDefaultUI = workflow.useDefaultUI;
 
 for(ProcessType type : ProcessType.values()) {
@@ -596,8 +595,6 @@ for(ProcessType type : ProcessType.values()) {
 	 	in.processType = type;
 	}
 }
-
-import ch.ivy.gawfs.ExpressProcessUtils;
 
 in.definedTasks = ExpressProcessUtils.convertExpressTaskDefinitionToTaskDef(workflow.taskDefinitions);' #txt
 Ct0 f26 security system #txt
