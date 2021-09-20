@@ -49,6 +49,12 @@ pipeline {
           today = new Date().format('dd-MM-yyyy_HH-mm')
           fileOperations([folderCreateOperation(folderPath: "D:/PerformanceResult/${today}/${env.engineVersion}")])
 
+          echo "====================Go through Portal with one normal user===================="
+          updateConfigFile('data/single_normal_user_server.csv', '1')
+          bat '''
+            jmeter.bat -n -t AxonIvyPortal/PortalTest/jmeter/portal_walkthrough_testplan.jmx -l temp.jtl
+          '''
+
           echo "====================Test one admin user===================="
           updateConfigFile('data/single_admin_user_server.csv', '1')
           bat '''
