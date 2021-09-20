@@ -20,6 +20,7 @@ public class ForgotPasswordScreenshotTest extends ScreenshotTest {
   @Override
   public void setup() {
     setBrowser(Browser.getBrowser());
+    super.updatePortalSettingToShowLegacyUI();
     launchBrowserAndGotoRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     if (!SystemProperties.isInServerMode()) {
       logoutDesigner();
