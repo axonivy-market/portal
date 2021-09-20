@@ -10,14 +10,13 @@ import ch.ivy.addon.portalkit.util.ScreenshotMargin;
 import ch.ivy.addon.portalkit.util.ScreenshotUtil;
 import portal.guitest.common.ScreenshotTest;
 import portal.guitest.common.WaitHelper;
-import portal.guitest.page.HomePage;
 import portal.guitest.page.MainMenuPage;
+import portal.guitest.page.NewDashboardPage;
 import portal.guitest.page.StatisticWidgetPage;
 import portal.guitest.page.TaskWidgetPage;
 
 public class StatisticScreenshotTest extends ScreenshotTest {
-
-  private HomePage homePage;
+  private NewDashboardPage newDashboardPage;
   private MainMenuPage mainMenuPage;
   
   @Override
@@ -32,10 +31,10 @@ public class StatisticScreenshotTest extends ScreenshotTest {
     WaitHelper.assertTrueWithRefreshPage(taskWidgetPage, () -> !taskWidgetPage.isWelcomeDialogExisted());
     taskWidgetPage.startTaskWithoutUI(0);
     redirectToRelativeLink(createTestingTasksUrl);
-    homePage = new HomePage();
-    homePage.waitForStatisticRendered();
+    showNewDashboard();
+    newDashboardPage = new NewDashboardPage();
     
-    mainMenuPage = homePage.openMainMenu();
+    mainMenuPage = newDashboardPage.openMainMenu();
     ScreenshotUtil.resizeBrowser(new Dimension(1366, 800));
     executeDecorateJs("highlightStatisticNavigation()");
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.STATISTIC_WIDGET_FOLDER + "navigate-to-full-statistics-page");

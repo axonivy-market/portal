@@ -1,5 +1,6 @@
 package portal.guitest.common;
 
+import static portal.guitest.common.Variable.SHOW_LEGACY_UI;
 import static portal.guitest.common.Variable.SHOW_USER_GUIDE;
 
 import java.io.IOException;
@@ -107,6 +108,7 @@ public class BaseTest {
     browser = Browser.getBrowser();
     launchBrowserAndGotoRelativeLink(cleanupDataLink);
     updatePortalSetting(SHOW_USER_GUIDE.getKey(), "false");
+    updatePortalSetting(SHOW_LEGACY_UI .getKey(), "true");
   }
   
   /**
@@ -286,6 +288,11 @@ public class BaseTest {
   public void executeDecorateJs(String function) {
     ((JavascriptExecutor) getBrowser().getDriver()).executeScript(function);
     Sleeper.sleep(200);
+  }
+
+  protected void showNewDashboard() {
+    updatePortalSetting(SHOW_LEGACY_UI .getKey(), "false");
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
   }
   
 }

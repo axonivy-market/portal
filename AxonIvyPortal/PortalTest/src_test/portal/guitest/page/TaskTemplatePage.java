@@ -190,6 +190,10 @@ public class TaskTemplatePage extends TemplatePage {
     return new HomePage();
   }
 
+  public void clickCancelButton() {
+    clickByCssSelector("a[id$='button-cancel']");
+  }
+
   public void clickTaskActionMenu() {
     clickByCssSelector("button[id$='horizontal-task-actions']");
   }

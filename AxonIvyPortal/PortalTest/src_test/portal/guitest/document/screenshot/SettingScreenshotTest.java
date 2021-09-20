@@ -17,12 +17,14 @@ import portal.guitest.page.AdminSettingsPage;
 import portal.guitest.page.ChangePasswordPage;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.NewAbsencePage;
+import portal.guitest.page.NewDashboardPage;
 import portal.guitest.page.ProjectVersionPage;
 import portal.guitest.page.UserProfilePage;
 
 public class SettingScreenshotTest extends ScreenshotTest {
   
   private HomePage homePage;
+  private NewDashboardPage newDashboardPage;
   private static final LocalDate TODAY = LocalDate.now();
   private static final LocalDate TOMORROW = TODAY.plusDays(1);
   
@@ -32,10 +34,6 @@ public class SettingScreenshotTest extends ScreenshotTest {
     login(TestAccount.ADMIN_USER);
     homePage = new HomePage();
     homePage.waitForStatisticRendered();
-    ScreenshotUtil.resizeBrowser(new Dimension(1100, 800));
-    homePage.getUserSettings();
-    executeDecorateJs("highlightUserName()");
-    ScreenshotUtil.captureHalfTopPageScreenShot(ScreenshotUtil.SETTINGS_FOLDER + "user-settings", new Dimension(1100, 800));
     
     ScreenshotUtil.resizeBrowser(new Dimension(1366, 800));
     refreshHomePage();
@@ -62,17 +60,22 @@ public class SettingScreenshotTest extends ScreenshotTest {
     ProjectVersionPage projectVersionPage = homePage.openProjectVersionPage();
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(projectVersionPage.getProjectVersionDialog(), ScreenshotUtil.SETTINGS_FOLDER + "portal-version-information", new ScreenshotMargin(20));
   }
-  
+
   @Test
   public void screenshotSettingWithAnnotation() throws IOException {
     login(TestAccount.ADMIN_USER);
     ScreenshotUtil.resizeBrowser(new Dimension(1500, 800));
-    homePage = new HomePage();
-    homePage.waitForStatisticRendered();
-    homePage.getUserSettings();
+    showNewDashboard();
+    newDashboardPage = new NewDashboardPage();
+    newDashboardPage.getUserSettings();
     Sleeper.sleep(300);//wait for animation finish to capture nice screenshot
     executeDecorateJs("highlightAdminSettings()");
     ScreenshotUtil.captureHalfTopPageScreenShot(ScreenshotUtil.SETTINGS_FOLDER + "select-admin-settings");
+
+    refreshPage();
+    newDashboardPage.getUserSettings();
+    executeDecorateJs("highlightUserName()");
+    ScreenshotUtil.captureHalfTopPageScreenShot(ScreenshotUtil.SETTINGS_FOLDER + "user-settings", new Dimension(1100, 800));
   }
   
   @Test
