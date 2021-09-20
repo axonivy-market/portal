@@ -18,7 +18,6 @@ public class PasswordChangeTest extends BaseTest {
   @Override
   @Before
   public void setup() {
-    super.updatePortalSettingToShowLegacyUI();
     setupWithAlternativeLinkAndAccount("portalKitTestHelper/153CACC26D0D4C3D/createTestUser.ivp", TestAccount.TEST_CHANGE_PASSWORD_USER);
   }
   
