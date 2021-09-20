@@ -43,7 +43,7 @@ public class NewDashboardCaseWidgetTest extends BaseTest {
     newDashBoardPage = new NewDashBoardPage();
   }
 
-  @Test
+  @Test()
   public void testHideCase() {
     redirectToRelativeLink(hideCaseUrl);
     login(TestAccount.ADMIN_USER);

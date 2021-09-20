@@ -43,6 +43,7 @@ import ch.ivy.addon.portalkit.taskfilter.impl.TaskStateFilter;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.SortFieldUtil;
 import ch.ivy.addon.portalkit.util.UserUtils;
+import ch.ivyteam.ivy.business.data.store.BusinessDataInfo;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.security.IUser;
@@ -696,9 +697,8 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
     taskFilterData.setIsPublic(isPublic);
     TaskFilterService taskFilterService = new TaskFilterService();
     taskFilterService.save(taskFilterData);
-    taskFilterData =
-        isPublic ? taskFilterService.findPublicFilter(taskFilterData.getId(), taskFilterGroupId)
-            : taskFilterService.findPrivateFilter(taskFilterData.getId(), taskFilterGroupId);
+    BusinessDataInfo<TaskFilterData> info = taskFilterService.save(taskFilterData);
+    taskFilterData = taskFilterService.findById(info.getId());
     UserUtils.setSessionSelectedTaskFilterSetAttribute(taskFilterData);
     UserUtils.setSessionSelectedDefaultTaskFilterSetAttribute(isSelectedDefaultFilter);
     return taskFilterData;
@@ -854,9 +854,10 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   protected void initSelectedColumns() {
     TaskColumnsConfigurationService service = TaskColumnsConfigurationService.getInstance();
     Long userId = Optional.ofNullable(Ivy.session().getSessionUser()).map(IUser::getId).orElse(null);
+    Long applicationId = Ivy.request().getApplication().getId();
     Long processModelId = Ivy.request().getProcessModel().getId();
     if (userId != null) {
-      TaskColumnsConfiguration configData = service.getConfiguration(processModelId);
+      TaskColumnsConfiguration configData = service.getConfiguration(applicationId, userId, processModelId);
       if (configData != null) {
         selectedColumns = configData.getSelectedColumns();
       }
@@ -978,8 +979,10 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
     }
     setAutoHideColumns(isDisableSelectionCheckboxes);
     TaskColumnsConfigurationService service = TaskColumnsConfigurationService.getInstance();
+    Long applicationId = Ivy.request().getApplication().getId();
     Long processModelId = Ivy.request().getProcessModel().getId();
-    TaskColumnsConfiguration taskColumnsConfiguration = service.getConfiguration(processModelId);
+    TaskColumnsConfiguration taskColumnsConfiguration =
+        service.getConfiguration(applicationId, Ivy.session().getSessionUser().getId(), processModelId);
     if (taskColumnsConfiguration != null) {
       updateTaskColumnsConfiguration(taskColumnsConfiguration);
     } else {
@@ -992,6 +995,8 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   private TaskColumnsConfiguration createNewTaskColumnsConfigurationData() {
     TaskColumnsConfiguration taskColumnsConfiguration = new TaskColumnsConfiguration();
     taskColumnsConfiguration.setProcessModelId(Ivy.request().getProcessModel().getId());
+    taskColumnsConfiguration.setUserId(Ivy.session().getSessionUser().getId());
+    taskColumnsConfiguration.setApplicationId(Ivy.request().getApplication().getId());
     updateTaskColumnsConfiguration(taskColumnsConfiguration);
     return taskColumnsConfiguration;
   }
