@@ -22,7 +22,6 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
-import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
@@ -33,6 +32,7 @@ import ch.ivy.addon.portalkit.dto.dashboard.process.DashboardProcess;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.enums.ProcessWidgetMode;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
+import ch.ivy.addon.portalkit.publicapi.PortalNavigatorAPI;
 import ch.ivy.addon.portalkit.util.CategoryUtils;
 
 @ViewScoped
@@ -324,7 +324,7 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
   }
 
   public void navigatetoDashboardPage() {
-    PortalNavigator.navigateToNewDashboard();
+    PortalNavigatorAPI.navigateToPortalHome();
   }
 
   public List<String> getCategories() {
