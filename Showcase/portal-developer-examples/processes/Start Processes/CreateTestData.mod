@@ -72,6 +72,7 @@ Cs0 @PushWFArc f34 '' #zField
 Cs0 @PushWFArc f35 '' #zField
 Cs0 @PushWFArc f30 '' #zField
 Cs0 @UserTask f32 '' #zField
+Cs0 @TkArc f33 '' #zField
 Cs0 @PushWFArc f36 '' #zField
 Cs0 @StartRequest f41 '' #zField
 Cs0 @Split f51 '' #zField
@@ -94,11 +95,6 @@ Cs0 @PushWFArc f71 '' #zField
 Cs0 @PushWFArc f72 '' #zField
 Cs0 @PushWFArc f73 '' #zField
 Cs0 @PushWFArc f74 '' #zField
-Cs0 @Alternative f75 '' #zField
-Cs0 @PushWFArc f76 '' #zField
-Cs0 @TkArc f33 '' #zField
-Cs0 @StartRequest f77 '' #zField
-Cs0 @PushWFArc f78 '' #zField
 >Proto Cs0 Cs0 CreateTestData #zField
 Ct2 @TextInP .type .type #zField
 Ct2 @TextInP .processKind .processKind #zField
@@ -678,7 +674,7 @@ Cs0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f28 856 666 128 44 -55 -8 #rect
-Cs0 f29 1329 673 30 30 0 15 #rect
+Cs0 f29 1305 673 30 30 0 15 #rect
 Cs0 f31 signalCode ch:axonivy:portal:example:createnewpayment #txt
 Cs0 f31 attachToBusinessCase true #txt
 Cs0 f31 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -709,8 +705,9 @@ Cs0 f32 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f32 1120 666 112 44 -36 -8 #rect
-Cs0 f36 1232 688 1329 688 #arcP
+Cs0 f32 1096 666 112 44 -36 -8 #rect
+Cs0 f33 984 688 1096 688 #arcP
+Cs0 f36 1208 688 1305 688 #arcP
 Cs0 f41 outLink createTechnicalStateTasks.ivp #txt
 Cs0 f41 inParamDecl '<> param;' #txt
 Cs0 f41 requestEnabled true #txt
@@ -935,30 +932,6 @@ Cs0 f74 expr out #txt
 Cs0 f74 434 1272 680 1229 #arcP
 Cs0 f74 1 680 1272 #addKink
 Cs0 f74 0 0.4489837825296078 0 0 #arcLabel
-Cs0 f75 1032 672 32 32 0 16 #rect
-Cs0 f76 984 688 1032 688 #arcP
-Cs0 f33 1064 688 1120 688 #arcP
-Cs0 f77 outLink simplePayment.ivp #txt
-Cs0 f77 inParamDecl '<> param;' #txt
-Cs0 f77 requestEnabled true #txt
-Cs0 f77 triggerEnabled false #txt
-Cs0 f77 callSignature simplePayment() #txt
-Cs0 f77 startName 'Simple Payment' #txt
-Cs0 f77 caseData 'businessCase.attach=true
-case.name=Create New Payment' #txt
-Cs0 f77 showInStartList 1 #txt
-Cs0 f77 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>simplePayment.ivp</name>
-    </language>
-</elementInfo>
-' #txt
-Cs0 f77 @C|.responsibility Everybody #txt
-Cs0 f77 753 753 30 30 -21 17 #rect
-Cs0 f78 783 768 1048 704 #arcP
-Cs0 f78 1 1048 768 #addKink
-Cs0 f78 0 0.678275972206267 0 0 #arcLabel
 >Proto Cs0 .type com.axonivy.portal.developerexamples.Data #txt
 >Proto Cs0 .processKind NORMAL #txt
 >Proto Cs0 0 0 32 24 18 0 #rect
@@ -1173,6 +1146,8 @@ Cs0 f26 mainOut f35 tail #connect
 Cs0 f35 head f27 mainIn #connect
 Cs0 f25 mainOut f30 tail #connect
 Cs0 f30 head f26 mainIn #connect
+Cs0 f28 mainOut f33 tail #connect
+Cs0 f33 head f32 in #connect
 Cs0 f32 out f36 tail #connect
 Cs0 f36 head f29 mainIn #connect
 Cs0 f41 mainOut f60 tail #connect
@@ -1199,12 +1174,6 @@ Cs0 f40 mainOut f73 tail #connect
 Cs0 f73 head f65 mainIn #connect
 Cs0 f64 mainOut f74 tail #connect
 Cs0 f74 head f65 mainIn #connect
-Cs0 f28 mainOut f76 tail #connect
-Cs0 f76 head f75 in #connect
-Cs0 f75 out f33 tail #connect
-Cs0 f33 head f32 in #connect
-Cs0 f77 mainOut f78 tail #connect
-Cs0 f78 head f75 in #connect
 Ct2 f2 mainOut f0 tail #connect
 Ct2 f0 head f63 in #connect
 Ct2 g2 m f4 tail #connect
