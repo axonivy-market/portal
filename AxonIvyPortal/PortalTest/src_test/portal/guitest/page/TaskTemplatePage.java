@@ -28,7 +28,6 @@ public class TaskTemplatePage extends TemplatePage {
 
   public void clickOnAdditionalBusinessDetailLink() {
     switchToCaseInfoIframe();
-    waitForElementDisplayedByCssSelector("a[id$=':show-additional-case-details-link']");
     click(findElementByCssSelector("a[id$=':show-additional-case-details-link']"));
   }
 

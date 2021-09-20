@@ -29,15 +29,14 @@ public class SearchProcessTest extends BaseTest {
     GlobalSearch globalSearch = homePage.getGlobalSearch();
     assertTrue(globalSearch.isDisplayed());
 
-    String processName = "Simple Payment";
+    String processName = "Appraisal";
     SearchResultPage searchResultPage = globalSearch.inputSearchKeyword(processName);
     assertEquals(processName, searchResultPage.getProcessResult(processName));
-    assertTrue(searchResultPage.isProcessGroupDisplay("S"));
-
+    assertTrue(searchResultPage.isProcessGroupDisplay("A"));
+    
     searchResultPage.startProcess(processName);
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
-    WaitHelper.assertTrueWithRefreshPage(taskWidgetPage,
-        () -> taskWidgetPage.getNameOfTaskInCompactListAt(0).contains("Payment"));
+    WaitHelper.assertTrueWithRefreshPage(taskWidgetPage, () -> taskWidgetPage.getNameOfTaskInCompactListAt(0).contains("Request form"));
   }
   
   @Test
