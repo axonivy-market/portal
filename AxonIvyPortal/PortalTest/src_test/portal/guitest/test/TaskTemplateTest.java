@@ -110,7 +110,6 @@ public class TaskTemplateTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     HomePage home = new HomePage();
     home.waitForPageLoaded();
-    redirectToRelativeLink(createNewPaymentUrl);
     TaskTemplatePage taskTemplatePage = startATaskAndOpenCaseInfo();
     taskTemplatePage.clickOnLogo();
     WorkingTaskDialogPage dialogPage = new WorkingTaskDialogPage();
