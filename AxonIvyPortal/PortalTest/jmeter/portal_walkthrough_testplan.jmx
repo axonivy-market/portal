@@ -136,9 +136,19 @@
             <stringProp name="RegexExtractor.match_number">1</stringProp>
           </RegexExtractor>
           <hashTree/>
-          <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Normal Duration Asserrtion" enabled="true">
+          <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Normal Duration Assertion" enabled="false">
             <stringProp name="DurationAssertion.duration">${__P(portal.duration.normal)}</stringProp>
           </DurationAssertion>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Code Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">8</intProp>
+          </ResponseAssertion>
           <hashTree/>
         </hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Login" enabled="true">
@@ -224,9 +234,19 @@
           <stringProp name="HTTPSampler.response_timeout"></stringProp>
         </HTTPSamplerProxy>
         <hashTree>
-          <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Ajax Duration Asserrtion" enabled="true">
+          <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Ajax Duration Assertion" enabled="false">
             <stringProp name="DurationAssertion.duration">${__P(portal.duration.ajax)}</stringProp>
           </DurationAssertion>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Code Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">8</intProp>
+          </ResponseAssertion>
           <hashTree/>
         </hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="PortalHome" enabled="true">
@@ -266,9 +286,19 @@
             <stringProp name="RegexExtractor.match_number">1</stringProp>
           </RegexExtractor>
           <hashTree/>
-          <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Normal Duration Asserrtion" enabled="true">
+          <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Normal Duration Assertion" enabled="false">
             <stringProp name="DurationAssertion.duration">${__P(portal.duration.normal)}</stringProp>
           </DurationAssertion>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Code Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">8</intProp>
+          </ResponseAssertion>
           <hashTree/>
         </hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="PortalHome_LazyLoadChart" enabled="true">
@@ -333,9 +363,19 @@
           <stringProp name="HTTPSampler.response_timeout"></stringProp>
         </HTTPSamplerProxy>
         <hashTree>
-          <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Normal Duration Asserrtion" enabled="true">
+          <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Normal Duration Assertion" enabled="false">
             <stringProp name="DurationAssertion.duration">${__P(portal.duration.normal)}</stringProp>
           </DurationAssertion>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Code Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">8</intProp>
+          </ResponseAssertion>
           <hashTree/>
         </hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="PortalHome_LazyUpdateTaskCount" enabled="true">
@@ -400,9 +440,19 @@
           <stringProp name="HTTPSampler.response_timeout"></stringProp>
         </HTTPSamplerProxy>
         <hashTree>
-          <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Ajax Duration Asserrtion" enabled="true">
+          <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Ajax Duration Assertion" enabled="false">
             <stringProp name="DurationAssertion.duration">${__P(portal.duration.ajax)}</stringProp>
           </DurationAssertion>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Code Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">8</intProp>
+          </ResponseAssertion>
           <hashTree/>
         </hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="NavigateToGlobalSearch" enabled="true">
@@ -483,9 +533,19 @@
             <stringProp name="RegexExtractor.match_number">1</stringProp>
           </RegexExtractor>
           <hashTree/>
-          <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Ajax Duration Asserrtion" enabled="true">
+          <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Ajax Duration Assertion" enabled="false">
             <stringProp name="DurationAssertion.duration">${__P(portal.duration.ajax)}</stringProp>
           </DurationAssertion>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Code Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">8</intProp>
+          </ResponseAssertion>
           <hashTree/>
         </hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GlobalSearch" enabled="true">
@@ -525,9 +585,19 @@
             <stringProp name="RegexExtractor.match_number">1</stringProp>
           </RegexExtractor>
           <hashTree/>
-          <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Normal Duration Asserrtion" enabled="true">
+          <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Normal Duration Assertion" enabled="false">
             <stringProp name="DurationAssertion.duration">${__P(portal.duration.normal)}</stringProp>
           </DurationAssertion>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Code Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">8</intProp>
+          </ResponseAssertion>
           <hashTree/>
         </hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="NavigateToTaskList" enabled="true">
@@ -608,9 +678,19 @@
             <stringProp name="RegexExtractor.match_number">1</stringProp>
           </RegexExtractor>
           <hashTree/>
-          <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Ajax Duration Asserrtion" enabled="true">
+          <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Ajax Duration Assertion" enabled="false">
             <stringProp name="DurationAssertion.duration">${__P(portal.duration.ajax)}</stringProp>
           </DurationAssertion>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Code Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">8</intProp>
+          </ResponseAssertion>
           <hashTree/>
         </hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="PortalTaskList" enabled="true">
@@ -650,9 +730,19 @@
             <stringProp name="RegexExtractor.match_number">1</stringProp>
           </RegexExtractor>
           <hashTree/>
-          <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Normal Duration Asserrtion" enabled="true">
+          <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Normal Duration Assertion" enabled="false">
             <stringProp name="DurationAssertion.duration">${__P(portal.duration.normal)}</stringProp>
           </DurationAssertion>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Code Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">8</intProp>
+          </ResponseAssertion>
           <hashTree/>
         </hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="PortalTaskLst_LazyUpdateTaskCount" enabled="true">
@@ -724,9 +814,19 @@
           <stringProp name="HTTPSampler.response_timeout"></stringProp>
         </HTTPSamplerProxy>
         <hashTree>
-          <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Ajax Duration Asserrtion" enabled="true">
+          <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Ajax Duration Assertion" enabled="false">
             <stringProp name="DurationAssertion.duration">${__P(portal.duration.ajax)}</stringProp>
           </DurationAssertion>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Code Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">8</intProp>
+          </ResponseAssertion>
           <hashTree/>
         </hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="TaskListSearch" enabled="true">
@@ -812,9 +912,19 @@
           <stringProp name="HTTPSampler.response_timeout"></stringProp>
         </HTTPSamplerProxy>
         <hashTree>
-          <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Normal Duration Asserrtion" enabled="true">
+          <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Normal Duration Assertion" enabled="false">
             <stringProp name="DurationAssertion.duration">${__P(portal.duration.normal)}</stringProp>
           </DurationAssertion>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Code Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">8</intProp>
+          </ResponseAssertion>
           <hashTree/>
         </hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="TaskListSearch_LazyUpdateTaskCount" enabled="true">
@@ -879,9 +989,19 @@
           <stringProp name="HTTPSampler.response_timeout"></stringProp>
         </HTTPSamplerProxy>
         <hashTree>
-          <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Ajax Duration Asserrtion" enabled="true">
+          <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Ajax Duration Assertion" enabled="false">
             <stringProp name="DurationAssertion.duration">${__P(portal.duration.ajax)}</stringProp>
           </DurationAssertion>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Code Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">8</intProp>
+          </ResponseAssertion>
           <hashTree/>
         </hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="NavigateToTaskDetail" enabled="true">
@@ -969,9 +1089,19 @@
             <stringProp name="RegexExtractor.match_number">1</stringProp>
           </RegexExtractor>
           <hashTree/>
-          <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Ajax Duration Asserrtion" enabled="true">
+          <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Ajax Duration Assertion" enabled="false">
             <stringProp name="DurationAssertion.duration">${__P(portal.duration.ajax)}</stringProp>
           </DurationAssertion>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Code Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">8</intProp>
+          </ResponseAssertion>
           <hashTree/>
         </hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="PortalTaskDetail" enabled="true">
@@ -1011,9 +1141,19 @@
             <stringProp name="RegexExtractor.match_number">1</stringProp>
           </RegexExtractor>
           <hashTree/>
-          <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Normal Duration Asserrtion" enabled="true">
+          <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Normal Duration Assertion" enabled="false">
             <stringProp name="DurationAssertion.duration">${__P(portal.duration.normal)}</stringProp>
           </DurationAssertion>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Code Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">8</intProp>
+          </ResponseAssertion>
           <hashTree/>
         </hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="NavigateToCaseList" enabled="true">
@@ -1094,9 +1234,19 @@
             <stringProp name="RegexExtractor.match_number">1</stringProp>
           </RegexExtractor>
           <hashTree/>
-          <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Ajax Duration Asserrtion" enabled="true">
+          <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Ajax Duration Assertion" enabled="false">
             <stringProp name="DurationAssertion.duration">${__P(portal.duration.ajax)}</stringProp>
           </DurationAssertion>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Code Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">8</intProp>
+          </ResponseAssertion>
           <hashTree/>
         </hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="PortalCaseList" enabled="true">
@@ -1136,9 +1286,19 @@
             <stringProp name="RegexExtractor.match_number">1</stringProp>
           </RegexExtractor>
           <hashTree/>
-          <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Normal Duration Asserrtion" enabled="true">
+          <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Normal Duration Assertion" enabled="false">
             <stringProp name="DurationAssertion.duration">${__P(portal.duration.normal)}</stringProp>
           </DurationAssertion>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Code Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">8</intProp>
+          </ResponseAssertion>
           <hashTree/>
         </hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="PortalCaseList_LazyUpdateCaseCount" enabled="true">
@@ -1203,9 +1363,19 @@
           <stringProp name="HTTPSampler.response_timeout"></stringProp>
         </HTTPSamplerProxy>
         <hashTree>
-          <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Ajax Duration Asserrtion" enabled="true">
+          <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Ajax Duration Assertion" enabled="false">
             <stringProp name="DurationAssertion.duration">${__P(portal.duration.ajax)}</stringProp>
           </DurationAssertion>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Code Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">8</intProp>
+          </ResponseAssertion>
           <hashTree/>
         </hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="CaseListSearch" enabled="true">
@@ -1291,9 +1461,19 @@
           <stringProp name="HTTPSampler.response_timeout"></stringProp>
         </HTTPSamplerProxy>
         <hashTree>
-          <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Normal Duration Asserrtion" enabled="true">
+          <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Normal Duration Assertion" enabled="false">
             <stringProp name="DurationAssertion.duration">${__P(portal.duration.normal)}</stringProp>
           </DurationAssertion>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Code Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">8</intProp>
+          </ResponseAssertion>
           <hashTree/>
         </hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="CaseListSearch_LazyUpdateCaseCount" enabled="true">
@@ -1365,9 +1545,19 @@
           <stringProp name="HTTPSampler.response_timeout"></stringProp>
         </HTTPSamplerProxy>
         <hashTree>
-          <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Ajax Duration Asserrtion" enabled="true">
+          <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Ajax Duration Assertion" enabled="false">
             <stringProp name="DurationAssertion.duration">${__P(portal.duration.ajax)}</stringProp>
           </DurationAssertion>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Code Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">8</intProp>
+          </ResponseAssertion>
           <hashTree/>
         </hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="CaseListFilterLargeBusinessCase" enabled="true">
@@ -1453,9 +1643,19 @@
           <stringProp name="HTTPSampler.response_timeout"></stringProp>
         </HTTPSamplerProxy>
         <hashTree>
-          <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Normal Duration Asserrtion" enabled="true">
+          <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Normal Duration Assertion" enabled="false">
             <stringProp name="DurationAssertion.duration">${__P(portal.duration.normal)}</stringProp>
           </DurationAssertion>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Code Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">8</intProp>
+          </ResponseAssertion>
           <hashTree/>
         </hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="CaseListFilterLargeBusinessCase_LazyUpdateCaseCount" enabled="true">
@@ -1520,9 +1720,19 @@
           <stringProp name="HTTPSampler.response_timeout"></stringProp>
         </HTTPSamplerProxy>
         <hashTree>
-          <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Ajax Duration Asserrtion" enabled="true">
+          <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Ajax Duration Assertion" enabled="false">
             <stringProp name="DurationAssertion.duration">${__P(portal.duration.ajax)}</stringProp>
           </DurationAssertion>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Code Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">8</intProp>
+          </ResponseAssertion>
           <hashTree/>
         </hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="NavigateToCaseDetail" enabled="true">
@@ -1610,9 +1820,19 @@
             <stringProp name="RegexExtractor.match_number">1</stringProp>
           </RegexExtractor>
           <hashTree/>
-          <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Ajax Duration Asserrtion" enabled="true">
+          <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Ajax Duration Assertion" enabled="false">
             <stringProp name="DurationAssertion.duration">${__P(portal.duration.ajax)}</stringProp>
           </DurationAssertion>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Code Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">8</intProp>
+          </ResponseAssertion>
           <hashTree/>
         </hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="PortalCaseDetail" enabled="true">
@@ -1652,9 +1872,19 @@
             <stringProp name="RegexExtractor.match_number">1</stringProp>
           </RegexExtractor>
           <hashTree/>
-          <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Normal Duration Asserrtion" enabled="true">
+          <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Normal Duration Assertion" enabled="false">
             <stringProp name="DurationAssertion.duration">${__P(portal.duration.normal)}</stringProp>
           </DurationAssertion>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Code Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">8</intProp>
+          </ResponseAssertion>
           <hashTree/>
         </hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="NavigateToStatistic" enabled="true">
@@ -1735,9 +1965,19 @@
             <stringProp name="RegexExtractor.match_number">1</stringProp>
           </RegexExtractor>
           <hashTree/>
-          <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Ajax Duration Asserrtion" enabled="true">
+          <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Ajax Duration Assertion" enabled="false">
             <stringProp name="DurationAssertion.duration">${__P(portal.duration.ajax)}</stringProp>
           </DurationAssertion>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Code Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">8</intProp>
+          </ResponseAssertion>
           <hashTree/>
         </hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="StatisticDashboard" enabled="true">
@@ -1777,9 +2017,19 @@
             <stringProp name="RegexExtractor.match_number">1</stringProp>
           </RegexExtractor>
           <hashTree/>
-          <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Normal Duration Asserrtion" enabled="true">
+          <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Normal Duration Assertion" enabled="false">
             <stringProp name="DurationAssertion.duration">${__P(portal.duration.normal)}</stringProp>
           </DurationAssertion>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Code Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">8</intProp>
+          </ResponseAssertion>
           <hashTree/>
         </hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="StatisticDashboard_LazyLoadChart" enabled="true">
@@ -1862,9 +2112,19 @@
             <stringProp name="RegexExtractor.match_number">1</stringProp>
           </RegexExtractor>
           <hashTree/>
-          <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Normal Duration Asserrtion" enabled="true">
+          <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Normal Duration Assertion" enabled="false">
             <stringProp name="DurationAssertion.duration">${__P(portal.duration.normal)}</stringProp>
           </DurationAssertion>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Code Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">8</intProp>
+          </ResponseAssertion>
           <hashTree/>
         </hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="StatisticChartCreation" enabled="true">
@@ -1952,9 +2212,19 @@
             <stringProp name="RegexExtractor.match_number">1</stringProp>
           </RegexExtractor>
           <hashTree/>
-          <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Normal Duration Asserrtion" enabled="true">
+          <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Normal Duration Assertion" enabled="false">
             <stringProp name="DurationAssertion.duration">${__P(portal.duration.normal)}</stringProp>
           </DurationAssertion>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Code Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">8</intProp>
+          </ResponseAssertion>
           <hashTree/>
         </hashTree>
         <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="StatisticChartCreation_LazyLoad6Charts" enabled="true">
@@ -2177,9 +2447,19 @@
             <stringProp name="HTTPSampler.response_timeout"></stringProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Normal Duration Asserrtion" enabled="true">
+            <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Normal Duration Assertion" enabled="false">
               <stringProp name="DurationAssertion.duration">${__P(portal.duration.normal)}</stringProp>
             </DurationAssertion>
+            <hashTree/>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Code Assertion" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="49586">200</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.custom_message"></stringProp>
+              <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">8</intProp>
+            </ResponseAssertion>
             <hashTree/>
           </hashTree>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="UpdateChartModelsCommand" enabled="true">
@@ -2391,9 +2671,19 @@
             <stringProp name="HTTPSampler.response_timeout"></stringProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Normal Duration Asserrtion" enabled="true">
+            <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Normal Duration Assertion" enabled="false">
               <stringProp name="DurationAssertion.duration">${__P(portal.duration.normal)}</stringProp>
             </DurationAssertion>
+            <hashTree/>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Code Assertion" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="49586">200</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.custom_message"></stringProp>
+              <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">8</intProp>
+            </ResponseAssertion>
             <hashTree/>
           </hashTree>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="UpdateTaskByPriorityModelCommand" enabled="true">
@@ -2612,9 +2902,19 @@
             <stringProp name="HTTPSampler.response_timeout"></stringProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Normal Duration Asserrtion" enabled="true">
+            <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Normal Duration Assertion" enabled="false">
               <stringProp name="DurationAssertion.duration">${__P(portal.duration.normal)}</stringProp>
             </DurationAssertion>
+            <hashTree/>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Code Assertion" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="49586">200</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.custom_message"></stringProp>
+              <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">8</intProp>
+            </ResponseAssertion>
             <hashTree/>
           </hashTree>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="UpdateCaseByStateModelCommand" enabled="true">
@@ -2833,9 +3133,19 @@
             <stringProp name="HTTPSampler.response_timeout"></stringProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Normal Duration Asserrtion" enabled="true">
+            <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Normal Duration Assertion" enabled="false">
               <stringProp name="DurationAssertion.duration">${__P(portal.duration.normal)}</stringProp>
             </DurationAssertion>
+            <hashTree/>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Code Assertion" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="49586">200</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.custom_message"></stringProp>
+              <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">8</intProp>
+            </ResponseAssertion>
             <hashTree/>
           </hashTree>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="UpdateTaskByExpiryModelCommand" enabled="true">
@@ -3054,9 +3364,19 @@
             <stringProp name="HTTPSampler.response_timeout"></stringProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Normal Duration Asserrtion" enabled="true">
+            <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Normal Duration Assertion" enabled="false">
               <stringProp name="DurationAssertion.duration">${__P(portal.duration.normal)}</stringProp>
             </DurationAssertion>
+            <hashTree/>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Code Assertion" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="49586">200</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.custom_message"></stringProp>
+              <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">8</intProp>
+            </ResponseAssertion>
             <hashTree/>
           </hashTree>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="UpdateElapsedTimeByCaseCategoryCommand" enabled="true">
@@ -3275,9 +3595,19 @@
             <stringProp name="HTTPSampler.response_timeout"></stringProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Normal Duration Asserrtion" enabled="true">
+            <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Normal Duration Assertion" enabled="false">
               <stringProp name="DurationAssertion.duration">${__P(portal.duration.normal)}</stringProp>
             </DurationAssertion>
+            <hashTree/>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Code Assertion" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="49586">200</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.custom_message"></stringProp>
+              <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">8</intProp>
+            </ResponseAssertion>
             <hashTree/>
           </hashTree>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="UpdateCaseByFinishedTaskModelCommand" enabled="true">
@@ -3496,9 +3826,19 @@
             <stringProp name="HTTPSampler.response_timeout"></stringProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Normal Duration Asserrtion" enabled="true">
+            <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Normal Duration Assertion" enabled="false">
               <stringProp name="DurationAssertion.duration">${__P(portal.duration.normal)}</stringProp>
             </DurationAssertion>
+            <hashTree/>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Code Assertion" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="49586">200</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.custom_message"></stringProp>
+              <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">8</intProp>
+            </ResponseAssertion>
             <hashTree/>
           </hashTree>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="UpdateCaseByFinishedTimeModelCommand" enabled="true">
@@ -3717,9 +4057,19 @@
             <stringProp name="HTTPSampler.response_timeout"></stringProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Normal Duration Asserrtion" enabled="true">
+            <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Normal Duration Assertion" enabled="false">
               <stringProp name="DurationAssertion.duration">${__P(portal.duration.normal)}</stringProp>
             </DurationAssertion>
+            <hashTree/>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Code Assertion" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="49586">200</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.custom_message"></stringProp>
+              <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">8</intProp>
+            </ResponseAssertion>
             <hashTree/>
           </hashTree>
         </hashTree>
@@ -3936,9 +4286,19 @@
             <stringProp name="HTTPSampler.response_timeout"></stringProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Normal Duration Asserrtion" enabled="true">
+            <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Normal Duration Assertion" enabled="false">
               <stringProp name="DurationAssertion.duration">${__P(portal.duration.normal)}</stringProp>
             </DurationAssertion>
+            <hashTree/>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Code Assertion" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="49586">200</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.custom_message"></stringProp>
+              <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">8</intProp>
+            </ResponseAssertion>
             <hashTree/>
           </hashTree>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="ClearChartModelsCommand" enabled="true">
@@ -4157,9 +4517,19 @@
             <stringProp name="HTTPSampler.response_timeout"></stringProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Normal Duration Asserrtion" enabled="true">
+            <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Normal Duration Assertion" enabled="false">
               <stringProp name="DurationAssertion.duration">${__P(portal.duration.normal)}</stringProp>
             </DurationAssertion>
+            <hashTree/>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Code Assertion" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="49586">200</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.custom_message"></stringProp>
+              <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">8</intProp>
+            </ResponseAssertion>
             <hashTree/>
           </hashTree>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="UpdateChartModelsCommand" enabled="true">
@@ -4371,9 +4741,19 @@
             <stringProp name="HTTPSampler.response_timeout"></stringProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Normal Duration Asserrtion" enabled="true">
+            <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Normal Duration Assertion" enabled="false">
               <stringProp name="DurationAssertion.duration">${__P(portal.duration.normal)}</stringProp>
             </DurationAssertion>
+            <hashTree/>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Code Assertion" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="49586">200</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.custom_message"></stringProp>
+              <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">8</intProp>
+            </ResponseAssertion>
             <hashTree/>
           </hashTree>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="UpdateTaskByPriorityModelCommand" enabled="true">
@@ -4592,9 +4972,19 @@
             <stringProp name="HTTPSampler.response_timeout"></stringProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Normal Duration Asserrtion" enabled="true">
+            <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Normal Duration Assertion" enabled="false">
               <stringProp name="DurationAssertion.duration">${__P(portal.duration.normal)}</stringProp>
             </DurationAssertion>
+            <hashTree/>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Code Assertion" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="49586">200</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.custom_message"></stringProp>
+              <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">8</intProp>
+            </ResponseAssertion>
             <hashTree/>
           </hashTree>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="UpdateCaseByStateModelCommand" enabled="true">
@@ -4813,9 +5203,19 @@
             <stringProp name="HTTPSampler.response_timeout"></stringProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Normal Duration Asserrtion" enabled="true">
+            <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Normal Duration Assertion" enabled="false">
               <stringProp name="DurationAssertion.duration">${__P(portal.duration.normal)}</stringProp>
             </DurationAssertion>
+            <hashTree/>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Code Assertion" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="49586">200</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.custom_message"></stringProp>
+              <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">8</intProp>
+            </ResponseAssertion>
             <hashTree/>
           </hashTree>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="UpdateTaskByExpiryModelCommand" enabled="true">
@@ -5034,9 +5434,19 @@
             <stringProp name="HTTPSampler.response_timeout"></stringProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Normal Duration Asserrtion" enabled="true">
+            <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Normal Duration Assertion" enabled="false">
               <stringProp name="DurationAssertion.duration">${__P(portal.duration.normal)}</stringProp>
             </DurationAssertion>
+            <hashTree/>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Code Assertion" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="49586">200</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.custom_message"></stringProp>
+              <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">8</intProp>
+            </ResponseAssertion>
             <hashTree/>
           </hashTree>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="UpdateElapsedTimeByCaseCategoryCommand" enabled="true">
@@ -5255,9 +5665,19 @@
             <stringProp name="HTTPSampler.response_timeout"></stringProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Normal Duration Asserrtion" enabled="true">
+            <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Normal Duration Assertion" enabled="false">
               <stringProp name="DurationAssertion.duration">${__P(portal.duration.normal)}</stringProp>
             </DurationAssertion>
+            <hashTree/>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Code Assertion" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="49586">200</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.custom_message"></stringProp>
+              <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">8</intProp>
+            </ResponseAssertion>
             <hashTree/>
           </hashTree>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="UpdateCaseByFinishedTaskModelCommand" enabled="true">
@@ -5476,9 +5896,19 @@
             <stringProp name="HTTPSampler.response_timeout"></stringProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Normal Duration Asserrtion" enabled="true">
+            <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Normal Duration Assertion" enabled="false">
               <stringProp name="DurationAssertion.duration">${__P(portal.duration.normal)}</stringProp>
             </DurationAssertion>
+            <hashTree/>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Code Assertion" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="49586">200</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.custom_message"></stringProp>
+              <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">8</intProp>
+            </ResponseAssertion>
             <hashTree/>
           </hashTree>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="UpdateCaseByFinishedTimeModelCommand" enabled="true">
@@ -5697,9 +6127,19 @@
             <stringProp name="HTTPSampler.response_timeout"></stringProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Normal Duration Asserrtion" enabled="true">
+            <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Normal Duration Assertion" enabled="false">
               <stringProp name="DurationAssertion.duration">${__P(portal.duration.normal)}</stringProp>
             </DurationAssertion>
+            <hashTree/>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Code Assertion" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="49586">200</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.custom_message"></stringProp>
+              <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">8</intProp>
+            </ResponseAssertion>
             <hashTree/>
           </hashTree>
         </hashTree>
@@ -5746,9 +6186,19 @@
               <stringProp name="RegexExtractor.match_number">1</stringProp>
             </RegexExtractor>
             <hashTree/>
-            <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Normal Duration Assertion" enabled="true">
+            <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Normal Duration Assertion" enabled="false">
               <stringProp name="DurationAssertion.duration">${__P(portal.duration.normal)}</stringProp>
             </DurationAssertion>
+            <hashTree/>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Code Assertion" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="49586">200</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.custom_message"></stringProp>
+              <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">8</intProp>
+            </ResponseAssertion>
             <hashTree/>
           </hashTree>
         </hashTree>
@@ -5821,9 +6271,19 @@
           <stringProp name="HTTPSampler.response_timeout"></stringProp>
         </HTTPSamplerProxy>
         <hashTree>
-          <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Ajax Duration Asserrtion" enabled="true">
+          <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Ajax Duration Assertion" enabled="false">
             <stringProp name="DurationAssertion.duration">${__P(portal.duration.ajax)}</stringProp>
           </DurationAssertion>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Code Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">8</intProp>
+          </ResponseAssertion>
           <hashTree/>
         </hashTree>
         <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="Debug Sampler" enabled="false">
