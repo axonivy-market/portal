@@ -108,7 +108,7 @@ public class BaseTest {
     browser = Browser.getBrowser();
     launchBrowserAndGotoRelativeLink(cleanupDataLink);
     updatePortalSetting(SHOW_USER_GUIDE.getKey(), "false");
-    updatePortalSetting(SHOW_LEGACY_UI .getKey(), "true");
+    updatePortalSettingToShowLegacyUI();
   }
   
   /**
@@ -288,6 +288,10 @@ public class BaseTest {
   public void executeDecorateJs(String function) {
     ((JavascriptExecutor) getBrowser().getDriver()).executeScript(function);
     Sleeper.sleep(200);
+  }
+
+  public void updatePortalSettingToShowLegacyUI() {
+    updatePortalSetting(SHOW_LEGACY_UI .getKey(), "true");
   }
 
   protected void showNewDashboard() {
