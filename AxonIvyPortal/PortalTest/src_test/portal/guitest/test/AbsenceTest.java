@@ -28,6 +28,7 @@ public class AbsenceTest extends BaseTest {
   @Override
   @Before
   public void setup() {
+    super.updatePortalSettingToShowLegacyUI();
     super.setupWithAlternativeLinkAndAccount(cleanUpAbsencesAndSubstituesLink, TestAccount.DEMO_USER);
     updatePortalSetting(HIDE_YEAR.getKey(), "false");
   }

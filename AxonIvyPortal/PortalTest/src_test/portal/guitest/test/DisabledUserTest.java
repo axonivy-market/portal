@@ -33,6 +33,7 @@ public class DisabledUserTest extends BaseTest {
   @Override
   @Before
   public void setup() {
+    super.updatePortalSettingToShowLegacyUI();
     super.setupWithAlternativeLinkAndAccount(cleanupDataLink, TestAccount.ADMIN_USER);
     redirectToRelativeLink(DISABLE_VISIBILITY_USER_CREATION_LINK);
   }
