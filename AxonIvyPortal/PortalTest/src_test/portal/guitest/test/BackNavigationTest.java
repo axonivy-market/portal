@@ -117,7 +117,7 @@ public class BackNavigationTest extends BaseTest {
 
   @Test
   public void testNavigateAfterFinishedTaskToCaseDetails() {
-    redirectToRelativeLink(simplePaymentUrl);
+    redirectToRelativeLink(createNewPaymentUrl);
     caseWidgetPage = homePage.openCaseList();
 
     caseDetailsPage = caseWidgetPage.openDetailsOfCaseHasName(PAYMENT_CASE_NAME);
@@ -138,7 +138,7 @@ public class BackNavigationTest extends BaseTest {
     taskTemplatePage.clickOnSubmitButton();
     caseDetailsPage = new CaseDetailsPage();
     caseDetailsPage.waitForCaseDetailsReload();
-    assertEquals(PAYMENT_CASE_NAME, caseDetailsPage.getCaseName());
+    assertEquals("Signal create New Payment", caseDetailsPage.getCaseName());
 
     caseWidgetPage = caseDetailsPage.goBackToCaseListFromCaseDetails();
     assertEquals(CASE_LIST_TITLE, caseWidgetPage.getPageTitle());
@@ -146,7 +146,7 @@ public class BackNavigationTest extends BaseTest {
 
   @Test
   public void testNavigateAfterCancelTaskToCaseDetails() {
-    redirectToRelativeLink(simplePaymentUrl);
+    redirectToRelativeLink(createNewPaymentUrl);
     caseWidgetPage = homePage.openCaseList();
 
     caseDetailsPage = caseWidgetPage.openDetailsOfCaseHasName(PAYMENT_CASE_NAME);
