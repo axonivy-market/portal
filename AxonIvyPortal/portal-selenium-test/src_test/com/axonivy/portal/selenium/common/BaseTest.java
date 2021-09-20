@@ -22,7 +22,7 @@ public class BaseTest {
 
   private String designerLogoutUrl = "http://localhost:8081/designer/logout";
   private final static String LOGIN_URL_PATTERN = "/PortalKitTestHelper/1636734E13CEC872/login.ivp?username=%s&password=%s";
-  private final static String NEW_DASHBOARD_URL_PATTERN = "/PortalTemplate/1549F58C18A6C562/PortalDashboard.ivp";
+  private final static String PORTAL_HOME_PAGE_URL = "/PortalTemplate/1549F58C18A6C562/DefaultApplicationHomePage.ivp";
 
   public BaseTest() {}
   
@@ -66,7 +66,7 @@ public class BaseTest {
   protected String cleanSessionCacheUrl = "http://localhost:8081/designer/pro/PortalKitTestHelper/17208192E0AF4185/cleanSessionCache.ivp";
 
   protected void redirectToNewDashBoard() {
-    open(EngineUrl.createProcessUrl(NEW_DASHBOARD_URL_PATTERN));
+    open(EngineUrl.createProcessUrl(PORTAL_HOME_PAGE_URL));
   }
 
   /**

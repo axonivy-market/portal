@@ -28,7 +28,6 @@ public class HomepageUtils {
     Map<String, Object> response = IvyAdapterService.startSubProcess("loadSubMenuItems()", null, Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
     List<SubMenuItem> subMenuItems = (List<SubMenuItem>) response.get("subMenuItems");
     homepages.add(initDashboard());
-    homepages.add(initNewDashboard());
     for (SubMenuItem item : subMenuItems) {
       if (item.getMenuKind() != MenuKind.EXTERNAL_LINK) {
         homepages.add(HomepageMapper.toHomepage(item));
@@ -43,18 +42,6 @@ public class HomepageUtils {
     dashboard.setLabel(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/dashboard"));
     dashboard.setLink(PortalNavigator.getPortalStartUrl());
     dashboard.setType(HomepageType.DASHBOARD);
-    return dashboard;
-  }
-
-  private static Homepage initNewDashboard() {
-    Homepage dashboard = new Homepage();
-    dashboard.setName(HomepageType.NEW_DASHBOARD.name());
-    dashboard.setLabel(String.format("%s (%s)",
-        Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/dashboard"),
-        Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/new")));
-    String newDashboardLink = findRelativeUrlByKeywork(PortalNavigator.PORTAL_NEW_DASHBOARD_START);
-    dashboard.setLink(newDashboardLink);
-    dashboard.setType(HomepageType.NEW_DASHBOARD);
     return dashboard;
   }
 
@@ -93,9 +80,6 @@ public class HomepageUtils {
   private static void adjustHomepageStartLink(Homepage homepage) {
     String relativeUrl = "";
     switch (homepage.getType()) {
-      case NEW_DASHBOARD:
-        relativeUrl = findRelativeUrlByKeywork(PortalNavigator.PORTAL_NEW_DASHBOARD_START);
-        break;
       case PROCESS:
         relativeUrl = findRelativeUrlByKeywork(PortalNavigator.PORTAL_PROCESS_START);
         break;
@@ -145,5 +129,9 @@ public class HomepageUtils {
   
   public static boolean isShowDashboard(Homepage homepage, boolean isClickOnDashboard) {
     return homepage == null || homepage.getType() == HomepageType.DASHBOARD || isClickOnDashboard;
+  }
+
+  public static boolean isShowLegacyUI() {
+    return GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_LEGACY_UI);
   }
 }

@@ -15,10 +15,12 @@ import portal.guitest.common.Sleeper;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.ChatPage;
 import portal.guitest.page.HomePage;
+import portal.guitest.page.NewDashboardPage;
 import portal.guitest.page.TaskTemplatePage;
 import portal.guitest.page.TaskWidgetPage;
 
 public class ChatScreenshotTest extends ScreenshotTest {
+  private NewDashboardPage newDashboardPage;
   
   @Override
   public void setup() {
@@ -31,10 +33,11 @@ public class ChatScreenshotTest extends ScreenshotTest {
 
   @Test
   public void screenshotChat() throws IOException {
-    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+    showNewDashboard();
+    newDashboardPage = new NewDashboardPage();
     ScreenshotUtil.resizeBrowser(new Dimension(1500, 600));
-    new HomePage().waitForStatisticRendered();
     ScreenshotUtil.captureHalfTopRightPageScreenShot(ScreenshotUtil.CHAT_FOLDER + "access-chat");
+    TaskWidgetPage taskWidgetPage = newDashboardPage.openTaskList();
     TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
     Sleeper.sleep(3000);//wait for chat service initialize
     taskTemplatePage.clickTaskActionMenu();
@@ -47,11 +50,10 @@ public class ChatScreenshotTest extends ScreenshotTest {
     taskTemplatePage.clickCreateGroupChatBtn();
     
     redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
-    HomePage homePage = new HomePage();
-    ChatPage chatPage= homePage.getChat();
+    newDashboardPage = new NewDashboardPage();
+    ChatPage chatPage = newDashboardPage.getChat();
     chatPage.openFirstGroupChat();
     ScreenshotUtil.resizeBrowser(new Dimension(1200, 800));
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.CHAT_FOLDER + "chat");
-    
   }
 }
