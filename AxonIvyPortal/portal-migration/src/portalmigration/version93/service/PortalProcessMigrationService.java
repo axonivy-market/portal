@@ -32,7 +32,6 @@ public class PortalProcessMigrationService extends PortalMigrationService {
     migrateUserProcess(app, error);
     
     migrateUserExternalLink(app);
-
     return error;
   }
 
