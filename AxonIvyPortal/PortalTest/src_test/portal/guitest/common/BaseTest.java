@@ -118,8 +118,8 @@ public class BaseTest {
    */
   public void setupWithAlternativeLinkAndAccount(String relativePath, TestAccount account) {
     browser = Browser.getBrowser();
-    updatePortalSettingToShowLegacyUI();
     launchBrowserAndGotoRelativeLink(relativePath);
+    updatePortalSettingToShowLegacyUI();
     login(account);
   }
 
@@ -292,11 +292,11 @@ public class BaseTest {
   }
 
   public void updatePortalSettingToShowLegacyUI() {
-    updatePortalSetting(SHOW_LEGACY_UI .getKey(), "true");
+    updatePortalSetting(SHOW_LEGACY_UI.getKey(), "true");
   }
 
   protected void showNewDashboard() {
-    updatePortalSetting(SHOW_LEGACY_UI .getKey(), "false");
+    updatePortalSetting(SHOW_LEGACY_UI.getKey(), "false");
     redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
   }
   
