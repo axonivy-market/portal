@@ -22,6 +22,7 @@ import portal.guitest.page.ExpressFormDefinitionPage;
 import portal.guitest.page.ExpressManagementPage;
 import portal.guitest.page.ExpressProcessPage;
 import portal.guitest.page.HomePage;
+import portal.guitest.page.NewDashboardPage;
 import portal.guitest.page.ProcessWidgetPage;
 import portal.guitest.test.ExpressManagementTest;
 
@@ -33,6 +34,7 @@ public class PortalExpressScreenshotTest extends ScreenshotTest {
   private String expressAdditionalBusinessUrl = "AxonIvyExpress/17326FC2F133FBEA/startExpressBusinessView.ivp";
 
   private HomePage homePage;
+  private NewDashboardPage newDashboardPage;
   private ProcessWidgetPage processWidget;
   private ExpressProcessPage expressProcessPage;
   
@@ -47,8 +49,9 @@ public class PortalExpressScreenshotTest extends ScreenshotTest {
   public void screenshotProcessNavigate() throws IOException {
     redirectToRelativeLink(createTestingTasksUrl);
     redirectToRelativeLink(createUserFavoriteProcess);
-    homePage.clickOnLogo();
-    homePage.waitForStatisticRendered();
+    showNewDashboard();
+    newDashboardPage = new NewDashboardPage();
+    newDashboardPage.openMainMenu();
     ScreenshotUtil.resizeBrowser(new Dimension(1400, 500));
     executeDecorateJs("highlightShowAllProcesses()");
     ScreenshotUtil.captureHalfLeftPageScreenShot(ScreenshotUtil.EXPRESS_FOLDER + "navigate-to-axon-ivy-express");

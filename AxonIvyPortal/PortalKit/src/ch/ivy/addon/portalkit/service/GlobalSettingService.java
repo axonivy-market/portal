@@ -10,6 +10,8 @@ import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.configuration.GlobalSetting;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
+import ch.ivy.addon.portalkit.enums.ProcessMode;
+import ch.ivy.addon.portalkit.enums.GlobalVariable.Option;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUser;
@@ -78,6 +80,20 @@ public class GlobalSettingService {
       sessionUser().setProperty(entity.getKey(), entity.getValue());
     }
     return entity;
+  }
+
+  public GlobalSetting updateRelatedGlobalSettingByGlobalSetting(GlobalSetting entity) {
+    GlobalSetting relatedSetting = null;
+    String relatedSettingValue = null;
+    if (GlobalVariable.SHOW_LEGACY_UI.getKey().equals(entity.getKey())) {
+      relatedSettingValue =
+          Option.TRUE.toString().equals(entity.getValue()) ? ProcessMode.COMPACT.name() : ProcessMode.IMAGE.name();
+      relatedSetting = new GlobalSetting(GlobalVariable.DEFAULT_PROCESS_MODE.getKey(), relatedSettingValue);
+    }
+    if (relatedSetting != null) {
+      relatedSetting = save(relatedSetting);
+    }
+    return relatedSetting;
   }
 
   public List<GlobalSetting> findAll() {

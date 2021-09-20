@@ -1,6 +1,7 @@
 package portal.guitest.document.screenshot;
 
 import static portal.guitest.common.Variable.DISPLAY_MESSAGE_AFTER_FINISH_TASK;
+import static portal.guitest.common.Variable.SHOW_LEGACY_UI;
 
 import java.io.IOException;
 
@@ -11,15 +12,16 @@ import ch.ivy.addon.portalkit.util.ScreenshotMargin;
 import ch.ivy.addon.portalkit.util.ScreenshotUtil;
 import portal.guitest.common.FileHelper;
 import portal.guitest.common.ScreenshotTest;
+import portal.guitest.common.Sleeper;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.DocumentTableComponentPage;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.MainMenuPage;
+import portal.guitest.page.NewDashboardPage;
 import portal.guitest.page.ProcessHistoryPage;
 import portal.guitest.page.RoleSelectionComponentPage;
 import portal.guitest.page.StatisticWidgetPage;
 import portal.guitest.page.TaskTemplatePage;
-import portal.guitest.page.TaskWidgetPage;
 import portal.guitest.page.UserSelectionComponentPage;
 
 public class AdditionalComponentsScreenshotTest extends ScreenshotTest {
@@ -35,21 +37,29 @@ public class AdditionalComponentsScreenshotTest extends ScreenshotTest {
   public void captureScreenshotGrowlMessage() throws IOException {
     login(TestAccount.ADMIN_USER);
     updatePortalSetting(DISPLAY_MESSAGE_AFTER_FINISH_TASK.getKey(), "true");
+    updatePortalSetting(SHOW_LEGACY_UI .getKey(), "false");
     redirectToRelativeLink(createTestingCaseContainOneTask);
     ScreenshotUtil.resizeBrowser(new Dimension(1500, 1000));
 
-    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
-    taskWidgetPage.startTaskWithoutUI(0);
-    HomePage homePage = new HomePage();
-    homePage.waitForGrowlMessageDisplayClearly();
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    newDashboardPage.startTask(1);
+    Sleeper.sleep(300);//wait for new page loaded
+    newDashboardPage = new NewDashboardPage();
+    newDashboardPage.waitForTaskNonStartButtonDisplay(1);
+    newDashboardPage.waitForGrowlMessageDisplayClearly();
     ScreenshotUtil.captureHalfTopPageScreenShot(ScreenshotUtil.COMPONENTS_FOLDER + "example-global-growl-finished-task");
 
     redirectToRelativeLink(createTestingTasksUrl);
-    taskWidgetPage = new TaskWidgetPage();
-    TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
-    homePage = taskTemplatePage.clickCancelAndLeftButton();
-    homePage.waitForGrowlMessageDisplayClearly();
+    newDashboardPage = new NewDashboardPage();
+    newDashboardPage.startTask(3);
+    TaskTemplatePage taskTemplatePage = new TaskTemplatePage();
+    taskTemplatePage.clickCancelButton();
+    Sleeper.sleep(300);//wait for new page loaded
+    newDashboardPage = new NewDashboardPage();
+    newDashboardPage.waitForTaskStartButtonDisplay(3);
+    newDashboardPage.waitForGrowlMessageDisplayClearly();
     ScreenshotUtil.captureHalfTopPageScreenShot(ScreenshotUtil.COMPONENTS_FOLDER + "example-global-growl-cancelled-task");
+
   }
   
   @Test

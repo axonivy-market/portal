@@ -1,7 +1,7 @@
 .. _dashboard:
 
-Dashboard
-*********
+Legacy Dashboard
+****************
 
 The Axon Ivy Portal Dashboard is the first page you encounter after
 successful login. You can always get back to the dashboard using the 
