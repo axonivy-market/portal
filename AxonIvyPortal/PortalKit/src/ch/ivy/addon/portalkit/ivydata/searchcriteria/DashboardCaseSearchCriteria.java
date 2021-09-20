@@ -11,10 +11,12 @@ import org.apache.commons.lang3.time.DateUtils;
 
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.casecolumn.CaseColumnModel;
+import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
 import ch.ivy.addon.portalkit.enums.DashboardFilterType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 import ch.ivy.addon.portalkit.util.Dates;
+import ch.ivy.addon.portalkit.util.HiddenTasksCasesConfig;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.CaseQuery.ICustomFieldFilterQuery;
@@ -40,6 +42,9 @@ public class DashboardCaseSearchCriteria {
 
   public CaseQuery buildQueryWithoutOrderByClause() throws ParseException {
     CaseQuery query = CaseQuery.businessCases();
+    if (HiddenTasksCasesConfig.isHiddenTasksCasesExcluded()) {
+      query.where().customField().stringField(AdditionalProperty.HIDE.toString()).isNull();
+    }
     queryFilters(query);
     queryCategory(query);
     return query;
