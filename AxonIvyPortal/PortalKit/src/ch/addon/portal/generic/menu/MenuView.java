@@ -27,7 +27,6 @@ import ch.ivy.addon.portalkit.configuration.Application;
 import ch.ivy.addon.portalkit.enums.BreadCrumbKind;
 import ch.ivy.addon.portalkit.enums.MenuKind;
 import ch.ivy.addon.portalkit.publicapi.ApplicationMultiLanguageAPI;
-import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
 import ch.ivy.addon.portalkit.service.ApplicationMultiLanguage;
 import ch.ivy.addon.portalkit.util.ProcessStartUtils;
 import ch.ivy.addon.portalkit.util.UrlUtils;
@@ -72,27 +71,12 @@ public class MenuView implements Serializable {
       DefaultMenuItem item = buildSubMenuItem(subMenu);
       mainMenuModel.addElement(item);
     }
-    mainMenuModel.addElement(buildNewDashboardItem());
 
     List<Application> thirdPartyApps = PortalMenuNavigator.getThirdPartyApps();
     for (Application app : thirdPartyApps) {
       DefaultMenuItem item = buildThirdPartyItem(app);
       mainMenuModel.addElement(item);
     }
-  }
-
-  private DefaultMenuItem buildNewDashboardItem() {
-    String label = String.format("%s (%s)",
-        translate(DASHBOARD),
-        translate("/ch.ivy.addon.portalkit.ui.jsf/common/new"));
-    String friendlyRequestPath = ProcessStartUtils.findFriendlyRequestPathContainsKeyword(PortalNavigator.PORTAL_NEW_DASHBOARD_START);
-    String newDashboardLink = ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(friendlyRequestPath);
-
-    return new PortalMenuBuilder(label, MenuKind.NEW_DASHBOARD, this.isWorkingOnATask)
-        .icon(PortalMenuItem.DEFAULT_DASHBOARD_ICON)
-        .url(newDashboardLink)
-        .workingTaskId(this.workingTaskId)
-        .build();
   }
 
   private void initTaskParams(ITask workingTask, boolean isWorkingOnATask) {

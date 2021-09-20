@@ -1,14 +1,14 @@
 .. _customization-default-chart:
 
-Default chart
-=============
+Default chart - Deprecated
+==========================
 
 .. _customization-default-chart-introduction:
 
 Introduction
 ------------
 
-In Portal homepage, by default there is a chart named "Tasks by
+In legacy Portal homepage, by default there is a chart named "Tasks by
 Priority". But you can create your default chart.
 
 .. _customization-default-chart-customization:
