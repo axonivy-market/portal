@@ -99,6 +99,10 @@ Cs0 @PushWFArc f76 '' #zField
 Cs0 @TkArc f33 '' #zField
 Cs0 @StartRequest f77 '' #zField
 Cs0 @PushWFArc f78 '' #zField
+Cs0 @StartRequest f79 '' #zField
+Cs0 @TaskSwitchSimple f80 '' #zField
+Cs0 @TkArc f81 '' #zField
+Cs0 @PushWFArc f82 '' #zField
 >Proto Cs0 Cs0 CreateTestData #zField
 Ct2 @TextInP .type .type #zField
 Ct2 @TextInP .processKind .processKind #zField
@@ -959,6 +963,41 @@ Cs0 f77 753 753 30 30 -21 17 #rect
 Cs0 f78 783 768 1048 704 #arcP
 Cs0 f78 1 1048 768 #addKink
 Cs0 f78 0 0.678275972206267 0 0 #arcLabel
+Cs0 f79 outLink complexPayment.ivp #txt
+Cs0 f79 inParamDecl '<> param;' #txt
+Cs0 f79 requestEnabled true #txt
+Cs0 f79 triggerEnabled false #txt
+Cs0 f79 callSignature complexPayment() #txt
+Cs0 f79 startName 'Complex Payment' #txt
+Cs0 f79 caseData 'businessCase.attach=true
+case.name=Create New Payment' #txt
+Cs0 f79 showInStartList 0 #txt
+Cs0 f79 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>complexPayment.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f79 @C|.responsibility Everybody #txt
+Cs0 f79 753 601 30 30 -24 -37 #rect
+Cs0 f80 actionTable 'out=in1;
+' #txt
+Cs0 f80 taskData 'TaskA.NAM=Signal create New Payment
+TaskA.ROL=SYSTEM
+TaskA.TYPE=0' #txt
+Cs0 f80 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>system task</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f80 937 601 30 30 -38 -38 #rect
+Cs0 f81 783 616 937 616 #arcP
+Cs0 f82 967 616 1048 672 #arcP
+Cs0 f82 1 1048 616 #addKink
+Cs0 f82 0 0.6232187774330816 0 0 #arcLabel
 >Proto Cs0 .type com.axonivy.portal.developerexamples.Data #txt
 >Proto Cs0 .processKind NORMAL #txt
 >Proto Cs0 0 0 32 24 18 0 #rect
@@ -1205,6 +1244,10 @@ Cs0 f75 out f33 tail #connect
 Cs0 f33 head f32 in #connect
 Cs0 f77 mainOut f78 tail #connect
 Cs0 f78 head f75 in #connect
+Cs0 f79 mainOut f81 tail #connect
+Cs0 f81 head f80 in #connect
+Cs0 f80 out f82 tail #connect
+Cs0 f82 head f75 in #connect
 Ct2 f2 mainOut f0 tail #connect
 Ct2 f0 head f63 in #connect
 Ct2 g2 m f4 tail #connect
