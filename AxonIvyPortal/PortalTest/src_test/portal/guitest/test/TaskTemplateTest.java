@@ -106,7 +106,7 @@ public class TaskTemplateTest extends BaseTest {
   
   @Test
   public void testReserveWorkingTaskByClickingOnLogo() {
-    createTestData();
+    redirectToRelativeLink(simplePaymentUrl);
     login(TestAccount.ADMIN_USER);
     HomePage home = new HomePage();
     home.waitForPageLoaded();
