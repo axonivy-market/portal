@@ -36,6 +36,7 @@ public class EnhanceVisibilityTasksForMemberOfRoleTest extends BaseTest {
     gotoTaskList();
     // Suspended
     TaskWidgetPage taskWidgetPageDemo = new TaskWidgetPage();
+    taskWidgetPageDemo.filterByResponsible("Everybody");
     taskWidgetPageDemo.clickOnTaskStatesAndApply(Arrays.asList("Suspended"));
     int countTasks = taskWidgetPageDemo.countTasks();
     // User Guest
@@ -43,6 +44,7 @@ public class EnhanceVisibilityTasksForMemberOfRoleTest extends BaseTest {
     gotoTaskList();
     // Suspended
     TaskWidgetPage taskWidgetPageGuest = new TaskWidgetPage();
+    taskWidgetPageGuest.filterByResponsible("Everybody");
     taskWidgetPageGuest.clickOnTaskStatesAndApply(Arrays.asList("Suspended"));
     assertEquals(countTasks, taskWidgetPageGuest.countTasks());
   }
@@ -55,6 +57,7 @@ public class EnhanceVisibilityTasksForMemberOfRoleTest extends BaseTest {
     gotoTaskList();
     // Suspended
     TaskWidgetPage taskWidgetPageDemo = new TaskWidgetPage();
+    taskWidgetPageDemo.filterByResponsible("Everybody");
     taskWidgetPageDemo.clickOnTaskStatesAndApply(Arrays.asList("Suspended"));   
     // Reserved
     taskWidgetPageDemo.clickOnTaskActionLink(0);
@@ -67,6 +70,7 @@ public class EnhanceVisibilityTasksForMemberOfRoleTest extends BaseTest {
     gotoTaskList();
     // Reserved
     TaskWidgetPage taskWidgetPageGuest = new TaskWidgetPage();
+    taskWidgetPageGuest.filterByResponsible("Everybody");
     taskWidgetPageGuest.clickOnTaskStatesAndApply(Arrays.asList("Reserved"));
     assertEquals(countTasksReserved, taskWidgetPageGuest.countTasks());
     assertFalse(taskWidgetPageGuest.isTaskStartEnabled(0));
@@ -80,6 +84,7 @@ public class EnhanceVisibilityTasksForMemberOfRoleTest extends BaseTest {
     gotoTaskList();
     // Suspended
     TaskWidgetPage taskWidgetPageDemo = new TaskWidgetPage();
+    taskWidgetPageDemo.filterByResponsible("Everybody");
     taskWidgetPageDemo.clickOnTaskStatesAndApply(Arrays.asList("Done"));
     int countTasks = taskWidgetPageDemo.countTasks();
     // User Guest
@@ -87,6 +92,7 @@ public class EnhanceVisibilityTasksForMemberOfRoleTest extends BaseTest {
     gotoTaskList();
     // Suspended
     TaskWidgetPage taskWidgetPageGuest = new TaskWidgetPage();
+    taskWidgetPageGuest.filterByResponsible("Everybody");
     taskWidgetPageGuest.clickOnTaskStatesAndApply(Arrays.asList("Done"));
     assertEquals(countTasks, taskWidgetPageGuest.countTasks());
   }
