@@ -200,7 +200,7 @@ public class TaskActionBean implements Serializable {
   }
   
   public boolean showAdditionalOptions(ITask task) {
-    return isShowAdditionalOptions && isNotDone(task) && isNotDoneForWorkingUser(task) && !isTechnicalState(task);
+    return isShowAdditionalOptions && isNotDone(task) && canResume(task) && !isTechnicalState(task);
   }
   
   public boolean isShowResetTask() {
@@ -270,7 +270,7 @@ public class TaskActionBean implements Serializable {
 
   public boolean noActionAvailable(ITask task) {
     boolean hasWorkflowEventLink = isShowReadWorkflowEvent && canReadWorkflowEventTask();
-    return !isNotDone(task) && !canReset(task) && !isTechnicalState(task) && !hasWorkflowEventLink;
+    return !isNotDone(task) && !canResume(task) && !canReset(task) && !isTechnicalState(task) && !hasWorkflowEventLink;
   }
   
   public void backToPrevPage(ITask task, boolean isFromTaskList, boolean isTaskStartedInDetails) {
