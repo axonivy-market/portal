@@ -53,7 +53,12 @@ public class PortalExpressScreenshotTest extends ScreenshotTest {
     newDashboardPage = new NewDashboardPage();
     newDashboardPage.openMainMenu();
     ScreenshotUtil.resizeBrowser(new Dimension(1400, 500));
-    executeDecorateJs("highlightShowAllProcesses()");
+    try {
+      executeDecorateJs("highlightShowAllProcesses()");
+    } catch (Exception e) { // if error `ReferenceError: highlightShowAllProcesses is not defined`, then try again
+      Sleeper.sleep(2000);
+      executeDecorateJs("highlightShowAllProcesses()");
+    }
     ScreenshotUtil.captureHalfLeftPageScreenShot(ScreenshotUtil.EXPRESS_FOLDER + "navigate-to-axon-ivy-express");
   }
   
