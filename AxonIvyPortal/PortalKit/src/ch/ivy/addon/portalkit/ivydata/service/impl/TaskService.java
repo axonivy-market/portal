@@ -23,6 +23,8 @@ import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.scripting.objects.Record;
 import ch.ivyteam.ivy.scripting.objects.Recordset;
+import ch.ivyteam.ivy.security.IRole;
+import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.WorkflowPriority;
 import ch.ivyteam.ivy.workflow.category.CategoryTree;
@@ -43,7 +45,7 @@ public class TaskService implements ITaskService {
   public IvyTaskResultDTO findTasksByCriteria(TaskSearchCriteria criteria, int startIndex, int count) { 
     return IvyExecutor.executeAsSystem(() -> {
       IvyTaskResultDTO result = new IvyTaskResultDTO();
-      TaskQuery finalQuery = extendQueryWithInvolvedUser(criteria);
+      TaskQuery finalQuery = extendQueryWithkUserHasPermissionToSee(criteria);
       result.setTasks(executeTaskQuery(finalQuery, startIndex, count));
       return result;
     });
@@ -53,7 +55,7 @@ public class TaskService implements ITaskService {
   public IvyTaskResultDTO countTasksByCriteria(TaskSearchCriteria criteria) { 
     return IvyExecutor.executeAsSystem(() -> {
       IvyTaskResultDTO result = new IvyTaskResultDTO();
-      TaskQuery finalQuery = extendQueryWithInvolvedUser(criteria);
+      TaskQuery finalQuery = extendQueryWithkUserHasPermissionToSee(criteria);
       result.setTotalTasks(countTasks(finalQuery));
       return result;
     });
@@ -204,6 +206,24 @@ public class TaskService implements ITaskService {
     return expiryStatistic;
   }
 
+  private TaskQuery extendQueryWithkUserHasPermissionToSee(TaskSearchCriteria criteria) {
+    TaskQuery finalQuery = criteria.getFinalTaskQuery();
+    TaskQuery clonedQuery = TaskQuery.fromJson(finalQuery.asJson()); // clone to keep the final query in TaskSearchCriteria
+    if (!criteria.isAdminQuery()) {
+      FilterLink currentUserIsInvolved = TaskQuery.create().where().or().currentUserIsInvolved();     
+      IUser user = Ivy.session().getSessionUser();
+      for (IRole role : user.getRoles()) {
+        currentUserIsInvolved.where().or().roleIsInvolved(role);
+      }
+      clonedQuery.where().and(currentUserIsInvolved);
+    }
+    
+    if (isHiddenTasksCasesExcluded()) {
+      clonedQuery.where().and(queryExcludeHiddenTasks());
+    }
+    return clonedQuery;
+  }
+  
   private TaskQuery extendQueryWithInvolvedUser(TaskSearchCriteria criteria) {
     TaskQuery finalQuery = criteria.getFinalTaskQuery();
     TaskQuery clonedQuery = TaskQuery.fromJson(finalQuery.asJson()); // clone to keep the final query in TaskSearchCriteria
