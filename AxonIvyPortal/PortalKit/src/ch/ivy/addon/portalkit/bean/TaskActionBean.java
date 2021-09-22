@@ -190,12 +190,7 @@ public class TaskActionBean implements Serializable {
   }
   
   public boolean isNotDoneForWorkingUser(ITask task) {
-    if (task == null) {
-      return false;
-    }
-    EnumSet<TaskState> taskStates = EnumSet.of(TaskState.RESUMED, TaskState.PARKED, TaskState.SUSPENDED,
-        TaskState.CREATED, TaskState.DELAYED);
-    return taskStates.contains(task.getState()) && canResume(task);
+    return isNotDone(task) && canResume(task);
   }
   
   public boolean isTechnicalState(ITask task) {
@@ -266,7 +261,7 @@ public class TaskActionBean implements Serializable {
   }
 
   public boolean showClearDelayTime(ITask task) {
-    return TaskState.DELAYED.equals(task.getState()) && task.getDelayTimestamp() != null;
+    return TaskState.DELAYED.equals(task.getState()) && task.getDelayTimestamp() != null && isNotDoneForWorkingUser(task);
   }
 
   public boolean showClearExpiryTime(ITask task) {
