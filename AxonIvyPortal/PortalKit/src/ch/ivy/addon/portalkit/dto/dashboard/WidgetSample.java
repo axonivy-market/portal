@@ -7,11 +7,13 @@ public class WidgetSample {
   private String name;
   private DashboardWidgetType type;
   private String image;
+  private String introduction;
   
-  public WidgetSample(String name, DashboardWidgetType type, String image) {
+  public WidgetSample(String name, DashboardWidgetType type, String image,String introduction) {
     this.name = name;
     this.type = type;
     this.image = image;
+    this.introduction = introduction;
   }
 
   public String getName() {
@@ -37,5 +39,13 @@ public class WidgetSample {
   public void setImage(String image) {
     this.image = image;
   }
-  
+
+  public String getIntroduction() {
+    return introduction;
+  }
+
+  public void setIntroduction(String introduction) {
+    this.introduction = introduction;
+  }
+
 }
