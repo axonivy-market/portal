@@ -190,7 +190,17 @@ public class TaskActionBean implements Serializable {
   }
   
   public boolean isNotDoneForWorkingUser(ITask task) {
+    if(PermissionUtils.checkReadAllTasksPermission()) {
+      return true;
+    }
     return isNotDone(task) && canResume(task);
+  }
+  
+  public boolean canResumeForWorkingUser(ITask task) {
+    if(PermissionUtils.checkReadAllTasksPermission()) {
+      return true;
+    }
+    return canResume(task);
   }
   
   public boolean isTechnicalState(ITask task) {
@@ -200,7 +210,7 @@ public class TaskActionBean implements Serializable {
   }
   
   public boolean showAdditionalOptions(ITask task) {
-    return isShowAdditionalOptions && isNotDone(task) && canResume(task) && !isTechnicalState(task);
+    return isShowAdditionalOptions && isNotDone(task) && canResumeForWorkingUser(task) && !isTechnicalState(task);
   }
   
   public boolean isShowResetTask() {
@@ -270,7 +280,7 @@ public class TaskActionBean implements Serializable {
 
   public boolean noActionAvailable(ITask task) {
     boolean hasWorkflowEventLink = isShowReadWorkflowEvent && canReadWorkflowEventTask();
-    return !isNotDone(task) && !canResume(task) && !canReset(task) && !isTechnicalState(task) && !hasWorkflowEventLink;
+    return !isNotDone(task) && !canResumeForWorkingUser(task) && !canReset(task) && !isTechnicalState(task) && !hasWorkflowEventLink;
   }
   
   public void backToPrevPage(ITask task, boolean isFromTaskList, boolean isTaskStartedInDetails) {
