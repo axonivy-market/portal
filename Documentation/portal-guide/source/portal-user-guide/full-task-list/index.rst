@@ -13,8 +13,15 @@ link in the Axon Ivy Portal menu.
    configuration of the Axon Ivy  
    Portal, you might see not only 
    the tasks belonging to you but 
-   all open tasks.                
+   all open tasks.     
 
+   Visibility tasks assigned to roles depending on state:
+
+   - Open: Visible for all members
+
+   - In Progress: Visible for all members, but "parked" for working user (no actions possible for other role members)
+
+   - Done: Visible for all members
 
 |navigate-to-full-task-list-page|
 
