@@ -74,7 +74,7 @@ Ms0 f17 actionCode 'import javax.faces.context.FacesContext;
 import javax.faces.application.FacesMessage;
 import org.primefaces.component.message.Message;
 
-FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Migration finished", "Completed");
+FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, null, "The migration was done successfully");
 FacesContext.getCurrentInstance().addMessage(null, message);
 
 in.mustMigrateData = false;' #txt
@@ -117,13 +117,12 @@ import javax.faces.application.FacesMessage;
 import org.primefaces.component.message.Message;
 
 StringBuilder string = new StringBuilder();
-string.append("/n");
 for (String error : in.errors) {
 	string.append(error);
 	string.append("/n");
 }
 
-FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Migration failed", string.toString());
+FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "The migration failed", string.toString());
 FacesContext.getCurrentInstance().addMessage(null, message);' #txt
 Ms0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
