@@ -88,7 +88,11 @@ public class TaskActionBean implements Serializable {
     if (userCanOnlyDelegateAssignedTask(task)) {
       return canResume(task);
     } else {
-      return hasPermission(task, IPermission.TASK_WRITE_ACTIVATOR);
+      if(isNotDoneForWorkingUser(task)) {
+        return hasPermission(task, IPermission.TASK_WRITE_ACTIVATOR);
+      } else {
+        return false;
+      }      
     }
   }
 
@@ -185,6 +189,15 @@ public class TaskActionBean implements Serializable {
     return taskStates.contains(task.getState());
   }
   
+  public boolean isNotDoneForWorkingUser(ITask task) {
+    if (task == null) {
+      return false;
+    }
+    EnumSet<TaskState> taskStates = EnumSet.of(TaskState.RESUMED, TaskState.PARKED, TaskState.SUSPENDED,
+        TaskState.CREATED, TaskState.DELAYED);
+    return taskStates.contains(task.getState()) && canResume(task);
+  }
+  
   public boolean isTechnicalState(ITask task) {
     EnumSet<TaskState> taskStates = EnumSet.of(TaskState.WAITING_FOR_INTERMEDIATE_EVENT, TaskState.FAILED,
         TaskState.JOIN_FAILED);
@@ -192,7 +205,7 @@ public class TaskActionBean implements Serializable {
   }
   
   public boolean showAdditionalOptions(ITask task) {
-    return isShowAdditionalOptions && isNotDone(task) && !isTechnicalState(task);
+    return isShowAdditionalOptions && isNotDone(task) && isNotDoneForWorkingUser(task) && !isTechnicalState(task);
   }
   
   public boolean isShowResetTask() {
@@ -257,7 +270,7 @@ public class TaskActionBean implements Serializable {
   }
 
   public boolean showClearExpiryTime(ITask task) {
-    return canChangeExpiry(task) && task.getExpiryTimestamp() != null;
+    return canChangeExpiry(task) && task.getExpiryTimestamp() != null && isNotDoneForWorkingUser(task);
   }
 
   public boolean noActionAvailable(ITask task) {
