@@ -67,6 +67,7 @@ public class AdminSettingsPage extends TemplatePage {
           WebElement editButton = row.findElement(By.cssSelector("a[id$=reset]"));
           click(editButton);
           waitForElementPresent(By.id("adminui:resetConfirmationDialog"), true);
+          waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
           WebElement restoreButton = findElementById("adminui:reset-setting");
           click(restoreButton);
           return;
