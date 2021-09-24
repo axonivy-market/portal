@@ -7,7 +7,8 @@ import ch.ivyteam.ivy.environment.Ivy;
 public enum ProcessWidgetMode {
   COMPACT_MODE,
   FULL_MODE,
-  COMBINED_MODE;
+  COMBINED_MODE,
+  IMAGE_MODE;
 
   public String getLabel() {
     String label = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/Enums/ProcessWidgetMode/" + name());
