@@ -51,7 +51,8 @@ public class DashboardProcessBean extends AbstractProcessBean implements Seriali
   @PostConstruct
   public void init() {
     initStartableProcessStarts();
-    this.displayModes = Arrays.asList(ProcessWidgetMode.COMBINED_MODE, ProcessWidgetMode.COMPACT_MODE, ProcessWidgetMode.FULL_MODE);
+    this.displayModes = Arrays
+        .asList(ProcessWidgetMode.COMBINED_MODE, ProcessWidgetMode.COMPACT_MODE, ProcessWidgetMode.FULL_MODE, ProcessWidgetMode.IMAGE_MODE);
     allPortalProcesses = new ArrayList<>();
     portalCombinedProcesses = new ArrayList<>();
     super.init();
