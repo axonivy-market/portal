@@ -342,6 +342,10 @@ public class ProcessWidgetPage extends TemplatePage {
   public void waitUtilProcessWidgetDisplayed() {
     waitForElementDisplayed(By.id("process-widget"), true);
   }
+  
+  public void waitUtilProcessWidgetUserFavoriteDisplayed() {
+    waitForElementDisplayed(By.id("process-widget:user-process-container"), true);
+  }
 
   public String getCurrentViewMode() {
     waitForElementDisplayed(By.cssSelector("[id$='process-widget:process-view-mode:view-mode-selection'] div.ui-button.ui-widget.ui-state-default.ui-button-text-only.ui-state-active"), true);
