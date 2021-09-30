@@ -112,6 +112,9 @@ Ts0 f6 83 275 26 26 -34 15 #rect
 Ts0 f10 actionTable 'out=in;
 ' #txt
 Ts0 f10 actionCode 'in.task.getCase().getBusinessCase().createNote(ivy.session, in.noteContent);
+if (in.task.getCase().getBusinessCase().getId() != in.task.getCase().getId()) {
+  in.task.getCase().createNote(ivy.session, in.noteContent);
+}
 in.noteContent = "";' #txt
 Ts0 f10 security system #txt
 Ts0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
