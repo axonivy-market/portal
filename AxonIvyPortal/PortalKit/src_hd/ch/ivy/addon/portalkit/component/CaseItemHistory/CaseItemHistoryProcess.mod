@@ -91,6 +91,10 @@ Cs0 f29 488 192 523 192 #arcP
 Cs0 f3 actionTable 'out=in;
 ' #txt
 Cs0 f3 actionCode 'in.iCase.getBusinessCase().createNote(ivy.session, in.noteContent);
+if (in.iCase.getBusinessCase().getId() != in.iCase.getId()) {
+	in.iCase.createNote(ivy.session, in.noteContent);
+}
+
 in.noteContent = "";' #txt
 Cs0 f3 security system #txt
 Cs0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
