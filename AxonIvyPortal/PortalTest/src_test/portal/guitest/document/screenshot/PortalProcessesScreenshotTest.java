@@ -128,6 +128,7 @@ public class PortalProcessesScreenshotTest extends ScreenshotTest {
     
     refreshPage();
     processWidget.waitUtilProcessWidgetDisplayed();
+    processWidget.waitUtilProcessWidgetUserFavoriteDisplayed();
     executeDecorateJs("highlightSortUserProcess()");
     ScreenshotUtil.captureHalfLeftPageScreenShot(ScreenshotUtil.PROCESSES_WIDGET_FOLDER + "how-to-order-process-favorites-by-name");
   }
@@ -140,7 +141,9 @@ public class PortalProcessesScreenshotTest extends ScreenshotTest {
     processWidget.selectViewMode("GRID");
     processWidget.waitForGridProcessListDisplayed();
     processWidget.enterSearchKeyword("Process With Process Steps");
-    executeDecorateJs("highlightProcessMoreInformationLink()");
+    processWidget.selectViewMode("GRID");
+    processWidget.waitUntilAnimationFinished(45, "js-filter-process-widget-list-item", "class");
+    executeDecorateJs("highlightProcessMoreInformationLink()"); 
     ScreenshotUtil.captureHalfLeftPageScreenShot(ScreenshotUtil.PROCESSES_INFORMATION_WIDGET_FOLDER + "more-information-link");
   }
 
@@ -160,6 +163,8 @@ public class PortalProcessesScreenshotTest extends ScreenshotTest {
     processWidget = homePage.getProcessWidget();
     processWidget.expand();
     processWidget.enterSearchKeyword("Default Process Image selection example");
+    processWidget.selectViewMode("IMAGE");
+    processWidget.waitUntilAnimationFinished(45, "js-process-start-list-item", "class");
     ScreenshotUtil.captureHalfLeftPageScreenShot(ScreenshotUtil.PROCESSES_PROCESS_IMAGE_FOLDER + "image-process-list");
   }
 }
