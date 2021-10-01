@@ -42,7 +42,7 @@
     </ui:decorate>
   </c:if>
 
-  <c:if test="#{displayMode eq 'FULL_MODE' or displayMode eq 'COMBINED_MODE'}">
+  <c:if test="#{displayMode eq 'FULL_MODE' or displayMode eq 'COMBINED_MODE' or displayMode eq 'IMAGE_MODE'}">
     <h:panelGroup id="process-form-#{index}" layout="block" styleClass="widget-height-100">
       <h:panelGroup id="widget-content" layout="block"
         styleClass="card-widget__content #{widget.id} process-widget dashboard-widget-panel-container widget-height-100">
