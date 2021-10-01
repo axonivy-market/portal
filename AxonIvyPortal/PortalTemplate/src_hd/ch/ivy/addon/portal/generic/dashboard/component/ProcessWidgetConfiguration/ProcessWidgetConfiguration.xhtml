@@ -14,6 +14,7 @@
   <c:set var="isCompact" value="#{widget.displayMode eq 'COMPACT_MODE'}" />
   <c:set var="isCombined" value="#{widget.displayMode eq 'COMBINED_MODE'}" />
   <c:set var="isFull" value="#{widget.displayMode eq 'FULL_MODE'}" />
+  <c:set var="isImage" value="#{widget.displayMode eq 'IMAGE_MODE'}" />
 
   <f:event listener="#{dashboardProcessBean.preRender(processWidget)}" type="preRenderComponent" />
 
@@ -120,6 +121,23 @@
           </div>
           <div class="ui-g-9 ui-fluid">
             <p:autoComplete id="selected-combined-process" styleClass="process-configuration__selected-process" dropdown="true" scrollHeight="300" forceSelection="true"
+              completeMethod="#{dashboardProcessBean.completeProcessesWithoutExternalLink}" value="#{widget.process}" var="process" itemValue="#{process}" itemLabel="#{process.name}" queryDelay="500"
+              cache="true" minQueryLength="2" itemtipAtPosition="right top" converter="processSelectionConverter">
+              <p:ajax event="query" global="false" />
+              <p:ajax event="itemSelect" listener="#{dashboardProcessBean.updateProcessStartId()}" global="false" />
+              <p:column>
+                <h:outputText styleClass="autocomplete-tooltip" value="#{process.name}" title="#{process.description}" />
+              </p:column>
+            </p:autoComplete>
+          </div>
+        </h:panelGroup>
+        
+        <h:panelGroup id="image-filter" rendered="#{isImage}">
+          <div class="ui-g-3">
+            <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/process')}" for="selected-combined-process" />
+          </div>
+          <div class="ui-g-9 ui-fluid">
+            <p:autoComplete id="selected-image-process" styleClass="process-configuration__selected-process" dropdown="true" scrollHeight="300" forceSelection="true"
               completeMethod="#{dashboardProcessBean.completeProcessesWithoutExternalLink}" value="#{widget.process}" var="process" itemValue="#{process}" itemLabel="#{process.name}" queryDelay="500"
               cache="true" minQueryLength="2" itemtipAtPosition="right top" converter="processSelectionConverter">
               <p:ajax event="query" global="false" />
