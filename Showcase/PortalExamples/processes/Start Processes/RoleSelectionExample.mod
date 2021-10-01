@@ -23,8 +23,7 @@ Re0 f0 triggerEnabled false #txt
 Re0 f0 callSignature start() #txt
 Re0 f0 startName 'Role selection component example' #txt
 Re0 f0 startDescription 'Loading all roles, loading roles by predefined role names, floating label,...' #txt
-Re0 f0 caseData 'businessCase.attach=true
-customFields.STRING.embedInFrame="false"' #txt
+Re0 f0 caseData businessCase.attach=true #txt
 Re0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
