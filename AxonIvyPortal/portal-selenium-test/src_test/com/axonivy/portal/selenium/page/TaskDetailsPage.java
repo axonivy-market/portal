@@ -26,15 +26,18 @@ public class TaskDetailsPage extends TemplatePage {
   }
 
   public ElementsCollection getNotesWithContent(String content) {
+    $("span[id$=':task-notes:task-history-content-container']").waitUntil(appear, DEFAULT_TIMEOUT);
     return $$("span[id$=':task-notes:task-history-content-container'] table tbody tr td a").filter(text(content));
   }
 
   public void gotoTechnicalCase() {
+    $("a[id$=':general-information:related-technical-case']").waitUntil(appear, DEFAULT_TIMEOUT);
     $("a[id$=':general-information:related-technical-case']").click();
     $("div[id$=':general-information:business-case-information']").waitUntil(appear, DEFAULT_TIMEOUT);
   }
 
   public void gotoBusinessCase() {
+    $("a[id$=':general-information:related-case']").waitUntil(appear, DEFAULT_TIMEOUT);
     $("a[id$=':general-information:related-case']").click();
     $("div[id$=':general-information:business-case-information']").waitUntil(disappear, DEFAULT_TIMEOUT);
   }
