@@ -187,7 +187,7 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
         processWidget.setProcesses(new ArrayList<>());
         processWidget.setName(processWidget.getProcess() != null ? processWidget.getProcess().getName() : "");
         processWidget.setProcessPath(processWidget.getProcess().getId());
-      } else {
+      } else if (processWidget.getDisplayMode() == ProcessWidgetMode.COMPACT_MODE) {
         processWidget.getLayout().setHeight(6);
         processWidget.getLayout().setWidth(2);
         processWidget.setProcess(null);
@@ -197,6 +197,13 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
                 || getAllPortalProcesses().size() == processWidget.getProcesses().size()); 
         processWidget.setSelectedAllProcess(isAllProcessesSelected);
         updateProcessesOfWidget(processWidget);
+      } else if (processWidget.getDisplayMode() == ProcessWidgetMode.IMAGE_MODE) {
+        processWidget.getLayout().setHeight(6);
+        processWidget.getLayout().setWidth(2);
+        processWidget.setDisplayProcesses(new ArrayList<>());
+        processWidget.setProcesses(new ArrayList<>());
+        processWidget.setName(processWidget.getProcess() != null ? processWidget.getProcess().getName() : "");
+        processWidget.setProcessPath(processWidget.getProcess().getId());
       }
     } else if (this.widget.getType() == DashboardWidgetType.TASK) {
       updateTaskWidgetAfterSave();
