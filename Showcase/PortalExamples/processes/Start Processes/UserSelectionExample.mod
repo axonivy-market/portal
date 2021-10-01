@@ -23,8 +23,7 @@ Ut0 f0 triggerEnabled false #txt
 Ut0 f0 callSignature start() #txt
 Ut0 f0 startName 'User selection component example' #txt
 Ut0 f0 startDescription 'Loading all users, loading users by predefined role names, floating label,...' #txt
-Ut0 f0 caseData 'businessCase.attach=true
-customFields.STRING.embedInFrame="false"' #txt
+Ut0 f0 caseData businessCase.attach=true #txt
 Ut0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
