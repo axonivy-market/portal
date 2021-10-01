@@ -23,15 +23,18 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public ElementsCollection getRelatedCasesComponent() {
+    $("div[id='case-item-details:case-details-container:case-detail-body']").waitUntil(appear, DEFAULT_TIMEOUT);
     return $$("div[id='case-item-details:case-details-container:case-detail-body']").filter(text(RELATED_CASES));
   }
 
   public ElementsCollection getRelatedTasksOfCasesComponent() {
+    $("div[id='case-item-details:case-details-container:case-detail-body']").waitUntil(appear, DEFAULT_TIMEOUT);
     return $$("div[id='case-item-details:case-details-container:case-detail-body']")
         .filter(text(RELATED_TASKS_OF_CASES));
   }
 
   public ElementsCollection getHitoriesComponent() {
+    $("div[id='case-item-details:case-details-container:case-detail-body']").waitUntil(appear, DEFAULT_TIMEOUT);
     return $$("div[id='case-item-details:case-details-container:case-detail-body']").filter(text(HISTORY));
   }
 
