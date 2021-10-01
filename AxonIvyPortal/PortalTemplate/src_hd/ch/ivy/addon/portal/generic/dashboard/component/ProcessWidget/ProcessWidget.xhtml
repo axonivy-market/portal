@@ -16,7 +16,7 @@
 
   <p:remoteCommand id="rcLoadProcessFirstTime" autoRun="true" update="dashboard-processes-container" global="false" async="true" process="@this"
     oncomplete="loadProcessfFirstTime('#{widget.id}'); #{cc.attrs.onLoadProcessComplete}" />
-  <div class="ui-g widget-height-100 #{displayMode eq 'COMBINED_MODE' ? 'widget-overflow-auto' : ''}">
+  <div class="ui-g widget-height-100 #{displayMode eq 'COMBINED_MODE' ? 'widget-overflow-auto' : ''} #{displayMode eq 'IMAGE_MODE' ? 'image-process-container' : ''}">
     <h:outputText id="loading" styleClass="js-loading-#{widget.id} ui-g-12" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/loading')}" />
 
     <h:panelGroup id="dashboard-processes-container" layout="block"
@@ -51,6 +51,13 @@
           <ui:param name="isInConfiguration" value="#{cc.attrs.isInConfiguration}" />
         </ui:include>
       </c:if>
+      <c:if test="#{widget.displayMode eq 'IMAGE_MODE'}">
+        <ui:include src="ImageModeProcess.xhtml">
+          <ui:param name="process" value="#{widget.process}" />
+          <ui:param name="isReadOnlyMode" value="#{isReadOnlyMode}" />
+          <ui:param name="isInConfiguration" value="#{cc.attrs.isInConfiguration}" />
+        </ui:include>
+      </c:if>
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/processes/emptyProcess')}"
         rendered="#{(displayMode eq 'COMBINED_MODE' or displayMode eq 'FULL_MODE') and widget.process eq null}"
         styleClass="dashboard-processes--empty-message" />
@@ -60,13 +67,12 @@
   </div>
 
   <script type="text/javascript">
-			function loadProcessfFirstTime(widgetId) {
-				var loadingId = '.js-loading-' + widgetId;
-				var widgetContainer = '.js-dashboard-processes-container-'
-						+ widgetId;
-				$(loadingId).addClass('u-display-none');
-				$(widgetContainer).removeClass('u-display-none');
-			}
-		</script>
+		function loadProcessfFirstTime(widgetId) {
+			var loadingId = '.js-loading-' + widgetId;
+			var widgetContainer = '.js-dashboard-processes-container-' + widgetId;
+			$(loadingId).addClass('u-display-none');
+			$(widgetContainer).removeClass('u-display-none');
+		}
+	</script>
 </cc:implementation>
 </html>
