@@ -53,6 +53,7 @@
       </c:if>
       <c:if test="#{widget.displayMode eq 'IMAGE_MODE'}">
         <ui:include src="ImageModeProcess.xhtml">
+          <ui:param name="widget" value="#{widget}" />
           <ui:param name="process" value="#{widget.process}" />
           <ui:param name="isReadOnlyMode" value="#{isReadOnlyMode}" />
           <ui:param name="isInConfiguration" value="#{cc.attrs.isInConfiguration}" />
