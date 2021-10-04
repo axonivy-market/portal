@@ -8,10 +8,8 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-import ch.ivy.addon.portalkit.bean.ProcessWidgetBean;
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
 import ch.ivy.addon.portalkit.bo.ExternalLinkProcessItem;
-import ch.ivy.addon.portalkit.bo.IvyProcess;
 import ch.ivy.addon.portalkit.bo.PortalExpressProcess;
 import ch.ivy.addon.portalkit.bo.Process;
 import ch.ivy.addon.portalkit.configuration.ExternalLink;
@@ -19,12 +17,14 @@ import ch.ivy.addon.portalkit.configuration.GlobalSetting;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.enums.DefaultImage;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
+import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.enums.ProcessType;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivy.addon.portalkit.util.Locales;
 import ch.ivyteam.ivy.application.IProcessModel;
+import ch.ivyteam.ivy.cm.IContentManagementSystem;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
@@ -224,32 +224,30 @@ public class DashboardProcess implements Process {
     this.imageUrl = imageUrl;
   }
   
-  private void updateDefaultProcessImage(IWebStartable ivyProcess) {
-    String customFieldProcessImage = ivyProcess.customFields().value("processImage");
+  private void updateDefaultProcessImage(IWebStartable startable) {
+    String customFieldProcessImage = startable.customFields().value("processImage");
     if (StringUtils.isNotBlank(customFieldProcessImage)) {
-      String imageSrc = findProcessDefaultImageSrc(ivyProcess, customFieldProcessImage);
-      this.defaultImageSrc = imageSrc;
-      return;
+      Ivy.log().error("HERE TO FIND {0}",customFieldProcessImage );
+      this.defaultImageSrc = findProcessDefaultImageSrc(startable, customFieldProcessImage);
+    } else {
+      String defaultImageCms = ""; 
+      initDefaultProcessImage();
+      if (!defaultImageType.equals(DefaultImage.DEFAULT.name())) {
+        defaultImageSrc = StringUtils.EMPTY;
+        defaultImageCms = DEFAULT_IMAGE_CMS_FOLDER + this.defaultImageType;
+      }
+      this.imageUrl = StringUtils.defaultIfBlank(defaultImageCms, DefaultImage.PROCESSMODELING.getPath());
     }
-
-    if (!this.defaultImageType.equals(DefaultImage.DEFAULT.name())) {
-      this.defaultImageSrc = StringUtils.EMPTY;
-    }
-    String defaultImageCms = ""; 
-    initDefaultProcessImage();
-    if (!defaultImageType.equals(DefaultImage.DEFAULT.name())) {
-      defaultImageCms = DEFAULT_IMAGE_CMS_FOLDER + this.defaultImageType;
-    }
-    this.imageUrl = StringUtils.defaultIfBlank(defaultImageCms, DefaultImage.PROCESSMODELING.getPath());
   }
   
-  private String findProcessDefaultImageSrc(IWebStartable process, String processImage) {
-    if (process == null || StringUtils.isBlank(process.getLink().getRelativeEncoded())) {
+  private String findProcessDefaultImageSrc(IWebStartable startable, String processImage) {
+    if (startable == null || StringUtils.isBlank(startable.getLink().getRelativeEncoded())) {
       return StringUtils.EMPTY;
     }
 
-    String[] processParts = process.getLink().getRelativeEncoded().split("/");
+    String[] processParts = startable.getLink().getRelativeEncoded().split("/");
     String processModelName = processParts[processParts.length - LAST_POSITION_OF_PROCESS_MODEL_NAME_IN_START_LINK];
+    Ivy.log().error("processModelName is {0} and process image is {1}", processModelName, processImage);
     return IvyExecutor.executeAsSystem(() -> {
       return getDefaultImageUri(processModelName, processImage);
     });
@@ -258,11 +256,24 @@ public class DashboardProcess implements Process {
   private String getDefaultImageUri(String processModelName, String processImage) {
     String defaultImageUri = StringUtils.EMPTY;
     IProcessModel pm = Ivy.wf().getApplication().findProcessModel(processModelName);
-    if (pm != null) {
-      defaultImageUri = Ivy.cms().getContentManagement().findCms(pm.getReleasedProcessModelVersion()).co(processImage);
+    if (pm != null && pm.getReleasedProcessModelVersion() != null) {
+      Ivy.log().error("find cms");
+      IContentManagementSystem findCms = Ivy.cms().getContentManagement().findCms(pm.getReleasedProcessModelVersion());
+      if (findCms != null) {
+        Ivy.log().error("CMS name {0}", findCms.co(processImage));
+      }
+      defaultImageUri = findCms.co(processImage);
       if (StringUtils.isNotBlank(defaultImageUri)) {
         int indexOfDefaultImageUri = defaultImageUri.indexOf("/cm");
         defaultImageUri = defaultImageUri.substring(indexOfDefaultImageUri).replaceAll("\"/>", StringUtils.EMPTY);
+      } else {
+        IProcessModel portalStyle = Ivy.wf().getApplication().findProcessModel("PortalStyle");
+        if (portalStyle == null) {
+          Ivy.log().error("can not find style {0}", PortalLibrary.PORTAL_STYLE.getProjectId());
+        } else {
+        defaultImageUri = Ivy.cms().getContentManagement().findCms(portalStyle.getReleasedProcessModelVersion()).co(processImage);
+        Ivy.log().error("MOve to style and get {0}", defaultImageUri);
+        }
       }
     } 
     return defaultImageUri;

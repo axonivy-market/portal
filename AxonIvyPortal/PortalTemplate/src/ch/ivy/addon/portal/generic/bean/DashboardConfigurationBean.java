@@ -174,19 +174,9 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
     if (this.widget.getType() == DashboardWidgetType.PROCESS) {
       ProcessDashboardWidget processWidget = (ProcessDashboardWidget) this.widget;
       if (processWidget.getDisplayMode() == ProcessWidgetMode.FULL_MODE) {
-        processWidget.getLayout().setHeight(4);
-        processWidget.getLayout().setWidth(2);
-        processWidget.setName(processWidget.getProcess() != null ? processWidget.getProcess().getName() : "");
-        processWidget.setDisplayProcesses(new ArrayList<>());
-        processWidget.setProcesses(new ArrayList<>());
-        processWidget.setProcessPath(processWidget.getProcess().getId());
+        updateProcessWidget(processWidget, 4, 2);
       } else if (processWidget.getDisplayMode() == ProcessWidgetMode.COMBINED_MODE) {
-        processWidget.getLayout().setHeight(6);
-        processWidget.getLayout().setWidth(5);
-        processWidget.setDisplayProcesses(new ArrayList<>());
-        processWidget.setProcesses(new ArrayList<>());
-        processWidget.setName(processWidget.getProcess() != null ? processWidget.getProcess().getName() : "");
-        processWidget.setProcessPath(processWidget.getProcess().getId());
+        updateProcessWidget(processWidget, 6, 5);
       } else if (processWidget.getDisplayMode() == ProcessWidgetMode.COMPACT_MODE) {
         processWidget.getLayout().setHeight(6);
         processWidget.getLayout().setWidth(2);
@@ -198,12 +188,7 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
         processWidget.setSelectedAllProcess(isAllProcessesSelected);
         updateProcessesOfWidget(processWidget);
       } else if (processWidget.getDisplayMode() == ProcessWidgetMode.IMAGE_MODE) {
-        processWidget.getLayout().setHeight(6);
-        processWidget.getLayout().setWidth(2);
-        processWidget.setDisplayProcesses(new ArrayList<>());
-        processWidget.setProcesses(new ArrayList<>());
-        processWidget.setName(processWidget.getProcess() != null ? processWidget.getProcess().getName() : "");
-        processWidget.setProcessPath(processWidget.getProcess().getId());
+        updateProcessWidget(processWidget, 6, 2);
       }
     } else if (this.widget.getType() == DashboardWidgetType.TASK) {
       updateTaskWidgetAfterSave();
@@ -225,6 +210,15 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
     }
     saveSelectedWidget();
     this.widget = null;
+  }
+
+  private void updateProcessWidget(ProcessDashboardWidget processWidget, int height, int width) {
+    processWidget.getLayout().setHeight(height);
+    processWidget.getLayout().setWidth(width);
+    processWidget.setDisplayProcesses(new ArrayList<>());
+    processWidget.setProcesses(new ArrayList<>());
+    processWidget.setName(processWidget.getProcess() != null ? processWidget.getProcess().getName() : "");
+    processWidget.setProcessPath(processWidget.getProcess().getId());
   }
 
   private void updateCaseWidgetAfterSave() {
