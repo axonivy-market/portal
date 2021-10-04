@@ -23,6 +23,7 @@ import ch.ivy.addon.portalkit.bean.AbstractProcessBean;
 import ch.ivy.addon.portalkit.bo.Process;
 import ch.ivy.addon.portalkit.dto.dashboard.ProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.process.DashboardProcess;
+import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.enums.ProcessType;
 import ch.ivy.addon.portalkit.enums.ProcessWidgetMode;
 import ch.ivy.addon.portalkit.ivydata.service.impl.ProcessService;
@@ -30,6 +31,8 @@ import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.util.CategoryUtils;
 import ch.ivy.addon.portalkit.util.ProcessStartUtils;
 import ch.ivy.addon.portalkit.util.ProcessTreeUtils;
+import ch.ivyteam.ivy.application.IProcessModel;
+import ch.ivyteam.ivy.cm.IContentManagementSystem;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
@@ -74,7 +77,6 @@ public class DashboardProcessBean extends AbstractProcessBean implements Seriali
 
   private void initStartableProcessStarts() {
     startableProcessStarts = Ivy.session().getStartableProcessStarts();
-    startableProcessStarts = CollectionUtils.isNotEmpty(startableProcessStarts) ? startableProcessStarts : new ArrayList<>();
   }
 
   @Override
@@ -91,14 +93,16 @@ public class DashboardProcessBean extends AbstractProcessBean implements Seriali
 
   public void preRender(ProcessDashboardWidget widget) {
     this.widget = widget;
-    if (this.widget.getDisplayMode().equals(ProcessWidgetMode.COMPACT_MODE)) {
+    if (this.widget.getDisplayMode() == ProcessWidgetMode.COMPACT_MODE) {
       preRenderCompactProcessStartWidget();
       return;
     }
 
-    if (this.widget.getDisplayMode().equals(ProcessWidgetMode.COMBINED_MODE)) {
+    if (this.widget.getDisplayMode() == ProcessWidgetMode.COMBINED_MODE) {
       this.widget.setShowCases(false);
     }
+    
+    Ivy.log().error(widget.getType());
   }
 
   private void preRenderCompactProcessStartWidget() {
@@ -169,7 +173,7 @@ public class DashboardProcessBean extends AbstractProcessBean implements Seriali
       }
 
       widget.setDisplayProcesses(displayProcesses);
-    }
+    } 
   }
 
   public void selectProcessMode(ProcessWidgetMode mode) {
@@ -221,13 +225,8 @@ public class DashboardProcessBean extends AbstractProcessBean implements Seriali
   }
 
   public void startProcessWithFullMode(DashboardProcess process) throws IOException {
-    String link = process.getStartLink();
-    if (isExpressProcess(process) || isExternalLink(process)) {
-      redirectToLink(link, false);
-      return;
-    }
-
-    redirectToLink(link, true);
+    boolean isEmbedInFrame = !isExpressProcess(process) && !isExternalLink(process);
+    redirectToLink(process.getStartLink(), isEmbedInFrame);
   }
 
   public void startProcessWithCompactMode(DashboardProcess process) throws IOException {
@@ -252,13 +251,11 @@ public class DashboardProcessBean extends AbstractProcessBean implements Seriali
 
   private void redirectToLink(String link, boolean isEmbedInFrame) throws IOException {
     if (isEmbedInFrame) {
-      link += link.contains("?") ? "&" : "?";
-      FacesContext.getCurrentInstance().getExternalContext().redirect(link + "embedInFrame");
-    } else {
-      FacesContext.getCurrentInstance().getExternalContext().redirect(link);
-    }
+      link += (link.contains("?") ? "&" : "?" + "embedInFrame");
+    } 
+    FacesContext.getCurrentInstance().getExternalContext().redirect(link);
   }
-
+  
   public boolean isCaseMap(DashboardProcess process) {
     return !Objects.isNull(process) && process.getStartLink().endsWith(".icm");
   }
@@ -278,7 +275,10 @@ public class DashboardProcessBean extends AbstractProcessBean implements Seriali
   }
 
   public boolean isBrokenLink(DashboardProcess dashboardProcess) {
-    return !allPortalProcesses.stream().filter(process -> process.getId().equals(dashboardProcess.getId())).findFirst()
+    return !allPortalProcesses
+        .stream()
+        .filter(process -> process.getId().equals(dashboardProcess.getId()))
+        .findFirst()
         .isPresent();
   }
 
@@ -305,5 +305,4 @@ public class DashboardProcessBean extends AbstractProcessBean implements Seriali
   public void setAllPortalProcesses(List<DashboardProcess> allPortalProcesses) {
     this.allPortalProcesses = allPortalProcesses;
   }
-
 }

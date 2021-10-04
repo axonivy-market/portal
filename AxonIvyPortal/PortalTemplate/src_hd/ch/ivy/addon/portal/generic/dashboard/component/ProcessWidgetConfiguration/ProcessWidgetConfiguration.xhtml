@@ -40,8 +40,12 @@
           <strong>#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/availableFilters")}</strong>
         </div>
         <div class="ui-g-8">
-          <p:commandButton id="preview-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/preview')}" styleClass="Fright preview-button" icon="si si-search" actionListener="#{dashboardProcessBean.preview()}"
-            update="#{cc.clientId}:preview-process #{cc.clientId}:widget-preview" process="user-filter widget-title-group" oncomplete="PF('new-widget-configuration-dialog').initPosition();" />
+          <p:commandButton id="preview-button"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/preview')}" 
+            styleClass="Fright preview-button" icon="si si-search" 
+            actionListener="#{dashboardProcessBean.preview()}"
+            update="#{cc.clientId}:preview-process #{cc.clientId}:widget-preview" 
+            process="user-filter widget-title-group" oncomplete="PF('new-widget-configuration-dialog').initPosition();" />
         </div>
       </div>
 
