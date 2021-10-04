@@ -17,7 +17,7 @@
         <div class="process-icon-and-name">
           <!-- Process Icon -->
           <div class="image-process-icon">
-            <i id="icon" class="#{iconSelectionBean.generateIconWithFontFamily(process.getIcon())} process-image-view-icon" />
+            <i id="icon" class="#{iconSelectionBean.generateIconWithFontFamily(process.getIcon())} process-image-view-icon" /> <h:outputText></h:outputText>
           </div>
           <!-- Process Name -->
           <div class="process-name js-process-start-list-item-name">
@@ -27,7 +27,7 @@
       </div>
       <p:tooltip for="process-item-name" value="#{process.getName()}" position="top" trackMouse="true" hideEvent="mouseleave click" />
 
-     <h:panelGroup layout="block" id="process-item" styleClass="image-view-form #{isExpress ? 'is-express' : ''} #{isExternalLink ? 'is-external-link' : ''}">
+     <h:form id="process-item" target="#{dashboardProcessBean.targetToStartProcess(process)}" styleClass="image-view-form #{isExpress ? 'is-express' : ''} #{isExternalLink ? 'is-external-link' : ''}">
      	<h:panelGroup id="process-action-group" styleClass="process-action-group" layout="block">
           <h:panelGroup id="image-process-category" rendered="#{process.category ne ''}"
             styleClass="image-process-category" layout="block">
@@ -35,14 +35,27 @@
             <p:tooltip id="image-process-category-content-tooltip" for="image-process-category-content" value="#{process.category}" trackMouse="true"
               hideEvent="mouseleave click" />
           </h:panelGroup>
-          <p:commandButton id="process-action-button" type="button" styleClass="ui-button-icon-only icon-more-menu-button" icon="si si-navigation-menu-horizontal"
-            rendered="true" disabled="#{!isReadOnlyMode or isInConfiguration}" />
-          <!-- <p:menu id="process-action-menu" overlay="true" trigger="process-action-button" my="right top" at="right bottom" styleClass="ui-menu-overlay-process">
-            <p:menuitem id="process-edit" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}" icon="si si-graphic-tablet-drawing-pen" oncomplete="PF('edit-process-dialog').show();"
-              actionListener="#{processWidgetBean.setEditedProcess(process)}" update="#{cc.clientId}:edit-process-dialog" />
-            <p:menuitem id="process-delete" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}" icon="si si-bin-1" oncomplete="PF('remove-process-workflow-dialog').show();"
-              actionListener="#{processWidgetBean.setDeletedProcess(process)}" update="#{cc.clientId}:remove-process-workflow-dialog" />
-          </p:menu> -->
+          <h:panelGroup rendered="#{!isInConfiguration and !isReadOnlyMode}">
+            <p:commandButton id="process-action-button" type="button" styleClass="ui-button-icon-only icon-more-menu-button"
+              icon="si si-navigation-menu-horizontal" />
+            <p:menu id="process-action-menu" overlay="true" trigger="process-action-button" my="right top" at="right bottom"
+              styleClass="ui-menu-overlay-process">
+              <p:menuitem id="process-edit" 
+                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}"
+                icon="si si-graphic-tablet-drawing-pen" 
+                process="@this" partialSubmit="true"
+                actionListener="#{dashboardConfigurationBean.setEditWidget(widget)}"
+    			update="new-widget-configuration-dialog"
+				oncomplete="PF('new-widget-configuration-dialog').show()"/>
+              <p:menuitem id="process-delete" 
+              	value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
+                icon="si si-bin-1"
+                process="@this" partialSubmit="true" 
+                actionListener="#{dashboardConfigurationBean.setDeleteWidget(widget)}"
+    			update="remove-widget-dialog" 
+                oncomplete="PF('remove-widget-dialog').show()" />
+            </p:menu>
+  		  </h:panelGroup>
         </h:panelGroup>
         <div class="process-description">
           <h:outputText id="process-description" value="#{not empty process.description ? process.description : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noProcessDescription')}"
@@ -61,7 +74,7 @@
           	href="#{dashboardProcessBean.getProcessInformationPageUrl(process)}"
           	rendered="#{data.showInformationLink and !isExpress and !isExternalLink and !isCaseMap}" />
         </div>
-      </h:panelGroup>
+      </h:form>
     </div>
   </h:panelGroup>
 
