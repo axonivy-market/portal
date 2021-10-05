@@ -17,10 +17,15 @@ import ch.ivy.addon.portalkit.configuration.GlobalSetting;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.enums.DefaultImage;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
+import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.enums.ProcessType;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
+import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivy.addon.portalkit.util.Locales;
+import ch.ivyteam.ivy.application.IProcessModel;
+import ch.ivyteam.ivy.cm.IContentManagementSystem;
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -29,6 +34,7 @@ public class DashboardProcess implements Process {
   private static final String EXPRESS_WORKFLOW_ID_PARAM = "?workflowID=";
   private static final String EXPRESS_CATEGORY_PRE_FIX = "ExpressWorkflow";
   private String defaultImageType = DefaultImage.DEFAULT.name();
+  private static final int LAST_POSITION_OF_PROCESS_MODEL_NAME_IN_START_LINK = 3;
   private static final String DEFAULT_IMAGE_CMS_FOLDER = "/images/process/";
   private String id;
   private Long processStartId;
@@ -53,6 +59,7 @@ public class DashboardProcess implements Process {
     this.icon = process.getIcon();
     this.category = process.getCategory();
     this.imageUrl = process.getImageUrl();
+    this.defaultImageSrc = process.getDefaultImageSrc();
   }
 
   public DashboardProcess(IWebStartable process) {
@@ -63,7 +70,7 @@ public class DashboardProcess implements Process {
     this.startLink = process.getLink().getRelative();
     this.icon = process.customFields().value("cssIcon");
     this.category = process.getCategory().getPath();
-    updateImageUrl(process);
+    updateDefaultProcessImage(process);
   }
 
   public DashboardProcess(ExpressProcess process) {
@@ -217,21 +224,47 @@ public class DashboardProcess implements Process {
     this.imageUrl = imageUrl;
   }
   
-  private void updateImageUrl(IWebStartable startable) {
+  private void updateDefaultProcessImage(IWebStartable startable) {
     String customFieldProcessImage = startable.customFields().value("processImage");
     if (StringUtils.isNotBlank(customFieldProcessImage)) {
-      imageUrl = customFieldProcessImage;
+      this.defaultImageSrc = findProcessDefaultImageSrc(startable, customFieldProcessImage);
     } else {
       String defaultImageCms = ""; 
-      getDefaultProcessImageFromSetting();
+      readDefaultProcessImageInSetting();
       if (!defaultImageType.equals(DefaultImage.DEFAULT.name())) {
+        defaultImageSrc = StringUtils.EMPTY;
         defaultImageCms = DEFAULT_IMAGE_CMS_FOLDER + this.defaultImageType;
       }
-      imageUrl = StringUtils.defaultIfBlank(defaultImageCms, DefaultImage.PROCESSMODELING.getPath());
+      this.imageUrl = StringUtils.defaultIfBlank(defaultImageCms, DefaultImage.PROCESSMODELING.getPath());
     }
   }
+  
+  private String findProcessDefaultImageSrc(IWebStartable startable, String processImage) {
+    if (startable == null || StringUtils.isBlank(startable.getLink().getRelativeEncoded())) {
+      return StringUtils.EMPTY;
+    }
 
-  private void getDefaultProcessImageFromSetting() {
+    String[] processParts = startable.getLink().getRelativeEncoded().split("/");
+    String processModelName = processParts[processParts.length - LAST_POSITION_OF_PROCESS_MODEL_NAME_IN_START_LINK];
+    return IvyExecutor.executeAsSystem(() -> {
+      return getImageUri(processModelName, processImage);
+    });
+  }
+  
+  private String getImageUri(String processModelName, String processImage) {
+    String defaultImageUri = StringUtils.EMPTY;
+    IProcessModel pm = Ivy.wf().getApplication().findProcessModel(processModelName);
+    if (pm != null) {
+      defaultImageUri = Ivy.cms().getContentManagement().findCms(pm.getReleasedProcessModelVersion()).cr(processImage);
+      if (StringUtils.isNotBlank(defaultImageUri)) {
+        int indexOfDefaultImageUri = defaultImageUri.indexOf("/cm");
+        defaultImageUri = defaultImageUri.substring(indexOfDefaultImageUri).replaceAll("\"/>", StringUtils.EMPTY);
+      }
+    }
+    return defaultImageUri;
+  }
+  
+  private void readDefaultProcessImageInSetting() {
     GlobalSettingService globalSettingService = new GlobalSettingService();
     GlobalSetting defaultSetting = globalSettingService.findGlobalSettingByGlobalVariable(GlobalVariable.DEFAULT_PROCESS_IMAGE);
     defaultImageType = defaultSetting.getDisplayValue().toUpperCase();
