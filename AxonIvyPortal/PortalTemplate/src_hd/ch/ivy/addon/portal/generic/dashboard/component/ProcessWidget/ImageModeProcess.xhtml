@@ -9,15 +9,13 @@
   <h:panelGroup layout="block" styleClass="compact-processes-container widget-content image-process-item" rendered="#{not empty process}">
     <div class="card-item card ui-g-12 u-padding-0 #{isExpress ? 'express-workflow' : ''} ">
     	
-      <!-- Process Image -->
-      <p:graphicImage cache="true" styleClass="image-process-item-image" rendered="#{not empty process.defaultImageSrc}" value="#{process.defaultImageSrc}" />
-      <p:graphicImage cache="true" styleClass="image-process-item-image" library="ivy-cms" rendered="#{empty process.defaultImageSrc}" name="#{process.imageUrl}" /> 
+      <p:graphicImage styleClass="image-process-item-image" library="ivy-cms" name="#{process.imageUrl}" />
      
       <div class="overlay-title">
         <div class="process-icon-and-name">
           <!-- Process Icon -->
           <div class="image-process-icon">
-            <i id="icon" class="#{iconSelectionBean.generateIconWithFontFamily(process.getIcon())} process-image-view-icon" /> <h:outputText></h:outputText>
+            <i id="icon" class="#{iconSelectionBean.generateIconWithFontFamily(process.getIcon())} process-image-view-icon" />
           </div>
           <!-- Process Name -->
           <div class="process-name js-process-start-list-item-name">
