@@ -12,6 +12,11 @@
       value="#{not empty updatedComponentAfterGuide ? updatedComponentAfterGuide : 'process-widget task-widget statistic-widget-container'}" />
     <ui:define name="title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/dashboard')}</ui:define>
     <ui:define name="pageContent">
+      <script type="text/javascript">
+        if("${adminSettingBean.isShowLegacyUI()}"==="false") {
+          window.location = "${menuView.getDashboardLink()}";
+        }
+      </script>
       <c:set var="displayProcessWidget" value="#{not empty displayProcessWidget ? displayProcessWidget : true}" />
       <c:set var="displayTaskWidget" value="#{not empty displayTaskWidget ? displayTaskWidget : true}" />
       <c:set var="displayStatisticWidget"
