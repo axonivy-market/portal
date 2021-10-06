@@ -28,7 +28,6 @@ import ch.ivy.addon.portalkit.enums.BreadCrumbKind;
 import ch.ivy.addon.portalkit.enums.MenuKind;
 import ch.ivy.addon.portalkit.publicapi.ApplicationMultiLanguageAPI;
 import ch.ivy.addon.portalkit.service.ApplicationMultiLanguage;
-import ch.ivy.addon.portalkit.util.ProcessStartUtils;
 import ch.ivy.addon.portalkit.util.UrlUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ICase;
@@ -119,9 +118,7 @@ public class MenuView implements Serializable {
     String defaultHomepageConfig = HomepageUtils.getHomepageName();
     HomepageType configHomepageType = HomepageType.getType(defaultHomepageConfig);
     if (HomepageType.DASHBOARD != configHomepageType) {
-      Map<String, String> params = new HashMap<>();
-      params.put(DASHBOARD_PARAM, Boolean.TRUE.toString());
-      dashboardLink = PortalNavigator.getPortalDashboardPageUrl(params);
+      dashboardLink = getDashboardLink();
     }
 
     return new PortalMenuBuilder(translate(DASHBOARD), MenuKind.DASHBOARD, this.isWorkingOnATask)
@@ -129,6 +126,12 @@ public class MenuView implements Serializable {
         .url(dashboardLink)
         .workingTaskId(this.workingTaskId)
         .build();
+  }
+
+  public String getDashboardLink() {
+    Map<String, String> params = new HashMap<>();
+    params.put(DASHBOARD_PARAM, Boolean.TRUE.toString());
+    return PortalNavigator.getPortalDashboardPageUrl(params);
   }
 
   public MenuModel getMainMenuModel() {
