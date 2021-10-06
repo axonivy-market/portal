@@ -65,7 +65,7 @@
         <!-- Start process -->
         <div class="start-process">
           <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}" id="start-button" disabled="#{!isReadOnlyMode or isInConfiguration}"
-            icon="si si-arrow-right-1" actionListener="#{dashboardProcessBean.startProcess(process)}" />
+            icon="si si-arrow-right-1" actionListener="#{dashboardProcessBean.startProcess(process)}" ajax="#{!isExternalLink}" />
         </div>
         <!-- More Information Link -->
         <div class="more-information" id="more-information">
