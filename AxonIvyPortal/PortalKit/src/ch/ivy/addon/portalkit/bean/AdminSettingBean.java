@@ -10,6 +10,7 @@ import org.primefaces.component.tabview.TabView;
 import org.primefaces.event.ReorderEvent;
 import org.primefaces.event.TabChangeEvent;
 
+import ch.addon.portal.generic.userprofile.homepage.HomepageUtils;
 import ch.ivy.addon.portalkit.configuration.Application;
 import ch.ivy.addon.portalkit.jsf.Attrs;
 
@@ -46,5 +47,9 @@ public class AdminSettingBean implements Serializable {
     String componentId = Attrs.currentContext().getBuildInAttribute("clientId");
     applicationReorder.invokeComponentLogic(componentId, "#{logic.onApplicationReorder}",
         new Object[] {applicationList, selectedApp});
+  }
+
+  public boolean isShowLegacyUI() {
+    return HomepageUtils.isShowLegacyUI();
   }
 }
