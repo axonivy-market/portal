@@ -142,7 +142,7 @@
           </div>
           <div class="ui-g-9 ui-fluid">
             <p:autoComplete id="selected-image-process" styleClass="process-configuration__selected-process" dropdown="true" scrollHeight="300" forceSelection="true"
-              completeMethod="#{dashboardProcessBean.completeProcessesWithoutExternalLink}" value="#{widget.process}" var="process" itemValue="#{process}" itemLabel="#{process.name}" queryDelay="500"
+              completeMethod="#{dashboardProcessBean.completeProcesses}" value="#{widget.process}" var="process" itemValue="#{process}" itemLabel="#{process.name}" queryDelay="500"
               cache="true" minQueryLength="2" itemtipAtPosition="right top" converter="processSelectionConverter">
               <p:ajax event="query" global="false" />
               <p:ajax event="itemSelect" listener="#{dashboardProcessBean.updateProcessStartId()}" global="false" />
