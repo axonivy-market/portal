@@ -5,7 +5,6 @@ import static java.util.Objects.isNull;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -38,7 +37,6 @@ import ch.ivyteam.ivy.workflow.ITask;
 public class MenuView implements Serializable {
   private static final long serialVersionUID = 3188259472933435953L;
 
-  private final static String DASHBOARD_PARAM = "isShowDashboard";
   private final static String DASHBOARD = "/ch.ivy.addon.portalkit.ui.jsf/common/dashboard";
 
   private DefaultMenuModel mainMenuModel;
@@ -129,9 +127,7 @@ public class MenuView implements Serializable {
   }
 
   public String getDashboardLink() {
-    Map<String, String> params = new HashMap<>();
-    params.put(DASHBOARD_PARAM, Boolean.TRUE.toString());
-    return PortalNavigator.getPortalDashboardPageUrl(params);
+    return PortalNavigator.getDashboardLink();
   }
 
   public MenuModel getMainMenuModel() {

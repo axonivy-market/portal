@@ -45,6 +45,8 @@ public final class PortalNavigator extends BaseNavigator{
   public static final String PORTAL_CASE_START = "/CaseListPage.ivp";
   public static final String PORTAL_STATISTIC_START = "/StatisticPage.ivp";
   public static final String PORTAL_USER_PROFILE_START =  "/UserProfile.ivp";
+
+  private final static String DASHBOARD_PARAM = "isShowDashboard";
   
   public static String getPortalStartUrl() {
     return getRelativeLink(StandardProcessType.DefaultApplicationHomePage);
@@ -189,6 +191,16 @@ public final class PortalNavigator extends BaseNavigator{
   
   public static void navigateToUserProfile() {
     navigateByKeyword(PORTAL_USER_PROFILE_START, PORTAL_USER_PROFILE, new HashMap<>());
+  }
+
+  public static String getDashboardLink() {
+    Map<String, String> params = new HashMap<>();
+    params.put(DASHBOARD_PARAM, Boolean.TRUE.toString());
+    return PortalNavigator.getPortalDashboardPageUrl(params);
+  }
+
+  public static void navigateToDashboard() {
+    redirect(getDashboardLink());
   }
 
   public static void navigateToNewDashboardConfiguration() {
