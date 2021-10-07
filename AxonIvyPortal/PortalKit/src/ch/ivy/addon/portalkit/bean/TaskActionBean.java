@@ -190,12 +190,17 @@ public class TaskActionBean implements Serializable {
   }
   
   public boolean isNotDoneForWorkingUser(ITask task) {
-    if (task == null) {
-      return false;
+    if(PermissionUtils.checkReadAllTasksPermission()) {
+      return true;
     }
-    EnumSet<TaskState> taskStates = EnumSet.of(TaskState.RESUMED, TaskState.PARKED, TaskState.SUSPENDED,
-        TaskState.CREATED, TaskState.DELAYED);
-    return taskStates.contains(task.getState()) && canResume(task);
+    return isNotDone(task) && canResume(task);
+  }
+  
+  public boolean canResumeForWorkingUser(ITask task) {
+    if(PermissionUtils.checkReadAllTasksPermission()) {
+      return true;
+    }
+    return canResume(task);
   }
   
   public boolean isTechnicalState(ITask task) {
@@ -205,7 +210,7 @@ public class TaskActionBean implements Serializable {
   }
   
   public boolean showAdditionalOptions(ITask task) {
-    return isShowAdditionalOptions && isNotDone(task) && isNotDoneForWorkingUser(task) && !isTechnicalState(task);
+    return isShowAdditionalOptions && isNotDone(task) && canResumeForWorkingUser(task) && !isTechnicalState(task);
   }
   
   public boolean isShowResetTask() {
@@ -266,7 +271,7 @@ public class TaskActionBean implements Serializable {
   }
 
   public boolean showClearDelayTime(ITask task) {
-    return TaskState.DELAYED.equals(task.getState()) && task.getDelayTimestamp() != null;
+    return TaskState.DELAYED.equals(task.getState()) && task.getDelayTimestamp() != null && isNotDoneForWorkingUser(task);
   }
 
   public boolean showClearExpiryTime(ITask task) {
@@ -275,7 +280,7 @@ public class TaskActionBean implements Serializable {
 
   public boolean noActionAvailable(ITask task) {
     boolean hasWorkflowEventLink = isShowReadWorkflowEvent && canReadWorkflowEventTask();
-    return !isNotDone(task) && !canReset(task) && !isTechnicalState(task) && !hasWorkflowEventLink;
+    return !isNotDone(task) && !canResumeForWorkingUser(task) && !canReset(task) && !isTechnicalState(task) && !hasWorkflowEventLink;
   }
   
   public void backToPrevPage(ITask task, boolean isFromTaskList, boolean isTaskStartedInDetails) {
