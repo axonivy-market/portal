@@ -31,7 +31,7 @@
       <c:if test="#{widget.displayMode eq 'FULL_MODE'}">
         <ic:ch.ivy.addon.portalkit.component.process.ProcessGridItem id="process-grid-item"
           process="#{widget.process}" managedBean="#{dashboardProcessBean}"
-          readOnlyMode="#{cc.attrs.isInConfiguration}"
+          readOnlyMode="#{cc.attrs.isInConfiguration or !isReadOnlyMode}"
           ableToEdit="#{!isReadOnlyMode}"
           oncompleteEditProcess="PF('new-widget-configuration-dialog').show()"
           componentToUpdateOnEditProcess="new-widget-configuration-dialog"
