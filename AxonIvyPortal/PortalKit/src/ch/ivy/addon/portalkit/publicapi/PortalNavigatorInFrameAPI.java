@@ -23,6 +23,15 @@ public final class PortalNavigatorInFrameAPI {
   }
 
   /**
+   * Portal API for navigating to homepage in iFrame
+   * @deprecated Use Ivy.html().applicationHomeRef() instead
+   */
+  @Deprecated
+  public static void navigateToPortalHome() {
+    navigateToUrl(Ivy.html().applicationHomeRef());
+  }
+
+  /**
    * Navigate to target url
    * @param url target url
    */
