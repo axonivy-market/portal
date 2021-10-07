@@ -1,6 +1,7 @@
 package com.axonivy.portal.selenium.page;
 
 import static com.codeborne.selenide.Condition.appear;
+import static com.codeborne.selenide.Condition.disappears;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
@@ -55,7 +56,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   public void startFirstTask() {
     $$("span.widget__filter-noti-number").first().waitUntil(appear, DEFAULT_TIMEOUT);
     getColumnOfTaskHasIndex(0, "Start").shouldBe(getClickableCondition()).click();
-    $$("div.dashboard__header.js-dashboard__header").first().waitUntil(appear, DEFAULT_TIMEOUT);
+    $$("span.widget__filter-noti-number").first().waitUntil(disappears, DEFAULT_TIMEOUT);
   }
 
   public ElementsCollection countRelatedCases() {

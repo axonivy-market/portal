@@ -45,7 +45,7 @@ public class TaskService implements ITaskService {
   public IvyTaskResultDTO findTasksByCriteria(TaskSearchCriteria criteria, int startIndex, int count) { 
     return IvyExecutor.executeAsSystem(() -> {
       IvyTaskResultDTO result = new IvyTaskResultDTO();
-      TaskQuery finalQuery = extendQueryWithkUserHasPermissionToSee(criteria);
+      TaskQuery finalQuery = extendQueryWithUserHasPermissionToSee(criteria);
       result.setTasks(executeTaskQuery(finalQuery, startIndex, count));
       return result;
     });
@@ -55,7 +55,7 @@ public class TaskService implements ITaskService {
   public IvyTaskResultDTO countTasksByCriteria(TaskSearchCriteria criteria) { 
     return IvyExecutor.executeAsSystem(() -> {
       IvyTaskResultDTO result = new IvyTaskResultDTO();
-      TaskQuery finalQuery = extendQueryWithkUserHasPermissionToSee(criteria);
+      TaskQuery finalQuery = extendQueryWithUserHasPermissionToSee(criteria);
       result.setTotalTasks(countTasks(finalQuery));
       return result;
     });
@@ -206,7 +206,7 @@ public class TaskService implements ITaskService {
     return expiryStatistic;
   }
 
-  private TaskQuery extendQueryWithkUserHasPermissionToSee(TaskSearchCriteria criteria) {
+  private TaskQuery extendQueryWithUserHasPermissionToSee(TaskSearchCriteria criteria) {
     TaskQuery finalQuery = criteria.getFinalTaskQuery();
     TaskQuery clonedQuery = TaskQuery.fromJson(finalQuery.asJson()); // clone to keep the final query in TaskSearchCriteria
     if (!criteria.isAdminQuery()) {
