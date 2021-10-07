@@ -211,6 +211,8 @@ Migrate 8.x to 9.1
 
 #. The ``MenuKind`` enum has one more entry: EXTERNAL_LINK, use it if your item is an external link, and use CUSTOM if yours is an internal link.
 
+#. The ``PortalNavigatorInFrameAPI#navigateToPortalHome`` method is deprecated, redirect to ivy.html.applicationHomeRef() in your page instead.
+
 Migrate 8.x to 9.2
 ------------------
 
