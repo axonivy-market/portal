@@ -198,3 +198,19 @@
     display: none;
   }
 }
+
+.code-block {
+  display: inline-block;
+  white-space: nowrap;
+  max-width: 100%;
+  background: #fff;
+  border: 1px solid #e1e4e5;
+  padding: 2px 5px;
+  font-family: SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, Courier, monospace;
+  color: #e74c3c;
+  overflow-x: auto;
+}
+
+.font-size-75 {
+  font-size: 75%;
+}
