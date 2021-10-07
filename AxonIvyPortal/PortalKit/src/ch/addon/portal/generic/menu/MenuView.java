@@ -5,7 +5,6 @@ import static java.util.Objects.isNull;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -28,7 +27,6 @@ import ch.ivy.addon.portalkit.enums.BreadCrumbKind;
 import ch.ivy.addon.portalkit.enums.MenuKind;
 import ch.ivy.addon.portalkit.publicapi.ApplicationMultiLanguageAPI;
 import ch.ivy.addon.portalkit.service.ApplicationMultiLanguage;
-import ch.ivy.addon.portalkit.util.ProcessStartUtils;
 import ch.ivy.addon.portalkit.util.UrlUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ICase;
@@ -39,7 +37,6 @@ import ch.ivyteam.ivy.workflow.ITask;
 public class MenuView implements Serializable {
   private static final long serialVersionUID = 3188259472933435953L;
 
-  private final static String DASHBOARD_PARAM = "isShowDashboard";
   private final static String DASHBOARD = "/ch.ivy.addon.portalkit.ui.jsf/common/dashboard";
 
   private DefaultMenuModel mainMenuModel;
@@ -119,9 +116,7 @@ public class MenuView implements Serializable {
     String defaultHomepageConfig = HomepageUtils.getHomepageName();
     HomepageType configHomepageType = HomepageType.getType(defaultHomepageConfig);
     if (HomepageType.DASHBOARD != configHomepageType) {
-      Map<String, String> params = new HashMap<>();
-      params.put(DASHBOARD_PARAM, Boolean.TRUE.toString());
-      dashboardLink = PortalNavigator.getPortalDashboardPageUrl(params);
+      dashboardLink = getDashboardLink();
     }
 
     return new PortalMenuBuilder(translate(DASHBOARD), MenuKind.DASHBOARD, this.isWorkingOnATask)
@@ -129,6 +124,10 @@ public class MenuView implements Serializable {
         .url(dashboardLink)
         .workingTaskId(this.workingTaskId)
         .build();
+  }
+
+  public String getDashboardLink() {
+    return PortalNavigator.getDashboardLink();
   }
 
   public MenuModel getMainMenuModel() {
