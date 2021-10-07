@@ -8,17 +8,21 @@
   appendTo="@(body)" closeOnEscape="true" draggable="false"
   fitViewport="true" responsive="true" modal="true">
 
-  <p:dataGrid id="new-widget-dialog-content" var="sample" value="#{dashboardConfigurationBean.samples}" layout="grid" columns="2"
-    styleClass="new-widget-dialog__content ui-g">
-    <p:panel header="#{sample.name}" styleClass="new-widget-dialog__item ui-sm-12 ui-md-12">
-      <h:panelGrid columns="1">
+  <p:dataGrid id="new-widget-dialog-content" var="sample" value="#{dashboardConfigurationBean.samples}" columns="1"
+    styleClass="new-widget-dialog__content">
+    <p:panel styleClass="new-widget-dialog__item">
+      <p:panelGrid columns="3" styleClass="ui-panelgrid-blank">
         <p:graphicImage library="images" name="#{sample.image}" styleClass="new-widget-dialog__image" />
-        <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/select')}"
+        <p:panelGrid styleClass="ui-panelgrid-blank new-widget-dialog__item-content" columns="1">
+	        <p:outputLabel id="sample-name" value="#{sample.name}" styleClass="new-widget-dialog__widget-name"/>        	
+	        <p:outputLabel value="#{sample.introduction}" styleClass="new-widget-dialog__introduction"/>
+        </p:panelGrid>
+        <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/addWidget')}"
           actionListener="#{dashboardConfigurationBean.create(sample)}" update="new-widget-configuration-dialog widget-configuration-form"
           oncomplete="PF('new-widget-configuration-dialog').show(); PF('new-widget-dialog').hide();"
-          icon="si si-arrow-right" />
-      </h:panelGrid>
-    </p:panel>
+           styleClass="secondary-btn" />
+		</p:panelGrid>
+	</p:panel>
   </p:dataGrid>
 
   <f:facet name="footer">
