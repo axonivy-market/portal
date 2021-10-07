@@ -31,9 +31,9 @@ public class NewDashboardAddWidgetTest extends BaseTest {
     newDashBoardPage.switchToEditMode();
     newDashBoardPage.addWidget();
     CaseEditWidgetNewDashBoardPage newCaseWidget = newDashBoardPage.addNewCaseWidget();
-    newCaseWidget.changeWidgetTitle("New Your Cases");
+    newCaseWidget.changeWidgetTitle("Your New Cases");
     newCaseWidget.save();
-    CaseWidgetNewDashBoardPage caseWidget = newDashBoardPage.selectCaseWidget("New Your Cases");
+    CaseWidgetNewDashBoardPage caseWidget = newDashBoardPage.selectCaseWidget("Your New Cases");
     caseWidget.expand().shouldHaveSize(1);
   }
   
@@ -44,9 +44,9 @@ public class NewDashboardAddWidgetTest extends BaseTest {
     newDashBoardPage.switchToEditMode();
     newDashBoardPage.addWidget();
     TaskEditWidgetNewDashBoardPage newTaskWidget = newDashBoardPage.addNewTaskWidget();
-    newTaskWidget.changeWidgetTitle("New Your Tasks");
+    newTaskWidget.changeWidgetTitle("Your New Tasks");
     newTaskWidget.save();
-    TaskWidgetNewDashBoardPage taskWidget = newDashBoardPage.selectTaskWidget("New Your Tasks");
+    TaskWidgetNewDashBoardPage taskWidget = newDashBoardPage.selectTaskWidget("Your New Tasks");
     taskWidget.expand().shouldHaveSize(1);
   }
   
