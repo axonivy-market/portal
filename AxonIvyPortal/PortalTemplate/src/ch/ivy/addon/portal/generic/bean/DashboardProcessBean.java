@@ -156,8 +156,7 @@ public class DashboardProcessBean extends AbstractProcessBean implements Seriali
   public void preview() {
     if (widget.getDisplayMode() == ProcessWidgetMode.COMPACT_MODE) {
       List<DashboardProcess> displayProcesses =
-          widget.isSelectedAllProcess() || CollectionUtils.isEmpty(widget.getProcesses()) ? allPortalProcesses
-              : widget.getProcesses();
+          CollectionUtils.isEmpty(widget.getProcesses()) ? allPortalProcesses : widget.getProcesses();
       if (CollectionUtils.isNotEmpty(widget.getCategories())) {
         if (CollectionUtils.isEmpty(widget.getProcesses())) {
           displayProcesses =
