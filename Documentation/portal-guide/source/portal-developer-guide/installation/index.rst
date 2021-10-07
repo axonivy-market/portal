@@ -133,6 +133,9 @@ Migrate to 9.3
 
 #. We moved the configuration of announcement, thirdparty applications, default statistic charts, application favorite processes, public external links and express processes from the BusinessData to ivy variables.
 
+#. To use switching option between legacy Portal home and new Dashboard in your customized project,
+   copy ``DefaultApplicationHomePage.ivp`` and ``PortalDashboardConfiguration.ivp`` in the ``PortalStart`` process from ``PortalTemplate`` to your customized project.
+   Configure ``Portal.ShowLegacyUI`` option in Admin Settings as your expectation.
 
 Migrate 9.1 to 9.2
 ------------------
@@ -207,6 +210,8 @@ Migrate 8.x to 9.1
 #. ``TaskTemplate-7`` is removed, change it to ``TaskTemplate-8``. ``TaskTemplate`` is also removed, change it to ``frame-8`` (provided by Ivy).
 
 #. The ``MenuKind`` enum has one more entry: EXTERNAL_LINK, use it if your item is an external link, and use CUSTOM if yours is an internal link.
+
+#. The ``PortalNavigatorInFrameAPI#navigateToPortalHome`` method is deprecated, redirect to ivy.html.applicationHomeRef() in your page instead.
 
 Migrate 8.x to 9.2
 ------------------
