@@ -68,6 +68,7 @@ Rs0 f7 actionTable 'out=in;
 Rs0 f7 actionCode 'import ch.ivy.addon.portalkit.publicapi.PortalNavigatorInFrameAPI;
 ivy.task.reset();
 PortalNavigatorInFrameAPI.navigateToUrl(ivy.html.applicationHomeRef());' #txt
+Rs0 f7 security system #txt
 Rs0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -94,6 +95,7 @@ Rs0 f10 actionTable 'out=in;
 Rs0 f10 actionCode 'import ch.ivy.addon.portalkit.publicapi.PortalNavigatorInFrameAPI;
 ivy.task.reset();
 PortalNavigatorInFrameAPI.navigateToPortalEndPage();' #txt
+Rs0 f10 security system #txt
 Rs0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -126,8 +128,9 @@ String createInvestmentURL = "/pro/portal-developer-examples/16E5DB746865BCEC/Cr
 ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
 String urlPattern = "%s://%s:%d%s%s";
 String url = String.format(urlPattern, context.getRequestScheme(), context.getRequestServerName(), context.getRequestServerPort(), context.getApplicationContextPath(), createInvestmentURL);
-ivy.log.info("url ne {0}", url);
+
 PortalNavigatorInFrameAPI.navigateToUrl(url);' #txt
+Rs0 f13 security system #txt
 Rs0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
