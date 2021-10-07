@@ -45,7 +45,6 @@ public final class PortalNavigator extends BaseNavigator{
   public static final String PORTAL_CASE_START = "/CaseListPage.ivp";
   public static final String PORTAL_STATISTIC_START = "/StatisticPage.ivp";
   public static final String PORTAL_USER_PROFILE_START =  "/UserProfile.ivp";
-  public static final String PORTAL_CASE_DETAILS_IN_IFRAME_START = "/CaseDetailsInIFrame.ivp";
 
   private final static String DASHBOARD_PARAM = "isShowDashboard";
   
@@ -220,13 +219,6 @@ public final class PortalNavigator extends BaseNavigator{
     Map<String, String> params = new HashMap<>();
     params.put("caseId", String.valueOf(caseId));
     return buildUrlByKeyword("CaseDetailsPage.ivp", PORTAL_CASE_DETAILS, params);
-  }
-
-  public static String buildPortalCaseDetailInFrameUrl(Long caseId) {
-    Map<String, String> params = new HashMap<>();
-    params.put("caseId", String.valueOf(caseId));
-    params.put("embedInFrame", Boolean.TRUE.toString());
-    return buildUrlByKeyword(PORTAL_CASE_DETAILS_IN_IFRAME_START, PORTAL_CASE_DETAILS_IN_FRAME, params);
   }
   
   /**
