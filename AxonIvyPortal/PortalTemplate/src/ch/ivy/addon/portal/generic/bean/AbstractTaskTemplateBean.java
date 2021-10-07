@@ -193,11 +193,7 @@ public abstract class AbstractTaskTemplateBean implements Serializable {
   }
 
   public void generateCaseDetailInFrame(ICase currentCase) {
-    IProcessStart processStart = ProcessStartUtils.findProcessStartByUserFriendlyRequestPath("Start Processes/PortalStart/CaseDetailsInIFrame.ivp");
-    String requestPath = processStart.getLink().getRelative();
-
-    String paramStr = "caseId=" +  currentCase.getId() + "&embedInFrame=true";
-    setCaseDetailsLink(requestPath + "?" + paramStr);
+    setCaseDetailsLink(PortalNavigator.buildPortalCaseDetailInFrameUrl(currentCase.getId()));
   }
 
   public Long getIntervalForPollingWhenOpenCaseDetails() {
