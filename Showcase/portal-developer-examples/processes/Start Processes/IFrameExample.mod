@@ -24,6 +24,13 @@ Ie0 @PushWFArc f5 '' #zField
 Ie0 @PushWFArc f19 '' #zField
 Ie0 @TkArc f22 '' #zField
 Ie0 @UserDialog f21 '' #zField
+Ie0 @StartRequest f8 '' #zField
+Ie0 @EndTask f9 '' #zField
+Ie0 @TaskSwitchSimple f11 '' #zField
+Ie0 @TkArc f14 '' #zField
+Ie0 @UserDialog f16 '' #zField
+Ie0 @PushWFArc f17 '' #zField
+Ie0 @PushWFArc f10 '' #zField
 >Proto Ie0 Ie0 IFrameExample #zField
 Ie0 f20 actionTable 'out=in1;
 ' #txt
@@ -174,6 +181,49 @@ Ie0 f21 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ie0 f21 192 74 112 44 -50 -8 #rect
+Ie0 f8 outLink NavigateInIFrameExample.ivp #txt
+Ie0 f8 inParamDecl '<> param;' #txt
+Ie0 f8 requestEnabled true #txt
+Ie0 f8 triggerEnabled false #txt
+Ie0 f8 callSignature NavigateInIFrameExample() #txt
+Ie0 f8 startName 'Navigate back in the IFrame example' #txt
+Ie0 f8 startDescription 'Example of navigation in IFrame' #txt
+Ie0 f8 startCategory IFrameExample #txt
+Ie0 f8 caseData businessCase.attach=true #txt
+Ie0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>NavigateInIFrameExample.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Ie0 f8 @C|.responsibility Everybody #txt
+Ie0 f8 49 337 30 30 -21 17 #rect
+Ie0 f9 401 337 30 30 0 15 #rect
+Ie0 f11 actionTable 'out=in1;
+' #txt
+Ie0 f11 caseData 'case.description=In case your project has navigation button without finishing a task, e.g Cancel, navigate.\r\n- Home page\: call navigateToPortalHome() from class PortalNavigatorInFrameAPI.\r\n- Previous page\: call navigateToPortalEndPage() from class PortalNavigatorInFrameAPI.\r\n- A specific url\: call navigateToUrl(String url) from class PortalNavigatorInFrameAPI.
+case.name=Navigate IFrame example
+customFields.STRING.embedInFrame="true"' #txt
+Ie0 f11 taskData 'TaskA.NAM=Navigate back in the IFrame example
+TaskA.SKIP_TASK_LIST=true' #txt
+Ie0 f11 145 337 30 30 0 16 #rect
+Ie0 f14 79 352 145 352 #arcP
+Ie0 f16 dialogId com.axonivy.portal.developerexamples.ResetTaskIFrame #txt
+Ie0 f16 startMethod start() #txt
+Ie0 f16 requestActionDecl '<> param;' #txt
+Ie0 f16 responseMappingAction 'out=in;
+' #txt
+Ie0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>ResetTaskIFrame</name>
+    </language>
+</elementInfo>
+' #txt
+Ie0 f16 232 330 112 44 -49 -8 #rect
+Ie0 f17 175 352 232 352 #arcP
+Ie0 f10 344 352 401 352 #arcP
 >Proto Ie0 .type com.axonivy.portal.developerexamples.ExampleIFrameData #txt
 >Proto Ie0 .processKind NORMAL #txt
 >Proto Ie0 0 0 32 24 18 0 #rect
@@ -194,3 +244,9 @@ Ie0 f3 out f7 tail #connect
 Ie0 f7 head f6 mainIn #connect
 Ie0 f6 mainOut f5 tail #connect
 Ie0 f5 head f13 mainIn #connect
+Ie0 f8 mainOut f14 tail #connect
+Ie0 f14 head f11 in #connect
+Ie0 f11 out f17 tail #connect
+Ie0 f17 head f16 mainIn #connect
+Ie0 f16 mainOut f10 tail #connect
+Ie0 f10 head f9 mainIn #connect
