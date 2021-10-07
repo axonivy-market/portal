@@ -93,8 +93,9 @@ public class CaseWidgetBean implements Serializable {
         Map<String, String> params = new HashMap<>();
         params.put("caseId", String.valueOf(iCase.getId()));
         additionalCaseDetailsPageUri = PortalNavigator.buildUrlByKeyword("showAdditionalCaseDetails", START_PROCESSES_SHOW_ADDITIONAL_CASE_DETAILS_PAGE, params);
-      } 
-      additionalCaseDetailsPageUri =  additionalCaseDetailsPageUri + "&embedInFrame";
+      } else {
+        additionalCaseDetailsPageUri = additionalCaseDetailsPageUri + "&embedInFrame";
+      }
     }
     return additionalCaseDetailsPageUri;
   }
