@@ -9,6 +9,11 @@
     <ui:param name="loadGridStack" value="true" />
 
     <ui:define name="pageContent">
+      <script type="text/javascript">
+        if("${adminSettingBean.isShowLegacyUI()}"==="true") {
+          window.location = "${menuView.getDashboardLink()}";
+        }
+      </script>
       <div class="ui-g">
       <!-- User doesn't have permissions -->
       <ui:fragment rendered="#{empty managedBean.dashboards}">
