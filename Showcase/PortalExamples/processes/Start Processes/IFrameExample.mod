@@ -302,10 +302,7 @@ Ie0 f27 requestEnabled true #txt
 Ie0 f27 triggerEnabled false #txt
 Ie0 f27 callSignature NavigateInIFrameExample() #txt
 Ie0 f27 startName 'Navigate back in the IFrame example' #txt
-Ie0 f27 startDescription 'In case your project has navigation button without finishing a task, e.g Cancel, navigate.
-- Home page: call navigateToPortalHome() from class PortalNavigatorInFrameAPI.
-- Previous page: call navigateToPortalEndPage() from class PortalNavigatorInFrameAPI.
-- A specific url: call navigateToUrl(String url) from class PortalNavigatorInFrameAPI.' #txt
+Ie0 f27 startDescription 'Example of navigation in IFrame' #txt
 Ie0 f27 caseData businessCase.attach=true #txt
 Ie0 f27 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

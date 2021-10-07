@@ -73,6 +73,7 @@ Rs0 f9 actionTable 'out=in;
 Rs0 f9 actionCode 'import ch.ivy.addon.portalkit.publicapi.PortalNavigatorInFrameAPI;
 ivy.task.reset();
 PortalNavigatorInFrameAPI.navigateToPortalHome();' #txt
+Rs0 f9 security system #txt
 Rs0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -137,6 +138,7 @@ Rs0 f21 actionTable 'out=in;
 Rs0 f21 actionCode 'import ch.ivy.addon.portalkit.publicapi.PortalNavigatorInFrameAPI;
 ivy.task.reset();
 PortalNavigatorInFrameAPI.navigateToPortalEndPage();' #txt
+Rs0 f21 security system #txt
 Rs0 f21 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
