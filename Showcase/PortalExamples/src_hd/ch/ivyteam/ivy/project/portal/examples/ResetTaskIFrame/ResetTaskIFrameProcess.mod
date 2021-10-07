@@ -115,12 +115,12 @@ import javax.faces.context.FacesContext;
 import ch.ivy.addon.portalkit.publicapi.PortalNavigatorInFrameAPI;
 ivy.task.reset();
 
-String createInvestmentURL = "/pro/designer/PortalExamples/16E5DB746865BCEC/CreateInvestment.ivp?embedInFrame";
+String createInvestmentURLPatter = "%s://%s:%d%s/pro/%s/PortalExamples/16E5DB746865BCEC/CreateInvestment.ivp?embedInFrame";
 ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
-String urlPattern = "%s://%s:%d%s%s";
-String url = String.format(urlPattern, context.getRequestScheme(), context.getRequestServerName(), context.getRequestServerPort(), context.getApplicationContextPath(), createInvestmentURL);
+String url = String.format(createInvestmentURLPatter, context.getRequestScheme(), context.getRequestServerName(), context.getRequestServerPort(), context.getApplicationContextPath(), ivy.request.getApplication().getName());
 
 PortalNavigatorInFrameAPI.navigateToUrl(url);' #txt
+Rs0 f19 security system #txt
 Rs0 f19 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -145,9 +145,9 @@ Back to previous page</name>
     </language>
 </elementInfo>
 ' #txt
-Rs0 f21 184 330 144 44 -54 -16 #rect
+Rs0 f21 192 330 144 44 -54 -16 #rect
 Rs0 f21 @|StepIcon #fIcon
-Rs0 f22 109 352 184 352 #arcP
+Rs0 f22 109 352 192 352 #arcP
 >Proto Rs0 .type ch.ivyteam.ivy.project.portal.examples.ResetTaskIFrame.ResetTaskIFrameData #txt
 >Proto Rs0 .processKind HTML_DIALOG #txt
 >Proto Rs0 -8 -8 16 16 16 26 #rect
