@@ -28,7 +28,7 @@
           <ui:param name="isInConfiguration" value="#{cc.attrs.isInConfiguration}" />
         </ui:include>
       </c:if>
-      <c:if test="#{widget.displayMode eq 'FULL_MODE'}">
+      <c:if test="#{widget.displayMode eq 'FULL_MODE' and widget.process != null}">
         <ic:ch.ivy.addon.portalkit.component.process.ProcessGridItem id="process-grid-item"
           process="#{widget.process}" managedBean="#{dashboardProcessBean}"
           readOnlyMode="#{cc.attrs.isInConfiguration or !isReadOnlyMode}"
@@ -44,14 +44,14 @@
           processIconStyleClass="process-grid-view__icon" />
         
       </c:if>
-      <c:if test="#{widget.displayMode eq 'COMBINED_MODE'}">
+      <c:if test="#{widget.displayMode eq 'COMBINED_MODE' and widget.process != null}">
         <ui:include src="CombinedModeProcess.xhtml">
           <ui:param name="widget" value="#{widget}" />
           <ui:param name="isReadOnlyMode" value="#{isReadOnlyMode}" />
           <ui:param name="isInConfiguration" value="#{cc.attrs.isInConfiguration}" />
         </ui:include>
       </c:if>
-      <c:if test="#{widget.displayMode eq 'IMAGE_MODE'}">
+      <c:if test="#{widget.displayMode eq 'IMAGE_MODE' and widget.process != null}">
         <ui:include src="ImageModeProcess.xhtml">
           <ui:param name="widget" value="#{widget}" />
           <ui:param name="process" value="#{widget.process}" />
@@ -60,7 +60,7 @@
         </ui:include>
       </c:if>
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/processes/emptyProcess')}"
-        rendered="#{(displayMode eq 'COMBINED_MODE' or displayMode eq 'FULL_MODE') and widget.process eq null}"
+        rendered="#{(displayMode eq 'COMBINED_MODE' or displayMode eq 'FULL_MODE' or displayMode eq 'IMAGE_MODE') and widget.process eq null}"
         styleClass="dashboard-processes--empty-message" />
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/processes/noMatchingProcess')}"
         rendered="#{empty widget.displayProcesses and not cc.attrs.isInConfiguration and displayMode eq 'COMPACT_MODE'}" styleClass="dashboard-processes--empty-message" />
