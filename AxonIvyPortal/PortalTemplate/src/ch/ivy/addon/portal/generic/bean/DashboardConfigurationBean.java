@@ -89,7 +89,7 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
     }
   }
 
-  public void restore() throws IOException {
+  public void restore() throws IOException, ParseException {
     removeDashboardInUserProperty();
 
     List<Dashboard> defaultDashboards = this.defaultDashboards();
@@ -217,8 +217,9 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
     processWidget.getLayout().setWidth(width);
     processWidget.setDisplayProcesses(new ArrayList<>());
     processWidget.setProcesses(new ArrayList<>());
-    processWidget.setName(processWidget.getProcess() != null ? processWidget.getProcess().getName() : "");
-    processWidget.setProcessPath(processWidget.getProcess().getId());
+    DashboardProcess process = processWidget.getProcess();
+    processWidget.setName(process != null ? process.getName() : "");
+    processWidget.setProcessPath(process != null ? process.getId() : "");
   }
 
   private void updateCaseWidgetAfterSave() {

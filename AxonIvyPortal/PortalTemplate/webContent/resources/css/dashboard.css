@@ -789,7 +789,8 @@ body .dashboard__table--preview.ui-datatable tbody tr.ui-state-hover {
 }
 
 .widget-preview--full,
-.widget-preview--compact {
+.widget-preview--compact,
+.widget-preview--image {
   width: 500px;
 }
 

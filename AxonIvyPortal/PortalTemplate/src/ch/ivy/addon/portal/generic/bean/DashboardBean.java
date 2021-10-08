@@ -88,9 +88,9 @@ public class DashboardBean implements Serializable {
         selectedDashboard = dashboards.get(0);
       }
       buildWidgetModels();
-    } catch (IOException e) {
+    } catch (IOException | ParseException e) {
       Ivy.log().error(e);
-    }
+    } 
   }
 
   private ArrayList<Dashboard> mappingDashboards(String dashboardJSON)
@@ -108,22 +108,23 @@ public class DashboardBean implements Serializable {
   
   private void loadWidgets(List<DashboardWidget> widgets) {
     for (DashboardWidget widget : widgets) {
-      if (widget.getType().equals(DashboardWidgetType.PROCESS)) {
+      if (widget.getType() == DashboardWidgetType.PROCESS) {
         loadProcessesOfWidget(widget);
       }
     }
   }
 
-  private void buildWidgetModels() {
+  private void buildWidgetModels() throws ParseException {
     for (Dashboard dashboard : dashboards) {
       buildSubWidgetModels(dashboard.getWidgets());
     }
   }
 
-  protected void buildSubWidgetModels(List<DashboardWidget> widgets) {
+  protected void buildSubWidgetModels(List<DashboardWidget> widgets) throws ParseException {
     if (CollectionUtils.isEmpty(widgets)) {
       return;
     }
+    String cmsUri = "";
     for (DashboardWidget widget : widgets) {
       switch (widget.getType()) {
         case TASK:
@@ -132,10 +133,7 @@ public class DashboardBean implements Serializable {
           for (ColumnModel columnModel : ((TaskDashboardWidget) widget).getColumns()) {
             updateTypeForCustomColumn(columnModel);
           }
-
-          if (StringUtils.isBlank(widget.getName())) {
-            widget.setName(translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourTasks"));
-          }
+          cmsUri = "/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourTasks";
           break;
         case CASE:
           CaseDashboardWidget.buildColumns((CaseDashboardWidget) widget);
@@ -143,32 +141,25 @@ public class DashboardBean implements Serializable {
           for (ColumnModel columnModel : ((CaseDashboardWidget) widget).getColumns()) {
             updateTypeForCustomColumn(columnModel);
           }
-
-          if (StringUtils.isBlank(widget.getName())) {
-            widget.setName(translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourCases"));
-          }
+          cmsUri = "/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourCases";
           break;
         case PROCESS:
           loadProcessesOfWidget(widget);
-          if (StringUtils.isBlank(widget.getName())) {
-            widget.setName(translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourProcesses"));
-          }
+          cmsUri = "/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourProcesses";
           break;
         default:
           break;
       }
-
-      try {
-        widget.buildPredefinedFilterData();
-      } catch (ParseException e) {
-        Ivy.log().error(e);
+      if (StringUtils.isBlank(widget.getName())) {
+        widget.setName(translate(cmsUri));
       }
+      widget.buildPredefinedFilterData();
     }
   }
 
   private void loadProcessesOfWidget(DashboardWidget widget) {
     ProcessDashboardWidget processWidget = (ProcessDashboardWidget) widget;
-    if (processWidget.getDisplayMode().equals(ProcessWidgetMode.COMPACT_MODE)) {
+    if (processWidget.getDisplayMode() == ProcessWidgetMode.COMPACT_MODE) {
       loadProcesses(processWidget);
     } else {
       loadProcessByPath(processWidget);
@@ -176,19 +167,21 @@ public class DashboardBean implements Serializable {
   }
 
   private void loadProcessByPath(ProcessDashboardWidget processWidget) {
-    List<DashboardProcess> processes = getAllPortalProcesses();
-
-    for (DashboardProcess process : processes) {
-      if (process.getId().contains(processWidget.getProcessPath())) {
-        updateProcessStartIdForCombined(processWidget, process);
-        processWidget.setProcess(process);
-        break;
+    if (processWidget.getProcess() != null) {
+      List<DashboardProcess> processes = getAllPortalProcesses();
+  
+      for (DashboardProcess process : processes) {
+        if (process.getId().contains(processWidget.getProcessPath())) {
+          updateProcessStartIdForCombined(processWidget, process);
+          processWidget.setProcess(process);
+          break;
+        }
       }
     }
   }
 
   public void updateProcessStartIdForCombined(ProcessDashboardWidget processWidget, DashboardProcess process) {
-    if (processWidget.getDisplayMode().equals(ProcessWidgetMode.COMBINED_MODE) && process.getProcessStartId() == null) {
+    if (processWidget.getDisplayMode() == ProcessWidgetMode.COMBINED_MODE && process.getProcessStartId() == null) {
       long processStartId = Ivy.session().getStartableProcessStarts().stream()
           .filter(processStart -> processStart.getLink().getRelative().equals(process.getStartLink())).findFirst()
           .get().getId();
@@ -412,10 +405,6 @@ public class DashboardBean implements Serializable {
   }
 
   private void updateTypeForCustomColumn(ColumnModel columnModel) {
-    if (columnModel.getFormat() != null) {
-      columnModel.setType(DashboardColumnType.CUSTOM);
-    } else {
-      columnModel.setType(DashboardColumnType.STANDARD);
-    }
+    columnModel.setType(columnModel.getFormat() != null ? DashboardColumnType.CUSTOM : DashboardColumnType.STANDARD);
   }
 }
