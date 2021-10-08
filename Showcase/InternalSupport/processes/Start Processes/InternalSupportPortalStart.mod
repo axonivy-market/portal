@@ -1933,7 +1933,7 @@ Pt0 f173 688 128 976 128 #arcP
 Pt0 f173 1 688 96 #addKink
 Pt0 f173 2 976 96 #addKink
 Pt0 f173 1 0.5 0 0 #arcLabel
-Pt0 f174 dialogId internalPortal.PortalDashboardConfiguration #txt
+Pt0 f174 dialogId ch.ivy.addon.portal.generic.dashboard.PortalDashboardConfiguration #txt
 Pt0 f174 startMethod start() #txt
 Pt0 f174 requestActionDecl '<> param;' #txt
 Pt0 f174 responseMappingAction 'out=in;
@@ -2061,7 +2061,7 @@ Bk13 f5 284 176 340 256 #arcP
 Bk13 f5 1 284 256 #addKink
 Bk13 f5 1 0.42857142857142855 0 -10 #arcLabel
 Bk13 f11 77 160 124 160 #arcP
-Bk13 f9 dialogId internalPortal.PortalDashboard #txt
+Bk13 f9 dialogId ch.ivy.addon.portal.generic.dashboard.PortalDashboard #txt
 Bk13 f9 startMethod start() #txt
 Bk13 f9 requestActionDecl '<> param;' #txt
 Bk13 f9 responseMappingAction 'out=in;
