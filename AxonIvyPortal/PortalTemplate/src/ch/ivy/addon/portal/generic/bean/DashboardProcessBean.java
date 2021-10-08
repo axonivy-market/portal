@@ -23,16 +23,12 @@ import ch.ivy.addon.portalkit.bean.AbstractProcessBean;
 import ch.ivy.addon.portalkit.bo.Process;
 import ch.ivy.addon.portalkit.dto.dashboard.ProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.process.DashboardProcess;
-import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.enums.ProcessType;
 import ch.ivy.addon.portalkit.enums.ProcessWidgetMode;
 import ch.ivy.addon.portalkit.ivydata.service.impl.ProcessService;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.util.CategoryUtils;
-import ch.ivy.addon.portalkit.util.ProcessStartUtils;
 import ch.ivy.addon.portalkit.util.ProcessTreeUtils;
-import ch.ivyteam.ivy.application.IProcessModel;
-import ch.ivyteam.ivy.cm.IContentManagementSystem;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
@@ -54,8 +50,10 @@ public class DashboardProcessBean extends AbstractProcessBean implements Seriali
   @PostConstruct
   public void init() {
     initStartableProcessStarts();
-    this.displayModes = Arrays
-        .asList(ProcessWidgetMode.COMBINED_MODE, ProcessWidgetMode.COMPACT_MODE, ProcessWidgetMode.FULL_MODE, ProcessWidgetMode.IMAGE_MODE);
+    displayModes = Arrays.asList(ProcessWidgetMode.COMBINED_MODE, ProcessWidgetMode.COMPACT_MODE, 
+        ProcessWidgetMode.FULL_MODE, ProcessWidgetMode.IMAGE_MODE);
+    displayModes.sort((mode1, mode2) -> mode1.getLabel().compareToIgnoreCase(mode2.getLabel()));
+    
     allPortalProcesses = new ArrayList<>();
     portalCombinedProcesses = new ArrayList<>();
     super.init();
@@ -101,8 +99,6 @@ public class DashboardProcessBean extends AbstractProcessBean implements Seriali
     if (this.widget.getDisplayMode() == ProcessWidgetMode.COMBINED_MODE) {
       this.widget.setShowCases(false);
     }
-    
-    Ivy.log().error(widget.getType());
   }
 
   private void preRenderCompactProcessStartWidget() {
@@ -121,9 +117,7 @@ public class DashboardProcessBean extends AbstractProcessBean implements Seriali
       if (this.widget.getCategories() == null) {
         portalProcesses = allPortalProcesses.stream().map(process -> new DashboardProcess(process)).collect(Collectors.toList());
       } else {
-        portalProcesses = allPortalProcesses.stream()
-            .filter(process -> isProcessMatchedCategory(process, this.widget.getCategories()))
-            .collect(Collectors.toList());
+        portalProcesses = new ArrayList<>(filterByCategory());
       }
       this.widget.setDisplayProcesses(portalProcesses.stream().map(toDashboardProcess()).collect(Collectors.toList()));
     }
@@ -139,12 +133,16 @@ public class DashboardProcessBean extends AbstractProcessBean implements Seriali
     if (CollectionUtils.isEmpty(this.widget.getCategories())) {
       portalProcesses = new ArrayList<>(allPortalProcesses);
     } else {
-      portalProcesses =
-          allPortalProcesses.stream().filter(process -> isProcessMatchedCategory(process, this.widget.getCategories()))
-              .collect(Collectors.toList());
+      portalProcesses = new ArrayList<>(filterByCategory());
       this.widget.setProcesses(new ArrayList<>());
       this.widget.setDisplayProcesses(new ArrayList<>());
     }
+  }
+
+  private List<DashboardProcess> filterByCategory() {
+    return allPortalProcesses.stream().
+        filter(process -> isProcessMatchedCategory(process, this.widget.getCategories()))
+        .collect(Collectors.toList());
   }
 
   private boolean isProcessMatchedCategory(DashboardProcess process, List<String> categories) {
@@ -164,9 +162,7 @@ public class DashboardProcessBean extends AbstractProcessBean implements Seriali
           CollectionUtils.isEmpty(widget.getProcesses()) ? allPortalProcesses : widget.getProcesses();
       if (CollectionUtils.isNotEmpty(widget.getCategories())) {
         if (CollectionUtils.isEmpty(widget.getProcesses())) {
-          displayProcesses =
-              allPortalProcesses.stream().filter(process -> isProcessMatchedCategory(process, widget.getCategories()))
-                  .collect(Collectors.toList());
+          displayProcesses = filterByCategory();
         }
         categoryNodes = CategoryUtils.recoverSelectedCategories(categoryTree, widget.getCategories());
       }
@@ -208,19 +204,15 @@ public class DashboardProcessBean extends AbstractProcessBean implements Seriali
   }
 
   public boolean isExpressProcess(DashboardProcess process) {
-    return process != null && ProcessStartUtils.isExpressProcess(process.getType());
+    return process != null && process.getType() == ProcessType.EXPRESS_PROCESS;
   }
 
   public boolean isExternalLink(DashboardProcess process) {
-    return process != null && ProcessStartUtils.isExternalLink(process.getType());
+    return process != null && process.getType() == ProcessType.EXTERNAL_LINK;
   }
 
   public String targetToStartProcess(DashboardProcess process) {
-    String target = "_self";
-    if (process != null && process.getType() == ProcessType.EXTERNAL_LINK) {
-      target = "_blank";
-    }
-    return target;
+    return isExternalLink(process) ? "_blank" : "_self";
   }
 
   public void startProcessWithFullMode(DashboardProcess process) throws IOException {
