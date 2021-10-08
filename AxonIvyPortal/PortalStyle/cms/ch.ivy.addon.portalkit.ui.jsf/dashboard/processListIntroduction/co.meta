@@ -1,0 +1,5 @@
+co: name={processListIntroduction} description={} changed={} changedby={} visualorder={} guid={} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={17C073B097EF5060} datatype={} isdefault={false} langid={es} description={} validfrom={} validto={} changed={} changedby={} properties={} id={}
+val: guid={17C073B095F12291} datatype={} isdefault={false} langid={fr} description={} validfrom={} validto={} changed={} changedby={} properties={} id={}
+val: guid={17C073B096A7F015} datatype={} isdefault={false} langid={de} description={} validfrom={} validto={} changed={} changedby={} properties={} id={}
+val: guid={17C073B09758720D} datatype={} isdefault={true} langid={en} description={} validfrom={} validto={} changed={} changedby={} properties={} id={}
