@@ -111,16 +111,13 @@ Rs0 f12 83 435 26 26 -18 15 #rect
 Rs0 f12 @|UdEventIcon #fIcon
 Rs0 f19 actionTable 'out=in;
 ' #txt
-Rs0 f19 actionCode 'import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
+Rs0 f19 actionCode 'import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
 import ch.ivy.addon.portalkit.publicapi.PortalNavigatorInFrameAPI;
+
 ivy.task.reset();
 
-String createInvestmentURLPatter = "%s://%s:%d%s/pro/%s/PortalExamples/16E5DB746865BCEC/CreateInvestment.ivp?embedInFrame";
-ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
-String url = String.format(createInvestmentURLPatter, context.getRequestScheme(), context.getRequestServerName(), context.getRequestServerPort(), context.getApplicationContextPath(), ivy.request.getApplication().getName());
-
-PortalNavigatorInFrameAPI.navigateToUrl(url);' #txt
+String friendlyRequestPath = ProcessStartAPI.findStartableLinkByUserFriendlyRequestPath(ivy.request.getApplication(), "Start Processes/IFrameExample/CreateInvestment.ivp");
+PortalNavigatorInFrameAPI.navigateToUrl(friendlyRequestPath+ "?embedInFrame");' #txt
 Rs0 f19 security system #txt
 Rs0 f19 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
