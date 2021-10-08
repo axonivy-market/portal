@@ -5864,7 +5864,8 @@ body span.ui-commandlink .si {
   left: 0;
 }
 
-.image-view-form .start-process {
+.image-view-form .start-process,
+.image-view-form .start-process-widget {
   padding: 32px 24px 16px 24px;
   overflow: hidden;
   position: absolute;
