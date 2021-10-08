@@ -119,17 +119,13 @@ Rs0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Rs0 f12 83 435 26 26 -14 15 #rect
 Rs0 f13 actionTable 'out=in;
 ' #txt
-Rs0 f13 actionCode 'import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
+Rs0 f13 actionCode 'import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
 import ch.ivy.addon.portalkit.publicapi.PortalNavigatorInFrameAPI;
+
 ivy.task.reset();
 
-String createInvestmentURL = "/pro/portal-developer-examples/16E5DB746865BCEC/CreateInvestment.ivp?embedInFrame";
-ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
-String urlPattern = "%s://%s:%d%s%s";
-String url = String.format(urlPattern, context.getRequestScheme(), context.getRequestServerName(), context.getRequestServerPort(), context.getApplicationContextPath(), createInvestmentURL);
-
-PortalNavigatorInFrameAPI.navigateToUrl(url);' #txt
+String friendlyRequestPath = ProcessStartAPI.findStartableLinkByUserFriendlyRequestPath("Start Processes/IFrameExample/CreateInvestment.ivp");
+PortalNavigatorInFrameAPI.navigateToUrl(friendlyRequestPath+ "?embedInFrame");' #txt
 Rs0 f13 security system #txt
 Rs0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
