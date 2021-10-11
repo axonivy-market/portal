@@ -167,15 +167,14 @@ public class DashboardBean implements Serializable {
   }
 
   private void loadProcessByPath(ProcessDashboardWidget processWidget) {
-    if (processWidget.getProcess() != null) {
-      List<DashboardProcess> processes = getAllPortalProcesses();
-  
-      for (DashboardProcess process : processes) {
-        if (process.getId().contains(processWidget.getProcessPath())) {
-          updateProcessStartIdForCombined(processWidget, process);
-          processWidget.setProcess(process);
-          break;
-        }
+    List<DashboardProcess> processes = getAllPortalProcesses();
+
+    for (DashboardProcess process : processes) {
+      if (process.getId() != null && processWidget.getProcessPath() != null 
+          && process.getId().contains(processWidget.getProcessPath())) {
+        updateProcessStartIdForCombined(processWidget, process);
+        processWidget.setProcess(process);
+        break;
       }
     }
   }
