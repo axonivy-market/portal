@@ -17,12 +17,12 @@
       <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')}"
         for="from-expired-calendar" />
       <p:calendar id="from-expired-calendar" value="#{cc.attrs.filter.fromExpiredDate}"
-        pattern="#{dateTimePatternBean.configuredPattern}" showOn="button" locale="#{localeBean.locale}"
+        pattern="#{dateTimePatternBean.configuredDateFilterPattern}" showOn="button" locale="#{localeBean.locale}"
         converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}" />
 
       <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')}" for="to-expired-calendar" />
       <p:calendar id="to-expired-calendar" value="#{cc.attrs.filter.toExpiredDate}"
-        pattern="#{dateTimePatternBean.configuredPattern}" showOn="button" locale="#{localeBean.locale}"
+        pattern="#{dateTimePatternBean.configuredDateFilterPattern}" showOn="button" locale="#{localeBean.locale}"
         converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}" />
     </h:panelGrid>
   </ic:ch.ivy.addon.portalkit.component.task.filter.AdvancedFilter>

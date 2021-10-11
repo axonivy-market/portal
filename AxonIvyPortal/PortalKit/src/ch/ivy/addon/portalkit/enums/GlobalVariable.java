@@ -13,6 +13,7 @@ public enum GlobalVariable {
   ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT(GlobalVariableType.SELECTION, Option.FALSE.toString(), "enableScriptCheckingForUploadedDocumentNote"),
   ENABLE_VIRUS_SCANNER_FOR_UPLOADED_DOCUMENT(GlobalVariableType.SELECTION, Option.FALSE.toString(), "enableVirusScannerForUploadedDocumentNote"),
   HIDE_TIME(GlobalVariableType.SELECTION, Option.FALSE.toString(), "hideTimeNote"),
+  DATE_FILTER_WITH_TIME(GlobalVariableType.SELECTION, Option.FALSE.toString(), "dateFilterWithTime"),
   EXPRESS_END_PAGE(GlobalVariableType.SELECTION, Option.TRUE.toString(), "expressEndPageNote"),
   REFRESH_TASK_LIST_INTERVAL(GlobalVariableType.NUMBER, String.valueOf(TaskWidgetBean.DEFAULT_TASK_LIST_REFRESH_INTERVAL), "refreshTaskListIntervalNote"),
   UPLOAD_DOCUMENT_WHITELIST_EXTENSION(GlobalVariableType.TEXT, String.join(", ", DocumentExtensionConstants.DEFAULT_WHITELIST_EXTENSION), "uploadDocumentWhiteListExtensionNote"),

@@ -85,14 +85,14 @@
             for="from-shipment-calendar" />
           <p:spacer width="5" />
           <p:calendar id="from-shipment-calendar" value="#{filterContainer.shipmentDateFilter.fromShipmentDate}"
-            pattern="#{dateTimePatternBean.configuredPattern}" showOn="button" locale="#{localeBean.locale}"
+            pattern="#{dateTimePatternBean.configuredDateFilterPattern}" showOn="button" locale="#{localeBean.locale}"
             converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}" />
 
           <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')}"
             for="to-shipment-calendar" />
           <p:spacer width="5" />
           <p:calendar id="to-shipment-calendar" value="#{filterContainer.shipmentDateFilter.toShipmentDate}"
-            pattern="#{dateTimePatternBean.configuredPattern}" showOn="button" locale="#{localeBean.locale}"
+            pattern="#{dateTimePatternBean.configuredDateFilterPattern}" showOn="button" locale="#{localeBean.locale}"
             converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}" />
         </h:panelGrid>
       </ic:ch.ivy.addon.portalkit.component.task.filter.AdvancedFilter>
