@@ -123,14 +123,14 @@
             for="from-created-calendar" />
           <p:spacer width="5" />
           <p:calendar id="from-created-calendar" value="#{filterContainer.shipmentDateFieldFilter.fromFinishedDate}"
-            locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.configuredPattern}" showOn="button"
+            locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.configuredDateFilterPattern}" showOn="button"
             converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}" />
 
           <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')}"
             for="to-created-calendar" />
           <p:spacer width="5" />
           <p:calendar id="to-created-calendar" value="#{filterContainer.shipmentDateFieldFilter.toFinishedDate}"
-            locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.configuredPattern}" showOn="button"
+            locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.configuredDateFilterPattern}" showOn="button"
             converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}" />
         </h:panelGrid>
       </ic:ch.ivy.addon.portalkit.component.cases.filter.AdvancedFilter>

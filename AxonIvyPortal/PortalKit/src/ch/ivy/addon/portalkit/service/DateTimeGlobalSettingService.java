@@ -54,4 +54,15 @@ public class DateTimeGlobalSettingService {
     return UserSettingService.newInstance().getDateFormat() + SPACE_CHARACTER
         + Ivy.cms().co("/patterns/timestampPattern");
   }
+
+  public String getGlobalSettingDateFilterPattern() {
+    String dateFilterPattern = UserSettingService.newInstance().getDateFormat();
+    String dateTimeFilterPattern = dateFilterPattern + SPACE_CHARACTER + Ivy.cms().co("/patterns/timePattern");
+    return isDateFilterWithTime() ? dateTimeFilterPattern : dateFilterPattern;
+  }
+
+  private boolean isDateFilterWithTime() {
+    String dateFilterGlobalSetting = globalSettingService.findGlobalSettingValue(GlobalVariable.DATE_FILTER_WITH_TIME);
+    return Boolean.valueOf(dateFilterGlobalSetting);
+  }
 }
