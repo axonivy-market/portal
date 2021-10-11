@@ -5891,7 +5891,7 @@ body span.ui-commandlink .si {
 }
 
 .image-process-container .image-process-item .card-item.card.image-widget-mode {
-  height: 580px;
+  height: 100%;
 }
 
 .image-process-item .image-process-item-image {
