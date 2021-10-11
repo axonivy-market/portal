@@ -13,13 +13,12 @@ public class NewDashBoardPage extends TemplatePage {
     return new TaskWidgetNewDashBoardPage(taskWidgetName);
   }
   
-  private void waitForAbsencesGrowlMessageDisplay() {
+  public void waitForAbsencesGrowlMessageDisplay() {
     $("div[id='portal-global-growl_container']").waitUntil(appear, DEFAULT_TIMEOUT)
         .$("div.ui-growl-message").waitUntil(disappears, DEFAULT_TIMEOUT);
   }
   
   public void switchToEditMode() {
-    waitForAbsencesGrowlMessageDisplay();
     $("button[id='switch-to-edit-mode']").waitUntil(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
     $("a[id='switch-to-view-mode']").waitUntil(appear, DEFAULT_TIMEOUT).should(appear);
   }
