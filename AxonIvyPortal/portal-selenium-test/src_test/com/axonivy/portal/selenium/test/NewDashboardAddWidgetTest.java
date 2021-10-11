@@ -28,6 +28,7 @@ public class NewDashboardAddWidgetTest extends BaseTest {
   public void testAddNewCaseList() {
     redirectToRelativeLink(createTestingTasksUrl);
     login(TestAccount.ADMIN_USER);
+    newDashBoardPage.waitForAbsencesGrowlMessageDisplay();
     newDashBoardPage.switchToEditMode();
     newDashBoardPage.addWidget();
     CaseEditWidgetNewDashBoardPage newCaseWidget = newDashBoardPage.addNewCaseWidget();
@@ -41,6 +42,7 @@ public class NewDashboardAddWidgetTest extends BaseTest {
   public void testAddNewTaskList() {
     redirectToRelativeLink(createTestingTasksUrl);
     login(TestAccount.ADMIN_USER);
+    newDashBoardPage.waitForAbsencesGrowlMessageDisplay();
     newDashBoardPage.switchToEditMode();
     newDashBoardPage.addWidget();
     TaskEditWidgetNewDashBoardPage newTaskWidget = newDashBoardPage.addNewTaskWidget();
