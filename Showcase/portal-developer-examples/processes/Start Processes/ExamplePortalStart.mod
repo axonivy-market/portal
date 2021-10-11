@@ -1952,7 +1952,7 @@ Pt0 f175 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Pt0 f175 @C|.responsibility Everybody #txt
 Pt0 f175 81 2385 30 30 -67 21 #rect
 Pt0 f176 433 2385 30 30 0 15 #rect
-Pt0 f179 dialogId com.axonivy.portal.developerexamples.customization.PortalDashboardConfiguration #txt
+Pt0 f179 dialogId ch.ivy.addon.portal.generic.dashboard.PortalDashboardConfiguration #txt
 Pt0 f179 startMethod start() #txt
 Pt0 f179 requestActionDecl '<> param;' #txt
 Pt0 f179 responseMappingAction 'out=in;
@@ -2181,7 +2181,7 @@ Bk15 f7 0 0.40625 0 -12 #arcLabel
 Bk15 f6 expr in #txt
 Bk15 f6 outCond ch.addon.portal.generic.userprofile.homepage.HomepageUtils.isShowLegacyUI() #txt
 Bk15 f6 396 160 452 160 #arcP
-Bk15 f9 dialogId com.axonivy.portal.developerexamples.customization.PortalDashboard #txt
+Bk15 f9 dialogId ch.ivy.addon.portal.generic.dashboard.PortalDashboard #txt
 Bk15 f9 startMethod start() #txt
 Bk15 f9 requestActionDecl '<> param;' #txt
 Bk15 f9 responseMappingAction 'out=in;
