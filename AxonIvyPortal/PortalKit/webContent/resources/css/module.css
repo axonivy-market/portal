@@ -5890,6 +5890,10 @@ body span.ui-commandlink .si {
   height: 520px;
 }
 
+.image-process-container .image-process-item .card-item.card.image-widget-mode {
+  height: 580px;
+}
+
 .image-process-item .image-process-item-image {
   height: 296px;
   position: relative;
