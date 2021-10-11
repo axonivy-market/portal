@@ -15,8 +15,14 @@ public class NewDashBoardPage extends TemplatePage {
   public TaskWidgetNewDashBoardPage selectTaskWidget(String taskWidgetName) {
     return new TaskWidgetNewDashBoardPage(taskWidgetName);
   }
-
+  
+  private void waitForAbsencesGrowlMessageDisplay() {
+    $("div[id='portal-global-growl_container']").waitUntil(appear, DEFAULT_TIMEOUT)
+        .$("div.ui-growl-message").waitUntil(disappears, DEFAULT_TIMEOUT);
+  }
+  
   public void switchToEditMode() {
+    waitForAbsencesGrowlMessageDisplay();
     $("button[id='switch-to-edit-mode']").waitUntil(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
     $("a[id='switch-to-view-mode']").waitUntil(appear, DEFAULT_TIMEOUT).should(appear);
   }
@@ -34,6 +40,11 @@ public class NewDashBoardPage extends TemplatePage {
   public CaseEditWidgetNewDashBoardPage addNewCaseWidget() {
     addWidgetByName("Case List");
     return new CaseEditWidgetNewDashBoardPage();
+  }
+  
+  public TaskEditWidgetNewDashBoardPage addNewTaskWidget() {
+    addWidgetByName("Task List");
+    return new TaskEditWidgetNewDashBoardPage();
   }
 
   public ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration() {

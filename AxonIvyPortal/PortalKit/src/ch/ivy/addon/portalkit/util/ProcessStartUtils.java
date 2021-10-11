@@ -99,4 +99,11 @@ public class ProcessStartUtils {
       return collector.findFriendlyRequestPathContainsKeyword(keyword, portalStartPmvId);
     });
   }
+
+  public static String findFriendlyRequestPathContainsKeywordInPMV(String keyword, IProcessModelVersion processModelVersion){
+    return IvyExecutor.executeAsSystem(() -> {
+      ProcessStartCollector collector = new ProcessStartCollector();
+      return collector.findFriendlyRequestPathContainsKeyword(keyword, processModelVersion);
+    });
+  }
 }
