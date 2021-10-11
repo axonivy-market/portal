@@ -7,7 +7,7 @@
   <c:set var="isCaseMap" value="#{dashboardProcessBean.isCaseMap(process)}" />
 
   <h:panelGroup layout="block" styleClass="portal-card-container widget-content image-process-item" rendered="#{not empty process}" >
-    <div class="card-item card ui-g-12 u-padding-0 #{isExpress ? 'express-workflow' : ''} ">
+    <div class="card-item card image-widget-mode ui-g-12 u-padding-0 #{isExpress ? 'express-workflow' : ''} ">
     	
       <div class="ui-g-12">
       <p:graphicImage styleClass="image-process-item-image" rendered="#{not empty process.defaultImageSrc}" value="#{process.defaultImageSrc}" />
