@@ -6,13 +6,11 @@
   <c:set var="isExternalLink" value="#{dashboardProcessBean.isExternalLink(process)}" />
   <c:set var="isCaseMap" value="#{dashboardProcessBean.isCaseMap(process)}" />
 
-  <h:panelGroup layout="block" styleClass="portal-card-container widget-content image-process-item" rendered="#{not empty process}" >
+  <h:panelGroup layout="block" styleClass="portal-card-container widget-content image-process-item widget-height-100" rendered="#{not empty process}" >
     <div class="card-item card image-widget-mode ui-g-12 u-padding-0 #{isExpress ? 'express-workflow' : ''} ">
     	
-      <div class="ui-g-12">
       <p:graphicImage styleClass="image-process-item-image" rendered="#{not empty process.defaultImageSrc}" value="#{process.defaultImageSrc}" />
       <p:graphicImage styleClass="image-process-item-image" library="ivy-cms" rendered="#{empty process.defaultImageSrc}" name="#{process.imageUrl}" /> 
-      </div>
      
       <div class="overlay-title">
         <div class="process-icon-and-name">
@@ -69,9 +67,9 @@
             icon="si si-arrow-right-1" actionListener="#{dashboardProcessBean.startProcess(process)}" ajax="#{!isExternalLink}" />
         </div>
         <!-- More Information Link -->
-        <div class="more-information" id="more-information">
+        <div class="more-information">
           <p:link value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/MoreInformation')}" disabled="#{!isReadOnlyMode or isInConfiguration}" 
-          	href="#{dashboardProcessBean.getProcessInformationPageUrl(process)}"
+          	href="#{dashboardProcessBean.getProcessInformationPageUrl(process)}"  id="more-information"
           	rendered="#{data.showInformationLink and !isExpress and !isExternalLink and !isCaseMap}" />
         </div>
       </h:form>
