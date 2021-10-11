@@ -549,6 +549,14 @@
   --dashboard-table-column-small-screen-description-font-style: normal;
   --dashboard-table-column-small-screen-description-font-size: 1.4.rem;
   --dashboard-table-column-small-screen-description-color: var(--ivy-primary-color-grey-medium);
+  --new-widget-dialog-title-font-weight: 700;
+  --new-widget-dialog-title-font-style: normal;
+  --new-widget-dialog-title-font-size: 1.4rem;
+  --new-widget-dialog-title-color: var(--ivy-primary-color-black);
+  --new-widget-dialog-description-font-weight: 400;
+  --new-widget-dialog-description-font-style: normal;
+  --new-widget-dialog-description-font-size: 1.3rem;
+  --new-widget-dialog-description-color: var(--ivy-primary-color-grey-medium);
 
   /* Process Start Widget*/
   --combined-normal-button-tab-color: hsla(0, 0%, 11%, 0.56);
