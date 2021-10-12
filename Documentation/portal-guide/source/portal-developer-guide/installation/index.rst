@@ -133,9 +133,8 @@ Migrate to 9.3
 
 #. We moved the configuration of announcement, thirdparty applications, default statistic charts, application favorite processes, public external links and express processes from the BusinessData to ivy variables.
 
-#. To use switching option between legacy Portal home and new Dashboard in your customized project,
-   copy ``DefaultApplicationHomePage.ivp`` and ``PortalDashboardConfiguration.ivp`` in the ``PortalStart`` process from ``PortalTemplate`` to your customized project.
-   Configure ``Portal.ShowLegacyUI`` option in Admin Settings as your expectation.
+#. Copy the PortalStart process from PortalTemplate to your project because we changed something relate to DefaultApplicationHomePage.ivp and PortalDashboardConfiguration.ivp.
+   Then apply your customization to the PortalStart in your project.
 
 Migrate 9.1 to 9.2
 ------------------
