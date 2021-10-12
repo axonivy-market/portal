@@ -22,6 +22,7 @@
   <h:panelGroup id="filter-container" layout="block" styleClass="card dashboard-card widget-configuration">
     <div class="filter-container ui-g">
       <div class="ui-g-12 filter-container__header">
+        <p:messages id="process-widget-validation-messages" closable="true" />
         <h2>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/configuration')}</h2>
         <p>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/processConfigurationDescription')}</p>
       </div>
@@ -158,14 +159,14 @@
 
   <!-- Preview -->
   <h:panelGroup id="widget-preview" styleClass="card widget-preview widget-preview--process" layout="block">
-    <div class="ui-g #{isCompact ? 'widget-preview--compact' : ''} #{isFull ? 'widget-preview--full' : ''} #{isCombined ? 'widget-preview--combined' : ''} #{isImage ? 'widget-preview--image' : ''}">
+    <div class="ui-g #{isCompact ? 'widget-preview--compact' : ''} #{isFull ? 'widget-preview--full' : ''} #{isCombined ? 'widget-preview--combined' : ''} #{isImage ? 'widget-preview--image-width' : ''}">
       <div class="ui-g-12 widget-preview__header">
         <h2>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/preview')}</h2>
       </div>
 
       <!-- Widget data -->
       <div class="ui-g-12">
-        <h:panelGroup id="preview-process" class="ui-g-12 u-padding-0">
+        <h:panelGroup id="preview-process" class="ui-g-12 u-padding-0 #{isImage ? 'widget-preview--image-height' : ''}">
           <ic:ch.ivy.addon.portal.generic.dashboard.component.ProcessWidget processWidget="#{widget}" isReadOnlyMode="true" isInConfiguration="true"
             onLoadProcessComplete="PF('new-widget-configuration-dialog').initPosition();" />
         </h:panelGroup>
