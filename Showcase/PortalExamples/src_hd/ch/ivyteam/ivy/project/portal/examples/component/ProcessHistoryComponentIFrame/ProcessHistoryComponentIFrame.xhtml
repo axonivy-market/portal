@@ -3,14 +3,13 @@
 	xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
 	xmlns:pe="http://primefaces.org/ui/extensions">
 <h:body>
-	<ui:composition template="/layouts/BasicTemplate.xhtml">
+	<ui:composition template="/layouts/frame-8.xhtml">
 		<ui:param name="isNotRequiredLogin" value="false" />
-		<ui:define name="title">Alpha Company Process History</ui:define>
-		<ui:define name="simplePageContent">
-			<h1>Process history of Alpha Company</h1>
-			<ic:ch.ivy.addon.portal.component.ProcessHistory businessEntityId="alpha" chunkSize="12" scrollHeight="600" />
+		<ui:define name="title">Alpha Company Process History in Iframe</ui:define>
+		<ui:define name="content">
+			<h1>Process history of Alpha Company in Iframe</h1>
+			<ic:ch.ivy.addon.portal.component.ProcessHistory businessEntityId="alpha" chunkSize="12" scrollHeight="600" useInIframe="true" />
 		</ui:define>
-
 	</ui:composition>
 </h:body>
 </html>

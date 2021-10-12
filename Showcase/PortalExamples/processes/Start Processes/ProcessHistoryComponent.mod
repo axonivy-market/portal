@@ -46,6 +46,11 @@ Pt0 @EndTask f29 '' #zField
 Pt0 @PushWFArc f30 '' #zField
 Pt0 @InfoButton f33 '' #zField
 Pt0 @InfoButton f34 '' #zField
+Pt0 @StartRequest f35 '' #zField
+Pt0 @UserDialog f36 '' #zField
+Pt0 @EndTask f37 '' #zField
+Pt0 @PushWFArc f38 '' #zField
+Pt0 @PushWFArc f39 '' #zField
 >Proto Pt0 Pt0 ProcessHistoryComponent #zField
 Pt0 f0 outLink viewProcessHistoryOfAlphaCompany.ivp #txt
 Pt0 f0 inParamDecl '<> param;' #txt
@@ -59,8 +64,10 @@ TaskTriggered.EXROL=Everybody
 TaskTriggered.EXTYPE=0
 TaskTriggered.PRI=2
 TaskTriggered.ROL=Everybody
-TaskTriggered.TYPE=0' #txt
-Pt0 f0 caseData businessCase.attach=true #txt
+TaskTriggered.TYPE=0
+TaskTriggered.customFields.STRING.embedInFrame="false"' #txt
+Pt0 f0 caseData 'businessCase.attach=true
+customFields.STRING.embedInFrame="false"' #txt
 Pt0 f0 showInStartList 1 #txt
 Pt0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -115,7 +122,7 @@ Pt0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f5 439 147 128 44 -55 -8 #rect
+Pt0 f5 439 299 128 44 -55 -8 #rect
 Pt0 f5 @|CallSubIcon #fIcon
 Pt0 f6 outLink createAlphaCompany.ivp #txt
 Pt0 f6 inParamDecl '<> param;' #txt
@@ -143,9 +150,9 @@ Pt0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Pt0 f6 @C|.responsibility Everybody #txt
-Pt0 f6 129 154 30 30 -68 17 #rect
+Pt0 f6 129 306 30 30 -68 17 #rect
 Pt0 f6 @|StartRequestIcon #fIcon
-Pt0 f8 808 154 30 30 0 15 #rect
+Pt0 f8 808 306 30 30 0 15 #rect
 Pt0 f8 @|EndIcon #fIcon
 Pt0 f7 actionTable 'out=in1;
 ' #txt
@@ -168,7 +175,7 @@ Pt0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f7 680 154 30 30 -43 17 #rect
+Pt0 f7 680 306 30 30 -43 17 #rect
 Pt0 f7 @|TaskSwitchSimpleIcon #fIcon
 Pt0 f19 actionTable 'out=in;
 ' #txt
@@ -182,20 +189,20 @@ code name</name>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f19 287 147 112 44 -33 -16 #rect
+Pt0 f19 287 299 112 44 -33 -16 #rect
 Pt0 f19 @|StepIcon #fIcon
 Pt0 f9 expr out #txt
-Pt0 f9 399 169 439 169 #arcP
+Pt0 f9 399 321 439 321 #arcP
 Pt0 f10 expr out #txt
 Pt0 f10 type ch.ivyteam.ivy.project.portal.examples.component.ProcessHistoryComponentData #txt
 Pt0 f10 var in1 #txt
-Pt0 f10 567 169 680 169 #arcP
+Pt0 f10 567 321 680 321 #arcP
 Pt0 f20 expr out #txt
-Pt0 f20 159 169 287 169 #arcP
+Pt0 f20 159 321 287 321 #arcP
 Pt0 f11 expr data #txt
 Pt0 f11 outCond ivp=="TaskA.ivp" #txt
-Pt0 f11 710 169 808 169 #arcP
-Pt0 f12 617 321 30 30 0 15 #rect
+Pt0 f11 710 321 808 321 #arcP
+Pt0 f12 617 441 30 30 0 15 #rect
 Pt0 f12 @|EndIcon #fIcon
 Pt0 f13 dialogId ch.ivyteam.ivy.project.portal.examples.component.ProcessHistoryDialogComponent #txt
 Pt0 f13 startMethod start() #txt
@@ -213,7 +220,7 @@ Pt0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f13 376 314 176 44 -85 -8 #rect
+Pt0 f13 376 434 176 44 -85 -8 #rect
 Pt0 f13 @|UserDialogIcon #fIcon
 Pt0 f14 outLink viewProcessHistoryOfBetaCompany.ivp #txt
 Pt0 f14 inParamDecl '<> param;' #txt
@@ -242,12 +249,12 @@ Pt0 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Pt0 f14 @C|.responsibility Everybody #txt
-Pt0 f14 129 321 30 30 -108 17 #rect
+Pt0 f14 129 441 30 30 -108 17 #rect
 Pt0 f14 @|StartRequestIcon #fIcon
 Pt0 f15 expr out #txt
-Pt0 f15 552 336 617 336 #arcP
+Pt0 f15 552 456 617 456 #arcP
 Pt0 f16 expr out #txt
-Pt0 f16 159 336 376 336 #arcP
+Pt0 f16 159 456 376 456 #arcP
 Pt0 f17 outLink createBetaCompany.ivp #txt
 Pt0 f17 inParamDecl '<> param;' #txt
 Pt0 f17 requestEnabled true #txt
@@ -274,9 +281,9 @@ Pt0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Pt0 f17 @C|.responsibility Everybody #txt
-Pt0 f17 129 449 30 30 -65 17 #rect
+Pt0 f17 129 569 30 30 -65 17 #rect
 Pt0 f17 @|StartRequestIcon #fIcon
-Pt0 f18 769 449 30 30 0 15 #rect
+Pt0 f18 769 569 30 30 0 15 #rect
 Pt0 f18 @|EndIcon #fIcon
 Pt0 f23 actionTable 'out=in;
 ' #txt
@@ -290,10 +297,10 @@ code name</name>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f23 248 442 112 44 -33 -16 #rect
+Pt0 f23 248 562 112 44 -33 -16 #rect
 Pt0 f23 @|StepIcon #fIcon
 Pt0 f25 expr out #txt
-Pt0 f25 159 464 248 464 #arcP
+Pt0 f25 159 584 248 584 #arcP
 Pt0 f21 processCall 'Functional Processes/SetBusinessEntityId:call(String)' #txt
 Pt0 f21 requestActionDecl '<String businessEntityId> param;' #txt
 Pt0 f21 requestMappingAction 'param.businessEntityId="beta";
@@ -311,7 +318,7 @@ Pt0 f21 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f21 232 578 128 44 -55 -8 #rect
+Pt0 f21 232 698 128 44 -55 -8 #rect
 Pt0 f21 @|CallSubIcon #fIcon
 Pt0 f22 actionTable 'out=in1;
 ' #txt
@@ -334,12 +341,12 @@ Pt0 f22 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f22 457 585 30 30 -40 17 #rect
+Pt0 f22 457 705 30 30 -40 17 #rect
 Pt0 f22 @|TaskSwitchSimpleIcon #fIcon
 Pt0 f24 expr out #txt
 Pt0 f24 type ch.ivyteam.ivy.project.portal.examples.component.ProcessHistoryComponentData #txt
 Pt0 f24 var in1 #txt
-Pt0 f24 360 600 457 600 #arcP
+Pt0 f24 360 720 457 720 #arcP
 Pt0 f31 signalCode ch:axonivy:portal:example:createbetacompany #txt
 Pt0 f31 attachToBusinessCase true #txt
 Pt0 f31 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -351,9 +358,9 @@ Pt0 f31 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f31 129 585 30 30 -78 17 #rect
+Pt0 f31 129 705 30 30 -78 17 #rect
 Pt0 f31 @|SignalStartEventIcon #fIcon
-Pt0 f32 159 600 232 600 #arcP
+Pt0 f32 159 720 232 720 #arcP
 Pt0 f26 actionTable 'out=in;
 ' #txt
 Pt0 f26 actionCode 'import ch.ivyteam.ivy.process.model.value.SignalCode;
@@ -367,17 +374,17 @@ Pt0 f26 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f26 424 442 176 44 -84 -8 #rect
+Pt0 f26 424 562 176 44 -84 -8 #rect
 Pt0 f26 @|StepIcon #fIcon
 Pt0 f27 expr out #txt
-Pt0 f27 360 464 424 464 #arcP
+Pt0 f27 360 584 424 584 #arcP
 Pt0 f28 expr out #txt
-Pt0 f28 600 464 769 464 #arcP
-Pt0 f29 753 585 30 30 0 15 #rect
+Pt0 f28 600 584 769 584 #arcP
+Pt0 f29 753 705 30 30 0 15 #rect
 Pt0 f29 @|EndIcon #fIcon
 Pt0 f30 expr data #txt
 Pt0 f30 outCond ivp=="TaskA.ivp" #txt
-Pt0 f30 487 600 753 600 #arcP
+Pt0 f30 487 720 753 720 #arcP
 Pt0 f33 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -388,13 +395,14 @@ viewProcessHistoryOfAlphaCompany =&gt; view process history of alpha company in 
 
 HOW TO RUN THIS EXAMPLE:
 1. Run createAlphaCompany.ivp process
-2. Enter viewProcessHistoryOfAlphaCompany.ivp process, process history of Alpha Company will be shown</name>
-        <nameStyle>429,7
+2. Enter viewProcessHistoryOfAlphaCompany.ivp process, process history of Alpha Company will be shown&#13;
+3. Run viewProcessHistoryOfAlphaCompanyInIframe.ivp process to see process history of Alpha Company in IFrame</name>
+        <nameStyle>540,5
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f33 872 58 672 140 -331 -64 #rect
+Pt0 f33 872 50 672 156 -331 -72 #rect
 Pt0 f33 @|IBIcon #fIcon
 Pt0 f34 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -412,8 +420,57 @@ HOW TO RUN THIS EXAMPLE:
     </language>
 </elementInfo>
 ' #txt
-Pt0 f34 872 322 832 140 -412 -64 #rect
+Pt0 f34 872 442 832 140 -412 -64 #rect
 Pt0 f34 @|IBIcon #fIcon
+Pt0 f35 outLink viewProcessHistoryOfAlphaCompanyInIframe.ivp #txt
+Pt0 f35 inParamDecl '<> param;' #txt
+Pt0 f35 requestEnabled true #txt
+Pt0 f35 triggerEnabled false #txt
+Pt0 f35 callSignature viewProcessHistoryOfAlphaCompanyInIframe() #txt
+Pt0 f35 persist false #txt
+Pt0 f35 startName 'View Process History of Alpha Company in Iframe' #txt
+Pt0 f35 taskData 'TaskTriggered.EXPRI=2
+TaskTriggered.EXROL=Everybody
+TaskTriggered.EXTYPE=0
+TaskTriggered.PRI=2
+TaskTriggered.ROL=Everybody
+TaskTriggered.TYPE=0' #txt
+Pt0 f35 caseData businessCase.attach=true #txt
+Pt0 f35 showInStartList 1 #txt
+Pt0 f35 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>viewProcessHistoryOfAlphaCompanyInIframe.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f35 @C|.responsibility Everybody #txt
+Pt0 f35 129 177 30 30 -89 22 #rect
+Pt0 f35 @|StartRequestIcon #fIcon
+Pt0 f36 dialogId ch.ivyteam.ivy.project.portal.examples.component.ProcessHistoryComponentIFrame #txt
+Pt0 f36 startMethod start() #txt
+Pt0 f36 requestActionDecl '<> param;' #txt
+Pt0 f36 responseActionDecl 'ch.ivyteam.ivy.project.portal.examples.component.ProcessHistoryComponentData out;
+' #txt
+Pt0 f36 responseMappingAction 'out=in;
+' #txt
+Pt0 f36 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Alpha Company Process History In IFrame</name>
+        <nameStyle>39,5
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f36 344 170 240 44 -116 -8 #rect
+Pt0 f36 @|UserDialogIcon #fIcon
+Pt0 f37 617 177 30 30 0 15 #rect
+Pt0 f37 @|EndIcon #fIcon
+Pt0 f38 expr out #txt
+Pt0 f38 584 192 617 192 #arcP
+Pt0 f39 expr out #txt
+Pt0 f39 159 192 344 192 #arcP
 >Proto Pt0 .type ch.ivyteam.ivy.project.portal.examples.component.ProcessHistoryComponentData #txt
 >Proto Pt0 .processKind NORMAL #txt
 >Proto Pt0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -424,8 +481,8 @@ Pt0 f34 @|IBIcon #fIcon
         <swimlaneLabel>Beta</swimlaneLabel>
     </language>
     <swimlaneOrientation>false</swimlaneOrientation>
-    <swimlaneSize>240</swimlaneSize>
-    <swimlaneSize>384</swimlaneSize>
+    <swimlaneSize>352</swimlaneSize>
+    <swimlaneSize>432</swimlaneSize>
     <swimlaneColor gradient="false">-1</swimlaneColor>
     <swimlaneColor gradient="false">-1</swimlaneColor>
     <swimlaneType>POOL</swimlaneType>
@@ -464,3 +521,7 @@ Pt0 f26 mainOut f28 tail #connect
 Pt0 f28 head f18 mainIn #connect
 Pt0 f22 out f30 tail #connect
 Pt0 f30 head f29 mainIn #connect
+Pt0 f35 mainOut f39 tail #connect
+Pt0 f39 head f36 mainIn #connect
+Pt0 f36 mainOut f38 tail #connect
+Pt0 f38 head f37 mainIn #connect

@@ -148,6 +148,10 @@
 	text-align: center;
 }
 
+.process-chain-container-iframe {
+	height: calc(var(--vh, 1vh) * 100 - 32px);
+}
+
 .process-chain-test-form {
 	padding: 0.5em 1em;
 }
