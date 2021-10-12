@@ -787,10 +787,6 @@ body .fieldset-no-border {
   font-weight: $outputLabelTaskTemplateTitleFontWeight;
 }
 
-.process-history-empty-message .ui-outputlabel {
-  font-size: $smallFontSize;
-}
-
 .task-template-content .task-actions-button:focus {
   outline: $taskTemplateActionButtonFocus;
 }
@@ -1033,25 +1029,6 @@ span.task-details-document-add-link {
 .process-start-list-item:hover .process-start-list-item-name,
 .process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item:hover .process-start-list-item-name {
   font-weight: $processStartListItemNameFontWeight;
-}
-.process-history-list .ui-widget-content {
-  border: none;
-}
-
-.process-history-list .ui-datascroller {
-  background-color: $processHistoryListDataScrollerBackgroundColor;
-}
-
-.process-history-column-header .is-selected {
-  color: $processHistoryColumnHeaderIsSelectedColor;
-}
-
-.process-history-column-header {
-  border-bottom: 1px solid $processHistoryColumnHeaderBorder;
-}
-
-.process-history-empty-message .ui-outputlabel {
-  color: $processHistoryMessageLabelColor;
 }
 
 .process-start-list-item .ui-commandlink,

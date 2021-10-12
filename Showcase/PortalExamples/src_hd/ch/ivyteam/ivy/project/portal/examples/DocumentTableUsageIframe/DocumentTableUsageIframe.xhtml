@@ -3,11 +3,23 @@
   xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
   xmlns:pe="http://primefaces.org/ui/extensions">
 <h:body>
-  <ui:composition template="/layouts/BasicTemplate.xhtml">
+  <ui:composition template="/layouts/frame-8.xhtml">
     <ui:define name="title">Document Table Usage</ui:define>
-    <ui:define name="simplePageContent">
+    <ui:define name="content">
+
+<!--   <h:outputStylesheet library="css" name="utility.css" />
+
+  <h:outputStylesheet name="css/nanoscroller.css" library="serenity-layout" />
+  <h:outputStylesheet name="css/ripple.css" library="serenity-layout" />
+  <h:outputStylesheet name="css/layout-lime.css" library="serenity-layout" />
+  <h:outputStylesheet library="ivy-icons" name="ivy-icon.css" />
+
+  <h:outputStylesheet library="css" name="template.css" />
+  <h:outputStylesheet library="css" name="module.css" />
+    <h:outputStylesheet library="serenity-portal" name="theme.css" />
+    <h:outputStylesheet library="css" name="examples.css" /> -->
       <h1>
-        Document Table Usage
+        Document Table Usage In IFrame
       </h1>
 
       <h:form id="form">
@@ -36,9 +48,9 @@
       </h:form>
 
     </ui:define>
-    <ui:define name="css">
-      <h:outputStylesheet library="css" name="examples.css" />
-    </ui:define>
+    <!-- <ui:define name="css"> -->
+      <!-- <h:outputStylesheet library="css" name="examples.css" /> -->
+    <!-- </ui:define> -->
   </ui:composition>
 </h:body>
 </html>
