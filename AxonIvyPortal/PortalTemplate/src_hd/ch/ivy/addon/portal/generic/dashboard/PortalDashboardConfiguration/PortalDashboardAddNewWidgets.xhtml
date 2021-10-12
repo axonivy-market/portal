@@ -68,10 +68,10 @@
 
     <p:commandButton id="widget-configuration-save-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
       actionListener="#{dashboardConfigurationBean.saveWidget()}" icon="si si-floppy-disk"
-      oncomplete="PF('new-widget-configuration-dialog').hide();loadGrid();"
+      oncomplete="if (args &amp;&amp; !args.validationFailed){PF('new-widget-configuration-dialog').hide();loadGrid();}"
       process="#{componentToProcess}"
       partialSubmit="true"
-      update="grid-stack new-widget-configuration-dialog"
+      update="widget-configuration-form"
       disabled="#{empty widget}"/>
   </f:facet>
 </p:dialog>
