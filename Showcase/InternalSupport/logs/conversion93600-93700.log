@@ -1,0 +1,11 @@
+# Conversion log for project 'InternalSupport' from version 93600 to 93700
+# Created on 09.09.2021 15:28:26
+09.09.2021 15:28:26 : Info      : Classpath entry src_ws (AXIS 1) removed from .classpath
+09.09.2021 15:28:26 : Info      : Folder src_ws (AXIS 1) removed from project
+09.09.2021 15:28:26 : Info      : Classpath container WS_CALL_AXIS2_CONTAINER removed from .classpath
+09.09.2021 15:28:26 : Info      : Classpath entries starting with lib_ws/client/wsClient_* (AXIS 2) removed from .classpath
+09.09.2021 15:28:26 : Info      : Write 0 formats to config/formats.yaml
+09.09.2021 15:28:26 : Info      : No Web Service Clients found. Nothing to convert.
+09.09.2021 15:28:26 : New Task  : Store process MOD files in latest version 9.3.0
+09.09.2021 15:28:26 : New Task  : Update project version to actual version 93700.
+09.09.2021 15:28:26 : New Task  : Finished conversion of project InternalSupport.
