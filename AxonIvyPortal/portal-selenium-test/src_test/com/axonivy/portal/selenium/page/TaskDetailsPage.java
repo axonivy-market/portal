@@ -18,6 +18,7 @@ public class TaskDetailsPage extends TemplatePage {
   public TaskDetailsPage() {}
 
   public void addNote(String noteContent) {
+    $("a[id$=':task-notes:add-note-command']").waitUntil(appear, DEFAULT_TIMEOUT);
     $("a[id$=':task-notes:add-note-command']").click();
     $("div[id$=':task-notes:add-new-note-dialog']").waitUntil(appear, DEFAULT_TIMEOUT);
     $("div[id$=':task-notes:add-new-note-dialog']").find("textarea").sendKeys(noteContent);
