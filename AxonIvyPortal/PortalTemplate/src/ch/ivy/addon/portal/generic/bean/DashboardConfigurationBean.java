@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
@@ -19,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.primefaces.PrimeFaces;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
@@ -34,6 +36,7 @@ import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.enums.ProcessWidgetMode;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.util.CategoryUtils;
+import ch.ivyteam.ivy.environment.Ivy;
 
 @ViewScoped
 @ManagedBean
@@ -173,6 +176,16 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
   public void saveWidget() throws JsonProcessingException, ParseException {
     if (this.widget.getType() == DashboardWidgetType.PROCESS) {
       ProcessDashboardWidget processWidget = (ProcessDashboardWidget) this.widget;
+      if (processWidget.getProcess() == null && 
+          (processWidget.getDisplayMode() == ProcessWidgetMode.COMBINED_MODE ||
+          processWidget.getDisplayMode() == ProcessWidgetMode.IMAGE_MODE ||
+          processWidget.getDisplayMode() == ProcessWidgetMode.FULL_MODE)) {
+        FacesContext.getCurrentInstance().validationFailed();
+        FacesContext.getCurrentInstance().addMessage("widget-configuration-form:new-widget-configuration-component:process-widget-validation-messages", 
+            new FacesMessage(FacesMessage.SEVERITY_ERROR, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/processes/noProcessSelected"), null));
+        return;
+      }
+      
       if (processWidget.getDisplayMode() == ProcessWidgetMode.FULL_MODE) {
         updateProcessWidget(processWidget, 4, 2);
       } else if (processWidget.getDisplayMode() == ProcessWidgetMode.COMBINED_MODE) {
@@ -210,6 +223,7 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
     }
     saveSelectedWidget();
     this.widget = null;
+    PrimeFaces.current().ajax().update("grid-stack");
   }
 
   private void updateProcessWidget(ProcessDashboardWidget processWidget, int height, int width) {
