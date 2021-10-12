@@ -820,8 +820,12 @@ body .dashboard__table--preview.ui-datatable tbody tr.ui-state-hover {
 
 .widget-preview--full,
 .widget-preview--compact,
-.widget-preview--image {
+.widget-preview--image-width{
   width: 500px;
+}
+
+.widget-preview--image-height {
+  height: 580px;
 }
 
 .widget-preview--compact .process-start-list-item:last-child {
