@@ -62,12 +62,12 @@
             styleClass="js-process-start-list-item-description" />
         </div>
         <!-- Start process -->
-        <div class="start-process-widget">
+        <div class="start-process-image-widget">
           <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}" id="start-button" disabled="#{!isReadOnlyMode or isInConfiguration}"
             icon="si si-arrow-right-1" actionListener="#{dashboardProcessBean.startProcess(process)}" ajax="#{!isExternalLink}" />
         </div>
         <!-- More Information Link -->
-        <div class="more-information">
+        <div class="more-information-image-widget">
           <p:link value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/MoreInformation')}" disabled="#{!isReadOnlyMode or isInConfiguration}" 
           	href="#{dashboardProcessBean.getProcessInformationPageUrl(process)}"  id="more-information"
           	rendered="#{data.showInformationLink and !isExpress and !isExternalLink and !isCaseMap}" />

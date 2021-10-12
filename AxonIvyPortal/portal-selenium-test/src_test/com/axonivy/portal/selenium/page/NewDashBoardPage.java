@@ -1,7 +1,9 @@
 package com.axonivy.portal.selenium.page;
 
-import static com.codeborne.selenide.Condition.*;
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Condition.appear;
+import static com.codeborne.selenide.Condition.disappears;
+import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Selenide.$;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
@@ -53,14 +55,46 @@ public class NewDashBoardPage extends TemplatePage {
   }
   
   public SelenideElement getStartProcessButton() {
-    return $("button[id$=':start-button']");
-  }
-  
-  public SelenideElement getProcessButton() {
-    return $("button[id$=':start-button']");
+    return $("button[id$=':start-button']").waitUntil(Condition.appear, DEFAULT_TIMEOUT);
   }
   
   public SelenideElement getProcessImage() {
-    return $("img.image-process-item-image");
+    return $("img.image-process-item-image").waitUntil(Condition.appear, DEFAULT_TIMEOUT);
+  }
+  
+  public ProcessEditWidgetNewDashBoardPage editImageProcess() {
+    $("button[id$=':process-action-button']").waitUntil(Condition.appear, DEFAULT_TIMEOUT).click();
+    $("span.si-graphic-tablet-drawing-pen").waitUntil(Condition.appear, DEFAULT_TIMEOUT).click();
+    $("div[id='new-widget-configuration-dialog']").waitUntil(Condition.appear, DEFAULT_TIMEOUT).click();
+    return new ProcessEditWidgetNewDashBoardPage();
+  }
+  
+  public SelenideElement getProcessItemName() {
+    return $("span[id$=':process-item-name']").waitUntil(Condition.appear, DEFAULT_TIMEOUT);
+  }
+  
+  public void deleteImageProcess() {
+    $("button[id$=':process-action-button']").waitUntil(Condition.appear, DEFAULT_TIMEOUT).click();
+    $("span.si-bin-1").waitUntil(Condition.appear, DEFAULT_TIMEOUT).click();
+    $("div[id='remove-widget-dialog']").waitUntil(Condition.appear, DEFAULT_TIMEOUT).click();
+    $("button[id='remove-widget-button']").click();
+    $("div[id='remove-widget-dialog']").waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
+  }
+
+  public SelenideElement getImageContainer() {
+    return $("div.image-process-container");
+  }
+  
+  public void switchToViewMode() {
+    $("a[id='switch-to-view-mode']").waitUntil(Condition.appear, DEFAULT_TIMEOUT).click();
+    $("button[id='switch-to-edit-mode']").waitUntil(Condition.appear, DEFAULT_TIMEOUT);
+  }
+  
+  public void startProcess() {
+    getStartProcessButton().click();
+  }
+  
+  public void startMoreInfoLink() {
+    $("a[id$='more-information']").waitUntil(Condition.appear, DEFAULT_TIMEOUT).click();
   }
 }
