@@ -16,13 +16,14 @@ to override process image of Portal.
 Define your own process image
 -------------------------------------
 
-#. Create a CMS object with image type in your project
+#. Create a CMS object with image type in your project.
 
-#. Define a custom field ``processImage`` in :guilabel:`Custom Fields` of the process start. Value of this custom field is URI path of image CMS.
+#. Define a custom field ``processImage`` in :guilabel:`Custom Fields` of the process start.
+   Value of this custom field is CMS object which you created at first step.
 
    |define-process-image|
 
-#. Go to full process list page and search your customized process
+#. Go to full process list page and search your customized process.
 
    |image-process-list|
 
