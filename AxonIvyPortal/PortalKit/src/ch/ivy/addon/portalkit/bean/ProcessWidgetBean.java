@@ -41,8 +41,6 @@ import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
-import ch.ivyteam.ivy.application.IProcessModel;
-import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
@@ -53,7 +51,6 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
   private static final long serialVersionUID = -5889375917550618261L;
   private static final String SPECIAL_CHARACTER_KEY = "SPECIAL_CHARACTER";
   private static final String DEFAULT_IMAGE_CMS_FOLDER = "/images/process/";
-  private static final int LAST_POSITION_OF_PROCESS_MODEL_NAME_IN_START_LINK = 3;
 
   private Process deletedProcess;
   private Process editedProcess;
@@ -169,42 +166,18 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
   private void updateDefaultProcessImage(IvyProcess ivyProcess) {
     String customFieldProcessImage = ivyProcess.getCustomFieldImageProcess();
     if (StringUtils.isNotBlank(customFieldProcessImage)) {
-      String imageSrc = findProcessDefaultImageSrc(ivyProcess, customFieldProcessImage);
-      ivyProcess.setDefaultImageSrc(imageSrc);
+      String processImageSrc = getImageSrc(customFieldProcessImage);
+      ivyProcess.setDefaultImageSrc(processImageSrc);
       ivyProcess.setDefaultImageCms(StringUtils.EMPTY);
-      return;
-    }
-
-    if (!this.defaultImageType.equals(DefaultImage.DEFAULT.name())) {
+    } else if (!this.defaultImageType.equals(DefaultImage.DEFAULT.name())) {
       ivyProcess.setDefaultImageCms(DEFAULT_IMAGE_CMS_FOLDER + this.defaultImageType);
       ivyProcess.setDefaultImageSrc(StringUtils.EMPTY);
     }
   }
 
-  private String findProcessDefaultImageSrc(IvyProcess process, String processImage) {
-    if (process == null || StringUtils.isBlank(process.getStartLink())) {
-      return StringUtils.EMPTY;
-    }
-
-    String[] processParts = process.getStartLink().split(SLASH);
-    String processModelName = processParts[processParts.length - LAST_POSITION_OF_PROCESS_MODEL_NAME_IN_START_LINK];
-    return IvyExecutor.executeAsSystem(() -> {
-      return getDefaultImageUri(processModelName, processImage);
-    });
-  }
-
-  private String getDefaultImageUri(String processModelName, String processImage) {
-    String defaultImageUri = StringUtils.EMPTY;
-    IProcessModel pm = Ivy.wf().getApplication().findProcessModel(processModelName);
-    if (pm != null) {
-      defaultImageUri = Ivy.cms().getContentManagement().findCms(pm.getReleasedProcessModelVersion()).co(processImage);
-      if (StringUtils.isNotBlank(defaultImageUri)) {
-        int indexOfDefaultImageUri = defaultImageUri.indexOf("/cm");
-        defaultImageUri = defaultImageUri.substring(indexOfDefaultImageUri).replaceAll("\"/>", StringUtils.EMPTY);
-      }
-    }
-
-    return defaultImageUri;
+  private String getImageSrc(String imageElement) {
+    int indexOfImageSrc = imageElement.indexOf("/cm");
+    return imageElement.substring(indexOfImageSrc).replaceAll("\"/>", StringUtils.EMPTY);
   }
 
   public void editExpressWorkflow(ExpressProcess process) throws IOException {
