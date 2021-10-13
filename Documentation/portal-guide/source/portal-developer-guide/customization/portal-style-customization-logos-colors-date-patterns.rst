@@ -98,6 +98,9 @@ You can customize in:
    - If ``--primary-color`` is a bright tone color (such as yellow or light blue), you may want to change ``--primary-text-color`` to ``black``. 
      It helps text of buttons and other components easier to recognize.
 
+.. tip::
+   If you are using Iframes and you want customize the colors of the project specific UIs, then refer to this document :ref:`IFrame in Portal <iframe-in-portal>`
+
 .. warning::
    - Do not change ``font-family`` property values.
 
