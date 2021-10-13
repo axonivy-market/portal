@@ -18,12 +18,12 @@
       <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')}"
         for="from-completed-calendar" />
       <p:calendar id="from-completed-calendar" value="#{cc.attrs.filter.fromCompletedDate}"
-        pattern="#{dateTimePatternBean.configuredPattern}" showOn="button" locale="#{localeBean.locale}" 
+        pattern="#{dateTimePatternBean.configuredDateFilterPattern}" showOn="button" locale="#{localeBean.locale}" 
         converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}" />
 
       <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')}" for="to-completed-calendar" />
       <p:calendar id="to-completed-calendar" value="#{cc.attrs.filter.toCompletedDate}"
-        pattern="#{dateTimePatternBean.configuredPattern}" showOn="button" locale="#{localeBean.locale}"
+        pattern="#{dateTimePatternBean.configuredDateFilterPattern}" showOn="button" locale="#{localeBean.locale}"
         converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}" />
     </h:panelGrid>
   </ic:ch.ivy.addon.portalkit.component.task.filter.AdvancedFilter>

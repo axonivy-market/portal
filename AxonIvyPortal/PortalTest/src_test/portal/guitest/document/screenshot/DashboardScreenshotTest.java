@@ -73,6 +73,8 @@ public class DashboardScreenshotTest extends ScreenshotTest {
   @Test
   public void screenshotCustomizedDashBoard() throws IOException {
     showNewCustomizedDashboard();
+    newDashboardPage = new NewDashboardPage();
+    newDashboardPage.openTaskList();
     ScreenshotUtil.resizeBrowserAndCaptureWholeScreen(ScreenshotUtil.DASHBOARD_FOLDER + "page-header-footer", new Dimension(SCREENSHOT_WIDTH, 900));
   }
   
