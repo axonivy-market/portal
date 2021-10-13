@@ -22,6 +22,7 @@ public enum GlobalVariable {
   UPLOAD_DOCUMENT_WHITELIST_EXTENSION("Portal.Document.WhitelistExtension", GlobalVariableType.TEXT, String.join(", ", DocumentExtensionConstants.DEFAULT_WHITELIST_EXTENSION), "uploadDocumentWhiteListExtensionNote"),
   HIDE_TIME("Portal.DateTimeFormat.HideTime", GlobalVariableType.SELECTION, Option.FALSE.toString(), "hideTimeNote"),
   HIDE_YEAR("Portal.DateTimeFormat.HideYear", GlobalVariableType.SELECTION, Option.FALSE.toString(), "hideYear"),
+  DATE_FILTER_WITH_TIME("Portal.DateTimeFormat.DateFilterWithTime", GlobalVariableType.SELECTION, Option.FALSE.toString(), "dateFilterWithTime"),
   HIDE_SYSTEM_TASKS_FROM_HISTORY("Portal.Histories.HideSystemTasks", GlobalVariableType.SELECTION, Option.TRUE.toString(), "hideSystemTasksFromHistory"),
   HIDE_SYSTEM_TASKS_FROM_HISTORY_ADMINISTRATOR("Portal.Histories.HideSystemTasksForAdministrator", GlobalVariableType.SELECTION, Option.FALSE.toString(), "hideSystemTasksFromHistoryAdministrator"),
   HIDE_SYSTEM_NOTES_FROM_HISTORY("Portal.Histories.HideSystemNotes", GlobalVariableType.SELECTION, Option.TRUE.toString(), "hideSystemNotesFromHistory"),

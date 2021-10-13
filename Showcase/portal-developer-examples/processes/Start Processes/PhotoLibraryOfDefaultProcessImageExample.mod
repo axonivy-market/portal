@@ -25,9 +25,11 @@ Pe0 f0 callSignature start() #txt
 Pe0 f0 startName 'Default Process Image selection example' #txt
 Pe0 f0 startDescription 'Loading photo for default process image by selection' #txt
 Pe0 f0 startCategory Example #txt
-Pe0 f0 startCustomFields processImage=/images/process/INNOVATION #txt
+Pe0 f0 startCustomFields 'cssIcon=si si-house-1
+processImage=<%\=ivy.cms.co("/images/process/INNOVATION")%>' #txt
 Pe0 f0 caseData 'businessCase.attach=true
 customFields.STRING.embedInFrame="false"' #txt
+Pe0 f0 wfuser 1 #txt
 Pe0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
