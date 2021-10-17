@@ -31,7 +31,7 @@
 </p:dialog>
 
 <p:dialog id="new-widget-configuration-dialog" widgetVar="new-widget-configuration-dialog"
-  styleClass="new-widget-configuration-dialog"
+  styleClass="new-widget-configuration-dialog" closable="false"
   header="#{dashboardConfigurationBean.newWidgetHeader}"
   appendTo="@(body)" closeOnEscape="true" dynamic="true"
   fitViewport="true" responsive="true" modal="true">
@@ -64,6 +64,7 @@
   <f:facet name="footer">
     <p:commandLink id="task-configuration-cancel-link" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" styleClass="u-mar-right-10"
       onclick="PF('new-widget-configuration-dialog').hide()" actionListener="#{dashboardConfigurationBean.restoreWidgetData()}">
+      <p:resetInput target="widget-configuration-form" />
     </p:commandLink>
 
     <p:commandButton id="widget-configuration-save-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
