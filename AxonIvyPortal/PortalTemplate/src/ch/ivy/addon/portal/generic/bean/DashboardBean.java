@@ -45,6 +45,7 @@ import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.workflow.ICase;
+import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivyteam.ivy.workflow.ITask;
 
 @ViewScoped
@@ -181,10 +182,13 @@ public class DashboardBean implements Serializable {
 
   public void updateProcessStartIdForCombined(ProcessDashboardWidget processWidget, DashboardProcess process) {
     if (processWidget.getDisplayMode() == ProcessWidgetMode.COMBINED_MODE && process.getProcessStartId() == null) {
-      long processStartId = Ivy.session().getStartableProcessStarts().stream()
-          .filter(processStart -> processStart.getLink().getRelative().equals(process.getStartLink())).findFirst()
-          .get().getId();
-      process.setProcessStartId(processStartId);
+    IProcessStart optional = Ivy.session().getStartableProcessStarts().stream()
+          .filter(processStart -> processStart.getLink().getRelative().equals(process.getStartLink()))
+          .findFirst()
+          .orElse(null);
+      if (optional != null) {
+        process.setProcessStartId(optional.getId());
+      }
     }
   }
 
