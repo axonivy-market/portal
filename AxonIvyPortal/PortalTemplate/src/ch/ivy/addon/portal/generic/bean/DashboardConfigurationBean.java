@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
@@ -36,7 +35,6 @@ import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.enums.ProcessWidgetMode;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.util.CategoryUtils;
-import ch.ivyteam.ivy.environment.Ivy;
 
 @ViewScoped
 @ManagedBean
@@ -47,6 +45,7 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
   protected List<WidgetSample> samples;
   private String newWidgetHeader;
   private DashboardWidget deleteWidget;
+  private ProcessDashboardWidget originalProcessWidget;
   private List<String> categories;
 
   @PostConstruct
@@ -176,16 +175,6 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
   public void saveWidget() throws JsonProcessingException, ParseException {
     if (this.widget.getType() == DashboardWidgetType.PROCESS) {
       ProcessDashboardWidget processWidget = (ProcessDashboardWidget) this.widget;
-      if (processWidget.getProcess() == null && 
-          (processWidget.getDisplayMode() == ProcessWidgetMode.COMBINED_MODE ||
-          processWidget.getDisplayMode() == ProcessWidgetMode.IMAGE_MODE ||
-          processWidget.getDisplayMode() == ProcessWidgetMode.FULL_MODE)) {
-        FacesContext.getCurrentInstance().validationFailed();
-        FacesContext.getCurrentInstance().addMessage("widget-configuration-form:new-widget-configuration-component:process-widget-validation-messages", 
-            new FacesMessage(FacesMessage.SEVERITY_ERROR, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/processes/noProcessSelected"), null));
-        return;
-      }
-      
       if (processWidget.getDisplayMode() == ProcessWidgetMode.FULL_MODE) {
         updateProcessWidget(processWidget, 4, 2);
       } else if (processWidget.getDisplayMode() == ProcessWidgetMode.COMBINED_MODE) {
@@ -310,17 +299,40 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
   }
 
   public void setEditWidget(DashboardWidget widget) {
-    this.setWidget(widget);
-    this.newWidgetHeader = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/editWidgetHeader");
+    if (widget instanceof ProcessDashboardWidget) {
+      backupProcessWidget(widget);
+    }
+    setWidget(widget);
+    newWidgetHeader = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/editWidgetHeader");
   }
 
+  private void backupProcessWidget(DashboardWidget widget) {
+    originalProcessWidget = new ProcessDashboardWidget();
+    originalProcessWidget.setName(widget.getName());
+    originalProcessWidget.setDisplayMode(((ProcessDashboardWidget) widget).getDisplayMode());
+    originalProcessWidget.setProcesses(((ProcessDashboardWidget) widget).getProcesses());
+    originalProcessWidget.setProcess(((ProcessDashboardWidget) widget).getProcess());
+    originalProcessWidget.setCategories(((ProcessDashboardWidget) widget).getCategories());
+    originalProcessWidget.setProcessPath(((ProcessDashboardWidget) widget).getProcessPath());
+  }
 
   public void restoreWidgetData() {
-    if (this.widget instanceof CaseDashboardWidget) {
-      ((CaseDashboardWidget)this.widget).getDataModel().setCategories(this.categories);
-    } else if (this.widget instanceof TaskDashboardWidget) {
-      ((TaskDashboardWidget)this.widget).getDataModel().setCategories(this.categories);
+    if (widget instanceof CaseDashboardWidget) {
+      ((CaseDashboardWidget)widget).getDataModel().setCategories(categories);
+    } else if (widget instanceof TaskDashboardWidget) {
+      ((TaskDashboardWidget)widget).getDataModel().setCategories(categories);
+    } else if (widget instanceof ProcessDashboardWidget) {
+      restoreProcessWidget();
+      
     }
+  }
+
+  private void restoreProcessWidget() {
+    ((ProcessDashboardWidget)widget).setDisplayMode(originalProcessWidget.getDisplayMode());
+    ((ProcessDashboardWidget)widget).setProcess(originalProcessWidget.getProcess());
+    ((ProcessDashboardWidget)widget).setProcessPath(originalProcessWidget.getProcessPath());
+    ((ProcessDashboardWidget)widget).setProcesses(originalProcessWidget.getProcesses());
+    ((ProcessDashboardWidget)widget).setCategories(originalProcessWidget.getCategories());
   }
 
   public List<WidgetSample> getSamples() {
