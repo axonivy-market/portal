@@ -16,6 +16,7 @@ import portal.guitest.common.DateTimePattern;
 import portal.guitest.common.TestAccount;
 import portal.guitest.common.TestRole;
 import portal.guitest.page.HomePage;
+import portal.guitest.page.LanguagePage;
 import portal.guitest.page.TaskDetailsPage;
 import portal.guitest.page.TaskWidgetPage;
 
@@ -40,7 +41,7 @@ public class TaskDetailsTest extends BaseTest {
   public void testDelegateTaskInTaskDetail() {
     login(TestAccount.HR_ROLE_USER);
     homePage = new HomePage();
-    taskWidgetPage = homePage.getTaskWidget();
+    taskWidgetPage = homePage.getTaskWidget();   
     taskWidgetPage.expand();
     taskDetailsPage = taskWidgetPage.openTaskDetails(0);
     assertEquals(TestRole.EVERYBODY_ROLE, taskDetailsPage.getTaskResponsible());
@@ -76,25 +77,25 @@ public class TaskDetailsTest extends BaseTest {
   @Test
   public void testClearTheDelayTimestampOfTask() {
     openDelayTask();
-    assertEquals("DELAYED", taskDetailsPage.getTaskState());
+    assertEquals("Delayed", taskDetailsPage.getTaskState());
     taskDetailsPage.openActionPanel();
     assertTrue(taskDetailsPage.isClearDelayTimeDisplayed());
     taskDetailsPage.clickOnClearDelayTime();
-    assertEquals("SUSPENDED", taskDetailsPage.getTaskState());
+    assertEquals("Suspended", taskDetailsPage.getTaskState());
     assertEquals("NA", taskDetailsPage.getTaskDelayTime());
   }
   
   @Test
   public void testChangeDelayTimestamp() {
     openDelayTask();
-    assertEquals("DELAYED", taskDetailsPage.getTaskState());
+    assertEquals("Delayed", taskDetailsPage.getTaskState());
     String tomorrow = prepareTomorrowAsString();
     taskDetailsPage.updateDelayTimestamp(tomorrow);
-    assertEquals("DELAYED", taskDetailsPage.getTaskState());
+    assertEquals("Delayed", taskDetailsPage.getTaskState());
     refreshPage();
     String yesterday = LocalDateTime.now().minusDays(1).format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN));
     taskDetailsPage.updateDelayTimestamp(yesterday);
-    assertEquals("SUSPENDED", taskDetailsPage.getTaskState());
+    assertEquals("Suspended", taskDetailsPage.getTaskState());
   }
 
 
@@ -102,6 +103,9 @@ public class TaskDetailsTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(createTaskWithSystemState);
     homePage = new HomePage();
+    LanguagePage languagePage = homePage.openLanguagePage();
+    languagePage.selectLanguage(1);
+    languagePage.save();
     taskWidgetPage = homePage.getTaskWidget();
     taskWidgetPage.expand();
     taskWidgetPage.clickOnTaskStatesAndApply(Arrays.asList("Delayed"));
