@@ -14,7 +14,7 @@ import com.axonivy.portal.selenium.page.NewDashBoardPage;
 import com.axonivy.portal.selenium.page.ProcessEditWidgetNewDashBoardPage;
 import com.codeborne.selenide.Condition;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class NewDashboardProcessWidgetTest extends BaseTest {
   private NewDashBoardPage newDashBoardPage;
   private static final String IMAGE_URI = "PROCESSMODELING";
