@@ -26,7 +26,7 @@ Pe0 f0 startName 'Default Process Image selection example' #txt
 Pe0 f0 startDescription 'Loading photo for default process image by selection' #txt
 Pe0 f0 startCategory Example #txt
 Pe0 f0 startCustomFields 'cssIcon=si si-house-1
-processImage=<%\=ivy.cms.co("/images/process/INNOVATION")%>' #txt
+processImage=/images/process/INNOVATION' #txt
 Pe0 f0 caseData 'businessCase.attach=true
 customFields.STRING.embedInFrame="false"' #txt
 Pe0 f0 wfuser 1 #txt
