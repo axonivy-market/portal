@@ -19,7 +19,7 @@ Define your own process image
 #. Create a CMS object with image type in your project.
 
 #. Define a custom field ``processImage`` in :guilabel:`Custom Fields` of the process start.
-   Value of this custom field is CMS object which you created at first step.
+   Value of this custom field is URI path of image CMS object which you created at first step.
 
    |define-process-image|
 
