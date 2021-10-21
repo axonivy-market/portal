@@ -14,19 +14,21 @@
   <ic:ch.ivy.addon.portalkit.component.cases.filter.AdvancedFilter id="#{cc.attrs.componentId}"
     caseFilter="#{cc.attrs.filter}" selectedFilters="#{cc.attrs.selectedFilters}" resultContainerUpdated="#{cc.attrs.resultContainerUpdated}"
     dismissableOverlayPanel="false" dataModel="#{cc.attrs.dataModel}">
+    <p:messages for="from-finished-calendar" />
+    <p:messages for="to-finished-calendar" />
     <h:panelGrid columns="2" cellpadding="5" styleClass="ui-fluid">
       <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')}"
         for="from-finished-calendar" />
       <p:calendar id="from-finished-calendar" value="#{cc.attrs.filter.fromFinishedDate}"
         locale="#{localeBean.locale}"
         pattern="#{dateTimePatternBean.configuredDateFilterPattern}" showOn="button"
-        converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}" />
+        converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/wrongFromDateFormat', [dateTimePatternBean.configuredDateFilterPattern])}" />
 
       <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')}" for="to-finished-calendar" />
       <p:calendar id="to-finished-calendar" value="#{cc.attrs.filter.toFinishedDate}"
         locale="#{localeBean.locale}"
         pattern="#{dateTimePatternBean.configuredDateFilterPattern}" showOn="button"
-        converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}" />
+        converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/wrongToDateFormat', [dateTimePatternBean.configuredDateFilterPattern])}" />
     </h:panelGrid>
   </ic:ch.ivy.addon.portalkit.component.cases.filter.AdvancedFilter>
 </cc:implementation>
