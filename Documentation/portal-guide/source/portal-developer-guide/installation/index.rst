@@ -136,6 +136,9 @@ Migrate to 9.3
 #. Copy the PortalStart process from PortalTemplate to your project because we changed something relate to DefaultApplicationHomePage.ivp and PortalDashboardConfiguration.ivp.
    Then apply your customization to the PortalStart in your project.
 
+#. Portal date filter such as TaskCreationDateFilter, CaseCreationDateFilter... messages ``<p:messages for="..." />`` have been added for each calendar component to validate date format.
+   If you use have any customized date filters in your project, update template accordingly.
+
 Migrate 9.1 to 9.2
 ------------------
 
