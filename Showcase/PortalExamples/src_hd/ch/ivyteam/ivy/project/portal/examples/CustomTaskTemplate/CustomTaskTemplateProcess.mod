@@ -33,7 +33,7 @@ Ts0 @PushWFArc f20 '' #zField
 Ts0 f0 guid 16C8374337A6693D #txt
 Ts0 f0 method start(Data) #txt
 Ts0 f0 inParameterDecl '<ch.ivyteam.ivy.project.portal.examples.showcase.Data data> param;' #txt
-Ts0 f0 inParameterMapAction 'out.actualStepIndex=param.data.actuaStepIndex + 1;
+Ts0 f0 inParameterMapAction 'out.actualStepIndex=param.data.actuaStepIndex;
 out.data=param.data;
 out.processChainDirection=param.data.processChainDirection;
 out.processChainShape=param.data.processChainShape;
@@ -109,7 +109,7 @@ Ts0 f9 339 259 26 26 0 12 #rect
 Ts0 f9 @|UdProcessEndIcon #fIcon
 Ts0 f11 actionTable 'out=in;
 ' #txt
-Ts0 f11 actionCode 'ivy.session.setAttribute("taskConfigExampleActualStepIndex", in.actualStepIndex - 1);
+Ts0 f11 actionCode 'ivy.session.setAttribute("taskConfigExampleActualStepIndex", in.actualStepIndex);
 ivy.session.setAttribute("taskConfigExampleProcessChainDirection", in.processChainDirection);
 ivy.session.setAttribute("taskConfigExampleProcessChainShape", in.processChainShape);' #txt
 Ts0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
