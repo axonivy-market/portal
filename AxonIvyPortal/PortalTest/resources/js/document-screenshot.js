@@ -95,7 +95,6 @@ function numberingTaskFilterAndSort() {
 
 function highlightProcessNavigation() {
   createRedThickOutlineWithOffset($('.ripplelink.PROCESS'));
-  createRedThickOutline($('.widget.process-widget'));
 }
 
 function highlightAddExternalLink() {
@@ -183,7 +182,6 @@ function highlightShowMoreNoteLink() {
 
 function highlightStatisticNavigation() {
    createRedThickOutlineWithOffset($('.ripplelink.STATISTICS'));
-   createRedMediumOutline($('#statistics-widget\\:statistic-link\\:statistic-link'));
 }
 
 function highlightTaskAnalysisNavigationLink() {
@@ -475,7 +473,6 @@ function highlightTaskActionItem(taskIndex, actionIndex) {
 
 function highlightShowAllProcesses() {
   createRedThickOutlineWithOffset($('.ripplelink.PROCESS'));
-  createRedMediumOutline($("[id$='process-widget:process-link:process-link']"));
 }
 
 function highlightShowAdditionalLink() {
@@ -527,4 +524,8 @@ function highlightUserName() {
 
 function highlightServerInfo() {
   createRedMediumOutline($("#server-infor"));
+}
+
+function highlightUserExampleNavigation() {
+  createRedThickOutlineWithOffset($('.ripplelink.CUSTOM'));
 }

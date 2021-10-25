@@ -1,0 +1,5 @@
+co: name={statisticWidgetIntroduction} description={} changed={} changedby={} visualorder={} guid={} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={17C0738FD5A68095} datatype={} isdefault={false} langid={fr} description={} validfrom={} validto={} changed={} changedby={} properties={} id={}
+val: guid={17C0738FD717523D} datatype={} isdefault={false} langid={de} description={} validfrom={} validto={} changed={} changedby={} properties={} id={}
+val: guid={17C0738FD6579E92} datatype={} isdefault={false} langid={es} description={} validfrom={} validto={} changed={} changedby={} properties={} id={}
+val: guid={17C0738FD7DCDD16} datatype={} isdefault={true} langid={en} description={} validfrom={} validto={} changed={} changedby={} properties={} id={}

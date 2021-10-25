@@ -9,6 +9,11 @@
     <ui:param name="loadGridStack" value="true" />
 
     <ui:define name="pageContent">
+      <script type="text/javascript">
+        if("${adminSettingBean.isShowLegacyUI()}"==="true") {
+          window.location = "${menuView.getDashboardLink()}";
+        }
+      </script>
       <div class="ui-g">
       <!-- User doesn't have permissions -->
       <ui:fragment rendered="#{empty managedBean.dashboards}">
@@ -47,7 +52,7 @@
             <p:remoteCommand name="saveWidgetState" actionListener="#{managedBean.saveSelectedWidget()}" global="false"/>
           </h:form>
 
-        <div class="dashboard__body ui-g-12 js-dashboard__body #{isReadOnlyMode ? 'readonly' : '' }">
+        <div id="dashboard-body" class="dashboard__body ui-g-12 js-dashboard__body">
           <h:panelGroup id="grid-stack" layout="block" styleClass="grid-stack ui-g-12">
             <c:if test="#{not empty managedBean.selectedDashboard.widgets}">
               <c:forEach var="widget" items="#{managedBean.selectedDashboard.widgets}" varStatus="status">
@@ -65,21 +70,24 @@
                     <c:if test="#{widget.type eq 'TASK'}">
                       <ic:ch.ivy.addon.portal.generic.dashboard.component.TaskDashboardWidget widget="#{widget}"
                         isReadOnlyMode="#{managedBean.isReadOnlyMode}"
-                        index="#{status.index}" />
+                        index="#{status.index}"
+                        id="task-#{widget.id}" />
                     </c:if>
 
                     <!-- Case widget -->
                     <c:if test="#{widget.type eq 'CASE'}">
                       <ic:ch.ivy.addon.portal.generic.dashboard.component.CaseDashboardWidget widget="#{widget}"
                         isReadOnlyMode="#{managedBean.isReadOnlyMode}"
-                        index="#{status.index}" />
+                        index="#{status.index}"
+                        id="case-#{widget.id}" />
                     </c:if>
 
                     <!-- Process widget -->
                     <c:if test="#{widget.type eq 'CUSTOM'}">
                       <ic:ch.ivy.addon.portal.generic.dashboard.component.CustomDashboardWidget widget="#{widget}"
                         isReadOnlyMode="#{managedBean.isReadOnlyMode}"
-                        index="#{status.index}" />
+                        index="#{status.index}"
+                        id="process-#{widget.id}" />
                     </c:if>
                     
                   </div>

@@ -28,6 +28,11 @@ Enhance task filter
 Portal admin can query for tasks which have unavailable activator. Those tasks could have no responsible, responsible is disabled or not exists.
 |task-filter-missing-activator|
 
+New Dashboard and support legacy mode
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Portal provides new look and feel Dashboard, refer to :ref:`customization-new-dashboard`.
+Portal also provides new setting ``Portal.ShowLegacyUI`` on Admin Settings to switch back to legacy Portal home.
+
 .. _introduction-new-and-note-worthy:
 
 .. _introduction-new-and-note-worthy-9.2:

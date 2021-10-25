@@ -38,7 +38,7 @@ import ch.ivy.addon.portalkit.dto.dashboard.process.DashboardProcess;
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardCustomWidgetType;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
-import ch.ivy.addon.portalkit.enums.JsonVariable;
+import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.enums.ProcessWidgetMode;
 import ch.ivy.addon.portalkit.ivydata.service.impl.ProcessService;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
@@ -105,11 +105,11 @@ public class DashboardBean implements Serializable {
   }
 
   protected String readDashboardBySessionUser() {
-    return currentUser().getProperty(JsonVariable.DASHBOARD.key);
+    return currentUser().getProperty(PortalVariable.DASHBOARD.key);
   }
 
   protected void removeDashboardInUserProperty() {
-    currentUser().removeProperty(JsonVariable.DASHBOARD.key);
+    currentUser().removeProperty(PortalVariable.DASHBOARD.key);
   }
   
   private void loadWidgets(List<DashboardWidget> widgets) {
@@ -259,7 +259,7 @@ public class DashboardBean implements Serializable {
   }
 
   protected List<Dashboard> defaultDashboards() throws IOException {
-    String dashboardJson = Ivy.var().get(JsonVariable.DASHBOARD.key);
+    String dashboardJson = Ivy.var().get(PortalVariable.DASHBOARD.key);
     List<Dashboard> dashboards = mappingDashboards(dashboardJson);
 
     for (int i = 0; i < dashboards.size(); i++) {
@@ -337,7 +337,7 @@ public class DashboardBean implements Serializable {
       dashboardSavedList.add(dashboardWidget);
     }
 
-    currentUser().setProperty(JsonVariable.DASHBOARD.key, this.mapper.writeValueAsString(dashboardSavedList));
+    currentUser().setProperty(PortalVariable.DASHBOARD.key, this.mapper.writeValueAsString(dashboardSavedList));
   }
 
   private Map<String, String> getRequestParameterMap() {

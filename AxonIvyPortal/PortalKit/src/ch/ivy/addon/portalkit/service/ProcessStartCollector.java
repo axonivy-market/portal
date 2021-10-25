@@ -75,8 +75,26 @@ public class ProcessStartCollector {
   public String findFriendlyRequestPathContainsKeyword(String keyword, Object portalStartPmvId) {
     IProcessModelVersion findProcessModelVersion = portalStartPmvId == null ? Ivy.wfTask().getProcessModelVersion() : 
       application.findProcessModelVersion(portalStartPmvId);
-    if (findProcessModelVersion != null){
-      List<IProcessStart> processStarts = findProcessStartRequestPathContainsKeywordAndPmv(keyword, findProcessModelVersion);
+    return findFriendlyRequestPathContainsKeywordInPMV(keyword, findProcessModelVersion);
+  }
+
+  /**
+   * find friendly request path in specific pmv base on keyword
+   * If pmv id not found, get pmv of current task
+   * @param keyword
+   * @param processModelVersion
+   * @return user friendly request path
+   */
+  public String findFriendlyRequestPathContainsKeyword(String keyword, IProcessModelVersion processModelVersion) {
+    if (processModelVersion == null) {
+      processModelVersion = Ivy.wfTask().getProcessModelVersion();
+    }
+    return findFriendlyRequestPathContainsKeywordInPMV(keyword, processModelVersion);
+  }
+
+  private String findFriendlyRequestPathContainsKeywordInPMV(String keyword, IProcessModelVersion processModelVersion) {
+    if (processModelVersion != null){
+      List<IProcessStart> processStarts = findProcessStartRequestPathContainsKeywordAndPmv(keyword, processModelVersion);
       if (CollectionUtils.isNotEmpty(processStarts)){
         return processStarts.get(0).getUserFriendlyRequestPath();
       }

@@ -62,22 +62,22 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
 
   private WidgetSample taskSample() {
     return new WidgetSample(translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/taskList"), DashboardWidgetType.TASK,
-        "task-widget-sample.png");
+        "task-widget-sample.png", translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/taskListIntroduction"));
   }
 
   private WidgetSample caseSample() {
     return new WidgetSample(translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/caseList"), DashboardWidgetType.CASE,
-        "case-widget-sample.png");
+        "case-widget-sample.png", translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/caseListIntroduction"));
   }
 
   private WidgetSample statisticSample() {
     return new WidgetSample(translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/statisticWidget"), DashboardWidgetType.STATISTIC,
-        "statistic-widget-sample.png");
+        "statistic-widget-sample.png", translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/statisticWidgetIntroduction"));
   }
 
   private WidgetSample processSample() {
     return new WidgetSample(translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/processList"), DashboardWidgetType.PROCESS,
-        "process-widget-sample.png");
+        "process-widget-sample.png", translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/processListIntroduction"));
   }
 
   private WidgetSample customSample() {
@@ -362,7 +362,7 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
   }
 
   public void navigatetoDashboardPage() {
-    PortalNavigator.navigateToNewDashboard();
+    PortalNavigator.navigateToDashboard();
   }
 
   public List<String> getCategories() {

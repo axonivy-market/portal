@@ -16,9 +16,10 @@ import ch.ivy.addon.portalkit.service.AdhocHistoryService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
-import ch.ivy.addon.portalkit.util.ProcessStartUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
+import ch.ivyteam.ivy.application.ILibrary;
+import ch.ivyteam.ivy.application.IProcessModelVersion;
 import ch.ivyteam.ivy.casemap.runtime.ICaseMapService;
 import ch.ivyteam.ivy.casemap.runtime.model.ICaseMap;
 import ch.ivyteam.ivy.casemap.runtime.model.IStage;
@@ -27,8 +28,8 @@ import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.security.query.UserQuery;
 import ch.ivyteam.ivy.workflow.ICase;
-import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivyteam.ivy.workflow.ITask;
+import ch.ivyteam.ivy.workflow.StandardProcessType;
 
 public abstract class AbstractTaskTemplateBean implements Serializable {
   private static final long serialVersionUID = 1L;
@@ -193,11 +194,10 @@ public abstract class AbstractTaskTemplateBean implements Serializable {
   }
 
   public void generateCaseDetailInFrame(ICase currentCase) {
-    IProcessStart processStart = ProcessStartUtils.findProcessStartByUserFriendlyRequestPath("Start Processes/PortalStart/CaseDetailsInIFrame.ivp");
-    String requestPath = processStart.getLink().getRelative();
-
-    String paramStr = "caseId=" +  currentCase.getId() + "&embedInFrame=true";
-    setCaseDetailsLink(requestPath + "?" + paramStr);
+    String defaultTemplateLibraryId = Ivy.wf().getStandardProcessImplementationLibrary(StandardProcessType.DEFAULT_PAGES_PROCESS_TYPES);
+    ILibrary defaultTemplateLibrary = Ivy.wf().getApplication().findReleasedLibrary(defaultTemplateLibraryId);
+    IProcessModelVersion defaultTemplatePMV = defaultTemplateLibrary.getProcessModelVersion();
+    setCaseDetailsLink(PortalNavigator.buildPortalCaseDetailInFrameUrl(currentCase.getId(), defaultTemplatePMV));
   }
 
   public Long getIntervalForPollingWhenOpenCaseDetails() {
