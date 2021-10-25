@@ -15,6 +15,9 @@
     * widget: widget model.
     * widgetFormId: ID of widget form.
     * isReadOnlyMode: indicator to show edit/delete link.
+    * isRenderFilter: parameter to show filter function.
+    * isRenderInfo: parameter to show info function.
+    * isRenderExpandCollapse: parameter to show expand/collapse function.
     * onStatisticTabShow: AJAX method to call when widget info panel is shown on.
     * componentToProcessOnApplyFilter: ID of component will be proceed when click on apply filter button.
     * componentToUpdateOnApplyFilter: ID of component will be updated when click on apply filter button.
@@ -43,18 +46,33 @@
 
       <p:link id="filter-sidebar-link-#{index}"
         href="#"
+        rendered="#{empty isRenderFilter ? 'true': isRenderFilter}"
         styleClass="widget__filter-sidebar-link si si-filter-1 #{widget.userDefinedFiltersCount.isPresent()}  u-mar-right-15">
         <h:outputText rendered="#{widget.userDefinedFiltersCount.isPresent()}" value="#{widget.userDefinedFiltersCount.get()}"
           styleClass="widget__filter-noti-number"/>
       </p:link>
       <p:tooltip for="filter-sidebar-link-#{index}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/availableFilters')}"
-        trackMouse="true" hideEvent="mouseleave click" />
+        trackMouse="true" hideEvent="mouseleave click" rendered="#{empty isRenderFilter ? 'true': isRenderFilter}" />
 
       <p:link id="info-sidebar-link-#{index}"
         href="#"
-        styleClass="si si-statistics-daytum #{isReadOnlyMode ? '' : 'u-mar-right-15'}" />
+        rendered="#{empty isRenderInfo ? 'true': isRenderInfo}"
+        styleClass="si si-statistics-daytum u-mar-right-15" />
       <p:tooltip for="info-sidebar-link-#{index}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/widgetInfo')}" trackMouse="true"
+        rendered="#{empty isRenderInfo ? 'true': isRenderInfo}"
         hideEvent="mouseleave click" />
+      
+      <p:link id="expand-link-#{index}"
+        href="#"
+        styleClass="si si-move-expand-vertical #{isReadOnlyMode ? '' : 'u-mar-right-15'} expand-link"
+        rendered="#{isReadOnlyMode and (empty isRenderExpandCollapse ? 'true': isRenderExpandCollapse)}"
+        onclick="expandFullscreen(#{index}, '#{widget.id}')" />
+
+      <p:link id="collapse-link-#{index}"
+        href="#"
+        styleClass="si si-move-shrink-vertical #{isReadOnlyMode ? '' : 'u-mar-right-15'} collapse-link"
+        rendered="#{isReadOnlyMode and (empty isRenderExpandCollapse ? 'true': isRenderExpandCollapse)}"
+        onclick="collapseFullscreen(#{index}, '#{widget.id}')" />
 
       <p:commandLink id="edit-widget-#{index}" styleClass="si si-pencil u-hidden-sm-down u-mar-right-15"
         oncomplete="PF('new-widget-configuration-dialog').show()"
@@ -93,6 +111,7 @@
       <p:overlayPanel id="info-overlay-panel-#{index}"
         widgetVar="info-overlay-panel-#{index}"
         for="info-sidebar-link-#{index}"
+        rendered="#{empty isRenderInfo ? 'true': isRenderInfo}"
         appendTo="@(#grid-stack)"
         styleClass="info-overlay-panel"
         onShow="buildStatisticInfos#{index}(); return false;"
@@ -125,6 +144,7 @@
 
       <p:overlayPanel id="filter-overlay-panel-#{index}" widgetVar="filter-overlay-panel-#{index}"
         for="filter-sidebar-link-#{index}"
+        rendered="#{empty isRenderFilter ? 'true': isRenderFilter}"
         appendTo="@(#grid-stack)"
         styleClass="filter-overlay-panel"
         dismissable="false"
