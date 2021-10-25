@@ -116,6 +116,10 @@
   max-height: calc(100% - 44px);
 }
 
+.expand-fullscreen .widget__content {
+   max-height: 100%;
+}
+
 .widget__filter-sidebar-mask,
 .widget__info-sidebar-mask {
   background-color: lightgray;
@@ -873,4 +877,33 @@ body .dashboard__table--preview.ui-datatable tbody tr.ui-state-hover {
 .combined-process {
   padding-top: 0;
   padding: 0;
+}
+
+.expand-fullscreen {
+  z-index: 9999 !important;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.expand-link {
+  display: inline;
+}
+
+.collapse-link {
+  display: none;
+}
+
+.expand-fullscreen .expand-link {
+  display: none;
+}
+
+.expand-fullscreen .collapse-link {
+  display: inline;
+}
+
+.custom-widget-configuration__user-selection .ui-autocomplete-input.ui-inputfield[size] {
+  width: 100%;
 }
