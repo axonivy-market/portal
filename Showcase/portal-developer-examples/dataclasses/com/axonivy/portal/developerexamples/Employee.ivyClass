@@ -19,3 +19,5 @@ country String #field
 country PERSISTENT #fieldModifier
 email String #field
 email PERSISTENT #fieldModifier
+title String #field
+title PERSISTENT #fieldModifier
