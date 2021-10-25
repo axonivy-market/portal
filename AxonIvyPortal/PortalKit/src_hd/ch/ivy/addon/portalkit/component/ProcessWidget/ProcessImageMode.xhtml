@@ -20,10 +20,11 @@
           <!-- Process Name -->
           <div class="process-name js-process-start-list-item-name">
             <h:outputText id="process-item-name" value="#{process.getName()}" styleClass="line-clamp-text-2 process-image-view-name" />
-            <p:tooltip id="process-name-tooltip" for="process-item-name" value="#{process.getName()}" position="top" trackMouse="true" hideEvent="mouseleave click" />
           </div>
         </div>
       </div>
+      <p:tooltip for="process-item-name" value="#{process.getName()}" position="top" trackMouse="true" hideEvent="mouseleave click" />
+
       <h:form id="process-item" target="#{processWidgetBean.targetToStartProcess(process)}" styleClass="image-view-form #{isExpress ? 'is-express' : ''} #{isExternalLink ? 'is-external-link' : ''}">
         <!-- Header -->
         <h:panelGroup id="process-action-group" styleClass="process-action-group" layout="block">
@@ -59,7 +60,6 @@
           <p:link value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/MoreInformation')}" href="#{processWidgetBean.getProcessInformationPageUrl(process)}"
             rendered="#{data.showInformationLink and !isExpress and !isExternalLink and !isCaseMap}" />
         </div>
-
       </h:form>
     </div>
   </h:panelGroup>

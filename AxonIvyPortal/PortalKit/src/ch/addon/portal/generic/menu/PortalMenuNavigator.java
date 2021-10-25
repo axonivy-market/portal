@@ -49,9 +49,6 @@ public class PortalMenuNavigator {
       case EXTERNAL_LINK:
         redirectToSelectedMenuUrl(params);
         break;
-      case NEW_DASHBOARD:
-        PortalNavigator.navigateToNewDashboard();
-        break;
       case PROCESS:
         PortalNavigator.navigateToPortalProcess();
         break;

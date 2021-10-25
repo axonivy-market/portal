@@ -13,12 +13,14 @@ import portal.guitest.common.ScreenshotTest;
 import portal.guitest.common.Sleeper;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.HomePage;
+import portal.guitest.page.NewDashboardPage;
 import portal.guitest.page.ProcessInformationPage;
 import portal.guitest.page.ProcessWidgetPage;
 
 public class PortalProcessesScreenshotTest extends ScreenshotTest {
 
   private HomePage homePage;
+  private NewDashboardPage newDashboardPage;
   ProcessWidgetPage processWidget;
   private static final int SCREENSHOT_WIDTH = 1440;
   private static final int SCREENSHOT_HD_WIDTH = 1920;
@@ -36,8 +38,9 @@ public class PortalProcessesScreenshotTest extends ScreenshotTest {
 
   @Test
   public void screenshotProcessNavigate() throws IOException {
-    homePage.waitForStatisticRendered();
-    homePage.openMainMenu();
+    showNewDashboard();
+    newDashboardPage = new NewDashboardPage();
+    newDashboardPage.openMainMenu();
     ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_HD_WIDTH, 700));
     executeDecorateJs("highlightProcessNavigation()");
     ScreenshotUtil.captureHalfLeftPageScreenShot(ScreenshotUtil.PROCESSES_WIDGET_FOLDER + "navigate-to-full-process-list");
@@ -125,6 +128,7 @@ public class PortalProcessesScreenshotTest extends ScreenshotTest {
     
     refreshPage();
     processWidget.waitUtilProcessWidgetDisplayed();
+    processWidget.waitUtilProcessWidgetUserFavoriteDisplayed();
     executeDecorateJs("highlightSortUserProcess()");
     ScreenshotUtil.captureHalfLeftPageScreenShot(ScreenshotUtil.PROCESSES_WIDGET_FOLDER + "how-to-order-process-favorites-by-name");
   }
@@ -137,7 +141,9 @@ public class PortalProcessesScreenshotTest extends ScreenshotTest {
     processWidget.selectViewMode("GRID");
     processWidget.waitForGridProcessListDisplayed();
     processWidget.enterSearchKeyword("Process With Process Steps");
-    executeDecorateJs("highlightProcessMoreInformationLink()");
+    processWidget.selectViewMode("GRID");
+    processWidget.waitUntilAnimationFinished(45, "js-filter-process-widget-list-item", "class");
+    executeDecorateJs("highlightProcessMoreInformationLink()"); 
     ScreenshotUtil.captureHalfLeftPageScreenShot(ScreenshotUtil.PROCESSES_INFORMATION_WIDGET_FOLDER + "more-information-link");
   }
 
@@ -157,6 +163,8 @@ public class PortalProcessesScreenshotTest extends ScreenshotTest {
     processWidget = homePage.getProcessWidget();
     processWidget.expand();
     processWidget.enterSearchKeyword("Default Process Image selection example");
+    processWidget.selectViewMode("IMAGE");
+    processWidget.waitUntilAnimationFinished(45, "js-process-start-list-item", "class");
     ScreenshotUtil.captureHalfLeftPageScreenShot(ScreenshotUtil.PROCESSES_PROCESS_IMAGE_FOLDER + "image-process-list");
   }
 }

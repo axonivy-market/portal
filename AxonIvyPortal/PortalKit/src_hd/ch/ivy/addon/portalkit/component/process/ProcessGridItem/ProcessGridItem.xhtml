@@ -68,7 +68,6 @@
         <!-- Process Name -->
         <div class="ui-g-12 process-name js-process-start-list-item-name">
           <h:outputText id="process-name" value="#{process.name}" styleClass="line-clamp-text-2 process-grid-view-name" />
-          <p:tooltip id="process-name-tooltip" for="process-name" value="#{process.name}" trackMouse="true" hideEvent="mouseleave click"/>
         </div>
         <!-- Process Description -->
         <div class="ui-g-12 process-description js-process-start-list-item-description">
@@ -88,6 +87,7 @@
             rendered="#{cc.attrs.showInformationLink and !isExpress and !isExternalLink and !isCaseMap}"
             disabled="#{cc.attrs.readOnlyMode}" />
         </div>
+        <p:tooltip for="process-name" value="#{process.name}" trackMouse="true" hideEvent="mouseleave click"/>
       </h:form>
     </div>
   </h:panelGroup>

@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
-import ch.ivy.addon.portalkit.enums.JsonVariable;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilter;
 import ch.ivy.addon.portalkit.taskfilter.impl.TaskFilterData;
 
@@ -29,10 +28,5 @@ public class TaskFilterService extends AbstractFilterService<TaskFilterData> {
         }
       }
     }
-  }
-
-  @Override
-  public String getConfigKey() {
-    return JsonVariable.TASK_FILTER.key;
   }
 }

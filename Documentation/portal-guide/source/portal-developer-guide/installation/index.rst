@@ -114,6 +114,31 @@ In engine
    project.
 #. Follow detailed migration notes for each version below.
 
+
+Migrate to 9.3
+--------------
+
+#. Deploy :download:`portal-migration.iar <documents/portal-migration-9.3.0.iar>` project to your Ivy application and run it by access link
+   ``your_host/your_application/pro/portal-migration/175F92F71BC45295/startMigrateConfiguration.ivp``
+
+   .. important::
+      * If you have many applications, deploy to only one application and run it by access the migration link,
+        for example: ``https://portal.io/Portal/pro/portal-migration/175F92F71BC45295/startMigrateConfiguration.ivp``
+
+      * Use an administrator account to sign in
+      * Run migration process only once
+
+#. We changed the way to navigate to Task Analysis component. Process ``Start Processes/TaskAnalysis/start.ivp`` is moved to new place ``Start Processes/PortalStart/showTaskAnalysis.ivp``. 
+   Refer to :ref:`Task Analysis call<components-additional-component-task-analysis-how-to-use>` for more details.
+
+#. We moved the configuration of announcement, thirdparty applications, default statistic charts, application favorite processes, public external links and express processes from the BusinessData to ivy variables.
+
+#. Copy the PortalStart process from PortalTemplate to your project because we changed something relate to DefaultApplicationHomePage.ivp and PortalDashboardConfiguration.ivp.
+   Then apply your customization to the PortalStart in your project.
+
+#. Portal date filter such as TaskCreationDateFilter, CaseCreationDateFilter... messages ``<p:messages for="..." />`` have been added for each calendar component to validate date format.
+   If you use have any customized date filters in your project, update template accordingly.
+
 Migrate 9.1 to 9.2
 ------------------
 
@@ -187,6 +212,8 @@ Migrate 8.x to 9.1
 #. ``TaskTemplate-7`` is removed, change it to ``TaskTemplate-8``. ``TaskTemplate`` is also removed, change it to ``frame-8`` (provided by Ivy).
 
 #. The ``MenuKind`` enum has one more entry: EXTERNAL_LINK, use it if your item is an external link, and use CUSTOM if yours is an internal link.
+
+#. The ``PortalNavigatorInFrameAPI#navigateToPortalHome`` method is deprecated, redirect to ivy.html.applicationHomeRef() in your page instead.
 
 Migrate 8.x to 9.2
 ------------------

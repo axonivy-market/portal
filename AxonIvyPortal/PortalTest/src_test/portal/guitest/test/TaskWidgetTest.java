@@ -196,7 +196,7 @@ public class TaskWidgetTest extends BaseTest {
     redirectToRelativeLink(createTestingCaseMapUrl);
     HomePage homePage = new HomePage();
     homePage.waitForPageLoaded();
-    redirectToRelativeLink(createNewPaymentUrl);
+    redirectToRelativeLink(simplePaymentUrl);
     final String NEW_PAYMENT = "Do New Payment";
     final String LEAVE_REQUEST = "Case Map Leave Request";
 
