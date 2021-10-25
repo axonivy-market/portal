@@ -3,9 +3,7 @@
 Full Task List
 **************
 
-The **Full Task List** page shows you the same tasks you see on your
-personal dashboard. However, this page provides you with extended
-information on the tasks, as well as, advanced search and filter
+The **Full Task List** page shows you the tasks, as well as, advanced search and filter
 capabilities. You can reach the page by using the |task-list-icon| :guilabel:`Tasks` 
 link in the Axon Ivy Portal menu.
 
@@ -15,8 +13,15 @@ link in the Axon Ivy Portal menu.
    configuration of the Axon Ivy  
    Portal, you might see not only 
    the tasks belonging to you but 
-   all open tasks.                
+   all open tasks.     
 
+   Visibility tasks assigned to roles depending on state:
+
+   - Open: Visible for all members
+
+   - In Progress: Visible for all members, but "parked" for working user (no actions possible for other role members)
+
+   - Done: Visible for all members
 
 |navigate-to-full-task-list-page|
 

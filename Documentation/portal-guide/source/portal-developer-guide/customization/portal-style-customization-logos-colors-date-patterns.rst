@@ -98,6 +98,10 @@ You can customize in:
    - If ``--primary-color`` is a bright tone color (such as yellow or light blue), you may want to change ``--primary-text-color`` to ``black``. 
      It helps text of buttons and other components easier to recognize.
 
+.. tip::
+   If you are using Iframes and you want to customize the colors of the project specific UIs, then refer to this documentation 
+   `<https://developer.axonivy.com/doc/9.1/designer-guide/user-interface/user-dialogs.html?highlight=frame%208#color-customizing>`_
+
 .. warning::
    - Do not change ``font-family`` property values.
 

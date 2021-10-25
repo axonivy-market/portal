@@ -1,10 +1,16 @@
 package ch.ivy.addon.portalkit.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import ch.ivy.addon.portalkit.bo.TaskColumnsConfiguration;
-import ch.ivy.addon.portalkit.enums.JsonVariable;
+import ch.ivyteam.ivy.business.data.store.search.Filter;
+import ch.ivyteam.ivy.business.data.store.search.Result;
+import ch.ivyteam.ivy.environment.Ivy;
 
-public class TaskColumnsConfigurationService extends JsonConfigurationService<TaskColumnsConfiguration> {
-
+public class TaskColumnsConfigurationService extends BusinessDataService<TaskColumnsConfiguration> {
+  
+  private static final String APP_ID = "applicationId";
   private static TaskColumnsConfigurationService instance;
 
   private TaskColumnsConfigurationService() {}
@@ -16,31 +22,50 @@ public class TaskColumnsConfigurationService extends JsonConfigurationService<Ta
     return instance;
   }
 
-  /**
-   * @deprecated use {@link TaskColumnsConfigurationService#getConfiguration(Long)} instead
-   * @param applicationId
-   * @param userId
-   * @param processModelId
-   * @return TaskColumnsConfigurations
-   */
-  @SuppressWarnings("unused")
-  @Deprecated(forRemoval = true, since = "9.3")
-  public TaskColumnsConfiguration getConfiguration(Long applicationId, Long userId, Long processModelId) {
-    return getConfiguration(processModelId);
-  }
-
-  public TaskColumnsConfiguration getConfiguration(Long processModelId) {
-    return getPrivateConfig().stream().filter(config -> config.getProcessModelId().equals(processModelId)).findFirst()
-        .orElse(null);
-  }
-
   @Override
   public Class<TaskColumnsConfiguration> getType() {
     return TaskColumnsConfiguration.class;
   }
 
-  @Override
-  public String getConfigKey() {
-    return JsonVariable.TASK_COLUMN.key;
+  public TaskColumnsConfiguration getConfiguration(Long applicationId, Long userId, Long processModelId) {
+    Filter<TaskColumnsConfiguration> query =
+        repo().search(getType()).numberField(APP_ID).isEqualTo(applicationId).and().numberField("userId")
+            .isEqualTo(userId).and().numberField("processModelId").isEqualTo(processModelId);
+    return query.limit(1).execute().getFirst();
+  }
+
+  /**
+   * Get total count of Task configuration by application id
+   * @param applicationId
+   * @return totalCount
+   */
+  public long getTotalTaskConfigCountByAppId(Long applicationId) {
+    try {
+      Filter<TaskColumnsConfiguration> query =
+          repo().search(getType()).numberField(APP_ID).isEqualTo(applicationId);
+      return query.execute().totalCount();
+    } catch (Exception e) {
+      Ivy.log().error(e);
+      return 0;
+    }
+  }
+
+  /**
+   * Get list of Task configuration by application id 
+   * @param applicationId
+   * @param firstIndex is first entity
+   * @param offset is size of return list
+   * @return list of task configuration
+   */
+  public List<TaskColumnsConfiguration> getTaskConfigurationWithOffset(Long applicationId, int firstIndex, int offset) {
+    try {
+      Filter<TaskColumnsConfiguration> query =
+          repo().search(getType()).numberField(APP_ID).isEqualTo(applicationId);
+      Result<TaskColumnsConfiguration> queryResult = query.limit(firstIndex, offset).execute();
+      return queryResult.getAll();
+    } catch (Exception e) {
+      Ivy.log().error(e);
+      return new ArrayList<>();
+    }
   }
 }

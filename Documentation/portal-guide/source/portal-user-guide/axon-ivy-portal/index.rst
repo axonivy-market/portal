@@ -60,7 +60,7 @@ point. In detail these are:
    |axon-ivy-portal-menu|
 
 #. In the center you see your personal dashboard providing you instant
-   access to your processes, tasks and performance indicators. See
+   access to your processes, cases, tasks and performance indicators. See
    :ref:`dashboard` for a detailed introduction.
 
    |axon-ivy-portal|

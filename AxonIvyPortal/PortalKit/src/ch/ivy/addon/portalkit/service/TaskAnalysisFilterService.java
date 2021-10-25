@@ -6,7 +6,6 @@ import java.util.List;
 
 import ch.ivy.addon.portalkit.casefilter.CaseFilter;
 import ch.ivy.addon.portalkit.datamodel.internal.TaskAnalysisLazyDataModel;
-import ch.ivy.addon.portalkit.enums.JsonVariable;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilter;
 import ch.ivy.addon.portalkit.taskfilter.impl.TaskAnalysisFilterData;
 
@@ -54,10 +53,5 @@ public class TaskAnalysisFilterService extends AbstractFilterService<TaskAnalysi
         }
       }
     }
-  }
-
-  @Override
-  public String getConfigKey() {
-    return JsonVariable.TASK_ANALYSIS_FILTER.key;
   }
 }

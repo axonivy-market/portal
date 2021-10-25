@@ -12,7 +12,8 @@ import ch.ivy.addon.portalkit.enums.MenuKind;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.publicapi.PortalNavigatorAPI;
 import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
-import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
+import ch.ivy.addon.portalkit.util.ProcessStartUtils;
+import ch.ivyteam.ivy.application.IProcessModelVersion;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.request.IHttpRequest;
 import ch.ivyteam.ivy.workflow.StandardProcessType;
@@ -37,23 +38,24 @@ public final class PortalNavigator extends BaseNavigator{
   private static final String PORTAL_CASE_DETAILS_IN_FRAME = "Start Processes/PortalStart/CaseDetailsInIFrame.ivp";
   private static final String PORTAL_NEW_DASHBOARD_CONFIGURATION = "Start Processes/PortalStart/PortalDashboardConfiguration.ivp";
   private static final String PORTAL_PROCESS_INFO = "Start Processes/PortalStart/ProcessInformation.ivp";
-  private static final String PORTAL_NEW_DASHBOARD = "Start Processes/PortalStart/PortalDashboard.ivp";
   private static final String PORTAL_NEW_DASHBOARD_CONFIGURATION_START = "/PortalDashboardConfiguration.ivp";
 
-  public static final String PORTAL_NEW_DASHBOARD_START = "/PortalDashboard.ivp";
   public static final String PORTAL_DASHBOARD_START = "/DefaultDashboardPage.ivp";
   public static final String PORTAL_PROCESS_START = "/DefaultProcessStartListPage.ivp";
   public static final String PORTAL_TASK_START = "/DefaultTaskListPage.ivp";
   public static final String PORTAL_CASE_START = "/CaseListPage.ivp";
   public static final String PORTAL_STATISTIC_START = "/StatisticPage.ivp";
   public static final String PORTAL_USER_PROFILE_START =  "/UserProfile.ivp";
+  public static final String PORTAL_CASE_DETAILS_IN_IFRAME_START = "/CaseDetailsInIFrame.ivp";
+
+  private final static String DASHBOARD_PARAM = "isShowDashboard";
   
   public static String getPortalStartUrl() {
     return getRelativeLink(StandardProcessType.DefaultApplicationHomePage);
   }
 
   public static String getPortalDashboardPageUrl(Map<String, String> params) {
-    String customizePortalFriendlyRequestPath = SecurityServiceUtils.findFriendlyRequestPathContainsKeyword(PORTAL_DASHBOARD_START);
+    String customizePortalFriendlyRequestPath = ProcessStartUtils.findFriendlyRequestPathContainsKeyword(PORTAL_DASHBOARD_START);
     return buildUrl(StringUtils.defaultIfBlank(customizePortalFriendlyRequestPath, PORTAL_DASHBOARD), params);
   }
 
@@ -193,8 +195,14 @@ public final class PortalNavigator extends BaseNavigator{
     navigateByKeyword(PORTAL_USER_PROFILE_START, PORTAL_USER_PROFILE, new HashMap<>());
   }
 
-  public static void navigateToNewDashboard() {
-    navigateByKeyword(PORTAL_NEW_DASHBOARD_START, PORTAL_NEW_DASHBOARD, new HashMap<>());
+  public static String getDashboardLink() {
+    Map<String, String> params = new HashMap<>();
+    params.put(DASHBOARD_PARAM, Boolean.TRUE.toString());
+    return PortalNavigator.getPortalDashboardPageUrl(params);
+  }
+
+  public static void navigateToDashboard() {
+    redirect(getDashboardLink());
   }
 
   public static void navigateToNewDashboardConfiguration() {
@@ -214,6 +222,13 @@ public final class PortalNavigator extends BaseNavigator{
     params.put("caseId", String.valueOf(caseId));
     return buildUrlByKeyword("CaseDetailsPage.ivp", PORTAL_CASE_DETAILS, params);
   }
+
+  public static String buildPortalCaseDetailInFrameUrl(Long caseId, IProcessModelVersion processModelVersion) {
+    Map<String, String> params = new HashMap<>();
+    params.put("caseId", String.valueOf(caseId));
+    params.put("embedInFrame", Boolean.TRUE.toString());
+    return buildUrlByKeywordInPMV(PORTAL_CASE_DETAILS_IN_IFRAME_START, processModelVersion, PORTAL_CASE_DETAILS_IN_FRAME, params);
+  }
   
   /**
    * Generate URL for process information page of selected process
@@ -228,10 +243,15 @@ public final class PortalNavigator extends BaseNavigator{
   }
   
   public static String buildUrlByKeyword(String keyword, String defaultFriendlyRequestPath, Map<String, String> param) {
-    String customizePortalFriendlyRequestPath = SecurityServiceUtils.findFriendlyRequestPathContainsKeyword(keyword);
+    String customizePortalFriendlyRequestPath = ProcessStartUtils.findFriendlyRequestPathContainsKeyword(keyword);
     return buildUrl(StringUtils.defaultIfBlank(customizePortalFriendlyRequestPath, defaultFriendlyRequestPath), param);
   }
   
+  public static String buildUrlByKeywordInPMV(String keyword, IProcessModelVersion processModelVersion ,String defaultFriendlyRequestPath, Map<String, String> param) {
+    String customizePortalFriendlyRequestPath = ProcessStartUtils.findFriendlyRequestPathContainsKeywordInPMV(keyword, processModelVersion);
+    return buildUrl(StringUtils.defaultIfBlank(customizePortalFriendlyRequestPath, defaultFriendlyRequestPath), param);
+  }
+
   private static String buildUrl(String friendlyRequestPath, Map<String, String> params) {
     String requestPath = ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(friendlyRequestPath);
     if (StringUtils.isEmpty(requestPath)) {

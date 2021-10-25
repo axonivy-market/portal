@@ -33,6 +33,7 @@ import ch.ivy.addon.portalkit.taskfilter.impl.TaskAnalysisTaskFilterContainer;
 import ch.ivy.addon.portalkit.taskfilter.impl.TaskFilterData;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
+import ch.ivyteam.ivy.business.data.store.BusinessDataInfo;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.workflow.ITask;
@@ -199,9 +200,8 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
     taskAnalysisFilterData.setIsPublic(isPublic);
     TaskAnalysisFilterService taskFilterService = new TaskAnalysisFilterService();
     taskFilterService.save(taskAnalysisFilterData);
-    taskAnalysisFilterData = isPublic
-        ? taskFilterService.findPublicFilter(taskAnalysisFilterData.getId(), taskFilterGroupId)
-        : taskFilterService.findPrivateFilter(taskAnalysisFilterData.getId(), taskFilterGroupId);
+    BusinessDataInfo<TaskAnalysisFilterData> info = taskFilterService.save(taskAnalysisFilterData);
+    taskAnalysisFilterData = taskFilterService.findById(info.getId());
     return taskAnalysisFilterData;
   }
 

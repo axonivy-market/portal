@@ -28,6 +28,7 @@ public class TaskTemplatePage extends TemplatePage {
 
   public void clickOnAdditionalBusinessDetailLink() {
     switchToCaseInfoIframe();
+    waitForElementDisplayedByCssSelector("a[id$=':show-additional-case-details-link']");
     click(findElementByCssSelector("a[id$=':show-additional-case-details-link']"));
   }
 
@@ -188,6 +189,10 @@ public class TaskTemplatePage extends TemplatePage {
   public HomePage clickCancelAndLeftButton() {
     clickByCssSelector("a[id$='button-cancel']");
     return new HomePage();
+  }
+
+  public void clickCancelButton() {
+    clickByCssSelector("a[id$='button-cancel']");
   }
 
   public void clickTaskActionMenu() {

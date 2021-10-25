@@ -1,14 +1,14 @@
 .. _customization-default-user-process:
 
-Default user process
-====================
+Default user process - Deprecated
+=================================
 
 .. _customization-default-user-process-introduction:
 
 Introduction
 ------------
 
-In Portal homepage, the ``Process widget`` displays default processes,
+In legacy Portal homepage, the ``Process widget`` displays default processes,
 you can customize them so that project important starts are displayed.
 
 .. _customization-default-user-process-customization:

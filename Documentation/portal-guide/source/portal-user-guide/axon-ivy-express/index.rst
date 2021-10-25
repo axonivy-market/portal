@@ -30,8 +30,7 @@ of the key features of Axon Ivy Express are:
    user dialogs for each task.
 
 You can reach the page by either using the :guilabel:`Processes` link
-in the Axon Ivy Portal menu or the quick link :guilabel:`Show all processes` in
-your dashboard.
+in the Axon Ivy Portal menu.
 
 |navigate-to-axon-ivy-express|
 

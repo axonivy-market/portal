@@ -12,6 +12,7 @@ import ch.ivy.addon.portalkit.util.ScreenshotUtil;
 import portal.guitest.common.ScreenshotTest;
 import portal.guitest.page.ExampleOverviewPage;
 import portal.guitest.page.HomePage;
+import portal.guitest.page.NewDashboardPage;
 import portal.guitest.page.TaskDetailsPage;
 import portal.guitest.page.TaskWidgetPage;
 import portal.guitest.userexamples.page.CaseMapPage;
@@ -23,6 +24,7 @@ public class DemoProcessesScreenshotTest extends ScreenshotTest {
   private static final String CASE_MAP_URL = "/portal-user-examples/70765b37-a3e8-418a-a8d5-c2b3a539408e.icm";
   
   private HomePage homePage;
+  private NewDashboardPage newDashboardPage;
   private ExampleOverviewPage exampleOverviewPage;
   private static final int SCREENSHOT_WIDTH = 1400;
   
@@ -33,11 +35,20 @@ public class DemoProcessesScreenshotTest extends ScreenshotTest {
     redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     homePage = new HomePage();
   }
+
+  @Test
+  public void screenshotUserExampleLink() throws IOException {
+    showNewDashboard();
+    newDashboardPage = new NewDashboardPage();
+    newDashboardPage.openMainMenu();
+    ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 500));
+    executeDecorateJs("highlightUserExampleNavigation()");
+    ScreenshotUtil.captureHalfLeftPageScreenShot(DEMO_FOLDER + "user-example-guide-link");
+  }
+
   @Test
   public void screenshotUserExampleOverview() throws IOException {
     homePage.closeMainMenu();
-    ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 500));
-    ScreenshotUtil.captureHalfLeftPageScreenShot(DEMO_FOLDER + "user-example-guide-link");
     
     ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 1200));
     redirectToRelativeLink(startUserExampleProcess);
