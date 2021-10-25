@@ -52,7 +52,13 @@
         componentToUpdate="widget-configuration-form" isReadOnlyMode="#{dashboardConfigurationBean.isReadOnlyMode}"/>
     </c:if>
 
-    <c:if test="#{widget.type ne 'TASK' and widget.type ne 'CASE' and widget.type ne 'PROCESS'}">
+   <c:if test="#{widget.type eq 'CUSTOM'}">
+     <ic:ch.ivy.addon.portal.generic.dashboard.component.CustomWidgetConfiguration id="new-widget-configuration-component"
+       widget="#{widget}"
+       componentToUpdate="widget-configuration-form"/>
+   </c:if>
+
+    <c:if test="#{widget.type ne 'TASK' and widget.type ne 'CASE' and widget.type ne 'PROCESS' and widget.type ne 'CUSTOM'}">
       <!-- This is a sample text, will be removed when STATISTIC is implemented -->
       <h3 id="placeholder-text"><i class="si si-alert-circle u-mar-right-10"/>This feature will come soon, please select another widget!</h3>
     </c:if>
