@@ -20,7 +20,7 @@ import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
 import ch.ivy.addon.portalkit.util.DateTimeFormatterUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
-import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
+import ch.ivy.addon.portalkit.util.ProcessStartUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivy.addon.portalkit.util.TimesUtils;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -88,7 +88,11 @@ public class TaskActionBean implements Serializable {
     if (userCanOnlyDelegateAssignedTask(task)) {
       return canResume(task);
     } else {
-      return hasPermission(task, IPermission.TASK_WRITE_ACTIVATOR);
+      if(isNotDoneForWorkingUser(task)) {
+        return hasPermission(task, IPermission.TASK_WRITE_ACTIVATOR);
+      } else {
+        return false;
+      }      
     }
   }
 
@@ -185,6 +189,20 @@ public class TaskActionBean implements Serializable {
     return taskStates.contains(task.getState());
   }
   
+  public boolean isNotDoneForWorkingUser(ITask task) {
+    if(PermissionUtils.checkReadAllTasksPermission()) {
+      return true;
+    }
+    return isNotDone(task) && canResume(task);
+  }
+  
+  public boolean canResumeForWorkingUser(ITask task) {
+    if(PermissionUtils.checkReadAllTasksPermission()) {
+      return true;
+    }
+    return canResume(task);
+  }
+  
   public boolean isTechnicalState(ITask task) {
     EnumSet<TaskState> taskStates = EnumSet.of(TaskState.WAITING_FOR_INTERMEDIATE_EVENT, TaskState.FAILED,
         TaskState.JOIN_FAILED);
@@ -192,7 +210,7 @@ public class TaskActionBean implements Serializable {
   }
   
   public boolean showAdditionalOptions(ITask task) {
-    return isShowAdditionalOptions && isNotDone(task) && !isTechnicalState(task);
+    return isShowAdditionalOptions && isNotDone(task) && canResumeForWorkingUser(task) && !isTechnicalState(task);
   }
   
   public boolean isShowResetTask() {
@@ -253,16 +271,16 @@ public class TaskActionBean implements Serializable {
   }
 
   public boolean showClearDelayTime(ITask task) {
-    return TaskState.DELAYED.equals(task.getState()) && task.getDelayTimestamp() != null;
+    return TaskState.DELAYED.equals(task.getState()) && task.getDelayTimestamp() != null && isNotDoneForWorkingUser(task);
   }
 
   public boolean showClearExpiryTime(ITask task) {
-    return canChangeExpiry(task) && task.getExpiryTimestamp() != null;
+    return canChangeExpiry(task) && task.getExpiryTimestamp() != null && isNotDoneForWorkingUser(task);
   }
 
   public boolean noActionAvailable(ITask task) {
     boolean hasWorkflowEventLink = isShowReadWorkflowEvent && canReadWorkflowEventTask();
-    return !isNotDone(task) && !canReset(task) && !isTechnicalState(task) && !hasWorkflowEventLink;
+    return !isNotDone(task) && !canResumeForWorkingUser(task) && !canReset(task) && !isTechnicalState(task) && !hasWorkflowEventLink;
   }
   
   public void backToPrevPage(ITask task, boolean isFromTaskList, boolean isTaskStartedInDetails) {
@@ -275,7 +293,7 @@ public class TaskActionBean implements Serializable {
   }
   
   private void backToTaskList(ITask task) {
-    String friendlyRequestPath = SecurityServiceUtils.findFriendlyRequestPathContainsKeyword("BackFromTaskDetails.ivp");
+    String friendlyRequestPath = ProcessStartUtils.findFriendlyRequestPathContainsKeyword("BackFromTaskDetails.ivp");
     if (StringUtils.isEmpty(friendlyRequestPath)) {
       friendlyRequestPath = BACK_FROM_TASK_DETAILS;
     }

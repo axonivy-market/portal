@@ -261,7 +261,7 @@ Ts0 f35 actionCode 'import ch.ivy.addon.portalkit.enums.FilterType;
 import ch.ivy.addon.portalkit.taskfilter.impl.TaskFilterData;
 import ch.ivy.addon.portalkit.service.TaskFilterService;
 TaskFilterService service = new TaskFilterService();
-service.delete(in.taskFilterDataToBeRemoved);
+service.delete(in.taskFilterDataToBeRemoved.id);
 if(in.taskFilterDataToBeRemoved.type == FilterType.ONLY_ME) {
 	in.taskPrivateFilters.remove(in.taskFilterDataToBeRemoved);
 } else {
@@ -416,7 +416,7 @@ import javax.faces.context.FacesContext;
 if (in.numberOfNewTask > 0){
 	FacesContext facesContext = FacesContext.getCurrentInstance();
 	String notification = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/taskList/newTaskNotification");
-	facesContext.addMessage("portal-global-growl", new FacesMessage(FacesMessage.SEVERITY_INFO, notification, null));
+	facesContext.addMessage("portal-global-growl-message", new FacesMessage(FacesMessage.SEVERITY_INFO, notification, null));
 	PrimeFaces.current().ajax().update("portal-global-growl");        
 }' #txt
 Ts0 f56 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

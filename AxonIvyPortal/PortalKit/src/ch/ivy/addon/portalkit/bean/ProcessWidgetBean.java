@@ -1,5 +1,7 @@
 package ch.ivy.addon.portalkit.bean;
 
+import static ch.ivyteam.ivy.server.ServerFactory.getServer;
+
 import java.io.IOException;
 import java.io.Serializable;
 import java.text.Collator;
@@ -172,10 +174,7 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
       String imageSrc = findProcessDefaultImageSrc(ivyProcess, customFieldProcessImage);
       ivyProcess.setDefaultImageSrc(imageSrc);
       ivyProcess.setDefaultImageCms(StringUtils.EMPTY);
-      return;
-    }
-
-    if (!this.defaultImageType.equals(DefaultImage.DEFAULT.name())) {
+    } else if (!this.defaultImageType.equals(DefaultImage.DEFAULT.name())) {
       ivyProcess.setDefaultImageCms(DEFAULT_IMAGE_CMS_FOLDER + this.defaultImageType);
       ivyProcess.setDefaultImageSrc(StringUtils.EMPTY);
     }
@@ -197,14 +196,19 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
     String defaultImageUri = StringUtils.EMPTY;
     IProcessModel pm = Ivy.wf().getApplication().findProcessModel(processModelName);
     if (pm != null) {
-      defaultImageUri = Ivy.cms().getContentManagement().findCms(pm.getReleasedProcessModelVersion()).co(processImage);
-      if (StringUtils.isNotBlank(defaultImageUri)) {
-        int indexOfDefaultImageUri = defaultImageUri.indexOf("/cm");
-        defaultImageUri = defaultImageUri.substring(indexOfDefaultImageUri).replaceAll("\"/>", StringUtils.EMPTY);
+      String processImageCms =
+          getServer().getContentManagement().findCms(pm.getReleasedProcessModelVersion()).cr(processImage);
+      if (StringUtils.isNotBlank(processImageCms)) {
+        defaultImageUri = getImageSrc(processImageCms);
       }
     }
 
     return defaultImageUri;
+  }
+
+  private String getImageSrc(String imageElement) {
+    int indexOfImageSrc = imageElement.indexOf("/cm");
+    return imageElement.substring(indexOfImageSrc).replaceAll("\"/>", StringUtils.EMPTY);
   }
 
   public void editExpressWorkflow(ExpressProcess process) throws IOException {

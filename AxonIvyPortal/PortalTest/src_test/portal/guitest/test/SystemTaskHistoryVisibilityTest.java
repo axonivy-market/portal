@@ -19,7 +19,7 @@ public class SystemTaskHistoryVisibilityTest extends BaseTest {
   @Override
   public void setup() {
     super.setup();
-    redirectToRelativeLink(createNewPaymentUrl);
+    redirectToRelativeLink(complexPaymentUrl);
   }
 
   @Test

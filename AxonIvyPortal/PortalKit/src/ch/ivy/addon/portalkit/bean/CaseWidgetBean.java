@@ -4,7 +4,9 @@ import static ch.ivy.addon.portalkit.filter.AbstractFilter.ALL;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import javax.faces.bean.ManagedBean;
@@ -41,7 +43,7 @@ import ch.ivyteam.ivy.workflow.ICase;
 @ViewScoped
 public class CaseWidgetBean implements Serializable {
 
-  private static final String START_PROCESSES_SHOW_ADDITIONAL_CASE_DETAILS_PAGE = "Start Processes/CaseWidget/showAdditionalCaseDetails.ivp";  
+  private static final String START_PROCESSES_SHOW_ADDITIONAL_CASE_DETAILS_PAGE = "Start Processes/PortalStart/showAdditionalCaseDetails.ivp";  
   private static final long serialVersionUID = 1L;
 
   private Long expandedCaseId;
@@ -88,9 +90,10 @@ public class CaseWidgetBean implements Serializable {
     } else {
       additionalCaseDetailsPageUri = iCase.customFields().textField(AdditionalProperty.CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE.toString()).getOrNull();
       if (StringUtils.isEmpty(additionalCaseDetailsPageUri)) {
-        additionalCaseDetailsPageUri = CaseUtils.getProcessStartUriWithCaseParameters(iCase, START_PROCESSES_SHOW_ADDITIONAL_CASE_DETAILS_PAGE) + "&embedInFrame";
+        Map<String, String> params = new HashMap<>();
+        params.put("caseId", String.valueOf(iCase.getId()));
+        additionalCaseDetailsPageUri = PortalNavigator.buildUrlByKeyword("showAdditionalCaseDetails", START_PROCESSES_SHOW_ADDITIONAL_CASE_DETAILS_PAGE, params);
       } else {
-        // support open in iFrame 
         additionalCaseDetailsPageUri = additionalCaseDetailsPageUri + "&embedInFrame";
       }
     }
