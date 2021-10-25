@@ -19,6 +19,8 @@ import portal.guitest.page.AdminSettingsPage;
 import portal.guitest.page.CaseWidgetPage;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.MainMenuPage;
+import portal.guitest.page.NewDashboardPage;
+import portal.guitest.page.ProcessWidgetPage;
 import portal.guitest.page.TaskWidgetPage;
 
 public class AdminSettingsTest extends BaseTest {
@@ -82,4 +84,44 @@ public class AdminSettingsTest extends BaseTest {
 	   CaseWidgetPage caseWidgetPage = mainMenuPage.openCaseList();
 	   assertEquals("TestCase", caseWidgetPage.getCaseNameAt(0));
 	  }
+
+    @Test
+    public void testShowLegacyUISetting() {
+      login(TestAccount.ADMIN_USER);
+      HomePage homePage = new HomePage();
+      AdminSettingsPage adminSettingsPage = homePage.openAdminSettings();
+      adminSettingsPage.setShowLegacyUI();
+      MainMenuPage mainMenuPage = homePage.openMainMenu();
+      ProcessWidgetPage processWidgetPage = mainMenuPage.selectProcessesMenu();
+      String currentView = processWidgetPage.getCurrentViewMode();
+      assertTrue("COMPACT".equalsIgnoreCase(currentView));
+      redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+      homePage = new HomePage();
+      assertTrue(homePage.isDisplayed());
+
+      adminSettingsPage = homePage.openAdminSettings();
+      adminSettingsPage.resetShowLegacyUI();
+      mainMenuPage = homePage.openMainMenu();
+      processWidgetPage = mainMenuPage.selectProcessesMenu();
+      currentView = processWidgetPage.getCurrentViewMode();
+      assertTrue("IMAGE".equalsIgnoreCase(currentView));
+      redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+      NewDashboardPage newDashboardPage = new NewDashboardPage();
+      assertTrue(newDashboardPage.isDisplayed());
+
+      adminSettingsPage = newDashboardPage.openAdminSettings();
+      adminSettingsPage.setShowLegacyUI();
+      redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+      homePage = new HomePage();
+      assertTrue(homePage.isDisplayed());
+      adminSettingsPage = homePage.openAdminSettings();
+      adminSettingsPage.resetAllSettings();
+      mainMenuPage = homePage.openMainMenu();
+      processWidgetPage = mainMenuPage.selectProcessesMenu();
+      currentView = processWidgetPage.getCurrentViewMode();
+      assertTrue("IMAGE".equalsIgnoreCase(currentView));
+      redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+      newDashboardPage = new NewDashboardPage();
+      assertTrue(newDashboardPage.isDisplayed());
+    }
 }

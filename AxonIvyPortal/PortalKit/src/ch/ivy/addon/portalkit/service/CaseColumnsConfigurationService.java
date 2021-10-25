@@ -1,13 +1,19 @@
 package ch.ivy.addon.portalkit.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import ch.ivy.addon.portalkit.bo.CaseColumnsConfiguration;
-import ch.ivy.addon.portalkit.enums.JsonVariable;
+import ch.ivyteam.ivy.business.data.store.search.Filter;
+import ch.ivyteam.ivy.business.data.store.search.Result;
+import ch.ivyteam.ivy.environment.Ivy;
 
-public class CaseColumnsConfigurationService extends JsonConfigurationService<CaseColumnsConfiguration> {
-
+public class CaseColumnsConfigurationService extends BusinessDataService<CaseColumnsConfiguration> {
+  
+  private static final String APP_ID = "applicationId";
   private static CaseColumnsConfigurationService instance;
 
-  private CaseColumnsConfigurationService() {}
+  public CaseColumnsConfigurationService() {}
 
   public static CaseColumnsConfigurationService getInstance() {
     if (instance == null) {
@@ -16,32 +22,52 @@ public class CaseColumnsConfigurationService extends JsonConfigurationService<Ca
     return instance;
   }
 
-
-  /**
-   * @deprecated use {@link CaseColumnsConfigurationService#getConfiguration(Long)} instead
-   * @param applicationId
-   * @param userId
-   * @param processModelId
-   * @return CaseColumnsConfiguration
-   */
-  @SuppressWarnings("unused")
-  @Deprecated(forRemoval = true, since = "9.3")
-  public CaseColumnsConfiguration getConfiguration(Long applicationId, Long userId, Long processModelId) {
-    return getConfiguration(processModelId);
-  }
-
-  public CaseColumnsConfiguration getConfiguration(Long processModelId) {
-    return getPrivateConfig().stream().filter(config -> config.getProcessModelId().equals(processModelId)).findFirst()
-        .orElse(null);
-  }
-
   @Override
   public Class<CaseColumnsConfiguration> getType() {
     return CaseColumnsConfiguration.class;
   }
 
-  @Override
-  public String getConfigKey() {
-    return JsonVariable.CASE_COLUMN.key;
+  public CaseColumnsConfiguration getConfiguration(Long applicationId, Long userId, Long processModelId) {
+    Filter<CaseColumnsConfiguration> query =
+        repo().search(getType())
+              .numberField(APP_ID).isEqualTo(applicationId)
+              .and().numberField("userId").isEqualTo(userId)
+              .and().numberField("processModelId").isEqualTo(processModelId);
+    return query.limit(1).execute().getFirst();
+  }
+
+  /**
+   * Get total count of Case configuration by application id
+   * @param applicationId
+   * @return totalCount
+   */
+  public long getTotalCaseConfigCountByAppId(Long applicationId) {
+    try {
+      Filter<CaseColumnsConfiguration> query =
+          repo().search(getType()).numberField(APP_ID).isEqualTo(applicationId);
+      return query.execute().totalCount();
+    } catch (Exception e) {
+      Ivy.log().error(e);
+      return 0;
+    }
+  }
+
+  /**
+   * Get list of Case configuration by application id
+   * @param applicationId
+   * @param firstIndex is first entity
+   * @param offset is size of return list
+   * @return list of Case configuration
+   */
+  public List<CaseColumnsConfiguration> getCaseConfigurationWithOffset(Long applicationId, int firstIndex, int offset) {
+    try {
+      Filter<CaseColumnsConfiguration> query =
+          repo().search(getType()).numberField(APP_ID).isEqualTo(applicationId);
+      Result<CaseColumnsConfiguration> queryResult = query.limit(firstIndex, offset).execute();
+      return queryResult.getAll();
+    } catch (Exception e) {
+      Ivy.log().error(e);
+      return new ArrayList<>();
+    }
   }
 }

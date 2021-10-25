@@ -1,5 +1,6 @@
 package portal.guitest.common;
 
+import static portal.guitest.common.Variable.SHOW_LEGACY_UI;
 import static portal.guitest.common.Variable.SHOW_USER_GUIDE;
 
 import java.io.IOException;
@@ -66,6 +67,8 @@ public class BaseTest {
   protected String viewAlphaCompanyProcessHistoryUrl = "portal-developer-examples/1624C1C79661758C/viewProcessHistoryOfAlphaCompany.ivp";
   protected String viewAlphaCompanyProcessHistoryInDialogUrl = "portal-developer-examples/1624C1C79661758C/viewProcessHistoryOfAlphaCompanyInDialog.ivp";
   protected String createNewPaymentUrl = "portal-developer-examples/162511D2577DBA88/createNewPayment.ivp";
+  protected String simplePaymentUrl = "portal-developer-examples/162511D2577DBA88/simplePayment.ivp";
+  protected String complexPaymentUrl = "portal-developer-examples/162511D2577DBA88/complexPayment.ivp";
   protected String documentTableComponentUrl = "portal-developer-examples/16B447235433958E/start.ivp";
   protected String cleanUpAbsencesAndSubstituesLink = "portalKitTestHelper/1511A66AF619A768/cleanAbsencesAndSubstitues.ivp";
   protected String createUserFavoriteProcess = "portalKitTestHelper/153CACC26D0D4C3D/createTestUserFavoriteProcess.ivp";
@@ -75,8 +78,8 @@ public class BaseTest {
   protected String roleSelectionComponentShowcaseUrl = "portal-developer-examples/175495F02A2BCEB2/start.ivp";
   protected String startUserExampleProcess = "portal-user-examples/17236DB1D3DA14C0/userExampleGuide.ivp";
   protected String userIsOwnerUrl = "internalSupport/16A68510A341BE6E/userIsOwner.ivp";
-  protected String showTaskNoteHistoryUrl = "portalTemplate/16044EDBC0E23859/showTaskNoteHistory.ivp?selectedTaskId=%s";
-  protected String showCaseNoteHistoryUrl = "portalTemplate/1603506A872272C6/showCaseNoteHistory.ivp?caseId=%s";
+  protected String showTaskNoteHistoryUrl = "PortalTemplate/1549F58C18A6C562/showTaskNoteHistory.ivp?selectedTaskId=%s";
+  protected String showCaseNoteHistoryUrl = "PortalTemplate/1549F58C18A6C562/showCaseNoteHistory.ivp?caseId=%s";
   protected String createTaskWithSystemState = "portalKitTestHelper/153CACC26D0D4C3D/createTaskWithSystemState.ivp";
   protected String createTechnicalStateUrl = "portal-developer-examples/162511D2577DBA88/createTechnicalStateTasks.ivp";
   protected String portalKitTestHelperPasswordResetUrl = "portalKitTestHelper/176463FD4BBF6C93/PasswordReset.ivp";
@@ -107,6 +110,7 @@ public class BaseTest {
     browser = Browser.getBrowser();
     launchBrowserAndGotoRelativeLink(cleanupDataLink);
     updatePortalSetting(SHOW_USER_GUIDE.getKey(), "false");
+    updatePortalSettingToShowLegacyUI();
   }
   
   /**
@@ -117,6 +121,7 @@ public class BaseTest {
   public void setupWithAlternativeLinkAndAccount(String relativePath, TestAccount account) {
     browser = Browser.getBrowser();
     launchBrowserAndGotoRelativeLink(relativePath);
+    updatePortalSettingToShowLegacyUI();
     login(account);
   }
 
@@ -286,6 +291,15 @@ public class BaseTest {
   public void executeDecorateJs(String function) {
     ((JavascriptExecutor) getBrowser().getDriver()).executeScript(function);
     Sleeper.sleep(200);
+  }
+
+  public void updatePortalSettingToShowLegacyUI() {
+    updatePortalSetting(SHOW_LEGACY_UI.getKey(), "true");
+  }
+
+  protected void showNewDashboard() {
+    updatePortalSetting(SHOW_LEGACY_UI.getKey(), "false");
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
   }
   
 }

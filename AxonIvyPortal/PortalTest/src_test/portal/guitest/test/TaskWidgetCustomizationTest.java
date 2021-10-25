@@ -54,7 +54,8 @@ public class TaskWidgetCustomizationTest extends BaseTest {
     taskWidgetPage.sortTaskListByColumn(CUSTOMER_NAME_COLUMN_HEADER, 0, CUSTOMER_NAME_COLUMN_ID, "Florian");
     assertTrue("Florian".equals(taskWidgetPage.getTaskListCustomCellValue(0, CUSTOMER_NAME_COLUMN_ID)));
 
+    taskWidgetPage.WaitUntilSortDownIconDiplayed();
     taskWidgetPage.sortTaskListByColumn(CUSTOMER_NAME_COLUMN_HEADER, 0, CUSTOMER_NAME_COLUMN_ID, "Sarah");
-    assertTrue(taskWidgetPage.getTaskListCustomCellValue(2, CUSTOMER_NAME_COLUMN_ID), "Florian".equals(taskWidgetPage.getTaskListCustomCellValue(2, CUSTOMER_NAME_COLUMN_ID)));
+    assertTrue("Florian".equals(taskWidgetPage.getTaskListCustomCellValue(2, CUSTOMER_NAME_COLUMN_ID)));
   }
 }
