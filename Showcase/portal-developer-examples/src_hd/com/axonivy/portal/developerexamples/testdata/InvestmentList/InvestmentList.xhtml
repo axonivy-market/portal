@@ -1,0 +1,62 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions">
+<h:body>
+  <ui:composition template="/layouts/frame-8.xhtml">
+    <ui:define name="title">Create Investment</ui:define>
+    <ui:define name="content">
+      <h:form id="form">
+        <div class="ui-g">
+	        <div class="ui-g-4">
+            <h:outputLabel for="name" value="User" />
+          </div>
+          <div class="ui-g-8">
+            <h:outputText id="name" value="#{data.name}" />
+          </div>
+          <div class="ui-g-4">
+            <h:outputLabel for="title" value="Title" />
+          </div>
+          <div class="ui-g-8">
+            <h:outputText id="title" value="#{data.title}" />
+          </div>
+	        <div class="ui-g-4">
+	          <h:outputLabel for="email" value="Email" />
+	        </div>
+	        <div class="ui-g-8">
+            <h:outputText id="email" value="#{data.email}" />
+          </div>
+	        <div class="ui-g-4">
+            <h:outputLabel for="start-from" value="Start Date from" />
+          </div>
+          <div class="ui-g-8">
+            <p:inputText id="start-from" value="#{data.startFrom}" disabled="true" />
+          </div>
+          <div class="ui-g-4">
+            <h:outputLabel for="start-to" value="Start Date to" />
+          </div>
+          <div class="ui-g-8">
+            <p:inputText id="start-to" value="#{data.startTo}" disabled="true" />
+          </div>
+	        <div class="ui-g-12">
+	          <p:dataTable id="investment-table" value="#{data.investments}" var="investment">
+	            <p:column headerText="ID">
+	              <h:outputText value="#{investment.id}" />
+	            </p:column>
+	            <p:column headerText="Start date">
+	              <h:outputText value="#{investment.startDate}" />
+	            </p:column>
+	            <p:column headerText="Profit">
+	              <h:outputText value="#{investment.profit}" />
+	            </p:column>
+	            <p:column headerText="Profit(%)">
+	              <h:outputText value="#{investment.profitPercentage}" />
+	            </p:column>
+	          </p:dataTable>
+	        </div>
+        </div>
+      </h:form>
+    </ui:define>
+  </ui:composition>
+</h:body>
+</html>

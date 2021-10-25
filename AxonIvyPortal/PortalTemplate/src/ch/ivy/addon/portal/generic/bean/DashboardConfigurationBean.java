@@ -24,6 +24,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
+import ch.ivy.addon.portalkit.dto.dashboard.CustomDashboardWidget;
+import ch.ivy.addon.portalkit.dto.dashboard.CustomDashboardWidgetParam;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.ProcessDashboardWidget;
@@ -34,6 +36,7 @@ import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.enums.ProcessWidgetMode;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.util.CategoryUtils;
+import ch.ivy.addon.portalkit.util.Dates;
 
 @ViewScoped
 @ManagedBean
@@ -54,7 +57,7 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
 
     this.isReadOnlyMode = userAgent.matches(".*Android.*|.*webOS.*|.*iPhone.*|.*iPad.*|.*iPod.*|.*BlackBerry.*|.*IEMobile.*|.*Opera Mini.*");
 
-    samples = List.of(taskSample(), caseSample(), statisticSample(), processSample());
+    samples = List.of(taskSample(), caseSample(), statisticSample(), processSample(), customSample());
   }
 
   private WidgetSample taskSample() {
@@ -75,6 +78,11 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
   private WidgetSample processSample() {
     return new WidgetSample(translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/processList"), DashboardWidgetType.PROCESS,
         "process-widget-sample.png");
+  }
+
+  private WidgetSample customSample() {
+    return new WidgetSample(translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/customWidget"), DashboardWidgetType.CUSTOM,
+        "");
   }
 
   private void backupCategories() {
@@ -116,6 +124,11 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
             Arrays.asList(translate("/ch.ivy.addon.portalkit.ui.jsf/common/processes")));
         this.widget = getDefaultProcessDashboardWidget();
         break;
+      case CUSTOM:
+        this.newWidgetHeader = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/newWidgetHeader",
+            Arrays.asList(translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/customWidget")));
+        this.widget = getDefaultCustomDashboardWidget();
+        break;
       case STATISTIC:
         this.widget = null;
         break;
@@ -147,6 +160,13 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
     String widgetId = generateNewWidgetId(DashboardWidgetType.PROCESS);
     String widgetName = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourProcesses");
     return ProcessDashboardWidget.buildDefaultWidget(widgetId, widgetName);
+  }
+
+  public CustomDashboardWidget getDefaultCustomDashboardWidget() {
+    String widgetId = generateNewWidgetId(DashboardWidgetType.CUSTOM);
+    String widgetName = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourCustomWidget");
+    CustomDashboardWidget a =  CustomDashboardWidget.buildDefaultWidget(widgetId, widgetName);
+    return a;
   }
 
   public String generateNewWidgetId(DashboardWidgetType type) {
@@ -204,6 +224,24 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
     }  else if (this.widget.getType() == DashboardWidgetType.CASE) {
       updateCaseWidgetAfterSave();
       backupCategories();
+    } else if (this.widget.getType() == DashboardWidgetType.CUSTOM) {
+      CustomDashboardWidget customWidget =  (CustomDashboardWidget) widget;
+
+      for (CustomDashboardWidgetParam param : customWidget.getData().getCustomParams()) {
+        switch (param.getType()) {
+          case BOOLEAN:
+            param.setValue(param.getValueBoolean().toString());
+            break;
+          case DATE:
+            param.setValue(Dates.format(param.getValueDate()));
+            break;
+          case USER:
+            param.setValue(param.getValueUser().getName());
+            break;
+          default:
+            break;
+        }
+      }
     }
     resetUserFilter();
     this.widget.buildPredefinedFilterData();

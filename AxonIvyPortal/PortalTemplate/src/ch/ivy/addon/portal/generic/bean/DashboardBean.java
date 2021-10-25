@@ -29,23 +29,29 @@ import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.dto.WidgetLayout;
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
+import ch.ivy.addon.portalkit.dto.dashboard.CustomDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.ProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.process.DashboardProcess;
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
+import ch.ivy.addon.portalkit.enums.DashboardCustomWidgetType;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.enums.JsonVariable;
 import ch.ivy.addon.portalkit.enums.ProcessWidgetMode;
+import ch.ivy.addon.portalkit.ivydata.service.impl.ProcessService;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
+import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
 import ch.ivy.addon.portalkit.support.HtmlParser;
 import ch.ivy.addon.portalkit.util.CategoryUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.workflow.ICase;
+import ch.ivyteam.ivy.workflow.IStartElement;
 import ch.ivyteam.ivy.workflow.ITask;
+import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 @ViewScoped
 @ManagedBean
@@ -110,6 +116,8 @@ public class DashboardBean implements Serializable {
     for (DashboardWidget widget : widgets) {
       if (widget.getType().equals(DashboardWidgetType.PROCESS)) {
         loadProcessesOfWidget(widget);
+      } else if (widget.getType().equals(DashboardWidgetType.CUSTOM)) {
+        loadCustomWidget(widget);
       }
     }
   }
@@ -154,6 +162,8 @@ public class DashboardBean implements Serializable {
             widget.setName(translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourProcesses"));
           }
           break;
+        case CUSTOM:
+          loadCustomWidget(widget);
         default:
           break;
       }
@@ -216,6 +226,24 @@ public class DashboardBean implements Serializable {
 
     processWidget.setDisplayProcesses(processes);
     processWidget.setOriginalDisplayProcesses(processes);
+  }
+
+  private void loadCustomWidget(DashboardWidget widget) {
+    CustomDashboardWidget customWidget = (CustomDashboardWidget) widget;
+    if (StringUtils.isNotBlank(customWidget.getData().getProcessStart())) {
+      String url = ProcessStartAPI.findStartableLinkByUserFriendlyRequestPath(customWidget.getData().getProcessStart());
+      IStartElement element = ProcessStartAPI.findStartElementByProcessStartFriendlyRequestPath(customWidget.getData().getProcessStart());
+      customWidget.getData().setParams(element.startParameters());
+
+      List<IWebStartable> allPortalProcesses = ProcessService.newInstance().findProcesses().getProcesses();
+      customWidget.getData().setStartableProcessStart(allPortalProcesses.stream()
+        .filter(proccess -> proccess.getLink().toString().contentEquals(url)).findFirst().get());
+      customWidget.loadParameters();
+      customWidget.getData().setUrl(url);
+      customWidget.getData().setType(DashboardCustomWidgetType.PROCESS);
+    } else {
+      customWidget.getData().setType(DashboardCustomWidgetType.EXTERNAL_URL);
+    }
   }
 
   private List<DashboardProcess> getAllPortalProcesses() {

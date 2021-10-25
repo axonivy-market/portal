@@ -47,7 +47,7 @@
             <p:remoteCommand name="saveWidgetState" actionListener="#{managedBean.saveSelectedWidget()}" global="false"/>
           </h:form>
 
-        <div class="dashboard__body ui-g-12 js-dashboard__body">
+        <div class="dashboard__body ui-g-12 js-dashboard__body #{isReadOnlyMode ? 'readonly' : '' }">
           <h:panelGroup id="grid-stack" layout="block" styleClass="grid-stack ui-g-12">
             <c:if test="#{not empty managedBean.selectedDashboard.widgets}">
               <c:forEach var="widget" items="#{managedBean.selectedDashboard.widgets}" varStatus="status">
@@ -76,11 +76,12 @@
                     </c:if>
 
                     <!-- Process widget -->
-                    <c:if test="#{widget.type eq 'PROCESS'}">
-                      <ic:ch.ivy.addon.portal.generic.dashboard.component.ProcessDashboardWidget widget="#{widget}"
+                    <c:if test="#{widget.type eq 'CUSTOM'}">
+                      <ic:ch.ivy.addon.portal.generic.dashboard.component.CustomDashboardWidget widget="#{widget}"
                         isReadOnlyMode="#{managedBean.isReadOnlyMode}"
                         index="#{status.index}" />
                     </c:if>
+                    
                   </div>
                 </div>
               </c:forEach>
