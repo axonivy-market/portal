@@ -148,20 +148,20 @@ function handleError(xhr, renderDetail){
   if (xhr.statusText === 'abort') {
     return;
   }
-  if (renderDetail){
-    document.getElementById('ajax-indicator:show-more').onclick = function (){
-      document.getElementById('ajax-indicator:error-code').innerHTML = xhr.status;
-      document.getElementById('ajax-indicator:error-text').innerHTML = xhr.statusText;
-      document.getElementById('ajax-indicator:error-url').innerHTML = xhr.pfSettings.url;
-      document.getElementById('ajax-indicator:error-ready-state').innerHTML = xhr.readyState;
-      document.getElementById('ajax-indicator:error-type').innerHTML = xhr.pfSettings.type;
-      document.getElementById('ajax-indicator:error-args').innerHTML = JSON.stringify(xhr.pfArgs);
-      document.getElementById('ajax-indicator:pfSettings-source').innerHTML = xhr.pfSettings.source.id;
-      document.getElementById('ajax-indicator:form-data').innerHTML = decodeURIComponent(xhr.pfSettings.data);
-      document.getElementById('ajax-indicator:response-text').innerHTML = xhr.responseText;
-      document.getElementById('ajax-indicator:xhr').innerHTML = JSON.stringify(xhr);
+  if (renderDetail) {
+    $("a[id$='ajax-indicator:ajax-indicator-show-more']").click(function() {
+      $("[id$='ajax-indicator:error-code']").text(xhr.status);
+      $("[id$='ajax-indicator:error-text']").text(xhr.statusText);
+      $("[id$='ajax-indicator:error-url']").text(xhr.pfSettings.url);
+      $("[id$='ajax-indicator:error-ready-state']").text(xhr.readyState);
+      $("[id$='ajax-indicator:error-type']").text(xhr.pfSettings.type);
+      $("[id$='ajax-indicator:error-args']").text(JSON.stringify(xhr.pfArgs));
+      $("[id$='ajax-indicator:pfSettings-source']").text(xhr.pfSettings.source.id);
+      $("[id$='ajax-indicator:form-data']").text(decodeURIComponent(xhr.pfSettings.data));
+      $("[id$='ajax-indicator:response-text']").text(xhr.responseText);
+      $("[id$='ajax-indicator:xhr']").text(JSON.stringify(xhr));
       PF('detail-error-dialog').show();
-    }
+    });
   }
   PF('error-ajax-dialog').show();
 }
