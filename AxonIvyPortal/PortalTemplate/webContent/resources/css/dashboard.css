@@ -190,6 +190,11 @@
 	margin: 10px 10px 0 10px;	
 }
 
+.widget__content .ui-datatable tr.dashboard-table--row-style.ui-state-hover {
+  background: var(--item-background-hover);
+  border: var(--item-border-hover);
+}
+
 .dashboard-tasks-container__columns-configuration,
 .dashboard-cases-container__columns-configuration  {
   text-align: right;
