@@ -5796,6 +5796,14 @@ body span.ui-commandlink .si {
   height: 16px;
 }
 
+.image-view-form .more-information-image-widget {
+  text-align: center;
+  position: absolute;
+  top: 35px;
+  width: 100%;
+  height: 16px;
+}
+
 .grid-view-form .process-action-group {
   position: absolute;
   padding: 9px;
@@ -5864,7 +5872,7 @@ body span.ui-commandlink .si {
   left: 0;
 }
 
-.image-view-form .start-process {
+.image-view-form .start-process{
   padding: 32px 24px 16px 24px;
   overflow: hidden;
   position: absolute;
@@ -5873,6 +5881,17 @@ body span.ui-commandlink .si {
   width: 100%;
   text-align: center;
 }
+
+.image-view-form .start-process-image-widget {
+  padding: 32px 24px 16px 24px;
+  overflow: hidden;
+  position: absolute;
+  top: -45px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+}
+
 
 .image-view-form .start-process button {
   height: 40px;
@@ -5887,6 +5906,11 @@ body span.ui-commandlink .si {
 
 .image-process-container .image-process-item .card-item.card {
   height: 520px;
+}
+
+.image-process-container .image-process-item .card-item.card.image-widget-mode {
+  min-height: 580px;
+  height:100%;
 }
 
 .image-process-item .image-process-item-image {
