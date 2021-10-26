@@ -81,15 +81,15 @@ public class ProcessStartUtils {
   }
 
   public static boolean isExternalLink(ProcessType processType) {
-    return ProcessType.EXTERNAL_LINK.equals(processType);
+    return ProcessType.EXTERNAL_LINK == processType;
   }
 
   public static boolean isIvyProcess(ProcessType processType) {
-    return ProcessType.IVY_PROCESS.equals(processType);
+    return ProcessType.IVY_PROCESS == processType;
   }
 
   public static boolean isExpressProcess(ProcessType processType) {
-    return ProcessType.EXPRESS_PROCESS.equals(processType);
+    return ProcessType.EXPRESS_PROCESS == processType;
   }
   
   public static String findFriendlyRequestPathContainsKeyword(String keyword){
