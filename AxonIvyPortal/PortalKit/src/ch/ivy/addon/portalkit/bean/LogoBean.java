@@ -33,6 +33,6 @@ public class LogoBean implements Serializable {
   }
 
   private boolean checkDefaultContentExist(String cmsUri) {
-    return Ivy.cms().findContentObjectValue(cmsUri, Ivy.cms().getDefaultLanguage()).getContentAsBinaryStream() != null;
+    return Ivy.cms().findContentObjectValue(cmsUri, null).getContentAsBinaryStream() != null;
   }
 }
