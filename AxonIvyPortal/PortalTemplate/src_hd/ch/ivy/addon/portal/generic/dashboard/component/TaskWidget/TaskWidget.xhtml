@@ -42,7 +42,8 @@
         pageLinks="5" sortField="#{taskWidget.sortField}" sortBy="#{taskWidget.sortField}"
         sortOrder="#{taskWidget.sortDescending ? 'descending' : 'ascending'}"
         rowIndexVar="rowIndex" rowHover="#{isReadOnlyMode}" selectionMode="single"
-        styleClass="dashboard-tasks--table #{isReadOnlyMode ? '' : 'dashboard__table--edit'} #{isPreviewMode ? 'dashboard__table--preview' : ''}">
+        styleClass="dashboard-tasks--table #{isReadOnlyMode ? '' : 'dashboard__table--edit'} #{isPreviewMode ? 'dashboard__table--preview' : ''}"
+        rowStyleClass="dashboard-table--row-style">
         <p:ajax event="page" oncomplete="saveWidgetState()" />
         <p:ajax event="rowSelect" listener="#{dashboardBean.navigateToSelectedTaskDetails}" disabled="#{!isReadOnlyMode}" />
 
