@@ -48,7 +48,7 @@ public class AnnouncementService {
     }
 
     String language;
-    Locale locale = Ivy.session().getSessionUser().getEMailLanguage();
+    Locale locale = Ivy.session().getSessionUser().getLanguage();
     if (locale != null) {
       language = locale.getLanguage();
     } else {
