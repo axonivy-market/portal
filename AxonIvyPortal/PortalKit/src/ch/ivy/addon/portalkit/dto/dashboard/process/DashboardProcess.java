@@ -1,7 +1,5 @@
 package ch.ivy.addon.portalkit.dto.dashboard.process;
 
-import static ch.ivyteam.ivy.server.ServerFactory.getServer;
-
 import java.util.List;
 import java.util.Locale;
 
@@ -25,6 +23,7 @@ import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivy.addon.portalkit.util.Locales;
 import ch.ivyteam.ivy.application.IProcessModel;
+import ch.ivyteam.ivy.cm.IContentManagement;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
@@ -255,7 +254,7 @@ public class DashboardProcess implements Process {
     String defaultImageUri = StringUtils.EMPTY;
     IProcessModel pm = Ivy.wf().getApplication().findProcessModel(processModelName);
     if (pm != null) {
-      defaultImageUri = getServer().getContentManagement().findCms(pm.getReleasedProcessModelVersion()).cr(processImage);
+      defaultImageUri = IContentManagement.instance().findCms(pm.getReleasedProcessModelVersion()).cr(processImage);
       if (StringUtils.isNotBlank(defaultImageUri)) {
         int indexOfDefaultImageUri = defaultImageUri.indexOf("/cm");
         defaultImageUri = defaultImageUri.substring(indexOfDefaultImageUri).replaceAll("\"/>", StringUtils.EMPTY);
