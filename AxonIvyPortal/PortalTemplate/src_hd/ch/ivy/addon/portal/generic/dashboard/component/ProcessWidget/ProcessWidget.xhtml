@@ -16,7 +16,7 @@
 
   <p:remoteCommand id="rcLoadProcessFirstTime" autoRun="true" update="dashboard-processes-container" global="false" async="true" process="@this"
     oncomplete="loadProcessfFirstTime('#{widget.id}'); #{cc.attrs.onLoadProcessComplete}" />
-  <div class="ui-g widget-height-100 #{displayMode eq 'COMBINED_MODE' ? 'widget-overflow-auto' : ''}">
+  <div class="ui-g widget-height-100 #{displayMode eq 'COMBINED_MODE' ? 'widget-overflow-auto' : ''} #{displayMode eq 'IMAGE_MODE' ? 'image-process-container' : ''}">
     <h:outputText id="loading" styleClass="js-loading-#{widget.id} ui-g-12" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/loading')}" />
 
     <h:panelGroup id="dashboard-processes-container" layout="block"
@@ -28,7 +28,7 @@
           <ui:param name="isInConfiguration" value="#{cc.attrs.isInConfiguration}" />
         </ui:include>
       </c:if>
-      <c:if test="#{widget.displayMode eq 'FULL_MODE'}">
+      <c:if test="#{widget.displayMode eq 'FULL_MODE' and widget.process != null}">
         <ic:ch.ivy.addon.portalkit.component.process.ProcessGridItem id="process-grid-item"
           process="#{widget.process}" managedBean="#{dashboardProcessBean}"
           readOnlyMode="#{cc.attrs.isInConfiguration or !isReadOnlyMode}"
@@ -44,15 +44,23 @@
           processIconStyleClass="process-grid-view__icon" />
         
       </c:if>
-      <c:if test="#{widget.displayMode eq 'COMBINED_MODE'}">
+      <c:if test="#{widget.displayMode eq 'COMBINED_MODE' and widget.process != null}">
         <ui:include src="CombinedModeProcess.xhtml">
           <ui:param name="widget" value="#{widget}" />
           <ui:param name="isReadOnlyMode" value="#{isReadOnlyMode}" />
           <ui:param name="isInConfiguration" value="#{cc.attrs.isInConfiguration}" />
         </ui:include>
       </c:if>
+      <c:if test="#{widget.displayMode eq 'IMAGE_MODE' and widget.process != null}">
+        <ui:include src="ImageModeProcess.xhtml">
+          <ui:param name="widget" value="#{widget}" />
+          <ui:param name="process" value="#{widget.process}" />
+          <ui:param name="isReadOnlyMode" value="#{isReadOnlyMode}" />
+          <ui:param name="isInConfiguration" value="#{cc.attrs.isInConfiguration}" />
+        </ui:include>
+      </c:if>
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/processes/emptyProcess')}"
-        rendered="#{(displayMode eq 'COMBINED_MODE' or displayMode eq 'FULL_MODE') and widget.process eq null}"
+        rendered="#{(displayMode eq 'COMBINED_MODE' or displayMode eq 'FULL_MODE' or displayMode eq 'IMAGE_MODE') and widget.process eq null}"
         styleClass="dashboard-processes--empty-message" />
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/processes/noMatchingProcess')}"
         rendered="#{empty widget.displayProcesses and not cc.attrs.isInConfiguration and displayMode eq 'COMPACT_MODE'}" styleClass="dashboard-processes--empty-message" />
@@ -60,13 +68,12 @@
   </div>
 
   <script type="text/javascript">
-			function loadProcessfFirstTime(widgetId) {
-				var loadingId = '.js-loading-' + widgetId;
-				var widgetContainer = '.js-dashboard-processes-container-'
-						+ widgetId;
-				$(loadingId).addClass('u-display-none');
-				$(widgetContainer).removeClass('u-display-none');
-			}
-		</script>
+		function loadProcessfFirstTime(widgetId) {
+			var loadingId = '.js-loading-' + widgetId;
+			var widgetContainer = '.js-dashboard-processes-container-' + widgetId;
+			$(loadingId).addClass('u-display-none');
+			$(widgetContainer).removeClass('u-display-none');
+		}
+	</script>
 </cc:implementation>
 </html>
