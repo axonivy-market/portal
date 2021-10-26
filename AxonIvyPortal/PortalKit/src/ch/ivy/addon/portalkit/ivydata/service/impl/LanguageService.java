@@ -1,7 +1,5 @@
 package ch.ivy.addon.portalkit.ivydata.service.impl;
 
-import static ch.ivyteam.ivy.server.ServerFactory.getServer;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -18,6 +16,7 @@ import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.application.IProcessModelVersion;
+import ch.ivyteam.ivy.cm.IContentManagement;
 import ch.ivyteam.ivy.cm.IContentManagementSystem;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUser;
@@ -59,13 +58,13 @@ public class LanguageService implements ILanguageService {
   }
 
   private String getUserLanguage(IUser user) {
-    return user.getEMailLanguage() != null ? user.getEMailLanguage().toLanguageTag() : Locale.ENGLISH.toLanguageTag();
+    return user.getLanguage() != null ? user.getLanguage().toLanguageTag() : Locale.ENGLISH.toLanguageTag();
   }
 
   private List<String> getSupportedLanguagesFromPmvs(List<IProcessModelVersion> pmvs) {
     Set<String> supportedLanguages = new HashSet<>();
     for (IProcessModelVersion pmv : pmvs) {
-      IContentManagementSystem findCms = getServer().getContentManagement().findCms(pmv);
+      IContentManagementSystem findCms = IContentManagement.instance().findCms(pmv);
       if (findCms == null) {
         continue;
       }
@@ -86,7 +85,7 @@ public class LanguageService implements ILanguageService {
     IvyExecutor.executeAsSystem(() -> {
       IUser currentUser = Ivy.session().getSessionUser();
       Locale userLanguage = Locale.forLanguageTag(language.getUserLanguage());
-      currentUser.setEMailLanguage(userLanguage);
+      currentUser.setLanguage(userLanguage);
       return Void.class;
     });
   }
