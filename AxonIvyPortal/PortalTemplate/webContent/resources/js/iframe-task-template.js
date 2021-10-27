@@ -3,56 +3,64 @@ function loadIframe() {
   var iframe = document.getElementById('iFrame');
   var window = iframe.contentWindow;
   $(iframe).on('load', function() {
-    getDataFromIFrame([{
-      name : 'currentProcessStep',
-      value : window.currentProcessStep
-    }, {
-      name : 'processSteps',
-      value : window.processSteps
-    }, {
-      name : 'isShowAllSteps',
-      value : window.isShowAllSteps
-    }, {
-      name : 'isHideCaseInfo',
-      value : window.isHideCaseInfo
-    }, {
-      name : 'isHideTaskName',
-      value : window.isHideTaskName
-    }, {
-      name : 'isHideTaskAction',
-      value : window.isHideTaskAction
-    }, {
-      name : 'isWorkingOnATask',
-      value : window.isWorkingOnATask
-    }, {
-      name : 'processChainDirection',
-      value : window.processChainDirection
-    }, {
-      name : 'processChainShape',
-      value : window.processChainShape
-    }, {
-      name : 'announcementInvisible',
-      value : window.announcementInvisible
-    }]);
+    try {
+      getDataFromIFrame([{
+        name : 'currentProcessStep',
+        value : window.currentProcessStep
+      }, {
+        name : 'processSteps',
+        value : window.processSteps
+      }, {
+        name : 'isShowAllSteps',
+        value : window.isShowAllSteps
+      }, {
+        name : 'isHideCaseInfo',
+        value : window.isHideCaseInfo
+      }, {
+        name : 'isHideTaskName',
+        value : window.isHideTaskName
+      }, {
+        name : 'isHideTaskAction',
+        value : window.isHideTaskAction
+      }, {
+        name : 'isWorkingOnATask',
+        value : window.isWorkingOnATask
+      }, {
+        name : 'processChainDirection',
+        value : window.processChainDirection
+      }, {
+        name : 'processChainShape',
+        value : window.processChainShape
+      }, {
+        name : 'announcementInvisible',
+        value : window.announcementInvisible
+      }]);
+    } catch (error) {
+      console.warn("Could not load data from iFrame: " + error);
+    }
   });
 }
 
 function checkUrl(iFrame) {
-  document.title = iFrame.contentDocument.title;
-  var path = iFrame.contentWindow.location.pathname;
-  if (path.match("/default/end.xhtml$") || path.match("/default/end.jsp$")) {
-    var href = iFrame.contentWindow.location.href;
-    var taskId = href.substring(href.lastIndexOf("=") + 1);
-    iFrame.src = "about:blank";
-    redirectToEndPageCommand([{
-      name : 'taskId',
-      value : taskId
-    }]);
-  } else {
-    useTaskInIFrame([{
-      name: 'url',
-      value: path
-    }]);
+  try {
+    document.title = iFrame.contentDocument.title;
+    var path = iFrame.contentWindow.location.pathname;
+    if (path.match("/default/end.xhtml$") || path.match("/default/end.jsp$")) {
+      var href = iFrame.contentWindow.location.href;
+      var taskId = href.substring(href.lastIndexOf("=") + 1);
+      iFrame.src = "about:blank";
+      redirectToEndPageCommand([{
+        name : 'taskId',
+        value : taskId
+      }]);
+    } else {
+      useTaskInIFrame([{
+        name: 'url',
+        value: path
+      }]);
+    }
+  } catch (error) {
+    console.warn("Could not access iFrame: " + error);
   }
 }
 
