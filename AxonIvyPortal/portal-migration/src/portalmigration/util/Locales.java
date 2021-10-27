@@ -9,7 +9,7 @@ public class Locales {
   public Locale getCurrentLocale(){
     return IvyExecutor.executeAsSystem(() -> {
       IUser user = Ivy.session().getSessionUser();
-      Locale emailLanguage = user.getEMailLanguage();
+      Locale emailLanguage = user.getLanguage();
       if (emailLanguage != null) {
         return emailLanguage;
       } else {
