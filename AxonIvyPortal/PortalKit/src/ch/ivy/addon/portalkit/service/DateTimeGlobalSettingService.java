@@ -65,4 +65,14 @@ public class DateTimeGlobalSettingService {
     String dateFilterGlobalSetting = globalSettingService.findGlobalSettingValue(GlobalVariable.DATE_FILTER_WITH_TIME);
     return Boolean.valueOf(dateFilterGlobalSetting);
   }
+
+  public String getGlobalSettingCalendarPattern() {
+    String datePattern = UserSettingService.newInstance().getDateFormat();
+    String dateTimePattern = datePattern + SPACE_CHARACTER + Ivy.cms().co("/patterns/timePattern");
+    return isTimeHidden() ? datePattern : dateTimePattern;
+  }
+
+  public String getDatePatternWithoutTime() {
+    return UserSettingService.newInstance().getDateFormat();
+  }
 }
