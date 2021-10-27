@@ -43,7 +43,8 @@
         sortOrder="#{taskWidget.sortDescending ? 'descending' : 'ascending'}"
         rowIndexVar="rowIndex" rowHover="#{isReadOnlyMode}" selectionMode="single"
         styleClass="dashboard-tasks--table #{isReadOnlyMode ? '' : 'dashboard__table--edit'} #{isPreviewMode ? 'dashboard__table--preview' : ''}"
-        rowStyleClass="dashboard-table--row-style">
+        rowStyleClass="dashboard-table--row-style"
+        emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}">
         <p:ajax event="page" oncomplete="saveWidgetState()" />
         <p:ajax event="rowSelect" listener="#{dashboardBean.navigateToSelectedTaskDetails}" disabled="#{!isReadOnlyMode}" />
 
