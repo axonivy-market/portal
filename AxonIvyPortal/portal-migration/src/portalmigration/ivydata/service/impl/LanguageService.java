@@ -80,7 +80,7 @@ public class LanguageService implements ILanguageService {
     IvyExecutor.executeAsSystem(() -> {
       IUser currentUser = Ivy.session().getSessionUser();
       Locale userLanguage = Locale.forLanguageTag(language.getUserLanguage());
-      currentUser.setEMailLanguage(userLanguage);
+      currentUser.setLanguage(userLanguage);
       return Void.class;
     });
   }
