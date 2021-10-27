@@ -61,7 +61,7 @@ public class IvyAbsence {
   }
   
   public String getPeriod() {
-    DateFormat formatter = new SimpleDateFormat(DateTimeGlobalSettingService.getInstance().getDatePattern(), Ivy.session().getContentLocale());
+    DateFormat formatter = new SimpleDateFormat(DateTimeGlobalSettingService.getInstance().getGlobalSettingPattern(), Ivy.session().getContentLocale());
     return String.format("%s - %s", formatter.format(from), formatter.format(until));
   }
   

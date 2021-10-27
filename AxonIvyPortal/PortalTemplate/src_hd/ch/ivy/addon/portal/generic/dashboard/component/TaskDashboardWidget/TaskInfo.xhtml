@@ -142,7 +142,7 @@
         </div>
         <div class="ui-g-8">
           <p:calendar id="from-date-field-input" styleClass="task-configuration__calendar" value="#{field.dateFilterFrom}"
-            pattern="#{dateTimePatternBean.datePattern}" locale="#{localeBean.locale}" disabled="true" />
+            pattern="#{dateTimePatternBean.configuredCalendarPattern}" locale="#{localeBean.locale}" disabled="true" />
         </div>
 
         <div class="ui-g-4">
@@ -150,7 +150,7 @@
         </div>
         <div class="ui-g-8">
           <p:calendar id="to-date-field-input" styleClass="task-configuration__calendar" value="#{field.dateFilterTo}"
-            pattern="#{dateTimePatternBean.datePattern}" locale="#{localeBean.locale}" disabled="true" />
+            pattern="#{dateTimePatternBean.configuredCalendarPattern}" locale="#{localeBean.locale}" disabled="true" />
         </div>
       </h:panelGroup>
     </ui:repeat>
