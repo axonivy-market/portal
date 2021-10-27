@@ -91,6 +91,14 @@ You can customize in:
 
 - ``font-faces.scss``: to replace default font url-s by your font url-s and add/change other font styles to customize the Portal's font styles.
 
+  For example, to customize default ``font-family``:
+
+  #. In ``font-faces.scss``, add new ``@font-face`` block with your ``font-family`` name, url-s.
+
+  #. In ``variables-customization.scss``, override ``$portalFontFamily`` variable by using your ``font-family`` name.
+
+  #. Go to PortalStyle project, run the ``mvn libsass:compile`` maven command to compile these SCSS files.
+
 - ``customization.scss``: to change styles of Portal. E.g. Portal's component styles.
 
 .. tip::
