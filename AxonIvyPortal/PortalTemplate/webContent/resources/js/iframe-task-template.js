@@ -31,65 +31,57 @@ function loadIframe(recheckIndicator) {
 function processIFrameData(iframe) {
     var window = iframe.contentWindow;
     checkUrl(iframe);
-    try {
-      getDataFromIFrame([{
-        name : 'currentProcessStep',
-        value : window.currentProcessStep
-      }, {
-        name : 'processSteps',
-        value : window.processSteps
-      }, {
-        name : 'isShowAllSteps',
-        value : window.isShowAllSteps
-      }, {
-        name : 'isHideCaseInfo',
-        value : window.isHideCaseInfo
-      }, {
-        name : 'isHideTaskName',
-        value : window.isHideTaskName
-      }, {
-        name : 'isHideTaskAction',
-        value : window.isHideTaskAction
-      }, {
-        name : 'isWorkingOnATask',
-        value : window.isWorkingOnATask
-      }, {
-        name : 'processChainDirection',
-        value : window.processChainDirection
-      }, {
-        name : 'processChainShape',
-        value : window.processChainShape
-      }, {
-        name : 'announcementInvisible',
-        value : window.announcementInvisible
-      }, {
-        name : 'viewName',
-        value : window.viewName
-      }]);
-    } catch (error) {
-      console.warn("Could not load data from iFrame: " + error);
-    }
+    getDataFromIFrame([{
+      name : 'currentProcessStep',
+      value : window.currentProcessStep
+    }, {
+      name : 'processSteps',
+      value : window.processSteps
+    }, {
+      name : 'isShowAllSteps',
+      value : window.isShowAllSteps
+    }, {
+      name : 'isHideCaseInfo',
+      value : window.isHideCaseInfo
+    }, {
+      name : 'isHideTaskName',
+      value : window.isHideTaskName
+    }, {
+      name : 'isHideTaskAction',
+      value : window.isHideTaskAction
+    }, {
+      name : 'isWorkingOnATask',
+      value : window.isWorkingOnATask
+    }, {
+      name : 'processChainDirection',
+      value : window.processChainDirection
+    }, {
+      name : 'processChainShape',
+      value : window.processChainShape
+    }, {
+      name : 'announcementInvisible',
+      value : window.announcementInvisible
+    }, {
+      name : 'viewName',
+      value : window.viewName
+    }]);
 }
 
 function checkUrl(iFrame) {
-  try {
-    document.title = iFrame.contentDocument.title;
-    var loc = iFrame.contentWindow.location;
-    if (loc.pathname.match("/default/redirect.xhtml$")) {
-      var redirectUrl = new URLSearchParams(loc.search).get("redirectPage");
-      iFrame.src = "about:blank";
-      redirectToUrlCommand([{
-        name: 'url',
-        value: redirectUrl
-      }]);
-    } else {
-      useTaskInIFrame([{
-        name: 'url',
-        value: loc.pathname
-      }]);
-    }
-  } catch (error) {
-    console.warn("Could not access iFrame: " + error);
+  document.title = iFrame.contentDocument.title;
+  var loc = iFrame.contentWindow.location;
+  if (loc.pathname.match("/default/redirect.xhtml$")) {
+    var redirectUrl = new URLSearchParams(loc.search).get("redirectPage");
+    iFrame.src = "about:blank";
+    redirectToUrlCommand([{
+      name: 'url',
+      value: redirectUrl
+    }]);
+  } else {
+    useTaskInIFrame([{
+      name: 'url',
+      value: loc.pathname
+    }]);
   }
 }
 
