@@ -62,7 +62,7 @@
           for="#{cc.clientId}:filter-open-form:advanced-filter-command" my="left top" at="left bottom"
           onHide="$(this.targetElement).parents('form').siblings('form').find('.portal-cancel-button').click();">
           <h:panelGroup id="advanced-filter-panel-content" layout="block" styleClass="ui-overlaypanel-filter-content #{cc.attrs.contentStyleClass}">
-            <p:messages id="filter-error-messages" for="advanced-filter-error-messages" />
+            <p:messages for="advanced-filter-error-messages" />
             <cc:insertChildren />
           </h:panelGroup>
   
@@ -79,7 +79,8 @@
             </p:commandButton>
             <p:spacer width="5" />
             <p:commandButton id="cancel-command" styleClass="portal-cancel-button" process="@this" global="false"
-              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" update="#{cc.clientId}:filter-open-form @form" resetValues="true"
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+              update="#{cc.clientId}:filter-open-form @form" resetValues="true"
               oncomplete="PF('#{widgetVarPanel}').hide(); #{facesContext.validationFailed ? taskFilter.resetValues() : ''};">
             </p:commandButton>
           </h:panelGroup>

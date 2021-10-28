@@ -91,6 +91,14 @@ You can customize in:
 
 - ``font-faces.scss``: to replace default font url-s by your font url-s and add/change other font styles to customize the Portal's font styles.
 
+  For example, to customize default ``font-family``:
+
+  #. In ``font-faces.scss``, add new ``@font-face`` block with your ``font-family`` name, url-s.
+
+  #. In ``variables-customization.scss``, override ``$portalFontFamily`` variable by using your ``font-family`` name.
+
+  #. Go to PortalStyle project, run the ``mvn libsass:compile`` maven command to compile these SCSS files.
+
 - ``customization.scss``: to change styles of Portal. E.g. Portal's component styles.
 
 .. tip::
@@ -99,6 +107,10 @@ You can customize in:
 
    - If ``$primaryColor`` is a bright tone color (such as yellow or light blue), you may want to change ``$accentTextColor`` to ``black``. 
      It helps text of buttons and other components easier to recognize.
+
+.. tip::
+   If you are using Iframes and you want to customize the colors of the project specific UIs, then refer to this documentation 
+   `<https://developer.axonivy.com/doc/8.0/designer-guide/user-interface/user-dialogs.html?highlight=frame%208#color-customizing>`_
 
 .. warning::
    - Do not change ``font-family`` property values.

@@ -80,7 +80,7 @@
             and state != 'DONE' and state != 'PARKED' and state != 'DESTROYED' and state != 'ZOMBIE'
             and state != 'DELAYED'}"
             styleClass="fa fa-cog task-state-system " />
-          <h:outputText value="#{state}" styleClass="task-detail-state" />
+          <h:outputText value="#{taskBean.getTranslatedState(state)}" styleClass="task-detail-state" />
         </h:panelGroup>
       </div>
     </div>

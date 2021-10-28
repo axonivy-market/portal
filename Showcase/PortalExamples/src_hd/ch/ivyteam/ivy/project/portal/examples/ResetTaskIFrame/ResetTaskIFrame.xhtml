@@ -1,0 +1,77 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions">
+<h:body>
+  <ui:composition template="/layouts/frame-8.xhtml">
+    <ui:define name="title">Reset a Task then navigate back in IFrame</ui:define>
+    <ui:define name="content">
+
+      <h:outputStylesheet library="css" name="examples.css" />
+
+      <h:form id="form" styleClass="ui-g card" lang="block">
+        <h3 class="ui-g-12">An example of navigation in the iframe <br />
+          <span class="font-size-75"> For more details, refer to
+            <a href="https://developer.axonivy.com/documentation/portal-guide/8.0.18/portal-developer-guide/customization/navigate-back.html"
+            target="_blank">Portal Doc</a>.
+          </span>
+        </h3>
+
+        <p:messages styleClass="ui-g-12" />
+
+        <div class="ui-g-12">
+          <ul>
+            <li>
+              <p>
+                Click on <a href="#form:cancel-to-home">Cancel to Home</a> button to reset this task and navigate to the <b>Homepage</b>.
+              <blockquote>
+                <span class="code-block font-size-75">ivy.task.reset();<br/>PortalNavigatorInFrameAPI.navigateToPortalHome()</span>
+              </blockquote>
+              </p>
+            </li>
+            <li>
+              <p>
+                Click on <a href="#form:cancel-to-endpage">Cancel to Previous</a> button to reset this task and navigate
+                to the <b>Previous page</b>.
+              <blockquote>
+                <span class="code-block font-size-75">ivy.task.reset();<br/>PortalNavigatorInFrameAPI.navigateToPortalEndPage()</span>
+              </blockquote>
+              </p>
+            </li>
+            <li>
+              <p>
+                Click on <a href="#form:cancel-to-specifit">Cancel to a URL</a> button to reset this task and navigate
+                to <b>Create Investment (IFrame + Task custom fields)</b> example.
+              <blockquote>
+                <span class="code-block font-size-75">ivy.task.reset();<br/>PortalNavigatorInFrameAPI.navigateToUrl(String url)</span>
+              </blockquote>
+              </p>
+            </li>
+            <li>
+              <p>
+                Click on <a href="#form:proceed">Proceed</a> button to finish the task.
+              </p>
+            </li>
+          </ul>
+        </div>
+        <br />
+        <div class="ui-g-12">
+          <div class="command-btns">
+            <p:commandButton id="cancel-to-home" value="Cancel to Home" actionListener="#{logic.cancelToHome}"
+              icon="fa fa-home" />
+            <p:spacer width="5px" />
+            <p:commandButton id="cancel-to-endpage" value="Cancel to Endpage" actionListener="#{logic.cancelToEndpage}"
+              icon="fa fa-arrow-circle-left" />
+            <p:spacer width="5px" />
+            <p:commandButton id="cancel-to-specifit" value="Cancel to a URL" actionListener="#{logic.cancelToUrl}"
+              icon="fa fa-external-link" />
+            <p:spacer width="5px" />
+            <p:commandButton id="proceed" actionListener="#{logic.proceed}" value="Proceed" update="form"
+              icon="ui-icon-check" />
+          </div>
+        </div>
+      </h:form>
+    </ui:define>
+  </ui:composition>
+</h:body>
+</html>

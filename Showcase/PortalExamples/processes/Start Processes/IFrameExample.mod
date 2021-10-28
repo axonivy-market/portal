@@ -35,6 +35,13 @@ Ie0 @TkArc f17 '' #zField
 Ie0 @UserDialog f25 '' #zField
 Ie0 @PushWFArc f26 '' #zField
 Ie0 @PushWFArc f14 '' #zField
+Ie0 @StartRequest f27 '' #zField
+Ie0 @EndTask f28 '' #zField
+Ie0 @TaskSwitchSimple f30 '' #zField
+Ie0 @TkArc f31 '' #zField
+Ie0 @UserDialog f32 '' #zField
+Ie0 @PushWFArc f33 '' #zField
+Ie0 @PushWFArc f29 '' #zField
 >Proto Ie0 Ie0 IFrameExample #zField
 Ie0 f20 actionTable 'out=in1;
 ' #txt
@@ -289,6 +296,52 @@ Ie0 f25 760 74 112 44 -20 -8 #rect
 Ie0 f25 @|UserDialogIcon #fIcon
 Ie0 f26 703 96 760 96 #arcP
 Ie0 f14 872 96 929 96 #arcP
+Ie0 f27 outLink NavigateInIFrameExample.ivp #txt
+Ie0 f27 inParamDecl '<> param;' #txt
+Ie0 f27 requestEnabled true #txt
+Ie0 f27 triggerEnabled false #txt
+Ie0 f27 callSignature NavigateInIFrameExample() #txt
+Ie0 f27 startName 'Navigate back in the IFrame example' #txt
+Ie0 f27 startDescription 'Example of navigation in IFrame' #txt
+Ie0 f27 caseData businessCase.attach=true #txt
+Ie0 f27 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>NavigateInIFrameExample.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Ie0 f27 @C|.responsibility Everybody #txt
+Ie0 f27 81 561 30 30 -24 17 #rect
+Ie0 f27 @|StartRequestIcon #fIcon
+Ie0 f28 449 561 30 30 0 15 #rect
+Ie0 f28 @|EndIcon #fIcon
+Ie0 f30 actionTable 'out=in1;
+' #txt
+Ie0 f30 caseData 'case.description=In case your project has navigation button without finishing a task, e.g Cancel, navigate.\r\n- Home page\: call navigateToPortalHome() from class PortalNavigatorInFrameAPI.\r\n- Previous page\: call navigateToPortalEndPage() from class PortalNavigatorInFrameAPI.\r\n- A specific url\: call navigateToUrl(String url) from class PortalNavigatorInFrameAPI.
+case.name=Navigate IFrame example
+customFields.STRING.embedInFrame="true"' #txt
+Ie0 f30 taskData 'TaskA.NAM=Navigate back in the IFrame example
+TaskA.SKIP_TASK_LIST=true' #txt
+Ie0 f30 193 561 30 30 0 16 #rect
+Ie0 f30 @|TaskSwitchSimpleIcon #fIcon
+Ie0 f31 111 576 193 576 #arcP
+Ie0 f32 dialogId ch.ivyteam.ivy.project.portal.examples.ResetTaskIFrame #txt
+Ie0 f32 startMethod start() #txt
+Ie0 f32 requestActionDecl '<> param;' #txt
+Ie0 f32 responseMappingAction 'out=in;
+' #txt
+Ie0 f32 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>ResetTaskIFrame</name>
+    </language>
+</elementInfo>
+' #txt
+Ie0 f32 280 554 112 44 -49 -8 #rect
+Ie0 f32 @|UserDialogIcon #fIcon
+Ie0 f33 223 576 280 576 #arcP
+Ie0 f29 392 576 449 576 #arcP
 >Proto Ie0 .type ch.ivyteam.ivy.project.portal.examples.IFrameExampleData #txt
 >Proto Ie0 .processKind NORMAL #txt
 >Proto Ie0 0 0 32 24 18 0 #rect
@@ -321,3 +374,9 @@ Ie0 f16 out f26 tail #connect
 Ie0 f26 head f25 mainIn #connect
 Ie0 f25 mainOut f14 tail #connect
 Ie0 f14 head f13 mainIn #connect
+Ie0 f27 mainOut f31 tail #connect
+Ie0 f31 head f30 in #connect
+Ie0 f30 out f33 tail #connect
+Ie0 f33 head f32 mainIn #connect
+Ie0 f32 mainOut f29 tail #connect
+Ie0 f29 head f28 mainIn #connect

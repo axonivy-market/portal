@@ -332,4 +332,19 @@ public class CaseWidgetPage extends TemplatePage {
     String stateClass = caseStateCells.get(caseIndex).findElement(By.className("fa")).getAttribute("class");
     return CaseState.fromClass(stateClass.substring(stateClass.indexOf("case-state-")));
   }
+
+  public void filterByCreatedDate(String fromInputText) {
+    click(By.cssSelector("button[id$='created-filter:filter-open-form:advanced-filter-command']"));
+    WebElement fromInput =
+        findElementByCssSelector("input[id$='created-filter:filter-input-form:from-created-calendar_input']");
+    enterKeys(fromInput, fromInputText);
+    click(By.cssSelector("button[id$='created-filter:filter-input-form:update-command']"));
+    Sleeper.sleep(2000);
+  }
+
+  public String getCreatedDateFrom() {
+    WebElement element = findElementByCssSelector("button[id$='created-filter:filter-open-form:advanced-filter-command'] span");
+    return element.getText();
+  }
+
 }

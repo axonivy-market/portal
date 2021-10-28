@@ -146,6 +146,11 @@ In engine
    project.
 4. Follow detailed migration notes for each version below.
 
+Migrate 8.0.x to 8.0.19
+-----------------------
+Portal date filter such as TaskCreationDateFilter, CaseCreationDateFilter... messages ``<p:messages for="..." />`` have been added for each calendar component to validate date format. 
+If you use have any customized date filters in your project, update template accordingly.
+
 Migrate 8.0.x to 8.0.13
 -----------------------
 Portal filter such as TaskNameFilter, CaseNameFilter... package name has been change from 

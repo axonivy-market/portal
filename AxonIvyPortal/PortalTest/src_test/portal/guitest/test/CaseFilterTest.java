@@ -4,6 +4,9 @@ import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertTrue;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.apache.commons.codec.binary.StringUtils;
 import org.junit.Before;
 import org.junit.Test;
@@ -145,4 +148,14 @@ public class CaseFilterTest extends BaseTest {
 		
 		assertTrue(casePage.getFilterName().contains("No Selection"));
 	}
+
+  @Test
+  public void testCreatedDateFilter() {
+    MainMenuPage mainMenuPage = new MainMenuPage();
+    CaseWidgetPage casePage = mainMenuPage.openCaseList();
+    String fromInputText = new SimpleDateFormat("dd.MM.yyyy").format(new Date());
+    casePage.filterByCreatedDate(fromInputText);
+    String expectedCreatedDateForm = casePage.getCreatedDateFrom();
+    assertTrue(expectedCreatedDateForm.contains(fromInputText));
+  }
 }

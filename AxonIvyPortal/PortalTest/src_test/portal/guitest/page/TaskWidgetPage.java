@@ -397,15 +397,29 @@ public class TaskWidgetPage extends TemplatePage {
 		Sleeper.sleep(2000);
 	}
 
-	public void filterByCustomerName(String text) {
-		click(By.cssSelector(
-				"button[id$='" + taskWidgetId + ":customer-name-filter:filter-open-form:advanced-filter-command']"));
-		WebElement customerNameInput =
-				findElementByCssSelector("input[id$='customer-name-filter:filter-input-form:customVarChar5']");
-		enterKeys(customerNameInput, text);
-		click(By.cssSelector("button[id$='" + taskWidgetId + ":customer-name-filter:filter-input-form:update-command']"));
-		Sleeper.sleep(2000);
-	}
+  public void filterByCreatedDate(String fromInputText) {
+    click(By.cssSelector("button[id$='created-filter:filter-open-form:advanced-filter-command']"));
+    WebElement fromInput =
+        findElementByCssSelector("input[id$='created-filter:filter-input-form:from-created-calendar_input']");
+    enterKeys(fromInput, fromInputText);
+    click(By.cssSelector("button[id$='created-filter:filter-input-form:update-command']"));
+    Sleeper.sleep(2000);
+  }
+  
+  public String getCreatedDateFrom() {
+    WebElement element = findElementByCssSelector("button[id$='created-filter:filter-open-form:advanced-filter-command'] span");
+    return element.getText();
+  }
+
+  public void filterByCustomerName(String text) {
+    click(By.cssSelector(
+        "button[id$='" + taskWidgetId + ":customer-name-filter:filter-open-form:advanced-filter-command']"));
+    WebElement customerNameInput =
+        findElementByCssSelector("input[id$='customer-name-filter:filter-input-form:customVarChar5']");
+    enterKeys(customerNameInput, text);
+    click(By.cssSelector("button[id$='" + taskWidgetId + ":customer-name-filter:filter-input-form:update-command']"));
+    Sleeper.sleep(2000);
+  }
 
 	public void filterByStates(List<String> selectedStates) {
 		waitForElementDisplayed(By.cssSelector("button[id$='state-filter:filter-open-form:advanced-filter-command']"), true);
