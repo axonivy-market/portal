@@ -91,6 +91,12 @@ You can customize in:
 
 - ``customization.css``: to change styles of Portal. E.g. Portal's component styles.
 
+  For example, to customize default ``font-family``:
+
+  #. After ``START OVERRIDING PORTAL STYLES`` section, add new ``@font-face`` block with your ``font-family`` name, url-s.
+
+  #. Inside ``:root`` tag, override ``--portal-font-family`` variable by using your ``font-family`` name.
+
 .. tip::
    - For ``font-size``, Portal uses ``rem``. 
      Font size of all elements are calculated based on font-size of ``html`` element.
