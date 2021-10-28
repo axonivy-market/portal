@@ -7,7 +7,7 @@
 
     <ui:define name="title">Customized TaskTemplate</ui:define>
 
-    <ui:param name="actualStepIndex" value="#{data.actualStepIndex - 1}" />
+    <ui:param name="actualStepIndex" value="#{data.actualStepIndex}" />
     <ui:param name="steps" value="#{data.steps}" />
     <ui:param name="processChainShape" value="#{data.processChainShape}" />
     <ui:param name="processChainDirection" value="#{data.processChainDirection}" />
@@ -48,7 +48,7 @@
               <h:panelGrid styleClass="ui-g-6 ui-sm-12" columns="1">
                 <p:outputLabel value="Actual step" />
                 <h:panelGroup>
-                  <p:spinner id="actual-step" value="#{data.actualStepIndex}" min="1" max="#{data.steps.size()}" />
+                  <p:spinner id="actual-step" value="#{data.actualStepIndex}" min="1" max="5" />
                 </h:panelGroup>
 
                 <p:outputLabel value="Process Chain Direction" for="processChainDirection" styleClass="ui-g-12" />

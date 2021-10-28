@@ -4,7 +4,9 @@ import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertTrue;
 
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.codec.binary.StringUtils;
@@ -287,4 +289,15 @@ public class TaskFilterTest extends BaseTest {
 		
 		assertTrue(taskWidgetPage.getFilterName().contains("Default filter"));
 	}
+
+  @Test
+  public void testCreatedDateFilter() {
+    MainMenuPage mainMenuPage = new MainMenuPage();
+    TaskWidgetPage taskWidgetPage = mainMenuPage.openTaskList();
+    taskWidgetPage.openAdvancedFilter("Created (from/to)", "created");
+    String fromInputText = new SimpleDateFormat("dd.MM.yyyy").format(new Date());
+    taskWidgetPage.filterByCreatedDate(fromInputText);
+    String expectedCreatedDateForm = taskWidgetPage.getCreatedDateFrom();
+    assertTrue(expectedCreatedDateForm.contains(fromInputText));
+  }
 }
