@@ -79,7 +79,6 @@ Dt0 f10 callSignature openDocumentTableInIframe() #txt
 Dt0 f10 persist false #txt
 Dt0 f10 startName 'Document Table Usage in Iframe' #txt
 Dt0 f10 startDescription 'Open Document Table in Iframe' #txt
-Dt0 f10 taskData TaskTriggered.customFields.STRING.embedInFrame="false" #txt
 Dt0 f10 caseData businessCase.attach=true #txt
 Dt0 f10 showInStartList 1 #txt
 Dt0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
