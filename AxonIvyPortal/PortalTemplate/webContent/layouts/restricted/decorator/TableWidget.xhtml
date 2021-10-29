@@ -34,7 +34,9 @@
       <p:remoteCommand name="loadUserFilters#{index}"
         actionListener="#{widget.loadUserFilter()}"
         update="filter-overlaypanel-content-#{index}"
-        process="@this" partialSubmit="true" immediate="true" />
+        process="@this" partialSubmit="true" immediate="true" global="false"
+        onstart="initWidgetFilterHtml('#{widget.id}', true);"
+        oncomplete="initWidgetFilterHtml('#{widget.id}');"/>
 
       <!-- remote command to load data for info statistic panel -->
       <p:remoteCommand name="buildStatisticInfos#{index}"

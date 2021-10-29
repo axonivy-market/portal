@@ -141,6 +141,16 @@ public abstract class DashboardWidget implements Serializable {
         .count() > 0;
   }
 
+  @JsonIgnore
+  public String getSearchFilterMessage() {
+    var cmsUri = "/ch.ivy.addon.portalkit.ui.jsf/dashboard/NoSavedFilterMessage";
+    if (CollectionUtils.isEmpty(getSavedFilters())
+        && CollectionUtils.isNotEmpty(getUserFilterCollection().getWidgetFilterSelections())) {
+      cmsUri = "/ch.ivy.addon.portalkit.ui.jsf/dashboard/Filter/NotFound";
+    }
+    return Ivy.cms().co(cmsUri);
+  }
+
   public String getId() {
     return id;
   }
