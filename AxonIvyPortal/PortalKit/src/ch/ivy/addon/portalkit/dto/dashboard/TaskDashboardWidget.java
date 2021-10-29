@@ -70,10 +70,7 @@ public class TaskDashboardWidget extends DashboardWidget {
   private Long numberOfTasksExpireThisWeek;
   @JsonIgnore
   private Long numberOfTasksExpireToday;
-  @JsonIgnore
-  private List<String> prevUserFilterCategories;
-  
-  
+
   public TaskDashboardWidget() {
     dataModel = new DashboardTaskLazyDataModel();
     setColumns(new ArrayList<>());
@@ -293,6 +290,7 @@ public class TaskDashboardWidget extends DashboardWidget {
   @Override
   @JsonIgnore
   public void onApplyUserFilters() throws ParseException {
+    super.onApplyUserFilters();
     this.userDefinedFiltersCount = countDefinedUserFilter(this);
   }
 
@@ -303,20 +301,20 @@ public class TaskDashboardWidget extends DashboardWidget {
 
   @JsonIgnore
   public static TaskDashboardWidget buildDefaultWidget(String id, String name) {
-    TaskDashboardWidget result = new TaskDashboardWidget();
-    result.setId(id);
-    result.setName(name);
+    TaskDashboardWidget widget = new TaskDashboardWidget();
+    widget.setId(id);
+    widget.setName(name);
 
     WidgetLayout layout = new WidgetLayout();
     layout.setWidth(10);
     layout.setHeight(9);
-    result.setLayout(layout);
+    widget.setLayout(layout);
 
-    result.setAutoPosition(true);
-    result.setSortField(TaskSortField.ID.toString());
-    result.setSortDescending(true);
-    result.setColumns(initStandardColumns());
-    return buildColumns(result);
+    widget.setAutoPosition(true);
+    widget.setSortField(TaskSortField.ID.toString());
+    widget.setSortDescending(true);
+    widget.setColumns(initStandardColumns());
+    return buildColumns(widget);
   }
 
   @JsonIgnore
@@ -437,8 +435,7 @@ public class TaskDashboardWidget extends DashboardWidget {
 
   @Override
   @JsonIgnore
-  public void resetUserFilters() {
-    super.resetUserFilters();
+  public void resetWidgetFilters() {
     for (ColumnModel column : this.getColumns()) {
       column.setUserFilter(StringUtils.EMPTY);
       column.setUserFilterList(new ArrayList<>());
@@ -465,17 +462,5 @@ public class TaskDashboardWidget extends DashboardWidget {
 
   public void setRowsPerPage(int rowsPerPage) {
     this.rowsPerPage = rowsPerPage;
-  }
-  public void backupPrevUserFilterCategories() {
-    this.prevUserFilterCategories = getUserFilterCategories();
-  }
-  
-  public void restoreUserFilterCategories() {
-    setUserFilterCategories(this.prevUserFilterCategories);
-  }
-
-  @Override
-  public void onCancelUserFilters() {
-    restoreUserFilterCategories();
   }
 }

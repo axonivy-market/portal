@@ -9,10 +9,10 @@
   <ui:repeat var="field" value="#{widget.filterableColumns}">
     <div class="ui-g">
       <h:panelGroup rendered="#{field.field eq 'state'}">
-        <div class="ui-g-3 ui-sm-12 u-no-padding-bottom-sm-down">
+        <div class="ui-g-4 ui-sm-12 u-no-padding-bottom-sm-down">
           <h:outputLabel value="#{field.headerText}" />
         </div>
-        <div class="ui-g-9 ui-sm-12 ui-fluid">
+        <div class="ui-g-8 ui-sm-12 ui-fluid">
           <p:selectCheckboxMenu id="states" value="#{field.userFilterStates}" multiple="true" filter="true"
             filterMatchMode="contains" panelStyleClass="case-configuration__selectcheckboxmenu-panel" styleClass="case-configuration__selectcheckboxmenu">
             <f:selectItems value="#{field.userFilterStateOptions}" var="state" itemValue="#{state}"
@@ -22,10 +22,10 @@
       </h:panelGroup>
 
       <h:panelGroup rendered="#{field.field eq 'creator'}">
-        <div class="ui-g-3 ui-sm-12 u-no-padding-bottom-sm-down">
+        <div class="ui-g-4 ui-sm-12 u-no-padding-bottom-sm-down">
           <h:outputLabel value="#{field.headerText}" />
         </div>
-        <div class="ui-g-9 ui-sm-12 ui-fluid">
+        <div class="ui-g-8 ui-sm-12 ui-fluid">
           <p:autoComplete id="creators" scrollHeight="210" dropdown="true" size="35"
             completeMethod="#{field.completeUserFilterCreators}" value="#{field.userFilterCreators}"
             var="creator" itemValue="#{creator}" itemLabel="#{creator.briefDisplayNameWithState}"
@@ -41,10 +41,10 @@
       </h:panelGroup>
 
       <h:panelGroup rendered="#{field.field eq 'owner'}">
-        <div class="ui-g-3 ui-sm-12 u-no-padding-bottom-sm-down">
+        <div class="ui-g-4 ui-sm-12 u-no-padding-bottom-sm-down">
           <h:outputLabel value="#{field.headerText}" />
         </div>
-        <div class="ui-g-9 ui-sm-12 ui-fluid">
+        <div class="ui-g-8 ui-sm-12 ui-fluid">
           <p:autoComplete id="owners" scrollHeight="210" dropdown="true" size="35"
             completeMethod="#{field.completeUserFilterOwners}" value="#{field.userFilterOwners}"
             var="owner" itemValue="#{owner}" itemLabel="#{owner.briefDisplayNameWithState}"
@@ -60,10 +60,10 @@
       </h:panelGroup>
 
       <h:panelGroup rendered="#{field.format eq 'STRING' or field.format eq 'TEXT'}">
-        <div class="ui-g-3 ui-sm-12 u-no-padding-bottom-sm-down">
+        <div class="ui-g-4 ui-sm-12 u-no-padding-bottom-sm-down">
           <h:outputLabel value="#{field.headerText}" />
         </div>
-        <div class="ui-g-9 ui-sm-12 ui-fluid">
+        <div class="ui-g-8 ui-sm-12 ui-fluid">
           <p:inputText id="text-field-input" styleClass="case-configuration__input-text" value="#{field.userFilter}"
             rendered="#{field.filterType eq 'LIKE'}" />
 
@@ -76,20 +76,20 @@
       </h:panelGroup>
 
       <h:panelGroup rendered="#{field.format eq 'NUMBER'}">
-        <div class="ui-g-3 ui-sm-12 u-no-padding-bottom-sm-down">
+        <div class="ui-g-4 ui-sm-12 u-no-padding-bottom-sm-down">
           <h:outputLabel value="#{field.headerText} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')}" />
         </div>
-        <div class="ui-g-9 ui-sm-12 ui-fluid">
+        <div class="ui-g-8 ui-sm-12 ui-fluid">
           <p:inputNumber id="from-number-field-input" styleClass="case-configuration__input-text" value="#{field.userFilterFrom}"
             inputStyleClass="case-configuration__input-number" minValue="#{empty field.filterFrom ? '-999999999.99' : field.filterFrom}">
             <f:convertNumber pattern="#{field.pattern}" />
           </p:inputNumber>
         </div>
 
-        <div class="ui-g-3 ui-sm-12 u-no-padding-bottom-sm-down">
+        <div class="ui-g-4 ui-sm-12 u-no-padding-bottom-sm-down">
           <h:outputLabel value="#{field.headerText} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')}" />
         </div>
-        <div class="ui-g-9 ui-sm-12 ui-fluid">
+        <div class="ui-g-8 ui-sm-12 ui-fluid">
           <p:inputNumber id="to-number-field-input" styleClass="case-configuration__input-text" value="#{field.userFilterTo}"
             inputStyleClass="case-configuration__input-number" maxValue="#{empty field.filterTo ? '999999999.99' : field.filterTo}">
             <f:convertNumber pattern="#{field.pattern}" />
@@ -98,19 +98,19 @@
       </h:panelGroup>
 
       <h:panelGroup rendered="#{field.format eq 'TIMESTAMP'}">
-        <div class="ui-g-3 ui-sm-12 u-no-padding-bottom-sm-down">
+        <div class="ui-g-4 ui-sm-12 u-no-padding-bottom-sm-down">
           <h:outputLabel value="#{field.headerText} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')}" />
         </div>
-        <div class="ui-g-9 ui-sm-12 ui-fluid">
+        <div class="ui-g-8 ui-sm-12 ui-fluid">
           <p:calendar id="from-date-field-input" showOn="button" styleClass="case-configuration__calendar"
             mindate="#{field.dateFilterFrom}" value="#{field.userDateFilterFrom}"
             pattern="#{dateTimePatternBean.configuredCalendarPattern}" locale="#{localeBean.locale}" />
         </div>
 
-        <div class="ui-g-3 ui-sm-12 u-no-padding-bottom-sm-down">
+        <div class="ui-g-4 ui-sm-12 u-no-padding-bottom-sm-down">
           <h:outputLabel value="#{field.headerText} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')}" />
         </div>
-        <div class="ui-g-9 ui-sm-12 ui-fluid">
+        <div class="ui-g-8 ui-sm-12 ui-fluid">
           <p:calendar id="to-date-field-input" showOn="button" styleClass="case-configuration__calendar"
             maxdate="#{field.dateFilterTo}" value="#{field.userDateFilterTo}"
             pattern="#{dateTimePatternBean.configuredCalendarPattern}" locale="#{localeBean.locale}" />
@@ -121,10 +121,10 @@
 </h:panelGroup>
 
 <div class="ui-g">
-  <div class="ui-g-3 ui-sm-12 u-no-padding-bottom-sm-down">
+  <div class="ui-g-4 ui-sm-12 u-no-padding-bottom-sm-down">
     <h:outputLabel for="user-filter-category" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/category')}" />
   </div>
-  <div class="ui-g-9 ui-sm-12 ui-fluid">
+  <div class="ui-g-8 ui-sm-12 ui-fluid">
     <h:panelGroup id="user-filter-category-container" styleClass="case-configuration__category">
       <p:inputText id="user-filter-category" styleClass="case-configuration__input-text"
         value="#{widget.getUserFilterDisplayCategories()}" readonly="true" />
