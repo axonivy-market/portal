@@ -44,7 +44,7 @@ public class DateTimePatternBean implements Serializable {
     return dateTimePatternService.getGlobalSettingCalendarPattern();
   }
 
-  public String getConfiguredDatePatternWithoutTime() {
-    return dateTimePatternService.getDatePatternWithoutTime();
+  public String getConfiguredDateWithoutTimePattern() {
+    return dateTimePatternService.getDateWithoutTimePattern();
   }
 }
