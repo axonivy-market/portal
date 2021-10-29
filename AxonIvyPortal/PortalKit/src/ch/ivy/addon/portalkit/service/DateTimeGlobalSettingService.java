@@ -72,7 +72,7 @@ public class DateTimeGlobalSettingService {
     return isTimeHidden() ? datePattern : dateTimePattern;
   }
 
-  public String getDatePatternWithoutTime() {
+  public String getDateWithoutTimePattern() {
     return UserSettingService.newInstance().getDateFormat();
   }
 }
