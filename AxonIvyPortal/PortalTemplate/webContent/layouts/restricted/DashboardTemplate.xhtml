@@ -50,6 +50,10 @@
             <p:remoteCommand name="saveConfigurationCommand" actionListener="#{managedBean.save()}" global="false" />
             <p:remoteCommand name="updateDashboardWidget" update="grid-stack" oncomplete="loadGrid(); return false;" />
             <p:remoteCommand name="saveWidgetState" actionListener="#{managedBean.saveSelectedWidget()}" global="false"/>
+            <p:remoteCommand name="loadAllWidgetSavedFilters" actionListener="#{dashboardBean.loadAllWidgetSavedFilters()}"
+              global="false" process="@this" immediate="true" partialSubmit="true"
+              update="delete-saved-filter-form:quick-filter-table"
+              oncomplete="PF('quick-filter-table').clearFilters(); PF('manage-filter-dialog').initPosition();"/>
           </h:form>
 
         <div id="dashboard-body" class="dashboard__body ui-g-12 js-dashboard__body">
@@ -98,7 +102,81 @@
             </c:if>
             <ui:insert name="dashboardContent" />
           </h:panelGroup>
-        </div>
+
+          <p:dialog id="save-widget-filter-dialog" widgetVar="save-widget-filter-dialog" appendTo="@(body)"
+            header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/SaveNewWidgetFilterHeader')}"
+            modal="true" fitViewport="true" dynamic="true" closable="false" width="450">
+            <h:form id="save-filter-form" styleClass="ui-g">
+              <p:messages styleClass="ui-g-12" redisplay="false" for="save-filter-form"/>
+              <div class="md-inputfield ui-fluid ui-g-12 MarTop20">
+                <p:inputText id="save-filter-name" value="#{widgetFilterHelperBean.saveFilter.name}" required="true" 
+                  maxlength="30"
+                  requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"/>
+                <h:outputLabel styleClass="ui-g-12" for="save-filter-name"
+                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/WidgetFilterName')}" />
+                <p:message for="save-filter-name"/>
+              </div>
+              <div class="ui-g-12 MarTop10 TexAlRight">
+                <p:commandLink href="#" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+                  oncomplete="PF('save-widget-filter-dialog').hide();" styleClass="u-mar-right-10"
+                  process="@this" update="save-filter-form" resetValues="true"
+                  partialSubmit="true" immediate="true"/>
+                <p:commandButton id="save-widget-filter-button"
+                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
+                  actionListener="#{widgetFilterHelperBean.saveFilter()}"
+                  icon="#{visibilityBean.generateButtonIcon('si si-floppy-disk')}"
+                  oncomplete="if (!args.validationFailed) { #{widgetFilterHelperBean.loadWidgetFilters}; PF('save-widget-filter-dialog').hide();}"
+                  update="save-filter-form"
+                  process="save-filter-form"/>
+              </div>
+            </h:form>
+          </p:dialog>
+
+          <p:dialog id="manage-filter-dialog" widgetVar="manage-filter-dialog"
+            header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/Filter/ManageWidgetFilterHeader')}"
+            modal="true" fitViewport="true" width="650" styleClass="manage-filter-dialog"
+            dynamic="true" appendTo="@(body)" closable="false"
+            onShow="loadAllWidgetSavedFilters();">
+            <h:form id="delete-saved-filter-form" styleClass="ui-g">
+              <div class="ui-g-12">
+                <p:dataTable id="quick-filter-table" value="#{dashboardBean.widgetFilters}" var="quickFilter"
+                  widgetVar="quick-filter-table" scrollHeight="300" scrollable="true" reflow="true"
+                  selection="#{dashboardBean.deleteFilters}" rowKey="#{quickFilter.name}"
+                  emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/EmptyFilterMessage')}">
+
+                  <p:column selectionMode="multiple" styleClass="saved-filter-selection-column" width="40"/>
+
+                  <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}" width="200"
+                    filterBy="#{quickFilter.name}" sortBy="#{quickFilter.name}" filterMatchMode="contains">
+                    <h:outputText value="#{quickFilter.name}"/>
+                  </p:column>
+
+                  <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/Filter/WidgetNameColumn')}"
+                    filterBy="#{quickFilter.widgetName}" sortBy="#{quickFilter.widgetName}" filterMatchMode="contains"
+                    width="200">
+                    <h:outputText value="#{quickFilter.widgetName}"/>
+                  </p:column>
+
+                  <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/type')}" width="150"
+                    sortBy="#{quickFilter.widgetType}" filterBy="#{quickFilter.widgetType.getLabel()}" filterMatchMode="contains">
+                    <h:outputText value="#{quickFilter.widgetType.getLabel()}"/>
+                  </p:column>
+                </p:dataTable>
+              </div>
+              <h:panelGroup id="manage-filter-action" layout="block" styleClass="ui-g-12 TexAlRight">
+                <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
+                  onclick="PF('manage-filter-dialog').hide();"
+                  styleClass="u-mar-right-15" global="false"/>
+                <p:commandButton id="delete-widget-filter-btn" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/remove')}"
+                  process="delete-saved-filter-form" update="delete-saved-filter-form:quick-filter-table"
+                  actionListener="#{dashboardBean.deleteSavedFilter()}"
+                  oncomplete="PF('quick-filter-table').clearFilters()"
+                  icon="si si-remove" />
+              </h:panelGroup>
+            </h:form>
+          </p:dialog>
+
+          </div>
         <h:outputScript library="js" name="dashboard.js" />
 
         <script type="text/javascript">

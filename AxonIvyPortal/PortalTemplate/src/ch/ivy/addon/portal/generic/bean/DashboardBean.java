@@ -15,7 +15,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
-import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.event.SelectEvent;
 
@@ -33,12 +33,14 @@ import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.ProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
+import ch.ivy.addon.portalkit.dto.dashboard.WidgetFilterModel;
 import ch.ivy.addon.portalkit.dto.dashboard.process.DashboardProcess;
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.enums.ProcessWidgetMode;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
+import ch.ivy.addon.portalkit.service.WidgetFilterService;
 import ch.ivy.addon.portalkit.support.HtmlParser;
 import ch.ivy.addon.portalkit.util.CategoryUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
@@ -62,9 +64,13 @@ public class DashboardBean implements Serializable {
   protected boolean isReadOnlyMode;
   private int currentDashboardIndex;
   private boolean canEdit;
+  private List<WidgetFilterModel> widgetFilters;
+  private List<WidgetFilterModel> deleteFilters;
+  private WidgetFilterService widgetFilterService;
 
   @PostConstruct
   public void init() {
+    widgetFilterService = WidgetFilterService.getInstance();
     canEdit = PermissionUtils.hasDashboardWritePermission();
     currentDashboardIndex = 0;
     isReadOnlyMode = true;
@@ -155,6 +161,7 @@ public class DashboardBean implements Serializable {
         widget.setName(translate(cmsUri));
       }
       widget.buildPredefinedFilterData();
+      widgetFilterService.applyUserFilterFromSession(widget);
     }
   }
 
@@ -409,5 +416,74 @@ public class DashboardBean implements Serializable {
 
   private void updateTypeForCustomColumn(ColumnModel columnModel) {
     columnModel.setType(columnModel.getFormat() != null ? DashboardColumnType.CUSTOM : DashboardColumnType.STANDARD);
+  }
+
+  public void loadAllWidgetSavedFilters() {
+    widgetFilters = new ArrayList<>();
+    deleteFilters = new ArrayList<>();
+    widgetFilters.addAll(widgetFilterService.findAll());
+
+    // Update latest widget name
+    widgetFilters.forEach(filter -> {
+      var selectedWidget = selectedDashboard.getWidgets().stream()
+          .filter(widget -> widget.getId().equals(filter.getWidgetId()))
+          .findFirst().orElse(null);
+      if (selectedWidget != null) {
+        filter.setWidgetName(selectedWidget.getName());
+      }
+    });
+  }
+
+  public void onClickSavedFilterItem(WidgetFilterModel filter, DashboardWidget widget) throws ParseException {
+    if (filter == null || widget == null) {
+      return;
+    }
+
+    if (widget.isSavedFilterSelected(filter)) {
+      widget.getUserFilterCollection().getSelectedWidgetFilters().removeIf(WidgetFilterModel.isEqualFilter(filter));
+    } else {
+      widget.getUserFilterCollection().getSelectedWidgetFilters().add(filter);
+    }
+
+    if (widget instanceof TaskDashboardWidget) {
+      TaskDashboardWidget taskWidget = (TaskDashboardWidget) widget;
+      taskWidget.setUserFilterCategories(new ArrayList<>());
+      widgetFilterService.buildFilterOptions(widget, taskWidget.getFilterableColumns(),
+          taskWidget.getUserFilterCategories());
+    }
+    if (widget instanceof CaseDashboardWidget) {
+      CaseDashboardWidget caseWidget = (CaseDashboardWidget) widget;
+      caseWidget.setUserFilterCategories(new ArrayList<>());
+      widgetFilterService.buildFilterOptions(widget, caseWidget.getFilterableColumns(),
+          caseWidget.getUserFilterCategories());
+    }
+    if (widget instanceof ProcessDashboardWidget) {
+      widgetFilterService.buildProcessFilters((ProcessDashboardWidget) widget);
+    }
+    
+    widgetFilterService.updateUserFilterOptionMap(widget);
+  }
+
+  public void deleteSavedFilter() {
+    CollectionUtils.emptyIfNull(deleteFilters).forEach(filter -> {
+      widgetFilterService.delete(filter.getId());
+    });
+    loadAllWidgetSavedFilters();
+  }
+
+  public List<WidgetFilterModel> getWidgetFilters() {
+    return widgetFilters;
+  }
+
+  public void setWidgetFilters(List<WidgetFilterModel> widgetFilters) {
+    this.widgetFilters = widgetFilters;
+  }
+
+  public List<WidgetFilterModel> getDeleteFilters() {
+    return deleteFilters;
+  }
+
+  public void setDeleteFilters(List<WidgetFilterModel> deleteFilters) {
+    this.deleteFilters = deleteFilters;
   }
 }
