@@ -22,7 +22,6 @@
     <ui:param name="componentToUpdateOnApplyFilter" value="#{component.parent.namingContainer.clientId}:case-component:dashboard-cases" />
     <ui:param name="componentToUpdateOnResetFilter" value="#{component.parent.namingContainer.clientId}:case-component:dashboard-cases" />
     <ui:param name="onCompleteApplyFilters" value="PF('dashboard-cases-#{widget.id}').filter()" />
-    <ui:param name="onFilterOverlayPanelShow" value="#{widget.backupPrevUserFilterCategories()}" />
 
     <ui:define name="widgetInformationContent">
       <ui:include src="CaseInfo.xhtml">
