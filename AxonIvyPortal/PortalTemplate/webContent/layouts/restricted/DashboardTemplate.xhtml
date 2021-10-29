@@ -52,7 +52,8 @@
             <p:remoteCommand name="saveWidgetState" actionListener="#{managedBean.saveSelectedWidget()}" global="false"/>
             <p:remoteCommand name="loadAllWidgetSavedFilters" actionListener="#{dashboardBean.loadAllWidgetSavedFilters()}"
               global="false" process="@this" immediate="true" partialSubmit="true"
-              update="delete-saved-filter-form" oncomplete="PF('manage-filter-dialog').initPosition();"/>
+              update="delete-saved-filter-form:quick-filter-table"
+              oncomplete="PF('quick-filter-table').clearFilters(); PF('manage-filter-dialog').initPosition();"/>
           </h:form>
 
         <div id="dashboard-body" class="dashboard__body ui-g-12 js-dashboard__body">
@@ -138,7 +139,7 @@
             onShow="loadAllWidgetSavedFilters();">
             <h:form id="delete-saved-filter-form" styleClass="ui-g">
               <div class="ui-g-12">
-                <p:dataTable value="#{dashboardBean.widgetFilters}" var="quickFilter"
+                <p:dataTable id="quick-filter-table" value="#{dashboardBean.widgetFilters}" var="quickFilter"
                   widgetVar="quick-filter-table" scrollHeight="300" scrollable="true" reflow="true"
                   selection="#{dashboardBean.deleteFilters}" rowKey="#{quickFilter.name}"
                   emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/EmptyFilterMessage')}">
@@ -167,8 +168,9 @@
                   onclick="PF('manage-filter-dialog').hide();"
                   styleClass="u-mar-right-15" global="false"/>
                 <p:commandButton id="delete-widget-filter-btn" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/remove')}"
-                  process="delete-saved-filter-form" update="delete-saved-filter-form"
+                  process="delete-saved-filter-form" update="delete-saved-filter-form:quick-filter-table"
                   actionListener="#{dashboardBean.deleteSavedFilter()}"
+                  oncomplete="PF('quick-filter-table').clearFilters()"
                   icon="si si-remove" />
               </h:panelGroup>
             </h:form>
