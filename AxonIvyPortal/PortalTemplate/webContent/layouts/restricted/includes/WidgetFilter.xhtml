@@ -5,8 +5,13 @@
 
 <p:remoteCommand name="loadSaveFilters#{index}"
   actionListener="#{widget.updateSavedFiltersSelection()}"
-  process="@this" partialSubmit="true" immediate="true"
-  update="saved-filters-container"/>
+  process="@this" partialSubmit="true" immediate="true" global="false"
+  update="saved-filters-container" oncomplete="initWidgetFilterHtml('#{widget.id}');"/>
+
+<p:remoteCommand name="searchWigetFilter#{index}"
+  actionListener="#{widget.searchSavedFilters()}" partialSubmit="true" global="false"
+  process="@this search-saved-filter-input" update="widget-saved-filters-items"
+  oncomplete="initWidgetFilterHtml('#{widget.id}');" />
 
 <div class="ui-g-12 filter-overlay-panel__header">
   <strong class="ui-g-12 u-no-padding-left">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/SavedFilterHeader')}</strong>
@@ -21,19 +26,25 @@
       styleClass="saved-filter__search" value="#{widget.searchSavedFilterKeyword}"
       valueChangeListener="#{widget.searchSavedFilters()}">
       <i class="saved-filter__search-icon si si-search ui-sm-hidden" />
-      <p:ajax event="keyup" listener="#{widget.searchSavedFilters()}" delay="50" partialSubmit="true" global="false"
-        process="@this search-saved-filter-input" update="@(.saved-filter__content) widget-saved-filters-items" />
-      <p:ajax event="change" listener="#{widget.searchSavedFilters()}" delay="50" partialSubmit="true" global="false"
-        process="@this search-saved-filter-input" update="@(.saved-filter__content) widget-saved-filters-items" />
+      <p:ajax event="keyup" delay="50" partialSubmit="true" global="false" process="@this"
+         onstart="searchWigetFilter#{index}()"/>
+      <p:ajax event="change" partialSubmit="true" global="false" process="@this"
+         onstart="searchWigetFilter#{index}()"/>
     </p:inputText>
   </div>
-  <h:outputText rendered="#{empty widget.savedFilters}" styleClass="ui-g-12 saved-filter--not-found"
-    value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/NoSavedFilterMessage')}">
-  </h:outputText>
+  <h:outputText styleClass="js-loading-widget-filters-#{widget.id} ui-g-12"
+    value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/loading')}"/>
 </div>
 
 <h:panelGroup id="widget-saved-filters-items" layout="block"
-  styleClass="ui-g-12 saved-filter__content ui-fluid u-padding-0">
+  styleClass="ui-g-12 saved-filter__content ui-fluid u-padding-0 u-display-none js-widget-filters-items-#{widget.id}">
+  <div class="ui-g-12 u-no-padding-bottom">
+    <h:outputText rendered="#{empty widget.savedFilters}"
+      styleClass="ui-g-12 u-no-padding-bottom saved-filter--not-found"
+      value="#{widget.searchFilterMessage}">
+    </h:outputText>
+  </div>
+
   <h:panelGroup styleClass="saved-filter__items" layout="block" rendered="#{not empty widget.savedFilters}">
     <ui:repeat id="saved-filter-#{index}" value="#{widget.savedFilters}" var="filter" varStatus="filterStatus">
       <h:panelGroup id="saved-filter-node" layout="block"
@@ -45,11 +56,19 @@
       </h:panelGroup>
     </ui:repeat>
   </h:panelGroup>
-  <div class="ui-g-12">
-    <h:outputText rendered="#{empty widget.savedFilters and not empty widget.userFilterCollection.widgetFilterSelections}"
-      styleClass="ui-g-12 saved-filter--not-found" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/Filter/NotFound')}">
-    </h:outputText>
-  </div>
 </h:panelGroup>
 
+<script type="text/javascript">
+    function initWidgetFilterHtml(widgetId, hideContent) {
+      var loadingMessage = '.js-loading-widget-filters-' + widgetId;
+      var widgetFilterItems = ".js-widget-filters-items-" + widgetId;
+      if (hideContent) {
+        $(loadingMessage).removeClass('u-display-none');
+        $(widgetFilterItems).addClass('u-display-none');
+      } else {
+        $(loadingMessage).addClass('u-display-none');
+        $(widgetFilterItems).removeClass('u-display-none');
+      }
+    }
+</script>
 </html>
