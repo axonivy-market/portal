@@ -994,7 +994,6 @@ body .dashboard__table--preview.ui-datatable tbody tr.ui-state-hover {
 }
 
 .saved-filter--not-found {
-  margin-top: 10px;
   color: var(--widget-advanced-filter-overlay-panel-footer);
 }
 
