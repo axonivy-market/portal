@@ -1,5 +1,7 @@
 package com.axonivy.portal.selenium.test;
 
+import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -34,7 +36,7 @@ public class CaseFilterTest extends BaseTest {
     mainMenuPage.openCaseList();
     String fromInputText = new SimpleDateFormat(DateTimePattern.DATE_PATTERN).format(new Date());
     caseWidgetPage.filterCasesByCreatedDate(fromInputText, EMPTY);
-    caseWidgetPage.countCases().shouldHaveSize(0);
+    caseWidgetPage.countCases().shouldHave(sizeGreaterThanOrEqual(1));
   }
 
 }

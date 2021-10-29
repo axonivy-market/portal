@@ -16,8 +16,8 @@ import org.apache.commons.lang3.time.DateUtils;
 
 public final class Dates {
 
-  private static final String GERMAN_DATE_FORMAT = "dd.MM.yyyy";
-  private static final String ENGLISH_DATE_FORMAT = "MM/dd/yyyy";
+  public static final String GERMAN_DATE_FORMAT = "dd.MM.yyyy";
+  public static final String ENGLISH_DATE_FORMAT = "MM/dd/yyyy";
 
   private Dates() {}
 

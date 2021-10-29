@@ -23,7 +23,6 @@
     <ui:param name="componentToUpdateOnApplyFilter" value="#{component.parent.namingContainer.clientId}:task-component:dashboard-tasks" />
     <ui:param name="componentToUpdateOnResetFilter" value="#{component.parent.namingContainer.clientId}:task-component:dashboard-tasks" />
     <ui:param name="onCompleteApplyFilters" value="PF('dashboard-tasks-#{widget.id}').filter()" />
-    <ui:param name="onFilterOverlayPanelShow" value="#{widget.backupPrevUserFilterCategories()}" />
 
     <ui:define name="widgetInformationContent">
       <ui:include src="TaskInfo.xhtml">

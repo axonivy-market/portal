@@ -1,0 +1,5 @@
+co: name={ManageFilterLink} description={} changed={} changedby={} visualorder={} guid={} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={17C919E84673388B} datatype={} isdefault={false} langid={de} description={} validfrom={} validto={} changed={} changedby={} properties={} id={}
+val: guid={17C919E38C5E3B7D} datatype={} isdefault={true} langid={en} description={} validfrom={} validto={} changed={} changedby={} properties={} id={}
+val: guid={17C919E84E3D3F46} datatype={} isdefault={false} langid={es} description={} validfrom={} validto={} changed={} changedby={} properties={} id={}
+val: guid={17C919E851BA4B4A} datatype={} isdefault={false} langid={fr} description={} validfrom={} validto={} changed={} changedby={} properties={} id={}

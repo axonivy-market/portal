@@ -6,10 +6,10 @@
 <h:panelGroup id="filter-container" layout="block" styleClass="widget-filter-panel">
   <div class="ui-g">
     <h:panelGroup>
-      <div class="ui-g-3">
+      <div class="ui-g-4 ui-sm-12">
         <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processName')}" for="process-name-text-field-input" />
       </div>
-      <div class="ui-g-9 ui-fluid">
+      <div class="ui-g-8 ui-sm-12 ui-fluid">
         <p:inputText id="process-name-text-field-input" styleClass="process-configuration__input-text" value="#{widget.userFilter.processName}" />
       </div>
     </h:panelGroup>
@@ -17,10 +17,10 @@
 
   <div class="ui-g">
     <h:panelGroup>
-      <div class="ui-g-3">
+      <div class="ui-g-4 ui-sm-12">
         <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processType')}" for="types"/>
       </div>
-      <div class="ui-g-9 ui-fluid">
+      <div class="ui-g-8 ui-sm-12 ui-fluid">
         <p:selectCheckboxMenu id="process-types" value="#{widget.userFilter.processTypes}" multiple="true" filter="true" filterMatchMode="contains"
           panelStyleClass="process-configuration__selectcheckboxmenu-panel" styleClass="process-configuration__selectcheckboxmenu">
           <f:selectItems value="#{widget.userFilter.allProcessTypes}" var="type" itemValue="#{type}" itemLabel="#{dashboardProcessFilterBean.getUserFriendlyProcessType(type)}" />
@@ -30,11 +30,11 @@
   </div>
   <div class="ui-g">
     <h:panelGroup>
-      <div class="ui-g-3">
+      <div class="ui-g-4 ui-sm-12">
         <p:outputLabel for="category" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/categories')}" />
       </div>
-      <div class="ui-g-9 ui-fluid">
-        <h:panelGroup id="category-container" styleClass="process-configuration__category">
+      <div class="ui-g-8 ui-sm-12 ui-fluid">
+        <h:panelGroup id="user-filter-category-container" styleClass="process-configuration__category">
           <p:inputText id="category" styleClass="process-configuration__input-text" value="#{widget.userFilter.displayCategories}" readonly="true" />
           <p:overlayPanel id="category-panel" for="category" appendTo="category-container" styleClass="process-configuration__category-panel"
             onHide="$(this.targetElement).parents('.process-configuration__category').find('.portal-cancel-button').click();" dynamic="true">
@@ -47,10 +47,10 @@
 
             <h:panelGroup id="category-panel-footer" layout="block" styleClass="process-configuration__category-panel-footer">
               <p:commandLink id="cancel-command" styleClass="portal-cancel-button u-mar-right-10" process="@this" global="false" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-                update="category-container" />
+                update="user-filter-category-container" />
 
               <p:commandButton id="update-command" styleClass="update-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}" process="category-panel" partialSubmit="true"
-                update="category-container" icon="si si-check-1" actionListener="#{widget.userFilter.selectCategoriesToFilterProcesses()}" />
+                update="user-filter-category-container" icon="si si-check-1" actionListener="#{widget.userFilter.selectCategoriesToFilterProcesses()}" />
             </h:panelGroup>
           </p:overlayPanel>
         </h:panelGroup>
