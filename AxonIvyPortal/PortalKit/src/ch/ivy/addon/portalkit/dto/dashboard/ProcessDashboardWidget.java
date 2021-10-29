@@ -70,22 +70,28 @@ public class ProcessDashboardWidget extends DashboardWidget {
 
   @JsonIgnore
   public static ProcessDashboardWidget buildDefaultWidget(String id, String name) {
-    ProcessDashboardWidget result = new ProcessDashboardWidget();
-    result.setId(id);
-    result.setName(name);
-    result.setLayout(new WidgetLayout());
-    result.getLayout().setWidth(2);
-    result.getLayout().setHeight(6);
-    result.getLayout().setAxisX(0);
-    result.getLayout().setAxisY(0);
-    result.setAutoPosition(true);
-    result.setSelectedAllProcess(true);
-    return result;
+    ProcessDashboardWidget widget = new ProcessDashboardWidget();
+    widget.setId(id);
+    widget.setName(name);
+    widget.setLayout(new WidgetLayout());
+    widget.getLayout().setWidth(2);
+    widget.getLayout().setHeight(6);
+    widget.getLayout().setAxisX(0);
+    widget.getLayout().setAxisY(0);
+    widget.setAutoPosition(true);
+    widget.setSelectedAllProcess(true);
+    return widget;
   }
 
   @Override
   @JsonIgnore
   public void onApplyUserFilters() throws ParseException {
+    countDefinedUserFilter();
+    super.onApplyUserFilters();
+  }
+
+  @JsonIgnore
+  public void countDefinedUserFilter() {
     this.displayProcesses = this.originalDisplayProcesses;
     int numberOfFilters = 0;
     if (StringUtils.isNotBlank(userFilter.getProcessName())) {
@@ -140,8 +146,7 @@ public class ProcessDashboardWidget extends DashboardWidget {
 
   @Override
   @JsonIgnore
-  public void resetUserFilters() {
-    super.resetUserFilters();
+  public void resetWidgetFilters() {
     this.userFilter.setProcessName("");
     this.userFilter.setProcessTypes(new ArrayList<>());
     this.userFilter.setCategories(new ArrayList<>());
