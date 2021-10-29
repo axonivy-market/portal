@@ -410,20 +410,41 @@ body .ui-calendar.task-configuration__calendar .ui-datepicker-trigger {
 
 .filter-overlay-panel.ui-widget-content .ui-overlaypanel-content,
 .ui-widget-content.info-overlay-panel .ui-overlaypanel-content {
-  width: 450px;
+  width: 600px;
   padding: 0;
+}
+
+@media ( max-width : 767px) {
+  .filter-overlay-panel.ui-widget-content .ui-overlaypanel-content {
+    width: 500px;
+  }
 }
 
 @media screen and (max-width: 40em) {
   .filter-overlay-panel.ui-widget-content .ui-overlaypanel-content,
   .ui-widget-content.info-overlay-panel .ui-overlaypanel-content {
-    width: 70vw;
+    width: 80vw;
+  }
+  
+  .saved-filter-node__text {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 100%;
+    margin-bottom: 0 !important;
+  }
+  
+  .filter-overlay-panel.ui-widget-content .ui-overlaypanel-content .filter-overlay-panel__content,
+  .filter-overlay-panel.ui-widget-content .ui-overlaypanel-content .saved-filter__content {
+    max-height: 45vh !important;
   }
 }
 
 .statistic-filter-accordion-panel.widget-info-panel,
-.filter-overlay-panel.ui-widget-content .ui-overlaypanel-content .filter-overlay-panel__content {
-  max-height: 60vh;
+.filter-overlay-panel.ui-widget-content .ui-overlaypanel-content .filter-overlay-panel__content,
+.filter-overlay-panel.ui-widget-content .ui-overlaypanel-content .saved-filter__content {
+  max-height: 50vh;
   overflow: auto;
 }
 
@@ -431,7 +452,8 @@ body .ui-calendar.task-configuration__calendar .ui-datepicker-trigger {
 .filter-overlay-panel__content,
 .filter-overlay-panel__footer,
 .info-overlay-panel__footer,
-.statistic-filter-accordion-panel.widget-info-panel {
+.statistic-filter-accordion-panel.widget-info-panel,
+.saved-filter__items {
   padding: .5em 1em;
 }
 
@@ -570,7 +592,6 @@ body .dashboard__table--preview.ui-datatable tbody tr.ui-state-hover {
   position: absolute;
   top: -6px;
   left: 8px;
-  z-index: 999;
   background: var(--widget-filter-noti-background-color);
   border-radius: 50%;
   font-size: var(--widget-filter-noti-font-size);
@@ -580,6 +601,7 @@ body .dashboard__table--preview.ui-datatable tbody tr.ui-state-hover {
   line-height: 15px;
   text-align: center;
   font-weight: var(--widget-filter-noti-font-weight);
+  box-shadow: 0 1px 2.5px 0 rgb(0 0 0 / 26%), 0 1px 5px 0 rgb(0 0 0 / 16%);
 }
 
 .widget-infor--type {
@@ -911,4 +933,75 @@ body .dashboard__table--preview.ui-datatable tbody tr.ui-state-hover {
 .combined-process {
   padding-top: 0;
   padding: 0;
+}
+
+.saved-filter {
+  border-right: solid 1px var(--widget-advanced-filter-overlay-panel-footer);
+} 
+
+.saved-filter__content {
+  position: relative;
+}
+
+.saved-filter--search-container {
+  padding-bottom: 0;
+  padding-top: 0;
+  position: relative;
+}
+
+.saved-filter__search {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.saved-filter__search-icon {
+  position: absolute;
+  right: 5px;
+  padding-right: 7px;
+}
+
+.saved-filter-node {
+  text-align: center;
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 5px;
+  border: 1px solid var(--primary-color);
+  border-radius: 4px;
+  box-shadow: 0 1px 2.5px 0 rgb(0 0 0 / 26%), 0 1px 5px 0 rgb(0 0 0 / 16%);
+  cursor: pointer;
+  transition: background-color 0.3s;
+  transition: color 0.3s;
+}
+
+.saved-filter-node.selected, 
+.saved-filter-node:active {
+  background: var(--accent-color);
+  border-color: var(--accent-color);
+}
+
+.saved-filter-node:hover {
+  color: var(--primary-dark-color);
+  border-color: var(--accent-color);
+  font-weight: bold;
+}
+
+.saved-filter-node__text {
+  margin-bottom: 5px;
+}
+
+.saved-filter-node.selected .saved-filter-node__text {
+  font-weight: bold;
+}
+
+.saved-filter--not-found {
+  margin-top: 10px;
+  color: var(--widget-advanced-filter-overlay-panel-footer);
+}
+
+.manage-filter-dialog .ui-dialog-content.ui-widget-content {
+  overflow: hidden;
+}
+
+.saved-filter__manage-filter {
+  font-size: var(--small-font-size);
 }

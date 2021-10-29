@@ -60,8 +60,6 @@ public class CaseDashboardWidget extends DashboardWidget {
   private Map<CaseState, Long> caseByStateStatistic;
   @JsonIgnore
   private Map<String, Long> caseByCategoryStatistic;
-  @JsonIgnore
-  private List<String> prevUserFilterCategories;
 
   public CaseDashboardWidget() {
     dataModel = new DashboardCaseLazyDataModel();
@@ -260,26 +258,26 @@ public class CaseDashboardWidget extends DashboardWidget {
   @Override
   @JsonIgnore
   public void onApplyUserFilters() throws ParseException {
+    super.onApplyUserFilters();
     this.userDefinedFiltersCount = countDefinedUserFilter(this);
-    this.prevUserFilterCategories = getUserFilterCategories();
   }
 
   @JsonIgnore
   public static CaseDashboardWidget buildDefaultWidget(String id, String name) {
-    CaseDashboardWidget result = new CaseDashboardWidget();
-    result.setId(id);
-    result.setName(name);
+    CaseDashboardWidget widget = new CaseDashboardWidget();
+    widget.setId(id);
+    widget.setName(name);
 
     WidgetLayout layout = new WidgetLayout();
     layout.setWidth(10);
     layout.setHeight(9);
-    result.setLayout(layout);
+    widget.setLayout(layout);
 
-    result.setAutoPosition(true);
-    result.setSortField(CaseSortField.ID.toString());
-    result.setSortDescending(true);
-    result.setColumns(initStandardColumns());
-    return buildColumns(result);
+    widget.setAutoPosition(true);
+    widget.setSortField(CaseSortField.ID.toString());
+    widget.setSortDescending(true);
+    widget.setColumns(initStandardColumns());
+    return buildColumns(widget);
   }
   
   @JsonIgnore
@@ -403,8 +401,7 @@ public class CaseDashboardWidget extends DashboardWidget {
 
   @Override
   @JsonIgnore
-  public void resetUserFilters() {
-    super.resetUserFilters();
+  public void resetWidgetFilters() {
     for (ColumnModel column : this.getColumns()) {
       column.setUserFilter(StringUtils.EMPTY);
       column.setUserFilterList(new ArrayList<>());
@@ -431,18 +428,5 @@ public class CaseDashboardWidget extends DashboardWidget {
 
   public void setRowsPerPage(int rowsPerPage) {
     this.rowsPerPage = rowsPerPage;
-  }
-
-  public void backupPrevUserFilterCategories() {
-    this.prevUserFilterCategories = getUserFilterCategories();
-  }
-  
-  public void restoreUserFilterCategories() {
-    setUserFilterCategories(this.prevUserFilterCategories);
-  }
-
-  @Override
-  public void onCancelUserFilters() {
-    restoreUserFilterCategories();
   }
 }

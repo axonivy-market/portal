@@ -295,7 +295,7 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
     if (this.widget.getType() == DashboardWidgetType.CASE) {
       ((CaseDashboardWidget) this.widget).setInConfiguration(false);
     }
-    this.widget.resetUserFilters();
+    this.widget.resetWidgetFilters();
   }
 
   public void setEditWidget(DashboardWidget widget) {
