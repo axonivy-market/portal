@@ -2,8 +2,11 @@ package ch.ivy.addon.portalkit.dto.dashboard;
 
 import java.io.Serializable;
 import java.text.ParseException;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -15,6 +18,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import ch.ivy.addon.portalkit.constant.DashboardConfigurationPrefix;
 import ch.ivy.addon.portalkit.dto.WidgetLayout;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
+import ch.ivy.addon.portalkit.service.WidgetFilterService;
 import ch.ivyteam.ivy.environment.Ivy;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
@@ -43,6 +47,12 @@ public abstract class DashboardWidget implements Serializable {
   protected boolean hasPredefinedFilter;
   @JsonIgnore
   protected Optional<String> userDefinedFiltersCount;
+  @JsonIgnore
+  protected String searchSavedFilterKeyword;
+  @JsonIgnore
+  protected List<WidgetFilterModel> savedFilters;
+  @JsonIgnore
+  protected UserFilterCollection userFilterCollection;
 
   public DashboardWidget() {}
 
@@ -57,20 +67,79 @@ public abstract class DashboardWidget implements Serializable {
   public void buildStatisticInfos() throws ParseException {}
 
   @JsonIgnore
-  public void resetUserFilters() {
+  public void onResetUserFilters() throws ParseException {
+    setSearchSavedFilterKeyword("");
     this.setUserDefinedFiltersCount(Optional.empty());
+    resetWidgetFilters();
+    userFilterCollection = new UserFilterCollection(id, getType());
+    onApplyUserFilters();
   }
   
+  @JsonIgnore
+  public abstract void resetWidgetFilters();
+
   @JsonIgnore
   public void onCancelUserFilters() {}
   
   @JsonIgnore
   @SuppressWarnings("unused")
-  public void onApplyUserFilters() throws ParseException {}
+  public void onApplyUserFilters() throws ParseException {
+    var filterService = WidgetFilterService.getInstance();
+    filterService.consolidateSelectedFilters(this);
+    userFilterCollection.updateUserFilterOptionValue(this);
+    filterService.storeUserSelectedFiltersToSession(id, getType(), userFilterCollection);
+  }
 
   @JsonIgnore
   @SuppressWarnings("unused")
   public void buildPredefinedFilterData() throws ParseException {}
+
+  @JsonIgnore
+  public void loadUserFilter() throws ParseException {
+    updateSavedFiltersSelection();
+
+    var latestUserFilterOptions = getUserFilterCollection().getLatestFilterOption();
+    WidgetFilterService.getInstance().updateFilterOptionsData(this, latestUserFilterOptions);
+  }
+
+  @JsonIgnore
+  public void updateSavedFiltersSelection() {
+    setSearchSavedFilterKeyword("");
+    var result = WidgetFilterService.getInstance().findFiltersByWidgetId(getId());
+    setSavedFilters(result);
+    getUserFilterCollection().setWidgetFilterSelections(result);
+  }
+
+  @JsonIgnore
+  public void onClickSaveUserFilters() {
+    WidgetFilterService.getInstance().prepareSaveFilter(this);
+  }
+
+  @JsonIgnore
+  public void searchSavedFilters() {
+    var savedFilterSelections = getUserFilterCollection().getWidgetFilterSelections();
+    if (StringUtils.isEmpty(searchSavedFilterKeyword)) {
+      if (CollectionUtils.isNotEmpty(savedFilterSelections)) {
+        setSavedFilters(savedFilterSelections);
+      }
+      return;
+    }
+    if (CollectionUtils.isEmpty(savedFilterSelections)) {
+      getUserFilterCollection().setWidgetFilterSelections(savedFilters);
+    }
+
+    var searchResult = getUserFilterCollection().getWidgetFilterSelections().stream()
+        .filter(filter -> StringUtils.containsIgnoreCase(filter.getName(), searchSavedFilterKeyword))
+        .collect(Collectors.toList());
+    setSavedFilters(searchResult);
+  }
+
+  @JsonIgnore
+  public boolean isSavedFilterSelected(WidgetFilterModel filter) {
+    return getUserFilterCollection().getSelectedWidgetFilters().stream()
+        .filter(WidgetFilterModel.isEqualFilter(filter))
+        .count() > 0;
+  }
 
   public String getId() {
     return id;
@@ -125,6 +194,33 @@ public abstract class DashboardWidget implements Serializable {
 
   @JsonIgnore
   public abstract DashboardWidgetType getType();
+
+  public List<WidgetFilterModel> getSavedFilters() {
+    return savedFilters;
+  }
+
+  public void setSavedFilters(List<WidgetFilterModel> savedFilters) {
+    this.savedFilters = savedFilters;
+  }
+
+  public String getSearchSavedFilterKeyword() {
+    return searchSavedFilterKeyword;
+  }
+
+  public void setSearchSavedFilterKeyword(String searchSavedFilterKeyword) {
+    this.searchSavedFilterKeyword = searchSavedFilterKeyword;
+  }
+
+  public UserFilterCollection getUserFilterCollection() {
+    if (userFilterCollection == null) {
+      userFilterCollection = new UserFilterCollection(id, getType());
+    }
+    return userFilterCollection;
+  }
+
+  public void setUserFilterCollection(UserFilterCollection userFilterCollection) {
+    this.userFilterCollection = userFilterCollection;
+  }
 
   @Override
   public int hashCode() {
