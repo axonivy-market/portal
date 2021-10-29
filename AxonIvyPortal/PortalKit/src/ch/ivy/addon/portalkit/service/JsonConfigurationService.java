@@ -39,11 +39,11 @@ abstract class JsonConfigurationService<T extends AbstractConfiguration> {
   }
 
   public List<T> findAll() {
-    List<T> publicLinks = getPublicConfig();
-    List<T> privateLinks = getPrivateConfig();
-    List<T> allLinks = new ArrayList<>(publicLinks);
-    allLinks.addAll(privateLinks);
-    return allLinks;
+    List<T> publicConfigs = getPublicConfig();
+    List<T> privateConfigs = getPrivateConfig();
+    List<T> allConfigs = new ArrayList<>(publicConfigs);
+    allConfigs.addAll(privateConfigs);
+    return allConfigs;
   }
 
   public List<T> getPublicConfig() {
