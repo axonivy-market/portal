@@ -1347,8 +1347,8 @@ Bk7 f34 608 192 672 192 #arcP
 Bk7 f34 0 0.38321279022824617 0 0 #arcLabel
 Bk7 f24 actionTable 'out=in;
 ' #txt
-Bk7 f24 actionCode 'ivy.session.setContentLocale(ivy.case.creatorUser.getEMailLanguage());
-ivy.session.setFormattingLocale(ivy.case.creatorUser.getEMailLanguage());
+Bk7 f24 actionCode 'ivy.session.setContentLocale(ivy.case.creatorUser.getLanguage());
+ivy.session.setFormattingLocale(ivy.case.creatorUser.getLanguage());
 in.currentTask.subject = ivy.cms.co("/Dialogs/Tasks/FinalReview/TaskName");' #txt
 Bk7 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
