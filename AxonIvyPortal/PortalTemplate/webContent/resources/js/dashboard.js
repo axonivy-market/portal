@@ -32,6 +32,33 @@ function loadGrid() {
   });
 }
 
+function getPortalGridsCurrentRow(widgetType) {
+  let currentRowNumber = 0;
+  let dashboard = $("#dashboard-body");
+  if (dashboard.length > 0) {
+    let gridStack = dashboard.find("#grid-stack");
+    if (gridStack.length > 0) {
+      currentRowNumber = gridStack.attr("gs-current-row");
+    }
+  }
+  addNewDashboardWidgetCommand([{
+    name : 'portalGridsCurrentRow',
+    value : currentRowNumber
+  }]);
+}
+
+function scrollToWidget(widgetId) {
+  let widgetClass = ".js-dashboard-widget-" + widgetId;
+  $(widgetClass);
+  console.log("widget seleted " + $(widgetClass));
+
+  let $container = $("#dashboard-body");
+  let $scrollTo = $(widgetClass);
+  $container.scrollTop(
+    $scrollTo.offset().top - $container.offset().top + $container.scrollTop() - 10
+);
+}
+
 function handleFilterCategoryHeight(e) {
   var filterTab = $(document.getElementById(e.id)).find("[id$=':filter-tab']");
   if (filterTab.lenght > 0 && filterTab.get(0).ariaHidden == "false") {
