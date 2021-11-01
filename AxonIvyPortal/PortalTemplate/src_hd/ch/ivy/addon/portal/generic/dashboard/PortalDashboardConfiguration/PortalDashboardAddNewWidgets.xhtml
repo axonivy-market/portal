@@ -14,19 +14,20 @@
       <p:panelGrid columns="3" styleClass="ui-panelgrid-blank">
         <p:graphicImage library="images" name="#{sample.image}" styleClass="new-widget-dialog__image" />
         <p:panelGrid styleClass="ui-panelgrid-blank new-widget-dialog__item-content" columns="1">
-	        <p:outputLabel id="sample-name" value="#{sample.name}" styleClass="new-widget-dialog__widget-name"/>        	
-	        <p:outputLabel value="#{sample.introduction}" styleClass="new-widget-dialog__introduction"/>
+          <p:outputLabel id="sample-name" value="#{sample.name}" styleClass="new-widget-dialog__widget-name"/>
+          <p:outputLabel value="#{sample.introduction}" styleClass="new-widget-dialog__introduction"/>
         </p:panelGrid>
         <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/addWidget')}"
           actionListener="#{dashboardConfigurationBean.create(sample)}" update="new-widget-configuration-dialog widget-configuration-form"
           oncomplete="PF('new-widget-configuration-dialog').show(); PF('new-widget-dialog').hide();"
-           styleClass="secondary-btn" />
-		</p:panelGrid>
-	</p:panel>
+          icon="si si-add" onstart="getPortalGridsCurrentRow();"/>
+      </p:panelGrid>
+    </p:panel>
   </p:dataGrid>
   <f:facet name="footer">
     <p:commandButton id="new-widget-close-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" type="button"
-      onclick="PF('new-widget-dialog').hide()" process="@none" icon="si si-close"/>
+      onclick="PF('new-widget-dialog').hide()" process="@none" icon="si si-close"
+      styleClass="secondary-btn"/>
   </f:facet>
 </p:dialog>
 
@@ -69,10 +70,10 @@
 
     <p:commandButton id="widget-configuration-save-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
       actionListener="#{dashboardConfigurationBean.saveWidget()}" icon="si si-floppy-disk"
-      oncomplete="if (args &amp;&amp; !args.validationFailed){PF('new-widget-configuration-dialog').hide();loadGrid();}"
+      oncomplete="if (args &amp;&amp; !args.validationFailed){PF('new-widget-configuration-dialog').hide();loadGridAfterAddedNewWidget();}"
       process="#{componentToProcess}"
       partialSubmit="true"
-      update="widget-configuration-form"
+      update="widget-configuration-form load-grid-after-added-new-widget-cmd"
       disabled="#{empty widget}"/>
   </f:facet>
 </p:dialog>
