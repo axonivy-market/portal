@@ -78,7 +78,8 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
 
   public String getTaskNameFilterValue() {
     return $("div[id$='widget-filter-content']").waitUntil(appear, DEFAULT_TIMEOUT)
-        .$(".ui-inputfield.text-field-input-name").getText();
+        .$(".task-configuration__input-text.text-field-input-name").waitUntil(Condition.cssClass("ui-state-filled"), DEFAULT_TIMEOUT)
+        .getValue();
   }
   
   public void applyFilter() {
@@ -134,6 +135,8 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
     saveFilterDialog.$("input[id$='save-filter-form:save-filter-name']").sendKeys(filterName);
     saveFilterDialog.$("button[id$='save-filter-form:save-widget-filter-button']").shouldBe(getClickableCondition()).click();
     saveFilterDialog.waitUntil(disappears, DEFAULT_TIMEOUT);
+    getSavedFilterContainer().$(".saved-filter__items").waitUntil(appear, DEFAULT_TIMEOUT)
+      .$$(".saved-filter-node").shouldHave(CollectionCondition.sizeGreaterThanOrEqual(1));
   }
 
   public String clickOnASavedFilterItem(String filterName) {
@@ -147,6 +150,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
         break;
       }
     }
+    getSelectedFilter(selectSavedFilterId).shouldHave(Condition.cssClass("selected"));
     return selectSavedFilterId;
   }
   
