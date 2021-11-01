@@ -154,6 +154,7 @@ html {
 
 .process-chain-container-iframe {
 	height: calc(var(--vh, 1vh) * 100 - 32px);
+	margin: 0 20px;
 }
 
 .process-chain-test-form {
