@@ -1,5 +1,5 @@
-co: name={iconSelectionDialogHeader} description={} changed={2019-02-11 03:13:33 CET} changedby={ntminh01} visualorder={0} guid={15F713A73D9B01DD} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={15F713A73E0BB695} datatype={} isdefault={true} langid={en} description={} validfrom={2016-12-21 15:21:02 CET} validto={} changed={2017-10-31 07:59:37 CET} changedby={chnam} properties={} id={}
-val: guid={15F713A73DB36343} datatype={} isdefault={false} langid={de} description={} validfrom={2016-12-21 15:21:02 CET} validto={} changed={2017-10-31 07:59:37 CET} changedby={chnam} properties={} id={}
-val: guid={168DA54BFFB64043} datatype={} isdefault={false} langid={es} description={} validfrom={2019-02-11 03:13:33 CET} validto={} changed={2019-02-11 03:13:33 CET} changedby={ntminh01} properties={} id={}
-val: guid={15F713A73E5B236E} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:05 CEST} validto={} changed={2017-10-31 07:59:37 CET} changedby={chnam} properties={} id={}
+co: name={iconSelectionDialogHeader} description={} changed={} changedby={} visualorder={} guid={} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15F713A73E0BB695} datatype={} isdefault={} langid={en} description={} validfrom={} validto={} changed={} changedby={} properties={} id={}
+val: guid={15F713A73DB36343} datatype={} isdefault={} langid={de} description={} validfrom={} validto={} changed={} changedby={} properties={} id={}
+val: guid={168DA54BFFB64043} datatype={} isdefault={} langid={es} description={} validfrom={} validto={} changed={} changedby={} properties={} id={}
+val: guid={15F713A73E5B236E} datatype={} isdefault={} langid={fr} description={} validfrom={} validto={} changed={} changedby={} properties={} id={}
