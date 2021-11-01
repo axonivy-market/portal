@@ -27,6 +27,10 @@
   padding: 0;
 }
 
+.dashboard-card.new-widget {
+  outline: 3px solid var(--accent-color);
+}
+
 .ui-draggable:not(.ui-draggable-disabled)>.ui-draggable-handle {
   cursor: move;
 }
@@ -58,7 +62,8 @@
 }
 
 .dashboard__body {
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
   padding-top: 0;
 }
 
