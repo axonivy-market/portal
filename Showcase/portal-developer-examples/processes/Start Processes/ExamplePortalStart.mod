@@ -1953,8 +1953,8 @@ Pt0 f175 @C|.responsibility Everybody #txt
 Pt0 f175 81 2385 30 30 -67 21 #rect
 Pt0 f176 433 2385 30 30 0 15 #rect
 Pt0 f179 dialogId ch.ivy.addon.portal.generic.dashboard.PortalDashboardConfiguration #txt
-Pt0 f179 startMethod start() #txt
-Pt0 f179 requestActionDecl '<> param;' #txt
+Pt0 f179 startMethod start(Boolean) #txt
+Pt0 f179 requestActionDecl '<Boolean isPublicDashboard> param;' #txt
 Pt0 f179 responseMappingAction 'out=in;
 ' #txt
 Pt0 f179 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

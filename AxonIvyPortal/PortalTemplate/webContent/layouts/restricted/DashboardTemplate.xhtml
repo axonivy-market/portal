@@ -54,6 +54,8 @@
               global="false" process="@this" immediate="true" partialSubmit="true"
               update="delete-saved-filter-form:quick-filter-table"
               oncomplete="PF('quick-filter-table').clearFilters(); PF('manage-filter-dialog').initPosition();"/>
+
+            <ui:insert name="additionalRemoteCommand" />
           </h:form>
 
         <div id="dashboard-body" class="dashboard__body ui-g-12 js-dashboard__body">
@@ -69,7 +71,7 @@
                   gs-autoPosition="#{widget.autoPosition}"
                   gs-no-resize="#{managedBean.isReadOnlyMode}"
                   gs-no-move="#{managedBean.isReadOnlyMode}">
-                  <div class="grid-stack-item-content card dashboard-card dashboard__widget">
+                  <div class="grid-stack-item-content card dashboard-card dashboard__widget #{widget.layout.styleClass} js-dashboard-widget-#{widget.id}">
                     <!-- Task widget -->
                     <c:if test="#{widget.type eq 'TASK'}">
                       <ic:ch.ivy.addon.portal.generic.dashboard.component.TaskDashboardWidget widget="#{widget}"
