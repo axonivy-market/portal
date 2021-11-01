@@ -8,7 +8,12 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
@@ -17,7 +22,7 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.PrimeFaces;
 
@@ -44,10 +49,12 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
   private static final String WIDGET_ID_PATTERN = "%s_%s";
   protected List<WidgetSample> samples;
   private String newWidgetHeader;
+  private String newWidgetId;
   private DashboardWidget deleteWidget;
   private ProcessDashboardWidget originalProcessWidget;
   private List<String> categories;
-
+  private Long portalGridsCurrentRow;
+  
   @PostConstruct
   public void initConfigration() {
     super.init();
@@ -173,32 +180,39 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
   }
 
   public void saveWidget() throws JsonProcessingException, ParseException {
-    if (this.widget.getType() == DashboardWidgetType.PROCESS) {
-      ProcessDashboardWidget processWidget = (ProcessDashboardWidget) this.widget;
-      if (processWidget.getDisplayMode() == ProcessWidgetMode.FULL_MODE) {
-        updateProcessWidget(processWidget, 4, 2);
-      } else if (processWidget.getDisplayMode() == ProcessWidgetMode.COMBINED_MODE) {
-        updateProcessWidget(processWidget, 6, 5);
-      } else if (processWidget.getDisplayMode() == ProcessWidgetMode.COMPACT_MODE) {
-        processWidget.getLayout().setHeight(6);
-        processWidget.getLayout().setWidth(2);
-        processWidget.setProcess(null);
-        processWidget.getUserFilter().setCategories(processWidget.getCategories());
-        boolean isAllProcessesSelected = CollectionUtils.isEmpty(processWidget.getCategories())
-            && (CollectionUtils.isEmpty(processWidget.getProcesses())
-                || getAllPortalProcesses().size() == processWidget.getProcesses().size()); 
-        processWidget.setSelectedAllProcess(isAllProcessesSelected);
-        updateProcessesOfWidget(processWidget);
-      } else if (processWidget.getDisplayMode() == ProcessWidgetMode.IMAGE_MODE) {
-        updateProcessWidget(processWidget, 6, 2);
-      }
-    } else if (this.widget.getType() == DashboardWidgetType.TASK) {
-      updateTaskWidgetAfterSave();
-      backupCategories();
-    }  else if (this.widget.getType() == DashboardWidgetType.CASE) {
-      updateCaseWidgetAfterSave();
-      backupCategories();
+    switch (widget.getType()) {
+      case PROCESS:
+        ProcessDashboardWidget processWidget = (ProcessDashboardWidget) this.widget;
+        if (processWidget.getDisplayMode() == ProcessWidgetMode.FULL_MODE) {
+          updateProcessWidget(processWidget, 4, 2);
+        } else if (processWidget.getDisplayMode() == ProcessWidgetMode.COMBINED_MODE) {
+          updateProcessWidget(processWidget, 6, 5);
+        } else if (processWidget.getDisplayMode() == ProcessWidgetMode.COMPACT_MODE) {
+          processWidget.getLayout().setHeight(6);
+          processWidget.getLayout().setWidth(2);
+          processWidget.setProcess(null);
+          processWidget.getUserFilter().setCategories(processWidget.getCategories());
+          boolean isAllProcessesSelected = CollectionUtils.isEmpty(processWidget.getCategories())
+              && (CollectionUtils.isEmpty(processWidget.getProcesses())
+                  || getAllPortalProcesses().size() == processWidget.getProcesses().size()); 
+          processWidget.setSelectedAllProcess(isAllProcessesSelected);
+          updateProcessesOfWidget(processWidget);
+        } else if (processWidget.getDisplayMode() == ProcessWidgetMode.IMAGE_MODE) {
+          updateProcessWidget(processWidget, 6, 2);
+        }
+        break;
+      case TASK:
+        updateTaskWidgetAfterSave();
+        backupCategories();
+        break;
+      case CASE:
+        updateCaseWidgetAfterSave();
+        backupCategories();
+        break;
+      default:
+        break;
     }
+    updateWidgetPosition(widget);
     resetUserFilter();
     this.widget.buildPredefinedFilterData();
     if (CollectionUtils.isEmpty(this.getSelectedDashboard().getWidgets())) {
@@ -211,8 +225,52 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
       widgets.add(widget);
     }
     saveSelectedWidget();
-    this.widget = null;
+    newWidgetId = widget.getId();
+    widget = null;
     PrimeFaces.current().ajax().update("grid-stack");
+  }
+
+  public void updatePortalGridsCurrentRow() {
+    Map<String, String> requestParamMap = getRequestParameterMap();
+    var currentRowNumber = Optional.ofNullable(requestParamMap.get("portalGridsCurrentRow")).orElse(StringUtils.EMPTY);
+    if (currentRowNumber.isEmpty()) {
+      portalGridsCurrentRow = 0l;
+    }
+    else {
+      portalGridsCurrentRow = Long.valueOf(currentRowNumber);
+    }
+  }
+
+  private void updateWidgetPosition(DashboardWidget widget) {
+    DashboardWidget lastWidget = null;
+    for (var compareWidget : CollectionUtils.emptyIfNull(selectedDashboard.getWidgets())) {
+      if (lastWidget == null) {
+        lastWidget = compareWidget;
+        continue;
+      }
+      if (lastWidget.getLayout().getAxisY() < compareWidget.getLayout().getAxisY()
+          || (lastWidget.getLayout().getAxisY() == compareWidget.getLayout().getAxisY()
+              && lastWidget.getLayout().getAxisX() < compareWidget.getLayout().getAxisX())) {
+        lastWidget = compareWidget;
+      }
+    }
+    if (lastWidget != null && widget != null) {
+      var totalWidth = lastWidget.getLayout().getAxisX() + lastWidget.getLayout().getWidth() + widget.getLayout().getWidth();
+      if (totalWidth <= 12) {
+        widget.getLayout().setAxisX(lastWidget.getLayout().getWidth());
+        widget.getLayout().setAxisY(lastWidget.getLayout().getAxisY());
+      }
+      else {
+        widget.getLayout().setAxisX(0);
+        widget.getLayout().setAxisY(portalGridsCurrentRow.intValue());
+      }
+    }
+
+    if (StringUtils.isEmpty(widget.getLayout().getStyleClass())) {
+      widget.getLayout().setStyleClass(NEW_WIDGET_STYLE_CLASS);
+    } else {
+      widget.getLayout().setStyleClass(widget.getLayout().getStyleClass().concat(NEW_WIDGET_STYLE_CLASS));
+    }
   }
 
   private void updateProcessWidget(ProcessDashboardWidget processWidget, int height, int width) {
@@ -361,5 +419,12 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
 
   public void setCategories(List<String> categories) {
     this.categories = categories;
+  }
+  public String getNewWidgetId() {
+    return newWidgetId;
+  }
+
+  public void setNewWidgetId(String newWidgetId) {
+    this.newWidgetId = newWidgetId;
   }
 }
