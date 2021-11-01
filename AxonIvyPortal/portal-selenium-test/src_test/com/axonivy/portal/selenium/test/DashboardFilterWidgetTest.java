@@ -1,6 +1,7 @@
 package com.axonivy.portal.selenium.test;
 
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
@@ -59,7 +60,7 @@ public class DashboardFilterWidgetTest extends BaseTest {
     taskWidget.openFilterWidget();
     var filterId = taskWidget.clickOnASavedFilterItem("Tasks filter");
     taskWidget.getSelectedFilter(filterId).shouldHave(Condition.cssClass("selected"));
-    assertTrue(taskWidget.getTaskNameFilterValue().contains("Task"));
+    assertEquals("Task", taskWidget.getTaskNameFilterValue());
   }
 
   @Test
