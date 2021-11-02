@@ -30,7 +30,8 @@
 
   <p:dialog id="#{cc.clientId}-error-ajax-dialog" widgetVar="error-ajax-dialog"
     modal="true" resizable="false" responsive="true" styleClass="error-ajax-dialog"
-    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/warning')}">
+    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/warning')}"
+    closable="false">
     <div class="ui-g">
       <div class="ui-g-12">
         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/errorAjaxMessage')}"/>
