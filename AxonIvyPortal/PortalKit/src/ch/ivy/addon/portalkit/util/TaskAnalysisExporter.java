@@ -140,7 +140,7 @@ public class TaskAnalysisExporter {
       case CASE_ID:
         return String.valueOf(task.getCase().getId());
       case CASE_CATEGORY:
-        return task.getCase().getCategoryPath();
+        return task.getCase().getCategory().getPath();
       case CASE_CREATOR:
         return task.getCase().getCreatorUserName();
       case CASE_STATE:
@@ -150,7 +150,7 @@ public class TaskAnalysisExporter {
       case TASK_ID:
         return String.valueOf(task.getId());
       case TASK_CATEGORY:
-        return task.getCategoryPath();
+        return task.getCategory().getPath();
       case TASK_DESCRIPTION:
         return task.getDescription();
       case TASK_ACTIVATOR:
