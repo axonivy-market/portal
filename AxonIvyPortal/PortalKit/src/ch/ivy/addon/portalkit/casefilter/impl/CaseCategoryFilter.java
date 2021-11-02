@@ -36,7 +36,10 @@ public class CaseCategoryFilter extends CaseFilter {
 
   @Override
   public String value() {
-    return CategoryUtils.getNodeValue(categoryPaths);
+    if (CollectionUtils.isNotEmpty(categoryPaths) && (categories == null || categories.length == 0)) {
+      initializeRoot();
+    }
+    return CategoryUtils.getCategoryValues(categories);
   }
 
   @Override
