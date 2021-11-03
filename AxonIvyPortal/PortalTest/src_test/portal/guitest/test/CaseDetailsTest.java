@@ -56,7 +56,7 @@ public class CaseDetailsTest extends BaseTest {
   
   @Test
   public void testDisplayCaseProperties() {
-    assertTrue(StringUtils.equalsIgnoreCase("LeaveRequest", detailsPage.getCaseCategory()));
+    assertTrue(StringUtils.equalsIgnoreCase("Leave Request", detailsPage.getCaseCategory()));
   }
 
   @Test
