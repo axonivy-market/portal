@@ -1,6 +1,7 @@
 package com.axonivy.portal.selenium.test;
 
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
@@ -10,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.TestAccount;
-import com.axonivy.portal.selenium.page.NewDashBoardPage;
+import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
@@ -22,13 +23,13 @@ public class DashboardFilterWidgetTest extends BaseTest {
 
   private static final String CREATE_USER_FILTER_URL = "portalKitTestHelper/153CACC26D0D4C3D/createUserTaskWidgetFilters.ivp";
 
-  private NewDashBoardPage dashBoardPage;
+  private NewDashboardPage dashboardPage;
 
   @Override
   @BeforeEach
   public void setup() {
     super.setup();
-    dashBoardPage = new NewDashBoardPage();
+    dashboardPage = new NewDashboardPage();
     redirectToRelativeLink(create12CasesWithCategoryUrl);
   }
 
@@ -59,7 +60,7 @@ public class DashboardFilterWidgetTest extends BaseTest {
     taskWidget.openFilterWidget();
     var filterId = taskWidget.clickOnASavedFilterItem("Tasks filter");
     taskWidget.getSelectedFilter(filterId).shouldHave(Condition.cssClass("selected"));
-    assertTrue(taskWidget.getTaskNameFilterValue().contains("Task"));
+    assertEquals("Task", taskWidget.getTaskNameFilterValue());
   }
 
   @Test
@@ -106,7 +107,7 @@ public class DashboardFilterWidgetTest extends BaseTest {
   }
 
   private TaskWidgetNewDashBoardPage openTaskWidgetFilter() {
-    TaskWidgetNewDashBoardPage taskWidget = dashBoardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
+    TaskWidgetNewDashBoardPage taskWidget = dashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
     taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
     taskWidget.openFilterWidget();
     return taskWidget;
