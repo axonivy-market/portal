@@ -2414,17 +2414,13 @@ _:-ms-fullscreen, :root .additional-case-details-link {
   height: 35px;
 }
 
-.icon-selection-dialog-selecting-icon .fa {
+.icon-selection-dialog-selecting-icon .fa, .icon-selection-dialog-selecting-icon .si {
   margin: auto;
 }
 
 _:-ms-input-placeholder, :root .icon-selection-dialog-selecting-icon .fa {
   top: 50%;
   transform: translateY(25%);
-}
-
-.icon-selection-dialog-selecting-icon .fa {
-  margin: auto;
 }
 
 a[id*=application-menu-item]>span.ui-menuitem-text {
