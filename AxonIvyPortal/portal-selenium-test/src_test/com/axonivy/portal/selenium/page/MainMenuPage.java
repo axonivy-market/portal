@@ -1,7 +1,7 @@
 package com.axonivy.portal.selenium.page;
 
-import static com.codeborne.selenide.Condition.*;
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Condition.appear;
+import static com.codeborne.selenide.Selenide.$;
 
 public class MainMenuPage extends TemplatePage {
 
@@ -18,4 +18,7 @@ public class MainMenuPage extends TemplatePage {
     $(".layout-menu li[role='menuitem'] a.ripplelink.CASE").waitUntil(appear, DEFAULT_TIMEOUT).click();
   }
 
+  public void openProcessList() {
+    $(".layout-menu li[role='menuitem'] a.ripplelink.PROCESS").waitUntil(appear, DEFAULT_TIMEOUT).click();
+  }
 }
