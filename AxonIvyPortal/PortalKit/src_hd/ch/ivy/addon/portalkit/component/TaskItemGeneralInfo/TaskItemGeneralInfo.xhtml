@@ -176,7 +176,7 @@
             value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/CaseCategory')}" />
         </div>
         <div class="ui-xl-9 ui-lg-8 ui-md-8 ui-sm-8 ui-g-4 u-no-padding-left u-truncate-text">
-          <h:outputText id="case-category" value="#{task.getCase().getBusinessCase().categoryPath}" />
+          <h:outputText id="case-category" value="#{task.getCase().getBusinessCase().getCategory().getPath()}" />
         </div>
       </h:panelGroup>
 
@@ -187,7 +187,7 @@
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/taskCategory')}" />
         </div>
         <div class="ui-xl-9 ui-lg-8 ui-md-8 ui-sm-8 ui-g-4 u-no-padding-left u-truncate-text">
-          <h:outputText id="task-category" value="#{task.categoryPath}" />
+          <h:outputText id="task-category" value="#{task.getCategory().getPath()}" />
         </div>
       </h:panelGroup>
 
@@ -341,8 +341,8 @@
     </div>
   </h:panelGroup>
 
-  <p:tooltip for="task-category" value="#{task.categoryPath}" trackMouse="true" hideEvent="mouseleave click" />
-  <p:tooltip for="case-category" value="#{task.getCase().getBusinessCase().categoryPath}" trackMouse="true" hideEvent="mouseleave click" />
+  <p:tooltip for="task-category" value="#{task.getCategory().getPath()}" trackMouse="true" hideEvent="mouseleave click" />
+  <p:tooltip for="case-category" value="#{task.getCase().getBusinessCase().getCategory().getPath()}" trackMouse="true" hideEvent="mouseleave click" />
   <p:tooltip for="related-case"
     value="##{task.getCase().getBusinessCase().id} #{task.getCase().getBusinessCase().name} (#{caseBean.getState(task.getCase().getBusinessCase()).toUpperCase()})"
     trackMouse="true" hideEvent="mouseleave click" />
