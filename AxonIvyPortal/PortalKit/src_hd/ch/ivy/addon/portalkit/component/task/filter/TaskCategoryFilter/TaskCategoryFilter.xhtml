@@ -16,7 +16,7 @@
     taskFilter="#{cc.attrs.filter}" selectedFilters="#{cc.attrs.selectedFilters}"
     resultContainerUpdated="#{cc.attrs.resultContainerUpdated}" dataModel="#{cc.attrs.dataModel}">
     <p:tree id="task-category-filter-tree" value="#{cc.attrs.filter.root}" var="node" selectionMode="checkbox"
-      selection="#{cc.attrs.filter.categories}" filterBy="#{node}" filterMatchMode="contains"
+      selection="#{cc.attrs.filter.categories}" filterBy="#{node.value}" filterMatchMode="contains"
       styleClass="filter-category-checkbox-tree">
       <p:treeNode>
         <h:outputText value="#{node.value}" />
