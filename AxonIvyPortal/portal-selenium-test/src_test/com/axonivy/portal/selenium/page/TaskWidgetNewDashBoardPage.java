@@ -6,6 +6,7 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
@@ -66,6 +67,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   public void openFilterWidget() {
     $$("form.table-widget-form").filter(text(taskWidgetName)).first().$("a.widget__filter-sidebar-link")
         .waitUntil(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    $("[id$=':widget-saved-filters-items").waitUntil(appear, DEFAULT_TIMEOUT);
   }
 
   public void filterTaskName(String input) {
@@ -76,7 +78,8 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
 
   public String getTaskNameFilterValue() {
     return $("div[id$='widget-filter-content']").waitUntil(appear, DEFAULT_TIMEOUT)
-        .$(".ui-inputfield.text-field-input-name").getText();
+        .$(".task-configuration__input-text.text-field-input-name").waitUntil(Condition.cssClass("ui-state-filled"), DEFAULT_TIMEOUT)
+        .getValue();
   }
   
   public void applyFilter() {
@@ -86,17 +89,18 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
 
   public void filterPriority(String... priorities) {
     $("div[id$='widget-filter-content']").waitUntil(appear, DEFAULT_TIMEOUT)
-        .$("div[id$=':priorities']").$(".ui-selectcheckboxmenu-multiple-container")
+        .$("div[id$=':priorities']").$(".ui-selectcheckboxmenu-trigger.ui-corner-right")
         .shouldBe(getClickableCondition()).click();
-    $("[id$=':priorities_panel']").waitUntil(appear, DEFAULT_TIMEOUT)
-      .$$(".ui-selectcheckboxmenu-item.ui-selectcheckboxmenu-list-item").forEach(item -> {
-         for (var prio : priorities) {
-           if (item.getAttribute("data-item-value").equalsIgnoreCase(prio)) {
-             item.$(".ui-chkbox").shouldBe(getClickableCondition()).click();
-             break;
-           }
-         }
-      });
+    var priorityCheckboxOptions = $("[id$=':priorities_panel']").waitUntil(appear, DEFAULT_TIMEOUT)
+      .$$(".ui-selectcheckboxmenu-item.ui-selectcheckboxmenu-list-item").shouldBe(CollectionCondition.sizeGreaterThanOrEqual(1));
+    for (var item : priorityCheckboxOptions) {
+      for (var prio : priorities) {
+        if (item.getAttribute("data-item-value").equalsIgnoreCase(prio)) {
+          item.$(".ui-chkbox-box.ui-widget").shouldBe(getClickableCondition()).click();
+          break;
+        }
+      }
+    }
   }
 
   public void filterCategories(String... categories) {
@@ -131,6 +135,8 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
     saveFilterDialog.$("input[id$='save-filter-form:save-filter-name']").sendKeys(filterName);
     saveFilterDialog.$("button[id$='save-filter-form:save-widget-filter-button']").shouldBe(getClickableCondition()).click();
     saveFilterDialog.waitUntil(disappears, DEFAULT_TIMEOUT);
+    getSavedFilterContainer().$(".saved-filter__items").waitUntil(appear, DEFAULT_TIMEOUT)
+      .$$(".saved-filter-node").shouldHave(CollectionCondition.sizeGreaterThanOrEqual(1));
   }
 
   public String clickOnASavedFilterItem(String filterName) {
@@ -144,6 +150,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
         break;
       }
     }
+    getSelectedFilter(selectSavedFilterId).shouldHave(Condition.cssClass("selected"));
     return selectSavedFilterId;
   }
   
@@ -180,12 +187,18 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
 
   public void deleteFirstSavedFilter() {
     var deleteSavedFilterForm = $("#delete-saved-filter-form").waitUntil(appear, DEFAULT_TIMEOUT);
+    var totalWidgetFilter = getDelelteSavedFilterRow().size();
     deleteSavedFilterForm.$(".ui-datatable-data")
         .$$(".saved-filter-selection-column").first()
         .shouldBe(getClickableCondition()).click();
     var removeButton = getDeleteWidgetFilterButton().waitUntil(Condition.enabled, DEFAULT_TIMEOUT);
     removeButton.shouldBe(getClickableCondition()).click();
-    getDeleteWidgetFilterButton().waitUntil(Condition.disabled, DEFAULT_TIMEOUT);
+    getDelelteSavedFilterRow().shouldHave(CollectionCondition.sizeLessThan(totalWidgetFilter));
+  }
+
+  private ElementsCollection getDelelteSavedFilterRow() {
+    return $("[id$='delete-saved-filter-form:quick-filter-table']").waitUntil(appear, DEFAULT_TIMEOUT)
+    .$$("tbody tr");
   }
 
   public void clickOnResetFilter() {
@@ -218,7 +231,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
 
   private void waitFirstWidgetFilterAppear(SelenideElement savedFilterPanel) {
     savedFilterPanel.$(".saved-filter__content").waitUntil(appear, DEFAULT_TIMEOUT)
-        .$("[id$=':saved-filter-node-0']").waitUntil(appear, DEFAULT_TIMEOUT);
+        .$("[id$=':saved-filter-node']").waitUntil(appear, DEFAULT_TIMEOUT);
   }
 
   private SelenideElement getSavedFilterContainer() {

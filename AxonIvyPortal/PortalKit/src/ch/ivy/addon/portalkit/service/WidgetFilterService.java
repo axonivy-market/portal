@@ -98,9 +98,16 @@ public class WidgetFilterService extends JsonConfigurationService<WidgetFilterMo
     if (userFilterCollection == null) {
       return;
     }
+    if (CollectionUtils.isEmpty(userFilterCollection.getWidgetFilterSelections())) {
+      var availableWidgetFilters = findFiltersByWidgetId(widget.getId());
+      userFilterCollection.setWidgetFilterSelections(availableWidgetFilters);
+    }
+
     var storedFilterOptions = userFilterCollection.getLatestFilterOption();
     widget.setUserFilterCollection(userFilterCollection);
     updateFilterOptionsData(widget, storedFilterOptions);
+    updateUserFilterOptionMap(widget);
+    consolidateSelectedFilters(widget);
   }
 
   public void buildProcessFilters(ProcessDashboardWidget processWidget) {
@@ -265,10 +272,10 @@ public class WidgetFilterService extends JsonConfigurationService<WidgetFilterMo
         for (var column : filterableColumns) {
           if (filterOptionMap.containsKey(column.getField())) {
             var columnData = filterOptionMap.get(column.getField());
-            if (!StringUtils.equals(column.getUserFilter(), columnData.getUserFilter())
-                || !CollectionUtils.containsAll(column.getUserFilterList(), columnData.getUserFilterList())
-                || !StringUtils.equals(column.getUserFilterFrom(), columnData.getUserFilterFrom())
-                || !StringUtils.equals(column.getUserFilterTo(), columnData.getUserFilterTo())) {
+            if (isNotEqualStringFilter(column.getUserFilter(), columnData.getUserFilter())
+                || isNotEqualStringFilter(column.getUserFilterFrom(), columnData.getUserFilterFrom())
+                || isNotEqualStringFilter(column.getUserFilterTo(), columnData.getUserFilterTo())
+                || isNotEqualListFilterSelection(column.getUserFilterList(), columnData.getUserFilterList())) {
               isFilterModified = true;
               break;
             }
@@ -277,7 +284,7 @@ public class WidgetFilterService extends JsonConfigurationService<WidgetFilterMo
 
         if (!isFilterModified && filterOptionMap.containsKey(CATEGORY_FILTER)) {
           var category = filterOptionMap.get(CATEGORY_FILTER);
-          if (!CollectionUtils.containsAll(userCategories, category.getUserFilterList())) {
+          if (isNotEqualListFilterSelection(userCategories, category.getUserFilterList())) {
             isFilterModified = true;
           }
         }
@@ -285,7 +292,7 @@ public class WidgetFilterService extends JsonConfigurationService<WidgetFilterMo
       case PROCESS:
         var userFilter = ((ProcessDashboardWidget) widget).getUserFilter();
         if (filterOptionMap.containsKey(PROCESS_NAME_FILTER)
-            && !StringUtils.equals(userFilter.getProcessName(), filterOptionMap.get(PROCESS_NAME_FILTER).getUserFilter())) {
+            && isNotEqualStringFilter(userFilter.getProcessName(), filterOptionMap.get(PROCESS_NAME_FILTER).getUserFilter())) {
           isFilterModified = true;
           break;
         }
@@ -294,13 +301,13 @@ public class WidgetFilterService extends JsonConfigurationService<WidgetFilterMo
                 .stream().map(ProcessType::getValue)
                 .collect(Collectors.toList());
           var storedProcessTypes = filterOptionMap.get(PROCESS_TYPE_FILTER).getUserFilterList();
-          if (!CollectionUtils.containsAll(userProcessTypes, storedProcessTypes)) {
+          if (isNotEqualListFilterSelection(userProcessTypes, storedProcessTypes)) {
             isFilterModified = true;
             break;
           }
         }
         if (filterOptionMap.containsKey(CATEGORY_FILTER)
-            && !CollectionUtils.containsAll(userFilter.getCategories(), filterOptionMap.get(CATEGORY_FILTER).getUserFilterList())) {
+            && isNotEqualListFilterSelection(userFilter.getCategories(), filterOptionMap.get(CATEGORY_FILTER).getUserFilterList())) {
           isFilterModified = true;
         }
         break;
@@ -418,5 +425,19 @@ public class WidgetFilterService extends JsonConfigurationService<WidgetFilterMo
       return selectedDate;
     }
     return date;
+  }
+
+  private boolean isNotEqualStringFilter(String value, String compareValue) {
+    if (value != null && compareValue != null && !StringUtils.equals(value, compareValue)) {
+      return true;
+    }
+    return false;
+  }
+
+  private <T> boolean isNotEqualListFilterSelection(List<T> values, List<T> compareValues) {
+    if (values != null && compareValues != null && !CollectionUtils.containsAll(values, compareValues)) {
+      return true;
+    }
+    return false;
   }
 }
