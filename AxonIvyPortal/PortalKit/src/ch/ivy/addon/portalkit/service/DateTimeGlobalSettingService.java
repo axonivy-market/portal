@@ -6,6 +6,8 @@ import ch.ivyteam.ivy.environment.Ivy;
 
 public class DateTimeGlobalSettingService {
   private final String SPACE_CHARACTER = " ";
+  private final String COMMA_CHARACTER = ",";
+  private final String YEAR_PATTERN = "\\W?[Yy]+\\W?";
   private GlobalSettingService globalSettingService;
   private static DateTimeGlobalSettingService instance;
 
@@ -47,7 +49,8 @@ public class DateTimeGlobalSettingService {
   }
 
   private String getDateWithoutYearPattern(String pattern) {
-    return pattern.replaceAll("\\W?[Yy]+\\W?", "");
+    String expectedPattern = pattern.replaceAll(YEAR_PATTERN, "").trim();
+    return expectedPattern.endsWith(COMMA_CHARACTER) ? expectedPattern.substring(0, expectedPattern.length() - 1) : expectedPattern;
   }
 
   public String getDateTimestampPattern() {
