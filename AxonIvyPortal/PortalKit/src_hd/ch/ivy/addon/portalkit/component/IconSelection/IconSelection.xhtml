@@ -29,7 +29,7 @@
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/iconselection/iconSelectionDialogHeader')}" dynamic="true"
     height="70vh" resizable="false" fitViewport="true" responsive="true">
     <div class="search-icon-name-container">
-      <p:inputText id="search-icon-name-field" onkeyup="searchIconByName(this)"
+      <p:inputText id="search-icon-name-field" onkeyup="searchIconByName(this)" 
         placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/iconselection/seachIconByNamePlaceHolder')}"
         styleClass="search-icon-input Fright" />
     </div>
@@ -89,7 +89,11 @@
         
         container.appendChild(iconAnchor);
       });
+      
+      var searchField = $(PrimeFaces.escapeClientId("#{cc.clientId}:search-icon-name-field"));
+      searchIconByName(searchField);
     }
+   
   </script>
 </cc:implementation>
 </html>
