@@ -102,7 +102,8 @@ public class MenuView implements Serializable {
   }
 
   private DefaultMenuItem buildThirdPartyItem(Application application) {
-    String iconClass = String.format("fa %s", application.getMenuIcon());
+    String menuIcon = StringUtils.defaultString(application.getMenuIcon());
+    String iconClass = (menuIcon.startsWith("fa") ? "fa " : "si ") + menuIcon;
     return new PortalMenuBuilder(ApplicationMultiLanguage.getDisplayNameInCurrentLocale(application), MenuKind.THIRD_PARTY, this.isWorkingOnATask)
         .icon(iconClass)
         .url(UrlUtils.buildUrl(application.getLink()))
