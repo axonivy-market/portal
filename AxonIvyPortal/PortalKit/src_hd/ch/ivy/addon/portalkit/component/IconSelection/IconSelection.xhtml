@@ -17,7 +17,7 @@
     <h:outputText id="awesome-icon-display" styleClass="#{iconSelectionBean.iconPattern} #{cc.attrs.value} u-vertical-align-center" />
     <p:spacer width="7px" />
     <p:inputText type="hidden" id="awesome-icon-hidden-value" value="#{cc.attrs.value}" />
-    <p:commandLink styleClass="select-awesome-icon-button" tabindex="#{cc.attrs.tabindex}"
+    <p:commandLink id="change-icon-link" styleClass="select-awesome-icon-button" tabindex="#{cc.attrs.tabindex}"
       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/change')}" process="@this"
       onclick="PF('#{cc.clientId}-select-icon-dialog').show();" oncomplete="loadStreamlineIcon();"
       rendered="#{empty cc.attrs.isReadOnly or !cc.attrs.isReadOnly}" />
