@@ -50,7 +50,7 @@
             value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/CaseCategory')}" />
         </div>
         <div class="ui-g-12 no-padding-column text-content last-line text-ellipsis">
-          <h:outputText id="case-category" value="#{case.categoryPath}" rendered="#{not empty case.categoryPath}" />
+          <h:outputText id="case-category" value="#{case.getCategory().getPath()}" rendered="#{not empty case.categoryPath}" />
           <h:outputText id="empty-case-category" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable')}" rendered="#{empty case.categoryPath}" />
         </div>
       </div>

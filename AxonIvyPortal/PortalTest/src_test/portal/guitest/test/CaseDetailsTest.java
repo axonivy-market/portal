@@ -90,7 +90,7 @@ public class CaseDetailsTest extends BaseTest {
   @Test
   public void testDisplayCaseProperties() {
     createTestingTask();
-    assertTrue(StringUtils.equalsIgnoreCase("LeaveRequest", detailsPage.getCaseCategory()));
+    assertTrue(StringUtils.equalsIgnoreCase("Leave Request", detailsPage.getCaseCategory()));
     assertTrue(StringUtils.isNotBlank(detailsPage.getCaseDuration()));
   }
 
