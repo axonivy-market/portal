@@ -13,12 +13,11 @@
   <f:event listener="#{iconSelectionBean.init(cc.attrs.value)}" type="preRenderComponent" />
   <h:outputStylesheet name="css/streamlineicons.css" library="serenity-layout" />
 
-  <h:panelGroup id="icon-selection" styleClass="awesome-icon-selection-panel">
-    <h:outputText id="icon-display"
-      styleClass="#{iconSelectionBean.iconPattern} #{cc.attrs.value} u-vertical-align-center" />
-    <p:spacer width="5px" />
-    <p:inputText type="hidden" id="icon-hidden-value" value="#{cc.attrs.value}" />
-    <p:commandLink styleClass="select-icon-button" tabindex="#{cc.attrs.tabindex}"
+  <h:panelGroup id="awesome-icon-selection" styleClass="awesome-icon-selection-panel">
+    <h:outputText id="awesome-icon-display" styleClass="#{iconSelectionBean.iconPattern} #{cc.attrs.value} u-vertical-align-center" />
+    <p:spacer width="7px" />
+    <p:inputText type="hidden" id="awesome-icon-hidden-value" value="#{cc.attrs.value}" />
+    <p:commandLink styleClass="select-awesome-icon-button" tabindex="#{cc.attrs.tabindex}"
       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/change')}" process="@this"
       onclick="PF('#{cc.clientId}-select-icon-dialog').show();" oncomplete="loadStreamlineIcon();"
       rendered="#{empty cc.attrs.isReadOnly or !cc.attrs.isReadOnly}" />
@@ -51,14 +50,12 @@
   
   <script>
     function updateSelectedIConDisplay(iconCode, type) {
-      var iconDisplayJQ = $(PrimeFaces.escapeClientId("#{cc.clientId}:icon-display"));
+      var iconDisplayJQ = $(PrimeFaces.escapeClientId("#{cc.clientId}:awesome-icon-display"));
       iconDisplayJQ.removeClass();
       iconDisplayJQ.toggleClass(type === "awesome" ? "fa fa-2x" : "si si-xl");
       iconDisplayJQ.toggleClass("u-vertical-align-center");
       iconDisplayJQ.addClass(iconCode);
-      var iconOupputValueJQ = $(PrimeFaces.escapeClientId("#{cc.clientId}:icon-value"));
-      iconOupputValueJQ.text(iconCode);
-      var iconHiddenValueJQ = $(PrimeFaces.escapeClientId("#{cc.clientId}:icon-hidden-value"));
+      var iconHiddenValueJQ = $(PrimeFaces.escapeClientId("#{cc.clientId}:awesome-icon-hidden-value"));
       iconHiddenValueJQ.val(iconCode);
     }
     
@@ -90,7 +87,7 @@
         container.appendChild(iconAnchor);
       });
       
-      var searchField = $(PrimeFaces.escapeClientId("#{cc.clientId}:search-icon-name-field"));
+      var searchField = document.getElementById("#{cc.clientId}:search-icon-name-field");
       searchIconByName(searchField);
     }
    
