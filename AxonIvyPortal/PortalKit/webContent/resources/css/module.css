@@ -5507,6 +5507,10 @@ body span.ui-commandlink .si {
   font-weight: bold;
   padding: 0;
 }
+
+.error-ajax-dialog {
+  max-width: 400px;
+}
 /* ===================== END EXCEPTION ===================== */
 
 /** Case information iframe ---- Start-----**/
