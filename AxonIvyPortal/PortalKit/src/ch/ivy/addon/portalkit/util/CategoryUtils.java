@@ -48,6 +48,20 @@ public class CategoryUtils {
     return nodePaths;
   }
 
+  public static String getCategoryValues(CheckboxTreeNode[] nodes) {
+    List<String> nodePaths = new ArrayList<>();
+    if (nodes != null) {
+      for (CheckboxTreeNode node : nodes) {
+        var categoryNode = ((CategoryNode) node.getData());
+        if (StringUtils.equals(categoryNode.getCategory(), StringUtils.EMPTY)) {
+          return ALL; // "All categories" is selected
+        }
+        nodePaths.add(categoryNode.getValue());
+      }
+    }
+    return getNodeValue(nodePaths);
+  }
+
   public static CheckboxTreeNode[] recoverSelectedCategories(CheckboxTreeNode node, List<String> paths) {
     List<CheckboxTreeNode> selectedCategories = new ArrayList<>();
     recoverSelectedCategories(node, selectedCategories, paths);

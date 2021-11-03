@@ -3,8 +3,8 @@ package ch.ivy.addon.portalkit.bean;
 import java.io.Serializable;
 import java.util.Objects;
 
-import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.application.exceptionhandler.ExceptionInfo;
@@ -16,7 +16,7 @@ import ch.ivyteam.ivy.system.ISystemProperty;
 import ch.ivyteam.util.IvyRuntimeException;
 
 @ManagedBean
-@ApplicationScoped
+@SessionScoped
 public class PortalExceptionBean implements Serializable {
 
   private static final long serialVersionUID = -248190912833727736L;
