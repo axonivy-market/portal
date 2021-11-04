@@ -11,7 +11,7 @@
         <p:commandLink actionListener="#{dashboardProcessBean.startProcessWithCompactMode(process)}" disabled="#{!isReadOnlyMode or isInConfiguration}"
           target="#{dashboardProcessBean.targetToStartProcess(process)}" ajax="#{!dashboardProcessBean.isExternalLink(process)}" styleClass="process-item">
           <h:panelGroup layout="block" class="process-start-list-item-icon">
-            <span class="#{process.icon}" />
+            <span class="#{iconSelectionBean.generateIconWithFontFamily(process.getIcon())}" />
           </h:panelGroup>
           <div class="process-start-list-item-name">
             <h:outputText id="process-name-process-item" value="#{process.name}" styleClass="dashboard-compact-process-item process-start-list-item-name-text u-truncate-text" />
