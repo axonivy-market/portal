@@ -102,7 +102,7 @@
         <div class="ui-g-8 ui-sm-12 ui-fluid">
           <p:calendar id="from-date-field-input" showOn="button" styleClass="task-configuration__calendar"
             mindate="#{field.dateFilterFrom}" value="#{field.userDateFilterFrom}"
-            pattern="#{dateTimePatternBean.simpleDatePattern}" locale="#{localeBean.locale}" />
+            pattern="#{dateTimePatternBean.configuredCalendarPattern}" locale="#{localeBean.locale}" />
         </div>
 
         <div class="ui-g-4 ui-sm-12 u-no-padding-bottom-sm-down">
@@ -111,7 +111,7 @@
         <div class="ui-g-8 ui-sm-12 ui-fluid">
           <p:calendar id="to-date-field-input" showOn="button" styleClass="task-configuration__calendar"
             maxdate="#{field.dateFilterTo}" value="#{field.userDateFilterTo}"
-            pattern="#{dateTimePatternBean.simpleDatePattern}" locale="#{localeBean.locale}" />
+            pattern="#{dateTimePatternBean.configuredCalendarPattern}" locale="#{localeBean.locale}" />
         </div>
       </h:panelGroup>
     </div>
