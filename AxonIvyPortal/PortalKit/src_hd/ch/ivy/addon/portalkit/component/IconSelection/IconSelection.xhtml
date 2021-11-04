@@ -26,7 +26,7 @@
   <p:dialog id="select-icon-dialog" widgetVar="#{cc.clientId}-select-icon-dialog" styleClass="select-icon-dialog"
     width="52%" modal="true" appendTo="@(body)"
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/iconselection/iconSelectionDialogHeader')}" dynamic="true"
-    height="70vh" resizable="false" fitViewport="true" responsive="true">
+    height="77vh" resizable="false" fitViewport="true" responsive="true">
     <div class="search-icon-name-container">
       <p:inputText id="search-icon-name-field" onkeyup="searchIconByName(this)" 
         placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/iconselection/seachIconByNamePlaceHolder')}"
@@ -69,7 +69,7 @@
       icons.forEach(icon => {
         var iconCode = icon.selectorText.substring(1, icon.selectorText.length - 8);
         var iconImage = document.createElement("i");
-        iconImage.className = "si " + iconCode;
+        iconImage.className = "si " + iconCode + " si-lg";
         
         var iconTitle = document.createElement("p");
         iconTitle.appendChild(document.createTextNode("si " + iconCode));
