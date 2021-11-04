@@ -37,19 +37,15 @@
 
               <h:panelGroup class="md-inputfield MarTop20">
                 <p:calendar id="from" value="#{data.leaveRequestData.from}" locale="#{localeBean.locale}"
-                  pattern="#{dateTimePatternBean.datePattern}" required="true"
-                  requiredMessage="#{ivy.cms.co('/Labels/LeaveRequest/from')}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}">
-                  <f:convertDateTime pattern="#{dateTimePatternBean.datePattern}" locale="#{localeBean.locale}"/>
-                </p:calendar>
+                  pattern="#{dateTimePatternBean.configuredCalendarPattern}" required="true"
+                  requiredMessage="#{ivy.cms.co('/Labels/LeaveRequest/from')}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" />
                 <p:outputLabel for="from" value="#{ivy.cms.co('/Labels/LeaveRequest/from')}" />
               </h:panelGroup>
 
               <h:panelGroup class="md-inputfield MarTop20">
                 <p:calendar id="to" value="#{data.leaveRequestData.to}" locale="#{localeBean.locale}"
-                  pattern="#{dateTimePatternBean.datePattern}" required="true"
-                  requiredMessage="#{ivy.cms.co('/Labels/LeaveRequest/to')}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}">
-                  <f:convertDateTime pattern="#{dateTimePatternBean.datePattern}" locale="#{localeBean.locale}"/>
-                </p:calendar>
+                  pattern="#{dateTimePatternBean.configuredCalendarPattern}" required="true"
+                  requiredMessage="#{ivy.cms.co('/Labels/LeaveRequest/to')}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" />
                 <p:outputLabel for="to" value="#{ivy.cms.co('/Labels/LeaveRequest/to')} " />
               </h:panelGroup>
 
