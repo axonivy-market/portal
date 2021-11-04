@@ -7,7 +7,7 @@
 
 <ui:composition>
   <h:panelGroup layout="block" class="process-start-list-item-icon">
-    <span class="fa #{process.icon} fa-fw" />
+    <span class="#{iconSelectionBean.generateIconWithFontFamily(process.icon)}" />
   </h:panelGroup>
   <div class="process-start-list-item-name">
     <h:outputText id="process-name-#{processType}" value="#{process.processName}"
