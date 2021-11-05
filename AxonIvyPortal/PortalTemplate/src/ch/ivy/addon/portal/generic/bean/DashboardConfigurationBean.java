@@ -49,6 +49,7 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
   private static final String WIDGET_ID_PATTERN = "%s_%s";
   protected List<WidgetSample> samples;
   private String newWidgetHeader;
+  private boolean isEditWidget;
   private String newWidgetId;
   private DashboardWidget deleteWidget;
   private ProcessDashboardWidget originalProcessWidget;
@@ -227,6 +228,7 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
     saveSelectedWidget();
     newWidgetId = widget.getId();
     widget = null;
+    isEditWidget = false;
     PrimeFaces.current().ajax().update("grid-stack");
   }
 
@@ -242,6 +244,9 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
   }
 
   private void updateWidgetPosition(DashboardWidget widget) {
+    if (isEditWidget) {
+      return;
+    }
     DashboardWidget lastWidget = null;
     for (var compareWidget : CollectionUtils.emptyIfNull(selectedDashboard.getWidgets())) {
       if (lastWidget == null) {
@@ -364,6 +369,15 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
     newWidgetHeader = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/editWidgetHeader");
   }
 
+  public void prepareEditWidget(DashboardWidget widget) {
+    if (widget instanceof ProcessDashboardWidget) {
+      backupProcessWidget(widget);
+    }
+    setWidget(widget);
+    newWidgetHeader = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/editWidgetHeader");
+    isEditWidget = true;
+  }
+
   private void backupProcessWidget(DashboardWidget widget) {
     originalProcessWidget = new ProcessDashboardWidget();
     originalProcessWidget.setName(widget.getName());
@@ -426,5 +440,13 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
 
   public void setNewWidgetId(String newWidgetId) {
     this.newWidgetId = newWidgetId;
+  }
+
+  public boolean isEditWidget() {
+    return isEditWidget;
+  }
+
+  public void setEditWidget(boolean isEditWidget) {
+    this.isEditWidget = isEditWidget;
   }
 }
