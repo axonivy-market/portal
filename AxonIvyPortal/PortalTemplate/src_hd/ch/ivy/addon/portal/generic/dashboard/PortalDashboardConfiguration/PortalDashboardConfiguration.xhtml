@@ -33,7 +33,7 @@
 
       <p:remoteCommand id="load-grid-after-added-new-widget-cmd" name="loadGridAfterAddedNewWidget" onstart="loadGrid();"
         global="false" process="@this" partialSubmit="true"
-        oncomplete="scrollToWidget('#{dashboardConfigurationBean.newWidgetId}');" />
+        oncomplete="if (#{!dashboardConfigurationBean.editWidget}) {scrollToWidget('#{dashboardConfigurationBean.newWidgetId}');}" />
     </ui:define>
 
     <ui:define name="dashboardContent">

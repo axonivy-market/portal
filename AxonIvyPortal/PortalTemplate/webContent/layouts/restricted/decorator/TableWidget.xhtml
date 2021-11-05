@@ -13,7 +13,7 @@
     *** REQUIRED PARAMS:
     * index: index of widget in Dashboard page.
     * widget: widget model.
-    * widgetFormId: ID of widget form.
+    * panelId: ID of widget panel group.
     * isReadOnlyMode: indicator to show edit/delete link.
     * onStatisticTabShow: AJAX method to call when widget info panel is shown on.
     * componentToProcessOnApplyFilter: ID of component will be proceed when click on apply filter button.
@@ -24,7 +24,7 @@
     * onFilterOverlayPanelShow: AJAX method to call when the filter overlay panel is shown on.
     -->
 
-<h:form id="#{widgetFormId}" styleClass="table-widget-form">
+<h:panelGroup id="#{panelId}" styleClass="table-widget-panel" layout="block">
   <div class="widget__header">
     <h:panelGroup id="widget__header" class="widget__header-title text-ellipsis">#{not empty widget.name ? widget.name : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/yourWidget')}</h:panelGroup>
     <p:tooltip for="widget__header" value="#{not empty widget.name ? widget.name : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/yourWidget')}" trackMouse="true" hideEvent="mouseleave click"/>
@@ -67,7 +67,7 @@
       <p:commandLink id="edit-widget-#{index}" styleClass="si si-pencil u-hidden-sm-down u-mar-right-15"
         oncomplete="PF('new-widget-configuration-dialog').show()"
         global="false"
-        actionListener="#{dashboardConfigurationBean.setEditWidget(widget)}"
+        actionListener="#{dashboardConfigurationBean.prepareEditWidget(widget)}"
         update="new-widget-configuration-dialog"
         rendered="#{!isReadOnlyMode}"
         process="@this"
@@ -143,7 +143,7 @@
             <ui:include src="/layouts/restricted/includes/WidgetFilter.xhtml">
               <ui:param name="widget" value="#{widget}" />
               <ui:param name="index" value="#{index}" />
-              <ui:param name="widgetFilterContentId" value="#{cc.clientId}:#{widgetFormId}:widget-filter-content" />
+              <ui:param name="widgetFilterContentId" value="#{cc.clientId}:widget-filter-content" />
             </ui:include>
           </h:panelGroup>
 
@@ -177,14 +177,14 @@
               partialSubmit="true"
               update="#{componentToUpdateOnApplyFilter} widget-header-actions"
               process="#{componentToProcessOnApplyFilter}"
-              oncomplete="PF('filter-overlay-panel-#{index}').hide(); #{onCompleteApplyFilters};"
+              oncomplete="if (!args.validationFailed) { PF('filter-overlay-panel-#{index}').hide(); #{onCompleteApplyFilters};}"
               actionListener="#{widget.onApplyUserFilters()}"
               icon="si si-check-1"
               styleClass="u-mar-right-5" />
 
             <p:commandButton id="save-filter" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/saveFilter')}"
               icon="si si-floppy-disk" partialSubmit="true"
-              oncomplete="PF('save-widget-filter-dialog').show()"
+              oncomplete="if (!args.validationFailed) { PF('save-widget-filter-dialog').show(); }"
               actionListener="#{widget.onClickSaveUserFilters()}"
               process="#{componentToProcessOnApplyFilter}"
               global="false" styleClass="ui-sm-hidden"
@@ -202,6 +202,5 @@
     <!-- Insert widget content here -->
     <ui:insert name="widgetContent" />
   </h:panelGroup>
-</h:form>
-
+</h:panelGroup>
 </html>
