@@ -83,8 +83,8 @@ public class BackNavigationTest extends BaseTest {
     assertEquals(TASK_DETAILS_TITLE, taskDetailsPage.getPageTitle());
 
     TaskTemplatePage taskTemplatePage = taskDetailsPage.clickStartTask();
-    String today =  LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_PATTERN));
-    String yesterday =  LocalDateTime.now().minusDays(1).format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_PATTERN));
+    String today =  LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN));
+    String yesterday =  LocalDateTime.now().minusDays(1).format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN));
     taskTemplatePage.inputFields("tester", yesterday, today, "tester");
     taskTemplatePage.clickOnSubmitButton();
 
@@ -133,7 +133,7 @@ public class BackNavigationTest extends BaseTest {
 
     TaskTemplatePage taskTemplatePage = taskDetailsPage.clickStartTask();
     taskTemplatePage.type(By.id("payment-request:fullname"), "Demo");
-    String today =  LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_PATTERN));
+    String today =  LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN));
     taskTemplatePage.type(By.id("payment-request:from_input"), today);
     taskTemplatePage.clickOnSubmitButton();
     caseDetailsPage = new CaseDetailsPage();
