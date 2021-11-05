@@ -39,6 +39,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public void addNote(String noteContent) {
+    $("a[id$=':case-histories:add-note-command']").waitUntil(appear, DEFAULT_TIMEOUT);
     $("a[id$=':case-histories:add-note-command']").click();
     $("div[id$=':case-histories:add-note-dialog']").waitUntil(appear, DEFAULT_TIMEOUT);
     $("div[id$=':case-histories:add-note-dialog']").find("textarea").sendKeys(noteContent);
