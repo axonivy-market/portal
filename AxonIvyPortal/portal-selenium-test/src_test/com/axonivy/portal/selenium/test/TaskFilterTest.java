@@ -1,5 +1,7 @@
 package com.axonivy.portal.selenium.test;
 
+import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -35,7 +37,7 @@ public class TaskFilterTest extends BaseTest {
     taskWidgetPage.openAdvancedFilter("Created (from/to)", "created");
     String fromInputText = new SimpleDateFormat(DateTimePattern.DATE_PATTERN).format(new Date());
     taskWidgetPage.filterTasksByCreatedDate(fromInputText, EMPTY);
-    taskWidgetPage.countTasks().shouldHaveSize(0);
+    taskWidgetPage.countTasks().shouldHave(sizeGreaterThanOrEqual(1));
   }
 
 }
