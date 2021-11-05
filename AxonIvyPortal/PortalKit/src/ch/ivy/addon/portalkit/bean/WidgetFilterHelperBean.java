@@ -22,7 +22,7 @@ public class WidgetFilterHelperBean implements Serializable {
   private WidgetFilterModel saveFilter;
   private String loadFiltersRemoteCommand;
 
-  public void saveFilter() {
+  public void saveNewWidgetFilter() {
     if (isDuplicatedFilter()) {
       FacesContext.getCurrentInstance().validationFailed();
       FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
