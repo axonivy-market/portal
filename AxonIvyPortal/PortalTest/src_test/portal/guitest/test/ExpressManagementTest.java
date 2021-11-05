@@ -183,7 +183,7 @@ public class ExpressManagementTest extends BaseTest {
     ExpressTaskPage expressTaskPage = new ExpressTaskPage();
     expressTaskPage.waitForExpressFieldSetDisplay();
     expressTaskPage.enterRequiredInputFieldByLabel("Comment", "Mr.David to axon");
-    String today =  LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_PATTERN));
+    String today =  LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN));
     expressTaskPage.enterRequiredInputFieldByLabel("Approval date", today);
     expressTaskPage.finish();
   }
@@ -193,7 +193,7 @@ public class ExpressManagementTest extends BaseTest {
     ExpressTaskPage expressTaskPage = new ExpressTaskPage();
     expressTaskPage.waitForExpressFieldSetDisplay();
     expressTaskPage.enterRequiredInputFieldByLabel("Welcome", "Welcome Mr.David to axon");
-    String today =  LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_PATTERN));
+    String today =  LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN));
     expressTaskPage.enterRequiredInputFieldByLabel("Start date", today);
 
     UserTaskWithMailFormPage userTaskWithMail = new UserTaskWithMailFormPage();
