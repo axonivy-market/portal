@@ -117,13 +117,13 @@
                 <p:message for="save-filter-name"/>
               </div>
               <div class="ui-g-12 MarTop10 TexAlRight">
-                <p:commandLink href="#" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+                <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
                   oncomplete="PF('save-widget-filter-dialog').hide();" styleClass="u-mar-right-10"
                   process="@this" update="save-filter-form" resetValues="true"
                   partialSubmit="true" immediate="true"/>
                 <p:commandButton id="save-widget-filter-button"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
-                  actionListener="#{widgetFilterHelperBean.saveFilter()}"
+                  actionListener="#{widgetFilterHelperBean.saveNewWidgetFilter()}"
                   icon="#{visibilityBean.generateButtonIcon('si si-floppy-disk')}"
                   oncomplete="if (!args.validationFailed) { #{widgetFilterHelperBean.loadWidgetFilters}; PF('save-widget-filter-dialog').hide();}"
                   update="save-filter-form"
