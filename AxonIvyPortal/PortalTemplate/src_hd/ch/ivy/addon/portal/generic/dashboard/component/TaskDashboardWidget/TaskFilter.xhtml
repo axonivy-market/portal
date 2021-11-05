@@ -8,162 +8,36 @@
 <h:panelGroup id="filter-container" layout="block" styleClass="widget-filter-panel">
   <ui:repeat var="field" value="#{widget.filterableColumns}">
     <div class="ui-g">
-      <h:panelGroup rendered="#{field.field eq 'priority'}">
-        <div class="ui-g-4 ui-sm-12 u-no-padding-bottom-sm-down">
-          <h:outputLabel value="#{field.headerText}" />
-        </div>
-        <div class="ui-g-8 ui-sm-12 ui-fluid">
-          <p:selectCheckboxMenu id="priorities" value="#{field.userFilterPriorities}" multiple="true" onShow="removeDuplicatedValues(this)"
-            panelStyleClass="task-configuration__selectcheckboxmenu-panel" styleClass="task-configuration__selectcheckboxmenu">
-            <f:selectItems value="#{field.userFilterPriorityOptions}" var="priority" itemValue="#{priority}"
-              itemLabel="#{dashboardTaskFilterBean.getUserFriendlyTaskPriority(priority)}" />
-          </p:selectCheckboxMenu>
-        </div>
-      </h:panelGroup>
+      <ic:ch.ivy.addon.portalkit.component.dashboard.taskwidget.PriorityFilterColumn field="#{field}"
+        selectedPriorities="#{field.userFilterPriorities}"
+        priorityOptions="#{field.userFilterPriorityOptions}"/>
 
-      <h:panelGroup rendered="#{field.field eq 'state'}">
-        <div class="ui-g-4 ui-sm-12 u-no-padding-bottom-sm-down">
-          <h:outputLabel value="#{field.headerText}" />
-        </div>
-        <div class="ui-g-8 ui-sm-12 ui-fluid">
-          <p:selectCheckboxMenu id="states" value="#{field.userFilterStates}" multiple="true" filter="true" onShow="removeDuplicatedValues(this)"
-            filterMatchMode="contains" panelStyleClass="task-configuration__selectcheckboxmenu-panel"
-            styleClass="task-configuration__selectcheckboxmenu">
-            <f:selectItems value="#{field.userFilterStateOptions}" var="state" itemValue="#{state}"
-              itemLabel="#{dashboardTaskFilterBean.getUserFriendlyTaskState(state)}" />
-          </p:selectCheckboxMenu>
-        </div>
-      </h:panelGroup>
+      <ic:ch.ivy.addon.portalkit.component.dashboard.taskwidget.StateFilterColumn field="#{field}"
+        stateOptions="#{field.userFilterStateOptions}"
+        selectedStates="#{field.userFilterStates}"/>
 
-      <h:panelGroup rendered="#{field.field eq 'activator'}">
-        <div class="ui-g-4 ui-sm-12 u-no-padding-bottom-sm-down">
-          <h:outputLabel value="#{field.headerText}" />
-        </div>
-        <div class="ui-g-8 ui-sm-12 ui-fluid">
-          <p:autoComplete id="responsibles" scrollHeight="210" dropdown="true" size="35"
-            completeMethod="#{field.completeUserFilterResponsibles}" value="#{field.userFilterResponsibles}"
-            var="responsible" itemValue="#{responsible}" itemLabel="#{responsible.briefDisplayNameWithState}"
-            converter="pojoConverter" cache="true" maxResults="100" multiple="true"
-            moreText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..." dynamic="true"
-            styleClass="task-configuration__responsibles" forceSelection="true">
-            <p:column>
-              <i class="fa #{responsible.isUser() ? 'fa-user' : 'fa-users'} u-mar-right-5" />
-              <h:outputText value="#{dashboardTaskFilterBean.formatName(responsible)}" />
-            </p:column>
-          </p:autoComplete>
-        </div>
-      </h:panelGroup>
+      <ic:ch.ivy.addon.portalkit.component.dashboard.taskwidget.ActivatorFilterColumn field="#{field}"
+        responsibleCompleteMethod="#{field.completeUserFilterResponsibles}"
+        selectedResponsibles="#{field.userFilterResponsibles}"/>
 
-      <h:panelGroup rendered="#{field.format eq 'STRING' or field.format eq 'TEXT'}">
-        <div class="ui-g-4 ui-sm-12 u-no-padding-bottom-sm-down">
-          <h:outputLabel value="#{field.headerText}" />
-        </div>
-        <div class="ui-g-8 ui-sm-12 ui-fluid">
-          <p:inputText id="text-field-input"
-            styleClass="task-configuration__input-text text-field-input-#{field.field}"
-            value="#{field.userFilter}"
-            rendered="#{field.filterType eq 'LIKE'}" />
+      <ic:ch.ivy.addon.portalkit.component.dashboard.widget.TextFilterColumn field="#{field}"
+        inputTextValue="#{field.userFilter}"
+        selectedTexts="#{field.userFilterList}" selectOptions="#{field.userFilterListOptions}"/>
 
-          <p:selectCheckboxMenu id="text-field-selection" value="#{field.userFilterList}" multiple="true" filter="true"
-            filterMatchMode="contains" panelStyleClass="task-configuration__selectcheckboxmenu-panel"
-            styleClass="task-configuration__selectcheckboxmenu text-field-selection-#{field.field}"
-            rendered="#{field.filterType eq 'SELECTION'}">
-            <f:selectItems value="#{field.userFilterListOptions}" />
-          </p:selectCheckboxMenu>
-        </div>
-      </h:panelGroup>
+      <ic:ch.ivy.addon.portalkit.component.dashboard.widget.NumberFilterColumn field="#{field}"
+        filterTo="#{field.userFilterTo}" maxFilterTo="#{field.filterTo}"
+        filterFrom="#{field.userFilterFrom}" minFilterForm="#{field.filterFrom}"/>
 
-      <h:panelGroup rendered="#{field.format eq 'NUMBER'}">
-        <div class="ui-g-4 ui-sm-12 u-no-padding-bottom-sm-down">
-          <h:outputLabel value="#{field.headerText} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')}" />
-        </div>
-        <div class="ui-g-8 ui-sm-12 ui-fluid">
-          <p:inputNumber id="from-number-field-input" styleClass="task-configuration__input-text" value="#{field.userFilterFrom}"
-            inputStyleClass="task-configuration__input-number" minValue="#{empty field.filterFrom ? '-999999999.99' : field.filterFrom}">
-            <f:convertNumber pattern="#{field.pattern}" />
-          </p:inputNumber>
-        </div>
-
-        <div class="ui-g-4 ui-sm-12 u-no-padding-bottom-sm-down">
-          <h:outputLabel value="#{field.headerText} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')}" />
-        </div>
-        <div class="ui-g-8 ui-sm-12 ui-fluid">
-          <p:inputNumber id="to-number-field-input" styleClass="task-configuration__input-text" value="#{field.userFilterTo}"
-            inputStyleClass="task-configuration__input-number" maxValue="#{empty field.filterTo ? '999999999.99' : field.filterTo}">
-            <f:convertNumber pattern="#{field.pattern}" />
-          </p:inputNumber>
-        </div>
-      </h:panelGroup>
-
-      <h:panelGroup rendered="#{field.format eq 'TIMESTAMP'}">
-        <div class="ui-g-4 ui-sm-12 u-no-padding-bottom-sm-down">
-          <h:outputLabel value="#{field.headerText} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')}" />
-        </div>
-        <div class="ui-g-8 ui-sm-12 ui-fluid">
-          <p:calendar id="from-date-field-input" showOn="button" styleClass="task-configuration__calendar"
-            mindate="#{field.dateFilterFrom}" value="#{field.userDateFilterFrom}"
-            pattern="#{dateTimePatternBean.configuredCalendarPattern}" locale="#{localeBean.locale}" />
-        </div>
-
-        <div class="ui-g-4 ui-sm-12 u-no-padding-bottom-sm-down">
-          <h:outputLabel value="#{field.headerText} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')}" />
-        </div>
-        <div class="ui-g-8 ui-sm-12 ui-fluid">
-          <p:calendar id="to-date-field-input" showOn="button" styleClass="task-configuration__calendar"
-            maxdate="#{field.dateFilterTo}" value="#{field.userDateFilterTo}"
-            pattern="#{dateTimePatternBean.configuredCalendarPattern}" locale="#{localeBean.locale}" />
-        </div>
-      </h:panelGroup>
+      <ic:ch.ivy.addon.portalkit.component.dashboard.widget.TimestampFilterColumn field="#{field}"
+        filterTo="#{field.userDateFilterTo}" maxFilterTo="#{field.dateFilterTo}"
+        filterFrom="#{field.userDateFilterFrom}" minFilterFrom="#{field.dateFilterFrom}"/>
     </div>
   </ui:repeat>
 </h:panelGroup>
 
-<div class="ui-g">
-  <div class="ui-g-4 ui-sm-12 u-no-padding-bottom-sm-down">
-    <p:outputLabel for="user-filter-category" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/category')}" />
-  </div>
-  <div class="ui-g-8 ui-sm-12 ui-fluid">
-    <h:panelGroup id="user-filter-category-container" styleClass="task-configuration__category" layout="block">
-      <p:inputText id="user-filter-category" styleClass="task-configuration__input-text"
-        value="#{widget.getUserFilterDisplayCategories()}" readonly="true" />
-      <p:overlayPanel id="user-filter-category-panel" for="user-filter-category" appendTo="@(#grid-stack)"
-        styleClass="task-configuration__category-panel" dynamic="true"
-        onHide="$(this.targetElement).parents('.task-configuration__category').find('.portal-cancel-button').click();">
-        <p:tree id="task-category-filter-tree" value="#{widget.categoryTree}" var="node" selectionMode="checkbox" styleClass="category-filter-tree"
-          selection="#{widget.categoryNodes}" filterMatchMode="contains" filterBy="#{node}"
-          showUnselectableCheckbox="true">
-          <p:treeNode>
-            <h:outputText value="#{node.value}" />
-          </p:treeNode>
-        </p:tree>
+<ic:ch.ivy.addon.portalkit.component.dashboard.widget.CategoryFilterColumn displaySelectedCategories="#{widget.getUserFilterDisplayCategories()}"
+  categoryTree="#{widget.categoryTree}" categoryNodeSelection="#{widget.categoryNodes}"
+  containerStyleClass="task-configuration__category" inputCategoryStyleClass="task-configuration__input-text"
+  overlayCategoryStyleClass="task-configuration__category-panel" showUnselectableCheckbox="true"/>
 
-        <h:panelGroup id="category-panel-footer" layout="block" styleClass="task-configuration__category-panel-footer">
-          <p:commandLink id="cancel-command" styleClass="portal-cancel-button u-mar-right-10" process="@this"
-            global="false" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-            update="user-filter-category-container" />
-
-          <p:commandButton id="update-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
-            process="user-filter-category-panel" partialSubmit="true" update="user-filter-category-container" />
-        </h:panelGroup>
-      </p:overlayPanel>
-    </h:panelGroup>
-  </div>
-</div>
-<script>
-  function removeDuplicatedValues(e) {
-    var positionToRemove = [];
-    $(e.items).each(function(i){
-      $(e.items).each(function(j) {
-        var isAlreadyChecked = i != j &#38;&#38; !positionToRemove.includes(j) &#38;&#38; !positionToRemove.includes(i);
-        if (isAlreadyChecked &#38;&#38; e.items.get(j).getAttributeNode("data-item-value").value == e.items.get(i).getAttributeNode("data-item-value").value) {
-          positionToRemove.push(j);
-        }
-      });
-    });
-
-    $(positionToRemove).each(function(i){
-      $(e.items.get(positionToRemove[i])).remove();
-    });
-  }
-</script>
 </html>
