@@ -35,8 +35,8 @@ public class LeaveRequestTest extends BaseTest {
         + "Approver: This field is required,"
         + "Requester comment: This field is required", 
         leaveRequestPage.clickSubmitAndGetValidationMsg());
-    String today =  LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_PATTERN));
-    String yesterday =  LocalDateTime.now().minusDays(1).format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_PATTERN));
+    String today =  LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN));
+    String yesterday =  LocalDateTime.now().minusDays(1).format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN));
     leaveRequestPage.enterLeaveRequestInformation("Maternity Leave", today, yesterday, TestAccount.DEMO_USER.getFullName(), "requester comment");
     Assert.assertEquals("'To' must be later than 'From'.", leaveRequestPage.clickSubmitAndGetValidationMsg());
   }
@@ -45,8 +45,8 @@ public class LeaveRequestTest extends BaseTest {
   public void testApproveScenario() {
     leaveRequestPage = startLeaveRequestProcess();
     Assert.assertEquals("Create leave request", leaveRequestPage.getPageTitle());
-    String today =  LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_PATTERN));
-    String yesterday = LocalDateTime.now().minusDays(1).format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_PATTERN));
+    String today =  LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN));
+    String yesterday = LocalDateTime.now().minusDays(1).format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN));
     leaveRequestPage.enterLeaveRequestInformation("Maternity Leave", yesterday, today, TestAccount.ADMIN_USER.getFullName(), "requester comment");
     leaveRequestPage.clickSubmitButton();
     login(TestAccount.ADMIN_USER);
@@ -66,13 +66,13 @@ public class LeaveRequestTest extends BaseTest {
     CaseDetailsPage caseDetailsPage = userExamplesEndPage.goToCaseDetail();
     Assert.assertEquals("Leave Request", caseDetailsPage.getCaseName());
   }
-  
+
   @Test
   public void testRejectScenario() {
     leaveRequestPage = startLeaveRequestProcess();
     Assert.assertEquals("Create leave request", leaveRequestPage.getPageTitle());
-    String today =  LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_PATTERN));
-    String yesterday =  LocalDateTime.now().minusDays(1).format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_PATTERN));
+    String today =  LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN));
+    String yesterday =  LocalDateTime.now().minusDays(1).format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN));
     leaveRequestPage.enterLeaveRequestInformation("Maternity Leave", yesterday, today, TestAccount.ADMIN_USER.getFullName(), "requester comment");
     leaveRequestPage.clickSubmitButton();
     login(TestAccount.ADMIN_USER);
