@@ -72,6 +72,7 @@ public class DashboardBean implements Serializable {
   @PostConstruct
   public void init() {
     widgetFilterService = WidgetFilterService.getInstance();
+    canEdit = PermissionUtils.hasDashboardWritePermission();
     currentDashboardIndex = 0;
     isReadOnlyMode = true;
     dashboards = new ArrayList<>();
