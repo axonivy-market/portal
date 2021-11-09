@@ -211,7 +211,7 @@ You can refer to ``PortalExamples`` project for examples
    part. <customization-responsive-css>`
 
    .. code-block:: html
-      :emphasize-lines: 4,10,35,40
+      :emphasize-lines: 4,10,35,41
 
             <!-- New field -->
             <ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="customVarCharField1-column-header"
@@ -271,7 +271,7 @@ You can refer to ``PortalExamples`` project for examples
    styleClass param of caseListHeader and caseHeader.
 
    .. code-block:: html
-      :emphasize-lines: 5,11,35,40
+      :emphasize-lines: 5,11,35,41
 
             <!-- New field -->
             <ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="customVarCharField1-column-header"
