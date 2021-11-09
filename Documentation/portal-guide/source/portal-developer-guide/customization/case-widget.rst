@@ -247,12 +247,14 @@ You can refer to ``PortalExamples`` project for examples
 
             <!-- New field -->
             <h:panelGroup styleClass="customized-case-header-column js-hidden-when-expand-menu 
-            u-hidden-lg-down">
+            u-hidden-lg-down"
+            rendered="#{caseView.dataModel.isSelectedColumn('customVarCharField1')}">
             <h:outputText value="#{case.customFields().stringField('CustomVarCharField1').getOrNull()}"
             styleClass="case-header-default-cell customized-case-header-column" />
             </h:panelGroup>
             <h:panelGroup styleClass="customized-case-header-column js-hidden-when-expand-menu 
-            u-hidden-lg-down">
+            u-hidden-lg-down"
+            rendered="#{caseView.dataModel.isSelectedColumn('customTimestampField1')}">
             <h:outputText value="#{case.customFields().timestampField('CustomTimestampField1').getOrNull()}"
             styleClass="case-header-default-cell">
             <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
@@ -305,12 +307,14 @@ You can refer to ``PortalExamples`` project for examples
 
             <!-- New field -->
             <h:panelGroup styleClass="customized-case-header-column u-hidden-lg-down
-            js-hidden-when-expand-menu ">
+            js-hidden-when-expand-menu "
+            rendered="#{caseView.dataModel.isSelectedColumn('customVarCharField1')}">
             <h:outputText value="#{case.customFields().stringField('CustomVarCharField1').getOrNull()}"
             styleClass="case-header-default-cell customized-case-header-column" />
             </h:panelGroup>
             <h:panelGroup styleClass="customized-case-header-column u-hidden-lg-down 
-            js-hidden-when-expand-menu ">
+            js-hidden-when-expand-menu "
+            rendered="#{caseView.dataModel.isSelectedColumn('customTimestampField1')}">
             <h:outputText value="#{case.customFields().timestampField('CustomTimestampField1').getOrNull()}"
             styleClass="case-header-default-cell">
             <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
