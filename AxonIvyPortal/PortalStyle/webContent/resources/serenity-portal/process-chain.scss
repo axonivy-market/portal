@@ -326,6 +326,7 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   display: inline-block;
   text-align: center;
   vertical-align: bottom !important;
+  font-size: $smallFontSize;
 }
 
 .line-process-chain .line-horizontal-process-step.hide-right-steps,
