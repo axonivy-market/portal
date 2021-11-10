@@ -3,8 +3,6 @@
   xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
   xmlns:pe="http://primefaces.org/ui/extensions" xmlns:jsf="http://xmlns.jcp.org/jsf">
 
-<f:event listener="#{widget.buildCategoryTree}" type="preRenderComponent" />
-
 <h:panelGroup id="filter-container" layout="block" styleClass="widget-filter-panel">
   <ui:repeat var="field" value="#{widget.filterableColumns}">
     <div class="ui-g">
@@ -31,13 +29,13 @@
       <ic:ch.ivy.addon.portalkit.component.dashboard.widget.TimestampFilterColumn field="#{field}"
         filterTo="#{field.userDateFilterTo}" maxFilterTo="#{field.dateFilterTo}"
         filterFrom="#{field.userDateFilterFrom}" minFilterFrom="#{field.dateFilterFrom}"/>
+
+      <ic:ch.ivy.addon.portalkit.component.dashboard.widget.CategoryFilterColumn field="#{field}"
+        displaySelectedCategories="#{field.userFriendlyCategories}"
+        categoryNodeSelection="#{field.userSelectionCategoryNodes}" categoryTree="#{field.userCategoryTree}"
+        containerStyleClass="case-configuration__category" inputCategoryStyleClass="case-configuration__input-text"
+        overlayCategoryStyleClass="case-configuration__category-panel" showUnselectableCheckbox="true"/>
     </div>
   </ui:repeat>
 </h:panelGroup>
-
-<ic:ch.ivy.addon.portalkit.component.dashboard.widget.CategoryFilterColumn displaySelectedCategories="#{widget.getUserFilterDisplayCategories()}"
-  categoryNodeSelection="#{widget.categoryNodes}" categoryTree="#{widget.categoryTree}"
-  containerStyleClass="case-configuration__category" inputCategoryStyleClass="case-configuration__input-text"
-  overlayCategoryStyleClass="case-configuration__category-panel" showUnselectableCheckbox="true"/>
-
 </html>

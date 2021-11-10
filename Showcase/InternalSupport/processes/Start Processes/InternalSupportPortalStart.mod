@@ -1934,8 +1934,8 @@ Pt0 f173 1 688 96 #addKink
 Pt0 f173 2 976 96 #addKink
 Pt0 f173 1 0.5 0 0 #arcLabel
 Pt0 f174 dialogId ch.ivy.addon.portal.generic.dashboard.PortalDashboardConfiguration #txt
-Pt0 f174 startMethod start(Boolean) #txt
-Pt0 f174 requestActionDecl '<Boolean isPublicDashboard> param;' #txt
+Pt0 f174 startMethod start() #txt
+Pt0 f174 requestActionDecl '<> param;' #txt
 Pt0 f174 responseMappingAction 'out=in;
 ' #txt
 Pt0 f174 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
