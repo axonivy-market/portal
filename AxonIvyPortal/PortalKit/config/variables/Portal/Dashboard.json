@@ -36,6 +36,9 @@
           },
           {
             "field": "expiryTimestamp"
+          },
+          {
+            "field": "category"
           }
         ]
       },
@@ -67,6 +70,9 @@
           },
           {
             "field": "endTimestamp"
+          },
+          {
+            "field": "category"
           }
         ]
       },
