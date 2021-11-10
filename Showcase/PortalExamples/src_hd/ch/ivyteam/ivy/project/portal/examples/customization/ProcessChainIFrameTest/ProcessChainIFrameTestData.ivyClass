@@ -1,0 +1,4 @@
+ProcessChainIFrameTestData #class
+ch.ivyteam.ivy.project.portal.examples.customization.ProcessChainIFrameTest #namespace
+actualCurrentIndex Integer #field
+actualCurrentIndex PERSISTENT #fieldModifier

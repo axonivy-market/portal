@@ -52,6 +52,10 @@ this by setting the attribute ``chunkSize`` to the number you want. You
 should use this attribute alongside with the attribute ``scrollHeight``
 to configure the scroll bar of the list.
 
+This component using style of Portal, so if you want to customize its style,
+please refer to :ref:`customization-portal-logos-and-colors-change-portal-background`
+for more details.
+
 .. note:: 
 
       If you use this component in a dialog, you must run this script
@@ -167,6 +171,10 @@ include this component to this page with following code:
 
 5. Can change ``isShowAllSteps`` parameter to ``TRUE`` or ``FALSE``
    based on the requirement. Default value of this is ``FALSE``.
+
+This component using style of Portal, so if you want to customize its style,
+please refer to :ref:`customization-portal-logos-and-colors-change-portal-background`
+for more details.
 
 .. _components-additional-component-global-growl:
 
