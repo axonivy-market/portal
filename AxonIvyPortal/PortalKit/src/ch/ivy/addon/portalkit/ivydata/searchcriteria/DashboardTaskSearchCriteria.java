@@ -28,8 +28,6 @@ public class DashboardTaskSearchCriteria {
 
   private static final String LIKE_FORMAT = "%%%s%%";
   private boolean canWorkOn;
-  private List<String> categories;
-  private List<String> userFilterCategories;
   private List<TaskColumnModel> columns;
   private String sortField;
   private boolean sortDescending;
@@ -49,7 +47,6 @@ public class DashboardTaskSearchCriteria {
     }
     queryFilters(query);
     queryCanWorkOn(query);
-    queryCategory(query);
     return query;
   }
 
@@ -135,8 +132,7 @@ public class DashboardTaskSearchCriteria {
     }
   }
 
-  private void queryCategory(TaskQuery query) {
-    List<String> categories = CollectionUtils.isNotEmpty(userFilterCategories) ? userFilterCategories : this.categories;
+  private void queryCategory(TaskQuery query, List<String> categories) {
     if (CollectionUtils.isNotEmpty(categories)) {
       TaskQuery subQuery = TaskQuery.create();
       IFilterQuery filterQuery = subQuery.where();
@@ -211,6 +207,8 @@ public class DashboardTaskSearchCriteria {
           states.add(TaskState.valueOf(state.toUpperCase()));
         }
         queryStates(query, states);
+      } else if (StringUtils.equals(DashboardStandardTaskColumn.CATEGORY.getField(), column.getField())) {
+        queryCategory(query, filterList);
       } else if (StringUtils.equals(DashboardStandardTaskColumn.RESPONSIBLE.getField(), column.getField())) {
         queryResponsibles(query, filterList);
       } else if (StringUtils.equals(DashboardStandardTaskColumn.CREATED.getField(), column.getField())) {
@@ -393,22 +391,6 @@ public class DashboardTaskSearchCriteria {
     this.canWorkOn = canWorkOn;
   }
 
-  public List<String> getCategories() {
-    return categories;
-  }
-
-  public void setCategories(List<String> categories) {
-    this.categories = categories;
-  }
-  
-  public List<String> getUserFilterCategories() {
-    return userFilterCategories;
-  }
-
-  public void setUserFilterCategories(List<String> categories) {
-    this.userFilterCategories = categories;
-  }
-  
   public List<TaskColumnModel> getColumns() {
     return columns;
   }

@@ -15,25 +15,27 @@
     <div class="ui-g-4 ui-sm-12 u-no-padding-bottom-sm-down">
       <h:outputLabel value="#{cc.attrs.field.headerText} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')}"/>
     </div>
-    <div class="ui-g-8 ui-sm-12 ui-fluid">
-      <p:calendar id="from-date-field-input" showOn="button" styleClass="task-configuration__calendar"
+    <div class="ui-g-8 ui-sm-12 ui-fluid md-inputfield">
+      <p:calendar id="from-date-field-input" showOn="button" styleClass="task-configuration__calendar ui-g-12 u-padding-0"
         value="#{cc.attrs.filterFrom}"
         mindate="#{cc.attrs.minFilterFrom}"
-        pattern="#{dateTimePatternBean.simpleDatePattern}" locale="#{localeBean.locale}"
-        validator="#{field.validate()}" validatorMessage="Wrong date" />
-      <p:message for="from-date-field-input" />
+        pattern="#{dateTimePatternBean.configuredDateFilterPattern}" locale="#{localeBean.locale}"
+        validator="#{field.validate}"
+        converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/wrongFromDateFormat', [dateTimePatternBean.configuredDateFilterPattern])}"/>
+      <p:message for="from-date-field-input" styleClass="ui-g-12 u-padding-0"/>
     </div>
 
     <div class="ui-g-4 ui-sm-12 u-no-padding-bottom-sm-down">
       <h:outputLabel value="#{cc.attrs.field.headerText} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')}"/>
     </div>
-    <div class="ui-g-8 ui-sm-12 ui-fluid">
-      <p:calendar id="to-date-field-input" showOn="button" styleClass="task-configuration__calendar"
+    <div class="ui-g-8 ui-sm-12 ui-fluid md-inputfield">
+      <p:calendar id="to-date-field-input" showOn="button" styleClass="task-configuration__calendar ui-g-12 u-padding-0"
         value="#{cc.attrs.filterTo}"
         maxdate="#{cc.attrs.maxFilterTo}"
-        pattern="#{dateTimePatternBean.simpleDatePattern}" locale="#{localeBean.locale}"
-        validator="#{field.validate()}" validatorMessage="Wrong date" />
-      <p:message for="to-date-field-input" />
+        pattern="#{dateTimePatternBean.configuredDateFilterPattern}" locale="#{localeBean.locale}"
+        validator="#{field.validate}"
+        converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/wrongToDateFormat', [dateTimePatternBean.configuredDateFilterPattern])}" />
+      <p:message for="to-date-field-input" styleClass="ui-g-12 u-padding-0"/>
     </div>
   </h:panelGroup>
 </cc:implementation>

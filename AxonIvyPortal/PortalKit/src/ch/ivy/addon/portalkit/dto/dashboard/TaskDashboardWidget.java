@@ -16,7 +16,6 @@ import java.util.stream.Collectors;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
-import org.primefaces.model.CheckboxTreeNode;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.MapperFeature;
@@ -27,6 +26,7 @@ import ch.ivy.addon.portalkit.bo.TaskCategoryStatistic;
 import ch.ivy.addon.portalkit.bo.TaskStateStatistic;
 import ch.ivy.addon.portalkit.datamodel.DashboardTaskLazyDataModel;
 import ch.ivy.addon.portalkit.dto.WidgetLayout;
+import ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.CategoryColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.CreatedDateColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.DescriptionColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.ExpiryDateColumnModel;
@@ -42,11 +42,8 @@ import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
-import ch.ivy.addon.portalkit.ivydata.searchcriteria.DashboardTaskSearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria;
 import ch.ivy.addon.portalkit.service.IvyAdapterService;
-import ch.ivy.addon.portalkit.util.CategoryUtils;
-import ch.ivy.addon.portalkit.util.TaskTreeUtils;
 import ch.ivy.addon.portalkit.util.TimesUtils;
 import ch.ivyteam.ivy.workflow.TaskState;
 
@@ -59,10 +56,6 @@ public class TaskDashboardWidget extends DashboardWidget {
   @JsonIgnore
   private DashboardTaskLazyDataModel dataModel;
   @JsonIgnore
-  private CheckboxTreeNode categoryTree;
-  @JsonIgnore
-  private CheckboxTreeNode[] categoryNodes;
-  @JsonIgnore
   private Map<TaskState, Long> taskByStateStatistic;
   @JsonIgnore
   private Map<String, Long> taskByCategoryStatistic;
@@ -74,31 +67,6 @@ public class TaskDashboardWidget extends DashboardWidget {
   public TaskDashboardWidget() {
     dataModel = new DashboardTaskLazyDataModel();
     setColumns(new ArrayList<>());
-  }
-  
-  public CheckboxTreeNode[] getCategoryNodes() {
-    return categoryNodes;
-  }
-
-  public void setCategoryNodes(CheckboxTreeNode[] categoryNodes) {
-    this.categoryNodes = categoryNodes;
-    setUserFilterCategories(CategoryUtils.getCategoryPaths(categoryNodes));
-  }
-  
-  public CheckboxTreeNode getCategoryTree() {
-    return categoryTree;
-  }
-  
-  public void setCategoryTree(CheckboxTreeNode categoryTree) {
-    this.categoryTree = categoryTree;
-  }
-  
-  public void buildCategoryTree() {
-    this.categoryTree = TaskTreeUtils.buildTaskCategoryCheckboxTreeRoot();
-    CategoryUtils.disableSelectionExcept(this.categoryTree, getCategories());
-    if (CollectionUtils.isNotEmpty(getUserFilterCategories())) {
-      CategoryUtils.recoverSelectedCategories(this.categoryTree, getUserFilterCategories());
-    }
   }
 
   @Override
@@ -186,33 +154,6 @@ public class TaskDashboardWidget extends DashboardWidget {
     this.dataModel.setCanWorkOn(canWorkOn);
   }
 
-  public List<String> getCategories() {
-    return this.dataModel.getCategories();
-  }
-
-  public void setCategories(List<String> categories) {
-    this.dataModel.setCategories(categories);
-  }
-  
-  @JsonIgnore
-  public String getDisplayCategories() {
-    return Optional.ofNullable(getCategories()).orElse(new ArrayList<>()).stream().collect(Collectors.joining(", "));
-  }
-  
-  @JsonIgnore
-  public List<String> getUserFilterCategories() {
-    return this.dataModel.getUserFilterCategories();
-  }
-
-  public void setUserFilterCategories(List<String> categories) {
-    this.dataModel.setUserFilterCategories(categories);
-  }
-  
-  @JsonIgnore
-  public String getUserFilterDisplayCategories() {
-    return Optional.ofNullable(getUserFilterCategories()).orElse(new ArrayList<>()).stream().collect(Collectors.joining(", "));
-  }
-  
   public String getSortField() {
     return this.dataModel.getCriteria().getSortField();
   }
@@ -343,6 +284,8 @@ public class TaskDashboardWidget extends DashboardWidget {
         column = mapper.convertValue(column, CreatedDateColumnModel.class);
       } else if (DashboardStandardTaskColumn.EXPIRY.getField().equalsIgnoreCase(field)) {
         column = mapper.convertValue(column, ExpiryDateColumnModel.class);
+      } else if (DashboardStandardTaskColumn.CATEGORY.getField().equalsIgnoreCase(field)) {
+        column = mapper.convertValue(column, CategoryColumnModel.class);
       }
       column.initDefaultValue();
       columns.set(i, column);
@@ -390,12 +333,11 @@ public class TaskDashboardWidget extends DashboardWidget {
           && !(col.getDateFilterFrom() == null && col.getDateFilterTo() == null)) {
         return true;
       }
+      else if (DashboardStandardTaskColumn.CATEGORY.getField().equalsIgnoreCase(col.getField())
+          && CollectionUtils.isNotEmpty(col.getFilterList())) {
+        return true;
+      }
     }
-
-    if (CollectionUtils.isNotEmpty(widget.getCategories())) {
-      return true;
-    }
-
     return false;
   }
 
@@ -418,10 +360,6 @@ public class TaskDashboardWidget extends DashboardWidget {
         break;
       }
     }
-    if (CollectionUtils.isNotEmpty(widget.getDataModel().getCriteria().getUserFilterCategories())
-        && numberOfFilters < MAX_NOTI_FILTERS) {
-      numberOfFilters++;
-    }
 
     if (numberOfFilters > MAX_NOTI_FILTERS) {
       return Optional.of(String.format(MAX_NOTI_PATTERN, MAX_NOTI_FILTERS));
@@ -443,11 +381,6 @@ public class TaskDashboardWidget extends DashboardWidget {
       column.setUserFilterTo(StringUtils.EMPTY);
       column.setUserDateFilterFrom(null);
       column.setUserDateFilterTo(null);
-    }
-    if (Optional.ofNullable(dataModel)
-        .map(DashboardTaskLazyDataModel::getCriteria)
-        .map(DashboardTaskSearchCriteria::getUserFilterCategories).isPresent()) {
-      dataModel.getCriteria().getUserFilterCategories().clear();
     }
   }
 
