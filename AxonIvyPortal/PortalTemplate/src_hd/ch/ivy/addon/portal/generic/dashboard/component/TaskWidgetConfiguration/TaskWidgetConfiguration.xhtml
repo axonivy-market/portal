@@ -10,8 +10,6 @@
 </cc:interface>
 
 <cc:implementation>
-  <f:event listener="#{dashboardTaskFilterBean.preRender(cc.attrs.taskWidget)}" type="preRenderComponent" />
-
   <ui:decorate template="/layouts/restricted/decorator/TableWidgetConfiguration.xhtml">
     <ui:param name="widget" value="#{cc.attrs.taskWidget}" />
     <ui:param name="componentToUpdateOnPreviewAction" value="#{cc.clientId}:task-widget-preview:dashboard-tasks" />
@@ -50,16 +48,17 @@
             filterTo="#{field.filterTo}"
             filterFrom="#{field.filterFrom}"/>
 
-          <ic:ch.ivy.addon.portalkit.component.dashboard.widget.TimestampFilterColumn  field="#{field}"
+          <ic:ch.ivy.addon.portalkit.component.dashboard.widget.TimestampFilterColumn field="#{field}"
            filterTo="#{field.dateFilterTo}"
            filterFrom="#{field.dateFilterFrom}"/>
+
+          <ic:ch.ivy.addon.portalkit.component.dashboard.widget.CategoryFilterColumn field="#{field}"
+            displaySelectedCategories="#{field.displayCategories}" configurationMode="true"
+            categoryNodeSelection="#{field.categoryNodes}" categoryTree="#{field.categoryTree}"
+            containerStyleClass="task-configuration__category" inputCategoryStyleClass="task-configuration__input-text"
+            overlayCategoryStyleClass="task-configuration__category-panel" showUnselectableCheckbox="false"/>
         </ui:repeat>
       </h:panelGroup>
-
-      <ic:ch.ivy.addon.portalkit.component.dashboard.widget.CategoryFilterColumn displaySelectedCategories="#{cc.attrs.taskWidget.getDisplayCategories()}"
-        categoryNodeSelection="#{dashboardTaskFilterBean.categoryNodes}" categoryTree="#{dashboardTaskFilterBean.categoryTree}"
-        containerStyleClass="task-configuration__category" inputCategoryStyleClass="task-configuration__input-text"
-        overlayCategoryStyleClass="task-configuration__category-panel" showUnselectableCheckbox="false"/>
     </ui:define>
 
     <ui:param name="widgetPreviewStyleClass" value="task-preview" />

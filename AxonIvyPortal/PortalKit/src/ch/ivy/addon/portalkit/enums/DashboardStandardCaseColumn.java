@@ -5,7 +5,7 @@ import java.util.Map;
 
 public enum DashboardStandardCaseColumn {
   ID("id"), NAME("name"), DESCRIPTION("description"), STATE("state"), CREATOR("creator"), CREATED("startTimestamp"), FINISHED("endTimestamp"),
-  OWNER("owner");
+  OWNER("owner"), CATEGORY("category");
 
   private final String field;
 

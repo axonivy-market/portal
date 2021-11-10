@@ -1,5 +1,7 @@
 package ch.ivy.addon.portal.generic.bean;
 
+import static org.apache.commons.lang3.StringUtils.EMPTY;
+
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -11,19 +13,15 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import org.apache.commons.lang3.StringUtils;
-import org.primefaces.model.CheckboxTreeNode;
 
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.dto.SecurityMemberDTO;
 import ch.ivy.addon.portalkit.dto.UserDTO;
 import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
-import ch.ivy.addon.portalkit.util.CategoryUtils;
 import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
-import ch.ivy.addon.portalkit.util.TaskTreeUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivyteam.ivy.workflow.WorkflowPriority;
-import static org.apache.commons.lang3.StringUtils.EMPTY;
 
 @ManagedBean
 @ViewScoped
@@ -32,8 +30,6 @@ public class DashboardTaskFilterBean {
   private List<WorkflowPriority> priorities;
   private UserDTO selectedUser;
   private List<SecurityMemberDTO> responsibles;
-  private CheckboxTreeNode categoryTree;
-  private CheckboxTreeNode[] categoryNodes;
   private TaskDashboardWidget widget;
   
   @PostConstruct
@@ -46,23 +42,6 @@ public class DashboardTaskFilterBean {
   public void preRender(TaskDashboardWidget widget) {
     this.widget = widget;
     this.widget.setInConfiguration(true);
-    buildCategoryTree();
-  }
-  
-  public CheckboxTreeNode[] getCategoryNodes() {
-    return categoryNodes;
-  }
-
-  public void setCategoryNodes(CheckboxTreeNode[] categoryNodes) {
-    this.categoryNodes = categoryNodes;
-    if (this.widget != null) {
-      this.widget.setCategories(CategoryUtils.getCategoryPaths(categoryNodes));
-    }
-  }
-  
-  private void buildCategoryTree() {
-    this.categoryTree = TaskTreeUtils.buildTaskCategoryCheckboxTreeRoot();
-    this.categoryNodes = CategoryUtils.recoverSelectedCategories(this.categoryTree, this.widget.getCategories());
   }
 
   public String formatName(SecurityMemberDTO responsible) {
@@ -142,13 +121,5 @@ public class DashboardTaskFilterBean {
 
   public void setResponsibles(List<SecurityMemberDTO> responsibles) {
     this.responsibles = responsibles;
-  }
-  
-  public CheckboxTreeNode getCategoryTree() {
-    return categoryTree;
-  }
-  
-  public void setCategoryTree(CheckboxTreeNode categoryTree) {
-    this.categoryTree = categoryTree;
   }
 }

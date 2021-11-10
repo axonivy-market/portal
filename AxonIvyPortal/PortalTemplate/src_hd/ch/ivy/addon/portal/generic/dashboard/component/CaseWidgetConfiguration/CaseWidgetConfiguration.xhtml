@@ -10,8 +10,6 @@
 </cc:interface>
 
 <cc:implementation>
-  <f:event listener="#{dashboardCaseFilterBean.preRender(cc.attrs.caseWidget)}" type="preRenderComponent" />
-
   <ui:decorate template="/layouts/restricted/decorator/TableWidgetConfiguration.xhtml">
     <ui:param name="widget" value="#{cc.attrs.caseWidget}" />
     <ui:param name="componentToUpdateOnPreviewAction" value="#{cc.clientId}:case-widget-preview:dashboard-cases" />
@@ -44,13 +42,14 @@
           <ic:ch.ivy.addon.portalkit.component.dashboard.widget.TimestampFilterColumn field="#{field}"
             filterTo="#{field.dateFilterTo}"
             filterFrom="#{field.dateFilterFrom}"/>
+
+          <ic:ch.ivy.addon.portalkit.component.dashboard.widget.CategoryFilterColumn field="#{field}"
+            displaySelectedCategories="#{field.displayCategories}" configurationMode="true"
+            categoryNodeSelection="#{field.selectionCategoryNodes}" categoryTree="#{field.categoryTree}"
+            containerStyleClass="case-configuration__category" overlayCategoryStyleClass="case-configuration__category-panel"
+            inputCategoryStyleClass="case-configuration__input-text" showUnselectableCheckbox="false"/>
         </ui:repeat>
       </h:panelGroup>
-
-      <ic:ch.ivy.addon.portalkit.component.dashboard.widget.CategoryFilterColumn displaySelectedCategories="#{cc.attrs.caseWidget.getDisplayCategories()}"
-        categoryNodeSelection="#{dashboardCaseFilterBean.categoryNodes}" categoryTree="#{dashboardCaseFilterBean.categoryTree}"
-        containerStyleClass="case-configuration__category" overlayCategoryStyleClass="case-configuration__category-panel"
-        inputCategoryStyleClass="case-configuration__input-text" showUnselectableCheckbox="false"/>
     </ui:define>
 
     <ui:param name="widgetPreviewStyleClass" value="case-preview" />

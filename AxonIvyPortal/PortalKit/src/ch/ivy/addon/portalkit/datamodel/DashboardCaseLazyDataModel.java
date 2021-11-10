@@ -123,20 +123,4 @@ public class DashboardCaseLazyDataModel extends LazyDataModel<ICase> {
   public void setCriteria(DashboardCaseSearchCriteria criteria) {
     this.criteria = criteria;
   }
-
-  public List<String> getCategories() {
-    return criteria.getCategories();
-  }
-
-  public void setCategories(List<String> categories) {
-    criteria.setCategories(categories);
-  }
-  
-  public List<String> getUserFilterCategories() {
-    return criteria.getUserFilterCategories();
-  }
-
-  public void setUserFilterCategories(List<String> categories) {
-    criteria.setUserFilterCategories(categories);
-  }
 }

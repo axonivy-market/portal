@@ -456,15 +456,11 @@ public class DashboardBean implements Serializable {
 
     if (widget instanceof TaskDashboardWidget) {
       TaskDashboardWidget taskWidget = (TaskDashboardWidget) widget;
-      taskWidget.setUserFilterCategories(new ArrayList<>());
-      widgetFilterService.buildFilterOptions(widget, taskWidget.getFilterableColumns(),
-          taskWidget.getUserFilterCategories());
+      widgetFilterService.buildFilterOptions(widget, taskWidget.getFilterableColumns());
     }
     if (widget instanceof CaseDashboardWidget) {
       CaseDashboardWidget caseWidget = (CaseDashboardWidget) widget;
-      caseWidget.setUserFilterCategories(new ArrayList<>());
-      widgetFilterService.buildFilterOptions(widget, caseWidget.getFilterableColumns(),
-          caseWidget.getUserFilterCategories());
+      widgetFilterService.buildFilterOptions(widget, caseWidget.getFilterableColumns());
     }
     if (widget instanceof ProcessDashboardWidget) {
       widgetFilterService.buildProcessFilters((ProcessDashboardWidget) widget);
