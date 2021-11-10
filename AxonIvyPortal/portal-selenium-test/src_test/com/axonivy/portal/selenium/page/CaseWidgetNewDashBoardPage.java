@@ -82,12 +82,12 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void openFilterWidget() {
-    $$("form.table-widget-form").filter(text(caseWidgetName)).first().waitUntil(appear, DEFAULT_TIMEOUT)
+    $$("div.table-widget-panel").filter(text(caseWidgetName)).first().waitUntil(appear, DEFAULT_TIMEOUT)
         .$("a.widget__filter-sidebar-link").shouldBe(getClickableCondition()).click();
   }
 
   public CaseEditWidgetNewDashBoardPage openEditWidget() {
-    $$("form.table-widget-form div.widget__header").filter(text(caseWidgetName)).first()
+    $$("div.table-widget-panel div.widget__header").filter(text(caseWidgetName)).first()
         .waitUntil(appear, DEFAULT_TIMEOUT).$("div[id$='widget-header-actions']").$("a[class^='ui-commandlink'][id*='edit-widget']")
         .shouldBe(getClickableCondition()).click();
     return new CaseEditWidgetNewDashBoardPage();
@@ -135,7 +135,7 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void nextPageTable() {
-    $$("form.table-widget-form").filter(text(caseWidgetName)).first().$("a.ui-paginator-next")
+    $$("div.table-widget-panel").filter(text(caseWidgetName)).first().$("a.ui-paginator-next")
         .shouldBe(getClickableCondition()).click();
   }
 

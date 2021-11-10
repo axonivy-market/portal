@@ -153,14 +153,18 @@
             pattern="#{dateTimePatternBean.configuredCalendarPattern}" locale="#{localeBean.locale}" disabled="true" />
         </div>
       </h:panelGroup>
+
+      <!-- Category -->
+      <h:panelGroup rendered="#{field.field eq 'category'}">
+        <h:panelGroup layout="block" styleClass="ui-g-4" rendered="#{not empty field.filterList}">
+          <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/category')}" />
+        </h:panelGroup>
+        <h:panelGroup layout="block" styleClass="ui-g-8 category-panel" rendered="#{not empty field.filterList}">
+          <h:outputText id="category" value="#{field.displayCategories}" styleClass="js-category-filter-info category-filter-info" />
+          <span class="category-toggle js-category-toggle ivy-icon si si-subtract-circle" onclick="toggleCategoryInfo(this);" />
+        </h:panelGroup>
+      </h:panelGroup>
     </ui:repeat>
-    <h:panelGroup layout="block" styleClass="ui-g-4" rendered="#{not empty widget.getDisplayCategories()}">
-      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/category')}" />
-    </h:panelGroup>
-    <h:panelGroup layout="block" styleClass="ui-g-8 category-panel" rendered="#{not empty widget.getDisplayCategories()}">
-      <h:outputText id="category" value="#{widget.getDisplayCategories()}" styleClass="js-category-filter-info category-filter-info" />
-      <span class="category-toggle js-category-toggle ivy-icon si si-subtract-circle" onclick="toggleCategoryInfo(this);" />
-    </h:panelGroup>
   </div>
 </p:tab>
 </html>
