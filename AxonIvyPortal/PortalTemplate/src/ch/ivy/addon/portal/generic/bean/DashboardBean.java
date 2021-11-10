@@ -56,6 +56,7 @@ public class DashboardBean implements Serializable {
 
   private static final long serialVersionUID = -4224901891867040688L;
 
+  protected static final String NEW_WIDGET_STYLE_CLASS = "new-widget";
   protected List<Dashboard> dashboards;
   protected Dashboard selectedDashboard;
   private String selectedDashboardId;
@@ -121,7 +122,7 @@ public class DashboardBean implements Serializable {
     }
   }
 
-  private void buildWidgetModels() throws ParseException {
+  protected void buildWidgetModels() throws ParseException {
     for (Dashboard dashboard : dashboards) {
       buildSubWidgetModels(dashboard.getWidgets());
     }
@@ -162,6 +163,14 @@ public class DashboardBean implements Serializable {
       }
       widget.buildPredefinedFilterData();
       widgetFilterService.applyUserFilterFromSession(widget);
+      removeStyleNewWidget(widget);
+    }
+  }
+
+  private void removeStyleNewWidget(DashboardWidget widget) {
+    if (StringUtils.contains(widget.getLayout().getStyleClass(), NEW_WIDGET_STYLE_CLASS)) {
+      var styleClass = widget.getLayout().getStyleClass();
+      widget.getLayout().setStyleClass(styleClass.replace(NEW_WIDGET_STYLE_CLASS, ""));
     }
   }
 
@@ -315,7 +324,7 @@ public class DashboardBean implements Serializable {
     currentUser().setProperty(PortalVariable.DASHBOARD.key, this.mapper.writeValueAsString(dashboardSavedList));
   }
 
-  private Map<String, String> getRequestParameterMap() {
+  protected Map<String, String> getRequestParameterMap() {
     return FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
   }
 
@@ -447,15 +456,11 @@ public class DashboardBean implements Serializable {
 
     if (widget instanceof TaskDashboardWidget) {
       TaskDashboardWidget taskWidget = (TaskDashboardWidget) widget;
-      taskWidget.setUserFilterCategories(new ArrayList<>());
-      widgetFilterService.buildFilterOptions(widget, taskWidget.getFilterableColumns(),
-          taskWidget.getUserFilterCategories());
+      widgetFilterService.buildFilterOptions(widget, taskWidget.getFilterableColumns());
     }
     if (widget instanceof CaseDashboardWidget) {
       CaseDashboardWidget caseWidget = (CaseDashboardWidget) widget;
-      caseWidget.setUserFilterCategories(new ArrayList<>());
-      widgetFilterService.buildFilterOptions(widget, caseWidget.getFilterableColumns(),
-          caseWidget.getUserFilterCategories());
+      widgetFilterService.buildFilterOptions(widget, caseWidget.getFilterableColumns());
     }
     if (widget instanceof ProcessDashboardWidget) {
       widgetFilterService.buildProcessFilters((ProcessDashboardWidget) widget);
