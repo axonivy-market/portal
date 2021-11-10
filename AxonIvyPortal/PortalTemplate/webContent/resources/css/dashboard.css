@@ -27,6 +27,10 @@
   padding: 0;
 }
 
+.dashboard-card.new-widget {
+  outline: 3px solid var(--accent-color);
+}
+
 .ui-draggable:not(.ui-draggable-disabled)>.ui-draggable-handle {
   cursor: move;
 }
@@ -58,7 +62,8 @@
 }
 
 .dashboard__body {
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
   padding-top: 0;
 }
 
@@ -89,7 +94,7 @@
   box-shadow: var(--card-box-shadow);
 }
 
-.table-widget-form {
+.table-widget-panel {
   position: relative;
   overflow: hidden;
 }
@@ -378,7 +383,7 @@ body .ui-calendar.task-configuration__calendar .ui-datepicker-trigger {
   width: 100%;
 }
 
-.task-configuration__category-panel-footer {
+.widget-configuration__category-panel-footer {
   margin-top: 5px;
   text-align: right;
 }
@@ -408,9 +413,13 @@ body .ui-calendar.task-configuration__calendar .ui-datepicker-trigger {
   padding: 0;
 }
 
-.filter-overlay-panel.ui-widget-content .ui-overlaypanel-content,
-.ui-widget-content.info-overlay-panel .ui-overlaypanel-content {
+.filter-overlay-panel.ui-widget-content>.ui-overlaypanel-content {
   width: 600px;
+  padding: 0;
+}
+
+.ui-widget-content.info-overlay-panel>.ui-overlaypanel-content {
+  width: 450px;
   padding: 0;
 }
 

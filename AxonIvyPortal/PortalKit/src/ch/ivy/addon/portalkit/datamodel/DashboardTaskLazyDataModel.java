@@ -132,19 +132,4 @@ public class DashboardTaskLazyDataModel extends LazyDataModel<ITask> {
     criteria.setCanWorkOn(canWorkOn);
   }
 
-  public List<String> getCategories() {
-    return criteria.getCategories();
-  }
-
-  public void setCategories(List<String> categories) {
-    criteria.setCategories(categories);
-  }
-  
-  public List<String> getUserFilterCategories() {
-    return criteria.getUserFilterCategories();
-  }
-
-  public void setUserFilterCategories(List<String> categories) {
-    criteria.setUserFilterCategories(categories);
-  }
 }

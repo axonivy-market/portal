@@ -65,7 +65,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void openFilterWidget() {
-    $$("form.table-widget-form").filter(text(taskWidgetName)).first().$("a.widget__filter-sidebar-link")
+    $$("div.table-widget-panel").filter(text(taskWidgetName)).first().$("a.widget__filter-sidebar-link")
         .waitUntil(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
     $("[id$=':widget-saved-filters-items").waitUntil(appear, DEFAULT_TIMEOUT);
   }
@@ -207,7 +207,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public int getNumberOfFilterApplied() {
-    var numberNoti = $("[id$='task-task_1:task-form-0']").waitUntil(appear, DEFAULT_TIMEOUT)
+    var numberNoti = $("[id$='task-task_1:task-panel-group-0']").waitUntil(appear, DEFAULT_TIMEOUT)
           .$(".widget__filter-noti-number").waitUntil(appear, DEFAULT_TIMEOUT).getText();
     return Integer.valueOf(numberNoti);
   }
