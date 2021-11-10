@@ -14,14 +14,11 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import org.apache.commons.lang3.StringUtils;
-import org.primefaces.model.CheckboxTreeNode;
 
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.dto.SecurityMemberDTO;
 import ch.ivy.addon.portalkit.dto.UserDTO;
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
-import ch.ivy.addon.portalkit.util.CaseTreeUtils;
-import ch.ivy.addon.portalkit.util.CategoryUtils;
 import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.CaseState;
@@ -35,8 +32,6 @@ public class DashboardCaseFilterBean implements Serializable {
   private UserDTO selectedUser;
   private List<SecurityMemberDTO> creators;
   private List<SecurityMemberDTO> owners;
-  private CheckboxTreeNode categoryTree;
-  private CheckboxTreeNode[] categoryNodes;
   private CaseDashboardWidget widget;
 
   @PostConstruct
@@ -49,23 +44,6 @@ public class DashboardCaseFilterBean implements Serializable {
   public void preRender(CaseDashboardWidget widget) {
     this.widget = widget;
     this.widget.setInConfiguration(true);
-    buildCategoryTree();
-  }
-
-  public CheckboxTreeNode[] getCategoryNodes() {
-    return categoryNodes;
-  }
-
-  public void setCategoryNodes(CheckboxTreeNode[] categoryNodes) {
-    this.categoryNodes = categoryNodes;
-    if (this.widget != null) {
-      this.widget.setCategories(CategoryUtils.getCategoryPaths(categoryNodes));
-    }
-  }
-
-  private void buildCategoryTree() {
-    this.categoryTree = CaseTreeUtils.buildCaseCategoryCheckboxTreeRoot();
-    this.categoryNodes = CategoryUtils.recoverSelectedCategories(this.categoryTree, this.widget.getCategories());
   }
 
   public String formatName(SecurityMemberDTO memberDTO) {
@@ -124,14 +102,6 @@ public class DashboardCaseFilterBean implements Serializable {
 
   public void setCreators(List<SecurityMemberDTO> creators) {
     this.creators = creators;
-  }
-
-  public CheckboxTreeNode getCategoryTree() {
-    return categoryTree;
-  }
-
-  public void setCategoryTree(CheckboxTreeNode categoryTree) {
-    this.categoryTree = categoryTree;
   }
 
   public List<SecurityMemberDTO> getOwners() {

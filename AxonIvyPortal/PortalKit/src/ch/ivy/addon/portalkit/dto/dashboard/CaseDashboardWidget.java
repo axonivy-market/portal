@@ -13,7 +13,6 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.primefaces.model.CheckboxTreeNode;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.MapperFeature;
@@ -24,6 +23,7 @@ import ch.ivy.addon.portalkit.bo.CaseStateStatistic;
 import ch.ivy.addon.portalkit.datamodel.DashboardCaseLazyDataModel;
 import ch.ivy.addon.portalkit.dto.WidgetLayout;
 import ch.ivy.addon.portalkit.dto.dashboard.casecolumn.CaseColumnModel;
+import ch.ivy.addon.portalkit.dto.dashboard.casecolumn.CategoryColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.casecolumn.CreatedDateColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.casecolumn.CreatorColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.casecolumn.DescriptionColumnModel;
@@ -38,10 +38,7 @@ import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;
-import ch.ivy.addon.portalkit.ivydata.searchcriteria.DashboardCaseSearchCriteria;
 import ch.ivy.addon.portalkit.service.IvyAdapterService;
-import ch.ivy.addon.portalkit.util.CaseTreeUtils;
-import ch.ivy.addon.portalkit.util.CategoryUtils;
 import ch.ivyteam.ivy.workflow.CaseState;
 
 public class CaseDashboardWidget extends DashboardWidget {
@@ -53,10 +50,6 @@ public class CaseDashboardWidget extends DashboardWidget {
   @JsonIgnore
   private DashboardCaseLazyDataModel dataModel;
   @JsonIgnore
-  private CheckboxTreeNode categoryTree;
-  @JsonIgnore
-  private CheckboxTreeNode[] categoryNodes;
-  @JsonIgnore
   private Map<CaseState, Long> caseByStateStatistic;
   @JsonIgnore
   private Map<String, Long> caseByCategoryStatistic;
@@ -66,31 +59,6 @@ public class CaseDashboardWidget extends DashboardWidget {
     setColumns(new ArrayList<>());
     caseByCategoryStatistic = new HashMap<>();
     caseByStateStatistic = new HashMap<>();
-  }
-
-  public CheckboxTreeNode[] getCategoryNodes() {
-    return categoryNodes;
-  }
-
-  public void setCategoryNodes(CheckboxTreeNode[] categoryNodes) {
-    this.categoryNodes = categoryNodes;
-    setUserFilterCategories(CategoryUtils.getCategoryPaths(categoryNodes));
-  }
-
-  public CheckboxTreeNode getCategoryTree() {
-    return categoryTree;
-  }
-
-  public void setCategoryTree(CheckboxTreeNode categoryTree) {
-    this.categoryTree = categoryTree;
-  }
-
-  public void buildCategoryTree() {
-    this.categoryTree = CaseTreeUtils.buildCaseCategoryCheckboxTreeRoot();
-    CategoryUtils.disableSelectionExcept(this.categoryTree, getCategories());
-    if (CollectionUtils.isNotEmpty(getUserFilterCategories())) {
-      CategoryUtils.recoverSelectedCategories(this.categoryTree, getUserFilterCategories());
-    }
   }
 
   @Override
@@ -168,34 +136,6 @@ public class CaseDashboardWidget extends DashboardWidget {
     return getColumns().stream()
         .filter(col -> !StringUtils.equalsIgnoreCase(col.getField(), DashboardStandardCaseColumn.ID.toString()))
         .collect(Collectors.toList());
-  }
-
-  public List<String> getCategories() {
-    return this.dataModel.getCategories();
-  }
-
-  public void setCategories(List<String> categories) {
-    this.dataModel.setCategories(categories);
-  }
-
-  @JsonIgnore
-  public String getDisplayCategories() {
-    return Optional.ofNullable(getCategories()).orElse(new ArrayList<>()).stream().collect(Collectors.joining(", "));
-  }
-
-  @JsonIgnore
-  public List<String> getUserFilterCategories() {
-    return this.dataModel.getUserFilterCategories();
-  }
-
-  public void setUserFilterCategories(List<String> categories) {
-    this.dataModel.setUserFilterCategories(categories);
-  }
-
-  @JsonIgnore
-  public String getUserFilterDisplayCategories() {
-    return Optional.ofNullable(getUserFilterCategories()).orElse(new ArrayList<>()).stream()
-        .collect(Collectors.joining(", "));
   }
 
   public String getSortField() {
@@ -305,6 +245,8 @@ public class CaseDashboardWidget extends DashboardWidget {
         column = mapper.convertValue(column, FinishedDateColumnModel.class);
       } else if (DashboardStandardCaseColumn.OWNER.getField().equalsIgnoreCase(field)) {
         column = mapper.convertValue(column, OwnerColumnModel.class);
+      } else if (DashboardStandardCaseColumn.CATEGORY.getField().equalsIgnoreCase(field)) {
+        column = mapper.convertValue(column, CategoryColumnModel.class);
       }
       column.initDefaultValue();
       columns.set(i, column);
@@ -340,6 +282,10 @@ public class CaseDashboardWidget extends DashboardWidget {
       else if (col instanceof OwnerColumnModel && !CollectionUtils.isEmpty(((OwnerColumnModel) col).getOwners())) {
         return true;
       }
+      else if (DashboardStandardCaseColumn.CATEGORY.getField().equalsIgnoreCase(col.getField())
+          && CollectionUtils.isNotEmpty(col.getFilterList())) {
+        return true;
+      }
       else if ((col.getFormat() == DashboardColumnFormat.TEXT || col.getFormat() == DashboardColumnFormat.STRING)
           && !(CollectionUtils.isEmpty(col.getFilterList()) && StringUtils.isBlank(col.getFilter()))) {
         return true;
@@ -352,9 +298,6 @@ public class CaseDashboardWidget extends DashboardWidget {
           && !(col.getDateFilterFrom() == null && col.getDateFilterTo() == null)) {
         return true;
       }
-    }
-    if (CollectionUtils.isNotEmpty(widget.getCategories())) {
-      return true;
     }
     return false;
   }
@@ -383,10 +326,6 @@ public class CaseDashboardWidget extends DashboardWidget {
         break;
       }
     }
-    if (CollectionUtils.isNotEmpty(widget.getDataModel().getCriteria().getUserFilterCategories())
-        && numberOfFilters < MAX_NOTI_FILTERS) {
-      numberOfFilters++;
-    }
 
     if (numberOfFilters > MAX_NOTI_FILTERS) {
       return Optional.of(String.format(MAX_NOTI_PATTERN, MAX_NOTI_FILTERS));
@@ -409,11 +348,6 @@ public class CaseDashboardWidget extends DashboardWidget {
       column.setUserFilterTo(StringUtils.EMPTY);
       column.setUserDateFilterFrom(null);
       column.setUserDateFilterTo(null);
-    }
-    if (Optional.ofNullable(dataModel)
-        .map(DashboardCaseLazyDataModel::getCriteria)
-        .map(DashboardCaseSearchCriteria::getUserFilterCategories).isPresent()) {
-      dataModel.getCriteria().getUserFilterCategories().clear();
     }
   }
 
