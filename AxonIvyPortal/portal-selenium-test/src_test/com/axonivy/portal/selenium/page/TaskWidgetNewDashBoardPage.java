@@ -105,9 +105,9 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
 
   public void filterCategories(String... categories) {
     $("div[id$='widget-filter-content']").waitUntil(appear, DEFAULT_TIMEOUT)
-      .$("[id$=':user-filter-category']").shouldBe(getClickableCondition()).click();
-  var categoriesPanel = $("[id$=':user-filter-category-panel']").waitUntil(appear, DEFAULT_TIMEOUT);
-  categoriesPanel.$("[id$=':task-category-filter-tree:0']")
+      .$("[id$=':widget-filter-category']").shouldBe(getClickableCondition()).click();
+  var categoriesPanel = $("[id$=':widget-filter-category-panel']").waitUntil(appear, DEFAULT_TIMEOUT);
+  categoriesPanel.$("[id$=':widget-category-filter-tree']")
     .$$(".ui-chkbox").first().shouldBe(getClickableCondition()).click();
   
     categoriesPanel.$$(".ui-treenode").forEach(leaf -> {
