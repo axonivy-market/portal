@@ -44,6 +44,8 @@ public class TaskColumnModel extends ColumnModel {
         column = new CreatedDateColumnModel();
       } else if (DashboardStandardTaskColumn.EXPIRY.getField().equalsIgnoreCase(field)) {
         column = new ExpiryDateColumnModel();
+      } else if (DashboardStandardTaskColumn.CATEGORY.getField().equalsIgnoreCase(field)) {
+        column = new CategoryColumnModel();
       }
     }
     return column;

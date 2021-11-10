@@ -1,12 +1,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
   xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
   xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
-  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:jsf="http://xmlns.jcp.org/jsf">
-
-<f:event listener="#{widget.buildCategoryTree}" type="preRenderComponent" />
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:jsf="http://xmlns.jcp.org/jsf"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
 <h:panelGroup id="filter-container" layout="block" styleClass="widget-filter-panel">
-  <ui:repeat var="field" value="#{widget.filterableColumns}">
+  <ui:repeat id="filterable-column" var="field" value="#{widget.filterableColumns}">
     <div class="ui-g">
       <ic:ch.ivy.addon.portalkit.component.dashboard.taskwidget.PriorityFilterColumn field="#{field}"
         selectedPriorities="#{field.userFilterPriorities}"
@@ -31,13 +30,13 @@
       <ic:ch.ivy.addon.portalkit.component.dashboard.widget.TimestampFilterColumn field="#{field}"
         filterTo="#{field.userDateFilterTo}" maxFilterTo="#{field.dateFilterTo}"
         filterFrom="#{field.userDateFilterFrom}" minFilterFrom="#{field.dateFilterFrom}"/>
+
+      <ic:ch.ivy.addon.portalkit.component.dashboard.widget.CategoryFilterColumn field="#{field}"
+        displaySelectedCategories="#{field.userFriendlyCategories}"
+        categoryTree="#{field.userCategoryTree}" categoryNodeSelection="#{field.userSelectionCategoryNodes}"
+        containerStyleClass="task-configuration__category" inputCategoryStyleClass="task-configuration__input-text"
+        overlayCategoryStyleClass="task-configuration__category-panel" showUnselectableCheckbox="true"/>
     </div>
   </ui:repeat>
 </h:panelGroup>
-
-<ic:ch.ivy.addon.portalkit.component.dashboard.widget.CategoryFilterColumn displaySelectedCategories="#{widget.getUserFilterDisplayCategories()}"
-  categoryTree="#{widget.categoryTree}" categoryNodeSelection="#{widget.categoryNodes}"
-  containerStyleClass="task-configuration__category" inputCategoryStyleClass="task-configuration__input-text"
-  overlayCategoryStyleClass="task-configuration__category-panel" showUnselectableCheckbox="true"/>
-
 </html>

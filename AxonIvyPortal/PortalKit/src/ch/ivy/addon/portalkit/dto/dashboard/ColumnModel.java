@@ -1,7 +1,10 @@
 package ch.ivy.addon.portalkit.dto.dashboard;
 
 import java.io.Serializable;
-import java.text.ParseException;
+
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
+import javax.faces.validator.ValidatorException;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -16,5 +19,5 @@ public class ColumnModel extends AbstractColumn implements Serializable {
 
   @JsonIgnore
   @SuppressWarnings("unused")
-  public void validate() throws ParseException {}
+  public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {}
 }
