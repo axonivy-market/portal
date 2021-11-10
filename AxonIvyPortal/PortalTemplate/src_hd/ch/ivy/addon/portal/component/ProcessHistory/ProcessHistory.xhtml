@@ -13,6 +13,9 @@
 </cc:interface>
 
 <cc:implementation>
+  <h:outputStylesheet library="serenity-portal" name="process-history.css" />
+  <h:outputStylesheet library="css" name="utility.css" />
+
 	<h:panelGroup id="widget-column-header" class="process-history-column-header js-case-widget-column-header ">
 		<ui:include src="ColumnHeader.xhtml">
 			<ui:param name="id" value="name-desc-column-header" />
@@ -95,6 +98,7 @@
 	</h:panelGroup>
 
   <!-- Responsive Case list -->
+  <h:outputScript name="portal.js" library="js" />
   <h:outputScript name="case-widget.js" library="js" />
   <h:outputScript name="process-history.js" library="js" />
   <script type="text/javascript">

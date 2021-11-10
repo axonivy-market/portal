@@ -33,7 +33,7 @@ Ut0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ut0 f0 @C|.responsibility Everybody #txt
-Ut0 f0 81 49 30 30 -19 20 #rect
+Ut0 f0 81 49 30 30 -21 23 #rect
 Ut0 f0 @|StartRequestIcon #fIcon
 Ut0 f1 473 49 30 30 0 15 #rect
 Ut0 f1 @|EndIcon #fIcon

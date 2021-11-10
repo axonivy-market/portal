@@ -17,6 +17,11 @@ Pt0 @UserDialog f3 '' #zField
 Pt0 @PushWFArc f4 '' #zField
 Pt0 @PushWFArc f2 '' #zField
 Pt0 @InfoButton f5 '' #zField
+Pt0 @UserDialog f6 '' #zField
+Pt0 @EndTask f7 '' #zField
+Pt0 @StartRequest f8 '' #zField
+Pt0 @PushWFArc f9 '' #zField
+Pt0 @PushWFArc f10 '' #zField
 >Proto Pt0 Pt0 ProcessChainTest #zField
 Pt0 f0 outLink showSampleProcessChain.ivp #txt
 Pt0 f0 inParamDecl '<> param;' #txt
@@ -86,8 +91,60 @@ Pt0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f5 160 130 368 92 -181 -40 #rect
+Pt0 f5 528 34 368 92 -181 -40 #rect
 Pt0 f5 @|IBIcon #fIcon
+Pt0 f6 dialogId ch.ivyteam.ivy.project.portal.examples.customization.ProcessChainIFrameTest #txt
+Pt0 f6 startMethod start() #txt
+Pt0 f6 requestActionDecl '<> param;' #txt
+Pt0 f6 responseActionDecl 'ch.ivyteam.ivy.project.portal.examples.Data out;
+' #txt
+Pt0 f6 responseMappingAction 'out=in;
+' #txt
+Pt0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Show All Sample Process Chains&#13;
+In IFrame</name>
+        <nameStyle>41,5
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f6 200 170 208 44 -86 -16 #rect
+Pt0 f6 @|UserDialogIcon #fIcon
+Pt0 f7 481 177 30 30 0 15 #rect
+Pt0 f7 @|EndIcon #fIcon
+Pt0 f8 outLink showSampleProcessChainIFrame.ivp #txt
+Pt0 f8 inParamDecl '<> param;' #txt
+Pt0 f8 requestEnabled true #txt
+Pt0 f8 triggerEnabled false #txt
+Pt0 f8 callSignature showSampleProcessChainIFrame() #txt
+Pt0 f8 persist false #txt
+Pt0 f8 startName 'Show All Sample Process Chains In IFrame' #txt
+Pt0 f8 startDescription 'Show All Sample Process Chains In IFrame' #txt
+Pt0 f8 taskData 'TaskTriggered.EXPRI=2
+TaskTriggered.EXROL=Everybody
+TaskTriggered.EXTYPE=0
+TaskTriggered.PRI=2
+TaskTriggered.ROL=Everybody
+TaskTriggered.TYPE=0' #txt
+Pt0 f8 caseData businessCase.attach=true #txt
+Pt0 f8 showInStartList 1 #txt
+Pt0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>showSampleProcessChainIFrame.ivp</name>
+        <desc>This process will open a page in Iframe, which contains 4 process chains.</desc>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f8 @C|.responsibility Everybody #txt
+Pt0 f8 81 177 30 30 -80 20 #rect
+Pt0 f8 @|StartRequestIcon #fIcon
+Pt0 f9 expr out #txt
+Pt0 f9 408 192 481 192 #arcP
+Pt0 f10 expr out #txt
+Pt0 f10 111 192 200 192 #arcP
 >Proto Pt0 .type ch.ivyteam.ivy.project.portal.examples.Data #txt
 >Proto Pt0 .processKind NORMAL #txt
 >Proto Pt0 0 0 32 24 18 0 #rect
@@ -96,3 +153,7 @@ Pt0 f0 mainOut f4 tail #connect
 Pt0 f4 head f3 mainIn #connect
 Pt0 f3 mainOut f2 tail #connect
 Pt0 f2 head f1 mainIn #connect
+Pt0 f8 mainOut f10 tail #connect
+Pt0 f10 head f6 mainIn #connect
+Pt0 f6 mainOut f9 tail #connect
+Pt0 f9 head f7 mainIn #connect

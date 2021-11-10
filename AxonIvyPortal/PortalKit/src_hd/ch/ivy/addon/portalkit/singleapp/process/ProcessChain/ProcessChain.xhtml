@@ -32,6 +32,9 @@
 </cc:interface>
 
 <cc:implementation>
+  <h:outputStylesheet library="css" name="utility.css" />
+  <h:outputStylesheet library="serenity-portal" name="process-chain.css" />
+
   <f:event listener="#{logic.validate(cc.attrs.steps.size(), cc.attrs.actualStepIndex)}" type="preRenderComponent" />
   <!-- Process chain of axon express -->
   <c:set var="isShapeCircle" value="#{cc.attrs.shape eq 'CIRCLE'}" />

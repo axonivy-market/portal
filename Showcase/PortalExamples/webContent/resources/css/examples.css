@@ -1,3 +1,7 @@
+html {
+	font-size: 10px;
+}
+
 .custom-varchar {
 	flex: 0 0 150px;
 }
@@ -146,6 +150,11 @@
 	color: red !important;
 	background: transparent !important;
 	text-align: center;
+}
+
+.process-chain-container-iframe {
+	height: calc(var(--vh, 1vh) * 100 - 32px);
+	margin: 0 20px;
 }
 
 .process-chain-test-form {
