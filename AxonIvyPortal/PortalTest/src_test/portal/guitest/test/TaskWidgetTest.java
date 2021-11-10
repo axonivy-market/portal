@@ -148,8 +148,8 @@ public class TaskWidgetTest extends BaseTest {
     TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
     taskWidgetPage.openTaskList();
     taskWidgetPage.openTaskDetails(0);
-    assertEquals("OtherLeave/Maternity", taskWidgetPage.getTaskCategory());
-    assertEquals("LeaveRequest", taskWidgetPage.getCaseCategory());
+    assertEquals("Other Leave/Maternity", taskWidgetPage.getTaskCategory());
+    assertEquals("Leave Request", taskWidgetPage.getCaseCategory());
   }
 
   @Test

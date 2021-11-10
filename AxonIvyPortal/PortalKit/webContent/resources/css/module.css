@@ -4209,6 +4209,10 @@ body .ui-dialog.ui-widget.export-express-dialog {
   font-weight: bold;
   padding: 0;
 }
+
+.error-ajax-dialog {
+  max-width: 400px;
+}
 /*==================== END EXCEPTION ===================*/
 
 /* Fix bug: calendar button jumped when clicked (Edge, Chrome) */
