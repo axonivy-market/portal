@@ -498,8 +498,12 @@ body .ui-calendar.task-configuration__calendar .ui-datepicker-trigger {
   max-width: 100%;
 }
 
+.ui-overlaypanel.widget-configuration__category-panel {
+  padding: 0;
+}
+
 .category-filter-tree {
-  max-height: 400px;
+  max-height: 300px;
   overflow-y: auto;
 }
 
