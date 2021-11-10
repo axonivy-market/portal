@@ -325,119 +325,6 @@ body .portal-cancel-button.ui-widget.ui-button .ui-icon,
     color: $stagesChainCurrentIconColor;
 }
 
-/*Style for stages process chain -----------------------------------------------------------------------------------*/
-.circle-process-chain .circle-horizontal-process-step.visited .circle-horizontal-step-container span:before {
-    border-color: $processChainMenuColor;
-}
-
-.circle-process-chain .circle-horizontal-process-step.waiting .circle-horizontal-step-container {
-  border: solid 2px $processChainMenuColor;
-  background-color: $circleHorizontalWaitingStepNumberContainerBackgroundColor;
-}
-
-.circle-process-chain .circle-horizontal-process-step .circle-horizontal-step-container {
-  background-color: $processChainMenuColor;
-  border: solid 2px $circleStepContainerBorder;
-}
-
-.circle-process-chain .circle-vertical-process-step.visited .circle-vertical-step-container span:before {
-    border-color: $processChainMenuColor;
-}
-
-.circle-process-chain .circle-vertical-process-step.current .circle-vertical-step-title {
-  font-weight: $currentCircleVerticalStepTitleFontWeight;
-}
-
-.circle-process-chain .circle-vertical-process-step.waiting .circle-vertical-step-container {
-  border: solid 2px $processChainMenuColor;
-  background-color: $circleVerticalStepContainerBackgroundColor;
-}
-
-.circle-process-chain .circle-vertical-process-step .circle-vertical-step-container {
-  background-color: $processChainMenuColor;
-  border: solid 2px $circleStepContainerBorder;
-}
-
-.circle-process-chain .circle-vertical-process-step:not(:last-child) .circle-vertical-step-container .step-number-container:after {
-  border-left: 3px solid $circleVerticalStepNumberContainerBorder;
-}
-
-.circle-process-chain .circle-horizontal-process-step.current .circle-horizontal-step-title {
-  font-weight: $currentCircleHorizontalStepTitleFontWeight;
-}
-
-.line-process-chain .line-horizontal-process-step .line-horizontal-step-container {
-    background-color: $processChainMenuColor;
-}
-
-.line-process-chain .line-horizontal-process-step.current .line-horizontal-step-title {
-  font-weight: $currentLineHorizontalStepTitleFontWeight;
-}
-
-.line-process-chain .line-horizontal-process-step.hide-left-steps {
-    background: repeating-linear-gradient(90deg, $processChainMenuColor, $processChainMenuColor 10px, $bodyBackgroundColor 10px, $bodyBackgroundColor 20px);
-}
-
-.line-process-chain .line-horizontal-process-step.hide-right-steps {
-    background: repeating-linear-gradient(90deg, #e0e0e0, #e0e0e0 10px, $bodyBackgroundColor 10px, $bodyBackgroundColor 20px);
-}
-
-.line-process-chain .line-vertical-process-step .line-vertical-step-container {
-    background-color: $processChainMenuColor;
-}
-
-.line-process-chain .line-vertical-process-step.hide-left-steps {
-    background: repeating-linear-gradient(180deg, $processChainMenuColor, $processChainMenuColor 10px, $bodyBackgroundColor 10px, $bodyBackgroundColor 20px);
-}
-
-.line-process-chain .line-vertical-process-step.hide-right-steps {
-    background: repeating-linear-gradient(180deg, #e0e0e0, #e0e0e0 10px, $bodyBackgroundColor 10px, $bodyBackgroundColor 20px);
-}
-
-.line-process-chain .line-horizontal-process-step.waiting .line-horizontal-step-container,
-.line-process-chain .line-vertical-process-step.waiting .line-vertical-step-container {
-  background-color: $lineWaitingStepBackgroundColor;
-}
-
-.line-process-chain .line-vertical-process-step.current .line-vertical-step-title {
-  font-weight: $currentLineVerticalStepTitleFontWeight;
-}
-
-.current .cicrle-step-container, .visited .cicrle-step-container,
-.process-chain-mobile-container .circle-horizontal-process-step {
-    color: $circleStepNumberColor;
-}
-
-.circle-horizontal-step-container:not(.right-steps) .step-number-container:after {
-  border-top-color: $circleHorizontalStepNumberContainerBorderTop;
-}
-  
-.circle-horizontal-step-container:not(.last-step) .step-number-container:after {
-    border-top: 3px dashed $circleHorizontalStepNumberContainerBorderTop;
-  }
-
-.circle-horizontal-step-container.last-step .step-number-container:after {
-  border-top: 3px dashed $circleHorizontalLastStepNumberContainerBorderTop;
-}
-  
-.circle-horizontal-step-container .step-number-container:before {
-  border-top: 3px solid $circleHorizontalStepNumberContainerBorderTopColor;
-}
-
-.circle-horizontal-process-step:not(:last-child) .circle-horizontal-step-container .step-number-container:after {
-  border-top: 3px solid $circleHorizontalStepNumberContainerBorderTop;
-}
-
-.circle-horizontal-process-step.visited .circle-horizontal-step-container .step-number-container:after {
-  color: $circleHorizontalStepNumberContainerBorderTopColor;
-}
-
-.circle-process-chain .circle-horizontal-process-step,
-.circle-process-chain .circle-vertical-process-step,
-.line-process-chain .line-vertical-process-step {
-  font-size: $smallFontSize;
-}
-
 /*Style for announcement*/
 .announcement-message-customizable {
     background-color: $announcementBackgroundColor;
@@ -789,11 +676,6 @@ body .fieldset-no-border {
 
 .task-template-content .task-actions-button:focus {
   outline: $taskTemplateActionButtonFocus;
-}
-
-/** Style for Line Horizontal  --------------------------------------*/
-.line-process-chain .line-horizontal-process-step {
-  font-size: $smallFontSize;
 }
 
 .compact-process-widget .toggle-processes-link,
