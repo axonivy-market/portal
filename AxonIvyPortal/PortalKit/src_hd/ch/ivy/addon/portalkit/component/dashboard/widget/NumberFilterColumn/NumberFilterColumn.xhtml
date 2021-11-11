@@ -13,7 +13,8 @@
 <cc:implementation>
   <h:panelGroup rendered="#{cc.attrs.field.format eq 'NUMBER'}">
     <div class="ui-g-4 ui-sm-12 u-no-padding-bottom-sm-down">
-      <h:outputLabel value="#{cc.attrs.field.headerText} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')}" />
+      <h:outputLabel value="#{cc.attrs.field.headerText} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')}"
+        for="from-number-field-input"/>
     </div>
     <div class="ui-g-8 ui-sm-12 ui-fluid">
       <p:inputNumber id="from-number-field-input" value="#{cc.attrs.filterFrom}"
@@ -24,7 +25,8 @@
     </div>
 
     <div class="ui-g-4 ui-sm-12 u-no-padding-bottom-sm-down">
-      <h:outputLabel value="#{cc.attrs.field.headerText} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')}" />
+      <h:outputLabel value="#{cc.attrs.field.headerText} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')}"
+        for="to-number-field-input"/>
     </div>
     <div class="ui-g-8 ui-sm-12 ui-fluid">
       <p:inputNumber id="to-number-field-input" value="#{cc.attrs.filterTo}" styleClass="task-configuration__input-text"
