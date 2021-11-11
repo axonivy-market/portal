@@ -140,61 +140,61 @@
         dynamic="true"
         onShow="loadUserFilters#{index}(); #{onFilterOverlayPanelShow};">
         <h:form id="filter-form-#{index}">
-        <h:panelGroup id="filter-overlaypanel-content-#{index}" styleClass="ui-g" layout="block">
-          <h:panelGroup id="saved-filters-container" styleClass="ui-g-4 u-padding-0 saved-filter" layout="block">
-            <ui:include src="/layouts/restricted/includes/WidgetFilter.xhtml">
-              <ui:param name="widget" value="#{widget}" />
-              <ui:param name="index" value="#{index}" />
-              <ui:param name="widgetFilterContentId" value="#{cc.clientId}:filter-form-#{index}:widget-filter-content" />
-            </ui:include>
-          </h:panelGroup>
-
-          <h:panelGroup id="widget-filter-content" styleClass="ui-g-8 u-padding-0"
-            layout="block">
-            <div class="ui-g-12 filter-overlay-panel__header">
-              <strong class="ui-g-12">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/Filter/FilterOptionHeader')}</strong>
-            </div>
-            <h:panelGroup layout="block" styleClass="ui-g-12 filter-overlay-panel__content">
-              <ui:insert name="widgetFilterContent" />
+          <h:panelGroup id="filter-overlaypanel-content-#{index}" styleClass="ui-g" layout="block">
+            <h:panelGroup id="saved-filters-container" styleClass="ui-g-4 u-padding-0 saved-filter" layout="block">
+              <ui:include src="/layouts/restricted/includes/WidgetFilter.xhtml">
+                <ui:param name="widget" value="#{widget}" />
+                <ui:param name="index" value="#{index}" />
+                <ui:param name="widgetFilterContentId" value="#{cc.clientId}:filter-form-#{index}:widget-filter-content" />
+              </ui:include>
+            </h:panelGroup>
+  
+            <h:panelGroup id="widget-filter-content" styleClass="ui-g-8 u-padding-0"
+              layout="block">
+              <div class="ui-g-12 filter-overlay-panel__header">
+                <strong class="ui-g-12">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/Filter/FilterOptionHeader')}</strong>
+              </div>
+              <h:panelGroup layout="block" styleClass="ui-g-12 filter-overlay-panel__content">
+                <ui:insert name="widgetFilterContent" />
+              </h:panelGroup>
             </h:panelGroup>
           </h:panelGroup>
-        </h:panelGroup>
-
-        <div class="ui-g-12 filter-overlay-panel__footer">
-          <div class="ui-g-12 u-text-align-right">
-            <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-              styleClass="u-mar-right-15 ui-overlaypanel-footer__cancel"
-              onclick="PF('filter-overlay-panel-#{index}').hide(); return false;"
-              global="false"/>
-
-            <p:commandButton id="reset-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
-              styleClass="secondary-btn u-mar-right-5" partialSubmit="true"
-              update="filter-form-#{index} #{cc.clientId}:widget-header-actions"
-              oncomplete="#{onCompleteResetFilters}; #{onCompleteApplyFilters}; PF('filter-overlay-panel-#{index}').hide();"
-              actionListener="#{widget.onResetUserFilters()}"
-              icon="si si-button-refresh-arrows" resetValues="true"/>
-
-            <p:commandButton id="apply-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
-              partialSubmit="true"
-              update="filter-form-#{index}"
-              process="filter-form-#{index}"
-              oncomplete="if (args &amp;&amp; !args.validationFailed) {applyWidgetFilterCommand#{index}();}"
-              actionListener="#{widget.onApplyUserFilters()}"
-              icon="si si-check-1"
-              styleClass="u-mar-right-5" />
-
-            <p:commandButton id="save-filter" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/saveFilter')}"
-              icon="si si-floppy-disk" partialSubmit="true"
-              oncomplete="if (!args.validationFailed) { PF('save-widget-filter-dialog').show(); }"
-              actionListener="#{widget.onClickSaveUserFilters()}"
-              process="#{componentToProcessOnApplyFilter}"
-              global="false" styleClass="ui-sm-hidden"
-              update="save-filter-form" resetValues="true">
-              <f:setPropertyActionListener value="loadSaveFilters#{index}"
-                target="#{widgetFilterHelperBean.loadFiltersRemoteCommand}"/>
-            </p:commandButton>
+  
+          <div class="ui-g-12 filter-overlay-panel__footer">
+            <div class="ui-g-12 u-text-align-right">
+              <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+                styleClass="u-mar-right-15 ui-overlaypanel-footer__cancel"
+                onclick="PF('filter-overlay-panel-#{index}').hide(); return false;"
+                global="false"/>
+  
+              <p:commandButton id="reset-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
+                styleClass="secondary-btn u-mar-right-5" partialSubmit="true"
+                update="filter-form-#{index} #{cc.clientId}:widget-header-actions"
+                oncomplete="#{onCompleteResetFilters}; #{onCompleteApplyFilters}; PF('filter-overlay-panel-#{index}').hide();"
+                actionListener="#{widget.onResetUserFilters()}"
+                icon="si si-button-refresh-arrows" resetValues="true"/>
+  
+              <p:commandButton id="apply-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
+                partialSubmit="true"
+                update="filter-form-#{index}"
+                process="filter-form-#{index}"
+                oncomplete="if (args &amp;&amp; !args.validationFailed) {applyWidgetFilterCommand#{index}();} initWidgetFilterHtml('#{widget.id}');"
+                actionListener="#{widget.onApplyUserFilters()}"
+                icon="si si-check-1"
+                styleClass="u-mar-right-5" />
+  
+              <p:commandButton id="save-filter" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/saveFilter')}"
+                icon="si si-floppy-disk" partialSubmit="true"
+                oncomplete="if (!args.validationFailed) { PF('save-widget-filter-dialog').show(); }"
+                actionListener="#{widget.onClickSaveUserFilters()}"
+                process="#{componentToProcessOnApplyFilter}"
+                global="false" styleClass="ui-sm-hidden"
+                update="save-filter-form" resetValues="true">
+                <f:setPropertyActionListener value="loadSaveFilters#{index}"
+                  target="#{widgetFilterHelperBean.loadFiltersRemoteCommand}"/>
+              </p:commandButton>
+            </div>
           </div>
-        </div>
         </h:form>
       </p:overlayPanel>
     </h:panelGroup>
