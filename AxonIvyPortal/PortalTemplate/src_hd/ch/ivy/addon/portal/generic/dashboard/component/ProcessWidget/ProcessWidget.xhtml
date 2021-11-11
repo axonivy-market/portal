@@ -19,7 +19,7 @@
   <div class="ui-g widget-height-100 #{displayMode eq 'COMBINED_MODE' ? 'widget-overflow-auto' : ''} #{displayMode eq 'IMAGE_MODE' ? 'image-process-container' : ''}">
     <h:outputText id="loading" styleClass="js-loading-#{widget.id} ui-g-12" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/loading')}" />
 
-    <h:panelGroup id="dashboard-processes-container" layout="block"
+    <h:form id="dashboard-processes-container"
       styleClass="ui-g-12 u-padding-0 js-dashboard-processes-container-#{widget.id} u-display-none #{displayMode eq 'COMBINED_MODE' and widget.process != null ? 'dashboard-processes-container--combined' : ''}">
       <c:if test="#{widget.displayMode eq 'COMPACT_MODE'}">
         <ui:include src="CompactModeProcess.xhtml">
@@ -64,7 +64,7 @@
         styleClass="dashboard-processes--empty-message" />
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/processes/noMatchingProcess')}"
         rendered="#{empty widget.displayProcesses and not cc.attrs.isInConfiguration and displayMode eq 'COMPACT_MODE'}" styleClass="dashboard-processes--empty-message" />
-    </h:panelGroup>
+    </h:form>
   </div>
 
   <script type="text/javascript">
