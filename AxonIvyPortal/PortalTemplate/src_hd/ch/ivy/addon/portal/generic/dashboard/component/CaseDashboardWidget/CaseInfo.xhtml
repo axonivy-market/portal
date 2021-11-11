@@ -75,7 +75,7 @@
 
       <h:panelGroup rendered="#{field.field eq 'owner' and not empty field.owners}">
         <div class="ui-g-4">
-          <h:outputLabel value="#{field.headerText}" />
+          <h:outputText value="#{field.headerText}" />
         </div>
         <div class="ui-g-8">
           <ui:repeat var="owner" value="#{field.owners}">

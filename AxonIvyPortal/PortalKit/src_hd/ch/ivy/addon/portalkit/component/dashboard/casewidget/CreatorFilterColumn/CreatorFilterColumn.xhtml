@@ -11,7 +11,7 @@
 <cc:implementation>
   <h:panelGroup rendered="#{cc.attrs.field.field eq 'creator'}">
     <div class="ui-g-4 ui-sm-12 u-no-padding-bottom-sm-down">
-      <h:outputLabel value="#{cc.attrs.field.headerText}" />
+      <h:outputLabel value="#{cc.attrs.field.headerText}" for="creators"/>
     </div>
     <div class="ui-g-8 ui-sm-12 ui-fluid">
       <p:autoComplete id="creators" scrollHeight="210" dropdown="true" size="35"
