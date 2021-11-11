@@ -86,7 +86,7 @@
         process="@this"
         partialSubmit="true" />
       <p:tooltip for="edit-widget-#{index}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/editWidget')}" trackMouse="true"
-        hideEvent="mouseleave click" />
+        hideEvent="mouseleave click" rendered="#{!isReadOnlyMode}"/>
 
       <p:commandLink id="delete-widget-#{index}" styleClass="si si-bin-1"
         oncomplete="PF('remove-widget-dialog').show()"
@@ -97,7 +97,7 @@
         process="@this"
         partialSubmit="true" />
       <p:tooltip for="delete-widget-#{index}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/deleteWidget')}" trackMouse="true"
-        hideEvent="mouseleave click" />
+        hideEvent="mouseleave click" rendered="#{!isReadOnlyMode}"/>
 
       <p:overlayPanel id="info-overlay-panel-#{index}"
         widgetVar="info-overlay-panel-#{index}"
