@@ -261,8 +261,8 @@ public class WidgetFilterService extends JsonConfigurationService<WidgetFilterMo
           if (filterOptionMap.containsKey(column.getField())) {
             var columnData = filterOptionMap.get(column.getField());
             if (isNotEqualStringFilter(column.getUserFilter(), columnData.getUserFilter())
-                || isNotEqualStringFilter(column.getUserFilterFrom(), columnData.getUserFilterFrom())
-                || isNotEqualStringFilter(column.getUserFilterTo(), columnData.getUserFilterTo())
+                || !StringUtils.equals(column.getUserFilterFrom(), columnData.getUserFilterFrom())
+                || !StringUtils.equals(column.getUserFilterTo(), columnData.getUserFilterTo())
                 || isNotEqualListFilterSelection(column.getUserFilterList(), columnData.getUserFilterList())) {
               isFilterModified = true;
               break;
