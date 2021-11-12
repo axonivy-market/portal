@@ -25,9 +25,10 @@
     </p:panel>
   </p:dataGrid>
   <f:facet name="footer">
-    <p:commandButton id="new-widget-close-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" type="button"
-      onclick="PF('new-widget-dialog').hide()" process="@none" icon="si si-close"
+    <p:commandButton id="new-widget-close-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
+      type="button" onclick="PF('new-widget-dialog').hide()" process="@none" icon="si si-close"
       styleClass="secondary-btn"/>
+    <p:spacer width="15px"/>
   </f:facet>
 </p:dialog>
 
