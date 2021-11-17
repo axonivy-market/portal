@@ -4,40 +4,31 @@
   xmlns:pe="http://primefaces.org/ui/extensions" xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions">
 <h:body>
   <ui:composition template="/layouts/frame-8.xhtml">
-    <ui:define name="title">Create Investment</ui:define>
+    <ui:define name="title">Customer Portfolio</ui:define>
     <ui:define name="content">
       <h:form id="form">
         <div class="ui-g">
 	        <div class="ui-g-4">
-            <h:outputLabel for="name" value="User" />
+            <h:outputLabel for="name" value="Customer" />
           </div>
           <div class="ui-g-8">
             <h:outputText id="name" value="#{data.name}" />
           </div>
-          <div class="ui-g-4">
-            <h:outputLabel for="title" value="Title" />
+	        <div class="ui-g-4">
+            <h:outputLabel for="start-from" value="Start Period" />
           </div>
           <div class="ui-g-8">
-            <h:outputText id="title" value="#{data.title}" />
+            <p:inputText id="start-from" value="#{data.period}" disabled="true" />
           </div>
-	        <div class="ui-g-4">
-	          <h:outputLabel for="email" value="Email" />
+          <div class="ui-g-4">
+	          <h:outputLabel for="note" value="Note" />
 	        </div>
 	        <div class="ui-g-8">
-            <h:outputText id="email" value="#{data.email}" />
+            <h:outputText id="note" value="#{data.note}" />
           </div>
-	        <div class="ui-g-4">
-            <h:outputLabel for="start-from" value="Start Date from" />
-          </div>
-          <div class="ui-g-8">
-            <p:inputText id="start-from" value="#{data.startFrom}" disabled="true" />
-          </div>
-          <div class="ui-g-4">
-            <h:outputLabel for="start-to" value="Start Date to" />
-          </div>
-          <div class="ui-g-8">
-            <p:inputText id="start-to" value="#{data.startTo}" disabled="true" />
-          </div>
+            <div class="ui-g-12" style="margin-top:40px">
+              <h:outputLabel value="Portfolio" />
+            </div>
 	        <div class="ui-g-12">
 	          <p:dataTable id="investment-table" value="#{data.investments}" var="investment">
 	            <p:column headerText="ID">

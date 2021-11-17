@@ -69,24 +69,22 @@ if (!in.loginOk)
 {
 	FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/login/loginFailed"), ""));
 	FacesContext.getCurrentInstance().validationFailed();
-}else{
-		
+} else {		
 		//set language from user settings or application details
 		IUser sessionUser = ivy.session.getSessionUser();
 		
-		if (sessionUser.getEMailLanguage() != null &&
-				sessionUser.getEMailLanguage() instanceof Locale) {
-			Locale l = ivy.session.getSessionUser().getEMailLanguage();
-			ivy.session.setContentLocale(l);
-			ivy.session.setFormattingLocale(l);
+		if (sessionUser.getLanguage() != null) {
+			Locale locale = ivy.session.getSessionUser().getLanguage();
+			ivy.session.setContentLocale(locale);
+			ivy.session.setFormattingLocale(locale);
 		} else {
 			// Application Default
 			Locale default = ivy.request.getApplication().getDefaultEMailLanguage();
 			String language = default.getLanguage();
 			String country = default.getCountry();
-			Locale l = new Locale(language, country, "APPLICATION_DEFAULT");
-			ivy.session.setContentLocale(l);
-			ivy.session.setFormattingLocale(l);
+			Locale locale = new Locale(language, country, "APPLICATION_DEFAULT");
+			ivy.session.setContentLocale(locale);
+			ivy.session.setFormattingLocale(locale);
 	}
 	
 	UserUtils.setDefaultDatePattern(sessionUser);

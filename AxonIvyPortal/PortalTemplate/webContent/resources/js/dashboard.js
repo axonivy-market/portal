@@ -116,7 +116,6 @@ function expandFullscreen(index, widgetId) {
 function collapseFullscreen(index, widgetId) {
   var widget = $('div.grid-stack-item[gs-id = "' + widgetId + '"]');
   widget.removeClass('expand-fullscreen');
-  widget.height('100%');
 
   $(widget.get(0)).parent('.grid-stack').height(originalGridstackHeight);
   resizeCustomWidget(index, widgetId);
