@@ -5812,7 +5812,8 @@ body span.ui-commandlink .si {
   justify-content: flex-end;
 }
 
-.image-view-form .process-action-group {
+.image-view-form .process-action-group,
+.image-view-action-group-form .process-action-group {
   position: absolute;
   right: 0;
   top: -500px;
@@ -5823,7 +5824,8 @@ body span.ui-commandlink .si {
 }
 
 .grid-view-form .process-action-group .grid-process-category,
-.image-view-form .process-action-group .image-process-category {
+.image-view-form .process-action-group .image-process-category,
+.image-view-action-group-form .process-action-group .image-process-category {
   border-radius: 20px;
   background-color: var(--image-process-header-background-color);
   color: var(--image-process-header-color);
@@ -5837,12 +5839,14 @@ body span.ui-commandlink .si {
 }
 
 .grid-view-form .process-action-group .grid-process-category.has-menu-button,
-.image-view-form .process-action-group .image-process-category.has-menu-button {
+.image-view-form .process-action-group .image-process-category.has-menu-button,
+.image-view-action-group-form .process-action-group .image-process-category.has-menu-button {
   max-width: calc(100% - 40px);
 }
 
 .grid-view-form .process-action-group .grid-process-category .grid-process-category-content,
-.image-view-form .process-action-group .image-process-category .image-process-category-content {
+.image-view-form .process-action-group .image-process-category .image-process-category-content,
+.image-view-action-group-form .process-action-group .image-process-category .image-process-category-content {
   font-weight: bold;
   font-size: 12px;
   line-height: 22px;
@@ -5936,6 +5940,15 @@ body span.ui-commandlink .si {
   position: absolute;
   top: auto;
   bottom: 0px;
+}
+
+.image-process-container .image-process-item .card-item.card.image-widget-mode .image-view-action-group-form {
+  position: relative;
+}
+
+.image-process-container .image-process-item .card-item.card.image-widget-mode .image-view-action-group-form .process-action-group {
+  top: 0px;
+  z-index: 1;
 }
 
 .image-process-container .image-process-item .card-item.card.image-widget-mode .image-view-form {
