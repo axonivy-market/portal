@@ -30,7 +30,7 @@ function loadGrid() {
       }
     });
 
-    grid.on('resizestop', function(event, element) {
+    grid.on('resize resizestop', function(event, element) {
       var elementId = element.gridstackNode.id;
       setupImageProcessWidgetDescription($("[gs-id='" + elementId + "']").find('.js-process-description'));
     });
