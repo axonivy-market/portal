@@ -63,14 +63,11 @@ if (!in.loginOk)
 {
 	FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/login/loginFailed"), ""));
 	FacesContext.getCurrentInstance().validationFailed();
-}else{
-		
+} else {
 		//set language from user settings or application details
 		IUser sessionUser = ivy.session.getSessionUser();
-		
-		if (sessionUser.getEMailLanguage() != null &&
-				sessionUser.getEMailLanguage() instanceof Locale) {
-			Locale l = ivy.session.getSessionUser().getEMailLanguage();
+		if (sessionUser.getLanguage() != null) {
+			Locale l = ivy.session.getSessionUser().getLanguage();
 			ivy.session.setContentLocale(l);
 			ivy.session.setFormattingLocale(l);
 			ivy.log.debug("User Settings: " + l.getDisplayName());

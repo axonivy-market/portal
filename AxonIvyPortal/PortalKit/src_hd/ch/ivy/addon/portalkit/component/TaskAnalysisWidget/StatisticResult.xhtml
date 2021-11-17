@@ -40,7 +40,7 @@
 
         <p:column id="case-category" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/caseCategory')}" sortable="false" width="200"
           visible="#{taskAnalysisWidgetBean.columns['CASE_CATEGORY']}" exportable="#{taskAnalysisWidgetBean.columns['CASE_CATEGORY']}">
-          <h:outputText id="case-category-value" value="#{task.case.categoryPath}" />
+          <h:outputText id="case-category-value" value="#{task.case.getCategory().getPath()}" />
         </p:column>
 
         <p:column id="case-creator" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/caseCreator')}" sortable="false" width="200"
@@ -67,7 +67,7 @@
         <p:column id="task-category" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/taskCategory')}" field="TASK_CATEGORY" sortBy="#{TASK_CATEGORY}" width="200"
           visible="#{taskAnalysisWidgetBean.columns['TASK_CATEGORY']}"
           exportable="#{taskAnalysisWidgetBean.columns['TASK_CATEGORY']}">
-          <h:outputText id="task-category-value" value="#{task.categoryPath}" />
+          <h:outputText id="task-category-value" value="#{task.getCategory().getPath()}" />
         </p:column>
 
         <p:column id="task-description" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/taskDescription')}" sortable="false" width="250"

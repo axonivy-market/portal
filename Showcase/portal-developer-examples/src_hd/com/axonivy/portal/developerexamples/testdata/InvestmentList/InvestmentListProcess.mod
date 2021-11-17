@@ -19,18 +19,17 @@ Is0 @PushWFArc f7 '' #zField
 Is0 @PushWFArc f2 '' #zField
 >Proto Is0 Is0 InvestmentListProcess #zField
 Is0 f0 guid 17B2F3DF8A22ADB7 #txt
-Is0 f0 method start(String,String,String,String) #txt
-Is0 f0 inParameterDecl '<String startFrom,String startTo,String user,String email> param;' #txt
-Is0 f0 inParameterMapAction 'out.email=param.email;
-out.name=param.user;
-out.startFrom=ch.ivy.addon.portalkit.util.Dates.parse(param.startFrom);
-out.startTo=ch.ivy.addon.portalkit.util.Dates.parse(param.startTo);
+Is0 f0 method start(String,String,String) #txt
+Is0 f0 inParameterDecl '<String period,String note,String user> param;' #txt
+Is0 f0 inParameterMapAction 'out.name=param.user;
+out.note=param.note;
+out.period=ch.ivy.addon.portalkit.util.Dates.parse(param.period);
 ' #txt
 Is0 f0 outParameterDecl '<> result;' #txt
 Is0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>start(String,String,String,String)</name>
+        <name>start(String,String,String)</name>
     </language>
 </elementInfo>
 ' #txt

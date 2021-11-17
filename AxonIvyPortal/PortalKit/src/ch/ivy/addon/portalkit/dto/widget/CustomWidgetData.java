@@ -18,15 +18,15 @@ public class CustomWidgetData implements Serializable {
 
   private String processStart;
 
-  @JsonIgnore
-  private List<StartParameter> params;
+  private List<CustomDashboardWidgetParam> params;
 
   @JsonIgnore
   private DashboardCustomWidgetType type;
   @JsonIgnore
   private IWebStartable startableProcessStart;
-  
-  private List<CustomDashboardWidgetParam> customParams;
+
+  @JsonIgnore
+  private List<StartParameter> startProcessParams;
   
   public String getUrl() {
     return url;
@@ -60,19 +60,19 @@ public class CustomWidgetData implements Serializable {
     this.startableProcessStart = startableProcessStart;
   }
 
-  public List<CustomDashboardWidgetParam> getCustomParams() {
-    return customParams;
-  }
-
-  public void setCustomParams(List<CustomDashboardWidgetParam> customParams) {
-    this.customParams = customParams;
-  }
-
-  public List<StartParameter> getParams() {
+  public List<CustomDashboardWidgetParam> getParams() {
     return params;
   }
 
-  public void setParams(List<StartParameter> params) {
+  public void setParams(List<CustomDashboardWidgetParam> params) {
     this.params = params;
+  }
+
+  public List<StartParameter> getStartProcessParams() {
+    return startProcessParams;
+  }
+
+  public void setStartProcessParams(List<StartParameter> startProcessParams) {
+    this.startProcessParams = startProcessParams;
   }
 }
