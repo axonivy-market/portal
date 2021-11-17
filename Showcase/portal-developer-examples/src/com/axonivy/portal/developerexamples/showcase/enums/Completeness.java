@@ -1,7 +1,5 @@
 package com.axonivy.portal.developerexamples.showcase.enums;
 
-import java.util.Date;
-
 import ch.ivyteam.ivy.cm.IContentObject;
 import ch.ivyteam.ivy.cm.IContentObjectValue;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -18,7 +16,7 @@ public enum Completeness {
 		IContentObject co = Ivy.cms().getContentObject(getCmsPath());
 		String value = "";
 		if(co != null){
-			IContentObjectValue cv = co.getValue(new Date(), Ivy.session().getContentLocale());
+			IContentObjectValue cv = co.getValue(Ivy.session().getContentLocale());
 			if(cv != null){
 				value = cv.getContentAsString();
 			}

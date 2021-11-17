@@ -486,10 +486,8 @@ for (int i = 0; i < 5; i++) {
 
 //set language from user settings or application details
 IUser sessionUser = ivy.session.getSessionUser();
-
-if (sessionUser.getEMailLanguage() != null &&
-		sessionUser.getEMailLanguage() instanceof Locale) {
-	Locale l = ivy.session.getSessionUser().getEMailLanguage();
+if (sessionUser.getLanguage() != null) {
+	Locale l = ivy.session.getSessionUser().getLanguage();
 	ivy.session.setContentLocale(l);
 	ivy.session.setFormattingLocale(l);
 } else {

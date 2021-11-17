@@ -1,6 +1,4 @@
 package ch.ivy.addon.portal.generic.util;
-import static ch.ivyteam.ivy.server.ServerFactory.getServer;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -10,6 +8,7 @@ import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portalkit.bo.ProcessStep;
 import ch.ivy.addon.portalkit.configuration.UserProcess;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
+import ch.ivyteam.ivy.cm.IContentManagement;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public class ProcessStepUtils {
@@ -35,7 +34,7 @@ public class ProcessStepUtils {
     String processModelName = processParts[processParts.length - 3];
 
     return IvyExecutor.executeAsSystem(() -> {
-      String processSteps = getServer().getContentManagement()
+      String processSteps = IContentManagement.instance()
           .findCms(Ivy.wf().getApplication()
               .findProcessModel(processModelName).getReleasedProcessModelVersion())
           .co(SLASH.concat(PROCESSES_CMS_URI).concat(SLASH).concat(processName).concat(SLASH).concat(PROCESS_STEP));

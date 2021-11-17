@@ -23,7 +23,7 @@ public class TaskDetailsPage extends TemplatePage {
     $("div[id$=':task-notes:add-new-note-dialog']").waitUntil(appear, DEFAULT_TIMEOUT);
     $("div[id$=':task-notes:add-new-note-dialog']").find("textarea").sendKeys(noteContent);
     $("button[id$=':task-notes:task-add-new-note-form:save-add-note-command']").click();
-    $("div[id$=':task-notes:add-new-note-dialog']").waitUntil(disappear, DEFAULT_TIMEOUT);
+    $("div[id$=':task-notes:task-add-new-note-form:save-add-note-command']").waitUntil(disappear, DEFAULT_TIMEOUT);
   }
 
   public ElementsCollection getNotesWithContent(String content) {

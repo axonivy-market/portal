@@ -28,7 +28,8 @@
           <div class="message-footer">
             <div class="ui-g-12">
               <p:button href="#" onclick="window.open('#{userMenuBean.getHomePageURL()}', '_self')"
-                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/errorPage/backToHomePage')}" />
+                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/errorPage/backToHomePage')}"
+                icon="#{visibilityBean.generateButtonIcon('si si-house-chimney-2')}" />
             </div>
             <div class="ui-g-12">
               <p:link styleClass="message-detail u-hover-effect" rendered="#{not empty errorMessage}" href="#"

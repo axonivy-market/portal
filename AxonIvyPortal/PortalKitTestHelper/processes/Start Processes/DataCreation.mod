@@ -174,6 +174,11 @@ Dt0 @PushWFArc f116 '' #zField
 Dt0 @GridStep f158 '' #zField
 Dt0 @PushWFArc f159 '' #zField
 Dt0 @PushWFArc f155 '' #zField
+Dt0 @StartRequest f160 '' #zField
+Dt0 @GridStep f161 '' #zField
+Dt0 @EndTask f162 '' #zField
+Dt0 @PushWFArc f163 '' #zField
+Dt0 @PushWFArc f164 '' #zField
 >Proto Dt0 Dt0 DataCreation #zField
 Ct0 @TextInP .type .type #zField
 Ct0 @TextInP .processKind .processKind #zField
@@ -1466,6 +1471,48 @@ Dt0 f158 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Dt0 f158 152 1514 112 44 -24 -8 #rect
 Dt0 f159 79 1536 152 1536 #arcP
 Dt0 f155 264 1536 369 1536 #arcP
+Dt0 f160 outLink createUserTaskWidgetFilters.ivp #txt
+Dt0 f160 inParamDecl '<> param;' #txt
+Dt0 f160 requestEnabled true #txt
+Dt0 f160 triggerEnabled false #txt
+Dt0 f160 callSignature createUserTaskWidgetFilters() #txt
+Dt0 f160 caseData businessCase.attach=true #txt
+Dt0 f160 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>createUserTaskWidgetFilters.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Dt0 f160 @C|.responsibility Everybody #txt
+Dt0 f160 657 1393 30 30 -102 24 #rect
+Dt0 f161 actionTable 'out=in;
+' #txt
+Dt0 f161 actionCode 'import ch.ivy.addon.portalkit.dto.dashboard.WidgetFilterModel;
+import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
+import ch.ivy.addon.portalkit.service.WidgetFilterService;
+
+for (int i = 0; i < 5; i++) {
+	TaskDashboardWidget widget = new TaskDashboardWidget();
+	widget.id = "task_1";
+	WidgetFilterModel filterModel = new WidgetFilterModel();
+	filterModel.widgetId = widget.id;
+	filterModel.widgetType = widget.getType();
+	filterModel.widgetName = "Your tasks";
+	filterModel.name = "Tasks Filterset " + i;
+	WidgetFilterService.getInstance().save(filterModel);
+}' #txt
+Dt0 f161 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Dummy widget filter</name>
+    </language>
+</elementInfo>
+' #txt
+Dt0 f161 728 1386 112 44 -53 -8 #rect
+Dt0 f162 881 1393 30 30 0 15 #rect
+Dt0 f163 687 1408 728 1408 #arcP
+Dt0 f164 840 1408 881 1408 #arcP
 >Proto Dt0 .type portalKit_test.DataCreationData #txt
 >Proto Dt0 .processKind NORMAL #txt
 >Proto Dt0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1700,6 +1747,10 @@ Dt0 f117 mainOut f159 tail #connect
 Dt0 f159 head f158 mainIn #connect
 Dt0 f158 mainOut f155 tail #connect
 Dt0 f155 head f118 mainIn #connect
+Dt0 f160 mainOut f163 tail #connect
+Dt0 f163 head f161 mainIn #connect
+Dt0 f161 mainOut f164 tail #connect
+Dt0 f164 head f162 mainIn #connect
 Ct0 g0 m f2 tail #connect
 Ct0 f2 head f1 in #connect
 Ct0 f1 out f4 tail #connect

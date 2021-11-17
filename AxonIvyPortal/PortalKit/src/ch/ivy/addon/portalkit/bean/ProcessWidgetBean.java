@@ -1,7 +1,5 @@
 package ch.ivy.addon.portalkit.bean;
 
-import static ch.ivyteam.ivy.server.ServerFactory.getServer;
-
 import java.io.IOException;
 import java.io.Serializable;
 import java.text.Collator;
@@ -44,6 +42,7 @@ import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.application.IProcessModel;
+import ch.ivyteam.ivy.cm.IContentManagement;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
@@ -197,7 +196,7 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
     IProcessModel pm = Ivy.wf().getApplication().findProcessModel(processModelName);
     if (pm != null) {
       String processImageCms =
-          getServer().getContentManagement().findCms(pm.getReleasedProcessModelVersion()).cr(processImage);
+          IContentManagement.instance().findCms(pm.getReleasedProcessModelVersion()).cr(processImage);
       if (StringUtils.isNotBlank(processImageCms)) {
         defaultImageUri = getImageSrc(processImageCms);
       }
