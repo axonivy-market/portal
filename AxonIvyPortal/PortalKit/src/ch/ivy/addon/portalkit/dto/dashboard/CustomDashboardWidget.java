@@ -63,12 +63,12 @@ public class CustomDashboardWidget extends DashboardWidget {
 
   @JsonIgnore
   public void loadParametersFromProcess() {
-    data.setCustomParams(new ArrayList<>());
-    data.setParams(ProcessStartAPI
+    data.setParams(new ArrayList<>());
+    data.setStartProcessParams(ProcessStartAPI
         .findStartElementByProcessStartFriendlyRequestPath(data.getProcessStart()).startParameters());
 
-    if (CollectionUtils.isNotEmpty(data.getParams())) {
-      for (StartParameter param : data.getParams()) {
+    if (CollectionUtils.isNotEmpty(data.getStartProcessParams())) {
+      for (StartParameter param : data.getStartProcessParams()) {
         CustomDashboardWidgetParam customParam = new CustomDashboardWidgetParam();
         customParam.setName(param.name());
         if (param.name().startsWith(DashboardCustomParamType.STRING.getPrefix())) {
@@ -87,11 +87,11 @@ public class CustomDashboardWidget extends DashboardWidget {
           customParam.setType(DashboardCustomParamType.USER);
           customParam.setName(removePrefixFromParamName(param.name(), DashboardCustomParamType.USER));
         }
-        data.getCustomParams().add(customParam);
+        data.getParams().add(customParam);
       }
     }
 
-    data.setCustomParams(data.getCustomParams().stream()
+    data.setParams(data.getParams().stream()
         .sorted(Comparator.comparing(CustomDashboardWidgetParam::getName))
         .sorted(Comparator.comparing(CustomDashboardWidgetParam::getType))
         .collect(Collectors.toList()));
@@ -102,8 +102,8 @@ public class CustomDashboardWidget extends DashboardWidget {
   }
   
   public void loadParameters() {
-    if (CollectionUtils.isNotEmpty(data.getCustomParams())) {
-      for(CustomDashboardWidgetParam param : data.getCustomParams()) {
+    if (CollectionUtils.isNotEmpty(data.getParams())) {
+      for(CustomDashboardWidgetParam param : data.getParams()) {
         switch (param.getType()) {
         case BOOLEAN:
           param.setValueBoolean(Boolean.parseBoolean(param.getValue()));
@@ -133,4 +133,10 @@ public class CustomDashboardWidget extends DashboardWidget {
     param.setType(DashboardCustomParamType.STRING);
     param.setValue(data.getStartableProcessStart().customFields().value(name));
   }
+
+@Override
+public void resetWidgetFilters() {
+	// TODO Auto-generated method stub
+	
+}
 }

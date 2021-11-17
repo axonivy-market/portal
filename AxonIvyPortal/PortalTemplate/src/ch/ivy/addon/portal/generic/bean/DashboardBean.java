@@ -15,7 +15,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
-import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.event.SelectEvent;
 
@@ -34,6 +34,7 @@ import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.ProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
+import ch.ivy.addon.portalkit.dto.dashboard.WidgetFilterModel;
 import ch.ivy.addon.portalkit.dto.dashboard.process.DashboardProcess;
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardCustomWidgetType;
@@ -43,6 +44,7 @@ import ch.ivy.addon.portalkit.enums.ProcessWidgetMode;
 import ch.ivy.addon.portalkit.ivydata.service.impl.ProcessService;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
+import ch.ivy.addon.portalkit.service.WidgetFilterService;
 import ch.ivy.addon.portalkit.support.HtmlParser;
 import ch.ivy.addon.portalkit.util.CategoryUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
@@ -50,6 +52,7 @@ import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.IStartElement;
+import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
@@ -67,9 +70,13 @@ public class DashboardBean implements Serializable {
   protected boolean isReadOnlyMode;
   private int currentDashboardIndex;
   private boolean canEdit;
+  private List<WidgetFilterModel> widgetFilters;
+  private List<WidgetFilterModel> deleteFilters;
+  private WidgetFilterService widgetFilterService;
 
   @PostConstruct
   public void init() {
+    widgetFilterService = WidgetFilterService.getInstance();
     canEdit = PermissionUtils.hasDashboardWritePermission();
     currentDashboardIndex = 0;
     isReadOnlyMode = true;
@@ -94,7 +101,7 @@ public class DashboardBean implements Serializable {
         selectedDashboard = dashboards.get(0);
       }
       buildWidgetModels();
-    } catch (IOException e) {
+    } catch (IOException | ParseException e) {
       Ivy.log().error(e);
     }
   }
@@ -114,7 +121,7 @@ public class DashboardBean implements Serializable {
   
   private void loadWidgets(List<DashboardWidget> widgets) {
     for (DashboardWidget widget : widgets) {
-      if (widget.getType().equals(DashboardWidgetType.PROCESS)) {
+      if (widget.getType() == DashboardWidgetType.PROCESS) {
         loadProcessesOfWidget(widget);
       } else if (widget.getType().equals(DashboardWidgetType.CUSTOM)) {
         loadCustomWidget(widget);
@@ -122,16 +129,17 @@ public class DashboardBean implements Serializable {
     }
   }
 
-  private void buildWidgetModels() {
+  private void buildWidgetModels() throws ParseException {
     for (Dashboard dashboard : dashboards) {
       buildSubWidgetModels(dashboard.getWidgets());
     }
   }
 
-  protected void buildSubWidgetModels(List<DashboardWidget> widgets) {
+  protected void buildSubWidgetModels(List<DashboardWidget> widgets) throws ParseException {
     if (CollectionUtils.isEmpty(widgets)) {
       return;
     }
+    String cmsUri = "";
     for (DashboardWidget widget : widgets) {
       switch (widget.getType()) {
         case TASK:
@@ -140,10 +148,7 @@ public class DashboardBean implements Serializable {
           for (ColumnModel columnModel : ((TaskDashboardWidget) widget).getColumns()) {
             updateTypeForCustomColumn(columnModel);
           }
-
-          if (StringUtils.isBlank(widget.getName())) {
-            widget.setName(translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourTasks"));
-          }
+          cmsUri = "/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourTasks";
           break;
         case CASE:
           CaseDashboardWidget.buildColumns((CaseDashboardWidget) widget);
@@ -151,34 +156,28 @@ public class DashboardBean implements Serializable {
           for (ColumnModel columnModel : ((CaseDashboardWidget) widget).getColumns()) {
             updateTypeForCustomColumn(columnModel);
           }
-
-          if (StringUtils.isBlank(widget.getName())) {
-            widget.setName(translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourCases"));
-          }
+          cmsUri = "/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourCases";
           break;
         case PROCESS:
           loadProcessesOfWidget(widget);
-          if (StringUtils.isBlank(widget.getName())) {
-            widget.setName(translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourProcesses"));
-          }
+          cmsUri = "/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourProcesses";
           break;
         case CUSTOM:
           loadCustomWidget(widget);
         default:
           break;
       }
-
-      try {
+      if (StringUtils.isBlank(widget.getName())) {
+        widget.setName(translate(cmsUri));
+      }
         widget.buildPredefinedFilterData();
-      } catch (ParseException e) {
-        Ivy.log().error(e);
+      widgetFilterService.applyUserFilterFromSession(widget);
       }
     }
-  }
 
   private void loadProcessesOfWidget(DashboardWidget widget) {
     ProcessDashboardWidget processWidget = (ProcessDashboardWidget) widget;
-    if (processWidget.getDisplayMode().equals(ProcessWidgetMode.COMPACT_MODE)) {
+    if (processWidget.getDisplayMode() == ProcessWidgetMode.COMPACT_MODE) {
       loadProcesses(processWidget);
     } else {
       loadProcessByPath(processWidget);
@@ -189,7 +188,8 @@ public class DashboardBean implements Serializable {
     List<DashboardProcess> processes = getAllPortalProcesses();
 
     for (DashboardProcess process : processes) {
-      if (process.getId().contains(processWidget.getProcessPath())) {
+      if (process.getId() != null && processWidget.getProcessPath() != null 
+          && process.getId().contains(processWidget.getProcessPath())) {
         updateProcessStartIdForCombined(processWidget, process);
         processWidget.setProcess(process);
         break;
@@ -198,12 +198,15 @@ public class DashboardBean implements Serializable {
   }
 
   public void updateProcessStartIdForCombined(ProcessDashboardWidget processWidget, DashboardProcess process) {
-    if (processWidget.getDisplayMode().equals(ProcessWidgetMode.COMBINED_MODE) && process.getProcessStartId() == null) {
-      long processStartId = Ivy.session().getStartableProcessStarts().stream()
-          .filter(processStart -> processStart.getLink().getRelative().equals(process.getStartLink())).findFirst()
-          .get().getId();
-      process.setProcessStartId(processStartId);
+    if (processWidget.getDisplayMode() == ProcessWidgetMode.COMBINED_MODE && process.getProcessStartId() == null) {
+    IProcessStart optional = Ivy.session().getStartableProcessStarts().stream()
+          .filter(processStart -> processStart.getLink().getRelative().equals(process.getStartLink()))
+          .findFirst()
+          .orElse(null);
+      if (optional != null) {
+        process.setProcessStartId(optional.getId());
     }
+  }
   }
 
   private void loadProcesses(ProcessDashboardWidget processWidget) {
@@ -233,7 +236,7 @@ public class DashboardBean implements Serializable {
     if (StringUtils.isNotBlank(customWidget.getData().getProcessStart())) {
       String url = ProcessStartAPI.findStartableLinkByUserFriendlyRequestPath(customWidget.getData().getProcessStart());
       IStartElement element = ProcessStartAPI.findStartElementByProcessStartFriendlyRequestPath(customWidget.getData().getProcessStart());
-      customWidget.getData().setParams(element.startParameters());
+      customWidget.getData().setStartProcessParams(element.startParameters());
 
       List<IWebStartable> allPortalProcesses = ProcessService.newInstance().findProcesses().getProcesses();
       customWidget.getData().setStartableProcessStart(allPortalProcesses.stream()
@@ -440,10 +443,75 @@ public class DashboardBean implements Serializable {
   }
 
   private void updateTypeForCustomColumn(ColumnModel columnModel) {
-    if (columnModel.getFormat() != null) {
-      columnModel.setType(DashboardColumnType.CUSTOM);
-    } else {
-      columnModel.setType(DashboardColumnType.STANDARD);
+    columnModel.setType(columnModel.getFormat() != null ? DashboardColumnType.CUSTOM : DashboardColumnType.STANDARD);
+  }
+
+  public void loadAllWidgetSavedFilters() {
+    widgetFilters = new ArrayList<>();
+    deleteFilters = new ArrayList<>();
+    widgetFilters.addAll(widgetFilterService.findAll());
+
+    // Update latest widget name
+    widgetFilters.forEach(filter -> {
+      var selectedWidget = selectedDashboard.getWidgets().stream()
+          .filter(widget -> widget.getId().equals(filter.getWidgetId()))
+          .findFirst().orElse(null);
+      if (selectedWidget != null) {
+        filter.setWidgetName(selectedWidget.getName());
+      }
+    });
+  }
+
+  public void onClickSavedFilterItem(WidgetFilterModel filter, DashboardWidget widget) throws ParseException {
+    if (filter == null || widget == null) {
+      return;
     }
+
+    if (widget.isSavedFilterSelected(filter)) {
+      widget.getUserFilterCollection().getSelectedWidgetFilters().removeIf(WidgetFilterModel.isEqualFilter(filter));
+    } else {
+      widget.getUserFilterCollection().getSelectedWidgetFilters().add(filter);
+    }
+
+    if (widget instanceof TaskDashboardWidget) {
+      TaskDashboardWidget taskWidget = (TaskDashboardWidget) widget;
+      taskWidget.setUserFilterCategories(new ArrayList<>());
+      widgetFilterService.buildFilterOptions(widget, taskWidget.getFilterableColumns(),
+          taskWidget.getUserFilterCategories());
+  }
+    if (widget instanceof CaseDashboardWidget) {
+      CaseDashboardWidget caseWidget = (CaseDashboardWidget) widget;
+      caseWidget.setUserFilterCategories(new ArrayList<>());
+      widgetFilterService.buildFilterOptions(widget, caseWidget.getFilterableColumns(),
+          caseWidget.getUserFilterCategories());
+}
+    if (widget instanceof ProcessDashboardWidget) {
+      widgetFilterService.buildProcessFilters((ProcessDashboardWidget) widget);
+    }
+    
+    widgetFilterService.updateUserFilterOptionMap(widget);
+  }
+
+  public void deleteSavedFilter() {
+    CollectionUtils.emptyIfNull(deleteFilters).forEach(filter -> {
+      widgetFilterService.delete(filter.getId());
+    });
+    loadAllWidgetSavedFilters();
+  }
+
+  public List<WidgetFilterModel> getWidgetFilters() {
+    return widgetFilters;
+  }
+
+  public void setWidgetFilters(List<WidgetFilterModel> widgetFilters) {
+    this.widgetFilters = widgetFilters;
+  }
+
+  public List<WidgetFilterModel> getDeleteFilters() {
+    return deleteFilters;
+  }
+
+  public void setDeleteFilters(List<WidgetFilterModel> deleteFilters) {
+    this.deleteFilters = deleteFilters;
   }
 }

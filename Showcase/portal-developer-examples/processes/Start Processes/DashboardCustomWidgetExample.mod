@@ -16,15 +16,14 @@ De0 @PushWFArc f4 '' #zField
 De0 @UserDialog f3 '' #zField
 >Proto De0 De0 DashboardCustomWidgetExample #zField
 De0 f0 outLink investmentList.ivp #txt
-De0 f0 inParamDecl '<String date__startDate,String date__endDate,String user__employee,String string__email> param;' #txt
-De0 f0 inParamTable 'out.email=param.string__email;
-out.employee=param.user__employee;
-out.endDate=param.date__endDate;
-out.startDate=param.date__startDate;
+De0 f0 inParamDecl '<String date__period,String user__customer,String string__note> param;' #txt
+De0 f0 inParamTable 'out.employee=param.user__customer;
+out.note=param.string__note;
+out.period=param.date__period;
 ' #txt
 De0 f0 requestEnabled true #txt
 De0 f0 triggerEnabled false #txt
-De0 f0 callSignature investmentList(String,String,String,String) #txt
+De0 f0 callSignature investmentList(String,String,String) #txt
 De0 f0 startName 'Investment List (Example for Custom Widget on Dashboard)' #txt
 De0 f0 startCustomFields isDashboardProccess=true #txt
 De0 f0 caseData businessCase.attach=true #txt
@@ -41,12 +40,11 @@ De0 f1 337 49 30 30 0 15 #rect
 De0 f2 280 64 337 64 #arcP
 De0 f4 111 64 168 64 #arcP
 De0 f3 dialogId com.axonivy.portal.developerexamples.testdata.InvestmentList #txt
-De0 f3 startMethod start(String,String,String,String) #txt
-De0 f3 requestActionDecl '<String startFrom,String startTo,String user,String email> param;' #txt
-De0 f3 requestMappingAction 'param.startFrom=in.startDate;
-param.startTo=in.endDate;
+De0 f3 startMethod start(String,String,String) #txt
+De0 f3 requestActionDecl '<String period,String note,String user> param;' #txt
+De0 f3 requestMappingAction 'param.period=in.period;
+param.note=in.note;
 param.user=in.employee;
-param.email=in.email;
 ' #txt
 De0 f3 responseMappingAction 'out=in;
 ' #txt
