@@ -48,7 +48,21 @@ public class CaseService implements ICaseService {
       return result;
     });
   }
-  
+
+  @Override
+  public IvyCaseResultDTO findCasesByCriteria(CaseSearchCriteria criteria) {
+    return IvyExecutor.executeAsSystem(() -> {
+      IvyCaseResultDTO result = new IvyCaseResultDTO();
+      CaseQuery finalQuery = extendQuery(criteria);
+      result.setCases(executeCaseQuery(finalQuery));
+      return result;
+    });
+  }
+
+  private List<ICase> executeCaseQuery(CaseQuery query) {
+    return Ivy.wf().getCaseQueryExecutor().getResults(query);
+  }
+
   @Override
   public IvyCaseResultDTO countCasesByCriteria(CaseSearchCriteria criteria) {
     return IvyExecutor.executeAsSystem(() -> {
