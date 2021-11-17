@@ -59,7 +59,7 @@ public class NewDashboardPage extends TemplatePage {
   }
   
   public SelenideElement getProcessImage() {
-    return $("img.image-process-item-image").waitUntil(Condition.appear, DEFAULT_TIMEOUT);
+    return $("img.image-process-item-image").waitUntil(Condition.exist, DEFAULT_TIMEOUT);
   }
   
   public ProcessEditWidgetNewDashBoardPage editImageProcess() {
