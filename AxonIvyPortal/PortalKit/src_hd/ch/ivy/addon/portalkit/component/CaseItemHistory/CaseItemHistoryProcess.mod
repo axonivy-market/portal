@@ -59,11 +59,19 @@ Cs0 f18 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Cs0 f18 83 179 26 26 -41 15 #rect
 Cs0 f26 actionTable 'out=in;
 ' #txt
-Cs0 f26 actionCode 'import ch.ivyteam.ivy.workflow.ICase;
-import java.util.ArrayList;
-import ch.ivyteam.ivy.workflow.TaskState;
-import ch.ivyteam.ivy.workflow.ITask;
+Cs0 f26 actionCode 'import ch.ivy.addon.portalkit.datamodel.internal.RelatedCaseLazyDataModel;
+import ch.ivy.addon.portalkit.ivydata.dto.IvyCaseResultDTO;
+import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;
+import ch.ivy.addon.portalkit.ivydata.service.impl.CaseService;
 import ch.ivy.addon.portalkit.service.HistoryService;
+import ch.ivyteam.ivy.workflow.CaseState;
+import ch.ivyteam.ivy.workflow.ICase;
+import ch.ivyteam.ivy.workflow.INote;
+import ch.ivyteam.ivy.workflow.ITask;
+import ch.ivyteam.ivy.workflow.TaskState;
+import java.util.ArrayList;
+import java.util.Arrays;
+import org.apache.commons.collections4.CollectionUtils;
 
 List<ITask> finishedTasks = new ArrayList();
 for (ITask task : in.iCase.tasks().all()) {
@@ -74,7 +82,23 @@ for (ITask task : in.iCase.tasks().all()) {
 }
 
 HistoryService historyService = new HistoryService();
-in.histories = historyService.getHistories(finishedTasks, in.iCase.getNotes(), !in.showSystemTasks, !in.showSystemNotes);' #txt
+List<INote> notes = new ArrayList();
+
+CaseSearchCriteria criteria = new CaseSearchCriteria();
+criteria.setBusinessCase(false);
+criteria.setTechnicalCase(true);
+criteria.setBusinessCaseId(in.iCase.getId());
+criteria.setIncludedStates(new ArrayList<CaseState>(Arrays.asList(CaseState.CREATED, CaseState.RUNNING, CaseState.DONE)));
+IvyCaseResultDTO ivyCaseResultDTO = CaseService.newInstance().findCasesByCriteria(criteria);
+
+List<ICase> relatedCases = ivyCaseResultDTO != null ? ivyCaseResultDTO.cases : new ArrayList(); 
+if (CollectionUtils.isNotEmpty(relatedCases)) {
+	for (ICase case: relatedCases) {
+		notes.addAll(case.getNotes());
+	}
+}
+notes.addAll(in.iCase.getNotes());
+in.histories = historyService.getHistories(finishedTasks, notes, !in.showSystemTasks, !in.showSystemNotes);' #txt
 Cs0 f26 security system #txt
 Cs0 f26 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -90,8 +114,10 @@ Cs0 f29 expr out #txt
 Cs0 f29 488 192 523 192 #arcP
 Cs0 f3 actionTable 'out=in;
 ' #txt
-Cs0 f3 actionCode 'in.iCase.getBusinessCase().createNote(ivy.session, in.noteContent);
-if (in.iCase.getBusinessCase().getId() != in.iCase.getId()) {
+Cs0 f3 actionCode '
+if (in.iCase.getBusinessCase().getId() == in.iCase.getId()) {
+	in.iCase.getBusinessCase().createNote(ivy.session, in.noteContent);
+} else {
 	in.iCase.createNote(ivy.session, in.noteContent);
 }
 
