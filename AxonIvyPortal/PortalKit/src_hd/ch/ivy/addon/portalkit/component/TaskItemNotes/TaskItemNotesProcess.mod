@@ -66,7 +66,7 @@ import java.util.ArrayList;
 import ch.ivy.addon.portalkit.util.CaseUtils;
 import ch.ivyteam.ivy.workflow.ICase;
 
-ICase iCase = in.task.getCase().getBusinessCase();
+ICase iCase = in.task.getCase();
 boolean showSystemNotes = out.showSystemNotes && out.showSystemNotesChkbox;
 out.notes = CaseUtils.findNotes(iCase, !showSystemNotes);
 ' #txt
@@ -111,9 +111,11 @@ Ts0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ts0 f6 83 275 26 26 -34 15 #rect
 Ts0 f10 actionTable 'out=in;
 ' #txt
-Ts0 f10 actionCode 'in.task.getCase().getBusinessCase().createNote(ivy.session, in.noteContent);
-if (in.task.getCase().getBusinessCase().getId() != in.task.getCase().getId()) {
-  in.task.getCase().createNote(ivy.session, in.noteContent);
+Ts0 f10 actionCode '
+if (in.task.getCase().getBusinessCase().getId() == in.task.getCase().getId()) {
+  in.task.getCase().getBusinessCase().createNote(ivy.session, in.noteContent);
+} else {
+	in.task.getCase().createNote(ivy.session, in.noteContent);
 }
 in.noteContent = "";' #txt
 Ts0 f10 security system #txt
