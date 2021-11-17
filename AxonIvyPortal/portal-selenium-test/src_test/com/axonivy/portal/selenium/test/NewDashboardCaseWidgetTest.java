@@ -13,7 +13,7 @@ import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.page.CaseDetailsWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.CaseEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.CaseWidgetNewDashBoardPage;
-import com.axonivy.portal.selenium.page.NewDashBoardPage;
+import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
 
 @IvyWebTest
@@ -34,13 +34,13 @@ public class NewDashboardCaseWidgetTest extends BaseTest {
   // TASKS
   private static final String REPORT_HIDE_CASE = "Report and hide case";
 
-  private NewDashBoardPage newDashBoardPage;
+  private NewDashboardPage newDashboardPage;
 
   @Override
   @BeforeEach
   public void setup() {
     super.setup();
-    newDashBoardPage = new NewDashBoardPage();
+    newDashboardPage = new NewDashboardPage();
   }
 
   @Test()
@@ -48,14 +48,14 @@ public class NewDashboardCaseWidgetTest extends BaseTest {
     redirectToRelativeLink(hideCaseUrl);
     login(TestAccount.ADMIN_USER);
     redirectToNewDashBoard();
-    TaskWidgetNewDashBoardPage taskWidget = newDashBoardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
+    TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
     taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
     taskWidget.openFilterWidget();
     taskWidget.filterTaskName(REPORT_HIDE_CASE);
     taskWidget.applyFilter();
     taskWidget.startFirstTask();
     redirectToNewDashBoard();
-    CaseWidgetNewDashBoardPage caseWidget = newDashBoardPage.selectCaseWidget(YOUR_CASES_WIDGET);
+    CaseWidgetNewDashBoardPage caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
     caseWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
     caseWidget.countCases(HIDE_CASE).shouldHaveSize(0);
   }
@@ -65,7 +65,7 @@ public class NewDashboardCaseWidgetTest extends BaseTest {
     redirectToRelativeLink(createTestingTasksUrl);
     login(TestAccount.ADMIN_USER);
     redirectToNewDashBoard();
-    CaseWidgetNewDashBoardPage caseWidget = newDashBoardPage.selectCaseWidget(YOUR_CASES_WIDGET);
+    CaseWidgetNewDashBoardPage caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
     caseWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
     CaseDetailsWidgetNewDashBoardPage detailsCase = caseWidget.openDetailsFirstCase();
     detailsCase.destroy();
@@ -78,7 +78,7 @@ public class NewDashboardCaseWidgetTest extends BaseTest {
     redirectToRelativeLink(createTestingTasksUrl);
     login(TestAccount.DEMO_USER);
     redirectToNewDashBoard();
-    CaseWidgetNewDashBoardPage caseWidget = newDashBoardPage.selectCaseWidget(YOUR_CASES_WIDGET);
+    CaseWidgetNewDashBoardPage caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
     caseWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
     CaseDetailsWidgetNewDashBoardPage detailsCase = caseWidget.openDetailsFirstCase();
     detailsCase.destroyLink().shouldNotHave(visible);
@@ -89,7 +89,7 @@ public class NewDashboardCaseWidgetTest extends BaseTest {
     redirectToRelativeLink(createTestingTasksUrl);
     login(TestAccount.DEMO_USER);
     redirectToNewDashBoard();
-    CaseWidgetNewDashBoardPage caseWidget = newDashBoardPage.selectCaseWidget(YOUR_CASES_WIDGET);
+    CaseWidgetNewDashBoardPage caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
     caseWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
     CaseDetailsWidgetNewDashBoardPage detailsCase = caseWidget.openDetailsCase(LEAVE_REQUEST_CASE_NAME);
     detailsCase.countRelatedTasks().shouldHaveSize(4);
@@ -100,7 +100,7 @@ public class NewDashboardCaseWidgetTest extends BaseTest {
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
     login(TestAccount.DEMO_USER);
     redirectToNewDashBoard();
-    CaseWidgetNewDashBoardPage caseWidget = newDashBoardPage.selectCaseWidget(YOUR_CASES_WIDGET);
+    CaseWidgetNewDashBoardPage caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
     caseWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
     CaseDetailsWidgetNewDashBoardPage detailsCase = caseWidget.openDetailsCase(ORDER_PIZZA);
     detailsCase.countRelatedCases().shouldHaveSize(1);
@@ -111,14 +111,14 @@ public class NewDashboardCaseWidgetTest extends BaseTest {
     redirectToRelativeLink(createTestingCaseUrlForDefaultAdditionalCaseDetails);
     login(TestAccount.ADMIN_USER);
     redirectToNewDashBoard();
-    CaseWidgetNewDashBoardPage caseWidget = newDashBoardPage.selectCaseWidget(YOUR_CASES_WIDGET);
+    CaseWidgetNewDashBoardPage caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
     caseWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
     caseWidget.openFilterWidget();
     caseWidget.filterCaseName(LEAVE_REQUEST_DEFAULT_CASE);
     caseWidget.applyFilter();
     CaseDetailsWidgetNewDashBoardPage detailsCase = caseWidget.openDetailsFirstCase();
     detailsCase.openAdditionalCaseDetailsPage();
-    newDashBoardPage.switchLastBrowserTab();
+    newDashboardPage.switchLastBrowserTab();
     detailsCase.countAdditionalFieldsPage().shouldHaveSize(15);
     detailsCase.firstAdditionalFieldsPage().shouldBe(text("CustomVarCharField 1"));
   }
@@ -128,14 +128,14 @@ public class NewDashboardCaseWidgetTest extends BaseTest {
     redirectToRelativeLink(createTestingCaseUrlForCustomizationAdditionalCaseDetails);
     login(TestAccount.ADMIN_USER);
     redirectToNewDashBoard();
-    CaseWidgetNewDashBoardPage caseWidget = newDashBoardPage.selectCaseWidget(YOUR_CASES_WIDGET);
+    CaseWidgetNewDashBoardPage caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
     caseWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
     caseWidget.openFilterWidget();
     caseWidget.filterCaseName(INVESTMENT_REQUEST_CUSTOMIZATION_CASE);
     caseWidget.applyFilter();
     CaseDetailsWidgetNewDashBoardPage detailsCase = caseWidget.openDetailsFirstCase();
     detailsCase.openAdditionalCaseDetailsPage();
-    newDashBoardPage.switchLastBrowserTab();
+    newDashboardPage.switchLastBrowserTab();
     detailsCase.countAdditionalFieldsPage().shouldHaveSize(7);
     detailsCase.firstAdditionalFieldsPage().shouldBe(text("Apartment A"));
   }
@@ -145,7 +145,7 @@ public class NewDashboardCaseWidgetTest extends BaseTest {
     redirectToRelativeLink(create12CasesWithCategoryUrl);
     login(TestAccount.DEMO_USER);
     redirectToNewDashBoard();
-    CaseWidgetNewDashBoardPage caseWidget = newDashBoardPage.selectCaseWidget(YOUR_CASES_WIDGET);
+    CaseWidgetNewDashBoardPage caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
     caseWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));   
     //Filter Case Name
     caseWidget.openFilterWidget();
@@ -169,10 +169,10 @@ public class NewDashboardCaseWidgetTest extends BaseTest {
     redirectToRelativeLink(create12CasesWithCategoryUrl);
     login(TestAccount.ADMIN_USER);
     redirectToNewDashBoard();
-    CaseWidgetNewDashBoardPage caseWidget = newDashBoardPage.selectCaseWidget(YOUR_CASES_WIDGET);
+    CaseWidgetNewDashBoardPage caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
     caseWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
     //Edit Mode
-    newDashBoardPage.switchToEditMode();
+    newDashboardPage.switchToEditMode();
     CaseEditWidgetNewDashBoardPage caseEditWidget = caseWidget.openEditWidget();
     caseEditWidget.changeWidgetTitle("New Your Cases");
     caseEditWidget.filterCaseName("TestCase");
@@ -184,7 +184,7 @@ public class NewDashboardCaseWidgetTest extends BaseTest {
     caseEditWidget.countCases().shouldHaveSize(2);
     caseEditWidget.save();
     //After Edit
-    CaseWidgetNewDashBoardPage caseWidgetEdited = newDashBoardPage.selectCaseWidget("New Your Cases");
+    CaseWidgetNewDashBoardPage caseWidgetEdited = newDashboardPage.selectCaseWidget("New Your Cases");
     caseWidgetEdited.expand().shouldHave(sizeGreaterThanOrEqual(1));
     caseWidgetEdited.countCases("TestCase").shouldHaveSize(10);
     caseWidgetEdited.nextPageTable();
@@ -196,12 +196,12 @@ public class NewDashboardCaseWidgetTest extends BaseTest {
     redirectToRelativeLink(createTestingTasksUrl);
     login(TestAccount.ADMIN_USER);
     redirectToNewDashBoard();
-    newDashBoardPage.switchToEditMode();
-    newDashBoardPage.addWidget();
-    CaseEditWidgetNewDashBoardPage newCaseWidget = newDashBoardPage.addNewCaseWidget();
+    newDashboardPage.switchToEditMode();
+    newDashboardPage.addWidget();
+    CaseEditWidgetNewDashBoardPage newCaseWidget = newDashboardPage.addNewCaseWidget();
     newCaseWidget.changeWidgetTitle("New Your Cases");
     newCaseWidget.save();
-    CaseWidgetNewDashBoardPage caseWidget = newDashBoardPage.selectCaseWidget("New Your Cases");
+    CaseWidgetNewDashBoardPage caseWidget = newDashboardPage.selectCaseWidget("New Your Cases");
     caseWidget.expand().shouldHaveSize(1);
   }
   

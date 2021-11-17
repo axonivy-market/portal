@@ -55,8 +55,8 @@ public class UserUtils {
     IvyExecutor.executeAsSystem(()->{
       IUser sessionUser = getIvySession().getSessionUser();
       Locale l = null;
-      if (sessionUser.getEMailLanguage() != null) {
-        l = sessionUser.getEMailLanguage();
+      if (sessionUser.getLanguage() != null) {
+        l = sessionUser.getLanguage();
       } else {
         // Application Default
         Locale defaultApplicationLocal = Ivy.request().getApplication().getDefaultEMailLanguage();

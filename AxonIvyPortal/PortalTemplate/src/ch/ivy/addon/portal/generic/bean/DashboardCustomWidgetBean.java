@@ -28,7 +28,6 @@ public class DashboardCustomWidgetBean implements Serializable {
 
   private DashboardCustomWidgetType selectedType;
   private DashboardCustomWidgetType[] customWidgetTypes = DashboardCustomWidgetType.values();
-  private String externalUrl;
   private String process;
   private List<IWebStartable> allPortalProcesses;
   private List<IProcessStart> startableProcessStarts;
@@ -76,14 +75,6 @@ public class DashboardCustomWidgetBean implements Serializable {
 
   public void setCustomWidgetTypes(DashboardCustomWidgetType[] customWidgetTypes) {
     this.customWidgetTypes = customWidgetTypes;
-  }
-
-  public String getExternalUrl() {
-    return externalUrl;
-  }
-
-  public void setExternalUrl(String externalUrl) {
-    this.externalUrl = externalUrl;
   }
 
   public String getProcess() {

@@ -34,7 +34,7 @@
       <ui:define name="widgetContent">
         <div class="ui-g-12 widget-height-100">
           <ui:fragment rendered="#{not empty widget.data.processStart}">
-            <c:forEach var="param" items="#{widget.data.customParams}">
+            <c:forEach var="param" items="#{widget.data.params}">
               <input type="hidden" name="#{dashboardCustomWidgetBean.generateParamName(param)}"
                 value="#{param.value}" />
             </c:forEach>

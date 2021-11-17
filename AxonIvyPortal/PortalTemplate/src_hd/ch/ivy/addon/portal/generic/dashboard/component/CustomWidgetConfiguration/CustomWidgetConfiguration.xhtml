@@ -19,6 +19,11 @@
          <p>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/CustomConfigurationDescription')}</p>
        </div>
      </div>
+     <div class="ui-g-12">
+       <p:messages id="config-custom-widget-message">
+         <p:autoUpdate />
+       </p:messages>
+     </div>
      <h:panelGroup id="widget-title-group" styleClass="ui-g-12 u-padding-0 ui-fluid">
         <div class="ui-g-3">
           <p:outputLabel for="widget-title" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/widgetTitle')}" />
@@ -45,7 +50,7 @@
           <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/Enums/DashboardCustomWidgetType/EXTERNAL_URL')}" for="external-url" />
         </div>
         <div class="ui-g-9 ui-fluid">
-          <p:inputText id="external-url" value="#{dashboardCustomWidgetBean.externalUrl}" />
+          <p:inputText id="external-url" value="#{widget.data.url}" />
         </div>
       </h:panelGroup>
       <h:panelGroup id="ivy-process-panel" styleClass="ui-g-12 u-padding-0"
@@ -56,7 +61,8 @@
         <div class="ui-g-9 ui-fluid">
           <p:autoComplete id="selected-process" dropdown="true" scrollHeight="300" forceSelection="true"
             completeMethod="#{dashboardCustomWidgetBean.completeProcesses}" value="#{widget.data.startableProcessStart}" var="process" itemValue="#{process}" itemLabel="#{process.name}" queryDelay="500"
-            cache="true" minQueryLength="2" itemtipAtPosition="right top" converter="pojoConverter">
+            cache="true" minQueryLength="2" itemtipAtPosition="right top" converter="pojoConverter"
+            required="#{widget.data.type == 'PROCESS' ? true : false}">
             <p:ajax event="query" global="false" />
             <p:ajax event="itemSelect" listener="#{dashboardCustomWidgetBean.onSelectProcess(widget)}" update="user-filter"
               process="@this" oncomplete="PF('new-widget-configuration-dialog').initPosition();" />
@@ -72,7 +78,7 @@
         <p:fieldset legend="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/Parameters')}"
           toggleable="true" collapsed="false">
           <h:panelGroup id="parameters" styleClass="ui-g ui-g-12 ui-fluid parameters u-padding-0" layout="block">
-          <ui:repeat value ="#{widget.data.customParams}" var="parameter" varStatus="status" >
+          <ui:repeat value ="#{widget.data.params}" var="parameter" varStatus="status" >
             <h:panelGroup layout="block" styleClass="ui-g-4">
               <h:outputLabel styleClass="param-label" value="#{parameter.name}" />
             </h:panelGroup>

@@ -1,6 +1,6 @@
 CustomWidgetExampleData #class
 com.axonivy.portal.developerexamples.showcase #namespace
-startDate String #field
-endDate String #field
+period String #field
 employee String #field
 email String #field
+note String #field

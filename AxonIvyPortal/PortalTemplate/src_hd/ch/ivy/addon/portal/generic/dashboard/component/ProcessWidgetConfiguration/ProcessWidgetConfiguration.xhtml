@@ -14,6 +14,7 @@
   <c:set var="isCompact" value="#{widget.displayMode eq 'COMPACT_MODE'}" />
   <c:set var="isCombined" value="#{widget.displayMode eq 'COMBINED_MODE'}" />
   <c:set var="isFull" value="#{widget.displayMode eq 'FULL_MODE'}" />
+  <c:set var="isImage" value="#{widget.displayMode eq 'IMAGE_MODE'}" />
 
   <f:event listener="#{dashboardProcessBean.preRender(processWidget)}" type="preRenderComponent" />
 
@@ -21,6 +22,7 @@
   <h:panelGroup id="filter-container" layout="block" styleClass="card dashboard-card widget-configuration">
     <div class="filter-container ui-g">
       <div class="ui-g-12 filter-container__header">
+        <p:messages id="process-widget-validation-messages" closable="true" />
         <h2>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/configuration')}</h2>
         <p>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/processConfigurationDescription')}</p>
       </div>
@@ -39,8 +41,12 @@
           <strong>#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/availableFilters")}</strong>
         </div>
         <div class="ui-g-8">
-          <p:commandButton id="preview-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/preview')}" styleClass="Fright preview-button" icon="si si-search" actionListener="#{dashboardProcessBean.preview()}"
-            update="#{cc.clientId}:preview-process #{cc.clientId}:widget-preview" process="user-filter widget-title-group" oncomplete="PF('new-widget-configuration-dialog').initPosition();" />
+          <p:commandButton id="preview-button"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/preview')}" 
+            styleClass="Fright preview-button" icon="si si-search" 
+            actionListener="#{dashboardProcessBean.preview()}"
+            update="#{cc.clientId}:preview-process #{cc.clientId}:widget-preview" 
+            process="user-filter widget-title-group" oncomplete="PF('new-widget-configuration-dialog').initPosition();" />
         </div>
       </div>
 
@@ -105,7 +111,9 @@
           <div class="ui-g-9 ui-fluid">
             <p:autoComplete id="selected-full-process" styleClass="process-configuration__selected-process" dropdown="true" scrollHeight="300" forceSelection="true"
               completeMethod="#{dashboardProcessBean.completeProcesses}" value="#{widget.process}" var="process" itemValue="#{process}" itemLabel="#{process.name}" queryDelay="500" cache="true"
-              minQueryLength="2" itemtipAtPosition="right top" converter="processSelectionConverter">
+              minQueryLength="2" itemtipAtPosition="right top" converter="processSelectionConverter"
+              required="#{param['widget-configuration-form:new-widget-configuration-component:preview-button'] == null}" 
+              requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/processes/noProcessSelected')}">
               <p:ajax event="query" global="false" />
               <p:column>
                 <h:outputText styleClass="autocomplete-tooltip" value="#{process.name}" title="#{process.description}" />
@@ -121,7 +129,28 @@
           <div class="ui-g-9 ui-fluid">
             <p:autoComplete id="selected-combined-process" styleClass="process-configuration__selected-process" dropdown="true" scrollHeight="300" forceSelection="true"
               completeMethod="#{dashboardProcessBean.completeProcessesWithoutExternalLink}" value="#{widget.process}" var="process" itemValue="#{process}" itemLabel="#{process.name}" queryDelay="500"
-              cache="true" minQueryLength="2" itemtipAtPosition="right top" converter="processSelectionConverter">
+              cache="true" minQueryLength="2" itemtipAtPosition="right top" converter="processSelectionConverter"
+              required="#{param['widget-configuration-form:new-widget-configuration-component:preview-button'] == null}" 
+              requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/processes/noProcessSelected')}">
+              <p:ajax event="query" global="false" />
+              <p:ajax event="itemSelect" listener="#{dashboardProcessBean.updateProcessStartId()}" global="false" />
+              <p:column>
+                <h:outputText styleClass="autocomplete-tooltip" value="#{process.name}" title="#{process.description}" />
+              </p:column>
+            </p:autoComplete>
+          </div>
+        </h:panelGroup>
+        
+        <h:panelGroup id="image-filter" rendered="#{isImage}">
+          <div class="ui-g-3">
+            <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/process')}" for="selected-image-process" />
+          </div>
+          <div class="ui-g-9 ui-fluid">
+            <p:autoComplete id="selected-image-process" styleClass="process-configuration__selected-process" dropdown="true" scrollHeight="300" forceSelection="true"
+              completeMethod="#{dashboardProcessBean.completeProcesses}" value="#{widget.process}" var="process" itemValue="#{process}" itemLabel="#{process.name}" queryDelay="500"
+              cache="true" minQueryLength="2" itemtipAtPosition="right top" converter="processSelectionConverter"
+              required="#{param['widget-configuration-form:new-widget-configuration-component:preview-button'] == null}" 
+              requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/processes/noProcessSelected')}">
               <p:ajax event="query" global="false" />
               <p:ajax event="itemSelect" listener="#{dashboardProcessBean.updateProcessStartId()}" global="false" />
               <p:column>
@@ -136,14 +165,14 @@
 
   <!-- Preview -->
   <h:panelGroup id="widget-preview" styleClass="card widget-preview widget-preview--process" layout="block">
-    <div class="ui-g #{isCompact ? 'widget-preview--compact' : ''} #{isFull ? 'widget-preview--full' : ''} #{isCombined ? 'widget-preview--combined' : ''}">
+    <div class="ui-g #{isCompact ? 'widget-preview--compact' : ''} #{isFull ? 'widget-preview--full' : ''} #{isCombined ? 'widget-preview--combined' : ''} #{isImage ? 'widget-preview--image-width' : ''}">
       <div class="ui-g-12 widget-preview__header">
         <h2>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/preview')}</h2>
       </div>
 
       <!-- Widget data -->
       <div class="ui-g-12">
-        <h:panelGroup id="preview-process" class="ui-g-12 u-padding-0">
+        <h:panelGroup id="preview-process" class="ui-g-12 u-padding-0 #{isImage ? 'widget-preview--image-height' : ''}">
           <ic:ch.ivy.addon.portal.generic.dashboard.component.ProcessWidget processWidget="#{widget}" isReadOnlyMode="true" isInConfiguration="true"
             onLoadProcessComplete="PF('new-widget-configuration-dialog').initPosition();" />
         </h:panelGroup>
