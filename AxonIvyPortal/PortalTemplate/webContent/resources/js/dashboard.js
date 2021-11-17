@@ -29,6 +29,11 @@ function loadGrid() {
         }]);
       }
     });
+
+    grid.on('resizestop', function(event, element) {
+      var elementId = element.gridstackNode.id;
+      setupImageProcessWidgetDescription($("[gs-id='" + elementId + "']").find('.js-process-description'));
+    });
   });
 }
 
@@ -109,4 +114,30 @@ function setupScrollbar() {
       container.outerHeight(availableHeight);
     }
   }
+}
+
+function setupImageProcessWidget() {
+  var imageContainers = $('.js-image-process-item-container');
+  if (imageContainers.length > 0) {
+    imageContainers.each(function() {
+      var imageUrl = $(this).find("img").attr("src");
+      $(this).css('background-image', 'url("' + imageUrl + '")');
+    });
+  }
+
+  var processDescriptions = $('.js-process-description');
+  if (processDescriptions.length > 0) {
+    processDescriptions.each(function() {
+      setupImageProcessWidgetDescription($(this));
+    });
+  }
+}
+
+function setupImageProcessWidgetDescription(e) {
+  var height = e.height();
+  var descriptionContent = e.find('.js-process-item-description');
+  var lineHeight = parseFloat(descriptionContent.css('line-height'));
+  var lineClamp = Math.floor(height/lineHeight);
+  if (lineClamp == 2) lineClamp = 1;
+  descriptionContent.css('-webkit-line-clamp', lineClamp.toString());
 }
