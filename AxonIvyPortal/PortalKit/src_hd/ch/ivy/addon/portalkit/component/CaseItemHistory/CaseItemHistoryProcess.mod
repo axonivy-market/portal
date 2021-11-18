@@ -88,7 +88,6 @@ CaseSearchCriteria criteria = new CaseSearchCriteria();
 criteria.setBusinessCase(false);
 criteria.setTechnicalCase(true);
 criteria.setBusinessCaseId(in.iCase.getId());
-criteria.setIncludedStates(new ArrayList<CaseState>(Arrays.asList(CaseState.CREATED, CaseState.RUNNING, CaseState.DONE)));
 IvyCaseResultDTO ivyCaseResultDTO = CaseService.newInstance().findCasesByCriteria(criteria);
 
 List<ICase> relatedCases = ivyCaseResultDTO != null ? ivyCaseResultDTO.cases : new ArrayList(); 
