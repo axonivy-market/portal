@@ -14,6 +14,7 @@ import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivy.addon.portalkit.util.CategoryUtils;
 import ch.ivy.addon.portalkit.util.TaskTreeUtils;
+import ch.ivyteam.ivy.workflow.ITask;
 
 public class CategoryColumnModel extends TaskColumnModel {
 
@@ -36,6 +37,16 @@ public class CategoryColumnModel extends TaskColumnModel {
     this.styleClass = defaultIfEmpty(this.styleClass, "dashboard-tasks__category u-text-align-center");
     this.fieldStyleClass = defaultIfEmpty(this.fieldStyleClass, StringUtils.EMPTY);
     this.format = DashboardColumnFormat.CUSTOM;
+    this.sortable = false;
+    this.sorted = false;
+  }
+
+  @Override
+  public Object display(ITask task) {
+    if (task == null) {
+      return "";
+    }
+    return task.getCategory().getName();
   }
 
   @JsonIgnore
