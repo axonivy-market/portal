@@ -65,7 +65,10 @@ for(String language : ivyLanguage.supportedLanguages) {
 	chartNames.add(name);
 	
 	if (service.checkDefaultStatisticChartNameExisted(ivy.session.getSessionUser().getId(), chartName, language) && !isExistedDefaultChart) {
- 	 in.defaultCharts.add(service.findStatisticChartByUserIdAndChartNameAndLanguage(ivy.session.getSessionUser().getId(), chartName, ivyLanguage.userLanguage));
+	 StatisticChart existedChart = service.findStatisticChartByUserIdAndChartNameAndLanguage(ivy.session.getSessionUser().getId(), chartName, language);
+	 if (existedChart != null) {
+ 	   in.defaultCharts.add(existedChart);
+	 }
  	 isExistedDefaultChart = true;
 	}
 }
@@ -89,8 +92,8 @@ Dt0 f2 96 182 96 241 #arcP
 Dt0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>// FOLLOW THIS INSTRUCTION TO CREATE DEFAULT CHART
-
+        <name>// FOLLOW THIS INSTRUCTION TO CREATE DEFAULT CHART&#13;
+&#13;
 import java.util.Locale;&#13;
 import java.util.Arrays;&#13;
 import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;&#13;
@@ -118,7 +121,10 @@ for(String language : ivyLanguage.supportedLanguages) {&#13;
 	chartNames.add(name);&#13;
 	&#13;
 	if (service.checkDefaultStatisticChartNameExisted(ivy.session.getSessionUser().getId(), chartName, language) &amp;&amp; !isExistedDefaultChart) {&#13;
- 	 in.defaultCharts.add(service.findStatisticChartByUserIdAndChartNameAndLanguage(ivy.session.getSessionUser().getId(), chartName, ivyLanguage.userLanguage));&#13;
+	 StatisticChart existedChart = service.findStatisticChartByUserIdAndChartNameAndLanguage(ivy.session.getSessionUser().getId(), chartName, language);&#13;
+	 if (existedChart != null) {&#13;
+ 	   in.defaultCharts.add(existedChart);&#13;
+	 }&#13;
  	 isExistedDefaultChart = true;&#13;
 	}&#13;
 }&#13;
@@ -128,12 +134,10 @@ if (!isExistedDefaultChart) {&#13;
   StatisticChart newChart = service.createStatisticChart(statisticFilter, chartNames, chartType, ivy.session.getSessionUser().getId(), true);&#13;
   in.defaultCharts.add(newChart);&#13;
 }</name>
-        <nameStyle>1896,5
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
-Dt0 f5 264 42 1040 636 -514 -312 #rect
+Dt0 f5 264 18 1040 684 -514 -336 #rect
 Dt0 f5 @|IBIcon #fIcon
 Dt0 f4 96 79 96 138 #arcP
 >Proto Dt0 .type ch.ivy.addon.portalkit.DefaultChartData #txt

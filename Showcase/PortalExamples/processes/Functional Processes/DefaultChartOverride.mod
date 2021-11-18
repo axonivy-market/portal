@@ -61,11 +61,17 @@ boolean existedChart2 = false;
 for (String language : supportedLanguages) {
 	if (service.checkDefaultStatisticChartNameExisted(ivy.session.getSessionUser().getId(), chartName1, language)) {
 		existedChart1 = true;
-		in.defaultCharts.add(service.findStatisticChartByUserIdAndChartNameAndLanguage(ivy.session.getSessionUser().getId(), chartName1, language));
+		StatisticChart existedChart = service.findStatisticChartByUserIdAndChartNameAndLanguage(ivy.session.getSessionUser().getId(), chartName1, language);
+		if (existedChart != null) {
+			in.defaultCharts.add(existedChart);
+		}
 	}
 	if (service.checkDefaultStatisticChartNameExisted(ivy.session.getSessionUser().getId(), chartName2, language)) {
 		existedChart2 = true;
-		in.defaultCharts.add(service.findStatisticChartByUserIdAndChartNameAndLanguage(ivy.session.getSessionUser().getId(), chartName2, language));
+		StatisticChart existedChart2 = service.findStatisticChartByUserIdAndChartNameAndLanguage(ivy.session.getSessionUser().getId(), chartName2, language);
+		if (existedChart2 != null) { 
+			in.defaultCharts.add(existedChart2);
+		}
 	} 
 }
 
