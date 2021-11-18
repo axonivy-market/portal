@@ -15,6 +15,7 @@
 <ui:decorate template="/layouts/restricted/decorator/TableWidget.xhtml">
       <ui:param name="index" value="#{index}" />
       <ui:param name="widget" value="#{widget}" />
+      <ui:param name="panelId" value="custom-panel-group-#{index}" />
       <ui:param name="widgetFormId" value="custom-form-#{index}" />
       <ui:param name="isReadOnlyMode" value="#{cc.attrs.isReadOnlyMode}" />
       <ui:param name="widgetContentStylyClass" value="process-widget" />
