@@ -84,6 +84,11 @@
               <f:convertNumber pattern="#{column.pattern}" />
             </h:outputText>
           </h:panelGroup>
+
+          <h:panelGroup rendered="#{column.field eq 'category'}">
+            <h:outputText id="case-category" value="#{column.display(caseItem)}"/>
+            <p:tooltip for="case-category" value="#{caseItem.getCategory().getPath()}" trackMouse="true" hideEvent="mouseleave click"/>
+          </h:panelGroup>
         </p:columns>
       </p:dataTable>
     </h:panelGroup>
