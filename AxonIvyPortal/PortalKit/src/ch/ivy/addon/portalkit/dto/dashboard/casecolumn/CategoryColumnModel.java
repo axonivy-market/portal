@@ -14,6 +14,7 @@ import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivy.addon.portalkit.util.CaseTreeUtils;
 import ch.ivy.addon.portalkit.util.CategoryUtils;
+import ch.ivyteam.ivy.workflow.ICase;
 
 public class CategoryColumnModel extends CaseColumnModel {
 
@@ -36,6 +37,14 @@ public class CategoryColumnModel extends CaseColumnModel {
     this.styleClass = defaultIfEmpty(this.styleClass, "dashboard-tasks__category u-text-align-center");
     this.fieldStyleClass = defaultIfEmpty(this.fieldStyleClass, StringUtils.EMPTY);
     this.format = DashboardColumnFormat.CUSTOM;
+  }
+
+  @Override
+  public Object display(ICase caze) {
+    if (caze == null) {
+      return "";
+    }
+    return caze.getCategory().getName();
   }
 
   @JsonIgnore
