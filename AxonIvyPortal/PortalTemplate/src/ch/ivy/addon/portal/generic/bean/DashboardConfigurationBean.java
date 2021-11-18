@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -18,7 +19,7 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.PrimeFaces;
 
@@ -50,9 +51,12 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
   private static final String WIDGET_ID_PATTERN = "%s_%s";
   protected List<WidgetSample> samples;
   private String newWidgetHeader;
+  private boolean isEditWidget;
+  private String newWidgetId;
   private DashboardWidget deleteWidget;
   private ProcessDashboardWidget originalProcessWidget;
   private List<String> categories;
+  private Long portalGridsCurrentRow;
 
   @PostConstruct
   public void initConfigration() {
@@ -87,19 +91,7 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
 
   private WidgetSample customSample() {
     return new WidgetSample(translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/customWidget"), DashboardWidgetType.CUSTOM,
-        "", "");
-  }
-
-  private void backupCategories() {
-    this.categories = new ArrayList<>();
-    if (this.widget instanceof TaskDashboardWidget) {
-      TaskDashboardWidget taskWidget = (TaskDashboardWidget) this.widget;
-      this.categories = taskWidget.getDataModel().getCategories();
-      
-    } else if (this.widget instanceof CaseDashboardWidget) {
-      CaseDashboardWidget caseWidget = (CaseDashboardWidget) this.widget;
-      this.categories = caseWidget.getDataModel().getCategories();
-    }
+        "", translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/customWidgetIntroduction"));
   }
 
   public void restore() throws IOException, ParseException {
@@ -195,7 +187,8 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
   }
 
   public void saveWidget() throws JsonProcessingException, ParseException {
-    if (this.widget.getType() == DashboardWidgetType.PROCESS) {
+    switch (widget.getType()) {
+      case PROCESS:
       ProcessDashboardWidget processWidget = (ProcessDashboardWidget) this.widget;
       if (processWidget.getDisplayMode() == ProcessWidgetMode.FULL_MODE) {
         updateProcessWidget(processWidget, 4, 2);
@@ -214,33 +207,15 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
       } else if (processWidget.getDisplayMode() == ProcessWidgetMode.IMAGE_MODE) {
         updateProcessWidget(processWidget, 6, 2);
       }
-    } else if (this.widget.getType() == DashboardWidgetType.TASK) {
-      updateTaskWidgetAfterSave();
-      backupCategories();
-    }  else if (this.widget.getType() == DashboardWidgetType.CASE) {
-      updateCaseWidgetAfterSave();
-      backupCategories();
-    } else if (this.widget.getType() == DashboardWidgetType.CUSTOM) {
-      CustomDashboardWidget customWidget =  (CustomDashboardWidget) widget;
-
-      if (customWidget.getData().getType() == DashboardCustomWidgetType.PROCESS) {
-        for (CustomDashboardWidgetParam param : customWidget.getData().getParams()) {
-          switch (param.getType()) {
-            case BOOLEAN:
-              param.setValue(param.getValueBoolean().toString());
-              break;
-            case DATE:
-              param.setValue(Dates.format(param.getValueDate()));
-              break;
-            case USER:
-              param.setValue(Optional.ofNullable(param.getValueUser()).map(UserDTO::getName).orElse(null));
-              break;
-            default:
-              break;
-          }
-        }
-      }
+        break;
+      case CUSTOM:
+        CustomDashboardWidget customWidget =  (CustomDashboardWidget) widget;
+        loadCustomWidget(customWidget);
+      default:
+        break;
     }
+
+    updateWidgetPosition(widget);
     resetUserFilter();
     this.widget.buildPredefinedFilterData();
     if (CollectionUtils.isEmpty(this.getSelectedDashboard().getWidgets())) {
@@ -253,9 +228,77 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
       widgets.add(widget);
     }
     saveSelectedWidget();
-    this.widget = null;
+    newWidgetId = widget.getId();
+    widget = null;
+    isEditWidget = false;
     PrimeFaces.current().ajax().update("grid-stack");
   }
+
+  private void loadCustomWidget(CustomDashboardWidget customWidget) {
+    if (customWidget.getData().getType() == DashboardCustomWidgetType.PROCESS) {
+      for (CustomDashboardWidgetParam param : customWidget.getData().getParams()) {
+        switch (param.getType()) {
+          case BOOLEAN:
+            param.setValue(param.getValueBoolean().toString());
+            break;
+          case DATE:
+            param.setValue(Dates.format(param.getValueDate()));
+            break;
+          case USER:
+            param.setValue(Optional.ofNullable(param.getValueUser()).map(UserDTO::getName).orElse(null));
+            break;
+          default:
+            break;
+        }
+      }
+    }
+  }
+
+  public void updatePortalGridsCurrentRow() {
+    Map<String, String> requestParamMap = getRequestParameterMap();
+    var currentRowNumber = Optional.ofNullable(requestParamMap.get("portalGridsCurrentRow")).orElse(StringUtils.EMPTY);
+    if (currentRowNumber.isEmpty()) {
+      portalGridsCurrentRow = 0l;
+  }
+    else {
+      portalGridsCurrentRow = Long.valueOf(currentRowNumber);
+    }
+  }
+
+  private void updateWidgetPosition(DashboardWidget widget) {
+    if (isEditWidget) {
+      return;
+        }
+    DashboardWidget lastWidget = null;
+    for (var compareWidget : CollectionUtils.emptyIfNull(selectedDashboard.getWidgets())) {
+      if (lastWidget == null) {
+        lastWidget = compareWidget;
+        continue;
+      }
+      if (lastWidget.getLayout().getAxisY() < compareWidget.getLayout().getAxisY()
+          || (lastWidget.getLayout().getAxisY() == compareWidget.getLayout().getAxisY()
+              && lastWidget.getLayout().getAxisX() < compareWidget.getLayout().getAxisX())) {
+        lastWidget = compareWidget;
+      }
+    }
+    if (lastWidget != null && widget != null) {
+      var totalWidth = lastWidget.getLayout().getAxisX() + lastWidget.getLayout().getWidth() + widget.getLayout().getWidth();
+      if (totalWidth <= 12) {
+        widget.getLayout().setAxisX(lastWidget.getLayout().getWidth());
+        widget.getLayout().setAxisY(lastWidget.getLayout().getAxisY());
+  }
+      else {
+        widget.getLayout().setAxisX(0);
+        widget.getLayout().setAxisY(portalGridsCurrentRow.intValue());
+        }
+      }
+
+    if (StringUtils.isEmpty(widget.getLayout().getStyleClass())) {
+      widget.getLayout().setStyleClass(NEW_WIDGET_STYLE_CLASS);
+    } else {
+      widget.getLayout().setStyleClass(widget.getLayout().getStyleClass().concat(NEW_WIDGET_STYLE_CLASS));
+      }
+    }
 
   private void updateProcessWidget(ProcessDashboardWidget processWidget, int height, int width) {
     processWidget.getLayout().setHeight(height);
@@ -265,40 +308,6 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
     DashboardProcess process = processWidget.getProcess();
     processWidget.setName(process != null ? process.getName() : "");
     processWidget.setProcessPath(process != null ? process.getId() : "");
-  }
-
-  private void updateCaseWidgetAfterSave() {
-    CaseDashboardWidget caseWidget = (CaseDashboardWidget) this.widget;
-    List<String> userFilters = caseWidget.getDataModel().getUserFilterCategories();
-    if (CollectionUtils.isNotEmpty(userFilters)) {
-      List<String> userFiltersToRemove = new ArrayList<>();
-      for (String userFilter : userFilters) {
-        if (!caseWidget.getDataModel().getCategories().contains(userFilter)) {
-          userFiltersToRemove.add(userFilter);
-        }
-      }
-      caseWidget.getDataModel().getUserFilterCategories().removeAll(userFiltersToRemove);
-      if (CollectionUtils.isEmpty(caseWidget.getDataModel().getUserFilterCategories())) {
-        caseWidget.setUserDefinedFiltersCount(null);
-      }
-    }
-  }
-
-  private void updateTaskWidgetAfterSave() {
-    TaskDashboardWidget taskWidget = (TaskDashboardWidget) this.widget;
-    List<String> userFilters = taskWidget.getDataModel().getUserFilterCategories();
-    if (CollectionUtils.isNotEmpty(userFilters)) {
-      List<String> userFiltersToRemove = new ArrayList<>();
-      for (String userFilter : userFilters) {
-        if (!taskWidget.getDataModel().getCategories().contains(userFilter)) {
-          userFiltersToRemove.add(userFilter);
-        }
-      }
-      taskWidget.getDataModel().getUserFilterCategories().removeAll(userFiltersToRemove);
-      if (CollectionUtils.isEmpty(taskWidget.getDataModel().getUserFilterCategories())) {
-        taskWidget.setUserDefinedFiltersCount(null);
-      }
-    }
   }
 
   private void updateProcessesOfWidget(ProcessDashboardWidget widget) {
@@ -348,6 +357,15 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
     newWidgetHeader = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/editWidgetHeader");
   }
 
+  public void prepareEditWidget(DashboardWidget widget) {
+    if (widget instanceof ProcessDashboardWidget) {
+      backupProcessWidget(widget);
+    }
+    setWidget(widget);
+    newWidgetHeader = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/editWidgetHeader");
+    isEditWidget = true;
+  }
+
   private void backupProcessWidget(DashboardWidget widget) {
     originalProcessWidget = new ProcessDashboardWidget();
     originalProcessWidget.setName(widget.getName());
@@ -359,13 +377,8 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
   }
 
   public void restoreWidgetData() {
-    if (widget instanceof CaseDashboardWidget) {
-      ((CaseDashboardWidget)widget).getDataModel().setCategories(categories);
-    } else if (widget instanceof TaskDashboardWidget) {
-      ((TaskDashboardWidget)widget).getDataModel().setCategories(categories);
-    } else if (widget instanceof ProcessDashboardWidget) {
+    if (widget instanceof ProcessDashboardWidget) {
       restoreProcessWidget();
-      
     }
   }
 
@@ -403,5 +416,20 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
 
   public void setCategories(List<String> categories) {
     this.categories = categories;
+  }
+  public String getNewWidgetId() {
+    return newWidgetId;
+}
+
+  public void setNewWidgetId(String newWidgetId) {
+    this.newWidgetId = newWidgetId;
+  }
+
+  public boolean isEditWidget() {
+    return isEditWidget;
+  }
+
+  public void setEditWidget(boolean isEditWidget) {
+    this.isEditWidget = isEditWidget;
   }
 }

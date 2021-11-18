@@ -26,7 +26,7 @@
   <p:dialog id="select-icon-dialog" widgetVar="#{cc.clientId}-select-icon-dialog" styleClass="select-icon-dialog"
     width="52%" modal="true" appendTo="@(body)"
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/iconselection/iconSelectionDialogHeader')}" dynamic="true"
-    height="70vh" resizable="false" fitViewport="true" responsive="true">
+    height="77vh" resizable="false" fitViewport="true" responsive="true">
     <div class="search-icon-name-container">
       <p:inputText id="search-icon-name-field" onkeyup="searchIconByName(this)" 
         placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/iconselection/seachIconByNamePlaceHolder')}"
@@ -34,7 +34,7 @@
     </div>
     <h:form id="icons-selection-form">
       <p:fieldset legend="Streamline" id="streamline-icon">
-        <div id="icons" />
+        <h:panelGroup layout="block" id="icons" />
       </p:fieldset>
       <p:fieldset legend="Awesome" id="awesome-icon">
         <ui:repeat var="icon" value="#{masterDataBean.awesomeIcons}">
@@ -64,13 +64,12 @@
       var icons = Object.values(iconsStylesheet.rules).filter(rule => rule.selectorText?.startsWith(".si-"));
       icons.sort((a, b) => (a.selectorText > b.selectorText) ? 1 : -1);
     
-      var container = document.getElementById("icons");
+      var container = document.getElementById("#{cc.clientId}:icons-selection-form:icons");
       container.innerHTML = "";
       icons.forEach(icon => {
         var iconCode = icon.selectorText.substring(1, icon.selectorText.length - 8);
         var iconImage = document.createElement("i");
-        iconImage.className = "si " + iconCode;
-        
+        iconImage.className = "si " + iconCode + " si-lg";
         var iconTitle = document.createElement("p");
         iconTitle.appendChild(document.createTextNode("si " + iconCode));
         

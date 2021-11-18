@@ -1,15 +1,12 @@
 package ch.ivy.addon.portalkit.bean;
 
 import java.io.Serializable;
-import java.util.Locale;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import ch.ivy.addon.portalkit.service.DateTimeGlobalSettingService;
-import ch.ivy.addon.portalkit.util.Dates;
-import ch.ivyteam.ivy.environment.Ivy;
 
 @ManagedBean
 @SessionScoped
@@ -43,11 +40,11 @@ public class DateTimePatternBean implements Serializable {
     return dateTimePatternService.getGlobalSettingDateFilterPattern();
   }
 
-  public String getSimpleDatePattern() {
-    var userLocale = Ivy.session().getContentLocale().getLanguage();
-    if (userLocale != null && Locale.GERMAN.getLanguage().equalsIgnoreCase(userLocale)) {
-      return Dates.GERMAN_DATE_FORMAT;
-    }
-    return Dates.ENGLISH_DATE_FORMAT;
+  public String getConfiguredCalendarPattern() {
+    return dateTimePatternService.getGlobalSettingCalendarPattern();
+  }
+
+  public String getConfiguredDateWithoutTimePattern() {
+    return dateTimePatternService.getDateWithoutTimePattern();
   }
 }

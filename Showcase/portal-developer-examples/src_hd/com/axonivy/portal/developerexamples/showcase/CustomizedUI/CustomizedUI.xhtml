@@ -21,7 +21,7 @@
 					<div class="ui-g-3">
 						<p:outputLabel for="header-date" value="Date" styleClass="MarRight10"/>
 						<p:calendar id="header-date" value=""
-							pattern="#{dateTimePatternBean.datePattern}" showOn="button"
+							pattern="#{dateTimePatternBean.configuredCalendarPattern}" showOn="button"
 							styleClass="ui-corner-all header-inputfield" />
 					</div>
 					<div class="ui-g-2 ui-md-3">
@@ -110,7 +110,7 @@
 										</div>
 										<div class="Wid74">
 											<p:calendar id="customer-since"
-												pattern="#{dateTimePatternBean.datePattern}" showOn="button"
+												pattern="#{dateTimePatternBean.configuredCalendarPattern}" showOn="button"
 												styleClass="ui-corner-all customer-since" />
 										</div>
 									</div>
