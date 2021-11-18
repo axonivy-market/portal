@@ -30,6 +30,8 @@ function loadGrid() {
         }]);
       }
     });
+    grid.on('resize resizestop', function(event, element) {
+      setupImageProcessWidgetDescription($("[gs-id='" + elementId + "']").find('.js-process-description'));
   });
   
   // Disable all pointer events of iframes when edit widgets
