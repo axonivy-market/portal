@@ -3,152 +3,39 @@
   xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
   xmlns:pe="http://primefaces.org/ui/extensions" xmlns:jsf="http://xmlns.jcp.org/jsf">
 
-<f:event listener="#{widget.buildCategoryTree}" type="preRenderComponent" />
-
 <h:panelGroup id="filter-container" layout="block" styleClass="widget-filter-panel">
   <ui:repeat var="field" value="#{widget.filterableColumns}">
     <div class="ui-g">
-      <h:panelGroup rendered="#{field.field eq 'state'}">
-        <div class="ui-g-4 ui-sm-12 u-no-padding-bottom-sm-down">
-          <h:outputLabel value="#{field.headerText}" />
-        </div>
-        <div class="ui-g-8 ui-sm-12 ui-fluid">
-          <p:selectCheckboxMenu id="states" value="#{field.userFilterStates}" multiple="true" filter="true"
-            filterMatchMode="contains" panelStyleClass="case-configuration__selectcheckboxmenu-panel" styleClass="case-configuration__selectcheckboxmenu">
-            <f:selectItems value="#{field.userFilterStateOptions}" var="state" itemValue="#{state}"
-              itemLabel="#{dashboardCaseFilterBean.getUserFriendlyCaseState(state)}" />
-          </p:selectCheckboxMenu>
-        </div>
-      </h:panelGroup>
+      <ic:ch.ivy.addon.portalkit.component.dashboard.casewidget.StateFilterColumn field="#{field}"
+        stateOptions="#{field.userFilterStateOptions}"
+        selectedStates="#{field.userFilterStates}"/>
 
-      <h:panelGroup rendered="#{field.field eq 'creator'}">
-        <div class="ui-g-4 ui-sm-12 u-no-padding-bottom-sm-down">
-          <h:outputLabel value="#{field.headerText}" />
-        </div>
-        <div class="ui-g-8 ui-sm-12 ui-fluid">
-          <p:autoComplete id="creators" scrollHeight="210" dropdown="true" size="35"
-            completeMethod="#{field.completeUserFilterCreators}" value="#{field.userFilterCreators}"
-            var="creator" itemValue="#{creator}" itemLabel="#{creator.briefDisplayNameWithState}"
-            converter="pojoConverter" cache="true" maxResults="100" multiple="true"
-            moreText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..." dynamic="true"
-            styleClass="case-configuration__creators" forceSelection="true">
-            <p:column>
-              <i class="fa #{creator.isUser() ? 'fa-user' : 'fa-users'} u-mar-right-5" />
-              <h:outputText value="#{dashboardCaseFilterBean.formatName(creator)}" />
-            </p:column>
-          </p:autoComplete>
-        </div>
-      </h:panelGroup>
+      <ic:ch.ivy.addon.portalkit.component.dashboard.casewidget.CreatorFilterColumn field="#{field}"
+        creatorCompleteMethod="#{field.completeUserFilterCreators}"
+        selectedCreators="#{field.userFilterCreators}"/>
 
-      <h:panelGroup rendered="#{field.field eq 'owner'}">
-        <div class="ui-g-4 ui-sm-12 u-no-padding-bottom-sm-down">
-          <h:outputLabel value="#{field.headerText}" />
-        </div>
-        <div class="ui-g-8 ui-sm-12 ui-fluid">
-          <p:autoComplete id="owners" scrollHeight="210" dropdown="true" size="35"
-            completeMethod="#{field.completeUserFilterOwners}" value="#{field.userFilterOwners}"
-            var="owner" itemValue="#{owner}" itemLabel="#{owner.briefDisplayNameWithState}"
-            converter="pojoConverter" cache="true" maxResults="100" multiple="true"
-            moreText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..." dynamic="true"
-            styleClass="case-configuration__owners" forceSelection="true">
-            <p:column>
-              <i class="fa #{owner.isUser() ? 'fa-user' : 'fa-users'} u-mar-right-5" />
-              <h:outputText value="#{dashboardCaseFilterBean.formatName(owner)}" />
-            </p:column>
-          </p:autoComplete>
-        </div>
-      </h:panelGroup>
+      <ic:ch.ivy.addon.portalkit.component.dashboard.casewidget.OwnerFilterColumn field="#{field}"
+        selectedOwners="#{field.userFilterOwners}"
+        ownerCompleteMethod="#{field.completeUserFilterOwners}"/>
 
-      <h:panelGroup rendered="#{field.format eq 'STRING' or field.format eq 'TEXT'}">
-        <div class="ui-g-4 ui-sm-12 u-no-padding-bottom-sm-down">
-          <h:outputLabel value="#{field.headerText}" />
-        </div>
-        <div class="ui-g-8 ui-sm-12 ui-fluid">
-          <p:inputText id="text-field-input" styleClass="case-configuration__input-text" value="#{field.userFilter}"
-            rendered="#{field.filterType eq 'LIKE'}" />
+      <ic:ch.ivy.addon.portalkit.component.dashboard.widget.TextFilterColumn field="#{field}"
+        inputTextValue="#{field.userFilter}"
+        selectedTexts="#{field.userFilterList}" selectOptions="#{field.userFilterListOptions}"/>
 
-          <p:selectCheckboxMenu id="text-field-selection" value="#{field.userFilterList}" multiple="true" filter="true"
-            filterMatchMode="contains" panelStyleClass="case-configuration__selectcheckboxmenu-panel" styleClass="case-configuration__selectcheckboxmenu"
-            rendered="#{field.filterType eq 'SELECTION'}">
-            <f:selectItems value="#{field.userFilterListOptions}" />
-          </p:selectCheckboxMenu>
-        </div>
-      </h:panelGroup>
+      <ic:ch.ivy.addon.portalkit.component.dashboard.widget.NumberFilterColumn field="#{field}"
+        filterTo="#{field.userFilterTo}" maxFilterTo="#{field.filterTo}"
+        filterFrom="#{field.userFilterFrom}" minFilterForm="#{field.filterFrom}"/>
 
-      <h:panelGroup rendered="#{field.format eq 'NUMBER'}">
-        <div class="ui-g-4 ui-sm-12 u-no-padding-bottom-sm-down">
-          <h:outputLabel value="#{field.headerText} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')}" />
-        </div>
-        <div class="ui-g-8 ui-sm-12 ui-fluid">
-          <p:inputNumber id="from-number-field-input" styleClass="case-configuration__input-text" value="#{field.userFilterFrom}"
-            inputStyleClass="case-configuration__input-number" minValue="#{empty field.filterFrom ? '-999999999.99' : field.filterFrom}">
-            <f:convertNumber pattern="#{field.pattern}" />
-          </p:inputNumber>
-        </div>
+      <ic:ch.ivy.addon.portalkit.component.dashboard.widget.TimestampFilterColumn field="#{field}"
+        filterTo="#{field.userDateFilterTo}" maxFilterTo="#{field.dateFilterTo}"
+        filterFrom="#{field.userDateFilterFrom}" minFilterFrom="#{field.dateFilterFrom}"/>
 
-        <div class="ui-g-4 ui-sm-12 u-no-padding-bottom-sm-down">
-          <h:outputLabel value="#{field.headerText} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')}" />
-        </div>
-        <div class="ui-g-8 ui-sm-12 ui-fluid">
-          <p:inputNumber id="to-number-field-input" styleClass="case-configuration__input-text" value="#{field.userFilterTo}"
-            inputStyleClass="case-configuration__input-number" maxValue="#{empty field.filterTo ? '999999999.99' : field.filterTo}">
-            <f:convertNumber pattern="#{field.pattern}" />
-          </p:inputNumber>
-        </div>
-      </h:panelGroup>
-
-      <h:panelGroup rendered="#{field.format eq 'TIMESTAMP'}">
-        <div class="ui-g-4 ui-sm-12 u-no-padding-bottom-sm-down">
-          <h:outputLabel value="#{field.headerText} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')}" />
-        </div>
-        <div class="ui-g-8 ui-sm-12 ui-fluid">
-          <p:calendar id="from-date-field-input" showOn="button" styleClass="case-configuration__calendar"
-            mindate="#{field.dateFilterFrom}" value="#{field.userDateFilterFrom}"
-            pattern="#{dateTimePatternBean.simpleDatePattern}" locale="#{localeBean.locale}" />
-        </div>
-
-        <div class="ui-g-4 ui-sm-12 u-no-padding-bottom-sm-down">
-          <h:outputLabel value="#{field.headerText} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')}" />
-        </div>
-        <div class="ui-g-8 ui-sm-12 ui-fluid">
-          <p:calendar id="to-date-field-input" showOn="button" styleClass="case-configuration__calendar"
-            maxdate="#{field.dateFilterTo}" value="#{field.userDateFilterTo}"
-            pattern="#{dateTimePatternBean.simpleDatePattern}" locale="#{localeBean.locale}" />
-        </div>
-      </h:panelGroup>
+      <ic:ch.ivy.addon.portalkit.component.dashboard.widget.CategoryFilterColumn field="#{field}"
+        displaySelectedCategories="#{field.userFriendlyCategories}"
+        categoryNodeSelection="#{field.userSelectionCategoryNodes}" categoryTree="#{field.userCategoryTree}"
+        containerStyleClass="case-configuration__category" inputCategoryStyleClass="case-configuration__input-text"
+        overlayCategoryStyleClass="case-configuration__category-panel" showUnselectableCheckbox="true"/>
     </div>
   </ui:repeat>
 </h:panelGroup>
-
-<div class="ui-g">
-  <div class="ui-g-4 ui-sm-12 u-no-padding-bottom-sm-down">
-    <h:outputLabel for="user-filter-category" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/category')}" />
-  </div>
-  <div class="ui-g-8 ui-sm-12 ui-fluid">
-    <h:panelGroup id="user-filter-category-container" styleClass="case-configuration__category">
-      <p:inputText id="user-filter-category" styleClass="case-configuration__input-text"
-        value="#{widget.getUserFilterDisplayCategories()}" readonly="true" />
-      <p:overlayPanel id="user-filter-category-panel" for="user-filter-category" appendTo="@(#grid-stack)"
-        styleClass="case-configuration__category-panel" dynamic="true"
-        onHide="$(this.targetElement).parents('case-configuration__category').find('.portal-cancel-button').click();">
-        <p:tree id="case-category-filter-tree" value="#{widget.categoryTree}" var="node" selectionMode="checkbox" styleClass="category-filter-tree"
-          selection="#{widget.categoryNodes}" filterMatchMode="contains" filterBy="#{node}"
-          showUnselectableCheckbox="true">
-          <p:treeNode>
-            <h:outputText value="#{node.value}" />
-          </p:treeNode>
-        </p:tree>
-
-        <h:panelGroup id="category-panel-footer" layout="block" styleClass="case-configuration__category-panel-footer u-text-align-right MarTop10">
-          <p:commandLink id="cancel-command" styleClass="portal-cancel-button u-mar-right-10" process="@this"
-            global="false" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-            update="user-filter-category-container" />
-
-          <p:commandButton id="update-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
-            process="user-filter-category-panel" partialSubmit="true" update="user-filter-category-container" styleClass="apply-filter-button"/>
-        </h:panelGroup>
-      </p:overlayPanel>
-    </h:panelGroup>
-  </div>
-</div>
 </html>

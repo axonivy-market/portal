@@ -30,10 +30,9 @@
             <p:message id="substitute-msg" for="substitute" />
   
             <h:panelGroup class="md-inputfield MarTop5">
-              <p:calendar id="from" value="" locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.datePattern}"
+              <p:calendar id="from" value="" locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.configuredCalendarPattern}"
                 required="true"
                 requiredMessage="#{ivy.cms.co('/Dialogs/ch/ivyteam/ivy/project/portal/examples/testdata/LeaveRequestForm/IsRequired')}">
-                <f:convertDateTime pattern="#{dateTimePatternBean.datePattern}" locale="#{localeBean.locale}"/>
               </p:calendar>
               <p:outputLabel for="from"
                 value="#{ivy.cms.co('/Dialogs/ch/ivyteam/ivy/project/portal/examples/testdata/LeaveRequestForm/From')}" />
@@ -41,11 +40,9 @@
             <p:message id="from-msg" for="from" />
   
             <h:panelGroup class="md-inputfield MarTop5">
-              <p:calendar id="to" value="" locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.datePattern}"
+              <p:calendar id="to" value="" locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.configuredCalendarPattern}"
                 required="true"
-                requiredMessage="#{ivy.cms.co('/Dialogs/ch/ivyteam/ivy/project/portal/examples/testdata/LeaveRequestForm/IsRequired')}">
-                <f:convertDateTime pattern="#{dateTimePatternBean.datePattern}" locale="#{localeBean.locale}"/>
-              </p:calendar>
+                requiredMessage="#{ivy.cms.co('/Dialogs/ch/ivyteam/ivy/project/portal/examples/testdata/LeaveRequestForm/IsRequired')}" />
               <p:outputLabel for="to"
                 value="#{ivy.cms.co('/Dialogs/ch/ivyteam/ivy/project/portal/examples/testdata/LeaveRequestForm/To')}" />
             </h:panelGroup>

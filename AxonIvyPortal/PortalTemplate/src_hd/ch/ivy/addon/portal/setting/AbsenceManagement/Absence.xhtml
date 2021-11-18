@@ -50,7 +50,7 @@
                 locale="#{localeBean.locale}"
                 showOn="button"
                 converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}"
-                pattern="#{dateTimePatternBean.datePattern}" required="true"
+                pattern="#{dateTimePatternBean.configuredDateWithoutTimePattern}" required="true"
                 requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/dateRequired')}">
                 <p:ajax event="dateSelect" listener="#{logic.dateChange}" update="#{p:component('absence-messages')} #{p:component('save-absence')}"/>
               </p:calendar>
@@ -66,7 +66,7 @@
                 showOn="button"
                 locale="#{localeBean.locale}"
                 converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}"
-                pattern="#{dateTimePatternBean.datePattern}"
+                pattern="#{dateTimePatternBean.configuredDateWithoutTimePattern}"
                 required="true"
                 requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/dateRequired')}">
                 <p:ajax event="dateSelect" listener="#{logic.dateChange}" update="#{p:component('absence-messages')} #{p:component('save-absence')}" />

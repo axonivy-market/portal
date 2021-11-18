@@ -3,33 +3,85 @@
     "title": "cms:/ch.ivy.addon.portalkit.ui.jsf/common/dashboard",
     "widgets": [
       {
-        "type": "custom",
-        "id": "custom-widget",
-        "name": "Investment List",
-		"layout": {
-          "x": 0, "y": 0, "w": 10, "h": 6
+        "type": "task",
+        "id": "task_1",
+        "layout": {
+          "x": 0, "y": 0, "w": 10, "h": 8
         },
-		"data": {
-		  "processStart": "Start Processes/DashboardCustomWidgetExample/investmentList.ivp",
-		  "type": "process",
-		  "params": [
-		    {
-		      "type": "user",
-			  "name": "customer",
-			  "value": "demo"
-			},
-			{
-			  "type": "date",
-			  "name": "period",
-			  "value": "10/25/2021"
-			},
-			{
-			  "type": "string",
-			  "name": "note",
-			  "value": "a short note"
-			}
-		  ]
-		}
+        "sortField": "name",
+        "columns": [
+          {
+            "field": "start"
+          },
+          {
+            "field": "priority"
+          },
+          {
+            "field": "id"
+          },
+          {
+            "field": "name"
+          },
+          {
+            "field": "description"
+          },
+          {
+            "field": "activator"
+          },
+          {
+            "field": "state"
+          },
+          {
+            "field": "startTimestamp"
+          },
+          {
+            "field": "expiryTimestamp"
+          },
+          {
+            "field": "category"
+          }
+        ]
+      },
+      {
+        "type": "case",
+        "id": "case_1",
+        "layout": {
+          "x": 0, "y": 8, "w": 10, "h": 8
+        },
+        "sortField": "name",
+        "columns": [
+          {
+            "field": "id"
+          },
+          {
+            "field": "name"
+          },
+          {
+            "field": "description"
+          },
+          {
+            "field": "state"
+          },
+          {
+            "field": "creator"
+          },
+          {
+            "field": "startTimestamp"
+          },
+          {
+            "field": "endTimestamp"
+          },
+          {
+            "field": "category"
+          }
+        ]
+      },
+      {
+        "type": "process",
+        "id": "process_1",
+        "layout": {
+          "x": 10, "y": 0, "w": 2, "h": 4
+        }
       }
     ]
   }

@@ -27,17 +27,13 @@
 
               <h:panelGroup class="md-inputfield MarTop20">
                 <p:calendar id="from" value="#{data.leaveRequestData.from}" locale="#{localeBean.locale}"
-                  pattern="#{dateTimePatternBean.datePattern}" disabled="true">
-                  <f:convertDateTime pattern="#{dateTimePatternBean.datePattern}" locale="#{localeBean.locale}"/>
-                </p:calendar>
+                  pattern="#{dateTimePatternBean.configuredCalendarPattern}" disabled="true" />
                 <p:outputLabel for="from" value="#{ivy.cms.co('/Labels/LeaveRequest/from')}" />
               </h:panelGroup>
 
               <h:panelGroup class="md-inputfield MarTop20">
                 <p:calendar id="to" value="#{data.leaveRequestData.to}" locale="#{localeBean.locale}"
-                  pattern="#{dateTimePatternBean.datePattern}" disabled="true">
-                  <f:convertDateTime pattern="#{dateTimePatternBean.datePattern}" locale="#{localeBean.locale}"/>
-                </p:calendar>
+                  pattern="#{dateTimePatternBean.configuredCalendarPattern}" disabled="true" />
                 <p:outputLabel for="to" value="#{ivy.cms.co('/Labels/LeaveRequest/to')} " />
               </h:panelGroup>
 

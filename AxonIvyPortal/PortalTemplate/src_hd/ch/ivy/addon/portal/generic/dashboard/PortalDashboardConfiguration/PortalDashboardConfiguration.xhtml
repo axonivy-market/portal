@@ -27,6 +27,15 @@
         onclick="PF('new-widget-dialog').show()" styleClass="u-hidden-md-down" />
     </ui:define>
 
+    <ui:define name="additionalRemoteCommand">
+      <p:remoteCommand name="addNewDashboardWidgetCommand" actionListener="#{dashboardConfigurationBean.updatePortalGridsCurrentRow()}"
+        global="false" process="@this" partialSubmit="true"/>
+
+      <p:remoteCommand id="load-grid-after-added-new-widget-cmd" name="loadGridAfterAddedNewWidget" onstart="loadGrid();"
+        global="false" process="@this" partialSubmit="true"
+        oncomplete="if (#{!dashboardConfigurationBean.editWidget}) {scrollToWidget('#{dashboardConfigurationBean.newWidgetId}');}" />
+    </ui:define>
+
     <ui:define name="dashboardContent">
       <ui:include src="PortalDashboardAddNewWidgets.xhtml" />
 
