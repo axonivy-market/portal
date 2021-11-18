@@ -82,6 +82,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -1477,23 +1478,40 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     if (CollectionUtils.isEmpty(newList)) {
       return targetList;
     }
+    List<StatisticChart> distinctChart = new ArrayList<>(targetList).stream().filter(Objects::nonNull).collect(Collectors.toList());
+    List<StatisticChart> verifyChartList = new ArrayList<>(newList).stream().filter(Objects::nonNull).collect(Collectors.toList());
+    List<StatisticChart> groupedCharts = Stream.of(distinctChart, verifyChartList).flatMap(List::stream)
+          .filter(Objects::nonNull).collect(Collectors.toList());
+    List<DisplayName> distinctChartNameList = groupedCharts.stream()
+          .map(StatisticChart::getNames)
+          .flatMap(List::stream).filter(Objects::nonNull)
+          .distinct().collect(Collectors.toList());
 
-    List<DisplayName> distinctChartNameList = Stream.of(targetList, newList).flatMap(List::stream)
-        .map(StatisticChart::getNames).flatMap(List::stream).distinct().collect(Collectors.toList());
-
-    List<StatisticChart> distinctChart = new ArrayList<StatisticChart>(targetList);
     if (CollectionUtils.isNotEmpty(distinctChartNameList)) {
-      for(StatisticChart newChart : newList) {
-        if (newChart.getNames().stream()
-            .filter(name -> distinctChartNameList.stream().filter(distinctName -> equalsDisplayName(name.getValue(), name.getLocale().toLanguageTag(), distinctName)).findFirst().isPresent())
-            .findFirst().isPresent()) {
+      for (StatisticChart chart : verifyChartList) {
+        if (isDuplicateChartNameInLocale(distinctChartNameList, chart)) {
           continue;
         }
-        distinctChart.add(newChart);
+        distinctChart.add(chart);
       }
     } else {
-      distinctChart.addAll(newList);
+      distinctChart.addAll(verifyChartList);
     }
     return distinctChart;
+  }
+
+  private boolean isDuplicateChartNameInLocale(List<DisplayName> distinctChartNameList, StatisticChart chart) {
+    if (CollectionUtils.isEmpty(chart.getNames())) {
+      return false;
+    }
+    return chart.getNames().stream()
+        .filter(filterChartNameByLocale(distinctChartNameList))
+        .findFirst().isPresent();
+  }
+
+  private Predicate<? super DisplayName> filterChartNameByLocale(List<DisplayName> chartNames) {
+    return displayName -> chartNames.stream()
+        .filter(distinctName -> equalsDisplayName(displayName.getValue(), displayName.getLocale().toLanguageTag(), distinctName))
+        .findFirst().isPresent();
   }
 }
