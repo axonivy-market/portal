@@ -73,12 +73,10 @@ public class WidgetFilterService extends JsonConfigurationService<WidgetFilterMo
       case TASK:
         var taskWidget = (TaskDashboardWidget) widget;
         filter.addFilterableColumns(taskWidget.getFilterableColumns());
-        filter.setUserFilterCategories(taskWidget.getUserFilterCategories());
         break;
       case CASE:
         var caseWidget = (CaseDashboardWidget) widget;
         filter.addFilterableColumns(caseWidget.getFilterableColumns());
-        filter.setUserFilterCategories(caseWidget.getUserFilterCategories());
         break;
       case PROCESS:
         var processWidget = (ProcessDashboardWidget) widget;
@@ -157,9 +155,6 @@ public class WidgetFilterService extends JsonConfigurationService<WidgetFilterMo
             widgetColumn.resetUserFilter();
             mergeUserFilterInput(userFilterOptions, widgetColumn);
           }
-          taskWidget.setUserFilterCategories(userFilterOptions.getUserFilterCategories());
-        } else {
-          taskWidget.setUserFilterCategories(new ArrayList<>());
         }
         taskWidget.setUserDefinedFiltersCount(TaskDashboardWidget.countDefinedUserFilter(taskWidget));
 
@@ -171,9 +166,6 @@ public class WidgetFilterService extends JsonConfigurationService<WidgetFilterMo
             widgetColumn.resetUserFilter();
             mergeUserFilterInput(userFilterOptions, widgetColumn);
           }
-          caseWidget.setUserFilterCategories(userFilterOptions.getUserFilterCategories());
-        } else {
-          caseWidget.setUserFilterCategories(new ArrayList<>());
         }
         caseWidget.setUserDefinedFiltersCount(CaseDashboardWidget.countDefinedUserFilter(caseWidget));
 
@@ -212,8 +204,7 @@ public class WidgetFilterService extends JsonConfigurationService<WidgetFilterMo
     widget.getUserFilterCollection().setSelectedWidgetFilters(newUserSelectedFilterOptions);
   }
 
-  public void buildFilterOptions(DashboardWidget widget, List<ColumnModel> filterableColumns,
-      List<String> userFilterCategories) throws ParseException {
+  public void buildFilterOptions(DashboardWidget widget, List<ColumnModel> filterableColumns) throws ParseException {
     var userCategories = new HashSet<String>();
     for (var widgetColumn : filterableColumns) {
       widgetColumn.resetUserFilter();
@@ -250,7 +241,6 @@ public class WidgetFilterService extends JsonConfigurationService<WidgetFilterMo
       widgetColumn.setUserFilterFrom(formatDateToString(filterFrom));
       widgetColumn.setUserFilterTo(formatDateToString(filterTo));
     }
-    userFilterCategories.addAll(new ArrayList<>(userCategories));
   }
 
   public void consolidateSelectedFilters(DashboardWidget widget) {
@@ -263,18 +253,16 @@ public class WidgetFilterService extends JsonConfigurationService<WidgetFilterMo
         List<ColumnModel> filterableColumns = new ArrayList<>();
         if (DashboardWidgetType.CASE == widget.getType()) {
           filterableColumns = ((CaseDashboardWidget) widget).getFilterableColumns();
-          userCategories = ((CaseDashboardWidget) widget).getUserFilterCategories();
         } else {
           filterableColumns = ((TaskDashboardWidget) widget).getFilterableColumns();
-          userCategories = ((TaskDashboardWidget) widget).getUserFilterCategories();
         }
 
         for (var column : filterableColumns) {
           if (filterOptionMap.containsKey(column.getField())) {
             var columnData = filterOptionMap.get(column.getField());
             if (isNotEqualStringFilter(column.getUserFilter(), columnData.getUserFilter())
-                || isNotEqualStringFilter(column.getUserFilterFrom(), columnData.getUserFilterFrom())
-                || isNotEqualStringFilter(column.getUserFilterTo(), columnData.getUserFilterTo())
+                || !StringUtils.equals(column.getUserFilterFrom(), columnData.getUserFilterFrom())
+                || !StringUtils.equals(column.getUserFilterTo(), columnData.getUserFilterTo())
                 || isNotEqualListFilterSelection(column.getUserFilterList(), columnData.getUserFilterList())) {
               isFilterModified = true;
               break;

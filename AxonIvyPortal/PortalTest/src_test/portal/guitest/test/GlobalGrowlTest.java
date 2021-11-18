@@ -48,7 +48,7 @@ public class GlobalGrowlTest extends BaseTest {
     redirectToRelativeLink(createTestingTasksUrl);
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
-    String today =  LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_PATTERN));
+    String today =  LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN));
     taskTemplatePage.inputFields("Employee", today, today, "Representation");
     HomePage homePage = taskTemplatePage.clickSubmitButton();
     assertGrowlMessage(homePage, FINISH_MESSAGE_WITH_DETAILS);
@@ -58,7 +58,7 @@ public class GlobalGrowlTest extends BaseTest {
   public void testDisplayDefaultGrowlAfterFinishFirstTask() {
     redirectToRelativeLink(SKIP_TASK_LIST_URL);
     TaskTemplatePage taskTemplatePage = new TaskTemplatePage();
-    String today =  LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_PATTERN));
+    String today =  LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN));
     taskTemplatePage.inputFields("Employee", today, today, "Representation");
     HomePage homePage = taskTemplatePage.clickSubmitButton();
     assertGrowlMessage(homePage, FINISH_MESSAGE_WITH_DETAILS);

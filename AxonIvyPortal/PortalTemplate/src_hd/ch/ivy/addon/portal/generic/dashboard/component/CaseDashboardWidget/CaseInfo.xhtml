@@ -75,7 +75,7 @@
 
       <h:panelGroup rendered="#{field.field eq 'owner' and not empty field.owners}">
         <div class="ui-g-4">
-          <h:outputLabel value="#{field.headerText}" />
+          <h:outputText value="#{field.headerText}" />
         </div>
         <div class="ui-g-8">
           <ui:repeat var="owner" value="#{field.owners}">
@@ -123,7 +123,7 @@
         </div>
         <div class="ui-g-8">
           <p:calendar id="from-date-field-input" styleClass="case-configuration__calendar" value="#{field.dateFilterFrom}"
-            pattern="#{dateTimePatternBean.datePattern}" locale="#{localeBean.locale}" disabled="true" />
+            pattern="#{dateTimePatternBean.configuredCalendarPattern}" locale="#{localeBean.locale}" disabled="true" />
         </div>
 
         <div class="ui-g-4">
@@ -131,7 +131,7 @@
         </div>
         <div class="ui-g-8">
           <p:calendar id="to-date-field-input" styleClass="case-configuration__calendar" value="#{field.dateFilterTo}"
-            pattern="#{dateTimePatternBean.datePattern}" locale="#{localeBean.locale}" disabled="true" />
+            pattern="#{dateTimePatternBean.configuredCalendarPattern}" locale="#{localeBean.locale}" disabled="true" />
         </div>
       </h:panelGroup>
     </ui:repeat>
