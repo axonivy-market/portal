@@ -46,7 +46,7 @@
           </span>
         </div>
 
-          <h:form prependId="false">
+          <h:form id="dashboard-remote-command-form" prependId="false">
             <p:remoteCommand name="saveConfigurationCommand" actionListener="#{managedBean.save()}" global="false" />
             <p:remoteCommand name="updateDashboardWidget" update="grid-stack" oncomplete="loadGrid(); return false;" />
             <p:remoteCommand name="saveWidgetState" actionListener="#{managedBean.saveSelectedWidget()}" global="false"/>
@@ -54,6 +54,8 @@
               global="false" process="@this" immediate="true" partialSubmit="true"
               update="delete-saved-filter-form:quick-filter-table"
               oncomplete="PF('quick-filter-table').clearFilters(); PF('manage-filter-dialog').initPosition();"/>
+
+            <ui:insert name="additionalRemoteCommand" />
           </h:form>
 
         <div id="dashboard-body" class="dashboard__body ui-g-12 js-dashboard__body">
@@ -69,7 +71,7 @@
                   gs-autoPosition="#{widget.autoPosition}"
                   gs-no-resize="#{managedBean.isReadOnlyMode}"
                   gs-no-move="#{managedBean.isReadOnlyMode}">
-                  <div class="grid-stack-item-content card dashboard-card dashboard__widget">
+                  <div class="grid-stack-item-content card dashboard-card dashboard__widget #{widget.layout.styleClass} js-dashboard-widget-#{widget.id}">
                     <!-- Task widget -->
                     <c:if test="#{widget.type eq 'TASK'}">
                       <ic:ch.ivy.addon.portal.generic.dashboard.component.TaskDashboardWidget widget="#{widget}"
@@ -87,6 +89,14 @@
                     </c:if>
 
                     <!-- Process widget -->
+                    <c:if test="#{widget.type eq 'PROCESS'}">
+                      <ic:ch.ivy.addon.portal.generic.dashboard.component.ProcessDashboardWidget widget="#{widget}"
+                        isReadOnlyMode="#{managedBean.isReadOnlyMode}"
+                        index="#{status.index}"
+                        id="process-#{widget.id}" />
+                    </c:if>
+
+                    <!-- Custom widget -->
                     <c:if test="#{widget.type eq 'CUSTOM'}">
                       <ic:ch.ivy.addon.portal.generic.dashboard.component.CustomDashboardWidget widget="#{widget}"
                         isReadOnlyMode="#{managedBean.isReadOnlyMode}"
@@ -118,13 +128,13 @@
                 <p:message for="save-filter-name"/>
               </div>
               <div class="ui-g-12 MarTop10 TexAlRight">
-                <p:commandLink href="#" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+                <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
                   oncomplete="PF('save-widget-filter-dialog').hide();" styleClass="u-mar-right-10"
                   process="@this" update="save-filter-form" resetValues="true"
                   partialSubmit="true" immediate="true"/>
                 <p:commandButton id="save-widget-filter-button"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
-                  actionListener="#{widgetFilterHelperBean.saveFilter()}"
+                  actionListener="#{widgetFilterHelperBean.saveNewWidgetFilter()}"
                   icon="#{visibilityBean.generateButtonIcon('si si-floppy-disk')}"
                   oncomplete="if (!args.validationFailed) { #{widgetFilterHelperBean.loadWidgetFilters}; PF('save-widget-filter-dialog').hide();}"
                   update="save-filter-form"

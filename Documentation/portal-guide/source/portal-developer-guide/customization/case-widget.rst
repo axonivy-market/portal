@@ -240,7 +240,7 @@ You can refer to ``portal-developer-examples`` project for examples
    part. <customization-responsive-css>`
 
    .. code-block:: html
-      :emphasize-lines: 4,10,35,40
+      :emphasize-lines: 4,10,35,41
 
             <!-- New field -->
             <ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="customVarCharField1-column-header"
@@ -276,12 +276,14 @@ You can refer to ``portal-developer-examples`` project for examples
 
             <!-- New field -->
             <h:panelGroup styleClass="customized-case-header-column js-hidden-when-expand-menu 
-            u-hidden-lg-down">
+            u-hidden-lg-down"
+            rendered="#{caseView.dataModel.isSelectedColumn('customVarCharField1')}">
             <h:outputText value="#{case.customFields().stringField('CustomVarCharField1').getOrNull()}"
             styleClass="case-header-default-cell customized-case-header-column" />
             </h:panelGroup>
             <h:panelGroup styleClass="customized-case-header-column js-hidden-when-expand-menu 
-            u-hidden-lg-down">
+            u-hidden-lg-down"
+            rendered="#{caseView.dataModel.isSelectedColumn('customTimestampField1')}">
             <h:outputText value="#{case.customFields().timestampField('CustomTimestampField1').getOrNull()}"
             styleClass="case-header-default-cell">
             <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
@@ -298,7 +300,7 @@ You can refer to ``portal-developer-examples`` project for examples
    styleClass param of caseListHeader and caseHeader.
 
    .. code-block:: html
-      :emphasize-lines: 5,11,35,40
+      :emphasize-lines: 5,11,35,41
 
             <!-- New field -->
             <ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="customVarCharField1-column-header"
@@ -334,12 +336,14 @@ You can refer to ``portal-developer-examples`` project for examples
 
             <!-- New field -->
             <h:panelGroup styleClass="customized-case-header-column u-hidden-lg-down
-            js-hidden-when-expand-menu ">
+            js-hidden-when-expand-menu "
+            rendered="#{caseView.dataModel.isSelectedColumn('customVarCharField1')}">
             <h:outputText value="#{case.customFields().stringField('CustomVarCharField1').getOrNull()}"
             styleClass="case-header-default-cell customized-case-header-column" />
             </h:panelGroup>
             <h:panelGroup styleClass="customized-case-header-column u-hidden-lg-down 
-            js-hidden-when-expand-menu ">
+            js-hidden-when-expand-menu "
+            rendered="#{caseView.dataModel.isSelectedColumn('customTimestampField1')}">
             <h:outputText value="#{case.customFields().timestampField('CustomTimestampField1').getOrNull()}"
             styleClass="case-header-default-cell">
             <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />

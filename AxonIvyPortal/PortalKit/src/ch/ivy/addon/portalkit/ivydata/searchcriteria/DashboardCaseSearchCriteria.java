@@ -26,8 +26,6 @@ import ch.ivyteam.ivy.workflow.query.CaseQuery.OrderByColumnQuery;
 public class DashboardCaseSearchCriteria {
 
   private static final String LIKE_FORMAT = "%%%s%%";
-  private List<String> categories;
-  private List<String> userFilterCategories;
   private List<CaseColumnModel> columns;
   private String sortField;
   private boolean sortDescending;
@@ -46,7 +44,6 @@ public class DashboardCaseSearchCriteria {
       query.where().customField().stringField(AdditionalProperty.HIDE.toString()).isNull();
     }
     queryFilters(query);
-    queryCategory(query);
     return query;
   }
 
@@ -100,8 +97,7 @@ public class DashboardCaseSearchCriteria {
     }
   }
 
-  private void queryCategory(CaseQuery query) {
-    List<String> categories = CollectionUtils.isNotEmpty(userFilterCategories) ? userFilterCategories : this.categories;
+  private void queryCategory(CaseQuery query, List<String> categories) {
     if (CollectionUtils.isNotEmpty(categories)) {
       CaseQuery subQuery = CaseQuery.create();
       IFilterQuery filterQuery = subQuery.where();
@@ -174,6 +170,8 @@ public class DashboardCaseSearchCriteria {
         queryCreator(query, filterList);
       } else if (StringUtils.equals(DashboardStandardCaseColumn.OWNER.getField(), column.getField())) {
         queryOwner(query, filterList);
+      } else if (StringUtils.equals(DashboardStandardCaseColumn.CATEGORY.getField(), column.getField())) {
+        queryCategory(query, filterList);
       } else if (StringUtils.equals(DashboardStandardCaseColumn.CREATED.getField(), column.getField())) {
         Date from = Dates.parse(filterFrom);
         Date to = Dates.parse(filterTo);
@@ -372,22 +370,6 @@ public class DashboardCaseSearchCriteria {
     }
   }
 
-  public List<String> getCategories() {
-    return categories;
-  }
-
-  public void setCategories(List<String> categories) {
-    this.categories = categories;
-  }
-  
-  public List<String> getUserFilterCategories() {
-    return userFilterCategories;
-  }
-
-  public void setUserFilterCategories(List<String> categories) {
-    this.userFilterCategories = categories;
-  }
-  
   public List<CaseColumnModel> getColumns() {
     return columns;
   }
