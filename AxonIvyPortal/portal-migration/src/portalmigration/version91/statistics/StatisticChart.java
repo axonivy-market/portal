@@ -102,8 +102,11 @@ public class StatisticChart {
   }
   
   @Override
-  public boolean equals(Object o) {
-    StatisticChart chart = (StatisticChart) o;
+  public boolean equals(Object object) {
+    if (object == null) {
+      return false;
+    }
+    StatisticChart chart = (StatisticChart) object;
     EqualsBuilder builder = new EqualsBuilder();
     builder.append(getId(), chart.getId());
     return builder.isEquals();
