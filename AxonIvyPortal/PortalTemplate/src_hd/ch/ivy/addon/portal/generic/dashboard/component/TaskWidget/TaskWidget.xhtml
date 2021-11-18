@@ -89,6 +89,11 @@
               <f:convertNumber pattern="#{column.pattern}" />
             </h:outputText>
           </h:panelGroup>
+
+          <h:panelGroup rendered="#{column.field eq 'category'}">
+            <h:outputText id="task-category" value="#{column.display(task)}"/>
+            <p:tooltip for="task-category" value="#{task.getCategory().getPath()}" trackMouse="true" hideEvent="mouseleave click"/>
+          </h:panelGroup>
         </p:columns>
       </p:dataTable>
     </h:panelGroup>
