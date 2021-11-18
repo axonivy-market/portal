@@ -5,13 +5,13 @@
   xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
 <ui:composition>
-  <h:panelGroup id="process-list" layout="block" styleClass="compact-processes-container widget-content" rendered="#{not empty processes}">
+  <h:form id="process-list" styleClass="compact-processes-container widget-content" rendered="#{not empty processes}">
     <ui:repeat varStatus="status" var="process" value="#{processes}">
       <span class="process-start-list-item">
         <p:commandLink actionListener="#{dashboardProcessBean.startProcessWithCompactMode(process)}" disabled="#{!isReadOnlyMode or isInConfiguration}"
           target="#{dashboardProcessBean.targetToStartProcess(process)}" ajax="#{!dashboardProcessBean.isExternalLink(process)}" styleClass="process-item">
           <h:panelGroup layout="block" class="process-start-list-item-icon">
-            <span class="#{process.icon}" />
+            <span class="#{iconSelectionBean.generateIconWithFontFamily(process.getIcon())}" />
           </h:panelGroup>
           <div class="process-start-list-item-name">
             <h:outputText id="process-name-process-item" value="#{process.name}" styleClass="dashboard-compact-process-item process-start-list-item-name-text u-truncate-text" />
@@ -33,6 +33,6 @@
         </p:commandLink>
       </span>
     </ui:repeat>
-  </h:panelGroup>
+  </h:form>
 </ui:composition>
 </html>

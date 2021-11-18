@@ -94,12 +94,10 @@ public class UserFilterCollection implements Serializable {
     latestFilterOption = new WidgetFilterModel(widget.getName(), widget.getType());
     if (widget instanceof TaskDashboardWidget) {
       TaskDashboardWidget taskWidget = (TaskDashboardWidget) widget;
-      latestFilterOption.setUserFilterCategories(taskWidget.getUserFilterCategories());
       latestFilterOption.addFilterableColumns(taskWidget.getFilterableColumns());
     }
     if (widget instanceof CaseDashboardWidget) {
       CaseDashboardWidget taskWidget = (CaseDashboardWidget) widget;
-      latestFilterOption.setUserFilterCategories(taskWidget.getUserFilterCategories());
       latestFilterOption.addFilterableColumns(taskWidget.getFilterableColumns());
     }
     if (widget instanceof ProcessDashboardWidget) {

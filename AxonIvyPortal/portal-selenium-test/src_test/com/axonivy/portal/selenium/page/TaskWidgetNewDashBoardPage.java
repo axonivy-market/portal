@@ -65,7 +65,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void openFilterWidget() {
-    $$("form.table-widget-form").filter(text(taskWidgetName)).first().$("a.widget__filter-sidebar-link")
+    $$("div.table-widget-panel").filter(text(taskWidgetName)).first().$("a.widget__filter-sidebar-link")
         .waitUntil(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
     $("[id$=':widget-saved-filters-items").waitUntil(appear, DEFAULT_TIMEOUT);
   }
@@ -105,9 +105,9 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
 
   public void filterCategories(String... categories) {
     $("div[id$='widget-filter-content']").waitUntil(appear, DEFAULT_TIMEOUT)
-      .$("[id$=':user-filter-category']").shouldBe(getClickableCondition()).click();
-  var categoriesPanel = $("[id$=':user-filter-category-panel']").waitUntil(appear, DEFAULT_TIMEOUT);
-  categoriesPanel.$("[id$=':task-category-filter-tree:0']")
+      .$("[id$=':widget-filter-category']").shouldBe(getClickableCondition()).click();
+  var categoriesPanel = $("[id$=':widget-filter-category-panel']").waitUntil(appear, DEFAULT_TIMEOUT);
+  categoriesPanel.$("[id$=':widget-category-filter-tree']")
     .$$(".ui-chkbox").first().shouldBe(getClickableCondition()).click();
   
     categoriesPanel.$$(".ui-treenode").forEach(leaf -> {
@@ -207,7 +207,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public int getNumberOfFilterApplied() {
-    var numberNoti = $("[id$='task-task_1:task-form-0']").waitUntil(appear, DEFAULT_TIMEOUT)
+    var numberNoti = $("[id$='task-task_1:task-panel-group-0']").waitUntil(appear, DEFAULT_TIMEOUT)
           .$(".widget__filter-noti-number").waitUntil(appear, DEFAULT_TIMEOUT).getText();
     return Integer.valueOf(numberNoti);
   }
