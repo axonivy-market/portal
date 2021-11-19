@@ -45,7 +45,7 @@ public class ServiceUtilities {
 
   /**
    * Finds all of the users within the given app, except the system user
-   * 
+   *
    * @param app
    * @return users
    */
@@ -62,7 +62,7 @@ public class ServiceUtilities {
 
   /**
    * Finds all of the users within the given app, except the roles have the HIDE property
-   * 
+   *
    * @param app
    * @return roles
    */
@@ -76,7 +76,7 @@ public class ServiceUtilities {
       return (List<IRole>) cacheValueOpt.get();
     }
 
-    List<IRole> roles = new ArrayList<>(app.getSecurityContext().getRoles());
+    List<IRole> roles = new ArrayList<>(app.getSecurityContext().roles().all());
     roles.removeIf(role -> role.getProperty(AdditionalProperty.HIDE.toString()) != null);
     roles.sort((u1, u2) -> StringUtils.compareIgnoreCase(u1.getDisplayName(), u2.getDisplayName()));
 
@@ -114,18 +114,18 @@ public class ServiceUtilities {
       return new UserDTO(user);
     });
   }
-  
+
   public static List<RoleDTO> findAllRoleDTO(IApplication app) {
     requireNonNull(app);
     return IvyExecutor.executeAsSystem(() -> {
-      return CollectionUtils.emptyIfNull(app.getSecurityContext().getRoles())
+      return CollectionUtils.emptyIfNull(app.getSecurityContext().roles().all())
           .stream()
           .filter(role -> role.getProperty(AdditionalProperty.HIDE.toString()) == null)
           .map(role -> new RoleDTO(role))
           .collect(Collectors.toList());
     });
   }
-  
+
   public static SecurityMemberDTO findSecurityMemberByName(String securityMemberName) {
     IApplication app = Ivy.wf().getApplication();
     SecurityMemberDTO member = null;
@@ -134,7 +134,7 @@ public class ServiceUtilities {
     } else {
       member = findSecurityRoleByName(securityMemberName, app);
     }
-    
+
     return member;
   }
 

@@ -471,7 +471,7 @@ import ch.ivyteam.ivy.security.IUser;
 import java.util.Locale;
 ivy.session.loginSessionUser("demo", "demo");
 for (int i = 0; i < 5; i++) {
-	if (ivy.wf.getSecurityContext().getCurrentSession().isSessionUserUnknown()) {
+	if (ivy.session.isSessionUserUnknown()) {
 		if (i == 5) {
 			ivy.log.warn("Unsuccessful login after retry (in clean data)");
 		} else {

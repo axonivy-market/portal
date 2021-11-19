@@ -50,12 +50,20 @@ Cy0 f0 81 49 30 30 -53 17 #rect
 Cy0 f1 337 49 30 30 0 15 #rect
 Cy0 f3 actionTable 'out=in;
 ' #txt
-Cy0 f3 actionCode 'for (int i = 1; i < 30001; i++) {
+Cy0 f3 actionCode 'import ch.ivyteam.ivy.security.user.NewUser;
+for (int i = 1; i < 30001; i++) {
 	String userName = "trajan" + i;
 	String fullUserName = "Traianus " + i;
 	String password = "1";
 	String email = "trajan@gmail121212.com";
-	ivy.wf.getSecurityContext().createUser(userName, fullUserName, password ,java.util.Locale.ENGLISH, email, "");
+	NewUser user = NewUser
+	    .create(userName)
+	    .fullName(fullUserName)
+	    .password(password)
+	    .mailAddress(email)
+	    .language(java.util.Locale.ENGLISH)
+	    .toNewUser();
+	ivy.security.users().create(user);
 	if (i% 100 == 0) {
 		ivy.log.debug("trajan" + i);
 	}
@@ -66,7 +74,14 @@ for (int i = 1; i < 10001; i++) {
 	String fullUserName = "Augustus Caesar " + i;
 	String password = "1";
 	String email = "octavian@gmail121212.com";
-	ivy.wf.getSecurityContext().createUser(userName, fullUserName, password ,java.util.Locale.ENGLISH, email, "");
+	NewUser user = NewUser
+	    .create(userName)
+	    .fullName(fullUserName)
+	    .password(password)
+	    .mailAddress(email)
+	    .language(java.util.Locale.ENGLISH)
+	    .toNewUser();
+	ivy.security.users().create(user);
 	if (i% 100 == 0) {
 		ivy.log.debug("octavian" + i);
 	}
@@ -77,7 +92,14 @@ for (int i = 1; i < 5001; i++) {
 	String fullUserName = "Charles " + i;
 	String password = "1";
 	String email = "n1am.main1guyenh1oang@gmail121212.com";
-	ivy.wf.getSecurityContext().createUser(userName, fullUserName, password ,java.util.Locale.ENGLISH, email, "");
+	NewUser user = NewUser
+	    .create(userName)
+	    .fullName(fullUserName)
+	    .password(password)
+	    .mailAddress(email)
+	    .language(java.util.Locale.ENGLISH)
+	    .toNewUser();
+	ivy.security.users().create(user);
 	if (i% 100 == 0) {
 		ivy.log.debug("charles" + i);
 	}
@@ -88,7 +110,14 @@ for (int i = 1; i < 301; i++) {
 	String fullUserName = "Arthur " + i;
 	String password = "1";
 	String email = "n1am.main1guyenh1oang@gmail121212.com";
-	ivy.wf.getSecurityContext().createUser(userName, fullUserName, password ,java.util.Locale.ENGLISH, email, "");
+	NewUser user = NewUser
+	    .create(userName)
+	    .fullName(fullUserName)
+	    .password(password)
+	    .mailAddress(email)
+	    .language(java.util.Locale.ENGLISH)
+	    .toNewUser();
+	ivy.security.users().create(user);
 	if (i% 100 == 0) {
 		ivy.log.debug("arthur" + i);
 	}
@@ -137,7 +166,7 @@ Cy0 f6 actionTable 'out=in;
 ' #txt
 Cy0 f6 actionCode 'for (int i = 1; i < 30001; i++) {
 	String userName = "trajan" + i;
-	ivy.wf.getSecurityContext().deleteUser(userName);
+	ivy.security.users().delete(userName);
 	if (i% 100 == 0) {
 		ivy.log.debug("trajan" + i);
 	}
@@ -145,7 +174,7 @@ Cy0 f6 actionCode 'for (int i = 1; i < 30001; i++) {
 
 for (int i = 1; i < 10001; i++) {
 	String userName = "octavian" + i;
-	ivy.wf.getSecurityContext().deleteUser(userName);
+	ivy.security.users().delete(userName);
 	if (i% 100 == 0) {
 		ivy.log.debug("octavian" + i);
 	}
@@ -153,7 +182,7 @@ for (int i = 1; i < 10001; i++) {
 
 for (int i = 1; i < 5001; i++) {
 	String userName = "charles" + i;
-	ivy.wf.getSecurityContext().deleteUser(userName);
+	ivy.security.users().delete(userName);
 	if (i% 100 == 0) {
 		ivy.log.debug("charles" + i);
 	}
@@ -161,7 +190,7 @@ for (int i = 1; i < 5001; i++) {
 
 for (int i = 1; i < 301; i++) {
 	String userName = "arthur" + i;
-	ivy.wf.getSecurityContext().deleteUser(userName);
+	ivy.security.users().delete(userName);
 	if (i% 100 == 0) {
 		ivy.log.debug("arthur" + i);
 	}

@@ -485,10 +485,17 @@ Dt0 f15 81 561 30 30 -51 17 #rect
 Dt0 f16 actionTable 'out=in;
 ' #txt
 Dt0 f16 actionCode 'import java.util.Locale;
-if (ivy.wf.getSecurityContext().findUser("test_change_password_user") != null) {
-	ivy.wf.getSecurityContext().deleteUser("test_change_password_user");
+import ch.ivyteam.ivy.security.user.NewUser;
+if (ivy.security.users().find("test_change_password_user") != null) {
+	ivy.security.users().delete("test_change_password_user");
 }
-ivy.wf.getSecurityContext().createUser("test_change_password_user", "Elton", "123", Locale.ENGLISH, "", "");' #txt
+NewUser user = NewUser
+	  .create("test_change_password_user")
+	  .fullName("Elton")
+	  .password("123")
+	  .language(java.util.Locale.ENGLISH)
+	  .toNewUser();
+ivy.security.users().create(user);' #txt
 Dt0 f16 security system #txt
 Dt0 f16 152 554 112 44 0 -8 #rect
 Dt0 f17 321 561 30 30 0 15 #rect
@@ -522,10 +529,18 @@ Dt0 f20 65 721 30 30 -75 23 #rect
 Dt0 f21 337 721 30 30 0 15 #rect
 Dt0 f22 actionTable 'out=in;
 ' #txt
-Dt0 f22 actionCode 'if (ivy.wf.getSecurityContext().findUser("test_related_tasks_user") != null) {
-	ivy.wf.getSecurityContext().deleteUser("test_related_tasks_user");
+Dt0 f22 actionCode 'import ch.ivyteam.ivy.security.user.NewUser;
+if (ivy.security.users().find("test_related_tasks_user") != null) {
+	ivy.security.users().delete("test_related_tasks_user");
 }
-ivy.wf.getSecurityContext().createUser("test_related_tasks_user", "Related Tasks User", "+d3m0++", java.util.Locale.ENGLISH, "", "");' #txt
+
+NewUser user = NewUser
+	  .create("test_related_tasks_user")
+	  .fullName("Related Tasks User")
+	  .password("+d3m0++")
+	  .language(java.util.Locale.ENGLISH)
+	  .toNewUser();
+' #txt
 Dt0 f22 security system #txt
 Dt0 f22 168 714 112 44 0 -8 #rect
 Dt0 f36 expr out #txt
@@ -586,7 +601,7 @@ Dt0 f60 actionTable 'out=in;
 Dt0 f60 actionCode 'import ch.ivyteam.ivy.security.query.UserQuery;
 import ch.ivyteam.ivy.security.IUser;
 
-UserQuery userQuery = ivy.request.getApplication().getSecurityContext().users().query();
+UserQuery userQuery = ivy.security.users().query();
 List<IUser> users = userQuery.executor().results();
 in.numberOfUsersInApplication = users.size();
 in.counter = 1;
@@ -608,13 +623,22 @@ Dt0 f60 904 362 128 44 -42 -16 #rect
 Dt0 f61 actionTable 'out=in;
 ' #txt
 Dt0 f61 actionCode 'import java.util.Locale;
+import ch.ivyteam.ivy.security.user.NewUser;
+
 Integer userIndex =  in.numberOfUsersInApplication + in.counter;
 String username = "testuser_" + userIndex;
 
-if (ivy.wf.getSecurityContext().findUser(username) != null) {
-	ivy.wf.getSecurityContext().deleteUser(username);
+if (ivy.security.users().find(username) != null) {
+	ivy.security.users().delete(username);
 }
-ivy.wf.getSecurityContext().createUser(username, username, "+d3m0++", Locale.ENGLISH, "", "");
+
+NewUser user = NewUser
+	  .create(username)
+	  .fullName(username)
+	  .password("+d3m0++")
+	  .language(java.util.Locale.ENGLISH)
+	  .toNewUser();
+ivy.security.users().create(user);
 in.counter++;' #txt
 Dt0 f61 security system #txt
 Dt0 f61 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1100,13 +1124,13 @@ Dt0 f120 actionTable 'out=in;
 Dt0 f120 actionCode 'import ch.ivyteam.ivy.security.user.NewUser;
 import ch.ivyteam.ivy.security.IUser;
 
-IUser user = ivy.wf.getSecurityContext().findUser("visibility_test_user");
+IUser user = ivy.security.users().find("visibility_test_user");
 
 if (user != null) {
 	user.disable();
 }
 else {
-	user = ivy.wf.getSecurityContext().users().create(NewUser.create("visibility_test_user").password("+d3m0++").fullName("Visibility Test User").toNewUser());
+	user = ivy.security.users().create(NewUser.create("visibility_test_user").password("+d3m0++").fullName("Visibility Test User").toNewUser());
 	user.disable();
 }
 ivy.log.warn("Disable visibility user");
@@ -1150,7 +1174,7 @@ Dt0 f132 1361 993 30 30 0 15 #rect
 Dt0 f133 1263 1008 1361 1008 #arcP
 Dt0 f134 actionTable 'out=in;
 ' #txt
-Dt0 f134 actionCode ivy.case.setCreatorUser(ivy.wf.getSecurityContext().users().find("visibility_test_user")); #txt
+Dt0 f134 actionCode ivy.case.setCreatorUser(ivy.security.users().find("visibility_test_user")); #txt
 Dt0 f134 security system #txt
 Dt0 f134 1064 986 112 44 0 -8 #rect
 Dt0 f135 1007 1008 1064 1008 #arcP
@@ -1176,13 +1200,13 @@ Dt0 f125 actionTable 'out=in;
 Dt0 f125 actionCode 'import ch.ivyteam.ivy.security.user.NewUser;
 import ch.ivyteam.ivy.security.IUser;
 
-IUser user = ivy.wf.getSecurityContext().findUser("visibility_test_user");
+IUser user = ivy.security.users().find("visibility_test_user");
 
 if (user != null) {
 	user.enable();
 }
 else {
-	user = ivy.wf.getSecurityContext().users().create(NewUser.create("visibility_test_user").password("+d3m0++").fullName("Visibility Test User").toNewUser());
+	user = ivy.security.users().create(NewUser.create("visibility_test_user").password("+d3m0++").fullName("Visibility Test User").toNewUser());
 	user.enable();
 }
 ivy.log.warn("Enable visibility user");' #txt
@@ -1301,7 +1325,7 @@ expressProcessService.save(expressProcess);
 
 ExternalLink externalLink = new ExternalLink();
 externalLink.name = "A sample for External link to Google";
-externalLink.creatorId = ivy.wf.getSecurityContext().users().find("demo").getId();
+externalLink.creatorId = ivy.security.users().find("demo").getId();
 externalLink.setIsPublic(true);
 externalLink.link = "google.com";
 ExternalLinkService externalLinkService = ExternalLinkService.getInstance();
