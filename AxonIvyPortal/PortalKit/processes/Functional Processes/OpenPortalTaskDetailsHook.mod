@@ -1,5 +1,5 @@
 [Ivy]
-16D289860FF9CFCA 9.3.0 #module
+16D289860FF9CFCA 9.3.1 #module
 >Proto >Proto Collection #zClass
 Os0 OpenPortalTaskDetailsHook Big #zClass
 Os0 B #cInfo
@@ -60,7 +60,6 @@ Os0 f4 81 145 30 30 -64 15 #rect
 Os0 f5 expr out #txt
 Os0 f5 111 160 337 160 #arcP
 Os0 f6 337 273 30 30 0 15 #rect
-Os0 f6 @|EndSubIcon #fIcon
 Os0 f7 inParamDecl '<ch.ivyteam.ivy.workflow.ITask task,ch.ivy.addon.portalkit.datamodel.DashboardTaskLazyDataModel dataModel,ch.ivy.addon.portalkit.enums.PortalPage portalPage,Boolean isFromTaskList> param;' #txt
 Os0 f7 inParamTable 'out.dashboardDataModel=param.dataModel;
 out.isFromTaskList=param.#isFromTaskList is initialized ? param.isFromTaskList : true;
@@ -77,7 +76,6 @@ Os0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Os0 f7 81 273 30 30 -64 15 #rect
-Os0 f7 @|StartSubIcon #fIcon
 Os0 f8 expr out #txt
 Os0 f8 111 288 337 288 #arcP
 >Proto Os0 .type ch.ivy.add.portalkit.OpenPortalTaskDetailsData #txt
