@@ -26,7 +26,7 @@ of each module, refer to :ref:`architecture`.
 -  AxonIvyExpress
 
 The project deployment of Ivy project are described in `project
-deployment <https://developer.axonivy.com/doc/9.1/engine-guide/administration/deployment.html>`__
+deployment <https://developer.axonivy.com/doc/|version|/engine-guide/administration/deployment.html>`__
 .
 
 Installation
@@ -87,7 +87,7 @@ How to migrate
 
    In order to migrate Portal, you need to migrate Axon Ivy, refer
    `Axon Ivy migration
-   notes <https://developer.axonivy.com/doc/9.1/axonivy/migration/index.html>`__.
+   notes <https://developer.axonivy.com/doc/|version|/axonivy/migration/index.html>`__.
    Changes in Axon Ivy could lead to problems if customer project is not
    migrated properly.
 
@@ -166,7 +166,7 @@ Migrate 9.1 to 9.2
 
 #. Deprecated callable processes: ``OpenPortalSearch.mod``, ``OpenPortalTasks.mod``, ``OpenPortalTaskDetails.mod``, ``OpenPortalCases.mod``, ``OpenPortalCaseDetails.mod`` process.
 
-   Portal recommends using `Axon Ivy HtmlOverride wizard <https://developer.axonivy.com/doc/9.1/designer-guide/how-to/overrides.html?#override-new-wizard>`_ to customize ``Portal HTML Dialog``
+   Portal recommends using `Axon Ivy HtmlOverride wizard <https://developer.axonivy.com/doc/|version|/designer-guide/how-to/overrides.html?#override-new-wizard>`_ to customize ``Portal HTML Dialog``
 
    .. important:: The callable process which is supporting to open customization dialog will be removed in the future, do not use it in the new project
 
@@ -187,7 +187,7 @@ Migrate 8.x to 9.1
 
 #. Ivy core enhanced the Ivy URI, so Portal needs to make a migration. Deploy :download:`PortalUrlMigration.iar <documents/PortalUrlMigration.iar>` project to any Ivy Application then run ``migratePortalUrl.ivp`` once and wait until it is redirected to another page without error (E.g: Homepage). It is recommended to remove it after the migration.
 
-#. HOMEPAGE_URL (single Portal app mode) and registered application link (multi Portal app mode) are not available anymore. To let Portal know about your new Portal home, you have to set default pages to your project, follow this chapter to customize standard processes: `Standard Processes <https://developer.axonivy.com/doc/9.1/engine-guide/administration/standard-processes.html>`_
+#. HOMEPAGE_URL (single Portal app mode) and registered application link (multi Portal app mode) are not available anymore. To let Portal know about your new Portal home, you have to set default pages to your project, follow this chapter to customize standard processes: `Standard Processes <https://developer.axonivy.com/doc/|version|/engine-guide/administration/standard-processes.html>`_
 
 #. Portal now uses |css_variable| instead of SASS. Therefore you must convert SASS syntax to new CSS variable or use online tool such as |css_variable_convert| to convert it.
 
@@ -261,7 +261,7 @@ Changes in 9.2
 
 - Portal supports logos in SVG format.
 
-Changes in 9.1
+Changes in |version|
 --------------
 
 - Refactor style customization approach. From now on, Portal use CSS Variable as technology to customize CSS.
