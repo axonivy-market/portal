@@ -121,4 +121,4 @@ They will help you understand how to configure widget efficiency.
    - Start the process ``Start Processes/CreateTestData/CreateTestDataForCustomizedDashboard.ivp`` in ``portal-developer-examples`` project.
    - Open Portal new dashboard to check new custom layout.
 
-   About how to configure Global Variable, refer to `Axon Ivy Global Variables <https://developer.axonivy.com/releases/ivy/9.1/documents/designer-guide/configuration/global-variables.html>`_
+   About how to configure Global Variable, refer to `Axon Ivy Global Variables <https://developer.axonivy.com/releases/ivy/|version|/documents/designer-guide/configuration/global-variables.html>`_
