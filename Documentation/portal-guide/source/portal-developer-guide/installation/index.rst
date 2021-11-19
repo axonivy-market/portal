@@ -261,7 +261,7 @@ Changes in 9.2
 
 - Portal supports logos in SVG format.
 
-Changes in |version|
+Changes in 9.1
 --------------
 
 - Refactor style customization approach. From now on, Portal use CSS Variable as technology to customize CSS.
