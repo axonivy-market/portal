@@ -1,5 +1,5 @@
 [Ivy]
-16BF472CA9DB7AAE 9.3.0 #module
+16BF472CA9DB7AAE 9.3.1 #module
 >Proto >Proto Collection #zClass
 Ps0 PortalTaskDetailsProcess Big #zClass
 Ps0 RD #cInfo
@@ -86,7 +86,6 @@ Ps0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f8 160 170 128 44 -57 -8 #rect
-Ps0 f8 @|StepIcon #fIcon
 Ps0 f9 guid 17738FC829FF5370 #txt
 Ps0 f9 method startFromDashboard(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.DashboardTaskLazyDataModel,ch.ivy.addon.portalkit.enums.PortalPage,Boolean) #txt
 Ps0 f9 inParameterDecl '<ch.ivyteam.ivy.workflow.ITask task,ch.ivy.addon.portalkit.datamodel.DashboardTaskLazyDataModel dataModel,ch.ivy.addon.portalkit.enums.PortalPage portalPage,Boolean isFromTaskList> param;' #txt
@@ -104,9 +103,7 @@ Ps0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f9 83 179 26 26 -79 25 #rect
-Ps0 f9 @|UdInitIcon #fIcon
 Ps0 f10 339 179 26 26 0 12 #rect
-Ps0 f10 @|UdProcessEndIcon #fIcon
 Ps0 f11 expr out #txt
 Ps0 f11 109 192 160 192 #arcP
 Ps0 f12 288 192 339 192 #arcP
