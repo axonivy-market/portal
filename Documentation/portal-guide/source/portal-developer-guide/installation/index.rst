@@ -26,7 +26,7 @@ of each module, refer to :ref:`architecture`.
 -  AxonIvyExpress
 
 The project deployment of Ivy project are described in `project
-deployment <https://developer.axonivy.com/doc/|version|/engine-guide/administration/deployment.html>`__
+deployment <https://developer.axonivy.com/doc/|version|/engine-guide/deployment/index.html>`__
 .
 
 Installation

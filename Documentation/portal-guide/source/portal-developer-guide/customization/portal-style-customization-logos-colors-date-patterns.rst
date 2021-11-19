@@ -106,7 +106,7 @@ You can customize in:
 
 .. tip::
    If you are using Iframes and you want to customize the colors of the project specific UIs, then refer to this documentation 
-   `<https://developer.axonivy.com/doc/|version|/designer-guide/user-interface/user-dialogs.html?highlight=frame%208#color-customizing>`_
+   `<https://developer.axonivy.com/doc/|version|/designer-guide/how-to/overrides.html?#override-new-wizard>`_
 
 .. warning::
    - Do not change ``font-family`` property values.
