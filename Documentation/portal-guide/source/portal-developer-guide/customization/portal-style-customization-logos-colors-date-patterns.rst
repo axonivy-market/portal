@@ -109,8 +109,8 @@ You can customize in:
      It helps text of buttons and other components easier to recognize.
 
 .. tip::
-   If you are using Iframes and you want to customize the colors of the project specific UIs, then refer to this documentation 
-   `<https://developer.axonivy.com/doc/8.0/designer-guide/user-interface/user-dialogs.html?highlight=frame%208#color-customizing>`_
+   If you are using Iframes and you want to customize the colors of the project specific UIs, then refer to 
+   `Color Customizing <https://developer.axonivy.com/doc/|version|/designer-guide/user-interface/user-dialogs/html-dialog-themes.html?highlight=color%20customizing#color-customizing>`_.
 
 .. warning::
    - Do not change ``font-family`` property values.
