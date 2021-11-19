@@ -208,7 +208,7 @@ Permission settings
 ===================
 
 Permissions can be configured in `Cockpit
-<https://developer.axonivy.com/releases/ivy/8.0/documents/engine-guide/tool-reference/engine-cockpit/security.html>`_.
+<https://developer.axonivy.com/releases/ivy/|version|/documents/engine-guide/tool-reference/engine-cockpit/security.html>`_.
 In the security area, you will find all these permission in the Group
 "PortalPermissions"
 

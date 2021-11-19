@@ -26,7 +26,7 @@ of each module, refer to :ref:`architecture` .
 -  AxonIvyExpress
 
 The project deployment of Ivy project are described in `project
-deployment <https://developer.axonivy.com/doc/8.0/engine-guide/administration/deployment.html>`__
+deployment <https://developer.axonivy.com/doc/|version|/engine-guide/administration/deployment.html>`__
 .
 
 .. _installation-basic-portal-mode:
@@ -118,7 +118,7 @@ How to migrate
 
    In order to migrate Portal, you need to migrate Axon Ivy, refer
    `Axon Ivy migration
-   notes <https://developer.axonivy.com/doc/8.0/engine-guide/installation/upgrade.html>`__.
+   notes <https://developer.axonivy.com/doc/|version|/engine-guide/installation/upgrade.html>`__.
    Changes in Axon Ivy could lead to problems if customer project is not
    migrated properly.
 
