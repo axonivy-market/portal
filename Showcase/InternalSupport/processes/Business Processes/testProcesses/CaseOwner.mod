@@ -49,7 +49,7 @@ Cr0 f0 81 49 30 30 -38 15 #rect
 Cr0 f1 433 49 30 30 0 15 #rect
 Cr0 f3 actionTable 'out=in;
 ' #txt
-Cr0 f3 actionCode ivy.case.setOwner(ivy.wf.getSecurityContext().findUser("demo")); #txt
+Cr0 f3 actionCode ivy.case.setOwner(ivy.security.users().find("demo")); #txt
 Cr0 f3 security system #txt
 Cr0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -108,7 +108,7 @@ Cr0 f8 336 144 32 32 0 16 #rect
 Cr0 f9 433 145 30 30 0 15 #rect
 Cr0 f10 actionTable 'out=in;
 ' #txt
-Cr0 f10 actionCode ivy.case.setOwner(ivy.wf.getSecurityContext().findRole("CaseOwner")); #txt
+Cr0 f10 actionCode ivy.case.setOwner(ivy.security.roles().find("CaseOwner")); #txt
 Cr0 f10 security system #txt
 Cr0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

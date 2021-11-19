@@ -30,12 +30,12 @@ public class PortalExpressProcess implements Process {
     String processOwner = ExpressManagementUtils.getValidMemberName(process.getProcessOwner());
     String processOwnerName = StringUtils.isNotBlank(processOwner) ? processOwner.substring(1) : null;
 
-    IUser user = processOwnerName != null ? Ivy.session().getSecurityContext().users().find(processOwnerName) : null;
+    IUser user = processOwnerName != null ? Ivy.security().users().find(processOwnerName) : null;
 
     this.processOwnerDisplayName = Optional.ofNullable(user).map(IUser::getDisplayName).orElse(Ivy.cms().co(NOT_AVAILABLE_CMS));
     
     for (String username : this.process.getProcessPermissions()) {
-      ISecurityMember assignee = Ivy.session().getSecurityContext().findSecurityMember(username);
+      ISecurityMember assignee = Ivy.security().members().find(username);
       String ableStartName = Optional.ofNullable(assignee).map(ISecurityMember::getDisplayName).orElse(Ivy.cms().co(NOT_AVAILABLE_CMS));
       this.ableToStart = StringUtils.isBlank(ableToStart) ? ableStartName : String.join(";", ableToStart, ableStartName);
     }

@@ -26,45 +26,45 @@ import ch.ivyteam.ivy.security.IUser;
 
 /**
  * Provide the utilities related to role
- * 
+ *
  * @author bolt
  */
 public final class RoleUtils {
 
   private static final String HIDE_IN_DELEGATION = "HIDE_IN_DELEGATION";
   private static final String[] DEFAULT_HIDDEN_ROLES = {"AXONIVY_PORTAL_ADMIN"};
-  
+
   private RoleUtils() {}
-  
+
   /**
    * Get all roles of current Ivy Application
-   * 
+   *
    * @return List<IRole> : All roles of current Ivy Application
    */
   @PublicAPI
   public static List<IRole> getAllRoles() {
     return IvyExecutor.executeAsSystem(() -> {
-      return Ivy.wf().getSecurityContext().getRoles();
+      return Ivy.security().roles().all();
     });
   }
-  
+
   /**
    * Find role by name
-   * @param name 
-   * 
+   * @param name
+   *
    * @return <IRole> : role
    */
   @PublicAPI
   public static IRole findRole(String name) {
     return IvyExecutor.executeAsSystem(() -> {
-      return Ivy.wf().getSecurityContext().findRole(name);
+      return Ivy.security().roles().find(name);
     });
   }
 
   /**
    * <p>Get all hidden roles of current Ivy Application.</p>
    * <p>The hidden role is the role which has the HIDE property.</p>
-   * 
+   *
    * @return List<IRole> : All hidden roles of current Ivy Application
    */
   @PublicAPI
@@ -75,7 +75,7 @@ public final class RoleUtils {
   /**
    * <p>Get all visible roles of current Ivy Application.</p>
    * <p>The visible role is the role which doesn't have the HIDE property.</p>
-   * 
+   *
    * @return List<IRole> : All visible roles of current Ivy Application
    */
   @PublicAPI
@@ -86,7 +86,7 @@ public final class RoleUtils {
   /**
    * <p>Get hidden roles the user owns direct.</p>
    * <p>The hidden role is the role which has the HIDE property.</p>
-   * 
+   *
    * @param user user to get roles
    * @return List<IRole> : All hidden roles of the given user
    */
@@ -94,11 +94,11 @@ public final class RoleUtils {
   public static List<IRole> getHiddenRoles(IUser user) {
     return filterHiddenRoles(user.getRoles());
   }
-  
+
   /**
    * <p>Get all hidden roles the user owns (directly and indirectly).</p>
    * <p>The hidden role is the role which has the HIDE property.</p>
-   * 
+   *
    * @param user user to get roles
    * @return List<IRole> : All hidden roles of the given user
    */
@@ -108,10 +108,10 @@ public final class RoleUtils {
   }
 
   /**
-   * <p>Gets the directly owned hidden roles. The parent role and all roles where this role is a direct role member.</p> 
+   * <p>Gets the directly owned hidden roles. The parent role and all roles where this role is a direct role member.</p>
    * <p>This list never contains this role itself.</p>
    * <p>The hidden role is the role which has the HIDE property.</p>
-   * 
+   *
    * @param role role to get sub-roles
    * @return List<IRole> : All hidden sub-roles of the given role
    */
@@ -119,12 +119,12 @@ public final class RoleUtils {
   public static List<IRole> getHiddenRoles(IRole role) {
     return filterHiddenRoles(role.getRoles());
   }
-  
+
   /**
-   * <p>Gets all owned hidden roles (directly and indirectly) of this role.</p> 
+   * <p>Gets all owned hidden roles (directly and indirectly) of this role.</p>
    * <p>It is possible that the role itself is also contained in the list.</p>
    * <p>The hidden role is the role which has the HIDE property.</p>
-   * 
+   *
    * @param role role to get sub-roles
    * @return List<IRole> : All hidden sub-roles of the given role
    */
@@ -136,7 +136,7 @@ public final class RoleUtils {
   /**
    * <p>Get visible roles the user owns direct.</p>
    * <p>The visible role is the role which doesn't have the HIDE property.</p>
-   * 
+   *
    * @param user user to get roles
    * @return List<IRole> : All visible roles of the given user
    */
@@ -144,11 +144,11 @@ public final class RoleUtils {
   public static List<IRole> getVisibleRoles(IUser user) {
     return filterVisibleRoles(user.getRoles());
   }
-  
+
   /**
    * <p>Get all visible roles the user owns (directly and indirectly).</p>
    * <p>The visible role is the role which doesn't have the HIDE property.</p>
-   * 
+   *
    * @param user user to get roles
    * @return List<IRole> : All hidden roles of the given user
    */
@@ -158,10 +158,10 @@ public final class RoleUtils {
   }
 
   /**
-   * <p>Gets the directly owned visible roles. The parent role and all roles where this role is a direct role member.</p> 
+   * <p>Gets the directly owned visible roles. The parent role and all roles where this role is a direct role member.</p>
    * <p>This list never contains this role itself.</p>
    * <p>The visible role is the role which doesn't have the HIDE property.</p>
-   * 
+   *
    * @param role role to get sub-roles
    * @return List<IRole> : All visible sub-roles of the given role
    */
@@ -169,12 +169,12 @@ public final class RoleUtils {
   public static List<IRole> getVisibleRoles(IRole role) {
     return filterVisibleRoles(role.getRoles());
   }
-  
+
   /**
-   * <p>Gets all owned visible roles (directly and indirectly) of this role.</p> 
+   * <p>Gets all owned visible roles (directly and indirectly) of this role.</p>
    * <p>It is possible that the role itself is also contained in the list.</p>
    * <p>The hidden role is the role which has the HIDE property.</p>
-   * 
+   *
    * @param role role to get sub-roles
    * @return List<IRole> : All hidden sub-roles of the given role
    */
@@ -185,7 +185,7 @@ public final class RoleUtils {
 
   /**
    * Get all roles of current Ivy Application exclude some roles has properties HIDE_IN_DELEGATION and HIDE
-   * 
+   *
    * @return List<IRole> : All roles of current Ivy Application exclude some roles has properties
    *         HIDE_IN_DELEGATION
    *         HIDE
@@ -193,7 +193,7 @@ public final class RoleUtils {
   public static List<IRole> getRolesForDelegate() {
     return IvyExecutor.executeAsSystem(() -> {
       List<IRole> roles = new ArrayList<>();
-      List<IRole> securityRolesTmp = filterVisibleRoles(Ivy.wf().getSecurityContext().getRoles());
+      List<IRole> securityRolesTmp = filterVisibleRoles(Ivy.security().roles().all());
       for (IRole role : securityRolesTmp) {
         // Ignore the role has value in property HIDE_IN_DELEGATION
         if (role.getProperty(HIDE_IN_DELEGATION) != null) {
@@ -225,7 +225,7 @@ public final class RoleUtils {
   private static void invalidateCacheForRoles() {
     IvyCacheService.newInstance().invalidateSessionEntry(Ivy.request().getApplication().getName(), IvyCacheIdentifier.ROLES_IN_APPLICATION);
   }
-  
+
   /**
    * Remove property for passed role
    * @deprecated Use {@link RoleAPI#removeProperty(IRole, String)} instead
@@ -247,7 +247,7 @@ public final class RoleUtils {
   public static void setHidePropertyForDefaultHiddenRoles() {
     List<String> defaultHiddenRoleNames = Arrays.asList(DEFAULT_HIDDEN_ROLES);
     String hideProperty = AdditionalProperty.HIDE.toString();
-    
+
     defaultHiddenRoleNames.forEach(roleName -> {
       IRole role = findRole(roleName);
       if (role != null && role.getProperty(hideProperty) == null) {
@@ -266,7 +266,7 @@ public final class RoleUtils {
 
   /**
    * Filter list of ivy roles by name based on provided query
-   * 
+   *
    * @param roles roles need to be filtered
    * @param query provided query
    * @return Filtered list of ivy roles
@@ -285,7 +285,7 @@ public final class RoleUtils {
 
     return filterRoles;
   }
-  
+
   public static List<RoleDTO> filterRoleDTO(List<RoleDTO> roles, String query) {
     if (StringUtils.isEmpty(query)) {
       return roles;
@@ -302,7 +302,7 @@ public final class RoleUtils {
 
   /**
    * Finds the roles in current application.
-   * 
+   *
    * @param fromRoleNames parent role name list
    * @param excludedRoleNames role name list exclude
    * @param query
@@ -320,7 +320,7 @@ public final class RoleUtils {
     }
 
     roles.sort((first, second) -> StringUtils.compareIgnoreCase(first.getDisplayName(), second.getDisplayName()));
-    
+
     return roles;
   }
 
