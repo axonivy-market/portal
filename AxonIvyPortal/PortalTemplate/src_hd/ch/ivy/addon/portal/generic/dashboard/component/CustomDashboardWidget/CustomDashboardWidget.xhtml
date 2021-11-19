@@ -16,7 +16,6 @@
       <ui:param name="index" value="#{index}" />
       <ui:param name="widget" value="#{widget}" />
       <ui:param name="panelId" value="custom-panel-group-#{index}" />
-      <ui:param name="widgetFormId" value="custom-form-#{index}" />
       <ui:param name="isReadOnlyMode" value="#{cc.attrs.isReadOnlyMode}" />
       <ui:param name="widgetContentStylyClass" value="process-widget" />
       <ui:param name="isRenderFilter" value="false" />
@@ -35,11 +34,13 @@
       <ui:define name="widgetContent">
         <div class="ui-g-12 widget-height-100">
           <ui:fragment rendered="#{not empty widget.data.processStart}">
+          <h:form id="custom-form-#{index}">
             <c:forEach var="param" items="#{widget.data.params}">
               <input type="hidden" name="#{dashboardCustomWidgetBean.generateParamName(param)}"
                 value="#{param.value}" />
             </c:forEach>
             <iframe name="custom-widget-iframe-#{index}" class="dashboard-custom-iframe" />
+          </h:form>
             <script type="text/javascript">
                $(function() {
                  var widgetForm = $('form[id $=":custom-form-#{index}"]').get(0);
