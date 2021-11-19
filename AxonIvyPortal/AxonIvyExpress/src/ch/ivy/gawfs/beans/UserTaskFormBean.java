@@ -24,7 +24,7 @@ public class UserTaskFormBean implements Serializable {
    * @return user name
    */
   public String generateUserName(String userMemberName) {
-    IUser user = Ivy.session().getSecurityContext().users().find(userMemberName);
+    IUser user = Ivy.security().users().find(userMemberName);
 
     if (StringUtils.isBlank(user.getDisplayName())) {
       return user.getName();

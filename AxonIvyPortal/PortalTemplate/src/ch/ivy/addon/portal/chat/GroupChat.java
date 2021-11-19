@@ -87,7 +87,7 @@ public class GroupChat implements Serializable {
       for (String assigneeName : assigneeNames) {
         ISecurityMember assignee = assigneeName.startsWith("#")
             ? app.getSecurityContext().users().find(Long.parseLong(assigneeName.substring(1)))
-            : app.getSecurityContext().findSecurityMember(assigneeName);
+            : app.getSecurityContext().members().find(assigneeName);
         if (assignee != null) {
           this.assignees.add(new SecurityMemberDTO(assignee));
         }

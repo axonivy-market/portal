@@ -913,7 +913,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import ch.ivyteam.ivy.security.ISecurityMember;
 
-ISecurityMember selectedAssignee = in.#selectedDeputy is initialized ? ivy.wf.getSecurityContext().findSecurityMember(in.selectedDeputy.getMemberName()) : null;
+ISecurityMember selectedAssignee = in.#selectedDeputy is initialized ? ivy.security.members().find(in.selectedDeputy.getMemberName()) : null;
 if (!(#selectedAssignee is initialized) || in.selectedDeputies.contains(selectedAssignee)) {
 	FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "", ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/errorSelectInvalidDeputy")));
 } else if (DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE.equals(in.selectedDeputyRole.deputyRoleType) && DeputyRoleUtils.isSecurityMemberSelectedInDeputyRoleByType(in.deputyRoles, DeputyRoleType.PERSONAL_TASK_PERMANENT, selectedAssignee)) {

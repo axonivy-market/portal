@@ -66,7 +66,7 @@ import gawfs.TaskDef;
 in.executePredefinedWorkflowData.currentTask.dynaFormController.createForm();
 
 for (TaskDef task : in.executePredefinedWorkflowData.finishedTasks) {
-	task.actualApplicant = ivy.wf.getSecurityContext().findUser(task.actualApplicantName);
+	task.actualApplicant = ivy.security.users().find(task.actualApplicantName);
 }' #txt
 Us0 f6 security system #txt
 Us0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
