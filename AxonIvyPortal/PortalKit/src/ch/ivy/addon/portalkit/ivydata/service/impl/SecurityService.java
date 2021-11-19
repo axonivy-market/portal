@@ -34,14 +34,14 @@ public class SecurityService implements ISecurityService {
 
   @Override
   public IvySecurityResultDTO findUsers(String query, int startIndex, int count, List<String> fromRoles, List<String> excludedUsernames) {
-    return IvyExecutor.executeAsSystem(() -> { 
+    return IvyExecutor.executeAsSystem(() -> {
       IvySecurityResultDTO result = new IvySecurityResultDTO();
       IApplication application = Ivy.wf().getApplication();
       result.setUsers(queryUsers(query, application, startIndex, count, fromRoles, excludedUsernames));
       return result;
     });
   }
-  
+
   /**
    * Query users in specific application
    * @param query
@@ -49,20 +49,20 @@ public class SecurityService implements ISecurityService {
    * @param startIndex
    * @param count
    * @param fromRoles
-   * @param excludedUsernames 
+   * @param excludedUsernames
    * @return {@link List}
    */
   private List<UserDTO> queryUsers(String query, IApplication app, int startIndex, int count, List<String> fromRoles, List<String> excludedUsernames) {
     UserQuery userQuery = app.getSecurityContext().users().query().orderBy().fullName();
-    
+
     IFilterQuery filterQuery = createFilterQuery(query, userQuery);
-    
+
     if (CollectionUtils.isNotEmpty(fromRoles)) {
       UserQuery hasRolesQuery = queryHasRoles(app, fromRoles);
       filterQuery.andOverall(hasRolesQuery);
     }
     excludeUsername(excludedUsernames, filterQuery);
-    
+
     List<IUser> users = userQuery
         .orderBy().fullName().name()
         .executor().results(startIndex, count);
@@ -96,7 +96,7 @@ public class SecurityService implements ISecurityService {
       return result;
     });
   }
-  
+
   @Override
   public IvySecurityResultDTO findRoles() {
     return IvyExecutor.executeAsSystem(() -> {
@@ -107,7 +107,7 @@ public class SecurityService implements ISecurityService {
       return result;
     });
   }
-  
+
   @Override
   public IvySecurityResultDTO findRoleDTOs() {
     return IvyExecutor.executeAsSystem(() -> {
@@ -129,9 +129,9 @@ public class SecurityService implements ISecurityService {
           .filter(role -> doesNameContainQuery(query, role))
           .sorted(getRoleDTOComparator())
           .collect(Collectors.toList());
-      
+
       List<UserDTO> users = queryUsers(query, app, startIndex, count, null, null);
-      
+
       List<SecurityMemberDTO> members = SecurityMemberDTOMapper.mapFromUserDTOs(users);
       members.addAll(SecurityMemberDTOMapper.mapFromRoleDTOs(roles));
       int size = count;
@@ -155,14 +155,14 @@ public class SecurityService implements ISecurityService {
   private UserQuery queryHasRoles(IApplication app, List<String> fromRoles) {
     List<IRole> roles = new ArrayList<>();
     for (String roleName : fromRoles) {
-      IRole iRole = app.getSecurityContext().findRole(roleName);
+      IRole iRole = app.getSecurityContext().roles().find(roleName);
       if (Objects.nonNull(iRole)) {
         roles.add(iRole);
       } else {
         Ivy.log().warn("Cannot find role name: {0}", roleName);
       }
     }
-    
+
     UserQuery hasRolesQuery = UserQuery.create();
     IFilterQuery hasRolesFilter = hasRolesQuery.where();
     for (IRole role : roles) {
@@ -170,11 +170,11 @@ public class SecurityService implements ISecurityService {
     }
     return hasRolesQuery;
   }
-  
+
   private boolean doesNameContainQuery(String query, RoleDTO role) {
     return StringUtils.containsIgnoreCase(role.getDisplayName(), query) || StringUtils.containsIgnoreCase(role.getName(), query);
   }
-  
+
   private Comparator<? super RoleDTO> getRoleDTOComparator() {
     return (u1, u2) -> StringUtils.compareIgnoreCase(u1.getDisplayName(), u2.getDisplayName());
   }
@@ -182,10 +182,10 @@ public class SecurityService implements ISecurityService {
   @Override
   public IvySecurityResultDTO findAllUsersOfRoles(int startIndex, int count, List<String> fromRoles,
       List<String> excludedUsernames) {
-    return IvyExecutor.executeAsSystem(() -> { 
+    return IvyExecutor.executeAsSystem(() -> {
       IvySecurityResultDTO result = new IvySecurityResultDTO();
       IApplication application = Ivy.wf().getApplication();
-      result.setUsers(queryAllUsers(application, startIndex, count, fromRoles, excludedUsernames)); 
+      result.setUsers(queryAllUsers(application, startIndex, count, fromRoles, excludedUsernames));
       return result;
     });
   }
@@ -193,13 +193,13 @@ public class SecurityService implements ISecurityService {
   private List<UserDTO> queryAllUsers(IApplication application, int startIndex, int count, List<String> fromRoles, List<String> excludedUsernames) {
     UserQuery userQuery = application.getSecurityContext().users().query().orderBy().fullName();
     IFilterQuery filterQuery = userQuery.where();
-    
+
     if (CollectionUtils.isNotEmpty(fromRoles)) {
       UserQuery hasRolesQuery = UserQuery.create().where().or(queryHasRoles(application, fromRoles));
       filterQuery.andOverall(hasRolesQuery);
     }
     excludeUsername(excludedUsernames, filterQuery);
-    
+
     List<IUser> users = userQuery
         .orderBy().fullName().name()
         .executor().results(startIndex, count);
