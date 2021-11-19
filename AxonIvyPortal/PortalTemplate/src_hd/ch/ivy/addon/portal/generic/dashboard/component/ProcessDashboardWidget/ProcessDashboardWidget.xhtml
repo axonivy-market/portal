@@ -21,8 +21,8 @@
       <ui:param name="widgetContentStylyClass" value="process-widget" />
       <ui:param name="componentToProcessOnApplyFilter" value="filter-container" />
       <ui:param name="onStatisticTabShow" value="handleFilterCategoryHeight(this);" />
-      <ui:param name="componentToUpdateOnApplyFilter" value="#{component.parent.namingContainer.clientId}" />
-      <ui:param name="componentToUpdateOnResetFilter" value="#{component.parent.namingContainer.clientId}" />
+      <ui:param name="componentToUpdateOnApplyFilter" value="#{component.parent.namingContainer.clientId}:widget-content" />
+      <ui:param name="componentToUpdateOnResetFilter" value="#{cc.clientId}:widget-content" />
     
       <ui:define name="widgetInformationContent">
         <ui:include src="ProcessInfo.xhtml">
