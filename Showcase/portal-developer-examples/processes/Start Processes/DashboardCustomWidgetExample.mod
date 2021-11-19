@@ -16,10 +16,10 @@ De0 @PushWFArc f4 '' #zField
 De0 @UserDialog f3 '' #zField
 >Proto De0 De0 DashboardCustomWidgetExample #zField
 De0 f0 outLink investmentList.ivp #txt
-De0 f0 inParamDecl '<String date__period,String user__customer,String string__note> param;' #txt
-De0 f0 inParamTable 'out.employee=param.user__customer;
+De0 f0 inParamDecl '<String date__startDate,String user__customer,String string__note> param;' #txt
+De0 f0 inParamTable 'out.customer=param.user__customer;
 out.note=param.string__note;
-out.period=param.date__period;
+out.startDate=param.date__startDate;
 ' #txt
 De0 f0 requestEnabled true #txt
 De0 f0 triggerEnabled false #txt
@@ -41,10 +41,10 @@ De0 f2 280 64 337 64 #arcP
 De0 f4 111 64 168 64 #arcP
 De0 f3 dialogId com.axonivy.portal.developerexamples.testdata.InvestmentList #txt
 De0 f3 startMethod start(String,String,String) #txt
-De0 f3 requestActionDecl '<String period,String note,String user> param;' #txt
-De0 f3 requestMappingAction 'param.period=in.period;
+De0 f3 requestActionDecl '<String startDate,String note,String user> param;' #txt
+De0 f3 requestMappingAction 'param.startDate=in.startDate;
 param.note=in.note;
-param.user=in.employee;
+param.user=in.customer;
 ' #txt
 De0 f3 responseMappingAction 'out=in;
 ' #txt
