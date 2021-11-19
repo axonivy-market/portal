@@ -126,7 +126,7 @@ in.executePredefinedWorkflowData.currentTask.dynaFormController.createForm();
 in.email = new ExpressUserEmail();
 
 for (TaskDef task : in.executePredefinedWorkflowData.finishedTasks) {
-	task.actualApplicant = ivy.wf.getSecurityContext().findUser(task.actualApplicantName);
+	task.actualApplicant = ivy.security.users().find(task.actualApplicantName);
 }' #txt
 Us0 f15 security system #txt
 Us0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

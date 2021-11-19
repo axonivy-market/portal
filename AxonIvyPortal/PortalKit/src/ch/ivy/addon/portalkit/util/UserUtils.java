@@ -84,14 +84,14 @@ public class UserUtils {
     }
     return String.format("%s (%s)", fullname, username);
   }
-  
+
   public static List<IUserAbsence> findAbsenceOfUser(IUser iUser) {
     return IvyExecutor.executeAsSystem(() -> iUser.getAbsences());
   }
-  
+
   public static String findNextAbsenceOfUser(IUser iUser) {
     DateFormat formatter = new SimpleDateFormat(DateTimeGlobalSettingService.getInstance().getDateWithoutTimePattern());
-    
+
     List<IUserAbsence> findAbsenceOfUser = findAbsenceOfUser(iUser);
     String returnString = "";
     Date foundDate = null;
@@ -99,12 +99,12 @@ public class UserUtils {
       Date startTimestamp = item.getStartTimestamp();
       if (startTimestamp.after(new Date()) && (foundDate == null || startTimestamp.before(foundDate))) {
         foundDate = startTimestamp;
-        returnString = String.format("%s - %s", formatter.format(startTimestamp), formatter.format(item.getStopTimestamp())); 
-      } 
+        returnString = String.format("%s - %s", formatter.format(startTimestamp), formatter.format(item.getStopTimestamp()));
+      }
     }
     return returnString;
   }
-  
+
   public static void setSessionAttribute(String key, Object value) {
     Ivy.session().setAttribute(key, value);
   }
@@ -112,7 +112,7 @@ public class UserUtils {
   public static void setSessionSelectedDefaultTaskFilterSetAttribute(Boolean value) {
     setSessionAttribute(SELECTED_DEFAULT_TASK_FILTER_SET, value);
   }
-  
+
   public static void setSessionSelectedTaskFilterSetAttribute(TaskFilterData value) {
     setSessionAttribute(SELECTED_TASK_FILTER_SET, value);
   }
@@ -133,11 +133,11 @@ public class UserUtils {
     Object sessionObject = Ivy.session().getAttribute(SELECTED_TASK_FILTER_SET);
     return sessionObject instanceof TaskFilterData ? (TaskFilterData) sessionObject : null;
   }
-  
+
   public static Long getSessionFilterGroupIdAttribute() {
     return (Long) Ivy.session().getAttribute(FILTER_GROUP_ID);
   }
-  
+
   public static Boolean getSessionSelectedDefaultTaskFilterSetAttribute() {
     return (Boolean) Ivy.session().getAttribute(SELECTED_DEFAULT_TASK_FILTER_SET);
   }
@@ -146,7 +146,7 @@ public class UserUtils {
   public static List<TaskFilter> getSessionTaskAdvancedFilterAttribute() {
     List<TaskFilter> filters = new ArrayList<>();
     List<?> obj = (List<?>) Ivy.session().getAttribute(SELECTED_TASK_FILTER);
-    
+
     if (CollectionUtils.isNotEmpty(obj) && obj.get(0) instanceof TaskFilter) {
       return (List<TaskFilter>)obj;
     }
@@ -172,7 +172,7 @@ public class UserUtils {
   public static void setSessionCaseKeywordFilterAttribute(String keyword) {
     setSessionAttribute(CASE_KEYWORD_FILTER, keyword);
   }
-  
+
   public static void setSessionFilterGroupIdAttribute(Long value) {
     setSessionAttribute(FILTER_GROUP_ID, value);
   }
@@ -194,7 +194,7 @@ public class UserUtils {
   public static List<CaseFilter> getSessionCaseAdvancedFilterAttribute() {
     List<CaseFilter> filters = new ArrayList<>();
     List<?> obj = (List<?>) Ivy.session().getAttribute(SELECTED_CASE_FILTER);
-    
+
     if (CollectionUtils.isNotEmpty(obj) && obj.get(0) instanceof CaseFilter) {
       return (List<CaseFilter>)obj;
     }
@@ -204,7 +204,7 @@ public class UserUtils {
   public static String getSessionCaseKeywordFilterAttribute() {
     return StringUtils.defaultIfBlank((String)Ivy.session().getAttribute(CASE_KEYWORD_FILTER), "");
   }
-  
+
   public static Boolean getSessionSelectedDefaultCaseFilterSetAttribute() {
     return (Boolean) Ivy.session().getAttribute(SELECTED_DEFAULT_CASE_FILTER_SET);
   }
@@ -236,11 +236,11 @@ public class UserUtils {
           .get("users", List.class);
     });
   }
-  
+
   public static List<UserDTO> filterOut(List<UserDTO> users, UserDTO excludedUser) {
     return users.stream().filter(user -> !StringUtils.equals(user.getName(), excludedUser.getName())).collect(Collectors.toList());
   }
-  
+
   public static String getUserName(IUser user) {
     return IvyExecutor.executeAsSystem(() -> {
       return user.getName();
@@ -255,13 +255,13 @@ public class UserUtils {
 
   public static IUser findUserByUsername(String username) {
     return IvyExecutor.executeAsSystem(() -> {
-      return Ivy.wf().getSecurityContext().users().find(username);
+      return Ivy.security().users().find(username);
     });
   }
 
   public static IUser findUserByUserId(Long userId) {
     return IvyExecutor.executeAsSystem(() -> {
-      return Ivy.wf().getSecurityContext().users().find(userId);
+      return Ivy.security().users().find(userId);
     });
   }
 

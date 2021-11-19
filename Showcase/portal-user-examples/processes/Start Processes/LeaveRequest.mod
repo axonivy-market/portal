@@ -78,7 +78,7 @@ Lt0 f4 requestActionDecl '<> param;' #txt
 Lt0 f4 responseMappingAction 'out=in;
 out.isApproved=result.isApproved;
 ' #txt
-Lt0 f4 taskData 'TaskA.NAM=<%\=ivy.cms.co("/Processes/LeaveRequest/approvalTaskName", [ivy.session.getSecurityContext().findUser(in.requester).getDisplayName()])%>
+Lt0 f4 taskData 'TaskA.NAM=<%\=ivy.cms.co("/Processes/LeaveRequest/approvalTaskName", [ivy.security.users().find(in.requester).getDisplayName()])%>
 TaskA.ROL=in.approver
 TaskA.TYPE=3' #txt
 Lt0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
