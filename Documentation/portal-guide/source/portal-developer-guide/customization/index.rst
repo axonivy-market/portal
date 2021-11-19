@@ -7,7 +7,7 @@ You could find project ``portal-developer-examples`` in engine demo mode or impo
 
 .. note::
 	If you copy ``PortalStart.mod`` to your project for customization, set default pages to your project, follow this chapter to customize standard processes:
-	`Standard Processes <https://developer.axonivy.com/doc/|version|/engine-guide/administration/standard-processes.html>`_
+	`Standard Processes <https://developer.axonivy.com/doc/|version|/designer-guide/user-interface/standard-processes/index.html>`_
 
 |engine-demo-mode|
 
@@ -42,6 +42,7 @@ You could find project ``portal-developer-examples`` in engine demo mode or impo
    document-processes
    responsive-css
    group-chat-customization
+   change-group-id
    user-with-environment-info
    page-header-footer
    process-information
