@@ -2,8 +2,8 @@ InvestmentListData #class
 com.axonivy.portal.developerexamples.testdata.InvestmentList #namespace
 investments java.util.List<com.axonivy.portal.developerexamples.Investment> #field
 investments PERSISTENT #fieldModifier
-period java.util.Date #field
-period PERSISTENT #fieldModifier
+startDate java.util.Date #field
+startDate PERSISTENT #fieldModifier
 name String #field
 name PERSISTENT #fieldModifier
 note String #field
