@@ -204,7 +204,7 @@ Show Custom Panels (Widgets)
    - Go to the example homepage by the process ``Start Processes/ExamplePortalStart/DefaultApplicationHomePage.ivp``
    - And then go to task details to check the new custom layout.
 
-   About how to configure Global Var, refer to `Axon Ivy Global Variables <https://developer.axonivy.com/releases/ivy/|version|/documents/designer-guide/configuration/global-variables.html>`_
+   About how to configure Variables, refer to `Axon Ivy Variables <https://developer.axonivy.com/doc/|version|/designer-guide/configuration/variables.html>`_
 
 
 There are **two steps** for adding new custom panels.
