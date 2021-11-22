@@ -1,5 +1,5 @@
 [Ivy]
-16BF516D50A96350 9.3.1 #module
+16BF516D50A96350 9.3.0 #module
 >Proto >Proto Collection #zClass
 Ts0 SideStepProcess Big #zClass
 Ts0 RD #cInfo
@@ -188,7 +188,7 @@ if (isDone) {
 	String fullName = user.getFullName();
 	String userName = StringUtils.substring(user.getMemberName(), 1);
 	String delayNote = service.prepareChangeDelayNoteContent(fullName, userName, new Date(), in.task.getId());
-	in.task.getCase().getBusinessCase().createNote(ivy.session, delayNote);
+	in.task.getCase().createNote(ivy.session, delayNote);
 }' #txt
 Ts0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -275,7 +275,7 @@ if (isSuccess) {
 	String fullName = user.getFullName();
 	String userName = StringUtils.substring(user.getMemberName(), 1);
 	String notes = service.prepareRemoveExpiryTimeNoteContent(fullName, userName, in.task.getId());
-	in.task.getCase().getBusinessCase().createNote(ivy.session, notes);
+	in.task.getCase().createNote(ivy.session, notes);
 }' #txt
 Ts0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
