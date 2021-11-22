@@ -91,7 +91,7 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
 
   private WidgetSample customSample() {
     return new WidgetSample(translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/customWidget"), DashboardWidgetType.CUSTOM,
-        "", translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/customWidgetIntroduction"));
+        "si si-cog-double-2", translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/customWidgetIntroduction"), true);
   }
 
   public void restore() throws IOException, ParseException {
