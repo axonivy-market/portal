@@ -14,17 +14,18 @@ import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.persistence.query.IPagedResult;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.security.IRole;
+import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.security.IUser;
 
 public class SecurityMemberUtils {
-  
+
   public static SecurityMemberDTO getCurrentSessionUserAsSecurityMemberDTO() {
     return IvyExecutor.executeAsSystem(() -> {
       return new SecurityMemberDTO(Ivy.session().getSessionUser());
     });
   }
-  
+
   /**
    * Finds the security members by query in current application
    * @param query
@@ -44,26 +45,26 @@ public class SecurityMemberUtils {
           .get("members", List.class);
     });
   }
-  
+
   public static List<SecurityMemberDTO> convertIRoleToSecurityMemberDTO(List<IRole> roles) {
     return IvyExecutor.executeAsSystem(() -> {
       return roles.stream().map(role -> new SecurityMemberDTO(role)).collect(Collectors.toList());
     });
   }
-  
+
   public static ISecurityMember findISecurityMemberFromUserDTO(UserDTO userDTO) {
     return UserUtils.findUserByUserId(userDTO.getId());
   }
-  
+
   public static ISecurityMember findISecurityMemberFromRoleDTO(RoleDTO roleDTO) {
     return IvyExecutor.executeAsSystem(() -> {
-        return Ivy.wf().getSecurityContext().findRole(roleDTO.getId());
+        return ((ISecurityContext)Ivy.security()).findRole(roleDTO.getId());
     });
   }
 
   public static String buildTooltipFromUsers(String roleName) {
     return IvyExecutor.executeAsSystem(() -> {
-      IRole role = Ivy.wf().getSecurityContext().findRole(roleName);
+      IRole role = Ivy.security().roles().find(roleName);
       IPagedResult<IUser> result = role.users().assignedPaged(10);
       List<IUser> users = result.page(1);
       long totalCount = result.count();

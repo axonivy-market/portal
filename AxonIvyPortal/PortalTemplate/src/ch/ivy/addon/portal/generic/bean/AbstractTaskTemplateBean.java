@@ -99,17 +99,17 @@ public abstract class AbstractTaskTemplateBean implements Serializable {
     }
     return AdditionalProperty.ORIGINAL_ADHOC_EXPRESS_TASK.toString().equals(task.customFields().stringField(AdditionalProperty.ORIGINAL_ADHOC_EXPRESS_TASK.toString()).getOrNull());
   }
-  
+
   public void onCloseAdhocTaskHistoryDialog(ITask task) {
     task.customFields().stringField(AdditionalProperty.FIRST_TIME_OPEN_ORIGINAL_ADHOC_TASK.toString()).delete();
   }
-  
+
   public String getAdhocCreationMessage(Long taskId) {
     AdhocHistoryService adhocHistoryService = new AdhocHistoryService();
     boolean hasAdhocHistory = adhocHistoryService.hasAdhocHistory(taskId);
     return hasAdhocHistory ? Ivy.cms().co("/ch.ivy.addon.portal.generic/OpenTaskTemplate/reCreateAdhocWarning") : Ivy.cms().co("/ch.ivy.addon.portal.generic/OpenTaskTemplate/goToAdhocWarning");
   }
-  
+
   public List<AdhocHistory> getAllAdhocHistories(ITask task) {
     if (adhocHistories == null && task != null) {
       AdhocHistoryService adhocHistoryService = new AdhocHistoryService();
@@ -127,7 +127,7 @@ public abstract class AbstractTaskTemplateBean implements Serializable {
     return IvyExecutor.executeAsSystem(() -> {
       IUser user = UserUtils.findUserByUsername(username);
       if (user == null) {
-        UserQuery query = Ivy.wf().getSecurityContext().users().query();
+        UserQuery query = Ivy.security().users().query();
         query.where().externalId().isEqual(externalId);
         user = query.executor().firstResult();
       }
