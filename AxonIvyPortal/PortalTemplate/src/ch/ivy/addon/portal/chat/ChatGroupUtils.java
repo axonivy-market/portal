@@ -56,7 +56,7 @@ public class ChatGroupUtils {
 
   public static Set<String> getAllUsersFromRole(String roleName) {
     Set<String> userNames = new HashSet<>();
-    IRole role = getApplication().getSecurityContext().findRole(roleName);
+    IRole role = getApplication().getSecurityContext().roles().find(roleName);
     if (role != null) {
       userNames.addAll(role.users().allPaged().stream().map(IUser::getName).collect(Collectors.toSet()));
     }
@@ -65,7 +65,7 @@ public class ChatGroupUtils {
   }
 
   public static boolean hasRole(ISecurityMember securityRole, IUser user) {
-    IRole role = getApplication().getSecurityContext().findRole(securityRole.getName());
+    IRole role = getApplication().getSecurityContext().roles().find(securityRole.getName());
     return user.getUserToken().hasRole(role, false);
   }
 
@@ -132,7 +132,7 @@ public class ChatGroupUtils {
   private static Set<String> getAllUsersFromRoles(Set<String> roleNames) {
     Set<String> userNames = new HashSet<>();
     for (String roleName : roleNames) {
-      IRole role = getApplication().getSecurityContext().findRole(roleName);
+      IRole role = getApplication().getSecurityContext().roles().find(roleName);
       if (role != null) {
         userNames.addAll(role.users().allPaged().stream().map(IUser::getName).collect(Collectors.toSet()));
       }
