@@ -1,5 +1,5 @@
 [Ivy]
-16B3FA08E0ADDCE6 9.3.0 #module
+16B3FA08E0ADDCE6 9.3.1 #module
 >Proto >Proto Collection #zClass
 At0 AssignRolesGroupChat Big #zClass
 At0 B #cInfo
@@ -37,13 +37,13 @@ At0 f1 57 225 30 30 0 15 #rect
 At0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>Use this callable to configure a predefined list of responsible roles for group chat feature. &#xD;
-By default, this does nothing. Set value of in.roles to customize this role list.&#xD;
-&#xD;
-e.g. set predefined role HR for the process leave request.&#xD;
-String processPath = in.task.getCase().getProcessStart().getUserFriendlyRequestPath();&#xD;
-if (processPath.contains("Start Processes/CreateTestData/CategoriedLeaveRequest.ivp")) {&#xD;
-  in.roles.add(ivy.wf.getSecurityContext().findRole("HR"));&#xD;
+        <name>Use this callable to configure a predefined list of responsible roles for group chat feature. &#13;
+By default, this does nothing. Set value of in.roles to customize this role list.&#13;
+&#13;
+e.g. set predefined role HR for the process leave request.&#13;
+String processPath = in.task.getCase().getProcessStart().getUserFriendlyRequestPath();&#13;
+if (processPath.contains("Start Processes/CreateTestData/CategoriedLeaveRequest.ivp")) {&#13;
+  in.roles.add(ivy.security.roles().find("HR"));&#13;
 }</name>
     </language>
 </elementInfo>
@@ -54,7 +54,7 @@ At0 f5 actionTable 'out=in;
 At0 f5 actionCode 'import java.util.ArrayList;
 String processPath = in.task.getCase().getProcessStart().getUserFriendlyRequestPath();
 if (processPath.contains("Start Processes/CreateTestData/CategoriedLeaveRequest.ivp")) {
-	in.roles.add(ivy.wf.getSecurityContext().findRole("HR"));
+	in.roles.add(ivy.security.roles().find("HR"));
 }' #txt
 At0 f5 security system #txt
 At0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

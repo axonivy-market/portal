@@ -1,5 +1,5 @@
 [Ivy]
-176CBAC0BEF174DD 9.3.0 #module
+176CBAC0BEF174DD 9.3.1 #module
 >Proto >Proto Collection #zClass
 Us0 UserSelectionExampleProcess Big #zClass
 Us0 RD #cInfo
@@ -57,11 +57,11 @@ import java.util.Arrays;
 
 in.definedRoleNames = Arrays.asList("CostObject", "GeneralManager");
 String costObject1UserName = "costObject1";
-IUser costObject1 = ivy.wf.getSecurityContext().findUser(costObject1UserName);
+IUser costObject1 = ivy.security.users().find(costObject1UserName);
 if (costObject1 == null) {
-  costObject1 = ivy.wf.getSecurityContext().users().create(costObject1UserName, "");
+  costObject1 = ivy.security.users().create(costObject1UserName, "");
   costObject1.setFullName("Cost Object 1");
-  IRole costObject = ivy.wf.getSecurityContext().findRole("CostObject");
+  IRole costObject = ivy.security.roles().find("CostObject");
   if (costObject != null) {
   	costObject1.addRole(costObject);
   }

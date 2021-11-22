@@ -1,5 +1,5 @@
 [Ivy]
-162F55163FD8DF16 9.3.0 #module
+162F55163FD8DF16 9.3.1 #module
 >Proto >Proto Collection #zClass
 As0 ApprovalFormProcess Big #zClass
 As0 RD #cInfo
@@ -219,7 +219,7 @@ As0 f15 actionTable 'out=in;
 As0 f15 actionCode 'import gawfs.TaskDef;
 
 for (TaskDef task : in.finishedTasks) {
-	task.actualApplicant = ivy.wf.getSecurityContext().findUser(task.actualApplicantName);
+	task.actualApplicant = ivy.security.users().find(task.actualApplicantName);
 }' #txt
 As0 f15 security system #txt
 As0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

@@ -51,7 +51,7 @@ public class DeputyRoleUtils {
         }
 
         UserDTO substituteUser = ivySubstitute.getSubstituteUser();
-        ISecurityMember assignee = substituteUser != null ? Ivy.session().getSecurityContext().findSecurityMember(substituteUser.getMemberName()) : null;
+        ISecurityMember assignee = substituteUser != null ? Ivy.security().members().find(substituteUser.getMemberName()) : null;
         if (assignee != null) {
           deputyRole.addDeputy(assignee);
         }

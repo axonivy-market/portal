@@ -6,14 +6,16 @@ import ch.ivyteam.ivy.Advisor;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.SecurityManagerFactory;
+import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.workflow.ICase;
 
 @SuppressWarnings("restriction")
 public class CaseUtils {
   public static void createSystemNote(final ICase wfCase, final String note) {
-    final ISecurityContext s = Ivy.wf().getSecurityContext();
+    final ISecurityContext s = (ISecurityContext)Ivy.security();
+    var systemUserSession = Sudo.get(() -> s.sessions().systemUser());
     try {
-      s.executeAsSystemUser(new Callable<Void>() {
+      s.executeAs(new Callable<Void>() {
 
         @Override
         public Void call() throws Exception {
@@ -21,7 +23,7 @@ public class CaseUtils {
           return null;
         }
 
-      });
+      }, systemUserSession);
     } catch (Exception e1) {
       e1.printStackTrace();
     }
