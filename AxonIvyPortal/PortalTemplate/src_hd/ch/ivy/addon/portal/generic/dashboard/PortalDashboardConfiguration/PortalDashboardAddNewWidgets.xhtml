@@ -12,9 +12,9 @@
     styleClass="new-widget-dialog__content">
     <p:panel styleClass="new-widget-dialog__item">
       <p:panelGrid columns="3" styleClass="ui-panelgrid-blank">
-        <p:graphicImage library="images" name="#{sample.image}" styleClass="new-widget-dialog__image" rendered="#{not empty sample.image}" />
-        <h:panelGroup layout="block" rendered="#{empty sample.image}" styleClass="new-widget-dialog__image" >
-          <span class="si si-download-bottom new-widget-dialog__icon" />
+        <p:graphicImage library="images" name="#{sample.image}" styleClass="new-widget-dialog__image" rendered="#{!sample.useIcon}" />
+        <h:panelGroup layout="block" rendered="#{sample.useIcon}" styleClass="new-widget-dialog__image" >
+          <span class="#{sample.image} new-widget-dialog__icon" />
         </h:panelGroup>
         <p:panelGrid styleClass="ui-panelgrid-blank new-widget-dialog__item-content" columns="1">
           <p:outputLabel id="sample-name" value="#{sample.name}" styleClass="new-widget-dialog__widget-name"/>
