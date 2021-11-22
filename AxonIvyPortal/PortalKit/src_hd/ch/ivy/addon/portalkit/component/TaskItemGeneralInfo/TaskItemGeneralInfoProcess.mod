@@ -1,5 +1,5 @@
 [Ivy]
-15493A537A91F8FC 9.3.0 #module
+15493A537A91F8FC 9.3.1 #module
 >Proto >Proto Collection #zClass
 Ts0 TaskItemGeneralInfoProcess Big #zClass
 Ts0 RD #cInfo
@@ -107,7 +107,7 @@ Ts0 f14 expr out #txt
 Ts0 f14 109 288 168 288 #arcP
 Ts0 f15 actionTable 'out=in;
 ' #txt
-Ts0 f15 actionCode 'in.task.getCase().getBusinessCase().createNote(ivy.session, in.changeDeadlineNoteContent);' #txt
+Ts0 f15 actionCode 'in.task.getCase().createNote(ivy.session, in.changeDeadlineNoteContent);' #txt
 Ts0 f15 security system #txt
 Ts0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -196,7 +196,7 @@ IUser user = ivy.session.getSessionUser();
 String fullName = user.getFullName();
 String userName = StringUtils.substring(user.getMemberName(), 1);
 String delayNote = service.prepareChangeDelayNoteContent(fullName, userName, in.task.delayTimestamp, in.task.getId());
-in.task.getCase().getBusinessCase().createNote(ivy.session, delayNote);
+in.task.getCase().createNote(ivy.session, delayNote);
 ' #txt
 Ts0 f22 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

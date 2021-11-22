@@ -171,7 +171,7 @@ public class ExpressProcessUtils {
   public static String generateResponsibleDisplayName(List<String> responsibleNames) {
     return CollectionUtils.emptyIfNull(responsibleNames)
       .stream()
-      .map(responsibleName -> Ivy.session().getSecurityContext().findSecurityMember(responsibleName))
+      .map(responsibleName -> Ivy.security().members().find(responsibleName))
       .filter(securityMember -> securityMember != null)
       .map(securityMember -> SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(securityMember, securityMember.getName()))
       .collect(Collectors.joining(", "));
@@ -213,7 +213,7 @@ public class ExpressProcessUtils {
   
   private List<String> getEmailAddressFromSecurityMember(String memberName) {
     List<String> emailAddresses = new ArrayList<>(); 
-    ISecurityMember securityMember = Ivy.session().getSecurityContext().findSecurityMember(memberName);
+    ISecurityMember securityMember = Ivy.security().members().find(memberName);
     if (securityMember != null) {
       if (securityMember.isUser()) {
         IUser iuser = (IUser) securityMember;

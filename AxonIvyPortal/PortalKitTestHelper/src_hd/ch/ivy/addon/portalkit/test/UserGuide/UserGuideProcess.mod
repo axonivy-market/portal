@@ -1,5 +1,5 @@
 [Ivy]
-1725F66D3F3CECB5 9.3.0 #module
+1725F66D3F3CECB5 9.3.1 #module
 >Proto >Proto Collection #zClass
 Us0 UserGuideProcess Big #zClass
 Us0 RD #cInfo
@@ -44,7 +44,7 @@ import ch.ivy.addon.portalkit.bo.Guide;
 import ch.ivyteam.ivy.security.IUser;
 
 in.users.clear();
-List<IUser> users = ivy.wf.getApplication().getSecurityContext().users().paged().page(1);
+List<IUser> users = ivy.security.users().paged().page(1);
 for (IUser user : users) {
 	UserForGuide userForGuide = new UserForGuide();
 	userForGuide.setName(user.getName());
@@ -76,7 +76,7 @@ import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portalkit.bo.Guide;
 import ch.ivyteam.ivy.security.IUser;
-IUser user = ivy.wf.getSecurityContext().users().find(in.user.name);
+IUser user = ivy.security.users().find(in.user.name);
 if (user.equals(ivy.session.getSessionUser())) {
 	GuideBean guideBean =	ManagedBeans.get("guideBean") as GuideBean;
 	guideBean.setDontShowAgain(!in.user.isGuideShown);

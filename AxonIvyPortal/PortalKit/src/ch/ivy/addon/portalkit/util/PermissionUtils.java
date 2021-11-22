@@ -27,7 +27,7 @@ public class PermissionUtils {
 
   /**
    * Check if current user has read all tasks permission
-   * 
+   *
    * @return True : has read all tasks permission
    */
   public static boolean checkReadAllTasksPermission() {
@@ -37,10 +37,10 @@ public class PermissionUtils {
   private static ISecurityDescriptor getSecurityDescriptor() {
     return Ivy.request().getApplication().getSecurityDescriptor();
   }
-  
+
   /**
    * Check if current user has read all cases permission
-   * 
+   *
    * @return True : has read all cases permission
    */
   public static boolean checkReadAllCasesPermission() {
@@ -49,7 +49,7 @@ public class PermissionUtils {
 
   /**
    * Check if current user has task read own case tasks permission
-   * 
+   *
    * @return True : has task read own case tasks permission
    */
   public static boolean checkTaskReadOwnCaseTasksPermission() {
@@ -58,7 +58,7 @@ public class PermissionUtils {
 
   /**
    * Check if current user has document write permission
-   * 
+   *
    * @return True : has document write permission
    */
   public static boolean checkDocumentWritePermission() {
@@ -67,7 +67,7 @@ public class PermissionUtils {
 
   /**
    * Check if current user has document of involved case write permission
-   * 
+   *
    * @return True : has task document of involved case write permission
    */
   public static boolean checkDocumentOfInvolvedCaseWritePermission() {
@@ -81,18 +81,18 @@ public class PermissionUtils {
   public static boolean checkDestroyTaskPermission() {
     return Ivy.session().hasPermission(getSecurityDescriptor(), IPermission.TASK_DESTROY);
   }
-  
+
   /**
    * Check if user can start an Express workflow
    * and set permission if user able to edit/delete express WF
-   * 
+   *
    * @param workflow
    * @return True: has permission to start Express workflow, False: Do not have permission to start Express workflow
    */
   public static boolean checkAbleToStartAndAbleToEditExpressWorkflow(ExpressProcess workflow) {
     String validProcessOwnerName = ExpressManagementUtils.getValidMemberName(workflow.getProcessOwner());
     boolean isWorkflowOwner = StringUtils.isNotBlank(validProcessOwnerName) ? Ivy.session().canActAsUser(
-        Ivy.request().getApplication().getSecurityContext().users().find(validProcessOwnerName.substring(1))) : false;
+        Ivy.security().users().find(validProcessOwnerName.substring(1))) : false;
     boolean hasAdminRole = isSessionUserHasAdminRole();
 
     if (isWorkflowOwner || hasAdminRole) {
@@ -101,14 +101,14 @@ public class PermissionUtils {
     }
     Collection<String> ableToStartResponsibles = CollectionUtils.emptyIfNull(workflow.getProcessPermissions());
     Collection<String> processOwners = CollectionUtils.emptyIfNull(workflow.getProcessCoOwners());
-    
+
     for (String memberName : processOwners) {
       if(isSessionUserBelongsToPermissionGroup(memberName)) {
         workflow.setAbleToEdit(true);
         return true;
       }
     }
-    
+
     for (String memberName : ableToStartResponsibles) {
       if(isSessionUserBelongsToPermissionGroup(memberName)) {
         return true;
@@ -124,7 +124,7 @@ public class PermissionUtils {
     }
 
     String memberNameWithoutExternalId = getMemberNameWithoutExternalId(memberName);
-    ISecurityMember member = Ivy.session().getSecurityContext().findSecurityMember(memberNameWithoutExternalId);
+    ISecurityMember member = Ivy.security().members().find(memberNameWithoutExternalId);
     if(member != null) {
       boolean isAssignedUser = member.isUser() && Ivy.session().canActAsUser((IUser) member);
       boolean hasAssignedRole = !member.isUser() && Ivy.session().hasRole((IRole) member, false);
@@ -139,18 +139,18 @@ public class PermissionUtils {
   }
 
   public static boolean isSessionUserHasAdminRole() {
-    return Ivy.session().hasRole(Ivy.request().getApplication().getSecurityContext().findRole(ADMIN_ROLE), false);
+    return Ivy.session().hasRole(Ivy.security().roles().find(ADMIN_ROLE), false);
   }
-  
+
   public static boolean doesSessionUserHaveRole(String roleName) {
-    IRole role = Ivy.request().getApplication().getSecurityContext().findRole(roleName);
+    IRole role = Ivy.security().roles().find(roleName);
     return role != null ? Ivy.session().hasRole(role, false) : false;
-    
+
   }
 
   /**
    * Check if current user has portal permission
-   * 
+   *
    * @param portalPermission
    * @return true : portal permission is granted
    */
@@ -164,7 +164,7 @@ public class PermissionUtils {
 
   /**
    * Check if current user has permission to see full process list
-   * 
+   *
    * @return true if user has permission to see full process list
    */
   public static boolean checkAccessFullProcessListPermission() {
@@ -173,7 +173,7 @@ public class PermissionUtils {
 
   /**
    * Check if current user has permission to see full task list
-   * 
+   *
    * @return true if current user has permission to see full task list
    */
   public static boolean checkAccessFullTaskListPermission() {
@@ -182,7 +182,7 @@ public class PermissionUtils {
 
   /**
    * Check if current user has permission to see full case list
-   * 
+   *
    * @return true if current user has permission to see full case list
    */
   public static boolean checkAccessFullCaseListPermission() {
@@ -191,22 +191,22 @@ public class PermissionUtils {
 
   /**
    * Check if current user has permission to see full statistic list
-   * 
+   *
    * @return true if current user has permission to see full statistic list
    */
   public static boolean checkAccessFullStatisticsListPermission() {
     return hasPortalPermission(PortalPermission.ACCESS_FULL_STATISTICS_LIST);
   }
-  
+
   /**
    * Check if current user has permission to create public external link
-   * 
+   *
    * @return true if current user has permission to create public external link
    */
   public static boolean checkPublicLinkCreationPermission() {
     return hasPortalPermission(PortalPermission.CREATE_PUBLIC_EXTERNAL_LINK);
   }
-  
+
   public static boolean hasDashboardWritePermission() {
     return hasPortalPermission(PortalPermission.DASHBOARD_WRITE);
   }
@@ -218,7 +218,7 @@ public class PermissionUtils {
   public static String getTaskName(ITask task) {
     return IvyExecutor.executeAsSystem(task::getName);
   }
-  
+
   /**
    * Check if current user has permission to see/reset task is in state ReadyForJoin
    * @return true if current user has permission.
@@ -226,7 +226,7 @@ public class PermissionUtils {
   public static boolean canResetTaskReadyForJoin() {
     return hasPortalPermission(PortalPermission.TASK_RESET_READY_FOR_JOIN);
   }
-  
+
   public static boolean hasPermission(IPermission permission) {
     IWorkflowSession currentSession = Ivy.session();
     return currentSession.hasPermission(getSecurityDescriptor(), permission);
@@ -247,7 +247,7 @@ public class PermissionUtils {
     }
     return hasAtLeastOnePermission;
   }
-  
+
   /**
    * Check if current user has permission to see the WorkflowEvent of task
    * @return true if current user has permission.
@@ -255,5 +255,5 @@ public class PermissionUtils {
   public static boolean checkReadAllWorkflowEventPermission() {
     return Ivy.session().hasPermission(getSecurityDescriptor(), IPermission.WORKFLOW_EVENT_READ_ALL);
   }
-  
+
 }

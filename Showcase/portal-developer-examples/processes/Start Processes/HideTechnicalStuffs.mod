@@ -1,5 +1,5 @@
 [Ivy]
-16583F0F73864543 9.3.0 #module
+16583F0F73864543 9.3.1 #module
 >Proto >Proto Collection #zClass
 Hs0 HideTechnicalStuffs Big #zClass
 Hs0 B #cInfo
@@ -97,7 +97,7 @@ Hs0 f9 actionTable 'out=in;
 Hs0 f9 actionCode 'import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.publicapi.RoleAPI;
 import ch.ivyteam.ivy.security.IRole;
-IRole role = ivy.session.getSecurityContext().findRole("PortalSystem");
+IRole role = ivy.security.roles().find("PortalSystem");
 if(#role is initialized) {
 	RoleAPI.setProperty(role, AdditionalProperty.HIDE.toString(), AdditionalProperty.HIDE.toString());
 }' #txt
@@ -118,7 +118,7 @@ Hs0 f11 actionTable 'out=in;
 Hs0 f11 actionCode 'import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.publicapi.RoleAPI;
 import ch.ivyteam.ivy.security.IRole;
-IRole role = ivy.session.getSecurityContext().findRole("PortalSystem");
+IRole role = ivy.security.roles().find("PortalSystem");
 if(#role is initialized) {
 	RoleAPI.removeProperty(role, AdditionalProperty.HIDE.toString());
 }' #txt
