@@ -42,7 +42,7 @@ By default, this does nothing. Set value of in.roles to customize this role list
 e.g. set predefined role HR for the process leave request.&#xD;
 String processPath = in.task.getCase().getProcessStart().getUserFriendlyRequestPath();&#xD;
 if (processPath.contains("Start Processes/CreateTestData/CategoriedLeaveRequest.ivp")) {&#xD;
-  in.roles.add(ivy.wf.getSecurityContext().findRole("HR"));&#xD;
+  in.roles.add(ivy.security.roles().find("HR"));&#xD;
 }</name>
         <nameStyle>5,5
 475,5

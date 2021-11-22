@@ -56,7 +56,7 @@ import ch.ivyteam.ivy.security.IRole;
 import java.util.Arrays;
 
 String everybodyRoleName = "Everybody";
-IRole everybodyRole = ivy.wf.getSecurityContext().findRole(everybodyRoleName);
+IRole everybodyRole = ivy.security.roles().find(everybodyRoleName);
 in.selectedRoleForReadOnlyField = new RoleDTO(everybodyRole);
 Ivy.log().info("selected Role for read only field: " + in.selectedRoleForReadOnlyField.getDisplayName());
 in.excludedRoleNames = Arrays.asList("CaseOwner", "GeneralManager");
