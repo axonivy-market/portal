@@ -99,7 +99,7 @@ public final class PortalSessionExtension implements ISessionExtension {
 
   private boolean isLastSessionBoundToUser(ISession session) {
     String username = session.getSessionUserName();
-    return wf().getSecurityContext().getSessions().stream()
+    return wf().getSecurityContext().sessions().all().stream()
         .noneMatch(s -> s.getSessionUserName().equals(username) && !s.equals(session));
   }
 

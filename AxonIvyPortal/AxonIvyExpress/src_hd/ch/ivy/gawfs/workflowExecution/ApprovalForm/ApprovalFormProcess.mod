@@ -219,7 +219,7 @@ As0 f15 actionTable 'out=in;
 As0 f15 actionCode 'import gawfs.TaskDef;
 
 for (TaskDef task : in.finishedTasks) {
-	task.actualApplicant = ivy.wf.getSecurityContext().findUser(task.actualApplicantName);
+	task.actualApplicant = ivy.security.users().find(task.actualApplicantName);
 }' #txt
 As0 f15 security system #txt
 As0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

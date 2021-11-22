@@ -58,7 +58,7 @@ in.message = "";
 in.isValid = false;
 try {
 	// generate token and set to user
-	UserQuery query = Ivy.wf().getSecurityContext().users().query();
+	UserQuery query = ivy.security.users().query();
 	query.where().eMailAddress().isEqualIgnoreCase(in.email);
 	List<IUser> users = query.executor().results();
 	if (CollectionUtils.isEmpty(users)) {

@@ -11,7 +11,7 @@ import ch.ivyteam.ivy.workflow.IWorkflowSession;
 
 /**
  * Handle permission to see functionality belonging to Portal Administrator
- * 
+ *
  */
 @ManagedBean
 @RequestScoped
@@ -22,7 +22,7 @@ public class PermissionBean implements Serializable {
 
   /**
    * If user don't have role ADMIN, then redirect to no permission page
-   * 
+   *
    * @return true if user has AXONIVY_PORTAL_ADMIN role, otherwise return false.
    */
   public boolean hasAdminPermission() {
@@ -32,7 +32,7 @@ public class PermissionBean implements Serializable {
         return false;
       }
 
-      IRole adminRole = Ivy.wf().getSecurityContext().findRole(AXONIVY_PORTAL_ADMIN);
+      IRole adminRole = Ivy.security().roles().find(AXONIVY_PORTAL_ADMIN);
       return sessionUser.hasRole(adminRole, true);
     } catch (Exception e) {
       Ivy.log().error(e);

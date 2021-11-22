@@ -55,8 +55,8 @@ Ls0 f6 actionCode 'import ch.ivy.addon.portalkit.dto.UserDTO;
 import com.axonivy.portal.userexamples.leaverequest.LeaveRequest;
 in.leaveRequestData = ivy.repo.get(LeaveRequest.class) as LeaveRequest;
 
-in.requester = new UserDTO(ivy.session.getSecurityContext().findUser(in.leaveRequestData.requesterUsername));
-in.approver = new UserDTO(ivy.session.getSecurityContext().findUser(in.leaveRequestData.approverUsername));' #txt
+in.requester = new UserDTO(ivy.security.users().find(in.leaveRequestData.requesterUsername));
+in.approver = new UserDTO(ivy.security.users().find(in.leaveRequestData.approverUsername));' #txt
 Ls0 f6 security system #txt
 Ls0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
