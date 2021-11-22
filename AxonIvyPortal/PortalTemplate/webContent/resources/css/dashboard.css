@@ -833,6 +833,19 @@ body .dashboard__table--preview.ui-datatable tbody tr.ui-state-hover {
   height: 330px;
 }
 
+.process-widget--full.process-grid-item .start-button-wrap {
+  position: absolute;
+  top: auto;
+  bottom: 1px;
+  margin-left: -2rem;
+  margin-right: -2rem;
+}
+
+.process-widget--full.process-grid-item .process-more-info-link {
+  display: block;
+  margin-top: 15px;
+}
+
 .grid-view-form .process-name.process-name--combined {
   height: 8rem;
   padding-left: 0;
