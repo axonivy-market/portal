@@ -1,5 +1,5 @@
 [Ivy]
-146C8E81DE07F973 9.3.0 #module
+146C8E81DE07F973 9.3.1 #module
 >Proto >Proto Collection #zClass
 Te0 TaskService Big #zClass
 Te0 B #cInfo
@@ -238,9 +238,7 @@ Te0 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Te0 f14 272 554 128 44 -60 -8 #rect
-Te0 f14 @|StepIcon #fIcon
 Te0 f15 513 561 30 30 0 15 #rect
-Te0 f15 @|EndSubIcon #fIcon
 Te0 f16 inParamDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria criteria> param;' #txt
 Te0 f16 inParamTable 'out.taskSearchCriteria=param.criteria;
 ' #txt
@@ -256,7 +254,6 @@ Te0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Te0 f16 81 561 30 30 -68 21 #rect
-Te0 f16 @|StartSubIcon #fIcon
 Te0 f19 expr out #txt
 Te0 f19 111 576 272 576 #arcP
 Te0 f20 400 576 513 576 #arcP
@@ -275,9 +272,7 @@ Te0 f23 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Te0 f23 81 689 30 30 -68 21 #rect
-Te0 f23 @|StartSubIcon #fIcon
 Te0 f28 513 689 30 30 0 15 #rect
-Te0 f28 @|EndSubIcon #fIcon
 Te0 f29 actionTable 'out=in;
 ' #txt
 Te0 f29 actionCode 'import ch.ivy.addon.portalkit.ivydata.dto.IvyTaskResultDTO;
@@ -294,7 +289,6 @@ Te0 f29 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Te0 f29 272 682 128 44 -60 -8 #rect
-Te0 f29 @|StepIcon #fIcon
 Te0 f30 expr out #txt
 Te0 f30 111 704 272 704 #arcP
 Te0 f31 400 704 513 704 #arcP

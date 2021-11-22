@@ -1,5 +1,5 @@
 [Ivy]
-1764192CC5D94D93 9.3.0 #module
+1764192CC5D94D93 9.3.1 #module
 >Proto >Proto Collection #zClass
 Sl0 SendPasswordResetEmail Big #zClass
 Sl0 B #cInfo
@@ -58,7 +58,7 @@ in.message = "";
 in.isValid = false;
 try {
 	// generate token and set to user
-	UserQuery query = Ivy.wf().getSecurityContext().users().query();
+	UserQuery query = ivy.security.users().query();
 	query.where().eMailAddress().isEqualIgnoreCase(in.email);
 	List<IUser> users = query.executor().results();
 	if (CollectionUtils.isEmpty(users)) {

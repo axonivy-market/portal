@@ -3,6 +3,7 @@ package com.axonivy.portal.selenium.page;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 
@@ -51,7 +52,7 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
   }
 
   private ElementsCollection getCasesOfCaseWidgetHasName(String caseName) {
-    return getColumnsOfTableWidget().filter(text(caseName));
+    return getColumnsOfTableWidget().filter(Condition.cssClass("dashboard-cases__name")).filter(text(caseName));
   }
 
   private SelenideElement getCaseOfCaseWidgetHasIndex(int index) {

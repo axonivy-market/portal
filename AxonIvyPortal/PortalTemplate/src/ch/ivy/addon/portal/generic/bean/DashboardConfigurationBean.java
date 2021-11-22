@@ -282,9 +282,10 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
       }
     }
     if (lastWidget != null && widget != null) {
-      var totalWidth = lastWidget.getLayout().getAxisX() + lastWidget.getLayout().getWidth() + widget.getLayout().getWidth();
+      var nextAxisX = lastWidget.getLayout().getAxisX() + lastWidget.getLayout().getWidth();
+      var totalWidth = nextAxisX + widget.getLayout().getWidth();
       if (totalWidth <= 12) {
-        widget.getLayout().setAxisX(lastWidget.getLayout().getWidth());
+        widget.getLayout().setAxisX(nextAxisX);
         widget.getLayout().setAxisY(lastWidget.getLayout().getAxisY());
   }
       else {
