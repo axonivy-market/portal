@@ -324,7 +324,7 @@ Ts0 f89 1168 146 112 44 -37 -16 #rect
 Ts0 f69 691 419 26 26 0 12 #rect
 Ts0 f77 actionTable 'out=in;
 ' #txt
-Ts0 f77 actionCode 'in.task.getCase().getBusinessCase().createNote(ivy.session, in.delegateComment);' #txt
+Ts0 f77 actionCode 'in.task.getCase().createNote(ivy.session, in.delegateComment);' #txt
 Ts0 f77 security system #txt
 Ts0 f77 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

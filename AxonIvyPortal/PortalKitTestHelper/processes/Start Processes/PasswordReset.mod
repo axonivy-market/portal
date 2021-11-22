@@ -1,5 +1,5 @@
 [Ivy]
-176463FD4BBF6C93 9.3.0 #module
+176463FD4BBF6C93 9.3.1 #module
 >Proto >Proto Collection #zClass
 Pt0 PasswordReset Big #zClass
 Pt0 B #cInfo
@@ -37,16 +37,25 @@ import ch.ivy.addon.portalkit.constant.UserProperty;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import java.util.Locale;
+import ch.ivyteam.ivy.security.user.NewUser;
 
 String username = "test_forgot_password_user";
 String userFullName = "Forgot Password User";
 String userPassword = "123";
 String userEmail = "wawa@axonivy.io";
 
-if (ivy.wf.getSecurityContext().findUser(username) != null) {
-	ivy.wf.getSecurityContext().deleteUser(username);
+if (ivy.security.users().find(username) != null) {
+	ivy.security.users().delete(username);
 }
-ivy.wf.getSecurityContext().createUser(username, userFullName, userPassword, Locale.ENGLISH, userEmail, "");
+
+NewUser newUser = NewUser
+	  .create(username)
+	  .fullName(userFullName)
+	  .password(userPassword)
+	  .language(java.util.Locale.ENGLISH)
+	  .mailAddress(userEmail)
+	  .toNewUser();
+ivy.security.users().create(newUser);
 
 IUser user = UserUtils.findUserByUsername(username);
 long expiryTime = Calendar.getInstance().getTimeInMillis() + 60*60000;

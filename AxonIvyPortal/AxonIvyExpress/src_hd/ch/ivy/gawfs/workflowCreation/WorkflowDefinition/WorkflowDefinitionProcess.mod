@@ -1,5 +1,5 @@
 [Ivy]
-1576FA61C4EDC8B1 9.3.0 #module
+1576FA61C4EDC8B1 9.3.1 #module
 >Proto >Proto Collection #zClass
 Fs0 WorkflowDefinitionProcess Big #zClass
 Fs0 RD #cInfo
@@ -402,7 +402,7 @@ Fs0 f38 actionTable 'out=in;
 Fs0 f38 actionCode 'import ch.ivyteam.ivy.security.ISecurityMember;
 
 ISecurityMember selectedAssignee = in.#selectedUser is initialized 
-	? ivy.wf.getSecurityContext().findSecurityMember(in.selectedUser.getMemberName()) : ivy.wf.getSecurityContext().findRole(in.selectedRole.getMemberName());
+	? ivy.security.members().find(in.selectedUser.getMemberName()) : ivy.security.roles().find(in.selectedRole.getMemberName());
 in.selectedAssigneeList.add(selectedAssignee);' #txt
 Fs0 f38 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -449,7 +449,7 @@ import javax.faces.context.FacesContext;
 import ch.ivyteam.ivy.security.ISecurityMember;
 
 ISecurityMember selectedAssignee = in.#selectedUser is initialized 
-	? ivy.wf.getSecurityContext().findSecurityMember(in.selectedUser.getMemberName()) : ivy.wf.getSecurityContext().findRole(in.selectedRole.getMemberName());
+	? ivy.security.members().find(in.selectedUser.getMemberName()) : ivy.security.roles().find(in.selectedRole.getMemberName());
 in.isValidAssignee = true;
 
 if (!(#selectedAssignee is initialized) || in.selectedAssigneeList.contains(selectedAssignee)) {
@@ -520,7 +520,7 @@ Fs0 f33 actionCode 'import javax.faces.context.FacesContext;
 import ch.ivyteam.ivy.security.ISecurityMember;
 
 for (String assigneeName : in.taskDefinition.responsibles) {
-	ISecurityMember assignee = ivy.session.getSecurityContext().findSecurityMember(assigneeName);
+	ISecurityMember assignee = ivy.security.members().find(assigneeName);
 	if (#assignee is initialized) {
 		if (!in.selectedAssigneeList.contains(assignee)) {
 			in.selectedAssigneeList.add(assignee);
@@ -829,7 +829,7 @@ Fs0 f87 actionCode 'import javax.faces.context.FacesContext;
 import ch.ivyteam.ivy.security.ISecurityMember;
 
 for (String assigneeName : in.data.processCoOwners) {
-	ISecurityMember assignee = ivy.session.getSecurityContext().findSecurityMember(assigneeName);
+	ISecurityMember assignee = ivy.security.members().find(assigneeName);
 	if (#assignee is initialized) {
 		if (!in.selectedAssigneeList.contains(assignee)) {
 			in.selectedAssigneeList.add(assignee);
