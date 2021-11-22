@@ -21,7 +21,7 @@
     hideEvent="mouseleave click" />
 </h:panelGroup>
 
-<h:panelGroup styleClass="process-widget--full process-widget--combined ui-g-4" layout="block" rendered="#{widget.process ne null}">
+<h:panelGroup styleClass="process-widget--full process-widget--combined ui-g-4 ui-sm-12" layout="block" rendered="#{widget.process ne null}">
   <c:set var="isExpress" value="#{dashboardProcessBean.isExpressProcess(widget.process)}" />
 
   <h:form id="process-item" styleClass="ui-g-12 process-grid-item u-padding-0 widget-height-100" target="#{processTarget}">
@@ -50,7 +50,7 @@
   </h:form>
 </h:panelGroup>
 
-<h:panelGroup layout="block" class="ui-g-8 process-task-case-container" rendered="#{widget.process ne null}" id="process-task-case-container">
+<h:panelGroup layout="block" class="ui-g-8 ui-sm-12 process-task-case-container" rendered="#{widget.process ne null}" id="process-task-case-container">
   <div class="process-grid-item__related-data-button">
     <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourTasks')}"
       styleClass="combined-process-widget__button-tabs first-tab-button #{widget.showCases ? '' : 'active-button-tab'}" process="@this"
