@@ -6,8 +6,8 @@ import static ch.ivy.addon.portalkit.enums.ExpressMessageType.IMPORT_RESULT;
 import static ch.ivy.addon.portalkit.enums.ExpressMessageType.IMPORT_STATUS;
 import static ch.ivy.addon.portalkit.enums.ExpressMessageType.INFO;
 import static ch.ivy.addon.portalkit.enums.ExpressMessageType.WARNING;
-import static org.apache.commons.lang3.StringUtils.SPACE;
 import static org.apache.commons.lang3.StringUtils.LF;
+import static org.apache.commons.lang3.StringUtils.SPACE;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
@@ -64,10 +64,10 @@ public class ExpressManagementUtils {
   private static final String JSON_EXTENSION = "json";
   private static final String EXTERNAL_ID_PREFIX = " externalId:";
   private static Gson gson = new GsonBuilder().serializeNulls().create();
-  
+
   /**
    * Find express repeat workflow list which are ready to execute and start
-   * 
+   *
    * @return List of Express workflow
    */
   public static List<ExpressProcess> findExpressProcesses() {
@@ -178,11 +178,11 @@ public class ExpressManagementUtils {
       int taskPosition = extractTaskPositionNode(taskDefJson);
       expressTaskDefinitionMap.put(taskPosition, gson.fromJson(taskDefJson, ExpressTaskDefinition.class));
     }
-    
+
     JsonArray expressFormElementArray = jsonObject.get("expressFormElements").getAsJsonArray();
     for (JsonElement formElementJson : expressFormElementArray) {
       int taskPosition = extractTaskPositionNode(formElementJson);
-      
+
       ExpressTaskDefinition expressTaskDefinition = expressTaskDefinitionMap.get(taskPosition);
       if (expressTaskDefinition.getFormElements() == null) {
         expressTaskDefinition.setFormElements(new ArrayList<>());
@@ -341,7 +341,7 @@ public class ExpressManagementUtils {
 
   /**
    * Export Express process to JSON file.
-   * 
+   *
    * @param selectedExpressProcesses
    * @return a StreamedContent with content type as a JSON file
    */
@@ -364,7 +364,7 @@ public class ExpressManagementUtils {
   /**
    * Some users have external security ID,
    * need to add correspond external security ID of those user into security members list instead of username.
-   * 
+   *
    * @param securityNames
    * @return names of security members with external ID.
    */
@@ -379,7 +379,7 @@ public class ExpressManagementUtils {
   /**
    * Try to get external ID of security member,
    * If there is no external ID, use old securityName instead.
-   * 
+   *
    * @param securityName
    * @return name of security member with external ID.
    */
@@ -392,14 +392,14 @@ public class ExpressManagementUtils {
         return securityName;
       }
     } else {
-      ISecurityMember securityMember = Ivy.wf().getSecurityContext().findSecurityMember(securityName);
-      return securityMember == null ? securityName : securityMember.getMemberName(); 
+      ISecurityMember securityMember = Ivy.security().members().find(securityName);
+      return securityMember == null ? securityName : securityMember.getMemberName();
     }
   }
 
   /**
    * Find valid member name with external lookup
-   * 
+   *
    * @param memberName
    * @return valid member name
    */
@@ -411,11 +411,11 @@ public class ExpressManagementUtils {
 
     ISecurityMember responsible;
     if (memberName.contains(EXTERNAL_ID_PREFIX)) {
-      UserQuery query = Ivy.wf().getSecurityContext().users().query();
+      UserQuery query = Ivy.security().users().query();
       responsible = query.where().externalId().isEqual(memberName.split(EXTERNAL_ID_PREFIX)[1]).executor().firstResult();
       result = Optional.ofNullable(responsible).map(ISecurityMember::getMemberName).orElse("");
     } else {
-      responsible = Ivy.session().getSecurityContext().findSecurityMember(memberName);
+      responsible = Ivy.security().members().find(memberName);
       if (responsible != null) {
         result = Optional.ofNullable(responsible).map(ISecurityMember::getMemberName).orElse("");
       }
@@ -425,7 +425,7 @@ public class ExpressManagementUtils {
 
   /**
    * Find valid member names with external lookup
-   * 
+   *
    * @param memberNames
    * @return valid member names
    */

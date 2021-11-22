@@ -68,9 +68,9 @@ public class SecurityUtils {
   TASK_WRITE_ACTIVATOR,
 
   TASK_RESET_OWN_WORKING_TASK,
-  
+
   DOCUMENT_OF_INVOLVED_CASE_WRITE,
-  
+
   IPermissionRepository.instance().findByName("ShowCaseDetails")
   };
   private static final IPermission DEMO_DENIED_PERMISSIONS[] = {
@@ -78,25 +78,25 @@ public class SecurityUtils {
   TASK_READ_ALL,
 
   CASE_READ_ALL,
-  
+
   USER_READ_ABSENCES,
-  
+
   USER_CREATE_ABSENCE,
-  
+
   USER_DELETE_ABSENCE
 
   };
   private static final IPermission DEMO_GRANTED_PERMISSIONS[] = {
 
   TASK_WRITE_EXPIRY_TIMESTAMP,
-  
+
   DOCUMENT_OF_INVOLVED_CASE_WRITE
 
   };
 
   /**
    * Checks if the user has the given role
-   * 
+   *
    * @param user user
    * @param rolename user
    * @return true - user has the given role (direct or indirect) <br>
@@ -115,7 +115,7 @@ public class SecurityUtils {
             int t = 5; // number retries
             while (t >= 0) {
               try {
-                IRole role = Ivy.wf().getSecurityContext().findRole(rolename);
+                IRole role = Ivy.security().roles().find(rolename);
                 if (role != null) {
                   // return role.getAllUsers().contains(user);
                   return user.getAllRoles().contains(role); // allowed by EON-Security, configured
@@ -149,7 +149,7 @@ public class SecurityUtils {
 
   /**
    * Checks if the session user has the given role
-   * 
+   *
    * @param session user
    * @param rolename user
    * @return true - session user has the given role (direct or indirect) <br>
@@ -167,7 +167,7 @@ public class SecurityUtils {
             int t = 5; // number retries
             while (t >= 0) {
               try {
-                IRole role = Ivy.wf().getSecurityContext().findRole(rolename);
+                IRole role = Ivy.security().roles().find(rolename);
                 if (role != null) {
                   return session.hasRole(role, true);
                 }
@@ -215,7 +215,7 @@ public class SecurityUtils {
 
   /**
    * Finds all users that own the given role (direct or indirect
-   * 
+   *
    * @param rolename rolename
    * @return List<IUser>
    */
@@ -233,7 +233,7 @@ public class SecurityUtils {
             public List<IUser> call() throws Exception {
               List<IUser> result = new ArrayList<IUser>();
 
-              IRole role = Ivy.wf().getSecurityContext().findRole(rolename);
+              IRole role = Ivy.security().roles().find(rolename);
               if (role != null) {
                 result = role.users().allPaged().stream().collect(Collectors.toList());
               }
@@ -247,7 +247,7 @@ public class SecurityUtils {
 
   /**
    * returns all workflow users
-   * 
+   *
    * @return List<IUser>
    */
   public static List<IUser> findAllUsers() {
@@ -264,9 +264,9 @@ public class SecurityUtils {
             public List<IUser> call() throws Exception {
               List<IUser> result = new ArrayList<IUser>();
 
-              List<IUser> users = Ivy.wf().getSecurityContext().users().paged().stream().collect(Collectors.toList());
+              List<IUser> users = Ivy.security().users().paged().stream().collect(Collectors.toList());
               for (IUser u : users) {
-                if (u.getId() != Ivy.wf().getSecurityContext().getSystemUser().getId()) {
+                if (u.getId() != Ivy.security().users().system().getId()) {
                   result.add(u);
                 }
               }
