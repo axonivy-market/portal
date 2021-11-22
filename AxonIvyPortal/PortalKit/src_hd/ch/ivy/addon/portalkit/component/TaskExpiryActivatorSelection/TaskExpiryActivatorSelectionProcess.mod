@@ -1,5 +1,5 @@
 [Ivy]
-178DA0DE8672E8A1 9.3.1 #module
+178DA0DE8672E8A1 9.3.0 #module
 >Proto >Proto Collection #zClass
 Ts0 TaskExpiryActivatorSelectionProcess Big #zClass
 Ts0 RD #cInfo
@@ -190,7 +190,7 @@ Ts0 f74 83 243 26 26 -56 13 #rect
 Ts0 f69 659 339 26 26 0 12 #rect
 Ts0 f77 actionTable 'out=in;
 ' #txt
-Ts0 f77 actionCode 'in.task.getCase().getBusinessCase().createNote(ivy.session, in.notes);' #txt
+Ts0 f77 actionCode 'in.task.getCase().createNote(ivy.session, in.notes);' #txt
 Ts0 f77 security system #txt
 Ts0 f77 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
