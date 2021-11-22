@@ -1,5 +1,5 @@
 [Ivy]
-1703359FD55C9418 9.3.0 #module
+1703359FD55C9418 9.3.1 #module
 >Proto >Proto Collection #zClass
 Ls0 LeaveRequestCreationProcess Big #zClass
 Ls0 RD #cInfo
@@ -71,7 +71,7 @@ if(StringUtils.isEmpty(in.leaveRequestData.requesterUsername)) {
 }
 
 
-in.requester = new UserDTO(ivy.session.getSecurityContext().findUser(in.leaveRequestData.getRequesterUsername()));
+in.requester = new UserDTO(ivy.security.users().find(in.leaveRequestData.getRequesterUsername()));
 in.leaveTypes = LeaveType.class.getEnumConstants();
 in.approvers = UserUtils.findUsers("", 0, -1, [], []);' #txt
 Ls0 f6 security system #txt

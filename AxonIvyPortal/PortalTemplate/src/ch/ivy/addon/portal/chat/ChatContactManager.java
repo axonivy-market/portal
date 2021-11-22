@@ -31,9 +31,9 @@ public final class ChatContactManager {
   private static List<String> getOnlineContacts() {
     Stream<String> onlineUsernames;
     if (ChatService.IS_STANDARD_MODE) {
-      onlineUsernames = securityContext().getSessions().stream().map(ISession::getSessionUserName);
+      onlineUsernames = securityContext().sessions().all().stream().map(ISession::getSessionUserName);
     } else {
-      onlineUsernames = securityContext().getClusterSessionsSnapshot().getSessionInfos().stream()
+      onlineUsernames = securityContext().sessions().clusterSnapshot().getSessionInfos().stream()
           .map(SessionInfo::getSessionUserName).distinct();
     }
     return onlineUsernames.filter(session -> !StringUtils.equals(session, Ivy.session().getSessionUserName())
@@ -70,7 +70,7 @@ public final class ChatContactManager {
   }
 
   private static List<IUser> getContextUsers() {
-    return wf().getApplication().getSecurityContext().users().paged().stream()
+    return wf().getSecurityContext().users().paged().stream()
         .filter(user -> !StringUtils.equals(user.getName(), ISecurityConstants.SYSTEM_USER_NAME))
         .sorted((first, second) -> first.getName().compareToIgnoreCase(second.getName())).collect(Collectors.toList());
   }

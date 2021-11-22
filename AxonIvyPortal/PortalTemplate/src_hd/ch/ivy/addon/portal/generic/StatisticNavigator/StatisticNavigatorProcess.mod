@@ -1,5 +1,5 @@
 [Ivy]
-15F6AF64009AFF42 9.3.0 #module
+15F6AF64009AFF42 9.3.1 #module
 >Proto >Proto Collection #zClass
 Ss0 StatisticNavigatorProcess Big #zClass
 Ss0 RD #cInfo
