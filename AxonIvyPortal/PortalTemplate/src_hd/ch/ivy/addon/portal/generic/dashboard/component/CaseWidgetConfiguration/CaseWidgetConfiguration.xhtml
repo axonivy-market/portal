@@ -10,6 +10,8 @@
 </cc:interface>
 
 <cc:implementation>
+  <f:event listener="#{dashboardCaseFilterBean.preRender(cc.attrs.caseWidget)}" type="preRenderComponent" />
+
   <ui:decorate template="/layouts/restricted/decorator/TableWidgetConfiguration.xhtml">
     <ui:param name="widget" value="#{cc.attrs.caseWidget}" />
     <ui:param name="componentToUpdateOnPreviewAction" value="#{cc.clientId}:case-widget-preview:dashboard-cases" />
