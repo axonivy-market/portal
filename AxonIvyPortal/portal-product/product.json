@@ -1,0 +1,60 @@
+{
+    "installers": [
+        {
+            "id": "maven-dependency",
+            "data": {
+                "dependencies": [
+                    {
+                        "groupId": "ch.ivyteam.ivy.project.portal",
+                        "artifactId": "portalTemplate",
+                        "version": "${version}",
+                        "type": "iar"
+                    }
+                ],
+                "repositories": [
+                    {
+                        "id": "axonivy.public",
+                        "url": "https://repo.axonivy.rocks",
+                        "snapshots": {
+                            "enabled": "true"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": "maven-import",
+            "data": {
+                "projects": [
+                    {
+                        "groupId": "com.axonivy.portal",
+                        "artifactId": "portal-user-examples",
+                        "version": "${version}",
+                        "type": "iar"
+                    },
+                    {
+                        "groupId": "com.axonivy.portal",
+                        "artifactId": "portal-developer-examples",
+                        "version": "${version}",
+                        "type": "iar"
+                    }
+                ],
+                "repositories": [
+                    {
+                        "id": "axonivy.public",
+                        "url": "https://repo.axonivy.rocks"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "open-resource",
+            "data": {
+                "project": "portal-user-examples",
+                "resources": [
+                    "processes/Start Processes/LeaveRequest.mod"
+                ]
+            }
+        }
+    ]
+}
