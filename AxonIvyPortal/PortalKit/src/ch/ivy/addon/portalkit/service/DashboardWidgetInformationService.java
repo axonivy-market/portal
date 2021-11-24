@@ -192,6 +192,9 @@ public class DashboardWidgetInformationService {
   }
 
   public Map<ProcessType, Long> buildStatisticOfProcessByType(List<DashboardProcess> processes) {
+    if (CollectionUtils.isEmpty(processes)) {
+      return new HashMap<>();
+    }
     Map<ProcessType, Long> processByTypeStatistic = new HashMap<>();
     Long numberOfIvyProcesses = 0l;
     Long numberOfExpressProcesses = 0l;

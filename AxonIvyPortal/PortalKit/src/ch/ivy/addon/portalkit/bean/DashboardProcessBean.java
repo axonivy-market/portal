@@ -249,8 +249,7 @@ public class DashboardProcessBean extends AbstractProcessBean implements Seriali
   public List<DashboardProcess> getPortalCombinedProcesses() {
     if (CollectionUtils.isEmpty(portalCombinedProcesses)) {
       portalCombinedProcesses = new ArrayList<>();
-      findPortalDashboardProcesses();
-      portalCombinedProcesses.addAll(portalProcesses.stream()
+      portalCombinedProcesses.addAll(findPortalDashboardProcesses().stream()
               .filter(process -> process.getType() != ProcessType.EXTERNAL_LINK)
               .map(toDashboardProcess()).collect(Collectors.toList()));
     }
@@ -269,18 +268,16 @@ public class DashboardProcessBean extends AbstractProcessBean implements Seriali
   }
 
   public List<DashboardProcess> findAllPortalProcesses() {
-    findPortalDashboardProcesses();
     allPortalProcesses = new ArrayList<>();
-    portalProcesses.forEach(process -> allPortalProcesses.add(new DashboardProcess(process)));
+    findPortalDashboardProcesses().forEach(process -> allPortalProcesses.add(new DashboardProcess(process)));
     return allPortalProcesses;
   }
 
   public List<Process> findPortalDashboardProcesses() {
     if (CollectionUtils.isEmpty(portalProcesses)) {
       super.init();
-      portalProcesses = portalProcesses.stream().map(toDashboardProcess()).collect(Collectors.toList());
     }
-    return portalProcesses;
+    return portalProcesses.stream().map(toDashboardProcess()).collect(Collectors.toList());
   }
 
 }
