@@ -79,7 +79,7 @@
           <div class="ui-g-8 ui-fluid">
             <p:selectCheckboxMenu id="processes-list" value="#{widget.processes}" multiple="true" filter="true" filterMatchMode="contains" panelStyleClass="process-selection__panel"
               styleClass="process-configuration__select-process" converter="processSelectionConverter">
-              <f:selectItems value="#{dashboardProcessBean.portalProcesses}" var="process" itemValue="#{process}" itemLabel="#{process.name}" />
+              <f:selectItems value="#{dashboardProcessBean.portalDashboardProcesses}" var="process" itemValue="#{process}" itemLabel="#{process.name}" />
               <p:ajax event="toggleSelect" listener="#{dashboardProcessBean.toggleSelectAllProcesses()}" oncomplete="PF('new-widget-configuration-dialog').initPosition();" />
               <p:ajax oncomplete="PF('new-widget-configuration-dialog').initPosition();" />
             </p:selectCheckboxMenu>
