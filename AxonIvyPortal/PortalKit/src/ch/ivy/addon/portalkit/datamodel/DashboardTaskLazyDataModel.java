@@ -1,6 +1,5 @@
 package ch.ivy.addon.portalkit.datamodel;
 
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -49,11 +48,7 @@ public class DashboardTaskLazyDataModel extends LazyDataModel<ITask> {
       if (first == 0) {
         criteria.setSortField(sortField);
         criteria.setSortDescending(sortOrder == SortOrder.DESCENDING);
-        try {
-          query = criteria.buildQuery();
-        } catch (ParseException e) {
-          throw new PortalException(e);
-        }
+        query = criteria.buildQuery();
       }
       tasks = Ivy.wf().getTaskQueryExecutor().getResults(query, first, pageSize * (first <= pageSize ? QUERY_PAGES_AT_FIRST_TIME : QUERY_PAGES));
     }
@@ -66,7 +61,7 @@ public class DashboardTaskLazyDataModel extends LazyDataModel<ITask> {
     return result;
   }
   
-  public void loadFirstTime() throws ParseException {
+  public void loadFirstTime() {
     query = criteria.buildQuery();
     Object memento = IvyThreadContext.saveToMemento();
     future = CompletableFuture.runAsync(() -> {

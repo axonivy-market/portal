@@ -6,7 +6,7 @@
 <!-- Action -->
 <h:panelGroup id="process-action" rendered="#{!isReadOnlyMode}" styleClass="process-grid-item__action--combined">
   <p:commandLink id="edit-widget" styleClass="si si-pencil u-mar-right-15" global="false"
-    actionListener="#{dashboardConfigurationBean.setEditWidget(widget)}"
+    actionListener="#{dashboardConfigurationBean.prepareEditWidget(widget)}"
     process="@this" partialSubmit="true"
     update="new-widget-configuration-dialog"
     oncomplete="PF('new-widget-configuration-dialog').show()" />
