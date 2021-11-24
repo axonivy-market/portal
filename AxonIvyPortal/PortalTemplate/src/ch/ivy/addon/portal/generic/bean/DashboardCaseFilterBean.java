@@ -3,7 +3,6 @@ package ch.ivy.addon.portal.generic.bean;
 import static org.apache.commons.lang3.StringUtils.EMPTY;
 
 import java.io.Serializable;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -19,6 +18,7 @@ import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.dto.SecurityMemberDTO;
 import ch.ivy.addon.portalkit.dto.UserDTO;
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
+import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.CaseState;
@@ -76,8 +76,8 @@ public class DashboardCaseFilterBean implements Serializable {
     return StringUtils.isBlank(displayState) ? state.name() : displayState;
   }
 
-  public boolean hasPredefinedFilter(CaseDashboardWidget widget) throws ParseException {
-    return CaseDashboardWidget.hasPredefinedFilter(widget);
+  public boolean hasPredefinedFilter(CaseDashboardWidget widget) {
+    return DashboardWidgetUtils.hasPredefinedFilter(widget);
   }
 
   public List<CaseState> getStates() {

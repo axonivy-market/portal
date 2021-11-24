@@ -144,3 +144,14 @@ function setupImageProcessWidgetDescription(e) {
   if (lineClamp == 2) lineClamp = 1;
   descriptionContent.css('-webkit-line-clamp', lineClamp.toString());
 }
+
+function loadWidgetFirstTime(loadingClass, widgetClass) {
+  var loading = $('.' + loadingClass);
+  if (loading.length > 0) {
+    loading.addClass('u-display-none');
+  }
+  var widget = $('.' + widgetClass);
+  if (widget.length > 0) {
+    widget.removeClass('u-display-none');
+  }
+}
