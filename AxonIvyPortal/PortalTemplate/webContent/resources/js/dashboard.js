@@ -32,7 +32,10 @@ function loadGrid() {
 
     grid.on('resize resizestop', function(event, element) {
       var elementId = element.gridstackNode.id;
-      setupImageProcessWidgetDescription($("[gs-id='" + elementId + "']").find('.js-process-description'));
+      var descriptionElement = $("[gs-id='" + elementId + "']").find('.js-image-widget-mode .js-process-description');
+      if(descriptionElement.length > 0) {
+        setupImageProcessWidgetDescription(descriptionElement);
+      }
     });
   });
 }
@@ -117,7 +120,7 @@ function setupScrollbar() {
 }
 
 function setupImageProcessWidget() {
-  var imageContainers = $('.js-image-process-item-container');
+  var imageContainers = $('.js-image-widget-mode .js-image-process-item-container');
   if (imageContainers.length > 0) {
     imageContainers.each(function() {
       var imageUrl = $(this).find("img").attr("src");
@@ -125,7 +128,7 @@ function setupImageProcessWidget() {
     });
   }
 
-  var processDescriptions = $('.js-process-description');
+  var processDescriptions = $('.js-image-widget-mode .js-process-description');
   if (processDescriptions.length > 0) {
     processDescriptions.each(function() {
       setupImageProcessWidgetDescription($(this));
