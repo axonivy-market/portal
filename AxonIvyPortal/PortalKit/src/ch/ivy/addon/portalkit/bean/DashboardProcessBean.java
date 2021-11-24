@@ -1,4 +1,4 @@
-package ch.ivy.addon.portal.generic.bean;
+package ch.ivy.addon.portalkit.bean;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -16,10 +16,8 @@ import javax.faces.context.FacesContext;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.primefaces.model.CheckboxTreeNode;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
-import ch.ivy.addon.portalkit.bean.AbstractProcessBean;
 import ch.ivy.addon.portalkit.bo.Process;
 import ch.ivy.addon.portalkit.dto.dashboard.ProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.process.DashboardProcess;
@@ -28,7 +26,6 @@ import ch.ivy.addon.portalkit.enums.ProcessWidgetMode;
 import ch.ivy.addon.portalkit.ivydata.service.impl.ProcessService;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.util.CategoryUtils;
-import ch.ivy.addon.portalkit.util.ProcessTreeUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
@@ -43,30 +40,13 @@ public class DashboardProcessBean extends AbstractProcessBean implements Seriali
   private List<DashboardProcess> allPortalProcesses;
   private List<DashboardProcess> portalCombinedProcesses;
   private List<IProcessStart> startableProcessStarts;
-  private CheckboxTreeNode categoryTree;
-  private CheckboxTreeNode[] categoryNodes;
 
   @Override
   @PostConstruct
   public void init() {
-    initStartableProcessStarts();
-    displayModes = Arrays.asList(ProcessWidgetMode.COMBINED_MODE, ProcessWidgetMode.COMPACT_MODE, 
-        ProcessWidgetMode.FULL_MODE, ProcessWidgetMode.IMAGE_MODE);
-    displayModes.sort((mode1, mode2) -> mode1.getLabel().compareToIgnoreCase(mode2.getLabel()));
-    
-    allPortalProcesses = new ArrayList<>();
-    portalCombinedProcesses = new ArrayList<>();
-    super.init();
-
-    portalProcesses = portalProcesses.stream()
-        .map(toDashboardProcess()).
-        collect(Collectors.toList());
-    portalCombinedProcesses.addAll(portalProcesses.stream()
-        .filter(process -> process.getType() != ProcessType.EXTERNAL_LINK)
-        .map(toDashboardProcess())
-        .collect(Collectors.toList()));
-    portalProcesses.forEach(process -> allPortalProcesses.add(new DashboardProcess(process)));
-    categoryTree = ProcessTreeUtils.buildProcessCategoryCheckboxTreeRoot(allPortalProcesses);
+    displayModes = Arrays.asList(ProcessWidgetMode.values()).stream()
+        .sorted((mode1, mode2) -> mode1.getLabel().compareToIgnoreCase(mode2.getLabel()))
+        .collect(Collectors.toList());
   }
 
   public Function<? super Process, ? extends DashboardProcess> toDashboardProcess() {
@@ -91,6 +71,7 @@ public class DashboardProcessBean extends AbstractProcessBean implements Seriali
 
   public void preRender(ProcessDashboardWidget widget) {
     this.widget = widget;
+    this.widget.setInConfiguration(true);
     if (this.widget.getDisplayMode() == ProcessWidgetMode.COMPACT_MODE) {
       preRenderCompactProcessStartWidget();
       return;
@@ -103,7 +84,7 @@ public class DashboardProcessBean extends AbstractProcessBean implements Seriali
 
   private void preRenderCompactProcessStartWidget() {
     if (this.widget.isSelectedAllProcess()) {
-      this.widget.setDisplayProcesses(allPortalProcesses);
+      this.widget.setDisplayProcesses(getAllPortalProcesses());
     } else if (CollectionUtils.isNotEmpty(this.widget.getProcesses())) {
       List<DashboardProcess> selectedProcesses = new ArrayList<>();
       for (DashboardProcess selectedProcess : widget.getProcesses()) {
@@ -115,23 +96,17 @@ public class DashboardProcessBean extends AbstractProcessBean implements Seriali
       this.widget.setProcesses(selectedProcesses);
     } else {
       if (this.widget.getCategories() == null) {
-        portalProcesses = allPortalProcesses.stream().map(process -> new DashboardProcess(process)).collect(Collectors.toList());
+        portalProcesses = getAllPortalProcesses().stream().map(process -> new DashboardProcess(process)).collect(Collectors.toList());
       } else {
         portalProcesses = new ArrayList<>(filterByCategory());
       }
       this.widget.setDisplayProcesses(portalProcesses.stream().map(toDashboardProcess()).collect(Collectors.toList()));
     }
-    buildCategoryTree();
-  }
-
-  private void buildCategoryTree() {
-    this.categoryNodes = CategoryUtils.recoverSelectedCategories(this.categoryTree, this.widget.getCategories());
   }
 
   public void setCategoryNodes() {
-    this.widget.setCategories(CategoryUtils.getCategoryPaths(this.categoryNodes));
     if (CollectionUtils.isEmpty(this.widget.getCategories())) {
-      portalProcesses = new ArrayList<>(allPortalProcesses);
+      portalProcesses = new ArrayList<>(getAllPortalProcesses());
     } else {
       portalProcesses = new ArrayList<>(filterByCategory());
       this.widget.setProcesses(new ArrayList<>());
@@ -140,7 +115,7 @@ public class DashboardProcessBean extends AbstractProcessBean implements Seriali
   }
 
   private List<DashboardProcess> filterByCategory() {
-    return allPortalProcesses.stream().
+    return getAllPortalProcesses().stream().
         filter(process -> isProcessMatchedCategory(process, this.widget.getCategories()))
         .collect(Collectors.toList());
   }
@@ -151,20 +126,14 @@ public class DashboardProcessBean extends AbstractProcessBean implements Seriali
         || (StringUtils.isBlank(process.getCategory()) && hasNoCategory);
   }
 
-  public String getDisplayCategories() {
-    List<String> categories = CategoryUtils.getCategoryPaths(categoryNodes);
-    return CollectionUtils.isNotEmpty(categories) ? CategoryUtils.getNodeValue(categories) : "";
-  }
-
   public void preview() {
     if (widget.getDisplayMode() == ProcessWidgetMode.COMPACT_MODE) {
       List<DashboardProcess> displayProcesses =
-          CollectionUtils.isEmpty(widget.getProcesses()) ? allPortalProcesses : widget.getProcesses();
+          CollectionUtils.isEmpty(widget.getProcesses()) ? getAllPortalProcesses() : widget.getProcesses();
       if (CollectionUtils.isNotEmpty(widget.getCategories())) {
         if (CollectionUtils.isEmpty(widget.getProcesses())) {
           displayProcesses = filterByCategory();
         }
-        categoryNodes = CategoryUtils.recoverSelectedCategories(categoryTree, widget.getCategories());
       }
 
       widget.setDisplayProcesses(displayProcesses);
@@ -183,7 +152,7 @@ public class DashboardProcessBean extends AbstractProcessBean implements Seriali
   }
 
   public List<DashboardProcess> completeProcessesWithoutExternalLink(String query) {
-    return this.portalCombinedProcesses.stream()
+    return getPortalCombinedProcesses().stream()
         .filter(process -> StringUtils.containsIgnoreCase(process.getName(), query)).collect(Collectors.toList());
   }
 
@@ -256,6 +225,10 @@ public class DashboardProcessBean extends AbstractProcessBean implements Seriali
   }
 
   public void updateProcessStartId() {
+    if (CollectionUtils.isEmpty(startableProcessStarts)) {
+      initStartableProcessStarts();
+    }
+
     if (widget != null && widget.getDisplayMode() == ProcessWidgetMode.COMBINED_MODE && widget.getProcess() != null
         && widget.getProcess().getType() != ProcessType.EXPRESS_PROCESS) {
       String startLink = widget.getProcess().getStartLink();
@@ -266,34 +239,48 @@ public class DashboardProcessBean extends AbstractProcessBean implements Seriali
   }
 
   public boolean isBrokenLink(DashboardProcess dashboardProcess) {
-    return !allPortalProcesses
+    return !getAllPortalProcesses()
         .stream()
         .filter(process -> process.getId().equals(dashboardProcess.getId()))
         .findFirst()
         .isPresent();
   }
 
-  public CheckboxTreeNode[] getCategoryNodes() {
-    return categoryNodes;
-  }
-
-  public void setCategoryNodes(CheckboxTreeNode[] categoryNodes) {
-    this.categoryNodes = categoryNodes;
-  }
-
-  public CheckboxTreeNode getCategoryTree() {
-    return categoryTree;
-  }
-
-  public void setCategoryTree(CheckboxTreeNode categoryTree) {
-    this.categoryTree = categoryTree;
+  public List<DashboardProcess> getPortalCombinedProcesses() {
+    if (CollectionUtils.isEmpty(portalCombinedProcesses)) {
+      portalCombinedProcesses = new ArrayList<>();
+      findPortalDashboardProcesses();
+      portalCombinedProcesses.addAll(portalProcesses.stream()
+              .filter(process -> process.getType() != ProcessType.EXTERNAL_LINK)
+              .map(toDashboardProcess()).collect(Collectors.toList()));
+    }
+    return portalCombinedProcesses;
   }
 
   public List<DashboardProcess> getAllPortalProcesses() {
+    if (CollectionUtils.isEmpty(allPortalProcesses)) {
+      findAllPortalProcesses();
+    }
     return allPortalProcesses;
   }
 
   public void setAllPortalProcesses(List<DashboardProcess> allPortalProcesses) {
     this.allPortalProcesses = allPortalProcesses;
   }
+
+  public List<DashboardProcess> findAllPortalProcesses() {
+    findPortalDashboardProcesses();
+    allPortalProcesses = new ArrayList<>();
+    portalProcesses.forEach(process -> allPortalProcesses.add(new DashboardProcess(process)));
+    return allPortalProcesses;
+  }
+
+  public List<Process> findPortalDashboardProcesses() {
+    if (CollectionUtils.isEmpty(portalProcesses)) {
+      super.init();
+      portalProcesses = portalProcesses.stream().map(toDashboardProcess()).collect(Collectors.toList());
+    }
+    return portalProcesses;
+  }
+
 }

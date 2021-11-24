@@ -1,7 +1,6 @@
 package ch.ivy.addon.portalkit.dto.dashboard;
 
 import java.io.Serializable;
-import java.text.ParseException;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -19,6 +18,7 @@ import ch.ivy.addon.portalkit.constant.DashboardConfigurationPrefix;
 import ch.ivy.addon.portalkit.dto.WidgetLayout;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.service.WidgetFilterService;
+import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
@@ -31,11 +31,6 @@ import ch.ivyteam.ivy.environment.Ivy;
 public abstract class DashboardWidget implements Serializable {
 
   private static final long serialVersionUID = 4580715578128184706L;
-
-  @JsonIgnore
-  public static final int MAX_NOTI_FILTERS = 9;
-  @JsonIgnore
-  public static final String MAX_NOTI_PATTERN = "%d+";
   
   protected String id;
   protected String name;
@@ -63,11 +58,10 @@ public abstract class DashboardWidget implements Serializable {
   }
 
   @JsonIgnore
-  @SuppressWarnings("unused")
-  public void buildStatisticInfos() throws ParseException {}
+  public void buildStatisticInfos() {}
 
   @JsonIgnore
-  public void onResetUserFilters() throws ParseException {
+  public void onResetUserFilters() {
     setSearchSavedFilterKeyword("");
     this.setUserDefinedFiltersCount(Optional.empty());
     resetWidgetFilters();
@@ -82,20 +76,19 @@ public abstract class DashboardWidget implements Serializable {
   public void onCancelUserFilters() {}
   
   @JsonIgnore
-  @SuppressWarnings("unused")
-  public void onApplyUserFilters() throws ParseException {
+  public void onApplyUserFilters() {
     var filterService = WidgetFilterService.getInstance();
     filterService.consolidateSelectedFilters(this);
     userFilterCollection.updateUserFilterOptionValue(this);
     filterService.storeUserSelectedFiltersToSession(id, getType(), userFilterCollection);
+    userDefinedFiltersCount = DashboardWidgetUtils.countDefinedUserFilter(this);
   }
 
   @JsonIgnore
-  @SuppressWarnings("unused")
-  public void buildPredefinedFilterData() throws ParseException {}
+  public void buildPredefinedFilterData() {}
 
   @JsonIgnore
-  public void loadUserFilter() throws ParseException {
+  public void loadUserFilter() {
     updateSavedFiltersSelection();
 
     var latestUserFilterOptions = getUserFilterCollection().getLatestFilterOption();
