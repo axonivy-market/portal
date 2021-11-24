@@ -14,6 +14,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -72,7 +73,7 @@ public class DashboardBean implements Serializable {
   @PostConstruct
   public void init() {
     widgetFilterService = WidgetFilterService.getInstance();
-    canEdit = PermissionUtils.hasDashboardWritePermission();
+    canEdit = PermissionUtils.hasDashboardWritePermission() && !isMobileDevice();
     currentDashboardIndex = 0;
     isReadOnlyMode = true;
     dashboards = new ArrayList<>();
@@ -99,6 +100,12 @@ public class DashboardBean implements Serializable {
     } catch (IOException | ParseException e) {
       Ivy.log().error(e);
     } 
+  }
+
+  private boolean isMobileDevice() {
+    HttpServletRequest request =(HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
+    String userAgent = request.getHeader("user-agent");
+    return userAgent.matches(".*Android.*|.*webOS.*|.*iPhone.*|.*iPad.*|.*iPod.*|.*BlackBerry.*|.*IEMobile.*|.*Opera Mini.*");
   }
 
   private ArrayList<Dashboard> mappingDashboards(String dashboardJSON)
