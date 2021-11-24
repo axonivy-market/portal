@@ -1,6 +1,7 @@
 package ch.ivy.addon.portalkit.dto.dashboard.taskcolumn;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -51,19 +52,19 @@ public class CategoryColumnModel extends TaskColumnModel {
 
   @JsonIgnore
   public String getDisplayCategories() {
-    var paths = Optional.ofNullable(filterList).orElse(new ArrayList<>());
-    if (CollectionUtils.isEmpty(filterList) && selectionCategoryNodes != null && selectionCategoryNodes.length > 0) {
-      paths = Optional.ofNullable(CategoryUtils.getCategoryPaths(selectionCategoryNodes)).orElse(new ArrayList<>());
-    }
-    return paths.stream().collect(Collectors.joining(", "));
+    return generateFriendlyCategoryPath(filterList, selectionCategoryNodes);
   }
 
   @JsonIgnore
   public String getUserFriendlyCategories() {
-    var paths = Optional.ofNullable(userFilterList).orElse(new ArrayList<>());
-    if (CollectionUtils.isEmpty(userFilterList) && userSelectionCategoryNodes != null
-        && userSelectionCategoryNodes.length > 0) {
-      paths = Optional.ofNullable(CategoryUtils.getCategoryPaths(userSelectionCategoryNodes)).orElse(new ArrayList<>());
+    return generateFriendlyCategoryPath(userFilterList, userSelectionCategoryNodes);
+  }
+
+  @JsonIgnore
+  public String generateFriendlyCategoryPath(List<String> filterList, CheckboxTreeNode[] treeNodes) {
+    var paths = Optional.ofNullable(filterList).orElse(new ArrayList<>());
+    if (CollectionUtils.isEmpty(filterList) && treeNodes != null && treeNodes.length > 0) {
+      paths = Optional.ofNullable(CategoryUtils.getCategoryPaths(treeNodes)).orElse(new ArrayList<>());
     }
     return paths.stream().collect(Collectors.joining(", "));
   }

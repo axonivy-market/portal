@@ -15,7 +15,9 @@
   <c:set var="displayMode" value="#{widget.displayMode}" />
 
   <p:remoteCommand id="rcLoadProcessFirstTime" autoRun="true" update="dashboard-processes-container" global="false" async="true" process="@this"
-    oncomplete="loadProcessfFirstTime('#{widget.id}'); #{cc.attrs.onLoadProcessComplete}; #{displayMode eq 'IMAGE_MODE' ? 'setupImageProcessWidget();' : ''}" />
+    oncomplete="loadWidgetFirstTime('js-loading-#{widget.id}', 'js-dashboard-processes-container-#{widget.id}'); #{cc.attrs.onLoadProcessComplete}; #{displayMode eq 'IMAGE_MODE' ? 'setupImageProcessWidget();' : ''}"
+    actionListener="#{widget.buildProcessDataFirstTime()}" />
+
   <div class="ui-g widget-height-100 #{displayMode eq 'COMBINED_MODE' ? 'widget-overflow-auto' : ''} #{displayMode eq 'IMAGE_MODE' ? 'image-process-container' : ''}">
     <h:outputText id="loading" styleClass="js-loading-#{widget.id} ui-g-12" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/loading')}" />
 
@@ -35,7 +37,7 @@
           ableToEdit="#{!isReadOnlyMode}"
           oncompleteEditProcess="PF('new-widget-configuration-dialog').show()"
           componentToUpdateOnEditProcess="new-widget-configuration-dialog"
-          editActionListener="#{dashboardConfigurationBean.setEditWidget(widget)}"
+          editActionListener="#{dashboardConfigurationBean.prepareEditWidget(widget)}"
           oncompleteRemoveProcess="PF('remove-widget-dialog').show()"
           componentToUpdateOnRemoveProcess="remove-widget-dialog"
           removeActionListener="#{dashboardConfigurationBean.setDeleteWidget(widget)}"
@@ -66,14 +68,5 @@
         rendered="#{empty widget.displayProcesses and not cc.attrs.isInConfiguration and displayMode eq 'COMPACT_MODE'}" styleClass="dashboard-processes--empty-message" />
     </h:panelGroup>
   </div>
-
-  <script type="text/javascript">
-		function loadProcessfFirstTime(widgetId) {
-			var loadingId = '.js-loading-' + widgetId;
-			var widgetContainer = '.js-dashboard-processes-container-' + widgetId;
-			$(loadingId).addClass('u-display-none');
-			$(widgetContainer).removeClass('u-display-none');
-		}
-	</script>
 </cc:implementation>
 </html>
