@@ -24,6 +24,7 @@ import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
+import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.custom.field.CustomFieldType;
 import ch.ivyteam.ivy.workflow.custom.field.ICustomFieldNames;
@@ -77,15 +78,14 @@ public class ColumnManagementBean {
       List<TaskColumnModel> taskColumns = new ArrayList<>();
       columnsBeforeSave.forEach(column -> taskColumns.add((TaskColumnModel) column));
       taskWidget.setColumns(taskColumns);
-      TaskDashboardWidget.buildColumns(taskWidget);
     }
     if (widget.getType() == DashboardWidgetType.CASE) {
       CaseDashboardWidget caseDashboardWidget = (CaseDashboardWidget) this.widget;
       List<CaseColumnModel> caseColumns = new ArrayList<>();
       columnsBeforeSave.forEach(column -> caseColumns.add((CaseColumnModel) column));
       caseDashboardWidget.setColumns(caseColumns);
-      CaseDashboardWidget.buildColumns(caseDashboardWidget);
     }
+    DashboardWidgetUtils.buildWidgetColumns(widget);
   }
   
   public void remove(ColumnModel col) {

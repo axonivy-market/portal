@@ -7,15 +7,14 @@ import org.apache.commons.lang.StringUtils;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
+import ch.ivy.addon.portalkit.configuration.AbstractConfiguration;
 import ch.ivy.addon.portalkit.constant.DashboardConfigurationPrefix;
 import ch.ivyteam.ivy.environment.Ivy;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-public class Dashboard implements Serializable {
+public class Dashboard extends AbstractConfiguration implements Serializable {
 
   private static final long serialVersionUID = 4580715578128184706L;
-
-  private String id;
   private String title;
   private List<DashboardWidget> widgets;
   private List<String> permissions;
@@ -23,17 +22,9 @@ public class Dashboard implements Serializable {
   public Dashboard() {}
 
   public Dashboard(String id, String title, List<DashboardWidget> widgets) {
-    this.id = id;
+    this.setId(id);
     this.title = title;
     this.widgets = widgets;
-  }
-  
-  public String getId() {
-    return id;
-  }
-  
-  public void setId(String id) {
-    this.id = id;
   }
   
   public String getTitle() {
@@ -67,7 +58,7 @@ public class Dashboard implements Serializable {
   public int hashCode() {
     final int prime = 31;
     int result = 1;
-    result = prime * result + ((id == null) ? 0 : id.hashCode());
+    result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
     return result;
   }
 
@@ -80,10 +71,10 @@ public class Dashboard implements Serializable {
     if (getClass() != obj.getClass())
       return false;
     Dashboard other = (Dashboard) obj;
-    if (id == null) {
-      if (other.id != null)
+    if (getId() == null) {
+      if (other.getId() != null)
         return false;
-    } else if (!id.equals(other.id))
+    } else if (!getId().equals(other.getId()))
       return false;
     return true;
   }
