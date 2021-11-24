@@ -6680,45 +6680,45 @@
                 </elementProp>
                 <elementProp name="javax.faces.source" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                  <stringProp name="Argument.value">task-task_1:task-panel-group-0:task-component:rcLoadTaskFirstTime</stringProp>
+                  <stringProp name="Argument.value">task-task_1:task-component:rcLoadTaskFirstTime</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                   <stringProp name="Argument.name">javax.faces.source</stringProp>
                 </elementProp>
                 <elementProp name="javax.faces.partial.execute" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                  <stringProp name="Argument.value">task-task_1:task-panel-group-0:task-component:rcLoadTaskFirstTime</stringProp>
+                  <stringProp name="Argument.value">task-task_1:task-component:rcLoadTaskFirstTime</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                   <stringProp name="Argument.name">javax.faces.partial.execute</stringProp>
                 </elementProp>
                 <elementProp name="javax.faces.partial.render" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                  <stringProp name="Argument.value">task-task_1:task-panel-group-0:task-component:dashboard-tasks-container</stringProp>
+                  <stringProp name="Argument.value">task-task_1:task-component:dashboard-tasks-container</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                   <stringProp name="Argument.name">javax.faces.partial.render</stringProp>
                 </elementProp>
-                <elementProp name="task-task_1:task-panel-group-0:task-component:rcLoadTaskFirstTime" elementType="HTTPArgument">
+                <elementProp name="task-task_1:task-component:rcLoadTaskFirstTime" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                  <stringProp name="Argument.value">task-task_1:task-panel-group-0:task-component:rcLoadTaskFirstTime</stringProp>
+                  <stringProp name="Argument.value">task-task_1:task-component:rcLoadTaskFirstTime</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                  <stringProp name="Argument.name">task-task_1:task-panel-group-0:task-component:rcLoadTaskFirstTime</stringProp>
+                  <stringProp name="Argument.name">task-task_1:task-component:rcLoadTaskFirstTime</stringProp>
                 </elementProp>
-                <elementProp name="task-task_1:task-panel-group-0:task-component:dashboard-tasks_selection" elementType="HTTPArgument">
+                <elementProp name="user-menu-required-login:global-search-component-mobile:global-search-data" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">true</boolProp>
                   <stringProp name="Argument.value"></stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                  <stringProp name="Argument.name">task-task_1:task-panel-group-0:task-component:dashboard-tasks_selection</stringProp>
+                  <stringProp name="Argument.name">user-menu-required-login:global-search-component-mobile:global-search-data</stringProp>
                 </elementProp>
-                <elementProp name="task-task_1:task-panel-group-0_SUBMIT" elementType="HTTPArgument">
+                <elementProp name="user-menu-required-login:global-search-component-mobile-form_SUBMIT" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">true</boolProp>
                   <stringProp name="Argument.value">1</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                  <stringProp name="Argument.name">task-task_1:task-panel-group-0_SUBMIT</stringProp>
+                  <stringProp name="Argument.name">user-menu-required-login:global-search-component-mobile-form_SUBMIT</stringProp>
                 </elementProp>
                 <elementProp name="javax.faces.ViewState" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">true</boolProp>
@@ -6789,45 +6789,45 @@
                 </elementProp>
                 <elementProp name="javax.faces.source" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                  <stringProp name="Argument.value">case-case_1:case-panel-group-1:case-component:rcLoadCaseFirstTime</stringProp>
+                  <stringProp name="Argument.value">case-case_1:case-component:rcLoadCaseFirstTime</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                   <stringProp name="Argument.name">javax.faces.source</stringProp>
                 </elementProp>
                 <elementProp name="javax.faces.partial.execute" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                  <stringProp name="Argument.value">case-case_1:case-panel-group-1:case-component:rcLoadCaseFirstTime</stringProp>
+                  <stringProp name="Argument.value">case-case_1:case-component:rcLoadCaseFirstTime</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                   <stringProp name="Argument.name">javax.faces.partial.execute</stringProp>
                 </elementProp>
                 <elementProp name="javax.faces.partial.render" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                  <stringProp name="Argument.value">case-case_1:case-panel-group-1:case-component:dashboard-cases-container</stringProp>
+                  <stringProp name="Argument.value">case-case_1:case-component:dashboard-cases-container</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                   <stringProp name="Argument.name">javax.faces.partial.render</stringProp>
                 </elementProp>
-                <elementProp name="case-case_1:case-panel-group-1:case-component:rcLoadCaseFirstTime" elementType="HTTPArgument">
+                <elementProp name="case-case_1:case-component:rcLoadCaseFirstTime" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                  <stringProp name="Argument.value">case-case_1:case-panel-group-1:case-component:rcLoadCaseFirstTime</stringProp>
+                  <stringProp name="Argument.value">case-case_1:case-component:rcLoadCaseFirstTime</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                  <stringProp name="Argument.name">case-case_1:case-panel-group-1:case-component:rcLoadCaseFirstTime</stringProp>
+                  <stringProp name="Argument.name">case-case_1:case-component:rcLoadCaseFirstTime</stringProp>
                 </elementProp>
-                <elementProp name="case-case_1:case-panel-group-1:case-component:dashboard-cases_selection" elementType="HTTPArgument">
+                <elementProp name="user-menu-required-login:global-search-component-mobile:global-search-data" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">true</boolProp>
                   <stringProp name="Argument.value"></stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                  <stringProp name="Argument.name">case-case_1:case-panel-group-1:case-component:dashboard-cases_selection</stringProp>
+                  <stringProp name="Argument.name">user-menu-required-login:global-search-component-mobile:global-search-data</stringProp>
                 </elementProp>
-                <elementProp name="case-case_1:case-panel-group-1_SUBMIT" elementType="HTTPArgument">
+                <elementProp name="user-menu-required-login:global-search-component-mobile-form_SUBMIT" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">true</boolProp>
                   <stringProp name="Argument.value">1</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                  <stringProp name="Argument.name">case-case_1:case-panel-group-1_SUBMIT</stringProp>
+                  <stringProp name="Argument.name">user-menu-required-login:global-search-component-mobile-form_SUBMIT</stringProp>
                 </elementProp>
                 <elementProp name="javax.faces.ViewState" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">true</boolProp>
@@ -6898,38 +6898,45 @@
                 </elementProp>
                 <elementProp name="javax.faces.source" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                  <stringProp name="Argument.value">process-compact_mode:process-panel-group-2:process-component:rcLoadProcessFirstTime</stringProp>
+                  <stringProp name="Argument.value">process-compact_mode:process-component:rcLoadProcessFirstTime</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                   <stringProp name="Argument.name">javax.faces.source</stringProp>
                 </elementProp>
                 <elementProp name="javax.faces.partial.execute" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                  <stringProp name="Argument.value">process-compact_mode:process-panel-group-2:process-component:rcLoadProcessFirstTime</stringProp>
+                  <stringProp name="Argument.value">process-compact_mode:process-component:rcLoadProcessFirstTime</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                   <stringProp name="Argument.name">javax.faces.partial.execute</stringProp>
                 </elementProp>
                 <elementProp name="javax.faces.partial.render" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                  <stringProp name="Argument.value">process-compact_mode:process-panel-group-2:process-component:dashboard-processes-container</stringProp>
+                  <stringProp name="Argument.value">process-compact_mode:process-component:dashboard-processes-container</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                   <stringProp name="Argument.name">javax.faces.partial.render</stringProp>
                 </elementProp>
-                <elementProp name="process-compact_mode:process-panel-group-2:process-component:rcLoadProcessFirstTime" elementType="HTTPArgument">
+                <elementProp name="process-compact_mode:process-component:rcLoadProcessFirstTime" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                  <stringProp name="Argument.value">process-compact_mode:process-panel-group-2:process-component:rcLoadProcessFirstTime</stringProp>
+                  <stringProp name="Argument.value">process-compact_mode:process-component:rcLoadProcessFirstTime</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                  <stringProp name="Argument.name">process-compact_mode:process-panel-group-2:process-component:rcLoadProcessFirstTime</stringProp>
+                  <stringProp name="Argument.name">process-compact_mode:process-component:rcLoadProcessFirstTime</stringProp>
                 </elementProp>
-                <elementProp name="process-compact_mode:process-panel-group-2_SUBMIT" elementType="HTTPArgument">
+                <elementProp name="user-menu-required-login:global-search-component-mobile:global-search-data" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.value"></stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">user-menu-required-login:global-search-component-mobile:global-search-data</stringProp>
+                </elementProp>
+                <elementProp name="user-menu-required-login:global-search-component-mobile-form_SUBMIT" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
                   <stringProp name="Argument.value">1</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                  <stringProp name="Argument.name">process-compact_mode:process-panel-group-2_SUBMIT</stringProp>
+                  <stringProp name="Argument.name">user-menu-required-login:global-search-component-mobile-form_SUBMIT</stringProp>
                 </elementProp>
                 <elementProp name="javax.faces.ViewState" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">true</boolProp>
@@ -7109,45 +7116,45 @@
                 </elementProp>
                 <elementProp name="javax.faces.source" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                  <stringProp name="Argument.value">task-task_1:task-panel-group-0:task-component:rcLoadTaskFirstTime</stringProp>
+                  <stringProp name="Argument.value">task-task_1:task-component:rcLoadTaskFirstTime</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                   <stringProp name="Argument.name">javax.faces.source</stringProp>
                 </elementProp>
                 <elementProp name="javax.faces.partial.execute" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                  <stringProp name="Argument.value">task-task_1:task-panel-group-0:task-component:rcLoadTaskFirstTime</stringProp>
+                  <stringProp name="Argument.value">task-task_1:task-component:rcLoadTaskFirstTime</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                   <stringProp name="Argument.name">javax.faces.partial.execute</stringProp>
                 </elementProp>
                 <elementProp name="javax.faces.partial.render" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                  <stringProp name="Argument.value">task-task_1:task-panel-group-0:task-component:dashboard-tasks-container</stringProp>
+                  <stringProp name="Argument.value">task-task_1:task-component:dashboard-tasks-container</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                   <stringProp name="Argument.name">javax.faces.partial.render</stringProp>
                 </elementProp>
-                <elementProp name="ask-task_1:task-panel-group-0:task-component:rcLoadTaskFirstTime" elementType="HTTPArgument">
+                <elementProp name="task-task_1:task-component:rcLoadTaskFirstTime" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                  <stringProp name="Argument.value">task-task_1:task-panel-group-0:task-component:rcLoadTaskFirstTime</stringProp>
+                  <stringProp name="Argument.value">task-task_1:task-component:rcLoadTaskFirstTime</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                  <stringProp name="Argument.name">ask-task_1:task-panel-group-0:task-component:rcLoadTaskFirstTime</stringProp>
+                  <stringProp name="Argument.name">task-task_1:task-component:rcLoadTaskFirstTime</stringProp>
                 </elementProp>
-                <elementProp name="task-task_1:task-panel-group-0:task-component:dashboard-tasks_selection" elementType="HTTPArgument">
+                <elementProp name="user-menu-required-login:global-search-component-mobile:global-search-data" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">true</boolProp>
                   <stringProp name="Argument.value"></stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                  <stringProp name="Argument.name">task-task_1:task-panel-group-0:task-component:dashboard-tasks_selection</stringProp>
+                  <stringProp name="Argument.name">user-menu-required-login:global-search-component-mobile:global-search-data</stringProp>
                 </elementProp>
-                <elementProp name="task-task_1:task-panel-group-0_SUBMIT" elementType="HTTPArgument">
+                <elementProp name="user-menu-required-login:global-search-component-mobile-form_SUBMIT" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">true</boolProp>
                   <stringProp name="Argument.value">1</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                  <stringProp name="Argument.name">task-task_1:task-panel-group-0_SUBMIT</stringProp>
+                  <stringProp name="Argument.name">user-menu-required-login:global-search-component-mobile-form_SUBMIT</stringProp>
                 </elementProp>
                 <elementProp name="javax.faces.ViewState" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">true</boolProp>
@@ -7218,45 +7225,45 @@
                 </elementProp>
                 <elementProp name="javax.faces.source" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                  <stringProp name="Argument.value">case-case_1:case-panel-group-1:case-component:rcLoadCaseFirstTime</stringProp>
+                  <stringProp name="Argument.value">case-case_1:case-component:rcLoadCaseFirstTime</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                   <stringProp name="Argument.name">javax.faces.source</stringProp>
                 </elementProp>
                 <elementProp name="javax.faces.partial.execute" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                  <stringProp name="Argument.value">case-case_1:case-panel-group-1:case-component:rcLoadCaseFirstTime</stringProp>
+                  <stringProp name="Argument.value">case-case_1:case-component:rcLoadCaseFirstTime</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                   <stringProp name="Argument.name">javax.faces.partial.execute</stringProp>
                 </elementProp>
                 <elementProp name="javax.faces.partial.render" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                  <stringProp name="Argument.value">case-case_1:case-panel-group-1:case-component:dashboard-cases-container</stringProp>
+                  <stringProp name="Argument.value">case-case_1:case-component:dashboard-cases-container</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                   <stringProp name="Argument.name">javax.faces.partial.render</stringProp>
                 </elementProp>
-                <elementProp name="case-case_1:case-panel-group-1:case-component:rcLoadCaseFirstTime" elementType="HTTPArgument">
+                <elementProp name="case-case_1:case-component:rcLoadCaseFirstTime" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                  <stringProp name="Argument.value">case-case_1:case-panel-group-1:case-component:rcLoadCaseFirstTime</stringProp>
+                  <stringProp name="Argument.value">case-case_1:case-component:rcLoadCaseFirstTime</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                  <stringProp name="Argument.name">case-case_1:case-panel-group-1:case-component:rcLoadCaseFirstTime</stringProp>
+                  <stringProp name="Argument.name">case-case_1:case-component:rcLoadCaseFirstTime</stringProp>
                 </elementProp>
-                <elementProp name="case-case_1:case-panel-group-1:case-component:dashboard-cases_selection" elementType="HTTPArgument">
+                <elementProp name="user-menu-required-login:global-search-component-mobile:global-search-data" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">true</boolProp>
                   <stringProp name="Argument.value"></stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                  <stringProp name="Argument.name">case-case_1:case-panel-group-1:case-component:dashboard-cases_selection</stringProp>
+                  <stringProp name="Argument.name">user-menu-required-login:global-search-component-mobile:global-search-data</stringProp>
                 </elementProp>
-                <elementProp name="case-case_1:case-panel-group-1_SUBMIT" elementType="HTTPArgument">
+                <elementProp name="user-menu-required-login:global-search-component-mobile-form_SUBMIT" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">true</boolProp>
                   <stringProp name="Argument.value">1</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                  <stringProp name="Argument.name">case-case_1:case-panel-group-1_SUBMIT</stringProp>
+                  <stringProp name="Argument.name">user-menu-required-login:global-search-component-mobile-form_SUBMIT</stringProp>
                 </elementProp>
                 <elementProp name="javax.faces.ViewState" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">true</boolProp>
@@ -7327,45 +7334,45 @@
                 </elementProp>
                 <elementProp name="javax.faces.source" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.value">process-compact_mode:process-panel-group-2:process-component:rcLoadProcessFirstTime</stringProp>
+                  <stringProp name="Argument.value">process-compact_mode:process-component:rcLoadProcessFirstTime</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                   <stringProp name="Argument.name">javax.faces.source</stringProp>
                 </elementProp>
                 <elementProp name="javax.faces.partial.execute" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.value">process-compact_mode:process-panel-group-2:process-component:rcLoadProcessFirstTime</stringProp>
+                  <stringProp name="Argument.value">process-compact_mode:process-component:rcLoadProcessFirstTime</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                   <stringProp name="Argument.name">javax.faces.partial.execute</stringProp>
                 </elementProp>
                 <elementProp name="javax.faces.partial.render" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.value">grid-stack-tab-view:1:widgets:3:task-form:task-component:dataTable</stringProp>
+                  <stringProp name="Argument.value">process-compact_mode:process-component:dashboard-processes-container</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                   <stringProp name="Argument.name">javax.faces.partial.render</stringProp>
                 </elementProp>
-                <elementProp name="grid-stack-tab-view:1:widgets:3:task-form:task-component:rcLoadTaskFirstTime" elementType="HTTPArgument">
+                <elementProp name="process-compact_mode:process-component:rcLoadProcessFirstTime" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.value">grid-stack-tab-view:1:widgets:3:task-form:task-component:rcLoadTaskFirstTime</stringProp>
+                  <stringProp name="Argument.value">process-compact_mode:process-component:rcLoadProcessFirstTime</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                  <stringProp name="Argument.name">grid-stack-tab-view:1:widgets:3:task-form:task-component:rcLoadTaskFirstTime</stringProp>
+                  <stringProp name="Argument.name">process-compact_mode:process-component:rcLoadProcessFirstTime</stringProp>
                 </elementProp>
-                <elementProp name="grid-stack-tab-view:1:widgets:3:task-form:task-component:dataTable_rppDD" elementType="HTTPArgument">
+                <elementProp name="user-menu-required-login:global-search-component-mobile:global-search-data" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.value">10</stringProp>
+                  <stringProp name="Argument.value"></stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                  <stringProp name="Argument.name">grid-stack-tab-view:1:widgets:3:task-form:task-component:dataTable_rppDD</stringProp>
+                  <stringProp name="Argument.name">user-menu-required-login:global-search-component-mobile:global-search-data</stringProp>
                 </elementProp>
-                <elementProp name="grid-stack-tab-view:1:widgets:3:task-form_SUBMIT" elementType="HTTPArgument">
+                <elementProp name="user-menu-required-login:global-search-component-mobile-form_SUBMIT" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
                   <stringProp name="Argument.value">1</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                  <stringProp name="Argument.name">grid-stack-tab-view:1:widgets:3:task-form_SUBMIT</stringProp>
+                  <stringProp name="Argument.name">user-menu-required-login:global-search-component-mobile-form_SUBMIT</stringProp>
                 </elementProp>
                 <elementProp name="javax.faces.ViewState" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
@@ -7373,34 +7380,6 @@
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                   <stringProp name="Argument.name">javax.faces.ViewState</stringProp>
-                </elementProp>
-                <elementProp name="grid-stack-tab-view:1:widgets:3:task-form:task-component:dataTable:j_id_z_2_eg:filter" elementType="HTTPArgument">
-                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.value"></stringProp>
-                  <stringProp name="Argument.metadata">=</stringProp>
-                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                  <stringProp name="Argument.name">grid-stack-tab-view:1:widgets:3:task-form:task-component:dataTable:j_id_z_2_eg:filter</stringProp>
-                </elementProp>
-                <elementProp name="grid-stack-tab-view:1:widgets:3:task-form:task-component:dataTable:j_id_z_2_el:filter" elementType="HTTPArgument">
-                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.value"></stringProp>
-                  <stringProp name="Argument.metadata">=</stringProp>
-                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                  <stringProp name="Argument.name">grid-stack-tab-view:1:widgets:3:task-form:task-component:dataTable:j_id_z_2_el:filter</stringProp>
-                </elementProp>
-                <elementProp name="grid-stack-tab-view:1:widgets:3:task-form:task-component:dataTable:j_id_z_2_en:filter" elementType="HTTPArgument">
-                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.value"></stringProp>
-                  <stringProp name="Argument.metadata">=</stringProp>
-                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                  <stringProp name="Argument.name">grid-stack-tab-view:1:widgets:3:task-form:task-component:dataTable:j_id_z_2_en:filter</stringProp>
-                </elementProp>
-                <elementProp name="grid-stack-tab-view:1:widgets:3:task-form:task-component:dataTable:j_id_z_2_et:filter" elementType="HTTPArgument">
-                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.value"></stringProp>
-                  <stringProp name="Argument.metadata">=</stringProp>
-                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                  <stringProp name="Argument.name">grid-stack-tab-view:1:widgets:3:task-form:task-component:dataTable:j_id_z_2_et:filter</stringProp>
                 </elementProp>
               </collectionProp>
             </elementProp>
