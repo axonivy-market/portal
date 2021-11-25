@@ -117,42 +117,30 @@ public class WidgetFilterService extends JsonConfigurationService<WidgetFilterMo
 
   public void updateFilterOptionsData(DashboardWidget widget, WidgetFilterModel userFilterOptions) {
     updateSelectedSavedFiltersByUser(widget);
-    switch (widget.getType()) {
-      case TASK:
-        var taskWidget = (TaskDashboardWidget) widget;
-        if (userFilterOptions != null) {
-          for (var widgetColumn : ((TaskDashboardWidget) widget).getFilterableColumns()) {
-            widgetColumn.resetUserFilter();
-            mergeUserFilterInput(userFilterOptions, widgetColumn);
-          }
-        }
-        taskWidget.setUserDefinedFiltersCount(DashboardWidgetUtils.countDefinedUserFilter(taskWidget));
-        break;
-      case CASE:
-        var caseWidget = (CaseDashboardWidget) widget;
-        if (userFilterOptions != null) {
-          for (var widgetColumn : ((CaseDashboardWidget) widget).getFilterableColumns()) {
-            widgetColumn.resetUserFilter();
-            mergeUserFilterInput(userFilterOptions, widgetColumn);
-          }
-        }
-        caseWidget.setUserDefinedFiltersCount(DashboardWidgetUtils.countDefinedUserFilter(caseWidget));
-        break;
-      case PROCESS:
-        if (userFilterOptions != null) {
+    if (userFilterOptions != null) {
+      var widgetFilterableColumns = new ArrayList<ColumnModel>();
+      switch (widget.getType()) {
+        case TASK:
+          widgetFilterableColumns.addAll(((TaskDashboardWidget) widget).getFilterableColumns());
+          break;
+        case CASE:
+          widgetFilterableColumns.addAll(((CaseDashboardWidget) widget).getFilterableColumns());
+          break;
+        case PROCESS:
           var processWidget = (ProcessDashboardWidget) widget;
           if (ProcessWidgetMode.COMPACT_MODE == processWidget.getDisplayMode()) {
-            for (var widgetColumn : processWidget.getFilterableColumns()) {
-              widgetColumn.resetUserFilter();
-              mergeUserFilterInput(userFilterOptions, widgetColumn);
-            }
-            processWidget.setUserDefinedFiltersCount(DashboardWidgetUtils.countDefinedUserFilter(processWidget));
+            widgetFilterableColumns.addAll(processWidget.getFilterableColumns());
           }
-        }
-        break;
-      default:
-        break;
+          break;
+        default:
+          break;
+      }
+      for (var widgetColumn : widgetFilterableColumns) {
+        widgetColumn.resetUserFilter();
+        mergeUserFilterInput(userFilterOptions, widgetColumn);
+      }
     }
+    widget.setUserDefinedFiltersCount(DashboardWidgetUtils.countDefinedUserFilter(widget));
   }
 
   private void mergeUserFilterInput(WidgetFilterModel userFilterOptions, ColumnModel column) {
