@@ -9,14 +9,13 @@
 </cc:interface>
 
 <cc:implementation>
-  <c:set var="processWidget" value="#{cc.attrs.processWidget}" />
-  <c:set var="widget" value="#{processWidget}" />
+  <c:set var="widget" value="#{cc.attrs.processWidget}" />
   <c:set var="isCompact" value="#{widget.displayMode eq 'COMPACT_MODE'}" />
   <c:set var="isCombined" value="#{widget.displayMode eq 'COMBINED_MODE'}" />
   <c:set var="isFull" value="#{widget.displayMode eq 'FULL_MODE'}" />
   <c:set var="isImage" value="#{widget.displayMode eq 'IMAGE_MODE'}" />
 
-  <f:event listener="#{dashboardProcessBean.preRender(processWidget)}" type="preRenderComponent" />
+  <f:event listener="#{dashboardProcessBean.preRender(widget)}" type="preRenderComponent" />
 
   <!-- Configuration -->
   <h:panelGroup id="filter-container" layout="block" styleClass="card dashboard-card widget-configuration">
@@ -57,7 +56,7 @@
             <p:outputLabel for="process-display-mode" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/displayMode')}" />
           </div>
           <div class="ui-g-8">
-            <p:selectOneMenu id="process-display-mode" value="#{cc.attrs.processWidget.displayMode}">
+            <p:selectOneMenu id="process-display-mode" value="#{widget.displayMode}">
               <f:selectItems value="#{dashboardProcessBean.displayModes}" var="mode" itemLabel="#{mode.label}" itemValue="#{mode}" />
               <p:ajax event="change" update="filter-container" />
             </p:selectOneMenu>
@@ -65,7 +64,7 @@
         </h:panelGroup>
 
         <h:panelGroup id="compact-filter" rendered="#{isCompact}">
-          <ui:repeat id="compact-filter-columns" var="field" value="#{cc.attrs.processWidget.filterableColumns}">
+          <ui:repeat id="compact-filter-columns" var="field" value="#{widget.filterableColumns}">
             <ic:ch.ivy.addon.portalkit.component.dashboard.widget.CategoryFilterColumn field="#{field}"
               displaySelectedCategories="#{field.displayCategories}" configurationMode="true"
               categoryTree="#{field.categoryTree}" categoryNodeSelection="#{field.selectionCategoryNodes}"
@@ -79,7 +78,7 @@
           <div class="ui-g-8 ui-fluid">
             <p:selectCheckboxMenu id="processes-list" value="#{widget.processes}" multiple="true" filter="true" filterMatchMode="contains" panelStyleClass="process-selection__panel"
               styleClass="process-configuration__select-process" converter="processSelectionConverter">
-              <f:selectItems value="#{dashboardProcessBean.portalDashboardProcesses}" var="process" itemValue="#{process}" itemLabel="#{process.name}" />
+              <f:selectItems value="#{dashboardProcessBean.portalCompactProcesses}" var="process" itemValue="#{process}" itemLabel="#{process.name}" />
               <p:ajax event="toggleSelect" listener="#{dashboardProcessBean.toggleSelectAllProcesses()}" oncomplete="PF('new-widget-configuration-dialog').initPosition();" />
               <p:ajax oncomplete="PF('new-widget-configuration-dialog').initPosition();" />
             </p:selectCheckboxMenu>
