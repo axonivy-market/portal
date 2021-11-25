@@ -109,7 +109,7 @@
           </div>
           <div class="ui-g-8 ui-fluid">
             <p:autoComplete id="selected-combined-process" styleClass="process-configuration__selected-process" dropdown="true" scrollHeight="300" forceSelection="true"
-              completeMethod="#{dashboardProcessBean.completeProcessesWithoutExternalLink}" value="#{widget.process}" var="process" itemValue="#{process}" itemLabel="#{process.name}" queryDelay="500"
+              completeMethod="#{dashboardProcessBean.completeCombinedProcesses}" value="#{widget.process}" var="process" itemValue="#{process}" itemLabel="#{process.name}" queryDelay="500"
               cache="true" minQueryLength="2" itemtipAtPosition="right top" converter="processSelectionConverter"
               required="#{param['widget-configuration-form:new-widget-configuration-component:preview-button'] == null}" 
               requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/processes/noProcessSelected')}">
