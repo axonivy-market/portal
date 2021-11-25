@@ -155,7 +155,7 @@ public class DashboardProcessBean extends AbstractProcessBean implements Seriali
         .collect(Collectors.toList());
   }
 
-  public List<DashboardProcess> completeProcessesWithoutExternalLink(String query) {
+  public List<DashboardProcess> completeCombinedProcesses(String query) {
     return getPortalCombinedProcesses().stream()
         .filter(process -> StringUtils.containsIgnoreCase(process.getName(), query)).collect(Collectors.toList());
   }
@@ -254,6 +254,7 @@ public class DashboardProcessBean extends AbstractProcessBean implements Seriali
     if (CollectionUtils.isEmpty(portalCombinedProcesses)) {
       portalCombinedProcesses = new ArrayList<>(getPortalDashboardProcesses().stream()
           .filter(process -> process.getType() != ProcessType.EXTERNAL_LINK)
+          .filter(process -> !isCaseMap(process))
           .collect(Collectors.toList()));
     }
     return portalCombinedProcesses;
