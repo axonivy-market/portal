@@ -298,7 +298,7 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
           && this.processesByAlphabet.containsKey(oldProcessNameFirstLetter)) {
         List<Process> processes = this.processesByAlphabet.get(oldProcessNameFirstLetter);
         processes.removeIf(editProcess -> editProcess.getId().equals(processId));
-        sortProcesses(processes);
+        processes = sortProcesses(processes);
         processesByAlphabet.put(oldProcessNameFirstLetter, processes);
       }
     }
@@ -321,7 +321,7 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
         .getELResolver().getValue(FacesContext.getCurrentInstance().getELContext(), null, "externalLinkBean");
     externalLinkBean.saveNewExternalLink();
     portalProcesses.add(new ExternalLinkProcessItem(externalLinkBean.getExternalLink()));
-    sortProcesses(portalProcesses);
+    portalProcesses = sortProcesses(portalProcesses);
     groupProcessesByAlphabetIndex(portalProcesses);
   }
 
