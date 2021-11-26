@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
@@ -147,22 +148,8 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
   }
 
   public String generateNewWidgetId(DashboardWidgetType type) {
-    final String widgetIdPrefix = String.format(WIDGET_ID_PATTERN, type.name(), EMPTY).toLowerCase();
-    Integer nextWidgetId = 0;
-    if (CollectionUtils.isNotEmpty(getSelectedDashboard().getWidgets())) {
-      nextWidgetId = getSelectedDashboard().getWidgets().stream()
-            .filter(widget -> widget.getId().startsWith(widgetIdPrefix))
-            .map(DashboardWidget::getId)
-            .map(id -> Integer.parseInt(id.replace(widgetIdPrefix, EMPTY)))
-            .max(Integer::compare)
-            .orElse(null);
-      if (nextWidgetId == null) {
-        nextWidgetId = 0;
-      } else {
-        nextWidgetId++;
-      }
-    }
-    return String.format(WIDGET_ID_PATTERN, type.name(), nextWidgetId).toLowerCase();
+    String uuid = UUID.randomUUID().toString().replace("-", "");
+    return String.format(WIDGET_ID_PATTERN, type.name(), uuid).toLowerCase();
   }
 
   public void saveWidget() {
