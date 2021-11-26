@@ -7495,7 +7495,7 @@
           <stringProp name="filename"></stringProp>
         </ResultCollector>
         <hashTree/>
-        <ResultCollector guiclass="SimpleDataWriter" testclass="ResultCollector" testname="Simple Data Writer" enabled="false">
+        <ResultCollector guiclass="SimpleDataWriter" testclass="ResultCollector" testname="Simple Data Writer" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>
@@ -7512,9 +7512,9 @@
               <encoding>false</encoding>
               <assertions>true</assertions>
               <subresults>true</subresults>
-              <responseData>false</responseData>
+              <responseData>true</responseData>
               <samplerData>false</samplerData>
-              <xml>false</xml>
+              <xml>true</xml>
               <fieldNames>true</fieldNames>
               <responseHeaders>false</responseHeaders>
               <requestHeaders>false</requestHeaders>
