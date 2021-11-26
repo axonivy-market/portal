@@ -78,6 +78,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Objects;
@@ -1417,6 +1418,20 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     }
   }
 
+  /**
+   * @deprecated Use checkStatisticChartNameExisted(long userId, String chartName, String language) instead
+   * @param userId 
+   * @param chartName 
+   * @return chart is exist or not
+   *
+   */
+  @Deprecated(since = "8.0.11", forRemoval = true)
+  public boolean checkStatisticChartNameExisted(long userId, String chartName) {
+    var sessionUserEmail = Ivy.session().getSessionUser().getEMailLanguage();
+    var language = sessionUserEmail != null ? sessionUserEmail.toLanguageTag() : Locale.ENGLISH.toLanguageTag();
+    return checkStatisticChartNameExisted(userId, chartName, language);
+   }
+
   public boolean checkStatisticChartNameExisted(long userId, String chartName, String language) {
     List<StatisticChart> foundCharts = Optional.ofNullable(repo().search(getType()).numberField(USER_ID).isEqualTo(userId).execute().getAll()).orElse(new ArrayList<>());
     return foundCharts.stream()
@@ -1456,6 +1471,18 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     return statisticCharts.stream().anyMatch(chart -> StringUtils.equalsIgnoreCase("true", chart.getDefaultChart()));
   }
 
+  /**
+   * @deprecated Use checkDefaultStatisticChartNameExisted(long userId, String chartName, String language) instead
+   * @param userId 
+   * @param chartName 
+   * @return chart is exist or not
+   *
+   */
+  @Deprecated(since = "8.0.11", forRemoval = true)
+  public boolean checkDefaultStatisticChartNameExisted(long userId, String chartName) {
+    return checkStatisticChartNameExisted(userId, chartName);
+   }
+  
   public boolean checkDefaultStatisticChartNameExisted(long userId, String chartName, String language) {
     return checkStatisticChartNameExisted(userId, chartName, language);
    }
