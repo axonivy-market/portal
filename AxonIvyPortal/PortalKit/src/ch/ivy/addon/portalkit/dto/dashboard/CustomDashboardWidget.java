@@ -3,6 +3,7 @@ package ch.ivy.addon.portalkit.dto.dashboard;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
@@ -63,6 +64,7 @@ public class CustomDashboardWidget extends DashboardWidget {
 
   @JsonIgnore
   public void loadParametersFromProcess() {
+    data.setHasParamChanged(false);
     data.setParams(new ArrayList<>());
     data.setStartProcessParams(ProcessStartAPI
         .findStartElementByProcessStartFriendlyRequestPath(data.getProcessStart()).startParameters());
@@ -102,6 +104,27 @@ public class CustomDashboardWidget extends DashboardWidget {
   }
   
   public void loadParameters() {
+    data.setStartProcessParams(ProcessStartAPI
+        .findStartElementByProcessStartFriendlyRequestPath(data.getProcessStart()).startParameters());
+    data.setHasParamChanged(false);
+
+    List<String> paramRealNames = new ArrayList<>();
+
+    // Get names of current params saved in JSON
+    for (CustomDashboardWidgetParam param : data.getParams()) {
+      String paramRealName = param.getType().name().toLowerCase().concat("__").concat(param.getName());
+      paramRealNames.add(paramRealName);
+    }
+
+    // Check differences
+    for (StartParameter paramFromProcess : data.getStartProcessParams()) {
+      if (!paramRealNames.contains(paramFromProcess.name())) {
+        data.setHasParamChanged(true);
+        break;
+      }
+    }
+
+    // Load value for current params
     if (CollectionUtils.isNotEmpty(data.getParams())) {
       for(CustomDashboardWidgetParam param : data.getParams()) {
         switch (param.getType()) {
