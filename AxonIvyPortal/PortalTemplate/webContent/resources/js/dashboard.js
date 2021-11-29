@@ -33,7 +33,10 @@ function loadGrid() {
 
     grid.on('resize resizestop', function(event, element) {
       var elementId = element.gridstackNode.id;
-      setupImageProcessWidgetDescription($("[gs-id='" + elementId + "']").find('.js-process-description'));
+      var descriptionElement = $("[gs-id='" + elementId + "']").find('.js-image-widget-mode .js-process-description');
+      if(descriptionElement.length > 0) {
+        setupImageProcessWidgetDescription(descriptionElement);
+      }
     });
   
     // Disable all pointer events of iframes when edit widgets
@@ -43,6 +46,33 @@ function loadGrid() {
       disableAllIFrameWhenEditLayout();
     }
   });
+}
+
+function getPortalGridsCurrentRow(widgetType) {
+  let currentRowNumber = 0;
+  let dashboard = $("#dashboard-body");
+  if (dashboard.length > 0) {
+    let gridStack = dashboard.find("#grid-stack");
+    if (gridStack.length > 0) {
+      currentRowNumber = gridStack.attr("gs-current-row");
+    }
+  }
+  addNewDashboardWidgetCommand([{
+    name : 'portalGridsCurrentRow',
+    value : currentRowNumber
+  }]);
+}
+
+function scrollToWidget(widgetId) {
+  let widgetClass = ".js-dashboard-widget-" + widgetId;
+  $(widgetClass);
+  console.log("widget seleted " + $(widgetClass));
+
+  let $container = $("#dashboard-body");
+  let $scrollTo = $(widgetClass);
+  $container.scrollTop(
+    $scrollTo.offset().top - $container.offset().top + $container.scrollTop() - 10
+);
 }
 
 function handleFilterCategoryHeight(e) {
@@ -141,7 +171,7 @@ function enableAllIFrameWhenEditLayout() {
 }
 
 function setupImageProcessWidget() {
-  var imageContainers = $('.js-image-process-item-container');
+  var imageContainers = $('.js-image-widget-mode .js-image-process-item-container');
   if (imageContainers.length > 0) {
     imageContainers.each(function() {
       var imageUrl = $(this).find("img").attr("src");
@@ -149,7 +179,7 @@ function setupImageProcessWidget() {
     });
   }
 
-  var processDescriptions = $('.js-process-description');
+  var processDescriptions = $('.js-image-widget-mode .js-process-description');
   if (processDescriptions.length > 0) {
     processDescriptions.each(function() {
       setupImageProcessWidgetDescription($(this));
@@ -164,4 +194,15 @@ function setupImageProcessWidgetDescription(e) {
   var lineClamp = Math.floor(height/lineHeight);
   if (lineClamp == 2) lineClamp = 1;
   descriptionContent.css('-webkit-line-clamp', lineClamp.toString());
+}
+
+function loadWidgetFirstTime(loadingClass, widgetClass) {
+  var loading = $('.' + loadingClass);
+  if (loading.length > 0) {
+    loading.addClass('u-display-none');
+  }
+  var widget = $('.' + widgetClass);
+  if (widget.length > 0) {
+    widget.removeClass('u-display-none');
+  }
 }

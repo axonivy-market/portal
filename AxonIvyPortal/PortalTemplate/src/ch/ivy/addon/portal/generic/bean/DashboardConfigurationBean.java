@@ -123,7 +123,7 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
         break;
       case CUSTOM:
         this.newWidgetHeader = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/newWidgetHeader",
-            Arrays.asList(translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/customWidget")));
+            Arrays.asList(translate("/ch.ivy.addon.portalkit.ui.jsf/statistic/timePeriod/custom")));
         this.widget = getDefaultCustomDashboardWidget();
         break;
       case STATISTIC:
@@ -389,6 +389,11 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
     ((ProcessDashboardWidget)widget).setProcessPath(originalProcessWidget.getProcessPath());
     ((ProcessDashboardWidget)widget).setProcesses(originalProcessWidget.getProcesses());
     ((ProcessDashboardWidget)widget).setCategories(originalProcessWidget.getCategories());
+  }
+
+  public void reloadParamtersFromProcessForCustomWidget(DashboardWidget widget) {
+    CustomDashboardWidget customWidget = (CustomDashboardWidget) widget;
+    customWidget.loadParametersFromProcess();
   }
 
   public List<WidgetSample> getSamples() {
