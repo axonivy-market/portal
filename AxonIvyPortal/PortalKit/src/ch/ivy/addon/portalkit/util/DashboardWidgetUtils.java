@@ -413,9 +413,12 @@ public class DashboardWidgetUtils {
   }
 
   private static void loadProcessByPath(ProcessDashboardWidget processWidget) {
+    var processPath = processWidget.getProcessPath();
+    if (processPath == null) {
+      return;
+    }
     for (DashboardProcess process : getAllPortalProcesses()) {
-      if (process.getId() != null && processWidget.getProcessPath() != null 
-          && process.getId().contains(processWidget.getProcessPath())) {
+      if (process.getId() != null && process.getId().contains(processPath)) {
         updateProcessStartIdForCombined(processWidget, process);
         processWidget.setProcess(process);
         break;
