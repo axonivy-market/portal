@@ -30,7 +30,7 @@
           <ui:param name="isInConfiguration" value="#{cc.attrs.isInConfiguration}" />
         </ui:include>
       </c:if>
-      <c:if test="#{widget.displayMode eq 'FULL_MODE' and widget.process != null}">
+      <c:if test="#{widget.displayMode eq 'FULL_MODE' and widget.process ne null}">
         <ic:ch.ivy.addon.portalkit.component.process.ProcessGridItem id="process-grid-item"
           process="#{widget.process}" managedBean="#{dashboardProcessBean}"
           readOnlyMode="#{cc.attrs.isInConfiguration or !isReadOnlyMode}"
@@ -46,14 +46,14 @@
           processIconStyleClass="process-grid-view__icon" />
         
       </c:if>
-      <c:if test="#{widget.displayMode eq 'COMBINED_MODE' and widget.process != null}">
+      <c:if test="#{widget.displayMode eq 'COMBINED_MODE' and widget.process ne null}">
         <ui:include src="CombinedModeProcess.xhtml">
           <ui:param name="widget" value="#{widget}" />
           <ui:param name="isReadOnlyMode" value="#{isReadOnlyMode}" />
           <ui:param name="isInConfiguration" value="#{cc.attrs.isInConfiguration}" />
         </ui:include>
       </c:if>
-      <c:if test="#{widget.displayMode eq 'IMAGE_MODE' and widget.process != null}">
+      <c:if test="#{widget.displayMode eq 'IMAGE_MODE' and widget.process ne null}">
         <ui:include src="ImageModeProcess.xhtml">
           <ui:param name="widget" value="#{widget}" />
           <ui:param name="process" value="#{widget.process}" />
