@@ -27,7 +27,10 @@ public class CustomWidgetData implements Serializable {
 
   @JsonIgnore
   private List<StartParameter> startProcessParams;
-  
+
+  @JsonIgnore
+  private boolean hasParamChanged;
+
   public String getUrl() {
     return url;
   }
@@ -74,5 +77,13 @@ public class CustomWidgetData implements Serializable {
 
   public void setStartProcessParams(List<StartParameter> startProcessParams) {
     this.startProcessParams = startProcessParams;
+  }
+
+  public boolean isHasParamChanged() {
+    return hasParamChanged;
+  }
+
+  public void setHasParamChanged(boolean hasParamChanged) {
+    this.hasParamChanged = hasParamChanged;
   }
 }
