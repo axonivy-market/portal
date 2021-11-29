@@ -58,7 +58,7 @@
           <div class="ui-g-8">
             <p:selectOneMenu id="process-display-mode" value="#{widget.displayMode}">
               <f:selectItems value="#{dashboardProcessBean.displayModes}" var="mode" itemLabel="#{mode.label}" itemValue="#{mode}" />
-              <p:ajax event="change" update="filter-container" />
+              <p:ajax event="change" listener="#{dashboardProcessBean.onChangeDisplayMode()}" update="filter-container" />
             </p:selectOneMenu>
           </div>
         </h:panelGroup>
