@@ -55,8 +55,10 @@ public class DashboardProcessBean extends AbstractProcessBean implements Seriali
   }
 
   public void onChangeDisplayMode() {
-    if (ProcessWidgetMode.COMBINED_MODE == widget.getDisplayMode()) {
+    if (ProcessWidgetMode.COMBINED_MODE == widget.getDisplayMode()
+        && isCaseMap(widget.getProcess())) {
       widget.setProcess(null);
+      widget.setProcessPath(null);
     }
   }
 
@@ -148,7 +150,7 @@ public class DashboardProcessBean extends AbstractProcessBean implements Seriali
         }
       }
       widget.setDisplayProcesses(displayProcesses);
-    } 
+    }
   }
 
   public void selectProcessMode(ProcessWidgetMode mode) {
