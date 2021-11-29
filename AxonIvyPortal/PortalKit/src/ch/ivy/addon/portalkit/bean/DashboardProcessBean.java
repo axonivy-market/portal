@@ -54,6 +54,12 @@ public class DashboardProcessBean extends AbstractProcessBean implements Seriali
     portalCombinedProcesses = new ArrayList<>();
   }
 
+  public void onChangeDisplayMode() {
+    if (ProcessWidgetMode.COMBINED_MODE == widget.getDisplayMode()) {
+      widget.setProcess(null);
+    }
+  }
+
   public Function<? super Process, ? extends DashboardProcess> toDashboardProcess() {
     return process -> new DashboardProcess(process);
   }
