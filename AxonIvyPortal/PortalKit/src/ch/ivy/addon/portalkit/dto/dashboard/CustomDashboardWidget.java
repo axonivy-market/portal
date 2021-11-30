@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import ch.ivy.addon.portalkit.dto.UserDTO;
 import ch.ivy.addon.portalkit.dto.WidgetLayout;
 import ch.ivy.addon.portalkit.dto.widget.CustomWidgetData;
+import ch.ivy.addon.portalkit.dto.widget.DashboardCustomWidgetData;
 import ch.ivy.addon.portalkit.enums.DashboardCustomParamType;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
@@ -23,7 +24,7 @@ import ch.ivyteam.ivy.workflow.start.StartParameter;
 public class CustomDashboardWidget extends DashboardWidget {
   private static final long serialVersionUID = 6901163427361921809L;
 
-  private CustomWidgetData data;
+  private DashboardCustomWidgetData data;
   private String info;
 
   @Override
@@ -31,11 +32,11 @@ public class CustomDashboardWidget extends DashboardWidget {
     return DashboardWidgetType.CUSTOM;
   }
 
-  public CustomWidgetData getData() {
+  public DashboardCustomWidgetData getData() {
     return data;
   }
 
-  public void setData(CustomWidgetData data) {
+  public void setData(DashboardCustomWidgetData data) {
     this.data = data;
   }
 
@@ -57,7 +58,7 @@ public class CustomDashboardWidget extends DashboardWidget {
     result.getLayout().setHeight(6);
     result.getLayout().setAxisX(0);
     result.getLayout().setAxisY(0);
-    result.setData(new CustomWidgetData());
+    result.setData(new DashboardCustomWidgetData());
     return result;
   }
 
