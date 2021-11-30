@@ -22,6 +22,8 @@ Available widgets of Portal dashboard
 
 - Process widget
 
+- Custom widget
+
 You can predefine Portal dashboards, and details of each widget
 by configuring Global Variable **Portal.Dashboard**.
 
@@ -112,6 +114,7 @@ They will help you understand how to configure widget efficiency.
    new-dashboard-task-widget
    new-dashboard-case-widget
    new-dashboard-process-widget
+   new-dashboard-custom-widget
 
 .. tip:: 
    To quickly understand how the JSON of custom dashboard looks like.

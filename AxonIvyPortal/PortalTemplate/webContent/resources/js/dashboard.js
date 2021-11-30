@@ -1,4 +1,5 @@
 var grids;
+var originalGridstackHeight = 0;
 loadGrid();
 
 function loadGrid() {
@@ -37,6 +38,13 @@ function loadGrid() {
         setupImageProcessWidgetDescription(descriptionElement);
       }
     });
+  
+    // Disable all pointer events of iframes when edit widgets
+    if($('div.js-dashboard__body').hasClass('readonly')) {
+      enableAllIFrameWhenEditLayout();
+    } else {
+      disableAllIFrameWhenEditLayout();
+    }
   });
 }
 
@@ -116,6 +124,49 @@ function setupScrollbar() {
     if (!!availableHeight) {
       container.outerHeight(availableHeight);
     }
+  }
+}
+
+function resizeCustomWidget(index, widgetId) {
+  var iframe = $($('iframe[name = "custom-widget-iframe-' + index + '"]').get(0));
+  var gridstackDiv = $('div.grid-stack-item[gs-id = "' + widgetId + '"]').get(0);
+  var header = $(gridstackDiv).find('.widget__header').get(0);
+  iframe.height(gridstackDiv.clientHeight - header.clientHeight);
+}
+
+function expandFullscreen(index, widgetId) {
+  var widget = $('div.grid-stack-item[gs-id = "' + widgetId + '"]');
+  widget.addClass('expand-fullscreen');
+  widget.get(0).innerWidth = window.innerWidth;
+  widget.get(0).outerWidth = window.outerWidth;
+  widget.get(0).innerHeight = window.innerHeight;
+  widget.get(0).outerHeight = window.outerHeight;
+
+  originalGridstackHeight =  $(widget.get(0)).parent('.grid-stack').height();
+  $(widget.get(0)).parent('.grid-stack').height($(widget.get(0)).height());
+
+  resizeCustomWidget(index, widgetId);
+}
+
+function collapseFullscreen(index, widgetId) {
+  var widget = $('div.grid-stack-item[gs-id = "' + widgetId + '"]');
+  widget.removeClass('expand-fullscreen');
+
+  $(widget.get(0)).parent('.grid-stack').height(originalGridstackHeight);
+  resizeCustomWidget(index, widgetId);
+}
+
+function disableAllIFrameWhenEditLayout() {
+  var iframes = $("iframe");
+  if (iframes.length > 0) {
+    iframes.css('pointer-events', 'none');
+  }
+}
+
+function enableAllIFrameWhenEditLayout() {
+  var iframes = $("iframe");
+  if (iframes.length > 0) {
+    iframes.css('pointer-events', 'auto');
   }
 }
 

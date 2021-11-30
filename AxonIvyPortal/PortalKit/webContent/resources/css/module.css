@@ -6050,3 +6050,13 @@ body span.ui-commandlink .si {
     width: 20%;
   }
 }
+
+.dashboard-custom-iframe {
+  height: 100%;
+  width: 100%;
+  border: none;
+}
+
+.parameters-panel .param-label {
+  word-break: break-word;
+}
