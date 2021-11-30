@@ -38,8 +38,6 @@ First, the developer needs to create a specific process for Portal Dashboard:
 
    This is how the configuration dialog for the custom widget for the above process looks like.
 
-   |dashboard-custom-widget-configuration|
-
 Define a custom widget using JSON
 ---------------------------------
 
@@ -221,4 +219,3 @@ in project ``portal-developer-examples`` for more details about how to define Iv
 
 .. |dashboard-custom-field| image:: images/new-dashboard-custom-widget/process-custom-field.png
 .. |dashboard-custom-params| image:: images/new-dashboard-custom-widget/process-custom-params.png
-.. |dashboard-custom-widget-configuration| image:: ../../screenshots/dashboard/process-custom-widget-configuration.png
