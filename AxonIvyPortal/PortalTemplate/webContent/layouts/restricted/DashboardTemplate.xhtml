@@ -95,6 +95,15 @@
                         index="#{status.index}"
                         id="process-#{widget.id}" />
                     </c:if>
+
+                    <!-- Custom widget -->
+                    <c:if test="#{widget.type eq 'CUSTOM'}">
+                      <ic:ch.ivy.addon.portal.generic.dashboard.component.CustomDashboardWidget widget="#{widget}"
+                        isReadOnlyMode="#{managedBean.isReadOnlyMode}"
+                        index="#{status.index}"
+                        id="custom-#{widget.id}" />
+                    </c:if>
+                    
                   </div>
                 </div>
               </c:forEach>
