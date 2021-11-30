@@ -72,7 +72,6 @@ public class ExpressManagementPage extends TemplatePage {
     List<WebElement> checkboxSelections = findChildElementsByClassName(expressTable, "express-selection-column");
     if (checkboxSelections.size() > index) {
       click(findChildElementByClassName(checkboxSelections.get(index), "ui-chkbox-box"));
-      waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
     }
   }
 
