@@ -21,6 +21,20 @@
     hideEvent="mouseleave click" />
 </h:panelGroup>
 
+<h:panelGroup id="process-action-read-only" rendered="#{isReadOnlyMode}" styleClass="process-grid-item__action--combined">
+  <p:link id="expand-link"
+        href="#"
+        styleClass="si si-expand-1 expand-link"
+        rendered="#{isReadOnlyMode}"
+        onclick="expandFullscreen(#{index}, '#{widget.id}')" />
+  
+  <p:link id="collapse-link"
+        href="#"
+        styleClass="si si-shrink-1 collapse-link"
+        rendered="#{isReadOnlyMode}"
+        onclick="collapseFullscreen(#{index}, '#{widget.id}')" />
+</h:panelGroup>
+
 <h:panelGroup styleClass="process-widget--full process-widget--combined ui-g-4" layout="block" rendered="#{widget.process ne null}">
   <c:set var="isExpress" value="#{dashboardProcessBean.isExpressProcess(widget.process)}" />
 

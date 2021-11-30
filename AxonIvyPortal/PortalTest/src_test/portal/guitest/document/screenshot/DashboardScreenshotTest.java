@@ -9,12 +9,15 @@ import java.io.IOException;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.WebElement;
 
 import ch.ivy.addon.portalkit.util.ScreenshotMargin;
 import ch.ivy.addon.portalkit.util.ScreenshotUtil;
 import portal.guitest.common.ScreenshotTest;
 import portal.guitest.common.Sleeper;
+import portal.guitest.common.TestAccount;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.NewDashboardPage;
 import portal.guitest.page.TaskWidgetPage;
@@ -126,6 +129,30 @@ public class DashboardScreenshotTest extends ScreenshotTest {
     ScreenshotUtil.resizeBrowser(new Dimension(1400, 800));
     executeDecorateJs("highlightTopBar()");
     ScreenshotUtil.captureHalfTopPageScreenShot(ScreenshotUtil.DASHBOARD_FOLDER + "portal-header");
+  }
+
+  @Test
+  public void screenshotConfigureCustomWidget() throws IOException {
+    login(TestAccount.ADMIN_USER);
+    showNewDashboard();
+    newDashboardPage = new NewDashboardPage();
+    newDashboardPage.switchToEditMode();
+    newDashboardPage.addNewCustomWidget();
+    newDashboardPage.selectCustomWidgetTypeProcess();
+    newDashboardPage.selectIvyProcessForCustomWidget("Investment List (Example for Custom Widget on Dashboard)");
+
+    WebElement dateField = newDashboardPage.findElementById("widget-configuration-form:new-widget-configuration-component:parammeters:1:param-calendar-_input");
+    newDashboardPage.type(dateField, "24 Nov, 2021 00:00");
+
+    WebElement stringField = newDashboardPage.findElementById("widget-configuration-form:new-widget-configuration-component:parammeters:2:param-string-");
+    newDashboardPage.type(stringField, "a short note");
+
+    WebElement userField = newDashboardPage.findElementById("widget-configuration-form:new-widget-configuration-component:parammeters:0:param-user-:user-selection_input");
+    newDashboardPage.type(userField, "demo");
+    newDashboardPage.waitForElementDisplayed(By.id("widget-configuration-form:new-widget-configuration-component:parammeters:0:param-user-:user-selection_panel"), true);
+    newDashboardPage.click(By.xpath("//*[@id='widget-configuration-form:new-widget-configuration-component:parammeters:0:param-user-:user-selection_panel']/ul/li"));
+
+    ScreenshotUtil.captureElementScreenshot(newDashboardPage.getConfigurationDialog(), ScreenshotUtil.DASHBOARD_FOLDER + "process-custom-widget-configuration");
   }
 
   private void showNewCustomizedDashboard() {

@@ -75,8 +75,8 @@
       
       <h:panelGroup id="parameters-panel" styleClass="ui-g-12 parameters-panel u-padding-0" layout="block"
         rendered="#{widget.data.type == 'PROCESS' and widget.data.startableProcessStart ne null}">
-        <p:fieldset legend="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/Parameters')}"
-          toggleable="true" collapsed="false" rendered="#{not empty widget.data.params}">
+        <p:fieldset id="parameters-fieldset" legend="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/Parameters')}"
+          toggleable="true" collapsed="false" rendered="#{not empty widget.data.params || widget.data.hasParamChanged}">
           <h:panelGroup layout="block" rendered="#{widget.data.hasParamChanged}" styleClass="ui-g">
           <div class="ui-g-12">
             <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/customWidgetParamChangedMessage')}" />
@@ -88,8 +88,8 @@
             </p:commandButton>
           </div>
           </h:panelGroup>
-          <h:panelGroup id="parameters" styleClass="ui-g ui-g-12 ui-fluid parameters u-padding-0" layout="block">
-          <ui:repeat value ="#{widget.data.params}" var="parameter" varStatus="status" >
+          <h:panelGroup id="parameters-container" styleClass="ui-g ui-g-12 ui-fluid parameters u-padding-0" layout="block">
+          <ui:repeat id="parammeters" value ="#{widget.data.params}" var="parameter" varStatus="status" >
             <h:panelGroup layout="block" styleClass="ui-g-4">
               <h:outputLabel styleClass="param-label" value="#{parameter.name}" />
             </h:panelGroup>
