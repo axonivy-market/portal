@@ -21,9 +21,9 @@
 
   <p:remoteCommand id="rcLoadTaskFirstTime" autoRun="true" actionListener="#{taskWidget.dataModel.loadFirstTime()}" 
     update="dashboard-tasks-container" global="false" async="true" process="@this"
-    oncomplete="loadTaskFirstTime('#{taskWidget.id}'); #{cc.attrs.onCompleteLoadWidget}" />
+    oncomplete="loadWidgetFirstTime('js-loading-#{taskWidget.id}', 'js-dashboard-tasks-container-#{taskWidget.id}'); #{cc.attrs.onCompleteLoadWidget}" />
   <div class="ui-g">
-    <h:panelGroup id="loading" styleClass="js-loading-#{taskWidget.id}">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/loading')}</h:panelGroup>
+    <h:outputText id="loading" styleClass="js-loading-#{taskWidget.id}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/loading')}"/>
       
     <h:panelGroup id="dashboard-tasks-container" layout="block" 
       styleClass="ui-g-12 u-padding-0 js-dashboard-tasks-container-#{taskWidget.id} u-display-none">
@@ -98,14 +98,5 @@
       </p:dataTable>
     </h:panelGroup>
   </div>
-
-  <script type="text/javascript">
-    function loadTaskFirstTime(widgetId) {
-      var loadingId = '.js-loading-' + widgetId;
-      var widgetContainer = '.js-dashboard-tasks-container-' + widgetId;
-      $(loadingId).addClass('u-display-none');
-      $(widgetContainer).removeClass('u-display-none');
-    }
-  </script>
 </cc:implementation>
 </html>

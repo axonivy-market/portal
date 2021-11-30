@@ -92,21 +92,20 @@ public class UserFilterCollection implements Serializable {
   @JsonIgnore
   public void updateUserFilterOptionValue(DashboardWidget widget) {
     latestFilterOption = new WidgetFilterModel(widget.getName(), widget.getType());
-    if (widget instanceof TaskDashboardWidget) {
-      TaskDashboardWidget taskWidget = (TaskDashboardWidget) widget;
-      latestFilterOption.addFilterableColumns(taskWidget.getFilterableColumns());
+    List<ColumnModel> columns = new ArrayList<>();
+    if (DashboardWidgetType.TASK == widget.getType()) {
+      columns = ((TaskDashboardWidget) widget).getFilterableColumns();
     }
-    if (widget instanceof CaseDashboardWidget) {
-      CaseDashboardWidget taskWidget = (CaseDashboardWidget) widget;
-      latestFilterOption.addFilterableColumns(taskWidget.getFilterableColumns());
+    if (DashboardWidgetType.CASE == widget.getType()) {
+      columns = ((CaseDashboardWidget) widget).getFilterableColumns();
     }
-    if (widget instanceof ProcessDashboardWidget) {
-      ProcessDashboardWidget processWidget = (ProcessDashboardWidget) widget;
-      latestFilterOption.setProcessUserFilter(processWidget.getUserFilter());
+    if (DashboardWidgetType.PROCESS == widget.getType()) {
+      columns = ((ProcessDashboardWidget) widget).getFilterableColumns();
     }
-
-    setSelectedWidgetFilterIds(
-        getSelectedWidgetFilters().stream().map(WidgetFilterModel::getId).collect(Collectors.toList()));
+    latestFilterOption.addFilterableColumns(columns);
+    setSelectedWidgetFilterIds(getSelectedWidgetFilters()
+          .stream()
+          .map(WidgetFilterModel::getId).collect(Collectors.toList()));
   }
 
   public Map<String, FilterColumnModel> getSelectedFilterOptionMap() {

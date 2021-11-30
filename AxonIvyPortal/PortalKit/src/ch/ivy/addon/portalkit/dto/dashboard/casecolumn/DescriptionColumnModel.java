@@ -13,6 +13,7 @@ public class DescriptionColumnModel extends CaseColumnModel implements Serializa
   public void initDefaultValue() {
     this.header = defaultIfEmpty(this.header, "cms:/ch.ivy.addon.portalkit.ui.jsf/common/description");
     this.field = DashboardStandardCaseColumn.DESCRIPTION.getField();
+    this.style = defaultIfEmpty(this.style, "width: 250px");
     this.styleClass = defaultIfEmpty(this.styleClass, "dashboard-cases__description");
     this.sortable = false;
   }
