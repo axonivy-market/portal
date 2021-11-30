@@ -6,7 +6,7 @@
 <!-- Action -->
 <h:panelGroup id="process-action" rendered="#{!isReadOnlyMode}" styleClass="process-grid-item__action--combined">
   <p:commandLink id="edit-widget" styleClass="si si-pencil u-mar-right-15" global="false"
-    actionListener="#{dashboardConfigurationBean.setEditWidget(widget)}"
+    actionListener="#{dashboardConfigurationBean.prepareEditWidget(widget)}"
     process="@this" partialSubmit="true"
     update="new-widget-configuration-dialog"
     oncomplete="PF('new-widget-configuration-dialog').show()" />
@@ -35,7 +35,7 @@
         onclick="collapseFullscreen(#{index}, '#{widget.id}')" />
 </h:panelGroup>
 
-<h:panelGroup styleClass="process-widget--full process-widget--combined ui-g-4" layout="block" rendered="#{widget.process ne null}">
+<h:panelGroup styleClass="process-widget--full process-widget--combined ui-g-4 ui-sm-12" layout="block" rendered="#{widget.process ne null}">
   <c:set var="isExpress" value="#{dashboardProcessBean.isExpressProcess(widget.process)}" />
 
   <h:form id="process-item" styleClass="ui-g-12 process-grid-item u-padding-0 widget-height-100" target="#{processTarget}">
@@ -64,7 +64,7 @@
   </h:form>
 </h:panelGroup>
 
-<h:panelGroup layout="block" class="ui-g-8 process-task-case-container" rendered="#{widget.process ne null}" id="process-task-case-container">
+<h:panelGroup layout="block" class="ui-g-8 ui-sm-12 process-task-case-container" rendered="#{widget.process ne null}" id="process-task-case-container">
   <div class="process-grid-item__related-data-button">
     <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourTasks')}"
       styleClass="combined-process-widget__button-tabs first-tab-button #{widget.showCases ? '' : 'active-button-tab'}" process="@this"

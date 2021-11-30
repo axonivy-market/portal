@@ -540,7 +540,7 @@ NewUser user = NewUser
 	  .password("+d3m0++")
 	  .language(java.util.Locale.ENGLISH)
 	  .toNewUser();
-' #txt
+ivy.security.users().create(user);' #txt
 Dt0 f22 security system #txt
 Dt0 f22 168 714 112 44 0 -8 #rect
 Dt0 f36 expr out #txt

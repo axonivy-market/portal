@@ -188,7 +188,7 @@ public class NewDashboardCaseWidgetTest extends BaseTest {
     caseWidgetEdited.expand().shouldHave(sizeGreaterThanOrEqual(1));
     caseWidgetEdited.countCases("TestCase").shouldHaveSize(10);
     caseWidgetEdited.nextPageTable();
-    caseWidgetEdited.countCases("TestCase").shouldHaveSize(10);
+    caseWidgetEdited.countCases("TestCase").shouldHaveSize(2);
   }
   
   @Test

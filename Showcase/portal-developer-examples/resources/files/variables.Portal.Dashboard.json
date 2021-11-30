@@ -5,7 +5,7 @@
     "widgets": [
       {
         "type": "task",
-        "id": "task_1",
+        "id": "task_10",
         "layout": {
           "x": 0, "y": 0, "w": 9, "h": 4
         },
@@ -32,7 +32,7 @@
       },
       {
         "type": "case",
-        "id": "case_1",
+        "id": "case_10",
         "layout": {
           "x": 0, "y": 4, "w": 9, "h": 4
         },
@@ -60,7 +60,7 @@
       },
       {
         "type": "process",
-        "id": "compact_mode",
+        "id": "compact_mode_10",
         "name": "Process Widget",
         "displayMode": "COMPACT_MODE",
         "layout": {
@@ -76,7 +76,7 @@
     "widgets": [
       {
         "type": "task",
-        "id": "task_1",
+        "id": "task_20",
         "layout": {
           "x": 0, "y": 0, "w": 9, "h": 4
         },
@@ -123,7 +123,7 @@
       },
       {
         "type": "case",
-        "id": "case_1",
+        "id": "case_20",
         "layout": {
           "x": 0, "y": 4, "w": 9, "h": 4
         },
@@ -166,7 +166,7 @@
       },
       {
         "type": "process",
-        "id": "compact_mode",
+        "id": "compact_mode_20",
         "name": "Process Widget",
         "displayMode": "COMPACT_MODE",
         "layout": {

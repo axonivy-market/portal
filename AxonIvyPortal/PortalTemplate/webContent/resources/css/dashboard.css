@@ -68,11 +68,6 @@
 }
 
 @media screen and (max-width: 767px) {
-  .dashboard__title-dropdown-container {
-    padding-left: 0;
-    padding-right: 0;
-  }
-
   .dashboard__title-dropdown {
     min-width: 100% !important;
     margin-bottom: 15px;
@@ -81,6 +76,7 @@
 
   .dashboard-header__action {
     margin-left: auto;
+    padding-right: 0.5em;
   }
 }
 
@@ -844,19 +840,6 @@ body .dashboard__table--preview.ui-datatable tbody tr.ui-state-hover {
   height: 330px;
 }
 
-.process-widget--full.process-grid-item .start-button-wrap {
-  position: absolute;
-  top: auto;
-  bottom: 1px;
-  margin-left: -2rem;
-  margin-right: -2rem;
-}
-
-.process-widget--full.process-grid-item .process-more-info-link {
-  display: block;
-  margin-top: 15px;
-}
-
 .grid-view-form .process-name.process-name--combined {
   height: 8rem;
   padding-left: 0;
@@ -952,6 +935,30 @@ body .dashboard__table--preview.ui-datatable tbody tr.ui-state-hover {
 
 .dashboard-processes-container--combined {
   min-width: 600px;
+}
+
+@media screen and (max-width: 40em) {
+  .dashboard-processes-container--combined .process-widget--combined {
+    height: calc(100% - 40rem);
+    margin-top: 0 !important;
+  }
+
+  .dashboard-processes-container--combined {
+    min-width: auto;
+  }
+
+  .process-widget--full .process-grid-view__icon.process-grid-view__icon--combined {
+    margin-top: 0;
+    font-size: 4rem;
+  }
+
+  .grid-view-form .process-name.process-name--combined {
+    height: 5rem;
+  }
+
+  .process-grid-view__description--combined {
+    height: 8rem;
+  }
 }
 
 .process-grid-item__action--combined {
