@@ -143,9 +143,7 @@ public class PermissionUtils {
   }
 
   public static boolean doesSessionUserHaveRole(String roleName) {
-    IRole role = Ivy.security().roles().find(roleName);
-    return role != null ? Ivy.session().hasRole(role, false) : false;
-
+    return Ivy.session().has().roles(roleName);
   }
 
   /**

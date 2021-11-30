@@ -45,12 +45,7 @@
       <p:remoteCommand id="build-statistic-info-command-#{index}" name="buildStatisticInfos#{index}"
         actionListener="#{widget.buildStatisticInfos}"
         update="statistic-filter-accordion-panel-#{index}"
-        process="@this" partialSubmit="true" immediate="true" />
-
-      <!-- remote-command to reset state of info accordion panel -->
-      <p:remoteCommand id="update-widget-statistic-command-#{index}" name="updateWidgetStatisticPannel#{index}"
-        update="statistic-filter-accordion-panel-#{index}"
-        resetValues="true" global="false" process="@this" partialSubmit="true" immediate="true" />
+        process="@this" partialSubmit="true" immediate="true" global="false"/>
 
       <!-- remote-command to reset state of info accordion panel -->
       <p:remoteCommand id="reset-statistic-filter-accordion-panel-state-command-#{index}"

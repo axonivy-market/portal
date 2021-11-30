@@ -48,7 +48,7 @@ Below is a JSON example for the configuration of dashboards.
          "widgets": [
             {
                "type": "task",
-               "id": "task_1",
+               "id": "task_10",
                "layout": {
                   "x": 0, "y": 0, "w": 10, "h": 9,
                   "styleClass": "your-widget-class"
@@ -56,7 +56,7 @@ Below is a JSON example for the configuration of dashboards.
             },
             {
                "type": "case",
-               "id": "case_1",
+               "id": "case_10",
                "layout": {
                   "x": 0, "y": 10, "w": 10, "h": 9
                }
@@ -70,13 +70,13 @@ Below is a JSON example for the configuration of dashboards.
          "widgets": [
             {
                "type": "task",
-               "id": "task_1",
+               "id": "task_20",
                "layout": {
                   "x": 0, "y": 0, "w": 10, "h": 9
                }
             }
          ]
-      },
+      }
    ]
 
 ..
@@ -98,6 +98,9 @@ Structure of JSON for each dashboard:
    ``widgets``: definition of widgets dashboard. There are four types of
    widget ``task``, ``case``, ``process``, and ``custom``. Refer
    to the next sections to learn more about the configurations of each widget
+
+   .. warning::
+      Widget ``id`` must be unique between dashboards.
 
 Configure dashboard widgets
 ---------------------------

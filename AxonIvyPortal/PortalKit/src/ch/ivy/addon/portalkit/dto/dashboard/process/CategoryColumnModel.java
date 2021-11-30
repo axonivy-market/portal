@@ -1,26 +1,27 @@
-package ch.ivy.addon.portalkit.dto.dashboard.casecolumn;
+package ch.ivy.addon.portalkit.dto.dashboard.process;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.collections4.CollectionUtils;
 import org.primefaces.model.CheckboxTreeNode;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
-import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
-import ch.ivy.addon.portalkit.util.CaseTreeUtils;
+import ch.ivy.addon.portalkit.enums.DashboardStandardProcessColumn;
 import ch.ivy.addon.portalkit.util.CategoryUtils;
-import ch.ivyteam.ivy.workflow.ICase;
+import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
+import ch.ivy.addon.portalkit.util.ProcessTreeUtils;
 
-public class CategoryColumnModel extends CaseColumnModel {
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
+public class CategoryColumnModel extends ProcessColumnModel implements Serializable {
 
-  private static final long serialVersionUID = 2890439587578791422L;
-
+  private static final long serialVersionUID = -5311971648747993138L;
   @JsonIgnore
   private CheckboxTreeNode categoryTree;
   @JsonIgnore
@@ -32,21 +33,10 @@ public class CategoryColumnModel extends CaseColumnModel {
 
   @Override
   public void initDefaultValue() {
-    this.header = defaultIfEmpty(this.header, "cms:/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/CATEGORY");
-    this.field = DashboardStandardTaskColumn.CATEGORY.getField();
-    this.style = defaultIfEmpty(this.style, NORMAL_WIDTH);
-    this.styleClass = defaultIfEmpty(this.styleClass, "dashboard-tasks__category u-text-align-center");
-    this.fieldStyleClass = defaultIfEmpty(this.fieldStyleClass, StringUtils.EMPTY);
+    this.header = defaultIfEmpty(this.header, "cms:/ch.ivy.addon.portalkit.ui.jsf/common/categories");
+    this.field = DashboardStandardProcessColumn.CATEGORY.getField();
+    this.styleClass = defaultIfEmpty(this.styleClass, "dashboard-process__category");
     this.format = DashboardColumnFormat.CUSTOM;
-    this.sortable = false;
-  }
-
-  @Override
-  public Object display(ICase caze) {
-    if (caze == null) {
-      return "";
-    }
-    return caze.getCategory().getName();
   }
 
   @JsonIgnore
@@ -69,27 +59,32 @@ public class CategoryColumnModel extends CaseColumnModel {
   }
 
   @JsonIgnore
-  public CheckboxTreeNode[] getCategoryNodes() {
-    return selectionCategoryNodes;
-  }
-
-  @JsonIgnore
-  public void setCategoryNodes(CheckboxTreeNode[] categoryNodes) {
-    this.selectionCategoryNodes = categoryNodes;
-  }
-
-  @JsonIgnore
   public void updateCategoriesPath() {
     setUserFilterList(CategoryUtils.getCategoryPaths(userSelectionCategoryNodes));
     setFilterList(CategoryUtils.getCategoryPaths(selectionCategoryNodes));
   }
 
   @JsonIgnore
+  public void loadCategories(boolean isConfigurationMode) {
+    var availableCategories = ProcessTreeUtils.buildProcessCategoryCheckboxTreeRoot(DashboardWidgetUtils.getAllPortalProcesses());
+    if (isConfigurationMode) {
+      this.categoryTree = availableCategories;
+      if (CollectionUtils.isNotEmpty(filterList)) {
+        CategoryUtils.recoverSelectedCategories(this.categoryTree, filterList);
+      }
+    } else {
+      this.userCategoryTree = availableCategories;
+      CategoryUtils.disableSelectionWithoutSelectingExcept(userCategoryTree, filterList);
+      if (CollectionUtils.isNotEmpty(userFilterList)) {
+        CategoryUtils.recoverSelectedCategories(this.userCategoryTree, userFilterList);
+      }
+    }
+  }
+
   public CheckboxTreeNode getCategoryTree() {
     return categoryTree;
   }
 
-  @JsonIgnore
   public void setCategoryTree(CheckboxTreeNode categoryTree) {
     this.categoryTree = categoryTree;
   }
@@ -117,22 +112,4 @@ public class CategoryColumnModel extends CaseColumnModel {
   public void setUserSelectionCategoryNodes(CheckboxTreeNode[] userSelectionCategoryNodes) {
     this.userSelectionCategoryNodes = userSelectionCategoryNodes;
   }
-
-  @JsonIgnore
-  public void loadCategories(boolean isConfigurationMode) {
-    var availableCategories = CaseTreeUtils.buildCaseCategoryCheckboxTreeRoot();
-    if (isConfigurationMode) {
-      this.categoryTree = availableCategories;
-      if (CollectionUtils.isNotEmpty(filterList)) {
-        CategoryUtils.recoverSelectedCategories(this.categoryTree, filterList);
-      }
-    } else {
-      this.userCategoryTree = availableCategories;
-      CategoryUtils.disableSelectionExcept(this.userCategoryTree, filterList);
-      if (CollectionUtils.isNotEmpty(userFilterList)) {
-        CategoryUtils.recoverSelectedCategories(this.userCategoryTree, userFilterList);
-      }
-    }
-  }
-
 }

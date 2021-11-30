@@ -1,6 +1,5 @@
 package ch.ivy.addon.portalkit.ivydata.searchcriteria;
 
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -33,14 +32,14 @@ public class DashboardTaskSearchCriteria {
   private boolean sortDescending;
   private boolean isInConfiguration;
 
-  public TaskQuery buildQuery() throws ParseException {
+  public TaskQuery buildQuery() {
     TaskQuery query = buildQueryWithoutOrderByClause();
     TaskSortingQueryAppender appender = new TaskSortingQueryAppender(query);
     query = appender.appendSorting(this).toQuery();
     return query;
   }
 
-  public TaskQuery buildQueryWithoutOrderByClause() throws ParseException {
+  public TaskQuery buildQueryWithoutOrderByClause() {
     TaskQuery query = TaskQuery.create();
     if (HiddenTasksCasesConfig.isHiddenTasksCasesExcluded()) {
       query.where().customField().stringField(AdditionalProperty.HIDE.toString()).isNull();
@@ -168,7 +167,7 @@ public class DashboardTaskSearchCriteria {
     }
   }
   
-  private void queryFilters(TaskQuery query) throws ParseException {
+  private void queryFilters(TaskQuery query) {
     for (ColumnModel column : columns) {
       String field = column.getField();
       String configuredFilter = column.getFilter();
