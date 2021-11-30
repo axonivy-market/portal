@@ -65,7 +65,7 @@ Below is a standard JSON definition of the custom widget in the Portal dashboard
 
 the basic structure of JSON of custom widget
 
-   ``type``: type of widget. Use ``case`` to mark that this widget is a case widget
+   ``type``: type of widget. Use ``custom`` to mark that this widget is a custom widget
 
    ``id``: ID of the widget
 
@@ -101,6 +101,9 @@ Attribute explanation
 
    ``url``: the URL of the external webpage you want to show.
 
+.. warning::
+	Some external website restricted to load in iFrame. So please be aware of external website security policy when you use it in custom widget.
+
 Define Ivy process
 ------------------
 
@@ -115,7 +118,7 @@ JSON structure
          "id": "custom-widget",
          "name": "Custom Widget",
          "layout": {
-            "x": 10, "y": 0, "w": 12, "h": 4
+            "x": 10, "y": 0, "w": 12, "h": 6
          },
          "data" : {
            "processStart": "Start Processes/DashboardCustomWidgetExample/investmentList.ivp",
@@ -172,8 +175,8 @@ Attributes explanation
          ..
 
          - type ``user``: Mark that the parameter is the username of an Ivy user.
-         In the configuration dialog, the user can edit this parameter by choosing a user from the dropdown to select user.
-         This type only accepts the username of an Ivy user as a value.
+           In the configuration dialog, the user can edit this parameter by choosing a user from the dropdown to select user.
+           This type only accepts the username of an Ivy user as a value.
 
          .. code-block:: html
 
@@ -191,8 +194,8 @@ Attributes explanation
          ..
 
          - type ``date``: Mark that the parameter is a date.
-         In the configuration dialog, the user can edit this parameter with a date picker.
-         This type only accepts date formats dd.MM.yyyy and MM/dd/yyyy.
+           In the configuration dialog, the user can edit this parameter with a date picker.
+           This type only accepts date formats dd.MM.yyyy and MM/dd/yyyy.
 
          .. code-block:: html
 
@@ -210,12 +213,12 @@ Attributes explanation
          ..
 
          - type ``boolean``: Mark that the parameter is a boolean variable.
-         On configuration dialog, this field will be rendered as radio buttons, user can choose between true or false by click the radio buttons.
-         This type only accept two values ``true`` or ``false``.
+           On configuration dialog, this field will be rendered as radio buttons, user can choose between true or false by click the radio buttons.
+           This type only accept two values ``true`` or ``false``.
 
-Please refer to JSON file variables.Portal.Dashboard.json and process DashboardCustomWidgetExample\investmentList.ivp
-in project portal-developer-examples for more details about how to define Ivy process for the custom widget.
+Please refer to JSON file variables.Portal.Dashboard.json and process ``DashboardCustomWidgetExample/investmentList.ivp``
+in project ``portal-developer-examples`` for more details about how to define Ivy process for the custom widget.
 
 .. |dashboard-custom-field| image:: images/new-dashboard-custom-widget/process-custom-field.png
 .. |dashboard-custom-params| image:: images/new-dashboard-custom-widget/process-custom-params.png
-.. |dashboard-custom-widget-configuration| image:: images/new-dashboard-custom-widget/process-custom-widget-configuration.png
+.. |dashboard-custom-widget-configuration| image:: ../../screenshots/dashboard/process-custom-widget-configuration.png
