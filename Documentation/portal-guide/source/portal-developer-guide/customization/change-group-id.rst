@@ -15,12 +15,12 @@ Portal is changed without adapting this identifier, then the changed version wil
 be used in **any Maven build of any projects that uses the same Portal version**.
 
 For example: 
-If you have two customer projects
-that use different logos, colors but they use the **same Portal version**, then you build maven, e.g. ``mvn clean install`` PortalStyle of Project 1,
-then the local maven repository stores PortalStyle of Project 1.
-Now you want to build the deployment package of Project 2, it will collect all dependencies of Project 2 to build a zip file, 
-then PortalStyle from the local maven repository is collected. It means the deployment package of Project 2 has PortalStyle of Project 1.
-This is a problem because we expect deployment package of Project 2 has PortalStyle of Project 2.
+If you have two customer projects that use different logos or colors using the **same Portal version**,
+and you build maven, e.g. ``mvn clean install`` PortalStyle of Project 1, then the local maven repository stores
+PortalStyle of Project 1. Later you build the deployment package of Project 2, and it will collect all
+dependencies of Project 2 to build a zip file. But now PortalStyle from the local maven repository will be found
+and used. Now the deployment package of Project 2 contains PortalStyle of Project 1.
+This is a problem because the deployment package of Project 2 should contain PortalSyle of Project 2.
 
 The preferred and supported way to create a new Portal Maven identifier is to change the groupId only (best practice is to change it to
 the groupId, that you use for your other projects). Because of dependencies between the Portal projects, you **must propagate** this change to
