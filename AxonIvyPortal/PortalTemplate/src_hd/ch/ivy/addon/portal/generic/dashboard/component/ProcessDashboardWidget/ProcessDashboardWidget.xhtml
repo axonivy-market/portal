@@ -37,7 +37,8 @@
       </ui:define>
 
       <ui:define name="widgetContent">
-        <ic:ch.ivy.addon.portal.generic.dashboard.component.ProcessWidget id="process-component" processWidget="#{widget}" isReadOnlyMode="#{isReadOnlyMode}" />
+        <ic:ch.ivy.addon.portal.generic.dashboard.component.ProcessWidget id="process-component" processWidget="#{widget}"
+          isReadOnlyMode="#{isReadOnlyMode}" index="#{index}" />
       </ui:define>
     </ui:decorate>
   </c:if>
@@ -47,7 +48,7 @@
       <h:panelGroup id="widget-content" layout="block"
         styleClass="card-widget__content #{widget.id} process-widget dashboard-widget-panel-container widget-height-100">
         <ic:ch.ivy.addon.portal.generic.dashboard.component.ProcessWidget id="process-component" processWidget="#{widget}"
-          isReadOnlyMode="#{cc.attrs.isReadOnlyMode}" />
+          isReadOnlyMode="#{cc.attrs.isReadOnlyMode}" index="#{index}" />
       </h:panelGroup>
     </h:panelGroup>
   </c:if>

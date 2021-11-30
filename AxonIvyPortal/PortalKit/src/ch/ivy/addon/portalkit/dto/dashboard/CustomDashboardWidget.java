@@ -108,20 +108,18 @@ public class CustomDashboardWidget extends DashboardWidget {
         .findStartElementByProcessStartFriendlyRequestPath(data.getProcessStart()).startParameters());
     data.setHasParamChanged(false);
 
-    List<String> paramRealNames = new ArrayList<>();
+    List<String> paramNames = new ArrayList<>();
+    List<String> paramFromProcessNames = data.getStartProcessParams().stream()
+        .map(StartParameter::name).collect(Collectors.toList());
 
     // Get names of current params saved in JSON
     for (CustomDashboardWidgetParam param : data.getParams()) {
       String paramRealName = param.getType().name().toLowerCase().concat("__").concat(param.getName());
-      paramRealNames.add(paramRealName);
+      paramNames.add(paramRealName);
     }
 
-    // Check differences
-    for (StartParameter paramFromProcess : data.getStartProcessParams()) {
-      if (!paramRealNames.contains(paramFromProcess.name())) {
-        data.setHasParamChanged(true);
-        break;
-      }
+    if (!CollectionUtils.isEqualCollection(paramNames, paramFromProcessNames)) {
+      data.setHasParamChanged(true);
     }
 
     // Load value for current params
