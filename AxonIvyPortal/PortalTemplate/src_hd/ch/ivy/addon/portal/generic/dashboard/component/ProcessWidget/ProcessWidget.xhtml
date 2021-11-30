@@ -6,6 +6,7 @@
   <cc:attribute name="processWidget" type="ch.ivy.addon.portalkit.dto.dashboard.ProcessDashboardWidget" required="true" />
   <cc:attribute name="isReadOnlyMode" default="false" />
   <cc:attribute name="isInConfiguration" default="false" />
+  <cc:attribute name="index" required="true" />
   <cc:attribute name="onLoadProcessComplete" />
 </cc:interface>
 
@@ -13,6 +14,7 @@
   <c:set var="widget" value="#{cc.attrs.processWidget}" />
   <c:set var="isReadOnlyMode" value="#{cc.attrs.isReadOnlyMode}" />
   <c:set var="displayMode" value="#{widget.displayMode}" />
+  <c:set var="index" value="#{cc.attrs.index}" />
 
   <p:remoteCommand id="rcLoadProcessFirstTime" autoRun="true" update="dashboard-processes-container" global="false" async="true" process="@this"
     oncomplete="loadProcessfFirstTime('#{widget.id}'); #{cc.attrs.onLoadProcessComplete}; #{displayMode eq 'IMAGE_MODE' ? 'setupImageProcessWidget();' : ''}" />
@@ -49,6 +51,7 @@
           <ui:param name="widget" value="#{widget}" />
           <ui:param name="isReadOnlyMode" value="#{isReadOnlyMode}" />
           <ui:param name="isInConfiguration" value="#{cc.attrs.isInConfiguration}" />
+          <ui:param name="index" value="#{index}" />
         </ui:include>
       </c:if>
       <c:if test="#{widget.displayMode eq 'IMAGE_MODE' and widget.process != null}">

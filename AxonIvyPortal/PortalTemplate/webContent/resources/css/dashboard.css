@@ -1066,6 +1066,10 @@ body .dashboard__table--preview.ui-datatable tbody tr.ui-state-hover {
   display: inline;
 }
 
+.widget-configuration.card.custom-widget-configuration {
+  margin-right: 0;
+}
+
 .custom-widget-configuration__user-selection .ui-autocomplete-input.ui-inputfield[size] {
   width: 100%;
 }
