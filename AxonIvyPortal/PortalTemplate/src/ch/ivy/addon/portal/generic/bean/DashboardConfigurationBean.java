@@ -5,6 +5,7 @@ import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.CASE;
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.PROCESS;
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.STATISTIC;
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.TASK;
+
 import static org.apache.commons.lang3.StringUtils.EMPTY;
 
 import java.io.Serializable;
@@ -29,19 +30,24 @@ import org.primefaces.PrimeFaces;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.constant.DashboardConstants;
+import ch.ivy.addon.portalkit.dto.UserDTO;
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
+import ch.ivy.addon.portalkit.dto.dashboard.CustomDashboardWidget;
+import ch.ivy.addon.portalkit.dto.dashboard.CustomDashboardWidgetParam;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.ProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.WidgetSample;
 import ch.ivy.addon.portalkit.dto.dashboard.process.DashboardProcess;
+import ch.ivy.addon.portalkit.enums.DashboardCustomWidgetType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardProcessColumn;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.enums.ProcessWidgetMode;
 import ch.ivy.addon.portalkit.service.DashboardService;
 import ch.ivy.addon.portalkit.util.CategoryUtils;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
+import ch.ivy.addon.portalkit.util.Dates;
 
 @ViewScoped
 @ManagedBean
@@ -65,7 +71,7 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
 
     this.isReadOnlyMode = userAgent.matches(".*Android.*|.*webOS.*|.*iPhone.*|.*iPad.*|.*iPod.*|.*BlackBerry.*|.*IEMobile.*|.*Opera Mini.*");
 
-    samples = List.of(taskSample(), caseSample(), processSample(), statisticSample());
+    samples = List.of(taskSample(), caseSample(), statisticSample(), processSample(), customSample());
   }
 
   private WidgetSample taskSample() {
@@ -86,6 +92,11 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
   private WidgetSample processSample() {
     return new WidgetSample(translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/processList"), PROCESS,
         "process-widget-sample.png", translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/processListIntroduction"));
+  }
+
+  private WidgetSample customSample() {
+    return new WidgetSample(translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/customWidget"), DashboardWidgetType.CUSTOM,
+        "si si-cog-double-2", translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/customWidgetIntroduction"), true);
   }
 
   public void restore() {
@@ -113,6 +124,11 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
         this.newWidgetHeader = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/newWidgetHeader",
             Arrays.asList(translate("/ch.ivy.addon.portalkit.ui.jsf/common/processes")));
         this.widget = getDefaultProcessDashboardWidget();
+        break;
+      case CUSTOM:
+        this.newWidgetHeader = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/newWidgetHeader",
+            Arrays.asList(translate("/ch.ivy.addon.portalkit.ui.jsf/statistic/timePeriod/custom")));
+        this.widget = getDefaultCustomDashboardWidget();
         break;
       case STATISTIC:
         this.widget = null;
@@ -147,6 +163,12 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
     return (ProcessDashboardWidget) DashboardWidgetUtils.buildDefaultWidget(widgetId, widgetName, PROCESS);
   }
 
+  public CustomDashboardWidget getDefaultCustomDashboardWidget() {
+    String widgetId = generateNewWidgetId(DashboardWidgetType.CUSTOM);
+    String widgetName = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourCustomWidget");
+    return CustomDashboardWidget.buildDefaultWidget(widgetId, widgetName);
+  }
+
   public String generateNewWidgetId(DashboardWidgetType type) {
     String uuid = UUID.randomUUID().toString().replace("-", "");
     return String.format(WIDGET_ID_PATTERN, type.name(), uuid).toLowerCase();
@@ -170,6 +192,9 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
           updateProcessWidget(processWidget, 6, 2);
         }
         break;
+      case CUSTOM:
+        CustomDashboardWidget customWidget =  (CustomDashboardWidget) widget;
+        loadCustomWidget(customWidget);
       default:
         break;
     }
@@ -203,6 +228,26 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
     if (CollectionUtils.isEmpty(processWidget.getCategories()) && (CollectionUtils.isEmpty(processWidget.getProcesses())
         || DashboardWidgetUtils.getAllPortalProcesses().size() == processWidget.getProcesses().size())) {
       processWidget.setSelectedAllProcess(true);
+    }
+  }
+
+  private void loadCustomWidget(CustomDashboardWidget customWidget) {
+    if (customWidget.getData().getType() == DashboardCustomWidgetType.PROCESS) {
+      for (CustomDashboardWidgetParam param : customWidget.getData().getParams()) {
+        switch (param.getType()) {
+          case BOOLEAN:
+            param.setValue(param.getValueBoolean().toString());
+            break;
+          case DATE:
+            param.setValue(Dates.format(param.getValueDate()));
+            break;
+          case USER:
+            param.setValue(Optional.ofNullable(param.getValueUser()).map(UserDTO::getName).orElse(null));
+            break;
+          default:
+            break;
+        }
+      }
     }
   }
 
@@ -333,6 +378,10 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
     ((ProcessDashboardWidget)widget).setCategories(originalProcessWidget.getCategories());
   }
 
+  public void reloadParamtersFromProcessForCustomWidget(DashboardWidget widget) {
+    CustomDashboardWidget customWidget = (CustomDashboardWidget) widget;
+    customWidget.loadParametersFromProcess();
+  }
   public List<WidgetSample> getSamples() {
     return samples;
   }
@@ -372,3 +421,4 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
     return isEditWidget;
   }
 }
+
