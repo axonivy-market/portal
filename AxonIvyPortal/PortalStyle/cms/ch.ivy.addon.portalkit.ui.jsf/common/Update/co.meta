@@ -1,0 +1,5 @@
+co: name={Update} description={} changed={} changedby={} visualorder={} guid={} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={17D5B148FC1AE25F} datatype={} isdefault={} langid={fr} description={} validfrom={} validto={} changed={} changedby={} properties={} id={}
+val: guid={17D5B148FC73CC9D} datatype={} isdefault={} langid={de} description={} validfrom={} validto={} changed={} changedby={} properties={} id={}
+val: guid={17D5B148FCDCBE48} datatype={} isdefault={} langid={es} description={} validfrom={} validto={} changed={} changedby={} properties={} id={}
+val: guid={17D5B148FBB19A36} datatype={} isdefault={} langid={en} description={} validfrom={} validto={} changed={} changedby={} properties={} id={}

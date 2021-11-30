@@ -8,3 +8,5 @@ count Integer #field
 category String #field
 eventId String #field
 exampleIFrameData com.axonivy.portal.developerexamples.ExampleIFrameData #field
+startFrom String #field
+startTo String #field

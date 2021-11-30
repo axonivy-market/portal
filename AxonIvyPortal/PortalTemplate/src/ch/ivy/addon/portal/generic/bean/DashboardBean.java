@@ -20,13 +20,17 @@ import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.dto.WidgetLayout;
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
+import ch.ivy.addon.portalkit.dto.dashboard.CustomDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.ProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.WidgetFilterModel;
+import ch.ivy.addon.portalkit.enums.DashboardCustomWidgetType;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
+import ch.ivy.addon.portalkit.ivydata.service.impl.ProcessService;
+import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
 import ch.ivy.addon.portalkit.service.DashboardService;
 import ch.ivy.addon.portalkit.service.WidgetFilterService;
 import ch.ivy.addon.portalkit.support.HtmlParser;
@@ -35,7 +39,9 @@ import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.workflow.ICase;
+import ch.ivyteam.ivy.workflow.IStartElement;
 import ch.ivyteam.ivy.workflow.ITask;
+import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 @ViewScoped
 @ManagedBean
@@ -111,6 +117,8 @@ public class DashboardBean implements Serializable {
         case PROCESS:
           cmsUri = "/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourProcesses";
           break;
+        case CUSTOM:
+          loadCustomWidget(widget);
         default:
           break;
       }
@@ -119,6 +127,24 @@ public class DashboardBean implements Serializable {
       }
       WidgetFilterService.getInstance().applyUserFilterFromSession(widget);
       DashboardWidgetUtils.removeStyleNewWidget(widget);
+    }
+  }
+
+  private void loadCustomWidget(DashboardWidget widget) {
+    CustomDashboardWidget customWidget = (CustomDashboardWidget) widget;
+    if (StringUtils.isNotBlank(customWidget.getData().getProcessStart())) {
+      String url = ProcessStartAPI.findStartableLinkByUserFriendlyRequestPath(customWidget.getData().getProcessStart());
+      IStartElement element = ProcessStartAPI.findStartElementByProcessStartFriendlyRequestPath(customWidget.getData().getProcessStart());
+      customWidget.getData().setStartProcessParams(element.startParameters());
+
+      List<IWebStartable> allPortalProcesses = ProcessService.newInstance().findProcesses().getProcesses();
+      customWidget.getData().setStartableProcessStart(allPortalProcesses.stream()
+        .filter(proccess -> proccess.getLink().toString().contentEquals(url)).findFirst().get());
+      customWidget.loadParameters();
+      customWidget.getData().setUrl(url);
+      customWidget.getData().setType(DashboardCustomWidgetType.PROCESS);
+    } else {
+      customWidget.getData().setType(DashboardCustomWidgetType.EXTERNAL_URL);
     }
   }
 
