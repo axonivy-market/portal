@@ -19,14 +19,14 @@
   <c:set var="isPreviewMode" value="#{cc.attrs.isPreviewMode}" />
 
   <p:remoteCommand id="rcLoadTaskFirstTime" autoRun="true" actionListener="#{widget.taskDataModel.loadFirstTime()}" 
-    update="dashboard-tasks-container" global="false" async="true" process="@this"
-    oncomplete="loadTaskFirstTime('#{widget.id}'); #{cc.attrs.onCompleteLoadWidget}" />
+    update="dashboard-process-tasks-container" global="false" async="true" process="@this"
+    oncomplete="loadWidgetFirstTime('js-loading-#{widget.id}', 'js-dashboard-tasks-container-#{widget.id}'); #{cc.attrs.onCompleteLoadWidget}" />
   <div class="ui-g">
     <h:panelGroup id="loading" styleClass="js-loading-#{widget.id}">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/loading')}</h:panelGroup>
       
-    <h:panelGroup id="dashboard-tasks-container" layout="block" 
+    <h:panelGroup id="dashboard-process-tasks-container" layout="block" 
       styleClass="ui-g-12 u-padding-0 js-dashboard-tasks-container-#{widget.id} u-display-none">
-      <p:dataTable id="dashboard-tasks" value="#{widget.taskDataModel}" var="task" paginatorAlwaysVisible="false"
+      <p:dataTable id="dashboard-process-tasks" value="#{widget.taskDataModel}" var="task" paginatorAlwaysVisible="false"
         rows="#{widget.rowsPerPage}" paginator="true" paginatorPosition="bottom" lazy="true" paginatorTemplate="{PreviousPageLink} {PageLinks} {NextPageLink} {RowsPerPageDropdown}"
         rowsPerPageTemplate="5,10,20,50"
         pageLinks="5" sortField="name" sortBy="name"
@@ -36,20 +36,24 @@
         
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}" sortable="true" sortBy="#{name}" field="name"
           styleClass="revelent-tasks__name">
-          <h:outputText value="#{task.name}" />
+          <span class="u-hidden-sm-down"><h:outputText value="#{task.name}" /></span>
+          <h:panelGroup layout="block" styleClass="u-hidden-md-up">
+            <h:outputText value="#{task.name}" title="#{task.name}" styleClass="dashboard-tasks__column-small-screen-name"/>
+            <h:outputText value="#{dashboardBean.createExtractedTextFromHtml(task.description)}" styleClass="dashboard-tasks__column-small-screen-description"/>
+          </h:panelGroup>
         </p:column>
         
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}" sortable="true" sortBy="#{description}" field="description" styleClass="dashboard-cases__description">
-          <h:outputText value="#{task.description}" />
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}" sortable="true" sortBy="#{description}" field="description" styleClass="dashboard-cases__description u-hidden-sm-down">
+          <span><h:outputText value="#{task.description}" /></span>
         </p:column>
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/EXPIRY_TIME')}" sortable="true" sortBy="#{expiryTimestamp}" field="expiryTimestamp" styleClass="revelent-tasks__expiry">
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/EXPIRY_TIME')}" sortable="true" sortBy="#{expiryTimestamp}" field="expiryTimestamp" styleClass="revelent-tasks__expiry u-hidden-sm-down">
           <h:outputText styleClass="u-text-align-center" value="#{task.expiryTimestamp}">
             <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}"/>
           </h:outputText>
         </p:column>
         
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}"
-          styleClass="revelent-tasks__more">
+          styleClass="revelent-tasks__more u-hidden-sm-down">
           <div id="action-cell-#{rowIndex}" class="task-header-action-cell">
             <div class="action-container">
               <p:commandLink id="task-action-component" disabled="#{!taskActionBean.isNotDone(task) or !taskActionBean.canResume(task) or isPreviewMode or !isReadOnlyMode}"
@@ -64,14 +68,5 @@
       </p:dataTable>
     </h:panelGroup>
   </div>
-
-  <script type="text/javascript">
-    function loadTaskFirstTime(widgetId) {
-      var loadingId = '.js-loading-' + widgetId;
-      var widgetContainer = '.js-dashboard-tasks-container-' + widgetId;
-      $(loadingId).addClass('u-display-none');
-      $(widgetContainer).removeClass('u-display-none');
-    }
-  </script>
 </cc:implementation>
 </html>

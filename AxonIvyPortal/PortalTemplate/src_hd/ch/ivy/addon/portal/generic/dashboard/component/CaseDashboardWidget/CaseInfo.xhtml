@@ -3,10 +3,16 @@
   xmlns:pe="http://primefaces.org/ui/extensions" xmlns:jsf="http://xmlns.jcp.org/jsf">
 
 <p:tab id="state-tab">
+  <p:remoteCommand id="build-statistic-case-states-#{widget.id}" name="buildStatisticCaseStates#{widget.id}"
+    async="true" process="@this" partialSubmit="true" immediate="true" global="false"
+    actionListener="#{widget.buildCaseByStateStatistic()}"
+    update="case-states-statistic-#{widget.id}"
+    oncomplete="loadWidgetFirstTime('js-loading-case-states-#{widget.id}', 'js-statistic-case-states-#{widget.id}');"/>
   <f:facet name="title">
     <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/caseWidgetInfo/casesByState')}" />
   </f:facet>
-  <div class="ui-g">
+  <h:outputText styleClass="ui-g-12 js-loading-case-states-#{widget.id}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/loading')}"/>
+  <h:panelGroup id="case-states-statistic-#{widget.id}" layout="block" styleClass="js-statistic-case-states-#{widget.id} u-display-none">
     <ui:repeat value="#{widget.caseByStateStatistic.entrySet()}" var="entry">
       <div class="ui-g-8">
         <ic:ch.ivy.addon.portalkit.component.cases.column.CaseState case="" state="#{entry.key}"
@@ -16,133 +22,154 @@
         <span>#{entry.value} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/caseWidgetInfo/numberOfCase')}</span>
       </div>
     </ui:repeat>
-  </div>
+  </h:panelGroup>
 </p:tab>
 
 <p:tab id="category-tab">
+  <p:remoteCommand id="build-statistic-case-category-#{widget.id}" name="buildStatisticCaseCategory#{widget.id}"
+    async="true" process="@this" partialSubmit="true" immediate="true" global="false"
+    actionListener="#{widget.buildCaseByCategoryStatistic()}"
+    update="case-category-statistic-#{widget.id}"
+    oncomplete="loadWidgetFirstTime('js-loading-case-category-#{widget.id}', 'js-statistic-case-category-#{widget.id}');"/>
   <f:facet name="title">
     <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/caseWidgetInfo/casesByCategory')}" />
   </f:facet>
-  <div class="ui-g" jsf:rendered="#{not empty widget.caseByCategoryStatistic.entrySet()}">
-    <ui:repeat value="#{widget.caseByCategoryStatistic.entrySet()}" var="entry" varStatus="status">
-      <div class="ui-g-8 u-truncate-text u-default-cursor">
-        <h:outputText id="category" value="#{empty entry.key ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noCategory') : entry.key}" />
-      </div>
-      <p:tooltip for="category" value="#{empty entry.key ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noCategory') : entry.key}"
-        trackMouse="true" />
-      <div class="ui-g-4">
-        <span>#{entry.value} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/caseWidgetInfo/numberOfCase')}</span>
-      </div>
-    </ui:repeat>
-  </div>
-  <div class="ui-g" jsf:rendered="#{empty widget.caseByCategoryStatistic.entrySet()}">
-    <h:outputText styleClass="ui-g-12" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/noCategory')}" />
-  </div>
+  <h:outputText styleClass="ui-g-12 js-loading-case-category-#{widget.id}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/loading')}"/>
+  <h:panelGroup id="case-category-statistic-#{widget.id}" layout="block" styleClass="js-statistic-case-category-#{widget.id} u-display-none">
+    <div class="ui-g" jsf:rendered="#{not empty widget.caseByCategoryStatistic.entrySet()}">
+      <ui:repeat value="#{widget.caseByCategoryStatistic.entrySet()}" var="entry" varStatus="status">
+        <div class="ui-g-8 u-truncate-text u-default-cursor">
+          <h:outputText id="category" value="#{empty entry.key ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noCategory') : entry.key}" />
+        </div>
+        <p:tooltip for="category" value="#{empty entry.key ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noCategory') : entry.key}"
+          trackMouse="true" />
+        <div class="ui-g-4">
+          <span>#{entry.value} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/caseWidgetInfo/numberOfCase')}</span>
+        </div>
+      </ui:repeat>
+    </div>
+    <div class="ui-g" jsf:rendered="#{empty widget.caseByCategoryStatistic.entrySet()}">
+      <h:outputText styleClass="ui-g-12" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/noCategory')}" />
+    </div>
+  </h:panelGroup>
 </p:tab>
-<p:tab id="filter-tab" rendered="#{widget.hasPredefinedFilter}">
+<p:tab id="filter-tab">
+  <p:remoteCommand id="build-case-defined-filter-#{widget.id}" name="buildCaseDefinedFilter#{widget.id}"
+    async="true" process="@this" partialSubmit="true" immediate="true" global="false"
+    actionListener="#{widget.buildPredefinedFilterData()}"
+    update="defined-case-filter-#{widget.id}"
+    oncomplete="loadWidgetFirstTime('js-loading-defined-filter-#{widget.id}', 'js-statistic-defined-filter-#{widget.id}'); handleFilterCategoryHeight(this);"/>
   <f:facet name="title">
     <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/tasWidgetkInfo/predefinedFilters')}" />
   </f:facet>
-  <div class="ui-g">
-    <ui:repeat var="field" value="#{widget.filterableColumns}">
-      <!-- state -->
-      <h:panelGroup rendered="#{field.field eq 'state' and not empty field.states}">
-        <div class="ui-g-4">
-          <h:outputText value="#{field.headerText}" />
-        </div>
-        <div class="ui-g-8">
-          <ui:repeat var="state" value="#{field.states}">
-            <ic:ch.ivy.addon.portalkit.component.cases.column.CaseState case="" state="#{state}"
-              alwaysShowState="true" stateStyleClass="u-mar-right-5"/>
-          </ui:repeat>
-        </div>
-      </h:panelGroup>
+  <h:outputText styleClass="ui-g-12 js-loading-defined-filter-#{widget.id}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/loading')}"/>
+  <h:panelGroup id="defined-case-filter-#{widget.id}" layout="block" styleClass="js-statistic-defined-filter-#{widget.id} u-display-none">
+    <h:outputText rendered="#{!widget.hasPredefinedFilter}" styleClass="ui-g-12"
+      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/NoData')}"/>
+    <h:panelGroup rendered="#{widget.hasPredefinedFilter}" styleClass="ui-g">
+      <ui:repeat var="field" value="#{widget.filterableColumns}">
+        <!-- state -->
+        <h:panelGroup rendered="#{field.field eq 'state' and not empty field.states}">
+          <div class="ui-g-4">
+            <h:outputText value="#{field.headerText}" />
+          </div>
+          <div class="ui-g-8">
+            <ui:repeat var="state" value="#{field.states}">
+              <ic:ch.ivy.addon.portalkit.component.cases.column.CaseState case="" state="#{state}"
+                alwaysShowState="true" stateStyleClass="u-mar-right-5"/>
+            </ui:repeat>
+          </div>
+        </h:panelGroup>
 
-      <!-- creator -->
-      <h:panelGroup rendered="#{field.field eq 'creator' and not empty field.creators}">
-        <div class="ui-g-4">
-          <h:outputText value="#{field.headerText}" />
-        </div>
-        <div class="ui-g-8">
-          <ui:repeat var="creator" value="#{field.creators}">
-            <div>
-              <i class="fa #{creator.isUser() ? 'fa-user' : 'fa-users'} u-mar-right-5" />
-              <h:outputText value="#{dashboardCaseFilterBean.formatName(creator)}" />
-            </div>
-          </ui:repeat>
-        </div>
-      </h:panelGroup>
+        <!-- creator -->
+        <h:panelGroup rendered="#{field.field eq 'creator' and not empty field.creators}">
+          <div class="ui-g-4">
+            <h:outputText value="#{field.headerText}" />
+          </div>
+          <div class="ui-g-8">
+            <ui:repeat var="creator" value="#{field.creators}">
+              <div>
+                <i class="fa #{creator.isUser() ? 'fa-user' : 'fa-users'} u-mar-right-5" />
+                <h:outputText value="#{dashboardCaseFilterBean.formatName(creator)}" />
+              </div>
+            </ui:repeat>
+          </div>
+        </h:panelGroup>
 
-      <h:panelGroup rendered="#{field.field eq 'owner' and not empty field.owners}">
-        <div class="ui-g-4">
-          <h:outputText value="#{field.headerText}" />
-        </div>
-        <div class="ui-g-8">
-          <ui:repeat var="owner" value="#{field.owners}">
-            <div>
-              <i class="fa #{owner.isUser() ? 'fa-user' : 'fa-users'} u-mar-right-5" />
-              <h:outputText value="#{dashboardCaseFilterBean.formatName(owner)}" />
-            </div>
-          </ui:repeat>
-        </div>
-      </h:panelGroup>
+        <h:panelGroup rendered="#{field.field eq 'owner' and not empty field.owners}">
+          <div class="ui-g-4">
+            <h:outputText value="#{field.headerText}" />
+          </div>
+          <div class="ui-g-8">
+            <ui:repeat var="owner" value="#{field.owners}">
+              <div>
+                <i class="fa #{owner.isUser() ? 'fa-user' : 'fa-users'} u-mar-right-5" />
+                <h:outputText value="#{dashboardCaseFilterBean.formatName(owner)}" />
+              </div>
+            </ui:repeat>
+          </div>
+        </h:panelGroup>
 
-      <!-- Text and String -->
-      <h:panelGroup rendered="#{(field.format eq 'STRING' or field.format eq 'TEXT') and not (empty field.filterList and empty field.filter)}">
-        <div class="ui-g-4">
-          <h:outputText value="#{field.headerText}" />
-        </div>
-        <div class="ui-g-8">
-          <h:outputText value="#{field.filter}" rendered="#{field.filterType eq 'LIKE'}" />
-          <p:repeat var="selection" value="#{field.filterList}">
-            <h:outputText value="#{selection}" />
-          </p:repeat>
-        </div>
-      </h:panelGroup>
+        <!-- Text and String -->
+        <h:panelGroup rendered="#{(field.format eq 'STRING' or field.format eq 'TEXT') and not (empty field.filterList and empty field.filter)}">
+          <div class="ui-g-4">
+            <h:outputText value="#{field.headerText}" />
+          </div>
+          <div class="ui-g-8">
+            <h:outputText value="#{field.filter}" rendered="#{field.filterType eq 'LIKE'}" />
+            <p:repeat var="selection" value="#{field.filterList}">
+              <h:outputText value="#{selection}" />
+            </p:repeat>
+          </div>
+        </h:panelGroup>
 
-      <!-- Number -->
-      <h:panelGroup rendered="#{field.format eq 'NUMBER' and not (empty field.filterFrom and empty field.filterTo)}">
-        <div class="ui-g-4">
-          <h:outputText value="#{field.headerText} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')}" />
-        </div>
-        <div class="ui-g-8">
-          <h:outputText value="#{field.filterFrom}" />
-        </div>
-        <div class="ui-g-4">
-          <h:outputText value="#{field.headerText} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')}" />
-        </div>
-        <div class="ui-g-8">
-          <h:outputText value="#{field.filterTo}" />
-        </div>
-      </h:panelGroup>
+        <!-- Number -->
+        <h:panelGroup rendered="#{field.format eq 'NUMBER' and not (empty field.filterFrom and empty field.filterTo)}">
+          <div class="ui-g-4">
+            <h:outputText value="#{field.headerText} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')}" />
+          </div>
+          <div class="ui-g-8">
+            <h:outputText value="#{field.filterFrom}" />
+          </div>
+          <div class="ui-g-4">
+            <h:outputText value="#{field.headerText} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')}" />
+          </div>
+          <div class="ui-g-8">
+            <h:outputText value="#{field.filterTo}" />
+          </div>
+        </h:panelGroup>
 
-      <!-- Timestamp -->
-      <h:panelGroup rendered="#{field.format eq 'TIMESTAMP' and not (empty field.dateFilterFrom and empty field.dateFilterTo)}">
-        <div class="ui-g-4">
-          <h:outputText value="#{field.headerText} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')}" />
-        </div>
-        <div class="ui-g-8">
-          <p:calendar id="from-date-field-input" styleClass="case-configuration__calendar" value="#{field.dateFilterFrom}"
-            pattern="#{dateTimePatternBean.configuredCalendarPattern}" locale="#{localeBean.locale}" disabled="true" />
-        </div>
+        <!-- Timestamp -->
+        <h:panelGroup rendered="#{field.format eq 'TIMESTAMP' and not (empty field.dateFilterFrom and empty field.dateFilterTo)}">
+          <div class="ui-g-4">
+            <h:outputText value="#{field.headerText} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')}" />
+          </div>
+          <div class="ui-g-8">
+            <p:calendar id="from-date-field-input" styleClass="case-configuration__calendar" value="#{field.dateFilterFrom}"
+              pattern="#{dateTimePatternBean.configuredCalendarPattern}" locale="#{localeBean.locale}" disabled="true" />
+          </div>
 
-        <div class="ui-g-4">
-          <h:outputText value="#{field.headerText} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')}" />
-        </div>
-        <div class="ui-g-8">
-          <p:calendar id="to-date-field-input" styleClass="case-configuration__calendar" value="#{field.dateFilterTo}"
-            pattern="#{dateTimePatternBean.configuredCalendarPattern}" locale="#{localeBean.locale}" disabled="true" />
-        </div>
-      </h:panelGroup>
-    </ui:repeat>
-    <h:panelGroup layout="block" styleClass="ui-g-4" rendered="#{not empty widget.getDisplayCategories()}">
-      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/category')}" />
+          <div class="ui-g-4">
+            <h:outputText value="#{field.headerText} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')}" />
+          </div>
+          <div class="ui-g-8">
+            <p:calendar id="to-date-field-input" styleClass="case-configuration__calendar" value="#{field.dateFilterTo}"
+              pattern="#{dateTimePatternBean.configuredCalendarPattern}" locale="#{localeBean.locale}" disabled="true" />
+          </div>
+        </h:panelGroup>
+
+        <!-- Category -->
+        <h:panelGroup rendered="#{field.field eq 'category' and not empty field.displayCategories}">
+          <h:panelGroup layout="block" styleClass="ui-g-4">
+            <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/category')}" />
+          </h:panelGroup>
+          <h:panelGroup layout="block" styleClass="ui-g-8 category-panel">
+            <h:outputText id="category" value="#{field.displayCategories}" styleClass="js-category-filter-info category-filter-info" />
+            <span class="category-toggle js-category-toggle ivy-icon si si-subtract-circle" onclick="toggleCategoryInfo(this);" />
+          </h:panelGroup>
+        </h:panelGroup>
+      </ui:repeat>
     </h:panelGroup>
-    <h:panelGroup layout="block" styleClass="ui-g-8 category-panel" rendered="#{not empty widget.getDisplayCategories()}">
-      <h:outputText id="category" value="#{widget.getDisplayCategories()}" styleClass="js-category-filter-info category-filter-info" />
-      <span class="category-toggle js-category-toggle ivy-icon si si-subtract-circle" onclick="toggleCategoryInfo(this);" />
-    </h:panelGroup>
-  </div>
+  </h:panelGroup>
 </p:tab>
-
 </html>

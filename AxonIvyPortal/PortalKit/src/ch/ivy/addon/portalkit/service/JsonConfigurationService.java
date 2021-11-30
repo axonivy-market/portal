@@ -61,9 +61,7 @@ abstract class JsonConfigurationService<T extends AbstractConfiguration> {
     if (StringUtils.isBlank(jsonValue)) {
       return new ArrayList<>();
     }
-
-    List<T> privateLinks = BusinessEntityConverter.jsonValueToEntities(jsonValue, getType());
-    return privateLinks;
+    return BusinessEntityConverter.jsonValueToEntities(jsonValue, getType());
   }
 
   public T save(T entity) {

@@ -14,6 +14,8 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.apache.commons.lang3.time.DateUtils;
 
+import ch.ivy.addon.portalkit.service.exception.PortalException;
+
 public final class Dates {
 
   public static final String GERMAN_DATE_FORMAT = "dd.MM.yyyy";
@@ -125,15 +127,18 @@ public final class Dates {
   private static Date getLocalDateWithTime(LocalDate localDate, LocalTime localTime) {
     return Date.from(LocalDateTime.of(localDate, localTime).atZone(ZoneId.systemDefault()).toInstant());
   }
-  
-  public static Date parse(String dateInString) throws ParseException {
+
+  public static Date parse(String dateInString) {
     if (StringUtils.isBlank(dateInString)) {
       return null;
     }
-    
-    return DateUtils.parseDate(dateInString, ENGLISH_DATE_FORMAT, GERMAN_DATE_FORMAT);
+    try {
+      return DateUtils.parseDate(dateInString, ENGLISH_DATE_FORMAT, GERMAN_DATE_FORMAT);
+    } catch (ParseException e) {
+      throw new PortalException("Cannot parse date " + dateInString, e);
+    }
   }
-  
+
   public static String format(Date date) {
     if (date == null) {
       return null;

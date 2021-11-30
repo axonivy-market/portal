@@ -1,6 +1,5 @@
 package ch.ivy.addon.portalkit.dto.dashboard;
 
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -130,11 +129,7 @@ public class CustomDashboardWidget extends DashboardWidget {
           param.setValueBoolean(Boolean.parseBoolean(param.getValue()));
           break;
         case DATE:
-          try {
-            param.setValueDate(Dates.parse(param.getValue()));
-          } catch (ParseException e) {
-            param.setValueDate(null);
-          }
+          param.setValueDate(Dates.parse(param.getValue()));
           break;
         case USER:
           IUser user = Ivy.wf().getSecurityContext().users().find(param.getValue());
