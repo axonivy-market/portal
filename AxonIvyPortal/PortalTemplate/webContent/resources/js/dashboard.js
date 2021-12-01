@@ -145,7 +145,9 @@ function expandFullscreen(index, widgetId) {
   originalGridstackHeight =  $(widget.get(0)).parent('.grid-stack').height();
   $(widget.get(0)).parent('.grid-stack').height($(widget.get(0)).height());
 
-  resizeCustomWidget(index, widgetId);
+  if (widget.find('iframe[name ^= "custom-widget"]').length > 0) {
+    resizeCustomWidget(index, widgetId);
+  }
 }
 
 function collapseFullscreen(index, widgetId) {
@@ -153,7 +155,10 @@ function collapseFullscreen(index, widgetId) {
   widget.removeClass('expand-fullscreen');
 
   $(widget.get(0)).parent('.grid-stack').height(originalGridstackHeight);
-  resizeCustomWidget(index, widgetId);
+  
+  if (widget.find('iframe[name ^= "custom-widget"]').length > 0) {
+    resizeCustomWidget(index, widgetId);
+  }
 }
 
 function disableAllIFrameWhenEditLayout() {
