@@ -1,8 +1,18 @@
+var invalidIFrameSrcPath = false;
 loadIframe();
 function loadIframe() {
   var iframe = document.getElementById('iFrame');
-  var window = iframe.contentWindow;
+  const window = iframe.contentWindow;
+  if (window === undefined || window === null) {
+    console.log("The iframe content is undefined");
+    return;
+  }
   $(iframe).on('load', function() {
+    if (invalidIFrameSrcPath) {
+      invalidIFrameSrcPath = false;
+      return;
+    }
+
     getDataFromIFrame([{
       name : 'currentProcessStep',
       value : window.currentProcessStep
@@ -38,8 +48,18 @@ function loadIframe() {
 }
 
 function checkUrl(iFrame) {
-  document.title = iFrame.contentDocument.title;
-  var path = iFrame.contentWindow.location.pathname;
+  const iframeDoc = iFrame.contentDocument;
+  if (iframeDoc === undefined || iframeDoc === null) {
+    console.log("The iframe content docment is undefined");
+    invalidIFrameSrcPath = true;
+    return;
+  }
+  document.title = iframeDoc.title;
+  var path = getPortalIframePath(iFrame);
+  if (path === '' || invalidIFrameSrcPath) {
+    return;
+  }
+  invalidIFrameSrcPath = false;
   if (path.match("/default/end.xhtml$") || path.match("/default/end.jsp$")) {
     var href = iFrame.contentWindow.location.href;
     var taskId = href.substring(href.lastIndexOf("=") + 1);
@@ -81,4 +101,17 @@ function updateContentContainerClass() {
     $('#announcement').removeClass('u-invisibility');
   }
   $('.task-template-container').removeClass('u-invisibility');
+}
+
+function getPortalIframePath(iFrame) {
+  invalidIFrameSrcPath = false;
+  const iframeLocation = iFrame.contentWindow.location;
+  let path = '';
+  try {
+    path = iframeLocation.pathname;
+  } catch (error) {
+    invalidIFrameSrcPath = true;
+    console.log("Cannot access to iframe location data: " + error);
+  }
+  return path;
 }
