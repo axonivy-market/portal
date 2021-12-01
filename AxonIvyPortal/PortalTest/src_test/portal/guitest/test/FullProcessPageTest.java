@@ -72,7 +72,6 @@ public class FullProcessPageTest extends BaseTest{
     String newIcon = processWidgetPage.getProcessItemIcon(0);
     assertFalse("Current Icon is not changed", StringUtils.equals(currentIcon, newIcon));
     processWidgetPage.clickMoreButtonOnGridMode();
-    processWidgetPage.waitForMenuActionsOnGridModeDisplayed();
     processWidgetPage.deleteProcess(0);
     processWidgetPage.enterSearchKeyword("link");
     assertTrue("Still see processes", processWidgetPage.isNoProcessFound());
