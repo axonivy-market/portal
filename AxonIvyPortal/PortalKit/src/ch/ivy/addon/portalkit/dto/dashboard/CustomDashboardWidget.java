@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import ch.ivy.addon.portalkit.dto.UserDTO;
 import ch.ivy.addon.portalkit.dto.WidgetLayout;
-import ch.ivy.addon.portalkit.dto.widget.CustomWidgetData;
 import ch.ivy.addon.portalkit.dto.widget.DashboardCustomWidgetData;
 import ch.ivy.addon.portalkit.enums.DashboardCustomParamType;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
