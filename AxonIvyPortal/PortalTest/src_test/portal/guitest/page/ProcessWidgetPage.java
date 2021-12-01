@@ -94,13 +94,13 @@ public class ProcessWidgetPage extends TemplatePage {
       if (isImageModeActivated()) {
         waitForElementDisplayed(
             By.cssSelector(
-                "[id$='process-widget:image-process-group-alphabet:13:image-processes:2:process-item:process-action-button']"),
+                "[id$='process-widget:image-process-group-alphabet:13:image-processes:3:process-item:process-action-button']"),
             true);
         WebElement webElement = findElementByCssSelector(
-            "[id$='process-widget:image-process-group-alphabet:13:image-processes:2:process-item:process-action-button']");
+            "[id$='process-widget:image-process-group-alphabet:13:image-processes:3:process-item:process-action-button']");
         webElement.click();
-        if (isElementDisplayed(By.cssSelector("div[id$='process-widget:image-process-group-alphabet:13:image-processes:2:process-item:process-action-menu']"))) {
-          WebElement actionMenu = findElementByCssSelector("div[id$='process-widget:image-process-group-alphabet:13:image-processes:2:process-item:process-action-menu']");
+        if (isElementDisplayed(By.cssSelector("div[id$='process-widget:image-process-group-alphabet:13:image-processes:3:process-item:process-action-menu']"))) {
+          WebElement actionMenu = findElementByCssSelector("div[id$='process-widget:image-process-group-alphabet:13:image-processes:3:process-item:process-action-menu']");
           WebElement icon = findChildElementByCssSelector(actionMenu, "a[id$=':process-item:process-edit']");
           icon.click();
           waitForElementDisplayed(By.cssSelector("[id$='process-widget:edit-process-dialog']"), true);
@@ -387,7 +387,7 @@ public class ProcessWidgetPage extends TemplatePage {
 
   public void deleteProcess(int index) {
     
-    clickByCssSelector(String.format("[id$='process-widget:grid-process-group-alphabet:%d:grid-processes:0:process-grid-item:process-item:process-delete']", index));
+    clickByCssSelector(String.format("[id$='process-widget:grid-process-group-alphabet:%d:grid-processes:1:process-grid-item:process-item:process-delete']", index));
     waitForElementDisplayed(By.cssSelector("[id$='process-widget:remove-process-workflow-dialog']"), true);
     clickByCssSelector("[id$='delete-process-workflow-form:remove-process-command']");
     waitForElementDisplayed(By.cssSelector("[id$='process-widget:remove-process-workflow-dialog']"), false);
