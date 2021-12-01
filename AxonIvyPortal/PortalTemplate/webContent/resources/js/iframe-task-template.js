@@ -1,3 +1,4 @@
+var invalidIFrameSrcPath = false;
 $(document).ready(function() {
   $.removeCookie('serenity_expandeditems', {path: '/'});
 });
@@ -9,9 +10,9 @@ function loadIframe(recheckIndicator) {
 
   if (!recheckIndicator) {
     $(iframe).on('load', function() {
-    processIFrameData(iframe);
-    clearTimeout(recheckFrameTimer);
-    return;
+      processIFrameData(iframe);
+      clearTimeout(recheckFrameTimer);
+      return;
     });
   }
   else {
@@ -31,6 +32,10 @@ function loadIframe(recheckIndicator) {
 function processIFrameData(iframe) {
     var window = iframe.contentWindow;
     checkUrl(iframe);
+    if (invalidIFrameSrcPath) {
+      invalidIFrameSrcPath = false;
+      return;
+    }
     getDataFromIFrame([{
       name : 'currentProcessStep',
       value : window.currentProcessStep
@@ -68,10 +73,21 @@ function processIFrameData(iframe) {
 }
 
 function checkUrl(iFrame) {
-  document.title = iFrame.contentDocument.title;
-  var loc = iFrame.contentWindow.location;
-  if (loc.pathname.match("/default/redirect.xhtml$")) {
-    var redirectUrl = new URLSearchParams(loc.search).get("redirectPage");
+  const iframeDoc = iFrame.contentDocument;
+  if (iframeDoc === undefined || iframeDoc === null) {
+    console.log("The iframe content docment is undefined");
+    invalidIFrameSrcPath = true;
+    return;
+  }
+  document.title = iframeDoc.title;
+  var path = getPortalIframePath(iFrame);
+  if (path === '' || invalidIFrameSrcPath) {
+    return;
+  }
+  invalidIFrameSrcPath = false;
+
+  if (path.match("/default/redirect.xhtml$")) {
+    var redirectUrl = new URLSearchParams(iFrame.contentWindow.location.search).get("redirectPage");
     iFrame.src = "about:blank";
     redirectToUrlCommand([{
       name: 'url',
@@ -80,7 +96,7 @@ function checkUrl(iFrame) {
   } else {
     useTaskInIFrame([{
       name: 'url',
-      value: loc.pathname
+      value: path
     }]);
   }
 }
@@ -110,4 +126,17 @@ function updateContentContainerClass() {
     $('#announcement').removeClass('u-invisibility');
   }
   $('.task-template-container').removeClass('u-invisibility');
+}
+
+function getPortalIframePath(iFrame) {
+  invalidIFrameSrcPath = false;
+  const iframeLocation = iFrame.contentWindow.location;
+  let path = '';
+  try {
+    path = iframeLocation.pathname;
+  } catch (error) {
+    invalidIFrameSrcPath = true;
+    console.log("Cannot access to iframe location data: " + error);
+  }
+  return path;
 }
