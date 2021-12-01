@@ -166,8 +166,6 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
   private void updateDefaultProcessImage(IvyProcess ivyProcess) {
     String customFieldProcessImage = ivyProcess.getCustomFieldImageProcess();
     if (StringUtils.isNotBlank(customFieldProcessImage)) {
-//      String imageSrc = findProcessDefaultImageSrc(ivyProcess, customFieldProcessImage);
-//      ivyProcess.setDefaultImageSrc(imageSrc);
       String processImageSrc = getImageSrc(customFieldProcessImage);
       ivyProcess.setDefaultImageSrc(processImageSrc);
       ivyProcess.setDefaultImageCms(StringUtils.EMPTY);
