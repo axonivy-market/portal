@@ -1,5 +1,5 @@
-co: name={EXTERNAL_URL} description={} changed={2021-08-12 05:05:40 CEST} changedby={mnhnam} visualorder={0} guid={17B3851511ED7522} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={17B38528FC17D39D} datatype={} isdefault={false} langid={de} description={} validfrom={2021-08-12 05:05:33 CEST} validto={} changed={2021-08-12 05:05:40 CEST} changedby={mnhnam} properties={} id={}
-val: guid={17B38515911B404B} datatype={} isdefault={true} langid={en} description={} validfrom={2021-08-12 05:04:20 CEST} validto={} changed={2021-08-12 05:04:20 CEST} changedby={mnhnam} properties={} id={}
-val: guid={17B38529158A5645} datatype={} isdefault={false} langid={fr} description={} validfrom={2021-08-12 05:05:29 CEST} validto={} changed={2021-08-12 05:05:40 CEST} changedby={mnhnam} properties={} id={}
-val: guid={17B3852914E60ECB} datatype={} isdefault={false} langid={es} description={} validfrom={2021-08-12 05:05:36 CEST} validto={} changed={2021-08-12 05:05:40 CEST} changedby={mnhnam} properties={} id={}
+co: name={EXTERNAL_URL} description={} changed={} changedby={} visualorder={} guid={} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={17B38528FC17D39D} datatype={} isdefault={} langid={de} description={} validfrom={} validto={} changed={} changedby={} properties={} id={}
+val: guid={17B38515911B404B} datatype={} isdefault={} langid={en} description={} validfrom={} validto={} changed={} changedby={} properties={} id={}
+val: guid={17B38529158A5645} datatype={} isdefault={} langid={fr} description={} validfrom={} validto={} changed={} changedby={} properties={} id={}
+val: guid={17B3852914E60ECB} datatype={} isdefault={} langid={es} description={} validfrom={} validto={} changed={} changedby={} properties={} id={}
