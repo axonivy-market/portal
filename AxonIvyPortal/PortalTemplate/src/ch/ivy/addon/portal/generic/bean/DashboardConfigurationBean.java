@@ -3,9 +3,7 @@ package ch.ivy.addon.portal.generic.bean;
 import static ch.ivy.addon.portalkit.constant.DashboardConstants.WIDGET_ID_PATTERN;
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.CASE;
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.PROCESS;
-import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.STATISTIC;
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.TASK;
-
 import static org.apache.commons.lang3.StringUtils.EMPTY;
 
 import java.io.Serializable;
@@ -71,7 +69,7 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
 
     this.isReadOnlyMode = userAgent.matches(".*Android.*|.*webOS.*|.*iPhone.*|.*iPad.*|.*iPod.*|.*BlackBerry.*|.*IEMobile.*|.*Opera Mini.*");
 
-    samples = List.of(taskSample(), caseSample(), statisticSample(), processSample(), customSample());
+    samples = List.of(taskSample(), caseSample(), processSample(), customSample());
   }
 
   private WidgetSample taskSample() {
@@ -82,11 +80,6 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
   private WidgetSample caseSample() {
     return new WidgetSample(translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/caseList"), CASE,
         "case-widget-sample.png", translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/caseListIntroduction"));
-  }
-
-  private WidgetSample statisticSample() {
-    return new WidgetSample(translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/statisticWidget"), STATISTIC,
-        "statistic-widget-sample.png", translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/statisticWidgetIntroduction"));
   }
 
   private WidgetSample processSample() {
