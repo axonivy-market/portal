@@ -1,14 +1,14 @@
-[
-  {
-    "id": "default-dashboard",
+[{
+    "id": "1",
     "title": "cms:/ch.ivy.addon.portalkit.ui.jsf/common/dashboard",
     "widgets": [
       {
         "type": "task",
-        "id": "task_10",
+        "id": "task_1",
         "layout": {
-          "x": 0, "y": 0, "w": 9, "h": 4
+          "x": 0, "y": 0, "w": 10, "h": 8
         },
+        "sortField": "name",
         "columns": [
           {
             "field": "start"
@@ -23,109 +23,30 @@
             "field": "name"
           },
           {
-            "field": "activator"
-          },
-          {
-            "field": "state"
-          }
-        ]
-      },
-      {
-        "type": "case",
-        "id": "case_10",
-        "layout": {
-          "x": 0, "y": 4, "w": 9, "h": 4
-        },
-        "sortField": "name",
-        "columns": [
-          {
-            "field": "id"
-          },
-          {
-            "field": "name"
-          },
-          {
             "field": "description"
           },
           {
-            "field": "state"
-          },
-          {
-            "field": "creator"
-          },
-          {
-            "field": "startTimestamp"
-          }
-        ]
-      },
-      {
-        "type": "process",
-        "id": "compact_mode_10",
-        "name": "Process Widget",
-        "displayMode": "COMPACT_MODE",
-        "layout": {
-          "x": 9, "y": 0, "w": 3, "h": 4
-        }
-      }
-    ]
-  },
-  {
-    "id": "customized-dashboard",
-    "title": "Custom Dashboard",
-    "permissions": ["#gm1","CostObject"],
-    "widgets": [
-      {
-        "type": "task",
-        "id": "task_20",
-        "layout": {
-          "x": 0, "y": 0, "w": 9, "h": 4
-        },
-        "rowsPerPage": 20,
-        "sortField": "name",
-        "columns": [
-          {
-            "field": "start"
-          },
-          {
-            "field": "priority",
-            "filterList": ["LOW","NORMAL"],
-            "visible": "false"
-          },
-          {
-            "field": "id"
-          },
-          {
-            "field": "name"
-          },
-          {
             "field": "activator"
           },
           {
             "field": "state"
           },
           {
-            "field": "startTimestamp",
-            "filterFrom": "04/11/2021"
+            "field": "startTimestamp"
           },
           {
-            "format": "string",
-            "header": "Employee",
-            "field": "employee",
-            "style": "width: 110px"
+            "field": "expiryTimestamp"
           },
           {
-            "format": "number",
-            "header": "Days",
-            "field": "days",
-            "style": "width: 80px"
+            "field": "category"
           }
         ]
       },
       {
         "type": "case",
-        "id": "case_20",
+        "id": "case_1",
         "layout": {
-          "x": 0, "y": 4, "w": 9, "h": 4
+          "x": 0, "y": 8, "w": 10, "h": 8
         },
         "sortField": "name",
         "columns": [
@@ -151,55 +72,15 @@
             "field": "endTimestamp"
           },
           {
-            "format": "string",
-            "header": "Person in charge",
-            "field": "responsibleEmployee",
-            "style": "width: 110px"
-          },
-          {
-            "format": "timestamp",
-            "header": "Shipment date",
-            "field": "shipmentDate",
-            "style": "width: 120px"
+            "field": "category"
           }
         ]
       },
       {
         "type": "process",
-        "id": "compact_mode_20",
-        "name": "Process Widget",
-        "displayMode": "COMPACT_MODE",
+        "id": "process_1",
         "layout": {
-          "x": 9, "y": 0, "w": 3, "h": 4
-        },
-        "categories": ["CostObject"]
-      },
-      {
-         "type": "custom",
-         "id": "custom-widget",
-         "name": "Custom Widget",
-         "layout": {
-            "x": 10, "y": 11, "w": 12, "h": 5
-         },
-         "data" : {
-           "processStart": "Start Processes/DashboardCustomWidgetExample/investmentList.ivp",
-           "params": [
-               {
-                  "type": "user",
-                  "name": "customer",
-                  "value": "demo"
-               },
-               {
-                  "type": "date",
-                  "name": "startDate",
-                  "value": "11/19/2021"
-               },
-               {
-                  "type": "string",
-                  "name": "note",
-                  "value": "a short note for user"
-               }
-            ]
+          "x": 10, "y": 0, "w": 2, "h": 4
         }
       }
     ]
