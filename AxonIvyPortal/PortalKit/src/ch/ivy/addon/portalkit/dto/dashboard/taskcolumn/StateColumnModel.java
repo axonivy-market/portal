@@ -69,11 +69,12 @@ public class StateColumnModel extends TaskColumnModel implements Serializable {
     this.userFilterList = states.stream().map(TaskState::toString).collect(Collectors.toList());
   }
 
+  @SuppressWarnings("removal")
   @JsonIgnore
   public List<TaskState> getUserFilterStateOptions() {
     List<TaskState> states = getStates();
     if (CollectionUtils.isEmpty(states)) {
-      states = Arrays.asList(TaskState.values()).stream().sorted((s1, s2) -> StringUtils.compare(s1.toString(), s2.toString())).collect(Collectors.toList());
+      states = Arrays.asList(TaskState.values()).stream().filter(s -> !s.equals(TaskState.UNASSIGNED)).sorted((s1, s2) -> StringUtils.compare(s1.toString(), s2.toString())).collect(Collectors.toList());
     }
     return states;
   }
