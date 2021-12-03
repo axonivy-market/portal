@@ -32,9 +32,10 @@ public class DashboardTaskFilterBean {
   private List<SecurityMemberDTO> responsibles;
   private TaskDashboardWidget widget;
   
+  @SuppressWarnings("removal")
   @PostConstruct
   public void init() {
-    this.states = Arrays.asList(TaskState.values()).stream().sorted((s1, s2) -> StringUtils.compare(s1.toString(), s2.toString())).collect(Collectors.toList());
+    this.states = Arrays.asList(TaskState.values()).stream().filter(s -> !s.equals(TaskState.UNASSIGNED)).sorted((s1, s2) -> StringUtils.compare(s1.toString(), s2.toString())).collect(Collectors.toList());
     this.priorities = Arrays.asList(WorkflowPriority.values());
     this.responsibles = new ArrayList<>();
   }
