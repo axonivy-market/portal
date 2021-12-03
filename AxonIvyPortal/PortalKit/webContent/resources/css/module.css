@@ -584,12 +584,17 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   flex: 0 0 100px;
 }
 
-.case-header-data .case-header-creator-cell {
+.case-header-data .case-header-creator-cell,
+.case-header-data .case-header-category-cell {
   flex: 0 0 135px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   padding-right: 10px;
+}
+
+.case-header-data .case-header-category-cell {
+  flex: 0.4 0 135px;
 }
 
 .case-info-row {
@@ -1851,6 +1856,11 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 
 .task-start-list .responsible-cell {
   flex: 0 0 110px;
+}
+
+.task-start-list .category-cell {
+  flex: 0.3 0 100px;
+  text-align: center;
 }
 
 .task-start-list .name-cell, .task-start-list .description-cell, .task-start-list .responsible-cell {
