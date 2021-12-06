@@ -40,7 +40,8 @@
           {
             "field": "category"
           }
-        ]
+        ],
+        "canWorkOn": true
       },
       {
         "type": "case",
