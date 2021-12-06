@@ -1107,6 +1107,7 @@ body .dashboard__table--preview.ui-datatable tbody tr.ui-state-hover {
   padding: 0;
 }
 
-.custom-widget-panel .widget__content iframe {
+.custom-widget-panel .widget__content iframe,
+.custom-widget-panel .widget__content form {
   height: 100%;
 }
