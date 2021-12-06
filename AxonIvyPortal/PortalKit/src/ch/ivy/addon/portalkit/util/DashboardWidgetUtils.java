@@ -342,7 +342,7 @@ public class DashboardWidgetUtils {
     widget.setName(name);
 
     WidgetLayout layout = new WidgetLayout();
-    layout.setWidth(9);
+    layout.setWidth(12);
     layout.setHeight(8);
     widget.setLayout(layout);
 
