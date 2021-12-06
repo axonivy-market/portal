@@ -1073,10 +1073,40 @@ body .dashboard__table--preview.ui-datatable tbody tr.ui-state-hover {
   display: inline;
 }
 
+.expand-fullscreen .table-widget-panel {
+  height: 100%;
+}
+
+.expanded-link {
+  display: none;
+}
+
+.expand-fullscreen .widget__filter-sidebar-link,
+.expand-fullscreen .widget__info-sidebar-link {
+  display: none;
+}
+
+.expand-fullscreen .widget__filter-sidebar-link.expanded-link,
+.expand-fullscreen .widget__info-sidebar-link.expanded-link {
+  display: inline;
+}
+
 .widget-configuration.card.custom-widget-configuration {
   margin-right: 0;
 }
 
 .custom-widget-configuration__user-selection .ui-autocomplete-input.ui-inputfield[size] {
   width: 100%;
+}
+
+.custom-widget-panel {
+  height: 100%;
+}
+.custom-widget-panel .widget__content {
+  height: calc(100% - 44px);
+  padding: 0;
+}
+
+.custom-widget-panel .widget__content iframe {
+  height: 100%;
 }
