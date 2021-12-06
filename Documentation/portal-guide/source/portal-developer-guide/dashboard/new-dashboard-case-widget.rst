@@ -9,7 +9,7 @@ Define Case widget
 the case widget of the Portal dashboard is an interactable case list. Refer
 to (link to case widget of the dashboard) for more details.
 
-Below is a standard JSON definition of the case widget in the Portal dashboard.
+Below is a sample JSON definition of the case widget in the Portal dashboard.
 
 .. code-block:: html
 
@@ -73,6 +73,8 @@ the basic structure of JSON of case widget
 
    ``sortField``: default sort field for Case widget
 
+   ``sortDescending``: sort direction of the default sort field is descending or not. The default value is "false"
+
    ``rowsPerPage``: the number of cases can be displayed on one page of the case widget. 
    The default value is 10 rows per page
 
@@ -102,7 +104,7 @@ the basic structure of JSON of case widget
          For custom column, ``field`` is the name of a case custom field.
          Portal will use the value of ``field`` attribute to get the value of the column.
 
-      ``visible``: visibility of a column. the default value is "true".
+      ``visible``: visibility of a column. The default value is "true".
       Set to "false" to hide the column.
 
       ``header``: header text of the column. You can input a string, or can use

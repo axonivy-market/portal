@@ -9,7 +9,7 @@ Define Task widget
 Task widget of Portal dashboard is an interactable task list. Refer
 to (link to task widget of the dashboard) for more details.
 
-Below is a standard JSON definition of the task widget in the Portal dashboard
+Below is a sample JSON definition of the task widget in the Portal dashboard
 
 .. code-block:: html
 
@@ -73,6 +73,8 @@ The basic structure of JSON of Task widget
 
    ``sortField``: default sort field for task widget
 
+   ``sortDescending``: sort direction of the default sort field is descending or not. The default value is "false"
+
    ``rowsPerPage``: the number of tasks can be displayed on one page of the task widget. 
    The default value is 10 rows per page
 
@@ -103,6 +105,8 @@ The basic structure of JSON of Task widget
 
          For custom column, ``field`` is the name of a task custom field.
          Portal will use the value of ``field`` attribute to get the value of the column.
+
+      ``canWorkOn``: filter only tasks that the current user can work on. The default value is "false".
 
       ``visible``: visibility of a column. The default value is "true".
       Set to "false" to hide the column.
