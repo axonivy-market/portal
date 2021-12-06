@@ -594,7 +594,7 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 }
 
 .case-header-data .case-header-category-cell {
-  flex: 0.4 0 135px;
+  flex: 0 0 200px;
 }
 
 .case-info-row {
@@ -1812,7 +1812,8 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  width:100px;
+  width: 200px;
+  padding-right: 10px;
 }
 
 .task-start-info-header-full-mode {
@@ -1859,7 +1860,7 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 }
 
 .task-start-list .category-cell {
-  flex: 0.3 0 100px;
+  flex: 0 0 200px;
   text-align: center;
 }
 
