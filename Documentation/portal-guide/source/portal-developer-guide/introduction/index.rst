@@ -6,6 +6,13 @@ Introduction
 Portal Developer Guide provides information to set up, configure, customize 
 Portal so that it could fit customer need.
 
+The Individual Dashboard for Axon Ivy Portal 9.3 refers to :ref:`introduction-new-and-note-worthy-9.3`.
+ 
+- Customizable Dashboard
+- Default Widgets
+- Custom Widgets
+- Adjustable Look for Process List
+
 More UX for Axon Ivy Portal 9.2, refer to :ref:`introduction-new-and-note-worthy-9.2`.
 
 - Enhanced forgot password features
@@ -14,24 +21,43 @@ More UX for Axon Ivy Portal 9.2, refer to :ref:`introduction-new-and-note-worthy
 - Additional drag and drop widgets in task and case detail pages
 - Advanced user specific settings 
 
+.. _introduction-new-and-note-worthy-9.3:
+
 New & Noteworthy 9.3
 --------------------
 
-Customization global growl message for task using IFrame
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Customizable Dashboard
+^^^^^^^^^^^^^^^^^^^^^^
+End-users can choose between different layouts, 
+enable and disable default columns and even add custom columns at will.
+|customizable-dashboard|
+This feature allows multiple task lists with different filter options. 
+For example, separating HR tasks from Finance tasks provides a better overview and more transparency.
 
-A new API is introduced to support customizing global growl message for task using IFrame.
+Default Widgets
+^^^^^^^^^^^^^^^
+Axon Ivy Portal supports a sophisticated concept featuring default widgets for Process Starts, Task Lists, and Case Lists.
+|default-widgets|
+Processes, tasks, and cases are essential when it comes to business process automation and workflow management. Therefore, the Axon Ivy Portal gives you full power by providing these standard widgets out-of-the-box.
+|default-widgets-configuration|
+Each configuration is intuitive, and users can make their settings meticulously.
 
-Enhance task filter
-^^^^^^^^^^^^^^^^^^^
+Custom Widgets
+^^^^^^^^^^^^^^
+Individuality is king. End-users can easily create custom widgets in the dashboard.
+|custom-widgets|
+There are two different widgets types available:
+-Axon Ivy Process
+-External URL
+An external URL embeds the corresponding website into your dashboard. This feature is helpful to integrate enterprise content management systems or knowledge sites.
+Specify your Axon Ivy Process as a widget element and display your process directly in your custom dashboard.
 
-Portal admin can query for tasks which have unavailable activator. Those tasks could have no responsible, responsible is disabled or not exists.
-|task-filter-missing-activator|
+Adjustable Look for Process List
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-New Dashboard and support legacy mode
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Portal provides new look and feel Dashboard, refer to :ref:`customization-new-dashboard`.
-Portal also provides new setting ``Portal.ShowLegacyUI`` on Admin Settings to switch back to legacy Portal home.
+Switch between an image, grid, and compact mode to display available processes.
+|adjustable-look-for-process-list|
+A picture says a thousand words. This saying is true and applies to business processes. The requirements of end-users must be met. The process starts with image support to contribute to a beautiful appearance and help work quickly and purposefully.
 
 .. _introduction-new-and-note-worthy:
 
@@ -134,3 +160,8 @@ Filter case by owner in case list and task analysis if case owner is enabled.
 .. |case-details| image:: ../../screenshots/case-detail/case-details.png
 .. |my-profile-save| image:: ../../screenshots/my-profile/my-profile.png
 .. |task-filter-missing-activator| image:: ../../screenshots/task/task-filter-missing-activator.png
+.. |customizable-dashboard| image:: images/customizable-dashboard.png
+.. |default-widgets| image:: images/default-widgets.png
+.. |default-widgets-configuration| image:: images/default-widgets-configuration.png
+.. |custom-widgets| image:: images/custom-widgets.png
+.. |adjustable-look-for-process-list| image:: images/adjustable-look-for-process-list.png
