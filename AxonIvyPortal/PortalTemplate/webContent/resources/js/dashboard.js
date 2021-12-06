@@ -145,8 +145,13 @@ function expandFullscreen(index, widgetId) {
   originalGridstackHeight =  $(widget.get(0)).parent('.grid-stack').height();
   $(widget.get(0)).parent('.grid-stack').height($(widget.get(0)).height());
 
-  if (widget.find('iframe[name ^= "custom-widget"]').length > 0) {
-    resizeCustomWidget(index, widgetId);
+  // Hide opening dialogs
+  if (PF('filter-overlay-panel-' + index).isVisible()) {
+    PF('filter-overlay-panel-' + index).hide();
+  }
+  
+  if (PF('info-overlay-panel-' + index).isVisible()) {
+    PF('info-overlay-panel-' + index).hide();
   }
 }
 
@@ -158,6 +163,15 @@ function collapseFullscreen(index, widgetId) {
   
   if (widget.find('iframe[name ^= "custom-widget"]').length > 0) {
     resizeCustomWidget(index, widgetId);
+  }
+
+  // Hide opening dialogs
+  if (PF('expanded-filter-overlay-panel-' + index).isVisible()) {
+    PF('expanded-filter-overlay-panel-' + index).hide();
+  }
+  
+  if (PF('expanded-info-overlay-panel-' + index).isVisible()) {
+    PF('expanded-info-overlay-panel-' + index).hide();
   }
 }
 
