@@ -2165,3 +2165,14 @@ body.in-dialog .ui-widget-overlay {
   font-size: var(--process-info-step-icon-font-size);
   color: var(--process-info-step-icon-font-color);
 }
+
+.dashboard__body .expand-fullscreen .widget-filter-panel,
+.dashboard__body .expand-fullscreen .saved-filter--not-found,
+.dashboard__body .expand-fullscreen .ui-overlaypanel-footer__cancel,
+.dashboard__body .expand-fullscreen .widget-infor--type,
+.dashboard__body .expand-fullscreen .statistic-filter-accordion-panel,
+.dashboard__body .expand-fullscreen .info-overlay-panel__footer {
+  font-weight: var(--default-font-weight);
+  font-style: var(--default-font-style);
+  font-size: var(--default-body-font-size);
+}
