@@ -17,10 +17,11 @@
       <ui:param name="widget" value="#{widget}" />
       <ui:param name="panelId" value="custom-panel-group-#{index}" />
       <ui:param name="isReadOnlyMode" value="#{cc.attrs.isReadOnlyMode}" />
-      <ui:param name="widgetContentStylyClass" value="process-widget" />
       <ui:param name="isRenderFilter" value="false" />
       <ui:param name="isRenderInfo" value="#{empty widget.info ? 'false' : 'true'}" />
       <ui:param name="isRenderExpandCollapse" value="true" />
+      <ui:param name="panelStyleClass" value="custom-widget-panel" />
+      
 
       <ui:define name="widgetInformationContent">
         <ui:include src="ProcessInfo.xhtml">
@@ -32,7 +33,7 @@
         <h:outputText id="custom-widget-info" rendered="#{not empty widget.info}" value="#{widget.info}" />
       </ui:define>
       <ui:define name="widgetContent">
-        <div class="ui-g-12 widget-height-100">
+        <div class="ui-g-12 widget-height-100 u-padding-0">
           <ui:fragment rendered="#{not empty widget.data.processStart}">
           <h:form id="custom-form-#{index}">
             <c:forEach var="param" items="#{widget.data.params}">
@@ -53,19 +54,12 @@
                  widgetForm.submit();
                  widgetForm.action = action;
                  widgetForm.target = target;
-
-                 resizeCustomWidget(#{index}, "#{widget.id}");
                });
              </script>
           </ui:fragment>
 
           <ui:fragment rendered="#{empty widget.data.processStart}">
             <iframe name="custom-widget-iframe-#{index}" src="#{widget.data.url}" class="dashboard-custom-iframe" />
-            <script type="text/javascript">
-               $(function() {
-                 resizeCustomWidget(#{index}, "#{widget.id}");
-               });
-             </script>
           </ui:fragment>
         </div>
       </ui:define>
