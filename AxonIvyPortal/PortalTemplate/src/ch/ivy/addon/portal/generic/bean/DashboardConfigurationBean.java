@@ -358,7 +358,7 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
   }
 
   public void restoreWidgetData() {
-    if (widget instanceof ProcessDashboardWidget) {
+    if (widget!= null && originalProcessWidget!= null && widget instanceof ProcessDashboardWidget) {
       restoreProcessWidget();
     }
   }
