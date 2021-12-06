@@ -342,8 +342,8 @@ public class DashboardWidgetUtils {
     widget.setName(name);
 
     WidgetLayout layout = new WidgetLayout();
-    layout.setWidth(10);
-    layout.setHeight(9);
+    layout.setWidth(9);
+    layout.setHeight(8);
     widget.setLayout(layout);
 
     widget.setAutoPosition(true);
@@ -383,8 +383,8 @@ public class DashboardWidgetUtils {
     widget.setName(name);
 
     WidgetLayout layout = new WidgetLayout();
-    layout.setWidth(10);
-    layout.setHeight(9);
+    layout.setWidth(9);
+    layout.setHeight(8);
     widget.setLayout(layout);
 
     widget.setAutoPosition(true);
