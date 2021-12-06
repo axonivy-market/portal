@@ -176,7 +176,7 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
         } else if (processWidget.getDisplayMode() == ProcessWidgetMode.COMBINED_MODE) {
           updateProcessWidget(processWidget, 6, 5);
         } else if (processWidget.getDisplayMode() == ProcessWidgetMode.COMPACT_MODE) {
-          processWidget.getLayout().setHeight(6);
+          processWidget.getLayout().setHeight(8);
           processWidget.getLayout().setWidth(3);
           processWidget.setProcess(null);
           unifyCompactProcessCategory(processWidget);
