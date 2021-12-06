@@ -58,7 +58,7 @@
             <ui:insert name="additionalRemoteCommand" />
           </h:form>
 
-        <div id="dashboard-body" class="dashboard__body ui-g-12 js-dashboard__body">
+        <div id="dashboard-body" class="dashboard__body ui-g-12 js-dashboard__body #{dashboardBodyStyleClass}">
           <h:panelGroup id="grid-stack" layout="block" styleClass="grid-stack ui-g-12">
             <c:if test="#{not empty managedBean.selectedDashboard.widgets}">
               <c:forEach var="widget" items="#{managedBean.selectedDashboard.widgets}" varStatus="status">

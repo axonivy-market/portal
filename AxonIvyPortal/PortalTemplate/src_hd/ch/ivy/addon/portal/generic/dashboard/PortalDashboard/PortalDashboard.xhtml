@@ -6,6 +6,7 @@
   <ui:composition template="/layouts/restricted/DashboardTemplate.xhtml">
 
     <ui:param name="managedBean" value="#{dashboardBean}" />
+    <ui:param name="dashboardBodyStyleClass" value="readonly" />
 
     <ui:define name="headerAction">
       <p:commandButton id="switch-to-edit-mode" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}"
