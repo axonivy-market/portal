@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
@@ -199,6 +202,12 @@ public final class TaskUtils {
         return Void.class;
       });
     }
+  }
+
+  @SuppressWarnings("removal")
+  public static List<TaskState> getValidStates() {
+    return Arrays.asList(TaskState.values()).stream().filter(s -> !s.equals(TaskState.UNASSIGNED))
+        .sorted((s1, s2) -> StringUtils.compare(s1.toString(), s2.toString())).collect(Collectors.toList());
   }
 
 }
