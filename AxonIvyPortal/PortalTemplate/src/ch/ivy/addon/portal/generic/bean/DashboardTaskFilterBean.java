@@ -5,7 +5,6 @@ import static org.apache.commons.lang3.StringUtils.EMPTY;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -19,6 +18,7 @@ import ch.ivy.addon.portalkit.dto.UserDTO;
 import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
+import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivyteam.ivy.workflow.WorkflowPriority;
@@ -32,10 +32,9 @@ public class DashboardTaskFilterBean {
   private List<SecurityMemberDTO> responsibles;
   private TaskDashboardWidget widget;
   
-  @SuppressWarnings("removal")
   @PostConstruct
   public void init() {
-    this.states = Arrays.asList(TaskState.values()).stream().filter(s -> !s.equals(TaskState.UNASSIGNED)).sorted((s1, s2) -> StringUtils.compare(s1.toString(), s2.toString())).collect(Collectors.toList());
+    this.states = TaskUtils.getValidStates();
     this.priorities = Arrays.asList(WorkflowPriority.values());
     this.responsibles = new ArrayList<>();
   }
