@@ -30,25 +30,34 @@ Customizable Dashboard
 ^^^^^^^^^^^^^^^^^^^^^^
 End-users can choose between different layouts, 
 enable and disable default columns and even add custom columns at will.
+
 |customizable-dashboard|
+
 This feature allows multiple task lists with different filter options. 
 For example, separating HR tasks from Finance tasks provides a better overview and more transparency.
 
 Default Widgets
 ^^^^^^^^^^^^^^^
 Axon Ivy Portal supports a sophisticated concept featuring default widgets for Process Starts, Task Lists, and Case Lists.
+
 |default-widgets|
+
 Processes, tasks, and cases are essential when it comes to business process automation and workflow management. Therefore, the Axon Ivy Portal gives you full power by providing these standard widgets out-of-the-box.
+
 |default-widgets-configuration|
+
 Each configuration is intuitive, and users can make their settings meticulously.
 
 Custom Widgets
 ^^^^^^^^^^^^^^
 Individuality is king. End-users can easily create custom widgets in the dashboard.
+
 |custom-widgets|
+
 There are two different widgets types available:
--Axon Ivy Process
--External URL
+
+- Axon Ivy Process
+- External URL
 An external URL embeds the corresponding website into your dashboard. This feature is helpful to integrate enterprise content management systems or knowledge sites.
 Specify your Axon Ivy Process as a widget element and display your process directly in your custom dashboard.
 
@@ -56,7 +65,9 @@ Adjustable Look for Process List
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Switch between an image, grid, and compact mode to display available processes.
+
 |adjustable-look-for-process-list|
+
 A picture says a thousand words. This saying is true and applies to business processes. The requirements of end-users must be met. The process starts with image support to contribute to a beautiful appearance and help work quickly and purposefully.
 
 .. _introduction-new-and-note-worthy:
@@ -76,6 +87,7 @@ Task/Case details are well structured, user can drag and drop the widgets and th
 Enhanced forgot password features
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Users can reset their passwords easily using the standard password reset feature integrated in Axon Ivy Portal
+
 |login-screen|
 |send-email-screen|
 
@@ -83,6 +95,7 @@ Simplified tasks and cases export
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 We have listened to you! Business users requested to export specific lists from Axon Ivy Portal to perform further analysis in Microsoft Excel. 
 Now they have the possibility to export any list with one mouse click.
+
 |task-key-information|
 
 Redesigned process list
@@ -94,6 +107,7 @@ You don’t see the forest for the trees? Not anymore! Switch to the new grid vi
 Additional drag and drop widgets in task and case detail pages
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Only you know the details and therefore, any detail page for tasks or cases can be restyled using drag and drop widgets. Create your own detail page with your specific content and without the need of programming.
+
 |detailed-task-information|
 
 |case-details|
