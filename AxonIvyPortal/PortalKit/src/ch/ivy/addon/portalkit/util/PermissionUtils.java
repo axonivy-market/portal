@@ -206,7 +206,7 @@ public class PermissionUtils {
   }
 
   public static boolean hasDashboardWritePermission() {
-    return hasPortalPermission(PortalPermission.DASHBOARD_WRITE);
+    return hasPortalPermission(PortalPermission.DASHBOARD_WRITE_OWN_DASHBOARD);
   }
 
   public static String getCaseName(ICase iCase) {
