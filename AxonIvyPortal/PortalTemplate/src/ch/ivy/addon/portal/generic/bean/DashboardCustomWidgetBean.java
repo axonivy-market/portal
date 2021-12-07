@@ -52,6 +52,17 @@ public class DashboardCustomWidgetBean implements Serializable {
     widget.loadParametersFromProcess();
   }
 
+  public void onChangeType(CustomDashboardWidget widget) {
+    if (widget.getData().getType() == DashboardCustomWidgetType.EXTERNAL_URL) {
+      widget.getData().setUrl("");
+      widget.getData().setParams(null);
+      widget.getData().setHasParamChanged(false);
+      widget.getData().setProcessStart(null);
+      widget.getData().setStartableProcessStart(null);
+      widget.getData().setStartProcessParams(null);
+    }
+  }
+
   public String generateParamName(CustomDashboardWidgetParam param) {
     return param.getType().getPrefix().concat(param.getName());
   }

@@ -2171,8 +2171,15 @@ body.in-dialog .ui-widget-overlay {
 .dashboard__body .expand-fullscreen .ui-overlaypanel-footer__cancel,
 .dashboard__body .expand-fullscreen .widget-infor--type,
 .dashboard__body .expand-fullscreen .statistic-filter-accordion-panel,
-.dashboard__body .expand-fullscreen .info-overlay-panel__footer {
+.dashboard__body .expand-fullscreen .info-overlay-panel__footer,
+.dashboard__body .expand-fullscreen .saved-filter--not-found,
+.dashboard__body .expand-fullscreen .saved-filter {
   font-weight: var(--default-font-weight);
+  font-style: var(--default-font-style);
+  font-size: var(--default-body-font-size);
+}
+
+.dashboard__body .expand-fullscreen .saved-filter-node.selected .saved-filter-node__text {
   font-style: var(--default-font-style);
   font-size: var(--default-body-font-size);
 }

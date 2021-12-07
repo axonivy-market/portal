@@ -127,13 +127,6 @@ function setupScrollbar() {
   }
 }
 
-function resizeCustomWidget(index, widgetId) {
-  var iframe = $($('iframe[name = "custom-widget-iframe-' + index + '"]').get(0));
-  var gridstackDiv = $('div.grid-stack-item[gs-id = "' + widgetId + '"]').get(0);
-  var header = $(gridstackDiv).find('.widget__header').get(0);
-  iframe.height(gridstackDiv.clientHeight - header.clientHeight);
-}
-
 function expandFullscreen(index, widgetId) {
   var widget = $('div.grid-stack-item[gs-id = "' + widgetId + '"]');
   widget.addClass('expand-fullscreen');
@@ -146,12 +139,14 @@ function expandFullscreen(index, widgetId) {
   $(widget.get(0)).parent('.grid-stack').height($(widget.get(0)).height());
 
   // Hide opening dialogs
-  if (PF('filter-overlay-panel-' + index).isVisible()) {
-    PF('filter-overlay-panel-' + index).hide();
+  var filterOverlayId = 'filter-overlay-panel-' + index;
+  if ($("div[id $= " + filterOverlayId + "]").length > 0 && PF(filterOverlayId).isVisible()) {
+    PF(filterOverlayId).hide();
   }
   
-  if (PF('info-overlay-panel-' + index).isVisible()) {
-    PF('info-overlay-panel-' + index).hide();
+  var infoOverlayId = 'info-overlay-panel-' + index;
+  if ($("div[id $= " + infoOverlayId + "]").length > 0 && PF(infoOverlayId).isVisible()) {
+    PF(infoOverlayId).hide();
   }
 }
 
@@ -160,17 +155,15 @@ function collapseFullscreen(index, widgetId) {
   widget.removeClass('expand-fullscreen');
 
   $(widget.get(0)).parent('.grid-stack').height(originalGridstackHeight);
-  
-  if (widget.find('iframe[name ^= "custom-widget"]').length > 0) {
-    resizeCustomWidget(index, widgetId);
-  }
 
   // Hide opening dialogs
-  if (PF('expanded-filter-overlay-panel-' + index).isVisible()) {
+  var filterOverlayId = 'expanded-filter-overlay-panel-' + index;
+  if ($("div[id $= " + filterOverlayId + "]").length > 0 && PF(filterOverlayId).isVisible()) {
     PF('expanded-filter-overlay-panel-' + index).hide();
   }
-  
-  if (PF('expanded-info-overlay-panel-' + index).isVisible()) {
+
+  var infoOverlayId = 'expanded-info-overlay-panel-' + index;
+  if ($("div[id $= " + infoOverlayId + "]").length > 0 && PF(infoOverlayId).isVisible()) {
     PF('expanded-info-overlay-panel-' + index).hide();
   }
 }
