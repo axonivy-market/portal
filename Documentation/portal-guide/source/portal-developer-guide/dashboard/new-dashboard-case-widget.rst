@@ -1,12 +1,12 @@
-.. _customization-new-dashboard-case-widget:
+.. _configure-new-dashboard-case-widget:
 
-Customize Case widget
+Configure Case widget
 =====================
 
 Define Case widget
--------------------
+------------------
 
-the case widget of the Portal dashboard is an interactable case list. Refer
+The case widget of the Portal dashboard is an interactable case list. Refer
 to (link to case widget of the dashboard) for more details.
 
 Below is a sample JSON definition of the case widget in the Portal dashboard.

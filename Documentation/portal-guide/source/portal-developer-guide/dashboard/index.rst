@@ -30,7 +30,7 @@ by configuring Global Variable **Portal.Dashboard**.
 .. _customization-dashboards-customization:
 
 Define your own dashboards
-**************************
+--------------------------
 
 Portal support multiple dashboards, they will be displayed as tabs.
 
@@ -102,7 +102,7 @@ Structure of JSON for each dashboard:
       Widget ``id`` must be unique between dashboards.
 
 Configure dashboard widgets
-***************************
+---------------------------
 
 Below are details of JSON configuration for each widget of the Portal dashboard.
 They will help you understand how to configure widget efficiency.

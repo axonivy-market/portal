@@ -1,6 +1,6 @@
-.. _customization-new-dashboard-proces-widget:
+.. _configure-new-dashboard-proces-widget:
 
-Customize Process widget
+Configure Process widget
 ========================
 
 Define Process widget

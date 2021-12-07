@@ -1,4 +1,4 @@
-.. _customization-new-dashboard-custom-widget:
+.. _configure-new-dashboard-custom-widget:
 
 Configure custom widget
 ========================
