@@ -83,7 +83,7 @@ public enum PortalSecurity {
         .equals(ISecurityConstants.IVY_ENGINE_SECURITY_SYSTEM_PROVIDER_NAME);
     if ((EngineMode.is(EngineMode.DEMO) || EngineMode.isEmbeddedInDesigner()) && isIvySecurity) {
       IRole everybody = Ivy.security().roles().find(ISecurityConstants.TOP_LEVEL_ROLE_NAME);
-      grantPermissionsToForSecurityMember(Arrays.asList(PortalPermission.DASHBOARD_WRITE), everybody);
+      grantPermissionsToForSecurityMember(Arrays.asList(PortalPermission.DASHBOARD_WRITE_OWN_DASHBOARD), everybody);
 
       IUser adminUser = userRepo.findWithExternalLookup(Username.ADMIN);
       ISecurityDescriptor securityDescriptor = portalApplication.getSecurityDescriptor();
