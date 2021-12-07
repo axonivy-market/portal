@@ -1,10 +1,10 @@
-.. _customization-new-dashboard-task-widget:
+.. _configure-new-dashboard-task-widget:
 
-Customize Task widget
+Configure Task widget
 =====================
 
 Define Task widget
--------------------
+------------------
 
 Task widget of Portal dashboard is an interactable task list. Refer
 to (link to task widget of the dashboard) for more details.
