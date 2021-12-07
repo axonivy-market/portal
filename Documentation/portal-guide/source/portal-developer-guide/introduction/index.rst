@@ -58,6 +58,7 @@ There are two different widgets types available:
 
 - Axon Ivy Process
 - External URL
+
 An external URL embeds the corresponding website into your dashboard. This feature is helpful to integrate enterprise content management systems or knowledge sites.
 Specify your Axon Ivy Process as a widget element and display your process directly in your custom dashboard.
 
