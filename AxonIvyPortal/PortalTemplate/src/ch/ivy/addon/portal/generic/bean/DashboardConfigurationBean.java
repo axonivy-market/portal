@@ -358,17 +358,19 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
   }
 
   public void restoreWidgetData() {
-    if (widget!= null && originalProcessWidget!= null && widget instanceof ProcessDashboardWidget) {
+    if (widget instanceof ProcessDashboardWidget) {
       restoreProcessWidget();
     }
   }
 
   private void restoreProcessWidget() {
-    ((ProcessDashboardWidget)widget).setDisplayMode(originalProcessWidget.getDisplayMode());
-    ((ProcessDashboardWidget)widget).setProcess(originalProcessWidget.getProcess());
-    ((ProcessDashboardWidget)widget).setProcessPath(originalProcessWidget.getProcessPath());
-    ((ProcessDashboardWidget)widget).setProcesses(originalProcessWidget.getProcesses());
-    ((ProcessDashboardWidget)widget).setCategories(originalProcessWidget.getCategories());
+    if (originalProcessWidget != null) {
+      ((ProcessDashboardWidget) widget).setDisplayMode(originalProcessWidget.getDisplayMode());
+      ((ProcessDashboardWidget) widget).setProcess(originalProcessWidget.getProcess());
+      ((ProcessDashboardWidget) widget).setProcessPath(originalProcessWidget.getProcessPath());
+      ((ProcessDashboardWidget) widget).setProcesses(originalProcessWidget.getProcesses());
+      ((ProcessDashboardWidget) widget).setCategories(originalProcessWidget.getCategories());
+    }
   }
 
   public void reloadParamtersFromProcessForCustomWidget(DashboardWidget widget) {
