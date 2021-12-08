@@ -201,6 +201,7 @@ public class ExpressManagementTest extends BaseTest {
     userTaskWithMail.inputData("hr@email.com", "Please review this applicant", "Hello HR team, please proceed.");
     userTaskWithMail.finish();
     taskWidgetPage = new TaskWidgetPage();
+    taskWidgetPage.filterTasksBy("HR", 1);
     taskWidgetPage.waitForActionGroupDisplay();
   }
 
