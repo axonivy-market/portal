@@ -151,7 +151,7 @@ public class NewDashboardCaseWidgetTest extends BaseTest {
     caseWidget.openFilterWidget();
     caseWidget.filterCaseName("TestCase");
     caseWidget.applyFilter();
-    caseWidget.countCases("TestCase").shouldHaveSize(10);
+    caseWidget.countCases("TestCase").shouldHaveSize(5);
     caseWidget.nextPageTable();
     caseWidget.countCases("TestCase").shouldHaveSize(2);   
     //Filter State
@@ -179,7 +179,7 @@ public class NewDashboardCaseWidgetTest extends BaseTest {
     caseEditWidget.filterCaseState();
     caseEditWidget.selectStateAsInProgress();
     caseEditWidget.preview();
-    caseEditWidget.countCases().shouldHaveSize(10);
+    caseEditWidget.countCases().shouldHaveSize(5);
     caseEditWidget.nextPageTable();
     caseEditWidget.countCases().shouldHaveSize(2);
     caseEditWidget.save();
