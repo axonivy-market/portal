@@ -15,7 +15,7 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public void startTask(int index) {
-    String cssSelector = String.format("a[id*='task-component:dashboard-tasks:%d']", index);
+    String cssSelector = String.format("a[id$='task-component:dashboard-tasks:%d:dashboard-tasks-columns:0:start-task']", index);
     waitForElementDisplayed(By.cssSelector(cssSelector), true);
     click(By.cssSelector(cssSelector));
   }
@@ -28,6 +28,14 @@ public class NewDashboardPage extends TemplatePage {
   public void waitForTaskStartButtonDisplay(int index) {
     String cssSelector = String.format("a[id*='task-component:dashboard-tasks:%d']", index);
     waitForElementDisplayed(By.cssSelector(cssSelector), true);
+  }
+
+  public void waitForTaskWidgetEmptyMessage() {
+    String cssSelector = "tbody[id*='task-component:dashboard-tasks_data']";
+    waitForElementDisplayed(By.cssSelector(cssSelector), true);
+    WebElement taskComponentTable = findElementByCssSelector(cssSelector);
+    waitForElementDisplayed(taskComponentTable.findElement(By.cssSelector(".ui-datatable-empty-message")), true);
+    
   }
 
   public void switchToEditMode() {
