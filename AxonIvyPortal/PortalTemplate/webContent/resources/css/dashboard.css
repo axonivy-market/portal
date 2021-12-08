@@ -526,6 +526,12 @@ body .ui-calendar.task-configuration__calendar .ui-datepicker-trigger {
   right: -13px;
 }
 
+.dashboard-cases--table table,
+.dashboard-tasks--table table {
+  min-width: 100%;
+  width: max-content;
+}
+
 .dashboard-cases--table table thead tr,
 .dashboard-tasks--table table thead tr {
   border-left: solid 1px var(--case-related-task-content-border);
