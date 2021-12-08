@@ -292,12 +292,6 @@
               onkeypress="if(event.which &lt; 48 || event.which &gt; 57) return false;" />
           </c:if>
           
-          <c:if test="#{data.settingInputType.toString() == 'BOOLEAN'}">
-            <p:selectOneMenu value="#{data.selectedSetting.value}" id="valueSetting" styleClass="value-setting-dropdown">
-              <f:selectItems value="#{data.dropDownValues}" var="value" itemLabel="#{value}" />
-            </p:selectOneMenu>
-          </c:if>
-          
           <c:if test="#{data.settingInputType.toString() == 'SELECTION'}">
             <p:selectOneMenu value="#{data.selectedSetting.value}" id="valueSetting" styleClass="value-setting-dropdown">
               <f:selectItems value="#{data.dropDownValues}" var="value" itemLabel="#{value.translate()}" />
