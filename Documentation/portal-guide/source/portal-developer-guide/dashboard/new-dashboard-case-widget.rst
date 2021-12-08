@@ -214,7 +214,7 @@ Below is the list of filterable columns and their corresponding filter condition
       If you define a list of states in ``filterList``, the case widget will show cases that have
       states listed in ``filterList``. 
 
-      Refer to `Case States <https://developer.axonivy.com/doc/9.3.0/public-api/ch/ivyteam/ivy/workflow/CaseState.html>`_ for
+      Refer to `Case States <https://developer.axonivy.com/doc/nightly/public-api/ch/ivyteam/ivy/workflow/CaseState.html>`_ for
       available case states.
 
    - ``creator``
