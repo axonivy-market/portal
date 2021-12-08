@@ -437,6 +437,8 @@ Data model:
 - ``name``: the name of third-party app
 - ``link``: the URL of third-party app
 
+.. _portal-statistic-charts:
+
 Portal.StatisticCharts
 ^^^^^^^^^^^^^^^^^^^^^^
 You can define the standard statistic charts via this JSON file. It will be shown as the default charts on the statistic page.
@@ -492,6 +494,7 @@ Data model:
 
 -  ``position``: position index of chart that uses to sort chart in the UI
 
+.. _portal-dashboard-favorite-processes:
 
 Portal.Dashboard.FavoriteProcesses
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
