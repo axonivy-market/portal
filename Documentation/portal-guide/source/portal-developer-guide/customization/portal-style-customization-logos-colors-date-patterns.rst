@@ -65,7 +65,7 @@ Below is the list of some Portal elements which are using customizable colors:
    +------------------------------+-----------------------------+----------------------------------------------------------------+
    | Variable                     | Default value               | Description                                                    |
    +==============================+=============================+================================================================+
-   | --primary-color              | hsl(195,100%,29%)           | - Background color of button (except Cancel button)            |
+   | ``--primary-color``          | hsl(195,100%,29%)           | - Background color of button (except Cancel button)            |
    |                              |                             | - Background color of selected checkbox/radio button           |
    |                              |                             | - Background color of process chain (except waiting state)     |
    |                              |                             | - Portal header bar                                            |
@@ -73,17 +73,17 @@ Below is the list of some Portal elements which are using customizable colors:
    |                              |                             | - Sidebar anchor                                               |
    |                              |                             | - Text color of active tab                                     |
    +------------------------------+-----------------------------+----------------------------------------------------------------+
-   | --primary-dark-color         | hsl(195, 100%, 20%)         | - Background color of hovered button                           |
+   | ``--primary-dark-color``     | hsl(195, 100%, 20%)         | - Background color of hovered button                           |
    +------------------------------+-----------------------------+----------------------------------------------------------------+
-   | --primary-text-color         | white                       | - Text, icon color of button, checkbox, and other elements     |
+   | ``--primary-text-color``     | white                       | - Text, icon color of button, checkbox, and other elements     |
    +------------------------------+-----------------------------+----------------------------------------------------------------+
-   | --accent-color               | hsl(0, 1%, 34%)             | - Background color of active items (form elements)             |
+   | ``--accent-color``           | hsl(0, 1%, 34%)             | - Background color of active items (form elements)             |
    |                              |                             | - Background color of active page number in datatable          |
    |                              |                             |   (except table in Case/Task detail)                           |
    |                              |                             | - Bottom border of active tab                                  |
    |                              |                             | - Border color of datepicker-today                             |
    +------------------------------+-----------------------------+----------------------------------------------------------------+
-   | --accent-text-color          | white                       | - Text of active items                                         |
+   | ``--accent-text-color``      | white                       | - Text of active items                                         |
    |                              |                             | - Text of active page number in datatable                      |
    +------------------------------+-----------------------------+----------------------------------------------------------------+
 
