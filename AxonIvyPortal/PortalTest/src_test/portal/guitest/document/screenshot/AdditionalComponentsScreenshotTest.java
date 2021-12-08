@@ -42,21 +42,21 @@ public class AdditionalComponentsScreenshotTest extends ScreenshotTest {
     ScreenshotUtil.resizeBrowser(new Dimension(1500, 1000));
 
     NewDashboardPage newDashboardPage = new NewDashboardPage();
-    newDashboardPage.startTask(1);
-    Sleeper.sleep(300);//wait for new page loaded
+    newDashboardPage.startTask(0);
+    Sleeper.sleep(1000);//wait for new page loaded
     newDashboardPage = new NewDashboardPage();
-    newDashboardPage.waitForTaskNonStartButtonDisplay(1);
+    newDashboardPage.waitForTaskWidgetEmptyMessage();
     newDashboardPage.waitForGrowlMessageDisplayClearly();
     ScreenshotUtil.captureHalfTopPageScreenShot(ScreenshotUtil.COMPONENTS_FOLDER + "example-global-growl-finished-task");
 
     redirectToRelativeLink(createTestingTasksUrl);
     newDashboardPage = new NewDashboardPage();
-    newDashboardPage.startTask(3);
+    newDashboardPage.startTask(1);
     TaskTemplatePage taskTemplatePage = new TaskTemplatePage();
     taskTemplatePage.clickCancelButton();
     Sleeper.sleep(300);//wait for new page loaded
     newDashboardPage = new NewDashboardPage();
-    newDashboardPage.waitForTaskStartButtonDisplay(3);
+    newDashboardPage.waitForTaskStartButtonDisplay(1);
     newDashboardPage.waitForGrowlMessageDisplayClearly();
     ScreenshotUtil.captureHalfTopPageScreenShot(ScreenshotUtil.COMPONENTS_FOLDER + "example-global-growl-cancelled-task");
 
