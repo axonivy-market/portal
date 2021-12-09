@@ -7,7 +7,7 @@ You could find project ``PortalExamples`` in engine demo mode or import ``Ivy Pr
 
 .. note::
 	If you copy ``PortalStart.mod`` to your project for customization, set default pages to your project, follow this guide to customize standard processes:
-	`Standard Processes <https://developer.axonivy.com/doc/|version|/engine-guide/administration/standard-processes.html>`_
+	`Standard Processes <https://developer.axonivy.com/doc/8.0/engine-guide/administration/standard-processes.html>`_
 
 .. figure:: images/customization/engine-demo-mode.png
 

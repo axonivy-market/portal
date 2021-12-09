@@ -93,7 +93,7 @@ You must follow some important steps to ensure that your processes/tasks can be 
       * E.g. ``<BusinessProject>`` depends on ``<CustomizedPortal>``
 
   3. Change the ``DefaultPages`` in ``StandardProcesses`` to your customized portal project library id.
-     Refer to `Standard Processes <https://developer.axonivy.com/doc/|version|/engine-guide/administration/standard-processes.html>`_ documentation.
+     Refer to `Standard Processes <https://developer.axonivy.com/doc/8.0/engine-guide/administration/standard-processes.html>`_ documentation.
 
      - E.g: DefaultPages: ``<CustomizedPortal>`` ID.
 
