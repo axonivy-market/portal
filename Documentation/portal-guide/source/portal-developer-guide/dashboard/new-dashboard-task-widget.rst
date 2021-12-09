@@ -241,7 +241,7 @@ Below is the list of filterable columns and their corresponding filter condition
       If you define a list of priorities in ``filterList``, the task widget will show
       tasks that have priority listed in ``filterList``.
 
-      Refer to `Task Priority <https://developer.axonivy.com/doc/nightly/public-api/ch/ivyteam/ivy/workflow/WorkflowPriority.html>`_ for
+      Refer to `Task Priority <https://developer.axonivy.com/doc/9.3.0/public-api/ch/ivyteam/ivy/workflow/WorkflowPriority.html>`_ for
       available task priorities.
 
    - ``state``
@@ -264,7 +264,7 @@ Below is the list of filterable columns and their corresponding filter condition
       If you define a list of states in ``filterList``, the task widget will show
       tasks that have states listed in ``filterList``. 
 
-      Refer to `Task States <https://developer.axonivy.com/doc/nightly/public-api/ch/ivyteam/ivy/workflow/TaskState.html>`_ for
+      Refer to `Task States <https://developer.axonivy.com/doc/9.3.0/public-api/ch/ivyteam/ivy/workflow/TaskState.html>`_ for
       available task states.
 
 
