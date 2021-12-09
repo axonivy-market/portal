@@ -603,6 +603,8 @@ Pt0 f28 triggerEnabled false #txt
 Pt0 f28 callSignature DefaultApplicationHomePage() #txt
 Pt0 f28 persist false #txt
 Pt0 f28 startName <%=ivy.cms.co("/Processes/portalHome")%> #txt
+Pt0 f28 startCustomFields 'cssIcon=si si-layout-dashboard
+embedInFrame=false' #txt
 Pt0 f28 taskData 'TaskTriggered.CATEGORY=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>
 TaskTriggered.DESC=<%\=ivy.cms.co("/Processes/Cases/PortalInternalProcess/PortalInternalProcessDescription")%>
 TaskTriggered.EXPRI=2
