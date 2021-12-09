@@ -42,7 +42,7 @@ Refer to ``portal-developer-examples`` project for examples
    previous step. This process is new home page and administrator should
    register this link by Portal's Admin Settings.
 
-#. Use `Axon Ivy HtmlOverride wizard <https://developer.axonivy.com/doc/9.3.0/designer-guide/how-to/overrides.html?#override-new-wizard>`_ to override ``PortalCases`` HTML dialog.
+#. Use `Axon Ivy HtmlOverride wizard <https://developer.axonivy.com/doc/nightly/designer-guide/how-to/overrides.html?#override-new-wizard>`_ to override ``PortalCases`` HTML dialog.
 
    .. tip:: This action overrides ``Case widget`` in: CaseList page, Case Search result.
 
