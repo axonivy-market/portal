@@ -9,26 +9,47 @@ Change Portal's logos
 ---------------------
 
 You can change logo and login logo by modifying default logo in
-PortalStyle project.
+PortalStyle project. And We recommend you to use an image with transparent background.
 
--  Modify cms entry ``PortalStyle/images/logo/CorporateLogo.png`` to
-   update homepage logo when menu is expanded.
+-  Modify cms entry ``PortalStyle/images/logo/CorporateLogo`` to
+   update homepage logo when menu is expanded. File type is PNG.
 
-   .. tip:: We recommend you to use an image with width size is 168 pixel to fit the left menu size when it's expanded
-   
+   .. tip::
+      - We recommend you to use an image with width size is 168 pixels to fit the left menu size when it's expanded.
+        And height size is 42 pixels.
 
--  Modify cms entry ``PortalStyle/images/logo/SmallCorporateLogo.png`` to
-   update homepage logo when menu is collapsed.
+      - You can scale your logo by overriding these variables: ``$homeLogoWidth``, ``$homeLogoHeight``.
 
-   .. tip:: We recommend you to use an image with width size is 42 pixel to fit the left menu size when it's collapsed
+      - We also recommend you to use an SVG image by deleting current PNG cms ``PortalStyle/images/logo/CorporateLogo``
+        then create the same cms with SVG type.
 
--  Modify cms entry ``PortalStyle/images/logo/loginLogo.png`` to update
-   login logo.
+-  Modify cms entry ``PortalStyle/images/logo/SmallCorporateLogo`` to
+   update homepage logo when menu is collapsed. File type is PNG.
 
--  Modify cms entry ``PortalStyle/images/logo/faviconLogo.png`` to update
-   favicon logo. Recommended size for favicon: 16x16 or 32x32 pixels.
+   .. tip::
+      - We recommend you to use an image with width size is 42 pixels to fit the left menu size when it's collapsed.
+        And height size is 42 pixels.
 
--  Override the variables: ``$loginLogoHeight``, ``$homeLogoHeight`` in
+      - You can scale your logo by overriding these variables: ``$smallHomeLogoWidth``, ``$homeLogoHeight`` (the same variable for ``PortalStyle/images/logo/CorporateLogo``).
+
+      - We also recommend you to use an SVG image by deleting current PNG cms ``PortalStyle/images/logo/SmallCorporateLogo``
+        then create the same cms with SVG type.
+
+-  Modify cms entry ``PortalStyle/images/logo/loginLogo`` to update
+   login logo. File type is PNG.
+
+   .. tip::
+      - We recommend you to use an image with size is 50x50 pixels.
+
+      - You can scale your logo by overriding variable: ``$loginLogoHeight``, the width will be calculated automatically.
+
+      - We also recommend you to use an SVG image by deleting current PNG cms ``PortalStyle/images/logo/loginLogo``
+        then create the same cms with SVG type.
+
+-  Modify cms entry ``PortalStyle/images/logo/faviconLogo`` to update
+   favicon logo. File type is PNG. Recommended size for favicon: 16x16 or 32x32 pixels.
+
+-  You can also refer to default value of these variables: ``$homeLogoWidth``, ``$homeLogoHeight``, ``$smallHomeLogoWidth``, ``$loginLogoHeight`` in
    ``variables.scss`` to scale your logos.
 
    .. _customization-portal-logos-and-colors-change-portal-background:
