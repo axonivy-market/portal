@@ -45,7 +45,7 @@
                         <p:commandLink styleClass="fa fa-arrow-right chart-action ui-sm-hidden" actionListener="#{logic.moveRight(chart)}"
                           update="@([id$='statistic-container'])" rendered="#{chartStatus.index != data.statisticChartList.size() -1 and data.isFinishLoadCharts}" />
 
-                        <p:commandLink id="delete-chart-link" styleClass="fa fa-close chart-action" rendered="#{chart.defaultChart == 'false'}">
+                        <p:commandLink id="delete-chart-link" styleClass="fa fa-close chart-action" rendered="#{chart.defaultChart ne 'true'}">
                           <p:ajax event="click" listener="#{logic.selectChart(chart)}" oncomplete="PF('delete-confirmation-dialog').show();" />
                         </p:commandLink>
                       </h:panelGroup>
