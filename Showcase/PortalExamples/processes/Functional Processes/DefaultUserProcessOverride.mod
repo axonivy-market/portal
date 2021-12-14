@@ -85,7 +85,17 @@ if (!StringUtils.isEmpty(viewBetaHistoryLink)){
 	userProcess.setIcon("fa-asterisk");
 	userProcess.setIndex(4);
 	in.defaultUserProcesses.add(userProcess);
-}' #txt
+}
+
+
+UserProcess userProcess = new UserProcess();
+	userProcess.setLink("https://www.axonivy.com/");
+	userProcess.setProcessName("Axon.Ivy website");
+	userProcess.setExternalLink(true);
+	userProcess.setIcon("fa-asterisk");
+	userProcess.setIndex(5);
+	in.defaultUserProcesses.add(userProcess);
+' #txt
 Ds0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -109,7 +119,7 @@ Ds0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 &#13;
 &#13;
 This process overrides DefaultUserProcess in Portal Kit. &#13;
-It add 5 application favorites processes and determines their order using the setIndex method of UserProcess.&#13;
+It add 1 external link and 4 application favorites processes and determines their order using the setIndex method of UserProcess.&#13;
 &#13;
 Code Example:&#13;
 &#13;
@@ -151,11 +161,20 @@ if (!StringUtils.isEmpty(viewBetaHistoryLink)){	&#13;
 	userProcess.setIcon("fa-asterisk");&#13;
 	userProcess.setIndex(4);&#13;
 	in.defaultUserProcesses.add(userProcess);&#13;
-}</name>
+}&#13;
+&#13;
+UserProcess userProcess = new UserProcess();&#13;
+	userProcess.setLink("https://www.axonivy.com/");&#13;
+	userProcess.setProcessName("Axon.Ivy website");&#13;
+	userProcess.setExternalLink(true);&#13;
+	userProcess.setIcon("fa-asterisk");&#13;
+	userProcess.setIndex(5);&#13;
+	in.defaultUserProcesses.add(userProcess);&#13;
+</name>
     </language>
 </elementInfo>
 ' #txt
-Ds0 f5 264 26 1024 764 -507 -376 #rect
+Ds0 f5 264 -46 1024 908 -507 -448 #rect
 Ds0 f5 @|IBIcon #fIcon
 >Proto Ds0 .type _ch.ivyteam.ivy.project.portal.examples.DefaultUserProcessOverrideData #txt
 >Proto Ds0 .processKind CALLABLE_SUB #txt

@@ -29,4 +29,6 @@ list of user processes. Follow instruction to create default processes.
 
    - To display process name with multilingual, define a **CMS** and set it for **UserProcess#setProcessName**
 
+   - For external link, please mark it as external link by set true to method **UserProcess#setExternalLink**
+
 .. |default-user-processes| image:: images/default-user-process/default-user-processes.png
