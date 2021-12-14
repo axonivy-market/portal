@@ -136,7 +136,7 @@ function ProcessWidget() {
         	$(this).show();
         }
         
-        var categoryElement = $('.js-image-process-category', this);
+        var categoryElement = $('.js-process-category', this);
         if (categoryElement.length > 0
           && contain(categoryElement[0].textContent.trim().toLowerCase(), keyword.trim().toLowerCase())) {
           $(this).show();
