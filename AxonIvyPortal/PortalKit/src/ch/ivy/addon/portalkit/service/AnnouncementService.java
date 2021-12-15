@@ -13,6 +13,7 @@ import ch.ivy.addon.portalkit.bo.Announcement;
 import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
 import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
+import ch.ivyteam.ivy.application.ActivityState;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
 
@@ -52,7 +53,8 @@ public class AnnouncementService extends BusinessDataService<Announcement> {
     Map<String, List<Announcement>> languageToAnnouncements =
         announcements.stream().collect(Collectors.groupingBy(Announcement::getLanguage));
     Stream<String> supportedLanguageStream =
-        ServerService.getInstance().getApplicationsRelatedToPortal().stream().map(IApplication::getName)
+        ServerService.getInstance().getApplicationsRelatedToPortal().stream()
+            .filter(app -> app.getActivityState() == ActivityState.ACTIVE).map(IApplication::getName)
             .flatMap(appName -> LanguageService.newInstance().getSupportedLanguages(appName).getIvyLanguages().stream())
             .flatMap(language -> language.getSupportedLanguages().stream()).distinct().map(String::toUpperCase);
     return IvyExecutor.executeAsSystem(() -> supportedLanguageStream.map(language -> {
