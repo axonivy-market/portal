@@ -1,5 +1,0 @@
-co: name={currentPassword} description={} changed={2019-02-11 03:13:34 CET} changedby={ntminh01} visualorder={0} guid={15F713A768F7422A} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={15F713A7695644F9} datatype={} isdefault={true} langid={en} description={} validfrom={2017-08-08 05:04:32 CEST} validto={} changed={2017-10-31 07:59:37 CET} changedby={chnam} properties={} id={}
-val: guid={15F713A769A265E8} datatype={} isdefault={false} langid={de} description={} validfrom={2017-08-08 05:41:13 CEST} validto={} changed={2017-10-31 07:59:37 CET} changedby={chnam} properties={} id={}
-val: guid={15F713A7690E7AC6} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-08-08 05:41:11 CEST} validto={} changed={2017-10-31 07:59:37 CET} changedby={chnam} properties={} id={}
-val: guid={168DA54C15082093} datatype={} isdefault={false} langid={es} description={} validfrom={2019-02-11 03:13:34 CET} validto={} changed={2019-02-11 03:13:34 CET} changedby={ntminh01} properties={} id={}

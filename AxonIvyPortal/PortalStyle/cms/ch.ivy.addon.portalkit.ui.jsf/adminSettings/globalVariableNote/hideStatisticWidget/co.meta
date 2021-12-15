@@ -1,5 +1,0 @@
-co: name={hideStatisticWidget} description={} changed={2019-03-25 10:06:46 CET} changedby={lttung} visualorder={0} guid={16904A5EB14A8000} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={16904A65700C0BEC} datatype={} isdefault={false} langid={de} description={} validfrom={2019-03-25 09:33:58 CET} validto={} changed={2019-03-25 09:33:58 CET} changedby={lttung} properties={} id={}
-val: guid={169B41A284B9BC7C} datatype={} isdefault={false} langid={es} description={} validfrom={2019-03-25 10:06:46 CET} validto={} changed={2019-03-25 10:06:46 CET} changedby={lttung} properties={} id={}
-val: guid={16904A5EB24FA803} datatype={} isdefault={true} langid={en} description={} validfrom={2019-02-19 08:26:16 CET} validto={} changed={2019-02-19 08:26:32 CET} changedby={tdnguyen} properties={} id={}
-val: guid={16904A6581F57DE7} datatype={} isdefault={false} langid={fr} description={} validfrom={2019-03-25 09:33:58 CET} validto={} changed={2019-03-25 09:33:58 CET} changedby={lttung} properties={} id={}

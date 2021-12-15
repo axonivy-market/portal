@@ -1,5 +1,0 @@
-co: name={customTimestampField1_ASC} description={} changed={2020-03-09 10:33:38 CET} changedby={nvthang01} visualorder={0} guid={1674F289910557D5} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={170BEA487EFB601E} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-03-09 10:33:38 CET} validto={} changed={2020-03-09 10:33:38 CET} changedby={nvthang01} properties={} id={}
-val: guid={1674F289912DB1FA} datatype={} isdefault={true} langid={en} description={} validfrom={2018-11-26 09:35:19 CET} validto={} changed={2018-11-26 09:39:03 CET} changedby={chnam} properties={} id={}
-val: guid={1709F70D2C6945B5} datatype={} isdefault={false} langid={de} description={} validfrom={2020-03-03 09:08:56 CET} validto={} changed={2020-03-03 09:08:56 CET} changedby={lttung} properties={} id={}
-val: guid={170BEA487FD26C3F} datatype={} isdefault={false} langid={es} description={} validfrom={2020-03-09 10:33:38 CET} validto={} changed={2020-03-09 10:33:38 CET} changedby={nvthang01} properties={} id={}

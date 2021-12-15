@@ -1,5 +1,0 @@
-co: name={adhocHistory} description={} changed={2019-08-14 04:59:30 CEST} changedby={nqhoan} visualorder={0} guid={16C8E0F6C43701DE} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={16C8E0F6C67A6E58} datatype={} isdefault={false} langid={es} description={} validfrom={2019-04-26 05:57:39 CEST} validto={} changed={2019-08-14 04:59:29 CEST} changedby={nqhoan} properties={} id={}
-val: guid={16C8E0F6C507361D} datatype={} isdefault={false} langid={de} description={} validfrom={2019-04-26 05:57:39 CEST} validto={} changed={2019-08-14 04:59:29 CEST} changedby={nqhoan} properties={} id={}
-val: guid={16C8E0F6C5B58777} datatype={} isdefault={true} langid={en} description={} validfrom={2019-04-08 11:52:48 CEST} validto={} changed={2019-08-14 04:59:30 CEST} changedby={nqhoan} properties={} id={}
-val: guid={16C8E0F6C6196C0A} datatype={} isdefault={false} langid={fr} description={} validfrom={2019-04-26 05:57:39 CEST} validto={} changed={2019-08-14 04:59:30 CEST} changedby={nqhoan} properties={} id={}

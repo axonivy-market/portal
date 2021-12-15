@@ -1,5 +1,0 @@
-co: name={FieldSetApplicant} description={} changed={2019-09-12 04:40:47 CEST} changedby={ldnam} visualorder={0} guid={1634967BA1A22FC3} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={16D23583ACDC3D6E} datatype={} isdefault={false} langid={fr} description={} validfrom={2019-09-12 04:40:47 CEST} validto={} changed={2019-09-12 04:40:47 CEST} changedby={ldnam} properties={} id={}
-val: guid={16D23583AD4D3BD0} datatype={} isdefault={false} langid={es} description={} validfrom={2019-09-12 04:40:47 CEST} validto={} changed={2019-09-12 04:40:47 CEST} changedby={ldnam} properties={} id={}
-val: guid={16D23583ABCE1765} datatype={} isdefault={false} langid={de} description={} validfrom={2019-09-12 04:40:47 CEST} validto={} changed={2019-09-12 04:40:47 CEST} changedby={ldnam} properties={} id={}
-val: guid={1634967BA1DCDCBF} datatype={} isdefault={true} langid={en} description={} validfrom={2018-05-10 11:35:24 CEST} validto={} changed={2018-05-10 11:35:24 CEST} changedby={mnhnam} properties={} id={}

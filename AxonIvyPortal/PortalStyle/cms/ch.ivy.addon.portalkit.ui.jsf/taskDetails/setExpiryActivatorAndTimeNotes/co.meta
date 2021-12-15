@@ -1,5 +1,0 @@
-co: name={setExpiryActivatorAndTimeNotes} description={} changed={2021-05-04 04:20:49 CEST} changedby={phhung} visualorder={0} guid={178E955E80B76A29} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={178E958B52FB23AD} datatype={} isdefault={false} langid={es} description={} validfrom={2021-05-04 04:20:49 CEST} validto={} changed={2021-05-04 04:20:49 CEST} changedby={phhung} properties={} id={}
-val: guid={178E958B487ADF09} datatype={} isdefault={false} langid={de} description={} validfrom={2021-05-04 04:20:49 CEST} validto={} changed={2021-05-04 04:20:49 CEST} changedby={phhung} properties={} id={}
-val: guid={178E958B5553DC96} datatype={} isdefault={false} langid={fr} description={} validfrom={2021-05-04 04:20:49 CEST} validto={} changed={2021-05-04 04:20:49 CEST} changedby={phhung} properties={} id={}
-val: guid={178E955E810CBD2F} datatype={} isdefault={true} langid={en} description={} validfrom={2021-04-19 10:53:44 CEST} validto={} changed={2021-04-19 10:56:48 CEST} changedby={nqhoan} properties={} id={}

@@ -1,5 +1,0 @@
-co: name={processFilterPlaceHolder} description={} changed={2021-05-28 11:07:35 CEST} changedby={phhung} visualorder={0} guid={16AE919F504A8C3A} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={16AE91AE7CA20489} datatype={} isdefault={false} langid={es} description={} validfrom={2019-05-24 11:09:23 CEST} validto={} changed={2021-05-28 11:07:35 CEST} changedby={phhung} properties={} id={}
-val: guid={16AE91AE7D27785E} datatype={} isdefault={false} langid={fr} description={} validfrom={2019-05-24 11:09:20 CEST} validto={} changed={2021-05-28 11:07:35 CEST} changedby={phhung} properties={} id={}
-val: guid={16AE919F512E1E1F} datatype={} isdefault={true} langid={en} description={} validfrom={2019-05-24 11:09:13 CEST} validto={} changed={2021-05-28 11:07:35 CEST} changedby={phhung} properties={} id={}
-val: guid={16AE91AE50F3546E} datatype={} isdefault={false} langid={de} description={} validfrom={2019-05-24 11:09:25 CEST} validto={} changed={2021-05-28 11:07:34 CEST} changedby={phhung} properties={} id={}

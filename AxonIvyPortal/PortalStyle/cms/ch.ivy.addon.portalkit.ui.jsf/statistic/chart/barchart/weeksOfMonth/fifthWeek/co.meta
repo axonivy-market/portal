@@ -1,5 +1,0 @@
-co: name={fifthWeek} description={} changed={2019-02-11 03:13:35 CET} changedby={ntminh01} visualorder={0} guid={161C1EEEB6273BAE} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={161F959633CA80DC} datatype={} isdefault={false} langid={de} description={} validfrom={2018-03-06 04:27:19 CET} validto={} changed={2018-03-06 04:32:47 CET} changedby={tdnguyen} properties={} id={}
-val: guid={161C1EEEB7126B04} datatype={} isdefault={true} langid={en} description={} validfrom={2018-02-23 10:11:56 CET} validto={} changed={2018-02-23 10:12:27 CET} changedby={tdnguyen} properties={} id={}
-val: guid={168DA54C4F519622} datatype={} isdefault={false} langid={es} description={} validfrom={2019-02-11 03:13:35 CET} validto={} changed={2019-02-11 03:13:35 CET} changedby={ntminh01} properties={} id={}
-val: guid={161F9596437F6AFB} datatype={} isdefault={false} langid={fr} description={} validfrom={2018-03-06 04:27:17 CET} validto={} changed={2018-03-06 04:32:47 CET} changedby={tdnguyen} properties={} id={}

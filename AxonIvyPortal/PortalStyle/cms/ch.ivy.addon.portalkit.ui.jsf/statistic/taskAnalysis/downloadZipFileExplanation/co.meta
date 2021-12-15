@@ -1,5 +1,0 @@
-co: name={downloadZipFileExplanation} description={} changed={2020-03-03 09:18:07 CET} changedby={lttung} visualorder={0} guid={17013C10CD66287D} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={17013C10CE21B512} datatype={} isdefault={false} langid={de} description={} validfrom={2020-03-03 09:07:59 CET} validto={} changed={2020-03-03 09:07:59 CET} changedby={lttung} properties={} id={}
-val: guid={17013C10D01EF5FA} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-03-03 09:07:59 CET} validto={} changed={2020-03-03 09:07:59 CET} changedby={lttung} properties={} id={}
-val: guid={17013C10CEE27103} datatype={} isdefault={true} langid={en} description={} validfrom={2018-07-11 05:01:44 CEST} validto={} changed={2020-02-05 09:11:52 CET} changedby={lttung} properties={} id={}
-val: guid={17013C10CF8E386D} datatype={} isdefault={false} langid={es} description={} validfrom={2020-03-03 09:07:59 CET} validto={} changed={2020-03-03 09:18:06 CET} changedby={lttung} properties={} id={}

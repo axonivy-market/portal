@@ -1,5 +1,0 @@
-co: name={enableGroupChat} description={} changed={2019-07-10 09:52:09 CEST} changedby={nqhoan} visualorder={0} guid={16B206560EFC886A} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={16B206616C15D1DF} datatype={} isdefault={false} langid={es} description={} validfrom={2019-07-10 09:52:09 CEST} validto={} changed={2019-07-10 09:52:09 CEST} changedby={nqhoan} properties={} id={}
-val: guid={16B206560F6D9E39} datatype={} isdefault={true} langid={en} description={} validfrom={2019-06-04 04:50:43 CEST} validto={} changed={2019-06-06 06:11:22 CEST} changedby={ldnam} properties={} id={}
-val: guid={16B206615D54AF85} datatype={} isdefault={false} langid={de} description={} validfrom={2019-07-10 09:52:09 CEST} validto={} changed={2019-07-10 09:52:09 CEST} changedby={nqhoan} properties={} id={}
-val: guid={16B206616CA1E244} datatype={} isdefault={false} langid={fr} description={} validfrom={2019-07-10 09:52:09 CEST} validto={} changed={2019-07-10 09:52:09 CEST} changedby={nqhoan} properties={} id={}
