@@ -56,7 +56,7 @@ public class CaseWidgetTest extends BaseTest {
     initHomePage(TestAccount.ADMIN_USER);
     
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
-    taskWidgetPage.filterTasksBy("Report and hide case");
+    taskWidgetPage.filterTasksBy("   Report and hide case");
     taskWidgetPage.startTaskWithoutUI(0);
     homePage = new HomePage();
     Sleeper.sleep(2000);

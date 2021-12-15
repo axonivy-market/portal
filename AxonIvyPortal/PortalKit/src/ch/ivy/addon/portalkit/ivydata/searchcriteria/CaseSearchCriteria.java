@@ -91,13 +91,13 @@ public class CaseSearchCriteria {
   }
 
   private CaseQuery queryForKeyword(String keyword) {
-    String containingKeyword = String.format("%%%s%%", keyword);
+    String containingKeyword = String.format("%%%s%%", keyword.trim());
 
     CaseQuery filterByKeywordQuery = newCaseQuery().where().or().name().isLikeIgnoreCase(containingKeyword).or()
         .description().isLikeIgnoreCase(containingKeyword).or().customField().anyStringField().isLikeIgnoreCase(containingKeyword);
 
     try {
-      long idKeyword = Long.parseLong(keyword);
+      long idKeyword = Long.parseLong(keyword.trim());
       String containingIdKeyword = String.format("%%%d%%", idKeyword);
       filterByKeywordQuery.where().or().caseId().isLike(containingIdKeyword);
     } catch (NumberFormatException e) {
