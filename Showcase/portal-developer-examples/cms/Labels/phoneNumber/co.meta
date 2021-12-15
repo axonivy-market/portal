@@ -1,5 +1,0 @@
-co: name={phoneNumber} description={} changed={2020-03-09 10:33:38 CET} changedby={nvthang01} visualorder={0} guid={167369CC43268A2A} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={167369D6705B9120} datatype={} isdefault={false} langid={de} description={} validfrom={2018-11-21 15:11:57 CET} validto={} changed={2018-11-21 15:12:24 CET} changedby={Oliver} properties={} id={}
-val: guid={167369CC4385EE17} datatype={} isdefault={true} langid={en} description={} validfrom={2018-11-21 15:11:42 CET} validto={} changed={2018-11-21 15:11:42 CET} changedby={Oliver} properties={} id={}
-val: guid={170BEA486C379DAB} datatype={} isdefault={false} langid={es} description={} validfrom={2020-03-09 10:33:38 CET} validto={} changed={2020-03-09 10:33:38 CET} changedby={nvthang01} properties={} id={}
-val: guid={170BEA486B7D713C} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-03-09 10:33:38 CET} validto={} changed={2020-03-09 10:33:38 CET} changedby={nvthang01} properties={} id={}

@@ -1,5 +1,0 @@
-co: name={TaskCaseInformation} description={} changed={2021-02-04 03:06:13 CET} changedby={nqhoan} visualorder={0} guid={17675288F167677B} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={17675288F19A39C3} datatype={} isdefault={false} langid={de} description={} validfrom={2021-02-04 03:06:13 CET} validto={} changed={2021-02-04 03:06:13 CET} changedby={nqhoan} properties={} id={}
-val: guid={17675288F2EE38A8} datatype={} isdefault={true} langid={en} description={} validfrom={2018-04-04 11:45:25 CEST} validto={} changed={2020-12-18 10:47:51 CET} changedby={phhung} properties={} id={}
-val: guid={17675288F3767D5D} datatype={} isdefault={false} langid={fr} description={} validfrom={2021-02-04 03:06:13 CET} validto={} changed={2021-02-04 03:06:13 CET} changedby={nqhoan} properties={} id={}
-val: guid={17675288F22E2E6B} datatype={} isdefault={false} langid={es} description={} validfrom={2021-02-04 03:06:13 CET} validto={} changed={2021-02-04 03:06:13 CET} changedby={nqhoan} properties={} id={}

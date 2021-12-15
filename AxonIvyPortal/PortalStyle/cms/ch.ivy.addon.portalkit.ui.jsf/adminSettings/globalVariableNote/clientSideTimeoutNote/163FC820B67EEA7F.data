@@ -1,1 +1,0 @@
-Cientseitiges Time-out in Minuten, muss größer als 0 und kleiner als das serverseitige Time-out sein (z. B. 25 Sekunden). Der Standardwert ist 0, d. h., das standardmäßige clientseitige Time-out wird angewendet. Das standardmäßige clientseitige Time-out ist das serverseitige Time-out minus 3 Minuten.

@@ -1,5 +1,0 @@
-co: name={caseName} description={} changed={2021-03-29 03:26:57 GMT} changedby={nqhoan} visualorder={0} guid={1787C052F0A70E4A} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={1787C052F1CCD292} datatype={} isdefault={false} langid={fr} description={} validfrom={2018-08-27 09:51:11 GMT} validto={} changed={2021-03-29 03:26:57 GMT} changedby={nqhoan} properties={} id={}
-val: guid={1787C052F264FD0C} datatype={} isdefault={false} langid={de} description={} validfrom={2018-07-18 08:55:38 GMT} validto={} changed={2021-03-29 03:26:57 GMT} changedby={nqhoan} properties={} id={}
-val: guid={1787C052F319FCE5} datatype={} isdefault={false} langid={es} description={} validfrom={2019-03-25 09:06:49 GMT} validto={} changed={2021-03-29 03:26:57 GMT} changedby={nqhoan} properties={} id={}
-val: guid={1787C052F13B0A08} datatype={} isdefault={true} langid={en} description={} validfrom={2018-07-06 10:31:32 GMT} validto={} changed={2021-03-29 03:26:57 GMT} changedby={nqhoan} properties={} id={}

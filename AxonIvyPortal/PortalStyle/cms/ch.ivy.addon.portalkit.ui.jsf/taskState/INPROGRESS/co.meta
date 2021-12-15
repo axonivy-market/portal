@@ -1,5 +1,0 @@
-co: name={INPROGRESS} description={} changed={2019-02-11 03:13:37 CET} changedby={ntminh01} visualorder={0} guid={162288E02B5B672A} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={162288E02C498FCF} datatype={} isdefault={false} langid={de} description={} validfrom={2016-10-10 11:17:59 CEST} validto={} changed={2018-03-15 08:26:58 CET} changedby={nttai} properties={} id={}
-val: guid={162288E02D093CFB} datatype={} isdefault={true} langid={en} description={} validfrom={2016-10-10 11:12:29 CEST} validto={} changed={2018-03-15 08:26:58 CET} changedby={nttai} properties={} id={}
-val: guid={168DA54D03C4B103} datatype={} isdefault={false} langid={es} description={} validfrom={2019-02-11 03:13:37 CET} validto={} changed={2019-02-11 03:13:37 CET} changedby={ntminh01} properties={} id={}
-val: guid={162288E02B996798} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:06 CEST} validto={} changed={2018-03-15 08:26:58 CET} changedby={nttai} properties={} id={}

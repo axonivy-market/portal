@@ -1,5 +1,0 @@
-co: name={taskByExpiry} description={} changed={2019-02-11 03:13:35 CET} changedby={ntminh01} visualorder={0} guid={16033AE512DE8743} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={16033AE512FEB799} datatype={} isdefault={true} langid={en} description={} validfrom={2017-12-08 02:12:30 CET} validto={} changed={2017-12-08 02:13:40 CET} changedby={mnhnam} properties={} id={}
-val: guid={16033AF647550D03} datatype={} isdefault={false} langid={fr} description={} validfrom={2018-01-11 11:19:14 CET} validto={} changed={2018-01-11 11:19:14 CET} changedby={ldnam} properties={} id={}
-val: guid={168DA54C76DD18EC} datatype={} isdefault={false} langid={es} description={} validfrom={2019-02-11 03:13:35 CET} validto={} changed={2019-02-11 03:13:35 CET} changedby={ntminh01} properties={} id={}
-val: guid={16033AF51C9F0AF6} datatype={} isdefault={false} langid={de} description={} validfrom={2018-03-20 10:19:35 CET} validto={} changed={2018-03-20 10:19:35 CET} changedby={nttai} properties={} id={}
