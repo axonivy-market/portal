@@ -11,6 +11,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivy.addon.portalkit.persistence.domain.Application;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
+import ch.ivyteam.ivy.application.ActivityState;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.server.ServerFactory;
 
@@ -40,6 +41,6 @@ public class ServerService {
       }
       apps = IvyExecutor.executeAsSystem(() -> ServiceUtilities.findApps(configuredApps));
     }
-    return apps;
+    return IvyExecutor.executeAsSystem(() -> apps.stream().filter(app -> app.getActivityState() == ActivityState.ACTIVE).collect(Collectors.toList()));
   }
 }
