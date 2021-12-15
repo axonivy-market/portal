@@ -37,7 +37,7 @@ public class TaskFilterTest extends BaseTest {
 		assertEquals(3, taskWidgetPage.countTasks());
 		taskWidgetPage.filterTasksBy("Maternity");
 		assertEquals(1, taskWidgetPage.countTasks());
-		taskWidgetPage.filterTasksBy("Sick Leave Request Description");
+		taskWidgetPage.filterTasksBy("    Sick Leave Request Description");
 		assertEquals(1, taskWidgetPage.countTasks());
 	}
 
