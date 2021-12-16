@@ -1,0 +1,5 @@
+co: name={failedExpiryValidation} description={} changed={2020-06-15 03:35:41 CEST} changedby={nqhoan} visualorder={0} guid={1726F9E42317C42A} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={1726F9F1E0B97858} datatype={} isdefault={false} langid={de} description={} validfrom={2020-06-15 03:35:41 CEST} validto={} changed={2020-06-15 03:35:41 CEST} changedby={nqhoan} properties={} id={}
+val: guid={1726F9F204F63F2C} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-06-15 03:35:41 CEST} validto={} changed={2020-06-15 03:35:41 CEST} changedby={nqhoan} properties={} id={}
+val: guid={1726F9E438F56951} datatype={} isdefault={true} langid={en} description={} validfrom={2020-06-15 03:35:41 CEST} validto={} changed={2020-06-15 03:35:41 CEST} changedby={nqhoan} properties={} id={}
+val: guid={1726F9F2040F2DF7} datatype={} isdefault={false} langid={es} description={} validfrom={2020-06-15 03:35:41 CEST} validto={} changed={2020-06-15 03:35:41 CEST} changedby={nqhoan} properties={} id={}

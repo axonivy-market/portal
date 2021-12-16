@@ -1,0 +1,5 @@
+co: name={CommentLabel} description={} changed={2019-03-25 10:06:46 CET} changedby={lttung} visualorder={0} guid={163496B9F556D137} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={163496B9F582A4E6} datatype={} isdefault={true} langid={en} description={} validfrom={2018-05-10 11:39:39 CEST} validto={} changed={2018-05-10 11:39:39 CEST} changedby={mnhnam} properties={} id={}
+val: guid={163496BDA074FBA2} datatype={} isdefault={false} langid={fr} description={} validfrom={2018-05-24 10:26:49 CEST} validto={} changed={2018-05-24 10:26:49 CEST} changedby={lttung} properties={} id={}
+val: guid={169B41A24D076850} datatype={} isdefault={false} langid={es} description={} validfrom={2019-03-25 10:06:46 CET} validto={} changed={2019-03-25 10:06:46 CET} changedby={lttung} properties={} id={}
+val: guid={163496BD8616077C} datatype={} isdefault={false} langid={de} description={} validfrom={2018-05-24 10:26:49 CEST} validto={} changed={2018-05-24 10:26:49 CEST} changedby={lttung} properties={} id={}

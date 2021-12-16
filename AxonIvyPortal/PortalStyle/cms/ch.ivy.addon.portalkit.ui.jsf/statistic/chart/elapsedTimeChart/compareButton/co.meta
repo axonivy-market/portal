@@ -1,0 +1,5 @@
+co: name={compareButton} description={} changed={2019-02-11 03:13:35 CET} changedby={ntminh01} visualorder={0} guid={16251E6AFDA530C6} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={16251E8E2A239B90} datatype={} isdefault={false} langid={de} description={} validfrom={2018-03-23 09:08:35 CET} validto={} changed={2018-03-23 09:10:39 CET} changedby={tdnguyen} properties={} id={}
+val: guid={16251E8E3B7A33DB} datatype={} isdefault={false} langid={fr} description={} validfrom={2018-03-23 09:08:32 CET} validto={} changed={2018-03-23 09:10:39 CET} changedby={tdnguyen} properties={} id={}
+val: guid={16251E6AFEC8A1EF} datatype={} isdefault={true} langid={en} description={} validfrom={2018-03-23 09:08:15 CET} validto={} changed={2018-03-23 09:10:39 CET} changedby={tdnguyen} properties={} id={}
+val: guid={168DA54C57861A7A} datatype={} isdefault={false} langid={es} description={} validfrom={2019-02-11 03:13:35 CET} validto={} changed={2019-02-11 03:13:35 CET} changedby={ntminh01} properties={} id={}

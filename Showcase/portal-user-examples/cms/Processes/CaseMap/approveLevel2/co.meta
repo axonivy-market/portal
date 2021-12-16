@@ -1,0 +1,5 @@
+co: name={approveLevel2} description={} changed={2020-03-03 09:13:37 CET} changedby={lttung} visualorder={0} guid={1703DB52058A4EA1} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={1703DB5205E5A2F3} datatype={} isdefault={true} langid={en} description={} validfrom={2020-02-13 09:26:33 CET} validto={} changed={2020-02-13 10:19:02 CET} changedby={ntminh01} properties={} id={}
+val: guid={1703DB5208BEF4AC} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-03-03 09:13:36 CET} validto={} changed={2020-03-03 09:13:36 CET} changedby={lttung} properties={} id={}
+val: guid={1703DB5206A4C742} datatype={} isdefault={false} langid={de} description={} validfrom={2020-03-03 09:13:36 CET} validto={} changed={2020-03-03 09:13:36 CET} changedby={lttung} properties={} id={}
+val: guid={1703DB5207B314A8} datatype={} isdefault={false} langid={es} description={} validfrom={2020-03-03 09:13:37 CET} validto={} changed={2020-03-03 09:13:37 CET} changedby={lttung} properties={} id={}

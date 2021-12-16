@@ -1,0 +1,5 @@
+co: name={externalCreditComment} description={} changed={2020-03-03 09:13:36 CET} changedby={lttung} visualorder={0} guid={1707A6067F865499} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={1707A606808EE782} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-03-03 09:13:36 CET} validto={} changed={2020-03-03 09:13:36 CET} changedby={lttung} properties={} id={}
+val: guid={1707A60681612E69} datatype={} isdefault={false} langid={de} description={} validfrom={2020-03-03 09:13:36 CET} validto={} changed={2020-03-03 09:13:36 CET} changedby={lttung} properties={} id={}
+val: guid={1707A606820E2A87} datatype={} isdefault={false} langid={es} description={} validfrom={2020-03-03 09:13:36 CET} validto={} changed={2020-03-03 09:13:36 CET} changedby={lttung} properties={} id={}
+val: guid={1707A6067FD7E7B8} datatype={} isdefault={true} langid={en} description={} validfrom={2020-02-25 04:23:09 CET} validto={} changed={2020-02-25 04:25:37 CET} changedby={ntminh01} properties={} id={}

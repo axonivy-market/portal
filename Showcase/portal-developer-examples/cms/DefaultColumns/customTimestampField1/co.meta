@@ -1,0 +1,5 @@
+co: name={customTimestampField1} description={} changed={2020-03-09 10:33:37 CET} changedby={nvthang01} visualorder={0} guid={16250E23C05CC6EA} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={170BEA483261479F} datatype={} isdefault={false} langid={es} description={} validfrom={2020-03-09 10:33:37 CET} validto={} changed={2020-03-09 10:33:37 CET} changedby={nvthang01} properties={} id={}
+val: guid={1709F70D18652759} datatype={} isdefault={false} langid={de} description={} validfrom={2020-03-03 09:08:55 CET} validto={} changed={2020-03-03 09:08:55 CET} changedby={lttung} properties={} id={}
+val: guid={170BEA4831918C67} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-03-09 10:33:37 CET} validto={} changed={2020-03-09 10:33:37 CET} changedby={nvthang01} properties={} id={}
+val: guid={16250E23C0995B72} datatype={} isdefault={true} langid={en} description={} validfrom={2018-03-23 04:23:46 CET} validto={} changed={2018-03-23 07:59:53 CET} changedby={tntanh} properties={} id={}

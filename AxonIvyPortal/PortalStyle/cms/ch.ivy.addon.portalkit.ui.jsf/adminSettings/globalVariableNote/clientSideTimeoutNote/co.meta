@@ -1,0 +1,5 @@
+co: name={clientSideTimeoutNote} description={} changed={2021-05-21 09:59:48 CEST} changedby={lttung} visualorder={0} guid={163FC720BFA60892} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={163FC820C5C6D196} datatype={} isdefault={false} langid={fr} description={} validfrom={2021-05-21 09:59:48 CEST} validto={} changed={2021-05-21 09:59:48 CEST} changedby={lttung} properties={} id={}
+val: guid={163FC820B67EEA7F} datatype={} isdefault={false} langid={de} description={} validfrom={2021-05-21 09:59:48 CEST} validto={} changed={2021-05-21 09:59:48 CEST} changedby={lttung} properties={} id={}
+val: guid={169B41A2805C97EA} datatype={} isdefault={false} langid={es} description={} validfrom={2021-05-21 09:59:48 CEST} validto={} changed={2021-05-21 09:59:48 CEST} changedby={lttung} properties={} id={}
+val: guid={163FC720BFF4B185} datatype={} isdefault={true} langid={en} description={} validfrom={2021-05-21 09:59:48 CEST} validto={} changed={2021-05-21 09:59:48 CEST} changedby={lttung} properties={} id={}

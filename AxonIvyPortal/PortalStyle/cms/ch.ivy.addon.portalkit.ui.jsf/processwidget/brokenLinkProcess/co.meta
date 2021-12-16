@@ -1,0 +1,5 @@
+co: name={brokenLinkProcess} description={} changed={2021-03-19 03:54:03 CET} changedby={phhung} visualorder={0} guid={1771E0CB4751BA15} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={1771E0CB48584F76} datatype={} isdefault={false} langid={de} description={} validfrom={2021-03-19 03:54:03 CET} validto={} changed={2021-03-19 03:54:03 CET} changedby={phhung} properties={} id={}
+val: guid={1771E0CB4A961926} datatype={} isdefault={false} langid={es} description={} validfrom={2021-03-19 03:54:03 CET} validto={} changed={2021-03-19 03:54:03 CET} changedby={phhung} properties={} id={}
+val: guid={1771E0CB49DF15CA} datatype={} isdefault={false} langid={fr} description={} validfrom={2021-03-19 03:54:03 CET} validto={} changed={2021-03-19 03:54:03 CET} changedby={phhung} properties={} id={}
+val: guid={1771E0CB4921ADDC} datatype={} isdefault={true} langid={en} description={} validfrom={2015-09-21 12:45:54 CEST} validto={} changed={2021-02-22 08:20:49 CET} changedby={vtlong} properties={} id={}

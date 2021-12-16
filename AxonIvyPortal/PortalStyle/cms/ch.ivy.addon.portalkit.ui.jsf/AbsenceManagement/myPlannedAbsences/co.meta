@@ -1,0 +1,5 @@
+co: name={myPlannedAbsences} description={} changed={2020-03-03 09:07:58 CET} changedby={lttung} visualorder={0} guid={16FCB61F11A6216D} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={16FCB61F12353B3D} datatype={} isdefault={true} langid={en} description={} validfrom={2020-01-22 04:53:11 CET} validto={} changed={2020-01-22 04:53:11 CET} changedby={chnam} properties={} id={}
+val: guid={16FCB627FA8A72D8} datatype={} isdefault={false} langid={de} description={} validfrom={2020-03-03 09:07:58 CET} validto={} changed={2020-03-03 09:07:58 CET} changedby={lttung} properties={} id={}
+val: guid={16FCB62807CBC4F2} datatype={} isdefault={false} langid={es} description={} validfrom={2020-03-03 09:07:58 CET} validto={} changed={2020-03-03 09:07:58 CET} changedby={lttung} properties={} id={}
+val: guid={16FCB6280B7FAD72} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-03-03 09:07:58 CET} validto={} changed={2020-03-03 09:07:58 CET} changedby={lttung} properties={} id={}

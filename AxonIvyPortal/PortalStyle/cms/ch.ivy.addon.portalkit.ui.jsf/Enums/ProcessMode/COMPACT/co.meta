@@ -1,0 +1,5 @@
+co: name={COMPACT} description={} changed={2021-07-05 11:02:45 CEST} changedby={mnhnam} visualorder={0} guid={177FAEE84748F59A} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={17815DF540911ECB} datatype={} isdefault={false} langid={es} description={} validfrom={2021-07-05 11:02:45 CEST} validto={} changed={2021-07-05 11:02:45 CEST} changedby={mnhnam} properties={} id={}
+val: guid={17815DF5444B6836} datatype={} isdefault={false} langid={fr} description={} validfrom={2021-07-05 11:02:45 CEST} validto={} changed={2021-07-05 11:02:45 CEST} changedby={mnhnam} properties={} id={}
+val: guid={177FAEE8476CD7F9} datatype={} isdefault={true} langid={en} description={} validfrom={2021-03-19 03:53:58 CET} validto={} changed={2021-05-25 06:19:07 CEST} changedby={phhung} properties={} id={}
+val: guid={17815DF5385BBDC0} datatype={} isdefault={false} langid={de} description={} validfrom={2021-07-05 11:02:45 CEST} validto={} changed={2021-07-05 11:02:45 CEST} changedby={mnhnam} properties={} id={}

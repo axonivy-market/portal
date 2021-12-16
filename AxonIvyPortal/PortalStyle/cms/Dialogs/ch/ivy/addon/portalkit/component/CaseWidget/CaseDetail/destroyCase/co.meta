@@ -1,0 +1,5 @@
+co: name={destroyCase} description={} changed={2020-05-04 04:36:29 CEST} changedby={ttthai} visualorder={0} guid={171063740E06ABF7} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={1710646A963819F3} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-05-04 04:36:29 CEST} validto={} changed={2020-05-04 04:36:29 CEST} changedby={ttthai} properties={} id={}
+val: guid={171063740F085CEE} datatype={} isdefault={true} langid={en} description={} validfrom={2020-03-23 08:06:56 CET} validto={} changed={2020-03-23 08:06:56 CET} changedby={chnam} properties={} id={}
+val: guid={1710646A9571B162} datatype={} isdefault={false} langid={es} description={} validfrom={2020-05-04 04:36:29 CEST} validto={} changed={2020-05-04 04:36:29 CEST} changedby={ttthai} properties={} id={}
+val: guid={1710646A86498933} datatype={} isdefault={false} langid={de} description={} validfrom={2020-05-04 04:36:29 CEST} validto={} changed={2020-05-04 04:36:29 CEST} changedby={ttthai} properties={} id={}

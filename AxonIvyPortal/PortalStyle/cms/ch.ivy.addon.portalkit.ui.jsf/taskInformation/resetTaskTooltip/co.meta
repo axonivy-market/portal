@@ -1,0 +1,5 @@
+co: name={resetTaskTooltip} description={} changed={2019-02-11 03:13:37 CET} changedby={ntminh01} visualorder={0} guid={15F713A834E514A7} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15F713A8350F237A} datatype={} isdefault={false} langid={de} description={} validfrom={2017-07-25 06:46:33 CEST} validto={} changed={2017-10-31 07:59:41 CET} changedby={chnam} properties={} id={}
+val: guid={15F713A83595AEB6} datatype={} isdefault={true} langid={en} description={} validfrom={2017-07-25 05:14:37 CEST} validto={} changed={2017-10-31 07:59:41 CET} changedby={chnam} properties={} id={}
+val: guid={15F713A8354510C0} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-08-10 08:57:15 CEST} validto={} changed={2017-10-31 07:59:41 CET} changedby={chnam} properties={} id={}
+val: guid={168DA54CE28B4D3C} datatype={} isdefault={false} langid={es} description={} validfrom={2019-02-11 03:13:37 CET} validto={} changed={2019-02-11 03:13:37 CET} changedby={ntminh01} properties={} id={}

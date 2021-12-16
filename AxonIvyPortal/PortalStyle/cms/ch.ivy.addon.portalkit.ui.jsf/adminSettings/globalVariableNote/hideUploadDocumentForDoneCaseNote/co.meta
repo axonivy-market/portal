@@ -1,0 +1,5 @@
+co: name={hideUploadDocumentForDoneCaseNote} description={} changed={2021-06-11 11:56:45 CEST} changedby={vtlong} visualorder={0} guid={163FC700BB34067F} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={163FC700BB91660F} datatype={} isdefault={true} langid={en} description={} validfrom={2018-06-14 05:56:31 CEST} validto={} changed={2018-06-14 06:31:46 CEST} changedby={tdnguyen} properties={} id={}
+val: guid={163FC8B82713CF09} datatype={} isdefault={false} langid={fr} description={} validfrom={2018-08-27 11:51:11 CEST} validto={} changed={2018-08-27 11:51:11 CEST} changedby={chnam} properties={} id={}
+val: guid={169B41A28784C77B} datatype={} isdefault={false} langid={es} description={} validfrom={2019-03-25 10:06:47 CET} validto={} changed={2019-03-25 10:06:47 CET} changedby={lttung} properties={} id={}
+val: guid={163FC8B815615B22} datatype={} isdefault={false} langid={de} description={} validfrom={2021-06-11 11:56:45 CEST} validto={} changed={2021-06-11 11:56:45 CEST} changedby={vtlong} properties={} id={}

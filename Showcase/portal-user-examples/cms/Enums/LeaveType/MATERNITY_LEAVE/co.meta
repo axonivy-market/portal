@@ -1,0 +1,5 @@
+co: name={MATERNITY_LEAVE} description={} changed={2020-03-03 09:13:35 CET} changedby={lttung} visualorder={0} guid={17032FFA7EE67EBC} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={17032FFA7F163D28} datatype={} isdefault={true} langid={en} description={} validfrom={2020-02-11 07:46:20 CET} validto={} changed={2020-02-11 07:46:20 CET} changedby={ldnam} properties={} id={}
+val: guid={1705750D2B425252} datatype={} isdefault={false} langid={es} description={} validfrom={2020-03-03 09:13:35 CET} validto={} changed={2020-03-03 09:13:35 CET} changedby={lttung} properties={} id={}
+val: guid={1705750D2C3D2D51} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-03-03 09:13:35 CET} validto={} changed={2020-03-03 09:13:35 CET} changedby={lttung} properties={} id={}
+val: guid={1705750D1C36EAC2} datatype={} isdefault={false} langid={de} description={} validfrom={2020-03-03 09:13:35 CET} validto={} changed={2020-03-03 09:13:35 CET} changedby={lttung} properties={} id={}

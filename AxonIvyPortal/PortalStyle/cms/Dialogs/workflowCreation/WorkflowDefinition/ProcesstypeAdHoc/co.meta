@@ -1,0 +1,5 @@
+co: name={ProcesstypeAdHoc} description={} changed={2019-09-12 03:20:44 CEST} changedby={nqhoan} visualorder={0} guid={15FBEBC6C8BDA3B9} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15FBEBC6C8E3F178} datatype={} isdefault={false} langid={de} description={} validfrom={2017-05-10 03:59:20 CEST} validto={} changed={2019-09-12 03:20:43 CEST} changedby={nqhoan} properties={} id={}
+val: guid={15FBEBC6C952A671} datatype={} isdefault={true} langid={en} description={} validfrom={2016-11-25 05:43:39 CET} validto={} changed={2019-09-12 03:20:44 CEST} changedby={nqhoan} properties={} id={}
+val: guid={15FBEBC6C9C66EFD} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-08-10 09:00:42 CEST} validto={} changed={2019-09-12 03:20:44 CEST} changedby={nqhoan} properties={} id={}
+val: guid={168DA54AC89BD1F2} datatype={} isdefault={false} langid={es} description={} validfrom={2019-02-11 03:13:28 CET} validto={} changed={2019-09-12 03:20:44 CEST} changedby={nqhoan} properties={} id={}

@@ -1,0 +1,5 @@
+co: name={cannotDelegateTaskMessage} description={} changed={2019-02-11 03:13:33 CET} changedby={ntminh01} visualorder={0} guid={15F713A6D5BB8B95} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15F713A6D67CF608} datatype={} isdefault={true} langid={en} description={} validfrom={2017-04-19 04:24:41 CEST} validto={} changed={2017-10-31 07:59:35 CET} changedby={chnam} properties={} id={}
+val: guid={15F713A6D5D3BCA7} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-04-19 08:29:18 CEST} validto={} changed={2017-10-31 07:59:35 CET} changedby={chnam} properties={} id={}
+val: guid={15F713A6D629A201} datatype={} isdefault={false} langid={de} description={} validfrom={2017-04-19 08:29:16 CEST} validto={} changed={2017-10-31 07:59:35 CET} changedby={chnam} properties={} id={}
+val: guid={168DA54BDBA26964} datatype={} isdefault={false} langid={es} description={} validfrom={2019-02-11 03:13:33 CET} validto={} changed={2019-02-11 03:13:33 CET} changedby={ntminh01} properties={} id={}

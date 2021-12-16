@@ -1,0 +1,5 @@
+co: name={addField} description={} changed={2021-07-23 12:13:02 CEST} changedby={nqhoan} visualorder={0} guid={176F091305AA4B2F} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={176F09130667558E} datatype={} isdefault={true} langid={en} description={} validfrom={2021-01-11 09:30:15 CET} validto={} changed={2021-01-11 09:30:15 CET} changedby={dhtlong} properties={} id={}
+val: guid={176F091305F631A9} datatype={} isdefault={false} langid={de} description={} validfrom={2021-07-23 12:13:02 CEST} validto={} changed={2021-07-23 12:13:02 CEST} changedby={nqhoan} properties={} id={}
+val: guid={176F0913076D7986} datatype={} isdefault={false} langid={fr} description={} validfrom={2021-07-23 12:13:02 CEST} validto={} changed={2021-07-23 12:13:02 CEST} changedby={nqhoan} properties={} id={}
+val: guid={176F091306F26FF8} datatype={} isdefault={false} langid={es} description={} validfrom={2021-07-23 12:13:02 CEST} validto={} changed={2021-07-23 12:13:02 CEST} changedby={nqhoan} properties={} id={}

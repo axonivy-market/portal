@@ -1,0 +1,5 @@
+co: name={showButtonIcon} description={} changed={} changedby={} visualorder={} guid={} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={1737541BA7B58A6C} datatype={} isdefault={false} langid={de} description={} validfrom={} validto={} changed={} changedby={} properties={} id={}
+val: guid={1737541BB599420D} datatype={} isdefault={false} langid={fr} description={} validfrom={} validto={} changed={} changedby={} properties={} id={}
+val: guid={1737541BB3078BEE} datatype={} isdefault={false} langid={es} description={} validfrom={} validto={} changed={} changedby={} properties={} id={}
+val: guid={173754121065A84B} datatype={} isdefault={true} langid={en} description={} validfrom={} validto={} changed={} changedby={} properties={} id={}

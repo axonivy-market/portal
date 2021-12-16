@@ -1,0 +1,5 @@
+co: name={EXPIRY_TIME_DESC} description={} changed={2019-03-25 10:06:49 CET} changedby={lttung} visualorder={0} guid={1674EC5F7D1338ED} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={1674EC60E0F82DEB} datatype={} isdefault={true} langid={en} description={} validfrom={2018-11-26 07:47:41 CET} validto={} changed={2018-11-26 08:05:58 CET} changedby={chnam} properties={} id={}
+val: guid={169B41A31FA89B2B} datatype={} isdefault={false} langid={es} description={} validfrom={2019-03-25 10:06:49 CET} validto={} changed={2019-03-25 10:06:49 CET} changedby={lttung} properties={} id={}
+val: guid={1674ED6C850DFA49} datatype={} isdefault={false} langid={fr} description={} validfrom={2019-03-25 09:33:58 CET} validto={} changed={2019-03-25 09:33:58 CET} changedby={lttung} properties={} id={}
+val: guid={1674ED6C7A479FE9} datatype={} isdefault={false} langid={de} description={} validfrom={2019-03-25 09:33:58 CET} validto={} changed={2019-03-25 09:33:58 CET} changedby={lttung} properties={} id={}

@@ -1,0 +1,5 @@
+co: name={FieldSetForm} description={} changed={2019-03-25 10:06:46 CET} changedby={lttung} visualorder={0} guid={16349621D9761E11} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={169B41A24D8A80DA} datatype={} isdefault={false} langid={es} description={} validfrom={2019-03-25 10:06:46 CET} validto={} changed={2019-03-25 10:06:46 CET} changedby={lttung} properties={} id={}
+val: guid={1634962A1ECB0FB6} datatype={} isdefault={false} langid={de} description={} validfrom={2018-05-10 11:29:39 CEST} validto={} changed={2018-05-10 11:29:51 CEST} changedby={mnhnam} properties={} id={}
+val: guid={1634962A34631A9B} datatype={} isdefault={false} langid={fr} description={} validfrom={2018-05-10 11:29:41 CEST} validto={} changed={2018-05-10 11:29:51 CEST} changedby={mnhnam} properties={} id={}
+val: guid={16349621D9835CCC} datatype={} isdefault={true} langid={en} description={} validfrom={2018-05-10 11:29:16 CEST} validto={} changed={2018-05-10 11:29:16 CEST} changedby={mnhnam} properties={} id={}

@@ -1,0 +1,5 @@
+co: name={leaveType} description={} changed={2020-03-03 09:13:36 CET} changedby={lttung} visualorder={0} guid={170382A87446C852} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={1703D708AAECEF40} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-03-03 09:13:36 CET} validto={} changed={2020-03-03 09:13:36 CET} changedby={lttung} properties={} id={}
+val: guid={170382A874E9B455} datatype={} isdefault={true} langid={en} description={} validfrom={2020-02-12 07:51:16 CET} validto={} changed={2020-02-14 11:25:13 CET} changedby={ntminh01} properties={} id={}
+val: guid={1703D701549B5FF4} datatype={} isdefault={false} langid={de} description={} validfrom={2020-03-03 09:13:36 CET} validto={} changed={2020-03-03 09:13:36 CET} changedby={lttung} properties={} id={}
+val: guid={1703D708A427C249} datatype={} isdefault={false} langid={es} description={} validfrom={2020-03-03 09:13:36 CET} validto={} changed={2020-03-03 09:13:36 CET} changedby={lttung} properties={} id={}

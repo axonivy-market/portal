@@ -1,0 +1,5 @@
+co: name={showGlobalSearch} description={} changed={} changedby={} visualorder={} guid={} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={17328B51AD1A4F1B} datatype={} isdefault={false} langid={es} description={} validfrom={} validto={} changed={} changedby={} properties={} id={}
+val: guid={17328B51AB99D06E} datatype={} isdefault={false} langid={de} description={} validfrom={} validto={} changed={} changedby={} properties={} id={}
+val: guid={17328B51AC3416E2} datatype={} isdefault={true} langid={en} description={} validfrom={} validto={} changed={} changedby={} properties={} id={}
+val: guid={17328B51AC94B8F4} datatype={} isdefault={false} langid={fr} description={} validfrom={} validto={} changed={} changedby={} properties={} id={}
