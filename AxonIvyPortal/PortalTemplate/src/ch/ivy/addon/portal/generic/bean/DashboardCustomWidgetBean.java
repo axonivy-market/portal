@@ -24,7 +24,7 @@ public class DashboardCustomWidgetBean implements Serializable {
 
   private static final long serialVersionUID = 7637567927058415789L;
 
-  private static final String IS_DASHBOARD_PROCESS = "isDashboardProccess";
+  private static final String IS_DASHBOARD_PROCESS = "isDashboardProcess";
 
   private DashboardCustomWidgetType selectedType;
   private DashboardCustomWidgetType[] customWidgetTypes = DashboardCustomWidgetType.values();
