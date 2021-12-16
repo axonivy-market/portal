@@ -1,0 +1,5 @@
+co: name={PortalCategory} description={} changed={2019-02-11 03:13:29 CET} changedby={ntminh01} visualorder={0} guid={15F713D45E26B563} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15F713D45E8D8776} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-08-16 09:39:46 CEST} validto={} changed={2017-10-31 08:02:41 CET} changedby={chnam} properties={} id={}
+val: guid={15F713D45E4BAE8C} datatype={} isdefault={true} langid={en} description={} validfrom={2017-01-24 03:55:28 CET} validto={} changed={2017-10-31 08:02:41 CET} changedby={chnam} properties={} id={}
+val: guid={168DA54AD5059852} datatype={} isdefault={false} langid={es} description={} validfrom={2019-02-11 03:13:29 CET} validto={} changed={2019-02-11 03:13:29 CET} changedby={ntminh01} properties={} id={}
+val: guid={15FE174386AFE962} datatype={} isdefault={false} langid={de} description={} validfrom={2017-11-22 03:00:11 CET} validto={} changed={2017-11-22 03:00:11 CET} changedby={anhnguyenhoang} properties={} id={}

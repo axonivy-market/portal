@@ -1,0 +1,5 @@
+co: name={groupSelectionWatermark} description={} changed={2019-02-11 03:13:37 CET} changedby={ntminh01} visualorder={0} guid={15F713A7D5BC7836} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15F713A7D65CBCAA} datatype={} isdefault={false} langid={de} description={} validfrom={2015-04-10 11:56:07 CEST} validto={} changed={2017-10-31 07:59:39 CET} changedby={chnam} properties={} id={}
+val: guid={15F713A7D611D23E} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:06 CEST} validto={} changed={2017-10-31 07:59:39 CET} changedby={chnam} properties={} id={}
+val: guid={15F713A7D5C7D3F5} datatype={} isdefault={true} langid={en} description={} validfrom={2015-03-27 09:36:27 CET} validto={} changed={2017-10-31 07:59:39 CET} changedby={chnam} properties={} id={}
+val: guid={168DA54CCB67F679} datatype={} isdefault={false} langid={es} description={} validfrom={2019-02-11 03:13:37 CET} validto={} changed={2019-02-11 03:13:37 CET} changedby={ntminh01} properties={} id={}

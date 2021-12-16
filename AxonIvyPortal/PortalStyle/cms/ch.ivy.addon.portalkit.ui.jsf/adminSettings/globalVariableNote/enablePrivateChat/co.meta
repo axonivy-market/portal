@@ -1,0 +1,5 @@
+co: name={enablePrivateChat} description={} changed={2019-07-10 09:52:09 CEST} changedby={nqhoan} visualorder={0} guid={16B206561012C543} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={16B206561047464F} datatype={} isdefault={true} langid={en} description={} validfrom={2019-06-04 04:50:43 CEST} validto={} changed={2019-06-06 06:10:51 CEST} changedby={ldnam} properties={} id={}
+val: guid={16B206677B5ED7C5} datatype={} isdefault={false} langid={de} description={} validfrom={2019-07-10 09:52:09 CEST} validto={} changed={2019-07-10 09:52:09 CEST} changedby={nqhoan} properties={} id={}
+val: guid={16B206678F5E76D5} datatype={} isdefault={false} langid={fr} description={} validfrom={2019-07-10 09:52:09 CEST} validto={} changed={2019-07-10 09:52:09 CEST} changedby={nqhoan} properties={} id={}
+val: guid={16B206678ECB5C57} datatype={} isdefault={false} langid={es} description={} validfrom={2019-07-10 09:52:09 CEST} validto={} changed={2019-07-10 09:52:09 CEST} changedby={nqhoan} properties={} id={}

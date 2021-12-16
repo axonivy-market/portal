@@ -1,0 +1,1 @@
+Diese Einstellung wird für die Komponente SecurityMemberDisplayName verwendet. Wenn der SecurityMember eine Rolle ist, setzen Sie diese Einstellung auf true, um alle Benutzer dieser Rolle aufzulisten. Wenn diese Einstellung auf true gesetzt ist, wird neben dem Rollennamen eine Symbolinfo angezeigt.

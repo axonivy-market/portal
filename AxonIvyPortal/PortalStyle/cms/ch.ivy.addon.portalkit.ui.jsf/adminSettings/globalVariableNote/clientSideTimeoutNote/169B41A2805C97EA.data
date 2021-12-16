@@ -1,0 +1,1 @@
+Tiempo de espera del lado del cliente en minutos, debe ser mayor que 0 y menor que el tiempo de espera del lado del servidor (por ejemplo, 25 segundos). El valor por defecto es 0, lo que significa que se aplica el tiempo de espera por defecto del lado del cliente. El tiempo de espera por defecto del lado del cliente es el tiempo de espera del lado del servidor menos 3 minutos.

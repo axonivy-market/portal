@@ -1,0 +1,5 @@
+co: name={chartDeletionConfirmation} description={} changed={2019-02-11 03:13:33 CET} changedby={ntminh01} visualorder={0} guid={1606D8EA05BDAEE4} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={1606D8F20DE70593} datatype={} isdefault={false} langid={de} description={} validfrom={2018-01-11 11:19:13 CET} validto={} changed={2018-01-11 11:19:13 CET} changedby={ldnam} properties={} id={}
+val: guid={1606D8F224F31561} datatype={} isdefault={false} langid={fr} description={} validfrom={2018-01-11 11:19:13 CET} validto={} changed={2018-01-11 11:19:13 CET} changedby={ldnam} properties={} id={}
+val: guid={168DA54BDA4A890C} datatype={} isdefault={false} langid={es} description={} validfrom={2019-02-11 03:13:33 CET} validto={} changed={2019-02-11 03:13:33 CET} changedby={ntminh01} properties={} id={}
+val: guid={1606D8EA05DA170E} datatype={} isdefault={true} langid={en} description={} validfrom={2017-12-19 07:55:51 CET} validto={} changed={2017-12-19 07:56:25 CET} changedby={mnhnam} properties={} id={}

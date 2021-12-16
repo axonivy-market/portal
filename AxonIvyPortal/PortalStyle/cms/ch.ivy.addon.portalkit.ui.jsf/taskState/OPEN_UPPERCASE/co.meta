@@ -1,0 +1,5 @@
+co: name={OPEN_UPPERCASE} description={} changed={2020-06-16 06:41:52 CEST} changedby={mnhnam} visualorder={0} guid={172BB6A3AFC1F268} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={172BB6E68D5949AD} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-06-16 06:38:14 CEST} validto={} changed={2020-06-16 06:41:15 CEST} changedby={mnhnam} properties={} id={}
+val: guid={172BB6EFBA110531} datatype={} isdefault={false} langid={de} description={} validfrom={2020-06-16 06:41:24 CEST} validto={} changed={2020-06-16 06:41:52 CEST} changedby={mnhnam} properties={} id={}
+val: guid={172BB6A3B1BAA202} datatype={} isdefault={true} langid={en} description={} validfrom={2020-06-16 06:36:40 CEST} validto={} changed={2020-06-16 06:36:40 CEST} changedby={mnhnam} properties={} id={}
+val: guid={172BB6EFD4491546} datatype={} isdefault={false} langid={es} description={} validfrom={2020-06-16 06:41:32 CEST} validto={} changed={2020-06-16 06:41:52 CEST} changedby={mnhnam} properties={} id={}

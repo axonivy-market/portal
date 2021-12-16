@@ -1,0 +1,5 @@
+co: name={deputies} description={} changed={2021-05-04 04:20:47 CEST} changedby={phhung} visualorder={0} guid={15F713A5519B70DC} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15F713A551CE6515} datatype={} isdefault={true} langid={en} description={} validfrom={2015-03-02 05:30:52 CET} validto={} changed={2021-04-14 12:55:48 CEST} changedby={vtlong} properties={} id={}
+val: guid={15F713A5528A1F45} datatype={} isdefault={false} langid={fr} description={} validfrom={2021-05-04 04:20:47 CEST} validto={} changed={2021-05-04 04:20:47 CEST} changedby={phhung} properties={} id={}
+val: guid={15F713A55225E44F} datatype={} isdefault={false} langid={de} description={} validfrom={2021-05-04 04:20:47 CEST} validto={} changed={2021-05-04 04:20:47 CEST} changedby={phhung} properties={} id={}
+val: guid={168DA54B2409E20B} datatype={} isdefault={false} langid={es} description={} validfrom={2021-05-04 04:20:47 CEST} validto={} changed={2021-05-04 04:20:47 CEST} changedby={phhung} properties={} id={}

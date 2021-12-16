@@ -1,0 +1,5 @@
+co: name={hideChangePasswordButtonNote} description={} changed={2021-06-11 11:56:45 CEST} changedby={vtlong} visualorder={0} guid={163FC6FBDC1D1527} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={163FC6FBDC519BB5} datatype={} isdefault={true} langid={en} description={} validfrom={2018-06-14 05:56:11 CEST} validto={} changed={2018-06-14 06:24:34 CEST} changedby={tdnguyen} properties={} id={}
+val: guid={169B41A2833FAA04} datatype={} isdefault={false} langid={es} description={} validfrom={2019-03-25 10:06:46 CET} validto={} changed={2019-03-25 10:06:46 CET} changedby={lttung} properties={} id={}
+val: guid={163FC8A5065FCC1C} datatype={} isdefault={false} langid={de} description={} validfrom={2021-06-11 11:56:45 CEST} validto={} changed={2021-06-11 11:56:45 CEST} changedby={vtlong} properties={} id={}
+val: guid={163FC8A518E1395A} datatype={} isdefault={false} langid={fr} description={} validfrom={2018-08-27 11:51:11 CEST} validto={} changed={2018-08-27 11:51:11 CEST} changedby={chnam} properties={} id={}

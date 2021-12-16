@@ -1,0 +1,5 @@
+co: name={DefaultTemplateDialogHeader} description={} changed={2019-03-25 10:06:46 CET} changedby={lttung} visualorder={0} guid={1633EE08016E3DFF} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={169B41A258EE2970} datatype={} isdefault={false} langid={es} description={} validfrom={2019-03-25 10:06:46 CET} validto={} changed={2019-03-25 10:06:46 CET} changedby={lttung} properties={} id={}
+val: guid={1633EE080225977E} datatype={} isdefault={true} langid={en} description={} validfrom={2018-05-08 10:31:30 CEST} validto={} changed={2018-05-08 10:31:30 CEST} changedby={mnhnam} properties={} id={}
+val: guid={1633EE0D1747484D} datatype={} isdefault={false} langid={de} description={} validfrom={2018-05-24 10:26:49 CEST} validto={} changed={2018-05-24 10:26:49 CEST} changedby={lttung} properties={} id={}
+val: guid={1633EE0D3054A2C4} datatype={} isdefault={false} langid={fr} description={} validfrom={2018-05-24 10:26:49 CEST} validto={} changed={2018-05-24 10:26:49 CEST} changedby={lttung} properties={} id={}

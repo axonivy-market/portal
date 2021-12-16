@@ -1,0 +1,5 @@
+co: name={SearchForFilter} description={} changed={} changedby={} visualorder={} guid={} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={17C919D99882FE4C} datatype={} isdefault={} langid={de} description={} validfrom={} validto={} changed={} changedby={} properties={} id={}
+val: guid={17C919C60774E230} datatype={} isdefault={} langid={en} description={} validfrom={} validto={} changed={} changedby={} properties={} id={}
+val: guid={17C919D99FB2E940} datatype={} isdefault={} langid={es} description={} validfrom={} validto={} changed={} changedby={} properties={} id={}
+val: guid={17C919D9A36C50E9} datatype={} isdefault={} langid={fr} description={} validfrom={} validto={} changed={} changedby={} properties={} id={}

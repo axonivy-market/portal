@@ -1,0 +1,5 @@
+co: name={WidgetNameColumn} description={} changed={} changedby={} visualorder={} guid={} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={17CBFF447811430B} datatype={} isdefault={} langid={de} description={} validfrom={} validto={} changed={} changedby={} properties={} id={}
+val: guid={17CBFF4477EA3244} datatype={} isdefault={} langid={fr} description={} validfrom={} validto={} changed={} changedby={} properties={} id={}
+val: guid={17CBFF44777CA4CB} datatype={} isdefault={} langid={en} description={} validfrom={} validto={} changed={} changedby={} properties={} id={}
+val: guid={17CBFF4477AA0123} datatype={} isdefault={} langid={es} description={} validfrom={} validto={} changed={} changedby={} properties={} id={}

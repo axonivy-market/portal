@@ -1,0 +1,3 @@
+co: name={numberOfDays} description={} changed={2015-04-22 10:45:56 CEST} changedby={ptanh} visualorder={0} guid={14CE04C1BF5F0B91} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={14CE04C1C096B4F8} datatype={} isdefault={true} langid={en} description={} validfrom={2015-04-22 10:25:48 CEST} validto={} changed={2015-04-22 10:45:56 CEST} changedby={ptanh} properties={} id={}
+val: guid={14CE04C1BFF447C5} datatype={} isdefault={false} langid={de} description={} validfrom={2015-04-22 10:26:22 CEST} validto={} changed={2015-04-22 10:45:56 CEST} changedby={ptanh} properties={} id={}
