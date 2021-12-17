@@ -1,0 +1,121 @@
+Categories:
+  AnnualLeave:
+    name: Congé annuel
+  LeaveRequest:
+    name: Demande de congé
+  OtherLeave:
+    Maternity:
+      name: Maternité
+    SickLeave:
+      Long:
+        name: Long
+      name: Maladie
+    name: Autres congés
+DefaultColumns:
+  ACTIVATOR: Responsable
+  CREATION_TIME: Créé
+  EXPIRY_TIME: Délai
+  ID: Id de tâche
+  NAME: Nom / Description
+  PRIORITY: Priorité
+  STATE: Etat
+  caseList:
+    CREATION_TIME: Créé
+    CREATOR: Créateur
+    FINISHED_TIME: Terminé
+    ID: Id du dossier
+    NAME: Nom / Description
+    OWNER: Propriétaire
+    STATE: Etat
+    customTimestampField1: Date d'expédition
+    customVarCharField1: Nom du client
+  customTimestampField1: Date d'expédition
+  customVarCharField5: Nom du client
+Dialogs:
+  Lists:
+    Completeness:
+      ADDITIONAL_IDENTIFICATION_NEEDED: Identification supplémentaire nécessaire
+      NO_INFORMATION: Aucune information disponible
+      PERSON_LEGITIMIZED: Personne légalisée
+      REQUEST_PROOF: Demander une preuve d'identité
+    ProcessState:
+      APPLICATION: Candidature
+      DONE: Terminé
+      IDENTITY_CHECK: Contrôle d'identité
+      INFORMATION: Informations
+      INQUIRY: Enquête
+      PROCESSING: Éditer
+      VERIFICATION: Vérification
+  ch:
+    ivyteam:
+      ivy:
+        project:
+          portal:
+            examples:
+              testdata:
+                LeaveRequestForm:
+                  Employee: Employé
+                  From: De
+                  IsRequired: Ce champ est obligatoire
+                  Representation: Représentation
+                  To: À l'adresse suivante
+  com.axonivy.portal.developerexamples:
+    LeaveRequestForm:
+      Employee: Employé
+      From: Tiré de
+      IsRequired: Ce champ est obligatoire
+      Representation: Représentation
+      To: 'À l''adresse suivante :'
+Labels:
+  address: Rue/No.
+  cancel: Annuler
+  caseId: Identification du cas
+  city: /Ville
+  date: Date
+  delete: Supprimer
+  email: Courriel
+  firstName: Nom
+  personalData: Données personnelles
+  phoneNumber: Numéro de téléphone
+  proceed: Poursuivre
+  reason: Motif
+  request: Demande
+  requestType: Type de demande
+  surName: Nom de famille
+  tableDelete: Supprimer
+  tableDownload: Télécharger
+  tableName: Nom
+  zip: Code postal
+Processes:
+  CategoriedLeaveRequest:
+    processStep: |-
+      #Création
+      Choisissez différents types de congés
+      Utilisez un sélecteur de date pour sélectionner les dates de congé
+      Sélectionnez un approbateur pour votre demande de congé
+      #Approbation
+      Ajouter un commentaire à la demande
+      Prenez une décision: l'approuver / Refuser
+      #Résumé
+      Le demandeur recevra un résumé de la demande
+      Connaître le résultat
+  CreateInvestment:
+    name: Réaliser un investissement
+  ProcessHistoryComponent:
+    AlphaCompany:
+      name: Tâche pour la société Alpha
+    ProcessHistoryOfAlphaCompany:
+      name: Voir l'historique de la société Alpha
+    ProcessHistoryOfAlphaCompanyInDialog:
+      name: Voir l'historique du processus Alpha en dialogue
+sortFields:
+  CREATION_TIME_ASC: Date de création (le plus ancien en premier)
+  CREATION_TIME_DESC: Date de création (le plus récent en premier)
+  EXPIRY_TIME_ASC: Expiration (le plus ancien en premier)
+  EXPIRY_TIME_DESC: Expiration (le plus récent en premier)
+  PRIORITY_ASC: Priorité (de haute à basse)
+  PRIORITY_DESC: Priorité (de basse à haute)
+  customTimestampField1_ASC: Date d'expédition (ancienne en premier)
+  customTimestampField1_DESC: Date d'expédition (récente en premier)
+  customVarCharField5_ASC: Nom du client (A -> Z)
+  customVarCharField5_DESC: Nom du client (Z -> A)
