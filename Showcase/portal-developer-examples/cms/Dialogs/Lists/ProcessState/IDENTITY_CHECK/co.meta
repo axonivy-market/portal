@@ -1,5 +1,0 @@
-co: name={IDENTITY_CHECK} description={} changed={2020-03-09 10:33:37 CET} changedby={nvthang01} visualorder={0} guid={16851852E8DAEA09} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={168519DE1D65E068} datatype={} isdefault={false} langid={de} description={} validfrom={2019-01-15 14:05:24 CET} validto={} changed={2019-01-15 14:05:28 CET} changedby={Oliver} properties={} id={}
-val: guid={170BEA48409BF774} datatype={} isdefault={false} langid={es} description={} validfrom={2020-03-09 10:33:37 CET} validto={} changed={2020-03-09 10:33:37 CET} changedby={nvthang01} properties={} id={}
-val: guid={16851852E925738E} datatype={} isdefault={true} langid={en} description={} validfrom={2019-01-15 13:38:29 CET} validto={} changed={2019-01-15 13:39:01 CET} changedby={Oliver} properties={} id={}
-val: guid={170BEA483FB573C2} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-03-09 10:33:37 CET} validto={} changed={2020-03-09 10:33:37 CET} changedby={nvthang01} properties={} id={}

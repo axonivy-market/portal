@@ -1,5 +1,0 @@
-co: name={SUNDAY} description={} changed={2019-03-25 10:06:46 CET} changedby={lttung} visualorder={0} guid={1679664E9E39AB85} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={169B41A27B11DF3D} datatype={} isdefault={false} langid={es} description={} validfrom={2019-03-25 10:06:46 CET} validto={} changed={2019-03-25 10:06:46 CET} changedby={lttung} properties={} id={}
-val: guid={1679664E9F225558} datatype={} isdefault={true} langid={en} description={} validfrom={2015-03-02 07:49:38 CET} validto={} changed={2018-12-10 05:34:15 CET} changedby={dhtlong} properties={} id={}
-val: guid={1679664E9FCDF5CF} datatype={} isdefault={false} langid={de} description={} validfrom={2015-04-10 10:19:14 CEST} validto={} changed={2018-12-10 05:34:15 CET} changedby={dhtlong} properties={} id={}
-val: guid={1679664E9E65B9F3} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:05 CEST} validto={} changed={2018-12-10 05:34:15 CET} changedby={dhtlong} properties={} id={}

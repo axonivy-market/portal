@@ -1,5 +1,0 @@
-co: name={relatedCases} description={} changed={2021-03-19 03:54:00 CET} changedby={phhung} visualorder={0} guid={1774CE1C3EBFEAE1} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={1774CE2261852565} datatype={} isdefault={false} langid={de} description={} validfrom={2021-03-19 03:54:00 CET} validto={} changed={2021-03-19 03:54:00 CET} changedby={phhung} properties={} id={}
-val: guid={1774CE1C3F919F86} datatype={} isdefault={true} langid={en} description={} validfrom={2021-01-29 07:43:20 CET} validto={} changed={2021-03-03 08:00:21 CET} changedby={chnam} properties={} id={}
-val: guid={1774CE226E03591E} datatype={} isdefault={false} langid={es} description={} validfrom={2021-03-19 03:54:00 CET} validto={} changed={2021-03-19 03:54:00 CET} changedby={phhung} properties={} id={}
-val: guid={1774CE22712D8BAF} datatype={} isdefault={false} langid={fr} description={} validfrom={2021-03-19 03:54:00 CET} validto={} changed={2021-03-19 03:54:00 CET} changedby={phhung} properties={} id={}

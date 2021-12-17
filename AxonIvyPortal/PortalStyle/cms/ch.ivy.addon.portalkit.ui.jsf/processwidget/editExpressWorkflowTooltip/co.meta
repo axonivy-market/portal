@@ -1,5 +1,0 @@
-co: name={editExpressWorkflowTooltip} description={} changed={2019-02-11 03:13:34 CET} changedby={ntminh01} visualorder={0} guid={15F713A788746AA8} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={15F713A788E66E11} datatype={} isdefault={true} langid={en} description={} validfrom={2017-10-06 11:33:11 CEST} validto={} changed={2017-10-31 07:59:38 CET} changedby={chnam} properties={} id={}
-val: guid={15F713A78899E48C} datatype={} isdefault={false} langid={de} description={} validfrom={2017-10-11 05:22:59 CEST} validto={} changed={2017-10-31 07:59:38 CET} changedby={chnam} properties={} id={}
-val: guid={15F713A7893ECB0D} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-10-11 05:22:56 CEST} validto={} changed={2017-10-31 07:59:38 CET} changedby={chnam} properties={} id={}
-val: guid={168DA54C218DE2ED} datatype={} isdefault={false} langid={es} description={} validfrom={2019-02-11 03:13:34 CET} validto={} changed={2019-02-11 03:13:34 CET} changedby={ntminh01} properties={} id={}

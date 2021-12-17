@@ -1,1 +1,0 @@
-Délai d'attente côté client en minutes, doit être supérieur à 0 et inférieur au délai d'attente côté serveur (par exemple 25 secondes). La valeur par défaut est 0, ce qui signifie que le délai d'attente côté client par défaut est appliqué. Le délai d'attente côté client par défaut est le délai d'attente côté serveur moins 3 minutes.

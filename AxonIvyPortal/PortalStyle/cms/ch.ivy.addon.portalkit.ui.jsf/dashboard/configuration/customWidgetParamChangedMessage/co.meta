@@ -1,5 +1,0 @@
-co: name={customWidgetParamChangedMessage} description={} changed={} changedby={} visualorder={} guid={} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={17D5A4F8176AEE25} datatype={} isdefault={} langid={fr} description={} validfrom={} validto={} changed={} changedby={} properties={} id={}
-val: guid={17D5A4F817F65C45} datatype={} isdefault={} langid={de} description={} validfrom={} validto={} changed={} changedby={} properties={} id={}
-val: guid={17D5A4F8184E1F90} datatype={} isdefault={} langid={es} description={} validfrom={} validto={} changed={} changedby={} properties={} id={}
-val: guid={17D5A4F816BC3E1B} datatype={} isdefault={} langid={en} description={} validfrom={} validto={} changed={} changedby={} properties={} id={}

@@ -1,5 +1,0 @@
-co: name={dateFormatConfiguration} description={} changed={2021-02-04 03:06:16 CET} changedby={nqhoan} visualorder={0} guid={177385257AB9DF58} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={177385257C73CD70} datatype={} isdefault={false} langid={de} description={} validfrom={2021-02-04 03:06:16 CET} validto={} changed={2021-02-04 03:06:16 CET} changedby={nqhoan} properties={} id={}
-val: guid={177385257CF5741A} datatype={} isdefault={true} langid={en} description={} validfrom={2016-12-21 15:21:02 CET} validto={} changed={2021-01-25 07:56:10 CET} changedby={phhung} properties={} id={}
-val: guid={177385257B0A38AA} datatype={} isdefault={false} langid={es} description={} validfrom={2021-02-04 03:06:16 CET} validto={} changed={2021-02-04 03:06:16 CET} changedby={nqhoan} properties={} id={}
-val: guid={177385257BB88096} datatype={} isdefault={false} langid={fr} description={} validfrom={2021-02-04 03:06:16 CET} validto={} changed={2021-02-04 03:06:16 CET} changedby={nqhoan} properties={} id={}

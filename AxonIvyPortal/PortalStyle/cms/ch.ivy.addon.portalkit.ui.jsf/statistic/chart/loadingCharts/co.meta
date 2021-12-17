@@ -1,5 +1,0 @@
-co: name={loadingCharts} description={} changed={2019-03-25 10:06:47 CET} changedby={lttung} visualorder={0} guid={1690027802D4836F} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={16900278042D1AEB} datatype={} isdefault={true} langid={en} description={} validfrom={2019-02-18 11:29:42 CET} validto={} changed={2019-02-18 11:30:45 CET} changedby={tdnguyen} properties={} id={}
-val: guid={169002875015DC06} datatype={} isdefault={false} langid={de} description={} validfrom={2019-02-18 11:30:37 CET} validto={} changed={2019-02-18 11:30:45 CET} changedby={tdnguyen} properties={} id={}
-val: guid={16900287616403DC} datatype={} isdefault={false} langid={fr} description={} validfrom={2019-02-18 11:30:34 CET} validto={} changed={2019-02-18 11:30:45 CET} changedby={tdnguyen} properties={} id={}
-val: guid={1690DD6B6E9C206F} datatype={} isdefault={false} langid={es} description={} validfrom={2019-03-25 10:06:47 CET} validto={} changed={2019-03-25 10:06:47 CET} changedby={lttung} properties={} id={}

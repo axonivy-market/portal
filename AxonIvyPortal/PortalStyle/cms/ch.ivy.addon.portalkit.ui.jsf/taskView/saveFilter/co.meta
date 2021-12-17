@@ -1,5 +1,0 @@
-co: name={saveFilter} description={} changed={2019-02-11 03:13:38 CET} changedby={ntminh01} visualorder={0} guid={15FBF0FCBF79B10A} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={15FBF0FCC0126846} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-11-22 03:00:16 CET} validto={} changed={2017-11-22 03:00:16 CET} changedby={anhnguyenhoang} properties={} id={}
-val: guid={15FBF0FCC0841435} datatype={} isdefault={true} langid={en} description={} validfrom={2017-11-01 04:01:16 CET} validto={} changed={2017-11-15 10:43:24 CET} changedby={chnam} properties={} id={}
-val: guid={168DA54D136B55D3} datatype={} isdefault={false} langid={es} description={} validfrom={2019-02-11 03:13:38 CET} validto={} changed={2019-02-11 03:13:38 CET} changedby={ntminh01} properties={} id={}
-val: guid={15FBF0FCBFBB697B} datatype={} isdefault={false} langid={de} description={} validfrom={2017-11-22 03:00:16 CET} validto={} changed={2017-11-22 03:00:16 CET} changedby={anhnguyenhoang} properties={} id={}
