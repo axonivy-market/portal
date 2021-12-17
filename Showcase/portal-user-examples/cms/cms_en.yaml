@@ -1,0 +1,132 @@
+Dialog:
+  Common:
+    approve: Approve
+    endPageButton: Go to case detail
+    endPageMessage: Well Done! You have finalized your process.
+    finish: Finish
+    reject: Reject
+    submit: Submit
+Enums:
+  LeaveType:
+    ANNUAL_LEAVE: Annual Leave
+    MATERNITY_LEAVE: Maternity Leave
+    SICK_LEAVE: Sick Leave
+Labels:
+  CaseMap:
+    Credit:
+      address: Address
+      amount: Amount (SFr.)
+      amountOfOtherCredits: Amount of other open credits (SFr.)
+      approvalAmount: Amount
+      approvalReason: Reason
+      birthDate: Birthdate
+      collectedReason: Why do you need this credit?
+      country: Country
+      credit: Credit
+      creditRequest: Credit Request
+      date: Date
+      decision: Decision
+      externalCreditComment: External Credit Comment
+      female: Female
+      firstName: First name
+      gender: Gender
+      internalCreditComment: Internal Credit Comment
+      lastName: Last Name
+      male: Male
+      otherCredits: Other Credits
+      person: Person
+      rejectedReason: Reject Reason
+      request: Request
+      salary: Yearly salary
+      submitRequest: Submit Request
+      verifierComment: Verifier Comment
+      verifierSubmit: Verifier Submit
+  LeaveRequest:
+    LeaveSteps:
+      approval: Approval
+      approvalResult: Approval Result
+      creation: Create leave request
+    approvalResultTaskIntro: Below is summary of your leave request and feedback from approver.
+    approvalTaskIntro: 'There is leave request need your approval, detail is below:'
+    approver: Approver
+    approverComment: Approver comment
+    from: From
+    leaveType: Leave type
+    requester: Requester
+    requesterComment: Requester comment
+    submitLeaveRequest: Submit leave request
+    to: To
+Processes:
+  CaseMap:
+    ApprovalLevel12:
+      description1: 'Approve the lending request '
+      description2: "<P>\nTake a decision: \n</P>\n<P>\n- Approve it \n</P>\n<P>\n- Reject it\n</P>\n"
+      description3: In this example, 2 level approvals are needed
+    CheckCompanyRegisterDescription:
+      description1: The process simulates an external company register check
+      description2: Process continues with the next step
+    CollectPersonDataDescription:
+      description1: The process simulates a database connection and load data from “John Doe”
+      description2: You can check and edit this data
+      description3: Mandatory fields are validated
+    ContractCreation:
+      description1: Create the contract and attach it to the process
+      description2: 'Add a comment to document your work '
+    ExternalSolvencyServiceDescription:
+      description1: Simulates an external solvency service task
+    InternalSolvencyCheckDescription:
+      description1: Get the data from the process to realize a solvency check (outside the system)
+      description2: "<P>\r\nYou can start the side step “External solvency service” clicking on this icon: \r<i class=\"fa fa-align-justify\" ></i>\n</P>\r\n\n"
+    Stage:
+      approval: Approval
+      creditRating: Credit rating
+      identification: Identification
+    VerifyPersonalDataDescription:
+      description1: You can easily verify the data from step 1
+      description2: Add a comment as result of the verification
+    abortRequest: Abort Request
+    approveLevel1: Approve Level 1
+    approveLevel2: Approve Level 2
+    availableSideStep: "<P>\n<B>Side steps are: </B>\n</P>\n<P>\n- Optional steps \n</P>\n<P>\n- Only part of the main path if needed \n</P>\n"
+    checkCompanyRegister: Check Company Register
+    collectPersonalData: Collect Personal Data
+    createContract: Create Contract
+    description: This is a short description what you can expect behind this “Lending” example, implemented with a Case Map. Please click the button below for further information.
+    externalSolvencyCheck: External Solvency Check
+    internalSolvencyCheck: 'Internal Solvency Check '
+    name: Lending (Case Map)
+    resumeRequest: Resume Request
+    sideStep: Available side steps
+    verifyPersonalData: Verify Personal Data
+  ContractNegotiation:
+    name: Contract negotiation
+  LeaveRequest:
+    Approval:
+      description1: Add a comment to the request
+      description2: "<P>\nTake a decision:\n</P>\n<P>\n&nbsp;- Approve it \n</P>\n<P>\n- Reject it\n</P>\n"
+      name: Approval
+    Creation:
+      description1: Choose different leave types
+      description2: Use a date picker to select leave dates
+      description3: Select an approver for your leave request
+      name: Creation
+    Summary:
+      description1: Requester will get a summary of the request
+      description2: Acknoledge the result
+      name: Summary
+    approvalTask: Your leave request is approved
+    approvalTaskName: Approval for leave request of {0}
+    createLeaveRequest: 'Create leave request for: {0}'
+    createNewLeaveRequest: 'System task: Start create new leave request'
+    description: This is a short description what you can expect behind this “Leave Request” example. Please click the button below for further information.
+    leaveRequest: Leave Request
+    name: Leave Request
+    rejectedTask: Your leave request is rejected
+  MarketingCampaign:
+    name: Marketing campaign coordination
+  Procurement:
+    name: Procurement
+  UserExampleGuide:
+    comingSoon: Coming soon…
+    description: 'Welcome! In this User Example Guide you will find some demo processes available in the Axon Ivy Portal. Just click on the corresponding link below to get more information. '
+    name: User example guide
