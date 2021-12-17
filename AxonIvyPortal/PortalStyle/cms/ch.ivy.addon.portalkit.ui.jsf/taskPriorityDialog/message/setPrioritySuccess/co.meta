@@ -1,5 +1,0 @@
-co: name={setPrioritySuccess} description={} changed={2019-02-11 03:13:37 CET} changedby={ntminh01} visualorder={0} guid={15F713A86CFC8B20} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={168DA54CFB87D835} datatype={} isdefault={false} langid={es} description={} validfrom={2019-02-11 03:13:37 CET} validto={} changed={2019-02-11 03:13:37 CET} changedby={ntminh01} properties={} id={}
-val: guid={15F713A86D6E46B9} datatype={} isdefault={true} langid={en} description={} validfrom={2015-03-30 13:02:46 CEST} validto={} changed={2017-10-31 07:59:41 CET} changedby={chnam} properties={} id={}
-val: guid={15F713A86DCB8462} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:07 CEST} validto={} changed={2017-10-31 07:59:41 CET} changedby={chnam} properties={} id={}
-val: guid={15F713A86D17AB04} datatype={} isdefault={false} langid={de} description={} validfrom={2016-12-21 15:21:11 CET} validto={} changed={2017-10-31 07:59:41 CET} changedby={chnam} properties={} id={}

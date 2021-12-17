@@ -1,5 +1,0 @@
-co: name={escalationActivatorHeader} description={} changed={2021-05-04 04:20:49 CEST} changedby={phhung} visualorder={0} guid={178E85275422D1D6} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={178E852E753D634B} datatype={} isdefault={false} langid={de} description={} validfrom={2021-05-04 04:20:49 CEST} validto={} changed={2021-05-04 04:20:49 CEST} changedby={phhung} properties={} id={}
-val: guid={178E852E7D12A804} datatype={} isdefault={false} langid={es} description={} validfrom={2021-05-04 04:20:49 CEST} validto={} changed={2021-05-04 04:20:49 CEST} changedby={phhung} properties={} id={}
-val: guid={178E852E80CA8611} datatype={} isdefault={false} langid={fr} description={} validfrom={2021-05-04 04:20:49 CEST} validto={} changed={2021-05-04 04:20:49 CEST} changedby={phhung} properties={} id={}
-val: guid={178E85275439ABB5} datatype={} isdefault={true} langid={en} description={} validfrom={2021-04-19 06:10:06 CEST} validto={} changed={2021-04-27 09:15:13 CEST} changedby={nqhoan} properties={} id={}

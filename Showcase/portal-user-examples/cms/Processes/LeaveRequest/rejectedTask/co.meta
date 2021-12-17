@@ -1,5 +1,0 @@
-co: name={rejectedTask} description={} changed={2020-03-03 09:13:37 CET} changedby={lttung} visualorder={0} guid={1703E52CA5EB18A5} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={1703E52CA6D77502} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-03-03 09:13:37 CET} validto={} changed={2020-03-03 09:13:37 CET} changedby={lttung} properties={} id={}
-val: guid={1703E52CA7951D2B} datatype={} isdefault={false} langid={de} description={} validfrom={2020-03-03 09:13:37 CET} validto={} changed={2020-03-03 09:13:37 CET} changedby={lttung} properties={} id={}
-val: guid={1703E52CA854EAF9} datatype={} isdefault={false} langid={es} description={} validfrom={2020-03-03 09:13:37 CET} validto={} changed={2020-03-03 09:13:37 CET} changedby={lttung} properties={} id={}
-val: guid={1703E52CA63AF12F} datatype={} isdefault={true} langid={en} description={} validfrom={2020-02-11 03:39:19 CET} validto={} changed={2020-02-13 12:33:52 CET} changedby={ntminh01} properties={} id={}

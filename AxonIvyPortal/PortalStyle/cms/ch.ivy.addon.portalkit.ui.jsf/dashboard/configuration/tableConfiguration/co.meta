@@ -1,5 +1,0 @@
-co: name={tableConfiguration} description={} changed={2021-07-23 12:13:02 CEST} changedby={nqhoan} visualorder={0} guid={178AA7F7A018AB70} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={178AA8188424CB93} datatype={} isdefault={false} langid={fr} description={} validfrom={2021-07-23 12:13:02 CEST} validto={} changed={2021-07-23 12:13:02 CEST} changedby={nqhoan} properties={} id={}
-val: guid={178AA81883CF5DC4} datatype={} isdefault={false} langid={es} description={} validfrom={2021-07-23 12:13:02 CEST} validto={} changed={2021-07-23 12:13:02 CEST} changedby={nqhoan} properties={} id={}
-val: guid={178AA7F7A046F28B} datatype={} isdefault={true} langid={en} description={} validfrom={2021-04-07 06:03:04 CEST} validto={} changed={2021-04-07 06:06:23 CEST} changedby={nqhoan} properties={} id={}
-val: guid={178AA81883598673} datatype={} isdefault={false} langid={de} description={} validfrom={2021-07-23 12:13:02 CEST} validto={} changed={2021-07-23 12:13:02 CEST} changedby={nqhoan} properties={} id={}
