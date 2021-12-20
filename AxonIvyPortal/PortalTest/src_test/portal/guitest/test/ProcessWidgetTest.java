@@ -126,12 +126,12 @@ public class ProcessWidgetTest extends BaseTest {
     homePage = new HomePage();
     processWidget = homePage.getProcessWidget();
     String alphaHistoryTask = "Alpha Company Task";
-    String betaHistoryTask = "Beta Company Task";
+    String axonIvyWebsite = "Axon.Ivy website";
     String viewAlphaHistory = "View Alpha Process History";
     String viewBetaHistory = "View Beta Process History";
     processWidget.clickSortDefaultProcessByName();
     assertEquals(alphaHistoryTask, processWidget.getProcessNameFromDefaultProcessList(0));
-    assertEquals(betaHistoryTask, processWidget.getProcessNameFromDefaultProcessList(1));
+    assertEquals(axonIvyWebsite, processWidget.getProcessNameFromDefaultProcessList(1));
     assertEquals(viewAlphaHistory, processWidget.getProcessNameFromDefaultProcessList(2));
     assertEquals(viewBetaHistory, processWidget.getProcessNameFromDefaultProcessList(3));
   }
