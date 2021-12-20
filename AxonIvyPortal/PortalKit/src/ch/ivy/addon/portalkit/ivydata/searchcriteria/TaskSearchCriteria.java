@@ -134,13 +134,13 @@ public class TaskSearchCriteria {
   }
   
   private TaskQuery queryForKeyword(String keyword) {
-    String containingKeyword = String.format("%%%s%%", keyword);
+    String containingKeyword = String.format("%%%s%%", keyword.trim());
     TaskQuery filterByKeywordQuery =
         TaskQuery.create().where().or().name().isLikeIgnoreCase(containingKeyword).or().description()
             .isLikeIgnoreCase(containingKeyword);
 
     try {
-        long idKeyword = Long.parseLong(keyword);
+        long idKeyword = Long.parseLong(keyword.trim());
         String containingIdKeyword = String.format("%%%d%%", idKeyword);
         filterByKeywordQuery.where().or().taskId().isLike(containingIdKeyword);
       } catch (NumberFormatException e) {
