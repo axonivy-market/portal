@@ -45,7 +45,7 @@ De0 f0 requestEnabled true #txt
 De0 f0 triggerEnabled false #txt
 De0 f0 callSignature investmentList(String,String,String) #txt
 De0 f0 startName 'Investment List (Example for Custom Widget on Dashboard)' #txt
-De0 f0 startCustomFields isDashboardProccess=true #txt
+De0 f0 startCustomFields isDashboardProcess=true #txt
 De0 f0 caseData businessCase.attach=true #txt
 De0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
