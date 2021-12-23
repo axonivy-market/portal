@@ -12,9 +12,14 @@ import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.ProcessEditWidgetNewDashBoardPage;
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.SelenideElement;
 
 @IvyWebTest(headless = false)
 public class NewDashboardProcessWidgetTest extends BaseTest {
+  private static final String CATEGORIED_LEAVE_REQUEST = "Categoried Leave Request";
+  private static final String DATA_TABLE = "DataTable";
+  private static final String SHOWCASE_DATA_TABLE = "Showcase Data Table";
   private NewDashboardPage newDashboardPage;
   private static final String IMAGE_URI = "PROCESSMODELING";
   private static final long DEFAULT_TIMEOUT = 45000;
@@ -32,7 +37,7 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
   public void testPreviewButtonImageProcess() {
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
-    editProcessWidgetConfiguration.previewImageModeProcess("Categoried Leave Request");
+    editProcessWidgetConfiguration.previewImageModeProcess(CATEGORIED_LEAVE_REQUEST);
     editProcessWidgetConfiguration.getImageModeProcessPreview().waitUntil(Condition.appear, DEFAULT_TIMEOUT);
     editProcessWidgetConfiguration.getStartButton().shouldBe(Condition.disabled);
     editProcessWidgetConfiguration.getDisabledMoreInformationLink().shouldBe(Condition.appear);
@@ -44,7 +49,7 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
   public void testChangeImageProcess() {
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
-    editProcessWidgetConfiguration.selectImageModeAndSaveWidget("Categoried Leave Request");
+    editProcessWidgetConfiguration.selectImageModeAndSaveWidget(CATEGORIED_LEAVE_REQUEST);
     checkStartButtonAndImageShown();
 
     editProcessWidgetConfiguration = newDashboardPage.editImageProcess();
@@ -63,7 +68,7 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
   public void testDeleteImageProcess() {
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
-    editProcessWidgetConfiguration.selectImageModeAndSaveWidget("Categoried Leave Request");
+    editProcessWidgetConfiguration.selectImageModeAndSaveWidget(CATEGORIED_LEAVE_REQUEST);
     checkStartButtonAndImageShown();
 
     newDashboardPage.deleteImageModeProcess();
@@ -74,7 +79,7 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
   public void testStartImageProcess() {
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
-    editProcessWidgetConfiguration.selectImageModeAndSaveWidget("Showcase Data Table");
+    editProcessWidgetConfiguration.selectImageModeAndSaveWidget(SHOWCASE_DATA_TABLE);
     newDashboardPage.getStartButton().shouldBe(Condition.disabled);
 
     newDashboardPage.switchToViewMode();
@@ -90,7 +95,7 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
   public void testMoreInfoLinkImageProcess() {
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
-    editProcessWidgetConfiguration.selectImageModeAndSaveWidget("Showcase Data Table");
+    editProcessWidgetConfiguration.selectImageModeAndSaveWidget(SHOWCASE_DATA_TABLE);
     newDashboardPage.getDisabledMoreInformationLink().shouldBe(Condition.appear);
 
     newDashboardPage.switchToViewMode();
@@ -107,7 +112,7 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
   public void testPreviewFullModeProcess() {
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
-    editProcessWidgetConfiguration.previewFullModeProcess("Categoried Leave Request");
+    editProcessWidgetConfiguration.previewFullModeProcess(CATEGORIED_LEAVE_REQUEST);
     editProcessWidgetConfiguration.getFullModeProcessPreview().waitUntil(Condition.appear, DEFAULT_TIMEOUT);
     editProcessWidgetConfiguration.getStartButton().shouldBe(Condition.disabled);
     editProcessWidgetConfiguration.getDisabledMoreInformationLink().shouldBe(Condition.appear);
@@ -117,7 +122,7 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
   public void testChangeFullModeProcess() {
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
-    editProcessWidgetConfiguration.selectFullModeProcessAndSaveWidget("Categoried Leave Request");
+    editProcessWidgetConfiguration.selectFullModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST);
     newDashboardPage.getStartButton().shouldBe(Condition.disabled);
     newDashboardPage.getDisabledMoreInformationLink().shouldBe(Condition.appear);
 
@@ -131,7 +136,7 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
   public void testDeleteFullModeProcess() {
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
-    editProcessWidgetConfiguration.selectFullModeProcessAndSaveWidget("Categoried Leave Request");
+    editProcessWidgetConfiguration.selectFullModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST);
     newDashboardPage.getStartButton().shouldBe(Condition.disabled);
     newDashboardPage.getDisabledMoreInformationLink().shouldBe(Condition.appear);
 
@@ -143,7 +148,7 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
   public void testStartFullModeProcess() {
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
-    editProcessWidgetConfiguration.selectFullModeProcessAndSaveWidget("Showcase Data Table");
+    editProcessWidgetConfiguration.selectFullModeProcessAndSaveWidget(SHOWCASE_DATA_TABLE);
     newDashboardPage.getStartButton().shouldBe(Condition.disabled);
 
     newDashboardPage.switchToViewMode();
@@ -157,7 +162,7 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
   public void testMoreInfoLinkFullModeProcess() {
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
-    editProcessWidgetConfiguration.selectFullModeProcessAndSaveWidget("Showcase Data Table");
+    editProcessWidgetConfiguration.selectFullModeProcessAndSaveWidget(SHOWCASE_DATA_TABLE);
     newDashboardPage.getDisabledMoreInformationLink().shouldBe(Condition.appear);
 
     newDashboardPage.switchToViewMode();
@@ -175,7 +180,7 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
 
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
-    editProcessWidgetConfiguration.previewCombinedModeProcess("Categoried Leave Request");
+    editProcessWidgetConfiguration.previewCombinedModeProcess(CATEGORIED_LEAVE_REQUEST);
     editProcessWidgetConfiguration.getCombinedModeProcessPreview().waitUntil(Condition.appear, DEFAULT_TIMEOUT);
     editProcessWidgetConfiguration.getStartButton().is(Condition.disabled);
 
@@ -200,7 +205,7 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
   public void testChangeCombinedModeProcess() {
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
-    editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget("Categoried Leave Request");
+    editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST);
     newDashboardPage.getStartButton().shouldBe(Condition.disabled);
 
     editProcessWidgetConfiguration = newDashboardPage.editCombinedModeProcess();
@@ -213,7 +218,7 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
   public void testDeleteCombinedModeProcess() {
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
-    editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget("Categoried Leave Request");
+    editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST);
     newDashboardPage.getStartButton().shouldBe(Condition.disabled);
 
     newDashboardPage.deleteCombinedModeProcess();
@@ -224,7 +229,7 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
   public void testStartCombinedModeProcess() {
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
-    editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget("Showcase Data Table");
+    editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(SHOWCASE_DATA_TABLE);
     newDashboardPage.getStartButton().shouldBe(Condition.disabled);
 
     newDashboardPage.switchToViewMode();
@@ -239,7 +244,7 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
   public void testStartCombinedModeProcessWhenExpanded() {
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
-    editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget("Showcase Data Table");
+    editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(SHOWCASE_DATA_TABLE);
     newDashboardPage.getStartButton().shouldBe(Condition.disabled);
 
     newDashboardPage.switchToViewMode();
@@ -257,7 +262,7 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
 
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
-    editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget("Categoried Leave Request");
+    editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST);
 
     newDashboardPage.switchToViewMode();
     newDashboardPage.getCombinedModeProcessFirstTaskStartAction().shouldBe(Condition.appear).click();
@@ -272,7 +277,7 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
 
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
-    editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget("Categoried Leave Request");
+    editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST);
 
     newDashboardPage.switchToViewMode();
     newDashboardPage.expandCombindedModeProcess();
@@ -288,7 +293,7 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
 
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
-    editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget("Categoried Leave Request");
+    editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST);
 
     newDashboardPage.switchToViewMode();
     newDashboardPage.getCombinedModeProcessFirstTaskName().shouldBe(Condition.appear).click();
@@ -303,7 +308,7 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
 
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
-    editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget("Categoried Leave Request");
+    editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST);
 
     newDashboardPage.switchToViewMode();
     newDashboardPage.expandCombindedModeProcess();
@@ -319,7 +324,7 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
 
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
-    editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget("Categoried Leave Request");
+    editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST);
 
     newDashboardPage.switchToViewMode();
     newDashboardPage.getCasesTab().shouldBe(Condition.appear).click();
@@ -335,7 +340,7 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
 
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
-    editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget("Categoried Leave Request");
+    editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST);
 
     newDashboardPage.switchToViewMode();
     newDashboardPage.expandCombindedModeProcess();
@@ -352,12 +357,55 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
 
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
-    editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget("Categoried Leave Request");
+    editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST);
 
     newDashboardPage.switchToViewMode();
     newDashboardPage.expandCombindedModeProcess();
     newDashboardPage.getCombinedModeProcessCollapseLink().click();
     newDashboardPage.getCombinedModeProcessExpandLink().waitUntil(Condition.appear, DEFAULT_TIMEOUT);
     newDashboardPage.getCombinedModeProcessCollapseLink().shouldBe(Condition.disappear);
+  }
+
+  // ===================================================================================
+  @Test
+  public void testPreviewCompactModeProcess() {
+    ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
+        newDashboardPage.editProcessWidgetConfiguration();
+    editProcessWidgetConfiguration.previewCompactModeProcess();
+    editProcessWidgetConfiguration.getCompactModeProcessPreview().waitUntil(Condition.appear, DEFAULT_TIMEOUT);
+    editProcessWidgetConfiguration.getCompactModeProcessDisabledFirstProcessItem().shouldBe(Condition.appear)
+        .shouldHave(Condition.cssValue("pointer-events", "none"));
+  }
+
+  @Test
+  public void testPreviewCompactModeProcessFilterCategory() {
+    ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
+        newDashboardPage.editProcessWidgetConfiguration();
+    editProcessWidgetConfiguration.previewCompactModeProcessFilterCategory(DATA_TABLE);
+    editProcessWidgetConfiguration.getCompactModeProcessPreview().waitUntil(Condition.appear, DEFAULT_TIMEOUT);
+    editProcessWidgetConfiguration.getCompactModeProcessDisabledFirstProcessItemName().shouldBe(Condition.appear)
+        .shouldHave(Condition.exactTextCaseSensitive(SHOWCASE_DATA_TABLE));
+  }
+
+  @Test
+  public void testPreviewCompactModeProcessFilterProcess() {
+    ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
+        newDashboardPage.editProcessWidgetConfiguration();
+    editProcessWidgetConfiguration.previewCompactModeProcessFilterProcess(SHOWCASE_DATA_TABLE);
+    editProcessWidgetConfiguration.getCompactModeProcessPreview().waitUntil(Condition.appear, DEFAULT_TIMEOUT);
+    editProcessWidgetConfiguration.getCompactModeProcessDisabledFirstProcessItemName().shouldBe(Condition.appear)
+        .shouldHave(Condition.exactTextCaseSensitive(SHOWCASE_DATA_TABLE));
+  }
+
+  @Test
+  public void testChangeCompactModeProcess() {
+    ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
+        newDashboardPage.editProcessWidgetConfiguration();
+    editProcessWidgetConfiguration.changeCompactModeProcessAndSaveWidget(DATA_TABLE, SHOWCASE_DATA_TABLE);
+
+    newDashboardPage.getAllWidgetHeaders().find(Condition.textCaseSensitive(SHOWCASE_DATA_TABLE))
+        .shouldBe(Condition.appear);
+    newDashboardPage.getCompactModeProcessDisabledFirstProcessItemName().waitUntil(Condition.appear, DEFAULT_TIMEOUT)
+        .shouldHave(Condition.exactTextCaseSensitive(SHOWCASE_DATA_TABLE));
   }
 }
