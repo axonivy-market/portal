@@ -4,6 +4,7 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 
 public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
@@ -16,7 +17,6 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
     selectImageMode();
     selectProcess(processName);
     clickSaveProcessWidget();
-    $("div[id='new-widget-configuration-dialog']").waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
   }
 
   private void selectProcess(String processName) {
@@ -26,7 +26,7 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   private void selectImageMode() {
-    $("div[id$=':process-display-mode']").waitUntil(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    getProcessDisplayMode().waitUntil(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
     $("li[data-label='Image mode']").click();
     $("span[id$=':selected-image-process']").waitUntil(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
   }
@@ -60,6 +60,7 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
 
   private void clickSaveProcessWidget() {
     $("button[id='widget-configuration-save-button']").click();
+    $("div[id='new-widget-configuration-dialog']").waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
   }
 
   // ========================================================================================
@@ -70,7 +71,7 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   private void selectFullMode() {
-    $("div[id$=':process-display-mode']").waitUntil(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition())
+    getProcessDisplayMode().waitUntil(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition())
         .click();
     $("li[data-label='Full mode']").click();
     $("span[id$=':selected-full-process']").waitUntil(Condition.appear, DEFAULT_TIMEOUT)
@@ -83,7 +84,7 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
     $("tr[data-item-label='" + processName + "']").click();
   }
 
-  private SelenideElement getPreviewButton() {
+  public SelenideElement getPreviewButton() {
     return $("button[id$='preview-button']");
   }
 
@@ -99,13 +100,11 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
     selectFullMode();
     selectFullProcess(processName);
     clickSaveProcessWidget();
-    $("div[id='new-widget-configuration-dialog']").waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
   }
 
   public void changeFullModeProcessAndSaveWidget(String newProcessName) {
     selectFullProcess(newProcessName);
     clickSaveProcessWidget();
-    $("div[id='new-widget-configuration-dialog']").waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
   }
 
   // ========================================================================================
@@ -116,7 +115,7 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   private void selectCombinedMode() {
-    $("div[id$=':process-display-mode']").waitUntil(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition())
+    getProcessDisplayMode().waitUntil(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition())
         .click();
     $("li[data-label='Combined mode']").click();
     $("span[id$=':selected-combined-process']").waitUntil(Condition.appear, DEFAULT_TIMEOUT)
@@ -165,12 +164,115 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
     selectCombinedMode();
     selectCombinedProcess(processName);
     clickSaveProcessWidget();
-    $("div[id='new-widget-configuration-dialog']").waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
   }
 
   public void changeCombinedModeProcessAndSaveWidget(String newProcessName) {
     selectCombinedProcess(newProcessName);
     clickSaveProcessWidget();
-    $("div[id='new-widget-configuration-dialog']").waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
+  }
+
+  // ========================================================================================
+  public void previewCompactModeProcess() {
+    selectCompactMode();
+    getPreviewButton().click();
+  }
+
+  private void selectCompactMode() {
+    getProcessDisplayMode().waitUntil(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition())
+        .click();
+    $("li[data-label='Combined mode']").click();
+    getProcessDisplayMode().click();
+    $("li[data-label='Compact mode']").click();
+    getCompactModeWidgetTitle().waitUntil(Condition.appear, DEFAULT_TIMEOUT);
+    getCompactModeProcessCategoryFilter().waitUntil(Condition.appear, DEFAULT_TIMEOUT);
+    getCompactModeProcessProcessFilter().waitUntil(Condition.appear, DEFAULT_TIMEOUT);
+  }
+
+  private SelenideElement getCompactModeWidgetTitle() {
+    return $("input[id$=':widget-title']");
+  }
+
+  private SelenideElement getProcessDisplayMode() {
+    return $("div[id$=':process-display-mode']");
+  }
+
+  public SelenideElement getCompactModeProcessPreviewLoading() {
+    return $(".widget-preview .widget-preview--compact span[id$=':loading']");
+  }
+
+  public SelenideElement getCompactModeProcessPreview() {
+    return $(".widget-preview .widget-preview--compact div[id$=':dashboard-processes-container']");
+  }
+
+  public SelenideElement getCompactModeProcessDisabledFirstProcessItem() {
+    return $(".widget-preview--compact span.ui-commandlink.process-item");
+  }
+
+  public SelenideElement getCompactModeProcessDisabledFirstProcessItemName() {
+    return $(".widget-preview--compact span.ui-commandlink.process-item span[id$=':process-name-process-item']");
+  }
+
+  public void previewCompactModeProcessFilterCategory(String category) {
+    selectCompactMode();
+    selectCompactModeCategory(category);
+    getPreviewButton().click();
+  }
+
+  private void selectCompactModeCategory(String category) {
+    getCompactModeProcessCategoryFilter().click();
+
+    ElementsCollection categories = getCompactModeProcessCategoryFilterPanel()
+        .waitUntil(Condition.appear, DEFAULT_TIMEOUT).$$(".ui-treenode-label");
+    categories.filter(Condition.exactTextCaseSensitive("All Categories")).first().click();
+    categories.filter(Condition.exactTextCaseSensitive(category)).first()
+        .waitUntil(Condition.not(Condition.cssClass("ui-state-highlight")), DEFAULT_TIMEOUT).click();
+
+    getFilterApplyButton().click();
+    getCompactModeProcessCategoryFilterPanel().waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
+  }
+
+  private SelenideElement getCompactModeProcessCategoryFilter() {
+    return $("input[id$=':widget-filter-category']");
+  }
+
+  private SelenideElement getCompactModeProcessCategoryFilterPanel() {
+    return $("span[id$=':compact-filter'] div[id$=':widget-filter-category-panel']");
+  }
+
+  private SelenideElement getFilterApplyButton() {
+    return $("button[id$=':update-command']");
+  }
+
+  public void previewCompactModeProcessFilterProcess(String processName) {
+    selectCompactMode();
+    selectCompactModeProcess(processName);
+    getPreviewButton().click();
+  }
+
+  private void selectCompactModeProcess(String processName) {
+    getCompactModeProcessProcessFilter().click();
+
+    getCompactModeProcessProcessFilterPanel().waitUntil(Condition.appear, DEFAULT_TIMEOUT)
+        .$$(".ui-selectcheckboxmenu-item label").filter(Condition.exactTextCaseSensitive(processName)).first().click();
+
+    getCompactModeProcessProcessFilterPanel().$(".ui-selectcheckboxmenu-close").click();
+    getCompactModeProcessCategoryFilterPanel().waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
+  }
+
+  private SelenideElement getCompactModeProcessProcessFilter() {
+    return $("div[id$=':processes-list']");
+  }
+
+  private SelenideElement getCompactModeProcessProcessFilterPanel() {
+    return $("div[id$=':processes-list_panel']");
+  }
+
+  public void changeCompactModeProcessAndSaveWidget(String category, String processName) {
+    selectCompactMode();
+    getCompactModeWidgetTitle().clear();
+    getCompactModeWidgetTitle().sendKeys(processName);
+    selectCompactModeCategory(category);
+    selectCompactModeProcess(processName);
+    clickSaveProcessWidget();
   }
 }
