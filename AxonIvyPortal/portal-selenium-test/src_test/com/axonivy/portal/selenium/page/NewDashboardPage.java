@@ -4,8 +4,10 @@ import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.disappears;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 
 public class NewDashboardPage extends TemplatePage {
@@ -182,5 +184,13 @@ public class NewDashboardPage extends TemplatePage {
   public SelenideElement getCombinedModeProcessFirstCaseName() {
     return $("div[id$=':dashboard-process-cases-container'] td.revelent-cases__name");
   }
+
   // ==================================
+  public ElementsCollection getAllWidgetHeaders() {
+    return $$("span[id$=':widget__header']");
+  }
+
+  public SelenideElement getCompactModeProcessDisabledFirstProcessItemName() {
+    return $(".compact-processes-container span.ui-commandlink.process-item span[id$=':process-name-process-item']");
+  }
 }
