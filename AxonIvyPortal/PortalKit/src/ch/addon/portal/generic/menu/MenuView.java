@@ -186,12 +186,6 @@ public class MenuView implements Serializable {
       case ABSENCES_MANAGEMENT:
         buildBreadCrumbForAbsences();
         break;
-      case EDIT_PRIVATE_DASHBOARD:
-        buildBreadCrumbForEditPrivateDashboard();
-        break;
-      case EDIT_PUBLIC_DASHBOARD:
-        buildBreadCrumbForEditPublicDashboard();
-        break;
       default:
         break;
     }
@@ -276,18 +270,6 @@ public class MenuView implements Serializable {
   private void buildBreadCrumbForExpressBusiness(ICase userCase) {
     setPortalHomeMenuToBreadcrumbModel();
     breadcrumbModel.getElements().add(buildExpressBusinessMenuItem(Long.toString(userCase.getId())));
-  }
-
-  private void buildBreadCrumbForEditPrivateDashboard() {
-    setPortalHomeMenuToBreadcrumbModel();
-    breadcrumbModel.getElements()
-        .add(buildGenericMenuItem("/ch.ivy.addon.portalkit.ui.jsf/dashboard/editPrivateDashboard"));
-  }
-
-  private void buildBreadCrumbForEditPublicDashboard() {
-    setPortalHomeMenuToBreadcrumbModel();
-    breadcrumbModel.getElements()
-        .add(buildGenericMenuItem("/ch.ivy.addon.portalkit.ui.jsf/dashboard/editPublicDashboard"));
   }
 
   private MenuItem buildPortalHomeMenuItem() {

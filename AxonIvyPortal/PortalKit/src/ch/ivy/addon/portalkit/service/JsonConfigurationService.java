@@ -68,11 +68,17 @@ abstract class JsonConfigurationService<T extends AbstractConfiguration> {
     boolean isExisted = findById(entity.getId()) != null;
     if (entity.getIsPublic()) {
       List<T> entities = getPublicConfig();
-      updateEntities(isExisted, entity, entities);
+      if (isExisted) {
+        entities.removeIf(e -> e.getId().equals(entity.getId()));
+      }
+      entities.add(entity);
       savePublicConfig(entities);
     } else {
       List<T> entities = getPrivateConfig();
-      updateEntities(isExisted, entity, entities);
+      if (isExisted) {
+        entities.removeIf(e -> e.getId().equals(entity.getId()));
+      }
+      entities.add(entity);
       savePrivateConfig(entities);
     }
     return entity;
@@ -117,18 +123,5 @@ abstract class JsonConfigurationService<T extends AbstractConfiguration> {
 
   protected IUser sessionUser() {
     return Ivy.session().getSessionUser();
-  }
-
-  private void updateEntities(boolean isExisted, T entity, List<T> entities) {
-    if (isExisted) {
-      for (T e : entities) {
-        if (e.getId().equals(entity.getId())) {
-          entities.set(entities.indexOf(e), entity);
-          break;
-        }
-      }
-    } else {
-      entities.add(entity);
-    }
   }
 }
