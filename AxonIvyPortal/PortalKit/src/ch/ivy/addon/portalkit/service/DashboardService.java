@@ -39,11 +39,6 @@ public class DashboardService extends JsonConfigurationService<Dashboard> {
     return getPublicConfig();
   }
 
-  public void saveDashboardForSessionUser(Dashboard dashboard) {
-    dashboard.setIsPublic(false);
-    this.save(dashboard);
-  }
-
   @Override
   public List<Dashboard> getPublicConfig() {
     String jsonValue = Ivy.var().get(getConfigKey());
