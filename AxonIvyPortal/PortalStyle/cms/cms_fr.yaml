@@ -659,6 +659,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     SearchForFilter: Search for filter
     WidgetFilterName: Nom du filtre du widget
     WidgetFilters: Filtres widgets
+    actionSelection: TODO Action selection
     addField: Ajouter un champ
     addWidget: Ajouter un widget
     availableFilters: Filtres disponibles
@@ -690,7 +691,16 @@ ch.ivy.addon.portalkit.ui.jsf:
     customFieldType: Type de champ personnalisé
     customWidget: Widget personnalisé
     customWidgetIntroduction: Ce widget peut afficher un processus Axon Ivy ou une page web externe.
+    dashboardManagement:
+      addDashboard: TODO Add dashboard
+      dashboardPermission: TODO Dashboard permission
+      dashboardTitle: Dashboard title
+      editDashboard: TODO Edit dashboard
+      manageDashboard: TODO Manage dashboard
+      removeDashboardHeader: TODO Remove the "{0}" dashboard
     deleteWidget: Supprimer le widget
+    editPrivateDashboard: TODO Edit private dashboard
+    editPublicDashboard: TODO Edit public dashboard
     editWidget: Modifier le widget
     existingField: Le champ {0} a déjà été créé
     expiryFrom: Expiration du
@@ -699,6 +709,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     fieldIsAdded: Le champ {0} est ajouté
     loading: Chargement...
     noCategory: Il n'y a pas de catégories
+    noDashboard: TODO There are no dashboards. Add at least one dashboard, then add widgets.
     noPermission: Vous n'avez pas les permissions pour voir les tableaux de bord.
     noWidget: Il n'y a pas de widgets fournis pour ce tableau de bord.
     numberPattern: Modèle de numéro
@@ -717,6 +728,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     restoreDefaultHeader: Restaurer les widgets par défaut
     restoreDefaultMessage: Si vous procédez ainsi, vous perdrez tous les widgets créés par vous-même. Les paramètres standard seront appliqués.
     select: Sélectionnez
+    selectEditAction: TODO Which action do you want to procced?
     showFullWidget: Afficher le widget complet
     startATask: Commencer la tâche
     switchToViewMode: Mode d'affichage

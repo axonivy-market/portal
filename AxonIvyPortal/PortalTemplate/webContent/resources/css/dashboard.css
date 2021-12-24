@@ -162,6 +162,11 @@
   margin-right: 15px;
 }
 
+body .ui-dialog .ui-dialog-footer .ui-button.dashboard__edit-global-dashboard {
+  margin-left: 15px;
+  margin-right: 0;
+}
+
 @media screen and (max-width: 991px) {
   .dashboard__restore-button {
     margin-right: 0;
@@ -396,11 +401,11 @@ body .ui-calendar.task-configuration__calendar .ui-datepicker-trigger {
   margin-bottom: 10px;
 }
 
-.field-add-fieldset__label {
+.field-add-fieldset__label, .manage-dashboard__label {
   text-align: right;
 }
 
-.field-add-fieldset__input {
+.field-add-fieldset__input, .manage-dashboard__input, .manage-dashboard__input .ui-autocomplete-multiple-container {
   width: 100%;
 }
 
@@ -408,7 +413,7 @@ body .ui-calendar.task-configuration__calendar .ui-datepicker-trigger {
   padding: 0;
 }
 
-.field-add-fieldset__autocomplete-input {
+.field-add-fieldset__autocomplete-input, .manage-dashboard__autocomplete-input {
   width: 100%;
 }
 
