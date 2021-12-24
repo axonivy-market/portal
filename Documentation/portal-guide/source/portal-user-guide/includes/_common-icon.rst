@@ -42,3 +42,5 @@
    :width: 15px 
 .. |si-notes-quill| image:: ../includes/images/si-notes-quill.png
    :width: 15px 
+.. |move-expand-vertical| image:: ../includes/images/move-expand-vertical.svg
+   :width: 15px 
