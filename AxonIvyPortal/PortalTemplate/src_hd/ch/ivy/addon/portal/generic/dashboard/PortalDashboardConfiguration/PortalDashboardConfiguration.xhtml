@@ -6,7 +6,7 @@
   <ui:composition template="/layouts/restricted/DashboardTemplate.xhtml">
 
     <ui:param name="managedBean" value="#{dashboardConfigurationBean}" />
-    <ui:param name="viewName" value="#{dashboardConfigurationBean.getBreadcrumb()}" />
+
     <ui:define name="title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/pageTitle')}</ui:define>
 
     <ui:define name="headerAction">
@@ -23,12 +23,8 @@
         onclick="PF('restore-confirm-dialog').show()" />
 
       <p:commandButton id="add-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/addWidget')}"
-        type="button" icon="si si-add" disabled="#{dashboardConfigurationBean.selectedDashboard == null}"
-        onclick="PF('new-widget-dialog').show()" styleClass="u-hidden-md-down u-mar-right-15" />
-      <p:commandButton id="manage-dashboard-button"
-        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/manageDashboard')}"
-        icon="si si-layers-grid-settings" actionListener="#{dashboardConfigurationBean.onManageDashboard()}"
-        oncomplete="PF('manage-dashboard-dialog').show()" update="manage-dashboard-dialog" styleClass="u-hidden-md-down" />
+        type="button" icon="si si-add"
+        onclick="PF('new-widget-dialog').show()" styleClass="u-hidden-md-down" />
     </ui:define>
 
     <ui:define name="additionalRemoteCommand">
@@ -42,7 +38,6 @@
 
     <ui:define name="dashboardContent">
       <ui:include src="PortalDashboardAddNewWidgets.xhtml" />
-      <ui:include src="PortalDashboardManageDashboards.xhtml" />
 
       <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
         <ui:param name="id" value="restore-confirm-dialog" />
@@ -58,9 +53,8 @@
             styleClass="u-mar-right-15" />
           <p:commandButton id="reset-dashboard-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/restore')}"
             actionListener="#{dashboardConfigurationBean.restore()}"
-            update="grid-stack dashboard-title-container dashboard-title-dropdown-container dashboard-header-action"
             icon="#{visibilityBean.generateButtonIcon('si si-button-refresh-arrows')}"
-            oncomplete="PF('restore-confirm-dialog').hide(); loadGrid();" />
+            oncomplete="PF('restore-confirm-dialog').hide(); updateDashboardWidget();"/>
         </ui:define>
       </ui:decorate>
 

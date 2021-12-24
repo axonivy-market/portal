@@ -5,12 +5,10 @@ import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import ch.ivy.addon.portalkit.configuration.AbstractConfiguration;
 import ch.ivy.addon.portalkit.constant.DashboardConfigurationPrefix;
-import ch.ivy.addon.portalkit.dto.SecurityMemberDTO;
 import ch.ivyteam.ivy.environment.Ivy;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
@@ -20,22 +18,8 @@ public class Dashboard extends AbstractConfiguration implements Serializable {
   private String title;
   private List<DashboardWidget> widgets;
   private List<String> permissions;
-  @JsonIgnore
-  private List<SecurityMemberDTO> permissionDTOs;
-  @JsonIgnore
-  private String displayedPermission;
 
   public Dashboard() {}
-
-  public Dashboard(Dashboard dashboard) {
-    setId(dashboard.getId());
-    setIsPublic(dashboard.getIsPublic());
-    title = dashboard.title;
-    widgets = dashboard.widgets;
-    permissions = dashboard.permissions;
-    permissionDTOs = dashboard.permissionDTOs;
-    displayedPermission = dashboard.displayedPermission;
-  }
 
   public Dashboard(String id, String title, List<DashboardWidget> widgets) {
     this.setId(id);
@@ -68,23 +52,6 @@ public class Dashboard extends AbstractConfiguration implements Serializable {
   
   public void setPermissions(List<String> permissions) {
     this.permissions = permissions;
-  }
-
-
-  public List<SecurityMemberDTO> getPermissionDTOs() {
-    return permissionDTOs;
-  }
-
-  public void setPermissionDTOs(List<SecurityMemberDTO> permissionDTOs) {
-    this.permissionDTOs = permissionDTOs;
-  }
-
-  public String getDisplayedPermission() {
-    return displayedPermission;
-  }
-
-  public void setDisplayedPermission(String displayedPermission) {
-    this.displayedPermission = displayedPermission;
   }
 
   @Override
