@@ -5,6 +5,7 @@ import static com.codeborne.selenide.Selenide.$$;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.By;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
@@ -17,6 +18,7 @@ import com.codeborne.selenide.SelenideElement;
 
 @IvyWebTest(headless = false)
 public class NewDashboardProcessWidgetTest extends BaseTest {
+  private static final String START_DATA_TABLE_SHOWCASE = "Start DataTable Showcase";
   private static final String CATEGORIED_LEAVE_REQUEST = "Categoried Leave Request";
   private static final String DATA_TABLE = "DataTable";
   private static final String SHOWCASE_DATA_TABLE = "Showcase Data Table";
@@ -88,7 +90,7 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
 
     // make sure process is started
     $("span[id='title']").waitUntil(Condition.appear, DEFAULT_TIMEOUT)
-        .shouldHave(Condition.attribute("title", "Start DataTable Showcase"));
+        .shouldHave(Condition.attribute("title", START_DATA_TABLE_SHOWCASE));
   }
 
   @Test
@@ -155,7 +157,7 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
     newDashboardPage.getStartButton().shouldBe(Condition.enabled);
     newDashboardPage.startProcess();
     $("span[id='title']").waitUntil(Condition.appear, DEFAULT_TIMEOUT)
-        .shouldHave(Condition.attribute("title", "Start DataTable Showcase"));
+        .shouldHave(Condition.attribute("title", START_DATA_TABLE_SHOWCASE));
   }
 
   @Test
@@ -237,7 +239,7 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
     newDashboardPage.startProcess();
 
     $("span[id='title']").waitUntil(Condition.appear, DEFAULT_TIMEOUT)
-        .shouldHave(Condition.attribute("title", "Start DataTable Showcase"));
+        .shouldHave(Condition.attribute("title", START_DATA_TABLE_SHOWCASE));
   }
 
   @Test
@@ -253,7 +255,7 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
     newDashboardPage.startProcess();
 
     $("span[id='title']").waitUntil(Condition.appear, DEFAULT_TIMEOUT)
-        .shouldHave(Condition.attribute("title", "Start DataTable Showcase"));
+        .shouldHave(Condition.attribute("title", START_DATA_TABLE_SHOWCASE));
   }
 
   @Test
@@ -407,5 +409,38 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
         .shouldBe(Condition.appear);
     newDashboardPage.getCompactModeProcessDisabledFirstProcessItemName().waitUntil(Condition.appear, DEFAULT_TIMEOUT)
         .shouldHave(Condition.exactTextCaseSensitive(SHOWCASE_DATA_TABLE));
+  }
+
+  @Test
+  public void testDeleteCompactModeProcess() {
+    newDashboardPage.switchToEditMode();
+    newDashboardPage.deleteCompactModeProcess();
+    newDashboardPage.getCompactModeProcessContainer().shouldNotBe(Condition.exist);
+  }
+
+  @Test
+  public void testStartCompactModeProcess() {
+    newDashboardPage.getCompactModeProcessProcessItemName(SHOWCASE_DATA_TABLE).waitUntil(Condition.appear, DEFAULT_TIMEOUT)
+        .click();
+    $("span[id='title']").waitUntil(Condition.appear, DEFAULT_TIMEOUT)
+        .shouldHave(Condition.attribute("title", START_DATA_TABLE_SHOWCASE));
+  }
+
+  @Test
+  public void testInforIconCompactModeProcess() {
+    //$(".compact-processes-container a.process-item span[id$=':info-workflow']").waitUntil(Condition.appear, DEFAULT_TIMEOUT).hover();
+    //newDashboardPage.getCompactModeProcessProcessItemName(SHOWCASE_DATA_TABLE).waitUntil(Condition.appear, DEFAULT_TIMEOUT).scrollTo();
+    
+    //$(".ui-commandlink .si-information-circle").waitUntil(Condition.appear, DEFAULT_TIMEOUT).hover();
+    //$("span[id$=':info-workflow']").waitUntil(Condition.appear, DEFAULT_TIMEOUT).hover();
+//    SelenideElement closest = newDashboardPage.getCompactModeProcessProcessItemName(SHOWCASE_DATA_TABLE)
+//        .waitUntil(Condition.appear, DEFAULT_TIMEOUT).scrollTo().closest(".ui-commandlink");
+//    String id = closest.getAttribute("id");
+//    SelenideElement link = $(By.id(id));
+//    $("a[id='" + id +"'] .si-information-circle").waitUntil(Condition.appear, DEFAULT_TIMEOUT).hover();
+//    //$("a[id='process-process_1:process-component:process-list:j_id_11_2_ay_1_2_4_2_6q_3:84:j_id_11_2_ay_1_2_4_2_6q_5'] span.si-information-circle")
+//
+    //$$("div[id$='info-workflow-tooltip']").filter(Condition.appear).first().waitUntil(Condition.appear, DEFAULT_TIMEOUT).$(".ui-tooltip-text")
+    //    .shouldHave(Condition.textCaseSensitive(SHOWCASE_DATA_TABLE+"aaa"));
   }
 }
