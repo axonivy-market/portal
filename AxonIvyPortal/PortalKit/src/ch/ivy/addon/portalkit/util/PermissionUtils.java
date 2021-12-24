@@ -205,12 +205,8 @@ public class PermissionUtils {
     return hasPortalPermission(PortalPermission.CREATE_PUBLIC_EXTERNAL_LINK);
   }
 
-  public static boolean hasDashboardWriteOwnPermission() {
+  public static boolean hasDashboardWritePermission() {
     return hasPortalPermission(PortalPermission.DASHBOARD_WRITE_OWN);
-  }
-
-  public static boolean hasDashboardWritePublicPermission() {
-    return hasPortalPermission(PortalPermission.DASHBOARD_WRITE_PUBLIC);
   }
 
   public static String getCaseName(ICase iCase) {
