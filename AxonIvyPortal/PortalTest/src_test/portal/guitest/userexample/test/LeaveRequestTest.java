@@ -16,7 +16,7 @@ import portal.guitest.userexamples.page.LeaveRequestPage;
 import portal.guitest.userexamples.page.UserExamplesEndPage;
 
 public class LeaveRequestTest extends BaseTest {
-  private static String LEAVE_REQUEST_START_LINK = "portal-user-examples/170321BD7F5539D6/start.ivp";
+  private static final String LEAVE_REQUEST_START_LINK = "portal-user-examples/170321BD7F5539D6/start.ivp";
   private LeaveRequestPage leaveRequestPage;
   private TaskWidgetPage taskWidgetPage;
   
