@@ -78,9 +78,9 @@ public class NewDashboardPage extends TemplatePage {
   public void deleteImageModeProcess() {
     $("button[id$=':process-action-button']").waitUntil(Condition.appear, DEFAULT_TIMEOUT).click();
     $("span.si-bin-1").waitUntil(Condition.appear, DEFAULT_TIMEOUT).click();
-    $("div[id='remove-widget-dialog']").waitUntil(Condition.appear, DEFAULT_TIMEOUT).click();
-    $("button[id='remove-widget-button']").click();
-    $("div[id='remove-widget-dialog']").waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
+    getRemoveWidgetDialog().waitUntil(Condition.appear, DEFAULT_TIMEOUT).click();
+    getRemoveWidgetButton().click();
+    getRemoveWidgetDialog().waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
   }
 
   public SelenideElement getImageContainer() {
@@ -123,9 +123,9 @@ public class NewDashboardPage extends TemplatePage {
   public void deleteFullModeProcess() {
     $("button[id$=':process-action-button']").shouldBe(Condition.appear).click();
     $("span.si-bin-1").waitUntil(Condition.appear, DEFAULT_TIMEOUT).click();
-    $("div[id='remove-widget-dialog']").waitUntil(Condition.appear, DEFAULT_TIMEOUT).click();
-    $("button[id='remove-widget-button']").click();
-    $("div[id='remove-widget-dialog']").waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
+    getRemoveWidgetDialog().waitUntil(Condition.appear, DEFAULT_TIMEOUT).click();
+    getRemoveWidgetButton().click();
+    getRemoveWidgetDialog().waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
   }
 
   public SelenideElement getFullModeProcessContainer() {
@@ -145,9 +145,9 @@ public class NewDashboardPage extends TemplatePage {
 
   public void deleteCombinedModeProcess() {
     $(".process-grid-item__action--combined .si-bin-1").shouldBe(Condition.appear).click();
-    $("div[id='remove-widget-dialog']").waitUntil(Condition.appear, DEFAULT_TIMEOUT).click();
-    $("button[id='remove-widget-button']").click();
-    $("div[id='remove-widget-dialog']").waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
+    getRemoveWidgetDialog().waitUntil(Condition.appear, DEFAULT_TIMEOUT).click();
+    getRemoveWidgetButton().click();
+    getRemoveWidgetDialog().waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
   }
 
   public SelenideElement getCombinedModeProcessContainer() {
@@ -193,4 +193,33 @@ public class NewDashboardPage extends TemplatePage {
   public SelenideElement getCompactModeProcessDisabledFirstProcessItemName() {
     return $(".compact-processes-container span.ui-commandlink.process-item span[id$=':process-name-process-item']");
   }
+
+  public void deleteCompactModeProcess() {
+    $("a[id$=':delete-widget-2']").shouldBe(Condition.appear).click();
+    getRemoveWidgetDialog().waitUntil(Condition.appear, DEFAULT_TIMEOUT).click();
+    getRemoveWidgetButton().click();
+    getRemoveWidgetDialog().waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
+  }
+
+  private SelenideElement getRemoveWidgetDialog() {
+    return $("div[id='remove-widget-dialog']");
+  }
+
+  private SelenideElement getRemoveWidgetButton() {
+    return $("button[id='remove-widget-button']");
+  }
+
+  public SelenideElement getCompactModeProcessContainer() {
+    return $(".process-widget.dashboard-widget-panel-container .compact-processes-container");
+  }
+
+  public SelenideElement getCompactModeProcessProcessItemName(String processName) {
+    return $$(".compact-processes-container a.process-item span[id$=':process-name-process-item']")
+        .filter(Condition.exactTextCaseSensitive(processName)).first();
+  }
+
+  public SelenideElement getCompactModeProcessFirstProcessItemDescriptionIcon() {
+    return $(".compact-processes-container a.process-item span.si-information-circle");
+  }
+  
 }
