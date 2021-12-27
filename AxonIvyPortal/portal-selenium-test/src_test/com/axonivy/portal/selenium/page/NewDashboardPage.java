@@ -194,6 +194,10 @@ public class NewDashboardPage extends TemplatePage {
     return $(".compact-processes-container span.ui-commandlink.process-item span[id$=':process-name-process-item']");
   }
 
+  public SelenideElement getCompactModeProcessFirstProcessItemName() {
+    return $(".compact-processes-container a.process-item span[id$=':process-name-process-item']");
+  }
+
   public void deleteCompactModeProcess() {
     $("a[id$=':delete-widget-2']").shouldBe(Condition.appear).click();
     getRemoveWidgetDialog().waitUntil(Condition.appear, DEFAULT_TIMEOUT).click();
@@ -221,5 +225,187 @@ public class NewDashboardPage extends TemplatePage {
   public SelenideElement getCompactModeProcessFirstProcessItemDescriptionIcon() {
     return $(".compact-processes-container a.process-item span.si-information-circle");
   }
+
+  public void openCompactModeProcessFilterPanel(boolean isExpanded) {
+    getCompactModeProcessFilterLink(isExpanded).shouldBe(Condition.appear).click();
+    getCompactModeProcessFilterPanelSaveFilters(isExpanded).waitUntil(Condition.appear, DEFAULT_TIMEOUT);
+  }
+
+  public void applyCompactModeProcessFilterPanel(boolean isExpanded) {
+    getCompactModeProcessFilterPanelApplyButton(isExpanded).shouldBe(Condition.enabled).click();
+    getCompactModeProcessFilterPanel(isExpanded).waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
+  }
+
+  public void filterCompactModeProcessProcessName(boolean isExpanded, String processName) {
+    SelenideElement filterName = getCompactModeProcessFilterPanelProcessName(isExpanded);
+    filterName.shouldBe(Condition.appear).clear();
+    filterName.sendKeys(processName);
+  }
+
+  public SelenideElement getCompactModeProcessFilterLink(boolean isExpanded) {
+    String selector = String.format("a[id$=':%sfilter-sidebar-link-2']", isExpanded ? "expanded-" : "");
+    return $(selector);
+  }
+
+  public SelenideElement getCompactModeProcessFilterPanel(boolean isExpanded) {
+    String selector = String.format("div[id$=':%sfilter-overlay-panel-2']", isExpanded ? "expanded-" : "");
+    return $(selector);
+  }
+
+  public SelenideElement getCompactModeProcessFilterPanelSaveFilters(boolean isExpanded) {
+    return getCompactModeProcessFilterPanel(isExpanded).$("div[id$=':widget-saved-filters-items");
+  }
+
+  public SelenideElement getCompactModeProcessFilterPanelProcessName(boolean isExpanded) {
+    return getCompactModeProcessFilterPanel(isExpanded).$("input[id$=':text-field-input']");
+  }
+
+  public SelenideElement getCompactModeProcessFilterPanelApplyButton(boolean isExpanded) {
+    return getCompactModeProcessFilterPanel(isExpanded).$("button[id$=':apply-button']");
+  }
+
+  public void filterCompactModeProcessProcessType(boolean isExpanded, String processType) {
+    getCompactModeProcessFilterPanelProcessTypes(isExpanded).shouldBe(Condition.appear).click();
+    getCompactModeProcessProcessTypesPanel().waitUntil(Condition.appear, DEFAULT_TIMEOUT)
+        .$("li[data-item-value='" + processType + "']").shouldBe(Condition.appear).click();
+    getCompactModeProcessProcessTypesPanel().$(".ui-selectcheckboxmenu-close").click();
+    getCompactModeProcessProcessTypesPanel().waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
+  }
+
+  public SelenideElement getCompactModeProcessFilterPanelProcessTypes(boolean isExpanded) {
+    return getCompactModeProcessFilterPanel(isExpanded).$("div[id$=':process-types']");
+  }
+
+  public SelenideElement getCompactModeProcessProcessTypesPanel() {
+    return $("div[id$=':process-types_panel']");
+  }
+
+  public void filterCompactModeProcessCategory(boolean isExpanded, String category) {
+    getCompactModeProcessFilterPanelCategory(isExpanded).shouldBe(Condition.appear).click();
+    ElementsCollection categories = getCompactModeProcessCategoryFilterPanel(isExpanded)
+        .waitUntil(Condition.appear, DEFAULT_TIMEOUT).$$(".ui-treenode-label");
+    categories.filter(Condition.exactTextCaseSensitive("All Categories")).first().click();
+    categories.filter(Condition.exactTextCaseSensitive(category)).first()
+        .waitUntil(Condition.not(Condition.cssClass("ui-state-highlight")), DEFAULT_TIMEOUT).click();
+    getCompactModeProcessCategoryFilterPanelApplyButton(isExpanded).click();
+    getCompactModeProcessCategoryFilterPanel(isExpanded).waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
+  }
+
+  public SelenideElement getCompactModeProcessFilterPanelCategory(boolean isExpanded) {
+    return getCompactModeProcessFilterPanel(isExpanded).$("input[id$=':widget-filter-category']");
+  }
+
+  public SelenideElement getCompactModeProcessCategoryFilterPanel(boolean isExpanded) {
+    return getCompactModeProcessFilterPanel(isExpanded).$("div[id$=':widget-filter-category-panel']");
+  }
+
+  public SelenideElement getCompactModeProcessCategoryFilterPanelApplyButton(boolean isExpanded) {
+    return getCompactModeProcessFilterPanel(isExpanded).$("button[id$=':update-command']");
+  }
+
+  public void expandCompactModeProcessFilterPanel() {
+    SelenideElement filterLink = getCompactModeProcessFilterLink(false);
+    filterLink.shouldBe(Condition.appear);
+
+    SelenideElement expandedFilterLink = getCompactModeProcessFilterLink(true);
+    expandedFilterLink.shouldBe(Condition.disappear);
+
+    SelenideElement collapseLink = getCompactModeProcessCollapseLink();
+    collapseLink.shouldBe(Condition.disappear);
+
+    SelenideElement expandLink = getCompactModeProcessExpandLink();
+    expandLink.shouldBe(Condition.appear).click();
+    expandLink.waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
+
+    collapseLink.waitUntil(Condition.appear, DEFAULT_TIMEOUT);
+    expandedFilterLink.waitUntil(Condition.appear, DEFAULT_TIMEOUT);
+    filterLink.waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
+  }
+
+  public SelenideElement getCompactModeProcessExpandLink() {
+    return $("a[id$=':expand-link-2']");
+  }
+
+  public SelenideElement getCompactModeProcessCollapseLink() {
+    return $("a[id$=':collapse-link-2']");
+  }
+
+  public SelenideElement getCompactModeProcessFilterPanelSaveButton(boolean isExpanded) {
+    return getCompactModeProcessFilterPanel(isExpanded).$("button[id$=':save-filter']");
+  }
+
+  public SelenideElement getCompactModeProcessFilterPanelResetButton(boolean isExpanded) {
+    return getCompactModeProcessFilterPanel(isExpanded).$("button[id$=':reset-button']");
+  }
+
+  public void resetCompactModeProcessFilterPanel(boolean isExpaned) {
+    getCompactModeProcessFilterPanelResetButton(isExpaned).shouldBe(Condition.enabled).click();
+    getCompactModeProcessFilterPanel(isExpaned).waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
+  }
+
+  public void selectCompactModeProcessFilter(boolean isExpanded, String processName, String processType, String category) {
+    filterCompactModeProcessProcessName(isExpanded, processName);
+    filterCompactModeProcessProcessType(isExpanded, processType);
+    filterCompactModeProcessCategory(isExpanded, category);
+  }
+
+  public void saveCompactModeProcessFilter(boolean isExpanded, String savedFilterName) {
+    getCompactModeProcessFilterPanelSaveButton(isExpanded).shouldBe(Condition.enabled).click();
+    SelenideElement saveWidgetFilterDialog = getSaveWidgetFilterDialog();
+    saveWidgetFilterDialog.waitUntil(Condition.appear, DEFAULT_TIMEOUT);
+
+    SelenideElement filterName = getSaveWidgetFilterDialogFilterName();
+    filterName.shouldBe(Condition.appear).clear();
+    filterName.sendKeys(savedFilterName);
+
+    getSaveWidgetFilterDialogSaveButton().shouldBe(Condition.enabled).click();
+    saveWidgetFilterDialog.waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
+  }
+
+  public SelenideElement getSaveWidgetFilterDialog() {
+    return $("div[id='save-widget-filter-dialog']");
+  }
+
+  public SelenideElement getSaveWidgetFilterDialogFilterName() {
+    return getSaveWidgetFilterDialog().$("input[id$=':save-filter-name']");
+  }
+
+  public SelenideElement getSaveWidgetFilterDialogSaveButton() {
+    return getSaveWidgetFilterDialog().$("button[id$=':save-widget-filter-button']");
+  }
   
+  public SelenideElement getCompactModeProcessFilterPanelSavedFilter(boolean isExpanded, int index) {
+    return getCompactModeProcessFilterPanelSaveFilters(isExpanded).$$("span.saved-filter-node__text").get(index);
+  }
+
+  public void selectCompactModeProcessSavedFilter(boolean isExpanded, String savedFilterName) {
+    SelenideElement savedFilter = getCompactModeProcessFilterPanelSavedFilter(isExpanded, 0);
+    savedFilter.waitUntil(Condition.appear, DEFAULT_TIMEOUT)
+        .shouldHave(Condition.exactTextCaseSensitive(savedFilterName)).click();
+    savedFilter.closest(".saved-filter-node").waitUntil(Condition.cssClass("selected"), DEFAULT_TIMEOUT);
+  }
+
+  public SelenideElement getCompactModeProcessFilterPanelSearchInput(boolean isExpanded) {
+    return getCompactModeProcessFilterPanel(isExpanded).$("input[id$=':search-saved-filter-input']");
+  }
+
+  public SelenideElement getCompactModeProcessFilterPanelManageFiltersLink(boolean isExpanded) {
+    return getCompactModeProcessFilterPanel(isExpanded).$("a.saved-filter__manage-filter");
+  }
+
+  public SelenideElement getManageWidgetFilterDialog() {
+    return $("div[id='manage-filter-dialog']");
+  }
+
+  public SelenideElement getManageWidgetFilterDialogFirstSavedFilter() {
+    return getManageWidgetFilterDialog().$("tr.ui-datatable-selectable");
+  }
+
+  public SelenideElement getManageWidgetFilterDialogRemoveButton() {
+    return getManageWidgetFilterDialog().$("button[id$=':delete-widget-filter-btn']");
+  }
+
+  public SelenideElement getManageWidgetFilterDialogCloseLink() {
+    return getManageWidgetFilterDialog().$("div[id$=':manage-filter-action'] a");
+  }
 }
