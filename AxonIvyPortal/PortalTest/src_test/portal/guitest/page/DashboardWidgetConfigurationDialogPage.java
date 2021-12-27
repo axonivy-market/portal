@@ -97,7 +97,7 @@ public class DashboardWidgetConfigurationDialogPage extends TemplatePage {
     for (WebElement mode : modes) {
       if (mode.getText().contentEquals(name)) {
         mode.click();
-        waitAjaxIndicatorDisappear();
+        waitUntilAnimationFinished(45, "ajax-indicator:ajax-indicator-ajax-indicator_start", "id");
         break;
       }
     }
@@ -139,7 +139,7 @@ public class DashboardWidgetConfigurationDialogPage extends TemplatePage {
     for(WebElement option : options) {
       if (processes.contains(option.findElement(By.cssSelector("label")).getText())) {
         option.findElement(By.className("ui-chkbox")).click();
-        waitAjaxIndicatorDisappear();
+        waitUntilAnimationFinished(45, "ajax-indicator:ajax-indicator-ajax-indicator_start", "id");
       }
     }
   }
@@ -155,7 +155,7 @@ public class DashboardWidgetConfigurationDialogPage extends TemplatePage {
   
   public void waitForCompactProcessLoadedAfterClickPreview() {
     waitForElementDisplayed(By.cssSelector("form[id$=':process-list'] .process-start-list-item"), true);
-    waitAjaxIndicatorDisappear();
+    waitUntilAnimationFinished(45, "process-start-list-item", "class");
   }
 
   public void waitForFullProcessLoadedAfterClickPreview() {
