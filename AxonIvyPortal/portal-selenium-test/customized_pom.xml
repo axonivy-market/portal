@@ -38,7 +38,7 @@
       <scope>test</scope>
     </dependency>
     <!-- for GUI test -->
-	<dependency>
+    <dependency>
       <groupId>com.axonivy.ivy.webtest</groupId>
       <artifactId>web-tester</artifactId>
       <version>9.2.0</version>
@@ -115,7 +115,7 @@
               <goal>test</goal>
             </goals>
           </execution>
-        </executions>	
+        </executions>
       </plugin>
     </plugins>
   </build>
