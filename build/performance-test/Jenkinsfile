@@ -77,11 +77,17 @@ pipeline {
   post {
     always {
       script {
-        utils.stopWindowsService(engineServiceName)
+        if (binding.hasVariable('utils')) {
+          utils.stopWindowsService(engineServiceName)
+        }
       }
       node('master') {
-        archiveArtifacts artifacts: "D:/PerformanceResult/${today}/*/*.jtl", allowEmptyArchive: true
-        perfReport sourceDataFiles: "D:/PerformanceResult/${today}/*/*.jtl", compareBuildPrevious :true, ignoreFailedBuilds: true, ignoreUnstableBuilds: true, errorFailedThreshold: 1
+        script {
+          if (binding.hasVariable('today')) {
+            archiveArtifacts artifacts: "D:/PerformanceResult/${today}/*/*.jtl", allowEmptyArchive: true
+            perfReport sourceDataFiles: "D:/PerformanceResult/${today}/*/*.jtl", compareBuildPrevious :true, ignoreFailedBuilds: true, ignoreUnstableBuilds: true, errorFailedThreshold: 1
+          }
+        }
       }
     }
   }
