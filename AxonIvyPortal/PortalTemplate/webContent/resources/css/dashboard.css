@@ -343,6 +343,10 @@ body .ui-calendar.task-configuration__calendar .ui-datepicker-trigger {
   padding: 20px 15px;
 }
 
+.widget-preview .expand-link {
+  display: none;
+}
+
 @media screen and (min-width: 40.063em) and (max-width: 64.062em) {
   .task-preview,
   .case-preview,

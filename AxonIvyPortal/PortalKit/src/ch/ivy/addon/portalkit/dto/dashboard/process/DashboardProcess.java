@@ -21,6 +21,7 @@ import ch.ivy.addon.portalkit.enums.ProcessType;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.util.Locales;
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -234,6 +235,9 @@ public class DashboardProcess implements Process {
   }
   
   private String getImageSrc(String imageElement) {
+    if(!imageElement.contains("/cm")) {
+      imageElement = Ivy.cms().cr(imageElement);
+    }
     int indexOfImageSrc = imageElement.indexOf("/cm");
     return imageElement.substring(indexOfImageSrc).replaceAll("\"/>", StringUtils.EMPTY);
   }
