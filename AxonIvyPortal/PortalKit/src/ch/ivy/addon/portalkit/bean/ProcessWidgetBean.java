@@ -41,6 +41,7 @@ import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
@@ -176,6 +177,9 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
   }
   
   private String getImageSrc(String imageElement) {
+    if(!imageElement.contains("/cm")) {
+      imageElement = Ivy.cms().cr(imageElement);
+    }
     int indexOfImageSrc = imageElement.indexOf("/cm");
     return imageElement.substring(indexOfImageSrc).replaceAll("\"/>", StringUtils.EMPTY);
   }
