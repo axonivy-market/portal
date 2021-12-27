@@ -13,11 +13,9 @@ public class DashboardWidgetConfigurationDialogPage extends TemplatePage {
   private static final String MANAGE_COLUMN_TABLE_CONTENT_ID = "widget-configuration-form:new-widget-configuration-component:column-management-component:column-management-form:column-management-datatable_data";
   private static final String MANAGE_COLUMN_SAVE_BUTTON_ID = "widget-configuration-form:new-widget-configuration-component:column-management-component:column-management-save-btn";
   private static final String MANAGE_COLUMN_CANCEL_LINK_ID = "widget-configuration-form:new-widget-configuration-component:column-management-component:column-management-cancel-link";
-  private static final String MANAGE_COLUMN_MODAL_LAYER_ID = "widget-configuration-form:new-widget-configuration-component:column-management-component:column-management-dialog_modal";
 
   private static final String CONFIGURATION_DIALOG_ID = "new-widget-configuration-dialog";
   private static final String CONFIGURATION_FILTER_ID = "widget-configuration-form:new-widget-configuration-component:filter-container";
-  private static final String CONFIGURATION_MODAL_LAYER_ID = "new-widget-configuration-dialog_modal";
   private static final String PREVIEW_BUTTON_ID = "widget-configuration-form:new-widget-configuration-component:preview-button";
 
   private static final String PROCESS_DISPLAY_MODE_ID = "widget-configuration-form:new-widget-configuration-component:process-display-mode";
@@ -46,12 +44,12 @@ public class DashboardWidgetConfigurationDialogPage extends TemplatePage {
 
   public void closeManageColumnDialog() {
     findElementById(MANAGE_COLUMN_CANCEL_LINK_ID).click();
-    waitElementDisappear(MANAGE_COLUMN_MODAL_LAYER_ID);
+    waitForElementDisplayed(By.id(MANAGE_COLUMN_DIALOG_ID), false);
   }
 
   public void closeConfigurationDialog() {
     findElementById("task-configuration-cancel-link").click();
-    waitElementDisappear(CONFIGURATION_MODAL_LAYER_ID);
+    waitForElementDisplayed(By.id(CONFIGURATION_DIALOG_ID), false);
   }
 
   public void uncheckTaskColumn(List<String> columns, boolean isTask) {
@@ -71,7 +69,7 @@ public class DashboardWidgetConfigurationDialogPage extends TemplatePage {
     }
 
     findElementById(MANAGE_COLUMN_SAVE_BUTTON_ID).click();
-    waitElementDisappear(MANAGE_COLUMN_MODAL_LAYER_ID);
+    waitForElementDisplayed(By.id(MANAGE_COLUMN_DIALOG_ID), false);
   }
 
   public WebElement getConfigurationDialog() {

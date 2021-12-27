@@ -444,32 +444,4 @@ public abstract class TemplatePage extends AbstractPage {
   public boolean isWelcomeDialogExisted() {
     return CollectionUtils.isNotEmpty(findListElementsByCssSelector("div[id$='welcome-portal-guide']"));
   }
-
-  public void waitElementDisappear(String id) {
-    WebElement element;
-    try {
-      element = findElementById(id);
-    } catch (Exception e2) {
-      System.out.println("ERROR element not exist");
-      return;
-    }
-    boolean displayed = false;
-    try {
-      displayed = element.isDisplayed();
-    } catch (Exception e) {
-      try {
-        displayed = element.isDisplayed();
-      } catch (Exception e1) {
-        System.out.println("Cannot check if element is displayed");
-      }
-    }
-    if (displayed) {
-      try {
-        waitForElementDisplayed(element, false);
-      } catch (NullPointerException e) {
-        System.out.println("Error when for element");
-        e.printStackTrace();
-      }
-    }
-  }
 }
