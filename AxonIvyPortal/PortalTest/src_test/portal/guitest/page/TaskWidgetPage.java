@@ -116,8 +116,8 @@ public class TaskWidgetPage extends TemplatePage {
     if (countTasks() == getExpectedNumberOfTasks(expectedNumberOfTasksAfterFiltering)) {
       return;
     }
-    WebElement keywordFilter = findElementByCssSelector(KEYWORD_FILTER_SELECTOR);
     WaitHelper.assertTrueWithWait(() -> {
+      WebElement keywordFilter = findElementByCssSelector(KEYWORD_FILTER_SELECTOR);
       keywordFilter.clear();
       keywordFilter.click(); // To make Firefox more stable
       keywordFilter.sendKeys(keyword);
