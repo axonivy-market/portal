@@ -531,5 +531,5 @@ function highlightUserExampleNavigation() {
 }
 
 function highlightProcessDisplayModePanel() {
-  createRedMediumOutline($("#widget-configuration-form:new-widget-configuration-component:process-display-mode_panel"));
+  createRedMediumOutline($("div[id $='process-display-mode_panel']"));
 }
