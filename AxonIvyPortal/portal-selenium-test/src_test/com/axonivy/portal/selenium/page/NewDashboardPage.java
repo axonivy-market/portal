@@ -222,10 +222,6 @@ public class NewDashboardPage extends TemplatePage {
         .filter(Condition.exactTextCaseSensitive(processName)).first();
   }
 
-  public SelenideElement getCompactModeProcessFirstProcessItemDescriptionIcon() {
-    return $(".compact-processes-container a.process-item span.si-information-circle");
-  }
-
   public void openCompactModeProcessFilterPanel(boolean isExpanded) {
     getCompactModeProcessFilterLink(isExpanded).shouldBe(Condition.appear).click();
     getCompactModeProcessFilterPanelSaveFilters(isExpanded).waitUntil(Condition.appear, DEFAULT_TIMEOUT);
@@ -247,8 +243,18 @@ public class NewDashboardPage extends TemplatePage {
     return $(selector);
   }
 
+  public SelenideElement getCompactModeProcessInfoLink(boolean isExpanded) {
+    String selector = String.format("a[id$=':%sinfo-sidebar-link-2']", isExpanded ? "expanded-" : "");
+    return $(selector);
+  }
+
   public SelenideElement getCompactModeProcessFilterPanel(boolean isExpanded) {
     String selector = String.format("div[id$=':%sfilter-overlay-panel-2']", isExpanded ? "expanded-" : "");
+    return $(selector);
+  }
+
+  public SelenideElement getCompactModeProcessInfoPanel(boolean isExpanded) {
+    String selector = String.format("div[id$=':%sinfo-overlay-panel-2']", isExpanded ? "expanded-" : "");
     return $(selector);
   }
 
@@ -343,7 +349,8 @@ public class NewDashboardPage extends TemplatePage {
     getCompactModeProcessFilterPanel(isExpaned).waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
   }
 
-  public void selectCompactModeProcessFilter(boolean isExpanded, String processName, String processType, String category) {
+  public void selectCompactModeProcessFilter(boolean isExpanded, String processName, String processType,
+      String category) {
     filterCompactModeProcessProcessName(isExpanded, processName);
     filterCompactModeProcessProcessType(isExpanded, processType);
     filterCompactModeProcessCategory(isExpanded, category);
@@ -373,7 +380,7 @@ public class NewDashboardPage extends TemplatePage {
   public SelenideElement getSaveWidgetFilterDialogSaveButton() {
     return getSaveWidgetFilterDialog().$("button[id$=':save-widget-filter-button']");
   }
-  
+
   public SelenideElement getCompactModeProcessFilterPanelSavedFilter(boolean isExpanded, int index) {
     return getCompactModeProcessFilterPanelSaveFilters(isExpanded).$$("span.saved-filter-node__text").get(index);
   }
@@ -407,5 +414,32 @@ public class NewDashboardPage extends TemplatePage {
 
   public SelenideElement getManageWidgetFilterDialogCloseLink() {
     return getManageWidgetFilterDialog().$("div[id$=':manage-filter-action'] a");
+  }
+
+  public void openCompactModeProcessManageFilters(boolean isExpanded) {
+    getCompactModeProcessFilterPanelManageFiltersLink(isExpanded).shouldBe(Condition.appear).click();
+    getManageWidgetFilterDialog().waitUntil(Condition.appear, DEFAULT_TIMEOUT);
+  }
+
+  public void closeCompactModeProcessManagerFilters() {
+    getManageWidgetFilterDialogCloseLink().shouldBe(Condition.appear).click();
+    getManageWidgetFilterDialog().waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
+  }
+
+  public void removeCompactModeProcessFilter(String filterName) {
+    SelenideElement savedFilter = getManageWidgetFilterDialogFirstSavedFilter();
+    savedFilter.waitUntil(Condition.appear, DEFAULT_TIMEOUT).shouldHave(Condition.attribute("data-rk", filterName));
+    savedFilter.$("td").click();
+    savedFilter.waitUntil(Condition.cssClass("ui-state-highlight"), DEFAULT_TIMEOUT);
+    getManageWidgetFilterDialogRemoveButton().shouldBe(Condition.enabled).click();
+  }
+
+  public void openCompactModeProcessInforPanel(boolean isExpanded) {
+    getCompactModeProcessInfoLink(isExpanded).shouldBe(Condition.appear).click();
+    getCompactModeProcessInfoPanel(isExpanded).waitUntil(Condition.appear, DEFAULT_TIMEOUT);
+  }
+
+  public ElementsCollection getCompactModeProcessInfoProcessTypes(boolean isExpanded) {
+    return getCompactModeProcessInfoPanel(isExpanded).$$("span.dashboard-processes__type-text");
   }
 }
