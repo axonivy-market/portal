@@ -17,6 +17,7 @@ import com.codeborne.selenide.SelenideElement;
 
 @IvyWebTest()
 public class NewDashboardProcessWidgetTest extends BaseTest {
+  private static final String TEST_FOR_IVYPORTAL_3369 = "Test for IVYPORTAL-3369";
   private static final String MY_FILTER = "My filter";
   private static final String SHOWCASE_DATA_TABLE_SAVED_FILTER_NAME = "Showcase Data Table filter";
   private static final String START_DATA_TABLE_SHOWCASE = "Start DataTable Showcase";
@@ -183,7 +184,7 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
 
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
-    editProcessWidgetConfiguration.previewCombinedModeProcess(CATEGORIED_LEAVE_REQUEST);
+    editProcessWidgetConfiguration.previewCombinedModeProcess(CATEGORIED_LEAVE_REQUEST, TEST_FOR_IVYPORTAL_3369);
     editProcessWidgetConfiguration.getCombinedModeProcessPreview().waitUntil(Condition.appear, DEFAULT_TIMEOUT);
     editProcessWidgetConfiguration.getStartButton().is(Condition.disabled);
 
@@ -208,7 +209,7 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
   public void testChangeCombinedModeProcess() {
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
-    editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST);
+    editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST, null);
     newDashboardPage.getStartButton().shouldBe(Condition.disabled);
 
     editProcessWidgetConfiguration = newDashboardPage.editCombinedModeProcess();
@@ -221,7 +222,7 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
   public void testDeleteCombinedModeProcess() {
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
-    editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST);
+    editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST, null);
     newDashboardPage.getStartButton().shouldBe(Condition.disabled);
 
     newDashboardPage.deleteCombinedModeProcess();
@@ -241,7 +242,7 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
   private void testStartCombinedModeProcess(boolean isExpanded) {
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
-    editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(SHOWCASE_DATA_TABLE);
+    editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(SHOWCASE_DATA_TABLE, null);
     newDashboardPage.getStartButton().shouldBe(Condition.disabled);
 
     newDashboardPage.switchToViewMode();
@@ -270,7 +271,7 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
 
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
-    editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST);
+    editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST, TEST_FOR_IVYPORTAL_3369);
 
     newDashboardPage.switchToViewMode();
     if (isExpanded) {
@@ -297,7 +298,7 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
 
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
-    editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST);
+    editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST, TEST_FOR_IVYPORTAL_3369);
 
     newDashboardPage.switchToViewMode();
     if (isExpanded) {
@@ -324,7 +325,7 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
 
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
-    editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST);
+    editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST, TEST_FOR_IVYPORTAL_3369);
 
     newDashboardPage.switchToViewMode();
     if (isExpanded) {
@@ -343,7 +344,7 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
 
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
-    editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST);
+    editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST, TEST_FOR_IVYPORTAL_3369);
 
     newDashboardPage.switchToViewMode();
     newDashboardPage.expandCombindedModeProcess();
