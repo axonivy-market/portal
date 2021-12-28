@@ -167,4 +167,38 @@ public class AbsenceTest extends BaseTest {
     newAbsencePage.proceed();
   }
 
+  @Test
+  public void testReadOwnAbsenceOnly() {
+    login(TestAccount.GUEST_USER);
+    redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantReadAbsencesPermission.ivp");
+    redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantCreateAbsencesPermission.ivp");
+    AbsencePage absencePage = openAbsencePage();
+    createAbsenceForCurrentUser(YESTERDAY, YESTERDAY, "For travel", absencePage);
+
+    login(TestAccount.DEMO_USER);
+    redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantReadOwnAbsencesPermission.ivp");
+    absencePage = openAbsencePage();
+    createAbsenceForCurrentUser(YESTERDAY, YESTERDAY, "For travel", absencePage);
+
+    login(TestAccount.GUEST_USER);
+    absencePage = openAbsencePage();
+    absencePage.showAbsencesInThePast(true);
+    assertEquals(1, absencePage.countAbsences());
+  }
+
+  @Test
+  public void testReadAbsencesOfOtherUser() {
+    login(TestAccount.DEMO_USER);
+    redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantReadOwnAbsencesPermission.ivp");
+    AbsencePage absencePage = openAbsencePage();
+    createAbsenceForCurrentUser(YESTERDAY, YESTERDAY, "For travel", absencePage);
+
+    login(TestAccount.GUEST_USER);
+    redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantReadAbsencesPermission.ivp");
+    absencePage = openAbsencePage();
+    absencePage.setSubstitutedByAdmin(TestAccount.DEMO_USER.getFullName());
+    absencePage.showAbsencesInThePast(true);
+    assertEquals(1, absencePage.countAbsences());
+  }
+
 }
