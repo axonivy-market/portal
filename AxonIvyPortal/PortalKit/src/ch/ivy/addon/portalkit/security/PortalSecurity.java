@@ -11,7 +11,6 @@ import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IPermission;
 import ch.ivyteam.ivy.security.IPermissionAccess;
-import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.ISecurityConstants;
 import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.ISecurityDescriptor;
@@ -82,9 +81,6 @@ public enum PortalSecurity {
     boolean isIvySecurity = securityContext.getExternalSecuritySystemName()
         .equals(ISecurityConstants.IVY_ENGINE_SECURITY_SYSTEM_PROVIDER_NAME);
     if ((EngineMode.is(EngineMode.DEMO) || EngineMode.isEmbeddedInDesigner()) && isIvySecurity) {
-      IRole everybody = Ivy.security().roles().find(ISecurityConstants.TOP_LEVEL_ROLE_NAME);
-      grantPermissionsToForSecurityMember(Arrays.asList(PortalPermission.DASHBOARD_WRITE_OWN), everybody);
-
       IUser adminUser = userRepo.findWithExternalLookup(Username.ADMIN);
       ISecurityDescriptor securityDescriptor = portalApplication.getSecurityDescriptor();
       if (adminUser != null) {
