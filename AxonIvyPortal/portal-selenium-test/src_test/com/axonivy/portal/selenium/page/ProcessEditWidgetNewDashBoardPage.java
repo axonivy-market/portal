@@ -1,7 +1,6 @@
 package com.axonivy.portal.selenium.page;
 
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
@@ -71,8 +70,7 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   private void selectFullMode() {
-    getProcessDisplayMode().waitUntil(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition())
-        .click();
+    getProcessDisplayMode().waitUntil(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
     $("li[data-label='Full mode']").click();
     $("span[id$=':selected-full-process']").waitUntil(Condition.appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition()).click();
@@ -115,8 +113,7 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   private void selectCombinedMode() {
-    getProcessDisplayMode().waitUntil(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition())
-        .click();
+    getProcessDisplayMode().waitUntil(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
     $("li[data-label='Combined mode']").click();
     $("span[id$=':selected-combined-process']").waitUntil(Condition.appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition()).click();
@@ -178,8 +175,7 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   private void selectCompactMode() {
-    getProcessDisplayMode().waitUntil(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition())
-        .click();
+    getProcessDisplayMode().waitUntil(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
     $("li[data-label='Combined mode']").click();
     getProcessDisplayMode().click();
     $("li[data-label='Compact mode']").click();
