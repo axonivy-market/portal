@@ -410,11 +410,14 @@ As0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 As0 f7 83 83 26 26 -16 15 #rect
 As0 f8 actionTable 'out=in;
 ' #txt
-As0 f8 actionCode 'import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
+As0 f8 actionCode 'import ch.ivyteam.ivy.security.IPermission;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
+import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivy.addon.portalkit.dto.UserDTO;
 import ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence;
 
-UserDTO currentUserDTO = new UserDTO(in.selectedAbsenceUser);
+UserDTO currentUserDTO = in.canCreateAbsenceForOtherUsers ? 
+  new UserDTO(in.selectedAbsenceUser) : new UserDTO(ivy.session.getSessionUser());
 
 in.selectedAbsence = new IvyAbsence();
 in.selectedAbsence.from = new Date();
@@ -700,11 +703,13 @@ As0 f48 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 As0 f48 864 746 112 44 -28 -8 #rect
 As0 f102 actionTable 'out=in;
 ' #txt
-As0 f102 actionCode 'import ch.ivy.addon.portalkit.dto.UserDTO;
+As0 f102 actionCode 'import ch.ivyteam.ivy.security.IPermission;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
+import ch.ivy.addon.portalkit.dto.UserDTO;
 import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 
 in.selectedAbsenceUser = new UserDTO(ivy.session.getSessionUser());
-' #txt
+in.canCreateAbsenceForOtherUsers = PermissionUtils.hasPermission(IPermission.USER_CREATE_ABSENCE);' #txt
 As0 f102 security system #txt
 As0 f102 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -1133,16 +1138,16 @@ Ct0 f71 actionTable 'out=in;
 Ct0 f71 actionCode 'import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.security.IPermission;
 
-in.isSupervisor = PermissionUtils.hasAllPermissions(IPermission.USER_CREATE_ABSENCE, IPermission.USER_READ_ABSENCES, IPermission.USER_DELETE_ABSENCE);' #txt
+in.isSupervisor = PermissionUtils.hasPermission(IPermission.USER_READ_ABSENCES);' #txt
 Ct0 f71 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>Check if current user &#xD;
-can manage other users'' absences</name>
+        <name>Check if current user &#13;
+can read other users'' absences</name>
     </language>
 </elementInfo>
 ' #txt
-Ct0 f71 160 138 224 44 -92 -16 #rect
+Ct0 f71 168 138 208 44 -83 -16 #rect
 Ct0 f77 expr out #txt
 Ct0 f77 592 160 688 160 #arcP
 Ct0 f77 0 0.6865900143900335 0 0 #arcLabel
@@ -1177,7 +1182,7 @@ of current user</name>
 </elementInfo>
 ' #txt
 Ct0 f70 688 138 128 44 -44 -16 #rect
-Ct0 f75 384 160 480 160 #arcP
+Ct0 f75 376 160 480 160 #arcP
 Ct0 f67 processCall 'Ivy Data Processes/AbsenceService:findAbsences(String)' #txt
 Ct0 f67 requestActionDecl '<String username> param;' #txt
 Ct0 f67 requestMappingAction 'param.username=in.selectedAbsenceUser.getName();
@@ -1204,7 +1209,7 @@ Ct0 g0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ct0 g0 51 147 26 26 -22 18 #rect
-Ct0 f0 77 160 160 160 #arcP
+Ct0 f0 77 160 168 160 #arcP
 Ct0 g1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language lang="en">

@@ -39,3 +39,5 @@ selectedDeputy ch.ivy.addon.portalkit.dto.UserDTO #field
 selectedDeputy PERSISTENT #fieldModifier
 selectedDeputies java.util.List<ch.ivyteam.ivy.security.ISecurityMember> #field
 selectedDeputies PERSISTENT #fieldModifier
+canCreateAbsenceForOtherUsers Boolean #field
+canCreateAbsenceForOtherUsers PERSISTENT #fieldModifier

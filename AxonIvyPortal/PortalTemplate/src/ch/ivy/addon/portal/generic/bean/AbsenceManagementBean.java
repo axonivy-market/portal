@@ -32,7 +32,7 @@ public class AbsenceManagementBean implements Serializable{
   private boolean absencesInThePastCreatable;
   private boolean absencesInThePastDeletable;
   private boolean substitutionCapable;
-  
+
   @PostConstruct
   public void init() {
     ownAbsencesReadable = PermissionUtils.hasAtLeastOnePermission(USER_READ_OWN_ABSENCES, USER_READ_ABSENCES);
