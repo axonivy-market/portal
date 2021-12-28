@@ -106,9 +106,9 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   // ========================================================================================
-  public void previewCombinedModeProcess(String processName) {
+  public void previewCombinedModeProcess(String processName, String description) {
     selectCombinedMode();
-    selectCombinedProcess(processName);
+    selectCombinedProcess(processName, description);
     getPreviewButton().click();
   }
 
@@ -119,10 +119,15 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
         .shouldBe(getClickableCondition()).click();
   }
 
-  private void selectCombinedProcess(String processName) {
+  private void selectCombinedProcess(String processName, String description) {
     $("span[id$=':selected-combined-process']").find("input").clear();
     $("span[id$=':selected-combined-process']").find("input").sendKeys(processName);
-    $("tr[data-item-label='" + processName + "']").click();
+    String processSelector = String.format("tr[data-item-label='%s']", processName);
+    if (description != null) {
+      String descriptionSelector = String.format(" span[title='%s']", description);
+      processSelector = processSelector.concat(descriptionSelector);
+    }
+    $(processSelector).click();
   }
 
   public SelenideElement getCombinedModeProcessPreview() {
@@ -157,14 +162,14 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
     return $("div[id$=':dashboard-process-cases-container'] .dashboard-cases__column-small-screen-name");
   }
 
-  public void selectCombinedModeProcessAndSaveWidget(String processName) {
+  public void selectCombinedModeProcessAndSaveWidget(String processName, String description) {
     selectCombinedMode();
-    selectCombinedProcess(processName);
+    selectCombinedProcess(processName, description);
     clickSaveProcessWidget();
   }
 
   public void changeCombinedModeProcessAndSaveWidget(String newProcessName) {
-    selectCombinedProcess(newProcessName);
+    selectCombinedProcess(newProcessName, null);
     clickSaveProcessWidget();
   }
 
