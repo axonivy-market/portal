@@ -11,7 +11,7 @@ import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.ProcessWidgetPage;
 import com.codeborne.selenide.Condition;
 
-@IvyWebTest(headless=false)
+@IvyWebTest
 public class ExternalLinkTest extends BaseTest {
   @Test
   public void createExternalLink() {
