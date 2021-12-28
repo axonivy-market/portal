@@ -211,6 +211,7 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
     switch (widget.getType()) {
       case PROCESS:
         ProcessDashboardWidget processWidget = (ProcessDashboardWidget) this.widget;
+        processWidget.setPreview(false);
         if (processWidget.getDisplayMode() == ProcessWidgetMode.FULL_MODE) {
           updateProcessWidget(processWidget, 4, 2);
         } else if (processWidget.getDisplayMode() == ProcessWidgetMode.COMBINED_MODE) {
@@ -348,7 +349,8 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
       widget.setProcesses(new ArrayList<>());
     } else if (CollectionUtils.isNotEmpty(widget.getProcesses())) {
       displayProcesses = widget.getProcesses();
-      widget.setProcesses(displayProcesses);
+      List<String> processPaths = getProcessPaths(displayProcesses);
+      widget.setProcessPaths(processPaths);
     } else {
       displayProcesses = DashboardWidgetUtils.getAllPortalProcesses().stream()
           .filter(process -> isProcessMatchedCategory(process, widget.getCategories()))
@@ -363,6 +365,15 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
     boolean hasNoCategory = categories.indexOf(CategoryUtils.NO_CATEGORY) > -1;
     return categories.indexOf(process.getCategory()) > -1
         || (StringUtils.isBlank(process.getCategory()) && hasNoCategory);
+  }
+  
+  private List<String> getProcessPaths(List<DashboardProcess> processes) {
+    List<String> processPaths = new ArrayList<>();
+    for (DashboardProcess process: processes) {
+      processPaths.add(process.getId());
+    }
+
+    return processPaths;
   }
 
   private void resetUserFilter() {
