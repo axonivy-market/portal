@@ -30,8 +30,8 @@ public class AbsencePage extends TemplatePage {
 	}
 
 	public int countAbsences() {
-		waitForElementDisplayed(By.cssSelector("a[id*='absence-table']"), true);
-		return findListElementsByCssSelector("td.absences-table-action-column").size();
+		waitForElementDisplayed(By.cssSelector("div[id*='absence-table']"), true);
+		return findListElementsByCssSelector("td.absence-period").size();
 	}
 
 	@SuppressWarnings("deprecation")
@@ -40,7 +40,7 @@ public class AbsencePage extends TemplatePage {
 		boolean checkBoxSelected = checkBox.isSelected();
 		if (checkBoxSelected != shown) {
 			clickByCssSelector("div[id*='show-absence-in-the-past'] div.ui-chkbox-box");
-			waitAjaxIndicatorDisappear();
+			waitUntilAnimationFinished(DEFAULT_TIMEOUT,"ajax-indicator:ajax-indicator-ajax-indicator_start" , "id");
 		}
 	}
 
