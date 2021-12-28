@@ -107,6 +107,18 @@ Is0 @StartRequest f92 '' #zField
 Is0 @GridStep f94 '' #zField
 Is0 @PushWFArc f95 '' #zField
 Is0 @PushWFArc f93 '' #zField
+Is0 @StartRequest f96 '' #zField
+Is0 @GridStep f97 '' #zField
+Is0 @PushWFArc f98 '' #zField
+Is0 @PushWFArc f99 '' #zField
+Is0 @StartRequest f100 '' #zField
+Is0 @GridStep f101 '' #zField
+Is0 @PushWFArc f102 '' #zField
+Is0 @PushWFArc f103 '' #zField
+Is0 @GridStep f108 '' #zField
+Is0 @StartRequest f109 '' #zField
+Is0 @PushWFArc f110 '' #zField
+Is0 @PushWFArc f111 '' #zField
 >Proto Is0 Is0 GrantPermissions #zField
 Is0 f0 outLink grantAllPermissionsToCurrentUser.ivp #txt
 Is0 f0 inParamDecl '<> param;' #txt
@@ -1210,18 +1222,101 @@ Is0 f92 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Is0 f92 @C|.responsibility Everybody #txt
-Is0 f92 881 641 30 30 16 0 #rect
+Is0 f92 881 637 30 30 16 0 #rect
 Is0 f94 actionTable 'out=in;
 ' #txt
 Is0 f94 actionCode 'import ch.ivyteam.ivy.security.IPermission;
 
 ivy.task.getApplication().getSecurityDescriptor().denyPermission(IPermission.TASK_DESTROY, ivy.session.getSessionUser());' #txt
 Is0 f94 security system #txt
-Is0 f94 668 644 40 24 0 -8 #rect
-Is0 f95 881 656 708 656 #arcP
-Is0 f93 668 656 408 543 #arcP
-Is0 f93 1 408 656 #addKink
+Is0 f94 668 640 40 24 0 -8 #rect
+Is0 f95 881 652 708 652 #arcP
+Is0 f93 668 652 408 543 #arcP
+Is0 f93 1 408 652 #addKink
 Is0 f93 0 0.700719777613547 0 0 #arcLabel
+Is0 f96 outLink grantReadAbsencesPermission.ivp #txt
+Is0 f96 inParamDecl '<> param;' #txt
+Is0 f96 requestEnabled true #txt
+Is0 f96 triggerEnabled false #txt
+Is0 f96 callSignature grantReadAbsencesPermission() #txt
+Is0 f96 caseData businessCase.attach=true #txt
+Is0 f96 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>grantReadAbsencesPermission.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Is0 f96 @C|.responsibility Everybody #txt
+Is0 f96 881 689 30 30 16 0 #rect
+Is0 f97 actionTable 'out=in;
+' #txt
+Is0 f97 actionCode 'import ch.ivyteam.ivy.security.IPermission;
+
+ivy.task.getApplication().getSecurityDescriptor().grantPermission(IPermission.USER_READ_ABSENCES, ivy.session.getSessionUser());
+ivy.task.getApplication().getSecurityDescriptor().denyPermission(IPermission.USER_CREATE_ABSENCE, ivy.session.getSessionUser());
+ivy.task.getApplication().getSecurityDescriptor().denyPermission(IPermission.USER_DELETE_ABSENCE, ivy.session.getSessionUser());
+
+ivy.task.getApplication().getSecurityDescriptor().grantPermission(IPermission.USER_DELETE_OWN_ABSENCE, ivy.session.getSessionUser());
+ivy.task.getApplication().getSecurityDescriptor().grantPermission(IPermission.USER_CREATE_OWN_ABSENCE, ivy.session.getSessionUser());' #txt
+Is0 f97 security system #txt
+Is0 f97 668 692 40 24 0 -8 #rect
+Is0 f98 881 704 708 704 #arcP
+Is0 f99 668 704 408 543 #arcP
+Is0 f99 1 408 704 #addKink
+Is0 f99 0 0.8634556904957351 0 0 #arcLabel
+Is0 f100 outLink grantReadOwnAbsencesPermission.ivp #txt
+Is0 f100 inParamDecl '<> param;' #txt
+Is0 f100 requestEnabled true #txt
+Is0 f100 triggerEnabled false #txt
+Is0 f100 callSignature grantReadOwnAbsencesPermission() #txt
+Is0 f100 caseData businessCase.attach=true #txt
+Is0 f100 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>grantReadOwnAbsencesPermission.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Is0 f100 @C|.responsibility Everybody #txt
+Is0 f100 881 753 30 30 16 0 #rect
+Is0 f101 actionTable 'out=in;
+' #txt
+Is0 f101 actionCode 'import ch.ivyteam.ivy.security.IPermission;
+
+ivy.task.getApplication().getSecurityDescriptor().grantPermission(IPermission.USER_READ_OWN_ABSENCES, ivy.session.getSessionUser());' #txt
+Is0 f101 security system #txt
+Is0 f101 668 756 40 24 0 -8 #rect
+Is0 f102 881 768 708 768 #arcP
+Is0 f103 668 768 408 543 #arcP
+Is0 f103 1 408 768 #addKink
+Is0 f103 0 0.9323852236886871 0 0 #arcLabel
+Is0 f108 actionTable 'out=in;
+' #txt
+Is0 f108 actionCode 'import ch.ivyteam.ivy.security.IPermission;
+
+ivy.task.getApplication().getSecurityDescriptor().grantPermission(IPermission.USER_CREATE_ABSENCE, ivy.session.getSessionUser());' #txt
+Is0 f108 security system #txt
+Is0 f108 668 836 40 24 0 -8 #rect
+Is0 f109 outLink grantCreateAbsencesPermission.ivp #txt
+Is0 f109 inParamDecl '<> param;' #txt
+Is0 f109 requestEnabled true #txt
+Is0 f109 triggerEnabled false #txt
+Is0 f109 callSignature grantCreateAbsencesPermission() #txt
+Is0 f109 caseData businessCase.attach=true #txt
+Is0 f109 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>grantCreateAbsencesPermission.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Is0 f109 @C|.responsibility Everybody #txt
+Is0 f109 881 833 30 30 16 0 #rect
+Is0 f110 881 848 708 848 #arcP
+Is0 f111 668 848 408 543 #arcP
+Is0 f111 1 408 848 #addKink
+Is0 f111 1 0.10650630853594005 0 0 #arcLabel
 >Proto Is0 .type portalKit_test.GrantPermissionsData #txt
 >Proto Is0 .processKind NORMAL #txt
 >Proto Is0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1330,3 +1425,15 @@ Is0 f92 mainOut f95 tail #connect
 Is0 f95 head f94 mainIn #connect
 Is0 f94 mainOut f93 tail #connect
 Is0 f93 head f7 mainIn #connect
+Is0 f96 mainOut f98 tail #connect
+Is0 f98 head f97 mainIn #connect
+Is0 f97 mainOut f99 tail #connect
+Is0 f99 head f7 mainIn #connect
+Is0 f100 mainOut f102 tail #connect
+Is0 f102 head f101 mainIn #connect
+Is0 f101 mainOut f103 tail #connect
+Is0 f103 head f7 mainIn #connect
+Is0 f109 mainOut f110 tail #connect
+Is0 f110 head f108 mainIn #connect
+Is0 f108 mainOut f111 tail #connect
+Is0 f111 head f7 mainIn #connect
