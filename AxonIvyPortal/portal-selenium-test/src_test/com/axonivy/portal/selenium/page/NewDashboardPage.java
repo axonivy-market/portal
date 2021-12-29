@@ -134,7 +134,8 @@ public class NewDashboardPage extends TemplatePage {
 
   // ==================================
   public ProcessEditWidgetNewDashBoardPage editCombinedModeProcess() {
-    $(".process-grid-item__action--combined .si-pencil").waitUntil(Condition.appear, DEFAULT_TIMEOUT).click();
+    SelenideElement element = $(".process-grid-item__action--combined .si-pencil").waitUntil(Condition.appear, DEFAULT_TIMEOUT);
+    element.click(-element.getSize().width / 2, 0);
     $("div[id='new-widget-configuration-dialog']").waitUntil(Condition.appear, DEFAULT_TIMEOUT).click();
     return new ProcessEditWidgetNewDashBoardPage();
   }
@@ -144,7 +145,8 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public void deleteCombinedModeProcess() {
-    $(".process-grid-item__action--combined .si-bin-1").waitUntil(Condition.appear, DEFAULT_TIMEOUT).click();
+    SelenideElement element = $(".process-grid-item__action--combined .si-bin-1").waitUntil(Condition.appear, DEFAULT_TIMEOUT);
+    element.click(-element.getSize().width / 2, 0);
     getRemoveWidgetDialog().waitUntil(Condition.appear, DEFAULT_TIMEOUT).click();
     getRemoveWidgetButton().click();
     getRemoveWidgetDialog().waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
@@ -441,12 +443,5 @@ public class NewDashboardPage extends TemplatePage {
 
   public ElementsCollection getCompactModeProcessInfoProcessTypes(boolean isExpanded) {
     return getCompactModeProcessInfoPanel(isExpanded).$$("span.dashboard-processes__type-text");
-  }
-
-  public void deleteTaskWidget() {
-    $("a[id$=':delete-widget-0']").shouldBe(Condition.appear).click();
-    getRemoveWidgetDialog().waitUntil(Condition.appear, DEFAULT_TIMEOUT).click();
-    getRemoveWidgetButton().click();
-    getRemoveWidgetDialog().waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
   }
 }
