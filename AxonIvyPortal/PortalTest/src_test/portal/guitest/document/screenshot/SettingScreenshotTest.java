@@ -10,7 +10,6 @@ import org.openqa.selenium.Dimension;
 import ch.ivy.addon.portalkit.util.ScreenshotMargin;
 import ch.ivy.addon.portalkit.util.ScreenshotUtil;
 import portal.guitest.common.ScreenshotTest;
-import portal.guitest.common.Sleeper;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.AbsencePage;
 import portal.guitest.page.AdminSettingsPage;
@@ -68,7 +67,6 @@ public class SettingScreenshotTest extends ScreenshotTest {
     showNewDashboard();
     newDashboardPage = new NewDashboardPage();
     newDashboardPage.getUserSettings();
-    Sleeper.sleep(300);//wait for animation finish to capture nice screenshot
     executeDecorateJs("highlightAdminSettings()");
     ScreenshotUtil.captureHalfTopPageScreenShot(ScreenshotUtil.SETTINGS_FOLDER + "select-admin-settings");
 
@@ -83,12 +81,10 @@ public class SettingScreenshotTest extends ScreenshotTest {
     homePage = new HomePage();
     UserProfilePage userProfilePage = homePage.openMyProfilePage();
     ScreenshotUtil.resizeBrowser(new Dimension(1400, 1400));
-    Sleeper.sleep(500);//Wait for focus animation finish before capture screenshot
     ScreenshotUtil.captureElementScreenshot(userProfilePage.getUserSettingCard(), ScreenshotUtil.MY_PROFILE_FOLDER + "my-profile");
     ScreenshotUtil.resizeBrowser(new Dimension(1500, 900));
     userProfilePage.switchOnEmailOnTaskAssignmentSetting();
     userProfilePage.switchOnFurtherEmailFromAppSetting();
-    Sleeper.sleep(500);//Wait for focus animation finish before capture screenshot
     executeDecorateJs("highlightEmailSettings()");
     ScreenshotUtil.captureHalfRightPageScreenShot(ScreenshotUtil.MY_PROFILE_FOLDER + "email-settings");
   }
@@ -103,7 +99,6 @@ public class SettingScreenshotTest extends ScreenshotTest {
     createAbsenceForCurrentUser(TODAY, TODAY, "Personal leave", absencePage);
     createAbsenceForCurrentUser(TOMORROW, TOMORROW, "Vacation", absencePage);
     NewAbsencePage newAbsencePage = absencePage.openNewAbsenceDialog();
-    Sleeper.sleep(1000);//wait for animation finish to capture nice screenshot
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(absencePage.getAddAbsenceDialog(), ScreenshotUtil.SETTINGS_FOLDER + "new-absence", new ScreenshotMargin(20));
     newAbsencePage.closeAddAbsenceDialog();
     ScreenshotUtil.captureElementScreenshot(absencePage.getAbsenceForm(), ScreenshotUtil.SETTINGS_FOLDER + "absence");

@@ -462,12 +462,14 @@ public class CaseDetailsPage extends TemplatePage {
   public WebElement getAddNoteDialog() {
     onClickHistoryIcon();
     waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
+    waitUntilAnimationFinished(DEFAULT_TIMEOUT, "ui-inputtextarea.note-content-textarea", CLASS_PROPERTY);
     return findElementByCssSelector("[id$='case-histories:add-note-dialog']");
   }
 
   public WebElement getAddAttachmentDialog() {
     clickByCssSelector("a[id$='add-document-command']");
     waitForElementDisplayed(By.cssSelector("span[id$='document-upload-dialog_title']"), true);
+    waitUntilAnimationFinished(DEFAULT_TIMEOUT, "ui-dialog.case-upload-dialog", CLASS_PROPERTY);
     return findElementByCssSelector("[id$='document:document-upload-dialog']");
   }
   
@@ -484,6 +486,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
   
   public WebElement getResetButton() {
+    waitForElementDisplayed(By.cssSelector("[id$=':reset-details-settings-button']"), true);
     return findElementByCssSelector("[id$=':reset-details-settings-button']");
   }
   
@@ -503,6 +506,10 @@ public class CaseDetailsPage extends TemplatePage {
     waitForElementDisplayed(By.cssSelector("[id$=':switch-to-edit-mode-button']"), true);
     click(By.cssSelector("[id$=':switch-to-edit-mode-button']"));
     waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
+    WaitHelper.assertTrueWithWait(() -> {
+      var infoWidget = findElementByCssSelector("[id$='case-details-information-panel']");
+      return infoWidget.getAttribute(CLASS_PROPERTY).contains("ui-resizable ui-resizable-autohide");
+    });
   }
 
   public void waitForSaveButtonDisplayed() {
@@ -523,6 +530,10 @@ public class CaseDetailsPage extends TemplatePage {
     Actions actions = new Actions(driver);
     Action moveWidget = actions.dragAndDrop(sourceElement, destinationElement).build();
     moveWidget.perform();
+    WaitHelper.assertTrueWithWait(() -> {
+      var caseDetails = findElementByCssSelector("[id$=':case-details-container:case-details-widgets']");
+      return !caseDetails.getAttribute(CLASS_PROPERTY).contains("ui-droppable-over");
+    });
   }
 
   public void waitForResetButtonDisplayed() {
