@@ -1,2 +1,4 @@
 PortalDashboardConfigurationData #class
 ch.ivy.addon.portal.generic.dashboard.PortalDashboardConfiguration #namespace
+isPublicDashboard Boolean #field
+isPublicDashboard PERSISTENT #fieldModifier
