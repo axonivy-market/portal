@@ -10,7 +10,6 @@ import org.openqa.selenium.Dimension;
 import ch.ivy.addon.portalkit.util.ScreenshotUtil;
 import portal.guitest.bean.ExpressResponsible;
 import portal.guitest.common.ScreenshotTest;
-import portal.guitest.common.Sleeper;
 import portal.guitest.page.DefaultExpresTaskPage;
 import portal.guitest.page.ExpressProcessPage;
 import portal.guitest.page.HomePage;
@@ -42,14 +41,13 @@ public class AdhocScreenshotTest extends ScreenshotTest {
     taskTemplatePage.clickAdhocOkButton();
     
     //create tasks in adhoc page
+    ScreenshotUtil.resizeBrowser(new Dimension(1500, 1000));
     ExpressProcessPage expressPage = new ExpressProcessPage();
     ExpressResponsible responsible = new ExpressResponsible("demo", false);
     List<ExpressResponsible> responsibles = Arrays.asList(responsible);
     expressPage.createDefaultTask(0, defaultTaskName1, responsibles);
     expressPage.addNewTask(0);
     expressPage.createDefaultTask(1, defaultTaskName2, responsibles);
-    Sleeper.sleep(2000);//wait for select user
-    ScreenshotUtil.resizeBrowser(new Dimension(1500, 1000));
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.EXPRESS_FOLDER + "adhoc-define");
     expressPage.executeDirectly();
     
@@ -73,7 +71,6 @@ public class AdhocScreenshotTest extends ScreenshotTest {
     new HomePage().isDisplayed();
     taskWidgetPage.filterTasksBy(taskNamePrefix, 1);
     taskWidgetPage.startTask(0);
-    Sleeper.sleep(2000);//wait for history review
     ScreenshotUtil.resizeBrowser(new Dimension(1500, 600));
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.EXPRESS_FOLDER + "adhoc-process-history");
     
