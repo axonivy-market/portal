@@ -134,7 +134,7 @@ public class NewDashboardPage extends TemplatePage {
 
   // ==================================
   public ProcessEditWidgetNewDashBoardPage editCombinedModeProcess() {
-    $(".process-grid-item__action--combined .si-pencil").shouldBe(Condition.appear).click();
+    $(".process-grid-item__action--combined .si-pencil").waitUntil(getClickableCondition(), DEFAULT_TIMEOUT).click();
     $("div[id='new-widget-configuration-dialog']").waitUntil(Condition.appear, DEFAULT_TIMEOUT).click();
     return new ProcessEditWidgetNewDashBoardPage();
   }
@@ -144,7 +144,7 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public void deleteCombinedModeProcess() {
-    $(".process-grid-item__action--combined .si-bin-1").shouldBe(Condition.appear).click();
+    $(".process-grid-item__action--combined .si-bin-1").waitUntil(getClickableCondition(), DEFAULT_TIMEOUT).click();
     getRemoveWidgetDialog().waitUntil(Condition.appear, DEFAULT_TIMEOUT).click();
     getRemoveWidgetButton().click();
     getRemoveWidgetDialog().waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
