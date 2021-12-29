@@ -39,11 +39,6 @@ public class NewDashboardPage extends TemplatePage {
     
   }
 
-  public void switchToEditMode() {
-    waitForElementDisplayed(By.cssSelector("button[id='switch-to-edit-mode']"), true);
-    click(By.cssSelector("button[id='switch-to-edit-mode']"));
-  }
-  
   public void clickAddWidget() {
     waitForElementDisplayed(By.cssSelector("button[id='add-button']"), true);
     click(By.cssSelector("button[id='add-button']"));
