@@ -36,7 +36,7 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     redirectToNewDashBoard();
   }
-/*
+
   @Test
   public void testPreviewButtonImageProcess() {
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
@@ -176,7 +176,7 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
     $("a[id='back-link']").waitUntil(Condition.appear, DEFAULT_TIMEOUT);
     $("button[id='start-process-button']").waitUntil(Condition.appear, DEFAULT_TIMEOUT).shouldBe(Condition.enabled);
   }
-*/
+
   // ===================================================================================
   @Test
   public void testPreviewCombinedModeProcess() {
@@ -210,7 +210,6 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
     editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST, null);
-    newDashboardPage.getCombinedModeProcessContainer().waitUntil(Condition.appear, DEFAULT_TIMEOUT);
     newDashboardPage.getStartButton().shouldBe(Condition.disabled);
 
     editProcessWidgetConfiguration = newDashboardPage.editCombinedModeProcess();
@@ -224,7 +223,6 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
     editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST, null);
-    newDashboardPage.getCombinedModeProcessContainer().waitUntil(Condition.appear, DEFAULT_TIMEOUT);
     newDashboardPage.getStartButton().shouldBe(Condition.disabled);
 
     newDashboardPage.deleteCombinedModeProcess();
@@ -248,7 +246,6 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
     newDashboardPage.getStartButton().shouldBe(Condition.disabled);
 
     newDashboardPage.switchToViewMode();
-    newDashboardPage.getCombinedModeProcessContainer().waitUntil(Condition.appear, DEFAULT_TIMEOUT);
     if (isExpanded) {
       newDashboardPage.expandCombindedModeProcess();
     }
@@ -277,7 +274,6 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
     editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST, TEST_FOR_IVYPORTAL_3369);
 
     newDashboardPage.switchToViewMode();
-    newDashboardPage.getCombinedModeProcessContainer().waitUntil(Condition.appear, DEFAULT_TIMEOUT);
     if (isExpanded) {
       newDashboardPage.expandCombindedModeProcess();
     }
@@ -305,7 +301,6 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
     editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST, TEST_FOR_IVYPORTAL_3369);
 
     newDashboardPage.switchToViewMode();
-    newDashboardPage.getCombinedModeProcessContainer().waitUntil(Condition.appear, DEFAULT_TIMEOUT);
     if (isExpanded) {
       newDashboardPage.expandCombindedModeProcess();
     }
@@ -333,7 +328,6 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
     editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST, TEST_FOR_IVYPORTAL_3369);
 
     newDashboardPage.switchToViewMode();
-    newDashboardPage.getCombinedModeProcessContainer().waitUntil(Condition.appear, DEFAULT_TIMEOUT);
     if (isExpanded) {
       newDashboardPage.expandCombindedModeProcess();
     }
@@ -353,13 +347,12 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
     editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST, TEST_FOR_IVYPORTAL_3369);
 
     newDashboardPage.switchToViewMode();
-    newDashboardPage.getCombinedModeProcessContainer().waitUntil(Condition.appear, DEFAULT_TIMEOUT);
     newDashboardPage.expandCombindedModeProcess();
     newDashboardPage.getCombinedModeProcessCollapseLink().click();
     newDashboardPage.getCombinedModeProcessExpandLink().waitUntil(Condition.appear, DEFAULT_TIMEOUT);
     newDashboardPage.getCombinedModeProcessCollapseLink().shouldBe(Condition.disappear);
   }
-/*
+
   // ===================================================================================
   @Test
   public void testPreviewCompactModeProcess() {
@@ -630,5 +623,4 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
     newDashboardPage.getCompactModeProcessInfoProcessTypes(isExpanded).shouldHave(CollectionCondition.size(3),
         DEFAULT_TIMEOUT);
   }
-  */
 }
