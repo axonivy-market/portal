@@ -442,4 +442,11 @@ public class NewDashboardPage extends TemplatePage {
   public ElementsCollection getCompactModeProcessInfoProcessTypes(boolean isExpanded) {
     return getCompactModeProcessInfoPanel(isExpanded).$$("span.dashboard-processes__type-text");
   }
+
+  public void deleteTaskWidget() {
+    $("a[id$=':delete-widget-0']").shouldBe(Condition.appear).click();
+    getRemoveWidgetDialog().waitUntil(Condition.appear, DEFAULT_TIMEOUT).click();
+    getRemoveWidgetButton().click();
+    getRemoveWidgetDialog().waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
+  }
 }
