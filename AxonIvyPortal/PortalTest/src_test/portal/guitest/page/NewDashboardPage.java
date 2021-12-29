@@ -3,6 +3,8 @@ package portal.guitest.page;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import portal.guitest.common.WaitHelper;
+
 public class NewDashboardPage extends TemplatePage {
   private static final String CONFIGURATION_DIALOG_ID = "new-widget-configuration-dialog";
   private static final String ADD_WIDGET_DIALOG_ID = "new-widget-dialog";
@@ -81,6 +83,7 @@ public class NewDashboardPage extends TemplatePage {
 
   public WebElement getAddWidgetDialog() {
     waitForElementDisplayed(By.id(ADD_WIDGET_DIALOG_ID), true);
+    waitUntilAnimationFinished(DEFAULT_TIMEOUT, "new-widget-dialog", ID_PROPERTY);
     return findElementById(ADD_WIDGET_DIALOG_ID);
   }
 
@@ -98,5 +101,20 @@ public class NewDashboardPage extends TemplatePage {
   public void clickWidgetInfo(int index) {
     findElementByCssSelector("a[id$='info-sidebar-link-" + index + "']").click();
     waitForElementDisplayed(By.cssSelector("div[id$=':info-overlay-panel-" + index + "']"), true);
+  }
+
+  public void waitForTaskWidgetLoading() {
+    WaitHelper.assertTrueWithWait(() -> {
+      var taskLoading = findElementByCssSelector("[id$=':task-component:loading']");
+      return taskLoading.getAttribute(CLASS_PROPERTY).contains("u-display-none");
+    });
+    waitUntilAnimationFinished(DEFAULT_TIMEOUT, "ui-datatable.dashboard-tasks--table", CLASS_PROPERTY);
+  }
+
+  public void waitForWidgetInfoLoading(WebElement taskInfoOverlayPanel) {
+    WaitHelper.assertTrueWithWait(() -> {
+      var widgetInfo = taskInfoOverlayPanel.findElements(By.cssSelector("[class*='js-loading-']")).get(0);
+      return widgetInfo.getAttribute(CLASS_PROPERTY).contains("u-display-none");
+    });
   }
 }
