@@ -6,6 +6,7 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+import com.axonivy.portal.selenium.common.LinkNavigator;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
@@ -26,7 +27,7 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public void switchToEditMode() {
-    $("button[id='switch-to-edit-mode']").waitUntil(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    LinkNavigator.redirectToEditPublicDashboard();
     $("a[id='switch-to-view-mode']").waitUntil(appear, DEFAULT_TIMEOUT).should(appear);
   }
 
@@ -89,7 +90,7 @@ public class NewDashboardPage extends TemplatePage {
 
   public void switchToViewMode() {
     $("a[id='switch-to-view-mode']").waitUntil(Condition.appear, DEFAULT_TIMEOUT).click();
-    $("button[id='switch-to-edit-mode']").waitUntil(Condition.appear, DEFAULT_TIMEOUT);
+    $("button[id*='-to-edit']").waitUntil(Condition.appear, DEFAULT_TIMEOUT);
   }
 
   public void startProcess() {

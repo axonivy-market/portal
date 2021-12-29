@@ -98,11 +98,7 @@ public class BaseTest {
   }
 
   public void redirectToRelativeLink(String relativeProcessStartUrl) {
-    try {
-      open(UrlHelpers.generateAbsoluteProcessStartLink(relativeProcessStartUrl));
-    } catch (Exception e) {
-      throw new PortalGUITestException(e);
-    }
+    LinkNavigator.redirectToRelativeLink(relativeProcessStartUrl);
   }
 
   public void launchBrowserAndLogoutInDesigner() {
