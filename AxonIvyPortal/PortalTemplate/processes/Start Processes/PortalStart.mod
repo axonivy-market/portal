@@ -1935,10 +1935,12 @@ Pt0 f174 433 2385 30 30 0 15 #rect
 Pt0 f175 368 2400 433 2400 #arcP
 Pt0 f176 111 2400 192 2400 #arcP
 Pt0 f177 outLink PortalDashboardConfiguration.ivp #txt
-Pt0 f177 inParamDecl '<> param;' #txt
+Pt0 f177 inParamDecl '<Boolean isPublicDashboard> param;' #txt
+Pt0 f177 inParamTable 'out.isPublicDashboard=param.isPublicDashboard;
+' #txt
 Pt0 f177 requestEnabled true #txt
 Pt0 f177 triggerEnabled false #txt
-Pt0 f177 callSignature PortalDashboardConfiguration() #txt
+Pt0 f177 callSignature PortalDashboardConfiguration(Boolean) #txt
 Pt0 f177 caseData businessCase.attach=true #txt
 Pt0 f177 showInStartList 0 #txt
 Pt0 f177 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1951,8 +1953,10 @@ Pt0 f177 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Pt0 f177 @C|.responsibility Everybody #txt
 Pt0 f177 81 2385 30 30 -67 21 #rect
 Pt0 f178 dialogId ch.ivy.addon.portal.generic.dashboard.PortalDashboardConfiguration #txt
-Pt0 f178 startMethod start() #txt
-Pt0 f178 requestActionDecl '<> param;' #txt
+Pt0 f178 startMethod start(Boolean) #txt
+Pt0 f178 requestActionDecl '<Boolean isPublicDashboard> param;' #txt
+Pt0 f178 requestMappingAction 'param.isPublicDashboard=in.isPublicDashboard;
+' #txt
 Pt0 f178 responseMappingAction 'out=in;
 ' #txt
 Pt0 f178 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
