@@ -19,6 +19,7 @@ import ch.ivy.addon.portalkit.util.ScreenshotUtil;
 import portal.guitest.common.ScreenshotTest;
 import portal.guitest.common.Sleeper;
 import portal.guitest.common.TestAccount;
+import portal.guitest.common.WaitHelper;
 import portal.guitest.page.DashboardWidgetConfigurationDialogPage;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.NewDashboardPage;
@@ -159,8 +160,7 @@ public class DashboardScreenshotTest extends ScreenshotTest {
     updatePortalSetting(SHOW_LEGACY_UI .getKey(), "false");
     showNewDashboard();
     newDashboardPage = new NewDashboardPage();
-
-    Sleeper.sleep(3000); // wait for js calculate resize event
+    newDashboardPage.waitForTaskWidgetLoading();
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.NEW_DASHBOARD_FOLDER + "dashboard");
 
     // Take screenshot of widget filter panel
@@ -174,14 +174,14 @@ public class DashboardScreenshotTest extends ScreenshotTest {
     newDashboardPage.clickWidgetInfo(0);
     WebElement taskInfoOverlayPanel = newDashboardPage.getInfoOverlayPanel(0);
     taskInfoOverlayPanel.findElement(By.className("widget-infor-type--label")).click();
-    Sleeper.sleep(2000); // wait for remote commmand run successfully
+    newDashboardPage.waitForWidgetInfoLoading(taskInfoOverlayPanel);
     ScreenshotUtil.captureElementScreenshot(taskInfoOverlayPanel, ScreenshotUtil.NEW_DASHBOARD_FOLDER + "widget-info");
     taskInfoOverlayPanel.findElement(By.className("info-overlay-panel__footer")).findElement(By.className("ui-link")).click();
 
     // Take screenshot of Edit dashboard page
     redirectToEditDashboard();
     newDashboardPage.waitForElementDisplayed(By.id("switch-to-view-mode"), true);
-    Sleeper.sleep(2000); // wait for remote commmand run successfully
+    WaitHelper.assertTrueWithWait(() -> ScreenshotUtil.isDOMStatusComplete());
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.NEW_DASHBOARD_FOLDER + "edit-widget");
 
     // Take screenshot of Add new widget dialog
@@ -203,7 +203,6 @@ public class DashboardScreenshotTest extends ScreenshotTest {
     // Take screenshots of Case widget configuration dialog
     newDashboardPage.clickAddWidget();
     newWidgetDialog = newDashboardPage.getAddWidgetDialog();
-    Sleeper.sleep(1000); // wait for remote commmand run successfully
     newWidgetDialog.findElement(By.id("new-widget-dialog-content:1:add-widget")).click();
     configurationDialogPage = new DashboardWidgetConfigurationDialogPage();
     ScreenshotUtil.captureElementScreenshot(configurationDialogPage.getConfigurationFilter(), ScreenshotUtil.NEW_DASHBOARD_FOLDER + "case-list-widget-configuration");
@@ -217,7 +216,6 @@ public class DashboardScreenshotTest extends ScreenshotTest {
     // Take screenshot of Process widget configuration dialog
     newDashboardPage.clickAddWidget();
     newWidgetDialog = newDashboardPage.getAddWidgetDialog();
-    Sleeper.sleep(1000); // wait for remote commmand run successfully
     newWidgetDialog.findElement(By.id("new-widget-dialog-content:2:add-widget")).click();
     configurationDialogPage = new DashboardWidgetConfigurationDialogPage();
 
