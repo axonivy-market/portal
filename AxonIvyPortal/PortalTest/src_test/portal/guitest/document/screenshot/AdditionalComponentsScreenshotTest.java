@@ -12,8 +12,8 @@ import ch.ivy.addon.portalkit.util.ScreenshotMargin;
 import ch.ivy.addon.portalkit.util.ScreenshotUtil;
 import portal.guitest.common.FileHelper;
 import portal.guitest.common.ScreenshotTest;
-import portal.guitest.common.Sleeper;
 import portal.guitest.common.TestAccount;
+import portal.guitest.common.WaitHelper;
 import portal.guitest.page.DocumentTableComponentPage;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.MainMenuPage;
@@ -43,9 +43,8 @@ public class AdditionalComponentsScreenshotTest extends ScreenshotTest {
 
     NewDashboardPage newDashboardPage = new NewDashboardPage();
     newDashboardPage.startTask(0);
-    Sleeper.sleep(1000);//wait for new page loaded
+    WaitHelper.assertTrueWithWait(() -> ScreenshotUtil.isDOMStatusComplete());
     newDashboardPage = new NewDashboardPage();
-    newDashboardPage.waitForTaskWidgetEmptyMessage();
     newDashboardPage.waitForGrowlMessageDisplayClearly();
     ScreenshotUtil.captureHalfTopPageScreenShot(ScreenshotUtil.COMPONENTS_FOLDER + "example-global-growl-finished-task");
 
@@ -54,12 +53,11 @@ public class AdditionalComponentsScreenshotTest extends ScreenshotTest {
     newDashboardPage.startTask(1);
     TaskTemplatePage taskTemplatePage = new TaskTemplatePage();
     taskTemplatePage.clickCancelButton();
-    Sleeper.sleep(300);//wait for new page loaded
+    WaitHelper.assertTrueWithWait(() -> ScreenshotUtil.isDOMStatusComplete());
     newDashboardPage = new NewDashboardPage();
     newDashboardPage.waitForTaskStartButtonDisplay(1);
     newDashboardPage.waitForGrowlMessageDisplayClearly();
     ScreenshotUtil.captureHalfTopPageScreenShot(ScreenshotUtil.COMPONENTS_FOLDER + "example-global-growl-cancelled-task");
-
   }
   
   @Test

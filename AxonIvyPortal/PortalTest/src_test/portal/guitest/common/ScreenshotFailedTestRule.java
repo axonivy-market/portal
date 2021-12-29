@@ -43,7 +43,6 @@ public class ScreenshotFailedTestRule implements MethodRule {
               e.printStackTrace();
               captureScreenshot(frameworkMethod.getName() + "-shutdown-error");
               System.out.println("captureScreenshot " + new Date());
-              Sleeper.sleep(5000);
               Browser.getBrowser().shutdown();
               System.out.println("shutdown" + new Date());
             }
