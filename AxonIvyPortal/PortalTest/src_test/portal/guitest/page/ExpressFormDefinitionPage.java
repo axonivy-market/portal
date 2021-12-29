@@ -160,22 +160,22 @@ public class ExpressFormDefinitionPage extends TemplatePage {
 		}
 	}
 
-
   private void moveFormElementToPanel(int index, String position) {
     WebElement formElement = findElementById(String.format("form:available-form-elements:%d:pnl_content", index));
     // If elements is FileUpload, move to footer
     if (formElementIsFileUpload(formElement)) {
       position = FOOTER_POSITION;
     }
-    waitForElementDisplayed(By.id(String.format("form:selected-form-elements-%s-panel", position)), true);
+    var panelId = String.format("form:selected-form-elements-%s-panel", position);
+    waitForElementDisplayed(By.id(panelId), true);
     // this click to fix bug can't drag on IE
     formElement.click();
-    WebElement panel = findElementById(String.format("form:selected-form-elements-%s-panel", position));
+    WebElement panel = findElementById(panelId);
     Actions builder = new Actions(driver);
     Action moveProcessSequence = builder.dragAndDrop(formElement, panel).build();
     moveProcessSequence.perform();
-    var dropPanel = findElementById(String.format("form:selected-form-elements-%s-panel", position));
     WaitHelper.assertTrueWithWait(() -> {
+      var dropPanel = findElementById(panelId);
       return !dropPanel.getAttribute(CLASS_PROPERTY).contains("ui-droppable-hover");
     });
   }
