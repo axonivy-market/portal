@@ -9,25 +9,29 @@ import static org.apache.commons.lang3.StringUtils.EMPTY;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.PrimeFaces;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.constant.DashboardConstants;
+import ch.ivy.addon.portalkit.constant.PortalConstants;
+import ch.ivy.addon.portalkit.dto.SecurityMemberDTO;
 import ch.ivy.addon.portalkit.dto.UserDTO;
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.CustomDashboardWidget;
@@ -38,14 +42,22 @@ import ch.ivy.addon.portalkit.dto.dashboard.ProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.WidgetSample;
 import ch.ivy.addon.portalkit.dto.dashboard.process.DashboardProcess;
+import ch.ivy.addon.portalkit.enums.BreadCrumbKind;
 import ch.ivy.addon.portalkit.enums.DashboardCustomWidgetType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardProcessColumn;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
+import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.enums.ProcessWidgetMode;
+import ch.ivy.addon.portalkit.jsf.Attrs;
+import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.service.DashboardService;
+import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivy.addon.portalkit.util.CategoryUtils;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivy.addon.portalkit.util.Dates;
+import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
+import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.security.ISecurityConstants;
 
 @ViewScoped
 @ManagedBean
@@ -60,16 +72,41 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
   private ProcessDashboardWidget originalProcessWidget;
   private List<String> categories;
   private Long portalGridsCurrentRow;
-  
+  // To manage dashboards, we need to clone current dashboards to editingDashboards, then when saving, set current
+  // dashboards = editingDashboards. If not save, no change is applied.
+  protected List<Dashboard> editingDashboards;
+  protected Dashboard selectedEditingDashboard;
+  protected boolean isPublicDashboard;
+
   @PostConstruct
   public void initConfigration() {
+    try {
+      isPublicDashboard = Attrs.currentContext().getAttribute("#{data.isPublicDashboard}", Boolean.class);
+    } catch (Exception e1) {
+      // ignore error, handle as private dashboard
+      Ivy.log().error(e1);
+    }
     super.init();
-    HttpServletRequest request =(HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
-    String userAgent = request.getHeader("user-agent");
-
-    this.isReadOnlyMode = userAgent.matches(".*Android.*|.*webOS.*|.*iPhone.*|.*iPad.*|.*iPod.*|.*BlackBerry.*|.*IEMobile.*|.*Opera Mini.*");
-
+    isReadOnlyMode = isMobileDevice();
     samples = List.of(taskSample(), caseSample(), processSample(), customSample());
+  }
+
+  @Override
+  protected List<Dashboard> collectDashboards() {
+    List<Dashboard> collectedDashboards = new ArrayList<>();
+    String dashboardInUserProperty = readDashboardBySessionUser();
+    try {
+      if (isPublicDashboard) {
+        collectedDashboards = defaultDashboards();
+      } else if (StringUtils.isNoneEmpty(dashboardInUserProperty)) {
+        List<Dashboard> myDashboards = getVisibleDashboards(dashboardInUserProperty);
+        collectedDashboards.addAll(myDashboards);
+      }
+    } catch (PortalException e) {
+      // If errors like parsing JSON errors, ignore them
+      Ivy.log().error(e);
+    }
+    return collectedDashboards;
   }
 
   private WidgetSample taskSample() {
@@ -93,10 +130,13 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
   }
 
   public void restore() {
-    removeDashboardInUserProperty();
-    List<Dashboard> defaultDashboards = defaultDashboards();
-    this.selectedDashboard = defaultDashboards.get(defaultDashboards.indexOf(getSelectedDashboard()));
-    this.dashboards.set(this.dashboards.indexOf(getSelectedDashboard()), getSelectedDashboard());
+    if (isPublicDashboard) {
+      Ivy.var().reset(PortalVariable.DASHBOARD.key);
+      resetDashboardWithDataFrom(defaultDashboards());
+    } else {
+      removeDashboardInUserProperty();
+      resetDashboardWithDataFrom(new ArrayList<>());
+    }
     buildWidgetModels(getSelectedDashboard());
   }
 
@@ -134,7 +174,7 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
   public void removeWidget() {
     if (this.deleteWidget != null) {
       this.getSelectedDashboard().getWidgets().remove(deleteWidget);
-      DashboardService.getInstance().saveDashboardForSessionUser(getSelectedDashboard());
+      DashboardService.getInstance().save(getSelectedDashboard());
     }
   }
 
@@ -171,6 +211,7 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
     switch (widget.getType()) {
       case PROCESS:
         ProcessDashboardWidget processWidget = (ProcessDashboardWidget) this.widget;
+        processWidget.setPreview(false);
         if (processWidget.getDisplayMode() == ProcessWidgetMode.FULL_MODE) {
           updateProcessWidget(processWidget, 4, 2);
         } else if (processWidget.getDisplayMode() == ProcessWidgetMode.COMBINED_MODE) {
@@ -303,18 +344,19 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
 
   private void updateProcessesOfWidget(ProcessDashboardWidget widget) {
     List<DashboardProcess> displayProcesses;
+    List<String> processPaths = new ArrayList<>();
     if (widget.isSelectedAllProcess()) {
       displayProcesses = DashboardWidgetUtils.getAllPortalProcesses();
-      widget.setProcesses(new ArrayList<>());
     } else if (CollectionUtils.isNotEmpty(widget.getProcesses())) {
       displayProcesses = widget.getProcesses();
-      widget.setProcesses(displayProcesses);
+      processPaths = getProcessPaths(displayProcesses);
     } else {
       displayProcesses = DashboardWidgetUtils.getAllPortalProcesses().stream()
           .filter(process -> isProcessMatchedCategory(process, widget.getCategories()))
           .collect(Collectors.toList());
     }
 
+    widget.setProcessPaths(processPaths);
     widget.setDisplayProcesses(displayProcesses);
     widget.setOriginalDisplayProcesses(displayProcesses);
   }
@@ -323,6 +365,15 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
     boolean hasNoCategory = categories.indexOf(CategoryUtils.NO_CATEGORY) > -1;
     return categories.indexOf(process.getCategory()) > -1
         || (StringUtils.isBlank(process.getCategory()) && hasNoCategory);
+  }
+  
+  private List<String> getProcessPaths(List<DashboardProcess> processes) {
+    List<String> processPaths = new ArrayList<>();
+    for (DashboardProcess process: processes) {
+      processPaths.add(process.getId());
+    }
+
+    return processPaths;
   }
 
   private void resetUserFilter() {
@@ -414,6 +465,153 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
 
   public boolean isEditWidget() {
     return isEditWidget;
+  }
+
+
+  public List<Dashboard> getEditingDashboards() {
+    return editingDashboards;
+  }
+
+  public Dashboard getSelectedEditingDashboard() {
+    return selectedEditingDashboard;
+  }
+
+  public void onManageDashboard() {
+    editingDashboards = new ArrayList<>();
+    List<SecurityMemberDTO> securityMembers =
+        SecurityMemberUtils.findSecurityMembers("", 0, PortalConstants.MAX_USERS_IN_AUTOCOMPLETE);
+    Map<String, SecurityMemberDTO> nameToSecurityMemberDTO =
+        securityMembers.stream().filter(securityMember -> !securityMember.isUser())
+            .collect(Collectors.toMap(SecurityMemberDTO::getMemberName, v -> v));
+    for (Dashboard dashboard : dashboards) {
+      if (dashboard.getDisplayedPermission() == null) {
+        String displayedPermission = dashboard.getPermissions().stream().filter(Objects::nonNull).distinct()
+            .filter(permission -> !permission.startsWith("#"))
+            .map(permission -> nameToSecurityMemberDTO.get(permission)).filter(Objects::nonNull)
+            .map(dto -> dto.getDisplayName()).collect(Collectors.joining(", "));
+        dashboard.setDisplayedPermission(displayedPermission);
+      }
+      editingDashboards.add(new Dashboard(dashboard));
+    }
+  }
+
+  public void onAddDashboard() {
+    selectedEditingDashboard = new Dashboard();
+    selectedEditingDashboard.setId(UUID.randomUUID().toString());
+    selectedEditingDashboard.setIsPublic(isPublicDashboard);
+  }
+
+  public void removeDashboard() {
+    editingDashboards.remove(selectedEditingDashboard);
+  }
+
+  protected void saveDashboards(List<Dashboard> dashboards) throws JsonProcessingException {
+
+    String dashboardJson = BusinessEntityConverter.entityToJsonValue(dashboards);
+    if (isPublicDashboard) {
+      Ivy.var().set(PortalVariable.DASHBOARD.key, dashboardJson);
+    } else {
+      currentUser().setProperty(PortalVariable.DASHBOARD.key, dashboardJson);
+    }
+  }
+
+  public void saveDashboards() throws JsonProcessingException {
+    for (Dashboard dashboard : editingDashboards) {
+      if (!isPublicDashboard) {
+        dashboard.setPermissions(Stream.of(ISecurityConstants.TOP_LEVEL_ROLE_NAME).collect(Collectors.toList()));
+      } else if (CollectionUtils.isNotEmpty(dashboard.getPermissionDTOs())) {
+        List<String> permissions =
+            dashboard.getPermissionDTOs().stream().map(SecurityMemberDTO::getMemberName).collect(Collectors.toList());
+        dashboard.setPermissions(permissions);
+      }
+    }
+    saveDashboards(editingDashboards);
+    resetDashboardWithDataFrom(editingDashboards);
+  }
+
+  public void selectDeletingDashboard(Dashboard dashboard) {
+    selectedEditingDashboard = dashboard;
+  }
+
+  public void openDashboardDetail(Dashboard dashboard) {
+    selectedEditingDashboard = dashboard;
+    List<SecurityMemberDTO> securityMembers =
+        SecurityMemberUtils.findSecurityMembers("", 0, PortalConstants.MAX_USERS_IN_AUTOCOMPLETE);
+    Map<String, SecurityMemberDTO> nameToSecurityMemberDTO =
+        securityMembers.stream().filter(securityMember -> !securityMember.isUser())
+            .collect(Collectors.toMap(SecurityMemberDTO::getMemberName, v -> v));
+    List<String> permissions = dashboard.getPermissions();
+    if (CollectionUtils.isNotEmpty(permissions)) {
+      List<SecurityMemberDTO> responsibles = permissions.stream().filter(Objects::nonNull).distinct()
+          .filter(permission -> !permission.startsWith("#")).map(permission -> nameToSecurityMemberDTO.get(permission))
+          .filter(Objects::nonNull).collect(Collectors.toList());
+      dashboard.setPermissionDTOs(responsibles);
+    } else {
+      dashboard.setPermissionDTOs(new ArrayList<>());
+    }
+  }
+
+  public void saveDashboardDetail() {
+    List<SecurityMemberDTO> responsibles = selectedEditingDashboard.getPermissionDTOs();
+    List<String> permissions;
+    String displayedPermission;
+    if (CollectionUtils.isNotEmpty(responsibles)) {
+      Collection<SecurityMemberDTO> distinctPermissionDTOs =
+          responsibles.stream().collect(Collectors.toMap(SecurityMemberDTO::getMemberName, responsible -> responsible,
+              (responsible1, responsible2) -> responsible1)).values();
+      responsibles.clear();
+      responsibles.addAll(distinctPermissionDTOs);
+      displayedPermission =
+          responsibles.stream().map(SecurityMemberDTO::getDisplayName).collect(Collectors.joining(", "));
+      permissions = responsibles.stream().map(SecurityMemberDTO::getMemberName).collect(Collectors.toList());
+    } else {
+      displayedPermission = "";
+      permissions = new ArrayList<>();
+    }
+
+    selectedEditingDashboard.setDisplayedPermission(displayedPermission);
+    selectedEditingDashboard.setPermissions(permissions);
+    if (!editingDashboards.contains(selectedEditingDashboard)) {
+      editingDashboards.add(selectedEditingDashboard);
+    }
+  }
+
+  // public void onRowReorder(ReorderEvent reorderEvent) {}
+
+  public List<SecurityMemberDTO> completePermissions(String query) {
+    List<SecurityMemberDTO> securityMembers =
+        SecurityMemberUtils.findSecurityMembers(query, 0, PortalConstants.MAX_USERS_IN_AUTOCOMPLETE);
+    List<SecurityMemberDTO> roles =
+        securityMembers.stream().filter(securityMember -> !securityMember.isUser()).collect(Collectors.toList());
+    return roles;
+  }
+
+  @Override
+  protected List<Dashboard> getVisibleDashboards(String dashboardJson) {
+    if (isPublicDashboard) {
+      return jsonToDashboards(dashboardJson);
+    } else {
+      return super.getVisibleDashboards(dashboardJson);
+    }
+  }
+
+  private void resetDashboardWithDataFrom(List<Dashboard> newDashboards) {
+    dashboards = newDashboards;
+    selectedDashboard = CollectionUtils.isNotEmpty(newDashboards) ? dashboards.get(0) : null;
+    setCurrentDashboardIndex(0);
+  }
+
+  public boolean getIsEditMode() {
+    return true;
+  }
+
+  public boolean getIsPublicDashboard() {
+    return isPublicDashboard;
+  }
+  
+  public String getBreadcrumb() {
+    return
+        isPublicDashboard ? BreadCrumbKind.EDIT_PUBLIC_DASHBOARD.name() : BreadCrumbKind.EDIT_PRIVATE_DASHBOARD.name();
   }
 }
 
