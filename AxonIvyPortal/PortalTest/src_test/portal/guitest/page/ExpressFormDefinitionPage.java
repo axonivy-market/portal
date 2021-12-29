@@ -176,7 +176,7 @@ public class ExpressFormDefinitionPage extends TemplatePage {
     moveProcessSequence.perform();
     var dropPanel = findElementById(String.format("form:selected-form-elements-%s-panel", position));
     WaitHelper.assertTrueWithWait(() -> {
-      return !dropPanel.getAttribute(CLASS_PROPERTY).contains("ui-droppable-hover hover-drop-section");
+      return !dropPanel.getAttribute(CLASS_PROPERTY).contains("ui-droppable-hover");
     });
   }
 
