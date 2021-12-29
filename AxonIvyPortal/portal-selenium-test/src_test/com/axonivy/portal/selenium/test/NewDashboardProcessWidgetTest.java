@@ -36,7 +36,7 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     redirectToNewDashBoard();
   }
-/*
+
   @Test
   public void testPreviewButtonImageProcess() {
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
@@ -176,7 +176,7 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
     $("a[id='back-link']").waitUntil(Condition.appear, DEFAULT_TIMEOUT);
     $("button[id='start-process-button']").waitUntil(Condition.appear, DEFAULT_TIMEOUT).shouldBe(Condition.enabled);
   }
-*/
+
   // ===================================================================================
   @Test
   public void testPreviewCombinedModeProcess() {
@@ -352,7 +352,7 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
     newDashboardPage.getCombinedModeProcessExpandLink().waitUntil(Condition.appear, DEFAULT_TIMEOUT);
     newDashboardPage.getCombinedModeProcessCollapseLink().shouldBe(Condition.disappear);
   }
-/*
+
   // ===================================================================================
   @Test
   public void testPreviewCompactModeProcess() {
@@ -623,5 +623,4 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
     newDashboardPage.getCompactModeProcessInfoProcessTypes(isExpanded).shouldHave(CollectionCondition.size(3),
         DEFAULT_TIMEOUT);
   }
-  */
 }
