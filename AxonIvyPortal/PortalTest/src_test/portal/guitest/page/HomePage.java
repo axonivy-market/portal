@@ -104,5 +104,4 @@ public class HomePage extends TemplatePage {
 	public WebElement getTaskWidgetElement() {
 	  return findElementById("task-widget");
 	}
-	
 }

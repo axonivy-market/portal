@@ -83,19 +83,15 @@ public class PortalProcessesScreenshotTest extends ScreenshotTest {
     refreshPage();
     processWidget.waitUtilProcessWidgetDisplayed();
     executeDecorateJs("highlightProcessItems()");
-    Sleeper.sleep(250); /* Wait for css styling */
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.PROCESSES_WIDGET_FOLDER + "portal-full-process-list-page");
     refreshPage();
     processWidget.waitUtilProcessWidgetDisplayed();
-    Sleeper.sleep(250); /* Wait for css styling */
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.PROCESSES_WIDGET_FOLDER + "portal-process-image-view-page");
     processWidget.selectViewMode("GRID");
     processWidget.waitForGridProcessListDisplayed();
-    Sleeper.sleep(250); /* Wait for css styling */
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.PROCESSES_WIDGET_FOLDER + "portal-process-grid-view-page");
     processWidget.selectViewMode("COMPACT");
     processWidget.waitForCompactProcessListDisplayed();
-    Sleeper.sleep(250); /* Wait for css styling */
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.PROCESSES_WIDGET_FOLDER + "portal-process-list-view-page");
   }
 

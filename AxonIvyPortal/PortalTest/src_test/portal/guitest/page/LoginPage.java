@@ -7,6 +7,8 @@ import portal.guitest.common.TestAccount;
 import vn.wawa.guitest.base.page.AbstractPage;
 
 public class LoginPage extends AbstractPage {
+
+  public static final String ID_PROPERTY = "id";
   private static final long LOGIN_TIMEOUT = 60;
   private WebElement usernameTextField;
   private WebElement passwordField;
@@ -51,4 +53,11 @@ public class LoginPage extends AbstractPage {
     waitForElementDisplayed(By.id("forgot-password:forgot-password-form:send-command"), true, LOGIN_TIMEOUT);
   }
 
+  public void waitForEmailAddressIsFocused() {
+    waitUntilAnimationFinished(DEFAULT_TIMEOUT, "forgot-password\\:forgot-password-form\\:email", ID_PROPERTY);
+  }
+
+  public void waitForUsernameInputIsFocused() {
+    waitUntilAnimationFinished(DEFAULT_TIMEOUT, "login\\:login-form\\:username", ID_PROPERTY);
+  }
 }

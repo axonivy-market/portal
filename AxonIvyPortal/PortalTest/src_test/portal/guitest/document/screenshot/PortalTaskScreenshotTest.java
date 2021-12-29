@@ -18,9 +18,9 @@ import ch.ivy.addon.portalkit.util.ConfigurationJsonUtil;
 import ch.ivy.addon.portalkit.util.ScreenshotMargin;
 import ch.ivy.addon.portalkit.util.ScreenshotUtil;
 import portal.guitest.common.ScreenshotTest;
-import portal.guitest.common.Sleeper;
 import portal.guitest.common.TestAccount;
 import portal.guitest.common.Variable;
+import portal.guitest.common.WaitHelper;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.TaskDetailsPage;
 import portal.guitest.page.TaskWidgetPage;
@@ -43,10 +43,9 @@ public class PortalTaskScreenshotTest extends ScreenshotTest {
     ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 800));
     TaskWidgetPage taskWidgetPage = homePage.openTaskList();
     taskWidgetPage.closeMainMenu();
-    Sleeper.sleep(500); // wait for Layout.js renders left menu
+    taskWidgetPage.waitForLeftMenuActive();
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.TASK_WIDGET_FOLDER + "task-key-information");
     WebElement saveTaskFilterDialog = taskWidgetPage.getSaveFilterDialog();
-    Sleeper.sleep(1000);//wait for focus animation finish to capture screenshot
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(saveTaskFilterDialog, ScreenshotUtil.TASK_WIDGET_FOLDER + "how-to-create-task-filter",new ScreenshotMargin(100, 200));
   }
   
@@ -110,7 +109,6 @@ public class PortalTaskScreenshotTest extends ScreenshotTest {
     taskDetails.clickOnSwitchToEditModeButton();
     taskDetails.waitForSwitchToViewModeButtonDisplayed();
     taskDetails.drapAndDropWidgets("note", "document");
-    Sleeper.sleep(2000);// wait for focus animation to capture screenshot
     executeDecorateJs("highlightSwitchToViewMode()");
     WebElement switchToViewMode = taskDetails.getSwitchToViewModeButtonElement();
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(switchToViewMode,
@@ -118,7 +116,6 @@ public class PortalTaskScreenshotTest extends ScreenshotTest {
 
     taskDetails.clickOnSwitchToViewModeButton();
     taskDetails.clickOnSwitchToEditModeButton();
-    Sleeper.sleep(2000);// wait for focus animation to capture screenshot
     executeDecorateJs("highlightResetToDefault()");
     WebElement resetButton = taskDetails.getResetButtonElement();
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(resetButton,
@@ -140,14 +137,12 @@ public class PortalTaskScreenshotTest extends ScreenshotTest {
         ScreenshotUtil.TASK_DETAIL_FOLDER + "detailed-task-information-data-description", new ScreenshotMargin(10));
     
     taskDetails.openAddNoteDialog();
-    Sleeper.sleep(2000);// wait for focus animation to capture screenshot
     WebElement addNoteDialog = taskDetails.getAddNoteDialog();
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(addNoteDialog,
         ScreenshotUtil.TASK_DETAIL_FOLDER + "how-to-add-note", new ScreenshotMargin(10));
     taskDetails.addNoteToTaskWithContent("Add a note for this task");
 
     taskDetails.openAddAttachmentDialog();
-    Sleeper.sleep(2000);// wait for focus animation to capture screenshot
     WebElement addDocument = taskDetails.getAddAttachmentDialog();
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(addDocument,
         ScreenshotUtil.TASK_DETAIL_FOLDER + "how-to-upload-document", new ScreenshotMargin(10));
@@ -203,7 +198,7 @@ public class PortalTaskScreenshotTest extends ScreenshotTest {
     taskDetails.clickOnShowMoreHistories();
     Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> homePage.countBrowserTab() > 1);
     homePage.switchLastBrowserTab();
-    Sleeper.sleep(3000);
+    WaitHelper.assertTrueWithWait(() -> ScreenshotUtil.isDOMStatusComplete());
     ScreenshotUtil.captureHalfTopPageScreenShot(ScreenshotUtil.TASK_DETAIL_FOLDER + "how-to-export-note-details", new Dimension(SCREENSHOT_WIDTH, 1000));
   }
 
@@ -212,7 +207,7 @@ public class PortalTaskScreenshotTest extends ScreenshotTest {
     ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 800));
     TaskWidgetPage taskWidgetPage = homePage.openTaskList();
     taskWidgetPage.closeMainMenu();
-    Sleeper.sleep(500); // wait for Layout.js renders left menu
+    taskWidgetPage.waitForLeftMenuActive();
     executeDecorateJs("highlightTaskExportToExcelButton()");
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.TASK_WIDGET_FOLDER + "export-to-excel-button");
   }
