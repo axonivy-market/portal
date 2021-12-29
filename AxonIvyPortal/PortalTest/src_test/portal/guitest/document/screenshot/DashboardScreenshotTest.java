@@ -138,7 +138,7 @@ public class DashboardScreenshotTest extends ScreenshotTest {
     login(TestAccount.ADMIN_USER);
     showNewDashboard();
     newDashboardPage = new NewDashboardPage();
-    newDashboardPage.switchToEditMode();
+    redirectToEditDashboard();
     newDashboardPage.addNewCustomWidget();
     newDashboardPage.selectCustomWidgetTypeProcess();
     newDashboardPage.selectIvyProcessForCustomWidget("Investment List (Example for Custom Widget on Dashboard)");
@@ -182,7 +182,7 @@ public class DashboardScreenshotTest extends ScreenshotTest {
     taskInfoOverlayPanel.findElement(By.className("info-overlay-panel__footer")).findElement(By.className("ui-link")).click();
 
     // Take screenshot of Edit dashboard page
-    newDashboardPage.switchToEditMode();
+    redirectToEditDashboard();
     newDashboardPage.waitForElementDisplayed(By.id("switch-to-view-mode"), true);
     Sleeper.sleep(2000); // wait for remote commmand run successfully
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.NEW_DASHBOARD_FOLDER + "edit-widget");
@@ -268,5 +268,9 @@ public class DashboardScreenshotTest extends ScreenshotTest {
   private void refreshHomePage() {
     refreshPage();
     homePage.waitForStatisticRendered();
+  }
+
+  private void redirectToEditDashboard() {
+    redirectToRelativeLink("portalTemplate/1549F58C18A6C562/PortalDashboardConfiguration.ivp?isPublicDashboard=true");
   }
 }
