@@ -18,9 +18,9 @@ import ch.ivy.addon.portalkit.util.ConfigurationJsonUtil;
 import ch.ivy.addon.portalkit.util.ScreenshotMargin;
 import ch.ivy.addon.portalkit.util.ScreenshotUtil;
 import portal.guitest.common.ScreenshotTest;
-import portal.guitest.common.Sleeper;
 import portal.guitest.common.TestAccount;
 import portal.guitest.common.Variable;
+import portal.guitest.common.WaitHelper;
 import portal.guitest.page.CaseDetailsPage;
 import portal.guitest.page.CaseWidgetPage;
 import portal.guitest.page.HomePage;
@@ -62,11 +62,10 @@ public class PortalCasesScreenshotTest extends ScreenshotTest {
     caseWidget.waitUntilCaseFilterDisplayed();
     homePage.closeMainMenu();
     caseWidget.openActionStepMenu();
-    Sleeper.sleep(500); // wait for Layout.js renders left menu
+    homePage.waitForLeftMenuActive();
     ScreenshotUtil.captureHalfTopPageScreenShot(ScreenshotUtil.CASE_WIDGET_FOLDER + "case-key-information", new Dimension(SCREENSHOT_WIDTH, SCREENSHOT_HEIGHT));
     
     WebElement saveFilterDialog =  caseWidget.getSaveFilterDialog();
-    Sleeper.sleep(1000);//wait for focus animation finish to capture screenshot
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(saveFilterDialog, ScreenshotUtil.CASE_WIDGET_FOLDER + "how-to-create-case-filter", new ScreenshotMargin(100, 200));
   }
 
@@ -82,17 +81,14 @@ public class PortalCasesScreenshotTest extends ScreenshotTest {
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(generalInfor, ScreenshotUtil.CASE_DETAIL_FOLDER + "case-details-data-description", new ScreenshotMargin(50, 10, 10, 10));
     
     executeDecorateJs("scrollToMiddleOfLayoutContent2()");
-    Sleeper.sleep(500);
     WebElement relatedTask = detailsPage.getRelatedRunningTaskBox();
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(relatedTask, ScreenshotUtil.CASE_DETAIL_FOLDER + "case-details-related-tasks-cases", new ScreenshotMargin(10));
     
     WebElement addNote = detailsPage.getAddNoteDialog();
-    Sleeper.sleep(2000);//wait for focus animation to capture screenshot
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(addNote, ScreenshotUtil.CASE_DETAIL_FOLDER + "how-to-add-task-note", new ScreenshotMargin(30, 50));
     detailsPage.addNote("Alpha Company");
     
     WebElement addDocument = detailsPage.getAddAttachmentDialog();
-    Sleeper.sleep(2000);//wait for focus animation to capture screenshot
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(addDocument, ScreenshotUtil.CASE_DETAIL_FOLDER + "how-to-attach-document-to-case", new ScreenshotMargin(30, 60));
     detailsPage.uploadDocumentWithoutError(getAbsolutePathToTestFile("test-no-files-no-js.pdf"));
     
@@ -102,18 +98,15 @@ public class PortalCasesScreenshotTest extends ScreenshotTest {
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(document, ScreenshotUtil.CASE_DETAIL_FOLDER + "case-details-documents", new ScreenshotMargin(10));
     
     executeDecorateJs("scrollToBottomOfLayoutContent()");
-    Sleeper.sleep(500);
     WebElement histories = detailsPage.getHistoriesBox();
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(histories, ScreenshotUtil.CASE_DETAIL_FOLDER + "case-details-histories", new ScreenshotMargin(10));
     
     WebElement deleteDocument = detailsPage.getDeleteDocumentConfirmDialog();
-    Sleeper.sleep(500);
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(deleteDocument, ScreenshotUtil.CASE_DETAIL_FOLDER + "how-to-delete-an-attachment-from-case", new ScreenshotMargin(100, 200));
     
     refreshPage();
     detailsPage.waitForCaseDetailsDisplay();
     executeDecorateJs("scrollToBottomOfLayoutContent()");
-    Sleeper.sleep(500);
     executeDecorateJs("highlightShowMoreNoteLink()");
     histories = detailsPage.getHistoriesBox();
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(histories, ScreenshotUtil.CASE_DETAIL_FOLDER + "how-to-show-note-details", new ScreenshotMargin(10));
@@ -121,7 +114,7 @@ public class PortalCasesScreenshotTest extends ScreenshotTest {
     detailsPage.showNoteHistory();
     Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> homePage.countBrowserTab() > 1);
     homePage.switchLastBrowserTab();
-    Sleeper.sleep(3000);
+    WaitHelper.assertTrueWithWait(() -> ScreenshotUtil.isDOMStatusComplete());
     ScreenshotUtil.captureHalfTopPageScreenShot(ScreenshotUtil.CASE_WIDGET_FOLDER + "export-case-history", new Dimension(SCREENSHOT_MEDIUM_WIDTH, 1000));
   }
   
@@ -170,7 +163,6 @@ public class PortalCasesScreenshotTest extends ScreenshotTest {
     refreshPage();
     caseDetailsPage.waitForCaseDetailsDisplay();
     executeDecorateJs("scrollToMiddleOfLayoutContent()");
-    Sleeper.sleep(500);
     executeDecorateJs("highlightCaseDetailComponents()");
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.CASE_DETAIL_CUSTOMIZATION_FOLDER + "case-standard-2");
   }
@@ -231,7 +223,6 @@ public class PortalCasesScreenshotTest extends ScreenshotTest {
     caseDetailsPage.switchToEditMode();
     caseDetailsPage.waitForSaveButtonDisplayed();
     caseDetailsPage.drapAndDropWidgets("information", "document");
-    Sleeper.sleep(2000);// wait for focus animation to capture screenshot
     executeDecorateJs("highlightSwitchToViewMode()");
     WebElement switchToViewMode = caseDetailsPage.getSwitchToViewModeButton();
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(switchToViewMode,
@@ -239,7 +230,6 @@ public class PortalCasesScreenshotTest extends ScreenshotTest {
 
     caseDetailsPage.saveAndSwitchToViewMode();
     caseDetailsPage.switchToEditMode();
-    Sleeper.sleep(2000);// wait for focus animation to capture screenshot
     executeDecorateJs("highlightResetToDefault()");
     WebElement resetButton = caseDetailsPage.getResetButton();
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(resetButton,
