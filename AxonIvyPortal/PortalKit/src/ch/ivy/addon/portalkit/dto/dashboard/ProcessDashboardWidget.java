@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import org.apache.commons.lang.StringUtils;
 import org.primefaces.PrimeFaces;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -22,7 +21,6 @@ import ch.ivy.addon.portalkit.enums.ProcessType;
 import ch.ivy.addon.portalkit.enums.ProcessWidgetMode;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.DashboardProcessSearchCriteria;
 import ch.ivy.addon.portalkit.service.DashboardWidgetInformationService;
-import ch.ivy.addon.portalkit.util.CategoryUtils;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
@@ -32,7 +30,8 @@ public class ProcessDashboardWidget extends DashboardWidget {
   private ProcessWidgetMode displayMode = ProcessWidgetMode.COMPACT_MODE;
   @JsonIgnore
   private DashboardProcessSearchCriteria criteria;
-  private String processPath;
+  private String processPath; // For full, combine, image mode
+  private List<String> processPaths; // For compact mode
   
   private int rowsPerPage = 5;
   @JsonIgnore
@@ -53,9 +52,12 @@ public class ProcessDashboardWidget extends DashboardWidget {
   private boolean showCases;
   @JsonIgnore
   private List<ColumnModel> filterableColumns;
+  @JsonIgnore
+  private boolean isPreview;
 
   public ProcessDashboardWidget() {
     displayMode = ProcessWidgetMode.COMPACT_MODE;
+    isPreview = false;
     processes = new ArrayList<>();
     filterableColumns = new ArrayList<>();
     criteria = new DashboardProcessSearchCriteria();
@@ -84,13 +86,6 @@ public class ProcessDashboardWidget extends DashboardWidget {
       return;
     }
     this.displayProcesses = this.criteria.searchProcessesByFilters(this);
-  }
-
-  @JsonIgnore
-  private boolean isProcessMatchedCategory(DashboardProcess process, List<String> categories) {
-    boolean hasNoCategory = categories.indexOf(CategoryUtils.NO_CATEGORY) > -1;
-    return categories.indexOf(process.getCategory()) > -1
-        || (StringUtils.isBlank(process.getCategory()) && hasNoCategory);
   }
 
   @Override
@@ -209,7 +204,15 @@ public class ProcessDashboardWidget extends DashboardWidget {
   public void setProcessPath(String processPath) {
     this.processPath = processPath;
   }
-  
+
+  public List<String> getProcessPaths() {
+    return processPaths;
+  }
+
+  public void setProcessPaths(List<String> processPaths) {
+    this.processPaths = processPaths;
+  }
+
   public List<ColumnModel> getFilterableColumns() {
     return filterableColumns;
   }
@@ -226,5 +229,15 @@ public class ProcessDashboardWidget extends DashboardWidget {
   @JsonIgnore
   public void setInConfiguration(boolean isInConfiguration) {
     this.criteria.setInConfiguration(isInConfiguration);
+  }
+
+  @JsonIgnore
+  public boolean isPreview() {
+    return isPreview;
+  }
+
+  @JsonIgnore
+  public void setPreview(boolean isPreview) {
+    this.isPreview = isPreview;
   }
 }

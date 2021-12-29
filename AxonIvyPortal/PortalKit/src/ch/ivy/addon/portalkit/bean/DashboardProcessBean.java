@@ -98,24 +98,36 @@ public class DashboardProcessBean extends AbstractProcessBean implements Seriali
   private void preRenderCompactProcessStartWidget() {
     if (this.widget.isSelectedAllProcess()) {
       this.widget.setDisplayProcesses(getAllPortalProcesses());
-    } else if (CollectionUtils.isNotEmpty(this.widget.getProcesses())) {
-      List<DashboardProcess> selectedProcesses = new ArrayList<>();
-      for (DashboardProcess selectedProcess : widget.getProcesses()) {
-        selectedProcesses.addAll(getPortalDashboardProcesses().stream()
-            .filter(process -> process.getId().equalsIgnoreCase(selectedProcess.getId()))
-            .collect(Collectors.toList()));
-      }
+    } else if (CollectionUtils.isNotEmpty(widget.getProcessPaths())) {
+      List<DashboardProcess> selectedProcesses = preRenderDefinedCompactProcesses();
       this.widget.setProcesses(selectedProcesses);
     } else {
-      var processes = new ArrayList<DashboardProcess>();
-      if (this.widget.getCategories() == null) {
-        processes = new ArrayList<>(getAllPortalProcesses());
-      } else {
-        processes = new ArrayList<>(filterByCategory());
-      }
-      this.widget.setDisplayProcesses(processes.stream().collect(Collectors.toList()));
-      setPortalCompactProcesses(processes);
+      updatePortalCompactProcesses();
     }
+  }
+
+  private List<DashboardProcess> preRenderDefinedCompactProcesses() {
+    List<DashboardProcess> selectedProcesses = new ArrayList<>();
+    if (this.widget.getCategories() != null) {
+      setPortalCompactProcesses(new ArrayList<>(filterByCategory()));
+    }
+    for (String processPath : widget.getProcessPaths()) {
+      selectedProcesses.addAll(getPortalCompactProcesses().stream()
+          .filter(process -> process.getId().equalsIgnoreCase(processPath)).collect(Collectors.toList()));
+    }
+
+    return selectedProcesses;
+  }
+
+  private void updatePortalCompactProcesses() {
+    var processes = new ArrayList<DashboardProcess>();
+    if (this.widget.getCategories() == null) {
+      processes = new ArrayList<>(getAllPortalProcesses());
+    } else {
+      processes = new ArrayList<>(filterByCategory());
+    }
+    this.widget.setDisplayProcesses(processes.stream().collect(Collectors.toList()));
+    setPortalCompactProcesses(processes);
   }
 
   private List<DashboardProcess> filterByCategory() {
@@ -131,6 +143,7 @@ public class DashboardProcessBean extends AbstractProcessBean implements Seriali
   }
 
   public void preview() {
+    widget.setPreview(true);
     if (widget.getDisplayMode() == ProcessWidgetMode.COMPACT_MODE) {
       List<DashboardProcess> displayProcesses = new ArrayList<>();
       if (CollectionUtils.isEmpty(widget.getProcesses())) {

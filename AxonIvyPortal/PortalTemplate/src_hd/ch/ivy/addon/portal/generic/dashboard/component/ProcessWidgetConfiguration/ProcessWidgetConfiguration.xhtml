@@ -66,7 +66,7 @@
         <h:panelGroup id="compact-filter" rendered="#{isCompact}">
           <ui:repeat id="compact-filter-columns" var="field" value="#{widget.filterableColumns}">
             <ic:ch.ivy.addon.portalkit.component.dashboard.widget.CategoryFilterColumn field="#{field}"
-              displaySelectedCategories="#{field.displayCategories}" configurationMode="true"
+              displaySelectedCategories="#{field.displayCategories}" configurationMode="true" updateComponent="#{cc.clientId}:processes-list"
               categoryTree="#{field.categoryTree}" categoryNodeSelection="#{field.selectionCategoryNodes}"
               containerStyleClass="process-category" inputCategoryStyleClass="process-category__input-text"
               overlayCategoryStyleClass="process-category-panel" showUnselectableCheckbox="true"/>

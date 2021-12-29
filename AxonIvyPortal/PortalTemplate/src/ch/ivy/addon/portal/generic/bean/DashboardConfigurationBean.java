@@ -303,20 +303,30 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
 
   private void updateProcessesOfWidget(ProcessDashboardWidget widget) {
     List<DashboardProcess> displayProcesses;
+    List<String> processPaths = new ArrayList<>();
     if (widget.isSelectedAllProcess()) {
       displayProcesses = DashboardWidgetUtils.getAllPortalProcesses();
-      widget.setProcesses(new ArrayList<>());
     } else if (CollectionUtils.isNotEmpty(widget.getProcesses())) {
       displayProcesses = widget.getProcesses();
-      widget.setProcesses(displayProcesses);
+      processPaths = getProcessPaths(displayProcesses);
     } else {
       displayProcesses = DashboardWidgetUtils.getAllPortalProcesses().stream()
           .filter(process -> isProcessMatchedCategory(process, widget.getCategories()))
           .collect(Collectors.toList());
     }
 
+    widget.setProcessPaths(processPaths);
     widget.setDisplayProcesses(displayProcesses);
     widget.setOriginalDisplayProcesses(displayProcesses);
+  }
+
+  private List<String> getProcessPaths(List<DashboardProcess> processes) {
+    List<String> processPaths = new ArrayList<>();
+    for (DashboardProcess process : processes) {
+      processPaths.add(process.getId());
+    }
+
+    return processPaths;
   }
 
   private boolean isProcessMatchedCategory(DashboardProcess process, List<String> categories) {

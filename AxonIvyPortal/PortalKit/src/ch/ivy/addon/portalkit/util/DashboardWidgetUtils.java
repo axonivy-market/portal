@@ -406,7 +406,7 @@ public class DashboardWidgetUtils {
 
   public static void loadProcessesOfWidget(ProcessDashboardWidget widget) {
     if (widget.getDisplayMode() == ProcessWidgetMode.COMPACT_MODE) {
-      loadProcesses(widget);
+      loadCompactProcesses(widget);
     } else {
       loadProcessByPath(widget);
     }
@@ -436,31 +436,78 @@ public class DashboardWidgetUtils {
     }
   }
 
-  private static void loadProcesses(ProcessDashboardWidget processWidget) {
-    List<DashboardProcess> processes;
-    if (processWidget.isSelectedAllProcess()) {
-      processes = getAllPortalProcesses();
-    } else if (CollectionUtils.isNotEmpty(processWidget.getProcesses())) {
-      processes = processWidget.getProcesses();
-      processWidget.setProcesses(processes);
-    } else {
-      if (CollectionUtils.isNotEmpty(processWidget.getCategories())) {
-        processes = getAllPortalProcesses().stream()
-            .filter(process -> isProcessMatchedCategory(process, processWidget.getCategories()))
-            .collect(Collectors.toList());
-      } else {
-        processes = getAllPortalProcesses();
-      }
-    }
-
+  private static void loadCompactProcesses(ProcessDashboardWidget processWidget) {
+    List<DashboardProcess> processes = processWidget.isPreview() ? getCompactProcessesForPreview(processWidget)
+        : getCompactProcessesOfWidget(processWidget);
     processWidget.setDisplayProcesses(processes);
     processWidget.setOriginalDisplayProcesses(processes);
     processWidget.filterProcessesByUser();
   }
 
+  private static List<DashboardProcess> getCompactProcessesForPreview(ProcessDashboardWidget processWidget) {
+    List<DashboardProcess> processes;
+    if (processWidget.isSelectedAllProcess()) {
+      processes = getAllPortalProcesses();
+    } else if (CollectionUtils.isNotEmpty(processWidget.getProcesses())) {
+      processes = filterProcessesByProcesses(processWidget.getProcesses());
+      processWidget.setProcesses(processes);
+    } else {
+      processes = filterProcessesByCategories(processWidget.getCategories());
+    }
+
+    return processes;
+  }
+
+  private static List<DashboardProcess> getCompactProcessesOfWidget(ProcessDashboardWidget processWidget) {
+    List<DashboardProcess> processes;
+    if (processWidget.isSelectedAllProcess()) {
+      processes = getAllPortalProcesses();
+    } else if (CollectionUtils.isNotEmpty(processWidget.getProcessPaths())) {
+      processes = filterProcessesByProcessPaths(processWidget.getProcessPaths());
+      processWidget.setProcesses(processes);
+    } else {
+      processes = filterProcessesByCategories(processWidget.getCategories());
+    }
+
+    return processes;
+  }
+
   public static List<DashboardProcess> getAllPortalProcesses() {
     DashboardProcessBean dashboardProcessBean = ManagedBeans.get("dashboardProcessBean");
     return dashboardProcessBean == null ? new ArrayList<>() : dashboardProcessBean.getAllPortalProcesses();
+  }
+
+  private static List<DashboardProcess> filterProcessesByProcesses(List<DashboardProcess> selectedProcesses) {
+    List<DashboardProcess> processes = new ArrayList<>();
+    for (DashboardProcess selectedProcess : selectedProcesses) {
+      processes.addAll(getAllPortalProcesses().stream()
+          .filter(process -> process.getId().equalsIgnoreCase(selectedProcess.getId())).collect(Collectors.toList()));
+    }
+
+    return processes;
+  }
+
+  private static List<DashboardProcess> filterProcessesByProcessPaths(List<String> processPaths) {
+    List<DashboardProcess> processes = new ArrayList<>();
+    for (String processPath : processPaths) {
+      processes.addAll(getAllPortalProcesses().stream()
+          .filter(process -> process.getId() != null && process.getId().contains(processPath))
+          .collect(Collectors.toList()));
+    }
+
+    return processes;
+  }
+
+  private static List<DashboardProcess> filterProcessesByCategories(List<String> categories) {
+    List<DashboardProcess> processes;
+    if (CollectionUtils.isNotEmpty(categories)) {
+      processes = getAllPortalProcesses().stream().filter(process -> isProcessMatchedCategory(process, categories))
+          .collect(Collectors.toList());
+    } else {
+      processes = getAllPortalProcesses();
+    }
+
+    return processes;
   }
 
   private static boolean isProcessMatchedCategory(DashboardProcess process, List<String> categories) {

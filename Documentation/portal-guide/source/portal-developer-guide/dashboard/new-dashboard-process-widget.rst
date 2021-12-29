@@ -48,13 +48,20 @@ Below is a standard JSON definition of Process widget compact mode
          "layout": {
             "x": 10, "y": 0, "w": 2, "h": 4
          },
+         "processPaths": ["Start Processes/Request/createNewRequest.ivp", "Start Processes/Request/collectDataRequest.ivp"],
          "categories": ["estimation","analysis"]
       }
    ..
 
+``processPaths``: friendly user request path of the processes that you want to show.
+
 ``categories``: categories of processes that you want to show.
 Process widget will show all processes that belonged to these categories.
-If you don't define this attribute, the process widget will show all
+
+If you define both ``processPaths`` and ``categories``, the process widget will show
+processes by ``processPaths``.
+
+If you don't define these attributes, the process widget will show all
 available processes by default.
 
 Full mode
