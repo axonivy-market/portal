@@ -36,7 +36,7 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     redirectToNewDashBoard();
   }
-/*
+
   @Test
   public void testPreviewButtonImageProcess() {
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
@@ -204,7 +204,7 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
     createRelatedTaskWithNoResponsible();
     newDashboardPage.waitForAbsencesGrowlMessageDisplay();
   }
-*/
+
   @Test
   public void testChangeCombinedModeProcess() {
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
@@ -228,7 +228,7 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
     newDashboardPage.deleteCombinedModeProcess();
     newDashboardPage.getCombinedModeProcessContainer().shouldNotBe(Condition.exist);
   }
-  /*
+
   @Test
   public void testStartCombinedModeProcess() {
     testStartCombinedModeProcess(false);
@@ -623,5 +623,5 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
     newDashboardPage.getCompactModeProcessInfoProcessTypes(isExpanded).shouldHave(CollectionCondition.size(3),
         DEFAULT_TIMEOUT);
   }
-  */
+
 }
