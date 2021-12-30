@@ -15,7 +15,7 @@ import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 
-@IvyWebTest(headless = false)
+@IvyWebTest()
 public class NewDashboardProcessWidgetTest extends BaseTest {
   private static final String TEST_FOR_IVYPORTAL_3369 = "Test for IVYPORTAL-3369";
   private static final String MY_FILTER = "My filter";
