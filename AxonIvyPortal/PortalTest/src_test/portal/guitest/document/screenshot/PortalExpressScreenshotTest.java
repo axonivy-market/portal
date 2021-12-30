@@ -13,7 +13,6 @@ import ch.ivy.addon.portalkit.util.ScreenshotUtil;
 import portal.guitest.bean.ExpressResponsible;
 import portal.guitest.common.FileHelper;
 import portal.guitest.common.ScreenshotTest;
-import portal.guitest.common.Sleeper;
 import portal.guitest.common.TestAccount;
 import portal.guitest.common.WaitHelper;
 import portal.guitest.page.AdminSettingsPage;
@@ -151,7 +150,6 @@ public class PortalExpressScreenshotTest extends ScreenshotTest {
     WebElement importDialogDeploy = expressManagementPage.getImportExpressDialog();
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(importDialogDeploy, ScreenshotUtil.EXPRESS_MANAGEMENT_FOLDER + "import-deployment", new ScreenshotMargin(40));
     expressManagementPage.clickOnDeployExpress();
-    Sleeper.sleep(1000); // wait for express is imported to system
     WebElement importDialogResult = expressManagementPage.getImportExpressDialog();
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(importDialogResult, ScreenshotUtil.EXPRESS_MANAGEMENT_FOLDER + "deployment-result", new ScreenshotMargin(40));
     expressManagementPage.clickOnCloseButton();

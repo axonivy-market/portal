@@ -10,7 +10,6 @@ import org.openqa.selenium.WebElement;
 import ch.ivy.addon.portalkit.util.ScreenshotMargin;
 import ch.ivy.addon.portalkit.util.ScreenshotUtil;
 import portal.guitest.common.ScreenshotTest;
-import portal.guitest.common.Sleeper;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.NewDashboardPage;
@@ -52,6 +51,7 @@ public class PortalProcessesScreenshotTest extends ScreenshotTest {
     login(TestAccount.ADMIN_USER);
     processWidget = homePage.getProcessWidget();
     processWidget.expand();
+    processWidget.waitForLeftMenuActive();
     executeDecorateJs("highlightAddExternalLink()");
     ScreenshotUtil.captureHalfTopPageScreenShot(ScreenshotUtil.PROCESSES_WIDGET_FOLDER + "how-to-add-a-new-external-link", new Dimension(SCREENSHOT_WIDTH, SCREENSHOT_MOBILE_HEIGHT));
     refreshPage();
@@ -150,6 +150,7 @@ public class PortalProcessesScreenshotTest extends ScreenshotTest {
     processWidget.clickMoreInformationLink("Process With Process Steps");
     ProcessInformationPage processInformationPage = new ProcessInformationPage();
     processInformationPage.getPageTitle();
+    ScreenshotUtil.resizeBrowser(new Dimension(1500, 800));
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.PROCESSES_INFORMATION_WIDGET_FOLDER + "process-information");
   }
 

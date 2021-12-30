@@ -17,7 +17,6 @@ import org.openqa.selenium.WebElement;
 import ch.ivy.addon.portalkit.util.ScreenshotMargin;
 import ch.ivy.addon.portalkit.util.ScreenshotUtil;
 import portal.guitest.common.ScreenshotTest;
-import portal.guitest.common.Sleeper;
 import portal.guitest.common.TestAccount;
 import portal.guitest.common.WaitHelper;
 import portal.guitest.page.DashboardWidgetConfigurationDialogPage;
@@ -50,6 +49,7 @@ public class DashboardScreenshotTest extends ScreenshotTest {
     ScreenshotUtil.resizeBrowser(new Dimension(1200, 800));
     updatePortalSetting(SHOW_USER_GUIDE.getKey(), "true");
     homePage = new HomePage();
+    homePage.waitForLeftMenuActive();
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.DASHBOARD_FOLDER + "overlay-guide");
   }
   
@@ -182,6 +182,7 @@ public class DashboardScreenshotTest extends ScreenshotTest {
     redirectToEditDashboard();
     newDashboardPage.waitForElementDisplayed(By.id("switch-to-view-mode"), true);
     WaitHelper.assertTrueWithWait(() -> ScreenshotUtil.isDOMStatusComplete());
+    newDashboardPage.waitForTaskWidgetLoading();
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.NEW_DASHBOARD_FOLDER + "edit-widget");
 
     // Take screenshot of Add new widget dialog
@@ -232,7 +233,6 @@ public class DashboardScreenshotTest extends ScreenshotTest {
     configurationDialogPage.selectProcessesForCompactProcessWidget(null);
     configurationDialogPage.clickPreviewButton();
     configurationDialogPage.waitForCompactProcessLoadedAfterClickPreview();
-    Sleeper.sleep(2000);
     ScreenshotUtil.captureElementScreenshot(configurationDialogPage.getConfigurationDialog(), ScreenshotUtil.NEW_DASHBOARD_FOLDER + "process-widget-compact-mode");
 
     // Full mode

@@ -169,6 +169,7 @@ public class ProcessWidgetPage extends TemplatePage {
     waitForElementDisplayed(By.id(processWidgetId + ":add-external-link-command"), true);
     click(By.id("process-widget:add-external-link-command"));
     waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
+    waitUntilAnimationFinished(DEFAULT_TIMEOUT, "process-widget\\\\:add-external-link-form\\\\:external-link-name", ID_PROPERTY);
     return new AddNewExternalLinkDialog();
   }
 
