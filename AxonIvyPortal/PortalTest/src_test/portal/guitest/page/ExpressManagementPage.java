@@ -26,6 +26,7 @@ public class ExpressManagementPage extends TemplatePage {
 
   public WebElement getImportExpressDialog() {
     waitUntilAnimationFinished(DEFAULT_TIMEOUT, "ui-fileupload.express-process-upload", CLASS_PROPERTY);
+    waitUntilAnimationFinished(DEFAULT_TIMEOUT, "ajax-indicator\\\\:ajax-indicator-ajax-indicator_start", ID_PROPERTY);
     return findElementByCssSelector("[id$=':express-management-component:import-express-dialog']");
   }
   
