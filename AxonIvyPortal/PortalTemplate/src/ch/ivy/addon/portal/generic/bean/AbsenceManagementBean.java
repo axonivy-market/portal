@@ -19,6 +19,7 @@ import ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence;
 import ch.ivy.addon.portalkit.util.AbsenceAndSubstituteUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUser;
 
 @ManagedBean
@@ -59,12 +60,15 @@ public class AbsenceManagementBean implements Serializable{
 
   public boolean isAbsenceEditable(IvyAbsence absence) {
     boolean absenceInThePast = AbsenceAndSubstituteUtils.isInThePast(absence);
-    return absenceInThePast ? absencesInThePastCreatable : ownAbsencesCreatable;
+    return absenceInThePast ? absencesInThePastCreatable : (ownAbsencesCreatable && isOwnAbsence(absence));
   }
 
   public boolean isAbsenceDeletable(IvyAbsence absence) {
     boolean absenceInThePast = AbsenceAndSubstituteUtils.isInThePast(absence);
-    return absenceInThePast ? absencesInThePastDeletable : ownAbsencesDeletable;
+    return absenceInThePast ? absencesInThePastDeletable : (ownAbsencesDeletable && isOwnAbsence(absence));
+  }
+  private boolean isOwnAbsence (IvyAbsence absence) {
+    return absence.getUsername().contentEquals(Ivy.session().getSessionUserName());
   }
 
   public String getDisplayedName(IvyAbsence absence) {
