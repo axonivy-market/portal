@@ -119,6 +119,10 @@ Is0 @GridStep f108 '' #zField
 Is0 @StartRequest f109 '' #zField
 Is0 @PushWFArc f110 '' #zField
 Is0 @PushWFArc f111 '' #zField
+Is0 @GridStep f104 '' #zField
+Is0 @StartRequest f105 '' #zField
+Is0 @PushWFArc f106 '' #zField
+Is0 @PushWFArc f107 '' #zField
 >Proto Is0 Is0 GrantPermissions #zField
 Is0 f0 outLink grantAllPermissionsToCurrentUser.ivp #txt
 Is0 f0 inParamDecl '<> param;' #txt
@@ -1298,16 +1302,16 @@ Is0 f108 actionCode 'import ch.ivyteam.ivy.security.IPermission;
 ivy.task.getApplication().getSecurityDescriptor().grantPermission(IPermission.USER_CREATE_ABSENCE, ivy.session.getSessionUser());' #txt
 Is0 f108 security system #txt
 Is0 f108 668 836 40 24 0 -8 #rect
-Is0 f109 outLink grantCreateAbsencesPermission.ivp #txt
+Is0 f109 outLink grantCreateAbsencePermission.ivp #txt
 Is0 f109 inParamDecl '<> param;' #txt
 Is0 f109 requestEnabled true #txt
 Is0 f109 triggerEnabled false #txt
-Is0 f109 callSignature grantCreateAbsencesPermission() #txt
+Is0 f109 callSignature grantCreateAbsencePermission() #txt
 Is0 f109 caseData businessCase.attach=true #txt
 Is0 f109 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>grantCreateAbsencesPermission.ivp</name>
+        <name>grantCreateAbsencePermission.ivp</name>
     </language>
 </elementInfo>
 ' #txt
@@ -1317,6 +1321,32 @@ Is0 f110 881 848 708 848 #arcP
 Is0 f111 668 848 408 543 #arcP
 Is0 f111 1 408 848 #addKink
 Is0 f111 1 0.10650630853594005 0 0 #arcLabel
+Is0 f104 actionTable 'out=in;
+' #txt
+Is0 f104 actionCode 'import ch.ivyteam.ivy.security.IPermission;
+
+ivy.task.getApplication().getSecurityDescriptor().grantPermission(IPermission.USER_DELETE_ABSENCE, ivy.session.getSessionUser());' #txt
+Is0 f104 security system #txt
+Is0 f104 668 908 40 24 0 -8 #rect
+Is0 f105 outLink grantDeleteAbsencePermission.ivp #txt
+Is0 f105 inParamDecl '<> param;' #txt
+Is0 f105 requestEnabled true #txt
+Is0 f105 triggerEnabled false #txt
+Is0 f105 callSignature grantDeleteAbsencePermission() #txt
+Is0 f105 caseData businessCase.attach=true #txt
+Is0 f105 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>grantDeleteAbsencePermission.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Is0 f105 @C|.responsibility Everybody #txt
+Is0 f105 881 905 30 30 16 0 #rect
+Is0 f106 881 920 708 920 #arcP
+Is0 f107 668 920 408 543 #arcP
+Is0 f107 1 408 920 #addKink
+Is0 f107 1 0.1313441394744452 0 0 #arcLabel
 >Proto Is0 .type portalKit_test.GrantPermissionsData #txt
 >Proto Is0 .processKind NORMAL #txt
 >Proto Is0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1437,3 +1467,7 @@ Is0 f109 mainOut f110 tail #connect
 Is0 f110 head f108 mainIn #connect
 Is0 f108 mainOut f111 tail #connect
 Is0 f111 head f7 mainIn #connect
+Is0 f105 mainOut f106 tail #connect
+Is0 f106 head f104 mainIn #connect
+Is0 f104 mainOut f107 tail #connect
+Is0 f107 head f7 mainIn #connect

@@ -15,6 +15,9 @@ import ch.ivy.addon.portalkit.enums.DeputyRoleType;
 
 public class AbsencePage extends TemplatePage {
 
+  private static final String DELETE_ABSENCE__LINK_ID_PATTERN = "absences-management-form:absence-table:%d:delete-absence";
+  private static final String EDIT_ABSENCE__LINK_ID_PATTERN = "absences-management-form:absence-table:%d:edit-absence";
+
 	@Override
 	protected String getLoadedLocator() {
 		return "id('absences-management-form')";
@@ -167,5 +170,13 @@ public class AbsencePage extends TemplatePage {
   public void waitForAbsencesGrowlMessageDisplay() {
     WebElement growlMessage = findElementByCssSelector("div[id$='absences-management-form:absences-management-info_container']");
     waitForElementDisplayed(growlMessage.findElement(By.className("ui-growl-item-container")), true, 5);
+  }
+
+  public boolean canDeleteAbsence(int index) {
+    return findElementById(String.format(DELETE_ABSENCE__LINK_ID_PATTERN, index)).isDisplayed();
+  }
+
+  public boolean canEditAbsence(int index) {
+    return findElementById(String.format(EDIT_ABSENCE__LINK_ID_PATTERN, index)).isDisplayed();
   }
 }
