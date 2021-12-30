@@ -65,7 +65,7 @@ public class PortalTaskScreenshotTest extends ScreenshotTest {
     taskWidget.expand();
     taskWidget.clickColumnsButton();
     executeDecorateJs("highlightCustomColumnsConfigOnTaskList()");
-    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.TASK_WIDGET_CUSTOMIZATION_FOLDER + "task-columns-configuration");
+    ScreenshotUtil.captureHalfRightPageScreenShot(ScreenshotUtil.TASK_WIDGET_CUSTOMIZATION_FOLDER + "task-columns-configuration");
   }
   
   @Test
@@ -247,15 +247,4 @@ public class PortalTaskScreenshotTest extends ScreenshotTest {
     taskWidgetPage.closeMainMenu();
     return taskDetails;
   }
-  
-  @Test
-  public void screenshotMissingActivatorTaskFilter() throws IOException {
-    ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 1200));
-    login(TestAccount.ADMIN_USER);
-    TaskWidgetPage taskWidget = homePage.openTaskList();
-    taskWidget.openNoActivatorFilter("Missing activator");
-    taskWidget.filterByUnavailableActivator(false);
-    ScreenshotUtil.captureHalfTopRightPageScreenShot(ScreenshotUtil.TASK_WIDGET_FOLDER + "task-filter-missing-activator");
-  }
-
 }
