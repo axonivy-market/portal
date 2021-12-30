@@ -839,6 +839,7 @@ public class TaskWidgetPage extends TemplatePage {
   public void clickColumnsButton() {
     clickByCssSelector("[id$='task-widget:task-columns-configuration:task-config-command']");
     waitForElementDisplayedByCssSelector("label[for$=':columns-checkbox:3']");
+    waitUntilAnimationFinished(DEFAULT_TIMEOUT, "ajax-indicator\\\\:ajax-indicator-ajax-indicator_start", ID_PROPERTY);
   }
 
   @SuppressWarnings("deprecation")
