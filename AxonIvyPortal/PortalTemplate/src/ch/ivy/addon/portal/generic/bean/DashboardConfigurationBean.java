@@ -220,6 +220,7 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
           processWidget.getLayout().setHeight(8);
           processWidget.getLayout().setWidth(3);
           processWidget.setProcess(null);
+          processWidget.setProcessPath(EMPTY);
           unifyCompactProcessCategory(processWidget);
           updateProcessesOfWidget(processWidget);
         } else if (processWidget.getDisplayMode() == ProcessWidgetMode.IMAGE_MODE) {
@@ -338,6 +339,9 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
     processWidget.getLayout().setWidth(width);
     processWidget.setDisplayProcesses(new ArrayList<>());
     processWidget.setProcesses(new ArrayList<>());
+    processWidget.setProcessPaths(new ArrayList<>());
+    processWidget.setCategories(new ArrayList<>());
+    processWidget.setSelectedAllProcess(true);
     DashboardProcess process = processWidget.getProcess();
     processWidget.setName(Objects.isNull(process) ? EMPTY : process.getName());
     processWidget.setProcessPath(Objects.isNull(process) ? EMPTY : process.getId());
