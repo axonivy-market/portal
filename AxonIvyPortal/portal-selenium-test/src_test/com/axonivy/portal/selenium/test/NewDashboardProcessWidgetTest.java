@@ -17,6 +17,7 @@ import com.codeborne.selenide.SelenideElement;
 
 @IvyWebTest
 public class NewDashboardProcessWidgetTest extends BaseTest {
+  private static final String SHOWCASE_DATA_TABLE_CATEGORY = "Showcase/DataTable";
   private static final String TEST_FOR_IVYPORTAL_3369 = "Test for IVYPORTAL-3369";
   private static final String MY_FILTER = "My filter";
   private static final String SHOWCASE_DATA_TABLE_SAVED_FILTER_NAME = "Showcase Data Table filter";
@@ -624,4 +625,72 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
         DEFAULT_TIMEOUT);
   }
 
+  // ===================================================================================
+  @Test
+  public void testChangeProcessDisplayMode() {
+    // Add FULL_MODE widget
+    newDashboardPage.switchToEditMode();
+    newDashboardPage.addWidget();
+    ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration = newDashboardPage.addNewProcessWidget();
+    editProcessWidgetConfiguration.selectFullModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST);
+    newDashboardPage.getStartButton().shouldBe(Condition.disabled);
+    newDashboardPage.getDisabledMoreInformationLink().shouldBe(Condition.appear);
+    newDashboardPage.switchToViewMode();
+
+    // Change to COMPACT_MODE
+    newDashboardPage.switchToEditMode();
+    editProcessWidgetConfiguration = newDashboardPage.editFullModeProcess();
+    editProcessWidgetConfiguration.changeToCompactModeProcess(DATA_TABLE, SHOWCASE_DATA_TABLE);
+    editProcessWidgetConfiguration.getCompactModeProcessCategoryFilter()
+        .shouldHave(Condition.value(SHOWCASE_DATA_TABLE_CATEGORY));
+    editProcessWidgetConfiguration.getCompactModeProcessProcessFilter().$("span.ui-selectcheckboxmenu-token-label")
+        .shouldHave(Condition.exactTextCaseSensitive(SHOWCASE_DATA_TABLE));
+
+    // Change to FULL_MODE
+    editProcessWidgetConfiguration.selectFullMode();
+    editProcessWidgetConfiguration.getFullModeProcessSelectedProcess().$("input[id$=':selected-full-process_input']")
+        .shouldHave(Condition.value(CATEGORIED_LEAVE_REQUEST));
+
+    // Change to COMPACT_MODE
+    editProcessWidgetConfiguration.selectCompactMode();
+    editProcessWidgetConfiguration.getCompactModeProcessCategoryFilter()
+        .shouldHave(Condition.value(SHOWCASE_DATA_TABLE_CATEGORY));
+    editProcessWidgetConfiguration.getCompactModeProcessProcessFilter().$("span.ui-selectcheckboxmenu-token-label")
+        .shouldHave(Condition.exactTextCaseSensitive(SHOWCASE_DATA_TABLE));
+
+    // Change to IMAGE_MODE
+    editProcessWidgetConfiguration.selectImageMode();
+    editProcessWidgetConfiguration.getImageModeProcessSelectedProcess().$("input[id$=':selected-image-process_input']")
+        .shouldHave(Condition.value(CATEGORIED_LEAVE_REQUEST));
+
+    // Change to COMBINED_MODE
+    editProcessWidgetConfiguration.selectCombinedMode();
+    editProcessWidgetConfiguration.getCombinedModeProcessSelectedProcess().$("input[id$=':selected-combined-process_input']")
+        .shouldHave(Condition.value(CATEGORIED_LEAVE_REQUEST));
+  }
+
+  @Test
+  public void testSavedDataWhenChangeProcessDisplayMode() {
+    // Add FULL_MODE widget
+    newDashboardPage.switchToEditMode();
+    newDashboardPage.addWidget();
+    ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration = newDashboardPage.addNewProcessWidget();
+    editProcessWidgetConfiguration.selectFullModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST);
+    newDashboardPage.getStartButton().shouldBe(Condition.disabled);
+    newDashboardPage.getDisabledMoreInformationLink().shouldBe(Condition.appear);
+    newDashboardPage.switchToViewMode();
+
+    // Change to COMPACT_MODE and save
+    newDashboardPage.switchToEditMode();
+    editProcessWidgetConfiguration = newDashboardPage.editFullModeProcess();
+    editProcessWidgetConfiguration.changeToCompactModeProcess(DATA_TABLE, SHOWCASE_DATA_TABLE);
+    editProcessWidgetConfiguration.getCompactModeProcessCategoryFilter()
+        .shouldHave(Condition.value(SHOWCASE_DATA_TABLE_CATEGORY));
+    editProcessWidgetConfiguration.getCompactModeProcessProcessFilter().$("span.ui-selectcheckboxmenu-token-label")
+        .shouldHave(Condition.exactTextCaseSensitive(SHOWCASE_DATA_TABLE));
+    
+    // Edit COMPACT_MODE and change to FULL_MODE (check no old data) and save
+    
+    // Edit FULL_MODE and change to COMPACT_MODE (check no old data)
+  }
 }
