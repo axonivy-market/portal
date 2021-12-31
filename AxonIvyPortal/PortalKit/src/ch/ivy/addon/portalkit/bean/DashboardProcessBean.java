@@ -27,6 +27,7 @@ import ch.ivy.addon.portalkit.enums.ProcessWidgetMode;
 import ch.ivy.addon.portalkit.ivydata.service.impl.ProcessService;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.util.CategoryUtils;
+import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
@@ -55,10 +56,20 @@ public class DashboardProcessBean extends AbstractProcessBean implements Seriali
   }
 
   public void onChangeDisplayMode() {
-    if (ProcessWidgetMode.COMBINED_MODE == widget.getDisplayMode()
-        && isCaseMap(widget.getProcess())) {
-      widget.setProcess(null);
-      widget.setProcessPath(null);
+    switch (widget.getDisplayMode()) {
+      case COMBINED_MODE:
+        if (isCaseMap(widget.getProcess())) {
+          widget.setProcess(null);
+          widget.setProcessPath(null);
+        }
+        break;
+      case COMPACT_MODE:
+        if (CollectionUtils.isEmpty(widget.getFilterableColumns())) {
+          widget.buildFilterableColumns(DashboardWidgetUtils.initProcessFilterableColumns());
+        }
+        break;
+      default:
+        break;
     }
   }
 

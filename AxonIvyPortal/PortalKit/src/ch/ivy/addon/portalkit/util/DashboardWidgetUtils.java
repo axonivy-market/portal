@@ -313,7 +313,7 @@ public class DashboardWidgetUtils {
     return widget;
   }
 
-  private static List<ProcessColumnModel> initProcessFilterableColumns() {
+  public static List<ProcessColumnModel> initProcessFilterableColumns() {
     List<ProcessColumnModel> columnModels = new ArrayList<>();
     for (var col : DashboardStandardProcessColumn.values()) {
       if (DashboardStandardProcessColumn.ID == col) {
