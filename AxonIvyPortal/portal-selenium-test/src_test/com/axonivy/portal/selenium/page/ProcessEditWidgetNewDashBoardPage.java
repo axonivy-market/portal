@@ -19,15 +19,19 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   private void selectProcess(String processName) {
-    $("span[id$=':selected-image-process']").find("input").clear();
-    $("span[id$=':selected-image-process']").find("input").sendKeys(processName);
+    getImageModeProcessSelectedProcess().click();
+    getImageModeProcessSelectedProcess().find("input").clear();
+    getImageModeProcessSelectedProcess().find("input").sendKeys(processName);
     $("tr[data-item-label='" + processName + "']").click();
   }
 
-  private void selectImageMode() {
-    getProcessDisplayMode().waitUntil(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
-    $("li[data-label='Image mode']").click();
-    $("span[id$=':selected-image-process']").waitUntil(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+  public void selectImageMode() {
+    selectProcessMode("Image mode");
+    getImageModeProcessSelectedProcess().waitUntil(Condition.appear, DEFAULT_TIMEOUT);
+  }
+
+  public SelenideElement getImageModeProcessSelectedProcess() {
+    return $("span[id$=':selected-image-process']");
   }
 
   public void previewImageModeProcess(String processName) {
@@ -69,16 +73,24 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
     getPreviewButton().click();
   }
 
-  private void selectFullMode() {
+  public void selectFullMode() {
+    selectProcessMode("Full mode");
+    getFullModeProcessSelectedProcess().waitUntil(Condition.appear, DEFAULT_TIMEOUT);
+  }
+
+  public void selectProcessMode(String mode) {
     getProcessDisplayMode().waitUntil(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
-    $("li[data-label='Full mode']").click();
-    $("span[id$=':selected-full-process']").waitUntil(Condition.appear, DEFAULT_TIMEOUT)
-        .shouldBe(getClickableCondition()).click();
+    $("li[data-label='" + mode + "']").click();
+  }
+
+  public SelenideElement getFullModeProcessSelectedProcess() {
+    return $("span[id$=':selected-full-process']");
   }
 
   private void selectFullProcess(String processName) {
-    $("span[id$=':selected-full-process']").find("input").clear();
-    $("span[id$=':selected-full-process']").find("input").sendKeys(processName);
+    getFullModeProcessSelectedProcess().click();
+    getFullModeProcessSelectedProcess().find("input").clear();
+    getFullModeProcessSelectedProcess().find("input").sendKeys(processName);
     $("tr[data-item-label='" + processName + "']").click();
   }
 
@@ -112,16 +124,19 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
     getPreviewButton().click();
   }
 
-  private void selectCombinedMode() {
-    getProcessDisplayMode().waitUntil(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
-    $("li[data-label='Combined mode']").click();
-    $("span[id$=':selected-combined-process']").waitUntil(Condition.appear, DEFAULT_TIMEOUT)
-        .shouldBe(getClickableCondition()).click();
+  public void selectCombinedMode() {
+    selectProcessMode("Combined mode");
+    getCombinedModeProcessSelectedProcess().waitUntil(Condition.appear, DEFAULT_TIMEOUT);
+  }
+
+  public SelenideElement getCombinedModeProcessSelectedProcess() {
+    return $("span[id$=':selected-combined-process']");
   }
 
   private void selectCombinedProcess(String processName, String description) {
-    $("span[id$=':selected-combined-process']").find("input").clear();
-    $("span[id$=':selected-combined-process']").find("input").sendKeys(processName);
+    getCombinedModeProcessSelectedProcess().click();
+    getCombinedModeProcessSelectedProcess().find("input").clear();
+    getCombinedModeProcessSelectedProcess().find("input").sendKeys(processName);
     String processSelector = String.format("tr[data-item-label='%s']", processName);
     if (description != null) {
       String descriptionSelector = String.format(" span[title='%s']", description);
@@ -175,15 +190,17 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
 
   // ========================================================================================
   public void previewCompactModeProcess() {
-    selectCompactMode();
+    selectCompactModeFromCombinedMode();
     getPreviewButton().click();
   }
 
-  private void selectCompactMode() {
-    getProcessDisplayMode().waitUntil(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
-    $("li[data-label='Combined mode']").click();
-    getProcessDisplayMode().click();
-    $("li[data-label='Compact mode']").click();
+  private void selectCompactModeFromCombinedMode() {
+    selectProcessMode("Combined mode");
+    selectCompactMode();
+  }
+
+  public void selectCompactMode() {
+    selectProcessMode("Compact mode");
     getCompactModeWidgetTitle().waitUntil(Condition.appear, DEFAULT_TIMEOUT);
     getCompactModeProcessCategoryFilter().waitUntil(Condition.appear, DEFAULT_TIMEOUT);
     getCompactModeProcessProcessFilter().waitUntil(Condition.appear, DEFAULT_TIMEOUT);
@@ -214,7 +231,7 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void previewCompactModeProcessFilterCategory(String category) {
-    selectCompactMode();
+    selectCompactModeFromCombinedMode();
     selectCompactModeCategory(category);
     getPreviewButton().click();
   }
@@ -232,7 +249,7 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
     getCompactModeProcessCategoryFilterPanel().waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
   }
 
-  private SelenideElement getCompactModeProcessCategoryFilter() {
+  public SelenideElement getCompactModeProcessCategoryFilter() {
     return $("input[id$=':widget-filter-category']");
   }
 
@@ -245,7 +262,7 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void previewCompactModeProcessFilterProcess(String processName) {
-    selectCompactMode();
+    selectCompactModeFromCombinedMode();
     selectCompactModeProcess(processName);
     getPreviewButton().click();
   }
@@ -260,7 +277,7 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
     getCompactModeProcessCategoryFilterPanel().waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
   }
 
-  private SelenideElement getCompactModeProcessProcessFilter() {
+  public SelenideElement getCompactModeProcessProcessFilter() {
     return $("div[id$=':processes-list']");
   }
 
@@ -269,11 +286,19 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void changeCompactModeProcessAndSaveWidget(String category, String processName) {
-    selectCompactMode();
+    selectCompactModeFromCombinedMode();
     getCompactModeWidgetTitle().clear();
     getCompactModeWidgetTitle().sendKeys(processName);
     selectCompactModeCategory(category);
     selectCompactModeProcess(processName);
     clickSaveProcessWidget();
+  }
+
+  public void changeToCompactModeProcess(String category, String processName) {
+    selectCompactMode();
+    getCompactModeWidgetTitle().clear();
+    getCompactModeWidgetTitle().sendKeys(processName);
+    selectCompactModeCategory(category);
+    selectCompactModeProcess(processName);
   }
 }
