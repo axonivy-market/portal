@@ -61,7 +61,7 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
     clickSaveProcessWidget();
   }
 
-  private void clickSaveProcessWidget() {
+  public void clickSaveProcessWidget() {
     $("button[id='widget-configuration-save-button']").click();
     $("div[id='new-widget-configuration-dialog']").waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
   }
