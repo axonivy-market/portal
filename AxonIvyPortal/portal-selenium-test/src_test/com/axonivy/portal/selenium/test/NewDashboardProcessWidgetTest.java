@@ -671,26 +671,37 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
 
   @Test
   public void testSavedDataWhenChangeProcessDisplayMode() {
-    // Add FULL_MODE widget
-    newDashboardPage.switchToEditMode();
-    newDashboardPage.addWidget();
-    ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration = newDashboardPage.addNewProcessWidget();
-    editProcessWidgetConfiguration.selectFullModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST);
-    newDashboardPage.getStartButton().shouldBe(Condition.disabled);
-    newDashboardPage.getDisabledMoreInformationLink().shouldBe(Condition.appear);
+    ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
+        newDashboardPage.editProcessWidgetConfiguration();
+    editProcessWidgetConfiguration.changeCompactModeProcessAndSaveWidget(DATA_TABLE, SHOWCASE_DATA_TABLE);
     newDashboardPage.switchToViewMode();
 
-    // Change to COMPACT_MODE and save
+    // Change to FULL_MODE from COMPACT_MODE
+    newDashboardPage.switchToEditMode();
+    editProcessWidgetConfiguration = newDashboardPage.editProcessWidgetConfiguration();
+    editProcessWidgetConfiguration.selectFullModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST);
+    newDashboardPage.switchToViewMode();
+
+    // Edit FULL_MODE and check no COMPACT_MODE old data
     newDashboardPage.switchToEditMode();
     editProcessWidgetConfiguration = newDashboardPage.editFullModeProcess();
+    editProcessWidgetConfiguration.selectCompactMode();
+    editProcessWidgetConfiguration.getCompactModeProcessCategoryFilter().waitUntil(Condition.appear, DEFAULT_TIMEOUT)
+        .shouldNotHave(Condition.value(SHOWCASE_DATA_TABLE_CATEGORY));
+    editProcessWidgetConfiguration.getCompactModeProcessProcessFilter().waitUntil(Condition.appear, DEFAULT_TIMEOUT)
+        .$("span.ui-selectcheckboxmenu-token-label")
+        .shouldNotBe(Condition.exist);
+
+    // Change to COMPACT_MODE from FULL_MODE
     editProcessWidgetConfiguration.changeToCompactModeProcess(DATA_TABLE, SHOWCASE_DATA_TABLE);
-    editProcessWidgetConfiguration.getCompactModeProcessCategoryFilter()
-        .shouldHave(Condition.value(SHOWCASE_DATA_TABLE_CATEGORY));
-    editProcessWidgetConfiguration.getCompactModeProcessProcessFilter().$("span.ui-selectcheckboxmenu-token-label")
-        .shouldHave(Condition.exactTextCaseSensitive(SHOWCASE_DATA_TABLE));
-    
-    // Edit COMPACT_MODE and change to FULL_MODE (check no old data) and save
-    
-    // Edit FULL_MODE and change to COMPACT_MODE (check no old data)
+    editProcessWidgetConfiguration.clickSaveProcessWidget();
+    newDashboardPage.switchToViewMode();
+
+    // Edit COMPACT_MODE and check no FULL_MODE old data
+    newDashboardPage.switchToEditMode();
+    editProcessWidgetConfiguration = newDashboardPage.editProcessWidgetConfiguration();
+    editProcessWidgetConfiguration.selectFullMode();
+    editProcessWidgetConfiguration.getFullModeProcessSelectedProcess().waitUntil(Condition.appear, DEFAULT_TIMEOUT)
+        .$("input[id$=':selected-full-process_input']").shouldNotHave(Condition.value(CATEGORIED_LEAVE_REQUEST));
   }
 }
