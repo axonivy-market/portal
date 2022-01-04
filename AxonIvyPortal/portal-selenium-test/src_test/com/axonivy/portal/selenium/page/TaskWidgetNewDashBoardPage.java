@@ -187,6 +187,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
 
   public void deleteFirstSavedFilter() {
     var deleteSavedFilterForm = $("#delete-saved-filter-form").waitUntil(appear, DEFAULT_TIMEOUT);
+    $("tr[data-rk='Tasks Filterset 4']").waitUntil(appear, DEFAULT_TIMEOUT);
     var totalWidgetFilter = getDelelteSavedFilterRow().size();
     deleteSavedFilterForm.$(".ui-datatable-data")
         .$$(".saved-filter-selection-column").first()

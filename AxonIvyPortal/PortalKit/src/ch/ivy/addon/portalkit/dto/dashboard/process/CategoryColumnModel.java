@@ -7,13 +7,16 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.primefaces.model.CheckboxTreeNode;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
+import ch.ivy.addon.portalkit.bean.DashboardProcessBean;
 import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
 import ch.ivy.addon.portalkit.enums.DashboardStandardProcessColumn;
+import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.util.CategoryUtils;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivy.addon.portalkit.util.ProcessTreeUtils;
@@ -62,6 +65,27 @@ public class CategoryColumnModel extends ProcessColumnModel implements Serializa
   public void updateCategoriesPath() {
     setUserFilterList(CategoryUtils.getCategoryPaths(userSelectionCategoryNodes));
     setFilterList(CategoryUtils.getCategoryPaths(selectionCategoryNodes));
+    updatePortalCompactProcesses();
+  }
+
+  private void updatePortalCompactProcesses() {
+    DashboardProcessBean dashboardProcessBean = ManagedBeans.get("dashboardProcessBean");
+    if (dashboardProcessBean != null) {
+      List<DashboardProcess> processes = filterByCategory(dashboardProcessBean);
+      dashboardProcessBean.setPortalCompactProcesses(processes);
+      dashboardProcessBean.getWidget().setProcesses(null);
+    }
+  }
+
+  private List<DashboardProcess> filterByCategory(DashboardProcessBean dashboardProcessBean) {
+    return dashboardProcessBean.getAllPortalProcesses().stream()
+        .filter(process -> isProcessMatchedCategory(process, filterList)).collect(Collectors.toList());
+  }
+
+  private boolean isProcessMatchedCategory(DashboardProcess process, List<String> categories) {
+    boolean hasNoCategory = categories.indexOf(CategoryUtils.NO_CATEGORY) > -1;
+    return categories.indexOf(process.getCategory()) > -1
+        || (StringUtils.isBlank(process.getCategory()) && hasNoCategory);
   }
 
   @JsonIgnore
