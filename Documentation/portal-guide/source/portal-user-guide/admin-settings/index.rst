@@ -70,6 +70,13 @@ HowTo: Update Portal settings
 
 #. To reset to default value of all settings, click on :guilabel:`Restore all to defaults`.
 
+.. centered:: Available settings
+
+.. csv-table::
+  :file: documents/available_settings.csv
+  :header-rows: 1
+  :class: longtable
+  :widths: 20 20 60
 
 HowTo: Show/Hide announcement
 -----------------------------
