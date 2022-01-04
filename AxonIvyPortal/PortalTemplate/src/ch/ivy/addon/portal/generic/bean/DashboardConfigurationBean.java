@@ -229,6 +229,7 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
       case CUSTOM:
         CustomDashboardWidget customWidget =  (CustomDashboardWidget) widget;
         loadCustomWidget(customWidget);
+        break;
       default:
         break;
     }
@@ -601,6 +602,7 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
     setCurrentDashboardIndex(0);
   }
 
+  @Override
   public boolean getIsEditMode() {
     return true;
   }
