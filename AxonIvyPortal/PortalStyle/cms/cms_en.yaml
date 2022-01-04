@@ -664,6 +664,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     SearchForFilter: Search for filter
     WidgetFilterName: Widget filter name
     WidgetFilters: Widget filters
+    actionSelection: Action selection
     addField: Add field
     addWidget: Add widget
     availableFilters: Available Filters
@@ -695,7 +696,16 @@ ch.ivy.addon.portalkit.ui.jsf:
     customFieldType: Custom Field Type
     customWidget: Custom Widget
     customWidgetIntroduction: This widget can display an ivy process or an external webpage.
+    dashboardManagement:
+      addDashboard: Add dashboard
+      dashboardPermission: Dashboard permission
+      dashboardTitle: Dashboard title
+      editDashboard: Edit dashboard
+      manageDashboard: Manage dashboard
+      removeDashboardHeader: Remove the "{0}" dashboard
     deleteWidget: Delete widget
+    editPrivateDashboard: Edit private dashboard
+    editPublicDashboard: Edit public dashboard
     editWidget: Edit widget
     existingField: The {0} field has already been existing
     expiryFrom: Expiry From
@@ -704,6 +714,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     fieldIsAdded: The {0} field is added
     loading: Loading...
     noCategory: There are no categories
+    noDashboard: There are no dashboards. Add at least one dashboard, then add widgets.
     noPermission: You don't have permissions to see dashboards.
     noWidget: There are no widgets provided for this dashboard
     numberPattern: Number Pattern
@@ -722,6 +733,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     restoreDefaultHeader: Restore to default widgets
     restoreDefaultMessage: If you proceed, you will loose all widgets created by yourself. The standard settings will be applied.
     select: Select
+    selectEditAction: Which action do you want to procced?
     showFullWidget: Show full widget
     startATask: Start task
     switchToViewMode: View Mode
