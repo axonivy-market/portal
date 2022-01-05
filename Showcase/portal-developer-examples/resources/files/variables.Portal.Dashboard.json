@@ -5,7 +5,7 @@
     "widgets": [
       {
         "type": "task",
-        "id": "task_1",
+        "id": "task_10",
         "layout": {
           "x": 0, "y": 0, "w": 9, "h": 4
         },
@@ -32,7 +32,7 @@
       },
       {
         "type": "case",
-        "id": "case_1",
+        "id": "case_10",
         "layout": {
           "x": 0, "y": 4, "w": 9, "h": 4
         },
@@ -60,7 +60,7 @@
       },
       {
         "type": "process",
-        "id": "compact_mode",
+        "id": "compact_mode_10",
         "name": "Process Widget",
         "displayMode": "COMPACT_MODE",
         "layout": {
@@ -72,11 +72,11 @@
   {
     "id": "customized-dashboard",
     "title": "Custom Dashboard",
-    "permissions": ["#gm1","CostObject"],
+    "permissions": ["CostObject"],
     "widgets": [
       {
         "type": "task",
-        "id": "task_1",
+        "id": "task_20",
         "layout": {
           "x": 0, "y": 0, "w": 9, "h": 4
         },
@@ -123,7 +123,7 @@
       },
       {
         "type": "case",
-        "id": "case_1",
+        "id": "case_20",
         "layout": {
           "x": 0, "y": 4, "w": 9, "h": 4
         },
@@ -166,13 +166,41 @@
       },
       {
         "type": "process",
-        "id": "compact_mode",
+        "id": "compact_mode_20",
         "name": "Process Widget",
         "displayMode": "COMPACT_MODE",
         "layout": {
           "x": 9, "y": 0, "w": 3, "h": 4
         },
         "categories": ["CostObject"]
+      },
+      {
+         "type": "custom",
+         "id": "custom-widget",
+         "name": "Custom Widget",
+         "layout": {
+            "x": 10, "y": 11, "w": 12, "h": 5
+         },
+         "data" : {
+           "processStart": "Start Processes/DashboardCustomWidgetExample/investmentList.ivp",
+           "params": [
+               {
+                  "type": "user",
+                  "name": "customer",
+                  "value": "demo"
+               },
+               {
+                  "type": "date",
+                  "name": "startDate",
+                  "value": "11/19/2021"
+               },
+               {
+                  "type": "string",
+                  "name": "note",
+                  "value": "a short note for user"
+               }
+            ]
+        }
       }
     ]
   }

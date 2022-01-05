@@ -6,8 +6,9 @@
         "type": "task",
         "id": "task_1",
         "layout": {
-          "x": 0, "y": 0, "w": 10, "h": 8
+          "x": 0, "y": 0, "w": 12, "h": 5
         },
+        "rowsPerPage": 5,
         "sortField": "name",
         "columns": [
           {
@@ -40,14 +41,16 @@
           {
             "field": "category"
           }
-        ]
+        ],
+        "canWorkOn": true
       },
       {
         "type": "case",
         "id": "case_1",
         "layout": {
-          "x": 0, "y": 8, "w": 10, "h": 8
+          "x": 0, "y": 5, "w": 9, "h": 5
         },
+        "rowsPerPage": 5,
         "sortField": "name",
         "columns": [
           {
@@ -80,7 +83,7 @@
         "type": "process",
         "id": "process_1",
         "layout": {
-          "x": 10, "y": 0, "w": 2, "h": 4
+          "x": 9, "y": 5, "w": 3, "h": 5
         }
       }
     ]

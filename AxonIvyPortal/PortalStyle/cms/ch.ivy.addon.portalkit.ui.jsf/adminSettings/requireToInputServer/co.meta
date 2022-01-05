@@ -1,5 +1,0 @@
-co: name={requireToInputServer} description={} changed={2019-02-11 03:13:31 CET} changedby={ntminh01} visualorder={0} guid={15F713A5EC262EE4} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={15F713A5ECE28AF0} datatype={} isdefault={false} langid={de} description={} validfrom={2015-11-20 15:55:29 CET} validto={} changed={2017-10-31 07:59:31 CET} changedby={chnam} properties={} id={}
-val: guid={15F713A5EC47E405} datatype={} isdefault={true} langid={en} description={} validfrom={2015-02-10 07:49:42 CET} validto={} changed={2017-10-31 07:59:31 CET} changedby={chnam} properties={} id={}
-val: guid={15F713A5EC9D4AA8} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:02 CEST} validto={} changed={2017-10-31 07:59:31 CET} changedby={chnam} properties={} id={}
-val: guid={168DA54B60ADDF86} datatype={} isdefault={false} langid={es} description={} validfrom={2019-02-11 03:13:31 CET} validto={} changed={2019-02-11 03:13:31 CET} changedby={ntminh01} properties={} id={}

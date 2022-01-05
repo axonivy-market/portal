@@ -1,4 +1,0 @@
-co: name={ACTIVATOR} description={} changed={2018-01-19 05:41:49 CET} changedby={tntanh} visualorder={0} guid={1610CB90C607ECB0} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={1610CB90C78B56AE} datatype={} isdefault={false} langid={de} description={} validfrom={2018-01-19 04:04:48 CET} validto={} changed={2018-01-19 05:41:49 CET} changedby={tntanh} properties={} id={}
-val: guid={1610CB90C6E48081} datatype={} isdefault={true} langid={en} description={} validfrom={2018-01-19 04:04:32 CET} validto={} changed={2018-01-19 05:41:49 CET} changedby={tntanh} properties={} id={}
-val: guid={1610CB90C63F2690} datatype={} isdefault={false} langid={fr} description={} validfrom={2018-01-19 04:04:43 CET} validto={} changed={2018-01-19 05:41:49 CET} changedby={tntanh} properties={} id={}

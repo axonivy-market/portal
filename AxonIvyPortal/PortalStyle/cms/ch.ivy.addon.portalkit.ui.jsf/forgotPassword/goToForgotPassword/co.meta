@@ -1,5 +1,0 @@
-co: name={goToForgotPassword} description={} changed={2020-12-22 04:35:57 CET} changedby={dhtlong} visualorder={0} guid={1762D7CFA794636E} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={1762D7CFA967807D} datatype={} isdefault={false} langid={de} description={} validfrom={2020-12-22 04:35:57 CET} validto={} changed={2020-12-22 04:35:57 CET} changedby={dhtlong} properties={} id={}
-val: guid={1762D7CFAA497F3B} datatype={} isdefault={true} langid={en} description={} validfrom={2020-12-22 04:35:57 CET} validto={} changed={2020-12-22 04:35:57 CET} changedby={dhtlong} properties={} id={}
-val: guid={1762D7CFAAF3D56B} datatype={} isdefault={false} langid={es} description={} validfrom={2020-12-22 04:35:57 CET} validto={} changed={2020-12-22 04:35:57 CET} changedby={dhtlong} properties={} id={}
-val: guid={1762D7CFA88B00C2} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-12-22 04:35:57 CET} validto={} changed={2020-12-22 04:35:57 CET} changedby={dhtlong} properties={} id={}

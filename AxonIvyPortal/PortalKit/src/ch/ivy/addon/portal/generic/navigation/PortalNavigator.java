@@ -205,8 +205,10 @@ public final class PortalNavigator extends BaseNavigator{
     redirect(getDashboardLink());
   }
 
-  public static void navigateToNewDashboardConfiguration() {
-    navigateByKeyword(PORTAL_NEW_DASHBOARD_CONFIGURATION_START, PORTAL_NEW_DASHBOARD_CONFIGURATION, new HashMap<>());
+  public static void navigateToNewDashboardConfiguration(boolean isPublicDashboard) {
+    Map<String, String> params = new HashMap<>();
+    params.put("isPublicDashboard", String.valueOf(isPublicDashboard));
+    navigateByKeyword(PORTAL_NEW_DASHBOARD_CONFIGURATION_START, PORTAL_NEW_DASHBOARD_CONFIGURATION, params);
   }
 
   public static String buildUserProfileUrl() {

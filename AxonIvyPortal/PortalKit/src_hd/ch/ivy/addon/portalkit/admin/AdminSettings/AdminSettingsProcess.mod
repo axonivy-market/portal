@@ -313,6 +313,7 @@ in.dialogTitle = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/adminSettings/editSe
 GlobalVariable globalVariable = GlobalVariable.valueOfKey(in.selectedSetting.key);
 in.settingInputType = globalVariable.getType();
 if (globalVariable.getType() == GlobalVariableType.SELECTION) {
+	in.selectedSetting.value = in.selectedSetting.value.toUpperCase();
 	in.dropDownValues = globalVariable.getOptions();
 } else if (globalVariable == GlobalVariable.DEFAULT_HOMEPAGE) {
 	in.externalDropDownValues = HomepageUtils.getHomepageOptionsForAdminSettings();

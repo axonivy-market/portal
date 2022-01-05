@@ -1,5 +1,0 @@
-co: name={setDeadlineNote} description={} changed={2021-05-04 04:20:49 CEST} changedby={phhung} visualorder={0} guid={15F713A85F5643D5} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={15F713A8601D1A2E} datatype={} isdefault={false} langid={fr} description={} validfrom={2021-05-04 04:20:49 CEST} validto={} changed={2021-05-04 04:20:49 CEST} changedby={phhung} properties={} id={}
-val: guid={15F713A85F794300} datatype={} isdefault={true} langid={en} description={} validfrom={2021-05-04 04:20:49 CEST} validto={} changed={2021-05-04 04:20:49 CEST} changedby={phhung} properties={} id={}
-val: guid={168DA54CF6658A37} datatype={} isdefault={false} langid={es} description={} validfrom={2021-05-04 04:20:49 CEST} validto={} changed={2021-05-04 04:20:49 CEST} changedby={phhung} properties={} id={}
-val: guid={15F713A85FCE0B96} datatype={} isdefault={false} langid={de} description={} validfrom={2021-05-04 04:20:49 CEST} validto={} changed={2021-05-04 04:20:49 CEST} changedby={phhung} properties={} id={}

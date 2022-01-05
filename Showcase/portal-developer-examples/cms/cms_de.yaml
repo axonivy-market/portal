@@ -1,0 +1,120 @@
+Categories:
+  AnnualLeave:
+    name: Jahresurlaub
+  LeaveRequest:
+    name: Leave Request German
+  OtherLeave:
+    Maternity:
+      name: Mutterschaft
+    SickLeave:
+      Long:
+        name: Lange
+      name: Krank
+    name: Andere verlassen
+DefaultColumns:
+  ACTIVATOR: Verantwortlich
+  CREATION_TIME: Erstellt
+  EXPIRY_TIME: Ablaufdatum
+  ID: Aufgaben ID
+  NAME: Name / Beschreibung
+  PRIORITY: Priorität
+  STATE: Status
+  caseList:
+    CREATION_TIME: Erstellt
+    CREATOR: Ersteller
+    FINISHED_TIME: Erledigt
+    ID: Vorgangs Id
+    NAME: Name / Beschreibung
+    OWNER: Owner
+    STATE: Status
+    customTimestampField1: Versanddatum
+    customVarCharField1: Kundenname
+  customTimestampField1: Versanddatum
+  customVarCharField5: Kundenname
+Dialogs:
+  Lists:
+    Completeness:
+      ADDITIONAL_IDENTIFICATION_NEEDED: Weitere Informationen anfordern
+      NO_INFORMATION: Keine Information verfügbar
+      PERSON_LEGITIMIZED: Person legitimiert
+      REQUEST_PROOF: Identifikationsnachweis anfordern
+    ProcessState:
+      APPLICATION: Antrag
+      DONE: Erledigt
+      IDENTITY_CHECK: Identitätscheck
+      INFORMATION: Informieren
+      INQUIRY: Recherche
+      PROCESSING: Bearbeiten
+      VERIFICATION: Prüfen
+  ch:
+    ivyteam:
+      ivy:
+        project:
+          portal:
+            examples:
+              testdata:
+                LeaveRequestForm:
+                  Employee: Mitarbeiter
+                  From: Von
+                  IsRequired: Pflichtfeld
+                  Representation: Vertretung
+                  To: Bis
+  com.axonivy.portal.developerexamples:
+    LeaveRequestForm:
+      Employee: Mitarbeiter
+      From: Von
+      IsRequired: Pflichtfeld
+      Representation: Vertretung
+      To: Bis
+Labels:
+  address: Strasse/Hausnr.
+  cancel: Abbrechen
+  caseId: Vorgangs Id
+  city: /Stadt
+  date: Datum
+  delete: Löschen
+  email: E-Mail
+  firstName: Vorname
+  personalData: Personendaten
+  phoneNumber: Telefonnummer
+  proceed: Weiter
+  reason: Begründung
+  request: Anfrage
+  requestType: Begehrenstyp
+  surName: Name
+  tableDelete: Löschen
+  tableName: Name
+  zip: PLZ
+Processes:
+  CategoriedLeaveRequest:
+    processStep: |-
+      #Erstellung
+      Wählen Sie aus unterschiedlichen Abwesenheitstypen
+      Verwenden Sie die Datumsauswahl, um Abwesenheiten zeitlich zu definieren.
+      Wählen Sie einen Genehmiger für Ihre Abwesenheit
+      #Genehmigung
+      Fügen Sie ein Kommentar zum Antrag hinzu
+      Treffen Sie eine Entscheidung: Genehmigen / Ablehnen
+      #Zusammenfassung
+      Antragssteller bekommt eine Zusammenfassung
+      Ergebnis zur Kenntnis nehmen
+  CreateInvestment:
+    name: Investition anlegen
+  ProcessHistoryComponent:
+    AlphaCompany:
+      name: Aufgabe für Firma Alpha
+    ProcessHistoryOfAlphaCompany:
+      name: Verlauf von Firma Alpha ansehen
+    ProcessHistoryOfAlphaCompanyInDialog:
+      name: Prozessverlauf für Firma Alpha im Dialog anzeigen
+sortFields:
+  CREATION_TIME_ASC: Erstellungsdatum (Ältestes zuerst)
+  CREATION_TIME_DESC: Erstellungsdatum (Neuestes zuerst)
+  EXPIRY_TIME_ASC: Ablauf (Älteste zuerst)
+  EXPIRY_TIME_DESC: Ablauf (Neuste zuerst)
+  PRIORITY_ASC: Priorität (hoch -> tief)
+  PRIORITY_DESC: Priorität (tief -> hoch)
+  customTimestampField1_ASC: Versanddatum (älteste zuerst)
+  customTimestampField1_DESC: Versanddatum (neuerste zuerst)
+  customVarCharField5_ASC: Kundenname (A -> Z)
+  customVarCharField5_DESC: 'Kundenname (Z -> A) '

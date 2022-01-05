@@ -1,5 +1,0 @@
-co: name={INQUIRY} description={} changed={2020-03-09 10:33:37 CET} changedby={nvthang01} visualorder={0} guid={16851855550B2CB3} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={16851856D239D8B3} datatype={} isdefault={true} langid={en} description={} validfrom={2019-01-15 13:38:45 CET} validto={} changed={2019-01-15 13:39:21 CET} changedby={Oliver} properties={} id={}
-val: guid={170BEA48433E4914} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-03-09 10:33:37 CET} validto={} changed={2020-03-09 10:33:37 CET} changedby={nvthang01} properties={} id={}
-val: guid={170BEA484419F9F2} datatype={} isdefault={false} langid={es} description={} validfrom={2020-03-09 10:33:37 CET} validto={} changed={2020-03-09 10:33:37 CET} changedby={nvthang01} properties={} id={}
-val: guid={168519EADD7D3511} datatype={} isdefault={false} langid={de} description={} validfrom={2019-01-15 14:06:16 CET} validto={} changed={2019-01-15 14:06:20 CET} changedby={Oliver} properties={} id={}

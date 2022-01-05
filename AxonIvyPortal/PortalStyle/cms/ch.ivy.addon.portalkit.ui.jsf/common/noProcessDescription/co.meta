@@ -1,5 +1,0 @@
-co: name={noProcessDescription} description={} changed={2021-07-05 11:02:55 CEST} changedby={mnhnam} visualorder={0} guid={179C5E2B04451F88} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={179C5E2B05C9D8E0} datatype={} isdefault={false} langid={es} description={} validfrom={2021-07-05 11:02:55 CEST} validto={} changed={2021-07-05 11:02:55 CEST} changedby={mnhnam} properties={} id={}
-val: guid={179C5E2B0679B745} datatype={} isdefault={true} langid={en} description={} validfrom={2020-05-26 06:20:51 CEST} validto={} changed={2021-06-01 06:44:16 CEST} changedby={phhung} properties={} id={}
-val: guid={179C5E2B049FB9DB} datatype={} isdefault={false} langid={de} description={} validfrom={2021-07-05 11:02:55 CEST} validto={} changed={2021-07-05 11:02:55 CEST} changedby={mnhnam} properties={} id={}
-val: guid={179C5E2B052693BF} datatype={} isdefault={false} langid={fr} description={} validfrom={2021-07-05 11:02:55 CEST} validto={} changed={2021-07-05 11:02:55 CEST} changedby={mnhnam} properties={} id={}

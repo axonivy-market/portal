@@ -9,7 +9,7 @@ Change Portal's logos
 ---------------------
 
 You can change logo and login logo by modifying default logo in
-PortalStyle project.
+PortalStyle project. And we recommend using an image with transparent background.
 
 -  Modify cms entry ``PortalStyle/images/logo/CorporateLogoSvg`` to
    update homepage logo when menu is expanded. File type is SVG. This approach is highly recommended.
@@ -17,9 +17,11 @@ PortalStyle project.
 -  Modify cms entry ``PortalStyle/images/logo/CorporateLogo`` to
    update homepage logo when menu is expanded. Only use this approach if you don't have SVG file. File type is PNG.
 
-   .. tip:: We recommend you to use an image with width size is 168 pixel to fit the left menu size when it's expanded
+   .. tip::
+      - We recommend using an image with width size is 168 pixels to fit the left menu size when it's expanded.
+        And height size is 42 pixels.
 
-   
+      - To scale your logo, override these variables: ``--home-logo-width``, ``--home-logo-height``.
 
 -  Modify cms entry ``PortalStyle/images/logo/SmallCorporateLogoSvg`` to
    update homepage logo when menu is collapsed. File type is SVG. This approach is highly recommended.
@@ -27,7 +29,11 @@ PortalStyle project.
 -  Modify cms entry ``PortalStyle/images/logo/SmallCorporateLogo`` to
    update homepage logo when menu is collapsed. Only use this approach if you don't have SVG file. File type is PNG.
 
-   .. tip:: We recommend you to use an image with width size is 42 pixel to fit the left menu size when it's collapsed
+   .. tip::
+      - We recommend using an image with width size is 42 pixels to fit the left menu size when it's collapsed.
+        And height size is 42 pixels.
+
+      - To scale your logo, override these variables: ``--small-home-logo-width``, ``--home-logo-height`` (the same variable for ``PortalStyle/images/logo/CorporateLogo`` or ``PortalStyle/images/logo/CorporateLogoSvg``).
 
 -  Modify cms entry ``PortalStyle/images/logo/loginLogoSvg`` to update
    login logo. File type is SVG. This approach is highly recommended.
@@ -35,14 +41,19 @@ PortalStyle project.
 -  Modify cms entry ``PortalStyle/images/logo/loginLogo`` to update
    login logo. Only use this approach if you don't have SVG file. File type is PNG.
 
+   .. tip::
+      - We recommend using an image with size is 50x50 pixels.
+
+      - To scale your logo, override variable: ``--login-logo-height``, the width will be calculated automatically.
+
 -  Modify cms entry ``PortalStyle/images/logo/faviconLogoSvg`` to update
    favicon logo. File type is SVG. This approach is highly recommended.
 
 -  Modify cms entry ``PortalStyle/images/logo/faviconLogo`` to update
    favicon logo. Recommended size for favicon: 16x16 or 32x32 pixels. Only use this approach if you don't have SVG file. File type is PNG.
 
--  Override CSS variables: ``--login-logo-height``, ``--home-logo-height`` in
-   ``customization.css`` to scale your logos.
+-  Please refer to default value of these variables: ``--home-logo-width``, ``--home-logo-height``, ``--small-home-logo-width``, ``--login-logo-height`` in
+   ``portal-variables.css`` to scale your logos.
 
    .. _customization-portal-logos-and-colors-change-portal-background:
 
@@ -65,7 +76,7 @@ Below is the list of some Portal elements which are using customizable colors:
    +------------------------------+-----------------------------+----------------------------------------------------------------+
    | Variable                     | Default value               | Description                                                    |
    +==============================+=============================+================================================================+
-   | --primary-color              | hsl(195,100%,29%)           | - Background color of button (except Cancel button)            |
+   | ``--primary-color``          | hsl(195,100%,29%)           | - Background color of button (except Cancel button)            |
    |                              |                             | - Background color of selected checkbox/radio button           |
    |                              |                             | - Background color of process chain (except waiting state)     |
    |                              |                             | - Portal header bar                                            |
@@ -73,17 +84,17 @@ Below is the list of some Portal elements which are using customizable colors:
    |                              |                             | - Sidebar anchor                                               |
    |                              |                             | - Text color of active tab                                     |
    +------------------------------+-----------------------------+----------------------------------------------------------------+
-   | --primary-dark-color         | hsl(195, 100%, 20%)         | - Background color of hovered button                           |
+   | ``--primary-dark-color``     | hsl(195, 100%, 20%)         | - Background color of hovered button                           |
    +------------------------------+-----------------------------+----------------------------------------------------------------+
-   | --primary-text-color         | white                       | - Text, icon color of button, checkbox, and other elements     |
+   | ``--primary-text-color``     | white                       | - Text, icon color of button, checkbox, and other elements     |
    +------------------------------+-----------------------------+----------------------------------------------------------------+
-   | --accent-color               | hsl(0, 1%, 34%)             | - Background color of active items (form elements)             |
+   | ``--accent-color``           | hsl(0, 1%, 34%)             | - Background color of active items (form elements)             |
    |                              |                             | - Background color of active page number in datatable          |
    |                              |                             |   (except table in Case/Task detail)                           |
    |                              |                             | - Bottom border of active tab                                  |
    |                              |                             | - Border color of datepicker-today                             |
    +------------------------------+-----------------------------+----------------------------------------------------------------+
-   | --accent-text-color          | white                       | - Text of active items                                         |
+   | ``--accent-text-color``      | white                       | - Text of active items                                         |
    |                              |                             | - Text of active page number in datatable                      |
    +------------------------------+-----------------------------+----------------------------------------------------------------+
 
@@ -106,7 +117,7 @@ You can customize in:
 
 .. tip::
    If you are using Iframes and you want to customize the colors of the project specific UIs, then refer to this documentation 
-   `<https://developer.axonivy.com/doc/|version|/designer-guide/how-to/overrides.html?#override-new-wizard>`_
+   `<https://developer.axonivy.com/doc/nightly/designer-guide/how-to/overrides.html?#override-new-wizard>`_
 
 .. warning::
    - Do not change ``font-family`` property values.

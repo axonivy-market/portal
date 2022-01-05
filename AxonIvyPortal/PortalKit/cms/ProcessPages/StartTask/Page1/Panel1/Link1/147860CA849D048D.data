@@ -1,3 +1,0 @@
-<SCRIPT LANGUAGE="JavaScript">
-setTimeout("document.location.href = '<%=in.url%>'",0);
-</SCRIPT>

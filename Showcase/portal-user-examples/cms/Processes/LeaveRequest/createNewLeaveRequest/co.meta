@@ -1,5 +1,0 @@
-co: name={createNewLeaveRequest} description={} changed={2020-03-03 09:13:37 CET} changedby={lttung} visualorder={0} guid={1703E4F04CFE8912} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={1703E4F04D53631B} datatype={} isdefault={true} langid={en} description={} validfrom={2020-02-11 03:39:19 CET} validto={} changed={2020-02-18 05:36:31 CET} changedby={ldnam} properties={} id={}
-val: guid={1703E4F04ECA2451} datatype={} isdefault={false} langid={de} description={} validfrom={2020-03-03 09:13:37 CET} validto={} changed={2020-03-03 09:13:37 CET} changedby={lttung} properties={} id={}
-val: guid={1703E4F04E18495B} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-03-03 09:13:37 CET} validto={} changed={2020-03-03 09:13:37 CET} changedby={lttung} properties={} id={}
-val: guid={1703E4F04F7960C1} datatype={} isdefault={false} langid={es} description={} validfrom={2020-03-03 09:13:37 CET} validto={} changed={2020-03-03 09:13:37 CET} changedby={lttung} properties={} id={}

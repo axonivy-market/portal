@@ -1,5 +1,0 @@
-co: name={ANNUAL_LEAVE} description={} changed={2020-03-03 09:13:35 CET} changedby={lttung} visualorder={0} guid={17032FFA7E0E1C43} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={17057510FCB6E60A} datatype={} isdefault={false} langid={de} description={} validfrom={2020-03-03 09:13:35 CET} validto={} changed={2020-03-03 09:13:35 CET} changedby={lttung} properties={} id={}
-val: guid={170575110C750E1D} datatype={} isdefault={false} langid={es} description={} validfrom={2020-03-03 09:13:35 CET} validto={} changed={2020-03-03 09:13:35 CET} changedby={lttung} properties={} id={}
-val: guid={17032FFA7E55C692} datatype={} isdefault={true} langid={en} description={} validfrom={2020-02-11 07:46:20 CET} validto={} changed={2020-02-11 07:46:20 CET} changedby={ldnam} properties={} id={}
-val: guid={170575110D493B1F} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-03-03 09:13:35 CET} validto={} changed={2020-03-03 09:13:35 CET} changedby={lttung} properties={} id={}

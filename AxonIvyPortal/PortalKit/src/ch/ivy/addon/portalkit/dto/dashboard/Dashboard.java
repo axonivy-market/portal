@@ -5,35 +5,42 @@ import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
+import ch.ivy.addon.portalkit.configuration.AbstractConfiguration;
 import ch.ivy.addon.portalkit.constant.DashboardConfigurationPrefix;
+import ch.ivy.addon.portalkit.dto.SecurityMemberDTO;
 import ch.ivyteam.ivy.environment.Ivy;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-public class Dashboard implements Serializable {
+public class Dashboard extends AbstractConfiguration implements Serializable {
 
   private static final long serialVersionUID = 4580715578128184706L;
-
-  private String id;
   private String title;
   private List<DashboardWidget> widgets;
   private List<String> permissions;
+  @JsonIgnore
+  private List<SecurityMemberDTO> permissionDTOs;
+  @JsonIgnore
+  private String displayedPermission;
 
   public Dashboard() {}
 
+  public Dashboard(Dashboard dashboard) {
+    setId(dashboard.getId());
+    setIsPublic(dashboard.getIsPublic());
+    title = dashboard.title;
+    widgets = dashboard.widgets;
+    permissions = dashboard.permissions;
+    permissionDTOs = dashboard.permissionDTOs;
+    displayedPermission = dashboard.displayedPermission;
+  }
+
   public Dashboard(String id, String title, List<DashboardWidget> widgets) {
-    this.id = id;
+    this.setId(id);
     this.title = title;
     this.widgets = widgets;
-  }
-  
-  public String getId() {
-    return id;
-  }
-  
-  public void setId(String id) {
-    this.id = id;
   }
   
   public String getTitle() {
@@ -63,11 +70,28 @@ public class Dashboard implements Serializable {
     this.permissions = permissions;
   }
 
+
+  public List<SecurityMemberDTO> getPermissionDTOs() {
+    return permissionDTOs;
+  }
+
+  public void setPermissionDTOs(List<SecurityMemberDTO> permissionDTOs) {
+    this.permissionDTOs = permissionDTOs;
+  }
+
+  public String getDisplayedPermission() {
+    return displayedPermission;
+  }
+
+  public void setDisplayedPermission(String displayedPermission) {
+    this.displayedPermission = displayedPermission;
+  }
+
   @Override
   public int hashCode() {
     final int prime = 31;
     int result = 1;
-    result = prime * result + ((id == null) ? 0 : id.hashCode());
+    result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
     return result;
   }
 
@@ -80,10 +104,10 @@ public class Dashboard implements Serializable {
     if (getClass() != obj.getClass())
       return false;
     Dashboard other = (Dashboard) obj;
-    if (id == null) {
-      if (other.id != null)
+    if (getId() == null) {
+      if (other.getId() != null)
         return false;
-    } else if (!id.equals(other.id))
+    } else if (!getId().equals(other.getId()))
       return false;
     return true;
   }

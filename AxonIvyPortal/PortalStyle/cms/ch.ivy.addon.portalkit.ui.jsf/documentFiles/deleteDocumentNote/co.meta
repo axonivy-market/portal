@@ -1,5 +1,0 @@
-co: name={deleteDocumentNote} description={} changed={2019-03-25 10:06:47 CET} changedby={lttung} visualorder={0} guid={1680310E5D5781A3} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={1680310FAED72EFF} datatype={} isdefault={true} langid={en} description={} validfrom={2018-04-10 04:24:31 CEST} validto={} changed={2018-12-31 08:01:11 CET} changedby={dhtlong} properties={} id={}
-val: guid={01680310FACE310F} datatype={} isdefault={false} langid={de} description={} validfrom={2018-04-10 04:26:28 CEST} validto={} changed={2018-12-31 08:01:11 CET} changedby={dhtlong} properties={} id={}
-val: guid={1680310FAE1FF70C} datatype={} isdefault={false} langid={fr} description={} validfrom={2018-04-10 04:26:26 CEST} validto={} changed={2018-12-31 08:01:11 CET} changedby={dhtlong} properties={} id={}
-val: guid={169B41A2A0E55179} datatype={} isdefault={false} langid={es} description={} validfrom={2019-03-25 10:06:47 CET} validto={} changed={2019-03-25 10:06:47 CET} changedby={lttung} properties={} id={}

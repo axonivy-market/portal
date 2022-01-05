@@ -18,9 +18,8 @@
       <ui:param name="widget" value="#{widget}" />
       <ui:param name="panelId" value="process-panel-group-#{index}" />
       <ui:param name="isReadOnlyMode" value="#{cc.attrs.isReadOnlyMode}" />
-      <ui:param name="widgetContentStylyClass" value="process-widget" />
+      <ui:param name="widgetContentStyleClass" value="process-widget" />
       <ui:param name="componentToProcessOnApplyFilter" value="filter-container" />
-      <ui:param name="onStatisticTabShow" value="handleFilterCategoryHeight(this);" />
       <ui:param name="componentToUpdateOnApplyFilter" value="#{component.parent.namingContainer.clientId}:widget-content" />
       <ui:param name="componentToUpdateOnResetFilter" value="#{cc.clientId}:widget-content" />
     
@@ -37,7 +36,8 @@
       </ui:define>
 
       <ui:define name="widgetContent">
-        <ic:ch.ivy.addon.portal.generic.dashboard.component.ProcessWidget id="process-component" processWidget="#{widget}" isReadOnlyMode="#{isReadOnlyMode}" />
+        <ic:ch.ivy.addon.portal.generic.dashboard.component.ProcessWidget id="process-component" processWidget="#{widget}"
+          isReadOnlyMode="#{isReadOnlyMode}" index="#{index}" />
       </ui:define>
     </ui:decorate>
   </c:if>
@@ -47,7 +47,7 @@
       <h:panelGroup id="widget-content" layout="block"
         styleClass="card-widget__content #{widget.id} process-widget dashboard-widget-panel-container widget-height-100">
         <ic:ch.ivy.addon.portal.generic.dashboard.component.ProcessWidget id="process-component" processWidget="#{widget}"
-          isReadOnlyMode="#{cc.attrs.isReadOnlyMode}" />
+          isReadOnlyMode="#{cc.attrs.isReadOnlyMode}" index="#{index}" />
       </h:panelGroup>
     </h:panelGroup>
   </c:if>

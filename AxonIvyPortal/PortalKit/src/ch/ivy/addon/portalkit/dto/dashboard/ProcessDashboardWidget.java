@@ -1,38 +1,38 @@
 package ch.ivy.addon.portalkit.dto.dashboard;
 
-import java.text.ParseException;
+import static ch.ivy.addon.portalkit.constant.DashboardConstants.REMOTE_COMMAND_PATTERN;
+
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
-import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.lang.StringUtils;
+import org.primefaces.PrimeFaces;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import ch.ivy.addon.portalkit.datamodel.DashboardProcessCaseLazyDataModel;
 import ch.ivy.addon.portalkit.datamodel.DashboardProcessTaskLazyDataModel;
-import ch.ivy.addon.portalkit.dto.WidgetLayout;
 import ch.ivy.addon.portalkit.dto.dashboard.process.DashboardProcess;
-import ch.ivy.addon.portalkit.dto.dashboard.process.DashboardProcessUserFilter;
+import ch.ivy.addon.portalkit.dto.dashboard.process.ProcessColumnModel;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.enums.ProcessType;
 import ch.ivy.addon.portalkit.enums.ProcessWidgetMode;
-import ch.ivy.addon.portalkit.util.CategoryUtils;
+import ch.ivy.addon.portalkit.ivydata.searchcriteria.DashboardProcessSearchCriteria;
+import ch.ivy.addon.portalkit.service.DashboardWidgetInformationService;
+import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class ProcessDashboardWidget extends DashboardWidget {
 
   private static final long serialVersionUID = 3048837559125720787L;
   private ProcessWidgetMode displayMode = ProcessWidgetMode.COMPACT_MODE;
-  private boolean isSelectedAllProcess;
-  private List<String> categories;
-  private String processPath;
-  
+  @JsonIgnore
+  private DashboardProcessSearchCriteria criteria;
+  private String processPath; // For full, combine, image mode
+  private List<String> processPaths; // For compact mode
+
   private int rowsPerPage = 5;
   @JsonIgnore
   private List<DashboardProcess> processes;
@@ -51,16 +51,16 @@ public class ProcessDashboardWidget extends DashboardWidget {
   @JsonIgnore
   private boolean showCases;
   @JsonIgnore
-  private DashboardProcessUserFilter userFilter;
+  private List<ColumnModel> filterableColumns;
+  @JsonIgnore
+  private boolean isPreview;
 
   public ProcessDashboardWidget() {
-    this.displayMode = ProcessWidgetMode.COMPACT_MODE;
-    this.processes = new ArrayList<>();
-    this.userFilter = new DashboardProcessUserFilter();
-    processByTypeStatistic = new HashMap<>();
-    processByTypeStatistic.put(ProcessType.IVY_PROCESS, 0L);
-    processByTypeStatistic.put(ProcessType.EXPRESS_PROCESS, 0L);
-    processByTypeStatistic.put(ProcessType.EXTERNAL_LINK, 0L);
+    displayMode = ProcessWidgetMode.COMPACT_MODE;
+    isPreview = false;
+    processes = new ArrayList<>();
+    filterableColumns = new ArrayList<>();
+    criteria = new DashboardProcessSearchCriteria();
   }
 
   @Override
@@ -69,87 +69,39 @@ public class ProcessDashboardWidget extends DashboardWidget {
   }
 
   @JsonIgnore
-  public static ProcessDashboardWidget buildDefaultWidget(String id, String name) {
-    ProcessDashboardWidget widget = new ProcessDashboardWidget();
-    widget.setId(id);
-    widget.setName(name);
-    widget.setLayout(new WidgetLayout());
-    widget.getLayout().setWidth(2);
-    widget.getLayout().setHeight(6);
-    widget.getLayout().setAxisX(0);
-    widget.getLayout().setAxisY(0);
-    widget.setAutoPosition(true);
-    widget.setSelectedAllProcess(true);
-    return widget;
+  public void buildProcessDataFirstTime() {
+    DashboardWidgetUtils.loadProcessesOfWidget(this);
   }
 
   @Override
   @JsonIgnore
-  public void onApplyUserFilters() throws ParseException {
-    countDefinedUserFilter();
+  public void onApplyUserFilters() {
+    filterProcessesByUser();
     super.onApplyUserFilters();
   }
 
   @JsonIgnore
-  public void countDefinedUserFilter() {
-    this.displayProcesses = this.originalDisplayProcesses;
-    int numberOfFilters = 0;
-    if (StringUtils.isNotBlank(userFilter.getProcessName())) {
-      this.displayProcesses = this.displayProcesses.stream()
-          .filter(process -> process.getName().toLowerCase().indexOf(userFilter.getProcessName().toLowerCase()) > -1)
-          .collect(Collectors.toList());
-      numberOfFilters++;
-      if (CollectionUtils.isNotEmpty(userFilter.getProcessTypes())) {
-        this.displayProcesses = this.displayProcesses.stream()
-            .filter(process -> userFilter.getProcessTypes().contains(process.getType())).collect(Collectors.toList());
-        numberOfFilters++;
-      }
-    } else if (CollectionUtils.isNotEmpty(userFilter.getProcessTypes())) {
-      this.displayProcesses = this.displayProcesses.stream()
-          .filter(process -> userFilter.getProcessTypes().contains(process.getType())).collect(Collectors.toList());
-      numberOfFilters++;
+  public void filterProcessesByUser() {
+    if (ProcessWidgetMode.COMPACT_MODE != displayMode) {
+      return;
     }
-
-    if (CollectionUtils.isNotEmpty(this.userFilter.getCategories())) {
-      this.displayProcesses = this.displayProcesses.stream()
-          .filter(process -> isProcessMatchedCategory(process, this.userFilter.getCategories()))
-          .collect(Collectors.toList());
-      numberOfFilters++;
-    }
-
-    this.userDefinedFiltersCount =
-        numberOfFilters == 0 ? Optional.empty() : Optional.of(String.valueOf(numberOfFilters));
-  }
-
-  private boolean isProcessMatchedCategory(DashboardProcess process, List<String> categories) {
-    boolean hasNoCategory = categories.indexOf(CategoryUtils.NO_CATEGORY) > -1;
-    return categories.indexOf(process.getCategory()) > -1
-        || (StringUtils.isBlank(process.getCategory()) && hasNoCategory);
+    this.displayProcesses = this.criteria.searchProcessesByFilters(this);
   }
 
   @Override
-  public void buildStatisticInfos() throws ParseException {
-    buildProcessByTypeStatistic();
+  public void buildStatisticInfos() {
+    PrimeFaces.current().executeScript(String.format(REMOTE_COMMAND_PATTERN, "buildStatisticProcessTypes", id));
   }
 
-  private void buildProcessByTypeStatistic() {
-    Long numberOfIvyProcesses =
-        this.displayProcesses.stream().filter(process -> process.getType().equals(ProcessType.IVY_PROCESS)).count();
-    processByTypeStatistic.put(ProcessType.IVY_PROCESS, numberOfIvyProcesses);
-    Long numberOfExpressProcesses =
-        this.displayProcesses.stream().filter(process -> process.getType().equals(ProcessType.EXPRESS_PROCESS)).count();
-    processByTypeStatistic.put(ProcessType.EXPRESS_PROCESS, numberOfExpressProcesses);
-    Long numberOfExternalLink =
-        this.displayProcesses.stream().filter(process -> process.getType().equals(ProcessType.EXTERNAL_LINK)).count();
-    processByTypeStatistic.put(ProcessType.EXTERNAL_LINK, numberOfExternalLink);
+  @JsonIgnore
+  public void buildProcessByTypeStatistic() {
+    processByTypeStatistic = DashboardWidgetInformationService.getInstance().buildStatisticOfProcessByType(displayProcesses);
   }
 
   @Override
   @JsonIgnore
   public void resetWidgetFilters() {
-    this.userFilter.setProcessName("");
-    this.userFilter.setProcessTypes(new ArrayList<>());
-    this.userFilter.setCategories(new ArrayList<>());
+    DashboardWidgetUtils.resetUserFilterOnColumns(getFilterableColumns());
     this.displayProcesses = this.originalDisplayProcesses;
   }
 
@@ -175,11 +127,9 @@ public class ProcessDashboardWidget extends DashboardWidget {
 
   public void setProcess(DashboardProcess process) {
     this.process = process;
-    if (displayMode == ProcessWidgetMode.COMBINED_MODE && this.process != null) {
-      this.taskDataModel =
-          new DashboardProcessTaskLazyDataModel(this.process.getProcessStartId(), this.process.getName());
-      this.caseDataModel =
-          new DashboardProcessCaseLazyDataModel(this.process.getProcessStartId(), this.process.getName());
+    if (ProcessWidgetMode.COMBINED_MODE == displayMode && this.process != null) {
+      this.taskDataModel = new DashboardProcessTaskLazyDataModel(this.process.getProcessStartId(), this.process.getName());
+      this.caseDataModel = new DashboardProcessCaseLazyDataModel(this.process.getProcessStartId(), this.process.getName());
     }
   }
 
@@ -207,14 +157,6 @@ public class ProcessDashboardWidget extends DashboardWidget {
     this.processByTypeStatistic = processByTypeStatistic;
   }
 
-  public DashboardProcessUserFilter getUserFilter() {
-    return userFilter;
-  }
-
-  public void setUserFilter(DashboardProcessUserFilter userFilter) {
-    this.userFilter = userFilter;
-  }
-
   public List<DashboardProcess> getDisplayProcesses() {
     return displayProcesses;
   }
@@ -224,11 +166,11 @@ public class ProcessDashboardWidget extends DashboardWidget {
   }
 
   public boolean isSelectedAllProcess() {
-    return isSelectedAllProcess;
+    return this.criteria.isSelectedAllProcess();
   }
 
   public void setSelectedAllProcess(boolean isSelectedAllProcess) {
-    this.isSelectedAllProcess = isSelectedAllProcess;
+    this.criteria.setSelectedAllProcess(isSelectedAllProcess);
   }
 
   public int getRowsPerPage() {
@@ -240,11 +182,11 @@ public class ProcessDashboardWidget extends DashboardWidget {
   }
 
   public List<String> getCategories() {
-    return categories;
+    return this.criteria.getCategories();
   }
 
   public void setCategories(List<String> categories) {
-    this.categories = categories;
+    this.criteria.setCategories(categories);
   }
 
   public List<DashboardProcess> getOriginalDisplayProcesses() {
@@ -261,5 +203,41 @@ public class ProcessDashboardWidget extends DashboardWidget {
 
   public void setProcessPath(String processPath) {
     this.processPath = processPath;
+  }
+
+  public List<String> getProcessPaths() {
+    return processPaths;
+  }
+
+  public void setProcessPaths(List<String> processPaths) {
+    this.processPaths = processPaths;
+  }
+
+public List<ColumnModel> getFilterableColumns() {
+    return filterableColumns;
+  }
+
+  public void setFilterableColumns(List<ColumnModel> columns) {
+    this.filterableColumns = columns;
+  }
+
+  @JsonIgnore
+  public void buildFilterableColumns(List<ProcessColumnModel> columns) {
+    this.filterableColumns = columns.stream().collect(Collectors.toList());
+  }
+
+  @JsonIgnore
+  public void setInConfiguration(boolean isInConfiguration) {
+    this.criteria.setInConfiguration(isInConfiguration);
+  }
+
+  @JsonIgnore
+  public boolean isPreview() {
+    return isPreview;
+  }
+
+  @JsonIgnore
+  public void setPreview(boolean isPreview) {
+    this.isPreview = isPreview;
   }
 }

@@ -1,5 +1,0 @@
-co: name={STATE} description={} changed={2019-03-25 10:06:47 CET} changedby={lttung} visualorder={0} guid={1664212246C59065} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={166421BEC1515AE7} datatype={} isdefault={false} langid={de} description={} validfrom={2018-10-05 04:43:26 CEST} validto={} changed={2018-10-05 04:43:38 CEST} changedby={ttthai} properties={} id={}
-val: guid={169B41A294270E11} datatype={} isdefault={false} langid={es} description={} validfrom={2019-03-25 10:06:47 CET} validto={} changed={2019-03-25 10:06:47 CET} changedby={lttung} properties={} id={}
-val: guid={1664212246E9D9F6} datatype={} isdefault={true} langid={en} description={} validfrom={2018-10-05 04:32:57 CEST} validto={} changed={2018-10-05 04:43:38 CEST} changedby={ttthai} properties={} id={}
-val: guid={166421BEE5387759} datatype={} isdefault={false} langid={fr} description={} validfrom={2018-10-05 04:43:23 CEST} validto={} changed={2018-10-05 04:43:38 CEST} changedby={ttthai} properties={} id={}
