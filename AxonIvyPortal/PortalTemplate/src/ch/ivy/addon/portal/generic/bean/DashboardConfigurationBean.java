@@ -26,8 +26,6 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.PrimeFaces;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.constant.DashboardConstants;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
@@ -220,8 +218,12 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
           processWidget.getLayout().setHeight(8);
           processWidget.getLayout().setWidth(3);
           processWidget.setProcess(null);
+          processWidget.setProcessPath(EMPTY);
           unifyCompactProcessCategory(processWidget);
           updateProcessesOfWidget(processWidget);
+          if (CollectionUtils.isEmpty(processWidget.getFilterableColumns())) {
+            processWidget.buildFilterableColumns(DashboardWidgetUtils.initProcessFilterableColumns());
+          }
         } else if (processWidget.getDisplayMode() == ProcessWidgetMode.IMAGE_MODE) {
           updateProcessWidget(processWidget, 6, 2);
         }
@@ -229,6 +231,7 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
       case CUSTOM:
         CustomDashboardWidget customWidget =  (CustomDashboardWidget) widget;
         loadCustomWidget(customWidget);
+        break;
       default:
         break;
     }
@@ -337,6 +340,9 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
     processWidget.getLayout().setWidth(width);
     processWidget.setDisplayProcesses(new ArrayList<>());
     processWidget.setProcesses(new ArrayList<>());
+    processWidget.setProcessPaths(new ArrayList<>());
+    processWidget.setCategories(new ArrayList<>());
+    processWidget.setSelectedAllProcess(true);
     DashboardProcess process = processWidget.getProcess();
     processWidget.setName(Objects.isNull(process) ? EMPTY : process.getName());
     processWidget.setProcessPath(Objects.isNull(process) ? EMPTY : process.getId());
@@ -505,7 +511,7 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
     editingDashboards.remove(selectedEditingDashboard);
   }
 
-  protected void saveDashboards(List<Dashboard> dashboards) throws JsonProcessingException {
+  protected void saveDashboards(List<Dashboard> dashboards) {
 
     String dashboardJson = BusinessEntityConverter.entityToJsonValue(dashboards);
     if (isPublicDashboard) {
@@ -515,7 +521,7 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
     }
   }
 
-  public void saveDashboards() throws JsonProcessingException {
+  public void saveDashboards() {
     for (Dashboard dashboard : editingDashboards) {
       if (!isPublicDashboard) {
         dashboard.setPermissions(Stream.of(ISecurityConstants.TOP_LEVEL_ROLE_NAME).collect(Collectors.toList()));
@@ -601,6 +607,7 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
     setCurrentDashboardIndex(0);
   }
 
+  @Override
   public boolean getIsEditMode() {
     return true;
   }
