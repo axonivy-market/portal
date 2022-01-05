@@ -136,6 +136,7 @@ public class PortalTaskScreenshotTest extends ScreenshotTest {
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(generalInfo,
         ScreenshotUtil.TASK_DETAIL_FOLDER + "detailed-task-information-data-description", new ScreenshotMargin(10));
     
+    ScreenshotUtil.resizeBrowser(new Dimension(1440, 1000));
     taskDetails.openAddNoteDialog();
     WebElement addNoteDialog = taskDetails.getAddNoteDialog();
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(addNoteDialog,
@@ -148,6 +149,7 @@ public class PortalTaskScreenshotTest extends ScreenshotTest {
         ScreenshotUtil.TASK_DETAIL_FOLDER + "how-to-upload-document", new ScreenshotMargin(10));
     taskDetails.uploadDocument(getAbsolutePathToTestFile("test-no-files-no-js.pdf"));
 
+    ScreenshotUtil.resizeBrowser(new Dimension(2560, 1440));
     refreshPage();
     taskDetails.waitUtilsTaskDetailsDisplayed();
     WebElement taskHistories = taskDetails.getTaskHistories();
@@ -171,6 +173,7 @@ public class PortalTaskScreenshotTest extends ScreenshotTest {
 
     refreshPage();
     taskDetails.waitUtilsTaskDetailsDisplayed();
+    ScreenshotUtil.resizeBrowser(new Dimension(1440, 1000));
     taskDetails.openWorkflowEventDialog();
     WebElement workflowEventTable = taskDetails.getWorkflowEventsTable();
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(workflowEventTable,

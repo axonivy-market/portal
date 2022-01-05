@@ -243,6 +243,7 @@ public class TaskTemplatePage extends TemplatePage {
 
   public WebElement getAddMemberToChatDialog() {
     waitForElementDisplayed(By.id("chat-assignee-dialog"), true);
+    waitUntilAnimationFinished(DEFAULT_TIMEOUT, "chat-assignee-selection-form\\\\:chat-user-selection-component\\\\:chat-user-selection_input", ID_PROPERTY);
     return findElementById("chat-assignee-dialog");
   }
 
