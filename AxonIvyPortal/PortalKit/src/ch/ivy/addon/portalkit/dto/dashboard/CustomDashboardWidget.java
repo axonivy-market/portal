@@ -136,6 +136,7 @@ public class CustomDashboardWidget extends DashboardWidget {
           if (user != null) {
             param.setValueUser(new UserDTO(user));
           }
+          break;
         default:
           break;
         }

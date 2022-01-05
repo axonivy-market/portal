@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import ch.ivyteam.ivy.cm.IContentObjectValue;
 import ch.ivyteam.ivy.environment.Ivy;
 
 @ManagedBean
@@ -33,6 +34,7 @@ public class LogoBean implements Serializable {
   }
 
   private boolean checkDefaultContentExist(String cmsUri) {
-    return Ivy.cms().findContentObjectValue(cmsUri, null).getContentAsBinaryStream() != null;
+    IContentObjectValue cmsValue = Ivy.cms().findContentObjectValue(cmsUri, null);
+    return cmsValue != null && cmsValue.getContentAsBinaryStream() != null;
   }
 }
