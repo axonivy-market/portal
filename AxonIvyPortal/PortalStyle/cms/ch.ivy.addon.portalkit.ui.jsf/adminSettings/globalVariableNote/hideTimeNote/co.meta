@@ -1,5 +1,0 @@
-co: name={hideTimeNote} description={} changed={2021-06-11 11:56:45 CEST} changedby={vtlong} visualorder={0} guid={16410E66D1E47BCE} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={169B41A286BF2DD7} datatype={} isdefault={false} langid={es} description={} validfrom={2019-03-25 10:06:47 CET} validto={} changed={2019-03-25 10:06:47 CET} changedby={lttung} properties={} id={}
-val: guid={16410E6DEE387877} datatype={} isdefault={false} langid={fr} description={} validfrom={2018-08-27 11:51:11 CEST} validto={} changed={2018-08-27 11:51:11 CEST} changedby={chnam} properties={} id={}
-val: guid={16410E66D33DA8A4} datatype={} isdefault={true} langid={en} description={} validfrom={2018-06-18 05:18:14 CEST} validto={} changed={2018-06-18 05:18:43 CEST} changedby={tdnguyen} properties={} id={}
-val: guid={16410E6DE20E082A} datatype={} isdefault={false} langid={de} description={} validfrom={2021-06-11 11:56:45 CEST} validto={} changed={2021-06-11 11:56:45 CEST} changedby={vtlong} properties={} id={}

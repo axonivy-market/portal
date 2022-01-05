@@ -1,0 +1,8 @@
+DefaultColumns:
+  ACTIVATOR: Responsable
+  CREATION_TIME: Créé
+  EXPIRY_TIME: Délai
+  ID: Id de tâche
+  NAME: Nom / Description
+  PRIORITY: Priorité
+  STATE: Etat

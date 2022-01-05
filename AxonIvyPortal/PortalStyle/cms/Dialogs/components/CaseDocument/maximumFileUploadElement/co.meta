@@ -1,5 +1,0 @@
-co: name={maximumFileUploadElement} description={} changed={2020-02-07 04:11:07 CET} changedby={ntminh01} visualorder={0} guid={1700919BB7F6C7ED} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={1700919BB9F95F51} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-02-07 04:11:07 CET} validto={} changed={2020-02-07 04:11:07 CET} changedby={ntminh01} properties={} id={}
-val: guid={1700919BBA91BD82} datatype={} isdefault={false} langid={es} description={} validfrom={2020-02-07 04:11:07 CET} validto={} changed={2020-02-07 04:11:07 CET} changedby={ntminh01} properties={} id={}
-val: guid={1700919BB95284AB} datatype={} isdefault={true} langid={en} description={} validfrom={2020-02-03 04:30:46 CET} validto={} changed={2020-02-03 04:30:46 CET} changedby={dhtlong} properties={} id={}
-val: guid={1700919BB87EBAEB} datatype={} isdefault={false} langid={de} description={} validfrom={2020-02-07 04:11:07 CET} validto={} changed={2020-02-07 04:11:07 CET} changedby={ntminh01} properties={} id={}

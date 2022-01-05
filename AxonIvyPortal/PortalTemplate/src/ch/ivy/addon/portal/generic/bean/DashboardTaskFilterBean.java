@@ -2,11 +2,9 @@ package ch.ivy.addon.portal.generic.bean;
 
 import static org.apache.commons.lang3.StringUtils.EMPTY;
 
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -18,7 +16,9 @@ import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.dto.SecurityMemberDTO;
 import ch.ivy.addon.portalkit.dto.UserDTO;
 import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
+import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
+import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivyteam.ivy.workflow.WorkflowPriority;
@@ -34,7 +34,7 @@ public class DashboardTaskFilterBean {
   
   @PostConstruct
   public void init() {
-    this.states = Arrays.asList(TaskState.values()).stream().sorted((s1, s2) -> StringUtils.compare(s1.toString(), s2.toString())).collect(Collectors.toList());
+    this.states = TaskUtils.getValidStates();
     this.priorities = Arrays.asList(WorkflowPriority.values());
     this.responsibles = new ArrayList<>();
   }
@@ -87,8 +87,8 @@ public class DashboardTaskFilterBean {
     }
   }
 
-  public boolean hasPredefinedFilter(TaskDashboardWidget widget) throws ParseException {
-    return TaskDashboardWidget.hasPredefinedFilter(widget);
+  public boolean hasPredefinedFilter(TaskDashboardWidget widget) {
+    return DashboardWidgetUtils.hasPredefinedFilter(widget);
   }
 
   public List<TaskState> getStates() {

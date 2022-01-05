@@ -1,5 +1,0 @@
-co: name={personalTaskPermanentDeputies} description={} changed={2021-05-04 04:20:47 CEST} changedby={phhung} visualorder={0} guid={15F713A55CD8063A} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={15F713A55CF91CE7} datatype={} isdefault={false} langid={fr} description={} validfrom={2021-05-04 04:20:47 CEST} validto={} changed={2021-05-04 04:20:47 CEST} changedby={phhung} properties={} id={}
-val: guid={15F713A55DB9DAC4} datatype={} isdefault={false} langid={de} description={} validfrom={2021-05-04 04:20:47 CEST} validto={} changed={2021-05-04 04:20:47 CEST} changedby={phhung} properties={} id={}
-val: guid={168DA54B2BFACE65} datatype={} isdefault={false} langid={es} description={} validfrom={2021-05-04 04:20:47 CEST} validto={} changed={2021-05-04 04:20:47 CEST} changedby={phhung} properties={} id={}
-val: guid={15F713A55D5CE7F3} datatype={} isdefault={true} langid={en} description={} validfrom={2016-12-21 15:20:44 CET} validto={} changed={2021-04-20 05:17:15 CEST} changedby={vtlong} properties={} id={}

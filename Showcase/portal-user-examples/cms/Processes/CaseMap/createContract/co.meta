@@ -1,5 +1,0 @@
-co: name={createContract} description={} changed={2020-03-03 09:13:37 CET} changedby={lttung} visualorder={0} guid={1703DC796DEDEB9E} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={1703DC796EF85F0A} datatype={} isdefault={false} langid={de} description={} validfrom={2020-03-03 09:13:37 CET} validto={} changed={2020-03-03 09:13:37 CET} changedby={lttung} properties={} id={}
-val: guid={1703DC797069966A} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-03-03 09:13:37 CET} validto={} changed={2020-03-03 09:13:37 CET} changedby={lttung} properties={} id={}
-val: guid={1703DC796E3FB19A} datatype={} isdefault={true} langid={en} description={} validfrom={2020-02-13 09:26:33 CET} validto={} changed={2020-02-13 11:01:36 CET} changedby={ntminh01} properties={} id={}
-val: guid={1703DC796FBDE1D0} datatype={} isdefault={false} langid={es} description={} validfrom={2020-03-03 09:13:37 CET} validto={} changed={2020-03-03 09:13:37 CET} changedby={lttung} properties={} id={}

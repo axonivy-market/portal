@@ -1,5 +1,0 @@
-co: name={personalTaskDuringAbsenceDeputies} description={} changed={2021-05-04 04:20:47 CEST} changedby={phhung} visualorder={0} guid={178ED49C0C479251} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={178ED49C0CEC10CC} datatype={} isdefault={false} langid={fr} description={} validfrom={2021-05-04 04:20:47 CEST} validto={} changed={2021-05-04 04:20:47 CEST} changedby={phhung} properties={} id={}
-val: guid={178ED49C0D9AD268} datatype={} isdefault={false} langid={de} description={} validfrom={2021-05-04 04:20:47 CEST} validto={} changed={2021-05-04 04:20:47 CEST} changedby={phhung} properties={} id={}
-val: guid={178ED49C0E46A468} datatype={} isdefault={false} langid={es} description={} validfrom={2021-05-04 04:20:47 CEST} validto={} changed={2021-05-04 04:20:47 CEST} changedby={phhung} properties={} id={}
-val: guid={178ED49C0ED933A4} datatype={} isdefault={true} langid={en} description={} validfrom={2016-12-21 15:20:44 CET} validto={} changed={2021-04-20 05:19:49 CEST} changedby={vtlong} properties={} id={}

@@ -584,12 +584,17 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   flex: 0 0 100px;
 }
 
-.case-header-data .case-header-creator-cell {
+.case-header-data .case-header-creator-cell,
+.case-header-data .case-header-category-cell {
   flex: 0 0 135px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   padding-right: 10px;
+}
+
+.case-header-data .case-header-category-cell {
+  flex: 0 0 200px;
 }
 
 .case-info-row {
@@ -1807,7 +1812,8 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  width:100px;
+  width: 200px;
+  padding-right: 10px;
 }
 
 .task-start-info-header-full-mode {
@@ -1851,6 +1857,11 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 
 .task-start-list .responsible-cell {
   flex: 0 0 110px;
+}
+
+.task-start-list .category-cell {
+  flex: 0 0 200px;
+  text-align: center;
 }
 
 .task-start-list .name-cell, .task-start-list .description-cell, .task-start-list .responsible-cell {
@@ -6049,4 +6060,14 @@ body span.ui-commandlink .si {
   .process-group.grid-process-container .portal-card-container.process-grid-item {
     width: 20%;
   }
+}
+
+.dashboard-custom-iframe {
+  height: 100%;
+  width: 100%;
+  border: none;
+}
+
+.parameters-panel .param-label {
+  word-break: break-word;
 }

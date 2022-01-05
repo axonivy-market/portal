@@ -1,5 +1,0 @@
-co: name={portalHome} description={} changed={2019-02-11 03:13:29 CET} changedby={ntminh01} visualorder={0} guid={15F7144BD67AD07A} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={15F7144BD6A4A1E6} datatype={} isdefault={false} langid={de} description={} validfrom={2016-03-16 11:16:32 CET} validto={} changed={2017-10-31 08:10:51 CET} changedby={chnam} properties={} id={}
-val: guid={168DA54B0AEFF9D1} datatype={} isdefault={false} langid={es} description={} validfrom={2019-02-11 03:13:29 CET} validto={} changed={2019-02-11 03:13:29 CET} changedby={ntminh01} properties={} id={}
-val: guid={15F7144BD6E807CE} datatype={} isdefault={true} langid={en} description={} validfrom={2016-03-16 11:16:25 CET} validto={} changed={2017-10-31 08:10:51 CET} changedby={chnam} properties={} id={}
-val: guid={15F7144BD7346750} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:23 CEST} validto={} changed={2017-10-31 08:10:51 CET} changedby={chnam} properties={} id={}

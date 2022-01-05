@@ -1,5 +1,0 @@
-co: name={deleteFile} description={} changed={2019-08-05 04:09:01 CEST} changedby={ntminh01} visualorder={0} guid={16C5F897D46E9C9D} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={16C5F897D6799A6D} datatype={} isdefault={false} langid={es} description={} validfrom={2019-02-11 03:13:31 CET} validto={} changed={2019-08-05 04:09:01 CEST} changedby={ntminh01} properties={} id={}
-val: guid={16C5F897D4A1BBB5} datatype={} isdefault={false} langid={de} description={} validfrom={2016-03-07 08:33:17 CET} validto={} changed={2019-08-05 04:09:01 CEST} changedby={ntminh01} properties={} id={}
-val: guid={16C5F897D523496A} datatype={} isdefault={true} langid={en} description={} validfrom={2016-03-07 08:31:21 CET} validto={} changed={2019-08-05 04:09:01 CEST} changedby={ntminh01} properties={} id={}
-val: guid={16C5F897D5D5C45E} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:03 CEST} validto={} changed={2019-08-05 04:09:01 CEST} changedby={ntminh01} properties={} id={}
