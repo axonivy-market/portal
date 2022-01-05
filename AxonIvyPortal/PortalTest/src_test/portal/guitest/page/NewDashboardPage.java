@@ -78,6 +78,7 @@ public class NewDashboardPage extends TemplatePage {
   public WebElement getFilterOverlayPanel(int index) {
     String panelSelector = "div[id$=':filter-overlay-panel-" + index +"']";
     waitForElementDisplayed(By.cssSelector(panelSelector), true);
+    waitUntilAnimationFinished(DEFAULT_TIMEOUT, "ui-inputfield.saved-filter__search", CLASS_PROPERTY);
     return findElementByCssSelector(panelSelector);
   }
 

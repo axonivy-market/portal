@@ -167,7 +167,7 @@ public class DashboardScreenshotTest extends ScreenshotTest {
     newDashboardPage.clickWidgetFilter(0);
     newDashboardPage.findElementByCssSelector("input[id$=':filter-form-0:search-saved-filter-input']").click();
     WebElement taskFilterOverlayPanel = newDashboardPage.getFilterOverlayPanel(0);
-    ScreenshotUtil.captureElementScreenshot(taskFilterOverlayPanel, ScreenshotUtil.NEW_DASHBOARD_FOLDER + "widget-filter");
+    ScreenshotUtil.captureElementWithMarginOptionScreenshot(taskFilterOverlayPanel, ScreenshotUtil.NEW_DASHBOARD_FOLDER + "widget-filter", new ScreenshotMargin(20));
     taskFilterOverlayPanel.findElement(By.className("ui-overlaypanel-footer__cancel")).click();
 
     // Take screenshot of widget info panel
@@ -175,7 +175,7 @@ public class DashboardScreenshotTest extends ScreenshotTest {
     WebElement taskInfoOverlayPanel = newDashboardPage.getInfoOverlayPanel(0);
     taskInfoOverlayPanel.findElement(By.className("widget-infor-type--label")).click();
     newDashboardPage.waitForWidgetInfoLoading(taskInfoOverlayPanel);
-    ScreenshotUtil.captureElementScreenshot(taskInfoOverlayPanel, ScreenshotUtil.NEW_DASHBOARD_FOLDER + "widget-info");
+    ScreenshotUtil.captureElementWithMarginOptionScreenshot(taskInfoOverlayPanel, ScreenshotUtil.NEW_DASHBOARD_FOLDER + "widget-info", new ScreenshotMargin(20));
     taskInfoOverlayPanel.findElement(By.className("info-overlay-panel__footer")).findElement(By.className("ui-link")).click();
 
     // Take screenshot of Edit dashboard page
@@ -188,7 +188,7 @@ public class DashboardScreenshotTest extends ScreenshotTest {
     // Take screenshot of Add new widget dialog
     newDashboardPage.clickAddWidget();
     WebElement newWidgetDialog = newDashboardPage.getAddWidgetDialog();
-    ScreenshotUtil.captureElementScreenshot(newWidgetDialog, ScreenshotUtil.NEW_DASHBOARD_FOLDER + "add-widget");
+    ScreenshotUtil.captureElementWithMarginOptionScreenshot(newWidgetDialog, ScreenshotUtil.NEW_DASHBOARD_FOLDER + "add-widget", new ScreenshotMargin(40));
 
     // Take screenshots of Task widget configuration dialog
     newWidgetDialog.findElement(By.id("new-widget-dialog-content:0:add-widget")).click();
