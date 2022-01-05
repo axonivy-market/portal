@@ -18,6 +18,7 @@ import ch.ivyteam.ivy.application.IProcessModel;
 import ch.ivyteam.ivy.application.IProcessModelVersion;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.IProcessStart;
+import ch.ivyteam.ivy.workflow.IStartElement;
 import ch.ivyteam.ivy.workflow.IWorkflowProcessModelVersion;
 
 /**
@@ -109,6 +110,24 @@ public final class ProcessStartAPI {
     IProcessStart processStart = findProcessStartByUserFriendlyRequestPath(friendlyRequestPath);
     return processStart != null ? processStart.getLink().getRelative() : StringUtils.EMPTY;
   }
+
+  /**
+   * Find start element from friendly request path
+   * @param friendlyRequestPath friendly path e.g "Start Processes/UserExampleGuide/userExampleGuide.ivp"
+   * @return start element or empty string
+   */
+  public static IStartElement findStartElementByProcessStartFriendlyRequestPath(String friendlyRequestPath) {
+    return IvyExecutor.executeAsSystem(() -> {
+      IStartElement startElement = getStartElement(friendlyRequestPath, Ivy.request().getProcessModelVersion());
+      if (startElement != null) {
+        return startElement;
+      }
+
+      IApplication application = Ivy.wf().getApplication();
+      return filterPMVForStartElement(friendlyRequestPath, application)
+        .findFirst().orElse(null);
+    });
+  }
   
   private static IProcessStart findStartableProcessStartByUserFriendlyRequestPath(String requestPath) {
     IApplication application = Ivy.wf().getApplication();
@@ -127,6 +146,10 @@ public final class ProcessStartAPI {
   }
   
   private static IProcessStart getProcessStart(String requestPath, IProcessModelVersion processModelVersion) {
+    return IWorkflowProcessModelVersion.of(processModelVersion).findStartElementByUserFriendlyRequestPath(requestPath);
+  }
+  
+  private static IStartElement getStartElement(String requestPath, IProcessModelVersion processModelVersion) {
     return IWorkflowProcessModelVersion.of(processModelVersion).findStartElementByUserFriendlyRequestPath(requestPath);
   }
   
@@ -150,7 +173,7 @@ public final class ProcessStartAPI {
         .findFirst().orElse(null);
     });
   }
-  
+
   private static Stream<IProcessStart> filterPMV(String requestPath, IApplication application) {
     return application.getProcessModelsSortedByName()
       .stream()
@@ -158,6 +181,16 @@ public final class ProcessStartAPI {
       .map(IProcessModel::getReleasedProcessModelVersion)
       .filter(pmv -> isActive(pmv))
       .map(p -> getProcessStart(requestPath, p))
+      .filter(Objects::nonNull);
+  }
+
+  private static Stream<IStartElement> filterPMVForStartElement(String requestPath, IApplication application) {
+    return application.getProcessModelsSortedByName()
+      .stream()
+      .filter(pm -> isActive(pm))
+      .map(IProcessModel::getReleasedProcessModelVersion)
+      .filter(pmv -> isActive(pmv))
+      .map(p -> getStartElement(requestPath, p))
       .filter(Objects::nonNull);
   }
 }

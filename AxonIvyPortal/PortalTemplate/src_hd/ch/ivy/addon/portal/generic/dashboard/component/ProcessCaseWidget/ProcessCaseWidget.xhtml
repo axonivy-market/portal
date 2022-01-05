@@ -16,14 +16,14 @@
   <c:set var="isPreviewMode" value="#{cc.attrs.isPreviewMode}" />
 
   <p:remoteCommand id="rcLoadCaseFirstTime" autoRun="true" actionListener="#{widget.caseDataModel.loadFirstTime()}"
-    update="dashboard-cases-container" global="false" async="true" process="@this"
+    update="dashboard-process-cases-container" global="false" async="true" process="@this"
     oncomplete="loadCaseFirstTime('#{widget.id}'); #{cc.attrs.onCompleteLoadWidget}" />
   <div class="ui-g">
     <h:panelGroup id="loading" styleClass="js-loading-#{widget.id}">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/loading')}</h:panelGroup>
 
-    <h:panelGroup id="dashboard-cases-container" layout="block"
+    <h:panelGroup id="dashboard-process-cases-container" layout="block"
       styleClass="ui-g-12 u-padding-0 js-dashboard-cases-container-#{widget.id} u-display-none">
-      <p:dataTable id="dashboard-cases" widgetVar="dashboard-cases-#{widget.id}" value="#{widget.caseDataModel}" var="caseItem"
+      <p:dataTable id="dashboard-process-cases" widgetVar="dashboard-cases-#{widget.id}" value="#{widget.caseDataModel}" var="caseItem"
         paginatorAlwaysVisible="false" rows="#{widget.rowsPerPage}" paginator="true" paginatorPosition="bottom" lazy="true"
         paginatorTemplate="{PreviousPageLink} {PageLinks} {NextPageLink} {RowsPerPageDropdown}" pageLinks="5"
         rowsPerPageTemplate="5,10,20,50"

@@ -7,7 +7,7 @@
   <c:set var="isCaseMap" value="#{dashboardProcessBean.isCaseMap(process)}" />
 
   <h:panelGroup layout="block" styleClass="portal-card-container widget-content image-process-item widget-height-100" rendered="#{not empty process}" >
-    <div class="card-item card image-widget-mode ui-g-12 u-padding-0 #{isExpress ? 'express-workflow' : ''} ">
+    <div class="card-item card image-widget-mode js-image-widget-mode ui-g-12 u-padding-0 #{isExpress ? 'express-workflow' : ''} ">
     	
       <div class="image-process-item-container js-image-process-item-container">
         <h:form id="image-view-action-group-form" target="#{dashboardProcessBean.targetToStartProcess(process)}" styleClass="image-view-action-group-form">
@@ -26,7 +26,7 @@
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}"
                   icon="si si-graphic-tablet-drawing-pen" 
                   process="@this" partialSubmit="true"
-                  actionListener="#{dashboardConfigurationBean.setEditWidget(widget)}"
+                  actionListener="#{dashboardConfigurationBean.prepareEditWidget(widget)}"
             update="new-widget-configuration-dialog"
           oncomplete="PF('new-widget-configuration-dialog').show()"/>
                 <p:menuitem id="process-delete" 

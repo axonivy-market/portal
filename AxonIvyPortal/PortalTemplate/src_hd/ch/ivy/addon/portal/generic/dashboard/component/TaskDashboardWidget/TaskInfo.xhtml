@@ -3,10 +3,16 @@
   xmlns:pe="http://primefaces.org/ui/extensions" xmlns:jsf="http://xmlns.jcp.org/jsf">
 
 <p:tab id="expiry-tab">
+  <p:remoteCommand id="build-statistic-task-expiry-#{widget.id}" name="buildStatisticTaskExpiry#{widget.id}"
+    async="true" process="@this" partialSubmit="true" immediate="true" global="false"
+    actionListener="#{widget.buildTaskExpiryStatistic()}"
+    update="task-expiry-statistic-#{widget.id}"
+    oncomplete="loadWidgetFirstTime('js-loading-expiry-task-#{widget.id}', 'js-statistic-expiry-task-#{widget.id}')"/>
   <f:facet name="title">
     <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/expiry')}" />
   </f:facet>
-  <div class="ui-g">
+  <h:outputText styleClass="ui-g-12 js-loading-expiry-task-#{widget.id}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/loading')}"/>
+  <h:panelGroup id="task-expiry-statistic-#{widget.id}" layout="block" styleClass="js-statistic-expiry-task-#{widget.id} u-display-none">
     <div class="ui-g-8">
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/tasWidgetkInfo/expireToday')}" />
     </div>
@@ -19,14 +25,20 @@
     <div class="ui-g-4">
       <span>#{widget.numberOfTasksExpireThisWeek} #{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/tasks")}</span>
     </div>
-  </div>
+  </h:panelGroup>
 </p:tab>
 
 <p:tab id="state-tab">
+  <p:remoteCommand id="build-statistic-task-states-#{widget.id}" name="buildStatisticTaskStates#{widget.id}"
+    async="true" process="@this" partialSubmit="true" immediate="true" global="false"
+    actionListener="#{widget.buildTaskByStateStatistic()}"
+    update="task-states-statistic-#{widget.id}"
+    oncomplete="loadWidgetFirstTime('js-loading-task-states-#{widget.id}', 'js-statistic-task-states-#{widget.id}');"/>
   <f:facet name="title">
     <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/tasWidgetkInfo/numberOfTasksByState')}" />
   </f:facet>
-  <div class="ui-g">
+  <h:outputText styleClass="ui-g-12 js-loading-task-states-#{widget.id}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/loading')}"/>
+  <h:panelGroup id="task-states-statistic-#{widget.id}" layout="block" styleClass="js-statistic-task-states-#{widget.id} u-display-none">
     <ui:repeat value="#{widget.taskByStateStatistic.entrySet()}" var="entry">
       <div class="ui-g-8">
         <ic:ch.ivy.addon.portalkit.component.task.column.TaskState state="#{entry.key}"
@@ -36,135 +48,153 @@
         <span>#{entry.value} #{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/tasks")}</span>
       </div>
     </ui:repeat>
-  </div>
+  </h:panelGroup>
 </p:tab>
 
 <p:tab id="category-tab">
+  <p:remoteCommand id="build-statistic-task-category-#{widget.id}" name="buildStatisticTaskCategory#{widget.id}"
+    async="true" process="@this" partialSubmit="true" immediate="true" global="false"
+    actionListener="#{widget.buildTaskByCategoryStatistic()}"
+    update="task-category-statistic-#{widget.id}"
+    oncomplete="loadWidgetFirstTime('js-loading-task-category-#{widget.id}', 'js-statistic-task-category-#{widget.id}');"/>
   <f:facet name="title">
     <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/tasWidgetkInfo/numberOfTasksByCategory')}" />
   </f:facet>
-  <div class="ui-g" jsf:rendered="#{not empty widget.taskByCategoryStatistic.entrySet()}">
-    <ui:repeat value="#{widget.taskByCategoryStatistic.entrySet()}" var="entry" varStatus="status">
-      <div class="ui-g-8 u-truncate-text u-default-cursor">
-        <h:outputText id="category" value="#{empty entry.key ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noCategory') : entry.key}" />
-      </div>
-      <p:tooltip for="category" value="#{empty entry.key ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noCategory') : entry.key}"
-        trackMouse="true" />
-      <div class="ui-g-4">
-        <span>#{entry.value} #{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/tasks")}</span>
-      </div>
-    </ui:repeat>
-  </div>
-  <div class="ui-g" jsf:rendered="#{empty widget.taskByCategoryStatistic.entrySet()}">
-    <h:outputText styleClass="ui-g-12" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/noCategory')}" />
-  </div>
+  <h:outputText styleClass="ui-g-12 js-loading-task-category-#{widget.id}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/loading')}"/>
+  <h:panelGroup id="task-category-statistic-#{widget.id}" layout="block" styleClass="js-statistic-task-category-#{widget.id} u-display-none">
+    <div class="ui-g" jsf:rendered="#{not empty widget.taskByCategoryStatistic.entrySet()}">
+      <ui:repeat value="#{widget.taskByCategoryStatistic.entrySet()}" var="entry" varStatus="status">
+        <div class="ui-g-8 u-truncate-text u-default-cursor">
+          <h:outputText id="category" value="#{empty entry.key ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noCategory') : entry.key}" />
+        </div>
+        <p:tooltip for="category" value="#{empty entry.key ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noCategory') : entry.key}"
+          trackMouse="true" />
+        <div class="ui-g-4">
+          <span>#{entry.value} #{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/tasks")}</span>
+        </div>
+      </ui:repeat>
+    </div>
+    <div class="ui-g" jsf:rendered="#{empty widget.taskByCategoryStatistic.entrySet()}">
+      <h:outputText styleClass="ui-g-12" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/noCategory')}" />
+    </div>
+  </h:panelGroup>
 </p:tab>
-<p:tab id="filter-tab" rendered="#{widget.hasPredefinedFilter}">
+
+<p:tab id="filter-tab">
+  <p:remoteCommand id="build-task-defined-filter-#{widget.id}" name="buildTaskDefinedFilter#{widget.id}"
+    async="true" process="@this" partialSubmit="true" immediate="true" global="false"
+    actionListener="#{widget.buildPredefinedFilterData()}"
+    update="defined-filter-tab-#{widget.id}"
+    oncomplete="loadWidgetFirstTime('js-loading-defined-filter-#{widget.id}', 'js-defined-filter-info-#{widget.id}'); handleFilterCategoryHeight(this);"/>
   <f:facet name="title">
-    <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/tasWidgetkInfo/predefinedFilters')}" />
+    <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/tasWidgetkInfo/predefinedFilters')}"/>
   </f:facet>
-  <div class="ui-g">
-    <ui:repeat var="field" value="#{widget.filterableColumns}">
-
-      <!-- priority -->
-      <h:panelGroup rendered="#{field.field eq 'priority' and not empty field.priorities}">
-        <div class="ui-g-4">
-          <h:outputText value="#{field.headerText}" />
-        </div>
-        <div class="ui-g-8">
-          <ui:repeat var="priority" value="#{field.priorities}">
-            <div>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskPriority/'.concat(priority.name()))}</div>
-          </ui:repeat>
-        </div>
-      </h:panelGroup>
-
-      <!-- state -->
-      <h:panelGroup rendered="#{field.field eq 'state' and not empty field.states}">
-        <div class="ui-g-4">
-          <h:outputText value="#{field.headerText}" />
-        </div>
-        <div class="ui-g-8">
-          <ui:repeat var="state" value="#{field.states}">
-            <ic:ch.ivy.addon.portalkit.component.task.column.TaskState state="#{state}"
-              alwaysShowState="true" stateStyleClass="u-mar-right-5"/>
-          </ui:repeat>
-        </div>
-      </h:panelGroup>
-
-      <!-- activator -->
-      <h:panelGroup rendered="#{field.field eq 'activator' and not empty field.responsibles}">
-        <div class="ui-g-4">
-          <h:outputText value="#{field.headerText}" />
-        </div>
-        <div class="ui-g-8">
-          <ui:repeat var="responsible" value="#{field.responsibles}">
-            <div>
-              <i class="fa #{responsible.isUser() ? 'fa-user' : 'fa-users'} u-mar-right-5" />
-              <h:outputText value="#{dashboardTaskFilterBean.formatName(responsible)}" />
-            </div>
-          </ui:repeat>
-        </div>
-      </h:panelGroup>
-
-      <!-- Text and String -->
-      <h:panelGroup rendered="#{(field.format eq 'STRING' or field.format eq 'TEXT') and not (empty field.filterList and empty field.filter)}">
-        <div class="ui-g-4">
-          <h:outputText value="#{field.headerText}" />
-        </div>
-        <div class="ui-g-8">
-          <h:outputText value="#{field.filter}" rendered="#{field.filterType eq 'LIKE'}" />
-          <p:repeat var="selection" value="#{field.filterList}">
-            <h:outputText value="#{selection}" />
-          </p:repeat>
-        </div>
-      </h:panelGroup>
-
-      <!-- Number -->
-      <h:panelGroup rendered="#{field.format eq 'NUMBER' and not (empty field.filterFrom and empty field.filterTo)}">
-        <div class="ui-g-4">
-          <h:outputText value="#{field.headerText} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')}" />
-        </div>
-        <div class="ui-g-8">
-          <h:outputText value="#{field.filterFrom}" />
-        </div>
-        <div class="ui-g-4">
-          <h:outputText value="#{field.headerText} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')}" />
-        </div>
-        <div class="ui-g-8">
-          <h:outputText value="#{field.filterTo}" />
-        </div>
-      </h:panelGroup>
-
-      <!-- Timestamp -->
-      <h:panelGroup rendered="#{field.format eq 'TIMESTAMP' and not (empty field.dateFilterFrom and empty field.dateFilterTo)}">
-        <div class="ui-g-4">
-          <h:outputText value="#{field.headerText} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')}" />
-        </div>
-        <div class="ui-g-8">
-          <p:calendar id="from-date-field-input" styleClass="task-configuration__calendar" value="#{field.dateFilterFrom}"
-            pattern="#{dateTimePatternBean.configuredCalendarPattern}" locale="#{localeBean.locale}" disabled="true" />
-        </div>
-
-        <div class="ui-g-4">
-          <h:outputText value="#{field.headerText} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')}" />
-        </div>
-        <div class="ui-g-8">
-          <p:calendar id="to-date-field-input" styleClass="task-configuration__calendar" value="#{field.dateFilterTo}"
-            pattern="#{dateTimePatternBean.configuredCalendarPattern}" locale="#{localeBean.locale}" disabled="true" />
-        </div>
-      </h:panelGroup>
-
-      <!-- Category -->
-      <h:panelGroup rendered="#{field.field eq 'category'}">
-        <h:panelGroup layout="block" styleClass="ui-g-4" rendered="#{not empty field.filterList}">
-          <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/category')}" />
+  <h:outputText styleClass="ui-g-12 js-loading-defined-filter-#{widget.id}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/loading')}"/>
+  <h:panelGroup id="defined-filter-tab-#{widget.id}" layout="block" styleClass="js-defined-filter-info-#{widget.id} u-display-none">
+    <h:outputText rendered="#{!widget.hasPredefinedFilter}" styleClass="ui-g-12"
+      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/NoData')}"/>
+    <h:panelGroup rendered="#{widget.hasPredefinedFilter}">
+      <ui:repeat var="field" value="#{widget.filterableColumns}">
+        <!-- priority -->
+        <h:panelGroup rendered="#{field.field eq 'priority' and not empty field.priorities}">
+          <div class="ui-g-4">
+            <h:outputText value="#{field.headerText}" />
+          </div>
+          <div class="ui-g-8">
+            <ui:repeat var="priority" value="#{field.priorities}">
+              <div>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskPriority/'.concat(priority.name()))}</div>
+            </ui:repeat>
+          </div>
         </h:panelGroup>
-        <h:panelGroup layout="block" styleClass="ui-g-8 category-panel" rendered="#{not empty field.filterList}">
-          <h:outputText id="category" value="#{field.displayCategories}" styleClass="js-category-filter-info category-filter-info" />
-          <span class="category-toggle js-category-toggle ivy-icon si si-subtract-circle" onclick="toggleCategoryInfo(this);" />
+
+        <!-- state -->
+        <h:panelGroup rendered="#{field.field eq 'state' and not empty field.states}">
+          <div class="ui-g-4">
+            <h:outputText value="#{field.headerText}" />
+          </div>
+          <div class="ui-g-8">
+            <ui:repeat var="state" value="#{field.states}">
+              <ic:ch.ivy.addon.portalkit.component.task.column.TaskState state="#{state}"
+                alwaysShowState="true" stateStyleClass="u-mar-right-5"/>
+            </ui:repeat>
+          </div>
         </h:panelGroup>
-      </h:panelGroup>
-    </ui:repeat>
-  </div>
+
+        <!-- activator -->
+        <h:panelGroup rendered="#{field.field eq 'activator' and not empty field.responsibles}">
+          <div class="ui-g-4">
+            <h:outputText value="#{field.headerText}" />
+          </div>
+          <div class="ui-g-8">
+            <ui:repeat var="responsible" value="#{field.responsibles}">
+              <div>
+                <i class="fa #{responsible.isUser() ? 'fa-user' : 'fa-users'} u-mar-right-5" />
+                <h:outputText value="#{dashboardTaskFilterBean.formatName(responsible)}" />
+              </div>
+            </ui:repeat>
+          </div>
+        </h:panelGroup>
+
+        <!-- Text and String -->
+        <h:panelGroup rendered="#{(field.format eq 'STRING' or field.format eq 'TEXT') and not (empty field.filterList and empty field.filter)}">
+          <div class="ui-g-4">
+            <h:outputText value="#{field.headerText}" />
+          </div>
+          <div class="ui-g-8">
+            <h:outputText value="#{field.filter}" rendered="#{field.filterType eq 'LIKE'}" />
+            <p:repeat var="selection" value="#{field.filterList}">
+              <h:outputText value="#{selection}" />
+            </p:repeat>
+          </div>
+        </h:panelGroup>
+
+        <!-- Number -->
+        <h:panelGroup rendered="#{field.format eq 'NUMBER' and not (empty field.filterFrom and empty field.filterTo)}">
+          <div class="ui-g-4">
+            <h:outputText value="#{field.headerText} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')}" />
+          </div>
+          <div class="ui-g-8">
+            <h:outputText value="#{field.filterFrom}" />
+          </div>
+          <div class="ui-g-4">
+            <h:outputText value="#{field.headerText} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')}" />
+          </div>
+          <div class="ui-g-8">
+            <h:outputText value="#{field.filterTo}" />
+          </div>
+        </h:panelGroup>
+
+        <!-- Timestamp -->
+        <h:panelGroup rendered="#{field.format eq 'TIMESTAMP' and not (empty field.dateFilterFrom and empty field.dateFilterTo)}">
+          <div class="ui-g-4">
+            <h:outputText value="#{field.headerText} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')}" />
+          </div>
+          <div class="ui-g-8">
+            <p:calendar id="from-date-field-input" styleClass="task-configuration__calendar" value="#{field.dateFilterFrom}"
+              pattern="#{dateTimePatternBean.configuredCalendarPattern}" locale="#{localeBean.locale}" disabled="true" />
+          </div>
+
+          <div class="ui-g-4">
+            <h:outputText value="#{field.headerText} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')}" />
+          </div>
+          <div class="ui-g-8">
+            <p:calendar id="to-date-field-input" styleClass="task-configuration__calendar" value="#{field.dateFilterTo}"
+              pattern="#{dateTimePatternBean.configuredCalendarPattern}" locale="#{localeBean.locale}" disabled="true" />
+          </div>
+        </h:panelGroup>
+
+        <!-- Category -->
+        <h:panelGroup rendered="#{field.field eq 'category'}">
+          <h:panelGroup layout="block" styleClass="ui-g-4" rendered="#{not empty field.filterList}">
+            <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/category')}" />
+          </h:panelGroup>
+          <h:panelGroup layout="block" styleClass="ui-g-8 category-panel" rendered="#{not empty field.filterList}">
+            <h:outputText id="category" value="#{field.displayCategories}" styleClass="js-category-filter-info category-filter-info" />
+            <span class="category-toggle js-category-toggle ivy-icon si si-subtract-circle" onclick="toggleCategoryInfo(this);" />
+          </h:panelGroup>
+        </h:panelGroup>
+      </ui:repeat>
+    </h:panelGroup>
+  </h:panelGroup>
 </p:tab>
 </html>

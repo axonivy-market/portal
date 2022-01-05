@@ -15,6 +15,9 @@
     * widget: widget model.
     * panelId: ID of widget panel group.
     * isReadOnlyMode: indicator to show edit/delete link.
+    * isRenderFilter: parameter to show filter function.
+    * isRenderInfo: parameter to show info function.
+    * isRenderExpandCollapse: parameter to show expand/collapse function.
     * onStatisticTabShow: AJAX method to call when widget info panel is shown on.
     * componentToProcessOnApplyFilter: ID of component will be proceed when click on apply filter button.
     * componentToUpdateOnApplyFilter: ID of component will be updated when click on apply filter button.
@@ -22,9 +25,11 @@
     * componentToUpdateOnResetFilter: ID of component will be updated when click on Reset filter button.
     * onCompleteApplyFilters: AJAX method to call when click on apply filter button.
     * onFilterOverlayPanelShow: AJAX method to call when the filter overlay panel is shown on.
+    * widgetContentStyleClass: styleClass for widget content div.
+    * panelStyleClass: styleClass for the main panel.
     -->
 
-<h:panelGroup id="#{panelId}" styleClass="table-widget-panel" layout="block">
+<h:panelGroup id="#{panelId}" styleClass="table-widget-panel #{panelStyleClass}" layout="block">
   <div class="widget__header">
     <h:panelGroup id="widget__header" class="widget__header-title text-ellipsis">#{not empty widget.name ? widget.name : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/yourWidget')}</h:panelGroup>
     <p:tooltip for="widget__header" value="#{not empty widget.name ? widget.name : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/yourWidget')}" trackMouse="true" hideEvent="mouseleave click"/>
@@ -38,21 +43,23 @@
         onstart="initWidgetFilterHtml('#{widget.id}', true);"
         oncomplete="initWidgetFilterHtml('#{widget.id}');"/>
 
+      <p:remoteCommand id="load-expanded-user-filter-command-#{index}" name="loadExpandedUserFilters#{index}"
+        actionListener="#{widget.loadUserFilter()}"
+        update="expanded-filter-form-#{index}:expanded-filter-overlaypanel-content-#{index}"
+        process="@this" partialSubmit="true" immediate="true" global="false"
+        onstart="initWidgetFilterHtml('#{widget.id}', true);"
+        oncomplete="initWidgetFilterHtml('#{widget.id}');"/>
+
       <!-- remote-command to load data for info statistic panel -->
       <p:remoteCommand id="build-statistic-info-command-#{index}" name="buildStatisticInfos#{index}"
         actionListener="#{widget.buildStatisticInfos}"
-        update="statistic-filter-accordion-panel-#{index}"
-        process="@this" partialSubmit="true" immediate="true" />
-
-      <!-- remote-command to reset state of info accordion panel -->
-      <p:remoteCommand id="update-widget-statistic-command-#{index}" name="updateWidgetStatisticPannel#{index}"
-        update="statistic-filter-accordion-panel-#{index}"
-        resetValues="true" global="false" process="@this" partialSubmit="true" immediate="true" />
+        update="expanded-statistic-filter-accordion-panel-#{index} statistic-filter-accordion-panel-#{index}"
+        process="@this" partialSubmit="true" immediate="true" global="false"/>
 
       <!-- remote-command to reset state of info accordion panel -->
       <p:remoteCommand id="reset-statistic-filter-accordion-panel-state-command-#{index}"
         name="updateWidgetStatisticPannel#{index}"
-        update="statistic-filter-accordion-panel-#{index}"
+        update="expanded-statistic-filter-accordion-panel-#{index} statistic-filter-accordion-panel-#{index}"
         global="false" process="@none" partialSubmit="true" immediate="true" />
 
       <!-- remote-command to apply widget filter -->
@@ -64,18 +71,51 @@
 
       <p:link id="filter-sidebar-link-#{index}"
         href="#"
+        rendered="#{empty isRenderFilter ? 'true': isRenderFilter}"
         styleClass="widget__filter-sidebar-link si si-filter-1 #{widget.userDefinedFiltersCount.isPresent()}  u-mar-right-15">
         <h:outputText rendered="#{widget.userDefinedFiltersCount.isPresent()}" value="#{widget.userDefinedFiltersCount.get()}"
           styleClass="widget__filter-noti-number"/>
       </p:link>
-      <p:tooltip for="filter-sidebar-link-#{index}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/WidgetFilters')}"
-        trackMouse="true" hideEvent="mouseleave click" />
+      <p:tooltip for="filter-sidebar-link-#{index}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/availableFilters')}"
+        trackMouse="true" hideEvent="mouseleave click" rendered="#{empty isRenderFilter ? 'true': isRenderFilter}" />
+
+      <p:link id="expanded-filter-sidebar-link-#{index}"
+        href="#"
+        rendered="#{empty isRenderFilter ? 'true': isRenderFilter}"
+        styleClass="widget__filter-sidebar-link si si-filter-1 #{widget.userDefinedFiltersCount.isPresent()}  u-mar-right-15 expanded-link">
+        <h:outputText rendered="#{widget.userDefinedFiltersCount.isPresent()}" value="#{widget.userDefinedFiltersCount.get()}"
+          styleClass="widget__filter-noti-number"/>
+      </p:link>
+      <p:tooltip for="expanded-filter-sidebar-link-#{index}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/availableFilters')}"
+        trackMouse="true" hideEvent="mouseleave click" rendered="#{empty isRenderFilter ? 'true': isRenderFilter}" />
 
       <p:link id="info-sidebar-link-#{index}"
         href="#"
-        styleClass="si si-statistics-daytum #{isReadOnlyMode ? '' : 'u-mar-right-15'}" />
+        rendered="#{empty isRenderInfo ? 'true': isRenderInfo}"
+        styleClass="si si-statistics-daytum u-mar-right-15 widget__info-sidebar-link" />
       <p:tooltip for="info-sidebar-link-#{index}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/widgetInfo')}" trackMouse="true"
+        rendered="#{empty isRenderInfo ? 'true': isRenderInfo}"
         hideEvent="mouseleave click" />
+
+      <p:link id="expanded-info-sidebar-link-#{index}"
+        href="#"
+        rendered="#{empty isRenderInfo ? 'true': isRenderInfo}"
+        styleClass="si si-statistics-daytum u-mar-right-15 expanded-link widget__info-sidebar-link" />
+      <p:tooltip for="expanded-info-sidebar-link-#{index}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/widgetInfo')}" trackMouse="true"
+        rendered="#{empty isRenderInfo ? 'true': isRenderInfo}"
+        hideEvent="mouseleave click" />
+
+      <p:link id="expand-link-#{index}"
+        href="#"
+        styleClass="si si-expand-1 #{isReadOnlyMode ? '' : 'u-mar-right-15'} expand-link"
+        rendered="#{isReadOnlyMode and (empty isRenderExpandCollapse ? 'true': isRenderExpandCollapse)}"
+        onclick="expandFullscreen(#{index}, '#{widget.id}')" />
+
+      <p:link id="collapse-link-#{index}"
+        href="#"
+        styleClass="si si-shrink-1 #{isReadOnlyMode ? '' : 'u-mar-right-15'} collapse-link"
+        rendered="#{isReadOnlyMode and (empty isRenderExpandCollapse ? 'true': isRenderExpandCollapse)}"
+        onclick="collapseFullscreen(#{index}, '#{widget.id}')" />
 
       <p:commandLink id="edit-widget-#{index}" styleClass="si si-pencil u-hidden-sm-down u-mar-right-15"
         oncomplete="PF('new-widget-configuration-dialog').show()"
@@ -102,6 +142,7 @@
       <p:overlayPanel id="info-overlay-panel-#{index}"
         widgetVar="info-overlay-panel-#{index}"
         for="info-sidebar-link-#{index}"
+        rendered="#{empty isRenderInfo ? 'true': isRenderInfo}"
         appendTo="@(#grid-stack)"
         styleClass="info-overlay-panel"
         onShow="buildStatisticInfos#{index}(); return false;"
@@ -132,8 +173,42 @@
         </div>
       </p:overlayPanel>
 
+      <p:overlayPanel id="expanded-info-overlay-panel-#{index}"
+        widgetVar="expanded-info-overlay-panel-#{index}"
+        for="expanded-info-sidebar-link-#{index}"
+        rendered="#{empty isRenderInfo ? 'true': isRenderInfo}"
+        styleClass="info-overlay-panel"
+        onShow="buildStatisticInfos#{index}(); return false;"
+        onHide="updateWidgetStatisticPannel#{index}(); return false;"
+        dismissable="false"
+        dynamic="true"
+        at="right top">
+        <div class="ui-g widget-infor--type">
+          <h:outputText styleClass="ui-g-8 widget-infor-type--label u-no-padding-bottom" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/widgetType')}" />
+          <h:outputText styleClass="ui-g-4 u-no-padding-bottom u-no-padding-left" value="#{widget.type.label}" />
+        </div>
+
+        <p:accordionPanel id="expanded-statistic-filter-accordion-panel-#{index}"
+          widgetVar="expanded-statistic-filter-accordion-panel-#{index}"
+          styleClass="statistic-filter-accordion-panel widget-info-panel ui-g-12 ui-fluid"
+          multiple="true"
+          onTabShow="#{onStatisticTabShow}">
+            <ui:insert name="widgetInformationContent" />
+        </p:accordionPanel>
+
+        <div class="ui-g-12 info-overlay-panel__footer">
+          <div class="ui-g-12">
+            <p:link styleClass="Fright"
+              href="#"
+              onclick="PF('expanded-info-overlay-panel-#{index}').hide();"
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" />
+          </div>
+        </div>
+      </p:overlayPanel>
+
       <p:overlayPanel id="filter-overlay-panel-#{index}" widgetVar="filter-overlay-panel-#{index}"
         for="filter-sidebar-link-#{index}"
+        rendered="#{empty isRenderFilter ? 'true': isRenderFilter}"
         appendTo="@(#grid-stack)"
         styleClass="filter-overlay-panel"
         dismissable="false"
@@ -145,6 +220,7 @@
               <ui:include src="/layouts/restricted/includes/WidgetFilter.xhtml">
                 <ui:param name="widget" value="#{widget}" />
                 <ui:param name="index" value="#{index}" />
+                <ui:param name="isExpand" value="false" />
                 <ui:param name="widgetFilterContentId" value="#{cc.clientId}:filter-form-#{index}:widget-filter-content" />
               </ui:include>
             </h:panelGroup>
@@ -197,10 +273,78 @@
           </div>
         </h:form>
       </p:overlayPanel>
+
+      <!-- Overlay panel for filter when expand widget -->
+      <p:overlayPanel id="expanded-filter-overlay-panel-#{index}" widgetVar="expanded-filter-overlay-panel-#{index}"
+        for="expanded-filter-sidebar-link-#{index}"
+        rendered="#{empty isRenderFilter ? 'true': isRenderFilter}"
+        styleClass="filter-overlay-panel"
+        dismissable="false"
+        dynamic="true"
+        onShow="loadExpandedUserFilters#{index}(); #{onFilterOverlayPanelShow};">
+        <h:form id="expanded-filter-form-#{index}">
+          <h:panelGroup id="expanded-filter-overlaypanel-content-#{index}" styleClass="ui-g" layout="block">
+            <h:panelGroup id="saved-filters-container" styleClass="ui-g-4 u-padding-0 saved-filter" layout="block">
+              <ui:include src="/layouts/restricted/includes/WidgetFilter.xhtml">
+                <ui:param name="widget" value="#{widget}" />
+                <ui:param name="index" value="#{index}" />
+                <ui:param name="isExpand" value="true" />
+                <ui:param name="widgetFilterContentId" value="#{cc.clientId}:expanded-filter-form-#{index}:expanded-filter-overlaypanel-content-#{index}" />
+              </ui:include>
+            </h:panelGroup>
+  
+            <h:panelGroup id="widget-filter-content" styleClass="ui-g-8 u-padding-0"
+              layout="block">
+              <div class="ui-g-12 filter-overlay-panel__header">
+                <strong class="ui-g-12">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/Filter/FilterOptionHeader')}</strong>
+              </div>
+              <h:panelGroup layout="block" styleClass="ui-g-12 filter-overlay-panel__content">
+                <ui:insert name="widgetFilterContent" />
+              </h:panelGroup>
+            </h:panelGroup>
+          </h:panelGroup>
+  
+          <div class="ui-g-12 filter-overlay-panel__footer">
+            <div class="ui-g-12 u-text-align-right">
+              <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+                styleClass="u-mar-right-15 ui-overlaypanel-footer__cancel"
+                onclick="PF('expanded-filter-overlay-panel-#{index}').hide(); return false;"
+                global="false"/>
+  
+              <p:commandButton id="reset-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
+                styleClass="secondary-btn u-mar-right-5" partialSubmit="true"
+                update="expanded-filter-form-#{index} #{cc.clientId}:widget-header-actions #{componentToUpdateOnResetFilter}"
+                oncomplete="#{onCompleteResetFilters}; #{onCompleteApplyFilters}; PF('expanded-filter-overlay-panel-#{index}').hide();"
+                actionListener="#{widget.onResetUserFilters()}"
+                icon="si si-button-refresh-arrows" resetValues="true"/>
+  
+              <p:commandButton id="apply-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
+                partialSubmit="true"
+                update="expanded-filter-form-#{index}"
+                process="expanded-filter-form-#{index}"
+                oncomplete="if (args &amp;&amp; !args.validationFailed) {applyWidgetFilterCommand#{index}();} initWidgetFilterHtml('#{widget.id}');"
+                actionListener="#{widget.onApplyUserFilters()}"
+                icon="si si-check-1"
+                styleClass="u-mar-right-5" />
+  
+              <p:commandButton id="save-filter" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/saveFilter')}"
+                icon="si si-floppy-disk" partialSubmit="true"
+                oncomplete="if (!args.validationFailed) { PF('save-widget-filter-dialog').show(); }"
+                actionListener="#{widget.onClickSaveUserFilters()}"
+                process="#{componentToProcessOnApplyFilter}"
+                global="false" styleClass="ui-sm-hidden"
+                update="save-filter-form" resetValues="true">
+                <f:setPropertyActionListener value="loadSaveFilters#{index}"
+                  target="#{widgetFilterHelperBean.loadFiltersRemoteCommand}"/>
+              </p:commandButton>
+            </div>
+          </div>
+        </h:form>
+      </p:overlayPanel>
     </h:panelGroup>
   </div>
 
-  <h:panelGroup id="widget-content" styleClass="widget__content #{widget.id} #{widgetContentStylyClass} dashboard-widget-panel-container" layout="block">
+  <h:panelGroup id="widget-content" styleClass="widget__content #{widget.id} #{widgetContentStyleClass} dashboard-widget-panel-container" layout="block">
     <!-- Insert widget content here -->
     <ui:insert name="widgetContent" />
   </h:panelGroup>

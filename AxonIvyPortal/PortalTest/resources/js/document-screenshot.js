@@ -529,3 +529,7 @@ function highlightServerInfo() {
 function highlightUserExampleNavigation() {
   createRedThickOutlineWithOffset($('.ripplelink.CUSTOM'));
 }
+
+function highlightProcessDisplayModePanel() {
+  createRedMediumOutline($("div[id $='process-display-mode_panel']"));
+}

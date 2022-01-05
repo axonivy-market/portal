@@ -61,26 +61,18 @@ abstract class JsonConfigurationService<T extends AbstractConfiguration> {
     if (StringUtils.isBlank(jsonValue)) {
       return new ArrayList<>();
     }
-
-    List<T> privateLinks = BusinessEntityConverter.jsonValueToEntities(jsonValue, getType());
-    return privateLinks;
+    return BusinessEntityConverter.jsonValueToEntities(jsonValue, getType());
   }
 
   public T save(T entity) {
     boolean isExisted = findById(entity.getId()) != null;
     if (entity.getIsPublic()) {
       List<T> entities = getPublicConfig();
-      if (isExisted) {
-        entities.removeIf(e -> e.getId().equals(entity.getId()));
-      }
-      entities.add(entity);
+      updateEntities(isExisted, entity, entities);
       savePublicConfig(entities);
     } else {
       List<T> entities = getPrivateConfig();
-      if (isExisted) {
-        entities.removeIf(e -> e.getId().equals(entity.getId()));
-      }
-      entities.add(entity);
+      updateEntities(isExisted, entity, entities);
       savePrivateConfig(entities);
     }
     return entity;
@@ -125,5 +117,18 @@ abstract class JsonConfigurationService<T extends AbstractConfiguration> {
 
   protected IUser sessionUser() {
     return Ivy.session().getSessionUser();
+  }
+
+  private void updateEntities(boolean isExisted, T entity, List<T> entities) {
+    if (isExisted) {
+      for (T e : entities) {
+        if (e.getId().equals(entity.getId())) {
+          entities.set(entities.indexOf(e), entity);
+          break;
+        }
+      }
+    } else {
+      entities.add(entity);
+    }
   }
 }

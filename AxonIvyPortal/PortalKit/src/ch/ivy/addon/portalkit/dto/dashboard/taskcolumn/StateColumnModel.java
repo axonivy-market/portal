@@ -1,7 +1,6 @@
 package ch.ivy.addon.portalkit.dto.dashboard.taskcolumn;
 
 import java.io.Serializable;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -12,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
+import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.TaskState;
 
@@ -73,7 +73,7 @@ public class StateColumnModel extends TaskColumnModel implements Serializable {
   public List<TaskState> getUserFilterStateOptions() {
     List<TaskState> states = getStates();
     if (CollectionUtils.isEmpty(states)) {
-      states = Arrays.asList(TaskState.values()).stream().sorted((s1, s2) -> StringUtils.compare(s1.toString(), s2.toString())).collect(Collectors.toList());
+      states = TaskUtils.getValidStates();
     }
     return states;
   }

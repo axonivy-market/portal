@@ -6,6 +6,13 @@ Introduction
 Portal Developer Guide provides information to set up, configure, customize 
 Portal so that it could fit customer need.
 
+The Individual Dashboard for Axon Ivy Portal 9.3 refers to :ref:`introduction-new-and-note-worthy-9.3`.
+ 
+- Customizable Dashboard
+- Default Widgets
+- Custom Widgets
+- Adjustable Look for Process List
+
 More UX for Axon Ivy Portal 9.2, refer to :ref:`introduction-new-and-note-worthy-9.2`.
 
 - Enhanced forgot password features
@@ -14,24 +21,56 @@ More UX for Axon Ivy Portal 9.2, refer to :ref:`introduction-new-and-note-worthy
 - Additional drag and drop widgets in task and case detail pages
 - Advanced user specific settings 
 
+.. _introduction-new-and-note-worthy-9.3:
+
 New & Noteworthy 9.3
 --------------------
 
-Customization global growl message for task using IFrame
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Customizable Dashboard
+^^^^^^^^^^^^^^^^^^^^^^
+End-users can choose between different layouts, 
+enable and disable default columns and even add custom columns at will.
 
-A new API is introduced to support customizing global growl message for task using IFrame.
+|customizable-dashboard|
 
-Enhance task filter
-^^^^^^^^^^^^^^^^^^^
+This feature allows multiple task lists with different filter options. 
+For example, separating HR tasks from Finance tasks provides a better overview and more transparency.
 
-Portal admin can query for tasks which have unavailable activator. Those tasks could have no responsible, responsible is disabled or not exists.
-|task-filter-missing-activator|
+Default Widgets
+^^^^^^^^^^^^^^^
+Axon Ivy Portal supports a sophisticated concept featuring default widgets for Process Starts, Task Lists, and Case Lists.
 
-New Dashboard and support legacy mode
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Portal provides new look and feel Dashboard, refer to :ref:`customization-new-dashboard`.
-Portal also provides new setting ``Portal.ShowLegacyUI`` on Admin Settings to switch back to legacy Portal home.
+|default-widgets|
+
+Processes, tasks, and cases are essential when it comes to business process automation and workflow management. Therefore, the Axon Ivy Portal gives you full power by providing these standard widgets out-of-the-box.
+
+|default-widgets-configuration|
+
+Each configuration is intuitive, and users can make their settings meticulously.
+
+Custom Widgets
+^^^^^^^^^^^^^^
+Individuality is king. End-users can easily create custom widgets in the dashboard.
+
+|custom-widgets|
+
+There are two different widgets types available:
+
+- Axon Ivy Process
+- External URL
+
+An external URL embeds the corresponding website into your dashboard. This feature is helpful to integrate enterprise content management systems or knowledge sites.
+
+Specify your Axon Ivy Process as a widget element and display your process directly in your custom dashboard.
+
+Adjustable Look for Process List
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Switch between an image, grid, and compact mode to display available processes.
+
+|adjustable-look-for-process-list|
+
+A picture says a thousand words. This saying is true and applies to business processes. The requirements of end-users must be met. The process starts with image support to contribute to a beautiful appearance and help work quickly and purposefully.
 
 .. _introduction-new-and-note-worthy:
 
@@ -50,6 +89,7 @@ Task/Case details are well structured, user can drag and drop the widgets and th
 Enhanced forgot password features
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Users can reset their passwords easily using the standard password reset feature integrated in Axon Ivy Portal
+
 |login-screen|
 |send-email-screen|
 
@@ -57,6 +97,7 @@ Simplified tasks and cases export
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 We have listened to you! Business users requested to export specific lists from Axon Ivy Portal to perform further analysis in Microsoft Excel. 
 Now they have the possibility to export any list with one mouse click.
+
 |task-key-information|
 
 Redesigned process list
@@ -68,6 +109,7 @@ You don’t see the forest for the trees? Not anymore! Switch to the new grid vi
 Additional drag and drop widgets in task and case detail pages
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Only you know the details and therefore, any detail page for tasks or cases can be restyled using drag and drop widgets. Create your own detail page with your specific content and without the need of programming.
+
 |detailed-task-information|
 
 |case-details|
@@ -134,3 +176,8 @@ Filter case by owner in case list and task analysis if case owner is enabled.
 .. |case-details| image:: ../../screenshots/case-detail/case-details.png
 .. |my-profile-save| image:: ../../screenshots/my-profile/my-profile.png
 .. |task-filter-missing-activator| image:: ../../screenshots/task/task-filter-missing-activator.png
+.. |customizable-dashboard| image:: images/customizable-dashboard.png
+.. |default-widgets| image:: images/default-widgets.png
+.. |default-widgets-configuration| image:: images/default-widgets-configuration.png
+.. |custom-widgets| image:: images/custom-widgets.png
+.. |adjustable-look-for-process-list| image:: images/adjustable-look-for-process-list.png

@@ -1,7 +1,6 @@
 package ch.ivy.addon.portalkit.dto.dashboard;
 
 import java.io.Serializable;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -284,7 +283,7 @@ public abstract class AbstractColumn implements Serializable {
     this.userFilterListOptions = userFilterListOptions;
   }
 
-  public Date getDateFilterFrom() throws ParseException {
+  public Date getDateFilterFrom() {
     if (dateFilterFrom == null && filterFrom != null) {
       dateFilterFrom = Dates.parse(filterFrom);
     }
@@ -296,7 +295,7 @@ public abstract class AbstractColumn implements Serializable {
     this.filterFrom = Dates.format(dateFilterFrom);
   }
 
-  public Date getDateFilterTo() throws ParseException {
+  public Date getDateFilterTo() {
     if (dateFilterTo == null && filterTo != null) {
       dateFilterTo = Dates.parse(filterTo);
     }
@@ -308,7 +307,7 @@ public abstract class AbstractColumn implements Serializable {
     this.filterTo = Dates.format(dateFilterTo);
   }
 
-  public Date getUserDateFilterFrom() throws ParseException {
+  public Date getUserDateFilterFrom() {
     if (userDateFilterFrom == null && userFilterFrom != null) {
       userDateFilterFrom = Dates.parse(userFilterFrom);
     }
@@ -320,7 +319,7 @@ public abstract class AbstractColumn implements Serializable {
     this.userFilterFrom = Dates.format(userDateFilterFrom);
   }
 
-  public Date getUserDateFilterTo() throws ParseException {
+  public Date getUserDateFilterTo() {
     if (userDateFilterTo == null && userFilterTo != null) {
       userDateFilterTo = Dates.parse(userFilterTo);
     }

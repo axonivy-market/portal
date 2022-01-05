@@ -206,8 +206,9 @@ public abstract class TemplatePage extends AbstractPage {
   }
   
   public void clickOnMyProfile() {
-    clickUserMenuItem("user-profile");
-    waitAjaxIndicatorDisappear();
+    clickByCssSelector("[id='user-settings-menu']");
+    clickByCssSelector("[id$='user-profile']");
+    WaitHelper.assertTrueWithWait(() -> findElementByCssSelector("[id$=':logo-task-losing-confirmation-dialog']").isDisplayed());
   }
 
   public ProjectVersionPage openProjectVersionPage() {
@@ -220,7 +221,7 @@ public abstract class TemplatePage extends AbstractPage {
     click(findElementById("user-settings-menu"));
     waitForElementDisplayed(By.id(menuItemSelector), true);
     click(findElementById(menuItemSelector));
-    waitAjaxIndicatorDisappear();
+    WaitHelper.assertTrueWithWait(() -> !findElementById("user-setting-container").isDisplayed());
   }
 
   public boolean isAdminSettingsMenuItemPresent() {
