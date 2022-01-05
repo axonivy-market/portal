@@ -15,21 +15,20 @@
         }
       </script>
       <div class="ui-g">
-      <!-- User doesn't have permissions -->
-      <ui:fragment rendered="#{empty managedBean.dashboards}">
-        <h1 class="ui-g-12">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/noPermission')}</h1>
-      </ui:fragment>
-
       <!-- Dashboard content -->
-      <ui:fragment rendered="#{not empty managedBean.dashboards}">
+      <ui:fragment>
         <h:outputStylesheet library="css" name="dashboard.css" />
         <div class="dashboard__header ui-g-12 js-dashboard__header">
 
           <h:panelGroup id="dashboard-title-container" styleClass="u-hidden-sm-down ui-lg-8 ui-md-7 dashboard__title-container">
             <c:forEach var="dashboard" items="#{managedBean.dashboards}" varStatus="dashboardStatus">
-              <p:commandLink id="dashboard-title-#{dashboardStatus.index}" actionListener="#{managedBean.onDashboardChange(dashboardStatus.index)}"
-                update="grid-stack dashboard-title-container dashboard-title-dropdown-container" process="@this" oncomplete="loadGrid()" value="#{dashboard.title}"
-                styleClass="dashboard__title #{managedBean.currentDashboardIndex == dashboardStatus.index ? 'dashboard__title--active':''}"/>
+              <p:commandLink actionListener="#{managedBean.onDashboardChange(dashboardStatus.index)}"
+                update="grid-stack dashboard-title-container dashboard-title-dropdown-container" process="@this"
+                oncomplete="loadGrid()"
+                styleClass="dashboard__title #{managedBean.currentDashboardIndex == dashboardStatus.index ? 'dashboard__title--active':''}">
+                <h:outputText rendered="#{dashboard.isPublic}" styleClass="si si-network-share" />
+                <span>#{dashboard.title}</span>
+              </p:commandLink>
             </c:forEach>
           </h:panelGroup>
           <h:panelGroup id="dashboard-title-dropdown-container" styleClass="u-hidden-md-up ui-g-12 padding-0 dashboard__title-dropdown-container" layout="block">
@@ -41,9 +40,9 @@
             
           </h:panelGroup>
 
-          <span class="dashboard-header__action ui-lg-4 ui-md-5 ui-sm-12">
+          <h:panelGroup id="dashboard-header-action" class="dashboard-header__action ui-lg-4 ui-md-5 ui-sm-12">
             <ui:insert name="headerAction" />
-          </span>
+          </h:panelGroup>
         </div>
 
           <h:form id="dashboard-remote-command-form" prependId="false">
@@ -58,7 +57,7 @@
             <ui:insert name="additionalRemoteCommand" />
           </h:form>
 
-        <div id="dashboard-body" class="dashboard__body ui-g-12 js-dashboard__body">
+        <div id="dashboard-body" class="dashboard__body ui-g-12 js-dashboard__body #{dashboardBodyStyleClass}">
           <h:panelGroup id="grid-stack" layout="block" styleClass="grid-stack ui-g-12">
             <c:if test="#{not empty managedBean.selectedDashboard.widgets}">
               <c:forEach var="widget" items="#{managedBean.selectedDashboard.widgets}" varStatus="status">
@@ -95,13 +94,29 @@
                         index="#{status.index}"
                         id="process-#{widget.id}" />
                     </c:if>
+
+                    <!-- Custom widget -->
+                    <c:if test="#{widget.type eq 'CUSTOM'}">
+                      <ic:ch.ivy.addon.portal.generic.dashboard.component.CustomDashboardWidget widget="#{widget}"
+                        isReadOnlyMode="#{managedBean.isReadOnlyMode}"
+                        index="#{status.index}"
+                        id="custom-#{widget.id}" />
+                    </c:if>
+                    
                   </div>
                 </div>
               </c:forEach>
             </c:if>
-            <c:if test="#{empty managedBean.selectedDashboard.widgets}">
-              <p class="ui-g-12">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/noWidget')}</p>
-            </c:if>
+            <h:panelGroup rendered="#{managedBean.selectedDashboard == null and managedBean.isEditMode}">
+              <h1 class="ui-g-12">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/noDashboard')}</h1>
+            </h:panelGroup>
+            <h:panelGroup rendered="#{managedBean.selectedDashboard == null and not managedBean.isEditMode}">
+              <h1 class="ui-g-12">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/noPermission')}</h1>
+            </h:panelGroup>
+            <h:panelGroup
+              rendered="#{managedBean.selectedDashboard != null and empty managedBean.selectedDashboard.widgets}">
+              <h1 class="ui-g-12">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/noWidget')}</h1>
+            </h:panelGroup>
             <ui:insert name="dashboardContent" />
           </h:panelGroup>
 

@@ -18,9 +18,9 @@
 
   <p:remoteCommand id="rcLoadCaseFirstTime" autoRun="true" actionListener="#{caseWidget.dataModel.loadFirstTime()}"
     update="dashboard-cases-container" global="false" async="true" process="@this"
-    oncomplete="loadCaseFirstTime('#{caseWidget.id}'); #{cc.attrs.onCompleteLoadWidget}" />
+    oncomplete="loadWidgetFirstTime('js-loading-#{caseWidget.id}', 'js-dashboard-cases-container-#{caseWidget.id}'); #{cc.attrs.onCompleteLoadWidget}" />
   <div class="ui-g">
-    <h:panelGroup id="loading" styleClass="js-loading-#{caseWidget.id}">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/loading')}</h:panelGroup>
+    <h:outputText id="loading" styleClass="js-loading-#{caseWidget.id}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/loading')}"/>
 
     <h:panelGroup id="dashboard-cases-container" layout="block"
       styleClass="ui-g-12 u-padding-0 js-dashboard-cases-container-#{caseWidget.id} u-display-none">
@@ -93,14 +93,5 @@
       </p:dataTable>
     </h:panelGroup>
   </div>
-
-  <script type="text/javascript">
-    function loadCaseFirstTime(widgetId) {
-      var loadingId = '.js-loading-' + widgetId;
-      var widgetContainer = '.js-dashboard-cases-container-' + widgetId;
-      $(loadingId).addClass('u-display-none');
-      $(widgetContainer).removeClass('u-display-none');
-    }
-  </script>
 </cc:implementation>
 </html>

@@ -92,15 +92,12 @@ public class ProcessWidgetPage extends TemplatePage {
       waitForElementDisplayed(By.id(processWidgetId + ":process-search:non-ajax-keyword-filter"), true);
       enterSearchKeyword(wfName);
       if (isImageModeActivated()) {
-        waitForElementDisplayed(
-            By.cssSelector(
-                "[id$='process-widget:image-process-group-alphabet:13:image-processes:2:process-item:process-action-button']"),
-            true);
-        WebElement webElement = findElementByCssSelector(
-            "[id$='process-widget:image-process-group-alphabet:13:image-processes:2:process-item:process-action-button']");
-        webElement.click();
-        if (isElementDisplayed(By.cssSelector("div[id$='process-widget:image-process-group-alphabet:13:image-processes:2:process-item:process-action-menu']"))) {
-          WebElement actionMenu = findElementByCssSelector("div[id$='process-widget:image-process-group-alphabet:13:image-processes:2:process-item:process-action-menu']");
+        waitForElementDisplayed(By.cssSelector("[id$=':process-item:process-action-button']"), true);
+        WebElement processForm = findElementByCssSelector("form.image-view-form.is-express");
+        var processFormID = processForm.getAttribute("id");
+        clickByCssSelector("[id$='" + processFormID + ":process-action-button']");
+        if (isElementDisplayed(By.cssSelector("div[id$='"+ processFormID + ":process-action-menu']"))) {
+          WebElement actionMenu = findElementByCssSelector("div[id$='" + processFormID + ":process-action-menu']");
           WebElement icon = findChildElementByCssSelector(actionMenu, "a[id$=':process-item:process-edit']");
           icon.click();
           waitForElementDisplayed(By.cssSelector("[id$='process-widget:edit-process-dialog']"), true);

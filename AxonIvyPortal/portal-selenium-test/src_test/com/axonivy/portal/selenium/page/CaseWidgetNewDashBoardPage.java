@@ -1,7 +1,9 @@
 package com.axonivy.portal.selenium.page;
 
-import static com.codeborne.selenide.Condition.*;
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Condition.appear;
+import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
@@ -85,6 +87,7 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
   public void openFilterWidget() {
     $$("div.table-widget-panel").filter(text(caseWidgetName)).first().waitUntil(appear, DEFAULT_TIMEOUT)
         .$("a.widget__filter-sidebar-link").shouldBe(getClickableCondition()).click();
+    $("[id$=':widget-saved-filters-items").waitUntil(appear, DEFAULT_TIMEOUT);
   }
 
   public CaseEditWidgetNewDashBoardPage openEditWidget() {

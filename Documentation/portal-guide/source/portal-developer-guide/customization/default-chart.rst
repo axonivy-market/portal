@@ -1,7 +1,7 @@
 .. _customization-default-chart:
 
-Default chart - Deprecated
-==========================
+Default chart
+=============
 
 .. _customization-default-chart-introduction:
 
@@ -16,10 +16,6 @@ Priority". But you can create your default chart.
 Customization
 -------------
 
-Create an override which overrides sub process ``DefaultChart`` in
-PortalKit. This sub process return a list of default charts. Follow
-instruction to create charts.
-
-|default-chart|
-
-.. |default-chart| image:: images/defaults-chart/default-chart.png
+Default chart configuration is stored as 
+`Variables <https://developer.axonivy.com/doc/nightly/designer-guide/configuration/variables.html>`_.
+You could update the variable :ref:`portal-statistic-charts` to customize default charts.

@@ -3,24 +3,32 @@
   xmlns:pe="http://primefaces.org/ui/extensions" xmlns:jsf="http://xmlns.jcp.org/jsf">
 
 <p:tab id="type-tab">
+  <p:remoteCommand id="build-statistic-process-type-#{widget.id}" name="buildStatisticProcessTypes#{widget.id}"
+    async="true" actionListener="#{widget.buildProcessByTypeStatistic()}"
+    update="process-type-statistic-#{widget.id}"
+    process="@this" partialSubmit="true" immediate="true" global="false"
+    oncomplete="loadWidgetFirstTime('js-loading-process-type-#{widget.id}', 'js-statistic-process-type-#{widget.id}')"/>
   <f:facet name="title">
     <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/processWidgetInfo/numberOfProcessesByType')}" />
   </f:facet>
-  <div class="ui-g" jsf:rendered="#{!widget.processByTypeStatistic.isEmpty()}">
-    <ui:repeat value="#{widget.processByTypeStatistic.entrySet()}" var="entry">
-      <div class="ui-g-8">
-        <h:outputText value="#{dashboardProcessFilterBean.getUserFriendlyProcessType(entry.key)}"
-          styleClass="dashboard-processes__type-text--#{entry.key.name().toLowerCase()} dashboard-processes__type-text" />
-      </div>
-      <div class="ui-g-4">
-        <h:outputText rendered="#{entry.value gt 1}">#{entry.value} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/processes')}</h:outputText>
-        <h:outputText rendered="#{entry.value le 1}">#{entry.value} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/process')}</h:outputText>
-      </div>
-    </ui:repeat>
-  </div>
-  <div class="ui-g" jsf:rendered="#{widget.processByTypeStatistic.isEmpty()}">
-    <h:outputText styleClass="ui-g-12" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/processWidgetInfo/noProcess')}" />
-  </div>
+  <h:outputText styleClass="ui-g-12 js-loading-process-type-#{widget.id}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/loading')}"/>
+  <h:panelGroup id="process-type-statistic-#{widget.id}" layout="block" styleClass="js-statistic-process-type-#{widget.id} u-display-none">
+    <div class="ui-g" jsf:rendered="#{!widget.processByTypeStatistic.isEmpty()}">
+      <ui:repeat value="#{widget.processByTypeStatistic.entrySet()}" var="entry">
+        <div class="ui-g-8">
+          <h:outputText value="#{dashboardProcessFilterBean.getUserFriendlyProcessType(entry.key)}"
+            styleClass="dashboard-processes__type-text--#{entry.key.name().toLowerCase()} dashboard-processes__type-text" />
+        </div>
+        <div class="ui-g-4">
+          <h:outputText rendered="#{entry.value gt 1}">#{entry.value} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/processes')}</h:outputText>
+          <h:outputText rendered="#{entry.value le 1}">#{entry.value} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/process')}</h:outputText>
+        </div>
+      </ui:repeat>
+    </div>
+    <div class="ui-g" jsf:rendered="#{widget.processByTypeStatistic.isEmpty()}">
+      <h:outputText styleClass="ui-g-12" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/processWidgetInfo/noProcess')}" />
+    </div>
+  </h:panelGroup>
 </p:tab>
 
 </html>
