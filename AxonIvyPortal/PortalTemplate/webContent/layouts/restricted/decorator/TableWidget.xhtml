@@ -43,6 +43,13 @@
         onstart="initWidgetFilterHtml('#{widget.id}', true);"
         oncomplete="initWidgetFilterHtml('#{widget.id}');"/>
 
+      <p:remoteCommand id="load-expanded-user-filter-command-#{index}" name="loadExpandedUserFilters#{index}"
+        actionListener="#{widget.loadUserFilter()}"
+        update="expanded-filter-form-#{index}:expanded-filter-overlaypanel-content-#{index}"
+        process="@this" partialSubmit="true" immediate="true" global="false"
+        onstart="initWidgetFilterHtml('#{widget.id}', true);"
+        oncomplete="initWidgetFilterHtml('#{widget.id}');"/>
+
       <!-- remote-command to load data for info statistic panel -->
       <p:remoteCommand id="build-statistic-info-command-#{index}" name="buildStatisticInfos#{index}"
         actionListener="#{widget.buildStatisticInfos}"
@@ -274,7 +281,7 @@
         styleClass="filter-overlay-panel"
         dismissable="false"
         dynamic="true"
-        onShow="loadUserFilters#{index}(); #{onFilterOverlayPanelShow};">
+        onShow="loadExpandedUserFilters#{index}(); #{onFilterOverlayPanelShow};">
         <h:form id="expanded-filter-form-#{index}">
           <h:panelGroup id="expanded-filter-overlaypanel-content-#{index}" styleClass="ui-g" layout="block">
             <h:panelGroup id="saved-filters-container" styleClass="ui-g-4 u-padding-0 saved-filter" layout="block">
