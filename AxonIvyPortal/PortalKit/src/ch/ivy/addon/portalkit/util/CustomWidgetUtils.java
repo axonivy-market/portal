@@ -35,6 +35,7 @@ public class CustomWidgetUtils {
           break;
         case USER_PREFIX:
           propertyValue = getUserPropertyKey(referenceId, keyParts);
+          break;
         default:
           break;
       }
