@@ -156,6 +156,7 @@ public class DashboardBean implements Serializable {
           break;
         case CUSTOM:
           loadCustomWidget(widget);
+          break;
         default:
           break;
       }
