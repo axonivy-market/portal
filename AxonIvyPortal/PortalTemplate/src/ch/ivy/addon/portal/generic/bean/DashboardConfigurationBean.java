@@ -26,8 +26,6 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.PrimeFaces;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.constant.DashboardConstants;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
@@ -222,6 +220,9 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
           processWidget.setProcess(null);
           unifyCompactProcessCategory(processWidget);
           updateProcessesOfWidget(processWidget);
+          if (CollectionUtils.isEmpty(processWidget.getFilterableColumns())) {
+            processWidget.buildFilterableColumns(DashboardWidgetUtils.initProcessFilterableColumns());
+          }
         } else if (processWidget.getDisplayMode() == ProcessWidgetMode.IMAGE_MODE) {
           updateProcessWidget(processWidget, 6, 2);
         }
@@ -506,7 +507,7 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
     editingDashboards.remove(selectedEditingDashboard);
   }
 
-  protected void saveDashboards(List<Dashboard> dashboards) throws JsonProcessingException {
+  protected void saveDashboards(List<Dashboard> dashboards) {
 
     String dashboardJson = BusinessEntityConverter.entityToJsonValue(dashboards);
     if (isPublicDashboard) {
@@ -516,7 +517,7 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
     }
   }
 
-  public void saveDashboards() throws JsonProcessingException {
+  public void saveDashboards() {
     for (Dashboard dashboard : editingDashboards) {
       if (!isPublicDashboard) {
         dashboard.setPermissions(Stream.of(ISecurityConstants.TOP_LEVEL_ROLE_NAME).collect(Collectors.toList()));
