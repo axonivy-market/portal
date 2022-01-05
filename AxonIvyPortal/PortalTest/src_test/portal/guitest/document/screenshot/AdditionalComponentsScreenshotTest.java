@@ -44,6 +44,7 @@ public class AdditionalComponentsScreenshotTest extends ScreenshotTest {
     NewDashboardPage newDashboardPage = new NewDashboardPage();
     newDashboardPage.startTask(0);
     WaitHelper.assertTrueWithWait(() -> ScreenshotUtil.isDOMStatusComplete());
+    ScreenshotUtil.resizeBrowser(new Dimension(1366, 800));
     newDashboardPage = new NewDashboardPage();
     newDashboardPage.waitForGrowlMessageDisplayClearly();
     ScreenshotUtil.captureHalfTopPageScreenShot(ScreenshotUtil.COMPONENTS_FOLDER + "example-global-growl-finished-task");
@@ -54,6 +55,7 @@ public class AdditionalComponentsScreenshotTest extends ScreenshotTest {
     TaskTemplatePage taskTemplatePage = new TaskTemplatePage();
     taskTemplatePage.clickCancelButton();
     WaitHelper.assertTrueWithWait(() -> ScreenshotUtil.isDOMStatusComplete());
+    ScreenshotUtil.resizeBrowser(new Dimension(1366, 800));
     newDashboardPage = new NewDashboardPage();
     newDashboardPage.waitForTaskStartButtonDisplay(1);
     newDashboardPage.waitForGrowlMessageDisplayClearly();

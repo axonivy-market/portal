@@ -104,6 +104,7 @@ public class HomePage extends TemplatePage {
 	}
 
   public WebElement getTaskWidgetElement() {
+    waitForElementDisplayed(By.id("task-widget"), true);
     WaitHelper.assertTrueWithWait(() -> {
       List<WebElement> taskElements = findListElementsByCssSelector("div[class*='task-start-list-item']");
       return taskElements.size() != 0;
