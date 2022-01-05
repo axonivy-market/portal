@@ -1,0 +1,65 @@
+Categories:
+  AnnualLeave:
+    name: Annual Leave
+  LeaveRequest:
+    name: Leave Request
+  OtherLeave:
+    Maternity:
+      name: Maternity
+    SickLeave:
+      Long:
+        name: Long
+      name: Sick Leave
+    name: Other Leave
+  PersonalRequest:
+    RaiseSalary:
+      name: Raise Salary
+    Vacation:
+      name: Vacation
+    name: Personal Request
+  Resource:
+    Austria:
+      name: Austria
+DefaultColumns:
+  ACTIVATOR: Responsible
+  CREATION_TIME: Created
+  EXPIRY_TIME: Expiry
+  ID: Task Id
+  NAME: Name / Description
+  PRIORITY: Priority
+  STATE: State
+  customVarCharField1: Customer type
+  customVarCharField5: Customer name
+Processes:
+  ProcessWithProcessSteps:
+    processStep: |-
+      #Creation
+      Choose different leave types
+      Use a date picker to select leave dates
+      Select an approver for your leave request
+      #Approval
+      Add a comment to the request
+      Take a decision: Approve / Reject
+      #Summary
+      Requester will get a summary of the request
+      Acknoledge the result
+ProcessPages:
+  ProcessLeaves:
+    ProcessLeave:
+      appliedFor: Applied For
+      approved: Approved
+      cancelReason: Cancel Reason
+      canceled: Canceled
+      employee: Employee
+      from: From
+      numberOfDays: Number Of Days
+      rejectionReason: 'Reason for rejection '
+      remainingVacationDays: Remaining vacation days
+      representation: Representation
+      to: To
+      type: Type
+  TestTask:
+    isRequired: This field is mandatory
+Stages:
+  request_leave:
+    name: Request Leave

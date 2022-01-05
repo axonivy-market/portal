@@ -14,7 +14,7 @@ Configure Portal settings
 
 To manually configure Portal settings, refer to :ref:`update-portal-settings`.
 
-Portal settings are stored as `Variables <https://developer.axonivy.com/doc/|version|/designer-guide/configuration/variables.html>`_.
+Portal settings are stored as `Variables <https://developer.axonivy.com/doc/nightly/designer-guide/configuration/variables.html>`_.
 
 In development, it is a quite tedious task to configure Portal settings after restarting Designer. You could update value of Variables in
 ``PortalKit/config/variables.yaml`` for the settings that you want to configure, it could survive after restarting Designer.
@@ -77,7 +77,7 @@ Permission settings
 ===================
 
 Permissions can be configured in `Cockpit
-<https://developer.axonivy.com/doc/|version|/engine-guide/tool-reference/engine-cockpit/security.html>`_.
+<https://developer.axonivy.com/doc/nightly/engine-guide/tool-reference/engine-cockpit/security.html>`_.
 In the security area, you will find all these permission in the Group
 "PortalPermissions"
 
@@ -437,6 +437,8 @@ Data model:
 - ``name``: the name of third-party app
 - ``link``: the URL of third-party app
 
+.. _portal-statistic-charts:
+
 Portal.StatisticCharts
 ^^^^^^^^^^^^^^^^^^^^^^
 You can define the standard statistic charts via this JSON file. It will be shown as the default charts on the statistic page.
@@ -492,6 +494,7 @@ Data model:
 
 -  ``position``: position index of chart that uses to sort chart in the UI
 
+.. _portal-dashboard-favorite-processes:
 
 Portal.Dashboard.FavoriteProcesses
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

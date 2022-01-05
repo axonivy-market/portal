@@ -11,6 +11,7 @@ Developer Guide
    architecture/index
    installation/index
    settings/index
+   dashboard/index
    components/index
    iframe/index
    customization/index

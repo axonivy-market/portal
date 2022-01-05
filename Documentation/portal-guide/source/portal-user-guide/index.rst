@@ -7,6 +7,7 @@ User Guide
 
    axon-ivy-portal/index
    forgot-password/index
+   new-dashboard/index
    dashboard/index
    portal-header/index
    full-process-list/index

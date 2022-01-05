@@ -3,8 +3,10 @@ package ch.ivy.addon.portalkit.bean;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 import javax.faces.context.FacesContext;
 
@@ -36,7 +38,7 @@ public abstract class AbstractProcessBean implements Serializable {
     portalProcesses = findProcesses();
     portalProcesses.addAll(findExpressProcesses());
     portalProcesses.addAll(findExternalLink());
-    sortProcesses(portalProcesses);
+    portalProcesses = sortProcesses(portalProcesses);
   }
 
   public String getProcessInformationPageUrl(Process process) {
@@ -75,8 +77,11 @@ public abstract class AbstractProcessBean implements Serializable {
     return defaultPortalProcesses;
   }
 
-  protected void sortProcesses(List<Process> processes) {
-    processes.sort((process1, process2) -> StringUtils.compareIgnoreCase(process1.getName(), process2.getName()));
+  protected List<Process> sortProcesses(List<Process> processes) {
+    var processesSorted = processes.stream()
+        .sorted(Comparator.comparing(Process::getName))
+        .collect(Collectors.toList());
+    return processesSorted;
   }
 
   public String getProcessIcon(Process process) {

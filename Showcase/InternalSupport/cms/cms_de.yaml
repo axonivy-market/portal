@@ -1,0 +1,42 @@
+Categories:
+  AnnualLeave:
+    name: Jahresurlaub
+  LeaveRequest:
+    name: Leave Request German
+  OtherLeave:
+    Maternity:
+      name: Mutterschaft
+    SickLeave:
+      Long:
+        name: Lange
+      name: Krank
+    name: Andere verlassen
+  Resource:
+    Austria:
+      name: Österreich
+DefaultColumns:
+  ACTIVATOR: Verantwortlich
+  CREATION_TIME: Erstellt
+  EXPIRY_TIME: Ablaufdatum
+  ID: Aufgaben Id
+  NAME: Titel / Beschreibung
+  PRIORITY: Priorität
+  STATE: Status
+ProcessPages:
+  ProcessLeaves:
+    ProcessLeave:
+      appliedFor: Beantragt
+      approved: Genehmigt
+      canceled: Storniert
+      employee: Mitarbeiter
+      numberOfDays: Anzahl Tage
+      rejectionReason: Ablehnungsgrund
+      remainingVacationDays: Resturlaubstage
+      representation: Vertretung
+      to: Bis
+      type: Art
+  TestTask:
+    isRequired: Pflichtfeld
+Stages:
+  request_leave:
+    name: Anfrage hinterlassen Anfrage hinterlassen Anfrage hinterlassen Anfrage hinterlassen Anfrage hinterlassen

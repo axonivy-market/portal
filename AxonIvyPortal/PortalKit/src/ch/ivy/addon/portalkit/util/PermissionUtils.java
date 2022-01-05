@@ -143,9 +143,7 @@ public class PermissionUtils {
   }
 
   public static boolean doesSessionUserHaveRole(String roleName) {
-    IRole role = Ivy.security().roles().find(roleName);
-    return role != null ? Ivy.session().hasRole(role, false) : false;
-
+    return Ivy.session().has().roles(roleName);
   }
 
   /**
@@ -207,8 +205,12 @@ public class PermissionUtils {
     return hasPortalPermission(PortalPermission.CREATE_PUBLIC_EXTERNAL_LINK);
   }
 
-  public static boolean hasDashboardWritePermission() {
-    return hasPortalPermission(PortalPermission.DASHBOARD_WRITE);
+  public static boolean hasDashboardWriteOwnPermission() {
+    return hasPortalPermission(PortalPermission.DASHBOARD_WRITE_OWN);
+  }
+
+  public static boolean hasDashboardWritePublicPermission() {
+    return hasPortalPermission(PortalPermission.DASHBOARD_WRITE_PUBLIC);
   }
 
   public static String getCaseName(ICase iCase) {

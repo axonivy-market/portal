@@ -115,7 +115,7 @@ public class SearchResultPage extends TemplatePage {
     if (processWidget.isImageModeActivated()) {
       WebElement actionMenu = findElementByCssSelector("div[id$='search-results-tabview:process-results:image-process-group-alphabet:13:image-processes:1:process-item:process-action-menu']");
       WebElement icon = findChildElementByCssSelector(actionMenu, "a[id$=':process-item:process-edit']");
-      return icon.isDisplayed();
+      return icon != null;
     }
     WebElement element = findElementByCssSelector(EDIT_EXPRESS_WORKFlOW);
     return element.getAttribute("class").contains("si-graphic-tablet-drawing-pen");
@@ -126,7 +126,7 @@ public class SearchResultPage extends TemplatePage {
     if (processWidget.isImageModeActivated()) {
       WebElement actionMenu = findElementByCssSelector("div[id$='search-results-tabview:process-results:image-process-group-alphabet:13:image-processes:1:process-item:process-action-menu']");
       WebElement icon = findChildElementByCssSelector(actionMenu, "a[id$=':process-item:process-delete']");
-      return icon.isDisplayed();
+      return icon != null;
     }
     WebElement element = findElementByCssSelector(DELETE_EXPRESS_WORKFlOW);
     return element.getAttribute("class").contains("si-bin-1");

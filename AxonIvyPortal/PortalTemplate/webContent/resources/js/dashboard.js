@@ -1,4 +1,5 @@
 var grids;
+var originalGridstackHeight = 0;
 loadGrid();
 
 function loadGrid() {
@@ -32,8 +33,18 @@ function loadGrid() {
 
     grid.on('resize resizestop', function(event, element) {
       var elementId = element.gridstackNode.id;
-      setupImageProcessWidgetDescription($("[gs-id='" + elementId + "']").find('.js-process-description'));
+      var descriptionElement = $("[gs-id='" + elementId + "']").find('.js-image-widget-mode .js-process-description');
+      if(descriptionElement.length > 0) {
+        setupImageProcessWidgetDescription(descriptionElement);
+      }
     });
+  
+    // Disable all pointer events of iframes when edit widgets
+    if($('div.js-dashboard__body').hasClass('readonly')) {
+      enableAllIFrameWhenEditLayout();
+    } else {
+      disableAllIFrameWhenEditLayout();
+    }
   });
 }
 
@@ -116,8 +127,63 @@ function setupScrollbar() {
   }
 }
 
+function expandFullscreen(index, widgetId) {
+  var widget = $('div.grid-stack-item[gs-id = "' + widgetId + '"]');
+  widget.addClass('expand-fullscreen');
+  widget.get(0).innerWidth = window.innerWidth;
+  widget.get(0).outerWidth = window.outerWidth;
+  widget.get(0).innerHeight = window.innerHeight;
+  widget.get(0).outerHeight = window.outerHeight;
+
+  originalGridstackHeight =  $(widget.get(0)).parent('.grid-stack').height();
+  $(widget.get(0)).parent('.grid-stack').height($(widget.get(0)).height());
+
+  // Hide opening dialogs
+  var filterOverlayId = 'filter-overlay-panel-' + index;
+  if ($("div[id $= " + filterOverlayId + "]").length > 0 && PF(filterOverlayId).isVisible()) {
+    PF(filterOverlayId).hide();
+  }
+  
+  var infoOverlayId = 'info-overlay-panel-' + index;
+  if ($("div[id $= " + infoOverlayId + "]").length > 0 && PF(infoOverlayId).isVisible()) {
+    PF(infoOverlayId).hide();
+  }
+}
+
+function collapseFullscreen(index, widgetId) {
+  var widget = $('div.grid-stack-item[gs-id = "' + widgetId + '"]');
+  widget.removeClass('expand-fullscreen');
+
+  $(widget.get(0)).parent('.grid-stack').height(originalGridstackHeight);
+
+  // Hide opening dialogs
+  var filterOverlayId = 'expanded-filter-overlay-panel-' + index;
+  if ($("div[id $= " + filterOverlayId + "]").length > 0 && PF(filterOverlayId).isVisible()) {
+    PF('expanded-filter-overlay-panel-' + index).hide();
+  }
+
+  var infoOverlayId = 'expanded-info-overlay-panel-' + index;
+  if ($("div[id $= " + infoOverlayId + "]").length > 0 && PF(infoOverlayId).isVisible()) {
+    PF('expanded-info-overlay-panel-' + index).hide();
+  }
+}
+
+function disableAllIFrameWhenEditLayout() {
+  var iframes = $("iframe");
+  if (iframes.length > 0) {
+    iframes.css('pointer-events', 'none');
+  }
+}
+
+function enableAllIFrameWhenEditLayout() {
+  var iframes = $("iframe");
+  if (iframes.length > 0) {
+    iframes.css('pointer-events', 'auto');
+  }
+}
+
 function setupImageProcessWidget() {
-  var imageContainers = $('.js-image-process-item-container');
+  var imageContainers = $('.js-image-widget-mode .js-image-process-item-container');
   if (imageContainers.length > 0) {
     imageContainers.each(function() {
       var imageUrl = $(this).find("img").attr("src");
@@ -125,7 +191,7 @@ function setupImageProcessWidget() {
     });
   }
 
-  var processDescriptions = $('.js-process-description');
+  var processDescriptions = $('.js-image-widget-mode .js-process-description');
   if (processDescriptions.length > 0) {
     processDescriptions.each(function() {
       setupImageProcessWidgetDescription($(this));
@@ -140,4 +206,15 @@ function setupImageProcessWidgetDescription(e) {
   var lineClamp = Math.floor(height/lineHeight);
   if (lineClamp == 2) lineClamp = 1;
   descriptionContent.css('-webkit-line-clamp', lineClamp.toString());
+}
+
+function loadWidgetFirstTime(loadingClass, widgetClass) {
+  var loading = $('.' + loadingClass);
+  if (loading.length > 0) {
+    loading.addClass('u-display-none');
+  }
+  var widget = $('.' + widgetClass);
+  if (widget.length > 0) {
+    widget.removeClass('u-display-none');
+  }
 }
