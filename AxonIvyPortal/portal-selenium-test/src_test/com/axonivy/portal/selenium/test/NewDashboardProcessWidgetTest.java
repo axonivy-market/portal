@@ -212,6 +212,7 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
     editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST, null);
     newDashboardPage.getStartButton().shouldBe(Condition.disabled);
     newDashboardPage.resizeCombinedModeProcess();
+    newDashboardPage.getTasksTabDataContainer().waitUntil(Condition.appear, DEFAULT_TIMEOUT);
 
     editProcessWidgetConfiguration = newDashboardPage.editCombinedModeProcess();
     String newProcessName = "Appraisal";
@@ -226,6 +227,7 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
     editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST, null);
     newDashboardPage.getStartButton().shouldBe(Condition.disabled);
     newDashboardPage.resizeCombinedModeProcess();
+    newDashboardPage.getTasksTabDataContainer().waitUntil(Condition.appear, DEFAULT_TIMEOUT);
 
     newDashboardPage.deleteCombinedModeProcess();
     newDashboardPage.getCombinedModeProcessContainer().shouldNotBe(Condition.exist);
