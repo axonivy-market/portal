@@ -10,6 +10,30 @@
     <ivy.engine.version>9.4.0</ivy.engine.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
+  <repositories>
+    <repository>
+      <releases>
+        <enabled>true</enabled>
+        <updatePolicy>always</updatePolicy>
+        <checksumPolicy>warn</checksumPolicy>
+      </releases>
+      <name>Nexus Repository</name>
+      <id>release-repo</id>
+      <url>http://repo.axonivy.com/artifactory/repo.axonivy.io-releases-cache/</url>
+      <layout>default</layout>
+    </repository>
+    <repository>
+      <snapshots>
+        <enabled>true</enabled>
+        <updatePolicy>never</updatePolicy>
+        <checksumPolicy>fail</checksumPolicy>
+      </snapshots>
+      <name>Nexus Repository</name>
+      <id>snapshots-repo</id>
+      <url>http://repo.axonivy.com/artifactory/repo.axonivy.io-snapshots-cache/</url>
+      <layout>default</layout>
+    </repository>
+  </repositories>
   <dependencies>
     <dependency>
       <groupId>ch.ivyteam.ivy.project.portal</groupId>
