@@ -6,6 +6,9 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+
 import com.axonivy.portal.selenium.common.LinkNavigator;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
@@ -136,12 +139,23 @@ public class NewDashboardPage extends TemplatePage {
   // ==================================
   public ProcessEditWidgetNewDashBoardPage editCombinedModeProcess() {
     $(".process-grid-item__action--combined .si-pencil").waitUntil(Condition.appear, DEFAULT_TIMEOUT).click();
-    //int x = element.getSize().width / 3;
-    //int y = element.getSize().height / 3;
-    //System.out.println("XY" + x + " " + y);
-    //element.click(9,9);
     $("div[id='new-widget-configuration-dialog']").waitUntil(Condition.appear, DEFAULT_TIMEOUT).click();
     return new ProcessEditWidgetNewDashBoardPage();
+  }
+
+  public void resizeCombinedModeProcess() {
+    SelenideElement gridStackItem = getStartButton().closest(".grid-stack-item");
+    updateElementAttribute(gridStackItem, "gs-w", "7");
+    updateElementAttribute(gridStackItem, "gs-x", "0");
+    gridStackItem.waitUntil(Condition.attribute("gs-x", "0"), DEFAULT_TIMEOUT)
+        .waitUntil(Condition.attribute("gs-w", "7"), DEFAULT_TIMEOUT);
+  }
+
+  private void updateElementAttribute(SelenideElement element, String attribute, String value) {
+    WebDriver driver = element.getWrappedDriver();
+    JavascriptExecutor js = (JavascriptExecutor) driver;
+    js.executeScript("arguments[0].setAttribute(arguments[1], arguments[2]);", element.getWrappedElement(), attribute,
+        value);
   }
 
   public SelenideElement getCombinedModeProcessName() {
