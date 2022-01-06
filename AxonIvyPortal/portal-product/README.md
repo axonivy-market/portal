@@ -76,7 +76,7 @@ Import Portal modules to Designer.
    
    ![install-result](images/install-result.png)
    
-Another way, you can open the **Axon Ivy Market** view and search the **Portal** then select download it to your workspaces.
+The other way you can open the **Axon Ivy Market** view and search the **Portal** then select download it to your workspaces.
 
 ![install-portal-alternative-way](images/install-portal-alternative-way.png)
 
