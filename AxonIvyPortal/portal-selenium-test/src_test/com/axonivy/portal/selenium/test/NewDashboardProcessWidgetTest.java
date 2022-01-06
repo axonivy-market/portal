@@ -5,8 +5,6 @@ import static com.codeborne.selenide.Selenide.$$;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
@@ -38,7 +36,7 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     redirectToNewDashBoard();
   }
-/*
+
   @Test
   public void testPreviewButtonImageProcess() {
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
@@ -206,33 +204,19 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
     createRelatedTaskWithNoResponsible();
     newDashboardPage.waitForAbsencesGrowlMessageDisplay();
   }
-*/
+
   @Test
   public void testChangeCombinedModeProcess() {
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
     editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST, null);
     newDashboardPage.getStartButton().shouldBe(Condition.disabled);
-    resizeCombinedModeProcess();
+    newDashboardPage.resizeCombinedModeProcess();
 
     editProcessWidgetConfiguration = newDashboardPage.editCombinedModeProcess();
     String newProcessName = "Appraisal";
     editProcessWidgetConfiguration.changeCombinedModeProcessAndSaveWidget(newProcessName);
     newDashboardPage.getCombinedModeProcessName().shouldHave(Condition.exactTextCaseSensitive(newProcessName));
-  }
-
-  private void resizeCombinedModeProcess() {
-    SelenideElement gridStackItem = newDashboardPage.getStartButton().closest(".grid-stack-item");
-    updateElementAttribute(gridStackItem, "gs-w", "7");
-    updateElementAttribute(gridStackItem, "gs-x", "0");
-    gridStackItem.waitUntil(Condition.attribute("gs-x", "0"), DEFAULT_TIMEOUT).waitUntil(Condition.attribute("gs-w", "7"), DEFAULT_TIMEOUT);
-  }
-
-  private void updateElementAttribute(SelenideElement element, String attribute, String value) {
-    WebDriver driver = element.getWrappedDriver();
-    JavascriptExecutor js = (JavascriptExecutor) driver;
-    js.executeScript("arguments[0].setAttribute(arguments[1], arguments[2]);", element.getWrappedElement(), attribute,
-        value);
   }
 
   @Test
@@ -241,12 +225,12 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
         newDashboardPage.editProcessWidgetConfiguration();
     editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST, null);
     newDashboardPage.getStartButton().shouldBe(Condition.disabled);
-    resizeCombinedModeProcess();
+    newDashboardPage.resizeCombinedModeProcess();
 
     newDashboardPage.deleteCombinedModeProcess();
     newDashboardPage.getCombinedModeProcessContainer().shouldNotBe(Condition.exist);
   }
-/*
+
   @Test
   public void testStartCombinedModeProcess() {
     testStartCombinedModeProcess(false);
@@ -641,5 +625,5 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
     newDashboardPage.getCompactModeProcessInfoProcessTypes(isExpanded).shouldHave(CollectionCondition.size(3),
         DEFAULT_TIMEOUT);
   }
-*/
+
 }
