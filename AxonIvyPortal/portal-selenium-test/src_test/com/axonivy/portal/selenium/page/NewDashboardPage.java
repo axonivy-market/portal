@@ -188,6 +188,10 @@ public class NewDashboardPage extends TemplatePage {
     return $(".dashboard-processes-container--combined a[id$=':collapse-link']");
   }
 
+  public SelenideElement getTasksTabDataContainer() {
+    return $("div[id$=':dashboard-process-tasks-container']");
+  }
+
   public SelenideElement getCombinedModeProcessFirstTaskStartAction() {
     return $("div[id$=':dashboard-process-tasks-container'] a.start-task-action");
   }
