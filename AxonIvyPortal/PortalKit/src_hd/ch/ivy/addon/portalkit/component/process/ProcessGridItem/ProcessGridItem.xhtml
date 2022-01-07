@@ -82,7 +82,7 @@
             id="start-button" actionListener="#{managedBean.startProcess(process)}" icon="si si-arrow-right-1"
             ajax="#{!isExternalLink}"
             disabled="#{cc.attrs.readOnlyMode}" />
-          <p:link value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/MoreInformation')}"
+          <p:link id="more-information" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/MoreInformation')}"
             styleClass="process-more-info-link" href="#{managedBean.getProcessInformationPageUrl(process)}"
             rendered="#{cc.attrs.showInformationLink and !isExpress and !isExternalLink and !isCaseMap}"
             disabled="#{cc.attrs.readOnlyMode}" />
