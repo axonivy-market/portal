@@ -53,6 +53,12 @@ public class AbsencePage extends TemplatePage {
     return findElementByCssSelector(deputiesSelector).getText();
   }
   
+  public String getMyDisabledDeputy(int deputyRoleIndex) {
+    String deputiesSelector = String.format("span[id$='absences-management-form:substitute-table:%d:selected-deputies-link']", deputyRoleIndex);
+    waitForElementDisplayed(By.cssSelector(deputiesSelector), true);
+    return findElementByCssSelector(deputiesSelector).getText();
+  }
+  
 	public List<String> getIAMDeputyFor() {
     List<WebElement> noteAuthorElements = findListElementsByCssSelector("tbody[id*='substitution-table_data'] > tr > td");
     return noteAuthorElements.stream().map(w -> w.getText()).collect(Collectors.toList());
@@ -178,5 +184,10 @@ public class AbsencePage extends TemplatePage {
 
   public boolean canEditAbsence(int index) {
     return findElementById(String.format(EDIT_ABSENCE__LINK_ID_PATTERN, index)).isDisplayed();
+  }
+
+  public boolean isDeputySettingSectionDisplayed() {
+    waitUntilAnimationFinished(DEFAULT_TIMEOUT,"ajax-indicator:ajax-indicator-ajax-indicator_start" , "id");
+    return isElementPresent(By.id("deputy-setting"));
   }
 }

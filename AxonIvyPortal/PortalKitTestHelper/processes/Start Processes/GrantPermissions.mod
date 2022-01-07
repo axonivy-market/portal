@@ -123,6 +123,18 @@ Is0 @GridStep f104 '' #zField
 Is0 @StartRequest f105 '' #zField
 Is0 @PushWFArc f106 '' #zField
 Is0 @PushWFArc f107 '' #zField
+Is0 @GridStep f112 '' #zField
+Is0 @StartRequest f113 '' #zField
+Is0 @PushWFArc f114 '' #zField
+Is0 @PushWFArc f115 '' #zField
+Is0 @StartRequest f116 '' #zField
+Is0 @GridStep f117 '' #zField
+Is0 @PushWFArc f118 '' #zField
+Is0 @PushWFArc f119 '' #zField
+Is0 @GridStep f120 '' #zField
+Is0 @StartRequest f121 '' #zField
+Is0 @PushWFArc f122 '' #zField
+Is0 @PushWFArc f123 '' #zField
 >Proto Is0 Is0 GrantPermissions #zField
 Is0 f0 outLink grantAllPermissionsToCurrentUser.ivp #txt
 Is0 f0 inParamDecl '<> param;' #txt
@@ -1325,7 +1337,8 @@ Is0 f104 actionTable 'out=in;
 ' #txt
 Is0 f104 actionCode 'import ch.ivyteam.ivy.security.IPermission;
 
-ivy.task.getApplication().getSecurityDescriptor().grantPermission(IPermission.USER_DELETE_ABSENCE, ivy.session.getSessionUser());' #txt
+ivy.task.getApplication().getSecurityDescriptor().grantPermission(IPermission.USER_DELETE_ABSENCE, ivy.session.getSessionUser());
+' #txt
 Is0 f104 security system #txt
 Is0 f104 668 908 40 24 0 -8 #rect
 Is0 f105 outLink grantDeleteAbsencePermission.ivp #txt
@@ -1347,6 +1360,94 @@ Is0 f106 881 920 708 920 #arcP
 Is0 f107 668 920 408 543 #arcP
 Is0 f107 1 408 920 #addKink
 Is0 f107 1 0.1313441394744452 0 0 #arcLabel
+Is0 f112 actionTable 'out=in;
+' #txt
+Is0 f112 actionCode 'import ch.ivyteam.ivy.security.IPermission;
+
+ivy.task.getApplication().getSecurityDescriptor().grantPermission(IPermission.USER_READ_OWN_ABSENCES, ivy.session.getSessionUser());
+ivy.task.getApplication().getSecurityDescriptor().grantPermission(IPermission.USER_READ_ABSENCES, ivy.session.getSessionUser());
+ivy.task.getApplication().getSecurityDescriptor().grantPermission(IPermission.USER_CREATE_SUBSTITUTE, ivy.session.getSessionUser());
+ivy.task.getApplication().getSecurityDescriptor().grantPermission(IPermission.USER_CREATE_OWN_SUBSTITUTE, ivy.session.getSessionUser());
+ivy.task.getApplication().getSecurityDescriptor().grantPermission(IPermission.USER_READ_SUBSTITUTES, ivy.session.getSessionUser());' #txt
+Is0 f112 security system #txt
+Is0 f112 668 980 40 24 0 -8 #rect
+Is0 f113 outLink grantCreateSubstitutePermission.ivp #txt
+Is0 f113 inParamDecl '<> param;' #txt
+Is0 f113 requestEnabled true #txt
+Is0 f113 triggerEnabled false #txt
+Is0 f113 callSignature grantCreateSubstitutePermission() #txt
+Is0 f113 caseData businessCase.attach=true #txt
+Is0 f113 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>grantCreateSubstitutePermission.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Is0 f113 @C|.responsibility Everybody #txt
+Is0 f113 881 977 30 30 16 0 #rect
+Is0 f114 881 992 708 992 #arcP
+Is0 f115 668 992 408 543 #arcP
+Is0 f115 1 408 992 #addKink
+Is0 f115 1 0.19533967019512022 0 0 #arcLabel
+Is0 f116 outLink grantCreateOwnSubstitutePermission.ivp #txt
+Is0 f116 inParamDecl '<> param;' #txt
+Is0 f116 requestEnabled true #txt
+Is0 f116 triggerEnabled false #txt
+Is0 f116 callSignature grantCreateOwnSubstitutePermission() #txt
+Is0 f116 caseData businessCase.attach=true #txt
+Is0 f116 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>grantCreateOwnSubstitutePermission.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Is0 f116 @C|.responsibility Everybody #txt
+Is0 f116 881 1041 30 30 16 0 #rect
+Is0 f117 actionTable 'out=in;
+' #txt
+Is0 f117 actionCode 'import ch.ivyteam.ivy.security.IPermission;
+
+ivy.task.getApplication().getSecurityDescriptor().grantPermission(IPermission.USER_READ_OWN_ABSENCES, ivy.session.getSessionUser());
+ivy.task.getApplication().getSecurityDescriptor().grantPermission(IPermission.USER_READ_ABSENCES, ivy.session.getSessionUser());
+ivy.task.getApplication().getSecurityDescriptor().denyPermission(IPermission.USER_CREATE_SUBSTITUTE, ivy.session.getSessionUser());
+ivy.task.getApplication().getSecurityDescriptor().grantPermission(IPermission.USER_CREATE_OWN_SUBSTITUTE, ivy.session.getSessionUser());
+ivy.task.getApplication().getSecurityDescriptor().grantPermission(IPermission.USER_READ_SUBSTITUTES, ivy.session.getSessionUser());' #txt
+Is0 f117 security system #txt
+Is0 f117 668 1044 40 24 0 -8 #rect
+Is0 f118 881 1056 708 1056 #arcP
+Is0 f119 668 1056 408 543 #arcP
+Is0 f119 1 408 1056 #addKink
+Is0 f119 1 0.3056128784328012 0 0 #arcLabel
+Is0 f120 actionTable 'out=in;
+' #txt
+Is0 f120 actionCode 'import ch.ivyteam.ivy.security.IPermission;
+
+ivy.task.getApplication().getSecurityDescriptor().denyPermission(IPermission.USER_READ_SUBSTITUTES, ivy.session.getSessionUser());
+ivy.task.getApplication().getSecurityDescriptor().grantPermission(IPermission.USER_READ_OWN_SUBSTITUTES , ivy.session.getSessionUser());' #txt
+Is0 f120 security system #txt
+Is0 f120 668 1108 40 24 0 -8 #rect
+Is0 f121 outLink denyReadSubstitutesPermission.ivp #txt
+Is0 f121 inParamDecl '<> param;' #txt
+Is0 f121 requestEnabled true #txt
+Is0 f121 triggerEnabled false #txt
+Is0 f121 callSignature denyReadSubstitutesPermission() #txt
+Is0 f121 caseData businessCase.attach=true #txt
+Is0 f121 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>denyReadSubstitutesPermission.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Is0 f121 @C|.responsibility Everybody #txt
+Is0 f121 881 1105 30 30 16 0 #rect
+Is0 f122 881 1120 708 1120 #arcP
+Is0 f123 668 1120 408 543 #arcP
+Is0 f123 1 408 1120 #addKink
+Is0 f123 2 408 528 #addKink
+Is0 f123 1 0.3623310810810812 0 0 #arcLabel
 >Proto Is0 .type portalKit_test.GrantPermissionsData #txt
 >Proto Is0 .processKind NORMAL #txt
 >Proto Is0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1471,3 +1572,15 @@ Is0 f105 mainOut f106 tail #connect
 Is0 f106 head f104 mainIn #connect
 Is0 f104 mainOut f107 tail #connect
 Is0 f107 head f7 mainIn #connect
+Is0 f113 mainOut f114 tail #connect
+Is0 f114 head f112 mainIn #connect
+Is0 f112 mainOut f115 tail #connect
+Is0 f115 head f7 mainIn #connect
+Is0 f116 mainOut f118 tail #connect
+Is0 f118 head f117 mainIn #connect
+Is0 f117 mainOut f119 tail #connect
+Is0 f119 head f7 mainIn #connect
+Is0 f121 mainOut f122 tail #connect
+Is0 f122 head f120 mainIn #connect
+Is0 f120 mainOut f123 tail #connect
+Is0 f123 head f7 mainIn #connect
