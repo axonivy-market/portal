@@ -240,8 +240,9 @@
               type="button"
               rendered="#{!absenceManagementBean.substitutionCapable}"
               icon="#{visibilityBean.generateButtonIcon('si si-remove')}"
-              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
-              actionListener="#{logic.backToHome()}" />
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}">
+              <p:ajax event="click" listener="#{logic.backToHome()}" global="false" />
+            </p:commandButton>
           </div>
         </div>
       </h:form>
