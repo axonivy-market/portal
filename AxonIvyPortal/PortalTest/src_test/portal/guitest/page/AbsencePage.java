@@ -15,6 +15,9 @@ import ch.ivy.addon.portalkit.enums.DeputyRoleType;
 
 public class AbsencePage extends TemplatePage {
 
+  private static final String DELETE_ABSENCE__LINK_ID_PATTERN = "absences-management-form:absence-table:%d:delete-absence";
+  private static final String EDIT_ABSENCE__LINK_ID_PATTERN = "absences-management-form:absence-table:%d:edit-absence";
+
 	@Override
 	protected String getLoadedLocator() {
 		return "id('absences-management-form')";
@@ -30,8 +33,8 @@ public class AbsencePage extends TemplatePage {
 	}
 
 	public int countAbsences() {
-		waitForElementDisplayed(By.cssSelector("a[id*='absence-table']"), true);
-		return findListElementsByCssSelector("td.absences-table-action-column").size();
+		waitForElementDisplayed(By.cssSelector("div[id*='absence-table']"), true);
+		return findListElementsByCssSelector("td.absence-period").size();
 	}
 
 	@SuppressWarnings("deprecation")
@@ -40,12 +43,18 @@ public class AbsencePage extends TemplatePage {
 		boolean checkBoxSelected = checkBox.isSelected();
 		if (checkBoxSelected != shown) {
 			clickByCssSelector("div[id*='show-absence-in-the-past'] div.ui-chkbox-box");
-			waitAjaxIndicatorDisappear();
+			waitUntilAnimationFinished(DEFAULT_TIMEOUT,"ajax-indicator:ajax-indicator-ajax-indicator_start" , "id");
 		}
 	}
 
   public String getMyDeputy(int deputyRoleIndex) {
     String deputiesSelector = String.format("a[id$='absences-management-form:substitute-table:%d:selected-deputies-link']", deputyRoleIndex);
+    waitForElementDisplayed(By.cssSelector(deputiesSelector), true);
+    return findElementByCssSelector(deputiesSelector).getText();
+  }
+  
+  public String getMyDisabledDeputy(int deputyRoleIndex) {
+    String deputiesSelector = String.format("span[id$='absences-management-form:substitute-table:%d:selected-deputies-link']", deputyRoleIndex);
     waitForElementDisplayed(By.cssSelector(deputiesSelector), true);
     return findElementByCssSelector(deputiesSelector).getText();
   }
@@ -167,5 +176,18 @@ public class AbsencePage extends TemplatePage {
   public void waitForAbsencesGrowlMessageDisplay() {
     WebElement growlMessage = findElementByCssSelector("div[id$='absences-management-form:absences-management-info_container']");
     waitForElementDisplayed(growlMessage.findElement(By.className("ui-growl-item-container")), true, 5);
+  }
+
+  public boolean canDeleteAbsence(int index) {
+    return findElementById(String.format(DELETE_ABSENCE__LINK_ID_PATTERN, index)).isDisplayed();
+  }
+
+  public boolean canEditAbsence(int index) {
+    return findElementById(String.format(EDIT_ABSENCE__LINK_ID_PATTERN, index)).isDisplayed();
+  }
+
+  public boolean isDeputySettingSectionDisplayed() {
+    waitUntilAnimationFinished(DEFAULT_TIMEOUT,"ajax-indicator:ajax-indicator-ajax-indicator_start" , "id");
+    return isElementPresent(By.id("deputy-setting"));
   }
 }
