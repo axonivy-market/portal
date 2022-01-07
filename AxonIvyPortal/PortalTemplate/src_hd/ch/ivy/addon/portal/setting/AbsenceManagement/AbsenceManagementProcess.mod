@@ -709,7 +709,8 @@ import ch.ivy.addon.portalkit.dto.UserDTO;
 import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 
 in.selectedAbsenceUser = new UserDTO(ivy.session.getSessionUser());
-in.canCreateAbsenceForOtherUsers = PermissionUtils.hasPermission(IPermission.USER_CREATE_ABSENCE);' #txt
+in.canCreateAbsenceForOtherUsers = PermissionUtils.hasPermission(IPermission.USER_CREATE_ABSENCE);
+in.canCreateSubstituteForOtherUsers = PermissionUtils.hasPermission(IPermission.USER_CREATE_SUBSTITUTE);' #txt
 As0 f102 security system #txt
 As0 f102 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
