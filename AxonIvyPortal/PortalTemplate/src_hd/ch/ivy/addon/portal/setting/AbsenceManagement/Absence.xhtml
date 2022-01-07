@@ -22,7 +22,7 @@
       <p:messages widgetVar="growl" closable="true" id="absence-messages" escape="false" styleClass="new-absence-messages"/>
       <h:panelGroup id="input-adsence-data-section" layout="block">
         <div id="absence-panel-grid" class="ui-fluid ui-g absence-panel-grid">
-          <h:panelGroup layout="block" styleClass="ui-g-12" rendered="#{data.isSupervisor}">
+          <h:panelGroup layout="block" styleClass="ui-g-12" rendered="#{data.canCreateAbsenceForOtherUsers}">
             <ic:ch.ivy.addon.portalkit.component.UserSelection id="absence-selection-component"
               componentId="absence-username"
               selectedUser="#{data.selectedUser}"
