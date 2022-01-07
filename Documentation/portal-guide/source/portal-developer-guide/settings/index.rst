@@ -244,9 +244,11 @@ Other permissions
  |           | Delete                          | ``IPermission.USER_DELETE_OWN_ABSENCE`` or         |
  |           |                                 | ``IPermission.USER_DELETE_ABSENCE``                |
  |           +---------------------------------+----------------------------------------------------+
- |           | Read, add, delete               | ``IPermission.USER_CREATE_ABSENCE`` and            |
- |           | absences of all users           | ``IPermission.USER_DELETE_ABSENCE`` and            |
- |           |                                 | ``IPermission.USER_READ_ABSENCES``                 |
+ |           | Read absences of all users      | ``IPermission.USER_READ_ABSENCES``                 |
+ |           +---------------------------------+----------------------------------------------------+
+ |           | Delete absences of all users    | ``IPermission.USER_DELETE_ABSENCE``                |
+ |           +---------------------------------+----------------------------------------------------+
+ |           | Create new absence for all users| ``IPermission.USER_CREATE_ABSENCE``                |
  +-----------+---------------------------------+----------------------------------------------------+
  | Substitute| Manage substitute               | ``IPermission.USER_CREATE_SUBSTITUTE`` and         |
  |           |                                 | ``IPermission.USER_READ_SUBSTITUTES``              |
