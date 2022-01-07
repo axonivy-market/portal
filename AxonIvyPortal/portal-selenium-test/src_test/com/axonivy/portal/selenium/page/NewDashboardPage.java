@@ -54,6 +54,11 @@ public class NewDashboardPage extends TemplatePage {
     return new TaskEditWidgetNewDashBoardPage();
   }
 
+  public ProcessEditWidgetNewDashBoardPage addNewProcessWidget() {
+    addWidgetByName("Process List");
+    return new ProcessEditWidgetNewDashBoardPage();
+  }
+
   public ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration() {
     switchToEditMode();
     $("a[id$=':edit-widget-2']").waitUntil(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
