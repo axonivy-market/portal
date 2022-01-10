@@ -172,7 +172,7 @@ public class AbsenceTest extends BaseTest {
   public void testReadOwnAbsenceOnly() {
     login(TestAccount.GUEST_USER);
     redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantReadAbsencesPermission.ivp");
-    redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantCreateAbsencesPermission.ivp");
+    redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantCreateAbsencePermission.ivp");
     AbsencePage absencePage = openAbsencePage();
     createAbsenceForCurrentUser(YESTERDAY, YESTERDAY, "For travel", absencePage);
 
