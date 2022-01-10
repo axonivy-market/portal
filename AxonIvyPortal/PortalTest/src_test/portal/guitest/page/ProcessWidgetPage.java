@@ -12,8 +12,11 @@ import org.openqa.selenium.interactions.Actions;
 import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
 
+import portal.guitest.common.WaitHelper;
+
 public class ProcessWidgetPage extends TemplatePage {
 
+  private static final String ACTIVE_MODE_SELECTOR = "[id$=':process-view-mode:view-mode-selection'] div.ui-button.ui-button-text-only.ui-state-active .ui-button-text";
   private WebElement switchModeButton;
   private WebElement liveSearchTextField;
   private WebElement processWidget;
@@ -345,10 +348,13 @@ public class ProcessWidgetPage extends TemplatePage {
   }
 
   public String getCurrentViewMode() {
-    waitForElementDisplayed(By.cssSelector("[id$='process-widget:process-view-mode:view-mode-selection'] div.ui-button.ui-widget.ui-state-default.ui-button-text-only.ui-state-active"), true);
-    WebElement activeModeElement = findElementByCssSelector("[id$='process-widget:process-view-mode:view-mode-selection'] div.ui-button.ui-widget.ui-state-default.ui-button-text-only.ui-state-active");
-    WebElement activeSpanElement = activeModeElement.findElement(By.cssSelector(".ui-button-text.ui-c"));
-    return activeSpanElement.getText();
+    waitForElementDisplayed(
+        By.cssSelector("[id$=':process-view-mode:view-mode-selection'] div.ui-button.ui-button-text-only.ui-state-active"),
+        true);
+    waitUntilAnimationFinished(DEFAULT_TIMEOUT,
+        "process-widget\\\\:process-view-mode\\\\:view-mode-selection",
+        ID_PROPERTY);
+    return findElementByCssSelector(ACTIVE_MODE_SELECTOR).getText();
   }
 
   public void clickOnProcessEditLink(int index) {
@@ -411,6 +417,10 @@ public class ProcessWidgetPage extends TemplatePage {
       for(WebElement webElement: webElements) {
         if(webElement.getText().equalsIgnoreCase(viewMode)) {
           webElement.click();
+          WaitHelper.assertTrueWithWait(() -> {
+            return findElementByCssSelector(ACTIVE_MODE_SELECTOR)
+                .getText().equalsIgnoreCase(viewMode);
+          });
           return;
         }
       }
