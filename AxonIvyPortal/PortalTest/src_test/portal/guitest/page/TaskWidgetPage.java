@@ -48,10 +48,10 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public void expand() {
-    waitForElementExisted("a[id$=':task-list-link:task-list-link']", true, 10);
+    WaitHelper.assertTrueWithWait(() -> isElementDisplayed(By.cssSelector("a[id$=':task-list-link:task-list-link']")));
     WebElement fullModeButton = findElementById(taskWidgetId + ":task-list-link:task-list-link");
     click(fullModeButton);
-    waitForElementExisted("[id$=':filter-save-action']", true, 10);
+    WaitHelper.assertTrueWithWait(() -> isElementDisplayed(By.cssSelector("[id$=':filter-save-action']")));
     waitForLocatorDisplayed("id('" + taskWidgetId + ":filter-save-action')");
   }
 
@@ -116,12 +116,13 @@ public class TaskWidgetPage extends TemplatePage {
     if (countTasks() == getExpectedNumberOfTasks(expectedNumberOfTasksAfterFiltering)) {
       return;
     }
+    var keywordFilter = findElementByCssSelector(KEYWORD_FILTER_SELECTOR);
+    keywordFilter.clear();
+    keywordFilter.click(); // To make Firefox more stable
+    keywordFilter.sendKeys(keyword);
     WaitHelper.assertTrueWithWait(() -> {
-      WebElement keywordFilter = findElementByCssSelector(KEYWORD_FILTER_SELECTOR);
-      keywordFilter.clear();
-      keywordFilter.click(); // To make Firefox more stable
-      keywordFilter.sendKeys(keyword);
-      return keywordFilter.getAttribute("value").equals(keyword);
+      var result = findElementByCssSelector(KEYWORD_FILTER_SELECTOR);
+      return result.getAttribute("value").equals(keyword);
     });
     waitForNumberOfTasks(expectedNumberOfTasksAfterFiltering);
   }
