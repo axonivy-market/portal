@@ -9,7 +9,6 @@ import org.openqa.selenium.Dimension;
 
 import ch.ivy.addon.portalkit.util.ScreenshotUtil;
 import portal.guitest.common.ScreenshotTest;
-import portal.guitest.common.Sleeper;
 import portal.guitest.page.HomePage;
 
 public class LayoutTemplateScreenshotTest extends ScreenshotTest {
@@ -23,12 +22,12 @@ public class LayoutTemplateScreenshotTest extends ScreenshotTest {
     
     redirectToRelativeLink(viewAlphaCompanyProcessHistoryUrl);
     homePage.waitUntilLayoutWrapperDisplayed();
-    Sleeper.sleep(500); // wait for Layout.js renders left menu
+    homePage.waitForLeftMenuActive();
     ScreenshotUtil.capturePageScreenshot(LAYOUT_FOLDER + "basic-template");
     
     redirectToRelativeLink(applicationShowcase);
     homePage.waitUntilLayoutWrapperDisplayed();
-    Sleeper.sleep(500); // wait for Layout.js renders left menu
+    homePage.waitForLeftMenuActive();
     ScreenshotUtil.capturePageScreenshot(LAYOUT_FOLDER + "task-template"); 
   }
 }

@@ -218,12 +218,13 @@ public class CaseWidgetPage extends TemplatePage {
 		ensureNoBackgroundRequest();
 	}
 
-  @SuppressWarnings("deprecation")
   public WebElement getSaveFilterDialog() {
     click(By.id(caseWidgetId + ":filter-save-action"));
-		waitAjaxIndicatorDisappear();
-		waitForElementDisplayed(By.id(caseWidgetId + ":filter-save-form:save-filter-set-name-input"), true);
-		return findElementById(caseWidgetId + ":save-filter-set-dialog");
+    var filterId = caseWidgetId + ":filter-save-action";
+    clickByCssSelector("[id$='" + filterId + "']");
+    waitForElementDisplayed(By.id(caseWidgetId + ":filter-save-form:save-filter-set-name-input"), true);
+    waitUntilAnimationFinished(DEFAULT_TIMEOUT, caseWidgetId + "\\\\:filter-save-form\\\\:save-filter-set-name-input", ID_PROPERTY);
+    return findElementById(caseWidgetId + ":save-filter-set-dialog");
   }
 
 	public String getFilterName() {
