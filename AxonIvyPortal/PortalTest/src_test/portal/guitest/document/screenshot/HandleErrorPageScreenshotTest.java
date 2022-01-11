@@ -10,7 +10,6 @@ import org.openqa.selenium.Dimension;
 
 import ch.ivy.addon.portalkit.util.ScreenshotUtil;
 import portal.guitest.common.ScreenshotTest;
-import portal.guitest.common.Sleeper;
 import portal.guitest.page.HomePage;
 
 public class HandleErrorPageScreenshotTest extends ScreenshotTest {
@@ -33,17 +32,17 @@ public class HandleErrorPageScreenshotTest extends ScreenshotTest {
     
     redirectToRelativeLink(showIvyErrorPageUrl);
     homePage.waitForElementDisplayed(By.className("exception-body"), true);
-    Sleeper.sleep(500); // wait for Layout.js renders left menu
+    homePage.waitForLeftMenuActive();
     ScreenshotUtil.capturePageScreenshot(ERROR_HANDLING_FOLDER + "default-ivy-error");
     
     redirectToRelativeLink(portalCustom404ErrorUrl);
     homePage.waitUntilErrorContainerDisplayed();
-    Sleeper.sleep(500); // wait for Layout.js renders left menu
+    homePage.waitForLeftMenuActive();
     ScreenshotUtil.capturePageScreenshot(ERROR_HANDLING_FOLDER + "404");
     
     redirectToRelativeLink(portalCustom500ErrorUrl);
     homePage.waitUntilErrorContainerDisplayed();
-    Sleeper.sleep(500); // wait for Layout.js renders left menu
+    homePage.waitForLeftMenuActive();
     ScreenshotUtil.capturePageScreenshot(ERROR_HANDLING_FOLDER + "500");
   }
 
