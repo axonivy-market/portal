@@ -1,50 +1,68 @@
 var invalidIFrameSrcPath = false;
 loadIframe();
-function loadIframe() {
+var recheckFrameTimer;
+function loadIframe(recheckIndicator) {
   var iframe = document.getElementById('iFrame');
-  const window = iframe.contentWindow;
-  if (window === undefined || window === null) {
-    console.log("The iframe content is undefined");
-    return;
+
+  if (!recheckIndicator) {
+    $(iframe).on('load', function() {
+      processIFrameData(iframe);
+      clearTimeout(recheckFrameTimer);
+      return;
+    });
   }
-  $(iframe).on('load', function() {
-    if (invalidIFrameSrcPath) {
-      invalidIFrameSrcPath = false;
+  else {
+    iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+    if (iframeDoc.readyState == 'complete') {
+      processIFrameData(iframe);
+      clearTimeout(recheckFrameTimer);
       return;
     }
+  }
 
-    getDataFromIFrame([{
-      name : 'currentProcessStep',
-      value : window.currentProcessStep
-    }, {
-      name : 'processSteps',
-      value : window.processSteps
-    }, {
-      name : 'isShowAllSteps',
-      value : window.isShowAllSteps
-    }, {
-      name : 'isHideCaseInfo',
-      value : window.isHideCaseInfo
-    }, {
-      name : 'isHideTaskName',
-      value : window.isHideTaskName
-    }, {
-      name : 'isHideTaskAction',
-      value : window.isHideTaskAction
-    }, {
-      name : 'isWorkingOnATask',
-      value : window.isWorkingOnATask
-    }, {
-      name : 'processChainDirection',
-      value : window.processChainDirection
-    }, {
-      name : 'processChainShape',
-      value : window.processChainShape
-    }, {
-      name : 'announcementInvisible',
-      value : window.announcementInvisible
-    }]);
-  });
+  recheckFrameTimer = setTimeout(() => {
+    loadIframe(true);
+  }, 500);
+}
+
+function processIFrameData(iframe) {
+  var window = iframe.contentWindow;
+  if (invalidIFrameSrcPath) {
+    invalidIFrameSrcPath = false;
+    return;
+  }
+
+  getDataFromIFrame([{
+    name : 'currentProcessStep',
+    value : window.currentProcessStep
+  }, {
+    name : 'processSteps',
+    value : window.processSteps
+  }, {
+    name : 'isShowAllSteps',
+    value : window.isShowAllSteps
+  }, {
+    name : 'isHideCaseInfo',
+    value : window.isHideCaseInfo
+  }, {
+    name : 'isHideTaskName',
+    value : window.isHideTaskName
+  }, {
+    name : 'isHideTaskAction',
+    value : window.isHideTaskAction
+  }, {
+    name : 'isWorkingOnATask',
+    value : window.isWorkingOnATask
+  }, {
+    name : 'processChainDirection',
+    value : window.processChainDirection
+  }, {
+    name : 'processChainShape',
+    value : window.processChainShape
+  }, {
+    name : 'announcementInvisible',
+    value : window.announcementInvisible
+  }]);
 }
 
 function checkUrl(iFrame) {
