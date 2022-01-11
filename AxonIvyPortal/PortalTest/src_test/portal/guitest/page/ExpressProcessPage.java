@@ -34,7 +34,6 @@ public class ExpressProcessPage extends TemplatePage {
   private void selectCheckbox(String forAttribute) {
 		WebElement checkboxLabel = findElementByXpath(String.format("//label[@for='%s']", forAttribute));
 		click(checkboxLabel);
-		waitUntilAnimationFinished(DEFAULT_TIMEOUT, checkboxLabel.getAttribute(CLASS_PROPERTY), CLASS_PROPERTY);
 	}
 
   public void createTask(int taskIndex, int typeIndex, String taskName, String taskDescription,
