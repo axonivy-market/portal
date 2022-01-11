@@ -829,17 +829,18 @@ public class TaskWidgetPage extends TemplatePage {
     return findElementByCssSelector("label[id$='task-widget:sort-task-form:sort-task-menu_label']").getText();
   }
 
-  @SuppressWarnings("deprecation")
   public WebElement getSaveFilterDialog() {
-    click(By.id(taskWidgetId + ":filter-save-action"));
-    waitAjaxIndicatorDisappear();
+    var filterId = taskWidgetId + ":filter-save-action";
+    clickByCssSelector("[id$='" + filterId + "']");
     waitForElementDisplayed(By.id(taskWidgetId + ":filter-save-form:save-filter-set-name-input"), true);
+    waitUntilAnimationFinished(DEFAULT_TIMEOUT, "task-widget\\\\:filter-save-form\\\\:save-filter-set-name-input", ID_PROPERTY);
     return findElementById(taskWidgetId + ":save-filter-set-dialog");
   }
 
   public void clickColumnsButton() {
     clickByCssSelector("[id$='task-widget:task-columns-configuration:task-config-command']");
     waitForElementDisplayedByCssSelector("label[for$=':columns-checkbox:3']");
+    waitUntilAnimationFinished(DEFAULT_TIMEOUT, "ajax-indicator\\\\:ajax-indicator-ajax-indicator_start", ID_PROPERTY);
   }
 
   @SuppressWarnings("deprecation")
