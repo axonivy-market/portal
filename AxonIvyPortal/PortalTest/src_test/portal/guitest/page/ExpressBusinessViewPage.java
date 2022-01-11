@@ -1,6 +1,5 @@
 package portal.guitest.page;
 
-import java.util.List;
 import java.util.stream.Collectors;
 
 import org.openqa.selenium.By;
@@ -51,15 +50,16 @@ public class ExpressBusinessViewPage extends TaskTemplatePage {
   }
 
   public Integer getIndexOfCurrentProcessChain() {
+    waitForElementDisplayed(By.cssSelector("div.process-chain-container.vertical-chain-shape-line"), true);
+    waitUntilAnimationFinished(DEFAULT_TIMEOUT, "line-horizontal-step-container", CLASS_PROPERTY);
     WebElement processChainContainer = findElementByCssSelector("[id$='process-chain-component:process-chain-component-id']");
-    List<WebElement> steps = processChainContainer.findElements(By.cssSelector("div[id^='process-chain-component:step-info-']"));
-    for (WebElement step :steps) {
-      if (step.getAttribute("class").contains("current")) {
+    for (var step : processChainContainer.findElements(By.cssSelector("div[id^='process-chain-component:step-info-']"))) {
+      if (step.getAttribute(CLASS_PROPERTY).contains("current")) {
         String stepId = step.getAttribute("id");
         return Integer.valueOf(stepId.replace("process-chain-component:step-info-", "").trim()).intValue();
       }
     }
-    return null;
+    return 0;
   }
 
 }

@@ -1,5 +1,7 @@
 package portal.guitest.page;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -100,9 +102,13 @@ public class HomePage extends TemplatePage {
 	public WebElement getProcessWidgetElement() {
 	  return findElementById("process-widget");
 	}
-	
-	public WebElement getTaskWidgetElement() {
-	  return findElementById("task-widget");
-	}
-	
+
+  public WebElement getTaskWidgetElement() {
+    waitForElementDisplayed(By.id("task-widget"), true);
+    WaitHelper.assertTrueWithWait(() -> {
+      List<WebElement> taskElements = findListElementsByCssSelector("div[class*='task-start-list-item']");
+      return taskElements.size() != 0;
+    });
+    return findElementById("task-widget");
+  }
 }
