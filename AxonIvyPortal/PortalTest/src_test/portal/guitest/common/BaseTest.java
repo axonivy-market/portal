@@ -289,8 +289,15 @@ public class BaseTest {
 
   
   public void executeDecorateJs(String function) {
-    ((JavascriptExecutor) getBrowser().getDriver()).executeScript(function);
-    Sleeper.sleep(200);
+    var jsExecutor = (JavascriptExecutor) getBrowser().getDriver();
+    try {
+      jsExecutor.executeScript(function);
+    } catch (Exception e) {
+      // In case `ReferenceError: js function is not defined` then try again
+      Sleeper.sleep(2000);
+      jsExecutor.executeScript(function);
+    }
+    Sleeper.sleep(200); // Wait for JS executed successfully
   }
 
   public void updatePortalSettingToShowLegacyUI() {

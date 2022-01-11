@@ -23,12 +23,11 @@ public class AbsencePage extends TemplatePage {
 		return "id('absences-management-form')";
 	}
 
-	@SuppressWarnings("deprecation")
   public NewAbsencePage openNewAbsenceDialog() {
 		String selector = "button[id*='add-absence']";
 		waitForElementDisplayed(By.cssSelector(selector), true);
 		clickByCssSelector(selector);
-		waitAjaxIndicatorDisappear();
+		waitUntilAnimationFinished(DEFAULT_TIMEOUT, "absence-form\\\\:absence-start-date_input", ID_PROPERTY);
 		return new NewAbsencePage();
 	}
 
