@@ -161,18 +161,18 @@ public class ExpressFormDefinitionPage extends TemplatePage {
 	}
 
   private void moveFormElementToPanel(int index, String position) {
-    WebElement formElement = findElementById(String.format("form:available-form-elements:%d:pnl_content", index));
+    var formElementSelector = String.format("[id$='form:available-form-elements:%d:pnl_content']", index);
     // If elements is FileUpload, move to footer
-    if (formElementIsFileUpload(formElement)) {
+    if (formElementIsFileUpload(findElementByCssSelector(formElementSelector))) {
       position = FOOTER_POSITION;
     }
     var panelId = String.format("form:selected-form-elements-%s-panel", position);
     waitForElementDisplayed(By.id(panelId), true);
     // this click to fix bug can't drag on IE
-    formElement.click();
+    clickByCssSelector(formElementSelector);
     WebElement panel = findElementById(panelId);
     Actions builder = new Actions(driver);
-    Action moveProcessSequence = builder.dragAndDrop(formElement, panel).build();
+    Action moveProcessSequence = builder.dragAndDrop(findElementByCssSelector(formElementSelector), panel).build();
     moveProcessSequence.perform();
     WaitHelper.assertTrueWithWait(() -> {
       var dropPanel = findElementById(panelId);
