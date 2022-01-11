@@ -13,8 +13,8 @@ import ch.ivy.addon.portalkit.util.ScreenshotUtil;
 import portal.guitest.bean.ExpressResponsible;
 import portal.guitest.common.FileHelper;
 import portal.guitest.common.ScreenshotTest;
-import portal.guitest.common.Sleeper;
 import portal.guitest.common.TestAccount;
+import portal.guitest.common.WaitHelper;
 import portal.guitest.page.AdminSettingsPage;
 import portal.guitest.page.CaseWidgetPage;
 import portal.guitest.page.ExpressBusinessViewPage;
@@ -53,12 +53,7 @@ public class PortalExpressScreenshotTest extends ScreenshotTest {
     newDashboardPage = new NewDashboardPage();
     newDashboardPage.openMainMenu();
     ScreenshotUtil.resizeBrowser(new Dimension(1400, 500));
-    try {
-      executeDecorateJs("highlightShowAllProcesses()");
-    } catch (Exception e) { // if error `ReferenceError: highlightShowAllProcesses is not defined`, then try again
-      Sleeper.sleep(2000);
-      executeDecorateJs("highlightShowAllProcesses()");
-    }
+    executeDecorateJs("highlightShowAllProcesses()");
     ScreenshotUtil.captureHalfLeftPageScreenShot(ScreenshotUtil.EXPRESS_FOLDER + "navigate-to-axon-ivy-express");
   }
   
@@ -92,22 +87,21 @@ public class PortalExpressScreenshotTest extends ScreenshotTest {
     executeDecorateJs("highlightExpressTaskResponsible(1)");
     WebElement taskStep2 = expressProcessPage.getDefineTaskStep(1);
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(taskStep2, ScreenshotUtil.EXPRESS_FOLDER + "express-task-responsible", new ScreenshotMargin(20, 20, 0, 20));
-    
-    ScreenshotUtil.resizeBrowser(new Dimension(1100, 1100));
+
     refreshPage();
+    ScreenshotUtil.resizeBrowser(new Dimension(1100, 1100));
     expressProcessPage.waitUntilExpressProcessDisplay();
-    Sleeper.sleep(500);
+    WaitHelper.assertTrueWithWait(() -> ScreenshotUtil.isDOMStatusComplete());
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.EXPRESS_FOLDER + "define-express-workflow-process-steps");
     
     ScreenshotUtil.resizeBrowser(new Dimension(1100, 1100));
     ExpressFormDefinitionPage formDefinition = expressProcessPage.goToFormDefinition();
     formDefinition.switchToCheckBoxTab();
-    Sleeper.sleep(300);
     ScreenshotUtil.captureHalfTopPageScreenShot(ScreenshotUtil.EXPRESS_FOLDER + "express-workflow");
     
     formDefinition.createUploadComponent("Upload");
     formDefinition.moveAllElementToDragAndDrogPanel();
-    Sleeper.sleep(500);
+    formDefinition.waitForLeftMenuActive();
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.EXPRESS_FOLDER + "express-workflow-dialog-editor");
   }
   
@@ -159,8 +153,6 @@ public class PortalExpressScreenshotTest extends ScreenshotTest {
     WebElement importDialogResult = expressManagementPage.getImportExpressDialog();
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(importDialogResult, ScreenshotUtil.EXPRESS_MANAGEMENT_FOLDER + "deployment-result", new ScreenshotMargin(40));
     expressManagementPage.clickOnCloseButton();
-    
-    Sleeper.sleep(500);
     expressManagementPage.clickOnSelectAllExpresses();
     executeDecorateJs("highlightExportExpress()");
     WebElement adminDialog = adminSettingsPage.getAdminSettingDialog();
@@ -193,7 +185,7 @@ public class PortalExpressScreenshotTest extends ScreenshotTest {
     expressBusinessView.clickOnLegendOfFieldset(1);
     expressBusinessView.clickOnLegendOfFieldset(2);
     expressBusinessView.closeMainMenu();
-    Sleeper.sleep(500); // wait for js of fieldSet executed
+    expressBusinessView.waitForLeftMenuActive();
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.EXPRESS_FOLDER + "express-business-summary");
   }
 

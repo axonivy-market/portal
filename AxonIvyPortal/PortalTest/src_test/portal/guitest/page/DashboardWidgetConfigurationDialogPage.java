@@ -39,6 +39,9 @@ public class DashboardWidgetConfigurationDialogPage extends TemplatePage {
     waitForElementDisplayed(By.id(manageColumnLinkId), true);
     findElementById(manageColumnLinkId).click();
     waitForElementDisplayed(By.id(MANAGE_COLUMN_DIALOG_ID), true);
+    waitUntilAnimationFinished(DEFAULT_TIMEOUT,
+        "widget-configuration-form\\\\:new-widget-configuration-component\\\\:column-management-component\\\\:column-management-form\\\\:field-type-selection",
+        ID_PROPERTY);
     return findElementById(MANAGE_COLUMN_DIALOG_ID);
   }
 
@@ -74,11 +77,13 @@ public class DashboardWidgetConfigurationDialogPage extends TemplatePage {
 
   public WebElement getConfigurationDialog() {
     waitForElementDisplayed(By.id(CONFIGURATION_DIALOG_ID), true);
+    waitUntilAnimationFinished(DEFAULT_TIMEOUT, "ajax-indicator\\\\:ajax-indicator-ajax-indicator_start", ID_PROPERTY);
     return findElementById(CONFIGURATION_DIALOG_ID);
   }
 
   public WebElement getConfigurationFilter() {
     waitForElementDisplayed(By.id(CONFIGURATION_FILTER_ID), true);
+    waitUntilAnimationFinished(DEFAULT_TIMEOUT, "widget-configuration-form\\\\:new-widget-configuration-component\\\\:widget-title", ID_PROPERTY);
     return findElementById(CONFIGURATION_FILTER_ID);
   }
 
@@ -153,6 +158,7 @@ public class DashboardWidgetConfigurationDialogPage extends TemplatePage {
   
   public void waitForCompactProcessLoadedAfterClickPreview() {
     waitForElementDisplayed(By.cssSelector("form[id$=':process-list'] .process-start-list-item"), true);
+    waitUntilAnimationFinished(DEFAULT_TIMEOUT, "ajax-indicator\\\\:ajax-indicator-ajax-indicator_start", ID_PROPERTY);
     waitUntilAnimationFinished(45, "process-start-list-item", "class");
   }
 
