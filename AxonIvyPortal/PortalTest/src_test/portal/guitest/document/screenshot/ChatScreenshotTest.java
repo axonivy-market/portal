@@ -11,7 +11,6 @@ import org.openqa.selenium.Dimension;
 import ch.ivy.addon.portalkit.util.ScreenshotMargin;
 import ch.ivy.addon.portalkit.util.ScreenshotUtil;
 import portal.guitest.common.ScreenshotTest;
-import portal.guitest.common.Sleeper;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.ChatPage;
 import portal.guitest.page.HomePage;
@@ -39,13 +38,12 @@ public class ChatScreenshotTest extends ScreenshotTest {
     ScreenshotUtil.captureHalfTopRightPageScreenShot(ScreenshotUtil.CHAT_FOLDER + "access-chat");
     TaskWidgetPage taskWidgetPage = newDashboardPage.openTaskList();
     TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
-    Sleeper.sleep(3000);//wait for chat service initialize
+    taskTemplatePage.waitForChatServiceReady();
     taskTemplatePage.clickTaskActionMenu();
     executeDecorateJs("highlightJoinGroupChatOption()");
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.CHAT_FOLDER + "create-new-group-chat");
     
     taskTemplatePage.clickChatGroup(false);
-    Sleeper.sleep(3000);//wait for focus animation finish to capture screenshot
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(taskTemplatePage.getAddMemberToChatDialog(), ScreenshotUtil.CHAT_FOLDER + "chat-group-assignee", new ScreenshotMargin(20));
     taskTemplatePage.clickCreateGroupChatBtn();
     

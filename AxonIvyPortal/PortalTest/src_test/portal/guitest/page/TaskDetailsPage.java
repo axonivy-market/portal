@@ -140,6 +140,7 @@ public class TaskDetailsPage extends TemplatePage {
   public void openAddNoteDialog() {
     findElementByCssSelector("[id$=':task-notes:add-note-command']").click();
     waitForElementDisplayed(By.cssSelector("[id$=':task-notes:add-new-note-dialog']"), true);
+    waitUntilAnimationFinished(DEFAULT_TIMEOUT, "ui-inputfield.ui-inputtextarea.note-content-textarea", CLASS_PROPERTY);
   }
 
   public WebElement getAddNoteDialog() {
@@ -149,6 +150,7 @@ public class TaskDetailsPage extends TemplatePage {
   public void openAddAttachmentDialog() {
     findElementByCssSelector("[id$=':task-documents:add-document-command']").click();
     waitForElementDisplayed(By.cssSelector("[id$=':task-documents:document-upload-dialog']"), true);
+    waitUntilAnimationFinished(DEFAULT_TIMEOUT, "ui-dialog.document-upload-dialog", CLASS_PROPERTY);
   }
 
   @SuppressWarnings("deprecation")
@@ -193,6 +195,7 @@ public class TaskDetailsPage extends TemplatePage {
   }
   
   public WebElement getResetButtonElement() {
+    waitForElementDisplayed(By.cssSelector("[id$=':reset-details-settings-button']"), true);
     return findElementByCssSelector("[id$=':reset-details-settings-button']");
   }
 
@@ -378,6 +381,10 @@ public class TaskDetailsPage extends TemplatePage {
   public void clickOnSwitchToEditModeButton() {
     waitForElementDisplayed(By.cssSelector("[id$=':switch-to-edit-mode-button']"), true);
     click(By.cssSelector("[id$=':switch-to-edit-mode-button']"));
+    WaitHelper.assertTrueWithWait(() -> {
+      var infoWidget = findElementByCssSelector("[id$='task-details-information-panel']");
+      return infoWidget.getAttribute(CLASS_PROPERTY).contains("ui-resizable ui-resizable-autohide");
+    });
   }
 
   public void waitForSwitchToViewModeButtonDisplayed() {
@@ -397,6 +404,10 @@ public class TaskDetailsPage extends TemplatePage {
     Actions actions = new Actions(driver);
     Action moveWidget = actions.dragAndDrop(sourceElement, destinationElement).build();
     moveWidget.perform();
+    WaitHelper.assertTrueWithWait(() -> {
+      var taskDetails = findElementByCssSelector("[id$='task-detail-template:task-details-widgets']");
+      return !taskDetails.getAttribute(CLASS_PROPERTY).contains("ui-droppable-over");
+    });
   }
 
   public void waitForResetButtonDisplayed() {

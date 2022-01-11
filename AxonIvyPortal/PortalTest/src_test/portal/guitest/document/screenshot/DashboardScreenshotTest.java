@@ -17,8 +17,8 @@ import org.openqa.selenium.WebElement;
 import ch.ivy.addon.portalkit.util.ScreenshotMargin;
 import ch.ivy.addon.portalkit.util.ScreenshotUtil;
 import portal.guitest.common.ScreenshotTest;
-import portal.guitest.common.Sleeper;
 import portal.guitest.common.TestAccount;
+import portal.guitest.common.WaitHelper;
 import portal.guitest.page.DashboardWidgetConfigurationDialogPage;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.NewDashboardPage;
@@ -49,7 +49,7 @@ public class DashboardScreenshotTest extends ScreenshotTest {
     ScreenshotUtil.resizeBrowser(new Dimension(1200, 800));
     updatePortalSetting(SHOW_USER_GUIDE.getKey(), "true");
     homePage = new HomePage();
-    Sleeper.sleep(500); // wait for js calculate resize event
+    homePage.waitForLeftMenuActive();
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.DASHBOARD_FOLDER + "overlay-guide");
   }
   
@@ -59,7 +59,6 @@ public class DashboardScreenshotTest extends ScreenshotTest {
     showNewDashboard();
     newDashboardPage = new NewDashboardPage();
     ScreenshotUtil.resizeBrowser(new Dimension(1200, 500));
-    Sleeper.sleep(500); // wait for js render scrollbar
     executeDecorateJs("highlightServerInfo()");
     ScreenshotUtil.captureHalfRightPageScreenShot(ScreenshotUtil.DASHBOARD_FOLDER + "environment-info");
   }
@@ -71,7 +70,6 @@ public class DashboardScreenshotTest extends ScreenshotTest {
     ScreenshotUtil.captureElementScreenshot(homePage.getProcessWidgetElement(), ScreenshotUtil.DASHBOARD_FOLDER + "process-widget");
     ScreenshotUtil.captureElementScreenshot(homePage.getStatisticWidgetElement(), ScreenshotUtil.DASHBOARD_FOLDER + "statistic-widget");
     ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_HD_WIDTH, 800));
-    Sleeper.sleep(500); // wait for js calculate height of task widget done
     ScreenshotUtil.captureElementScreenshot(homePage.getTaskWidgetElement(), ScreenshotUtil.DASHBOARD_FOLDER + "task-widget");
   }
   
@@ -162,35 +160,35 @@ public class DashboardScreenshotTest extends ScreenshotTest {
     updatePortalSetting(SHOW_LEGACY_UI .getKey(), "false");
     showNewDashboard();
     newDashboardPage = new NewDashboardPage();
-
-    Sleeper.sleep(3000); // wait for js calculate resize event
+    newDashboardPage.waitForTaskWidgetLoading();
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.NEW_DASHBOARD_FOLDER + "dashboard");
 
     // Take screenshot of widget filter panel
     newDashboardPage.clickWidgetFilter(0);
     newDashboardPage.findElementByCssSelector("input[id$=':filter-form-0:search-saved-filter-input']").click();
     WebElement taskFilterOverlayPanel = newDashboardPage.getFilterOverlayPanel(0);
-    ScreenshotUtil.captureElementScreenshot(taskFilterOverlayPanel, ScreenshotUtil.NEW_DASHBOARD_FOLDER + "widget-filter");
+    ScreenshotUtil.captureElementWithMarginOptionScreenshot(taskFilterOverlayPanel, ScreenshotUtil.NEW_DASHBOARD_FOLDER + "widget-filter", new ScreenshotMargin(20));
     taskFilterOverlayPanel.findElement(By.className("ui-overlaypanel-footer__cancel")).click();
 
     // Take screenshot of widget info panel
     newDashboardPage.clickWidgetInfo(0);
     WebElement taskInfoOverlayPanel = newDashboardPage.getInfoOverlayPanel(0);
     taskInfoOverlayPanel.findElement(By.className("widget-infor-type--label")).click();
-    Sleeper.sleep(2000); // wait for remote commmand run successfully
-    ScreenshotUtil.captureElementScreenshot(taskInfoOverlayPanel, ScreenshotUtil.NEW_DASHBOARD_FOLDER + "widget-info");
+    newDashboardPage.waitForWidgetInfoLoading(taskInfoOverlayPanel);
+    ScreenshotUtil.captureElementWithMarginOptionScreenshot(taskInfoOverlayPanel, ScreenshotUtil.NEW_DASHBOARD_FOLDER + "widget-info", new ScreenshotMargin(20));
     taskInfoOverlayPanel.findElement(By.className("info-overlay-panel__footer")).findElement(By.className("ui-link")).click();
 
     // Take screenshot of Edit dashboard page
     redirectToEditDashboard();
     newDashboardPage.waitForElementDisplayed(By.id("switch-to-view-mode"), true);
-    Sleeper.sleep(2000); // wait for remote commmand run successfully
+    WaitHelper.assertTrueWithWait(() -> ScreenshotUtil.isDOMStatusComplete());
+    newDashboardPage.waitForTaskWidgetLoading();
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.NEW_DASHBOARD_FOLDER + "edit-widget");
 
     // Take screenshot of Add new widget dialog
     newDashboardPage.clickAddWidget();
     WebElement newWidgetDialog = newDashboardPage.getAddWidgetDialog();
-    ScreenshotUtil.captureElementScreenshot(newWidgetDialog, ScreenshotUtil.NEW_DASHBOARD_FOLDER + "add-widget");
+    ScreenshotUtil.captureElementWithMarginOptionScreenshot(newWidgetDialog, ScreenshotUtil.NEW_DASHBOARD_FOLDER + "add-widget", new ScreenshotMargin(40));
 
     // Take screenshots of Task widget configuration dialog
     newWidgetDialog.findElement(By.id("new-widget-dialog-content:0:add-widget")).click();
@@ -206,7 +204,6 @@ public class DashboardScreenshotTest extends ScreenshotTest {
     // Take screenshots of Case widget configuration dialog
     newDashboardPage.clickAddWidget();
     newWidgetDialog = newDashboardPage.getAddWidgetDialog();
-    Sleeper.sleep(1000); // wait for remote commmand run successfully
     newWidgetDialog.findElement(By.id("new-widget-dialog-content:1:add-widget")).click();
     configurationDialogPage = new DashboardWidgetConfigurationDialogPage();
     ScreenshotUtil.captureElementScreenshot(configurationDialogPage.getConfigurationFilter(), ScreenshotUtil.NEW_DASHBOARD_FOLDER + "case-list-widget-configuration");
@@ -220,7 +217,6 @@ public class DashboardScreenshotTest extends ScreenshotTest {
     // Take screenshot of Process widget configuration dialog
     newDashboardPage.clickAddWidget();
     newWidgetDialog = newDashboardPage.getAddWidgetDialog();
-    Sleeper.sleep(1000); // wait for remote commmand run successfully
     newWidgetDialog.findElement(By.id("new-widget-dialog-content:2:add-widget")).click();
     configurationDialogPage = new DashboardWidgetConfigurationDialogPage();
 
@@ -237,7 +233,6 @@ public class DashboardScreenshotTest extends ScreenshotTest {
     configurationDialogPage.selectProcessesForCompactProcessWidget(null);
     configurationDialogPage.clickPreviewButton();
     configurationDialogPage.waitForCompactProcessLoadedAfterClickPreview();
-    Sleeper.sleep(2000);
     ScreenshotUtil.captureElementScreenshot(configurationDialogPage.getConfigurationDialog(), ScreenshotUtil.NEW_DASHBOARD_FOLDER + "process-widget-compact-mode");
 
     // Full mode
