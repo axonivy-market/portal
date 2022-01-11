@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -156,7 +157,7 @@ public class SubstituteService implements ISubstituteService {
     for (IvySubstitute ivySubstitute : substitutes) {
       if (ivySubstitute.getSubstituteUser() != null) {
         IUser iUser = ServiceUtilities.findUser(ivySubstitute.getSubstituteUser().getName(), application);
-        user.createSubstitute(iUser, ivySubstitute.getSubstitionRole(), ivySubstitute.getDescription());
+        user.createSubstitute(iUser, ivySubstitute.getSubstitionRole(), Optional.ofNullable(ivySubstitute.getDescription()).orElse(""));
       }
     }
   }
