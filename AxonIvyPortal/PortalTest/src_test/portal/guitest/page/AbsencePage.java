@@ -5,6 +5,9 @@ import org.openqa.selenium.WebElement;
 
 public class AbsencePage extends TemplatePage {
 
+  private static final String DELETE_ABSENCE_ID_PATTERN = "absence-settings:absence-form:absence-table:%d:delete-absence";
+  private static final String EDIT_ABSENCE_ID_PATTERN = "absence-settings:absence-form:absence-table:%d:edit-absence";
+
   @Override
   protected String getLoadedLocator() {
     return "id('absence-settings-dialog_title')";
@@ -38,4 +41,12 @@ public class AbsencePage extends TemplatePage {
     return new SettingDeputyPage();
   }
 
+  public boolean canDeleteAbsence(int index) {
+    waitAjaxIndicatorDisappear();
+    return findElementById(String.format(DELETE_ABSENCE_ID_PATTERN, index)).isDisplayed();
+  }
+
+  public boolean canEditAbsence(int index) {
+    return findElementById(String.format(EDIT_ABSENCE_ID_PATTERN, index)).isDisplayed();
+  }
 }
