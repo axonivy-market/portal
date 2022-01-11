@@ -9,6 +9,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 
+import portal.guitest.common.WaitHelper;
 import vn.wawa.guitest.base.client.Browser;
 
 public class ExpressFormDefinitionPage extends TemplatePage {
@@ -64,14 +65,18 @@ public class ExpressFormDefinitionPage extends TemplatePage {
 		waitAjaxIndicatorDisappear();
 		ensureNoBackgroundRequest();
 	}
-	
-	@SuppressWarnings("deprecation")
+
   public void switchToCheckBoxTab() {
-	  click(By.xpath("//*[@id='form:create-tabs']/ul/li[3]"));
-    ensureNoBackgroundRequest();
+    waitForElementDisplayed(By.xpath("//*[@id='form:create-tabs']/ul/li[3]"), true);
+    click(By.xpath("//*[@id='form:create-tabs']/ul/li[3]"));
+    WaitHelper.assertTrueWithWait(() -> {
+      var checkboxTab = findElementByXpath("//*[@id='form:create-tabs']/ul/li[3]");
+      return checkboxTab.getAttribute(CLASS_PROPERTY).contains("ui-state-active");
+    });
+    waitUntilAnimationFinished(DEFAULT_TIMEOUT, "ui-tabs-header.ui-tabs-selected.ui-state-active", CLASS_PROPERTY);
     waitForElementDisplayed(By.id("form:create-tabs:many-checkbox-options"), true, TIME_OUT);
-	}
-	
+  }
+
 	@SuppressWarnings("deprecation")
   public void createCheckboxFieldWithDataProvider(String label) {
 		fillDataForCheckboxProvider(label);
@@ -155,22 +160,25 @@ public class ExpressFormDefinitionPage extends TemplatePage {
 		}
 	}
 
-	@SuppressWarnings("deprecation")
   private void moveFormElementToPanel(int index, String position) {
-		WebElement formElement = findElementById(String.format("form:available-form-elements:%d:pnl_content", index));
-		// If elements is FileUpload, move to footer
-		if (formElementIsFileUpload(formElement)) {
-			position = FOOTER_POSITION;
-		}
-		waitForElementDisplayed(By.id(String.format("form:selected-form-elements-%s-panel", position)), true);
-		//this click to fix bug can't drag on IE
-		formElement.click();
-		WebElement panel = findElementById(String.format("form:selected-form-elements-%s-panel", position));
-		Actions builder = new Actions(driver);
-		Action moveProcessSequence = builder.dragAndDrop(formElement, panel).build();
-	  	moveProcessSequence.perform();
-		waitAjaxIndicatorDisappear();
-	}
+    WebElement formElement = findElementById(String.format("form:available-form-elements:%d:pnl_content", index));
+    // If elements is FileUpload, move to footer
+    if (formElementIsFileUpload(formElement)) {
+      position = FOOTER_POSITION;
+    }
+    var panelId = String.format("form:selected-form-elements-%s-panel", position);
+    waitForElementDisplayed(By.id(panelId), true);
+    // this click to fix bug can't drag on IE
+    formElement.click();
+    WebElement panel = findElementById(panelId);
+    Actions builder = new Actions(driver);
+    Action moveProcessSequence = builder.dragAndDrop(formElement, panel).build();
+    moveProcessSequence.perform();
+    WaitHelper.assertTrueWithWait(() -> {
+      var dropPanel = findElementById(panelId);
+      return !dropPanel.getAttribute(CLASS_PROPERTY).contains("ui-droppable-hover");
+    });
+  }
 
 	private String getRandomPosition() {
 		int idx = new Random().nextInt(POSITIONS.length);
