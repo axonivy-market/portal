@@ -175,7 +175,6 @@ Filter case by owner in case list and task analysis if case owner is enabled.
 .. |detailed-task-information| image:: ../../screenshots/task-detail/detailed-task-information.png
 .. |case-details| image:: ../../screenshots/case-detail/case-details.png
 .. |my-profile-save| image:: ../../screenshots/my-profile/my-profile.png
-.. |task-filter-missing-activator| image:: ../../screenshots/task/task-filter-missing-activator.png
 .. |customizable-dashboard| image:: images/customizable-dashboard.png
 .. |default-widgets| image:: images/default-widgets.png
 .. |default-widgets-configuration| image:: images/default-widgets-configuration.png

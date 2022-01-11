@@ -3,6 +3,7 @@ package ch.ivy.addon.portalkit.dto.dashboard.process;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -73,7 +74,10 @@ public class CategoryColumnModel extends ProcessColumnModel implements Serializa
     if (dashboardProcessBean != null) {
       List<DashboardProcess> processes = filterByCategory(dashboardProcessBean);
       dashboardProcessBean.setPortalCompactProcesses(processes);
-      dashboardProcessBean.getWidget().setProcesses(null);
+      if (!Objects.isNull(dashboardProcessBean.getWidget())
+          && CollectionUtils.isNotEmpty(dashboardProcessBean.getWidget().getProcesses())) {
+        dashboardProcessBean.getWidget().setProcesses(null);
+      }
     }
   }
 

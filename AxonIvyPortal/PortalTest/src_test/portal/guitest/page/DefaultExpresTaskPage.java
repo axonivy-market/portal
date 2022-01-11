@@ -10,7 +10,10 @@ public class DefaultExpresTaskPage extends TaskTemplatePage{
   }
   
   public void enterTextToDefaultTask(String text) {
-    type(By.cssSelector("#form\\:user-task-dyna-form textarea[id$='input-text-area']"), text);
+    var textArea = findElementByCssSelector("#form\\:user-task-dyna-form textarea[id$='input-text-area']");
+    type(textArea, text);
+    var textAreaId = textArea.getAttribute(ID_PROPERTY);
+    waitUntilAnimationFinished(DEFAULT_TIMEOUT, textAreaId.replace(":", "\\\\:"), ID_PROPERTY);
   }
   
   public void finishDefaultTask() {

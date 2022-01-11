@@ -41,7 +41,7 @@
                       </p:column>
                       <f:facet name="event">
                         <p:ajax event="itemSelect" listener="#{logic.findAbsencesAndSubstitutes}" partialSubmit="true"
-                          update="@(.absence-table) @(.substitute-table) @(.substitution-table)" />
+                          update="@(.absence-table) @(.substitute-table) @(.substitution-table) absences-management-form" />
                       </f:facet>
                     </ic:ch.ivy.addon.portalkit.component.UserSelection>
                   </div>
@@ -133,7 +133,7 @@
           </div>
 
           <!-- Deputy setting card -->
-          <div class="ui-g-12" id="substitue" jsf:rendered="#{absenceManagementBean.substitutionCapable}">
+          <div class="ui-g-12" id="deputy-setting" jsf:rendered="#{absenceManagementBean.canReadSubstitute(data.selectedAbsenceUser)}">
             <div class="ui-g portal-section-container card">
               <div class="ui-g-12">
                 <div class="setting-header ui-g-12 u-no-padding-bottom">
@@ -167,7 +167,8 @@
                           <p:commandLink id="selected-deputies-link" immediate="true" styleClass="task-responsible-link"
                             value="#{not empty deputiesDisplayNames ? deputiesDisplayNames : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/noDeputy')}"
                             actionListener="#{logic.initSelectedDeputies(deputyRole)}" oncomplete="PF('choose-deputy-dialog').show();"
-                            update="deputy-selection-form:deputy-selection-panel" global="false">
+                            update="deputy-selection-form:deputy-selection-panel" global="false"
+                            disabled="#{!absenceManagementBean.canCreateSubstitute(data.selectedAbsenceUser)}">
                             <i class="si si-notes-quill" />
                           </p:commandLink>
                         </div>
@@ -180,7 +181,7 @@
           </div>
 
           <!-- Deputy-For setting card -->
-          <div class="ui-g-12" id="substitue" jsf:rendered="#{absenceManagementBean.substitutionCapable}">
+          <div class="ui-g-12" id="substitute" jsf:rendered="#{absenceManagementBean.substitutionCapable}">
             <div class="ui-g portal-section-container card">
               <div id="deputy-for-container" class="ui-g-12">
                 <div class="setting-header ui-g-12 u-no-padding-bottom">
@@ -239,8 +240,9 @@
               type="button"
               rendered="#{!absenceManagementBean.substitutionCapable}"
               icon="#{visibilityBean.generateButtonIcon('si si-remove')}"
-              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
-              actionListener="#{logic.backToHome()}" />
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}">
+              <p:ajax event="click" listener="#{logic.backToHome()}" global="false" />
+            </p:commandButton>
           </div>
         </div>
       </h:form>
