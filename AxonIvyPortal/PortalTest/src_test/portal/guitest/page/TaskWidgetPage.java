@@ -48,10 +48,10 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public void expand() {
-    waitForElementExisted("a[id$=':task-list-link:task-list-link']", true, 10);
+    WaitHelper.assertTrueWithWait(() -> isElementDisplayed(By.cssSelector("a[id$=':task-list-link:task-list-link']")));
     WebElement fullModeButton = findElementById(taskWidgetId + ":task-list-link:task-list-link");
     click(fullModeButton);
-    waitForElementExisted("[id$=':filter-save-action']", true, 10);
+    WaitHelper.assertTrueWithWait(() -> isElementDisplayed(By.cssSelector("[id$=':filter-save-action']")));
     waitForLocatorDisplayed("id('" + taskWidgetId + ":filter-save-action')");
   }
 
@@ -116,12 +116,13 @@ public class TaskWidgetPage extends TemplatePage {
     if (countTasks() == getExpectedNumberOfTasks(expectedNumberOfTasksAfterFiltering)) {
       return;
     }
+    var keywordFilter = findElementByCssSelector(KEYWORD_FILTER_SELECTOR);
+    keywordFilter.clear();
+    keywordFilter.click(); // To make Firefox more stable
+    keywordFilter.sendKeys(keyword);
     WaitHelper.assertTrueWithWait(() -> {
-      WebElement keywordFilter = findElementByCssSelector(KEYWORD_FILTER_SELECTOR);
-      keywordFilter.clear();
-      keywordFilter.click(); // To make Firefox more stable
-      keywordFilter.sendKeys(keyword);
-      return keywordFilter.getAttribute("value").equals(keyword);
+      var result = findElementByCssSelector(KEYWORD_FILTER_SELECTOR);
+      return result.getAttribute("value").equals(keyword);
     });
     waitForNumberOfTasks(expectedNumberOfTasksAfterFiltering);
   }
@@ -828,17 +829,18 @@ public class TaskWidgetPage extends TemplatePage {
     return findElementByCssSelector("label[id$='task-widget:sort-task-form:sort-task-menu_label']").getText();
   }
 
-  @SuppressWarnings("deprecation")
   public WebElement getSaveFilterDialog() {
-    click(By.id(taskWidgetId + ":filter-save-action"));
-    waitAjaxIndicatorDisappear();
+    var filterId = taskWidgetId + ":filter-save-action";
+    clickByCssSelector("[id$='" + filterId + "']");
     waitForElementDisplayed(By.id(taskWidgetId + ":filter-save-form:save-filter-set-name-input"), true);
+    waitUntilAnimationFinished(DEFAULT_TIMEOUT, "task-widget\\\\:filter-save-form\\\\:save-filter-set-name-input", ID_PROPERTY);
     return findElementById(taskWidgetId + ":save-filter-set-dialog");
   }
 
   public void clickColumnsButton() {
     clickByCssSelector("[id$='task-widget:task-columns-configuration:task-config-command']");
     waitForElementDisplayedByCssSelector("label[for$=':columns-checkbox:3']");
+    waitUntilAnimationFinished(DEFAULT_TIMEOUT, "ajax-indicator\\\\:ajax-indicator-ajax-indicator_start", ID_PROPERTY);
   }
 
   @SuppressWarnings("deprecation")
