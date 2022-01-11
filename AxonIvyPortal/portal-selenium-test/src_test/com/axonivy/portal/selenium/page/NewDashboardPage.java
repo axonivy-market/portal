@@ -38,7 +38,7 @@ public class NewDashboardPage extends TemplatePage {
 
   public void switchToEditMode() {
     LinkNavigator.redirectToEditPublicDashboard();
-    $("a[id='switch-to-view-mode']").waitUntil(appear, DEFAULT_TIMEOUT).should(appear);
+    $("a[id='switch-to-view-mode']").waitUntil(appear, DEFAULT_TIMEOUT).should(getClickableCondition());
   }
 
   public void addWidget() {
@@ -68,7 +68,9 @@ public class NewDashboardPage extends TemplatePage {
 
   public ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration() {
     switchToEditMode();
-    $("a[id$=':edit-widget-2']").waitUntil(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    $("a[id$=':edit-widget-2']").waitUntil(appear, DEFAULT_TIMEOUT)
+        .shouldBe(getClickableCondition()).click();
+    $("div#new-widget-configuration-dialog").waitUntil(appear, DEFAULT_TIMEOUT);
     return new ProcessEditWidgetNewDashBoardPage();
   }
 
@@ -122,7 +124,6 @@ public class NewDashboardPage extends TemplatePage {
     getMoreInformationLink().click();
   }
 
-  // ==================================
   public SelenideElement getDisabledMoreInformationLink() {
     return $("span[id$=':more-information']");
   }
@@ -154,7 +155,6 @@ public class NewDashboardPage extends TemplatePage {
     return $(".process-widget.dashboard-widget-panel-container .process-widget--full");
   }
 
-  // ==================================
   public ProcessEditWidgetNewDashBoardPage editCombinedModeProcess() {
     try {
       openEditCombinedModeProcessDialog();
@@ -260,7 +260,6 @@ public class NewDashboardPage extends TemplatePage {
     getCombinedModeProcessFirstCaseName().waitUntil(Condition.appear, DEFAULT_TIMEOUT).click();
   }
 
-  // ==================================
   public SelenideElement getWidgetByName(String widgetName) {
     return getAllWidgetHeaders().find(Condition.textCaseSensitive(widgetName));
   }

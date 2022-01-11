@@ -109,7 +109,6 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
     processInformationPage.checkBackLinkAndStartButtonShown();
   }
 
-  // ===================================================================================
   @Test
   public void testPreviewFullModeProcess() {
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
@@ -174,7 +173,6 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
     processInformationPage.checkBackLinkAndStartButtonShown();
   }
 
-  // ===================================================================================
   @Test
   public void testPreviewCombinedModeProcess() {
     createCategoriedLeaveRequestTask();
@@ -379,7 +377,6 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
     newDashboardPage.getCombinedModeProcessCollapseLink().shouldBe(Condition.disappear);
   }
 
-  // ===================================================================================
   @Test
   public void testPreviewCompactModeProcess() {
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
@@ -561,7 +558,6 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
         DEFAULT_TIMEOUT);
   }
 
-  // ===================================================================================
   @Test
   public void testChangeProcessDisplayMode() {
     // Add FULL_MODE widget
