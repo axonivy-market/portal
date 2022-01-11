@@ -8,7 +8,6 @@ import org.openqa.selenium.Dimension;
 
 import ch.ivy.addon.portalkit.util.ScreenshotUtil;
 import portal.guitest.common.ScreenshotTest;
-import portal.guitest.common.Sleeper;
 import portal.guitest.common.SystemProperties;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.LoginPage;
@@ -24,14 +23,14 @@ public class ForgotPasswordScreenshotTest extends ScreenshotTest {
     if (!SystemProperties.isInServerMode()) {
       logoutDesigner();
     }
-    LoginPage loginPage = new LoginPage();
-    loginPage.forgotPassword();
   }
 
   @Test
   public void testForgotPassword() throws IOException {
+    LoginPage loginPage = new LoginPage();
+    loginPage.forgotPassword();
     ScreenshotUtil.resizeBrowser(new Dimension(1024, 768));
-    Sleeper.sleep(500);//wait for focus annimation finish to capture nice screenshot
+    loginPage.waitForEmailAddressIsFocused();
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.FORGOT_PASSWORD + "send-email-screen");
   }
 }

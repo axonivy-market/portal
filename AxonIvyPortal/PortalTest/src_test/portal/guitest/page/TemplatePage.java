@@ -19,7 +19,6 @@ import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
 
 import portal.guitest.common.PortalGUITestException;
-import portal.guitest.common.Sleeper;
 import portal.guitest.common.UrlHelpers;
 import portal.guitest.common.WaitHelper;
 import vn.wawa.guitest.base.page.AbstractPage;
@@ -31,7 +30,8 @@ public abstract class TemplatePage extends AbstractPage {
   public static final String ID_PROPERTY = "id";
   private static final String HOME_BREADCRUMB_SELECTOR = ".portal-breadcrumb .ui-menuitem-link:first-child";
   public static final String CURRENT_BREADCRUMB_SELECTOR = ".portal-breadcrumb li:last-child .ui-menuitem-link.ui-state-disabled";
-
+  public static final String PORTAL_GLOBAL_GROWL_ID = "portal-global-growl_container";
+  
   public TemplatePage() {
     waitForLocatorDisplayed(getLoadedLocator());
   }
@@ -309,12 +309,16 @@ public abstract class TemplatePage extends AbstractPage {
   }
 
   public String getGlobalGrowlMessage() {
-    return findElementById("portal-global-growl_container").getText();
+    return findElementById(PORTAL_GLOBAL_GROWL_ID).getText();
   }
   
   public void waitForGrowlMessageDisplayClearly() {
-    waitForElementDisplayed(By.id("portal-global-growl_container"), true);
-    Sleeper.sleep(500);//wait for animation finish to capture screenshot
+    waitForElementDisplayed(By.id(PORTAL_GLOBAL_GROWL_ID), true);
+    WaitHelper.assertTrueWithWait(() -> {
+      var growlItem = findChildElementByClassName(findElementById(PORTAL_GLOBAL_GROWL_ID), "ui-growl-item-container");
+      return growlItem.getAttribute(CLASS_PROPERTY).contains("ui-state-highlight");
+    });
+    waitUntilAnimationFinished(DEFAULT_TIMEOUT, "ui-growl-item-container", CLASS_PROPERTY);
   }
 
   public GlobalSearch getGlobalSearch() {
@@ -419,6 +423,7 @@ public abstract class TemplatePage extends AbstractPage {
     waitForElementDisplayed(By.id("user-settings-menu"), true);
     click(findElementById("user-settings-menu"));
     waitForElementDisplayed(By.id("logout-setting:logout-menu-item"), true);
+    waitUntilAnimationFinished(DEFAULT_TIMEOUT, "user-setting-container", ID_PROPERTY);
     return findElementById("user-setting-container");
   }
   
@@ -444,5 +449,9 @@ public abstract class TemplatePage extends AbstractPage {
 
   public boolean isWelcomeDialogExisted() {
     return CollectionUtils.isNotEmpty(findListElementsByCssSelector("div[id$='welcome-portal-guide']"));
+  }
+
+  public void waitForLeftMenuActive() {
+    waitUntilAnimationFinished(DEFAULT_TIMEOUT, "menu-item-dashboard.active-menuitem", CLASS_PROPERTY);
   }
 }

@@ -56,6 +56,7 @@ public class UserProfilePage extends TemplatePage {
   
   public void switchOnFurtherEmailFromAppSetting() {
     switchOnSetting(FURTHER_EMAIL_FROM_APP_SELECTOR);
+    waitUntilAnimationFinished(DEFAULT_TIMEOUT, "my-profile-form\\\\:further-mails-from-application", ID_PROPERTY);
   }
   
   public void switchOffEmailOnTaskAssignmentSetting() {

@@ -31,11 +31,10 @@ public class ExpressProcessPage extends TemplatePage {
 		type(By.id("form:process-description"), processDescription);
 	}
 
-	@SuppressWarnings("deprecation")
   private void selectCheckbox(String forAttribute) {
 		WebElement checkboxLabel = findElementByXpath(String.format("//label[@for='%s']", forAttribute));
 		click(checkboxLabel);
-		waitAjaxIndicatorDisappear();
+		waitUntilAnimationFinished(DEFAULT_TIMEOUT, checkboxLabel.getAttribute(CLASS_PROPERTY), CLASS_PROPERTY);
 	}
 
   public void createTask(int taskIndex, int typeIndex, String taskName, String taskDescription,
@@ -65,14 +64,13 @@ public class ExpressProcessPage extends TemplatePage {
 		addResponsible(responsibles);
 	}
 
-	@SuppressWarnings("deprecation")
   private void addResponsible(List<ExpressResponsible> responsibles) {
-		waitAjaxIndicatorDisappear();
 		waitForElementDisplayed(By.id("choose-responsible-dialog"), true);
 		for (ExpressResponsible responsible : responsibles) {
 			chooseResponsible(responsible.getResponsibleName(), responsible.isGroup());
 		}
 		click(By.id("assignee-selection-form:save-assignee-button"));
+		waitUntilAnimationFinished(DEFAULT_TIMEOUT, "choose-responsible-dialog", ID_PROPERTY);
 	}
 
 	public ExpressFormDefinitionPage goToFormDefinition() {
@@ -95,23 +93,28 @@ public class ExpressProcessPage extends TemplatePage {
 		addResponsible(responsibles);
 	}
 
-	@SuppressWarnings("deprecation")
   private void chooseResponsible(String responsible, boolean isGroup) {
-		if (isGroup) {
-			selectCheckbox("assignee-selection-form:assignee-type:1");
-			waitAjaxIndicatorDisappear();
-			waitForElementDisplayed(By.id("assignee-selection-form:role-selection-component:role-selection_input"), true);
-			type(By.id("assignee-selection-form:role-selection-component:role-selection_input"), responsible);
-			waitForElementDisplayed(By.id("assignee-selection-form:role-selection-component:role-selection_panel"), true);
-			click(By.xpath("//*[@id='assignee-selection-form:role-selection-component:role-selection_panel']/ul/li/span"));
-		} else {
-			type(By.id("assignee-selection-form:user-selection-component:user-selection_input"), responsible);
-			waitForElementDisplayed(By.id("assignee-selection-form:user-selection-component:user-selection_panel"), true);
-			click(By.xpath("//*[@id='assignee-selection-form:user-selection-component:user-selection_panel']/table/tbody/tr"));
-		}
-		waitAjaxIndicatorDisappear();
-		click(By.id("assignee-selection-form:add-assignee-button"));
-	}
+    if (isGroup) {
+      selectCheckbox("assignee-selection-form:assignee-type:1");
+      WaitHelper.assertTrueWithWait(() -> {
+        return findElementByCssSelector("[id$=':role-selection-autocomplete-panel']").isDisplayed();
+      });
+      waitForElementDisplayed(By.id("assignee-selection-form:role-selection-component:role-selection_input"), true);
+      type(By.id("assignee-selection-form:role-selection-component:role-selection_input"), responsible);
+      waitForElementDisplayed(By.id("assignee-selection-form:role-selection-component:role-selection_panel"), true);
+      click(By.xpath("//*[@id='assignee-selection-form:role-selection-component:role-selection_panel']/ul/li/span"));
+    } else {
+      type(By.id("assignee-selection-form:user-selection-component:user-selection_input"), responsible);
+      waitForElementDisplayed(By.id("assignee-selection-form:user-selection-component:user-selection_panel"), true);
+      click(By.xpath("//*[@id='assignee-selection-form:user-selection-component:user-selection_panel']/table/tbody/tr"));
+    }
+    WaitHelper.assertTrueWithWait(() -> isElementEnabled(By.id("assignee-selection-form:add-assignee-button")));
+    click(By.id("assignee-selection-form:add-assignee-button"));
+    waitForElementDisplayed(By.className("assignee-name-col"), true);
+    var responsiblesSelection = findElementByCssSelector("[id$='assignee-selection-form:select-assignee']");
+    var inputText = responsiblesSelection.findElement(By.cssSelector(".ui-autocomplete-input.ui-autocomplete-dd-input.ui-inputfield"));
+    waitUntilAnimationFinished(DEFAULT_TIMEOUT, inputText.getAttribute(CLASS_PROPERTY).replace(" ", "."), CLASS_PROPERTY);
+  }
 
   private void chooseTaskType(int taskIndex, int typeIndex) {
     if (typeIndex == 0) {
