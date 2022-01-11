@@ -63,11 +63,12 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void clickSaveProcessWidget() {
-    $("button[id='widget-configuration-save-button']").click();
+    $("button[id='widget-configuration-save-button']")
+        .waitUntil(Condition.appear, DEFAULT_TIMEOUT)
+        .shouldBe(getClickableCondition()).click();
     $("div[id='new-widget-configuration-dialog']").waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
   }
 
-  // ========================================================================================
   public void previewFullModeProcess(String processName) {
     selectFullMode();
     selectFullProcess(processName);
@@ -119,7 +120,6 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
     clickSaveProcessWidget();
   }
 
-  // ========================================================================================
   public void previewCombinedModeProcess(String processName, String description) {
     selectCombinedMode();
     selectCombinedProcess(processName, description);
@@ -201,7 +201,6 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
     clickSaveProcessWidget();
   }
 
-  // ========================================================================================
   public void previewCompactModeProcess() {
     selectCompactModeFromCombinedMode();
     getPreviewButton().click();
