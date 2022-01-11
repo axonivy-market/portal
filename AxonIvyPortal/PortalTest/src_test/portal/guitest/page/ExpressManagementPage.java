@@ -10,6 +10,7 @@ import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
 
 import portal.guitest.common.Sleeper;
+import portal.guitest.common.WaitHelper;
 
 public class ExpressManagementPage extends TemplatePage {
 
@@ -24,6 +25,8 @@ public class ExpressManagementPage extends TemplatePage {
   }
 
   public WebElement getImportExpressDialog() {
+    waitUntilAnimationFinished(DEFAULT_TIMEOUT, "ui-fileupload.express-process-upload", CLASS_PROPERTY);
+    waitUntilAnimationFinished(DEFAULT_TIMEOUT, "ajax-indicator\\\\:ajax-indicator-ajax-indicator_start", ID_PROPERTY);
     return findElementByCssSelector("[id$=':express-management-component:import-express-dialog']");
   }
   
@@ -50,6 +53,7 @@ public class ExpressManagementPage extends TemplatePage {
     click(deployButton);
     waitForElementDisplayed(By.id("adminui:adminTabView:express-management-component:import-express-form:impress-export-output"), true);
     waitForElementEnabled(By.id("adminui:adminTabView:express-management-component:close-import-express"), true, DEFAULT_TIMEOUT);
+    waitUntilAnimationFinished(DEFAULT_TIMEOUT, "adminui\\\\:adminTabView\\\\:express-management-component\\\\:close-import-express", ID_PROPERTY);
   }
 
   public WebElement waitForDeployButtonEnabled() {
@@ -64,6 +68,11 @@ public class ExpressManagementPage extends TemplatePage {
   }
   
   public void clickOnSelectAllExpresses() {
+    var importHeader = findElementByCssSelector("[id$=':express-management-form:express-workflow-summary-table_head']");
+    WaitHelper.assertTrueWithWait(() -> {
+      var checkboxAll = importHeader.findElement(By.cssSelector(".ui-chkbox-box.ui-corner-all"));
+      return !checkboxAll.getAttribute(CLASS_PROPERTY).contains("ui-state-disabled");
+    });
     selectExpressCheckboxByIndex(0);
   }
 
@@ -71,7 +80,9 @@ public class ExpressManagementPage extends TemplatePage {
     WebElement expressTable = findElementByCssSelector("[id$=':express-management-component:express-management-form:express-workflow-summary-table']");
     List<WebElement> checkboxSelections = findChildElementsByClassName(expressTable, "express-selection-column");
     if (checkboxSelections.size() > index) {
-      click(findChildElementByClassName(checkboxSelections.get(index), "ui-chkbox-box"));
+      var checkbox = findChildElementByClassName(checkboxSelections.get(index), "ui-chkbox-box");
+      click(checkbox);
+      waitUntilAnimationFinished(DEFAULT_TIMEOUT, checkbox.getAttribute(CLASS_PROPERTY).replace(" ", "."), CLASS_PROPERTY);
     }
   }
 

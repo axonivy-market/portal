@@ -42,4 +42,8 @@ public class PasswordResetPage extends AbstractPage {
     click(goHomeButton);
     waitForElementDisplayed(By.id("login:login-form:login-command"), true, PASSWORD_RESET_TIMEOUT);
   }
+
+  public void waitForPasswordInputIsFocused() {
+    waitUntilAnimationFinished(DEFAULT_TIMEOUT, "password-reset\\:reset-password-form\\:new-password", "id");
+  }
 }
