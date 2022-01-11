@@ -6,7 +6,9 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.SelenideElement;
 
 public class TaskDetailsPage extends TemplatePage {
 
@@ -41,5 +43,9 @@ public class TaskDetailsPage extends TemplatePage {
     $("a[id$=':general-information:related-case']").waitUntil(appear, DEFAULT_TIMEOUT);
     $("a[id$=':general-information:related-case']").click();
     $("div[id$=':general-information:business-case-information']").waitUntil(disappear, DEFAULT_TIMEOUT);
+  }
+
+  public SelenideElement getBreadcrumbLastDisplayedItem() {
+    return $$("span.ui-menuitem-text").last().waitUntil(Condition.appear, DEFAULT_TIMEOUT);
   }
 }

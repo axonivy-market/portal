@@ -8,7 +8,6 @@ import org.openqa.selenium.Dimension;
 
 import ch.ivy.addon.portalkit.util.ScreenshotUtil;
 import portal.guitest.common.BaseTest;
-import portal.guitest.common.Sleeper;
 import portal.guitest.common.SystemProperties;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.HomePage;
@@ -33,7 +32,6 @@ public class PasswordResetScreenshotTest extends BaseTest {
   public void testResetPassword() throws IOException {
     redirectToRelativeLink(String.format(portalTemplatePasswordResetUrl, TestAccount.TEST_FORGOT_PASSWORD_USER.getPassword(), TestAccount.TEST_FORGOT_PASSWORD_USER.getUsername()));
     ScreenshotUtil.resizeBrowser(new Dimension(1024, 768));
-    Sleeper.sleep(500);//wait for focus annimation finish to capture nice screenshot
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.FORGOT_PASSWORD + "reset-password-screen");
   }
 
@@ -43,7 +41,6 @@ public class PasswordResetScreenshotTest extends BaseTest {
     passwordResetPage = new PasswordResetPage();
     passwordResetPage.resetPassword();
     ScreenshotUtil.resizeBrowser(new Dimension(1024, 768));
-    Sleeper.sleep(500);//wait for focus annimation finish to capture nice screenshot
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.FORGOT_PASSWORD + "reset-password-success-screen");
   }
 

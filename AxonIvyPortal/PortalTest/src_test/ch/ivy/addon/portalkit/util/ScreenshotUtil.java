@@ -16,6 +16,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import portal.guitest.common.Sleeper;
+import portal.guitest.common.WaitHelper;
 import vn.wawa.guitest.base.client.Browser;
 
 public class ScreenshotUtil {
@@ -116,20 +117,16 @@ public class ScreenshotUtil {
     WebDriver driver = Browser.getBrowser().getDriver();
     Dimension oldSize = driver.manage().window().getSize();
     resizeBrowser(size);
-    JavascriptExecutor jse = (JavascriptExecutor) driver;
-    jse.executeScript("scroll(0,0);");
-    Sleeper.sleep(200);
+    executeDecorateJs(driver);
     capturePageScreenshot(screenshotName);
     resizeBrowser(oldSize);
   }
-  
+
   public static void resizeBrowserAndCaptureHalfRightScreen(String screenshotName, Dimension size) throws IOException {
     WebDriver driver = Browser.getBrowser().getDriver();
     Dimension oldSize = driver.manage().window().getSize();
     resizeBrowser(size);
-    JavascriptExecutor jse = (JavascriptExecutor) driver;
-    jse.executeScript("scroll(0,0);");
-    Sleeper.sleep(200);
+    executeDecorateJs(driver);
     captureHalfRightPageScreenShot(screenshotName);
     resizeBrowser(oldSize);
   }
@@ -198,12 +195,22 @@ public class ScreenshotUtil {
   
   public static void resizeBrowser(Dimension size) {
     Browser.getBrowser().getDriver().manage().window().setSize(size);
-    Sleeper.sleep(300);
+    WaitHelper.assertTrueWithWait(() -> {
+      Dimension currentSize = Browser.getBrowser().getDriver().manage().window().getSize();
+      return currentSize.getWidth() == size.getWidth()
+          && currentSize.getHeight() == size.getHeight();
+    });
   }
   
   public static void maximizeBrowser() {
     Browser.getBrowser().getDriver().manage().window().maximize();
-    Sleeper.sleep(300);
+    Sleeper.sleep(300); // Wait for window resized successfully
+  }
+
+  private static void executeDecorateJs(WebDriver driver) {
+    JavascriptExecutor jse = (JavascriptExecutor) driver;
+    jse.executeScript("scroll(0,0);");
+    Sleeper.sleep(200); // Wait for JS executed successfully
   }
 
   public static void captureHalfCenterTopPageScreenShot(String screenshotName) throws IOException {
@@ -242,5 +249,9 @@ public class ScreenshotUtil {
   public enum ScreenCoordinate {
     LEFT_SIDE, RIGHT_SIDE, TOP_SIDE, BOTTOM_SIDE, CENTER_TOP_SIDE, TOP_LEFT, TOP_RIGHT, BOTTOM_LEFT, BOTTOM_RIGHT;
   }
-  
+
+  public static boolean isDOMStatusComplete() {
+    return ((JavascriptExecutor) Browser.getBrowser().getDriver())
+        .executeScript("return document.readyState").equals("complete");
+  }
 }
