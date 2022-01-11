@@ -5,8 +5,6 @@ import static org.junit.Assert.assertTrue;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
@@ -18,7 +16,6 @@ import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
 
 import portal.guitest.common.BaseTest;
-import portal.guitest.common.DateTimePattern;
 import portal.guitest.common.FileHelper;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.AdminSettingsPage;
@@ -109,7 +106,8 @@ public class ExpressManagementTest extends BaseTest {
     openAdditionalBusinessPage(REQUEST_NEW_RESOURCE_PROCESS);
     
     ExpressBusinessViewPage expressBusiness = new ExpressBusinessViewPage();
-    assertTrue(expressBusiness.getIndexOfCurrentProcessChain() == 4);
+    var currentStep = expressBusiness.getIndexOfCurrentProcessChain();
+    assertTrue("ProcessChain should be 4 but " + currentStep, currentStep == 4);
 
     String fieldSetTitle = expressBusiness.getTextOfLegendFinishedTask(0);
     assertEquals("Promote new resource", fieldSetTitle);
@@ -183,8 +181,6 @@ public class ExpressManagementTest extends BaseTest {
     ExpressTaskPage expressTaskPage = new ExpressTaskPage();
     expressTaskPage.waitForExpressFieldSetDisplay();
     expressTaskPage.enterRequiredInputFieldByLabel("Comment", "Mr.David to axon");
-    String today =  LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN));
-    expressTaskPage.enterRequiredInputFieldByLabel("Approval date", today);
     expressTaskPage.finish();
   }
 
@@ -193,8 +189,6 @@ public class ExpressManagementTest extends BaseTest {
     ExpressTaskPage expressTaskPage = new ExpressTaskPage();
     expressTaskPage.waitForExpressFieldSetDisplay();
     expressTaskPage.enterRequiredInputFieldByLabel("Welcome", "Welcome Mr.David to axon");
-    String today =  LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN));
-    expressTaskPage.enterRequiredInputFieldByLabel("Start date", today);
 
     UserTaskWithMailFormPage userTaskWithMail = new UserTaskWithMailFormPage();
     userTaskWithMail.selectEmailTab();

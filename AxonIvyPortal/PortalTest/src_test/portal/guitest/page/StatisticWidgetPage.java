@@ -41,6 +41,7 @@ public class StatisticWidgetPage extends TemplatePage {
 
   public void switchCreateMode() {
     clickByCssSelector("a[id$='create-chart-link']");
+    waitForElementDisplayed(By.cssSelector("a[id$='statistics-widget:back-from-chart-creation']"), true);
   }
 
   public void backToDashboard() {
@@ -201,19 +202,18 @@ public class StatisticWidgetPage extends TemplatePage {
     waitForElementExisted("span[class='ui-growl-title']", true, DEFAULT_TIMEOUT);
   }
 
-  @SuppressWarnings("deprecation")
   public void createCaseByFinishedTask() {
-    waitForElementDisplayed(By.id("statistics-widget:chart-creation-widget:chart-management-form:create-case-by-finished-task-link"), true, 30);
-    WebElement createCaseByFinishedTaskLink
-      = findElementById("statistics-widget:chart-creation-widget:chart-management-form:create-case-by-finished-task-link");
-    click(createCaseByFinishedTaskLink);
-    waitAjaxIndicatorDisappear();
-
+    var caseByFinishedTaskSelector = "button[id$=':chart-management-form:create-case-by-finished-task-link']";
+    waitForElementDisplayed(By.cssSelector(caseByFinishedTaskSelector), true);
+    clickByCssSelector(caseByFinishedTaskSelector);
     waitForElementDisplayed(By.cssSelector("div[id$='add-chart-dialog']"), true);
+    waitUntilAnimationFinished(DEFAULT_TIMEOUT,
+        "statistics-widget\\:chart-creation-widget\\:add-statistic-form\\:chart-name-list\\:0\\:chart-name-input",
+        CLASS_PROPERTY);
+
     inputNameForSupportedLanguages(CASE_BY_FINISHED_TASK_CHART_NAME);
     clickByCssSelector("button[id$='chart-save-command']");
-
-    waitAjaxIndicatorDisappear();
+    waitForElementDisplayed(By.cssSelector("div[id$='add-chart-dialog']"), false);
     waitForElementExisted("span[class='ui-growl-title']", true, DEFAULT_TIMEOUT);
   }
 
