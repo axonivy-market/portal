@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
+import portal.guitest.common.Sleeper;
 import portal.guitest.common.WaitHelper;
 
 public class TaskTemplatePage extends TemplatePage {
@@ -242,6 +243,7 @@ public class TaskTemplatePage extends TemplatePage {
 
   public WebElement getAddMemberToChatDialog() {
     waitForElementDisplayed(By.id("chat-assignee-dialog"), true);
+    waitUntilAnimationFinished(DEFAULT_TIMEOUT, "chat-assignee-selection-form\\\\:chat-user-selection-component\\\\:chat-user-selection_input", ID_PROPERTY);
     return findElementById("chat-assignee-dialog");
   }
 
@@ -309,5 +311,14 @@ public class TaskTemplatePage extends TemplatePage {
 
   public boolean isCategoryColumnDisplayed() {
     return findElementByCssSelector("td.category-column").isDisplayed();
+  }
+
+  public void waitForChatServiceReady() {
+    Sleeper.sleep(3000); // chat service are not loading at the beginning, wait a bit for service initialize
+  }
+
+  public void waitForChartAssigneeDialogDisplay() {
+    waitForElementDisplayed(By.id("chat-assignee-dialog"), true);
+    waitUntilAnimationFinished(DEFAULT_TIMEOUT, "chat-assignee-selection-form\\\\:chat-user-selection-component\\\\:chat-user-selection_input", ID_PROPERTY);
   }
 }
