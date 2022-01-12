@@ -49,6 +49,14 @@ HowTo: Update Portal settings
 
 .. note:: Portal settings could be configured in `Axon Ivy Cockpit <https://developer.axonivy.com/doc/nightly/engine-guide/tool-reference/engine-cockpit/configuration.html#engine-cockpit-variables>`_ .
 
+.. centered:: Available settings
+
+.. csv-table::
+  :file: documents/available_settings.csv
+  :header-rows: 1
+  :class: longtable
+  :widths: 20 20 60
+
 HowTo: Show/Hide announcement
 -----------------------------
 
