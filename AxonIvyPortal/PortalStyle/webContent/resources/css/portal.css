@@ -58,7 +58,7 @@ _:-ms-input-placeholder, :root .ui-g .ui-outputlabel, :root .ui-g .ui-commandlin
   height: auto; }
 
 .login-body {
-  background-image: url("#{resource['images:login/login-bg.jpg']}");
+  background-image: url("#{resource['ivy-branding:background']}");
   margin: 0;
   padding: 0;
   background-attachment: fixed;

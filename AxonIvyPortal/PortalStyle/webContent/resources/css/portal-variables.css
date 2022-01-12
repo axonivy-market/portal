@@ -66,10 +66,11 @@
   --item-border-hover: 1px solid #90DDE9;
   /* top bar*/
   --top-bar-icon-size: 1.8rem;
+  --topbar-bg-color: var(--primary-color);
   /* 3 colors of header bar */
-  --first-header-bar-color: var(--primary-color);
-  --second-header-bar-color: var(--primary-color);
-  --third-header-bar-color: var(--primary-color);
+  --first-header-bar-color: var(--topbar-bg-color);
+  --second-header-bar-color: var(--topbar-bg-color);
+  --third-header-bar-color: var(--topbar-bg-color);
 
   /* Task priority color */
   --task-priority-low-color: #d4d4d4;
@@ -187,7 +188,7 @@
   --sidebar-app-text-color: var(--primary-color);
   --sidebar-mobile-menu-icon-font-size: 2.4rem;
   --menuitem-active-bg-color: var(--primary-color);
-  --menuitem-hover-icon-text-color: var(--primary-color);
+  --menuitem-active-text-color: var(--ivy-primary-color-white);
   --menuitem-hover-bg-color: var(--ivy-primary-color-grey-light);
   --menuitem-hover-text-color: var(--primary-color);
 
