@@ -1272,7 +1272,7 @@ As0 f50 requestMappingAction 'param.application=in.application;
 param.query=in.queryAutoComplete;
 param.startIndex=0;
 param.count=ch.ivy.addon.portalkit.constant.PortalConstants.MAX_USERS_IN_AUTOCOMPLETE;
-param.excludedUsernames=[ivy.session.getSessionUserName()];
+param.excludedUsernames=[in.selectedUser.name];
 ' #txt
 As0 f50 responseMappingAction 'out=in;
 out.errors=result.errors;

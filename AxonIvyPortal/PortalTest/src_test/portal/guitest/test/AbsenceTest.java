@@ -13,6 +13,7 @@ import org.junit.Test;
 
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
+import portal.guitest.common.WaitHelper;
 import portal.guitest.page.AbsencePage;
 import portal.guitest.page.AddAbsencePage;
 import portal.guitest.page.HomePage;
@@ -78,7 +79,58 @@ public class AbsenceTest extends BaseTest {
 
     assertTrue(newAbsencePage.isErrorMessageDisplayed());
     assertEquals("The absence is overlapping with another absence.", newAbsencePage.getErrorMessage());
+  }
 
+  @Test
+  public void testCurrentUserShouldNotSelectHimAsDeputy() {
+    login(TestAccount.DEMO_USER);
+    AbsencePage absencePage = openAbsencePage();
+    String demoUserName = TestAccount.DEMO_USER.getFullName();
+    // Test add new absence
+    NewAbsencePage newAbsencePage = absencePage.openNewAbsenceDialog();
+    newAbsencePage.input("", TODAY, TODAY, "Just day off");
+    var addAbsencePage = newAbsencePage.proceed();
+    addAbsencePage.filterDeputyUser(demoUserName);
+    assertDeputySuggestionResultForNormalUser(addAbsencePage.getSearchDeputyResult());
+    addAbsencePage.proceedWhenCreatingAbsence();
+    WaitHelper.assertTrueWithWait(() -> absencePage.countAbsences() == 1);
+    // Test set deputy
+    SettingDeputyPage settingDeputyPage = absencePage.openDeputyDialog();
+    settingDeputyPage.filterDeputyUser(demoUserName);
+    assertDeputySuggestionResultForNormalUser(settingDeputyPage.getSearchDeputyResult());
+  }
+
+  private void assertDeputySuggestionResultForNormalUser(List<String> result) {
+    assertTrue("Should not show any user for the deputy", result.size() == 1);
+    assertTrue("Should show only No deputy row in search box", result.get(0).contains("No deputy"));
+  }
+
+  @Test
+  public void testAdminUserShouldSelectHimAsDeputyOfOtherUser() {
+    login(TestAccount.ADMIN_USER);
+    AbsencePage absencePage = openAbsencePage();
+    var adminUserName = TestAccount.ADMIN_USER.getFullName();
+    var demoUserName = TestAccount.DEMO_USER.getFullName();
+    // Test add new absence
+    NewAbsencePage newAbsencePage = absencePage.openNewAbsenceDialog();
+    newAbsencePage.input(demoUserName, TODAY, TODAY, "Just day off");
+    var addAbsencePage = newAbsencePage.proceed();
+
+    addAbsencePage.filterDeputyUser(adminUserName);
+    assertDeputySuggestionResult(adminUserName, addAbsencePage.getSearchDeputyResult());
+    addAbsencePage.proceedWhenCreatingAbsence();
+    WaitHelper.assertTrueWithWait(() -> absencePage.countAbsences() == 1);
+
+    // Test set deputy
+    SettingDeputyPage settingDeputyPage = absencePage.openDeputyDialog();
+    settingDeputyPage.selectSubstitutedUser(demoUserName);
+    settingDeputyPage.filterDeputyUser(adminUserName);
+    assertDeputySuggestionResult(adminUserName, settingDeputyPage.getSearchDeputyResult());
+  }
+
+  private void assertDeputySuggestionResult(String adminUserName, List<String> result) {
+    assertTrue("Should see 2 options for the deputy", result.size() == 2);
+    assertTrue("Should show admin user in search box", result.get(1).contains(adminUserName));
   }
 
   @Test

@@ -66,7 +66,7 @@
       <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/comment')}"
         styleClass="substitute-comment">
         <p:inputText id="subtitute-comment" value="#{substituteNode.getSubstitute().description}"
-          rendered="#{substituteNode.isLeaf()}" disabled="#{!absenceBean.substitutionCreatable}" />
+          rendered="#{substituteNode.isLeaf()}" disabled="#{!absenceBean.canCreateSubstitute(data.selectedUser)}" />
       </p:column>
     </p:treeTable>
   </h:panelGroup>
