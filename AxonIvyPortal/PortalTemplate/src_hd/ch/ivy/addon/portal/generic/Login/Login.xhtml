@@ -15,12 +15,7 @@
   <title>
       #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/login/login')}
   </title>
-  <ui:fragment rendered="#{logoBean.hasFaviconLogoImage()}">
-    <link rel="shortcut icon" href="#{resource['ivy-cms:/images/logo/faviconLogo']}" type="image/png" />
-  </ui:fragment>
-  <ui:fragment rendered="#{!logoBean.hasFaviconLogoImage()}">
-    <link rel="shortcut icon" href="#{resource['ivy-cms:/images/logo/faviconLogoSvg']}" />
-  </ui:fragment>
+  <link rel="shortcut icon" href="#{resource['ivy-branding:favicon']}" />
 
   <h:outputStylesheet library="css" name="utility.css" />
 
@@ -33,8 +28,8 @@
   <h:outputStylesheet library="css" name="template.css" />
   <h:outputStylesheet library="css" name="module.css" />
   <h:outputStylesheet library="css" name="portal.css" />
-
-  <h:outputStylesheet library="css" name="customization.css" />
+  
+  <h:outputStylesheet name="colors.css" library="ivy-branding" />
 
   <h:outputScript name="js/nanoscroller.js" library="serenity-layout" />
   <h:outputScript name="js/ripple.js" library="serenity-layout" />

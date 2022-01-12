@@ -4057,15 +4057,18 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   display: flex;
   margin-top: 5px;
   margin-left: -25px;
-  width: 105%;
+  width: calc(100vw - 60px);
+}
+.layout-wrapper-static .color-header {
+  width: calc(100vw - 240px);
 }
 
 /* Small screen */
 @media (max-width: 1024px) {
-  .color-header {
+  .layout-wrapper .color-header {
     margin-left: -25px;
     margin-right: -25px;
-    width: 120%;
+    width: 100vw;
   }
 }
 

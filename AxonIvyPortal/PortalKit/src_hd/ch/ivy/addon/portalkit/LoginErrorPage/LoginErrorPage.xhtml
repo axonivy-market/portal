@@ -12,14 +12,8 @@
 <cc:implementation>
   <div class="login-panel">
     <div class="login-panel-header">
-      <p:graphicImage
-        value="#{resource['ivy-cms:images/logo/loginLogo']}"
-        alt="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/loginLogo')}"
-        rendered="#{logoBean.hasLoginLogoImage()}" />
-      <p:graphicImage
-        value="#{resource['ivy-cms:images/logo/loginLogoSvg']}"
-        alt="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/loginLogo')}"
-        rendered="#{!logoBean.hasLoginLogoImage()}" />
+      <p:graphicImage name="logo_small" library="ivy-branding"
+        alt="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/loginLogo')}" />
     </div>
     <div class="login-panel-content">
       <h1>#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/login/loginErrorMessage")}</h1>
