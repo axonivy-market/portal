@@ -53,6 +53,7 @@ public class AbsenceBean implements Serializable {
         permissionCheckerService.hasAtLeaseOnePermission(USER_CREATE_OWN_SUBSTITUTE, USER_CREATE_SUBSTITUTE);
     substitutionReadable =
         permissionCheckerService.hasPermission(USER_READ_SUBSTITUTES);
+    substitutionCreatable = permissionCheckerService.hasPermission(USER_CREATE_SUBSTITUTE);
     ownSubstitutionCreatable = permissionCheckerService.hasPermission(USER_CREATE_OWN_SUBSTITUTE);
   }
 

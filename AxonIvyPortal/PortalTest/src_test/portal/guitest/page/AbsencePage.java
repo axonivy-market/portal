@@ -42,7 +42,7 @@ public class AbsencePage extends TemplatePage {
   }
 
   public boolean canDeleteAbsence(int index) {
-    waitAjaxIndicatorDisappear();
+    waitUntilAnimationFinished(DEFAULT_TIMEOUT,"ajax-indicator:ajax-indicator-ajax-indicator_start" , "id");
     return findElementById(String.format(DELETE_ABSENCE_ID_PATTERN, index)).isDisplayed();
   }
 

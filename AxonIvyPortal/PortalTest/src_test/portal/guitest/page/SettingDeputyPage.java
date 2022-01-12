@@ -33,11 +33,11 @@ public class SettingDeputyPage extends TemplatePage {
     WebElement substitutedUserInput = findElementByCssSelector("input[id*='substituted-user']");
     substitutedUserInput.clear();
     substitutedUserInput.sendKeys(substitutedUser);
-    waitAjaxIndicatorDisappear();
+    waitAjaxDisappeared();
     String itemSelector = "tr[data-item-label*='" + substitutedUser + "']";
     waitForElementDisplayed(By.cssSelector(itemSelector), true);
     clickByCssSelector(itemSelector);
-    waitAjaxIndicatorDisappear();
+    waitAjaxDisappeared();
   }
 
   public void changeDeputy(String deputy, int indexOfApp, int indexOfRole) {
@@ -46,10 +46,14 @@ public class SettingDeputyPage extends TemplatePage {
     WebElement deputyInput = findElementById(inputId);
     deputyInput.clear();
     deputyInput.sendKeys(deputy);
-    waitAjaxIndicatorDisappear();
+    waitAjaxDisappeared();
     WebElement deputyPanel = findElementById(String.format(DEPUTY_PANEL_ID_PATTERN, indexOfApp, indexOfRole));
     click(deputyPanel.findElement(By.cssSelector("tr[data-item-label*='" + deputy + "']")));
-    waitAjaxIndicatorDisappear();
+    waitAjaxDisappeared();
+  }
+
+  private void waitAjaxDisappeared() {
+    waitUntilAnimationFinished(DEFAULT_TIMEOUT,"ajax-indicator:ajax-indicator-ajax-indicator_start" , "id");
   }
 
   public String getMyDisabledDeputy(int appIndex, int deputyRoleIndex) {
