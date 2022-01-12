@@ -20,13 +20,12 @@ function loadIframe(recheckIndicator) {
     }
   }
 
-  recheckFrameTimer = setTimeout(() => {
-    loadIframe(true);
-  }, 500);
+  recheckFrameTimer = setTimeout(function(){ loadIframe(true); }, 500);
 }
 
 function processIFrameData(iframe) {
   var window = iframe.contentWindow;
+  checkUrl(iframe);
   if (invalidIFrameSrcPath) {
     invalidIFrameSrcPath = false;
     return;
