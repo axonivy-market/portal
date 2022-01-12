@@ -76,7 +76,8 @@ HowTo: Update Portal settings
   :file: documents/available_settings.csv
   :header-rows: 1
   :class: longtable
-  :widths: 20 20 60
+  :widths: 20 10 70
+
 
 HowTo: Show/Hide announcement
 -----------------------------
