@@ -11,7 +11,6 @@ As0 @TextInP .xml .xml #zField
 As0 @TextInP .responsibility .responsibility #zField
 As0 @UdInit f0 '' #zField
 As0 @UdProcessEnd f18 '' #zField
-As0 @PushWFArc f58 '' #zField
 As0 @UdMethod f79 '' #zField
 As0 @UdProcessEnd f80 '' #zField
 As0 @GridStep f142 '' #zField
@@ -163,6 +162,9 @@ As0 @Alternative f140 '' #zField
 As0 @PushWFArc f141 '' #zField
 As0 @PushWFArc f137 '' #zField
 As0 @PushWFArc f144 '' #zField
+As0 @GridStep f150 '' #zField
+As0 @PushWFArc f151 '' #zField
+As0 @PushWFArc f58 '' #zField
 >Proto As0 As0 AbsencesAndDeputyProcess #zField
 As0 f0 guid 1679C986E063D36E #txt
 As0 f0 method start() #txt
@@ -177,10 +179,8 @@ As0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 As0 f0 83 51 26 26 -16 15 #rect
 As0 f0 @|UdInitIcon #fIcon
-As0 f18 277 51 26 26 0 12 #rect
+As0 f18 339 51 26 26 0 12 #rect
 As0 f18 @|UdProcessEndIcon #fIcon
-As0 f58 expr out #txt
-As0 f58 109 64 277 64 #arcP
 As0 f79 guid 1679C9C2A1FF6686 #txt
 As0 f79 method findAbsences() #txt
 As0 f79 inParameterDecl '<> param;' #txt
@@ -202,7 +202,7 @@ As0 f142 actionCode 'import ch.ivy.addon.portalkit.service.PermissionCheckerServ
 import ch.ivyteam.ivy.security.IPermission;
 
 PermissionCheckerService permissionChecker = new PermissionCheckerService();
-in.isSupervisor = permissionChecker.hasAllPermissions(IPermission.USER_CREATE_ABSENCE, IPermission.USER_READ_ABSENCES, IPermission.USER_DELETE_ABSENCE);' #txt
+in.isSupervisor = permissionChecker.hasPermission(IPermission.USER_READ_ABSENCES);' #txt
 As0 f142 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1472,6 +1472,25 @@ As0 f144 160 368 792 374 #arcP
 As0 f144 1 160 416 #addKink
 As0 f144 2 792 416 #addKink
 As0 f144 1 0.47310126582278483 0 12 #arcLabel
+As0 f150 actionTable 'out=in;
+' #txt
+As0 f150 actionCode 'import ch.ivyteam.ivy.security.IPermission;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
+
+in.canCreateAbsenceForOtherUsers = PermissionUtils.hasPermission(ivy.wf.getApplication(), ivy.session.getSessionUserName(), IPermission.USER_CREATE_ABSENCE);' #txt
+As0 f150 security system #txt
+As0 f150 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Initialize</name>
+    </language>
+</elementInfo>
+' #txt
+As0 f150 168 42 112 44 -22 -8 #rect
+As0 f150 @|StepIcon #fIcon
+As0 f151 expr out #txt
+As0 f151 109 64 168 64 #arcP
+As0 f58 280 64 339 64 #arcP
 >Proto As0 .type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
 >Proto As0 .processKind HTML_DIALOG #txt
 >Proto As0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1503,8 +1522,6 @@ As0 f144 1 0.47310126582278483 0 12 #arcLabel
 ' #txt
 >Proto As0 -8 -8 16 16 16 26 #rect
 >Proto As0 '' #fIcon
-As0 f0 mainOut f58 tail #connect
-As0 f58 head f18 mainIn #connect
 As0 f79 mainOut f143 tail #connect
 As0 f143 head f142 mainIn #connect
 As0 f83 out f147 tail #connect
@@ -1651,3 +1668,7 @@ As0 f140 out f137 tail #connect
 As0 f137 head f93 mainIn #connect
 As0 f140 out f144 tail #connect
 As0 f144 head f22 mainIn #connect
+As0 f0 mainOut f151 tail #connect
+As0 f151 head f150 mainIn #connect
+As0 f150 mainOut f58 tail #connect
+As0 f58 head f18 mainIn #connect

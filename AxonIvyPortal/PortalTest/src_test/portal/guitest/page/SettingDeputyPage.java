@@ -11,6 +11,10 @@ import portal.guitest.common.WaitHelper;
 
 public class SettingDeputyPage extends TemplatePage {
 
+  private static final String DEPUTY_INPUT_ID_PATTERN = "absence-settings:edit-deputy-form:substitute-container:%d_%d:substitute-username-selection-component:substitute-username_input";
+  private static final String DEPUTY_PANEL_ID_PATTERN = "absence-settings:edit-deputy-form:substitute-container:%d_%d:substitute-username-selection-component:substitute-username_panel";
+  private static final String DISABLED_DEPUTY_INPUT_ID_PATTERN = "absence-settings:edit-deputy-form:substitute-container:%d_%d:substitute-username-selection-component:substitute-username_input";
+
   @Override
   protected String getLoadedLocator() {
     return "id('absence-settings:edit-deputy-dialog_title')";
@@ -75,5 +79,39 @@ public class SettingDeputyPage extends TemplatePage {
           () -> findElementByCssSelector(String.format(usernameInputPattern, "input"))
               .getAttribute("value").contains(username));
     }
+  }
+
+  public void changeSubstitutedUser(String substitutedUser) {
+    waitForElementDisplayed(By.cssSelector("input[id*='substituted-user']"), true);
+    WebElement substitutedUserInput = findElementByCssSelector("input[id*='substituted-user']");
+    substitutedUserInput.clear();
+    substitutedUserInput.sendKeys(substitutedUser);
+    waitAjaxDisappeared();
+    String itemSelector = "tr[data-item-label*='" + substitutedUser + "']";
+    waitForElementDisplayed(By.cssSelector(itemSelector), true);
+    clickByCssSelector(itemSelector);
+    waitAjaxDisappeared();
+  }
+
+
+  public void changeDeputy(String deputy, int indexOfApp, int indexOfRole) {
+    String inputId = String.format(DEPUTY_INPUT_ID_PATTERN, indexOfApp, indexOfRole);
+    waitForElementDisplayed(By.id(inputId), true);
+    WebElement deputyInput = findElementById(inputId);
+    deputyInput.clear();
+    deputyInput.sendKeys(deputy);
+    waitAjaxDisappeared();
+    WebElement deputyPanel = findElementById(String.format(DEPUTY_PANEL_ID_PATTERN, indexOfApp, indexOfRole));
+    click(deputyPanel.findElement(By.cssSelector("tr[data-item-label*='" + deputy + "']")));
+    waitAjaxDisappeared();
+  }
+
+  private void waitAjaxDisappeared() {
+    waitUntilAnimationFinished(DEFAULT_TIMEOUT,"ajax-indicator:ajax-indicator-ajax-indicator_start" , "id");
+  }
+
+  public String getMyDisabledDeputy(int appIndex, int deputyRoleIndex) {
+    waitForElementDisplayed(By.id(String.format(DISABLED_DEPUTY_INPUT_ID_PATTERN, appIndex, deputyRoleIndex)), true);
+    return findElementById(String.format(DISABLED_DEPUTY_INPUT_ID_PATTERN, appIndex, deputyRoleIndex)).getAttribute("value");
   }
 }

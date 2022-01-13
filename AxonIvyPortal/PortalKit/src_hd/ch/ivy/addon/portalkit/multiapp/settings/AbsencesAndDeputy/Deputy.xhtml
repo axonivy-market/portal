@@ -6,7 +6,7 @@
 <ui:composition>
 
   <h:panelGroup id="username-deputy" class="substitution-user-selection-container ui-g-12" layout="block"
-    rendered="#{absenceBean.substitutionManagementCapable and !data.isLoadDeputy}">
+    rendered="#{absenceBean.substitutionReadable and !data.isLoadDeputy}">
     <ic:ch.ivy.addon.portalkit.component.UserSelection
       id="substituted-user-selection-component"
       componentId="substituted-user"
@@ -43,7 +43,8 @@
           selectedUser="#{substituteNode.substituteUser}"
           isRenderedMessage="false" rendered="#{substituteNode.isLeaf()}"
           itemLabel="#{not empty user ? user.displayName : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/noDeputy')}"
-          inputStyleClass="js-substitute-input">
+          inputStyleClass="js-substitute-input"
+          isDisabled="#{!absenceBean.canCreateSubstitute(data.selectedUser)}">
           <f:attribute name="substituteNode" value="#{substituteNode}" />
           <p:column>
             <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/noDeputy')}" rendered="#{empty user}" />
@@ -65,7 +66,7 @@
       <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/comment')}"
         styleClass="substitute-comment">
         <p:inputText id="subtitute-comment" value="#{substituteNode.getSubstitute().description}"
-          rendered="#{substituteNode.isLeaf()}" />
+          rendered="#{substituteNode.isLeaf()}" disabled="#{!absenceBean.canCreateSubstitute(data.selectedUser)}" />
       </p:column>
     </p:treeTable>
   </h:panelGroup>
