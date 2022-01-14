@@ -12,7 +12,7 @@ function loadIframe(recheckIndicator) {
     });
   }
   else {
-    iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+    const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
     if (iframeDoc.readyState == 'complete') {
       processIFrameData(iframe);
       clearTimeout(recheckFrameTimer);
