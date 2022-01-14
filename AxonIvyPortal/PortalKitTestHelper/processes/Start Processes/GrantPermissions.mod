@@ -135,6 +135,10 @@ Is0 @PushWFArc f120 '' #zField
 Is0 @GridStep f121 '' #zField
 Is0 @PushWFArc f122 '' #zField
 Is0 @PushWFArc f123 '' #zField
+Is0 @GridStep f124 '' #zField
+Is0 @StartRequest f125 '' #zField
+Is0 @PushWFArc f126 '' #zField
+Is0 @PushWFArc f127 '' #zField
 >Proto Is0 Is0 GrantPermissions #zField
 Is0 f0 outLink grantAllPermissionsToCurrentUser.ivp #txt
 Is0 f0 inParamDecl '<> param;' #txt
@@ -1513,6 +1517,50 @@ Is0 f122 777 1041 644 1040 #arcP
 Is0 f123 604 1040 408 543 #arcP
 Is0 f123 1 408 1040 #addKink
 Is0 f123 1 0.2760647143011864 0 0 #arcLabel
+Is0 f124 actionTable 'out=in;
+' #txt
+Is0 f124 actionCode 'import ch.ivyteam.ivy.security.IPermission;
+
+ivy.task.getApplication().getSecurityDescriptor().denyPermission(IPermission.USER_READ_SUBSTITUTES, ivy.session.getSessionUser());
+ivy.task.getApplication().getSecurityDescriptor().denyPermission(IPermission.USER_READ_OWN_SUBSTITUTES , ivy.session.getSessionUser());
+
+ivy.task.getApplication().getSecurityDescriptor().denyPermission(IPermission.USER_CREATE_ABSENCE, ivy.session.getSessionUser());
+ivy.task.getApplication().getSecurityDescriptor().denyPermission(IPermission.USER_CREATE_OWN_ABSENCE, ivy.session.getSessionUser());
+
+ivy.task.getApplication().getSecurityDescriptor().denyPermission(IPermission.USER_DELETE_ABSENCE, ivy.session.getSessionUser());
+ivy.task.getApplication().getSecurityDescriptor().denyPermission(IPermission.USER_DELETE_OWN_ABSENCE, ivy.session.getSessionUser());
+
+ivy.task.getApplication().getSecurityDescriptor().denyPermission(IPermission.USER_READ_SUBSTITUTES, ivy.session.getSessionUser());
+ivy.task.getApplication().getSecurityDescriptor().denyPermission(IPermission.USER_READ_OWN_SUBSTITUTES, ivy.session.getSessionUser());
+
+ivy.task.getApplication().getSecurityDescriptor().denyPermission(IPermission.USER_CREATE_SUBSTITUTE, ivy.session.getSessionUser());
+ivy.task.getApplication().getSecurityDescriptor().denyPermission(IPermission.USER_CREATE_OWN_SUBSTITUTE, ivy.session.getSessionUser());
+
+ivy.task.getApplication().getSecurityDescriptor().denyPermission(IPermission.USER_DELETE_SUBSTITUTE, ivy.session.getSessionUser());
+ivy.task.getApplication().getSecurityDescriptor().denyPermission(IPermission.USER_DELETE_OWN_SUBSTITUTE, ivy.session.getSessionUser());' #txt
+Is0 f124 security system #txt
+Is0 f124 604 1100 40 24 0 -8 #rect
+Is0 f124 @|StepIcon #fIcon
+Is0 f125 outLink denyAllAbsenceAndSubtitutePermissions.ivp #txt
+Is0 f125 inParamDecl '<> param;' #txt
+Is0 f125 requestEnabled true #txt
+Is0 f125 triggerEnabled false #txt
+Is0 f125 callSignature denyAllAbsenceAndSubtitutePermissions() #txt
+Is0 f125 caseData businessCase.attach=true #txt
+Is0 f125 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>denyAllAbsenceAndSubtitutePermissions.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Is0 f125 @C|.responsibility Everybody #txt
+Is0 f125 777 1099 30 30 16 0 #rect
+Is0 f125 @|StartRequestIcon #fIcon
+Is0 f126 777 1113 644 1112 #arcP
+Is0 f127 604 1112 408 543 #arcP
+Is0 f127 1 408 1112 #addKink
+Is0 f127 1 0.327768014059754 0 0 #arcLabel
 >Proto Is0 .type portalKit_test.GrantPermissionsData #txt
 >Proto Is0 .processKind NORMAL #txt
 >Proto Is0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1649,3 +1697,7 @@ Is0 f102 mainOut f122 tail #connect
 Is0 f122 head f121 mainIn #connect
 Is0 f121 mainOut f123 tail #connect
 Is0 f123 head f7 mainIn #connect
+Is0 f125 mainOut f126 tail #connect
+Is0 f126 head f124 mainIn #connect
+Is0 f124 mainOut f127 tail #connect
+Is0 f127 head f7 mainIn #connect
