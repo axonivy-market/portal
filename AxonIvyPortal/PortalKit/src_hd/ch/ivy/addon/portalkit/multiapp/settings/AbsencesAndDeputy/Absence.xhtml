@@ -6,7 +6,7 @@
 
 <ui:composition>
   <div id="absence-panel-grid" class="ui-fluid ui-g absence-panel-grid">
-    <h:panelGroup layout="block" styleClass="ui-g-12" rendered="#{data.isSupervisor}">
+    <h:panelGroup layout="block" styleClass="ui-g-12" rendered="#{data.canCreateAbsenceForOtherUsers}">
       <ic:ch.ivy.addon.portalkit.component.UserSelection 
         id="absence-selection-component" 
         componentId="username"
