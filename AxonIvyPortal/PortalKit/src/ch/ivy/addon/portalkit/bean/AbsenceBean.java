@@ -15,10 +15,12 @@ import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import ch.ivy.addon.portalkit.dto.UserDTO;
 import ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence;
 import ch.ivy.addon.portalkit.service.PermissionCheckerService;
 import ch.ivy.addon.portalkit.util.AbsenceAndSubstituteUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
+import ch.ivyteam.ivy.environment.Ivy;
 
 @ManagedBean
 @ViewScoped
@@ -32,7 +34,9 @@ public class AbsenceBean implements Serializable {
   private boolean absencesInThePastCreatable;
   private boolean absencesInThePastDeletable;
   private boolean ownSubstituteCreatable;
-  private boolean substitutionManagementCapable;
+  private boolean substitutionReadable;
+  private boolean substitutionCreatable;
+  private boolean ownSubstitutionCreatable;
 
   public AbsenceBean() {
     permissionCheckerService = new PermissionCheckerService(); 
@@ -47,8 +51,10 @@ public class AbsenceBean implements Serializable {
 
     ownSubstituteCreatable =
         permissionCheckerService.hasAtLeaseOnePermission(USER_CREATE_OWN_SUBSTITUTE, USER_CREATE_SUBSTITUTE);
-    substitutionManagementCapable =
-        permissionCheckerService.hasAllPermissions(USER_CREATE_SUBSTITUTE, USER_READ_SUBSTITUTES);
+    substitutionReadable =
+        permissionCheckerService.hasPermission(USER_READ_SUBSTITUTES);
+    substitutionCreatable = permissionCheckerService.hasPermission(USER_CREATE_SUBSTITUTE);
+    ownSubstitutionCreatable = permissionCheckerService.hasPermission(USER_CREATE_OWN_SUBSTITUTE);
   }
 
   public boolean isOwnAbsencesReadable() {
@@ -67,8 +73,8 @@ public class AbsenceBean implements Serializable {
     return ownSubstituteCreatable;
   }
 
-  public boolean isSubstitutionManagementCapable() {
-    return substitutionManagementCapable;
+  public boolean isSubstitutionReadable() {
+    return substitutionReadable;
   }
 
   public boolean isAbsenceEditable(IvyAbsence absence) {
@@ -76,7 +82,7 @@ public class AbsenceBean implements Serializable {
     if (absenceInThePast) {
       return absencesInThePastCreatable;
     }
-    return ownAbsencesCreatable;
+    return ownAbsencesCreatable && isOwnAbsence(absence);
   }
 
   public boolean isAbsenceDeletable(IvyAbsence absence) {
@@ -84,11 +90,24 @@ public class AbsenceBean implements Serializable {
     if (absenceInThePast) {
       return absencesInThePastDeletable;
     }
-    return ownAbsencesDeletable;
+    return ownAbsencesDeletable && isOwnAbsence(absence);
+  }
+
+  private boolean isOwnAbsence (IvyAbsence absence) {
+    return absence.getUsername().contentEquals(Ivy.session().getSessionUserName());
   }
 
   public String getDisplayedName(IvyAbsence absence) {
     return UserUtils.getDisplayedName(absence.getFullname(), absence.getUsername());
+  }
+
+  public boolean canCreateSubstitute(UserDTO selectedUser) {
+    boolean isLoginUser = selectedUser.getName().contentEquals(Ivy.session().getSessionUserName());
+    return substitutionCreatable || (ownSubstitutionCreatable && isLoginUser);
+  }
+
+  public boolean isSubstitutionCreatable() {
+    return substitutionCreatable;
   }
 
 }
