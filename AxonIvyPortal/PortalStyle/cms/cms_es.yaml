@@ -662,7 +662,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     SearchForFilter: Búsqueda del filtro
     WidgetFilterName: Nombre del filtro del widget
     WidgetFilters: Filtros de widgets
-    actionSelection: TODO Action selection
+    actionSelection: Seleccionar acción
     addField: Añadir campo
     addWidget: Añadir widget
     availableFilters: Filtros disponibles
@@ -695,15 +695,15 @@ ch.ivy.addon.portalkit.ui.jsf:
     customWidget: Widget personalizado
     customWidgetIntroduction: Con este widget puede añadir procesos de Axon Ivy o páginas web externas.
     dashboardManagement:
-      addDashboard: TODO Add dashboard
-      dashboardPermission: TODO Dashboard permission
-      dashboardTitle: TODO Dashboard title
-      editDashboard: TODO Edit dashboard
-      manageDashboard: TODO Manage dashboard
-      removeDashboardHeader: TODO Remove the "{0}" dashboard
+      addDashboard: Añadir tablero
+      dashboardPermission: Permiso de tablero
+      dashboardTitle: Título del tablero
+      editDashboard: Editar tablero
+      manageDashboard: Administrar tablero
+      removeDashboardHeader: Borrar el tablero "{0}"
     deleteWidget: Eliminar el widget
-    editPrivateDashboard: TODO Edit private dashboard
-    editPublicDashboard: TODO Edit public dashboard
+    editPrivateDashboard: Editar tablero privado
+    editPublicDashboard: Editar tablero público
     editWidget: Editar widget
     existingField: El campo {0} ya existe
     expiryFrom: Caducidad desde
@@ -712,7 +712,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     fieldIsAdded: El campo {0} está añadido
     loading: Cargando...
     noCategory: No hay categorías
-    noDashboard: TODO There are no dashboards. Add at least one dashboard, then add widgets.
+    noDashboard: No hay tableros. Añadir al menos un tablero y widgets.
     noPermission: No tienes permisos para ver los dashboards.
     noWidget: No hay widgets para este tablero
     numberPattern: Patrón de números
@@ -731,7 +731,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     restoreDefaultHeader: Restaurar los widgets por defecto
     restoreDefaultMessage: Si procede, perderá todos los widgets creados por usted. Se aplicará la configuración estándar.
     select: Seleccione
-    selectEditAction: TODO Which action do you want to procced?
+    selectEditAction: Con qué acción quiere proceder?
     showFullWidget: Mostrar el widget completo
     startATask: Iniciar tarea
     switchToViewMode: Modo de visualización
