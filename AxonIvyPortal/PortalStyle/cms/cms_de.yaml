@@ -662,7 +662,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     SearchForFilter: Search for filter
     WidgetFilterName: Name des Widget-Filters
     WidgetFilters: Widget-Filter
-    actionSelection: TODO Action selection
+    actionSelection: Aktion auswählen
     addField: Feld hinzufügen
     addWidget: Widget hinzufügen
     availableFilters: Verfügbare Filter
@@ -695,15 +695,15 @@ ch.ivy.addon.portalkit.ui.jsf:
     customWidget: Benutzerdefiniertes Widget
     customWidgetIntroduction: Dieses Widget kann einen Axon Ivy-Prozess oder eine externe Webseite anzeigen.
     dashboardManagement:
-      addDashboard: TODO Add dashboard
-      dashboardPermission: TODO Dashboard permission
-      dashboardTitle: TODO Dashboard title
-      editDashboard: TODO Edit dashboard
-      manageDashboard: TODO Manage dashboard
-      removeDashboardHeader: TODO Remove the "{0}" dashboard
+      addDashboard: Dashbaord hinzufürgen
+      dashboardPermission: Dashboard Berechtigung
+      dashboardTitle: Dashboard Titel
+      editDashboard: Dashboard editieren
+      manageDashboard: Dashboard verwalten
+      removeDashboardHeader: Dashboard "{0}" entfernen
     deleteWidget: Widget löschen
-    editPrivateDashboard: TODO Edit private dashboard
-    editPublicDashboard: TODO Edit public dashboard
+    editPrivateDashboard: Privates Dashboard editieren
+    editPublicDashboard: Öffentliches Dashboard editieren
     editWidget: Widget bearbeiten
     existingField: Das Feld {0} ist bereits vorhanden
     expiryFrom: Gültig von
@@ -712,7 +712,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     fieldIsAdded: Das Feld {0} wurde hinzugefügt
     loading: Laden...
     noCategory: Es gibt keine Kategorien
-    noDashboard: TODO There are no dashboards. Add at least one dashboard, then add widgets.
+    noDashboard: Keine Dashboards vorhanden. Fügen Sie mindestens ein Dashboard und anschließend Widgets hinzu.
     noPermission: Sie haben keine Berechtigung, Dashboards zu sehen.
     noWidget: Es sind keine Widgets für dieses Dashboard vorgesehen
     numberPattern: Zahlen-Muster
@@ -731,7 +731,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     restoreDefaultHeader: Auf Standard zurücksetzen
     restoreDefaultMessage: Wenn Sie fortfahren, verlieren Sie alle von Ihnen erstellten Widgets. Es werden die Standardeinstellungen übernommen.
     select: Wählen Sie
-    selectEditAction: TODO Which action do you want to procced?
+    selectEditAction: Welche Aktion möchten Sie durchführen?
     showFullWidget: Vollständiges Widget anzeigen
     startATask: Aufgabe starten
     switchToViewMode: Ansichtsmodus
