@@ -22,7 +22,7 @@
 
           <h:panelGroup id="dashboard-title-container" styleClass="u-hidden-sm-down ui-lg-8 ui-md-7 dashboard__title-container">
             <c:forEach var="dashboard" items="#{managedBean.dashboards}" varStatus="dashboardStatus">
-              <p:commandLink actionListener="#{managedBean.onDashboardChange(dashboardStatus.index)}"
+              <p:commandLink id="dashboard-title-#{dashboardStatus.index}" actionListener="#{managedBean.onDashboardChange(dashboardStatus.index)}"
                 update="grid-stack dashboard-title-container dashboard-title-dropdown-container" process="@this"
                 oncomplete="loadGrid()"
                 styleClass="dashboard__title #{managedBean.currentDashboardIndex == dashboardStatus.index ? 'dashboard__title--active':''}">
