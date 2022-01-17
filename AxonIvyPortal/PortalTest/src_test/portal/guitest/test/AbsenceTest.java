@@ -176,8 +176,9 @@ public class AbsenceTest extends BaseTest {
     login(TestAccount.DEMO_USER);
     redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/denyAllAbsenceAndSubtitutePermissions.ivp");
     redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantReadOwnAbsencesPermission.ivp");
+    redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantCreateOwnAbsencePermission.ivp");
     absencePage = openAbsencePage();
-    createAbsenceForCurrentUser(YESTERDAY, YESTERDAY, "Just day off");
+    createAbsenceForDeputy("", YESTERDAY, YESTERDAY, "Just day off");
 
     login(TestAccount.GUEST_USER);
     absencePage = openAbsencePage();
