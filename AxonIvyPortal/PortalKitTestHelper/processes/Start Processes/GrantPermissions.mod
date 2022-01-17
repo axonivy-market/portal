@@ -139,6 +139,10 @@ Is0 @GridStep f124 '' #zField
 Is0 @StartRequest f125 '' #zField
 Is0 @PushWFArc f126 '' #zField
 Is0 @PushWFArc f127 '' #zField
+Is0 @StartRequest f128 '' #zField
+Is0 @GridStep f129 '' #zField
+Is0 @PushWFArc f130 '' #zField
+Is0 @PushWFArc f131 '' #zField
 >Proto Is0 Is0 GrantPermissions #zField
 Is0 f0 outLink grantAllPermissionsToCurrentUser.ivp #txt
 Is0 f0 inParamDecl '<> param;' #txt
@@ -1561,6 +1565,50 @@ Is0 f126 777 1113 644 1112 #arcP
 Is0 f127 604 1112 408 543 #arcP
 Is0 f127 1 408 1112 #addKink
 Is0 f127 1 0.327768014059754 0 0 #arcLabel
+Is0 f128 outLink grantAllAbsenceAndSubtitutePermissions.ivp #txt
+Is0 f128 inParamDecl '<> param;' #txt
+Is0 f128 requestEnabled true #txt
+Is0 f128 triggerEnabled false #txt
+Is0 f128 callSignature grantAllAbsenceAndSubtitutePermissions() #txt
+Is0 f128 caseData businessCase.attach=true #txt
+Is0 f128 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>grantAllAbsenceAndSubtitutePermissions.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Is0 f128 @C|.responsibility Everybody #txt
+Is0 f128 777 1187 30 30 16 0 #rect
+Is0 f128 @|StartRequestIcon #fIcon
+Is0 f129 actionTable 'out=in;
+' #txt
+Is0 f129 actionCode 'import ch.ivyteam.ivy.security.IPermission;
+
+ivy.task.getApplication().getSecurityDescriptor().grantPermission(IPermission.USER_READ_SUBSTITUTES, ivy.session.getSessionUser());
+ivy.task.getApplication().getSecurityDescriptor().grantPermission(IPermission.USER_READ_OWN_SUBSTITUTES , ivy.session.getSessionUser());
+
+ivy.task.getApplication().getSecurityDescriptor().grantPermission(IPermission.USER_CREATE_ABSENCE, ivy.session.getSessionUser());
+ivy.task.getApplication().getSecurityDescriptor().grantPermission(IPermission.USER_CREATE_OWN_ABSENCE, ivy.session.getSessionUser());
+
+ivy.task.getApplication().getSecurityDescriptor().grantPermission(IPermission.USER_DELETE_ABSENCE, ivy.session.getSessionUser());
+ivy.task.getApplication().getSecurityDescriptor().grantPermission(IPermission.USER_DELETE_OWN_ABSENCE, ivy.session.getSessionUser());
+
+ivy.task.getApplication().getSecurityDescriptor().grantPermission(IPermission.USER_READ_SUBSTITUTES, ivy.session.getSessionUser());
+ivy.task.getApplication().getSecurityDescriptor().grantPermission(IPermission.USER_READ_OWN_SUBSTITUTES, ivy.session.getSessionUser());
+
+ivy.task.getApplication().getSecurityDescriptor().grantPermission(IPermission.USER_CREATE_SUBSTITUTE, ivy.session.getSessionUser());
+ivy.task.getApplication().getSecurityDescriptor().grantPermission(IPermission.USER_CREATE_OWN_SUBSTITUTE, ivy.session.getSessionUser());
+
+ivy.task.getApplication().getSecurityDescriptor().grantPermission(IPermission.USER_DELETE_SUBSTITUTE, ivy.session.getSessionUser());
+ivy.task.getApplication().getSecurityDescriptor().grantPermission(IPermission.USER_DELETE_OWN_SUBSTITUTE, ivy.session.getSessionUser());' #txt
+Is0 f129 security system #txt
+Is0 f129 604 1188 40 24 0 -8 #rect
+Is0 f129 @|StepIcon #fIcon
+Is0 f130 777 1201 644 1200 #arcP
+Is0 f131 604 1200 408 543 #arcP
+Is0 f131 1 408 1200 #addKink
+Is0 f131 1 0.33561620107118156 0 0 #arcLabel
 >Proto Is0 .type portalKit_test.GrantPermissionsData #txt
 >Proto Is0 .processKind NORMAL #txt
 >Proto Is0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1701,3 +1749,7 @@ Is0 f125 mainOut f126 tail #connect
 Is0 f126 head f124 mainIn #connect
 Is0 f124 mainOut f127 tail #connect
 Is0 f127 head f7 mainIn #connect
+Is0 f128 mainOut f130 tail #connect
+Is0 f130 head f129 mainIn #connect
+Is0 f129 mainOut f131 tail #connect
+Is0 f131 head f7 mainIn #connect

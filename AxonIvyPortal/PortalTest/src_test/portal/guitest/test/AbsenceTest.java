@@ -34,6 +34,7 @@ public class AbsenceTest extends BaseTest {
 
   @Test
   public void whenLoginAsNormalUserThenManageAbsencesOfThatUser() {
+    redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantAllAbsenceAndSubtitutePermissions.ivp");
     AbsencePage absencePage = openAbsencePage();
     createAbsenceForCurrentUser(YESTERDAY, YESTERDAY, "For travel");
     createAbsenceForCurrentUser(TODAY, TODAY, "For party");
@@ -49,6 +50,7 @@ public class AbsenceTest extends BaseTest {
   @Test
   public void whenLoginAsAdminUserThenManageAbsencesOfAllUsers() {
     login(TestAccount.ADMIN_USER);
+    redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantAllAbsenceAndSubtitutePermissions.ivp");
     AbsencePage absencePage = openAbsencePage();
     createAbsenceForCurrentUser(TODAY, TODAY, "For party");
     String demoUserName = TestAccount.DEMO_USER.getFullName();
@@ -68,6 +70,7 @@ public class AbsenceTest extends BaseTest {
   public void displayMessageWhenInputOverlappingAbsence() {
     LocalDate chosenDay = LocalDate.now();
     LocalDate theNextDayOfChosenDay = chosenDay.plusDays(1);
+    redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantAllAbsenceAndSubtitutePermissions.ivp");
     AbsencePage absencePage = openAbsencePage();
     createAbsenceForCurrentUser(chosenDay, theNextDayOfChosenDay, "Just day off");
     assertEquals(1, absencePage.countAbsences());
@@ -83,6 +86,7 @@ public class AbsenceTest extends BaseTest {
   @Test
   public void testCurrentUserShouldNotSelectHimAsDeputy() {
     login(TestAccount.DEMO_USER);
+    redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantAllAbsenceAndSubtitutePermissions.ivp");
     AbsencePage absencePage = openAbsencePage();
     String demoUserName = TestAccount.DEMO_USER.getFullName();
     // Test add new absence
@@ -107,6 +111,7 @@ public class AbsenceTest extends BaseTest {
   @Test
   public void testAdminUserShouldSelectHimAsDeputyOfOtherUser() {
     login(TestAccount.ADMIN_USER);
+    redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantAllAbsenceAndSubtitutePermissions.ivp");
     AbsencePage absencePage = openAbsencePage();
     var adminUserName = TestAccount.ADMIN_USER.getFullName();
     var demoUserName = TestAccount.DEMO_USER.getFullName();
