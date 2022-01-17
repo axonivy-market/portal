@@ -34,7 +34,12 @@ public class AbsenceTest extends BaseTest {
 
   @Test
   public void whenLoginAsNormalUserThenManageAbsencesOfThatUser() {
-    redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantAllAbsenceAndSubtitutePermissions.ivp");
+    redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/denyAllAbsenceAndSubtitutePermissions.ivp");
+    redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantCreateOwnSubstitutePermission.ivp");
+    redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantCreateOwnAbsencePermission.ivp");
+    redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantReadOwnAbsencesPermission.ivp");
+    redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/denyReadSubstitutesPermission.ivp");
+
     AbsencePage absencePage = openAbsencePage();
     createAbsenceForCurrentUser(YESTERDAY, YESTERDAY, "For travel");
     createAbsenceForCurrentUser(TODAY, TODAY, "For party");
@@ -77,7 +82,7 @@ public class AbsenceTest extends BaseTest {
 
     NewAbsencePage newAbsencePage = absencePage.openNewAbsenceDialog();
     newAbsencePage.input(chosenDay, theNextDayOfChosenDay, "Overlapping absence");
-    newAbsencePage.proceed();
+    newAbsencePage.proceedWithError();
 
     assertTrue(newAbsencePage.isErrorMessageDisplayed());
     assertEquals("The absence is overlapping with another absence.", newAbsencePage.getErrorMessage());
@@ -149,8 +154,9 @@ public class AbsenceTest extends BaseTest {
     login(TestAccount.DEMO_USER);
     redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/denyAllAbsenceAndSubtitutePermissions.ivp");
     redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantReadOwnAbsencesPermission.ivp");
+    redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantCreateAbsencePermission.ivp");
     absencePage = openAbsencePage();
-    createAbsenceForCurrentUser(YESTERDAY, YESTERDAY, "Just day off");
+    createAbsenceForDeputy("", YESTERDAY, YESTERDAY, "Just day off");
 
     login(TestAccount.GUEST_USER);
     absencePage = openAbsencePage();
@@ -183,9 +189,10 @@ public class AbsenceTest extends BaseTest {
   public void testDeleteAbsenceOfOtherUser() {
     login(TestAccount.DEMO_USER);
     redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/denyAllAbsenceAndSubtitutePermissions.ivp");
-    redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantReadOwnAbsencesPermission.ivp");
+    redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantCreateOwnAbsencePermission.ivp");
+    
     AbsencePage absencePage = openAbsencePage();
-    createAbsenceForCurrentUser(YESTERDAY, YESTERDAY, "Just day off");
+    createAbsenceForDeputy("",YESTERDAY, YESTERDAY, "Just day off");
 
     login(TestAccount.GUEST_USER);
     redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/denyAllAbsenceAndSubtitutePermissions.ivp");
@@ -201,9 +208,9 @@ public class AbsenceTest extends BaseTest {
   public void testEditAbsenceOfOtherUser() {
     login(TestAccount.DEMO_USER);
     redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/denyAllAbsenceAndSubtitutePermissions.ivp");
-    redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantReadOwnAbsencesPermission.ivp");
+    redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantCreateOwnAbsencePermission.ivp");
     AbsencePage absencePage = openAbsencePage();
-    createAbsenceForCurrentUser(YESTERDAY, YESTERDAY, "Just day off");
+    createAbsenceForDeputy("", YESTERDAY, YESTERDAY, "Just day off");
 
     login(TestAccount.GUEST_USER);
     redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/denyAllAbsenceAndSubtitutePermissions.ivp");

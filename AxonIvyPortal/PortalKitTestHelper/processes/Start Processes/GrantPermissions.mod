@@ -143,6 +143,10 @@ Is0 @StartRequest f128 '' #zField
 Is0 @GridStep f129 '' #zField
 Is0 @PushWFArc f130 '' #zField
 Is0 @PushWFArc f131 '' #zField
+Is0 @GridStep f132 '' #zField
+Is0 @StartRequest f133 '' #zField
+Is0 @PushWFArc f134 '' #zField
+Is0 @PushWFArc f135 '' #zField
 >Proto Is0 Is0 GrantPermissions #zField
 Is0 f0 outLink grantAllPermissionsToCurrentUser.ivp #txt
 Is0 f0 inParamDecl '<> param;' #txt
@@ -1609,6 +1613,34 @@ Is0 f130 777 1201 644 1200 #arcP
 Is0 f131 604 1200 408 543 #arcP
 Is0 f131 1 408 1200 #addKink
 Is0 f131 1 0.33561620107118156 0 0 #arcLabel
+Is0 f132 actionTable 'out=in;
+' #txt
+Is0 f132 actionCode 'import ch.ivyteam.ivy.security.IPermission;
+
+ivy.task.getApplication().getSecurityDescriptor().grantPermission(IPermission.USER_CREATE_OWN_ABSENCE, ivy.session.getSessionUser());' #txt
+Is0 f132 security system #txt
+Is0 f132 604 1266 40 24 0 -8 #rect
+Is0 f132 @|StepIcon #fIcon
+Is0 f133 outLink grantCreateOwnAbsencePermission.ivp #txt
+Is0 f133 inParamDecl '<> param;' #txt
+Is0 f133 requestEnabled true #txt
+Is0 f133 triggerEnabled false #txt
+Is0 f133 callSignature grantCreateOwnAbsencePermission() #txt
+Is0 f133 caseData businessCase.attach=true #txt
+Is0 f133 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>grantCreateOwnAbsencePermission.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Is0 f133 @C|.responsibility Everybody #txt
+Is0 f133 777 1263 30 30 16 0 #rect
+Is0 f133 @|StartRequestIcon #fIcon
+Is0 f134 777 1278 644 1278 #arcP
+Is0 f135 604 1278 408 543 #arcP
+Is0 f135 1 408 1278 #addKink
+Is0 f135 1 0.36810228802153433 0 0 #arcLabel
 >Proto Is0 .type portalKit_test.GrantPermissionsData #txt
 >Proto Is0 .processKind NORMAL #txt
 >Proto Is0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1753,3 +1785,7 @@ Is0 f128 mainOut f130 tail #connect
 Is0 f130 head f129 mainIn #connect
 Is0 f129 mainOut f131 tail #connect
 Is0 f131 head f7 mainIn #connect
+Is0 f133 mainOut f134 tail #connect
+Is0 f134 head f132 mainIn #connect
+Is0 f132 mainOut f135 tail #connect
+Is0 f135 head f7 mainIn #connect

@@ -65,7 +65,12 @@ public class NewAbsencePage extends TemplatePage {
 
   public AddAbsencePage proceed() {
     clickByCssSelector("button[id*='next-to-deputy']");
+    waitForElementDisplayed(By.cssSelector("button[id*='save-substitutes'"), true);
     return new AddAbsencePage();
   }
 
+  public void proceedWithError() {
+    clickByCssSelector("button[id*='next-to-deputy']");
+    waitForElementDisplayed(By.cssSelector(ABSENCE_ERROR_MESSAGE_SELECTOR), true);
+  }
 }
