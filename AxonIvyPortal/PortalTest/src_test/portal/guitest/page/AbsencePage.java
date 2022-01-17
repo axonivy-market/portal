@@ -17,12 +17,12 @@ public class AbsencePage extends TemplatePage {
     String selector = "button[id*='add-absence']";
     waitForElementDisplayed(By.cssSelector(selector), true);
     clickByCssSelector(selector);
-    waitAjaxIndicatorDisappear();
+    waitForElementDisplayed(By.id("absence-settings:add-new-absence-dialog"), true);
     return new NewAbsencePage();
   }
 
   public int countAbsences() {
-    waitForElementDisplayed(By.cssSelector("a[id*='absence-table']"), true);
+    waitForElementDisplayed(By.cssSelector("[id*='absence-table']"), true);
     return findListElementsByCssSelector("td.absences-table-action-column").size();
   }
 
