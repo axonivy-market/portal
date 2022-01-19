@@ -52,7 +52,7 @@
             "data": {
                 "project": "portal-user-examples",
                 "resources": [
-                    "processes/Start Processes/LeaveRequest.mod"
+                    "processes/Start Processes/UserExampleGuide.mod"
                 ]
             }
         }
