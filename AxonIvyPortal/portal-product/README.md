@@ -30,13 +30,14 @@ See **Portal Header** for details.
 
 * The menu on the left side is always available and gives you access to all **processes**, **cases**, **tasks**, and other features of the **Axon Ivy Portal**.
 If the menu is minimized, you could hover to the menu to enlarge it.
-You may enlarge permanently the menu by clicking on the pin-icon icon in the top left corner.
-
-![axon-ivy-portal-menu](images/axon-ivy-portal-menu.png)
-
-* In the center you see **your personal dashboard** providing you instant access to **your processes**, **cases**, **tasks**, and performance indicators.
+You may enlarge permanently the menu by clicking on the pin-icon icon in the top left corner. In the center you see **your personal dashboard** providing you instant access to **your processes**, **cases**, **tasks**, and performance indicators.
 
 ![Portal](images/portal.png)
+
+Now, start the **User example guide** process to find some demo processes available in the **Axon Ivy Portal**.
+Just click on the corresponding link below to get more information.
+
+![user-example-demo](images/user-example-demo.png)
 
 
 
