@@ -46,15 +46,6 @@
                     }
                 ]
             }
-        },
-        {
-            "id": "open-resource",
-            "data": {
-                "project": "portal-user-examples",
-                "resources": [
-                    "processes/Start Processes/UserExampleGuide.mod"
-                ]
-            }
         }
     ]
 }

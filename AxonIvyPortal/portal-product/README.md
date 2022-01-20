@@ -54,34 +54,9 @@ The application consists of 4 process modules. For detailed information on each 
 * PortalTemplate
 * AxonIvyExpress
 
-### Installation
+### The default users
 
-Import Portal modules to Designer.
-1. Open the **Designer**
-2. On the Axon Ivy Project view
-   - Click on the **Import projects...** link
-   - On **Import** dialog, scroll down and select "Axon Ivy > Import Portal"
-   - Click on the **Next** button
-   
-   ![import-portal](images/import-portal-iar.png)
-
-   - Wait a bit and a popup *Install Axon Ivy Portal* will show on, click on the "OK" button
-   
-   ![install-portal](images/install-portal.png)
-   
-   - Wait for **Install progress** popup is closed
-   
-   ![install-progress](images/install-progress.png)
-   
-   - Finally, the result will look like here
-   
-   ![install-result](images/user-example-guide-process.png)
-   
-The other way, you can open the **Axon Ivy Market** view and search the **Portal** then select download it to your workspaces.
-
-![install-portal-alternative-way](images/install-portal-alternative-way.png)
-
-### The default users for demonstration of Portal.
+The default users for demonstration of Portal.
 
 | Username | Description                                                                     |
 | -------- | ------------------------------------------------------------------------------- |
