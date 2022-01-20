@@ -13,6 +13,7 @@ With a web-based, modern interface the Portal provides you with key functionalit
 
 ## Demo
 
+### Axon Ivy Portal Dashboard
 To start your **Axon Ivy Portal** experience, use the link provided to you by your administrator.
 Following the link, the **Axon Ivy Portal** will ask for your login credentials.
 
@@ -34,6 +35,7 @@ You may enlarge permanently the menu by clicking on the pin-icon icon in the top
 
 ![Portal](images/portal.png)
 
+### Welcome example
 Now, start the **User example guide** process to find some demo processes available in the **Axon Ivy Portal**.
 Just click on the corresponding link below to get more information.
 
