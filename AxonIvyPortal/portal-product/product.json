@@ -1,31 +1,15 @@
 {
-    "installers": [
+    "installers": [   
         {
-            "id": "maven-dependency",
+            "id": "maven-import",
             "data": {
-                "dependencies": [
+                "projects": [
                     {
                         "groupId": "ch.ivyteam.ivy.project.portal",
                         "artifactId": "portalTemplate",
                         "version": "${version}",
                         "type": "iar"
-                    }
-                ],
-                "repositories": [
-                    {
-                        "id": "axonivy.public",
-                        "url": "https://repo.axonivy.rocks",
-                        "snapshots": {
-                            "enabled": "true"
-                        }
-                    }
-                ]
-            }
-        },
-        {
-            "id": "maven-import",
-            "data": {
-                "projects": [
+                    },
                     {
                         "groupId": "com.axonivy.portal",
                         "artifactId": "portal-user-examples",
