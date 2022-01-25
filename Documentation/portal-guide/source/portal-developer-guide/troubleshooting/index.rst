@@ -55,7 +55,7 @@ Update default pages
 ====================
 If you copy ``PortalStart.mod`` to your project for customization, 
 you need to follow this chapter to customize standard processes in your designer and engine:
-`Standard Processes <https://developer.axonivy.com/doc/nightly/designer-guide/user-interface/standard-processes/index.html>`_
+`Standard Processes <https://developer.axonivy.com/doc/9.3.3/designer-guide/user-interface/standard-processes/index.html>`_
 
 For example, below is the default setting:
 

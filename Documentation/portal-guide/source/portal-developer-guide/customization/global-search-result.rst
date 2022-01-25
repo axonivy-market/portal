@@ -27,7 +27,7 @@ Follow these steps to customize the global search page:
    .. note:: It is recommended that lazy loading or pagination should be
     applied for custom tabs to have a good performance.
 
-#. Use `Axon Ivy HtmlOverride wizard <https://developer.axonivy.com/doc/nightly/designer-guide/how-to/overrides.html?#override-new-wizard>`_ to override ``SearchResults`` HTML dialog.
+#. Use `Axon Ivy HtmlOverride wizard <https://developer.axonivy.com/doc/9.3.3/designer-guide/how-to/overrides.html?#override-new-wizard>`_ to override ``SearchResults`` HTML dialog.
 
    In dataclass, change the ``dataModel`` to the above one, and in logic, also cast it.
 
