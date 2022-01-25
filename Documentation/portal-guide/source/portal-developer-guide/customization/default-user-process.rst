@@ -17,7 +17,7 @@ Customization
 -------------
 
 Default user process configuration is stored as 
-`Variables <https://developer.axonivy.com/doc/9.3.3/designer-guide/configuration/variables.html>`_.
+`Variables <https://developer.axonivy.com/doc/nightly/designer-guide/configuration/variables.html>`_.
 You could update the variable :ref:`portal-dashboard-favorite-processes` to customize default user processes.
 
 .. tip::
