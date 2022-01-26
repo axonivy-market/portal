@@ -74,8 +74,7 @@ public class CategoryColumnModel extends ProcessColumnModel implements Serializa
     if (dashboardProcessBean != null) {
       List<DashboardProcess> processes = filterByCategory(dashboardProcessBean);
       dashboardProcessBean.setPortalCompactProcesses(processes);
-      if (!Objects.isNull(dashboardProcessBean.getWidget())
-          && CollectionUtils.isNotEmpty(dashboardProcessBean.getWidget().getProcesses())) {
+      if (!Objects.isNull(dashboardProcessBean.getWidget())) {
         dashboardProcessBean.getWidget().setProcesses(null);
       }
     }
