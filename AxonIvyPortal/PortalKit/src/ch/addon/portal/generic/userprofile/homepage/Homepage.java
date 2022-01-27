@@ -6,7 +6,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 public class Homepage {
 
   private HomepageType type;
-  private String name;
+  private String name = "";
   private String label;
   private String link;
 
