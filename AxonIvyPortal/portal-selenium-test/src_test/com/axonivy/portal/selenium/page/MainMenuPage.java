@@ -11,14 +11,14 @@ public class MainMenuPage extends TemplatePage {
   }
 
   public void openTaskList() {
-    $(".layout-menu li[role='menuitem'] a.ripplelink.TASK").waitUntil(appear, DEFAULT_TIMEOUT).click();
+    $(".layout-menu li[role='menuitem'] a.ripplelink.TASK").waitUntil(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
   }
 
   public void openCaseList() {
-    $(".layout-menu li[role='menuitem'] a.ripplelink.CASE").waitUntil(appear, DEFAULT_TIMEOUT).click();
+    $(".layout-menu li[role='menuitem'] a.ripplelink.CASE").waitUntil(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
   }
 
   public void openProcessList() {
-    $(".layout-menu li[role='menuitem'] a.ripplelink.PROCESS").waitUntil(appear, DEFAULT_TIMEOUT).click();
+    $(".layout-menu li[role='menuitem'] a.ripplelink.PROCESS").waitUntil(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
   }
 }
