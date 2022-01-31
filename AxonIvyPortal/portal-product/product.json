@@ -1,0 +1,44 @@
+{
+	"installers": [
+		{
+			"id": "maven-import",
+			"data": {
+				"projects": [
+					{
+						"groupId": "ch.ivyteam.ivy.project.portal",
+						"artifactId": "portalStyle",
+						"version": "${version}",
+						"type": "iar"
+					}, {
+						"groupId": "ch.ivyteam.ivy.project.portal",
+						"artifactId": "portalKit",
+						"version": "${version}",
+						"type": "iar"
+					}, {
+						"groupId": "ch.ivyteam.ivy.project.portal",
+						"artifactId": "portalTemplate",
+						"version": "${version}",
+						"type": "iar"
+					}, {
+						"groupId": "com.axonivy.portal",
+						"artifactId": "portal-user-examples",
+						"version": "${version}",
+						"type": "iar"
+					}, {
+						"groupId": "com.axonivy.portal",
+						"artifactId": "portal-developer-examples",
+						"version": "${version}",
+						"type": "iar"
+					}
+				],
+				"repositories": [
+					{
+						"id": "axonivy.public",
+						"url": "https://repo.axonivy.rocks"
+					}
+				]
+			}
+		}
+	],
+	"name": "Axon Ivy Portal"
+}
