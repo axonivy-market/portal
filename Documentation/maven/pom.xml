@@ -7,7 +7,7 @@
     <version>${revision}</version>
 
     <properties>
-        <revision>9.4.0-m219.1</revision>
+        <revision>9.4.0-m220</revision>
     </properties>
 
     <distributionManagement>
