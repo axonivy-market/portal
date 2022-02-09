@@ -6,11 +6,15 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
+import org.apache.commons.lang3.BooleanUtils;
+import org.primefaces.PrimeFaces;
 import org.primefaces.component.button.Button;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
@@ -26,6 +30,7 @@ import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.server.ServerFactory;
+import ch.ivyteam.ivy.workflow.IWorkflowSession;
 
 @ManagedBean
 @ViewScoped
@@ -38,6 +43,11 @@ public class MenuView implements Serializable {
   public final static String ACTIVE_MENU = "active-menuitem";
   public final static String APP_NAME = "appName";
   public final static String DASHBOARD = "/ch.ivy.addon.portalkit.ui.jsf/common/dashboard";
+  public final static String SELECTED_MENU_ID = "selectedMenuId";
+  public final static String PREV_SELECTED_MENU_ID = "prevSelectedMenuId";
+  public final static String IS_WORKING_ON_TASK = "isWorkingOnATask";
+  public final static String IS_OPEN_NEW_TAB = "isOpenOnNewTab";
+  public final static String CLICK_ON_MENU_ITEM_PATTERN = "fireEventClickOnMenuItem('%s', '%s')";
 
   private List<Button> menuItems;
   private List<SubMenuItem> subMenuItems;
@@ -52,7 +62,7 @@ public class MenuView implements Serializable {
 
   public void buildMenuView() {
     RegisteredApplicationService service = new RegisteredApplicationService();
-    List<Application> applications = service.findApplicationByUser(Ivy.session().getSessionUserName());
+    List<Application> applications = service.findApplicationByUser(session().getSessionUserName());
     Collections.sort(applications, new ApplicationIndexAscendingComparator());
     buildMainMenuItems(applications);
     buildSubMenuItems();
@@ -100,7 +110,7 @@ public class MenuView implements Serializable {
         IApplication portal = ServerFactory.getServer().getApplicationConfigurationManager()
             .findApplication(PortalConstants.PORTAL_APPLICATION_NAME);
         if (portal != null && portal.getActivityState() != ch.ivyteam.ivy.application.ActivityState.INACTIVE
-            && portal.getSecurityContext().findUser(Ivy.session().getSessionUserName()) != null) {
+            && portal.getSecurityContext().findUser(session().getSessionUserName()) != null) {
           menuItem.setHref(SecurityServiceUtils.getDefaultPortalStartUrl());
           if (PortalConstants.PORTAL_APPLICATION_NAME.equals(Ivy.request().getApplication().getName())) {
             menuItem.setStyleClass(ACTIVE_MENU);
@@ -132,6 +142,30 @@ public class MenuView implements Serializable {
     } catch (Exception e) {
       Ivy.log().error("Cannot load SubMenuItems {0}", e.getMessage());
     }
+  }
+
+  public void storeSelectedMenuItems() {
+    var requestParamMap = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+    var selectedMenuItemId = Optional.ofNullable(requestParamMap.get(SELECTED_MENU_ID)).orElse("");
+    var isWorkingOnATask = Optional.ofNullable(requestParamMap.get(IS_WORKING_ON_TASK)).map(BooleanUtils::toBoolean).orElse(false);
+    var isOpenOnNewTab =  Optional.ofNullable(requestParamMap.get(IS_OPEN_NEW_TAB)).map(BooleanUtils::toBoolean).orElse(false);
+    session().setAttribute(SELECTED_MENU_ID, selectedMenuItemId);
+    if (!isWorkingOnATask && !isOpenOnNewTab) {
+      session().setAttribute(PREV_SELECTED_MENU_ID, selectedMenuItemId);
+    }
+
+    if (isOpenOnNewTab) {
+      var prevSelectedMenuItemId = session().getAttribute(PREV_SELECTED_MENU_ID);
+      if (prevSelectedMenuItemId == null) {
+        prevSelectedMenuItemId = "";
+      }
+      PrimeFaces.current().executeScript(String.format(CLICK_ON_MENU_ITEM_PATTERN,
+            prevSelectedMenuItemId, session().getAttribute(SELECTED_MENU_ID)));
+    }
+  }
+
+  private IWorkflowSession session() {
+    return Ivy.session();
   }
 
   public List<Button> getMenuItems() {

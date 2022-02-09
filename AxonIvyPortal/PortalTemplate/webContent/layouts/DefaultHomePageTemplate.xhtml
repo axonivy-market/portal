@@ -9,6 +9,12 @@
   <ui:composition template="/layouts/BasicTemplate.xhtml">
     <ui:define name="title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/dashboard')}</ui:define>
     <ui:define name="pageContent">
+      <h:form id="remote-command-group">
+        <p:remoteCommand id="reset-active-menu-items-rc" name="resetActiveMenuItems" autoRun="true"
+          oncomplete="resetPortalLeftMenuState();"
+          immediate="true" process="@this" update="@none" global="false"/>
+      </h:form>
+      
       <c:set var="displayProcessWidget" value="#{not empty displayProcessWidget ? displayProcessWidget : true}" />
       <c:set var="displayTaskWidget" value="#{not empty displayTaskWidget ? displayTaskWidget : true}" />
       <c:set var="displayStatisticWidget"
