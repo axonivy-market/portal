@@ -42,7 +42,7 @@ Bk1 @PushWFArc f3 '' #zField
 Bk1 @TaskSwitchSimple f4 '' #zField
 Bk1 @TkArc f5 '' #zField
 Bk1 @PushWFArc f0 '' #zField
->Proto Bk1 Bk1 BpmnUserTask #zField
+>Proto Bk1 Bk0 BpmnUserTask #zField
 Bk3 @AnnotationInP-0n ai ai #zField
 Bk3 @TextInP .type .type #zField
 Bk3 @TextInP .processKind .processKind #zField
@@ -214,8 +214,7 @@ Bk1 f4 585 241 30 30 0 16 #rect
 Bk1 f5 512 256 585 256 #arcP
 Bk1 f5 0 0.27599999999999997 0 0 #arcLabel
 Bk1 f0 615 256 691 256 #arcP
->Proto Bk1 0 0 32 24 18 0 #rect
->Proto Bk1 @|BpmnUserTaskIcon #fIcon
+>Proto Bk0 -8 -8 16 16 16 26 #rect
 Bk3 f3 dialogId com.axonivy.portal.userexamples.ExampleHomePage #txt
 Bk3 f3 startMethod start() #txt
 Bk3 f3 requestActionDecl '<> param;' #txt
