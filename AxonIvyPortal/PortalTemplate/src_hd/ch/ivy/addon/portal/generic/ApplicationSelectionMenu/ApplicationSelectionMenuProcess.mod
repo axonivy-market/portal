@@ -71,6 +71,11 @@ As0 @UdProcessEnd f36 '' #zField
 As0 @PushWFArc f39 '' #zField
 As0 @InfoButton f40 '' #zField
 As0 @AnnotationArc f41 '' #zField
+As0 @UdMethod f42 '' #zField
+As0 @UdProcessEnd f43 '' #zField
+As0 @GridStep f47 '' #zField
+As0 @PushWFArc f44 '' #zField
+As0 @PushWFArc f45 '' #zField
 >Proto As0 As0 ApplicationSelectionMenuProcess #zField
 As0 f67 actionTable 'out=in;
 ' #txt
@@ -132,7 +137,7 @@ As0 f83 actionTable 'out=in;
 ' #txt
 As0 f83 actionCode 'import org.primefaces.PrimeFaces;
 
-PrimeFaces.current().executeScript("removeHighlightedMenuItem(); PF(''task-losing-confirmation-dialog'').show()");' #txt
+PrimeFaces.current().executeScript("PF(''task-losing-confirmation-dialog'').show()");' #txt
 As0 f83 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -265,8 +270,7 @@ As0 f14 actionTable 'out=in;
 ' #txt
 As0 f14 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
 
-TaskUtils.resetTask(in.#workingTask != null ? in.workingTask : ivy.task);
-' #txt
+TaskUtils.resetTask(in.#workingTask != null ? in.workingTask : ivy.task);' #txt
 As0 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -500,7 +504,9 @@ As0 f19 actionTable 'out=in;
 ' #txt
 As0 f19 actionCode 'import ch.ivy.addon.portalkit.util.GrowlMessageUtils;
 
-GrowlMessageUtils.addFeedbackMessage(in.isTaskFinished, (in.#workingTask != null ? in.workingTask : ivy.task).getCase());' #txt
+GrowlMessageUtils.addFeedbackMessage(in.isTaskFinished, (in.#workingTask != null ? in.workingTask : ivy.task).getCase());
+
+' #txt
 As0 f19 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -547,6 +553,45 @@ start a task &gt; click on menu &gt; leave the task</name>
 As0 f40 560 194 256 44 -118 -16 #rect
 As0 f40 @|IBIcon #fIcon
 As0 f41 688 194 655 174 #arcP
+As0 f42 guid 17E9548E7EC18538 #txt
+As0 f42 method fireEventClickOnMenuItem() #txt
+As0 f42 inParameterDecl '<> param;' #txt
+As0 f42 outParameterDecl '<> result;' #txt
+As0 f42 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>fireEventClickOnMenuItem</name>
+    </language>
+</elementInfo>
+' #txt
+As0 f42 115 723 26 26 -60 20 #rect
+As0 f42 @|UdMethodIcon #fIcon
+As0 f43 371 723 26 26 0 12 #rect
+As0 f43 @|UdProcessEndIcon #fIcon
+As0 f47 actionTable 'out=in;
+' #txt
+As0 f47 actionCode 'import java.util.Optional;
+import ch.ivy.addon.portalkit.jsf.ManagedBeans;
+import ch.addon.portal.generic.menu.MenuView;
+import org.primefaces.PrimeFaces;
+
+Object menuItemId = Optional.ofNullable(ivy.session.getAttribute(MenuView.SELECTED_MENU_ID)).orElse(null);
+Object preMenuItemId = Optional.ofNullable(ivy.session.getAttribute(MenuView.PREV_SELECTED_MENU_ID)).orElse(null);
+
+PrimeFaces.current().executeScript(String.format(MenuView.CLICK_ON_MENU_ITEM_PATTERN, menuItemId, preMenuItemId));
+ivy.session.setAttribute(MenuView.PREV_SELECTED_MENU_ID, menuItemId);' #txt
+As0 f47 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Fire event click&#13;
+on menuItem</name>
+    </language>
+</elementInfo>
+' #txt
+As0 f47 184 714 128 44 -40 -16 #rect
+As0 f47 @|StepIcon #fIcon
+As0 f44 141 736 184 736 #arcP
+As0 f45 312 736 371 736 #arcP
 >Proto As0 .type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
 >Proto As0 .processKind HTML_DIALOG #txt
 >Proto As0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -633,3 +678,7 @@ As0 f32 mainOut f39 tail #connect
 As0 f39 head f36 mainIn #connect
 As0 f40 ao f41 tail #connect
 As0 f41 head f19 @CG|ai #connect
+As0 f42 mainOut f44 tail #connect
+As0 f44 head f47 mainIn #connect
+As0 f47 mainOut f45 tail #connect
+As0 f45 head f43 mainIn #connect
