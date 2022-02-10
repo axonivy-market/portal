@@ -18,7 +18,6 @@ import javax.faces.bean.ViewScoped;
 import ch.ivy.addon.portalkit.dto.UserDTO;
 import ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence;
 import ch.ivy.addon.portalkit.service.PermissionCheckerService;
-import ch.ivy.addon.portalkit.util.AbsenceAndSubstituteUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 
@@ -31,8 +30,8 @@ public class AbsenceBean implements Serializable {
   private boolean ownAbsencesReadable;
   private boolean ownAbsencesCreatable;
   private boolean ownAbsencesDeletable;
-  private boolean absencesInThePastCreatable;
-  private boolean absencesInThePastDeletable;
+  private boolean absencesCreatable;
+  private boolean absencesDeletable;
   private boolean ownSubstituteCreatable;
   private boolean substitutionReadable;
   private boolean substitutionCreatable;
@@ -41,13 +40,11 @@ public class AbsenceBean implements Serializable {
   public AbsenceBean() {
     permissionCheckerService = new PermissionCheckerService(); 
     ownAbsencesReadable = permissionCheckerService.hasAtLeaseOnePermission(USER_READ_OWN_ABSENCES, USER_READ_ABSENCES);
-    ownAbsencesCreatable =
-        permissionCheckerService.hasAtLeaseOnePermission(USER_CREATE_OWN_ABSENCE, USER_CREATE_ABSENCE);
-    ownAbsencesDeletable =
-        permissionCheckerService.hasAtLeaseOnePermission(USER_DELETE_OWN_ABSENCE, USER_DELETE_ABSENCE);
+    ownAbsencesCreatable = permissionCheckerService.hasPermission(USER_CREATE_OWN_ABSENCE);
+    ownAbsencesDeletable = permissionCheckerService.hasPermission(USER_DELETE_OWN_ABSENCE);
 
-    absencesInThePastCreatable = permissionCheckerService.hasPermission(USER_CREATE_ABSENCE);
-    absencesInThePastDeletable = permissionCheckerService.hasPermission(USER_DELETE_ABSENCE);
+    absencesCreatable = permissionCheckerService.hasPermission(USER_CREATE_ABSENCE);
+    absencesDeletable = permissionCheckerService.hasPermission(USER_DELETE_ABSENCE);
 
     ownSubstituteCreatable =
         permissionCheckerService.hasAtLeaseOnePermission(USER_CREATE_OWN_SUBSTITUTE, USER_CREATE_SUBSTITUTE);
@@ -78,19 +75,11 @@ public class AbsenceBean implements Serializable {
   }
 
   public boolean isAbsenceEditable(IvyAbsence absence) {
-    boolean absenceInThePast = AbsenceAndSubstituteUtils.isInThePast(absence);
-    if (absenceInThePast) {
-      return absencesInThePastCreatable;
-    }
-    return ownAbsencesCreatable && isOwnAbsence(absence);
+    return absencesCreatable || (ownAbsencesCreatable && isOwnAbsence(absence));
   }
 
   public boolean isAbsenceDeletable(IvyAbsence absence) {
-    boolean absenceInThePast = AbsenceAndSubstituteUtils.isInThePast(absence);
-    if (absenceInThePast) {
-      return absencesInThePastDeletable;
-    }
-    return ownAbsencesDeletable && isOwnAbsence(absence);
+    return absencesDeletable || (ownAbsencesDeletable && isOwnAbsence(absence));
   }
 
   private boolean isOwnAbsence (IvyAbsence absence) {
