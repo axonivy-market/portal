@@ -20,7 +20,7 @@ Following the link, the **Axon Ivy Portal** will ask for your login credentials.
 ![login-screen](images/login-screen.png)
 
 
-After successful login, you’ll see the **Axon Ivy Portal Homepage** and your personal dashboard.
+After successful login, you'll see the **Axon Ivy Portal Homepage** and your personal dashboard.
 All your activities can be managed from this central entry point.
 In detail these are:
 
@@ -45,7 +45,7 @@ Just click on the corresponding link below to get more information.
 
 ## Setup
 
-This section describes the first installation. We recommend reading the document detail in the **Portal guideline** in the section **Developer Guide » Installation**
+This section describes the first installation. We recommend reading the document detail in the **Portal guideline** in the section **Developer Guide > Installation**
 
 ### Project modules
 
