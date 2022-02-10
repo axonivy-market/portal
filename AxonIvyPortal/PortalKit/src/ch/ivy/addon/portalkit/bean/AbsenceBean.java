@@ -40,10 +40,8 @@ public class AbsenceBean implements Serializable {
   public AbsenceBean() {
     permissionCheckerService = new PermissionCheckerService(); 
     ownAbsencesReadable = permissionCheckerService.hasAtLeaseOnePermission(USER_READ_OWN_ABSENCES, USER_READ_ABSENCES);
-    ownAbsencesCreatable =
-        permissionCheckerService.hasAtLeaseOnePermission(USER_CREATE_OWN_ABSENCE, USER_CREATE_ABSENCE);
-    ownAbsencesDeletable =
-        permissionCheckerService.hasAtLeaseOnePermission(USER_DELETE_OWN_ABSENCE, USER_DELETE_ABSENCE);
+    ownAbsencesCreatable = permissionCheckerService.hasPermission(USER_CREATE_OWN_ABSENCE);
+    ownAbsencesDeletable = permissionCheckerService.hasPermission(USER_DELETE_OWN_ABSENCE);
 
     absencesCreatable = permissionCheckerService.hasPermission(USER_CREATE_ABSENCE);
     absencesDeletable = permissionCheckerService.hasPermission(USER_DELETE_ABSENCE);
