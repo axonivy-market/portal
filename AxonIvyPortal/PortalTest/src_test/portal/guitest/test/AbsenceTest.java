@@ -208,6 +208,7 @@ public class AbsenceTest extends BaseTest {
     redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantReadOwnAbsencesPermission.ivp");
     AbsencePage absencePage = openAbsencePage();
     createAbsenceForCurrentUser(YESTERDAY, YESTERDAY, "For travel", absencePage);
+    createAbsenceForCurrentUser(TODAY, TODAY, "For other reason", absencePage);
 
     login(TestAccount.GUEST_USER);
     redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantReadAbsencesPermission.ivp");
@@ -215,8 +216,9 @@ public class AbsenceTest extends BaseTest {
     absencePage = openAbsencePage();
     absencePage.setSubstitutedByAdmin(TestAccount.DEMO_USER.getFullName());
     absencePage.showAbsencesInThePast(true);
-    assertEquals(1, absencePage.countAbsences());
+    assertEquals(2, absencePage.countAbsences());
     assertTrue(absencePage.canDeleteAbsence(0));
+    assertTrue(absencePage.canDeleteAbsence(1));
   }
 
   @Test
@@ -225,6 +227,7 @@ public class AbsenceTest extends BaseTest {
     redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantReadOwnAbsencesPermission.ivp");
     AbsencePage absencePage = openAbsencePage();
     createAbsenceForCurrentUser(YESTERDAY, YESTERDAY, "For travel", absencePage);
+    createAbsenceForCurrentUser(TODAY, TODAY, "For other reason", absencePage);
 
     login(TestAccount.GUEST_USER);
     redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantReadAbsencesPermission.ivp");
@@ -232,8 +235,9 @@ public class AbsenceTest extends BaseTest {
     absencePage = openAbsencePage();
     absencePage.setSubstitutedByAdmin(TestAccount.DEMO_USER.getFullName());
     absencePage.showAbsencesInThePast(true);
-    assertEquals(1, absencePage.countAbsences());
+    assertEquals(2, absencePage.countAbsences());
     assertTrue(absencePage.canEditAbsence(0));
+    assertTrue(absencePage.canEditAbsence(1));
   }
 
   @Test

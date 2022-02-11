@@ -67,7 +67,7 @@
                           actionListener="#{logic.add}"
                           icon="#{visibilityBean.generateButtonIcon('si si-add-small')}"
                           update="@widgetVar(absence-dialog)"
-                          rendered="#{absenceManagementBean.ownAbsencesCreatable}" />
+                          rendered="#{absenceManagementBean.absencesCreatable || absenceManagementBean.ownAbsencesCreatable}" />
                         <!-- Show on Mobile screen - Only show icon -->
                         <p:commandButton id="add-absence-icon-only"
                           styleClass="Fright ui-md-hidden ui-lg-hidden ui-xl-hidden"
@@ -76,7 +76,7 @@
                           actionListener="#{logic.add}"
                           icon="#{visibilityBean.generateButtonIcon('si si-add-small')}"
                           update="@widgetVar(absence-dialog)"
-                          rendered="#{absenceManagementBean.ownAbsencesCreatable}" />
+                          rendered="#{absenceManagementBean.absencesCreatable || absenceManagementBean.ownAbsencesCreatable}" />
                       </div>
                   </div>
 
@@ -270,7 +270,7 @@
             update="@(.absence-table) @(.substitute-table) @(.substitution-table)" />
         </ui:define>
       </ui:decorate>
-      <c:if test="#{absenceManagementBean.ownAbsencesCreatable}">
+      <c:if test="#{absenceManagementBean.absencesCreatable ||  absenceManagementBean.ownAbsencesCreatable}">
         <ui:include src="Absence.xhtml" />
       </c:if>
 
