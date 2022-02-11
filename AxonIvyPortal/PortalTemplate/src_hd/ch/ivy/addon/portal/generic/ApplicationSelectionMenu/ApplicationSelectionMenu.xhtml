@@ -45,7 +45,16 @@
 
         <!-- Application menu -->
         <h:form id="main-navigator">
-
+          <!-- Remote-command will be called when click on leave task -->
+          <p:remoteCommand id="leave-task-rc" name="leaveTask" actionListener="#{logic.leave(task)}"
+            immediate="true" process="@this" partialSubmit="true"/>
+          <!-- Remote-command will be called when click on reserve task -->
+          <p:remoteCommand id="reserve-task-rc" name="reserveTask" actionListener="#{logic.reserveTask(task)}"
+            immediate="true" process="@this" partialSubmit="true"/>
+          <!-- Remote-command will be called when click on submenu item -->
+          <p:remoteCommand id="store-selected-menuitems-rc" name="storeSelectedMenuItems"
+            actionListener="#{menuView.storeSelectedMenuItems()}"
+            immediate="true" process="@this" partialSubmit="true" global="false"/>
           <!-- Remote-command will be called when language changed -->
           <p:remoteCommand name="reloadMenuItem" actionListener="#{menuView.buildMenuView()}"
             oncomplete="if (args &amp;&amp; !args.validationFailed) { window.location.reload();}" immediate="true" process="@this"
@@ -54,19 +63,17 @@
           <ps:menu id="main-menu" widgetVar="main-menu">
             <!-- Loop menu applications -->
             <c:forEach var="menuItem" items="#{menuView.menuItems}" varStatus="menuItemStatus">
-
               <p:menuitem id="menu-item-#{menuItemStatus.index}" rendered="#{empty menuItem.getAttributes().get('isThirdPartyApp')}"
                 actionListener="#{logic.openApp(menuItem.href, task)}" disabled="#{menuItem.disabled}" update="main-menu" process="main-menu"
                 icon="#{menuItem.icon}" value="#{menuItem.value}" iconPos="right"
                 containerStyleClass="#{menuItem.styleClass}" styleClass="#{menuItem.styleClass eq 'active-menuitem' ? 'current-application':''}" 
-                />
+                onclick="onClickMenuItem(this, #{cc.attrs.isWorkingOnATask});"/>
 
               <p:menuitem id="thirdparty-menu-item-#{menuItemStatus.index}" rendered="#{not empty menuItem.getAttributes().get('isThirdPartyApp')}"
                 update="main-menu" process="main-menu" actionListener="#{logic.openApp(menuItem.href, task)}" ajax="false" target="_blank"
                 disabled="#{menuItem.disabled}" icon="#{menuItem.icon}"
                 value="#{menuItem.value}" iconPos="right" containerStyleClass="#{menuItem.styleClass}"
-                onclick="restoreHighlightStateOfPreviousMenu();" />
-
+                onclick="onClickMenuItem(this, #{cc.attrs.isWorkingOnATask}, true);" />
               <!-- Loop sub-menu based on application -->
               <!-- Only show submenu for current application -->
               <c:if test="#{menuItem.styleClass eq 'active-menuitem'}">
@@ -82,7 +89,8 @@
                   <p:menuitem id="menu-item-#{menuItemStatus.index}-sub-menu-item-#{subMenuItemStatus.index}" 
                     rendered="#{isThirdPartyApp and isIvyLink}" actionListener="#{logic.onClickSubMenuItem}" value="#{subMenuItem.label}"
                     icon="#{subMenuItem.icon}" iconPos="right" styleClass="submenu #{subMenuItem.menuKind}" update="main-menu" process="main-menu"
-                    containerStyleClass="submenu-container #{firstSubItem} #{lastSubItem}" global="false">
+                    containerStyleClass="submenu-container #{firstSubItem} #{lastSubItem}" global="false"
+                    onclick="onClickMenuItem(this, #{cc.attrs.isWorkingOnATask});">
                     <f:attribute name="selectedSubMenuItem" value="#{subMenuItem}" />
                     <f:attribute name="task" value="#{task}" />
                   </p:menuitem>
@@ -91,11 +99,10 @@
                     rendered="#{isThirdPartyApp and !isIvyLink}" target="_blank" url="#{subMenuItem.externalLink}" value="#{subMenuItem.label}"
                     styleClass="submenu" icon="#{subMenuItem.icon}" update="main-menu" process="main-menu"
                     containerStyleClass="submenu-container #{firstSubItem} #{lastSubItem}"
-                    onclick="restoreHighlightStateOfPreviousMenu();" />
+                    onclick="onClickMenuItem(this, #{cc.attrs.isWorkingOnATask}, true);" />
 
                 </c:forEach>
               </c:if>
-
             </c:forEach>
           </ps:menu>
         </h:form>
@@ -108,42 +115,12 @@
     </div>
   </h:panelGroup>
 
-  <p:confirmDialog id="task-leave-warning-dialog" rendered="#{data.isWorkingOnATask}" 
-    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}"
-    widgetVar="task-losing-confirmation-dialog" appendTo="@(body)" closeOnEscape="true" responsive="true">
-    <h:form prependId="false">
-      <h:panelGroup>
-        <p:commandButton id="leave-button" actionListener="#{logic.leave(task)}" process="@this" update="@none"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/leave')}"
-          styleClass="ui-confirmdialog-yes u-mar-right-5" />
-        <p:commandButton id="reserve-task-button" actionListener="#{logic.reserveTask(task)}" process="@this" update="@none"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reserve')}"
-          styleClass="ui-confirmdialog-yes u-mar-right-5" rendered="#{task.state != 'CREATED'}" />
-        <p:tooltip for="reserve-task-button" trackMouse="true" rendered="#{task.state != 'CREATED'}"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/leaveAndReserve')}" />
-        <p:commandButton id="cancel-leave-task-button" onclick="PF('task-losing-confirmation-dialog').hide();"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" type="button"
-          styleClass="ui-confirmdialog-no portal-cancel-button" />
-      </h:panelGroup>
-    </h:form>
-    <f:facet name="message">
-      <h:outputText escape="false" styleClass="ui-confirm-dialog-message"
-        value="#{ivy.cms.co(task.state == 'CREATED' ? '/ch.ivy.addon.portalkit.ui.jsf/taskWarning/createdTaskLeave' : '/ch.ivy.addon.portalkit.ui.jsf/taskWarning/resetParkTaskBeforeLeave')}" />
-    </f:facet>
-  </p:confirmDialog>
-  <script type="text/javascript">
-    function removeHighlightedMenuItem() {
-      PF('main-menu').clearMenuState();
-      $(".active-menuitem.submenu-container").removeClass('active-menuitem');
-    }
-    function restoreHighlightStateOfPreviousMenu () {
-      var $highlightedItem = $('.active-menuitem.submenu-container');
-      setTimeout(function() {
-        if ($highlightedItem.length) {
-          $highlightedItem.addClass('active-menuitem');
-        }
-      }, 1);
-    }
-  </script>
+  <!-- Warning before leaving task -->
+  <ic:ch.ivy.addon.portalkit.component.WarningBeforeLeavingTask componentId="task-leave-warning-dialog"
+    widgetVar="task-losing-confirmation-dialog" renderedDialog="#{data.isWorkingOnATask}" taskState="#{task.state}"
+    leaveActionListener="#{logic.fireEventClickOnMenuItem()}" leaveOnComplete="leaveTask();"
+    reserveActionListener="#{logic.fireEventClickOnMenuItem()}" reserveOnComplete="reserveTask();"
+    cancelOnClick="PF('main-menu').restoreMenuState();" />
+
 </cc:implementation>
 </html>
