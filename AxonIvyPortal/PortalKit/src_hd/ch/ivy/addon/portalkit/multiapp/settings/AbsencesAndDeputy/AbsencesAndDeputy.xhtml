@@ -38,7 +38,7 @@
               <p:commandButton id="add-absence" process="@this" oncomplete="PF('addNewAbsence').show()"
                 actionListener="#{logic.add}"
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/newAbsence')}"
-                update="@widgetVar(addNewAbsence)" rendered="#{absenceBean.ownAbsencesCreatable}">
+                update="@widgetVar(addNewAbsence)" rendered="#{absenceBean.ownAbsencesCreatable || absenceBean.absencesCreatable}">
               </p:commandButton>
             </h:panelGroup>
           </h:panelGroup>
@@ -107,7 +107,7 @@
     </p:confirmDialog>
 
     <ui:include src="EditDeputyDialog.xhtml" />
-    <c:if test="#{absenceBean.ownAbsencesCreatable}">
+    <c:if test="#{absenceBean.ownAbsencesCreatable || absenceBean.absencesCreatable}">
       <ui:include src="AddNewAbsenceDialog.xhtml" />
       <ui:include src="EditAbsenceDialog.xhtml" />
     </c:if>

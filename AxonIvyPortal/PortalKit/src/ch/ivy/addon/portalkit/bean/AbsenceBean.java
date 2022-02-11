@@ -75,7 +75,7 @@ public class AbsenceBean implements Serializable {
   }
 
   public boolean isAbsenceEditable(IvyAbsence absence) {
-    return absencesCreatable || (ownAbsencesCreatable && isOwnAbsence(absence));
+    return isAbsencesCreatable() || (ownAbsencesCreatable && isOwnAbsence(absence));
   }
 
   public boolean isAbsenceDeletable(IvyAbsence absence) {
@@ -97,6 +97,14 @@ public class AbsenceBean implements Serializable {
 
   public boolean isSubstitutionCreatable() {
     return substitutionCreatable;
+  }
+
+  public boolean isAbsencesCreatable() {
+    return absencesCreatable;
+  }
+
+  public void setAbsencesCreatable(boolean absencesCreatable) {
+    this.absencesCreatable = absencesCreatable;
   }
 
 }
