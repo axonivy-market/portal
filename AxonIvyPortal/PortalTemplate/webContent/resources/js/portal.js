@@ -101,35 +101,51 @@ var MainMenu = {
 
   highlightMenuItem : function() {
     var firstLevelMenu = MainMenu.getMenuBasedOnPageUrl();
-    var parentActiveMenuId = MainMenu.getFirstParentMenuActive();
+    if (firstLevelMenu) {
+      var parentActiveMenuId = MainMenu.getFirstParentMenuActive();
 
-    var $activeMenuItem = $(".layout-menu li[id^='" + parentActiveMenuId + "'] .submenu").filter(
-        function(index) {
-          if (firstLevelMenu) {
-            return $(this).hasClass(firstLevelMenu);
-          }
-        });
-    $activeMenuItem.parent().addClass('active-menuitem');
+      var $activeMenuItem = $(".layout-menu li[id^='" + parentActiveMenuId + "'] .submenu").filter(
+          function(index) {
+            if (firstLevelMenu) {
+              return $(this).hasClass(firstLevelMenu);
+            }
+          });
+      $activeMenuItem.parent().addClass('active-menuitem');
+      PF('main-menu').addMenuitem($activeMenuItem.parent().attr('id'));
+    }
+    else {
+      MainMenu.removeActivatedSubMenu(true);
+    }
   },
 
   getFirstParentMenuActive : function() {
     var parentId = "";
     var parentMenuActive = $(".layout-menu .active-menuitem").not(".submenu-container");
     if (parentMenuActive.length > 0) {
-      parentId = parentMenuActive[0].id;
-      MainMenu.getSubMenuActive();
+      let lastSubMeuItem = MainMenu.removeActivatedSubMenu();
+      for (var i = 0; i < parentMenuActive.length; i++) {
+        if (lastSubMeuItem.indexOf(parentMenuActive[i].id) >= 0) {
+          parentId = parentMenuActive[i].id;
+          break;
+        }
+      }
     }
     return parentId;
   },
 
-  getSubMenuActive : function() {
+  removeActivatedSubMenu : function(keepInCookie) {
+    let lastSubMeuItem = "";
     var subMenuActive = $(".layout-menu .active-menuitem.submenu-container");
 
     for (var i = 0; i < subMenuActive.length; i++) {
       var item = subMenuActive.get(i);
       $(item).removeClass('active-menuitem');
+      if (!keepInCookie) {
+        PF('main-menu').removeMenuitem(item.id);
+      }
+      lastSubMeuItem = item.id;
     }
-
+    return lastSubMeuItem;
   },
 
   getMenuBasedOnPageUrl : function() {
@@ -164,4 +180,55 @@ function handleError(xhr, renderDetail){
     });
   }
   PF('error-ajax-dialog').show();
+}
+
+function onClickMenuItem(menuItem, isWorkingOnATask, isOpenOnNewTab) {
+  if(event !== undefined
+      && (typeof isWorkingOnATask === 'boolean' && isWorkingOnATask === true
+          || typeof isOpenOnNewTab === 'boolean' && isOpenOnNewTab === true)) {
+    $(menuItem).unbind('click', event.handler);
+    executeStoreMenuRemoteCommand(menuItem, isWorkingOnATask, isOpenOnNewTab);
+    event.stopImmediatePropagation();
+  }
+  else {
+    executeStoreMenuRemoteCommand(menuItem, isWorkingOnATask, isOpenOnNewTab);
+  }
+}
+
+function executeStoreMenuRemoteCommand(menuItem, isWorkingOnATask, isOpenOnNewTab) {
+  storeSelectedMenuItems([{
+    name : 'selectedMenuId',
+    value : $(menuItem).closest("li").attr("id")
+  },
+  {
+    name : 'isWorkingOnATask',
+    value : isWorkingOnATask
+  },
+  {
+    name : 'isOpenOnNewTab',
+    value : isOpenOnNewTab
+  }]);
+}
+
+function fireEventClickOnMenuItem(menuItem, prevMenuItemId) {
+  PF('main-menu').addMenuitem(menuItem);
+  if (prevMenuItemId !== menuItem) {
+    PF('main-menu').removeMenuitem(prevMenuItemId);
+  }
+}
+
+function resetPortalLeftMenuState() {
+  MainMenu.removeActivatedSubMenu();
+  var subMenuActive = [];
+  try {
+    let serenityExpandedItems = $.cookie('serenity_expandeditems');
+    if (serenityExpandedItems) {
+      subMenuActive = serenityExpandedItems.split(',');
+    }
+  } catch (e) {
+    console.log('Cannot identify status of Portal menu');
+  }
+  for (var i = 0; i < subMenuActive.length; i++) {
+    PF('main-menu').removeMenuitem(subMenuActive[i]);
+  }
 }
