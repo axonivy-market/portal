@@ -91,7 +91,7 @@
               <h:panelGroup id="task-detail-action-group" class="task-details-action-container action-container ui-g-5" layout="block">
                 <p:commandLink id="task-detail-start-command" disabled="#{!taskActionBean.canResume(task) or cc.attrs.readOnly}"
                   styleClass="task-action-item start-task-action task-action-item-position" rendered="#{task.state != 'RESUMED'}"
-                  actionListener="#{logic.openTask()}">
+                  actionListener="#{logic.openTask()}" oncomplete="resetPortalLeftMenuState()">
                   <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}" styleClass="task-action-item-label" />
                   <i class="si si-arrow-right-1 icon-compact-mode" />
                 </p:commandLink>
@@ -178,7 +178,7 @@
         <p:commandLink onclick="PF('reset-task-dialog').hide()" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
           styleClass="u-mar-right-15" />
         <p:commandButton actionListener="#{logic.resetAndOpenTask}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
-          icon="#{visibilityBean.generateButtonIcon('si si-road-sign-u-turn-left')}" onstart="#{cc.attrs.onTaskStartCallback}" />
+          icon="#{visibilityBean.generateButtonIcon('si si-road-sign-u-turn-left')}" onstart="#{cc.attrs.onTaskStartCallback}" oncomplete="resetPortalLeftMenuState()"/>
       </h:form>
     </ui:define>
   </ui:decorate>

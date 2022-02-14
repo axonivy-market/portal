@@ -131,7 +131,7 @@
         <p:commandButton actionListener="#{logic.resetAndOpenTask(data.currentPortalPage, taskWidgetBean.selectedTaskItemId)}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
           icon="#{visibilityBean.generateButtonIcon('si si-road-sign-u-turn-left')}"
-          onstart="#{cc.attrs.onTaskStartCallback}" />
+          onstart="#{cc.attrs.onTaskStartCallback}" oncomplete="resetPortalLeftMenuState()"/>
       </h:form>
     </ui:define>
   </ui:decorate>
