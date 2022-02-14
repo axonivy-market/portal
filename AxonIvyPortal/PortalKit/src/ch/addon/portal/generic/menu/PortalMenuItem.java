@@ -34,11 +34,14 @@ public class PortalMenuItem extends DefaultMenuItem {
 
   public static final String DEFAULT_MENU_COMMAND_METHOD = "#{menuView.onClickMenuItem}";
   public static final String DEFAULT_EXTERNAL_ON_CLICK_METHOD = "MainMenu.removeActiveOnExternalMenu()";
+  public static final String DEFAULT_ON_CLICK_PATTERN = "onClickMenuItem(this, %s, %s);";
 
   public final static String BREADCRUMB_DESTINATION = "destination";
   public final static String DEFAULT_DASHBOARD_ICON = "si si-layout-dashboard";
 
   private MenuKind menuKind;
+
+  public PortalMenuItem() { }
 
   public PortalMenuItem(PortalMenuBuilder builder) {
     this.setValue(builder.name);
@@ -58,10 +61,9 @@ public class PortalMenuItem extends DefaultMenuItem {
     this.setDisabled(builder.disabled);
     this.setUrl(builder.url);
 
-    this.setOnclick(builder.onClick);
-    if (isNull(builder.onClick) && (builder.menuKind == MenuKind.EXTERNAL_LINK || builder.menuKind == MenuKind.THIRD_PARTY)) {
-      this.setOnclick(DEFAULT_EXTERNAL_ON_CLICK_METHOD);
-    }
+    var isOpenOnNewTab = builder.menuKind == MenuKind.EXTERNAL_LINK || builder.menuKind == MenuKind.THIRD_PARTY;
+    var onClick = String.format(DEFAULT_ON_CLICK_PATTERN, builder.isWorkingOnATask, isOpenOnNewTab);
+    this.setOnclick(onClick.concat(isNull(builder.onClick) ? "" : builder.onClick));
 
     this.setTarget(builder.target);
     if (isNull(builder.target) && (builder.menuKind == MenuKind.EXTERNAL_LINK || builder.menuKind == MenuKind.THIRD_PARTY)) {
