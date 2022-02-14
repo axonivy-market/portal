@@ -116,7 +116,7 @@
   </h:panelGroup>
 
   <!-- Warning before leaving task -->
-  <ic:ch.ivy.addon.portalkit.component.WarningBeforeLeavingTask componentId="task-leave-warning-dialog"
+  <ic:ch.ivy.addon.portalkit.component.WarningBeforeLeavingTask id="warning-before-leaving-task-component" componentId="task-leave-warning-dialog"
     widgetVar="task-losing-confirmation-dialog" renderedDialog="#{data.isWorkingOnATask}" taskState="#{task.state}"
     leaveActionListener="#{logic.fireEventClickOnMenuItem()}" leaveOnComplete="leaveTask();"
     reserveActionListener="#{logic.fireEventClickOnMenuItem()}" reserveOnComplete="reserveTask();"
