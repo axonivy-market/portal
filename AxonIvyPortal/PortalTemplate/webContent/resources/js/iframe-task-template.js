@@ -1,7 +1,4 @@
 var invalidIFrameSrcPath = false;
-$(document).ready(function() {
-  $.removeCookie('serenity_expandeditems', {path: '/'});
-});
 
 loadIframe(false);
 var recheckFrameTimer;
