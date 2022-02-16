@@ -394,6 +394,11 @@ public class MenuView implements Serializable {
     }
   }
 
+  public void resetSelectedMenuItems() {
+    session().setAttribute(SELECTED_MENU_ID, null);
+    session().setAttribute(PREV_SELECTED_MENU_ID, null);
+  }
+
   private IWorkflowSession session() {
     return Ivy.session();
   }

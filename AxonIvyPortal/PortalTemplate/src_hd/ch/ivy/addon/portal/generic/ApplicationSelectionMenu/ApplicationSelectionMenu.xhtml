@@ -56,6 +56,10 @@
           <p:remoteCommand id="store-selected-menuitems-rc" name="storeSelectedMenuItems"
             actionListener="#{menuView.storeSelectedMenuItems()}"
             immediate="true" process="@this" partialSubmit="true" global="false"/>
+          <!-- Remote-command will be called when resetting menu -->
+          <p:remoteCommand id="reset-selected-menuitems-rc" name="resetSelectedMenuItems"
+            actionListener="#{menuView.resetSelectedMenuItems()}"
+            immediate="true" process="@this" partialSubmit="true" global="false"/>
           <!-- Remote commands for breadcrumb -->
           <p:remoteCommand name="navigateToTaskListFromBreadcrumb" immediate="true"
             actionListener="#{logic.clickBreadcrumb('TASK')}"
