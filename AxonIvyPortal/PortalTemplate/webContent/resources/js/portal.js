@@ -277,4 +277,5 @@ function fireEventClickOnMenuItem(menuItem, prevMenuItemId) {
 
 function resetPortalLeftMenuState() {
   $.removeCookie('serenity_expandeditems', {path: '/'});
+  resetSelectedMenuItems();
 }
