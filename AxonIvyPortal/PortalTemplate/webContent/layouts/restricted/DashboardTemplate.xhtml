@@ -14,6 +14,11 @@
           window.location = "${menuView.getDashboardLink()}";
         }
       </script>
+      <h:form id="remote-command-group">
+        <p:remoteCommand id="reset-active-menu-items-rc" name="resetActiveMenuItems" autoRun="true"
+          oncomplete="resetPortalLeftMenuState();"
+          immediate="true" process="@this" update="@none" global="false"/>
+      </h:form>
       <div class="ui-g">
       <!-- Dashboard content -->
       <ui:fragment>
