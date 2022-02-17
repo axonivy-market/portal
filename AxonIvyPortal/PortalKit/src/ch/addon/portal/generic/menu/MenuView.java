@@ -7,12 +7,16 @@ import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 
+import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.primefaces.PrimeFaces;
 import org.primefaces.model.menu.DefaultMenuItem;
 import org.primefaces.model.menu.DefaultMenuModel;
 import org.primefaces.model.menu.MenuItem;
@@ -31,6 +35,7 @@ import ch.ivy.addon.portalkit.util.UrlUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.ITask;
+import ch.ivyteam.ivy.workflow.IWorkflowSession;
 
 @ManagedBean
 @ViewScoped
@@ -38,6 +43,11 @@ public class MenuView implements Serializable {
   private static final long serialVersionUID = 3188259472933435953L;
 
   private final static String DASHBOARD = "/ch.ivy.addon.portalkit.ui.jsf/common/dashboard";
+  public final static String SELECTED_MENU_ID = "selectedMenuId";
+  public final static String PREV_SELECTED_MENU_ID = "prevSelectedMenuId";
+  public final static String IS_WORKING_ON_TASK = "isWorkingOnATask";
+  public final static String IS_OPEN_NEW_TAB = "isOpenOnNewTab";
+  public final static String CLICK_ON_MENU_ITEM_PATTERN = "fireEventClickOnMenuItem('%s', '%s')";
 
   private DefaultMenuModel mainMenuModel;
   private MenuModel breadcrumbModel;
@@ -88,11 +98,6 @@ public class MenuView implements Serializable {
         .icon(subMenuItem.getIcon())
         .cleanParam(isExternalLink)
         .build();
-
-    if (isExternalLink) {
-      item.setOnclick(PortalMenuItem.DEFAULT_EXTERNAL_MENU_TARGET);
-      item.setTarget(PortalMenuItem.DEFAULT_EXTERNAL_MENU_TARGET);
-    }
     return item;
   }
 
@@ -368,4 +373,34 @@ public class MenuView implements Serializable {
   private String translate(String cmsURI) {
     return ApplicationMultiLanguageAPI.getCmsValueByUserLocale(cmsURI);
   }
+
+  public void storeSelectedMenuItems() {
+    var requestParamMap = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+    var selectedMenuItemId = Optional.ofNullable(requestParamMap.get(SELECTED_MENU_ID)).orElse("");
+    var isWorkingOnATask = Optional.ofNullable(requestParamMap.get(IS_WORKING_ON_TASK)).map(BooleanUtils::toBoolean).orElse(false);
+    var isOpenOnNewTab =  Optional.ofNullable(requestParamMap.get(IS_OPEN_NEW_TAB)).map(BooleanUtils::toBoolean).orElse(false);
+    session().setAttribute(SELECTED_MENU_ID, selectedMenuItemId);
+    if (!isWorkingOnATask && !isOpenOnNewTab) {
+      session().setAttribute(PREV_SELECTED_MENU_ID, selectedMenuItemId);
+    }
+
+    if (isOpenOnNewTab) {
+      var prevSelectedMenuItemId = session().getAttribute(PREV_SELECTED_MENU_ID);
+      if (prevSelectedMenuItemId == null) {
+        prevSelectedMenuItemId = "";
+      }
+      PrimeFaces.current().executeScript(String.format(CLICK_ON_MENU_ITEM_PATTERN,
+            prevSelectedMenuItemId, session().getAttribute(SELECTED_MENU_ID)));
+    }
+  }
+
+  public void resetSelectedMenuItems() {
+    session().setAttribute(SELECTED_MENU_ID, null);
+    session().setAttribute(PREV_SELECTED_MENU_ID, null);
+  }
+
+  private IWorkflowSession session() {
+    return Ivy.session();
+  }
+
 }
