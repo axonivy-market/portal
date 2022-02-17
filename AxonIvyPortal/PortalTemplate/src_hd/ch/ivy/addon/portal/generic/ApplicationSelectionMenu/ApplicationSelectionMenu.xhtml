@@ -46,6 +46,20 @@
           <!-- Portal Main Menu -->
           <pm:menu id="main-menu" widgetVar="main-menu" model="#{menuView.mainMenuModel}" />
 
+          <!-- Remote-command will be called when click on leave task -->
+          <p:remoteCommand id="leave-task-rc" name="leaveTask" actionListener="#{logic.leave(task)}"
+            immediate="true" process="@this" partialSubmit="true"/>
+          <!-- Remote-command will be called when click on reserve task -->
+          <p:remoteCommand id="reserve-task-rc" name="reserveTask" actionListener="#{logic.reserveTask(task)}"
+            immediate="true" process="@this" partialSubmit="true"/>
+          <!-- Remote-command will be called when click on submenu item -->
+          <p:remoteCommand id="store-selected-menuitems-rc" name="storeSelectedMenuItems"
+            actionListener="#{menuView.storeSelectedMenuItems()}"
+            immediate="true" process="@this" partialSubmit="true" global="false"/>
+          <!-- Remote-command will be called when resetting menu -->
+          <p:remoteCommand id="reset-selected-menuitems-rc" name="resetSelectedMenuItems"
+            actionListener="#{menuView.resetSelectedMenuItems()}"
+            immediate="true" process="@this" partialSubmit="true" global="false"/>
           <!-- Remote commands for breadcrumb -->
           <p:remoteCommand name="navigateToTaskListFromBreadcrumb" immediate="true"
             actionListener="#{logic.clickBreadcrumb('TASK')}"
@@ -63,31 +77,17 @@
     </div>
   </h:panelGroup>
 
-  <p:dialog id="task-leave-warning-dialog" rendered="#{data.isWorkingOnATask}" 
-    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}" modal="true"
-    widgetVar="task-losing-confirmation-dialog" appendTo="@(body)" closeOnEscape="true" responsive="true">
-    <p:ajax event="close" listener="#{logic.continueWorkingOnTask}" global="false" immediate="true"/>
-    <h:form prependId="false">
-        <span class="ui-icon ui-icon-alert ui-confirm-dialog-severity"></span>
-        <h:outputText escape="false" styleClass="ui-confirm-dialog-message"
-        value="#{ivy.cms.co(task.state == 'CREATED' ? '/ch.ivy.addon.portalkit.ui.jsf/taskWarning/createdTaskLeave' : '/ch.ivy.addon.portalkit.ui.jsf/taskWarning/resetParkTaskBeforeLeave')}" />
-        <h:panelGroup layout="block" styleClass="ui-dialog-footer u-no-padding-right">
-          <p:commandLink onclick="PF('task-losing-confirmation-dialog').hide();" actionListener="#{logic.continueWorkingOnTask}"
-            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" process="@this" update="@none" />
-          <p:spacer width="15px" />
-          <p:commandButton id="reserve-task-button" actionListener="#{logic.reserveTask(task)}" process="@this" update="@none"
-            icon="#{visibilityBean.generateButtonIcon('si si-touch-finger_1')}"
-            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reserve')}"
-            styleClass="u-mar-right-5 secondary-btn" rendered="#{task.state != 'CREATED'}" />
-          <p:commandButton id="leave-button" actionListener="#{logic.leave(task)}" process="@this" update="@none"
-            icon="#{visibilityBean.generateButtonIcon('si si-arrow-left')}"
-            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/leave')}"
-            styleClass="u-mar-right-5" />
-          <p:tooltip for="reserve-task-button" trackMouse="true" rendered="#{task.state != 'CREATED'}"
-            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/leaveAndReserve')}" />
-        </h:panelGroup>
-    </h:form>
-  </p:dialog>
+  <!-- Warning before leaving task -->
+  <ic:ch.ivy.addon.portalkit.component.WarningBeforeLeavingTask id="warning-before-leaving-task-component" componentId="task-leave-warning-dialog"
+    widgetVar="task-losing-confirmation-dialog" renderedDialog="#{data.isWorkingOnATask}" taskState="#{task.state}"
+    leaveActionListener="#{logic.fireEventClickOnMenuItem()}" leaveOnComplete="leaveTask();"
+    reserveActionListener="#{logic.fireEventClickOnMenuItem()}" reserveOnComplete="reserveTask();"
+    cancelActionListener="#{logic.continueWorkingOnTask()}" cancelOnClick="PF('main-menu').restoreMenuState();">
+    <f:facet name="event">
+      <p:ajax event="close" listener="#{logic.continueWorkingOnTask}" global="false" immediate="true"/>
+    </f:facet>
+  </ic:ch.ivy.addon.portalkit.component.WarningBeforeLeavingTask>
+
   <script type="text/javascript">
     function hideBreadcrumb() {
       if ($(".layout-wrapper-static").length == 0) {
