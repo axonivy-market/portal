@@ -4,7 +4,7 @@
   xmlns:pe="http://primefaces.org/ui/extensions" xmlns:jsf="http://xmlns.jcp.org/jsf">
 
 <p:commandLink id="start-task" actionListener="#{dashboardBean.startTask(task)}"
-  disabled="#{!taskActionBean.isNotDone(task) or !taskActionBean.canResume(task)}">
+  disabled="#{!taskActionBean.isNotDone(task) or !taskActionBean.canResume(task)}" oncomplete="resetPortalLeftMenuState()">
   <span class="si si-controls-play" />
 </p:commandLink>
 <p:tooltip for="start-task" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/startATask')}" trackMouse="true"
