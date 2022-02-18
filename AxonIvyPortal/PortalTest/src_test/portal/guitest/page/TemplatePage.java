@@ -389,8 +389,8 @@ public abstract class TemplatePage extends AbstractPage {
   public HomePage goToHomeFromBreadcrumbWithWarning() {
     waitForElementDisplayed(By.cssSelector(HOME_BREADCRUMB_SELECTOR), true);
     click(By.cssSelector(HOME_BREADCRUMB_SELECTOR));
-    waitForElementDisplayed(By.id("user-menu-required-login:leave-button"), true);
-    click(By.id("user-menu-required-login:leave-button"));
+    waitForElementDisplayed(By.id("user-menu-required-login:warning-before-leaving-task-component:leave-button"), true);
+    click(By.id("user-menu-required-login:warning-before-leaving-task-component:leave-button"));
     return new HomePage();
   }
   
