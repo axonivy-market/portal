@@ -241,7 +241,7 @@ public class ExpressFormDefinitionPage extends TemplatePage {
 	}
 
   public HomePage leave() {
-    click(By.id("user-menu-required-login:leave-button"));
+    click(By.id("user-menu-required-login:warning-before-leaving-task-component:leave-button"));
     return new HomePage();
   }
   
