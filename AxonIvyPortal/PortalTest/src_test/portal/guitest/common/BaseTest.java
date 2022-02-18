@@ -121,6 +121,7 @@ public class BaseTest {
   public void setupWithAlternativeLinkAndAccount(String relativePath, TestAccount account) {
     browser = Browser.getBrowser();
     launchBrowserAndGotoRelativeLink(relativePath);
+    updatePortalSetting(SHOW_USER_GUIDE.getKey(), "false");
     updatePortalSettingToShowLegacyUI();
     login(account);
   }
