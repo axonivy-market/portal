@@ -10,8 +10,8 @@
   <div class="TexAlCenter logo-container">
 
     <ic:ch.ivy.addon.portalkit.component.WarningBeforeLeavingTask id="task-leave-warning-component" rendered="#{isWorkingOnATask}"
-      leaveActionListener="#{userMenuBean.resetTaskAndNavigateWithGrowl(task)}" 
-      reserveActionListener="#{userMenuBean.reserveTaskAndNavigateWithGrowl(task)}"
+      leaveActionListener="#{userMenuBean.resetTaskAndNavigateWithGrowl(task)}" leaveOnComplete="resetPortalLeftMenuState();"
+      reserveActionListener="#{userMenuBean.reserveTaskAndNavigateWithGrowl(task)}" reserveOnComplete="resetPortalLeftMenuState();"
       componentId="logo-task-losing-confirmation-dialog" widgetVar="logo-task-losing-confirmation-dialog"
       taskState="#{task.state}" />
     <c:if test="#{!isNotRequiredLogin}">

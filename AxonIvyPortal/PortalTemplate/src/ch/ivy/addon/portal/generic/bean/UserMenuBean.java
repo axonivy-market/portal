@@ -143,6 +143,7 @@ public class UserMenuBean implements Serializable {
       PrimeFaces.current().executeScript("PF('logo-task-losing-confirmation-dialog').show()");
       targetPage = getUserProfileUrl();
     } else {
+      PrimeFaces.current().executeScript("resetPortalLeftMenuState()");
       navigateToUserProfile();
     }
   }
@@ -152,6 +153,7 @@ public class UserMenuBean implements Serializable {
       PrimeFaces.current().executeScript("PF('logo-task-losing-confirmation-dialog').show()");
       targetPage = getAbsencesUrl();
     } else {
+      PrimeFaces.current().executeScript("resetPortalLeftMenuState()");
       navigateToAbsences();
     }
   }
