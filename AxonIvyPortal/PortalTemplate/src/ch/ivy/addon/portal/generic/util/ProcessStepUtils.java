@@ -8,7 +8,7 @@ import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portalkit.bo.ProcessStep;
 import ch.ivy.addon.portalkit.configuration.UserProcess;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
-import ch.ivyteam.ivy.cm.IContentManagement;
+import ch.ivyteam.ivy.cm.exec.ContentManagement;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public class ProcessStepUtils {
@@ -34,9 +34,9 @@ public class ProcessStepUtils {
     String processModelName = processParts[processParts.length - 3];
 
     return IvyExecutor.executeAsSystem(() -> {
-      String processSteps = IContentManagement.instance()
-          .findCms(Ivy.wf().getApplication()
-              .findProcessModel(processModelName).getReleasedProcessModelVersion())
+      ContentManagement contentManagement = ContentManagement.of(ContentManagement
+          .cms(Ivy.wf().getApplication().findProcessModel(processModelName).getReleasedProcessModelVersion()));
+      String processSteps = contentManagement
           .co(SLASH.concat(PROCESSES_CMS_URI).concat(SLASH).concat(processName).concat(SLASH).concat(PROCESS_STEP));
         return StringUtils.isBlank(processSteps) ? null : convertToProcessStep(processSteps);
       });
