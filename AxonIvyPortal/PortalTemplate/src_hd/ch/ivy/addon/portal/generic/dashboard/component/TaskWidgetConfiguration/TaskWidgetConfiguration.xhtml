@@ -21,13 +21,18 @@
     <ui:define name="widgetFilterContent">
       <h:panelGroup id="user-filter" layout="block" styleClass="ui-g">
         <ui:repeat var="field" value="#{cc.attrs.taskWidget.filterableColumns}">
-          <ic:ch.ivy.addon.portalkit.component.dashboard.taskwidget.PriorityFilterColumn field="#{field}"
-            selectedPriorities="#{field.priorities}"
-            priorityOptions="#{dashboardTaskFilterBean.priorities}"/>
+          <h:panelGroup rendered="#{field.field eq 'priority'}">
+            <ic:ch.ivy.addon.portalkit.component.dashboard.taskwidget.PriorityFilterColumn field="#{field}"
+              selectedPriorities="#{field.priorities}"
+              priorityOptions="#{dashboardTaskFilterBean.priorities}"/>
+          </h:panelGroup>
 
-          <ic:ch.ivy.addon.portalkit.component.dashboard.taskwidget.StateFilterColumn field="#{field}"
-            stateOptions="#{dashboardTaskFilterBean.states}"
-            selectedStates="#{field.states}"/>
+          <h:panelGroup rendered="#{field.field eq 'state'}">
+            <ic:ch.ivy.addon.portalkit.component.dashboard.taskwidget.StateFilterColumn field="#{field}"
+              stateOptions="#{dashboardTaskFilterBean.states}"
+              selectedStates="#{field.states}"
+              isInConfiguration="true"/>
+          </h:panelGroup>
   
           <h:panelGroup rendered="#{field.field eq 'activator'}">
             <ic:ch.ivy.addon.portalkit.component.dashboard.taskwidget.ActivatorFilterColumn field="#{field}"
@@ -54,11 +59,13 @@
            filterTo="#{field.dateFilterTo}"
            filterFrom="#{field.dateFilterFrom}"/>
 
-          <ic:ch.ivy.addon.portalkit.component.dashboard.widget.CategoryFilterColumn field="#{field}"
-            displaySelectedCategories="#{field.displayCategories}" configurationMode="true"
-            categoryNodeSelection="#{field.categoryNodes}" categoryTree="#{field.categoryTree}"
-            containerStyleClass="task-configuration__category" inputCategoryStyleClass="task-configuration__input-text"
-            overlayCategoryStyleClass="task-configuration__category-panel" showUnselectableCheckbox="false"/>
+          <h:panelGroup rendered="#{field.field eq 'category'}">
+            <ic:ch.ivy.addon.portalkit.component.dashboard.widget.CategoryFilterColumn field="#{field}"
+              displaySelectedCategories="#{field.displayCategories}" configurationMode="true"
+              categoryNodeSelection="#{field.categoryNodes}" categoryTree="#{field.categoryTree}"
+              containerStyleClass="task-configuration__category" inputCategoryStyleClass="task-configuration__input-text"
+              overlayCategoryStyleClass="task-configuration__category-panel" showUnselectableCheckbox="false"/>
+          </h:panelGroup>
         </ui:repeat>
       </h:panelGroup>
     </ui:define>

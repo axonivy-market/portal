@@ -10,12 +10,10 @@ import org.apache.commons.lang3.time.DateUtils;
 
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.TaskColumnModel;
-import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
 import ch.ivy.addon.portalkit.enums.DashboardFilterType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivy.addon.portalkit.util.Dates;
-import ch.ivy.addon.portalkit.util.HiddenTasksCasesConfig;
 import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivyteam.ivy.workflow.WorkflowPriority;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
@@ -41,9 +39,6 @@ public class DashboardTaskSearchCriteria {
 
   public TaskQuery buildQueryWithoutOrderByClause() {
     TaskQuery query = TaskQuery.create();
-    if (HiddenTasksCasesConfig.isHiddenTasksCasesExcluded()) {
-      query.where().customField().stringField(AdditionalProperty.HIDE.toString()).isNull();
-    }
     queryFilters(query);
     queryCanWorkOn(query);
     return query;
