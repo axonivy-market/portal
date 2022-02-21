@@ -201,6 +201,9 @@ public class DashboardWidgetUtils {
       return hasPredefinedFilter;
     }
     for (ColumnModel col : filterableColumns) {
+      if (hasPredefinedFilter) {
+        break;
+      }
       if ((DashboardStandardCaseColumn.STATE.getField().equalsIgnoreCase(col.getField())
           || DashboardStandardCaseColumn.CREATOR.getField().equalsIgnoreCase(col.getField())
           || DashboardStandardCaseColumn.OWNER.getField().equalsIgnoreCase(col.getField())
@@ -221,6 +224,9 @@ public class DashboardWidgetUtils {
       return hasPredefinedFilter;
     }
     for (ColumnModel col : filterableColumns) {
+      if (hasPredefinedFilter) {
+        break;
+      }
       if ((PRIORITY.getField().equalsIgnoreCase(col.getField()) || STATE.getField().equalsIgnoreCase(col.getField())
           || RESPONSIBLE.getField().equalsIgnoreCase(col.getField())
           || CATEGORY.getField().equalsIgnoreCase(col.getField()))
