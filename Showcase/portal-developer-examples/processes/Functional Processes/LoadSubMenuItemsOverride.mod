@@ -83,37 +83,7 @@ google.setIcon("si si-information-circle");
 google.setLabel("Google");
 google.setMenuKind(MenuKind.EXTERNAL_LINK);
 google.setLink("www.google.com");
-in.subMenuItems.add(google);
-
-
-
-SubMenuItem iframe = new SubMenuItem();
-iframe.setIcon("fa fa-play");
-iframe.setLabel("CreateInvestment");
-iframe.setMenuKind(MenuKind.CUSTOM);
-iframe.setLink(ProcessStartAPI.findStartableLinkByUserFriendlyRequestPath("Start Processes/IFrameExample/CreateInvestment.ivp") + "?embedInFrame");
-in.subMenuItems.add(iframe);
-
-SubMenuItem doc = new SubMenuItem();
-doc.setIcon("fa fa-info");
-doc.setLabel("Document Table");
-doc.setMenuKind(MenuKind.CUSTOM);
-doc.setLink(ProcessStartAPI.findStartableLinkByUserFriendlyRequestPath("Start Processes/DocumentTableComponent/start.ivp") + "?embedInFrame");
-in.subMenuItems.add(doc);
-
-SubMenuItem navi = new SubMenuItem();
-navi.setIcon("fa fa-user");
-navi.setLabel("Navigate In IFrame");
-navi.setMenuKind(MenuKind.CUSTOM);
-navi.setLink(ProcessStartAPI.findStartableLinkByUserFriendlyRequestPath("Start Processes/IFrameExample/NavigateInIFrameExample.ivp") + "?embedInFrame");
-in.subMenuItems.add(navi);
-
-SubMenuItem alpha = new SubMenuItem();
-alpha.setIcon("fa fa-check");
-alpha.setLabel("AlphaCompany");
-alpha.setMenuKind(MenuKind.CUSTOM);
-alpha.setLink(ProcessStartAPI.findStartableLinkByUserFriendlyRequestPath("Start Processes/ProcessHistoryComponent/viewProcessHistoryOfAlphaCompany.ivp") + "?embedInFrame");
-in.subMenuItems.add(alpha);' #txt
+in.subMenuItems.add(google);' #txt
 Ls0 f3 security system #txt
 Ls0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
