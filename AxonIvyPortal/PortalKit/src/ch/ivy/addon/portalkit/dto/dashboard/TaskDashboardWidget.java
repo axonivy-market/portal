@@ -175,7 +175,7 @@ public class TaskDashboardWidget extends DashboardWidget {
   }
 
   public int getRowsPerPage() {
-    return rowsPerPage;
+    return isInConfiguration() ? 5 : rowsPerPage;
   }
 
   public void setRowsPerPage(int rowsPerPage) {
