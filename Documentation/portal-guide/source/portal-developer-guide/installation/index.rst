@@ -146,15 +146,15 @@ In engine
    project.
 4. Follow detailed migration notes for each version below.
 
-Migrate 8.0.x to 8.0.20
------------------------
-Portal introduced a new file ``variables-customization.scss`` for customizing Portal style variables.
-If you have overridden variables in customization.scss, please move those changes to variables-customization.scss, otherwise it won’t work.
-
 Migrate 8.0.x to 8.0.19
 -----------------------
 Portal date filter such as TaskCreationDateFilter, CaseCreationDateFilter... messages ``<p:messages for="..." />`` have been added for each calendar component to validate date format. 
 If you use have any customized date filters in your project, update template accordingly.
+
+Migrate 8.0.x to 8.0.16
+-----------------------
+Portal introduced a new file ``variables-customization.scss`` for customizing Portal style variables.
+If you have overridden variables in customization.scss, please move those changes to variables-customization.scss, otherwise it won’t work.
 
 Migrate 8.0.x to 8.0.13
 -----------------------
