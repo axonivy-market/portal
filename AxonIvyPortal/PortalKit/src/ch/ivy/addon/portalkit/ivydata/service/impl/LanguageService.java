@@ -16,8 +16,7 @@ import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.application.IProcessModelVersion;
-import ch.ivyteam.ivy.cm.IContentManagement;
-import ch.ivyteam.ivy.cm.IContentManagementSystem;
+import ch.ivyteam.ivy.cm.exec.ContentManagement;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUser;
 
@@ -64,11 +63,11 @@ public class LanguageService implements ILanguageService {
   private List<String> getSupportedLanguagesFromPmvs(List<IProcessModelVersion> pmvs) {
     Set<String> supportedLanguages = new HashSet<>();
     for (IProcessModelVersion pmv : pmvs) {
-      IContentManagementSystem findCms = IContentManagement.instance().findCms(pmv);
-      if (findCms == null) {
+      ContentManagement contentManagement = ContentManagement.of(ContentManagement.cms(pmv));
+      if (contentManagement == null) {
         continue;
       }
-      String lang = findCms.co(CMS_LANG_KEY);
+      String lang = contentManagement.co(CMS_LANG_KEY);
 
       if (!StringUtils.isEmpty(lang)) {
         String[] sp = lang.split(",");
