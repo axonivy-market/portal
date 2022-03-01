@@ -1,5 +1,5 @@
 [Ivy]
-172546E1FDEB1FF7 9.3.1 #module
+172546E1FDEB1FF7 9.4.0 #module
 >Proto >Proto Collection #zClass
 Us0 UserProfileProcess Big #zClass
 Us0 RD #cInfo
@@ -715,7 +715,7 @@ import ch.ivy.addon.portalkit.bo.Guide;
 
 // Find Global setting for SHOW_USER_GUIDE
 GlobalSettingService globalSettingService = new GlobalSettingService();
-in.disableShowTutorial = !Boolean.parseBoolean(globalSettingService.findGlobalSettingValue(GlobalVariable.SHOW_USER_GUIDE.toString()));
+in.disableShowTutorial = !Boolean.parseBoolean(globalSettingService.findGlobalSettingValue(GlobalVariable.SHOW_USER_GUIDE));
 
 // Get isShowGuide from IUser
 in.showTutorial = Boolean.valueOf(ivy.session.getSessionUser().getProperty(UserProperty.SHOW_GUIDE));' #txt

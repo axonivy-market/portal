@@ -82,7 +82,7 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
 
   private String getViewModeFromUserProcessSetting(String userProcessSetting) {
     if (StringUtils.isBlank(userProcessSetting)
-        || StringUtils.equalsIgnoreCase(userProcessSetting, UserSettingService.DEFAULT)) {
+        || UserSettingService.newInstance().isDefaultProcessModeOption(userProcessSetting)) {
       GlobalSettingService globalSettingService = new GlobalSettingService();
       GlobalSetting defaultSetting =
           globalSettingService.findGlobalSettingByGlobalVariable(GlobalVariable.DEFAULT_PROCESS_MODE);
@@ -93,7 +93,9 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
   }
 
   private String getProcessModeByLabel(String processLabel) {
-    return Arrays.stream(ProcessMode.values()).filter(e -> processLabel.equalsIgnoreCase(e.getLabel())).findFirst()
+    return Arrays.stream(ProcessMode.values())
+        .filter(e -> StringUtils.equalsIgnoreCase(processLabel, e.getLabel()) || StringUtils.equalsIgnoreCase(e.name(), processLabel))
+        .findFirst()
         .orElse(ProcessMode.IMAGE).toString();
   }
 

@@ -409,7 +409,7 @@
         <p:commandLink onclick="PF('reset-task-dialog').hide()"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" styleClass="u-mar-right-15" />
         <p:commandButton id="reset-task-button" actionListener="#{logic.resetAndOpenTask(cc.attrs.currentPortalPage, taskWidgetBean.selectedTaskItemId)}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
-          icon="#{visibilityBean.generateButtonIcon('si si-road-sign-u-turn-left')}" onstart="#{cc.attrs.onTaskStartCallback}" />
+          icon="#{visibilityBean.generateButtonIcon('si si-road-sign-u-turn-left')}" onstart="#{cc.attrs.onTaskStartCallback}" oncomplete="resetPortalLeftMenuState()"/>
       </h:form>
     </ui:define>
   </ui:decorate>
