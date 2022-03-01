@@ -166,13 +166,6 @@ var MainMenu = {
         updateStatisticCarousel();
       }
     });
-
-    this.menulinks.on('click', function(e) {
-      // If click on Thirdparty menu -> remove active class of itself
-      if (MainMenu.isThirdPartyMenu(e)) {
-        MainMenu.highlightMenuItem();
-      }
-    });
   },
 
   highlightMenuItem : function() {
@@ -187,8 +180,6 @@ var MainMenu = {
       $currentPageMenu.parent().addClass('active-menuitem');
       PF('main-menu').addMenuitem($currentPageMenu.parent().attr('id'));
     }
-    // Remove active class for thirdparty menu
-    this.removeActiveOnExternalMenu();
   },
 
   removeActiveMenu : function(activeMenuItems) {
@@ -214,16 +205,6 @@ var MainMenu = {
 
   getActiveMenu : function() {
     return $(".layout-menu li.active-menuitem");
-  },
-
-  removeActiveOnExternalMenu : function() {
-    // Thirdparty
-    let thirdPartyActiveMenus = $(".layout-menu li.active-menuitem[class*='thirdparty-menu-item']");
-    this.removeActiveMenu(thirdPartyActiveMenus);
-
-    // External
-    let exteralActiveMenus = $(".layout-menu li.active-menuitem[class*='external-menu-item-']");
-    this.removeActiveMenu(exteralActiveMenus);
   },
 
   isThirdPartyMenu : function(e) {
@@ -257,4 +238,44 @@ function handleError(xhr, renderDetail){
     });
   }
   PF('error-ajax-dialog').show();
+}
+
+function onClickMenuItem(menuItem, isWorkingOnATask, isOpenOnNewTab) {
+  if(event !== undefined
+      && (typeof isWorkingOnATask === 'boolean' && isWorkingOnATask === true
+          || typeof isOpenOnNewTab === 'boolean' && isOpenOnNewTab === true)) {
+    $(menuItem).unbind('click', event.handler);
+    executeStoreMenuRemoteCommand(menuItem, isWorkingOnATask, isOpenOnNewTab);
+    event.stopImmediatePropagation();
+  }
+  else {
+    executeStoreMenuRemoteCommand(menuItem, isWorkingOnATask, isOpenOnNewTab);
+  }
+}
+
+function executeStoreMenuRemoteCommand(menuItem, isWorkingOnATask, isOpenOnNewTab) {
+  storeSelectedMenuItems([{
+    name : 'selectedMenuId',
+    value : $(menuItem).closest("li").attr("id")
+  },
+  {
+    name : 'isWorkingOnATask',
+    value : isWorkingOnATask
+  },
+  {
+    name : 'isOpenOnNewTab',
+    value : isOpenOnNewTab
+  }]);
+}
+
+function fireEventClickOnMenuItem(menuItem, prevMenuItemId) {
+  PF('main-menu').addMenuitem(menuItem);
+  if (prevMenuItemId !== menuItem) {
+    PF('main-menu').removeMenuitem(prevMenuItemId);
+  }
+}
+
+function resetPortalLeftMenuState() {
+  $.removeCookie('serenity_expandeditems', {path: '/'});
+  resetSelectedMenuItems();
 }
