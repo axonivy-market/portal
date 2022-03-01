@@ -40,6 +40,11 @@ As0 @UdMethod f0 '' #zField
 As0 @UdProcessEnd f15 '' #zField
 As0 @PushWFArc f17 '' #zField
 As0 @PushWFArc f10 '' #zField
+As0 @UdMethod f11 '' #zField
+As0 @UdProcessEnd f16 '' #zField
+As0 @GridStep f22 '' #zField
+As0 @PushWFArc f23 '' #zField
+As0 @PushWFArc f21 '' #zField
 >Proto As0 As0 ApplicationSelectionMenuProcess #zField
 As0 f74 guid 15FB36E8701C0FCF #txt
 As0 f74 method StartNotRequiredLogin() #txt
@@ -82,7 +87,7 @@ As0 f91 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f91 192 458 112 44 -36 -8 #rect
+As0 f91 192 474 112 44 -36 -8 #rect
 As0 f14 actionTable 'out=in;
 ' #txt
 As0 f14 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
@@ -97,7 +102,7 @@ reset task</name>
     </language>
 </elementInfo>
 ' #txt
-As0 f14 192 556 112 40 -30 -16 #rect
+As0 f14 192 572 112 40 -30 -16 #rect
 As0 f9 307 83 26 26 0 12 #rect
 As0 f3 guid 16E3A96DE4048374 #txt
 As0 f3 method leave(ITask) #txt
@@ -112,8 +117,8 @@ As0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f3 83 563 26 26 -24 14 #rect
-As0 f8 109 576 192 576 #arcP
+As0 f3 83 579 26 26 -24 14 #rect
+As0 f8 109 592 192 592 #arcP
 As0 f12 guid 16E3A985548930F5 #txt
 As0 f12 method reserveTask(ITask) #txt
 As0 f12 inParameterDecl '<ch.ivyteam.ivy.workflow.ITask workingTask> param;' #txt
@@ -127,8 +132,8 @@ As0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f12 83 467 26 26 -47 16 #rect
-As0 f18 109 480 192 480 #arcP
+As0 f12 83 483 26 26 -47 16 #rect
+As0 f18 109 496 192 496 #arcP
 As0 f19 actionTable 'out=in;
 ' #txt
 As0 f19 actionCode 'import ch.ivy.addon.portalkit.util.GrowlMessageUtils;
@@ -142,11 +147,11 @@ finish or leave task</name>
     </language>
 </elementInfo>
 ' #txt
-As0 f19 408 458 144 44 -54 -16 #rect
-As0 f13 304 576 480 502 #arcP
-As0 f13 1 480 576 #addKink
+As0 f19 408 474 144 44 -54 -16 #rect
+As0 f13 304 592 480 518 #arcP
+As0 f13 1 480 592 #addKink
 As0 f13 0 0.8907686408955474 0 0 #arcLabel
-As0 f20 304 480 408 480 #arcP
+As0 f20 304 496 408 496 #arcP
 As0 f20 0 0.25 0 0 #arcLabel
 As0 f2 guid 1720D1735A9827DD #txt
 As0 f2 method continueWorkingOnTask() #txt
@@ -188,8 +193,8 @@ start a task &gt; click on menu &gt; leave the task</name>
     </language>
 </elementInfo>
 ' #txt
-As0 f4 568 554 256 44 -118 -16 #rect
-As0 f26 568 576 480 502 #arcP
+As0 f4 568 570 256 44 -118 -16 #rect
+As0 f26 696 570 530 518 #arcP
 As0 f25 expr out #txt
 As0 f25 116 184 320 109 #arcP
 As0 f25 1 320 184 #addKink
@@ -211,10 +216,10 @@ As0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f5 664 458 112 44 -40 -8 #rect
-As0 f29 907 467 26 26 0 12 #rect
-As0 f33 776 480 907 480 #arcP
-As0 f1 552 480 664 480 #arcP
+As0 f5 664 474 112 44 -40 -8 #rect
+As0 f29 907 483 26 26 0 12 #rect
+As0 f33 776 496 907 496 #arcP
+As0 f1 552 496 664 496 #arcP
 As0 f1 0 0.9609045819708579 0 0 #arcLabel
 As0 f6 actionTable 'out=in;
 ' #txt
@@ -251,23 +256,65 @@ As0 f0 91 371 26 26 -64 15 #rect
 As0 f15 307 371 26 26 0 12 #rect
 As0 f17 117 384 307 384 #arcP
 As0 f10 117 288 307 288 #arcP
+As0 f11 guid 17EF66B4C689BAE3 #txt
+As0 f11 method fireEventClickOnMenuItem() #txt
+As0 f11 inParameterDecl '<> param;' #txt
+As0 f11 outParameterDecl '<> result;' #txt
+As0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>fireEventClickOnMenuItem()</name>
+    </language>
+</elementInfo>
+' #txt
+As0 f11 83 675 26 26 -57 16 #rect
+As0 f16 403 675 26 26 0 12 #rect
+As0 f22 actionTable 'out=in;
+' #txt
+As0 f22 actionCode 'import java.util.Optional;
+import ch.ivy.addon.portalkit.jsf.ManagedBeans;
+import ch.addon.portal.generic.menu.MenuView;
+import org.primefaces.PrimeFaces;
+
+Object menuItemId = Optional.ofNullable(ivy.session.getAttribute(MenuView.SELECTED_MENU_ID)).orElse(null);
+Object preMenuItemId = Optional.ofNullable(ivy.session.getAttribute(MenuView.PREV_SELECTED_MENU_ID)).orElse(null);
+
+PrimeFaces.current().executeScript(String.format(MenuView.CLICK_ON_MENU_ITEM_PATTERN, menuItemId, preMenuItemId));
+ivy.session.setAttribute(MenuView.PREV_SELECTED_MENU_ID, menuItemId);' #txt
+As0 f22 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Fire event click&#13;
+on menuItem</name>
+    </language>
+</elementInfo>
+' #txt
+As0 f22 192 666 128 44 -40 -16 #rect
+As0 f23 109 688 192 688 #arcP
+As0 f21 320 688 403 688 #arcP
 >Proto As0 .type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
 >Proto As0 .processKind HTML_DIALOG #txt
 >Proto As0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <swimlaneLabel>startMethods</swimlaneLabel>
-        <swimlaneLabel>
+        <swimlaneLabel>LeavingTaskMethods
 </swimlaneLabel>
         <swimlaneLabel></swimlaneLabel>
+        <swimlaneLabel></swimlaneLabel>
     </language>
+    <swimlaneOrientation>false</swimlaneOrientation>
     <swimlaneSize>440</swimlaneSize>
-    <swimlaneSize>1504</swimlaneSize>
+    <swimlaneSize>320</swimlaneSize>
+    <swimlaneSize>320</swimlaneSize>
     <swimlaneColor gradient="true">-1</swimlaneColor>
     <swimlaneColor gradient="true">-3355393</swimlaneColor>
+    <swimlaneColor gradient="true">-1</swimlaneColor>
     <swimlaneType>LANE</swimlaneType>
     <swimlaneType>POOL</swimlaneType>
+    <swimlaneType>LANE_IN_POOL</swimlaneType>
     <swimlaneSpaceBefore>8</swimlaneSpaceBefore>
+    <swimlaneSpaceBefore>0</swimlaneSpaceBefore>
     <swimlaneSpaceBefore>0</swimlaneSpaceBefore>
 </elementInfo>
 ' #txt
@@ -298,3 +345,7 @@ As0 f0 mainOut f17 tail #connect
 As0 f17 head f15 mainIn #connect
 As0 f2 mainOut f10 tail #connect
 As0 f10 head f41 mainIn #connect
+As0 f11 mainOut f23 tail #connect
+As0 f23 head f22 mainIn #connect
+As0 f22 mainOut f21 tail #connect
+As0 f21 head f16 mainIn #connect
