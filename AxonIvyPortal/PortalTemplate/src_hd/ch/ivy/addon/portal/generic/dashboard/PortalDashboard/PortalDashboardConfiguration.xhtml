@@ -12,7 +12,7 @@
           <span class="dashboard-configuration-dialog__config-title">
             #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfigurationDialog/PrivateDashboardConfiguration')}
           </span>
-          <p:commandLink class="ui-g ui-g-12 dashboard-configuration-dialog__action-row">
+          <p:commandLink id="create-private-dashboard" styleClass="ui-g ui-g-12 dashboard-configuration-dialog__action-row">
               <div class="ui-g-2">
                 <span class="si si-add dashboard-configuration-dialog__action-row-icon" />
               </div>
@@ -23,7 +23,7 @@
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfigurationDialog/CreateNewPrivateDashboard')}"/>
               </div>
           </p:commandLink>
-          <p:commandLink class="ui-g-12 dashboard-configuration-dialog__action-row">
+          <p:commandLink id="edit-private-dashboard" styleClass="ui-g-12 dashboard-configuration-dialog__action-row">
             <div class="ui-g-2">
               <span class="si si-pencil dashboard-configuration-dialog__action-row-icon" />
             </div>
@@ -34,7 +34,7 @@
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfigurationDialog/EditPrivateDashboards')}"/>
             </div>
           </p:commandLink>
-          <p:commandLink class="ui-g-12 dashboard-configuration-dialog__action-row">
+          <p:commandLink id="reorder-private-dashboard" styleClass="ui-g-12 dashboard-configuration-dialog__action-row">
             <div class="ui-g-2">
               <span class="si si-move-expand-vertical dashboard-configuration-dialog__action-row-icon" />
             </div>
@@ -51,7 +51,7 @@
           <span class="dashboard-configuration-dialog__config-title">
             #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfigurationDialog/PublicDashboardConfiguration')}
           </span>
-          <p:commandLink class="ui-g ui-g-12 dashboard-configuration-dialog__action-row ">
+          <p:commandLink id="create-public-dashboard" styleClass="ui-g ui-g-12 dashboard-configuration-dialog__action-row ">
               <div class="ui-g-2">
                 <span class="si si-add dashboard-configuration-dialog__action-row-icon" />
               </div>
@@ -62,7 +62,7 @@
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfigurationDialog/CreateNewPublicDashboard')}"/>
               </div>
           </p:commandLink>
-          <p:commandLink class="ui-g-12 dashboard-configuration-dialog__action-row">
+          <p:commandLink id="edit-public-dashboard" styleClass="ui-g-12 dashboard-configuration-dialog__action-row">
             <div class="ui-g-2">
               <span class="si si-pencil dashboard-configuration-dialog__action-row-icon" />
             </div>
@@ -72,9 +72,8 @@
               <p:outputLabel styleClass="dashboard-configuration-dialog__action-row-description"
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfigurationDialog/EditPublicDashboards')}"/>
             </div>
-              
           </p:commandLink>
-          <p:commandLink class="ui-g-12 dashboard-configuration-dialog__action-row">
+          <p:commandLink id="reorder-public-dashboard" styleClass="ui-g-12 dashboard-configuration-dialog__action-row">
             <div class="ui-g-2">
               <span class="si si-move-expand-vertical dashboard-configuration-dialog__action-row-icon" />
             </div>
