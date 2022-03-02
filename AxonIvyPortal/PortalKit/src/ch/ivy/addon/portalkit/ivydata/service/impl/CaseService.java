@@ -15,7 +15,6 @@ import ch.ivy.addon.portalkit.bo.CaseCategoryStatistic;
 import ch.ivy.addon.portalkit.bo.CaseStateStatistic;
 import ch.ivy.addon.portalkit.bo.ElapsedTimeStatistic;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
-import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyCaseResultDTO;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCategorySearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCustomFieldSearchCriteria;
@@ -32,9 +31,8 @@ import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
 public class CaseService implements ICaseService {
 
-  private CaseService() {
-  }
-  
+  protected CaseService() {}
+
   public static CaseService newInstance() {
     return new CaseService();
   }
@@ -60,7 +58,9 @@ public class CaseService implements ICaseService {
   }
 
   private List<ICase> executeCaseQuery(CaseQuery query) {
-    return Ivy.wf().getCaseQueryExecutor().getResults(query);
+    return IvyExecutor.executeAsSystem(() -> {
+      return Ivy.wf().getCaseQueryExecutor().getResults(query);
+    });
   }
 
   @Override
@@ -74,7 +74,7 @@ public class CaseService implements ICaseService {
     });
   }
 
-  private List<ICase> executeCaseQuery(CaseQuery query, Integer startIndex, Integer count) {
+  protected List<ICase> executeCaseQuery(CaseQuery query, Integer startIndex, Integer count) {
     return Ivy.wf().getCaseQueryExecutor().getResults(query, startIndex, count);
   }
 
@@ -82,8 +82,7 @@ public class CaseService implements ICaseService {
     return Ivy.wf().getCaseQueryExecutor().getCount(query);
   }
   
-  private CaseQuery queryForCurrentUser(boolean isTechnicalCase) {
-    boolean isCaseOwnerEnabled = isCaseOwnerEnabled();
+  protected CaseQuery queryForCurrentUser(boolean isTechnicalCase) {
     CaseQuery caseQuery;
     if (isTechnicalCase) {
       caseQuery = CaseQuery.subCases();
@@ -92,17 +91,13 @@ public class CaseService implements ICaseService {
     }
 
     caseQuery.where().or().currentUserIsInvolved();
-    if (isCaseOwnerEnabled) {
+    if (GlobalSettingService.getInstance().isCaseOwnerEnabled()) {
       caseQuery.where().or().currentUserIsOwner();
     }
     
     return caseQuery;
   }
 
-  private boolean isCaseOwnerEnabled() {
-    return Boolean.parseBoolean(new GlobalSettingService().findGlobalSettingValue(GlobalVariable.ENABLE_CASE_OWNER));
-  }
-  
   @Override
   public IvyCaseResultDTO findCategoriesByCriteria(CaseCategorySearchCriteria criteria) {
     return IvyExecutor.executeAsSystem(() -> {
@@ -209,7 +204,7 @@ public class CaseService implements ICaseService {
         .collect(Collectors.toList());
   }
 
-  private CaseQuery queryExcludeHiddenCases() {
+  protected CaseQuery queryExcludeHiddenCases() {
     return CaseQuery.businessCases().where().customField().stringField(AdditionalProperty.HIDE.toString()).isNull();
   }
   

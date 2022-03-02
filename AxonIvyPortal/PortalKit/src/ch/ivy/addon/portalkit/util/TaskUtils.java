@@ -209,7 +209,7 @@ public final class TaskUtils {
   public static List<TaskState> getValidStates() {
     var states = TaskSearchCriteria.STANDARD_STATES;
     if (PermissionUtils.checkReadAllTasksPermission()) {
-      states = TaskSearchCriteria.ADVANCE_STATES;
+      states.addAll(TaskSearchCriteria.ADVANCE_STATES);
     } else {
       states.add(TaskState.DONE);
     }
@@ -222,8 +222,9 @@ public final class TaskUtils {
     if (PermissionUtils.checkReadAllTasksPermission()) {
       return states;
     }
+    var validStates = getValidStates();
     return CollectionUtils.emptyIfNull(states).stream()
-        .filter(state -> TaskSearchCriteria.STANDARD_STATES.contains(state))
+        .filter(state -> validStates.contains(state))
         .collect(Collectors.toList());
   }
 }
