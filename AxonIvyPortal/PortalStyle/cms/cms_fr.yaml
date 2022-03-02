@@ -644,6 +644,16 @@ ch.ivy.addon.portalkit.ui.jsf:
       publicFilter: Publique
       savedFilters: 'Filtres enregistrés:'
   dashboard:
+    DashboardConfigurationDialog:
+      ConfigureDashboard: TODO Configure Dashboard
+      CreateNewPrivateDashboard: Create new private dashboard
+      CreateNewPublicDashboard: TODO Create new public dashboard
+      EditPrivateDashboards: TODO Edit your private dashboards
+      EditPublicDashboards: TODO Edit public dashboards
+      PrivateDashboardConfiguration: TODO Private dashboard configuration
+      PublicDashboardConfiguration: TODO Public dashboard configuration
+      ReorderPrivateDashboards: TODO Reorder your dashboards
+      ReorderPublicDashboards: TODO Reorder public dashboards
     EmptyFilterMessage: Aucun filtre de widget trouvé
     Filter:
       FilterOptionHeader: Options de filtre
@@ -660,7 +670,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     WidgetFilterName: Nom du filtre du widget
     WidgetFilters: Filtres widgets
     actionSelection: Sélection des actions
-
     addField: Ajouter un champ
     addWidget: Ajouter un widget
     availableFilters: Filtres disponibles
