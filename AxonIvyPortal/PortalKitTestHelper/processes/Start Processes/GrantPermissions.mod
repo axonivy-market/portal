@@ -1,5 +1,5 @@
 [Ivy]
-14DE09882B540AD5 9.3.1 #module
+14DE09882B540AD5 9.4.0 #module
 >Proto >Proto Collection #zClass
 Is0 GrantPermissions Big #zClass
 Is0 B #cInfo
@@ -135,6 +135,22 @@ Is0 @GridStep f120 '' #zField
 Is0 @StartRequest f121 '' #zField
 Is0 @PushWFArc f122 '' #zField
 Is0 @PushWFArc f123 '' #zField
+Is0 @GridStep f124 '' #zField
+Is0 @StartRequest f125 '' #zField
+Is0 @PushWFArc f126 '' #zField
+Is0 @StartRequest f127 '' #zField
+Is0 @GridStep f128 '' #zField
+Is0 @PushWFArc f129 '' #zField
+Is0 @GridStep f130 '' #zField
+Is0 @StartRequest f131 '' #zField
+Is0 @PushWFArc f132 '' #zField
+Is0 @GridStep f133 '' #zField
+Is0 @StartRequest f134 '' #zField
+Is0 @PushWFArc f135 '' #zField
+Is0 @PushWFArc f136 '' #zField
+Is0 @PushWFArc f137 '' #zField
+Is0 @PushWFArc f138 '' #zField
+Is0 @PushWFArc f139 '' #zField
 >Proto Is0 Is0 GrantPermissions #zField
 Is0 f0 outLink grantAllPermissionsToCurrentUser.ivp #txt
 Is0 f0 inParamDecl '<> param;' #txt
@@ -155,8 +171,6 @@ Is0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>grantAllPermissionsToCurrentUser.ivp</name>
-        <nameStyle>36,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -244,8 +258,6 @@ Is0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>grantTaskReadAllPermissionsToCurrentUser.ivp</name>
-        <nameStyle>44,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -287,8 +299,6 @@ Is0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>grantCaseReadAllPermissionsToCurrentUser.ivp</name>
-        <nameStyle>44,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -345,8 +355,6 @@ Is0 f21 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>grantTaskReadOwnCaseTaskPermissionsToCurrentUser.ivp</name>
-        <nameStyle>52,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -401,8 +409,6 @@ Is0 f23 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>denyReadAllPermissionFromCurrentUser.ivp</name>
-        <nameStyle>40,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -510,8 +516,6 @@ Is0 f35 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>grantOnlyDelegateOwnTasksPermission.ivp</name>
-        <nameStyle>39,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -555,8 +559,6 @@ Is0 f39 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>undoOnlyDelegateOwnTasksPermission.ivp</name>
-        <nameStyle>38,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -1448,6 +1450,135 @@ Is0 f123 668 1120 408 543 #arcP
 Is0 f123 1 408 1120 #addKink
 Is0 f123 2 408 528 #addKink
 Is0 f123 1 0.3623310810810812 0 0 #arcLabel
+Is0 f124 actionTable 'out=in;
+' #txt
+Is0 f124 actionCode 'import java.util.Objects;
+import ch.ivy.addon.portalkit.enums.PortalPermission;
+import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;
+import ch.ivyteam.ivy.security.IPermission;
+
+IPermission iPermission = IPermissionRepository.instance().findByName(PortalPermission.DASHBOARD_WRITE_OWN.getValue());
+if (Objects.nonNull(iPermission)){
+  ivy.wf.getApplication().getSecurityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());
+}' #txt
+Is0 f124 security system #txt
+Is0 f124 668 1172 40 24 0 -8 #rect
+Is0 f125 outLink grantDashboardWriteOwnPermission.ivp #txt
+Is0 f125 inParamDecl '<> param;' #txt
+Is0 f125 requestEnabled true #txt
+Is0 f125 triggerEnabled false #txt
+Is0 f125 callSignature grantDashboardWriteOwnPermission() #txt
+Is0 f125 caseData businessCase.attach=true #txt
+Is0 f125 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>grantDashboardWriteOwnPermission.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Is0 f125 @C|.responsibility Everybody #txt
+Is0 f125 881 1169 30 30 16 0 #rect
+Is0 f126 881 1184 708 1184 #arcP
+Is0 f127 outLink denyDashboardWriteOwnPermission.ivp #txt
+Is0 f127 inParamDecl '<> param;' #txt
+Is0 f127 requestEnabled true #txt
+Is0 f127 triggerEnabled false #txt
+Is0 f127 callSignature denyDashboardWriteOwnPermission() #txt
+Is0 f127 caseData businessCase.attach=true #txt
+Is0 f127 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>denyDashboardWriteOwnPermission.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Is0 f127 @C|.responsibility Everybody #txt
+Is0 f127 881 1233 30 30 16 0 #rect
+Is0 f128 actionTable 'out=in;
+' #txt
+Is0 f128 actionCode 'import java.util.Objects;
+import ch.ivy.addon.portalkit.enums.PortalPermission;
+import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;
+import ch.ivyteam.ivy.security.IPermission;
+
+IPermission iPermission = IPermissionRepository.instance().findByName(PortalPermission.DASHBOARD_WRITE_OWN.getValue());
+if (Objects.nonNull(iPermission)){
+  ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());
+}' #txt
+Is0 f128 security system #txt
+Is0 f128 668 1236 40 24 0 -8 #rect
+Is0 f129 881 1248 708 1248 #arcP
+Is0 f130 actionTable 'out=in;
+' #txt
+Is0 f130 actionCode 'import java.util.Objects;
+import ch.ivy.addon.portalkit.enums.PortalPermission;
+import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;
+import ch.ivyteam.ivy.security.IPermission;
+
+IPermission iPermission = IPermissionRepository.instance().findByName(PortalPermission.DASHBOARD_WRITE_PUBLIC.getValue());
+if (Objects.nonNull(iPermission)){
+  ivy.wf.getApplication().getSecurityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());
+}' #txt
+Is0 f130 security system #txt
+Is0 f130 668 1300 40 24 0 -8 #rect
+Is0 f131 outLink grantDashboardWritePublicPermission.ivp #txt
+Is0 f131 inParamDecl '<> param;' #txt
+Is0 f131 requestEnabled true #txt
+Is0 f131 triggerEnabled false #txt
+Is0 f131 callSignature grantDashboardWritePublicPermission() #txt
+Is0 f131 caseData businessCase.attach=true #txt
+Is0 f131 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>grantDashboardWritePublicPermission.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Is0 f131 @C|.responsibility Everybody #txt
+Is0 f131 881 1297 30 30 16 0 #rect
+Is0 f132 881 1312 708 1312 #arcP
+Is0 f133 actionTable 'out=in;
+' #txt
+Is0 f133 actionCode 'import java.util.Objects;
+import ch.ivy.addon.portalkit.enums.PortalPermission;
+import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;
+import ch.ivyteam.ivy.security.IPermission;
+
+IPermission iPermission = IPermissionRepository.instance().findByName(PortalPermission.DASHBOARD_WRITE_PUBLIC.getValue());
+if (Objects.nonNull(iPermission)){
+  ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());
+}' #txt
+Is0 f133 security system #txt
+Is0 f133 668 1364 40 24 0 -8 #rect
+Is0 f134 outLink denyDashboardWritePublicPermission.ivp #txt
+Is0 f134 inParamDecl '<> param;' #txt
+Is0 f134 requestEnabled true #txt
+Is0 f134 triggerEnabled false #txt
+Is0 f134 callSignature denyDashboardWritePublicPermission() #txt
+Is0 f134 caseData businessCase.attach=true #txt
+Is0 f134 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>denyDashboardWritePublicPermission.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Is0 f134 @C|.responsibility Everybody #txt
+Is0 f134 881 1361 30 30 16 0 #rect
+Is0 f135 881 1376 708 1376 #arcP
+Is0 f136 668 1184 408 543 #arcP
+Is0 f136 1 408 1184 #addKink
+Is0 f136 2 408 528 #addKink
+Is0 f136 1 0.3757621951219512 0 0 #arcLabel
+Is0 f137 668 1248 408 543 #arcP
+Is0 f137 1 408 1248 #addKink
+Is0 f137 1 0.3715555461275747 0 0 #arcLabel
+Is0 f138 668 1312 408 543 #arcP
+Is0 f138 1 408 1312 #addKink
+Is0 f138 1 0.3835916314986083 0 0 #arcLabel
+Is0 f139 668 1376 408 543 #arcP
+Is0 f139 1 408 1376 #addKink
+Is0 f139 1 0.39357087624499 0 0 #arcLabel
 >Proto Is0 .type portalKit_test.GrantPermissionsData #txt
 >Proto Is0 .processKind NORMAL #txt
 >Proto Is0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1584,3 +1715,19 @@ Is0 f121 mainOut f122 tail #connect
 Is0 f122 head f120 mainIn #connect
 Is0 f120 mainOut f123 tail #connect
 Is0 f123 head f7 mainIn #connect
+Is0 f125 mainOut f126 tail #connect
+Is0 f126 head f124 mainIn #connect
+Is0 f127 mainOut f129 tail #connect
+Is0 f129 head f128 mainIn #connect
+Is0 f131 mainOut f132 tail #connect
+Is0 f132 head f130 mainIn #connect
+Is0 f134 mainOut f135 tail #connect
+Is0 f135 head f133 mainIn #connect
+Is0 f124 mainOut f136 tail #connect
+Is0 f136 head f7 mainIn #connect
+Is0 f128 mainOut f137 tail #connect
+Is0 f137 head f7 mainIn #connect
+Is0 f130 mainOut f138 tail #connect
+Is0 f138 head f7 mainIn #connect
+Is0 f133 mainOut f139 tail #connect
+Is0 f139 head f7 mainIn #connect
