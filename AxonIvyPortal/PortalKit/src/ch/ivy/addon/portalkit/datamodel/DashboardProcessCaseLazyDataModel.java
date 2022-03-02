@@ -9,8 +9,8 @@ import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
 
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.DashboardProcessCaseSearchCriteria;
+import ch.ivy.addon.portalkit.ivydata.service.impl.DashboardCaseService;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
-import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.util.threadcontext.IvyThreadContext;
@@ -50,7 +50,7 @@ public class DashboardProcessCaseLazyDataModel extends LazyDataModel<ICase> {
         criteria.setSortDescending(sortOrder == SortOrder.DESCENDING);
         query = criteria.buildQuery();
       }
-      cases = Ivy.wf().getCaseQueryExecutor().getResults(query, first, pageSize * (first <= pageSize ? QUERY_PAGES_AT_FIRST_TIME : QUERY_PAGES));
+      cases = DashboardCaseService.getInstance().findByCaseQuery(query, first, pageSize * (first <= pageSize ? QUERY_PAGES_AT_FIRST_TIME : QUERY_PAGES));
     }
     int rowCount = cases.size() + first;
     List<ICase> result = new ArrayList<>();
@@ -66,7 +66,7 @@ public class DashboardProcessCaseLazyDataModel extends LazyDataModel<ICase> {
     Object memento = IvyThreadContext.saveToMemento();
     future = CompletableFuture.runAsync(() -> {
       IvyThreadContext.restoreFromMemento(memento);
-      cases = Ivy.wf().getCaseQueryExecutor().getResults(query, 0, getPageSize() * QUERY_PAGES_AT_FIRST_TIME);
+      cases = DashboardCaseService.getInstance().findByCaseQuery(query, 0, getPageSize() * QUERY_PAGES_AT_FIRST_TIME);
       IvyThreadContext.reset();
     });
     isFirstTime = true;

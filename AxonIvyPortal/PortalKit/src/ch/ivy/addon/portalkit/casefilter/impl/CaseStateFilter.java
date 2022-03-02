@@ -8,9 +8,7 @@ import org.apache.commons.collections.CollectionUtils;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import ch.ivy.addon.portalkit.casefilter.CaseFilter;
-import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;
 import ch.ivy.addon.portalkit.util.CaseUtils;
-import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
@@ -29,12 +27,7 @@ public class CaseStateFilter extends CaseFilter {
    * Advance note: if current user is Administrator, will consider to add system states
    */
   public CaseStateFilter() {
-    this.filteredStates = new ArrayList<>(CaseSearchCriteria.STANDARD_STATES);
-    if (PermissionUtils.checkReadAllCasesPermission()) {
-      this.filteredStates.addAll(CaseSearchCriteria.ADVANCE_STATES);
-    } else {
-      this.filteredStates.add(CaseState.DONE);
-    }
+    this.filteredStates = CaseUtils.getValidStates();
     this.selectedFilteredStatesAtBeginning = new ArrayList<>(filteredStates);
     this.selectedFilteredStates = new ArrayList<>();
   }
