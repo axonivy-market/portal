@@ -9,8 +9,8 @@ import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
 
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.DashboardProcessTaskSearchCriteria;
+import ch.ivy.addon.portalkit.ivydata.service.impl.DashboardTaskService;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
-import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 import ch.ivyteam.util.threadcontext.IvyThreadContext;
@@ -50,7 +50,7 @@ public class DashboardProcessTaskLazyDataModel extends LazyDataModel<ITask> {
         criteria.setSortDescending(sortOrder == SortOrder.DESCENDING);
         query = criteria.buildQuery();
       }
-      tasks = Ivy.wf().getTaskQueryExecutor().getResults(query, first, pageSize * (first <= pageSize ? QUERY_PAGES_AT_FIRST_TIME : QUERY_PAGES));
+      tasks = DashboardTaskService.getInstance().findByTaskQuery(query, first, pageSize * (first <= pageSize ? QUERY_PAGES_AT_FIRST_TIME : QUERY_PAGES));
     }
     int rowCount = tasks.size() + first;
     List<ITask> result = new ArrayList<>();
@@ -66,7 +66,7 @@ public class DashboardProcessTaskLazyDataModel extends LazyDataModel<ITask> {
     Object memento = IvyThreadContext.saveToMemento();
     future = CompletableFuture.runAsync(() -> {
       IvyThreadContext.restoreFromMemento(memento);
-      tasks = Ivy.wf().getTaskQueryExecutor().getResults(query, 0, getPageSize() * QUERY_PAGES_AT_FIRST_TIME);
+      tasks = DashboardTaskService.getInstance().findByTaskQuery(query, 0, getPageSize() * QUERY_PAGES_AT_FIRST_TIME);
       IvyThreadContext.reset();
     });
     isFirstTime = true;
