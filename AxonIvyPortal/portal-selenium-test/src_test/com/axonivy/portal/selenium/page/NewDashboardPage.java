@@ -708,4 +708,22 @@ public class NewDashboardPage extends TemplatePage {
   public ElementsCollection getCompactModeProcessInfoProcessTypes(boolean isExpanded) {
     return getCompactModeProcessInfoPanel(isExpanded).$$("span.dashboard-processes__type-text");
   }
+
+  public SelenideElement getConfigureDashboardButton() {
+    return $("#configure-dashboard-button");
+  }
+
+  public void openDashboardConfigurationDialog() {
+    waitForAbsencesGrowlMessageDisplay();
+    SelenideElement configureButton = getConfigureDashboardButton();
+    configureButton.click();
+  }
+
+  public SelenideElement getPrivateDashboardConfigurationSection() {
+    return $("div[id$=':private-dashboard-configuration-section']");
+  }
+
+  public SelenideElement getPublicDashboardConfigurationSection() {
+    return $("div[id$=':public-dashboard-configuration-section']");
+  }
 }
