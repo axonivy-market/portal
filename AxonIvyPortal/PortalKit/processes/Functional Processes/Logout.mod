@@ -1,5 +1,5 @@
 [Ivy]
-15EF0843F1DB39F2 9.3.1 #module
+15EF0843F1DB39F2 9.4.0 #module
 >Proto >Proto Collection #zClass
 Lt0 Logout Big #zClass
 Lt0 B #cInfo
@@ -50,8 +50,6 @@ Lt0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Logout</name>
-        <nameStyle>6
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

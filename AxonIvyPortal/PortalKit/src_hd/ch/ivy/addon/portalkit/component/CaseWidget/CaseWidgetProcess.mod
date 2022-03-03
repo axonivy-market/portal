@@ -1,5 +1,5 @@
 [Ivy]
-152E8EDB33C1BDC1 9.3.1 #module
+152E8EDB33C1BDC1 9.4.0 #module
 >Proto >Proto Collection #zClass
 Cs0 CaseWidgetProcess Big #zClass
 Cs0 RD #cInfo
@@ -97,8 +97,6 @@ Cs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>start()</name>
-        <nameStyle>7,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -220,8 +218,6 @@ Cs0 f47 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <language>
         <name>is filter
 existed?</name>
-        <nameStyle>18,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -245,8 +241,6 @@ Cs0 f45 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>validate</name>
-        <nameStyle>8,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -261,8 +255,6 @@ Cs0 f31 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Clear filter</name>
-        <nameStyle>12,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -288,8 +280,6 @@ Cs0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>save filter set</name>
-        <nameStyle>15,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -334,8 +324,6 @@ Cs0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>clearSaveFilterDialog</name>
-        <nameStyle>21,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -365,8 +353,6 @@ Cs0 f35 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>remove filter</name>
-        <nameStyle>13,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

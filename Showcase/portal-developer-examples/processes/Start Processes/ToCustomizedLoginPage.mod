@@ -1,5 +1,5 @@
 [Ivy]
-1657B2041502A14A 9.3.1 #module
+1657B2041502A14A 9.4.0 #module
 >Proto >Proto Collection #zClass
 Te0 ToCustomizedLoginPage Big #zClass
 Te0 B #cInfo
@@ -71,8 +71,6 @@ Te0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 
 HOW TO RUN THIS EXAMPLE:
 Open toPageWithCustomLoginPage.ivp in portal-developer-examples without a login user in session, the cusomized login page will be opened.</name>
-        <nameStyle>322,5
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

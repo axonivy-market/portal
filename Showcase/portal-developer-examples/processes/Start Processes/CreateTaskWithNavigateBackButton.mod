@@ -1,5 +1,5 @@
 [Ivy]
-16583DA46E986FE1 9.3.1 #module
+16583DA46E986FE1 9.4.0 #module
 >Proto >Proto Collection #zClass
 Cn0 CreateTaskWithNavigateBackButton Big #zClass
 Cn0 B #cInfo
@@ -94,9 +94,6 @@ HOW TO USE THIS EXAMPLE
 Start CreateTaskWithNavigateBackButton.ivp. This process will create a "Navigate back example" task.
 In the task UI, if you click on the "Back" button, you will be redirected to the task list where you start this task from.
 </name>
-        <nameStyle>139,7
-249,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

@@ -1,5 +1,5 @@
 [Ivy]
-1703222760AD37E2 9.3.1 #module
+1703222760AD37E2 9.4.0 #module
 >Proto >Proto Collection #zClass
 At0 AbortRequest Big #zClass
 At0 B #cInfo
@@ -34,8 +34,6 @@ At0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>start.ivp</name>
-        <nameStyle>9,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

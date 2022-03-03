@@ -1,5 +1,5 @@
 [Ivy]
-15DBBB9E9FC55C0A 9.3.1 #module
+15DBBB9E9FC55C0A 9.4.0 #module
 >Proto >Proto Collection #zClass
 Il0 InitializeTaskDataModel Big #zClass
 Il0 B #cInfo
@@ -28,8 +28,6 @@ Il0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>call()</name>
-        <nameStyle>6,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -45,8 +43,6 @@ Il0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <language>
         <name>Initialize task
 lazy data model</name>
-        <nameStyle>31
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -63,8 +59,6 @@ Il0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 in.dataModel = new TaskLazyDataModel();
 BY
 in.dataModel = new &lt;CUSTOMIZED_DATA_MODEL&gt;();</name>
-        <nameStyle>158
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

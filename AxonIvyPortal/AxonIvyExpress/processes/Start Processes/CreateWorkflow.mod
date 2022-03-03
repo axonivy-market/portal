@@ -1,5 +1,5 @@
 [Ivy]
-15798655494F25E1 9.3.1 #module
+15798655494F25E1 9.4.0 #module
 >Proto >Proto Collection #zClass
 cw0 CreateWorkflow Big #zClass
 cw0 B #cInfo
@@ -49,8 +49,6 @@ cw0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>AxonIvyExpressWF.ivp</name>
-        <nameStyle>20,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -67,8 +65,6 @@ cw0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>editWorkflow</name>
-        <nameStyle>12,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

@@ -1,5 +1,5 @@
 [Ivy]
-16B2C77DAA249F4E 9.3.1 #module
+16B2C77DAA249F4E 9.4.0 #module
 >Proto >Proto Collection #zClass
 Gs0 GetGroupChatParams Big #zClass
 Gs0 B #cInfo
@@ -30,8 +30,6 @@ Gs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>getGroupChatParams()</name>
-        <nameStyle>20,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -46,8 +44,6 @@ Gs0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Set params</name>
-        <nameStyle>10
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -61,8 +57,6 @@ Gs0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <language>
         <name>Put parameters to display in group chat name:
 out.params.put("accountHolder", &lt;VALUE&gt;);</name>
-        <nameStyle>87
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

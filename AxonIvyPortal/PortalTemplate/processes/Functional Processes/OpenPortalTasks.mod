@@ -1,5 +1,5 @@
 [Ivy]
-15493AEB89F5A807 9.3.1 #module
+15493AEB89F5A807 9.4.0 #module
 >Proto >Proto Collection #zClass
 Os0 OpenPortalTasks Big #zClass
 Os0 B #cInfo
@@ -101,15 +101,10 @@ Os0 f9 448 384 627 384 #arcP
 Os0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>Deprecated Note&#13;
+        <name>**Deprecated Note**&#13;
 &#13;
-This callable will be removed from Portal 11.&#13;
-To override Portal task widget''s UI: you should use Axon Ivy HTMLOverride Dialog to override the PortalTaskListInFrame Html dialog.</name>
-        <nameStyle>15,5,8,0
-4,5
-47,5,0
-131,5
-</nameStyle>
+**This callable will be removed from Portal 11.&#13;
+**To override Portal task widget''s UI: you should use Axon Ivy HTMLOverride Dialog to override the PortalTaskListInFrame Html dialog.</name>
     </language>
 </elementInfo>
 ' #txt
@@ -118,15 +113,10 @@ Os0 f11 144 496 101 395 #arcP
 Os0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>Deprecated Note&#13;
+        <name>**Deprecated Note**&#13;
 &#13;
-This callable will be removed from Portal 11.&#13;
-To override Portal task widget''s UI: you should use Axon Ivy HTMLOverride Dialog to override the PortalTasks Html dialog.</name>
-        <nameStyle>15,5,8,0
-4,5
-47,5,0
-121,5
-</nameStyle>
+**This callable will be removed from Portal 11.&#13;
+**To override Portal task widget''s UI: you should use Axon Ivy HTMLOverride Dialog to override the PortalTasks Html dialog.</name>
     </language>
 </elementInfo>
 ' #txt

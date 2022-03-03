@@ -1,5 +1,5 @@
 [Ivy]
-169C78AD20FEB2C2 9.3.1 #module
+169C78AD20FEB2C2 9.4.0 #module
 >Proto >Proto Collection #zClass
 Ps0 PrimefacesDataTableProcess Big #zClass
 Ps0 RD #cInfo
@@ -40,8 +40,6 @@ Ps0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Log</name>
-        <nameStyle>3,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -79,8 +77,6 @@ Ps0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>load Data</name>
-        <nameStyle>9
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -104,8 +100,6 @@ Ps0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>save</name>
-        <nameStyle>4,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
