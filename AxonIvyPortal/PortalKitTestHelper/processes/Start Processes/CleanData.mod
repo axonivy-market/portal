@@ -1,5 +1,5 @@
 [Ivy]
-1511A66AF619A768 9.3.1 #module
+1511A66AF619A768 9.4.0 #module
 >Proto >Proto Collection #zClass
 Ca0 CleanData Big #zClass
 Ca0 B #cInfo
@@ -77,8 +77,6 @@ Ca0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>cleanCompletedCases.ivp</name>
-        <nameStyle>23,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -126,8 +124,6 @@ Ca0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>CleanFavoriteProcess.ivp</name>
-        <nameStyle>24,5,7
-</nameStyle>
         <desc>Clean all favorite processes before run UI test</desc>
     </language>
 </elementInfo>
@@ -152,8 +148,6 @@ Ca0 f57 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>clear all tasks &amp; cases</name>
-        <nameStyle>23,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -177,8 +171,6 @@ Ca0 f61 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>cleanAllCasesByDestroying.ivp</name>
-        <nameStyle>29,5,7
-</nameStyle>
         <desc>Detroy all tasks &amp; cases in system &amp; clean all business data</desc>
     </language>
 </elementInfo>
@@ -242,8 +234,6 @@ Ca0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>cleanupCases.ivp</name>
-        <nameStyle>16,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -281,8 +271,6 @@ Ca0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>cleanupGlobalVars</name>
-        <nameStyle>17,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -319,8 +307,6 @@ Ca0 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>cleanPortalPermissions</name>
-        <nameStyle>22,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -384,7 +370,7 @@ Ca0 f31 actionTable 'out=in;
 Ca0 f31 actionCode 'import java.util.Locale;
 
 Locale default = ivy.request.getApplication().getDefaultEMailLanguage();
-ivy.session.getSessionUser().setEMailLanguage(default);
+ivy.session.getSessionUser().setLanguage(default);
 ' #txt
 Ca0 f31 1168 170 112 44 0 -8 #rect
 Ca0 f32 1209 273 30 30 0 15 #rect

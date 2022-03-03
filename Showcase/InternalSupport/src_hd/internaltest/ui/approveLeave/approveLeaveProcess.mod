@@ -1,5 +1,5 @@
 [Ivy]
-1475D5F3DD0B29B3 9.3.1 #module
+1475D5F3DD0B29B3 9.4.0 #module
 >Proto >Proto Collection #zClass
 as0 approveLeaveProcess Big #zClass
 as0 RD #cInfo
@@ -42,8 +42,6 @@ as0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>start(String,Date,Date,Boolean,String)</name>
-        <nameStyle>38,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -60,8 +58,6 @@ as0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>close</name>
-        <nameStyle>5,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -76,8 +72,6 @@ as0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Jump to Cancel Request</name>
-        <nameStyle>22,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

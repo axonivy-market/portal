@@ -1,5 +1,5 @@
 [Ivy]
-15F6AF64009AFF42 9.3.1 #module
+15F6AF64009AFF42 9.4.0 #module
 >Proto >Proto Collection #zClass
 Ss0 StatisticNavigatorProcess Big #zClass
 Ss0 RD #cInfo
@@ -57,8 +57,6 @@ Ss0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>openStatistic</name>
-        <nameStyle>13,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -74,8 +72,6 @@ Ss0 f32 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Statistic</name>
-        <nameStyle>9,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

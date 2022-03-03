@@ -1,5 +1,5 @@
 [Ivy]
-1540379C4B7261E4 9.3.1 #module
+1540379C4B7261E4 9.4.0 #module
 >Proto >Proto Collection #zClass
 Ot0 OpenPortalCases Big #zClass
 Ot0 B #cInfo
@@ -99,15 +99,10 @@ Ot0 f9 205 536 440 536 #arcP
 Ot0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>Deprecated Note&#13;
+        <name>**Deprecated Note**&#13;
 &#13;
-This callable will be removed from Portal 11.&#13;
+**This callable will be removed from Portal 11.**&#13;
 To override Portal case widget''s UI: you should use Axon Ivy HTMLOverride Dialog to override the PortalCases Html dialog.</name>
-        <nameStyle>15,5,8,0
-4,5
-45,5,0
-123,5
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -116,15 +111,10 @@ Ot0 f11 264 232 199 138 #arcP
 Ot0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>Deprecated Note&#13;
+        <name>**Deprecated Note**&#13;
 &#13;
-This callable will be removed from Portal 11.&#13;
+**This callable will be removed from Portal 11.**&#13;
 To override Portal case widget''s UI: you should use Axon Ivy HTMLOverride Dialog to override the PortalCaseListInFrame Html dialog.</name>
-        <nameStyle>15,5,8,0
-4,5
-45,5,0
-133,5
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

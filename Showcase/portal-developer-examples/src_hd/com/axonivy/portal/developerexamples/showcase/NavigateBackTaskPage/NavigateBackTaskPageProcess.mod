@@ -1,5 +1,5 @@
 [Ivy]
-176CBADCB53CCEEA 9.3.1 #module
+176CBADCB53CCEEA 9.4.0 #module
 >Proto >Proto Collection #zClass
 Ns0 NavigateBackTaskPageProcess Big #zClass
 Ns0 RD #cInfo
@@ -87,8 +87,6 @@ Ns0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Call the method navigateToPortalEndPage of PortalNavigatorAPI to navigate back to the previous task list.</name>
-        <nameStyle>105,5
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

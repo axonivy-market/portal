@@ -1,5 +1,5 @@
 [Ivy]
-15F95D721D0C7224 9.3.1 #module
+15F95D721D0C7224 9.4.0 #module
 >Proto >Proto Collection #zClass
 By0 BuildCaseQuery Big #zClass
 By0 B #cInfo
@@ -28,8 +28,6 @@ By0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>buildCaseQuery()</name>
-        <nameStyle>16,5
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -42,8 +40,6 @@ By0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 out.caseQuery = CaseQuery.businessCases().where().customField().stringField("CustomVarCharField5").isLike("%HELLO WORLD%");</name>
-        <nameStyle>200,5
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

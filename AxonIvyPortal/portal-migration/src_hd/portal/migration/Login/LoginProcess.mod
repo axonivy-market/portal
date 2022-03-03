@@ -1,5 +1,5 @@
 [Ivy]
-17B85C8E8CCA8F78 9.3.1 #module
+17B85C8E8CCA8F78 9.4.0 #module
 >Proto >Proto Collection #zClass
 Ls0 LoginProcess Big #zClass
 Ls0 RD #cInfo
@@ -43,8 +43,6 @@ Ls0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>login</name>
-        <nameStyle>5,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -83,9 +81,6 @@ Ls0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>login get user settings</name>
-        <nameStyle>6,5
-17,5
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

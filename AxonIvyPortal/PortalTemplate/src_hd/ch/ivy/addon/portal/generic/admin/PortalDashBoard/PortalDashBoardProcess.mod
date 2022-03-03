@@ -1,5 +1,5 @@
 [Ivy]
-14EB4D799BBF04C8 9.3.1 #module
+14EB4D799BBF04C8 9.4.0 #module
 >Proto >Proto Collection #zClass
 Ps0 PortalDashBoardProcess Big #zClass
 Ps0 RD #cInfo
@@ -25,8 +25,6 @@ Ps0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>start()</name>
-        <nameStyle>7,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -42,8 +40,6 @@ Ps0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>get statistic charts</name>
-        <nameStyle>20
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

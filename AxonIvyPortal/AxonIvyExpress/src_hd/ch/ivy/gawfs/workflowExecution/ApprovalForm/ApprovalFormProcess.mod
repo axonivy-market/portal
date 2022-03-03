@@ -1,5 +1,5 @@
 [Ivy]
-162F55163FD8DF16 9.3.1 #module
+162F55163FD8DF16 9.4.0 #module
 >Proto >Proto Collection #zClass
 As0 ApprovalFormProcess Big #zClass
 As0 RD #cInfo
@@ -65,8 +65,6 @@ As0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>closeApprove</name>
-        <nameStyle>12,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -78,8 +76,6 @@ As0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>closeDeny</name>
-        <nameStyle>9,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -162,8 +158,6 @@ As0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>cancel</name>
-        <nameStyle>6,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

@@ -1,5 +1,5 @@
 [Ivy]
-1602F513613E1225 9.3.1 #module
+1602F513613E1225 9.4.0 #module
 >Proto >Proto Collection #zClass
 ac0 AnalyzeStatistic Big #zClass
 ac0 B #cInfo
@@ -113,8 +113,6 @@ ac0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>TaskService</name>
-        <nameStyle>11,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -134,8 +132,6 @@ ac0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>CaseService</name>
-        <nameStyle>11,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -155,8 +151,6 @@ ac0 f19 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>TaskService</name>
-        <nameStyle>11,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -191,8 +185,6 @@ ac0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>CaseService</name>
-        <nameStyle>11,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -227,8 +219,6 @@ ac0 f39 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>CaseService</name>
-        <nameStyle>11,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -256,8 +246,6 @@ ac0 f23 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Initialize</name>
-        <nameStyle>10
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -273,8 +261,6 @@ ac0 f31 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Initialize</name>
-        <nameStyle>10
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -297,8 +283,6 @@ ac0 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Initialize</name>
-        <nameStyle>10
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -318,8 +302,6 @@ ac0 f21 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Initialize</name>
-        <nameStyle>10
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -334,8 +316,6 @@ ac0 f41 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Initialize</name>
-        <nameStyle>10
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

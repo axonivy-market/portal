@@ -1,5 +1,5 @@
 [Ivy]
-167BAF785E543C28 9.3.1 #module
+167BAF785E543C28 9.4.0 #module
 >Proto >Proto Collection #zClass
 Cs0 CreateHiddenTasksAndCasesProcess Big #zClass
 Cs0 RD #cInfo
@@ -28,8 +28,6 @@ Cs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>start()</name>
-        <nameStyle>7,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

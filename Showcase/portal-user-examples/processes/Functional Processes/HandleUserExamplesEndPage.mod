@@ -1,5 +1,5 @@
 [Ivy]
-1709A202E7AEC7E8 9.3.1 #module
+1709A202E7AEC7E8 9.4.0 #module
 >Proto >Proto Collection #zClass
 He0 HandleEndPage Big #zClass
 He0 B #cInfo
@@ -24,9 +24,6 @@ He0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>handleUserExamplesEndPage()</name>
-        <nameStyle>25,5
-2,5
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -42,8 +39,6 @@ He0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>get end page url</name>
-        <nameStyle>16
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

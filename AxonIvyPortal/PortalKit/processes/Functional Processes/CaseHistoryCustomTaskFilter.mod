@@ -1,5 +1,5 @@
 [Ivy]
-14E52ACF4B6D37BF 9.3.1 #module
+14E52ACF4B6D37BF 9.4.0 #module
 >Proto >Proto Collection #zClass
 Cr0 CaseHistoryCustomTaskFilter Big #zClass
 Cr0 B #cInfo
@@ -27,8 +27,6 @@ Cr0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>filterTasks(List&lt;ITask&gt;)</name>
-        <nameStyle>24,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -44,8 +42,6 @@ OUT: List&lt;ITask&gt;
 
 Use this subprocess to add filter logic 
 in between. (e.g. remove system tasks)</name>
-        <nameStyle>113,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

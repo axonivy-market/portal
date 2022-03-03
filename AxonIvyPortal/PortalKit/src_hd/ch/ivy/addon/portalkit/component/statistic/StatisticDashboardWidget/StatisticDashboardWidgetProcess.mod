@@ -1,5 +1,5 @@
 [Ivy]
-1600AC95D2CA7CEA 9.3.1 #module
+1600AC95D2CA7CEA 9.4.0 #module
 >Proto >Proto Collection #zClass
 Ss0 StatisticDashboardWidgetProcess Big #zClass
 Ss0 RD #cInfo
@@ -123,8 +123,6 @@ Ss0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>start()</name>
-        <nameStyle>7,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -141,8 +139,6 @@ Ss0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>moveLeft(StatisticChart)</name>
-        <nameStyle>24,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -157,8 +153,6 @@ Ss0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>moveRight(StatisticChart)</name>
-        <nameStyle>25,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -182,8 +176,6 @@ Ss0 f19 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Update charts position</name>
-        <nameStyle>22
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -198,8 +190,6 @@ Ss0 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>deleteChart(StatisticChart)</name>
-        <nameStyle>27,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -222,8 +212,6 @@ Ss0 f26 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Delete chart</name>
-        <nameStyle>12
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -256,8 +244,6 @@ Ss0 f30 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Generate dashboard chart</name>
-        <nameStyle>24,5
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -275,8 +261,6 @@ Ss0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Navigator</name>
-        <nameStyle>9,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -313,8 +297,6 @@ Ss0 f36 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Build task query</name>
-        <nameStyle>16
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -336,8 +318,6 @@ Ss0 f42 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Navigator</name>
-        <nameStyle>9,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -352,8 +332,6 @@ Ss0 f32 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>selectChart(StatisticChart)</name>
-        <nameStyle>27,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -449,8 +427,6 @@ Ss0 f70 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>initialize</name>
-        <nameStyle>10,5
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

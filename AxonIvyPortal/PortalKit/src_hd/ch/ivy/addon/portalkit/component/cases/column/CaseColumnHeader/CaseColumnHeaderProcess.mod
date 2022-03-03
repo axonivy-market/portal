@@ -1,5 +1,5 @@
 [Ivy]
-164B1B767672DF33 9.3.1 #module
+164B1B767672DF33 9.4.0 #module
 >Proto >Proto Collection #zClass
 Cs0 CaseColumnHeaderProcess Big #zClass
 Cs0 RD #cInfo
@@ -60,8 +60,6 @@ Cs0 f35 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <language>
         <name>set sorting
 to lazy model</name>
-        <nameStyle>25,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -77,8 +75,6 @@ Cs0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>sort(CaseSortedField,Boolean)</name>
-        <nameStyle>29,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
