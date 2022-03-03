@@ -1,5 +1,5 @@
 [Ivy]
-162511D2577DBA88 9.3.1 #module
+162511D2577DBA88 9.4.0 #module
 >Proto >Proto Collection #zClass
 Cs0 CreateTestData Big #zClass
 Cs0 B #cInfo
@@ -253,8 +253,6 @@ Cs0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Create tasks</name>
-        <nameStyle>12,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -284,8 +282,6 @@ Cs0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Run createTasksForTaskListCustomization.ivp process
 This process will create 3 tasks, each task has filled customVarCharField5 and customTimestampField1,
  we will use these fields as custom fields in Task Widget.</name>
-        <nameStyle>238,5
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -315,8 +311,6 @@ Cs0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>createCasesForCaseListCustomization.ivp</name>
-        <nameStyle>39,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -335,8 +329,6 @@ Cs0 f45 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>CreateTestData</name>
-        <nameStyle>14,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -387,8 +379,6 @@ Cs0 f43 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>startACase(Integer)</name>
-        <nameStyle>19,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -447,8 +437,6 @@ Cs0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <language>
         <name>Show 
 Task Form</name>
-        <nameStyle>15,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -515,8 +503,6 @@ Cs0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Create tasks</name>
-        <nameStyle>12,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -568,8 +554,6 @@ Cs0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <language>
         <name>Show 
 Task Form</name>
-        <nameStyle>15,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -587,9 +571,6 @@ Cs0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <language>
         <name>Show 
 Task Form</name>
-        <nameStyle>6,7
-9,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -676,8 +657,6 @@ Cs0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>SetBusinessEntityId</name>
-        <nameStyle>19,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -689,8 +668,6 @@ Cs0 f31 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Signal create New Payment</name>
-        <nameStyle>25,5
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -775,8 +752,6 @@ Cs0 f37 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <language>
         <name>Show 
 Task Form</name>
-        <nameStyle>15,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -832,8 +807,6 @@ Cs0 f38 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Create tasks</name>
-        <nameStyle>12,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -850,9 +823,6 @@ Cs0 f40 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <language>
         <name>Show 
 Task Form</name>
-        <nameStyle>6,7
-9,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -869,8 +839,6 @@ Cs0 f64 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <language>
         <name>Show 
 Task Form</name>
-        <nameStyle>15,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -1040,8 +1008,6 @@ Ct1 f51 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Signal create Task failed</name>
-        <nameStyle>25,5
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -1107,8 +1073,6 @@ Ct0 f73 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Signal create Technical task</name>
-        <nameStyle>28,5
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

@@ -1,5 +1,5 @@
 [Ivy]
-16583F0F73864543 9.3.1 #module
+16583F0F73864543 9.4.0 #module
 >Proto >Proto Collection #zClass
 Hs0 HideTechnicalStuffs Big #zClass
 Hs0 B #cInfo
@@ -222,9 +222,6 @@ Run HideTechnicalRole.ivp to hide the technical role "Portal System".
 After running the process, you should not see the role in role lists of Portal e.g Delegate role list
 
 Run UnhideTechnicalRole.ivp to unhide the role. You should see the role again in role lists.</name>
-        <nameStyle>69,7
-291,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -237,9 +234,6 @@ Hs0 f23 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 HOW TO RUN THIS EXAMPLE
 Run createHiddenTechnicalTask.ivp to create a task named "Second Hidden Task" which will be auto-completed. 
 Afterwards, login with a user with TASK_READ_ALL permission to see DONE tasks, the task should not be shown in any Portal task lists.</name>
-        <nameStyle>68,7
-267,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -253,9 +247,6 @@ HOW TO RUN THIS EXAMPLE
 Run createHiddenTechnicalCase.ivp to create a case named "Create hidden technical case" and 2 tasks: "Report" &amp; "Report and hide case".
 Run "Report and hide case" task.  Afterwards, login with a user with CASE_READ_ALL permission to see DONE cases, the case should not be shown in every Portal case lists.
 The tasks of the case should be hidden also in every Portal task lists. </name>
-        <nameStyle>68,7
-403,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -298,8 +289,6 @@ Hs0 f30 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>HideSystemCase</name>
-        <nameStyle>14,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

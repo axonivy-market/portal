@@ -1,5 +1,5 @@
 [Ivy]
-1657FC622FD937C4 9.3.1 #module
+1657FC622FD937C4 9.4.0 #module
 >Proto >Proto Collection #zClass
 Cd0 ChangePassword Big #zClass
 Cd0 B #cInfo
@@ -58,8 +58,6 @@ Cd0 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>PasswordService</name>
-        <nameStyle>15,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -70,8 +68,6 @@ Cd0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
         <name>This process overrides ChangePassword process in Portal Kit. Now the password change process 
 will also check if the new password has at least 1 special character, 1 number, 1 uppercase and 1 lowercase
 character.</name>
-        <nameStyle>212,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -95,8 +91,6 @@ Cd0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Check if can change password</name>
-        <nameStyle>28,5
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -127,8 +121,6 @@ Cd0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Create return message</name>
-        <nameStyle>21,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

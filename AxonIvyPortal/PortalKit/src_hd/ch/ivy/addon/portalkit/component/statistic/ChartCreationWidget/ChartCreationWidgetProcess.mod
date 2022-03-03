@@ -1,5 +1,5 @@
 [Ivy]
-15FFC669C88F7E0B 9.3.1 #module
+15FFC669C88F7E0B 9.4.0 #module
 >Proto >Proto Collection #zClass
 Cs0 ChartCreationWidgetProcess Big #zClass
 Cs0 RD #cInfo
@@ -98,8 +98,6 @@ Cs0 f35 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>createStatisticChart(List&lt;StatisticChart&gt;)</name>
-        <nameStyle>42,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -123,8 +121,6 @@ Cs0 f40 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>updateBeforeAddCaseByState()</name>
-        <nameStyle>28,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -148,8 +144,6 @@ Cs0 f42 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>updateBeforeAddTaskByExpiry()</name>
-        <nameStyle>29,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -171,8 +165,6 @@ Cs0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>initialize()</name>
-        <nameStyle>12,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -208,8 +200,6 @@ Cs0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Initialize</name>
-        <nameStyle>10
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -241,8 +231,6 @@ Cs0 f41 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>updateBeforeAddTaskByPriority()</name>
-        <nameStyle>31,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -267,8 +255,6 @@ Cs0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Clear chart name</name>
-        <nameStyle>16
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -294,8 +280,6 @@ Cs0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>updateBeforeAddElapsedTime()</name>
-        <nameStyle>28,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -314,8 +298,6 @@ Cs0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>clearChartInput</name>
-        <nameStyle>15,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -339,8 +321,6 @@ Cs0 f22 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>updateBeforeAddCaseByFinishedTask()</name>
-        <nameStyle>35,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -368,8 +348,6 @@ Cs0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>updateBeforeAddCaseByFinishedTime()</name>
-        <nameStyle>35,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

@@ -1,5 +1,5 @@
 [Ivy]
-15F9451DFD921A3D 9.3.1 #module
+15F9451DFD921A3D 9.4.0 #module
 >Proto >Proto Collection #zClass
 As0 AdvancedFilterProcess Big #zClass
 As0 RD #cInfo
@@ -45,8 +45,6 @@ As0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>updateCasesByFilter(String)</name>
-        <nameStyle>27,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -64,9 +62,6 @@ As0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <language>
         <name>Update case list
 if pass validation</name>
-        <nameStyle>17,7
-18,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

@@ -58,7 +58,7 @@ public class SecurityMemberUtils {
 
   public static ISecurityMember findISecurityMemberFromRoleDTO(RoleDTO roleDTO) {
     return IvyExecutor.executeAsSystem(() -> {
-        return ((ISecurityContext)Ivy.security()).findRole(roleDTO.getId());
+      return ((ISecurityContext)Ivy.security()).findRole(roleDTO.getId());
     });
   }
 

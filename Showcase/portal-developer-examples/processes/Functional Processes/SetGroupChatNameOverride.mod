@@ -1,5 +1,5 @@
 [Ivy]
-16B2C7BB1F583777 9.3.1 #module
+16B2C7BB1F583777 9.4.0 #module
 >Proto >Proto Collection #zClass
 Se0 SetGroupChatName Big #zClass
 Se0 B #cInfo
@@ -28,8 +28,6 @@ Se0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>setGroupChatName()</name>
-        <nameStyle>18,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -42,8 +40,6 @@ Se0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Set group chat name</name>
-        <nameStyle>19
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -59,8 +55,6 @@ Se0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 
 Parameters can be passed through the bracket: {parameter}
 They are available in GroupChat.java and you can add more by overriding the GetGroupChatParams callable process</name>
-        <nameStyle>208
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

@@ -1,5 +1,5 @@
 [Ivy]
-178A0F7DD8A74A94 9.3.1 #module
+178A0F7DD8A74A94 9.4.0 #module
 >Proto >Proto Collection #zClass
 Gs0 GlobalGrowlIFrame8Process Big #zClass
 Gs0 RD #cInfo
@@ -108,11 +108,9 @@ Gs0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Gs0 f8 83 179 26 26 -14 15 #rect
 Gs0 f11 actionTable 'out=in;
 ' #txt
-Gs0 f11 actionCode 'import ch.ivy.addon.portal.generic.navigation.PortalNavigatorInFrame;
+Gs0 f11 actionCode 'import ch.ivy.addon.portalkit.publicapi.PortalNavigatorInFrameAPI;
 
-PortalNavigatorInFrame navigator = new PortalNavigatorInFrame();
-navigator.navigateToPortalEndPage();
-' #txt
+PortalNavigatorInFrameAPI.navigateToPortalEndPage();' #txt
 Gs0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

@@ -1,5 +1,5 @@
 [Ivy]
-16854B53D2D387A2 9.3.1 #module
+16854B53D2D387A2 9.4.0 #module
 >Proto >Proto Collection #zClass
 By0 BuildTaskQuery Big #zClass
 By0 B #cInfo
@@ -30,8 +30,6 @@ By0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>buildTaskQuery()</name>
-        <nameStyle>16,5
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -50,8 +48,6 @@ just check  the attribute isQueryForHomePage
 if (in.isQueryForHomePage) { // in home page
 	in.taskQuery = TaskQuery.create().where().activatorName().isLike("#");&#13;
 }</name>
-        <nameStyle>424,5
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
