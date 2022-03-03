@@ -1,5 +1,5 @@
 [Ivy]
-14CE96E80B89A88F 9.3.1 #module
+14CE96E80B89A88F 9.4.0 #module
 >Proto >Proto Collection #zClass
 Ls0 SetLanguageProcess Big #zClass
 Ls0 RD #cInfo
@@ -23,8 +23,6 @@ Ls0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>start()</name>
-        <nameStyle>7,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -38,8 +36,6 @@ Ls0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Set locale</name>
-        <nameStyle>10,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

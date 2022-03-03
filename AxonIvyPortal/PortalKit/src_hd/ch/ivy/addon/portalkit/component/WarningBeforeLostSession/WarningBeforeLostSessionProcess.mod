@@ -1,5 +1,5 @@
 [Ivy]
-15F80B73A255C137 9.3.1 #module
+15F80B73A255C137 9.4.0 #module
 >Proto >Proto Collection #zClass
 Ws0 WarningBeforeLostSessionProcess Big #zClass
 Ws0 RD #cInfo
@@ -83,8 +83,6 @@ Ws0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Logout</name>
-        <nameStyle>6,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

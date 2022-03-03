@@ -1,5 +1,5 @@
 [Ivy]
-16285772A1F890EE 9.3.1 #module
+16285772A1F890EE 9.4.0 #module
 >Proto >Proto Collection #zClass
 Ur0 UploadDocumentChecker Big #zClass
 Ur0 B #cInfo
@@ -39,8 +39,6 @@ Ur0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>call(UploadedFile)</name>
-        <nameStyle>18,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

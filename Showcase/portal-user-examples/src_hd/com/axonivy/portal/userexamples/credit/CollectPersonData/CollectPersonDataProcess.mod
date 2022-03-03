@@ -1,5 +1,5 @@
 [Ivy]
-17032470ACB9F6E8 9.3.1 #module
+17032470ACB9F6E8 9.4.0 #module
 >Proto >Proto Collection #zClass
 Cs0 CollectPersonDataProcess Big #zClass
 Cs0 RD #cInfo
@@ -65,8 +65,6 @@ Cs0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Load dossier</name>
-        <nameStyle>12,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -82,8 +80,6 @@ Cs0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Save dossier</name>
-        <nameStyle>12,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

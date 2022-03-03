@@ -1,5 +1,5 @@
 [Ivy]
-16E1584824AEC16C 9.3.1 #module
+16E1584824AEC16C 9.4.0 #module
 >Proto >Proto Collection #zClass
 Bs0 TaskTemplateIFrameProcess Big #zClass
 Bs0 RD #cInfo
@@ -32,7 +32,7 @@ Bs0 f0 83 51 26 26 -15 15 #rect
 Bs0 f1 339 51 26 26 0 12 #rect
 Bs0 f3 actionTable 'out=in;
 ' #txt
-Bs0 f3 actionCode 'out.task = ivy.wf.findTask(in.taskId);' #txt
+Bs0 f3 actionCode 'out.task = ivy.wf.findTask(Long.valueOf(in.taskId));' #txt
 Bs0 f3 security system #txt
 Bs0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

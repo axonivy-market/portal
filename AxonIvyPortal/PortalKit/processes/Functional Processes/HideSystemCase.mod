@@ -1,5 +1,5 @@
 [Ivy]
-15F999559D09FFA4 9.3.1 #module
+15F999559D09FFA4 9.4.0 #module
 >Proto >Proto Collection #zClass
 He0 HideSystemCase Big #zClass
 He0 B #cInfo
@@ -60,8 +60,6 @@ He0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <language>
         <name>Hide system case
 and related tasks</name>
-        <nameStyle>34
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

@@ -1,5 +1,5 @@
 [Ivy]
-14DE09882B540AD5 9.3.1 #module
+14DE09882B540AD5 9.4.0 #module
 >Proto >Proto Collection #zClass
 Is0 GrantPermissions Big #zClass
 Is0 B #cInfo
@@ -155,8 +155,6 @@ Is0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>grantAllPermissionsToCurrentUser.ivp</name>
-        <nameStyle>36,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -244,8 +242,6 @@ Is0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>grantTaskReadAllPermissionsToCurrentUser.ivp</name>
-        <nameStyle>44,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -287,8 +283,6 @@ Is0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>grantCaseReadAllPermissionsToCurrentUser.ivp</name>
-        <nameStyle>44,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -345,8 +339,6 @@ Is0 f21 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>grantTaskReadOwnCaseTaskPermissionsToCurrentUser.ivp</name>
-        <nameStyle>52,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -401,8 +393,6 @@ Is0 f23 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>denyReadAllPermissionFromCurrentUser.ivp</name>
-        <nameStyle>40,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -510,8 +500,6 @@ Is0 f35 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>grantOnlyDelegateOwnTasksPermission.ivp</name>
-        <nameStyle>39,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -555,8 +543,6 @@ Is0 f39 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>undoOnlyDelegateOwnTasksPermission.ivp</name>
-        <nameStyle>38,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

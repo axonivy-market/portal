@@ -1,5 +1,5 @@
 [Ivy]
-15D4E5494B0DFC50 9.3.1 #module
+15D4E5494B0DFC50 9.4.0 #module
 >Proto >Proto Collection #zClass
 Cs0 CancelApprovalRequestProcess Big #zClass
 Cs0 RD #cInfo
@@ -53,8 +53,6 @@ Cs0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <language>
         <name>Write cancel reason 
 to case note</name>
-        <nameStyle>33,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -71,8 +69,6 @@ Cs0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>cancelApprovalRequest(Long,String)</name>
-        <nameStyle>34,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

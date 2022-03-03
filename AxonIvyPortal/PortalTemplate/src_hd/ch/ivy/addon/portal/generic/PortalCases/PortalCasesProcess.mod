@@ -1,5 +1,5 @@
 [Ivy]
-14C4FF3FCD291EF5 9.3.1 #module
+14C4FF3FCD291EF5 9.4.0 #module
 >Proto >Proto Collection #zClass
 Ps0 PortalCasesProcess Big #zClass
 Ps0 RD #cInfo
@@ -26,8 +26,6 @@ Ps0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>useView(CaseView)</name>
-        <nameStyle>17,5
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

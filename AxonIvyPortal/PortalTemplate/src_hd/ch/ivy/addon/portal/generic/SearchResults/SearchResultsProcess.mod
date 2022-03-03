@@ -1,5 +1,5 @@
 [Ivy]
-163A4BFC48261B85 9.3.1 #module
+163A4BFC48261B85 9.4.0 #module
 >Proto >Proto Collection #zClass
 Ps0 SearchResultsProcess Big #zClass
 Ps0 RD #cInfo
@@ -51,8 +51,6 @@ Ps0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>start(SearchResultsDataModel)</name>
-        <nameStyle>29,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

@@ -1,5 +1,5 @@
 [Ivy]
-1549EAD7E9C3125A 9.3.1 #module
+1549EAD7E9C3125A 9.4.0 #module
 >Proto >Proto Collection #zClass
 Pl0 ParallelTasksUtil Big #zClass
 Pl0 B #cInfo
@@ -43,8 +43,6 @@ Pl0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>counter++</name>
-        <nameStyle>9,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -53,8 +51,6 @@ Pl0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>for loop</name>
-        <nameStyle>8,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -66,8 +62,6 @@ Pl0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <language>
         <name>actual
 task</name>
-        <nameStyle>11
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -104,8 +98,6 @@ Pl0 f23 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>splitTasks</name>
-        <nameStyle>10,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -139,8 +131,6 @@ Pl0 f34 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>has open tasks?</name>
-        <nameStyle>15,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

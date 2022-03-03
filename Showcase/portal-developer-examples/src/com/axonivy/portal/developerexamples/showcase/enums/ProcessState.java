@@ -3,8 +3,8 @@ package com.axonivy.portal.developerexamples.showcase.enums;
 import java.util.ArrayList;
 import java.util.List;
 
-import ch.ivyteam.ivy.cm.IContentObject;
-import ch.ivyteam.ivy.cm.IContentObjectValue;
+import ch.ivyteam.ivy.cm.ContentObject;
+import ch.ivyteam.ivy.cm.ContentObjectValue;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public enum ProcessState {
@@ -19,14 +19,15 @@ public enum ProcessState {
 	private String cmsPath = "/Dialogs/Lists/ProcessState/";
 	
 	public String getCmsValue(){
-		IContentObject co = Ivy.cms().getContentObject(getCmsPath());
+		ContentObject co = Ivy.cms().get(getCmsPath()).orElseGet(null);
 		String value = "";
-		if(co != null){
-			IContentObjectValue cv = co.getValue(Ivy.session().getContentLocale());
-			if(cv != null){
-				value = cv.getContentAsString();
+		if (co != null) {
+			ContentObjectValue cov = co.value().get(Ivy.session().getContentLocale());
+			if (cov != null) {
+				value = cov.read().toString();
 			}
 		}
+
 		return value;
 	}
 	

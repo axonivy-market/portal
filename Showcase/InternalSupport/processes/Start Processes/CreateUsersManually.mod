@@ -1,5 +1,5 @@
 [Ivy]
-15F80B590709168C 9.3.1 #module
+15F80B590709168C 9.4.0 #module
 >Proto >Proto Collection #zClass
 Cy0 CreateUsersManually Big #zClass
 Cy0 B #cInfo
@@ -40,8 +40,6 @@ Cy0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>createTestUsersivp</name>
-        <nameStyle>18,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -127,8 +125,6 @@ Cy0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Create users for test</name>
-        <nameStyle>21
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -155,8 +151,6 @@ Cy0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>deleteTestUsers.ivp</name>
-        <nameStyle>19,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -200,8 +194,6 @@ Cy0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Delete test users</name>
-        <nameStyle>17
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
