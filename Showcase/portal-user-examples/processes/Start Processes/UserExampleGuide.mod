@@ -1,5 +1,5 @@
 [Ivy]
-17236DB1D3DA14C0 9.3.1 #module
+17236DB1D3DA14C0 9.4.0 #module
 >Proto >Proto Collection #zClass
 Ue0 UserExampleGuide Big #zClass
 Ue0 B #cInfo
@@ -121,13 +121,10 @@ Ue0 f2 456 224 593 224 #arcP
 Ue0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>To start your Axon Ivy Portal experience. This link redirects you to the Portal login page&#13;
+        <name>**To start your Axon Ivy Portal experience. This link redirects you to the Portal login page**&#13;
 Please use the below credential to login Portal:&#13;
 - account: Developer&#13;
 - password: Developer</name>
-        <nameStyle>90,5,8,0
-95,5
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -135,12 +132,9 @@ Ue0 f3 96 66 672 76 -330 -34 #rect
 Ue0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>Portal user example guide&#13;
+        <name>**Portal user example guide**&#13;
 In this User Example Guide, you will find some demo processes available in the Axon Ivy Portal.&#13;
 Just click on the corresponding link below to get more information.</name>
-        <nameStyle>25,5,8,0
-166,5
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -198,8 +192,6 @@ Bk1 f137 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <language>
         <name>Set default end page 
 to Portal</name>
-        <nameStyle>31,5
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

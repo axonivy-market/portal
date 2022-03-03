@@ -1,5 +1,5 @@
 [Ivy]
-15F6AF4140FEAD47 9.3.1 #module
+15F6AF4140FEAD47 9.4.0 #module
 >Proto >Proto Collection #zClass
 Ps0 ProcessNavigatorProcess Big #zClass
 Ps0 RD #cInfo
@@ -40,8 +40,6 @@ Ps0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>openProcess</name>
-        <nameStyle>11,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -57,8 +55,6 @@ Ps0 f33 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>processes</name>
-        <nameStyle>9,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

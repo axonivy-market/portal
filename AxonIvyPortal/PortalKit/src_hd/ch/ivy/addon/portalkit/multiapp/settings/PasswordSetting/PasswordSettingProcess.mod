@@ -1,5 +1,5 @@
 [Ivy]
-15DBB7002BEF4583 9.3.1 #module
+15DBB7002BEF4583 9.4.0 #module
 >Proto >Proto Collection #zClass
 Ps0 PasswordSettingProcess Big #zClass
 Ps0 RD #cInfo
@@ -69,8 +69,6 @@ Ps0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Change password</name>
-        <nameStyle>15,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

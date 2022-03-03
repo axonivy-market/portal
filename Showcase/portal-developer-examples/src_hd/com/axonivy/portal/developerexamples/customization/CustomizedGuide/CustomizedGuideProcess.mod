@@ -1,5 +1,5 @@
 [Ivy]
-176CBAB7EBAE6D13 9.3.1 #module
+176CBAB7EBAE6D13 9.4.0 #module
 >Proto >Proto Collection #zClass
 Ps0 CustomizedGuideProcess Big #zClass
 Ps0 RD #cInfo
@@ -50,8 +50,6 @@ Ps0 f1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>getDataModel()</name>
-        <nameStyle>14,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

@@ -1,5 +1,5 @@
 [Ivy]
-1624CFE2532EF6BE 9.3.1 #module
+1624CFE2532EF6BE 9.4.0 #module
 >Proto >Proto Collection #zClass
 Se0 SetAdditonalCaseDetailPage Big #zClass
 Se0 B #cInfo
@@ -26,8 +26,6 @@ Se0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>call(String)</name>
-        <nameStyle>12,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -35,11 +33,11 @@ Se0 f0 81 49 30 30 -29 17 #rect
 Se0 f1 337 49 30 30 0 15 #rect
 Se0 f3 actionTable 'out=in;
 ' #txt
-Se0 f3 actionCode 'import ch.ivy.addon.portalkit.util.ProcessStartUtils;
+Se0 f3 actionCode 'import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
+import ch.ivy.addon.portalkit.util.ProcessStartUtils;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 
-String casePageUrl = ProcessStartUtils.
-	findRelativeUrlByProcessStartFriendlyRequestPath(in.linkToAdditonalCaseDetailPage)
+String casePageUrl = ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(in.linkToAdditonalCaseDetailPage)
 		+ "?caseId=" + ivy.case.getId();
 											
 ivy.case.customFields().textField(AdditionalProperty.CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE.toString()).set(casePageUrl);' #txt

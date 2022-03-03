@@ -1,5 +1,5 @@
 [Ivy]
-1703222B39B57AE4 9.3.1 #module
+1703222B39B57AE4 9.4.0 #module
 >Proto >Proto Collection #zClass
 A10 ApproveLevel1 Big #zClass
 A10 B #cInfo
@@ -41,8 +41,6 @@ A10 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>start.ivp</name>
-        <nameStyle>9,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -56,8 +54,6 @@ A10 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>log stage</name>
-        <nameStyle>9,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -74,9 +70,6 @@ A10 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <language>
         <name>Approve
 Level 1</name>
-        <nameStyle>8,7
-7,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

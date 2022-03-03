@@ -1,5 +1,5 @@
 [Ivy]
-17255D74942B8265 9.3.1 #module
+17255D74942B8265 9.4.0 #module
 >Proto >Proto Collection #zClass
 Ss0 SecurityMemberDisplayNameProcess Big #zClass
 Ss0 RD #cInfo
@@ -62,7 +62,7 @@ import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 
 GlobalSettingService service = new GlobalSettingService();
-String showAllUserConfig = service.findGlobalSettingValue(GlobalVariable.DISPLAY_USERS_OF_ROLE.name());
+String showAllUserConfig = service.findGlobalSettingValue(GlobalVariable.DISPLAY_USERS_OF_ROLE);
 in.isShowAllUser = BooleanUtils.toBoolean(showAllUserConfig);' #txt
 Ss0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

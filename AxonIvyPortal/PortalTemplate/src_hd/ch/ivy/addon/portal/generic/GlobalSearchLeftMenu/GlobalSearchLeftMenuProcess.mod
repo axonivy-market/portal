@@ -1,5 +1,5 @@
 [Ivy]
-16CF626AB4B6E5B2 9.3.1 #module
+16CF626AB4B6E5B2 9.4.0 #module
 >Proto >Proto Collection #zClass
 Gs0 GlobalSearchLeftMenuProcess Big #zClass
 Gs0 RD #cInfo
@@ -47,8 +47,6 @@ Gs0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>OpenPortalSearch</name>
-        <nameStyle>16,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -60,8 +58,6 @@ Gs0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>search</name>
-        <nameStyle>6,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

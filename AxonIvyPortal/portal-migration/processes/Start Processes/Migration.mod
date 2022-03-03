@@ -1,5 +1,5 @@
 [Ivy]
-175F92F71BC45295 9.3.1 #module
+175F92F71BC45295 9.4.0 #module
 >Proto >Proto Collection #zClass
 Mn0 Migration Big #zClass
 Mn0 B #cInfo
@@ -63,10 +63,8 @@ Mn0 S11 272 170 128 44 -57 -8 #rect
 Mn0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>This is migration process for Portal configuration&#13;
+        <name>**This is migration process for Portal configuration**&#13;
 Details in the stories: IVYPORTAL-12037, IVYPORTAL-12210</name>
-        <nameStyle>50,5,8,0
-58,5</nameStyle>
     </language>
 </elementInfo>
 ' #txt

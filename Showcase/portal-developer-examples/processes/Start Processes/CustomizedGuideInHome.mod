@@ -1,5 +1,5 @@
 [Ivy]
-17279884C45FC0CE 9.3.1 #module
+17279884C45FC0CE 9.4.0 #module
 >Proto >Proto Collection #zClass
 Ce0 CustomizedGuideInHome Big #zClass
 Ce0 B #cInfo
@@ -76,8 +76,6 @@ Ce0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>InitializeTaskDataModel</name>
-        <nameStyle>23,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

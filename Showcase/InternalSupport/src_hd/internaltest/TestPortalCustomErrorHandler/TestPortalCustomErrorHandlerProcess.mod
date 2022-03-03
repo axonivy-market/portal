@@ -1,5 +1,5 @@
 [Ivy]
-15DE4F365CA95344 9.3.1 #module
+15DE4F365CA95344 9.4.0 #module
 >Proto >Proto Collection #zClass
 Ts0 TestPortalCustomErrorHandlerProcess Big #zClass
 Ts0 RD #cInfo
@@ -60,8 +60,6 @@ Ts0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>errorMethod()</name>
-        <nameStyle>13,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

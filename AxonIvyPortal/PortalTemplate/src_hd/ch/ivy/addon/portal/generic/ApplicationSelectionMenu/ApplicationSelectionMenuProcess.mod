@@ -1,5 +1,5 @@
 [Ivy]
-156A1AA176DE2A21 9.3.1 #module
+156A1AA176DE2A21 9.4.0 #module
 >Proto >Proto Collection #zClass
 As0 ApplicationSelectionMenuProcess Big #zClass
 As0 RD #cInfo
@@ -81,9 +81,6 @@ As0 f91 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Reserve task</name>
-        <nameStyle>1,5
-11,5
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

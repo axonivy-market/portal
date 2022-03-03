@@ -1,5 +1,5 @@
 [Ivy]
-1624D1F5CBEA5332 9.3.1 #module
+1624D1F5CBEA5332 9.4.0 #module
 >Proto >Proto Collection #zClass
 Ae0 AdditionalCaseDetailPage Big #zClass
 Ae0 B #cInfo
@@ -55,8 +55,6 @@ Ae0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>createInvestmentRequest.ivp</name>
-        <nameStyle>27,5,7
-</nameStyle>
         <desc>Investment Request for Customized Case Detail Page example</desc>
     </language>
 </elementInfo>
@@ -92,8 +90,6 @@ Ae0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>SetAdditonalCaseDetailPage</name>
-        <nameStyle>26,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -125,8 +121,6 @@ Ae0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>showInvestmentRequestCustomFields.ivp</name>
-        <nameStyle>37,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -147,8 +141,6 @@ Ae0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <language>
         <name>Customization
 Additional Case Details Page</name>
-        <nameStyle>42,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -174,9 +166,6 @@ HOW TO RUN THIS EXAMPLE:
 
 
 </name>
-        <nameStyle>35,5
-792,5
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
