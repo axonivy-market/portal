@@ -132,7 +132,7 @@ public class UserMenuBean implements Serializable {
   public void navigateToHomePageOrDisplayWorkingTaskWarning(boolean isWorkingOnATask, ITask task) throws IOException {
     if (isWorkingOnATask && task.getState() != TaskState.DONE) {
       targetPage = getHomePageURL();
-      PrimeFaces.current().executeScript("PF('logo-task-losing-confirmation-dialog').show()");
+      openTaskLosingConfirmationDialog();
     } else {
       navigateToHomePage();
     }
@@ -140,20 +140,20 @@ public class UserMenuBean implements Serializable {
   
   public void navigateToUserProfileOrDisplayWorkingTaskWarning(boolean isWorkingOnATask, ITask task) throws IOException {
     if (isWorkingOnATask && task.getState() != TaskState.DONE) {
-      PrimeFaces.current().executeScript("PF('logo-task-losing-confirmation-dialog').show()");
+      openTaskLosingConfirmationDialog();
       targetPage = getUserProfileUrl();
     } else {
-      PrimeFaces.current().executeScript("resetPortalLeftMenuState()");
+      executeJSResetPortalMenuState();
       navigateToUserProfile();
     }
   }
 
   public void navigateToAbsencesOrDisplayWorkingTaskWarning(boolean isWorkingOnATask, ITask task) throws IOException {
     if (isWorkingOnATask && task.getState() != TaskState.DONE) {
-      PrimeFaces.current().executeScript("PF('logo-task-losing-confirmation-dialog').show()");
+      openTaskLosingConfirmationDialog();
       targetPage = getAbsencesUrl();
     } else {
-      PrimeFaces.current().executeScript("resetPortalLeftMenuState()");
+      executeJSResetPortalMenuState();
       navigateToAbsences();
     }
   }
@@ -183,7 +183,15 @@ public class UserMenuBean implements Serializable {
     TaskUtils.resetTask(relatedTask);
     navigateToTargetPage();
   }
+
+  private void executeJSResetPortalMenuState() {
+    PrimeFaces.current().executeScript("resetPortalLeftMenuState()");
+  }
   
+  private void openTaskLosingConfirmationDialog() {
+    PrimeFaces.current().executeScript("PF('logo-task-losing-confirmation-dialog').show()");
+  }
+
   /**
    * We moved this method to PortalExceptionBean#getErrorDetailToEndUser
    * @return system configuration of ErrorDetailToEndUser
