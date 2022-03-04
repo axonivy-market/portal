@@ -830,3 +830,7 @@ body .task-template-content .ui-fieldset .ui-fieldset-legend {
 .express-view-form .no-item-panel {
   margin: 4%;
 }
+
+.button-group .cancel-btn {
+  margin-bottom: 20px;
+}
