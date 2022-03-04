@@ -4,7 +4,11 @@ import org.openqa.selenium.By;
 
 public class ExpressApprovalPage extends TaskTemplatePage {
   public void approve() {
-    clickByCssSelector("button[id$='approve-btn']");
+    clickOnApprove();
+  }
+
+  public void clickOnApprove() {
+    click(By.cssSelector("button[id$='approve-btn']"));
   }
 
   public void reject() {
