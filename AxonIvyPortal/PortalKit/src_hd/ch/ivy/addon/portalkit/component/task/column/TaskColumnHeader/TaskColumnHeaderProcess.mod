@@ -1,5 +1,5 @@
 [Ivy]
-15AF019B09976068 9.3.1 #module
+15AF019B09976068 9.4.0 #module
 >Proto >Proto Collection #zClass
 Ts0 TaskColumnHeaderProcess Big #zClass
 Ts0 RD #cInfo
@@ -32,8 +32,6 @@ Ts0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>start()</name>
-        <nameStyle>7,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -62,8 +60,6 @@ Ts0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <language>
         <name>sort tasks
 by type</name>
-        <nameStyle>18
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -90,8 +86,6 @@ Ts0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <language>
         <name>init dataModel
 if empty</name>
-        <nameStyle>23
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

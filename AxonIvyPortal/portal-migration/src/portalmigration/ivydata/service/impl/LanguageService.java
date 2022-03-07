@@ -1,7 +1,5 @@
 package portalmigration.ivydata.service.impl;
 
-import static ch.ivyteam.ivy.server.ServerFactory.getServer;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -13,7 +11,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.application.IProcessModelVersion;
-import ch.ivyteam.ivy.cm.IContentManagementSystem;
+import ch.ivyteam.ivy.cm.exec.ContentManagement;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUser;
 import portalmigration.ivydata.bo.IvyLanguage;
@@ -59,11 +57,11 @@ public class LanguageService implements ILanguageService {
   private List<String> getSupportedLanguagesFromPmvs(List<IProcessModelVersion> pmvs) {
     Set<String> supportedLanguages = new HashSet<>();
     for (IProcessModelVersion pmv : pmvs) {
-      IContentManagementSystem findCms = getServer().getContentManagement().findCms(pmv);
-      if (findCms == null) {
+      ContentManagement contentManagement = ContentManagement.of(ContentManagement.cms(pmv));
+      if (contentManagement == null) {
         continue;
       }
-      String lang = findCms.co(CMS_LANG_KEY);
+      String lang = contentManagement.co(CMS_LANG_KEY);
 
       if (!StringUtils.isEmpty(lang)) {
         String[] sp = lang.split(",");

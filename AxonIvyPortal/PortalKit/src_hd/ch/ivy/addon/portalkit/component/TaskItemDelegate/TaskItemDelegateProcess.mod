@@ -1,5 +1,5 @@
 [Ivy]
-16EE8CACE2CB2C75 9.3.1 #module
+16EE8CACE2CB2C75 9.4.0 #module
 >Proto >Proto Collection #zClass
 Ts0 TaskItemDelegateProcess Big #zClass
 Ts0 RD #cInfo
@@ -131,8 +131,6 @@ Ts0 f73 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>autoCompleteForUserDelegate(String)</name>
-        <nameStyle>35,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -228,8 +226,6 @@ Ts0 f74 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>autoCompleteForRoleDelegate(String)</name>
-        <nameStyle>35,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

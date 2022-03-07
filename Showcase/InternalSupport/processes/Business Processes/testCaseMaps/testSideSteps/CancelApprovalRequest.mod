@@ -1,5 +1,5 @@
 [Ivy]
-15D4E4EBDE11BDC2 9.3.1 #module
+15D4E4EBDE11BDC2 9.4.0 #module
 >Proto >Proto Collection #zClass
 ct0 cancelApprovalRequest Big #zClass
 ct0 B #cInfo
@@ -37,8 +37,6 @@ ct0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>start.ivp</name>
-        <nameStyle>9,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -56,8 +54,6 @@ ct0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Cancel Approval Request</name>
-        <nameStyle>23,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

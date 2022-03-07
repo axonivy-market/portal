@@ -1,5 +1,5 @@
 [Ivy]
-15C0A4B1BA58DEA3 9.3.1 #module
+15C0A4B1BA58DEA3 9.4.0 #module
 >Proto >Proto Collection #zClass
 Hk0 HiddenTask Big #zClass
 Hk0 B #cInfo
@@ -43,8 +43,6 @@ Hk0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>start.ivp</name>
-        <nameStyle>9,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

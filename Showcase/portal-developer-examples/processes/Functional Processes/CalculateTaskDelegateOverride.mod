@@ -1,5 +1,5 @@
 [Ivy]
-16F3229F28D3A455 9.3.1 #module
+16F3229F28D3A455 9.4.0 #module
 >Proto >Proto Collection #zClass
 Ce0 CalculateTaskDelegate Big #zClass
 Ce0 B #cInfo
@@ -47,8 +47,6 @@ if ("admin".equalsIgnoreCase(in.currentUser.getDisplayName()) &amp;&amp; "System
   in.users = new ArrayList();
   in.roles = new ArrayList();
 }</name>
-        <nameStyle>238,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

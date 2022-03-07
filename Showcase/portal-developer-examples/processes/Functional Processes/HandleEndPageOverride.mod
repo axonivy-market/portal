@@ -1,5 +1,5 @@
 [Ivy]
-165801CAE71C2982 9.3.1 #module
+165801CAE71C2982 9.4.0 #module
 >Proto >Proto Collection #zClass
 He0 HandleEndPageOverride Big #zClass
 He0 B #cInfo
@@ -55,8 +55,6 @@ He0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
         <name>This process overrides HandleEndPage process in AxonIvyExpress. Now when user finish the last task of an 
 Express workflow, he will be redirected to the customized express end page of this example project.
 </name>
-        <nameStyle>206,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

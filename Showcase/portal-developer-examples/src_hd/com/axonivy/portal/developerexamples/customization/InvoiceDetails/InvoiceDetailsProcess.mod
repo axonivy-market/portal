@@ -1,5 +1,5 @@
 [Ivy]
-1791D2E2E5ADF37E 9.3.1 #module
+1791D2E2E5ADF37E 9.4.0 #module
 >Proto >Proto Collection #zClass
 Is0 InvoiceDetailsProcess Big #zClass
 Is0 RD #cInfo

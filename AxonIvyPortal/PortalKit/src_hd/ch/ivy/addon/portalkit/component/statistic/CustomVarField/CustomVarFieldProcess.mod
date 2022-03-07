@@ -1,5 +1,5 @@
 [Ivy]
-163B018AA65AA403 9.3.1 #module
+163B018AA65AA403 9.4.0 #module
 >Proto >Proto Collection #zClass
 Cs0 CustomVarFieldProcess Big #zClass
 Cs0 RD #cInfo
@@ -61,8 +61,6 @@ Cs0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>addCustomVal()</name>
-        <nameStyle>14,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

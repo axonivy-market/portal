@@ -1,5 +1,5 @@
 [Ivy]
-169137A20654C01B 9.3.1 #module
+169137A20654C01B 9.4.0 #module
 >Proto >Proto Collection #zClass
 Hs0 HideOrUnHideTaskCaseProcess Big #zClass
 Hs0 RD #cInfo
@@ -115,23 +115,23 @@ Hs0 f11 83 339 26 26 -20 16 #rect
 Hs0 f12 371 339 26 26 0 12 #rect
 Hs0 f13 actionTable 'out=in;
 ' #txt
-Hs0 f13 actionCode 'import ch.ivy.addon.portalkit.util.CaseUtils;
+Hs0 f13 actionCode 'import ch.ivy.addon.portalkit.publicapi.CaseAPI;
+import ch.ivy.addon.portalkit.publicapi.TaskAPI;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
-import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
 TaskQuery taskQuery = TaskQuery.create().where().taskId().isEqual(in.taskId);
 ITask task = ivy.wf.getGlobalContext().getTaskQueryExecutor().getResults(taskQuery).get(0) as ITask;
 if (task != null){
-	TaskUtils.removeHidePropertyToDisplayInPortal(task);
+	TaskAPI.removeHidePropertyToDisplayInPortal(task);
 }
 
 CaseQuery caseQuery = CaseQuery.create().where().caseId().isEqual(in.caseId);
 ICase case = ivy.wf.getGlobalContext().getCaseQueryExecutor().getResults(caseQuery).get(0) as ICase;
 if (case != null){
-	CaseUtils.removeHidePropertyToDisplayInPortal(case);
+	CaseAPI.removeHidePropertyToDisplayInPortal(case);
 }' #txt
 Hs0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
