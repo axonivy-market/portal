@@ -9,7 +9,7 @@ import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.codeborne.selenide.Condition;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class NewDashboardConfigurationTest extends BaseTest {
 
   private NewDashboardPage newDashboardPage;
@@ -48,6 +48,6 @@ public class NewDashboardConfigurationTest extends BaseTest {
     redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/denyDashboardWriteOwnPermission.ivp");
     redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/denyDashboardWritePublicPermission.ivp");
     newDashboardPage = new NewDashboardPage();
-    newDashboardPage.getConfigureDashboardButton().shouldBe(Condition.disappear);
+    newDashboardPage.getConfigureDashboardMenu().shouldBe(Condition.disappear);
   }
 }

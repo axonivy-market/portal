@@ -709,13 +709,15 @@ public class NewDashboardPage extends TemplatePage {
     return getCompactModeProcessInfoPanel(isExpanded).$$("span.dashboard-processes__type-text");
   }
 
-  public SelenideElement getConfigureDashboardButton() {
-    return $("#configure-dashboard-button");
+  public SelenideElement getConfigureDashboardMenu() {
+    $("#user-settings-menu").click();
+    $("#user-setting-container").waitUntil(Condition.appear, DEFAULT_TIMEOUT);
+    return $("#dashboard-configuration");
   }
 
   public void openDashboardConfigurationDialog() {
     waitForAbsencesGrowlMessageDisplay();
-    SelenideElement configureButton = getConfigureDashboardButton();
+    SelenideElement configureButton = getConfigureDashboardMenu();
     configureButton.click();
   }
 
