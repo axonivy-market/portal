@@ -1,5 +1,5 @@
 [Ivy]
-1543D9E65076619B 9.3.1 #module
+1543D9E65076619B 9.4.0 #module
 >Proto >Proto Collection #zClass
 Nr0 Navigator Big #zClass
 Nr0 B #cInfo
@@ -118,8 +118,6 @@ Nr0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>OpenPortalTasks</name>
-        <nameStyle>15,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -137,8 +135,6 @@ Nr0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>viewTask(Long,GlobalCaseId,String)</name>
-        <nameStyle>34,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -183,8 +179,6 @@ Nr0 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>prepareTaskView</name>
-        <nameStyle>15,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -192,18 +186,14 @@ Nr0 f14 46 628 36 24 20 -2 #rect
 Nr0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>Technical Note
-
+        <name>**Technical Note
+**
 This callable is introduced for clients of PortalKit
 to override and implement the functionality
 of redirecting into a HtmlDialog for viewing task.
 
 By default, this is doing nothing. The default implementation, however,
 is put in PortalTemplate.</name>
-        <nameStyle>15,0,5,8
-1,5,8
-246,5,8
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -220,8 +210,6 @@ Nr0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Init data model</name>
-        <nameStyle>15,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -263,8 +251,6 @@ Nr0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>prepareTaskView</name>
-        <nameStyle>15,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -281,8 +267,6 @@ Nr0 f23 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>OpenPortalTasks</name>
-        <nameStyle>15,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -298,8 +282,6 @@ Nr0 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>viewTaskForAnalytic(String, TaskQuery)</name>
-        <nameStyle>38,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -315,8 +297,6 @@ Nr0 f26 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Init data model</name>
-        <nameStyle>15,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -356,8 +336,6 @@ Nr0 f31 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>prepare case view</name>
-        <nameStyle>17,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -372,8 +350,6 @@ Nr0 f32 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>viewCaseForAnalytic(String, CaseQuery)</name>
-        <nameStyle>38,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -391,8 +367,6 @@ Nr0 f34 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <language>
         <name>Init case
 data model</name>
-        <nameStyle>20,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -409,8 +383,6 @@ Nr0 f35 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>OpenPortalCases</name>
-        <nameStyle>15,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -427,18 +399,14 @@ Nr0 f39 866 363 866 402 #arcP
 Nr0 f40 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>Technical Note
-
+        <name>**Technical Note
+**
 This callable is introduced for clients of PortalKit
 to override and implement the functionality
 of redirecting into a HtmlDialog for viewing case.
 
 By default, this is doing nothing. The default implementation, however,
 is put in PortalTemplate.</name>
-        <nameStyle>15,0,5,8
-1,5,8
-246,5,8
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -447,18 +415,14 @@ Nr0 f41 1096 217 884 351 #arcP
 Nr0 f42 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>Technical Note
-
+        <name>**Technical Note
+**
 This callable is introduced for clients of PortalKit
 to override and implement the functionality
 of redirecting into a HtmlDialog for viewing task.
 
 By default, this is doing nothing. The default implementation, however,
 is put in PortalTemplate.</name>
-        <nameStyle>15,0,5,8
-1,5,8
-246,5,8
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -549,17 +513,14 @@ Nr0 f52 1792 422 1792 465 #arcP
 Nr0 f53 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>Technical Note
-
-This callable is introduced for clients of PortalKit&#xD;
-to override and implement the functionality&#xD;
-of redirecting into a HtmlDialog for viewing case.&#xD;
-&#xD;
-By default, this is doing nothing. The default implementation, however,&#xD;
+        <name>**Technical Note
+**
+This callable is introduced for clients of PortalKit&#13;
+to override and implement the functionality&#13;
+of redirecting into a HtmlDialog for viewing case.&#13;
+&#13;
+By default, this is doing nothing. The default implementation, however,&#13;
 is put in PortalTemplate.</name>
-        <nameStyle>15,5,8,0
-252,5,8
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -577,8 +538,6 @@ Nr0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>OpenPortalCaseDetails</name>
-        <nameStyle>21,5
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -587,18 +546,14 @@ Nr0 f1 51 403 26 26 14 0 #rect
 Nr0 f21 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>Technical Note
-
+        <name>**Technical Note
+**
 This callable is introduced for clients of PortalKit
 to override and implement the functionality
 of redirecting into a HtmlDialog for viewing case.
 
 By default, this is doing nothing. The default implementation, however,
 is put in PortalTemplate.</name>
-        <nameStyle>15,0,5,8
-1,5,8
-246,5,8
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -626,8 +581,6 @@ Nr0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>prepare case view</name>
-        <nameStyle>17,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -647,8 +600,6 @@ Nr0 f54 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>viewRelatedTask(String,GlobalCaseId,String)</name>
-        <nameStyle>43,5
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -656,18 +607,14 @@ Nr0 f54 1779 539 26 26 14 0 #rect
 Nr0 f19 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>Technical Note
-
+        <name>**Technical Note
+**
 This callable is introduced for clients of PortalKit
 to override and implement the functionality
 of redirecting into a HtmlDialog for viewing task.
 
 By default, this is doing nothing. The default implementation, however,
 is put in PortalTemplate.</name>
-        <nameStyle>15,0,5,8
-1,5,8
-246,5,8
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -724,8 +671,6 @@ Nr0 f60 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>OpenPortalTasks</name>
-        <nameStyle>15,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -768,8 +713,6 @@ Nr0 f61 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>prepareTaskView</name>
-        <nameStyle>15,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -786,8 +729,6 @@ Nr0 f63 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Init data model</name>
-        <nameStyle>15,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -810,18 +751,14 @@ Nr0 f64 51 915 26 26 14 0 #rect
 Nr0 f65 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>Technical Note
-
+        <name>**Technical Note
+**
 This callable is introduced for clients of PortalKit
 to override and implement the functionality
 of redirecting into a HtmlDialog for viewing task.
 
 By default, this is doing nothing. The default implementation, however,
 is put in PortalTemplate.</name>
-        <nameStyle>15,0,5,8
-1,5,8
-246,5,8
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -907,9 +844,6 @@ Nr0 f77 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>viewRelatedTaskInFrame(String,GlobalCaseId,String)</name>
-        <nameStyle>22,5
-28,5
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -917,18 +851,14 @@ Nr0 f77 1363 915 26 26 14 0 #rect
 Nr0 f78 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>Technical Note
-
+        <name>**Technical Note
+**
 This callable is introduced for clients of PortalKit
 to override and implement the functionality
 of redirecting into a HtmlDialog for viewing task.
 
 By default, this is doing nothing. The default implementation, however,
 is put in PortalTemplate.</name>
-        <nameStyle>15,0,5,8
-1,5,8
-246,5,8
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -987,17 +917,14 @@ Nr0 f84 8 1546 112 44 -50 -8 #rect
 Nr0 f85 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>Technical Note
-
-This callable is introduced for clients of PortalKit&#xD;
-to override and implement the functionality&#xD;
-of redirecting into a HtmlDialog for viewing case.&#xD;
-&#xD;
-By default, this is doing nothing. The default implementation, however,&#xD;
+        <name>**Technical Note
+**
+This callable is introduced for clients of PortalKit&#13;
+to override and implement the functionality&#13;
+of redirecting into a HtmlDialog for viewing case.&#13;
+&#13;
+By default, this is doing nothing. The default implementation, however,&#13;
 is put in PortalTemplate.</name>
-        <nameStyle>15,5,8,0
-252,5,8
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

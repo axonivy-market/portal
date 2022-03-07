@@ -1,5 +1,5 @@
 [Ivy]
-15F6ACE164737414 9.3.1 #module
+15F6ACE164737414 9.4.0 #module
 >Proto >Proto Collection #zClass
 Ss0 TaskListNavigatorProcess Big #zClass
 Ss0 RD #cInfo
@@ -49,8 +49,6 @@ Ss0 f40 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>OpenPortalTasks</name>
-        <nameStyle>15,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -62,8 +60,6 @@ Ss0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>openTask</name>
-        <nameStyle>8,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -97,8 +93,6 @@ Ss0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Build data model, task view</name>
-        <nameStyle>27,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

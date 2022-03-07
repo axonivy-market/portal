@@ -1,5 +1,5 @@
 [Ivy]
-163AFDEDB4167156 9.3.1 #module
+163AFDEDB4167156 9.4.0 #module
 >Proto >Proto Collection #zClass
 Oh0 OpenPortalSearch Big #zClass
 Oh0 B #cInfo
@@ -53,8 +53,6 @@ Oh0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>SearchResults</name>
-        <nameStyle>13
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -73,8 +71,6 @@ Oh0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>call(SearchResultsDataModel,Number)</name>
-        <nameStyle>35,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -94,8 +90,6 @@ Oh0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>SearchResults</name>
-        <nameStyle>13
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -107,15 +101,10 @@ Oh0 f9 498 512 753 512 #arcP
 Oh0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>Deprecated Note&#13;
+        <name>**Deprecated Note**&#13;
 &#13;
-This callable will be removed from Portal 11.&#13;
+**This callable will be removed from Portal 11.**&#13;
 To override Portal search results UI: you should use Axon Ivy HTMLOverride Dialog to override the SearchResults Html dialog.</name>
-        <nameStyle>15,5,8,0
-4,5
-45,5,0
-126,5
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -123,15 +112,10 @@ Oh0 f10 168 194 688 76 -341 -34 #rect
 Oh0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>Deprecated Note&#13;
+        <name>**Deprecated Note**&#13;
 &#13;
-This callable will be removed from Portal 11.&#13;
+**This callable will be removed from Portal 11.**&#13;
 To override Portal search results UI: you should use Axon Ivy HTMLOverride Dialog to override the SearchResults Html dialog.</name>
-        <nameStyle>15,5,8,0
-4,5
-45,5,0
-126,5
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

@@ -1,5 +1,5 @@
 [Ivy]
-164DB506D12B25CF 9.3.1 #module
+164DB506D12B25CF 9.4.0 #module
 >Proto >Proto Collection #zClass
 Pt0 ProcessChainTest Big #zClass
 Pt0 B #cInfo
@@ -39,8 +39,6 @@ Pt0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>showSampleProcessChain.ivp</name>
-        <nameStyle>26,5,7
-</nameStyle>
         <desc>This process will open a page, which contains 4 process chains.</desc>
     </language>
 </elementInfo>
@@ -59,8 +57,6 @@ Pt0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Show All Sample Process Chains</name>
-        <nameStyle>30,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -77,9 +73,6 @@ Pt0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 2. shape is circle, direction is vertical
 3. shape is line, direction is horizontal
 4. shape is line, direction is vertical</name>
-        <nameStyle>66,7
-167,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

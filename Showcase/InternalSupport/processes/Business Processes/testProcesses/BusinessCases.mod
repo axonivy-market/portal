@@ -1,5 +1,5 @@
 [Ivy]
-15B1EA24CCF377E8 9.3.1 #module
+15B1EA24CCF377E8 9.4.0 #module
 >Proto >Proto Collection #zClass
 Be0 BusinessCases Big #zClass
 Be0 B #cInfo
@@ -90,8 +90,6 @@ Be0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>updateCheckInTime.ivp</name>
-        <nameStyle>21,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -104,8 +102,6 @@ Be0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>signal</name>
-        <nameStyle>6,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -138,8 +134,6 @@ Be0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>send signal</name>
-        <nameStyle>11
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -178,8 +172,6 @@ Be0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>OrderPizza.ivp</name>
-        <nameStyle>14,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -195,8 +187,6 @@ Be0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>order</name>
-        <nameStyle>5
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -253,8 +243,6 @@ Be0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>delivery</name>
-        <nameStyle>8
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -276,8 +264,6 @@ Be0 f27 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Eat</name>
-        <nameStyle>3
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -344,8 +330,6 @@ Be0 f32 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>delivery</name>
-        <nameStyle>8
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

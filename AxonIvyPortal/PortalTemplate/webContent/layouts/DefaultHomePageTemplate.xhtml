@@ -19,7 +19,7 @@
       </script>
       <h:form id="remote-command-group">
         <p:remoteCommand id="reset-active-menu-items-rc" name="resetActiveMenuItems" autoRun="true"
-          oncomplete="resetPortalLeftMenuState();"
+          onstart="resetPortalLeftMenuState();"
           immediate="true" process="@this" update="@none" global="false"/>
       </h:form>
       <c:set var="displayProcessWidget" value="#{not empty displayProcessWidget ? displayProcessWidget : true}" />

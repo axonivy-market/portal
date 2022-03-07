@@ -1,5 +1,5 @@
 [Ivy]
-175F90CDEB5D001F 9.3.1 #module
+175F90CDEB5D001F 9.4.0 #module
 >Proto >Proto Collection #zClass
 Fs0 ForgotPasswordProcess Big #zClass
 Fs0 RD #cInfo
@@ -92,8 +92,8 @@ Fs0 f8 outCond ivy.session.isSessionUserUnknown() #txt
 Fs0 f8 240 256 344 256 #arcP
 Fs0 f118 actionTable 'out=in;
 ' #txt
-Fs0 f118 actionCode 'import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
-PortalNavigator.navigateToPortalHome();' #txt
+Fs0 f118 actionCode 'import ch.ivy.addon.portalkit.publicapi.PortalNavigatorAPI;
+PortalNavigatorAPI.navigateToPortalHome();' #txt
 Fs0 f118 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

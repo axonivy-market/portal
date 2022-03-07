@@ -1,5 +1,5 @@
 [Ivy]
-15DC16CB8B32F2B4 9.3.1 #module
+15DC16CB8B32F2B4 9.4.0 #module
 >Proto >Proto Collection #zClass
 Ss0 AdvancedFilterProcess Big #zClass
 Ss0 RD #cInfo
@@ -45,8 +45,6 @@ Ss0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>updateTasksByFilter()</name>
-        <nameStyle>21,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -65,8 +63,6 @@ Ss0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <language>
         <name>update if
 validation passed</name>
-        <nameStyle>27
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

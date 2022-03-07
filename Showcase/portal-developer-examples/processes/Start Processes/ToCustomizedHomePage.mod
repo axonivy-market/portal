@@ -1,5 +1,5 @@
 [Ivy]
-1657A360018BBA71 9.3.1 #module
+1657A360018BBA71 9.4.0 #module
 >Proto >Proto Collection #zClass
 Te0 ToCustomizedHomePage Big #zClass
 Te0 B #cInfo
@@ -77,8 +77,6 @@ HOW TO RUN THIS EXAMPLE:
 Open openCustomizedPortalHome.ivp in portal-developer-examples to access to the customized home page.
 
 </name>
-        <nameStyle>348,5
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

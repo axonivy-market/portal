@@ -1,5 +1,5 @@
 [Ivy]
-15EF11CA813E7FFF 9.3.1 #module
+15EF11CA813E7FFF 9.4.0 #module
 >Proto >Proto Collection #zClass
 Le0 LogoutPage Big #zClass
 Le0 B #cInfo
@@ -38,8 +38,6 @@ Le0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <language>
         <name>Change the value of in.logoutPage 
 to customize the logout page</name>
-        <nameStyle>63
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

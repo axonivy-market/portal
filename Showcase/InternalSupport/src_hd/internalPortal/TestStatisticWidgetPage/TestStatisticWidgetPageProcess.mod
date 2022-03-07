@@ -1,5 +1,5 @@
 [Ivy]
-16150F8167BC0EF5 9.3.1 #module
+16150F8167BC0EF5 9.4.0 #module
 >Proto >Proto Collection #zClass
 Ts0 TestStatisticWidgetPageProcess Big #zClass
 Ts0 RD #cInfo
@@ -31,8 +31,6 @@ Ts0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>get statistic charts</name>
-        <nameStyle>20
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

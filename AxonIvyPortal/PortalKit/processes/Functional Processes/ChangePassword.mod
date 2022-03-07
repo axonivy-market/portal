@@ -1,5 +1,5 @@
 [Ivy]
-15E13D0DD56B6D3B 9.3.1 #module
+15E13D0DD56B6D3B 9.4.0 #module
 >Proto >Proto Collection #zClass
 Cd0 ChangePassword Big #zClass
 Cd0 B #cInfo
@@ -59,8 +59,6 @@ INPUT:
 OUTPUT:
 - ChangePasswordStatus (OK, FAIL)
 - message</name>
-        <nameStyle>160,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -73,9 +71,6 @@ Cd0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <language>
         <name>Check current
 password</name>
-        <nameStyle>14,7
-8,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -103,8 +98,6 @@ Cd0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Create return message</name>
-        <nameStyle>21,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -123,9 +116,6 @@ Cd0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <language>
         <name>Wrong password
 message</name>
-        <nameStyle>15,7
-7,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -153,8 +143,6 @@ Cd0 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>PasswordService</name>
-        <nameStyle>15,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

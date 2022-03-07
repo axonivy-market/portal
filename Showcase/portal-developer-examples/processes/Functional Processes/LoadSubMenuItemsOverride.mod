@@ -1,5 +1,5 @@
 [Ivy]
-1657E6622F0C0122 9.3.1 #module
+1657E6622F0C0122 9.4.0 #module
 >Proto >Proto Collection #zClass
 Ls0 LoadSubMenuItems Big #zClass
 Ls0 B #cInfo
@@ -59,7 +59,7 @@ if(PermissionUtils.checkAccessFullCaseListPermission()) {
 }
 if(PermissionUtils.checkAccessFullStatisticsListPermission()) {
 	GlobalSettingService globalSettingService = new GlobalSettingService();
-	String isHideStatisticStr = globalSettingService.findGlobalSettingValue(GlobalVariable.HIDE_STATISTIC_WIDGET.toString());
+	String isHideStatisticStr = globalSettingService.findGlobalSettingValue(GlobalVariable.HIDE_STATISTIC_WIDGET);
 	boolean isHideStatistic = StringUtils.isNotBlank(isHideStatisticStr) ? Boolean.parseBoolean(isHideStatisticStr) : false;
 	if (!isHideStatistic) {
   	in.subMenuItems.add(new StatisticSubMenuItem());
@@ -89,8 +89,6 @@ Ls0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Load menu items</name>
-        <nameStyle>15,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -104,8 +102,6 @@ Ls0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <language>
         <name>This process overrides LoadSubMenuItems process in Portal Template and add 1 menu item:
 Google: open external link www.google.com.</name>
-        <nameStyle>130,5
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

@@ -1,5 +1,5 @@
 [Ivy]
-164B5BE6623EDE15 9.3.1 #module
+164B5BE6623EDE15 9.4.0 #module
 >Proto >Proto Collection #zClass
 Il0 InitializeCaseDataModel Big #zClass
 Il0 B #cInfo
@@ -26,8 +26,6 @@ Il0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>call()</name>
-        <nameStyle>6,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -42,8 +40,6 @@ Il0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Initialize case data model</name>
-        <nameStyle>26,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

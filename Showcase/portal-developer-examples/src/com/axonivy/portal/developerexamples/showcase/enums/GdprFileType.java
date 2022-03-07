@@ -22,18 +22,19 @@ public enum GdprFileType {
 	EMPLOYMENT_ACCIDENT;
 	
 	private String cmsPath = "/Dialogs/GdprRequest/Lists/ModalFilesTypes/";
-	
-	public String getCmsValue(){
-		IContentObject co = Ivy.cms().getContentObject(getCmsPath());
-		String value = "";
-		if(co != null){
-			IContentObjectValue cv = co.getValue(Ivy.session().getContentLocale());
-			if(cv != null){
-				value = cv.getContentAsString();
-			}
-		}
-		return value;
-	}
+
+  public String getCmsValue() {
+    IContentObject co = Ivy.cms().getContentObject(getCmsPath());
+    String value = "";
+    if (co != null) {
+      IContentObjectValue cv = co.getValue(Ivy.session().getContentLocale());
+      if (cv != null) {
+        value = cv.getContentAsString();
+      }
+    }
+
+    return value;
+  }
 	
 	public String getCmsPath(){
 		String value = cmsPath + this.name();
