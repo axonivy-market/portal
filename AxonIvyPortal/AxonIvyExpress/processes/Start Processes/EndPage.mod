@@ -1,5 +1,5 @@
 [Ivy]
-1600BDF7CC0AE52F 9.3.1 #module
+1600BDF7CC0AE52F 9.4.0 #module
 >Proto >Proto Collection #zClass
 Ee0 EndPage Big #zClass
 Ee0 B #cInfo
@@ -35,8 +35,6 @@ Ee0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>start.ivp</name>
-        <nameStyle>9,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -54,8 +52,6 @@ Ee0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>express endpage</name>
-        <nameStyle>15
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

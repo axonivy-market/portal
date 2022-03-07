@@ -1,5 +1,5 @@
 [Ivy]
-15DC1795219AF4F0 9.3.1 #module
+15DC1795219AF4F0 9.4.0 #module
 >Proto >Proto Collection #zClass
 Ts0 TaskResponsibleFilterProcess Big #zClass
 Ts0 RD #cInfo
@@ -32,8 +32,6 @@ Ts0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>autoCompleteForResponsible(String)</name>
-        <nameStyle>34,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

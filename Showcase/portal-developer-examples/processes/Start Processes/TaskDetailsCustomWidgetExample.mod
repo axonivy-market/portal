@@ -1,5 +1,5 @@
 [Ivy]
-1791D27754935B10 9.3.1 #module
+1791D27754935B10 9.4.0 #module
 >Proto >Proto Collection #zClass
 Te0 TaskDetailsCustomWidgetExample Big #zClass
 Te0 B #cInfo

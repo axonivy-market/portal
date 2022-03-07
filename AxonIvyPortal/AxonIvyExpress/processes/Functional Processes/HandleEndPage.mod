@@ -1,5 +1,5 @@
 [Ivy]
-160070C3BA6D3702 9.3.1 #module
+160070C3BA6D3702 9.4.0 #module
 >Proto >Proto Collection #zClass
 Ce0 HandleEndPage Big #zClass
 Ce0 B #cInfo
@@ -28,8 +28,6 @@ Ce0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>get end page url</name>
-        <nameStyle>16
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -43,8 +41,6 @@ Ce0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>handleEndPage()</name>
-        <nameStyle>15,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -64,8 +60,6 @@ String ourNewEndPageFriendlyRequestPath = "Start Processes/NewEndPageOfExpress/s
 in.callbackUrl = ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(ourNewEndPageFriendlyRequestPath);
 
 OUT: callbackUrl : String</name>
-        <nameStyle>359,5
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

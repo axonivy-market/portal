@@ -1,5 +1,5 @@
 [Ivy]
-15C67FEA143420EE 9.3.1 #module
+15C67FEA143420EE 9.4.0 #module
 >Proto >Proto Collection #zClass
 Ps0 PortalUrlCallbackProcess Big #zClass
 Ps0 RD #cInfo
@@ -30,8 +30,6 @@ Ps0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>start()</name>
-        <nameStyle>7,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

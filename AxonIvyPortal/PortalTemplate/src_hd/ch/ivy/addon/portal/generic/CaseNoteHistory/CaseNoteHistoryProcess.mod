@@ -1,5 +1,5 @@
 [Ivy]
-160347990F681701 9.3.1 #module
+160347990F681701 9.4.0 #module
 >Proto >Proto Collection #zClass
 Cs0 CaseNoteHistoryProcess Big #zClass
 Cs0 RD #cInfo
@@ -28,8 +28,6 @@ Cs0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>start(List&lt;History&gt;,String,ICase)</name>
-        <nameStyle>33,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

@@ -17,19 +17,20 @@ public enum ProcessState {
 	DONE;
 	
 	private String cmsPath = "/Dialogs/Lists/ProcessState/";
-	
-	public String getCmsValue(){
-		IContentObject co = Ivy.cms().getContentObject(getCmsPath());
-		String value = "";
-		if(co != null){
-			IContentObjectValue cv = co.getValue(Ivy.session().getContentLocale());
-			if(cv != null){
-				value = cv.getContentAsString();
-			}
-		}
-		return value;
-	}
-	
+
+  public String getCmsValue() {
+    IContentObject co = Ivy.cms().getContentObject(getCmsPath());
+    String value = "";
+    if (co != null) {
+      IContentObjectValue cv = co.getValue(Ivy.session().getContentLocale());
+      if (cv != null) {
+        value = cv.getContentAsString();
+      }
+    }
+
+    return value;
+  }
+
 	public List<String> getListForProcessChain() {
 		List<String> pStates = new ArrayList<String>();
 		for (ProcessState p : ProcessState.values()) {

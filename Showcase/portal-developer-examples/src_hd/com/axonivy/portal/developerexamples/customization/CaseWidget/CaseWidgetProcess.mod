@@ -1,5 +1,5 @@
 [Ivy]
-176CBB45115F7981 9.3.1 #module
+176CBB45115F7981 9.4.0 #module
 >Proto >Proto Collection #zClass
 Cs0 CaseWidgetProcess Big #zClass
 Cs0 RD #cInfo
@@ -26,8 +26,6 @@ Cs0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>useView(CaseView)</name>
-        <nameStyle>17,5
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

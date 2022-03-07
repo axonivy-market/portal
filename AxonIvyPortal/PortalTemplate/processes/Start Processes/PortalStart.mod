@@ -1,5 +1,5 @@
 [Ivy]
-1549F58C18A6C562 9.3.1 #module
+1549F58C18A6C562 9.4.0 #module
 >Proto >Proto Collection #zClass
 Pt0 PortalStart Big #zClass
 Pt0 B #cInfo
@@ -349,7 +349,7 @@ import ch.ivy.addon.portalkit.enums.PortalPage;
 import org.apache.commons.lang3.StringUtils;
 import ch.ivyteam.ivy.workflow.ITask;
 
-ITask task = ivy.wf.findTask(in.endedTaskId);
+ITask task = ivy.wf.findTask(Long.valueOf(in.endedTaskId));
 in.isFirstTask = true;
 in.portalPage = PortalPage.HOME_PAGE;
 
@@ -390,8 +390,6 @@ Pt0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Handle end page</name>
-        <nameStyle>15
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -508,8 +506,6 @@ Pt0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>InitializeTaskDataModel</name>
-        <nameStyle>23,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -611,8 +607,6 @@ Pt0 f37 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <language>
         <name>Set default end page 
 to Portal</name>
-        <nameStyle>31,5
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -637,8 +631,6 @@ Pt0 f39 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>DefaultLoginPage.ivp</name>
-        <nameStyle>20,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -1511,8 +1503,6 @@ Pt0 f137 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <language>
         <name>Set default end page 
 to Portal</name>
-        <nameStyle>31,5
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -1618,8 +1608,6 @@ Pt0 f142 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Case note history</name>
-        <nameStyle>17,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -1657,8 +1645,6 @@ Pt0 f143 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
         <name>get case
 create histories 
 from tasks and notes</name>
-        <nameStyle>47,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -1709,8 +1695,6 @@ Pt0 f149 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>showTaskNoteHistory.ivp</name>
-        <nameStyle>23,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -1731,8 +1715,6 @@ Pt0 f151 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Task Note History</name>
-        <nameStyle>17,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -1782,9 +1764,6 @@ Pt0 f156 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <language>
         <name>Show Additional
 Case Details</name>
-        <nameStyle>5,7
-23,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -1861,8 +1840,6 @@ Pt0 f165 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>has permission?</name>
-        <nameStyle>15,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -1878,8 +1855,6 @@ Pt0 f166 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Task Analysis dialog</name>
-        <nameStyle>20
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -2117,7 +2092,7 @@ import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
 long caseId = -1;
 if (in.endedTaskId is initialized) {
-	ITask task = ivy.wf.findTask(in.endedTaskId);
+	ITask task = ivy.wf.findTask(Long.valueOf(in.endedTaskId));
 	caseId = task.getCase().getId();
 }
 out.caseSelected = ivy.wf.getGlobalContext().getCaseQueryExecutor().getFirstResult(CaseQuery.create().where().caseId().isEqual(caseId)) as ICase;' #txt
@@ -2132,7 +2107,7 @@ Bk8 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Bk8 f17 352 266 112 44 -27 -8 #rect
 Bk8 f68 actionTable 'out=in;
 ' #txt
-Bk8 f68 actionCode 'out.taskSelected = ivy.wf.findTask(in.endedTaskId);' #txt
+Bk8 f68 actionCode 'out.taskSelected = ivy.wf.findTask(Long.valueOf(in.endedTaskId));' #txt
 Bk8 f68 security system #txt
 Bk8 f68 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -2159,8 +2134,6 @@ Bk8 f52 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>build data model</name>
-        <nameStyle>16,5
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -2177,8 +2150,6 @@ Bk8 f19 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <language>
         <name>build data model,
  task </name>
-        <nameStyle>24,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -2222,8 +2193,6 @@ Bk8 f23 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>OpenPortalCaseDetailHook</name>
-        <nameStyle>24,5
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -2337,8 +2306,6 @@ Bk9 f62 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <language>
         <name>Initialize case 
 data model</name>
-        <nameStyle>27,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -2356,10 +2323,8 @@ in.caseView = CaseView.create().dataModel(in.caseDataModel).buildNewView();' #tx
 Bk9 f59 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>build data model&#xD;
+        <name>build data model&#13;
 and case view</name>
-        <nameStyle>31,5
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -2376,8 +2341,6 @@ Bk9 f55 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>OpenPortalCases</name>
-        <nameStyle>15,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -2418,10 +2381,8 @@ in.taskView = TaskView.create().dataModel(in.dataModel).noTaskFoundMessage("").s
 Bk10 f69 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>build data model &#xD;
+        <name>build data model &#13;
 and task view</name>
-        <nameStyle>32,5
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -2442,8 +2403,6 @@ Bk10 f84 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>OpenPortalTasks</name>
-        <nameStyle>15,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -2459,8 +2418,6 @@ Bk10 f73 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Init data model</name>
-        <nameStyle>15
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -2583,8 +2540,6 @@ Bk13 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>InitializeTaskDataModel</name>
-        <nameStyle>23,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

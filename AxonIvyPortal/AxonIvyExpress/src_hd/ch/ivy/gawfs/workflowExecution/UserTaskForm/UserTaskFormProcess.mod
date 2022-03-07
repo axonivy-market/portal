@@ -1,5 +1,5 @@
 [Ivy]
-162F0A4F9FF3C1EC 9.3.1 #module
+162F0A4F9FF3C1EC 9.4.0 #module
 >Proto >Proto Collection #zClass
 Us0 UserTaskFormProcess Big #zClass
 Us0 RD #cInfo
@@ -39,8 +39,6 @@ Us0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>start()</name>
-        <nameStyle>7,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
