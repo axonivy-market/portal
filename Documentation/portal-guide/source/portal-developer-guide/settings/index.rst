@@ -207,8 +207,8 @@ Role configuration
 Permission settings
 ===================
 
-Permissions can be configured in `Cockpit
-<https://developer.axonivy.com/releases/ivy/8.0/documents/engine-guide/tool-reference/engine-cockpit/security.html>`_.
+Permissions can be configured in :dev-url:`Cockpit
+</doc/8.0/engine-guide/tool-reference/engine-cockpit/security.html>`.
 In the security area, you will find all these permission in the Group
 "PortalPermissions"
 

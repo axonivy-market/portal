@@ -131,7 +131,7 @@ You can customize in:
 
 .. tip::
    If you are using Iframes and you want to customize the colors of the project specific UIs, then refer to 
-   `Color Customizing <https://developer.axonivy.com/doc/8.0/designer-guide/user-interface/user-dialogs/html-dialog-themes.html?highlight=color%20customizing#color-customizing>`_.
+   :dev-url:`Color Customizing </doc/8.0/designer-guide/user-interface/user-dialogs/html-dialog-themes.html?highlight=color%20customizing#color-customizing>`.
 
 .. warning::
    - Do not change ``font-family`` property values.
