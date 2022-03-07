@@ -388,14 +388,16 @@ public class TaskWidgetPage extends TemplatePage {
 		click(By.cssSelector("button[id$='state-filter:filter-open-form:advanced-filter-command']"));
 	}
 
-	public void filterByDescription(String text) {
-		click(By.cssSelector("button[id$='description-filter:filter-open-form:advanced-filter-command']"));
-		WebElement descriptionInput =
-				findElementByCssSelector("input[id$='description-filter:filter-input-form:description']");
-		enterKeys(descriptionInput, text);
-		click(By.cssSelector("button[id$='description-filter:filter-input-form:update-command']"));
-		Sleeper.sleep(2000);
-	}
+  public void filterByDescription(String text) {
+    click(By.cssSelector("button[id$='description-filter:filter-open-form:advanced-filter-command']"));
+    WebElement descriptionInput =
+        findElementByCssSelector("input[id$='description-filter:filter-input-form:description']");
+    enterKeys(descriptionInput, text);
+    click(By.cssSelector("button[id$='description-filter:filter-input-form:update-command']"));
+
+    WaitHelper.assertTrueWithWait(() ->
+        findElementByCssSelector("[id$=':description-filter:filter-open-form:advanced-filter-command']").getText().contains(text));
+  }
 
   public void filterByCreatedDate(String fromInputText) {
     click(By.cssSelector("button[id$='created-filter:filter-open-form:advanced-filter-command']"));

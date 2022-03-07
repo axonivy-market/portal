@@ -230,7 +230,8 @@
             isSelected="#{cc.attrs.selectedTaskId eq task.getId()}"
             compactMode="#{data.dataModel.compactMode}" 
             dataModel="#{data.dataModel}"
-            onDestroyComplete="PF('destroy-task-dialog').show()">
+            onDestroyComplete="PF('destroy-task-dialog').show()"
+            onWorkflowEventComplete="initWorkflowEventData()">
             <cc:insertFacet name="taskHeader" />
           </ic:ch.ivy.addon.portalkit.component.TaskItem>
         </p:dataScroller>
@@ -352,9 +353,14 @@
       onclick="PF('destroy-task-dialog').hide();" type="button" styleClass="portal-cancel-button" />
   </p:confirmDialog>
 
+  <!-- Delegate Task Dialog -->
   <ic:ch.ivy.addon.portalkit.component.TaskItemDelegate id="task-item-delegate-component" dataModel="#{data.dataModel}"
     task="#{taskWidgetBean.getSelectedTaskItem()}"
     componentToUpdate="#{p:component('task-start')}" />
+
+  <!-- Workflow Event of Task Dialog -->
+  <ic:ch.ivy.addon.portalkit.component.TaskItemWorkflowEvents id="task-workflow-event-component"
+    taskId="#{taskWidgetBean.selectedTaskItemId}"/>
 
   <script type="text/javascript">
       var taskWidget = new TaskWidget();

@@ -5,17 +5,22 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.bo.History;
 import ch.ivy.addon.portalkit.bo.History.HistoryType;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISecurityConstants;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.workflow.INote;
 import ch.ivyteam.ivy.workflow.ITask;
+import ch.ivyteam.ivy.workflow.IWorkflowEvent;
+import ch.ivyteam.ivy.workflow.TaskState;
 
 public class HistoryService {
 
@@ -46,7 +51,7 @@ public class HistoryService {
         .map(this::createHistoryFrom).collect(Collectors.toList());
   }
 
-  private List<History> createHistoriesFromINotes(List<INote> notes, boolean excludeSystemNotes) {
+  public List<History> createHistoriesFromINotes(List<INote> notes, boolean excludeSystemNotes) {
     if(excludeSystemNotes) {
       return notes.stream()
           .filter(note -> !StringUtils.equals(note.getWritterName(), ISecurityConstants.SYSTEM_USER_NAME))
@@ -55,10 +60,16 @@ public class HistoryService {
     return notes.stream().map(this::createHistoryFrom).collect(Collectors.toList());
   }
 
-  private History createHistoryFrom(ITask task) {
+  public History createFailedReasonFrom(ITask task) {
+    History history = createHistoryFrom(task);
+    history.setContent(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/noteHistory/taskFailReason", Arrays.asList(task.getFailReason())));
+    return history;
+  }
+
+  public History createHistoryFrom(ITask task) {
     History history = new History();
     history.setId(task.getId());
-    history.setContent(task.getName());
+    history.setContent(generateHistoryContent(task));
     history.setTaskState(task.getState());
     if (task.getWorkerUserName() != null) {
       history.setInvolvedUsername(task.getWorkerUserName().replaceFirst("#", ""));
@@ -74,6 +85,36 @@ public class HistoryService {
     history.setTimestamp(historyTimeStamp);
     history.setType(HistoryType.TASK);
     return history;
+  }
+  
+  public List<History> createHistoryForTaskWorkflowEvents(ITask task) {
+    List<History> histories = new ArrayList<>();
+    if (PermissionUtils.checkReadAllWorkflowEventPermission()) {
+      for (IWorkflowEvent event : task.getWorkflowEvents()) {
+        History history = new History();
+        history.setId(event.getId());
+        history.setInvolvedFullname(event.getEventKind().name());
+        history.setTaskState(event.getTaskState());
+        history.setInvolvedUsername(event.getUserName());
+        history.setTimestamp(event.getEventTimestamp());
+        history.setType(HistoryType.EVENT);
+        history.setContent(StringUtils.defaultIfEmpty(String.join(", ",
+            event.getAdditionalInfo().stream().filter(Objects::nonNull).collect(Collectors.toList())),
+            StringUtils.EMPTY));
+        histories.add(history);
+      }
+    }
+
+    return histories;
+  }
+
+  private String generateHistoryContent(ITask task) {
+    StringBuilder content = new StringBuilder();
+    content.append(task.getName());
+    if (task.getState() == TaskState.FAILED || task.getState() == TaskState.JOIN_FAILED) {
+      content.append("; ").append(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/noteHistory/taskFailReason", Arrays.asList(task.getFailReason())));
+    }
+    return content.toString();
   }
 
   public History createHistoryFrom(INote note) {

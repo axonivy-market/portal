@@ -6,3 +6,9 @@ filteredNotes List<ch.ivyteam.ivy.workflow.INote> #field
 filteredNotes PERSISTENT #fieldModifier
 notes java.util.List<ch.ivyteam.ivy.workflow.INote> #field
 notes PERSISTENT #fieldModifier
+workflowEvents java.util.List<ch.ivy.addon.portalkit.bo.History> #field
+workflowEvents PERSISTENT #fieldModifier
+task ch.ivyteam.ivy.workflow.ITask #field
+task PERSISTENT #fieldModifier
+isRenderEventsInfo Boolean #field
+isRenderEventsInfo PERSISTENT #fieldModifier

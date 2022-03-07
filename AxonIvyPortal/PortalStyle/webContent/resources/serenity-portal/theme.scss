@@ -155,7 +155,8 @@ body .ui-widget.ui-fieldset.process-group.ui-fieldset .ui-fieldset-legend {
 }
 
 .case-state-zombie-destroyed,
-.task-state-zombie-destroyed {
+.task-state-zombie-destroyed,
+.task-state-failed {
     color: $taskStateZombieDestroyedColor;
 }
 

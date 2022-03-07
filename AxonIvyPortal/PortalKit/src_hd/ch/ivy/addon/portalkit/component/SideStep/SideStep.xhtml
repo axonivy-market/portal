@@ -17,6 +17,7 @@
   <cc:attribute name="showDetailOption" default="false" shortDescription="Display go to task detail option" />
   <cc:attribute name="dataModel" shortDescription="Data model of task list" />
   <cc:attribute name="onDestroyComplete" />
+  <cc:attribute name="onWorkflowEventComplete" />
   <cc:attribute name="showInTaskList" type="java.lang.Boolean" default="true" shortDescription="Indicator to display SideStep in TaskList"/>
 </cc:interface>
 
@@ -27,9 +28,7 @@
   <f:event listener="#{data.setCurrentPortalPage(cc.attrs.currentPortalPage)}" type="preRenderComponent" />
 
   <p:commandLink id="#{cc.attrs.actionLinkId}" onstart="event.stopPropagation();" global="false" disabled="#{cc.attrs.isDisabled}"
-    actionListener="#{sideStepBean.getSideSteps(task.getId(), task.case.getId(), cc.attrs.isAdhocExcluded)}"
-    styleClass="action-button task-action-item #{cc.attrs.buttonStyleClass}"
-    update="side-steps-panel">
+    styleClass="action-button task-action-item #{cc.attrs.buttonStyleClass}">
       <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}</span>
       <i class="fa fa-angle-down"/>
   </p:commandLink>
@@ -78,7 +77,17 @@
       <span class="option-item-label">#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/Destroy')}</span>
     </p:commandLink>
     
+    <p:commandLink id="task-workflow-event-command" disabled="#{!taskActionBean.canReadWorkflowEventTask()}" rendered="#{taskActionBean.showReadWorkflowEvent}"
+      styleClass="option-item" onstart="event.stopPropagation();" process="@this"
+      update="@parent #{cc.attrs.componentToUpdate} @widgetVar(workflow-events-dialog)"
+      actionListener="#{taskActionBean.updateSelectedTaskItemId(isShowInTaskList, task.id)}"
+      oncomplete="#{cc.attrs.onWorkflowEventComplete}" global="false" >
+      <i class="option-action-icon fa fa-list-alt" />
+      <span class="option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/events')}</span>
+    </p:commandLink>
+    
     <h:panelGroup id="task-additional-actions" layout="block" rendered="#{cc.attrs.renderedAdditionalAction}">
+      <f:event listener="#{sideStepBean.getSideSteps(task.getId(), task.case.getId(), cc.attrs.isAdhocExcluded)}" type="preRenderComponent" />
       <p:separator styleClass="u-separator" />
       <p:commandLink rendered="#{empty sideStepBean.currentSideSteps}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noSideSteps')}"
         styleClass="option-item" />
