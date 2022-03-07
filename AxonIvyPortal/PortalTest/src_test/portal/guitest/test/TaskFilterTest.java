@@ -166,7 +166,7 @@ public class TaskFilterTest extends BaseTest {
   @Test
   public void testShowSystemStatesFilterForAdminUser() {
     List<String> adminStates = Arrays.asList("Created", "Ready for joining", "Suspended", "In progress", "Reserved",
-        "Delayed", "Done", "Destroyed", "Failed", "Join failed", "Waiting for event");
+        "Delayed", "Done", "Destroyed", "Unassigned", "Failed", "Join failed", "Waiting for event");
     login(TestAccount.ADMIN_USER);
     MainMenuPage mainMenuPage = new MainMenuPage();
     TaskWidgetPage taskWidgetPage = mainMenuPage.openTaskList();
