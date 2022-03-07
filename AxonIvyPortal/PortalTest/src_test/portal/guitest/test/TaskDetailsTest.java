@@ -6,10 +6,14 @@ import static org.junit.Assert.assertTrue;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.lang.StringUtils;
 import org.junit.Before;
 import org.junit.Test;
+
+import com.jayway.awaitility.Awaitility;
+import com.jayway.awaitility.Duration;
 
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.DateTimePattern;
@@ -18,6 +22,7 @@ import portal.guitest.common.TestRole;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.LanguagePage;
 import portal.guitest.page.TaskDetailsPage;
+import portal.guitest.page.TaskNoteHistoryPage;
 import portal.guitest.page.TaskWidgetPage;
 
 public class TaskDetailsTest extends BaseTest {
@@ -36,15 +41,12 @@ public class TaskDetailsTest extends BaseTest {
     homePage = new HomePage();
   }
 
-  
   @Test
   public void testDelegateTaskInTaskDetail() {
     login(TestAccount.HR_ROLE_USER);
     homePage = new HomePage();
-    taskWidgetPage = homePage.getTaskWidget();   
-    taskWidgetPage.expand();
-    taskDetailsPage = taskWidgetPage.openTaskDetails(0);
-    assertEquals(TestRole.EVERYBODY_ROLE, taskDetailsPage.getTaskResponsible());
+    taskDetailsPage = openDetailsPageOfFirstTask();
+    assertTrue(StringUtils.equalsIgnoreCase(TestRole.EVERYBODY_ROLE, taskDetailsPage.getTaskResponsible()));
     taskDetailsPage.openTaskDelegateDialog();
     taskDetailsPage.selectDelegateResponsible(TestAccount.HR_ROLE_USER.getFullName(), false);
     assertEquals(TestAccount.HR_ROLE_USER.getFullName(), taskDetailsPage.getTaskResponsible());
@@ -57,13 +59,17 @@ public class TaskDetailsTest extends BaseTest {
   }
   
 
+  private TaskDetailsPage openDetailsPageOfFirstTask() {
+    taskWidgetPage = homePage.getTaskWidget();
+    taskWidgetPage.expand();
+    return taskWidgetPage.openTaskDetails(0);
+  }
+
   @Test
   public void testChangeTaskDeadline() {
     String tomorrowStringLiteral = prepareTomorrowAsString();
 
-    taskWidgetPage = homePage.getTaskWidget();
-    taskWidgetPage.expand();
-    taskDetailsPage = taskWidgetPage.openTaskDetails(0);
+    taskDetailsPage = openDetailsPageOfFirstTask();
     taskDetailsPage.changeExpiryOfTaskAt(tomorrowStringLiteral);
     assertEquals(tomorrowStringLiteral, taskWidgetPage.getExpiryOfTaskAt());
   }
@@ -98,6 +104,22 @@ public class TaskDetailsTest extends BaseTest {
     assertEquals("Suspended", taskDetailsPage.getTaskState());
   }
 
+  @Test
+  public void testShowTaskWorkflowEvent() {
+    login(TestAccount.ADMIN_USER);
+    redirectToRelativeLink(createTechnicalStateUrl);
+    homePage = new HomePage();
+    
+    taskDetailsPage = openDetailsPageOfFirstTask();
+    taskDetailsPage.clickOnShowMoreHistories();
+    Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> homePage.countBrowserTab() > 1);
+    homePage.switchLastBrowserTab();
+    TaskNoteHistoryPage taskNoteHistoryPage = new TaskNoteHistoryPage();
+    assertTrue(taskNoteHistoryPage.isShowWorkflowEventsLinkDisplayed());
+
+    String eventData = taskNoteHistoryPage.openWorkflowEventDialog();
+    assertTrue(eventData.contains("admin"));
+  }
 
   private void openDelayTask() {
     login(TestAccount.ADMIN_USER);

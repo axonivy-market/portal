@@ -82,6 +82,10 @@ public class TaskDetailsPage extends TemplatePage {
     return new TaskWidgetPage();
   }
 
+  public void clickOnShowMoreHistories() {
+    findElementByCssSelector("[id$=':task-notes:show-more-note-link']").click();
+  }
+
   public TaskTemplatePage clickStartTask() {
     findElementById("task-detail-template:task-detail-start-command").click();
     return new TaskTemplatePage();
