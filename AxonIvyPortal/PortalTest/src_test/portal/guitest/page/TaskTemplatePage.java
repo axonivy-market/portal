@@ -19,6 +19,10 @@ public class TaskTemplatePage extends TemplatePage {
     return new CaseInformationPage();
   }
 
+  public void clickOnAdditionalBusinessDetailLink() {
+    click(findElementByCssSelector("a[id$=':show-additional-case-details-link']"));
+  }
+
   public boolean containsCaseDetails() {
     WebElement caseDetails = findDisplayedElementByCssSelector("div[id$='case-details-panel']");
     return caseDetails.isDisplayed();

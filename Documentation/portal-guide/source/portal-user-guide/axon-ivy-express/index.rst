@@ -217,6 +217,28 @@ addition, the user can define a "response to" email.
 .. include:: ../includes/_common-icon.rst
 
 
+Express Business Summary
+------------------------
+
+For express case, after you had done a workflow, you can recheck the summary data of the process by accessing to ``Business Details`` page of Express case.
+
+.. figure:: images/express-business-summary.png
+
+HowTo: Show Business summary
+""""""""""""""""""""""""""""
+    1. Firstly, you should go to the :ref:`Case List <full-case-list>` page and open ``Action`` link of your case.
+
+    2. Find the ``Show Business details`` link and click on it.
+
+    .. figure:: images/express-case.png
+
+    3. Then the ``Express form`` will be shown up via read-only mode.
+
+    .. figure:: images/express-business-summary.png
+
+.. note:: In case, your process is running, you will only see the data of what express task had done on the ``Summary`` page
+
+
 Axon Express Management
 -----------------------
 
