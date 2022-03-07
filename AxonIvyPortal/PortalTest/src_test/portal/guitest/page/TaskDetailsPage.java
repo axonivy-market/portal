@@ -199,4 +199,15 @@ public class TaskDetailsPage extends TemplatePage {
     click(buttonAction.findElement(By.className("ui-inplace-save")));
     waitAjaxIndicatorDisappear();
   }
+
+  public void clickOnShowWorkFlowEvents() {
+    clickByCssSelector("a[id$=':additional-options:task-workflow-event-command']");
+    waitForElementDisplayed(By.cssSelector("[id$=':workflow-event-component:events-table_data']"), true);
+  }
+
+  public String getFirstEventDataRow() {
+    waitForElementDisplayed(By.cssSelector("[id$=':workflow-event-component:events-table_data']"), true);
+    List<WebElement> eventRows = findListElementsByCssSelector("[id$=':workflow-event-component:events-table_data'] tr[role='row']");
+    return eventRows.get(0).getText();
+  }
 }

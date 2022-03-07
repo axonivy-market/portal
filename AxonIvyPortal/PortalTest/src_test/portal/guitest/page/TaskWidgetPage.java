@@ -24,14 +24,14 @@ public class TaskWidgetPage extends TemplatePage {
 	private static final String TASK_ACTION = "horizontal-task-actions";
 	private static final String CLASS = "class";
 	private static final String ID_END = "*[id$='";
-	private static final String TASK_STATE_OPEN_ID =
-			"task-widget:task-list-scroller:%d:task-item:task-state-component:task-state-open";
-	private static final String TASK_STATE_RESERVED_ID =
-			"task-widget:task-list-scroller:%d:task-item:task-state-component:task-state-reserved";
 	private static final String KEYWORD_FILTER_SELECTOR =
 			"input[id='task-widget:filter-form:filter-container:ajax-keyword-filter']";
 	private static final String KEYWORD_FILTER_SELECTOR_EXPANDED_MODE =
 			"input[id='task-widget:expanded-mode-filter-form:expanded-mode-filter-container:ajax-keyword-filter']";
+  private static final String TASK_STATE_OPEN_ID =
+      "[id$='task-list-scroller:%d:task-item:task-state-component:task-state'] span.task-state-open";
+  private static final String TASK_STATE_RESERVED_ID =
+      "[id$='task-list-scroller:%d:task-item:task-state-component:task-state'] span.task-state-reserved";
 
 	public TaskWidgetPage() {
 		this("task-widget");
@@ -656,7 +656,7 @@ public class TaskWidgetPage extends TemplatePage {
 
 	public boolean isTaskStateOpen(int index) {
 		try {
-			findElementById(String.format(TASK_STATE_OPEN_ID, index));
+			findElementByCssSelector(String.format(TASK_STATE_OPEN_ID, index));
 		} catch (NoSuchElementException e) {
 			return false;
 		}
@@ -665,7 +665,7 @@ public class TaskWidgetPage extends TemplatePage {
 
 	public boolean isTaskStateReserved(int index) {
 		try {
-			findElementById(String.format(TASK_STATE_RESERVED_ID, index));
+		  findElementByCssSelector(String.format(TASK_STATE_RESERVED_ID, index));
 		} catch (NoSuchElementException e) {
 			return false;
 		}
