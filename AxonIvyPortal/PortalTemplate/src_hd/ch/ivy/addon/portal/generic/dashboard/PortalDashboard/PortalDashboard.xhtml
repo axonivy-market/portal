@@ -8,15 +8,6 @@
 
     <ui:param name="managedBean" value="#{dashboardBean}" />
     <ui:param name="dashboardBodyStyleClass" value="readonly" />
-
-    <ui:define name="headerAction">
-      <p:commandButton id="configure-dashboard-button" rendered="#{dashboardBean.canEditPrivateDashboard or dashboardBean.canEditPublicDashboard}"
-        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfigurationDialog/ConfigureDashboard')}"
-        onclick="PF('dashboard-configuration-dialog').show();" global="false" icon="si si-pencil" />
-
-      <ui:include src="PortalDashboardConfiguration.xhtml" />
-    </ui:define>
-
   </ui:composition>
 </h:body>
 </html>
