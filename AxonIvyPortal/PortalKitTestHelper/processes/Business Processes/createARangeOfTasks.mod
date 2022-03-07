@@ -1,5 +1,5 @@
 [Ivy]
-14B2A3DC7173EA26 9.3.1 #module
+14B2A3DC7173EA26 9.4.0 #module
 >Proto >Proto Collection #zClass
 cs0 createARangeOfTasks Big #zClass
 cs0 B #cInfo
@@ -64,8 +64,6 @@ cs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>generateTask(TaskGenerationDataRange)</name>
-        <nameStyle>37,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -75,8 +73,6 @@ cs0 f1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>in.taskCounter &lt; in.to</name>
-        <nameStyle>22,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -123,8 +119,6 @@ cs0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>counter+1</name>
-        <nameStyle>9,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -143,8 +137,6 @@ cs0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>in.taskCounter = in.from</name>
-        <nameStyle>24,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -157,8 +149,6 @@ cs0 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>in.taskCounter &lt;= in.to</name>
-        <nameStyle>23,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -192,8 +182,6 @@ cs0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <language>
         <name>counter+10
 from + 10</name>
-        <nameStyle>20,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -218,8 +206,6 @@ cs0 f19 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>splitTaskGeneration</name>
-        <nameStyle>19,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -232,8 +218,6 @@ cs0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>in.taskCounter = in.from+10</name>
-        <nameStyle>27,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -272,8 +256,6 @@ cs0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <language>
         <name>generateTask
 from-&gt;counter</name>
-        <nameStyle>26,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -302,8 +284,6 @@ cs0 f30 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>generateTasks</name>
-        <nameStyle>13,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

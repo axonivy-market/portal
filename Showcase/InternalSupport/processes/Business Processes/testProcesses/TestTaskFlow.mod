@@ -1,5 +1,5 @@
 [Ivy]
-14B2FC03D2E87141 9.3.1 #module
+14B2FC03D2E87141 9.4.0 #module
 >Proto >Proto Collection #zClass
 Tt0 TestTaskFlow Big #zClass
 Tt0 B #cInfo
@@ -190,8 +190,6 @@ Tt0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Support Ticket</name>
-        <nameStyle>14,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -221,8 +219,6 @@ Tt0 f23 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>SupportTicket</name>
-        <nameStyle>13,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -242,8 +238,6 @@ Tt0 f1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <language>
         <name>add case details link
 add contactfolder id link</name>
-        <nameStyle>47,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -307,8 +301,6 @@ Tt0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <language>
         <name>Show 
 Task Form</name>
-        <nameStyle>15,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -325,9 +317,6 @@ Tt0 f26 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <language>
         <name>Show 
 Task Form</name>
-        <nameStyle>6,7
-9,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -386,8 +375,6 @@ Tt0 f27 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Create tasks</name>
-        <nameStyle>12,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -404,8 +391,6 @@ Tt0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <language>
         <name>Show 
 Task Form</name>
-        <nameStyle>15,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -468,8 +453,6 @@ Tt0 f38 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>ExpirationHandler</name>
-        <nameStyle>17,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -482,8 +465,6 @@ Tt0 f39 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>increase task priority</name>
-        <nameStyle>22,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -513,8 +494,6 @@ Tt0 f41 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>support ticket</name>
-        <nameStyle>14,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -594,8 +573,6 @@ Tt0 f32 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Create personal tasks</name>
-        <nameStyle>21,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -665,8 +642,6 @@ Tt0 f86 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <language>
         <name>Show 
 Task Form</name>
-        <nameStyle>15,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -683,8 +658,6 @@ Tt0 f87 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <language>
         <name>Show 
 Task Form</name>
-        <nameStyle>15,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -741,8 +714,6 @@ Tt0 f90 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Create tasks</name>
-        <nameStyle>12,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -759,9 +730,6 @@ Tt0 f91 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <language>
         <name>Show 
 Task Form</name>
-        <nameStyle>6,7
-9,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -802,8 +770,6 @@ Tt0 f92 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>DefaultAdditionalCaseDetails.ivp</name>
-        <nameStyle>32,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -893,8 +859,6 @@ Tt0 f93 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Create tasks</name>
-        <nameStyle>12,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -940,8 +904,6 @@ Tt0 f100 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>TestCaseListPermissions.ivp</name>
-        <nameStyle>27,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -959,8 +921,6 @@ Tt0 f101 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <language>
         <name>Show 
 Task Form</name>
-        <nameStyle>15,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -977,9 +937,6 @@ Tt0 f103 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <language>
         <name>Show 
 Task Form</name>
-        <nameStyle>6,7
-9,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -996,8 +953,6 @@ Tt0 f104 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <language>
         <name>Show 
 Task Form</name>
-        <nameStyle>15,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -1042,9 +997,6 @@ Tt0 f106 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <language>
         <name>Show 
 Task Form</name>
-        <nameStyle>6,7
-9,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -1174,8 +1126,6 @@ Tt0 f140 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>ProcessWithSkipTaskListTask.ivp</name>
-        <nameStyle>31,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -1472,8 +1422,6 @@ Tt0 f64 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Set business case name</name>
-        <nameStyle>22,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -1499,8 +1447,6 @@ Tt0 f59 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>LeaveRequest.ivp</name>
-        <nameStyle>16,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -1532,8 +1478,6 @@ Tt0 f60 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Simple leave request</name>
-        <nameStyle>20,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -1550,9 +1494,6 @@ Tt0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <language>
         <name>Show 
 Task Form</name>
-        <nameStyle>6,7
-9,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -1569,8 +1510,6 @@ Tt0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <language>
         <name>Show 
 Task Form</name>
-        <nameStyle>15,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -1622,8 +1561,6 @@ Tt0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <language>
         <name>Show 
 Task Form</name>
-        <nameStyle>15,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -1715,8 +1652,6 @@ Tt0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Create tasks</name>
-        <nameStyle>12,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -1811,9 +1746,6 @@ Tt0 f74 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <language>
         <name>Show 
 Task Form</name>
-        <nameStyle>6,7
-9,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

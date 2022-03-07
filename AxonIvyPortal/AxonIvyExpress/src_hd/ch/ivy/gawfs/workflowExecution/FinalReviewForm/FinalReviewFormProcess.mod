@@ -1,5 +1,5 @@
 [Ivy]
-163051859F226598 9.3.1 #module
+163051859F226598 9.4.0 #module
 >Proto >Proto Collection #zClass
 Fs0 FinalReviewFormProcess Big #zClass
 Fs0 RD #cInfo
@@ -37,8 +37,6 @@ Fs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>start()</name>
-        <nameStyle>7,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -65,8 +63,6 @@ Fs0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>cancel</name>
-        <nameStyle>6,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

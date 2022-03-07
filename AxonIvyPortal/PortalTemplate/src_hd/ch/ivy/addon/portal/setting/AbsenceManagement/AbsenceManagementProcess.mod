@@ -1,5 +1,5 @@
 [Ivy]
-1756E0BE3BCBAD12 9.3.1 #module
+1756E0BE3BCBAD12 9.4.0 #module
 >Proto >Proto Collection #zClass
 As0 AbsenceManagementProcess Big #zClass
 As0 RD #cInfo
@@ -965,8 +965,6 @@ As0 f72 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>closeDialog</name>
-        <nameStyle>11,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

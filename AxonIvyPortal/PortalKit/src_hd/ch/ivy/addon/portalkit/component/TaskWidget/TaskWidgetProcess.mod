@@ -1,5 +1,5 @@
 [Ivy]
-15035F535EFB1618 9.3.1 #module
+15035F535EFB1618 9.4.0 #module
 >Proto >Proto Collection #zClass
 Ts0 TaskWidgetProcess Big #zClass
 Ts0 RD #cInfo
@@ -128,8 +128,6 @@ Ts0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>start()</name>
-        <nameStyle>7,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -141,8 +139,6 @@ Ts0 f23 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>saveFilter</name>
-        <nameStyle>10,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -167,8 +163,6 @@ Ts0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>save filter set</name>
-        <nameStyle>15,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -180,8 +174,6 @@ Ts0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>clearSaveFilterDialog</name>
-        <nameStyle>21,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -196,8 +188,6 @@ Ts0 f31 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Clear filter</name>
-        <nameStyle>12,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -233,11 +223,9 @@ if(!in.dataModel.compactMode) {
 Ts0 f27 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>load filter set&#xD;
-and init column &#xD;
+        <name>load filter set&#13;
+and init column &#13;
 configuration</name>
-        <nameStyle>48,5
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -275,8 +263,6 @@ Ts0 f35 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>remove filter</name>
-        <nameStyle>13,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -319,8 +305,6 @@ Ts0 f45 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>validate</name>
-        <nameStyle>8,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -332,8 +316,6 @@ Ts0 f47 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <language>
         <name>is filter
 existed?</name>
-        <nameStyle>18,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -401,8 +383,6 @@ Ts0 f65 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Create query for new task</name>
-        <nameStyle>25
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -423,8 +403,6 @@ Ts0 f56 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>show notification</name>
-        <nameStyle>17
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -443,8 +421,6 @@ Ts0 f59 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>update task list</name>
-        <nameStyle>16
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -454,8 +430,6 @@ Ts0 f54 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>number of tasks change ?</name>
-        <nameStyle>24
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -475,8 +449,6 @@ Ts0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>refreshTaskList(Long)</name>
-        <nameStyle>21,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

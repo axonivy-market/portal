@@ -1,5 +1,5 @@
 [Ivy]
-14C7834636E63BEA 9.3.1 #module
+14C7834636E63BEA 9.4.0 #module
 >Proto >Proto Collection #zClass
 Fr0 FindApplicationsByUser Big #zClass
 Fr0 B #cInfo
@@ -39,8 +39,6 @@ Fr0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>get Apps in session</name>
-        <nameStyle>19,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

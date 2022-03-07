@@ -1,5 +1,5 @@
 [Ivy]
-15AF5A391C3CEE4D 9.3.1 #module
+15AF5A391C3CEE4D 9.4.0 #module
 >Proto >Proto Collection #zClass
 Ts0 TaskListHeaderProcess Big #zClass
 Ts0 RD #cInfo
@@ -23,8 +23,6 @@ Ts0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>start()</name>
-        <nameStyle>7,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

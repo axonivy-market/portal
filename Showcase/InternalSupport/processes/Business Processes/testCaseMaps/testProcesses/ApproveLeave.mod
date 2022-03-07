@@ -1,5 +1,5 @@
 [Ivy]
-15C7B30FB93C827E 9.3.1 #module
+15C7B30FB93C827E 9.4.0 #module
 >Proto >Proto Collection #zClass
 Ae0 ApproveLeave Big #zClass
 Ae0 B #cInfo
@@ -82,8 +82,6 @@ Ae0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>start.ivp</name>
-        <nameStyle>9,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -151,8 +149,6 @@ Ae0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Install Operation System</name>
-        <nameStyle>24
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -191,8 +187,6 @@ Ae0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Install</name>
-        <nameStyle>7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -212,8 +206,6 @@ Ae0 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>HideSystemCase</name>
-        <nameStyle>14,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -257,8 +249,6 @@ Ae0 f29 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Request form</name>
-        <nameStyle>12,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -309,8 +299,6 @@ Ae0 f33 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Request form</name>
-        <nameStyle>12,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -386,8 +374,6 @@ Ae0 f41 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>create12CasesWithCategory.ivp</name>
-        <nameStyle>29,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -413,8 +399,6 @@ Ae0 f45 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>ApproveLeave</name>
-        <nameStyle>12,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -443,8 +427,6 @@ Ae0 f43 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>startACase(Integer)</name>
-        <nameStyle>19,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

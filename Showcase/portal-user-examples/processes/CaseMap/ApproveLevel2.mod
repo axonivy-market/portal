@@ -1,5 +1,5 @@
 [Ivy]
-170322322BB5393B 9.3.1 #module
+170322322BB5393B 9.4.0 #module
 >Proto >Proto Collection #zClass
 A20 ApproveLevel2 Big #zClass
 A20 B #cInfo
@@ -39,8 +39,6 @@ A20 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>start.ivp</name>
-        <nameStyle>9,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

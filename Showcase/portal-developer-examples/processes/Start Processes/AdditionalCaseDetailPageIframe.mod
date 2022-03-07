@@ -1,5 +1,5 @@
 [Ivy]
-176465FBFE257CF3 9.3.1 #module
+176465FBFE257CF3 9.4.0 #module
 >Proto >Proto Collection #zClass
 Ae0 AdditionalCaseDetailPageIframe Big #zClass
 Ae0 B #cInfo
@@ -85,8 +85,6 @@ Ae0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <language>
         <name>Customization
 Additional Case Details Page</name>
-        <nameStyle>42,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -103,8 +101,6 @@ Ae0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>SetAdditonalCaseDetailPage</name>
-        <nameStyle>26,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -186,9 +182,6 @@ HOW TO RUN THIS EXAMPLE:&#13;
 2. In Portal case list, expand "Investment request with custom case detail using iFrame" case, then click to "Show business details" button
 
 </name>
-        <nameStyle>48,5
-825,5
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

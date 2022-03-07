@@ -1,5 +1,5 @@
 [Ivy]
-1521B28EE98E8444 9.3.1 #module
+1521B28EE98E8444 9.4.0 #module
 >Proto >Proto Collection #zClass
 Cs0 StatisticWidgetProcess Big #zClass
 Cs0 RD #cInfo
@@ -77,8 +77,6 @@ Cs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>start(List&lt;StatisticChart&gt;)</name>
-        <nameStyle>27,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -92,8 +90,6 @@ Cs0 f1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>switchMode()</name>
-        <nameStyle>12,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -111,8 +107,6 @@ Cs0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>setCompactMode(Boolean)</name>
-        <nameStyle>23,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -128,8 +122,6 @@ Cs0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>switchCreateMode</name>
-        <nameStyle>16,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -145,8 +137,6 @@ Cs0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>switchDrilldownMode</name>
-        <nameStyle>19,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -162,8 +152,6 @@ Cs0 f19 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>drilldownElapsedTimeListener</name>
-        <nameStyle>28,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -179,8 +167,6 @@ Cs0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>switchDrilldownExpiryChartMode</name>
-        <nameStyle>30,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -199,8 +185,6 @@ Cs0 f21 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>drillDownExpiryListener()</name>
-        <nameStyle>25,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -274,8 +258,6 @@ Cs0 f34 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>is compact mode?</name>
-        <nameStyle>16
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -321,8 +303,6 @@ Cs0 f29 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>navigateToTaskAnalysisPage</name>
-        <nameStyle>26,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
