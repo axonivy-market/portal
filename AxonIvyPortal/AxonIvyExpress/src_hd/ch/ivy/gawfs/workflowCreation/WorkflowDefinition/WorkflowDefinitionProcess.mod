@@ -1,5 +1,5 @@
 [Ivy]
-1576FA61C4EDC8B1 9.3.1 #module
+1576FA61C4EDC8B1 9.4.0 #module
 >Proto >Proto Collection #zClass
 Fs0 WorkflowDefinitionProcess Big #zClass
 Fs0 RD #cInfo
@@ -118,8 +118,6 @@ Fs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>start(Data)</name>
-        <nameStyle>11,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -183,8 +181,6 @@ Fs0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>init first task</name>
-        <nameStyle>15,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -234,8 +230,6 @@ Fs0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>add new ProcessStep</name>
-        <nameStyle>19,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -259,8 +253,6 @@ Fs0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>delete last ProcessStep</name>
-        <nameStyle>23,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -284,8 +276,6 @@ Fs0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>iniAssginement(TaskDef)</name>
-        <nameStyle>23,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -299,8 +289,6 @@ Fs0 f19 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>updateResponsibles()</name>
-        <nameStyle>20,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -353,8 +341,6 @@ Fs0 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>cancel</name>
-        <nameStyle>6,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -380,8 +366,6 @@ Fs0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>addAssignee()</name>
-        <nameStyle>13,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -391,8 +375,6 @@ Fs0 f36 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Validated?</name>
-        <nameStyle>10
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -481,8 +463,6 @@ Fs0 f41 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>changeAssigneeType</name>
-        <nameStyle>18,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -632,8 +612,6 @@ Fs0 f54 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>closeDialog</name>
-        <nameStyle>11,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -652,8 +630,6 @@ Fs0 f56 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>removeSelectedAssignee(ISecurityMember)</name>
-        <nameStyle>39,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -664,8 +640,6 @@ Fs0 f59 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>reset data?</name>
-        <nameStyle>11,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

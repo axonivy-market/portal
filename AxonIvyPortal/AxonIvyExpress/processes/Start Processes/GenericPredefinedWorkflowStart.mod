@@ -1,5 +1,5 @@
 [Ivy]
-15797DC22608DA55 9.3.1 #module
+15797DC22608DA55 9.4.0 #module
 >Proto >Proto Collection #zClass
 Gt0 GenericPredefinedWorkflowStart Big #zClass
 Gt0 B #cInfo
@@ -51,8 +51,6 @@ Gt0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>GenericPredefinedProcessStart.ivp</name>
-        <nameStyle>33,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -71,8 +69,6 @@ Gt0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>executePredefinedWorkflow</name>
-        <nameStyle>25,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -104,8 +100,6 @@ Gt0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>GenericEditProcessStart.ivp</name>
-        <nameStyle>27,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -123,8 +117,6 @@ Gt0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>edit</name>
-        <nameStyle>4,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

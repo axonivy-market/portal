@@ -1,5 +1,5 @@
 [Ivy]
-1707A1112CEE2EBA 9.3.1 #module
+1707A1112CEE2EBA 9.4.0 #module
 >Proto >Proto Collection #zClass
 As0 CheckInternalSolvencyProcess Big #zClass
 As0 RD #cInfo
@@ -42,8 +42,6 @@ As0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Load dossier</name>
-        <nameStyle>12,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -60,8 +58,6 @@ As0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Save dossier</name>
-        <nameStyle>12,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

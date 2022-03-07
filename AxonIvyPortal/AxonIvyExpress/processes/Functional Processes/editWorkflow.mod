@@ -1,5 +1,5 @@
 [Ivy]
-15791C23B125821B 9.3.1 #module
+15791C23B125821B 9.4.0 #module
 >Proto >Proto Collection #zClass
 ew0 editWorkflow Big #zClass
 ew0 B #cInfo
@@ -101,8 +101,6 @@ ew0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>new Workflow</name>
-        <nameStyle>12,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -121,8 +119,6 @@ ew0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>init steps</name>
-        <nameStyle>10,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -140,8 +136,6 @@ ew0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Workflow Settings Dialog</name>
-        <nameStyle>24,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -174,8 +168,6 @@ ew0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Workflow Formdefinition Dialog</name>
-        <nameStyle>30,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -212,8 +204,6 @@ ew0 f18 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <language>
         <name>direct Execution
 for AHWF</name>
-        <nameStyle>25,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -236,8 +226,6 @@ ew0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>direct execution of WF if  AHWF</name>
-        <nameStyle>31,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -251,8 +239,6 @@ ew0 f21 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>editWorkflow</name>
-        <nameStyle>12,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -264,8 +250,6 @@ ew0 f41 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Discarded?</name>
-        <nameStyle>10,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -277,8 +261,6 @@ ew0 f45 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>exit?</name>
-        <nameStyle>5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -319,8 +301,6 @@ ew0 f27 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Use default template?</name>
-        <nameStyle>21
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -381,8 +361,6 @@ ew0 f35 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Is ready to execute?</name>
-        <nameStyle>20
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -408,8 +386,6 @@ ew0 f37 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <language>
         <name>Create task to store
 progress of workflow</name>
-        <nameStyle>41
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -602,8 +578,6 @@ Ct0 f26 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>get Workflow Credentials</name>
-        <nameStyle>24,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

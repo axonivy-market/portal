@@ -1,5 +1,5 @@
 [Ivy]
-1626C02D46BF5153 9.3.1 #module
+1626C02D46BF5153 9.4.0 #module
 >Proto >Proto Collection #zClass
 Ca0 CleanUpObsoletedUserData Big #zClass
 Ca0 B #cInfo
@@ -26,8 +26,6 @@ Ca0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>eventStarterbyQuatzScheduler</name>
-        <nameStyle>28,7
-</nameStyle>
         <desc>This is a scheduled process of Portal</desc>
     </language>
 </elementInfo>

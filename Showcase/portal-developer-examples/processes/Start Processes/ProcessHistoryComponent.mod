@@ -1,5 +1,5 @@
 [Ivy]
-1624C1C79661758C 9.3.1 #module
+1624C1C79661758C 9.4.0 #module
 >Proto >Proto Collection #zClass
 Pt0 ProcessHistoryComponent Big #zClass
 Pt0 B #cInfo
@@ -117,8 +117,6 @@ Pt0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>viewProcessHistoryOfAlphaCompany.ivp</name>
-        <nameStyle>36,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -147,8 +145,6 @@ Pt0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>createAlphaCompany.ivp</name>
-        <nameStyle>22,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -319,8 +315,6 @@ Bk0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>SetBusinessEntityId</name>
-        <nameStyle>19,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -434,9 +428,6 @@ Bk2 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Alpha Company Process History in Dialog</name>
-        <nameStyle>5,5
-34,5
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -473,8 +464,6 @@ Bk3 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Alpha Company Process History</name>
-        <nameStyle>29,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -512,8 +501,6 @@ Bk4 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>SetBusinessEntityId</name>
-        <nameStyle>19,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

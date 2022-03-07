@@ -1,5 +1,5 @@
 [Ivy]
-17032234FD387594 9.3.1 #module
+17032234FD387594 9.4.0 #module
 >Proto >Proto Collection #zClass
 Cn0 ContractCreation Big #zClass
 Cn0 B #cInfo
@@ -41,8 +41,6 @@ Cn0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>start.ivp</name>
-        <nameStyle>9,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
