@@ -10,23 +10,17 @@
   appendTo="@(body)" closeOnEscape="true" draggable="false" fitViewport="true" responsive="true" modal="true">
   <h:form id="dashboard-form">
     <p:dataTable value="#{dashboardConfigurationBean.editingDashboards}" var="dashboard" id="dashboard-table"
-      draggableRows="true" rowDragSelector="i.si-move-expand-vertical" styleClass="admin-table application-table"
-      widgetVar="dashboard-table" emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}">
-      <p:ajax event="rowReorder" global="false" />
+      styleClass="admin-table application-table" widgetVar="dashboard-table"
+      emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}">
       <p:column
         headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/dashboardTitle')}"
         styleClass="application-table-type-column" width="40%">
         <h:outputText value="#{dashboard.title}" />
       </p:column>
-
       <p:column
         headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/dashboardPermission')}"
         rendered="#{dashboardConfigurationBean.getIsPublicDashboard()}" width="60%">
         <h:outputText value="#{dashboard.displayedPermission}" />
-      </p:column>
-      <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reorder')}" width="70"
-        styleClass="u-text-align-center column-management-datatable__reorder">
-        <i class="si si-move-expand-vertical" />
       </p:column>
       <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
         styleClass="TexAlCenter settings-table-action-buttons" width="100">
