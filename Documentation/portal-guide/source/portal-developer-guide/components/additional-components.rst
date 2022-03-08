@@ -84,8 +84,8 @@ Introduction
 ^^^^^^^^^^^^
 
 Task Analysis component of Portal provides features for the user's own permission StatisticAnalyzeTask in PortalTaskPermissions refer to 
-`Security section in
-Cockpit <https://developer.axonivy.com/doc/9.3.3/engine-guide/tool-reference/engine-cockpit/security.html>`_
+:dev-url:`Security section in
+Cockpit </doc/9.3.3/engine-guide/tool-reference/engine-cockpit/security.html>`
 to analyze  not only tasks but also cases. These features are:
 
 #. Set of filters for both tasks and cases which allow user to filter

@@ -17,5 +17,5 @@ Customization
 -------------
 
 Default chart configuration is stored as 
-`Variables <https://developer.axonivy.com/doc/9.3.3/designer-guide/configuration/variables.html>`_.
+:dev-url:`Variables </doc/9.3.3/designer-guide/configuration/variables.html>`.
 You could update the variable :ref:`portal-statistic-charts` to customize default charts.
