@@ -49,7 +49,7 @@ Following these steps to have your own Portal Home:
    home page. Now you will use this process start as the entry point of
    your Portal instead of the default one. To let Portal know about
    your new Portal home, you have to set default pages to your project, follow this chapter to customize standard processes:
-   `Standard Processes <https://developer.axonivy.com/doc/nightly/designer-guide/user-interface/standard-processes/index.html>`_      
+   :dev-url:`Standard Processes </doc/nightly/designer-guide/user-interface/standard-processes/index.html>`
 
 
 .. _customization-portal-home-advanced-usage:
