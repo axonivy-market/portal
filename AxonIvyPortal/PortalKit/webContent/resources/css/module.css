@@ -3196,6 +3196,10 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
     width: 75%;
     min-width: 1200px;
   }
+
+  .my-profile-container.dashboard-config-container {
+    min-width: 900px;
+  }
 }
 
 .user-profile-footer {
@@ -3237,6 +3241,11 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 .my-profile-container {
   margin: auto;
   max-width: 1850px;
+}
+
+.my-profile-container.dashboard-config-container {
+  margin: auto;
+  max-width: 1000px;
 }
 
 .my-profile-container .card {

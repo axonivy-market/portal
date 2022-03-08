@@ -486,8 +486,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     pleaseAddDocument: Verwenden Sie bitte den Link oben, um Dokumente hochzuladen
     pleaseAddNote: Verwenden Sie bitte den Link oben, um Notizen hochzuladen
     previousStage: Vorherige Stufe
+    private: TODO Private
     process: Prozess
     processes: Prozesse
+    public: Öffentlich
     remove: Entfernen
     reorder: Neu anordnen
     requiredFieldMessage: Dies ist ein Pflichtfeld
@@ -711,6 +713,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       editDashboard: Dashboard editieren
       manageDashboard: Dashboard verwalten
       removeDashboardHeader: Dashboard "{0}" entfernen
+      reorderDashboard: TODO Reorder dashboard
     deleteWidget: Widget löschen
     editPrivateDashboard: Privates Dashboard editieren
     editPublicDashboard: Öffentliches Dashboard editieren
@@ -738,6 +741,10 @@ ch.ivy.addon.portalkit.ui.jsf:
       noProcessSelected: Bitte wählen Sie einen Prozess
     removeWidgetHeader: Widget "{0}" löschen
     removeWidgetMessage: Möchten Sie es wirklich löschen?
+    reorder:
+      dashboardType: TODO Dashboard type
+      reorderMyDashboard: TODO Reorder my dashboard
+      reorderPublicDashboard: TODO Reorder public dashboard
     restoreDefaultHeader: Auf Standard zurücksetzen
     restoreDefaultMessage: Wenn Sie fortfahren, verlieren Sie alle von Ihnen erstellten Widgets. Es werden die Standardeinstellungen übernommen.
     select: Wählen Sie
