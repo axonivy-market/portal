@@ -68,41 +68,61 @@ public class TaskActionTest extends BaseTest {
     redirectToRelativeLink(createUnassignedTaskUrl);
     gotoTaskList();
     // Ready for Join
-    assertTaskActionsByTaskState("Ready for joining", Arrays.asList("Reset", "Destroy"));
+    assertTaskActionsByTaskState("Ready for joining", Arrays.asList("Reset", "Destroy", "Workflow Events"));
     taskWidgetPage = taskDetailsPage.goBackToTaskListFromTaskDetails();
 
     // Suspended
-    assertTaskActionsByTaskState("Suspended", Arrays.asList("Delegate", "Reserve", "Destroy", "Add Ad-hoc Task"));
+    assertTaskActionsByTaskState("Suspended", Arrays.asList("Delegate", "Reserve", "Destroy", "Add Ad-hoc Task", "Workflow Events"));
     taskWidgetPage = taskDetailsPage.goBackToTaskListFromTaskDetails();
 
     // Reserved
     taskWidgetPage.clickOnTaskActionLink(0);
     taskWidgetPage.reserveTask(0);
     taskWidgetPage.waitAjaxIndicatorDisappear();
-    assertTaskActionsByTaskState("Reserved", Arrays.asList("Delegate", "Reset", "Destroy", "Add Ad-hoc Task"));
+    assertTaskActionsByTaskState("Reserved", Arrays.asList("Delegate", "Reset", "Destroy", "Add Ad-hoc Task", "Workflow Events"));
 
     // In progress
     TaskTemplatePage taskTemplatePage = taskDetailsPage.clickStartTask();
     taskTemplatePage.clickCancelButton();
     taskDetailsPage = new TaskDetailsPage();
     taskWidgetPage = taskDetailsPage.goBackToTaskListFromTaskDetails();
-    assertTaskActionsByTaskState("In progress", Arrays.asList("Reserve", "Reset", "Destroy", "Add Ad-hoc Task"));
+    assertTaskActionsByTaskState("In progress", Arrays.asList("Reserve", "Reset", "Destroy", "Add Ad-hoc Task", "Workflow Events"));
     taskWidgetPage = taskDetailsPage.goBackToTaskListFromTaskDetails();
 
     // Done
-    assertTaskActionsByTaskState("Done", new ArrayList<>());
+    assertTaskActionsByTaskState("Done", Arrays.asList("Workflow Events"));
     taskWidgetPage = taskDetailsPage.goBackToTaskListFromTaskDetails();
 
     // Delayed
-    assertTaskActionsByTaskState("Delayed", Arrays.asList("Delegate", "Clear the delay", "Destroy", "Add Ad-hoc Task"));
+    assertTaskActionsByTaskState("Delayed", Arrays.asList("Delegate", "Clear the delay", "Destroy", "Add Ad-hoc Task", "Workflow Events"));
     taskWidgetPage = taskDetailsPage.goBackToTaskListFromTaskDetails();
 
     // Destroyed
-    assertTaskActionsByTaskState("Destroyed", new ArrayList<>());
+    assertTaskActionsByTaskState("Destroyed", Arrays.asList("Workflow Events"));
+    taskWidgetPage = taskDetailsPage.goBackToTaskListFromTaskDetails();
+  }
+
+  @Test
+  public void testVisibilityTaskActionForTechnicalStates() {
+    login(TestAccount.ADMIN_USER);
+    redirectToRelativeLink(createTechnicalStateUrl);
+    redirectToRelativeLink(createUnassignedTaskUrl);
+    gotoTaskList();
+
+    // Failed
+    assertTaskActionsByTaskState("Failed", Arrays.asList("Reset", "Destroy", "Workflow Events"));
+    taskWidgetPage = taskDetailsPage.goBackToTaskListFromTaskDetails();
+
+    // Join failed
+    assertTaskActionsByTaskState("Join failed", Arrays.asList("Destroy", "Workflow Events"));
+    taskWidgetPage = taskDetailsPage.goBackToTaskListFromTaskDetails();
+
+    // waiting for event
+    assertTaskActionsByTaskState("Waiting for event",  Arrays.asList("Destroy", "Workflow Events"));
     taskWidgetPage = taskDetailsPage.goBackToTaskListFromTaskDetails();
 
     // Unassigned
-    assertTaskActionsByTaskState("Unassigned", Arrays.asList("Delegate", "Destroy", "Add Ad-hoc Task"));
+    assertTaskActionsByTaskState("Unassigned", Arrays.asList("Delegate", "Destroy", "Add Ad-hoc Task", "Workflow Events"));
   }
 
   private void gotoTaskList() {
@@ -115,8 +135,8 @@ public class TaskActionTest extends BaseTest {
     taskWidgetPage.clickOnTaskStatesAndApply(Arrays.asList(state));
     List<String> actionInTaskList = taskWidgetPage.getActiveTaskAction(0);
     actionInTaskList.remove("Details");
-    actionInTaskList.removeAll(taskActionInTaskDetails);
-    assertTrue(actionInTaskList.isEmpty());
+    assertTrue(actionInTaskList.size() == taskActionInTaskDetails.size());
+    assertTrue(actionInTaskList.containsAll(taskActionInTaskDetails));
 
     taskDetailsPage = taskWidgetPage.openTaskDetails(0);
     if (taskActionInTaskDetails.isEmpty()) {
@@ -125,8 +145,8 @@ public class TaskActionTest extends BaseTest {
     }
     assertTrue(taskDetailsPage.isActionLinkEnable());
     List<String> actionInDetails = taskDetailsPage.getActiveTaskAction();
-    actionInDetails.removeAll(taskActionInTaskDetails);
-    assertTrue(actionInDetails.isEmpty());
+    assertTrue(actionInDetails.size() == taskActionInTaskDetails.size());
+    assertTrue(actionInDetails.containsAll(taskActionInTaskDetails));
   }
 
 }

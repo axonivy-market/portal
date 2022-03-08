@@ -82,6 +82,10 @@ public class TaskDetailsPage extends TemplatePage {
     return new TaskWidgetPage();
   }
 
+  public void clickOnShowMoreHistories() {
+    findElementByCssSelector("[id$=':task-notes:show-more-note-link']").click();
+  }
+
   public TaskTemplatePage clickStartTask() {
     findElementById("task-detail-template:task-detail-start-command").click();
     return new TaskTemplatePage();
@@ -194,5 +198,16 @@ public class TaskDetailsPage extends TemplatePage {
     WebElement buttonAction = findElementByCssSelector("[id$='delay-form:delay-date_editor']");
     click(buttonAction.findElement(By.className("ui-inplace-save")));
     waitAjaxIndicatorDisappear();
+  }
+
+  public void clickOnShowWorkFlowEvents() {
+    clickByCssSelector("a[id$=':additional-options:task-workflow-event-command']");
+    waitForElementDisplayed(By.cssSelector("[id$=':workflow-event-component:events-table_data']"), true);
+  }
+
+  public String getFirstEventDataRow() {
+    waitForElementDisplayed(By.cssSelector("[id$=':workflow-event-component:events-table_data']"), true);
+    List<WebElement> eventRows = findListElementsByCssSelector("[id$=':workflow-event-component:events-table_data'] tr[role='row']");
+    return eventRows.get(0).getText();
   }
 }

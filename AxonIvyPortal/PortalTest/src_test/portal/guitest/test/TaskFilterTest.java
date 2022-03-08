@@ -65,21 +65,6 @@ public class TaskFilterTest extends BaseTest {
 		taskWidgetPage.openStateFilter();
 		assertTrue(taskWidgetPage.getListStateFilterSelection().contains("Done"));
 	}
-	
-	@Test
-	public void testShowSystemStatesFilterForAdminUser() {
-	  login(TestAccount.ADMIN_USER);
-	  MainMenuPage mainMenuPage = new MainMenuPage();
-	  TaskWidgetPage taskWidgetPage = mainMenuPage.openTaskList();
-
-	  String stateFilterValue = taskWidgetPage.getFilterValue("state-filter");
-	  assertEquals("State: All", stateFilterValue);
-
-    taskWidgetPage.openStateFilter();
-    assertTrue(taskWidgetPage.getListStateFilterSelection().contains("Ready for joining"));
-    assertTrue(taskWidgetPage.getListStateFilterSelection().contains("Destroyed"));
-    assertTrue(taskWidgetPage.getListStateFilterSelection().contains("Delayed"));
-	}
 
 	@Test
 	public void testKeepSessionFilter() {
@@ -177,6 +162,23 @@ public class TaskFilterTest extends BaseTest {
 		assertEquals(1, taskWidgetPage.countTasks());
 		assertEquals("OPEN (Unassigned)", taskWidgetPage.getTaskStateTooltip(0));
 	}
+
+  @Test
+  public void testShowSystemStatesFilterForAdminUser() {
+    List<String> adminStates = Arrays.asList("Created", "Ready for joining", "Suspended", "In progress", "Reserved",
+        "Delayed", "Done", "Destroyed", "Unassigned", "Failed", "Join failed", "Waiting for event");
+    login(TestAccount.ADMIN_USER);
+    MainMenuPage mainMenuPage = new MainMenuPage();
+    TaskWidgetPage taskWidgetPage = mainMenuPage.openTaskList();
+
+    String stateFilterValue = taskWidgetPage.getFilterValue("state-filter");
+    assertEquals("State: All", stateFilterValue);
+
+    taskWidgetPage.openStateFilter();
+    List<String> states = taskWidgetPage.getListStateFilterSelection();
+    assertTrue(states.size() == adminStates.size());
+    assertTrue(states.containsAll(adminStates));
+  }
 
 	@Test
 	public void testNotShowUnassignedTaskToPersonNotHaveTaskReadAllPermission() {

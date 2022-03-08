@@ -24,14 +24,14 @@ public class TaskWidgetPage extends TemplatePage {
 	private static final String TASK_ACTION = "horizontal-task-actions";
 	private static final String CLASS = "class";
 	private static final String ID_END = "*[id$='";
-	private static final String TASK_STATE_OPEN_ID =
-			"task-widget:task-list-scroller:%d:task-item:task-state-component:task-state-open";
-	private static final String TASK_STATE_RESERVED_ID =
-			"task-widget:task-list-scroller:%d:task-item:task-state-component:task-state-reserved";
 	private static final String KEYWORD_FILTER_SELECTOR =
 			"input[id='task-widget:filter-form:filter-container:ajax-keyword-filter']";
 	private static final String KEYWORD_FILTER_SELECTOR_EXPANDED_MODE =
 			"input[id='task-widget:expanded-mode-filter-form:expanded-mode-filter-container:ajax-keyword-filter']";
+  private static final String TASK_STATE_OPEN_ID =
+      "[id$='task-list-scroller:%d:task-item:task-state-component:task-state'] span.task-state-open";
+  private static final String TASK_STATE_RESERVED_ID =
+      "[id$='task-list-scroller:%d:task-item:task-state-component:task-state'] span.task-state-reserved";
 
 	public TaskWidgetPage() {
 		this("task-widget");
@@ -388,14 +388,16 @@ public class TaskWidgetPage extends TemplatePage {
 		click(By.cssSelector("button[id$='state-filter:filter-open-form:advanced-filter-command']"));
 	}
 
-	public void filterByDescription(String text) {
-		click(By.cssSelector("button[id$='description-filter:filter-open-form:advanced-filter-command']"));
-		WebElement descriptionInput =
-				findElementByCssSelector("input[id$='description-filter:filter-input-form:description']");
-		enterKeys(descriptionInput, text);
-		click(By.cssSelector("button[id$='description-filter:filter-input-form:update-command']"));
-		Sleeper.sleep(2000);
-	}
+  public void filterByDescription(String text) {
+    click(By.cssSelector("button[id$='description-filter:filter-open-form:advanced-filter-command']"));
+    WebElement descriptionInput =
+        findElementByCssSelector("input[id$='description-filter:filter-input-form:description']");
+    enterKeys(descriptionInput, text);
+    click(By.cssSelector("button[id$='description-filter:filter-input-form:update-command']"));
+
+    WaitHelper.assertTrueWithWait(() ->
+        findElementByCssSelector("[id$=':description-filter:filter-open-form:advanced-filter-command']").getText().contains(text));
+  }
 
   public void filterByCreatedDate(String fromInputText) {
     click(By.cssSelector("button[id$='created-filter:filter-open-form:advanced-filter-command']"));
@@ -654,7 +656,7 @@ public class TaskWidgetPage extends TemplatePage {
 
 	public boolean isTaskStateOpen(int index) {
 		try {
-			findElementById(String.format(TASK_STATE_OPEN_ID, index));
+			findElementByCssSelector(String.format(TASK_STATE_OPEN_ID, index));
 		} catch (NoSuchElementException e) {
 			return false;
 		}
@@ -663,7 +665,7 @@ public class TaskWidgetPage extends TemplatePage {
 
 	public boolean isTaskStateReserved(int index) {
 		try {
-			findElementById(String.format(TASK_STATE_RESERVED_ID, index));
+		  findElementByCssSelector(String.format(TASK_STATE_RESERVED_ID, index));
 		} catch (NoSuchElementException e) {
 			return false;
 		}

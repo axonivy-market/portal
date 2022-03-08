@@ -61,6 +61,7 @@ public class BaseTest {
   protected String showTaskNoteHistoryUrl = "portalTemplate/16044EDBC0E23859/showTaskNoteHistory.ivp?selectedTaskId=%s";
   protected String showCaseNoteHistoryUrl = "portalTemplate/1603506A872272C6/showCaseNoteHistory.ivp?caseId=%s";
   protected String createTaskWithSystemState = "portalKitTestHelper/153CACC26D0D4C3D/createTasksWithSystemState.ivp";
+  protected String createTechnicalStateUrl = "portalExamples/162511D2577DBA88/createTechnicalStateTasks.ivp";
   protected String createExpressProcess = "axonIvyExpress/15798655494F25E1/AxonIvyExpressWF.ivp";
   protected String create12CasesWithCategoryUrl = "internalSupport/15C7B30FB93C827E/create12CasesWithCategory.ivp";
 
