@@ -45,6 +45,7 @@ import ch.ivy.addon.portalkit.enums.ProcessWidgetMode;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public class DashboardWidgetUtils {
@@ -154,12 +155,17 @@ public class DashboardWidgetUtils {
   }
 
   public static List<ColumnModel> buildCaseFilterableColumns(List<CaseColumnModel> caseColumns) {
-    if (CollectionUtils.isEmpty(caseColumns)) {
-      return new ArrayList<>();
+    List<ColumnModel> filterableColumns = new ArrayList<>();
+    if (CollectionUtils.isNotEmpty(caseColumns)) {
+      filterableColumns = caseColumns.stream()
+          .filter(col -> !StringUtils.equalsIgnoreCase(col.getField(), DashboardStandardCaseColumn.ID.toString()))
+          .collect(Collectors.toList());
     }
-    return caseColumns.stream()
-        .filter(col -> !StringUtils.equalsIgnoreCase(col.getField(), DashboardStandardCaseColumn.ID.toString()))
-        .collect(Collectors.toList());
+    var enableCaseOwner = GlobalSettingService.getInstance().isCaseOwnerEnabled();
+    if (!enableCaseOwner) {
+      filterableColumns.removeIf(col -> StringUtils.equalsIgnoreCase(col.getField(), DashboardStandardCaseColumn.OWNER.toString()));
+    }
+    return filterableColumns;
   }
 
   public static void removeStyleNewWidget(DashboardWidget widget) {
@@ -201,6 +207,9 @@ public class DashboardWidgetUtils {
       return hasPredefinedFilter;
     }
     for (ColumnModel col : filterableColumns) {
+      if (hasPredefinedFilter) {
+        break;
+      }
       if ((DashboardStandardCaseColumn.STATE.getField().equalsIgnoreCase(col.getField())
           || DashboardStandardCaseColumn.CREATOR.getField().equalsIgnoreCase(col.getField())
           || DashboardStandardCaseColumn.OWNER.getField().equalsIgnoreCase(col.getField())
@@ -221,6 +230,9 @@ public class DashboardWidgetUtils {
       return hasPredefinedFilter;
     }
     for (ColumnModel col : filterableColumns) {
+      if (hasPredefinedFilter) {
+        break;
+      }
       if ((PRIORITY.getField().equalsIgnoreCase(col.getField()) || STATE.getField().equalsIgnoreCase(col.getField())
           || RESPONSIBLE.getField().equalsIgnoreCase(col.getField())
           || CATEGORY.getField().equalsIgnoreCase(col.getField()))
