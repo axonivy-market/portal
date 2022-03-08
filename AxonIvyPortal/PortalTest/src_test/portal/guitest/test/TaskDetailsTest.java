@@ -36,15 +36,12 @@ public class TaskDetailsTest extends BaseTest {
     homePage = new HomePage();
   }
 
-  
   @Test
   public void testDelegateTaskInTaskDetail() {
     login(TestAccount.HR_ROLE_USER);
     homePage = new HomePage();
-    taskWidgetPage = homePage.getTaskWidget();   
-    taskWidgetPage.expand();
-    taskDetailsPage = taskWidgetPage.openTaskDetails(0);
-    assertEquals(TestRole.EVERYBODY_ROLE, taskDetailsPage.getTaskResponsible());
+    taskDetailsPage = openDetailsPageOfFirstTask();
+    assertTrue(StringUtils.equalsIgnoreCase(TestRole.EVERYBODY_ROLE, taskDetailsPage.getTaskResponsible()));
     taskDetailsPage.openTaskDelegateDialog();
     taskDetailsPage.selectDelegateResponsible(TestAccount.HR_ROLE_USER.getFullName(), false);
     assertEquals(TestAccount.HR_ROLE_USER.getFullName(), taskDetailsPage.getTaskResponsible());
@@ -57,13 +54,17 @@ public class TaskDetailsTest extends BaseTest {
   }
   
 
+  private TaskDetailsPage openDetailsPageOfFirstTask() {
+    taskWidgetPage = homePage.getTaskWidget();
+    taskWidgetPage.expand();
+    return taskWidgetPage.openTaskDetails(0);
+  }
+
   @Test
   public void testChangeTaskDeadline() {
     String tomorrowStringLiteral = prepareTomorrowAsString();
 
-    taskWidgetPage = homePage.getTaskWidget();
-    taskWidgetPage.expand();
-    taskDetailsPage = taskWidgetPage.openTaskDetails(0);
+    taskDetailsPage = openDetailsPageOfFirstTask();
     taskDetailsPage.changeExpiryOfTaskAt(tomorrowStringLiteral);
     assertEquals(tomorrowStringLiteral, taskWidgetPage.getExpiryOfTaskAt());
   }
@@ -98,6 +99,17 @@ public class TaskDetailsTest extends BaseTest {
     assertEquals("Suspended", taskDetailsPage.getTaskState());
   }
 
+  @Test
+  public void testShowTaskWorkflowEvent() {
+    login(TestAccount.ADMIN_USER);
+    redirectToRelativeLink(createTechnicalStateUrl);
+    homePage = new HomePage();
+    
+    taskDetailsPage = openDetailsPageOfFirstTask();
+    taskDetailsPage.openActionPanel();
+    taskDetailsPage.clickOnShowWorkFlowEvents();
+    assertTrue(org.apache.commons.lang3.StringUtils.contains(taskDetailsPage.getFirstEventDataRow(), "admin"));
+  }
 
   private void openDelayTask() {
     login(TestAccount.ADMIN_USER);

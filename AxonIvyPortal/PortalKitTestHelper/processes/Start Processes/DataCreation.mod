@@ -1247,7 +1247,7 @@ case.name=Create Tasks With System States' #txt
 Dt0 f126 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>createTaskWithSystemState</name>
+        <name>createTasksWithSystemState.ivp</name>
     </language>
 </elementInfo>
 ' #txt

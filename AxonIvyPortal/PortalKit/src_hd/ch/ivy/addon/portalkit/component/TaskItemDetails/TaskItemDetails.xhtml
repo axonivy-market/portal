@@ -75,7 +75,8 @@
                 renderedAdditionalAction="#{taskActionBean.showAdditionalOptions(task)}" task="#{task}"
                 isDisabled="#{taskActionBean.noActionAvailable(task)}"
                 componentToUpdate="#{cc.clientId}:task-detail-general-container #{cc.clientId}:task-detail-note-container"
-                onDestroyComplete="PF('destroy-task-dialog').show()" showInTaskList="false" />
+                onDestroyComplete="PF('destroy-task-dialog').show()" showInTaskList="false"
+                onWorkflowEventComplete="initWorkflowEventData()" />
             </h:panelGroup>
           </div>
 
@@ -133,8 +134,12 @@
       onclick="PF('destroy-task-dialog').hide();" type="button" styleClass="portal-cancel-button" />
   </p:confirmDialog>
 
+  <!-- Delegate Task Dialog -->
   <ic:ch.ivy.addon.portalkit.component.TaskItemDelegate id="task-item-delegate-component" task="#{task}"
     componentToUpdate="#{p:component('task-detail-general-container')} #{p:component('task-detail-note-container')} #{p:component('task-detail-data-description-container')}" />
+
+  <!-- Workflow Event of Task -->
+  <ic:ch.ivy.addon.portalkit.component.TaskItemWorkflowEvents id="workflow-event-component" taskId="#{task.id}" />
 
   <script type="text/javascript">
       function backToPrevPage(isFromTaskList, isTaskStartedInDetails, isNavigateToCaseList) {
