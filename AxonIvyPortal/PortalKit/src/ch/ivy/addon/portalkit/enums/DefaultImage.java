@@ -9,4 +9,8 @@ public enum DefaultImage {
   public String getPath() {
     return "/images/process/" + name();
   }
+  
+  public String getLabel() {
+    return "/images/process/" + name();
+  }
 }
