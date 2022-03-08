@@ -212,6 +212,26 @@ HowTo: Add a note to a task
 
 .. figure:: images/how-to-add-note.png
 
+.. _how-to-show-workflow-events:
+
+HowTo: Show Workflow Events
+---------------------------
+
+.. note:: 
+   User must to has permission ``WORKFLOW_EVENT_READ_ALL`` to see all workflow events of a task
+
+#. Open the task details of a task
+
+#. Click on the :guilabel:`Actions` link on the right top corner of the **Data and Description** section
+
+#. Click :guilabel:`Workflow Events` link on the overlay panel
+
+   .. figure:: images/how-to-show-workflow-event.png
+
+**Workflow Events dialog**
+
+.. figure:: images/workflow-events-table.png
+
 HowTo: Export a task history
 ----------------------------
 
