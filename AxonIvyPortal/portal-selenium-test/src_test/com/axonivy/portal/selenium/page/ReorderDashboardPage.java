@@ -30,7 +30,6 @@ public class ReorderDashboardPage extends TemplatePage {
 
   public NewDashboardPage saveAndBackToHomePage() {
     $("button[id$='save-settings']").waitUntil(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    $("a[id$='cancel']").waitUntil(getClickableCondition(), DEFAULT_TIMEOUT).click();
     $("a.dashboard__title").waitUntil(appear, DEFAULT_TIMEOUT);
     return new NewDashboardPage();
   }
