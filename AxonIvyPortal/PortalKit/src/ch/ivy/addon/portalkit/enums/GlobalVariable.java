@@ -36,37 +36,37 @@ public enum GlobalVariable {
   CHAT_MAX_CONNECTION("Portal.Chat.MaxConnection", GlobalVariableType.NUMBER, "3", "chatMaxConnection"),
   ENABLE_CASE_OWNER("Portal.Cases.EnableOwner", GlobalVariableType.SELECTION, Option.FALSE.toString(), "enableCaseOwner"),
   DISABLE_CASE_COUNT("Portal.Cases.DisableCount", GlobalVariableType.SELECTION, Option.FALSE.toString(), "disableCaseCount"),
-  DEFAULT_SORT_FIELD_OF_CASE_LIST("Portal.Cases.SortField", GlobalVariableType.EXTERNAL_SELECTION, CaseSortField.ID.name(), "defaultSortFieldOfCaseList", getCaseListSortFields()),
-  DEFAULT_SORT_DIRECTION_OF_CASE_LIST("Portal.Cases.SortDirection", GlobalVariableType.EXTERNAL_SELECTION, SortDirection.DESC.name(), "defaultSortDirectionOfCaseList", getSortDirections()),
   REFRESH_TASK_LIST_INTERVAL("Portal.Tasks.RefreshInterval", GlobalVariableType.NUMBER, String.valueOf(TaskWidgetBean.DEFAULT_TASK_LIST_REFRESH_INTERVAL), "refreshTaskListIntervalNote"),
   DISABLE_TASK_COUNT("Portal.Tasks.DisableCount", GlobalVariableType.SELECTION, Option.FALSE.toString(), "disableTaskCount"),
-  DEFAULT_SORT_FIELD_OF_TASK_LIST("Portal.Tasks.SortField", GlobalVariableType.EXTERNAL_SELECTION, TaskSortField.ID.name(), "defaultSortFieldOfTaskList", getTaskListSortFields()),
-  DEFAULT_SORT_DIRECTION_OF_TASK_LIST("Portal.Tasks.SortDirection", GlobalVariableType.EXTERNAL_SELECTION, SortDirection.DESC.name(), "defaultSortDirectionOfTaskList", getSortDirections()),
   SHOW_TASK_DURATION_TIME("Portal.TaskDetails.ShowDurationTime", GlobalVariableType.SELECTION, Option.TRUE.toString(), "showTaskDurationTime"),
   HIDE_TASK_DOCUMENT("Portal.TaskDetails.HideDocument", GlobalVariableType.SELECTION, Option.FALSE.toString(), "hideTaskDocument"),
   HIDE_CASE_DOCUMENT("Portal.CaseDetails.HideDocument", GlobalVariableType.SELECTION, Option.FALSE.toString(), "hideCaseDocument"),
   SHOW_CASE_DURATION_TIME("Portal.CaseDetails.ShowDurationTime", GlobalVariableType.SELECTION, Option.TRUE.toString(), "showCaseDurationTime"),
   HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE("Portal.CaseDetails.HideUploadDocumentForDoneCase", GlobalVariableType.SELECTION, Option.FALSE.toString(), "hideUploadDocumentForDoneCaseNote"),
-  DEFAULT_PROCESS_MODE("Portal.Processes.Mode", GlobalVariableType.EXTERNAL_SELECTION, ProcessMode.IMAGE.name(), "defaultProcessMode", getProcessMode()),
-  DEFAULT_PROCESS_IMAGE("Portal.Processes.DefaultImage", GlobalVariableType.EXTERNAL_SELECTION, DefaultImage.DEFAULT.name(), "defaultProcessImage", getDefaultProcessImage()),
   DISPLAY_MESSAGE_AFTER_FINISH_TASK("Portal.DisplayMessageAfterFinishTask", GlobalVariableType.SELECTION, Option.TRUE.toString(), "displayMessageAfterFinishOrLeaveTask"),
   EXPRESS_END_PAGE("Portal.ExpressEndPage", GlobalVariableType.SELECTION, Option.TRUE.toString(), "expressEndPageNote"),
   CLIENT_SIDE_TIMEOUT("Portal.ClientSideTimeout", GlobalVariableType.NUMBER, "0", "clientSideTimeoutNote"),
   EMBED_IN_FRAME("Portal.EmbedInFrame", GlobalVariableType.SELECTION, Option.TRUE.toString(), "embedInFrame"),
-  LOGGED_IN_USER_FORMAT("Portal.LoggedInUserFormat", GlobalVariableType.SELECTION, Option.DISPLAY_NAME.toString(), "loggedInUserFormat", getLoggedInUserFormatOptions()),
   SHOW_GLOBAL_SEARCH("Portal.ShowGlobalSearch", GlobalVariableType.SELECTION, Option.TRUE.toString(), "showGlobalSearch"),
   SHOW_BUTTON_ICON("Portal.ShowButtonIcon", GlobalVariableType.SELECTION, Option.TRUE.toString(), "showButtonIcon"),
-  DEFAULT_HOMEPAGE("Portal.Homepage", GlobalVariableType.EXTERNAL_SELECTION, StringUtils.capitalize(HomepageType.DASHBOARD.name().toLowerCase()), "defaultHomepage"),
   DISPLAY_USERS_OF_ROLE("Portal.DisplayUsersOfRole", GlobalVariableType.SELECTION, Option.FALSE.toString(), "displayAllUsersOfTaskActivator"),
   SHOW_PROCESS_INFORMATION("Portal.Processes.ShowInformation", GlobalVariableType.SELECTION, Option.TRUE.toString(), "showProcessInformation"),
-  SHOW_LEGACY_UI("Portal.ShowLegacyUI", GlobalVariableType.SELECTION, Option.FALSE.toString(), "showLegacyUI");
+  LOGGED_IN_USER_FORMAT("Portal.LoggedInUserFormat", GlobalVariableType.SELECTION, Option.DISPLAY_NAME.name(), "loggedInUserFormat", getLoggedInUserFormatOptions()),
+  SHOW_LEGACY_UI("Portal.ShowLegacyUI", GlobalVariableType.SELECTION, Option.FALSE.toString(), "showLegacyUI"),
+  DEFAULT_SORT_FIELD_OF_CASE_LIST("Portal.Cases.SortField", GlobalVariableType.EXTERNAL_SELECTION, CaseSortField.ID.name(), "defaultSortFieldOfCaseList", getCaseListSortFields()),
+  DEFAULT_SORT_DIRECTION_OF_CASE_LIST("Portal.Cases.SortDirection", GlobalVariableType.EXTERNAL_SELECTION, SortDirection.DESC.name(), "defaultSortDirectionOfCaseList", getSortDirections()),
+  DEFAULT_PROCESS_MODE("Portal.Processes.Mode", GlobalVariableType.EXTERNAL_SELECTION, ProcessMode.IMAGE.name(), "defaultProcessMode", getProcessMode()),
+  DEFAULT_PROCESS_IMAGE("Portal.Processes.DefaultImage", GlobalVariableType.EXTERNAL_SELECTION, DefaultImage.DEFAULT.name(), "defaultProcessImage", getDefaultProcessImage()),
+  DEFAULT_HOMEPAGE("Portal.Homepage", GlobalVariableType.EXTERNAL_SELECTION, StringUtils.capitalize(HomepageType.DASHBOARD.name().toLowerCase()), "defaultHomepage"),
+  DEFAULT_SORT_DIRECTION_OF_TASK_LIST("Portal.Tasks.SortDirection", GlobalVariableType.EXTERNAL_SELECTION, SortDirection.DESC.name(), "defaultSortDirectionOfTaskList", getSortDirections()),
+  DEFAULT_SORT_FIELD_OF_TASK_LIST("Portal.Tasks.SortField", GlobalVariableType.EXTERNAL_SELECTION, TaskSortField.ID.name(), "defaultSortFieldOfTaskList", getTaskListSortFields());
 
   private String key;
   private GlobalVariableType type;
   private String defaultValue;
   private String noteCMS;
   private Option[] options;
-  private Map<String, String> externalOptions;
+  private Map<String, Object> externalOptions;
   private static Map<String, GlobalVariable> keyToVariable =
       Stream.of(GlobalVariable.values()).collect(Collectors.toMap(GlobalVariable::getKey, v -> v));
 
@@ -82,6 +82,8 @@ public enum GlobalVariable {
       return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/Enums/GlobalVariable/Option/" + name());
     }
   }
+  
+  
   
   private GlobalVariable() {}
 
@@ -110,7 +112,7 @@ public enum GlobalVariable {
   }
   
   private GlobalVariable(String key, GlobalVariableType type, String defaultValue, String noteCMS,
-      Map<String, String> externalOptions) {
+      Map<String, Object> externalOptions) {
     this.key = key;
     this.type = type;
     this.defaultValue = defaultValue;
@@ -138,11 +140,11 @@ public enum GlobalVariable {
     return options;
   }
   
-  public Map<String, String> getExternalOptions() {
+  public Map<String, Object> getExternalOptions() {
     return externalOptions;
   }
 
-  public void setExternalOptions(Map<String, String> externalOptions) {
+  public void setExternalOptions(Map<String, Object> externalOptions) {
     this.externalOptions = externalOptions;
   }
 
@@ -150,47 +152,47 @@ public enum GlobalVariable {
     return new Option[] {Option.USERNAME, Option.DISPLAY_NAME, Option.DISPLAY_NAME_USERNAME, Option.USERNAME_DISPLAY_NAME};
   }
 
-  private static Map<String, String> getTaskListSortFields() {
-    Map<String, String> result = new HashMap<>();
+  private static Map<String, Object> getTaskListSortFields() {
+    Map<String, Object> result = new HashMap<>();
     for (TaskSortField sortField : TaskSortField.values()) {
       // Task sort field not available
       if (StringUtils.isNotBlank(sortField.getLabel()) && sortField != TaskSortField.CATEGORY) {
-        result.put(sortField.name(), sortField.getLabel());
+        result.put(sortField.name(), sortField);
       }
     }
     return result;
   }
 
-  private static Map<String, String> getCaseListSortFields() {
-    Map<String, String> result = new HashMap<>();
+  private static Map<String, Object> getCaseListSortFields() {
+    Map<String, Object> result = new HashMap<>();
     for (CaseSortField sortField : CaseSortField.values()) {
       // Case sort field not available
       if (StringUtils.isNotBlank(sortField.getLabel()) && sortField != CaseSortField.CATEGORY) {
-        result.put(sortField.name(), sortField.getLabel());
+        result.put(sortField.name(), sortField);
       }
     }
     return result;
   }
 
-  private static Map<String, String> getSortDirections() {
-    Map<String, String> result = new HashMap<>();
+  private static Map<String, Object> getSortDirections() {
+    Map<String, Object> result = new HashMap<>();
     for (SortDirection direction : SortDirection.values()) {
-      result.put(direction.name(), direction.getLabel());
+      result.put(direction.name(), direction);
     }
     return result;
   }
   
 
-  private static Map<String, String> getProcessMode() {
-    Map<String, String> result = new HashMap<>();
+  private static Map<String, Object> getProcessMode() {
+    Map<String, Object> result = new HashMap<>();
     for (ProcessMode mode : ProcessMode.values()) {
-      result.put(mode.name(), mode.getLabel());
+      result.put(mode.name(), mode);
     }
     return result;
   }
 
-  private static Map<String, String> getDefaultProcessImage() {
-    Map<String, String> result = new HashMap<>();
+  private static Map<String, Object> getDefaultProcessImage() {
+    Map<String, Object> result = new HashMap<>();
     for (DefaultImage defaultImage : DefaultImage.values()) {
       result.put(defaultImage.name(), defaultImage.name());
     }
@@ -199,5 +201,5 @@ public enum GlobalVariable {
 
   public static GlobalVariable valueOfKey(String key) {
     return keyToVariable.get(key);
-   }
+  }
 }
