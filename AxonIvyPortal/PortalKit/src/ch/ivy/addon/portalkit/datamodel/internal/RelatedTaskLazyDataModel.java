@@ -59,8 +59,7 @@ public class RelatedTaskLazyDataModel extends TaskLazyDataModel {
     boolean isOwner = iCase != null && iCase.getOwner() != null ? iCase.getOwner().isMember(Ivy.session(), true) : false;
     this.setAdminQuery(PermissionUtils.checkReadAllTasksPermission() || PermissionUtils.checkTaskReadOwnCaseTasksPermission() || isOwner);
 
-    boolean excludeHiddenTasks = Boolean.parseBoolean(Ivy.var().get(HiddenTasksCasesConfig.PORTAL_HIDDEN_TASK_CASE_EXCLUDED));
-    if (excludeHiddenTasks) {
+    if (HiddenTasksCasesConfig.isHiddenTasksCasesExcluded()) {
       criteria.setCustomTaskQuery(TaskQuery.create().where().customField().stringField(AdditionalProperty.HIDE.toString()).isNull());
     }
   }

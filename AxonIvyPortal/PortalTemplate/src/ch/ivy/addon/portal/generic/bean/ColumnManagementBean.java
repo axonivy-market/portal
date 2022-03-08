@@ -24,6 +24,7 @@ import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.custom.field.CustomFieldType;
@@ -100,7 +101,11 @@ public class ColumnManagementBean {
       }
     }
     if (widget.getType() == DashboardWidgetType.CASE) {
+      var enableCaseOwner = GlobalSettingService.getInstance().isCaseOwnerEnabled();
       for (DashboardStandardCaseColumn col : DashboardStandardCaseColumn.values()) {
+        if (!enableCaseOwner && DashboardStandardCaseColumn.OWNER == col) {
+          continue;
+        }
         standardFields.add(col.getField());
       }
     }

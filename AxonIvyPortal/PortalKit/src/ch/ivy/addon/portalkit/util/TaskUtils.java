@@ -8,10 +8,12 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
+import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria;
 import ch.ivy.addon.portalkit.publicapi.TaskAPI;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IRole;
@@ -204,10 +206,25 @@ public final class TaskUtils {
     }
   }
 
-  @SuppressWarnings("removal")
   public static List<TaskState> getValidStates() {
-    return Arrays.asList(TaskState.values()).stream().filter(s -> !s.equals(TaskState.UNASSIGNED))
-        .sorted((s1, s2) -> StringUtils.compare(s1.toString(), s2.toString())).collect(Collectors.toList());
+    var states = TaskSearchCriteria.STANDARD_STATES;
+    if (PermissionUtils.checkReadAllTasksPermission()) {
+      states.addAll(TaskSearchCriteria.ADVANCE_STATES);
+    } else {
+      states.add(TaskState.DONE);
+    }
+    return states.stream()
+        .sorted((s1, s2) -> StringUtils.compare(s1.toString(), s2.toString()))
+        .collect(Collectors.toList());
   }
 
+  public static List<TaskState> filterStateByPermission(List<TaskState> states) {
+    if (PermissionUtils.checkReadAllTasksPermission()) {
+      return states;
+    }
+    var validStates = getValidStates();
+    return CollectionUtils.emptyIfNull(states).stream()
+        .filter(state -> validStates.contains(state))
+        .collect(Collectors.toList());
+  }
 }

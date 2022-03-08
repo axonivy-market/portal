@@ -10,12 +10,11 @@ import org.apache.commons.lang3.time.DateUtils;
 
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.TaskColumnModel;
-import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
 import ch.ivy.addon.portalkit.enums.DashboardFilterType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivy.addon.portalkit.util.Dates;
-import ch.ivy.addon.portalkit.util.HiddenTasksCasesConfig;
+import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivyteam.ivy.workflow.WorkflowPriority;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
@@ -41,9 +40,6 @@ public class DashboardTaskSearchCriteria {
 
   public TaskQuery buildQueryWithoutOrderByClause() {
     TaskQuery query = TaskQuery.create();
-    if (HiddenTasksCasesConfig.isHiddenTasksCasesExcluded()) {
-      query.where().customField().stringField(AdditionalProperty.HIDE.toString()).isNull();
-    }
     queryFilters(query);
     queryCanWorkOn(query);
     return query;
@@ -109,14 +105,16 @@ public class DashboardTaskSearchCriteria {
 
   private void queryStates(TaskQuery query, List<TaskState> states) {
     if (CollectionUtils.isNotEmpty(states)) {
-      TaskQuery subQuery = TaskQuery.create();
-      IFilterQuery filterQuery = subQuery.where();
-      for (TaskState state : states) {
-        filterQuery.or().state().isEqual(state);
-      }
-
-      query.where().and(subQuery);
+      states = TaskUtils.filterStateByPermission(states);
+    } else {
+      states = TaskUtils.getValidStates();
     }
+    TaskQuery subQuery = TaskQuery.create();
+    IFilterQuery filterQuery = subQuery.where();
+    for (TaskState state : states) {
+      filterQuery.or().state().isEqual(state);
+    }
+    query.where().and(subQuery);
   }
 
   private void queryResponsibles(TaskQuery query, List<String> responsibles) {
@@ -168,6 +166,7 @@ public class DashboardTaskSearchCriteria {
   }
   
   private void queryFilters(TaskQuery query) {
+    var states = new ArrayList<TaskState>();
     for (ColumnModel column : columns) {
       String field = column.getField();
       String configuredFilter = column.getFilter();
@@ -201,11 +200,9 @@ public class DashboardTaskSearchCriteria {
           queryDescription(query, userFilter);
         }
       } else if (StringUtils.equals(DashboardStandardTaskColumn.STATE.getField(), column.getField())) {
-        List<TaskState> states = new ArrayList<>();
         for (String state : filterList) {
           states.add(TaskState.valueOf(state.toUpperCase()));
         }
-        queryStates(query, states);
       } else if (StringUtils.equals(DashboardStandardTaskColumn.CATEGORY.getField(), column.getField())) {
         queryCategory(query, filterList);
       } else if (StringUtils.equals(DashboardStandardTaskColumn.RESPONSIBLE.getField(), column.getField())) {
@@ -259,6 +256,7 @@ public class DashboardTaskSearchCriteria {
         }
       }
     }
+    queryStates(query, states);
   }
   
   public String getSortField() {
