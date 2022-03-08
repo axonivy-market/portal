@@ -171,7 +171,8 @@
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfigurationDialog/EditPrivateDashboards')}"/>
               </div>
             </p:commandLink>
-            <p:commandLink id="reorder-private-dashboard" styleClass="ui-g-12 dashboard-configuration-dialog__action-row">
+            <p:commandLink id="reorder-private-dashboard" styleClass="ui-g-12 dashboard-configuration-dialog__action-row"
+              actionListener="#{userMenuBean.navigateToMyDashboardReorderOrDisplayWorkingTaskWarning(isWorkingOnATask, task)}">
               <div class="ui-g-2">
                 <span class="si si-move-expand-vertical dashboard-configuration-dialog__action-row-icon" />
               </div>
@@ -210,7 +211,8 @@
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfigurationDialog/EditPublicDashboards')}"/>
               </div>
             </p:commandLink>
-            <p:commandLink id="reorder-public-dashboard" styleClass="ui-g-12 dashboard-configuration-dialog__action-row">
+            <p:commandLink id="reorder-public-dashboard" styleClass="ui-g-12 dashboard-configuration-dialog__action-row"
+              actionListener="#{userMenuBean.navigateToPublicDashboardReorderOrDisplayWorkingTaskWarning(isWorkingOnATask, task)}">
               <div class="ui-g-2">
                 <span class="si si-move-expand-vertical dashboard-configuration-dialog__action-row-icon" />
               </div>

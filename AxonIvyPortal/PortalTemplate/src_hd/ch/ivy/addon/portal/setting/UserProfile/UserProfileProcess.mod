@@ -344,17 +344,17 @@ Us0 f14 actionTable 'out=in;
 ' #txt
 Us0 f14 actionCode 'import ch.ivy.addon.portalkit.publicapi.PortalNavigatorAPI;
 
-PortalNavigatorAPI.navigateToPortalEndPage();' #txt
+PortalNavigatorAPI.navigateToPortalHome();' #txt
 Us0 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>Navigate To Portal EndPage</name>
+        <name>Back to Home</name>
     </language>
 </elementInfo>
 ' #txt
-Us0 f14 192 370 160 44 -77 -8 #rect
-Us0 f15 109 392 192 392 #arcP
-Us0 f22 352 392 483 392 #arcP
+Us0 f14 216 370 112 44 -38 -8 #rect
+Us0 f15 109 392 216 392 #arcP
+Us0 f22 328 392 483 392 #arcP
 Us0 f35 expr out #txt
 Us0 f35 109 280 160 280 #arcP
 Us0 f36 272 280 304 280 #arcP
@@ -363,16 +363,17 @@ Us0 f13 272 144 304 144 #arcP
 Us0 f24 416 144 448 144 #arcP
 Us0 f6 actionTable 'out=in;
 ' #txt
-Us0 f6 actionCode 'import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
-PortalNavigator.navigateToUserProfile();' #txt
+Us0 f6 actionCode 'import ch.ivy.addon.portalkit.publicapi.PortalNavigatorAPI;
+
+PortalNavigatorAPI.navigateToPortalHome();' #txt
 Us0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>Reload</name>
+        <name>Back to Home</name>
     </language>
 </elementInfo>
 ' #txt
-Us0 f6 1056 258 112 44 -20 -8 #rect
+Us0 f6 1056 258 112 44 -38 -8 #rect
 Us0 f3 1168 280 1227 280 #arcP
 Us0 f4 560 144 592 144 #arcP
 Us0 f10 736 144 768 144 #arcP

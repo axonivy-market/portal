@@ -14,7 +14,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -51,6 +50,7 @@ import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.service.DashboardService;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivy.addon.portalkit.util.CategoryUtils;
+import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivy.addon.portalkit.util.Dates;
 import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
@@ -95,7 +95,7 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
     String dashboardInUserProperty = readDashboardBySessionUser();
     try {
       if (isPublicDashboard) {
-        collectedDashboards = defaultDashboards();
+        collectedDashboards = getVisiblePublicDashboards();
       } else if (StringUtils.isNoneEmpty(dashboardInUserProperty)) {
         List<Dashboard> myDashboards = getVisibleDashboards(dashboardInUserProperty);
         collectedDashboards.addAll(myDashboards);
@@ -130,7 +130,7 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
   public void restore() {
     if (isPublicDashboard) {
       Ivy.var().reset(PortalVariable.DASHBOARD.key);
-      resetDashboardWithDataFrom(defaultDashboards());
+      resetDashboardWithDataFrom(getVisiblePublicDashboards());
     } else {
       removeDashboardInUserProperty();
       resetDashboardWithDataFrom(new ArrayList<>());
@@ -201,8 +201,7 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
   }
 
   public String generateNewWidgetId(DashboardWidgetType type) {
-    String uuid = UUID.randomUUID().toString().replace("-", "");
-    return String.format(WIDGET_ID_PATTERN, type.name(), uuid).toLowerCase();
+    return String.format(WIDGET_ID_PATTERN, type.name(), DashboardUtils.generateId()).toLowerCase();
   }
 
   public void saveWidget() {
@@ -503,7 +502,7 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
 
   public void onAddDashboard() {
     selectedEditingDashboard = new Dashboard();
-    selectedEditingDashboard.setId(UUID.randomUUID().toString());
+    selectedEditingDashboard.setId(DashboardUtils.generateId());
     selectedEditingDashboard.setIsPublic(isPublicDashboard);
   }
 
@@ -582,8 +581,6 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
     }
   }
 
-  // public void onRowReorder(ReorderEvent reorderEvent) {}
-
   public List<SecurityMemberDTO> completePermissions(String query) {
     List<SecurityMemberDTO> securityMembers =
         SecurityMemberUtils.findSecurityMembers(query, 0, PortalConstants.MAX_USERS_IN_AUTOCOMPLETE);
@@ -592,12 +589,11 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
     return roles;
   }
 
-  @Override
-  protected List<Dashboard> getVisibleDashboards(String dashboardJson) {
+  private List<Dashboard> getVisibleDashboards(String dashboardJson) {
     if (isPublicDashboard) {
-      return jsonToDashboards(dashboardJson);
+      return DashboardUtils.jsonToDashboards(dashboardJson);
     } else {
-      return super.getVisibleDashboards(dashboardJson);
+      return DashboardUtils.getVisibleDashboards(dashboardJson);
     }
   }
 

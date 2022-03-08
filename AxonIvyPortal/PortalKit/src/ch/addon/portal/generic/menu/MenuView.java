@@ -197,6 +197,12 @@ public class MenuView implements Serializable {
       case EDIT_PUBLIC_DASHBOARD:
         buildBreadCrumbForEditPublicDashboard();
         break;
+      case REORDER_MY_DASHBOARD:
+        buildBreadCrumbForReorderMyDashboard();
+        break;
+      case REORDER_PUBLIC_DASHBOARD:
+        buildBreadCrumbForReorderPublicDashboard();
+        break;
       default:
         break;
     }
@@ -293,6 +299,18 @@ public class MenuView implements Serializable {
     setPortalHomeMenuToBreadcrumbModel();
     breadcrumbModel.getElements()
         .add(buildGenericMenuItem("/ch.ivy.addon.portalkit.ui.jsf/dashboard/editPublicDashboard"));
+  }
+
+  private void buildBreadCrumbForReorderMyDashboard() {
+    setPortalHomeMenuToBreadcrumbModel();
+    breadcrumbModel.getElements()
+        .add(buildGenericMenuItem("/ch.ivy.addon.portalkit.ui.jsf/dashboard/reorder/reorderMyDashboard"));
+  }
+
+  private void buildBreadCrumbForReorderPublicDashboard() {
+    setPortalHomeMenuToBreadcrumbModel();
+    breadcrumbModel.getElements()
+        .add(buildGenericMenuItem("/ch.ivy.addon.portalkit.ui.jsf/dashboard/reorder/reorderPublicDashboard"));
   }
 
   private MenuItem buildPortalHomeMenuItem() {

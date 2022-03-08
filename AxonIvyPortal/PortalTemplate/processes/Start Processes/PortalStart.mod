@@ -207,6 +207,24 @@ Pt0 @PushWFArc f176 '' #zField
 Pt0 @StartRequest f177 '' #zField
 Pt0 @UserDialog f178 '' #zField
 Pt0 @PushWFArc f141 '' #zField
+Pt0 @StartRequest f150 '' #zField
+Pt0 @UserDialog f173 '' #zField
+Pt0 @EndTask f179 '' #zField
+Pt0 @PushWFArc f181 '' #zField
+Pt0 @UserDialog f182 '' #zField
+Pt0 @EndTask f184 '' #zField
+Pt0 @PushWFArc f186 '' #zField
+Pt0 @Alternative f187 '' #zField
+Pt0 @PushWFArc f185 '' #zField
+Pt0 @EndTask f189 '' #zField
+Pt0 @PushWFArc f190 '' #zField
+Pt0 @Alternative f191 '' #zField
+Pt0 @PushWFArc f180 '' #zField
+Pt0 @Alternative f192 '' #zField
+Pt0 @PushWFArc f194 '' #zField
+Pt0 @PushWFArc f197 '' #zField
+Pt0 @PushWFArc f196 '' #zField
+Pt0 @PushWFArc f183 '' #zField
 >Proto Pt0 Pt0 PortalStart #zField
 Bk7 @TextInP .type .type #zField
 Bk7 @TextInP .processKind .processKind #zField
@@ -1947,6 +1965,147 @@ Pt0 f141 680 128 968 128 #arcP
 Pt0 f141 1 680 96 #addKink
 Pt0 f141 2 968 96 #addKink
 Pt0 f141 1 0.5 0 0 #arcLabel
+Pt0 f150 outLink DashboardReorder.ivp #txt
+Pt0 f150 inParamDecl '<Boolean isPublicDashboard> param;' #txt
+Pt0 f150 inParamTable 'out.isPublicDashboard=param.isPublicDashboard;
+' #txt
+Pt0 f150 requestEnabled true #txt
+Pt0 f150 triggerEnabled false #txt
+Pt0 f150 callSignature DashboardReorder(Boolean) #txt
+Pt0 f150 caseData businessCase.attach=true #txt
+Pt0 f150 showInStartList 0 #txt
+Pt0 f150 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>DashboardReorder.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f150 @C|.responsibility Everybody #txt
+Pt0 f150 81 2497 30 30 -61 18 #rect
+Pt0 f173 dialogId ch.ivy.addon.portal.generic.dashboard.MyDashboardReorder #txt
+Pt0 f173 startMethod start() #txt
+Pt0 f173 requestActionDecl '<> param;' #txt
+Pt0 f173 responseMappingAction 'out=in;
+' #txt
+Pt0 f173 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>DashboardArrangement</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f173 432 2650 144 44 -66 -8 #rect
+Pt0 f179 681 2657 30 30 0 15 #rect
+Pt0 f181 576 2672 681 2672 #arcP
+Pt0 f182 dialogId ch.ivy.addon.portal.generic.dashboard.PublicDashboardReorder #txt
+Pt0 f182 startMethod start() #txt
+Pt0 f182 requestActionDecl '<> param;' #txt
+Pt0 f182 responseMappingAction 'out=in;
+' #txt
+Pt0 f182 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>DashboardArrangement</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f182 432 2490 144 44 -66 -8 #rect
+Pt0 f184 681 2497 30 30 0 15 #rect
+Pt0 f186 576 2512 681 2512 #arcP
+Pt0 f187 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>has DashboardWritePublic&#13;
+permission?</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f187 320 2496 32 32 -57 -54 #rect
+Pt0 f185 expr in #txt
+Pt0 f185 outCond ch.ivy.addon.portalkit.util.PermissionUtils.hasDashboardWritePublicPermission() #txt
+Pt0 f185 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>yes</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f185 352 2512 432 2512 #arcP
+Pt0 f185 0 0.3888888888888889 0 -9 #arcLabel
+Pt0 f189 321 2569 30 30 0 15 #rect
+Pt0 f190 expr in #txt
+Pt0 f190 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>no</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f190 336 2528 336 2569 #arcP
+Pt0 f190 0 0.42857142857142855 14 0 #arcLabel
+Pt0 f191 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>has DashboardWriteOwn&#13;
+permission?</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f191 320 2656 32 32 -62 27 #rect
+Pt0 f180 expr in #txt
+Pt0 f180 outCond ch.ivy.addon.portalkit.util.PermissionUtils.hasDashboardWriteOwnPermission() #txt
+Pt0 f180 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>yes</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f180 352 2672 432 2672 #arcP
+Pt0 f180 0 0.3888888888888889 3 -8 #arcLabel
+Pt0 f192 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>is public&#13;
+dashboard?</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f192 176 2496 32 32 -34 -52 #rect
+Pt0 f194 111 2512 176 2512 #arcP
+Pt0 f197 expr in #txt
+Pt0 f197 outCond in.isPublicDashboard #txt
+Pt0 f197 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>yes</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f197 208 2512 320 2512 #arcP
+Pt0 f197 0 0.15178571428571427 0 14 #arcLabel
+Pt0 f196 expr in #txt
+Pt0 f196 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>no</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f196 192 2528 320 2672 #arcP
+Pt0 f196 1 192 2672 #addKink
+Pt0 f196 0 0.13970588235294118 12 0 #arcLabel
+Pt0 f183 expr in #txt
+Pt0 f183 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>no</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f183 336 2656 336 2599 #arcP
+Pt0 f183 0 0.42857142857142855 -14 -1 #arcLabel
 >Proto Pt0 .type ch.ivy.addon.portal.generic.PortalStartData #txt
 >Proto Pt0 .processKind NORMAL #txt
 >Proto Pt0 0 0 32 24 18 0 #rect
@@ -2762,6 +2921,24 @@ Pt0 f178 mainOut f175 tail #connect
 Pt0 f175 head f174 mainIn #connect
 Pt0 f22 out f141 tail #connect
 Pt0 f141 head f0 in #connect
+Pt0 f173 mainOut f181 tail #connect
+Pt0 f181 head f179 mainIn #connect
+Pt0 f182 mainOut f186 tail #connect
+Pt0 f186 head f184 mainIn #connect
+Pt0 f187 out f185 tail #connect
+Pt0 f185 head f182 mainIn #connect
+Pt0 f187 out f190 tail #connect
+Pt0 f190 head f189 mainIn #connect
+Pt0 f191 out f180 tail #connect
+Pt0 f180 head f173 mainIn #connect
+Pt0 f150 mainOut f194 tail #connect
+Pt0 f194 head f192 in #connect
+Pt0 f192 out f197 tail #connect
+Pt0 f197 head f187 in #connect
+Pt0 f192 out f196 tail #connect
+Pt0 f196 head f191 in #connect
+Pt0 f191 out f183 tail #connect
+Pt0 f183 head f189 mainIn #connect
 Bk7 f3 ao f8 tail #connect
 Bk7 f8 head f36 @CG|ai #connect
 Bk7 f22 mainOut f43 tail #connect
