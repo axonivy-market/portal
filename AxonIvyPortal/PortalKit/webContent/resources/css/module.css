@@ -6074,3 +6074,34 @@ body span.ui-commandlink .si {
 .parameters-panel .param-label {
   word-break: break-word;
 }
+
+.dashboard-configuration-dialog__content {
+  width: 600px;
+}
+
+.dashboard-configuration-dialog__config-title {
+  font-size: 2rem;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.dashboard-configuration-dialog__action-row {
+  height: 80px;
+  margin-bottom: 12px;
+  border-radius: 5px;
+  border: 1px solid transparent;
+}
+
+.dashboard-configuration-dialog__action-row-label {
+  display: block;
+  font-weight: bold;
+  font-size: 2rem;
+}
+
+.dashboard-configuration-dialog__action-row .dashboard-configuration-dialog__action-row-icon {
+  text-align: center;
+  font-size: 3rem;
+  width: 100%;
+  line-height: 1.5;
+}
