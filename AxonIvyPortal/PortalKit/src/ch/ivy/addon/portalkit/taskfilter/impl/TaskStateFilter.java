@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilter;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
+import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
@@ -28,12 +29,7 @@ public class TaskStateFilter extends TaskFilter {
    * Advance note: if current user is Administrator, will consider to add system states
    */
   public TaskStateFilter() {
-    this.filteredStates = new ArrayList<>(TaskSearchCriteria.STANDARD_STATES);
-    if(PermissionUtils.checkReadAllTasksPermission()) {
-      this.filteredStates.addAll(TaskSearchCriteria.ADVANCE_STATES);
-    } else {
-      this.filteredStates.add(TaskState.DONE);
-    }
+    this.filteredStates = TaskUtils.getValidStates();
     this.selectedFilteredStatesAtBeginning = new ArrayList<>(filteredStates);
     this.selectedFilteredStates = new ArrayList<>();
   }

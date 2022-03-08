@@ -5,13 +5,16 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
+import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;
 import ch.ivy.addon.portalkit.publicapi.CaseAPI;
 import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISecurityConstants;
+import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.INote;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
@@ -70,5 +73,27 @@ public final class CaseUtils {
       selectedCase.destroy();
       return Void.class;
     });
+  }
+
+  public static List<CaseState> getValidStates() {
+    var states = new ArrayList<>(CaseSearchCriteria.STANDARD_STATES);
+    if (PermissionUtils.checkReadAllCasesPermission()) {
+      states.addAll(CaseSearchCriteria.ADVANCE_STATES);
+    } else {
+      states.add(CaseState.DONE);
+    }
+    return states.stream()
+        .sorted((s1, s2) -> StringUtils.compare(s1.toString(), s2.toString()))
+        .collect(Collectors.toList());
+  }
+
+  public static List<CaseState> filterStateByPermission(List<CaseState> states) {
+    if (PermissionUtils.checkReadAllTasksPermission()) {
+      return states;
+    }
+    var validStates = getValidStates();
+    return CollectionUtils.emptyIfNull(states).stream()
+        .filter(state -> validStates.contains(state))
+        .collect(Collectors.toList());
   }
 }
