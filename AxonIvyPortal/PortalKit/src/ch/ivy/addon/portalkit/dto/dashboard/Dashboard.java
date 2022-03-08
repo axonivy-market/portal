@@ -70,7 +70,6 @@ public class Dashboard extends AbstractConfiguration implements Serializable {
     this.permissions = permissions;
   }
 
-
   public List<SecurityMemberDTO> getPermissionDTOs() {
     return permissionDTOs;
   }

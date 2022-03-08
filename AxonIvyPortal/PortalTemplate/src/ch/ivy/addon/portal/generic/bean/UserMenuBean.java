@@ -158,12 +158,48 @@ public class UserMenuBean implements Serializable {
     }
   }
 
+  public void navigateToPublicDashboardReorderOrDisplayWorkingTaskWarning(boolean isWorkingOnATask, ITask task) throws IOException {
+    if (isWorkingOnATask && task.getState() != TaskState.DONE) {
+      openTaskLosingConfirmationDialog();
+      targetPage = getPublicDashboardReorderUrl();
+    } else {
+      executeJSResetPortalMenuState();
+      navigateToPublicDashboardReorder();
+    }
+  }
+
+  public void navigateToMyDashboardReorderOrDisplayWorkingTaskWarning(boolean isWorkingOnATask, ITask task) throws IOException {
+    if (isWorkingOnATask && task.getState() != TaskState.DONE) {
+      openTaskLosingConfirmationDialog();
+      targetPage = getMyDashboardReorderUrl();
+    } else {
+      executeJSResetPortalMenuState();
+      navigateToMyDashboardReorder();
+    }
+  }
+
   private String getAbsencesUrl() {
     return PortalNavigator.buildAbsencesUrl();
   }
 
+  private String getPublicDashboardReorderUrl() {
+    return PortalNavigator.buildDashboardReorderUrl(true);
+  }
+
+  private String getMyDashboardReorderUrl() {
+    return PortalNavigator.buildDashboardReorderUrl(false);
+  }
+
   public void navigateToAbsences() throws IOException {
     getExternalContext().redirect(getAbsencesUrl());
+  }
+
+  private void navigateToPublicDashboardReorder() throws IOException {
+    getExternalContext().redirect(getPublicDashboardReorderUrl());
+  }
+
+  private void navigateToMyDashboardReorder() throws IOException {
+    getExternalContext().redirect(getMyDashboardReorderUrl());
   }
 
   public void reserveTaskAndNavigateWithGrowl(ITask task) throws IOException {

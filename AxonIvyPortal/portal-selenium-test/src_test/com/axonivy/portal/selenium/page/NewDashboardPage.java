@@ -728,4 +728,12 @@ public class NewDashboardPage extends TemplatePage {
   public SelenideElement getPublicDashboardConfigurationSection() {
     return $("div[id$=':public-dashboard-configuration-section']");
   }
+
+  public ElementsCollection getDashboardCollection() {
+    return $$("a.dashboard__title");
+  }
+
+  public void waitPageDisplay() {
+    $("a.dashboard__title").waitUntil(disappears, DEFAULT_TIMEOUT);
+  }
 }
