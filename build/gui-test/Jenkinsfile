@@ -4,6 +4,10 @@ pipeline {
   options {
     buildDiscarder(logRotator(numToKeepStr: '60', artifactNumToKeepStr: '30'))
   }
+  
+  triggers {
+    cron('30 17 * * *')
+  }
 
   tools { 
       maven '3.6' 
