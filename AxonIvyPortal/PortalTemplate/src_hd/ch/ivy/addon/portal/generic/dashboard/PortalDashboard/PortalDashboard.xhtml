@@ -8,6 +8,44 @@
 
     <ui:param name="managedBean" value="#{dashboardBean}" />
     <ui:param name="dashboardBodyStyleClass" value="readonly" />
+
+    <ui:define name="headerAction">
+      <p:commandButton id="switch-to-edit-mode" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}"
+        actionListener="#{dashboardBean.navigateToConfiguration}" process="@this" update="grid-stack @this"
+        rendered="#{dashboardBean.canEditPrivateDashboard != dashboardBean.canEditPublicDashboard}" icon="si si-pencil" />
+      <p:commandButton id="choose-action-to-edit" type="button"
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}"
+        rendered="#{dashboardBean.canEditPrivateDashboard and dashboardBean.canEditPublicDashboard}" icon="si si-pencil"
+        onclick="PF('action-selection-dialog').show()" />
+
+      <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
+        <ui:param name="id" value="action-selection-dialog" />
+        <ui:param name="widgetVar" value="action-selection-dialog" />
+        <ui:param name="appendTo" value="@(body)" />
+        <ui:param name="iconClass" value="si si-information-circle" />
+        <ui:param name="iconStyleClass" value="portal-dialog-info-icon" />
+        <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/actionSelection')}" />
+        <ui:param name="dialogContent"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/selectEditAction')}" />
+
+        <ui:define name="dialogFooter">
+          <p:link href="#" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+            onclick="PF('action-selection-dialog').hide();" />
+          <p:commandButton id="edit-private-dashboard"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/editPrivateDashboard')}"
+            actionListener="#{dashboardBean.navigatetoPrivateConfiguration}" process="@this"
+            rendered="#{dashboardBean.canEditPrivateDashboard}" icon="si si-pencil"
+            styleClass="dashboard__edit-global-dashboard" />
+          <p:commandButton id="edit-public-dashboard"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/editPublicDashboard')}"
+            actionListener="#{dashboardBean.navigatetoPublicConfiguration}" process="@this"
+            rendered="#{dashboardBean.canEditPublicDashboard}" icon="si si-pencil"
+            styleClass="dashboard__edit-global-dashboard" />
+        </ui:define>
+      </ui:decorate>
+    </ui:define>
+
+
   </ui:composition>
 </h:body>
 </html>
