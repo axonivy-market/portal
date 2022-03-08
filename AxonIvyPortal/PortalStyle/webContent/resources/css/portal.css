@@ -2183,3 +2183,24 @@ body.in-dialog .ui-widget-overlay {
   font-style: var(--default-font-style);
   font-size: var(--default-body-font-size);
 }
+
+.dashboard-configuration-dialog__action-row {
+  box-shadow:  var(--item-widget-box-shadow);
+}
+
+.dashboard-configuration-dialog__action-row:hover {
+  background: var(--process-start-list-item-hover-background-color);
+  border: var(--process-start-list-item-hover-border);
+}
+
+.dashboard-configuration-dialog__action-row-label {
+  color: var(--primary-dark-text-color);
+}
+
+.dashboard-configuration-dialog__action-row-description {
+  color: var(--primary-dark-text-color);
+}
+
+.dashboard-configuration-dialog__action-row-icon {
+  color: var(--primary-dark-text-color);
+}
