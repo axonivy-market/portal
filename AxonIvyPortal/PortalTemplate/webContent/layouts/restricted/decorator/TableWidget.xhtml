@@ -144,7 +144,7 @@
         for="info-sidebar-link-#{index}"
         rendered="#{empty isRenderInfo ? 'true': isRenderInfo}"
         appendTo="@(#grid-stack)"
-        styleClass="info-overlay-panel"
+        styleClass="info-overlay-panel js-dashboard-overlay-panel"
         onShow="buildStatisticInfos#{index}(); return false;"
         onHide="updateWidgetStatisticPannel#{index}(); return false;"
         dismissable="false"
@@ -210,7 +210,7 @@
         for="filter-sidebar-link-#{index}"
         rendered="#{empty isRenderFilter ? 'true': isRenderFilter}"
         appendTo="@(#grid-stack)"
-        styleClass="filter-overlay-panel"
+        styleClass="filter-overlay-panel js-dashboard-overlay-panel"
         dismissable="false"
         dynamic="true"
         onShow="loadUserFilters#{index}(); #{onFilterOverlayPanelShow};">

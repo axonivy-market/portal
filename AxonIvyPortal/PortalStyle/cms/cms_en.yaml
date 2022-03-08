@@ -652,7 +652,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       savedFilters: 'Saved filters:'
   dashboard:
     DashboardConfigurationDialog:
-      ConfigureDashboard: Configure Dashboard
+      ConfigureDashboard: Dashboard configuration
       CreateNewPrivateDashboard: Create new private dashboard
       CreateNewPublicDashboard: Create new public dashboard
       EditPrivateDashboards: Edit your private dashboards
