@@ -279,3 +279,11 @@ function resetPortalLeftMenuState() {
   $.removeCookie('serenity_expandeditems', {path: '/'});
   resetSelectedMenuItems();
 }
+
+function hideDashboardOverlayPanels() {
+  $(".js-dashboard-overlay-panel").each(function(){
+    if ($(this).hasClass("ui-overlay-visible")) {
+      $(this).removeClass("ui-overlay-visible").addClass("ui-overlay-hidden");
+    }
+  });
+}
