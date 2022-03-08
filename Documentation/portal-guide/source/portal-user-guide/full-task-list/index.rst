@@ -273,15 +273,9 @@ HowTo: Show Workflow Events
 
 #. Open the task details of a task
 
-#. Click on the |show-more-icon| :guilabel:`Show more` link below the notes section
+#. Click on the :guilabel:`Actions` link on the right top corner of the **Data and Description** section
 
-   |how-to-show-note-details|
-
-#. A new page with the task history is opened
-
-#. Click :guilabel:`Workflow Events` link on the right side of page to see Workflow Events dialog
-
-   |how-to-show-workflow-event|
+#. Click :guilabel:`Workflow Events` link on the overlay panel to see Workflow Events dialog
 
 **Workflow Events dialog**
 
