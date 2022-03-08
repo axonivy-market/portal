@@ -22,6 +22,7 @@ import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.CustomDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
+import ch.ivy.addon.portalkit.dto.dashboard.DashboardOrder;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.ProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
@@ -34,8 +35,8 @@ import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
 import ch.ivy.addon.portalkit.service.DashboardService;
 import ch.ivy.addon.portalkit.service.WidgetFilterService;
-import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivy.addon.portalkit.support.HtmlParser;
+import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -79,16 +80,21 @@ public class DashboardBean implements Serializable {
   }
 
   protected List<Dashboard> collectDashboards() {
+    List<Dashboard> visibleDashboards = DashboardUtils.getAllVisibleDashboardsOfSessionUser();
+    List<DashboardOrder> dashboardOrders = DashboardUtils.getDashboardOrdersOfSessionUser();
+    Map<String, Dashboard> idToDashboard = DashboardUtils.createMapIdToDashboard(visibleDashboards);
     List<Dashboard> collectedDashboards = new ArrayList<>();
-    String dashboardInUserProperty = readDashboardBySessionUser();
-    try {
-      collectedDashboards = defaultDashboards();
-      List<Dashboard> myDashboards = getVisibleDashboards(dashboardInUserProperty);
-      collectedDashboards.addAll(myDashboards);
-    } catch (PortalException e) {
-      // If errors like parsing JSON errors, ignore them
-      Ivy.log().error(e);
+    for (DashboardOrder dashboardOrder : dashboardOrders) {
+      if (dashboardOrder.getDashboardId() == null) {
+        continue;
+      }
+      Dashboard currentDashboard = idToDashboard.remove(dashboardOrder.getDashboardId());
+      if (dashboardOrder.isVisible()) {
+        collectedDashboards.add(currentDashboard);
+      }
     }
+    collectedDashboards.addAll(idToDashboard.values());
+
     return collectedDashboards;
   }
 
@@ -111,8 +117,7 @@ public class DashboardBean implements Serializable {
   }
 
   protected List<Dashboard> jsonToDashboards(String dashboardJSON) {
-    List<Dashboard> mappingDashboards =
-        BusinessEntityConverter.jsonValueToEntities(dashboardJSON, Dashboard.class);
+    List<Dashboard> mappingDashboards = BusinessEntityConverter.jsonValueToEntities(dashboardJSON, Dashboard.class);
     for (Dashboard dashboard : mappingDashboards) {
       if (CollectionUtils.isEmpty(dashboard.getPermissions())) {
         ArrayList<String> defaultPermissions = new ArrayList<>();
@@ -186,38 +191,15 @@ public class DashboardBean implements Serializable {
     }
   }
 
-  protected List<Dashboard> defaultDashboards() {
+  protected List<Dashboard> getVisiblePublicDashboards() {
     String dashboardJson = Ivy.var().get(PortalVariable.DASHBOARD.key);
-    List<Dashboard> visibleDashboards = getVisibleDashboards(dashboardJson);
+    List<Dashboard> visibleDashboards = DashboardUtils.getVisibleDashboards(dashboardJson);
     setDashboardAsPublic(visibleDashboards);
     return visibleDashboards;
   }
 
   private void setDashboardAsPublic(List<Dashboard> visibleDashboards) {
     visibleDashboards.stream().forEach(dashboard -> dashboard.setIsPublic(true));
-  }
-
-  protected List<Dashboard> getVisibleDashboards(String dashboardJson) {
-    List<Dashboard> dashboards = jsonToDashboards(dashboardJson);
-    dashboards.removeIf(dashboard -> {
-      List<String> permissions = dashboard.getPermissions();
-      if (permissions == null) {
-        return false;
-      } else {
-        for (String permission : permissions) {
-          if (isSessionUserHasPermisson(permission)) {
-            return false;
-          }
-        }
-      }
-      return true;
-    });
-    return dashboards;
-  }
-
-  private boolean isSessionUserHasPermisson(String permission) {
-    return StringUtils.startsWith(permission, "#") ? StringUtils.equals(currentUser().getMemberName(), permission)
-        : PermissionUtils.doesSessionUserHaveRole(permission);
   }
 
   public List<Dashboard> getDashboards() {
@@ -420,15 +402,6 @@ public class DashboardBean implements Serializable {
     this.deleteFilters = deleteFilters;
   }
 
-
-  public void navigateToConfiguration() {
-    if (canEditPrivateDashboard) {
-      navigatetoPrivateConfiguration();
-    } else if (canEditPublicDashboard) {
-      navigatetoPublicConfiguration();
-    }
-  }
-
   public void navigatetoPrivateConfiguration() {
     PortalNavigator.navigateToNewDashboardConfiguration(false);
   }
@@ -436,4 +409,13 @@ public class DashboardBean implements Serializable {
   public void navigatetoPublicConfiguration() {
     PortalNavigator.navigateToNewDashboardConfiguration(true);
   }
+
+  public void navigatetoMyDashboardReorder() {
+    PortalNavigator.navigateToDashboardReorder(false);
+  }
+
+  public void navigatetoPublicDashboardReorder() {
+    PortalNavigator.navigateToDashboardReorder(true);
+  }
+
 }
