@@ -248,8 +248,7 @@ public class ProcessWidgetTest extends BaseTest {
   private void changeLanguage(int selectionIndex) {
     UserProfilePage userProfilePage = homePage.openMyProfilePage();
     userProfilePage.selectLanguage(selectionIndex);
-    userProfilePage.save();
-    homePage = userProfilePage.clickOnCancelLink();
+    homePage = userProfilePage.save();
   }
   
   @Test

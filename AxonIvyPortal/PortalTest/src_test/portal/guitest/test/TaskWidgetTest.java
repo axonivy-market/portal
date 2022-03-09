@@ -236,10 +236,10 @@ public class TaskWidgetTest extends BaseTest {
     // Change sorting options
     userProfilePage.selectTaskSortField("Priority");
     userProfilePage.selectTaskSortDirection("Sort ascending");
-    userProfilePage.save();
+    homePage = userProfilePage.save();
 
     // Check result
-    TaskWidgetPage taskWidgetPage = userProfilePage.openTaskList();
+    TaskWidgetPage taskWidgetPage = homePage.openTaskList();
     assertEquals("high", taskWidgetPage.getPriorityOfTask(0));
     assertEquals("low", taskWidgetPage.getPriorityOfTask(taskWidgetPage.countTasks() - 1));
 
@@ -247,10 +247,10 @@ public class TaskWidgetTest extends BaseTest {
     userProfilePage = taskWidgetPage.openMyProfilePage();
     userProfilePage.selectTaskSortField("Name");
     userProfilePage.selectTaskSortDirection("Sort descending");
-    userProfilePage.save();
+    homePage = userProfilePage.save();
 
     // Check result
-    taskWidgetPage = userProfilePage.openTaskList();
+    taskWidgetPage = homePage.openTaskList();
     assertEquals("Sick Leave Request", taskWidgetPage.getNameOfTaskAt(0));
     assertEquals("Annual Leave Request", taskWidgetPage.getNameOfTaskAt(taskWidgetPage.countTasks() - 1));
   }
@@ -296,9 +296,9 @@ public class TaskWidgetTest extends BaseTest {
     UserProfilePage userProfilePage = taskWidgetPage.openMyProfilePage();
     userProfilePage.selectTaskSortField("Priority");
     userProfilePage.selectTaskSortDirection("Sort ascending");
-    userProfilePage.save();
+    homePage = userProfilePage.save();
     // Check result
-    taskWidgetPage = userProfilePage.openTaskList();
+    taskWidgetPage = homePage.openTaskList();
     selectedSortColumn = taskWidgetPage.getSelectedSortColumn();
     assertTrue(StringUtils.equalsIgnoreCase("Prio", selectedSortColumn));
     assertEquals("high", taskWidgetPage.getPriorityOfTask(0));
