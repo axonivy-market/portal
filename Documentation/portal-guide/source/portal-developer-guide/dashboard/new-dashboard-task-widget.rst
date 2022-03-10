@@ -44,6 +44,9 @@ Below is a sample JSON definition of the task widget in the Portal dashboard
          },
          {
             "field": "startTimestamp"
+         },
+         {
+            "field": "actions"
          }
       ]
    }
@@ -102,6 +105,8 @@ The basic structure of JSON of Task widget
             - ``startTimestamp``: created date and time of the task
 
             - ``expiryTimestamp``: expiry date and time of the task
+            
+            - ``actions``: for further actions: reset task, delegate task, reserve, destroy task, and add Ad-hoc task
 
          For custom column, ``field`` is the name of a task custom field.
          Portal will use the value of ``field`` attribute to get the value of the column.
