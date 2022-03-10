@@ -105,6 +105,8 @@ public class DashboardWidgetUtils {
         column = BusinessEntityConverter.convertValue(column, ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.ExpiryDateColumnModel.class);
       } else if (DashboardStandardTaskColumn.CATEGORY.getField().equalsIgnoreCase(field)) {
         column = BusinessEntityConverter.convertValue(column, ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.CategoryColumnModel.class);
+      } else if (DashboardStandardTaskColumn.ACTIONS.getField().equalsIgnoreCase(field)) {
+        column = BusinessEntityConverter.convertValue(column, ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.ActionsColumnModel.class);
       }
       column.initDefaultValue();
       columns.set(i, column);
@@ -146,6 +148,8 @@ public class DashboardWidgetUtils {
         column = BusinessEntityConverter.convertValue(column, ch.ivy.addon.portalkit.dto.dashboard.casecolumn.OwnerColumnModel.class);
       } else if (DashboardStandardCaseColumn.CATEGORY.getField().equalsIgnoreCase(field)) {
         column = BusinessEntityConverter.convertValue(column, ch.ivy.addon.portalkit.dto.dashboard.casecolumn.CategoryColumnModel.class);
+      } else if (DashboardStandardTaskColumn.ACTIONS.getField().equalsIgnoreCase(field)) {
+        column = BusinessEntityConverter.convertValue(column, ch.ivy.addon.portalkit.dto.dashboard.casecolumn.ActionsColumnModel.class);
       }
       column.initDefaultValue();
       columns.set(i, column);

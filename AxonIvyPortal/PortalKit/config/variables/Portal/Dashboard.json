@@ -41,6 +41,10 @@
           {
             "field": "category"
           }
+          ,
+          {
+            "field": "actions"
+          }
         ]
       },
       {
@@ -75,6 +79,9 @@
           },
           {
             "field": "category"
+          },
+          {
+            "field": "actions"
           }
         ]
       },
