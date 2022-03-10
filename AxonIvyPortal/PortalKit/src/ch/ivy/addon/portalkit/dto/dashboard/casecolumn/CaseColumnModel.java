@@ -42,6 +42,8 @@ public class CaseColumnModel extends ColumnModel {
         column = new FinishedDateColumnModel();
       } else if (DashboardStandardCaseColumn.OWNER.getField().equalsIgnoreCase(field)) {
         column = new OwnerColumnModel();
+      } else if (DashboardStandardCaseColumn.ACTIONS.getField().equalsIgnoreCase(field)) {
+        column = new ActionsColumnModel();
       }
     }
     return column;
