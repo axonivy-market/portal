@@ -8,6 +8,7 @@ import javax.faces.bean.ViewScoped;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
+import ch.ivy.addon.portalkit.enums.BehaviourWhenClickingOnLineInTaskList;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.TaskFilterService;
@@ -30,6 +31,7 @@ public class TaskWidgetBean implements Serializable {
   private TaskLazyDataModel dataModel;
   private Boolean isTaskDetailOpenning;
   private boolean isShowFullTaskList;
+  private boolean isRunningTaskWhenClickingLineOnTaskList;
 
   public TaskWidgetBean() {
     expandedTaskId = -1L;
@@ -39,6 +41,9 @@ public class TaskWidgetBean implements Serializable {
         StringUtils.isNumeric(taskListRefreshIntervalUserSetting) ? Long.parseLong(taskListRefreshIntervalUserSetting)
             : DEFAULT_TASK_LIST_REFRESH_INTERVAL;
     isShowFullTaskList = PermissionUtils.checkAccessFullTaskListPermission();
+    isRunningTaskWhenClickingLineOnTaskList =
+        new GlobalSettingService().findGlobalSettingValue(GlobalVariable.BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.toString())
+            .equalsIgnoreCase(BehaviourWhenClickingOnLineInTaskList.RUN_TASK.name());
   }
 
   public Long getExpandedTaskId() {
@@ -113,5 +118,12 @@ public class TaskWidgetBean implements Serializable {
   public void destroyTask(Long taskId) {
     TaskUtils.destroyTaskById(taskId);
   }
-  
+
+  public boolean isRunningTaskWhenClickingLineOnTaskList() {
+    return isRunningTaskWhenClickingLineOnTaskList;
+  }
+
+  public void setRunningTaskWhenClickingLineOnTaskList(boolean isRunningTaskWhenClickingLineOnTaskList) {
+    this.isRunningTaskWhenClickingLineOnTaskList = isRunningTaskWhenClickingLineOnTaskList;
+  }
 }

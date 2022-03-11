@@ -1,5 +1,8 @@
 package ch.ivy.addon.portalkit.enums;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import ch.ivy.addon.portalkit.bean.TaskWidgetBean;
 import ch.ivy.addon.portalkit.document.DocumentExtensionConstants;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -38,12 +41,15 @@ public enum GlobalVariable {
   HIDE_TASK_DOCUMENT(GlobalVariableType.SELECTION, Option.FALSE.toString(), "hideTaskDocument"),
   HIDE_CASE_DOCUMENT(GlobalVariableType.SELECTION, Option.FALSE.toString(), "hideCaseDocument"),
   SHOW_GLOBAL_SEARCH(GlobalVariableType.SELECTION, Option.TRUE.toString(), "showGlobalSearch"),
-  DISPLAY_USERS_OF_ROLE(GlobalVariableType.SELECTION, Option.FALSE.toString(), "displayAllUsersOfTaskActivator");
+  DISPLAY_USERS_OF_ROLE(GlobalVariableType.SELECTION, Option.FALSE.toString(), "displayAllUsersOfTaskActivator"),
+  BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST(GlobalVariableType.EXTERNAL_SELECTION, BehaviourWhenClickingOnLineInTaskList.ACCESS_TASK_DETAILS.name(),
+      "behaviourWhenClickingOnLineInTaskList", getBehavioursWhenClickingOnLineInTaskList());
   
   private GlobalVariableType type;
   private String defaultValue;
   private String noteCMS;
   private Option[] options;
+  private Map<String, Object> externalOptions;
 
   public enum Option {
     FALSE,
@@ -57,7 +63,7 @@ public enum GlobalVariable {
       return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/Enums/GlobalVariable/Option/" + name());
     }
   }
-  
+
   private GlobalVariable() {
   }
 
@@ -81,7 +87,23 @@ public enum GlobalVariable {
     this.noteCMS = noteCMS;
     this.options = options;
   }
-  
+
+  private GlobalVariable(GlobalVariableType type, String defaultValue, String noteCMS, Map<String, Object> externalOptions) {
+    this.type = type;
+    this.defaultValue = defaultValue;
+    this.noteCMS = noteCMS;
+    this.externalOptions = externalOptions;
+  }
+
+  private static Map<String, Object> getBehavioursWhenClickingOnLineInTaskList() {
+    Map<String, Object> result = new HashMap<>();
+    for (BehaviourWhenClickingOnLineInTaskList behaviour : BehaviourWhenClickingOnLineInTaskList.values()) {
+      result.put(behaviour.name(), behaviour);
+    }
+
+    return result;
+  }
+
   public GlobalVariableType getType() {
     return type;
   }
@@ -100,5 +122,13 @@ public enum GlobalVariable {
   
   private static Option[] getLoggedInUserFormatOptions() {
     return new Option[] {Option.USERNAME, Option.DISPLAY_NAME, Option.DISPLAY_NAME_USERNAME, Option.USERNAME_DISPLAY_NAME};
+  }
+
+  public Map<String, Object> getExternalOptions() {
+    return externalOptions;
+  }
+
+  public void setExternalOptions(Map<String, Object> externalOptions) {
+    this.externalOptions = externalOptions;
   }
 }
