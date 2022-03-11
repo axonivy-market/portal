@@ -23,6 +23,10 @@ public class CaseStateFilter extends CaseFilter {
   private List<CaseState> selectedFilteredStates;
   @JsonIgnore
   private List<CaseState> selectedFilteredStatesAtBeginning;
+  @JsonIgnore
+  private List<CaseState> submittedFilteredStates;
+  @JsonIgnore
+  private boolean isSelectedAll;
 
   /**
    * Initialize the values of filteredStates: CREATED, RUNNING, DONE
@@ -36,6 +40,7 @@ public class CaseStateFilter extends CaseFilter {
       this.filteredStates.add(CaseState.DONE);
     }
     this.selectedFilteredStatesAtBeginning = new ArrayList<>(filteredStates);
+    this.submittedFilteredStates = new ArrayList<>(filteredStates);
     this.selectedFilteredStates = new ArrayList<>();
   }
 
@@ -46,9 +51,16 @@ public class CaseStateFilter extends CaseFilter {
 
   @Override
   public String value() {
-    if (CollectionUtils.isEmpty(selectedFilteredStates) || isAllStatesSelected()) {
+    if (CollectionUtils.isNotEmpty(submittedFilteredStates)) {
+      selectedFilteredStates = new ArrayList<>(submittedFilteredStates);
+    }
+    if (CollectionUtils.isEmpty(selectedFilteredStates)) {
+      return noSelectionLabel();
+    } else if (isAllStatesSelected()) {
+      isSelectedAll = true;
       return ALL;
     }
+    isSelectedAll = false;
     String value = userFriendlyState(selectedFilteredStates.get(0));
     for (int i = 1; i < selectedFilteredStates.size(); i++) {
       if (filteredStates.contains(selectedFilteredStates.get(i))) {
@@ -77,10 +89,28 @@ public class CaseStateFilter extends CaseFilter {
   }
 
   @Override
+  public void validate() {
+    submittedFilteredStates = new ArrayList<>(selectedFilteredStates);
+  }
+
+  public void onSelectedAllStates() {
+    if (isSelectedAll) {
+      selectedFilteredStates = new ArrayList<>(filteredStates);
+    } else {
+      selectedFilteredStates = new ArrayList<>();
+    }
+  }
+
+  public void onSelectState() {
+    isSelectedAll = isAllStatesSelected();
+  }
+
+  @Override
   public void resetValues() {
     selectedFilteredStates = new ArrayList<>(selectedFilteredStatesAtBeginning);
+    submittedFilteredStates = new ArrayList<>();
   }
-  
+
   @Override
   public boolean defaultFilter() {
     return true;
@@ -119,4 +149,11 @@ public class CaseStateFilter extends CaseFilter {
     this.selectedFilteredStatesAtBeginning = selectedFilteredStatesAtBeginning;
   }
 
+  public boolean isSelectedAll() {
+    return isSelectedAll;
+  }
+
+  public void setSelectedAll(boolean isSelectedAll) {
+    this.isSelectedAll = isSelectedAll;
+  }
 }

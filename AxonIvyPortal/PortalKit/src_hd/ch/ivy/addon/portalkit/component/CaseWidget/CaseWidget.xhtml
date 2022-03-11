@@ -123,12 +123,21 @@
               <p:overlayPanel id="filter-add-panel" widgetVar="filter-add-panel" styleClass="filter-add-panel"
                 for="filter-add-action" my="left top" at="left bottom" dismissable="false">
                 <h:form id="filter-add-form">
-                  <p:scrollPanel styleClass="filter-selector-container" mode="native">
+                  <div class="config-checkbox-select-all">
+                    <p:selectBooleanCheckbox id="filters-select-all" styleClass="select-all-checkbox"
+                      itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/selectAll')}"
+                      value="#{data.dataModel.selectedAllFilters}" >
+                      <p:ajax listener="#{data.dataModel.onSelectedAllFilters()}" update="filter-selector-container" partialSubmit="true"/>
+                    </p:selectBooleanCheckbox>
+                  </div>
+                  <p:scrollPanel id="filter-selector-container" styleClass="filter-selector-container" mode="native">
                     <p:selectManyCheckbox id="filter-selection" layout="pageDirection"
                       value="#{data.dataModel.selectedFilters}" converter="pojoConverter"
                       valueChangeListener="#{data.dataModel.onFilterChange}">
                       <f:selectItems value="#{data.dataModel.filters}" var="filter" itemLabel="#{filter.label()}"
                         itemValue="#{filter}" />
+                      <p:ajax listener="#{data.dataModel.onSelectedFilter()}"
+                        update="filters-select-all" global="false" partialSubmit="true"/>
                     </p:selectManyCheckbox>
                   </p:scrollPanel>
 
@@ -143,7 +152,8 @@
                     <p:commandButton id="cancel-add-filter-command" styleClass="portal-cancel-button"
                       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
                       onclick="PF('filter-add-panel').hide();" global="false" partialSubmit="true" immediate="true"
-                      resetValues="true" process="@this" update="filter-add-form">
+                      resetValues="true" process="@this" update="filter-add-form"
+                      actionListener="#{data.dataModel.restoreFiltersSelection()}">
                     </p:commandButton>
                   </h:panelGroup>
                 </h:form>

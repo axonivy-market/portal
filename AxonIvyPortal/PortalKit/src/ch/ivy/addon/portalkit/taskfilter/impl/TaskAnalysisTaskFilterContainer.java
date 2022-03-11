@@ -6,12 +6,10 @@ import ch.ivy.addon.portalkit.comparator.TaskFilterComparator;
 
 public class TaskAnalysisTaskFilterContainer extends DefaultTaskFilterContainer {
 
-  private TaskNameFilter nameFilter = new TaskNameFilter();
   private TaskWorkerFilter workerFilter = new TaskWorkerFilter();
 
   public TaskAnalysisTaskFilterContainer() {
     super();
-    filters.add(nameFilter);
     filters.add(workerFilter);
     Collections.sort(filters, new TaskFilterComparator());
   }
@@ -24,11 +22,4 @@ public class TaskAnalysisTaskFilterContainer extends DefaultTaskFilterContainer 
     this.workerFilter = workerFilter;
   }
 
-  public TaskNameFilter getNameFilter() {
-    return nameFilter;
-  }
-
-  public void setNameFilter(TaskNameFilter nameFilter) {
-    this.nameFilter = nameFilter;
-  }
 }
