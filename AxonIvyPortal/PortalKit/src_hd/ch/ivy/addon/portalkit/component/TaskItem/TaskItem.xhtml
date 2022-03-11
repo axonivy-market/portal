@@ -22,6 +22,7 @@
   <c:set var="compactMode" value="#{cc.attrs.compactMode}" />
   <c:set var="isSelected" value="#{taskWidgetBean.expandedTaskId == -1 and cc.attrs.isSelected}" />
   <c:set var="dataModel" value="#{cc.attrs.dataModel}" />
+  <c:set var="isRunningTaskWhenClickingLineInTaskList" value="#{taskWidgetBean.runningTaskWhenClickingLineOnTaskList}" />
 
   <h:panelGroup rendered="#{compactMode}">
     <ui:include src="CompactTaskStartLink.xhtml">
@@ -31,9 +32,12 @@
 
   <h:panelGroup id="task-start" layout="block" rendered="#{!compactMode}"
     styleClass="#{rowIndex % 2 == 0 ? 'task-even-row' : 'task-odd-row'} full-mode task-start-list-item js-task-start-list-item">
-
-    <h:panelGroup id="task-info" styleClass="task-start-link js-task-start-link" layout="block">
+    <h:panelGroup id="task-info" styleClass="task-start-link js-task-start-link" layout="block" rendered="#{!isRunningTaskWhenClickingLineInTaskList}">
       <p:ajax event="click" listener="#{logic.openDetails(task,dataModel)}" onstart="#{cc.attrs.onTaskStartCallback}" />
+      <cc:renderFacet name="taskHeader" />
+    </h:panelGroup>
+    <h:panelGroup id="task-info-quick-run-task" styleClass="task-start-link js-task-start-link" layout="block" rendered="#{isRunningTaskWhenClickingLineInTaskList}">
+      <p:ajax event="click" listener="#{logic.openTask(task,dataModel)}" onstart="#{cc.attrs.onTaskStartCallback}" />
       <cc:renderFacet name="taskHeader" />
     </h:panelGroup>
     <div class="task-item-header-actions">

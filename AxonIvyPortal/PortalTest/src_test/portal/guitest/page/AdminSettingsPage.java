@@ -71,6 +71,39 @@ public class AdminSettingsPage extends TemplatePage {
     click(saveButton);
   }
 
+  private void editExternalSelectionGlobalVariable(String variableName, String variableValue) {
+    WebElement table = findElementById("adminui:adminTabView:settingTable");
+    List<WebElement> tableRows = table.findElements(By.tagName("tr"));
+    for (WebElement row : tableRows) {
+      List<WebElement> columns = row.findElements(By.tagName("td"));
+      if (!CollectionUtils.isEmpty(columns)) {
+        WebElement keyColumn = columns.get(0);
+        if (keyColumn.getText().equals(variableName)) {
+          WebElement editButton = row.findElement(By.cssSelector("a[id$=edit]"));
+          click(editButton);
+          waitForElementPresent(By.id("adminui:settingDialogForm"), true);
+          saveExternalSelectionGlobalVariable(variableValue);
+          return;
+        }
+      }
+    }
+  }
+
+  private void saveExternalSelectionGlobalVariable(String value) {
+    click(By.id("adminui:valueSetting_label"));
+    waitForElementDisplayed(By.id("adminui:valueSetting_panel"), true);
+    WebElement selection = findElementById("adminui:valueSetting_items");
+    List<WebElement> items = selection.findElements(By.tagName("li"));
+    for (WebElement item: items) {
+      if (item.getText().equalsIgnoreCase(value)) {
+        click(item);
+        break;
+      }
+    }
+    WebElement saveButton = findElementById("adminui:save-setting");
+    saveButton.click();
+  }
+
   public void closeAdminSettingDialog() {
     WebElement closeButton = findElementById("close-button");
     click(closeButton);
@@ -142,10 +175,16 @@ public class AdminSettingsPage extends TemplatePage {
     editGlobalVariable("DISABLE_TASK_COUNT", "true", true);
     closeConfirmationDialog();
   }
-  
+
   public void setDisabledCaseCount() {
     openSettingTab();
     editGlobalVariable("DISABLE_CASE_COUNT", "true", true);
+    closeConfirmationDialog();
+  }
+
+  public void setRunTaskWhenClickingOnLineInTaskList() {
+    openSettingTab();
+    editExternalSelectionGlobalVariable("BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST", "Run the task");
     closeConfirmationDialog();
   }
 
