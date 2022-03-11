@@ -457,7 +457,8 @@ Cs0 f38 288 864 339 864 #arcP
 Cs0 f71 guid 17033D428A3BF344 #txt
 Cs0 f71 method restoreDefaultFilterSet() #txt
 Cs0 f71 inParameterDecl '<> param;' #txt
-Cs0 f71 inActionCode 'out.dataModel.selectedFilterData = null;
+Cs0 f71 inActionCode 'out.dataModel.selectedAllFilters = false;
+out.dataModel.selectedFilterData = null;
 out.dataModel.applyFilter(out.dataModel.defaultCaseFilterData);' #txt
 Cs0 f71 outParameterDecl '<> result;' #txt
 Cs0 f71 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

@@ -240,8 +240,9 @@ releases of Axon Ivy.
 
 Changes in 8.0.25
 -----------------
-
 - Introduce :ref:`Workflow Events table <how-to-show-workflow-events>`, user who has permission ``WORKFLOW_EVENT_READ_ALL`` can see all ``WORKFLOW_EVENTS``.
+
+- Introduce new ``Task ID``, ``Task Name``, ``Case ID`` and ``Case Name`` filter in the Portal full task list and case list.
 
 Changes in 8.0.18
 -----------------
