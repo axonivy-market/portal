@@ -3,7 +3,7 @@
   xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
   xmlns:pe="http://primefaces.org/ui/extensions" xmlns:jsf="http://xmlns.jcp.org/jsf">
   
- <ic:ch.ivy.addon.portalkit.component.ActionStep id="dashboard-case-action-#{cc.attrs.caseWidget.id}" actionLinkId="dashboard-case-action-steps-menu"
+ <ic:ch.ivy.addon.portalkit.component.ActionStep id="dashboard-actions-case-#{cc.attrs.caseWidget.id}" actionLinkId="dashboard-case-side-steps-menu"
      panelWidgetVar="dashboard-case-side-steps-panel-#{cc.attrs.caseWidget.id}-#{rowIndex}" case="#{caseItem}" renderShowDetailAction="false"
      renderDestroyAction="#{caseActionBean.canDestroy(caseItem) and caseItem.state ne 'DONE' and caseItem.state ne 'DESTROYED'}" update="#{cc.attrs.componentToUpdateCaseWidget}" onDestroyComplete="PF('destroy-case-dialog').show()"
      actionLinkStyleClass="ui-inplace-editor" isAdhocExcluded="true"/>
