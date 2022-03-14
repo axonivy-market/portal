@@ -3,7 +3,6 @@ package com.axonivy.portal.selenium.test;
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -18,7 +17,7 @@ import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.codeborne.selenide.ElementsCollection;
 
 @IvyWebTest
-public class NewDashBoardCaseWidgetActionTest extends BaseTest {
+public class DashBoardCaseWidgetActionTest extends BaseTest {
 
   // WIDGET NAME
   private static final String YOUR_CASES_WIDGET = "Your Cases";
@@ -40,7 +39,7 @@ public class NewDashBoardCaseWidgetActionTest extends BaseTest {
     redirectToNewDashBoard();
     caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
     // In progress
-    assertTaskActionsByCaseState("In progress", new ArrayList<>());
+    assertTaskActionsByCaseState("In progress", Arrays.asList("Details"));
   }
 
   @Test
@@ -50,12 +49,12 @@ public class NewDashBoardCaseWidgetActionTest extends BaseTest {
     redirectToNewDashBoard();
     caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
     // In progress
-    assertTaskActionsByCaseState("In progress", Arrays.asList("Business details", "Destroy"));
+    assertTaskActionsByCaseState("In progress", Arrays.asList("Details", "Business details", "Destroy"));
     // Destroyed
     caseWidget.destroyCase(0);
-    assertTaskActionsByCaseState("Destroyed", Arrays.asList("Business details"));
+    assertTaskActionsByCaseState("Destroyed", Arrays.asList("Details", "Business details"));
     // Done
-    assertTaskActionsByCaseState("Done", Arrays.asList("Business details"));
+    assertTaskActionsByCaseState("Done", Arrays.asList("Details", "Business details"));
   }
 
   private void assertTaskActionsByCaseState(String state, List<String> taskActionsInCase) {

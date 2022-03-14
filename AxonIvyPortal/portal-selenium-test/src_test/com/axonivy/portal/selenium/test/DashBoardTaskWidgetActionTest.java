@@ -3,7 +3,6 @@ package com.axonivy.portal.selenium.test;
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -18,7 +17,7 @@ import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
 import com.codeborne.selenide.ElementsCollection;
 
 @IvyWebTest
-public class NewDashBoardTaskWidgetActionTest extends BaseTest {
+public class DashBoardTaskWidgetActionTest extends BaseTest {
 
   // WIDGET NAME
   private static final String YOUR_TASKS_WIDGET = "Your Tasks";
@@ -42,19 +41,22 @@ public class NewDashBoardTaskWidgetActionTest extends BaseTest {
     taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
     taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
     // Ready for Join
-    assertTaskActionsByTaskState("Ready for joining", new ArrayList<>());
+    assertTaskActionsByTaskState("Ready for joining", Arrays.asList("Details"));
     // Suspended
-    assertTaskActionsByTaskState("Suspended", Arrays.asList("Delegate", "Reserve", "Clear expiry", "Add Ad-hoc Task"));
+    assertTaskActionsByTaskState("Suspended",
+        Arrays.asList("Details", "Delegate", "Reserve", "Clear expiry", "Add Ad-hoc Task"));
     // Reserved
     taskWidget.reserveTask(0);
-    assertTaskActionsByTaskState("Reserved", Arrays.asList("Delegate", "Reset", "Clear expiry", "Add Ad-hoc Task"));
+    assertTaskActionsByTaskState("Reserved",
+        Arrays.asList("Details", "Delegate", "Reset", "Clear expiry", "Add Ad-hoc Task"));
     // In progress
     taskWidget.startFirstTask();
     taskWidget.clickCancelTask();
     newDashboardPage.waitForAbsencesGrowlMessageDisplay();
-    assertTaskActionsByTaskState("In progress", Arrays.asList("Reserve", "Reset", "Clear expiry", "Add Ad-hoc Task"));
+    assertTaskActionsByTaskState("In progress",
+        Arrays.asList("Details", "Reserve", "Reset", "Clear expiry", "Add Ad-hoc Task"));
     // Done
-    assertTaskActionsByTaskState("Done", new ArrayList<>());
+    assertTaskActionsByTaskState("Done", Arrays.asList("Details"));
   }
 
   @Test
@@ -65,27 +67,27 @@ public class NewDashBoardTaskWidgetActionTest extends BaseTest {
     taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
     taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
     // Ready for Join
-    assertTaskActionsByTaskState("Ready for joining", Arrays.asList("Reset", "Destroy", "Workflow Events"));
+    assertTaskActionsByTaskState("Ready for joining", Arrays.asList("Details", "Reset", "Destroy", "Workflow Events"));
     // Suspended
-    assertTaskActionsByTaskState("Suspended",
-        Arrays.asList("Delegate", "Reserve", "Clear expiry", "Destroy", "Workflow Events", "Add Ad-hoc Task"));
+    assertTaskActionsByTaskState("Suspended", Arrays.asList("Details", "Delegate", "Reserve", "Clear expiry", "Destroy",
+        "Workflow Events", "Add Ad-hoc Task"));
     // Reserved
     taskWidget.reserveTask(1);
     assertTaskActionsByTaskState("Reserved",
-        Arrays.asList("Delegate", "Reset", "Clear expiry", "Destroy", "Workflow Events", "Add Ad-hoc Task"));
+        Arrays.asList("Details", "Delegate", "Reset", "Clear expiry", "Destroy", "Workflow Events", "Add Ad-hoc Task"));
     // In progress
     taskWidget.startFirstTask();
     taskWidget.clickCancelTask();
     newDashboardPage.waitForAbsencesGrowlMessageDisplay();
     assertTaskActionsByTaskState("In progress",
-        Arrays.asList("Reserve", "Reset", "Clear expiry", "Destroy", "Workflow Events", "Add Ad-hoc Task"));
+        Arrays.asList("Details", "Reserve", "Reset", "Clear expiry", "Destroy", "Workflow Events", "Add Ad-hoc Task"));
     // Done
-    assertTaskActionsByTaskState("Done", Arrays.asList("Workflow Events"));
+    assertTaskActionsByTaskState("Done", Arrays.asList("Details", "Workflow Events"));
     // Delayed
     assertTaskActionsByTaskState("Delayed",
-        Arrays.asList("Delegate", "Clear delay", "Destroy", "Workflow Events", "Add Ad-hoc Task"));
+        Arrays.asList("Details", "Delegate", "Clear delay", "Destroy", "Workflow Events", "Add Ad-hoc Task"));
     // Destroyed
-    assertTaskActionsByTaskState("Destroyed", Arrays.asList("Workflow Events"));
+    assertTaskActionsByTaskState("Destroyed", Arrays.asList("Details", "Workflow Events"));
   }
 
   @Test
@@ -96,11 +98,11 @@ public class NewDashBoardTaskWidgetActionTest extends BaseTest {
     taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
     taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
     // Failed
-    assertTaskActionsByTaskState("Failed", Arrays.asList("Reset", "Destroy", "Workflow Events"));
+    assertTaskActionsByTaskState("Failed", Arrays.asList("Details", "Reset", "Destroy", "Workflow Events"));
     // Join failed
-    assertTaskActionsByTaskState("Join failed", Arrays.asList("Destroy", "Workflow Events"));
+    assertTaskActionsByTaskState("Join failed", Arrays.asList("Details", "Destroy", "Workflow Events"));
     // waiting for event
-    assertTaskActionsByTaskState("Waiting for event", Arrays.asList("Destroy", "Workflow Events"));
+    assertTaskActionsByTaskState("Waiting for event", Arrays.asList("Details", "Destroy", "Workflow Events"));
 
   }
 
