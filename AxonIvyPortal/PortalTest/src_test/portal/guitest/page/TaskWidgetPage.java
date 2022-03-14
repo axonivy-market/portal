@@ -861,4 +861,13 @@ public class TaskWidgetPage extends TemplatePage {
     }
     return expectedNumber;
   }
+
+  public void filterTasksByID(String taskID) {
+    clickByCssSelector("[id$=':task-id-filter:filter-open-form:advanced-filter-command']");
+    waitForElementDisplayed(By.cssSelector("[id$=':task-id-filter:filter-input-form:task-id']"), true);
+    var inputID = findElementByCssSelector("input[id$=':task-id-filter:filter-input-form:task-id_input']");
+    enterKeys(inputID, taskID);
+    clickByCssSelector("[id$=':task-id-filter:filter-input-form:update-command']");
+    waitForElementDisplayed(By.cssSelector("[id$=':task-id-filter:filter-input-form:advanced-filter-panel']"), false);
+  }
 }

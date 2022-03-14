@@ -158,4 +158,25 @@ public class CaseFilterTest extends BaseTest {
     String expectedCreatedDateForm = casePage.getCreatedDateFrom();
     assertTrue(expectedCreatedDateForm.contains(fromInputText));
   }
+  
+  @Test
+  public void testCaseIDFilter() {
+    MainMenuPage mainMenuPage = new MainMenuPage();
+    CaseWidgetPage casePage = mainMenuPage.openCaseList();
+    // Not found case with ID 99999999
+    casePage.openAdvancedFilter("Case Id", "case-id");
+    casePage.filterCasesByID("99999999");
+    assertTrue(casePage.isResultEmpty());
+
+    // Clean case ID filter
+    casePage.removeCaseIdFilter();
+    casePage.refresh();
+    casePage.openAdvancedFilter("Case Id", "case-id");
+    assertEquals("Case Id: All", casePage.getFilterValue("case-id-filter"));
+
+    // Found one case with ID
+    var caseID = casePage.getCaseId(0);
+    casePage.filterCasesByID(caseID);
+    assertEquals(1, casePage.getCaseCount().intValue());
+  }
 }
