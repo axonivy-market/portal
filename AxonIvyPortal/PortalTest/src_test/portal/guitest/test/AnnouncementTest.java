@@ -38,10 +38,9 @@ public class AnnouncementTest extends BaseTest {
     userProfilePage.save();
     assertEquals("lies mich", homePage.getAnnouncementMessage());
 
+    userProfilePage = homePage.openMyProfilePage();
     userProfilePage.selectLanguage(1);
-    userProfilePage.save();
-    userProfilePage.clickOnLogo();
-    homePage = new HomePage();
+    homePage = userProfilePage.save();
     assertEquals("Readme1", homePage.getAnnouncementMessage());
   }
 

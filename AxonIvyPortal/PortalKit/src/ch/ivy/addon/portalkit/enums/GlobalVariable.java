@@ -194,7 +194,7 @@ public enum GlobalVariable {
   private static Map<String, Object> getDefaultProcessImage() {
     Map<String, Object> result = new HashMap<>();
     for (DefaultImage defaultImage : DefaultImage.values()) {
-      result.put(defaultImage.name(), defaultImage.name());
+      result.put(defaultImage.name(), defaultImage);
     }
     return result;
   }

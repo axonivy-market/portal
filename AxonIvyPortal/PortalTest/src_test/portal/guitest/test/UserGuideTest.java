@@ -46,9 +46,7 @@ public class UserGuideTest extends BaseTest {
     userProfilePage = homePage.openMyProfilePage();
     assertFalse(userProfilePage.isDisableShowTutorialCheckbox());
     userProfilePage.checkShowTutorial();
-    userProfilePage.save();
-    userProfilePage.clickOnLogo();
-    homePage = new HomePage();
+    homePage = userProfilePage.save();
     UserGuidePage userGuidePage = new UserGuidePage();
     assertTrue(userGuidePage.isFinishButtonDisplay());
     userGuidePage.finishInStatisticGuide();
