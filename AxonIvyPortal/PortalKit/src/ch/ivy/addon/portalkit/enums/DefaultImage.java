@@ -11,6 +11,6 @@ public enum DefaultImage {
   }
   
   public String getLabel() {
-    return "/images/process/" + name();
+    return name();
   }
 }
