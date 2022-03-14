@@ -8,6 +8,8 @@ import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.page.CaseEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.CaseWidgetNewDashBoardPage;
+import com.axonivy.portal.selenium.page.NewDashboardConfigurationPage;
+import com.axonivy.portal.selenium.page.NewDashboardDetailsEditPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
@@ -29,9 +31,12 @@ public class NewDashboardAddWidgetTest extends BaseTest {
     redirectToRelativeLink(createTestingTasksUrl);
     login(TestAccount.ADMIN_USER);
     newDashboardPage.waitForAbsencesGrowlMessageDisplay();
-    newDashboardPage.switchToEditMode();
-    newDashboardPage.addWidget();
-    CaseEditWidgetNewDashBoardPage newCaseWidget = newDashboardPage.addNewCaseWidget();
+    newDashboardPage.openDashboardConfigurationDialog();
+    NewDashboardConfigurationPage configPage = newDashboardPage.navigateToEditPublicDashboardPage();
+    NewDashboardDetailsEditPage newDashboardDetailsEditPage = configPage.navigateToEditDashboardDetailsByName("Dashboard");
+
+    newDashboardDetailsEditPage.addWidget();
+    CaseEditWidgetNewDashBoardPage newCaseWidget = newDashboardDetailsEditPage.addNewCaseWidget();
     newCaseWidget.changeWidgetTitle("Your New Cases");
     newCaseWidget.save();
     CaseWidgetNewDashBoardPage caseWidget = newDashboardPage.selectCaseWidget("Your New Cases");
@@ -43,9 +48,12 @@ public class NewDashboardAddWidgetTest extends BaseTest {
     redirectToRelativeLink(createTestingTasksUrl);
     login(TestAccount.ADMIN_USER);
     newDashboardPage.waitForAbsencesGrowlMessageDisplay();
-    newDashboardPage.switchToEditMode();
-    newDashboardPage.addWidget();
-    TaskEditWidgetNewDashBoardPage newTaskWidget = newDashboardPage.addNewTaskWidget();
+    newDashboardPage.openDashboardConfigurationDialog();
+    NewDashboardConfigurationPage configPage = newDashboardPage.navigateToEditPublicDashboardPage();
+    NewDashboardDetailsEditPage newDashboardDetailsEditPage = configPage.navigateToEditDashboardDetailsByName("Dashboard");
+
+    newDashboardDetailsEditPage.addWidget();
+    TaskEditWidgetNewDashBoardPage newTaskWidget = newDashboardDetailsEditPage.addNewTaskWidget();
     newTaskWidget.changeWidgetTitle("Your New Tasks");
     newTaskWidget.save();
     TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget("Your New Tasks");

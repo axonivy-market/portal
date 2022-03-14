@@ -160,7 +160,8 @@
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfigurationDialog/CreateNewPrivateDashboard')}"/>
               </div>
             </p:commandLink>
-            <p:commandLink id="edit-private-dashboard" styleClass="ui-g-12 dashboard-configuration-dialog__action-row">
+            <p:commandLink id="edit-private-dashboard" styleClass="ui-g-12 dashboard-configuration-dialog__action-row"
+              actionListener="#{userMenuBean.navigateToMyDashboardConfigurationOrDisplayWorkingTaskWarning(isWorkingOnATask, task)}">
               <div class="ui-g-2">
                 <span class="si si-pencil dashboard-configuration-dialog__action-row-icon" />
               </div>
@@ -200,7 +201,8 @@
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfigurationDialog/CreateNewPublicDashboard')}"/>
               </div>
             </p:commandLink>
-            <p:commandLink id="edit-public-dashboard" styleClass="ui-g-12 dashboard-configuration-dialog__action-row">
+            <p:commandLink id="edit-public-dashboard" styleClass="ui-g-12 dashboard-configuration-dialog__action-row"
+              actionListener="#{userMenuBean.navigateToPublicDashboardConfigurationOrDisplayWorkingTaskWarning(isWorkingOnATask, task)}">
               <div class="ui-g-2">
                 <span class="si si-pencil dashboard-configuration-dialog__action-row-icon" />
               </div>

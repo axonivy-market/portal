@@ -178,6 +178,26 @@ public class UserMenuBean implements Serializable {
     }
   }
 
+  public void navigateToMyDashboardConfigurationOrDisplayWorkingTaskWarning(boolean isWorkingOnATask, ITask task) throws IOException {
+    if (isWorkingOnATask && task.getState() != TaskState.DONE) {
+      openTaskLosingConfirmationDialog();
+      targetPage = getMyDashboardConfigurationUrl();
+    } else {
+      executeJSResetPortalMenuState();
+      navigateToMyDashboardConfiguration();
+    }
+  }
+
+  public void navigateToPublicDashboardConfigurationOrDisplayWorkingTaskWarning(boolean isWorkingOnATask, ITask task) throws IOException {
+    if (isWorkingOnATask && task.getState() != TaskState.DONE) {
+      openTaskLosingConfirmationDialog();
+      targetPage = getPublicDashboardConfigurationUrl();
+    } else {
+      executeJSResetPortalMenuState();
+      navigateToPublicDashboardConfiguration();
+    }
+  }
+
   private String getAbsencesUrl() {
     return PortalNavigator.buildAbsencesUrl();
   }
@@ -190,6 +210,14 @@ public class UserMenuBean implements Serializable {
     return PortalNavigator.buildDashboardReorderUrl(false);
   }
 
+  private String getPublicDashboardConfigurationUrl() {
+    return PortalNavigator.buildDashboardConfigurationUrl(true);
+  }
+
+  private String getMyDashboardConfigurationUrl() {
+    return PortalNavigator.buildDashboardConfigurationUrl(false);
+  }
+
   public void navigateToAbsences() throws IOException {
     getExternalContext().redirect(getAbsencesUrl());
   }
@@ -200,6 +228,14 @@ public class UserMenuBean implements Serializable {
 
   private void navigateToMyDashboardReorder() throws IOException {
     getExternalContext().redirect(getMyDashboardReorderUrl());
+  }
+
+  private void navigateToPublicDashboardConfiguration() throws IOException {
+    getExternalContext().redirect(getPublicDashboardConfigurationUrl());
+  }
+
+  private void navigateToMyDashboardConfiguration() throws IOException {
+    getExternalContext().redirect(getMyDashboardConfigurationUrl());
   }
 
   public void reserveTaskAndNavigateWithGrowl(ITask task) throws IOException {
