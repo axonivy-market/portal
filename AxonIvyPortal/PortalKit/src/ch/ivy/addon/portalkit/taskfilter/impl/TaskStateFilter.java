@@ -38,9 +38,7 @@ public class TaskStateFilter extends TaskFilter {
     } else {
       this.filteredStates.add(TaskState.DONE);
     }
-
-    this.selectedFilteredStatesAtBeginning = new ArrayList<>(filteredStates);
-    this.submittedFilteredStates = new ArrayList<>(filteredStates);
+    setSelectedFilteredStatesAtBeginning(new ArrayList<>(filteredStates));
     this.selectedFilteredStates = new ArrayList<>();
   }
 
@@ -158,7 +156,8 @@ public class TaskStateFilter extends TaskFilter {
   }
 
   public void setSelectedFilteredStatesAtBeginning(List<TaskState> selectedFilteredStatesAtBeginning) {
-    this.selectedFilteredStatesAtBeginning = selectedFilteredStatesAtBeginning;
+    this.selectedFilteredStatesAtBeginning = new ArrayList<>(selectedFilteredStatesAtBeginning);
+    this.submittedFilteredStates = new ArrayList<>(selectedFilteredStatesAtBeginning);
   }
 
   public boolean isSelectedAll() {
