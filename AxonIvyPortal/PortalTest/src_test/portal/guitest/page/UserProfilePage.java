@@ -40,12 +40,16 @@ public class UserProfilePage extends TemplatePage {
     clickByCssSelector("li[id$='language-selection_" + newLanguage + "']");
   }
 
-  public UserProfilePage save() {
-    WebElement save = findElementByCssSelector("button[id$='save-settings']");
-    WaitHelper.waitForNavigation(new UserProfilePage(), () -> click(save));
-    return new UserProfilePage();
+  public HomePage save() {
+    saveWithoutWaitingNavigation();
+    return new HomePage();
   }
   
+  public void saveWithoutWaitingNavigation() {
+    WebElement save = findElementByCssSelector("button[id$='save-settings']");
+    WaitHelper.waitForNavigation(new UserProfilePage(), () -> click(save));
+  }
+
   public String getLanguageSettingTitle() {
     return findElementByCssSelector("h2[id$='language-setting-title']").getText();
   }
