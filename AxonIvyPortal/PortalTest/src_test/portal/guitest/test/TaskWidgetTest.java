@@ -55,6 +55,18 @@ public class TaskWidgetTest extends BaseTest {
   }
   
   @Test
+  public void testRunTaskWhenClickOntaskRow() {
+    login(TestAccount.ADMIN_USER);
+    HomePage homePage = new HomePage();
+    AdminSettingsPage adminSettingsPage = homePage.openAdminSettings();
+    adminSettingsPage.setRunTaskWhenClickingOnLineInTaskList();
+    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+    taskWidgetPage.expand();
+    taskWidgetPage.runTaskWhenClickingOnRow(0);
+    assertEquals("Maternity Leave Request", taskWidgetPage.getTaskTitleAfterStarted());
+  }
+  
+  @Test
   public void testEnterTaskDetailFromTaskActionAndGoBack() {
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
 

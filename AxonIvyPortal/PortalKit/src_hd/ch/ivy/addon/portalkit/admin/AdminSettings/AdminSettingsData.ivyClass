@@ -58,3 +58,6 @@ userLazyDataModel ch.ivy.addon.portalkit.datamodel.internal.UserLazyDataModel #f
 userLazyDataModel PERSISTENT #fieldModifier
 tempApplicationName String #field
 tempApplicationName PERSISTENT #fieldModifier
+externalDropDownValues java.util.Map #field
+externalDropDownValues 'external options' #fieldComment
+externalDropDownValues PERSISTENT #fieldModifier

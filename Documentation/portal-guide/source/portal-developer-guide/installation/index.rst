@@ -240,6 +240,8 @@ releases of Axon Ivy.
 
 Changes in 8.0.25
 -----------------
+- The ``BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST`` Portal setting is introduced to run the task/go to task details when clicking on a line in task list.
+
 - Introduce :ref:`Workflow Events table <how-to-show-workflow-events>`, user who has permission ``WORKFLOW_EVENT_READ_ALL`` can see all ``WORKFLOW_EVENTS``.
 
 - Introduce new ``Task ID``, ``Task Name``, ``Case ID`` and ``Case Name`` filter in the Portal full task list and case list.
