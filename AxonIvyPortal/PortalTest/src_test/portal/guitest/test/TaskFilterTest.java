@@ -302,4 +302,24 @@ public class TaskFilterTest extends BaseTest {
     String expectedCreatedDateForm = taskWidgetPage.getCreatedDateFrom();
     assertTrue(expectedCreatedDateForm.contains(fromInputText));
   }
+
+  @Test
+  public void testTaskIDFilter() {
+    MainMenuPage mainMenuPage = new MainMenuPage();
+    TaskWidgetPage taskWidgetPage = mainMenuPage.openTaskList();
+    // Not found task with ID 99999999
+    taskWidgetPage.openAdvancedFilter("Task Id", "task-id");
+    taskWidgetPage.filterTasksByID("99999999");
+    assertEquals(0, taskWidgetPage.countTasks());
+
+    // Clean Task ID filter
+    taskWidgetPage.resetFilter();
+    taskWidgetPage.openAdvancedFilter("Task Id", "task-id");
+    assertEquals("Task Id: All", taskWidgetPage.getFilterValue("task-id-filter"));
+
+    // Found one task with ID
+    var taskID = taskWidgetPage.getTaskIdOfRow(0);
+    taskWidgetPage.filterTasksByID(taskID);
+    assertEquals(1, taskWidgetPage.countTasks());
+  }
 }
