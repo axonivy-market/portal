@@ -72,6 +72,16 @@ public class TaskWidgetPage extends TemplatePage {
 		return clickOnTaskEntryInFullMode(index);
 	}
 
+	public void runTaskWhenClickingOnRow(int index) {
+	  waitForElementDisplayed(By.cssSelector("div[id$='task-widget:task-list-scroller:" + index + ":task-item:task-info-quick-run-task']"), true);
+	  clickByCssSelector("div[id$='task-widget:task-list-scroller:" + index + ":task-item:task-info-quick-run-task']");
+	}
+	
+	public String getTaskTitleAfterStarted() {
+	  waitForElementDisplayed(By.cssSelector("div[id$='title']"), true);
+	  return findElementByCssSelector("div[id$='title']").getText();
+	}
+
 	public TaskDetailsPage openTaskDetailsFromActionMenu(int index) {
 		sideStepMenuOnActionButton(index);
 		String detailOptionCssSelector = "a[id$='task-open-detail-command']";
