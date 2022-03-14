@@ -207,7 +207,7 @@ public final class TaskUtils {
   }
 
   public static List<TaskState> getValidStates() {
-    var states = TaskSearchCriteria.STANDARD_STATES;
+    var states = new ArrayList<>(TaskSearchCriteria.STANDARD_STATES);
     if (PermissionUtils.checkReadAllTasksPermission()) {
       states.addAll(TaskSearchCriteria.ADVANCE_STATES);
     } else {

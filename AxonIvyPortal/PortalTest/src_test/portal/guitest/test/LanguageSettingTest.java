@@ -37,9 +37,7 @@ public class LanguageSettingTest extends BaseTest {
     HomePage homePage = new HomePage();
     UserProfilePage userProfilePage = homePage.openMyProfilePage();
     userProfilePage.selectLanguage(0);
-    userProfilePage.save();  
-    userProfilePage.clickOnLogo();
-    homePage = new HomePage();
+    homePage = userProfilePage.save();
     MainMenuPage mainMenuPage = homePage.openMainMenu();
     assertEquals("Prozesse", mainMenuPage.getProcessMenuItemText());
     userProfilePage = homePage.openMyProfilePage();
