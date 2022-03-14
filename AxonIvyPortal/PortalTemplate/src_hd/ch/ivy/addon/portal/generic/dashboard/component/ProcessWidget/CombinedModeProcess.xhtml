@@ -6,7 +6,7 @@
 <!-- Action -->
 <h:panelGroup id="process-action" rendered="#{!isReadOnlyMode}" styleClass="process-grid-item__action--combined">
   <p:commandLink id="edit-widget" styleClass="si si-pencil u-mar-right-15" global="false"
-    actionListener="#{dashboardConfigurationBean.prepareEditWidget(widget)}"
+    actionListener="#{dashboardDetailModificationBean.prepareEditWidget(widget)}"
     process="@this" partialSubmit="true"
     update="new-widget-configuration-dialog"
     oncomplete="PF('new-widget-configuration-dialog').show()" />
@@ -14,7 +14,7 @@
     hideEvent="mouseleave click" />
 
   <p:commandLink id="delete-widget" styleClass="si si-bin-1" global="false"
-    actionListener="#{dashboardConfigurationBean.setDeleteWidget(widget)}"
+    actionListener="#{dashboardDetailModificationBean.setDeleteWidget(widget)}"
     process="@this" partialSubmit="true"
     update="remove-widget-dialog" oncomplete="PF('remove-widget-dialog').show()" />
   <p:tooltip for="delete-widget" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/deleteWidget')}" trackMouse="true"
