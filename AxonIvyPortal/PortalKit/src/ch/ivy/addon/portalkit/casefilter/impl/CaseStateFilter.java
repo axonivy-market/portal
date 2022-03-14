@@ -39,8 +39,7 @@ public class CaseStateFilter extends CaseFilter {
     } else {
       this.filteredStates.add(CaseState.DONE);
     }
-    this.selectedFilteredStatesAtBeginning = new ArrayList<>(filteredStates);
-    this.submittedFilteredStates = new ArrayList<>(filteredStates);
+    setSelectedFilteredStatesAtBeginning(new ArrayList<>(filteredStates));
     this.selectedFilteredStates = new ArrayList<>();
   }
 
@@ -146,7 +145,8 @@ public class CaseStateFilter extends CaseFilter {
   }
 
   public void setSelectedFilteredStatesAtBeginning(List<CaseState> selectedFilteredStatesAtBeginning) {
-    this.selectedFilteredStatesAtBeginning = selectedFilteredStatesAtBeginning;
+    this.selectedFilteredStatesAtBeginning = new ArrayList<>(selectedFilteredStatesAtBeginning);
+    this.submittedFilteredStates = new ArrayList<>(selectedFilteredStatesAtBeginning);
   }
 
   public boolean isSelectedAll() {
