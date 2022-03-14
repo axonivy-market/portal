@@ -249,12 +249,12 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
     return $("button[id$='delete-saved-filter-form:delete-widget-filter-btn']");
   }
   
-  private SelenideElement getValueOfCheckBox(String value) {
+  private SelenideElement getStateFilterCheckBox(String value) {
     return $("div[id$='states_panel']").$("div.ui-selectcheckboxmenu-items-wrapper").waitUntil(appear, DEFAULT_TIMEOUT)
         .$$("li.ui-selectcheckboxmenu-item").filter(text(value)).first().$("div.ui-chkbox-box");
   }
   
-  private SelenideElement getCloseCheckBox() {
+  private SelenideElement getCloseStateFilter() {
     return $("div[id$='states_panel']").waitUntil(appear, DEFAULT_TIMEOUT).$("a.ui-selectcheckboxmenu-close");
   }
   
@@ -264,8 +264,8 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
   
   public void selectState(String state) {
-    getValueOfCheckBox(state).shouldBe(getClickableCondition()).click();
-    getCloseCheckBox().shouldBe(getClickableCondition()).click();
+    getStateFilterCheckBox(state).shouldBe(getClickableCondition()).click();
+    getCloseStateFilter().shouldBe(getClickableCondition()).click();
   }
   
   public void filterTaskState() {

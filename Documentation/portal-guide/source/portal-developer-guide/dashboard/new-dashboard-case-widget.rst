@@ -104,7 +104,7 @@ the basic structure of JSON of case widget
 
             - ``owner``: case owner
 
-            - ``actions``: for further actions: business details case, destroy case
+            - ``actions``: for further actions: access case details, business details case, destroy case
 
          For custom column, ``field`` is the name of a case custom field.
          Portal will use the value of ``field`` attribute to get the value of the column.
