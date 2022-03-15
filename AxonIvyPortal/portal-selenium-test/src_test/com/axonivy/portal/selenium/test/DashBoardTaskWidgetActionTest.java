@@ -72,6 +72,7 @@ public class DashBoardTaskWidgetActionTest extends BaseTest {
     assertTaskActionsByTaskState("Suspended", Arrays.asList("Details", "Delegate", "Reserve", "Clear expiry", "Destroy",
         "Workflow Events", "Add Ad-hoc Task"));
     // Reserved
+    taskWidget.clickOnTaskActionLink(1);
     taskWidget.reserveTask(1);
     assertTaskActionsByTaskState("Reserved",
         Arrays.asList("Details", "Delegate", "Reset", "Clear expiry", "Destroy", "Workflow Events", "Add Ad-hoc Task"));
