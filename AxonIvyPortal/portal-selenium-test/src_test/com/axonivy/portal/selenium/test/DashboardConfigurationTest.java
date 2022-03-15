@@ -15,7 +15,7 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 
 @IvyWebTest(headless = false)
-public class NewDashboardConfigurationTest extends BaseTest {
+public class DashboardConfigurationTest extends BaseTest {
 
   private NewDashboardPage newDashboardPage;
 
