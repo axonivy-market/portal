@@ -228,6 +228,11 @@ Release notes
 This part lists all relevant changes since the last official product
 releases of Axon Ivy.
 
+Changes in 9.4
+--------------
+
+- Introduce new ``Task ID``, ``Task Name``, ``Case ID`` and ``Case Name`` filter in the Portal full task list and case list.
+
 Changes in 9.3
 --------------
 

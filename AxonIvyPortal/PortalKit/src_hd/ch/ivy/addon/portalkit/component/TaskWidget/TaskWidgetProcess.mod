@@ -1,9 +1,11 @@
 [Ivy]
-15035F535EFB1618 9.4.0 #module
+15035F535EFB1618 9.4.1 #module
 >Proto >Proto Collection #zClass
 Ts0 TaskWidgetProcess Big #zClass
 Ts0 RD #cInfo
 Ts0 #process
+Ts0 @TextInP .colors .colors #zField
+Ts0 @TextInP color color #zField
 Ts0 @TextInP .type .type #zField
 Ts0 @TextInP .processKind .processKind #zField
 Ts0 @AnnotationInP-0n ai ai #zField
@@ -718,7 +720,8 @@ Ts0 f69 336 1184 403 1184 #arcP
 Ts0 f71 guid 1703284EDD9E3F5E #txt
 Ts0 f71 method restoreDefaultFilterSet() #txt
 Ts0 f71 inParameterDecl '<> param;' #txt
-Ts0 f71 inActionCode 'out.dataModel.selectedTaskFilterData = null;
+Ts0 f71 inActionCode 'out.dataModel.selectedAllFilters = false;
+out.dataModel.selectedTaskFilterData = null;
 out.dataModel.applyFilter(out.dataModel.defaultTaskFilterData);' #txt
 Ts0 f71 outParameterDecl '<> result;' #txt
 Ts0 f71 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
