@@ -3,7 +3,7 @@ package ch.ivy.addon.portalkit.casefilter.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections4.CollectionUtils;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -63,7 +63,7 @@ public class CaseStateFilter extends CaseFilter {
   }
 
   private boolean isAllStatesSelected() {
-    return filteredStates.equals(selectedFilteredStates)
+    return CollectionUtils.isEqualCollection(filteredStates, selectedFilteredStates)
     // In case the filter is a saved filter from a user who can filter more state
         || (filteredStates.size() < selectedFilteredStates.size() && selectedFilteredStates.containsAll(filteredStates));
   }
