@@ -77,6 +77,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
 
   protected List<TaskFilter> filters;
   protected List<TaskFilter> selectedFilters;
+  protected List<TaskFilter> submittedFilterSelection = new ArrayList<>();
   protected List<TaskFilter> oldSelectedFilters = new ArrayList<>();
   protected List<String> allColumns = new ArrayList<>();
   protected List<String> selectedColumns = new ArrayList<>();
@@ -94,6 +95,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   protected Boolean isSelectedDefaultFilter;
   protected boolean isGuide = true;
   protected List<String> standardSortFields;
+  protected boolean isSelectedAllFilters;
 
   /**
    * @hidden
@@ -186,6 +188,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
       restoreSessionAdvancedFilters();
     }
     checkToApplyDefaultSet();
+    submittedFilterSelection = new ArrayList<>(selectedFilters);
   }
 
   protected void buildTaskStateFilter(TaskFilterContainer filterContainer) {
@@ -742,6 +745,17 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
     }
     resetFilterData();
     storeTaskFiltersIntoSession();
+    submittedFilterSelection = new ArrayList<>(selectedFilters);
+  }
+
+  /**
+   * @hidden
+   */
+  public void restoreFiltersSelection() {
+    if (CollectionUtils.isNotEmpty(submittedFilterSelection)) {
+      selectedFilters = new ArrayList<>(submittedFilterSelection);
+    }
+    isSelectedAllFilters = selectedFilters.size() == filters.size();
   }
 
   /**
@@ -1242,4 +1256,37 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
     this.isSelectedDefaultFilter = isSelectedDefaultFilter;
   }
 
+  /**
+   * @hidden 
+   * @return isSelectedAllFilters
+   */
+  public boolean isSelectedAllFilters() {
+    return isSelectedAllFilters;
+  }
+
+  /**
+   * @hidden
+   * @param isSelectedAllFilters 
+   */
+  public void setSelectedAllFilters(boolean isSelectedAllFilters) {
+    this.isSelectedAllFilters = isSelectedAllFilters;
+  }
+
+  /**
+   * @hidden
+   */
+  public void onSelectedAllFilters() {
+    if (isSelectedAllFilters) {
+      selectedFilters = new ArrayList<>(filters);
+    } else {
+      selectedFilters = new ArrayList<>();
+    }
+  }
+
+  /**
+   * @hidden
+   */
+  public void onSelectedFilter() {
+    isSelectedAllFilters = selectedFilters.size() == filters.size();
+  }
 }

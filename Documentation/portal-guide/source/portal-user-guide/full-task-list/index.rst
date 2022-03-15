@@ -129,6 +129,12 @@ HowTo: Create new filter
 +-----------------------------------+-----------------------------------+
 | Criteria                          | Description                       |
 +===================================+===================================+
+| ID                                | The filter lets you specify the   |
+|                                   | task identify number              |
++-----------------------------------+-----------------------------------+
+| Name                              | The filter lets you specify the   |
+|                                   | task name                         |
++-----------------------------------+-----------------------------------+
 | Completed on (from / to)          | This filter lets you specify task |
 |                                   | complete period.                  |
 +-----------------------------------+-----------------------------------+

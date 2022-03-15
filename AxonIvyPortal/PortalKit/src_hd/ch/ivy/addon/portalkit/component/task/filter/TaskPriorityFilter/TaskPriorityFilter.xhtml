@@ -13,9 +13,18 @@
 <cc:implementation>
   <ic:ch.ivy.addon.portalkit.component.task.filter.AdvancedFilter id="#{cc.attrs.componentId}" taskFilter="#{cc.attrs.filter}"
     selectedFilters="#{cc.attrs.selectedFilters}" resultContainerUpdated="#{cc.attrs.resultContainerUpdated}" dataModel="#{cc.attrs.dataModel}">
+    <div class="config-checkbox-select-all">
+      <p:selectBooleanCheckbox id="priorities-select-all" styleClass="select-all-checkbox"
+        itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/selectAll')}"
+        value="#{cc.attrs.filter.selectedAll}" >
+        <p:ajax listener="#{cc.attrs.filter.onSelectedAllPriorities()}" update="priority-selection" partialSubmit="true"/>
+      </p:selectBooleanCheckbox>
+    </div>
     <p:selectManyCheckbox id="priority-selection" layout="pageDirection" value="#{cc.attrs.filter.selectedPriorities}">
       <f:selectItems value="#{cc.attrs.filter.priorities}" var="priority" itemValue="#{priority}"
         itemLabel="#{cc.attrs.filter.userFriendlyPriority(priority)}" />
+      <p:ajax listener="#{cc.attrs.filter.onSelectPriority()}"
+        update="priorities-select-all" global="false" partialSubmit="true"/>
     </p:selectManyCheckbox>
   </ic:ch.ivy.addon.portalkit.component.task.filter.AdvancedFilter>
 </cc:implementation>
