@@ -71,7 +71,7 @@ public class TaskStateFilter extends TaskFilter {
   }
 
   private boolean isAllStatesSelected() {
-    return filteredStates.equals(selectedFilteredStates)
+    return CollectionUtils.isEqualCollection(filteredStates, selectedFilteredStates)
         //In case only one state is selected and the current user doesn't have that state (happen with UNASSIGNED state)
         || (selectedFilteredStates.size() == 1 && !filteredStates.contains(selectedFilteredStates.get(0)))
     // In case the filter is a saved filter from a user who can filter more task state
