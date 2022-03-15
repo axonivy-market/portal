@@ -17,7 +17,7 @@ import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 
 @IvyWebTest
-public class NewDashboardProcessWidgetTest extends BaseTest {
+public class DashboardProcessWidgetTest extends BaseTest {
   private static final String EXPRESS_PROCESS = "EXPRESS_PROCESS";
   private static final String CASE_LEAVE_REQUEST_TEST_FOR_IVYPORTAL_3369 =
       "Case: Leave Request Test For IVYPORTAL-3369";
