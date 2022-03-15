@@ -354,4 +354,23 @@ public class CaseWidgetPage extends TemplatePage {
     return element.getText();
   }
 
+  public void filterCasesByID(String caseID) {
+    clickByCssSelector("[id$=':case-id-filter:filter-open-form:advanced-filter-command']");
+    waitForElementDisplayed(By.cssSelector("[id$=':case-id-filter:filter-input-form:case-id']"), true);
+    var inputID = findElementByCssSelector("input[id$=':case-id-filter:filter-input-form:case-id_input']");
+    enterKeys(inputID, caseID);
+    clickByCssSelector("[id$=':case-id-filter:filter-input-form:update-command']");
+    waitForElementDisplayed(By.cssSelector("[id$=':case-id-filter:filter-input-form:advanced-filter-panel']"), false);
+  }
+
+  public void removeCaseIdFilter() {
+    waitForElementDisplayed(By.cssSelector("[id$=':case-id-filter:filter-open-form:advanced-filter-item-container']"), true);
+    clickByCssSelector("[id$=':case-id-filter:filter-open-form:advanced-filter-remove-command']");
+  }
+
+  public boolean isResultEmpty() {
+    waitForElementDisplayed(By.cssSelector("[id$='case-widget:case-empty-message']"), true);
+    return isElementDisplayed(By.cssSelector("[id$='case-widget:case-empty-message']"));
+  }
+
 }

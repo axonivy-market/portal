@@ -123,6 +123,12 @@ HowTo: Create new filter
 +-----------------------------------+-----------------------------------+
 | Criteria                          | Description                       |
 +===================================+===================================+
+| ID                                | The filter lets you specify the   |
+|                                   | task identify number              |
++-----------------------------------+-----------------------------------+
+| Name                              | The filter lets you specify the   |
+|                                   | task name                         |
++-----------------------------------+-----------------------------------+
 | Created (from / to)               | The filter lets you specify in    |
 |                                   | which time period the task was    |
 |                                   | created.                          |

@@ -7,6 +7,8 @@ import ch.ivy.addon.portalkit.comparator.CaseFilterComparator;
 
 public class DefaultCaseFilterContainer extends CaseFilterContainer {
 
+  protected CaseIdFilter idFilter = new CaseIdFilter();
+  protected CaseNameFilter nameFilter = new CaseNameFilter();
   protected CaseCreationDateFilter caseCreationDateFilter = new CaseCreationDateFilter();
   protected CaseCreatorFilter caseCreatorFilter = new CaseCreatorFilter();
   protected CaseDescriptionFilter caseDescriptionFilter = new CaseDescriptionFilter();
@@ -15,6 +17,8 @@ public class DefaultCaseFilterContainer extends CaseFilterContainer {
 
   public DefaultCaseFilterContainer() {
     super();
+    filters.add(idFilter);
+    filters.add(nameFilter);
     filters.add(caseCreationDateFilter);
     filters.add(caseCreatorFilter);
     filters.add(caseDescriptionFilter);
@@ -61,6 +65,22 @@ public class DefaultCaseFilterContainer extends CaseFilterContainer {
 
   public void setCaseCategoryFilter(CaseCategoryFilter caseCategoryFilter) {
     this.caseCategoryFilter = caseCategoryFilter;
+  }
+
+  public CaseIdFilter getIdFilter() {
+    return idFilter;
+  }
+
+  public void setIdFilter(CaseIdFilter idFilter) {
+    this.idFilter = idFilter;
+  }
+
+  public CaseNameFilter getNameFilter() {
+    return nameFilter;
+  }
+
+  public void setNameFilter(CaseNameFilter nameFilter) {
+    this.nameFilter = nameFilter;
   }
 
 }
