@@ -1,9 +1,11 @@
 [Ivy]
-152E8EDB33C1BDC1 9.4.0 #module
+152E8EDB33C1BDC1 9.4.1 #module
 >Proto >Proto Collection #zClass
 Cs0 CaseWidgetProcess Big #zClass
 Cs0 RD #cInfo
 Cs0 #process
+Cs0 @TextInP .colors .colors #zField
+Cs0 @TextInP color color #zField
 Cs0 @TextInP .type .type #zField
 Cs0 @TextInP .processKind .processKind #zField
 Cs0 @AnnotationInP-0n ai ai #zField
@@ -437,7 +439,8 @@ Cs0 f38 288 864 339 864 #arcP
 Cs0 f71 guid 17033D428A3BF344 #txt
 Cs0 f71 method restoreDefaultFilterSet() #txt
 Cs0 f71 inParameterDecl '<> param;' #txt
-Cs0 f71 inActionCode 'out.dataModel.selectedFilterData = null;
+Cs0 f71 inActionCode 'out.dataModel.selectedAllFilters = false;
+out.dataModel.selectedFilterData = null;
 out.dataModel.applyFilter(out.dataModel.defaultCaseFilterData);' #txt
 Cs0 f71 outParameterDecl '<> result;' #txt
 Cs0 f71 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

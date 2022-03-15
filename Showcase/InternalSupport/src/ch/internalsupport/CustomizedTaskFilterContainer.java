@@ -7,10 +7,14 @@ import ch.ivy.addon.portalkit.taskfilter.TaskFilterContainer;
 import ch.ivy.addon.portalkit.taskfilter.impl.TaskCreationDateFilter;
 import ch.ivy.addon.portalkit.taskfilter.impl.TaskDescriptionFilter;
 import ch.ivy.addon.portalkit.taskfilter.impl.TaskExpiredDateFilter;
+import ch.ivy.addon.portalkit.taskfilter.impl.TaskIdFilter;
+import ch.ivy.addon.portalkit.taskfilter.impl.TaskNameFilter;
 import ch.ivy.addon.portalkit.taskfilter.impl.TaskResponsibleFilter;
 
 public class CustomizedTaskFilterContainer extends TaskFilterContainer {
 
+  private TaskIdFilter idFilter = new TaskIdFilter();
+  private TaskNameFilter nameFilter = new TaskNameFilter();
   private TaskDescriptionFilter descriptionFilter = new TaskDescriptionFilter();
   private TaskCreationDateFilter creationDateFilter = new TaskCreationDateFilter();
   private TaskExpiredDateFilter expiredDateFilter = new TaskExpiredDateFilter();
@@ -75,5 +79,21 @@ public class CustomizedTaskFilterContainer extends TaskFilterContainer {
 
   public void setCustomerTypeFilter(CustomerTypeFilter customerTypeFilter) {
     this.customerTypeFilter = customerTypeFilter;
+  }
+
+  public TaskIdFilter getIdFilter() {
+    return idFilter;
+  }
+
+  public void setIdFilter(TaskIdFilter idFilter) {
+    this.idFilter = idFilter;
+  }
+
+  public TaskNameFilter getNameFilter() {
+    return nameFilter;
+  }
+
+  public void setNameFilter(TaskNameFilter nameFilter) {
+    this.nameFilter = nameFilter;
   }
 }
