@@ -38,7 +38,7 @@
     </ui:define>
 
     <ui:define name="widgetContent">
-      <ic:ch.ivy.addon.portal.generic.dashboard.component.TaskWidget id="task-component" taskWidget="#{widget}" isReadOnlyMode="#{isReadOnlyMode}" componentToUpdateTaskWidget="#{p:component('dashboard-tasks')}"/>
+      <ic:ch.ivy.addon.portal.generic.dashboard.component.TaskWidget id="task-component" taskWidget="#{widget}" isReadOnlyMode="#{isReadOnlyMode}" componentToUpdateTaskWidget="#{cc.clientId}:task-component:dashboard-tasks"/>
     </ui:define>
   </ui:decorate>
 </cc:implementation>
