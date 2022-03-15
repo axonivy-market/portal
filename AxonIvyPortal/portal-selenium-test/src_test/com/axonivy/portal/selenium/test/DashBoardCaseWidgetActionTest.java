@@ -51,6 +51,7 @@ public class DashBoardCaseWidgetActionTest extends BaseTest {
     // In progress
     assertTaskActionsByCaseState("In progress", Arrays.asList("Details", "Business details", "Destroy"));
     // Destroyed
+    caseWidget.clickOnCaseActionLink(0);
     caseWidget.destroyCase(0);
     assertTaskActionsByCaseState("Destroyed", Arrays.asList("Details", "Business details"));
     // Done
