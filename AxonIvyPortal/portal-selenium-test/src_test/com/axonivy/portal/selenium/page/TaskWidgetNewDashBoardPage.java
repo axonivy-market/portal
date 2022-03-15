@@ -274,6 +274,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   
   public ElementsCollection getActiveTaskActions(int taskIndex) {
     clickOnTaskActionLink(taskIndex);
+    clickOnTaskActionLink(taskIndex);
     return $$("div[id$='dashboard-actions-task-task_1:side-steps-panel']").filter(appear).first().waitUntil(appear, DEFAULT_TIMEOUT)
         .$("div.ui-overlaypanel-content").$$("a[class*='option-item']");
   }
