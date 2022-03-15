@@ -3,7 +3,7 @@ package ch.ivy.addon.portalkit.taskfilter.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections4.CollectionUtils;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -22,6 +22,10 @@ public class TaskStateFilter extends TaskFilter {
   private List<TaskState> selectedFilteredStates;
   @JsonIgnore
   private List<TaskState> selectedFilteredStatesAtBeginning;
+  @JsonIgnore
+  private List<TaskState> submittedFilteredStates;
+  @JsonIgnore
+  private boolean isSelectedAll;
 
   /**
    * Initialize the values of filteredStates: CREATED, SUSPENDED, RESUMED, PARKED, READY_FOR_JOIN, DONE
@@ -34,8 +38,7 @@ public class TaskStateFilter extends TaskFilter {
     } else {
       this.filteredStates.add(TaskState.DONE);
     }
-
-    this.selectedFilteredStatesAtBeginning = new ArrayList<>(filteredStates);
+    setSelectedFilteredStatesAtBeginning(new ArrayList<>(filteredStates));
     this.selectedFilteredStates = new ArrayList<>();
   }
 
@@ -46,9 +49,16 @@ public class TaskStateFilter extends TaskFilter {
 
   @Override
   public String value() {
-    if (CollectionUtils.isEmpty(selectedFilteredStates) || isAllStatesSelected()) {
+    if (CollectionUtils.isNotEmpty(submittedFilteredStates)) {
+      selectedFilteredStates = new ArrayList<>(submittedFilteredStates);
+    }
+    if (CollectionUtils.isEmpty(selectedFilteredStates)) {
+      return noSelectionLabel();
+    } else if (isAllStatesSelected()) {
+      isSelectedAll = true;
       return ALL;
     }
+    isSelectedAll = false;
     String value = userFriendlyState(selectedFilteredStates.get(0));
 
     for (int i = 1; i < selectedFilteredStates.size(); i++) {
@@ -83,8 +93,26 @@ public class TaskStateFilter extends TaskFilter {
   }
 
   @Override
+  public void validate() {
+    submittedFilteredStates = new ArrayList<>(selectedFilteredStates);
+  }
+
+  public void onSelectedAllStates() {
+    if (isSelectedAll) {
+      selectedFilteredStates = new ArrayList<>(filteredStates);
+    } else {
+      selectedFilteredStates = new ArrayList<>();
+    }
+  }
+  
+  public void onSelectState() {
+    isSelectedAll = isAllStatesSelected();
+  }
+
+  @Override
   public void resetValues() {
     selectedFilteredStates = new ArrayList<>(selectedFilteredStatesAtBeginning);
+    submittedFilteredStates = new ArrayList<>();
   }
   
   @Override
@@ -128,6 +156,15 @@ public class TaskStateFilter extends TaskFilter {
   }
 
   public void setSelectedFilteredStatesAtBeginning(List<TaskState> selectedFilteredStatesAtBeginning) {
-    this.selectedFilteredStatesAtBeginning = selectedFilteredStatesAtBeginning;
+    this.selectedFilteredStatesAtBeginning = new ArrayList<>(selectedFilteredStatesAtBeginning);
+    this.submittedFilteredStates = new ArrayList<>(selectedFilteredStatesAtBeginning);
+  }
+
+  public boolean isSelectedAll() {
+    return isSelectedAll;
+  }
+
+  public void setSelectedAll(boolean isSelectedAll) {
+    this.isSelectedAll = isSelectedAll;
   }
 }

@@ -14,9 +14,18 @@
   <ic:ch.ivy.addon.portalkit.component.cases.filter.AdvancedFilter id="#{cc.attrs.componentId}" caseFilter="#{cc.attrs.filter}"
     selectedFilters="#{cc.attrs.selectedFilters}" resultContainerUpdated="#{cc.attrs.resultContainerUpdated}"
     dataModel="#{cc.attrs.dataModel}">
+    <div class="config-checkbox-select-all">
+      <p:selectBooleanCheckbox id="states-select-all" styleClass="select-all-checkbox"
+        itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/selectAll')}"
+        value="#{cc.attrs.filter.selectedAll}" >
+        <p:ajax listener="#{cc.attrs.filter.onSelectedAllStates()}" update="state-selection" partialSubmit="true"/>
+      </p:selectBooleanCheckbox>
+    </div>
     <p:selectManyCheckbox id="state-selection" layout="pageDirection" value="#{cc.attrs.filter.selectedFilteredStates}">
       <f:selectItems value="#{cc.attrs.filter.filteredStates}" var="state" itemValue="#{state}"
         itemLabel="#{cc.attrs.filter.userFriendlyState(state)}" />
+      <p:ajax listener="#{cc.attrs.filter.onSelectState()}"
+        update="states-select-all" global="false" partialSubmit="true"/>
     </p:selectManyCheckbox>
   </ic:ch.ivy.addon.portalkit.component.cases.filter.AdvancedFilter>
 </cc:implementation>

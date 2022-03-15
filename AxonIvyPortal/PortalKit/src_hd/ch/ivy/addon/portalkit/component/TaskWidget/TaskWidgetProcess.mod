@@ -779,7 +779,8 @@ Ts0 f69 336 1184 403 1184 #arcP
 Ts0 f71 guid 1703284EDD9E3F5E #txt
 Ts0 f71 method restoreDefaultFilterSet() #txt
 Ts0 f71 inParameterDecl '<> param;' #txt
-Ts0 f71 inActionCode 'out.dataModel.selectedTaskFilterData = null;
+Ts0 f71 inActionCode 'out.dataModel.selectedAllFilters = false;
+out.dataModel.selectedTaskFilterData = null;
 out.dataModel.applyFilter(out.dataModel.defaultTaskFilterData);' #txt
 Ts0 f71 outParameterDecl '<> result;' #txt
 Ts0 f71 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

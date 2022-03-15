@@ -95,6 +95,8 @@
       <h:panelGroup id="task-filters-container" layout="block" styleClass="advanced-filter-container task-filters-container">
         <h:panelGroup id="additional-task-filter" styleClass="additional-filter-container">
           <c:set var="filterContainer" value="#{data.dataModel.taskFilterContainer}" />
+          <ic:ch.ivy.addon.portalkit.component.task.filter.TaskIdFilter filter="#{filterContainer.idFilter}"
+            dataModel="#{data.dataModel}" selectedFilters="#{data.dataModel.selectedTaskFilters}" resultContainerUpdated="#{false}" />
           <ic:ch.ivy.addon.portalkit.component.task.filter.TaskPriorityFilter filter="#{filterContainer.priorityFilter}"
             dataModel="#{data.dataModel}" selectedFilters="#{data.dataModel.selectedTaskFilters}" resultContainerUpdated="#{false}" />
           <ic:ch.ivy.addon.portalkit.component.task.filter.TaskStateFilter filter="#{filterContainer.stateFilter}"
@@ -156,6 +158,8 @@
       <h:panelGroup id="case-filters-container" layout="block" styleClass="advanced-filter-container">
         <h:panelGroup id="additional-case-filter" styleClass="additional-filter-container">
           <c:set var="caseFilterContainer" value="#{data.dataModel.caseFilterContainer}" />
+          <ic:ch.ivy.addon.portalkit.component.cases.filter.CaseIdFilter filter="#{caseFilterContainer.idFilter}"
+               dataModel="#{data.dataModel}" selectedFilters="#{data.dataModel.selectedCaseFilters}" resultContainerUpdated="#{false}"/>
           <ic:ch.ivy.addon.portalkit.component.cases.filter.CaseCreationDateFilter filter="#{caseFilterContainer.caseCreationDateFilter}"
                dataModel="#{data.dataModel}" selectedFilters="#{data.dataModel.selectedCaseFilters}" resultContainerUpdated="#{false}"/>
           <ic:ch.ivy.addon.portalkit.component.cases.filter.CaseFinishedDateFilter filter="#{caseFilterContainer.caseFinishedDateFilter}"
@@ -166,7 +170,7 @@
                dataModel="#{data.dataModel}" selectedFilters="#{data.dataModel.selectedCaseFilters}" resultContainerUpdated="#{false}"/>
           <ic:ch.ivy.addon.portalkit.component.cases.filter.CaseCreatorFilter filter="#{caseFilterContainer.caseCreatorFilter}"
                dataModel="#{data.dataModel}" selectedFilters="#{data.dataModel.selectedCaseFilters}" resultContainerUpdated="#{false}"/>
-          <ic:ch.ivy.addon.portalkit.component.cases.filter.CaseNameFilter filter="#{caseFilterContainer.caseNameFilter}"
+          <ic:ch.ivy.addon.portalkit.component.cases.filter.CaseNameFilter filter="#{caseFilterContainer.nameFilter}"
                dataModel="#{data.dataModel}" selectedFilters="#{data.dataModel.selectedCaseFilters}" resultContainerUpdated="#{false}"/>
           <ic:ch.ivy.addon.portalkit.component.cases.filter.CaseCategoryFilter filter="#{caseFilterContainer.caseCategoryFilter}"
                dataModel="#{data.dataModel}" selectedFilters="#{data.dataModel.selectedCaseFilters}" resultContainerUpdated="#{false}"/>
