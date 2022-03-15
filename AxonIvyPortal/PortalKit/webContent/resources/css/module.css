@@ -360,9 +360,19 @@ _:-ms-input-placeholder, :root .task-widget .in-progress-task-checkbox, .case-wi
 }
 
 .task-widget .ui-overlaypanel.filter-add-panel .ui-scrollpanel,
-.case-widget-container .ui-overlaypanel.filter-add-panel .ui-scrollpanel {
-  border: none;
+.case-widget-container .ui-overlaypanel.filter-add-panel .ui-scrollpanel,
+.filter-add-panel.ui-overlaypanel .config-checkbox-select-all {
   padding: 12px 22px;
+}
+
+.filter-add-panel.ui-overlaypanel .config-checkbox-select-all {
+  padding-bottom: 5px;
+}
+
+.task-widget .ui-overlaypanel.filter-add-panel .ui-scrollpanel,
+.case-widget-container .ui-overlaypanel.filter-add-panel .ui-scrollpanel {
+  padding-top: 4px;
+  border: none;
   border-radius: 0;
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
