@@ -20,7 +20,7 @@ import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
 import com.codeborne.selenide.CollectionCondition;
 
 @IvyWebTest(headless = false)
-public class NewDashboardCaseWidgetTest extends BaseTest {
+public class DashboardCaseWidgetTest extends BaseTest {
 
   // WIDGET
   private static final String YOUR_CASES_WIDGET = "Your Cases";

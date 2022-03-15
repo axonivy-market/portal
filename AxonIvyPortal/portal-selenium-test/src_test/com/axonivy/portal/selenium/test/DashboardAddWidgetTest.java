@@ -15,7 +15,7 @@ import com.axonivy.portal.selenium.page.TaskEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
 
 @IvyWebTest
-public class NewDashboardAddWidgetTest extends BaseTest {
+public class DashboardAddWidgetTest extends BaseTest {
 
   private NewDashboardPage newDashboardPage;
 
