@@ -92,7 +92,6 @@ public class NewDashboardConfigurationPage extends TemplatePage {
   public NewDashboardPage navigateToNewDashboardPage() {
     $("a[id='dashboard-form:cancel-button']").click();
     NewDashboardPage newDashboardPage = new NewDashboardPage();
-    newDashboardPage.waitPageDisplay();
     newDashboardPage.waitForAbsencesGrowlMessageDisplay();
     return newDashboardPage;
   }
