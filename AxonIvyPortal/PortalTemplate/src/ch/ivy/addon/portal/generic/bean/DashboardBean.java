@@ -402,14 +402,6 @@ public class DashboardBean implements Serializable {
     this.deleteFilters = deleteFilters;
   }
 
-  public void navigatetoPrivateConfiguration() {
-    PortalNavigator.navigateToNewDashboardConfiguration(false);
-  }
-
-  public void navigatetoPublicConfiguration() {
-    PortalNavigator.navigateToNewDashboardConfiguration(true);
-  }
-
   public void navigatetoMyDashboardReorder() {
     PortalNavigator.navigateToDashboardReorder(false);
   }
