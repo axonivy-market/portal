@@ -131,7 +131,7 @@
       <p:commandLink id="delete-widget-#{index}" styleClass="si si-bin-1"
         oncomplete="PF('remove-widget-dialog').show()"
         global="false"
-        actionListener="#{dashboardConfigurationBean.setDeleteWidget(widget)}"
+        actionListener="#{dashboardDetailModificationBean.setDeleteWidget(widget)}"
         update="remove-widget-dialog"
         rendered="#{!isReadOnlyMode}"
         process="@this"
