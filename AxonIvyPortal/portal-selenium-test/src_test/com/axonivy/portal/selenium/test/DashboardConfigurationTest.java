@@ -14,7 +14,7 @@ import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class DashboardConfigurationTest extends BaseTest {
 
   private NewDashboardPage newDashboardPage;
