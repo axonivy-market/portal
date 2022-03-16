@@ -118,4 +118,12 @@ public class TaskPriorityFilter extends TaskFilter {
     this.isSelectedAll = isSelectedAll;
   }
 
+  public List<WorkflowPriority> getSubmittedFilteredPriorities() {
+    return submittedFilteredPriorities;
+  }
+
+  public void setSubmittedFilteredPriorities(List<WorkflowPriority> submittedFilteredPriorities) {
+    this.submittedFilteredPriorities = submittedFilteredPriorities;
+  }
+
 }
