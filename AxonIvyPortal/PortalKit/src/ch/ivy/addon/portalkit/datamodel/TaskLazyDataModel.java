@@ -182,6 +182,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
     TaskStateFilter stateFilter = filterContainer.getStateFilter();
     if (criteria.isAdminQuery() && !isRelatedTaskDisplayed) {
       stateFilter.setSelectedFilteredStatesAtBeginning(new ArrayList<>(stateFilter.getSelectedFilteredStates()));
+      stateFilter.setSubmittedFilteredStates(new ArrayList<>(stateFilter.getSelectedFilteredStates()));
     } else if (!stateFilter.getFilteredStates().contains(TaskState.DONE)) {
       stateFilter.addFilteredState(TaskState.DONE);
     }
@@ -781,6 +782,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
       filterContainer.getStateFilter().setFilteredStates(new ArrayList<>(criteria.getIncludedStates()));
       filterContainer.getStateFilter().setSelectedFilteredStates(criteria.getIncludedStates());
       filterContainer.getStateFilter().setSelectedFilteredStatesAtBeginning(criteria.getIncludedStates());
+      filterContainer.getStateFilter().setSubmittedFilteredStates(criteria.getIncludedStates());
     }
   }
 
