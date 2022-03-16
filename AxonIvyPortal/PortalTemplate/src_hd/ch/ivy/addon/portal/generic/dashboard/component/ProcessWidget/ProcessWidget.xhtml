@@ -39,7 +39,7 @@
           ableToEdit="#{!isReadOnlyMode}"
           oncompleteEditProcess="PF('new-widget-configuration-dialog').show()"
           componentToUpdateOnEditProcess="new-widget-configuration-dialog"
-          editActionListener="#{dashboardConfigurationBean.prepareEditWidget(widget)}"
+          editActionListener="#{dashboardDetailModificationBean.prepareEditWidget(widget)}"
           oncompleteRemoveProcess="PF('remove-widget-dialog').show()"
           componentToUpdateOnRemoveProcess="remove-widget-dialog"
           removeActionListener="#{dashboardConfigurationBean.setDeleteWidget(widget)}"
@@ -69,7 +69,7 @@
         rendered="#{(displayMode eq 'COMBINED_MODE' or displayMode eq 'FULL_MODE' or displayMode eq 'IMAGE_MODE') and widget.process eq null}">
         <h:panelGroup id="empty-process-actions" rendered="#{!isReadOnlyMode}" styleClass="process-grid-item__action--combined">
           <p:commandLink id="empty-process-edit-widget" styleClass="si si-pencil u-mar-right-15" global="false"
-            actionListener="#{dashboardConfigurationBean.prepareEditWidget(widget)}" process="@this"
+            actionListener="#{dashboardDetailModificationBean.prepareEditWidget(widget)}" process="@this"
             partialSubmit="true" update="new-widget-configuration-dialog"
             oncomplete="PF('new-widget-configuration-dialog').show()" />
           <p:tooltip for="empty-process-edit-widget" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/editWidget')}"

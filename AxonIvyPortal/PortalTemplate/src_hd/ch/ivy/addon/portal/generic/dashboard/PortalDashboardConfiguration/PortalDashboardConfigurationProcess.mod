@@ -1,5 +1,5 @@
 [Ivy]
-1785E2E27F48F5D0 9.4.0 #module
+17F4E85A986DB827 9.4.1 #module
 >Proto >Proto Collection #zClass
 Ps0 PortalDashboardConfigurationProcess Big #zClass
 Ps0 RD #cInfo
@@ -7,19 +7,20 @@ Ps0 #process
 Ps0 @AnnotationInP-0n ai ai #zField
 Ps0 @TextInP .type .type #zField
 Ps0 @TextInP .processKind .processKind #zField
+Ps0 @TextInP .colors .colors #zField
 Ps0 @TextInP .xml .xml #zField
 Ps0 @TextInP .responsibility .responsibility #zField
+Ps0 @TextInP color color #zField
 Ps0 @UdInit f0 '' #zField
 Ps0 @UdProcessEnd f1 '' #zField
+Ps0 @UdMethod f16 '' #zField
+Ps0 @UdProcessEnd f21 '' #zField
+Ps0 @GridStep f14 '' #zField
+Ps0 @PushWFArc f15 '' #zField
 Ps0 @PushWFArc f2 '' #zField
-Ps0 @UdEvent f3 '' #zField
-Ps0 @UdExitEnd f4 '' #zField
-Ps0 @PushWFArc f5 '' #zField
-Ps0 @UdProcessEnd f6 '' #zField
-Ps0 @UdInit f7 '' #zField
-Ps0 @PushWFArc f8 '' #zField
+Ps0 @PushWFArc f22 '' #zField
 >Proto Ps0 Ps0 PortalDashboardConfigurationProcess #zField
-Ps0 f0 guid 1785E2E27FD69201 #txt
+Ps0 f0 guid 17F4E86175D200C3 #txt
 Ps0 f0 method start(Boolean) #txt
 Ps0 f0 inParameterDecl '<Boolean isPublicDashboard> param;' #txt
 Ps0 f0 inParameterMapAction 'out.isPublicDashboard=param.isPublicDashboard;
@@ -32,42 +33,43 @@ Ps0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ps0 f0 83 51 26 26 -16 15 #rect
-Ps0 f1 211 51 26 26 0 12 #rect
-Ps0 f2 109 64 211 64 #arcP
-Ps0 f3 guid 1785E2E2809D4FA0 #txt
-Ps0 f3 actionTable 'out=in;
-' #txt
-Ps0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+Ps0 f0 75 43 26 26 -16 15 #rect
+Ps0 f1 203 43 26 26 0 12 #rect
+Ps0 f16 guid 17F4E86175DF7C4E #txt
+Ps0 f16 method backToHome() #txt
+Ps0 f16 inParameterDecl '<> param;' #txt
+Ps0 f16 outParameterDecl '<> result;' #txt
+Ps0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>close</name>
+        <name>backToHome()</name>
     </language>
 </elementInfo>
 ' #txt
-Ps0 f3 83 131 26 26 -15 15 #rect
-Ps0 f4 211 131 26 26 0 12 #rect
-Ps0 f5 109 144 211 144 #arcP
-Ps0 f6 211 211 26 26 0 12 #rect
-Ps0 f7 guid 17D9E910B3EA06A6 #txt
-Ps0 f7 method start() #txt
-Ps0 f7 inParameterDecl '<> param;' #txt
-Ps0 f7 outParameterDecl '<> result;' #txt
-Ps0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+Ps0 f16 75 139 26 26 -25 15 #rect
+Ps0 f21 475 139 26 26 0 12 #rect
+Ps0 f14 actionTable 'out=in;
+' #txt
+Ps0 f14 actionCode 'import ch.ivy.addon.portalkit.publicapi.PortalNavigatorAPI;
+
+PortalNavigatorAPI.navigateToPortalEndPage();' #txt
+Ps0 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>start()</name>
+        <name>Navigate To Portal EndPage</name>
     </language>
 </elementInfo>
 ' #txt
-Ps0 f7 83 211 26 26 -16 15 #rect
-Ps0 f8 109 224 211 224 #arcP
+Ps0 f14 184 130 160 44 -77 -8 #rect
+Ps0 f15 101 152 184 152 #arcP
+Ps0 f2 101 56 203 56 #arcP
+Ps0 f22 344 152 475 152 #arcP
 >Proto Ps0 .type ch.ivy.addon.portal.generic.dashboard.PortalDashboardConfiguration.PortalDashboardConfigurationData #txt
 >Proto Ps0 .processKind HTML_DIALOG #txt
 >Proto Ps0 -8 -8 16 16 16 26 #rect
 Ps0 f0 mainOut f2 tail #connect
 Ps0 f2 head f1 mainIn #connect
-Ps0 f3 mainOut f5 tail #connect
-Ps0 f5 head f4 mainIn #connect
-Ps0 f7 mainOut f8 tail #connect
-Ps0 f8 head f6 mainIn #connect
+Ps0 f16 mainOut f15 tail #connect
+Ps0 f15 head f14 mainIn #connect
+Ps0 f14 mainOut f22 tail #connect
+Ps0 f22 head f21 mainIn #connect
