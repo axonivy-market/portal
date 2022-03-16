@@ -120,7 +120,7 @@
       <p:commandLink id="edit-widget-#{index}" styleClass="si si-pencil u-hidden-sm-down u-mar-right-15"
         oncomplete="PF('new-widget-configuration-dialog').show()"
         global="false"
-        actionListener="#{dashboardConfigurationBean.prepareEditWidget(widget)}"
+        actionListener="#{dashboardDetailModificationBean.prepareEditWidget(widget)}"
         update="new-widget-configuration-dialog"
         rendered="#{!isReadOnlyMode}"
         process="@this"
