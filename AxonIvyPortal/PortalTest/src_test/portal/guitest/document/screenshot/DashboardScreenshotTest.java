@@ -19,6 +19,7 @@ import ch.ivy.addon.portalkit.util.ScreenshotUtil;
 import portal.guitest.common.ScreenshotTest;
 import portal.guitest.common.TestAccount;
 import portal.guitest.common.WaitHelper;
+import portal.guitest.page.DashboardConfigurationPage;
 import portal.guitest.page.DashboardWidgetConfigurationDialogPage;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.NewDashboardPage;
@@ -137,6 +138,9 @@ public class DashboardScreenshotTest extends ScreenshotTest {
     showNewDashboard();
     newDashboardPage = new NewDashboardPage();
     redirectToEditDashboard();
+    DashboardConfigurationPage configPage = new DashboardConfigurationPage();
+    configPage.configureDashboardByIndex(0);
+    newDashboardPage.waitForPageLoaded();
     newDashboardPage.addNewCustomWidget();
     newDashboardPage.selectCustomWidgetTypeProcess();
     newDashboardPage.selectIvyProcessForCustomWidget("Investment List (Example for Custom Widget on Dashboard)");
@@ -180,7 +184,9 @@ public class DashboardScreenshotTest extends ScreenshotTest {
 
     // Take screenshot of Edit dashboard page
     redirectToEditDashboard();
-    newDashboardPage.waitForElementDisplayed(By.id("switch-to-view-mode"), true);
+    DashboardConfigurationPage configPage = new DashboardConfigurationPage();
+    configPage.configureDashboardByIndex(0);
+    newDashboardPage.waitForPageLoaded();
     WaitHelper.assertTrueWithWait(() -> ScreenshotUtil.isDOMStatusComplete());
     newDashboardPage.waitForTaskWidgetLoading();
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.NEW_DASHBOARD_FOLDER + "edit-widget");
