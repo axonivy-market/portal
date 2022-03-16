@@ -42,7 +42,7 @@
           editActionListener="#{dashboardDetailModificationBean.prepareEditWidget(widget)}"
           oncompleteRemoveProcess="PF('remove-widget-dialog').show()"
           componentToUpdateOnRemoveProcess="remove-widget-dialog"
-          removeActionListener="#{dashboardConfigurationBean.setDeleteWidget(widget)}"
+          removeActionListener="#{dashboardDetailModificationBean.setDeleteWidget(widget)}"
           showInformationLink="#{data.showInformationLink}"
           processStyleClass="ui-g-12 u-padding-0 process-widget--full"
           processIconStyleClass="process-grid-view__icon" />
@@ -75,7 +75,7 @@
           <p:tooltip for="empty-process-edit-widget" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/editWidget')}"
             trackMouse="true" hideEvent="mouseleave click" />
           <p:commandLink id="empty-process-delete-widget" styleClass="si si-bin-1" global="false"
-            actionListener="#{dashboardConfigurationBean.setDeleteWidget(widget)}" process="@this" partialSubmit="true"
+            actionListener="#{dashboardDetailModificationBean.setDeleteWidget(widget)}" process="@this" partialSubmit="true"
             update="remove-widget-dialog" oncomplete="PF('remove-widget-dialog').show()" />
           <p:tooltip for="empty-process-delete-widget" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/deleteWidget')}"
             trackMouse="true" hideEvent="mouseleave click" />
