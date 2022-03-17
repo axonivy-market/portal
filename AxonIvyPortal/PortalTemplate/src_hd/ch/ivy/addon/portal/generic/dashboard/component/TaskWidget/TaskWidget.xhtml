@@ -33,7 +33,6 @@
           <p:resetInput target="#{p:component('column-management-dialog')}" />
         </p:commandLink>
       </h:panelGroup>
-      
       <p:dataTable id="dashboard-tasks" widgetVar="dashboard-tasks-#{taskWidget.id}" value="#{taskWidget.dataModel}" var="task"
         paginator="true" paginatorPosition="bottom" lazy="true" paginatorTemplate="{PreviousPageLink} {PageLinks} {NextPageLink} {RowsPerPageDropdown}"
         rows="#{taskWidget.rowsPerPage}"
@@ -46,7 +45,7 @@
         rowStyleClass="dashboard-table--row-style"
         emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}">
         <p:ajax event="page" oncomplete="saveWidgetState()" />
-        <p:ajax event="rowSelect" listener="#{dashboardBean.navigateToSelectedTaskDetails}" disabled="#{!isReadOnlyMode}" />
+        <p:ajax event="rowSelect" listener="#{dashboardBean.handleRowSelectEventOnTaskWidget}" disabled="#{!isReadOnlyMode}" />
 
         <p:columns id="dashboard-tasks-columns" var="column" value="#{taskWidget.columns}" headerText="#{column.headerText}" styleClass="#{column.styleClass} #{(column.field eq 'start' or column.field eq 'name') ? '' : 'u-hidden-sm-down'}"
           visible="#{column.visible}" field="#{column.field}" 
@@ -98,5 +97,27 @@
       </p:dataTable>
     </h:panelGroup>
   </div>
+  
+  <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
+    <ui:param name="id" value="reset-task-confirmation-dialog" />
+    <ui:param name="widgetVar" value="reset-task-confirmation-dialog" />
+    <ui:param name="appendTo" value="@(body)" />
+    <ui:param name="iconClass" value="si si-road-sign-warning" />
+    <ui:param name="iconStyleClass" value="portal-dialog-warning-icon" />
+    <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/restTaskHeaderText')}" />
+    <ui:param name="dialogContent" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/resetTaskWarning')}" />
+
+    <ui:define name="dialogFooter">
+      <h:form id="reset-task-confirmation-form">
+        <p:commandLink onclick="PF('reset-task-confirmation-dialog').hide()"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" styleClass="u-mar-right-15" />
+        <p:commandButton actionListener="#{dashboardBean.resetAndOpenTask}"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
+          icon="#{visibilityBean.generateButtonIcon('si si-road-sign-u-turn-left')}"
+          onstart="#{cc.attrs.onTaskStartCallback}" oncomplete="resetPortalLeftMenuState()"/>
+      </h:form>
+    </ui:define>
+  </ui:decorate>
+
 </cc:implementation>
 </html>

@@ -37,14 +37,13 @@
         </div>
       </h:panelGroup>
     </div>
-
     <div class="ui-g-12 u-padding-0 case-details-related-task-table" id="case-details-related-task-table">
       <p:dataTable id="related-tasks" lazy="true" value="#{data.dataModel}" var="task" paginator="true" rows="5"
         paginatorPosition="bottom" paginatorAlwaysVisible="false"
         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}" sortBy="#{ID}" sortField="ID"
         rowIndexVar="rowIndex" rowHover="true" selectionMode="single"
         currentPageReportTemplate="{currentPage} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/curentReportOf')} {totalPages}">
-        <p:ajax event="rowSelect" listener="#{caseDetailsBean.navigateToSelectedTaskDetails}" />
+        <p:ajax event="rowSelect" listener="#{caseDetailsBean.handleRowSelectEventOnRelatedTaskList}" />
         <p:column
           headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/abbreviation/PRIORITY')}"
           styleClass="priority-column ui-sm-hidden" field="PRIORITY" sortBy="#{PRIORITY}"
@@ -136,6 +135,27 @@
     </ui:define>
   </ui:decorate>
 
+  <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
+    <ui:param name="id" value="reset-task-confirmation-dialog" />
+    <ui:param name="widgetVar" value="reset-task-confirmation-dialog" />
+    <ui:param name="appendTo" value="@(body)" />
+    <ui:param name="iconClass" value="si si-road-sign-warning" />
+    <ui:param name="iconStyleClass" value="portal-dialog-warning-icon" />
+    <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/restTaskHeaderText')}" />
+    <ui:param name="dialogContent" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/resetTaskWarning')}" />
+
+    <ui:define name="dialogFooter">
+      <h:form id="reset-task-confirmation-form">
+        <p:commandLink onclick="PF('reset-task-confirmation-dialog').hide()"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" styleClass="u-mar-right-15" />
+        <p:commandButton actionListener="#{logic.resetAndOpenTask(data.currentPortalPage, caseDetailsBean.selectedTask.id)}"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
+          icon="#{visibilityBean.generateButtonIcon('si si-road-sign-u-turn-left')}"
+          onstart="#{cc.attrs.onTaskStartCallback}" oncomplete="resetPortalLeftMenuState()"/>
+      </h:form>
+    </ui:define>
+  </ui:decorate>
+  
   <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
     <ui:param name="id" value="destroy-task-confirmation-dialog" />
     <ui:param name="widgetVar" value="destroy-task-dialog" />
