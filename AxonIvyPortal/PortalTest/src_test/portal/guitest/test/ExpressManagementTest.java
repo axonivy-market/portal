@@ -147,6 +147,7 @@ public class ExpressManagementTest extends BaseTest {
     // back to home and refresh task list data
     redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     gotoTaskList();
+    taskWidgetPage.clickOnTaskStatesAndApply(Arrays.asList("Suspended"));
     executeApprovalTask(firstComment);
     executeApprovalTask(secondComment);
     executeFinalReviewTask();

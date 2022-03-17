@@ -2,14 +2,12 @@ package com.axonivy.portal.selenium.page;
 
 import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.disappears;
-import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 
-import com.axonivy.portal.selenium.common.LinkNavigator;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
@@ -36,38 +34,11 @@ public class NewDashboardPage extends TemplatePage {
         .waitUntil(disappears, DEFAULT_TIMEOUT);
   }
 
-  public void switchToEditMode() {
-    LinkNavigator.redirectToEditPublicDashboard();
-    $("a[id='switch-to-view-mode']").waitUntil(appear, DEFAULT_TIMEOUT).should(getClickableCondition());
-  }
-
-  public void addWidget() {
-    $("button[id='add-button']").waitUntil(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
-  }
-
-  private void addWidgetByName(String name) {
-    $("div[id='new-widget-dialog-content_content']").waitUntil(appear, DEFAULT_TIMEOUT)
-        .$$("div.new-widget-dialog__item").filter(text(name)).first().$("div.ui-widget-content")
-        .$("button[id^='new-widget-dialog-content']").shouldBe(getClickableCondition()).click();
-  }
-
-  public CaseEditWidgetNewDashBoardPage addNewCaseWidget() {
-    addWidgetByName("Case List");
-    return new CaseEditWidgetNewDashBoardPage();
-  }
-
-  public TaskEditWidgetNewDashBoardPage addNewTaskWidget() {
-    addWidgetByName("Task List");
-    return new TaskEditWidgetNewDashBoardPage();
-  }
-
-  public ProcessEditWidgetNewDashBoardPage addNewProcessWidget() {
-    addWidgetByName("Process List");
-    return new ProcessEditWidgetNewDashBoardPage();
-  }
-
   public ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration() {
-    switchToEditMode();
+    openDashboardConfigurationDialog();
+    NewDashboardConfigurationPage configPage = navigateToEditPublicDashboardPage();
+    configPage.navigateToEditDashboardDetailsByName("Dashboard");
+
     $("a[id$=':edit-widget-2']").waitUntil(appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition()).click();
     $("div#new-widget-configuration-dialog").waitUntil(appear, DEFAULT_TIMEOUT);
@@ -99,21 +70,8 @@ public class NewDashboardPage extends TemplatePage {
     return $("span[id$=':process-item-name']").waitUntil(Condition.appear, DEFAULT_TIMEOUT);
   }
 
-  public void deleteImageModeProcess() {
-    $("button[id$=':process-action-button']").waitUntil(Condition.appear, DEFAULT_TIMEOUT).click();
-    $("span.si-bin-1").waitUntil(Condition.appear, DEFAULT_TIMEOUT).click();
-    getRemoveWidgetDialog().waitUntil(Condition.appear, DEFAULT_TIMEOUT).click();
-    getRemoveWidgetButton().click();
-    getRemoveWidgetDialog().waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
-  }
-
   public SelenideElement getImageContainer() {
     return $("div.image-process-container");
-  }
-
-  public void switchToViewMode() {
-    $("a[id='switch-to-view-mode']").waitUntil(Condition.appear, DEFAULT_TIMEOUT).click();
-    $("button[id*='-to-edit']").waitUntil(Condition.appear, DEFAULT_TIMEOUT);
   }
 
   public void startProcess() {
@@ -132,23 +90,8 @@ public class NewDashboardPage extends TemplatePage {
     return $("a[id$=':more-information']");
   }
 
-  public ProcessEditWidgetNewDashBoardPage editFullModeProcess() {
-    $("button[id$=':process-action-button']").shouldBe(Condition.appear).click();
-    $("span.si-graphic-tablet-drawing-pen").waitUntil(Condition.appear, DEFAULT_TIMEOUT).click();
-    $("div[id='new-widget-configuration-dialog']").waitUntil(Condition.appear, DEFAULT_TIMEOUT);
-    return new ProcessEditWidgetNewDashBoardPage();
-  }
-
   public SelenideElement getFullModeProcessName() {
     return $("span[id$=':process-item:process-name']").shouldBe(Condition.appear);
-  }
-
-  public void deleteFullModeProcess() {
-    $("button[id$=':process-action-button']").shouldBe(Condition.appear).click();
-    $("span.si-bin-1").waitUntil(Condition.appear, DEFAULT_TIMEOUT).click();
-    getRemoveWidgetDialog().waitUntil(Condition.appear, DEFAULT_TIMEOUT).click();
-    getRemoveWidgetButton().click();
-    getRemoveWidgetDialog().waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
   }
 
   public SelenideElement getFullModeProcessContainer() {
@@ -186,21 +129,6 @@ public class NewDashboardPage extends TemplatePage {
 
   public SelenideElement getCombinedModeProcessName() {
     return $(".process-grid-view__name--combined").shouldBe(Condition.appear);
-  }
-
-  public void deleteCombinedModeProcess() {
-    try {
-      openDeleteCombinedModeProcessDialog();
-    } catch (Exception e) {
-      openDeleteCombinedModeProcessDialog();
-    }
-    getRemoveWidgetButton().click();
-    getRemoveWidgetDialog().waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
-  }
-
-  private void openDeleteCombinedModeProcessDialog() {
-    $(".process-grid-item__action--combined .si-bin-1").waitUntil(Condition.appear, DEFAULT_TIMEOUT).click();
-    getRemoveWidgetDialog().waitUntil(Condition.appear, DEFAULT_TIMEOUT);
   }
 
   public SelenideElement getCombinedModeProcessContainer() {
@@ -295,21 +223,6 @@ public class NewDashboardPage extends TemplatePage {
 
   public SelenideElement getCompactModeProcessFirstProcessItemName() {
     return $(".compact-processes-container a.process-item span[id$=':process-name-process-item']");
-  }
-
-  public void deleteCompactModeProcess() {
-    $("a[id$=':delete-widget-2']").shouldBe(Condition.appear).click();
-    getRemoveWidgetDialog().waitUntil(Condition.appear, DEFAULT_TIMEOUT).click();
-    getRemoveWidgetButton().click();
-    getRemoveWidgetDialog().waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
-  }
-
-  private SelenideElement getRemoveWidgetDialog() {
-    return $("div[id='remove-widget-dialog']");
-  }
-
-  private SelenideElement getRemoveWidgetButton() {
-    return $("button[id='remove-widget-button']");
   }
 
   public SelenideElement getCompactModeProcessContainer() {
@@ -716,9 +629,15 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public void openDashboardConfigurationDialog() {
-    waitForAbsencesGrowlMessageDisplay();
     SelenideElement configureButton = getConfigureDashboardMenu();
     configureButton.click();
+  }
+
+  public NewDashboardConfigurationPage navigateToEditPublicDashboardPage() {
+    $("a[id$=':edit-public-dashboard']").click();
+    NewDashboardConfigurationPage newDashboardConfigurationPage = new NewDashboardConfigurationPage();
+    newDashboardConfigurationPage.waitPageDisplay();
+    return newDashboardConfigurationPage;
   }
 
   public SelenideElement getPrivateDashboardConfigurationSection() {

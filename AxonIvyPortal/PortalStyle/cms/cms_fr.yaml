@@ -100,6 +100,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       EMAIL: Courriel electronique
       INFORMATION: nformation
       OTHERS: Autres
+    BehaviourWhenClickingOnLineInTaskList:
+      ACCESS_TASK_DETAILS: TODO Access task details
+      RUN_TASK: TODO Run the task
     DashboardCustomWidgetType:
       EXTERNAL_URL: URL externe
       PROCESS: Processus Axon Ivy
@@ -198,6 +201,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     embedInFrame: Démarrer un processus/une tâche en mode IFrame
     emptySupportedLanguages: Il n'y a pas langue supplémentaire supportée
     globalVariableNote:
+      behaviourWhenClickingOnLineInTaskList: TODO For switch behaviours (run the task or access task details) when clicking on a line in task list, task widget of dashboard and related tasks  in case details page.
       chatMaxConnection: Si le nombre de tabs du browser est supérieur à ce nombre maximum, le chat sera désactivé sur les tabs inactifs du browser. Les valeurs valides sont 1, 2, 3, 4, 5.
       chatResponseTimeout: Délai de réponse au chat en secondes, la valeur par défaut est 0 et signifie aucun délai. Si les messages de chat passent par le proxy inverse Nginx, le délai de réponse du chat doit être inférieur au délai de Nginx, par exemple moins de 60 secondes.
       clientSideTimeoutNote: Délai d'attente côté client en minutes, doit être supérieur à 0 et inférieur au délai d'attente côté serveur (par exemple 25 secondes). La valeur par défaut est 0, ce qui signifie que le délai d'attente côté client par défaut est appliqué. Le délai d'attente côté client par
@@ -623,6 +627,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskStart:
       cannotDelegateTaskMessage: Cette tâche ne peut pas être déléguée ä un autre utilisateur ou une autre groupe.
       cannotStartMessages:
+        cannotStartTask: TODO You can not start task {0}.
         isAnotherUserWorking: Vous ne pouvez pas travailler sur la tâche ''{0}'' avec l'identifiant ''{1}'' car l'utilisateur ''{2}'' travaille actuellement dessus.
         noPermission: Vous ne pouvez pas démarrer la tâche {0} car vous n'avez pas la permission.
         taskDone: Vous ne pouvez pas démarrer la tâche {0} car c'est déjà fait.
