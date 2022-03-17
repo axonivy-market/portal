@@ -203,6 +203,11 @@ Ts0 f97 inParameterDecl '<ch.ivyteam.ivy.workflow.ITask task,ch.ivy.addon.portal
 Ts0 f97 inParameterMapAction 'out.dataModel=param.dataModel;
 out.task=param.task;
 ' #txt
+Ts0 f97 inActionCode 'import ch.ivy.addon.portalkit.jsf.ManagedBeans;
+import ch.ivy.addon.portalkit.bean.TaskWidgetBean;
+
+TaskWidgetBean taskWidgetBean = ManagedBeans.get("taskWidgetBean") as TaskWidgetBean;
+taskWidgetBean.selectedTaskItemId = param.task.getId();' #txt
 Ts0 f97 outParameterDecl '<> result;' #txt
 Ts0 f97 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

@@ -73,8 +73,8 @@ public class TaskWidgetPage extends TemplatePage {
 	}
 
 	public void runTaskWhenClickingOnRow(int index) {
-	  waitForElementDisplayed(By.cssSelector("div[id$='task-widget:task-list-scroller:" + index + ":task-item:task-info-quick-run-task']"), true);
-	  clickByCssSelector("div[id$='task-widget:task-list-scroller:" + index + ":task-item:task-info-quick-run-task']");
+	  waitForElementDisplayed(By.cssSelector("div[id$='task-widget:task-list-scroller:" + index + ":task-item:runnable-task-info']"), true);
+	  clickByCssSelector("div[id$='task-widget:task-list-scroller:" + index + ":task-item:runnable-task-info']");
 	}
 	
 	public String getTaskTitleAfterStarted() {
