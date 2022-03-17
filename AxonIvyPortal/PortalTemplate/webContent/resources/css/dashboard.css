@@ -221,6 +221,11 @@ body .ui-dialog .ui-dialog-footer .ui-button.dashboard__edit-global-dashboard {
   display: block;
 }
 
+.dashboard-tasks__actions a,
+.dashboard-cases__actions a {
+  margin: 0;
+}
+
 td.dashboard-tasks__name span,
 td.dashboard-cases__name span {
   font-weight: var(--process-grid-name-font-weight);
