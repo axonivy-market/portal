@@ -96,27 +96,6 @@
           </h:panelGroup>
         </p:columns>
       </p:dataTable>
-      
-      <!-- Destroy case dialog -->
-  <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
-    <ui:param name="id" value="destroy-case-confirmation-dialog" />
-    <ui:param name="widgetVar" value="destroy-case-dialog" />
-    <ui:param name="appendTo" value="@(body)" />
-    <ui:param name="iconClass" value="si si-delete-1" />
-    <ui:param name="iconStyleClass" value="portal-dialog-error-icon" />
-    <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroyCaseHeaderText')}" />
-    <ui:param name="dialogContent" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/destroyCaseMessage')}" />
-    
-    <ui:define name="dialogFooter">
-       <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-          onclick="PF('destroy-case-dialog').hide();" styleClass="u-mar-right-15"/>
-       <p:commandButton id="confirm-destruction" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}"
-          icon="#{visibilityBean.generateButtonIcon('si si-remove')}"
-          actionListener="#{caseWidgetBean.destroyCase(caseWidgetBean.selectedCase)}"
-          oncomplete="PF('destroy-case-dialog').hide()"
-          update="#{cc.attrs.componentToUpdateCaseWidget}" />
-    </ui:define>
-  </ui:decorate>
     </h:panelGroup>
   </div>
 </cc:implementation>
