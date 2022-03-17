@@ -1,9 +1,11 @@
 [Ivy]
-17727FBAA8BC2EDF 9.4.0 #module
+17727FBAA8BC2EDF 9.4.1 #module
 >Proto >Proto Collection #zClass
 Cs0 CaseItemRelatedTasksProcess Big #zClass
 Cs0 RD #cInfo
 Cs0 #process
+Cs0 @TextInP .colors .colors #zField
+Cs0 @TextInP color color #zField
 Cs0 @TextInP .type .type #zField
 Cs0 @TextInP .processKind .processKind #zField
 Cs0 @AnnotationInP-0n ai ai #zField
@@ -257,7 +259,7 @@ if(in.task.getState() == TaskState.DONE){
 		String workerName = StringUtils.isBlank(fullName) ? worker.getName() : worker.getFullName() + " (" + worker.getName() + ")";
 		notification = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/cannotStartMessages/isAnotherUserWorking", [in.task.name, in.task.getId(), workerName]);
 	} else {
-		notification = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/cannotStartMessages/noPermission", [in.task.getName()]);
+		notification = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/cannotStartMessages/cannotStartTask", [in.task.getName()]);
 	}
 }
 
