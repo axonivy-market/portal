@@ -25,6 +25,8 @@ public class DashboardConfigurationTest extends BaseTest {
     super.setup();
     newDashboardPage = new NewDashboardPage();
     login(TestAccount.ADMIN_USER);
+    redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantDashboardWritePublicPermission.ivp");
+    redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantDashboardWriteOwnPermission.ivp");
     redirectToNewDashBoard();
   }
 
@@ -33,6 +35,7 @@ public class DashboardConfigurationTest extends BaseTest {
     redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantDashboardWriteOwnPermission.ivp");
     redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/denyDashboardWritePublicPermission.ivp");
     newDashboardPage = new NewDashboardPage();
+    newDashboardPage.waitForAbsencesGrowlMessageDisplay();
     newDashboardPage.openDashboardConfigurationDialog();
     newDashboardPage.getPrivateDashboardConfigurationSection().shouldBe(Condition.appear);
     newDashboardPage.getPublicDashboardConfigurationSection().shouldBe(Condition.disappear);
@@ -43,6 +46,7 @@ public class DashboardConfigurationTest extends BaseTest {
     redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/denyDashboardWriteOwnPermission.ivp");
     redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantDashboardWritePublicPermission.ivp");
     newDashboardPage = new NewDashboardPage();
+    newDashboardPage.waitForAbsencesGrowlMessageDisplay();
     newDashboardPage.openDashboardConfigurationDialog();
     newDashboardPage.getPublicDashboardConfigurationSection().shouldBe(Condition.appear);
     newDashboardPage.getPrivateDashboardConfigurationSection().shouldBe(Condition.disappear);
@@ -58,8 +62,6 @@ public class DashboardConfigurationTest extends BaseTest {
 
   @Test
   public void testEditPublicDashboardInfo() {
-    login(TestAccount.ADMIN_USER);
-    redirectToNewDashBoard();
     newDashboardPage.openDashboardConfigurationDialog();
     NewDashboardConfigurationPage configPage = newDashboardPage.navigateToEditPublicDashboardPage();
     configPage.clickEditDashboardByName("Dashboard");
@@ -76,8 +78,6 @@ public class DashboardConfigurationTest extends BaseTest {
 
   @Test
   public void testDeletePublicDashboard() {
-    login(TestAccount.ADMIN_USER);
-    redirectToNewDashBoard();
     newDashboardPage.openDashboardConfigurationDialog();
     NewDashboardConfigurationPage configPage = newDashboardPage.navigateToEditPublicDashboardPage();
     configPage.clickDeleteDashboardByName("Dashboard");
