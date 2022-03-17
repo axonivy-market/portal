@@ -13,8 +13,8 @@ public class ActionsColumnModel extends TaskColumnModel implements Serializable 
   public void initDefaultValue() {
     this.header = defaultIfEmpty(this.header, "cms:/ch.ivy.addon.portalkit.ui.jsf/common/action");
     this.field = DashboardStandardTaskColumn.ACTIONS.getField();
-    this.style = defaultIfEmpty(this.style, TINY_WIDTH);
-    this.styleClass = defaultIfEmpty(this.styleClass, "dashboard-tasks__actions u-text-align-center");
+    this.style = defaultIfEmpty(this.style, SMALL_WIDTH);
+    this.styleClass = defaultIfEmpty(this.styleClass, "dashboard-tasks__actions");
     this.sortable = false;
     this.format = DashboardColumnFormat.CUSTOM;
   }
