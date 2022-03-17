@@ -508,6 +508,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     seconds: seconds
     seeDetail: See details
     select: Select
+    selectAll: Select All
     selectUsers: Select user(s)
     selectedDay: '{0} selected day(s)'
     send: Send

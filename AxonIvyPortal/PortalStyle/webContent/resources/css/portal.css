@@ -1901,6 +1901,7 @@ ul.participants-list li {
   font-size: var(--small-font-size);
   line-height: 18px; }
 
+.config-checkbox-select-all,
 .config-checkbox-container {
   border-bottom: 1px solid var(--config-checkbox-container-border); }
 

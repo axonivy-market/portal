@@ -8,6 +8,8 @@ import ch.ivy.addon.portalkit.service.GlobalSettingService;
 
 public class DefaultCaseFilterContainer extends CaseFilterContainer {
 
+  protected CaseIdFilter idFilter = new CaseIdFilter();
+  protected CaseNameFilter nameFilter = new CaseNameFilter();
   protected CaseCreationDateFilter caseCreationDateFilter = new CaseCreationDateFilter();
   protected CaseCreatorFilter caseCreatorFilter = new CaseCreatorFilter();
   protected CaseOwnerFilter caseOwnerFilter = new CaseOwnerFilter();
@@ -17,6 +19,8 @@ public class DefaultCaseFilterContainer extends CaseFilterContainer {
 
   public DefaultCaseFilterContainer() {
     super();
+    filters.add(idFilter);
+    filters.add(nameFilter);
     filters.add(caseCreationDateFilter);
     filters.add(caseCreatorFilter);
     if (new GlobalSettingService().isCaseOwnerEnabled()) {
@@ -76,4 +80,19 @@ public class DefaultCaseFilterContainer extends CaseFilterContainer {
     this.caseCategoryFilter = caseCategoryFilter;
   }
 
+  public CaseIdFilter getIdFilter() {
+    return idFilter;
+  }
+
+  public void setIdFilter(CaseIdFilter idFilter) {
+    this.idFilter = idFilter;
+  }
+
+  public CaseNameFilter getNameFilter() {
+    return nameFilter;
+  }
+
+  public void setNameFilter(CaseNameFilter nameFilter) {
+    this.nameFilter = nameFilter;
+  }
 }
