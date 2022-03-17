@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import ch.addon.portal.generic.userprofile.homepage.HomepageUtils;
+import ch.ivy.addon.portalkit.enums.BehaviourWhenClickingOnLineInTaskList;
 import ch.ivy.addon.portalkit.enums.CaseSortField;
 import ch.ivy.addon.portalkit.enums.DefaultImage;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
@@ -56,7 +57,6 @@ public class GlobalSetting extends AbstractConfiguration {
     } else if (variable == GlobalVariable.DEFAULT_HOMEPAGE) {
       return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/dashboard");
     } else if (variable.getType() == GlobalVariableType.EXTERNAL_SELECTION && MapUtils.isNotEmpty(variable.getExternalOptions())) {
-      
       Object object = variable.getExternalOptions().get(defaultValue);
       return getDisplayValue(object);
     }
@@ -86,6 +86,8 @@ public class GlobalSetting extends AbstractConfiguration {
       return ((SortDirection)object).getLabel();
     } else if (object instanceof ProcessMode) {
       return ((ProcessMode)object).getLabel();
+    } else if (object instanceof BehaviourWhenClickingOnLineInTaskList) {
+      return ((BehaviourWhenClickingOnLineInTaskList)object).getLabel();
     } else if (object instanceof DefaultImage) {
       return ((DefaultImage)object).getLabel();
     } else {
