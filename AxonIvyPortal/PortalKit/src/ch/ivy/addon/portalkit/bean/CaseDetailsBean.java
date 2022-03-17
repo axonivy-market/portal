@@ -25,7 +25,6 @@ import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.exporter.Exporter;
-import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;
 import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
@@ -63,8 +62,9 @@ public class CaseDetailsBean extends AbstractConfigurableContentBean<CaseDetails
     isHideCaseDocument = new GlobalSettingService().findGlobalSettingValueAsBoolean(GlobalVariable.HIDE_CASE_DOCUMENT);
     caseActionBean = ManagedBeans.get("caseActionBean");
     isFirstTime = true;
-    isRunningTaskWhenClickingOnTaskInList = UserSettingService.newInstance()
-        .getTaskBehaviourWhenClickingOnLineInTaskList().equals(BehaviourWhenClickingOnLineInTaskList.RUN_TASK.name());
+    isRunningTaskWhenClickingOnTaskInList = new GlobalSettingService()
+        .findGlobalSettingValue(GlobalVariable.DEFAULT_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST)
+        .equals(BehaviourWhenClickingOnLineInTaskList.RUN_TASK.name());
   }
 
   public void preRender(ICase selectedCase, boolean showBackButton) {

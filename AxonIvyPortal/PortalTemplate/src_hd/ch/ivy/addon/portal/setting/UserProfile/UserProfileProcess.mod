@@ -24,10 +24,6 @@ Ct0 Component Big #zClass
 Ct0 B #cInfo
 Ct10 Component Big #zClass
 Ct10 B #cInfo
-Ct1 Component Big #zClass
-Ct1 B #cInfo
-Ct11 Component Big #zClass
-Ct11 B #cInfo
 Us0 @TextInP .colors .colors #zField
 Us0 @TextInP color color #zField
 Us0 Ct9 S90 'Sub 9' #zField
@@ -72,12 +68,8 @@ Us0 @PushWFArc f5 '' #zField
 Us0 @PushWFArc f18 '' #zField
 Us0 Ct10 S00 'Sub 10' #zField
 Us0 @PushWFArc f17 '' #zField
-Us0 Ct1 S21 'Sub 2' #zField
-Us0 @PushWFArc f23 '' #zField
-Us0 @PushWFArc f20 '' #zField
-Us0 Ct11 S91 'Sub 9' #zField
 Us0 @PushWFArc f9 '' #zField
-Us0 @PushWFArc f25 '' #zField
+Us0 @PushWFArc f20 '' #zField
 >Proto Us0 Us0 UserProfileProcess #zField
 Ct9 @TextInP .colors .colors #zField
 Ct9 @TextInP color color #zField
@@ -214,32 +206,6 @@ Ct10 @GridStep f1 '' #zField
 Ct10 @PushWFArc f2 '' #zField
 Ct10 @PushWFArc f0 '' #zField
 >Proto Ct10 Ct9 Component #zField
-Ct1 @TextInP .colors .colors #zField
-Ct1 @TextInP color color #zField
-Ct1 @AnnotationInP-0n ai ai #zField
-Ct1 @TextInP .type .type #zField
-Ct1 @TextInP .processKind .processKind #zField
-Ct1 @TextInP .xml .xml #zField
-Ct1 @TextInP .responsibility .responsibility #zField
-Ct1 @GridStep f10 '' #zField
-Ct1 @PushTrueWFInG-01 g0 '' #zField
-Ct1 @PushWFArc f0 '' #zField
-Ct1 @PushTrueWFOutG-01 g1 '' #zField
-Ct1 @PushWFArc f1 '' #zField
->Proto Ct1 Ct10 Component #zField
-Ct11 @TextInP .colors .colors #zField
-Ct11 @TextInP color color #zField
-Ct11 @AnnotationInP-0n ai ai #zField
-Ct11 @TextInP .type .type #zField
-Ct11 @TextInP .processKind .processKind #zField
-Ct11 @TextInP .xml .xml #zField
-Ct11 @TextInP .responsibility .responsibility #zField
-Ct11 @GridStep f17 '' #zField
-Ct11 @PushTrueWFInG-01 g0 '' #zField
-Ct11 @PushWFArc f0 '' #zField
-Ct11 @PushTrueWFOutG-01 g1 '' #zField
-Ct11 @PushWFArc f1 '' #zField
->Proto Ct11 Ct11 Component #zField
 Us0 S90 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language lang="en">
@@ -247,7 +213,7 @@ Us0 S90 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Us0 S90 752 258 112 44 -46 -8 #rect
+Us0 S90 768 258 112 44 -46 -8 #rect
 Us0 S80 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language lang="en">
@@ -271,7 +237,7 @@ Us0 S60 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Us0 S60 1088 122 112 44 -53 -8 #rect
+Us0 S60 920 122 112 44 -53 -8 #rect
 Us0 S60 g0 -55 0 #fFoot
 Us0 S50 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -314,7 +280,7 @@ Us0 S10 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Us0 S10 160 258 112 44 -43 -8 #rect
 Us0 f1 211 51 26 26 0 12 #rect
-Us0 f8 1235 131 26 26 0 12 #rect
+Us0 f8 1099 131 26 26 0 12 #rect
 Us0 f12 guid 17255599F044D2FD #txt
 Us0 f12 method initSettings() #txt
 Us0 f12 inParameterDecl '<> param;' #txt
@@ -354,7 +320,7 @@ Us0 f39 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Us0 f39 304 122 112 44 -44 -8 #rect
-Us0 f42 1379 267 26 26 0 12 #rect
+Us0 f42 1275 267 26 26 0 12 #rect
 Us0 f45 processCall 'Ivy Data Processes/EmailSettingService:saveEmailSetting(ch.ivy.addon.portalkit.ivydata.bo.IvyEmailSetting)' #txt
 Us0 f45 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.bo.IvyEmailSetting emailSetting> param;' #txt
 Us0 f45 requestMappingAction 'param.emailSetting=in.emailSetting;
@@ -430,14 +396,14 @@ Us0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Us0 f6 1056 258 112 44 -38 -8 #rect
-Us0 f3 1168 280 1227 280 #arcP
+Us0 f6 1104 258 112 44 -38 -8 #rect
+Us0 f3 1216 280 1275 280 #arcP
 Us0 f4 560 144 592 144 #arcP
 Us0 f10 736 144 768 144 #arcP
-Us0 f26 1200 144 1235 144 #arcP
+Us0 f26 1032 144 1099 144 #arcP
 Us0 f11 416 280 448 280 #arcP
 Us0 f5 576 280 608 280 #arcP
-Us0 f18 720 280 752 280 #arcP
+Us0 f18 720 280 768 280 #arcP
 Us0 S00 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -445,30 +411,11 @@ Us0 S00 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Us0 S00 1088 258 128 44 -58 -8 #rect
+Us0 S00 920 258 128 44 -58 -8 #rect
 Us0 S00 g0 -64 0 #fFoot
-Us0 f17 1216 280 1240 280 #arcP
-Us0 S21 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language lang="en">
-        <name>Init Task Behaviour Setting</name>
-    </language>
-</elementInfo>
-' #txt
-Us0 S21 904 122 160 44 -72 -8 #rect
-Us0 f23 880 144 904 144 #arcP
-Us0 f20 1064 144 1089 144 #arcP
-Us0 S91 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language lang="en">
-        <name>Save Task Behaviour Setting</name>
-    </language>
-</elementInfo>
-' #txt
-Us0 S91 896 258 160 44 -77 -8 #rect
-Us0 f9 864 280 896 280 #arcP
-Us0 f25 1056 280 1088 280 #arcP
-Us0 f25 0 0.4918336371500539 0 0 #arcLabel
+Us0 f17 1048 280 1104 280 #arcP
+Us0 f9 880 280 920 280 #arcP
+Us0 f20 880 144 921 144 #arcP
 >Proto Us0 .type ch.ivy.addon.portal.setting.UserProfile.UserProfileData #txt
 >Proto Us0 .processKind HTML_DIALOG #txt
 >Proto Us0 -8 -8 16 16 16 26 #rect
@@ -970,91 +917,6 @@ Ct10 f2 13 256 224 256 #arcP
 Ct10 f0 352 256 563 256 #arcP
 >Proto Ct9 0 0 32 24 18 0 #rect
 >Proto Ct9 @|BIcon #fIcon
-Ct1 f10 actionTable 'out=in;
-' #txt
-Ct1 f10 actionCode 'import org.apache.commons.lang3.StringUtils;
-import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;
-import ch.ivy.addon.portalkit.enums.BehaviourWhenClickingOnLineInTaskList;
-import java.util.ArrayList;
-
-if (in.taskBehavioursWhenClickingOnLine == null || in.taskBehavioursWhenClickingOnLine.isEmpty()) {
-	String defaultOption = UserSettingService.DEFAULT;
-
-  in.taskBehavioursWhenClickingOnLine = new ArrayList();
-  in.taskBehavioursWhenClickingOnLine.add(defaultOption);
-  for (BehaviourWhenClickingOnLineInTaskList behaviour : BehaviourWhenClickingOnLineInTaskList.values()) {
-    in.taskBehavioursWhenClickingOnLine.add(behaviour.name());
-  }
-
-  in.selectedTaskBehaviourWhenClickingOnLine = UserSettingService.newInstance().getDefaultTaskBehaviourWhenClickingOnLineInTaskList();
-  if (StringUtils.isBlank(in.selectedTaskBehaviourWhenClickingOnLine)) {
-    in.selectedTaskBehaviourWhenClickingOnLine = defaultOption;
-  }
-}' #txt
-Ct1 f10 security system #txt
-Ct1 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Init Task Behaviour When Clicking On Line In List</name>
-    </language>
-</elementInfo>
-' #txt
-Ct1 f10 144 138 272 44 -133 -8 #rect
-Ct1 g0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language lang="en">
-        <name>in 1</name>
-    </language>
-</elementInfo>
-' #txt
-Ct1 g0 51 147 26 26 0 5 #rect
-Ct1 f0 77 160 144 160 #arcP
-Ct1 g1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language lang="en">
-        <name>out 1</name>
-    </language>
-</elementInfo>
-' #txt
-Ct1 g1 467 147 26 26 0 5 #rect
-Ct1 f1 416 160 467 160 #arcP
-Ct1 f1 0 0.572829131652661 0 0 #arcLabel
->Proto Ct10 0 0 32 24 18 0 #rect
->Proto Ct10 @|BIcon #fIcon
-Ct11 f17 actionTable 'out=in;
-' #txt
-Ct11 f17 actionCode 'import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;
-UserSettingService.newInstance().saveDefaultTaskBehaviourWhenClickingOnLineInTaskList(in.selectedTaskBehaviourWhenClickingOnLine);
-' #txt
-Ct11 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Save task behaviour when&#13;
-clicking on line in task list</name>
-    </language>
-</elementInfo>
-' #txt
-Ct11 f17 176 138 176 44 -67 -16 #rect
-Ct11 g0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language lang="en">
-        <name>in 1</name>
-    </language>
-</elementInfo>
-' #txt
-Ct11 g0 51 147 26 26 0 5 #rect
-Ct11 f0 77 160 176 160 #arcP
-Ct11 g1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language lang="en">
-        <name>out 1</name>
-    </language>
-</elementInfo>
-' #txt
-Ct11 g1 451 147 26 26 -7 15 #rect
-Ct11 f1 352 160 451 160 #arcP
->Proto Ct11 0 0 32 24 18 0 #rect
->Proto Ct11 @|BIcon #fIcon
 Us0 f0 mainOut f2 tail #connect
 Us0 f2 head f1 mainIn #connect
 Us0 f16 mainOut f15 tail #connect
@@ -1087,14 +949,10 @@ Us0 f18 head S90 g0 #connect
 Us0 S80 g1 f18 tail #connect
 Us0 S00 g1 f17 tail #connect
 Us0 f17 head f6 mainIn #connect
-Us0 S20 g1 f23 tail #connect
-Us0 f23 head S21 g0 #connect
-Us0 S21 g1 f20 tail #connect
-Us0 f20 head S60 g0 #connect
 Us0 S90 g1 f9 tail #connect
-Us0 f9 head S91 g0 #connect
-Us0 S91 g1 f25 tail #connect
-Us0 f25 head S00 g0 #connect
+Us0 f9 head S00 g0 #connect
+Us0 S20 g1 f20 tail #connect
+Us0 f20 head S60 g0 #connect
 Ct9 g0 m f0 tail #connect
 Ct9 f0 head f17 mainIn #connect
 Ct9 f1 head g1 m #connect
@@ -1153,13 +1011,3 @@ Ct10 f2 head f1 mainIn #connect
 Ct10 f1 mainOut f0 tail #connect
 Ct10 f0 head g1 m #connect
 Ct10 0 0 640 512 0 #ivRect
-Ct1 g0 m f0 tail #connect
-Ct1 f0 head f10 mainIn #connect
-Ct1 f10 mainOut f1 tail #connect
-Ct1 f1 head g1 m #connect
-Ct1 0 0 544 320 0 #ivRect
-Ct11 g0 m f0 tail #connect
-Ct11 f0 head f17 mainIn #connect
-Ct11 f1 head g1 m #connect
-Ct11 f17 mainOut f1 tail #connect
-Ct11 0 0 608 320 0 #ivRect
