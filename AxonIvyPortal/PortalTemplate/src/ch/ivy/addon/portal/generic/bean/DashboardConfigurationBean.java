@@ -184,11 +184,19 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
 
   public void dashboardPermissionListener(SelectEvent event) {
     SecurityMemberDTO selectedItem = (SecurityMemberDTO) event.getObject();
+    SecurityMemberDTO duplicatedItem = null;
 
-    for (SecurityMemberDTO item : selectedEditingDashboard.getPermissionDTOs()) {
-      if(item.getMemberName().contentEquals(selectedItem.getMemberName()) && !item.equals(selectedItem)) {
-        selectedEditingDashboard.getPermissionDTOs().remove(selectedItem);
+    for (int i=0; i<selectedEditingDashboard.getPermissionDTOs().size() - 1; i++) {
+      SecurityMemberDTO item = selectedEditingDashboard.getPermissionDTOs().get(i);
+      if(item.getMemberName().contentEquals(selectedItem.getMemberName())) {
+        duplicatedItem =
+            selectedEditingDashboard.getPermissionDTOs().get(selectedEditingDashboard.getPermissionDTOs().size() - 1);
+        break;
       }
+    }
+
+    if (duplicatedItem != null) {
+      selectedEditingDashboard.getPermissionDTOs().remove(duplicatedItem);
     }
   }
 }
