@@ -27,10 +27,12 @@ import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.ProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.WidgetFilterModel;
+import ch.ivy.addon.portalkit.enums.BehaviourWhenClickingOnLineInTaskList;
 import ch.ivy.addon.portalkit.enums.DashboardCustomWidgetType;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.ivydata.service.impl.ProcessService;
+import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
 import ch.ivy.addon.portalkit.service.DashboardService;
@@ -39,6 +41,7 @@ import ch.ivy.addon.portalkit.support.HtmlParser;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
+import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISecurityConstants;
 import ch.ivyteam.ivy.security.IUser;
@@ -64,6 +67,8 @@ public class DashboardBean implements Serializable {
   private List<WidgetFilterModel> deleteFilters;
   private boolean canEditPrivateDashboard;
   private boolean canEditPublicDashboard;
+  private ITask selectedTask;
+  private boolean isRunningTaskWhenClickingOnTaskInList;
 
   @PostConstruct
   public void init() {
@@ -77,6 +82,8 @@ public class DashboardBean implements Serializable {
       selectedDashboard = dashboards.get(0);
     }
     buildWidgetModels(selectedDashboard);
+    isRunningTaskWhenClickingOnTaskInList = UserSettingService.newInstance()
+        .getTaskBehaviourWhenClickingOnLineInTaskList().equals(BehaviourWhenClickingOnLineInTaskList.RUN_TASK.name());
   }
 
   protected List<Dashboard> collectDashboards() {
@@ -233,14 +240,32 @@ public class DashboardBean implements Serializable {
     return FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
   }
 
-  public void navigateToSelectedTaskDetails(SelectEvent event) {
-    Long taskId = ((ITask) event.getObject()).getId();
-    PortalNavigator.navigateToPortalTaskDetails(taskId);
+  public void handleRowSelectEventOnTaskWidget(SelectEvent event) throws IOException {
+    ITask task = ((ITask) event.getObject());
+    selectedTask = task;
+    handleSelectedTask(task);
+  }
+
+  public void handleSelectedTask(ITask task) throws IOException {
+    if (isRunningTaskWhenClickingOnTaskInList) {
+      TaskUtils.handleStartTask(task, null, "reset-task-confirmation-dialog");
+    } else {
+      navigateToSelectedTaskDetails(task);
+    }
+  }
+
+  public void navigateToSelectedTaskDetails(ITask task) {
+    PortalNavigator.navigateToPortalTaskDetails(task.getId());
   }
 
   public void navigateToSelectedCaseDetails(SelectEvent event) {
     Long caseId = ((ICase) event.getObject()).getId();
     PortalNavigator.navigateToPortalCaseDetails(caseId);
+  }
+
+  public void resetAndOpenTask() throws IOException {
+    TaskUtils.resetTask(selectedTask);
+    FacesContext.getCurrentInstance().getExternalContext().redirect(selectedTask.getStartLinkEmbedded().getRelative());
   }
 
   protected IUser currentUser() {
@@ -260,10 +285,6 @@ public class DashboardBean implements Serializable {
       selectedDashboard = dashboards.get(currentDashboardIndex);
       buildWidgetModels(selectedDashboard);
     }
-  }
-
-  public void startTask(ITask task) throws IOException {
-    FacesContext.getCurrentInstance().getExternalContext().redirect(task.getStartLinkEmbedded().getRelative());
   }
 
   public String createExtractedTextFromHtml(String text) {
@@ -409,5 +430,4 @@ public class DashboardBean implements Serializable {
   public void navigatetoPublicDashboardReorder() {
     PortalNavigator.navigateToDashboardReorder(true);
   }
-
 }

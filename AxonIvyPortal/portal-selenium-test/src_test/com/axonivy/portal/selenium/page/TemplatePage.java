@@ -1,10 +1,12 @@
 package com.axonivy.portal.selenium.page;
 
 import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Selenide.$;
 
 import java.util.ArrayList;
 
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
 
 public abstract class TemplatePage extends AbstractPage {
@@ -35,4 +37,7 @@ public abstract class TemplatePage extends AbstractPage {
     WebDriverRunner.getWebDriver().switchTo().window(tabs.get(0));
   }
 
+  public SelenideElement getStartedTaskTemplateTitle() {
+    return $("div[id$='task-template-title']");
+  }
 }

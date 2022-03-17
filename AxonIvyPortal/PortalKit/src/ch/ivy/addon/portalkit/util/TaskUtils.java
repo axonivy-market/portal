@@ -2,19 +2,29 @@ package ch.ivy.addon.portalkit.util;
 
 import static ch.ivy.addon.portalkit.constant.CustomFields.CUSTOM_TIMESTAMP_FIELD5;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.primefaces.PrimeFaces;
 
+import ch.ivy.addon.portalkit.constant.DummyTask;
+import ch.ivy.addon.portalkit.datamodel.internal.RelatedTaskLazyDataModel;
+import ch.ivy.addon.portalkit.dto.TaskEndInfo;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
+import ch.ivy.addon.portalkit.enums.PortalPage;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria;
 import ch.ivy.addon.portalkit.publicapi.TaskAPI;
+import ch.ivy.addon.portalkit.service.StickyTaskListService;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.ISecurityMember;
@@ -26,6 +36,8 @@ import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
 public final class TaskUtils {
+  private static final String PORTAL_GLOBAL_GROWL= "portal-global-growl";
+  private static final String PORTAL_GLOBAL_GROWL_MESSAGE= "portal-global-growl-message";
 
   private TaskUtils() {}
 
@@ -226,5 +238,82 @@ public final class TaskUtils {
     return CollectionUtils.emptyIfNull(states).stream()
         .filter(state -> validStates.contains(state))
         .collect(Collectors.toList());
+  }
+
+  public static void handleStartTask(ITask task, PortalPage portalpage, String dialog) throws IOException {
+    if (task.getState() == TaskState.RESUMED) {
+      handleStartResumedTask(task, dialog);
+    } else {
+      startTask(task, portalpage);
+    }
+  }
+
+  private static void handleStartResumedTask(ITask task, String dialog) throws IOException {
+    if (canResume(task)) {
+      PrimeFaces.current().executeScript("PF('" + dialog + "').show();");
+    } else {
+      isStartableTask(task);
+    }
+  }
+
+  public static boolean canResume(ITask task) {
+    if (task == null) {
+      return false;
+    }
+    if (StringUtils.equals(task.getName(), DummyTask.TASK_NAME)) {
+      return true;
+    }
+    IUser sessionUser = Ivy.session().getSessionUser();
+    return sessionUser != null ? task.canUserResumeTask(sessionUser.getUserToken()).wasSuccessful() : false;
+  }
+
+  private static void startTask(ITask task, PortalPage currentPortalPage) throws IOException {
+    if (isStartableTask(task)) {
+      if (currentPortalPage != null) {
+        storeEndInfo(task, null, currentPortalPage);
+      }
+      FacesContext.getCurrentInstance().getExternalContext().redirect(task.getStartLinkEmbedded().getRelative());
+    }
+  }
+
+  private static boolean isStartableTask(ITask task) {
+    String notification = getNotificationWhenStartTask(task);
+    if (StringUtils.isNotBlank(notification)) {
+      FacesContext facesContext = FacesContext.getCurrentInstance();
+      facesContext.validationFailed();
+      facesContext.addMessage(PORTAL_GLOBAL_GROWL_MESSAGE, new FacesMessage(FacesMessage.SEVERITY_INFO, notification, null));
+      PrimeFaces.current().ajax().update(PORTAL_GLOBAL_GROWL);
+    }
+    return StringUtils.isBlank(notification);
+  }
+
+  private static String getNotificationWhenStartTask(ITask task) {
+    String notification = "";
+    List<Object> cmsList = new ArrayList<>();
+    cmsList.add(task.getName());
+    if (task.getState() == TaskState.DONE) {
+      notification = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/cannotStartMessages/taskDone", cmsList);
+    } else if (!canResume(task)) {
+      IUser worker = task.getWorkerUser();
+      if (worker != null) {
+        String fullName = worker.getFullName();
+        String workerName = StringUtils.isBlank(fullName) ? worker.getName() : fullName + " (" + worker.getName() + ")";
+        cmsList.add(task.getId());
+        cmsList.add(workerName);
+        notification = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/cannotStartMessages/isAnotherUserWorking", cmsList);
+      } else {
+        notification = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/cannotStartMessages/cannotStartTask", cmsList);
+      }
+    }
+
+    return notification;
+  }
+
+  private static void storeEndInfo(ITask task, RelatedTaskLazyDataModel dataModel, PortalPage currentPortalPage) {
+    TaskEndInfo taskEndInfo = new TaskEndInfo();
+    taskEndInfo.setDataModel(dataModel);
+    taskEndInfo.setPortalPage(currentPortalPage);
+    String taskEndInfoSessionAttributeKey = StickyTaskListService.service().getTaskEndInfoSessionAttributeKey(task.getId());
+    SecurityServiceUtils.setSessionAttribute(taskEndInfoSessionAttributeKey, taskEndInfo);
   }
 }
