@@ -14,6 +14,7 @@ import javax.faces.bean.ViewScoped;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.constant.UserProperty;
+import ch.ivy.addon.portalkit.enums.BehaviourWhenClickingOnLineInTaskList;
 import ch.ivy.addon.portalkit.enums.CaseSortField;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.SortDirection;
@@ -90,6 +91,20 @@ public class UserProfileBean implements Serializable {
 
     
     return sortDirectionNames.contains(sortDirection) ? SortDirection.valueOf(sortDirection).getLabel() : "";
+  }
+
+  public String getDisplayNameOfTaskBehaviourWhenClickingOnLine(String behaviour) {
+    List<String> behaviours = Stream.of(BehaviourWhenClickingOnLineInTaskList.values()).map(Enum::name).collect(Collectors.toList());
+
+    if (StringUtils.equals(behaviour, DEFAULT)) {
+      GlobalSettingService globalSettingService = new GlobalSettingService();
+      String defaultBehaviour = globalSettingService.findGlobalSettingByGlobalVariable(GlobalVariable.DEFAULT_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST).getValue();
+
+      String displayBehaviour = behaviours.contains(defaultBehaviour) ? BehaviourWhenClickingOnLineInTaskList.valueOf(defaultBehaviour).getLabel() : defaultBehaviour;
+      return getDefaultSelection(displayBehaviour);
+    }
+
+    return behaviours.contains(behaviour) ? BehaviourWhenClickingOnLineInTaskList.valueOf(behaviour).getLabel() : behaviour;
   }
 
   private String getDefaultSelection(String sortFieldName) {
