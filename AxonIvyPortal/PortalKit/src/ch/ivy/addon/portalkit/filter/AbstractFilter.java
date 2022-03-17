@@ -1,5 +1,6 @@
 package ch.ivy.addon.portalkit.filter;
 
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.persistence.query.Query;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
@@ -134,4 +135,10 @@ public abstract class AbstractFilter<T extends Query<?>> {
     return false;
   }
 
+  /**
+   * No option in filter are selected e.g No states
+   */
+  protected String noSelectionLabel() {
+    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/NoSelection");
+  }
 }
