@@ -6,6 +6,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.addon.portal.generic.menu.SubMenuItem;
@@ -14,10 +15,12 @@ import ch.ivy.addon.portalkit.constant.UserProperty;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.MenuKind;
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
+import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.IvyAdapterService;
 import ch.ivy.addon.portalkit.util.ProcessStartUtils;
+import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public class HomepageUtils {
@@ -66,8 +69,14 @@ public class HomepageUtils {
 
   public static Homepage findHomepage() {
     List<Homepage> homepages = loadHomepages();
+    Boolean isPortalInTeams = (Boolean) SecurityServiceUtils.getSessionAttribute(SessionAttribute.PORTAL_IN_TEAMS.toString());
     Homepage homepage = new Homepage();
-    homepage.setName(getHomepageName());
+    if (BooleanUtils.isTrue(isPortalInTeams)) {
+      String homePageName = SecurityServiceUtils.getSessionAttribute(SessionAttribute.DEFAULT_PAGE_IN_TEAMS.toString()).toString();
+      homepage.setName(homePageName);
+    } else {
+      homepage.setName(getHomepageName());
+    }
     if (homepages.contains(homepage)) {
       Homepage seletedHomepage = homepages.get(homepages.indexOf(homepage));
       adjustHomepageStartLink(seletedHomepage);
