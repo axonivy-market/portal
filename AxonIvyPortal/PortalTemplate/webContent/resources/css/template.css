@@ -363,7 +363,12 @@ a.left-sidebar-menu-icon {
 
 .layout-wrapper .layout-main {
   height: 100%;
-} /* END SERENITY MAIN LAYOUT */
+  /* margin-left: 0px; */
+}
+.layout-wrapper .layout-main.margin-left-0 {
+	margin-left: 0px;
+}
+/* END SERENITY MAIN LAYOUT */
 /* =================== FRAME ========================= */
 .request-frame {
   width: 100%;

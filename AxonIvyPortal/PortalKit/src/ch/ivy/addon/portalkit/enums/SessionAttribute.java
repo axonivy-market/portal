@@ -7,5 +7,8 @@ public enum SessionAttribute {
   PORTAL_START_PMV_ID,
   IS_TASK_STARTED_IN_DETAILS, // task status (for navigating back feature)
   NAVIGATE_FROM_RELATED_CASE, // use for navigate back after destroy case
-  HELP_URL_LINK;
+  HELP_URL_LINK,
+  PORTAL_IN_TEAMS,
+  SHOW_MENU_IN_TEAMS,
+  DEFAULT_PAGE_IN_TEAMS;
 }
