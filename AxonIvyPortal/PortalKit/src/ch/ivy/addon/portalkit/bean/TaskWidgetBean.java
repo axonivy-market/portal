@@ -31,7 +31,7 @@ public class TaskWidgetBean implements Serializable {
   private TaskLazyDataModel dataModel;
   private Boolean isTaskDetailOpenning;
   private boolean isShowFullTaskList;
-  private boolean isRunningTaskWhenClickingLineOnTaskList;
+  private boolean isRunningTaskWhenClickingOnTaskInList;
 
   public TaskWidgetBean() {
     expandedTaskId = -1L;
@@ -41,9 +41,9 @@ public class TaskWidgetBean implements Serializable {
         StringUtils.isNumeric(taskListRefreshIntervalUserSetting) ? Long.parseLong(taskListRefreshIntervalUserSetting)
             : DEFAULT_TASK_LIST_REFRESH_INTERVAL;
     isShowFullTaskList = PermissionUtils.checkAccessFullTaskListPermission();
-    isRunningTaskWhenClickingLineOnTaskList =
+    isRunningTaskWhenClickingOnTaskInList =
         new GlobalSettingService().findGlobalSettingValue(GlobalVariable.BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.toString())
-            .equalsIgnoreCase(BehaviourWhenClickingOnLineInTaskList.RUN_TASK.name());
+            .equals(BehaviourWhenClickingOnLineInTaskList.RUN_TASK.name());
   }
 
   public Long getExpandedTaskId() {
@@ -119,11 +119,11 @@ public class TaskWidgetBean implements Serializable {
     TaskUtils.destroyTaskById(taskId);
   }
 
-  public boolean isRunningTaskWhenClickingLineOnTaskList() {
-    return isRunningTaskWhenClickingLineOnTaskList;
+  public boolean isRunningTaskWhenClickingOnTaskInList() {
+    return isRunningTaskWhenClickingOnTaskInList;
   }
 
-  public void setRunningTaskWhenClickingLineOnTaskList(boolean isRunningTaskWhenClickingLineOnTaskList) {
-    this.isRunningTaskWhenClickingLineOnTaskList = isRunningTaskWhenClickingLineOnTaskList;
+  public void setRunningTaskWhenClickingOnTaskInList(boolean isRunningTaskWhenClickingOnTaskInList) {
+    this.isRunningTaskWhenClickingOnTaskInList = isRunningTaskWhenClickingOnTaskInList;
   }
 }
