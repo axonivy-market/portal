@@ -14,6 +14,7 @@ import javax.faces.bean.ViewScoped;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.primefaces.event.SelectEvent;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
@@ -179,5 +180,15 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
     privateDashboard.setWidgets(new ArrayList<>());
     editingDashboards.add(privateDashboard);
     DashboardService.getInstance().save(privateDashboard);
+  }
+
+  public void dashboardPermissionListener(SelectEvent event) {
+    SecurityMemberDTO selectedItem = (SecurityMemberDTO) event.getObject();
+
+    for (SecurityMemberDTO item : selectedEditingDashboard.getPermissionDTOs()) {
+      if(item.getMemberName().contentEquals(selectedItem.getMemberName()) && !item.equals(selectedItem)) {
+        selectedEditingDashboard.getPermissionDTOs().remove(selectedItem);
+      }
+    }
   }
 }
