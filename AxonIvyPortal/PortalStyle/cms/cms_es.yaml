@@ -149,8 +149,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       TUESDAY: Mart.
       WEDNESDAY: Miérc.
   MyProfile:
-    BehaviourWhenClickingOnLineInTaskListSelections:
-      DefaultBehaviourWhenClickingOnLineInTaskListLabel: TODO Default behaviour when clicking on line in task list
     HomepageSelection:
       fullTaskList: Lista de tareas completa
     SortFieldSelections:
