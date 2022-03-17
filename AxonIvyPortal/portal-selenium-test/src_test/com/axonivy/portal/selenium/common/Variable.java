@@ -54,6 +54,7 @@ public enum Variable {
   EXPRESS_PROCESS("Portal.Processes.ExpressProcesses"),
   TASK_COLUMN("Portal.Tasks.TaskColumn"),
   TASK_FILTER("Portal.Tasks.TaskFilters"),
+  TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST("Portal.Tasks.BehaviourWhenClickingOnLineInTaskList"),
   TASK_DETAIL("Portal.TaskDetails"),
   CASE_COLUMN("Portal.Cases.CaseColumn"),
   CASE_FILTER( "Portal.Cases.CaseFilters"),

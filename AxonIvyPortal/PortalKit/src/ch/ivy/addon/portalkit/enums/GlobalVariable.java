@@ -59,8 +59,9 @@ public enum GlobalVariable {
   DEFAULT_PROCESS_IMAGE("Portal.Processes.DefaultImage", GlobalVariableType.EXTERNAL_SELECTION, DefaultImage.DEFAULT.name(), "defaultProcessImage", getDefaultProcessImage()),
   DEFAULT_HOMEPAGE("Portal.Homepage", GlobalVariableType.EXTERNAL_SELECTION, StringUtils.capitalize(HomepageType.DASHBOARD.name().toLowerCase()), "defaultHomepage"),
   DEFAULT_SORT_DIRECTION_OF_TASK_LIST("Portal.Tasks.SortDirection", GlobalVariableType.EXTERNAL_SELECTION, SortDirection.DESC.name(), "defaultSortDirectionOfTaskList", getSortDirections()),
-  DEFAULT_SORT_FIELD_OF_TASK_LIST("Portal.Tasks.SortField", GlobalVariableType.EXTERNAL_SELECTION, TaskSortField.ID.name(), "defaultSortFieldOfTaskList", getTaskListSortFields());
-
+  DEFAULT_SORT_FIELD_OF_TASK_LIST("Portal.Tasks.SortField", GlobalVariableType.EXTERNAL_SELECTION, TaskSortField.ID.name(), "defaultSortFieldOfTaskList", getTaskListSortFields()),
+  DEFAULT_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST("Portal.Tasks.BehaviourWhenClickingOnLineInTaskList", GlobalVariableType.EXTERNAL_SELECTION,
+      BehaviourWhenClickingOnLineInTaskList.ACCESS_TASK_DETAILS.name(), "behaviourWhenClickingOnLineInTaskList", getBehavioursWhenClickingOnLineInTaskList());
   private String key;
   private GlobalVariableType type;
   private String defaultValue;
@@ -82,9 +83,7 @@ public enum GlobalVariable {
       return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/Enums/GlobalVariable/Option/" + name());
     }
   }
-  
-  
-  
+
   private GlobalVariable() {}
 
   private GlobalVariable(String key, GlobalVariableType type, String noteCMS) {
@@ -195,6 +194,14 @@ public enum GlobalVariable {
     Map<String, Object> result = new HashMap<>();
     for (DefaultImage defaultImage : DefaultImage.values()) {
       result.put(defaultImage.name(), defaultImage);
+    }
+    return result;
+  }
+
+  private static Map<String, Object> getBehavioursWhenClickingOnLineInTaskList() {
+    Map<String, Object> result = new HashMap<>();
+    for (BehaviourWhenClickingOnLineInTaskList behaviour : BehaviourWhenClickingOnLineInTaskList.values()) {
+      result.put(behaviour.name(), behaviour);
     }
     return result;
   }

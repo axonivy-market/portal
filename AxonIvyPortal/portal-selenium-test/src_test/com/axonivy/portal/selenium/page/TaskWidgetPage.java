@@ -43,4 +43,14 @@ public class TaskWidgetPage extends TemplatePage {
   public ElementsCollection countTasks() {
     return $$("div[id$='task-widget:task-view-container'] ul li");
   }
+
+  public void runTaskWithRunTheTaskBehaviour(int position) {
+    $("div[id='task-widget:task-list-scroller:" + position + ":task-item:task-info-quick-run-task']").waitUntil(appear, DEFAULT_TIMEOUT);
+    $("div[id='task-widget:task-list-scroller:" + position + ":task-item:task-info-quick-run-task']").click();
+  }
+
+  public void openTaskWithAccessTaskDetailsBehaviour(int position) {
+    $("div[id='task-widget:task-list-scroller:" + position + ":task-item:task-info']").waitUntil(appear, DEFAULT_TIMEOUT);
+    $("div[id='task-widget:task-list-scroller:" + position + ":task-item:task-info']").click();
+  }
 }

@@ -1,9 +1,11 @@
 [Ivy]
-150CB86EFC2F2972 9.4.0 #module
+150CB86EFC2F2972 9.4.1 #module
 >Proto >Proto Collection #zClass
 Ts0 TaskItemProcess Big #zClass
 Ts0 RD #cInfo
 Ts0 #process
+Ts0 @TextInP .colors .colors #zField
+Ts0 @TextInP color color #zField
 Ts0 @TextInP .type .type #zField
 Ts0 @TextInP .processKind .processKind #zField
 Ts0 @AnnotationInP-0n ai ai #zField
@@ -48,6 +50,10 @@ Ts0 @PushWFArc f4 '' #zField
 Ts0 @CallSub f8 '' #zField
 Ts0 @PushWFArc f10 '' #zField
 Ts0 @PushWFArc f5 '' #zField
+Ts0 @GridStep f35 '' #zField
+Ts0 @UdMethod f30 '' #zField
+Ts0 @PushWFArc f64 '' #zField
+Ts0 @PushWFArc f12 '' #zField
 >Proto Ts0 Ts0 TaskItemProcess #zField
 Ts0 f46 587 219 26 26 0 12 #rect
 Ts0 f79 336 408 32 32 0 16 #rect
@@ -204,6 +210,10 @@ Ts0 f97 inParameterDecl '<ch.ivyteam.ivy.workflow.ITask task,ch.ivy.addon.portal
 Ts0 f97 inParameterMapAction 'out.dataModel=param.dataModel;
 out.task=param.task;
 ' #txt
+Ts0 f97 inActionCode 'import ch.ivy.addon.portalkit.jsf.ManagedBeans;
+import ch.ivy.addon.portalkit.bean.TaskWidgetBean;
+TaskWidgetBean taskWidgetBean = ManagedBeans.get("taskWidgetBean") as TaskWidgetBean;
+taskWidgetBean.selectedTaskItemId = param.task.getId();' #txt
 Ts0 f97 outParameterDecl '<> result;' #txt
 Ts0 f97 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -321,6 +331,36 @@ Ts0 f10 1 288 752 #addKink
 Ts0 f10 1 0.1737415691246871 0 0 #arcLabel
 Ts0 f5 expr in #txt
 Ts0 f5 304 640 416 640 #arcP
+Ts0 f35 actionTable 'out=in;
+' #txt
+Ts0 f35 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
+
+TaskUtils.resetTask(in.task);' #txt
+Ts0 f35 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Reset task</name>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f35 240 138 112 44 -29 -8 #rect
+Ts0 f30 guid 17F8912746DF3225 #txt
+Ts0 f30 method resetAndOpenTask() #txt
+Ts0 f30 inParameterDecl '<> param;' #txt
+Ts0 f30 outParameterDecl '<> result;' #txt
+Ts0 f30 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>resetAndOpenTask()</name>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f30 83 147 26 26 -57 15 #rect
+Ts0 f64 expr out #txt
+Ts0 f64 109 160 240 160 #arcP
+Ts0 f12 352 160 480 210 #arcP
+Ts0 f12 1 480 160 #addKink
+Ts0 f12 0 0.740831891575846 0 0 #arcLabel
 >Proto Ts0 .type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
 >Proto Ts0 .processKind HTML_DIALOG #txt
 >Proto Ts0 -8 -8 16 16 16 26 #rect
@@ -356,3 +396,7 @@ Ts0 f3 out f10 tail #connect
 Ts0 f10 head f8 mainIn #connect
 Ts0 f3 out f5 tail #connect
 Ts0 f5 head f7 mainIn #connect
+Ts0 f30 mainOut f64 tail #connect
+Ts0 f64 head f35 mainIn #connect
+Ts0 f35 mainOut f12 tail #connect
+Ts0 f12 head f49 mainIn #connect
