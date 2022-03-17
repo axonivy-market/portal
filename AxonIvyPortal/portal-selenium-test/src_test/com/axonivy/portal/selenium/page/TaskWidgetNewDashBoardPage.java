@@ -248,6 +248,10 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   private SelenideElement getDeleteWidgetFilterButton() {
     return $("button[id$='delete-saved-filter-form:delete-widget-filter-btn']");
   }
+
+  public void openTask(String taskName) {
+    $$("div[id$=':task-component:dashboard-tasks'] table tbody tr td span").filter(text(taskName)).first().click();
+  }
   
   private SelenideElement getStateFilterCheckBox(String value) {
     return $("div[id$='states_panel']").$("div.ui-selectcheckboxmenu-items-wrapper").waitUntil(appear, DEFAULT_TIMEOUT)

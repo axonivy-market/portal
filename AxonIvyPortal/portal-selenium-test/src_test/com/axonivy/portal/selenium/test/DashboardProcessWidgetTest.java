@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.TestAccount;
+import com.axonivy.portal.selenium.page.NewDashboardConfigurationPage;
+import com.axonivy.portal.selenium.page.NewDashboardDetailsEditPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.ProcessEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.ProcessInformationPage;
@@ -15,7 +17,7 @@ import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 
 @IvyWebTest
-public class NewDashboardProcessWidgetTest extends BaseTest {
+public class DashboardProcessWidgetTest extends BaseTest {
   private static final String EXPRESS_PROCESS = "EXPRESS_PROCESS";
   private static final String CASE_LEAVE_REQUEST_TEST_FOR_IVYPORTAL_3369 =
       "Case: Leave Request Test For IVYPORTAL-3369";
@@ -74,7 +76,8 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
     editProcessWidgetConfiguration.selectImageModeAndSaveWidget(CATEGORIED_LEAVE_REQUEST);
     newDashboardPage.checkStartButtonAndImageShown();
 
-    newDashboardPage.deleteImageModeProcess();
+    NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
+    newDashboardDetailsEditPage.deleteImageModeProcess();
     newDashboardPage.getImageContainer().shouldNotBe(Condition.exist);
   }
 
@@ -84,8 +87,7 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
         newDashboardPage.editProcessWidgetConfiguration();
     editProcessWidgetConfiguration.selectImageModeAndSaveWidget(SHOWCASE_DATA_TABLE);
     newDashboardPage.getStartButton().shouldBe(Condition.disabled);
-
-    newDashboardPage.switchToViewMode();
+    backToNewDashboardPage();
     newDashboardPage.getStartButton().shouldBe(Condition.enabled);
     newDashboardPage.startProcess();
 
@@ -100,8 +102,7 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
         newDashboardPage.editProcessWidgetConfiguration();
     editProcessWidgetConfiguration.selectImageModeAndSaveWidget(SHOWCASE_DATA_TABLE);
     newDashboardPage.getDisabledMoreInformationLink().shouldBe(Condition.appear);
-
-    newDashboardPage.switchToViewMode();
+    backToNewDashboardPage();
     newDashboardPage.getMoreInformationLink().shouldBe(Condition.appear);
     newDashboardPage.startMoreInfoLink();
 
@@ -126,7 +127,8 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
     newDashboardPage.getStartButton().shouldBe(Condition.disabled);
     newDashboardPage.getDisabledMoreInformationLink().shouldBe(Condition.appear);
 
-    editProcessWidgetConfiguration = newDashboardPage.editFullModeProcess();
+    NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
+    editProcessWidgetConfiguration = newDashboardDetailsEditPage.editFullModeProcess();
     editProcessWidgetConfiguration.changeFullModeProcessAndSaveWidget(APPRAISAL);
     newDashboardPage.getFullModeProcessName().shouldHave(Condition.exactTextCaseSensitive(APPRAISAL));
   }
@@ -138,8 +140,8 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
     editProcessWidgetConfiguration.selectFullModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST);
     newDashboardPage.getStartButton().shouldBe(Condition.disabled);
     newDashboardPage.getDisabledMoreInformationLink().shouldBe(Condition.appear);
-
-    newDashboardPage.deleteFullModeProcess();
+    NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
+    newDashboardDetailsEditPage.deleteImageModeProcess();
     newDashboardPage.getFullModeProcessContainer().shouldNotBe(Condition.exist);
   }
 
@@ -150,7 +152,7 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
     editProcessWidgetConfiguration.selectFullModeProcessAndSaveWidget(SHOWCASE_DATA_TABLE);
     newDashboardPage.getStartButton().shouldBe(Condition.disabled);
 
-    newDashboardPage.switchToViewMode();
+    backToNewDashboardPage();
     newDashboardPage.getStartButton().shouldBe(Condition.enabled);
     newDashboardPage.startProcess();
     TaskTemplatePage taskTemplatePage = new TaskTemplatePage();
@@ -165,7 +167,7 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
     editProcessWidgetConfiguration.selectFullModeProcessAndSaveWidget(SHOWCASE_DATA_TABLE);
     newDashboardPage.getDisabledMoreInformationLink().shouldBe(Condition.appear);
 
-    newDashboardPage.switchToViewMode();
+    backToNewDashboardPage();
     newDashboardPage.getMoreInformationLink().shouldBe(Condition.appear);
     newDashboardPage.startMoreInfoLink();
 
@@ -222,7 +224,8 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
     newDashboardPage.resizeCombinedModeProcess();
     newDashboardPage.checkTasksTabDisplayedDataContainer();
 
-    newDashboardPage.deleteCombinedModeProcess();
+    NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
+    newDashboardDetailsEditPage.deleteCombinedModeProcess();
     newDashboardPage.getCombinedModeProcessContainer().shouldNotBe(Condition.exist);
   }
 
@@ -233,7 +236,7 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
     editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(SHOWCASE_DATA_TABLE);
     newDashboardPage.getStartButton().shouldBe(Condition.disabled);
 
-    newDashboardPage.switchToViewMode();
+    backToNewDashboardPage();
     newDashboardPage.getStartButton().shouldBe(Condition.enabled);
     newDashboardPage.startProcess();
 
@@ -249,7 +252,7 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
     editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(SHOWCASE_DATA_TABLE);
     newDashboardPage.getStartButton().shouldBe(Condition.disabled);
 
-    newDashboardPage.switchToViewMode();
+    backToNewDashboardPage();
     newDashboardPage.expandCombindedModeProcess();
     newDashboardPage.getStartButton().shouldBe(Condition.enabled);
     newDashboardPage.startProcess();
@@ -268,7 +271,7 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
     editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST,
         TEST_FOR_IVYPORTAL_3369);
 
-    newDashboardPage.switchToViewMode();
+    backToNewDashboardPage();
     newDashboardPage.startCombinedModeProcessFirstTask();
 
     TaskTemplatePage taskTemplatePage = new TaskTemplatePage();
@@ -284,7 +287,7 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
     editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST,
         TEST_FOR_IVYPORTAL_3369);
 
-    newDashboardPage.switchToViewMode();
+    backToNewDashboardPage();
     newDashboardPage.expandCombindedModeProcess();
     newDashboardPage.startCombinedModeProcessFirstTask();
 
@@ -301,7 +304,7 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
     editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST,
         TEST_FOR_IVYPORTAL_3369);
 
-    newDashboardPage.switchToViewMode();
+    backToNewDashboardPage();
     newDashboardPage.openCombinedModeProcessFirstTask();
 
     TaskDetailsPage taskDetailsPage = new TaskDetailsPage();
@@ -318,7 +321,7 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
     editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST,
         TEST_FOR_IVYPORTAL_3369);
 
-    newDashboardPage.switchToViewMode();
+    backToNewDashboardPage();
     newDashboardPage.expandCombindedModeProcess();
     newDashboardPage.openCombinedModeProcessFirstTask();
 
@@ -336,7 +339,7 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
     editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST,
         TEST_FOR_IVYPORTAL_3369);
 
-    newDashboardPage.switchToViewMode();
+    backToNewDashboardPage();
     newDashboardPage.openCombinedModeProcessFirstCase();
 
     TaskDetailsPage taskDetailsPage = new TaskDetailsPage();
@@ -353,7 +356,7 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
     editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST,
         TEST_FOR_IVYPORTAL_3369);
 
-    newDashboardPage.switchToViewMode();
+    backToNewDashboardPage();
     newDashboardPage.expandCombindedModeProcess();
     newDashboardPage.openCombinedModeProcessFirstCase();
 
@@ -371,7 +374,7 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
     editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST,
         TEST_FOR_IVYPORTAL_3369);
 
-    newDashboardPage.switchToViewMode();
+    backToNewDashboardPage();
     newDashboardPage.expandCombindedModeProcess();
     newDashboardPage.collapseCombinedModeProcess();
     newDashboardPage.getCombinedModeProcessCollapseLink().shouldBe(Condition.disappear);
@@ -417,8 +420,8 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
 
   @Test
   public void testDeleteCompactModeProcess() {
-    newDashboardPage.switchToEditMode();
-    newDashboardPage.deleteCompactModeProcess();
+    NewDashboardDetailsEditPage newDashboardDetailsEditPage = navigateToEditDashboardDetails();
+    newDashboardDetailsEditPage.deleteCompactModeProcess();
     newDashboardPage.getCompactModeProcessContainer().shouldNotBe(Condition.exist);
   }
 
@@ -561,17 +564,17 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
   @Test
   public void testChangeProcessDisplayMode() {
     // Add FULL_MODE widget
-    newDashboardPage.switchToEditMode();
-    newDashboardPage.addWidget();
-    ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration = newDashboardPage.addNewProcessWidget();
+    NewDashboardDetailsEditPage newDashboardDetailsEditPage = navigateToEditDashboardDetails();
+    newDashboardDetailsEditPage.addWidget();
+    ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration = newDashboardDetailsEditPage.addNewProcessWidget();
     editProcessWidgetConfiguration.selectFullModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST);
     newDashboardPage.getStartButton().shouldBe(Condition.disabled);
     newDashboardPage.getDisabledMoreInformationLink().shouldBe(Condition.appear);
-    newDashboardPage.switchToViewMode();
+    backToNewDashboardPage();
 
     // Change to COMPACT_MODE
-    newDashboardPage.switchToEditMode();
-    editProcessWidgetConfiguration = newDashboardPage.editFullModeProcess();
+    newDashboardDetailsEditPage = navigateToEditDashboardDetails();
+    editProcessWidgetConfiguration = newDashboardDetailsEditPage.editFullModeProcess();
     editProcessWidgetConfiguration.changeToCompactModeProcess(DATA_TABLE, SHOWCASE_DATA_TABLE);
     editProcessWidgetConfiguration.getCompactModeProcessCategoryFilter()
         .shouldHave(Condition.value(SHOWCASE_DATA_TABLE_CATEGORY));
@@ -606,17 +609,17 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
     editProcessWidgetConfiguration.changeCompactModeProcessAndSaveWidget(DATA_TABLE, SHOWCASE_DATA_TABLE);
-    newDashboardPage.switchToViewMode();
+    backToNewDashboardPage();
 
     // Change to FULL_MODE from COMPACT_MODE
-    newDashboardPage.switchToEditMode();
+    navigateToEditDashboardDetails();
     editProcessWidgetConfiguration = newDashboardPage.editProcessWidgetConfiguration();
     editProcessWidgetConfiguration.selectFullModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST);
-    newDashboardPage.switchToViewMode();
+    backToNewDashboardPage();
 
     // Edit FULL_MODE and check no COMPACT_MODE old data
-    newDashboardPage.switchToEditMode();
-    editProcessWidgetConfiguration = newDashboardPage.editFullModeProcess();
+    NewDashboardDetailsEditPage newDashboardDetailsEditPage = navigateToEditDashboardDetails();
+    editProcessWidgetConfiguration = newDashboardDetailsEditPage.editFullModeProcess();
     editProcessWidgetConfiguration.selectCompactMode();
     editProcessWidgetConfiguration.getCompactModeProcessDisplayedCategoryFilter()
         .shouldNotHave(Condition.value(SHOWCASE_DATA_TABLE_CATEGORY));
@@ -625,13 +628,25 @@ public class NewDashboardProcessWidgetTest extends BaseTest {
     // Change to COMPACT_MODE from FULL_MODE
     editProcessWidgetConfiguration.changeToCompactModeProcess(DATA_TABLE, SHOWCASE_DATA_TABLE);
     editProcessWidgetConfiguration.clickSaveProcessWidget();
-    newDashboardPage.switchToViewMode();
+    backToNewDashboardPage();
 
     // Edit COMPACT_MODE and check no FULL_MODE old data
-    newDashboardPage.switchToEditMode();
+    navigateToEditDashboardDetails();
     editProcessWidgetConfiguration = newDashboardPage.editProcessWidgetConfiguration();
     editProcessWidgetConfiguration.selectFullMode();
     editProcessWidgetConfiguration.getFullModeProcessSelectedProcessInput()
         .shouldNotHave(Condition.value(CATEGORIED_LEAVE_REQUEST));
+  }
+
+  private void backToNewDashboardPage() {
+    NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
+    NewDashboardConfigurationPage newDashboardConfigurationPage = newDashboardDetailsEditPage.backToConfigurationPage();
+    newDashboardPage = newDashboardConfigurationPage.navigateToNewDashboardPage();
+  }
+
+  private NewDashboardDetailsEditPage navigateToEditDashboardDetails() {
+    newDashboardPage.openDashboardConfigurationDialog();
+    NewDashboardConfigurationPage configPage = newDashboardPage.navigateToEditPublicDashboardPage();
+    return configPage.navigateToEditDashboardDetailsByName("Dashboard");
   }
 }

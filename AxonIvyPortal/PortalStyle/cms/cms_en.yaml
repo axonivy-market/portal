@@ -100,6 +100,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       EMAIL: Email
       INFORMATION: Information
       OTHERS: Others
+    BehaviourWhenClickingOnLineInTaskList:
+      ACCESS_TASK_DETAILS: Access task details
+      RUN_TASK: Run the task
     DashboardCustomWidgetType:
       EXTERNAL_URL: External URL
       PROCESS: Axon Ivy process
@@ -146,6 +149,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       TUESDAY: TUE
       WEDNESDAY: WED
   MyProfile:
+    BehaviourWhenClickingOnLineInTaskListSelections:
+      DefaultBehaviourWhenClickingOnLineInTaskListLabel: Default behaviour when clicking on line in task list
     HomepageSelection:
       fullTaskList: Full Task list
     SortFieldSelections:
@@ -198,6 +203,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     embedInFrame: Start a process/task in IFrame mode
     emptySupportedLanguages: No additional languages are supported
     globalVariableNote:
+      behaviourWhenClickingOnLineInTaskList: For switch behaviours (run the task or access task details) when clicking on a line in task list, task widget of dashboard and related tasks  in case details page.
       chatMaxConnection: 'The set number controls the amount of tabs allowed with active chat. If more tabs are opened, the chat will be disabled in inactive tabs. Allowed values between 1-5 '
       chatResponseTimeout: Chat response timeout in seconds, default value is 0 and means no timeout. If chat messages go through the reverse proxy Nginx, chat response timeout must be less than the Nginx timeout, e.g. less than 60 seconds.
       clientSideTimeoutNote: Client side timeout in minutes, must be more than 0 and less than the server side timeout (e.g. 25 seconds). Default value is 0, it means default client side timeout is applied. Default client side timeout is server side timeout minus 3 minutes.
@@ -508,6 +514,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     seconds: seconds
     seeDetail: See details
     select: Select
+    selectAll: Select All
     selectUsers: Select user(s)
     selectedDay: '{0} selected day(s)'
     send: Send
@@ -628,6 +635,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskStart:
       cannotDelegateTaskMessage: This task cannot be delegated to any other user or group.
       cannotStartMessages:
+        cannotStartTask: You can not start task {0}.
         isAnotherUserWorking: You can not work on the task ''{0}'' with the identifier ''{1}'' because the user ''{2}'' is currently working on it.
         noPermission: You can not start task {0} because you don't have permission.
         taskDone: You can not start task {0} because it is done.
