@@ -102,33 +102,6 @@
         </p:columns>
       </p:dataTable>
        
-      <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
-    <ui:param name="id" value="destroy-task-confirmation-dialog" />
-    <ui:param name="widgetVar" value="destroy-task-dialog" />
-    <ui:param name="appendTo" value="@(body)" />
-    <ui:param name="iconClass" value="si si-delete-1" />
-    <ui:param name="iconStyleClass" value="portal-dialog-error-icon" />
-    <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroyTaskHeaderText')}" />
-    <ui:param name="dialogContent"
-      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/destroyTaskMessage')}" />
-
-       <ui:define name="dialogFooter">
-         <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-        onclick="PF('destroy-task-dialog').hide();" styleClass="u-mar-right-15" />
-        <p:commandButton id="confirm-destruction" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}"
-        icon="#{visibilityBean.generateButtonIcon('si si-remove')}"
-        actionListener="#{taskWidgetBean.destroyTask(taskWidgetBean.selectedTaskItemId)}"
-        oncomplete="PF('destroy-task-dialog').hide()" update="#{cc.attrs.componentToUpdateTaskWidget}" />
-        </ui:define>
-       </ui:decorate>
-       
-       <!-- Delegate Task Dialog -->
-       <ic:ch.ivy.addon.portalkit.component.TaskItemDelegate id="dashboard-tasks-item-delegate"
-       taskId="#{taskWidgetBean.selectedTaskItemId}" componentToUpdate="#{cc.attrs.componentToUpdateTaskWidget}"/>
-        
-       <!-- Workflow Event of Task Dialog -->
-       <ic:ch.ivy.addon.portalkit.component.TaskItemWorkflowEvents id="dashboard-tasks-workflow-event"
-       taskId="#{taskWidgetBean.selectedTaskItemId}"/>
     </h:panelGroup>
   </div>
 </cc:implementation>
