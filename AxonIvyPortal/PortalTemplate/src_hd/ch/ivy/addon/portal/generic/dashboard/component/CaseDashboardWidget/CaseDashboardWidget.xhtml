@@ -37,7 +37,7 @@
     </ui:define>
 
     <ui:define name="widgetContent">
-      <ic:ch.ivy.addon.portal.generic.dashboard.component.CaseWidget id="case-component" caseWidget="#{widget}" isReadOnlyMode="#{isReadOnlyMode}" componentToUpdateCaseWidget="#{p:component('dashboard-cases')}"/>
+      <ic:ch.ivy.addon.portal.generic.dashboard.component.CaseWidget id="case-component" caseWidget="#{widget}" isReadOnlyMode="#{isReadOnlyMode}" componentToUpdateCaseWidget="@widgetVar(dashboard-cases-#{widget.id})"/>
     </ui:define>
   </ui:decorate>
 
