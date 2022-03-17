@@ -228,6 +228,14 @@ Release notes
 This part lists all relevant changes since the last official product
 releases of Axon Ivy.
 
+Changes in 9.4
+--------------
+
+- Introduce the ``Portal.Tasks.BehaviourWhenClickingOnLineInTaskList`` Portal setting to set behaviour when
+  clicking on a line in task list, task widget in new dashboard and related tasks in case details, each user can change it via user profile. 
+
+- Introduce new ``Task ID``, ``Task Name``, ``Case ID`` and ``Case Name`` filter in the Portal full task list and case list.
+
 Changes in 9.3
 --------------
 

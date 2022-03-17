@@ -25,6 +25,7 @@
   <c:set var="compactMode" value="#{cc.attrs.compactMode}" />
   <c:set var="isSelected" value="#{taskWidgetBean.expandedTaskId == -1 and cc.attrs.isSelected}" />
   <c:set var="dataModel" value="#{cc.attrs.dataModel}" />
+  <c:set var="isRunningTaskWhenClickingOnTaskInList" value="#{taskWidgetBean.runningTaskWhenClickingOnTaskInList}" />
 
   <h:panelGroup rendered="#{compactMode}">
     <ui:include src="CompactTaskStartLink.xhtml">
@@ -34,9 +35,17 @@
 
   <h:panelGroup id="task-start" layout="block" rendered="#{!compactMode}"
     styleClass="#{rowIndex % 2 == 0 ? 'task-even-row' : 'task-odd-row'} full-mode task-start-list-item js-task-start-list-item">
-
-    <h:panelGroup id="task-info" styleClass="task-start-link js-task-start-link" layout="block">
+    <h:panelGroup id="task-info" styleClass="task-start-link js-task-start-link" layout="block" rendered="#{!isRunningTaskWhenClickingOnTaskInList}">
       <p:ajax event="click" listener="#{logic.openDetails(task,dataModel, cc.attrs.inFrame)}" onstart="#{cc.attrs.onTaskStartCallback}" />
+      <cc:renderFacet name="taskHeader" />
+    </h:panelGroup>
+    <h:panelGroup id="resumed-task-info" styleClass="task-start-link js-task-start-link" layout="block" rendered="#{isRunningTaskWhenClickingOnTaskInList and task.state eq 'RESUMED'}">
+      <p:ajax event="click" listener="#{logic.validate(task, dataModel)}" onstart="event.stopPropagation();"
+        oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('reset-task-dialog').show();}" />
+      <cc:renderFacet name="taskHeader" />
+    </h:panelGroup>
+    <h:panelGroup id="runnable-task-info" styleClass="task-start-link js-task-start-link" layout="block" rendered="#{isRunningTaskWhenClickingOnTaskInList and task.state ne 'RESUMED'}">
+      <p:ajax event="click" listener="#{logic.openTask(task, dataModel)}" onstart="#{cc.attrs.onTaskStartCallback}" />
       <cc:renderFacet name="taskHeader" />
     </h:panelGroup>
     <div class="task-item-header-actions" jsf:rendered="#{!compactMode and !cc.attrs.readOnly}">

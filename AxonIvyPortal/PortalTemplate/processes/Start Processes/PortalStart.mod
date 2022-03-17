@@ -1,5 +1,5 @@
 [Ivy]
-1549F58C18A6C562 9.4.0 #module
+1549F58C18A6C562 9.4.1 #module
 >Proto >Proto Collection #zClass
 Pt0 PortalStart Big #zClass
 Pt0 B #cInfo
@@ -16,6 +16,8 @@ Bk11 BpmnUserTask Big #zClass
 Bk11 BpmnUserTask #cInfo
 Bk13 BpmnServiceTask Big #zClass
 Bk13 BpmnServiceTask #cInfo
+Pt0 @TextInP .colors .colors #zField
+Pt0 @TextInP color color #zField
 Pt0 @TextInP .resExport .resExport #zField
 Pt0 @TextInP .type .type #zField
 Pt0 @TextInP .processKind .processKind #zField
@@ -225,7 +227,14 @@ Pt0 @PushWFArc f194 '' #zField
 Pt0 @PushWFArc f197 '' #zField
 Pt0 @PushWFArc f196 '' #zField
 Pt0 @PushWFArc f183 '' #zField
+Pt0 @StartRequest f188 '' #zField
+Pt0 @UserDialog f193 '' #zField
+Pt0 @EndTask f195 '' #zField
+Pt0 @PushWFArc f198 '' #zField
+Pt0 @PushWFArc f199 '' #zField
 >Proto Pt0 Pt0 PortalStart #zField
+Bk7 @TextInP .colors .colors #zField
+Bk7 @TextInP color color #zField
 Bk7 @TextInP .type .type #zField
 Bk7 @TextInP .processKind .processKind #zField
 Bk7 @TextInP .xml .xml #zField
@@ -248,6 +257,8 @@ Bk7 @PushWFArc f6 '' #zField
 Bk7 @UserDialog f9 '' #zField
 Bk7 @PushWFArc f10 '' #zField
 >Proto Bk7 Bk7 BpmnUserTask #zField
+Bk8 @TextInP .colors .colors #zField
+Bk8 @TextInP color color #zField
 Bk8 @TextInP .type .type #zField
 Bk8 @TextInP .processKind .processKind #zField
 Bk8 @TextInP .xml .xml #zField
@@ -274,6 +285,8 @@ Bk8 @PushWFArc f4 '' #zField
 Bk8 @PushWFArc f5 '' #zField
 Bk8 @PushWFArc f1 '' #zField
 >Proto Bk8 Bk0 BpmnUserTask #zField
+Bk9 @TextInP .colors .colors #zField
+Bk9 @TextInP color color #zField
 Bk9 @TextInP .type .type #zField
 Bk9 @TextInP .processKind .processKind #zField
 Bk9 @TextInP .xml .xml #zField
@@ -288,6 +301,8 @@ Bk9 @PushWFArc f0 '' #zField
 Bk9 @PushTrueWFOutG-01 g1 '' #zField
 Bk9 @PushWFArc f1 '' #zField
 >Proto Bk9 Bk1 BpmnUserTask #zField
+Bk10 @TextInP .colors .colors #zField
+Bk10 @TextInP color color #zField
 Bk10 @TextInP .type .type #zField
 Bk10 @TextInP .processKind .processKind #zField
 Bk10 @TextInP .xml .xml #zField
@@ -302,6 +317,8 @@ Bk10 @PushWFArc f0 '' #zField
 Bk10 @PushTrueWFOutG-01 g1 '' #zField
 Bk10 @PushWFArc f1 '' #zField
 >Proto Bk10 Bk2 BpmnUserTask #zField
+Bk11 @TextInP .colors .colors #zField
+Bk11 @TextInP color color #zField
 Bk11 @TextInP .type .type #zField
 Bk11 @TextInP .processKind .processKind #zField
 Bk11 @TextInP .xml .xml #zField
@@ -314,6 +331,8 @@ Bk11 @PushWFArc f0 '' #zField
 Bk11 @PushTrueWFOutG-01 g1 '' #zField
 Bk11 @PushWFArc f1 '' #zField
 >Proto Bk11 Bk3 BpmnUserTask #zField
+Bk13 @TextInP .colors .colors #zField
+Bk13 @TextInP color color #zField
 Bk13 @TextInP .type .type #zField
 Bk13 @TextInP .processKind .processKind #zField
 Bk13 @TextInP .xml .xml #zField
@@ -2106,6 +2125,44 @@ Pt0 f183 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Pt0 f183 336 2656 336 2599 #arcP
 Pt0 f183 0 0.42857142857142855 -14 -1 #arcLabel
+Pt0 f188 outLink DashboardDetails.ivp #txt
+Pt0 f188 inParamDecl '<String dashboardId,Boolean isPublicDashboard> param;' #txt
+Pt0 f188 inParamTable 'out.dashboardId=param.dashboardId;
+out.isPublicDashboard=param.isPublicDashboard;
+' #txt
+Pt0 f188 requestEnabled true #txt
+Pt0 f188 triggerEnabled false #txt
+Pt0 f188 callSignature DashboardDetails(String,Boolean) #txt
+Pt0 f188 caseData businessCase.attach=true #txt
+Pt0 f188 showInStartList 0 #txt
+Pt0 f188 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>DashboardDetails.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f188 @C|.responsibility Everybody #txt
+Pt0 f188 81 2769 30 30 -45 21 #rect
+Pt0 f193 dialogId ch.ivy.addon.portal.generic.dashboard.PortalDashboardDetailModification #txt
+Pt0 f193 startMethod start(String,Boolean) #txt
+Pt0 f193 requestActionDecl '<String dashboardId,Boolean isPublicDashboard> param;' #txt
+Pt0 f193 requestMappingAction 'param.dashboardId=in.dashboardId;
+param.isPublicDashboard=in.isPublicDashboard;
+' #txt
+Pt0 f193 responseMappingAction 'out=in;
+' #txt
+Pt0 f193 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>PortalDashboardDetailModification</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f193 208 2762 208 44 -95 -8 #rect
+Pt0 f195 497 2769 30 30 0 15 #rect
+Pt0 f198 111 2784 208 2784 #arcP
+Pt0 f199 416 2784 497 2784 #arcP
 >Proto Pt0 .type ch.ivy.addon.portal.generic.PortalStartData #txt
 >Proto Pt0 .processKind NORMAL #txt
 >Proto Pt0 0 0 32 24 18 0 #rect
@@ -2939,6 +2996,10 @@ Pt0 f192 out f196 tail #connect
 Pt0 f196 head f191 in #connect
 Pt0 f191 out f183 tail #connect
 Pt0 f183 head f189 mainIn #connect
+Pt0 f188 mainOut f198 tail #connect
+Pt0 f198 head f193 mainIn #connect
+Pt0 f193 mainOut f199 tail #connect
+Pt0 f199 head f195 mainIn #connect
 Bk7 f3 ao f8 tail #connect
 Bk7 f8 head f36 @CG|ai #connect
 Bk7 f22 mainOut f43 tail #connect
