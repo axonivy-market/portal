@@ -14,6 +14,7 @@ import com.codeborne.selenide.SelenideElement;
 public class TaskWidgetNewDashBoardPage extends TemplatePage {
 
   private static final String YOUR_TASKS_WIDGET = "Your Tasks";
+  private static final String FILTER_TASK_STATE = "State";
 
   private String taskWidgetId;
   private String taskWidgetName;
@@ -85,6 +86,11 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   public void applyFilter() {
     $("div.filter-overlay-panel__footer").waitUntil(appear, DEFAULT_TIMEOUT).$$("button[id$='apply-button']")
         .filter(text("Apply")).first().shouldBe(getClickableCondition()).click();
+  }
+  
+  public void resetFilter() {
+    $("div.filter-overlay-panel__footer").waitUntil(appear, DEFAULT_TIMEOUT).$$("button[id$='reset-button']")
+        .filter(text("Reset")).first().shouldBe(getClickableCondition()).click();
   }
 
   public void filterPriority(String... priorities) {
@@ -241,5 +247,50 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   
   private SelenideElement getDeleteWidgetFilterButton() {
     return $("button[id$='delete-saved-filter-form:delete-widget-filter-btn']");
+  }
+
+  public void openTask(String taskName) {
+    $$("div[id$=':task-component:dashboard-tasks'] table tbody tr td span").filter(text(taskName)).first().click();
+  }
+  
+  private SelenideElement getStateFilterCheckBox(String value) {
+    return $("div[id$='states_panel']").$("div.ui-selectcheckboxmenu-items-wrapper").waitUntil(appear, DEFAULT_TIMEOUT)
+        .$$("li.ui-selectcheckboxmenu-item").filter(text(value)).first().$("div.ui-chkbox-box");
+  }
+  
+  private SelenideElement getCloseStateFilter() {
+    return $("div[id$='states_panel']").waitUntil(appear, DEFAULT_TIMEOUT).$("a.ui-selectcheckboxmenu-close");
+  }
+  
+  private SelenideElement getFilterCheckBox(String inputField) {
+    return $("div[id$='widget-filter-content']").waitUntil(appear, DEFAULT_TIMEOUT)
+        .$$("div.widget-filter-panel div.ui-g").filter(text(inputField)).first();
+  }
+  
+  public void selectState(String state) {
+    getStateFilterCheckBox(state).shouldBe(getClickableCondition()).click();
+    getCloseStateFilter().shouldBe(getClickableCondition()).click();
+  }
+  
+  public void filterTaskState() {
+    getFilterCheckBox(FILTER_TASK_STATE).shouldBe(getClickableCondition()).click();
+  }
+  
+  public ElementsCollection getActiveTaskActions(int taskIndex) {
+    clickOnTaskActionLink(taskIndex);
+    return $$("div[id$='dashboard-actions-task-task_1:side-steps-panel']").filter(appear).first().waitUntil(appear, DEFAULT_TIMEOUT)
+        .$("div.ui-overlaypanel-content").$$("a[class*='option-item']");
+  }
+
+  public void clickOnTaskActionLink(int taskIndex) {
+    getColumnOfTaskHasIndex(taskIndex, "Actions").shouldBe(getClickableCondition()).click();
+  }
+  
+  public void reserveTask(int taskIndex) {
+    getActiveTaskActions(taskIndex).filter(text("Reserve")).first().shouldBe(getClickableCondition()).click();
+  }
+  
+  public void clickCancelTask() {
+    $("a[id$='button-cancel']").shouldBe(getClickableCondition()).click();
   }
 }

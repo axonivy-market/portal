@@ -28,12 +28,14 @@ public class EmailSettingTest  extends BaseTest{
     userProfilePage.switchOnFurtherEmailFromAppSetting();
     userProfilePage.selectDaysForDailySummary(Arrays.asList(1,2,3,4));
     assertEquals(4, userProfilePage.getSelectedDaySummary());
-    userProfilePage = userProfilePage.save();
+    homePage = userProfilePage.save();
+    userProfilePage = homePage.openMyProfilePage();
     assertTrue(userProfilePage.isEmailOnTaskAssignmentSettingSwitchedOn());
     assertTrue(userProfilePage.isFurtherEmailFromAppSettingSwitchedOn());
     userProfilePage.switchOffFurtherEmailFromAppSetting();
     userProfilePage.switchOffEmailOnTaskAssignmentSetting();
-    userProfilePage = userProfilePage.save();
+    homePage = userProfilePage.save();
+    userProfilePage = homePage.openMyProfilePage();
     assertFalse(userProfilePage.isEmailOnTaskAssignmentSettingSwitchedOn());
     assertFalse(userProfilePage.isFurtherEmailFromAppSettingSwitchedOn());
   }

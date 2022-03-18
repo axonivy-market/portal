@@ -6,7 +6,7 @@ import static ch.ivyteam.ivy.workflow.CaseState.DONE;
 import static ch.ivyteam.ivy.workflow.CaseState.RUNNING;
 
 import java.util.ArrayList;
-import java.util.EnumSet;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,8 +21,8 @@ import ch.ivyteam.ivy.workflow.query.CaseQuery.OrderByColumnQuery;
 
 public class CaseSearchCriteria {
 
-  public final static EnumSet<CaseState> STANDARD_STATES = EnumSet.of(CREATED, RUNNING);
-  public final static EnumSet<CaseState> ADVANCE_STATES = EnumSet.of(DONE, DESTROYED);
+  public final static List<CaseState> STANDARD_STATES = Arrays.asList(CREATED, RUNNING);
+  public final static List<CaseState> ADVANCE_STATES = Arrays.asList(DONE, DESTROYED);
   /**
    * @deprecated not used anymore, will get current login user for query
    */

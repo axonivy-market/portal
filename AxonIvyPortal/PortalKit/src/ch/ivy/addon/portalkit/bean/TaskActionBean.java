@@ -14,7 +14,6 @@ import org.apache.commons.lang.StringUtils;
 import org.primefaces.PF;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
-import ch.ivy.addon.portalkit.constant.DummyTask;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
@@ -23,9 +22,7 @@ import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.ProcessStartUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivy.addon.portalkit.util.TimesUtils;
-import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IPermission;
-import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.TaskState;
@@ -106,14 +103,7 @@ public class TaskActionBean implements Serializable {
   }
 
   public boolean canResume(ITask task) {
-    if (task == null) {
-      return false;
-    }
-    if(StringUtils.equals(task.getName(), DummyTask.TASK_NAME)) {
-      return true;
-    }
-    IUser sessionUser = Ivy.session().getSessionUser();
-    return sessionUser != null? task.canUserResumeTask(sessionUser.getUserToken()).wasSuccessful() : false;
+    return TaskUtils.canResume(task);
   }
 
   public boolean canPark(ITask task) {

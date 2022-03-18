@@ -9,6 +9,7 @@
   <cc:attribute name="isReadOnlyMode" default="false"/>
   <cc:attribute name="isPreviewMode" default="false"/>
   <cc:attribute name="onCompleteLoadWidget" />
+  <cc:attribute name="componentToUpdateCaseWidget" />
 </cc:interface>
 
 <cc:implementation>
@@ -48,7 +49,7 @@
         <p:ajax event="page" oncomplete="saveWidgetState()" />
         <p:ajax event="rowSelect" listener="#{dashboardBean.navigateToSelectedCaseDetails}" disabled="#{!isReadOnlyMode}" />
 
-        <p:columns var="column" value="#{caseWidget.columns}" headerText="#{column.headerText}" styleClass="#{column.styleClass} #{column.field eq 'name' ? 'dashboard-cases__column-small-screen' : 'u-hidden-sm-down'}"
+        <p:columns var="column" value="#{caseWidget.columns}" headerText="#{column.headerText}" styleClass="#{column.styleClass} #{(column.field eq 'name' or column.field eq 'actions' ) ? 'dashboard-cases__column-small-screen' : 'u-hidden-sm-down'}"
           visible="#{column.visible}" field="#{column.field}" sortBy="#{column.field}" sortable="#{column.sortable}"
           style="#{column.format eq 'TIMESTAMP' or column.format eq 'NUMBER' ? 'text-align: center;' : ''} #{column.style}">
 
@@ -88,6 +89,10 @@
           <h:panelGroup rendered="#{column.field eq 'category'}">
             <h:outputText id="case-category" value="#{column.display(caseItem)}"/>
             <p:tooltip for="case-category" value="#{caseItem.getCategory().getPath()}" trackMouse="true" hideEvent="mouseleave click"/>
+          </h:panelGroup>
+          
+          <h:panelGroup rendered="#{column.field eq 'actions'}">
+            <ui:include src="ActionsCell.xhtml" />
           </h:panelGroup>
         </p:columns>
       </p:dataTable>

@@ -221,6 +221,11 @@ body .ui-dialog .ui-dialog-footer .ui-button.dashboard__edit-global-dashboard {
   display: block;
 }
 
+.dashboard-tasks__actions a,
+.dashboard-cases__actions a {
+  margin: 0;
+}
+
 td.dashboard-tasks__name span,
 td.dashboard-cases__name span {
   font-weight: var(--process-grid-name-font-weight);
@@ -664,6 +669,10 @@ body .dashboard__table--preview.ui-datatable tbody tr.ui-state-hover {
   .dashboard-cases__name,
   .dashboard-tasks__name {
     width: 100%;
+  }
+  
+  .dashboard-cases__actions,
+  .dashboard-tasks__actions {
     border-right: 1px solid #d8d8d8 !important;
   }
 }

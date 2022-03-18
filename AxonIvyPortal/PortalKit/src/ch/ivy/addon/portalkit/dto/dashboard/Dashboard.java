@@ -18,6 +18,7 @@ public class Dashboard extends AbstractConfiguration implements Serializable {
 
   private static final long serialVersionUID = 4580715578128184706L;
   private String title;
+  private String description;
   private List<DashboardWidget> widgets;
   private List<String> permissions;
   @JsonIgnore
@@ -31,6 +32,7 @@ public class Dashboard extends AbstractConfiguration implements Serializable {
     setId(dashboard.getId());
     setIsPublic(dashboard.getIsPublic());
     title = dashboard.title;
+    description = dashboard.description;
     widgets = dashboard.widgets;
     permissions = dashboard.permissions;
     permissionDTOs = dashboard.permissionDTOs;
@@ -54,6 +56,14 @@ public class Dashboard extends AbstractConfiguration implements Serializable {
     this.title = title;
   }
 
+  public String getDescription() {
+    return description;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
+  }
+
   public List<DashboardWidget> getWidgets() {
     return widgets;
   }
@@ -69,7 +79,6 @@ public class Dashboard extends AbstractConfiguration implements Serializable {
   public void setPermissions(List<String> permissions) {
     this.permissions = permissions;
   }
-
 
   public List<SecurityMemberDTO> getPermissionDTOs() {
     return permissionDTOs;
