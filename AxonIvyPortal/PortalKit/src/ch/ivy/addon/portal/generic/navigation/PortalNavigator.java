@@ -37,8 +37,9 @@ public final class PortalNavigator extends BaseNavigator{
   private static final String PORTAL_PASSWORD_RESET = "Start Processes/PortalStart/PasswordResetPage.ivp";
   private static final String PORTAL_CASE_DETAILS_IN_FRAME = "Start Processes/PortalStart/CaseDetailsInIFrame.ivp";
   private static final String PORTAL_NEW_DASHBOARD_CONFIGURATION = "Start Processes/PortalStart/PortalDashboardConfiguration.ivp";
+  private static final String PORTAL_DASHBOARD_REORDER = "Start Processes/PortalStart/DashboardReorder.ivp";
   private static final String PORTAL_PROCESS_INFO = "Start Processes/PortalStart/ProcessInformation.ivp";
-  private static final String PORTAL_NEW_DASHBOARD_CONFIGURATION_START = "/PortalDashboardConfiguration.ivp";
+  private static final String PORTAL_DASHBOARD_DETAILS = "Start Processes/PortalStart/DashboardDetails.ivp";
 
   public static final String PORTAL_DASHBOARD_START = "/DefaultDashboardPage.ivp";
   public static final String PORTAL_PROCESS_START = "/DefaultProcessStartListPage.ivp";
@@ -47,6 +48,7 @@ public final class PortalNavigator extends BaseNavigator{
   public static final String PORTAL_STATISTIC_START = "/StatisticPage.ivp";
   public static final String PORTAL_USER_PROFILE_START =  "/UserProfile.ivp";
   public static final String PORTAL_CASE_DETAILS_IN_IFRAME_START = "/CaseDetailsInIFrame.ivp";
+  private static final String PORTAL_DASHBOARD_REORDER_START = "/DashboardReorder.ivp";
 
   private final static String DASHBOARD_PARAM = "isShowDashboard";
   
@@ -195,6 +197,13 @@ public final class PortalNavigator extends BaseNavigator{
     navigateByKeyword(PORTAL_USER_PROFILE_START, PORTAL_USER_PROFILE, new HashMap<>());
   }
 
+  public static void navigateToDashboardDetailsPage(String dashboardId, boolean isPublicDashboard) {
+    Map<String, String> params = new HashMap<>();
+    params.put("dashboardId", dashboardId);
+    params.put("isPublicDashboard", Boolean.valueOf(isPublicDashboard).toString());
+    navigateByKeyword("DashboardDetails.ivp", PORTAL_DASHBOARD_DETAILS, params);
+  }
+
   public static String getDashboardLink() {
     Map<String, String> params = new HashMap<>();
     params.put(DASHBOARD_PARAM, Boolean.TRUE.toString());
@@ -205,10 +214,22 @@ public final class PortalNavigator extends BaseNavigator{
     redirect(getDashboardLink());
   }
 
-  public static void navigateToNewDashboardConfiguration(boolean isPublicDashboard) {
+  public static void navigateToDashboardReorder(boolean isPublicDashboard) {
     Map<String, String> params = new HashMap<>();
     params.put("isPublicDashboard", String.valueOf(isPublicDashboard));
-    navigateByKeyword(PORTAL_NEW_DASHBOARD_CONFIGURATION_START, PORTAL_NEW_DASHBOARD_CONFIGURATION, params);
+    navigateByKeyword(PORTAL_DASHBOARD_REORDER_START, PORTAL_DASHBOARD_REORDER, params);
+  }
+
+  public static String buildDashboardReorderUrl(boolean isPublicDashboard) {
+    Map<String, String> params = new HashMap<>();
+    params.put("isPublicDashboard", String.valueOf(isPublicDashboard));
+    return buildUrlByKeyword("DashboardReorder.ivp", PORTAL_DASHBOARD_REORDER, params);
+  }
+
+  public static String buildDashboardConfigurationUrl(boolean isPublicDashboard) {
+    Map<String, String> params = new HashMap<>();
+    params.put("isPublicDashboard", String.valueOf(isPublicDashboard));
+    return buildUrlByKeyword("PortalDashboardConfiguration.ivp", PORTAL_NEW_DASHBOARD_CONFIGURATION, params);
   }
 
   public static String buildUserProfileUrl() {

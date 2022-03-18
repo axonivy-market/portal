@@ -7,6 +7,7 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
 import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.SelenideElement;
 
 public class CaseDetailsPage extends TemplatePage {
   private static final String RELATED_CASES = "Related Cases";
@@ -63,5 +64,13 @@ public class CaseDetailsPage extends TemplatePage {
   public void gotoBusinessCase() {
     $("a[id$=':general-information:related-business-case']").click();
     $("div[id$=':general-information:business-case-information']").waitUntil(disappear, DEFAULT_TIMEOUT);
+  }
+  
+  public SelenideElement getRelatedTasksPanel() {
+    return $("div[id$='case-details-relatedTask-panel']");
+  }
+
+  public void openTaskWithRunTheTaskBehaviour(String taskName) {
+    $$("div[id='case-details-related-task-table'] table tbody tr td span").filter(text(taskName)).first().click();
   }
 }

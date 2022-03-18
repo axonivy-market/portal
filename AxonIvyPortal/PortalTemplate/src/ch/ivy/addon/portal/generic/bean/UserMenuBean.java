@@ -132,7 +132,7 @@ public class UserMenuBean implements Serializable {
   public void navigateToHomePageOrDisplayWorkingTaskWarning(boolean isWorkingOnATask, ITask task) throws IOException {
     if (isWorkingOnATask && task.getState() != TaskState.DONE) {
       targetPage = getHomePageURL();
-      PrimeFaces.current().executeScript("PF('logo-task-losing-confirmation-dialog').show()");
+      openTaskLosingConfirmationDialog();
     } else {
       navigateToHomePage();
     }
@@ -140,21 +140,61 @@ public class UserMenuBean implements Serializable {
   
   public void navigateToUserProfileOrDisplayWorkingTaskWarning(boolean isWorkingOnATask, ITask task) throws IOException {
     if (isWorkingOnATask && task.getState() != TaskState.DONE) {
-      PrimeFaces.current().executeScript("PF('logo-task-losing-confirmation-dialog').show()");
+      openTaskLosingConfirmationDialog();
       targetPage = getUserProfileUrl();
     } else {
-      PrimeFaces.current().executeScript("resetPortalLeftMenuState()");
+      executeJSResetPortalMenuState();
       navigateToUserProfile();
     }
   }
 
   public void navigateToAbsencesOrDisplayWorkingTaskWarning(boolean isWorkingOnATask, ITask task) throws IOException {
     if (isWorkingOnATask && task.getState() != TaskState.DONE) {
-      PrimeFaces.current().executeScript("PF('logo-task-losing-confirmation-dialog').show()");
+      openTaskLosingConfirmationDialog();
       targetPage = getAbsencesUrl();
     } else {
-      PrimeFaces.current().executeScript("resetPortalLeftMenuState()");
+      executeJSResetPortalMenuState();
       navigateToAbsences();
+    }
+  }
+
+  public void navigateToPublicDashboardReorderOrDisplayWorkingTaskWarning(boolean isWorkingOnATask, ITask task) throws IOException {
+    if (isWorkingOnATask && task.getState() != TaskState.DONE) {
+      openTaskLosingConfirmationDialog();
+      targetPage = getPublicDashboardReorderUrl();
+    } else {
+      executeJSResetPortalMenuState();
+      navigateToPublicDashboardReorder();
+    }
+  }
+
+  public void navigateToMyDashboardReorderOrDisplayWorkingTaskWarning(boolean isWorkingOnATask, ITask task) throws IOException {
+    if (isWorkingOnATask && task.getState() != TaskState.DONE) {
+      openTaskLosingConfirmationDialog();
+      targetPage = getMyDashboardReorderUrl();
+    } else {
+      executeJSResetPortalMenuState();
+      navigateToMyDashboardReorder();
+    }
+  }
+
+  public void navigateToMyDashboardConfigurationOrDisplayWorkingTaskWarning(boolean isWorkingOnATask, ITask task) throws IOException {
+    if (isWorkingOnATask && task.getState() != TaskState.DONE) {
+      openTaskLosingConfirmationDialog();
+      targetPage = getMyDashboardConfigurationUrl();
+    } else {
+      executeJSResetPortalMenuState();
+      navigateToMyDashboardConfiguration();
+    }
+  }
+
+  public void navigateToPublicDashboardConfigurationOrDisplayWorkingTaskWarning(boolean isWorkingOnATask, ITask task) throws IOException {
+    if (isWorkingOnATask && task.getState() != TaskState.DONE) {
+      openTaskLosingConfirmationDialog();
+      targetPage = getPublicDashboardConfigurationUrl();
+    } else {
+      executeJSResetPortalMenuState();
+      navigateToPublicDashboardConfiguration();
     }
   }
 
@@ -162,8 +202,40 @@ public class UserMenuBean implements Serializable {
     return PortalNavigator.buildAbsencesUrl();
   }
 
+  private String getPublicDashboardReorderUrl() {
+    return PortalNavigator.buildDashboardReorderUrl(true);
+  }
+
+  private String getMyDashboardReorderUrl() {
+    return PortalNavigator.buildDashboardReorderUrl(false);
+  }
+
+  private String getPublicDashboardConfigurationUrl() {
+    return PortalNavigator.buildDashboardConfigurationUrl(true);
+  }
+
+  private String getMyDashboardConfigurationUrl() {
+    return PortalNavigator.buildDashboardConfigurationUrl(false);
+  }
+
   public void navigateToAbsences() throws IOException {
     getExternalContext().redirect(getAbsencesUrl());
+  }
+
+  private void navigateToPublicDashboardReorder() throws IOException {
+    getExternalContext().redirect(getPublicDashboardReorderUrl());
+  }
+
+  private void navigateToMyDashboardReorder() throws IOException {
+    getExternalContext().redirect(getMyDashboardReorderUrl());
+  }
+
+  private void navigateToPublicDashboardConfiguration() throws IOException {
+    getExternalContext().redirect(getPublicDashboardConfigurationUrl());
+  }
+
+  private void navigateToMyDashboardConfiguration() throws IOException {
+    getExternalContext().redirect(getMyDashboardConfigurationUrl());
   }
 
   public void reserveTaskAndNavigateWithGrowl(ITask task) throws IOException {
@@ -183,7 +255,15 @@ public class UserMenuBean implements Serializable {
     TaskUtils.resetTask(relatedTask);
     navigateToTargetPage();
   }
+
+  private void executeJSResetPortalMenuState() {
+    PrimeFaces.current().executeScript("resetPortalLeftMenuState()");
+  }
   
+  private void openTaskLosingConfirmationDialog() {
+    PrimeFaces.current().executeScript("PF('logo-task-losing-confirmation-dialog').show()");
+  }
+
   /**
    * We moved this method to PortalExceptionBean#getErrorDetailToEndUser
    * @return system configuration of ErrorDetailToEndUser

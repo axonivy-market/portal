@@ -13,11 +13,14 @@ import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.page.CaseDetailsWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.CaseEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.CaseWidgetNewDashBoardPage;
+import com.axonivy.portal.selenium.page.NewDashboardConfigurationPage;
+import com.axonivy.portal.selenium.page.NewDashboardDetailsEditPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
+import com.codeborne.selenide.CollectionCondition;
 
 @IvyWebTest
-public class NewDashboardCaseWidgetTest extends BaseTest {
+public class DashboardCaseWidgetTest extends BaseTest {
 
   // WIDGET
   private static final String YOUR_CASES_WIDGET = "Your Cases";
@@ -151,7 +154,7 @@ public class NewDashboardCaseWidgetTest extends BaseTest {
     caseWidget.openFilterWidget();
     caseWidget.filterCaseName("TestCase");
     caseWidget.applyFilter();
-    caseWidget.countCases("TestCase").shouldHaveSize(5);
+    caseWidget.countCases("TestCase").shouldHave(CollectionCondition.sizeGreaterThan(4));
     //Filter State
     caseWidget.openFilterWidget();
     caseWidget.clearFilterCaseName();
@@ -169,8 +172,11 @@ public class NewDashboardCaseWidgetTest extends BaseTest {
     redirectToNewDashBoard();
     CaseWidgetNewDashBoardPage caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
     caseWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
-    //Edit Mode
-    newDashboardPage.switchToEditMode();
+
+    newDashboardPage.openDashboardConfigurationDialog();
+    NewDashboardConfigurationPage configPage = newDashboardPage.navigateToEditPublicDashboardPage();
+    configPage.navigateToEditDashboardDetailsByName("Dashboard");
+
     CaseEditWidgetNewDashBoardPage caseEditWidget = caseWidget.openEditWidget();
     caseEditWidget.changeWidgetTitle("New Your Cases");
     caseEditWidget.filterCaseName("TestCase");
@@ -193,9 +199,13 @@ public class NewDashboardCaseWidgetTest extends BaseTest {
     redirectToRelativeLink(createTestingTasksUrl);
     login(TestAccount.ADMIN_USER);
     redirectToNewDashBoard();
-    newDashboardPage.switchToEditMode();
-    newDashboardPage.addWidget();
-    CaseEditWidgetNewDashBoardPage newCaseWidget = newDashboardPage.addNewCaseWidget();
+
+    newDashboardPage.openDashboardConfigurationDialog();
+    NewDashboardConfigurationPage configPage = newDashboardPage.navigateToEditPublicDashboardPage();
+    NewDashboardDetailsEditPage newDashboardDetailsEditPage = configPage.navigateToEditDashboardDetailsByName("Dashboard");
+
+    newDashboardDetailsEditPage.addWidget();
+    CaseEditWidgetNewDashBoardPage newCaseWidget = newDashboardDetailsEditPage.addNewCaseWidget();
     newCaseWidget.changeWidgetTitle("New Your Cases");
     newCaseWidget.save();
     CaseWidgetNewDashBoardPage caseWidget = newDashboardPage.selectCaseWidget("New Your Cases");

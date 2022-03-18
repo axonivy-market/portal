@@ -15,6 +15,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.bo.GuidePool;
 import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
+import ch.ivy.addon.portalkit.enums.BehaviourWhenClickingOnLineInTaskList;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivy.addon.portalkit.exporter.Exporter;
@@ -42,6 +43,7 @@ public class TaskWidgetBean implements Serializable {
   private boolean isShowFullTaskList;
   private boolean isGuide;
   private boolean isAdminTaskStateIncluded;
+  private boolean isRunningTaskWhenClickingOnTaskInList;
 
   public TaskWidgetBean() {
     expandedTaskId = -1L;
@@ -51,6 +53,9 @@ public class TaskWidgetBean implements Serializable {
         StringUtils.isNumeric(taskListRefreshIntervalUserSetting) ? Long.parseLong(taskListRefreshIntervalUserSetting)
             : DEFAULT_TASK_LIST_REFRESH_INTERVAL;
     isShowFullTaskList = PermissionUtils.checkAccessFullTaskListPermission();
+    isRunningTaskWhenClickingOnTaskInList = new GlobalSettingService()
+        .findGlobalSettingValue(GlobalVariable.DEFAULT_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST)
+        .equals(BehaviourWhenClickingOnLineInTaskList.RUN_TASK.name());
   }
   
   public void preRender(TaskLazyDataModel dataModel) {
@@ -177,5 +182,13 @@ public class TaskWidgetBean implements Serializable {
 
   public int getMaxTaskNumberInExcel() {
     return Exporter.MAX_ROW_NUMBER_IN_EXCEL;
+  }
+
+  public boolean isRunningTaskWhenClickingOnTaskInList() {
+    return isRunningTaskWhenClickingOnTaskInList;
+  }
+
+  public void setRunningTaskWhenClickingOnTaskInList(boolean isRunningTaskWhenClickingOnTaskInList) {
+    this.isRunningTaskWhenClickingOnTaskInList = isRunningTaskWhenClickingOnTaskInList;
   }
 }

@@ -74,6 +74,8 @@ public class StateColumnModel extends TaskColumnModel implements Serializable {
     List<TaskState> states = getStates();
     if (CollectionUtils.isEmpty(states)) {
       states = TaskUtils.getValidStates();
+    } else {
+      states = TaskUtils.filterStateByPermission(states);
     }
     return states;
   }

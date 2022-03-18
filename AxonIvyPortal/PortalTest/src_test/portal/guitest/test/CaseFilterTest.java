@@ -11,6 +11,7 @@ import org.junit.Test;
 
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
+import portal.guitest.common.WaitHelper;
 import portal.guitest.page.CaseWidgetPage;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.MainMenuPage;
@@ -38,21 +39,25 @@ public class CaseFilterTest extends BaseTest {
     assertEquals(1, casePage.getNumberOfCases());
     updatePortalSetting(ENABLE_CASE_OWNER.getKey(), "false");
   }
-	
-	@Test
-	public void testCaseAdvancedFilter() {
-		login(TestAccount.ADMIN_USER);
-		HomePage homePage = new HomePage();
-		MainMenuPage mainMenuPage = homePage.openMainMenu();
-		CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
 
-		casePage.openAdvancedFilter("Description", "description");
-		casePage.filterByDescription("random text");
-		assertEquals(0, casePage.getNumberOfCases());
+  @Test
+  public void testCaseAdvancedFilter() {
+    login(TestAccount.ADMIN_USER);
+    HomePage homePage = new HomePage();
+    MainMenuPage mainMenuPage = homePage.openMainMenu();
+    CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
 
-		casePage.filterByDescription("Leave Request Description");
-		assertEquals(1, casePage.getNumberOfCases());
-	}
+    casePage.openAdvancedFilter("Description", "description");
+    casePage.filterByDescription("random text");
+    WaitHelper.assertTrueWithWait(() -> {
+      return casePage.getNumberOfCases() == 0;
+    });
+
+    casePage.filterByDescription("Leave Request Description");
+    WaitHelper.assertTrueWithWait(() -> {
+      return casePage.getNumberOfCases() == 1;
+    });
+  }
 
 	@Test
 	public void testSaveFilter() {

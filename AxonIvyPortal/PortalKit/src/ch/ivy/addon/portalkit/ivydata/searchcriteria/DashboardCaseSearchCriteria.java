@@ -10,12 +10,12 @@ import org.apache.commons.lang3.time.DateUtils;
 
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.casecolumn.CaseColumnModel;
-import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
 import ch.ivy.addon.portalkit.enums.DashboardFilterType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
+import ch.ivy.addon.portalkit.util.CaseUtils;
 import ch.ivy.addon.portalkit.util.Dates;
-import ch.ivy.addon.portalkit.util.HiddenTasksCasesConfig;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.CaseQuery.ICustomFieldFilterQuery;
@@ -39,9 +39,6 @@ public class DashboardCaseSearchCriteria {
 
   public CaseQuery buildQueryWithoutOrderByClause() {
     CaseQuery query = CaseQuery.businessCases();
-    if (HiddenTasksCasesConfig.isHiddenTasksCasesExcluded()) {
-      query.where().customField().stringField(AdditionalProperty.HIDE.toString()).isNull();
-    }
     queryFilters(query);
     return query;
   }
@@ -74,14 +71,16 @@ public class DashboardCaseSearchCriteria {
 
   private void queryStates(CaseQuery query, List<CaseState> states) {
     if (CollectionUtils.isNotEmpty(states)) {
-      CaseQuery subQuery = CaseQuery.create();
-      IFilterQuery filterQuery = subQuery.where();
-      for (CaseState state : states) {
-        filterQuery.or().state().isEqual(state);
-      }
-
-      query.where().and(subQuery);
+      states = CaseUtils.filterStateByPermission(states);
+    } else {
+      states = CaseUtils.getValidStates();
     }
+    CaseQuery subQuery = CaseQuery.create();
+    IFilterQuery filterQuery = subQuery.where();
+    for (CaseState state : states) {
+      filterQuery.or().state().isEqual(state);
+    }
+    query.where().and(subQuery);
   }
 
   private void queryCreator(CaseQuery query, List<String> creators) {
@@ -133,6 +132,7 @@ public class DashboardCaseSearchCriteria {
   }
   
   private void queryFilters(CaseQuery query) {
+    var states = new ArrayList<CaseState>();
     for (ColumnModel column : columns) {
       String field = column.getField();
       String configuredFilter = column.getFilter();
@@ -160,11 +160,9 @@ public class DashboardCaseSearchCriteria {
           queryDescription(query, userFilter);
         }
       } else if (StringUtils.equals(DashboardStandardCaseColumn.STATE.getField(), column.getField())) {
-        List<CaseState> states = new ArrayList<>();
         for (String state : filterList) {
           states.add(CaseState.valueOf(state.toUpperCase()));
         }
-        queryStates(query, states);
       } else if (StringUtils.equals(DashboardStandardCaseColumn.CREATOR.getField(), column.getField())) {
         queryCreator(query, filterList);
       } else if (StringUtils.equals(DashboardStandardCaseColumn.OWNER.getField(), column.getField())) {
@@ -220,6 +218,7 @@ public class DashboardCaseSearchCriteria {
         }
       }
     }
+    queryStates(query, states);
   }
   
   private void queryFinishedDate(CaseQuery query, Date from, Date to) {
@@ -237,7 +236,8 @@ public class DashboardCaseSearchCriteria {
   }
 
   private void queryOwner(CaseQuery query, List<String> owners) {
-    if (CollectionUtils.isNotEmpty(owners)) {
+    if (CollectionUtils.isNotEmpty(owners)
+        && GlobalSettingService.getInstance().isCaseOwnerEnabled()) {
       CaseQuery subQuery = CaseQuery.create();
       IFilterQuery filterQuery = subQuery.where();
       for (String owner : owners) {
@@ -309,7 +309,8 @@ public class DashboardCaseSearchCriteria {
     }
 
     private void appendSortByOwnerIfSet(DashboardCaseSearchCriteria criteria) {
-      if (DashboardStandardCaseColumn.OWNER.getField().equalsIgnoreCase(criteria.getSortField())) {
+      if (DashboardStandardCaseColumn.OWNER.getField().equalsIgnoreCase(criteria.getSortField())
+          && GlobalSettingService.getInstance().isCaseOwnerEnabled()) {
         order = query.orderBy().ownerDisplayName();
         sortStandardColumn = true;
       }

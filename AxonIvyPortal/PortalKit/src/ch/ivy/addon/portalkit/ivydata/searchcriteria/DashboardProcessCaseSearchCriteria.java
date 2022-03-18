@@ -2,8 +2,11 @@ package ch.ivy.addon.portalkit.ivydata.searchcriteria;
 
 import ch.ivy.addon.portalkit.constant.CustomFields;
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
+import ch.ivy.addon.portalkit.util.CaseUtils;
+import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.category.CategoryPath;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
+import ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery;
 import ch.ivyteam.ivy.workflow.query.CaseQuery.OrderByColumnQuery;
 
 public class DashboardProcessCaseSearchCriteria {
@@ -32,8 +35,19 @@ public class DashboardProcessCaseSearchCriteria {
     } else {
       queryExpressProcessCasesByCategoryPath(query);
     }
+    queryStates(query);
     queryIsInvolved(query);
     return query;
+  }
+
+  private void queryStates(CaseQuery query) {
+    var states = CaseUtils.getValidStates();
+    CaseQuery subQuery = CaseQuery.create();
+    IFilterQuery filterQuery = subQuery.where();
+    for (CaseState state : states) {
+      filterQuery.or().state().isEqual(state);
+    }
+    query.where().and(subQuery);
   }
 
   private void queryProcessStartId(CaseQuery query) {

@@ -44,6 +44,9 @@ Below is a sample JSON definition of the task widget in the Portal dashboard
          },
          {
             "field": "startTimestamp"
+         },
+         {
+            "field": "actions"
          }
       ]
    }
@@ -102,6 +105,8 @@ The basic structure of JSON of Task widget
             - ``startTimestamp``: created date and time of the task
 
             - ``expiryTimestamp``: expiry date and time of the task
+            
+            - ``actions``: for further actions: access task details, reset task, delegate task, reserve, destroy task, and add Ad-hoc task
 
          For custom column, ``field`` is the name of a task custom field.
          Portal will use the value of ``field`` attribute to get the value of the column.
@@ -241,7 +246,7 @@ Below is the list of filterable columns and their corresponding filter condition
       If you define a list of priorities in ``filterList``, the task widget will show
       tasks that have priority listed in ``filterList``.
 
-      Refer to `Task Priority <https://developer.axonivy.com/doc/nightly/public-api/ch/ivyteam/ivy/workflow/WorkflowPriority.html>`_ for
+      Refer to :dev-url:`Task Priority </doc/nightly/public-api/ch/ivyteam/ivy/workflow/WorkflowPriority.html>` for
       available task priorities.
 
    - ``state``
@@ -264,7 +269,7 @@ Below is the list of filterable columns and their corresponding filter condition
       If you define a list of states in ``filterList``, the task widget will show
       tasks that have states listed in ``filterList``. 
 
-      Refer to `Task States <https://developer.axonivy.com/doc/nightly/public-api/ch/ivyteam/ivy/workflow/TaskState.html>`_ for
+      Refer to :dev-url:`Task States </doc/nightly/public-api/ch/ivyteam/ivy/workflow/TaskState.html>` for
       available task states.
 
 

@@ -35,3 +35,4 @@ notes java.util.List<ch.ivyteam.ivy.workflow.INote> #field
 hasPermission Boolean #field
 isPublicDashboard Boolean #field
 isPublicDashboard 'used in configuring new dashboard' #fieldComment
+dashboardId String #field

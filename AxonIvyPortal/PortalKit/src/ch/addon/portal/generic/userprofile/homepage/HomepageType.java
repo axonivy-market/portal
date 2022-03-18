@@ -11,4 +11,8 @@ public enum HomepageType {
     }
     return null;
   }
+  
+  public String getLabel() {
+    return name();
+  }
 }

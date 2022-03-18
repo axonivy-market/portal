@@ -122,6 +122,12 @@ HowTo: Create new filter
 +-----------------------------------+-----------------------------------+
 | Criteria                          | Description                       |
 +===================================+===================================+
+| ID                                | The filter lets you specify the   |
+|                                   | case identify number              |
++-----------------------------------+-----------------------------------+
+| Name                              | The filter lets you specify the   |
+|                                   | case name                         |
++-----------------------------------+-----------------------------------+
 | Created (from / to)               | The filter lets you specify in    |
 |                                   | which time period the case was    |
 |                                   | created.                          |
