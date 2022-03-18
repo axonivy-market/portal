@@ -12,6 +12,7 @@
   <cc:attribute name="isReadOnlyMode" default="false" />
   <cc:attribute name="isPreviewMode" default="false"/>
   <cc:attribute name="onCompleteLoadWidget" />
+  <cc:attribute name="componentToUpdateTaskWidget" />
 </cc:interface>
 
 <cc:implementation>
@@ -47,7 +48,7 @@
         <p:ajax event="page" oncomplete="saveWidgetState()" />
         <p:ajax event="rowSelect" listener="#{dashboardBean.handleRowSelectEventOnTaskWidget}" disabled="#{!isReadOnlyMode}" />
 
-        <p:columns id="dashboard-tasks-columns" var="column" value="#{taskWidget.columns}" headerText="#{column.headerText}" styleClass="#{column.styleClass} #{(column.field eq 'start' or column.field eq 'name') ? '' : 'u-hidden-sm-down'}"
+        <p:columns id="dashboard-tasks-columns" var="column" value="#{taskWidget.columns}" headerText="#{column.headerText}" styleClass="#{column.styleClass} #{(column.field eq 'start' or column.field eq 'name' or column.field eq 'start' or column.field eq 'actions') ? '' : 'u-hidden-sm-down'}"
           visible="#{column.visible}" field="#{column.field}" 
           sortBy="#{column.field}" sortable="#{column.sortable}"
           style="#{column.format eq 'TIMESTAMP' or column.format eq 'NUMBER' ? 'text-align: center;' : ''} #{column.style}">
@@ -93,8 +94,13 @@
             <h:outputText id="task-category" value="#{column.display(task)}"/>
             <p:tooltip for="task-category" value="#{task.getCategory().getPath()}" trackMouse="true" hideEvent="mouseleave click"/>
           </h:panelGroup>
+          
+          <h:panelGroup rendered="#{column.field eq 'actions'}">
+            <ui:include src="ActionsCell.xhtml" />
+          </h:panelGroup>
         </p:columns>
       </p:dataTable>
+       
     </h:panelGroup>
   </div>
   
