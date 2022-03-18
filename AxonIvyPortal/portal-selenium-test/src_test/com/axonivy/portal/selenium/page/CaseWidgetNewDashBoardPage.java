@@ -170,6 +170,6 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
   
   private void confirmDestroy() {
     $("div[id$='destroy-case-confirmation-dialog']").waitUntil(appear, DEFAULT_TIMEOUT)
-        .$("button[id$='confirm-destruction']").shouldBe(getClickableCondition()).click();
+        .$("button[id$='confirm-destruction-dashboard-cases']").shouldBe(getClickableCondition()).click();
   }
 }
