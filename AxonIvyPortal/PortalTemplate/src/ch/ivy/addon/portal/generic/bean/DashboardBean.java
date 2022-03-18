@@ -30,12 +30,13 @@ import ch.ivy.addon.portalkit.dto.dashboard.WidgetFilterModel;
 import ch.ivy.addon.portalkit.enums.BehaviourWhenClickingOnLineInTaskList;
 import ch.ivy.addon.portalkit.enums.DashboardCustomWidgetType;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
+import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.ivydata.service.impl.ProcessService;
-import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
 import ch.ivy.addon.portalkit.service.DashboardService;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.WidgetFilterService;
 import ch.ivy.addon.portalkit.support.HtmlParser;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
@@ -82,8 +83,9 @@ public class DashboardBean implements Serializable {
       selectedDashboard = dashboards.get(0);
     }
     buildWidgetModels(selectedDashboard);
-    isRunningTaskWhenClickingOnTaskInList = UserSettingService.newInstance()
-        .getTaskBehaviourWhenClickingOnLineInTaskList().equals(BehaviourWhenClickingOnLineInTaskList.RUN_TASK.name());
+    isRunningTaskWhenClickingOnTaskInList = new GlobalSettingService()
+        .findGlobalSettingValue(GlobalVariable.DEFAULT_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST)
+        .equals(BehaviourWhenClickingOnLineInTaskList.RUN_TASK.name());
   }
 
   protected List<Dashboard> collectDashboards() {
