@@ -10,7 +10,8 @@ public enum PortalVariable {
   EXPRESS_PROCESS("Portal.Processes.ExpressProcesses"),
   TASK_DETAIL("Portal.TaskDetails"),
   CASE_DETAIL("Portal.CaseDetails"),
-  DASHBOARD("Portal.Dashboard");
+  DASHBOARD("Portal.Dashboard"),
+  DASHBOARD_ORDER("Portal.Dashboard.Order");
 
   public String key;
 

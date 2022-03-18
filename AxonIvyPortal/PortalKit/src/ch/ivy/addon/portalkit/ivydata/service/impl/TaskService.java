@@ -34,9 +34,8 @@ import ch.ivyteam.ivy.workflow.query.TaskQuery.FilterLink;
 
 public class TaskService implements ITaskService {
 
-  private TaskService() {
-  }
-  
+  protected TaskService() {}
+
   public static TaskService newInstance() {
     return new TaskService();
   }
@@ -61,7 +60,7 @@ public class TaskService implements ITaskService {
     });
   }
   
-  private List<ITask> executeTaskQuery(TaskQuery query, Integer startIndex, Integer count) {
+  protected List<ITask> executeTaskQuery(TaskQuery query, Integer startIndex, Integer count) {
     return taskQueryExecutor().getResults(query, startIndex, count);
   }
 
@@ -69,7 +68,7 @@ public class TaskService implements ITaskService {
     return taskQueryExecutor().getCount(query);
   }
   
-  private TaskQuery queryExcludeHiddenTasks() {
+  protected TaskQuery queryExcludeHiddenTasks() {
     return TaskQuery.create().where().customField().stringField(AdditionalProperty.HIDE.toString()).isNull();
   }
 
@@ -207,23 +206,25 @@ public class TaskService implements ITaskService {
   }
 
   private TaskQuery extendQueryWithUserHasPermissionToSee(TaskSearchCriteria criteria) {
-    TaskQuery finalQuery = criteria.getFinalTaskQuery();
-    TaskQuery clonedQuery = TaskQuery.fromJson(finalQuery.asJson()); // clone to keep the final query in TaskSearchCriteria
+    TaskQuery clonedQuery = TaskQuery.fromJson(criteria.getFinalTaskQuery().asJson()); // clone to keep the final query in TaskSearchCriteria
     if (!criteria.isAdminQuery()) {
-      FilterLink currentUserIsInvolved = TaskQuery.create().where().or().currentUserIsInvolved();     
-      IUser user = Ivy.session().getSessionUser();
-      for (IRole role : user.getRoles()) {
-        currentUserIsInvolved.where().or().roleIsInvolved(role);
-      }
-      clonedQuery.where().and(currentUserIsInvolved);
+      clonedQuery.where().and(queryInvolvedTasks());
     }
-    
     if (isHiddenTasksCasesExcluded()) {
       clonedQuery.where().and(queryExcludeHiddenTasks());
     }
     return clonedQuery;
   }
-  
+
+  protected TaskQuery queryInvolvedTasks() {
+    FilterLink currentUserIsInvolved = TaskQuery.create().where().or().currentUserIsInvolved();
+    IUser user = Ivy.session().getSessionUser();
+    for (IRole role : user.getRoles()) {
+      currentUserIsInvolved.where().or().roleIsInvolved(role);
+    }
+    return currentUserIsInvolved;
+  }
+
   private TaskQuery extendQueryWithInvolvedUser(TaskSearchCriteria criteria) {
     TaskQuery finalQuery = criteria.getFinalTaskQuery();
     TaskQuery clonedQuery = TaskQuery.fromJson(finalQuery.asJson()); // clone to keep the final query in TaskSearchCriteria

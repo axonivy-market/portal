@@ -22,22 +22,27 @@ import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.CustomDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
+import ch.ivy.addon.portalkit.dto.dashboard.DashboardOrder;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.ProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.WidgetFilterModel;
+import ch.ivy.addon.portalkit.enums.BehaviourWhenClickingOnLineInTaskList;
 import ch.ivy.addon.portalkit.enums.DashboardCustomWidgetType;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
+import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.ivydata.service.impl.ProcessService;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
 import ch.ivy.addon.portalkit.service.DashboardService;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.WidgetFilterService;
-import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivy.addon.portalkit.support.HtmlParser;
+import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
+import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISecurityConstants;
 import ch.ivyteam.ivy.security.IUser;
@@ -63,6 +68,8 @@ public class DashboardBean implements Serializable {
   private List<WidgetFilterModel> deleteFilters;
   private boolean canEditPrivateDashboard;
   private boolean canEditPublicDashboard;
+  private ITask selectedTask;
+  private boolean isRunningTaskWhenClickingOnTaskInList;
 
   @PostConstruct
   public void init() {
@@ -76,19 +83,27 @@ public class DashboardBean implements Serializable {
       selectedDashboard = dashboards.get(0);
     }
     buildWidgetModels(selectedDashboard);
+    isRunningTaskWhenClickingOnTaskInList = new GlobalSettingService()
+        .findGlobalSettingValue(GlobalVariable.DEFAULT_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST)
+        .equals(BehaviourWhenClickingOnLineInTaskList.RUN_TASK.name());
   }
 
   protected List<Dashboard> collectDashboards() {
+    List<Dashboard> visibleDashboards = DashboardUtils.getAllVisibleDashboardsOfSessionUser();
+    List<DashboardOrder> dashboardOrders = DashboardUtils.getDashboardOrdersOfSessionUser();
+    Map<String, Dashboard> idToDashboard = DashboardUtils.createMapIdToDashboard(visibleDashboards);
     List<Dashboard> collectedDashboards = new ArrayList<>();
-    String dashboardInUserProperty = readDashboardBySessionUser();
-    try {
-      collectedDashboards = defaultDashboards();
-      List<Dashboard> myDashboards = getVisibleDashboards(dashboardInUserProperty);
-      collectedDashboards.addAll(myDashboards);
-    } catch (PortalException e) {
-      // If errors like parsing JSON errors, ignore them
-      Ivy.log().error(e);
+    for (DashboardOrder dashboardOrder : dashboardOrders) {
+      if (dashboardOrder.getDashboardId() == null) {
+        continue;
+      }
+      Dashboard currentDashboard = idToDashboard.remove(dashboardOrder.getDashboardId());
+      if (dashboardOrder.isVisible()) {
+        collectedDashboards.add(currentDashboard);
+      }
     }
+    collectedDashboards.addAll(idToDashboard.values());
+
     return collectedDashboards;
   }
 
@@ -111,8 +126,7 @@ public class DashboardBean implements Serializable {
   }
 
   protected List<Dashboard> jsonToDashboards(String dashboardJSON) {
-    List<Dashboard> mappingDashboards =
-        BusinessEntityConverter.jsonValueToEntities(dashboardJSON, Dashboard.class);
+    List<Dashboard> mappingDashboards = BusinessEntityConverter.jsonValueToEntities(dashboardJSON, Dashboard.class);
     for (Dashboard dashboard : mappingDashboards) {
       if (CollectionUtils.isEmpty(dashboard.getPermissions())) {
         ArrayList<String> defaultPermissions = new ArrayList<>();
@@ -186,38 +200,15 @@ public class DashboardBean implements Serializable {
     }
   }
 
-  protected List<Dashboard> defaultDashboards() {
+  protected List<Dashboard> getVisiblePublicDashboards() {
     String dashboardJson = Ivy.var().get(PortalVariable.DASHBOARD.key);
-    List<Dashboard> visibleDashboards = getVisibleDashboards(dashboardJson);
+    List<Dashboard> visibleDashboards = DashboardUtils.getVisibleDashboards(dashboardJson);
     setDashboardAsPublic(visibleDashboards);
     return visibleDashboards;
   }
 
   private void setDashboardAsPublic(List<Dashboard> visibleDashboards) {
     visibleDashboards.stream().forEach(dashboard -> dashboard.setIsPublic(true));
-  }
-
-  protected List<Dashboard> getVisibleDashboards(String dashboardJson) {
-    List<Dashboard> dashboards = jsonToDashboards(dashboardJson);
-    dashboards.removeIf(dashboard -> {
-      List<String> permissions = dashboard.getPermissions();
-      if (permissions == null) {
-        return false;
-      } else {
-        for (String permission : permissions) {
-          if (isSessionUserHasPermisson(permission)) {
-            return false;
-          }
-        }
-      }
-      return true;
-    });
-    return dashboards;
-  }
-
-  private boolean isSessionUserHasPermisson(String permission) {
-    return StringUtils.startsWith(permission, "#") ? StringUtils.equals(currentUser().getMemberName(), permission)
-        : PermissionUtils.doesSessionUserHaveRole(permission);
   }
 
   public List<Dashboard> getDashboards() {
@@ -251,14 +242,32 @@ public class DashboardBean implements Serializable {
     return FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
   }
 
-  public void navigateToSelectedTaskDetails(SelectEvent event) {
-    Long taskId = ((ITask) event.getObject()).getId();
-    PortalNavigator.navigateToPortalTaskDetails(taskId);
+  public void handleRowSelectEventOnTaskWidget(SelectEvent event) throws IOException {
+    ITask task = ((ITask) event.getObject());
+    selectedTask = task;
+    handleSelectedTask(task);
+  }
+
+  public void handleSelectedTask(ITask task) throws IOException {
+    if (isRunningTaskWhenClickingOnTaskInList) {
+      TaskUtils.handleStartTask(task, null, "reset-task-confirmation-dialog");
+    } else {
+      navigateToSelectedTaskDetails(task);
+    }
+  }
+
+  public void navigateToSelectedTaskDetails(ITask task) {
+    PortalNavigator.navigateToPortalTaskDetails(task.getId());
   }
 
   public void navigateToSelectedCaseDetails(SelectEvent event) {
     Long caseId = ((ICase) event.getObject()).getId();
     PortalNavigator.navigateToPortalCaseDetails(caseId);
+  }
+
+  public void resetAndOpenTask() throws IOException {
+    TaskUtils.resetTask(selectedTask);
+    FacesContext.getCurrentInstance().getExternalContext().redirect(selectedTask.getStartLinkEmbedded().getRelative());
   }
 
   protected IUser currentUser() {
@@ -278,10 +287,6 @@ public class DashboardBean implements Serializable {
       selectedDashboard = dashboards.get(currentDashboardIndex);
       buildWidgetModels(selectedDashboard);
     }
-  }
-
-  public void startTask(ITask task) throws IOException {
-    FacesContext.getCurrentInstance().getExternalContext().redirect(task.getStartLinkEmbedded().getRelative());
   }
 
   public String createExtractedTextFromHtml(String text) {
@@ -420,20 +425,11 @@ public class DashboardBean implements Serializable {
     this.deleteFilters = deleteFilters;
   }
 
-
-  public void navigateToConfiguration() {
-    if (canEditPrivateDashboard) {
-      navigatetoPrivateConfiguration();
-    } else if (canEditPublicDashboard) {
-      navigatetoPublicConfiguration();
-    }
+  public void navigatetoMyDashboardReorder() {
+    PortalNavigator.navigateToDashboardReorder(false);
   }
 
-  public void navigatetoPrivateConfiguration() {
-    PortalNavigator.navigateToNewDashboardConfiguration(false);
-  }
-
-  public void navigatetoPublicConfiguration() {
-    PortalNavigator.navigateToNewDashboardConfiguration(true);
+  public void navigatetoPublicDashboardReorder() {
+    PortalNavigator.navigateToDashboardReorder(true);
   }
 }

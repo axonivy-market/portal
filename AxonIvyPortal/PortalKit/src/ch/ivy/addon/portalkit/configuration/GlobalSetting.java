@@ -1,13 +1,20 @@
 package ch.ivy.addon.portalkit.configuration;
 
+import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.lang.StringUtils;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import ch.addon.portal.generic.userprofile.homepage.HomepageUtils;
+import ch.ivy.addon.portalkit.enums.BehaviourWhenClickingOnLineInTaskList;
+import ch.ivy.addon.portalkit.enums.CaseSortField;
+import ch.ivy.addon.portalkit.enums.DefaultImage;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.GlobalVariableType;
+import ch.ivy.addon.portalkit.enums.ProcessMode;
+import ch.ivy.addon.portalkit.enums.SortDirection;
+import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivyteam.ivy.environment.Ivy;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
@@ -49,8 +56,9 @@ public class GlobalSetting extends AbstractConfiguration {
       return GlobalVariable.Option.valueOf(StringUtils.upperCase(defaultValue)).translate();
     } else if (variable == GlobalVariable.DEFAULT_HOMEPAGE) {
       return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/dashboard");
-    } else if (variable.getType() == GlobalVariableType.EXTERNAL_SELECTION && variable.getExternalOptions() != null && !variable.getExternalOptions().isEmpty()) {
-      return variable.getExternalOptions().get(defaultValue);
+    } else if (variable.getType() == GlobalVariableType.EXTERNAL_SELECTION && MapUtils.isNotEmpty(variable.getExternalOptions())) {
+      Object object = variable.getExternalOptions().get(defaultValue);
+      return getDisplayValue(object);
     }
     return defaultValue;
   }
@@ -62,10 +70,29 @@ public class GlobalSetting extends AbstractConfiguration {
       return GlobalVariable.Option.valueOf(StringUtils.upperCase(value)).translate();
     } else if (variable == GlobalVariable.DEFAULT_HOMEPAGE) {
       return HomepageUtils.findDefaultHomepage().getLabel();
-    } else if (variable.getType() == GlobalVariableType.EXTERNAL_SELECTION && variable.getExternalOptions() != null && !variable.getExternalOptions().isEmpty()) {
-      return variable.getExternalOptions().get(value);
+    } else if (variable.getType() == GlobalVariableType.EXTERNAL_SELECTION && MapUtils.isNotEmpty(variable.getExternalOptions())) {
+      Object object = variable.getExternalOptions().get(value);
+      return getDisplayValue(object);
     }
     return value;
+  }
+
+  private String getDisplayValue(Object object) {
+    if (object instanceof TaskSortField) {
+      return ((TaskSortField)object).getLabel();
+    } else if (object instanceof CaseSortField) {
+      return ((CaseSortField)object).getLabel();
+    } else if (object instanceof SortDirection) {
+      return ((SortDirection)object).getLabel();
+    } else if (object instanceof ProcessMode) {
+      return ((ProcessMode)object).getLabel();
+    } else if (object instanceof BehaviourWhenClickingOnLineInTaskList) {
+      return ((BehaviourWhenClickingOnLineInTaskList)object).getLabel();
+    } else if (object instanceof DefaultImage) {
+      return ((DefaultImage)object).getLabel();
+    } else {
+      return (String)object;
+    }
   }
 
   public void setValueToDefault() {
