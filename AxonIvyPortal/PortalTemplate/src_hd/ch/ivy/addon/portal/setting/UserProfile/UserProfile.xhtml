@@ -80,16 +80,6 @@
                     </p:selectOneMenu>
                   </div>
                 </div>
-                <div class="ui-g-12 u-no-padding-top">
-                  <span class="ui-g-12">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/BehaviourWhenClickingOnLineInTaskListSelections/DefaultBehaviourWhenClickingOnLineInTaskListLabel')}</span>
-                  <div class="ui-g-12">
-                    <p:selectOneMenu id="behaviour-when-clicking-on-line-in-task-list-selection" value="#{data.selectedTaskBehaviourWhenClickingOnLine}"
-                      styleClass="my-profile-selection-menu">
-                      <f:selectItems value="#{data.taskBehavioursWhenClickingOnLine}" var="taskBehaviour"
-                        itemValue="#{taskBehaviour}" itemLabel="#{userProfileBean.getDisplayNameOfTaskBehaviourWhenClickingOnLine(taskBehaviour)}" />
-                    </p:selectOneMenu>
-                  </div>
-                </div>
               </div>
 
               <!-- Case List Setting -->
