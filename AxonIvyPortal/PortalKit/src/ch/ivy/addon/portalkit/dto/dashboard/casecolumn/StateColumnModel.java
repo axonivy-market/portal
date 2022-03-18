@@ -1,7 +1,6 @@
 package ch.ivy.addon.portalkit.dto.dashboard.casecolumn;
 
 import java.io.Serializable;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -12,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
+import ch.ivy.addon.portalkit.util.CaseUtils;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.ICase;
 
@@ -68,7 +68,9 @@ public class StateColumnModel extends CaseColumnModel implements Serializable {
   public List<CaseState> getUserFilterStateOptions() {
     List<CaseState> states = getStates();
     if (CollectionUtils.isEmpty(states)) {
-      states = Arrays.asList(CaseState.values()).stream().sorted((s1, s2) -> StringUtils.compare(s1.toString(), s2.toString())).collect(Collectors.toList());
+      states = CaseUtils.getValidStates();
+    } else {
+      states = CaseUtils.filterStateByPermission(states);
     }
     return states;
   }

@@ -48,4 +48,8 @@ public class TaskDetailsPage extends TemplatePage {
   public SelenideElement getBreadcrumbLastDisplayedItem() {
     return $$("span.ui-menuitem-text").last().waitUntil(Condition.appear, DEFAULT_TIMEOUT);
   }
+
+  public SelenideElement getInformationPanel() {
+    return $("div[id$='task-details-information-panel'");
+  }
 }

@@ -7,17 +7,23 @@
 <h:panelGroup id="filter-container" layout="block" styleClass="widget-filter-panel">
   <ui:repeat id="filterable-column" var="field" value="#{widget.filterableColumns}">
     <div class="ui-g">
-      <ic:ch.ivy.addon.portalkit.component.dashboard.taskwidget.PriorityFilterColumn field="#{field}"
-        selectedPriorities="#{field.userFilterPriorities}"
-        priorityOptions="#{field.userFilterPriorityOptions}"/>
+      <h:panelGroup rendered="#{field.field eq 'priority'}">
+        <ic:ch.ivy.addon.portalkit.component.dashboard.taskwidget.PriorityFilterColumn field="#{field}"
+          selectedPriorities="#{field.userFilterPriorities}"
+          priorityOptions="#{field.userFilterPriorityOptions}"/>
+      </h:panelGroup>
 
-      <ic:ch.ivy.addon.portalkit.component.dashboard.taskwidget.StateFilterColumn field="#{field}"
-        stateOptions="#{field.userFilterStateOptions}"
-        selectedStates="#{field.userFilterStates}"/>
+      <h:panelGroup rendered="#{field.field eq 'state'}">
+        <ic:ch.ivy.addon.portalkit.component.dashboard.taskwidget.StateFilterColumn field="#{field}"
+          stateOptions="#{field.userFilterStateOptions}"
+          selectedStates="#{field.userFilterStates}"/>
+      </h:panelGroup>
 
-      <ic:ch.ivy.addon.portalkit.component.dashboard.taskwidget.ActivatorFilterColumn field="#{field}"
-        responsibleCompleteMethod="#{field.completeUserFilterResponsibles}"
-        selectedResponsibles="#{field.userFilterResponsibles}"/>
+      <h:panelGroup rendered="#{field.field eq 'activator'}">
+        <ic:ch.ivy.addon.portalkit.component.dashboard.taskwidget.ActivatorFilterColumn field="#{field}"
+          responsibleCompleteMethod="#{field.completeUserFilterResponsibles}"
+          selectedResponsibles="#{field.userFilterResponsibles}"/>
+      </h:panelGroup>
 
       <ic:ch.ivy.addon.portalkit.component.dashboard.widget.TextFilterColumn field="#{field}"
         inputTextValue="#{field.userFilter}"
@@ -31,11 +37,13 @@
         filterTo="#{field.userDateFilterTo}" maxFilterTo="#{field.dateFilterTo}"
         filterFrom="#{field.userDateFilterFrom}" minFilterFrom="#{field.dateFilterFrom}"/>
 
-      <ic:ch.ivy.addon.portalkit.component.dashboard.widget.CategoryFilterColumn field="#{field}"
-        displaySelectedCategories="#{field.userFriendlyCategories}"
-        categoryTree="#{field.userCategoryTree}" categoryNodeSelection="#{field.userSelectionCategoryNodes}"
-        containerStyleClass="task-configuration__category" inputCategoryStyleClass="task-configuration__input-text"
-        overlayCategoryStyleClass="task-configuration__category-panel" showUnselectableCheckbox="true"/>
+      <h:panelGroup rendered="#{field.field eq 'category'}">
+        <ic:ch.ivy.addon.portalkit.component.dashboard.widget.CategoryFilterColumn field="#{field}"
+          displaySelectedCategories="#{field.userFriendlyCategories}"
+          categoryTree="#{field.userCategoryTree}" categoryNodeSelection="#{field.userSelectionCategoryNodes}"
+          containerStyleClass="task-configuration__category" inputCategoryStyleClass="task-configuration__input-text"
+          overlayCategoryStyleClass="task-configuration__category-panel" showUnselectableCheckbox="true"/>
+      </h:panelGroup>
     </div>
   </ui:repeat>
 </h:panelGroup>

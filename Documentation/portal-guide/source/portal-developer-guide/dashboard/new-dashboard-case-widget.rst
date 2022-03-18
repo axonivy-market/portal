@@ -44,6 +44,9 @@ Below is a sample JSON definition of the case widget in the Portal dashboard.
          },
          {
             "field": "startTimestamp"
+         },
+         {
+            "field": "actions"
          }
       ]
    }
@@ -100,6 +103,8 @@ the basic structure of JSON of case widget
             - ``endTimestamp``: end date and time of the case
 
             - ``owner``: case owner
+
+            - ``actions``: for further actions: access case details, business details case, destroy case
 
          For custom column, ``field`` is the name of a case custom field.
          Portal will use the value of ``field`` attribute to get the value of the column.
@@ -214,7 +219,7 @@ Below is the list of filterable columns and their corresponding filter condition
       If you define a list of states in ``filterList``, the case widget will show cases that have
       states listed in ``filterList``. 
 
-      Refer to `Case States <https://developer.axonivy.com/doc/nightly/public-api/ch/ivyteam/ivy/workflow/CaseState.html>`_ for
+      Refer to :dev-url:`Case States </doc/nightly/public-api/ch/ivyteam/ivy/workflow/CaseState.html>` for
       available case states.
 
    - ``creator``

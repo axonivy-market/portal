@@ -7,6 +7,8 @@ import ch.ivy.addon.portalkit.taskfilter.TaskFilterContainer;
 
 public class DefaultTaskFilterContainer extends TaskFilterContainer {
 
+  private TaskIdFilter idFilter = new TaskIdFilter();
+  private TaskNameFilter nameFilter = new TaskNameFilter();
   private TaskPriorityFilter priorityFilter = new TaskPriorityFilter();
   private TaskDescriptionFilter descriptionFilter = new TaskDescriptionFilter();
   private TaskCreationDateFilter creationDateFilter = new TaskCreationDateFilter();
@@ -18,6 +20,8 @@ public class DefaultTaskFilterContainer extends TaskFilterContainer {
 
   public DefaultTaskFilterContainer() {
     super();
+    filters.add(idFilter);
+    filters.add(nameFilter);
     filters.add(priorityFilter);
     filters.add(descriptionFilter);
     filters.add(creationDateFilter);
@@ -30,6 +34,8 @@ public class DefaultTaskFilterContainer extends TaskFilterContainer {
   
   public DefaultTaskFilterContainer(boolean filterForUnavailableActivator) {
     super();
+    filters.add(idFilter);
+    filters.add(nameFilter);
     filters.add(priorityFilter);
     filters.add(descriptionFilter);
     filters.add(creationDateFilter);
@@ -42,7 +48,23 @@ public class DefaultTaskFilterContainer extends TaskFilterContainer {
     }
     Collections.sort(filters, new TaskFilterComparator());
   }
-  
+
+  public TaskIdFilter getIdFilter() {
+    return idFilter;
+  }
+
+  public void setIdFilter(TaskIdFilter idFilter) {
+    this.idFilter = idFilter;
+  }
+
+  public TaskNameFilter getNameFilter() {
+    return nameFilter;
+  }
+
+  public void setNameFilter(TaskNameFilter nameFilter) {
+    this.nameFilter = nameFilter;
+  }
+
   public TaskPriorityFilter getPriorityFilter() {
     return priorityFilter;
   }

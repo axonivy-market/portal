@@ -1901,6 +1901,7 @@ ul.participants-list li {
   font-size: var(--small-font-size);
   line-height: 18px; }
 
+.config-checkbox-select-all,
 .config-checkbox-container {
   border-bottom: 1px solid var(--config-checkbox-container-border); }
 
@@ -2182,4 +2183,25 @@ body.in-dialog .ui-widget-overlay {
 .dashboard__body .expand-fullscreen .saved-filter-node.selected .saved-filter-node__text {
   font-style: var(--default-font-style);
   font-size: var(--default-body-font-size);
+}
+
+.dashboard-configuration-dialog__action-row {
+  box-shadow:  var(--item-widget-box-shadow);
+}
+
+.dashboard-configuration-dialog__action-row:hover {
+  background: var(--process-start-list-item-hover-background-color);
+  border: var(--process-start-list-item-hover-border);
+}
+
+.dashboard-configuration-dialog__action-row-label {
+  color: var(--primary-dark-text-color);
+}
+
+.dashboard-configuration-dialog__action-row-description {
+  color: var(--primary-dark-text-color);
+}
+
+.dashboard-configuration-dialog__action-row-icon {
+  color: var(--primary-dark-text-color);
 }

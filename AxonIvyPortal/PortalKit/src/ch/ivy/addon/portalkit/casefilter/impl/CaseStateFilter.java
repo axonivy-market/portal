@@ -3,14 +3,12 @@ package ch.ivy.addon.portalkit.casefilter.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections4.CollectionUtils;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import ch.ivy.addon.portalkit.casefilter.CaseFilter;
-import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;
 import ch.ivy.addon.portalkit.util.CaseUtils;
-import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
@@ -23,19 +21,19 @@ public class CaseStateFilter extends CaseFilter {
   private List<CaseState> selectedFilteredStates;
   @JsonIgnore
   private List<CaseState> selectedFilteredStatesAtBeginning;
+  @JsonIgnore
+  private List<CaseState> submittedFilteredStates;
+  @JsonIgnore
+  private boolean isSelectedAll;
 
   /**
    * Initialize the values of filteredStates: CREATED, RUNNING, DONE
    * Advance note: if current user is Administrator, will consider to add system states
    */
   public CaseStateFilter() {
-    this.filteredStates = new ArrayList<>(CaseSearchCriteria.STANDARD_STATES);
-    if (PermissionUtils.checkReadAllCasesPermission()) {
-      this.filteredStates.addAll(CaseSearchCriteria.ADVANCE_STATES);
-    } else {
-      this.filteredStates.add(CaseState.DONE);
-    }
-    this.selectedFilteredStatesAtBeginning = new ArrayList<>(filteredStates);
+    this.filteredStates = CaseUtils.getValidStates();
+    setSelectedFilteredStatesAtBeginning(new ArrayList<>(filteredStates));
+    setSubmittedFilteredStates(new ArrayList<>(filteredStates));
     this.selectedFilteredStates = new ArrayList<>();
   }
 
@@ -46,9 +44,16 @@ public class CaseStateFilter extends CaseFilter {
 
   @Override
   public String value() {
-    if (CollectionUtils.isEmpty(selectedFilteredStates) || isAllStatesSelected()) {
+    if (CollectionUtils.isNotEmpty(submittedFilteredStates)) {
+      selectedFilteredStates = new ArrayList<>(submittedFilteredStates);
+    }
+    if (CollectionUtils.isEmpty(selectedFilteredStates)) {
+      return noSelectionLabel();
+    } else if (isAllStatesSelected()) {
+      isSelectedAll = true;
       return ALL;
     }
+    isSelectedAll = false;
     String value = userFriendlyState(selectedFilteredStates.get(0));
     for (int i = 1; i < selectedFilteredStates.size(); i++) {
       if (filteredStates.contains(selectedFilteredStates.get(i))) {
@@ -59,7 +64,7 @@ public class CaseStateFilter extends CaseFilter {
   }
 
   private boolean isAllStatesSelected() {
-    return filteredStates.equals(selectedFilteredStates)
+    return CollectionUtils.isEqualCollection(filteredStates, selectedFilteredStates)
     // In case the filter is a saved filter from a user who can filter more state
         || (filteredStates.size() < selectedFilteredStates.size() && selectedFilteredStates.containsAll(filteredStates));
   }
@@ -77,8 +82,26 @@ public class CaseStateFilter extends CaseFilter {
   }
 
   @Override
+  public void validate() {
+    submittedFilteredStates = new ArrayList<>(selectedFilteredStates);
+  }
+
+  public void onSelectedAllStates() {
+    if (isSelectedAll) {
+      selectedFilteredStates = new ArrayList<>(filteredStates);
+    } else {
+      selectedFilteredStates = new ArrayList<>();
+    }
+  }
+
+  public void onSelectState() {
+    isSelectedAll = isAllStatesSelected();
+  }
+
+  @Override
   public void resetValues() {
     selectedFilteredStates = new ArrayList<>(selectedFilteredStatesAtBeginning);
+    submittedFilteredStates = new ArrayList<>();
   }
   
   @Override
@@ -116,7 +139,22 @@ public class CaseStateFilter extends CaseFilter {
   }
 
   public void setSelectedFilteredStatesAtBeginning(List<CaseState> selectedFilteredStatesAtBeginning) {
-    this.selectedFilteredStatesAtBeginning = selectedFilteredStatesAtBeginning;
+    this.selectedFilteredStatesAtBeginning = new ArrayList<>(selectedFilteredStatesAtBeginning);
   }
 
+  public boolean isSelectedAll() {
+    return isSelectedAll;
+  }
+
+  public void setSelectedAll(boolean isSelectedAll) {
+    this.isSelectedAll = isSelectedAll;
+  }
+
+  public List<CaseState> getSubmittedFilteredStates() {
+    return submittedFilteredStates;
+  }
+
+  public void setSubmittedFilteredStates(List<CaseState> submittedFilteredStates) {
+    this.submittedFilteredStates = submittedFilteredStates;
+  }
 }

@@ -1,5 +1,5 @@
 [Ivy]
-172546E1FDEB1FF7 9.4.0 #module
+172546E1FDEB1FF7 9.4.1 #module
 >Proto >Proto Collection #zClass
 Us0 UserProfileProcess Big #zClass
 Us0 RD #cInfo
@@ -24,6 +24,8 @@ Ct0 Component Big #zClass
 Ct0 B #cInfo
 Ct10 Component Big #zClass
 Ct10 B #cInfo
+Us0 @TextInP .colors .colors #zField
+Us0 @TextInP color color #zField
 Us0 Ct9 S90 'Sub 9' #zField
 Us0 Ct8 S80 'Sub 8' #zField
 Us0 Ct7 S70 'Sub 7' #zField
@@ -60,15 +62,17 @@ Us0 @GridStep f6 '' #zField
 Us0 @PushWFArc f3 '' #zField
 Us0 @PushWFArc f4 '' #zField
 Us0 @PushWFArc f10 '' #zField
-Us0 @PushWFArc f25 '' #zField
 Us0 @PushWFArc f26 '' #zField
 Us0 @PushWFArc f11 '' #zField
 Us0 @PushWFArc f5 '' #zField
 Us0 @PushWFArc f18 '' #zField
 Us0 Ct10 S00 'Sub 10' #zField
-Us0 @PushWFArc f9 '' #zField
 Us0 @PushWFArc f17 '' #zField
+Us0 @PushWFArc f9 '' #zField
+Us0 @PushWFArc f20 '' #zField
 >Proto Us0 Us0 UserProfileProcess #zField
+Ct9 @TextInP .colors .colors #zField
+Ct9 @TextInP color color #zField
 Ct9 @AnnotationInP-0n ai ai #zField
 Ct9 @TextInP .type .type #zField
 Ct9 @TextInP .processKind .processKind #zField
@@ -80,6 +84,8 @@ Ct9 @PushWFArc f0 '' #zField
 Ct9 @PushTrueWFOutG-01 g1 '' #zField
 Ct9 @PushWFArc f1 '' #zField
 >Proto Ct9 Ct0 Component #zField
+Ct8 @TextInP .colors .colors #zField
+Ct8 @TextInP color color #zField
 Ct8 @AnnotationInP-0n ai ai #zField
 Ct8 @TextInP .type .type #zField
 Ct8 @TextInP .processKind .processKind #zField
@@ -91,6 +97,8 @@ Ct8 @PushWFArc f0 '' #zField
 Ct8 @PushTrueWFOutG-01 g1 '' #zField
 Ct8 @PushWFArc f1 '' #zField
 >Proto Ct8 Ct1 Component #zField
+Ct7 @TextInP .colors .colors #zField
+Ct7 @TextInP color color #zField
 Ct7 @AnnotationInP-0n ai ai #zField
 Ct7 @TextInP .type .type #zField
 Ct7 @TextInP .processKind .processKind #zField
@@ -102,6 +110,8 @@ Ct7 @PushWFArc f0 '' #zField
 Ct7 @PushTrueWFOutG-01 g1 '' #zField
 Ct7 @PushWFArc f1 '' #zField
 >Proto Ct7 Ct2 Component #zField
+Ct6 @TextInP .colors .colors #zField
+Ct6 @TextInP color color #zField
 Ct6 @AnnotationInP-0n ai ai #zField
 Ct6 @TextInP .type .type #zField
 Ct6 @TextInP .processKind .processKind #zField
@@ -113,6 +123,8 @@ Ct6 @PushWFArc f0 '' #zField
 Ct6 @PushTrueWFOutG-01 g1 '' #zField
 Ct6 @PushWFArc f1 '' #zField
 >Proto Ct6 Ct3 Component #zField
+Ct5 @TextInP .colors .colors #zField
+Ct5 @TextInP color color #zField
 Ct5 @AnnotationInP-0n ai ai #zField
 Ct5 @TextInP .type .type #zField
 Ct5 @TextInP .processKind .processKind #zField
@@ -124,6 +136,8 @@ Ct5 @PushWFArc f0 '' #zField
 Ct5 @PushTrueWFOutG-01 g1 '' #zField
 Ct5 @PushWFArc f1 '' #zField
 >Proto Ct5 Ct4 Component #zField
+Ct4 @TextInP .colors .colors #zField
+Ct4 @TextInP color color #zField
 Ct4 @AnnotationInP-0n ai ai #zField
 Ct4 @TextInP .type .type #zField
 Ct4 @TextInP .processKind .processKind #zField
@@ -137,6 +151,8 @@ Ct4 @PushWFArc f0 '' #zField
 Ct4 @PushTrueWFOutG-01 g1 '' #zField
 Ct4 @PushWFArc f1 '' #zField
 >Proto Ct4 Ct5 Component #zField
+Ct3 @TextInP .colors .colors #zField
+Ct3 @TextInP color color #zField
 Ct3 @TextInP .type .type #zField
 Ct3 @TextInP .processKind .processKind #zField
 Ct3 @TextInP .xml .xml #zField
@@ -149,6 +165,8 @@ Ct3 @GridStep f4 '' #zField
 Ct3 @PushWFArc f2 '' #zField
 Ct3 @PushWFArc f1 '' #zField
 >Proto Ct3 Ct6 Component #zField
+Ct2 @TextInP .colors .colors #zField
+Ct2 @TextInP color color #zField
 Ct2 @TextInP .type .type #zField
 Ct2 @TextInP .processKind .processKind #zField
 Ct2 @TextInP .xml .xml #zField
@@ -161,6 +179,8 @@ Ct2 @PushWFArc f0 '' #zField
 Ct2 @PushTrueWFOutG-01 g1 '' #zField
 Ct2 @PushWFArc f1 '' #zField
 >Proto Ct2 Ct7 Component #zField
+Ct0 @TextInP .colors .colors #zField
+Ct0 @TextInP color color #zField
 Ct0 @TextInP .type .type #zField
 Ct0 @TextInP .processKind .processKind #zField
 Ct0 @TextInP .xml .xml #zField
@@ -173,6 +193,8 @@ Ct0 @PushWFArc f0 '' #zField
 Ct0 @PushTrueWFOutG-01 g1 '' #zField
 Ct0 @PushWFArc f1 '' #zField
 >Proto Ct0 Ct8 Component #zField
+Ct10 @TextInP .colors .colors #zField
+Ct10 @TextInP color color #zField
 Ct10 @AnnotationInP-0n ai ai #zField
 Ct10 @TextInP .type .type #zField
 Ct10 @TextInP .processKind .processKind #zField
@@ -191,7 +213,7 @@ Us0 S90 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Us0 S90 752 258 112 44 -46 -8 #rect
+Us0 S90 768 258 112 44 -46 -8 #rect
 Us0 S80 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language lang="en">
@@ -215,7 +237,8 @@ Us0 S60 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Us0 S60 928 122 112 44 -53 -8 #rect
+Us0 S60 920 122 112 44 -53 -8 #rect
+Us0 S60 g0 -55 0 #fFoot
 Us0 S50 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language lang="en">
@@ -257,7 +280,7 @@ Us0 S10 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Us0 S10 160 258 112 44 -43 -8 #rect
 Us0 f1 211 51 26 26 0 12 #rect
-Us0 f8 1107 131 26 26 0 12 #rect
+Us0 f8 1099 131 26 26 0 12 #rect
 Us0 f12 guid 17255599F044D2FD #txt
 Us0 f12 method initSettings() #txt
 Us0 f12 inParameterDecl '<> param;' #txt
@@ -297,7 +320,7 @@ Us0 f39 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Us0 f39 304 122 112 44 -44 -8 #rect
-Us0 f42 1227 267 26 26 0 12 #rect
+Us0 f42 1275 267 26 26 0 12 #rect
 Us0 f45 processCall 'Ivy Data Processes/EmailSettingService:saveEmailSetting(ch.ivy.addon.portalkit.ivydata.bo.IvyEmailSetting)' #txt
 Us0 f45 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.bo.IvyEmailSetting emailSetting> param;' #txt
 Us0 f45 requestMappingAction 'param.emailSetting=in.emailSetting;
@@ -344,17 +367,17 @@ Us0 f14 actionTable 'out=in;
 ' #txt
 Us0 f14 actionCode 'import ch.ivy.addon.portalkit.publicapi.PortalNavigatorAPI;
 
-PortalNavigatorAPI.navigateToPortalEndPage();' #txt
+PortalNavigatorAPI.navigateToPortalHome();' #txt
 Us0 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>Navigate To Portal EndPage</name>
+        <name>Back to Home</name>
     </language>
 </elementInfo>
 ' #txt
-Us0 f14 192 370 160 44 -77 -8 #rect
-Us0 f15 109 392 192 392 #arcP
-Us0 f22 352 392 483 392 #arcP
+Us0 f14 216 370 112 44 -38 -8 #rect
+Us0 f15 109 392 216 392 #arcP
+Us0 f22 328 392 483 392 #arcP
 Us0 f35 expr out #txt
 Us0 f35 109 280 160 280 #arcP
 Us0 f36 272 280 304 280 #arcP
@@ -363,24 +386,24 @@ Us0 f13 272 144 304 144 #arcP
 Us0 f24 416 144 448 144 #arcP
 Us0 f6 actionTable 'out=in;
 ' #txt
-Us0 f6 actionCode 'import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
-PortalNavigator.navigateToUserProfile();' #txt
+Us0 f6 actionCode 'import ch.ivy.addon.portalkit.publicapi.PortalNavigatorAPI;
+
+PortalNavigatorAPI.navigateToPortalHome();' #txt
 Us0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>Reload</name>
+        <name>Back to Home</name>
     </language>
 </elementInfo>
 ' #txt
-Us0 f6 1056 258 112 44 -20 -8 #rect
-Us0 f3 1168 280 1227 280 #arcP
+Us0 f6 1104 258 112 44 -38 -8 #rect
+Us0 f3 1216 280 1275 280 #arcP
 Us0 f4 560 144 592 144 #arcP
 Us0 f10 736 144 768 144 #arcP
-Us0 f25 880 144 928 144 #arcP
-Us0 f26 1040 144 1107 144 #arcP
+Us0 f26 1032 144 1099 144 #arcP
 Us0 f11 416 280 448 280 #arcP
 Us0 f5 576 280 608 280 #arcP
-Us0 f18 720 280 752 280 #arcP
+Us0 f18 720 280 768 280 #arcP
 Us0 S00 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -388,9 +411,11 @@ Us0 S00 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Us0 S00 896 258 128 44 -58 -8 #rect
-Us0 f9 864 280 896 280 #arcP
-Us0 f17 1024 280 1056 280 #arcP
+Us0 S00 920 258 128 44 -58 -8 #rect
+Us0 S00 g0 -64 0 #fFoot
+Us0 f17 1048 280 1104 280 #arcP
+Us0 f9 880 280 920 280 #arcP
+Us0 f20 880 144 921 144 #arcP
 >Proto Us0 .type ch.ivy.addon.portal.setting.UserProfile.UserProfileData #txt
 >Proto Us0 .processKind HTML_DIALOG #txt
 >Proto Us0 -8 -8 16 16 16 26 #rect
@@ -546,8 +571,8 @@ Ct6 g0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ct6 g0 51 147 26 26 0 5 #rect
-Ct6 f0 77 160 136 160 #arcP
+Ct6 g0 -10 147 26 26 0 5 #rect
+Ct6 f0 16 160 136 160 #arcP
 Ct6 g1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language lang="en">
@@ -874,7 +899,7 @@ Ct0 f1 expr out #txt
 Ct0 f1 400 160 467 160 #arcP
 >Proto Ct8 0 0 32 24 18 0 #rect
 >Proto Ct8 @|BIcon #fIcon
-Ct10 g0 51 243 26 26 0 5 #rect
+Ct10 g0 -13 243 26 26 0 5 #rect
 Ct10 g1 563 243 26 26 0 5 #rect
 Ct10 f1 actionTable 'out=in;
 ' #txt
@@ -888,7 +913,7 @@ Ct10 f1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ct10 f1 224 234 128 44 -58 -8 #rect
-Ct10 f2 77 256 224 256 #arcP
+Ct10 f2 13 256 224 256 #arcP
 Ct10 f0 352 256 563 256 #arcP
 >Proto Ct9 0 0 32 24 18 0 #rect
 >Proto Ct9 @|BIcon #fIcon
@@ -914,20 +939,20 @@ Us0 f4 head S50 g0 #connect
 Us0 S50 g1 f10 tail #connect
 Us0 f10 head S20 g0 #connect
 Us0 S40 g1 f4 tail #connect
-Us0 f25 head S60 g0 #connect
 Us0 S60 g1 f26 tail #connect
 Us0 f26 head f8 mainIn #connect
-Us0 S20 g1 f25 tail #connect
 Us0 f11 head S70 g0 #connect
 Us0 f45 mainOut f11 tail #connect
 Us0 f5 head S80 g0 #connect
 Us0 S70 g1 f5 tail #connect
 Us0 f18 head S90 g0 #connect
 Us0 S80 g1 f18 tail #connect
-Us0 S90 g1 f9 tail #connect
-Us0 f9 head S00 g0 #connect
 Us0 S00 g1 f17 tail #connect
 Us0 f17 head f6 mainIn #connect
+Us0 S90 g1 f9 tail #connect
+Us0 f9 head S00 g0 #connect
+Us0 S20 g1 f20 tail #connect
+Us0 f20 head S60 g0 #connect
 Ct9 g0 m f0 tail #connect
 Ct9 f0 head f17 mainIn #connect
 Ct9 f1 head g1 m #connect
