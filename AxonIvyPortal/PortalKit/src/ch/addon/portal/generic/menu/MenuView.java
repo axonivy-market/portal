@@ -71,18 +71,18 @@ public class MenuView implements Serializable {
   public void buildPortalLeftMenu(ITask workingTask, boolean isWorkingOnATask) {
     initTaskParams(workingTask, isWorkingOnATask);
     mainMenuModel = new DefaultMenuModel();
-    mainMenuModel.addElement(buildDashboardItem());
+    mainMenuModel.getElements().add(buildDashboardItem());
 
     List<SubMenuItem> subMenuItems = PortalMenuNavigator.callSubMenuItemsProcess();
     for (SubMenuItem subMenu : subMenuItems) {
       DefaultMenuItem item = buildSubMenuItem(subMenu);
-      mainMenuModel.addElement(item);
+      mainMenuModel.getElements().add(item);
     }
 
     List<Application> thirdPartyApps = PortalMenuNavigator.getThirdPartyApps();
     for (Application app : thirdPartyApps) {
       DefaultMenuItem item = buildThirdPartyItem(app);
-      mainMenuModel.addElement(item);
+      mainMenuModel.getElements().add(item);
     }
   }
 
@@ -273,7 +273,7 @@ public class MenuView implements Serializable {
 
   private void buildBreadCrumbForTaskDetails(ITask userTask) {
     setPortalHomeMenuToBreadcrumbModel();
-    breadcrumbModel.getElements().add(buildTaskListMenuItem()); 
+    breadcrumbModel.getElements().add(buildTaskListMenuItem());
     breadcrumbModel.getElements().add(buildTaskDetailsMenuItem(userTask));
   }
 
@@ -287,7 +287,7 @@ public class MenuView implements Serializable {
     setPortalHomeMenuToBreadcrumbModel();
     breadcrumbModel.getElements().add(buildGenericMenuItem("/Categories/ExpressWorkflow/name"));
   }
-  
+
   private void buildBreadCrumbForExpressBusiness(ICase userCase) {
     setPortalHomeMenuToBreadcrumbModel();
     breadcrumbModel.getElements().add(buildExpressBusinessMenuItem(Long.toString(userCase.getId())));
