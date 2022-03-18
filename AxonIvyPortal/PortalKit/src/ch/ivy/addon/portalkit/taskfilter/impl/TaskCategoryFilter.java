@@ -21,10 +21,11 @@ import ch.ivyteam.ivy.workflow.query.TaskQuery.IFilterQuery;
 
 public class TaskCategoryFilter extends TaskFilter {
 
+  @SuppressWarnings("unchecked")
   @JsonIgnore
-  private CheckboxTreeNode[] categories = new CheckboxTreeNode[] {};
+  private CheckboxTreeNode<CategoryNode>[] categories = new CheckboxTreeNode[] {};
   @JsonIgnore
-  private CheckboxTreeNode root;
+  private CheckboxTreeNode<CategoryNode> root;
 
   private List<String> categoryPaths = new ArrayList<>();
 
@@ -58,6 +59,7 @@ public class TaskCategoryFilter extends TaskFilter {
     return taskQuery;
   }
 
+  @SuppressWarnings("unchecked")
   @Override
   public void resetValues() {
     categories = new CheckboxTreeNode[] {};
@@ -65,24 +67,24 @@ public class TaskCategoryFilter extends TaskFilter {
     root = null;
   }
 
-  public CheckboxTreeNode[] getCategories() {
+  public CheckboxTreeNode<CategoryNode>[] getCategories() {
     return categories;
   }
 
-  public void setCategories(CheckboxTreeNode[] categories) {
+  public void setCategories(CheckboxTreeNode<CategoryNode>[] categories) {
     this.categories = categories;
     this.categoryPaths = CategoryUtils.getCategoryPaths(categories);
   }
 
-  public CheckboxTreeNode getRoot() {
+  public CheckboxTreeNode<CategoryNode> getRoot() {
     initializeRoot();
     return root;
   }
 
-  public void setRoot(CheckboxTreeNode root) {
+  public void setRoot(CheckboxTreeNode<CategoryNode> root) {
     this.root = root;
   }
-  
+
   private void initializeRoot() {
     String allCategoriesText = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/allCategories");
     // If language is changed, category tree needs to be rebuilt
@@ -91,14 +93,14 @@ public class TaskCategoryFilter extends TaskFilter {
         .filter(CollectionUtils::isNotEmpty)
         .map(list -> list.get(0))
         .map(TreeNode::getData)
-        .map(data -> ((CategoryNode) data).getValue())
+        .map(data -> data.getValue())
         .orElse(StringUtils.EMPTY);
     if (root == null || !StringUtils.equals(allCategoriesTextInTree, allCategoriesText)) {
       root = TaskTreeUtils.buildTaskCategoryCheckboxTreeRoot();
       categories = CategoryUtils.recoverSelectedCategories(root, categoryPaths);
     }
   }
-  
+
   public List<String> getCategoryPaths() {
     return this.categoryPaths;
   }
