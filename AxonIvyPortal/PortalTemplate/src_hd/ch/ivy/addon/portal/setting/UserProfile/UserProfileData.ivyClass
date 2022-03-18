@@ -36,7 +36,3 @@ processModes java.util.List<String> #field
 processModes PERSISTENT #fieldModifier
 selectedProcessMode String #field
 selectedProcessMode PERSISTENT #fieldModifier
-taskBehavioursWhenClickingOnLine java.util.List<String> #field
-taskBehavioursWhenClickingOnLine PERSISTENT #fieldModifier
-selectedTaskBehaviourWhenClickingOnLine String #field
-selectedTaskBehaviourWhenClickingOnLine PERSISTENT #fieldModifier
