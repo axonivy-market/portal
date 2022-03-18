@@ -90,7 +90,8 @@
                 itemValue="#{responsible}" itemLabel="#{responsible.briefDisplayNameWithState}" converter="pojoConverter"
                 cache="true" maxResults="100" multiple="true"
                 moreText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..." dynamic="true" forceSelection="true">
-                <p:ajax event="itemSelect" listener="#{dashboardConfigurationBean.dashboardPermissionListener}" update="dashboard-permission" />
+                <p:ajax event="itemSelect" listener="#{dashboardConfigurationBean.dashboardPermissionListener}"
+                  update="dashboard-permission" global="false" />
                 <p:column>
                   <i class="fa #{responsible.isUser() ? 'fa-user' : 'fa-users'} u-mar-right-5" />
                   <h:outputText value="#{dashboardTaskFilterBean.formatName(responsible)}" />
