@@ -14,7 +14,7 @@ Configure Portal settings
 
 To manually configure Portal settings, refer to :ref:`update-portal-settings`.
 
-Portal settings are stored as `Variables <https://developer.axonivy.com/doc/nightly/designer-guide/configuration/variables.html>`_.
+Portal settings are stored as :dev-url:`Variables </doc/nightly/designer-guide/configuration/variables.html>`.
 
 In development, it is a quite tedious task to configure Portal settings after restarting Designer. You could update value of Variables in
 ``PortalKit/config/variables.yaml`` for the settings that you want to configure, it could survive after restarting Designer.
@@ -76,8 +76,8 @@ Role configuration
 Permission settings
 ===================
 
-Permissions can be configured in `Cockpit
-<https://developer.axonivy.com/doc/nightly/engine-guide/tool-reference/engine-cockpit/security.html>`_.
+Permissions can be configured in :dev-url:`Cockpit
+</doc/nightly/engine-guide/tool-reference/engine-cockpit/security.html>`.
 In the security area, you will find all these permission in the Group
 "PortalPermissions"
 

@@ -1,5 +1,6 @@
 package ch.ivy.addon.portalkit.bean;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,8 +17,10 @@ import org.primefaces.event.SelectEvent;
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.datamodel.internal.RelatedCaseLazyDataModel;
 import ch.ivy.addon.portalkit.dto.casedetails.CaseDetails;
+import ch.ivy.addon.portalkit.enums.BehaviourWhenClickingOnLineInTaskList;
 import ch.ivy.addon.portalkit.enums.CaseSortField;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
+import ch.ivy.addon.portalkit.enums.PortalPage;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
@@ -46,9 +49,11 @@ public class CaseDetailsBean extends AbstractConfigurableContentBean<CaseDetails
   private boolean isTaskStartedInDetails;
   private boolean showBackButton;
   private ICase selectedCase;
+  private ITask selectedTask;
   private CaseActionBean caseActionBean;
   private boolean inFrame;
   private boolean isFirstTime;
+  private boolean isRunningTaskWhenClickingOnTaskInList;
 
   @PostConstruct
   public void init() {
@@ -57,6 +62,9 @@ public class CaseDetailsBean extends AbstractConfigurableContentBean<CaseDetails
     isHideCaseDocument = new GlobalSettingService().findGlobalSettingValueAsBoolean(GlobalVariable.HIDE_CASE_DOCUMENT);
     caseActionBean = ManagedBeans.get("caseActionBean");
     isFirstTime = true;
+    isRunningTaskWhenClickingOnTaskInList = new GlobalSettingService()
+        .findGlobalSettingValue(GlobalVariable.DEFAULT_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST)
+        .equals(BehaviourWhenClickingOnLineInTaskList.RUN_TASK.name());
   }
 
   public void preRender(ICase selectedCase, boolean showBackButton) {
@@ -125,16 +133,30 @@ public class CaseDetailsBean extends AbstractConfigurableContentBean<CaseDetails
   public boolean isDisplayColumn(RelatedCaseLazyDataModel dataModel, String columnName) {
     return dataModel.getSelectedColumns().contains(columnName);
   }
-  
-  public void navigateToSelectedTaskDetails(SelectEvent event) {
-    Long taskId = ((ITask) event.getObject()).getId();
+
+  public void handleRowSelectEventOnRelatedTaskList(SelectEvent event) throws IOException {
+    ITask task = (ITask) event.getObject();
+    selectedTask = task;
+    handleSelectedTask(task);
+  }
+
+  public void handleSelectedTask(ITask task) throws IOException {
+    if (isRunningTaskWhenClickingOnTaskInList) {
+      TaskUtils.handleStartTask(task, PortalPage.CASE_DETAIL_FROM_TASK, "reset-task-confirmation-dialog");
+    } else {
+      navigateToSelectedTaskDetails(task);
+    }
+  }
+
+  public void navigateToSelectedTaskDetails(ITask task) {
+    Long taskId = task.getId();
     if (inFrame) {
       PortalNavigator.navigateToPortalTaskDetailsInFrame(taskId);
     } else {
       PortalNavigator.navigateToPortalTaskDetails(taskId);
     }
   }
-  
+
   public void navigateToSelectedCaseDetails(SelectEvent event) {
     Long caseId = ((ICase) event.getObject()).getId();
     if (inFrame) {
@@ -143,7 +165,7 @@ public class CaseDetailsBean extends AbstractConfigurableContentBean<CaseDetails
       PortalNavigator.navigateToPortalCaseDetails(caseId);
     }
   }
-  
+
   public void navigateToCaseDetails(Long caseId) {
     if (inFrame) {
       PortalNavigator.navigateToPortalCaseDetailsInFrame(caseId, false);
@@ -242,5 +264,13 @@ public class CaseDetailsBean extends AbstractConfigurableContentBean<CaseDetails
 
   public void setInFrame(boolean inFrame) {
     this.inFrame = inFrame;
+  }
+  
+  public ITask getSelectedTask() {
+    return selectedTask;
+  }
+
+  public void setSelectedTask(ITask selectedTask) {
+    this.selectedTask = selectedTask;
   }
 }

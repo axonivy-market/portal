@@ -65,6 +65,9 @@ public class BaseTest {
   protected String portalTemplatePasswordResetUrl = "portalTemplate/1549F58C18A6C562/PasswordResetPage.ivp?token=%s&username=%s";
   protected String createExpressProcess = "axonIvyExpress/15798655494F25E1/AxonIvyExpressWF.ivp";
   protected String cleanSessionCacheUrl = "http://localhost:8081/designer/pro/PortalKitTestHelper/17208192E0AF4185/cleanSessionCache.ivp";
+  protected String reorderDashboardUrl =
+      "portalTemplate/1549F58C18A6C562/DashboardReorder.ivp?isPublicDashboard=%s";
+  protected String createSampleDashboardUrl = "portalKitTestHelper/17F2050944B46BB0/createSampleDashboard.ivp";
 
   protected void redirectToNewDashBoard() {
     open(EngineUrl.createProcessUrl(PORTAL_HOME_PAGE_URL));

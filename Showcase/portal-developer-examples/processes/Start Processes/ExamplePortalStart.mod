@@ -1,5 +1,5 @@
 [Ivy]
-164211E97C598DAA 9.4.0 #module
+164211E97C598DAA 9.4.1 #module
 >Proto >Proto Collection #zClass
 Pt0 ExamplePortalStart Big #zClass
 Pt0 B #cInfo
@@ -16,6 +16,8 @@ Bk18 BpmnUserTask Big #zClass
 Bk18 BpmnUserTask #cInfo
 Bk19 BpmnUserTask Big #zClass
 Bk19 BpmnUserTask #cInfo
+Pt0 @TextInP .colors .colors #zField
+Pt0 @TextInP color color #zField
 Pt0 @TextInP .resExport .resExport #zField
 Pt0 @TextInP .type .type #zField
 Pt0 @TextInP .processKind .processKind #zField
@@ -208,6 +210,8 @@ Pt0 @EndTask f176 '' #zField
 Pt0 @UserDialog f179 '' #zField
 Pt0 @PushWFArc f180 '' #zField
 >Proto Pt0 Pt0 ExamplePortalStart #zField
+Bk14 @TextInP .colors .colors #zField
+Bk14 @TextInP color color #zField
 Bk14 @TextInP .type .type #zField
 Bk14 @TextInP .processKind .processKind #zField
 Bk14 @TextInP .xml .xml #zField
@@ -225,6 +229,8 @@ Bk14 @PushTrueWFOutG-01 g1 '' #zField
 Bk14 @PushWFArc f1 '' #zField
 Bk14 @PushWFArc f2 '' #zField
 >Proto Bk14 Bk7 BpmnServiceTask #zField
+Bk15 @TextInP .colors .colors #zField
+Bk15 @TextInP color color #zField
 Bk15 @TextInP .type .type #zField
 Bk15 @TextInP .processKind .processKind #zField
 Bk15 @TextInP .xml .xml #zField
@@ -247,6 +253,8 @@ Bk15 @PushWFArc f6 '' #zField
 Bk15 @UserDialog f9 '' #zField
 Bk15 @PushWFArc f10 '' #zField
 >Proto Bk15 Bk0 BpmnUserTask #zField
+Bk16 @TextInP .colors .colors #zField
+Bk16 @TextInP color color #zField
 Bk16 @TextInP .type .type #zField
 Bk16 @TextInP .processKind .processKind #zField
 Bk16 @TextInP .xml .xml #zField
@@ -273,6 +281,8 @@ Bk16 @PushWFArc f4 '' #zField
 Bk16 @PushWFArc f5 '' #zField
 Bk16 @PushWFArc f1 '' #zField
 >Proto Bk16 Bk1 BpmnUserTask #zField
+Bk17 @TextInP .colors .colors #zField
+Bk17 @TextInP color color #zField
 Bk17 @TextInP .type .type #zField
 Bk17 @TextInP .processKind .processKind #zField
 Bk17 @TextInP .xml .xml #zField
@@ -287,6 +297,8 @@ Bk17 @PushWFArc f0 '' #zField
 Bk17 @PushTrueWFOutG-01 g1 '' #zField
 Bk17 @PushWFArc f1 '' #zField
 >Proto Bk17 Bk2 BpmnUserTask #zField
+Bk18 @TextInP .colors .colors #zField
+Bk18 @TextInP color color #zField
 Bk18 @TextInP .type .type #zField
 Bk18 @TextInP .processKind .processKind #zField
 Bk18 @TextInP .xml .xml #zField
@@ -301,6 +313,8 @@ Bk18 @PushWFArc f0 '' #zField
 Bk18 @PushTrueWFOutG-01 g1 '' #zField
 Bk18 @PushWFArc f1 '' #zField
 >Proto Bk18 Bk3 BpmnUserTask #zField
+Bk19 @TextInP .colors .colors #zField
+Bk19 @TextInP color color #zField
 Bk19 @TextInP .type .type #zField
 Bk19 @TextInP .processKind .processKind #zField
 Bk19 @TextInP .xml .xml #zField
@@ -1930,8 +1944,10 @@ Pt0 f175 @C|.responsibility Everybody #txt
 Pt0 f175 81 2385 30 30 -67 21 #rect
 Pt0 f176 433 2385 30 30 0 15 #rect
 Pt0 f179 dialogId ch.ivy.addon.portal.generic.dashboard.PortalDashboardConfiguration #txt
-Pt0 f179 startMethod start() #txt
-Pt0 f179 requestActionDecl '<> param;' #txt
+Pt0 f179 startMethod start(Boolean) #txt
+Pt0 f179 requestActionDecl '<Boolean isPublicDashboard> param;' #txt
+Pt0 f179 requestMappingAction 'param.isPublicDashboard=in.isPublicDashboard;
+' #txt
 Pt0 f179 responseMappingAction 'out=in;
 ' #txt
 Pt0 f179 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

@@ -520,8 +520,7 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public String getDisplayStateInStateFilter() {
-    WebElement stateFilter =
-        findElementByCssSelector("div[id$='state-filter:filter-input-form:advanced-filter-panel']");
+    WebElement stateFilter = getStateFilterPanel();
     List<WebElement> elements = findChildElementsByTagName(stateFilter, "LABEL");
     List<String> states = elements.stream().map(WebElement::getText).collect(Collectors.toList());
     return StringUtils.join(states, ",");
@@ -529,12 +528,8 @@ public class TaskWidgetPage extends TemplatePage {
 
   public void clickOnTaskStatesAndApply(List<String> states) {
     openStateFilter();
-    WebElement stateFilterPanel =
-        findElementByCssSelector("div[id$='state-filter:filter-input-form:advanced-filter-panel']");
-    List<String> labelList = findChildElementsByTagName(stateFilterPanel, "label").stream().map(WebElement::getText)
+    List<String> labelList = findChildElementsByTagName(getStateFilterPanel(), "label").stream().map(WebElement::getText)
         .collect(Collectors.toList());
-    List<WebElement> checkBoxList = stateFilterPanel
-        .findElements(By.cssSelector("div[class*='ui-chkbox-box ui-widget ui-corner-all ui-state-default']"));
     List<Integer> statesSelectedIndex = new ArrayList<>();
     states.forEach(state -> {
       int stateIndex = labelList.indexOf(state);
@@ -542,16 +537,37 @@ public class TaskWidgetPage extends TemplatePage {
         statesSelectedIndex.add(stateIndex);
       }
     });
-
-    checkBoxList.forEach(checkBox -> {
-      if (checkBox.getAttribute("class").contains("ui-state-active"))
-        checkBox.click();
+    clickOnUnCheckSelectAllStates();
+    WaitHelper.assertTrueWithWait(() -> {
+      return getStateFilterPanel()
+          .findElements(By.cssSelector("table[id$=':filter-input-form:state-selection'] div.ui-chkbox-box span.ui-chkbox-icon.ui-icon-blank"))
+          .size() == labelList.size();
     });
-
-    statesSelectedIndex.forEach(index -> checkBoxList.get(index).click());
+    List<WebElement> checkBoxList = getStateFilterPanel()
+        .findElements(By.cssSelector("table[id$=':filter-input-form:state-selection'] div.ui-chkbox-box.ui-state-default"));
+    statesSelectedIndex.forEach(index -> {
+      checkBoxList.get(index).click();
+    });
 
     click(By.cssSelector("button[id$='state-filter:filter-input-form:update-command']"));
     waitForElementDisplayed(By.cssSelector("button[id$='state-filter:filter-input-form:update-command']"), false);
+  }
+
+  public void clickOnUnCheckSelectAllStates() {
+    var selectAll = getStateFilterPanel().findElement(By.cssSelector("[id$=':filter-input-form:states-select-all']"));
+    if (selectAll.findElement(By.className("ui-chkbox-box")).getAttribute(CLASS_PROPERTY).contains("ui-state-active")) {
+      click(selectAll.findElement(By.cssSelector("span.ui-chkbox-label")));
+      waitForElementExisted("[id$=':filter-input-form:states-select-all'] div.ui-chkbox-box span.ui-chkbox-icon.ui-icon-blank",
+          true, DEFAULT_TIMEOUT);
+      return;
+    } else {
+      click(selectAll.findElement(By.cssSelector("span.ui-chkbox-label")));
+      clickOnUnCheckSelectAllStates();
+    }
+  }
+
+  private WebElement getStateFilterPanel() {
+    return findElementByCssSelector("div[id$='state-filter:filter-input-form:advanced-filter-panel']");
   }
 
   public void clickOnStartTaskLink(int index) {

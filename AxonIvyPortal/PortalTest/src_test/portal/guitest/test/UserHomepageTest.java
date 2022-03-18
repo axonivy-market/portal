@@ -10,7 +10,7 @@ import portal.guitest.page.HomePage;
 import portal.guitest.page.UserProfilePage;
 
 public class UserHomepageTest extends BaseTest {
-  
+
   @Override
   @Before
   public void setup() {
@@ -24,8 +24,7 @@ public class UserHomepageTest extends BaseTest {
     HomePage homePage = new HomePage();
     UserProfilePage profilePage = homePage.openMyProfilePage();
     profilePage.changeHomePageToCase();
-    profilePage = profilePage.save();
-    profilePage.clickOnLogo();
+    profilePage.saveWithoutWaitingNavigation();
     new CaseWidgetPage();
   }
 }

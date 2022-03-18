@@ -40,9 +40,11 @@
           },
           {
             "field": "category"
+          },
+          {
+            "field": "actions"
           }
-        ],
-        "canWorkOn": true
+        ]
       },
       {
         "type": "case",
@@ -76,6 +78,9 @@
           },
           {
             "field": "category"
+          },
+          {
+            "field": "actions"
           }
         ]
       },

@@ -225,10 +225,10 @@ public class CaseWidgetTest extends BaseTest {
     // Change sorting options
     userProfilePage.selectCaseSortField("Name");
     userProfilePage.selectCaseSortDirection("Sort ascending");
-    userProfilePage.save();
+    homePage = userProfilePage.save();
 
     // Check result
-    CaseWidgetPage caseWidgetPage = userProfilePage.openCaseList();
+    CaseWidgetPage caseWidgetPage = homePage.openCaseList();
     assertEquals("Create 12 Cases with category", caseWidgetPage.getCaseNameAt(0));
     assertEquals("TestCase", caseWidgetPage.getCaseNameAt(13));
 
@@ -236,10 +236,10 @@ public class CaseWidgetTest extends BaseTest {
     userProfilePage = caseWidgetPage.openMyProfilePage();
     userProfilePage.selectCaseSortField("State");
     userProfilePage.selectCaseSortDirection("Sort descending");
-    userProfilePage.save();
+    homePage = userProfilePage.save();
 
     // Check result
-    caseWidgetPage = userProfilePage.openCaseList();
+    caseWidgetPage = homePage.openCaseList();
     assertEquals(CaseState.DONE, caseWidgetPage.getCaseState(0));
   }
 
@@ -271,10 +271,10 @@ public class CaseWidgetTest extends BaseTest {
     UserProfilePage userProfilePage = caseWidgetPage.openMyProfilePage();
     userProfilePage.selectCaseSortField("State");
     userProfilePage.selectCaseSortDirection("Sort descending");
-    userProfilePage.save();
+    homePage = userProfilePage.save();
     
     // Check result
-    caseWidgetPage = userProfilePage.openCaseList();
+    caseWidgetPage = homePage.openCaseList();
     selectedSortColumn = caseWidgetPage.getSelectedSortColumn();
     assertTrue(StringUtils.equalsIgnoreCase("State", selectedSortColumn));
     assertEquals(CaseState.DONE, caseWidgetPage.getCaseState(0));
