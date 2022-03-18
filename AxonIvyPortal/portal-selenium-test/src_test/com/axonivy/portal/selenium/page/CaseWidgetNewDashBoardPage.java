@@ -143,5 +143,33 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
         .shouldBe(getClickableCondition()).click();
   }
 
-
+  public void resetFilter() {
+    $("div.filter-overlay-panel__footer").waitUntil(appear, DEFAULT_TIMEOUT).$$("button[id$='reset-button']")
+        .filter(text("Reset")).first().shouldBe(getClickableCondition()).click();
+  }
+  
+  public void selectState(String state) {
+    getValueOfCheckBox(state).shouldBe(getClickableCondition()).click();
+    getCloseCheckBox().shouldBe(getClickableCondition()).click();
+  }
+  
+  public void clickOnCaseActionLink(int taskIndex) {
+    getColumnOfCaseHasIndex(taskIndex, "Actions").shouldBe(getClickableCondition()).click();
+  }
+  
+  public ElementsCollection getActiveCaseActions(int taskIndex) {
+    clickOnCaseActionLink(taskIndex);
+    return $$("div[id$='dashboard-actions-case-case_1:action-steps-panel']").filter(appear).first().waitUntil(appear, DEFAULT_TIMEOUT)
+        .$("div.ui-overlaypanel-content").$$("a[class*='action-step-item']");
+  }
+  
+  public void destroyCase(int taskIndex) {
+    getActiveCaseActions(taskIndex).filter(text("Destroy")).first().shouldBe(getClickableCondition()).click();
+    confirmDestroy();
+  }
+  
+  private void confirmDestroy() {
+    $("div[id$='destroy-case-confirmation-dialog']").waitUntil(appear, DEFAULT_TIMEOUT)
+        .$("button[id$='confirm-destruction']").shouldBe(getClickableCondition()).click();
+  }
 }

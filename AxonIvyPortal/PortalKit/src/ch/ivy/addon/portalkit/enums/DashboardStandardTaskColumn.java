@@ -5,7 +5,7 @@ import java.util.Map;
 
 public enum DashboardStandardTaskColumn {
   START("start"), PRIORITY("priority"), ID("id"), NAME("name"), DESCRIPTION("description"), RESPONSIBLE(
-      "activator"), STATE("state"), CREATED("startTimestamp"), EXPIRY("expiryTimestamp"), CATEGORY("category");
+      "activator"), STATE("state"), CREATED("startTimestamp"), EXPIRY("expiryTimestamp"), CATEGORY("category"), ACTIONS("actions");
 
   private final String field;
 

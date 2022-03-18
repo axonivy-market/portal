@@ -44,6 +44,9 @@ Below is a sample JSON definition of the case widget in the Portal dashboard.
          },
          {
             "field": "startTimestamp"
+         },
+         {
+            "field": "actions"
          }
       ]
    }
@@ -100,6 +103,8 @@ the basic structure of JSON of case widget
             - ``endTimestamp``: end date and time of the case
 
             - ``owner``: case owner
+
+            - ``actions``: for further actions: access case details, business details case, destroy case
 
          For custom column, ``field`` is the name of a case custom field.
          Portal will use the value of ``field`` attribute to get the value of the column.
