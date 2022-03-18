@@ -19,7 +19,6 @@ import ch.ivy.addon.portalkit.enums.BehaviourWhenClickingOnLineInTaskList;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivy.addon.portalkit.exporter.Exporter;
-import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.TaskFilterService;
 import ch.ivy.addon.portalkit.support.HtmlParser;
@@ -54,8 +53,9 @@ public class TaskWidgetBean implements Serializable {
         StringUtils.isNumeric(taskListRefreshIntervalUserSetting) ? Long.parseLong(taskListRefreshIntervalUserSetting)
             : DEFAULT_TASK_LIST_REFRESH_INTERVAL;
     isShowFullTaskList = PermissionUtils.checkAccessFullTaskListPermission();
-    isRunningTaskWhenClickingOnTaskInList = UserSettingService.newInstance()
-        .getTaskBehaviourWhenClickingOnLineInTaskList().equals(BehaviourWhenClickingOnLineInTaskList.RUN_TASK.name());
+    isRunningTaskWhenClickingOnTaskInList = new GlobalSettingService()
+        .findGlobalSettingValue(GlobalVariable.DEFAULT_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST)
+        .equals(BehaviourWhenClickingOnLineInTaskList.RUN_TASK.name());
   }
   
   public void preRender(TaskLazyDataModel dataModel) {
