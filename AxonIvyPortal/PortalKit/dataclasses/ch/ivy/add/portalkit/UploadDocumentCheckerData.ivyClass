@@ -1,5 +1,5 @@
 UploadDocumentCheckerData #class
 ch.ivy.add.portalkit #namespace
-uploadedFile org.primefaces.model.UploadedFile #field
+uploadedFile org.primefaces.model.file.UploadedFile #field
 checkStatus ch.ivy.addon.portalkit.enums.UploadDocumentCheckStatus #field
 message String #field

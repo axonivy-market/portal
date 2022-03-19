@@ -1,9 +1,11 @@
 [Ivy]
-1549452C001D8A69 9.4.0 #module
+1549452C001D8A69 9.4.1 #module
 >Proto >Proto Collection #zClass
 Ts0 TaskItemDocumentsProcess Big #zClass
 Ts0 RD #cInfo
 Ts0 #process
+Ts0 @TextInP .colors .colors #zField
+Ts0 @TextInP color color #zField
 Ts0 @TextInP .type .type #zField
 Ts0 @TextInP .processKind .processKind #zField
 Ts0 @AnnotationInP-0n ai ai #zField
@@ -320,8 +322,8 @@ Ts0 f28 expr out #txt
 Ts0 f28 616 288 696 288 #arcP
 Ts0 f34 expr out #txt
 Ts0 f34 109 192 208 192 #arcP
-Ts0 f32 processCall 'Functional Processes/UploadDocument:call(ch.ivyteam.ivy.workflow.ICase,org.primefaces.model.UploadedFile)' #txt
-Ts0 f32 requestActionDecl '<ch.ivyteam.ivy.workflow.ICase businessCase,org.primefaces.model.UploadedFile uploadedFile> param;' #txt
+Ts0 f32 processCall 'Functional Processes/UploadDocument:call(ch.ivyteam.ivy.workflow.ICase,org.primefaces.model.file.UploadedFile)' #txt
+Ts0 f32 requestActionDecl '<ch.ivyteam.ivy.workflow.ICase businessCase,org.primefaces.model.file.UploadedFile uploadedFile> param;' #txt
 Ts0 f32 requestMappingAction 'param.businessCase=in.businessCase;
 param.uploadedFile=in.documentUploadEvent.getFile();
 ' #txt

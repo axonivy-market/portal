@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
-import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
 
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
@@ -16,11 +15,12 @@ import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;
 import ch.ivy.addon.portalkit.service.IvyAdapterService;
 import ch.ivy.addon.portalkit.util.CaseUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
+import ch.ivyteam.ivy.jsf.primefaces.legazy.LazyDataModel7;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
-public class CaseHistoryLazyDataModel extends LazyDataModel<ICase> {
+public class CaseHistoryLazyDataModel extends LazyDataModel7<ICase> {
 
   private static final long serialVersionUID = 3023805225538732101L;
 
@@ -115,7 +115,7 @@ public class CaseHistoryLazyDataModel extends LazyDataModel<ICase> {
           .isEqual(businessEntityId);
       criteria.setCustomCaseQuery(caseQuery);
     }
-    
+
     criteria.setFinalCaseQuery(criteria.createQuery());
   }
 
@@ -126,15 +126,15 @@ public class CaseHistoryLazyDataModel extends LazyDataModel<ICase> {
   public void setBusinessEntityId(String businessEntityId) {
     this.businessEntityId = businessEntityId;
   }
-  
+
   public boolean isSelectedColumn(String column) {
     return StringUtils.isNotEmpty(column);
   }
-  
+
   public boolean isAutoHideColumns() {
     return false;
   }
-  
+
   @Override
   public void setRowIndex(int index) {
     int idx = index;

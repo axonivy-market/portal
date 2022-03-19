@@ -39,7 +39,12 @@ public class NoteHistoryExporter {
       Ivy.log().error(e);
     }
     ByteArrayInputStream inputStream = new ByteArrayInputStream(outputStream.toByteArray());
-    return new DefaultStreamedContent(inputStream, "application/xlsx", fileName);
+    return DefaultStreamedContent
+        .builder()
+        .stream(() -> inputStream)
+        .contentType("application/xlsx")
+        .name(fileName)
+        .build();
   }
 
   public StreamedContent getStreamedContentOfCaseNoteHistory(List<History> caseNoteHistory, ICase iCase, String fileName) {
@@ -65,7 +70,12 @@ public class NoteHistoryExporter {
       Ivy.log().error(e);
     }
     ByteArrayInputStream inputStream = new ByteArrayInputStream(outputStream.toByteArray());
-    return new DefaultStreamedContent(inputStream, "application/xlsx", fileName);
+    return DefaultStreamedContent
+        .builder()
+        .stream(() -> inputStream)
+        .contentType("application/xlsx")
+        .name(fileName)
+        .build();
   }
 
   private List<String> generateHeaders() {
