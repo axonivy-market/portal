@@ -22,10 +22,11 @@ import ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery;
 
 public class CaseCategoryFilter extends CaseFilter {
 
+  @SuppressWarnings("unchecked")
   @JsonIgnore
-  private CheckboxTreeNode[] categories = new CheckboxTreeNode[] {};
+  private CheckboxTreeNode<CategoryNode>[] categories = new CheckboxTreeNode[] {};
   @JsonIgnore
-  private CheckboxTreeNode root;
+  private CheckboxTreeNode<CategoryNode> root;
 
   private List<String> categoryPaths = new ArrayList<>();
 
@@ -59,6 +60,7 @@ public class CaseCategoryFilter extends CaseFilter {
     return caseQuery;
   }
 
+  @SuppressWarnings("unchecked")
   @Override
   public void resetValues() {
     categories = new CheckboxTreeNode[] {};
@@ -66,24 +68,24 @@ public class CaseCategoryFilter extends CaseFilter {
     root = null;
   }
 
-  public CheckboxTreeNode[] getCategories() {
+  public CheckboxTreeNode<CategoryNode>[] getCategories() {
     return categories;
   }
 
-  public void setCategories(CheckboxTreeNode[] categories) {
+  public void setCategories(CheckboxTreeNode<CategoryNode>[] categories) {
     this.categories = categories;
     this.categoryPaths = CategoryUtils.getCategoryPaths(categories);
   }
 
-  public CheckboxTreeNode getRoot() {
+  public CheckboxTreeNode<CategoryNode> getRoot() {
     initializeRoot();
     return root;
   }
 
-  public void setRoot(CheckboxTreeNode root) {
+  public void setRoot(CheckboxTreeNode<CategoryNode> root) {
     this.root = root;
   }
-  
+
   public void initializeRoot() {
     String allCategoriesText = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/allCategories");
     // If language is changed, category tree needs to be rebuilt
@@ -92,7 +94,7 @@ public class CaseCategoryFilter extends CaseFilter {
         .filter(CollectionUtils::isNotEmpty)
         .map(list -> list.get(0))
         .map(TreeNode::getData)
-        .map(data -> ((CategoryNode) data).getValue())
+        .map(data -> data.getValue())
         .orElse(StringUtils.EMPTY);
     if (root == null || !StringUtils.equals(allCategoriesTextInTree, allCategoriesText)) {
       root = CaseTreeUtils.buildCaseCategoryCheckboxTreeRoot();

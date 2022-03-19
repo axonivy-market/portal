@@ -17,7 +17,7 @@ import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.StreamedContent;
-import org.primefaces.model.UploadedFile;
+import org.primefaces.model.file.UploadedFile;
 
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
@@ -57,7 +57,7 @@ public class ExpressManagementBean implements Serializable {
     activeMemberList = findAllActiveUser();
     setExpressProcesses(ExpressManagementUtils.findExpressProcesses());
   }
-  
+
   @SuppressWarnings("unchecked")
   private List<SecurityMemberDTO> findAllActiveUser() {
     if (activeMemberList == null) {
@@ -74,7 +74,7 @@ public class ExpressManagementBean implements Serializable {
 
   /**
    * Get a display name by activator name
-   * 
+   *
    * @param activatorName
    * @return display name
    */
@@ -98,7 +98,7 @@ public class ExpressManagementBean implements Serializable {
     }
     return displayName;
   }
-  
+
   public void importExpress(FileUploadEvent event) throws IOException {
     importExpressFile = event.getFile();
     validate();
@@ -108,7 +108,7 @@ public class ExpressManagementBean implements Serializable {
       importExpressProcesses();
     }
   }
-  
+
   public StreamedContent exportExpress() {
     if (selectedExpressProcesses != null && !selectedExpressProcesses.isEmpty()) {
       exportExpressFile = ExpressManagementUtils.exportExpressProcess(selectedExpressProcesses);
@@ -134,12 +134,12 @@ public class ExpressManagementBean implements Serializable {
       validateMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, Ivy.cms().co("/Dialogs/components/CaseDocument/invalidFileMessage"), null);
     }
   }
-  
+
   private void displayedMessage() {
     FacesContext.getCurrentInstance().addMessage("import-express-form:import-express-dialog-message", validateMessage);
     importStatus = ExpressMessageType.FAILED.getLabel();
   }
-  
+
   @SuppressWarnings("unchecked")
   private void importExpressProcesses() {
     Map<ExpressMessageType, Object> results = ExpressManagementUtils.importExpressProcesses(importExpressFile);
@@ -158,7 +158,7 @@ public class ExpressManagementBean implements Serializable {
       isError = true;
     }
   }
-  
+
   public boolean isShowExpressManagementTab() {
     return isShowExpressManagementTab;
   }
@@ -182,7 +182,7 @@ public class ExpressManagementBean implements Serializable {
   public void setImportOutput(String importOutput) {
     this.importOutput = importOutput;
   }
-  
+
   public List<ExpressProcess> getSelectedExpressProcesses() {
     return selectedExpressProcesses;
   }

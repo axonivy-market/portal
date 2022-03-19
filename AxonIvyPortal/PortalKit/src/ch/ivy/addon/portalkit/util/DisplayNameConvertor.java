@@ -5,8 +5,8 @@ import java.util.Iterator;
 import java.util.Locale;
 import java.util.Map;
 
-import org.primefaces.json.JSONException;
-import org.primefaces.json.JSONObject;
+import org.primefaces.shaded.json.JSONException;
+import org.primefaces.shaded.json.JSONObject;
 
 public class DisplayNameConvertor {
 
