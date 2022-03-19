@@ -1,9 +1,11 @@
 [Ivy]
-16285772A1F890EE 9.4.0 #module
+16285772A1F890EE 9.4.1 #module
 >Proto >Proto Collection #zClass
 Ur0 UploadDocumentChecker Big #zClass
 Ur0 B #cInfo
 Ur0 #process
+Ur0 @TextInP .colors .colors #zField
+Ur0 @TextInP color color #zField
 Ur0 @TextInP .type .type #zField
 Ur0 @TextInP .processKind .processKind #zField
 Ur0 @AnnotationInP-0n ai ai #zField
@@ -27,14 +29,14 @@ Ur0 @PushWFArc f13 '' #zField
 Ur0 @PushWFArc f11 '' #zField
 Ur0 @PushWFArc f14 '' #zField
 >Proto Ur0 Ur0 UploadDocumentChecker #zField
-Ur0 f0 inParamDecl '<org.primefaces.model.UploadedFile uploadFile> param;' #txt
+Ur0 f0 inParamDecl '<org.primefaces.model.file.UploadedFile uploadFile> param;' #txt
 Ur0 f0 inParamTable 'out.uploadedFile=param.uploadFile;
 ' #txt
 Ur0 f0 outParamDecl '<ch.ivy.addon.portalkit.enums.UploadDocumentCheckStatus uploadDocumentCheckStatus,String message> result;' #txt
 Ur0 f0 outParamTable 'result.uploadDocumentCheckStatus=in.checkStatus;
 result.message=in.message;
 ' #txt
-Ur0 f0 callSignature call(org.primefaces.model.UploadedFile) #txt
+Ur0 f0 callSignature call(org.primefaces.model.file.UploadedFile) #txt
 Ur0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
