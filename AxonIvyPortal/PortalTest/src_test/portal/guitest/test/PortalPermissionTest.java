@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import portal.guitest.common.BaseTest;
+import portal.guitest.common.Variable;
 import portal.guitest.common.WaitHelper;
 import portal.guitest.page.CaseDetailsPage;
 import portal.guitest.page.CaseWidgetPage;
@@ -84,6 +85,7 @@ public class PortalPermissionTest extends BaseTest{
   
   @Test
   public void testShowHideNoteAndDocumentButtons() {
+    updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), "ACCESS_TASK_DETAILS");
     createTestingTasks();
     denyShowHideNotePermissions();
     denyDocumentOfInvolvedCaseWritePemissionFromCurrentUser();

@@ -9,6 +9,7 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 
 import portal.guitest.common.BaseTest;
+import portal.guitest.common.Variable;
 import portal.guitest.common.WaitHelper;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.TaskTemplatePage;
@@ -74,6 +75,7 @@ public class TaskTemplateIFrameTest extends BaseTest {
 
   @Test
   public void testRedirectToApplicationHome() {
+    updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), "ACCESS_TASK_DETAILS");
     redirectToRelativeLink(IFRAME_TASK_URL);
     waitForTemplateRender();
     TaskTemplatePage taskTemplatePage1 = new TaskTemplatePage();
