@@ -18,7 +18,6 @@ import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.PrimeFaces;
-import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
 
 import ch.ivy.addon.portalkit.bean.IvyComponentLogicCaller;
@@ -45,6 +44,7 @@ import ch.ivy.addon.portalkit.util.SortFieldUtil;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.business.data.store.BusinessDataInfo;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.jsf.primefaces.legazy.LazyDataModel7;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.workflow.ITask;
@@ -56,12 +56,12 @@ import ch.ivyteam.ivy.workflow.query.TaskQuery.IFilterQuery;
  * Lazy data model for task. Only override method which is mentioned in Portal document
  *
  */
-public class TaskLazyDataModel extends LazyDataModel<ITask> {
+public class TaskLazyDataModel extends LazyDataModel7<ITask> {
   /**
    * @hidden
    */
   public static final String DESCRIPTION = "DESCRIPTION";
-  
+
   private static final long serialVersionUID = -6615871274830927272L;
 
   protected String taskWidgetComponentId;
@@ -69,7 +69,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   protected int rowIndex;
   protected TaskSearchCriteria criteria;
   protected List<ITask> data;
-  
+
   protected TaskFilterContainer filterContainer;
   protected TaskFilterData selectedTaskFilterData;
   protected TaskFilterData defaultTaskFilterData;
@@ -82,7 +82,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   protected List<String> allColumns = new ArrayList<>();
   protected List<String> selectedColumns = new ArrayList<>();
   protected List<String> portalDefaultColumns =
-      Arrays.asList(TaskSortField.PRIORITY.name(), TaskSortField.NAME.name(), TaskSortField.ACTIVATOR.name(), TaskSortField.ID.name(), TaskSortField.CREATION_TIME.name(), 
+      Arrays.asList(TaskSortField.PRIORITY.name(), TaskSortField.NAME.name(), TaskSortField.ACTIVATOR.name(), TaskSortField.ID.name(), TaskSortField.CREATION_TIME.name(),
           TaskSortField.EXPIRY_TIME.name(), TaskSortField.COMPLETED_ON.name(), TaskSortField.STATE.name(), TaskSortField.CATEGORY.name());
   protected List<String> portalRequiredColumns = Arrays.asList(TaskSortField.NAME.name());
 
@@ -152,7 +152,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   public TaskLazyDataModel() {
     this("task-widget");
   }
-  
+
   /**
    * @hidden
    */
@@ -210,14 +210,14 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   protected void collectFiltersForDefaultFilterSet() {
     if (defaultTaskFilterData != null && CollectionUtils.isEmpty(defaultTaskFilterData.getFilters())) {
       TaskFilterContainer tempFilterContainer = null;
-      tempFilterContainer = ObjectUtils.defaultIfNull(this.filterContainer, new DefaultTaskFilterContainer()); 
+      tempFilterContainer = ObjectUtils.defaultIfNull(this.filterContainer, new DefaultTaskFilterContainer());
       updateStateForTaskCriteria();
       setValuesForStateFilter(criteria, tempFilterContainer);
       buildTaskStateFilter(tempFilterContainer);
       defaultTaskFilterData.setFilters(tempFilterContainer.getFilters().stream().filter(TaskFilter::defaultFilter).collect(Collectors.toList()));
     }
   }
-  
+
   private void restoreSessionAdvancedFilters() throws IllegalAccessException, InvocationTargetException {
     if (shouldSaveAndLoadSessionFilters()) {
       List<TaskFilter> sessionTaskFilters = UserUtils.getSessionTaskAdvancedFilterAttribute();
@@ -270,7 +270,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
           PrimeFaces.current().executeScript("updateTaskCount()");
         }
       }
-      
+
       List<ITask> foundTasks = findTasks(criteria, first, pageSize);
       if (disableTaskCount) {
         int rowCount = 0;
@@ -286,7 +286,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
       return foundTasks;
     }
   }
-  
+
   private List<ITask> createDummyDataForGuide() {
     data = new ArrayList<>();
     List<ITask> tasks = DummyTaskService.dummyTasks();
@@ -295,7 +295,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
     PrimeFaces.current().executeScript("updateTaskCount()");
     return tasks;
   }
-  
+
   /**
    * @hidden
    * @return isGuide
@@ -303,7 +303,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   public boolean getIsGuide() {
     return isGuide;
   }
-  
+
   /**
    * @hidden
    * @param isGuide
@@ -314,7 +314,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
 
   /**
    * Calls the findTasks logic of TaskWidget Html dialog to find tasks.
-   * 
+   *
    * @param criteria
    * @param first
    * @param pageSize
@@ -345,7 +345,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
 
   /**
    * Calls the countTasks logic of TaskWidget Html dialog to count the number of found tasks.
-   * 
+   *
    * @param criteria
    * @return task count
    */
@@ -387,7 +387,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
       defaultSortDirection =
           globalSettingService.findGlobalSettingValue(GlobalVariable.DEFAULT_SORT_DIRECTION_OF_TASK_LIST);
     }
-    
+
     return !SortFieldUtil.isAscendingSort(defaultSortDirection);
   }
 
@@ -407,7 +407,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
    * }
    * </pre></code>
    * </p>
-   * 
+   *
    * @param taskQuery task query {@link TaskQuery}
    */
   public void extendSort(@SuppressWarnings("unused") TaskQuery taskQuery) {
@@ -681,7 +681,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   /**
    * @hidden
    * Save all filter settings to business data
-   * 
+   *
    * @param filterName
    * @param filterType
    * @param taskFilterGroupId
@@ -710,7 +710,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
 
   /**
    * Apply filter settings loaded from business data to this {@link #TaskLazyDataModel}
-   * 
+   *
    * @param taskFilterData task filter data {@link TaskFilterData}
    * @throws ReflectiveOperationException
    */
@@ -765,7 +765,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   public void onFilterApply() {
     resetFilterData();
   }
-  
+
   /**
    * @hidden
    */
@@ -781,7 +781,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   }
 
   /**
-   * @hidden 
+   * @hidden
    * @return PermissionUtils.checkReadAllTasksPermission()
    */
   public boolean hasReadAllTasksPermisson() {
@@ -899,7 +899,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
 
   /**
    * super.setRowIndex(index);
-   * 
+   *
    * @hidden
    * @param index
    */
@@ -953,13 +953,13 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
    * </p>
    * <p>
    * <b>Example: </b> <code><pre>
-   * 
+   *
    * return Arrays.asList("PRIORITY", "NAME", "ID" , "ACTIVATOR", "CREATION_TIME", "EXPIRY_TIME", "customVarCharField5", "customVarCharField1");
-   * 
+   *
    * </pre></code> This list is the list of sortFields in TaskColumnHeader Portal component when you
    * use it to add new column headers Also the list of checkboxes in config columns panel
    * </p>
-   * 
+   *
    * @return default columns
    */
   public List<String> getDefaultColumns() {
@@ -974,9 +974,9 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
    * You can either add new entry to default folder below in PortalStyle or override this method to
    * create your own folder column must be the same with sortField
    * </p>
-   * 
+   *
    * @param column column name
-   * 
+   *
    * @return column label
    */
   public String getColumnLabel(String column) {
@@ -1053,7 +1053,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   /**
    * Check if your column is selected
    * @param column column name
-   * @return is column selected 
+   * @return is column selected
    */
   public boolean isSelectedColumn(String column) {
     return selectedColumns.stream().anyMatch(selectedcolumn -> selectedcolumn.equalsIgnoreCase(column));
@@ -1118,7 +1118,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   /**
    * @hidden
    * @return isNotKeepFilter
-   */ 
+   */
   public boolean isNotKeepFilter() {
     return isNotKeepFilter;
   }
@@ -1135,16 +1135,16 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
 
   /**
    * This is default of sort item, override it if you want to customize it
-   * 
+   *
    * IMPORTANT: Item in this list must follow pattern : column name + "_ASC" or column name +
    * "_DESC"
-   * 
+   *
    * E.g your customize portal column are Arrays.asList{"PRIORITY", "NAME", "ID" , "ACTIVATOR",
    * "CREATION_TIME", "EXPIRY_TIME", "customVarCharField5", "customVarCharField1"} You can have sort
    * fields like: return Arrays.asList("CREATION_TIME_ASC", "CREATION_TIME_DESC",
    * "customVarCharField5_ASC", "customVarCharField5_DESC", "customVarCharField1_ASC",
    * "customVarCharField1_DESC"}
-   * 
+   *
    * @return list of sort criteria
    */
   public List<String> getPortalTaskSort() {
@@ -1154,26 +1154,26 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
 
   /**
    * Sort field label. Override this method and return cms in your project
-   * 
+   *
    * Example you have custome sort fields like Arrays.asList("CREATION_TIME_ASC",
    * "CREATION_TIME_DESC", "customVarCharField5_ASC", "customVarCharField5_DESC",
    * "customVarCharField1_ASC", "customVarCharField1_DESC"}
-   * 
+   *
    * Then create CMS folder in your project
-   * 
+   *
    * sortFields/customized/CREATION_TIME_ASC sortFields/customized/CREATION_TIME_DESC
    * sortFields/customized/customVarCharField5_ASC sortFields/customized/customVarCharField5_DESC
    * sortFields/customized/customVarCharField1_ASC sortFields/customized/customVarCharField1_DESC
-   * 
+   *
    * Override this method: return Ivy.cms().co("/sortFields/customized/" + fieldName);
-   * 
+   *
    * @param fieldName
    * @return Sort field label
    */
   public String getSortFieldLabel(String fieldName) {
     return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/sortFields/" + fieldName);
   }
-  
+
 
   /**
    * @hidden
@@ -1259,7 +1259,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   }
 
   /**
-   * @hidden 
+   * @hidden
    * @return isSelectedAllFilters
    */
   public boolean isSelectedAllFilters() {
@@ -1268,7 +1268,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
 
   /**
    * @hidden
-   * @param isSelectedAllFilters 
+   * @param isSelectedAllFilters
    */
   public void setSelectedAllFilters(boolean isSelectedAllFilters) {
     this.isSelectedAllFilters = isSelectedAllFilters;

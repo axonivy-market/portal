@@ -8,7 +8,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
-import org.primefaces.json.JSONException;
+import org.primefaces.shaded.json.JSONException;
 
 import ch.ivy.addon.portalkit.configuration.Application;
 import ch.ivy.addon.portalkit.publicapi.ApplicationMultiLanguageAPI;
@@ -47,7 +47,7 @@ public class ApplicationMultiLanguage {
 
   /**
    * Loads supported language for a third party application.
-   * 
+   *
    * @return {@link List} list of supported language
    */
   public static List<String> getThirdPartySupportedLanguage() {
@@ -63,7 +63,7 @@ public class ApplicationMultiLanguage {
   }
 
   /**
-   * Get CMS value for specific URI based on current locale 
+   * Get CMS value for specific URI based on current locale
    * @deprecated Use {@link ApplicationMultiLanguageAPI#getCmsValueByUserLocale(String)} instead
    * @param cmsURI cms uri
    * @return label
