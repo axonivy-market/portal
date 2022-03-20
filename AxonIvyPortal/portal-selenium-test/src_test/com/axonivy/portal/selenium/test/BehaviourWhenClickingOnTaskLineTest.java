@@ -18,10 +18,9 @@ import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
 import com.codeborne.selenide.Condition;
 
-@IvyWebTest
+//@IvyWebTest
 public class BehaviourWhenClickingOnTaskLineTest extends BaseTest {
 
-  private static final String RUN_TASK = "RUN_TASK";
   private static final String YOUR_TASKS_WIDGET = "Your Tasks";
   private static final String ACCESS_TASK_DETAILS = "ACCESS_TASK_DETAILS";
   private static final String TASK_MATERNITY_LEAVE_REQUEST = "Maternity Leave Request";
@@ -47,7 +46,6 @@ public class BehaviourWhenClickingOnTaskLineTest extends BaseTest {
 
   @Test
   public void testRunTaskWhenClickingOnTaskLineInTaskList() {
-    updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), RUN_TASK);
     redirectToRelativeLink(createTestingTasksUrl);
     login(TestAccount.DEMO_USER);
     MainMenuPage mainMenuPage = new MainMenuPage();
@@ -68,7 +66,6 @@ public class BehaviourWhenClickingOnTaskLineTest extends BaseTest {
 
   @Test
   public void testRunTaskWhenClickingOnTaskLineInCaseDetails() {
-    updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), RUN_TASK);
     redirectToRelativeLink(createTestingTasksUrl);
     login(TestAccount.DEMO_USER);
     mainMenuPage.openCaseList();
@@ -92,7 +89,6 @@ public class BehaviourWhenClickingOnTaskLineTest extends BaseTest {
 
   @Test
   public void testRunTaskWhenClickingOnTaskLineInNewDashboard() {
-    updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), RUN_TASK);
     login(TestAccount.DEMO_USER);
     redirectToRelativeLink(createTestingTasksUrl);
     redirectToNewDashBoard();
