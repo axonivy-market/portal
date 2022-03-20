@@ -33,7 +33,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.StopWatch;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
-import org.primefaces.model.UploadedFile;
+import org.primefaces.model.file.UploadedFile;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -111,7 +111,7 @@ public class ExpressManagementUtils {
     importResult.append(addResultLog(cms("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/startDeployLog", Arrays.asList(expressData.getFileName())), INFO));
 
     try {
-      installExpressWorkflows(expressData.getInputstream(), outputMessages);
+      installExpressWorkflows(expressData.getInputStream(), outputMessages);
 
       importResult.append(addResultLog(cms("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/endDeployLog"), INFO));
       sw.stop();
@@ -353,7 +353,11 @@ public class ExpressManagementUtils {
     jsonObject.add(EXPRESS_WORKFLOW, jsonElement);
 
     InputStream inputStream = new ByteArrayInputStream(jsonObject.toString().getBytes(StandardCharsets.UTF_8));
-    return new DefaultStreamedContent(inputStream, MediaType.APPLICATION_JSON, getExportFileName());
+    return DefaultStreamedContent
+        .builder()
+        .stream(() -> inputStream)
+        .contentType(MediaType.APPLICATION_JSON)
+        .name(getExportFileName()).build();
   }
 
   private static String getExportFileName() {
