@@ -41,29 +41,29 @@ public abstract class Exporter {
    * List of columns for export
    */
   protected List<String> columnsVisibility;
-  
+
   public Exporter() {}
-  
+
   public Exporter(List<String> columnsVisibility) {
     this.setColumnsVisibility(columnsVisibility);
   }
-  
+
   /**
    * Get display column label based on session language
    * @param column column name
    * @return column column label
    */
   public abstract String getColumnName(String column);
-  
+
   /**
-   * Generate file name 
+   * Generate file name
    * @param creationDate
    * @param extension
    * @param suffix
    * @return file name
    */
   protected abstract String generateFileName(Date creationDate, String extension, String suffix);
-  
+
   /**
    * Implement this method to generate export data
    * @param <T>
@@ -76,7 +76,7 @@ public abstract class Exporter {
    * Create stream content {@link StreamedContent} to export
    * @param <T> data type {@link ITask} or {@link ICase}
    * @param data list of tasks or cases to export
-   * @return stream content 
+   * @return stream content
    * @throws IOException
    */
   public <T> StreamedContent getStreamedContent(List<T> data) throws IOException {
@@ -84,10 +84,20 @@ public abstract class Exporter {
     StreamedContent file;
     if (data.size() > MAX_ROW_NUMBER_IN_EXCEL) {
       ByteArrayInputStream inputStream = new ByteArrayInputStream(generateZipContent(data, creationDate));
-      file = new DefaultStreamedContent(inputStream, "application/zip", getFileName(creationDate, ZIP));
+      file = DefaultStreamedContent
+          .builder()
+          .stream(() -> inputStream)
+          .contentType("application/zip")
+          .name(getFileName(creationDate, ZIP))
+          .build();
     } else {
       ByteArrayInputStream inputStream = new ByteArrayInputStream(generateExcelContent(data));
-      file = new DefaultStreamedContent(inputStream, "application/xlsx", getFileName(creationDate, XLSX));
+      file = DefaultStreamedContent
+          .builder()
+          .stream(() -> inputStream)
+          .contentType("application/xlsx")
+          .name(getFileName(creationDate, XLSX))
+          .build();
     }
     return file;
   }
@@ -99,7 +109,7 @@ public abstract class Exporter {
   protected void setColumnsVisibility(List<String> columnsVisibility) {
     this.columnsVisibility = columnsVisibility;
   }
-  
+
   /**
    * Create header list
    * @return header list of export file
@@ -111,7 +121,7 @@ public abstract class Exporter {
     }
     return headers;
   }
-  
+
   /**
    * Create suffix name of export file
    * @param creationDate created date, get current if null
@@ -124,7 +134,7 @@ public abstract class Exporter {
     String fileNameSuffix = suffix == null ? dateFormat.format(createdFileTime) : dateFormat.format(createdFileTime) + suffix;
     return fileNameSuffix;
   }
-  
+
   private <T> byte[] generateZipContent(List<T> data, Date creationDate) throws IOException {
     try (ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         ZipOutputStream zipOutputStream = new ZipOutputStream(outputStream)) {
@@ -140,7 +150,7 @@ public abstract class Exporter {
       return outputStream.toByteArray();
     }
   }
-  
+
   private <T> byte[] generateExcelContent(List<T> data) throws IOException {
     List<List<Object>> rows = generateData(data);
     ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
@@ -151,7 +161,7 @@ public abstract class Exporter {
     ExcelExport.exportListAsExcel(sheets, outputStream);
     return outputStream.toByteArray();
   }
-  
+
   private String getFileName(Date creationDate, String extension) {
     return generateFileName(creationDate, extension, null);
   }
