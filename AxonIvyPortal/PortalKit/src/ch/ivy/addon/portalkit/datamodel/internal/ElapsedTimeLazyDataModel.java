@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
-import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
 
 import ch.ivy.addon.portalkit.bean.IvyComponentLogicCaller;
@@ -15,13 +14,14 @@ import ch.ivy.addon.portalkit.enums.CaseSortField;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;
 import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
+import ch.ivyteam.ivy.jsf.primefaces.legazy.LazyDataModel7;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.CaseQuery.OrderByColumnQuery;
 
-public class ElapsedTimeLazyDataModel extends LazyDataModel<ICase> {
+public class ElapsedTimeLazyDataModel extends LazyDataModel7<ICase> {
   private static final long serialVersionUID = 1L;
   protected final List<ICase> data;
 
@@ -64,7 +64,7 @@ public class ElapsedTimeLazyDataModel extends LazyDataModel<ICase> {
       criteria.setCustomCaseQuery(customCaseQuery);
     }
     CaseQuery caseQuery = buildCaseQuery();
-    
+
     /**
      * Filter CaseSearchCriteria with noCategory
      */
@@ -114,7 +114,7 @@ public class ElapsedTimeLazyDataModel extends LazyDataModel<ICase> {
     criteria.setSortDescending(true);
     criteria.setAdminQuery(PermissionUtils.checkReadAllCasesPermission());
   }
-  
+
   private void buildSortCaseQuery(CaseQuery caseQuery) {
     CaseSortField sortColumn = CaseSortField.valueOf(criteria.getSortField());
     OrderByColumnQuery orderQuery = null;
@@ -130,7 +130,7 @@ public class ElapsedTimeLazyDataModel extends LazyDataModel<ICase> {
       orderQuery.ascending();
     }
   }
-  
+
   public void setCategory(String category) {
     criteria.setCategory(category);
   }
@@ -142,7 +142,7 @@ public class ElapsedTimeLazyDataModel extends LazyDataModel<ICase> {
   public void setCriteria(CaseSearchCriteria criteria) {
     this.criteria = criteria;
   }
-  
+
   @Override
   public void setRowIndex(int index) {
     int idx = index;
