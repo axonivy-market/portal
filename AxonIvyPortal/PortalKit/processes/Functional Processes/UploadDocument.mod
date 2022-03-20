@@ -1,9 +1,11 @@
 [Ivy]
-16AB53A8F6EAADFB 9.4.0 #module
+16AB53A8F6EAADFB 9.4.1 #module
 >Proto >Proto Collection #zClass
 Ut0 UploadDocument Big #zClass
 Ut0 B #cInfo
 Ut0 #process
+Ut0 @TextInP .colors .colors #zField
+Ut0 @TextInP color color #zField
 Ut0 @TextInP .type .type #zField
 Ut0 @TextInP .processKind .processKind #zField
 Ut0 @AnnotationInP-0n ai ai #zField
@@ -38,7 +40,7 @@ Ut0 @AnnotationArc f6 '' #zField
 Ut0 @PushWFArc f15 '' #zField
 Ut0 @PushWFArc f7 '' #zField
 >Proto Ut0 Ut0 UploadDocument #zField
-Ut0 f0 inParamDecl '<ch.ivyteam.ivy.workflow.ICase businessCase,org.primefaces.model.UploadedFile uploadedFile> param;' #txt
+Ut0 f0 inParamDecl '<ch.ivyteam.ivy.workflow.ICase businessCase,org.primefaces.model.file.UploadedFile uploadedFile> param;' #txt
 Ut0 f0 inParamTable 'out.businessCase=param.businessCase;
 out.uploadedFile=param.uploadedFile;
 ' #txt
@@ -47,7 +49,7 @@ Ut0 f0 outParamTable 'result.uploadedDocument=in.uploadedDocument;
 result.message=in.message;
 result.status=in.status;
 ' #txt
-Ut0 f0 callSignature call(ch.ivyteam.ivy.workflow.ICase,org.primefaces.model.UploadedFile) #txt
+Ut0 f0 callSignature call(ch.ivyteam.ivy.workflow.ICase,org.primefaces.model.file.UploadedFile) #txt
 Ut0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
