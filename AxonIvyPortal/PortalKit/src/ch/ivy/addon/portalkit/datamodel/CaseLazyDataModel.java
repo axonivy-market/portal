@@ -18,7 +18,6 @@ import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.PrimeFaces;
-import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
 
 import ch.ivy.addon.portalkit.bean.IvyComponentLogicCaller;
@@ -42,6 +41,7 @@ import ch.ivy.addon.portalkit.util.SortFieldUtil;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.business.data.store.BusinessDataInfo;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.jsf.primefaces.legazy.LazyDataModel7;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.workflow.CaseState;
@@ -53,7 +53,7 @@ import ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery;
  * Lazy data model for case. Only override method which is mentioned in Portal document
  *
  */
-public class CaseLazyDataModel extends LazyDataModel<ICase> {
+public class CaseLazyDataModel extends LazyDataModel7<ICase> {
   /**
    * @hidden
    */
@@ -84,7 +84,7 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
 
   private boolean isAutoHideColumns;
   private boolean isDisableSelectionCheckboxes;
-  
+
   protected boolean disableCaseCount;
   protected Boolean isSelectedDefaultFilter;
   protected boolean isSelectedAllFilters;
@@ -123,7 +123,7 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
       isSelectedDefaultFilter = true;
     }
   }
-  
+
   private boolean isSameFilterGroupId() {
     filterGroupId = UserUtils.getSessionFilterGroupIdAttribute();
     return filterGroupId == null || filterGroupId.equals(Ivy.request().getProcessModel().getId());
@@ -163,7 +163,7 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
         PrimeFaces.current().executeScript("updateCaseCount()");
       }
     }
-    
+
     List<ICase> foundCases = findCases(criteria, first, pageSize);
     if (disableCaseCount) {
       int rowCount = 0;
@@ -196,7 +196,7 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
 
   private void collectFiltersForDefaultFilterSet() {
     if (defaultCaseFilterData != null && CollectionUtils.isEmpty(defaultCaseFilterData.getFilters())) {
-      CaseFilterContainer tempFilterContainer = ObjectUtils.defaultIfNull(this.filterContainer, new DefaultCaseFilterContainer());  
+      CaseFilterContainer tempFilterContainer = ObjectUtils.defaultIfNull(this.filterContainer, new DefaultCaseFilterContainer());
       setValuesForCaseStateFilter(criteria, tempFilterContainer);
       defaultCaseFilterData.setFilters(tempFilterContainer.getFilters().stream().filter(CaseFilter::defaultFilter).collect(Collectors.toList()));
     }
@@ -402,7 +402,7 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
           .get("caseQuery", CaseQuery.class);
       criteria.setCustomCaseQuery(customCaseQuery);
     }
-    
+
     if (filterContainer != null) {
       if (selectedFilters.contains(filterContainer.getStateFilter())) {
         criteria.setIncludedStates(new ArrayList<>());
@@ -432,7 +432,7 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
    * }
    * </pre></code>
    * </p>
-   * 
+   *
    * @param caseQuery case query {@link CaseQuery}
    */
   public void extendSort(@SuppressWarnings("unused") CaseQuery caseQuery) {
@@ -535,7 +535,7 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
       defaultSortDirection =
           globalSettingService.findGlobalSettingValue(GlobalVariable.DEFAULT_SORT_DIRECTION_OF_CASE_LIST);
     }
-    
+
     return !SortFieldUtil.isAscendingSort(defaultSortDirection);
   }
 
@@ -573,10 +573,10 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
    */
   public void initColumnsConfiguration() {
     if (new GlobalSettingService().isCaseOwnerEnabled()) {
-      portalDefaultColumns = List.of(CaseSortField.NAME.name(), CaseSortField.ID.name(), CaseSortField.CREATOR.name(), CaseSortField.OWNER.name(), CaseSortField.CREATION_TIME.name(), 
+      portalDefaultColumns = List.of(CaseSortField.NAME.name(), CaseSortField.ID.name(), CaseSortField.CREATOR.name(), CaseSortField.OWNER.name(), CaseSortField.CREATION_TIME.name(),
           CaseSortField.FINISHED_TIME.name(), CaseSortField.STATE.name(), CaseSortField.CATEGORY.name());
     } else {
-      portalDefaultColumns = List.of(CaseSortField.NAME.name(), CaseSortField.ID.name(), CaseSortField.CREATOR.name(), CaseSortField.CREATION_TIME.name(), CaseSortField.FINISHED_TIME.name(), 
+      portalDefaultColumns = List.of(CaseSortField.NAME.name(), CaseSortField.ID.name(), CaseSortField.CREATOR.name(), CaseSortField.CREATION_TIME.name(), CaseSortField.FINISHED_TIME.name(),
           CaseSortField.STATE.name(), CaseSortField.CATEGORY.name());
     }
     if (CollectionUtils.isEmpty(allColumns)) {
@@ -648,20 +648,20 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
     }
   }
 
-  
+
   /**
    * <p>
    * Your customized data model needs to override this method if your customized case list has new columns/fields.
    * </p>
    * <p>
    * <b>Example: </b> <code><pre>
-   * 
+   *
    * return Arrays.asList("NAME", "ID" , "CREATOR", "CREATION_TIME", "FINISHED_TIME", "customVarCharField5", "customVarCharField1");
-   * 
+   *
    * </pre></code> This list is the list of sortFields in CaseColumnHeader Portal component when you use it to add new
    * column headers also the list of checkboxes in config columns panel
    * </p>
-   * 
+   *
    * @return default columns
    */
   public List<String> getDefaultColumns() {
@@ -676,9 +676,9 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
    * You can either add new entry to default folder below in PortalStyle or override this method to create your own
    * folder column must be the same with sortField
    * </p>
-   * 
+   *
    * @param column column name
-   * 
+   *
    * @return column label
    */
   public String getColumnLabel(String column) {
@@ -702,7 +702,7 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
   }
 
   /**
-   * @hidden 
+   * @hidden
    * @return selectedFilterData
    */
   public CaseFilterData getSelectedFilterData() {
@@ -854,7 +854,7 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
   public void setAutoHideColumns(boolean isAutoHideColumns) {
     this.isAutoHideColumns = isAutoHideColumns;
   }
-  
+
   /**
    * Check if your column is selected
    * @param column column name
@@ -863,7 +863,7 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
   public boolean isSelectedColumn(String column) {
     return selectedColumns.stream().anyMatch(selectedcolumn -> selectedcolumn.equalsIgnoreCase(column));
   }
-  
+
   /**
    * @hidden
    * @param isAdminQuery
@@ -887,7 +887,7 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
   public void setCriteria(CaseSearchCriteria criteria) {
     this.criteria = criteria;
   }
-  
+
   /**
    * @hidden
    */
@@ -918,7 +918,7 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
     }
     return rowIndex >= 0 && rowIndex < data.size();
   }
-  
+
   /**
    * @hidden
    * @return disableCaseCount
@@ -968,7 +968,7 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
   }
 
   /**
-   * @hidden 
+   * @hidden
    * @return isSelectedAllFilters
    */
   public boolean isSelectedAllFilters() {
@@ -977,7 +977,7 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
 
   /**
    * @hidden
-   * @param isSelectedAllFilters 
+   * @param isSelectedAllFilters
    */
   public void setSelectedAllFilters(boolean isSelectedAllFilters) {
     this.isSelectedAllFilters = isSelectedAllFilters;

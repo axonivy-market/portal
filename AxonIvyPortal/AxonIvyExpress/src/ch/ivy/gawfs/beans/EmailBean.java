@@ -22,7 +22,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
-import org.primefaces.model.UploadedFile;
+import org.primefaces.model.file.UploadedFile;
 
 import ch.ivy.addon.portalkit.bo.ExpressUserEmail;
 import ch.ivy.addon.portalkit.dto.ExpressAttachment;
@@ -66,7 +66,7 @@ public class EmailBean implements Serializable {
       FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, uploadDocumentCheckMessage, null));
       return;
     }
-    
+
     List<ExpressAttachment> attachments = userEmail.getAttachments();
     boolean isDuplicatedName = attachments
         .stream()
@@ -92,21 +92,28 @@ public class EmailBean implements Serializable {
         uploadDocumentCheckMessage = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/errorFileUploadSize", Arrays.asList(FileUtils.byteCountToDisplaySize(maxFileUploadSize)));
       }
     }
-    
+
     return uploadDocumentCheckMessage;
   }
 
 	public void downloadAttachment(ExpressAttachment attachment)
 			throws IOException {
 		if (attachment.getContent() != null) {
-			file = new DefaultStreamedContent(new ByteArrayInputStream(
-					attachment.getContent()), attachment.getContentType(),
-					attachment.getName());
+			file = DefaultStreamedContent
+			    .builder()
+			    .stream(() -> new ByteArrayInputStream(attachment.getContent()))
+			    .contentType(attachment.getContentType())
+			    .name(attachment.getName())
+			    .build();
 		} else if (attachment.getPath() != null) {
 			File attachmentFile = new File(attachment.getPath(), false);
 			InputStream is = new FileInputStream(attachmentFile.getJavaFile());
-			file = new DefaultStreamedContent(is, attachment.getContentType(),
-					attachment.getName());
+			file = DefaultStreamedContent
+			    .builder()
+			    .stream(() -> is)
+			    .contentType(attachment.getContentType())
+			    .name(attachment.getName())
+			    .build();
 		}
 	}
 
@@ -134,7 +141,7 @@ public class EmailBean implements Serializable {
 			throws IOException {
 		UploadedFile uploadedFile = event.getFile();
 		ExpressAttachment attachmentDTO = new ExpressAttachment();
-		attachmentDTO.setContent(uploadedFile.getContents());
+		attachmentDTO.setContent(uploadedFile.getContent());
 		attachmentDTO.setName(uploadedFile.getFileName());
 		attachmentDTO.setSize(getFileSize(uploadedFile.getSize()));
 		attachmentDTO.setStatus(ExpressEmailAttachmentStatus.ADDED);
