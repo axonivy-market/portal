@@ -10,16 +10,16 @@ import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang.StringUtils;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
-import org.primefaces.model.UploadedFile;
+import org.primefaces.model.file.UploadedFile;
 import org.primefaces.virusscan.VirusException;
 import org.primefaces.virusscan.VirusScanner;
 import org.primefaces.virusscan.VirusScannerService;
 
+import ch.ivy.addon.portalkit.configuration.GlobalSetting;
 import ch.ivy.addon.portalkit.document.DocumentDetector;
 import ch.ivy.addon.portalkit.document.DocumentDetectorFactory;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.ivydata.bo.IvyDocument;
-import ch.ivy.addon.portalkit.configuration.GlobalSetting;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.persistence.PersistencyException;
@@ -37,7 +37,7 @@ public class CaseDocumentService {
   private CaseDocumentService(ICase iCase) {
     this.iCase = iCase;
   }
-  
+
   public static CaseDocumentService newInstance(ICase iCase) {
     return new CaseDocumentService(iCase);
   }
@@ -79,7 +79,12 @@ public class CaseDocumentService {
    */
   public StreamedContent download(IvyDocument document) {
     InputStream inputStream = documentsOf(iCase).get(Long.valueOf(document.getId())).read().asStream();
-    return new DefaultStreamedContent(inputStream, document.getContentType(), document.getName());
+    return DefaultStreamedContent
+        .builder()
+        .stream(() -> inputStream)
+        .contentType(document.getContentType())
+        .name(document.getName())
+        .build();
   }
 
   public boolean doesDocumentExist(String filename) {
@@ -105,7 +110,7 @@ public class CaseDocumentService {
           .getDocumentDetector(FilenameUtils.getExtension(StringUtils.lowerCase(uploadedFile.getFileName())));
       if (documentDetector != null) {
         try {
-          return documentDetector.isSafe(uploadedFile.getInputstream());
+          return documentDetector.isSafe(uploadedFile.getInputStream());
         } catch (IOException e) {
           Ivy.log().error(e);
           return false;
@@ -117,11 +122,11 @@ public class CaseDocumentService {
     }
     return false;
   }
-  
+
   public static boolean isDocumentTypeHasVirus(UploadedFile uploadedFile) throws IOException {
 	  VirusScannerService service = new VirusScannerService(VirusScanner.class.getClassLoader());
 	  try {
-		service.performVirusScan(uploadedFile.getInputstream());
+		service.performVirusScan(uploadedFile);
 	  } catch (VirusException e) {
 		 Ivy.log().error(e);
          return true;
@@ -135,7 +140,7 @@ public class CaseDocumentService {
         .findGlobalSettingValue(GlobalVariable.ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT);
     return Boolean.parseBoolean(enableScriptCheckingForUploadedDocument);
   }
-  
+
   public static boolean enableVirusScannerForUploadedDocument() {
 	    GlobalSettingService globalSettingService = new GlobalSettingService();
 	    return globalSettingService
@@ -144,12 +149,12 @@ public class CaseDocumentService {
 
   private IDocumentService documentsOf(ICase iCase) {
     try {
-      return SecurityManagerFactory.getSecurityManager().executeAsSystem(() -> iCase.documents()); 
+      return SecurityManagerFactory.getSecurityManager().executeAsSystem(() -> iCase.documents());
     } catch (Exception e) {
       throw new PortalException(e);
     }
   }
-  
+
   private List<IDocument> getAllDocumentsOf(ICase iCase) {
     try {
       return SecurityManagerFactory.getSecurityManager().executeAsSystem(() -> iCase.documents().getAll());

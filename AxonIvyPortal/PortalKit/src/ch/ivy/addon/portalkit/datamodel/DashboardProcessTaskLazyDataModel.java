@@ -5,23 +5,23 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
-import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
 
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.DashboardProcessTaskSearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.service.impl.DashboardTaskService;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
+import ch.ivyteam.ivy.jsf.primefaces.legazy.LazyDataModel7;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 import ch.ivyteam.util.threadcontext.IvyThreadContext;
 
-public class DashboardProcessTaskLazyDataModel extends LazyDataModel<ITask> {
+public class DashboardProcessTaskLazyDataModel extends LazyDataModel7<ITask> {
 
   private static final long serialVersionUID = -6615871274830927272L;
-  
+
   private static final int QUERY_PAGES_AT_FIRST_TIME = 5;
   private static final int QUERY_PAGES = 3;
-  
+
   private DashboardProcessTaskSearchCriteria criteria;
   private boolean isFirstTime = true;
   private List<ITask> tasks;
@@ -60,7 +60,7 @@ public class DashboardProcessTaskLazyDataModel extends LazyDataModel<ITask> {
     setRowCount(rowCount);
     return result;
   }
-  
+
   public void loadFirstTime() {
     query = criteria.buildQuery();
     Object memento = IvyThreadContext.saveToMemento();
@@ -114,7 +114,7 @@ public class DashboardProcessTaskLazyDataModel extends LazyDataModel<ITask> {
   public DashboardProcessTaskSearchCriteria getCriteria() {
     return criteria;
   }
-  
+
   public void setCriteria(DashboardProcessTaskSearchCriteria criteria) {
     this.criteria = criteria;
   }
