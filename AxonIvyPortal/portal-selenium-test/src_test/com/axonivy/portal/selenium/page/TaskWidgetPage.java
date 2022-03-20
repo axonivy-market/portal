@@ -45,8 +45,8 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public void runTaskWithRunTheTaskBehaviour(int position) {
-    $("div[id='task-widget:task-list-scroller:" + position + ":task-item:task-info-quick-run-task']").waitUntil(appear, DEFAULT_TIMEOUT);
-    $("div[id='task-widget:task-list-scroller:" + position + ":task-item:task-info-quick-run-task']").click();
+    $("div[id='task-widget:task-list-scroller:" + position + ":task-item:runnable-task-info']").waitUntil(appear, DEFAULT_TIMEOUT);
+    $("div[id='task-widget:task-list-scroller:" + position + ":task-item:runnable-task-info']").click();
   }
 
   public void openTaskWithAccessTaskDetailsBehaviour(int position) {

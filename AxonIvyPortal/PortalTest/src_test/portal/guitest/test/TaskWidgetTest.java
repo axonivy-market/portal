@@ -14,6 +14,7 @@ import portal.guitest.common.BaseTest;
 import portal.guitest.common.TaskState;
 import portal.guitest.common.TestAccount;
 import portal.guitest.common.TestRole;
+import portal.guitest.common.Variable;
 import portal.guitest.common.WaitHelper;
 import portal.guitest.page.CaseDetailsPage;
 import portal.guitest.page.CaseWidgetPage;
@@ -39,6 +40,7 @@ public class TaskWidgetTest extends BaseTest {
   @Before
   public void setup() {
     super.setup();
+    updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), "ACCESS_TASK_DETAILS");
     createTestingTasks();
   }
 
