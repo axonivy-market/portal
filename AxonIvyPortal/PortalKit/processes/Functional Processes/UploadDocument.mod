@@ -1,9 +1,11 @@
 [Ivy]
-16AB53A8F6EAADFB 9.4.0 #module
+16AB53A8F6EAADFB 9.4.1 #module
 >Proto >Proto Collection #zClass
 Ut0 UploadDocument Big #zClass
 Ut0 B #cInfo
 Ut0 #process
+Ut0 @TextInP .colors .colors #zField
+Ut0 @TextInP color color #zField
 Ut0 @TextInP .type .type #zField
 Ut0 @TextInP .processKind .processKind #zField
 Ut0 @AnnotationInP-0n ai ai #zField
@@ -38,7 +40,7 @@ Ut0 @AnnotationArc f6 '' #zField
 Ut0 @PushWFArc f15 '' #zField
 Ut0 @PushWFArc f7 '' #zField
 >Proto Ut0 Ut0 UploadDocument #zField
-Ut0 f0 inParamDecl '<ch.ivyteam.ivy.workflow.ICase businessCase,org.primefaces.model.UploadedFile uploadedFile> param;' #txt
+Ut0 f0 inParamDecl '<ch.ivyteam.ivy.workflow.ICase businessCase,org.primefaces.model.file.UploadedFile uploadedFile> param;' #txt
 Ut0 f0 inParamTable 'out.businessCase=param.businessCase;
 out.uploadedFile=param.uploadedFile;
 ' #txt
@@ -47,7 +49,7 @@ Ut0 f0 outParamTable 'result.uploadedDocument=in.uploadedDocument;
 result.message=in.message;
 result.status=in.status;
 ' #txt
-Ut0 f0 callSignature call(ch.ivyteam.ivy.workflow.ICase,org.primefaces.model.UploadedFile) #txt
+Ut0 f0 callSignature call(ch.ivyteam.ivy.workflow.ICase,org.primefaces.model.file.UploadedFile) #txt
 Ut0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -101,12 +103,12 @@ Ut0 f71 actionTable 'out=in;
 Ut0 f71 actionCode 'import ch.ivy.addon.portalkit.service.CaseDocumentService;
 import ch.ivy.addon.portalkit.enums.UploadDocumentCheckStatus;
 import java.util.Arrays;
-import org.primefaces.model.UploadedFile;
+import org.primefaces.model.file.UploadedFile;
 
 out.message = "";
 out.status = UploadDocumentCheckStatus.OK;
 String fileName = in.uploadedFile.getFileName();
-out.uploadedDocument = CaseDocumentService.newInstance(in.businessCase).upload(fileName, in.uploadedFile.getInputstream());
+out.uploadedDocument = CaseDocumentService.newInstance(in.businessCase).upload(fileName, in.uploadedFile.getInputStream());
 
 if (out.#uploadedDocument != null) {	
 	String note = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/documentFiles/uploadDocumentNote", Arrays.asList(ivy.session.getSessionUserName(), fileName));
@@ -165,8 +167,8 @@ Ut0 f53 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ut0 f53 648 112 32 32 -54 -37 #rect
-Ut0 f75 processCall 'Functional Processes/UploadDocumentChecker:call(org.primefaces.model.UploadedFile)' #txt
-Ut0 f75 requestActionDecl '<org.primefaces.model.UploadedFile uploadFile> param;' #txt
+Ut0 f75 processCall 'Functional Processes/UploadDocumentChecker:call(org.primefaces.model.file.UploadedFile)' #txt
+Ut0 f75 requestActionDecl '<org.primefaces.model.file.UploadedFile uploadFile> param;' #txt
 Ut0 f75 requestMappingAction 'param.uploadFile=in.uploadedFile;
 ' #txt
 Ut0 f75 responseActionDecl 'ch.ivy.add.portalkit.UploadDocumentData out;

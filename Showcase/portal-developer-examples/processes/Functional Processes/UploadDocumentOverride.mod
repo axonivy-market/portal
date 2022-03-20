@@ -40,7 +40,7 @@ Ut0 @GridStep f4 '' #zField
 Ut0 @PushWFArc f8 '' #zField
 Ut0 @PushWFArc f2 '' #zField
 >Proto Ut0 Ut0 UploadDocument #zField
-Ut0 f0 inParamDecl '<ch.ivyteam.ivy.workflow.ICase businessCase,org.primefaces.model.UploadedFile uploadedFile> param;' #txt
+Ut0 f0 inParamDecl '<ch.ivyteam.ivy.workflow.ICase businessCase,org.primefaces.model.file.UploadedFile uploadedFile> param;' #txt
 Ut0 f0 inParamTable 'out.businessCase=param.businessCase;
 out.uploadedFile=param.uploadedFile;
 ' #txt
@@ -49,7 +49,7 @@ Ut0 f0 outParamTable 'result.uploadedDocument=in.uploadedDocument;
 result.message=in.message;
 result.status=in.status;
 ' #txt
-Ut0 f0 callSignature call(ch.ivyteam.ivy.workflow.ICase,org.primefaces.model.UploadedFile) #txt
+Ut0 f0 callSignature call(ch.ivyteam.ivy.workflow.ICase,org.primefaces.model.file.UploadedFile) #txt
 Ut0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -107,7 +107,7 @@ import java.util.Arrays;
 out.message = "";
 out.status = UploadDocumentCheckStatus.OK;
 String fileName = in.uploadedFile.getFileName();
-out.uploadedDocument = CaseDocumentService.newInstance(in.businessCase).upload(fileName, in.uploadedFile.getInputstream());
+out.uploadedDocument = CaseDocumentService.newInstance(in.businessCase).upload(fileName, in.uploadedFile.getInputStream());
 
 if (out.#uploadedDocument != null) {	
 	String note = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/documentFiles/uploadDocumentNote", Arrays.asList(ivy.session.getSessionUserName(), fileName));
@@ -166,8 +166,8 @@ Ut0 f53 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ut0 f53 648 112 32 32 -54 -37 #rect
-Ut0 f75 processCall 'Functional Processes/UploadDocumentChecker:call(org.primefaces.model.UploadedFile)' #txt
-Ut0 f75 requestActionDecl '<org.primefaces.model.UploadedFile uploadFile> param;' #txt
+Ut0 f75 processCall 'Functional Processes/UploadDocumentChecker:call(org.primefaces.model.file.UploadedFile)' #txt
+Ut0 f75 requestActionDecl '<org.primefaces.model.file.UploadedFile uploadFile> param;' #txt
 Ut0 f75 requestMappingAction 'param.uploadFile=in.uploadedFile;
 ' #txt
 Ut0 f75 responseActionDecl '_com.axonivy.portal.developerexamples.UploadDocumentOverrideData out;
