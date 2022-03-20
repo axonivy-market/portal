@@ -5,23 +5,23 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
-import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
 
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.DashboardCaseSearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.service.impl.DashboardCaseService;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
+import ch.ivyteam.ivy.jsf.primefaces.legazy.LazyDataModel7;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.util.threadcontext.IvyThreadContext;
 
-public class DashboardCaseLazyDataModel extends LazyDataModel<ICase> {
+public class DashboardCaseLazyDataModel extends LazyDataModel7<ICase> {
 
   private static final long serialVersionUID = -6615871274830927272L;
-  
+
   private static final int QUERY_PAGES_AT_FIRST_TIME = 5;
   private static final int QUERY_PAGES = 3;
-  
+
   private DashboardCaseSearchCriteria criteria;
   private boolean isFirstTime = true;
   private List<ICase> cases;
@@ -32,7 +32,7 @@ public class DashboardCaseLazyDataModel extends LazyDataModel<ICase> {
     criteria = new DashboardCaseSearchCriteria();
     cases = new ArrayList<>();
   }
-  
+
   @Override
   public List<ICase> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
     if (isFirstTime) {
@@ -60,7 +60,7 @@ public class DashboardCaseLazyDataModel extends LazyDataModel<ICase> {
     setRowCount(rowCount);
     return result;
   }
-  
+
   public void loadFirstTime() {
     query = criteria.buildQuery();
     Object memento = IvyThreadContext.saveToMemento();
@@ -114,7 +114,7 @@ public class DashboardCaseLazyDataModel extends LazyDataModel<ICase> {
   public DashboardCaseSearchCriteria getCriteria() {
     return criteria;
   }
-  
+
   public void setCriteria(DashboardCaseSearchCriteria criteria) {
     this.criteria = criteria;
   }
