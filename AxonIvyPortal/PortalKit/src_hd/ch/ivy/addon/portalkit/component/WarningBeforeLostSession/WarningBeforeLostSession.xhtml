@@ -10,7 +10,7 @@
 </cc:interface>
 <cc:implementation>
   <c:set var="task" value="#{not empty cc.attrs.task ? cc.attrs.task : ivy.task}" />
-  <c:set var="isPortalInTeams" value="#{ivy.session.getAttribute('PORTAL_IN_TEAMS')}" />
+  <c:set var="isPortalInTeams" value="#{masterDataBean.portalInTeams}" />
   <h:outputScript library="js" name="session-warning.js" />
   <p:confirmDialog id="timeout-warning-dialog" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/warning')}"
     message="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/warningBeforeLostSession/warningMessage')}"
