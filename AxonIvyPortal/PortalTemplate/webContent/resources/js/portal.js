@@ -277,7 +277,9 @@ function fireEventClickOnMenuItem(menuItem, prevMenuItemId) {
 
 function resetPortalLeftMenuState() {
   $.removeCookie('serenity_expandeditems', {path: '/'});
-  resetSelectedMenuItems();
+  if (typeof resetSelectedMenuItems === "function") {
+    resetSelectedMenuItems();
+  }
 }
 
 function hideDashboardOverlayPanels() {
