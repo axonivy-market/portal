@@ -9,6 +9,5 @@ public enum SessionAttribute {
   NAVIGATE_FROM_RELATED_CASE, // use for navigate back after destroy case
   HELP_URL_LINK,
   PORTAL_IN_TEAMS,
-  SHOW_MENU_IN_TEAMS,
   DEFAULT_PAGE_IN_TEAMS;
 }
