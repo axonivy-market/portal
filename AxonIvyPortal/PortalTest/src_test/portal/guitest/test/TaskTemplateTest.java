@@ -16,6 +16,7 @@ import com.jayway.awaitility.Duration;
 
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
+import portal.guitest.common.Variable;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.NoteHistoryPage;
 import portal.guitest.page.TaskDetailsPage;
@@ -71,6 +72,7 @@ public class TaskTemplateTest extends BaseTest {
 
   @Test
   public void testOpeningRelatedTask() {
+    updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), "ACCESS_TASK_DETAILS");
     createTestData();
     TaskTemplatePage taskTemplatePage = startATaskAndOpenCaseInfo();
 

@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.TestAccount;
+import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.CaseDetailsPage;
 import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.TaskDetailsPage;
@@ -27,6 +28,8 @@ public class TaskDetailsTest extends BaseTest {
       "Note is added on Task Details and the task has Technical Case";
   private static final String NOTE_TASK_DETAIL_BUSINESS_CASE =
       "Note is added on Task Details and the task has only Business Case";
+  
+  private static final String ACCESS_TASK_DETAILS = "ACCESS_TASK_DETAILS";
 
   private TaskDetailsPage taskDetailsPage;
 
@@ -34,6 +37,7 @@ public class TaskDetailsTest extends BaseTest {
   @BeforeEach
   public void setup() {
     super.setup();
+    updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), ACCESS_TASK_DETAILS);
     taskDetailsPage = new TaskDetailsPage();
     grantSpecificPortalPermission(PortalPermission.TASK_CASE_ADD_NOTE);
   }
