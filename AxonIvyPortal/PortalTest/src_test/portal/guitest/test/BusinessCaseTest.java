@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
+import portal.guitest.common.Variable;
 import portal.guitest.page.CaseWidgetPage;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.MainMenuPage;
@@ -61,6 +62,7 @@ public class BusinessCaseTest extends BaseTest {
   
   @Test
   public void testTaskOfTechnicalCaseDisplayBusinessCaseOnTaskDetails() {
+    updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), "ACCESS_TASK_DETAILS");
     int firstTask = 0;
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.expand();

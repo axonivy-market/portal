@@ -52,11 +52,6 @@ These are options you can modify:
    |                       | Portal will get default value which is defined|
    |                       | by admin if you don't select any option.      |
    +-----------------------+-----------------------------------------------+
-   | Default behaviour when| Your default behaviour when clicking on a     |
-   | clicking on a line in | line in task list.                            |
-   | task list             | Portal will get default value which is defined|
-   |                       | by admin if you don't select any option.      |
-   +-----------------------+-----------------------------------------------+
 
 Case list configuration
 ^^^^^^^^^^^^^^^^^^^^^^^
