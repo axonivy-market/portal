@@ -39,7 +39,7 @@
                 <h:outputText value="#{securityMemberDisplayNameFormatBean.generateFullDisplayNameForUserDTO(user)}" />
               </p:column>
               <f:facet name="event">
-                <p:ajax event="itemSelect" listener="#{logic.userSelectInAbsence}" update="#{p:component('absence-messages')} #{p:component('save-absence')}" />
+                <p:ajax event="itemSelect" listener="#{logic.userSelectInAbsence}" update="#{p:resolveFirstComponentWithId('absence-messages', view).clientId} #{p:resolveFirstComponentWithId('save-absence', view).clientId}" />
               </f:facet>
             </ic:ch.ivy.addon.portalkit.component.UserSelection>
           </h:panelGroup>
@@ -52,7 +52,7 @@
                 converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}"
                 pattern="#{dateTimePatternBean.configuredDateWithoutTimePattern}" required="true"
                 requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/dateRequired')}">
-                <p:ajax event="dateSelect" listener="#{logic.dateChange}" update="#{p:component('absence-messages')} #{p:component('save-absence')}"/>
+                <p:ajax event="dateSelect" listener="#{logic.dateChange}" update="#{p:resolveFirstComponentWithId('absence-messages', view).clientId} #{p:resolveFirstComponentWithId('save-absence', view).clientId}"/>
               </p:calendar>
               <h:outputLabel for="absence-start-date"
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/from')}:" />
@@ -69,7 +69,7 @@
                 pattern="#{dateTimePatternBean.configuredDateWithoutTimePattern}"
                 required="true"
                 requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/dateRequired')}">
-                <p:ajax event="dateSelect" listener="#{logic.dateChange}" update="#{p:component('absence-messages')} #{p:component('save-absence')}" />
+                <p:ajax event="dateSelect" listener="#{logic.dateChange}" update="#{p:resolveFirstComponentWithId('absence-messages', view).clientId} #{p:resolveFirstComponentWithId('save-absence', view).clientId}" />
               </p:calendar>
               <h:outputLabel for="absence-end-date"
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/till')}:" />

@@ -34,7 +34,7 @@
   </c:if>
   <c:set var="caseFilter" value="#{cc.attrs.caseFilter}" />
   <c:set var="widgetVarPanel" value="#{fn:replace(cc.clientId, ':', '-')}-panel" />
-  <c:set var="caseContainerId" value="#{p:component('case-list')}" />
+  <c:set var="caseContainerId" value="#{p:resolveFirstComponentWithId('case-list', view).clientId}" />
   <c:set var="renderedFilter" value="#{(not empty dataModel and selectedFilters.contains(caseFilter)) or cc.attrs.forceRendered}" />
   <h:panelGroup id="advanced-filter-component" styleClass="advanced-filter-component js-advanced-filter-component u-hidden-md-down" rendered="#{renderedFilter}"
     style="order: #{not empty cc.attrs.position ? cc.attrs.position : selectedFilters.indexOf(caseFilter)}">
