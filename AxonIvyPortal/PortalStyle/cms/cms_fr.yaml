@@ -517,6 +517,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     selectedDay: '{0} jour(s) sélectionné(s)'
     send: Envoyer
     sessionExpried: Votre session a expiré. L'application va être redémarrée
+    sessionExpriedInTeams: TODO Your session expired. Please reload the tab to login again.
     setting: Paramètres
     showDetail: Afficher les détails
     showSystemNotes: Afficher les notes du système
