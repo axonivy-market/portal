@@ -16,6 +16,7 @@ import com.jayway.awaitility.Duration;
 
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
+import portal.guitest.common.Variable;
 import portal.guitest.page.CaseDetailsPage;
 import portal.guitest.page.CaseWidgetPage;
 import portal.guitest.page.HomePage;
@@ -75,6 +76,7 @@ public class ShowRelatedTasksTest extends BaseTest {
 
   @Test
   public void testRelatedTasksWhenClickingRelatedTask() {
+    updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), "ACCESS_TASK_DETAILS");
     grantTaskReadOwnCaseTaskPermissionsToCurrentUser();
     openCaseDetail();
     TaskDetailsPage taskDetailsPage = detailsPage.openTasksOfCasePage(0);
