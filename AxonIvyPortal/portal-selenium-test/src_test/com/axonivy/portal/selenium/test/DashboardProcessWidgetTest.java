@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.TestAccount;
+import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.NewDashboardConfigurationPage;
 import com.axonivy.portal.selenium.page.NewDashboardDetailsEditPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
@@ -34,6 +35,7 @@ public class DashboardProcessWidgetTest extends BaseTest {
   private static final String CATEGORIED_LEAVE_REQUEST = "Categoried Leave Request";
   private static final String DATA_TABLE = "DataTable";
   private static final String SHOWCASE_DATA_TABLE = "Showcase Data Table";
+  private static final String ACCESS_TASK_DETAILS = "ACCESS_TASK_DETAILS";
   private NewDashboardPage newDashboardPage;
   private static final long DEFAULT_TIMEOUT = 45000;
 
@@ -264,6 +266,7 @@ public class DashboardProcessWidgetTest extends BaseTest {
 
   @Test
   public void testStartCombinedModeProcessTask() {
+    updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), ACCESS_TASK_DETAILS);
     createCategoriedLeaveRequestTask();
 
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
@@ -280,6 +283,7 @@ public class DashboardProcessWidgetTest extends BaseTest {
 
   @Test
   public void testStartCombinedModeProcessTaskWhenExpanded() {
+    updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), ACCESS_TASK_DETAILS);
     createCategoriedLeaveRequestTask();
 
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
@@ -297,8 +301,8 @@ public class DashboardProcessWidgetTest extends BaseTest {
 
   @Test
   public void testOpenCombinedModeProcessTask() {
+    updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), ACCESS_TASK_DETAILS);
     createCategoriedLeaveRequestTask();
-
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
     editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST,
@@ -314,6 +318,7 @@ public class DashboardProcessWidgetTest extends BaseTest {
 
   @Test
   public void testOpenCombinedModeProcessTaskWhenExpanded() {
+    updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), ACCESS_TASK_DETAILS);
     createCategoriedLeaveRequestTask();
 
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =

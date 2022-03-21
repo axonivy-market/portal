@@ -47,11 +47,6 @@
             <div class="ui-g-12">
               <p:commandButton id="add-dashboard" icon="si si-add"
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/addDashboard')}" />
-
-              <!-- FOR TESTING, REMOVE AFTER STORY DONE -->
-              <p:commandButton id="add-private-dashboard" value="Add predefine private dashboard (for test)"
-                actionListener="#{dashboardConfigurationBean.addTempPrivateDashboard()}"
-                update="dashboard-table" rendered="#{!data.isPublicDashboard}" />
             </div>
 
             <div class="user-profile-footer ui-g-12">

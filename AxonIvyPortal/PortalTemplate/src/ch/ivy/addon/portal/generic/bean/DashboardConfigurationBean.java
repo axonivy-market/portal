@@ -173,15 +173,6 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
     this.editingDashboards = editingDashboards;
   }
 
-  public void addTempPrivateDashboard() {
-    Dashboard privateDashboard = new Dashboard();
-    privateDashboard.setIsPublic(false);
-    privateDashboard.setId(DashboardUtils.generateId());
-    privateDashboard.setWidgets(new ArrayList<>());
-    editingDashboards.add(privateDashboard);
-    DashboardService.getInstance().save(privateDashboard);
-  }
-
   public void dashboardPermissionListener(SelectEvent event) {
     SecurityMemberDTO selectedItem = (SecurityMemberDTO) event.getObject();
     SecurityMemberDTO duplicatedItem = null;
