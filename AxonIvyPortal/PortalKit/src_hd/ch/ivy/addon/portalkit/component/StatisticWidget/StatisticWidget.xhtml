@@ -41,13 +41,13 @@
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/restoreDefaultFilterHeader')}" />
             </p:commandLink>
             <p:commandLink id="back-from-drilldown-link" actionListener="#{logic.switchDrilldownMode}" rendered="#{data.isDrilldownElapsedTime}"
-              update="#{p:component('widget-container')} create-chart-header" styleClass="Fright">
+              update="#{p:resolveFirstComponentWithId('widget-container', view).clientId} create-chart-header" styleClass="Fright">
               <i class="si si-arrow-left-1" />
               <p:spacer width="3px" />
               <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}" />
             </p:commandLink>
             <p:commandLink id="back-from-drilldown-expiry-chart-link" actionListener="#{logic.switchDrilldownExpiryChartMode}"
-              rendered="#{data.isDrilldownExpiryChart}" update="#{p:component('widget-container')} create-chart-header" styleClass="Fright">
+              rendered="#{data.isDrilldownExpiryChart}" update="#{p:resolveFirstComponentWithId('widget-container', view).clientId} create-chart-header" styleClass="Fright">
               <i class="si si-arrow-left-1" />
               <p:spacer width="3px" />
               <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}" />
