@@ -12,6 +12,7 @@ import org.junit.Test;
 
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
+import portal.guitest.common.Variable;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.TaskDetailsPage;
 import portal.guitest.page.TaskWidgetPage;
@@ -52,6 +53,7 @@ public class EnhanceVisibilityTasksForMemberOfRoleTest extends BaseTest {
   @SuppressWarnings("deprecation")
   @Test
   public void testVisibilityTaskInprogress() {
+    updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), "ACCESS_TASK_DETAILS");
     login(TestAccount.DEMO_USER);
     createTestingTasks();
     gotoTaskList();
