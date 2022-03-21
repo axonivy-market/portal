@@ -23,6 +23,7 @@ Et0 f0 requestEnabled true #txt
 Et0 f0 triggerEnabled false #txt
 Et0 f0 callSignature startExpressBusinessView(Long) #txt
 Et0 f0 caseData businessCase.attach=true #txt
+Et0 f0 showInStartList 0 #txt
 Et0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
