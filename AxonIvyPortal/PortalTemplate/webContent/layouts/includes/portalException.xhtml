@@ -4,7 +4,7 @@
 	xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions">
 <body>
 	<ui:composition>
-    <c:set var="isPortalInTeams" value="#{ivy.session.getAttribute('PORTAL_IN_TEAMS')}" />
+    <c:set var="isPortalInTeams" value="#{masterDataBean.portalInTeams}" />
 
     <ui:fragment rendered="#{isPortalInTeams}">
       <!-- Exception Handler for ViewExpiredExceptions -->

@@ -12,7 +12,7 @@
 </cc:interface>
 <cc:implementation>
   <c:set var="renderDetail" value="#{portalExceptionBean.errorDetailToEndUser}" />
-  <c:set var="isPortalInTeams" value="#{ivy.session.getAttribute('PORTAL_IN_TEAMS')}" />
+  <c:set var="isPortalInTeams" value="#{masterDataBean.portalInTeams}" />
   <h:outputStylesheet library="css" name="module.css" />
 
   <p:ajaxStatus id="#{cc.clientId}-#{cc.id}" widgetVar="#{cc.attrs.widgetVar}"
