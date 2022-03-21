@@ -38,7 +38,7 @@
             </div>
 
             <div class="ui-g-12">
-              <p:dataTable id="notes-table" widgetVar="notesTable" var="note" sortBy="#{note.creationTimestamp.time}" sortOrder="DESCENDING"
+              <p:dataTable id="notes-table" widgetVar="notesTable" var="note"  
                 value="#{data.notes}" filteredValue="#{data.filteredNotes}"
                 emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
                 reflow="true" scrollable="true">

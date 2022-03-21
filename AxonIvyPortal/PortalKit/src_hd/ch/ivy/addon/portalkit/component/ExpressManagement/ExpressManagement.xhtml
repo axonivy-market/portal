@@ -12,12 +12,12 @@
     <div class="ui-g">
       <div class="ui-g-12 TexAlRight u-padding-0">
         <p:commandButton id="import-express-btn" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/importExpress')}" partialSubmit="true"
-          oncomplete="PF('import-express-dialog').show()" update="#{p:component('import-express-dialog')}" icon="#{visibilityBean.generateButtonIcon('si si-download-bottom')}" />
+          oncomplete="PF('import-express-dialog').show()" update="#{p:resolveFirstComponentWithId('import-express-dialog', view).clientId}" icon="#{visibilityBean.generateButtonIcon('si si-download-bottom')}" />
         <p:spacer width="10px" />
         <p:commandButton id="export-express-btn" widgetVar="export-express-btn" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/exportExpress')}"
           process="express-workflow-summary-table" partialSubmit="true" oncomplete="PF('export-express-dialog').show()"
           icon="#{visibilityBean.generateButtonIcon('si si-upload-bottom')}"
-          update="#{p:component('export-express-dialog')} #{p:component('express-export-group')}" disabled="#{empty expressManagementBean.selectedExpressProcesses}" />
+          update="#{p:resolveFirstComponentWithId('export-express-dialog', view).clientId} #{p:resolveFirstComponentWithId('express-export-group', view).clientId}" disabled="#{empty expressManagementBean.selectedExpressProcesses}" />
       </div>
 
       <div class="ui-g-12 u-padding-0 MarTop5">
@@ -27,11 +27,11 @@
           emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
           scrollable="true" scrollHeight="240" reflow="true">
 
-          <p:ajax event="toggleSelect" update="#{p:component('export-express-btn')}" />
-          <p:ajax event="rowSelectCheckbox" update="#{p:component('export-express-btn')}" global="false" />
-          <p:ajax event="rowUnselectCheckbox" update="#{p:component('export-express-btn')}" global="false" />
-          <p:ajax event="rowSelect" update="#{p:component('export-express-btn')}" global="false" />
-          <p:ajax event="rowUnselect" update="#{p:component('export-express-btn')}" global="false" />
+          <p:ajax event="toggleSelect" update="#{p:resolveFirstComponentWithId('export-express-btn', view).clientId}" />
+          <p:ajax event="rowSelectCheckbox" update="#{p:resolveFirstComponentWithId('export-express-btn', view).clientId}" global="false" />
+          <p:ajax event="rowUnselectCheckbox" update="#{p:resolveFirstComponentWithId('export-express-btn', view).clientId}" global="false" />
+          <p:ajax event="rowSelect" update="#{p:resolveFirstComponentWithId('export-express-btn', view).clientId}" global="false" />
+          <p:ajax event="rowUnselect" update="#{p:resolveFirstComponentWithId('export-express-btn', view).clientId}" global="false" />
 
           <p:column selectionMode="multiple" styleClass="express-selection-column" />
 
@@ -147,7 +147,7 @@
   <h:form>
     <p:remoteCommand name="refreshExpressTable" immediate="true" partialSubmit="true" process="@this" 
       oncomplete="PF('express-workflow-summary-table').unselectAllRows();"
-      update="#{p:component('express-workflow-summary-table')}" global="false" />
+      update="#{p:resolveFirstComponentWithId('express-workflow-summary-table', view).clientId}" global="false" />
   </h:form>
 
   <script type="text/javascript">

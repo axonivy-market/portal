@@ -133,7 +133,7 @@
             <span class="selected-filters-label u-hidden-md-down">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/appliedFilters')} </span>
             <h:form id="expanded-mode-filter-form" onsubmit="return false;">
               <ic:ch.ivy.addon.portalkit.component.Filter id="expanded-mode-filter-container"
-                updateComponent="#{cc.clientId}:filter-selection-container #{p:component('task-view-container')} #{cc.clientId}:hidden-task-count"
+                updateComponent="#{cc.clientId}:filter-selection-container #{p:resolveFirstComponentWithId('task-view-container', view).clientId} #{cc.clientId}:hidden-task-count"
                 listener="#{data.dataModel.onKeywordChange()}"
                 placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/filterTextPlaceholder')}"
                 keywordStoresIn="#{data.dataModel.criteria.keyword}" styleClass="widget-header-filter-input"
@@ -263,7 +263,7 @@
           styleClass="widget-header-content-filter Fright"
           rendered="#{!cc.attrs.hideTaskFilter and data.dataModel.compactMode}">
           <ic:ch.ivy.addon.portalkit.component.Filter id="filter-container"
-            updateComponent="#{p:component('task-view-container')}"
+            updateComponent="#{p:resolveFirstComponentWithId('task-view-container', view).clientId}"
             placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/filterTextPlaceholder')}"
             keywordStoresIn="#{data.dataModel.criteria.keyword}" 
             styleClass="widget-header-filter-input"
@@ -448,7 +448,7 @@
   <!-- Delegate Task Dialog -->
   <ic:ch.ivy.addon.portalkit.component.TaskItemDelegate id="task-item-delegate-component"
     taskId="#{taskWidgetBean.selectedTaskItemId}"
-    componentToUpdate="#{p:component('task-start')}"
+    componentToUpdate="#{p:resolveFirstComponentWithId('task-start', view).clientId}"
     onCompletedCallback="taskWidget.setupScrollbar();" />
 
   <!-- Workflow Event of Task Dialog -->
