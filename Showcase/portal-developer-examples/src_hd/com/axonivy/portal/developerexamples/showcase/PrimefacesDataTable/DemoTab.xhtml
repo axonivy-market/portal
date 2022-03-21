@@ -213,7 +213,7 @@
         <p:dataTable id="theTable" widgetVar="theTable" editable="true" scrollable="true" scrollHeight="250"
           value="#{data.scores}" var="score" rows="8" selection="#{data.selectedScore}" selectionMode="single"
           rowKey="#{score.id}" draggableColumns="true" draggableRows="true" style="width:100%">
-          <p:ajax event="rowSelect" update="#{p:component('detailDialog')}" oncomplete="PF('detailDialog').show()" />
+          <p:ajax event="rowSelect" update="#{p:resolveFirstComponentWithId('detailDialog', view).clientId}" oncomplete="PF('detailDialog').show()" />
           <p:rowExpansion>
             <p:panelGrid columns="2" style="width:400px">
               <p:outputLabel>No</p:outputLabel>
@@ -259,11 +259,11 @@
           </p:column>
 
           <p:column style="width:65px;text-align: center">
-            <p:commandLink update="#{p:component('detailDialog')}" styleClass="si si-graphic-tablet-drawing-pen"
+            <p:commandLink update="#{p:resolveFirstComponentWithId('detailDialog', view).clientId}" styleClass="si si-graphic-tablet-drawing-pen"
               oncomplete="PF('detailDialog').show()" title="Edit" style="height:20px;" id="dialogEditButton">
               <f:setPropertyActionListener value="#{score}" target="#{data.selectedScore}" />
             </p:commandLink>
-            <p:commandLink update="#{p:component('detailDialog')}" styleClass="si si-bin-1"
+            <p:commandLink update="#{p:resolveFirstComponentWithId('detailDialog', view).clientId}" styleClass="si si-bin-1"
               oncomplete="PF('detailDialog').show()" title="Delete" style="height:20px;margin-left:10px"
               id="dialogDeleteButton">
               <f:setPropertyActionListener value="#{score}" target="#{data.selectedScore}" />
