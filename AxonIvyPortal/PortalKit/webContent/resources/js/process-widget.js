@@ -31,7 +31,7 @@ function ProcessWidget() {
       var processStartListContainer = $('.js-process-start-list-container');
 
       var announcementMessageContainer = $('.js-announcement-message');
-      var mainScreenHeight = $('body').outerHeight() - $('.layout-topbar').outerHeight();
+      var mainScreenHeight = $('body').outerHeight() - ($('.layout-topbar').outerHeight()||0);
       var processHeaderHeight = $('.js-portal-template-header').outerHeight();
       var footerHeight = $('.js-portal-template-footer').outerHeight();
       var availableHeight = mainScreenHeight - (announcementMessageContainer.outerHeight(true)||0)
