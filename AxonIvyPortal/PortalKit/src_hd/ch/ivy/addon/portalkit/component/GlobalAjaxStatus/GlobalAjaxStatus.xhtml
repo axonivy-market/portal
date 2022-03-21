@@ -12,6 +12,7 @@
 </cc:interface>
 <cc:implementation>
   <c:set var="renderDetail" value="#{portalExceptionBean.errorDetailToEndUser}" />
+  <c:set var="isPortalInTeams" value="#{masterDataBean.portalInTeams}" />
   <h:outputStylesheet library="css" name="module.css" />
 
   <p:ajaxStatus id="#{cc.clientId}-#{cc.id}" widgetVar="#{cc.attrs.widgetVar}"
@@ -41,7 +42,7 @@
       </div>
       <div class="ui-g-12 u-text-align-center MarTop5">
         <div class="ui-g-12">
-          <p:button href="#" onclick="window.open('#{userMenuBean.getHomePageURL()}', '_self')"
+          <p:button rendered="#{!isPortalInTeams}" href="#" onclick="window.open('#{userMenuBean.getHomePageURL()}', '_self')"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/errorPage/backToHomePage')}"
             icon="#{visibilityBean.generateButtonIcon('si si-house-chimney-2')}"/>
         </div>
