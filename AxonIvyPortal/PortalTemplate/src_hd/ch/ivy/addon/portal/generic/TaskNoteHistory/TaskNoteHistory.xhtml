@@ -56,7 +56,7 @@
                     <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/author')}" />
                   </f:facet>
                   <h:outputText
-                    value="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(note.writter, note.writter.name)}" />
+                    value="#{userFormatBean.format(note.writter.fullName, note.writter.name)}" />
                 </p:column>
 
                 <p:column width="20%" sortBy="#{note.creationTimestamp.time}" styleClass="u-hidden-sm-down">
