@@ -29,7 +29,7 @@
       <p:fieldset id="selected-deputy-fieldset" styleClass="selected-deputy-panel"
         legend="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/selectedDeputies')}">
         <ui:repeat var="deputy" value="#{data.selectedDeputies}">
-          <p:panelGrid id="selected-deputy-panel" styleClass="deputy-selection">
+          <p:panelGrid id="selected-deputy-panel" styleClass="deputy-selection" columns="3">
             <p:column styleClass="deputy-type-col">
               <h:outputText id="deputy-type-icon" class="si si-single-neutral-actions" />
             </p:column>
