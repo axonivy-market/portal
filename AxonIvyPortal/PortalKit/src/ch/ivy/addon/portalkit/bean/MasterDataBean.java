@@ -7,13 +7,16 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang.BooleanUtils;
 
 import ch.ivy.addon.portalkit.enums.ApplicationType;
 import ch.ivy.addon.portalkit.enums.BasicDocumentType;
 import ch.ivy.addon.portalkit.enums.DocumentType;
+import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivy.addon.portalkit.masterdata.AwesomeIcon;
 import ch.ivy.addon.portalkit.masterdata.MasterData;
+import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 
 @ManagedBean
@@ -81,5 +84,10 @@ public class MasterDataBean implements Serializable {
 
   public String getReadableFileSize(Long fileSize) {
     return FileUtils.byteCountToDisplaySize(fileSize);
+  }
+
+  public boolean isPortalInTeams() {
+    Boolean isPortalInTeams = (Boolean) SecurityServiceUtils.getSessionAttribute(SessionAttribute.PORTAL_IN_TEAMS.toString());
+    return BooleanUtils.isTrue(isPortalInTeams);
   }
 }
