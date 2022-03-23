@@ -28,8 +28,8 @@
       styleClass="ui-g-12 u-padding-0 js-dashboard-tasks-container-#{widget.id} u-display-none">
       <p:dataTable id="dashboard-process-tasks" value="#{widget.taskDataModel}" var="task" paginatorAlwaysVisible="false"
         rows="#{widget.rowsPerPage}" paginator="true" paginatorPosition="bottom" lazy="true" paginatorTemplate="{PreviousPageLink} {PageLinks} {NextPageLink} {RowsPerPageDropdown}"
-        rowsPerPageTemplate="5,10,20,50" so
-        pageLinks="5" 
+        rowsPerPageTemplate="5,10,20,50"
+        pageLinks="5" sortBy="#{widget.tasksSortBy}"
         rowIndexVar="rowIndex" rowHover="#{isReadOnlyMode}" selectionMode="single"
         styleClass="dashboard-tasks--table #{isReadOnlyMode ? '' : 'dashboard__table--edit'} #{isPreviewMode ? 'dashboard__table--preview' : ''}">
         <p:ajax event="rowSelect" listener="#{dashboardBean.navigateToSelectedTaskDetails}" disabled="#{!isReadOnlyMode or isPreviewMode}" />

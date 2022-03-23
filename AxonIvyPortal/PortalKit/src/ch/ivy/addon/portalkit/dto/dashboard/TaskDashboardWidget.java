@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.primefaces.PrimeFaces;
+import org.primefaces.model.SortMeta;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -15,6 +16,7 @@ import ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.TaskColumnModel;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.service.DashboardWidgetInformationService;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
+import ch.ivy.addon.portalkit.util.SortFieldUtil;
 import ch.ivyteam.ivy.workflow.TaskState;
 
 public class TaskDashboardWidget extends DashboardWidget {
@@ -81,6 +83,12 @@ public class TaskDashboardWidget extends DashboardWidget {
   
   public void setCanWorkOn(boolean canWorkOn) {
     this.dataModel.setCanWorkOn(canWorkOn);
+  }
+
+  @JsonIgnore
+  public SortMeta getSortBy() {
+    String sortField = getSortField();
+    return sortField != null ? SortFieldUtil.buildSortMeta(sortField, isSortDescending()) : null;
   }
 
   public String getSortField() {
