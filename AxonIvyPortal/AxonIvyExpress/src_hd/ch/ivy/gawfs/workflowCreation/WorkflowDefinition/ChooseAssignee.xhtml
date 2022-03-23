@@ -41,7 +41,7 @@
       <p:fieldset id="selected-assignee-fieldset" styleClass="selected-assignee-panel"
         legend="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/ChooseAssignee/SelectedAssigneesFieldSet')}">
         <ui:repeat var="assignee" value="#{data.selectedAssigneeList}">
-          <p:panelGrid id="selected-assignee-panel" styleClass="assignee-selection">
+          <p:panelGrid id="selected-assignee-panel" styleClass="assignee-selection" columns="3">
             <p:column styleClass="assignee-type-col">
               <h:outputText id="assign-type-icon" class="si #{assignee.isUser() ? 'si-single-neutral-actions' : 'si-multiple-neutral-1'} " />
             </p:column>
