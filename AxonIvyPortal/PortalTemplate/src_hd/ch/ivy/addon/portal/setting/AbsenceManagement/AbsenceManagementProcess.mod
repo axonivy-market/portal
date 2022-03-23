@@ -1,5 +1,5 @@
 [Ivy]
-1756E0BE3BCBAD12 9.4.0 #module
+1756E0BE3BCBAD12 9.4.1 #module
 >Proto >Proto Collection #zClass
 As0 AbsenceManagementProcess Big #zClass
 As0 RD #cInfo
@@ -8,6 +8,8 @@ Ct2 Component Big #zClass
 Ct2 B #cInfo
 Ct0 Component Big #zClass
 Ct0 B #cInfo
+As0 @TextInP .colors .colors #zField
+As0 @TextInP color color #zField
 As0 Ct2 S20 'Sub 2' #zField
 As0 Ct0 S10 'Sub 1' #zField
 As0 @TextInP .type .type #zField
@@ -131,6 +133,8 @@ As0 @GridStep f51 '' #zField
 As0 @PushWFArc f62 '' #zField
 As0 @PushWFArc f64 '' #zField
 >Proto As0 As0 AbsenceManagementProcess #zField
+Ct2 @TextInP .colors .colors #zField
+Ct2 @TextInP color color #zField
 Ct2 @TextInP .type .type #zField
 Ct2 @TextInP .processKind .processKind #zField
 Ct2 @TextInP .xml .xml #zField
@@ -143,6 +147,8 @@ Ct2 @PushWFArc f0 '' #zField
 Ct2 @PushTrueWFOutG-01 g1 '' #zField
 Ct2 @PushWFArc f1 '' #zField
 >Proto Ct2 Ct0 Component #zField
+Ct0 @TextInP .colors .colors #zField
+Ct0 @TextInP color color #zField
 Ct0 @TextInP .type .type #zField
 Ct0 @TextInP .processKind .processKind #zField
 Ct0 @TextInP .xml .xml #zField
@@ -177,7 +183,8 @@ As0 S10 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 As0 S10 400 74 112 44 -41 -8 #rect
 As0 f86 actionTable 'out=in;
 ' #txt
-As0 f86 actionCode 'import java.util.Arrays;
+As0 f86 actionCode 'import ch.ivy.addon.portalkit.util.AbsenceAndSubstituteUtils;
+import java.util.Arrays;
 import ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence;
 import java.util.Set;
 import ch.ivy.addon.portalkit.util.AbsenceAndSubstituteUtils;
@@ -187,6 +194,7 @@ boolean showNewAbsence = in.selectedAbsence.user.name.equals(in.selectedAbsenceU
 if (showNewAbsence && (!AbsenceAndSubstituteUtils.isInThePast(in.selectedAbsence) || in.absenceInThePastShown)){
 	in.displayedAbsences.add(in.selectedAbsence);
 	(in.absencesByUser.get(in.selectedAbsenceUser.getName()) as Set).add(in.selectedAbsence);
+	AbsenceAndSubstituteUtils.sortAbsences(in.displayedAbsences);
 }
 
 in.message = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/Messages/addNewAbsence", Arrays.asList(in.selectedAbsence.user.name));
@@ -520,10 +528,12 @@ As0 f111 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 As0 f111 280 506 112 44 -44 -8 #rect
 As0 f121 actionTable 'out=in;
 ' #txt
-As0 f121 actionCode 'import java.util.Set;
+As0 f121 actionCode 'import ch.ivy.addon.portalkit.util.AbsenceAndSubstituteUtils;
+import java.util.Set;
 
 Set<IvyAbsence> absencesFromUser = in.absencesByUser.get(in.selectedUser.getName()) as Set;
 absencesFromUser.add(in.selectedAbsence);
+AbsenceAndSubstituteUtils.sortAbsences(in.displayedAbsences);
 ' #txt
 As0 f121 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -1152,7 +1162,8 @@ Ct0 f77 592 160 688 160 #arcP
 Ct0 f77 0 0.6865900143900335 0 0 #arcLabel
 Ct0 f70 actionTable 'out=in;
 ' #txt
-Ct0 f70 actionCode 'import java.util.ArrayList;
+Ct0 f70 actionCode 'import ch.ivy.addon.portalkit.util.AbsenceAndSubstituteUtils;
+import java.util.ArrayList;
 import java.util.Set;
 import ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence;
 import ch.ivy.addon.portalkit.util.AbsenceAndSubstituteUtils;
@@ -1170,7 +1181,7 @@ if (in.#absencesByUser is initialized) {
 		out.displayedAbsences = new ArrayList(ivyAbsences);
 	}
 }
-
+AbsenceAndSubstituteUtils.sortAbsences(out.displayedAbsences);
 ' #txt
 Ct0 f70 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
