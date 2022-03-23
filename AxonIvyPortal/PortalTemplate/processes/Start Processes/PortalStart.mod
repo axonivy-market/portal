@@ -41,9 +41,7 @@ Pt0 @PushWFArc f2 '' #zField
 Pt0 @Alternative f0 '' #zField
 Pt0 @PushWFArc f16 '' #zField
 Pt0 @Alternative f5 '' #zField
-Pt0 @PushWFArc f15 '' #zField
 Pt0 @PushWFArc f17 '' #zField
-Pt0 @PushWFArc f24 '' #zField
 Pt0 @PushWFArc f25 '' #zField
 Pt0 @PushWFArc f26 '' #zField
 Pt0 @PushWFArc f27 '' #zField
@@ -78,7 +76,6 @@ Pt0 @UserDialog f74 '' #zField
 Pt0 @UserDialog f75 '' #zField
 Pt0 @PushWFArc f77 '' #zField
 Pt0 @PushWFArc f78 '' #zField
-Pt0 @PushWFArc f79 '' #zField
 Pt0 @GridStep f80 '' #zField
 Pt0 @Alternative f81 '' #zField
 Pt0 @StartRequest f82 '' #zField
@@ -163,7 +160,6 @@ Pt0 @GridStep f137 '' #zField
 Pt0 @GridStep f139 '' #zField
 Pt0 @PushWFArc f140 '' #zField
 Pt0 @PushWFArc f43 '' #zField
-Pt0 @PushWFArc f47 '' #zField
 Pt0 @PushWFArc f23 '' #zField
 Pt0 @PushWFArc f129 '' #zField
 Pt0 Bk7 S60 'Sub 6' #zField
@@ -232,6 +228,34 @@ Pt0 @UserDialog f193 '' #zField
 Pt0 @EndTask f195 '' #zField
 Pt0 @PushWFArc f198 '' #zField
 Pt0 @PushWFArc f199 '' #zField
+Pt0 @StartRequest f200 '' #zField
+Pt0 @GridStep f201 '' #zField
+Pt0 @PushWFArc f202 '' #zField
+Pt0 @Alternative f203 '' #zField
+Pt0 @PushWFArc f204 '' #zField
+Pt0 @PushWFArc f47 '' #zField
+Pt0 @PushWFArc f205 '' #zField
+Pt0 @StartRequest f206 '' #zField
+Pt0 @GridStep f207 '' #zField
+Pt0 @PushWFArc f208 '' #zField
+Pt0 @Alternative f209 '' #zField
+Pt0 @PushWFArc f210 '' #zField
+Pt0 @PushWFArc f24 '' #zField
+Pt0 @PushWFArc f211 '' #zField
+Pt0 @Alternative f212 '' #zField
+Pt0 @PushWFArc f213 '' #zField
+Pt0 @PushWFArc f15 '' #zField
+Pt0 @GridStep f214 '' #zField
+Pt0 @StartRequest f215 '' #zField
+Pt0 @PushWFArc f216 '' #zField
+Pt0 @PushWFArc f217 '' #zField
+Pt0 @Alternative f218 '' #zField
+Pt0 @PushWFArc f219 '' #zField
+Pt0 @PushWFArc f79 '' #zField
+Pt0 @StartRequest f220 '' #zField
+Pt0 @GridStep f221 '' #zField
+Pt0 @PushWFArc f222 '' #zField
+Pt0 @PushWFArc f223 '' #zField
 >Proto Pt0 Pt0 PortalStart #zField
 Bk7 @TextInP .colors .colors #zField
 Bk7 @TextInP color color #zField
@@ -430,9 +454,11 @@ Pt0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f11 480 282 112 44 -47 -8 #rect
+Pt0 f11 584 282 112 44 -47 -8 #rect
 Pt0 f28 outLink DefaultApplicationHomePage.ivp #txt
 Pt0 f28 inParamDecl '<> param;' #txt
+Pt0 f28 inParamTable 'out.isShowDashboard=true;
+' #txt
 Pt0 f28 requestEnabled true #txt
 Pt0 f28 triggerEnabled false #txt
 Pt0 f28 callSignature DefaultApplicationHomePage() #txt
@@ -463,7 +489,7 @@ Pt0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Pt0 f28 @C|.responsibility Everybody #txt
 Pt0 f28 81 129 30 30 -81 19 #rect
-Pt0 f57 369 466 30 30 0 15 #rect
+Pt0 f57 473 498 30 30 0 15 #rect
 Pt0 f58 outLink CaseListPage.ivp #txt
 Pt0 f58 inParamDecl '<> param;' #txt
 Pt0 f58 requestEnabled true #txt
@@ -486,7 +512,7 @@ Pt0 f58 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Pt0 f58 @C|.responsibility Everybody #txt
-Pt0 f58 81 466 30 30 -44 16 #rect
+Pt0 f58 81 498 30 30 -44 16 #rect
 Pt0 f103 outLink CaseDetailsPage.ivp #txt
 Pt0 f103 inParamDecl '<Long caseId> param;' #txt
 Pt0 f103 inParamTable 'out.caseId=param.caseId;
@@ -505,7 +531,7 @@ Pt0 f103 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Pt0 f103 @C|.responsibility Everybody #txt
-Pt0 f103 81 657 30 30 -58 19 #rect
+Pt0 f103 81 689 30 30 -58 19 #rect
 Pt0 f63 outLink DefaultTaskListPage.ivp #txt
 Pt0 f63 inParamDecl '<> param;' #txt
 Pt0 f63 requestEnabled true #txt
@@ -528,9 +554,9 @@ Pt0 f63 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Pt0 f63 @C|.responsibility Everybody #txt
-Pt0 f63 81 561 30 30 -50 17 #rect
-Pt0 f105 369 657 30 30 0 15 #rect
-Pt0 f64 369 561 30 30 0 15 #rect
+Pt0 f63 81 625 30 30 -50 17 #rect
+Pt0 f105 369 689 30 30 0 15 #rect
+Pt0 f64 473 625 30 30 0 15 #rect
 Pt0 f9 processCall 'Functional Processes/InitializeTaskDataModel:call()' #txt
 Pt0 f9 requestActionDecl '<> param;' #txt
 Pt0 f9 responseActionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
@@ -546,26 +572,22 @@ Pt0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f9 760 122 144 44 -65 -8 #rect
-Pt0 f1 664 288 32 32 0 16 #rect
-Pt0 f2 592 304 664 304 #arcP
-Pt0 f0 952 128 32 32 0 16 #rect
-Pt0 f16 904 144 952 144 #arcP
-Pt0 f5 952 288 32 32 0 16 #rect
-Pt0 f15 expr out #txt
-Pt0 f15 111 576 192 576 #arcP
-Pt0 f17 304 576 369 576 #arcP
-Pt0 f24 expr out #txt
-Pt0 f24 111 481 192 481 #arcP
-Pt0 f25 304 481 369 481 #arcP
+Pt0 f9 864 122 144 44 -65 -8 #rect
+Pt0 f1 768 288 32 32 0 16 #rect
+Pt0 f2 696 304 768 304 #arcP
+Pt0 f0 1056 128 32 32 0 16 #rect
+Pt0 f16 1008 144 1056 144 #arcP
+Pt0 f5 1056 288 32 32 0 16 #rect
+Pt0 f17 408 640 473 640 #arcP
+Pt0 f25 408 513 473 513 #arcP
 Pt0 f26 expr out #txt
-Pt0 f26 111 672 192 672 #arcP
-Pt0 f27 304 672 369 672 #arcP
+Pt0 f26 111 704 192 704 #arcP
+Pt0 f27 304 704 369 704 #arcP
 Pt0 f20 expr in #txt
 Pt0 f20 outCond 'java.util.Objects.equals(ch.ivy.addon.portalkit.enums.PortalPage.HOME_PAGE, in.#portalPage) && org.apache.commons.lang3.StringUtils.isBlank(in.#callbackUrl)' #txt
-Pt0 f20 968 288 968 160 #arcP
+Pt0 f20 1072 288 1072 160 #arcP
 Pt0 f18 expr in #txt
-Pt0 f18 984 304 1024 304 #arcP
+Pt0 f18 1088 304 1128 304 #arcP
 Pt0 f14 outLink BackFromTaskDetails.ivp #txt
 Pt0 f14 inParamDecl '<Number endedTaskId> param;' #txt
 Pt0 f14 inParamTable 'out.backFromTaskDetails=true;
@@ -694,9 +716,9 @@ Pt0 f41 expr out #txt
 Pt0 f41 320 864 352 864 #arcP
 Pt0 f42 111 864 192 864 #arcP
 Pt0 f19 expr in #txt
-Pt0 f19 680 320 968 320 #arcP
-Pt0 f19 1 680 400 #addKink
-Pt0 f19 2 968 400 #addKink
+Pt0 f19 784 320 1072 320 #arcP
+Pt0 f19 1 784 384 #addKink
+Pt0 f19 2 1072 384 #addKink
 Pt0 f59 processCall 'Functional Processes/Navigator:viewTask(Long,ch.ivy.addon.portalkit.dto.GlobalCaseId,String)' #txt
 Pt0 f59 requestActionDecl '<Long taskId,ch.ivy.addon.portalkit.dto.GlobalCaseId caseId,String caseName> param;' #txt
 Pt0 f59 requestMappingAction 'param.caseId=ch.ivy.addon.portalkit.dto.GlobalCaseId.caseId(in.caseId).isBusinessCase(in.isBusinessCase).build();
@@ -811,7 +833,7 @@ Pt0 f71 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f71 192 1226 112 44 -30 -8 #rect
+Pt0 f71 296 1258 112 44 -30 -8 #rect
 Pt0 f72 outLink Error500Page.ivp #txt
 Pt0 f72 inParamDecl '<> param;' #txt
 Pt0 f72 requestEnabled true #txt
@@ -866,7 +888,7 @@ Pt0 f76 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Pt0 f76 @C|.responsibility Everybody #txt
-Pt0 f76 81 1233 30 30 -60 17 #rect
+Pt0 f76 81 1265 30 30 -60 17 #rect
 Pt0 f74 dialogId ch.ivy.addon.portal.error.ErrorPage #txt
 Pt0 f74 startMethod start(String) #txt
 Pt0 f74 requestActionDecl '<String errorCode> param;' #txt
@@ -899,7 +921,6 @@ Pt0 f75 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Pt0 f75 192 1418 112 44 -27 -8 #rect
 Pt0 f77 111 1344 192 1344 #arcP
 Pt0 f78 111 1440 192 1440 #arcP
-Pt0 f79 111 1248 192 1248 #arcP
 Pt0 f80 actionTable 'out=in;
 ' #txt
 Pt0 f80 actionCode 'import ch.ivy.addon.portalkit.util.RequestUtil;
@@ -1031,7 +1052,7 @@ Pt0 f44 192 1706 112 44 -31 -8 #rect
 Pt0 f45 433 1713 30 30 0 15 #rect
 Pt0 f46 304 1728 433 1728 #arcP
 Pt0 f93 111 1728 192 1728 #arcP
-Pt0 f92 984 144 1024 144 #arcP
+Pt0 f92 1088 144 1128 144 #arcP
 Pt0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1040,7 +1061,7 @@ homepage if you have</name>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f3 1152 122 144 44 -63 -16 #rect
+Pt0 f3 1256 122 144 44 -63 -16 #rect
 Pt0 f6 dialogId ch.ivy.addon.portal.generic.Login #txt
 Pt0 f6 startMethod start(String) #txt
 Pt0 f6 requestActionDecl '<String callbackUrl> param;' #txt
@@ -1057,7 +1078,7 @@ Pt0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Pt0 f6 544 842 112 44 -14 -8 #rect
 Pt0 f8 496 864 544 864 #arcP
-Pt0 f22 664 128 32 32 0 16 #rect
+Pt0 f22 768 128 32 32 0 16 #rect
 Pt0 f30 expr in #txt
 Pt0 f30 outCond 'in.#portalPage == null' #txt
 Pt0 f30 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1068,8 +1089,8 @@ not in Portal</name>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f30 680 288 680 160 #arcP
-Pt0 f30 0 0.46875 6 0 #arcLabel
+Pt0 f30 784 288 784 160 #arcP
+Pt0 f30 0 0.46875 5 3 #arcLabel
 Pt0 f50 expr in #txt
 Pt0 f50 outCond ch.addon.portal.generic.userprofile.homepage.HomepageUtils.isShowLegacyUI() #txt
 Pt0 f50 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1079,19 +1100,19 @@ Pt0 f50 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f50 696 144 760 144 #arcP
+Pt0 f50 800 144 864 144 #arcP
 Pt0 f50 0 0.36666666666666664 0 -12 #arcLabel
 Pt0 f36 expr in #txt
 Pt0 f36 outCond !in.backFromTaskDetails #txt
-Pt0 f36 696 304 760 304 #arcP
-Pt0 f40 904 304 952 304 #arcP
-Pt0 f4 368 288 32 32 0 16 #rect
+Pt0 f36 800 304 864 304 #arcP
+Pt0 f40 1008 304 1056 304 #arcP
+Pt0 f4 472 288 32 32 0 16 #rect
 Pt0 f7 expr out #txt
-Pt0 f7 109 305 368 304 #arcP
-Pt0 f13 111 384 384 320 #arcP
-Pt0 f13 1 384 384 #addKink
+Pt0 f7 109 305 472 304 #arcP
+Pt0 f13 111 384 488 320 #arcP
+Pt0 f13 1 488 384 #addKink
 Pt0 f13 0 0.7758746574460319 0 0 #arcLabel
-Pt0 f21 368 128 32 32 0 16 #rect
+Pt0 f21 472 128 32 32 0 16 #rect
 Pt0 f31 actionTable 'out=in;
 ' #txt
 Pt0 f31 actionCode 'import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
@@ -1104,13 +1125,13 @@ login page</name>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f31 328 202 112 44 -28 -16 #rect
+Pt0 f31 432 202 112 44 -28 -16 #rect
 Pt0 f49 expr in #txt
 Pt0 f49 outCond ivy.session.isSessionUserUnknown() #txt
-Pt0 f49 384 160 384 202 #arcP
+Pt0 f49 488 160 488 202 #arcP
 Pt0 f29 expr in #txt
 Pt0 f29 outCond ivy.session.isSessionUserUnknown() #txt
-Pt0 f29 384 288 384 246 #arcP
+Pt0 f29 488 288 488 246 #arcP
 Pt0 f48 expr in #txt
 Pt0 f48 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -1119,7 +1140,7 @@ Pt0 f48 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f48 400 304 480 304 #arcP
+Pt0 f48 504 304 584 304 #arcP
 Pt0 f48 0 0.4642857142857143 0 -10 #arcLabel
 Pt0 f12 outLink CaseDetailsInIFrame.ivp #txt
 Pt0 f12 inParamDecl '<Long caseId> param;' #txt
@@ -1543,7 +1564,7 @@ to Portal</name>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f137 176 122 144 44 -53 -16 #rect
+Pt0 f137 280 122 144 44 -53 -16 #rect
 Pt0 f139 actionTable 'out=in;
 ' #txt
 Pt0 f139 actionCode 'import ch.ivy.addon.portalkit.enums.SessionAttribute;
@@ -1558,7 +1579,7 @@ pmv </name>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f139 480 122 128 44 -43 -16 #rect
+Pt0 f139 584 122 128 44 -43 -16 #rect
 Pt0 f140 expr in #txt
 Pt0 f140 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -1567,16 +1588,14 @@ Pt0 f140 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f140 400 144 480 144 #arcP
+Pt0 f140 504 144 584 144 #arcP
 Pt0 f140 0 0.5 0 -10 #arcLabel
-Pt0 f43 111 64 248 122 #arcP
-Pt0 f43 1 248 64 #addKink
+Pt0 f43 111 64 352 122 #arcP
+Pt0 f43 1 352 64 #addKink
 Pt0 f43 0 0.7536234472447718 0 0 #arcLabel
-Pt0 f47 expr out #txt
-Pt0 f47 111 144 176 144 #arcP
 Pt0 f23 expr out #txt
-Pt0 f23 608 144 664 144 #arcP
-Pt0 f129 320 144 368 144 #arcP
+Pt0 f23 712 144 768 144 #arcP
+Pt0 f129 424 144 472 144 #arcP
 Pt0 S60 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language lang="en">
@@ -1585,7 +1604,7 @@ homepage</name>
     </language>
 </elementInfo>
 ' #txt
-Pt0 S60 1024 122 112 44 -39 -20 #rect
+Pt0 S60 1128 122 112 44 -39 -20 #rect
 Pt0 S10 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language lang="en">
@@ -1594,7 +1613,7 @@ page before finish task</name>
     </language>
 </elementInfo>
 ' #txt
-Pt0 S10 1024 280 160 48 -58 -20 #rect
+Pt0 S10 1128 280 160 48 -58 -20 #rect
 Pt0 S30 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language lang="en">
@@ -1602,7 +1621,7 @@ Pt0 S30 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 S30 192 459 112 44 -40 -8 #rect
+Pt0 S30 296 491 112 44 -40 -8 #rect
 Pt0 S20 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language lang="en">
@@ -1610,7 +1629,7 @@ Pt0 S20 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 S20 192 554 112 44 -39 -8 #rect
+Pt0 S20 296 618 112 44 -39 -8 #rect
 Pt0 S40 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language lang="en">
@@ -1618,7 +1637,7 @@ Pt0 S40 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 S40 192 650 112 44 -49 -8 #rect
+Pt0 S40 192 682 112 44 -49 -8 #rect
 Pt0 S70 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language lang="en">
@@ -1628,7 +1647,7 @@ after finish task</name>
     </language>
 </elementInfo>
 ' #txt
-Pt0 S70 760 272 144 64 -47 -28 #rect
+Pt0 S70 864 272 144 64 -47 -28 #rect
 Pt0 f138 1537 1713 30 30 0 15 #rect
 Pt0 f142 dialogId ch.ivy.addon.portal.generic.CaseNoteHistory #txt
 Pt0 f142 startMethod start(java.util.List<ch.ivy.addon.portalkit.bo.History>,String,ch.ivyteam.ivy.workflow.ICase) #txt
@@ -1980,9 +1999,9 @@ Pt0 f178 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Pt0 f178 192 2378 176 44 -84 -8 #rect
 Pt0 f141 expr in #txt
-Pt0 f141 680 128 968 128 #arcP
-Pt0 f141 1 680 96 #addKink
-Pt0 f141 2 968 96 #addKink
+Pt0 f141 784 128 1072 128 #arcP
+Pt0 f141 1 784 96 #addKink
+Pt0 f141 2 1072 96 #addKink
 Pt0 f141 1 0.5 0 0 #arcLabel
 Pt0 f150 outLink DashboardReorder.ivp #txt
 Pt0 f150 inParamDecl '<Boolean isPublicDashboard> param;' #txt
@@ -2163,6 +2182,159 @@ Pt0 f193 208 2762 208 44 -95 -8 #rect
 Pt0 f195 497 2769 30 30 0 15 #rect
 Pt0 f198 111 2784 208 2784 #arcP
 Pt0 f199 416 2784 497 2784 #arcP
+Pt0 f200 outLink DefaultApplicationHomePageInTeams.ivp #txt
+Pt0 f200 inParamDecl '<> param;' #txt
+Pt0 f200 requestEnabled true #txt
+Pt0 f200 triggerEnabled false #txt
+Pt0 f200 callSignature DefaultApplicationHomePageInTeams() #txt
+Pt0 f200 caseData businessCase.attach=true #txt
+Pt0 f200 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>DefaultApplicationHomePageInTeams.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f200 @C|.responsibility Everybody #txt
+Pt0 f200 81 209 30 30 -80 18 #rect
+Pt0 f201 actionTable 'out=in;
+' #txt
+Pt0 f201 actionCode 'import ch.addon.portal.generic.userprofile.homepage.HomepageType;
+import ch.ivy.addon.portalkit.enums.SessionAttribute;
+import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
+SecurityServiceUtils.setSessionAttribute(SessionAttribute.PORTAL_IN_TEAMS.toString(), true);
+SecurityServiceUtils.setSessionAttribute(SessionAttribute.DEFAULT_PAGE_IN_TEAMS.toString(), HomepageType.DASHBOARD.toString());' #txt
+Pt0 f201 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Init Teams attrs</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f201 168 202 112 44 -42 -8 #rect
+Pt0 f202 111 224 168 224 #arcP
+Pt0 f202 0 0.6937327756354965 0 0 #arcLabel
+Pt0 f203 208 128 32 32 0 16 #rect
+Pt0 f204 expr out #txt
+Pt0 f204 111 144 208 144 #arcP
+Pt0 f47 color default #txt
+Pt0 f47 240 144 280 144 #arcP
+Pt0 f205 224 202 224 160 #arcP
+Pt0 f206 outLink CaseListPageInTeams.ivp #txt
+Pt0 f206 inParamDecl '<> param;' #txt
+Pt0 f206 requestEnabled true #txt
+Pt0 f206 triggerEnabled false #txt
+Pt0 f206 callSignature CaseListPageInTeams() #txt
+Pt0 f206 caseData businessCase.attach=true #txt
+Pt0 f206 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>CaseListPageInTeams.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f206 @C|.responsibility Everybody #txt
+Pt0 f206 81 433 30 30 -43 18 #rect
+Pt0 f207 actionTable 'out=in;
+' #txt
+Pt0 f207 actionCode 'import ch.addon.portal.generic.userprofile.homepage.HomepageType;
+import ch.ivy.addon.portalkit.enums.SessionAttribute;
+import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
+SecurityServiceUtils.setSessionAttribute(SessionAttribute.PORTAL_IN_TEAMS.toString(), true);
+SecurityServiceUtils.setSessionAttribute(SessionAttribute.DEFAULT_PAGE_IN_TEAMS.toString(), HomepageType.CASE.toString());' #txt
+Pt0 f207 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Init Teams attrs</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f207 168 426 112 44 -42 -8 #rect
+Pt0 f208 111 448 168 448 #arcP
+Pt0 f208 0 0.6937327756354965 0 0 #arcLabel
+Pt0 f209 208 497 32 32 0 16 #rect
+Pt0 f210 expr out #txt
+Pt0 f210 111 513 208 513 #arcP
+Pt0 f24 color default #txt
+Pt0 f24 240 513 296 513 #arcP
+Pt0 f211 224 470 224 497 #arcP
+Pt0 f212 208 624 32 32 0 16 #rect
+Pt0 f213 expr out #txt
+Pt0 f213 111 640 208 640 #arcP
+Pt0 f15 color default #txt
+Pt0 f15 240 640 296 640 #arcP
+Pt0 f214 actionTable 'out=in;
+' #txt
+Pt0 f214 actionCode 'import ch.addon.portal.generic.userprofile.homepage.HomepageType;
+import ch.ivy.addon.portalkit.enums.SessionAttribute;
+import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
+SecurityServiceUtils.setSessionAttribute(SessionAttribute.PORTAL_IN_TEAMS.toString(), true);
+SecurityServiceUtils.setSessionAttribute(SessionAttribute.DEFAULT_PAGE_IN_TEAMS.toString(), HomepageType.TASK.toString());' #txt
+Pt0 f214 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Init Teams attrs</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f214 168 554 112 44 -42 -8 #rect
+Pt0 f215 outLink DefaultTaskListPageInTeams.ivp #txt
+Pt0 f215 inParamDecl '<> param;' #txt
+Pt0 f215 requestEnabled true #txt
+Pt0 f215 triggerEnabled false #txt
+Pt0 f215 callSignature DefaultTaskListPageInTeams() #txt
+Pt0 f215 caseData businessCase.attach=true #txt
+Pt0 f215 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>DefaultTaskListPageInTeams.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f215 @C|.responsibility Everybody #txt
+Pt0 f215 81 561 30 30 -51 19 #rect
+Pt0 f216 111 576 168 576 #arcP
+Pt0 f216 0 0.6937327756354965 0 0 #arcLabel
+Pt0 f217 224 598 224 624 #arcP
+Pt0 f218 208 1264 32 32 0 16 #rect
+Pt0 f219 111 1280 208 1280 #arcP
+Pt0 f79 color default #txt
+Pt0 f79 240 1280 296 1280 #arcP
+Pt0 f220 outLink DefaultProcessStartListPageInTeams.ivp #txt
+Pt0 f220 inParamDecl '<> param;' #txt
+Pt0 f220 requestEnabled true #txt
+Pt0 f220 triggerEnabled false #txt
+Pt0 f220 callSignature DefaultProcessStartListPageInTeams() #txt
+Pt0 f220 caseData businessCase.attach=true #txt
+Pt0 f220 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>DefaultProcessStartListPageInTeams.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f220 @C|.responsibility Everybody #txt
+Pt0 f220 81 1201 30 30 -60 17 #rect
+Pt0 f221 actionTable 'out=in;
+' #txt
+Pt0 f221 actionCode 'import ch.addon.portal.generic.userprofile.homepage.HomepageType;
+import ch.ivy.addon.portalkit.enums.SessionAttribute;
+import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
+SecurityServiceUtils.setSessionAttribute(SessionAttribute.PORTAL_IN_TEAMS.toString(), true);
+SecurityServiceUtils.setSessionAttribute(SessionAttribute.DEFAULT_PAGE_IN_TEAMS.toString(), HomepageType.PROCESS.toString());' #txt
+Pt0 f221 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Init Teams attrs</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f221 168 1194 112 44 -42 -8 #rect
+Pt0 f222 111 1216 168 1216 #arcP
+Pt0 f222 0 0.6937327756354965 0 0 #arcLabel
+Pt0 f223 224 1238 224 1264 #arcP
+>Proto Pt0 .colors 'default=;
+' #txt
 >Proto Pt0 .type ch.ivy.addon.portal.generic.PortalStartData #txt
 >Proto Pt0 .processKind NORMAL #txt
 >Proto Pt0 0 0 32 24 18 0 #rect
@@ -2821,9 +2993,7 @@ Pt0 f2 head f1 in #connect
 Pt0 f9 mainOut f16 tail #connect
 Pt0 f16 head f0 in #connect
 Pt0 f17 head f64 mainIn #connect
-Pt0 f63 mainOut f15 tail #connect
 Pt0 f25 head f57 mainIn #connect
-Pt0 f58 mainOut f24 tail #connect
 Pt0 f27 head f105 mainIn #connect
 Pt0 f103 mainOut f26 tail #connect
 Pt0 f5 out f20 tail #connect
@@ -2844,8 +3014,6 @@ Pt0 f62 mainOut f66 tail #connect
 Pt0 f66 head f65 mainIn #connect
 Pt0 f68 mainOut f69 tail #connect
 Pt0 f69 head f67 mainIn #connect
-Pt0 f76 mainOut f79 tail #connect
-Pt0 f79 head f71 mainIn #connect
 Pt0 f72 mainOut f77 tail #connect
 Pt0 f77 head f74 mainIn #connect
 Pt0 f73 mainOut f78 tail #connect
@@ -2928,17 +3096,13 @@ Pt0 f21 out f49 tail #connect
 Pt0 f21 out f140 tail #connect
 Pt0 f120 mainOut f43 tail #connect
 Pt0 f43 head f137 mainIn #connect
-Pt0 f28 mainOut f47 tail #connect
-Pt0 f47 head f137 mainIn #connect
 Pt0 f139 mainOut f23 tail #connect
 Pt0 f23 head f22 in #connect
 Pt0 f137 mainOut f129 tail #connect
 Pt0 f129 head f21 in #connect
 Pt0 f92 head S60 g0 #connect
 Pt0 f18 head S10 g0 #connect
-Pt0 f24 head S30 g0 #connect
 Pt0 S30 g1 f25 tail #connect
-Pt0 f15 head S20 g0 #connect
 Pt0 S20 g1 f17 tail #connect
 Pt0 f26 head S40 g0 #connect
 Pt0 S40 g1 f27 tail #connect
@@ -3000,6 +3164,38 @@ Pt0 f188 mainOut f198 tail #connect
 Pt0 f198 head f193 mainIn #connect
 Pt0 f193 mainOut f199 tail #connect
 Pt0 f199 head f195 mainIn #connect
+Pt0 f200 mainOut f202 tail #connect
+Pt0 f202 head f201 mainIn #connect
+Pt0 f28 mainOut f204 tail #connect
+Pt0 f204 head f203 in #connect
+Pt0 f203 out f47 tail #connect
+Pt0 f47 head f137 mainIn #connect
+Pt0 f201 mainOut f205 tail #connect
+Pt0 f205 head f203 in #connect
+Pt0 f206 mainOut f208 tail #connect
+Pt0 f208 head f207 mainIn #connect
+Pt0 f58 mainOut f210 tail #connect
+Pt0 f210 head f209 in #connect
+Pt0 f209 out f24 tail #connect
+Pt0 f24 head S30 g0 #connect
+Pt0 f207 mainOut f211 tail #connect
+Pt0 f211 head f209 in #connect
+Pt0 f63 mainOut f213 tail #connect
+Pt0 f213 head f212 in #connect
+Pt0 f212 out f15 tail #connect
+Pt0 f15 head S20 g0 #connect
+Pt0 f215 mainOut f216 tail #connect
+Pt0 f216 head f214 mainIn #connect
+Pt0 f214 mainOut f217 tail #connect
+Pt0 f217 head f212 in #connect
+Pt0 f76 mainOut f219 tail #connect
+Pt0 f219 head f218 in #connect
+Pt0 f218 out f79 tail #connect
+Pt0 f79 head f71 mainIn #connect
+Pt0 f220 mainOut f222 tail #connect
+Pt0 f222 head f221 mainIn #connect
+Pt0 f221 mainOut f223 tail #connect
+Pt0 f223 head f218 in #connect
 Bk7 f3 ao f8 tail #connect
 Bk7 f8 head f36 @CG|ai #connect
 Bk7 f22 mainOut f43 tail #connect
