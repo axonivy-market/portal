@@ -1603,15 +1603,18 @@ body .ui-tabs.search-results-tabview .ui-tabs-panel {
   width: 40%;
 }
 
-.has-breadcrumb .filter-container .widget-title-mobile {
+.has-breadcrumb .filter-container .widget-title-mobile,
+.ms-teams-layout .filter-container .widget-title-mobile {
   display: none;
 }
 
-.has-breadcrumb .task-detail-container, .has-breadcrumb .case-detail-header-container {
+.has-breadcrumb .task-detail-container, .has-breadcrumb .case-detail-header-container,
+.ms-teams-layout .task-detail-container, .ms-teams-layout .case-detail-header-container {
   width: 50%;
 }
 
-.has-breadcrumb .switch-and-reset-buttons-area {
+.has-breadcrumb .switch-and-reset-buttons-area,
+.ms-teams-layout .switch-and-reset-buttons-area {
   width: 50%;
 }
 
@@ -4466,7 +4469,8 @@ body .ui-widget-content.filter-name-overlay-panel {
 }
 
 @media (max-width: 991px) {
-  .has-breadcrumb .text-filter {
+  .has-breadcrumb .text-filter,
+  .ms-teams-layout .text-filter {
     width: 100% !important;
   }
   .text-filter {
@@ -4989,7 +4993,8 @@ _:-ms-fullscreen, :root .content-link-history {
   display: block;
 }
 
-.has-breadcrumb .task-detail-header .task-name {
+.has-breadcrumb .task-detail-header .task-name,
+.ms-teams-layout .task-detail-header .task-name {
   display: none;
 }
 
