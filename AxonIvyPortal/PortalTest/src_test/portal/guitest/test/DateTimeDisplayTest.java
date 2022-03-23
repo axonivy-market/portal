@@ -2,7 +2,7 @@ package portal.guitest.test;
 
 import java.util.regex.Pattern;
 
-import org.junit.Assert;
+import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
 

@@ -6,7 +6,7 @@ import static portal.guitest.common.FileHelper.getAbsolutePathToTestFile;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
-import org.junit.Assert;
+import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;

@@ -1,6 +1,6 @@
 package portal.guitest.test;
 
-import org.junit.Assert;
+import junit.framework.Assert;
 import org.junit.Test;
 
 import portal.guitest.common.BaseTest;

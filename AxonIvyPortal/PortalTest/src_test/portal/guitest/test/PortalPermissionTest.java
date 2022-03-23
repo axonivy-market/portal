@@ -1,7 +1,7 @@
 package portal.guitest.test;
 
 import org.junit.After;
-import org.junit.Assert;
+import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
