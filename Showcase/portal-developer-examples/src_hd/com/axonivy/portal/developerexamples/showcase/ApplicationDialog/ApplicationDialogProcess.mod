@@ -1,9 +1,11 @@
 [Ivy]
-169C767D49174098 9.4.0 #module
+169C767D49174098 9.4.1 #module
 >Proto >Proto Collection #zClass
 As0 ApplicationDialogProcess Big #zClass
 As0 RD #cInfo
 As0 #process
+As0 @TextInP .colors .colors #zField
+As0 @TextInP color color #zField
 As0 @TextInP .type .type #zField
 As0 @TextInP .processKind .processKind #zField
 As0 @AnnotationInP-0n ai ai #zField
@@ -177,7 +179,7 @@ import ch.ivyteam.io.FileUtil;
 
 GdprFile gdprFile = new GdprFile();
 File iFile = new File(out.uploadEvent.getFile().getFileName(), true);
-iFile.writeBinary(out.uploadEvent.getFile().getContents());
+iFile.writeBinary(out.uploadEvent.getFile().getContent());
 iFile.createNewFile();
 
 gdprFile.file = iFile;
@@ -217,7 +219,8 @@ As0 f20 expr out #txt
 As0 f20 344 296 467 296 #arcP
 As0 f12 actionTable 'out=in;
 ' #txt
-As0 f12 actionCode 'import java.io.InputStream;
+As0 f12 actionCode 'import com.axonivy.portal.developerexamples.util.FileUtils;
+import java.io.InputStream;
 import org.primefaces.model.DefaultStreamedContent;
 import java.io.FileInputStream;
 import javax.faces.context.FacesContext;
@@ -228,9 +231,9 @@ ServletContext servletContext = FacesContext.getCurrentInstance().getExternalCon
 try {
 		
 	if(in.#selectedGdprFile != null){ 
-	   	FileInputStream stream = new FileInputStream(in.selectedGdprFile.getFile().getJavaFile().getAbsolutePath());
+   	FileInputStream stream = new FileInputStream(in.selectedGdprFile.getFile().getJavaFile().getAbsolutePath());
 	 	String contentType = servletContext.getMimeType("");
-	  	 in.streamedContent = new DefaultStreamedContent(stream, contentType, in.selectedGdprFile.getFile().getJavaFile().getName());
+		in.streamedContent = FileUtils.getStreamContent(contentType, stream, in.selectedGdprFile.getFile().getJavaFile().getName());
 	}else{
 		ivy.log.error("File is null");
 	}
