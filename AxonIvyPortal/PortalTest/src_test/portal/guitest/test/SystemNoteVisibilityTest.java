@@ -120,7 +120,7 @@ public class SystemNoteVisibilityTest extends BaseTest {
     
     taskNoteHistoryPage = openTaskNoteHistory(taskId);
     taskNoteAuthors = taskNoteHistoryPage.getNoteAuthors();
-    Assert.assertTrue(taskNoteAuthors.contains(SYSTEM_USER_NAME));
+    junit.framework.Assert.assertTrue(taskNoteAuthors.contains(SYSTEM_USER_NAME));
   }
 
   private TaskDetailsPage openTaskDetails() {
