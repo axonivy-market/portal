@@ -4,7 +4,7 @@ import static junit.framework.Assert.assertEquals;
 
 import java.util.Arrays;
 
-import org.junit.Assert;
+import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
 

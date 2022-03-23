@@ -2,7 +2,7 @@ package portal.guitest.test;
 
 import java.util.List;
 
-import org.junit.Assert;
+import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -120,7 +120,7 @@ public class SystemNoteVisibilityTest extends BaseTest {
     
     taskNoteHistoryPage = openTaskNoteHistory(taskId);
     taskNoteAuthors = taskNoteHistoryPage.getNoteAuthors();
-    junit.framework.Assert.assertTrue(taskNoteAuthors.contains(SYSTEM_USER_NAME));
+    Assert.assertTrue(taskNoteAuthors.contains(SYSTEM_USER_NAME));
   }
 
   private TaskDetailsPage openTaskDetails() {
