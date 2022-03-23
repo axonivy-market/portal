@@ -21,7 +21,7 @@
         </p:columnToggler>
       </h:panelGroup>
       <p:dataTable id="task-table" widgetVar="task-table" var="task" value="#{data.dataModel}" rowKey="#{task.getId()}" sortMode="single" lazy="true" scrollable="true"
-        liveScroll="true" scrollRows="20" styleClass="task-table" rows="#{cc.attrs.chunkSize}" emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}" >
+        liveScroll="true" scrollRows="20" styleClass="task-table" sortBy="#{taskAnalysisWidgetBean.sortBy}" rows="#{cc.attrs.chunkSize}" emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}" >
         <p:ajax event="sort" update="task-table" onstart="liveScroll()" />
         <p:column id="case-name" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/caseName')}" sortable="false" width="200"
           visible="#{taskAnalysisWidgetBean.columns['CASE_NAME']}" exportable="#{taskAnalysisWidgetBean.columns['CASE_NAME']}">
