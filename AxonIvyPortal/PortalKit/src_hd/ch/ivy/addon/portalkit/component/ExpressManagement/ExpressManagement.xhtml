@@ -115,7 +115,7 @@
             label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}"
             uploadLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/deployButton')}" uploadIcon="#{visibilityBean.generateButtonIcon('si si-cog-play')}"
             cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" cancelIcon="#{visibilityBean.generateButtonIcon('si si-delete-1')}"
-            fileUploadListener="#{expressManagementBean.importExpress}"
+            listener="#{expressManagementBean.importExpress}"
             value="#{expressManagementBean.importExpressFile}" fileLimit="1"
             onstart="showLoadingIndicator(); cleanExportMessage(); PF('close-import-express').disable();"
             oncomplete="hideLoadingIndicator(); PF('import-express-dialog').initPosition(); refreshExpressTable(); PF('close-import-express').enable();"
