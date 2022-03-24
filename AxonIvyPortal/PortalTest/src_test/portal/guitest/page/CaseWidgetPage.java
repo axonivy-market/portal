@@ -181,6 +181,7 @@ public class CaseWidgetPage extends TemplatePage {
 	@SuppressWarnings("deprecation")
   public void openAdvancedFilter(String filterName, String filterIdName) {
 		click(By.id(caseWidgetId + ":filter-add-action"));
+		waitForElementDisplayed(By.cssSelector(".filter-add-panel.ui-connected-overlay-enter-done"), true);
 		WebElement filterSelectionElement = findElementById(caseWidgetId + ":filter-add-form:filter-selection");
 
 		System.out.println(filterSelectionElement.getTagName());
