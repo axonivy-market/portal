@@ -87,7 +87,7 @@
       <h:panelGroup layout="block" rendered="#{cc.attrs.typeColumnRendered or cc.attrs.uploadRendered}" styleClass="upload-container ui-g-12">
         <p:fileUpload id="document-upload" mode="advanced" auto="true" dragDropSupport="true"
           chooseIcon="#{cc.attrs.renderChooseUploadIcon? 'si si-add-small' : '' }"
-          fileUploadListener="#{logic.upload}"
+          listener="#{logic.upload}"
           rendered="#{cc.attrs.uploadRendered}"
           update="document-table document-messages #{cc.attrs.updatedComponentAfterUploaded}"
           invalidSizeMessage="#{masterDataBean.getFileUploadInvalidSizeMessage()}" 
