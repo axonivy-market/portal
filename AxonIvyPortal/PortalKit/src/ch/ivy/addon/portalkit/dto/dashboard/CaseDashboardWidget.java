@@ -70,7 +70,7 @@ public class CaseDashboardWidget extends DashboardWidget {
   @JsonIgnore
   public SortMeta getSortBy() {
     String sortField = getSortField();
-    return sortField != null ? SortFieldUtil.buildSortMeta(sortField, isSortDescending()) : null;
+    return sortField != null ? SortFieldUtil.buildSortMeta(sortField.toLowerCase(), isSortDescending()) : null;
   }
 
   public String getSortField() {
