@@ -41,11 +41,11 @@
       <p:fieldset id="selected-assignee-fieldset" styleClass="selected-assignee-panel"
         legend="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/ChooseAssignee/SelectedAssigneesFieldSet')}">
         <ui:repeat var="assignee" value="#{data.selectedAssigneeList}">
-          <p:panelGrid id="selected-assignee-panel" styleClass="assignee-selection" columns="3">
-            <p:column styleClass="assignee-type-col">
+          <p:panelGrid id="selected-assignee-panel" styleClass="assignee-selection" columns="3" columnClasses="assignee-type-col,assignee-name-col">
+            <p:column>
               <h:outputText id="assign-type-icon" class="si #{assignee.isUser() ? 'si-single-neutral-actions' : 'si-multiple-neutral-1'} " />
             </p:column>
-            <p:column styleClass="assignee-name-col">
+            <p:column>
               <h:outputText value="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(assignee, assignee.getName())}" />
             </p:column>
             <p:column>
