@@ -1085,7 +1085,7 @@ body .dashboard__table--preview.ui-datatable tbody tr.ui-state-hover {
   display: inline;
 }
 
-.ui-link.collapse-link {
+.ui-widget.ui-link.collapse-link {
   display: none;
 }
 
@@ -1093,7 +1093,7 @@ body .dashboard__table--preview.ui-datatable tbody tr.ui-state-hover {
   display: none;
 }
 
-.expand-fullscreen .ui-link.collapse-link {
+.expand-fullscreen .ui-widget.ui-link.collapse-link {
   display: inline;
 }
 
@@ -1101,7 +1101,7 @@ body .dashboard__table--preview.ui-datatable tbody tr.ui-state-hover {
   height: 100%;
 }
 
-.ui-link.expanded-link {
+.ui-widget.ui-link.expanded-link {
   display: none;
 }
 
@@ -1110,8 +1110,8 @@ body .dashboard__table--preview.ui-datatable tbody tr.ui-state-hover {
   display: none;
 }
 
-.expand-fullscreen .widget__filter-sidebar-link.ui-link.expanded-link,
-.expand-fullscreen .widget__info-sidebar-link.ui-link.expanded-link {
+.expand-fullscreen .widget__filter-sidebar-link.ui-widget.ui-link.expanded-link,
+.expand-fullscreen .widget__info-sidebar-link.ui-widget.ui-link.expanded-link {
   display: inline;
 }
 
