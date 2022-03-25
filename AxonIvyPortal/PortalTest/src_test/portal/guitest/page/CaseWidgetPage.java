@@ -179,9 +179,10 @@ public class CaseWidgetPage extends TemplatePage {
 	}
 
 	@SuppressWarnings("deprecation")
-  public void openAdvancedFilter(String filterName, String filterIdName) {
+	public void openAdvancedFilter(String filterName, String filterIdName) {
 		click(By.id(caseWidgetId + ":filter-add-action"));
 		waitForElementDisplayed(By.cssSelector(".filter-add-panel.ui-connected-overlay-enter-done"), true);
+		waitForElementDisplayed(By.cssSelector("[id$='" + caseWidgetId + ":filter-add-form:filter-selection']"), true);
 		WebElement filterSelectionElement = findElementById(caseWidgetId + ":filter-add-form:filter-selection");
 
 		System.out.println(filterSelectionElement.getTagName());
@@ -331,7 +332,7 @@ public class CaseWidgetPage extends TemplatePage {
 	@SuppressWarnings("deprecation")
   public void applyCategoryFilter() {
 		click(By.cssSelector("button[id$='case-category-filter:filter-input-form:update-command']"));
-		waitAjaxIndicatorDisappear();
+		waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
 	}
 
 	@SuppressWarnings("deprecation")
