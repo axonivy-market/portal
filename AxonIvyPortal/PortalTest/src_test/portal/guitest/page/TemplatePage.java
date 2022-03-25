@@ -296,7 +296,6 @@ public abstract class TemplatePage extends AbstractPage {
   }
 
   public boolean isMainMenuOpen() {
-    waitForElementDisplayed(By.cssSelector(".layout-wrapper"), true);
     WebElement mainMenu = findDisplayedElementByCssSelector(".layout-wrapper");
     return mainMenu.getAttribute(CLASS_PROPERTY).indexOf("static") > 0;
   }
