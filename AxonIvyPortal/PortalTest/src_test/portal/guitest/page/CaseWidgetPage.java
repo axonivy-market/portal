@@ -329,11 +329,10 @@ public class CaseWidgetPage extends TemplatePage {
 		}
 	}
 
-	@SuppressWarnings("deprecation")
   public void applyCategoryFilter() {
-		click(By.cssSelector("button[id$='case-category-filter:filter-input-form:update-command']"));
-		waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
-	}
+    click(By.cssSelector("button[id$='case-category-filter:filter-input-form:update-command']"));
+    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
+  }
 
 	@SuppressWarnings("deprecation")
   public void filterByCreator(String text) {
