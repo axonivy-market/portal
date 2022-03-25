@@ -296,6 +296,7 @@ public abstract class TemplatePage extends AbstractPage {
   }
 
   public boolean isMainMenuOpen() {
+    waitForElementDisplayed(By.cssSelector(".layout-wrapper"), true);
     WebElement mainMenu = findDisplayedElementByCssSelector(".layout-wrapper");
     return mainMenu.getAttribute(CLASS_PROPERTY).indexOf("static") > 0;
   }
@@ -309,7 +310,7 @@ public abstract class TemplatePage extends AbstractPage {
   }
 
   public String getGlobalGrowlMessage() {
-    return findElementById(PORTAL_GLOBAL_GROWL_ID).getText();
+    return findElementById(PORTAL_GLOBAL_GROWL_ID).findElement(By.cssSelector(".ui-growl-message")).getText();
   }
   
   public void waitForGrowlMessageDisplayClearly() {
