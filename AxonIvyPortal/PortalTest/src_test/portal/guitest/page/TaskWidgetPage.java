@@ -771,6 +771,7 @@ public class TaskWidgetPage extends TemplatePage {
 
   public void openCategoryFilter() {
     click(By.cssSelector("button[id$='task-category-filter:filter-open-form:advanced-filter-command']"));
+    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
   }
 
   public void toggleNoCategory() {
