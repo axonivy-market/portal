@@ -11,7 +11,7 @@
 </cc:interface>
 <cc:implementation>
   <f:event listener="#{iconSelectionBean.init(cc.attrs.value)}" type="preRenderComponent" />
-  <h:outputStylesheet name="css/streamlineicons.css" library="serenity-layout" />
+  <h:outputStylesheet name="css/StreamlineIcons.css" library="serenity-layout" />
 
   <h:panelGroup id="awesome-icon-selection" styleClass="awesome-icon-selection-panel">
     <h:outputText id="awesome-icon-display" styleClass="#{iconSelectionBean.iconPattern} #{cc.attrs.value} u-vertical-align-center" />
@@ -60,7 +60,7 @@
     }
     
     function loadStreamlineIcon(){
-      var iconsStylesheet = Object.values(document.styleSheets).filter(sheet => sheet.href?.includes("streamlineicons.css"))[0];
+      var iconsStylesheet = Object.values(document.styleSheets).filter(sheet => sheet.href?.includes("StreamlineIcons.css"))[0];
       var icons = Object.values(iconsStylesheet.rules).filter(rule => rule.selectorText?.startsWith(".si-"));
       icons.sort((a, b) => (a.selectorText > b.selectorText) ? 1 : -1);
     
