@@ -421,6 +421,8 @@ public class TaskWidgetPage extends TemplatePage {
 
   public void openStateFilter() {
     click(By.cssSelector("button[id$='state-filter:filter-open-form:advanced-filter-command']"));
+    waitForElementDisplayed(By.cssSelector("[id$='state-filter:filter-input-form:state-selection']"),
+            true);
   }
 
   public void filterByDescription(String text) {
@@ -548,6 +550,7 @@ public class TaskWidgetPage extends TemplatePage {
         .findElements(By.cssSelector("table[id$=':filter-input-form:state-selection'] div.ui-chkbox-box.ui-state-default"));
     statesSelectedIndex.forEach(index -> {
       checkBoxList.get(index).click();
+      waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
     });
 
     click(By.cssSelector("button[id$='state-filter:filter-input-form:update-command']"));
