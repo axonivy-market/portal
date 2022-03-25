@@ -101,8 +101,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       INFORMATION: Information
       OTHERS: Andere Dateiformate
     BehaviourWhenClickingOnLineInTaskList:
-      ACCESS_TASK_DETAILS: TODO Access task details
-      RUN_TASK: TODO Run the task
+      ACCESS_TASK_DETAILS: Auf Aufgabendetails zugreifen
+      RUN_TASK: Ausführen der Aufgabe
     DashboardCustomWidgetType:
       EXTERNAL_URL: Externe URL
       PROCESS: Axon Ivy Prozess
@@ -201,7 +201,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     embedInFrame: Prozess/Task in Iframes Modus starten
     emptySupportedLanguages: Es werden keine weiteren Sprachen unterstützt
     globalVariableNote:
-      behaviourWhenClickingOnLineInTaskList: TODO For switch behaviours (run the task or access task details) when clicking on a line in task list, task widget of dashboard and related tasks  in case details page.
+      behaviourWhenClickingOnLineInTaskList: Zum Umschalten des Verhaltens (Ausführen der Aufgabe oder Aufrufen der Aufgabendetails) beim Klicken auf eine Zeile in der Aufgabenliste, im Aufgaben-Widget des Dashboards und bei verwandten Aufgaben auf der Seite mit den Vorgangsdetails.
       chatMaxConnection: 'Die gesetzte Nummer steuert die Anzahl der erlaubten Tabs mit aktiven Chat. Falls mehr Tabs geöffnet werden, wird der Chat in inaktive Tabs deaktiviert. Erlaubte Werte zw. 1-5 '
       chatResponseTimeout: Chat-Antwort-Time-out in Sekunden, Standardwert ist 0 und bedeutet kein Time-out. Wenn Chat-Nachrichten durch den Reverse-Proxy Nginx gehen, muss das Chat-Antwort-Time-out kleiner sein als das Nginx-Time-out, z. B. kleiner als 60 Sekunden.
       clientSideTimeoutNote: Cientseitiges Time-out in Minuten, muss größer als 0 und kleiner als das serverseitige Time-out sein (z. B. 25 Sekunden). Der Standardwert ist 0, d. h., das standardmäßige clientseitige Time-out wird angewendet. Das standardmäßige clientseitige Time-out ist das serverseitige
@@ -490,7 +490,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     pleaseAddDocument: Verwenden Sie bitte den Link oben, um Dokumente hochzuladen
     pleaseAddNote: Verwenden Sie bitte den Link oben, um Notizen hochzuladen
     previousStage: Vorherige Stufe
-    private: TODO Private
+    private: Privat
     process: Prozess
     processes: Prozesse
     public: Öffentlich
@@ -518,7 +518,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     selectedDay: '{0} ausgewählte Tag(e)'
     send: Senden
     sessionExpried: Ihre Session ist abgelaufen. Die Anwendung wird neu gestartet.
-    sessionExpriedInTeams: TODO Your session expired. Please reload the tab to login again.
+    sessionExpriedInTeams: Ihre Session ist abgelaufen. Die Anwendung wird neu gestartet.
     setting: Einstellungen
     showDetail: Details anzeigen
     showSystemNotes: Systemnachrichten anzeigen
@@ -630,7 +630,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskStart:
       cannotDelegateTaskMessage: Diese Aufgabe kann an keinen anderen Benutzer oder keine andere Gruppe delegiert werden.
       cannotStartMessages:
-        cannotStartTask: TODO You can not start task {0}.
+        cannotStartTask: "Sie können Aufgabe {0} nicht starten.\r\nSie können Aufgabe {0} nicht starten."
         isAnotherUserWorking: Sie können nicht an der Aufgabe ''{0}'' mit der Identifikation ''{1}'' arbeiten, weil Benutzer ''{2}'' momentan daran arbeitet.
         noPermission: Sie können die Aufgabe {0} nicht starten, weil Ihnen die Berechtigung fehlt.
         taskDone: |+
@@ -657,15 +657,15 @@ ch.ivy.addon.portalkit.ui.jsf:
       savedFilters: 'Gespeicherte Filter:'
   dashboard:
     DashboardConfigurationDialog:
-      ConfigureDashboard: TODO Dashboard configuration
+      ConfigureDashboard: Dashboard-Konfiguration
       CreateNewPrivateDashboard: Create new private dashboard
-      CreateNewPublicDashboard: TODO Create new public dashboard
-      EditPrivateDashboards: TODO Edit your private dashboards
-      EditPublicDashboards: TODO Edit public dashboards
-      PrivateDashboardConfiguration: TODO Private dashboard configuration
-      PublicDashboardConfiguration: TODO Public dashboard configuration
-      ReorderPrivateDashboards: TODO Reorder your dashboards
-      ReorderPublicDashboards: TODO Reorder public dashboards
+      CreateNewPublicDashboard: Neues öffentliches Dashboard erstellen
+      EditPrivateDashboards: Private Dashboards bearbeiten
+      EditPublicDashboards: Öffentliche Dashboards bearbeiten
+      PrivateDashboardConfiguration: Private Dashboard-Konfiguration
+      PublicDashboardConfiguration: Öffentliche Dashboard-Konfiguration
+      ReorderPrivateDashboards: Réorganiser vos tableaux de bord
+      ReorderPublicDashboards: Öffentliche Dashboards neu anordnen
     EmptyFilterMessage: Kein Widget-Filter gefunden
     Filter:
       FilterOptionHeader: Filter-Optionen
@@ -720,7 +720,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       editDashboard: Dashboard editieren
       manageDashboard: Dashboard verwalten
       removeDashboardHeader: Dashboard "{0}" entfernen
-      reorderDashboard: TODO Reorder dashboard
+      reorderDashboard: Dashboard neu anordnen
     deleteWidget: Widget löschen
     editPrivateDashboard: Privates Dashboard editieren
     editPublicDashboard: Öffentliches Dashboard editieren
@@ -749,9 +749,9 @@ ch.ivy.addon.portalkit.ui.jsf:
     removeWidgetHeader: Widget "{0}" löschen
     removeWidgetMessage: Möchten Sie es wirklich löschen?
     reorder:
-      dashboardType: TODO Dashboard type
-      reorderMyDashboard: TODO Reorder my dashboard
-      reorderPublicDashboard: TODO Reorder public dashboard
+      dashboardType: Dashboard-Typ
+      reorderMyDashboard: Mein Dashboard neu anordnen
+      reorderPublicDashboard: Öffentliches Dashboard neu anordnen
     restoreDefaultHeader: Auf Standard zurücksetzen
     restoreDefaultMessage: Wenn Sie fortfahren, verlieren Sie alle von Ihnen erstellten Widgets. Es werden die Standardeinstellungen übernommen.
     select: Wählen Sie
