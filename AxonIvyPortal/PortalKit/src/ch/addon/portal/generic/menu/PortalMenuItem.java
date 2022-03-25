@@ -21,6 +21,10 @@ public class PortalMenuItem extends DefaultMenuItem {
   public final static String TASK_ID = "taskId";
   public final static String WORKING_ON_TASK = "isWorkingOnATask";
   /* Menu id format */
+  public final static String MENU_ID_FORMAT = "menu-item-%s";
+  public final static String SUB_MENU_ID_FORMAT = "sub-menu-item-%s";
+  public final static String THIRD_PARTY_MENU_ID_FORMAT = "thirdparty-menu-item-%s";
+  public final static String EXTERNAL_MENU_ID_FORMAT = "external-menu-item-%s";
   public final static String MENU_CLASS_FORMAT = "%s %s";
   public final static String MENU_CLASS_SUFFIX = "-menu-js";
   
@@ -43,9 +47,9 @@ public class PortalMenuItem extends DefaultMenuItem {
     this.setValue(builder.name);
     this.setIcon(builder.icon);
     this.setIconPos(DEFAULT_ICON_POSITION);
-
+    String containerClassMenuId = isNull(builder.id) ? generateMenuId(builder.menuKind) : builder.id;
     this.setStyleClass(String.format(MENU_CLASS_FORMAT, StringUtils.defaultIfEmpty(builder.styleClass, EMPTY), builder.menuKind.name()));
-    this.setContainerStyleClass(String.format(MENU_CLASS_FORMAT, StringUtils.defaultIfEmpty(builder.containerStyleClass, EMPTY), this.getId()));
+    this.setContainerStyleClass(String.format(MENU_CLASS_FORMAT, StringUtils.defaultIfEmpty(builder.containerStyleClass, EMPTY), containerClassMenuId));
     this.setUpdate(isNull(builder.update) ? DEFAULT_MENU_PROCESS : builder.update);
     this.setProcess(isNull(builder.process) ? DEFAULT_MENU_PROCESS : builder.process);
     this.setCommand(isNull(builder.commandMethod) ? DEFAULT_MENU_COMMAND_METHOD : builder.commandMethod);
@@ -94,7 +98,33 @@ public class PortalMenuItem extends DefaultMenuItem {
     }
   }
 
+  private String generateMenuId(MenuKind menuKind) {
+    String menuFormat = "%s";
+    switch (menuKind) {
+      case DASHBOARD:
+        menuFormat = MENU_ID_FORMAT;
+        break;
+      case PROCESS:
+      case TASK:
+      case CASE:
+      case STATISTICS:
+      case CUSTOM:
+        menuFormat = SUB_MENU_ID_FORMAT;
+        break;
+      case EXTERNAL_LINK:
+        menuFormat = EXTERNAL_MENU_ID_FORMAT;
+        break;
+      case THIRD_PARTY:
+        menuFormat = THIRD_PARTY_MENU_ID_FORMAT;
+        break;
+      default:
+        break;
+    }
+    return String.format(menuFormat, menuKind);
+  }
+
   public static class PortalMenuBuilder {
+    private String id;
     private String name;
     private MenuKind menuKind;
     private String icon;
