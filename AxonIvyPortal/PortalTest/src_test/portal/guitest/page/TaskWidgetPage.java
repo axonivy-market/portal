@@ -380,6 +380,9 @@ public class TaskWidgetPage extends TemplatePage {
   @SuppressWarnings("deprecation")
   public void openAdvancedFilter(String filterName, String filterIdName) {
     click(By.cssSelector("[id$='filter-add-action']"));
+    waitForElementDisplayed(
+            By.cssSelector("[id$='" + taskWidgetId + ":filter-add-form:filter-selection']"),
+            true);
     WebElement filterSelectionElement = findElementById(taskWidgetId + ":filter-add-form:filter-selection");
     List<WebElement> elements = findChildElementsByTagName(filterSelectionElement, "LABEL");
     for (WebElement element : elements) {
