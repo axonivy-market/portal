@@ -317,6 +317,7 @@ public class CaseWidgetPage extends TemplatePage {
 
 	public void openCategoryFilter() {
 		click(By.cssSelector("button[id$='case-category-filter:filter-open-form:advanced-filter-command']"));
+		waitForElementDisplayed(By.cssSelector(".advanced-filter-panel.ui-connected-overlay-enter-done"), true);
 	}
 
 	public void toggleNoCategory() {
