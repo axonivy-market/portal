@@ -142,7 +142,7 @@ function elapsedTimeChartExtender() {
   let options = jQuery.extend(true, {}, this.cfg.config.options);
   options = {
     scales : {
-      xAxes : [{
+      xAxes : {
         ticks : {
           maxTicksLimit: 5,
           callback : function(value) {
@@ -153,8 +153,8 @@ function elapsedTimeChartExtender() {
             }
           },
         }
-      }],
-      yAxes : [{}]
+      },
+      yAxes : {}
     },
     tooltips: {
       enabled: true,
