@@ -40,7 +40,6 @@ public class DashboardScreenshotTest extends ScreenshotTest {
     redirectToRelativeLink(createTestingTasksUrl);
     redirectToRelativeLink(createTestingTasksUrl);
     redirectToRelativeLink(createUserFavoriteProcess);
-    refreshPage();
     homePage = new HomePage();
     homePage.waitForStatisticRendered();
   }
