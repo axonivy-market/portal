@@ -4,8 +4,7 @@
   xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:fn="http://java.sun.com/jsp/jstl/functions">
 
 <h:outputScript name="chart-carousel.js" library="js" rendered="#{cc.attrs.compactMode}"/>
-
-<p:carousel id="statistic-carousel" circular="true"
+<p:carousel id="statistic-carousel" circular="true" headerText="" 
   styleClass="statistic-carousel js-statistic-carousel #{data.statisticChartList.size() > 1 ? 'many-statistics':''} #{data.statisticChartList.isEmpty() ? '':'card'}"
   numVisible="1" value="#{data.statisticChartList}" var="chart" binding="#{carouselStatistic}" itemStyleClass="statistic-carousel-item js-statistic-carousel-item"
   rendered="#{!cc.attrs.isDrilldownElapsedTime}" widgetVar="carouselChart" pageLinks="0" responsive="true">
@@ -17,8 +16,7 @@
         <p:commandLink styleClass="si si-information-circle chart-info portal-icon" actionListener="#{logic.selectChart(chart)}" update="#{p:resolveFirstComponentWithId('chart-details-dialog', view).clientId}"
           oncomplete="PF('chart-details-dialog').show();" rendered="#{data.hasStatistic}" />
       </h:panelGroup>
-
-      <!-- COMMENT OUT - ERROR WHEN MIGRATE TO 11 <h:outputText id="carousel-effect-duration" value="#{carouselStatistic.effectDuration}" /> -->
+      <h:outputText id="number-of-chart" value="#{data.statisticChartList.size()}" />
     </h:panelGroup>
     <h:panelGroup layout="block" id="statistic-chart-carousel">
 
