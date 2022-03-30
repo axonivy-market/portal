@@ -259,10 +259,10 @@
 
               <p:ajax event="save" listener="#{logic.updateDelayTimestamp(task)}"
                 update="delay-form #{cc.clientId}:task-detail-state #{cc.attrs.componentToUpdate}" resetValues="true" />
-              <p:calendar id="delay-date-calendar" styleClass="delay-date-calendar" value="#{task.delayTimestamp}"
-                pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}">
+              <p:datePicker id="delay-date-calendar" styleClass="delay-date-calendar" value="#{task.delayTimestamp}"
+                pattern="#{dateTimePatternBean.configuredPattern}" showTime="#{!dateTimePatternBean.isTimeHidden}"  locale="#{localeBean.locale}" >
                 <f:validator validatorId="taskDelayTimestampValidator" />
-              </p:calendar>
+              </p:datePicker>
             </p:inplace>
             <p:growl id="delay-form-message" for="delay-date-calendar" />
           </h:form>
@@ -289,10 +289,10 @@
 
                 <p:ajax event="save" listener="#{logic.updateExpiryTime(task)}"
                   update="expiry-form #{cc.attrs.componentToUpdate}" process="@this expiry-calendar"/>
-                <p:calendar id="expiry-calendar" styleClass="task-details-data-expiry" value="#{data.expiryTimestamp}"
-                  pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}">
+                <p:datePicker id="expiry-calendar" styleClass="task-details-data-expiry" value="#{data.expiryTimestamp}"
+                  pattern="#{dateTimePatternBean.configuredPattern}" showTime="#{!dateTimePatternBean.isTimeHidden}" locale="#{localeBean.locale}" >
                   <f:validator validatorId="taskExpiryTimestampValidator" />
-                </p:calendar>
+                </p:datePicker>
               </p:inplace>
               <p:growl id="expiry-form-message" for="expiry-calendar" />
             </h:form>
