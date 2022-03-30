@@ -29,10 +29,10 @@
 					<p:inputText id="mitarbeiter" value="#{data.Mitarbeiter}"></p:inputText>
 					
 					<p:outputLabel for="von" value="#{ivy.cms.co('/ProcessPages/ProcessLeaves/ProcessLeave/from')}"/>
-					<p:calendar id="von" value="#{data.Von}" locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.configuredCalendarPattern}" size="10" />
+					<p:datePicker id="von" value="#{data.Von}" locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.configuredCalendarPattern}" showTime="#{!dateTimePatternBean.isTimeHidden}" size="10" />
 
 					<p:outputLabel for="bis" value="#{ivy.cms.co('/ProcessPages/ProcessLeaves/ProcessLeave/to')}"/>
-					<p:calendar id="bis" value="#{data.Bis}" locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.configuredCalendarPattern}" size="10" />
+					<p:datePicker id="bis" value="#{data.Bis}" locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.configuredCalendarPattern}" showTime="#{!dateTimePatternBean.isTimeHidden}" size="10" />
 
 					<p:outputLabel for="genehmigt" value="#{ivy.cms.co('/ProcessPages/ProcessLeaves/ProcessLeave/approved')}"/>
 					<p:selectBooleanCheckbox id="genehmigt" value="#{data.genehmigt}" />

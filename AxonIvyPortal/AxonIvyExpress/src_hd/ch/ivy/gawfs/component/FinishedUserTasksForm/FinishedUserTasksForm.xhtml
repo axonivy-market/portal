@@ -54,8 +54,8 @@
           </pe:dynaFormControl>
 
           <pe:dynaFormControl type="InputFieldDate" for="input-field-date" styleClass="calendar">
-            <p:calendar locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.configuredCalendarPattern}" id="input-field-date" value="#{dynaData.value}"
-              required="#{dynaData.required}" showOn="false" readonly="true" />
+            <p:datePicker locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.configuredCalendarPattern}" showTime="#{!dateTimePatternBean.isTimeHidden}" id="input-field-date" value="#{dynaData.value}"
+              required="#{dynaData.required}" readonly="true" />
           </pe:dynaFormControl>
 
           <pe:dynaFormControl type="InputTextArea" for="input-text-area" styleClass="text-area">

@@ -29,7 +29,7 @@
             <p:outputLabel for="calendar" value="Calendar" />
           </div>
           <div class="ui-g-12 ui-md-9 ui-lg-4">
-            <p:calendar id="calendar" pattern="dd/MM/yyyy" />
+            <p:datePicker id="calendar" pattern="dd/MM/yyyy" />
           </div>
           <div class="ui-g-12 ui-md-3 ui-lg-2">
             <p:outputLabel for="ac" value="AutoComplete" />
@@ -249,9 +249,9 @@
 
           <p:column headerText="Date" filterBy="#{score.date}" style="width:200px">
             <f:facet name="filter">
-              <p:calendar onchange="PF('theTable').filter()" pattern="dd.MM.yyyy">
+              <p:datePicker onchange="PF('theTable').filter()" pattern="dd.MM.yyyy">
                 <p:ajax event="dateSelect" oncomplete="PF('theTable').filter()" update="theTable" />
-              </p:calendar>
+              </p:datePicker>
             </f:facet>
             <p:outputLabel value="#{score.date}">
               <f:convertDateTime pattern="dd.MM.yyyy" />
@@ -319,7 +319,7 @@
                 <h:outputText value="#{tableData.date}" />
               </f:facet>
               <f:facet name="input">
-                <p:calendar value="#{tableData.date}" pattern="dd.MM.yyyy" />
+                <p:datePicker value="#{tableData.date}" pattern="dd.MM.yyyy" />
               </f:facet>
             </p:cellEditor>
           </p:column>
