@@ -18,13 +18,13 @@
     <h:panelGrid columns="2" cellpadding="5" styleClass="ui-fluid">
       <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')}"
         for="from-expired-calendar" />
-      <p:calendar id="from-expired-calendar" value="#{cc.attrs.filter.fromExpiredDate}"
-        pattern="#{dateTimePatternBean.configuredDateFilterPattern}" showOn="button" locale="#{localeBean.locale}"
+      <p:datePicker id="from-expired-calendar" value="#{cc.attrs.filter.fromExpiredDate}"
+        pattern="#{dateTimePatternBean.configuredDateFilterPattern}" showIcon="true" locale="#{localeBean.locale}" showTime="#{dateTimePatternBean.isDateFilterWithTime}"
         converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/wrongFromDateFormat', [dateTimePatternBean.configuredDateFilterPattern])}" />
 
       <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')}" for="to-expired-calendar" />
-      <p:calendar id="to-expired-calendar" value="#{cc.attrs.filter.toExpiredDate}"
-        pattern="#{dateTimePatternBean.configuredDateFilterPattern}" showOn="button" locale="#{localeBean.locale}"
+      <p:datePicker id="to-expired-calendar" value="#{cc.attrs.filter.toExpiredDate}"
+        pattern="#{dateTimePatternBean.configuredDateFilterPattern}" showIcon="true" locale="#{localeBean.locale}" showTime="#{dateTimePatternBean.isDateFilterWithTime}"
         converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/wrongToDateFormat', [dateTimePatternBean.configuredDateFilterPattern])}" />
     </h:panelGrid>
   </ic:ch.ivy.addon.portalkit.component.task.filter.AdvancedFilter>
