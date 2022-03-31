@@ -74,15 +74,15 @@
           <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')}"
             for="from-shipment-calendar" />
           <p:spacer width="5" />
-          <p:calendar id="from-shipment-calendar" value="#{filterContainer.shipmentDateFilter.fromShipmentDate}"
-            pattern="#{dateTimePatternBean.configuredDateFilterPattern}" showOn="button" locale="#{localeBean.locale}"
+          <p:datePicker id="from-shipment-calendar" value="#{filterContainer.shipmentDateFilter.fromShipmentDate}"
+            pattern="#{dateTimePatternBean.configuredDateFilterPattern}" showIcon="true" locale="#{localeBean.locale}" showTime="#{dateTimePatternBean.isDateFilterWithTime}"
             converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/wrongFromDateFormat', [dateTimePatternBean.configuredDateFilterPattern])}" />
 
           <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')}"
             for="to-shipment-calendar" />
           <p:spacer width="5" />
-          <p:calendar id="to-shipment-calendar" value="#{filterContainer.shipmentDateFilter.toShipmentDate}"
-            pattern="#{dateTimePatternBean.configuredDateFilterPattern}" showOn="button" locale="#{localeBean.locale}"
+          <p:datePicker id="to-shipment-calendar" value="#{filterContainer.shipmentDateFilter.toShipmentDate}"
+            pattern="#{dateTimePatternBean.configuredDateFilterPattern}" showIcon="true" locale="#{localeBean.locale}" showTime="#{dateTimePatternBean.isDateFilterWithTime}"
             converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/wrongToDateFormat', [dateTimePatternBean.configuredDateFilterPattern])}" />
         </h:panelGrid>
       </ic:ch.ivy.addon.portalkit.component.task.filter.AdvancedFilter>

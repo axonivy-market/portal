@@ -29,7 +29,7 @@
             <p:outputLabel for="calendar" value="Calendar" />
           </div>
           <div class="ui-g-12 ui-md-9 ui-lg-4">
-            <p:calendar id="calendar" pattern="dd/MM/yyyy" />
+            <p:datePicker id="calendar" pattern="dd/MM/yyyy" />
           </div>
           <div class="ui-g-12 ui-md-3 ui-lg-2">
             <p:outputLabel for="ac" value="AutoComplete" />
@@ -213,7 +213,7 @@
         <p:dataTable id="theTable" widgetVar="theTable" editable="true" scrollable="true" scrollHeight="250"
           value="#{data.scores}" var="score" rows="8" selection="#{data.selectedScore}" selectionMode="single"
           rowKey="#{score.id}" draggableColumns="true" draggableRows="true" style="width:100%">
-          <p:ajax event="rowSelect" update="#{p:component('detailDialog')}" oncomplete="PF('detailDialog').show()" />
+          <p:ajax event="rowSelect" update="#{p:resolveFirstComponentWithId('detailDialog', view).clientId}" oncomplete="PF('detailDialog').show()" />
           <p:rowExpansion>
             <p:panelGrid columns="2" style="width:400px">
               <p:outputLabel>No</p:outputLabel>
@@ -249,9 +249,9 @@
 
           <p:column headerText="Date" filterBy="#{score.date}" style="width:200px">
             <f:facet name="filter">
-              <p:calendar onchange="PF('theTable').filter()" pattern="dd.MM.yyyy">
+              <p:datePicker onchange="PF('theTable').filter()" pattern="dd.MM.yyyy">
                 <p:ajax event="dateSelect" oncomplete="PF('theTable').filter()" update="theTable" />
-              </p:calendar>
+              </p:datePicker>
             </f:facet>
             <p:outputLabel value="#{score.date}">
               <f:convertDateTime pattern="dd.MM.yyyy" />
@@ -259,11 +259,11 @@
           </p:column>
 
           <p:column style="width:65px;text-align: center">
-            <p:commandLink update="#{p:component('detailDialog')}" styleClass="si si-graphic-tablet-drawing-pen"
+            <p:commandLink update="#{p:resolveFirstComponentWithId('detailDialog', view).clientId}" styleClass="si si-graphic-tablet-drawing-pen"
               oncomplete="PF('detailDialog').show()" title="Edit" style="height:20px;" id="dialogEditButton">
               <f:setPropertyActionListener value="#{score}" target="#{data.selectedScore}" />
             </p:commandLink>
-            <p:commandLink update="#{p:component('detailDialog')}" styleClass="si si-bin-1"
+            <p:commandLink update="#{p:resolveFirstComponentWithId('detailDialog', view).clientId}" styleClass="si si-bin-1"
               oncomplete="PF('detailDialog').show()" title="Delete" style="height:20px;margin-left:10px"
               id="dialogDeleteButton">
               <f:setPropertyActionListener value="#{score}" target="#{data.selectedScore}" />
@@ -319,7 +319,7 @@
                 <h:outputText value="#{tableData.date}" />
               </f:facet>
               <f:facet name="input">
-                <p:calendar value="#{tableData.date}" pattern="dd.MM.yyyy" />
+                <p:datePicker value="#{tableData.date}" pattern="dd.MM.yyyy" />
               </f:facet>
             </p:cellEditor>
           </p:column>
