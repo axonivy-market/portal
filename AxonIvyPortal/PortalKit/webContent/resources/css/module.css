@@ -5217,7 +5217,8 @@ body .ui-widget-header.portal-breadcrumb a {
 body .ui-widget-header.portal-breadcrumb {
 	border: none;
 	padding-top: 1px;
-	padding-bottom: 1px;
+	padding-bottom: 0;
+	padding-left: 5px;
 }
 
 body .ui-widget-header.portal-breadcrumb .ui-menuitem-link.ui-state-disabled {
@@ -5676,11 +5677,6 @@ body span.ui-commandlink .si {
 .case-item-body-container .card,
 .task-item-body-container .card {
   padding: 24px;
-}
-
-.task-and-case-information,
-.time-information {
-  margin-top: 15px;
 }
 
 .task-detail-description .pointer-event-none {
