@@ -4,8 +4,7 @@
   xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:fn="http://java.sun.com/jsp/jstl/functions">
 
 <h:outputScript name="chart-carousel.js" library="js" rendered="#{cc.attrs.compactMode}"/>
-
-<p:carousel id="statistic-carousel" circular="true"
+<p:carousel id="statistic-carousel" circular="true" headerText="" 
   styleClass="statistic-carousel js-statistic-carousel #{data.statisticChartList.size() > 1 ? 'many-statistics':''} #{data.statisticChartList.isEmpty() ? '':'card'}"
   numVisible="1" value="#{data.statisticChartList}" var="chart" binding="#{carouselStatistic}" itemStyleClass="statistic-carousel-item js-statistic-carousel-item"
   rendered="#{!cc.attrs.isDrilldownElapsedTime}" widgetVar="carouselChart" pageLinks="0" responsive="true">
@@ -14,11 +13,10 @@
     <h:panelGroup styleClass="hidden-carousel-title">
       <h:panelGroup id="chart-name-container" styleClass="chart-name-container" layout="block">
         <h:outputText id="chart-name" styleClass="chart-name" value="#{chart.name}" />
-        <p:commandLink styleClass="si si-information-circle chart-info portal-icon" actionListener="#{logic.selectChart(chart)}" update="#{p:component('chart-details-dialog')}"
+        <p:commandLink styleClass="si si-information-circle chart-info portal-icon" actionListener="#{logic.selectChart(chart)}" update="#{p:resolveFirstComponentWithId('chart-details-dialog', view).clientId}"
           oncomplete="PF('chart-details-dialog').show();" rendered="#{data.hasStatistic}" />
       </h:panelGroup>
-
-      <h:outputText id="carousel-effect-duration" value="#{carouselStatistic.effectDuration}" />
+      <h:outputText id="number-of-chart" value="#{data.statisticChartList.size()}" />
     </h:panelGroup>
     <h:panelGroup layout="block" id="statistic-chart-carousel">
 
@@ -31,7 +29,7 @@
       <p:barChart styleClass="statistic-chart ui-g-12" model="#{chart.barChartModel}" rendered="#{statisticDashboardBean.isTaskByExpiry(chart)}"
         style="width: 100%; height:200px;">
         <f:attribute name="selectedChartId" value="#{chart.id}" />
-        <p:ajax event="itemSelect" listener="#{statisticDashboardBean.toTaskByExpiryTaskList}" update="#{p:component('widget-container')}" />
+        <p:ajax event="itemSelect" listener="#{statisticDashboardBean.toTaskByExpiryTaskList}" update="#{p:resolveFirstComponentWithId('widget-container', view).clientId}" />
       </p:barChart>
 
       <p:donutChart styleClass="statistic-chart ui-g-12" model="#{chart.donutChartModel}" rendered="#{statisticDashboardBean.isCaseByState(chart)}"
