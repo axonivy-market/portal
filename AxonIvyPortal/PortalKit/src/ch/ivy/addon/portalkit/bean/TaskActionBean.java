@@ -20,6 +20,7 @@ import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
 import ch.ivy.addon.portalkit.util.DateTimeFormatterUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.ProcessStartUtils;
+import ch.ivy.addon.portalkit.util.ProcessViewerUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivy.addon.portalkit.util.TimesUtils;
 import ch.ivyteam.ivy.security.IPermission;
@@ -294,6 +295,11 @@ public class TaskActionBean implements Serializable {
     }
   }
 
+  public String getProcessViewerPageUri(ITask task) {
+    task.getCase().getBusinessCase();
+    return ProcessViewerUtils.getStartProcessViewerPageUri(task.getCase().getBusinessCase());
+  }
+
   public String getDurationOfTask(ITask task) {
     return task.getEndTimestamp() != null ? getElapsedTimeForDoneTask(task) : getElapsedTimeForRunningTask(task);
   }
@@ -321,5 +327,9 @@ public class TaskActionBean implements Serializable {
   private String getElapsedTimeForRunningTaskOnTooltip(ITask task) {
     long duration = TimesUtils.getDurationInSeconds(task.getStartTimestamp(), new Date());
     return DateTimeFormatterUtils.formatToExactTime(duration);
+  }
+
+  public boolean showProcessViewer(ITask task) {
+    return ProcessViewerUtils.isShowProcessViewer(task.getCase().getBusinessCase());
   }
 }
