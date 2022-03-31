@@ -26,7 +26,7 @@ public class CaseDetailsPage extends TemplatePage {
   private static final String HISTORY_COMPONENT_ID = "div[id='case-details-history-panel']";
   private static final String RELATED_TASKS_COMPONENT_ID = "div[id='case-details-relatedTask-panel']";
   private static final String RELATED_CASES_COMPONENT_ID = "div[id='case-details-technicalCase-panel']";
-  private static final String HISTORY_LIST_CSS_SELECTOR = "a[id*=':case-histories:case-histories:']";
+  private static final String HISTORY_LIST_CSS_SELECTOR = "td.history-note a[id*=':case-histories:case-histories:']";
   private static final String LATEST_HISTORY_LIST_CSS_SELECTOR = "a[id*=':case-histories:case-histories:0:note-link']";
   private static final String GENERAL_INFORMATION_COMPONENT_ID = "div[id='case-details-information-panel']";
   private static final String ADDITIONAL_CASE_DETAILS_URL_CSS_SELECTOR = "a[id$='additional-case-details-link']";
@@ -802,5 +802,17 @@ public class CaseDetailsPage extends TemplatePage {
   public void waitForIFrameURLWidgetLoad() {
     driver.switchTo().frame("custom-widget-iframe-url");
     WaitHelper.assertTrueWithWait(() -> findElementByCssSelector("a[href='https://www.axonivy.com']").isDisplayed());
+  }
+
+  public int getNumberOfHistoryForRelatedCaseLink() {
+    waitForElementDisplayed(By.cssSelector("[id$=':case-histories:case-histories']"), true);
+    return findListElementsByCssSelector("td.history-related-case a[id$=':related-case-link']").size();
+  }
+
+  public String getContentOfHistoryTableRelatedCaseColumn(int rowIndex) {
+    waitForElementDisplayed(By.cssSelector("[id$=':case-histories:case-histories']"), true);
+    return findElementByCssSelector(String
+        .format("td.history-related-case a[id$='case-histories:%d:related-case-link']", rowIndex))
+        .getText();
   }
 }

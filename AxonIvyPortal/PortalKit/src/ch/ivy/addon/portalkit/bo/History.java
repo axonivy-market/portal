@@ -18,6 +18,8 @@ public class History {
   private String involvedUsername;
   private IUser involvedUser;
   private String displayName;
+  private Long caseId;
+  private String displayCaseName;
 
   public enum HistoryType {
     TASK, NOTE, EVENT;
@@ -89,5 +91,20 @@ public class History {
   public void setDisplayName(String displayName) {
     this.displayName = displayName;
   }
-  
+
+  public Long getCaseId() {
+    return caseId;
+  }
+
+  public void setCaseId(Long caseId) {
+    this.caseId = caseId;
+  }
+
+  public String getDisplayCaseName() {
+    return displayCaseName;
+  }
+
+  public void setDisplayCaseName(String displayCaseName) {
+    this.displayCaseName = displayCaseName;
+  }
 }
