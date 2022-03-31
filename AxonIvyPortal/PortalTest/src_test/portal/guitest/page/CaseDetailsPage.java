@@ -803,4 +803,22 @@ public class CaseDetailsPage extends TemplatePage {
     driver.switchTo().frame("custom-widget-iframe-url");
     WaitHelper.assertTrueWithWait(() -> findElementByCssSelector("a[href='https://www.axonivy.com']").isDisplayed());
   }
+
+  public void openActionMenu() {
+    clickByCssSelector("[id$=':action-group:case-details-action-link']");
+    waitForElementDisplayed(By.cssSelector("[id$=':action-group:action-steps-panel'].action-steps-panel.ui-overlay-visible"), true);
+  }
+
+  public List<String> getAvailableActionSteps() {
+    waitForElementDisplayed(By.cssSelector("[id$=':action-group:action-steps-panel'].action-steps-panel.ui-overlay-visible"), true);
+    var steps = findListElementsByCssSelector("[id$=':action-group:action-steps-panel'].action-steps-panel.ui-overlay-visible a.action-step-item");
+    return steps.stream().map(WebElement::getText).collect(Collectors.toList());
+  }
+
+  public List<String> getAvailableActionStepsOfTechnicalCase(int caseIndex) {
+    var panelId = String.format("[id$=':related-cases-widget:related-cases:%d:action-step-component:action-steps-panel'].ui-overlay-visible", caseIndex);
+    waitForElementDisplayed(By.cssSelector(panelId), true);
+    var steps = findListElementsByCssSelector(panelId + " a.action-step-item");
+    return steps.stream().map(WebElement::getText).collect(Collectors.toList());
+  }
 }
