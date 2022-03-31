@@ -179,8 +179,10 @@ public class CaseWidgetPage extends TemplatePage {
 	}
 
 	@SuppressWarnings("deprecation")
-  public void openAdvancedFilter(String filterName, String filterIdName) {
+	public void openAdvancedFilter(String filterName, String filterIdName) {
 		click(By.id(caseWidgetId + ":filter-add-action"));
+		waitForElementDisplayed(By.cssSelector(".filter-add-panel.ui-connected-overlay-enter-done"), true);
+		waitForElementDisplayed(By.cssSelector("[id$='" + caseWidgetId + ":filter-add-form:filter-selection']"), true);
 		WebElement filterSelectionElement = findElementById(caseWidgetId + ":filter-add-form:filter-selection");
 
 		System.out.println(filterSelectionElement.getTagName());
@@ -315,6 +317,7 @@ public class CaseWidgetPage extends TemplatePage {
 
 	public void openCategoryFilter() {
 		click(By.cssSelector("button[id$='case-category-filter:filter-open-form:advanced-filter-command']"));
+		waitForElementDisplayed(By.cssSelector(".advanced-filter-panel.ui-connected-overlay-enter-done"), true);
 	}
 
 	public void toggleNoCategory() {
@@ -327,11 +330,10 @@ public class CaseWidgetPage extends TemplatePage {
 		}
 	}
 
-	@SuppressWarnings("deprecation")
   public void applyCategoryFilter() {
-		click(By.cssSelector("button[id$='case-category-filter:filter-input-form:update-command']"));
-		waitAjaxIndicatorDisappear();
-	}
+    click(By.cssSelector("button[id$='case-category-filter:filter-input-form:update-command']"));
+    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
+  }
 
 	@SuppressWarnings("deprecation")
   public void filterByCreator(String text) {

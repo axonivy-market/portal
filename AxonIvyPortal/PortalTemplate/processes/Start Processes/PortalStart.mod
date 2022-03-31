@@ -457,8 +457,6 @@ Pt0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Pt0 f11 584 282 112 44 -47 -8 #rect
 Pt0 f28 outLink DefaultApplicationHomePage.ivp #txt
 Pt0 f28 inParamDecl '<> param;' #txt
-Pt0 f28 inParamTable 'out.isShowDashboard=true;
-' #txt
 Pt0 f28 requestEnabled true #txt
 Pt0 f28 triggerEnabled false #txt
 Pt0 f28 callSignature DefaultApplicationHomePage() #txt

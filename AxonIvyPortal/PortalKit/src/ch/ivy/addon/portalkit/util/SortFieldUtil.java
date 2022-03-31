@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
+import org.primefaces.model.SortMeta;
+import org.primefaces.model.SortOrder;
 
 import ch.ivy.addon.portalkit.enums.SortDirection;
 
@@ -95,5 +97,11 @@ public class SortFieldUtil {
         .filter(extractedColumn -> extractedColumn.equalsIgnoreCase(compareSort))
         .collect(Collectors.toList())
         .isEmpty();
+  }
+  public static SortMeta buildSortMeta(String field, boolean isSortDescending) {
+    return SortMeta.builder()
+        .field(field)
+        .order(isSortDescending ? SortOrder.DESCENDING : SortOrder.ASCENDING)
+        .build();
   }
 }

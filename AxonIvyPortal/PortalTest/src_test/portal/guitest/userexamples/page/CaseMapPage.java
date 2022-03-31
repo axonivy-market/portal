@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 
 import portal.guitest.page.HomePage;
@@ -17,12 +18,19 @@ public class CaseMapPage extends TaskTemplatePage {
       String salary, String otherCredit) {
     type(By.id("form:last-name"), lastName);
     type(By.id("form:first-name"), firstName);
-    type(By.id("form:birth-date_input"), birthDate);
+    typeBirthDay(birthDate);
     type(By.id("form:country"), country);
     type(By.id("form:amount"), amount);
     type(By.id("form:reason"), reason);
     type(By.id("form:salary"), salary);
     type(By.id("form:amount-of-other-credits"), otherCredit);
+  }
+  
+  private void typeBirthDay(String text) {
+    WebElement datePicker = findElementByCssSelector("input[id='form:birth-date_input']");
+    datePicker.sendKeys(Keys.chord(Keys.CONTROL, "a"));
+    datePicker.sendKeys(Keys.BACK_SPACE);
+    datePicker.sendKeys(text);
   }
   
   public void inputVerifierComment(String comment) {
