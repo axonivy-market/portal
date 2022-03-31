@@ -109,7 +109,7 @@ public class TaskDetailsPage extends TemplatePage {
 
   @SuppressWarnings("deprecation")
   public void clickTaskListBreadCrumb() {
-    click(By.cssSelector(".portal-breadcrumb ul li:nth-of-type(3) .ui-menuitem-link"));
+    click(By.cssSelector(".portal-breadcrumb ol li:nth-of-type(2) .ui-menuitem-link"));
     ensureNoBackgroundRequest();
   }
   

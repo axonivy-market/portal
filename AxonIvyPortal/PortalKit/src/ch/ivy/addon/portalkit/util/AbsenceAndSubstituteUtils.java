@@ -120,5 +120,8 @@ public final class AbsenceAndSubstituteUtils {
     return firstAbsence.getUsername() == null
         || !(firstAbsence.getUsername().equalsIgnoreCase(secondAbsence.getUsername()));
   }
-  
+
+  public static void sortAbsences(List<IvyAbsence> absences) {
+    absences.sort((l1, l2) -> l1.getFrom().compareTo(l2.getFrom()));
+  }
 }

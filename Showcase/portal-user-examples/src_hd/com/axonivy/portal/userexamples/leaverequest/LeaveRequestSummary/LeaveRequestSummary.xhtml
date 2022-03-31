@@ -26,14 +26,14 @@
               </h:panelGroup>
 
               <h:panelGroup class="md-inputfield MarTop20">
-                <p:calendar id="from" value="#{data.leaveRequestData.from}" locale="#{localeBean.locale}"
-                  pattern="#{dateTimePatternBean.configuredCalendarPattern}" disabled="true" />
+                <p:datePicker id="from" value="#{data.leaveRequestData.from}" locale="#{localeBean.locale}"
+                  pattern="#{dateTimePatternBean.configuredCalendarPattern}" showTime="#{!dateTimePatternBean.isTimeHidden}" disabled="true" />
                 <p:outputLabel for="from" value="#{ivy.cms.co('/Labels/LeaveRequest/from')}" />
               </h:panelGroup>
 
               <h:panelGroup class="md-inputfield MarTop20">
-                <p:calendar id="to" value="#{data.leaveRequestData.to}" locale="#{localeBean.locale}"
-                  pattern="#{dateTimePatternBean.configuredCalendarPattern}" disabled="true" />
+                <p:datePicker id="to" value="#{data.leaveRequestData.to}" locale="#{localeBean.locale}"
+                  pattern="#{dateTimePatternBean.configuredCalendarPattern}" showTime="#{!dateTimePatternBean.isTimeHidden}" disabled="true" />
                 <p:outputLabel for="to" value="#{ivy.cms.co('/Labels/LeaveRequest/to')} " />
               </h:panelGroup>
 
