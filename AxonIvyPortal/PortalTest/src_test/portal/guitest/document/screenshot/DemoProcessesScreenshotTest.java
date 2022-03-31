@@ -13,7 +13,6 @@ import portal.guitest.common.ScreenshotTest;
 import portal.guitest.page.ExampleOverviewPage;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.NewDashboardPage;
-import portal.guitest.page.TaskDetailsPage;
 import portal.guitest.page.TaskWidgetPage;
 import portal.guitest.userexamples.page.CaseMapPage;
 import portal.guitest.userexamples.page.LeaveRequestPage;
@@ -83,8 +82,7 @@ public class DemoProcessesScreenshotTest extends ScreenshotTest {
     homePage = caseMapPage.clickSubmitRequestButton();
     TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
     taskWidgetPage.expand();
-    TaskDetailsPage taskDetailsPage = taskWidgetPage.openTaskDetails(0);
-    taskDetailsPage.clickStartTask();
+    taskWidgetPage.startTask(0);
     
     caseMapPage = new CaseMapPage();
     taskWidgetPage = caseMapPage.clickSubmitButtonAndBackToTaskList();
