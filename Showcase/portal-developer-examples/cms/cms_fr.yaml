@@ -66,6 +66,7 @@ Dialogs:
       IsRequired: Ce champ est obligatoire
       Representation: Représentation
       To: 'À l''adresse suivante :'
+    testConten: ''
 Labels:
   address: Rue/No.
   cancel: Annuler
