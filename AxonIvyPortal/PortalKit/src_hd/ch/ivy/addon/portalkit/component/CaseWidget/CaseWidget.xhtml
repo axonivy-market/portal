@@ -334,7 +334,7 @@
           icon="#{visibilityBean.generateButtonIcon('si si-remove')}"
           actionListener="#{caseWidgetBean.destroyCase(caseWidgetBean.selectedCase)}"
           oncomplete="caseWidget.setUpScrollbar();caseWidget.setupHeader(); caseWidget.updateCaseCountToBreadcrumb(); PF('destroy-case-dialog').hide()"
-          update="#{p:component('case-list')} #{p:component('case-list-scroller')} #{cc.clientId}:hidden-case-count" />
+          update="#{p:resolveFirstComponentWithId('case-list', view).clientId} #{p:resolveFirstComponentWithId('case-list-scroller', view).clientId} #{cc.clientId}:hidden-case-count" />
     </ui:define>
   </ui:decorate>
 

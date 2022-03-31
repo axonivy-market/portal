@@ -13,6 +13,7 @@ import javax.faces.bean.ViewScoped;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.event.SelectEvent;
+import org.primefaces.model.SortMeta;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.datamodel.internal.RelatedCaseLazyDataModel;
@@ -31,6 +32,7 @@ import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.ProcessStartUtils;
+import ch.ivy.addon.portalkit.util.SortFieldUtil;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.CaseState;
@@ -272,5 +274,13 @@ public class CaseDetailsBean extends AbstractConfigurableContentBean<CaseDetails
 
   public void setSelectedTask(ITask selectedTask) {
     this.selectedTask = selectedTask;
+  }
+
+  public SortMeta getRelatedCasesSortBy() {
+    return SortFieldUtil.buildSortMeta("ID", false);
+  }
+
+  public SortMeta getRelatedTasksSortBy() {
+    return SortFieldUtil.buildSortMeta("ID", false);
   }
 }

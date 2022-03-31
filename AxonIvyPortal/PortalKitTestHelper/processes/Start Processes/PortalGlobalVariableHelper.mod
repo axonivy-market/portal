@@ -1,9 +1,11 @@
 [Ivy]
-1749B87B8C1B77BE 9.4.0 #module
+1749B87B8C1B77BE 9.4.1 #module
 >Proto >Proto Collection #zClass
 Pr0 PortalGlobalVariableHelper Big #zClass
 Pr0 B #cInfo
 Pr0 #process
+Pr0 @TextInP .colors .colors #zField
+Pr0 @TextInP color color #zField
 Pr0 @TextInP .type .type #zField
 Pr0 @TextInP .processKind .processKind #zField
 Pr0 @TextInP .xml .xml #zField
@@ -17,8 +19,7 @@ Pr0 @PushWFArc f8 '' #zField
 Pr0 f6 321 65 30 30 0 15 #rect
 Pr0 f7 actionTable 'out=in;
 ' #txt
-Pr0 f7 actionCode 'ivy.session.logoutSessionUser();
-ivy.var.set(in.variableName, in.variableValue);' #txt
+Pr0 f7 actionCode 'ivy.var.set(in.variableName, in.variableValue);' #txt
 Pr0 f7 security system #txt
 Pr0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
