@@ -1,6 +1,7 @@
 package portal.guitest.document.screenshot;
 
 import static portal.guitest.common.FileHelper.getAbsolutePathToTestFile;
+import static portal.guitest.common.Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -33,6 +34,7 @@ public class PortalTaskScreenshotTest extends ScreenshotTest {
   @Override
   public void setup() {
     super.setup();
+    updatePortalSetting(TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), "ACCESS_TASK_DETAILS");
     redirectToRelativeLink(createTestingTasksUrl);
     redirectToRelativeLink(createTestingTasksUrl);
     homePage = new HomePage();

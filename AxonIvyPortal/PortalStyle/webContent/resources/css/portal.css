@@ -496,6 +496,9 @@ body .ui-widget-header.portal-breadcrumb {
 .portal-breadcrumb .si {
   color: var(--breadcrumb-home-icon-color) !important;
 }
+.portal-breadcrumb .ui-icon {
+  vertical-align: middle;
+}
 /*Style Email Setting --------------------------------------------------------------------------------*/
 .daily-summary.ui-selectmanycheckbox.ui-widget label {
   margin-left: 0px; }

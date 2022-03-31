@@ -55,7 +55,7 @@
                 <p:commandLink
                   title="#{compactProcessWidgetBean.isProcessMarkedAsDeleting(process.id) ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset') : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/remove')}"
                   actionListener="#{compactProcessWidgetBean.selectDeletingProcess}" process="@form"
-                  update="#{p:component('order-list-items')}" id="process-delete-link">
+                  update="#{p:resolveFirstComponentWithId('order-list-items', view).clientId}" id="process-delete-link">
                   <i class="si #{compactProcessWidgetBean.isProcessMarkedAsDeleting(process.id) ? 'si-undo' : 'si-bin-1'} action-icon" />
                   <f:param name="processId" value="#{process.id}" />
                 </p:commandLink>
@@ -155,7 +155,7 @@
         <p:commandButton id="add-process-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}"
           icon="#{visibilityBean.generateButtonIcon('si si-add-small')}"
           process="add-new-process-form" actionListener="#{compactProcessWidgetBean.saveNewUserProcess}"
-          update="add-new-process-form #{p:component('process-list')} #{p:component('process-widget-action')}"
+          update="add-new-process-form #{p:resolveFirstComponentWithId('process-list', view).clientId} #{p:resolveFirstComponentWithId('process-widget-action', view).clientId}"
           oncomplete="if(!args.validationFailed){PF('add-new-process-dialog').hide();} FavouritesProcess.setUpScrollBarForCompactProcessLists(false)" />
       </div>
     </h:form>

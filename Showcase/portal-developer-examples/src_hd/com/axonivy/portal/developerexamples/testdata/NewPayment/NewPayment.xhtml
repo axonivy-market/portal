@@ -26,8 +26,8 @@
 						<p:message id="fullname-msg" for="fullname" />
 
 						<h:panelGroup class="md-inputfield MarTop5">
-							<p:calendar id="from" value="" locale="#{localeBean.locale}"
-								pattern="#{dateTimePatternBean.configuredCalendarPattern}" required="true"
+							<p:datePicker id="from" value="" locale="#{localeBean.locale}"
+								pattern="#{dateTimePatternBean.configuredCalendarPattern}" required="true" showTime="#{!dateTimePatternBean.isTimeHidden}"
 								requiredMessage="#{ivy.cms.co('/Dialogs/ch/ivyteam/ivy/project/portal/examples/testdata/LeaveRequestForm/IsRequired')}" />
 							<p:outputLabel for="from"
 								value="#{ivy.cms.co('/Dialogs/ch/ivyteam/ivy/project/portal/examples/testdata/LeaveRequestForm/From')}" />

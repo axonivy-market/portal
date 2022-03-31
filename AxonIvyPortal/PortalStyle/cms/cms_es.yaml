@@ -101,8 +101,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       INFORMATION: Información
       OTHERS: Otros
     BehaviourWhenClickingOnLineInTaskList:
-      ACCESS_TASK_DETAILS: TODO Access task details
-      RUN_TASK: TODO Run the task
+      ACCESS_TASK_DETAILS: Acceder a los detalles de la tarea
+      RUN_TASK: Ejecutar la tarea
     DashboardCustomWidgetType:
       EXTERNAL_URL: Link externo
       PROCESS: Proceso de Axon Ivy
@@ -201,7 +201,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     embedInFrame: Empezar un proceso o tarea en modo iFrames
     emptySupportedLanguages: No se admiten idiomas adicionales
     globalVariableNote:
-      behaviourWhenClickingOnLineInTaskList: TODO For switch behaviours (run the task or access task details) when clicking on a line in task list, task widget of dashboard and related tasks  in case details page.
+      behaviourWhenClickingOnLineInTaskList: Para cambiar los comportamientos (ejecutar la tarea o acceder a los detalles de la tarea) al hacer clic en una línea de la lista de tareas, el widget de tareas del tablero y las tareas relacionadas en la página de detalles del caso.
       chatMaxConnection: 'El número establecido controla la cantidad de pestañas permitidas con el chat activo. Si se abren más pestañas, el chat se desactivará en las pestañas inactivas. Valores permitidos entre 1-5 '
       chatResponseTimeout: Tiempo de respuesta del chat en segundos, el valor por defecto es 0 y significa que no hay tiempo de espera. Si los mensajes de chat pasan por el proxy inverso Nginx, el tiempo de espera de la respuesta del chat debe ser menor que el tiempo de espera de Nginx, por ejemplo, menos
         de 60 segundos.
@@ -492,7 +492,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     pleaseAddDocument: Por favor agregue documentos usando el enlace superior
     pleaseAddNote: Por favor agregue notas usando el enlace superior
     previousStage: Etapa anterior
-    private: TODO Private
+    private: Privado
     process: Proceso
     processes: Procesos
     public: Público
@@ -520,7 +520,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     selectedDay: '{0} Día(s) selecionados'
     send: Enviar
     sessionExpried: Su sesión expiró. La aplicación se reiniciará.
-    sessionExpriedInTeams: TODO Your session expired. Please reload the tab to login again.
+    sessionExpriedInTeams: Su sesión expiró. La aplicación se reiniciará.
     setting: Configuración
     showDetail: Mostrar detalles
     showSystemNotes: Mostrar notas del systema
@@ -632,7 +632,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskStart:
       cannotDelegateTaskMessage: Esta tarea no se puede delegar a ningún otro usuario o grupo.
       cannotStartMessages:
-        cannotStartTask: TODO You can not start task {0}.
+        cannotStartTask: No puede iniciar la tarea{0}.
         isAnotherUserWorking: No puede trabajar en la tarea '' {0} '' con el identificador '' {1} '' porque el usuario '' {2} '' está trabajando actualmente en ella.
         noPermission: No puede iniciar la tarea {0} porque no tiene permiso.
         taskDone: No puede iniciar la tarea {0} porque ya está lista.
@@ -657,15 +657,15 @@ ch.ivy.addon.portalkit.ui.jsf:
       savedFilters: 'Filtros guardados:'
   dashboard:
     DashboardConfigurationDialog:
-      ConfigureDashboard: TODO Dashboard configuration
+      ConfigureDashboard: Configuración de tablero
       CreateNewPrivateDashboard: Create new private dashboard
-      CreateNewPublicDashboard: TODO Create new public dashboard
-      EditPrivateDashboards: TODO Edit your private dashboards
-      EditPublicDashboards: TODO Edit public dashboards
-      PrivateDashboardConfiguration: TODO Private dashboard configuration
-      PublicDashboardConfiguration: TODO Public dashboard configuration
-      ReorderPrivateDashboards: TODO Reorder your dashboards
-      ReorderPublicDashboards: TODO Reorder public dashboards
+      CreateNewPublicDashboard: Crear un tablero público
+      EditPrivateDashboards: Editar sus tableros privados
+      EditPublicDashboards: Editar tableros públicos
+      PrivateDashboardConfiguration: Configuración de tableros privados
+      PublicDashboardConfiguration: Configuración de tableros públicos
+      ReorderPrivateDashboards: Reordenar tableros privados
+      ReorderPublicDashboards: Reordenar tableros públicos
     EmptyFilterMessage: No se ha encontrado ningún filtro de widget
     Filter:
       FilterOptionHeader: Opciones de filtro
@@ -720,7 +720,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       editDashboard: Editar tablero
       manageDashboard: Administrar tablero
       removeDashboardHeader: Borrar el tablero "{0}"
-      reorderDashboard: TODO Reorder dashboard
+      reorderDashboard: Reordenar tableros
     deleteWidget: Eliminar el widget
     editPrivateDashboard: Editar tablero privado
     editPublicDashboard: Editar tablero público
@@ -749,9 +749,9 @@ ch.ivy.addon.portalkit.ui.jsf:
     removeWidgetHeader: Eliminar el widget "{0}"
     removeWidgetMessage: ¿Realmente quieres eliminarlo?
     reorder:
-      dashboardType: TODO Dashboard type
-      reorderMyDashboard: TODO Reorder my dashboard
-      reorderPublicDashboard: TODO Reorder public dashboard
+      dashboardType: Tipo de tablero
+      reorderMyDashboard: Reordenar mi tablero
+      reorderPublicDashboard: Reordenar tableros públicos
     restoreDefaultHeader: Restaurar los widgets por defecto
     restoreDefaultMessage: Si procede, perderá todos los widgets creados por usted. Se aplicará la configuración estándar.
     select: Seleccione

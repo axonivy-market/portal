@@ -327,14 +327,14 @@
                     <p:column styleClass="dynamic-task-left-action">
                       <p:commandButton id="add-step-button" icon="#{visibilityBean.generateButtonIcon('si si-add-small')}" immediate="true"
                         value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/AddProcessStep')}" actionListener="#{logic.addProcessStep}"
-                        process="form" update="#{p:component('defined-tasks-list-container')} #{p:component('error-messages')}">
+                        process="form" update="#{p:resolveFirstComponentWithId('defined-tasks-list-container', view).clientId} #{p:resolveFirstComponentWithId('error-messages', view).clientId}">
                       </p:commandButton>
                     </p:column>
 
                     <p:column styleClass="dynamic-task-right-action">
                       <p:commandButton id="remove-step-button" icon="#{visibilityBean.generateButtonIcon('si si-remove')}" immediate="true" rendered="#{data.data.definedTasks.size()>1}"
                         value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/DeleteProcessStep')}"
-                        actionListener="#{logic.deleteProcessStep}" process="form" update="#{p:component('defined-tasks-list-container')} #{p:component('error-messages')}">
+                        actionListener="#{logic.deleteProcessStep}" process="form" update="#{p:resolveFirstComponentWithId('defined-tasks-list-container', view).clientId} #{p:resolveFirstComponentWithId('error-messages', view).clientId}">
                       </p:commandButton>
                     </p:column>
                   </p:row>
@@ -393,7 +393,7 @@
            <p:commandButton id="delete-all-defined-tasks-warning-ok" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
               icon="#{visibilityBean.generateButtonIcon('si si-check-1')}"
               resetValues="true" actionListener="#{logic.changeUISetting(true)}" oncomplete="PF('delete-all-defined-tasks-warning').hide()"
-              update="#{p:component('defined-tasks-list-container')} #{p:component('express-button-container')} #{p:component('process-chain-component-id')}" global="false" />
+              update="#{p:resolveFirstComponentWithId('defined-tasks-list-container', view).clientId} #{p:resolveFirstComponentWithId('express-button-container', view).clientId} #{p:resolveFirstComponentWithId('process-chain-component-id', view).clientId}" global="false" />
         </ui:define>
       </ui:decorate>
     </ui:define>
