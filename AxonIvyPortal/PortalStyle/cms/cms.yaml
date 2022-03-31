@@ -285,6 +285,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     downloadFile: Download file
     duration: Duration
     history: History
+    noCaseName: TODO <No case name>
     noDescription: No description
     noRunningCase: No case is running
     noRunningTask: No task is running

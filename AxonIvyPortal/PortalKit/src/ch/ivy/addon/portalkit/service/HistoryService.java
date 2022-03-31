@@ -18,16 +18,53 @@ import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.SecurityMemberDisplayNameUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISecurityConstants;
+import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.INote;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.IWorkflowEvent;
 
 public class HistoryService {
 
+  private static final String CASE_NAME_FORMAT = "#%d %s";
+
   public List<History> getHistories(List<ITask> tasks, List<INote> notes, boolean excludeSystemTasks, boolean excludeSystemNotes) {
     List<History> historiesRelatedToTasks = createHistoriesFromITasks(tasks, excludeSystemTasks);
     List<History> historiesRelatedToNotes = createHistoriesFromINotes(notes, excludeSystemNotes);
     return sortHistoriesByTimeStampDescending(Arrays.asList(historiesRelatedToTasks, historiesRelatedToNotes));
+  }
+
+  public List<History> getCaseHistories(Long selectedCaseId, List<ITask> tasks, List<ICase> cases,
+      boolean excludeSystemTasks, boolean excludeSystemNotes) {
+    var historiesRelatedToTasks = createHistoriesFromITasks(tasks, excludeSystemTasks);
+    var historiesRelatedToNotes = new ArrayList<History>();
+    for (var subCase : cases) {
+      historiesRelatedToNotes.addAll(createCaseHistories(excludeSystemNotes, subCase, selectedCaseId));
+    }
+    return sortHistoriesByTimeStampDescending(Arrays.asList(historiesRelatedToTasks, historiesRelatedToNotes));
+  }
+
+  private List<History> createCaseHistories(boolean excludeSystemNotes, ICase caze, Long selectedCaseId) {
+    var histories = new ArrayList<History>();
+    for (var note : caze.getNotes()) {
+      if(excludeSystemNotes && !isNotASystemNote(note)) {
+        continue;
+      }
+      histories.add(createCaesHistotyFromNote(selectedCaseId, note, caze));
+    }
+    return histories;
+  }
+
+  private History createCaesHistotyFromNote(Long selectedCaseId, INote note, ICase caseHistory) {
+    var history = createHistoryFrom(note);
+    history.setCaseId(caseHistory.getId());
+    if (!caseHistory.isBusinessCase() && selectedCaseId != caseHistory.getId()) {
+      var caseName = caseHistory.getName();
+      if (StringUtils.isBlank(caseName)) {
+        caseName = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noCaseName");
+      }
+      history.setDisplayCaseName(String.format(CASE_NAME_FORMAT, caseHistory.getId(), caseName));
+    }
+    return history;
   }
 
   private List<History> sortHistoriesByTimeStampDescending(List<List<History>> listOfHistories) {
@@ -53,11 +90,14 @@ public class HistoryService {
 
   public List<History> createHistoriesFromINotes(List<INote> notes, boolean excludeSystemNotes) {
     if(excludeSystemNotes) {
-      return notes.stream()
-          .filter(note -> !StringUtils.equals(note.getWritterName(), ISecurityConstants.SYSTEM_USER_NAME))
+      return notes.stream().filter(note -> isNotASystemNote(note))
           .map(this::createHistoryFrom).collect(Collectors.toList());
     }
     return notes.stream().map(this::createHistoryFrom).collect(Collectors.toList());
+  }
+
+  private boolean isNotASystemNote(INote note) {
+    return !StringUtils.equals(note.getWritterName(), ISecurityConstants.SYSTEM_USER_NAME);
   }
 
   public History createHistoryFrom(ITask task) {
