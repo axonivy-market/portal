@@ -454,4 +454,11 @@ public abstract class TemplatePage extends AbstractPage {
   public void waitForLeftMenuActive() {
     waitUntilAnimationFinished(DEFAULT_TIMEOUT, "menu-item-dashboard.active-menuitem", CLASS_PROPERTY);
   }
+  
+  public void clickOnLogout() {
+    clickByCssSelector("[id='user-settings-menu']");
+    waitForElementDisplayed(By.id("logout-setting:logout-menu-item"), true);
+    clickByCssSelector("[id$='logout-setting:logout-menu-item']");
+    WaitHelper.assertTrueWithWait(() -> findElementByCssSelector("[id$=':username']").isDisplayed());
+  }
 }
