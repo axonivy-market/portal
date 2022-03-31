@@ -36,15 +36,15 @@
               </h:panelGroup>
 
               <h:panelGroup class="md-inputfield MarTop20">
-                <p:calendar id="from" value="#{data.leaveRequestData.from}" locale="#{localeBean.locale}"
-                  pattern="#{dateTimePatternBean.configuredCalendarPattern}" required="true"
+                <p:datePicker id="from" value="#{data.leaveRequestData.from}" locale="#{localeBean.locale}"
+                  pattern="#{dateTimePatternBean.configuredCalendarPattern}" required="true" showTime="#{!dateTimePatternBean.isTimeHidden}"
                   requiredMessage="#{ivy.cms.co('/Labels/LeaveRequest/from')}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" />
                 <p:outputLabel for="from" value="#{ivy.cms.co('/Labels/LeaveRequest/from')}" />
               </h:panelGroup>
 
               <h:panelGroup class="md-inputfield MarTop20">
-                <p:calendar id="to" value="#{data.leaveRequestData.to}" locale="#{localeBean.locale}"
-                  pattern="#{dateTimePatternBean.configuredCalendarPattern}" required="true"
+                <p:datePicker id="to" value="#{data.leaveRequestData.to}" locale="#{localeBean.locale}"
+                  pattern="#{dateTimePatternBean.configuredCalendarPattern}" required="true" showTime="#{!dateTimePatternBean.isTimeHidden}"
                   requiredMessage="#{ivy.cms.co('/Labels/LeaveRequest/to')}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" />
                 <p:outputLabel for="to" value="#{ivy.cms.co('/Labels/LeaveRequest/to')} " />
               </h:panelGroup>

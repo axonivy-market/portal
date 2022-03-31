@@ -124,6 +124,9 @@ private static final long serialVersionUID = -5889375917550618261L;
       return new ArrayList<>();
     }
     
+    if (userProcessService == null) {
+      userProcessService = UserProcessService.getInstance();
+    }
     List<UserProcess> processes = userProcessService.getPrivateConfig();
 
     /*
