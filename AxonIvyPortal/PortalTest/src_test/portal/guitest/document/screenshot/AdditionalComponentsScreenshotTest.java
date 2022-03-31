@@ -42,8 +42,7 @@ public class AdditionalComponentsScreenshotTest extends ScreenshotTest {
     ScreenshotUtil.resizeBrowser(new Dimension(1500, 1000));
 
     NewDashboardPage newDashboardPage = new NewDashboardPage();
-    newDashboardPage.startTask(0);
-    WaitHelper.assertTrueWithWait(() -> ScreenshotUtil.isDOMStatusComplete());
+    WaitHelper.waitForNavigation(newDashboardPage, () -> new NewDashboardPage().startTask(1));
     ScreenshotUtil.resizeBrowser(new Dimension(1366, 800));
     newDashboardPage = new NewDashboardPage();
     newDashboardPage.waitForGrowlMessageDisplayClearly();
@@ -51,7 +50,7 @@ public class AdditionalComponentsScreenshotTest extends ScreenshotTest {
 
     redirectToRelativeLink(createTestingTasksUrl);
     newDashboardPage = new NewDashboardPage();
-    newDashboardPage.startTask(1);
+    newDashboardPage.startTask(3);
     TaskTemplatePage taskTemplatePage = new TaskTemplatePage();
     taskTemplatePage.clickCancelButton();
     WaitHelper.assertTrueWithWait(() -> ScreenshotUtil.isDOMStatusComplete());
