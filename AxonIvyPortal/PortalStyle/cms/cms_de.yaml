@@ -229,7 +229,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       embedInFrame: Auf true gesetzt, um einen Prozess/Task im IFrame-Modus zu starten
       enableCaseOwner: Wird auf true gesetzt, um die Filterung des Vorgangsinhabers bei der Abfrage von Vorgängen zu aktivieren. Diese Einstellung wirkt sich auf alle Vorgangsabfragen aus, z.B. nach Vorgangsliste, globale Suche, Statistik, …
       enableGroupChat: Setzen Sie diese Einstellung auf "true", um den Gruppenchat zu aktivieren
-      enablePrivateChat: Set this property to true to enable private chat function
+      enablePrivateChat: Setzen Sie diese Einstellung auf "true", um den privaten Chat zu aktivieren
       enableProcessViewer: TODO Set this property to true to enable process viewer option in Task/Case actions
       enableScriptCheckingForUploadedDocumentNote: 'Auf "true" setzen, um die Skriptüberprüfung zu aktivieren. Es werden die Formate PDF, Excel und Word unterstützt. '
       enableUserFavorites: Wenn diese Einstellung deaktiviert ist, zeigen Sie den Benutzerfavoritenabschnitt der Prozessliste nicht in Portal Home an.
