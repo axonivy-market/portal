@@ -1668,7 +1668,8 @@ Pt0 f142 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Pt0 f142 1360 1706 112 44 -48 -8 #rect
 Pt0 f143 actionTable 'out=in;
 ' #txt
-Pt0 f143 actionCode 'import ch.ivyteam.ivy.workflow.ICase;
+Pt0 f143 actionCode 'import ch.ivy.addon.portalkit.util.CaseUtils;
+import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import java.util.ArrayList;
@@ -1677,7 +1678,7 @@ import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivy.addon.portalkit.service.HistoryService;
 
 List<ITask> finishedTasks = new ArrayList();
-in.caseSelected = ivy.wf.getCaseQueryExecutor().getFirstResult(CaseQuery.create().where().caseId().isEqual(in.caseId)) as ICase;
+in.caseSelected = CaseUtils.findCase(in.caseId);
 for(ITask task : in.caseSelected.tasks().all()) {
 	if(task.getState() == TaskState.DONE
 	|| task.getState() == TaskState.CREATED 
@@ -1686,12 +1687,16 @@ for(ITask task : in.caseSelected.tasks().all()) {
 		finishedTasks.add(task);
 	}
 }
-
-HistoryService historyService = new HistoryService();
 GlobalSettingService globalSettingService = new GlobalSettingService();
 boolean excludeSystemTasks = globalSettingService.findHideSystemTasksFromHistorySettingValue();
 boolean excludeSystemNotes = globalSettingService.findHideSystemNotesFromHistorySettingValue();
-in.histories = historyService.getHistories(finishedTasks, in.caseSelected.getNotes(), excludeSystemTasks, excludeSystemNotes);' #txt
+
+List<ICase> cases = new ArrayList();
+cases.add(in.caseSelected);
+cases.addAll(CaseUtils.findSubCasesByBusinessCaseId(in.caseId));
+
+HistoryService historyService = new HistoryService();
+in.histories = historyService.getCaseHistories(in.caseId, finishedTasks, cases, excludeSystemTasks, excludeSystemNotes);' #txt
 Pt0 f143 security system #txt
 Pt0 f143 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
