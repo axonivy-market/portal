@@ -94,12 +94,12 @@ var Portal = {
           }
         });
 
-        var toggleMenuIcon = $('a.left-sidebar-menu-icon');
+        var toggleMenuIcon = $('.left-sidebar-menu-icon');
         if (toggleMenuIcon.is(":visible")) {
           usedWidthOfTopMenu += toggleMenuIcon.outerWidth(true);
         }
 
-        var breadCrumbWidth = "calc(100% - " + usedWidthOfTopMenu + 50 + "px)";
+        var breadCrumbWidth = "calc(100% - " + usedWidthOfTopMenu + "px)";
         breadCrumb.css({"display": "block", "width" : breadCrumbWidth});
         if(!layoutWrapper.hasClass('has-breadcrumb')) {
           layoutWrapper.addClass('has-breadcrumb');
