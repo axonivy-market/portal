@@ -216,7 +216,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       embedInFrame: Set to true to start a process/task in IFrame mode
       enableCaseOwner: Set to true to enable filtering case owner when cases are queried. This setting affects all case queries, e.g. for case list, global search, statistic.
       enableGroupChat: Set this property to true to enable group chat function
-      enablePrivateChat: Set this property to true to enable private chat function
+      enablePrivateChat: TODO Set this property to true to enable process viewer option in Task/Case actions
+      enableProcessViewer: TODO Set this property to true to enable process viewer option in Task/Case actions
       enableScriptCheckingForUploadedDocumentNote: Set to true to enable script checking for uploaded document. Currently this function supports checking for PDF, Excel, Word.
       enableUserFavorites: If this property is disabled, do not display user favorites section of process list in Portal home.
       enableVirusScannerForUploadedDocumentNote: Set to true to enable virus scanner for uploaded document. Currently this function is using API VIRUSTOTAL.
