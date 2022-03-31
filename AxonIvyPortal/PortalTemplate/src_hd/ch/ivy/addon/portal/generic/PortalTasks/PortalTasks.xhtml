@@ -74,7 +74,7 @@
           taskFilter="#{filterContainer.customerTypeFilter}">
           <p:selectOneRadio layout="pageDirection" value="#{filterContainer.customerTypeFilter.selectedCustomerType}">
             <p:ajax
-              update="@([id$='customer-type-filter:filter-open-form']) @form #{p:component('task-view-container')}"
+              update="@([id$='customer-type-filter:filter-open-form']) @form #{p:resolveFirstComponentWithId('task-view-container', view).clientId}"
               global="false" oncomplete="taskWidget.setupScrollbar(); taskWidget.setupHeader()" />
             <f:selectItems var="type" value="#{filterContainer.customerTypeFilter.customerTypes}" itemLabel="#{type}"
               itemValue="#{type}" />

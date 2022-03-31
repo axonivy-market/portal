@@ -101,7 +101,7 @@ public class AdminSettingsTest extends BaseTest {
 
       adminSettingsPage = homePage.openAdminSettings();
       adminSettingsPage.resetShowLegacyUI();
-      mainMenuPage = homePage.openMainMenu();
+      mainMenuPage = new MainMenuPage();
       processWidgetPage = mainMenuPage.selectProcessesMenu();
       currentView = processWidgetPage.getCurrentViewMode();
       assertTrue("IMAGE".equalsIgnoreCase(currentView));
@@ -116,7 +116,7 @@ public class AdminSettingsTest extends BaseTest {
       assertTrue(homePage.isDisplayed());
       adminSettingsPage = homePage.openAdminSettings();
       adminSettingsPage.resetAllSettings();
-      mainMenuPage = homePage.openMainMenu();
+      mainMenuPage = new MainMenuPage();
       processWidgetPage = mainMenuPage.selectProcessesMenu();
       currentView = processWidgetPage.getCurrentViewMode();
       assertTrue("IMAGE".equalsIgnoreCase(currentView));
