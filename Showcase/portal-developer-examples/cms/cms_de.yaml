@@ -66,6 +66,7 @@ Dialogs:
       IsRequired: Pflichtfeld
       Representation: Vertretung
       To: Bis
+    testConten: ''
 Labels:
   address: Strasse/Hausnr.
   cancel: Abbrechen

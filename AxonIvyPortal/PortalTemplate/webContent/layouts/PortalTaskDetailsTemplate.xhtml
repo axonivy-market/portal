@@ -8,6 +8,9 @@
     <ui:param name="loadGridStack" value="true" />
     <ui:define name="title">#{ivy.cms.co('/Labels/TaskItemDetail')}</ui:define>
     <ui:define name="pageContent">
+      <h:outputStylesheet library="css" name="perfect-scrollbar.css"/>
+      <h:outputScript library="js" name="perfect-scrollbar.min.js"/>
+
       <ic:ch.ivy.addon.portalkit.component.TaskItemDetails id="task-detail-template" task="#{task}" showItemDetailsHeader="#{showItemDetailsHeader}"
         showItemDetailsNotes="#{showItemDetailsNotes}" showItemDetailDocuments="#{showItemDetailDocuments}" dataModel="#{dataModel}"
         portalPage="#{portalPage}" isFromTaskList="#{isFromTaskList}"
