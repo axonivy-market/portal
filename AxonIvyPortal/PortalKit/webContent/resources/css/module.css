@@ -5568,6 +5568,7 @@ body span.ui-commandlink .si {
   padding: 0;
 }
 
+.portal-process-viewer-form.has-error-message,
 .task-details-panel-title {
   font-size: 16px;
 }
@@ -6117,4 +6118,48 @@ body span.ui-commandlink .si {
   font-size: 3rem;
   width: 100%;
   line-height: 1.5;
+}
+
+/* Process Viewer */
+.portal-process-viewer-form {
+  padding: 10px;
+  height: calc(100% - 7px);
+}
+
+.portal-process-viewer-form.has-error-message {
+  height: 200px;
+}
+
+.process-viewer-frame {
+  height: 100%;
+}
+
+.process-viewer-data {
+  height : calc(100% - 50px);
+  overflow: auto;
+  padding: 2rem !important;
+}
+
+.process-viewer-information {
+  height: 100px;
+}
+
+.process-viewer-command {
+  height: 50px;
+}
+
+.process-viewer-diagram {
+  height: calc(100% - 100px);
+}
+
+.process-viewer-information .process-information-title {
+  font-weight: bold;
+}
+
+.case-detail-section-title .case-detail-action-command {
+  padding: 0;
+}
+.case-detail-section-title .case-detail-action-command .action-link {
+  float: right;
+  margin: 0;
 }
