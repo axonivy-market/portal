@@ -380,6 +380,7 @@ public class TaskWidgetPage extends TemplatePage {
   @SuppressWarnings("deprecation")
   public void openAdvancedFilter(String filterName, String filterIdName) {
     click(By.cssSelector("[id$='filter-add-action']"));
+	waitForElementDisplayed(By.cssSelector("[id$='" + taskWidgetId + ":filter-add-form:filter-selection']"), true);
     WebElement filterSelectionElement = findElementById(taskWidgetId + ":filter-add-form:filter-selection");
     List<WebElement> elements = findChildElementsByTagName(filterSelectionElement, "LABEL");
     for (WebElement element : elements) {
@@ -420,6 +421,8 @@ public class TaskWidgetPage extends TemplatePage {
 
   public void openStateFilter() {
     click(By.cssSelector("button[id$='state-filter:filter-open-form:advanced-filter-command']"));
+    waitForElementDisplayed(By.cssSelector("[id$='state-filter:filter-input-form:state-selection']"),
+            true);
   }
 
   public void filterByDescription(String text) {
@@ -547,6 +550,7 @@ public class TaskWidgetPage extends TemplatePage {
         .findElements(By.cssSelector("table[id$=':filter-input-form:state-selection'] div.ui-chkbox-box.ui-state-default"));
     statesSelectedIndex.forEach(index -> {
       checkBoxList.get(index).click();
+      waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
     });
 
     click(By.cssSelector("button[id$='state-filter:filter-input-form:update-command']"));
@@ -767,6 +771,7 @@ public class TaskWidgetPage extends TemplatePage {
 
   public void openCategoryFilter() {
     click(By.cssSelector("button[id$='task-category-filter:filter-open-form:advanced-filter-command']"));
+    waitForElementDisplayed(By.cssSelector(".advanced-filter-panel.ui-connected-overlay-enter-done"), true);
   }
 
   public void toggleNoCategory() {

@@ -1,8 +1,8 @@
 approveLeaveData #class
 internaltest.ui.approveLeave #namespace
 Mitarbeiter String #field
-Von Date #field
-Bis Date #field
+Von java.util.Date #field
+Bis java.util.Date #field
 beantragt Boolean #field
 genehmigt Boolean #field
 Ablehnungsgrund String #field

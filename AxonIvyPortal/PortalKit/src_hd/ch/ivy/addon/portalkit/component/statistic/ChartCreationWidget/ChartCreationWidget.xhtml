@@ -56,7 +56,7 @@
               <p:commandButton id="create-task-by-priority-link" styleClass="add-button" global="false"
                 icon="si si-add-small u-mar-right-5"
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByPriority/addToDashboardLink')}" >
-                <p:ajax event="click" update="#{p:component('add-chart-dialog')}" resetValues="true" global="false"
+                <p:ajax event="click" update="#{p:resolveFirstComponentWithId('add-chart-dialog', view).clientId}" resetValues="true" global="false"
                   listener="#{logic.updateBeforeAddTaskByPriority}" oncomplete="PF('add-chart-dialog').show();" />
               </p:commandButton>
             </h:panelGroup>
@@ -78,7 +78,7 @@
               <p:commandButton id="create-case-by-state-link" styleClass="add-button" global="false"
                 icon="si si-add-small u-mar-right-5"
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByPriority/addToDashboardLink')}">
-                <p:ajax event="click" update="#{p:component('add-chart-dialog')}" resetValues="true" global="false"
+                <p:ajax event="click" update="#{p:resolveFirstComponentWithId('add-chart-dialog', view).clientId}" resetValues="true" global="false"
                   listener="#{logic.updateBeforeAddCaseByState}" oncomplete="PF('add-chart-dialog').show();" />
               </p:commandButton>
             </h:panelGroup>
@@ -100,7 +100,7 @@
               <p:commandButton id="create-task-by-expiry-link" styleClass="add-button" global="false"
                 icon="si si-add-small u-mar-right-5"
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByPriority/addToDashboardLink')}">
-                <p:ajax event="click" update="#{p:component('add-chart-dialog')}" resetValues="true" global="false"
+                <p:ajax event="click" update="#{p:resolveFirstComponentWithId('add-chart-dialog', view).clientId}" resetValues="true" global="false"
                   listener="#{logic.updateBeforeAddTaskByExpiry}" oncomplete="PF('add-chart-dialog').show();" />
               </p:commandButton>
             </h:panelGroup>
@@ -122,7 +122,7 @@
               <p:commandButton id="create-elapsed-time-link" styleClass="add-button" global="false"
                 icon="si si-add-small u-mar-right-5"
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByPriority/addToDashboardLink')}">
-                <p:ajax event="click" update="#{p:component('add-chart-dialog')}" resetValues="true" global="false"
+                <p:ajax event="click" update="#{p:resolveFirstComponentWithId('add-chart-dialog', view).clientId}" resetValues="true" global="false"
                   listener="#{logic.updateBeforeAddElapsedTime}" oncomplete="PF('add-chart-dialog').show();" />
               </p:commandButton>
             </h:panelGroup>
@@ -144,7 +144,7 @@
               <p:commandButton id="create-case-by-finished-task-link" styleClass="add-button" global="false"
                 icon="si si-add-small u-mar-right-5"
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByPriority/addToDashboardLink')}">
-                <p:ajax event="click" update="#{p:component('add-chart-dialog')}" resetValues="true" global="false"
+                <p:ajax event="click" update="#{p:resolveFirstComponentWithId('add-chart-dialog', view).clientId}" resetValues="true" global="false"
                   listener="#{logic.updateBeforeAddCaseByFinishedTask}" oncomplete="PF('add-chart-dialog').show();" />
               </p:commandButton>
             </h:panelGroup>
@@ -166,7 +166,7 @@
               <p:commandButton id="create-case-by-finished-time-link" styleClass="add-button" global="false"
                 icon="si si-add-small u-mar-right-5"
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByPriority/addToDashboardLink')}">
-                <p:ajax event="click" update="#{p:component('add-chart-dialog')}" resetValues="true" global="false"
+                <p:ajax event="click" update="#{p:resolveFirstComponentWithId('add-chart-dialog', view).clientId}" resetValues="true" global="false"
                   listener="#{logic.updateBeforeAddCaseByFinishedTime}" oncomplete="PF('add-chart-dialog').show();" />
               </p:commandButton>
             </h:panelGroup>

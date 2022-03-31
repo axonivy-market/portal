@@ -12,6 +12,7 @@ import com.jayway.awaitility.Duration;
 
 public class TaskAnalysisWidgetPage extends TemplatePage {
 
+  private static final String TASK_FILTER_SELECTION = "task-widget:task-filter-add-form:task-filter-selection";
   private static final String WIDGET_ID = "task-widget";
 
   public TaskAnalysisWidgetPage() {
@@ -59,7 +60,8 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
   @SuppressWarnings("deprecation")
   public void openAdvancedTaskFilter(String filterName, String filterIdName) {
     click(findTaskFilterButton());
-    WebElement filterSelectionElement = findElementById("task-widget:task-filter-add-form:task-filter-selection");
+    waitForElementDisplayed(By.id(TASK_FILTER_SELECTION), true);
+    WebElement filterSelectionElement = findElementById(TASK_FILTER_SELECTION);
     for (WebElement filterElement : findChildElementsByTagName(filterSelectionElement, "LABEL")) {
       if (filterName.equals(filterElement.getText())) {
         click(filterElement);
@@ -345,7 +347,7 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
   
   public void openNoActivatorFilter(String filterName) {
     findTaskFilterButton().click();
-    WebElement filterSelectionElement = findElementById("task-widget:task-filter-add-form:task-filter-selection");
+    WebElement filterSelectionElement = findElementById(TASK_FILTER_SELECTION);
     for (WebElement filterElement : findChildElementsByTagName(filterSelectionElement, "LABEL")) {
       if (filterName.equals(filterElement.getText())) {
         filterElement.click();

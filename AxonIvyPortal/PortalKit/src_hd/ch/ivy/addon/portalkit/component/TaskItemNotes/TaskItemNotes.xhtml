@@ -106,7 +106,7 @@
         <p:spacer width="15px" />
         <p:commandButton styleClass="add-new-note-save-command" id="save-add-note-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
           icon="#{visibilityBean.generateButtonIcon('si si-floppy-disk')}" partialSubmit="true"
-          process="task-detail-note-content #{p:component('show-system-notes-checkbox')}"
+          process="task-detail-note-content #{p:resolveFirstComponentWithId('show-system-notes-checkbox', view).clientId}"
           update="task-detail-note-content task-detail-create-note-msg #{cc.clientId}:task-history-content-container"
           actionListener="#{logic.createNote()}" oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('#{cc.clientId}:addNewNoteDialog').hide();}" />
       </h:panelGroup>
