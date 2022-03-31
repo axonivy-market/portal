@@ -59,7 +59,7 @@
               <h:outputText value="#{assignee.briefDisplayNameWithState}" />
               <p:commandLink id="chat-delete-assignee" styleClass="si si-bin-1 chat-delete-assignee"
                 rendered="#{assignee ne ivy.session.getSessionUser()}"
-                actionListener="#{chatAssigneeBean.removeAssignee(assignee)}" update="#{p:component('chat-assignee-selection-panel')}" />
+                actionListener="#{chatAssigneeBean.removeAssignee(assignee)}" update="#{p:resolveFirstComponentWithId('chat-assignee-selection-panel', view).clientId}" />
             </div>
           </div>
         </ui:repeat>

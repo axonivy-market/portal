@@ -18,7 +18,7 @@
   <c:set var="isSelected" value="#{data.dataModel.sortField eq sortField}" />
 
   <p:commandLink id="#{cc.attrs.componentId}" styleClass="#{cc.attrs.styleClass} #{cc.attrs.responsiveStyleClass} #{isSelected ? 'is-selected' : ''}"
-    update="#{cc.attrs.componentToBeUpdated} #{p:component('task-view-container')} #{p:component('task-widget-sort-menu')}" 
+    update="#{cc.attrs.componentToBeUpdated} #{p:resolveFirstComponentWithId('task-view-container', view).clientId} #{p:resolveFirstComponentWithId('task-widget-sort-menu', view).clientId}" 
     oncomplete="taskWidget.setupScrollbar(); taskWidget.setupHeader()" 
     rendered="#{cc.attrs.sortable and data.dataModel.isSelectedColumn(sortField)}" >
     <f:actionListener
