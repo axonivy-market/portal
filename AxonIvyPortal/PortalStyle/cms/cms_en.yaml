@@ -289,6 +289,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     downloadFile: Download file
     duration: Duration
     history: History
+    noCaseName: <No case name>
     noDescription: No description
     noRunningCase: No case is running
     noRunningTask: No task is running
@@ -864,6 +865,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     curentReportOf: of
     eventType: Event type
     exportButton: Export to Excel
+    relatedCase: Related Case
     showMoreBtn: Show more
     taskExportedFileNamePrefix: Note_history_of_task_{0}
     taskFailReason: 'Failed reason: {0}'
