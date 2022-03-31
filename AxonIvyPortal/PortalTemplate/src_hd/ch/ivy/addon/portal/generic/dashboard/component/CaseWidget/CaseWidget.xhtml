@@ -29,8 +29,8 @@
       <h:panelGroup id="columns-configuration" layout="block" rendered="#{cc.attrs.renderColumnConfiguration}"
         styleClass="dashboard-cases-container__columns-configuration">
         <p:commandLink id="column-toggler" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/manageColumns')}"
-          update="#{p:component('column-management-dialog')}" oncomplete="PF('column-management-dialog').show()" process="@this" global="false">
-          <p:resetInput target="#{p:component('column-management-dialog')}" />
+          update="#{p:resolveFirstComponentWithId('column-management-dialog', view).clientId}" oncomplete="PF('column-management-dialog').show()" process="@this" global="false">
+          <p:resetInput target="#{p:resolveFirstComponentWithId('column-management-dialog', view).clientId}" />
         </p:commandLink>
       </h:panelGroup>
 
@@ -40,8 +40,7 @@
         rows="#{caseWidget.rowsPerPage}"
         rowsPerPageTemplate="5,10,20,50"
         paginatorAlwaysVisible="false"
-        sortField="#{caseWidget.sortField}" sortBy="#{caseWidget.sortField}"
-        sortOrder="#{caseWidget.sortDescending ? 'descending' : 'ascending'}"
+        sortBy="#{caseWidget.sortBy}"
         rowIndexVar="rowIndex" rowHover="#{isReadOnlyMode}" selectionMode="single"
         styleClass="dashboard-cases--table #{isReadOnlyMode ? '' : 'dashboard__table--edit'} #{isPreviewMode ? 'dashboard__table--preview' : ''}"
         rowStyleClass="dashboard-table--row-style"
