@@ -30,8 +30,8 @@
       styleClass="ui-g-12 u-padding-0 js-dashboard-tasks-container-#{taskWidget.id} u-display-none">
       <h:panelGroup id="columns-configuration" layout="block" rendered="#{cc.attrs.renderColumnConfiguration}" styleClass="dashboard-tasks-container__columns-configuration">
         <p:commandLink id="column-toggler" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/manageColumns')}" 
-          update="#{p:component('column-management-dialog')}" oncomplete="PF('column-management-dialog').show()" process="@this" global="false">
-          <p:resetInput target="#{p:component('column-management-dialog')}" />
+          update="#{p:resolveFirstComponentWithId('column-management-dialog', view).clientId}" oncomplete="PF('column-management-dialog').show()" process="@this" global="false">
+          <p:resetInput target="#{p:resolveFirstComponentWithId('column-management-dialog', view).clientId}" />
         </p:commandLink>
       </h:panelGroup>
       <p:dataTable id="dashboard-tasks" widgetVar="dashboard-tasks-#{taskWidget.id}" value="#{taskWidget.dataModel}" var="task"
@@ -39,8 +39,7 @@
         rows="#{taskWidget.rowsPerPage}"
         rowsPerPageTemplate="5,10,20,50"
         paginatorAlwaysVisible="false"
-        pageLinks="5" sortField="#{taskWidget.sortField}" sortBy="#{taskWidget.sortField}"
-        sortOrder="#{taskWidget.sortDescending ? 'descending' : 'ascending'}"
+        pageLinks="5" sortBy="#{taskWidget.sortBy}"
         rowIndexVar="rowIndex" rowHover="#{isReadOnlyMode}" selectionMode="single"
         styleClass="dashboard-tasks--table #{isReadOnlyMode ? '' : 'dashboard__table--edit'} #{isPreviewMode ? 'dashboard__table--preview' : ''}"
         rowStyleClass="dashboard-table--row-style"

@@ -416,7 +416,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public void clickCaseListBreadCrumb() {
-    click(By.cssSelector(".portal-breadcrumb ul li:nth-of-type(3) .ui-menuitem-link"));
+    click(By.cssSelector(".portal-breadcrumb ol li:nth-of-type(2) .ui-menuitem-link"));
   }
   
   public void clickBackButton() {

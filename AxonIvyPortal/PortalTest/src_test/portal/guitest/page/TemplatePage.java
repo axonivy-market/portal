@@ -309,7 +309,7 @@ public abstract class TemplatePage extends AbstractPage {
   }
 
   public String getGlobalGrowlMessage() {
-    return findElementById(PORTAL_GLOBAL_GROWL_ID).getText();
+    return findElementById(PORTAL_GLOBAL_GROWL_ID).findElement(By.cssSelector(".ui-growl-message")).getText();
   }
   
   public void waitForGrowlMessageDisplayClearly() {
