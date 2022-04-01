@@ -10,7 +10,7 @@
     <p:selectOneMenu id="sort-task-menu" value="#{data.selectedSort}" styleClass="sort-task-menu" autoWidth="false" height="auto">
       <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/sort')}"  itemDisabled="true" noSelectionOption="true"/>
       <f:selectItems value="#{data.dataModel.getPortalTaskSort()}" var="item" itemLabel="#{data.dataModel.getSortFieldLabel(item)}"/>
-      <p:ajax event="change" listener="#{logic.sort}" update="#{p:component('task-view-container')}" oncomplete="taskWidget.setupScrollbar();"/>
+      <p:ajax event="change" listener="#{logic.sort}" update="#{p:resolveFirstComponentWithId('task-view-container', view).clientId}" oncomplete="taskWidget.setupScrollbar();"/>
     </p:selectOneMenu>
   </h:form>
 </ui:composition>

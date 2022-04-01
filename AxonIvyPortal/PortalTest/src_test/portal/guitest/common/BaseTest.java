@@ -32,6 +32,7 @@ public class BaseTest {
 
   private String designerLogoutUrl = "http://localhost:8081/designer/logout";
   private final static String LOGIN_URL_PATTERN = "portalKitTestHelper/1636734E13CEC872/login.ivp?username=%s&password=%s";
+  private final static String LOGOUT_URL = "/PortalKitTestHelper/1636734E13CEC872/logout.ivp";
   private BrowserType browserType;
 
   public BaseTest() {
@@ -243,6 +244,10 @@ public class BaseTest {
     }
   }
   
+  protected void logout() {
+    redirectToRelativeLink(String.format(LOGOUT_URL));
+  }
+
   public static void killBrowsers() {
     try {
       System.out.println("Kill all open browsers");
