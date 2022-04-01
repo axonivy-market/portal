@@ -3,6 +3,7 @@ package ch.ivy.addon.portal.generic.bean;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
@@ -11,6 +12,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
@@ -91,6 +93,7 @@ public class ColumnManagementBean {
   
   public void remove(ColumnModel col) {
     this.columnsBeforeSave.remove(col);
+    fetchFields();
   }
   
   private List<String> standardFields() {
@@ -129,6 +132,7 @@ public class ColumnManagementBean {
       columnModel.setPattern(numberFieldPattern);
     }
     this.columnsBeforeSave.add(columnModel);
+    this.fields.remove(columnModel.getField());
     FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO,
         Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/fieldIsAdded", Arrays.asList(this.selectedField)), null);
     FacesContext.getCurrentInstance().addMessage("field-msg", msg);
@@ -148,12 +152,19 @@ public class ColumnManagementBean {
       }
       this.fields = customFieldNames.stream().filter(this::doesNotExist).map(Result::name).sorted(StringUtils::compareIgnoreCase).collect(Collectors.toList());
     }
+    List<String> existingFields = getExistingFields();
+    this.fields = this.fields.stream().filter(isNotUsedIn(existingFields)).collect(Collectors.toList());
+  }
+
+  private Predicate<? super String> isNotUsedIn(List<String> existingFields) {
+    return f -> CollectionUtils.isEmpty(existingFields) || !existingFields.contains(f);
   }
   
   public List<String> completeCustomFields(String query) {
-    return this.fields.stream().filter(f -> StringUtils.containsIgnoreCase(f, query)).collect(Collectors.toList());
+    List<String> existingFields = getExistingFields();
+    return this.fields.stream().filter(isNotUsedIn(existingFields)).filter(f -> StringUtils.containsIgnoreCase(f, query)).collect(Collectors.toList());
   }
-  
+
   private boolean doesNotExist(Result customFieldName) {
     if (widget.getType() == DashboardWidgetType.TASK) {
       TaskDashboardWidget taskWidget = (TaskDashboardWidget) this.widget;
