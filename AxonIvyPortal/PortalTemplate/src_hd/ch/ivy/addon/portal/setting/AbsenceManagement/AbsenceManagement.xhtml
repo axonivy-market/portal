@@ -87,7 +87,6 @@
                       reflow="true"
                       value="#{data.displayedAbsences}"
                       var="absence"
-                      sortBy="#{absence.from}"
                       paginator="true"
                       rows="4"
                       paginatorAlwaysVisible="false"
@@ -149,6 +148,7 @@
                       value="#{data.deputyRoles}"
                       var="deputyRole"
                       sortBy="#{deputyRole.deputyRoleDisplayName}"
+                      sortOrder="asc"
                       paginator="true" rows="4"
                       paginatorAlwaysVisible="false"
                       paginatorPosition="bottom"
@@ -200,6 +200,7 @@
                     paginatorAlwaysVisible="false"
                     paginatorPosition="bottom"
                     pageLinks="3"
+                    sortMode="single"
                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
                     currentPageReportTemplate="{currentPage} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/curentReportOf')} {totalPages}">
                     <p:column headerText="#{ivy.cms.co(data.isSupervisor ? '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/selectedDeputyFor' : '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/deputyFor')}"
