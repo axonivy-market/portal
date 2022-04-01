@@ -96,6 +96,6 @@ public class CaseTaskNoteHistoryBean implements Serializable {
   }
 
   public SortMeta getTaskHistorySortBy() {
-    return SortFieldUtil.buildSortMeta("timestamp", true);
+    return SortFieldUtil.buildSortMeta("creationTimestamp.time", true);
   }
 }
