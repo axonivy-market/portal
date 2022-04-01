@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.faces.bean.ManagedBean;
 
+import org.primefaces.model.SortMeta;
 import org.primefaces.model.StreamedContent;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
@@ -15,6 +16,7 @@ import ch.ivy.addon.portalkit.bo.History.HistoryType;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.exporter.internal.NoteHistoryExporter;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
+import ch.ivy.addon.portalkit.util.SortFieldUtil;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.INote;
@@ -87,5 +89,13 @@ public class CaseTaskNoteHistoryBean implements Serializable {
   public StreamedContent getStreamedContentOfCaseNoteHistory(List<History> caseNoteHistory, ICase iCase, String fileName) {
     NoteHistoryExporter exporter = new NoteHistoryExporter();
     return exporter.getStreamedContentOfCaseNoteHistory(caseNoteHistory, iCase, fileName + ".xlsx");
+  }
+
+  public SortMeta getCaseHistorySortBy() {
+    return SortFieldUtil.buildSortMeta("timestamp", true);
+  }
+
+  public SortMeta getTaskHistorySortBy() {
+    return SortFieldUtil.buildSortMeta("creationTimestamp.time", true);
   }
 }

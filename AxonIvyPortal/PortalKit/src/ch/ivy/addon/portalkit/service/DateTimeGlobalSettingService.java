@@ -26,7 +26,7 @@ public class DateTimeGlobalSettingService {
     return isTimeHidden() ? getDatePattern() : getDateTimePattern();
   }
 
-  private boolean isTimeHidden() {
+  public boolean isTimeHidden() {
     String dateTimeGlobalSetting = globalSettingService.findGlobalSettingValue(GlobalVariable.HIDE_TIME);
     return Boolean.valueOf(dateTimeGlobalSetting);
   }
@@ -64,7 +64,7 @@ public class DateTimeGlobalSettingService {
     return isDateFilterWithTime() ? dateTimeFilterPattern : dateFilterPattern;
   }
 
-  private boolean isDateFilterWithTime() {
+  public boolean isDateFilterWithTime() {
     String dateFilterGlobalSetting = globalSettingService.findGlobalSettingValue(GlobalVariable.DATE_FILTER_WITH_TIME);
     return Boolean.valueOf(dateFilterGlobalSetting);
   }
