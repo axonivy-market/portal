@@ -33,7 +33,7 @@
           <i class="si si-move-expand-vertical" />
         </p:column>
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/remove')}" width="70" styleClass="u-text-align-center">
-          <p:commandLink id="remove-link" actionListener="#{columnManagementBean.remove(column)}" global="false" process="@this" update="column-management-datatable">
+          <p:commandLink id="remove-link" actionListener="#{columnManagementBean.remove(column)}" global="false" process="@this" update="column-management-datatable #{p:resolveFirstComponentWithId('standard-field-selection', view).clientId} #{p:resolveFirstComponentWithId('custom-field-selection', view).clientId}">
             <i class="si si-bin-1" />
           </p:commandLink>
         </p:column>
