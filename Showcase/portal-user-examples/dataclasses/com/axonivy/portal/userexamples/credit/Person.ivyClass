@@ -4,7 +4,7 @@ lastName String #field
 lastName PERSISTENT #fieldModifier
 firstName String #field
 firstName PERSISTENT #fieldModifier
-birthDate Date #field
+birthDate java.util.Date #field
 birthDate PERSISTENT #fieldModifier
 isMale Boolean #field
 isMale PERSISTENT #fieldModifier

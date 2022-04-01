@@ -27,7 +27,7 @@
                 <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}" width="120">
                   <p:commandLink id="edit" process="@this" styleClass="action-column-icon-button"
                     actionListener="#{dashboardConfigurationBean.openDashboardDetail(dashboard)}"
-                    update=":#{p:component('dashboard-detail-dialog')}" oncomplete="PF('dashboard-detail-dialog').show()"
+                    update=":#{p:resolveFirstComponentWithId('dashboard-detail-dialog', view).clientId}" oncomplete="PF('dashboard-detail-dialog').show()"
                     title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}">
                       <p:resetInput target="dashboard-detail-dialog" />
                       <span class="si si-graphic-tablet-drawing-pen" />
