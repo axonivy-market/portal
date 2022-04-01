@@ -47,4 +47,12 @@ public class DateTimePatternBean implements Serializable {
   public String getConfiguredDateWithoutTimePattern() {
     return dateTimePatternService.getDateWithoutTimePattern();
   }
+  
+  public boolean getIsDateFilterWithTime() {
+    return dateTimePatternService.isDateFilterWithTime();
+  }
+  
+  public boolean getIsTimeHidden() {
+    return dateTimePatternService.isTimeHidden();
+  }
 }

@@ -2,6 +2,7 @@ package portal.guitest.userexample.test;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -45,10 +46,11 @@ public class LeaveRequestTest extends BaseTest {
   public void testApproveScenario() {
     leaveRequestPage = startLeaveRequestProcess();
     Assert.assertEquals("Create leave request", leaveRequestPage.getPageTitle());
-    String today =  LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN));
-    String yesterday = LocalDateTime.now().minusDays(1).format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN));
+    String today = LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN, new Locale("en")));
+    String yesterday = LocalDateTime.now().minusDays(1).format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN, new Locale("en")));
     leaveRequestPage.enterLeaveRequestInformation("Maternity Leave", yesterday, today, TestAccount.ADMIN_USER.getFullName(), "requester comment");
     leaveRequestPage.clickSubmitButton();
+    leaveRequestPage.clickOnLogout();
     login(TestAccount.ADMIN_USER);
     taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.startTask(0);
@@ -56,6 +58,7 @@ public class LeaveRequestTest extends BaseTest {
     Assert.assertEquals("Approval", leaveRequestPage.getPageTitle());
     leaveRequestPage.enterApproverComment("Approved");
     leaveRequestPage.clickApproveBtn();
+    leaveRequestPage.clickOnLogout();
     login(TestAccount.DEMO_USER);
     taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.filterTasksBy("Your leave request is approved");
@@ -71,10 +74,11 @@ public class LeaveRequestTest extends BaseTest {
   public void testRejectScenario() {
     leaveRequestPage = startLeaveRequestProcess();
     Assert.assertEquals("Create leave request", leaveRequestPage.getPageTitle());
-    String today =  LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN));
-    String yesterday =  LocalDateTime.now().minusDays(1).format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN));
+    String today =  LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN, new Locale("en")));
+    String yesterday =  LocalDateTime.now().minusDays(1).format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN, new Locale("en")));
     leaveRequestPage.enterLeaveRequestInformation("Maternity Leave", yesterday, today, TestAccount.ADMIN_USER.getFullName(), "requester comment");
     leaveRequestPage.clickSubmitButton();
+    leaveRequestPage.clickOnLogout();
     login(TestAccount.ADMIN_USER);
     taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.startTask(0);
@@ -82,6 +86,7 @@ public class LeaveRequestTest extends BaseTest {
     Assert.assertEquals("Approval", leaveRequestPage.getPageTitle());
     leaveRequestPage.enterApproverComment("Rejected");
     leaveRequestPage.clickRejectBtn();
+    leaveRequestPage.clickOnLogout();
     login(TestAccount.DEMO_USER);
     taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.filterTasksBy("Your leave request is rejected");

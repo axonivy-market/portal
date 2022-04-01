@@ -145,16 +145,16 @@
             <h:outputText value="#{field.headerText} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')}" />
           </div>
           <div class="ui-g-8">
-            <p:calendar id="from-date-field-input" styleClass="case-configuration__calendar" value="#{field.dateFilterFrom}"
-              pattern="#{dateTimePatternBean.configuredCalendarPattern}" locale="#{localeBean.locale}" disabled="true" />
+            <p:datePicker id="from-date-field-input" styleClass="case-configuration__calendar" value="#{field.dateFilterFrom}"
+              pattern="#{dateTimePatternBean.configuredCalendarPattern}" showTime="#{!dateTimePatternBean.isTimeHidden}" locale="#{localeBean.locale}" disabled="true" />
           </div>
 
           <div class="ui-g-4">
             <h:outputText value="#{field.headerText} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')}" />
           </div>
           <div class="ui-g-8">
-            <p:calendar id="to-date-field-input" styleClass="case-configuration__calendar" value="#{field.dateFilterTo}"
-              pattern="#{dateTimePatternBean.configuredCalendarPattern}" locale="#{localeBean.locale}" disabled="true" />
+            <p:datePicker id="to-date-field-input" styleClass="case-configuration__calendar" value="#{field.dateFilterTo}"
+              pattern="#{dateTimePatternBean.configuredCalendarPattern}" showTime="#{!dateTimePatternBean.isTimeHidden}" locale="#{localeBean.locale}" disabled="true" />
           </div>
         </h:panelGroup>
 

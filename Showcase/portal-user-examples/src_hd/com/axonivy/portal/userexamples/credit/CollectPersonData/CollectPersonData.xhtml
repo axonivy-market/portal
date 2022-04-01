@@ -35,10 +35,9 @@
 
                   <h:panelGroup class="MarTop20" layout="block">
                     <p:outputLabel for="birth-date" value="#{ivy.cms.co('/Labels/CaseMap/Credit/birthDate')}" />
-                    <p:calendar id="birth-date" value="#{data.dossier.customer.birthDate}" navigator="true"
-                      yearRange="c-50:c+10" pattern="dd.MM.yyyy">
-                      <f:convertDateTime pattern="dd.MM.yyyy" />
-                    </p:calendar>
+                    <p:datePicker id="birth-date" value="#{data.dossier.customer.birthDate}" monthNavigator="true" yearNavigator="true"
+                      yearRange="1950:2010" pattern="dd.MM.yyyy">
+                    </p:datePicker>
                   </h:panelGroup>
                   <h:panelGroup class="MarTop20" layout="block">
                     <p:outputLabel for="gender" value="#{ivy.cms.co('/Labels/CaseMap/Credit/gender')}" />

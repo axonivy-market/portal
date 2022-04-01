@@ -20,8 +20,8 @@
 					</div>
 					<div class="ui-g-3">
 						<p:outputLabel for="header-date" value="Date" styleClass="MarRight10"/>
-						<p:calendar id="header-date" value=""
-							pattern="#{dateTimePatternBean.configuredCalendarPattern}" showOn="button"
+						<p:datePicker id="header-date" value=""
+							pattern="#{dateTimePatternBean.configuredCalendarPattern}" showIcon="true" showTime="#{!dateTimePatternBean.isTimeHidden}"
 							styleClass="ui-corner-all header-inputfield" />
 					</div>
 					<div class="ui-g-2 ui-md-3">
@@ -109,8 +109,8 @@
 											<p:outputLabel for="customer-since" value="Customer Since" styleClass="MarRight10" escape="true"/>
 										</div>
 										<div class="Wid74">
-											<p:calendar id="customer-since"
-												pattern="#{dateTimePatternBean.configuredCalendarPattern}" showOn="button"
+											<p:datePicker id="customer-since"
+												pattern="#{dateTimePatternBean.configuredCalendarPattern}" showIcon="true" showTime="#{!dateTimePatternBean.isTimeHidden}"
 												styleClass="ui-corner-all customer-since" />
 										</div>
 									</div>
