@@ -414,6 +414,10 @@ body .ui-calendar.task-configuration__calendar .ui-datepicker-trigger {
   width: 100%;
 }
 
+.field-add-fieldset__input {
+  height: 23px;
+}
+
 .field-add-fieldset__custom-field-type-container, .field-add-fieldset__number-pattern-container {
   padding: 0;
 }
