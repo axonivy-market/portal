@@ -347,8 +347,10 @@ You can export the related case list by clicking on the button :guilabel:`Export
 HowTo: Show Process Viewer
 --------------------------
 
-Portal provides a page to let users can see the visual viewer of the process start.
-Users can access this page by clicking on the :guilabel:`Process Viewer` option in the :guilabel:`Action` menu. This option is available on the case and task details page, also the full case/task/list page.
+| Portal provides a page to let users can see the visual viewer of the process start.
+  Users can access this page by clicking on the :guilabel:`Process Viewer` option in the :guilabel:`Action` menu.
+| This option is available on the case and task details page, also the full case/task list page.
+|
 
 #. Click on the :guilabel:`Action` menu
 

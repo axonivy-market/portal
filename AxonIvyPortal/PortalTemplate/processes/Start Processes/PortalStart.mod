@@ -2336,7 +2336,7 @@ Pt0 f221 168 1194 112 44 -42 -8 #rect
 Pt0 f222 111 1216 168 1216 #arcP
 Pt0 f222 0 0.6937327756354965 0 0 #arcLabel
 Pt0 f223 224 1238 224 1264 #arcP
-Pt0 f224 497 2897 30 30 0 15 #rect
+Pt0 f224 497 2865 30 30 0 15 #rect
 Pt0 f225 dialogId ch.ivy.addon.portal.generic.ProcessViewer #txt
 Pt0 f225 startMethod start(String) #txt
 Pt0 f225 requestActionDecl '<String processViewerCaseId> param;' #txt
@@ -2351,7 +2351,7 @@ Pt0 f225 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f225 216 2888 160 48 -41 -8 #rect
+Pt0 f225 216 2856 160 48 -41 -8 #rect
 Pt0 f226 outLink PortalProcessViewer.ivp #txt
 Pt0 f226 inParamDecl '<String processViewerCaseId> param;' #txt
 Pt0 f226 inParamTable 'out.processViewerCaseId=param.processViewerCaseId;
@@ -2360,7 +2360,7 @@ Pt0 f226 requestEnabled true #txt
 Pt0 f226 triggerEnabled false #txt
 Pt0 f226 callSignature PortalProcessViewer(String) #txt
 Pt0 f226 caseData businessCase.attach=true #txt
-Pt0 f226 showInStartList 1 #txt
+Pt0 f226 showInStartList 0 #txt
 Pt0 f226 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -2369,10 +2369,10 @@ Pt0 f226 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Pt0 f226 @C|.responsibility Everybody #txt
-Pt0 f226 81 2897 30 30 -50 18 #rect
-Pt0 f227 111 2912 216 2912 #arcP
+Pt0 f226 81 2865 30 30 -50 18 #rect
+Pt0 f227 111 2880 216 2880 #arcP
 Pt0 f228 color default #txt
-Pt0 f228 376 2912 497 2912 #arcP
+Pt0 f228 376 2880 497 2880 #arcP
 >Proto Pt0 .colors 'default=;
 ' #txt
 >Proto Pt0 .type ch.ivy.addon.portal.generic.PortalStartData #txt
