@@ -69,12 +69,12 @@
         </p:column>
 
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/relatedCase')}"
-          rendered="#{case.isBusinessCase()}"
           sortBy="#{history.displayCaseName}"
           styleClass="u-truncate-text history-related-case ui-sm-12">
           <p:commandLink id="related-case-link" value="#{history.displayCaseName}"
             rendered="#{not empty history.displayCaseName}"
-            actionListener="#{caseDetailsBean.navigateToCaseDetails(history.caseId)}"/>
+            actionListener="#{caseDetailsBean.navigateToCaseDetails(history.caseId)}"
+            disabled="#{history.disabledCaseName}"/>
         </p:column>
 
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/author')}"
