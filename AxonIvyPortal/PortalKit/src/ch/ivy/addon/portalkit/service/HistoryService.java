@@ -6,8 +6,10 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.bo.History;
@@ -35,7 +37,7 @@ public class HistoryService {
 
   public List<History> getCaseHistories(Long selectedCaseId, List<ITask> tasks, List<ICase> cases,
       boolean excludeSystemTasks, boolean excludeSystemNotes) {
-    var historiesRelatedToTasks = createHistoriesFromITasks(tasks, excludeSystemTasks);
+    var historiesRelatedToTasks = createHistoriesFromITasks(tasks, excludeSystemTasks, selectedCaseId);
     var historiesRelatedToNotes = new ArrayList<History>();
     for (var subCase : cases) {
       historiesRelatedToNotes.addAll(createCaseHistories(excludeSystemNotes, subCase, selectedCaseId));
@@ -43,28 +45,46 @@ public class HistoryService {
     return sortHistoriesByTimeStampDescending(Arrays.asList(historiesRelatedToTasks, historiesRelatedToNotes));
   }
 
-  private List<History> createCaseHistories(boolean excludeSystemNotes, ICase caze, Long selectedCaseId) {
+  private List<History> createCaseHistories(boolean excludeSystemNotes, ICase caseHistory, Long selectedCaseId) {
     var histories = new ArrayList<History>();
-    for (var note : caze.getNotes()) {
-      if(excludeSystemNotes && !isNotASystemNote(note)) {
+    for (var note : caseHistory.getNotes()) {
+      if(excludeSystemNotes && !isNotSystemNote(note)) {
         continue;
       }
-      histories.add(createCaesHistotyFromNote(selectedCaseId, note, caze));
+      histories.add(createCaseHistotyFromNote(selectedCaseId, note, caseHistory));
     }
     return histories;
   }
 
-  private History createCaesHistotyFromNote(Long selectedCaseId, INote note, ICase caseHistory) {
+  private History createCaseHistotyFromNote(Long selectedCaseId, INote note, ICase caseHistory) {
     var history = createHistoryFrom(note);
-    history.setCaseId(caseHistory.getId());
-    if (!caseHistory.isBusinessCase() && selectedCaseId != caseHistory.getId()) {
-      var caseName = caseHistory.getName();
-      if (StringUtils.isBlank(caseName)) {
-        caseName = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noCaseName");
-      }
-      history.setDisplayCaseName(String.format(CASE_NAME_FORMAT, caseHistory.getId(), caseName));
-    }
+    buildDisplayCaseNameForNote(selectedCaseId, caseHistory, history);
     return history;
+  }
+
+  private void buildDisplayCaseNameForNote(Long selectedCaseId, ICase caseHistory, History history) {
+    history.setCaseId(caseHistory.getId());
+    history.setDisabledCaseName(selectedCaseId == caseHistory.getId());
+    var caseName = caseHistory.getName();
+    if (StringUtils.isBlank(caseName)) {
+      caseName = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noCaseName");
+    }
+    history.setDisplayCaseName(String.format(CASE_NAME_FORMAT, caseHistory.getId(), caseName));
+  }
+
+  private List<History> createHistoriesFromITasks(List<ITask> tasks, boolean excludeSystemTasks, long selectedCaseId) {
+    List<ITask> refineTasks = new ArrayList<>();
+    if (excludeSystemTasks) {
+      refineTasks = tasks.stream().filter(isNotSystemTaskNote()).collect(Collectors.toList());
+    }
+    refineTasks = tasks.stream().filter(isNotExpressTask()).collect(Collectors.toList());
+    var histories = new ArrayList<History>();
+    CollectionUtils.emptyIfNull(refineTasks).forEach(task -> {
+      var history = createHistoryFrom(task);
+      buildDisplayCaseNameForNote(selectedCaseId, task.getCase(), history);
+      histories.add(history);
+    });
+    return histories;
   }
 
   private List<History> sortHistoriesByTimeStampDescending(List<List<History>> listOfHistories) {
@@ -77,26 +97,31 @@ public class HistoryService {
   }
 
   private List<History> createHistoriesFromITasks(List<ITask> tasks, boolean excludeSystemTasks) {
-    if(excludeSystemTasks) {
-      return tasks.stream()
-          .filter(task -> !StringUtils.equals(task.getWorkerUserName(), ISecurityConstants.SYSTEM_USER_NAME))
-          .filter(task -> task.customFields().stringField(AdditionalProperty.ADHOC_EXPRESS_TASK.toString()).getOrNull() == null)
+    if (excludeSystemTasks) {
+      return tasks.stream().filter(isNotSystemTaskNote()).filter(isNotExpressTask())
           .map(this::createHistoryFrom).collect(Collectors.toList());
     }
-    return tasks.stream()
-        .filter(task -> task.customFields().stringField(AdditionalProperty.ADHOC_EXPRESS_TASK.toString()).getOrNull() == null)
+    return tasks.stream().filter(isNotExpressTask())
         .map(this::createHistoryFrom).collect(Collectors.toList());
   }
 
   public List<History> createHistoriesFromINotes(List<INote> notes, boolean excludeSystemNotes) {
     if(excludeSystemNotes) {
-      return notes.stream().filter(note -> isNotASystemNote(note))
+      return notes.stream().filter(note -> isNotSystemNote(note))
           .map(this::createHistoryFrom).collect(Collectors.toList());
     }
     return notes.stream().map(this::createHistoryFrom).collect(Collectors.toList());
   }
 
-  private boolean isNotASystemNote(INote note) {
+  private Predicate<? super ITask> isNotSystemTaskNote() {
+    return task -> !StringUtils.equals(task.getWorkerUserName(), ISecurityConstants.SYSTEM_USER_NAME);
+  }
+
+  private Predicate<? super ITask> isNotExpressTask() {
+    return task -> task.customFields().stringField(AdditionalProperty.ADHOC_EXPRESS_TASK.toString()).getOrNull() == null;
+  }
+
+  private boolean isNotSystemNote(INote note) {
     return !StringUtils.equals(note.getWritterName(), ISecurityConstants.SYSTEM_USER_NAME);
   }
 

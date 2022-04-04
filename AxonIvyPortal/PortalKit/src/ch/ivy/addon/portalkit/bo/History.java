@@ -20,6 +20,7 @@ public class History {
   private String displayName;
   private Long caseId;
   private String displayCaseName;
+  private boolean isDisabledCaseName;
 
   public enum HistoryType {
     TASK, NOTE, EVENT;
@@ -106,5 +107,13 @@ public class History {
 
   public void setDisplayCaseName(String displayCaseName) {
     this.displayCaseName = displayCaseName;
+  }
+
+  public boolean isDisabledCaseName() {
+    return isDisabledCaseName;
+  }
+
+  public void setDisabledCaseName(boolean isDisabledCaseName) {
+    this.isDisabledCaseName = isDisabledCaseName;
   }
 }
