@@ -51,15 +51,11 @@ public class HistoryService {
       if(excludeSystemNotes && !isNotSystemNote(note)) {
         continue;
       }
-      histories.add(createCaseHistotyFromNote(selectedCaseId, note, caseHistory));
+      var history = createHistoryFrom(note);
+      buildDisplayCaseNameForNote(selectedCaseId, caseHistory, history);
+      histories.add(history);
     }
     return histories;
-  }
-
-  private History createCaseHistotyFromNote(Long selectedCaseId, INote note, ICase caseHistory) {
-    var history = createHistoryFrom(note);
-    buildDisplayCaseNameForNote(selectedCaseId, caseHistory, history);
-    return history;
   }
 
   private void buildDisplayCaseNameForNote(Long selectedCaseId, ICase caseHistory, History history) {
