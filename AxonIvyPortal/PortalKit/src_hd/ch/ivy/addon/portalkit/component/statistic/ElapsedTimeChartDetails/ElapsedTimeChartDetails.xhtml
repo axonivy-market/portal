@@ -29,7 +29,7 @@
 
         <p:ajax event="sort" update="case-table" onstart="liveScroll()" />
 
-        <p:column id="case-id" styleClass="case-id" field="ID" sortBy="#{ID}"
+        <p:column id="case-id" styleClass="case-id" field="ID" filterable="false" sortBy="#{ID}"
           headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/caseID')}" sortable="true">
           <h:outputText value="#{elapsedTimeDetail.getId()}" />
         </p:column>
@@ -58,7 +58,7 @@
           </h:outputText>
         </p:column>
 
-        <p:column id="case-elapsed-time" styleClass="case-elapsed-time" sortable="true" field="ELAPSED_TIME" sortBy="#{ELAPSED_TIME}"
+        <p:column id="case-elapsed-time" styleClass="case-elapsed-time" sortable="true" field="ELAPSED_TIME" filterable="false" sortBy="#{ELAPSED_TIME}"
           headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/elapsedTime')}">
           <h:outputText value="#{elapsedTimeDetailsBean.calculateElapsedTime(elapsedTimeDetail.getBusinessRuntime().toNumber())}" />
         </p:column>
