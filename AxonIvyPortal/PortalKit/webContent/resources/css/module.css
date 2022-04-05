@@ -3844,7 +3844,11 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   display: flex;
   justify-content: flex-end;
   width: 100%;
-}expiry-chart- portal-card-container
+}
+
+.chart-creation-height{
+height: 340px;  
+}
 
 .dashboard-chart-panel .chart-name-container {
   display: inline-block;
