@@ -147,8 +147,6 @@
                       reflow="true"
                       value="#{data.deputyRoles}"
                       var="deputyRole"
-                      sortBy="#{deputyRole.deputyRoleDisplayName}"
-                      sortOrder="asc"
                       paginator="true" rows="4"
                       paginatorAlwaysVisible="false"
                       paginatorPosition="bottom"
@@ -156,7 +154,7 @@
                       paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
                       currentPageReportTemplate="{currentPage} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/curentReportOf')} {totalPages}">
                       <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/applicationAndRole')}"
-                        sortBy="#{deputyRole.deputyRoleDisplayName}">
+                        sortBy="#{deputyRole.deputyRoleDisplayName}" sortOrder="ASC">
                         <h:outputText value="#{deputyRole.deputyRoleDisplayName}" styleClass="substition-role-display-name absence-column-value" />
                         <span class="substition-role-type" deputy-role-type="#{deputyRole.deputyRoleType.toString()}" />
                       </p:column>
