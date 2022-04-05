@@ -55,7 +55,7 @@
                     <div class="ui-g-12">
 
                       <p:donutChart id="task-by-priority-chart" model="#{chart.donutChartModel}"
-                        rendered="#{statisticDashboardBean.isTaskByPriority(chart)}" style="width: 100%; height:340px;"
+                        rendered="#{statisticDashboardBean.isTaskByPriority(chart)}" 
                         styleClass="statistic-chart">
                         <f:attribute name="selectedChartId" value="#{chart.id}" />
                         <p:ajax event="itemSelect" listener="#{statisticDashboardBean.drilldownTaskByPriority}" />
@@ -63,7 +63,7 @@
 
                       <p:barChart
                         styleClass="statistic-chart expiry-chart-#{chartStatus.index}"
-                        id="expiry-chart" style="width: 100%; height:340px;" model="#{chart.barChartModel}"
+                        id="expiry-chart" style="width: 100%; height:400px;" model="#{chart.barChartModel}"
                         rendered="#{statisticDashboardBean.isTaskByExpiry(chart)}">
                         <f:attribute name="selectedChartId" value="#{chart.id}" />
                         <p:ajax event="itemSelect" listener="#{statisticDashboardBean.onSelectDrilldownTaskByExpiry}" global="false" />
@@ -83,26 +83,26 @@
                       </p:overlayPanel>
 
                       <p:barChart styleClass="statistic-chart" model="#{chart.barChartModel}"
-                        rendered="#{statisticDashboardBean.isElapsedTimeByCaseCategory(chart)}" style="width: 100%; height: 340px;">
+                        rendered="#{statisticDashboardBean.isElapsedTimeByCaseCategory(chart)}" style="width: 100%; height: 400px;">
                         <f:attribute name="selectedChartId" value="#{chart.id}" />
                         <p:ajax listener="#{cc.attrs.drilldownListener}" update="@([id$='create-chart-header'])" />
                         <p:ajax event="itemSelect" listener="#{statisticDashboardBean.drilldownElapsedTime}" update="#{p:resolveFirstComponentWithId('widget-container', view).clientId}" />
                       </p:barChart>
 
-                      <p:donutChart styleClass="statistic-chart" model="#{chart.donutChartModel}"
-                        rendered="#{statisticDashboardBean.isCaseByState(chart)}" style="width: 100%; height: 340px;">
+                      <p:donutChart styleClass="statistic-chart" model="#{chart.donutChartModel}" 
+                        rendered="#{statisticDashboardBean.isCaseByState(chart)}" >
                         <f:attribute name="selectedChartId" value="#{chart.id}" />
                         <p:ajax event="itemSelect" listener="#{statisticDashboardBean.drilldownCaseByState}" />
                       </p:donutChart>
 
                       <p:donutChart styleClass="statistic-chart" model="#{chart.donutChartModel}"
-                        rendered="#{statisticDashboardBean.isCaseByFinishedTask(chart)}" style="width: 100%; height: 340px;">
+                        rendered="#{statisticDashboardBean.isCaseByFinishedTask(chart)}" >
                         <f:attribute name="selectedChartId" value="#{chart.id}" />
                         <p:ajax event="itemSelect" listener="#{statisticDashboardBean.drilldownCaseByState}" />
                       </p:donutChart>
 
                       <p:donutChart styleClass="statistic-chart" model="#{chart.donutChartModel}"
-                        rendered="#{statisticDashboardBean.isCaseByFinishedTime(chart)}" style="width: 100%; height: 340px;">
+                        rendered="#{statisticDashboardBean.isCaseByFinishedTime(chart)}" >
                         <f:attribute name="selectedChartId" value="#{chart.id}" />
                         <p:ajax event="itemSelect" listener="#{statisticDashboardBean.drilldownCaseByState}" />
                       </p:donutChart>
