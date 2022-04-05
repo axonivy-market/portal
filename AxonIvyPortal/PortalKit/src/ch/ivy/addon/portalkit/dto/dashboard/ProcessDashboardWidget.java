@@ -244,12 +244,7 @@ public List<ColumnModel> getFilterableColumns() {
   }
 
   @JsonIgnore
-  public SortMeta getCasesSortBy() {
-    return SortFieldUtil.buildSortMeta("name", false);
-  }
-
-  @JsonIgnore
-  public SortMeta getTasksSortBy() {
+  public SortMeta getSortBy() {
     return SortFieldUtil.buildSortMeta("name", false);
   }
 }
