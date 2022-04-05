@@ -20,7 +20,7 @@
     <p:ajax event="close" update="workflow-events-dialog" />
 
     <p:dataTable id="events-table" widgetVar="events-table" var="event" value="#{data.workflowEvents}"
-      sortBy="#{taskBean.taskWorkflowEventSortBy}"
+      sortBy="#{taskBean.taskWorkflowEventSortByTimestamp}"
       emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}" scrollable="true"
       scrollHeight="300"
       reflow="true">

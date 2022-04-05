@@ -276,7 +276,7 @@ public class CaseDetailsBean extends AbstractConfigurableContentBean<CaseDetails
     this.selectedTask = selectedTask;
   }
 
-  public SortMeta getSortBy() {
+  public SortMeta getSortById() {
     return SortFieldUtil.buildSortMeta("ID", false);
   }
 }
