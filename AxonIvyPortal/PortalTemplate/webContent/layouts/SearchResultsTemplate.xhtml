@@ -21,7 +21,7 @@
           </h:panelGroup>
         </div>
         <p:remoteCommand name="portalGlobalSearchInPage" actionListener="#{dataModel.search}"
-          update="#{p:component('search-results-tabview')}" oncomplete="processWidget.filter();" />
+          update="#{p:resolveFirstComponentWithId('search-results-tabview', view).clientId}" oncomplete="processWidget.filter();" />
         <p:remoteCommand autoRun="true" delay="1" global="false" process="@none" onstart="PF('search-results-tabview').select(#{data.activeTabIndex})" />
       </h:form>
       <c:if test="#{!isShowResultTabView}" >

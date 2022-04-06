@@ -632,8 +632,6 @@ Pt0 f58 @C|.responsibility Everybody #txt
 Pt0 f58 89 498 30 30 -44 16 #rect
 Pt0 f28 outLink DefaultApplicationHomePage.ivp #txt
 Pt0 f28 inParamDecl '<> param;' #txt
-Pt0 f28 inParamTable 'out.isShowDashboard=true;
-' #txt
 Pt0 f28 requestEnabled true #txt
 Pt0 f28 triggerEnabled false #txt
 Pt0 f28 callSignature DefaultApplicationHomePage() #txt

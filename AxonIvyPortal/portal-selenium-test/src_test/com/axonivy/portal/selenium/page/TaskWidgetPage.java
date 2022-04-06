@@ -7,6 +7,8 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
 import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.SelenideElement;
 
 public class TaskWidgetPage extends TemplatePage {
 
@@ -35,9 +37,15 @@ public class TaskWidgetPage extends TemplatePage {
     $("button[id$='created-filter:filter-open-form:advanced-filter-command']").click();
     $("div[id$='created-filter:filter-input-form:advanced-filter-panel'").waitUntil(appear, DEFAULT_TIMEOUT);
     $("input[id$='created-filter:filter-input-form:from-created-calendar_input'").sendKeys(fromCreatedDate);
+    closePanelDatePicker($("div[id$='created-filter:filter-input-form:from-created-calendar_panel'"));
     $("input[id$='created-filter:filter-input-form:to-created-calendar_input'").sendKeys(toCreatedDate);
+    closePanelDatePicker($("div[id$='created-filter:filter-input-form:to-created-calendar_panel'"));
     $("button[id$='created-filter:filter-input-form:update-command']").click();
     $("div[id$='created-filter:filter-input-form:advanced-filter-panel'").waitUntil(disappear, DEFAULT_TIMEOUT);
+  }
+  
+  private void closePanelDatePicker(SelenideElement element) {
+    Selenide.executeJavaScript("arguments[0].style.display = 'none'", element);
   }
 
   public ElementsCollection countTasks() {

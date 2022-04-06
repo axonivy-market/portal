@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.primefaces.PrimeFaces;
+import org.primefaces.model.SortMeta;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -22,6 +23,7 @@ import ch.ivy.addon.portalkit.enums.ProcessWidgetMode;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.DashboardProcessSearchCriteria;
 import ch.ivy.addon.portalkit.service.DashboardWidgetInformationService;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
+import ch.ivy.addon.portalkit.util.SortFieldUtil;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class ProcessDashboardWidget extends DashboardWidget {
@@ -239,5 +241,10 @@ public List<ColumnModel> getFilterableColumns() {
   @JsonIgnore
   public void setPreview(boolean isPreview) {
     this.isPreview = isPreview;
+  }
+
+  @JsonIgnore
+  public SortMeta getSortByName() {
+    return SortFieldUtil.buildSortMeta("name", false);
   }
 }
