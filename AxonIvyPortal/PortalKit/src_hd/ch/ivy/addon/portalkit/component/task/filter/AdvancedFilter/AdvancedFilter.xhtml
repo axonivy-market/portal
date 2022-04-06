@@ -35,7 +35,7 @@
   </c:if>
   <c:set var="taskFilter" value="#{cc.attrs.taskFilter}" />
   <c:set var="widgetVarPanel" value="#{fn:replace(cc.clientId, ':', '-')}-panel" />
-  <c:set var="taskContainerId" value="#{p:component('task-view-container')}" />
+  <c:set var="taskContainerId" value="#{p:resolveFirstComponentWithId('task-view-container', view).clientId}" />
   <c:set var="renderedFilter" value="#{(not empty dataModel and selectedFilters.contains(taskFilter)) or cc.attrs.forceRendered}" />
 
   <h:panelGroup id="advanced-filter-component" styleClass="advanced-filter-component js-advanced-filter-component u-hidden-md-down"

@@ -163,7 +163,7 @@ function highlightProcessMoreMenuButton() {
 function numberingStatisticWidget() {
   var chartInfo = $('.chart-info:eq(0)');
   appendStepAnnotation(chartInfo, "1", -10, 25);
-  var chartCanvas = $('.chartjs-render-monitor');
+  var chartCanvas = $('.ui-carousel-items-content');
   appendStepAnnotation(chartCanvas, "2", chartCanvas.width()/4, chartCanvas.height()/2 + 10);
   appendStepAnnotation(chartCanvas, "3", 15, chartCanvas.width()*0.75);
 }
@@ -195,7 +195,7 @@ function numberingChartPanel() {
   appendStepAnnotation(chartInfo, "2", -20, 25);
   var chartActions = $('.chart-actions-container:eq(0)');
   appendStepAnnotation(chartActions, "3", -20, 0);
-  var chartCanvas = $('.chartjs-render-monitor:eq(1)');
+  var chartCanvas = $('.statistic-chart:eq(1)');
   appendStepAnnotation(chartCanvas, "4", chartCanvas.width()/4, chartCanvas.height()/2 + 10);
   appendStepAnnotation(chartCanvas, "5", 15, chartCanvas.width()*0.8);
 }
