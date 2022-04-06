@@ -58,7 +58,7 @@
                 </p:column>
                 <f:facet name="event">
                   <p:ajax event="itemSelect" listener="#{logic.showSelectedUser}" 
-                    update="#{p:component('item-select-event-for-user-selection-message')}"/>
+                    update="#{p:resolveFirstComponentWithId('item-select-event-for-user-selection-message', view).clientId}"/>
                 </f:facet>
               </ic:ch.ivy.addon.portalkit.component.UserSelection>
           </div>

@@ -208,7 +208,7 @@
 								style="text-align:center;width:10%">
 								<p:commandButton actionListener="#{logic.delete(file)}"
 									title="#{ivy.cms.co('/Labels/delete')}"
-									update="#{p:component('fileTable')} #{p:component('pdfFileGroup')} form"
+									update="#{p:resolveFirstComponentWithId('fileTable', view).clientId} #{p:resolveFirstComponentWithId('pdfFileGroup', view).clientId} form"
 									icon="si si-bin-1" immediate="true" />
 							</p:column>
 						</p:dataTable>
@@ -216,7 +216,7 @@
                             chooseIcon="si si-touchpad-finger"
                             uploadIcon="si si-add-small"
                             cancelIcon="si si-delete-2"
-							fileUploadListener="#{logic.handleFileUploader}"
+							listener="#{logic.handleFileUploader}"
 							update="fileTable" dragDropSupport="true" 
 							style="padding:0; margin-top:10px"/>
 

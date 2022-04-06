@@ -9,6 +9,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import org.primefaces.event.ToggleEvent;
+import org.primefaces.model.SortMeta;
 import org.primefaces.model.Visibility;
 
 import ch.ivy.addon.portalkit.datamodel.internal.TaskAnalysisLazyDataModel;
@@ -17,6 +18,7 @@ import ch.ivy.addon.portalkit.exporter.Exporter;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.TaskAnalysisFilterService;
 import ch.ivy.addon.portalkit.taskfilter.impl.TaskAnalysisFilterData;
+import ch.ivy.addon.portalkit.util.SortFieldUtil;
 
 @ManagedBean
 @ViewScoped
@@ -69,5 +71,9 @@ public class TaskAnalysisWidgetBean implements Serializable {
   
   public boolean isCaseOwnerEnabled() {
     return new GlobalSettingService().isCaseOwnerEnabled();
+  }
+
+  public SortMeta getSortByTaskName() {
+    return SortFieldUtil.buildSortMeta("TASK_NAME", false);
   }
 }
