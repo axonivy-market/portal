@@ -24,6 +24,7 @@ public class LoginErrorPageScreenshotTest extends ScreenshotTest {
   @Test
   public void testLoginErrorPage() throws IOException {
     updateGlobalVariable(PORTAL_LOGIN_PAGE_DISPLAY, "false");
+    logout();
     ScreenshotUtil.resizeBrowser(new Dimension(1024, 768));
     waitForPageLoad();
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.LOGIN_FOLDER + "login-error-page");

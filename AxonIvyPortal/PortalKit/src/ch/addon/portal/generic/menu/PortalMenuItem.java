@@ -47,10 +47,9 @@ public class PortalMenuItem extends DefaultMenuItem {
     this.setValue(builder.name);
     this.setIcon(builder.icon);
     this.setIconPos(DEFAULT_ICON_POSITION);
-
-    this.setId(isNull(builder.id) ? generateMenuId(builder.menuKind) : builder.id);
+    String containerClassMenuId = isNull(builder.id) ? generateMenuId(builder.menuKind) : builder.id;
     this.setStyleClass(String.format(MENU_CLASS_FORMAT, StringUtils.defaultIfEmpty(builder.styleClass, EMPTY), builder.menuKind.name()));
-    this.setContainerStyleClass(String.format(MENU_CLASS_FORMAT, StringUtils.defaultIfEmpty(builder.containerStyleClass, EMPTY), this.getId()));
+    this.setContainerStyleClass(String.format(MENU_CLASS_FORMAT, StringUtils.defaultIfEmpty(builder.containerStyleClass, EMPTY), containerClassMenuId));
     this.setUpdate(isNull(builder.update) ? DEFAULT_MENU_PROCESS : builder.update);
     this.setProcess(isNull(builder.process) ? DEFAULT_MENU_PROCESS : builder.process);
     this.setCommand(isNull(builder.commandMethod) ? DEFAULT_MENU_COMMAND_METHOD : builder.commandMethod);
