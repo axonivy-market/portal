@@ -10,7 +10,9 @@ import java.util.Objects;
 import javax.faces.bean.ManagedBean;
 
 import org.apache.commons.lang3.StringUtils;
+import org.primefaces.model.SortMeta;
 
+import ch.ivy.addon.portalkit.util.SortFieldUtil;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.workflow.ICase;
@@ -207,5 +209,8 @@ public class TaskBean implements Serializable {
     }
     return StringUtils.EMPTY;
   }
-  
+
+  public SortMeta getTaskWorkflowEventSortByTimestamp() {
+    return SortFieldUtil.buildSortMeta("timestamp", true);
+  }
 }

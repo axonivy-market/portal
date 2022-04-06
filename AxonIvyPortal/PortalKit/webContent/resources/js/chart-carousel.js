@@ -1,28 +1,26 @@
 // Override Carousel Header of Primeface
 $(document).ready(function() {
+
   var statisticContainer = $('.js-statistic-widget-container.compact-mode');
   var statisticCarousel = statisticContainer.find('.js-statistic-carousel');
-  var charSize = statisticCarousel.find('.ui-carousel-viewport').children(".ui-carousel-items").children("li").length;
+  var charSize = parseInt(statisticCarousel.find('[id$="0:number-of-chart"]').text());
+  //$(".ui-carousel-item.ui-carousel-item-active.ui-carousel-item-start.ui-carousel-item-end").length;
   if (statisticCarousel.length == 0 || charSize == 0) {
     return;
   }
 
   // initialization parameter
-  var nextNav = statisticCarousel.find('.ui-carousel-next-button');
-  var prevNav = statisticCarousel.find('.ui-carousel-prev-button');
+  var nextNav = statisticCarousel.find('.ui-carousel-next');
+  var prevNav = statisticCarousel.find('.ui-carousel-prev');
   var index = 0;
   var nextEvent = 0;
 
-  // Get EffectDuration of Carousel. If not define, use default value as 500
-  var effectDuration = parseInt(statisticCarousel.find('[id$="0:carousel-effect-duration"]').text());
-  if (isNaN(effectDuration) || effectDuration < 0) {
+  // EffectDuration of Carousel is not a property since PF11. Use default value as 500
     effectDuration = 500;
-  }
-
+	
   // Set default chart header titles
-  var headerTitle = statisticCarousel.find('.ui-carousel-header-title');
-  var itemsContainer = statisticCarousel.find('.ui-carousel-items .js-statistic-carousel-item')[index];
-  headerTitle.append($(itemsContainer).find('[id$="chart-name-container"]').clone());
+  var headerTitle = statisticCarousel.find('.ui-carousel-header');
+  headerTitle.append(statisticCarousel.find('[id$=":' + index + ':chart-name-container"]').clone());
 
   // On click event of Carousel-nav
   // * Select current chart header

@@ -3569,25 +3569,26 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   border: none !important;
 }
 
-.statistic-carousel .ui-carousel-header-title {
+.statistic-carousel.ui-carousel .ui-carousel-header {
   float: left;
   padding-left: 2px;
 }
 
-.statistic-carousel .ui-carousel-header-title .chart-name-container {
+.statistic-carousel.ui-carousel .ui-carousel-header .chart-name-container {
   width: 100%;
   position: relative;
   float: left;
   display: inline-block;
+  padding-left:10px;
 }
 
-.statistic-carousel.ui-carousel .ui-carousel-header .ui-carousel-header-title .chart-info {
+.statistic-carousel.ui-carousel .ui-carousel-header .chart-info {
   float: left;
   margin-left: 5px;
   vertical-align: middle;
 }
 
-.statistic-carousel .ui-carousel-header-title .chart-name {
+.statistic-carousel.ui-carousel .ui-carousel-header .chart-name {
   max-width: calc(98% - 20px);
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -3596,7 +3597,7 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   overflow: hidden;
 }
 
-.statistic-carousel.card .ui-carousel-header.ui-widget-header {
+.statistic-carousel.card .ui-carousel-header {
   margin: 0.5em 0.4em !important;
 }
 
@@ -3681,18 +3682,6 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 .statistic-carousel .ui-carousel-header .ui-carousel-dropdown, .statistic-carousel .ui-carousel-header .ui-carousel-mobiledropdown
   {
   display: none;
-}
-
-.statistic-carousel .ui-carousel-header .ui-carousel-next-button,
-.statistic-carousel .ui-carousel-header .ui-carousel-prev-button
-  {
-  display: none;
-}
-
-.statistic-carousel.many-statistics .ui-carousel-header .ui-carousel-next-button,
-.statistic-carousel.many-statistics .ui-carousel-header .ui-carousel-prev-button
-  {
-  display: block;
 }
 
 .statistic-carousel-content {
@@ -3855,6 +3844,10 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   display: flex;
   justify-content: flex-end;
   width: 100%;
+}
+
+.chart-creation-height{
+height: 340px;  
 }
 
 .dashboard-chart-panel .chart-name-container {
