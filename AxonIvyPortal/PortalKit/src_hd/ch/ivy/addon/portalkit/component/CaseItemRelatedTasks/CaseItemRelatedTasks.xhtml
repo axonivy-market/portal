@@ -40,19 +40,19 @@
     <div class="ui-g-12 u-padding-0 case-details-related-task-table" id="case-details-related-task-table">
       <p:dataTable id="related-tasks" lazy="true" value="#{data.dataModel}" var="task" paginator="true" rows="5"
         paginatorPosition="bottom" paginatorAlwaysVisible="false"
-        paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}" sortBy="#{caseDetailsBean.relatedTasksSortBy}"
+        paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}" sortBy="#{caseDetailsBean.sortById}"
         rowIndexVar="rowIndex" rowHover="true" selectionMode="single"
         currentPageReportTemplate="{currentPage} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/curentReportOf')} {totalPages}">
         <p:ajax event="rowSelect" listener="#{caseDetailsBean.handleRowSelectEventOnRelatedTaskList}" />
         <p:column
           headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/abbreviation/PRIORITY')}"
-          styleClass="priority-column ui-sm-hidden" field="PRIORITY" sortBy="#{PRIORITY}"
+          styleClass="priority-column ui-sm-hidden" field="PRIORITY" sortBy="#{PRIORITY}" filterable="false"
           visible="#{data.dataModel.isSelectedColumn(masterDataBean.taskSortFieldPriority)}">
           <ic:ch.ivy.addon.portalkit.component.task.column.TaskPriority id="task-priority-component"
             priority="#{task.priority}" dataModel="#{data.dataModel}" />
         </p:column>
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}"
-          styleClass="related-task-name-column u-truncate-text ui-sm-10" field="NAME" sortBy="#{NAME}"
+          styleClass="related-task-name-column u-truncate-text ui-sm-10" field="NAME" sortBy="#{NAME}" filterable="false"
           visible="#{data.dataModel.isSelectedColumn(masterDataBean.taskSortFieldName)}">
           <h:outputText value="#{task.name}" title="#{task.name}" styleClass="task-name-value"/>
           <h:outputText value="#{taskWidgetBean.createTaskDescriptionInTaskStart(task.description)}" styleClass="task-description-value"/>
@@ -62,39 +62,39 @@
           <h:outputText value="#{taskWidgetBean.createTaskDescriptionInTaskStart(task.description)}" title="#{task.description}"/>
         </p:column>
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}"
-          styleClass="related-task-responsible-column" field="ACTIVATOR" sortBy="#{ACTIVATOR}"
+          styleClass="related-task-responsible-column" field="ACTIVATOR" sortBy="#{ACTIVATOR}" filterable="false"
           visible="#{data.dataModel.isSelectedColumn(masterDataBean.taskSortFieldActivator)}">
           <h:outputText
             value="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(task.activator, task.activator.memberName)}" />
         </p:column>
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ID')}"
-          styleClass="related-task-id-column u-hidden-md-down" field="ID" sortBy="#{ID}"
+          styleClass="related-task-id-column u-hidden-md-down" field="ID" sortBy="#{ID}" filterable="false"
           visible="#{data.dataModel.isSelectedColumn(masterDataBean.taskSortFieldId)}">
           <h:outputText value="#{task.id}" />
         </p:column>
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/CREATION_TIME')}"
-          styleClass="related-task-created-column" field="CREATION_TIME" sortBy="#{CREATION_TIME}"
+          styleClass="related-task-created-column" field="CREATION_TIME" sortBy="#{CREATION_TIME}" filterable="false"
           visible="#{data.dataModel.isSelectedColumn(masterDataBean.taskSortFieldCreationTime)}">
           <h:outputText value="#{task.startTimestamp}">
             <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}"/>
           </h:outputText>
         </p:column>
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/EXPIRY_TIME')}"
-          styleClass="related-task-expiry-column u-hidden-md-down" field="EXPIRY_TIME" sortBy="#{EXPIRY_TIME}"
+          styleClass="related-task-expiry-column u-hidden-md-down" field="EXPIRY_TIME" sortBy="#{EXPIRY_TIME}" filterable="false"
           visible="#{data.dataModel.isSelectedColumn(masterDataBean.taskSortFieldExpiryTime)}">
           <h:outputText value="#{task.expiryTimestamp}">
             <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}"/>
           </h:outputText>
         </p:column>
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/COMPLETED_ON')}"
-          styleClass="related-task-complete-on-column u-hidden-md-down" field="COMPLETED_ON" sortBy="#{COMPLETED_ON}"
+          styleClass="related-task-complete-on-column u-hidden-md-down" field="COMPLETED_ON" sortBy="#{COMPLETED_ON}" filterable="false"
           visible="#{data.dataModel.isSelectedColumn(masterDataBean.taskSortFieldCompletedTime)}">
           <h:outputText value="#{task.endTimestamp}">
             <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}"/>
           </h:outputText>
         </p:column>
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/STATE')}"
-          styleClass="related-task-state-column state-column u-hidden-md-down" field="STATE" sortBy="#{STATE}"
+          styleClass="related-task-state-column state-column u-hidden-md-down" field="STATE" sortBy="#{STATE}" filterable="false"
           visible="#{data.dataModel.isSelectedColumn(masterDataBean.taskSortFieldState)}">
           <ic:ch.ivy.addon.portalkit.component.task.column.TaskState id="task-state-component"
             dataModel="#{data.dataModel}" state="#{task.state}" />

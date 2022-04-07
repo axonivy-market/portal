@@ -3846,6 +3846,10 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   width: 100%;
 }
 
+.chart-creation-height{
+height: 340px;  
+}
+
 .dashboard-chart-panel .chart-name-container {
   display: inline-block;
   padding: 0;
