@@ -48,7 +48,7 @@
         <p:ajax event="rowSelect" listener="#{dashboardBean.handleRowSelectEventOnTaskWidget}" disabled="#{!isReadOnlyMode}" />
 
         <p:columns id="dashboard-tasks-columns" var="column" value="#{taskWidget.columns}" headerText="#{column.headerText}" styleClass="#{column.styleClass} #{(column.field eq 'start' or column.field eq 'name' or column.field eq 'start' or column.field eq 'actions') ? '' : 'u-hidden-sm-down'}"
-          visible="#{column.visible}" field="#{column.field}" 
+          visible="#{column.visible}" field="#{column.field}" filterable="false"
           sortBy="#{column.field}" sortable="#{column.sortable}"
           style="#{column.format eq 'TIMESTAMP' or column.format eq 'NUMBER' ? 'text-align: center;' : ''} #{column.style}">
 

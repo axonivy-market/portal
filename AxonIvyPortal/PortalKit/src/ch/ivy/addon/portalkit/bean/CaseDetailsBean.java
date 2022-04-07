@@ -22,7 +22,6 @@ import ch.ivy.addon.portalkit.enums.BehaviourWhenClickingOnLineInTaskList;
 import ch.ivy.addon.portalkit.enums.CaseSortField;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.PortalPage;
-import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.exporter.Exporter;
@@ -30,7 +29,6 @@ import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
-import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.ProcessStartUtils;
 import ch.ivy.addon.portalkit.util.SortFieldUtil;
 import ch.ivy.addon.portalkit.util.TaskUtils;
@@ -46,7 +44,6 @@ public class CaseDetailsBean extends AbstractConfigurableContentBean<CaseDetails
 
   private static final long serialVersionUID = 1023540096176033250L;
   private static final String OPEN_CASES_LIST = "Start Processes/PortalStart/CaseListPage.ivp";
-  private boolean isShowCaseDetails;
   private boolean isHideCaseDocument;
   private boolean isTaskStartedInDetails;
   private boolean showBackButton;
@@ -60,7 +57,6 @@ public class CaseDetailsBean extends AbstractConfigurableContentBean<CaseDetails
   @PostConstruct
   public void init() {
     super.initConfig();
-    isShowCaseDetails = PermissionUtils.hasPortalPermission(PortalPermission.SHOW_CASE_DETAILS);
     isHideCaseDocument = new GlobalSettingService().findGlobalSettingValueAsBoolean(GlobalVariable.HIDE_CASE_DOCUMENT);
     caseActionBean = ManagedBeans.get("caseActionBean");
     isFirstTime = true;
@@ -161,11 +157,7 @@ public class CaseDetailsBean extends AbstractConfigurableContentBean<CaseDetails
 
   public void navigateToSelectedCaseDetails(SelectEvent event) {
     Long caseId = ((ICase) event.getObject()).getId();
-    if (inFrame) {
-      PortalNavigator.navigateToPortalCaseDetailsInFrame(caseId, false);
-    } else {
-      PortalNavigator.navigateToPortalCaseDetails(caseId);
-    }
+    navigateToCaseDetails(caseId);
   }
 
   public void navigateToCaseDetails(Long caseId) {
@@ -228,14 +220,6 @@ public class CaseDetailsBean extends AbstractConfigurableContentBean<CaseDetails
     this.isHideCaseDocument = isHideCaseDocument;
   }
 
-  public boolean isShowCaseDetails() {
-    return isShowCaseDetails;
-  }
-
-  public void setShowCaseDetails(boolean isShowCaseDetails) {
-    this.isShowCaseDetails = isShowCaseDetails;
-  }
-
   public boolean isTaskStartedInDetails() {
     return isTaskStartedInDetails;
   }
@@ -276,11 +260,7 @@ public class CaseDetailsBean extends AbstractConfigurableContentBean<CaseDetails
     this.selectedTask = selectedTask;
   }
 
-  public SortMeta getRelatedCasesSortBy() {
-    return SortFieldUtil.buildSortMeta("ID", false);
-  }
-
-  public SortMeta getRelatedTasksSortBy() {
+  public SortMeta getSortById() {
     return SortFieldUtil.buildSortMeta("ID", false);
   }
 }
