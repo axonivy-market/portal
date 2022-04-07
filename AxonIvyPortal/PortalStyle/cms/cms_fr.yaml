@@ -169,6 +169,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     Breadcrumb: TODO Process Viewer of {0} process
     ModelVersion: TODO Process model version
     ProcessDataNotFound: TODO Could not found the Process Data!
+    ProcessViewerText: TODO Process Viewer
     RequestPath: TODO Process request path
     Title: TODO Process Viewer
     UserFriendlyRequestPath: TODO Process user friendly request path
@@ -298,6 +299,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     downloadFile: Télécharger le fichier
     duration: Durée
     history: Historique
+    noCaseName: TODO <No case name>
     noDescription: Aucune description
     noRunningCase: Aucune cas n'est en cours d'exécution
     noRunningTask: Aucune tâche n'est en cours d'exécution
@@ -382,7 +384,6 @@ ch.ivy.addon.portalkit.ui.jsf:
   common:
     BusinessCaseInformation: Informations sur les cas d'affaires
     NoSelection: Aucune sélection
-    ProcessViewer: TODO Process Viewer
     ResetToDefaultHeaderText: Réinitialiser les paramètres par défaut ?
     RoleUserInformation: Informations sur le rôle et l'utilisateur
     TaskCaseInformation: Informations sur les tâches et les cas
@@ -867,6 +868,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     curentReportOf: de
     eventType: Type d'événement
     exportButton: Exporter vers Excel
+    relatedCase: TODO Related Case
     showMoreBtn: Afficher plus
     taskExportedFileNamePrefix: Histoire_des_notes_de_tâches_{0}
     taskFailReason: 'Raison de l''échec : {0}'
