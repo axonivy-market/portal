@@ -4,6 +4,7 @@ import static portal.guitest.common.WaitHelper.assertTrueWithWait;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.apache.commons.lang3.StringUtils;
@@ -445,5 +446,16 @@ public class CaseWidgetPage extends TemplatePage {
   
   public boolean isCategoryColumnDisplayed() {
     return findElementByCssSelector("span[id$=':case-category-cell']").isDisplayed();
+  }
+
+  public List<String> getAvailableActionSteps() {
+    waitForElementDisplayed(By.cssSelector("[id$=':action-steps-panel'].ui-overlay-visible"), true);
+    var steps = findListElementsByCssSelector("[id$=':action-steps-panel'].ui-overlay-visible a.action-step-item");
+    return steps.stream().map(WebElement::getText).collect(Collectors.toList());
+  }
+
+  public void clickOnProcessViewerOption() {
+    waitForElementDisplayed(By.cssSelector("[id$=':action-steps-panel'].ui-overlay-visible"), true);
+    clickByCssSelector("a[id$=':case-item:case-item-action-form:action-step-component:show-process-viewer-link']");
   }
 }
