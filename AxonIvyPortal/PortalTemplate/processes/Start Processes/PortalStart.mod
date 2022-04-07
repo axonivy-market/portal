@@ -2228,16 +2228,16 @@ Pt0 f204 111 144 208 144 #arcP
 Pt0 f47 color default #txt
 Pt0 f47 240 144 280 144 #arcP
 Pt0 f205 224 202 224 160 #arcP
-Pt0 f206 outLink CaseListPageInTeams.ivp #txt
+Pt0 f206 outLink DefaultCaseListPageInTeams.ivp #txt
 Pt0 f206 inParamDecl '<> param;' #txt
 Pt0 f206 requestEnabled true #txt
 Pt0 f206 triggerEnabled false #txt
-Pt0 f206 callSignature CaseListPageInTeams() #txt
+Pt0 f206 callSignature DefaultCaseListPageInTeams() #txt
 Pt0 f206 caseData businessCase.attach=true #txt
 Pt0 f206 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>CaseListPageInTeams.ivp</name>
+        <name>DefaultCaseListPageInTeams.ivp</name>
     </language>
 </elementInfo>
 ' #txt
