@@ -1,5 +1,5 @@
 [Ivy]
-17FDDF99EEBE452E 9.4.1 #module
+1549F58C18A6C562 9.4.3 #module
 >Proto >Proto Collection #zClass
 Pt0 PortalStart Big #zClass
 Pt0 B #cInfo
@@ -394,7 +394,7 @@ TaskTriggered.PRI=2
 TaskTriggered.ROL=Everybody
 TaskTriggered.TYPE=0' #txt
 Pt0 f10 caseData businessCase.attach=true #txt
-Pt0 f10 showInStartList 0 #txt
+Pt0 f10 showInStartList false #txt
 Pt0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -482,7 +482,7 @@ Pt0 f28 caseData 'businessCase.attach=true
 case.category=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>
 case.description=<%\=ivy.cms.co("/Processes/Cases/PortalInternalProcess/PortalInternalProcessDescription")%>
 case.name=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>\: <%\=ivy.cms.co("/Processes/portalSettingSaved")%>' #txt
-Pt0 f28 showInStartList 1 #txt
+Pt0 f28 showInStartList true #txt
 Pt0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -506,7 +506,7 @@ TaskTriggered.PRI=2
 TaskTriggered.ROL=Everybody
 TaskTriggered.TYPE=0' #txt
 Pt0 f58 caseData businessCase.attach=true #txt
-Pt0 f58 showInStartList 0 #txt
+Pt0 f58 showInStartList false #txt
 Pt0 f58 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -525,7 +525,7 @@ Pt0 f103 triggerEnabled false #txt
 Pt0 f103 callSignature CaseDetailsPage(Long) #txt
 Pt0 f103 persist false #txt
 Pt0 f103 caseData businessCase.attach=true #txt
-Pt0 f103 showInStartList 0 #txt
+Pt0 f103 showInStartList false #txt
 Pt0 f103 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -548,7 +548,7 @@ TaskTriggered.PRI=2
 TaskTriggered.ROL=Everybody
 TaskTriggered.TYPE=0' #txt
 Pt0 f63 caseData businessCase.attach=true #txt
-Pt0 f63 showInStartList 0 #txt
+Pt0 f63 showInStartList false #txt
 Pt0 f63 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -600,7 +600,7 @@ Pt0 f14 requestEnabled true #txt
 Pt0 f14 triggerEnabled false #txt
 Pt0 f14 callSignature BackFromTaskDetails(Number) #txt
 Pt0 f14 caseData businessCase.attach=true #txt
-Pt0 f14 showInStartList 0 #txt
+Pt0 f14 showInStartList false #txt
 Pt0 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -636,7 +636,7 @@ TaskTriggered.PRI=2
 TaskTriggered.ROL=Everybody
 TaskTriggered.TYPE=0' #txt
 Pt0 f70 caseData businessCase.attach=true #txt
-Pt0 f70 showInStartList 0 #txt
+Pt0 f70 showInStartList false #txt
 Pt0 f70 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -688,7 +688,7 @@ TaskTriggered.PRI=2
 TaskTriggered.ROL=Everybody
 TaskTriggered.TYPE=0' #txt
 Pt0 f39 caseData businessCase.attach=true #txt
-Pt0 f39 showInStartList 0 #txt
+Pt0 f39 showInStartList false #txt
 Pt0 f39 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -747,7 +747,7 @@ Pt0 f60 requestEnabled true #txt
 Pt0 f60 triggerEnabled false #txt
 Pt0 f60 callSignature RelatedTasksOfCasePage(Long,Boolean,String) #txt
 Pt0 f60 caseData businessCase.attach=true #txt
-Pt0 f60 showInStartList 0 #txt
+Pt0 f60 showInStartList false #txt
 Pt0 f60 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -766,7 +766,7 @@ Pt0 f62 requestEnabled true #txt
 Pt0 f62 triggerEnabled false #txt
 Pt0 f62 callSignature TaskDetailsPage(Long) #txt
 Pt0 f62 caseData businessCase.attach=true #txt
-Pt0 f62 showInStartList 0 #txt
+Pt0 f62 showInStartList false #txt
 Pt0 f62 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -813,7 +813,7 @@ Pt0 f68 requestEnabled true #txt
 Pt0 f68 triggerEnabled false #txt
 Pt0 f68 callSignature GlobalSearchPage(String) #txt
 Pt0 f68 caseData businessCase.attach=true #txt
-Pt0 f68 showInStartList 0 #txt
+Pt0 f68 showInStartList false #txt
 Pt0 f68 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -843,7 +843,7 @@ Pt0 f72 requestEnabled true #txt
 Pt0 f72 triggerEnabled false #txt
 Pt0 f72 callSignature Error500Page() #txt
 Pt0 f72 caseData businessCase.attach=true #txt
-Pt0 f72 showInStartList 0 #txt
+Pt0 f72 showInStartList false #txt
 Pt0 f72 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -859,7 +859,7 @@ Pt0 f73 requestEnabled true #txt
 Pt0 f73 triggerEnabled false #txt
 Pt0 f73 callSignature Error404Page() #txt
 Pt0 f73 caseData businessCase.attach=true #txt
-Pt0 f73 showInStartList 0 #txt
+Pt0 f73 showInStartList false #txt
 Pt0 f73 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -882,7 +882,7 @@ TaskTriggered.PRI=2
 TaskTriggered.ROL=Everybody
 TaskTriggered.TYPE=0' #txt
 Pt0 f76 caseData businessCase.attach=true #txt
-Pt0 f76 showInStartList 0 #txt
+Pt0 f76 showInStartList false #txt
 Pt0 f76 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -946,7 +946,7 @@ Pt0 f82 requestEnabled true #txt
 Pt0 f82 triggerEnabled false #txt
 Pt0 f82 callSignature DefaultFramePage(String,Number) #txt
 Pt0 f82 caseData businessCase.attach=true #txt
-Pt0 f82 showInStartList 0 #txt
+Pt0 f82 showInStartList false #txt
 Pt0 f82 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1029,7 +1029,7 @@ Pt0 f38 callSignature UserProfile() #txt
 Pt0 f38 caseData 'businessCase.attach=true
 customFields.STRING.embedInFrame="false"' #txt
 Pt0 f38 wfuser 1 #txt
-Pt0 f38 showInStartList 0 #txt
+Pt0 f38 showInStartList false #txt
 Pt0 f38 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1153,7 +1153,7 @@ Pt0 f12 requestEnabled true #txt
 Pt0 f12 triggerEnabled false #txt
 Pt0 f12 callSignature CaseDetailsInIFrame(Long) #txt
 Pt0 f12 caseData businessCase.attach=true #txt
-Pt0 f12 showInStartList 0 #txt
+Pt0 f12 showInStartList false #txt
 Pt0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1192,7 +1192,7 @@ Pt0 f94 requestEnabled true #txt
 Pt0 f94 triggerEnabled false #txt
 Pt0 f94 callSignature RelatedTasksOfCasePageInFrame(Long,Boolean,String) #txt
 Pt0 f94 caseData businessCase.attach=true #txt
-Pt0 f94 showInStartList 0 #txt
+Pt0 f94 showInStartList false #txt
 Pt0 f94 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1240,7 +1240,7 @@ Pt0 f97 requestEnabled true #txt
 Pt0 f97 triggerEnabled false #txt
 Pt0 f97 callSignature TaskDetailsPageInFrame(Long) #txt
 Pt0 f97 caseData businessCase.attach=true #txt
-Pt0 f97 showInStartList 0 #txt
+Pt0 f97 showInStartList false #txt
 Pt0 f97 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1257,7 +1257,7 @@ Pt0 f99 requestEnabled true #txt
 Pt0 f99 triggerEnabled false #txt
 Pt0 f99 callSignature AbsenceManagement() #txt
 Pt0 f99 caseData businessCase.attach=true #txt
-Pt0 f99 showInStartList 0 #txt
+Pt0 f99 showInStartList false #txt
 Pt0 f99 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1292,7 +1292,7 @@ Pt0 f106 requestEnabled true #txt
 Pt0 f106 triggerEnabled false #txt
 Pt0 f106 callSignature PasswordResetPage(String,String) #txt
 Pt0 f106 caseData businessCase.attach=true #txt
-Pt0 f106 showInStartList 0 #txt
+Pt0 f106 showInStartList false #txt
 Pt0 f106 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1308,7 +1308,7 @@ Pt0 f107 requestEnabled true #txt
 Pt0 f107 triggerEnabled false #txt
 Pt0 f107 callSignature ForgotPasswordPage() #txt
 Pt0 f107 caseData businessCase.attach=true #txt
-Pt0 f107 showInStartList 0 #txt
+Pt0 f107 showInStartList false #txt
 Pt0 f107 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1464,7 +1464,7 @@ Pt0 f120 requestEnabled true #txt
 Pt0 f120 triggerEnabled false #txt
 Pt0 f120 callSignature DefaultDashboardPage(Boolean) #txt
 Pt0 f120 caseData businessCase.attach=true #txt
-Pt0 f120 showInStartList 0 #txt
+Pt0 f120 showInStartList false #txt
 Pt0 f120 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1497,7 +1497,7 @@ Pt0 f130 requestEnabled true #txt
 Pt0 f130 triggerEnabled false #txt
 Pt0 f130 callSignature CaseDetailsPageInFrame(Long,Boolean) #txt
 Pt0 f130 caseData businessCase.attach=true #txt
-Pt0 f130 showInStartList 0 #txt
+Pt0 f130 showInStartList false #txt
 Pt0 f130 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1516,7 +1516,7 @@ Pt0 f132 requestEnabled true #txt
 Pt0 f132 triggerEnabled false #txt
 Pt0 f132 callSignature ProcessInformation(String) #txt
 Pt0 f132 caseData businessCase.attach=true #txt
-Pt0 f132 showInStartList 0 #txt
+Pt0 f132 showInStartList false #txt
 Pt0 f132 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1722,7 +1722,7 @@ Pt0 f144 triggerEnabled false #txt
 Pt0 f144 callSignature showCaseNoteHistory(Long) #txt
 Pt0 f144 persist false #txt
 Pt0 f144 caseData businessCase.attach=true #txt
-Pt0 f144 showInStartList 0 #txt
+Pt0 f144 showInStartList false #txt
 Pt0 f144 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1754,7 +1754,7 @@ TaskTriggered.PRI=2
 TaskTriggered.ROL=Everybody
 TaskTriggered.TYPE=0' #txt
 Pt0 f149 caseData businessCase.attach=true #txt
-Pt0 f149 showInStartList 0 #txt
+Pt0 f149 showInStartList false #txt
 Pt0 f149 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1860,7 +1860,7 @@ TaskTriggered.PRI=2
 TaskTriggered.ROL=Everybody
 TaskTriggered.TYPE=0' #txt
 Pt0 f159 caseData businessCase.attach=true #txt
-Pt0 f159 showInStartList 0 #txt
+Pt0 f159 showInStartList false #txt
 Pt0 f159 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1889,7 +1889,7 @@ TaskTriggered.PRI=2
 TaskTriggered.ROL=Everybody
 TaskTriggered.TYPE=0' #txt
 Pt0 f163 caseData businessCase.attach=true #txt
-Pt0 f163 showInStartList 0 #txt
+Pt0 f163 showInStartList false #txt
 Pt0 f163 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1981,7 +1981,7 @@ Pt0 f177 requestEnabled true #txt
 Pt0 f177 triggerEnabled false #txt
 Pt0 f177 callSignature PortalDashboardConfiguration(Boolean) #txt
 Pt0 f177 caseData businessCase.attach=true #txt
-Pt0 f177 showInStartList 0 #txt
+Pt0 f177 showInStartList false #txt
 Pt0 f177 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -2019,7 +2019,7 @@ Pt0 f150 requestEnabled true #txt
 Pt0 f150 triggerEnabled false #txt
 Pt0 f150 callSignature DashboardReorder(Boolean) #txt
 Pt0 f150 caseData businessCase.attach=true #txt
-Pt0 f150 showInStartList 0 #txt
+Pt0 f150 showInStartList false #txt
 Pt0 f150 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -2161,7 +2161,7 @@ Pt0 f188 requestEnabled true #txt
 Pt0 f188 triggerEnabled false #txt
 Pt0 f188 callSignature DashboardDetails(String,Boolean) #txt
 Pt0 f188 caseData businessCase.attach=true #txt
-Pt0 f188 showInStartList 0 #txt
+Pt0 f188 showInStartList false #txt
 Pt0 f188 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -2186,10 +2186,10 @@ Pt0 f193 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f193 208 2762 208 44 -95 -8 #rect
-Pt0 f195 497 2769 30 30 0 15 #rect
-Pt0 f198 111 2784 208 2784 #arcP
-Pt0 f199 416 2784 497 2784 #arcP
+Pt0 f193 192 2762 208 44 -95 -8 #rect
+Pt0 f195 465 2769 30 30 0 15 #rect
+Pt0 f198 111 2784 192 2784 #arcP
+Pt0 f199 400 2784 465 2784 #arcP
 Pt0 f200 outLink DefaultApplicationHomePageInTeams.ivp #txt
 Pt0 f200 inParamDecl '<> param;' #txt
 Pt0 f200 requestEnabled true #txt
@@ -2341,7 +2341,7 @@ Pt0 f221 168 1194 112 44 -42 -8 #rect
 Pt0 f222 111 1216 168 1216 #arcP
 Pt0 f222 0 0.6937327756354965 0 0 #arcLabel
 Pt0 f223 224 1238 224 1264 #arcP
-Pt0 f224 497 2865 30 30 0 15 #rect
+Pt0 f224 1281 2129 30 30 0 15 #rect
 Pt0 f225 dialogId ch.ivy.addon.portal.generic.ProcessViewer #txt
 Pt0 f225 startMethod start(String) #txt
 Pt0 f225 requestActionDecl '<String processViewerCaseId> param;' #txt
@@ -2356,7 +2356,7 @@ Pt0 f225 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f225 216 2856 160 48 -41 -8 #rect
+Pt0 f225 1012 2120 120 48 -41 -8 #rect
 Pt0 f226 outLink PortalProcessViewer.ivp #txt
 Pt0 f226 inParamDecl '<String processViewerCaseId> param;' #txt
 Pt0 f226 inParamTable 'out.processViewerCaseId=param.processViewerCaseId;
@@ -2365,7 +2365,7 @@ Pt0 f226 requestEnabled true #txt
 Pt0 f226 triggerEnabled false #txt
 Pt0 f226 callSignature PortalProcessViewer(String) #txt
 Pt0 f226 caseData businessCase.attach=true #txt
-Pt0 f226 showInStartList 0 #txt
+Pt0 f226 showInStartList false #txt
 Pt0 f226 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -2374,10 +2374,10 @@ Pt0 f226 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Pt0 f226 @C|.responsibility Everybody #txt
-Pt0 f226 81 2865 30 30 -50 18 #rect
-Pt0 f227 111 2880 216 2880 #arcP
+Pt0 f226 897 2129 30 30 -50 18 #rect
+Pt0 f227 927 2144 1012 2144 #arcP
 Pt0 f228 color default #txt
-Pt0 f228 376 2880 497 2880 #arcP
+Pt0 f228 1132 2144 1281 2144 #arcP
 >Proto Pt0 .colors 'default=;
 ' #txt
 >Proto Pt0 .type ch.ivy.addon.portal.generic.PortalStartData #txt
