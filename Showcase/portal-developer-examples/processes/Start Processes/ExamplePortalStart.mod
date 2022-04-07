@@ -671,16 +671,16 @@ Pt0 f207 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Pt0 f207 168 442 112 44 -42 -8 #rect
 Pt0 f148 1537 1825 30 30 0 15 #rect
-Pt0 f206 outLink CaseListPageInTeams.ivp #txt
+Pt0 f206 outLink DefaultCaseListPageInTeams.ivp #txt
 Pt0 f206 inParamDecl '<> param;' #txt
 Pt0 f206 requestEnabled true #txt
 Pt0 f206 triggerEnabled false #txt
-Pt0 f206 callSignature CaseListPageInTeams() #txt
+Pt0 f206 callSignature DefaultCaseListPageInTeams() #txt
 Pt0 f206 caseData businessCase.attach=true #txt
 Pt0 f206 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>CaseListPageInTeams.ivp</name>
+        <name>DefaultCaseListPageInTeams.ivp</name>
     </language>
 </elementInfo>
 ' #txt
