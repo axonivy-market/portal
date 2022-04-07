@@ -4,18 +4,12 @@ import static ch.ivy.addon.portalkit.filter.AbstractFilter.ALL;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import org.apache.commons.lang3.BooleanUtils;
-import org.apache.commons.lang3.StringUtils;
-
-import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.casefilter.CaseFilter;
 import ch.ivy.addon.portalkit.casefilter.impl.CaseFilterData;
 import ch.ivy.addon.portalkit.casefilter.impl.CaseStateFilter;
@@ -23,14 +17,11 @@ import ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel;
 import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.enums.CaseSortField;
-import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivy.addon.portalkit.exporter.Exporter;
 import ch.ivy.addon.portalkit.service.CaseFilterService;
-import ch.ivy.addon.portalkit.service.GlobalSettingService;
-import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.support.HtmlParser;
 import ch.ivy.addon.portalkit.util.CaseUtils;
 import ch.ivy.addon.portalkit.util.NumberUtils;
@@ -43,12 +34,10 @@ import ch.ivyteam.ivy.workflow.ICase;
 @ViewScoped
 public class CaseWidgetBean implements Serializable {
 
-  private static final String START_PROCESSES_SHOW_ADDITIONAL_CASE_DETAILS_PAGE = "Start Processes/PortalStart/showAdditionalCaseDetails.ivp";  
   private static final long serialVersionUID = 1L;
 
   private Long expandedCaseId;
   private ICase selectedCase;
-  private boolean isShowCaseDetails;
   private boolean isShowAllTasksOfCase;
   private boolean isShowFullCaseList;
   private boolean isAdminCaseStateIncluded;
@@ -56,7 +45,6 @@ public class CaseWidgetBean implements Serializable {
 
   public CaseWidgetBean() {
     expandedCaseId = -1L;
-    isShowCaseDetails = PermissionUtils.hasPortalPermission(PortalPermission.SHOW_CASE_DETAILS);
     isShowAllTasksOfCase = PermissionUtils.hasPortalPermission(PortalPermission.SHOW_ALL_TASKS_OF_CASE);
     isShowFullCaseList = PermissionUtils.checkAccessFullCaseListPermission();
   }
@@ -80,39 +68,6 @@ public class CaseWidgetBean implements Serializable {
   public boolean isDeleteFilterEnabledFor(CaseFilterData filterData) {
     CaseFilterService filterService = new CaseFilterService();
     return filterService.isDeleteFilterEnabledFor(filterData);
-  }
-
-  public String getAdditionalCaseDetailsPageUri(ICase iCase) {
-    String additionalCaseDetailsPageUri = StringUtils.EMPTY;
-    if (isExpressCase(iCase)) {
-      ProcessStartCollector processStartCollector =  new ProcessStartCollector();
-      additionalCaseDetailsPageUri = processStartCollector.findExpressBusinessViewStartLink() + "?caseId=" + iCase.getId();
-    } else {
-      additionalCaseDetailsPageUri = iCase.customFields().textField(AdditionalProperty.CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE.toString()).getOrNull();
-      if (StringUtils.isEmpty(additionalCaseDetailsPageUri)) {
-        Map<String, String> params = new HashMap<>();
-        params.put("caseId", String.valueOf(iCase.getId()));
-        additionalCaseDetailsPageUri = PortalNavigator.buildUrlByKeyword("showAdditionalCaseDetails", START_PROCESSES_SHOW_ADDITIONAL_CASE_DETAILS_PAGE, params);
-      } else {
-        additionalCaseDetailsPageUri = additionalCaseDetailsPageUri + "&embedInFrame";
-      }
-    }
-    return additionalCaseDetailsPageUri;
-  }
-
-  public String getProcessOverviewPageUri(ICase iCase) {
-    String processOverviewPageUri = StringUtils.EMPTY;
-
-    processOverviewPageUri = PortalNavigator.buildProcessInfoUrl(iCase.getApplication().getName().concat("/").concat(iCase.getProcessStart().getFullUserFriendlyRequestPath()));
-    return processOverviewPageUri;
-  }
-
-  private boolean isExpressCase(ICase iCase) {
-    return BooleanUtils.toBoolean(iCase.customFields().stringField("isExpress").getOrNull());
-  }
-
-  public boolean showProcessOverviewLink(ICase iCase) {
-    return GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_PROCESS_INFORMATION) && !isExpressCase(iCase);
   }
 
   /**
@@ -167,14 +122,6 @@ public class CaseWidgetBean implements Serializable {
 
   public String formatCaseDescription(String text) {
     return HtmlParser.extractTextFromHtml(text);
-  }
-
-  public boolean isShowCaseDetails() {
-    return isShowCaseDetails;
-  }
-
-  public void setShowCaseDetails(boolean isShowCaseDetails) {
-    this.isShowCaseDetails = isShowCaseDetails;
   }
 
   public boolean isShowAllTasksOfCase() {
