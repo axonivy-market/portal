@@ -157,11 +157,7 @@ public class CaseDetailsBean extends AbstractConfigurableContentBean<CaseDetails
 
   public void navigateToSelectedCaseDetails(SelectEvent event) {
     Long caseId = ((ICase) event.getObject()).getId();
-    if (inFrame) {
-      PortalNavigator.navigateToPortalCaseDetailsInFrame(caseId, false);
-    } else {
-      PortalNavigator.navigateToPortalCaseDetails(caseId);
-    }
+    navigateToCaseDetails(caseId);
   }
 
   public void navigateToCaseDetails(Long caseId) {
