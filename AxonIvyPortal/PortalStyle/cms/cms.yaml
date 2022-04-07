@@ -162,6 +162,13 @@ ch.ivy.addon.portalkit.ui.jsf:
     showTutorial: Show Welcome Tour
     taskListConfigDescription: In this area you can configure the task list according to your requirements.
     taskListConfiguration: Task list configuration
+  ProcessViewer:
+    Breadcrumb: Process Viewer of {0} process
+    ModelVersion: Process model version
+    ProcessDataNotFound: Could not found the Process Data!
+    RequestPath: Process request path
+    Title: Process Viewer
+    UserFriendlyRequestPath: Process user friendly request path
   adminSettings:
     addLanguages: Add languages
     addNewApplication: Add new third party application
