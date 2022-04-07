@@ -383,7 +383,6 @@ ch.ivy.addon.portalkit.ui.jsf:
   common:
     BusinessCaseInformation: Business Case Informationen
     NoSelection: Keine Auswahl
-    ProcessViewer: TODO Process Viewer
     ResetToDefaultHeaderText: Auf Standard-Einstellungen zurücksetzen?
     RoleUserInformation: Rollen- und Benutzerinformationen
     TaskCaseInformation: Informationen zu Aufgabe und Vorgang
