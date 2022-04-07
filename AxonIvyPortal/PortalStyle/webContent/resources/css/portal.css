@@ -1271,7 +1271,7 @@ body .ui-datepicker .ui-timepicker-div dl dd {
 .case-widget-container .ui-overlaypanel.filter-add-panel .ui-overlaypanel-content {
   background-color: var(--task-widget-overlay-panel-content-background-color); }
 
-.history-note a, .history-note .task-note-link {
+.history-note a:not(.history-related-case), .history-note .task-note-link {
   color: var(--history-note-color); }
 
 .history-note .task-note-link:hover {
