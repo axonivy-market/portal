@@ -73,7 +73,7 @@ public class TaskAnalysisWidgetBean implements Serializable {
     return new GlobalSettingService().isCaseOwnerEnabled();
   }
 
-  public SortMeta getSortBy() {
+  public SortMeta getSortByTaskName() {
     return SortFieldUtil.buildSortMeta("TASK_NAME", false);
   }
 }

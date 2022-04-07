@@ -44,7 +44,7 @@
           </p:commandLink>
         </div>
         <div class="ui-g-12">
-        <p:dataTable id="notes-table" widgetVar="notesTable" var="history" sortBy="#{caseTaskNoteHistoryBean.caseHistorySortBy}"
+        <p:dataTable id="notes-table" widgetVar="notesTable" var="history" sortBy="#{caseTaskNoteHistoryBean.caseHistorySortByTimestamp}"
           value="#{data.histories}" filteredValue="#{data.filteredHistories}"
           emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
           reflow="true">
@@ -63,7 +63,7 @@
             </f:facet>
             <h:outputText value="#{history.displayName}" styleClass="case-task-note-histories" />
           </p:column>
-          <p:column width="20%" sortBy="#{history.timestamp}" field="timestamp">
+          <p:column width="20%" sortBy="#{history.timestamp}" field="timestamp" filterable="false">
             <f:facet name="header">
               <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/creationDate')}" />
             </f:facet>
