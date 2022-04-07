@@ -236,6 +236,8 @@ Changes in 9.4
 
 - Introduce new ``Task ID``, ``Task Name``, ``Case ID`` and ``Case Name`` filter in the Portal full task list and case list.
 
+- Introduce the ``Process Viewer`` page, user can get the visual viewer of the process start. See more details :ref:`Show Process Viewer <how-to-show-process-viewer>`
+
 Changes in 9.3
 --------------
 

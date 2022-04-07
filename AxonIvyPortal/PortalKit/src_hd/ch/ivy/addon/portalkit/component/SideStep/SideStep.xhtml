@@ -93,7 +93,15 @@
       <i class="option-action-icon si si-business-contract-handshake-sign" />
       <span class="option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/events')}</span>
     </p:commandLink>
-    
+
+    <p:link id="show-process-viewer-link" target="_blank"
+      styleClass="show-process-viewer-link option-item"
+      href="#{taskActionBean.getProcessViewerPageUri(task)}"
+      rendered="#{taskActionBean.showProcessViewer(task)}">
+      <i class="option-action-icon si si-hierarchy-6 si-rotate-270" />
+      <span class="option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ProcessViewer')}</span>
+    </p:link>
+
     <h:panelGroup id="task-additional-actions" layout="block" rendered="#{cc.attrs.renderedAdditionalAction}">
       <f:event listener="#{sideStepBean.getSideSteps(task.getId(), task.case.getId(), cc.attrs.isAdhocExcluded)}" type="preRenderComponent" />
       <p:separator styleClass="u-separator" />
