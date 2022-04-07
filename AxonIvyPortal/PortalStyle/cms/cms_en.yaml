@@ -165,6 +165,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     showTutorial: Show Welcome Tour
     taskListConfigDescription: In this area you can configure the task list according to your requirements.
     taskListConfiguration: Task list configuration
+  ProcessViewer:
+    Breadcrumb: Process Viewer of {0} process
+    ModelVersion: Process model version
+    ProcessDataNotFound: Could not found the Process Data!
+    ProcessViewerText: Process Viewer
+    RequestPath: Process request path
+    Title: Process Viewer
+    UserFriendlyRequestPath: Process user friendly request path
   adminSettings:
     addLanguages: Add languages
     addNewApplication: Add new third party application
@@ -221,6 +229,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       enableCaseOwner: Set to true to enable filtering case owner when cases are queried. This setting affects all case queries, e.g. for case list, global search, statistic.
       enableGroupChat: Set this property to true to enable group chat function
       enablePrivateChat: Set this property to true to enable private chat function
+      enableProcessViewer: Set this property to true to enable process viewer option in Task/Case actions
       enableScriptCheckingForUploadedDocumentNote: Set to true to enable script checking for uploaded document. Currently this function supports checking for PDF, Excel, Word.
       enableUserFavorites: If this property is disabled, do not display user favorites section of process list in Portal home.
       enableVirusScannerForUploadedDocumentNote: Set to true to enable virus scanner for uploaded document. Currently this function is using API VIRUSTOTAL.
@@ -289,6 +298,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     downloadFile: Download file
     duration: Duration
     history: History
+    noCaseName: <No case name>
     noDescription: No description
     noRunningCase: No case is running
     noRunningTask: No task is running
@@ -864,6 +874,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     curentReportOf: of
     eventType: Event type
     exportButton: Export to Excel
+    relatedCase: Related Case
     showMoreBtn: Show more
     taskExportedFileNamePrefix: Note_history_of_task_{0}
     taskFailReason: 'Failed reason: {0}'
