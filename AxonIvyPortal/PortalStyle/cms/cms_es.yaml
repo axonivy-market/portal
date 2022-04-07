@@ -169,6 +169,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     Breadcrumb: TODO Process Viewer of {0} process
     ModelVersion: TODO Process model version
     ProcessDataNotFound: TODO Could not found the Process Data!
+    ProcessViewerText: TODO Process Viewer
     RequestPath: TODO Process request path
     Title: TODO Process Viewer
     UserFriendlyRequestPath: TODO Process user friendly request path
@@ -384,7 +385,6 @@ ch.ivy.addon.portalkit.ui.jsf:
   common:
     BusinessCaseInformation: Información sobre el caso de negocio
     NoSelection: Sin selección
-    ProcessViewer: TODO Process Viewer
     ResetToDefaultHeaderText: ¿Restablecer la configuración por defecto?
     RoleUserInformation: Informaciones de rol y usuario
     TaskCaseInformation: Informaciones de tarea y caso
