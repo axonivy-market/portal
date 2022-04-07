@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.primefaces.PrimeFaces;
 import org.primefaces.model.SortMeta;
 
@@ -87,8 +88,16 @@ public class TaskDashboardWidget extends DashboardWidget {
 
   @JsonIgnore
   public SortMeta getSortBy() {
-    String sortField = getSortField();
-    return sortField != null ? SortFieldUtil.buildSortMeta(sortField.toLowerCase(), isSortDescending()) : null;
+    List<TaskColumnModel> columnModels = getColumns();
+    if (CollectionUtils.isNotEmpty(columnModels)) {
+      String sortField = getSortField();
+      for (TaskColumnModel taskColumnModel : columnModels) {
+        if (taskColumnModel.getField().equalsIgnoreCase(sortField)) {
+          return SortFieldUtil.buildSortMeta(taskColumnModel.getField(), isSortDescending());
+        }
+      }
+    }
+    return null;
   }
 
   public String getSortField() {
