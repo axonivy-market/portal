@@ -299,6 +299,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     downloadFile: Datei herunterladen
     duration: Dauer
     history: Verlauf
+    noCaseName: TODO <No case name>
     noDescription: Keine Beschreibung vorhanden
     noRunningCase: Es wird kein Vorfall ausgeführt.
     noRunningTask: Es wird keine Aufgabe ausgeführt.
@@ -871,6 +872,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     curentReportOf: vom
     eventType: Ereignis-Typ
     exportButton: Nach Excel exportieren
+    relatedCase: TODO Related Case
     showMoreBtn: Mehr anzeigen
     taskExportedFileNamePrefix: Verlauf_Aufgabennotizen_{0}
     taskFailReason: 'Grund für das Scheitern: {0}'
