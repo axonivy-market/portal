@@ -11,7 +11,6 @@
 </cc:interface>
 <cc:implementation>
   <f:event listener="#{iconSelectionBean.init(cc.attrs.value)}" type="preRenderComponent" />
-  <h:outputStylesheet name="css/StreamlineIcons.css" library="serenity-layout" />
 
   <h:panelGroup id="awesome-icon-selection" styleClass="awesome-icon-selection-panel">
     <h:outputText id="awesome-icon-display" styleClass="#{iconSelectionBean.iconPattern} #{cc.attrs.value} u-vertical-align-center" />
