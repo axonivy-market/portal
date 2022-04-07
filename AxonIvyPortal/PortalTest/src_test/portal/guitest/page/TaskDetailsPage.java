@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
@@ -333,8 +334,10 @@ public class TaskDetailsPage extends TemplatePage {
 
   public void updateDelayTimestamp(String tomorrow) {
     findElementByCssSelector("span[id$='general-information:delay-form:delay-date_display']").click();
-    waitForElementDisplayed(By.id("ui-datepicker-div"), true);
+    waitForElementDisplayed(findElementByCssSelector("[id$='general-information:delay-form:delay-date-calendar_panel']"), true);
     WebElement delayInput = findElementByCssSelector("[id$='delay-form:delay-date-calendar_input']");
+    delayInput.sendKeys(Keys.chord(Keys.CONTROL, "a"));
+    delayInput.sendKeys(Keys.BACK_SPACE);
     delayInput.sendKeys(tomorrow);
     WebElement buttonAction = findElementByCssSelector("[id$='delay-form:delay-date_editor']");
     buttonAction.findElement(By.className("ui-inplace-save")).click();

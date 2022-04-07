@@ -130,7 +130,7 @@ public class GlobalGrowlTest extends BaseTest {
   }
 
   private void leftExpressFormDefinition() {
-    redirectToRelativeLink(createExpressProcess);
+    redirectToRelativeLink(expressStartLink);
     ExpressProcessPage expressProcessPage = new ExpressProcessPage();
     expressProcessPage.fillProcessProperties(true, true, "Test approval", "Test description");
     expressProcessPage.createTask(0, 0, "Task 1", "Task 1 description",
@@ -141,14 +141,14 @@ public class GlobalGrowlTest extends BaseTest {
   }
 
   private void leftExpressWorkflowDefinition() {
-    redirectToRelativeLink(createExpressProcess);
+    redirectToRelativeLink(expressStartLink);
     ExpressProcessPage expressProcessPage = new ExpressProcessPage();
     HomePage homePage = expressProcessPage.cancelWorkflowDefinition();
     assertGrowlMessage(homePage, CANCEL_MESSAGE);
   }
 
   private void leftTaskWhenGlobalSearch() {
-    redirectToRelativeLink(createExpressProcess);
+    redirectToRelativeLink(expressStartLink);
     ExpressProcessPage expressProcessPage = new ExpressProcessPage();
     GlobalSearch globalSearch = expressProcessPage.getGlobalSearch();
     SearchResultPage searchResultPage = globalSearch.inputSearchKeyword("a");
@@ -156,7 +156,7 @@ public class GlobalGrowlTest extends BaseTest {
   }
 
   private void leftTaskWhenClickingOnMenu() {
-    redirectToRelativeLink(createExpressProcess);
+    redirectToRelativeLink(expressStartLink);
     ExpressProcessPage expressProcessPage = new ExpressProcessPage();
     MainMenuPage mainMenuPage = expressProcessPage.openMainMenu();
     WorkingTaskDialogPageOfApplicationMenu leaveTaskDialogOfMenu = mainMenuPage.selectDashboardMenu();
@@ -165,7 +165,7 @@ public class GlobalGrowlTest extends BaseTest {
   }
 
   private void leftTaskWhenClickingOnLogo() {
-    redirectToRelativeLink(createExpressProcess);
+    redirectToRelativeLink(expressStartLink);
     ExpressProcessPage expressProcessPage = new ExpressProcessPage();
     expressProcessPage.clickOnLogo();
     WorkingTaskDialogPage dialogPage = new WorkingTaskDialogPage();

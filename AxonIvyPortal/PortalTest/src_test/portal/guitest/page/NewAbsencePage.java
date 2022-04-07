@@ -5,6 +5,7 @@ import java.time.format.DateTimeFormatter;
 
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 
 import portal.guitest.common.DateTimePattern;
@@ -51,6 +52,8 @@ public class NewAbsencePage extends TemplatePage {
     WebElement fromInput = findElementByCssSelector(inputCssSelector);
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DateTimePattern.DATE_PATTERN);
     fromInput.clear();
+    fromInput.sendKeys(Keys.chord(Keys.CONTROL, "a"));
+    fromInput.sendKeys(Keys.BACK_SPACE);
     fromInput.sendKeys(absenceFrom.format(formatter));
   }
 
