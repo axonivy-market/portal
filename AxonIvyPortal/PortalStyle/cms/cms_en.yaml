@@ -169,6 +169,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     Breadcrumb: Process Viewer of {0} process
     ModelVersion: Process model version
     ProcessDataNotFound: Could not found the Process Data!
+    ProcessViewerText: Process Viewer
     RequestPath: Process request path
     Title: Process Viewer
     UserFriendlyRequestPath: Process user friendly request path
@@ -297,6 +298,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     downloadFile: Download file
     duration: Duration
     history: History
+    noCaseName: <No case name>
     noDescription: No description
     noRunningCase: No case is running
     noRunningTask: No task is running
@@ -381,7 +383,6 @@ ch.ivy.addon.portalkit.ui.jsf:
   common:
     BusinessCaseInformation: Business Case Information
     NoSelection: No Selection
-    ProcessViewer: Process Viewer
     ResetToDefaultHeaderText: Reset to default settings?
     RoleUserInformation: Role and User Information
     TaskCaseInformation: Task and Case Information
@@ -873,6 +874,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     curentReportOf: of
     eventType: Event type
     exportButton: Export to Excel
+    relatedCase: Related Case
     showMoreBtn: Show more
     taskExportedFileNamePrefix: Note_history_of_task_{0}
     taskFailReason: 'Failed reason: {0}'
