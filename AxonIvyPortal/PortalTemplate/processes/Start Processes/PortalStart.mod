@@ -1,5 +1,5 @@
 [Ivy]
-1549F58C18A6C562 9.4.1 #module
+17FDDF99EEBE452E 9.4.1 #module
 >Proto >Proto Collection #zClass
 Pt0 PortalStart Big #zClass
 Pt0 B #cInfo
@@ -256,6 +256,11 @@ Pt0 @StartRequest f220 '' #zField
 Pt0 @GridStep f221 '' #zField
 Pt0 @PushWFArc f222 '' #zField
 Pt0 @PushWFArc f223 '' #zField
+Pt0 @EndTask f224 '' #zField
+Pt0 @UserDialog f225 '' #zField
+Pt0 @StartRequest f226 '' #zField
+Pt0 @PushWFArc f227 '' #zField
+Pt0 @PushWFArc f228 '' #zField
 >Proto Pt0 Pt0 PortalStart #zField
 Bk7 @TextInP .colors .colors #zField
 Bk7 @TextInP color color #zField
@@ -1668,7 +1673,8 @@ Pt0 f142 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Pt0 f142 1360 1706 112 44 -48 -8 #rect
 Pt0 f143 actionTable 'out=in;
 ' #txt
-Pt0 f143 actionCode 'import ch.ivyteam.ivy.workflow.ICase;
+Pt0 f143 actionCode 'import ch.ivy.addon.portalkit.util.CaseUtils;
+import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import java.util.ArrayList;
@@ -1677,7 +1683,7 @@ import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivy.addon.portalkit.service.HistoryService;
 
 List<ITask> finishedTasks = new ArrayList();
-in.caseSelected = ivy.wf.getCaseQueryExecutor().getFirstResult(CaseQuery.create().where().caseId().isEqual(in.caseId)) as ICase;
+in.caseSelected = CaseUtils.findCase(in.caseId);
 for(ITask task : in.caseSelected.tasks().all()) {
 	if(task.getState() == TaskState.DONE
 	|| task.getState() == TaskState.CREATED 
@@ -1686,12 +1692,16 @@ for(ITask task : in.caseSelected.tasks().all()) {
 		finishedTasks.add(task);
 	}
 }
-
-HistoryService historyService = new HistoryService();
 GlobalSettingService globalSettingService = new GlobalSettingService();
 boolean excludeSystemTasks = globalSettingService.findHideSystemTasksFromHistorySettingValue();
 boolean excludeSystemNotes = globalSettingService.findHideSystemNotesFromHistorySettingValue();
-in.histories = historyService.getHistories(finishedTasks, in.caseSelected.getNotes(), excludeSystemTasks, excludeSystemNotes);' #txt
+
+List<ICase> cases = new ArrayList();
+cases.add(in.caseSelected);
+cases.addAll(CaseUtils.findSubCasesByBusinessCaseId(in.caseId));
+
+HistoryService historyService = new HistoryService();
+in.histories = historyService.getCaseHistories(in.caseId, finishedTasks, cases, excludeSystemTasks, excludeSystemNotes);' #txt
 Pt0 f143 security system #txt
 Pt0 f143 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -2331,6 +2341,43 @@ Pt0 f221 168 1194 112 44 -42 -8 #rect
 Pt0 f222 111 1216 168 1216 #arcP
 Pt0 f222 0 0.6937327756354965 0 0 #arcLabel
 Pt0 f223 224 1238 224 1264 #arcP
+Pt0 f224 497 2865 30 30 0 15 #rect
+Pt0 f225 dialogId ch.ivy.addon.portal.generic.ProcessViewer #txt
+Pt0 f225 startMethod start(String) #txt
+Pt0 f225 requestActionDecl '<String processViewerCaseId> param;' #txt
+Pt0 f225 requestMappingAction 'param.processViewerCaseId=in.processViewerCaseId;
+' #txt
+Pt0 f225 responseMappingAction 'out=in;
+' #txt
+Pt0 f225 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>ProcessViewer</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f225 216 2856 160 48 -41 -8 #rect
+Pt0 f226 outLink PortalProcessViewer.ivp #txt
+Pt0 f226 inParamDecl '<String processViewerCaseId> param;' #txt
+Pt0 f226 inParamTable 'out.processViewerCaseId=param.processViewerCaseId;
+' #txt
+Pt0 f226 requestEnabled true #txt
+Pt0 f226 triggerEnabled false #txt
+Pt0 f226 callSignature PortalProcessViewer(String) #txt
+Pt0 f226 caseData businessCase.attach=true #txt
+Pt0 f226 showInStartList 0 #txt
+Pt0 f226 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>PortalProcessViewer.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f226 @C|.responsibility Everybody #txt
+Pt0 f226 81 2865 30 30 -50 18 #rect
+Pt0 f227 111 2880 216 2880 #arcP
+Pt0 f228 color default #txt
+Pt0 f228 376 2880 497 2880 #arcP
 >Proto Pt0 .colors 'default=;
 ' #txt
 >Proto Pt0 .type ch.ivy.addon.portal.generic.PortalStartData #txt
@@ -3194,6 +3241,10 @@ Pt0 f220 mainOut f222 tail #connect
 Pt0 f222 head f221 mainIn #connect
 Pt0 f221 mainOut f223 tail #connect
 Pt0 f223 head f218 in #connect
+Pt0 f226 mainOut f227 tail #connect
+Pt0 f227 head f225 mainIn #connect
+Pt0 f225 mainOut f228 tail #connect
+Pt0 f228 head f224 mainIn #connect
 Bk7 f3 ao f8 tail #connect
 Bk7 f8 head f36 @CG|ai #connect
 Bk7 f22 mainOut f43 tail #connect

@@ -72,6 +72,7 @@ public class RelatedTaskLazyDataModel extends TaskLazyDataModel {
     if (first == 0) {
       initializedDataModel();
     }
+    setRowCount(getTaskCount(criteria));
 
     List<ITask> foundTasks = findTasks(criteria, first, pageSize);
     data.addAll(foundTasks);
@@ -112,7 +113,6 @@ public class RelatedTaskLazyDataModel extends TaskLazyDataModel {
 
   private void initializedDataModel() {
     data.clear();
-    setRowCount(getTaskCount(criteria));
     criteria.setFinalTaskQuery(null);
   }
 

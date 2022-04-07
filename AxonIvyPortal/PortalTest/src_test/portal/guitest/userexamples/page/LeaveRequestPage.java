@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
 import portal.guitest.page.HomePage;
@@ -30,12 +31,19 @@ public class LeaveRequestPage extends TaskTemplatePage {
   
   public void enterLeaveRequestInformation(String leaveType, String from, String to, String approver, String requesterComment) {
     selectLeaveType(leaveType);
-    enterKeys(findElementById("leave-request:from_input"), from);
-    enterKeys(findElementById("leave-request:to_input"), to);
+    type(findElementById("leave-request:from_input"), from);
+    closePanelDatePicker(findElementById("leave-request:from_panel"));
+    type(findElementById("leave-request:to_input"), to);
+    closePanelDatePicker(findElementById("leave-request:to_panel"));
     enterKeys(findElementById("leave-request:requester-comment"), requesterComment);
     selectApprover(approver);
   }
   
+  private void closePanelDatePicker(WebElement element) {
+    JavascriptExecutor js = (JavascriptExecutor) driver;
+    js.executeScript("arguments[0].style.display = 'none'", element);
+  }
+
   public void enterApproverComment(String approverComment) {
     enterKeys(findElementById("leave-request:approver-comment"), approverComment);
   }

@@ -165,6 +165,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     showTutorial: Spectacle de bienvenue
     taskListConfigDescription: Dans cette zone, vous pouvez configurer la liste des tâches en fonction de vos besoins.
     taskListConfiguration: Configuration de la liste des tâches
+  ProcessViewer:
+    Breadcrumb: TODO Process Viewer of {0} process
+    ModelVersion: TODO Process model version
+    ProcessDataNotFound: TODO Could not found the Process Data!
+    ProcessViewerText: TODO Process Viewer
+    RequestPath: TODO Process request path
+    Title: TODO Process Viewer
+    UserFriendlyRequestPath: TODO Process user friendly request path
   adminSettings:
     addLanguages: Ajouter une langue
     addNewApplication: Ajouter une nouvelle application de tiers
@@ -223,6 +231,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       enableCaseOwner: Réglé sur true pour activer le filtrage du propriétaire de cas lorsque les cas sont interrogés. Ce paramètre affecte toutes les requêtes de cas, par exemple pour la liste des cas, la recherche globale, les statistiques.
       enableGroupChat: Définissez cette propriété sur true pour activer la fonction de chat de groupe
       enablePrivateChat: Définissez cette propriété à true pour activer la fonction de chat privé
+      enableProcessViewer: TODO Set this property to true to enable process viewer option in Task/Case actions
       enableScriptCheckingForUploadedDocumentNote: Défini sur true pour activer la vérification de script pour le document téléchargé. Actuellement, cette fonction prend en charge la vérification de PDF, Excel, Word.
       enableUserFavorites: Si la propriété est désactivée, n'affichez pas la section des favoris de l'utilisateur de la liste des processus dans la page d'accueil du portail.
       enableVirusScannerForUploadedDocumentNote: Définie sur true pour activer le scanner de virus pour le document téléchargé. Actuellement, cette fonction utilise l'API VIRUSTOTAL.
@@ -290,6 +299,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     downloadFile: Télécharger le fichier
     duration: Durée
     history: Historique
+    noCaseName: TODO <No case name>
     noDescription: Aucune description
     noRunningCase: Aucune cas n'est en cours d'exécution
     noRunningTask: Aucune tâche n'est en cours d'exécution
@@ -858,6 +868,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     curentReportOf: de
     eventType: Type d'événement
     exportButton: Exporter vers Excel
+    relatedCase: TODO Related Case
     showMoreBtn: Afficher plus
     taskExportedFileNamePrefix: Histoire_des_notes_de_tâches_{0}
     taskFailReason: 'Raison de l''échec : {0}'

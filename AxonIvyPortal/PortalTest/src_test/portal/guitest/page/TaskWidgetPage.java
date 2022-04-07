@@ -977,4 +977,9 @@ public class TaskWidgetPage extends TemplatePage {
       waitForNumberOfTasks(1);
     }
   }
+
+  public void clickOnProcessViewerOption() {
+    waitForElementDisplayed(By.cssSelector("[id$=':task-item:task-action:additional-options:side-steps-panel'].options-panel.ui-overlay-visible"), true);
+    clickByCssSelector("a[id$=':task-item:task-action:additional-options:show-process-viewer-link']");
+  }
 }

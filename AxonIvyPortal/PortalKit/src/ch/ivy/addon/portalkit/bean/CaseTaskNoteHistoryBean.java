@@ -91,11 +91,11 @@ public class CaseTaskNoteHistoryBean implements Serializable {
     return exporter.getStreamedContentOfCaseNoteHistory(caseNoteHistory, iCase, fileName + ".xlsx");
   }
 
-  public SortMeta getCaseHistorySortBy() {
+  public SortMeta getCaseHistorySortByTimestamp() {
     return SortFieldUtil.buildSortMeta("timestamp", true);
   }
 
-  public SortMeta getTaskHistorySortBy() {
-    return SortFieldUtil.buildSortMeta("timestamp", true);
+  public SortMeta getTaskHistorySortByCreationTimestamp() {
+    return SortFieldUtil.buildSortMeta("creationTimestamp.time", true);
   }
 }

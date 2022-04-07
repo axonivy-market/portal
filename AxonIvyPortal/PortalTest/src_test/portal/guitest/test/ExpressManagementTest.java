@@ -200,7 +200,7 @@ public class ExpressManagementTest extends BaseTest {
     taskWidgetPage.waitForActionGroupDisplay();
   }
 
-  private void executePromoteResourceTask() {
+  public void executePromoteResourceTask() {
     ExpressTaskPage expressTaskPage = new ExpressTaskPage();
     expressTaskPage.waitForExpressFieldSetDisplay();
     expressTaskPage.enterRequiredInputFieldByLabel("Applicant name", "David Rafi");
