@@ -7,6 +7,7 @@
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="task" type="ch.ivyteam.ivy.workflow.ITask" />
   <cc:attribute name="styleClass" />
+  <cc:attribute name="historyWidget" type="ch.ivy.addon.portalkit.dto.widget.HistoryWidget" />
 </cc:interface>
 
 <cc:implementation>
@@ -41,10 +42,11 @@
     </div>
 
     <h:panelGroup id="task-history-content-container" styleClass="ui-g-12 u-padding-0">
-      <p:dataTable value="#{data.notes}" var="note" id="task-note-table" paginator="true" pageLinks="3" rows="8"
+      <p:dataTable value="#{data.notes}" var="note" id="task-note-table" paginator="true"
+        pageLinks="3" rows="#{cc.attrs.historyWidget.rowPerPage}" rowsPerPageTemplate="5,10,20,50"
         paginatorPosition="bottom" rendered="#{not empty data.notes}"
         emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}" paginatorAlwaysVisible="false"
-        paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+        paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
         currentPageReportTemplate="{currentPage} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/curentReportOf')} {totalPages}">
 
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/columnContent')}" styleClass="u-truncate-text history-note" sortBy="#{note.message}">
