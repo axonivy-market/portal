@@ -70,7 +70,8 @@
 
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/relatedCase')}"
           sortBy="#{history.displayCaseName}"
-          styleClass="u-truncate-text history-related-case ui-sm-12">
+          styleClass="u-truncate-text history-related-case ui-sm-12"
+          rendered="#{case.isBusinessCase()}">
           <p:commandLink id="related-case-link" value="#{history.displayCaseName}"
             rendered="#{not empty history.displayCaseName}"
             actionListener="#{caseDetailsBean.navigateToCaseDetails(history.caseId)}"
