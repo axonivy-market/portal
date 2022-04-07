@@ -165,6 +165,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     showTutorial: Mostrar tour de bienvenida
     taskListConfigDescription: En esta sección puede confirar la lista de tareas.
     taskListConfiguration: Configuración lista de tareas
+  ProcessViewer:
+    Breadcrumb: TODO Process Viewer of {0} process
+    ModelVersion: TODO Process model version
+    ProcessDataNotFound: TODO Could not found the Process Data!
+    ProcessViewerText: TODO Process Viewer
+    RequestPath: TODO Process request path
+    Title: TODO Process Viewer
+    UserFriendlyRequestPath: TODO Process user friendly request path
   adminSettings:
     addLanguages: Agregar idiomas
     addNewApplication: Crear nueva aplicación de terceros
@@ -224,6 +232,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       enableCaseOwner: 'Cambiar a "true" para también mostrar los casos en los que usted es el responsable del caso en su lista de casos. '
       enableGroupChat: Cambie esta propiedad a "true" para activar el chat de grupos
       enablePrivateChat: Cambie esta propiedad a "true" para activar el chat privado
+      enableProcessViewer: TODO Set this property to true to enable process viewer option in Task/Case actions
       enableScriptCheckingForUploadedDocumentNote: 'Cambiar a "True" para activar el control de anexos permitidos. De momento se pueden controlar archivos en PDF, word y excel. '
       enableUserFavorites: Si esta propiedad está desactivada, los favoritos de usurio serán ocultados
       enableVirusScannerForUploadedDocumentNote: Cambiar a "true" para habilitar el escáner de virus para el documento cargado. Actualmente esta función utiliza la API VIRUSTOTAL.
@@ -292,6 +301,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     downloadFile: Descargar archivo
     duration: Duración
     history: Historia
+    noCaseName: TODO <No case name>
     noDescription: Sin descripción
     noRunningCase: Ningún caso en proceso
     noRunningTask: Ninguna tarea en proceso
@@ -862,6 +872,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     curentReportOf: del
     eventType: Tipo de evento
     exportButton: Exportar a Excel
+    relatedCase: TODO Related Case
     showMoreBtn: Mostrar más
     taskExportedFileNamePrefix: Note_history_of_task_ {0}
     taskFailReason: 'Razón del error: {0}'

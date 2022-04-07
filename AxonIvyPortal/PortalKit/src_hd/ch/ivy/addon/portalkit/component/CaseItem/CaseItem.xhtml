@@ -21,7 +21,6 @@
 
   <c:set var="case" value="#{cc.attrs.case}" />
   <c:set var="rowIndex" value="#{cc.attrs.rowIndex}" />
-  <c:set var="renderDestroyAction" value="#{caseActionBean.canDestroy(case) and case.state ne 'DONE' and case.state ne 'DESTROYED' and cc.attrs.canDestroyCase}" />
 
   <div id="#{cc.clientId}" class="js-case-item case-list-item #{cc.attrs.itemStyleClass}">
     <h:panelGroup id="case-item-container" styleClass="case-header-container case-header-data" layout="block">
@@ -34,7 +33,7 @@
         <h:panelGroup styleClass="u-hidden-sm-down action-container" rendered="#{cc.attrs.enableCaseAction and !cc.attrs.readOnly}">
           <ic:ch.ivy.addon.portalkit.component.ActionStep id="action-step-component" actionLinkId="action-steps-menu"
             actionLinkStyleClass="ui-button-text-only" panelWidgetVar="case-action-steps-panel-#{rowIndex}" isAdhocExcluded="true"
-            renderDestroyAction="#{renderDestroyAction}" update="#{cc.attrs.update}" onDestroyComplete="#{cc.attrs.onDestroyComplete}"
+            canDestroyCase="#{cc.attrs.canDestroyCase}" update="#{cc.attrs.update}" onDestroyComplete="#{cc.attrs.onDestroyComplete}"
             case="#{cc.attrs.case}" readOnly="#{cc.attrs.readOnly}" />
         </h:panelGroup>
        </h:form>

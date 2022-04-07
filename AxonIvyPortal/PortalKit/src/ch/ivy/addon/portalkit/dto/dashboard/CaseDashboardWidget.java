@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.primefaces.PrimeFaces;
 import org.primefaces.model.SortMeta;
 
@@ -69,8 +70,16 @@ public class CaseDashboardWidget extends DashboardWidget {
 
   @JsonIgnore
   public SortMeta getSortBy() {
-    String sortField = getSortField();
-    return sortField != null ? SortFieldUtil.buildSortMeta(sortField.toLowerCase(), isSortDescending()) : null;
+    List<CaseColumnModel> columnModels = getColumns();
+    if (CollectionUtils.isNotEmpty(columnModels)) {
+      String sortField = getSortField();
+      for (CaseColumnModel caseColumnModel : columnModels) {
+        if (caseColumnModel.getField().equalsIgnoreCase(sortField)) {
+          return SortFieldUtil.buildSortMeta(caseColumnModel.getField(), isSortDescending());
+        }
+      }
+    }
+    return null;
   }
 
   public String getSortField() {

@@ -36,3 +36,4 @@ hasPermission Boolean #field
 isPublicDashboard Boolean #field
 isPublicDashboard 'used in configuring new dashboard' #fieldComment
 dashboardId String #field
+processViewerCaseId String #field
