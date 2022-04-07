@@ -9,7 +9,9 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
+import ch.ivy.addon.portalkit.ivydata.dto.IvyCaseResultDTO;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;
+import ch.ivy.addon.portalkit.ivydata.service.impl.CaseService;
 import ch.ivy.addon.portalkit.publicapi.CaseAPI;
 import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -20,11 +22,22 @@ import ch.ivyteam.ivy.workflow.INote;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
 public final class CaseUtils {
-  private CaseUtils() {
-  }
-  
+
+  private CaseUtils() {}
+
   public static ICase findCase(long caseId) {
     return IvyExecutor.executeAsSystem(() -> Ivy.wf().findCase(caseId));
+  }
+
+  public static List<ICase> findSubCasesByBusinessCaseId(long caseId) {
+    return IvyExecutor.executeAsSystem(() -> {
+      CaseSearchCriteria criteria = new CaseSearchCriteria();
+      criteria.setBusinessCase(false);
+      criteria.setTechnicalCase(true);
+      criteria.setBusinessCaseId(caseId);
+      IvyCaseResultDTO ivyCaseResultDTO = CaseService.newInstance().findCasesByCriteria(criteria);
+      return Objects.nonNull(ivyCaseResultDTO) ? ivyCaseResultDTO.getCases() : new ArrayList<>();
+    });
   }
 
   /**

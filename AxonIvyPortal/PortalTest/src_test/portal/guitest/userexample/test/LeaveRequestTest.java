@@ -50,6 +50,7 @@ public class LeaveRequestTest extends BaseTest {
     String yesterday = LocalDateTime.now().minusDays(1).format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN, new Locale("en")));
     leaveRequestPage.enterLeaveRequestInformation("Maternity Leave", yesterday, today, TestAccount.ADMIN_USER.getFullName(), "requester comment");
     leaveRequestPage.clickSubmitButton();
+    leaveRequestPage.clickOnLogout();
     login(TestAccount.ADMIN_USER);
     taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.startTask(0);
@@ -57,6 +58,7 @@ public class LeaveRequestTest extends BaseTest {
     Assert.assertEquals("Approval", leaveRequestPage.getPageTitle());
     leaveRequestPage.enterApproverComment("Approved");
     leaveRequestPage.clickApproveBtn();
+    leaveRequestPage.clickOnLogout();
     login(TestAccount.DEMO_USER);
     taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.filterTasksBy("Your leave request is approved");
@@ -76,6 +78,7 @@ public class LeaveRequestTest extends BaseTest {
     String yesterday =  LocalDateTime.now().minusDays(1).format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN, new Locale("en")));
     leaveRequestPage.enterLeaveRequestInformation("Maternity Leave", yesterday, today, TestAccount.ADMIN_USER.getFullName(), "requester comment");
     leaveRequestPage.clickSubmitButton();
+    leaveRequestPage.clickOnLogout();
     login(TestAccount.ADMIN_USER);
     taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.startTask(0);
@@ -83,6 +86,7 @@ public class LeaveRequestTest extends BaseTest {
     Assert.assertEquals("Approval", leaveRequestPage.getPageTitle());
     leaveRequestPage.enterApproverComment("Rejected");
     leaveRequestPage.clickRejectBtn();
+    leaveRequestPage.clickOnLogout();
     login(TestAccount.DEMO_USER);
     taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.filterTasksBy("Your leave request is rejected");
