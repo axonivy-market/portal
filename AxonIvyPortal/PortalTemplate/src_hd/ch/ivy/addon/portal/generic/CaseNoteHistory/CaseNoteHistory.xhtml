@@ -55,7 +55,6 @@
                 <h:outputText value="#{caseTaskNoteHistoryBean.getCaseNoteContent(history)}" styleClass="case-task-note-histories"/>
               </p:column>
               <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/relatedCase')}"
-                rendered="#{data.ivyCase.isBusinessCase()}"
                 sortBy="#{history.displayCaseName}"
                 filterBy="#{history.displayCaseName}" filterMatchMode="contains"
                 styleClass="u-truncate-text history-related-case ui-sm-12">

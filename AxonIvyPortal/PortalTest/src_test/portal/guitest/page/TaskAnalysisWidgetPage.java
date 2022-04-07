@@ -78,6 +78,7 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
   @SuppressWarnings("deprecation")
   public void openAdvancedCaseFilter(String filterName, String filterIdName) {
     click(findCaseFilterButton());
+    waitForElementDisplayed(findElementById("task-widget:case-filter-add-form:case-filter-selection"), true);
     WebElement filterSelectionElement = findElementById("task-widget:case-filter-add-form:case-filter-selection");
     for (WebElement filterElement : findChildElementsByTagName(filterSelectionElement, "LABEL")) {
       if (filterName.equals(filterElement.getText())) {
@@ -204,6 +205,7 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
   public void loadFilterSet(String filterSetName, boolean isPersonalFilter) {
     waitForElementDisplayed(By.id("task-widget:filter-selection-form:filter-name"), true);
     click(By.id("task-widget:filter-selection-form:filter-name"));
+    waitForElementDisplayed(findElementById("task-widget:filter-selection-form:filter-name-overlay-panel"), true);
     WebElement filterContainer = null;
     if (isPersonalFilter) {
       filterContainer = findElementById("task-widget:filter-selection-form:private-filters");
