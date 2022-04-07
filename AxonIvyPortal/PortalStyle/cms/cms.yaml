@@ -166,6 +166,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     Breadcrumb: Process Viewer of {0} process
     ModelVersion: Process model version
     ProcessDataNotFound: Could not found the Process Data!
+    ProcessViewerText: Process Viewer
     RequestPath: Process request path
     Title: Process Viewer
     UserFriendlyRequestPath: Process user friendly request path
