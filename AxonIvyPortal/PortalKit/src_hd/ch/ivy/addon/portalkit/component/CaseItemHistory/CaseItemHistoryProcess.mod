@@ -1,5 +1,5 @@
 [Ivy]
-153362B0AC312EFB 9.4.1 #module
+153362B0AC312EFB 9.4.3 #module
 >Proto >Proto Collection #zClass
 Cs0 CaseItemHistoryProcess Big #zClass
 Cs0 RD #cInfo
@@ -158,8 +158,8 @@ GlobalSettingService service = new GlobalSettingService();
 out.showSystemNotesChkbox = !service.findHideSystemNotesFromHistorySettingValue();
 out.showSystemTasksChkbox = !service.findHideSystemTasksFromHistorySettingValue();
 boolean isAdmin = PermissionUtils.isSessionUserHasAdminRole();
-out.showSystemNotes = isAdmin;
-out.showSystemTasks = isAdmin;' #txt
+out.showSystemNotes = isAdmin && out.showSystemNotesChkbox;
+out.showSystemTasks = isAdmin && out.showSystemTasksChkbox;' #txt
 Cs0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
