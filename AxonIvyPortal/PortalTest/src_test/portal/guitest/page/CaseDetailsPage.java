@@ -29,7 +29,7 @@ public class CaseDetailsPage extends TemplatePage {
   private static final String HISTORY_LIST_CSS_SELECTOR = "td.history-note a[id*=':case-histories:case-histories:']";
   private static final String LATEST_HISTORY_LIST_CSS_SELECTOR = "a[id*=':case-histories:case-histories:0:note-link']";
   private static final String GENERAL_INFORMATION_COMPONENT_ID = "div[id='case-details-information-panel']";
-  private static final String ADDITIONAL_CASE_DETAILS_URL_CSS_SELECTOR = "a[id$='additional-case-details-link']";
+  private static final String ADDITIONAL_CASE_DETAILS_URL_CSS_SELECTOR = "a[id$=':show-additional-case-details-link']";
   private static final String PROCESS_OVERVIEW_URL_CSS_SELECTOR = "a[id$='show-process-overview-link']";
   private static final String AUTHOR_USER_CSS_SELECTOR = "span[class='history-fullname']";
   private static final String VIEW_NOTE_DIALOG_SELECTOR = "[id$=':case-histories:view-note-dialog']";
@@ -129,7 +129,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public void openAdditionalCaseDetailsPage() {
-    click(caseItem.findElement(By.cssSelector(ADDITIONAL_CASE_DETAILS_URL_CSS_SELECTOR)));
+    clickByCssSelector(ADDITIONAL_CASE_DETAILS_URL_CSS_SELECTOR);
   }
 
   public void openProcessOverviewPage() {
@@ -301,7 +301,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public void onClickDestroyCase() {
-    click(findElementByCssSelector("a[id$=':destroy-case-link']"));
+    click(findElementByCssSelector("a[id$=':action-group:destroy-case']"));
   }
   
   public void confimDestruction() {
@@ -806,17 +806,17 @@ public class CaseDetailsPage extends TemplatePage {
 
   public void openActionMenu() {
     clickByCssSelector("[id$=':action-group:case-details-action-link']");
-    waitForElementDisplayed(By.cssSelector("[id$=':action-group:action-steps-panel'].action-steps-panel.ui-overlay-visible"), true);
+    waitForElementDisplayed(By.cssSelector("[id$=':action-group:action-steps-panel'].action-steps-panel"), true);
   }
 
   public List<String> getAvailableActionSteps() {
-    waitForElementDisplayed(By.cssSelector("[id$=':action-group:action-steps-panel'].action-steps-panel.ui-overlay-visible"), true);
-    var steps = findListElementsByCssSelector("[id$=':action-group:action-steps-panel'].action-steps-panel.ui-overlay-visible a.action-step-item");
+    waitForElementDisplayed(By.cssSelector("[id$=':action-group:action-steps-panel'].action-steps-panel"), true);
+    var steps = findListElementsByCssSelector("[id$=':action-group:action-steps-panel'].action-steps-panel a.action-step-item");
     return steps.stream().map(WebElement::getText).collect(Collectors.toList());
   }
 
   public List<String> getAvailableActionStepsOfTechnicalCase(int caseIndex) {
-    var panelId = String.format("[id$=':related-cases-widget:related-cases:%d:action-step-component:action-steps-panel'].ui-overlay-visible", caseIndex);
+    var panelId = String.format("[id$=':related-cases-widget:related-cases:%d:action-step-component:action-steps-panel']", caseIndex);
     waitForElementDisplayed(By.cssSelector(panelId), true);
     var steps = findListElementsByCssSelector(panelId + " a.action-step-item");
     return steps.stream().map(WebElement::getText).collect(Collectors.toList());
