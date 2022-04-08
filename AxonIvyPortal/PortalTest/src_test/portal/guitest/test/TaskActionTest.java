@@ -90,7 +90,7 @@ public class TaskActionTest extends BaseTest {
     taskWidgetPage = taskDetailsPage.goBackToTaskListFromTaskDetails();
 
     // Done
-    assertTaskActionsByTaskState("Done", new ArrayList<>());
+    assertTaskActionsByTaskState("Done", Arrays.asList("Details", "Workflow Events", "Process Viewer"));
     taskWidgetPage = taskDetailsPage.goBackToTaskListFromTaskDetails();
 
     // Delayed
@@ -98,7 +98,7 @@ public class TaskActionTest extends BaseTest {
     taskWidgetPage = taskDetailsPage.goBackToTaskListFromTaskDetails();
 
     // Destroyed
-    assertTaskActionsByTaskState("Destroyed", new ArrayList<>());
+    assertTaskActionsByTaskState("Destroyed", Arrays.asList("Details", "Workflow Events", "Process Viewer"));
     taskWidgetPage = taskDetailsPage.goBackToTaskListFromTaskDetails();
   }
   
@@ -140,9 +140,10 @@ public class TaskActionTest extends BaseTest {
     }
     assertTrue(taskDetailsPage.isActionLinkEnable());
     List<String> actionInDetails = taskDetailsPage.getActiveTaskAction();
-    actionInDetails.remove("Details");
-    assertTrue(actionInDetails.size() == taskActionInTaskDetails.size());
-    assertTrue(actionInDetails.containsAll(taskActionInTaskDetails));
+    var taskActionInTaskDetailsPage = new ArrayList<>(taskActionInTaskDetails);
+    taskActionInTaskDetailsPage.remove("Details");
+    assertTrue(actionInDetails.size() == taskActionInTaskDetailsPage.size());
+    assertTrue(actionInDetails.containsAll(taskActionInTaskDetailsPage));
   }
 
 }
