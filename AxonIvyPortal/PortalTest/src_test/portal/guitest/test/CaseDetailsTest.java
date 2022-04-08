@@ -81,6 +81,7 @@ public class CaseDetailsTest extends BaseTest {
   @Test
   public void testDestroyCase() {
     createTestingTask();
+    detailsPage.openActionMenu();
     detailsPage.onClickDestroyCase();
     detailsPage.confimDestruction();
     CaseWidgetPage casePage = new CaseWidgetPage();
