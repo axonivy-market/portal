@@ -62,6 +62,7 @@ public class ProcessInformationTest extends BaseTest {
     homePage = new HomePage();
     CaseWidgetPage caseWidget = homePage.openCaseList();
     CaseDetailsPage caseDetails = caseWidget.openCaseDetailsFromActionMenuByCaseName(PROCESS_NAME);
+    caseDetails.openActionMenu();
     caseDetails.openProcessOverviewPage();
 
     processInformationPage = new ProcessInformationPage();
