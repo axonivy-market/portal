@@ -30,7 +30,7 @@ public class CaseDetailsPage extends TemplatePage {
   private static final String LATEST_HISTORY_LIST_CSS_SELECTOR = "a[id*=':case-histories:case-histories:0:note-link']";
   private static final String GENERAL_INFORMATION_COMPONENT_ID = "div[id='case-details-information-panel']";
   private static final String ADDITIONAL_CASE_DETAILS_URL_CSS_SELECTOR = "a[id$=':show-additional-case-details-link']";
-  private static final String PROCESS_OVERVIEW_URL_CSS_SELECTOR = "a[id$='show-process-overview-link']";
+  private static final String PROCESS_OVERVIEW_URL_CSS_SELECTOR = "a[id$=':show-process-overview-link']";
   private static final String AUTHOR_USER_CSS_SELECTOR = "span[class='history-fullname']";
   private static final String VIEW_NOTE_DIALOG_SELECTOR = "[id$=':case-histories:view-note-dialog']";
   private WebElement caseItem;
@@ -133,7 +133,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public void openProcessOverviewPage() {
-    click(caseItem.findElement(By.cssSelector(PROCESS_OVERVIEW_URL_CSS_SELECTOR)));
+    clickByCssSelector(PROCESS_OVERVIEW_URL_CSS_SELECTOR);
   }
 
   private WebElement getGeneralInformationComponent() {
@@ -561,8 +561,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public void clickRelatedTaskActionButton(int index) {
-    WebElement element = findListElementsByCssSelector(".related-task-more-column .action-link").get(index);
-    element.click();
+    clickByCssSelector(String.format("[id$=':related-tasks:%d:additional-options:task-side-steps-menu']", index));
     String actionPanel = String.format("[id$='task-widget:related-tasks:%d:additional-options:side-steps-panel']", index); 
     waitForElementDisplayed(By.cssSelector(actionPanel), true);
   }
