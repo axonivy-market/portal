@@ -449,13 +449,13 @@ public class CaseWidgetPage extends TemplatePage {
   }
 
   public List<String> getAvailableActionSteps() {
-    waitForElementDisplayed(By.cssSelector("[id$=':action-steps-panel'].ui-overlay-visible"), true);
-    var steps = findListElementsByCssSelector("[id$=':action-steps-panel'].ui-overlay-visible a.action-step-item");
+    waitForElementDisplayed(By.cssSelector("[id$=':action-steps-panel']"), true);
+    var steps = findListElementsByCssSelector("[id$=':action-steps-panel'] a.action-step-item");
     return steps.stream().map(WebElement::getText).collect(Collectors.toList());
   }
 
   public void clickOnProcessViewerOption() {
-    waitForElementDisplayed(By.cssSelector("[id$=':action-steps-panel'].ui-overlay-visible"), true);
+    waitForElementDisplayed(By.cssSelector("[id$=':action-steps-panel']"), true);
     clickByCssSelector("a[id$=':case-item:case-item-action-form:action-step-component:show-process-viewer-link']");
   }
 }
