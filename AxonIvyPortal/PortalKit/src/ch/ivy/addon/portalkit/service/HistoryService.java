@@ -70,10 +70,10 @@ public class HistoryService {
 
   private List<History> createHistoriesFromITasks(List<ITask> tasks, boolean excludeSystemTasks, long selectedCaseId) {
     List<ITask> refineTasks = new ArrayList<>();
-    if (excludeSystemTasks) {
-      refineTasks = tasks.stream().filter(isNotSystemTaskNote()).collect(Collectors.toList());
-    }
     refineTasks = tasks.stream().filter(isNotExpressTask()).collect(Collectors.toList());
+    if (excludeSystemTasks) {
+      refineTasks = refineTasks.stream().filter(isNotSystemTaskNote()).collect(Collectors.toList());
+    }
     var histories = new ArrayList<History>();
     CollectionUtils.emptyIfNull(refineTasks).forEach(task -> {
       var history = createHistoryFrom(task);

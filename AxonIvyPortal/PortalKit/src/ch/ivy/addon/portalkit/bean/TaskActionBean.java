@@ -271,7 +271,8 @@ public class TaskActionBean implements Serializable {
 
   public boolean noActionAvailable(ITask task) {
     boolean hasWorkflowEventLink = isShowReadWorkflowEvent && canReadWorkflowEventTask();
-    return !isNotDone(task) && !canResumeForWorkingUser(task) && !canReset(task) && !isTechnicalState(task) && !hasWorkflowEventLink;
+    return !isNotDone(task) && !canResumeForWorkingUser(task) && !canReset(task) && !isTechnicalState(task)
+        && !hasWorkflowEventLink && !showProcessViewer(task);
   }
   
   public void backToPrevPage(ITask task, boolean isFromTaskList, boolean isTaskStartedInDetails) {
