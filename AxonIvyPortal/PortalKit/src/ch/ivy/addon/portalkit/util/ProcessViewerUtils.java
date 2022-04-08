@@ -37,7 +37,7 @@ public class ProcessViewerUtils {
     var selectedProcess = getWebStartables().stream()
           .filter(webStartable -> StringUtils.equals(webStartable.getLink().getRelative(), selectedCase.getProcessStart().getLink().getRelative()))
           .findFirst().orElse(null);
-    return selectedProcess.viewerLink().getRelative();
+    return Objects.isNull(selectedProcess) ? "#" : selectedProcess.viewerLink().getRelative();
   }
 
   private static List<IWebStartable> getWebStartables() {
