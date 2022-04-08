@@ -20,7 +20,7 @@ public class ProcessViewerPage extends TemplatePage {
     driver.switchTo().frame("process-viewer");
     waitForElementDisplayed(By.id("sprotty"), true); 
     var transformStart = getSprottyGraphTransformValue();
-    clickByCssSelector("div[id$='sprotty_ivy-tool-palette'] i.fa-crosshairs");
+    clickByCssSelector("div[id$='sprotty_ivy-viewport-bar'] i.fa-crosshairs");
     WaitHelper.assertTrueWithWait(() -> {
       var transforEnd = getSprottyGraphTransformValue();
       return !transformStart.equalsIgnoreCase(transforEnd);
