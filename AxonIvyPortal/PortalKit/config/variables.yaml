@@ -199,6 +199,9 @@ Variables:
       # If true, case/task note does not display any system notes for administrator.
       HideSystemNotesForAdministrator: false
 
+      # If true, case history does not display the related case information in the history table.
+      HideRelatedCaseInfo: false
+
     Document:
       # Set to true to enable script checking for uploaded document. Currently this function supports checking for PDF, Excel, Word.
       EnableScriptChecking: false

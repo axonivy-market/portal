@@ -20,3 +20,7 @@ showSystemNotesChkbox Boolean #field
 showSystemNotesChkbox PERSISTENT #fieldModifier
 showSystemTasksChkbox Boolean #field
 showSystemTasksChkbox PERSISTENT #fieldModifier
+showRelatedCaseInfo Boolean #field
+showRelatedCaseInfo PERSISTENT #fieldModifier
+showRelatedCaseInfoCheckbox Boolean #field
+showRelatedCaseInfoCheckbox PERSISTENT #fieldModifier

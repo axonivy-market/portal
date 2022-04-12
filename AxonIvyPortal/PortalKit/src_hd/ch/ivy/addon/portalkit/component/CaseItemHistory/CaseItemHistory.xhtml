@@ -42,6 +42,11 @@
             styleClass="case-history-checkbox u-hidden-md-down u-hidden-sm-down">
             <p:ajax update="case-histories-table" process="@this" partialSubmit="true" listener="#{logic.loadHistories}" />
           </p:selectBooleanCheckbox>
+          <p:selectBooleanCheckbox id="related-case-checkbox" value="#{data.showRelatedCaseInfo}" itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/showRelatedCaseInfo')}"
+            rendered="#{data.showRelatedCaseInfoCheckbox}"
+            styleClass="case-history-checkbox u-hidden-md-down u-hidden-sm-down">
+            <p:ajax update="case-histories-table" process="@this" partialSubmit="true"/>
+          </p:selectBooleanCheckbox>
         </h:panelGroup>
       </div>
     </div>
@@ -51,7 +56,8 @@
         paginator="true" rows="5" paginatorAlwaysVisible="false" paginatorPosition="bottom" pageLinks="3"
         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
         emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
-        currentPageReportTemplate="{currentPage} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/curentReportOf')} {totalPages}">
+        currentPageReportTemplate="{currentPage} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/curentReportOf')} {totalPages}"
+        widgetVar="case-histories">
 
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/columnContent')}"
           sortBy="#{history.content}" filterable="false" styleClass="u-truncate-text history-note ui-sm-12">
@@ -71,7 +77,7 @@
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/relatedCase')}"
           sortBy="#{history.displayCaseName}"
           styleClass="u-truncate-text history-related-case ui-sm-12"
-          rendered="#{case.isBusinessCase()}">
+          rendered="#{case.isBusinessCase() and data.showRelatedCaseInfo}">
           <p:commandLink id="related-case-link" value="#{history.displayCaseName}"
             rendered="#{not empty history.displayCaseName}"
             actionListener="#{caseDetailsBean.navigateToCaseDetails(history.caseId)}"
