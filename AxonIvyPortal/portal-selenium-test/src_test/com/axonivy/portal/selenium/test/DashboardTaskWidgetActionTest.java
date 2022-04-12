@@ -17,7 +17,7 @@ import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
 import com.codeborne.selenide.ElementsCollection;
 
 @IvyWebTest
-public class DashBoardTaskWidgetActionTest extends BaseTest {
+public class DashboardTaskWidgetActionTest extends BaseTest {
 
   // WIDGET NAME
   private static final String YOUR_TASKS_WIDGET = "Your Tasks";

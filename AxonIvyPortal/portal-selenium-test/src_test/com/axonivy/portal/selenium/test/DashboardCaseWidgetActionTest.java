@@ -41,7 +41,7 @@ public class DashboardCaseWidgetActionTest extends BaseTest {
     redirectToNewDashBoard();
     caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
     // In progress
-    assertTaskActionsByCaseState("In progress", Arrays.asList("Details", "Process overview", "Business details", "Process Viewer"));
+    assertCaseActionsByCaseState("In progress", Arrays.asList("Details", "Process overview", "Process Viewer"));
   }
 
   @Test
@@ -52,16 +52,15 @@ public class DashboardCaseWidgetActionTest extends BaseTest {
     redirectToNewDashBoard();
     caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
     // In progress
-    assertTaskActionsByCaseState("In progress", Arrays.asList("Details", "Process overview", "Business details", "Destroy", "Process Viewer"));
+    assertCaseActionsByCaseState("In progress", Arrays.asList("Details", "Process overview", "Business details", "Destroy", "Process Viewer"));
     // Destroyed
-    caseWidget.clickOnCaseActionLink(0);
     caseWidget.destroyCase(0);
-    assertTaskActionsByCaseState("Destroyed", Arrays.asList("Details", "Process overview", "Business details", "Process Viewer"));
+    assertCaseActionsByCaseState("Destroyed", Arrays.asList("Details", "Process overview", "Business details", "Process Viewer"));
     // Done
-    assertTaskActionsByCaseState("Done", Arrays.asList("Details", "Process overview", "Business details", "Process Viewer"));
+    assertCaseActionsByCaseState("Done", Arrays.asList("Details", "Process overview", "Business details", "Process Viewer"));
   }
 
-  private void assertTaskActionsByCaseState(String state, List<String> taskActionsInCase) {
+  private void assertCaseActionsByCaseState(String state, List<String> caseActionsInCase) {
     caseWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
     caseWidget.openFilterWidget();
     caseWidget.resetFilter();
@@ -70,7 +69,7 @@ public class DashboardCaseWidgetActionTest extends BaseTest {
     caseWidget.selectState(state);
     caseWidget.applyFilter();
     ElementsCollection actions = caseWidget.getActiveCaseActions(0);
-    actions.shouldHaveSize(taskActionsInCase.size());
-    assertTrue(actions.texts().containsAll(taskActionsInCase));
+    actions.shouldHaveSize(caseActionsInCase.size());
+    assertTrue(actions.texts().containsAll(caseActionsInCase));
   }
 }
