@@ -18,7 +18,7 @@ import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.codeborne.selenide.ElementsCollection;
 
 @IvyWebTest
-public class DashBoardCaseWidgetActionTest extends BaseTest {
+public class DashboardCaseWidgetActionTest extends BaseTest {
 
   // WIDGET NAME
   private static final String YOUR_CASES_WIDGET = "Your Cases";
@@ -41,7 +41,7 @@ public class DashBoardCaseWidgetActionTest extends BaseTest {
     redirectToNewDashBoard();
     caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
     // In progress
-    assertTaskActionsByCaseState("In progress", Arrays.asList("Details"));
+    assertTaskActionsByCaseState("In progress", Arrays.asList("Details", "Process overview", "Business details", "Process Viewer"));
   }
 
   @Test
@@ -52,13 +52,13 @@ public class DashBoardCaseWidgetActionTest extends BaseTest {
     redirectToNewDashBoard();
     caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
     // In progress
-    assertTaskActionsByCaseState("In progress", Arrays.asList("Details", "Business details", "Destroy"));
+    assertTaskActionsByCaseState("In progress", Arrays.asList("Details", "Process overview", "Business details", "Destroy", "Process Viewer"));
     // Destroyed
     caseWidget.clickOnCaseActionLink(0);
     caseWidget.destroyCase(0);
-    assertTaskActionsByCaseState("Destroyed", Arrays.asList("Details", "Business details"));
+    assertTaskActionsByCaseState("Destroyed", Arrays.asList("Details", "Process overview", "Business details", "Process Viewer"));
     // Done
-    assertTaskActionsByCaseState("Done", Arrays.asList("Details", "Business details"));
+    assertTaskActionsByCaseState("Done", Arrays.asList("Details", "Process overview", "Business details", "Process Viewer"));
   }
 
   private void assertTaskActionsByCaseState(String state, List<String> taskActionsInCase) {

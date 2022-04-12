@@ -71,6 +71,7 @@ public class DashboardCaseWidgetTest extends BaseTest {
     CaseWidgetNewDashBoardPage caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
     caseWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
     CaseDetailsWidgetNewDashBoardPage detailsCase = caseWidget.openDetailsFirstCase();
+    detailsCase.openActionPanel();
     detailsCase.destroy();
     redirectToNewDashBoard();
     caseWidget.stateOfFirstCase().shouldHave(text("Destroyed"));
@@ -84,6 +85,7 @@ public class DashboardCaseWidgetTest extends BaseTest {
     CaseWidgetNewDashBoardPage caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
     caseWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
     CaseDetailsWidgetNewDashBoardPage detailsCase = caseWidget.openDetailsFirstCase();
+    detailsCase.openActionPanel();
     detailsCase.destroyLink().shouldNotHave(visible);
   }
 
