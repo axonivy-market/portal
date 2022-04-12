@@ -36,7 +36,7 @@ public class CaseDetailsWidgetNewDashBoardPage extends TemplatePage {
   }
   
   public void openAdditionalCaseDetailsPage() {
-    $("a[id$='additional-case-details-link']").waitUntil(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition())
+    $("a[id$=':show-additional-case-details-link']").waitUntil(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition())
         .click();
   }
   
