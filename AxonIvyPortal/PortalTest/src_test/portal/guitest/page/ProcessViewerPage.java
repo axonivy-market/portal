@@ -2,8 +2,6 @@ package portal.guitest.page;
 
 import org.openqa.selenium.By;
 
-import portal.guitest.common.WaitHelper;
-
 public class ProcessViewerPage extends TemplatePage {
 
   @Override
@@ -16,19 +14,8 @@ public class ProcessViewerPage extends TemplatePage {
     return findElementByCssSelector("[id$='portal-process-viewer-form:request-path']").getText();
   }
 
-  public void clickOnCenterProcessView() {
+  public void waitForSprottyToolDisplayed() {
     driver.switchTo().frame("process-viewer");
     waitForElementDisplayed(By.id("sprotty"), true); 
-    var transformStart = getSprottyGraphTransformValue();
-    clickByCssSelector("div[id$='sprotty_ivy-viewport-bar'] i.fa-crosshairs");
-    WaitHelper.assertTrueWithWait(() -> {
-      var transforEnd = getSprottyGraphTransformValue();
-      return !transformStart.equalsIgnoreCase(transforEnd);
-    });
   }
-
-  public String getSprottyGraphTransformValue() {
-    return findElementByCssSelector("svg.sprotty-graph g").getAttribute("transform");
-  }
-
 }
