@@ -53,14 +53,23 @@ public class DashboardCaseWidgetActionTest extends BaseTest {
     caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
     // In progress
     assertCaseActionsByCaseState("In progress", Arrays.asList("Details", "Process overview", "Business details", "Destroy", "Process Viewer"));
-    // Destroyed
-    caseWidget.destroyCase(0);
-    assertCaseActionsByCaseState("Destroyed", Arrays.asList("Details", "Process overview", "Business details", "Process Viewer"));
     // Done
     assertCaseActionsByCaseState("Done", Arrays.asList("Details", "Process overview", "Business details", "Process Viewer"));
+    // Destroyed
+    filterByCaseState("In progress");
+    caseWidget.destroyCase(0);
+    assertCaseActionsByCaseState("Destroyed", Arrays.asList("Details", "Process overview", "Business details", "Process Viewer"));
   }
 
   private void assertCaseActionsByCaseState(String state, List<String> caseActionsInCase) {
+    filterByCaseState(state);
+    ElementsCollection actions = caseWidget.getActiveCaseActions(0);
+    actions.shouldHaveSize(caseActionsInCase.size());
+    assertTrue(actions.texts().containsAll(caseActionsInCase));
+    caseWidget.clickOnCaseActionLink(0);
+  }
+
+  private void filterByCaseState(String state) {
     caseWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
     caseWidget.openFilterWidget();
     caseWidget.resetFilter();
@@ -68,8 +77,5 @@ public class DashboardCaseWidgetActionTest extends BaseTest {
     caseWidget.filterCaseState();
     caseWidget.selectState(state);
     caseWidget.applyFilter();
-    ElementsCollection actions = caseWidget.getActiveCaseActions(0);
-    actions.shouldHaveSize(caseActionsInCase.size());
-    assertTrue(actions.texts().containsAll(caseActionsInCase));
   }
 }
