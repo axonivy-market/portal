@@ -110,7 +110,7 @@ public class PortalExpressTest extends BaseTest {
 		formDefinition.createCheckboxFieldWithDataProvider("Checkbox with data provider");
 		formDefinition.moveAllElementToDragAndDrogPanel();
 
-		Assert.assertEquals(13, formDefinition.countNumberOfElementsInPreviewDialog());
+		Assert.assertEquals(14, formDefinition.countNumberOfElementsInPreviewDialog());
 		Assert.assertNotNull(formDefinition.findElementByXpath("//label[text()='Data Provider Item 1']"));
 		Assert.assertNotNull(formDefinition.findElementByXpath("//label[text()='Data Provider Item 2']"));
 		Assert.assertNotNull(formDefinition.findElementByXpath("//label[text()='Data Provider Item 3']"));
