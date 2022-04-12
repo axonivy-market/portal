@@ -36,25 +36,12 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
   @Test
   public void testVisibilityTaskActionForNormalUser() {
     login(TestAccount.DEMO_USER);
-    redirectToRelativeLink(createTaskWithSystemState);
-    redirectToNewDashBoard();
-    taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
-    taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
+    createTasksForTesting();
     // Ready for Join
     assertTaskActionsByTaskState("Ready for joining", Arrays.asList("Details", "Process Viewer"));
     // Suspended
     assertTaskActionsByTaskState("Suspended",
         Arrays.asList("Details", "Delegate", "Reserve", "Clear expiry", "Process Viewer", "Add Ad-hoc Task"));
-    // Reserved
-    taskWidget.reserveTask(0);
-    assertTaskActionsByTaskState("Reserved",
-        Arrays.asList("Details", "Delegate", "Reset", "Clear expiry", "Process Viewer", "Add Ad-hoc Task"));
-    // In progress
-    taskWidget.startFirstTask();
-    taskWidget.clickCancelTask();
-    newDashboardPage.waitForAbsencesGrowlMessageDisplay();
-    assertTaskActionsByTaskState("In progress",
-        Arrays.asList("Details", "Reserve", "Reset", "Clear expiry", "Process Viewer", "Add Ad-hoc Task"));
     // Done
     assertTaskActionsByTaskState("Done", Arrays.asList("Details", "Process Viewer"));
   }
@@ -62,26 +49,12 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
   @Test
   public void testVisibilityTaskActionForAdminUser() {
     login(TestAccount.ADMIN_USER);
-    redirectToRelativeLink(createTaskWithSystemState);
-    redirectToNewDashBoard();
-    taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
-    taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
+    createTasksForTesting();
     // Ready for Join
     assertTaskActionsByTaskState("Ready for joining", Arrays.asList("Details", "Reset", "Destroy", "Workflow Events", "Process Viewer"));
     // Suspended
-    assertTaskActionsByTaskState("Suspended", Arrays.asList("Details", "Delegate", "Reserve", "Clear expiry", "Destroy",
-        "Workflow Events", "Process Viewer", "Add Ad-hoc Task"));
-    // Reserved
-    taskWidget.clickOnTaskActionLink(1);
-    taskWidget.reserveTask(1);
-    assertTaskActionsByTaskState("Reserved",
-        Arrays.asList("Details", "Delegate", "Reset", "Clear expiry", "Destroy", "Workflow Events", "Process Viewer", "Add Ad-hoc Task"));
-    // In progress
-    taskWidget.startFirstTask();
-    taskWidget.clickCancelTask();
-    newDashboardPage.waitForAbsencesGrowlMessageDisplay();
-    assertTaskActionsByTaskState("In progress",
-        Arrays.asList("Details", "Reserve", "Reset", "Clear expiry", "Destroy", "Workflow Events", "Process Viewer", "Add Ad-hoc Task"));
+    assertTaskActionsByTaskState("Suspended",
+        Arrays.asList("Details", "Delegate", "Clear expiry", "Destroy", "Workflow Events", "Process Viewer", "Add Ad-hoc Task"));
     // Done
     assertTaskActionsByTaskState("Done", Arrays.asList("Details", "Workflow Events", "Process Viewer"));
     // Delayed
@@ -89,6 +62,56 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
         Arrays.asList("Details", "Delegate", "Clear delay", "Destroy", "Workflow Events", "Process Viewer", "Add Ad-hoc Task"));
     // Destroyed
     assertTaskActionsByTaskState("Destroyed", Arrays.asList("Details", "Workflow Events", "Process Viewer"));
+  }
+
+  @Test
+  public void testVisibilityTaskActionForInprogressTasks() {
+    login(TestAccount.ADMIN_USER);
+    createTasksForTesting();
+    filterTaskByState("Suspended");
+    taskWidget.startTask(1);
+    taskWidget.clickCancelTask();
+    newDashboardPage.waitForAbsencesGrowlMessageDisplay();
+
+    // In progress for admin user
+    assertTaskActionsByTaskState("In progress",
+        Arrays.asList("Details", "Reserve", "Reset", "Clear expiry", "Destroy", "Workflow Events", "Process Viewer", "Add Ad-hoc Task"));
+
+    login(TestAccount.DEMO_USER);
+    createTasksForTesting();
+    filterTaskByState("Suspended");
+    taskWidget.startTask(1);
+    taskWidget.clickCancelTask();
+    newDashboardPage.waitForAbsencesGrowlMessageDisplay();
+    // In progress for normal user
+    assertTaskActionsByTaskState("In progress",
+        Arrays.asList("Details", "Reserve", "Reset", "Clear expiry", "Process Viewer", "Add Ad-hoc Task"));
+  }
+
+  @Test
+  public void testVisibilityTaskActionForReserveTasks() {
+    login(TestAccount.ADMIN_USER);
+    createTasksForTesting();
+    filterTaskByState("Suspended");
+    taskWidget.reserveTask(1);
+    refreshPage();
+
+    // Reserved for admin user
+    assertTaskActionsByTaskState("Reserved",
+        Arrays.asList("Details", "Delegate", "Reset", "Clear expiry", "Destroy", "Workflow Events", "Process Viewer", "Add Ad-hoc Task"));
+
+    login(TestAccount.DEMO_USER);
+    createTasksForTesting();
+    // Reserved for normal user
+    assertTaskActionsByTaskState("Reserved",
+        Arrays.asList("Details", "Process Viewer"));
+  }
+
+  private void createTasksForTesting() {
+    redirectToRelativeLink(createTaskWithSystemState);
+    redirectToNewDashBoard();
+    taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
+    taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
   }
 
   @Test
@@ -104,10 +127,17 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     assertTaskActionsByTaskState("Join failed", Arrays.asList("Details", "Destroy", "Workflow Events", "Process Viewer"));
     // waiting for event
     assertTaskActionsByTaskState("Waiting for event", Arrays.asList("Details", "Destroy", "Workflow Events", "Process Viewer"));
-
   }
 
   private void assertTaskActionsByTaskState(String state, List<String> taskActionsInTask) {
+    filterTaskByState(state);
+    ElementsCollection actions = taskWidget.getActiveTaskActions(0);
+    actions.shouldHaveSize(taskActionsInTask.size());
+    assertTrue(actions.texts().containsAll(taskActionsInTask));
+    taskWidget.clickOnTaskActionLink(0);
+  }
+
+  private void filterTaskByState(String state) {
     taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
     taskWidget.openFilterWidget();
     taskWidget.resetFilter();
@@ -115,13 +145,5 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     taskWidget.filterTaskState();
     taskWidget.selectState(state);
     taskWidget.applyFilter();
-    ElementsCollection actions;
-    if ("Suspended".equalsIgnoreCase(state)) {
-      actions = taskWidget.getActiveTaskActions(1);
-    } else {
-      actions = taskWidget.getActiveTaskActions(0);
-    }
-    actions.shouldHaveSize(taskActionsInTask.size());
-    assertTrue(actions.texts().containsAll(taskActionsInTask));
   }
 }
