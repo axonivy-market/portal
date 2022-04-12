@@ -159,7 +159,7 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
   
   public ElementsCollection getActiveCaseActions(int taskIndex) {
     clickOnCaseActionLink(taskIndex);
-    return $$("div[id$='dashboard-actions-case-case_1:action-steps-panel']").filter(appear).first().waitUntil(appear, DEFAULT_TIMEOUT)
+    return $$("div[id$='dashboard-actions-case-case_1:action-steps-panel']").filter(appear).get(taskIndex).waitUntil(appear, DEFAULT_TIMEOUT)
         .$("div.ui-overlaypanel-content").$$("a[class*='action-step-item']");
   }
   
