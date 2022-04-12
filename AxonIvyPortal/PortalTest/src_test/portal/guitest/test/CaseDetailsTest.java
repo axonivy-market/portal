@@ -22,7 +22,6 @@ import ch.ivy.addon.portalkit.util.ConfigurationJsonUtil;
 import ch.ivyteam.ivy.workflow.TaskState;
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.CaseState;
-import portal.guitest.common.Sleeper;
 import portal.guitest.common.TestAccount;
 import portal.guitest.common.TestRole;
 import portal.guitest.common.Variable;
@@ -420,5 +419,22 @@ public class CaseDetailsTest extends BaseTest {
     assertTrue(relaledCaseName.startsWith("#"));
     assertTrue(relaledCaseName.contains(subCaseId));
     assertTrue(relaledCaseName.contains(caseName));
+  }
+
+  @Test
+  public void testShowRelatedCaseInfoByConfigInCaseHistory() {
+    updateGlobalVariable(Variable.HIDE_RELATED_CASE_INFO_FROM_HISTORY.getKey(), "false");
+    createTestingCaseContainTechnicalCases();
+    executeDecorateJs("window.scrollTo(0, document.body.scrollHeight)");
+    assertTrue("Related Case checkbox is not display", detailsPage.isShowRelatedCaseCheckbox());
+    detailsPage.clickOnRelatedCaseCheckbox(true);
+    assertTrue("Related Case column is not display", detailsPage.isRelatedCaseInfoColumnIsDisplay());
+    detailsPage.clickOnRelatedCaseCheckbox(false);
+    assertFalse("Related Case column is display", detailsPage.isRelatedCaseInfoColumnIsDisplay());
+    updateGlobalVariable(Variable.HIDE_RELATED_CASE_INFO_FROM_HISTORY.getKey(), "true");
+    MainMenuPage mainMenuPage = homePage.openMainMenu();
+    CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
+    detailsPage = casePage.openDetailsOfCaseHasName(ORDER_PIZZA);
+    assertFalse("Related Case checkbox is display", detailsPage.isShowRelatedCaseCheckbox());
   }
 }
