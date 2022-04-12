@@ -62,7 +62,9 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void startTask(int taskIndex) {
+    $$("span.widget__filter-noti-number").first().waitUntil(appear, DEFAULT_TIMEOUT);
     getColumnOfTaskHasIndex(taskIndex, "Start").shouldBe(getClickableCondition()).click();
+    $$("span.widget__filter-noti-number").first().waitUntil(disappears, DEFAULT_TIMEOUT);
   }
 
   public ElementsCollection countRelatedCases() {
