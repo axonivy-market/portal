@@ -164,7 +164,7 @@ public class AdditionalComponentsScreenshotTest extends ScreenshotTest {
     ScreenshotUtil.resizeBrowser(new Dimension(1366, 1000));
     ProcessViewerPage processViewerPage = new ProcessViewerPage();
     WaitHelper.assertTrueWithWait(() -> !processViewerPage.getProcessRequestPath().isEmpty());
-    processViewerPage.clickOnCenterProcessView();
+    processViewerPage.waitForSprottyToolDisplayed();
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.CASE_WIDGET_FOLDER + "portal-process-viewer");
   }
 }
