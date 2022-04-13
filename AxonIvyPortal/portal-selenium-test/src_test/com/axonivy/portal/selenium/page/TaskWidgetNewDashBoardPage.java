@@ -257,7 +257,8 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void openTask(String taskName) {
-    $$("div[id$=':task-component:dashboard-tasks'] table tbody tr td span").filter(text(taskName)).first().click();
+    $("div[id$=':task-component:dashboard-tasks']").waitUntil(appear, DEFAULT_TIMEOUT)
+      .$$("table tbody tr td span").filter(text(taskName)).first().click();
   }
   
   private SelenideElement getStateFilterCheckBox(String value) {
