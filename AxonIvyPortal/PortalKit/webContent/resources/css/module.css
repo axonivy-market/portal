@@ -26,6 +26,11 @@
  * }
  *
  */
+ 
+ .portal-layout-container {
+  flex-shrink: 1;
+  overflow: auto;
+ }
 
 /* =================== PROCESS FIELDSET ====================== */
 body .ui-fieldset.fieldset-no-border {
