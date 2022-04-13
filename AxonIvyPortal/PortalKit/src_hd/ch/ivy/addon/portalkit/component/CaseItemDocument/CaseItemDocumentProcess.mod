@@ -1,5 +1,5 @@
 [Ivy]
-153361016FE4213A 9.4.1 #module
+153361016FE4213A 9.4.6 #module
 >Proto >Proto Collection #zClass
 Cs0 CaseItemDocumentProcess Big #zClass
 Cs0 RD #cInfo
@@ -13,11 +13,8 @@ Cs0 @MessageFlowInP-0n messageIn messageIn #zField
 Cs0 @MessageFlowOutP-0n messageOut messageOut #zField
 Cs0 @TextInP .xml .xml #zField
 Cs0 @TextInP .responsibility .responsibility #zField
-Cs0 @GridStep f64 '' #zField
 Cs0 @UdInit f0 '' #zField
-Cs0 @PushWFArc f1 '' #zField
 Cs0 @UdProcessEnd f2 '' #zField
-Cs0 @PushWFArc f62 '' #zField
 Cs0 @UdMethod f63 '' #zField
 Cs0 @UdProcessEnd f69 '' #zField
 Cs0 @UdMethod f7 '' #zField
@@ -60,25 +57,8 @@ Cs0 @GridStep f33 '' #zField
 Cs0 @PushWFArc f35 '' #zField
 Cs0 @PushWFArc f34 '' #zField
 Cs0 @PushWFArc f15 '' #zField
+Cs0 @PushWFArc f1 '' #zField
 >Proto Cs0 Cs0 CaseItemDocumentProcess #zField
-Cs0 f64 actionTable 'out=in;
-' #txt
-Cs0 f64 actionCode 'import ch.ivy.addon.portalkit.enums.GlobalVariable;
-import ch.ivy.addon.portalkit.service.GlobalSettingService;
-
-GlobalSettingService globalSettingService = new GlobalSettingService();
-String isHideUploadDocumentForDoneCase =
-        globalSettingService.findGlobalSettingValue(GlobalVariable.HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE);
-in.isHideUploadDocumentForDoneCase = Boolean.parseBoolean(isHideUploadDocumentForDoneCase);' #txt
-Cs0 f64 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Init hide&#xD;
-add document</name>
-    </language>
-</elementInfo>
-' #txt
-Cs0 f64 176 74 112 44 -39 -16 #rect
 Cs0 f0 guid 167E9DEBBFA8A8ED #txt
 Cs0 f0 method start() #txt
 Cs0 f0 inParameterDecl '<> param;' #txt
@@ -91,11 +71,7 @@ Cs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f0 83 83 26 26 -16 15 #rect
-Cs0 f1 expr out #txt
-Cs0 f1 109 96 176 96 #arcP
 Cs0 f2 371 83 26 26 0 12 #rect
-Cs0 f62 expr out #txt
-Cs0 f62 288 96 371 96 #arcP
 Cs0 f63 guid 167E9DF0DE4FEF32 #txt
 Cs0 f63 method initData(ch.ivyteam.ivy.workflow.ICase) #txt
 Cs0 f63 inParameterDecl '<ch.ivyteam.ivy.workflow.ICase iCase> param;' #txt
@@ -410,13 +386,10 @@ Cs0 f34 1032 288 1107 288 #arcP
 Cs0 f15 696 384 976 310 #arcP
 Cs0 f15 1 976 384 #addKink
 Cs0 f15 0 0.6984634855635686 0 0 #arcLabel
+Cs0 f1 109 96 371 96 #arcP
 >Proto Cs0 .type ch.ivy.addon.portalkit.component.CaseItemDocument.CaseItemDocumentData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 -8 -8 16 16 16 26 #rect
-Cs0 f0 mainOut f1 tail #connect
-Cs0 f1 head f64 mainIn #connect
-Cs0 f64 mainOut f62 tail #connect
-Cs0 f62 head f2 mainIn #connect
 Cs0 f3 mainOut f18 tail #connect
 Cs0 f18 head f12 mainIn #connect
 Cs0 f12 mainOut f23 tail #connect
@@ -455,3 +428,5 @@ Cs0 f33 mainOut f34 tail #connect
 Cs0 f34 head f51 mainIn #connect
 Cs0 f9 mainOut f15 tail #connect
 Cs0 f15 head f33 mainIn #connect
+Cs0 f0 mainOut f1 tail #connect
+Cs0 f1 head f2 mainIn #connect

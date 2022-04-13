@@ -157,11 +157,6 @@ public class TaskActionBean implements Serializable {
     return isNotDone(task) && hasPermission(task, IPermission.TASK_WRITE_DESCRIPTION);
   }
 
-  public boolean canWriteDocument(ITask task) {
-    return hasPermission(task, IPermission.DOCUMENT_WRITE)
-        || hasPermission(task, IPermission.DOCUMENT_OF_INVOLVED_CASE_WRITE);
-  }
-
   public boolean canDestroyTask(ITask task) {
     List<TaskState> taskStates = Arrays.asList(TaskState.DONE, TaskState.DESTROYED);
     return hasPermission(task, IPermission.TASK_DESTROY) && !taskStates.contains(task.getState());
