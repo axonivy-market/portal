@@ -85,6 +85,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     caseDescription: Description du dossier
     taskDescription: Description de la tâche
     taskState: Etat de la tâche
+  CaseDocuments:
+    CaseDocumentsPageTitle: TODO Case Documents
   CaseStatusInformation:
     CurrentTasks:
       currentTasks: Tâches actuelles
@@ -173,6 +175,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     RequestPath: TODO Process request path
     Title: TODO Process Viewer
     UserFriendlyRequestPath: TODO Process user friendly request path
+  TaskDocuments:
+    TaskDocumentsPageTitle: TODO Task Documents
   adminSettings:
     addLanguages: Ajouter une langue
     addNewApplication: Ajouter une nouvelle application de tiers
