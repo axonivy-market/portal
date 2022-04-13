@@ -1,0 +1,8 @@
+TaskDocumentsData #class
+ch.ivy.addon.portal.generic.TaskDocuments #namespace
+task ch.ivyteam.ivy.workflow.ITask #field
+task PERSISTENT #fieldModifier
+documents java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvyDocument> #field
+documents PERSISTENT #fieldModifier
+filteredDocuments java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvyDocument> #field
+filteredDocuments PERSISTENT #fieldModifier
