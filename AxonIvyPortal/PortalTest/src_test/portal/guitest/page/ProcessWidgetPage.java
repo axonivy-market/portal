@@ -99,7 +99,7 @@ public class ProcessWidgetPage extends TemplatePage {
         WebElement processForm = findElementByCssSelector("form.image-view-form.is-express");
         var processFormID = processForm.getAttribute("id");
         clickByCssSelector("[id$='" + processFormID + ":process-action-button']");
-        waitForElementDisplayed(By.cssSelector(".ui-menu-overlay-process.ui-connected-overlay-enter-done"), true);
+        waitForElementDisplayed(By.cssSelector(".process-action-menu.ui-connected-overlay-enter-done"), true);
         if (isElementDisplayed(By.cssSelector("div[id$='"+ processFormID + ":process-action-menu']"))) {
           WebElement actionMenu = findElementByCssSelector("div[id$='" + processFormID + ":process-action-menu']");
           WebElement icon = findChildElementByCssSelector(actionMenu, "a[id$=':process-item:process-edit']");
