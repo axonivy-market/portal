@@ -369,6 +369,7 @@ public class CaseWidgetPage extends TemplatePage {
   public void openSavedFilters(String filterName) {
     refreshAndWaitElement("a[id$='case-widget:filter-selection-form:filter-name']");
     click(findElementById("case-widget:filter-selection-form:filter-name"));
+    waitForElementDisplayed(By.cssSelector(".filter-name-overlay-panel.ui-connected-overlay-enter-done"), true);
     List<WebElement> saveFilters = findListElementsByCssSelector("a[id$='user-defined-filter']");
     for (WebElement filter : saveFilters) {
       if (filter.getText().equals(filterName)) {

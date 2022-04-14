@@ -2433,7 +2433,7 @@ Pt0 f234 triggerEnabled false #txt
 Pt0 f234 callSignature ShowCaseDocument(Long) #txt
 Pt0 f234 persist false #txt
 Pt0 f234 caseData businessCase.attach=true #txt
-Pt0 f234 showInStartList true #txt
+Pt0 f234 showInStartList false #txt
 Pt0 f234 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
