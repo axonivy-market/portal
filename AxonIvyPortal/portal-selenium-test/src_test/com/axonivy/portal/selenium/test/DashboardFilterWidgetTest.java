@@ -16,7 +16,7 @@ import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 
-@IvyWebTest
+@IvyWebTest (headless = false)
 public class DashboardFilterWidgetTest extends BaseTest {
 
   private static final String YOUR_TASKS_WIDGET = "Your Tasks";
@@ -98,9 +98,9 @@ public class DashboardFilterWidgetTest extends BaseTest {
   private TaskWidgetNewDashBoardPage createWidgetFilterForDemoUser() {
     loginAndGoToDashboard(TestAccount.DEMO_USER);
     TaskWidgetNewDashBoardPage taskWidget = openTaskWidgetFilter();
-    taskWidget.filterPriority("Normal", "Low");
-    taskWidget.filterCategories("TaskGroup");
     taskWidget.filterTaskName("Task");
+    taskWidget.filterCategories("TaskGroup");
+    taskWidget.filterPriority("Normal", "Low");
     taskWidget.clickOnSaveFilterButton();
     taskWidget.saveANewWidgetFilter("Tasks filter");
     return taskWidget;
