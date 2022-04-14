@@ -167,12 +167,13 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskListConfiguration: Task list configuration
   ProcessViewer:
     Breadcrumb: Process Viewer of {0} process
-    ModelVersion: Process model version
     ProcessDataNotFound: Could not found the Process Data!
+    ProcessDetails: Process details
+    ProcessId: Process Id
+    ProcessInfo: Process Information
+    ProcessInfoIconTooltip: Click to see details of the process start
     ProcessViewerText: Process Viewer
-    RequestPath: Process request path
     Title: Process Viewer
-    UserFriendlyRequestPath: Process user friendly request path
   adminSettings:
     addLanguages: Add languages
     addNewApplication: Add new third party application

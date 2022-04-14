@@ -26,23 +26,16 @@
       <p:tooltip for="process-item-name" value="#{process.getName()}" position="top" trackMouse="true" hideEvent="mouseleave click" />
 
       <h:form id="process-item" target="#{processWidgetBean.targetToStartProcess(process)}" styleClass="image-view-form #{isExpress ? 'is-express' : ''} #{isExternalLink ? 'is-external-link' : ''}">
-        <!-- Header -->
-        <h:panelGroup id="process-action-group" styleClass="process-action-group" layout="block">
-          <h:panelGroup id="image-process-category" rendered="#{process.category ne ''}"
-            styleClass="js-process-category image-process-category #{!processWidgetBean.isIvyProcess(process) and process.getProcess().ableToEdit ? 'has-menu-button' : ''}" layout="block">
-            <h:panelGroup id="image-process-category-content" styleClass="image-process-category-content u-truncate-text" layout="block">#{processWidgetBean.getDisplayProcessCategory(process)}</h:panelGroup>
-            <p:tooltip id="image-process-category-content-tooltip" for="image-process-category-content" value="#{process.category}" trackMouse="true"
-              hideEvent="mouseleave click" />
-          </h:panelGroup>
-          <p:commandButton id="process-action-button" type="button" styleClass="ui-button-icon-only icon-more-menu-button" icon="si si-navigation-menu-horizontal"
-            rendered="#{!processWidgetBean.isIvyProcess(process) and process.getProcess().ableToEdit}" />
-          <p:menu id="process-action-menu" overlay="true" trigger="process-action-button" my="right top" at="right bottom" styleClass="ui-menu-overlay-process">
-            <p:menuitem id="process-edit" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}" icon="si si-graphic-tablet-drawing-pen" oncomplete="PF('edit-process-dialog').show();"
-              actionListener="#{processWidgetBean.setEditedProcess(process)}" update="#{cc.clientId}:edit-process-dialog" />
-            <p:menuitem id="process-delete" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}" icon="si si-bin-1" oncomplete="PF('remove-process-workflow-dialog').show();"
-              actionListener="#{processWidgetBean.setDeletedProcess(process)}" update="#{cc.clientId}:remove-process-workflow-dialog" />
-          </p:menu>
-        </h:panelGroup>
+        <!-- Process actions -->
+        <ic:ch.ivy.addon.portalkit.component.process.ProcessItemAction id="image-process-action-component" process="#{process}"
+          actionListenerOnEditProcess="#{processWidgetBean.setEditedProcess(process)}"
+          canModify="#{!processWidgetBean.isIvyProcess(process) and process.getProcess().ableToEdit}"
+          onCompleteEditProcess="PF('edit-process-dialog').show();"
+          componentToUpdateOnEditProcess="#{cc.clientId}:edit-process-dialog"
+          actionListenerOnDeleteProcess="#{processWidgetBean.setDeletedProcess(process)}"
+          onCompleteDeleteProcess="PF('remove-process-workflow-dialog').show();"
+          componentToUpdateOnDeleteProcess="#{cc.clientId}:remove-process-workflow-dialog"/>
+
         <!-- Process Description -->
         <div class="process-description js-process-start-list-item-description">
           <h:outputText id="process-description" value="#{not empty process.description ? process.description : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noProcessDescription')}"
