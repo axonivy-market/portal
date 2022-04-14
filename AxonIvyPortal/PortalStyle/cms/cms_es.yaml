@@ -168,13 +168,13 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskListConfigDescription: En esta sección puede confirar la lista de tareas.
     taskListConfiguration: Configuración lista de tareas
   ProcessViewer:
-    Breadcrumb: TODO Process Viewer of {0} process
-    ModelVersion: TODO Process model version
-    ProcessDataNotFound: TODO Could not found the Process Data!
-    ProcessViewerText: TODO Process Viewer
-    RequestPath: TODO Process request path
-    Title: TODO Process Viewer
-    UserFriendlyRequestPath: TODO Process user friendly request path
+    Breadcrumb: Visualización del proceso {0}
+    ModelVersion: Versión del modelo de proceso
+    ProcessDataNotFound: No se han encontrado datos del proceso
+    ProcessViewerText: Visualizador de procesos
+    RequestPath: Procesar la ruta de solicitud
+    Title: Visualizador de procesos
+    UserFriendlyRequestPath: Procesar una ruta de solicitud amigable para el usuario
   TaskDocuments:
     TaskDocumentsPageTitle: TODO Task Documents
   adminSettings:
@@ -305,7 +305,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     downloadFile: Descargar archivo
     duration: Duración
     history: Historia
-    noCaseName: TODO <No case name>
+    noCaseName: ' <Caso sin nombre>'
     noDescription: Sin descripción
     noRunningCase: Ningún caso en proceso
     noRunningTask: Ninguna tarea en proceso
@@ -876,7 +876,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     curentReportOf: del
     eventType: Tipo de evento
     exportButton: Exportar a Excel
-    relatedCase: TODO Related Case
+    relatedCase: Caso relacionado
     showMoreBtn: Mostrar más
     taskExportedFileNamePrefix: Note_history_of_task_ {0}
     taskFailReason: 'Razón del error: {0}'
