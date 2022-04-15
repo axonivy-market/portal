@@ -2172,10 +2172,11 @@ body.in-dialog .ui-widget-overlay {
   color: var(--process-info-step-icon-font-color);
 }
 
+.dashboard__body .expand-fullscreen .chart-information-container,
 .dashboard__body .expand-fullscreen .widget-filter-panel,
 .dashboard__body .expand-fullscreen .saved-filter--not-found,
 .dashboard__body .expand-fullscreen .ui-overlaypanel-footer__cancel,
-.dashboard__body .expand-fullscreen .widget-infor--type,
+.dashboard__body .expand-fullscreen .widget-info--type,
 .dashboard__body .expand-fullscreen .statistic-filter-accordion-panel,
 .dashboard__body .expand-fullscreen .info-overlay-panel__footer,
 .dashboard__body .expand-fullscreen .saved-filter--not-found,

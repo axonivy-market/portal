@@ -3547,10 +3547,6 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   height: 35px !important;
 }
 
-.statistic-widget:not(.compact-mode) {
-  margin-right: -1.5rem;
-}
-
 .statistic-widget {
   justify-content: space-around;
   flex-direction: row;
@@ -6110,6 +6106,11 @@ body span.ui-commandlink .si {
   margin-bottom: 12px;
   border-radius: 5px;
   border: 1px solid transparent;
+}
+
+a.dashboard-configuration-dialog__action-row,
+a.dashboard-configuration-dialog__action-row label {
+  cursor: pointer;
 }
 
 .dashboard-configuration-dialog__action-row-label {
