@@ -30,7 +30,7 @@ public class NoteHistoryExporter {
 
     try {
       ExcelExportSheet sheet = new ExcelExportSheet();
-      sheet.setHeaders(generateHeaders());
+      sheet.setHeaders(generateHeaders(false));
       sheet.setRows(rows);
       sheet.setSheetName("notes-table");
       List<ExcelExportSheet> sheets = Arrays.asList(sheet);
@@ -48,14 +48,14 @@ public class NoteHistoryExporter {
   }
 
   public StreamedContent getStreamedContentOfCaseNoteHistory(List<History> caseNoteHistory, ICase iCase, String fileName) {
-    List<List<Object>> caseNoteRows = generateDataForCaseNoteHistory(caseNoteHistory);
+    List<List<Object>> caseNoteRows = generateDataForCaseNoteHistory(caseNoteHistory, iCase.isBusinessCase());
     List<List<Object>> generateDataForCaseInfo = generateDataForCaseInfo(iCase);
     ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 
     try {
       // first sheet for note history
       ExcelExportSheet caseNoteHistorySheet = new ExcelExportSheet();
-      caseNoteHistorySheet.setHeaders(generateHeaders());
+      caseNoteHistorySheet.setHeaders(generateHeaders(iCase.isBusinessCase()));
       caseNoteHistorySheet.setRows(caseNoteRows);
       caseNoteHistorySheet.setSheetName("notes-table");
 
@@ -78,9 +78,12 @@ public class NoteHistoryExporter {
         .build();
   }
 
-  private List<String> generateHeaders() {
+  private List<String> generateHeaders(boolean isBusinessCase) {
     List<String> headers = new ArrayList<>();
     headers.add(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/noteHistory/columnContent"));
+    if (isBusinessCase) {
+      headers.add(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/noteHistory/relatedCase"));
+    }
     headers.add(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/author"));
     headers.add(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/creationDate"));
     return headers;
@@ -118,11 +121,14 @@ public class NoteHistoryExporter {
     return rows;
   }
 
-  private List<List<Object>> generateDataForCaseNoteHistory(List<History> caseNoteHistory) {
+  private List<List<Object>> generateDataForCaseNoteHistory(List<History> caseNoteHistory, boolean isBusinessCase) {
     List<List<Object>> rows = new ArrayList<>();
     for (History caseNote : caseNoteHistory) {
       List<Object> row = new ArrayList<>();
       row.add(caseNote.getContent());
+      if (isBusinessCase) {
+        row.add(caseNote.getDisplayCaseName());
+      }
       row.add(caseNote.getDisplayName());
       row.add(formatDate(caseNote.getTimestamp()));
       rows.add(row);

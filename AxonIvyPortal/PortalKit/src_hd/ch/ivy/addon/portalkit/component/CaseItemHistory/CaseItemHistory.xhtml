@@ -53,8 +53,8 @@
         emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
         currentPageReportTemplate="{currentPage} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/curentReportOf')} {totalPages}">
 
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/columnContent')}" field="CONTENT"
-          sortBy="#{history.content}" styleClass="u-truncate-text history-note ui-sm-12">
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/columnContent')}"
+          sortBy="#{history.content}" filterable="false" styleClass="u-truncate-text history-note ui-sm-12">
           <h:outputText>
             <p:link id="show-task-note-link"
               value="#{empty history.content ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noTaskName') : history.content}"
@@ -66,6 +66,16 @@
                 update="@widgetVar(view-note-dialog)" styleClass="u-truncate-text content-link-history" />
             </h:panelGroup>
           </h:outputText>
+        </p:column>
+
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/relatedCase')}"
+          sortBy="#{history.displayCaseName}"
+          styleClass="u-truncate-text history-related-case ui-sm-12"
+          rendered="#{case.isBusinessCase()}">
+          <p:commandLink id="related-case-link" value="#{history.displayCaseName}"
+            rendered="#{not empty history.displayCaseName}"
+            actionListener="#{caseDetailsBean.navigateToCaseDetails(history.caseId)}"
+            disabled="#{history.disabledCaseName}"/>
         </p:column>
 
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/author')}"

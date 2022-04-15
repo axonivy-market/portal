@@ -127,6 +127,7 @@ public class PortalPermissionTest extends BaseTest{
     grantCasePermissions();
     mainMenuPage.openCaseList();
     caseDetailsPage = caseWidgetPage.openDetailsOfCaseHasName("Leave Request");
+    caseDetailsPage.openActionMenu();
     Assert.assertTrue(caseDetailsPage.isShowDetailsDisplayed());
   }
   

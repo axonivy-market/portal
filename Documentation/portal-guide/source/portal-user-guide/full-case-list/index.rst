@@ -342,6 +342,24 @@ Action column provides actions in handling case:
 Click on row will navigate to detail of related case. 
 You can export the related case list by clicking on the button :guilabel:`Export to Excel`.
 
+.. _how-to-show-process-viewer:
+
+HowTo: Show Process Viewer
+--------------------------
+
+| Portal provides a page to let users can see the visual viewer of the process start.
+  Users can access this page by clicking on the :guilabel:`Process Viewer` option in the :guilabel:`Action` menu.
+| This option is available on the case and task details page, also the full case/task list page.
+|
+
+#. Click on the :guilabel:`Action` menu
+
+#. Click on the :guilabel:`Process Viewer` option
+
+#. A new tab of the browser is opened and users can see the process viewer with details information
+
+
+
 .. include:: ../includes/_common-icon.rst
 
 .. |navigate-to-full-cases-list-page| image:: ../../screenshots/case/navigate-to-full-cases-list-page.png
@@ -361,3 +379,4 @@ You can export the related case list by clicking on the button :guilabel:`Export
 .. |how-to-switch-to-view-mode| image:: ../../screenshots/case-detail/how-to-switch-to-view-mode.png
 .. |how-to-switch-to-edit-mode| image:: ../../screenshots/case-detail/how-to-switch-to-edit-mode.png
 .. |how-to-reset-to-default| image:: ../../screenshots/case-detail/how-to-reset-to-default.png
+

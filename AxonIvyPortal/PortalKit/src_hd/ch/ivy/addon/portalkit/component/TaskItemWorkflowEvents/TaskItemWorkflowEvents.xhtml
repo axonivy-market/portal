@@ -20,7 +20,7 @@
     <p:ajax event="close" update="workflow-events-dialog" />
 
     <p:dataTable id="events-table" widgetVar="events-table" var="event" value="#{data.workflowEvents}"
-      sortBy="#{taskBean.taskWorkflowEventSortBy}"
+      sortBy="#{taskBean.taskWorkflowEventSortByTimestamp}"
       emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}" scrollable="true"
       scrollHeight="300"
       reflow="true">
@@ -58,7 +58,7 @@
         <h:outputText value="#{event.involvedUsername}" />
       </p:column>
 
-      <p:column width="200" sortBy="#{event.timestamp}" field="timestamp" styleClass="u-hidden-sm-down">
+      <p:column width="200" sortBy="#{event.timestamp}" field="timestamp" filterable="false" styleClass="u-hidden-sm-down">
         <f:facet name="header">
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/creationDate')}" />
         </f:facet>

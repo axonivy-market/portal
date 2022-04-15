@@ -595,6 +595,7 @@ body .process-widget .ui-selectbooleanbutton.ui-state-active .ui-icon {
 .grid-view-form .process-action-group {
   font-size: var(--small-font-size); }
 
+.process-details-column-title,
 .task-detail-column-title,
 .edit-process-info-group .edit-process-detail-1st-cell {
   opacity: 0.65;
@@ -1270,7 +1271,7 @@ body .ui-datepicker .ui-timepicker-div dl dd {
 .case-widget-container .ui-overlaypanel.filter-add-panel .ui-overlaypanel-content {
   background-color: var(--task-widget-overlay-panel-content-background-color); }
 
-.history-note a, .history-note .task-note-link {
+.history-note a:not(.history-related-case), .history-note .task-note-link {
   color: var(--history-note-color); }
 
 .history-note .task-note-link:hover {
@@ -1320,7 +1321,8 @@ body .ui-inputfield.case-detail-name-input {
 .case-detail-section-title, .case-history-button-container,
 .task-history-button-container,
 .case-detail-section-title > i.si,
-.case-detail-section-title > div > i.si {
+.case-detail-section-title > div > i.si,
+.portal-process-viewer-form.has-error-message {
   font-weight: var(--history-button-container-font-weight) !important; }
 
 .case-header-action-cell .action-item .ui-button {

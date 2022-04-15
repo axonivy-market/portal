@@ -18,7 +18,7 @@ import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.codeborne.selenide.ElementsCollection;
 
 @IvyWebTest
-public class DashBoardCaseWidgetActionTest extends BaseTest {
+public class DashboardCaseWidgetActionTest extends BaseTest {
 
   // WIDGET NAME
   private static final String YOUR_CASES_WIDGET = "Your Cases";
@@ -41,7 +41,7 @@ public class DashBoardCaseWidgetActionTest extends BaseTest {
     redirectToNewDashBoard();
     caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
     // In progress
-    assertTaskActionsByCaseState("In progress", Arrays.asList("Details"));
+    assertCaseActionsByCaseState("In progress", Arrays.asList("Details", "Process overview", "Process Viewer"));
   }
 
   @Test
@@ -52,16 +52,24 @@ public class DashBoardCaseWidgetActionTest extends BaseTest {
     redirectToNewDashBoard();
     caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
     // In progress
-    assertTaskActionsByCaseState("In progress", Arrays.asList("Details", "Business details", "Destroy"));
-    // Destroyed
-    caseWidget.clickOnCaseActionLink(0);
-    caseWidget.destroyCase(0);
-    assertTaskActionsByCaseState("Destroyed", Arrays.asList("Details", "Business details"));
+    assertCaseActionsByCaseState("In progress", Arrays.asList("Details", "Process overview", "Business details", "Destroy", "Process Viewer"));
     // Done
-    assertTaskActionsByCaseState("Done", Arrays.asList("Details", "Business details"));
+    assertCaseActionsByCaseState("Done", Arrays.asList("Details", "Process overview", "Business details", "Process Viewer"));
+    // Destroyed
+    filterByCaseState("In progress");
+    caseWidget.destroyCase(0);
+    assertCaseActionsByCaseState("Destroyed", Arrays.asList("Details", "Process overview", "Business details", "Process Viewer"));
   }
 
-  private void assertTaskActionsByCaseState(String state, List<String> taskActionsInCase) {
+  private void assertCaseActionsByCaseState(String state, List<String> caseActionsInCase) {
+    filterByCaseState(state);
+    ElementsCollection actions = caseWidget.getActiveCaseActions(0);
+    actions.shouldHaveSize(caseActionsInCase.size());
+    assertTrue(actions.texts().containsAll(caseActionsInCase));
+    caseWidget.clickOnCaseActionLink(0);
+  }
+
+  private void filterByCaseState(String state) {
     caseWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
     caseWidget.openFilterWidget();
     caseWidget.resetFilter();
@@ -69,8 +77,5 @@ public class DashBoardCaseWidgetActionTest extends BaseTest {
     caseWidget.filterCaseState();
     caseWidget.selectState(state);
     caseWidget.applyFilter();
-    ElementsCollection actions = caseWidget.getActiveCaseActions(0);
-    actions.shouldHaveSize(taskActionsInCase.size());
-    assertTrue(actions.texts().containsAll(taskActionsInCase));
   }
 }
