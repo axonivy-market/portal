@@ -26,11 +26,11 @@ public class CaseDetailsPage extends TemplatePage {
   private static final String HISTORY_COMPONENT_ID = "div[id='case-details-history-panel']";
   private static final String RELATED_TASKS_COMPONENT_ID = "div[id='case-details-relatedTask-panel']";
   private static final String RELATED_CASES_COMPONENT_ID = "div[id='case-details-technicalCase-panel']";
-  private static final String HISTORY_LIST_CSS_SELECTOR = "a[id*=':case-histories:case-histories:']";
+  private static final String HISTORY_LIST_CSS_SELECTOR = "td.history-note a[id*=':case-histories:case-histories:']";
   private static final String LATEST_HISTORY_LIST_CSS_SELECTOR = "a[id*=':case-histories:case-histories:0:note-link']";
   private static final String GENERAL_INFORMATION_COMPONENT_ID = "div[id='case-details-information-panel']";
-  private static final String ADDITIONAL_CASE_DETAILS_URL_CSS_SELECTOR = "a[id$='additional-case-details-link']";
-  private static final String PROCESS_OVERVIEW_URL_CSS_SELECTOR = "a[id$='show-process-overview-link']";
+  private static final String ADDITIONAL_CASE_DETAILS_URL_CSS_SELECTOR = "a[id$=':show-additional-case-details-link']";
+  private static final String PROCESS_OVERVIEW_URL_CSS_SELECTOR = "a[id$=':show-process-overview-link']";
   private static final String AUTHOR_USER_CSS_SELECTOR = "span[class='history-fullname']";
   private static final String VIEW_NOTE_DIALOG_SELECTOR = "[id$=':case-histories:view-note-dialog']";
   private WebElement caseItem;
@@ -129,11 +129,11 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public void openAdditionalCaseDetailsPage() {
-    click(caseItem.findElement(By.cssSelector(ADDITIONAL_CASE_DETAILS_URL_CSS_SELECTOR)));
+    clickByCssSelector(ADDITIONAL_CASE_DETAILS_URL_CSS_SELECTOR);
   }
 
   public void openProcessOverviewPage() {
-    click(caseItem.findElement(By.cssSelector(PROCESS_OVERVIEW_URL_CSS_SELECTOR)));
+    clickByCssSelector(PROCESS_OVERVIEW_URL_CSS_SELECTOR);
   }
 
   private WebElement getGeneralInformationComponent() {
@@ -301,7 +301,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public void onClickDestroyCase() {
-    click(findElementByCssSelector("a[id$=':destroy-case-link']"));
+    click(findElementByCssSelector("a[id$=':action-group:destroy-case']"));
   }
   
   public void confimDestruction() {
@@ -561,8 +561,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public void clickRelatedTaskActionButton(int index) {
-    WebElement element = findListElementsByCssSelector(".related-task-more-column .action-link").get(index);
-    element.click();
+    clickByCssSelector(String.format("[id$=':related-tasks:%d:additional-options:task-side-steps-menu']", index));
     String actionPanel = String.format("[id$='task-widget:related-tasks:%d:additional-options:side-steps-panel']", index); 
     waitForElementDisplayed(By.cssSelector(actionPanel), true);
   }
@@ -802,5 +801,35 @@ public class CaseDetailsPage extends TemplatePage {
   public void waitForIFrameURLWidgetLoad() {
     driver.switchTo().frame("custom-widget-iframe-url");
     WaitHelper.assertTrueWithWait(() -> findElementByCssSelector("a[href='https://www.axonivy.com']").isDisplayed());
+  }
+
+  public void openActionMenu() {
+    clickByCssSelector("[id$=':action-group:case-details-action-link']");
+    waitForElementDisplayed(By.cssSelector("[id$=':action-group:action-steps-panel'].action-steps-panel"), true);
+  }
+
+  public List<String> getAvailableActionSteps() {
+    waitForElementDisplayed(By.cssSelector("[id$=':action-group:action-steps-panel'].action-steps-panel"), true);
+    var steps = findListElementsByCssSelector("[id$=':action-group:action-steps-panel'].action-steps-panel a.action-step-item");
+    return steps.stream().map(WebElement::getText).collect(Collectors.toList());
+  }
+
+  public List<String> getAvailableActionStepsOfTechnicalCase(int caseIndex) {
+    var panelId = String.format("[id$=':related-cases-widget:related-cases:%d:action-step-component:action-steps-panel']", caseIndex);
+    waitForElementDisplayed(By.cssSelector(panelId), true);
+    var steps = findListElementsByCssSelector(panelId + " a.action-step-item");
+    return steps.stream().map(WebElement::getText).collect(Collectors.toList());
+  }
+
+  public int getNumberOfHistoryForRelatedCaseLink() {
+    waitForElementDisplayed(By.cssSelector("[id$=':case-histories:case-histories']"), true);
+    return findListElementsByCssSelector("td.history-related-case a[id$=':related-case-link']").size();
+  }
+
+  public String getContentOfHistoryTableRelatedCaseColumn(int rowIndex) {
+    waitForElementDisplayed(By.cssSelector("[id$=':case-histories:case-histories']"), true);
+    return findElementByCssSelector(String
+        .format("td.history-related-case a[id$='case-histories:%d:related-case-link']", rowIndex))
+        .getText();
   }
 }

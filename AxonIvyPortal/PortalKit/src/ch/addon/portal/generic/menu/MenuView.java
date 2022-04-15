@@ -210,9 +210,23 @@ public class MenuView implements Serializable {
       case EDIT_DASHBOARD_DETAILS:
         buildBreadCrumbForEditDashboardDetail();
         break;
+      case PROCESS_VIEWER:
+        buildBreadCrumbForProcessViewer(userCase);
+        break;
       default:
         break;
     }
+  }
+
+  private void buildBreadCrumbForProcessViewer(ICase userCase) {
+    setPortalHomeMenuToBreadcrumbModel();
+    var menuItem = (DefaultMenuItem) buildGenericMenuItem("/ch.ivy.addon.portalkit.ui.jsf/ProcessViewer/Title");
+    if (userCase != null && StringUtils.isNotEmpty(userCase.getProcessStart().getName())) {
+      menuItem.setValue(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/ProcessViewer/Breadcrumb",
+          Arrays.asList(userCase.getProcessStart().getName())));
+      menuItem.setIcon(SI_SI_ARROW_RIGHT_1_SMALL);
+    }
+    breadcrumbModel.getElements().add(menuItem);
   }
 
   private void buildBreadCrumbForUserProfile() {

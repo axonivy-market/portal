@@ -165,6 +165,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     showTutorial: Willkommenstour anzeigen
     taskListConfigDescription: In diesem Bereich können Sie den Arbeitsplan entsprechend Ihren Anforderungen konfigurieren.
     taskListConfiguration: Konfiguration der Aufgabenliste
+  ProcessViewer:
+    Breadcrumb: Prozess-Viewer von {0} Prozess
+    ModelVersion: Prozessmodell-Version
+    ProcessDataNotFound: Konnte die Prozessdaten nicht finden!
+    ProcessViewerText: Prozess-Viewer
+    RequestPath: Prozess-Anforderungspfad
+    Title: Prozess-Viewer
+    UserFriendlyRequestPath: Benutzerfreundlicher Anforderungspfad verarbeiten
   adminSettings:
     addLanguages: Sprachen hinzufügen
     addNewApplication: Neue Drittanwendung hinzufügen
@@ -223,6 +231,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       enableCaseOwner: Wird auf true gesetzt, um die Filterung des Vorgangsinhabers bei der Abfrage von Vorgängen zu aktivieren. Diese Einstellung wirkt sich auf alle Vorgangsabfragen aus, z.B. nach Vorgangsliste, globale Suche, Statistik, …
       enableGroupChat: Setzen Sie diese Einstellung auf "true", um den Gruppenchat zu aktivieren
       enablePrivateChat: Setzen Sie diese Einstellung auf "true", um den privaten Chat zu aktivieren
+      enableProcessViewer: Setzen Sie diese Einstellung auf true, um die Prozess-Viewer-Option in Aufgaben-/Vorgang-Aktionen zu aktivieren
       enableScriptCheckingForUploadedDocumentNote: 'Auf "true" setzen, um die Skriptüberprüfung zu aktivieren. Es werden die Formate PDF, Excel und Word unterstützt. '
       enableUserFavorites: Wenn diese Einstellung deaktiviert ist, zeigen Sie den Benutzerfavoritenabschnitt der Prozessliste nicht in Portal Home an.
       enableVirusScannerForUploadedDocumentNote: Auf true setzen, um den Virenscanner für das hochgeladene Dokument zu aktivieren. Derzeit verwendet diese Funktion die API VIRUSTOTAL.
@@ -290,6 +299,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     downloadFile: Datei herunterladen
     duration: Dauer
     history: Verlauf
+    noCaseName: <Kein Vorgangsnamen>
     noDescription: Keine Beschreibung vorhanden
     noRunningCase: Es wird kein Vorfall ausgeführt.
     noRunningTask: Es wird keine Aufgabe ausgeführt.
@@ -862,6 +872,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     curentReportOf: vom
     eventType: Ereignis-Typ
     exportButton: Nach Excel exportieren
+    relatedCase: Zugehöriger Vorgang
     showMoreBtn: Mehr anzeigen
     taskExportedFileNamePrefix: Verlauf_Aufgabennotizen_{0}
     taskFailReason: 'Grund für das Scheitern: {0}'

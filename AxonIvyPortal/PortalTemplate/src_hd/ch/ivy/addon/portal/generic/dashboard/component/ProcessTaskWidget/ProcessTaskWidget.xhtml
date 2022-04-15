@@ -29,12 +29,12 @@
       <p:dataTable id="dashboard-process-tasks" value="#{widget.taskDataModel}" var="task" paginatorAlwaysVisible="false"
         rows="#{widget.rowsPerPage}" paginator="true" paginatorPosition="bottom" lazy="true" paginatorTemplate="{PreviousPageLink} {PageLinks} {NextPageLink} {RowsPerPageDropdown}"
         rowsPerPageTemplate="5,10,20,50"
-        pageLinks="5" sortBy="#{widget.tasksSortBy}"
+        pageLinks="5" sortBy="#{widget.sortByName}"
         rowIndexVar="rowIndex" rowHover="#{isReadOnlyMode}" selectionMode="single"
         styleClass="dashboard-tasks--table #{isReadOnlyMode ? '' : 'dashboard__table--edit'} #{isPreviewMode ? 'dashboard__table--preview' : ''}">
         <p:ajax event="rowSelect" listener="#{dashboardBean.navigateToSelectedTaskDetails}" disabled="#{!isReadOnlyMode or isPreviewMode}" />
         
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}" sortable="true" sortBy="#{name}" field="name"
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}" sortable="true" sortBy="#{name}" field="name" filterable="false"
           styleClass="revelent-tasks__name">
           <span class="u-hidden-sm-down"><h:outputText value="#{task.name}" /></span>
           <h:panelGroup layout="block" styleClass="u-hidden-md-up">
@@ -43,10 +43,10 @@
           </h:panelGroup>
         </p:column>
         
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}" sortable="true" sortBy="#{description}" field="description" styleClass="dashboard-cases__description u-hidden-sm-down">
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}" sortable="true" sortBy="#{description}" field="description" filterable="false" styleClass="dashboard-cases__description u-hidden-sm-down">
           <span><h:outputText value="#{task.description}" /></span>
         </p:column>
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/EXPIRY_TIME')}" sortable="true" sortBy="#{expiryTimestamp}" field="expiryTimestamp" styleClass="revelent-tasks__expiry u-hidden-sm-down">
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/EXPIRY_TIME')}" sortable="true" sortBy="#{expiryTimestamp}" field="expiryTimestamp" filterable="false" styleClass="revelent-tasks__expiry u-hidden-sm-down">
           <h:outputText styleClass="u-text-align-center" value="#{task.expiryTimestamp}">
             <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}"/>
           </h:outputText>

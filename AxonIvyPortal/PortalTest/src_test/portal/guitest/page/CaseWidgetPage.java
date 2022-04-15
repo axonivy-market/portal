@@ -4,6 +4,7 @@ import static portal.guitest.common.WaitHelper.assertTrueWithWait;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.apache.commons.lang3.StringUtils;
@@ -368,6 +369,7 @@ public class CaseWidgetPage extends TemplatePage {
   public void openSavedFilters(String filterName) {
     refreshAndWaitElement("a[id$='case-widget:filter-selection-form:filter-name']");
     click(findElementById("case-widget:filter-selection-form:filter-name"));
+    waitForElementDisplayed(By.cssSelector(".filter-name-overlay-panel.ui-connected-overlay-enter-done"), true);
     List<WebElement> saveFilters = findListElementsByCssSelector("a[id$='user-defined-filter']");
     for (WebElement filter : saveFilters) {
       if (filter.getText().equals(filterName)) {
@@ -445,5 +447,16 @@ public class CaseWidgetPage extends TemplatePage {
   
   public boolean isCategoryColumnDisplayed() {
     return findElementByCssSelector("span[id$=':case-category-cell']").isDisplayed();
+  }
+
+  public List<String> getAvailableActionSteps() {
+    waitForElementDisplayed(By.cssSelector("[id$=':action-steps-panel']"), true);
+    var steps = findListElementsByCssSelector("[id$=':action-steps-panel'] a.action-step-item");
+    return steps.stream().map(WebElement::getText).collect(Collectors.toList());
+  }
+
+  public void clickOnProcessViewerOption() {
+    waitForElementDisplayed(By.cssSelector("[id$=':action-steps-panel']"), true);
+    clickByCssSelector("a[id$=':case-item:case-item-action-form:action-step-component:show-process-viewer-link']");
   }
 }
