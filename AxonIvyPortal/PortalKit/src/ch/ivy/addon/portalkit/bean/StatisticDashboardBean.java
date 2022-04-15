@@ -44,7 +44,6 @@ public class StatisticDashboardBean implements Serializable {
   private StatisticService statisticService = StatisticService.getInstance();
   private ItemSelectEvent taskByExpiryItemSelectEvent;
 
-
   public String getChartWidthStyle(List<StatisticChart> chartList) {
     List<String> chartIdSuffixes = new ArrayList<>();
     for (StatisticChart chart : chartList) {
