@@ -100,6 +100,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       EMAIL: Email
       INFORMATION: Information
       OTHERS: Others
+    BehaviourWhenClickingOnLineInTaskList:
+      ACCESS_TASK_DETAILS: Access task details
+      RUN_TASK: Run the task
     DashboardCustomWidgetType:
       EXTERNAL_URL: External URL
       PROCESS: Axon Ivy process
@@ -162,6 +165,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     showTutorial: Show Welcome Tour
     taskListConfigDescription: In this area you can configure the task list according to your requirements.
     taskListConfiguration: Task list configuration
+  ProcessViewer:
+    Breadcrumb: Process Viewer of {0} process
+    ModelVersion: Process model version
+    ProcessDataNotFound: Could not found the Process Data!
+    ProcessViewerText: Process Viewer
+    RequestPath: Process request path
+    Title: Process Viewer
+    UserFriendlyRequestPath: Process user friendly request path
   adminSettings:
     addLanguages: Add languages
     addNewApplication: Add new third party application
@@ -198,6 +209,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     embedInFrame: Start a process/task in IFrame mode
     emptySupportedLanguages: No additional languages are supported
     globalVariableNote:
+      behaviourWhenClickingOnLineInTaskList: For switch behaviours (run the task or access task details) when clicking on a line in task list, task widget of dashboard and related tasks  in case details page.
       chatMaxConnection: 'The set number controls the amount of tabs allowed with active chat. If more tabs are opened, the chat will be disabled in inactive tabs. Allowed values between 1-5 '
       chatResponseTimeout: Chat response timeout in seconds, default value is 0 and means no timeout. If chat messages go through the reverse proxy Nginx, chat response timeout must be less than the Nginx timeout, e.g. less than 60 seconds.
       clientSideTimeoutNote: Client side timeout in minutes, must be more than 0 and less than the server side timeout (e.g. 25 seconds). Default value is 0, it means default client side timeout is applied. Default client side timeout is server side timeout minus 3 minutes.
@@ -217,6 +229,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       enableCaseOwner: Set to true to enable filtering case owner when cases are queried. This setting affects all case queries, e.g. for case list, global search, statistic.
       enableGroupChat: Set this property to true to enable group chat function
       enablePrivateChat: Set this property to true to enable private chat function
+      enableProcessViewer: Set this property to true to enable process viewer option in Task/Case actions
       enableScriptCheckingForUploadedDocumentNote: Set to true to enable script checking for uploaded document. Currently this function supports checking for PDF, Excel, Word.
       enableUserFavorites: If this property is disabled, do not display user favorites section of process list in Portal home.
       enableVirusScannerForUploadedDocumentNote: Set to true to enable virus scanner for uploaded document. Currently this function is using API VIRUSTOTAL.
@@ -285,6 +298,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     downloadFile: Download file
     duration: Duration
     history: History
+    noCaseName: <No case name>
     noDescription: No description
     noRunningCase: No case is running
     noRunningTask: No task is running
@@ -513,6 +527,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     selectedDay: '{0} selected day(s)'
     send: Send
     sessionExpried: Your session expired. The application will be restarted.
+    sessionExpriedInTeams: Your session expired. The application will be restarted.
     setting: Settings
     showDetail: Show details
     showSystemNotes: Show system notes
@@ -629,6 +644,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskStart:
       cannotDelegateTaskMessage: This task cannot be delegated to any other user or group.
       cannotStartMessages:
+        cannotStartTask: You can not start task {0}.
         isAnotherUserWorking: You can not work on the task ''{0}'' with the identifier ''{1}'' because the user ''{2}'' is currently working on it.
         noPermission: You can not start task {0} because you don't have permission.
         taskDone: You can not start task {0} because it is done.
@@ -652,6 +668,16 @@ ch.ivy.addon.portalkit.ui.jsf:
       publicFilter: Public
       savedFilters: 'Saved filters:'
   dashboard:
+    DashboardConfigurationDialog:
+      ConfigureDashboard: Dashboard configuration
+      CreateNewPrivateDashboard: Create new private dashboard
+      CreateNewPublicDashboard: Create new public dashboard
+      EditPrivateDashboards: Edit your private dashboards
+      EditPublicDashboards: Edit public dashboards
+      PrivateDashboardConfiguration: Private dashboard configuration
+      PublicDashboardConfiguration: Public dashboard configuration
+      ReorderPrivateDashboards: Reorder your dashboards
+      ReorderPublicDashboards: Reorder public dashboards
     EmptyFilterMessage: No widget filter found
     Filter:
       FilterOptionHeader: Filter options
@@ -848,6 +874,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     curentReportOf: of
     eventType: Event type
     exportButton: Export to Excel
+    relatedCase: Related Case
     showMoreBtn: Show more
     taskExportedFileNamePrefix: Note_history_of_task_{0}
     taskFailReason: 'Failed reason: {0}'

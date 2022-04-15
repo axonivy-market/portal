@@ -210,7 +210,7 @@ public class TaskBean implements Serializable {
     return StringUtils.EMPTY;
   }
 
-  public SortMeta getTaskWorkflowEventSortBy() {
+  public SortMeta getTaskWorkflowEventSortByTimestamp() {
     return SortFieldUtil.buildSortMeta("timestamp", true);
   }
 }
