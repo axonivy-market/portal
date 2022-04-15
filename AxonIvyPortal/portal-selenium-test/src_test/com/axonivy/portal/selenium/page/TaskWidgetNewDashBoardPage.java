@@ -61,6 +61,12 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
     $$("span.widget__filter-noti-number").first().waitUntil(disappears, DEFAULT_TIMEOUT);
   }
 
+  public void startTask(int taskIndex) {
+    $$("span.widget__filter-noti-number").first().waitUntil(appear, DEFAULT_TIMEOUT);
+    getColumnOfTaskHasIndex(taskIndex, "Start").shouldBe(getClickableCondition()).click();
+    $$("span.widget__filter-noti-number").first().waitUntil(disappears, DEFAULT_TIMEOUT);
+  }
+
   public ElementsCollection countRelatedCases() {
     return $("div[id$='related-cases']").$$("td.name-column");
   }
@@ -86,6 +92,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   public void applyFilter() {
     $("div.filter-overlay-panel__footer").waitUntil(appear, DEFAULT_TIMEOUT).$$("button[id$='apply-button']")
         .filter(text("Apply")).first().shouldBe(getClickableCondition()).click();
+    $("div[id$='task-task_1:filter-overlay-panel-0']").waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
   }
   
   public void resetFilter() {
@@ -250,7 +257,8 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void openTask(String taskName) {
-    $$("div[id$=':task-component:dashboard-tasks'] table tbody tr td span").filter(text(taskName)).first().click();
+    $("div[id$=':task-component:dashboard-tasks']").waitUntil(appear, DEFAULT_TIMEOUT)
+      .$$("table tbody tr td span").filter(text(taskName)).first().click();
   }
   
   private SelenideElement getStateFilterCheckBox(String value) {
@@ -278,8 +286,8 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   
   public ElementsCollection getActiveTaskActions(int taskIndex) {
     clickOnTaskActionLink(taskIndex);
-    return $$("div[id$='dashboard-actions-task-task_1:side-steps-panel']").filter(appear).first().waitUntil(appear, DEFAULT_TIMEOUT)
-        .$("div.ui-overlaypanel-content").$$("a[class*='option-item']");
+    return $$(String.format("div.js-task-side-steps-panel-task_1-%d", taskIndex)).filter(appear).first()
+        .waitUntil(appear, DEFAULT_TIMEOUT).$("div.ui-overlaypanel-content").$$("a[class*='option-item']");
   }
 
   public void clickOnTaskActionLink(int taskIndex) {

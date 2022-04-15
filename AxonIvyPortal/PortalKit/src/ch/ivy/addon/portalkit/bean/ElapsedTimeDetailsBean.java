@@ -54,7 +54,7 @@ public class ElapsedTimeDetailsBean implements Serializable {
     return DateTimeFormatterUtils.formatToExactTime(secondsValue);
   }
 
-  public SortMeta getSortBy() {
+  public SortMeta getSortById() {
     return SortFieldUtil.buildSortMeta("ID", false);
   }
 }

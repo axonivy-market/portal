@@ -41,10 +41,10 @@
     
       <p:dataTable id="related-cases" lazy="true" value="#{data.caseLazyDataModel}" var="case" paginator="true" rows="5" paginatorPosition="bottom" paginatorAlwaysVisible="false"
         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}" sortMode="single"
-        sortBy="#{caseDetailsBean.relatedCasesSortBy}" styleClass="related-cases" rowHover="true" selectionMode="single"
+        sortBy="#{caseDetailsBean.sortById}" styleClass="related-cases" rowHover="true" selectionMode="single"
         currentPageReportTemplate="{currentPage} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/curentReportOf')} {totalPages}">
         <p:ajax event="rowSelect" listener="#{caseDetailsBean.navigateToSelectedCaseDetails}" />
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}" field="NAME" sortBy="#{NAME}" styleClass="name-column u-truncate-text ui-sm-12"
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}" field="NAME" sortBy="#{NAME}" filterable="false" styleClass="name-column u-truncate-text ui-sm-12"
           visible="#{caseDetailsBean.isDisplayColumn(data.caseLazyDataModel, 'NAME')}">
           <h:outputText value="#{case.name}" title="#{case.name}" styleClass="case-name-value"/>
           <h:outputText value="#{caseWidgetBean.formatCaseDescription(case.description)}" styleClass="case-description-value"/>
@@ -55,36 +55,36 @@
           <h:outputText escape="false" value="#{caseWidgetBean.formatCaseDescription(case.description)}" title="#{case.description}"/>
         </p:column>
         
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/ID')}" field="ID" sortBy="#{ID}" styleClass="id-column u-hidden-md-down"
-          visible="#{caseDetailsBean.isDisplayColumn(data.caseLazyDataModel, 'ID')}" >
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/ID')}" field="ID" sortBy="#{ID}" filterable="false" styleClass="id-column u-hidden-md-down"
+          visible="#{caseDetailsBean.isDisplayColumn(data.caseLazyDataModel, 'ID')}">
           <h:outputText value="#{case.id}" />
         </p:column>
         
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATOR')}" styleClass="responsible-column" field="CREATOR" sortBy="#{CREATOR}"
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATOR')}" styleClass="responsible-column" field="CREATOR" sortBy="#{CREATOR}" filterable="false"
           visible="#{caseDetailsBean.isDisplayColumn(data.caseLazyDataModel, 'CREATOR')}">
           <h:outputText value="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(case.creatorUser, case.creatorUserName)}" />
         </p:column>
         
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/OWNER')}" styleClass="owner-column" sortBy="#{OWNER}" field="OWNER" rendered="#{caseBean.isCaseOwnerEnabled()}"
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/OWNER')}" styleClass="owner-column" sortBy="#{OWNER}" filterable="false" field="OWNER" rendered="#{caseBean.isCaseOwnerEnabled()}"
           visible="#{caseDetailsBean.isDisplayColumn(data.caseLazyDataModel, 'OWNER')}">
           <h:outputText value="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(case.owner, case.ownerName)}" />
         </p:column>
         
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATION_TIME')}" field="CREATION_TIME" sortBy="#{CREATION_TIME}" styleClass="created-column u-hidden-md-down"
-          visible="#{caseDetailsBean.isDisplayColumn(data.caseLazyDataModel, 'CREATION_TIME')}" >
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATION_TIME')}" field="CREATION_TIME" sortBy="#{CREATION_TIME}" filterable="false" styleClass="created-column u-hidden-md-down"
+          visible="#{caseDetailsBean.isDisplayColumn(data.caseLazyDataModel, 'CREATION_TIME')}">
           <h:outputText value="#{case.startTimestamp}">
             <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}"/>
           </h:outputText>
         </p:column>
         
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/FINISHED_TIME')}" field="FINISHED_TIME" sortBy="#{FINISHED_TIME}" styleClass="expiry-column"
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/FINISHED_TIME')}" field="FINISHED_TIME" sortBy="#{FINISHED_TIME}" filterable="false" styleClass="expiry-column"
           visible="#{caseDetailsBean.isDisplayColumn(data.caseLazyDataModel, 'FINISHED_TIME')}">
           <h:outputText value="#{case.endTimestamp}">
             <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}"/>
           </h:outputText>
         </p:column>
         
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/STATE')}" field="STATE" sortBy="#{STATE}" styleClass="state-column u-hidden-md-down"
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/STATE')}" field="STATE" sortBy="#{STATE}" filterable="false" styleClass="state-column u-hidden-md-down"
           visible="#{caseDetailsBean.isDisplayColumn(data.caseLazyDataModel, 'STATE')}">
           <ic:ch.ivy.addon.portalkit.component.cases.column.CaseState case="#{case}" alwaysShowState="true"/>
         </p:column>

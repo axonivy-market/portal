@@ -27,12 +27,12 @@
         paginatorAlwaysVisible="false" rows="#{widget.rowsPerPage}" paginator="true" paginatorPosition="bottom" lazy="true"
         paginatorTemplate="{PreviousPageLink} {PageLinks} {NextPageLink} {RowsPerPageDropdown}" pageLinks="5"
         rowsPerPageTemplate="5,10,20,50"
-        sortBy="#{widget.casesSortBy}"
+        sortBy="#{widget.sortByName}"
         rowIndexVar="rowIndex" rowHover="#{isReadOnlyMode}" selectionMode="single"
         styleClass="dashboard-cases--table #{isReadOnlyMode ? '' : 'dashboard__table--edit'} #{isPreviewMode ? 'dashboard__table--preview' : ''}">
         <p:ajax event="rowSelect" listener="#{dashboardBean.navigateToSelectedCaseDetails}" disabled="#{!isReadOnlyMode or isPreviewMode}" />
 
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}" sortable="true" sortBy="#{name}" field="name"
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}" sortable="true" sortBy="#{name}" field="name" filterable="false"
           styleClass="revelent-cases__name">
           <span class="u-hidden-sm-down"><h:outputText value="#{caseItem.name}" /></span>
           <h:panelGroup layout="block" styleClass="u-hidden-md-up">
@@ -45,12 +45,12 @@
           <span><h:outputText value="#{caseItem.description}" /></span>
         </p:column>
         
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/STATE')}" sortable="true" sortBy="#{state}" field="state"
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/STATE')}" sortable="true" sortBy="#{state}" field="state" filterable="false"
           styleClass="dashboard-cases__state u-text-align-center u-hidden-sm-down" width="120">
           <ic:ch.ivy.addon.portalkit.component.cases.column.CaseState case="#{caseItem}" alwaysShowState="true" />
         </p:column>
         
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATOR')}" sortable="true" sortBy="#{creator}" field="creator"
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATOR')}" sortable="true" sortBy="#{creator}" field="creator" filterable="false"
           styleClass="dashboard-cases__creator u-hidden-sm-down" width="150">
           <h:outputText value="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(caseItem.creatorUser, caseItem.creatorUser.memberName)}" />
         </p:column>

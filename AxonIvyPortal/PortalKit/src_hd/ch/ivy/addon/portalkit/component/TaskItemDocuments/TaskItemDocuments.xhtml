@@ -7,6 +7,7 @@
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="task" type="ch.ivyteam.ivy.workflow.ITask" />
   <cc:attribute name="componentToUpdate" />
+  <cc:attribute name="documentWidget" type="ch.ivy.addon.portalkit.dto.widget.DocumentWidget" />
 </cc:interface>
 
 <cc:implementation>
@@ -32,9 +33,10 @@
       </div>
 
       <div class="ui-g-12 u-padding-0">
-        <p:dataTable id="task-details-documents" var="document" rendered="#{not empty data.documents}" value="#{data.documents}" paginator="true" paginatorAlwaysVisible="false" pageLinks="3"
-          rows="8" paginatorPosition="bottom" emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
-          paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+        <p:dataTable id="task-details-documents" var="document" rendered="#{not empty data.documents}" value="#{data.documents}" paginator="true" paginatorAlwaysVisible="false" 
+          pageLinks="3" rows="#{cc.attrs.documentWidget.rowPerPage}" rowsPerPageTemplate="5,10,20,50"
+          paginatorPosition="bottom" emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
+          paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
           currentPageReportTemplate="{currentPage} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/curentReportOf')} {totalPages}">
           <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/name')}" sortBy="#{document.name}"
             styleClass="u-truncate-text">
