@@ -132,6 +132,7 @@ public class ExpressManagementTest extends BaseTest {
     homePage = new HomePage();
     CaseWidgetPage caseWidgetPage = homePage.openCaseList();
     CaseDetailsPage caseDetailsPage = caseWidgetPage.openCaseDetailsFromActionMenuByCaseName(caseName);
+    caseDetailsPage.openActionMenu();
     caseDetailsPage.openAdditionalCaseDetailsPage();
     Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> homePage.countBrowserTab() > 1);
     homePage.switchLastBrowserTab();
@@ -200,7 +201,7 @@ public class ExpressManagementTest extends BaseTest {
     taskWidgetPage.waitForActionGroupDisplay();
   }
 
-  private void executePromoteResourceTask() {
+  public void executePromoteResourceTask() {
     ExpressTaskPage expressTaskPage = new ExpressTaskPage();
     expressTaskPage.waitForExpressFieldSetDisplay();
     expressTaskPage.enterRequiredInputFieldByLabel("Applicant name", "David Rafi");

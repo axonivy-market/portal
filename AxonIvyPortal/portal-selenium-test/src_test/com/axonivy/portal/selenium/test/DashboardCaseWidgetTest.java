@@ -71,8 +71,11 @@ public class DashboardCaseWidgetTest extends BaseTest {
     CaseWidgetNewDashBoardPage caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
     caseWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
     CaseDetailsWidgetNewDashBoardPage detailsCase = caseWidget.openDetailsFirstCase();
+    detailsCase.openActionPanel();
     detailsCase.destroy();
+    refreshPage();
     redirectToNewDashBoard();
+    caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
     caseWidget.stateOfFirstCase().shouldHave(text("Destroyed"));
   }
 
@@ -84,6 +87,7 @@ public class DashboardCaseWidgetTest extends BaseTest {
     CaseWidgetNewDashBoardPage caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
     caseWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
     CaseDetailsWidgetNewDashBoardPage detailsCase = caseWidget.openDetailsFirstCase();
+    detailsCase.openActionPanel();
     detailsCase.destroyLink().shouldNotHave(visible);
   }
 
@@ -120,6 +124,7 @@ public class DashboardCaseWidgetTest extends BaseTest {
     caseWidget.filterCaseName(LEAVE_REQUEST_DEFAULT_CASE);
     caseWidget.applyFilter();
     CaseDetailsWidgetNewDashBoardPage detailsCase = caseWidget.openDetailsFirstCase();
+    detailsCase.openActionPanel();
     detailsCase.openAdditionalCaseDetailsPage();
     newDashboardPage.switchLastBrowserTab();
     detailsCase.countAdditionalFieldsPage().shouldHaveSize(15);
@@ -137,6 +142,7 @@ public class DashboardCaseWidgetTest extends BaseTest {
     caseWidget.filterCaseName(INVESTMENT_REQUEST_CUSTOMIZATION_CASE);
     caseWidget.applyFilter();
     CaseDetailsWidgetNewDashBoardPage detailsCase = caseWidget.openDetailsFirstCase();
+    detailsCase.openActionPanel();
     detailsCase.openAdditionalCaseDetailsPage();
     newDashboardPage.switchLastBrowserTab();
     detailsCase.countAdditionalFieldsPage().shouldHaveSize(7);
@@ -154,7 +160,7 @@ public class DashboardCaseWidgetTest extends BaseTest {
     caseWidget.openFilterWidget();
     caseWidget.filterCaseName("TestCase");
     caseWidget.applyFilter();
-    caseWidget.countCases("TestCase").shouldHave(CollectionCondition.sizeGreaterThan(4));
+    caseWidget.countCases("TestCase").shouldHave(CollectionCondition.sizeGreaterThanOrEqual(4));
     //Filter State
     caseWidget.openFilterWidget();
     caseWidget.clearFilterCaseName();

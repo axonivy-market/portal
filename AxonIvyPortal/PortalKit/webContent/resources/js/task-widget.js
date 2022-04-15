@@ -10,7 +10,7 @@ function TaskWidget() {
     setupScrollbar: function() {
       var childElements = $('.js-task-start-list-item');
       if (childElements.length > 0) {
-        var container = $('.js-task-start-list:not(.js-is-guide) > .ui-datascroller-content');
+        var container = $('.js-task-start-list > .ui-datascroller-content');
         var taskWidgetHeaderContainer = $('.js-task-widget-header');
 
         // temporary hide mobile title to calculate
@@ -58,7 +58,11 @@ function TaskWidget() {
         }
 
         if (!!availableHeight) {
-          container.outerHeight(availableHeight);
+          if ($('.js-task-start-list').hasClass("js-is-guide")) {
+            container.outerHeight('auto');
+          } else {
+            container.outerHeight(availableHeight);
+          }
           if (container.outerHeight(true) > availableHeight) {
             var taskStartItemMarginRight = $('.task-start-list-item').css("margin-right");
             var scrollbarWidth = container.width() - container.find('.ui-datascroller-list').outerWidth(true);

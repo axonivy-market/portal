@@ -38,7 +38,7 @@
             </div>
 
             <div class="ui-g-12">
-              <p:dataTable id="notes-table" widgetVar="notesTable" var="note" sortBy="#{caseTaskNoteHistoryBean.taskHistorySortBy}"
+              <p:dataTable id="notes-table" widgetVar="notesTable" var="note" sortBy="#{caseTaskNoteHistoryBean.taskHistorySortByCreationTimestamp}"
                 value="#{data.notes}" filteredValue="#{data.filteredNotes}"
                 emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
                 reflow="true" scrollable="true">
@@ -60,7 +60,7 @@
                     value="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(note.writter, note.writter.name)}" />
                 </p:column>
 
-                <p:column width="20%" sortBy="#{note.creationTimestamp.time}" field="creationTimestamp.time" styleClass="u-hidden-sm-down">
+                <p:column width="20%" sortBy="#{note.creationTimestamp.time}" field="creationTimestamp.time" filterable="false" styleClass="u-hidden-sm-down">
                   <f:facet name="header">
                     <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/creationDate')}" />
                   </f:facet>

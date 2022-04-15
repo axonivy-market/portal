@@ -952,6 +952,7 @@ public class TaskWidgetPage extends TemplatePage {
   
   public void openNoActivatorFilter(String filterName) {
     click(By.cssSelector("[id$='filter-add-action']"));
+    waitForElementDisplayed(By.cssSelector(".filter-add-panel.ui-connected-overlay-enter-done"), true);
     WebElement filterSelectionElement = findElementById(taskWidgetId + ":filter-add-form:filter-selection");
     List<WebElement> elements = findChildElementsByTagName(filterSelectionElement, "LABEL");
     for (WebElement element : elements) {
@@ -976,5 +977,10 @@ public class TaskWidgetPage extends TemplatePage {
     if (waitForNumberOfTask) {
       waitForNumberOfTasks(1);
     }
+  }
+
+  public void clickOnProcessViewerOption() {
+    waitForElementDisplayed(By.cssSelector("[id$=':task-item:task-action:additional-options:side-steps-panel'].options-panel"), true);
+    clickByCssSelector("a[id$=':task-item:task-action:additional-options:show-process-viewer-link']");
   }
 }

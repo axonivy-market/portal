@@ -1,9 +1,11 @@
 [Ivy]
-153362B0AC312EFB 9.4.0 #module
+153362B0AC312EFB 9.4.3 #module
 >Proto >Proto Collection #zClass
 Cs0 CaseItemHistoryProcess Big #zClass
 Cs0 RD #cInfo
 Cs0 #process
+Cs0 @TextInP .colors .colors #zField
+Cs0 @TextInP color color #zField
 Cs0 @TextInP .type .type #zField
 Cs0 @TextInP .processKind .processKind #zField
 Cs0 @AnnotationInP-0n ai ai #zField
@@ -59,7 +61,8 @@ Cs0 f18 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Cs0 f18 83 179 26 26 -41 15 #rect
 Cs0 f26 actionTable 'out=in;
 ' #txt
-Cs0 f26 actionCode 'import ch.ivy.addon.portalkit.datamodel.internal.RelatedCaseLazyDataModel;
+Cs0 f26 actionCode 'import ch.ivy.addon.portalkit.util.CaseUtils;
+import ch.ivy.addon.portalkit.datamodel.internal.RelatedCaseLazyDataModel;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyCaseResultDTO;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.service.impl.CaseService;
@@ -81,23 +84,13 @@ for (ITask task : in.iCase.tasks().all()) {
 	}
 }
 
+long selectedCaseId = in.iCase.getId();
+List<ICase> cases = new ArrayList();
+cases.add(in.iCase);
+cases.addAll(CaseUtils.findSubCasesByBusinessCaseId(selectedCaseId));
+
 HistoryService historyService = new HistoryService();
-List<INote> notes = new ArrayList();
-
-CaseSearchCriteria criteria = new CaseSearchCriteria();
-criteria.setBusinessCase(false);
-criteria.setTechnicalCase(true);
-criteria.setBusinessCaseId(in.iCase.getId());
-IvyCaseResultDTO ivyCaseResultDTO = CaseService.newInstance().findCasesByCriteria(criteria);
-
-List<ICase> relatedCases = ivyCaseResultDTO != null ? ivyCaseResultDTO.cases : new ArrayList(); 
-if (CollectionUtils.isNotEmpty(relatedCases)) {
-	for (ICase case: relatedCases) {
-		notes.addAll(case.getNotes());
-	}
-}
-notes.addAll(in.iCase.getNotes());
-in.histories = historyService.getHistories(finishedTasks, notes, !in.showSystemTasks, !in.showSystemNotes);' #txt
+in.histories = historyService.getCaseHistories(selectedCaseId, finishedTasks, cases, !in.showSystemTasks, !in.showSystemNotes);' #txt
 Cs0 f26 security system #txt
 Cs0 f26 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -165,8 +158,8 @@ GlobalSettingService service = new GlobalSettingService();
 out.showSystemNotesChkbox = !service.findHideSystemNotesFromHistorySettingValue();
 out.showSystemTasksChkbox = !service.findHideSystemTasksFromHistorySettingValue();
 boolean isAdmin = PermissionUtils.isSessionUserHasAdminRole();
-out.showSystemNotes = isAdmin;
-out.showSystemTasks = isAdmin;' #txt
+out.showSystemNotes = isAdmin && out.showSystemNotesChkbox;
+out.showSystemTasks = isAdmin && out.showSystemTasksChkbox;' #txt
 Cs0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
