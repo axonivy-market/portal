@@ -12,10 +12,8 @@
     <ui:define name="title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/dashboard')}</ui:define>
 
     <ui:define name="pageContent">
-      <div class="ui-g-12">
       <ic:ch.ivy.addon.portalkit.component.StatisticWidget id="statistics-widget" compactMode="false" showTaskListImmediately="false"
         statisticChartList="#{data.statisticChartList}"/>
-        </div>
     </ui:define>
   </ui:composition>
 </h:body>

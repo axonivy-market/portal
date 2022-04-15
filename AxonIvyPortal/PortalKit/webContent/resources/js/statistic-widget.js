@@ -50,6 +50,7 @@ function taskByExpiryChartBaseExtender(context, datalabelsColor) {
   // copy the config options into a variable
   let options = jQuery.extend(true, {}, context.cfg.config.options);
   options = {
+    maintainAspectRatio : false,
     hover : {
       onHover : function(event, activeElement) {
         event.target.style.cursor = activeElement[0] ? 'pointer' : 'default';
@@ -113,6 +114,9 @@ function taskByExpiryChartThisYearExtender() {
 
 function taskByExpiryChartClickEvent(event, activeElement) {
   var $expiryChartDrillDown = $('.js-expiry-chart-drill-down');
+  if ($expiryChartDrillDown.length == 0) {
+    return;
+  }
   if (activeElement[0]) {
     if (activeElement[0]._index === 0) {
       $expiryChartDrillDown.hide();
@@ -201,6 +205,7 @@ function donutChartExtender(context, datalabelsColor) {
   // copy the config options into a variable
   let options = jQuery.extend(true, {}, context.cfg.config.options);
   options = {
+    maintainAspectRatio : false,
     legend: {
       labels: {
         filter: donutChartLegendLabelsFilter

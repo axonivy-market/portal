@@ -26,6 +26,7 @@ import ch.ivyteam.ivy.environment.Ivy;
   @Type(value = TaskDashboardWidget.class, name = "task"),
   @Type(value = CaseDashboardWidget.class, name = "case"),
   @Type(value = ProcessDashboardWidget.class, name = "process"),
+  @Type(value = StatisticDashboardWidget.class, name = "statistic"),
   @Type(value = CustomDashboardWidget.class, name = "custom")
 })
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
