@@ -16,7 +16,7 @@ import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 
-@IvyWebTest (headless = false)
+@IvyWebTest
 public class DashboardFilterWidgetTest extends BaseTest {
 
   private static final String YOUR_TASKS_WIDGET = "Your Tasks";
