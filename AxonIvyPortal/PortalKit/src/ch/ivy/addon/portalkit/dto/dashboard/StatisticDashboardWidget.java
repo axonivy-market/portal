@@ -1,5 +1,7 @@
 package ch.ivy.addon.portalkit.dto.dashboard;
 
+import java.util.Arrays;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
@@ -32,6 +34,12 @@ public class StatisticDashboardWidget extends DashboardWidget {
       }
     }
     return super.getName();
+  }
+
+  public void generateChartModel() {
+    if (chart != null) {
+      StatisticService.getInstance().generateChartModelForStatisticCharts(Arrays.asList(chart));
+    }
   }
 
   public StatisticChart getChart() {
