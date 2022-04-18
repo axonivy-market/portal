@@ -50,6 +50,6 @@ public class TaskDetailsPage extends TemplatePage {
   }
 
   public SelenideElement getInformationPanel() {
-    return $("div[id$='task-details-information-panel'");
+    return $("div[id$='task-details-information-panel'").waitUntil(Condition.appear, DEFAULT_TIMEOUT);
   }
 }
