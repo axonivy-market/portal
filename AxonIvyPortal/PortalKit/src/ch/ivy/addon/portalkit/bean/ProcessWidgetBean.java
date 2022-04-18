@@ -12,7 +12,6 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
@@ -65,9 +64,7 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
 
   private String defaultImageType = DefaultImage.DEFAULT.name();
 
-  @Override
-  @PostConstruct
-  public void init() {
+  public void initProcesses() {
     initProcessViewMode();
     initDefaultProcessImage();
     super.init();
@@ -412,5 +409,9 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
 
   public void setProcessViewModes(List<ProcessMode> processViewModes) {
     this.processViewModes = processViewModes;
+  }
+
+  public boolean isCompactMode() {
+    return StringUtils.equalsIgnoreCase(this.viewMode, ProcessMode.COMPACT.name());
   }
 }
