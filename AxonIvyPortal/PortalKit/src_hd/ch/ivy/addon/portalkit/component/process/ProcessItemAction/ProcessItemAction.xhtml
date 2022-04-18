@@ -16,6 +16,8 @@
 <cc:implementation>
   <c:set var="process" value="#{cc.attrs.process}"/>
   <c:set var="canModify" value="#{cc.attrs.canModify}" />
+  <c:set var="showProcessViewer" value="#{processItemActionBean.isShowProcessViewer(process)}"/>
+  <c:set var="hideActionButton" value="#{cc.attrs.hideActionButton or (!canModify and !showProcessViewer)}"/>
 
   <div id="process-action-group" class="process-action-group">
     <h:panelGroup id="process-category" layout="block"
@@ -27,7 +29,7 @@
       <p:tooltip for="process-category-content" value="#{process.category}" trackMouse="true" hideEvent="mouseleave click" />
     </h:panelGroup>
 
-    <h:panelGroup layout="block" rendered="#{!cc.attrs.hideActionButton}">
+    <h:panelGroup layout="block" rendered="#{!hideActionButton}">
       <p:commandButton id="process-action-button" type="button"
         styleClass="ui-button-icon-only icon-more-menu-button"
         icon="si si-navigation-menu-horizontal" />
@@ -40,7 +42,7 @@
           icon="si si-hierarchy-6 si-rotate-270"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/ProcessViewer/ProcessViewerText')}"
           target="_blank" url="#{processItemActionBean.getProcessViewerPageUri(process)}"
-          disabled="#{!processItemActionBean.isShowProcessViewer(process)}" />
+          disabled="#{!showProcessViewer}" />
         <p:menuitem id="edit-process"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}"
           icon="si si-graphic-tablet-drawing-pen"
