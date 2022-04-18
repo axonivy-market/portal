@@ -106,8 +106,12 @@ public class ProcessViewerUtils {
     return BooleanUtils.toBoolean(iCase.customFields().stringField(CustomFields.IS_EXPRESS_PROCESS).getOrNull());
   }
 
+  public static boolean isCaseMap(ICase caze) {
+    return !Objects.isNull(caze) && caze.getProcessStart().getLink().getRelative().endsWith(".icm");
+  }
+
   public static boolean isShowProcessViewer(ICase caze) {
-    if (isExpressCase(caze) || !caze.isBusinessCase()) {
+    if (isExpressCase(caze) || isCaseMap(caze) || !caze.isBusinessCase()) {
       return false;
     }
     return GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.ENABLE_PROCESS_VIEWER);
