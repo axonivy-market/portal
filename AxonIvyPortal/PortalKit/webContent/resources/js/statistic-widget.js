@@ -141,6 +141,7 @@ function elapsedTimeChartExtender() {
   // copy the config options into a variable
   let options = jQuery.extend(true, {}, this.cfg.config.options);
   options = {
+    maintainAspectRatio : false,
     scales : {
       xAxes : {
         ticks : {
