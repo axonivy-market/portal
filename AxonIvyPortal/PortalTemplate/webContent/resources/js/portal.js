@@ -158,7 +158,7 @@ var MainMenu = {
   }
 }
 
-function handleError(xhr, renderDetail){
+function handleError(xhr, renderDetail, isShowErrorLog){
   //From PF 7.0 with new jQuery version, when we call ajax by remote command then navigate when remote command still executing, this request HTML status is abort
   //This make general exception dialog display frequently
   if (xhr.statusText === 'abort') {
@@ -180,6 +180,23 @@ function handleError(xhr, renderDetail){
     });
   }
   PF('error-ajax-dialog').show();
+  if(isShowErrorLog){
+    var settingsSourceId = "PfSettings.source.id:\n";
+    console.log("Status code:\n" + xhr.status);
+    console.log("Status text:\n" + xhr.statusText);
+    console.log("Url:\n" + xhr.pfSettings.url);
+    console.log("Ready state:\n" + xhr.readyState);
+    console.log("Type:\n" + xhr.pfSettings.type);
+    console.log("PfArgs:\n" + JSON.stringify(xhr.pfArgs));
+    if (xhr.pfSettings.source.id) {
+      settingsSourceId = settingsSourceId + xhr.pfSettings.source.id;
+    }
+    console.log(settingsSourceId);
+  	console.log("Form data:\n" + decodeURIComponent(xhr.pfSettings.data));
+  	console.log("Response text:\n" + xhr.responseText);
+  	console.log("PrimeFaces.ajax.Queue.xhrs[0]:\n" + JSON.stringify(xhr));
+  }
+  
 }
 
 function onClickMenuItem(menuItem, isWorkingOnATask, isOpenOnNewTab) {
