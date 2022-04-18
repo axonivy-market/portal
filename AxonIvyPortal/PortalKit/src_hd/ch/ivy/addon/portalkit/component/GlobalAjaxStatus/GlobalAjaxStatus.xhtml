@@ -13,10 +13,11 @@
 <cc:implementation>
 
   <c:set var="renderDetail" value="#{portalExceptionBean.errorDetailToEndUser}" />
+  <c:set var="isShowErrorLog" value="#{portalExceptionBean.isShowErrorLogToConsole}" />
   <h:outputStylesheet library="css" name="module.css" />
 
   <p:ajaxStatus id="#{cc.clientId}-#{cc.id}" widgetVar="#{cc.attrs.widgetVar}"
-    onerror="handleError(PrimeFaces.ajax.Queue.xhrs[0], #{renderDetail})"
+    onerror="handleError(PrimeFaces.ajax.Queue.xhrs[0], #{renderDetail}, #{isShowErrorLog})"
     styleClass="portal-ajax-loader">
     <f:facet name="start">
         <div class="ajax-status-position #{cc.attrs.styleClass}">

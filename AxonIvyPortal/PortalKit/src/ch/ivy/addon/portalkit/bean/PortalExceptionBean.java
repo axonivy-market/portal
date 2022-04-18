@@ -6,9 +6,12 @@ import java.util.Objects;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
+import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.application.exceptionhandler.ExceptionInfo;
 
+import ch.ivy.addon.portalkit.enums.GlobalVariable;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivyteam.ivy.bpm.error.BpmError;
 import ch.ivyteam.ivy.server.ServerFactory;
@@ -77,6 +80,10 @@ public class PortalExceptionBean implements Serializable {
 
   public String getProcessElement() {
     return processElement;
+  }
+  
+  public boolean getIsShowErrorLogToConsole() {
+    return BooleanUtils.toBoolean(new GlobalSettingService().findGlobalSettingValue(GlobalVariable.SHOW_ERROR_LOG_TO_CONSOLE.toString()));
   }
 
 }
