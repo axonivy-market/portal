@@ -96,4 +96,13 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
   private SelenideElement getRemoveWidgetButton() {
     return $("button[id='remove-widget-button']");
   }
+
+  public StatisticEditWidgetNewDashboardPage addNewStatisticWidget() {
+    addWidgetByName("Statistic chart");
+    return new StatisticEditWidgetNewDashboardPage();
+  }
+
+  public StatisticWidgetDashboardPage selectStatisticWidget() {
+    return new StatisticWidgetDashboardPage();
+  }
 }

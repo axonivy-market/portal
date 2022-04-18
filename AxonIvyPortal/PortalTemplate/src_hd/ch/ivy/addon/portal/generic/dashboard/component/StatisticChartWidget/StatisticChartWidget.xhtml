@@ -24,9 +24,9 @@
     <!-- Chart Header -->
     <h:panelGroup styleClass="statistic-chart-widget__header widget__header">
       <!-- Chart Name -->
-      <h:outputText id="statistic-chart-name"
+      <h:outputText id="statistic-chart-name-#{index}" rendered="#{chart ne null}"
         styleClass="statistic-chart-name widget__header-title text-ellipsis"
-        value="#{dashboardStatisticChartBean.getDisplayChartName(chart)}" />
+        value="#{widget.name}" />
 
       <!-- Action -->
       <h:panelGroup id="statistic-chart-action-#{index}" rendered="#{!isConfigurationMode}"
@@ -44,18 +44,18 @@
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/widgetInfo')}"
           trackMouse="true" hideEvent="mouseleave click" />
 
-        <p:commandLink id="edit-widget" styleClass="si si-pencil u-mar-right-15" global="false"
+        <p:commandLink id="edit-widget-#{index}" styleClass="si si-pencil u-mar-right-15" global="false"
           actionListener="#{dashboardDetailModificationBean.prepareEditWidget(widget)}" process="@this"
           partialSubmit="true" update="new-widget-configuration-dialog"
           oncomplete="PF('new-widget-configuration-dialog').show()" rendered="#{!isReadOnlyMode}" />
-        <p:tooltip for="edit-widget" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/editWidget')}"
+        <p:tooltip for="edit-widget-#{index}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/editWidget')}"
           trackMouse="true" hideEvent="mouseleave click" rendered="#{!isReadOnlyMode}" />
 
-        <p:commandLink id="delete-widget" styleClass="si si-bin-1" global="false"
+        <p:commandLink id="delete-widget-#{index}" styleClass="si si-bin-1" global="false"
           actionListener="#{dashboardDetailModificationBean.setDeleteWidget(widget)}" process="@this"
           partialSubmit="true" update="remove-widget-dialog" oncomplete="PF('remove-widget-dialog').show()"
           rendered="#{!isReadOnlyMode}" />
-        <p:tooltip for="delete-widget" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/deleteWidget')}"
+        <p:tooltip for="delete-widget-#{index}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/deleteWidget')}"
           trackMouse="true" hideEvent="mouseleave click" rendered="#{!isReadOnlyMode}" />
 
         <p:link id="expand-link" href="#" styleClass="si si-expand-1 expand-link" rendered="#{isReadOnlyMode}"
@@ -100,7 +100,7 @@
     </h:panelGroup>
 
     <p:remoteCommand id="rcLoadChartFirstTime" autoRun="true"
-      actionListener="#{dashboardStatisticChartBean.generateChartModel(chart)}"
+      actionListener="#{widget.generateChartModel()}"
       update="statistic-chart-widget__chart-#{index}"
       global="false" async="true" process="@this"
       oncomplete="loadWidgetFirstTime('js-loading-chart-#{widget.id}', 'js-dashboard-statistic-chart-#{widget.id}')" />
@@ -136,16 +136,20 @@
 
         <p:barChart styleClass="statistic-chart-widget__canvas"
           model="#{chart.barChartModel}"
-          rendered="#{dashboardStatisticChartBean.isElapsedTimeByCaseCategory(chart)}" />
+          rendered="#{dashboardStatisticChartBean.isElapsedTimeByCaseCategory(chart)}">
+          <f:attribute name="selectedChartId" value="#{chart.id}" />
+          <p:ajax event="itemSelect" listener="#{dashboardStatisticChartBean.drilldownElapsedTime}"/>
+        </p:barChart>
 
         <p:donutChart styleClass="statistic-chart-widget__canvas"
           model="#{chart.donutChartModel}"
-          rendered="#{dashboardStatisticChartBean.isCaseByFinishedTask(chart)}">
-        </p:donutChart>
+          rendered="#{dashboardStatisticChartBean.isCaseByFinishedTask(chart)}"/>
 
         <p:donutChart styleClass="statistic-chart-widget__canvas"
           model="#{chart.donutChartModel}"
           rendered="#{dashboardStatisticChartBean.isCaseByFinishedTime(chart)}">
+          <f:attribute name="selectedChartId" value="#{chart.id}" />
+          <p:ajax event="itemSelect" listener="#{dashboardStatisticChartBean.drilldownCaseByState}" />
         </p:donutChart>
       </h:panelGroup>
     </h:panelGroup>
