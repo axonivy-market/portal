@@ -1,5 +1,5 @@
 [Ivy]
-164211E97C598DAA 9.4.3 #module
+164211E97C598DAA 9.4.6 #module
 >Proto >Proto Collection #zClass
 Pt0 ExamplePortalStart Big #zClass
 Pt0 B #cInfo
@@ -1013,9 +1013,10 @@ Pt0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Pt0 f6 544 858 112 44 -14 -8 #rect
 Pt0 f225 dialogId ch.ivy.addon.portal.generic.ProcessViewer #txt
-Pt0 f225 startMethod start(String) #txt
-Pt0 f225 requestActionDecl '<String processViewerCaseId> param;' #txt
-Pt0 f225 requestMappingAction 'param.processViewerCaseId=in.processViewerCaseId;
+Pt0 f225 startMethod start(Long,String) #txt
+Pt0 f225 requestActionDecl '<Long caseId,String processId> param;' #txt
+Pt0 f225 requestMappingAction 'param.caseId=in.caseId;
+param.processId=in.processId;
 ' #txt
 Pt0 f225 responseMappingAction 'out=in;
 ' #txt
@@ -1162,12 +1163,13 @@ Pt0 f97 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Pt0 f97 @C|.responsibility Everybody #txt
 Pt0 f97 81 2017 30 30 -68 21 #rect
 Pt0 f226 outLink PortalProcessViewer.ivp #txt
-Pt0 f226 inParamDecl '<String processViewerCaseId> param;' #txt
-Pt0 f226 inParamTable 'out.processViewerCaseId=param.processViewerCaseId;
+Pt0 f226 inParamDecl '<Long caseId,String processKey> param;' #txt
+Pt0 f226 inParamTable 'out.caseId=param.caseId;
+out.processId=param.processKey;
 ' #txt
 Pt0 f226 requestEnabled true #txt
 Pt0 f226 triggerEnabled false #txt
-Pt0 f226 callSignature PortalProcessViewer(String) #txt
+Pt0 f226 callSignature PortalProcessViewer(Long,String) #txt
 Pt0 f226 caseData businessCase.attach=true #txt
 Pt0 f226 showInStartList false #txt
 Pt0 f226 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
