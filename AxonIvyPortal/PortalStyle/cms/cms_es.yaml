@@ -169,12 +169,13 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskListConfiguration: Configuración lista de tareas
   ProcessViewer:
     Breadcrumb: Visualización del proceso {0}
-    ModelVersion: Versión del modelo de proceso
     ProcessDataNotFound: No se han encontrado datos del proceso
+    ProcessDetails: TODO Process details
+    ProcessId: TODO Process Id
+    ProcessInfo: TODO Process Information
+    ProcessInfoIconTooltip: TODO Click to see details of the process start
     ProcessViewerText: Visualizador de procesos
-    RequestPath: Procesar la ruta de solicitud
     Title: Visualizador de procesos
-    UserFriendlyRequestPath: Procesar una ruta de solicitud amigable para el usuario
   TaskDocuments:
     TaskDocumentsPageTitle: TODO Task Documents
   adminSettings:
@@ -236,7 +237,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       enableCaseOwner: 'Cambiar a "true" para también mostrar los casos en los que usted es el responsable del caso en su lista de casos. '
       enableGroupChat: Cambie esta propiedad a "true" para activar el chat de grupos
       enablePrivateChat: Cambie esta propiedad a "true" para activar el chat privado
-      enableProcessViewer: TODO Set this property to true to enable process viewer option in Task/Case actions
+      enableProcessViewer: Defina esta propiedad como true para habilitar la opción de visor de procesos en las acciones de Tarea/Caso
       enableScriptCheckingForUploadedDocumentNote: 'Cambiar a "True" para activar el control de anexos permitidos. De momento se pueden controlar archivos en PDF, word y excel. '
       enableUserFavorites: Si esta propiedad está desactivada, los favoritos de usurio serán ocultados
       enableVirusScannerForUploadedDocumentNote: Cambiar a "true" para habilitar el escáner de virus para el documento cargado. Actualmente esta función utiliza la API VIRUSTOTAL.

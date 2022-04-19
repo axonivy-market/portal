@@ -5845,8 +5845,7 @@ body span.ui-commandlink .si {
   justify-content: flex-end;
 }
 
-.image-view-form .process-action-group,
-.image-view-action-group-form .process-action-group {
+.process-action-group {
   position: absolute;
   right: 0;
   top: -500px;
@@ -5856,8 +5855,7 @@ body span.ui-commandlink .si {
   justify-content: flex-end;
 }
 
-.grid-view-form .process-action-group .grid-process-category,
-.image-view-form .process-action-group .image-process-category,
+.process-action-group .process-category,
 .image-view-action-group-form .process-action-group .image-process-category {
   border-radius: 20px;
   background-color: var(--image-process-header-background-color);
@@ -5871,14 +5869,12 @@ body span.ui-commandlink .si {
   max-width: 100%;
 }
 
-.grid-view-form .process-action-group .grid-process-category.has-menu-button,
-.image-view-form .process-action-group .image-process-category.has-menu-button,
+.process-action-group .process-category.has-menu-button,
 .image-view-action-group-form .process-action-group .image-process-category.has-menu-button {
   max-width: calc(100% - 40px);
 }
 
-.grid-view-form .process-action-group .grid-process-category .grid-process-category-content,
-.image-view-form .process-action-group .image-process-category .image-process-category-content,
+.process-action-group .process-category .process-category-content,
 .image-view-action-group-form .process-action-group .image-process-category .image-process-category-content {
   font-weight: bold;
   font-size: 12px;
@@ -6146,7 +6142,7 @@ body span.ui-commandlink .si {
 }
 
 .process-viewer-information {
-  height: 100px;
+  height: 60px;
 }
 
 .process-viewer-command {
@@ -6154,7 +6150,7 @@ body span.ui-commandlink .si {
 }
 
 .process-viewer-diagram {
-  height: calc(100% - 100px);
+  height: calc(100% - 60px);
 }
 
 .process-viewer-information .process-information-title {
@@ -6167,4 +6163,37 @@ body span.ui-commandlink .si {
 .case-detail-section-title .case-detail-action-command .action-link {
   float: right;
   margin: 0;
+}
+
+.process-viewer-info-link {
+  cursor: pointer;
+  margin-left: 3px;
+}
+
+.process-viewer-info-link i {
+  vertical-align: middle;
+}
+
+.process-viewer-info-container {
+  max-width: 500px;
+}
+
+.process-viewer-info-container .process-information-title {
+  margin-left: 2px;
+  margin-bottom: 7px;
+}
+
+.process-technical-information-group {
+  table-layout: fixed;
+}
+
+.process-viewer-info-panel .ui-overlaypanel-content {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+@media screen and (max-width: 40em) {
+  .process-viewer-info-container {
+    max-width: auto;
+  }
 }
