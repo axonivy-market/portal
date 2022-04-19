@@ -245,6 +245,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       hideCaseDocument: Cambiar a "true" para ocultar el área de documentos en detalle de casos
       hideChangePasswordButtonNote: Cambiar a "true" para ocultar la posibilidad de cambiar contraseña.
       hideLogoutButtonNote: Cambiar a "true" para ocultar la opción de logout.
+      hideRelatedCaseInfoFromHistory: TODO If true, case history does not display the related case information in the history table.
       hideStatisticWidget: Cambiar a "true" para ocultar la estadística de la página principal y del menu lateral
       hideSystemNotesFromHistory: Si esto es cierto, no se muestran notas del sistema para los usuarios en las notas de tarea/tarea.
       hideSystemNotesFromHistoryAdministrator: Si esto es cierto, no se muestran notas de sistema para los administradores en las notas de tarea/tarea.
@@ -538,8 +539,9 @@ ch.ivy.addon.portalkit.ui.jsf:
     sessionExpriedInTeams: Su sesión expiró. La aplicación se reiniciará.
     setting: Configuración
     showDetail: Mostrar detalles
-    showSystemNotes: Mostrar notas del systema
-    showSystemTasks: Mostrar tareas del sistema
+    showRelatedCaseInfo: TODO Related case
+    showSystemNotes: TODO System notes
+    showSystemTasks: TODO System tasks
     start: Abrir
     state: Estatus
     status: Estado
