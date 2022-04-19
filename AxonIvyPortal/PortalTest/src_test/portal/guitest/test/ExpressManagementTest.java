@@ -30,6 +30,7 @@ import portal.guitest.page.HomePage;
 import portal.guitest.page.ProcessWidgetPage;
 import portal.guitest.page.TaskWidgetPage;
 import portal.guitest.page.UserTaskWithMailFormPage;
+import vn.wawa.guitest.base.client.Browser;
 
 public class ExpressManagementTest extends BaseTest {
 
@@ -86,6 +87,9 @@ public class ExpressManagementTest extends BaseTest {
 
   public void prepareExpressWorkflowStep() {
     try {
+      if (getBrowser() == null) {
+        setBrowser(Browser.getBrowser());
+      }
       importExpressFile(FileHelper.getAbsolutePathToTestFile("express-wf-request-resource.json"));
     } catch (UnsupportedEncodingException e) {
       e.printStackTrace();
@@ -148,6 +152,7 @@ public class ExpressManagementTest extends BaseTest {
     // back to home and refresh task list data
     redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     gotoTaskList();
+    taskWidgetPage.resetFilter();
     taskWidgetPage.clickOnTaskStatesAndApply(Arrays.asList("Suspended"));
     executeApprovalTask(firstComment);
     executeApprovalTask(secondComment);
@@ -197,7 +202,7 @@ public class ExpressManagementTest extends BaseTest {
     userTaskWithMail.inputData("hr@email.com", "Please review this applicant", "Hello HR team, please proceed.");
     userTaskWithMail.finish();
     taskWidgetPage = new TaskWidgetPage();
-    taskWidgetPage.filterTasksBy("HR", 1);
+    taskWidgetPage.filterTasksInExpandedModeBy("HR", 1);
     taskWidgetPage.waitForActionGroupDisplay();
   }
 
@@ -219,6 +224,7 @@ public class ExpressManagementTest extends BaseTest {
   }
   
   private void startExpressHelperProcess(String processName) {
+    homePage = new HomePage();
     processWidget = homePage.getProcessWidget();
     processWidget.expand();
     assertTrue(processWidget.isExpandedMode());

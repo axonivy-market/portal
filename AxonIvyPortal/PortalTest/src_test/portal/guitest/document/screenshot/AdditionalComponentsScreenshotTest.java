@@ -43,7 +43,7 @@ public class AdditionalComponentsScreenshotTest extends ScreenshotTest {
     ScreenshotUtil.resizeBrowser(new Dimension(1500, 1000));
 
     NewDashboardPage newDashboardPage = new NewDashboardPage();
-    WaitHelper.waitForNavigation(newDashboardPage, () -> new NewDashboardPage().startTask(1));
+    WaitHelper.waitForNavigation(newDashboardPage, () -> new NewDashboardPage().startTask(0));
     ScreenshotUtil.resizeBrowser(new Dimension(1366, 800));
     newDashboardPage = new NewDashboardPage();
     newDashboardPage.waitForGrowlMessageDisplayClearly();
@@ -51,7 +51,7 @@ public class AdditionalComponentsScreenshotTest extends ScreenshotTest {
 
     redirectToRelativeLink(createTestingTasksUrl);
     newDashboardPage = new NewDashboardPage();
-    newDashboardPage.startTask(3);
+    newDashboardPage.startTask(1);
     TaskTemplatePage taskTemplatePage = new TaskTemplatePage();
     taskTemplatePage.clickCancelButton();
     WaitHelper.assertTrueWithWait(() -> ScreenshotUtil.isDOMStatusComplete());
@@ -160,7 +160,7 @@ public class AdditionalComponentsScreenshotTest extends ScreenshotTest {
     var caseWidgetPage = mainMenuPage.selectCaseMenu();
     mainMenuPage.closeMainMenu();
     var caseId = caseWidgetPage.getCaseId(0);
-    redirectToRelativeLink(String.format(showProcessViewerUrl, caseId));
+    redirectToRelativeLink(String.format(showProcessViewerUrl, caseId, ""));
     ScreenshotUtil.resizeBrowser(new Dimension(1366, 1000));
     ProcessViewerPage processViewerPage = new ProcessViewerPage();
     WaitHelper.assertTrueWithWait(() -> !processViewerPage.getProcessRequestPath().isEmpty());
