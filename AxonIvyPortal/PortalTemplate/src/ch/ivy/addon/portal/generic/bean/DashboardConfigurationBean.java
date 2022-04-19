@@ -295,4 +295,8 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
   public void setDashboardTemplates(List<DashboardTemplate> dashboardTemplates) {
     this.dashboardTemplates = dashboardTemplates;
   }
+
+  public String generateDashboardPermisisonForDisplay(Dashboard dashboard) {
+    return String.join(", ", dashboard.getPermissions());
+  }
 }

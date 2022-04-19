@@ -21,6 +21,9 @@
                 <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/dashboardTitle')}" width="20%">
                   <h:outputText value="#{dashboard.title}" />
                 </p:column>
+                <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/dashboardPermission')}" rendered="#{data.isPublicDashboard}">
+                  <h:outputText value="#{dashboardConfigurationBean.generateDashboardPermisisonForDisplay(dashboard)}" />
+                </p:column>
                 <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}">
                   <h:outputText value="#{dashboard.description}" />
                 </p:column>
