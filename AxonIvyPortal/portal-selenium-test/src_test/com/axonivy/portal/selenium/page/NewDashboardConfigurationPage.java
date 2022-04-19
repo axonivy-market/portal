@@ -28,7 +28,7 @@ public class NewDashboardConfigurationPage extends TemplatePage {
   }
 
   private SelenideElement getEditDashboardDialog() {
-    return $("div[id='dashboard-detail-dialog']");
+    return $("div[id$='configuration-dashboard-detail-dialog']");
   }
 
   private SelenideElement getDeleteDashboardConfirmDialog() {
@@ -85,7 +85,7 @@ public class NewDashboardConfigurationPage extends TemplatePage {
         }
       }
     });
-    editDashboardDialog.$("button[id='dashboard-detail-save-button']").click();
+    editDashboardDialog.$("button[id$='dashboard-detail-save-button']").click();
     editDashboardDialog.waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
   }
 
@@ -94,5 +94,67 @@ public class NewDashboardConfigurationPage extends TemplatePage {
     NewDashboardPage newDashboardPage = new NewDashboardPage();
     newDashboardPage.waitForAbsencesGrowlMessageDisplay();
     return newDashboardPage;
+  }
+
+  private SelenideElement openCreateDashboardDialog() {
+    $("button[id$=':add-dashboard']").click();
+    $("div[id='dashboard-creation-menu-dialog']").waitUntil(Condition.appear, DEFAULT_TIMEOUT);
+    return $("div[id='dashboard-creation-menu-dialog']");
+  }
+
+  public void createPrivateDashboardFromScratch(String newName, String newDescription) {
+    SelenideElement createDashboardMennuDialog = openCreateDashboardDialog();
+    createDashboardMennuDialog.$("a[id$=':create-from-scratch']").click();
+    inputCreateDashboardDialog(newName, newDescription, null);
+  }
+
+  public void createPrivateDashboardFromTemplate(String newName, String newDescription, int templateIndex) {
+    SelenideElement createDashboardMennuDialog = openCreateDashboardDialog();
+    createDashboardMennuDialog.$("a[id$='" + templateIndex + ":template']").click();
+    inputCreateDashboardDialog(newName, newDescription, null);
+  }
+
+  public void createPublicDashboardFromScratch(String newName, String newDescription, List<String> permissions) {
+    SelenideElement createDashboardMennuDialog = openCreateDashboardDialog();
+    createDashboardMennuDialog.$("a[id$=':create-from-scratch']").click();
+    inputCreateDashboardDialog(newName, newDescription, permissions);
+  }
+
+  public void createPublicDashboardFromTemplate(String newName, String newDescription, List<String> permissions, int templateIndex) {
+    SelenideElement createDashboardMennuDialog = openCreateDashboardDialog();
+    createDashboardMennuDialog.$("a[id$='" + templateIndex + ":template']").click();
+    inputCreateDashboardDialog(newName, newDescription, permissions);
+  }
+
+  private void inputCreateDashboardDialog(String newName, String newDescription, List<String> permissions) {
+    SelenideElement createDashboardDialog = $("div[id$='configuration-dashboard-detail-dialog']");
+    createDashboardDialog.waitUntil(Condition.appear, DEFAULT_TIMEOUT);
+    createDashboardDialog.$("input[id$=':dashboard-title']").clear();
+    createDashboardDialog.$("input[id$=':dashboard-title']").sendKeys(newName);
+    createDashboardDialog.$("input[id$=':dashboard-description']").clear();
+    createDashboardDialog.$("input[id$=':dashboard-description']").sendKeys(newDescription);
+    
+    if (permissions != null) {
+      ElementsCollection selectedPermissions = createDashboardDialog.$("div[id$=':dashboard-permission']").$$("li.ui-state-active");
+      if (!selectedPermissions.isEmpty()) {
+        for(SelenideElement permission : selectedPermissions) {
+          permission.$("span.ui-icon-close").click();
+        }
+      }
+
+      createDashboardDialog.$("div[id$=':dashboard-permission']").$("button.ui-autocomplete-dropdown").click();
+      
+      $("span[id$=':dashboard-permission_panel']").waitUntil(Condition.appear, DEFAULT_TIMEOUT);
+      $("span[id$=':dashboard-permission_panel']").$$("tr.ui-autocomplete-item").forEach(item -> {
+        for(String permissionName : permissions) {
+          if (item.$("td").getText().contains(permissionName)) {
+            item.click();
+          }
+        }
+      });
+    }
+
+    createDashboardDialog.$("button[id$='dashboard-create-button']").click();
+    createDashboardDialog.waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
   }
 }
