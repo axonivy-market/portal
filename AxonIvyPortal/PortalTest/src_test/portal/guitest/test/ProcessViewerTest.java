@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import portal.guitest.common.BaseTest;
+import portal.guitest.common.TestAccount;
 import portal.guitest.common.WaitHelper;
 import portal.guitest.page.CaseWidgetPage;
 import portal.guitest.page.HomePage;
@@ -80,8 +81,8 @@ public class ProcessViewerTest extends BaseTest {
 
   @Test
   public void testNotShowProcessViewerForExpressCase() {
+    login(TestAccount.ADMIN_USER);
     var expressManagementTest = new ExpressManagementTest();
-    expressManagementTest.setup();
     expressManagementTest.prepareExpressWorkflowStep();
     expressManagementTest.executePromoteResourceTask();
     redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
