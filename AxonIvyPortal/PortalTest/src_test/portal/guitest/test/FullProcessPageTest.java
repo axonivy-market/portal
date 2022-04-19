@@ -66,7 +66,7 @@ public class FullProcessPageTest extends BaseTest{
     processWidgetPage.waitForMenuActionsDisplayed();
     processWidgetPage.clickOnProcessEditMenu(0);
     processWidgetPage.changeProcessIcon();
-    processWidgetPage.waitAjaxIndicatorDisappear();
+    processWidgetPage.waitForJQueryAndPrimeFaces(5);
     processWidgetPage.selectViewMode("GRID");
     processWidgetPage.waitForGridProcessListDisplayed();
     processWidgetPage.enterSearchKeyword("link");
