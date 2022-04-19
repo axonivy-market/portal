@@ -242,6 +242,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       hideCaseDocument: Set to true, the document section in case detail page will be hidden, otherwise it will be shown.
       hideChangePasswordButtonNote: Set to true, the change password option in top menu will be hidden, otherwise it will be shown.
       hideLogoutButtonNote: If true, the logout button on top menu will be hidden, otherwise it will be shown.
+      hideRelatedCaseInfoFromHistory: If true, case history does not display the related case information in the history table.
       hideStatisticWidget: Set to true to hide Statistic widget from homepage and application menu.
       hideSystemNotesFromHistory: If true, case/task note does not display any system notes for non-administrator users.
       hideSystemNotesFromHistoryAdministrator: If true, case/task note does not display any system notes for administrator.
@@ -535,8 +536,9 @@ ch.ivy.addon.portalkit.ui.jsf:
     sessionExpriedInTeams: Your session expired. The application will be restarted.
     setting: Settings
     showDetail: Show details
-    showSystemNotes: Show system notes
-    showSystemTasks: Show system tasks
+    showRelatedCaseInfo: Related case
+    showSystemNotes: System notes
+    showSystemTasks: System tasks
     start: Start
     state: State
     status: Status
