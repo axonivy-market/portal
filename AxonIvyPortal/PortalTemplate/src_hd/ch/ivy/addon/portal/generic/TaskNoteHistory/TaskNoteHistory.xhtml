@@ -22,10 +22,8 @@
             securityMemberName="#{data.task.getActivatorName()}" />
 
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/STATE')}" />
-          <h:panelGroup id="task-detail-state" styleClass="state-cell default-task-cell">
-            <h:panelGroup id="task-detail-state-icon" styleClass="#{taskBean.getStateIcon(data.task.getState())}" />
-            <h:outputText value="#{taskBean.getTranslatedState(data.task.getState())}" styleClass="task-detail-state" />
-          </h:panelGroup>
+          <ic:ch.ivy.addon.portalkit.component.task.column.TaskState id="task-state" state="#{data.task.state}"
+            showIndicatorBesideText="true" />
         </h:panelGrid>
 
           <h:form id="form" onkeypress="if (event.keyCode == 13) { return false; }" styleClass="note-history-container ui-g-12 u-no-padding-top">

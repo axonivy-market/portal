@@ -71,7 +71,7 @@ public class PortalProcessesScreenshotTest extends ScreenshotTest {
     processWidget.expand();
     processWidget.navigateToProcessIndex("A");
     executeDecorateJs("highlightProcessMoreMenuButton()");
-    processWidget.clickMoreButton();
+    processWidget.clickMoreButtonOfFirstImageProcess();
     processWidget.waitForMenuActionsDisplayed();
     executeDecorateJs("highlightEditProcessLink()");
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(processWidget.getProcessEditMenu(0), ScreenshotUtil.PROCESSES_WIDGET_FOLDER + "edit-process-menu-item", new ScreenshotMargin(150, 200));
