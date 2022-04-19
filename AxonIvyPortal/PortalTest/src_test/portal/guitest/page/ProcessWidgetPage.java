@@ -17,6 +17,9 @@ import portal.guitest.common.WaitHelper;
 public class ProcessWidgetPage extends TemplatePage {
 
   private static final String ACTIVE_MODE_SELECTOR = "[id$=':process-view-mode:view-mode-selection'] div.ui-button.ui-button-text-only.ui-state-active .ui-button-text";
+  private static final String IMAGE_ACTION_BUTTON = "[id$=':%d:image-processes:%d:process-item:image-process-action-component:process-action-button']";
+  private static final String GRID_ACTION_BUTTON = "[id$=':%d:grid-processes:%d:process-grid-item:process-item:grid-process-action-component:process-action-button']";
+  private static final String IMAGE_EDIT_PROCESS_LINK = "[id$=':%d:image-processes:%d:process-item:image-process-action-component:edit-process']";
   private WebElement switchModeButton;
   private WebElement liveSearchTextField;
   private WebElement processWidget;
@@ -365,11 +368,11 @@ public class ProcessWidgetPage extends TemplatePage {
   }
 
   public WebElement getProcessEditMenu(int index) {
-    return findElementByCssSelector(String.format("[id$='process-widget:image-process-group-alphabet:0:image-processes:%d:process-item:process-edit']", index));
+    return findElementByCssSelector(String.format(IMAGE_EDIT_PROCESS_LINK, 0, index));
   }
 
   public void clickOnProcessEditMenu(int index) {
-    clickByCssSelector(String.format("[id$='process-widget:image-process-group-alphabet:0:image-processes:%d:process-item:process-edit']", index));
+    clickByCssSelector(String.format(IMAGE_EDIT_PROCESS_LINK, 0, index));
     waitForElementDisplayed(By.cssSelector("[id$='process-widget:edit-process-dialog']"), true);
   }
   
@@ -429,30 +432,22 @@ public class ProcessWidgetPage extends TemplatePage {
     }
   }
 
-  public void clickMoreButton() {
-    waitForElementDisplayed(
-        By.cssSelector("[id$='process-widget:image-process-group-alphabet:0:image-processes:0:process-item:process-action-button']"),
-        true);
-    WebElement webElement = findElementByCssSelector(
-        "[id$='process-widget:image-process-group-alphabet:0:image-processes:0:process-item:process-action-button']");
-    webElement.click();
+  public void clickMoreButtonOfFirstImageProcess() {
+    waitForElementDisplayed(By.cssSelector(String.format(IMAGE_ACTION_BUTTON, 0, 0)), true);
+    clickByCssSelector(String.format(IMAGE_ACTION_BUTTON, 0, 0));
   }
-  
-  public WebElement getMoreMenuButton(int index) {
-    return findElementByCssSelector(String.format("[id$='process-widget:image-process-group-alphabet:0:image-processes:%d:process-item:process-action-button']", index));
+
+  public WebElement getMoreMenuButtonOfImageProcess(int index) {
+    return findElementByCssSelector(String.format(IMAGE_ACTION_BUTTON, index, 0));
   } 
 
   public void waitForMenuActionsDisplayed() {
-    waitForElementDisplayed(
-        By.cssSelector(
-            "[id$='process-widget:image-process-group-alphabet:0:image-processes:0:process-item:process-action-menu']"),
-        true);
+    waitForElementDisplayed(By.cssSelector(String.format(IMAGE_ACTION_BUTTON, 0, 0)), true);
   }
-  
-  public void clickMoreButtonOnGridMode() {
-    waitForElementDisplayed(By.cssSelector("[id$=':process-item:process-action-button']"), true);
-    WebElement webElement = findElementByCssSelector("[id$=':process-item:process-action-button']");
-    webElement.click();
+
+  public void clickMoreButtonOfFirstGridProcess() {
+    waitForElementDisplayed(By.cssSelector(String.format(GRID_ACTION_BUTTON, 0, 0)), true);
+    clickByCssSelector(String.format(GRID_ACTION_BUTTON, 0, 0));
   }
 
   public void waitForMenuActionsOnGridModeDisplayed() {
