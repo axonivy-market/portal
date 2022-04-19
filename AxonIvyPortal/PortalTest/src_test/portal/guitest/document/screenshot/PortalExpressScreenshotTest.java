@@ -165,8 +165,8 @@ public class PortalExpressScreenshotTest extends ScreenshotTest {
   
   @Test
   public void screenshotExpressBusinessPage() throws IOException {
+    login(TestAccount.ADMIN_USER);
     ExpressManagementTest expressManagementTest = new ExpressManagementTest();
-    expressManagementTest.setup();
     expressManagementTest.prepareExpressWorkflowStep();
     expressManagementTest.completeExpressWorkflowTasks(ExpressManagementTest.FIRST_COMMENT, ExpressManagementTest.SECOND_COMMENT);
     redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
