@@ -98,7 +98,7 @@ public class ProcessWidgetPage extends TemplatePage {
       waitForElementDisplayed(By.id(processWidgetId + ":process-search:non-ajax-keyword-filter"), true);
       enterSearchKeyword(wfName);
       if (isImageModeActivated()) {
-        waitForElementDisplayed(By.cssSelector("[id$=':process-item:process-action-button']"), true);
+        waitForElementDisplayed(By.cssSelector("[id$=':process-action-button']"), true);
         WebElement processForm = findElementByCssSelector("form.image-view-form.is-express");
         var processFormID = processForm.getAttribute("id");
         clickByCssSelector("[id$='" + processFormID + ":process-action-button']");
@@ -393,9 +393,8 @@ public class ProcessWidgetPage extends TemplatePage {
     return processItem.findElement(By.id("icon")).getAttribute("class");
   }
 
-  public void deleteProcess(int index) {
-    
-    clickByCssSelector(String.format("[id$='process-widget:grid-process-group-alphabet:%d:grid-processes:0:process-grid-item:process-item:process-delete']", index));
+  public void deleteGridProcess(int index) {
+    clickByCssSelector(String.format("[id$=':%d:grid-processes:0:process-grid-item:process-item:grid-process-action-component:delete-process']", index));
     waitForElementDisplayed(By.cssSelector("[id$='process-widget:remove-process-workflow-dialog']"), true);
     clickByCssSelector("[id$='delete-process-workflow-form:remove-process-command']");
     waitForElementDisplayed(By.cssSelector("[id$='process-widget:remove-process-workflow-dialog']"), false);
