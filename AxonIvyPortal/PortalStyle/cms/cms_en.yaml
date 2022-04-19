@@ -85,6 +85,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     caseDescription: Case description
     taskDescription: Task description
     taskState: Task state
+  CaseDocuments:
+    CaseDocumentsPageTitle: Case Documents
   CaseStatusInformation:
     CurrentTasks:
       currentTasks: Current tasks
@@ -174,6 +176,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     ProcessInfoIconTooltip: Click to see details of the process start
     ProcessViewerText: Process Viewer
     Title: Process Viewer
+  TaskDocuments:
+    TaskDocumentsPageTitle: Task Documents
   adminSettings:
     addLanguages: Add languages
     addNewApplication: Add new third party application
