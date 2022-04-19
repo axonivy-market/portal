@@ -11,6 +11,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardOrder;
+import ch.ivy.addon.portalkit.dto.dashboard.DashboardTemplate;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
@@ -85,6 +86,11 @@ public class DashboardUtils {
     List<Dashboard> visibleDashboards = jsonToDashboards(dashboardJson);
     setDashboardAsPublic(visibleDashboards);
     return visibleDashboards;
+  }
+
+  public static List<DashboardTemplate> getDashboardTemplates() {
+    String dashboardTemplatesJson = Ivy.var().get(PortalVariable.DASHBOARD_TEMPLATES.key);
+    return BusinessEntityConverter.jsonValueToEntities(dashboardTemplatesJson, DashboardTemplate.class);
   }
 
   public static void setDashboardAsPublic(List<Dashboard> visibleDashboards) {
