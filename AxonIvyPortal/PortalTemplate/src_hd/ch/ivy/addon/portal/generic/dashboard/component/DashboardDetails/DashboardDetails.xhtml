@@ -1,0 +1,98 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="detailDialogId" required="true" />
+  <cc:attribute name="managedBean" required="true" />
+  <cc:attribute name="title" required="true" />
+  <cc:attribute name="isPublicDashboard" required="true" />
+  <cc:attribute name="componentToUpdate" />
+  <cc:attribute name="isDashboardCreation" default="false" />
+  <cc:attribute name="isWorkingOnATask" default="false"/>
+  <cc:attribute name="task" />
+</cc:interface>
+
+<cc:implementation>
+  <c:set var="managedBean" value="#{cc.attrs.managedBean}" />
+  <c:set var="isWorkingOnATask" value="#{cc.attrs.isWorkingOnATask}" />
+  <c:set var="task" value="#{cc.attrs.task}" />
+
+  <ic:ch.ivy.addon.portalkit.component.WarningBeforeLeavingTask id="task-leave-warning-component" rendered="#{isWorkingOnATask}"
+      leaveActionListener="#{dashboardConfigurationBean.resetTaskAndCreateDashboard(task)}"
+      reserveActionListener="#{dashboardConfigurationBean.reserveTaskAndCreateDashboard(task)}"
+      componentId="dashboard-creation-task-losing-confirmation-dialog" widgetVar="dashboard-creation-task-losing-confirmation-dialog"
+      taskState="#{task.state}" />
+
+  <p:dialog id="#{cc.attrs.detailDialogId}" widgetVar="#{cc.attrs.detailDialogId}" styleClass="js-#{cc.attrs.detailDialogId}"
+    header="#{cc.attrs.title}"
+    appendTo="@(body)" closeOnEscape="true" draggable="false" fitViewport="true" responsive="true" modal="true"
+    width="40%">
+
+    <h:form id="dashboard-detail-form" styleClass="dashboard-detail-form">
+      <p:messages id="dashboard-detail-messages" />
+      <div class="ui-g">
+        <div class="ui-g-4 manage-dashboard__label">
+          <p:outputLabel for="dashboard-title"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/dashboardTitle')}" />
+        </div>
+        <div class="ui-g-8">
+          <p:inputText id="dashboard-title" value="#{managedBean.selectedEditingDashboard.title}"
+            required="true" styleClass="manage-dashboard__input" />
+        </div>
+        <h:panelGroup layout="block" styleClass="ui-g-4 manage-dashboard__label"
+          rendered="#{cc.attrs.isPublicDashboard}">
+          <p:outputLabel for="dashboard-permission"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/dashboardPermission')}" />
+        </h:panelGroup>
+        <h:panelGroup layout="block" styleClass="ui-g-8" rendered="#{cc.attrs.isPublicDashboard}">
+          <p:autoComplete id="dashboard-permission" scrollHeight="210" dropdown="true" required="true"
+            completeMethod="#{managedBean.completePermissions}" styleClass="manage-dashboard__input"
+            inputStyleClass="manage-dashboard__autocomplete-input"
+            value="#{managedBean.selectedEditingDashboard.permissionDTOs}" var="responsible"
+            itemValue="#{responsible}" itemLabel="#{responsible.briefDisplayNameWithState}" converter="pojoConverter"
+            cache="true" maxResults="100" multiple="true"
+            moreText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..." dynamic="true" forceSelection="true">
+            <p:ajax event="itemSelect" listener="#{managedBean.dashboardPermissionListener}"
+              update="dashboard-permission" global="false" />
+            <p:column>
+              <i class="fa #{responsible.isUser() ? 'fa-user' : 'fa-users'} u-mar-right-5" />
+              <h:outputText value="#{dashboardTaskFilterBean.formatName(responsible)}" />
+            </p:column>
+          </p:autoComplete>
+        </h:panelGroup>
+        <div class="ui-g-4 manage-dashboard__label">
+          <p:outputLabel for="dashboard-description"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}" />
+        </div>
+        <div class="ui-g-8">
+          <p:inputText id="dashboard-description" value="#{managedBean.selectedEditingDashboard.description}"
+            required="false" styleClass="manage-dashboard__input" />
+        </div>
+      </div>
+    </h:form>
+    
+    <f:facet name="footer">
+      <h:panelGroup layout="block" styleClass="u-text-align-right">
+        <p:commandLink id="dashboard-detail-close-button" type="button"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+          onclick="PF('#{cc.attrs.detailDialogId}').hide()" />
+        <p:spacer width="15" />
+        <p:commandButton id="dashboard-detail-save-button"
+          rendered="#{!cc.attrs.isDashboardCreation}"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
+          actionListener="#{managedBean.saveDashboardDetail()}"
+          process="dashboard-detail-form" partialSubmit="true"
+          icon="#{visibilityBean.generateButtonIcon('si si-floppy-disk')}"
+          update="dashboard-detail-form #{cc.attrs.componentToUpdate}"
+          oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('#{cc.attrs.detailDialogId}').hide();}" />
+        <p:commandButton id="dashboard-create-button"
+          rendered="#{cc.attrs.isDashboardCreation}"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/CreateDashboard')}"
+          icon="#{visibilityBean.generateButtonIcon('si si-add-small')}">
+          <p:ajax event="click" listener="#{managedBean.createDashboard(isWorkingOnATask, task)}" update="dashboard-detail-form" process="dashboard-detail-form" partialSubmit="true" />
+        </p:commandButton>
+      </h:panelGroup>
+    </f:facet>
+  </p:dialog>
+</cc:implementation>
+</html>

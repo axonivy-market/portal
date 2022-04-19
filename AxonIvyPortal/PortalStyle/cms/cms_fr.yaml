@@ -705,6 +705,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     configuration:
       CustomWidgetExternalLinkWarning: Certains web sites ne sont pas compatibles avec les iframe pour des raisons de sécurité. Veuillez contacter votre administrateur si le web site externe ne fonctionne pas correctement.
       Parameters: Paramètres
+      SelectYourTemplate: TODO Select your template
       configuration: Configuration
       configurationDescription: Vous pouvez configurer votre widget dans cette zone de configuration. Veuillez définir les filtres requis ainsi que les colonnes à afficher.
       customWidgetParamChangedMessage: Ce processus a changé. Cliquez sur Update pour continuer.
@@ -722,6 +723,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     customWidget: Widget personnalisé
     customWidgetIntroduction: Ce widget peut afficher un processus Axon Ivy ou une page web externe.
     dashboardManagement:
+      CreateDashboard: TODO Create Dashboard
       addDashboard: Ajouter un tableau de bord
       dashboardPermission: Autorisation du tableau de bord
       dashboardTitle: Titre du tableau de bord
