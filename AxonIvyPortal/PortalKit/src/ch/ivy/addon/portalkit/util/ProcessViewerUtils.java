@@ -1,10 +1,10 @@
 package ch.ivy.addon.portalkit.util;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Predicate;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.BooleanUtils;
@@ -23,21 +23,34 @@ public class ProcessViewerUtils {
 
   private static final String START_PROCESS_PORTAL_PROCESS_VIEWER_PAGE = "Start Processes/PortalStart/PortalProcessViewer.ivp";
   private static final String TEXT_SEPARATOR = "/";
+  public static final String DEFAULT_LINK = "#";
   private static List<IWebStartable> webStartables;
 
   public static boolean isValidCase(Long caseId) {
     return Objects.isNull(CaseUtils.findCase(caseId)) ? false : true;
   }
 
-  public static String getProcessViewerIframeURL(ICase selectedCase) {
-    if (selectedCase == null || isExpressCase(selectedCase)) {
-      return "";
+  public static String getProcessViewerIframeURL(Long caseId, String processId) {
+    var selectedProcess = findWebStartable(caseId, processId);
+    return Objects.isNull(selectedProcess) ? DEFAULT_LINK : selectedProcess.viewerLink().getRelative();
+  }
+
+  public static IWebStartable findWebStartable(Long caseId, String processId) {
+    String startProcessLink = "";
+    var selectedCase = CaseUtils.findCase(caseId);
+    if (selectedCase != null && !isExpressCase(selectedCase)) {
+      startProcessLink = selectedCase.getProcessStart().getLink().getRelative();
     }
-    selectedCase.getProcessStart().getLink().getRelative();
-    var selectedProcess = getWebStartables().stream()
-          .filter(webStartable -> StringUtils.equals(webStartable.getLink().getRelative(), selectedCase.getProcessStart().getLink().getRelative()))
-          .findFirst().orElse(null);
-    return Objects.isNull(selectedProcess) ? "#" : selectedProcess.viewerLink().getRelative();
+    if (caseId == null || selectedCase == null) {
+      startProcessLink = processId;
+    }
+    return getWebStartables().stream()
+        .filter(filterByRelativeLink(startProcessLink)).findFirst()
+        .orElse(null);
+  }
+
+  private static Predicate<? super IWebStartable> filterByRelativeLink(String startProcessId) {
+    return webStartable -> StringUtils.equals(startProcessId, webStartable.getLink().getRelative());
   }
 
   private static List<IWebStartable> getWebStartables() {
@@ -49,26 +62,36 @@ public class ProcessViewerUtils {
 
   public static String getStartProcessViewerPageUri(ICase selectedCase) {
     if (isExpressCase(selectedCase)) {
-      return "";
+      return DEFAULT_LINK;
     }
-    Map<String, String> params = new HashMap<>();
-    params.put("processViewerCaseId", String.valueOf(selectedCase.getId()));
-    return PortalNavigator.buildUrlByKeyword("PortalProcessViewer", START_PROCESS_PORTAL_PROCESS_VIEWER_PAGE, params);
+    return buildPortalProcessViewerUrl(selectedCase.getId(), selectedCase.getProcessStart().getLink().getRelative());
   }
 
-  public static String getDisplayProcessRequestPath(IProcessStart processStart) {
-    var path = processStart.getRequestPath();
-    var pathElements = Arrays.asList(processStart.getRequestPath().split(TEXT_SEPARATOR));
-    var extractedPath = pathElements.stream()
-        .filter(element -> element.endsWith(".ivp") || element.endsWith(".icm"))
-        .findFirst().orElse(null);
-    if (StringUtils.isNotEmpty(extractedPath)) {
-      path = extractedPath;
+  public static String getStartProcessViewerPageUri(String processStartLink) {
+    if (StringUtils.isBlank(processStartLink)) {
+      return DEFAULT_LINK;
     }
-    return path;
+    return buildPortalProcessViewerUrl(null, processStartLink);
+  }
+
+  private static String buildPortalProcessViewerUrl(Long caseId, String processStartLink) {
+    Map<String, String> params = new HashMap<>();
+    params.put("caseId", String.valueOf(caseId));
+    params.put("processKey", processStartLink);
+    return PortalNavigator.buildUrlByKeyword("PortalProcessViewer.ivp", START_PROCESS_PORTAL_PROCESS_VIEWER_PAGE, params);
+  }
+
+
+  public static String getDisplayProcessRequestPath(Long caseId, String processId) {
+    var webStartable = findWebStartable(caseId, processId);
+    return Objects.isNull(webStartable) ? "" : webStartable.getDisplayName();
   }
 
   public static String getDisplayProcessPMV(IProcessStart processStart) {
+    if (processStart == null) {
+      return "";
+    }
+
     return IvyExecutor.executeAsSystem(() -> {
       var pmv = processStart.getProcessModelVersion();
       var displayPMVName = new StringBuilder("");
@@ -83,8 +106,12 @@ public class ProcessViewerUtils {
     return BooleanUtils.toBoolean(iCase.customFields().stringField(CustomFields.IS_EXPRESS_PROCESS).getOrNull());
   }
 
+  public static boolean isCaseMap(ICase caze) {
+    return !Objects.isNull(caze) && caze.getProcessStart().getLink().getRelative().endsWith(".icm");
+  }
+
   public static boolean isShowProcessViewer(ICase caze) {
-    if (isExpressCase(caze) || !caze.isBusinessCase()) {
+    if (isExpressCase(caze) || isCaseMap(caze) || !caze.isBusinessCase()) {
       return false;
     }
     return GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.ENABLE_PROCESS_VIEWER);

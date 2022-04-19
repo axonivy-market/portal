@@ -62,17 +62,17 @@ public class FullProcessPageTest extends BaseTest{
     processWidgetPage.enterSearchKeyword("link");
     String currentIcon = processWidgetPage.getProcessItemIcon(0);
     processWidgetPage.selectViewMode("IMAGE");
-    processWidgetPage.clickMoreButton();
+    processWidgetPage.clickMoreButtonOfFirstImageProcess();
     processWidgetPage.waitForMenuActionsDisplayed();
     processWidgetPage.clickOnProcessEditMenu(0);
     processWidgetPage.changeProcessIcon();
-    processWidgetPage.waitAjaxIndicatorDisappear();
+    processWidgetPage.waitForJQueryAndPrimeFaces(5);
     processWidgetPage.selectViewMode("GRID");
     processWidgetPage.waitForGridProcessListDisplayed();
     processWidgetPage.enterSearchKeyword("link");
     String newIcon = processWidgetPage.getProcessItemIcon(0);
     assertFalse("Current Icon is not changed", StringUtils.equals(currentIcon, newIcon));
-    processWidgetPage.clickMoreButtonOnGridMode();
+    processWidgetPage.clickMoreButtonOfFirstGridProcess();
 
     processWidgetPage.clickByCssSelector("[id$='process-widget:grid-process-group-alphabet:0:grid-processes:1:process-grid-item:process-item:process-delete']");
     processWidgetPage.waitForElementDisplayed(By.cssSelector("[id$='process-widget:remove-process-workflow-dialog']"), true);
