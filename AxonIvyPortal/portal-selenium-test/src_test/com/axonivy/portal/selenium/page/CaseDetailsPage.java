@@ -71,6 +71,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public void openTaskWithRunTheTaskBehaviour(String taskName) {
+    getRelatedTasksPanel().waitUntil(appear, DEFAULT_TIMEOUT);
     $$("div[id='case-details-related-task-table'] table tbody tr td span").filter(text(taskName)).first().click();
   }
 }

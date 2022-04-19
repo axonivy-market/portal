@@ -68,8 +68,8 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
   public void testVisibilityTaskActionForInprogressTasks() {
     login(TestAccount.ADMIN_USER);
     createTasksForTesting();
-    filterTaskByState("Suspended");
-    taskWidget.startTask(1);
+    filterTaskByNameAndState("Sick Leave Request", "Suspended");
+    taskWidget.startTask(0);
     taskWidget.clickCancelTask();
     newDashboardPage.waitForAbsencesGrowlMessageDisplay();
 
@@ -79,8 +79,8 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
 
     login(TestAccount.DEMO_USER);
     createTasksForTesting();
-    filterTaskByState("Suspended");
-    taskWidget.startTask(1);
+    filterTaskByNameAndState("Sick Leave Request", "Suspended");
+    taskWidget.startTask(0);
     taskWidget.clickCancelTask();
     newDashboardPage.waitForAbsencesGrowlMessageDisplay();
     // In progress for normal user
@@ -88,12 +88,23 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
         Arrays.asList("Details", "Reserve", "Reset", "Clear expiry", "Process Viewer", "Add Ad-hoc Task"));
   }
 
+  private void filterTaskByNameAndState(String name, String state) {
+    taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
+    taskWidget.openFilterWidget();
+    taskWidget.resetFilter();
+    taskWidget.openFilterWidget();
+    taskWidget.filterTaskName(name);
+    taskWidget.filterTaskState();
+    taskWidget.selectState(state);
+    taskWidget.applyFilter();
+  }
+
   @Test
   public void testVisibilityTaskActionForReserveTasks() {
     login(TestAccount.ADMIN_USER);
     createTasksForTesting();
-    filterTaskByState("Suspended");
-    taskWidget.reserveTask(1);
+    filterTaskByNameAndState("Maternity Leave Request", "Suspended");
+    taskWidget.reserveTask(0);
     refreshPage();
 
     // Reserved for admin user

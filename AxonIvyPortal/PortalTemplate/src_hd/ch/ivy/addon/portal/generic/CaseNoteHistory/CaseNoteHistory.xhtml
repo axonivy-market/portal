@@ -31,7 +31,8 @@
             <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/STATE')}" />
           </div>
           <div class="u-text-align-left ui-g-10 ui-lg-11 ui-md-8 ui-sm-8">
-            <h:outputText id="case-state" value="#{caseBean.getState(data.ivyCase)}" />
+            <ic:ch.ivy.addon.portalkit.component.cases.column.CaseState case="#{data.ivyCase}"
+              showIndicatorBesideText="true"/>
           </div>
         </div>
 
@@ -68,7 +69,7 @@
                 headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/author')}">
                 <h:outputText value="#{history.displayName}" styleClass="case-task-note-histories" />
               </p:column>
-              <p:column width="20%" sortBy="#{history.timestamp}" field="timestamp"
+              <p:column width="20%" sortBy="#{history.timestamp}"
                 headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/creationDate')}">
                 <h:outputText value="#{history.timestamp}">
                   <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}"/>
