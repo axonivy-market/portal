@@ -34,8 +34,7 @@ public class ProcessViewerTest extends BaseTest {
     WaitHelper.assertTrueWithWait(() -> homePage.countBrowserTab() > 1);
     homePage.switchLastBrowserTab();
     ProcessViewerPage processViewerPage = new ProcessViewerPage();
-    processViewerPage.getProcessRequestPath();
-    assertTrue(processViewerPage.getProcessRequestPath().equalsIgnoreCase("CategoriedLeaveRequest.ivp"));
+    assertTrue(processViewerPage.getProcessRequestPath().equalsIgnoreCase("Categoried Leave Request"));
   }
 
   @Test
@@ -47,8 +46,7 @@ public class ProcessViewerTest extends BaseTest {
     WaitHelper.assertTrueWithWait(() -> homePage.countBrowserTab() > 1);
     homePage.switchLastBrowserTab();
     ProcessViewerPage processViewerPage = new ProcessViewerPage();
-    processViewerPage.getProcessRequestPath();
-    assertTrue(processViewerPage.getProcessRequestPath().equalsIgnoreCase("CategoriedLeaveRequest.ivp"));
+    assertTrue(processViewerPage.getProcessRequestPath().equalsIgnoreCase("Categoried Leave Request"));
   }
 
   @Test
