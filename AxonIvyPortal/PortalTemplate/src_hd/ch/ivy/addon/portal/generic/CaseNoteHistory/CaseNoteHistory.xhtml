@@ -59,7 +59,7 @@
                 sortBy="#{history.displayCaseName}"
                 filterBy="#{history.displayCaseName}" filterMatchMode="contains"
                 styleClass="u-truncate-text history-related-case ui-sm-12"
-                rendered="#{data.ivyCase.isBusinessCase()}">
+                rendered="#{data.showRelatedCaseInfo}">
                 <p:commandLink value="#{history.displayCaseName}"
                   actionListener="#{caseDetailsBean.navigateToCaseDetails(history.caseId)}"/>
               </p:column>
