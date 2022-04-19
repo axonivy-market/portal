@@ -222,12 +222,12 @@ public class PortalExpressTest extends BaseTest {
 
     WebElement expressWorkflow = searchResultPage.findElementByClassName("express-workflow");
     WebElement moreMenuButton =
-        searchResultPage.findChildElementByCssSelector(expressWorkflow, "button[id$=':process-item:process-action-button']");
+        searchResultPage.findChildElementByCssSelector(expressWorkflow, "button[id$=':process-action-button']");
     moreMenuButton.click();
 
     assertTrue(searchResultPage.isInfoWorkflowIcon());
-    assertTrue(searchResultPage.isEditExpressWorkflow());
-    assertTrue(searchResultPage.isDeleteExpressWorkflown());
+    assertTrue(searchResultPage.isEditExpressWorkflow("Test approval"));
+    assertTrue(searchResultPage.isDeleteExpressWorkflown("Test approval"));
     assertTrue(searchResultPage.isExpressProcessLogo());
   }
 
@@ -239,12 +239,12 @@ public class PortalExpressTest extends BaseTest {
 
     WebElement expressWorkflow = searchResultPage.findElementByClassName("express-workflow");
     WebElement moreMenuButton =
-        searchResultPage.findChildElementByCssSelector(expressWorkflow, "button[id$=':process-item:process-action-button']");
+        searchResultPage.findChildElementByCssSelector(expressWorkflow, "button[id$=':process-action-button']");
     moreMenuButton.click();
 
     assertTrue(searchResultPage.isInfoWorkflowIcon());
-    assertTrue(searchResultPage.isEditExpressWorkflow());
-    assertTrue(searchResultPage.isDeleteExpressWorkflown());
+    assertTrue(searchResultPage.isEditExpressWorkflow("Test approval"));
+    assertTrue(searchResultPage.isDeleteExpressWorkflown("Test approval"));
     assertTrue(searchResultPage.isExpressProcessLogo());
   }
 
@@ -260,11 +260,11 @@ public class PortalExpressTest extends BaseTest {
 
     WebElement expressWorkflow = searchResultPage.findElementByClassName("express-workflow");
     WebElement moreMenuButton =
-        searchResultPage.findChildElementByCssSelector(expressWorkflow, "button[id$=':process-item:process-action-button']");
+        searchResultPage.findChildElementByCssSelector(expressWorkflow, "button[id$=':process-action-button']");
     moreMenuButton.click();
 
-    assertTrue(searchResultPage.isEditExpressWorkflow());
-    assertTrue(searchResultPage.isDeleteExpressWorkflown());
+    assertTrue(searchResultPage.isEditExpressWorkflow("Test approval"));
+    assertTrue(searchResultPage.isDeleteExpressWorkflown("Test approval"));
   }
 
 	@Test

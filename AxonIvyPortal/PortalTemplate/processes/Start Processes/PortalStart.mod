@@ -1661,7 +1661,7 @@ after finish task</name>
 </elementInfo>
 ' #txt
 Pt0 S70 864 272 144 64 -47 -28 #rect
-Pt0 f138 1537 1713 30 30 0 15 #rect
+Pt0 f138 1489 1713 30 30 0 15 #rect
 Pt0 f142 dialogId ch.ivy.addon.portal.generic.CaseNoteHistory #txt
 Pt0 f142 startMethod start(java.util.List<ch.ivy.addon.portalkit.bo.History>,String,ch.ivyteam.ivy.workflow.ICase) #txt
 Pt0 f142 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.bo.History> histories,String exportedFileName,ch.ivyteam.ivy.workflow.ICase ivyCase> param;' #txt
@@ -1680,7 +1680,7 @@ Pt0 f142 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f142 1352 1706 112 44 -48 -8 #rect
+Pt0 f142 1312 1706 112 44 -48 -8 #rect
 Pt0 f143 actionTable 'out=in;
 ' #txt
 Pt0 f143 actionCode 'import ch.ivy.addon.portalkit.util.CaseUtils;
@@ -1720,7 +1720,7 @@ Pt0 f143 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f143 1048 1706 112 44 -52 -8 #rect
+Pt0 f143 992 1706 112 44 -52 -8 #rect
 Pt0 f144 outLink showCaseNoteHistory.ivp #txt
 Pt0 f144 inParamDecl '<Long caseId> param;' #txt
 Pt0 f144 inParamTable 'out.caseId=param.caseId;
@@ -1739,14 +1739,14 @@ Pt0 f144 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Pt0 f144 @C|.responsibility Everybody #txt
-Pt0 f144 897 1713 30 30 -71 17 #rect
+Pt0 f144 881 1713 30 30 -71 17 #rect
 Pt0 f145 expr out #txt
-Pt0 f145 927 1728 1048 1728 #arcP
+Pt0 f145 911 1728 992 1728 #arcP
 Pt0 f146 expr out #txt
-Pt0 f146 1464 1728 1537 1728 #arcP
+Pt0 f146 1424 1728 1489 1728 #arcP
 Pt0 f147 expr out #txt
-Pt0 f147 1160 1728 1352 1728 #arcP
-Pt0 f148 1537 1809 30 30 0 15 #rect
+Pt0 f147 1104 1728 1312 1728 #arcP
+Pt0 f148 1489 1809 30 30 0 15 #rect
 Pt0 f149 outLink showTaskNoteHistory.ivp #txt
 Pt0 f149 inParamDecl '<Long selectedTaskId> param;' #txt
 Pt0 f149 inParamTable 'out.taskId=param.selectedTaskId;
@@ -1771,7 +1771,7 @@ Pt0 f149 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Pt0 f149 @C|.responsibility Everybody #txt
-Pt0 f149 897 1809 30 30 -69 17 #rect
+Pt0 f149 881 1809 30 30 -69 17 #rect
 Pt0 f151 dialogId ch.ivy.addon.portal.generic.TaskNoteHistory #txt
 Pt0 f151 startMethod start(java.util.List<ch.ivyteam.ivy.workflow.INote>,String,ch.ivyteam.ivy.workflow.ITask) #txt
 Pt0 f151 requestActionDecl '<java.util.List<ch.ivyteam.ivy.workflow.INote> notes,String exportedFileName,ch.ivyteam.ivy.workflow.ITask task> param;' #txt
@@ -1790,7 +1790,7 @@ Pt0 f151 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f151 1352 1802 112 44 -48 -8 #rect
+Pt0 f151 1312 1802 112 44 -48 -8 #rect
 Pt0 f152 actionTable 'out=in;
 ' #txt
 Pt0 f152 actionCode 'import ch.ivyteam.ivy.workflow.INote;
@@ -1816,12 +1816,12 @@ Pt0 f152 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f152 1048 1802 112 44 -42 -8 #rect
+Pt0 f152 992 1802 112 44 -42 -8 #rect
 Pt0 f153 expr out #txt
-Pt0 f153 1464 1824 1537 1824 #arcP
-Pt0 f154 1160 1824 1352 1824 #arcP
+Pt0 f153 1424 1824 1489 1824 #arcP
+Pt0 f154 1104 1824 1312 1824 #arcP
 Pt0 f155 expr out #txt
-Pt0 f155 927 1824 1048 1824 #arcP
+Pt0 f155 911 1824 992 1824 #arcP
 Pt0 f156 dialogId ch.ivy.addon.portal.generic.AdditionalCaseDetails #txt
 Pt0 f156 startMethod start(ch.ivyteam.ivy.workflow.ICase) #txt
 Pt0 f156 requestActionDecl '<ch.ivyteam.ivy.workflow.ICase iCase> param;' #txt
@@ -1839,8 +1839,8 @@ Case Details</name>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f156 1352 1898 128 44 -42 -16 #rect
-Pt0 f157 1537 1905 30 30 0 15 #rect
+Pt0 f156 1312 1898 128 44 -42 -16 #rect
+Pt0 f157 1489 1905 30 30 0 15 #rect
 Pt0 f158 actionTable 'out=in;
 ' #txt
 Pt0 f158 actionCode 'out.caseSelected = ivy.wf.findCase(in.caseId);' #txt
@@ -1852,7 +1852,7 @@ Pt0 f158 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f158 1048 1898 112 44 -41 -8 #rect
+Pt0 f158 992 1898 112 44 -41 -8 #rect
 Pt0 f159 outLink showAdditionalCaseDetails.ivp #txt
 Pt0 f159 inParamDecl '<Long caseId> param;' #txt
 Pt0 f159 inParamTable 'out.caseId=param.caseId;
@@ -1877,13 +1877,13 @@ Pt0 f159 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Pt0 f159 @C|.responsibility Everybody #txt
-Pt0 f159 897 1905 30 30 -85 17 #rect
+Pt0 f159 881 1905 30 30 -85 17 #rect
 Pt0 f160 expr out #txt
-Pt0 f160 927 1920 1048 1920 #arcP
+Pt0 f160 911 1920 992 1920 #arcP
 Pt0 f161 expr out #txt
-Pt0 f161 1160 1920 1352 1920 #arcP
+Pt0 f161 1104 1920 1312 1920 #arcP
 Pt0 f162 expr out #txt
-Pt0 f162 1480 1920 1537 1920 #arcP
+Pt0 f162 1440 1920 1489 1920 #arcP
 Pt0 f163 outLink showTaskAnalysis.ivp #txt
 Pt0 f163 inParamDecl '<> param;' #txt
 Pt0 f163 requestEnabled true #txt
@@ -1906,8 +1906,8 @@ Pt0 f163 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Pt0 f163 @C|.responsibility Everybody #txt
-Pt0 f163 897 2001 30 30 -48 20 #rect
-Pt0 f164 1537 2001 30 30 0 15 #rect
+Pt0 f163 881 2001 30 30 -48 20 #rect
+Pt0 f164 1489 2001 30 30 0 15 #rect
 Pt0 f165 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1915,7 +1915,7 @@ Pt0 f165 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f165 1248 2000 32 32 -47 18 #rect
+Pt0 f165 1200 2000 32 32 -47 18 #rect
 Pt0 f166 dialogId ch.ivy.addon.portal.generic.TaskAnalysis #txt
 Pt0 f166 startMethod start() #txt
 Pt0 f166 requestActionDecl '<> param;' #txt
@@ -1930,7 +1930,7 @@ Pt0 f166 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f166 1352 1994 128 44 -56 -8 #rect
+Pt0 f166 1312 1994 128 44 -56 -8 #rect
 Pt0 f167 actionTable 'out=in;
 ' #txt
 Pt0 f167 actionCode 'import ch.ivy.addon.portalkit.util.PermissionUtils;
@@ -1944,13 +1944,13 @@ Pt0 f167 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f167 1048 1994 112 44 -50 -8 #rect
+Pt0 f167 992 1994 112 44 -50 -8 #rect
 Pt0 f168 expr out #txt
-Pt0 f168 927 2016 1048 2016 #arcP
+Pt0 f168 911 2016 992 2016 #arcP
 Pt0 f169 expr out #txt
-Pt0 f169 1480 2016 1537 2016 #arcP
+Pt0 f169 1440 2016 1489 2016 #arcP
 Pt0 f170 expr out #txt
-Pt0 f170 1160 2016 1248 2016 #arcP
+Pt0 f170 1104 2016 1200 2016 #arcP
 Pt0 f171 expr in #txt
 Pt0 f171 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -1961,9 +1961,9 @@ Pt0 f171 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f171 1264 2032 1552 2031 #arcP
-Pt0 f171 1 1264 2064 #addKink
-Pt0 f171 2 1552 2064 #addKink
+Pt0 f171 1216 2032 1504 2031 #arcP
+Pt0 f171 1 1216 2064 #addKink
+Pt0 f171 2 1504 2064 #addKink
 Pt0 f171 1 0.23529411764705882 0 -10 #arcLabel
 Pt0 f172 expr in #txt
 Pt0 f172 outCond in.hasPermission #txt
@@ -1976,7 +1976,7 @@ Pt0 f172 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f172 1280 2016 1352 2016 #arcP
+Pt0 f172 1232 2016 1312 2016 #arcP
 Pt0 f172 0 0.4166666666666667 0 -11 #arcLabel
 Pt0 f174 433 2385 30 30 0 15 #rect
 Pt0 f175 368 2400 433 2400 #arcP
@@ -2349,11 +2349,12 @@ Pt0 f221 168 1194 112 44 -42 -8 #rect
 Pt0 f222 111 1216 168 1216 #arcP
 Pt0 f222 0 0.6937327756354965 0 0 #arcLabel
 Pt0 f223 224 1238 224 1264 #arcP
-Pt0 f224 1361 2097 30 30 0 15 #rect
+Pt0 f224 1201 2097 30 30 0 15 #rect
 Pt0 f225 dialogId ch.ivy.addon.portal.generic.ProcessViewer #txt
-Pt0 f225 startMethod start(String) #txt
-Pt0 f225 requestActionDecl '<String processViewerCaseId> param;' #txt
-Pt0 f225 requestMappingAction 'param.processViewerCaseId=in.processViewerCaseId;
+Pt0 f225 startMethod start(Long,String) #txt
+Pt0 f225 requestActionDecl '<Long caseId,String processId> param;' #txt
+Pt0 f225 requestMappingAction 'param.caseId=in.caseId;
+param.processId=in.processId;
 ' #txt
 Pt0 f225 responseMappingAction 'out=in;
 ' #txt
@@ -2364,14 +2365,15 @@ Pt0 f225 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f225 1044 2088 120 48 -41 -8 #rect
+Pt0 f225 988 2088 120 48 -41 -8 #rect
 Pt0 f226 outLink PortalProcessViewer.ivp #txt
-Pt0 f226 inParamDecl '<String processViewerCaseId> param;' #txt
-Pt0 f226 inParamTable 'out.processViewerCaseId=param.processViewerCaseId;
+Pt0 f226 inParamDecl '<Long caseId,String processKey> param;' #txt
+Pt0 f226 inParamTable 'out.caseId=param.caseId;
+out.processId=param.processKey;
 ' #txt
 Pt0 f226 requestEnabled true #txt
 Pt0 f226 triggerEnabled false #txt
-Pt0 f226 callSignature PortalProcessViewer(String) #txt
+Pt0 f226 callSignature PortalProcessViewer(Long,String) #txt
 Pt0 f226 caseData businessCase.attach=true #txt
 Pt0 f226 showInStartList false #txt
 Pt0 f226 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -2382,10 +2384,10 @@ Pt0 f226 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Pt0 f226 @C|.responsibility Everybody #txt
-Pt0 f226 897 2097 30 30 -50 18 #rect
-Pt0 f227 927 2112 1044 2112 #arcP
+Pt0 f226 881 2097 30 30 -50 18 #rect
+Pt0 f227 911 2112 988 2112 #arcP
 Pt0 f228 color default #txt
-Pt0 f228 1164 2112 1361 2112 #arcP
+Pt0 f228 1108 2112 1201 2112 #arcP
 Pt0 f229 outLink ShowTaskDocument.ivp #txt
 Pt0 f229 inParamDecl '<Long selectedTaskId> param;' #txt
 Pt0 f229 inParamTable 'out.taskId=param.selectedTaskId;
@@ -2404,8 +2406,8 @@ Pt0 f229 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Pt0 f229 @C|.responsibility Everybody #txt
-Pt0 f229 897 2193 30 30 -48 16 #rect
-Pt0 f230 1361 2193 30 30 0 15 #rect
+Pt0 f229 881 2193 30 30 -48 16 #rect
+Pt0 f230 1201 2193 30 30 0 15 #rect
 Pt0 f232 dialogId ch.ivy.addon.portal.generic.TaskDocuments #txt
 Pt0 f232 startMethod start(Long) #txt
 Pt0 f232 requestActionDecl '<Long taskId> param;' #txt
@@ -2420,10 +2422,10 @@ Pt0 f232 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f232 1048 2186 112 44 -45 -8 #rect
-Pt0 f233 927 2208 1048 2208 #arcP
+Pt0 f232 992 2186 112 44 -45 -8 #rect
+Pt0 f233 911 2208 992 2208 #arcP
 Pt0 f231 color default #txt
-Pt0 f231 1160 2208 1361 2208 #arcP
+Pt0 f231 1104 2208 1201 2208 #arcP
 Pt0 f234 outLink ShowCaseDocument.ivp #txt
 Pt0 f234 inParamDecl '<Long caseId> param;' #txt
 Pt0 f234 inParamTable 'out.caseId=param.caseId;
@@ -2442,8 +2444,8 @@ Pt0 f234 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Pt0 f234 @C|.responsibility Everybody #txt
-Pt0 f234 897 2289 30 30 -49 18 #rect
-Pt0 f235 1361 2289 30 30 0 15 #rect
+Pt0 f234 881 2289 30 30 -49 18 #rect
+Pt0 f235 1201 2289 30 30 0 15 #rect
 Pt0 f237 dialogId ch.ivy.addon.portal.generic.CaseDocuments #txt
 Pt0 f237 startMethod start(Long) #txt
 Pt0 f237 requestActionDecl '<Long caseId> param;' #txt
@@ -2458,10 +2460,10 @@ Pt0 f237 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f237 1048 2282 112 44 -47 -8 #rect
-Pt0 f238 927 2304 1048 2304 #arcP
+Pt0 f237 992 2282 112 44 -47 -8 #rect
+Pt0 f238 911 2304 992 2304 #arcP
 Pt0 f236 color default #txt
-Pt0 f236 1160 2304 1361 2304 #arcP
+Pt0 f236 1104 2304 1201 2304 #arcP
 >Proto Pt0 .colors 'default=;
 ' #txt
 >Proto Pt0 .type ch.ivy.addon.portal.generic.PortalStartData #txt
