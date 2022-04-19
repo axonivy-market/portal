@@ -169,12 +169,13 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskListConfiguration: Configuration de la liste des tâches
   ProcessViewer:
     Breadcrumb: Visualisation du processus {0}
-    ModelVersion: Version du modèle de processus
     ProcessDataNotFound: Impossible de trouver les données du processus !
+    ProcessDetails: TODO Process details
+    ProcessId: TODO Process Id
+    ProcessInfo: TODO Process Information
+    ProcessInfoIconTooltip: TODO Click to see details of the process start
     ProcessViewerText: Visualisation du processus
-    RequestPath: Chemin de la demande du processus
     Title: Visualisation du processus
-    UserFriendlyRequestPath: Chemin de requête convivial du processus
   TaskDocuments:
     TaskDocumentsPageTitle: TODO Task Documents
   adminSettings:

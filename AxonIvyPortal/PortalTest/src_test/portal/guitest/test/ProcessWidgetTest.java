@@ -96,8 +96,8 @@ public class ProcessWidgetTest extends BaseTest {
     processWidget.expand();
     processWidget.selectViewMode("GRID");
     processWidget.waitForGridProcessListDisplayed();
-    processWidget.clickMoreButtonOnGridMode();
-    processWidget.deleteProcess(0);
+    processWidget.clickMoreButtonOfFirstGridProcess();
+    processWidget.deleteGridProcess(0);
     backToCompactProcessWidget();
     
     assertEquals(0, processWidget.getNumberOfFavoriteUserProcesses());
@@ -157,6 +157,7 @@ public class ProcessWidgetTest extends BaseTest {
   public void testReorderFavoriteProcess() {
     processWidget = homePage.getProcessWidget();
     processWidget.expand();
+    processWidget.openMainMenu();
     String processName = "AGoogle";
     String processLink = "google.com";
     createExternalTestProcess(processName, processLink,false);
