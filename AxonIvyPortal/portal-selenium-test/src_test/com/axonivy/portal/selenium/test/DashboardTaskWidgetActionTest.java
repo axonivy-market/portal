@@ -54,7 +54,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     assertTaskActionsByTaskState("Ready for joining", Arrays.asList("Details", "Reset", "Destroy", "Workflow Events", "Process Viewer"));
     // Suspended
     assertTaskActionsByTaskState("Suspended",
-        Arrays.asList("Details", "Delegate", "Clear expiry", "Destroy", "Workflow Events", "Process Viewer", "Add Ad-hoc Task"));
+        Arrays.asList("Details", "Delegate", "Reserve", "Clear expiry", "Destroy", "Workflow Events", "Process Viewer", "Add Ad-hoc Task"));
     // Done
     assertTaskActionsByTaskState("Done", Arrays.asList("Details", "Workflow Events", "Process Viewer"));
     // Delayed
