@@ -21,7 +21,7 @@ To replace default login page, extend existing templates with
 ..
 
 Login background
-----------
+----------------
 To change the default login background image, simply add or replace the image in ``configuration/applications/<APPNAME>/branding/background.jpg`` by your image.
 
 Refer to `Engine Branding <https://developer.axonivy.com/doc/nightly/designer-guide/user-interface/branding/branding-engine.html#>`__ for more detail.
