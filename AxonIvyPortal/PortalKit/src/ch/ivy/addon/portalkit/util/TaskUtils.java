@@ -316,4 +316,14 @@ public final class TaskUtils {
     String taskEndInfoSessionAttributeKey = StickyTaskListService.service().getTaskEndInfoSessionAttributeKey(task.getId());
     SecurityServiceUtils.setSessionAttribute(taskEndInfoSessionAttributeKey, taskEndInfo);
   }
+  
+  public static void expiryTaskById(Long taskId) {
+    ITask task = findTaskById(taskId);
+    if (task != null) {
+      if (task.getExpiryActivator() == null && task.getExpiryTimestamp() == null) {
+        task.setExpiryActivator(task.getActivator());
+      }
+      task.setExpiryTimestamp(new Date());
+    }
+  }
 }
