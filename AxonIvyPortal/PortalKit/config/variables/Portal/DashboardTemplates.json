@@ -1,7 +1,7 @@
 [{
 	"title" : "Default template",
 	"description" : "Create dashboard with 1 Task list, 1 Case list, and 1 Process list",
-	"icon" : "si-cog-double-2",
+	"icon" : "si-layout-dashboard",
 	"dashboard" : {
 		"id" : "",
 		"title" : "public 4",
@@ -248,8 +248,8 @@
 	}
 } , {
 	"title" : "Two Task list dashboard",
-	"description" : "Create dashboard with 2 Task lists and 1 Image Process start",
-	"icon" : "si-pie-line-graph-desktop",
+	"description" : "Create dashboard with 2 Task lists and 1 Process list",
+	"icon" : "si-layout-dashboard",
 	"dashboard" : {
 		"id" : "",
 		"title" : "Two Task list dashboard",
