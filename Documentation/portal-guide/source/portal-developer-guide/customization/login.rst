@@ -20,6 +20,17 @@ To replace default login page, extend existing templates with
     </ui:composition>
 ..
 
+Login background
+----------
+To change the default login background image, simply add or replace the image in ``configuration/applications/<APPNAME>/branding/background.jpg`` by your image.
+
+Refer to `Engine Branding <https://developer.axonivy.com/doc/nightly/designer-guide/user-interface/branding/branding-engine.html#>`__ for more detail.
+
+.. tip::
+  - We recommend using an image with size is 1920x1080 pixels.
+
+  - Images are supported with every known extension, e.g. ``.jpg``, ``.png``, ``.svg``. However, if there are multiple files with different extensions (e.g. a ``background.jpg`` and a ``background.png``) in the same directory, the first found will be chosen.
+
 Additional
 ----------
 To change the default login background image, simply replace the default
