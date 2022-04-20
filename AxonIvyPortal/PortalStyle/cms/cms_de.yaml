@@ -453,6 +453,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     errorFileUploadSize: Die Dateigrösse muss kleiner als {0} sein.
     errorNotification: Fehlerbenachrichtigung
     errorXhr: Fehler beim aktualisieren der Webseiteinhalte
+    escalationTaskHeaderText: Eskalation auslösen
+    escalationTaskMessage: Frist wird auf jetzt gesetzt, somit läuft die Bearbeitungsfrist ab. Sind Sie sicher?
     filter:
       from: von
       moreOptions: Mehr Optionen
@@ -1170,6 +1172,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskDetails: Aufgabendetails
     taskInforDialogTitle: Informationen
     taskNotes: Notizen
+    triggerEscalation: TODO Trigger Escalation
   taskList:
     deadline: Frist
     default: Standard

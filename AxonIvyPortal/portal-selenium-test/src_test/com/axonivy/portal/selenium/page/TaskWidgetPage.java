@@ -6,6 +6,7 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
@@ -60,5 +61,48 @@ public class TaskWidgetPage extends TemplatePage {
   public void openTaskWithAccessTaskDetailsBehaviour(int position) {
     $("div[id='task-widget:task-list-scroller:" + position + ":task-item:task-info']").waitUntil(appear, DEFAULT_TIMEOUT);
     $("div[id='task-widget:task-list-scroller:" + position + ":task-item:task-info']").click();
+  }
+  
+  public SelenideElement getFilterTasksByKeyword() {
+    return $("input[id='task-widget:expanded-mode-filter-form:expanded-mode-filter-container:ajax-keyword-filter']");
+  }
+  
+  public void filterTasksBy(String keyword) {
+    getFilterTasksByKeyword().waitUntil(appear, DEFAULT_TIMEOUT).clear();
+    getFilterTasksByKeyword().click();
+    getFilterTasksByKeyword().sendKeys(keyword);
+  }
+  
+  public void clickOnTaskActionLink(int taskIndex) {
+    $(String.format("a[id$='task-list-scroller:%d:task-item:task-action:additional-options:task-side-steps-menu'",
+        taskIndex)).waitUntil(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+  }
+  
+  private void openTriggerEscalationDialog() {
+    $("a[id$='\\:task-trigger-escalation-command']").waitUntil(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    $("div[id$='\\:escalation-task-confirmation-dialog']").waitUntil(Condition.appear, DEFAULT_TIMEOUT);
+  }
+  
+  public void triggerEscalation() {
+    openTriggerEscalationDialog();
+    $("button[id$='\\:confirm-escalation']").waitUntil(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+  }
+  
+  public SelenideElement getTaskState(int taskRowIndex) {
+    return $(String.format("[id='task-widget:task-list-scroller:%d:task-item:task-state-component:task-state']",
+        taskRowIndex)).waitUntil(Condition.appear, DEFAULT_TIMEOUT).$("span");
+  }
+  
+  public String getPriorityOfTask(int row) {
+    String priorityClassName = $("span[id$='" + row +":task-item:task-priority-component:task-priority'] > span > i").attr("class");
+    if (priorityClassName.contains("low-priority")) {
+      return "low";
+    } else if (priorityClassName.contains("normal-priority")) {
+      return "normal";
+    } else if (priorityClassName.contains("high-priority")) {
+      return "high";
+    } else {
+      return "exception";
+    }
   }
 }
