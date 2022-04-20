@@ -45,7 +45,7 @@ public class NoteHistoryPage extends TemplatePage {
   }
 
   public String getCaseState() {
-    return findElementById("form:case-state").getText();
+    return findElementById("form:case-state:case-state-cell").getText();
   }
   
   public String getCaseId() {
