@@ -106,7 +106,7 @@ The basic structure of JSON of Task widget
 
             - ``expiryTimestamp``: expiry date and time of the task
             
-            - ``actions``: for further actions: access task details, reset task, delegate task, reserve, destroy task, and add Ad-hoc task
+            - ``actions``: for further actions: access task details, reset task, delegate task, reserve, destroy task, trigger escalation task and add Ad-hoc task
 
          For custom column, ``field`` is the name of a task custom field.
          Portal will use the value of ``field`` attribute to get the value of the column.
