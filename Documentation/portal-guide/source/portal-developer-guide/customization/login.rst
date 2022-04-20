@@ -31,11 +31,6 @@ Refer to `Engine Branding <https://developer.axonivy.com/doc/nightly/designer-gu
 
   - Images are supported with every known extension, e.g. ``.jpg``, ``.png``, ``.svg``. However, if there are multiple files with different extensions (e.g. a ``background.jpg`` and a ``background.png``) in the same directory, the first found will be chosen.
 
-Additional
-----------
-To change the default login background image, simply replace the default
-image in ``/PortalStyle/webContent/resources/images/login/login-bg.jpg`` by your image.
-
 Login error page
 ----------------
 
