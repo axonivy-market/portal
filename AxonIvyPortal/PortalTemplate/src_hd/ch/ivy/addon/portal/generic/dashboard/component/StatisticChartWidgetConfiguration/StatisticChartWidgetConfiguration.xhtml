@@ -23,16 +23,7 @@
         <p>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/StatisticWidget/ConfigurationDescription')}</p>
       </div>
 
-      <h:panelGroup id="widget-title-group" layout="block" styleClass="ui-g-12 u-padding-0 ui-fluid">
-        <div class="ui-g-4">
-          <p:outputLabel for="widget-title"
-            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/widgetTitle')}" />
-        </div>
-        <div class="ui-g-8">
-          <p:inputText id="widget-title" styleClass="widget-configuration__input-text" value="#{widget.name}"
-            readonly="true" />
-        </div>
-      </h:panelGroup>
+      <h:panelGroup id="widget-title-group" layout="block" styleClass="ui-g-12 u-padding-0 ui-fluid"/>
 
       <div class="ui-g-12 MarTop20 u-padding-0">
         <div class="ui-g-8">
@@ -42,7 +33,7 @@
           <p:commandButton id="preview-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/preview')}"
             styleClass="Fright preview-button" icon="si si-search"
             resetValues="true"
-            update="#{cc.clientId}:preview-statistic widget-title-group"
+            update="#{cc.clientId}:preview-statistic user-filter"
             process="user-filter" oncomplete="PF('new-widget-configuration-dialog').initPosition();" />
         </div>
       </div>
@@ -73,9 +64,7 @@
             </f:facet>
           </p:selectOneMenu>
         </div>
-        <p:messages id="statistic-widget-validation-messages" closable="true" styleClass="ui-g-12">
-          <p:autoUpdate />
-        </p:messages>
+        <p:messages id="statistic-widget-validation-messages" closable="true" styleClass="ui-g-12"/>
       </h:panelGroup>
     </div>
   </h:panelGroup>
