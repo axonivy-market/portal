@@ -43,7 +43,8 @@ public enum GlobalVariable {
   SHOW_GLOBAL_SEARCH(GlobalVariableType.SELECTION, Option.TRUE.toString(), "showGlobalSearch"),
   DISPLAY_USERS_OF_ROLE(GlobalVariableType.SELECTION, Option.FALSE.toString(), "displayAllUsersOfTaskActivator"),
   BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST(GlobalVariableType.EXTERNAL_SELECTION, BehaviourWhenClickingOnLineInTaskList.ACCESS_TASK_DETAILS.name(),
-      "behaviourWhenClickingOnLineInTaskList", getBehavioursWhenClickingOnLineInTaskList());
+      "behaviourWhenClickingOnLineInTaskList", getBehavioursWhenClickingOnLineInTaskList()),
+  SHOW_ERROR_LOG_TO_CONSOLE(GlobalVariableType.SELECTION, Option.FALSE.toString(), "showErrorLogToConsole");
   
   private GlobalVariableType type;
   private String defaultValue;
