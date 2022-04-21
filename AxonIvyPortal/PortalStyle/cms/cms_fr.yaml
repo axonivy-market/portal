@@ -259,6 +259,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       showButtonIcon: Pour activer/désactiver l'icône d'affichage dans le bouton.
       showCaseDurationTime: Pour activer/désactiver l'affichage de la durée dans la page des détails de l'affaire.
       showEnvironmentInfoNote: Pour activer/désactiver l'affichage des informations sur l'environnement.
+      showErrorLogToConsole: TODO Set to true to enable write error log to browser console
       showGlobalSearch: Pour activer/désactiver l'affichage de la recherche globale.
       showLegacyUI: Pour activer/désactiver l'affichage de l'interface utilisateur héritée.
       showProcessInformation: Définissez la valeur false pour désactiver le lien vers l'option Afficher les informations du processus sur la page processus (mode grille) et détails du cas.
