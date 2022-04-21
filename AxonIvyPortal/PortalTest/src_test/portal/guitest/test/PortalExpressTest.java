@@ -110,7 +110,7 @@ public class PortalExpressTest extends BaseTest {
 		formDefinition.createCheckboxFieldWithDataProvider("Checkbox with data provider");
 		formDefinition.moveAllElementToDragAndDrogPanel();
 
-		Assert.assertEquals(13, formDefinition.countNumberOfElementsInPreviewDialog());
+		Assert.assertEquals(14, formDefinition.countNumberOfElementsInPreviewDialog());
 		Assert.assertNotNull(formDefinition.findElementByXpath("//label[text()='Data Provider Item 1']"));
 		Assert.assertNotNull(formDefinition.findElementByXpath("//label[text()='Data Provider Item 2']"));
 		Assert.assertNotNull(formDefinition.findElementByXpath("//label[text()='Data Provider Item 3']"));
@@ -222,12 +222,12 @@ public class PortalExpressTest extends BaseTest {
 
     WebElement expressWorkflow = searchResultPage.findElementByClassName("express-workflow");
     WebElement moreMenuButton =
-        searchResultPage.findChildElementByCssSelector(expressWorkflow, "button[id$=':process-item:process-action-button']");
+        searchResultPage.findChildElementByCssSelector(expressWorkflow, "button[id$=':process-action-button']");
     moreMenuButton.click();
 
     assertTrue(searchResultPage.isInfoWorkflowIcon());
-    assertTrue(searchResultPage.isEditExpressWorkflow());
-    assertTrue(searchResultPage.isDeleteExpressWorkflown());
+    assertTrue(searchResultPage.isEditExpressWorkflow("Test approval"));
+    assertTrue(searchResultPage.isDeleteExpressWorkflown("Test approval"));
     assertTrue(searchResultPage.isExpressProcessLogo());
   }
 
@@ -239,12 +239,12 @@ public class PortalExpressTest extends BaseTest {
 
     WebElement expressWorkflow = searchResultPage.findElementByClassName("express-workflow");
     WebElement moreMenuButton =
-        searchResultPage.findChildElementByCssSelector(expressWorkflow, "button[id$=':process-item:process-action-button']");
+        searchResultPage.findChildElementByCssSelector(expressWorkflow, "button[id$=':process-action-button']");
     moreMenuButton.click();
 
     assertTrue(searchResultPage.isInfoWorkflowIcon());
-    assertTrue(searchResultPage.isEditExpressWorkflow());
-    assertTrue(searchResultPage.isDeleteExpressWorkflown());
+    assertTrue(searchResultPage.isEditExpressWorkflow("Test approval"));
+    assertTrue(searchResultPage.isDeleteExpressWorkflown("Test approval"));
     assertTrue(searchResultPage.isExpressProcessLogo());
   }
 
@@ -260,11 +260,11 @@ public class PortalExpressTest extends BaseTest {
 
     WebElement expressWorkflow = searchResultPage.findElementByClassName("express-workflow");
     WebElement moreMenuButton =
-        searchResultPage.findChildElementByCssSelector(expressWorkflow, "button[id$=':process-item:process-action-button']");
+        searchResultPage.findChildElementByCssSelector(expressWorkflow, "button[id$=':process-action-button']");
     moreMenuButton.click();
 
-    assertTrue(searchResultPage.isEditExpressWorkflow());
-    assertTrue(searchResultPage.isDeleteExpressWorkflown());
+    assertTrue(searchResultPage.isEditExpressWorkflow("Test approval"));
+    assertTrue(searchResultPage.isDeleteExpressWorkflown("Test approval"));
   }
 
 	@Test

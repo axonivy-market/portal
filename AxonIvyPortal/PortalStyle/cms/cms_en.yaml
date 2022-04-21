@@ -85,6 +85,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     caseDescription: Case description
     taskDescription: Task description
     taskState: Task state
+  CaseDocuments:
+    CaseDocumentsPageTitle: Case Documents
   CaseStatusInformation:
     CurrentTasks:
       currentTasks: Current tasks
@@ -165,6 +167,17 @@ ch.ivy.addon.portalkit.ui.jsf:
     showTutorial: Show Welcome Tour
     taskListConfigDescription: In this area you can configure the task list according to your requirements.
     taskListConfiguration: Task list configuration
+  ProcessViewer:
+    Breadcrumb: Process Viewer of {0} process
+    ProcessDataNotFound: Could not found the Process Data!
+    ProcessDetails: Process details
+    ProcessId: Process Id
+    ProcessInfo: Process Information
+    ProcessInfoIconTooltip: Click to see details of the process start
+    ProcessViewerText: Process Viewer
+    Title: Process Viewer
+  TaskDocuments:
+    TaskDocumentsPageTitle: Task Documents
   adminSettings:
     addLanguages: Add languages
     addNewApplication: Add new third party application
@@ -221,6 +234,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       enableCaseOwner: Set to true to enable filtering case owner when cases are queried. This setting affects all case queries, e.g. for case list, global search, statistic.
       enableGroupChat: Set this property to true to enable group chat function
       enablePrivateChat: Set this property to true to enable private chat function
+      enableProcessViewer: Set this property to true to enable process viewer option in Task/Case actions
       enableScriptCheckingForUploadedDocumentNote: Set to true to enable script checking for uploaded document. Currently this function supports checking for PDF, Excel, Word.
       enableUserFavorites: If this property is disabled, do not display user favorites section of process list in Portal home.
       enableVirusScannerForUploadedDocumentNote: Set to true to enable virus scanner for uploaded document. Currently this function is using API VIRUSTOTAL.
@@ -228,6 +242,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       hideCaseDocument: Set to true, the document section in case detail page will be hidden, otherwise it will be shown.
       hideChangePasswordButtonNote: Set to true, the change password option in top menu will be hidden, otherwise it will be shown.
       hideLogoutButtonNote: If true, the logout button on top menu will be hidden, otherwise it will be shown.
+      hideRelatedCaseInfoFromHistory: If true, case history does not display the related case information in the history table.
       hideStatisticWidget: Set to true to hide Statistic widget from homepage and application menu.
       hideSystemNotesFromHistory: If true, case/task note does not display any system notes for non-administrator users.
       hideSystemNotesFromHistoryAdministrator: If true, case/task note does not display any system notes for administrator.
@@ -242,6 +257,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       showButtonIcon: For switch on/off the display icons in button.
       showCaseDurationTime: For switch on/off the display of the duration time in case details page.
       showEnvironmentInfoNote: For switch on/off the display of environment information.
+      showErrorLogToConsole: Set to true to enable write error log to browser console
       showGlobalSearch: For switch on/off the display of the global search.
       showLegacyUI: For switch on/off the display of the legacy UI.
       showProcessInformation: Set to false to disable link to Show Information of process on Processes page (grid mode) and Case Details.
@@ -289,6 +305,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     downloadFile: Download file
     duration: Duration
     history: History
+    noCaseName: <No case name>
     noDescription: No description
     noRunningCase: No case is running
     noRunningTask: No task is running
@@ -436,6 +453,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     errorFileUploadSize: The file size must be lower than {0}
     errorNotification: Error notification
     errorXhr: Failed to update website content
+    escalationTaskHeaderText: Trigger Escalation
+    escalationTaskMessage: Expiry is set to now, thus the task expires. Are you sure?
     filter:
       from: from
       moreOptions: More options
@@ -520,8 +539,9 @@ ch.ivy.addon.portalkit.ui.jsf:
     sessionExpriedInTeams: Your session expired. The application will be restarted.
     setting: Settings
     showDetail: Show details
-    showSystemNotes: Show system notes
-    showSystemTasks: Show system tasks
+    showRelatedCaseInfo: Related case
+    showSystemNotes: System notes
+    showSystemTasks: System tasks
     start: Start
     state: State
     status: Status
@@ -864,6 +884,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     curentReportOf: of
     eventType: Event type
     exportButton: Export to Excel
+    relatedCase: Related Case
     showMoreBtn: Show more
     taskExportedFileNamePrefix: Note_history_of_task_{0}
     taskFailReason: 'Failed reason: {0}'
@@ -1154,6 +1175,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskDetails: Task details
     taskInforDialogTitle: Task information
     taskNotes: Notes
+    triggerEscalation: Trigger Escalation
   taskList:
     deadline: Deadline
     default: Default

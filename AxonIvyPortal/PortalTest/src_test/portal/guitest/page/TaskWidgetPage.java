@@ -546,6 +546,7 @@ public class TaskWidgetPage extends TemplatePage {
           .findElements(By.cssSelector("table[id$=':filter-input-form:state-selection'] div.ui-chkbox-box span.ui-chkbox-icon.ui-icon-blank"))
           .size() == labelList.size();
     });
+    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
     List<WebElement> checkBoxList = getStateFilterPanel()
         .findElements(By.cssSelector("table[id$=':filter-input-form:state-selection'] div.ui-chkbox-box.ui-state-default"));
     statesSelectedIndex.forEach(index -> {
@@ -561,11 +562,16 @@ public class TaskWidgetPage extends TemplatePage {
     var selectAll = getStateFilterPanel().findElement(By.cssSelector("[id$=':filter-input-form:states-select-all']"));
     if (selectAll.findElement(By.className("ui-chkbox-box")).getAttribute(CLASS_PROPERTY).contains("ui-state-active")) {
       click(selectAll.findElement(By.cssSelector("span.ui-chkbox-label")));
-      waitForElementExisted("[id$=':filter-input-form:states-select-all'] div.ui-chkbox-box span.ui-chkbox-icon.ui-icon-blank",
-          true, DEFAULT_TIMEOUT);
-      return;
+      WaitHelper.assertTrueWithWait(() -> {
+        return findElementByCssSelector("[id$=':filter-input-form:states-select-all'] div.ui-chkbox-box span.ui-chkbox-icon")
+            .getAttribute(CLASS).contains("ui-icon-blank");
+      });
     } else {
       click(selectAll.findElement(By.cssSelector("span.ui-chkbox-label")));
+      WaitHelper.assertTrueWithWait(() -> {
+        return findElementByCssSelector("[id$=':filter-input-form:states-select-all'] div.ui-chkbox-box span.ui-chkbox-icon")
+            .getAttribute(CLASS).contains("ui-icon-check");
+      });
       clickOnUnCheckSelectAllStates();
     }
   }
@@ -952,6 +958,7 @@ public class TaskWidgetPage extends TemplatePage {
   
   public void openNoActivatorFilter(String filterName) {
     click(By.cssSelector("[id$='filter-add-action']"));
+    waitForElementDisplayed(By.cssSelector(".filter-add-panel.ui-connected-overlay-enter-done"), true);
     WebElement filterSelectionElement = findElementById(taskWidgetId + ":filter-add-form:filter-selection");
     List<WebElement> elements = findChildElementsByTagName(filterSelectionElement, "LABEL");
     for (WebElement element : elements) {
@@ -976,5 +983,10 @@ public class TaskWidgetPage extends TemplatePage {
     if (waitForNumberOfTask) {
       waitForNumberOfTasks(1);
     }
+  }
+
+  public void clickOnProcessViewerOption() {
+    waitForElementDisplayed(By.cssSelector("[id$=':task-item:task-action:additional-options:side-steps-panel'].options-panel"), true);
+    clickByCssSelector("a[id$=':task-item:task-action:additional-options:show-process-viewer-link']");
   }
 }

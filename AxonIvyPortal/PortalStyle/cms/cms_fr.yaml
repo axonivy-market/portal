@@ -85,6 +85,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     caseDescription: Description du dossier
     taskDescription: Description de la tâche
     taskState: Etat de la tâche
+  CaseDocuments:
+    CaseDocumentsPageTitle: TODO Case Documents
   CaseStatusInformation:
     CurrentTasks:
       currentTasks: Tâches actuelles
@@ -165,6 +167,17 @@ ch.ivy.addon.portalkit.ui.jsf:
     showTutorial: Spectacle de bienvenue
     taskListConfigDescription: Dans cette zone, vous pouvez configurer la liste des tâches en fonction de vos besoins.
     taskListConfiguration: Configuration de la liste des tâches
+  ProcessViewer:
+    Breadcrumb: Visualisation du processus {0}
+    ProcessDataNotFound: Impossible de trouver les données du processus !
+    ProcessDetails: TODO Process details
+    ProcessId: TODO Process Id
+    ProcessInfo: TODO Process Information
+    ProcessInfoIconTooltip: TODO Click to see details of the process start
+    ProcessViewerText: Visualisation du processus
+    Title: Visualisation du processus
+  TaskDocuments:
+    TaskDocumentsPageTitle: TODO Task Documents
   adminSettings:
     addLanguages: Ajouter une langue
     addNewApplication: Ajouter une nouvelle application de tiers
@@ -223,6 +236,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       enableCaseOwner: Réglé sur true pour activer le filtrage du propriétaire de cas lorsque les cas sont interrogés. Ce paramètre affecte toutes les requêtes de cas, par exemple pour la liste des cas, la recherche globale, les statistiques.
       enableGroupChat: Définissez cette propriété sur true pour activer la fonction de chat de groupe
       enablePrivateChat: Définissez cette propriété à true pour activer la fonction de chat privé
+      enableProcessViewer: Définissez cette propriété à true pour activer l'option de visualisation de processus dans les actions de Task/Case.
       enableScriptCheckingForUploadedDocumentNote: Défini sur true pour activer la vérification de script pour le document téléchargé. Actuellement, cette fonction prend en charge la vérification de PDF, Excel, Word.
       enableUserFavorites: Si la propriété est désactivée, n'affichez pas la section des favoris de l'utilisateur de la liste des processus dans la page d'accueil du portail.
       enableVirusScannerForUploadedDocumentNote: Définie sur true pour activer le scanner de virus pour le document téléchargé. Actuellement, cette fonction utilise l'API VIRUSTOTAL.
@@ -230,6 +244,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       hideCaseDocument: Si vous choisissez "true", la section du document dans la page de détail du cas sera invisible, sinon elle sera visible.
       hideChangePasswordButtonNote: Définie sur true, l'option de modification du mot de passe dans le menu supérieur sera masquée, sinon elle sera affichée.
       hideLogoutButtonNote: Si true, le bouton de déconnexion du menu supérieur sera masqué, sinon il sera affiché.
+      hideRelatedCaseInfoFromHistory: TODO If true, case history does not display the related case information in the history table.
       hideStatisticWidget: Définissez la valeur sur "true" pour masquer le widget de statistiques de la page d'accueil et du menu de l'application.
       hideSystemNotesFromHistory: Si vrai, la remarque sur le cas/la tâche n'affiche aucune note de système pour les utilisateurs non administrateurs.
       hideSystemNotesFromHistoryAdministrator: Si vrai, la remarque sur le cas/la tâche n'affiche aucune note de système pour l'administrateur.
@@ -244,6 +259,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       showButtonIcon: Pour activer/désactiver l'icône d'affichage dans le bouton.
       showCaseDurationTime: Pour activer/désactiver l'affichage de la durée dans la page des détails de l'affaire.
       showEnvironmentInfoNote: Pour activer/désactiver l'affichage des informations sur l'environnement.
+      showErrorLogToConsole: TODO Set to true to enable write error log to browser console
       showGlobalSearch: Pour activer/désactiver l'affichage de la recherche globale.
       showLegacyUI: Pour activer/désactiver l'affichage de l'interface utilisateur héritée.
       showProcessInformation: Définissez la valeur false pour désactiver le lien vers l'option Afficher les informations du processus sur la page processus (mode grille) et détails du cas.
@@ -290,6 +306,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     downloadFile: Télécharger le fichier
     duration: Durée
     history: Historique
+    noCaseName: <Pas de nom de cas>
     noDescription: Aucune description
     noRunningCase: Aucune cas n'est en cours d'exécution
     noRunningTask: Aucune tâche n'est en cours d'exécution
@@ -437,6 +454,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     errorFileUploadSize: La taille du fichier doit être inférieure à {0}.
     errorNotification: Notification d'erreurs
     errorXhr: N'a pas réussi à mettre à jour le contenu du site Web
+    escalationTaskHeaderText: Escalader
+    escalationTaskMessage: L'expiration est fixée à maintenant, donc la tâche expire. Etes-vous sûr?
     filter:
       from: du
       moreOptions: Plus d'options
@@ -521,8 +540,9 @@ ch.ivy.addon.portalkit.ui.jsf:
     sessionExpriedInTeams: Votre session a expiré. L'application va être redémarrée
     setting: Paramètres
     showDetail: Afficher les détails
-    showSystemNotes: Afficher les notes du système
-    showSystemTasks: Afficher les tâches du système
+    showRelatedCaseInfo: TODO Related case
+    showSystemNotes: TODO System notes
+    showSystemTasks: TODO System tasks
     start: Démarrage
     state: Etat
     status: Etat
@@ -858,6 +878,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     curentReportOf: de
     eventType: Type d'événement
     exportButton: Exporter vers Excel
+    relatedCase: Cas connexe
     showMoreBtn: Afficher plus
     taskExportedFileNamePrefix: Histoire_des_notes_de_tâches_{0}
     taskFailReason: 'Raison de l''échec : {0}'
@@ -1148,6 +1169,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskDetails: Détails de la tâche
     taskInforDialogTitle: Informations
     taskNotes: Notes
+    triggerEscalation: TODO Trigger Escalation
   taskList:
     deadline: Date limite
     default: Défaut
