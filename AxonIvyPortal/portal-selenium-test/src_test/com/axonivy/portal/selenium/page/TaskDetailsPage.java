@@ -6,6 +6,10 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
@@ -51,5 +55,32 @@ public class TaskDetailsPage extends TemplatePage {
 
   public SelenideElement getInformationPanel() {
     return $("div[id$='task-details-information-panel'").waitUntil(Condition.appear, DEFAULT_TIMEOUT);
+  }
+  
+  public void openActionPanel() {
+    $("[id$=':additional-options:task-detail-more-step']").waitUntil(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    $("[id$=':additional-options:side-steps-panel']").waitUntil(Condition.appear, DEFAULT_TIMEOUT);
+  }
+  
+  private void openTriggerEscalationDialog() {
+    $("a[id$='\\:task-trigger-escalation-command']").waitUntil(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    $("div[id$='\\:escalation-task-confirmation-dialog']").waitUntil(Condition.appear, DEFAULT_TIMEOUT);
+  }
+  
+  public void triggerEscalation() {
+    openTriggerEscalationDialog();
+    $("button[id$='\\:confirm-escalation']").waitUntil(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+  }
+  
+  public SelenideElement getPriorityOfTask() {
+    return $("span[id$='task-priority']").waitUntil(Condition.appear, DEFAULT_TIMEOUT).$("i[class*='priority']").closest("span");
+  }
+  
+  public SelenideElement getStateOfTask() {
+    return $("[id$=':general-information:task-detail-state']").waitUntil(Condition.appear, DEFAULT_TIMEOUT).$("i[class*='task-state']").closest("span");
+  }
+  
+  public void back() {
+    $("[id$=':task-detail-title-form:back-to-previous-page']").waitUntil(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
   }
 }

@@ -54,7 +54,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     assertTaskActionsByTaskState("Ready for joining", Arrays.asList("Details", "Reset", "Destroy", "Workflow Events", "Process Viewer"));
     // Suspended
     assertTaskActionsByTaskState("Suspended",
-        Arrays.asList("Details", "Delegate", "Reserve", "Clear expiry", "Destroy", "Workflow Events", "Process Viewer", "Add Ad-hoc Task"));
+        Arrays.asList("Details", "Delegate", "Reserve", "Clear expiry", "Destroy", "Trigger Escalation", "Workflow Events", "Process Viewer", "Add Ad-hoc Task"));
     // Done
     assertTaskActionsByTaskState("Done", Arrays.asList("Details", "Workflow Events", "Process Viewer"));
     // Delayed
@@ -109,7 +109,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
 
     // Reserved for admin user
     assertTaskActionsByTaskState("Reserved",
-        Arrays.asList("Details", "Delegate", "Reset", "Clear expiry", "Destroy", "Workflow Events", "Process Viewer", "Add Ad-hoc Task"));
+        Arrays.asList("Details", "Delegate", "Reset", "Clear expiry", "Destroy", "Trigger Escalation", "Workflow Events", "Process Viewer", "Add Ad-hoc Task"));
 
     login(TestAccount.DEMO_USER);
     createTasksForTesting();
