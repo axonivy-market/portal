@@ -3,6 +3,7 @@ package ch.ivy.addon.portalkit.util;
 import static ch.ivy.addon.portalkit.constant.DashboardConstants.MAX_NOTI_FILTERS;
 import static ch.ivy.addon.portalkit.constant.DashboardConstants.MAX_NOTI_PATTERN;
 import static ch.ivy.addon.portalkit.constant.DashboardConstants.NEW_WIDGET_STYLE_CLASS;
+import static ch.ivy.addon.portalkit.constant.DashboardConstants.WIDGET_ID_PATTERN;
 import static ch.ivy.addon.portalkit.enums.DashboardColumnFormat.NUMBER;
 import static ch.ivy.addon.portalkit.enums.DashboardColumnFormat.STRING;
 import static ch.ivy.addon.portalkit.enums.DashboardColumnFormat.TEXT;
@@ -530,5 +531,9 @@ public class DashboardWidgetUtils {
     boolean hasNoCategory = categories.indexOf(CategoryUtils.NO_CATEGORY) > -1;
     return categories.indexOf(process.getCategory()) > -1
         || (StringUtils.isBlank(process.getCategory()) && hasNoCategory);
+  }
+
+  public static String generateNewWidgetId(DashboardWidgetType type) {
+    return String.format(WIDGET_ID_PATTERN, type.name(), DashboardUtils.generateId()).toLowerCase();
   }
 }

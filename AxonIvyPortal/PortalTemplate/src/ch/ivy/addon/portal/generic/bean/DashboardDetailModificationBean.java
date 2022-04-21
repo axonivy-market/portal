@@ -1,9 +1,9 @@
 package ch.ivy.addon.portal.generic.bean;
 
-import static ch.ivy.addon.portalkit.constant.DashboardConstants.WIDGET_ID_PATTERN;
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.CASE;
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.PROCESS;
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.TASK;
+import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.CUSTOM;
 import static org.apache.commons.lang3.StringUtils.EMPTY;
 
 import java.io.IOException;
@@ -81,7 +81,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     List<Dashboard> result = new ArrayList<>();
     try {
       if (isPublicDashboard) {
-        collectedDashboards = getVisiblePublicDashboards();
+        collectedDashboards = DashboardUtils.getPublicDashboards();
       } else {
         String dashboardInUserProperty = readDashboardBySessionUser();
         collectedDashboards = getVisibleDashboards(dashboardInUserProperty);
@@ -116,7 +116,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   }
 
   private WidgetSample customSample() {
-    return new WidgetSample(translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/customWidget"), DashboardWidgetType.CUSTOM,
+    return new WidgetSample(translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/customWidget"), CUSTOM,
         "si si-cog-double-2", translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/customWidgetIntroduction"), true);
   }
 
@@ -164,31 +164,27 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   }
 
   private CaseDashboardWidget getDefaultCaseDashboardWidget() {
-    String widgetId = generateNewWidgetId(CASE);
+    String widgetId = DashboardWidgetUtils.generateNewWidgetId(CASE);
     String widgetName = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourCases");
     return (CaseDashboardWidget) DashboardWidgetUtils.buildDefaultWidget(widgetId, widgetName, CASE);
   }
 
   private TaskDashboardWidget getDefaultTaskDashboardWidget() {
-    String widgetId = generateNewWidgetId(TASK);
+    String widgetId = DashboardWidgetUtils.generateNewWidgetId(TASK);
     String widgetName = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourTasks");
     return (TaskDashboardWidget) DashboardWidgetUtils.buildDefaultWidget(widgetId, widgetName, TASK);
   }
 
   private ProcessDashboardWidget getDefaultProcessDashboardWidget() {
-    String widgetId = generateNewWidgetId(PROCESS);
+    String widgetId = DashboardWidgetUtils.generateNewWidgetId(PROCESS);
     String widgetName = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourProcesses");
     return (ProcessDashboardWidget) DashboardWidgetUtils.buildDefaultWidget(widgetId, widgetName, PROCESS);
   }
 
   private CustomDashboardWidget getDefaultCustomDashboardWidget() {
-    String widgetId = generateNewWidgetId(DashboardWidgetType.CUSTOM);
+    String widgetId = DashboardWidgetUtils.generateNewWidgetId(DashboardWidgetType.CUSTOM);
     String widgetName = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourCustomWidget");
     return CustomDashboardWidget.buildDefaultWidget(widgetId, widgetName);
-  }
-
-  private String generateNewWidgetId(DashboardWidgetType type) {
-    return String.format(WIDGET_ID_PATTERN, type.name(), DashboardUtils.generateId()).toLowerCase();
   }
 
   public void saveWidget() {
