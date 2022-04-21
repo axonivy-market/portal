@@ -454,4 +454,37 @@ public class ProcessWidgetPage extends TemplatePage {
             "[id$='process-widget:grid-process-group-alphabet:0:grid-processes:0:process-grid-item:process-item:process-delete']"),
         true);
   }
+
+  public void clickMoreButtonOfGridProcess(String processName) {
+    var processItem = getProcessItemForm(processName);
+    var actionButtonID = processItem.getAttribute(ID_PROPERTY).concat(":grid-process-action-component:process-action-button");
+    clickByCssSelector(String.format("[id$='%s']", actionButtonID));
+    waitForElementDisplayed(By.cssSelector(String
+        .format("[id$='%s']", processItem.getAttribute(ID_PROPERTY).concat(":grid-process-action-component:process-action-menu"))),
+        true);
+  }
+
+  public WebElement getProcessItemForm(String processName) {
+    WebElement processItemElement = null;
+    List<WebElement> processItems = findListElementsByCssSelector(".js-process-start-list-item form");
+    for (WebElement process : processItems) {
+      processItemElement = findChildElementByCssSelector(process, ".js-process-start-list-item-name");
+      if (processItemElement.getText().equalsIgnoreCase(processName)) {
+        processItemElement = process;
+        break;
+      }
+    }
+    return processItemElement;
+  }
+
+  public void deleteGridProcess(String processName) {
+    var processItem = getProcessItemForm(processName);
+    waitForElementDisplayed(By.cssSelector(String.format("[id$='%s']",
+        processItem.getAttribute(ID_PROPERTY).concat(":grid-process-action-component:process-action-menu"))),
+        true);
+    clickByCssSelector(String.format("[id$='%s']", processItem.getAttribute(ID_PROPERTY).concat(":grid-process-action-component:delete-process")));
+    waitForElementDisplayed(By.cssSelector("[id$='process-widget:remove-process-workflow-dialog']"), true);
+    clickByCssSelector("[id$='delete-process-workflow-form:remove-process-command']");
+    waitForElementDisplayed(By.cssSelector("[id$='process-widget:remove-process-workflow-dialog']"), false);
+  }
 }
