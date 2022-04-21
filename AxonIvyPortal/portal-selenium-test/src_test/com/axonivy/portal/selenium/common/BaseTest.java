@@ -68,6 +68,7 @@ public class BaseTest {
   protected String reorderDashboardUrl =
       "portalTemplate/1549F58C18A6C562/DashboardReorder.ivp?isPublicDashboard=%s";
   protected String createSampleDashboardUrl = "portalKitTestHelper/17F2050944B46BB0/createSampleDashboard.ivp";
+  protected String createTestingEscalationTasksUrl = "portal-developer-examples/162511D2577DBA88/CreateTaskForEscalation.ivp";
 
   protected void redirectToNewDashBoard() {
     open(EngineUrl.createProcessUrl(PORTAL_HOME_PAGE_URL));
