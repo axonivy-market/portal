@@ -106,6 +106,7 @@
             <ui:param name="currentPortalPage" value="#{data.currentPortalPage}" />
             <ui:param name="onDestroyComplete" value="PF('destroy-task-dialog').show()" />
             <ui:param name="onDelegateComplete" value="initDataToDelegate()" />
+            <ui:param name="onEscalationComplete" value="PF('escalation-task-dialog').show()" />
             <ui:param name="onWorkflowEventComplete" value="initWorkflowEventData()" />
             <ui:param name="inFrame" value="#{cc.attrs.inFrame}" />
           </ui:include>
@@ -173,6 +174,26 @@
         icon="#{visibilityBean.generateButtonIcon('si si-remove')}"
         actionListener="#{taskWidgetBean.destroyTask(taskWidgetBean.selectedTaskItemId)}"
         oncomplete="PF('destroy-task-dialog').hide()" update="#{cc.clientId}:related-tasks" process="@this" />
+    </ui:define>
+  </ui:decorate>
+  
+  <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
+    <ui:param name="id" value="escalation-task-confirmation-dialog" />
+    <ui:param name="widgetVar" value="escalation-task-dialog" />
+    <ui:param name="appendTo" value="@(body)" />
+    <ui:param name="iconClass" value="si si-delete-1" />
+    <ui:param name="iconStyleClass" value="portal-dialog-warning-icon" />
+    <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/escalationTaskHeaderText')}" />
+    <ui:param name="dialogContent"
+      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/escalationTaskMessage')}" />
+
+    <ui:define name="dialogFooter">
+      <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}"
+        onclick="PF('escalation-task-dialog').hide();" styleClass="u-mar-right-15" />
+      <p:commandButton id="confirm-escalation" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
+        icon="#{visibilityBean.generateButtonIcon('si si-check-1')}"
+        actionListener="#{taskWidgetBean.expiryTask(taskWidgetBean.selectedTaskItemId)}"
+        oncomplete="PF('escalation-task-dialog').hide()" update="#{cc.clientId}:related-tasks" process="@this" />
     </ui:define>
   </ui:decorate>
 
