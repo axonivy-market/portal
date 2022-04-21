@@ -301,4 +301,10 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   public void clickCancelTask() {
     $("a[id$='button-cancel']").shouldBe(getClickableCondition()).click();
   }
+  
+  public void triggerEscalationTask(int taskIndex) {
+    getActiveTaskActions(taskIndex).filter(text("Trigger Escalation")).first().shouldBe(getClickableCondition()).click();
+    $("div[id='escalation-task-confirmation-dialog']").waitUntil(Condition.appear, DEFAULT_TIMEOUT);
+    $("button[id='confirm-escalation-dashboard-tasks']").waitUntil(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+  }
 }

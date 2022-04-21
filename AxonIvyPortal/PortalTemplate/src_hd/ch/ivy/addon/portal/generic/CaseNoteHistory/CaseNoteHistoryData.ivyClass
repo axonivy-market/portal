@@ -8,3 +8,5 @@ filteredHistories List<ch.ivy.addon.portalkit.bo.History> #field
 filteredHistories PERSISTENT #fieldModifier
 ivyCase ch.ivyteam.ivy.workflow.ICase #field
 ivyCase PERSISTENT #fieldModifier
+showRelatedCaseInfo Boolean #field
+showRelatedCaseInfo PERSISTENT #fieldModifier
