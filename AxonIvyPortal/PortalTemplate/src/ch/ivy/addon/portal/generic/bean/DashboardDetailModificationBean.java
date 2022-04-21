@@ -60,7 +60,6 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   private boolean isEditWidget;
   private String newWidgetId;
   private DashboardWidget deleteWidget;
-  private ProcessDashboardWidget originalProcessWidget;
   private Long portalGridsCurrentRow;
   private String selectedDashboardId;
   private boolean isPublicDashboard;
@@ -209,6 +208,15 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
           }
         } else if (processWidget.getDisplayMode() == ProcessWidgetMode.IMAGE_MODE) {
           updateProcessWidget(processWidget, 6, 2);
+        }
+        List<DashboardWidget> widgets = selectedDashboard.getWidgets();
+        DashboardWidget dashboardWidget =
+            widgets.stream().filter(w -> widget.getId().equals(w.getId()) && w.getType() == DashboardWidgetType.PROCESS)
+                .findFirst().orElse(null);
+        if (dashboardWidget != null) {
+          widgets.set(widgets.indexOf(dashboardWidget), widget);
+        } else {
+          widgets.add(widget);
         }
         break;
       case CUSTOM:
@@ -380,37 +388,13 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
 
   public void prepareEditWidget(DashboardWidget widget) {
     if (widget instanceof ProcessDashboardWidget) {
-      backupProcessWidget(widget);
+      ProcessDashboardWidget processDashboardWidget = new ProcessDashboardWidget((ProcessDashboardWidget) widget);
+      setWidget(processDashboardWidget);
+    } else {
+      setWidget(widget);
     }
-    setWidget(widget);
     newWidgetHeader = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/editWidgetHeader");
     isEditWidget = true;
-  }
-
-  private void backupProcessWidget(DashboardWidget widget) {
-    originalProcessWidget = new ProcessDashboardWidget();
-    originalProcessWidget.setName(widget.getName());
-    originalProcessWidget.setDisplayMode(((ProcessDashboardWidget) widget).getDisplayMode());
-    originalProcessWidget.setProcesses(((ProcessDashboardWidget) widget).getProcesses());
-    originalProcessWidget.setProcess(((ProcessDashboardWidget) widget).getProcess());
-    originalProcessWidget.setCategories(((ProcessDashboardWidget) widget).getCategories());
-    originalProcessWidget.setProcessPath(((ProcessDashboardWidget) widget).getProcessPath());
-  }
-
-  public void restoreWidgetData() {
-    if (widget instanceof ProcessDashboardWidget) {
-      restoreProcessWidget();
-    }
-  }
-
-  private void restoreProcessWidget() {
-    if (originalProcessWidget != null) {
-      ((ProcessDashboardWidget) widget).setDisplayMode(originalProcessWidget.getDisplayMode());
-      ((ProcessDashboardWidget) widget).setProcess(originalProcessWidget.getProcess());
-      ((ProcessDashboardWidget) widget).setProcessPath(originalProcessWidget.getProcessPath());
-      ((ProcessDashboardWidget) widget).setProcesses(originalProcessWidget.getProcesses());
-      ((ProcessDashboardWidget) widget).setCategories(originalProcessWidget.getCategories());
-    }
   }
 
   public void reloadParamtersFromProcessForCustomWidget(DashboardWidget widget) {

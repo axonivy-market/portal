@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import portal.guitest.common.BaseTest;
+import portal.guitest.common.TestAccount;
 import portal.guitest.common.WaitHelper;
 import portal.guitest.page.CaseWidgetPage;
 import portal.guitest.page.HomePage;
@@ -33,8 +34,7 @@ public class ProcessViewerTest extends BaseTest {
     WaitHelper.assertTrueWithWait(() -> homePage.countBrowserTab() > 1);
     homePage.switchLastBrowserTab();
     ProcessViewerPage processViewerPage = new ProcessViewerPage();
-    processViewerPage.getProcessRequestPath();
-    assertTrue(processViewerPage.getProcessRequestPath().equalsIgnoreCase("CategoriedLeaveRequest.ivp"));
+    assertTrue(processViewerPage.getProcessRequestPath().equalsIgnoreCase("Categoried Leave Request"));
   }
 
   @Test
@@ -46,8 +46,7 @@ public class ProcessViewerTest extends BaseTest {
     WaitHelper.assertTrueWithWait(() -> homePage.countBrowserTab() > 1);
     homePage.switchLastBrowserTab();
     ProcessViewerPage processViewerPage = new ProcessViewerPage();
-    processViewerPage.getProcessRequestPath();
-    assertTrue(processViewerPage.getProcessRequestPath().equalsIgnoreCase("CategoriedLeaveRequest.ivp"));
+    assertTrue(processViewerPage.getProcessRequestPath().equalsIgnoreCase("Categoried Leave Request"));
   }
 
   @Test
@@ -80,8 +79,8 @@ public class ProcessViewerTest extends BaseTest {
 
   @Test
   public void testNotShowProcessViewerForExpressCase() {
+    login(TestAccount.ADMIN_USER);
     var expressManagementTest = new ExpressManagementTest();
-    expressManagementTest.setup();
     expressManagementTest.prepareExpressWorkflowStep();
     expressManagementTest.executePromoteResourceTask();
     redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
