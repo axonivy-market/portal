@@ -21,15 +21,17 @@
                 <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/dashboardTitle')}" width="20%">
                   <h:outputText value="#{dashboard.title}" />
                 </p:column>
+                <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/dashboardPermission')}" rendered="#{data.isPublicDashboard}">
+                  <h:outputText value="#{dashboardConfigurationBean.generateDashboardPermisisonForDisplay(dashboard)}" />
+                </p:column>
                 <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}">
                   <h:outputText value="#{dashboard.description}" />
                 </p:column>
                 <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}" width="120">
                   <p:commandLink id="edit" process="@this" styleClass="action-column-icon-button"
                     actionListener="#{dashboardConfigurationBean.openDashboardDetail(dashboard)}"
-                    update=":#{p:resolveFirstComponentWithId('dashboard-detail-dialog', view).clientId}" oncomplete="PF('dashboard-detail-dialog').show()"
+                    update="@(.js-configuration-dashboard-detail-dialog)" oncomplete="PF('configuration-dashboard-detail-dialog').show()"
                     title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}">
-                      <p:resetInput target="dashboard-detail-dialog" />
                       <span class="si si-graphic-tablet-drawing-pen" />
                   </p:commandLink>
                   <p:commandLink id="configure-dashboard" styleClass="si si-cog action-column-icon-button"
@@ -46,7 +48,10 @@
 
             <div class="ui-g-12">
               <p:commandButton id="add-dashboard" icon="si si-add"
-                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/addDashboard')}" />
+                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/addDashboard')}"
+                actionListener="#{dashboardConfigurationBean.onAddDashboard()}"
+                oncomplete="PF('dashboard-creation-menu-dialog').show()"
+                update="@(.js-configuration-dashboard-detail-dialog) dashboard-creation-menu-dialog" />
             </div>
 
             <div class="user-profile-footer ui-g-12">
@@ -57,67 +62,24 @@
         </div>
       </h:form>
       
-      <p:dialog id="dashboard-detail-dialog" widgetVar="dashboard-detail-dialog"
-        header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/editDashboard')}"
-        appendTo="@(body)" closeOnEscape="true" draggable="false" fitViewport="true" responsive="true" modal="true"
-        width="40%">
-        <h:form id="dashboard-detail-form">
-          <p:messages id="dashboard-detail-messages" />
-          <div class="ui-g">
-            <div class="ui-g-4 manage-dashboard__label">
-              <p:outputLabel for="dashboard-title"
-                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/dashboardTitle')}" />
-            </div>
-            <div class="ui-g-8">
-              <p:inputText id="dashboard-title" value="#{dashboardConfigurationBean.selectedEditingDashboard.title}"
-                required="true" styleClass="manage-dashboard__input" />
-            </div>
-            <h:panelGroup layout="block" styleClass="ui-g-4 manage-dashboard__label"
-              rendered="#{data.isPublicDashboard}">
-              <p:outputLabel for="dashboard-permission"
-                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/dashboardPermission')}" />
-            </h:panelGroup>
-            <h:panelGroup layout="block" styleClass="ui-g-8" rendered="#{data.isPublicDashboard}">
-              <p:autoComplete id="dashboard-permission" scrollHeight="210" dropdown="true" required="true"
-                completeMethod="#{dashboardConfigurationBean.completePermissions}" styleClass="manage-dashboard__input"
-                inputStyleClass="manage-dashboard__autocomplete-input"
-                value="#{dashboardConfigurationBean.selectedEditingDashboard.permissionDTOs}" var="responsible"
-                itemValue="#{responsible}" itemLabel="#{responsible.briefDisplayNameWithState}" converter="pojoConverter"
-                cache="true" maxResults="100" multiple="true"
-                moreText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..." dynamic="true" forceSelection="true">
-                <p:ajax event="itemSelect" listener="#{dashboardConfigurationBean.dashboardPermissionListener}"
-                  update="dashboard-permission" global="false" />
-                <p:column>
-                  <i class="fa #{responsible.isUser() ? 'fa-user' : 'fa-users'} u-mar-right-5" />
-                  <h:outputText value="#{dashboardTaskFilterBean.formatName(responsible)}" />
-                </p:column>
-              </p:autoComplete>
-            </h:panelGroup>
-            <div class="ui-g-4 manage-dashboard__label">
-              <p:outputLabel for="dashboard-description"
-                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}" />
-            </div>
-            <div class="ui-g-8">
-              <p:inputText id="dashboard-description" value="#{dashboardConfigurationBean.selectedEditingDashboard.description}"
-                required="false" styleClass="manage-dashboard__input" />
-            </div>
-          </div>
-        </h:form>
-        <f:facet name="footer">
-          <h:panelGroup layout="block" styleClass="u-text-align-right">
-            <p:commandLink id="dashboard-detail-close-button"
-              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-              onclick="PF('dashboard-detail-dialog').hide()" />
-            <p:spacer width="15" />
-            <p:commandButton id="dashboard-detail-save-button"
-              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
-              actionListener="#{dashboardConfigurationBean.saveDashboardDetail()}"
-              process="dashboard-detail-form" partialSubmit="true"
-              icon="#{visibilityBean.generateButtonIcon('si si-floppy-disk')}"
-              update="dashboard-form:dashboard-table dashboard-detail-form"
-              oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('dashboard-detail-dialog').hide();}" />
-          </h:panelGroup>
-        </f:facet>
+      <ic:ch.ivy.addon.portal.generic.dashboard.component.DashboardDetails
+        detailDialogId="configuration-dashboard-detail-dialog"
+        managedBean="#{dashboardConfigurationBean}"
+        title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/editDashboard')}"
+        isPublicDashboard="#{data.isPublicDashboard}"
+        componentToUpdate="dashboard-form:dashboard-table"
+        isDashboardCreation="#{dashboardConfigurationBean.dashboardCreation}" />
+
+      <p:dialog id="dashboard-creation-menu-dialog" widgetVar="dashboard-creation-menu-dialog"
+        header="#{data.isPublicDashboard ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfigurationDialog/CreateNewPublicDashboard') : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfigurationDialog/CreateNewPrivateDashboard')}"
+        appendTo="@(body)" closeOnEscape="true" draggable="false" fitViewport="true" responsive="true" modal="true" resizable="false">
+        <div class="ui-g dashboard-configuration-dialog__content">
+          <ic:ch.ivy.addon.portal.generic.dashboard.component.DashboardCreationMenu 
+            managedBean="#{dashboardConfigurationBean}"
+            detailDialogWidgetVar="configuration-dashboard-detail-dialog"
+            hideByDefault="false"
+            isPublicDashboard="#{data.isPublicDashboard}" />
+        </div>
       </p:dialog>
 
       <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
