@@ -328,4 +328,23 @@ public class TaskActionBean implements Serializable {
   public boolean showProcessViewer(ITask task) {
     return ProcessViewerUtils.isShowProcessViewer(task.getCase().getBusinessCase());
   }
+  
+  public boolean canExpiry(ITask task) {
+    return hasPermission(task, IPermission.TASK_WRITE_EXPIRY_ACTIVATOR) && isExpiryDateLower(task)
+        && canExpiryTask(task);
+  }
+
+  public boolean isExpiryDateLower(ITask task) {
+    return task.getExpiryTimestamp() != null && task.getExpiryTimestamp().after(new Date());
+  }
+
+  public boolean canExpiryTask(ITask task) {
+    if (task == null) {
+      return false;
+    }
+    EnumSet<TaskState> taskStates =
+        EnumSet.of(TaskState.DONE, TaskState.DESTROYED, TaskState.RESUMED, TaskState.FAILED);
+    return !taskStates.contains(task.getState());
+  }
+
 }

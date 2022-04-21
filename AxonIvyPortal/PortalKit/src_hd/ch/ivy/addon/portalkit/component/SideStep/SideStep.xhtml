@@ -19,6 +19,7 @@
   <cc:attribute name="dataModel" shortDescription="Data model of task list" />
   <cc:attribute name="onDelegateComplete" />
   <cc:attribute name="onDestroyComplete" />
+  <cc:attribute name="onEscalationComplete" />
   <cc:attribute name="onWorkflowEventComplete" />
   <cc:attribute name="showInTaskList" type="java.lang.Boolean" default="true" shortDescription="Indicator to display SideStep in TaskList"/>
   <cc:attribute name="inFrame" default="false"/>
@@ -84,6 +85,14 @@
       oncomplete="#{cc.attrs.onDestroyComplete}" process="@this" global="false">
       <i class="option-action-icon si si-remove" />
       <span class="option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}</span>
+    </p:commandLink>
+    
+    <p:commandLink id="task-trigger-escalation-command" disabled="#{!taskActionBean.canExpiry(task)}"
+      styleClass="option-item" update="@parent #{cc.attrs.componentToUpdate}"
+      actionListener="#{taskActionBean.updateSelectedTaskItemId(isShowInTaskList, task.id)}"
+      oncomplete="#{cc.attrs.onEscalationComplete}" process="@this" global="false">
+      <i class="option-action-icon si si-synchronize-arrow-clock" />
+      <span class="option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/triggerEscalation')}</span>
     </p:commandLink>
     
     <p:commandLink id="task-workflow-event-command" disabled="#{!taskActionBean.canReadWorkflowEventTask()}" rendered="#{taskActionBean.showReadWorkflowEvent}"
