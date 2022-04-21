@@ -294,6 +294,7 @@
             dataModel="#{data.dataModel}"
             onDestroyComplete="PF('destroy-task-dialog').show()"
             onDelegateComplete="initDataToDelegate()"
+            onEscalationComplete="PF('escalation-task-dialog').show()"
             onWorkflowEventComplete="initWorkflowEventData()"
             readOnly="#{cc.attrs.readOnly}"
             inFrame="#{cc.attrs.inFrame}">
@@ -441,6 +442,27 @@
         icon="#{visibilityBean.generateButtonIcon('si si-remove')}"
         actionListener="#{taskWidgetBean.destroyTask(taskWidgetBean.selectedTaskItemId)}"
         oncomplete="taskWidget.setupScrollbar();PF('destroy-task-dialog').hide()"
+        update="#{cc.clientId}:task-view" />
+    </ui:define>
+  </ui:decorate>
+  
+  <!-- Escalation task dialog -->
+  <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
+    <ui:param name="id" value="escalation-task-confirmation-dialog" />
+    <ui:param name="widgetVar" value="escalation-task-dialog" />
+    <ui:param name="appendTo" value="@(body)" />
+    <ui:param name="iconClass" value="si si-delete-1" />
+    <ui:param name="iconStyleClass" value="portal-dialog-warning-icon" />
+    <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/escalationTaskHeaderText')}" />
+    <ui:param name="dialogContent" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/escalationTaskMessage')}" />
+    
+    <ui:define name="dialogFooter">
+      <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}"
+        onclick="PF('escalation-task-dialog').hide();" styleClass="u-mar-right-15"/>
+       <p:commandButton id="confirm-escalation" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
+        icon="#{visibilityBean.generateButtonIcon('si si-check-1')}"
+        actionListener="#{taskWidgetBean.expiryTask(taskWidgetBean.selectedTaskItemId)}"
+        oncomplete="taskWidget.setupScrollbar();PF('escalation-task-dialog').hide()"
         update="#{cc.clientId}:task-view" />
     </ui:define>
   </ui:decorate>
