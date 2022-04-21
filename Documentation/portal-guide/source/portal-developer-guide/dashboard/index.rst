@@ -127,3 +127,17 @@ They will help you understand how to configure widget efficiency.
    - Open Portal new dashboard to check new custom layout.
 
    About how to configure Variables, refer to :dev-url:`Axon Ivy Variables </doc/nightly/designer-guide/configuration/variables.html>`
+
+Configure dashboard templates
+-----------------------------
+
+Portal provides predefined dashboard templates to help users reduce time and complication when create dashboard.
+Users can quickly create a dashboard just by input some information such as dashboard name, choose one of these
+predefined templates and modify details to fit their needs.
+
+These templates are configurable by modify the global variable ``DashboardTemplates.json``.
+
+.. toctree::
+   :maxdepth: 1
+
+   new-dashboard-template

@@ -6197,3 +6197,7 @@ body span.ui-commandlink .si {
     max-width: auto;
   }
 }
+
+.dashboard-configuration-dialog__form {
+  width: 100%;
+}

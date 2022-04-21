@@ -719,6 +719,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     configuration:
       CustomWidgetExternalLinkWarning: Some websites are not compatible with iframe due to security concerns. Please contact your administrator if the external website is not working properly.
       Parameters: Parameters
+      SelectYourTemplate: Select your template
       configuration: Configuration
       configurationDescription: You can configure your widget in this configuration area. Please define the required filters as well as columns to be shown.
       customWidgetParamChangedMessage: This process has changed. Click on Update to proceed.
@@ -736,6 +737,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     customWidget: Custom Widget
     customWidgetIntroduction: This widget can display an ivy process or an external webpage.
     dashboardManagement:
+      CreateDashboard: Create Dashboard
       addDashboard: Add dashboard
       dashboardPermission: Dashboard permission
       dashboardTitle: Dashboard title
