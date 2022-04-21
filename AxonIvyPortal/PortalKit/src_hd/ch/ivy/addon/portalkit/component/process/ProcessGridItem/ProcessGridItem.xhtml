@@ -19,6 +19,7 @@
   <cc:attribute name="ableToEdit" />
   <cc:attribute name="processStyleClass" />
   <cc:attribute name="processIconStyleClass" />
+  <cc:attribute name="isInConfiguration"/>
 </cc:interface>
 
 <cc:implementation>
@@ -44,7 +45,8 @@
           componentToUpdateOnEditProcess="#{cc.attrs.componentToUpdateOnEditProcess}"
           actionListenerOnDeleteProcess="#{cc.attrs.removeActionListener}"
           onCompleteDeleteProcess="#{cc.attrs.oncompleteRemoveProcess}"
-          componentToUpdateOnDeleteProcess="#{cc.attrs.componentToUpdateOnRemoveProcess}"/>
+          componentToUpdateOnDeleteProcess="#{cc.attrs.componentToUpdateOnRemoveProcess}"
+          hideActionButton="#{cc.attrs.isInConfiguration}"/>
 
         <!-- Process Icon -->
         <i id="icon" class="#{iconSelectionBean.generateIconWithFontFamily(process.getIcon())} process-grid-view-icon #{cc.attrs.processIconStyleClass}" />

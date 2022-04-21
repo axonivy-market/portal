@@ -6,7 +6,6 @@ import static org.junit.Assert.assertTrue;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.By;
 
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
@@ -57,28 +56,25 @@ public class FullProcessPageTest extends BaseTest{
     MainMenuPage mainMenuPage = homePage.openMainMenu();
     processWidgetPage = mainMenuPage.selectProcessesMenu();
     createExternalTestProcess(AAGOOGLE_LINK, AAGOOGLE_LINK, false);
+
     processWidgetPage.selectViewMode("GRID");
     processWidgetPage.waitForGridProcessListDisplayed();
     processWidgetPage.enterSearchKeyword("link");
     String currentIcon = processWidgetPage.getProcessItemIcon(0);
     processWidgetPage.selectViewMode("IMAGE");
-    processWidgetPage.clickMoreButton();
+    processWidgetPage.clickMoreButtonOfFirstImageProcess();
     processWidgetPage.waitForMenuActionsDisplayed();
     processWidgetPage.clickOnProcessEditMenu(0);
     processWidgetPage.changeProcessIcon();
-    processWidgetPage.waitAjaxIndicatorDisappear();
+    processWidgetPage.waitForJQueryAndPrimeFaces(5);
     processWidgetPage.selectViewMode("GRID");
     processWidgetPage.waitForGridProcessListDisplayed();
     processWidgetPage.enterSearchKeyword("link");
     String newIcon = processWidgetPage.getProcessItemIcon(0);
     assertFalse("Current Icon is not changed", StringUtils.equals(currentIcon, newIcon));
-    processWidgetPage.clickMoreButtonOnGridMode();
 
-    processWidgetPage.clickByCssSelector("[id$='process-widget:grid-process-group-alphabet:0:grid-processes:1:process-grid-item:process-item:process-delete']");
-    processWidgetPage.waitForElementDisplayed(By.cssSelector("[id$='process-widget:remove-process-workflow-dialog']"), true);
-    processWidgetPage.clickByCssSelector("[id$='delete-process-workflow-form:remove-process-command']");
-    processWidgetPage.waitForElementDisplayed(By.cssSelector("[id$='process-widget:remove-process-workflow-dialog']"), false);
-    
+    processWidgetPage.clickMoreButtonOfGridProcess(AAGOOGLE_LINK);
+    processWidgetPage.deleteGridProcess(AAGOOGLE_LINK);
     processWidgetPage.enterSearchKeyword("link");
     assertTrue("Still see processes", processWidgetPage.isNoProcessFound());
   }

@@ -6,6 +6,7 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 
@@ -73,5 +74,29 @@ public class CaseDetailsPage extends TemplatePage {
   public void openTaskWithRunTheTaskBehaviour(String taskName) {
     getRelatedTasksPanel().waitUntil(appear, DEFAULT_TIMEOUT);
     $$("div[id='case-details-related-task-table'] table tbody tr td span").filter(text(taskName)).first().click();
+  }
+  
+  public SelenideElement getNameOfRelatedTask(int index) {
+    getRelatedTasksPanel().waitUntil(appear, DEFAULT_TIMEOUT);
+    return $("div[id='case-details-related-task-table'] table tbody").$$("tr").get(index).$$("td")
+        .findBy(Condition.attributeMatching("class", ".*related-task-name-column.*")).$("span");
+  }
+  
+  public SelenideElement getStateOfRelatedTask(int index) {
+    getRelatedTasksPanel().waitUntil(appear, DEFAULT_TIMEOUT);
+    return $("div[id='case-details-related-task-table'] table tbody").$$("tr").get(index).$$("td")
+        .findBy(Condition.attributeMatching("class", ".*related-task-state-column.*")).$("span span");
+  }
+
+  public void clickRelatedTaskActionButton(int index) {
+    $(String.format("[id$=':related-tasks:%d:additional-options:task-side-steps-menu']", index))
+        .waitUntil(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+  }
+
+  public void triggerEscalationTask(int index) {
+    $(String.format("[id$='task-widget:related-tasks:%d:additional-options:task-trigger-escalation-command']", index))
+        .waitUntil(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    $("div[id$='\\:escalation-task-confirmation-dialog']").waitUntil(Condition.appear, DEFAULT_TIMEOUT);
+    $("button[id$='\\:confirm-escalation']").waitUntil(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
   }
 }

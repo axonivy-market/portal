@@ -8,6 +8,7 @@
         task="#{task}" componentToUpdate="#{cc.attrs.componentToUpdateTaskWidget}"
         onDestroyComplete="PF('destroy-task-dialog').show()"
         onDelegateComplete="initDataToDelegate()"
+        onEscalationComplete="PF('escalation-task-dialog').show()"
         onWorkflowEventComplete="initWorkflowEventData()"
         sideStepsPanelStyleClass="js-task-side-steps-panel-#{cc.attrs.taskWidget.id}-#{rowIndex}"/>
 </html>
