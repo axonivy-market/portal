@@ -63,7 +63,9 @@ public enum GlobalVariable {
   DEFAULT_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST("Portal.Tasks.BehaviourWhenClickingOnLineInTaskList", GlobalVariableType.EXTERNAL_SELECTION,
       BehaviourWhenClickingOnLineInTaskList.RUN_TASK.name(), "behaviourWhenClickingOnLineInTaskList", getBehavioursWhenClickingOnLineInTaskList()),
   ENABLE_PROCESS_VIEWER("Portal.ProcessViewer", GlobalVariableType.SELECTION, Option.TRUE.toString(), "enableProcessViewer"),
-  HIDE_RELATED_CASE_INFO_FROM_HISTORY("Portal.Histories.HideRelatedCaseInfo", GlobalVariableType.SELECTION, Option.TRUE.toString(), "hideRelatedCaseInfoFromHistory");
+  HIDE_RELATED_CASE_INFO_FROM_HISTORY("Portal.Histories.HideRelatedCaseInfo", GlobalVariableType.SELECTION, Option.TRUE.toString(), "hideRelatedCaseInfoFromHistory"),
+  SHOW_ERROR_LOG_TO_CONSOLE("Portal.ShowErrorLogToConsole", GlobalVariableType.SELECTION, Option.FALSE.toString(), "showErrorLogToConsole");
+  
   private String key;
   private GlobalVariableType type;
   private String defaultValue;

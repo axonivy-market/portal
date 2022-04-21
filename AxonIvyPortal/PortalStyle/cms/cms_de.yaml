@@ -259,6 +259,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       showButtonIcon: Zum Ein-/Ausschalten des Anzeigesymbols bei Butons im Portal
       showCaseDurationTime: Zum Ein-/Ausschalten der Anzeige der Bearbeitungszeit auf der Vorgangsdetailseite.
       showEnvironmentInfoNote: Zum Ein-/Ausschalten der Anzeige der Environment-Information
+      showErrorLogToConsole: TODO Set to true to enable write error log to browser console
       showGlobalSearch: Zum Ein-/Ausschalten der Anzeige der globalen Suche.
       showLegacyUI: Zum Ein-/Ausschalten der Legacy UI des Dashboards.
       showProcessInformation: Auf "false" setzen, um die Verknüpfung zu Informationen des Prozesses auf der Seite Prozesse (Gittermodus) und Falldetails anzeigen zu deaktivieren.
