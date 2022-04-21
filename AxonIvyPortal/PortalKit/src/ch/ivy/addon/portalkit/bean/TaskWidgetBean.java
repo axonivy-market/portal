@@ -158,6 +158,10 @@ public class TaskWidgetBean implements Serializable {
   public void destroyTask(Long taskId) {
     TaskUtils.destroyTaskById(taskId);
   }
+  
+  public void expiryTask(Long taskId) {
+    TaskUtils.expiryTaskById(taskId);
+  }
 
   /**
    * Gets visible columns on Task list page.

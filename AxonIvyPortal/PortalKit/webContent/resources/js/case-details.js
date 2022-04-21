@@ -91,29 +91,3 @@ function removeStyle(element, styleName) {
     element.style.removeAttribute(styleName);
   }
 }
-
-function handleHideActions() {
-  var buttonContainer = $(".js-case-history-button-container");
-  if(buttonContainer.length){
-   var buttonContainerWidth = buttonContainer.get(0).clientWidth;
-   var buttonContainerScrollWidth = buttonContainer.get(0).scrollWidth;
-
-   var links = buttonContainer.find("a");
-   var minimumSpaceToDisplayEllipsisText = 20;
-   for (var i = links.length - 1; i >= 0; i--) {
-    $(links[i]).removeClass("u-hidden");
-    if (buttonContainerWidth <= buttonContainerScrollWidth - minimumSpaceToDisplayEllipsisText) {
-      buttonContainerScrollWidth = buttonContainerScrollWidth - links[i].offsetWidth;
-      $(links[i]).addClass("u-hidden");
-    }
-   }
-  }
-}
-
-$(window).resize(() => {
-  handleHideActions();
-});
-
-$(document).ready(() => {
-  handleHideActions();
-});

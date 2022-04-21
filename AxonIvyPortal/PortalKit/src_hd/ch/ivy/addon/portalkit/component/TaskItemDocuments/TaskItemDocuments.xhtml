@@ -7,6 +7,7 @@
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="task" type="ch.ivyteam.ivy.workflow.ITask" />
   <cc:attribute name="componentToUpdate" />
+  <cc:attribute name="documentWidget" type="ch.ivy.addon.portalkit.dto.widget.DocumentWidget" />
 </cc:interface>
 
 <cc:implementation>
@@ -21,9 +22,17 @@
           <i class="si si-common-file-text" /> #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/documents')}
         </div>
         <h:panelGroup layout="block" styleClass="task-details-document-add ui-g-6 u-padding-0">
-          <p:commandLink id="add-document-command" styleClass="task-details-document-add-link"
-            rendered="#{!(data.businessCase.state eq 'DONE' and data.isHideUploadDocumentForDoneCase) and taskActionBean.canWriteDocument(data.task)}"
-            actionListener="#{data.setTask(task)}" oncomplete="PF('document-upload-dialog').show()">
+          <p:link id="show-more-doc-link" rendered="#{caseTaskDocumentBean.showMoreDocument}"
+            styleClass="task-details-document-add-link doc-show-more-link"
+            href="#{caseTaskDocumentBean.getTaskDocumentsLink(task)}" target="_blank">
+            <span class="si si-expand-6 doc-show-more-link-icon" />
+            <span class="display-full-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/showMoreBtn')}</span>
+            <span class="display-short-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}</span>
+          </p:link>
+          <p:commandLink id="add-document-command"
+            rendered="#{caseTaskDocumentBean.canWriteDocument(task)}"
+            styleClass="task-details-document-add-link u-mar-right-10"
+            oncomplete="PF('document-upload-dialog').show()">
             <span class="si si-common-file-add" />
             <span class="display-full-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addDocument')}</span>
             <span class="display-short-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}</span>
@@ -32,9 +41,10 @@
       </div>
 
       <div class="ui-g-12 u-padding-0">
-        <p:dataTable id="task-details-documents" var="document" rendered="#{not empty data.documents}" value="#{data.documents}" paginator="true" paginatorAlwaysVisible="false" pageLinks="3"
-          rows="8" paginatorPosition="bottom" emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
-          paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+        <p:dataTable id="task-details-documents" var="document" rendered="#{not empty data.documents}" value="#{data.documents}" paginator="true" paginatorAlwaysVisible="false" 
+          pageLinks="3" rows="#{cc.attrs.documentWidget.rowPerPage}" rowsPerPageTemplate="5,10,20,50"
+          paginatorPosition="bottom" emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
+          paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
           currentPageReportTemplate="{currentPage} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/curentReportOf')} {totalPages}">
           <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/name')}" sortBy="#{document.name}"
             styleClass="u-truncate-text">
@@ -47,7 +57,7 @@
                   fileSizeStyleClass="document-size" />
               </p:commandLink>
               <p:commandLink id="delete-file" actionListener="#{data.setDocument(document)}"
-                rendered="#{!(data.businessCase.state eq 'DONE' and data.isHideUploadDocumentForDoneCase) and taskActionBean.canWriteDocument(data.task)}"
+                rendered="#{caseTaskDocumentBean.canWriteDocument(task)}"
                 styleClass="si si-remove Fright task-document-download" oncomplete="PF('document-deletion-dialog').show()">
                 <p:tooltip for="delete-file" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/deleteFile')} #{document.name}"
                   trackMouse="true" hideEvent="mouseleave click"/>
@@ -72,7 +82,7 @@
           <i class="si si-information-circle" />
           <h:outputText styleClass="no-item-header" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noDocumentAvailable')}" />
           <h:outputText styleClass="no-item-detail" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/pleaseAddDocument')}"
-            rendered="#{!(data.businessCase.state eq 'DONE' and data.isHideUploadDocumentForDoneCase) and taskActionBean.canWriteDocument(data.task)}" />
+            rendered="#{caseTaskDocumentBean.canWriteDocument(task)}" />
         </h:panelGroup>
       </div>
     </h:form>
