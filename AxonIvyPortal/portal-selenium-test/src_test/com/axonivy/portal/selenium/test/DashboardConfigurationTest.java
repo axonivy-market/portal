@@ -75,7 +75,7 @@ public class DashboardConfigurationTest extends BaseTest {
     SelenideElement dashboard = configPage.getDashboardRowByName("Editted Dashboard");
     dashboard.shouldBe(Condition.appear);
     dashboard.$("td:nth-child(1)").shouldHave(Condition.exactText("Editted Dashboard"));
-    dashboard.$("td:nth-child(2)").shouldHave(Condition.exactText("dashboard description"));
+    dashboard.$("td:nth-child(3)").shouldHave(Condition.exactText("dashboard description"));
   }
 
   @Test
@@ -121,7 +121,7 @@ public class DashboardConfigurationTest extends BaseTest {
     newDashboardDetailsEditPage.getWidgets().shouldBe(CollectionCondition.empty);
 
     NewDashboardConfigurationPage configPage = newDashboardDetailsEditPage.backToConfigurationPage();
-    checkDashboardExistOnList(configPage, name, description);
+    checkPrivateDashboardExistOnList(configPage, name, description);
   }
 
   @Test
@@ -159,7 +159,7 @@ public class DashboardConfigurationTest extends BaseTest {
     newDashboardDetailsEditPage.getWidgets().shouldBe(CollectionCondition.empty);
 
     configPage = newDashboardDetailsEditPage.backToConfigurationPage();
-    checkDashboardExistOnList(configPage, name, description);
+    checkPrivateDashboardExistOnList(configPage, name, description);
   }
 
   @Test
@@ -197,7 +197,7 @@ public class DashboardConfigurationTest extends BaseTest {
     newDashboardDetailsEditPage.getWidgets().shouldBe(CollectionCondition.size(3));
 
     NewDashboardConfigurationPage configPage = newDashboardDetailsEditPage.backToConfigurationPage();
-    checkDashboardExistOnList(configPage, name, description);
+    checkPrivateDashboardExistOnList(configPage, name, description);
   }
 
   @Test
@@ -235,13 +235,20 @@ public class DashboardConfigurationTest extends BaseTest {
     newDashboardDetailsEditPage.getWidgets().shouldBe(CollectionCondition.size(3));
 
     configPage = newDashboardDetailsEditPage.backToConfigurationPage();
-    checkDashboardExistOnList(configPage, name, description);
+    checkPrivateDashboardExistOnList(configPage, name, description);
   }
 
   private void checkDashboardExistOnList(NewDashboardConfigurationPage configPage, String name, String description) {
     SelenideElement dashboard = configPage.getDashboardRowByName(name);
     dashboard.shouldBe(Condition.appear);
-    dashboard.$("td:nth-child(1)").shouldHave(Condition.exactText(name));
-    dashboard.$("td:nth-child(2)").shouldHave(Condition.exactText(description));
+    configPage.getDashboardCellByNameAndPosition(name, 1).shouldHave(Condition.exactText(name));
+    configPage.getDashboardCellByNameAndPosition(name, 3).shouldHave(Condition.exactText(description));
+  }
+
+  private void checkPrivateDashboardExistOnList(NewDashboardConfigurationPage configPage, String name, String description) {
+    SelenideElement dashboard = configPage.getDashboardRowByName(name);
+    dashboard.shouldBe(Condition.appear);
+    configPage.getDashboardCellByNameAndPosition(name, 1).shouldHave(Condition.exactText(name));
+    configPage.getDashboardCellByNameAndPosition(name, 2).shouldHave(Condition.exactText(description));
   }
 }
