@@ -430,7 +430,7 @@ public class DashboardWidgetUtils {
 
   private static void loadProcessByPath(ProcessDashboardWidget processWidget) {
     var processPath = processWidget.getProcessPath();
-    if (processPath == null) {
+    if (processPath == null || processWidget.getProcess() != null) {
       return;
     }
     for (DashboardProcess process : getAllPortalProcesses()) {

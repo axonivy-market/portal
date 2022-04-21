@@ -85,6 +85,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     caseDescription: Beschreibung des Vorgangs
     taskDescription: Aufgabenbeschreibung
     taskState: Aufgabenstatus
+  CaseDocuments:
+    CaseDocumentsPageTitle: TODO Case Documents
   CaseStatusInformation:
     CurrentTasks:
       currentTasks: Laufende Aufgaben
@@ -165,6 +167,17 @@ ch.ivy.addon.portalkit.ui.jsf:
     showTutorial: Willkommenstour anzeigen
     taskListConfigDescription: In diesem Bereich können Sie den Arbeitsplan entsprechend Ihren Anforderungen konfigurieren.
     taskListConfiguration: Konfiguration der Aufgabenliste
+  ProcessViewer:
+    Breadcrumb: Prozess-Viewer von {0} Prozess
+    ProcessDataNotFound: Konnte die Prozessdaten nicht finden!
+    ProcessDetails: TODO Process details
+    ProcessId: TODO Process Id
+    ProcessInfo: TODO Process Information
+    ProcessInfoIconTooltip: TODO Click to see details of the process start
+    ProcessViewerText: Prozess-Viewer
+    Title: Prozess-Viewer
+  TaskDocuments:
+    TaskDocumentsPageTitle: TODO Task Documents
   adminSettings:
     addLanguages: Sprachen hinzufügen
     addNewApplication: Neue Drittanwendung hinzufügen
@@ -223,6 +236,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       enableCaseOwner: Wird auf true gesetzt, um die Filterung des Vorgangsinhabers bei der Abfrage von Vorgängen zu aktivieren. Diese Einstellung wirkt sich auf alle Vorgangsabfragen aus, z.B. nach Vorgangsliste, globale Suche, Statistik, …
       enableGroupChat: Setzen Sie diese Einstellung auf "true", um den Gruppenchat zu aktivieren
       enablePrivateChat: Setzen Sie diese Einstellung auf "true", um den privaten Chat zu aktivieren
+      enableProcessViewer: Setzen Sie diese Einstellung auf true, um die Prozess-Viewer-Option in Aufgaben-/Vorgang-Aktionen zu aktivieren
       enableScriptCheckingForUploadedDocumentNote: 'Auf "true" setzen, um die Skriptüberprüfung zu aktivieren. Es werden die Formate PDF, Excel und Word unterstützt. '
       enableUserFavorites: Wenn diese Einstellung deaktiviert ist, zeigen Sie den Benutzerfavoritenabschnitt der Prozessliste nicht in Portal Home an.
       enableVirusScannerForUploadedDocumentNote: Auf true setzen, um den Virenscanner für das hochgeladene Dokument zu aktivieren. Derzeit verwendet diese Funktion die API VIRUSTOTAL.
@@ -230,6 +244,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       hideCaseDocument: Auf "true" setzen, um die Dokumentensektion in Vorgangsdetails auszublenden.
       hideChangePasswordButtonNote: 'Auf "true" setzen, um die Option "Passwort ändern" im Top Menu zu deaktivieren. '
       hideLogoutButtonNote: 'Auf "true" setzen, um die Logout Funktion im Top Menu zu deaktivieren. '
+      hideRelatedCaseInfoFromHistory: TODO If true, case history does not display the related case information in the history table.
       hideStatisticWidget: Setzen Sie den Wert auf "true", um das Statistik-Widget auf der Startseite und im Anwendungsmenü auszublenden.
       hideSystemNotesFromHistory: Wenn diese Option aktiviert ist, werden in den Vorgangs-/Aufgabennotizen keine Systemnotizen für Benutzer ohne Administratorrechte angezeigt.
       hideSystemNotesFromHistoryAdministrator: Wenn diese Option aktiviert ist, werden in den Vorgangs-/Aufgabennotizen keine Systemnotizen für Administratoren angezeigt.
@@ -244,6 +259,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       showButtonIcon: Zum Ein-/Ausschalten des Anzeigesymbols bei Butons im Portal
       showCaseDurationTime: Zum Ein-/Ausschalten der Anzeige der Bearbeitungszeit auf der Vorgangsdetailseite.
       showEnvironmentInfoNote: Zum Ein-/Ausschalten der Anzeige der Environment-Information
+      showErrorLogToConsole: TODO Set to true to enable write error log to browser console
       showGlobalSearch: Zum Ein-/Ausschalten der Anzeige der globalen Suche.
       showLegacyUI: Zum Ein-/Ausschalten der Legacy UI des Dashboards.
       showProcessInformation: Auf "false" setzen, um die Verknüpfung zu Informationen des Prozesses auf der Seite Prozesse (Gittermodus) und Falldetails anzeigen zu deaktivieren.
@@ -290,6 +306,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     downloadFile: Datei herunterladen
     duration: Dauer
     history: Verlauf
+    noCaseName: <Kein Vorgangsnamen>
     noDescription: Keine Beschreibung vorhanden
     noRunningCase: Es wird kein Vorfall ausgeführt.
     noRunningTask: Es wird keine Aufgabe ausgeführt.
@@ -437,6 +454,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     errorFileUploadSize: Die Dateigrösse muss kleiner als {0} sein.
     errorNotification: Fehlerbenachrichtigung
     errorXhr: Fehler beim aktualisieren der Webseiteinhalte
+    escalationTaskHeaderText: Eskalation auslösen
+    escalationTaskMessage: Frist wird auf jetzt gesetzt, somit läuft die Bearbeitungsfrist ab. Sind Sie sicher?
     filter:
       from: von
       moreOptions: Mehr Optionen
@@ -521,8 +540,9 @@ ch.ivy.addon.portalkit.ui.jsf:
     sessionExpriedInTeams: Ihre Session ist abgelaufen. Die Anwendung wird neu gestartet.
     setting: Einstellungen
     showDetail: Details anzeigen
-    showSystemNotes: Systemnachrichten anzeigen
-    showSystemTasks: Systemaufgaben anzeigen
+    showRelatedCaseInfo: TODO Related case
+    showSystemNotes: TODO System notes
+    showSystemTasks: TODO System tasks
     start: Start
     state: Status
     status: Status
@@ -862,6 +882,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     curentReportOf: vom
     eventType: Ereignis-Typ
     exportButton: Nach Excel exportieren
+    relatedCase: Zugehöriger Vorgang
     showMoreBtn: Mehr anzeigen
     taskExportedFileNamePrefix: Verlauf_Aufgabennotizen_{0}
     taskFailReason: 'Grund für das Scheitern: {0}'
@@ -1152,6 +1173,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskDetails: Aufgabendetails
     taskInforDialogTitle: Informationen
     taskNotes: Notizen
+    triggerEscalation: TODO Trigger Escalation
   taskList:
     deadline: Frist
     default: Standard

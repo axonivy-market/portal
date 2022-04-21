@@ -98,9 +98,9 @@ public class DashboardFilterWidgetTest extends BaseTest {
   private TaskWidgetNewDashBoardPage createWidgetFilterForDemoUser() {
     loginAndGoToDashboard(TestAccount.DEMO_USER);
     TaskWidgetNewDashBoardPage taskWidget = openTaskWidgetFilter();
-    taskWidget.filterPriority("Normal", "Low");
-    taskWidget.filterCategories("TaskGroup");
     taskWidget.filterTaskName("Task");
+    taskWidget.filterCategories("TaskGroup");
+    taskWidget.filterPriority("Normal", "Low");
     taskWidget.clickOnSaveFilterButton();
     taskWidget.saveANewWidgetFilter("Tasks filter");
     return taskWidget;

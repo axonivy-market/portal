@@ -84,7 +84,8 @@
     <p:tab id="settingTab" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/setting')}">
       <h:form prependId="false" id="settingForm">
         <p:remoteCommand name="initAdminSettingsData" actionListener="#{logic.initAdminSettingsData}" process="@this" immediate="true"
-          update=":#{p:resolveFirstComponentWithId('applicationTable', view).clientId} :#{p:resolveFirstComponentWithId('settingTable', view).clientId} :#{p:resolveFirstComponentWithId('announcement-table', view).clientId}" />
+          update=":#{p:resolveFirstComponentWithId('applicationTable', view).clientId} :#{p:resolveFirstComponentWithId('settingTable', view).clientId} :#{p:resolveFirstComponentWithId('announcement-table', view).clientId}
+          :#{p:resolveFirstComponentWithId('action-group', view).clientId} :#{p:resolveFirstComponentWithId('announcement-validation-messages', view).clientId}" />
         <p:remoteCommand name="clearFilter" actionListener="#{logic.clearSettingTableFilter}" process="@this" immediate="true" />
         <h:panelGroup layout="block" styleClass="setting-tab-action-buttons">
           <p:commandButton id="restore-all-to-default-button" icon="#{visibilityBean.generateButtonIcon('si si-button-refresh-arrows')}"

@@ -96,8 +96,8 @@ public class ProcessWidgetTest extends BaseTest {
     processWidget.expand();
     processWidget.selectViewMode("GRID");
     processWidget.waitForGridProcessListDisplayed();
-    processWidget.clickMoreButtonOnGridMode();
-    processWidget.deleteProcess(0);
+    processWidget.clickMoreButtonOfFirstGridProcess();
+    processWidget.deleteGridProcess(0);
     backToCompactProcessWidget();
     
     assertEquals(0, processWidget.getNumberOfFavoriteUserProcesses());
@@ -157,6 +157,7 @@ public class ProcessWidgetTest extends BaseTest {
   public void testReorderFavoriteProcess() {
     processWidget = homePage.getProcessWidget();
     processWidget.expand();
+    processWidget.openMainMenu();
     String processName = "AGoogle";
     String processLink = "google.com";
     createExternalTestProcess(processName, processLink,false);
@@ -178,12 +179,13 @@ public class ProcessWidgetTest extends BaseTest {
     addNewProcessDialog.submitForm();
 
     processWidget.clickEditSwitchLink();
-    processWidget.moveFavoriteProcess(1, 3);
-    WaitHelper.assertTrueWithWait(() -> CASE_MAP_LEAVES.equals(processWidget.findElementByCssSelector(".process-start-list-item-name").getText()));
+    processWidget.moveFavoriteProcess(3, 1);
+    WaitHelper.assertTrueWithWait(() -> CLEAN_ALL_FAVORITE_PROCESSES
+        .equals(processWidget.findListElementsByCssSelector(".process-start-list-item-name").get(1).getText()));
     processWidget.clickSaveProcess();
 
-    assertEquals(CASE_MAP_LEAVES, processWidget.getProcessNameFromFavoriteProcessList(0));
     assertEquals(CLEAN_ALL_FAVORITE_PROCESSES, processWidget.getProcessNameFromFavoriteProcessList(1));
+    assertEquals(AGOOGLE_LINK, processWidget.getProcessNameFromFavoriteProcessList(0));
 
     addNewProcessDialog = processWidget.openNewProcessDialog();
     addNewProcessDialog.selectProcessByName(AAGOOGLE_LINK);

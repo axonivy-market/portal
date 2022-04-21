@@ -147,6 +147,7 @@ public class CaseWidgetTest extends BaseTest {
     additionalCaseDetailsPage = new AdditionalCaseDetailsPage();
     casePage = mainMenuPage.selectCaseMenu();
     caseDetailsPage = casePage.openDetailsOfCaseHasName(caseName);
+    caseDetailsPage.openActionMenu();
     caseDetailsPage.openAdditionalCaseDetailsPage();
     Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> homePage.countBrowserTab() > 1);
     homePage.switchLastBrowserTab();

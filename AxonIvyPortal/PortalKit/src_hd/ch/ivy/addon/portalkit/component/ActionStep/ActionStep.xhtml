@@ -6,9 +6,10 @@
   <cc:attribute name="actionLinkId" />
   <cc:attribute name="actionLinkStyleClass" />
   <cc:attribute name="panelWidgetVar" />
+  <cc:attribute name="stepsPanelStyleClass" />
   <cc:attribute name="taskId" default="0" shortDescription="Id is added as a param in the adhoc link" />
   <cc:attribute name="isAdhocExcluded" default="false" type="java.lang.Boolean" shortDescription="exclude adhoc from side steps" />
-  <cc:attribute name="renderDestroyAction" default="false" />
+  <cc:attribute name="canDestroyCase" default="true" />
   <cc:attribute name="update" default="" required="false" />
   <cc:attribute name="case" type="ch.ivyteam.ivy.workflow.ICase" />
   <cc:attribute name="onDestroyComplete" />
@@ -18,35 +19,63 @@
 </cc:interface>
 
 <cc:implementation>
-  <p:link id="#{cc.attrs.actionLinkId}" onclick="event.stopPropagation(); return false;" styleClass="#{cc.attrs.actionLinkStyleClass} #{cc.attrs.taskId} action-link portal-icon" disabled="#{cc.attrs.readOnly}">
-      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}" styleClass="task-action-item-label" />
-      <i class="si si-arrow-down-1" />
-    </p:link>
-    
-  <p:overlayPanel id="action-steps-panel" widgetVar="#{cc.attrs.panelWidgetVar}" for="#{cc.attrs.actionLinkId}" my="left top" at="left bottom" appendTo="@(body)" styleClass="action-steps-panel"
-    dynamic="true">
-    
+  <c:set var="case" value="#{cc.attrs.case}"/>
+  <c:set var="inFrame" value="#{cc.attrs.inFrame}"/>
+  <c:set var="renderDestroyAction" value="#{caseActionBean.canDestroy(case) and case.state ne 'DONE' and case.state ne 'DESTROYED' and cc.attrs.canDestroyCase}" />
+  <c:set var="showAdditionalCaseDetails" value="#{caseActionBean.showCaseDetails}"/>
+  <c:set var="showOpenCaseDetail" value="#{cc.attrs.renderShowDetailAction}"/>
+  <c:set var="showProcessOverview" value="#{caseActionBean.showProcessOverviewLink(case) and !inFrame}"/>
+  <c:set var="showProcessViewer" value="#{caseActionBean.showProcessViewer(case)}"/>
+  <c:set var="showSeparator" value="#{renderDestroyAction or showAdditionalCaseDetails or showOpenCaseDetail or showProcessOverview or showProcessViewer}"/>
+
+  <p:link id="#{cc.attrs.actionLinkId}" onclick="event.stopPropagation(); return false;"
+    styleClass="#{cc.attrs.actionLinkStyleClass} #{cc.attrs.taskId} action-link portal-icon" disabled="#{cc.attrs.readOnly}">
+    <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}" styleClass="task-action-item-label" />
+    <i class="si si-arrow-down-1" />
+  </p:link>
+
+  <p:overlayPanel id="action-steps-panel" widgetVar="#{cc.attrs.panelWidgetVar}"
+    for="#{cc.attrs.actionLinkId}" my="left top" at="left bottom"
+    appendTo="@(body)" styleClass="action-steps-panel #{cc.attrs.stepsPanelStyleClass}" dynamic="true">
+
     <p:commandLink id="case-item-open-detail-link" styleClass="case-command action-step-item"
-          actionListener="#{logic.openDetails(cc.attrs.case,cc.attrs.inFrame)}" rendered="#{cc.attrs.renderShowDetailAction}">
+      actionListener="#{logic.openDetails(case, inFrame)}" rendered="#{showOpenCaseDetail}">
       <span class="action-icon si si-information-circle" />
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/detail')}" />
     </p:commandLink>
-    
+
+    <p:link id="show-process-overview-link" styleClass="additional-case-details-link action-step-item"
+      rendered="#{showProcessOverview}"
+      href="#{caseActionBean.getProcessOverviewPageUri(case)}">
+      <i class="si si-presentation-statistics" />
+      <span class="display-full-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/showProcessOverview')}</span>
+    </p:link>
+
     <p:link id="show-additional-case-details-link" styleClass="additional-case-details-link case-command action-step-item" target="_blank"
-      href="#{caseWidgetBean.getAdditionalCaseDetailsPageUri(cc.attrs.case)}" rendered="#{caseWidgetBean.showCaseDetails}">
+      href="#{caseActionBean.getAdditionalCaseDetailsPageUri(case)}" rendered="#{showAdditionalCaseDetails}">
       <i class="action-icon si si-business-contract-handshake-sign" />
       <h:outputText value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/ShowBusinessDetails')}" />
     </p:link>
 
-    <p:commandLink id="destroy-case" rendered="#{cc.attrs.renderDestroyAction}" update="#{cc.attrs.update}" actionListener="#{caseWidgetBean.setSelectedCase(cc.attrs.case)}"
+    <p:commandLink id="destroy-case" rendered="#{renderDestroyAction}" update="#{cc.attrs.update}"
+      actionListener="#{caseWidgetBean.setSelectedCase(case)}"
       styleClass="case-command action-step-item" process="@this" oncomplete="#{cc.attrs.onDestroyComplete}">
       <span class="action-icon si si-remove" />
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}" />
     </p:commandLink>
-    <p:separator styleClass="case-action-separator" rendered="#{cc.attrs.renderDestroyAction or caseWidgetBean.showCaseDetails or cc.attrs.renderShowDetailAction}" />
-    
+
+    <p:link id="show-process-viewer-link" target="_blank"
+      styleClass="show-process-viewer-link case-command action-step-item"
+      href="#{caseActionBean.getProcessViewerPageUri(case)}"
+      rendered="#{showProcessViewer}">
+      <i class="action-icon si si-hierarchy-6 si-rotate-270" />
+      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/ProcessViewer/ProcessViewerText')}" />
+    </p:link>
+
+    <p:separator styleClass="case-action-separator" rendered="#{showSeparator}" />
+
     <h:panelGroup id="side-steps">
-      <f:event listener="#{sideStepBean.getSideSteps(cc.attrs.taskId, cc.attrs.case.id, cc.attrs.isAdhocExcluded)}" type="preRenderComponent" />
+      <f:event listener="#{sideStepBean.getSideSteps(cc.attrs.taskId, case.id, cc.attrs.isAdhocExcluded)}" type="preRenderComponent" />
       <h:outputText rendered="#{empty sideStepBean.currentSideSteps}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noSideSteps')}" styleClass="action-step-item" />
       <ui:repeat var="sideStep" value="#{sideStepBean.currentSideSteps}">
         <p:commandLink id="adhoc-side-step-item" styleClass="action-step-item" value="#{sideStep.name}" global="false" rendered="#{sideStep.isAdhoc()}"

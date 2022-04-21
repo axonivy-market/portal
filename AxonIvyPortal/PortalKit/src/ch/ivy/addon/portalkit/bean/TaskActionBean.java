@@ -20,6 +20,7 @@ import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
 import ch.ivy.addon.portalkit.util.DateTimeFormatterUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.ProcessStartUtils;
+import ch.ivy.addon.portalkit.util.ProcessViewerUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivy.addon.portalkit.util.TimesUtils;
 import ch.ivyteam.ivy.security.IPermission;
@@ -156,11 +157,6 @@ public class TaskActionBean implements Serializable {
     return isNotDone(task) && hasPermission(task, IPermission.TASK_WRITE_DESCRIPTION);
   }
 
-  public boolean canWriteDocument(ITask task) {
-    return hasPermission(task, IPermission.DOCUMENT_WRITE)
-        || hasPermission(task, IPermission.DOCUMENT_OF_INVOLVED_CASE_WRITE);
-  }
-
   public boolean canDestroyTask(ITask task) {
     List<TaskState> taskStates = Arrays.asList(TaskState.DONE, TaskState.DESTROYED);
     return hasPermission(task, IPermission.TASK_DESTROY) && !taskStates.contains(task.getState());
@@ -270,7 +266,8 @@ public class TaskActionBean implements Serializable {
 
   public boolean noActionAvailable(ITask task) {
     boolean hasWorkflowEventLink = isShowReadWorkflowEvent && canReadWorkflowEventTask();
-    return !isNotDone(task) && !canResumeForWorkingUser(task) && !canReset(task) && !isTechnicalState(task) && !hasWorkflowEventLink;
+    return !isNotDone(task) && !canResumeForWorkingUser(task) && !canReset(task) && !isTechnicalState(task)
+        && !hasWorkflowEventLink && !showProcessViewer(task);
   }
   
   public void backToPrevPage(ITask task, boolean isFromTaskList, boolean isTaskStartedInDetails) {
@@ -292,6 +289,11 @@ public class TaskActionBean implements Serializable {
       TaskUtils.updateTaskStartedAttribute(false);
       PortalNavigator.redirect(requestPath + "?endedTaskId=" + task.getId());
     }
+  }
+
+  public String getProcessViewerPageUri(ITask task) {
+    task.getCase().getBusinessCase();
+    return ProcessViewerUtils.getStartProcessViewerPageUri(task.getCase().getBusinessCase());
   }
 
   public String getDurationOfTask(ITask task) {
@@ -322,4 +324,27 @@ public class TaskActionBean implements Serializable {
     long duration = TimesUtils.getDurationInSeconds(task.getStartTimestamp(), new Date());
     return DateTimeFormatterUtils.formatToExactTime(duration);
   }
+
+  public boolean showProcessViewer(ITask task) {
+    return ProcessViewerUtils.isShowProcessViewer(task.getCase().getBusinessCase());
+  }
+  
+  public boolean canExpiry(ITask task) {
+    return hasPermission(task, IPermission.TASK_WRITE_EXPIRY_ACTIVATOR) && isExpiryDateLower(task)
+        && canExpiryTask(task);
+  }
+
+  public boolean isExpiryDateLower(ITask task) {
+    return task.getExpiryTimestamp() != null && task.getExpiryTimestamp().after(new Date());
+  }
+
+  public boolean canExpiryTask(ITask task) {
+    if (task == null) {
+      return false;
+    }
+    EnumSet<TaskState> taskStates =
+        EnumSet.of(TaskState.DONE, TaskState.DESTROYED, TaskState.RESUMED, TaskState.FAILED);
+    return !taskStates.contains(task.getState());
+  }
+
 }
