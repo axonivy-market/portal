@@ -1,0 +1,18 @@
+ProcessViewerData #class
+ch.ivy.addon.portal.generic.ProcessViewer #namespace
+caseId Long #field
+caseId PERSISTENT #fieldModifier
+selectedCase ch.ivyteam.ivy.workflow.ICase #field
+selectedCase PERSISTENT #fieldModifier
+isError Boolean #field
+isError PERSISTENT #fieldModifier
+processId String #field
+processId PERSISTENT #fieldModifier
+webStartable ch.ivyteam.ivy.workflow.start.IWebStartable #field
+webStartable PERSISTENT #fieldModifier
+activatorName String #field
+activatorName PERSISTENT #fieldModifier
+activator ch.ivyteam.ivy.security.ISecurityMember #field
+activator PERSISTENT #fieldModifier
+category String #field
+category PERSISTENT #fieldModifier

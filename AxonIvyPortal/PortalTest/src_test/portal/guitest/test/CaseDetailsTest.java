@@ -80,6 +80,7 @@ public class CaseDetailsTest extends BaseTest {
   @Test
   public void testDestroyCase() {
     createTestingTask();
+    detailsPage.openActionMenu();
     detailsPage.onClickDestroyCase();
     detailsPage.confimDestruction();
     CaseWidgetPage casePage = new CaseWidgetPage();
@@ -393,5 +394,47 @@ public class CaseDetailsTest extends BaseTest {
   @After
   public void teardown() {
     denySpecificPortalPermission(PortalPermission.TASK_CASE_ADD_NOTE);
+  }
+
+  @Test
+  public void testShowRelatedCaseLinkInNote() {
+    createTestingCaseContainTechnicalCases();
+    assertEquals(1, detailsPage.getNumberOfHistory());
+    detailsPage.addNote("This is note on business case");
+    assertEquals(2, detailsPage.getNumberOfHistory());
+    assertEquals("This is note on business case", detailsPage.getLatestHistoryContent());
+    detailsPage.clickRelatedCaseActionButton(0);
+    var relatedCaseDetailsPage = detailsPage.openCasesOfCasePageViaDetailsAction(0);
+    WaitHelper.assertTrueWithWait(() -> "Case Details".equals(relatedCaseDetailsPage.getPageTitle()));
+    relatedCaseDetailsPage.addNote("The first note of sub-case");
+    relatedCaseDetailsPage.addNote("The second note of sub-case");
+    var subCaseId = relatedCaseDetailsPage.getCaseId();
+    var caseName = relatedCaseDetailsPage.getCaseName();
+    assertEquals(2, relatedCaseDetailsPage.getNumberOfHistory());
+    assertEquals(0, relatedCaseDetailsPage.getNumberOfHistoryForRelatedCaseLink());
+    detailsPage = relatedCaseDetailsPage.openBusinessCaseFromTechnicalCase();
+    assertEquals(4, detailsPage.getNumberOfHistory());
+    assertEquals(2, detailsPage.getNumberOfHistoryForRelatedCaseLink());
+    var relaledCaseName = detailsPage.getContentOfHistoryTableRelatedCaseColumn(0);
+    assertTrue(relaledCaseName.startsWith("#"));
+    assertTrue(relaledCaseName.contains(subCaseId));
+    assertTrue(relaledCaseName.contains(caseName));
+  }
+
+  @Test
+  public void testShowRelatedCaseInfoByConfigInCaseHistory() {
+    updateGlobalVariable(Variable.HIDE_RELATED_CASE_INFO_FROM_HISTORY.getKey(), "false");
+    createTestingCaseContainTechnicalCases();
+    executeDecorateJs("window.scrollTo(0, document.body.scrollHeight)");
+    assertTrue("Related Case checkbox is not display", detailsPage.isShowRelatedCaseCheckbox());
+    detailsPage.clickOnRelatedCaseCheckbox(true);
+    assertTrue("Related Case column is not display", detailsPage.isRelatedCaseInfoColumnIsDisplay());
+    detailsPage.clickOnRelatedCaseCheckbox(false);
+    assertFalse("Related Case column is display", detailsPage.isRelatedCaseInfoColumnIsDisplay());
+    updateGlobalVariable(Variable.HIDE_RELATED_CASE_INFO_FROM_HISTORY.getKey(), "true");
+    MainMenuPage mainMenuPage = homePage.openMainMenu();
+    CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
+    detailsPage = casePage.openDetailsOfCaseHasName(ORDER_PIZZA);
+    assertFalse("Related Case checkbox is display", detailsPage.isShowRelatedCaseCheckbox());
   }
 }

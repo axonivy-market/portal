@@ -53,6 +53,7 @@ public class RelatedCaseLazyDataModel extends LazyDataModel7<ICase> {
     if (first == 0) {
       initializedDataModel();
     }
+    setRowCount(getCaseCount(criteria));
 
     List<ICase> foundCases = findCases(criteria, first, pageSize);
     data.addAll(foundCases);
@@ -103,7 +104,6 @@ public class RelatedCaseLazyDataModel extends LazyDataModel7<ICase> {
 
   private void initializedDataModel() {
     data.clear();
-    setRowCount(getCaseCount(criteria));
     criteria.setFinalCaseQuery(null);
   }
 

@@ -7,6 +7,7 @@
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="actionLinkId" />
   <cc:attribute name="panelWidgetVar" />
+  <cc:attribute name="sideStepsPanelStyleClass" />
   <cc:attribute name="isAdhocExcluded" default="false" type="java.lang.Boolean" shortDescription="exclude adhoc from side steps" />
   <cc:attribute name="isDisabled" default="false" type="java.lang.Boolean" />
   <cc:attribute name="task" type="ch.ivyteam.ivy.workflow.ITask" />
@@ -18,6 +19,7 @@
   <cc:attribute name="dataModel" shortDescription="Data model of task list" />
   <cc:attribute name="onDelegateComplete" />
   <cc:attribute name="onDestroyComplete" />
+  <cc:attribute name="onEscalationComplete" />
   <cc:attribute name="onWorkflowEventComplete" />
   <cc:attribute name="showInTaskList" type="java.lang.Boolean" default="true" shortDescription="Indicator to display SideStep in TaskList"/>
   <cc:attribute name="inFrame" default="false"/>
@@ -36,7 +38,7 @@
   </p:link>
 
   <p:overlayPanel id="side-steps-panel" widgetVar="#{cc.attrs.panelWidgetVar}" for="#{cc.attrs.actionLinkId}" my="left top" at="left bottom" appendTo="@(body)"
-    styleClass="options-panel" dynamic="true" rendered="#{!cc.attrs.isDisabled}">
+    styleClass="options-panel #{cc.attrs.sideStepsPanelStyleClass}" dynamic="true" rendered="#{!cc.attrs.isDisabled}">
 
     <p:commandLink id="task-open-detail-command" styleClass="option-item"
       actionListener="#{logic.openDetails(task, dataModel, cc.attrs.inFrame)}" rendered="#{cc.attrs.showDetailOption}">
@@ -85,6 +87,14 @@
       <span class="option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}</span>
     </p:commandLink>
     
+    <p:commandLink id="task-trigger-escalation-command" disabled="#{!taskActionBean.canExpiry(task)}"
+      styleClass="option-item" update="@parent #{cc.attrs.componentToUpdate}"
+      actionListener="#{taskActionBean.updateSelectedTaskItemId(isShowInTaskList, task.id)}"
+      oncomplete="#{cc.attrs.onEscalationComplete}" process="@this" global="false">
+      <i class="option-action-icon si si-synchronize-arrow-clock" />
+      <span class="option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/triggerEscalation')}</span>
+    </p:commandLink>
+    
     <p:commandLink id="task-workflow-event-command" disabled="#{!taskActionBean.canReadWorkflowEventTask()}" rendered="#{taskActionBean.showReadWorkflowEvent}"
       styleClass="option-item" onstart="event.stopPropagation();" process="@this"
       update="@parent #{cc.attrs.componentToUpdate} @widgetVar(workflow-events-dialog)"
@@ -93,7 +103,15 @@
       <i class="option-action-icon si si-business-contract-handshake-sign" />
       <span class="option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/events')}</span>
     </p:commandLink>
-    
+
+    <p:link id="show-process-viewer-link" target="_blank"
+      styleClass="show-process-viewer-link option-item"
+      href="#{taskActionBean.getProcessViewerPageUri(task)}"
+      rendered="#{taskActionBean.showProcessViewer(task)}">
+      <i class="option-action-icon si si-hierarchy-6 si-rotate-270" />
+      <span class="option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/ProcessViewer/ProcessViewerText')}</span>
+    </p:link>
+
     <h:panelGroup id="task-additional-actions" layout="block" rendered="#{cc.attrs.renderedAdditionalAction}">
       <f:event listener="#{sideStepBean.getSideSteps(task.getId(), task.case.getId(), cc.attrs.isAdhocExcluded)}" type="preRenderComponent" />
       <p:separator styleClass="u-separator" />

@@ -26,6 +26,11 @@
  * }
  *
  */
+ 
+ .portal-layout-container {
+  flex-shrink: 1;
+  overflow: auto;
+ }
 
 /* =================== PROCESS FIELDSET ====================== */
 body .ui-fieldset.fieldset-no-border {
@@ -3846,6 +3851,10 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   width: 100%;
 }
 
+.chart-creation-height{
+height: 340px;  
+}
+
 .dashboard-chart-panel .chart-name-container {
   display: inline-block;
   padding: 0;
@@ -5217,7 +5226,8 @@ body .ui-widget-header.portal-breadcrumb a {
 body .ui-widget-header.portal-breadcrumb {
 	border: none;
 	padding-top: 1px;
-	padding-bottom: 1px;
+	padding-bottom: 0;
+	padding-left: 5px;
 }
 
 body .ui-widget-header.portal-breadcrumb .ui-menuitem-link.ui-state-disabled {
@@ -5568,6 +5578,7 @@ body span.ui-commandlink .si {
   padding: 0;
 }
 
+.portal-process-viewer-form.has-error-message,
 .task-details-panel-title {
   font-size: 16px;
 }
@@ -5676,11 +5687,6 @@ body span.ui-commandlink .si {
 .case-item-body-container .card,
 .task-item-body-container .card {
   padding: 24px;
-}
-
-.task-and-case-information,
-.time-information {
-  margin-top: 15px;
 }
 
 .task-detail-description .pointer-event-none {
@@ -5839,8 +5845,7 @@ body span.ui-commandlink .si {
   justify-content: flex-end;
 }
 
-.image-view-form .process-action-group,
-.image-view-action-group-form .process-action-group {
+.process-action-group {
   position: absolute;
   right: 0;
   top: -500px;
@@ -5850,8 +5855,7 @@ body span.ui-commandlink .si {
   justify-content: flex-end;
 }
 
-.grid-view-form .process-action-group .grid-process-category,
-.image-view-form .process-action-group .image-process-category,
+.process-action-group .process-category,
 .image-view-action-group-form .process-action-group .image-process-category {
   border-radius: 20px;
   background-color: var(--image-process-header-background-color);
@@ -5865,14 +5869,12 @@ body span.ui-commandlink .si {
   max-width: 100%;
 }
 
-.grid-view-form .process-action-group .grid-process-category.has-menu-button,
-.image-view-form .process-action-group .image-process-category.has-menu-button,
+.process-action-group .process-category.has-menu-button,
 .image-view-action-group-form .process-action-group .image-process-category.has-menu-button {
   max-width: calc(100% - 40px);
 }
 
-.grid-view-form .process-action-group .grid-process-category .grid-process-category-content,
-.image-view-form .process-action-group .image-process-category .image-process-category-content,
+.process-action-group .process-category .process-category-content,
 .image-view-action-group-form .process-action-group .image-process-category .image-process-category-content {
   font-weight: bold;
   font-size: 12px;
@@ -6117,4 +6119,81 @@ body span.ui-commandlink .si {
   font-size: 3rem;
   width: 100%;
   line-height: 1.5;
+}
+
+/* Process Viewer */
+.portal-process-viewer-form {
+  padding: 10px;
+  height: calc(100% - 7px);
+}
+
+.portal-process-viewer-form.has-error-message {
+  height: 200px;
+}
+
+.process-viewer-frame {
+  height: 100%;
+}
+
+.process-viewer-data {
+  height : calc(100% - 50px);
+  overflow: auto;
+  padding: 2rem !important;
+}
+
+.process-viewer-information {
+  height: 60px;
+}
+
+.process-viewer-command {
+  height: 50px;
+}
+
+.process-viewer-diagram {
+  height: calc(100% - 60px);
+}
+
+.process-viewer-information .process-information-title {
+  font-weight: bold;
+}
+
+.case-detail-section-title .case-detail-action-command {
+  padding: 0;
+}
+.case-detail-section-title .case-detail-action-command .action-link {
+  float: right;
+  margin: 0;
+}
+
+.process-viewer-info-link {
+  cursor: pointer;
+  margin-left: 3px;
+}
+
+.process-viewer-info-link i {
+  vertical-align: middle;
+}
+
+.process-viewer-info-container {
+  max-width: 500px;
+}
+
+.process-viewer-info-container .process-information-title {
+  margin-left: 2px;
+  margin-bottom: 7px;
+}
+
+.process-technical-information-group {
+  table-layout: fixed;
+}
+
+.process-viewer-info-panel .ui-overlaypanel-content {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+@media screen and (max-width: 40em) {
+  .process-viewer-info-container {
+    max-width: auto;
+  }
 }
