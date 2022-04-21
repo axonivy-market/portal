@@ -180,11 +180,12 @@ public class ProcessWidgetTest extends BaseTest {
 
     processWidget.clickEditSwitchLink();
     processWidget.moveFavoriteProcess(3, 1);
-    WaitHelper.assertTrueWithWait(() -> CLEAN_ALL_FAVORITE_PROCESSES.equals(processWidget.findElementByCssSelector(".process-start-list-item-name").getText()));
+    WaitHelper.assertTrueWithWait(() -> CLEAN_ALL_FAVORITE_PROCESSES
+        .equals(processWidget.findListElementsByCssSelector(".process-start-list-item-name").get(1).getText()));
     processWidget.clickSaveProcess();
 
-    assertEquals(CLEAN_ALL_FAVORITE_PROCESSES, processWidget.getProcessNameFromFavoriteProcessList(0));
-    assertEquals(AGOOGLE_LINK, processWidget.getProcessNameFromFavoriteProcessList(1));
+    assertEquals(CLEAN_ALL_FAVORITE_PROCESSES, processWidget.getProcessNameFromFavoriteProcessList(1));
+    assertEquals(AGOOGLE_LINK, processWidget.getProcessNameFromFavoriteProcessList(0));
 
     addNewProcessDialog = processWidget.openNewProcessDialog();
     addNewProcessDialog.selectProcessByName(AAGOOGLE_LINK);
