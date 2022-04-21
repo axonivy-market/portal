@@ -60,3 +60,5 @@ Portal.Tasks.BehaviourWhenClickingOnLineInTaskList,Run the task,"| Default behav
 Portal.UserMenu.HideChangePasswordMenu ,FALSE,"Set to true, the change password option in top menu will be hidden, otherwise it will be shown. "
 Portal.UserMenu.HideLogoutMenu ,FALSE,"If true, the logout button on top menu will be hidden, otherwise it will be shown. "
 Portal.ProcessViewer,TRUE,Set this property to true to enable process viewer option in Task/Case actions
+Portal.Histories.HideRelatedCaseInfo,FALSE,"If true, case history does not display the related case information in the history table."
+Portal.ShowErrorLogToConsole, FALSE, Set to true to enable write error log to browser console

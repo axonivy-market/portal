@@ -64,7 +64,7 @@ public class DisabledUserTest extends BaseTest {
   }
 
   @Test
-  public void testExpressWFWithDisabledUser() {
+  public void testExpressWfWithDisabledUser() {
     HomePage homePage = new HomePage();
     AdminSettingsPage adminSettingsPage = homePage.openAdminSettings();
     ExpressManagementPage expressManagementPage = adminSettingsPage.openExpressManagementTab();

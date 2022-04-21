@@ -17,7 +17,8 @@
             componentToUpdateOnEditProcess="new-widget-configuration-dialog"
             actionListenerOnDeleteProcess="#{dashboardDetailModificationBean.setDeleteWidget(widget)}"
             onCompleteDeleteProcess="PF('remove-widget-dialog').show()"
-            componentToUpdateOnDeleteProcess="remove-widget-dialog"/>
+            componentToUpdateOnDeleteProcess="remove-widget-dialog"
+            hideActionButton="#{isInConfiguration}"/>
         </h:form>
         <p:graphicImage styleClass="image-process-item-image" rendered="#{not empty process.defaultImageSrc}" value="#{process.defaultImageSrc}" />
         <p:graphicImage styleClass="image-process-item-image" library="ivy-cms" rendered="#{empty process.defaultImageSrc}" name="#{process.imageUrl}" /> 

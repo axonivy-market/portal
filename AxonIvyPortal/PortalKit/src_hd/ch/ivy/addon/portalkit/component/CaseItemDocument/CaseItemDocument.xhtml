@@ -20,8 +20,16 @@
           <i class="si si-common-file-text" /> #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/documents')}
         </div>
         <h:panelGroup layout="block" styleClass="case-details-document-add ui-g-7 u-padding-0">
-          <p:commandLink id="add-document-command" styleClass="case-details-document-add-link"
-            rendered="#{!(case.state eq 'DONE' and data.isHideUploadDocumentForDoneCase) and caseActionBean.canWriteDocument(case)}"
+          <p:link id="show-more-doc-link" rendered="#{caseTaskDocumentBean.showMoreDocument}"
+            styleClass="case-details-document-add-link doc-show-more-link"
+            href="#{caseTaskDocumentBean.getCaseDocumentsLink(case)}" target="_blank">
+            <span class="si si-expand-6 doc-show-more-link-icon" />
+            <span class="display-full-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/showMoreBtn')}</span>
+            <span class="display-short-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}</span>
+          </p:link>
+          <p:commandLink id="add-document-command"
+            styleClass="case-details-document-add-link u-mar-right-10"
+            rendered="#{caseTaskDocumentBean.canWriteDocument(case)}"
             actionListener="#{data.setICase(case)}" oncomplete="PF('document-upload-dialog').show()">
             <span class="si si-common-file-add" />
             <span class="display-full-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addDocument')}</span>
@@ -49,7 +57,7 @@
                   fileSizeStyleClass="document-size" />
               </p:commandLink>
               <p:commandLink id="delete-file" actionListener="#{data.setDocument(document)}"
-                rendered="#{!(case.state eq 'DONE' and data.isHideUploadDocumentForDoneCase) and caseActionBean.canWriteDocument(case)}"
+                rendered="#{caseTaskDocumentBean.canWriteDocument(case)}"
                 styleClass="si si-remove Fright case-document-download"
                 oncomplete="PF('document-deletion-dialog').show()">
                 <p:tooltip for="delete-file" trackMouse="true" hideEvent="mouseleave click"
@@ -79,7 +87,7 @@
           <i class="si si-information-circle" />
           <h:outputText styleClass="no-item-header" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noDocumentAvailable')}" />
           <h:outputText styleClass="no-item-detail" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/pleaseAddDocument')}"
-            rendered="#{!(case.state eq 'DONE' and data.isHideUploadDocumentForDoneCase) and caseActionBean.canWriteDocument(case)}" />
+            rendered="#{caseTaskDocumentBean.canWriteDocument(case)}" />
         </h:panelGroup>
       </div>
     </h:form>

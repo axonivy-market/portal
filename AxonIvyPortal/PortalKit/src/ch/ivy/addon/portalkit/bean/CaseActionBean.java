@@ -84,11 +84,6 @@ public class CaseActionBean implements Serializable {
     return hasPermission(iCase, IPermission.CASE_DESTROY);
   }
 
-  public boolean canWriteDocument(ICase iCase) {
-    return hasPermission(iCase, IPermission.DOCUMENT_WRITE)
-        || hasPermission(iCase, IPermission.DOCUMENT_OF_INVOLVED_CASE_WRITE);
-  }
-
   private boolean hasPermission(ICase iCase, IPermission permission) {
     if (iCase == null || permission == null) {
       return false;
