@@ -455,6 +455,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     errorFileUploadSize: El tamaño deberá ser inferior a {0}
     errorNotification: Notificación de error
     errorXhr: Error al actualizar el contenido web
+    escalationTaskHeaderText: TODO Trigger Escalation
+    escalationTaskMessage: TODO Expiry is set to now, thus the task expires. Are you sure?
     filter:
       from: desde
       moreOptions: Más opciones
@@ -1173,6 +1175,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskDetails: Detalles de tarea
     taskInforDialogTitle: Información de tarea
     taskNotes: Notas
+    triggerEscalation: TODO Trigger Escalation
   taskList:
     deadline: Fecha límite
     default: Predeterminado
