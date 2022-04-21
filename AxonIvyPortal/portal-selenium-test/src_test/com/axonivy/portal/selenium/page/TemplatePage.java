@@ -38,6 +38,6 @@ public abstract class TemplatePage extends AbstractPage {
   }
 
   public SelenideElement getStartedTaskTemplateTitle() {
-    return $("div[id$='task-template-title']");
+    return $("span[id='title']").waitUntil(Condition.appear, DEFAULT_TIMEOUT);
   }
 }

@@ -136,6 +136,7 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
   public void applyFilter() {
     $("div.filter-overlay-panel__footer").waitUntil(appear, DEFAULT_TIMEOUT).$$("button[id$='apply-button']")
         .filter(text("Apply")).first().shouldBe(getClickableCondition()).click();
+    $("[id$='case-case_1:filter-overlay-panel-1']").waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
   }
 
   public void nextPageTable() {
@@ -153,18 +154,18 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
     getCloseCheckBox().shouldBe(getClickableCondition()).click();
   }
   
-  public void clickOnCaseActionLink(int taskIndex) {
-    getColumnOfCaseHasIndex(taskIndex, "Actions").shouldBe(getClickableCondition()).click();
+  public void clickOnCaseActionLink(int caseIndex) {
+    getColumnOfCaseHasIndex(caseIndex, "Actions").shouldBe(getClickableCondition()).click();
   }
   
-  public ElementsCollection getActiveCaseActions(int taskIndex) {
-    clickOnCaseActionLink(taskIndex);
-    return $$("div[id$='dashboard-actions-case-case_1:action-steps-panel']").filter(appear).first().waitUntil(appear, DEFAULT_TIMEOUT)
-        .$("div.ui-overlaypanel-content").$$("a[class*='action-step-item']");
+  public ElementsCollection getActiveCaseActions(int caseIndex) {
+    clickOnCaseActionLink(caseIndex);
+    return $$(String.format("div.js-case-side-steps-panel-case_1-%d", caseIndex)).filter(appear).first()
+        .waitUntil(appear, DEFAULT_TIMEOUT).$("div.ui-overlaypanel-content").$$("a[class*='action-step-item']");
   }
   
-  public void destroyCase(int taskIndex) {
-    getActiveCaseActions(taskIndex).filter(text("Destroy")).first().shouldBe(getClickableCondition()).click();
+  public void destroyCase(int caseIndex) {
+    getActiveCaseActions(caseIndex).filter(text("Destroy")).first().shouldBe(getClickableCondition()).click();
     confirmDestroy();
   }
   

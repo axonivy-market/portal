@@ -22,10 +22,8 @@
             securityMemberName="#{data.task.getActivatorName()}" />
 
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/STATE')}" />
-          <h:panelGroup id="task-detail-state" styleClass="state-cell default-task-cell">
-            <h:panelGroup id="task-detail-state-icon" styleClass="#{taskBean.getStateIcon(data.task.getState())}" />
-            <h:outputText value="#{taskBean.getTranslatedState(data.task.getState())}" styleClass="task-detail-state" />
-          </h:panelGroup>
+          <ic:ch.ivy.addon.portalkit.component.task.column.TaskState id="task-state" state="#{data.task.state}"
+            showIndicatorBesideText="true" />
         </h:panelGrid>
 
           <h:form id="form" onkeypress="if (event.keyCode == 13) { return false; }" styleClass="note-history-container ui-g-12 u-no-padding-top">
@@ -38,7 +36,7 @@
             </div>
 
             <div class="ui-g-12">
-              <p:dataTable id="notes-table" widgetVar="notesTable" var="note" sortBy="#{caseTaskNoteHistoryBean.taskHistorySortBy}"
+              <p:dataTable id="notes-table" widgetVar="notesTable" var="note" sortBy="#{caseTaskNoteHistoryBean.taskHistorySortByCreationTimestamp}"
                 value="#{data.notes}" filteredValue="#{data.filteredNotes}"
                 emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
                 reflow="true" scrollable="true">
@@ -60,7 +58,7 @@
                     value="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(note.writter, note.writter.name)}" />
                 </p:column>
 
-                <p:column width="20%" sortBy="#{note.creationTimestamp.time}" field="timestamp" styleClass="u-hidden-sm-down">
+                <p:column width="20%" sortBy="#{note.creationTimestamp.time}" field="creationTimestamp.time" filterable="false" styleClass="u-hidden-sm-down">
                   <f:facet name="header">
                     <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/creationDate')}" />
                   </f:facet>

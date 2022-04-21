@@ -14,7 +14,7 @@ public class CaseDetailsWidgetNewDashBoardPage extends TemplatePage {
   }
   
   public SelenideElement destroyLink() {
-    return $("a[id$='destroy-case-link']");
+    return $("a[id$='destroy-case']");
   }
 
   public void destroy() {
@@ -36,7 +36,7 @@ public class CaseDetailsWidgetNewDashBoardPage extends TemplatePage {
   }
   
   public void openAdditionalCaseDetailsPage() {
-    $("a[id$='additional-case-details-link']").waitUntil(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition())
+    $("a[id$=':show-additional-case-details-link']").waitUntil(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition())
         .click();
   }
   
@@ -46,5 +46,11 @@ public class CaseDetailsWidgetNewDashBoardPage extends TemplatePage {
 
   public SelenideElement firstAdditionalFieldsPage() {
     return countAdditionalFieldsPage().first();
+  }
+
+  public void openActionPanel() {
+    $("a[id$=':action-group:case-details-action-link']").waitUntil(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition())
+      .click();
+    $("div[id$=':action-group:action-steps-panel']").waitUntil(appear, DEFAULT_TIMEOUT);
   }
 }

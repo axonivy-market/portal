@@ -65,6 +65,36 @@ public class ProcessDashboardWidget extends DashboardWidget {
     criteria = new DashboardProcessSearchCriteria();
   }
 
+  public ProcessDashboardWidget(ProcessDashboardWidget widget) {
+    // Properties of DashboardWidget
+    id = widget.getId();
+    name = widget.getName();
+    setLayout(widget.getLayout());
+    autoPosition = widget.getAutoPosition();
+    hasPredefinedFilter = widget.isHasPredefinedFilter();
+    userDefinedFiltersCount = widget.getUserDefinedFiltersCount();
+    searchSavedFilterKeyword = widget.getSearchSavedFilterKeyword();
+    savedFilters = widget.getSavedFilters();
+    userFilterCollection = widget.getUserFilterCollection();
+
+    // Properties of ProcessDashboardWidget
+    displayMode = widget.getDisplayMode();
+    criteria = widget.getCriteria();
+    processPath = widget.getProcessPath();
+    processPaths = widget.getProcessPaths();
+    rowsPerPage = widget.getRowsPerPage();
+    processes = widget.getProcesses();
+    process = widget.getProcess();
+    displayProcesses = widget.getDisplayProcesses();
+    originalDisplayProcesses = widget.getOriginalDisplayProcesses();
+    taskDataModel = widget.getTaskDataModel();
+    caseDataModel = widget.getCaseDataModel();
+    processByTypeStatistic = widget.getProcessByTypeStatistic();
+    showCases = widget.isShowCases();
+    filterableColumns = widget.getFilterableColumns();
+    isPreview = widget.isPreview();
+  }
+
   @Override
   public DashboardWidgetType getType() {
     return DashboardWidgetType.PROCESS;
@@ -244,12 +274,12 @@ public List<ColumnModel> getFilterableColumns() {
   }
 
   @JsonIgnore
-  public SortMeta getCasesSortBy() {
+  public SortMeta getSortByName() {
     return SortFieldUtil.buildSortMeta("name", false);
   }
 
-  @JsonIgnore
-  public SortMeta getTasksSortBy() {
-    return SortFieldUtil.buildSortMeta("name", false);
+  public DashboardProcessSearchCriteria getCriteria() {
+    return criteria;
   }
+
 }
