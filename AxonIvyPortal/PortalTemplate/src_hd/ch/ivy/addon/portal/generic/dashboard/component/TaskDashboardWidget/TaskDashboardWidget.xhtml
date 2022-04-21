@@ -20,8 +20,8 @@
     <ui:param name="isReadOnlyMode" value="#{isReadOnlyMode}" />
     <ui:param name="onStatisticTabShow" value="handleFilterCategoryHeight(this);" />
     <ui:param name="componentToProcessOnApplyFilter" value="filter-container" />
-    <ui:param name="componentToUpdateOnApplyFilter" value="#{component.parent.namingContainer.clientId}:task-component:dashboard-tasks" />
-    <ui:param name="componentToUpdateOnResetFilter" value="#{cc.clientId}:task-component:dashboard-tasks" />
+    <ui:param name="componentToUpdateOnApplyFilter" value="#{component.parent.namingContainer.clientId}:task-component:dashboard-tasks #{component.parent.namingContainer.clientId}:task-component:empty-message-container" />
+    <ui:param name="componentToUpdateOnResetFilter" value="#{cc.clientId}:task-component:dashboard-tasks #{cc.clientId}:task-component:empty-message-container" />
     <ui:param name="onCompleteApplyFilters" value="PF('dashboard-tasks-#{widget.id}').filter()" />
     <ui:param name="isRenderExpandCollapse" value="true" />
 

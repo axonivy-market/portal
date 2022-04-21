@@ -16,6 +16,7 @@
   <c:set var="caseWidget" value="#{cc.attrs.caseWidget}" />
   <c:set var="isReadOnlyMode" value="#{cc.attrs.isReadOnlyMode}" />
   <c:set var="isPreviewMode" value="#{cc.attrs.isPreviewMode}" />
+  <c:set var="noCasesMessage" value="#{dashboardBean.noCasesMessage}" />
 
   <p:remoteCommand id="rcLoadCaseFirstTime" autoRun="true" actionListener="#{caseWidget.dataModel.loadFirstTime()}"
     update="dashboard-cases-container" global="false" async="true" process="@this"
@@ -42,7 +43,7 @@
         paginatorAlwaysVisible="false"
         sortBy="#{caseWidget.sortBy}"
         rowIndexVar="rowIndex" rowHover="#{isReadOnlyMode}" selectionMode="single"
-        styleClass="dashboard-cases--table #{isReadOnlyMode ? '' : 'dashboard__table--edit'} #{isPreviewMode ? 'dashboard__table--preview' : ''}"
+        styleClass="dashboard-cases--table #{isReadOnlyMode ? '' : 'dashboard__table--edit'} #{isPreviewMode ? 'dashboard__table--preview' : ''} #{!isPreviewMode and caseWidget.caseCount lt 1 ? 'u-display-none' : ''}"
         rowStyleClass="dashboard-table--row-style"
         emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}">
         <p:ajax event="page" oncomplete="saveWidgetState()" />
@@ -95,6 +96,26 @@
           </h:panelGroup>
         </p:columns>
       </p:dataTable>
+      <h:panelGroup layout="block" id="empty-message-container"
+        styleClass="empty-message-container #{!isPreviewMode and caseWidget.caseCount lt 1 ? '' : 'u-display-none'}">
+        <c:set var="noCasesWhenFilter"
+          value="#{dashboardCaseFilterBean.hasPredefinedFilter(caseWidget) or caseWidget.userDefinedFiltersCount.isPresent()}" />
+        <h:panelGroup layout="block" id="empty-message-when-filter"
+          rendered="#{noCasesWhenFilter}">
+          <i class="si si-filter-1 empty-message-icon" />
+          <br />
+          <h:outputText
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/iconMessage/caseWidget/noCasesFoundWhenFilter')}"
+            styleClass="empty-message-text" />
+        </h:panelGroup>
+        <h:panelGroup layout="block" id="empty-message-when-not-filter"
+          rendered="#{!noCasesWhenFilter}">
+          <i class="si #{noCasesMessage.icon} empty-message-icon" />
+          <br />
+          <h:outputText value="#{noCasesMessage.message}"
+            styleClass="empty-message-text" />
+        </h:panelGroup>
+      </h:panelGroup>
     </h:panelGroup>
   </div>
 </cc:implementation>
