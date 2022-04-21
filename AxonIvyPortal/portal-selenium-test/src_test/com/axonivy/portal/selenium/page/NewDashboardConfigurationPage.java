@@ -157,4 +157,10 @@ public class NewDashboardConfigurationPage extends TemplatePage {
     createDashboardDialog.$("button[id$='dashboard-create-button']").click();
     createDashboardDialog.waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
   }
+
+  public SelenideElement getDashboardCellByNameAndPosition(String dashboardName, int position) {
+    SelenideElement dashboard = getDashboardRowByName(dashboardName);
+    dashboard.shouldBe(Condition.appear);
+    return dashboard.$("td:nth-child(" + position + ")");
+  }
 }
