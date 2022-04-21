@@ -5,6 +5,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -28,10 +31,12 @@ import ch.ivy.addon.portalkit.dto.dashboard.ProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.WidgetFilterModel;
 import ch.ivy.addon.portalkit.enums.BehaviourWhenClickingOnLineInTaskList;
+import ch.ivy.addon.portalkit.enums.CaseEmptyMessage;
 import ch.ivy.addon.portalkit.enums.DashboardCustomWidgetType;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
+import ch.ivy.addon.portalkit.enums.TaskEmptyMessage;
 import ch.ivy.addon.portalkit.ivydata.service.impl.ProcessService;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
@@ -440,5 +445,19 @@ public class DashboardBean implements Serializable {
 
   public void navigatetoPublicDashboardReorder() {
     PortalNavigator.navigateToDashboardReorder(true);
+  }
+
+  public CaseEmptyMessage getNoCasesMessage() {
+    List<CaseEmptyMessage> messages = Stream.of(CaseEmptyMessage.values()).collect(Collectors.toList());
+    Random random = new Random();
+    int index = random.ints(1, messages.size()).findFirst().getAsInt();
+    return messages.get(index);
+  }
+
+  public TaskEmptyMessage getNoTasksMessage() {
+    List<TaskEmptyMessage> messages = Stream.of(TaskEmptyMessage.values()).collect(Collectors.toList());
+    Random random = new Random();
+    int index = random.ints(1, messages.size()).findFirst().getAsInt();
+    return messages.get(index);
   }
 }

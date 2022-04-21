@@ -750,6 +750,23 @@ ch.ivy.addon.portalkit.ui.jsf:
     expiryTo: Ablauf bis
     field: Feld
     fieldIsAdded: Das Feld {0} wurde hinzugefügt
+    iconMessage:
+      caseWidget:
+        BEACH_PALM_SUNBED: TODO You are awesome - all cases are done. Lean back and enjoy.
+        CHARGING_BATTERY_FULL_1: 'Derzeit keine Vorgänge. Zeit, um die Batterien etwas aufzuladen. '
+        COFFEE_OF_HOT: TODO Wow! Good job! All cases are completed. How about a quick coffee break?
+        RANKING_WINNER_MEDAL: TODO Game, set and match! You did it, all cases are completed!
+        SOCCER_PLAYER: TODO Goal! You did it, all cases completed. Short half-time break.
+        YOGA_MEDITATE: TODO Well done! All cases are done. Inhale, exhale, relax.
+        noCasesFoundWhenFilter: TODO There are currently no cases after applied filter.
+      taskWidget:
+        BEACH_PALM_SUNBED: Du bist großartig - alle Aufgaben sind erledigt. Lehn dich zurück und genieß den Augenblick.
+        CHARGING_BATTERY_FULL_1: TODO There are currently no tasks. Time to recharge the batteries a little.
+        COFFEE_OF_HOT: Wow! Gute Arbeit! Alle Aufgaben sind abgearbeitet. Wie wäre es mit einer kurzen Kaffeepause?
+        RANKING_WINNER_MEDAL: Spiel, Satz und Sieg! Du hast es geschafft, alle Aufgaben sind erledigt!
+        SOCCER_PLAYER: Tor! Du hast es geschafft, alle Aufgaben erledigt. Kurze Halbzeitpause.
+        YOGA_MEDITATE: Gut gemacht! Alle Aufgaben sind bearbeitet. Einatmen, ausatmen, entspannen.
+        noTasksFoundWhenFilter: TODO There are currently no tasks after applied filter.
     loading: Laden...
     noCategory: Es gibt keine Kategorien
     noDashboard: Keine Dashboards vorhanden. Fügen Sie mindestens ein Dashboard und anschließend Widgets hinzu.

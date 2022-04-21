@@ -929,6 +929,21 @@ body .dashboard__table--preview.ui-datatable tbody tr.ui-state-hover {
   overflow: hidden;
 }
 
+.empty-message-container {
+  text-align: center;
+  margin: 100px 0px;
+}
+
+.empty-message-container .empty-message-icon {
+  font-size: var(--dashboard-table-empty-message-icon-font-size);
+  margin-bottom: 10px;
+}
+
+.empty-message-container .empty-message-icon,
+.empty-message-container .empty-message-text {
+  color: var(--primary-color);
+}
+
 .widget-preview--process .dashboard-processes--empty-message {
   padding: 0;
 }

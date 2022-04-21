@@ -747,6 +747,23 @@ ch.ivy.addon.portalkit.ui.jsf:
     expiryTo: Date d'expiration
     field: Champ
     fieldIsAdded: Le champ {0} est ajouté
+    iconMessage:
+      caseWidget:
+        BEACH_PALM_SUNBED: TODO You are awesome - all cases are done. Lean back and enjoy.
+        CHARGING_BATTERY_FULL_1: TODO There are currently no tasks. Time to recharge the batteries a little.
+        COFFEE_OF_HOT: TODO Wow! Good job! All cases are completed. How about a quick coffee break?
+        RANKING_WINNER_MEDAL: TODO Game, set and match! You did it, all cases are completed!
+        SOCCER_PLAYER: TODO Goal! You did it, all cases completed. Short half-time break.
+        YOGA_MEDITATE: TODO Well done! All cases are done. Inhale, exhale, relax.
+        noCasesFoundWhenFilter: TODO There are currently no cases after applied filter.
+      taskWidget:
+        BEACH_PALM_SUNBED: TODO You are awesome - all tasks are done. Lean back and enjoy.
+        CHARGING_BATTERY_FULL_1: TODO There are currently no tasks. Time to recharge the batteries a little.
+        COFFEE_OF_HOT: TODO Wow! Good job! All tasks are completed. How about a quick coffee break?
+        RANKING_WINNER_MEDAL: TODO Game, set and match! You did it, all tasks are completed!
+        SOCCER_PLAYER: TODO Goal! You did it, all tasks completed. Short half-time break.
+        YOGA_MEDITATE: TODO Well done! All tasks are done. Inhale, exhale, relax.
+        noTasksFoundWhenFilter: TODO There are currently no tasks after applied filter.
     loading: Chargement...
     noCategory: Il n'y a pas de catégories
     noDashboard: Il n'y a pas de tableaux de bord. Ajoutez au moins un tableau de bord, puis ajoutez des widgets.
