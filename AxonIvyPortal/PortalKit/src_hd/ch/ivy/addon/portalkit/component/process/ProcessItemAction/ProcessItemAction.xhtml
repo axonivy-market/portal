@@ -49,14 +49,14 @@
           oncomplete="#{cc.attrs.onCompleteEditProcess}"
           actionListener="#{cc.attrs.actionListenerOnEditProcess}"
           update="#{cc.attrs.componentToUpdateOnEditProcess}"
-          disabled="#{!canModify}" />
+          rendered="#{canModify}" />
         <p:menuitem id="delete-process"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
           icon="si si-bin-1"
           oncomplete="#{cc.attrs.onCompleteDeleteProcess}"
           actionListener="#{cc.attrs.actionListenerOnDeleteProcess}"
           update="#{cc.attrs.componentToUpdateOnDeleteProcess}"
-          disabled="#{!canModify}" />
+          rendered="#{canModify}" />
       </p:menu>
     </h:panelGroup>
   </div>
