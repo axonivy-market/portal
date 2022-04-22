@@ -117,7 +117,7 @@
             styleClass="card case-related-task-component grid-stack-item-content"
             rendered="#{widget.type eq 'relatedTask'}">
             <ic:ch.ivy.addon.portalkit.component.CaseItemRelatedTasks id="task-widget" case="#{case}"
-              isWorkingOnTask="#{isWorkingOnTask}" inFrame="#{inFrame}" readOnly="#{readOnly}" />
+              isWorkingOnTask="#{isWorkingOnTask}" inFrame="#{inFrame}" readOnly="#{readOnly}" componentToUpdateTrigger="#{historyWidgetComponent}"/>
           </h:panelGroup>
   
           <!-- Histories box -->
