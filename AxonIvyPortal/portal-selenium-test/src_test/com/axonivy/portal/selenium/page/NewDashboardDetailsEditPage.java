@@ -98,6 +98,15 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
     return $("button[id='remove-widget-button']");
   }
 
+  public StatisticEditWidgetNewDashboardPage addNewStatisticWidget() {
+    addWidgetByName("Statistic chart");
+    return new StatisticEditWidgetNewDashboardPage();
+  }
+
+  public StatisticWidgetDashboardPage selectStatisticWidget() {
+    return new StatisticWidgetDashboardPage();
+  }
+
   public SelenideElement getTitleByIndex(int index) {
     return $("a[id='dashboard-title-" + index + "']");
   }

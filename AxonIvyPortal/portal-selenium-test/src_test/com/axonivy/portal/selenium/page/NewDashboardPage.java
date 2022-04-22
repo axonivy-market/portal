@@ -727,4 +727,8 @@ public class NewDashboardPage extends TemplatePage {
   public void waitPageDisplay() {
     $("a.dashboard__title").waitUntil(disappears, DEFAULT_TIMEOUT);
   }
+
+  public StatisticWidgetDashboardPage selectStatisticWidget() {
+    return new StatisticWidgetDashboardPage();
+  }
 }
