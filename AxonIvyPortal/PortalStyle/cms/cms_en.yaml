@@ -1217,6 +1217,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       EXPIRY_TIME_DESC: Expiry (Newest first)
       PRIORITY_ASC: Priority (High to low)
       PRIORITY_DESC: Priority (Low to high)
+    triggerEscalationNote: 'Escalation has been triggered by {0} ({1}) of task #{2}'
     type: Type
   taskPriority:
     EXCEPTION: EXCEPTION
