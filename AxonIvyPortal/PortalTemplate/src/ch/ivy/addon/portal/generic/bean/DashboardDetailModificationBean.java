@@ -490,4 +490,8 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   public void setCategories(List<String> categories) {
     this.categories = categories;
   }
+
+  public boolean isPublicDashboard() {
+    return isPublicDashboard;
+  }
 }
