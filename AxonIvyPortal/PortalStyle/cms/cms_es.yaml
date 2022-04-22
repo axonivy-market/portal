@@ -1218,6 +1218,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       EXPIRY_TIME_DESC: Fecha de caducidad (nuevos primero)
       PRIORITY_ASC: Prioridad (alta - baja)
       PRIORITY_DESC: Prioridad (baja - alta)
+    triggerEscalationNote: 'TODO Escalation has been triggered by {0} ({1}) of task #{2}'
     type: Tipo
   taskPriority:
     EXCEPTION: Excepción
