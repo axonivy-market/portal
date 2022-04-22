@@ -15,33 +15,56 @@
           <h:panelGroup rendered="#{!data.isError}">
             <div id="process-viewer-information" class="ui-g-12 u-padding-0 process-viewer-information">
               <div class="ui-g-12 u-no-padding-left u-no-padding-top process-information-title">
-                <h:outputText value="Process Information" styleClass="text-ellipsis" />
+                <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/ProcessViewer/ProcessInfo')}"/>
               </div>
 
               <div class="ui-xl-1 ui-lg-2 ui-md-4 ui-sm-4 ui-g-2 u-no-padding-left u-no-padding-top">
-                <h:outputText styleClass="process-details-column-title text-ellipsis" value="Request path" />
+                <h:outputText styleClass="process-details-column-title text-ellipsis" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processName')}" />
               </div>
               <div class="ui-xl-11 ui-lg-10 ui-md-8 ui-sm-8 ui-g-4 u-no-padding-left u-no-padding-top text-ellipsis">
-                <h:outputText id="request-path" value="#{data.processPath}" />
-              </div>
+                <h:outputText id="request-path" value="#{data.webStartable.displayName}" />
+                <p:link id="process-viewer-info-link" styleClass="process-viewer-info-link" href="#">
+                  <i class="si si-information-circle" />
+                </p:link>
+                <p:tooltip for="process-viewer-info-link" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/ProcessViewer/ProcessInfoIconTooltip')}"
+                  trackMouse="true" hideEvent="mouseleave click"/>
+                <p:overlayPanel for="process-viewer-info-link" dynamic="true"
+                  styleClass="process-viewer-info-panel"
+                  onShow="#{logic.loadProcessDetails()}">
+                  <div class="ui-g process-viewer-info-container">
+                    <h:outputText styleClass="ui-g-12 u-padding-0 process-information-title" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/ProcessViewer/ProcessDetails')}"/>
+                    <h:panelGrid columns="2" styleClass="ui-g-12 u-padding-0 process-technical-information-group"
+                      columnClasses="process-details-column-title ui-g-3 ui-sm-12 u-no-padding-left text-ellipsis, ui-g-9 ui-sm-12 u-no-padding-left text-ellipsis">
 
-              <div class="ui-xl-1 ui-lg-2 ui-md-4 ui-sm-4 ui-g-2 u-no-padding-left u-no-padding-top">
-                <h:outputText styleClass="process-details-column-title text-ellipsis" value="PMV" />
-              </div>
-              <div class="ui-xl-11 ui-lg-10 ui-md-8 ui-sm-8 ui-g-4 u-no-padding-left u-no-padding-top text-ellipsis">
-                <h:outputText id="process-pmv" value="#{data.processPMV}" />
-              </div>
+                      <h:outputText styleClass="" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}" />
+                      <h:outputText id="process-start-name" value="#{data.webStartable.name}" />
 
-              <div class="ui-xl-1 ui-lg-2 ui-md-4 ui-sm-4 ui-g-2 u-no-padding-left u-no-padding-top">
-                <h:outputText styleClass="process-details-column-title text-ellipsis" value="Full request path" />
-              </div>
-              <div class="ui-xl-11 ui-lg-10 ui-md-8 ui-sm-8 ui-g-4 u-no-padding-left u-no-padding-top text-ellipsis">
-                <h:outputText id="full-request-url" value="#{data.processStart.userFriendlyRequestPath}" />
+                      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}" />
+                      <h:outputText id="process-start-description" styleClass="text-ellipsis" value="#{data.webStartable.description}" />
+
+                      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/categories')}" />
+                      <h:outputText id="process-start-category" value="#{data.category}" />
+
+                      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}" />
+                      <h:outputText value="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(data.activator, data.activatorName)}" />
+
+                      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/type')}" />
+                      <h:outputText id="process-type" value="#{data.webStartable.type}" />
+
+                      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/ProcessViewer/ProcessId')}" />
+                      <h:outputText id="process-start-id" value="#{data.webStartable.id}" />
+                    </h:panelGrid>
+                    <p:tooltip for="process-start-name" value="#{data.webStartable.name}" trackMouse="true" hideEvent="mouseleave click"/>
+                    <p:tooltip for="process-start-description" value="#{data.webStartable.description}" trackMouse="true" hideEvent="mouseleave click"/>
+                    <p:tooltip for="process-start-category" value="#{data.category}" trackMouse="true" hideEvent="mouseleave click"/>
+                    <p:tooltip for="process-start-id" value="#{data.webStartable.id}" trackMouse="true" hideEvent="mouseleave click"/>
+                  </div>
+                </p:overlayPanel>
               </div>
             </div>
 
             <div class="ui-g-12 u-padding-0 process-viewer-diagram">
-              <iframe id="process-viewer" src="#{data.url}" class="process-viewer-frame ui-g-12 u-padding-0" />
+              <iframe id="process-viewer" src="#{data.webStartable.viewerLink().getRelative()}" class="process-viewer-frame ui-g-12 u-padding-0" />
             </div>
           </h:panelGroup>
 

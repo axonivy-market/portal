@@ -1,0 +1,65 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="process" />
+  <cc:attribute name="hideActionButton"/>
+  <cc:attribute name="canModify"/>
+  <cc:attribute name="actionListenerOnEditProcess"/>
+  <cc:attribute name="onCompleteEditProcess"/>
+  <cc:attribute name="componentToUpdateOnEditProcess"/>
+  <cc:attribute name="actionListenerOnDeleteProcess"/>
+  <cc:attribute name="onCompleteDeleteProcess"/>
+  <cc:attribute name="componentToUpdateOnDeleteProcess"/>
+</cc:interface>
+
+<cc:implementation>
+  <c:set var="process" value="#{cc.attrs.process}"/>
+  <c:set var="canModify" value="#{cc.attrs.canModify}" />
+  <c:set var="showProcessViewer" value="#{processItemActionBean.isShowProcessViewer(process)}"/>
+  <c:set var="hideActionButton" value="#{cc.attrs.hideActionButton or (!canModify and !showProcessViewer)}"/>
+
+  <div id="process-action-group" class="process-action-group">
+    <h:panelGroup id="process-category" layout="block"
+      rendered="#{not empty process.category}"
+      styleClass="js-process-category process-category #{canModify ? 'has-menu-button' : ''}">
+      <h:outputText id="process-category-content"
+        styleClass="process-category-content u-truncate-text"
+        value="#{processItemActionBean.getDisplayProcessCategory(process)}" />
+      <p:tooltip for="process-category-content" value="#{process.category}" trackMouse="true" hideEvent="mouseleave click" />
+    </h:panelGroup>
+
+    <h:panelGroup layout="block" rendered="#{!hideActionButton}">
+      <p:commandButton id="process-action-button" type="button"
+        styleClass="ui-button-icon-only icon-more-menu-button"
+        icon="si si-navigation-menu-horizontal" />
+
+      <p:menu id="process-action-menu" overlay="true"
+        trigger="process-action-button"
+        my="right top" at="right bottom"
+        styleClass="process-action-menu">
+        <p:menuitem id="show-process-viewer-link"
+          icon="si si-hierarchy-6 si-rotate-270"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/ProcessViewer/ProcessViewerText')}"
+          target="_blank" url="#{processItemActionBean.getProcessViewerPageUri(process)}"
+          disabled="#{!showProcessViewer}" />
+        <p:menuitem id="edit-process"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}"
+          icon="si si-graphic-tablet-drawing-pen"
+          oncomplete="#{cc.attrs.onCompleteEditProcess}"
+          actionListener="#{cc.attrs.actionListenerOnEditProcess}"
+          update="#{cc.attrs.componentToUpdateOnEditProcess}"
+          rendered="#{canModify}" />
+        <p:menuitem id="delete-process"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
+          icon="si si-bin-1"
+          oncomplete="#{cc.attrs.onCompleteDeleteProcess}"
+          actionListener="#{cc.attrs.actionListenerOnDeleteProcess}"
+          update="#{cc.attrs.componentToUpdateOnDeleteProcess}"
+          rendered="#{canModify}" />
+      </p:menu>
+    </h:panelGroup>
+  </div>
+</cc:implementation>
+
+</html>

@@ -5,6 +5,8 @@ import static com.codeborne.selenide.Condition.disappears;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+import java.util.List;
+
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 
@@ -639,6 +641,76 @@ public class NewDashboardPage extends TemplatePage {
     newDashboardConfigurationPage.waitPageDisplay();
     return newDashboardConfigurationPage;
   }
+
+  public NewDashboardConfigurationPage navigateToEditPrivateDashboardPage() {
+    $("a[id$=':edit-private-dashboard']").click();
+    NewDashboardConfigurationPage newDashboardConfigurationPage = new NewDashboardConfigurationPage();
+    newDashboardConfigurationPage.waitPageDisplay();
+    return newDashboardConfigurationPage;
+  }
+
+  public void openCreatePublicDashboardMenu() {
+    $("a[id$=':create-public-dashboard']").click();
+    $("div[id$='create-new-dashboard-section']").waitUntil(Condition.appear, DEFAULT_TIMEOUT);
+  }
+
+  public void openCreatePrivateDashboardMenu() {
+    $("a[id$=':create-private-dashboard']").click();
+    $("div[id$='create-new-dashboard-section']").waitUntil(Condition.appear, DEFAULT_TIMEOUT);
+  }
+
+  public void createPrivateDashboardFromScratch(String newName, String newDescription) {
+    $("a[id$=':create-from-scratch']").click();
+    inputCreateDashboardDialog(newName, newDescription, null);
+  }
+
+  public void createPrivateDashboardFromTemplate(String newName, String newDescription, int templateIndex) {
+    $("div[id$='create-new-dashboard-section']").$("a[id$='" + templateIndex + ":template']").click();
+    inputCreateDashboardDialog(newName, newDescription, null);
+  }
+
+  public void createPublicDashboardFromScratch(String newName, String newDescription, List<String> permissions) {
+    $("a[id$=':create-from-scratch']").click();
+    inputCreateDashboardDialog(newName, newDescription, permissions);
+  }
+
+  public void createPublicDashboardFromTemplate(String newName, String newDescription, List<String> permissions, int templateIndex) {
+    $("div[id$='create-new-dashboard-section']").$("a[id$='" + templateIndex + ":template']").click();
+    inputCreateDashboardDialog(newName, newDescription, permissions);
+  }
+
+  private void inputCreateDashboardDialog(String newName, String newDescription, List<String> permissions) {
+    SelenideElement createDashboardDialog = $("div[id$='dashboard-detail-dialog']");
+    createDashboardDialog.waitUntil(Condition.appear, DEFAULT_TIMEOUT);
+    createDashboardDialog.$("input[id$=':dashboard-title']").clear();
+    createDashboardDialog.$("input[id$=':dashboard-title']").sendKeys(newName);
+    createDashboardDialog.$("input[id$=':dashboard-description']").clear();
+    createDashboardDialog.$("input[id$=':dashboard-description']").sendKeys(newDescription);
+    
+    if (permissions != null) {
+      ElementsCollection selectedPermissions = createDashboardDialog.$("div[id$=':dashboard-permission']").$$("li.ui-state-active");
+      if (!selectedPermissions.isEmpty()) {
+        for(SelenideElement permission : selectedPermissions) {
+          permission.$("span.ui-icon-close").click();
+        }
+      }
+
+      createDashboardDialog.$("div[id$=':dashboard-permission']").$("button.ui-autocomplete-dropdown").click();
+      
+      $("span[id$=':dashboard-permission_panel']").waitUntil(Condition.appear, DEFAULT_TIMEOUT);
+      $("span[id$=':dashboard-permission_panel']").$$("tr.ui-autocomplete-item").forEach(item -> {
+        for(String permissionName : permissions) {
+          if (item.$("td").getText().contains(permissionName)) {
+            item.click();
+          }
+        }
+      });
+    }
+
+    createDashboardDialog.$("button[id$='dashboard-create-button']").click();
+    createDashboardDialog.waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
+  }
+
 
   public SelenideElement getPrivateDashboardConfigurationSection() {
     return $("div[id$=':private-dashboard-configuration-section']");

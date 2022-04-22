@@ -14,6 +14,7 @@
   <cc:attribute name="dataModel" />
   <cc:attribute name="onDestroyComplete" />
   <cc:attribute name="onDelegateComplete" />
+  <cc:attribute name="onEscalationComplete" />
   <cc:attribute name="onWorkflowEventComplete" />
   <cc:attribute name="inFrame" default="false" />
   <cc:attribute name="readOnly" default="true" />
@@ -55,6 +56,7 @@
           <ui:param name="currentPortalPage" value="#{data.currentPortalPage}" />
           <ui:param name="onDestroyComplete" value="#{cc.attrs.onDestroyComplete}" />
           <ui:param name="onDelegateComplete" value="#{cc.attrs.onDelegateComplete}" />
+          <ui:param name="onEscalationComplete" value="#{cc.attrs.onEscalationComplete}" />
           <ui:param name="onWorkflowEventComplete" value="#{cc.attrs.onWorkflowEventComplete}" />
         </ui:include>
       </f:subview>

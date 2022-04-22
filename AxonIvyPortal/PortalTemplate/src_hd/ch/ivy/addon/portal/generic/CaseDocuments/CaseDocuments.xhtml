@@ -1,0 +1,110 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+<h:body>
+  <ui:composition template="/layouts/BasicTemplate.xhtml">
+    <ui:param name="isWorkingOnATask" value="false" />
+    <ui:define name="title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/CaseDocuments/CaseDocumentsPageTitle')}</ui:define>
+    <ui:define name="pageContent">
+      <div id="case-documents" class="ui-g">
+        <p:growl id="case-document-global-messages" escape="false" />
+        <h:panelGrid columns="2"
+          columnClasses="u-text-align-left ui-g-2 ui-lg-1 ui-md-2 ui-sm-4, u-text-align-left ui-g-10 ui-lg-11 ui-md-8 ui-sm-8"
+          styleClass="ui-g-12 u-no-padding-bottom">
+          <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}" />
+          <h:outputText id="case-name" value="#{data.selectedCase.name}" />
+
+          <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/ID')}" />
+          <h:outputText id="case-id" value="#{data.selectedCase.id}" />
+
+          <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATOR')}" />
+          <ic:ch.ivy.addon.portalkit.component.SecurityMemberDisplayName id="case-creator"
+            securityMember="#{data.selectedCase.creatorUser}" securityMemberName="#{data.selectedCase.creatorUserName}" />
+
+          <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/STATE')}" />
+          <ic:ch.ivy.addon.portalkit.component.cases.column.CaseState case="#{data.selectedCase}"
+            showIndicatorBesideText="true"/>
+        </h:panelGrid>
+
+        <h:form id="case-doc-form" styleClass="document-container ui-g-12 u-no-padding-top">
+          <f:event listener="#{logic.initData}" type="preRenderComponent"/>
+          <p:dataTable id="docs-table" widgetVar="docs-table"
+            sortBy="#{caseTaskDocumentBean.documentSortByCreationTimestamp}"
+            value="#{data.documents}" var="document"
+            filteredValue="#{data.filteredDocuments}"
+            emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
+            reflow="true" scrollable="true"
+            styleClass="ui-g-12">
+
+            <p:column id="document-name" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/name')}"
+              sortBy="#{document.name}"
+              filterBy="#{document.name}" filterMatchMode="contains"
+              styleClass="u-truncate-text ui-sm-12" width="65%">
+              <h:panelGroup layout="block" rendered="#{document ne null}" styleClass="case-document-name">
+                <p:commandLink ajax="false" id="download"
+                  styleClass="download-command case-document-name-text u-truncate-text">
+                  <p:fileDownload value="#{logic.downloadDocument(document)}" />
+                  <ic:ch.ivy.addon.portalkit.component.document.DocumentNameWithIcon fileName="#{document.name}"
+                    fileSize="#{masterDataBean.getReadableFileSize(document.size)}"
+                    symbolStyleClass="case-details-document-download-icon"
+                    fileNameStyleClass="js-document-name document-name" fileSizeStyleClass="document-size" />
+                </p:commandLink>
+                <p:commandLink id="delete-file" actionListener="#{data.setDocument(document)}"
+                  rendered="#{caseTaskDocumentBean.canWriteDocument(data.selectedCase)}"
+                  styleClass="si si-remove Fright case-document-download"
+                  oncomplete="PF('document-deletion-dialog').show()">
+                  <p:tooltip for="delete-file" trackMouse="true" hideEvent="mouseleave click"
+                    value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/deleteFile')} #{document.name}" />
+                </p:commandLink>
+              </h:panelGroup>
+            </p:column>
+
+            <c:set var="documentAuthorName" value="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(document.creation.user, document.creation.user.name)}"/>
+            <p:column id="document-author" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/author')}"
+              styleClass="case-document-author u-truncate-text ui-sm-hidden" width="10%"
+              sortBy="#{documentAuthorName}"
+              filterBy="#{documentAuthorName}" filterMatchMode="contains">
+              <h:outputText value="#{documentAuthorName}" />
+            </p:column>
+
+            <p:column id="document-creation"
+              headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/creationDate')}"
+              styleClass="case-history-date u-truncate-text ui-sm-hidden" width="15%"
+              sortBy="#{document.creation.timestamp}">
+              <h:outputText value="#{document.creation.timestamp}">
+                <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}" />
+              </h:outputText>
+            </p:column>
+          </p:dataTable>
+
+          <div class="ui-g-12 u-text-align-right">
+            <p:commandButton actionListener="#{logic.close}"
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
+              icon="#{visibilityBean.generateButtonIcon('si si-remove')}"/>
+          </div>
+        </h:form>
+      </div>
+
+      <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
+        <ui:param name="widgetVar" value="document-deletion-dialog" />
+        <ui:param name="appendTo" value="@(body)" />
+        <ui:param name="iconClass" value="si si-delete-1" />
+        <ui:param name="iconStyleClass" value="portal-dialog-error-icon" />
+        <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/deleteDocumentHeaderText')}" />
+        <ui:param name="dialogContent" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmForDelete')}" />
+
+        <ui:define name="dialogFooter">
+          <p:commandLink id="document-deletion-cancellation-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+             process="@this" onsuccess="PF('document-deletion-dialog').hide()" styleClass="u-mar-right-15"/>
+          <p:commandButton id="document-deletion-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
+            process="@this" icon="#{visibilityBean.generateButtonIcon('si si-remove')}"
+            update="case-document-global-messages case-doc-form"
+            actionListener="#{logic.deleteDocument}"
+            oncomplete="PF('document-deletion-dialog').hide();" />
+        </ui:define>
+      </ui:decorate>
+    </ui:define>
+  </ui:composition>
+</h:body>
+</html>

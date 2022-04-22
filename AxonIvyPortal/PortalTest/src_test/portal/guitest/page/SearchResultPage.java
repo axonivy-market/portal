@@ -110,22 +110,31 @@ public class SearchResultPage extends TemplatePage {
     return element.getAttribute("class").contains("si-information-circle");
   }
 
-  public boolean isEditExpressWorkflow() {
+  public boolean isEditExpressWorkflow(String processName) {
     ProcessWidgetPage processWidget = getProcessWidget();
     if (processWidget.isImageModeActivated()) {
-      WebElement actionMenu = findElementByCssSelector("div[id$='search-results-tabview:process-results:image-process-group-alphabet:13:image-processes:1:process-item:process-action-menu']");
-      WebElement icon = findChildElementByCssSelector(actionMenu, "a[id$=':process-item:process-edit']");
+      WebElement actionMenu = getImageProcessActionMenuPanel(processName);
+      WebElement icon = findChildElementByCssSelector(actionMenu, "a[id$=':image-process-action-component:edit-process']");
       return icon != null;
     }
     WebElement element = findElementByCssSelector(EDIT_EXPRESS_WORKFlOW);
     return element.getAttribute("class").contains("si-graphic-tablet-drawing-pen");
   }
 
-  public boolean isDeleteExpressWorkflown() {
+  private WebElement getImageProcessActionMenuPanel(String processName) {
+    var selectedProcess = findListElementsByCssSelector("span.process-image-view-name").stream()
+        .filter(process -> processName.equalsIgnoreCase(process.getText()))
+        .findFirst().orElse(null);
+    var processActionMenuId = selectedProcess.getAttribute(ID_PROPERTY).replace("process-item-name", "");
+    processActionMenuId = processActionMenuId.concat("process-item:image-process-action-component:process-action-menu");
+    return findElementByCssSelector(String.format("div[id$='%s']", processActionMenuId));
+  }
+
+  public boolean isDeleteExpressWorkflown(String processName) {
     ProcessWidgetPage processWidget = getProcessWidget();
     if (processWidget.isImageModeActivated()) {
-      WebElement actionMenu = findElementByCssSelector("div[id$='search-results-tabview:process-results:image-process-group-alphabet:13:image-processes:1:process-item:process-action-menu']");
-      WebElement icon = findChildElementByCssSelector(actionMenu, "a[id$=':process-item:process-delete']");
+      WebElement actionMenu = getImageProcessActionMenuPanel(processName);
+      WebElement icon = findChildElementByCssSelector(actionMenu, "a[id$=':image-process-action-component:delete-process']");
       return icon != null;
     }
     WebElement element = findElementByCssSelector(DELETE_EXPRESS_WORKFlOW);

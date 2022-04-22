@@ -157,11 +157,6 @@ public class TaskActionBean implements Serializable {
     return isNotDone(task) && hasPermission(task, IPermission.TASK_WRITE_DESCRIPTION);
   }
 
-  public boolean canWriteDocument(ITask task) {
-    return hasPermission(task, IPermission.DOCUMENT_WRITE)
-        || hasPermission(task, IPermission.DOCUMENT_OF_INVOLVED_CASE_WRITE);
-  }
-
   public boolean canDestroyTask(ITask task) {
     List<TaskState> taskStates = Arrays.asList(TaskState.DONE, TaskState.DESTROYED);
     return hasPermission(task, IPermission.TASK_DESTROY) && !taskStates.contains(task.getState());
@@ -333,4 +328,23 @@ public class TaskActionBean implements Serializable {
   public boolean showProcessViewer(ITask task) {
     return ProcessViewerUtils.isShowProcessViewer(task.getCase().getBusinessCase());
   }
+  
+  public boolean canExpiry(ITask task) {
+    return hasPermission(task, IPermission.TASK_WRITE_EXPIRY_ACTIVATOR) && isExpiryDateLower(task)
+        && canExpiryTask(task);
+  }
+
+  public boolean isExpiryDateLower(ITask task) {
+    return task.getExpiryTimestamp() != null && task.getExpiryTimestamp().after(new Date());
+  }
+
+  public boolean canExpiryTask(ITask task) {
+    if (task == null) {
+      return false;
+    }
+    EnumSet<TaskState> taskStates =
+        EnumSet.of(TaskState.DONE, TaskState.DESTROYED, TaskState.RESUMED, TaskState.FAILED);
+    return !taskStates.contains(task.getState());
+  }
+
 }
