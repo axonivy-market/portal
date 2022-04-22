@@ -85,6 +85,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     caseDescription: Descripción de caso
     taskDescription: Descripción de tarea
     taskState: Estado de tarea
+  CaseDocuments:
+    CaseDocumentsPageTitle: TODO Case Documents
   CaseStatusInformation:
     CurrentTasks:
       currentTasks: Tareas actuales
@@ -167,12 +169,15 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskListConfiguration: Configuración lista de tareas
   ProcessViewer:
     Breadcrumb: Visualización del proceso {0}
-    ModelVersion: Versión del modelo de proceso
     ProcessDataNotFound: No se han encontrado datos del proceso
+    ProcessDetails: TODO Process details
+    ProcessId: TODO Process Id
+    ProcessInfo: TODO Process Information
+    ProcessInfoIconTooltip: TODO Click to see details of the process start
     ProcessViewerText: Visualizador de procesos
-    RequestPath: Procesar la ruta de solicitud
     Title: Visualizador de procesos
-    UserFriendlyRequestPath: Procesar una ruta de solicitud amigable para el usuario
+  TaskDocuments:
+    TaskDocumentsPageTitle: TODO Task Documents
   adminSettings:
     addLanguages: Agregar idiomas
     addNewApplication: Crear nueva aplicación de terceros
@@ -240,6 +245,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       hideCaseDocument: Cambiar a "true" para ocultar el área de documentos en detalle de casos
       hideChangePasswordButtonNote: Cambiar a "true" para ocultar la posibilidad de cambiar contraseña.
       hideLogoutButtonNote: Cambiar a "true" para ocultar la opción de logout.
+      hideRelatedCaseInfoFromHistory: TODO If true, case history does not display the related case information in the history table.
       hideStatisticWidget: Cambiar a "true" para ocultar la estadística de la página principal y del menu lateral
       hideSystemNotesFromHistory: Si esto es cierto, no se muestran notas del sistema para los usuarios en las notas de tarea/tarea.
       hideSystemNotesFromHistoryAdministrator: Si esto es cierto, no se muestran notas de sistema para los administradores en las notas de tarea/tarea.
@@ -254,6 +260,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       showButtonIcon: Para encender o apagar el icono de la pantalla en el botón.
       showCaseDurationTime: Activar o desactivar la visibilidad de la duración del caso en detalles de caso.
       showEnvironmentInfoNote: Cambiar a "true" para ver la información del sistema sobre el nombre de usuario
+      showErrorLogToConsole: TODO Set to true to enable write error log to browser console
       showGlobalSearch: Para activar o desactivar la visualización de la búsqueda global.
       showLegacyUI: Para activar o desactivar el modo legado.
       showProcessInformation: Cambiar a falso para desactivar el enlace "Más información" en la página de Procesos (modo cuadrícula) y Detalles del caso.
@@ -449,6 +456,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     errorFileUploadSize: El tamaño deberá ser inferior a {0}
     errorNotification: Notificación de error
     errorXhr: Error al actualizar el contenido web
+    escalationTaskHeaderText: TODO Trigger Escalation
+    escalationTaskMessage: TODO Expiry is set to now, thus the task expires. Are you sure?
     filter:
       from: desde
       moreOptions: Más opciones
@@ -533,8 +542,9 @@ ch.ivy.addon.portalkit.ui.jsf:
     sessionExpriedInTeams: Su sesión expiró. La aplicación se reiniciará.
     setting: Configuración
     showDetail: Mostrar detalles
-    showSystemNotes: Mostrar notas del systema
-    showSystemTasks: Mostrar tareas del sistema
+    showRelatedCaseInfo: TODO Related case
+    showSystemNotes: TODO System notes
+    showSystemTasks: TODO System tasks
     start: Abrir
     state: Estatus
     status: Estado
@@ -715,6 +725,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     configuration:
       CustomWidgetExternalLinkWarning: Algunas webs no son compatibles con iframe por motivos de seguridad. Póngase en contacto con su administrador si la web externa no funciona correctamente.
       Parameters: Parámetros
+      SelectYourTemplate: TODO Select your template
       configuration: Configuración
       configurationDescription: Puede configurar su widget en esta área de configuración. Por favor, defina los filtros requeridos así como las columnas a mostrar.
       customWidgetParamChangedMessage: Este proceso ha cambiado. Presione aktualizar para continuar.
@@ -732,6 +743,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     customWidget: Widget personalizado
     customWidgetIntroduction: Con este widget puede añadir procesos de Axon Ivy o páginas web externas.
     dashboardManagement:
+      CreateDashboard: TODO Create Dashboard
       addDashboard: Añadir tablero
       dashboardPermission: Permiso de tablero
       dashboardTitle: Título del tablero
@@ -1176,6 +1188,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskDetails: Detalles de tarea
     taskInforDialogTitle: Información de tarea
     taskNotes: Notas
+    triggerEscalation: TODO Trigger Escalation
   taskList:
     deadline: Fecha límite
     default: Predeterminado
