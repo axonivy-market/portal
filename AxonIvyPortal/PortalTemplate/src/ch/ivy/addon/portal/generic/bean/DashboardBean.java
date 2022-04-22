@@ -75,6 +75,8 @@ public class DashboardBean implements Serializable {
   private boolean canEditPublicDashboard;
   private ITask selectedTask;
   private boolean isRunningTaskWhenClickingOnTaskInList;
+  private CaseEmptyMessage noCasesMessage;
+  private TaskEmptyMessage noTasksMessage;
 
   @PostConstruct
   public void init() {
@@ -448,16 +450,22 @@ public class DashboardBean implements Serializable {
   }
 
   public CaseEmptyMessage getNoCasesMessage() {
-    List<CaseEmptyMessage> messages = Stream.of(CaseEmptyMessage.values()).collect(Collectors.toList());
-    Random random = new Random();
-    int index = random.ints(1, messages.size()).findFirst().getAsInt();
-    return messages.get(index);
+    if (noCasesMessage == null) {
+      List<CaseEmptyMessage> messages = Stream.of(CaseEmptyMessage.values()).collect(Collectors.toList());
+      Random random = new Random();
+      int index = random.ints(1, messages.size()).findFirst().getAsInt();
+      noCasesMessage = messages.get(index);
+    }
+    return noCasesMessage;
   }
 
   public TaskEmptyMessage getNoTasksMessage() {
-    List<TaskEmptyMessage> messages = Stream.of(TaskEmptyMessage.values()).collect(Collectors.toList());
-    Random random = new Random();
-    int index = random.ints(1, messages.size()).findFirst().getAsInt();
-    return messages.get(index);
+    if (noTasksMessage == null) {
+      List<TaskEmptyMessage> messages = Stream.of(TaskEmptyMessage.values()).collect(Collectors.toList());
+      Random random = new Random();
+      int index = random.ints(1, messages.size()).findFirst().getAsInt();
+      noTasksMessage = messages.get(index);
+    }
+    return noTasksMessage;
   }
 }
