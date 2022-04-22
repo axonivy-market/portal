@@ -2,14 +2,13 @@ package ch.ivy.addon.portalkit.bean;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 
-import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.event.ItemSelectEvent;
 
@@ -20,6 +19,7 @@ import ch.ivy.addon.portalkit.statistics.StatisticChart;
 import ch.ivy.addon.portalkit.statistics.StatisticChartDrilldownUtil;
 import ch.ivyteam.ivy.environment.Ivy;
 
+@ViewScoped
 @ManagedBean
 public class DashboardStatisticChartBean implements Serializable {
 
@@ -27,7 +27,7 @@ public class DashboardStatisticChartBean implements Serializable {
   private List<StatisticChart> availableCharts;
   private StatisticChart selectedChart;
 
-  public void initChartConfiguration(StatisticDashboardWidget widget) {
+  public void initChartConfiguration(StatisticDashboardWidget widget, boolean isPublicDashboard) {
     if (widget != null && widget.getChart() != null) {
       selectedChart = widget.getChart();
     } else {
@@ -35,20 +35,15 @@ public class DashboardStatisticChartBean implements Serializable {
       selectedChart.setType(StatisticChartType.TASK_BY_PRIORITY);
       selectedChart.setDonutChartModel(StatisticService.getInstance().createDonutChartPlaceholder());
     }
+    fetchStatisticCharts(isPublicDashboard);
   }
 
-  public void fetchStatisticCharts() {
+  public void fetchStatisticCharts(boolean isPublicDashboard) {
     availableCharts = new ArrayList<>();
-    availableCharts.addAll(StatisticService.getInstance().findStatisticCharts());
-  }
-
-  public void preview() {
-    generateChartModel(selectedChart);
-  }
-
-  public void generateChartModel(StatisticChart chart) {
-    if (chart != null) {
-      StatisticService.getInstance().generateChartModelForStatisticCharts(Arrays.asList(chart));
+    if (isPublicDashboard) {
+      availableCharts.addAll(StatisticService.getInstance().getPublicConfig());
+    } else {
+      availableCharts.addAll(StatisticService.getInstance().findStatisticCharts());
     }
   }
 
@@ -100,9 +95,6 @@ public class DashboardStatisticChartBean implements Serializable {
   }
 
   public List<StatisticChart> getAvailableCharts() {
-    if (CollectionUtils.isEmpty(availableCharts)) {
-      fetchStatisticCharts();
-    }
     return availableCharts;
   }
 

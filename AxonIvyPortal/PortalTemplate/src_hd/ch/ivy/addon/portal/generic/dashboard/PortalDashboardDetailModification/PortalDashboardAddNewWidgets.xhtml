@@ -63,7 +63,7 @@
 
     <c:if test="#{widget.type eq 'STATISTIC'}">
       <ic:ch.ivy.addon.portal.generic.dashboard.component.StatisticChartWidgetConfiguration id="new-widget-configuration-component"
-        widget="#{widget}" componentToUpdate="widget-configuration-form"/>
+        widget="#{widget}" componentToUpdate="widget-configuration-form" isPublicDashboard="#{isPublicDashboard}"/>
     </c:if>
 
    <c:if test="#{widget.type eq 'CUSTOM'}">
