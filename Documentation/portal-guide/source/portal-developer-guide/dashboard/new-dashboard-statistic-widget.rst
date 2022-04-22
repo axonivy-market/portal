@@ -1,4 +1,4 @@
-.. _configure-new-dashboard-task-widget:
+.. _configure-new-dashboard-statistic-widget:
 
 Configure Statistic widget
 ==========================
