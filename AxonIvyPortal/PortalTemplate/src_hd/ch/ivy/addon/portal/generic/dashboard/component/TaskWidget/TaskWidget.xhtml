@@ -19,7 +19,6 @@
   <c:set var="taskWidget" value="#{cc.attrs.taskWidget}" />
   <c:set var="isReadOnlyMode" value="#{cc.attrs.isReadOnlyMode}" />
   <c:set var="isPreviewMode" value="#{cc.attrs.isPreviewMode}" />
-  <c:set var="noTasksMessage" value="#{dashboardBean.noTasksMessage}" />
 
   <p:remoteCommand id="rcLoadTaskFirstTime" autoRun="true" actionListener="#{taskWidget.dataModel.loadFirstTime()}" 
     update="dashboard-tasks-container" global="false" async="true" process="@this"
@@ -114,9 +113,9 @@
         </h:panelGroup>
         <h:panelGroup layout="block" id="empty-message-when-not-filter"
           rendered="#{!noTasksWhenFilter}">
-          <i class="si #{noTasksMessage.icon} empty-message-icon" />
+          <i class="si #{dashboardBean.noTasksMessage.icon} empty-message-icon" />
           <br />
-          <h:outputText value="#{noTasksMessage.message}"
+          <h:outputText value="#{dashboardBean.noTasksMessage.message}"
             styleClass="empty-message-text" />
         </h:panelGroup>
       </h:panelGroup>
