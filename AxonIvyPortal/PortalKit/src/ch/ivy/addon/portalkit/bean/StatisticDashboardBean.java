@@ -24,11 +24,9 @@ import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.service.DateTimeGlobalSettingService;
 import ch.ivy.addon.portalkit.service.StatisticService;
 import ch.ivy.addon.portalkit.statistics.StatisticChart;
-import ch.ivy.addon.portalkit.statistics.StatisticChartQueryUtils;
+import ch.ivy.addon.portalkit.statistics.StatisticChartDrilldownUtil;
 import ch.ivy.addon.portalkit.statistics.StatisticFilter;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.workflow.query.CaseQuery;
-import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
 @ManagedBean
 @ViewScoped
@@ -43,7 +41,6 @@ public class StatisticDashboardBean implements Serializable {
   private static final String DASH = "%s - %s";
   private StatisticService statisticService = StatisticService.getInstance();
   private ItemSelectEvent taskByExpiryItemSelectEvent;
-
 
   public String getChartWidthStyle(List<StatisticChart> chartList) {
     List<String> chartIdSuffixes = new ArrayList<>();
@@ -75,62 +72,28 @@ public class StatisticDashboardBean implements Serializable {
 
   public void drilldownTaskByPriority(ItemSelectEvent event) {
     StatisticChart selectedStatisticChart = getSelectedStatisticChart(event);
-    TaskQuery taskQuery =
-        StatisticChartQueryUtils.getQueryForSelectedItemOfTaskByPriorityChart(event, selectedStatisticChart);
-
-    String currentLanguage = LanguageService.newInstance().findUserLanguages().getIvyLanguage().getUserLanguage();
-    String chartName = selectedStatisticChart.getNames().stream()
-        .filter(name -> StatisticService.equalsDisplayNameLocale(name, currentLanguage))
-        .map(DisplayName::getValue)
-        .findFirst().orElse("");
-
-    IvyComponentLogicCaller<String> drillDownTaskByPriority = new IvyComponentLogicCaller<>();
-    String componentId = Attrs.currentContext().getBuildInAttribute("clientId");
-    drillDownTaskByPriority.invokeComponentLogic(componentId,
-        "#{logic.drilldownTaskByPriority}", new Object[] {chartName, taskQuery});
+    StatisticChartDrilldownUtil.drilldownTaskByPriority(event, selectedStatisticChart);
   }
 
   public void drilldownCaseByState(ItemSelectEvent event) {
     StatisticChart selectedStatisticChart = getSelectedStatisticChart(event);
-    CaseQuery caseQuery = StatisticChartQueryUtils.getQueryForSelectedItemByCaseByState(event, selectedStatisticChart);
-    IvyComponentLogicCaller<String> drilldownCaseByState = new IvyComponentLogicCaller<>();
-    String componentId = Attrs.currentContext().getBuildInAttribute("clientId");
-    drilldownCaseByState.invokeComponentLogic(componentId, "#{logic.drilldownCaseByState}",
-        new Object[] {selectedStatisticChart, caseQuery});
+    StatisticChartDrilldownUtil.drilldownCaseByState(event, selectedStatisticChart);
   }
 
   public void drilldownElapsedTime(ItemSelectEvent event) {
     StatisticChart selectedStatisticChart = getSelectedStatisticChart(event);
-    String selectedCaseCategory = StatisticService.getSelectedValueOfBarChart(event);
-    IvyComponentLogicCaller<String> drilldownElapsedTime = new IvyComponentLogicCaller<>();
-    String componentId = Attrs.currentContext().getBuildInAttribute("clientId");
-    drilldownElapsedTime.invokeComponentLogic(componentId, "#{logic.drilldownElapsedTime}",
-        new Object[] {selectedStatisticChart, selectedCaseCategory});
+    StatisticChartDrilldownUtil.drilldownElapsedTime(event, selectedStatisticChart);
   }
 
   public void onSelectDrilldownTaskByExpiry(ItemSelectEvent event) {
     StatisticChart selectedStatisticChart = getSelectedStatisticChart(event);
-    String selectedDrilldownItem = StatisticService.getSelectedValueOfBarChart(event);
-    Boolean isDrilldownToTaskList = StatisticService.selectHourOfDay(selectedDrilldownItem);
-    String selectedItemOfDrilldown = StatisticService.getSelectedValueOfBarChart(event);
-
-    TaskQuery taskQuery = generateQueryForTaskByExpiry(event, selectedStatisticChart);
     taskByExpiryItemSelectEvent = event;
-    IvyComponentLogicCaller<String> onSelectDrilldownTaskByExpiry = new IvyComponentLogicCaller<>();
-    String componentId = Attrs.currentContext().getBuildInAttribute("clientId");
-    onSelectDrilldownTaskByExpiry.invokeComponentLogic(componentId,
-        "#{logic.onSelectDrilldownTaskByExpiry}",
-        new Object[] {isDrilldownToTaskList, selectedItemOfDrilldown, selectedStatisticChart, taskQuery});
+    StatisticChartDrilldownUtil.onSelectDrilldownTaskByExpiry(event, selectedStatisticChart);
   }
 
   public void toTaskByExpiryTaskList(ItemSelectEvent event) {
-    String selectedItemOfDrilldown = StatisticService.getSelectedValueOfBarChart(event);
     StatisticChart selectedStatisticChart = getSelectedStatisticChart(event);
-    TaskQuery taskQuery = generateQueryForTaskByExpiry(event, selectedStatisticChart);
-    IvyComponentLogicCaller<String> toTaskByExpiryTaskList = new IvyComponentLogicCaller<>();
-    String componentId = Attrs.currentContext().getBuildInAttribute("clientId");
-    toTaskByExpiryTaskList.invokeComponentLogic(componentId,
-        "#{logic.toTaskByExpiryTaskList}", new Object[] {selectedItemOfDrilldown, selectedStatisticChart, taskQuery});
+    StatisticChartDrilldownUtil.toTaskByExpiryTaskList(event, selectedStatisticChart);
   }
 
   // It's used for "Go to task list" selection from Statistic Dashboard
@@ -140,13 +103,8 @@ public class StatisticDashboardBean implements Serializable {
   }
 
   public void drilldownTaskByExpiry() {
-    String selectedItemOfDrilldown = StatisticService.getSelectedValueOfBarChart(taskByExpiryItemSelectEvent);
     StatisticChart selectedStatisticChart = getSelectedStatisticChart(taskByExpiryItemSelectEvent);
-
-    IvyComponentLogicCaller<String> drilldownTaskByExpiry = new IvyComponentLogicCaller<>();
-    String componentId = Attrs.currentContext().getBuildInAttribute("clientId");
-    drilldownTaskByExpiry.invokeComponentLogic(componentId,
-        "#{logic.drilldownTaskByExpiry}", new Object[] {selectedStatisticChart, selectedItemOfDrilldown});
+    StatisticChartDrilldownUtil.drilldownTaskByExpiry(taskByExpiryItemSelectEvent, selectedStatisticChart);
     releaseJSFEvent();
   }
 
@@ -188,14 +146,6 @@ public class StatisticDashboardBean implements Serializable {
       }
     }
     return null;
-  }
-
-  private static TaskQuery generateQueryForTaskByExpiry(ItemSelectEvent event, StatisticChart statisticChart) {
-    String previousSelectedMonth = Attrs.currentContext().getAttribute("#{data.previousSelectedMonth}", String.class);
-    String previousSelectedWeek = Attrs.currentContext().getAttribute("#{data.previousSelectedWeek}", String.class);
-    String previousSelectedDay = Attrs.currentContext().getAttribute("#{data.previousSelectedDay}", String.class);
-    return StatisticChartQueryUtils.getQueryForSelectedItemOfTaskByExpiryChart(event, statisticChart,
-        previousSelectedMonth, previousSelectedWeek, previousSelectedDay);
   }
 
   public String concatCreatedDate(StatisticFilter filter) {
