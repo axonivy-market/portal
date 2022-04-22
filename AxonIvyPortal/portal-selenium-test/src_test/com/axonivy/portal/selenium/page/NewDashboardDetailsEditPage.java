@@ -5,6 +5,7 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 
 public class NewDashboardDetailsEditPage extends TemplatePage {
@@ -104,5 +105,13 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
 
   public StatisticWidgetDashboardPage selectStatisticWidget() {
     return new StatisticWidgetDashboardPage();
+  }
+
+  public SelenideElement getTitleByIndex(int index) {
+    return $("a[id='dashboard-title-" + index + "']");
+  }
+
+  public ElementsCollection getWidgets() {
+    return $("div[id='dashboard-body']").$$("div.grid-stack-item");
   }
 }

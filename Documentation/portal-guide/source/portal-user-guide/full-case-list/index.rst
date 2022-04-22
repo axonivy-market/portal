@@ -299,6 +299,8 @@ handling tasks:
 
 - Destroy Task
 
+- Trigger Escalation Task
+
 - Add Ad-hoc Task
 
 Finally, you have the possibility to access the full set of the task
@@ -358,7 +360,7 @@ HowTo: Show Process Viewer
 
 #. A new tab of the browser is opened and users can see the process viewer with details information
 
-
+|portal-process-viewer|
 
 .. include:: ../includes/_common-icon.rst
 
@@ -379,4 +381,4 @@ HowTo: Show Process Viewer
 .. |how-to-switch-to-view-mode| image:: ../../screenshots/case-detail/how-to-switch-to-view-mode.png
 .. |how-to-switch-to-edit-mode| image:: ../../screenshots/case-detail/how-to-switch-to-edit-mode.png
 .. |how-to-reset-to-default| image:: ../../screenshots/case-detail/how-to-reset-to-default.png
-
+.. |portal-process-viewer| image:: ../../screenshots/case/portal-process-viewer.png

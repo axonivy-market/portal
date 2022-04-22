@@ -832,4 +832,38 @@ public class CaseDetailsPage extends TemplatePage {
         .format("td.history-related-case a[id$='case-histories:%d:related-case-link']", rowIndex))
         .getText();
   }
+
+  public boolean isShowRelatedCaseCheckbox() {
+    waitForElementDisplayed(By.cssSelector("[id$=':history-container']"), true);
+    try {
+      return findElementByCssSelector("[id$=':case-histories:related-case-checkbox']").isDisplayed();
+    } catch (Exception e) {
+      return false;
+    }
+  }
+
+  public void clickOnRelatedCaseCheckbox(boolean checkboxShouldBeChecked) {
+    waitForElementDisplayed(By.cssSelector("[id$=':history-container']"), true);
+    var relatedCaseCheckbox = findElementByCssSelector("[id$=':case-histories:related-case-checkbox']");
+    var checkbox = relatedCaseCheckbox.findElement(By.cssSelector("div.ui-chkbox-box.ui-widget"));
+    if ((checkboxShouldBeChecked && checkbox.getAttribute(CLASS).contains("ui-state-active"))
+        || (!checkboxShouldBeChecked && !checkbox.getAttribute(CLASS).contains("ui-state-active"))) {
+      return;
+    } else {
+      click(relatedCaseCheckbox.findElement(By.cssSelector("span.ui-chkbox-label")));
+      // Cannot identify when the ajax request of select checkbox is finished
+      // So we need to wait for Ajax Indicator disappear
+      waitAjaxIndicatorDisappear();
+      clickOnRelatedCaseCheckbox(checkboxShouldBeChecked);
+    }
+  }
+
+  public boolean isRelatedCaseInfoColumnIsDisplay() {
+    waitForElementDisplayed(By.cssSelector("[id$=':history-container']"), true);
+    try {
+      return findElementByCssSelector("[id$=':case-histories'] th.history-related-case").isDisplayed();
+    } catch (Exception e) {
+      return false;
+    }
+  }
 }

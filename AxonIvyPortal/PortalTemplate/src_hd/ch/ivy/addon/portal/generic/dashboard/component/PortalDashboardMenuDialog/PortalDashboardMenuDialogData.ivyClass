@@ -1,0 +1,4 @@
+PortalDashboardMenuDialogData #class
+ch.ivy.addon.portal.generic.dashboard.component.PortalDashboardMenuDialog #namespace
+isPublicDashboard Boolean #field
+isPublicDashboard PERSISTENT #fieldModifier

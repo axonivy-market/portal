@@ -1,9 +1,11 @@
 [Ivy]
-16BFA568D95D2EA0 9.4.0 #module
+16BFA568D95D2EA0 9.4.6 #module
 >Proto >Proto Collection #zClass
 Cs0 TaskItemDetailsProcess Big #zClass
 Cs0 RD #cInfo
 Cs0 #process
+Cs0 @TextInP .colors .colors #zField
+Cs0 @TextInP color color #zField
 Cs0 @TextInP .type .type #zField
 Cs0 @TextInP .processKind .processKind #zField
 Cs0 @AnnotationInP-0n ai ai #zField
@@ -62,6 +64,11 @@ Cs0 @PushWFArc f26 '' #zField
 Cs0 @UdInit f31 '' #zField
 Cs0 @UdProcessEnd f29 '' #zField
 Cs0 @PushWFArc f32 '' #zField
+Cs0 @UdMethod f33 '' #zField
+Cs0 @GridStep f34 '' #zField
+Cs0 @PushWFArc f36 '' #zField
+Cs0 @UdProcessEnd f37 '' #zField
+Cs0 @PushWFArc f38 '' #zField
 >Proto Cs0 Cs0 TaskItemDetailsProcess #zField
 Cs0 f0 guid 16BBB5787F4A8092 #txt
 Cs0 f0 method start(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,ch.ivy.addon.portalkit.enums.PortalPage) #txt
@@ -402,6 +409,39 @@ Cs0 f31 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Cs0 f31 627 51 26 26 -16 15 #rect
 Cs0 f29 915 51 26 26 0 12 #rect
 Cs0 f32 653 64 915 64 #arcP
+Cs0 f33 guid 1803BC11F3D7DFB0 #txt
+Cs0 f33 method expiryTask(ch.ivyteam.ivy.workflow.ITask) #txt
+Cs0 f33 inParameterDecl '<ch.ivyteam.ivy.workflow.ITask selectedTask> param;' #txt
+Cs0 f33 inParameterMapAction 'out.task=param.selectedTask;
+' #txt
+Cs0 f33 outParameterDecl '<> result;' #txt
+Cs0 f33 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>expiryTask(ITask)</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f33 75 1027 26 26 -25 15 #rect
+Cs0 f34 actionTable 'out=in;
+' #txt
+Cs0 f34 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
+
+Long taskId = in.task.getId();
+TaskUtils.expiryTaskById(taskId);
+in.task = TaskUtils.findTaskById(taskId);' #txt
+Cs0 f34 security system #txt
+Cs0 f34 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Expiry task </name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f34 184 1018 112 44 -30 -8 #rect
+Cs0 f36 101 1040 184 1040 #arcP
+Cs0 f37 355 1027 26 26 0 12 #rect
+Cs0 f38 296 1040 355 1040 #arcP
 >Proto Cs0 .type ch.ivy.addon.portalkit.component.TaskItemDetails.TaskItemDetailsData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 -8 -8 16 16 16 26 #rect
@@ -449,3 +489,7 @@ Cs0 f27 mainOut f26 tail #connect
 Cs0 f26 head f25 mainIn #connect
 Cs0 f31 mainOut f32 tail #connect
 Cs0 f32 head f29 mainIn #connect
+Cs0 f33 mainOut f36 tail #connect
+Cs0 f36 head f34 mainIn #connect
+Cs0 f34 mainOut f38 tail #connect
+Cs0 f38 head f37 mainIn #connect
