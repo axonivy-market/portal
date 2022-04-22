@@ -16,7 +16,6 @@
   <c:set var="caseWidget" value="#{cc.attrs.caseWidget}" />
   <c:set var="isReadOnlyMode" value="#{cc.attrs.isReadOnlyMode}" />
   <c:set var="isPreviewMode" value="#{cc.attrs.isPreviewMode}" />
-  <c:set var="noCasesMessage" value="#{dashboardBean.noCasesMessage}" />
 
   <p:remoteCommand id="rcLoadCaseFirstTime" autoRun="true" actionListener="#{caseWidget.dataModel.loadFirstTime()}"
     update="dashboard-cases-container" global="false" async="true" process="@this"
@@ -110,9 +109,9 @@
         </h:panelGroup>
         <h:panelGroup layout="block" id="empty-message-when-not-filter"
           rendered="#{!noCasesWhenFilter}">
-          <i class="si #{noCasesMessage.icon} empty-message-icon" />
+          <i class="si #{dashboardBean.noCasesMessage.icon} empty-message-icon" />
           <br />
-          <h:outputText value="#{noCasesMessage.message}"
+          <h:outputText value="#{dashboardBean.noCasesMessage.message}"
             styleClass="empty-message-text" />
         </h:panelGroup>
       </h:panelGroup>
