@@ -22,6 +22,8 @@ Available widgets of Portal dashboard
 
 - Process widget
 
+- Statistic widget
+
 - Custom widget
 
 You can predefine Portal dashboards, and details of each widget
@@ -113,6 +115,7 @@ They will help you understand how to configure widget efficiency.
    new-dashboard-task-widget
    new-dashboard-case-widget
    new-dashboard-process-widget
+   new-dashboard-statistic-widget
    new-dashboard-custom-widget
 
 .. tip:: 

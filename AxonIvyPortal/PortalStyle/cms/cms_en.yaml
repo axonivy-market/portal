@@ -701,6 +701,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     SaveNewWidgetFilterHeader: Save a new widget filter
     SavedFilterHeader: Saved filters
     SearchForFilter: Search for filter
+    StatisticWidget:
+      AvailableCharts: Available statistics charts
+      Charts: 'Chart(s): {0}'
+      ConfigurationDescription: You can configure your widget in this configuration area. Please define the chart which will be shown on  your dashboard.
+      FilterChartText: Filter a chart by name
+      PlaceholderChartOption: Select a chart
+      PleaseSelectChart: Please select a chart
+      PreviewText: Please select a chart to see the canvas data
     WidgetFilterName: Widget filter name
     WidgetFilters: Widget filters
     actionSelection: Action selection
@@ -782,6 +790,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     selectEditAction: Which action do you want to procced?
     showFullWidget: Show full widget
     startATask: Start task
+    statisticChartIntroduction: This widget displays available statistic charts.
+    statisticChartWidget: Statistic chart
     switchToViewMode: View Mode
     tasWidgetkInfo:
       expireToday: Expire today
@@ -798,6 +808,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     yourCases: Your Cases
     yourCustomWidget: Your Custom Widget
     yourProcesses: Your Processes
+    yourStatistics: Your Statistics
     yourTasks: Your Tasks
   dateFormatConfiguration:
     dateFormatConfiguration: Date Format Configuration

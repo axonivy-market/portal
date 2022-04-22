@@ -699,6 +699,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     SaveNewWidgetFilterHeader: Save a new widget filter
     SavedFilterHeader: Saved filters
     SearchForFilter: Search for filter
+    StatisticWidget:
+      AvailableCharts: TODO Available statistics charts
+      Charts: 'TODO Chart(s): {0}'
+      ConfigurationDescription: TODO You can configure your widget in this configuration area. Please define the chart which will be shown on  your dashboard.
+      FilterChartText: TODO Filter a chart by name
+      PlaceholderChartOption: TODO Select a chart
+      PleaseSelectChart: TODO Please select a chart
+      PreviewText: TODO Please select a chart to see the canvas data
     WidgetFilterName: Widget filter name
     WidgetFilters: Widget filters
     actionSelection: Action selection
