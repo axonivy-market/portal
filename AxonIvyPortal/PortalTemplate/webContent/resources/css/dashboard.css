@@ -1185,3 +1185,7 @@ body .dashboard__table--preview.ui-datatable tbody tr.ui-state-hover {
 .chart-information-container .chart-info-header {
   border-color: var(--widget-advanced-filter-overlay-panel-footer);
 }
+
+.total-available-charts {
+  font-weight: bold;
+}
