@@ -219,7 +219,7 @@
         styleClass="u-mar-right-15" />
       <p:commandButton id="confirm-escalation" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
         icon="#{visibilityBean.generateButtonIcon('si si-check-1')}" actionListener="#{logic.expiryTask(task)}"
-        oncomplete="PF('escalation-task-dialog').hide()" update="#{informationWidgetComponent}" process="@this" />
+        oncomplete="PF('escalation-task-dialog').hide()" update="#{informationWidgetComponent} #{historyWidgetComponent}" process="@this" />
     </ui:define>
   </ui:decorate>
 

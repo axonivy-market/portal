@@ -10,6 +10,7 @@
   <cc:attribute name="isWorkingOnTask" type="java.lang.Boolean" />
   <cc:attribute name="inFrame" type="java.lang.Boolean" default="false" />
   <cc:attribute name="readOnly" type="java.lang.Boolean" default="false" />
+  <cc:attribute name="componentToUpdateTrigger" />
 </cc:interface>
 
 <cc:implementation>
@@ -193,7 +194,7 @@
       <p:commandButton id="confirm-escalation" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
         icon="#{visibilityBean.generateButtonIcon('si si-check-1')}"
         actionListener="#{taskWidgetBean.expiryTask(taskWidgetBean.selectedTaskItemId)}"
-        oncomplete="PF('escalation-task-dialog').hide()" update="#{cc.clientId}:related-tasks" process="@this" />
+        oncomplete="PF('escalation-task-dialog').hide()" update="#{cc.clientId}:related-tasks #{cc.attrs.componentToUpdateTrigger}" process="@this" />
     </ui:define>
   </ui:decorate>
 
