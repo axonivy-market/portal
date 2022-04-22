@@ -220,10 +220,13 @@ In case your project has navigation button without finishing a task, e.g Cancel,
 How to migrate TaskTemplate-8
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-If you migrate Portal since previous versions and use ``<ui:define name="taskForm" />`` to define the content inside the Request tab,
-TabView is removed and ``<ui:define name="taskForm" />`` is DEPRECATED, use ``<ui:define name="content" />`` instead.
+If you migrate Portal since previous versions to TaskTemplate-8, please follow below steps to migrate your content:
 
-``<ui:define name="dynamicTabs" />`` is removed, design your TabView if needed.
+- The ``<ui:define name="taskForm" />`` to define the content inside the Request tab, TabView is removed and ``<ui:define name="taskForm" />`` is DEPRECATED, use ``<ui:define name="content" />`` instead.
+
+- The ``<ui:define name="dynamicTabs" />`` is removed, design your TabView if needed.
+
+- The ``<ui:param name="caseId" />`` to show the Case Information is removed, now use ``<ui:param name="task" />`` to show the business case of this task.
 
 Refer to ``TaskTemplate-8.xhtml`` for params and template areas.
 
