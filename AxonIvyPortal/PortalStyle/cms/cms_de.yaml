@@ -85,6 +85,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     caseDescription: Beschreibung des Vorgangs
     taskDescription: Aufgabenbeschreibung
     taskState: Aufgabenstatus
+  CaseDocuments:
+    CaseDocumentsPageTitle: TODO Case Documents
   CaseStatusInformation:
     CurrentTasks:
       currentTasks: Laufende Aufgaben
@@ -167,12 +169,15 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskListConfiguration: Konfiguration der Aufgabenliste
   ProcessViewer:
     Breadcrumb: Prozess-Viewer von {0} Prozess
-    ModelVersion: Prozessmodell-Version
     ProcessDataNotFound: Konnte die Prozessdaten nicht finden!
+    ProcessDetails: TODO Process details
+    ProcessId: TODO Process Id
+    ProcessInfo: TODO Process Information
+    ProcessInfoIconTooltip: TODO Click to see details of the process start
     ProcessViewerText: Prozess-Viewer
-    RequestPath: Prozess-Anforderungspfad
     Title: Prozess-Viewer
-    UserFriendlyRequestPath: Benutzerfreundlicher Anforderungspfad verarbeiten
+  TaskDocuments:
+    TaskDocumentsPageTitle: TODO Task Documents
   adminSettings:
     addLanguages: Sprachen hinzufügen
     addNewApplication: Neue Drittanwendung hinzufügen
@@ -239,6 +244,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       hideCaseDocument: Auf "true" setzen, um die Dokumentensektion in Vorgangsdetails auszublenden.
       hideChangePasswordButtonNote: 'Auf "true" setzen, um die Option "Passwort ändern" im Top Menu zu deaktivieren. '
       hideLogoutButtonNote: 'Auf "true" setzen, um die Logout Funktion im Top Menu zu deaktivieren. '
+      hideRelatedCaseInfoFromHistory: TODO If true, case history does not display the related case information in the history table.
       hideStatisticWidget: Setzen Sie den Wert auf "true", um das Statistik-Widget auf der Startseite und im Anwendungsmenü auszublenden.
       hideSystemNotesFromHistory: Wenn diese Option aktiviert ist, werden in den Vorgangs-/Aufgabennotizen keine Systemnotizen für Benutzer ohne Administratorrechte angezeigt.
       hideSystemNotesFromHistoryAdministrator: Wenn diese Option aktiviert ist, werden in den Vorgangs-/Aufgabennotizen keine Systemnotizen für Administratoren angezeigt.
@@ -253,6 +259,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       showButtonIcon: Zum Ein-/Ausschalten des Anzeigesymbols bei Butons im Portal
       showCaseDurationTime: Zum Ein-/Ausschalten der Anzeige der Bearbeitungszeit auf der Vorgangsdetailseite.
       showEnvironmentInfoNote: Zum Ein-/Ausschalten der Anzeige der Environment-Information
+      showErrorLogToConsole: TODO Set to true to enable write error log to browser console
       showGlobalSearch: Zum Ein-/Ausschalten der Anzeige der globalen Suche.
       showLegacyUI: Zum Ein-/Ausschalten der Legacy UI des Dashboards.
       showProcessInformation: Auf "false" setzen, um die Verknüpfung zu Informationen des Prozesses auf der Seite Prozesse (Gittermodus) und Falldetails anzeigen zu deaktivieren.
@@ -447,6 +454,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     errorFileUploadSize: Die Dateigrösse muss kleiner als {0} sein.
     errorNotification: Fehlerbenachrichtigung
     errorXhr: Fehler beim aktualisieren der Webseiteinhalte
+    escalationTaskHeaderText: Eskalation auslösen
+    escalationTaskMessage: Frist wird auf jetzt gesetzt, somit läuft die Bearbeitungsfrist ab. Sind Sie sicher?
     filter:
       from: von
       moreOptions: Mehr Optionen
@@ -531,8 +540,9 @@ ch.ivy.addon.portalkit.ui.jsf:
     sessionExpriedInTeams: Ihre Session ist abgelaufen. Die Anwendung wird neu gestartet.
     setting: Einstellungen
     showDetail: Details anzeigen
-    showSystemNotes: Systemnachrichten anzeigen
-    showSystemTasks: Systemaufgaben anzeigen
+    showRelatedCaseInfo: TODO Related case
+    showSystemNotes: TODO System notes
+    showSystemTasks: TODO System tasks
     start: Start
     state: Status
     status: Status
@@ -715,6 +725,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     configuration:
       CustomWidgetExternalLinkWarning: Einige Websites sind aufgrund von Sicherheitsbedenken nicht mit iframe kompatibel. Bitte wenden Sie sich an Ihren Administrator, wenn die externe Website nicht ordnungsgemäß funktioniert.
       Parameters: Parameter
+      SelectYourTemplate: TODO Select your template
       configuration: Konfiguration
       configurationDescription: In diesem Konfigurationsbereich kann das Widget konfiguriert werden. Bitte definieren Sie die gewünschten Filter sowie die anzuzeigenden Spalten.
       customWidgetParamChangedMessage: Dieser Prozess hat sich geändert. Klicken Sie auf Update, um fortzufahren.
@@ -732,6 +743,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     customWidget: Benutzerdefiniertes Widget
     customWidgetIntroduction: Dieses Widget kann einen Axon Ivy-Prozess oder eine externe Webseite anzeigen.
     dashboardManagement:
+      CreateDashboard: TODO Create Dashboard
       addDashboard: Dashbaord hinzufürgen
       dashboardPermission: Dashboard Berechtigung
       dashboardTitle: Dashboard Titel
@@ -1174,6 +1186,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskDetails: Aufgabendetails
     taskInforDialogTitle: Informationen
     taskNotes: Notizen
+    triggerEscalation: TODO Trigger Escalation
   taskList:
     deadline: Frist
     default: Standard

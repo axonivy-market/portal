@@ -59,6 +59,8 @@ handling tasks:
 
 #. Destroy Task
 
+#. Trigger Escalation Task
+
 #. Add Ad-hoc Task
 
 Finally, you have the possibility to access the full set of the task

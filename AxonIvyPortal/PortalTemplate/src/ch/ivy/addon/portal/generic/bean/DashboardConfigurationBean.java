@@ -1,5 +1,6 @@
 package ch.ivy.addon.portal.generic.bean;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -14,21 +15,28 @@ import javax.faces.bean.ViewScoped;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.primefaces.PrimeFaces;
 import org.primefaces.event.SelectEvent;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
+import ch.ivy.addon.portalkit.bean.IvyComponentLogicCaller;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.dto.SecurityMemberDTO;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
+import ch.ivy.addon.portalkit.dto.dashboard.DashboardTemplate;
+import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
 import ch.ivy.addon.portalkit.enums.BreadCrumbKind;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
-import ch.ivy.addon.portalkit.service.DashboardService;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
+import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
+import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.workflow.ITask;
+import ch.ivyteam.ivy.workflow.TaskState;
 
 @ViewScoped
 @ManagedBean
@@ -40,12 +48,15 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
   private String title;
   private Dashboard selectedEditingDashboard;
   private List<Dashboard> editingDashboards;
+  private boolean isDashboardCreation;
+  private List<DashboardTemplate> dashboardTemplates;
 
   @PostConstruct
   public void initConfigration() {
     isPublicDashboard = Attrs.currentContext().getAttribute("#{data.isPublicDashboard}", Boolean.class);
     updateTitle();
     collectDashboardsForManagement();
+    this.dashboardTemplates = DashboardUtils.getDashboardTemplates();
   }
 
   public String getBreadcrumb() {
@@ -63,7 +74,7 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
     String dashboardInUserProperty = readDashboardBySessionUser();
     try {
       if (isPublicDashboard) {
-        setEditingDashboards(getVisiblePublicDashboards());
+        setEditingDashboards(DashboardUtils.getPublicDashboards());
       } else if (StringUtils.isNoneEmpty(dashboardInUserProperty)) {
         List<Dashboard> myDashboards = getVisibleDashboards(dashboardInUserProperty);
         getEditingDashboards().addAll(myDashboards);
@@ -75,6 +86,7 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
   }
 
   public void openDashboardDetail(Dashboard dashboard) {
+    this.isDashboardCreation = false;
     setSelectedEditingDashboard(dashboard);
     List<SecurityMemberDTO> securityMembers =
         SecurityMemberUtils.findSecurityMembers("", 0, PortalConstants.MAX_USERS_IN_AUTOCOMPLETE);
@@ -120,6 +132,9 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
 
     selectedEditingDashboard.setDisplayedPermission(displayedPermission);
     selectedEditingDashboard.setPermissions(permissions);
+    if (!editingDashboards.contains(selectedEditingDashboard)) {
+      editingDashboards.add(selectedEditingDashboard);
+    }
     saveDashboards(editingDashboards);
   }
 
@@ -189,5 +204,99 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
     if (duplicatedItem != null) {
       selectedEditingDashboard.getPermissionDTOs().remove(duplicatedItem);
     }
+  }
+
+  public void onAddDashboard(boolean isPublicDashboard) {
+    configureOnAddDashboard();
+    selectedEditingDashboard.setIsPublic(isPublicDashboard);
+    this.setPublicDashboard(isPublicDashboard);
+  }
+
+  public void onAddDashboard() {
+    configureOnAddDashboard();
+    selectedEditingDashboard.setIsPublic(isPublicDashboard());
+  }
+
+  private void configureOnAddDashboard() {
+    selectedEditingDashboard = new Dashboard();
+    selectedEditingDashboard.setId(DashboardUtils.generateId());
+    this.isDashboardCreation = true;
+  }
+
+  public void createDashboard(boolean isWorkingOnATask, ITask task) {
+    if (isWorkingOnATask && task != null && task.getState() != TaskState.DONE) {
+      openTaskLosingConfirmationDialog();
+    } else {
+      executeJSResetPortalMenuState();
+      saveDashboardDetail();
+      navigateToDashboardDetailsPage(this.selectedEditingDashboard.getId());
+    }
+  }
+
+  private void openTaskLosingConfirmationDialog() {
+    PrimeFaces.current().executeScript("PF('dashboard-creation-task-losing-confirmation-dialog').show()");
+  }
+
+  private void executeJSResetPortalMenuState() {
+    PrimeFaces.current().executeScript("resetPortalLeftMenuState()");
+  }
+
+  public void resetTaskAndCreateDashboard(ITask task) throws IOException {
+    IvyComponentLogicCaller<ITask> leaveTask = new IvyComponentLogicCaller<>();
+    ITask relatedTask = task != null ? task : Ivy.wfTask();
+    String componentId = Attrs.currentContext().getBuildInAttribute("clientId");
+    leaveTask.invokeComponentLogic(componentId, "#{logic.leave}", new Object[] {relatedTask.getCase()});
+    TaskUtils.resetTask(relatedTask);
+
+    saveDashboardDetail();
+    navigateToDashboardDetailsPage(this.selectedEditingDashboard.getId());
+  }
+
+  public void reserveTaskAndCreateDashboard(ITask task) throws IOException {
+    IvyComponentLogicCaller<ITask> reserveTask = new IvyComponentLogicCaller<>();
+    ITask relatedTask = task != null ? task : Ivy.wfTask();
+    String componentId = Attrs.currentContext().getBuildInAttribute("clientId");
+    reserveTask.invokeComponentLogic(componentId, "#{logic.reserve}", new Object[] {relatedTask.getCase()});
+    TaskUtils.parkTask(relatedTask);
+
+    saveDashboardDetail();
+    navigateToDashboardDetailsPage(this.selectedEditingDashboard.getId());
+  }
+
+  public void onSelectTemplate(DashboardTemplate template) {
+    String selectedEditingDashboardId = this.selectedEditingDashboard.getId();
+    this.selectedEditingDashboard = template.getDashboard();
+    this.selectedEditingDashboard.setId(selectedEditingDashboardId);
+    for(DashboardWidget widget : this.selectedEditingDashboard.getWidgets()) {
+      widget.setId(DashboardWidgetUtils.generateNewWidgetId(widget.getType()));
+    }
+  }
+
+  public boolean isDashboardCreation() {
+    return isDashboardCreation;
+  }
+
+  public void setDashboardCreation(boolean isDashboardCreation) {
+    this.isDashboardCreation = isDashboardCreation;
+  }
+
+  public boolean isPublicDashboard() {
+    return isPublicDashboard;
+  }
+
+  public void setPublicDashboard(boolean isPublicDashboard) {
+    this.isPublicDashboard = isPublicDashboard;
+  }
+
+  public List<DashboardTemplate> getDashboardTemplates() {
+    return dashboardTemplates;
+  }
+
+  public void setDashboardTemplates(List<DashboardTemplate> dashboardTemplates) {
+    this.dashboardTemplates = dashboardTemplates;
+  }
+
+  public String generateDashboardPermisisonForDisplay(Dashboard dashboard) {
+    return String.join(", ", dashboard.getPermissions());
   }
 }
