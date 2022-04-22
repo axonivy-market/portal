@@ -154,7 +154,9 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
   }
 
   /**
-   * @return all statistic charts of the current login user
+   * Find all statistic charts of the current login user
+   * Include public and private charts
+   * @return list of StatisticChart sorted by position
    */
   public List<StatisticChart> findStatisticCharts() {
     List<StatisticChart> charts = new ArrayList<>(getPublicConfig());

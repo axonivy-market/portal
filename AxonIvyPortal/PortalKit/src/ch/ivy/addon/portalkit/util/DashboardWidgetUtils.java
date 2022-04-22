@@ -31,6 +31,7 @@ import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.ProcessDashboardWidget;
+import ch.ivy.addon.portalkit.dto.dashboard.StatisticDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.casecolumn.CaseColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.process.DashboardProcess;
@@ -309,9 +310,27 @@ public class DashboardWidgetUtils {
       case PROCESS:
         widget = buildDefaultProcessWidget(id, name);
         break;
+      case STATISTIC:
+        widget = buildDefaultStatisticWidget(id, name);
+        break;
       default:
         break;
     }
+    return widget;
+  }
+
+
+  private static DashboardWidget buildDefaultStatisticWidget(String id, String name) {
+    var widget = new StatisticDashboardWidget();
+    widget.setId(id);
+    widget.setName(name);
+    var layout = new WidgetLayout();
+    layout.setWidth(5);
+    layout.setHeight(5);
+    layout.setAxisX(0);
+    layout.setAxisY(0);
+    widget.setLayout(layout);
+    widget.setAutoPosition(true);
     return widget;
   }
 
