@@ -1,5 +1,5 @@
 [Ivy]
-1549452C001D8A69 9.4.1 #module
+1549452C001D8A69 9.4.6 #module
 >Proto >Proto Collection #zClass
 Ts0 TaskItemDocumentsProcess Big #zClass
 Ts0 RD #cInfo
@@ -16,10 +16,8 @@ Ts0 @TextInP .responsibility .responsibility #zField
 Ts0 @UdInit f0 '' #zField
 Ts0 @UdProcessEnd f1 '' #zField
 Ts0 @UdMethod f6 '' #zField
-Ts0 @GridStep f64 '' #zField
 Ts0 @PushWFArc f17 '' #zField
 Ts0 @UdProcessEnd f8 '' #zField
-Ts0 @PushWFArc f37 '' #zField
 Ts0 @UdMethod f10 '' #zField
 Ts0 @Alternative f41 '' #zField
 Ts0 @Alternative f67 '' #zField
@@ -40,7 +38,6 @@ Ts0 @GridStep f46 '' #zField
 Ts0 @PushWFArc f27 '' #zField
 Ts0 @GridStep f50 '' #zField
 Ts0 @CallSub f30 '' #zField
-Ts0 @PushWFArc f2 '' #zField
 Ts0 @PushWFArc f31 '' #zField
 Ts0 @GridStep f9 '' #zField
 Ts0 @CallSub f16 '' #zField
@@ -62,6 +59,7 @@ Ts0 @GridStep f15 '' #zField
 Ts0 @PushWFArc f29 '' #zField
 Ts0 @PushWFArc f33 '' #zField
 Ts0 @PushWFArc f18 '' #zField
+Ts0 @PushWFArc f2 '' #zField
 >Proto Ts0 Ts0 TaskItemDocumentsProcess #zField
 Ts0 f0 guid 1682717B951993D3 #txt
 Ts0 f0 method start() #txt
@@ -90,29 +88,9 @@ Ts0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ts0 f6 83 179 26 26 -40 15 #rect
-Ts0 f64 actionTable 'out=in;
-' #txt
-Ts0 f64 actionCode 'import ch.ivy.addon.portalkit.enums.GlobalVariable;
-import ch.ivy.addon.portalkit.service.GlobalSettingService;
-
-GlobalSettingService globalSettingService = new GlobalSettingService();
-String isHideUploadDocumentForDoneCaseString =
-        globalSettingService.findGlobalSettingValue(GlobalVariable.HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE);
-in.isHideUploadDocumentForDoneCase = Boolean.parseBoolean(isHideUploadDocumentForDoneCaseString);' #txt
-Ts0 f64 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Init hide&#xD;
-add document</name>
-    </language>
-</elementInfo>
-' #txt
-Ts0 f64 544 170 112 44 -39 -16 #rect
 Ts0 f17 expr out #txt
 Ts0 f17 109 96 371 96 #arcP
-Ts0 f8 707 179 26 26 0 12 #rect
-Ts0 f37 expr out #txt
-Ts0 f37 656 192 707 192 #arcP
+Ts0 f8 603 179 26 26 0 12 #rect
 Ts0 f10 guid 16827249E7B1FA94 #txt
 Ts0 f10 method uploadDocument(org.primefaces.event.FileUploadEvent) #txt
 Ts0 f10 inParameterDecl '<org.primefaces.event.FileUploadEvent uploadEvent> param;' #txt
@@ -283,8 +261,6 @@ Ts0 f30 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ts0 f30 384 170 112 44 -44 -8 #rect
-Ts0 f2 expr out #txt
-Ts0 f2 496 192 544 192 #arcP
 Ts0 f31 expr out #txt
 Ts0 f31 336 192 384 192 #arcP
 Ts0 f9 actionTable 'out=in;
@@ -428,13 +404,12 @@ Ts0 f33 1000 288 1075 288 #arcP
 Ts0 f18 616 384 944 310 #arcP
 Ts0 f18 1 944 384 #addKink
 Ts0 f18 0 0.6694200486518268 0 0 #arcLabel
+Ts0 f2 496 192 603 192 #arcP
 >Proto Ts0 .type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
 >Proto Ts0 .processKind HTML_DIALOG #txt
 >Proto Ts0 -8 -8 16 16 16 26 #rect
 Ts0 f0 mainOut f17 tail #connect
 Ts0 f17 head f1 mainIn #connect
-Ts0 f64 mainOut f37 tail #connect
-Ts0 f37 head f8 mainIn #connect
 Ts0 f67 out f77 tail #connect
 Ts0 f77 head f76 mainIn #connect
 Ts0 f86 head f67 in #connect
@@ -447,8 +422,6 @@ Ts0 f27 head f46 mainIn #connect
 Ts0 f41 out f86 tail #connect
 Ts0 f9 mainOut f31 tail #connect
 Ts0 f31 head f30 mainIn #connect
-Ts0 f30 mainOut f2 tail #connect
-Ts0 f2 head f64 mainIn #connect
 Ts0 f46 mainOut f28 tail #connect
 Ts0 f28 head f16 mainIn #connect
 Ts0 f6 mainOut f34 tail #connect
@@ -475,3 +448,5 @@ Ts0 f15 mainOut f33 tail #connect
 Ts0 f33 head f68 mainIn #connect
 Ts0 f76 mainOut f18 tail #connect
 Ts0 f18 head f15 mainIn #connect
+Ts0 f30 mainOut f2 tail #connect
+Ts0 f2 head f8 mainIn #connect

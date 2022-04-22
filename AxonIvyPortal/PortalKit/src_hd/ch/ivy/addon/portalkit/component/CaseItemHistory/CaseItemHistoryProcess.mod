@@ -1,5 +1,5 @@
 [Ivy]
-153362B0AC312EFB 9.4.3 #module
+153362B0AC312EFB 9.4.6 #module
 >Proto >Proto Collection #zClass
 Cs0 CaseItemHistoryProcess Big #zClass
 Cs0 RD #cInfo
@@ -152,14 +152,17 @@ Cs0 f6 1 416 384 #addKink
 Cs0 f6 0 0.6831393451508 0 0 #arcLabel
 Cs0 f8 actionTable 'out=in;
 ' #txt
-Cs0 f8 actionCode 'import ch.ivy.addon.portalkit.util.PermissionUtils;
+Cs0 f8 actionCode 'import ch.ivy.addon.portalkit.enums.GlobalVariable;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 GlobalSettingService service = new GlobalSettingService();
 out.showSystemNotesChkbox = !service.findHideSystemNotesFromHistorySettingValue();
 out.showSystemTasksChkbox = !service.findHideSystemTasksFromHistorySettingValue();
+out.showRelatedCaseInfoCheckbox = in.iCase.isBusinessCase() && !service.findGlobalSettingValueAsBoolean(GlobalVariable.HIDE_RELATED_CASE_INFO_FROM_HISTORY);
 boolean isAdmin = PermissionUtils.isSessionUserHasAdminRole();
 out.showSystemNotes = isAdmin && out.showSystemNotesChkbox;
-out.showSystemTasks = isAdmin && out.showSystemTasksChkbox;' #txt
+out.showSystemTasks = isAdmin && out.showSystemTasksChkbox;
+out.showRelatedCaseInfo= isAdmin && out.showRelatedCaseInfoCheckbox;' #txt
 Cs0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

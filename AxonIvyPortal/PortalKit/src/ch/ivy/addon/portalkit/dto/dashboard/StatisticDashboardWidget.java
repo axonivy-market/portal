@@ -2,7 +2,6 @@ package ch.ivy.addon.portalkit.dto.dashboard;
 
 import java.util.Arrays;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
@@ -14,8 +13,13 @@ public class StatisticDashboardWidget extends DashboardWidget {
 
   private static final long serialVersionUID = 1803106705231907546L;
   private StatisticChart chart;
-  @JsonIgnore
-  private StatisticChart storedChart;
+
+  public StatisticDashboardWidget() {}
+
+  public StatisticDashboardWidget(StatisticDashboardWidget widget) {
+    super(widget);
+    chart = widget.getChart();
+  }
 
   @Override
   public void resetWidgetFilters() {}
@@ -48,13 +52,5 @@ public class StatisticDashboardWidget extends DashboardWidget {
 
   public void setChart(StatisticChart chart) {
     this.chart = chart;
-  }
-
-  public StatisticChart getStoredChart() {
-    return storedChart;
-  }
-
-  public void setStoredChart(StatisticChart storedChart) {
-    this.storedChart = storedChart;
   }
 }

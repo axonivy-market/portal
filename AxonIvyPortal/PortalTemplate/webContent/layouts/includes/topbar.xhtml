@@ -47,7 +47,7 @@
           	actionListener="#{userMenuBean.navigateToUserProfileOrDisplayWorkingTaskWarning(isWorkingOnATask, task)}" /></li>
 
           <li jsf:rendered="#{dashboardBean.canEditPrivateDashboard or dashboardBean.canEditPublicDashboard}">
-            <p:commandLink id="dashboard-configuration"
+            <p:commandLink id="dashboard-configuration" rendered="#{!adminSettingBean.isShowLegacyUI()}"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfigurationDialog/ConfigureDashboard')}"
               onclick="PF('dashboard-configuration-dialog').show();" global="false"/></li>
 
@@ -140,103 +140,7 @@
       </h:panelGroup>
     </p:dialog>
 
-    <p:dialog id="dashboard-configuration-dialog" widgetVar="dashboard-configuration-dialog" 
-      header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfigurationDialog/ConfigureDashboard')}"
-      appendTo="@(body)" closeOnEscape="true" draggable="false" fitViewport="true" responsive="true" modal="true" resizable="false">
-      <div class="ui-g dashboard-configuration-dialog__content">
-        <h:form id="configuration-form">
-          <h:panelGroup id="private-dashboard-configuration-section" layout="block" styleClass="ui-g-12" rendered="#{dashboardBean.canEditPrivateDashboard}">
-            <span class="dashboard-configuration-dialog__config-title">
-              #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfigurationDialog/PrivateDashboardConfiguration')}
-            </span>
-            <p:commandLink id="create-private-dashboard" styleClass="ui-g ui-g-12 dashboard-configuration-dialog__action-row">
-              <div class="ui-g-2">
-                <span class="si si-add dashboard-configuration-dialog__action-row-icon" />
-              </div>
-              <div class="ui-g-10">
-                <p:outputLabel styleClass="dashboard-configuration-dialog__action-row-label"
-                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}" />
-                <p:outputLabel styleClass="dashboard-configuration-dialog__action-row-description"
-                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfigurationDialog/CreateNewPrivateDashboard')}"/>
-              </div>
-            </p:commandLink>
-            <p:commandLink id="edit-private-dashboard" styleClass="ui-g-12 dashboard-configuration-dialog__action-row"
-              actionListener="#{userMenuBean.navigateToMyDashboardConfigurationOrDisplayWorkingTaskWarning(isWorkingOnATask, task)}">
-              <div class="ui-g-2">
-                <span class="si si-pencil dashboard-configuration-dialog__action-row-icon" />
-              </div>
-              <div class="ui-g-10">
-                <p:outputLabel styleClass="dashboard-configuration-dialog__action-row-label" 
-                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}" />
-                <p:outputLabel styleClass="dashboard-configuration-dialog__action-row-description"
-                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfigurationDialog/EditPrivateDashboards')}"/>
-              </div>
-            </p:commandLink>
-            <p:commandLink id="reorder-private-dashboard" styleClass="ui-g-12 dashboard-configuration-dialog__action-row"
-              actionListener="#{userMenuBean.navigateToMyDashboardReorderOrDisplayWorkingTaskWarning(isWorkingOnATask, task)}">
-              <div class="ui-g-2">
-                <span class="si si-move-expand-vertical dashboard-configuration-dialog__action-row-icon" />
-              </div>
-              <div class="ui-g-10">
-                <p:outputLabel styleClass="dashboard-configuration-dialog__action-row-label"
-                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reorder')}" />
-                <p:outputLabel styleClass="dashboard-configuration-dialog__action-row-description"
-                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfigurationDialog/ReorderPrivateDashboards')}"/>
-              </div>
-            </p:commandLink>
-          </h:panelGroup>
-
-          <h:panelGroup id="public-dashboard-configuration-section" layout="block" styleClass="ui-g-12" rendered="#{dashboardBean.canEditPublicDashboard}">
-            <span class="dashboard-configuration-dialog__config-title">
-              #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfigurationDialog/PublicDashboardConfiguration')}
-            </span>
-            <p:commandLink id="create-public-dashboard" styleClass="ui-g ui-g-12 dashboard-configuration-dialog__action-row ">
-              <div class="ui-g-2">
-                <span class="si si-add dashboard-configuration-dialog__action-row-icon" />
-              </div>
-              <div class="ui-g-10">
-                <p:outputLabel styleClass="dashboard-configuration-dialog__action-row-label"
-                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}" />
-                <p:outputLabel styleClass="dashboard-configuration-dialog__action-row-description"
-                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfigurationDialog/CreateNewPublicDashboard')}"/>
-              </div>
-            </p:commandLink>
-            <p:commandLink id="edit-public-dashboard" styleClass="ui-g-12 dashboard-configuration-dialog__action-row"
-              actionListener="#{userMenuBean.navigateToPublicDashboardConfigurationOrDisplayWorkingTaskWarning(isWorkingOnATask, task)}">
-              <div class="ui-g-2">
-                <span class="si si-pencil dashboard-configuration-dialog__action-row-icon" />
-              </div>
-              <div class="ui-g-10">
-                <p:outputLabel styleClass="dashboard-configuration-dialog__action-row-label"
-                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}" />
-                <p:outputLabel styleClass="dashboard-configuration-dialog__action-row-description"
-                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfigurationDialog/EditPublicDashboards')}"/>
-              </div>
-            </p:commandLink>
-            <p:commandLink id="reorder-public-dashboard" styleClass="ui-g-12 dashboard-configuration-dialog__action-row"
-              actionListener="#{userMenuBean.navigateToPublicDashboardReorderOrDisplayWorkingTaskWarning(isWorkingOnATask, task)}">
-              <div class="ui-g-2">
-                <span class="si si-move-expand-vertical dashboard-configuration-dialog__action-row-icon" />
-              </div>
-              <div class="ui-g-10">
-                <p:outputLabel styleClass="dashboard-configuration-dialog__action-row-label"
-                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reorder')}" />
-                <p:outputLabel styleClass="dashboard-configuration-dialog__action-row-description"
-                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfigurationDialog/ReorderPublicDashboards')}"/>
-              </div>
-            </p:commandLink>
-          </h:panelGroup>
-        </h:form>
-      </div>
-      <f:facet name="footer">
-        <h:panelGroup layout="block" styleClass="u-text-align-right">
-          <p:commandButton id="dashboard-configuration-close-button" type="button"
-            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
-            onclick="PF('dashboard-configuration-dialog').hide()"
-            icon="#{visibilityBean.generateButtonIcon('si si-remove')}" />
-        </h:panelGroup>
-      </f:facet>
-    </p:dialog>
+    <ic:ch.ivy.addon.portal.generic.dashboard.component.PortalDashboardMenuDialog isWorkingOnATask="#{isWorkingOnATask}" task="#{task}" />
 
     <h:form>
       <p:remoteCommand name="rcProjectInfo" actionListener="#{projectVersionBean.loadProjectVesion}" oncomplete="PF('project-info-dialog').show()"

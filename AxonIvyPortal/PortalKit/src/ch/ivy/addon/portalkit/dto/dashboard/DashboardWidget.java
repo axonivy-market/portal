@@ -53,6 +53,19 @@ public abstract class DashboardWidget implements Serializable {
 
   public DashboardWidget() {}
 
+  public DashboardWidget(DashboardWidget widget) {
+    // Properties of DashboardWidget
+    id = widget.getId();
+    name = widget.getName();
+    setLayout(widget.getLayout());
+    autoPosition = widget.getAutoPosition();
+    hasPredefinedFilter = widget.isHasPredefinedFilter();
+    userDefinedFiltersCount = widget.getUserDefinedFiltersCount();
+    searchSavedFilterKeyword = widget.getSearchSavedFilterKeyword();
+    savedFilters = widget.getSavedFilters();
+    userFilterCollection = widget.getUserFilterCollection();
+  }
+
   public DashboardWidget(String id, String name, WidgetLayout layout) {
     this.id = id;
     this.name = name;

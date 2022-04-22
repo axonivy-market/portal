@@ -19,6 +19,7 @@
   <cc:attribute name="ableToEdit" />
   <cc:attribute name="processStyleClass" />
   <cc:attribute name="processIconStyleClass" />
+  <cc:attribute name="isInConfiguration"/>
 </cc:interface>
 
 <cc:implementation>
@@ -37,31 +38,15 @@
       <h:form id="process-item" target="#{processTarget}"
         styleClass="grid-view-form TexAlCenter #{isExpress ? 'is-express' : ''} #{isExternalLink ? 'is-external-link' : ''}">
         <!-- Action -->
-        <h:panelGroup id="process-action-group" styleClass="process-action-group" layout="block">
-          <h:panelGroup id="grid-process-category" rendered="#{process.category ne ''}"
-            styleClass="js-process-category grid-process-category #{cc.attrs.ableToEdit ? 'has-menu-button' : ''}"
-            layout="block">
-            <h:panelGroup id="grid-process-category-content" styleClass="grid-process-category-content u-truncate-text"
-              layout="block">#{managedBean.getDisplayProcessCategory(process)}</h:panelGroup>
-            <p:tooltip id="grid-process-category-content-tooltip" for="grid-process-category-content"
-              value="#{process.category}" trackMouse="true" hideEvent="mouseleave click" />
-          </h:panelGroup>
-          <h:panelGroup rendered="#{cc.attrs.ableToEdit}">
-            <p:commandButton id="process-action-button" type="button" styleClass="ui-button-icon-only icon-more-menu-button"
-              icon="si si-navigation-menu-horizontal" />
-            <p:menu id="process-action-menu" overlay="true" trigger="process-action-button" my="right top" at="right bottom"
-              styleClass="ui-menu-overlay-process">
-              <p:menuitem id="process-edit" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}"
-                icon="si si-graphic-tablet-drawing-pen" oncomplete="#{cc.attrs.oncompleteEditProcess}"
-                actionListener="#{cc.attrs.editActionListener}"
-                update="#{cc.attrs.componentToUpdateOnEditProcess}" />
-              <p:menuitem id="process-delete" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
-                icon="si si-bin-1" oncomplete="#{cc.attrs.oncompleteRemoveProcess}"
-                actionListener="#{cc.attrs.removeActionListener}"
-                update="#{cc.attrs.componentToUpdateOnRemoveProcess}" />
-            </p:menu>
-          </h:panelGroup>
-        </h:panelGroup>
+        <ic:ch.ivy.addon.portalkit.component.process.ProcessItemAction id="grid-process-action-component" process="#{process}"
+          canModify="#{cc.attrs.ableToEdit}"
+          actionListenerOnEditProcess="#{cc.attrs.editActionListener}"
+          onCompleteEditProcess="#{cc.attrs.oncompleteEditProcess}"
+          componentToUpdateOnEditProcess="#{cc.attrs.componentToUpdateOnEditProcess}"
+          actionListenerOnDeleteProcess="#{cc.attrs.removeActionListener}"
+          onCompleteDeleteProcess="#{cc.attrs.oncompleteRemoveProcess}"
+          componentToUpdateOnDeleteProcess="#{cc.attrs.componentToUpdateOnRemoveProcess}"
+          hideActionButton="#{cc.attrs.isInConfiguration}"/>
 
         <!-- Process Icon -->
         <i id="icon" class="#{iconSelectionBean.generateIconWithFontFamily(process.getIcon())} process-grid-view-icon #{cc.attrs.processIconStyleClass}" />
