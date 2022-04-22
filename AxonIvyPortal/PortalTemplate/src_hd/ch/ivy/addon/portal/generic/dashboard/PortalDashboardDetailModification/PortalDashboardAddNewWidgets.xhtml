@@ -6,7 +6,8 @@
 <p:dialog id="new-widget-dialog" widgetVar="new-widget-dialog"
   header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/createWidget')}"
   appendTo="@(body)" closeOnEscape="true" draggable="false"
-  fitViewport="true" responsive="true" modal="true">
+  fitViewport="true" responsive="true" modal="true" dynamic="true">
+  <f:event listener="#{dashboardDetailModificationBean.initSampleWidgets()}" type="preRenderComponent"/>
 
   <p:dataGrid id="new-widget-dialog-content" var="sample" value="#{dashboardDetailModificationBean.samples}" columns="1"
     styleClass="new-widget-dialog__content">
@@ -60,6 +61,11 @@
         componentToUpdate="widget-configuration-form" />
     </c:if>
 
+    <c:if test="#{widget.type eq 'STATISTIC'}">
+      <ic:ch.ivy.addon.portal.generic.dashboard.component.StatisticChartWidgetConfiguration id="new-widget-configuration-component"
+        widget="#{widget}" componentToUpdate="widget-configuration-form"/>
+    </c:if>
+
    <c:if test="#{widget.type eq 'CUSTOM'}">
      <ic:ch.ivy.addon.portal.generic.dashboard.component.CustomWidgetConfiguration id="new-widget-configuration-component"
        widget="#{widget}"
@@ -68,7 +74,8 @@
   </h:form>
 
   <f:facet name="footer">
-    <p:commandLink id="task-configuration-cancel-link" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" styleClass="u-mar-right-10"
+    <p:commandLink id="task-configuration-cancel-link" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+      styleClass="u-mar-right-10"
       onclick="PF('new-widget-configuration-dialog').hide()">
       <p:resetInput target="widget-configuration-form" />
     </p:commandLink>
