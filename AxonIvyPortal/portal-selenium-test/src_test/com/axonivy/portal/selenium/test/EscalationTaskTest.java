@@ -86,6 +86,7 @@ public class EscalationTaskTest extends BaseTest {
     caseDetailsPage.getNameOfRelatedTask(1).shouldHave(Condition.text(SICK_LEAVE_REQUEST));
     caseDetailsPage.clickRelatedTaskActionButton(1);
     caseDetailsPage.triggerEscalationTask(1);
+    refreshPage();
     caseDetailsPage.getNameOfRelatedTask(1).shouldHave(Condition.text(SICK_LEAVE_REQUEST));
     caseDetailsPage.getStateOfRelatedTask(1).shouldHave(Condition.text("Destroyed"));
     caseDetailsPage.getNameOfRelatedTask(3).shouldHave(Condition.text(SICK_LEAVE_REQUEST_ESCALATED));

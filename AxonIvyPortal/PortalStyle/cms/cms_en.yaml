@@ -701,6 +701,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     SaveNewWidgetFilterHeader: Save a new widget filter
     SavedFilterHeader: Saved filters
     SearchForFilter: Search for filter
+    StatisticWidget:
+      AvailableCharts: Available statistics charts
+      Charts: 'Chart(s): {0}'
+      ConfigurationDescription: You can configure your widget in this configuration area. Please define the chart which will be shown on  your dashboard.
+      FilterChartText: Filter a chart by name
+      PlaceholderChartOption: Select a chart
+      PleaseSelectChart: Please select a chart
+      PreviewText: Please select a chart to see the canvas data
     WidgetFilterName: Widget filter name
     WidgetFilters: Widget filters
     actionSelection: Action selection
@@ -719,6 +727,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     configuration:
       CustomWidgetExternalLinkWarning: Some websites are not compatible with iframe due to security concerns. Please contact your administrator if the external website is not working properly.
       Parameters: Parameters
+      SelectYourTemplate: Select your template
       configuration: Configuration
       configurationDescription: You can configure your widget in this configuration area. Please define the required filters as well as columns to be shown.
       customWidgetParamChangedMessage: This process has changed. Click on Update to proceed.
@@ -736,6 +745,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     customWidget: Custom Widget
     customWidgetIntroduction: This widget can display an ivy process or an external webpage.
     dashboardManagement:
+      CreateDashboard: Create Dashboard
       addDashboard: Add dashboard
       dashboardPermission: Dashboard permission
       dashboardTitle: Dashboard title
@@ -797,6 +807,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     selectEditAction: Which action do you want to procced?
     showFullWidget: Show full widget
     startATask: Start task
+    statisticChartIntroduction: This widget displays available statistic charts.
+    statisticChartWidget: Statistic chart
     switchToViewMode: View Mode
     tasWidgetkInfo:
       expireToday: Expire today
@@ -813,6 +825,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     yourCases: Your Cases
     yourCustomWidget: Your Custom Widget
     yourProcesses: Your Processes
+    yourStatistics: Your Statistics
     yourTasks: Your Tasks
   dateFormatConfiguration:
     dateFormatConfiguration: Date Format Configuration
@@ -1232,6 +1245,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       EXPIRY_TIME_DESC: Expiry (Newest first)
       PRIORITY_ASC: Priority (High to low)
       PRIORITY_DESC: Priority (Low to high)
+    triggerEscalationNote: 'Escalation has been triggered by {0} ({1}) of task #{2}'
     type: Type
   taskPriority:
     EXCEPTION: EXCEPTION
