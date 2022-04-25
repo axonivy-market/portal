@@ -41,7 +41,7 @@
         paginatorAlwaysVisible="false"
         pageLinks="5" sortBy="#{taskWidget.sortBy}"
         rowIndexVar="rowIndex" rowHover="#{isReadOnlyMode}" selectionMode="single"
-        styleClass="dashboard-tasks--table #{isReadOnlyMode ? '' : 'dashboard__table--edit'} #{isPreviewMode ? 'dashboard__table--preview' : ''}"
+        styleClass="dashboard-tasks--table #{isReadOnlyMode ? '' : 'dashboard__table--edit'} #{isPreviewMode ? 'dashboard__table--preview' : ''} #{!isPreviewMode and taskWidget.taskCount lt 1 ? 'u-display-none' : ''}"
         rowStyleClass="dashboard-table--row-style"
         emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}">
         <p:ajax event="page" oncomplete="saveWidgetState()" />
@@ -99,7 +99,26 @@
           </h:panelGroup>
         </p:columns>
       </p:dataTable>
-       
+      <h:panelGroup layout="block" id="empty-message-container"
+        styleClass="empty-message-container #{!isPreviewMode and taskWidget.taskCount lt 1 ? '' : 'u-display-none'}">
+        <c:set var="noTasksWhenFilter"
+          value="#{dashboardTaskFilterBean.hasPredefinedFilter(taskWidget) or taskWidget.userDefinedFiltersCount.isPresent()}" />
+        <h:panelGroup layout="block" id="empty-message-when-filter"
+          rendered="#{noTasksWhenFilter}">
+          <i class="si si-filter-1 empty-message-icon" />
+          <br />
+          <h:outputText
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/iconMessage/taskWidget/noTasksFoundWhenFilter')}"
+            styleClass="empty-message-text" />
+        </h:panelGroup>
+        <h:panelGroup layout="block" id="empty-message-when-not-filter"
+          rendered="#{!noTasksWhenFilter}">
+          <i class="si #{dashboardBean.noTasksMessage.icon} empty-message-icon" />
+          <br />
+          <h:outputText value="#{dashboardBean.noTasksMessage.message}"
+            styleClass="empty-message-text" />
+        </h:panelGroup>
+      </h:panelGroup>
     </h:panelGroup>
   </div>
   
