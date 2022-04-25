@@ -640,6 +640,12 @@ public class NewDashboardPage extends TemplatePage {
     return newDashboardConfigurationPage;
   }
 
+  public void navigateToEditPublicDashboardPage(String dashboardName) {
+    openDashboardConfigurationDialog();
+    NewDashboardConfigurationPage configPage = navigateToEditPublicDashboardPage();
+    configPage.navigateToEditDashboardDetailsByName(dashboardName);
+  }
+
   public SelenideElement getPrivateDashboardConfigurationSection() {
     return $("div[id$=':private-dashboard-configuration-section']");
   }
@@ -654,5 +660,47 @@ public class NewDashboardPage extends TemplatePage {
 
   public void waitPageDisplay() {
     $("a.dashboard__title").waitUntil(disappears, DEFAULT_TIMEOUT);
+  }
+
+  public void checkDisplayedCaseWidgetContainer() {
+    getCaseWidgetContainer().waitUntil(Condition.appear, DEFAULT_TIMEOUT);
+  }
+
+  private SelenideElement getCaseWidgetContainer() {
+    return $("div[id$='dashboard-cases-container']");
+  }
+
+  public SelenideElement getCaseWidgetTable() {
+    return getCaseWidgetContainer().$("div[id$='dashboard-cases']");
+  }
+
+  public SelenideElement getCaseWidgetEmptyMessageWhenNotFilter() {
+    return getCaseWidgetContainer().$("div[id$='empty-message-when-not-filter']");
+  }
+
+  public SelenideElement getCaseWidgetEmptyMessageWhenFilter() {
+    return getCaseWidgetContainer().$("div[id$='empty-message-when-filter']");
+
+  }
+
+  public void checkDisplayedTaskWidgetContainer() {
+    getTaskWidgetContainer().waitUntil(Condition.appear, DEFAULT_TIMEOUT);
+  }
+
+  private SelenideElement getTaskWidgetContainer() {
+    return $("div[id$='dashboard-tasks-container']");
+  }
+
+  public SelenideElement getTaskWidgetTable() {
+    return getTaskWidgetContainer().$("div[id$='dashboard-tasks']");
+  }
+
+  public SelenideElement getTaskWidgetEmptyMessageWhenNotFilter() {
+    return getTaskWidgetContainer().$("div[id$='empty-message-when-not-filter']");
+  }
+
+  public SelenideElement getTaskWidgetEmptyMessageWhenFilter() {
+    return getTaskWidgetContainer().$("div[id$='empty-message-when-filter']");
+
   }
 }
