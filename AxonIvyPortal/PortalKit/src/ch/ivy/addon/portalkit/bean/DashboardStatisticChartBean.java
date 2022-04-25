@@ -128,7 +128,8 @@ public class DashboardStatisticChartBean implements Serializable {
 
   private StatisticChart getSelectedStatisticChart(ItemSelectEvent event) {
     String selectedChartId = (String) event.getComponent().getAttributes().get("selectedChartId");
-    return getAvailableCharts().stream()
+    var charts = StatisticService.getInstance().findAll();
+    return charts.stream()
         .filter(chart -> StringUtils.equals(chart.getId(), selectedChartId))
         .findFirst().orElse(null);
   }
