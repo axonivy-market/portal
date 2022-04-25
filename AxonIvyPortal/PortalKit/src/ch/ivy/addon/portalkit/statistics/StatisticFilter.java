@@ -24,6 +24,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.enums.StatisticTimePeriodSelection;
@@ -35,6 +36,7 @@ import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.WorkflowPriority;
 
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class StatisticFilter implements Cloneable {
   
   private StatisticTimePeriodSelection timePeriodSelection = StatisticTimePeriodSelection.CUSTOM;

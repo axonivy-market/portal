@@ -216,5 +216,6 @@ function loadWidgetFirstTime(loadingClass, widgetClass) {
   var widget = $('.' + widgetClass);
   if (widget.length > 0) {
     widget.removeClass('u-display-none');
+    widget.removeClass('u-invisibility');
   }
 }
