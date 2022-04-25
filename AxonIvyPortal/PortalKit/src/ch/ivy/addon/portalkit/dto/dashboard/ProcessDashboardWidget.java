@@ -66,17 +66,7 @@ public class ProcessDashboardWidget extends DashboardWidget {
   }
 
   public ProcessDashboardWidget(ProcessDashboardWidget widget) {
-    // Properties of DashboardWidget
-    id = widget.getId();
-    name = widget.getName();
-    setLayout(widget.getLayout());
-    autoPosition = widget.getAutoPosition();
-    hasPredefinedFilter = widget.isHasPredefinedFilter();
-    userDefinedFiltersCount = widget.getUserDefinedFiltersCount();
-    searchSavedFilterKeyword = widget.getSearchSavedFilterKeyword();
-    savedFilters = widget.getSavedFilters();
-    userFilterCollection = widget.getUserFilterCollection();
-
+    super(widget);
     // Properties of ProcessDashboardWidget
     displayMode = widget.getDisplayMode();
     criteria = widget.getCriteria();

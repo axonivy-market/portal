@@ -3,6 +3,7 @@ package ch.ivy.addon.portalkit.util;
 import static ch.ivy.addon.portalkit.constant.DashboardConstants.MAX_NOTI_FILTERS;
 import static ch.ivy.addon.portalkit.constant.DashboardConstants.MAX_NOTI_PATTERN;
 import static ch.ivy.addon.portalkit.constant.DashboardConstants.NEW_WIDGET_STYLE_CLASS;
+import static ch.ivy.addon.portalkit.constant.DashboardConstants.WIDGET_ID_PATTERN;
 import static ch.ivy.addon.portalkit.enums.DashboardColumnFormat.NUMBER;
 import static ch.ivy.addon.portalkit.enums.DashboardColumnFormat.STRING;
 import static ch.ivy.addon.portalkit.enums.DashboardColumnFormat.TEXT;
@@ -30,6 +31,7 @@ import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.ProcessDashboardWidget;
+import ch.ivy.addon.portalkit.dto.dashboard.StatisticDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.casecolumn.CaseColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.process.DashboardProcess;
@@ -308,9 +310,27 @@ public class DashboardWidgetUtils {
       case PROCESS:
         widget = buildDefaultProcessWidget(id, name);
         break;
+      case STATISTIC:
+        widget = buildDefaultStatisticWidget(id, name);
+        break;
       default:
         break;
     }
+    return widget;
+  }
+
+
+  private static DashboardWidget buildDefaultStatisticWidget(String id, String name) {
+    var widget = new StatisticDashboardWidget();
+    widget.setId(id);
+    widget.setName(name);
+    var layout = new WidgetLayout();
+    layout.setWidth(5);
+    layout.setHeight(5);
+    layout.setAxisX(0);
+    layout.setAxisY(0);
+    widget.setLayout(layout);
+    widget.setAutoPosition(true);
     return widget;
   }
 
@@ -530,5 +550,9 @@ public class DashboardWidgetUtils {
     boolean hasNoCategory = categories.indexOf(CategoryUtils.NO_CATEGORY) > -1;
     return categories.indexOf(process.getCategory()) > -1
         || (StringUtils.isBlank(process.getCategory()) && hasNoCategory);
+  }
+
+  public static String generateNewWidgetId(DashboardWidgetType type) {
+    return String.format(WIDGET_ID_PATTERN, type.name(), DashboardUtils.generateId()).toLowerCase();
   }
 }

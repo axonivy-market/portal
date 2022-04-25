@@ -699,6 +699,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     SaveNewWidgetFilterHeader: Save a new widget filter
     SavedFilterHeader: Saved filters
     SearchForFilter: Search for filter
+    StatisticWidget:
+      AvailableCharts: TODO Available statistics charts
+      Charts: 'TODO Chart(s): {0}'
+      ConfigurationDescription: TODO You can configure your widget in this configuration area. Please define the chart which will be shown on  your dashboard.
+      FilterChartText: TODO Filter a chart by name
+      PlaceholderChartOption: TODO Select a chart
+      PleaseSelectChart: TODO Please select a chart
+      PreviewText: TODO Please select a chart to see the canvas data
     WidgetFilterName: Name des Widget-Filters
     WidgetFilters: Widget-Filter
     actionSelection: Aktion auswählen
@@ -717,6 +725,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     configuration:
       CustomWidgetExternalLinkWarning: Einige Websites sind aufgrund von Sicherheitsbedenken nicht mit iframe kompatibel. Bitte wenden Sie sich an Ihren Administrator, wenn die externe Website nicht ordnungsgemäß funktioniert.
       Parameters: Parameter
+      SelectYourTemplate: TODO Select your template
       configuration: Konfiguration
       configurationDescription: In diesem Konfigurationsbereich kann das Widget konfiguriert werden. Bitte definieren Sie die gewünschten Filter sowie die anzuzeigenden Spalten.
       customWidgetParamChangedMessage: Dieser Prozess hat sich geändert. Klicken Sie auf Update, um fortzufahren.
@@ -734,6 +743,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     customWidget: Benutzerdefiniertes Widget
     customWidgetIntroduction: Dieses Widget kann einen Axon Ivy-Prozess oder eine externe Webseite anzeigen.
     dashboardManagement:
+      CreateDashboard: TODO Create Dashboard
       addDashboard: Dashbaord hinzufürgen
       dashboardPermission: Dashboard Berechtigung
       dashboardTitle: Dashboard Titel
@@ -795,6 +805,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     selectEditAction: Welche Aktion möchten Sie durchführen?
     showFullWidget: Vollständiges Widget anzeigen
     startATask: Aufgabe starten
+    statisticChartIntroduction: TODO This widget displays available statistic charts.
+    statisticChartWidget: TODO Statistic chart
     switchToViewMode: Ansichtsmodus
     tasWidgetkInfo:
       expireToday: Ablaufdatum heute
@@ -811,6 +823,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     yourCases: Ihre Vorgänge
     yourCustomWidget: Ihr benutzerdefiniertes Widget
     yourProcesses: Ihre Prozesse
+    yourStatistics: TODO Your Statistics
     yourTasks: Ihre Aufgaben
   dateFormatConfiguration:
     dateFormatConfiguration: Konfiguration des Datumsformats
@@ -1230,6 +1243,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       EXPIRY_TIME_DESC: Ablauf (Neuste zuerst)
       PRIORITY_ASC: Priorität (hoch nach niedrig)
       PRIORITY_DESC: Priorität (niedrig nach hoch)
+    triggerEscalationNote: 'TODO Escalation has been triggered by {0} ({1}) of task #{2}'
     type: Typ
   taskPriority:
     EXCEPTION: AUSNAHME

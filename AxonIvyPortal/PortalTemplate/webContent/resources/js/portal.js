@@ -305,3 +305,19 @@ function hideDashboardOverlayPanels() {
     }
   });
 }
+
+function showCreateDashboardSection() {
+  $("[id$='dashboard-configuration-close-button']").addClass("u-hidden");
+  $("[id$='create-dashboard-close-button']").removeClass("u-hidden");
+  
+  $("[id$='configuration-form']").addClass("u-hidden");
+  $("[id$='create-new-dashboard-form']").removeClass("u-hidden");
+}
+
+function hideCreateDashboardSection() {
+  $("[id$='create-dashboard-close-button']").addClass("u-hidden");
+  $("[id$='dashboard-configuration-close-button']").removeClass("u-hidden");
+  
+  $("[id$='create-new-dashboard-form']").addClass("u-hidden");
+  $("[id$='configuration-form']").removeClass("u-hidden");
+}

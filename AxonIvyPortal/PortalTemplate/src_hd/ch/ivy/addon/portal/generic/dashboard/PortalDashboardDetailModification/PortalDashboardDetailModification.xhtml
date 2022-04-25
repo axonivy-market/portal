@@ -36,7 +36,9 @@
     </ui:define>
 
     <ui:define name="dashboardContent">
-      <ui:include src="PortalDashboardAddNewWidgets.xhtml" />
+      <ui:include src="PortalDashboardAddNewWidgets.xhtml">
+        <ui:param name="isPublicDashboard" value="#{dashboardDetailModificationBean.publicDashboard}"/>
+      </ui:include>
 
       <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
         <ui:param name="id" value="restore-confirm-dialog" />
