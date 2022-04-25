@@ -413,6 +413,10 @@ body .ui-calendar.task-configuration__calendar .ui-datepicker-trigger {
   width: 100%;
 }
 
+.field-add-fieldset__input {
+  height: 23px;
+}
+
 .field-add-fieldset__custom-field-type-container, .field-add-fieldset__number-pattern-container {
   padding: 0;
 }
@@ -923,6 +927,21 @@ body .dashboard__table--preview.ui-datatable tbody tr.ui-state-hover {
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+.empty-message-container {
+  text-align: center;
+  margin: 100px 0px;
+}
+
+.empty-message-container .empty-message-icon {
+  font-size: var(--dashboard-table-empty-message-icon-font-size);
+  margin-bottom: 10px;
+}
+
+.empty-message-container .empty-message-icon,
+.empty-message-container .empty-message-text {
+  color: var(--primary-color);
 }
 
 .widget-preview--process .dashboard-processes--empty-message {
