@@ -761,7 +761,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     iconMessage:
       caseWidget:
         BEACH_PALM_SUNBED: You are awesome - all cases are done. Lean back and enjoy.
-        CHARGING_BATTERY_FULL_1: There are currently no tasks. Time to recharge the batteries a little.
+        CHARGING_BATTERY_FULL_1: There are currently no cases. Time to recharge the batteries a little.
         COFFEE_OF_HOT: Wow! Good job! All cases are completed. How about a quick coffee break?
         RANKING_WINNER_MEDAL: Game, set and match! You did it, all cases are completed!
         SOCCER_PLAYER: Goal! You did it, all cases completed. Short half-time break.
