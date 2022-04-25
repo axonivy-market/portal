@@ -26,6 +26,7 @@ import ch.ivyteam.ivy.environment.Ivy;
   @Type(value = TaskDashboardWidget.class, name = "task"),
   @Type(value = CaseDashboardWidget.class, name = "case"),
   @Type(value = ProcessDashboardWidget.class, name = "process"),
+  @Type(value = StatisticDashboardWidget.class, name = "statistic"),
   @Type(value = CustomDashboardWidget.class, name = "custom")
 })
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
@@ -51,6 +52,19 @@ public abstract class DashboardWidget implements Serializable {
   protected UserFilterCollection userFilterCollection;
 
   public DashboardWidget() {}
+
+  public DashboardWidget(DashboardWidget widget) {
+    // Properties of DashboardWidget
+    id = widget.getId();
+    name = widget.getName();
+    setLayout(widget.getLayout());
+    autoPosition = widget.getAutoPosition();
+    hasPredefinedFilter = widget.isHasPredefinedFilter();
+    userDefinedFiltersCount = widget.getUserDefinedFiltersCount();
+    searchSavedFilterKeyword = widget.getSearchSavedFilterKeyword();
+    savedFilters = widget.getSavedFilters();
+    userFilterCollection = widget.getUserFilterCollection();
+  }
 
   public DashboardWidget(String id, String name, WidgetLayout layout) {
     this.id = id;

@@ -1,11 +1,13 @@
 [Ivy]
-153CACC26D0D4C3D 9.4.0 #module
+153CACC26D0D4C3D 9.4.6 #module
 >Proto >Proto Collection #zClass
 Dt0 DataCreation Big #zClass
 Dt0 B #cInfo
 Dt0 #process
 Ct0 Component Big #zClass
 Ct0 B #cInfo
+Dt0 @TextInP .colors .colors #zField
+Dt0 @TextInP color color #zField
 Dt0 @TextInP .type .type #zField
 Dt0 @TextInP .processKind .processKind #zField
 Dt0 @AnnotationInP-0n ai ai #zField
@@ -180,6 +182,8 @@ Dt0 @EndTask f162 '' #zField
 Dt0 @PushWFArc f163 '' #zField
 Dt0 @PushWFArc f164 '' #zField
 >Proto Dt0 Dt0 DataCreation #zField
+Ct0 @TextInP .colors .colors #zField
+Ct0 @TextInP color color #zField
 Ct0 @TextInP .type .type #zField
 Ct0 @TextInP .processKind .processKind #zField
 Ct0 @TextInP .xml .xml #zField
@@ -212,7 +216,7 @@ TaskTriggered.PRI=2
 TaskTriggered.ROL=SYSTEM
 TaskTriggered.TYPE=0' #txt
 Dt0 f0 caseData businessCase.attach=false #txt
-Dt0 f0 showInStartList 1 #txt
+Dt0 f0 showInStartList true #txt
 Dt0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -221,7 +225,7 @@ Dt0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Dt0 f0 @C|.responsibility Everybody #txt
-Dt0 f0 35 323 26 26 14 0 #rect
+Dt0 f0 51 323 26 26 14 0 #rect
 Dt0 f1 467 203 26 26 14 0 #rect
 Dt0 f5 467 243 26 26 14 0 #rect
 Dt0 f6 467 275 26 26 14 0 #rect
@@ -253,7 +257,7 @@ TaskTriggered.ROL=Everybody
 TaskTriggered.TYPE=0' #txt
 Dt0 f25 caseData 'businessCase.attach=false
 case.name=Create test data with category' #txt
-Dt0 f25 showInStartList 1 #txt
+Dt0 f25 showInStartList true #txt
 Dt0 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -262,7 +266,7 @@ Dt0 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Dt0 f25 @C|.responsibility Everybody #txt
-Dt0 f25 35 83 26 26 -39 20 #rect
+Dt0 f25 51 83 26 26 -39 20 #rect
 Dt0 f28 processCall 'Start Processes/DataCreation:createTasks(String)' #txt
 Dt0 f28 requestActionDecl '<String taskStructureInfo> param;' #txt
 Dt0 f28 requestMappingAction 'param.taskStructureInfo=in.handler.getNextTaskStructureInfo();
@@ -334,7 +338,7 @@ Dt0 f26 446 48 416 82 #arcP
 Dt0 f26 1 416 48 #addKink
 Dt0 f26 1 0.48487282617628363 0 0 #arcLabel
 Dt0 f43 expr out #txt
-Dt0 f43 61 336 182 336 #arcP
+Dt0 f43 77 336 182 336 #arcP
 Dt0 f24 dialogId ch.ivy.addon.portalkit.test.DataCreation #txt
 Dt0 f24 startMethod start() #txt
 Dt0 f24 requestActionDecl '<> param;' #txt
@@ -355,7 +359,7 @@ Dt0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Dt0 f24 246 84 36 24 -70 -34 #rect
 Dt0 f37 expr out #txt
-Dt0 f37 61 96 246 96 #arcP
+Dt0 f37 77 96 246 96 #arcP
 Dt0 f31 expr out #txt
 Dt0 f31 282 96 334 96 #arcP
 Dt0 f3 actionTable 'out=in1;
@@ -417,7 +421,7 @@ TaskTriggered.EXTYPE=0
 TaskTriggered.PRI=2
 TaskTriggered.ROL=Everybody
 TaskTriggered.TYPE=0' #txt
-Dt0 f10 showInStartList 1 #txt
+Dt0 f10 showInStartList true #txt
 Dt0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -426,7 +430,7 @@ Dt0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Dt0 f10 @C|.responsibility Everybody #txt
-Dt0 f10 35 467 26 26 14 0 #rect
+Dt0 f10 51 467 26 26 14 0 #rect
 Dt0 f11 307 467 26 26 14 0 #rect
 Dt0 f13 dialogId ch.ivy.addon.portalkit.showroom.multiapp.tasks.DestroyTaskPage #txt
 Dt0 f13 startMethod start() #txt
@@ -437,7 +441,7 @@ Dt0 f13 responseMappingAction 'out=in;
 ' #txt
 Dt0 f13 174 468 36 24 20 -2 #rect
 Dt0 f14 expr out #txt
-Dt0 f14 61 480 174 480 #arcP
+Dt0 f14 77 480 174 480 #arcP
 Dt0 f12 expr out #txt
 Dt0 f12 210 480 307 480 #arcP
 Dt0 f15 outLink createTestUser.ivp #txt
@@ -454,7 +458,7 @@ TaskTriggered.PRI=2
 TaskTriggered.ROL=Everybody
 TaskTriggered.TYPE=0' #txt
 Dt0 f15 caseData businessCase.attach=true #txt
-Dt0 f15 showInStartList 1 #txt
+Dt0 f15 showInStartList true #txt
 Dt0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -463,7 +467,7 @@ Dt0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Dt0 f15 @C|.responsibility Everybody #txt
-Dt0 f15 81 561 30 30 -51 17 #rect
+Dt0 f15 49 561 30 30 -51 17 #rect
 Dt0 f16 actionTable 'out=in;
 ' #txt
 Dt0 f16 actionCode 'import java.util.Locale;
@@ -484,7 +488,7 @@ Dt0 f17 321 561 30 30 0 15 #rect
 Dt0 f18 expr out #txt
 Dt0 f18 264 576 321 576 #arcP
 Dt0 f19 expr out #txt
-Dt0 f19 111 576 152 576 #arcP
+Dt0 f19 79 576 152 576 #arcP
 Dt0 f20 outLink createRelatedTasksTestUser.ivp #txt
 Dt0 f20 inParamDecl '<> param;' #txt
 Dt0 f20 requestEnabled true #txt
@@ -498,7 +502,7 @@ TaskTriggered.PRI=2
 TaskTriggered.ROL=Everybody
 TaskTriggered.TYPE=0' #txt
 Dt0 f20 caseData businessCase.attach=true #txt
-Dt0 f20 showInStartList 1 #txt
+Dt0 f20 showInStartList true #txt
 Dt0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -507,7 +511,7 @@ Dt0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Dt0 f20 @C|.responsibility Everybody #txt
-Dt0 f20 65 721 30 30 -75 23 #rect
+Dt0 f20 49 721 30 30 -44 26 #rect
 Dt0 f21 337 721 30 30 0 15 #rect
 Dt0 f22 actionTable 'out=in;
 ' #txt
@@ -526,7 +530,7 @@ ivy.security.users().create(user);' #txt
 Dt0 f22 security system #txt
 Dt0 f22 168 714 112 44 0 -8 #rect
 Dt0 f36 expr out #txt
-Dt0 f36 95 736 168 736 #arcP
+Dt0 f36 79 736 168 736 #arcP
 Dt0 f38 expr out #txt
 Dt0 f38 280 736 337 736 #arcP
 Dt0 f48 outLink createTestUsers.ivp #txt
@@ -544,7 +548,7 @@ TaskTriggered.PRI=2
 TaskTriggered.ROL=Everybody
 TaskTriggered.TYPE=0' #txt
 Dt0 f48 caseData businessCase.attach=true #txt
-Dt0 f48 showInStartList 1 #txt
+Dt0 f48 showInStartList true #txt
 Dt0 f48 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -707,7 +711,7 @@ TaskTriggered.ROL=SYSTEM
 TaskTriggered.TYPE=0' #txt
 Dt0 f46 caseData 'businessCase.attach=true
 case.name=Hidden case' #txt
-Dt0 f46 showInStartList 0 #txt
+Dt0 f46 showInStartList false #txt
 Dt0 f46 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -744,7 +748,7 @@ TaskTriggered.ROL=Everybody
 TaskTriggered.TYPE=0' #txt
 Dt0 f52 caseData 'businessCase.attach=true
 case.name=Hidden case' #txt
-Dt0 f52 showInStartList 1 #txt
+Dt0 f52 showInStartList true #txt
 Dt0 f52 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -840,7 +844,7 @@ TaskTriggered.PRI=2
 TaskTriggered.ROL=SYSTEM
 TaskTriggered.TYPE=0' #txt
 Dt0 f79 caseData businessCase.attach=true #txt
-Dt0 f79 showInStartList 1 #txt
+Dt0 f79 showInStartList true #txt
 Dt0 f79 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -849,9 +853,9 @@ Dt0 f79 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Dt0 f79 @C|.responsibility Everybody #txt
-Dt0 f79 33 209 30 30 -8 19 #rect
+Dt0 f79 49 209 30 30 -8 19 #rect
 Dt0 f80 expr out #txt
-Dt0 f80 60 232 184 324 #arcP
+Dt0 f80 76 234 185 324 #arcP
 Dt0 f81 496 80 32 32 0 16 #rect
 Dt0 f82 expr in #txt
 Dt0 f82 outCond in.handler.createMoreTasks() #txt
@@ -891,7 +895,7 @@ Dt0 f86 triggerEnabled false #txt
 Dt0 f86 callSignature hideOrUnHideTaskCase() #txt
 Dt0 f86 persist false #txt
 Dt0 f86 caseData businessCase.attach=true #txt
-Dt0 f86 showInStartList 1 #txt
+Dt0 f86 showInStartList true #txt
 Dt0 f86 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -900,7 +904,7 @@ Dt0 f86 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Dt0 f86 @C|.responsibility Everybody #txt
-Dt0 f86 49 849 30 30 -77 17 #rect
+Dt0 f86 49 849 30 30 -26 25 #rect
 Dt0 f87 497 849 30 30 0 15 #rect
 Dt0 f88 dialogId ch.ivy.addon.portalkit.test.HideOrUnHideTaskCase #txt
 Dt0 f88 startMethod start() #txt
@@ -929,7 +933,7 @@ Dt0 f91 callSignature createCaseHaveCategoryTreeWithCMS() #txt
 Dt0 f91 persist false #txt
 Dt0 f91 startName 'Create Case Have Category Tree With CMS' #txt
 Dt0 f91 caseData businessCase.attach=true #txt
-Dt0 f91 showInStartList 1 #txt
+Dt0 f91 showInStartList true #txt
 Dt0 f91 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -938,7 +942,7 @@ Dt0 f91 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Dt0 f91 @C|.responsibility Everybody #txt
-Dt0 f91 57 977 30 30 -99 26 #rect
+Dt0 f91 49 977 30 30 -44 26 #rect
 Dt0 f92 outLink createCaseWithSpecificCategory.ivp #txt
 Dt0 f92 inParamDecl '<String caseCategory> param;' #txt
 Dt0 f92 inParamTable 'out.caseCategory=param.caseCategory;
@@ -950,7 +954,7 @@ Dt0 f92 persist false #txt
 Dt0 f92 taskData 'TaskTriggered.ROL=SYSTEM
 TaskTriggered.TYPE=0' #txt
 Dt0 f92 caseData businessCase.attach=false #txt
-Dt0 f92 showInStartList 0 #txt
+Dt0 f92 showInStartList false #txt
 Dt0 f92 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1015,7 +1019,7 @@ Dt0 f100 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Dt0 f100 184 970 112 44 -38 -8 #rect
 Dt0 f101 expr out #txt
-Dt0 f101 87 992 184 992 #arcP
+Dt0 f101 79 992 184 992 #arcP
 Dt0 f102 368 976 32 32 0 16 #rect
 Dt0 f103 expr out #txt
 Dt0 f103 296 992 368 992 #arcP
@@ -1304,7 +1308,7 @@ Dt0 f145 requestEnabled true #txt
 Dt0 f145 triggerEnabled false #txt
 Dt0 f145 callSignature createSampleExpressWorkflowProcess(String) #txt
 Dt0 f145 caseData businessCase.attach=true #txt
-Dt0 f145 showInStartList 0 #txt
+Dt0 f145 showInStartList false #txt
 Dt0 f145 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1493,6 +1497,8 @@ Dt0 f161 728 1386 112 44 -53 -8 #rect
 Dt0 f162 881 1393 30 30 0 15 #rect
 Dt0 f163 687 1408 728 1408 #arcP
 Dt0 f164 840 1408 881 1408 #arcP
+>Proto Dt0 .colors 'default=;
+' #txt
 >Proto Dt0 .type portalKit_test.DataCreationData #txt
 >Proto Dt0 .processKind NORMAL #txt
 >Proto Dt0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

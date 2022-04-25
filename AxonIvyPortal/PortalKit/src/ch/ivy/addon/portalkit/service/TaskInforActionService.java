@@ -38,4 +38,8 @@ public class TaskInforActionService {
     DateFormat formatter = new SimpleDateFormat(dateTimePattern, Ivy.session().getContentLocale());
     return formatter.format(datetime);
   }
+  
+  public String prepareTriggerEscalationNoteContent(String fullNameOfUser, String userNameOfUser, Long taskId) {
+    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/triggerEscalationNote", Arrays.asList(fullNameOfUser, userNameOfUser, taskId));
+  }
 }
