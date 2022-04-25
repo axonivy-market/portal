@@ -19,3 +19,4 @@ caseCatagories java.util.List<String> #field
 caseCategory String #field
 selectedTaskId Long #field
 expressExportFilePath String #field
+dashboardFilePath String #field

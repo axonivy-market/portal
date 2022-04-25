@@ -25,6 +25,7 @@ import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria;
 import ch.ivy.addon.portalkit.publicapi.TaskAPI;
 import ch.ivy.addon.portalkit.service.StickyTaskListService;
+import ch.ivy.addon.portalkit.service.TaskInforActionService;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.ISecurityMember;
@@ -325,5 +326,10 @@ public final class TaskUtils {
       }
       task.setExpiryTimestamp(new Date());
     }
+    IUser user = Ivy.session().getSessionUser();
+    String fullName = user.getFullName();
+    String userName = StringUtils.substring(user.getMemberName(), 1);
+    String triggerNote = new TaskInforActionService().prepareTriggerEscalationNoteContent(fullName, userName, taskId);
+    task.getCase().createNote(Ivy.session(), triggerNote);
   }
 }
