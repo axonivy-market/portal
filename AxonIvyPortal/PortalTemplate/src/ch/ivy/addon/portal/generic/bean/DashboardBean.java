@@ -453,7 +453,7 @@ public class DashboardBean implements Serializable {
     if (noCasesMessage == null) {
       List<CaseEmptyMessage> messages = Stream.of(CaseEmptyMessage.values()).collect(Collectors.toList());
       Random random = new Random();
-      int index = random.ints(1, messages.size()).findFirst().getAsInt();
+      int index = random.ints(0, messages.size()).findFirst().getAsInt();
       noCasesMessage = messages.get(index);
     }
     return noCasesMessage;
@@ -463,7 +463,7 @@ public class DashboardBean implements Serializable {
     if (noTasksMessage == null) {
       List<TaskEmptyMessage> messages = Stream.of(TaskEmptyMessage.values()).collect(Collectors.toList());
       Random random = new Random();
-      int index = random.ints(1, messages.size()).findFirst().getAsInt();
+      int index = random.ints(0, messages.size()).findFirst().getAsInt();
       noTasksMessage = messages.get(index);
     }
     return noTasksMessage;
