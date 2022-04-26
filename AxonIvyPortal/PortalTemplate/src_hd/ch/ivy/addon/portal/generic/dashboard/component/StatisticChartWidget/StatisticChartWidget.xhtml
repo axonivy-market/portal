@@ -114,50 +114,56 @@
 
       <h:panelGroup id="statistic-chart-widget__chart-#{index}" layout="block"
         styleClass="statistic-chart-widget__chart #{isConfigurationMode ? 'statistic-chart-widget__chart--small' : ''} u-invisibility js-dashboard-statistic-chart-#{widget.id}">
-        <p:donutChart model="#{chart.donutChartModel}"
-          rendered="#{dashboardStatisticChartBean.isTaskByPriority(chart)}"
-          styleClass="statistic-chart-widget__canvas">
-          <f:attribute name="selectedChartId" value="#{chart.id}" />
-          <p:ajax event="itemSelect" listener="#{dashboardStatisticChartBean.drilldownTaskByPriority}"
-            disabled="#{disabledDrillDownChart}"/>
-        </p:donutChart>
+        <h:panelGroup rendered="#{widget.chartEmpty}" styleClass="empty-message-container" layout="block">
+          <i class="si #{widget.emptyChartIcon} empty-message-icon"/>
+          <p class="empty-message-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/StatisticWidget/EmptyChartDataMessage')}</p>
+        </h:panelGroup>
+        <h:panelGroup rendered="#{!widget.chartEmpty}">
+          <p:donutChart model="#{chart.donutChartModel}"
+            rendered="#{dashboardStatisticChartBean.isTaskByPriority(chart)}"
+            styleClass="statistic-chart-widget__canvas">
+            <f:attribute name="selectedChartId" value="#{chart.id}" />
+            <p:ajax event="itemSelect" listener="#{dashboardStatisticChartBean.drilldownTaskByPriority}"
+              disabled="#{disabledDrillDownChart}"/>
+          </p:donutChart>
 
-        <p:barChart model="#{chart.barChartModel}"
-          rendered="#{dashboardStatisticChartBean.isTaskByExpiry(chart)}"
-          styleClass="statistic-chart-widget__canvas" >
-          <f:attribute name="selectedChartId" value="#{chart.id}" />
-          <p:ajax event="itemSelect" listener="#{dashboardStatisticChartBean.toTaskByExpiryTaskList}"
-            disabled="#{disabledDrillDownChart}"/>
-        </p:barChart>
+          <p:barChart model="#{chart.barChartModel}"
+            rendered="#{dashboardStatisticChartBean.isTaskByExpiry(chart)}"
+            styleClass="statistic-chart-widget__canvas" >
+            <f:attribute name="selectedChartId" value="#{chart.id}" />
+            <p:ajax event="itemSelect" listener="#{dashboardStatisticChartBean.toTaskByExpiryTaskList}"
+              disabled="#{disabledDrillDownChart}"/>
+          </p:barChart>
 
-        <p:donutChart model="#{chart.donutChartModel}"
-          styleClass="statistic-chart-widget__canvas"
-          rendered="#{dashboardStatisticChartBean.isCaseByState(chart)}">
-          <f:attribute name="selectedChartId" value="#{chart.id}" />
-          <p:ajax event="itemSelect" listener="#{dashboardStatisticChartBean.drilldownCaseByState}"
-            disabled="#{disabledDrillDownChart}"/>
-        </p:donutChart>
+          <p:donutChart model="#{chart.donutChartModel}"
+            styleClass="statistic-chart-widget__canvas"
+            rendered="#{dashboardStatisticChartBean.isCaseByState(chart)}">
+            <f:attribute name="selectedChartId" value="#{chart.id}" />
+            <p:ajax event="itemSelect" listener="#{dashboardStatisticChartBean.drilldownCaseByState}"
+              disabled="#{disabledDrillDownChart}"/>
+          </p:donutChart>
 
-        <!-- Do not support drill-down for ElapsedTimeChartDetails -->
-        <p:barChart styleClass="statistic-chart-widget__canvas"
-          model="#{chart.barChartModel}"
-          rendered="#{dashboardStatisticChartBean.isElapsedTimeByCaseCategory(chart)}" />
+          <!-- Do not support drill-down for ElapsedTimeChartDetails -->
+          <p:barChart styleClass="statistic-chart-widget__canvas"
+            model="#{chart.barChartModel}"
+            rendered="#{dashboardStatisticChartBean.isElapsedTimeByCaseCategory(chart)}" />
+  
+          <p:donutChart styleClass="statistic-chart-widget__canvas"
+            model="#{chart.donutChartModel}"
+            rendered="#{dashboardStatisticChartBean.isCaseByFinishedTask(chart)}">
+            <f:attribute name="selectedChartId" value="#{chart.id}" />
+            <p:ajax event="itemSelect" listener="#{dashboardStatisticChartBean.drilldownCaseByState}"
+              disabled="#{disabledDrillDownChart}"/>
+          </p:donutChart>
 
-        <p:donutChart styleClass="statistic-chart-widget__canvas"
-          model="#{chart.donutChartModel}"
-          rendered="#{dashboardStatisticChartBean.isCaseByFinishedTask(chart)}">
-          <f:attribute name="selectedChartId" value="#{chart.id}" />
-          <p:ajax event="itemSelect" listener="#{dashboardStatisticChartBean.drilldownCaseByState}"
-            disabled="#{disabledDrillDownChart}"/>
-        </p:donutChart>
-
-        <p:donutChart styleClass="statistic-chart-widget__canvas"
-          model="#{chart.donutChartModel}"
-          rendered="#{dashboardStatisticChartBean.isCaseByFinishedTime(chart)}">
-          <f:attribute name="selectedChartId" value="#{chart.id}" />
-          <p:ajax event="itemSelect" listener="#{dashboardStatisticChartBean.drilldownCaseByState}"
-            disabled="#{disabledDrillDownChart}"/>
-        </p:donutChart>
+          <p:donutChart styleClass="statistic-chart-widget__canvas"
+            model="#{chart.donutChartModel}"
+            rendered="#{dashboardStatisticChartBean.isCaseByFinishedTime(chart)}">
+            <f:attribute name="selectedChartId" value="#{chart.id}" />
+            <p:ajax event="itemSelect" listener="#{dashboardStatisticChartBean.drilldownCaseByState}"
+              disabled="#{disabledDrillDownChart}"/>
+          </p:donutChart>
+        </h:panelGroup>
       </h:panelGroup>
     </h:panelGroup>
   </div>
