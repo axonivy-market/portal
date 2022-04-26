@@ -83,6 +83,10 @@ public class StatisticChartConstants {
   public static final String TASK_QUERY = "taskQuery";
   public static final String CASE_QUERY = "caseQuery";
   public static final String RESULT = "result";
-  
+
+  public static final String DEFAULT_CHART_ICON = "si-pie-line-graph";
+  public static final String DONUT_CHART_ICON = "si-analytics-pie-2";
+  public static final String BAR_CHART_ICON = "si-analytics-bars";
+
   private StatisticChartConstants() {}
 }
