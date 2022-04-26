@@ -307,4 +307,16 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
     $("div[id='escalation-task-confirmation-dialog']").waitUntil(Condition.appear, DEFAULT_TIMEOUT);
     $("button[id='confirm-escalation-dashboard-tasks']").waitUntil(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
   }
+  
+  private ElementsCollection getColumnsOfTableWidget() {
+    return $(taskWidgetId).waitUntil(appear, DEFAULT_TIMEOUT).$$("table tbody tr td");
+  }
+  
+  private ElementsCollection getTasksOfTaskWidgetHasName(String taskName) {
+    return getColumnsOfTableWidget().filter(Condition.cssClass("dashboard-tasks__name")).filter(text(taskName));
+  }
+  
+  public ElementsCollection countTasks(String taskName) {
+    return getTasksOfTaskWidgetHasName(taskName);
+  }
 }
