@@ -700,6 +700,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       AvailableCharts: TODO Available statistics charts
       Charts: 'TODO Chart(s): {0}'
       ConfigurationDescription: TODO You can configure your widget in this configuration area. Please define the chart which will be shown on  your dashboard.
+      EmptyChartDataMessage: TODO We do not have enough data to create a nice chart!
       FilterChartText: TODO Filter a chart by name
       PlaceholderChartOption: TODO Select a chart
       PleaseSelectChart: TODO Please select a chart
