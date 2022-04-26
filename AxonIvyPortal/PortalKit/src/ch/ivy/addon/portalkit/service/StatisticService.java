@@ -1076,8 +1076,7 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
           statisticChart.setDonutChartModel(buildChartModelForTaskPriority(statisticChart));
           break;
         case TASK_BY_EXPIRY:
-          BarChartModel chartModelForTaskExpiry = buildChartModelForTaskExpiry(statisticChart);
-          statisticChart.setBarChartModel(chartModelForTaskExpiry);
+          statisticChart.setBarChartModel(buildChartModelForTaskExpiry(statisticChart));
           break;
         case CASES_BY_STATE:
           statisticChart.setDonutChartModel(buildChartModelForCaseState(statisticChart));
