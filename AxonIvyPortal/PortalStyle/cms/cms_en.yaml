@@ -705,6 +705,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       AvailableCharts: Available statistics charts
       Charts: 'Chart(s): {0}'
       ConfigurationDescription: You can configure your widget in this configuration area. Please define the chart which will be shown on  your dashboard.
+      EmptyChartDataMessage: We do not have enough data to create a nice chart!
       FilterChartText: Filter a chart by name
       PlaceholderChartOption: Select a chart
       PleaseSelectChart: Please select a chart
