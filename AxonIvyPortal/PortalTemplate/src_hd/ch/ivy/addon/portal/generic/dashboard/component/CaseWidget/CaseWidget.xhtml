@@ -98,7 +98,7 @@
       <h:panelGroup layout="block" id="empty-message-container"
         styleClass="empty-message-container #{!isPreviewMode and caseWidget.caseCount lt 1 ? '' : 'u-display-none'}">
         <c:set var="noCasesWhenFilter"
-          value="#{dashboardCaseFilterBean.hasPredefinedFilter(caseWidget) or caseWidget.userDefinedFiltersCount.isPresent()}" />
+          value="#{caseWidget.userDefinedFiltersCount.isPresent()}" />
         <h:panelGroup layout="block" id="empty-message-when-filter"
           rendered="#{noCasesWhenFilter}">
           <i class="si si-filter-1 empty-message-icon" />
