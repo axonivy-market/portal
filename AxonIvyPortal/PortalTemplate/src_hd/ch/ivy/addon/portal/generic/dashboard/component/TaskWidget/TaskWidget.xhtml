@@ -102,7 +102,7 @@
       <h:panelGroup layout="block" id="empty-message-container"
         styleClass="empty-message-container #{!isPreviewMode and taskWidget.taskCount lt 1 ? '' : 'u-display-none'}">
         <c:set var="noTasksWhenFilter"
-          value="#{dashboardTaskFilterBean.hasPredefinedFilter(taskWidget) or taskWidget.userDefinedFiltersCount.isPresent()}" />
+          value="#{taskWidget.userDefinedFiltersCount.isPresent()}" />
         <h:panelGroup layout="block" id="empty-message-when-filter"
           rendered="#{noTasksWhenFilter}">
           <i class="si si-filter-1 empty-message-icon" />
