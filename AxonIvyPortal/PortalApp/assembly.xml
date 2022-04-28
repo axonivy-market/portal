@@ -12,13 +12,4 @@
             </includes>
         </dependencySet>
     </dependencySets>
-
-    <fileSets>
-        <fileSet>
-            <includes>
-                <include>config/app.yaml</include>
-            </includes>
-        </fileSet>
-    </fileSets>
-
 </assembly>
