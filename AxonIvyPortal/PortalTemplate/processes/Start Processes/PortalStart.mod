@@ -1,5 +1,5 @@
 [Ivy]
-1549F58C18A6C562 9.4.6 #module
+1549F58C18A6C562 9.4.8 #module
 >Proto >Proto Collection #zClass
 Pt0 PortalStart Big #zClass
 Pt0 B #cInfo
@@ -53,10 +53,8 @@ Pt0 @StartRequest f70 '' #zField
 Pt0 @PushWFArc f33 '' #zField
 Pt0 @EndTask f34 '' #zField
 Pt0 @PushWFArc f35 '' #zField
-Pt0 @GridStep f37 '' #zField
 Pt0 @StartRequest f39 '' #zField
 Pt0 @GridStep f51 '' #zField
-Pt0 @PushWFArc f41 '' #zField
 Pt0 @PushWFArc f42 '' #zField
 Pt0 @PushWFArc f19 '' #zField
 Pt0 @CallSub f59 '' #zField
@@ -96,7 +94,6 @@ Pt0 @PushWFArc f93 '' #zField
 Pt0 @PushWFArc f92 '' #zField
 Pt0 @InfoButton f3 '' #zField
 Pt0 @UserDialog f6 '' #zField
-Pt0 @PushWFArc f8 '' #zField
 Pt0 @Alternative f22 '' #zField
 Pt0 @PushWFArc f30 '' #zField
 Pt0 @PushWFArc f50 '' #zField
@@ -156,12 +153,9 @@ Pt0 @EndTask f133 '' #zField
 Pt0 @UserDialog f134 '' #zField
 Pt0 @PushWFArc f135 '' #zField
 Pt0 @PushWFArc f136 '' #zField
-Pt0 @GridStep f137 '' #zField
 Pt0 @GridStep f139 '' #zField
 Pt0 @PushWFArc f140 '' #zField
-Pt0 @PushWFArc f43 '' #zField
 Pt0 @PushWFArc f23 '' #zField
-Pt0 @PushWFArc f129 '' #zField
 Pt0 Bk7 S60 'Sub 6' #zField
 Pt0 Bk8 S10 'Sub 1' #zField
 Pt0 Bk9 S30 'Sub 3' #zField
@@ -233,7 +227,6 @@ Pt0 @GridStep f201 '' #zField
 Pt0 @PushWFArc f202 '' #zField
 Pt0 @Alternative f203 '' #zField
 Pt0 @PushWFArc f204 '' #zField
-Pt0 @PushWFArc f47 '' #zField
 Pt0 @PushWFArc f205 '' #zField
 Pt0 @StartRequest f206 '' #zField
 Pt0 @GridStep f207 '' #zField
@@ -271,6 +264,9 @@ Pt0 @EndTask f235 '' #zField
 Pt0 @UserDialog f237 '' #zField
 Pt0 @PushWFArc f238 '' #zField
 Pt0 @PushWFArc f236 '' #zField
+Pt0 @PushWFArc f43 '' #zField
+Pt0 @PushWFArc f47 '' #zField
+Pt0 @PushWFArc f8 '' #zField
 >Proto Pt0 Pt0 PortalStart #zField
 Bk7 @TextInP .colors .colors #zField
 Bk7 @TextInP color color #zField
@@ -659,30 +655,6 @@ Pt0 f70 81 754 30 30 -46 17 #rect
 Pt0 f33 111 769 192 769 #arcP
 Pt0 f34 369 754 30 30 0 15 #rect
 Pt0 f35 304 769 369 769 #arcP
-Pt0 f37 actionTable 'out=in;
-' #txt
-Pt0 f37 actionCode 'import ch.ivy.addon.portalkit.enums.PortalLibrary;
-import org.apache.commons.lang3.StringUtils;
-import ch.ivyteam.ivy.workflow.StandardProcessType;
-
-String library = PortalLibrary.PORTAL_TEMPLATE.getValue();
-
-String defaultEndPage = ivy.wf.getStandardProcessImplementationLibrary(StandardProcessType.DEFAULT_PAGES_PROCESS_TYPES);
-
-// if default endpage is null or is portal template but has different group ID
-if (StringUtils.isBlank(defaultEndPage) || (defaultEndPage.endsWith(PortalLibrary.PORTAL_TEMPLATE.getProjectId()) && !library.equals(defaultEndPage))) {
-	ivy.wf.setStandardProcessImplementationLibrary(StandardProcessType.DEFAULT_PAGES_PROCESS_TYPES, library);
-}' #txt
-Pt0 f37 security system #txt
-Pt0 f37 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Set default end page 
-to Portal</name>
-    </language>
-</elementInfo>
-' #txt
-Pt0 f37 352 842 144 44 -53 -16 #rect
 Pt0 f39 outLink DefaultLoginPage.ivp #txt
 Pt0 f39 inParamDecl '<String originalUrl> param;' #txt
 Pt0 f39 inParamTable 'out.callbackUrl=param.#originalUrl is initialized ? param.originalUrl : null;
@@ -725,8 +697,6 @@ pmv </name>
 </elementInfo>
 ' #txt
 Pt0 f51 192 842 128 44 -43 -16 #rect
-Pt0 f41 expr out #txt
-Pt0 f41 320 864 352 864 #arcP
 Pt0 f42 111 864 192 864 #arcP
 Pt0 f19 expr in #txt
 Pt0 f19 784 320 1072 320 #arcP
@@ -1089,8 +1059,7 @@ Pt0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f6 544 842 112 44 -14 -8 #rect
-Pt0 f8 496 864 544 864 #arcP
+Pt0 f6 384 842 112 44 -14 -8 #rect
 Pt0 f22 768 128 32 32 0 16 #rect
 Pt0 f30 expr in #txt
 Pt0 f30 outCond 'in.#portalPage == null' #txt
@@ -1554,30 +1523,6 @@ Pt0 f134 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Pt0 f134 192 2282 112 44 -53 -8 #rect
 Pt0 f135 111 2304 192 2304 #arcP
 Pt0 f136 304 2304 433 2304 #arcP
-Pt0 f137 actionTable 'out=in;
-' #txt
-Pt0 f137 actionCode 'import ch.ivy.addon.portalkit.enums.PortalLibrary;
-import org.apache.commons.lang3.StringUtils;
-import ch.ivyteam.ivy.workflow.StandardProcessType;
-
-String library = PortalLibrary.PORTAL_TEMPLATE.getValue();
-
-String defaultEndPage = ivy.wf.getStandardProcessImplementationLibrary(StandardProcessType.DEFAULT_PAGES_PROCESS_TYPES);
-
-// if default endpage is null or is portal template but has different group ID
-if (StringUtils.isBlank(defaultEndPage) || (defaultEndPage.endsWith(PortalLibrary.PORTAL_TEMPLATE.getProjectId()) && !library.equals(defaultEndPage))) {
-	ivy.wf.setStandardProcessImplementationLibrary(StandardProcessType.DEFAULT_PAGES_PROCESS_TYPES, library);
-}' #txt
-Pt0 f137 security system #txt
-Pt0 f137 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Set default end page 
-to Portal</name>
-    </language>
-</elementInfo>
-' #txt
-Pt0 f137 280 122 144 44 -53 -16 #rect
 Pt0 f139 actionTable 'out=in;
 ' #txt
 Pt0 f139 actionCode 'import ch.ivy.addon.portalkit.enums.SessionAttribute;
@@ -1603,12 +1548,8 @@ Pt0 f140 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Pt0 f140 504 144 584 144 #arcP
 Pt0 f140 0 0.5 0 -10 #arcLabel
-Pt0 f43 111 64 352 122 #arcP
-Pt0 f43 1 352 64 #addKink
-Pt0 f43 0 0.7536234472447718 0 0 #arcLabel
 Pt0 f23 expr out #txt
 Pt0 f23 712 144 768 144 #arcP
-Pt0 f129 424 144 472 144 #arcP
 Pt0 S60 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language lang="en">
@@ -2233,8 +2174,6 @@ Pt0 f202 0 0.6937327756354965 0 0 #arcLabel
 Pt0 f203 208 128 32 32 0 16 #rect
 Pt0 f204 expr out #txt
 Pt0 f204 111 144 208 144 #arcP
-Pt0 f47 color default #txt
-Pt0 f47 240 144 280 144 #arcP
 Pt0 f205 224 202 224 160 #arcP
 Pt0 f206 outLink DefaultCaseListPageInTeams.ivp #txt
 Pt0 f206 inParamDecl '<> param;' #txt
@@ -2464,6 +2403,11 @@ Pt0 f237 992 2282 112 44 -47 -8 #rect
 Pt0 f238 911 2304 992 2304 #arcP
 Pt0 f236 color default #txt
 Pt0 f236 1104 2304 1201 2304 #arcP
+Pt0 f43 240 144 472 144 #arcP
+Pt0 f47 111 64 488 128 #arcP
+Pt0 f47 1 488 64 #addKink
+Pt0 f47 0 0.5931010020694184 0 0 #arcLabel
+Pt0 f8 320 864 384 864 #arcP
 >Proto Pt0 .colors 'default=;
 ' #txt
 >Proto Pt0 .type ch.ivy.addon.portal.generic.PortalStartData #txt
@@ -3134,8 +3078,6 @@ Pt0 f70 mainOut f33 tail #connect
 Pt0 f33 head f32 mainIn #connect
 Pt0 f32 mainOut f35 tail #connect
 Pt0 f35 head f34 mainIn #connect
-Pt0 f51 mainOut f41 tail #connect
-Pt0 f41 head f37 mainIn #connect
 Pt0 f39 mainOut f42 tail #connect
 Pt0 f42 head f51 mainIn #connect
 Pt0 f19 head f5 in #connect
@@ -3164,8 +3106,6 @@ Pt0 f46 head f45 mainIn #connect
 Pt0 f38 mainOut f93 tail #connect
 Pt0 f93 head f44 mainIn #connect
 Pt0 f0 out f92 tail #connect
-Pt0 f37 mainOut f8 tail #connect
-Pt0 f8 head f6 mainIn #connect
 Pt0 f30 head f22 in #connect
 Pt0 f22 out f50 tail #connect
 Pt0 f50 head f9 mainIn #connect
@@ -3225,12 +3165,8 @@ Pt0 f136 head f133 mainIn #connect
 Pt0 f140 head f139 mainIn #connect
 Pt0 f21 out f49 tail #connect
 Pt0 f21 out f140 tail #connect
-Pt0 f120 mainOut f43 tail #connect
-Pt0 f43 head f137 mainIn #connect
 Pt0 f139 mainOut f23 tail #connect
 Pt0 f23 head f22 in #connect
-Pt0 f137 mainOut f129 tail #connect
-Pt0 f129 head f21 in #connect
 Pt0 f92 head S60 g0 #connect
 Pt0 f18 head S10 g0 #connect
 Pt0 S30 g1 f25 tail #connect
@@ -3299,8 +3235,6 @@ Pt0 f200 mainOut f202 tail #connect
 Pt0 f202 head f201 mainIn #connect
 Pt0 f28 mainOut f204 tail #connect
 Pt0 f204 head f203 in #connect
-Pt0 f203 out f47 tail #connect
-Pt0 f47 head f137 mainIn #connect
 Pt0 f201 mainOut f205 tail #connect
 Pt0 f205 head f203 in #connect
 Pt0 f206 mainOut f208 tail #connect
@@ -3339,6 +3273,12 @@ Pt0 f234 mainOut f238 tail #connect
 Pt0 f238 head f237 mainIn #connect
 Pt0 f237 mainOut f236 tail #connect
 Pt0 f236 head f235 mainIn #connect
+Pt0 f203 out f43 tail #connect
+Pt0 f43 head f21 in #connect
+Pt0 f120 mainOut f47 tail #connect
+Pt0 f47 head f21 in #connect
+Pt0 f51 mainOut f8 tail #connect
+Pt0 f8 head f6 mainIn #connect
 Bk7 f3 ao f8 tail #connect
 Bk7 f8 head f36 @CG|ai #connect
 Bk7 f22 mainOut f43 tail #connect
