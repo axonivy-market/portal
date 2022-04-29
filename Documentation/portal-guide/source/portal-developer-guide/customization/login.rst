@@ -24,7 +24,7 @@ Login background
 ----------------
 To change the default login background image, simply add or replace the image in ``configuration/applications/<APPNAME>/branding/background.jpg`` by your image.
 
-Refer to `Engine Branding <https://developer.axonivy.com/doc/nightly/designer-guide/user-interface/branding/branding-engine.html#>`__ for more detail.
+Refer to :dev-url:`Engine Branding </doc/nightly/designer-guide/user-interface/branding/branding-engine.html#>` for more detail.
 
 .. tip::
   - We recommend using an image with size is 1920x1080 pixels.
