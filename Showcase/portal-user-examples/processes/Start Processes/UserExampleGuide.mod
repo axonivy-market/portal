@@ -1,5 +1,5 @@
 [Ivy]
-17236DB1D3DA14C0 9.4.0 #module
+17236DB1D3DA14C0 9.4.8 #module
 >Proto >Proto Collection #zClass
 Ue0 UserExampleGuide Big #zClass
 Ue0 B #cInfo
@@ -8,6 +8,8 @@ Bk1 BpmnUserTask Big #zClass
 Bk1 BpmnUserTask #cInfo
 Bk3 BpmnUserTask Big #zClass
 Bk3 BpmnUserTask #cInfo
+Ue0 @TextInP .colors .colors #zField
+Ue0 @TextInP color color #zField
 Ue0 @TextInP .type .type #zField
 Ue0 @TextInP .processKind .processKind #zField
 Ue0 @TextInP .xml .xml #zField
@@ -27,6 +29,8 @@ Ue0 @InfoButton f6 '' #zField
 Ue0 @AnnotationArc f9 '' #zField
 Ue0 @AnnotationArc f10 '' #zField
 >Proto Ue0 Ue0 UserExampleGuide #zField
+Bk1 @TextInP .colors .colors #zField
+Bk1 @TextInP color color #zField
 Bk1 @AnnotationInP-0n ai ai #zField
 Bk1 @TextInP tags tags #zField
 Bk1 @MessageFlowInP-0n messageIn messageIn #zField
@@ -37,12 +41,12 @@ Bk1 @PushTrueWFInG-01 g0 '' #zField
 Bk1 @PushTrueWFOutG-01 g1 '' #zField
 Bk1 @GridStep f1 '' #zField
 Bk1 @PushWFArc f2 '' #zField
-Bk1 @GridStep f137 '' #zField
-Bk1 @PushWFArc f3 '' #zField
 Bk1 @TaskSwitchSimple f4 '' #zField
-Bk1 @TkArc f5 '' #zField
 Bk1 @PushWFArc f0 '' #zField
+Bk1 @TkArc f3 '' #zField
 >Proto Bk1 Bk0 BpmnUserTask #zField
+Bk3 @TextInP .colors .colors #zField
+Bk3 @TextInP color color #zField
 Bk3 @AnnotationInP-0n ai ai #zField
 Bk3 @TextInP .type .type #zField
 Bk3 @TextInP .processKind .processKind #zField
@@ -172,40 +176,14 @@ Bk1 f1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Bk1 f1 168 234 128 44 -57 -8 #rect
 Bk1 f2 77 256 168 256 #arcP
-Bk1 f137 actionTable 'out=in;
-' #txt
-Bk1 f137 actionCode 'import ch.ivy.addon.portalkit.enums.PortalLibrary;
-import org.apache.commons.lang3.StringUtils;
-import ch.ivyteam.ivy.workflow.StandardProcessType;
-
-String library = PortalLibrary.PORTAL_TEMPLATE.getValue();
-
-String defaultEndPage = ivy.wf.getStandardProcessImplementationLibrary(StandardProcessType.DEFAULT_PAGES_PROCESS_TYPES);
-
-// if default endpage is null or is portal template but has different group ID
-if (StringUtils.isBlank(defaultEndPage) || (defaultEndPage.endsWith(PortalLibrary.PORTAL_TEMPLATE.getProjectId()) && !library.equals(defaultEndPage))) {
-	ivy.wf.setStandardProcessImplementationLibrary(StandardProcessType.DEFAULT_PAGES_PROCESS_TYPES, library);
-}' #txt
-Bk1 f137 security system #txt
-Bk1 f137 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Set default end page 
-to Portal</name>
-    </language>
-</elementInfo>
-' #txt
-Bk1 f137 368 234 144 44 -53 -16 #rect
-Bk1 f3 296 256 368 256 #arcP
 Bk1 f4 actionTable 'out=in1;
 ' #txt
 Bk1 f4 caseData 'case.name=Welcome to Portal' #txt
 Bk1 f4 taskData 'TaskA.NAM=Welcome to Portal
 TaskA.SKIP_TASK_LIST=true' #txt
 Bk1 f4 585 241 30 30 0 16 #rect
-Bk1 f5 512 256 585 256 #arcP
-Bk1 f5 0 0.27599999999999997 0 0 #arcLabel
 Bk1 f0 615 256 691 256 #arcP
+Bk1 f3 296 256 585 256 #arcP
 >Proto Bk0 -8 -8 16 16 16 26 #rect
 Bk3 f3 dialogId com.axonivy.portal.userexamples.ExampleHomePage #txt
 Bk3 f3 startMethod start() #txt
@@ -254,12 +232,10 @@ Ue0 f6 ao f10 tail #connect
 Ue0 f10 head f0 @CG|ai #connect
 Bk1 g0 m f2 tail #connect
 Bk1 f2 head f1 mainIn #connect
-Bk1 f1 mainOut f3 tail #connect
-Bk1 f3 head f137 mainIn #connect
-Bk1 f137 mainOut f5 tail #connect
-Bk1 f5 head f4 in #connect
 Bk1 f4 out f0 tail #connect
 Bk1 f0 head g1 m #connect
+Bk1 f1 mainOut f3 tail #connect
+Bk1 f3 head f4 in #connect
 Bk1 0 0 784 504 0 #ivRect
 Bk3 g0 m f0 tail #connect
 Bk3 f0 head f3 mainIn #connect
