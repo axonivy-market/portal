@@ -589,24 +589,22 @@ public class DashboardProcessWidgetTest extends BaseTest {
     // Change to FULL_MODE
     editProcessWidgetConfiguration.selectFullMode();
     editProcessWidgetConfiguration.getFullModeProcessSelectedProcessInput()
-        .shouldHave(Condition.value(CATEGORIED_LEAVE_REQUEST));
+        .shouldNotHave(Condition.value(CATEGORIED_LEAVE_REQUEST));
 
     // Change to COMPACT_MODE
     editProcessWidgetConfiguration.selectCompactMode();
     editProcessWidgetConfiguration.getCompactModeProcessCategoryFilter()
-        .shouldHave(Condition.value(SHOWCASE_DATA_TABLE_CATEGORY));
-    editProcessWidgetConfiguration.getCompactModeProcessSelectedProcess()
-        .shouldHave(Condition.exactTextCaseSensitive(SHOWCASE_DATA_TABLE));
+        .shouldNotHave(Condition.value(SHOWCASE_DATA_TABLE_CATEGORY));
 
     // Change to IMAGE_MODE
     editProcessWidgetConfiguration.selectImageMode();
     editProcessWidgetConfiguration.getImageModeProcessSelectedProcessInput()
-        .shouldHave(Condition.value(CATEGORIED_LEAVE_REQUEST));
+        .shouldNotHave(Condition.value(CATEGORIED_LEAVE_REQUEST));
 
     // Change to COMBINED_MODE
     editProcessWidgetConfiguration.selectCombinedMode();
     editProcessWidgetConfiguration.getCombinedModeProcessSelectedProcessInput()
-        .shouldHave(Condition.value(CATEGORIED_LEAVE_REQUEST));
+        .shouldNotHave(Condition.value(CATEGORIED_LEAVE_REQUEST));
   }
 
   @Test
