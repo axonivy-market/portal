@@ -14,7 +14,7 @@ import org.primefaces.model.CheckboxTreeNode;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-import ch.ivy.addon.portalkit.bean.DashboardProcessBean;
+import ch.ivy.addon.portalkit.bean.CompactDashboardProcessBean;
 import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
 import ch.ivy.addon.portalkit.enums.DashboardStandardProcessColumn;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
@@ -70,7 +70,7 @@ public class CategoryColumnModel extends ProcessColumnModel implements Serializa
   }
 
   private void updatePortalCompactProcesses() {
-    DashboardProcessBean dashboardProcessBean = ManagedBeans.get("dashboardProcessBean");
+    CompactDashboardProcessBean dashboardProcessBean = ManagedBeans.get("compactDashboardProcessBean");
     if (dashboardProcessBean != null) {
       List<DashboardProcess> processes = filterByCategory(dashboardProcessBean);
       dashboardProcessBean.setPortalCompactProcesses(processes);
@@ -80,7 +80,7 @@ public class CategoryColumnModel extends ProcessColumnModel implements Serializa
     }
   }
 
-  private List<DashboardProcess> filterByCategory(DashboardProcessBean dashboardProcessBean) {
+  private List<DashboardProcess> filterByCategory(CompactDashboardProcessBean dashboardProcessBean) {
     return dashboardProcessBean.getAllPortalProcesses().stream()
         .filter(process -> isProcessMatchedCategory(process, filterList)).collect(Collectors.toList());
   }

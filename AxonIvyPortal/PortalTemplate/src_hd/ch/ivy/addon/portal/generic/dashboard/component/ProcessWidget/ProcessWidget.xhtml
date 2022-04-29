@@ -3,7 +3,7 @@
   xmlns:jsf="http://xmlns.jcp.org/jsf" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
 <cc:interface componentType="IvyComponent">
-  <cc:attribute name="processWidget" type="ch.ivy.addon.portalkit.dto.dashboard.ProcessDashboardWidget" required="true" />
+  <cc:attribute name="processWidget" required="true" />
   <cc:attribute name="isReadOnlyMode" default="false" />
   <cc:attribute name="isInConfiguration" default="false" />
   <cc:attribute name="index" />
@@ -87,7 +87,7 @@
       </h:panelGroup>
 
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/processes/noMatchingProcess')}"
-        rendered="#{empty widget.displayProcesses and not cc.attrs.isInConfiguration and displayMode eq 'COMPACT_MODE'}" styleClass="dashboard-processes--empty-message" />
+        rendered="#{not cc.attrs.isInConfiguration and displayMode eq 'COMPACT_MODE' and empty widget.displayProcesses}" styleClass="dashboard-processes--empty-message" />
     </h:panelGroup>
   </div>
 </cc:implementation>
