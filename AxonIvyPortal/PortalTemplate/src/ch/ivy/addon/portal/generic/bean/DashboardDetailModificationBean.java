@@ -7,6 +7,8 @@ import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.STATISTIC;
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.TASK;
 import static org.apache.commons.lang3.StringUtils.EMPTY;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -27,14 +29,20 @@ import org.apache.commons.lang3.StringUtils;
 import org.primefaces.PrimeFaces;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
+import ch.ivy.addon.portalkit.bean.DashboardProcessBean;
 import ch.ivy.addon.portalkit.constant.DashboardConstants;
 import ch.ivy.addon.portalkit.dto.UserDTO;
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
+import ch.ivy.addon.portalkit.dto.dashboard.CombinedProcessDashboardWidget;
+import ch.ivy.addon.portalkit.dto.dashboard.CompactProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.CustomDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.CustomDashboardWidgetParam;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
+import ch.ivy.addon.portalkit.dto.dashboard.FullProcessDashboardWidget;
+import ch.ivy.addon.portalkit.dto.dashboard.ImageProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.ProcessDashboardWidget;
+import ch.ivy.addon.portalkit.dto.dashboard.SingleProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.StatisticDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.WidgetSample;
@@ -44,6 +52,7 @@ import ch.ivy.addon.portalkit.enums.DashboardStandardProcessColumn;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.enums.ProcessWidgetMode;
 import ch.ivy.addon.portalkit.jsf.Attrs;
+import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.service.DashboardService;
 import ch.ivy.addon.portalkit.service.StatisticService;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
@@ -55,7 +64,7 @@ import ch.ivyteam.ivy.environment.Ivy;
 
 @ViewScoped
 @ManagedBean
-public class DashboardDetailModificationBean extends DashboardBean implements Serializable {
+public class DashboardDetailModificationBean extends DashboardBean implements Serializable, PropertyChangeListener {
 
   private static final long serialVersionUID = -5272278165636659596L;
   private List<WidgetSample> samples;
@@ -75,6 +84,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     isPublicDashboard = Attrs.currentContext().getAttribute("#{data.isPublicDashboard}", Boolean.class);
     super.init();
     isReadOnlyMode = false;
+    ((DashboardProcessBean) ManagedBeans.get("dashboardProcessBean")).addPropertyChangeListener(this);
   }
 
   public void initSampleWidgets() {
@@ -214,21 +224,20 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
         ProcessDashboardWidget processWidget = (ProcessDashboardWidget) this.widget;
         processWidget.setPreview(false);
         if (processWidget.getDisplayMode() == ProcessWidgetMode.FULL_MODE) {
-          updateProcessWidget(processWidget, 4, 2);
+          updateProcessWidget((SingleProcessDashboardWidget) processWidget, 4, 2);
         } else if (processWidget.getDisplayMode() == ProcessWidgetMode.COMBINED_MODE) {
-          updateProcessWidget(processWidget, 6, 5);
+          updateProcessWidget((SingleProcessDashboardWidget) processWidget, 6, 5);
         } else if (processWidget.getDisplayMode() == ProcessWidgetMode.COMPACT_MODE) {
           processWidget.getLayout().setHeight(8);
           processWidget.getLayout().setWidth(3);
-          processWidget.setProcess(null);
-          processWidget.setProcessPath(EMPTY);
-          unifyCompactProcessCategory(processWidget);
-          updateProcessesOfWidget(processWidget);
-          if (CollectionUtils.isEmpty(processWidget.getFilterableColumns())) {
-            processWidget.buildFilterableColumns(DashboardWidgetUtils.initProcessFilterableColumns());
+          CompactProcessDashboardWidget compactProcessWidget = (CompactProcessDashboardWidget) processWidget;
+          unifyCompactProcessCategory(compactProcessWidget);
+          updateProcessesOfWidget(compactProcessWidget);
+          if (CollectionUtils.isEmpty((compactProcessWidget).getFilterableColumns())) {
+            (compactProcessWidget).buildFilterableColumns(DashboardWidgetUtils.initProcessFilterableColumns());
           }
         } else if (processWidget.getDisplayMode() == ProcessWidgetMode.IMAGE_MODE) {
-          updateProcessWidget(processWidget, 6, 2);
+          updateProcessWidget((SingleProcessDashboardWidget) processWidget, 6, 2);
         }
         List<DashboardWidget> widgets = selectedDashboard.getWidgets();
         DashboardWidget dashboardWidget =
@@ -277,7 +286,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     }
   }
 
-  private void unifyCompactProcessCategory(ProcessDashboardWidget processWidget) {
+  private void unifyCompactProcessCategory(CompactProcessDashboardWidget processWidget) {
     processWidget.setSelectedAllProcess(false);
     processWidget.setCategories(null);
     processWidget.getFilterableColumns().stream()
@@ -358,20 +367,15 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     }
   }
 
-  private void updateProcessWidget(ProcessDashboardWidget processWidget, int height, int width) {
+  private void updateProcessWidget(SingleProcessDashboardWidget processWidget, int height, int width) {
     processWidget.getLayout().setHeight(height);
     processWidget.getLayout().setWidth(width);
-    processWidget.setDisplayProcesses(new ArrayList<>());
-    processWidget.setProcesses(new ArrayList<>());
-    processWidget.setProcessPaths(new ArrayList<>());
-    processWidget.setCategories(new ArrayList<>());
-    processWidget.setSelectedAllProcess(true);
     DashboardProcess process = processWidget.getProcess();
     processWidget.setName(Objects.isNull(process) ? EMPTY : process.getName());
     processWidget.setProcessPath(Objects.isNull(process) ? EMPTY : process.getId());
   }
 
-  private void updateProcessesOfWidget(ProcessDashboardWidget widget) {
+  private void updateProcessesOfWidget(CompactProcessDashboardWidget widget) {
     List<DashboardProcess> displayProcesses;
     List<String> processPaths = new ArrayList<>();
     if (widget.isSelectedAllProcess()) {
@@ -412,8 +416,9 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     if (CASE == widget.getType()) {
       ((CaseDashboardWidget) widget).setInConfiguration(false);
     }
-    if (PROCESS == widget.getType()) {
-      ((ProcessDashboardWidget) widget).setInConfiguration(false);
+    if (PROCESS == widget.getType()
+        && ((ProcessDashboardWidget) widget).getDisplayMode() == ProcessWidgetMode.COMPACT_MODE) {
+      ((CompactProcessDashboardWidget) widget).setInConfiguration(false);
     }
     this.widget.resetWidgetFilters();
   }
@@ -421,13 +426,32 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   public void prepareEditWidget(DashboardWidget widget) {
     switch (widget.getType()) {
       case PROCESS:
-        var processDashboardWidget = new ProcessDashboardWidget((ProcessDashboardWidget) widget);
-        setWidget(processDashboardWidget);
+        ProcessDashboardWidget processDashboardWidget = (ProcessDashboardWidget) widget;
+        ProcessDashboardWidget clonedWidget;
+        switch (processDashboardWidget.getDisplayMode()) {
+          case COMPACT_MODE:
+            clonedWidget = new CompactProcessDashboardWidget((CompactProcessDashboardWidget) processDashboardWidget);
+            break;
+          case COMBINED_MODE:
+            clonedWidget = new CombinedProcessDashboardWidget((CombinedProcessDashboardWidget) processDashboardWidget);
+            break;
+          case FULL_MODE:
+            clonedWidget = new FullProcessDashboardWidget((FullProcessDashboardWidget) processDashboardWidget);
+            break;
+          case IMAGE_MODE:
+            clonedWidget = new ImageProcessDashboardWidget((ImageProcessDashboardWidget) processDashboardWidget);
+            break;
+          default:
+            clonedWidget = new ProcessDashboardWidget(processDashboardWidget);
+            break;
+        }
+        setWidget(clonedWidget);
         break;
       case STATISTIC:
         var statisticDashboardWidget = new StatisticDashboardWidget((StatisticDashboardWidget) widget);
         setWidget(statisticDashboardWidget);
         break;
+
       default:
         setWidget(widget);
         break;
@@ -493,5 +517,10 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
 
   public boolean isPublicDashboard() {
     return isPublicDashboard;
+  }
+
+  @Override
+  public void propertyChange(PropertyChangeEvent event) {
+    setWidget((DashboardWidget) event.getNewValue());
   }
 }

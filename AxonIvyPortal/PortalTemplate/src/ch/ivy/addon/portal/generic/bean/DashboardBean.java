@@ -23,11 +23,12 @@ import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.dto.WidgetLayout;
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
+import ch.ivy.addon.portalkit.dto.dashboard.CompactProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.CustomDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardOrder;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
-import ch.ivy.addon.portalkit.dto.dashboard.ProcessDashboardWidget;
+import ch.ivy.addon.portalkit.dto.dashboard.SingleProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.WidgetFilterModel;
 import ch.ivy.addon.portalkit.enums.BehaviourWhenClickingOnLineInTaskList;
@@ -184,7 +185,9 @@ public class DashboardBean implements Serializable {
       if (StringUtils.isBlank(widget.getName())) {
         widget.setName(translate(cmsUri));
       }
-      WidgetFilterService.getInstance().applyUserFilterFromSession(widget);
+      if (!(widget instanceof SingleProcessDashboardWidget)) {
+        WidgetFilterService.getInstance().applyUserFilterFromSession(widget);
+      }
       DashboardWidgetUtils.removeStyleNewWidget(widget);
     }
   }
@@ -412,7 +415,7 @@ public class DashboardBean implements Serializable {
       filterableColumns.addAll(((CaseDashboardWidget) widget).getFilterableColumns());
     }
     if (DashboardWidgetType.PROCESS == widget.getType()) {
-      filterableColumns.addAll(((ProcessDashboardWidget) widget).getFilterableColumns());
+      filterableColumns.addAll(((CompactProcessDashboardWidget) widget).getFilterableColumns());
     }
     WidgetFilterService.getInstance().buildFilterOptions(widget, filterableColumns);
     WidgetFilterService.getInstance().updateUserFilterOptionMap(widget);

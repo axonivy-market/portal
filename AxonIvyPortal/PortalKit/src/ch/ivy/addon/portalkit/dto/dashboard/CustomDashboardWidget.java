@@ -151,9 +151,6 @@ public class CustomDashboardWidget extends DashboardWidget {
     param.setValue(data.getStartableProcessStart().customFields().value(name));
   }
 
-@Override
-public void resetWidgetFilters() {
-	// TODO Auto-generated method stub
-	
-}
+  @Override
+  public void resetWidgetFilters() {}
 }
