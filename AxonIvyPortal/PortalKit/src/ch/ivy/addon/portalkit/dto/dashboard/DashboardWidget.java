@@ -25,7 +25,10 @@ import ch.ivyteam.ivy.environment.Ivy;
 @JsonSubTypes({
   @Type(value = TaskDashboardWidget.class, name = "task"),
   @Type(value = CaseDashboardWidget.class, name = "case"),
-  @Type(value = ProcessDashboardWidget.class, name = "process"),
+  @Type(value = FullProcessDashboardWidget.class, name = "full-process"),
+  @Type(value = ImageProcessDashboardWidget.class, name = "image-process"),
+  @Type(value = CompactProcessDashboardWidget.class, name = "compact-process"),
+  @Type(value = CombinedProcessDashboardWidget.class, name = "combined-process"),
   @Type(value = StatisticDashboardWidget.class, name = "statistic"),
   @Type(value = CustomDashboardWidget.class, name = "custom")
 })
@@ -54,7 +57,6 @@ public abstract class DashboardWidget implements Serializable {
   public DashboardWidget() {}
 
   public DashboardWidget(DashboardWidget widget) {
-    // Properties of DashboardWidget
     id = widget.getId();
     name = widget.getName();
     setLayout(widget.getLayout());

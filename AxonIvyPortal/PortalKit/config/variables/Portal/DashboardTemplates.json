@@ -227,7 +227,7 @@
 				],
 				"sortField" : "ID"
 			}, {
-				"type" : "process",
+				"type" : "compact-process",
 				"id" : "",
 				"name" : "Your Processes",
 				"layout" : {
@@ -238,10 +238,7 @@
 					"h" : 10,
 					"x" : 9,
 					"y" : 0
-				},
-				"displayMode" : "COMPACT_MODE",
-				"rowsPerPage" : 5,
-				"selectedAllProcess" : true
+				}
 			}
 		],
 		"permissions" : ["Everybody"]
@@ -488,7 +485,7 @@
 				"canWorkOn" : false,
 				"sortField" : "ID"
 			}, {
-				"type" : "process",
+				"type" : "compact-process",
 				"id" : "",
 				"name" : "Your Processes",
 				"layout" : {
@@ -499,10 +496,7 @@
 					"h" : 10,
 					"x" : 9,
 					"y" : 0
-				},
-				"displayMode" : "COMPACT_MODE",
-				"rowsPerPage" : 5,
-				"selectedAllProcess" : true
+				}
 			}
 		],
 		"permissions" : ["Everybody"]

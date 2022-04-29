@@ -8,7 +8,7 @@
   <h:form id="process-list" styleClass="compact-processes-container widget-content" rendered="#{not empty processes}">
     <ui:repeat varStatus="status" var="process" value="#{processes}">
       <span class="process-start-list-item">
-        <p:commandLink actionListener="#{dashboardProcessBean.startProcessWithCompactMode(process)}" disabled="#{!isReadOnlyMode or isInConfiguration}"
+        <p:commandLink actionListener="#{compactDashboardProcessBean.startProcessWithCompactMode(process)}" disabled="#{!isReadOnlyMode or isInConfiguration}"
           target="#{dashboardProcessBean.targetToStartProcess(process)}" ajax="#{!dashboardProcessBean.isExternalLink(process)}" styleClass="process-item">
           <h:panelGroup layout="block" class="process-start-list-item-icon">
             <span class="#{iconSelectionBean.generateIconWithFontFamily(process.getIcon())}" />
@@ -23,7 +23,7 @@
               <p:tooltip id="info-workflow-tooltip" for="info-workflow" value="#{process.description}" position="top" trackMouse="true" hideEvent="mouseleave click"
                 styleClass="js-process-start-list-item-description" />
             </h:panelGroup>
-            <h:panelGroup styleClass="process-start-list-item-action" rendered="#{dashboardProcessBean.isBrokenLink(process)}">
+            <h:panelGroup styleClass="process-start-list-item-action" rendered="#{compactDashboardProcessBean.isBrokenLink(process)}">
               <h:outputText id="warning-icon" styleClass="si si-road-sign-warning warning-icon" />
               <p:tooltip id="warning-icon-tooltip" for="warning-icon" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/brokenLinkProcess')}" position="top" trackMouse="true"
                 hideEvent="mouseleave click" />

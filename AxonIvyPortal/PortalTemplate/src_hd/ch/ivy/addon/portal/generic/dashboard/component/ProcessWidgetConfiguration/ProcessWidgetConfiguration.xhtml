@@ -14,8 +14,11 @@
   <c:set var="isCombined" value="#{widget.displayMode eq 'COMBINED_MODE'}" />
   <c:set var="isFull" value="#{widget.displayMode eq 'FULL_MODE'}" />
   <c:set var="isImage" value="#{widget.displayMode eq 'IMAGE_MODE'}" />
+  <c:set var="dashboardProcessBeanHandler" value="#{widget.displayMode eq 'COMPACT_MODE' ? compactDashboardProcessBean : 
+  (widget.displayMode eq 'COMBINED_MODE' ? combinedDashboardProcessBean : 
+  (widget.displayMode eq 'FULL_MODE' ? fullDashboardProcessBean : imageDashboardProcessBean))}" />
 
-  <f:event listener="#{dashboardProcessBean.preRender(widget)}" type="preRenderComponent" />
+  <f:event listener="#{dashboardProcessBeanHandler.preRender(widget)}" type="preRenderComponent" />
 
   <!-- Configuration -->
   <h:panelGroup id="filter-container" layout="block" styleClass="card dashboard-card widget-configuration">
@@ -33,7 +36,7 @@
         <div class="ui-g-8">
           <p:selectOneMenu id="process-display-mode" value="#{widget.displayMode}">
             <f:selectItems value="#{dashboardProcessBean.displayModes}" var="mode" itemLabel="#{mode.label}" itemValue="#{mode}" />
-            <p:ajax event="change" listener="#{dashboardProcessBean.onChangeDisplayMode()}" update="filter-container" />
+            <p:ajax event="change" listener="#{dashboardProcessBeanHandler.onChangeDisplayMode()}" update="filter-container" />
           </p:selectOneMenu>
         </div>
       </h:panelGroup>
@@ -55,7 +58,7 @@
           <p:commandButton id="preview-button"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/preview')}" 
             styleClass="Fright preview-button" icon="si si-search" 
-            actionListener="#{dashboardProcessBean.preview()}"
+            actionListener="#{dashboardProcessBeanHandler.preview()}"
             update="#{cc.clientId}:preview-process #{cc.clientId}:widget-preview" 
             process="user-filter widget-title-group" oncomplete="PF('new-widget-configuration-dialog').initPosition();"/>
         </div>
@@ -78,8 +81,8 @@
           <div class="ui-g-8 ui-fluid">
             <p:selectCheckboxMenu id="processes-list" value="#{widget.processes}" multiple="true" filter="true" filterMatchMode="contains" panelStyleClass="process-selection__panel"
               styleClass="process-configuration__select-process" converter="processSelectionConverter">
-              <f:selectItems value="#{dashboardProcessBean.portalCompactProcesses}" var="process" itemValue="#{process}" itemLabel="#{process.name}" />
-              <p:ajax event="toggleSelect" listener="#{dashboardProcessBean.toggleSelectAllProcesses()}" oncomplete="PF('new-widget-configuration-dialog').initPosition();" />
+              <f:selectItems value="#{compactDashboardProcessBean.portalCompactProcesses}" var="process" itemValue="#{process}" itemLabel="#{process.name}" />
+              <p:ajax event="toggleSelect" listener="#{compactDashboardProcessBean.toggleSelectAllProcesses()}" oncomplete="PF('new-widget-configuration-dialog').initPosition();" />
               <p:ajax oncomplete="PF('new-widget-configuration-dialog').initPosition();" />
             </p:selectCheckboxMenu>
           </div>
@@ -91,7 +94,7 @@
           </div>
           <div class="ui-g-8 ui-fluid">
             <p:autoComplete id="selected-full-process" styleClass="process-configuration__selected-process" dropdown="true" scrollHeight="300" forceSelection="true"
-              completeMethod="#{dashboardProcessBean.completeProcesses}" value="#{widget.process}" var="process" itemValue="#{process}" itemLabel="#{process.name}" queryDelay="500" cache="true"
+              completeMethod="#{fullDashboardProcessBean.completeProcesses}" value="#{widget.process}" var="process" itemValue="#{process}" itemLabel="#{process.name}" queryDelay="500" cache="true"
               minQueryLength="2" itemtipAtPosition="right top" converter="processSelectionConverter"
               required="#{param['widget-configuration-form:new-widget-configuration-component:preview-button'] == null}" 
               requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/processes/noProcessSelected')}">
@@ -109,12 +112,12 @@
           </div>
           <div class="ui-g-8 ui-fluid">
             <p:autoComplete id="selected-combined-process" styleClass="process-configuration__selected-process" dropdown="true" scrollHeight="300" forceSelection="true"
-              completeMethod="#{dashboardProcessBean.completeCombinedProcesses}" value="#{widget.process}" var="process" itemValue="#{process}" itemLabel="#{process.name}" queryDelay="500"
+              completeMethod="#{combinedDashboardProcessBean.completeCombinedProcesses}" value="#{widget.process}" var="process" itemValue="#{process}" itemLabel="#{process.name}" queryDelay="500"
               cache="true" minQueryLength="2" itemtipAtPosition="right top" converter="processSelectionConverter"
               required="#{param['widget-configuration-form:new-widget-configuration-component:preview-button'] == null}" 
               requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/processes/noProcessSelected')}">
               <p:ajax event="query" global="false" />
-              <p:ajax event="itemSelect" listener="#{dashboardProcessBean.updateProcessStartId()}" global="false" />
+              <p:ajax event="itemSelect" listener="#{combinedDashboardProcessBean.updateProcessStartId()}" global="false" />
               <p:column>
                 <h:outputText styleClass="autocomplete-tooltip" value="#{process.name}" title="#{process.description}" />
               </p:column>
@@ -128,12 +131,11 @@
           </div>
           <div class="ui-g-8 ui-fluid">
             <p:autoComplete id="selected-image-process" styleClass="process-configuration__selected-process" dropdown="true" scrollHeight="300" forceSelection="true"
-              completeMethod="#{dashboardProcessBean.completeProcesses}" value="#{widget.process}" var="process" itemValue="#{process}" itemLabel="#{process.name}" queryDelay="500"
+              completeMethod="#{fullDashboardProcessBean.completeProcesses}" value="#{widget.process}" var="process" itemValue="#{process}" itemLabel="#{process.name}" queryDelay="500"
               cache="true" minQueryLength="2" itemtipAtPosition="right top" converter="processSelectionConverter"
               required="#{param['widget-configuration-form:new-widget-configuration-component:preview-button'] == null}" 
               requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/processes/noProcessSelected')}">
               <p:ajax event="query" global="false" />
-              <p:ajax event="itemSelect" listener="#{dashboardProcessBean.updateProcessStartId()}" global="false" />
               <p:column>
                 <h:outputText styleClass="autocomplete-tooltip" value="#{process.name}" title="#{process.description}" />
               </p:column>
