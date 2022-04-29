@@ -136,6 +136,7 @@ For example:
       "layout":{"id":null,"styleClass":null,"style":null,"w":3,"h":8,"x":5,"y":0}}
 
    ..
+
    In 9.4, update JSON to
 
    .. code-block:: json
