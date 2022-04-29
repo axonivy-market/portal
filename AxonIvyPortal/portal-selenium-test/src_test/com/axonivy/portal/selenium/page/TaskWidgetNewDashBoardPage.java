@@ -72,7 +72,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void openFilterWidget() {
-    $$("div.table-widget-panel").filter(text(taskWidgetName)).first().$("a.widget__filter-sidebar-link")
+    getTaskWidgetHeader().$("a.widget__filter-sidebar-link")
         .waitUntil(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
     $("[id$=':widget-saved-filters-items").waitUntil(appear, DEFAULT_TIMEOUT);
   }
@@ -80,6 +80,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   public void filterTaskName(String input) {
     var taskNameFilter = $("div[id$='widget-filter-content']").waitUntil(appear, DEFAULT_TIMEOUT)
         .$(".ui-inputfield.text-field-input-name");
+    taskNameFilter.clear();
     taskNameFilter.sendKeys(input);
   }
 
@@ -313,10 +314,108 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
   
   private ElementsCollection getTasksOfTaskWidgetHasName(String taskName) {
-    return getColumnsOfTableWidget().filter(Condition.cssClass("dashboard-tasks__name")).filter(text(taskName));
+    return getAllTasksOfTaskWidget().filter(text(taskName));
+  }
+  
+  private ElementsCollection getAllTasksOfTaskWidget() {
+    return getColumnsOfTableWidget().filter(Condition.cssClass("dashboard-tasks__name"));
   }
   
   public ElementsCollection countTasks(String taskName) {
     return getTasksOfTaskWidgetHasName(taskName);
+  }
+  
+  public ElementsCollection countAllTasks() {
+    return getAllTasksOfTaskWidget();
+  }
+  
+  private void confirmDestroy() {
+    $("div[id$='destroy-task-confirmation-dialog']").waitUntil(appear, DEFAULT_TIMEOUT)
+        .$("button[id$='confirm-destruction-dashboard-tasks']").shouldBe(getClickableCondition()).click();
+  }
+  
+  public SelenideElement destroyTaskLink() {
+    return $("a[id$='task-destroy-command']");
+  }
+  
+  public void destroy() {
+    destroyTaskLink().shouldBe(getClickableCondition()).click();
+    confirmDestroy();
+  }
+  
+  public SelenideElement stateOfFirstTask() {
+    return getColumnOfTaskHasIndex(0, FILTER_TASK_STATE).waitUntil(appear, DEFAULT_TIMEOUT);
+  }
+  
+  public TaskEditWidgetNewDashBoardPage openEditTaskWidget() {
+    $$("div.table-widget-panel div.widget__header").filter(text(taskWidgetName)).first()
+        .waitUntil(appear, DEFAULT_TIMEOUT).$("div[id$='widget-header-actions']").$("a[class^='ui-commandlink'][id*='edit-widget']")
+        .shouldBe(getClickableCondition()).click();
+    return new TaskEditWidgetNewDashBoardPage();
+  }
+  
+  private SelenideElement getTaskWidgetHeader() {
+    return $$("div.table-widget-panel").filter(text(taskWidgetName)).first();
+  }
+  
+  public void clickOnButtonWidgetInformation() {
+    getTaskWidgetHeader().$$("a.widget__info-sidebar-link").first()
+        .waitUntil(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+  }
+  
+  public SelenideElement getExpiryTodayLabelInWidgetInfo() {
+    return $("[id$='expiry-tab']").waitUntil(appear, DEFAULT_TIMEOUT).$$("div div").first().waitUntil(appear, DEFAULT_TIMEOUT);
+  }
+  
+  public void clickToExpandNumberOfTaskByState() {
+    SelenideElement element = $("[id$='state-tab_header']").waitUntil(appear, DEFAULT_TIMEOUT);
+    if("false".equalsIgnoreCase(element.getAttribute("aria-expanded"))){
+      element.click();
+    }
+  }
+  
+  public SelenideElement getFirstStateLabelInWidgetInfo() {
+    return $("[id$='state-tab']").waitUntil(appear, DEFAULT_TIMEOUT).$$("div div").first().waitUntil(appear, DEFAULT_TIMEOUT);
+  }
+  
+  public void clickToExpandNumberOfTaskByCategory() {
+    SelenideElement element = $("[id$='category-tab_header']").waitUntil(appear, DEFAULT_TIMEOUT);
+    if("false".equalsIgnoreCase(element.getAttribute("aria-expanded"))){
+      element.click();
+    }
+  }
+  
+  public void clickToExpandPredefinedFilters() {
+    SelenideElement element = $("[id$='filter-tab_header']").waitUntil(appear, DEFAULT_TIMEOUT);
+    if("false".equalsIgnoreCase(element.getAttribute("aria-expanded"))){
+      element.click();
+    }
+  }
+  
+  public void closeWidgetInformationDialog() {
+    $("div.info-overlay-panel__footer").$("a[onclick*='hide']").click();
+  }
+  
+  public void clickOnButtonExpandTaskWidget() {
+    getTaskWidgetHeader().$("a.expand-link")
+        .waitUntil(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+  }
+  
+  public ElementsCollection getExpandedTaskWidget() {
+    return $("div.expand-fullscreen").$$("div.widget__header").filter(text(taskWidgetName));
+  }
+  
+  public ElementsCollection getExpandedWidget() {
+    return $$("div.expand-fullscreen");
+  }
+  
+  public void clickOnButtonCollapseTaskWidget() {
+    getTaskWidgetHeader().$("a.collapse-link")
+        .waitUntil(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+  }
+  
+  public void taskGridSouldBeSortedBy(String sortField, String sortType) {
+    SelenideElement fieldElement =  $(taskWidgetId).waitUntil(appear, DEFAULT_TIMEOUT).$("th.ui-state-active");
+    fieldElement.getAttribute("aria-sort");
   }
 }
