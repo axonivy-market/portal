@@ -1,0 +1,103 @@
+{
+  "format" : "9.4.8",
+  "id" : "175F92F71BC45295",
+  "data" : "portalmigration.Data",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "startMigrateConfiguration.ivp",
+      "config" : {
+        "callSignature" : "startMigrateConfiguration",
+        "outLink" : "startMigrateConfiguration.ivp",
+        "startName" : "Migrate Configuration"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 192 },
+        "labelOffset" : { "x" : -21, "y" : 17 }
+      },
+      "connect" : { "id" : "f4", "to" : "S11" }
+    }, {
+      "id" : "f1",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 544, "y" : 192 }
+      }
+    }, {
+      "id" : "S11",
+      "type" : "UserBpmnElement",
+      "name" : "Start migrating Portal",
+      "elements" : [ {
+          "id" : "S11-f7",
+          "type" : "DialogCall",
+          "name" : "Login",
+          "config" : {
+            "dialogId" : "portal.migration.Login",
+            "startMethod" : "start()"
+          },
+          "visual" : {
+            "at" : { "x" : 328, "y" : 256 }
+          },
+          "connect" : { "id" : "S11-f9", "to" : "S11-f3", "via" : [ { "x" : 472, "y" : 256 } ] }
+        }, {
+          "id" : "S11-f3",
+          "type" : "DialogCall",
+          "name" : "MigrationData",
+          "config" : {
+            "dialogId" : "portal.migration.MigrationData",
+            "startMethod" : "start()"
+          },
+          "visual" : {
+            "at" : { "x" : 472, "y" : 160 }
+          },
+          "connect" : { "id" : "S11-f1", "to" : "S11-g1" }
+        }, {
+          "id" : "S11-f5",
+          "type" : "Alternative",
+          "name" : "is login?",
+          "visual" : {
+            "at" : { "x" : 192, "y" : 160 },
+            "labelOffset" : { "x" : -24, "y" : -38 }
+          },
+          "connect" : [
+            { "id" : "S11-f10", "to" : "S11-f7", "via" : [ { "x" : 192, "y" : 256 } ], "condition" : "ivy.session.isSessionUserUnknown()" },
+            { "id" : "S11-f8", "to" : "S11-f3" }
+          ]
+        }, {
+          "id" : "S11-g0",
+          "type" : "EmbeddedStart",
+          "name" : "in 1",
+          "visual" : {
+            "at" : { "x" : 64, "y" : 160 },
+            "labelOffset" : { "x" : 0, "y" : 5 }
+          },
+          "parentConnector" : "f4",
+          "connect" : { "id" : "S11-f0", "to" : "S11-f5" }
+        }, {
+          "id" : "S11-g1",
+          "type" : "EmbeddedEnd",
+          "name" : "out 1",
+          "visual" : {
+            "at" : { "x" : 608, "y" : 160 },
+            "labelOffset" : { "x" : 0, "y" : 5 }
+          },
+          "parentConnector" : "f11"
+        } ],
+      "visual" : {
+        "at" : { "x" : 336, "y" : 192 },
+        "size" : { "width" : 128, "height" : 44 }
+      },
+      "connect" : { "id" : "f11", "to" : "f1" }
+    }, {
+      "id" : "f2",
+      "type" : "ProcessAnnotation",
+      "name" : [
+        "**This is migration process for Portal configuration**",
+        "Details in the stories: IVYPORTAL-12037, IVYPORTAL-12210"
+      ],
+      "visual" : {
+        "at" : { "x" : 272, "y" : 88 },
+        "size" : { "width" : 384, "height" : 44 },
+        "labelOffset" : { "x" : -186, "y" : -18 }
+      }
+    } ]
+}

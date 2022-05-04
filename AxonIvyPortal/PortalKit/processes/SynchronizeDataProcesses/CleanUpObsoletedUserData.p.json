@@ -1,0 +1,50 @@
+{
+  "format" : "9.4.8",
+  "id" : "1626C02D46BF5153",
+  "data" : "ch.ivy.add.portalkit.Data",
+  "elements" : [ {
+      "id" : "f6",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 120, "y" : 320 },
+        "size" : { "width" : 26, "height" : 26 }
+      }
+    }, {
+      "id" : "f5",
+      "type" : "ProgramStart",
+      "name" : "eventStarterbyQuatzScheduler",
+      "config" : {
+        "beanConfig" : "PortalStartTimeCleanObsoletedDataExpression",
+        "outerBean" : "ch.ivy.addon.portalkit.util.CronByGlobalVariableTriggerStartEventBean"
+      },
+      "visual" : {
+        "at" : { "x" : 120, "y" : 49 },
+        "size" : { "width" : 26, "height" : 26 },
+        "labelOffset" : { "x" : 14, "y" : 0 },
+        "description" : "This is a scheduled process of Portal"
+      },
+      "connect" : { "id" : "f4", "to" : "f2" }
+    }, {
+      "id" : "f2",
+      "type" : "Script",
+      "name" : [
+        "Delete finished hidden",
+        "system cases"
+      ],
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.service.DeleteFinishedHiddenCasesService;",
+            "DeleteFinishedHiddenCasesService deletFinishedHiddenCasesService = new DeleteFinishedHiddenCasesService();",
+            "deletFinishedHiddenCasesService.deleteFinishedHiddenCases();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 120, "y" : 224 },
+        "size" : { "width" : 144, "height" : 44 }
+      },
+      "connect" : { "id" : "f1", "to" : "f6" }
+    } ]
+}

@@ -1,0 +1,226 @@
+{
+  "format" : "9.4.8",
+  "id" : "16D28A867A2A1802",
+  "data" : "ch.ivy.addon.portal.generic.OpenPortalTaskDetailsData",
+  "kind" : "CALLABLE_SUB",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "CallSubStart",
+      "name" : "call(ITask,TaskLazyDataModel,PortalPage,Boolean)",
+      "config" : {
+        "callSignature" : "call",
+        "input" : {
+          "params" : [
+            { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask" },
+            { "name" : "dataModel", "type" : "ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel" },
+            { "name" : "portalPage", "type" : "ch.ivy.addon.portalkit.enums.PortalPage" },
+            { "name" : "isFromTaskList", "type" : "Boolean" }
+          ],
+          "map" : {
+            "out.dataModel" : "param.dataModel",
+            "out.isFromTaskList" : "param.#isFromTaskList is initialized ? param.isFromTaskList : true",
+            "out.portalPage" : "param.portalPage",
+            "out.task" : "param.task"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 128 },
+        "labelOffset" : { "x" : -43, "y" : -36 }
+      },
+      "connect" : { "id" : "f3", "to" : "f2" }
+    }, {
+      "id" : "f1",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 768, "y" : 128 }
+      }
+    }, {
+      "id" : "f2",
+      "type" : "DialogCall",
+      "name" : "PortalTaskDetails",
+      "config" : {
+        "dialogId" : "ch.ivy.addon.portal.generic.PortalTaskDetails",
+        "startMethod" : "start(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,ch.ivy.addon.portalkit.enums.PortalPage,Boolean)",
+        "call" : {
+          "params" : [
+            { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask" },
+            { "name" : "dataModel", "type" : "ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel" },
+            { "name" : "portalPage", "type" : "ch.ivy.addon.portalkit.enums.PortalPage" },
+            { "name" : "isFromTaskList", "type" : "Boolean" }
+          ],
+          "map" : {
+            "param.task" : "in.task",
+            "param.dataModel" : "in.dataModel",
+            "param.portalPage" : "in.portalPage",
+            "param.isFromTaskList" : "in.isFromTaskList"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 456, "y" : 128 }
+      },
+      "connect" : { "id" : "f4", "to" : "f1" }
+    }, {
+      "id" : "f5",
+      "type" : "CallSubStart",
+      "name" : "callInFrame(ITask,TaskLazyDataModel,PortalPage,Boolean)",
+      "config" : {
+        "callSignature" : "callInFrame",
+        "input" : {
+          "params" : [
+            { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask" },
+            { "name" : "dataModel", "type" : "ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel" },
+            { "name" : "portalPage", "type" : "ch.ivy.addon.portalkit.enums.PortalPage" },
+            { "name" : "isFromTaskList", "type" : "Boolean" }
+          ],
+          "map" : {
+            "out.dataModel" : "param.dataModel",
+            "out.isFromTaskList" : "param.#isFromTaskList is initialized ? param.isFromTaskList : true",
+            "out.portalPage" : "param.portalPage",
+            "out.task" : "param.task"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 480 },
+        "labelOffset" : { "x" : -74, "y" : -36 }
+      },
+      "connect" : { "id" : "f8", "to" : "f7" }
+    }, {
+      "id" : "f6",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 768, "y" : 480 }
+      }
+    }, {
+      "id" : "f7",
+      "type" : "DialogCall",
+      "name" : "PortalTaskItemDetailsInIFrame",
+      "config" : {
+        "dialogId" : "ch.ivy.addon.portal.component.iframe.PortalTaskItemDetailsInIFrame",
+        "startMethod" : "start(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,ch.ivy.addon.portalkit.enums.PortalPage,Boolean)",
+        "call" : {
+          "params" : [
+            { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask" },
+            { "name" : "model", "type" : "ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel" },
+            { "name" : "portalPage", "type" : "ch.ivy.addon.portalkit.enums.PortalPage" },
+            { "name" : "isFromTaskList", "type" : "Boolean" }
+          ],
+          "map" : {
+            "param.task" : "in.task",
+            "param.model" : "in.dataModel",
+            "param.portalPage" : "in.portalPage",
+            "param.isFromTaskList" : "in.isFromTaskList"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 456, "y" : 480 },
+        "size" : { "width" : 176, "height" : 44 }
+      },
+      "connect" : { "id" : "f9", "to" : "f6" }
+    }, {
+      "id" : "f10",
+      "type" : "ProcessAnnotation",
+      "name" : [
+        "**Deprecated** **Note**",
+        "",
+        "**This callable will be removed from Portal 11.**",
+        "To override Portal task item details UI: you should use Axon Ivy HTMLOverride Dialog to override the PortalTaskDetails Html dialog."
+      ],
+      "visual" : {
+        "at" : { "x" : 520, "y" : 240 },
+        "size" : { "width" : 720, "height" : 76 },
+        "labelOffset" : { "x" : -354, "y" : -34 }
+      },
+      "connect" : { "id" : "f11", "to" : "f0" }
+    }, {
+      "id" : "f12",
+      "type" : "ProcessAnnotation",
+      "name" : [
+        "**Deprecated** **Note**",
+        "",
+        "**This callable will be removed from Portal 11.**",
+        "To override Portal task item details UI: you should use Axon Ivy HTMLOverride Dialog to override the PortalTaskItemDetailsInIFrame Html dialog."
+      ],
+      "visual" : {
+        "at" : { "x" : 552, "y" : 592 },
+        "size" : { "width" : 800, "height" : 76 },
+        "labelOffset" : { "x" : -391, "y" : -34 }
+      },
+      "connect" : { "id" : "f13", "to" : "f5" }
+    }, {
+      "id" : "f14",
+      "type" : "CallSubStart",
+      "name" : "callFromDashboard(ITask,DashboardTaskLazyDataModel,PortalPage,Boolean)",
+      "config" : {
+        "callSignature" : "callFromDashboard",
+        "input" : {
+          "params" : [
+            { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask" },
+            { "name" : "dataModel", "type" : "ch.ivy.addon.portalkit.datamodel.DashboardTaskLazyDataModel" },
+            { "name" : "portalPage", "type" : "ch.ivy.addon.portalkit.enums.PortalPage" },
+            { "name" : "isFromTaskList", "type" : "Boolean" }
+          ],
+          "map" : {
+            "out.dashboardDataModel" : "param.dataModel",
+            "out.isFromTaskList" : "param.#isFromTaskList is initialized ? param.isFromTaskList : true",
+            "out.portalPage" : "param.portalPage",
+            "out.task" : "param.task"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1056, "y" : 128 },
+        "labelOffset" : { "x" : -95, "y" : -42 }
+      },
+      "connect" : { "id" : "f18", "to" : "f17" }
+    }, {
+      "id" : "f15",
+      "type" : "ProcessAnnotation",
+      "name" : [
+        "**Deprecated** **Note**",
+        "",
+        "**This callable will be removed from Portal 11.**",
+        "To override Portal task item details UI: you should use Axon.ivy HTMLOverride Dialog to override the PortalTaskDetails Html dialog."
+      ],
+      "visual" : {
+        "at" : { "x" : 1480, "y" : 240 },
+        "size" : { "width" : 720, "height" : 76 },
+        "labelOffset" : { "x" : -354, "y" : -34 }
+      }
+    }, {
+      "id" : "f16",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 1728, "y" : 128 }
+      }
+    }, {
+      "id" : "f17",
+      "type" : "DialogCall",
+      "name" : "PortalTaskDetails",
+      "config" : {
+        "dialogId" : "ch.ivy.addon.portal.generic.PortalTaskDetails",
+        "startMethod" : "startFromDashboard(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.DashboardTaskLazyDataModel,ch.ivy.addon.portalkit.enums.PortalPage,Boolean)",
+        "call" : {
+          "params" : [
+            { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask" },
+            { "name" : "dataModel", "type" : "ch.ivy.addon.portalkit.datamodel.DashboardTaskLazyDataModel" },
+            { "name" : "portalPage", "type" : "ch.ivy.addon.portalkit.enums.PortalPage" },
+            { "name" : "isFromTaskList", "type" : "Boolean" }
+          ],
+          "map" : {
+            "param.task" : "in.task",
+            "param.dataModel" : "in.dashboardDataModel",
+            "param.portalPage" : "in.portalPage",
+            "param.isFromTaskList" : "in.isFromTaskList"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1416, "y" : 128 }
+      },
+      "connect" : { "id" : "f19", "to" : "f16" }
+    } ]
+}

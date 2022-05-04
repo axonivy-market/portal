@@ -1,0 +1,25 @@
+{
+  "format" : "9.4.8",
+  "id" : "1785EA5D991E9CD6",
+  "data" : "ch.ivy.addon.portal.generic.dashboard.component.CaseWidgetConfiguration.CaseWidgetConfigurationData",
+  "kind" : "HTML_DIALOG",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start()",
+      "config" : {
+        "callSignature" : "start",
+        "guid" : "172C13E9818620F8"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 64 }
+      }
+    } ]
+}

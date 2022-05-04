@@ -1,0 +1,168 @@
+{
+  "format" : "9.4.8",
+  "id" : "16343BD885A12720",
+  "data" : "ch.ivy.gawfs.workflowExecution.UserTaskWithMailForm.UserTaskWithMailFormData",
+  "kind" : "HTML_DIALOG",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start()",
+      "config" : {
+        "callSignature" : "start",
+        "result" : {
+          "params" : [
+            { "name" : "executePredefinedWorkflowData", "type" : "gawfs.ExecutePredefinedWorkflowData" }
+          ],
+          "map" : {
+            "result.executePredefinedWorkflowData" : "in.executePredefinedWorkflowData"
+          }
+        },
+        "input" : {
+          "params" : [
+            { "name" : "executePredefinedWorkflowData", "type" : "gawfs.ExecutePredefinedWorkflowData" }
+          ],
+          "map" : {
+            "out.executePredefinedWorkflowData" : "param.executePredefinedWorkflowData"
+          }
+        },
+        "guid" : "162F0A4FA20C17F1"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : { "id" : "f2", "to" : "f15" }
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 608, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "HtmlDialogEventStart",
+      "name" : "close",
+      "config" : {
+        "guid" : "162F0A4FA24F861A"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 160 },
+        "labelOffset" : { "x" : -15, "y" : 12 }
+      },
+      "connect" : { "id" : "f13", "to" : "f12" }
+    }, {
+      "id" : "f4",
+      "type" : "HtmlDialogExit",
+      "visual" : {
+        "at" : { "x" : 608, "y" : 160 }
+      }
+    }, {
+      "id" : "f8",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "cancel()",
+      "config" : {
+        "callSignature" : "cancel",
+        "guid" : "162F0A6B9E82BE32"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 256 }
+      },
+      "connect" : { "id" : "f10", "to" : "f9" }
+    }, {
+      "id" : "f9",
+      "type" : "Script",
+      "name" : "Reset task",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.util.TaskUtils;",
+            "import ch.ivy.addon.portalkit.publicapi.PortalNavigatorAPI;",
+            "",
+            "TaskUtils.resetTask(ivy.task);",
+            "PortalNavigatorAPI.navigateToPortalEndPage();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 248, "y" : 256 }
+      },
+      "connect" : { "id" : "f14", "to" : "f11" }
+    }, {
+      "id" : "f12",
+      "type" : "Script",
+      "name" : [
+        "Update working",
+        "task definition"
+      ],
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.gawfs.ExpressProcessUtils;",
+            "import ch.ivy.gawfs.mail.InformationMailSender;",
+            "import ch.ivy.gawfs.mail.InformationMailSender;",
+            "",
+            "InformationMailSender mailSender = new InformationMailSender();",
+            "ExpressProcessUtils expressProcessUtils = new ExpressProcessUtils();",
+            "String taskFolder = expressProcessUtils.generateProcessFolder();",
+            "String folderPath = \"/Express/Task/\" + taskFolder + \"/Attachment/\";",
+            "expressProcessUtils.saveAttachmentsForEmail(folderPath, in.email);",
+            "mailSender.send(in.email);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 256, "y" : 160 },
+        "size" : { "width" : 128, "height" : 44 }
+      },
+      "connect" : { "id" : "f16", "to" : "f7" }
+    }, {
+      "id" : "f11",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 608, "y" : 256 }
+      }
+    }, {
+      "id" : "f15",
+      "type" : "Script",
+      "name" : "Initialize",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.bo.ExpressUserEmail;",
+            "import ch.ivyteam.ivy.security.IUser;",
+            "import gawfs.TaskDef;",
+            "",
+            "in.executePredefinedWorkflowData.currentTask.dynaFormController.createForm();",
+            "in.email = new ExpressUserEmail();",
+            "",
+            "for (TaskDef task : in.executePredefinedWorkflowData.finishedTasks) {",
+            "  task.actualApplicant = ivy.security.users().find(task.actualApplicantName);",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 250, "y" : 64 }
+      },
+      "connect" : { "id" : "f6", "to" : "f1" }
+    }, {
+      "id" : "f7",
+      "type" : "Script",
+      "name" : [
+        "Update applicant",
+        "information"
+      ],
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : "in.executePredefinedWorkflowData.currentTask.actualApplicantName = ivy.session.getSessionUser().getName();"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 448, "y" : 160 },
+        "size" : { "width" : 128, "height" : 44 }
+      },
+      "connect" : { "id" : "f5", "to" : "f4" }
+    } ]
+}

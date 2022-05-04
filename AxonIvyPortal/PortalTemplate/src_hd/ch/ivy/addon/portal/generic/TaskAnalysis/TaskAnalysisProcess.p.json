@@ -1,0 +1,69 @@
+{
+  "format" : "9.4.8",
+  "id" : "163DD37A38FA2BC8",
+  "data" : "ch.ivy.addon.portal.generic.TaskAnalysis.TaskAnalysisData",
+  "kind" : "HTML_DIALOG",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start()",
+      "config" : {
+        "callSignature" : "start",
+        "guid" : "163DD37A3BC5BFD2"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : { "id" : "f7", "to" : "f6" }
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "HtmlDialogEventStart",
+      "name" : "close",
+      "config" : {
+        "guid" : "163DD37A3E43A70E"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 160 },
+        "labelOffset" : { "x" : -15, "y" : 12 }
+      },
+      "connect" : { "id" : "f5", "to" : "f4" }
+    }, {
+      "id" : "f4",
+      "type" : "HtmlDialogExit",
+      "visual" : {
+        "at" : { "x" : 224, "y" : 160 }
+      }
+    }, {
+      "id" : "f6",
+      "type" : "Script",
+      "name" : "init",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portal.generic.view.TaskAnalysisView;",
+            "import ch.ivy.addon.portalkit.enums.TaskSortField;",
+            "import ch.ivy.addon.portalkit.datamodel.internal.TaskAnalysisLazyDataModel;",
+            "",
+            "TaskAnalysisLazyDataModel dataModel = new TaskAnalysisLazyDataModel();",
+            "dataModel.getCriteria().setNewQueryCreated(true);",
+            "dataModel.setAdminQuery(true);",
+            "dataModel.setSortField(TaskSortField.PRIORITY.toString(), false);",
+            "  ",
+            "String pageTitle = ivy.cms.co(\"/Labels/Task\");  ",
+            "String noTaskMessage = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/taskWarning/taskNotFound\");",
+            "out.taskView = TaskAnalysisView.create().dataModel(dataModel).pageTitle(pageTitle).hideTaskFilter(false).showHeaderToolbar(false).noTaskFoundMessage(noTaskMessage).chunkSize(20).createNewTaskView();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    } ]
+}
