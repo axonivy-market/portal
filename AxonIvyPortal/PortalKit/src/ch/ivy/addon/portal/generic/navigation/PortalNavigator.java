@@ -249,7 +249,6 @@ public final class PortalNavigator extends BaseNavigator{
   public static String buildPortalCaseDetailInFrameUrl(Long caseId, IProcessModelVersion processModelVersion) {
     Map<String, String> params = new HashMap<>();
     params.put("caseId", String.valueOf(caseId));
-    params.put("embedInFrame", Boolean.TRUE.toString());
     return buildUrlByKeywordInPMV(PORTAL_CASE_DETAILS_IN_IFRAME_START, processModelVersion, PORTAL_CASE_DETAILS_IN_FRAME, params);
   }
   
