@@ -701,6 +701,15 @@ ch.ivy.addon.portalkit.ui.jsf:
     SaveNewWidgetFilterHeader: Save a new widget filter
     SavedFilterHeader: Saved filters
     SearchForFilter: Search for filter
+    StatisticWidget:
+      AvailableCharts: Available statistics charts
+      Charts: 'Chart(s): {0}'
+      ConfigurationDescription: You can configure your widget in this configuration area. Please define the chart which will be shown on  your dashboard.
+      EmptyChartDataMessage: We do not have enough data to create a nice chart!
+      FilterChartText: Filter a chart by name
+      PlaceholderChartOption: Select a chart
+      PleaseSelectChart: Please select a chart
+      PreviewText: Please select a chart to see the canvas data
     WidgetFilterName: Widget filter name
     WidgetFilters: Widget filters
     actionSelection: Action selection
@@ -754,6 +763,23 @@ ch.ivy.addon.portalkit.ui.jsf:
     expiryTo: Expiry To
     field: Field
     fieldIsAdded: The {0} field is added
+    iconMessage:
+      caseWidget:
+        BEACH_PALM_SUNBED: You are awesome - all cases are done. Lean back and enjoy.
+        CHARGING_BATTERY_FULL_1: There are currently no cases. Time to recharge the batteries a little.
+        COFFEE_OF_HOT: Wow! Good job! All cases are completed. How about a quick coffee break?
+        RANKING_WINNER_MEDAL: Game, set and match! You did it, all cases are completed!
+        SOCCER_PLAYER: Goal! You did it, all cases completed. Short half-time break.
+        YOGA_MEDITATE: Well done! All cases are done. Inhale, exhale, relax.
+        noCasesFoundWhenFilter: TODO There are currently no cases after applied filter.
+      taskWidget:
+        BEACH_PALM_SUNBED: You are awesome - all tasks are done. Lean back and enjoy.
+        CHARGING_BATTERY_FULL_1: There are currently no tasks. Time to recharge the batteries a little.
+        COFFEE_OF_HOT: Wow! Good job! All tasks are completed. How about a quick coffee break?
+        RANKING_WINNER_MEDAL: Game, set and match! You did it, all tasks are completed!
+        SOCCER_PLAYER: Goal! You did it, all tasks completed. Short half-time break.
+        YOGA_MEDITATE: Well done! All tasks are done. Inhale, exhale, relax.
+        noTasksFoundWhenFilter: TODO There are currently no tasks after applied filter.
     loading: Loading...
     noCategory: There are no categories
     noDashboard: There are no dashboards. Add at least one dashboard, then add widgets.
@@ -782,6 +808,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     selectEditAction: Which action do you want to procced?
     showFullWidget: Show full widget
     startATask: Start task
+    statisticChartIntroduction: This widget displays available statistic charts.
+    statisticChartWidget: Statistic chart
     switchToViewMode: View Mode
     tasWidgetkInfo:
       expireToday: Expire today
@@ -798,6 +826,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     yourCases: Your Cases
     yourCustomWidget: Your Custom Widget
     yourProcesses: Your Processes
+    yourStatistics: Your Statistics
     yourTasks: Your Tasks
   dateFormatConfiguration:
     dateFormatConfiguration: Date Format Configuration

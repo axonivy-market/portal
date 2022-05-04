@@ -10,6 +10,7 @@
   <cc:attribute name="isWorkingOnTask" type="java.lang.Boolean" />
   <cc:attribute name="inFrame" type="java.lang.Boolean" default="false" />
   <cc:attribute name="readOnly" type="java.lang.Boolean" default="false" />
+  <cc:attribute name="componentToUpdateTrigger" />
 </cc:interface>
 
 <cc:implementation>
@@ -181,7 +182,7 @@
     <ui:param name="id" value="escalation-task-confirmation-dialog" />
     <ui:param name="widgetVar" value="escalation-task-dialog" />
     <ui:param name="appendTo" value="@(body)" />
-    <ui:param name="iconClass" value="si si-delete-1" />
+    <ui:param name="iconClass" value="si si-road-sign-warning" />
     <ui:param name="iconStyleClass" value="portal-dialog-warning-icon" />
     <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/escalationTaskHeaderText')}" />
     <ui:param name="dialogContent"
@@ -193,7 +194,7 @@
       <p:commandButton id="confirm-escalation" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
         icon="#{visibilityBean.generateButtonIcon('si si-check-1')}"
         actionListener="#{taskWidgetBean.expiryTask(taskWidgetBean.selectedTaskItemId)}"
-        oncomplete="PF('escalation-task-dialog').hide()" update="#{cc.clientId}:related-tasks" process="@this" />
+        oncomplete="PF('escalation-task-dialog').hide()" update="#{cc.clientId}:related-tasks #{cc.attrs.componentToUpdateTrigger}" process="@this" />
     </ui:define>
   </ui:decorate>
 

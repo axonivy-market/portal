@@ -18,6 +18,7 @@ import com.axonivy.portal.selenium.page.NewDashboardDetailsEditPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
 import com.codeborne.selenide.CollectionCondition;
+import com.codeborne.selenide.Condition;
 
 @IvyWebTest
 public class DashboardCaseWidgetTest extends BaseTest {
@@ -60,9 +61,8 @@ public class DashboardCaseWidgetTest extends BaseTest {
     redirectToNewDashBoard();
     CaseWidgetNewDashBoardPage caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
     caseWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
-    caseWidget.countCases(HIDE_CASE).shouldHaveSize(0);
-    ;
-    
+    newDashboardPage.getCaseWidgetEmptyMessageWhenNotFilter().shouldBe(Condition.appear);
+    newDashboardPage.getCaseWidgetTable().shouldBe(Condition.disappear);
   }
 
   @Test
@@ -92,8 +92,8 @@ public class DashboardCaseWidgetTest extends BaseTest {
     detailsCase.openActionPanel();
     detailsCase.destroyLink().shouldNotHave(visible);
   }
-  
-//  @Test
+
+  @Test
   public void testOpenRelatedTasksOfCase() {
     redirectToRelativeLink(createTestingTasksUrl);
     login(TestAccount.DEMO_USER);
@@ -104,7 +104,7 @@ public class DashboardCaseWidgetTest extends BaseTest {
     detailsCase.countRelatedTasks().shouldHaveSize(4);
   }
 
-//  @Test
+  @Test
   public void testOpenRelatedCasesOfCase() {
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
     login(TestAccount.DEMO_USER);
@@ -115,7 +115,7 @@ public class DashboardCaseWidgetTest extends BaseTest {
     detailsCase.countRelatedCases().shouldHaveSize(1);
   }
   
-//  @Test
+  @Test
   public void testOpenAdditionalCaseDetailsPage() {
     redirectToRelativeLink(createTestingCaseUrlForDefaultAdditionalCaseDetails);
     login(TestAccount.ADMIN_USER);
@@ -133,7 +133,7 @@ public class DashboardCaseWidgetTest extends BaseTest {
     detailsCase.firstAdditionalFieldsPage().shouldBe(text("CustomVarCharField 1"));
   }
   
-//  @Test
+  @Test
   public void testOpenCustomizationAdditionalCaseDetailsPage() {
     redirectToRelativeLink(createTestingCaseUrlForCustomizationAdditionalCaseDetails);
     login(TestAccount.ADMIN_USER);

@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import ch.ivy.addon.portalkit.dto.dashboard.ProcessDashboardWidget;
+import ch.ivy.addon.portalkit.dto.dashboard.CompactProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.process.DashboardProcess;
 import ch.ivy.addon.portalkit.dto.dashboard.process.TypeColumnModel;
 import ch.ivy.addon.portalkit.enums.ProcessType;
@@ -24,7 +24,7 @@ public class DashboardProcessSearchCriteria {
   private boolean isSelectedAllProcess;
   private List<String> categories;
 
-  public List<DashboardProcess> searchProcessesByFilters(ProcessDashboardWidget widget) {
+  public List<DashboardProcess> searchProcessesByFilters(CompactProcessDashboardWidget widget) {
     if (widget == null || COMPACT_MODE != widget.getDisplayMode()) {
       return new ArrayList<>();
     }

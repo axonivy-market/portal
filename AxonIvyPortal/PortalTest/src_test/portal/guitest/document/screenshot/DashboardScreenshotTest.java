@@ -176,7 +176,7 @@ public class DashboardScreenshotTest extends ScreenshotTest {
     // Take screenshot of widget info panel
     newDashboardPage.clickWidgetInfo(0);
     WebElement taskInfoOverlayPanel = newDashboardPage.getInfoOverlayPanel(0);
-    taskInfoOverlayPanel.findElement(By.className("widget-infor-type--label")).click();
+    taskInfoOverlayPanel.findElement(By.className("widget-info-type--label")).click();
     newDashboardPage.waitForWidgetInfoLoading(taskInfoOverlayPanel);
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(taskInfoOverlayPanel, ScreenshotUtil.NEW_DASHBOARD_FOLDER + "widget-info", new ScreenshotMargin(20));
     taskInfoOverlayPanel.findElement(By.className("info-overlay-panel__footer")).findElement(By.className("ui-link")).click();

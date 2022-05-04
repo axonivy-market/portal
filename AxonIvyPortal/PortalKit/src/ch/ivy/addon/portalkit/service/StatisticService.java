@@ -154,7 +154,9 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
   }
 
   /**
-   * @return all statistic charts of the current login user
+   * Find all statistic charts of the current login user
+   * Include public and private charts
+   * @return list of StatisticChart sorted by position
    */
   public List<StatisticChart> findStatisticCharts() {
     List<StatisticChart> charts = new ArrayList<>(getPublicConfig());
@@ -1074,8 +1076,7 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
           statisticChart.setDonutChartModel(buildChartModelForTaskPriority(statisticChart));
           break;
         case TASK_BY_EXPIRY:
-          BarChartModel chartModelForTaskExpiry = buildChartModelForTaskExpiry(statisticChart);
-          statisticChart.setBarChartModel(chartModelForTaskExpiry);
+          statisticChart.setBarChartModel(buildChartModelForTaskExpiry(statisticChart));
           break;
         case CASES_BY_STATE:
           statisticChart.setDonutChartModel(buildChartModelForCaseState(statisticChart));
