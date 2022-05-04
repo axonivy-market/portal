@@ -36,7 +36,7 @@ public class SecurityService implements ISecurityService {
   public IvySecurityResultDTO findUsers(String query, int startIndex, int count, List<String> fromRoles, List<String> excludedUsernames) {
     return IvyExecutor.executeAsSystem(() -> {
       IvySecurityResultDTO result = new IvySecurityResultDTO();
-      IApplication application = Ivy.wf().getApplication();
+      IApplication application = IApplication.current();
       result.setUsers(queryUsers(query, application, startIndex, count, fromRoles, excludedUsernames));
       return result;
     });
@@ -101,7 +101,7 @@ public class SecurityService implements ISecurityService {
   public IvySecurityResultDTO findRoles() {
     return IvyExecutor.executeAsSystem(() -> {
       IvySecurityResultDTO result = new IvySecurityResultDTO();
-      IApplication app = Ivy.wf().getApplication();
+      IApplication app = IApplication.current();
       List<IRole> roles = ServiceUtilities.findAllRoles(app);
       result.setRoles(roles);
       return result;
@@ -112,7 +112,7 @@ public class SecurityService implements ISecurityService {
   public IvySecurityResultDTO findRoleDTOs() {
     return IvyExecutor.executeAsSystem(() -> {
       IvySecurityResultDTO result = new IvySecurityResultDTO();
-      IApplication app = Ivy.wf().getApplication();
+      IApplication app = IApplication.current();
       List<RoleDTO> roles = ServiceUtilities.findAllRoleDTO(app);
       roles.sort(getRoleDTOComparator());
       result.setRoleDTOs(roles);
@@ -124,7 +124,7 @@ public class SecurityService implements ISecurityService {
   public IvySecurityResultDTO findSecurityMembers(String query, int startIndex, int count) {
     return IvyExecutor.executeAsSystem(() -> {
       IvySecurityResultDTO result = new IvySecurityResultDTO();
-      IApplication app = Ivy.wf().getApplication();
+      IApplication app = IApplication.current();
       List<RoleDTO> roles = ServiceUtilities.findAllRoleDTO(app).stream()
           .filter(role -> doesNameContainQuery(query, role))
           .sorted(getRoleDTOComparator())
@@ -184,7 +184,7 @@ public class SecurityService implements ISecurityService {
       List<String> excludedUsernames) {
     return IvyExecutor.executeAsSystem(() -> {
       IvySecurityResultDTO result = new IvySecurityResultDTO();
-      IApplication application = Ivy.wf().getApplication();
+      IApplication application = IApplication.current();
       result.setUsers(queryAllUsers(application, startIndex, count, fromRoles, excludedUsernames));
       return result;
     });

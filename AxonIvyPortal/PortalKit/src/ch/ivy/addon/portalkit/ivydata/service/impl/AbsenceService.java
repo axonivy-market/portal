@@ -36,7 +36,7 @@ public class AbsenceService implements IAbsenceService {
       IvyAbsenceResultDTO result = new IvyAbsenceResultDTO();
 
       Map<String, Set<IvyAbsence>> ivyAbsencesByUser = new HashMap<>();
-      IApplication application = Ivy.wf().getApplication();
+      IApplication application = IApplication.current();
       if (StringUtils.isBlank(username)) {
           ServiceUtilities.findAllUsers(application).forEach(user -> {
           if (ivyAbsencesByUser.containsKey(user.getName())) {
@@ -80,7 +80,7 @@ public class AbsenceService implements IAbsenceService {
   public void createAbsence(IvyAbsence ivyAbsence) {
     IvyExecutor.executeAsSystem(() -> { 
 
-      IApplication application = Ivy.wf().getApplication();
+      IApplication application = IApplication.current();
       IUser user = ServiceUtilities.findUser(ivyAbsence.getUsername(), application);
       user.createAbsence(ivyAbsence.getFrom(), ivyAbsence.getUntil(), ivyAbsence.getComment());
       return Void.class;
@@ -90,7 +90,7 @@ public class AbsenceService implements IAbsenceService {
   @Override
   public void updateAbsences(String username, Set<IvyAbsence> ivyAbsences) {
     IvyExecutor.executeAsSystem(() -> { 
-      IApplication application = Ivy.wf().getApplication();
+      IApplication application = IApplication.current();
       IUser user = ServiceUtilities.findUser(username, application);
       for (IUserAbsence userAbsence : user.getAbsences()) {
         user.deleteAbsence(userAbsence);
@@ -105,7 +105,7 @@ public class AbsenceService implements IAbsenceService {
   @Override
   public void deleteAbsence(IvyAbsence ivyAbsence) {
     IvyExecutor.executeAsSystem(() -> { 
-      IApplication application = Ivy.wf().getApplication();
+      IApplication application = IApplication.current();
       IUser user = ServiceUtilities.findUser(ivyAbsence.getUsername(), application);
       for (IUserAbsence userAbsence : user.getAbsences()) {
         if (userAbsence.getStartTimestamp().equals(ivyAbsence.getFrom()) && userAbsence.getStopTimestamp().equals(ivyAbsence.getUntil())) {

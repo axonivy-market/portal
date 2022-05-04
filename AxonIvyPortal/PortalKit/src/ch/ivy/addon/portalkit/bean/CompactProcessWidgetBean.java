@@ -46,6 +46,7 @@ import ch.ivy.addon.portalkit.service.UserProcessService;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.ProcessStartUtils;
+import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
@@ -499,7 +500,7 @@ private static final long serialVersionUID = -5889375917550618261L;
 
   private Locale getApplicationDefaultLanguage() {
     return IvyExecutor.executeAsSystem(() -> {
-      return Ivy.wf().getApplication().getDefaultEMailLanguage();
+      return IApplication.current().getDefaultEMailLanguage();
     });
   }
 
