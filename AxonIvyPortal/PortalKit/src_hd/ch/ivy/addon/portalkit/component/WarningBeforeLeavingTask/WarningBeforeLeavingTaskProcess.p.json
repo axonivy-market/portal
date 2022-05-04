@@ -1,0 +1,106 @@
+{
+  "format" : "9.4.8",
+  "id" : "1612B5181308632F",
+  "data" : "ch.ivy.addon.portalkit.component.WarningBeforeLeavingTask.WarningBeforeLeavingTaskData",
+  "kind" : "HTML_DIALOG",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start()",
+      "config" : {
+        "callSignature" : "start",
+        "guid" : "15F80B73AFE43AE4"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "leave(ICase)",
+      "config" : {
+        "callSignature" : "leave",
+        "input" : {
+          "params" : [
+            { "name" : "iCase", "type" : "ch.ivyteam.ivy.workflow.ICase" }
+          ],
+          "map" : {
+            "out.iCase" : "param.iCase"
+          }
+        },
+        "guid" : "16FA866C14936E0D"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 192 },
+        "labelOffset" : { "x" : -25, "y" : 15 }
+      },
+      "connect" : { "id" : "f6", "to" : "f8" }
+    }, {
+      "id" : "f4",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "reserve(ICase)",
+      "config" : {
+        "callSignature" : "reserve",
+        "input" : {
+          "params" : [
+            { "name" : "iCase", "type" : "ch.ivyteam.ivy.workflow.ICase" }
+          ],
+          "map" : {
+            "out.iCase" : "param.iCase"
+          }
+        },
+        "guid" : "16FA866CC3BA9742"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 256 },
+        "labelOffset" : { "x" : -28, "y" : 15 }
+      },
+      "connect" : { "id" : "f9", "to" : "f8", "via" : [ { "x" : 304, "y" : 256 } ] }
+    }, {
+      "id" : "f8",
+      "type" : "Script",
+      "name" : [
+        "Display message after",
+        "finish or leave task"
+      ],
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.util.GrowlMessageUtils;",
+            "",
+            "GrowlMessageUtils.addFeedbackMessage(in.isTaskFinished, in.iCase);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 304, "y" : 192 },
+        "size" : { "width" : 144, "height" : 44 }
+      },
+      "connect" : { "id" : "f7", "to" : "f5" }
+    }, {
+      "id" : "f5",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 512, "y" : 192 }
+      }
+    }, {
+      "id" : "f10",
+      "type" : "ProcessAnnotation",
+      "name" : [
+        "Sample scenario to test",
+        "start a task > click on logo > leave the task"
+      ],
+      "visual" : {
+        "at" : { "x" : 400, "y" : 128 },
+        "size" : { "width" : 240, "height" : 44 }
+      },
+      "connect" : { "id" : "f11", "to" : "f8" }
+    } ]
+}

@@ -1,0 +1,83 @@
+{
+  "format" : "9.4.8",
+  "id" : "169D807F713AC26B",
+  "data" : "com.axonivy.portal.developerexamples.showcase.CustomizedUI.CustomizedUIData",
+  "kind" : "HTML_DIALOG",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start()",
+      "config" : {
+        "callSignature" : "start",
+        "guid" : "169D807F74964FAF"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : { "id" : "f7", "to" : "f6" }
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "HtmlDialogEventStart",
+      "name" : "close",
+      "config" : {
+        "guid" : "169D807F78F5AD94"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 160 },
+        "labelOffset" : { "x" : -15, "y" : 12 }
+      },
+      "connect" : { "id" : "f5", "to" : "f4" }
+    }, {
+      "id" : "f4",
+      "type" : "HtmlDialogExit",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 160 }
+      }
+    }, {
+      "id" : "f6",
+      "type" : "Script",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.developerexamples.showcase.ShowcaseEntity2;",
+            "import com.axonivy.portal.developerexamples.showcase.ShowcaseEntity1;",
+            "",
+            "",
+            "for (int i = 0; i < 20; i++) {",
+            "  ShowcaseEntity1 entity1 = new ShowcaseEntity1();",
+            "  entity1.address = \"4810  Murphy Court, Riverside, CA\";",
+            "  entity1.code = \"00\" + i + \"-6\" + i+2 + \"-1000\";",
+            "  entity1.name = \"Relation \" + i;",
+            "  entity1.number = \"\" + i;",
+            "  in.table1.add(entity1);",
+            "  in.table2.add(entity1);",
+            "}",
+            "",
+            "for (int i = 0; i < 20; i++) {",
+            "  ShowcaseEntity2 entity2 = new ShowcaseEntity2();",
+            "  entity2.endDate = \"9/6/2018\";",
+            "  entity2.startDate = \"9/6/2018\";",
+            "  entity2.objectNumber = \"\" + i;",
+            "  entity2.objectName = \"Object \" + i;",
+            "  entity2.type = \"type \" + i;",
+            "  in.table3.add(entity2);",
+            "}",
+            "",
+            "in.steps.add(\"Create report\");",
+            "in.steps.add(\"Approval\");",
+            "in.steps.add(\"Finalize report\");"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 216, "y" : 64 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    } ]
+}

@@ -1,0 +1,93 @@
+{
+  "format" : "9.4.8",
+  "id" : "16E5DBC0E0749639",
+  "data" : "com.axonivy.portal.developerexamples.testdata.Approve.ApproveData",
+  "kind" : "HTML_DIALOG",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start(ExampleIFrameData)",
+      "config" : {
+        "callSignature" : "start",
+        "result" : {
+          "params" : [
+            { "name" : "investmentRequest", "type" : "com.axonivy.portal.developerexamples.ExampleIFrameData" }
+          ],
+          "map" : {
+            "result.investmentRequest" : "in.investmentRequest"
+          }
+        },
+        "input" : {
+          "params" : [
+            { "name" : "investmentRequest", "type" : "com.axonivy.portal.developerexamples.ExampleIFrameData" }
+          ],
+          "map" : {
+            "out.investmentRequest" : "param.investmentRequest"
+          }
+        },
+        "guid" : "16B3FAF670F512D6"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 },
+        "labelOffset" : { "x" : -16, "y" : 15 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "HtmlDialogEventStart",
+      "name" : "close",
+      "config" : {
+        "guid" : "16B3FAF673CD7CD2",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.investmentRequest" : "in.investmentRequest"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 160 },
+        "labelOffset" : { "x" : -15, "y" : 12 }
+      },
+      "connect" : { "id" : "f5", "to" : "f4" }
+    }, {
+      "id" : "f4",
+      "type" : "HtmlDialogExit",
+      "visual" : {
+        "at" : { "x" : 224, "y" : 160 }
+      }
+    }, {
+      "id" : "f6",
+      "type" : "HtmlDialogEventStart",
+      "name" : "home",
+      "config" : {
+        "guid" : "1734C8917D863C2E"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 256 },
+        "labelOffset" : { "x" : -14, "y" : 15 }
+      },
+      "connect" : { "id" : "f8", "to" : "f7" }
+    }, {
+      "id" : "f7",
+      "type" : "Script",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import javax.faces.context.FacesContext;",
+            "",
+            "FacesContext.getCurrentInstance().getExternalContext().redirect(ivy.html.applicationHomeRef());"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 256 }
+      }
+    } ]
+}

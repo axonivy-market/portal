@@ -1,0 +1,1492 @@
+{
+  "format" : "9.4.8",
+  "id" : "14DE09882B540AD5",
+  "data" : "portalKit_test.GrantPermissionsData",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "grantAllPermissionsToCurrentUser.ivp",
+      "config" : {
+        "callSignature" : "grantAllPermissionsToCurrentUser",
+        "outLink" : "grantAllPermissionsToCurrentUser.ivp",
+        "startName" : "Grant all permissions to current user in Designer"
+      },
+      "visual" : {
+        "at" : { "x" : 80, "y" : 96 },
+        "size" : { "width" : 26, "height" : 26 },
+        "labelOffset" : { "x" : -61, "y" : -36 }
+      },
+      "connect" : { "id" : "f4", "to" : "f3" }
+    }, {
+      "id" : "f1",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 80, "y" : 352 },
+        "size" : { "width" : 26, "height" : 26 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "Script",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.security.IPermission;",
+            "import ch.ivy.addon.portalkit.test.util.SecurityUtils;",
+            "",
+            "ivy.task.getApplication().getSecurityDescriptor().grantPermission(IPermission.TASK_WRITE_EXPIRY_TIMESTAMP, ivy.session.getSessionUser());"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 80, "y" : 224 },
+        "size" : { "width" : 36, "height" : 24 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f10",
+      "type" : "RequestStart",
+      "name" : "updatePermissionsOfTestUsers.ivp",
+      "config" : {
+        "callSignature" : "updatePermissionsOfTestUsers",
+        "outLink" : "updatePermissionsOfTestUsers.ivp",
+        "startDescription" : "updatePermissionsOfDefaultUsersAsPreconditionToRunTests"
+      },
+      "visual" : {
+        "at" : { "x" : 408, "y" : 96 },
+        "size" : { "width" : 26, "height" : 26 },
+        "labelOffset" : { "x" : -78, "y" : -31 }
+      },
+      "connect" : { "id" : "f15", "to" : "f14" }
+    }, {
+      "id" : "f14",
+      "type" : "Script",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.test.util.SecurityUtils;",
+            "",
+            "SecurityUtils.updatePermissionsOfTestUsers();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 408, "y" : 193 },
+        "size" : { "width" : 36, "height" : 24 }
+      },
+      "connect" : { "id" : "f12", "to" : "f11" }
+    }, {
+      "id" : "f11",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 408, "y" : 352 },
+        "size" : { "width" : 26, "height" : 26 }
+      }
+    }, {
+      "id" : "f5",
+      "type" : "RequestStart",
+      "name" : "grantTaskReadAllPermissionsToCurrentUser.ivp",
+      "config" : {
+        "callSignature" : "grantTaskReadAllPermissionsToCurrentUser",
+        "outLink" : "grantTaskReadAllPermissionsToCurrentUser.ivp",
+        "startName" : "Grant TASK_READ_ALL to current user in Designer"
+      },
+      "visual" : {
+        "at" : { "x" : 79, "y" : 464 },
+        "size" : { "width" : 26, "height" : 26 },
+        "labelOffset" : { "x" : -61, "y" : -33 }
+      },
+      "connect" : { "id" : "f8", "to" : "f6" }
+    }, {
+      "id" : "f6",
+      "type" : "Script",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.security.IPermission;",
+            "import ch.ivy.addon.portalkit.test.util.SecurityUtils;",
+            "",
+            "ivy.task.getApplication().getSecurityDescriptor().grantPermission(IPermission.TASK_READ_ALL, ivy.session.getSessionUser());"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 167, "y" : 464 },
+        "size" : { "width" : 36, "height" : 24 }
+      },
+      "connect" : { "id" : "f9", "to" : "f7", "via" : [ { "x" : 408, "y" : 464 } ] }
+    }, {
+      "id" : "f13",
+      "type" : "RequestStart",
+      "name" : "grantCaseReadAllPermissionsToCurrentUser.ivp",
+      "config" : {
+        "callSignature" : "grantCaseReadAllPermissionsToCurrentUser",
+        "outLink" : "grantCaseReadAllPermissionsToCurrentUser.ivp",
+        "startName" : "Grant CASE_READ_ALL permissions to current user in Designer"
+      },
+      "visual" : {
+        "at" : { "x" : 79, "y" : 527 },
+        "size" : { "width" : 26, "height" : 26 },
+        "labelOffset" : { "x" : -62, "y" : -31 }
+      },
+      "connect" : { "id" : "f19", "to" : "f17" }
+    }, {
+      "id" : "f17",
+      "type" : "Script",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.security.IPermission;",
+            "import ch.ivy.addon.portalkit.test.util.SecurityUtils;",
+            "",
+            "ivy.task.getApplication().getSecurityDescriptor().grantPermission(IPermission.CASE_READ_ALL, ivy.session.getSessionUser());"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 175, "y" : 527 },
+        "size" : { "width" : 36, "height" : 24 }
+      },
+      "connect" : { "id" : "f16", "to" : "f7" }
+    }, {
+      "id" : "f20",
+      "type" : "Script",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.security.IPermission;",
+            "import ch.ivy.addon.portalkit.test.util.SecurityUtils;",
+            "",
+            "ivy.task.getApplication().getSecurityDescriptor().grantPermission(IPermission.TASK_READ_OWN_CASE_TASKS, ivy.session.getSessionUser());"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 175, "y" : 594 },
+        "size" : { "width" : 36, "height" : 24 }
+      },
+      "connect" : { "id" : "f18", "to" : "f7", "via" : [ { "x" : 408, "y" : 594 } ] }
+    }, {
+      "id" : "f21",
+      "type" : "RequestStart",
+      "name" : "grantTaskReadOwnCaseTaskPermissionsToCurrentUser.ivp",
+      "config" : {
+        "callSignature" : "grantTaskReadOwnCaseTaskPermissionsToCurrentUser",
+        "outLink" : "grantTaskReadOwnCaseTaskPermissionsToCurrentUser.ivp",
+        "startName" : "Grant TASK_READ_OWN_CASE_TASKS permissions to current user in Designer"
+      },
+      "visual" : {
+        "at" : { "x" : 79, "y" : 594 },
+        "size" : { "width" : 26, "height" : 26 },
+        "labelOffset" : { "x" : -70, "y" : -33 }
+      },
+      "connect" : { "id" : "f24", "to" : "f20" }
+    }, {
+      "id" : "f7",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 408, "y" : 528 }
+      }
+    }, {
+      "id" : "f22",
+      "type" : "Script",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.security.IPermission;",
+            "import ch.ivy.addon.portalkit.test.util.SecurityUtils;",
+            "",
+            "ivy.task.getApplication().getSecurityDescriptor().denyPermission(IPermission.TASK_READ_OWN_CASE_TASKS, ivy.session.getSessionUser());",
+            "ivy.task.getApplication().getSecurityDescriptor().denyPermission(IPermission.TASK_READ_ALL, ivy.session.getSessionUser());",
+            "ivy.task.getApplication().getSecurityDescriptor().denyPermission(IPermission.CASE_READ_ALL, ivy.session.getSessionUser());"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 176, "y" : 653 },
+        "size" : { "width" : 36, "height" : 24 }
+      },
+      "connect" : { "id" : "f26", "to" : "f7", "via" : [ { "x" : 408, "y" : 653 } ] }
+    }, {
+      "id" : "f23",
+      "type" : "RequestStart",
+      "name" : "denyReadAllPermissionFromCurrentUser.ivp",
+      "config" : {
+        "callSignature" : "denyReadAllPermissionFromCurrentUser",
+        "outLink" : "denyReadAllPermissionFromCurrentUser.ivp",
+        "startName" : "deny ReadAll permissions to current user in Designer"
+      },
+      "visual" : {
+        "at" : { "x" : 80, "y" : 653 },
+        "size" : { "width" : 26, "height" : 26 },
+        "labelOffset" : { "x" : -70, "y" : -33 }
+      },
+      "connect" : { "id" : "f25", "to" : "f22" }
+    }, {
+      "id" : "f27",
+      "type" : "RequestStart",
+      "name" : "grantDocumentOfInvolvedCaseWritePemission.ivp",
+      "config" : {
+        "callSignature" : "grantDocumentOfInvolvedCaseWritePemission",
+        "outLink" : "grantDocumentOfInvolvedCaseWritePemission.ivp"
+      },
+      "visual" : {
+        "at" : { "x" : 80, "y" : 704 },
+        "labelOffset" : { "x" : -62, "y" : 20 }
+      },
+      "connect" : { "id" : "f32", "to" : "f31" }
+    }, {
+      "id" : "f28",
+      "type" : "RequestStart",
+      "name" : "denyDocumentOfInvolvedCaseWritePemission.ivp",
+      "config" : {
+        "callSignature" : "denyDocumentOfInvolvedCaseWritePemission",
+        "outLink" : "denyDocumentOfInvolvedCaseWritePemission.ivp"
+      },
+      "visual" : {
+        "at" : { "x" : 80, "y" : 768 },
+        "labelOffset" : { "x" : -60, "y" : 15 }
+      },
+      "connect" : { "id" : "f34", "to" : "f33" }
+    }, {
+      "id" : "f31",
+      "type" : "Script",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.security.IPermission;",
+            "",
+            "ivy.task.getApplication().getSecurityDescriptor().grantPermission(IPermission.DOCUMENT_WRITE, ivy.session.getSessionUser());",
+            "ivy.task.getApplication().getSecurityDescriptor().grantPermission(IPermission.DOCUMENT_OF_INVOLVED_CASE_WRITE, ivy.session.getSessionUser());"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 176, "y" : 704 },
+        "size" : { "width" : 40, "height" : 24 }
+      },
+      "connect" : { "id" : "f29", "to" : "f7", "via" : [ { "x" : 408, "y" : 704 } ] }
+    }, {
+      "id" : "f33",
+      "type" : "Script",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.security.IPermission;",
+            "",
+            "ivy.task.getApplication().getSecurityDescriptor().denyPermission(IPermission.DOCUMENT_WRITE, ivy.session.getSessionUser());",
+            "ivy.task.getApplication().getSecurityDescriptor().denyPermission(IPermission.DOCUMENT_OF_INVOLVED_CASE_WRITE, ivy.session.getSessionUser());"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 176, "y" : 768 },
+        "size" : { "width" : 40, "height" : 24 }
+      },
+      "connect" : { "id" : "f30", "to" : "f7", "via" : [ { "x" : 408, "y" : 768 } ] }
+    }, {
+      "id" : "f35",
+      "type" : "RequestStart",
+      "name" : "grantOnlyDelegateOwnTasksPermission.ivp",
+      "config" : {
+        "callSignature" : "grantOnlyDelegateOwnTasksPermission",
+        "outLink" : "grantOnlyDelegateOwnTasksPermission.ivp"
+      },
+      "visual" : {
+        "at" : { "x" : 64, "y" : 848 },
+        "labelOffset" : { "x" : -55, "y" : 26 }
+      },
+      "connect" : { "id" : "f38", "to" : "f37" }
+    }, {
+      "id" : "f37",
+      "type" : "Script",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.enums.PortalPermission;",
+            "import ch.ivyteam.ivy.security.IPermission;",
+            "import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;",
+            "",
+            "IPermission delegateOwnTaskPermission = IPermissionRepository.get().findByName(PortalPermission.TASK_WRITE_ACTIVATOR_OWN_TASKS.getValue());",
+            "if(#delegateOwnTaskPermission is initialized) {",
+            "  ivy.wf.getApplication().getSecurityDescriptor().grantPermission(delegateOwnTaskPermission, ivy.session.getSessionUser());",
+            "}",
+            "ivy.wf.getApplication().getSecurityDescriptor().denyPermission(IPermission.TASK_WRITE_ACTIVATOR, ivy.session.getSessionUser());"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 176, "y" : 848 },
+        "size" : { "width" : 40, "height" : 24 }
+      },
+      "connect" : { "id" : "f36", "to" : "f7", "via" : [ { "x" : 408, "y" : 848 } ] }
+    }, {
+      "id" : "f39",
+      "type" : "RequestStart",
+      "name" : "undoOnlyDelegateOwnTasksPermission.ivp",
+      "config" : {
+        "callSignature" : "undoOnlyDelegateOwnTasksPermission",
+        "outLink" : "undoOnlyDelegateOwnTasksPermission.ivp"
+      },
+      "visual" : {
+        "at" : { "x" : 56, "y" : 944 },
+        "size" : { "width" : 32, "height" : 32 },
+        "labelOffset" : { "x" : -41, "y" : 25 }
+      },
+      "connect" : { "id" : "f42", "to" : "f41" }
+    }, {
+      "id" : "f41",
+      "type" : "Script",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.enums.PortalPermission;",
+            "import ch.ivyteam.ivy.security.IPermission;",
+            "import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;",
+            "",
+            "IPermission delegateOwnTaskPermission = IPermissionRepository.get().findByName(PortalPermission.TASK_WRITE_ACTIVATOR_OWN_TASKS.getValue());",
+            "if(#delegateOwnTaskPermission is initialized) {",
+            "  ivy.wf.getApplication().getSecurityDescriptor().denyPermission(delegateOwnTaskPermission, ivy.session.getSessionUser());",
+            "}",
+            "ivy.wf.getApplication().getSecurityDescriptor().grantPermission(IPermission.TASK_WRITE_ACTIVATOR, ivy.session.getSessionUser());"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 176, "y" : 944 },
+        "size" : { "width" : 40, "height" : 24 }
+      },
+      "connect" : { "id" : "f40", "to" : "f7", "via" : [ { "x" : 408, "y" : 944 } ] }
+    }, {
+      "id" : "f43",
+      "type" : "RequestStart",
+      "name" : "denyPortalPermission.ivp",
+      "config" : {
+        "callSignature" : "denyPortalPermission",
+        "outLink" : "denyPortalPermission.ivp"
+      },
+      "visual" : {
+        "at" : { "x" : 48, "y" : 1040 },
+        "labelOffset" : { "x" : -33, "y" : 21 }
+      },
+      "connect" : { "id" : "f44", "to" : "f45" }
+    }, {
+      "id" : "f47",
+      "type" : "RequestStart",
+      "name" : "grantPortalPermission.ivp",
+      "config" : {
+        "callSignature" : "grantPortalPermission",
+        "outLink" : "grantPortalPermission.ivp"
+      },
+      "visual" : {
+        "at" : { "x" : 48, "y" : 1136 },
+        "labelOffset" : { "x" : -24, "y" : 30 }
+      },
+      "connect" : { "id" : "f48", "to" : "f49" }
+    }, {
+      "id" : "f49",
+      "type" : "Script",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import java.util.Objects;",
+            "import ch.ivy.addon.portalkit.enums.PortalPermission;",
+            "import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;",
+            "import ch.ivyteam.ivy.security.IPermission;",
+            "",
+            "IPermission iPermission = IPermissionRepository.get().findByName(PortalPermission.STATISTIC_ADD_DASHBOARD_CHART.getValue());",
+            "    if (Objects.nonNull(iPermission)){",
+            "      ivy.wf.getApplication().getSecurityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());",
+            "    }",
+            "    ",
+            "iPermission = IPermissionRepository.get().findByName(PortalPermission.EXPRESS_CREATE_WORKFLOW.getValue());",
+            "    if (Objects.nonNull(iPermission)){",
+            "      ivy.wf.getApplication().getSecurityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());",
+            "    }",
+            "iPermission = IPermissionRepository.get().findByName(PortalPermission.STATISTIC_ANALYZE_TASK.getValue());",
+            "    if (Objects.nonNull(iPermission)){",
+            "      ivy.wf.getApplication().getSecurityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());",
+            "    }",
+            "",
+            "    iPermission = IPermissionRepository.get().findByName(PortalPermission.SHOW_CASE_DETAILS.getValue());",
+            "    if (Objects.nonNull(iPermission)){",
+            "      ivy.wf.getApplication().getSecurityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());",
+            "    }",
+            "    ",
+            "    iPermission = IPermissionRepository.get().findByName(PortalPermission.SHOW_ALL_TASKS_OF_CASE.getValue());",
+            "    if (Objects.nonNull(iPermission)){",
+            "      ivy.wf.getApplication().getSecurityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());",
+            "    }",
+            "    ",
+            "    iPermission = IPermissionRepository.get().findByName(PortalPermission.TASK_CASE_ADD_NOTE.getValue());",
+            "    if (Objects.nonNull(iPermission)){",
+            "      ivy.wf.getApplication().getSecurityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());",
+            "    }",
+            "    ",
+            "    iPermission = IPermissionRepository.get().findByName(PortalPermission.TASK_CASE_SHOW_MORE_NOTE.getValue());",
+            "    if (Objects.nonNull(iPermission)){",
+            "      ivy.wf.getApplication().getSecurityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());",
+            "    }",
+            "    ",
+            "    iPermission = IPermissionRepository.get().findByName(PortalPermission.TASK_DISPLAY_RESET_ACTION.getValue());",
+            "    if (Objects.nonNull(iPermission)){",
+            "      ivy.wf.getApplication().getSecurityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());",
+            "    }",
+            "    ",
+            "    iPermission = IPermissionRepository.get().findByName(PortalPermission.TASK_DISPLAY_RESERVE_ACTION.getValue());",
+            "    if (Objects.nonNull(iPermission)){",
+            "      ivy.wf.getApplication().getSecurityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());",
+            "    }",
+            "    ",
+            "    iPermission = IPermissionRepository.get().findByName(PortalPermission.TASK_DISPLAY_DELEGATE_ACTION.getValue());",
+            "    if (Objects.nonNull(iPermission)){",
+            "      ivy.wf.getApplication().getSecurityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());",
+            "    }",
+            "    ",
+            "    iPermission = IPermissionRepository.get().findByName(PortalPermission.TASK_DISPLAY_ADDITIONAL_OPTIONS.getValue());",
+            "    if (Objects.nonNull(iPermission)){",
+            "      ivy.wf.getApplication().getSecurityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());",
+            "    }"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 200, "y" : 1136 },
+        "size" : { "width" : 40, "height" : 24 }
+      },
+      "connect" : { "id" : "f50", "to" : "f7", "via" : [ { "x" : 408, "y" : 1136 } ] }
+    }, {
+      "id" : "f53",
+      "type" : "Script",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import java.util.Objects;",
+            "import ch.ivy.addon.portalkit.enums.PortalPermission;",
+            "import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;",
+            "import ch.ivyteam.ivy.security.IPermission;",
+            "",
+            "IPermission iPermission = IPermissionRepository.get().findByName(PortalPermission.STATISTIC_ADD_DASHBOARD_CHART.getValue());",
+            "    if (Objects.nonNull(iPermission)){",
+            "      ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
+            "    }",
+            "    iPermission = IPermissionRepository.get().findByName(PortalPermission.EXPRESS_CREATE_WORKFLOW.getValue());",
+            "    if (Objects.nonNull(iPermission)){",
+            "      ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
+            "    }",
+            "    iPermission = IPermissionRepository.get().findByName(PortalPermission.STATISTIC_ANALYZE_TASK.getValue());",
+            "    if (Objects.nonNull(iPermission)){",
+            "      ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
+            "    }",
+            "    ",
+            "    /*iPermission = IPermissionRepository.get().findByName(PortalPermission.ACCESS_FULL_PROCESS_LIST.getValue());",
+            "    if (Objects.nonNull(iPermission)){",
+            "      ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
+            "    }*/",
+            "    ",
+            "    iPermission = IPermissionRepository.get().findByName(PortalPermission.ACCESS_FULL_TASK_LIST.getValue());",
+            "    if (Objects.nonNull(iPermission)){",
+            "      ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
+            "    }",
+            "        iPermission = IPermissionRepository.get().findByName(PortalPermission.ACCESS_FULL_CASE_LIST.getValue());",
+            "    if (Objects.nonNull(iPermission)){",
+            "      ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
+            "    }",
+            "        iPermission = IPermissionRepository.get().findByName(PortalPermission.ACCESS_FULL_STATISTICS_LIST.getValue());",
+            "    if (Objects.nonNull(iPermission)){",
+            "      ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
+            "    }",
+            "    ",
+            "    iPermission = IPermissionRepository.get().findByName(PortalPermission.SHOW_CASE_DETAILS.getValue());",
+            "    if (Objects.nonNull(iPermission)){",
+            "      ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
+            "    }",
+            "    ",
+            "    iPermission = IPermissionRepository.get().findByName(PortalPermission.SHOW_ALL_TASKS_OF_CASE.getValue());",
+            "    if (Objects.nonNull(iPermission)){",
+            "      ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
+            "    }",
+            "    ",
+            "    iPermission = IPermissionRepository.get().findByName(PortalPermission.TASK_CASE_ADD_NOTE.getValue());",
+            "    if (Objects.nonNull(iPermission)){",
+            "      ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
+            "    }",
+            "    ",
+            "    iPermission = IPermissionRepository.get().findByName(PortalPermission.TASK_CASE_SHOW_MORE_NOTE.getValue());",
+            "    if (Objects.nonNull(iPermission)){",
+            "      ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
+            "    }",
+            "    ",
+            "    iPermission = IPermissionRepository.get().findByName(PortalPermission.TASK_DISPLAY_RESET_ACTION.getValue());",
+            "    if (Objects.nonNull(iPermission)){",
+            "      ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
+            "    }",
+            "    ",
+            "    iPermission = IPermissionRepository.get().findByName(PortalPermission.TASK_DISPLAY_RESERVE_ACTION.getValue());",
+            "    if (Objects.nonNull(iPermission)){",
+            "      ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
+            "    }",
+            "    ",
+            "    iPermission = IPermissionRepository.get().findByName(PortalPermission.TASK_DISPLAY_DELEGATE_ACTION.getValue());",
+            "    if (Objects.nonNull(iPermission)){",
+            "      ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
+            "    }",
+            "    ",
+            "    iPermission = IPermissionRepository.get().findByName(PortalPermission.TASK_DISPLAY_ADDITIONAL_OPTIONS.getValue());",
+            "    if (Objects.nonNull(iPermission)){",
+            "      ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
+            "    }"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 472, "y" : 336 },
+        "size" : { "width" : 40, "height" : 24 }
+      }
+    }, {
+      "id" : "f60",
+      "type" : "RequestStart",
+      "name" : "denySpecificPortalPermission.ivp",
+      "config" : {
+        "callSignature" : "denySpecificPortalPermission",
+        "input" : {
+          "params" : [
+            { "name" : "portalPermission", "type" : "String" }
+          ],
+          "map" : {
+            "out.portalPermission" : "param.portalPermission"
+          }
+        },
+        "outLink" : "denySpecificPortalPermission.ivp",
+        "showInStartList" : false
+      },
+      "visual" : {
+        "at" : { "x" : 48, "y" : 1232 },
+        "labelOffset" : { "x" : -26, "y" : 18 }
+      },
+      "connect" : { "id" : "f64", "to" : "f63" }
+    }, {
+      "id" : "f63",
+      "type" : "Script",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import java.util.Objects;",
+            "import ch.ivy.addon.portalkit.enums.PortalPermission;",
+            "import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;",
+            "import ch.ivyteam.ivy.security.IPermission;",
+            "",
+            "IPermission iPermission = IPermissionRepository.get().findByName(in.portalPermission);",
+            "if (Objects.nonNull(iPermission)){",
+            "  ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 200, "y" : 1232 },
+        "size" : { "width" : 40, "height" : 24 }
+      },
+      "connect" : { "id" : "f66", "to" : "f7", "via" : [ { "x" : 408, "y" : 1232 } ] }
+    }, {
+      "id" : "f62",
+      "type" : "Script",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import java.util.Objects;",
+            "import ch.ivy.addon.portalkit.enums.PortalPermission;",
+            "import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;",
+            "import ch.ivyteam.ivy.security.IPermission;",
+            "",
+            "IPermission iPermission = IPermissionRepository.get().findByName(in.portalPermission);",
+            "if (Objects.nonNull(iPermission)){",
+            "  ivy.wf.getApplication().getSecurityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 200, "y" : 1296 },
+        "size" : { "width" : 40, "height" : 24 }
+      },
+      "connect" : { "id" : "f67", "to" : "f7", "via" : [ { "x" : 408, "y" : 1296 } ] }
+    }, {
+      "id" : "f45",
+      "type" : "Script",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import java.util.Objects;",
+            "import ch.ivy.addon.portalkit.enums.PortalPermission;",
+            "import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;",
+            "import ch.ivyteam.ivy.security.IPermission;",
+            "",
+            "IPermission iPermission = IPermissionRepository.get().findByName(PortalPermission.STATISTIC_ADD_DASHBOARD_CHART.getValue());",
+            "    if (Objects.nonNull(iPermission)){",
+            "      ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
+            "    }",
+            "    iPermission = IPermissionRepository.get().findByName(PortalPermission.EXPRESS_CREATE_WORKFLOW.getValue());",
+            "    if (Objects.nonNull(iPermission)){",
+            "      ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
+            "    }",
+            "    iPermission = IPermissionRepository.get().findByName(PortalPermission.STATISTIC_ANALYZE_TASK.getValue());",
+            "    if (Objects.nonNull(iPermission)){",
+            "      ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
+            "    }",
+            "",
+            "    iPermission = IPermissionRepository.get().findByName(PortalPermission.SHOW_CASE_DETAILS.getValue());",
+            "    if (Objects.nonNull(iPermission)){",
+            "      ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
+            "    }",
+            "    ",
+            "    iPermission = IPermissionRepository.get().findByName(PortalPermission.SHOW_ALL_TASKS_OF_CASE.getValue());",
+            "    if (Objects.nonNull(iPermission)){",
+            "      ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
+            "    }",
+            "    ",
+            "    iPermission = IPermissionRepository.get().findByName(PortalPermission.TASK_CASE_ADD_NOTE.getValue());",
+            "    if (Objects.nonNull(iPermission)){",
+            "      ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
+            "    }",
+            "    ",
+            "    iPermission = IPermissionRepository.get().findByName(PortalPermission.TASK_CASE_SHOW_MORE_NOTE.getValue());",
+            "    if (Objects.nonNull(iPermission)){",
+            "      ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
+            "    }",
+            "    ",
+            "    iPermission = IPermissionRepository.get().findByName(PortalPermission.TASK_DISPLAY_RESET_ACTION.getValue());",
+            "    if (Objects.nonNull(iPermission)){",
+            "      ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
+            "    }",
+            "    ",
+            "    iPermission = IPermissionRepository.get().findByName(PortalPermission.TASK_DISPLAY_RESERVE_ACTION.getValue());",
+            "    if (Objects.nonNull(iPermission)){",
+            "      ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
+            "    }",
+            "    ",
+            "    iPermission = IPermissionRepository.get().findByName(PortalPermission.TASK_DISPLAY_DELEGATE_ACTION.getValue());",
+            "    if (Objects.nonNull(iPermission)){",
+            "      ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
+            "    }",
+            "    ",
+            "    iPermission = IPermissionRepository.get().findByName(PortalPermission.TASK_DISPLAY_ADDITIONAL_OPTIONS.getValue());",
+            "    if (Objects.nonNull(iPermission)){",
+            "      ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
+            "    }"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 200, "y" : 1040 },
+        "size" : { "width" : 40, "height" : 24 }
+      },
+      "connect" : { "id" : "f46", "to" : "f7", "via" : [ { "x" : 408, "y" : 1040 } ] }
+    }, {
+      "id" : "f61",
+      "type" : "RequestStart",
+      "name" : "grantSpecificPortalPermission.ivp",
+      "config" : {
+        "callSignature" : "grantSpecificPortalPermission",
+        "input" : {
+          "params" : [
+            { "name" : "portalPermission", "type" : "String" }
+          ],
+          "map" : {
+            "out.portalPermission" : "param.portalPermission"
+          }
+        },
+        "outLink" : "grantSpecificPortalPermission.ivp",
+        "showInStartList" : false
+      },
+      "visual" : {
+        "at" : { "x" : 48, "y" : 1296 },
+        "labelOffset" : { "x" : -23, "y" : 20 }
+      },
+      "connect" : { "id" : "f65", "to" : "f62" }
+    }, {
+      "id" : "f51",
+      "type" : "RequestStart",
+      "name" : "denyAccessFullListPermissions.ivp",
+      "config" : {
+        "callSignature" : "denyAccessFullListPermissions",
+        "outLink" : "denyAccessFullListPermissions.ivp"
+      },
+      "visual" : {
+        "at" : { "x" : 48, "y" : 1360 },
+        "labelOffset" : { "x" : -23, "y" : 21 }
+      },
+      "connect" : { "id" : "f58", "to" : "f57" }
+    }, {
+      "id" : "f52",
+      "type" : "RequestStart",
+      "name" : "grantAccessFullListPermissions.ivp",
+      "config" : {
+        "callSignature" : "grantAccessFullListPermissions",
+        "outLink" : "grantAccessFullListPermissions.ivp"
+      },
+      "visual" : {
+        "at" : { "x" : 48, "y" : 1424 },
+        "labelOffset" : { "x" : -24, "y" : 18 }
+      },
+      "connect" : { "id" : "f55", "to" : "f54" }
+    }, {
+      "id" : "f57",
+      "type" : "Script",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import java.util.Objects;",
+            "import ch.ivy.addon.portalkit.enums.PortalPermission;",
+            "import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;",
+            "import ch.ivyteam.ivy.security.IPermission;",
+            "",
+            "IPermission iPermission = IPermissionRepository.get().findByName(PortalPermission.ACCESS_FULL_PROCESS_LIST.getValue());",
+            "if (Objects.nonNull(iPermission)){",
+            "  ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
+            "}",
+            "    ",
+            "iPermission = IPermissionRepository.get().findByName(PortalPermission.ACCESS_FULL_TASK_LIST.getValue());",
+            "if (Objects.nonNull(iPermission)){",
+            "  ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
+            "}",
+            "",
+            "iPermission = IPermissionRepository.get().findByName(PortalPermission.ACCESS_FULL_CASE_LIST.getValue());",
+            "if (Objects.nonNull(iPermission)){",
+            "  ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
+            "}",
+            "",
+            "iPermission = IPermissionRepository.get().findByName(PortalPermission.ACCESS_FULL_STATISTICS_LIST.getValue());",
+            "if (Objects.nonNull(iPermission)){",
+            "  ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 200, "y" : 1360 },
+        "size" : { "width" : 40, "height" : 24 }
+      },
+      "connect" : { "id" : "f59", "to" : "f7", "via" : [ { "x" : 408, "y" : 1360 } ] }
+    }, {
+      "id" : "f54",
+      "type" : "Script",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import java.util.Objects;",
+            "import ch.ivy.addon.portalkit.enums.PortalPermission;",
+            "import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;",
+            "import ch.ivyteam.ivy.security.IPermission;",
+            "",
+            "IPermission iPermission = IPermissionRepository.get().findByName(PortalPermission.ACCESS_FULL_PROCESS_LIST.getValue());",
+            "if (Objects.nonNull(iPermission)){",
+            "  ivy.wf.getApplication().getSecurityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());",
+            "}",
+            "    ",
+            "iPermission = IPermissionRepository.get().findByName(PortalPermission.ACCESS_FULL_TASK_LIST.getValue());",
+            "if (Objects.nonNull(iPermission)){",
+            "  ivy.wf.getApplication().getSecurityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());",
+            "}",
+            "    ",
+            "iPermission = IPermissionRepository.get().findByName(PortalPermission.ACCESS_FULL_CASE_LIST.getValue());",
+            "if (Objects.nonNull(iPermission)){",
+            "  ivy.wf.getApplication().getSecurityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());",
+            "}",
+            "    ",
+            "iPermission = IPermissionRepository.get().findByName(PortalPermission.ACCESS_FULL_STATISTICS_LIST.getValue());",
+            "if (Objects.nonNull(iPermission)){",
+            "  ivy.wf.getApplication().getSecurityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 200, "y" : 1424 },
+        "size" : { "width" : 40, "height" : 24 }
+      },
+      "connect" : { "id" : "f56", "to" : "f7", "via" : [ { "x" : 408, "y" : 1424 } ] }
+    }, {
+      "id" : "f68",
+      "type" : "RequestStart",
+      "name" : "denySpecificPermission.ivp",
+      "config" : {
+        "callSignature" : "denySpecificPermission",
+        "input" : {
+          "params" : [
+            { "name" : "portalPermission", "type" : "String" }
+          ],
+          "map" : {
+            "out.portalPermission" : "param.portalPermission"
+          }
+        },
+        "outLink" : "denySpecificPermission.ivp"
+      },
+      "visual" : {
+        "at" : { "x" : 48, "y" : 1488 },
+        "labelOffset" : { "x" : -26, "y" : 18 }
+      },
+      "connect" : { "id" : "f77", "to" : "f76" }
+    }, {
+      "id" : "f69",
+      "type" : "Script",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import java.util.Objects;",
+            "import ch.ivy.addon.portalkit.enums.PortalPermission;",
+            "import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;",
+            "import ch.ivyteam.ivy.security.IPermission;",
+            "",
+            "IPermission iPermission = IPermissionRepository.get().findByName(in.portalPermission);",
+            "if (Objects.nonNull(iPermission)){",
+            "  ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 304, "y" : 1488 },
+        "size" : { "width" : 40, "height" : 24 }
+      },
+      "connect" : { "id" : "f74", "to" : "f7", "via" : [ { "x" : 408, "y" : 1488 } ] }
+    }, {
+      "id" : "f70",
+      "type" : "RequestStart",
+      "name" : "grantSpecificPermission.ivp",
+      "config" : {
+        "callSignature" : "grantSpecificPermission",
+        "input" : {
+          "params" : [
+            { "name" : "portalPermission", "type" : "String" }
+          ],
+          "map" : {
+            "out.portalPermission" : "param.portalPermission"
+          }
+        },
+        "outLink" : "grantSpecificPermission.ivp"
+      },
+      "visual" : {
+        "at" : { "x" : 48, "y" : 1552 },
+        "labelOffset" : { "x" : -23, "y" : 20 }
+      },
+      "connect" : { "id" : "f79", "to" : "f78" }
+    }, {
+      "id" : "f71",
+      "type" : "Script",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import java.util.Objects;",
+            "import ch.ivy.addon.portalkit.enums.PortalPermission;",
+            "import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;",
+            "import ch.ivyteam.ivy.security.IPermission;",
+            "",
+            "IPermission iPermission = IPermissionRepository.get().findByName(in.portalPermission);",
+            "if (Objects.nonNull(iPermission)){",
+            "  ivy.wf.getApplication().getSecurityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 304, "y" : 1552 },
+        "size" : { "width" : 40, "height" : 24 }
+      },
+      "connect" : { "id" : "f75", "to" : "f7", "via" : [ { "x" : 408, "y" : 1552 } ] }
+    }, {
+      "id" : "f76",
+      "type" : "DialogCall",
+      "name" : "Deny permission HTML",
+      "config" : {
+        "dialogId" : "ch.ivy.addon.portalkit.test.GrantOrDenySpecificPermission",
+        "startMethod" : "start(Boolean)",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.portalPermission" : "result.permission"
+          }
+        },
+        "call" : {
+          "params" : [
+            { "name" : "isGrantPermission", "type" : "Boolean" }
+          ],
+          "map" : {
+            "param.isGrantPermission" : "false"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 176, "y" : 1488 },
+        "size" : { "width" : 144, "height" : 44 }
+      },
+      "connect" : { "id" : "f72", "to" : "f69" }
+    }, {
+      "id" : "f78",
+      "type" : "DialogCall",
+      "name" : "Grant permission HTML",
+      "config" : {
+        "dialogId" : "ch.ivy.addon.portalkit.test.GrantOrDenySpecificPermission",
+        "startMethod" : "start(Boolean)",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.portalPermission" : "result.permission"
+          }
+        },
+        "call" : {
+          "params" : [
+            { "name" : "isGrantPermission", "type" : "Boolean" }
+          ],
+          "map" : {
+            "param.isGrantPermission" : "true"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 176, "y" : 1552 },
+        "size" : { "width" : 144, "height" : 44 }
+      },
+      "connect" : { "id" : "f73", "to" : "f71" }
+    }, {
+      "id" : "f80",
+      "type" : "RequestStart",
+      "name" : "denyResetTaskReadyForJoin.ivp",
+      "config" : {
+        "callSignature" : "denyResetTaskReadyForJoin",
+        "outLink" : "denyResetTaskReadyForJoin.ivp"
+      },
+      "visual" : {
+        "at" : { "x" : 896, "y" : 464 },
+        "labelOffset" : { "x" : 16, "y" : 0 }
+      },
+      "connect" : { "id" : "f82", "to" : "f81" }
+    }, {
+      "id" : "f81",
+      "type" : "Script",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import java.util.Objects;",
+            "import ch.ivy.addon.portalkit.enums.PortalPermission;",
+            "import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;",
+            "import ch.ivyteam.ivy.security.IPermission;",
+            "",
+            "IPermission iPermission = IPermissionRepository.get().findByName(PortalPermission.TASK_RESET_READY_FOR_JOIN.getValue());",
+            "if (Objects.nonNull(iPermission)){",
+            "  ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 688, "y" : 464 },
+        "size" : { "width" : 40, "height" : 24 }
+      },
+      "connect" : { "id" : "f83", "to" : "f7", "via" : [ { "x" : 408, "y" : 464 } ] }
+    }, {
+      "id" : "f84",
+      "type" : "Script",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import java.util.Objects;",
+            "import ch.ivy.addon.portalkit.enums.PortalPermission;",
+            "import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;",
+            "import ch.ivyteam.ivy.security.IPermission;",
+            "",
+            "IPermission iPermission = IPermissionRepository.get().findByName(PortalPermission.TASK_RESET_READY_FOR_JOIN.getValue());",
+            "if (Objects.nonNull(iPermission)){",
+            "  ivy.wf.getApplication().getSecurityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 688, "y" : 528 },
+        "size" : { "width" : 48, "height" : 24 }
+      },
+      "connect" : { "id" : "f85", "to" : "f7" }
+    }, {
+      "id" : "f86",
+      "type" : "RequestStart",
+      "name" : "grantResetTaskReadyForJoin.ivp",
+      "config" : {
+        "callSignature" : "grantResetTaskReadyForJoin",
+        "outLink" : "grantResetTaskReadyForJoin.ivp"
+      },
+      "visual" : {
+        "at" : { "x" : 896, "y" : 528 },
+        "labelOffset" : { "x" : 16, "y" : 0 }
+      },
+      "connect" : { "id" : "f87", "to" : "f84" }
+    }, {
+      "id" : "f88",
+      "type" : "RequestStart",
+      "name" : "grantDestroyTaskPermission.ivp",
+      "config" : {
+        "callSignature" : "grantDestroyTaskPermission",
+        "outLink" : "grantDestroyTaskPermission.ivp"
+      },
+      "visual" : {
+        "at" : { "x" : 896, "y" : 592 },
+        "labelOffset" : { "x" : 16, "y" : 0 }
+      },
+      "connect" : { "id" : "f91", "to" : "f90" }
+    }, {
+      "id" : "f90",
+      "type" : "Script",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.security.IPermission;",
+            "",
+            "ivy.task.getApplication().getSecurityDescriptor().grantPermission(IPermission.TASK_DESTROY, ivy.session.getSessionUser());"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 688, "y" : 592 },
+        "size" : { "width" : 56, "height" : 24 }
+      },
+      "connect" : { "id" : "f89", "to" : "f7", "via" : [ { "x" : 408, "y" : 592 } ] }
+    }, {
+      "id" : "f92",
+      "type" : "RequestStart",
+      "name" : "denyDestroyTaskPermission.ivp",
+      "config" : {
+        "callSignature" : "denyDestroyTaskPermission",
+        "outLink" : "denyDestroyTaskPermission.ivp"
+      },
+      "visual" : {
+        "at" : { "x" : 896, "y" : 652 },
+        "labelOffset" : { "x" : 16, "y" : 0 }
+      },
+      "connect" : { "id" : "f95", "to" : "f94" }
+    }, {
+      "id" : "f94",
+      "type" : "Script",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.security.IPermission;",
+            "",
+            "ivy.task.getApplication().getSecurityDescriptor().denyPermission(IPermission.TASK_DESTROY, ivy.session.getSessionUser());"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 688, "y" : 652 },
+        "size" : { "width" : 40, "height" : 24 }
+      },
+      "connect" : { "id" : "f93", "to" : "f7", "via" : [ { "x" : 408, "y" : 652 } ] }
+    }, {
+      "id" : "f96",
+      "type" : "RequestStart",
+      "name" : "grantReadAbsencesPermission.ivp",
+      "config" : {
+        "callSignature" : "grantReadAbsencesPermission",
+        "outLink" : "grantReadAbsencesPermission.ivp"
+      },
+      "visual" : {
+        "at" : { "x" : 896, "y" : 704 },
+        "labelOffset" : { "x" : 16, "y" : 0 }
+      },
+      "connect" : { "id" : "f98", "to" : "f97" }
+    }, {
+      "id" : "f97",
+      "type" : "Script",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.security.IPermission;",
+            "",
+            "ivy.task.getApplication().getSecurityDescriptor().grantPermission(IPermission.USER_READ_ABSENCES, ivy.session.getSessionUser());",
+            "ivy.task.getApplication().getSecurityDescriptor().denyPermission(IPermission.USER_CREATE_ABSENCE, ivy.session.getSessionUser());",
+            "ivy.task.getApplication().getSecurityDescriptor().denyPermission(IPermission.USER_DELETE_ABSENCE, ivy.session.getSessionUser());",
+            "",
+            "ivy.task.getApplication().getSecurityDescriptor().grantPermission(IPermission.USER_DELETE_OWN_ABSENCE, ivy.session.getSessionUser());",
+            "ivy.task.getApplication().getSecurityDescriptor().grantPermission(IPermission.USER_CREATE_OWN_ABSENCE, ivy.session.getSessionUser());"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 688, "y" : 704 },
+        "size" : { "width" : 40, "height" : 24 }
+      },
+      "connect" : { "id" : "f99", "to" : "f7", "via" : [ { "x" : 408, "y" : 704 } ] }
+    }, {
+      "id" : "f100",
+      "type" : "RequestStart",
+      "name" : "grantReadOwnAbsencesPermission.ivp",
+      "config" : {
+        "callSignature" : "grantReadOwnAbsencesPermission",
+        "outLink" : "grantReadOwnAbsencesPermission.ivp"
+      },
+      "visual" : {
+        "at" : { "x" : 896, "y" : 768 },
+        "labelOffset" : { "x" : 16, "y" : 0 }
+      },
+      "connect" : { "id" : "f102", "to" : "f101" }
+    }, {
+      "id" : "f101",
+      "type" : "Script",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.security.IPermission;",
+            "",
+            "ivy.task.getApplication().getSecurityDescriptor().grantPermission(IPermission.USER_READ_OWN_ABSENCES, ivy.session.getSessionUser());"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 688, "y" : 768 },
+        "size" : { "width" : 40, "height" : 24 }
+      },
+      "connect" : { "id" : "f103", "to" : "f7", "via" : [ { "x" : 408, "y" : 768 } ] }
+    }, {
+      "id" : "f108",
+      "type" : "Script",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.security.IPermission;",
+            "",
+            "ivy.task.getApplication().getSecurityDescriptor().grantPermission(IPermission.USER_CREATE_ABSENCE, ivy.session.getSessionUser());"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 688, "y" : 848 },
+        "size" : { "width" : 40, "height" : 24 }
+      },
+      "connect" : { "id" : "f111", "to" : "f7", "via" : [ { "x" : 408, "y" : 848 } ] }
+    }, {
+      "id" : "f109",
+      "type" : "RequestStart",
+      "name" : "grantCreateAbsencePermission.ivp",
+      "config" : {
+        "callSignature" : "grantCreateAbsencePermission",
+        "outLink" : "grantCreateAbsencePermission.ivp"
+      },
+      "visual" : {
+        "at" : { "x" : 896, "y" : 848 },
+        "labelOffset" : { "x" : 16, "y" : 0 }
+      },
+      "connect" : { "id" : "f110", "to" : "f108" }
+    }, {
+      "id" : "f104",
+      "type" : "Script",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.security.IPermission;",
+            "",
+            "ivy.task.getApplication().getSecurityDescriptor().grantPermission(IPermission.USER_DELETE_ABSENCE, ivy.session.getSessionUser());"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 688, "y" : 920 },
+        "size" : { "width" : 40, "height" : 24 }
+      },
+      "connect" : { "id" : "f107", "to" : "f7", "via" : [ { "x" : 408, "y" : 920 } ] }
+    }, {
+      "id" : "f105",
+      "type" : "RequestStart",
+      "name" : "grantDeleteAbsencePermission.ivp",
+      "config" : {
+        "callSignature" : "grantDeleteAbsencePermission",
+        "outLink" : "grantDeleteAbsencePermission.ivp"
+      },
+      "visual" : {
+        "at" : { "x" : 896, "y" : 920 },
+        "labelOffset" : { "x" : 16, "y" : 0 }
+      },
+      "connect" : { "id" : "f106", "to" : "f104" }
+    }, {
+      "id" : "f112",
+      "type" : "Script",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.security.IPermission;",
+            "",
+            "ivy.task.getApplication().getSecurityDescriptor().grantPermission(IPermission.USER_READ_OWN_ABSENCES, ivy.session.getSessionUser());",
+            "ivy.task.getApplication().getSecurityDescriptor().grantPermission(IPermission.USER_READ_ABSENCES, ivy.session.getSessionUser());",
+            "ivy.task.getApplication().getSecurityDescriptor().grantPermission(IPermission.USER_CREATE_SUBSTITUTE, ivy.session.getSessionUser());",
+            "ivy.task.getApplication().getSecurityDescriptor().grantPermission(IPermission.USER_CREATE_OWN_SUBSTITUTE, ivy.session.getSessionUser());",
+            "ivy.task.getApplication().getSecurityDescriptor().grantPermission(IPermission.USER_READ_SUBSTITUTES, ivy.session.getSessionUser());"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 688, "y" : 992 },
+        "size" : { "width" : 40, "height" : 24 }
+      },
+      "connect" : { "id" : "f115", "to" : "f7", "via" : [ { "x" : 408, "y" : 992 } ] }
+    }, {
+      "id" : "f113",
+      "type" : "RequestStart",
+      "name" : "grantCreateSubstitutePermission.ivp",
+      "config" : {
+        "callSignature" : "grantCreateSubstitutePermission",
+        "outLink" : "grantCreateSubstitutePermission.ivp"
+      },
+      "visual" : {
+        "at" : { "x" : 896, "y" : 992 },
+        "labelOffset" : { "x" : 16, "y" : 0 }
+      },
+      "connect" : { "id" : "f114", "to" : "f112" }
+    }, {
+      "id" : "f116",
+      "type" : "RequestStart",
+      "name" : "grantCreateOwnSubstitutePermission.ivp",
+      "config" : {
+        "callSignature" : "grantCreateOwnSubstitutePermission",
+        "outLink" : "grantCreateOwnSubstitutePermission.ivp"
+      },
+      "visual" : {
+        "at" : { "x" : 896, "y" : 1056 },
+        "labelOffset" : { "x" : 16, "y" : 0 }
+      },
+      "connect" : { "id" : "f118", "to" : "f117" }
+    }, {
+      "id" : "f117",
+      "type" : "Script",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.security.IPermission;",
+            "",
+            "ivy.task.getApplication().getSecurityDescriptor().grantPermission(IPermission.USER_READ_OWN_ABSENCES, ivy.session.getSessionUser());",
+            "ivy.task.getApplication().getSecurityDescriptor().grantPermission(IPermission.USER_READ_ABSENCES, ivy.session.getSessionUser());",
+            "ivy.task.getApplication().getSecurityDescriptor().denyPermission(IPermission.USER_CREATE_SUBSTITUTE, ivy.session.getSessionUser());",
+            "ivy.task.getApplication().getSecurityDescriptor().grantPermission(IPermission.USER_CREATE_OWN_SUBSTITUTE, ivy.session.getSessionUser());",
+            "ivy.task.getApplication().getSecurityDescriptor().grantPermission(IPermission.USER_READ_SUBSTITUTES, ivy.session.getSessionUser());"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 688, "y" : 1056 },
+        "size" : { "width" : 40, "height" : 24 }
+      },
+      "connect" : { "id" : "f119", "to" : "f7", "via" : [ { "x" : 408, "y" : 1056 } ] }
+    }, {
+      "id" : "f120",
+      "type" : "Script",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.security.IPermission;",
+            "",
+            "ivy.task.getApplication().getSecurityDescriptor().denyPermission(IPermission.USER_READ_SUBSTITUTES, ivy.session.getSessionUser());",
+            "ivy.task.getApplication().getSecurityDescriptor().grantPermission(IPermission.USER_READ_OWN_SUBSTITUTES , ivy.session.getSessionUser());"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 688, "y" : 1120 },
+        "size" : { "width" : 40, "height" : 24 }
+      },
+      "connect" : { "id" : "f123", "to" : "f7", "via" : [ { "x" : 408, "y" : 1120 }, { "x" : 408, "y" : 528 } ] }
+    }, {
+      "id" : "f121",
+      "type" : "RequestStart",
+      "name" : "denyReadSubstitutesPermission.ivp",
+      "config" : {
+        "callSignature" : "denyReadSubstitutesPermission",
+        "outLink" : "denyReadSubstitutesPermission.ivp"
+      },
+      "visual" : {
+        "at" : { "x" : 896, "y" : 1120 },
+        "labelOffset" : { "x" : 16, "y" : 0 }
+      },
+      "connect" : { "id" : "f122", "to" : "f120" }
+    }, {
+      "id" : "f124",
+      "type" : "Script",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import java.util.Objects;",
+            "import ch.ivy.addon.portalkit.enums.PortalPermission;",
+            "import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;",
+            "import ch.ivyteam.ivy.security.IPermission;",
+            "",
+            "IPermission iPermission = IPermissionRepository.instance().findByName(PortalPermission.DASHBOARD_WRITE_OWN.getValue());",
+            "if (Objects.nonNull(iPermission)){",
+            "  ivy.wf.getApplication().getSecurityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 688, "y" : 1184 },
+        "size" : { "width" : 40, "height" : 24 }
+      },
+      "connect" : { "id" : "f136", "to" : "f7", "via" : [ { "x" : 408, "y" : 1184 }, { "x" : 408, "y" : 528 } ] }
+    }, {
+      "id" : "f125",
+      "type" : "RequestStart",
+      "name" : "grantDashboardWriteOwnPermission.ivp",
+      "config" : {
+        "callSignature" : "grantDashboardWriteOwnPermission",
+        "outLink" : "grantDashboardWriteOwnPermission.ivp"
+      },
+      "visual" : {
+        "at" : { "x" : 896, "y" : 1184 },
+        "labelOffset" : { "x" : 16, "y" : 0 }
+      },
+      "connect" : { "id" : "f126", "to" : "f124" }
+    }, {
+      "id" : "f127",
+      "type" : "RequestStart",
+      "name" : "denyDashboardWriteOwnPermission.ivp",
+      "config" : {
+        "callSignature" : "denyDashboardWriteOwnPermission",
+        "outLink" : "denyDashboardWriteOwnPermission.ivp"
+      },
+      "visual" : {
+        "at" : { "x" : 896, "y" : 1248 },
+        "labelOffset" : { "x" : 16, "y" : 0 }
+      },
+      "connect" : { "id" : "f129", "to" : "f128" }
+    }, {
+      "id" : "f128",
+      "type" : "Script",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import java.util.Objects;",
+            "import ch.ivy.addon.portalkit.enums.PortalPermission;",
+            "import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;",
+            "import ch.ivyteam.ivy.security.IPermission;",
+            "",
+            "IPermission iPermission = IPermissionRepository.instance().findByName(PortalPermission.DASHBOARD_WRITE_OWN.getValue());",
+            "if (Objects.nonNull(iPermission)){",
+            "  ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 688, "y" : 1248 },
+        "size" : { "width" : 40, "height" : 24 }
+      },
+      "connect" : { "id" : "f137", "to" : "f7", "via" : [ { "x" : 408, "y" : 1248 } ] }
+    }, {
+      "id" : "f130",
+      "type" : "Script",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import java.util.Objects;",
+            "import ch.ivy.addon.portalkit.enums.PortalPermission;",
+            "import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;",
+            "import ch.ivyteam.ivy.security.IPermission;",
+            "",
+            "IPermission iPermission = IPermissionRepository.instance().findByName(PortalPermission.DASHBOARD_WRITE_PUBLIC.getValue());",
+            "if (Objects.nonNull(iPermission)){",
+            "  ivy.wf.getApplication().getSecurityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 688, "y" : 1312 },
+        "size" : { "width" : 40, "height" : 24 }
+      },
+      "connect" : { "id" : "f138", "to" : "f7", "via" : [ { "x" : 408, "y" : 1312 } ] }
+    }, {
+      "id" : "f131",
+      "type" : "RequestStart",
+      "name" : "grantDashboardWritePublicPermission.ivp",
+      "config" : {
+        "callSignature" : "grantDashboardWritePublicPermission",
+        "outLink" : "grantDashboardWritePublicPermission.ivp"
+      },
+      "visual" : {
+        "at" : { "x" : 896, "y" : 1312 },
+        "labelOffset" : { "x" : 16, "y" : 0 }
+      },
+      "connect" : { "id" : "f132", "to" : "f130" }
+    }, {
+      "id" : "f133",
+      "type" : "Script",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import java.util.Objects;",
+            "import ch.ivy.addon.portalkit.enums.PortalPermission;",
+            "import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;",
+            "import ch.ivyteam.ivy.security.IPermission;",
+            "",
+            "IPermission iPermission = IPermissionRepository.instance().findByName(PortalPermission.DASHBOARD_WRITE_PUBLIC.getValue());",
+            "if (Objects.nonNull(iPermission)){",
+            "  ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 688, "y" : 1376 },
+        "size" : { "width" : 40, "height" : 24 }
+      },
+      "connect" : { "id" : "f139", "to" : "f7", "via" : [ { "x" : 408, "y" : 1376 } ] }
+    }, {
+      "id" : "f134",
+      "type" : "RequestStart",
+      "name" : "denyDashboardWritePublicPermission.ivp",
+      "config" : {
+        "callSignature" : "denyDashboardWritePublicPermission",
+        "outLink" : "denyDashboardWritePublicPermission.ivp"
+      },
+      "visual" : {
+        "at" : { "x" : 896, "y" : 1376 },
+        "labelOffset" : { "x" : 16, "y" : 0 }
+      },
+      "connect" : { "id" : "f135", "to" : "f133" }
+    } ],
+  "layout" : {
+    "lanes" : [ {
+        "name" : "Request start",
+        "size" : 1160
+      } ],
+    "orientation" : "VERTICAL"
+  }
+}

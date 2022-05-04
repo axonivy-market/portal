@@ -1,0 +1,28 @@
+{
+  "format" : "9.4.8",
+  "id" : "1703222760AD37E2",
+  "data" : "com.axonivy.portal.userexamples.Data",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "start.ivp",
+      "config" : {
+        "callSignature" : "start",
+        "task" : {
+          "name" : "<%=ivy.cms.co(\"/Processes/CaseMap/abortRequest\")%>"
+        },
+        "showInStartList" : false,
+        "outLink" : "start.ivp"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f1",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 64 }
+      }
+    } ]
+}

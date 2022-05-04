@@ -1,0 +1,249 @@
+{
+  "format" : "9.4.8",
+  "id" : "167CFB0D927CF955",
+  "data" : "ch.ivy.addon.portalkit.component.CompactProcessWidget.CompactProcessWidgetData",
+  "kind" : "HTML_DIALOG",
+  "elements" : [ {
+      "id" : "f1",
+      "type" : "HtmlDialogStart",
+      "name" : "start",
+      "config" : {
+        "callSignature" : "start",
+        "guid" : "167CEF3C0BEA1F15"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 96 },
+        "labelOffset" : { "x" : -32, "y" : 15 }
+      },
+      "connect" : { "id" : "f4", "to" : "f3" }
+    }, {
+      "id" : "f3",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 320, "y" : 96 }
+      }
+    }, {
+      "id" : "f0",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "collectProcesses()",
+      "config" : {
+        "callSignature" : "collectProcesses",
+        "result" : {
+          "params" : [
+            { "name" : "userProcesses", "type" : "java.util.List<ch.ivy.addon.portalkit.configuration.UserProcess>" }
+          ],
+          "map" : {
+            "result.userProcesses" : "in.userProcesses"
+          }
+        },
+        "guid" : "167CF9865BEC5C1B"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 192 },
+        "labelOffset" : { "x" : -48, "y" : 16 }
+      },
+      "connect" : { "id" : "f14", "to" : "f6" }
+    }, {
+      "id" : "f6",
+      "type" : "SubProcessCall",
+      "name" : "ProcessService",
+      "config" : {
+        "processCall" : "Ivy Data Processes/ProcessService:findProcesses()",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.userProcesses" : "ch.ivy.addon.portalkit.mapper.UserProcessMapper.toUserProcesses(result.processes)"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 232, "y" : 192 }
+      },
+      "connect" : { "id" : "f11", "to" : "f10" }
+    }, {
+      "id" : "f8",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 680, "y" : 192 }
+      }
+    }, {
+      "id" : "f10",
+      "type" : "Script",
+      "name" : [
+        "Collect express",
+        "workflow"
+      ],
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.service.ExpressProcessService;",
+            "import ch.ivy.addon.portalkit.mapper.UserProcessMapper;",
+            "import ch.ivy.addon.portalkit.util.ProcessStartUtils;",
+            "import ch.ivy.addon.portalkit.util.PermissionUtils;",
+            "import org.apache.commons.lang3.StringUtils;",
+            "import ch.ivy.addon.portalkit.bo.ExpressProcess;",
+            "import ch.ivy.addon.portalkit.service.ProcessStartCollector;",
+            "",
+            "ProcessStartCollector processStartCollector = new ProcessStartCollector();",
+            "String expressStartLink = processStartCollector.findExpressWorkflowStartLink();",
+            "if (StringUtils.isNotBlank(expressStartLink)) {",
+            "  List<ExpressProcess> workflows = ExpressProcessService.getInstance().findReadyToExecuteProcessOrderByName();",
+            "  for(ExpressProcess wf : workflows) {",
+            "    if (PermissionUtils.checkAbleToStartAndAbleToEditExpressWorkflow(wf) && !ProcessStartUtils.isExpressProcessAdded(wf, in.userProcesses)) {",
+            "      in.userProcesses.add(UserProcessMapper.toUserProcess(wf, expressStartLink));",
+            "    }",
+            "  }",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 392, "y" : 192 },
+        "size" : { "width" : 128, "height" : 44 }
+      },
+      "connect" : { "id" : "f9", "to" : "f12" }
+    }, {
+      "id" : "f12",
+      "type" : "Script",
+      "name" : "Collect external links",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.mapper.UserProcessMapper;",
+            "import ch.ivy.addon.portalkit.service.ExternalLinkService;",
+            "import ch.ivy.addon.portalkit.configuration.UserProcess;",
+            "import java.util.ArrayList;",
+            "import ch.ivy.addon.portalkit.configuration.ExternalLink;",
+            "",
+            "in.userProcesses.addAll(UserProcessMapper.externalLinksToUserProcesses(ExternalLinkService.getInstance().findAll()));"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 568, "y" : 192 },
+        "size" : { "width" : 128, "height" : 44 }
+      },
+      "connect" : { "id" : "f13", "to" : "f8" }
+    }, {
+      "id" : "f2",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "generateProcessDisplayName()",
+      "config" : {
+        "callSignature" : "generateProcessDisplayName",
+        "guid" : "1762D3ECC0BAE855"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 320 },
+        "labelOffset" : { "x" : -79, "y" : 21 }
+      },
+      "connect" : { "id" : "f7", "to" : "f5" }
+    }, {
+      "id" : "f5",
+      "type" : "Script",
+      "name" : "Can add languages",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import org.apache.commons.lang3.StringUtils;",
+            "import ch.ivy.addon.portalkit.bean.CompactProcessWidgetBean;",
+            "import ch.ivy.addon.portalkit.jsf.ManagedBeans;",
+            "",
+            "CompactProcessWidgetBean compactProcessWidgetBean = ManagedBeans.get(\"compactProcessWidgetBean\") as CompactProcessWidgetBean;",
+            "in.canAddLanguages = StringUtils.isNotEmpty(compactProcessWidgetBean.getEditingProcess().getProcessName());"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 248, "y" : 320 },
+        "size" : { "width" : 128, "height" : 44 }
+      },
+      "connect" : { "id" : "f18", "to" : "f17" }
+    }, {
+      "id" : "f15",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 736, "y" : 320 }
+      }
+    }, {
+      "id" : "f17",
+      "type" : "Alternative",
+      "name" : "is provided process name?",
+      "visual" : {
+        "at" : { "x" : 400, "y" : 320 },
+        "labelOffset" : { "x" : -70, "y" : -40 }
+      },
+      "connect" : [
+        { "id" : "f20", "to" : "f21", "condition" : "in.#canAddLanguages" },
+        { "id" : "f19", "to" : "f15", "via" : [ { "x" : 400, "y" : 368 }, { "x" : 736, "y" : 368 } ] }
+      ]
+    }, {
+      "id" : "f21",
+      "type" : "Script",
+      "name" : "Generate display names",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.bean.CompactProcessWidgetBean;",
+            "import ch.ivy.addon.portalkit.jsf.ManagedBeans;",
+            "",
+            "CompactProcessWidgetBean compactProcessWidgetBean = ManagedBeans.get(\"compactProcessWidgetBean\") as CompactProcessWidgetBean;",
+            "in.displayNames = compactProcessWidgetBean.generateProcessDisplayNames();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 576, "y" : 320 },
+        "size" : { "width" : 144, "height" : 44 }
+      },
+      "connect" : { "id" : "f16", "to" : "f15" }
+    }, {
+      "id" : "f24",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "processDisplayNames()",
+      "config" : {
+        "callSignature" : "processDisplayNames",
+        "guid" : "1762D45E9B96E592"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 448 },
+        "labelOffset" : { "x" : -72, "y" : 20 }
+      },
+      "connect" : { "id" : "f28", "to" : "f27" }
+    }, {
+      "id" : "f25",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 432, "y" : 448 }
+      }
+    }, {
+      "id" : "f27",
+      "type" : "Script",
+      "name" : "Update display names",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import org.apache.commons.lang3.StringUtils;",
+            "import ch.ivy.addon.portalkit.dto.DisplayName;",
+            "import ch.ivy.addon.portalkit.bean.CompactProcessWidgetBean;",
+            "import ch.ivy.addon.portalkit.jsf.ManagedBeans;",
+            "",
+            "CompactProcessWidgetBean compactProcessWidgetBean = ManagedBeans.get(\"compactProcessWidgetBean\") as CompactProcessWidgetBean;",
+            "String defaultProcessName = compactProcessWidgetBean.getEditingProcess().getProcessName();",
+            "List<DisplayName> processDisplayNames = new List();",
+            "processDisplayNames.addAll(in.displayNames);",
+            "for (DisplayName name : processDisplayNames) {",
+            "    if (StringUtils.isBlank(name.getValue())) {",
+            "        name.setValue(defaultProcessName);",
+            "    }",
+            "}",
+            "compactProcessWidgetBean.getEditingProcess().setNames(processDisplayNames);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 256, "y" : 448 },
+        "size" : { "width" : 128, "height" : 44 }
+      },
+      "connect" : { "id" : "f26", "to" : "f25" }
+    } ]
+}

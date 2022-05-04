@@ -1,0 +1,36 @@
+{
+  "format" : "9.4.8",
+  "id" : "176CBB45115F7981",
+  "data" : "com.axonivy.portal.developerexamples.customization.CaseWidget.CaseWidgetData",
+  "kind" : "HTML_DIALOG",
+  "elements" : [ {
+      "id" : "f6",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 384, "y" : 96 },
+        "size" : { "width" : 22, "height" : 22 }
+      }
+    }, {
+      "id" : "f7",
+      "type" : "HtmlDialogStart",
+      "name" : "useView(CaseView)",
+      "config" : {
+        "callSignature" : "useView",
+        "input" : {
+          "params" : [
+            { "name" : "caseView", "type" : "ch.ivy.addon.portal.generic.view.CaseView" }
+          ],
+          "map" : {
+            "out.caseView" : "param.caseView"
+          }
+        },
+        "guid" : "176CC20160848611"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 96 },
+        "size" : { "width" : 22, "height" : 22 },
+        "labelOffset" : { "x" : 14, "y" : 0 }
+      },
+      "connect" : { "id" : "f8", "to" : "f6" }
+    } ]
+}

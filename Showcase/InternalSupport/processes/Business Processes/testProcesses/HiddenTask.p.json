@@ -1,0 +1,80 @@
+{
+  "format" : "9.4.8",
+  "id" : "15C0A4B1BA58DEA3",
+  "data" : "internaltest.Data",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "start.ivp",
+      "config" : {
+        "callSignature" : "start",
+        "startDescription" : "Task, which has the HIDE additional property, won't be displayed in Portal",
+        "task" : {
+          "name" : "First hidden Task",
+          "description" : "Task, which has the HIDE additional property, won't be displayed in Portal"
+        },
+        "outLink" : "start.ivp",
+        "startName" : "Process contains hidden task"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : { "id" : "f9", "to" : "f5" }
+    }, {
+      "id" : "f1",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 544, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "TaskSwitchEvent",
+      "config" : {
+        "outLinks" : [ "TaskA.ivp" ],
+        "case" : {
+          "name" : "Case contains hidden task"
+        },
+        "task" : {
+          "name" : "Second Hidden Task",
+          "description" : "Task, which has the HIDE additional property, won't be displayed in Portal",
+          "skipTasklist" : true
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 336, "y" : 64 }
+      },
+      "connect" : { "id" : "f7", "to" : "f6", "condition" : "ivp==\"TaskA.ivp\"" }
+    }, {
+      "id" : "f5",
+      "type" : "Script",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.publicapi.TaskAPI;",
+            "TaskAPI.setHidePropertyToHideInPortal(ivy.task);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 216, "y" : 64 }
+      },
+      "connect" : { "id" : "f4", "to" : "f3", "var" : "in1" }
+    }, {
+      "id" : "f6",
+      "type" : "Script",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.publicapi.TaskAPI;",
+            "TaskAPI.setHidePropertyToHideInPortal(ivy.task);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 450, "y" : 64 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    } ]
+}

@@ -1,0 +1,43 @@
+{
+  "format" : "9.4.8",
+  "id" : "15D4E4EBDE11BDC2",
+  "data" : "internaltest.Data",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "start.ivp",
+      "config" : {
+        "callSignature" : "start",
+        "case" : {
+          "name" : "Cancel Leave Request"
+        },
+        "task" : {
+          "name" : "Cancel Approval Request"
+        },
+        "outLink" : "start.ivp"
+      },
+      "visual" : {
+        "at" : { "x" : 80, "y" : 72 }
+      },
+      "connect" : { "id" : "f2", "to" : "f3" }
+    }, {
+      "id" : "f1",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 336, "y" : 72 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "DialogCall",
+      "name" : "Cancel Approval Request",
+      "config" : {
+        "dialogId" : "internaltest.ui.CancelApprovalRequest",
+        "startMethod" : "start()"
+      },
+      "visual" : {
+        "at" : { "x" : 208, "y" : 72 },
+        "size" : { "width" : 144, "height" : 44 }
+      },
+      "connect" : { "id" : "f4", "to" : "f1" }
+    } ]
+}

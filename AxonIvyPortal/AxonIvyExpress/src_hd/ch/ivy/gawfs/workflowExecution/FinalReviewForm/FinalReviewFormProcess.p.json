@@ -1,0 +1,112 @@
+{
+  "format" : "9.4.8",
+  "id" : "163051859F226598",
+  "data" : "ch.ivy.gawfs.workflowExecution.FinalReviewForm.FinalReviewFormData",
+  "kind" : "HTML_DIALOG",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start()",
+      "config" : {
+        "callSignature" : "start",
+        "input" : {
+          "params" : [
+            { "name" : "finishedTasks", "type" : "java.util.List<gawfs.TaskDef>" },
+            { "name" : "steps", "type" : "java.util.List<String>" },
+            { "name" : "actualStepIndex", "type" : "Integer" }
+          ],
+          "map" : {
+            "out.actualStepIndex" : "param.actualStepIndex",
+            "out.finishedTasks" : "param.finishedTasks",
+            "out.steps" : "param.steps"
+          }
+        },
+        "guid" : "16305185A13E9F88"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : { "id" : "f7", "to" : "f6" }
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 544, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "HtmlDialogEventStart",
+      "name" : "close",
+      "config" : {
+        "guid" : "16305185A2B30A9B"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 160 },
+        "labelOffset" : { "x" : -15, "y" : 12 }
+      },
+      "connect" : { "id" : "f5", "to" : "f4" }
+    }, {
+      "id" : "f4",
+      "type" : "HtmlDialogExit",
+      "visual" : {
+        "at" : { "x" : 224, "y" : 160 }
+      }
+    }, {
+      "id" : "f16",
+      "type" : "HtmlDialogEventStart",
+      "name" : "cancel",
+      "config" : {
+        "guid" : "16348C318DEC020D"
+      },
+      "visual" : {
+        "at" : { "x" : 90, "y" : 264 }
+      },
+      "connect" : { "id" : "f18", "to" : "f17" }
+    }, {
+      "id" : "f19",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 538, "y" : 264 }
+      }
+    }, {
+      "id" : "f17",
+      "type" : "Script",
+      "name" : "Reset task",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.util.TaskUtils;",
+            "import ch.ivy.addon.portalkit.publicapi.PortalNavigatorAPI;",
+            "",
+            "TaskUtils.resetTask(ivy.task);",
+            "PortalNavigatorAPI.navigateToPortalEndPage();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 306, "y" : 264 }
+      },
+      "connect" : { "id" : "f20", "to" : "f19" }
+    }, {
+      "id" : "f6",
+      "type" : "Script",
+      "name" : "Initialize",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import gawfs.TaskDef;",
+            "",
+            "for (TaskDef task : in.finishedTasks) {",
+            "  task.actualApplicant = ivy.security.users().find(task.actualApplicantName);",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 285, "y" : 63 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    } ]
+}

@@ -1,0 +1,65 @@
+{
+  "format" : "9.4.8",
+  "id" : "17B2F35B7DC5B800",
+  "data" : "com.axonivy.portal.developerexamples.showcase.CustomWidgetExampleData",
+  "elements" : [ {
+      "id" : "f1",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "DialogCall",
+      "name" : "InvestmentList",
+      "config" : {
+        "dialogId" : "com.axonivy.portal.developerexamples.testdata.InvestmentList",
+        "startMethod" : "start(String,String,String)",
+        "call" : {
+          "params" : [
+            { "name" : "startDate", "type" : "String" },
+            { "name" : "note", "type" : "String" },
+            { "name" : "user", "type" : "String" }
+          ],
+          "map" : {
+            "param.startDate" : "in.startDate",
+            "param.note" : "in.note",
+            "param.user" : "in.customer"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "investmentList.ivp",
+      "config" : {
+        "callSignature" : "investmentList",
+        "input" : {
+          "params" : [
+            { "name" : "date__startDate", "type" : "String" },
+            { "name" : "user__customer", "type" : "String" },
+            { "name" : "string__note", "type" : "String" }
+          ],
+          "map" : {
+            "out.customer" : "param.user__customer",
+            "out.note" : "param.string__note",
+            "out.startDate" : "param.date__startDate"
+          }
+        },
+        "outLink" : "investmentList.ivp",
+        "startCustomFields" : [
+          { "name" : "isDashboardProcess", "value" : "true" }
+        ],
+        "startName" : "Investment List (Example for Custom Widget on Dashboard)"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 },
+        "labelOffset" : { "x" : -21, "y" : 17 }
+      },
+      "connect" : { "id" : "f4", "to" : "f3" }
+    } ]
+}

@@ -1,0 +1,321 @@
+{
+  "format" : "9.4.8",
+  "id" : "16BF516D50A96350",
+  "data" : "ch.ivy.addon.portalkit.component.SideStep.SideStepData",
+  "kind" : "HTML_DIALOG",
+  "elements" : [ {
+      "id" : "f17",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : -96, "y" : 1344 },
+        "size" : { "width" : 20, "height" : 20 }
+      }
+    }, {
+      "id" : "f62",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 288 }
+      }
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 96 }
+      }
+    }, {
+      "id" : "f39",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "parkTask(ITask)",
+      "config" : {
+        "callSignature" : "parkTask",
+        "input" : {
+          "params" : [
+            { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask" }
+          ],
+          "map" : {
+            "out.task" : "param.task"
+          }
+        },
+        "guid" : "16816B96E5CA66CF"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 288 }
+      },
+      "connect" : { "id" : "f61", "to" : "f48" }
+    }, {
+      "id" : "f48",
+      "type" : "Script",
+      "name" : "Park task",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.util.TaskUtils;",
+            "",
+            "TaskUtils.parkTask(in.task);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 288 }
+      },
+      "connect" : { "id" : "f63", "to" : "f62" }
+    }, {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start()",
+      "config" : {
+        "callSignature" : "start",
+        "guid" : "16816B3D5FE7A2CB"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 96 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f6",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "resetTask(ITask)",
+      "config" : {
+        "callSignature" : "resetTask",
+        "input" : {
+          "params" : [
+            { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask" }
+          ],
+          "map" : {
+            "out.task" : "param.task"
+          }
+        },
+        "guid" : "16BF8B07EB1F1B35"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 192 }
+      },
+      "connect" : { "id" : "f18", "to" : "f16" }
+    }, {
+      "id" : "f9",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 192 }
+      }
+    }, {
+      "id" : "f16",
+      "type" : "Script",
+      "name" : "Reset Task",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.util.TaskUtils;",
+            "",
+            "TaskUtils.resetTask(in.task);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 192 }
+      },
+      "connect" : { "id" : "f22", "to" : "f9" }
+    }, {
+      "id" : "f3",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "openDetails(ITask,TaskLazyDataModel,Boolean)",
+      "config" : {
+        "callSignature" : "openDetails",
+        "input" : {
+          "params" : [
+            { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask" },
+            { "name" : "dataModel", "type" : "ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel" },
+            { "name" : "inFrame", "type" : "Boolean" }
+          ],
+          "map" : {
+            "out.dataModel" : "param.dataModel",
+            "out.inFrame" : "param.inFrame",
+            "out.task" : "param.task"
+          }
+        },
+        "guid" : "1700E48002A4D237"
+      },
+      "visual" : {
+        "at" : { "x" : 88, "y" : 400 },
+        "labelOffset" : { "x" : -70, "y" : 15 }
+      },
+      "connect" : { "id" : "f14", "to" : "f13" }
+    }, {
+      "id" : "f7",
+      "type" : "SubProcessCall",
+      "name" : "TaskDetails in frame",
+      "config" : {
+        "processCall" : "Functional Processes/OpenPortalTaskDetailsHook:callInFrame(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,ch.ivy.addon.portalkit.enums.PortalPage,Boolean)",
+        "call" : {
+          "params" : [
+            { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask" },
+            { "name" : "dataModel", "type" : "ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel" },
+            { "name" : "portalPage", "type" : "ch.ivy.addon.portalkit.enums.PortalPage" },
+            { "name" : "isFromTaskList", "type" : "Boolean" }
+          ],
+          "map" : {
+            "param.task" : "in.task",
+            "param.dataModel" : "in.dataModel",
+            "param.portalPage" : "ch.ivy.addon.portalkit.enums.PortalPage.valueOf(in.currentPortalPage)",
+            "param.isFromTaskList" : "true"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 544, "y" : 400 },
+        "size" : { "width" : 128, "height" : 44 }
+      }
+    }, {
+      "id" : "f4",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "clearDelay(ITask)",
+      "config" : {
+        "callSignature" : "clearDelay",
+        "input" : {
+          "params" : [
+            { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask" }
+          ],
+          "map" : {
+            "out.task" : "param.task"
+          }
+        },
+        "guid" : "17350C978AECF036"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 576 },
+        "labelOffset" : { "x" : -46, "y" : 17 }
+      },
+      "connect" : { "id" : "f12", "to" : "f11" }
+    }, {
+      "id" : "f5",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 384, "y" : 576 }
+      }
+    }, {
+      "id" : "f11",
+      "type" : "Script",
+      "name" : "clear the delay time",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.util.TaskUtils;",
+            "import org.apache.commons.lang3.StringUtils;",
+            "import ch.ivyteam.ivy.security.IUser;",
+            "import ch.ivy.addon.portalkit.service.TaskInforActionService;",
+            "",
+            "boolean isDone = TaskUtils.removeTaskDelay(in.task);",
+            "if (isDone) {",
+            "  TaskInforActionService service = new TaskInforActionService();",
+            "  IUser user = ivy.session.getSessionUser();",
+            "  String fullName = user.getFullName();",
+            "  String userName = StringUtils.substring(user.getMemberName(), 1);",
+            "  String delayNote = service.prepareChangeDelayNoteContent(fullName, userName, new Date(), in.task.getId());",
+            "  in.task.getCase().createNote(ivy.session, delayNote);",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 232, "y" : 576 }
+      },
+      "connect" : { "id" : "f10", "to" : "f5" }
+    }, {
+      "id" : "f13",
+      "type" : "Alternative",
+      "name" : "in frame ?",
+      "visual" : {
+        "at" : { "x" : 320, "y" : 400 },
+        "labelOffset" : { "x" : -25, "y" : -34 }
+      },
+      "connect" : [
+        { "id" : "f8", "to" : "f7", "label" : {
+            "name" : "yes",
+            "offset" : { "x" : 0, "y" : -14 }
+          }, "condition" : "in.inFrame" },
+        { "id" : "f19", "to" : "f15", "via" : [ { "x" : 320, "y" : 496 } ] }
+      ]
+    }, {
+      "id" : "f15",
+      "type" : "SubProcessCall",
+      "name" : "OpenPortalTaskDetails",
+      "config" : {
+        "processCall" : "Functional Processes/OpenPortalTaskDetailsHook:call(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,ch.ivy.addon.portalkit.enums.PortalPage,Boolean)",
+        "call" : {
+          "params" : [
+            { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask" },
+            { "name" : "dataModel", "type" : "ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel" },
+            { "name" : "portalPage", "type" : "ch.ivy.addon.portalkit.enums.PortalPage" },
+            { "name" : "isFromTaskList", "type" : "Boolean" }
+          ],
+          "map" : {
+            "param.task" : "in.task",
+            "param.dataModel" : "in.dataModel",
+            "param.portalPage" : "ch.ivy.addon.portalkit.enums.PortalPage.valueOf(in.currentPortalPage)",
+            "param.isFromTaskList" : "true"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 544, "y" : 496 },
+        "size" : { "width" : 144, "height" : 44 }
+      }
+    }, {
+      "id" : "f20",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "clearExpiryTime(ITask)",
+      "config" : {
+        "callSignature" : "clearExpiryTime",
+        "input" : {
+          "params" : [
+            { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask" }
+          ],
+          "map" : {
+            "out.task" : "param.task"
+          }
+        },
+        "guid" : "178ED5B91C3C3247"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 704 },
+        "labelOffset" : { "x" : -50, "y" : 18 }
+      },
+      "connect" : { "id" : "f25", "to" : "f24" }
+    }, {
+      "id" : "f21",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 384, "y" : 704 }
+      }
+    }, {
+      "id" : "f24",
+      "type" : "Script",
+      "name" : "remove expiry time",
+      "config" : {
+        "output" : {
+          "code" : [
+            "in.task.setExpiryTimestamp(null);",
+            "",
+            "import ch.ivy.addon.portalkit.util.TaskUtils;",
+            "import org.apache.commons.lang3.StringUtils;",
+            "import ch.ivyteam.ivy.security.IUser;",
+            "import ch.ivy.addon.portalkit.service.TaskInforActionService;",
+            "",
+            "boolean isSuccess = TaskUtils.removeTaskDeadline(in.task);",
+            "if (isSuccess) {",
+            "  TaskInforActionService service = new TaskInforActionService();",
+            "  IUser user = ivy.session.getSessionUser();",
+            "  String fullName = user.getFullName();",
+            "  String userName = StringUtils.substring(user.getMemberName(), 1);",
+            "  String notes = service.prepareRemoveExpiryTimeNoteContent(fullName, userName, in.task.getId());",
+            "  in.task.getCase().createNote(ivy.session, notes);",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 232, "y" : 704 }
+      },
+      "connect" : { "id" : "f23", "to" : "f21" }
+    } ]
+}

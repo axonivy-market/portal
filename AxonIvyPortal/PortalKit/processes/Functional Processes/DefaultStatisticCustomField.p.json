@@ -1,0 +1,66 @@
+{
+  "format" : "9.4.8",
+  "id" : "16A684441A0EF157",
+  "data" : "ch.ivy.addon.portalkit.DefaultStatisticCustomFieldData",
+  "kind" : "CALLABLE_SUB",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "CallSubStart",
+      "name" : "createDefaultStatisticCustomFields()",
+      "config" : {
+        "callSignature" : "createDefaultStatisticCustomFields",
+        "result" : {
+          "params" : [
+            { "name" : "customFields", "type" : "java.util.List<String>" }
+          ],
+          "map" : {
+            "result.customFields" : "in.customFields"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 },
+        "labelOffset" : { "x" : 28, "y" : -7 }
+      },
+      "connect" : { "id" : "f4", "to" : "f3" }
+    }, {
+      "id" : "f1",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 96, "y" : 312 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "Script",
+      "name" : "get custom field name",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import java.util.Arrays;",
+            "",
+            "in.customFields = Arrays.asList(\"CustomVarCharField1\", \"CustomVarCharField2\", \"CustomVarCharField3\", \"CustomVarCharField4\", \"CustomVarCharField5\");"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 192 },
+        "size" : { "width" : 128, "height" : 44 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f5",
+      "type" : "ProcessAnnotation",
+      "name" : [
+        "// FOLLOW THIS INSTRUCTION TO CREATE CUSTOM STRING FIELD",
+        "// CREATE LIST OF YOUR CUSTOM STRING FIELD NAME",
+        "// DEFAULT IS \"CustomVarCharField1\", \"CustomVarCharField2\", \"CustomVarCharField3\", \"CustomVarCharField4\", \"CustomVarCharField5\"",
+        "// YOU CAN CREATE YOUR OWN CUSTOM STRING FIELD NAME",
+        "import java.util.Arrays;",
+        "in.customFields = Arrays.asList(\"MyCustomStringField1\", \"MyCustomStringField2\");"
+      ],
+      "visual" : {
+        "at" : { "x" : 648, "y" : 176 },
+        "size" : { "width" : 768, "height" : 124 }
+      }
+    } ]
+}

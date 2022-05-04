@@ -1,0 +1,56 @@
+{
+  "format" : "9.4.8",
+  "id" : "1624CFE2532EF6BE",
+  "data" : "ch.ivy.addon.portal.generic.SetAdditonalCaseDetailPageData",
+  "kind" : "CALLABLE_SUB",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "CallSubStart",
+      "name" : "call(String)",
+      "config" : {
+        "callSignature" : "call",
+        "input" : {
+          "params" : [
+            { "name" : "linkToAddtionalCaseDetailPage", "type" : "String" }
+          ],
+          "map" : {
+            "out.linkToAdditonalCaseDetailPage" : "param.linkToAddtionalCaseDetailPage"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : { "id" : "f4", "to" : "f3" }
+    }, {
+      "id" : "f1",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "Script",
+      "name" : "Set additional case detail page",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;",
+            "import ch.ivy.addon.portalkit.util.ProcessStartUtils;",
+            "import ch.ivy.addon.portalkit.enums.AdditionalProperty;",
+            "",
+            "String casePageUrl = ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(in.linkToAdditonalCaseDetailPage)",
+            "    + \"?caseId=\" + ivy.case.getId();",
+            "                      ",
+            "ivy.case.customFields().textField(AdditionalProperty.CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE.toString()).set(casePageUrl);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 },
+        "size" : { "width" : 176, "height" : 44 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    } ]
+}
