@@ -114,6 +114,37 @@ In engine
    project.
 #. Follow detailed migration notes for each version below.
 
+Migrate 9.3 to 9.4
+------------------
+
+If you configured Process widgets in your own dashboards as described in :ref:`configure-new-dashboard-proces-widget`, 
+you need to adapt JSON as follows:
+
+* Search text ``"type":"process"``, then find related ``displayMode`` of that Process widget.
+* If ``displayMode`` is ``COMPACT_MODE``, change ``type`` to ``compact-process``.
+* If ``displayMode`` is ``COMBINED_MODE``, change ``type`` to ``combined-process``.
+* If ``displayMode`` is ``FULL_MODE``, change ``type`` to ``full-process``.
+* If ``displayMode`` is ``IMAGE_MODE``, change ``type`` to ``image-process``.
+
+For example:
+
+   In 9.3, JSON is
+
+   .. code-block:: json
+
+      {"type":"process","displayMode":"COMPACT_MODE","id":"process_1","name":"Your Processes1",
+      "layout":{"id":null,"styleClass":null,"style":null,"w":3,"h":8,"x":5,"y":0}}
+
+   ..
+
+   In 9.4, update JSON to
+
+   .. code-block:: json
+
+      {"type":"compact-process","displayMode":"COMPACT_MODE","id":"process_1","name":"Your Processes1",
+      "layout":{"id":null,"styleClass":null,"style":null,"w":3,"h":8,"x":5,"y":0}}
+
+   ..
 
 Migrate to 9.3
 --------------

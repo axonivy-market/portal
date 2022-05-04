@@ -58,7 +58,7 @@ public final class PortalSessionExtension implements ISessionExtension {
     }
     try {
       executeWithIvyContext(() -> {
-        if (chatService() != null && StringUtils.isNotBlank(session.getHttpSessionIdentifier())
+        if (chatService() != null //TODO fix getHttpSessionIdentifier(), original code if (chatService() != null && StringUtils.isNotBlank(session.getHttpSessionIdentifier()) 
             && isLastSessionBoundToUser(session)) {
           chatService().handleUserOffline(session.getSessionUserName());
           ConcurrentChatUtils.removePortalChatResponseHistory(session.getSessionUserName());

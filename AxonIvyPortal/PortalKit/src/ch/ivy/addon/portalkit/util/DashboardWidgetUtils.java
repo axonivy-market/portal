@@ -25,12 +25,15 @@ import java.util.stream.Collectors;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import ch.ivy.addon.portalkit.bean.DashboardProcessBean;
+import ch.ivy.addon.portalkit.bean.CompactDashboardProcessBean;
 import ch.ivy.addon.portalkit.dto.WidgetLayout;
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
+import ch.ivy.addon.portalkit.dto.dashboard.CompactProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.ProcessDashboardWidget;
+import ch.ivy.addon.portalkit.dto.dashboard.SingleProcessDashboardWidget;
+import ch.ivy.addon.portalkit.dto.dashboard.StatisticDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.casecolumn.CaseColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.process.DashboardProcess;
@@ -62,8 +65,9 @@ public class DashboardWidgetUtils {
       case PROCESS:
         ProcessDashboardWidget processWidget = (ProcessDashboardWidget) widget;
         if (ProcessWidgetMode.COMPACT_MODE == processWidget.getDisplayMode()) {
-          processWidget.buildFilterableColumns(initProcessFilterableColumns());
-          buildProcessColumns(processWidget);
+          CompactProcessDashboardWidget compactProcessDashboardWidget = (CompactProcessDashboardWidget) widget;
+          compactProcessDashboardWidget.buildFilterableColumns(initProcessFilterableColumns());
+          buildProcessColumns(compactProcessDashboardWidget);
         }
         break;
       default:
@@ -72,7 +76,7 @@ public class DashboardWidgetUtils {
     return widget;
   }
 
-  public static ProcessDashboardWidget buildProcessColumns(ProcessDashboardWidget processWidget) {
+  public static ProcessDashboardWidget buildProcessColumns(CompactProcessDashboardWidget processWidget) {
     for (var filter : processWidget.getFilterableColumns()) {
       if (DashboardStandardProcessColumn.CATEGORY.getField().equalsIgnoreCase(filter.getField())) {
         filter.setFilterList(processWidget.getCategories());
@@ -269,7 +273,7 @@ public class DashboardWidgetUtils {
         filterableColumns = ((TaskDashboardWidget) widget).getFilterableColumns();
         break;
       case PROCESS:
-        filterableColumns = ((ProcessDashboardWidget) widget).getFilterableColumns();
+        filterableColumns = ((CompactProcessDashboardWidget) widget).getFilterableColumns();
         break;
       default:
         break;
@@ -309,14 +313,32 @@ public class DashboardWidgetUtils {
       case PROCESS:
         widget = buildDefaultProcessWidget(id, name);
         break;
+      case STATISTIC:
+        widget = buildDefaultStatisticWidget(id, name);
+        break;
       default:
         break;
     }
     return widget;
   }
 
+
+  private static DashboardWidget buildDefaultStatisticWidget(String id, String name) {
+    var widget = new StatisticDashboardWidget();
+    widget.setId(id);
+    widget.setName(name);
+    var layout = new WidgetLayout();
+    layout.setWidth(5);
+    layout.setHeight(5);
+    layout.setAxisX(0);
+    layout.setAxisY(0);
+    widget.setLayout(layout);
+    widget.setAutoPosition(true);
+    return widget;
+  }
+
   public static ProcessDashboardWidget buildDefaultProcessWidget(String id, String name) {
-    ProcessDashboardWidget widget = new ProcessDashboardWidget();
+    CompactProcessDashboardWidget widget = new CompactProcessDashboardWidget();
     widget.setId(id);
     widget.setName(name);
     widget.setLayout(new WidgetLayout());
@@ -423,13 +445,13 @@ public class DashboardWidgetUtils {
 
   public static void loadProcessesOfWidget(ProcessDashboardWidget widget) {
     if (widget.getDisplayMode() == ProcessWidgetMode.COMPACT_MODE) {
-      loadCompactProcesses(widget);
+      loadCompactProcesses((CompactProcessDashboardWidget) widget);
     } else {
-      loadProcessByPath(widget);
+      loadProcessByPath((SingleProcessDashboardWidget) widget);
     }
   }
 
-  private static void loadProcessByPath(ProcessDashboardWidget processWidget) {
+  private static void loadProcessByPath(SingleProcessDashboardWidget processWidget) {
     var processPath = processWidget.getProcessPath();
     if (processPath == null || processWidget.getProcess() != null) {
       return;
@@ -453,14 +475,14 @@ public class DashboardWidgetUtils {
     }
   }
 
-  private static void loadCompactProcesses(ProcessDashboardWidget processWidget) {
+  private static void loadCompactProcesses(CompactProcessDashboardWidget processWidget) {
     List<DashboardProcess> processes = processWidget.isPreview() ? getCompactProcessesForPreview(processWidget) : getCompactProcessesOfWidget(processWidget);
     processWidget.setDisplayProcesses(processes);
     processWidget.setOriginalDisplayProcesses(processes);
     processWidget.filterProcessesByUser();
   }
 
-  private static List<DashboardProcess> getCompactProcessesForPreview(ProcessDashboardWidget processWidget) {
+  private static List<DashboardProcess> getCompactProcessesForPreview(CompactProcessDashboardWidget processWidget) {
     List<DashboardProcess> processes;
     if (processWidget.isSelectedAllProcess()) {
       processes = getAllPortalProcesses();
@@ -474,7 +496,7 @@ public class DashboardWidgetUtils {
     return processes;
   }
 
-  private static List<DashboardProcess> getCompactProcessesOfWidget(ProcessDashboardWidget processWidget) {
+  private static List<DashboardProcess> getCompactProcessesOfWidget(CompactProcessDashboardWidget processWidget) {
     List<DashboardProcess> processes;
     if (processWidget.isSelectedAllProcess()) {
       processes = getAllPortalProcesses();
@@ -489,7 +511,7 @@ public class DashboardWidgetUtils {
   }
 
   public static List<DashboardProcess> getAllPortalProcesses() {
-    DashboardProcessBean dashboardProcessBean = ManagedBeans.get("dashboardProcessBean");
+    CompactDashboardProcessBean dashboardProcessBean = ManagedBeans.get("compactDashboardProcessBean");
     return dashboardProcessBean == null ? new ArrayList<>() : dashboardProcessBean.getAllPortalProcesses();
   }
 

@@ -87,7 +87,7 @@
           </ui:repeat>
         </h:panelGroup>
 
-        <!-- Image moe -->
+        <!-- Image mode -->
         <h:panelGroup id="image-process-container" layout="block" styleClass="ui-g process-group image-process-container" rendered="#{processWidgetBean.viewMode eq 'IMAGE'}">
           <ui:repeat id="image-process-group-alphabet" var="entryProcess" value="#{processWidgetBean.processesByAlphabet.entrySet().toArray()}">
             <ui:repeat id="image-processes" varStatus="status" var="process" value="#{entryProcess.value}">
