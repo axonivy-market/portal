@@ -1,0 +1,133 @@
+{
+  "format" : "9.4.8",
+  "id" : "163AFDEDB4167156",
+  "data" : "ch.ivy.addon.portal.generic.OpenPortalSearchData",
+  "kind" : "CALLABLE_SUB",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "CallSubStart",
+      "name" : "call(String)",
+      "config" : {
+        "callSignature" : "call",
+        "input" : {
+          "params" : [
+            { "name" : "keyword", "type" : "String" }
+          ],
+          "map" : {
+            "out.keyword" : "param.keyword"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 128 },
+        "labelOffset" : { "x" : -24, "y" : -35 }
+      },
+      "connect" : { "id" : "f4", "to" : "f3" }
+    }, {
+      "id" : "f1",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 768, "y" : 128 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "DialogCall",
+      "name" : "SearchResults",
+      "config" : {
+        "dialogId" : "ch.ivy.addon.portal.generic.SearchResults",
+        "startMethod" : "start(String)",
+        "call" : {
+          "params" : [
+            { "name" : "keyword", "type" : "String" }
+          ],
+          "map" : {
+            "param.keyword" : "in.keyword"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 448, "y" : 128 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f5",
+      "type" : "CallSubStart",
+      "name" : "call(SearchResultsDataModel,Number)",
+      "config" : {
+        "callSignature" : "call",
+        "input" : {
+          "params" : [
+            { "name" : "searchResultsDataModel", "type" : "ch.ivy.addon.portalkit.datamodel.SearchResultsDataModel" },
+            { "name" : "activeTabIndex", "type" : "Number" }
+          ],
+          "map" : {
+            "out.activeTabIndex" : "param.activeTabIndex",
+            "out.searchResultsDataModel" : "param.searchResultsDataModel"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 512 },
+        "labelOffset" : { "x" : -62, "y" : -36 }
+      },
+      "connect" : { "id" : "f8", "to" : "f7" }
+    }, {
+      "id" : "f6",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 768, "y" : 512 }
+      }
+    }, {
+      "id" : "f7",
+      "type" : "DialogCall",
+      "name" : "SearchResults",
+      "config" : {
+        "dialogId" : "ch.ivy.addon.portal.generic.SearchResults",
+        "startMethod" : "start(ch.ivy.addon.portalkit.datamodel.SearchResultsDataModel,Number)",
+        "call" : {
+          "params" : [
+            { "name" : "dataModel", "type" : "ch.ivy.addon.portalkit.datamodel.SearchResultsDataModel" },
+            { "name" : "activeTabIndex", "type" : "Number" }
+          ],
+          "map" : {
+            "param.dataModel" : "in.searchResultsDataModel",
+            "param.activeTabIndex" : "in.activeTabIndex"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 442, "y" : 512 }
+      },
+      "connect" : { "id" : "f9", "to" : "f6" }
+    }, {
+      "id" : "f10",
+      "type" : "ProcessAnnotation",
+      "name" : [
+        "**Deprecated Note**",
+        "",
+        "**This callable will be removed from Portal 11.**",
+        "To override Portal search results UI: you should use Axon Ivy HTMLOverride Dialog to override the SearchResults Html dialog."
+      ],
+      "visual" : {
+        "at" : { "x" : 512, "y" : 232 },
+        "size" : { "width" : 688, "height" : 76 },
+        "labelOffset" : { "x" : -341, "y" : -34 }
+      },
+      "connect" : { "id" : "f12", "to" : "f0" }
+    }, {
+      "id" : "f11",
+      "type" : "ProcessAnnotation",
+      "name" : [
+        "**Deprecated Note**",
+        "",
+        "**This callable will be removed from Portal 11.**",
+        "To override Portal search results UI: you should use Axon Ivy HTMLOverride Dialog to override the SearchResults Html dialog."
+      ],
+      "visual" : {
+        "at" : { "x" : 512, "y" : 624 },
+        "size" : { "width" : 688, "height" : 76 },
+        "labelOffset" : { "x" : -341, "y" : -34 }
+      },
+      "connect" : { "id" : "f13", "to" : "f5" }
+    } ]
+}

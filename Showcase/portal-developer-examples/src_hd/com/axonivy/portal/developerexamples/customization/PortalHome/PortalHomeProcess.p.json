@@ -1,0 +1,111 @@
+{
+  "format" : "9.4.8",
+  "id" : "176CBAE5E8EDAEE3",
+  "data" : "com.axonivy.portal.developerexamples.customization.PortalHome.PortalHomeData",
+  "kind" : "HTML_DIALOG",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start(TaskView)",
+      "config" : {
+        "callSignature" : "start",
+        "input" : {
+          "params" : [
+            { "name" : "taskView", "type" : "ch.ivy.addon.portal.generic.view.TaskView" }
+          ],
+          "map" : {
+            "out.taskView" : "param.taskView"
+          }
+        },
+        "guid" : "1624C82641E60027"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 },
+        "labelOffset" : { "x" : -16, "y" : 15 }
+      },
+      "connect" : { "id" : "f2", "to" : "f3" }
+    }, {
+      "id" : "f3",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 288, "y" : 64 }
+      }
+    }, {
+      "id" : "f4",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 221, "y" : 221 },
+        "size" : { "width" : 22, "height" : 22 }
+      }
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "getDataModel()",
+      "config" : {
+        "callSignature" : "getDataModel",
+        "input" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria;",
+            "",
+            "TaskSearchCriteria criteria = out.taskView.dataModel.criteria;",
+            "if (out.isNotLogin) {",
+            "  criteria.setInvolvedUsername(ivy.session.getSessionUserName());",
+            "  out.isNotLogin = false;",
+            "}"
+          ]
+        },
+        "result" : {
+          "params" : [
+            { "name" : "dataModel", "type" : "ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel" }
+          ],
+          "map" : {
+            "result.dataModel" : "in.taskView.dataModel"
+          }
+        },
+        "guid" : "16DFD35F29D35A9A"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 160 },
+        "size" : { "width" : 22, "height" : 22 },
+        "labelOffset" : { "x" : 14, "y" : 0 }
+      },
+      "connect" : { "id" : "f7", "to" : "f6" }
+    }, {
+      "id" : "f5",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "getStatisticCharts()",
+      "config" : {
+        "callSignature" : "getStatisticCharts",
+        "input" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.service.StatisticService;",
+            "",
+            "StatisticService service = StatisticService.getInstance();",
+            "out.statisticChartList = service.findStatisticCharts();"
+          ]
+        },
+        "result" : {
+          "params" : [
+            { "name" : "statisticChartList", "type" : "java.util.List<ch.ivy.addon.portalkit.statistics.StatisticChart>" }
+          ],
+          "map" : {
+            "result.statisticChartList" : "in.statisticChartList"
+          }
+        },
+        "guid" : "16DFD35F29D362F8"
+      },
+      "visual" : {
+        "at" : { "x" : 93, "y" : 221 },
+        "size" : { "width" : 22, "height" : 22 },
+        "labelOffset" : { "x" : 14, "y" : 0 }
+      },
+      "connect" : { "id" : "f8", "to" : "f4" }
+    }, {
+      "id" : "f6",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 224, "y" : 160 },
+        "size" : { "width" : 22, "height" : 22 }
+      }
+    } ]
+}

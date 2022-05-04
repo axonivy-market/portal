@@ -1,0 +1,62 @@
+{
+  "format" : "9.4.8",
+  "id" : "1754F24CA0462B0C",
+  "data" : "_com.axonivy.portal.developerexamples.ExportTaskToExcelOverrideData",
+  "kind" : "CALLABLE_SUB",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "CallSubStart",
+      "name" : "exportToExcel(List<ITask>,List<String>)",
+      "config" : {
+        "callSignature" : "exportToExcel",
+        "input" : {
+          "params" : [
+            { "name" : "collectedTasksForExporting", "type" : "java.util.List<ch.ivyteam.ivy.workflow.ITask>" },
+            { "name" : "columnsVisibility", "type" : "java.util.List<String>" }
+          ],
+          "map" : {
+            "out.collectedTasksForExporting" : "param.collectedTasksForExporting",
+            "out.columnsVisibility" : "param.columnsVisibility"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "exportedFile", "type" : "org.primefaces.model.StreamedContent" }
+          ],
+          "map" : {
+            "result.exportedFile" : "in.exportedFile"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 },
+        "labelOffset" : { "x" : -58, "y" : 17 }
+      },
+      "connect" : { "id" : "f3", "to" : "f81" }
+    }, {
+      "id" : "f1",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 448, "y" : 64 }
+      }
+    }, {
+      "id" : "f81",
+      "type" : "Script",
+      "name" : "export excel",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.exporter.TaskExporter;",
+            "import com.axonivy.portal.developerexamples.exporter.CustomizedTaskExporter;",
+            "TaskExporter exporter = new CustomizedTaskExporter(in.columnsVisibility);",
+            "in.exportedFile = exporter.getStreamedContent(in.collectedTasksForExporting);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 280, "y" : 64 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    } ]
+}

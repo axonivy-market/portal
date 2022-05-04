@@ -1,0 +1,46 @@
+{
+  "format" : "9.4.8",
+  "id" : "14CE96E80B89A88F",
+  "data" : "ch.ivy.addon.portalkit.singleapp.general.SetLanguage.SetLanguageData",
+  "kind" : "HTML_DIALOG",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start()",
+      "config" : {
+        "callSignature" : "start",
+        "guid" : "14739D9F00572FE2"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 },
+        "size" : { "width" : 20, "height" : 20 },
+        "labelOffset" : { "x" : 13, "y" : 0 }
+      },
+      "connect" : { "id" : "f3", "to" : "f8" }
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 96, "y" : 192 },
+        "size" : { "width" : 20, "height" : 20 }
+      }
+    }, {
+      "id" : "f8",
+      "type" : "Script",
+      "name" : "Set locale",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.util.UserUtils;",
+            "UserUtils.setLanguague();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 136 },
+        "size" : { "width" : 36, "height" : 24 },
+        "labelOffset" : { "x" : 20, "y" : -2 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    } ]
+}

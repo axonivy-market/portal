@@ -1,0 +1,212 @@
+{
+  "format" : "9.4.8",
+  "id" : "172598595FEC9964",
+  "data" : "com.axonivy.portal.userexamples.credit.LendingOverview.LendingOverviewData",
+  "kind" : "HTML_DIALOG",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start(UserProcess)",
+      "config" : {
+        "callSignature" : "start",
+        "input" : {
+          "params" : [
+            { "name" : "userProcess", "type" : "ch.ivy.addon.portalkit.configuration.UserProcess" }
+          ],
+          "map" : {
+            "out.userProcess" : "param.userProcess"
+          }
+        },
+        "guid" : "172598596081B8FA"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 },
+        "labelOffset" : { "x" : -16, "y" : 15 }
+      },
+      "connect" : { "id" : "f7", "to" : "f6" }
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 408, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "HtmlDialogEventStart",
+      "name" : "close",
+      "config" : {
+        "guid" : "1725985961185C80"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 160 }
+      },
+      "connect" : { "id" : "f5", "to" : "f4" }
+    }, {
+      "id" : "f4",
+      "type" : "HtmlDialogExit",
+      "visual" : {
+        "at" : { "x" : 224, "y" : 160 }
+      }
+    }, {
+      "id" : "f6",
+      "type" : "Script",
+      "name" : "init data",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import java.util.Locale;",
+            "import java.util.Map;",
+            "import java.util.HashMap;",
+            "import java.util.Arrays;",
+            "import ch.ivy.addon.portalkit.bo.CaseMapDetail;",
+            "import ch.ivyteam.ivy.casemap.runtime.model.IStage;",
+            "import ch.ivyteam.ivy.casemap.runtime.model.ICaseMap;",
+            "",
+            "in.caseMapDetail = new CaseMapDetail();",
+            "in.caseMapDetail.setName(in.userProcess.getProcessName());",
+            "in.caseMapDetail.setIcon(in.userProcess.getIcon());",
+            "in.caseMapDetail.setStartLink(in.userProcess.link);",
+            "in.caseMapDetail.setDescription(in.userProcess.getDescription());",
+            "",
+            "",
+            "in.caseMapDetail.setStages(Arrays.asList(ivy.cms.co(\"/Processes/CaseMap/Stage/identification\"), ",
+            "ivy.cms.co(\"/Processes/CaseMap/Stage/creditRating\"), ivy.cms.co(\"/Processes/CaseMap/Stage/approval\")));",
+            "",
+            "// STAGE",
+            "Map stageMap = new HashMap();",
+            "stageMap.put(ivy.cms.co(\"/Processes/CaseMap/Stage/identification\"), ",
+            "  Arrays.asList(ivy.cms.co(\"/Processes/CaseMap/collectPersonalData\"), ivy.cms.co(\"/Processes/CaseMap/verifyPersonalData\")));",
+            "stageMap.put(ivy.cms.co(\"/Processes/CaseMap/Stage/creditRating\"), ",
+            "  Arrays.asList(ivy.cms.co(\"/Processes/CaseMap/checkCompanyRegister\"), ivy.cms.co(\"/Processes/CaseMap/internalSolvencyCheck\")));",
+            "stageMap.put(ivy.cms.co(\"/Processes/CaseMap/Stage/approval\"), ",
+            "  Arrays.asList(ivy.cms.co(\"/Processes/CaseMap/approveLevel1\"), ivy.cms.co(\"/Processes/CaseMap/approveLevel2\"), ivy.cms.co(\"/Processes/CaseMap/createContract\")));",
+            "",
+            "in.caseMapDetail.setStageDetail(stageMap);",
+            "",
+            "// PROCCESS",
+            "Map processMap = new HashMap();",
+            "processMap.put(ivy.cms.co(\"/Processes/CaseMap/collectPersonalData\"), ",
+            "  Arrays.asList(ivy.cms.co(\"/Processes/CaseMap/CollectPersonDataDescription/description1\"), ivy.cms.co(\"/Processes/CaseMap/CollectPersonDataDescription/description2\"), ivy.cms.co(\"/Processes/CaseMap/CollectPersonDataDescription/description3\")));",
+            "processMap.put(ivy.cms.co(\"/Processes/CaseMap/verifyPersonalData\"), ",
+            "  Arrays.asList(ivy.cms.co(\"/Processes/CaseMap/VerifyPersonalDataDescription/description1\"), ivy.cms.co(\"/Processes/CaseMap/VerifyPersonalDataDescription/description2\")));",
+            "processMap.put(ivy.cms.co(\"/Processes/CaseMap/checkCompanyRegister\"), ",
+            "  Arrays.asList(ivy.cms.co(\"/Processes/CaseMap/CheckCompanyRegisterDescription/description1\"), ivy.cms.co(\"/Processes/CaseMap/CheckCompanyRegisterDescription/description2\")));",
+            "processMap.put(ivy.cms.co(\"/Processes/CaseMap/internalSolvencyCheck\"), ",
+            "  Arrays.asList(ivy.cms.co(\"/Processes/CaseMap/InternalSolvencyCheckDescription/description1\"), ivy.cms.co(\"/Processes/CaseMap/InternalSolvencyCheckDescription/description2\")));  ",
+            "processMap.put(ivy.cms.co(\"/Processes/CaseMap/externalSolvencyCheck\"), ",
+            "  Arrays.asList(ivy.cms.co(\"/Processes/CaseMap/ExternalSolvencyServiceDescription/description1\")));    ",
+            "processMap.put(ivy.cms.co(\"/Processes/CaseMap/approveLevel1\"), ",
+            "  Arrays.asList(ivy.cms.co(\"/Processes/CaseMap/ApprovalLevel12/description1\"), ivy.cms.co(\"/Processes/CaseMap/ApprovalLevel12/description2\"), ivy.cms.co(\"/Processes/CaseMap/ApprovalLevel12/description3\")));  ",
+            "processMap.put(ivy.cms.co(\"/Processes/CaseMap/approveLevel2\"), ",
+            "  Arrays.asList(ivy.cms.co(\"/Processes/CaseMap/ApprovalLevel12/description1\"), ivy.cms.co(\"/Processes/CaseMap/ApprovalLevel12/description2\"), ivy.cms.co(\"/Processes/CaseMap/ApprovalLevel12/description3\")));  ",
+            "processMap.put(ivy.cms.co(\"/Processes/CaseMap/createContract\"), ",
+            "  Arrays.asList(ivy.cms.co(\"/Processes/CaseMap/ContractCreation/description1\"), ivy.cms.co(\"/Processes/CaseMap/ContractCreation/description2\")));  ",
+            "  ",
+            "in.caseMapDetail.setProcessDetail(processMap);",
+            "",
+            "// SIDE STEP",
+            "Map sideStepMap = new HashMap();",
+            "sideStepMap.put(ivy.cms.co(\"/Processes/CaseMap/Stage/creditRating\"), Arrays.asList(ivy.cms.co(\"/Processes/CaseMap/externalSolvencyCheck\")));",
+            "",
+            "in.caseMapDetail.setSideStepDetail(sideStepMap);",
+            "",
+            "// PRE CONDITION",
+            "Map preConditionMap = new HashMap();",
+            "preConditionMap.put(ivy.cms.co(\"/Processes/CaseMap/approveLevel1\"), true);",
+            "preConditionMap.put(ivy.cms.co(\"/Processes/CaseMap/approveLevel2\"), true);",
+            "preConditionMap.put(ivy.cms.co(\"/Processes/CaseMap/createContract\"), true);",
+            "",
+            "in.caseMapDetail.setPreConditionDetail(preConditionMap);  ",
+            "",
+            "ICaseMap caseMap = ivy.casemap.find().byPath(\"CaseMap/Lending\");",
+            "if (caseMap != null){  ",
+            "  Map iconMap = new HashMap();",
+            "  for (IStage stage : caseMap.getStages()){    ",
+            "    if (ivy.cms.coLocale(\"/Processes/CaseMap/Stage/identification\", Locale.ENGLISH).equalsIgnoreCase(stage.getName())){",
+            "      iconMap.put(ivy.cms.co(\"/Processes/CaseMap/Stage/identification\"), stage.getIcon().getCssClass());    ",
+            "    }",
+            "    if (ivy.cms.coLocale(\"/Processes/CaseMap/Stage/creditRating\", Locale.ENGLISH).equalsIgnoreCase(stage.getName())){",
+            "      iconMap.put(ivy.cms.co(\"/Processes/CaseMap/Stage/creditRating\"), stage.getIcon().getCssClass());        ",
+            "    }",
+            "    if (ivy.cms.coLocale(\"/Processes/CaseMap/Stage/approval\", Locale.ENGLISH).equalsIgnoreCase(stage.getName())){",
+            "      iconMap.put(ivy.cms.co(\"/Processes/CaseMap/Stage/approval\"), stage.getIcon().getCssClass());        ",
+            "    }",
+            "    ",
+            "  }",
+            "  in.caseMapDetail.setStageIcon(iconMap);",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 280, "y" : 64 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f8",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "navigateToDetail(Integer)",
+      "config" : {
+        "callSignature" : "navigateToDetail",
+        "input" : {
+          "params" : [
+            { "name" : "index", "type" : "Integer" }
+          ],
+          "map" : {
+            "out.stageIndex" : "param.index"
+          }
+        },
+        "guid" : "1725FD5F6C762123"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 256 },
+        "labelOffset" : { "x" : -25, "y" : 15 }
+      },
+      "connect" : { "id" : "f10", "to" : "f9" }
+    }, {
+      "id" : "f9",
+      "type" : "DialogCall",
+      "name" : "LendingDetail",
+      "config" : {
+        "dialogId" : "com.axonivy.portal.userexamples.credit.LendingDetail",
+        "startMethod" : "start(ch.ivy.addon.portalkit.bo.CaseMapDetail,Integer)",
+        "call" : {
+          "params" : [
+            { "name" : "caseMapDetail", "type" : "ch.ivy.addon.portalkit.bo.CaseMapDetail" },
+            { "name" : "index", "type" : "Integer" }
+          ],
+          "map" : {
+            "param.caseMapDetail" : "in.caseMapDetail",
+            "param.index" : "in.stageIndex"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 288, "y" : 256 }
+      }
+    }, {
+      "id" : "f11",
+      "type" : "HtmlDialogEventStart",
+      "name" : "cancel",
+      "config" : {
+        "guid" : "17298009F9A705DB"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 352 },
+        "labelOffset" : { "x" : -14, "y" : 15 }
+      },
+      "connect" : { "id" : "f13", "to" : "f12" }
+    }, {
+      "id" : "f12",
+      "type" : "DialogCall",
+      "name" : "ExampleHomePage",
+      "config" : {
+        "dialogId" : "com.axonivy.portal.userexamples.ExampleHomePage",
+        "startMethod" : "start()"
+      },
+      "visual" : {
+        "at" : { "x" : 288, "y" : 352 },
+        "size" : { "width" : 128, "height" : 44 }
+      }
+    } ]
+}

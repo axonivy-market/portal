@@ -1,0 +1,65 @@
+{
+  "format" : "9.4.8",
+  "id" : "1657A360018BBA71",
+  "data" : "com.axonivy.portal.developerexamples.Data",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "openCustomizedPortalHome.ivp",
+      "config" : {
+        "callSignature" : "openCustomizedPortalHome",
+        "case" : {
+          "customFields" : [
+            { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
+          ]
+        },
+        "outLink" : "openCustomizedPortalHome.ivp",
+        "startDescription" : "Open customized portal home",
+        "task" : {
+          "customFields" : [
+            { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
+          ]
+        },
+        "startName" : "Open customized portal home"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : { "id" : "f4", "to" : "f3" }
+    }, {
+      "id" : "f1",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 432, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "DialogCall",
+      "name" : "Customized Home Page",
+      "config" : {
+        "dialogId" : "com.axonivy.portal.developerexamples.customization.CustomizedHomePage",
+        "startMethod" : "start()"
+      },
+      "visual" : {
+        "at" : { "x" : 304, "y" : 64 },
+        "size" : { "width" : 144, "height" : 44 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f5",
+      "type" : "ProcessAnnotation",
+      "name" : [
+        "This process demonstrates the home page customization of Portal. It opens a customized Portal dashboard page with:",
+        "1. Statistic widget is not rendered.",
+        "2. Task widget take the remaining space.",
+        "3. Render a custom widget",
+        "",
+        "HOW TO RUN THIS EXAMPLE:",
+        "Open openCustomizedPortalHome.ivp in portal-developer-examples to access to the customized home page."
+      ],
+      "visual" : {
+        "at" : { "x" : 792, "y" : 96 },
+        "size" : { "width" : 656, "height" : 156 }
+      }
+    } ]
+}

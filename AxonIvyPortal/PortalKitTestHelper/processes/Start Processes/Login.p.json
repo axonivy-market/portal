@@ -1,0 +1,94 @@
+{
+  "format" : "9.4.8",
+  "id" : "1636734E13CEC872",
+  "data" : "portalKit_test.LoginData",
+  "elements" : [ {
+      "id" : "f1",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "Script",
+      "name" : "login",
+      "config" : {
+        "output" : {
+          "code" : [
+            "boolean isLoggedIn = ivy.session.loginSessionUser(in.username, in.password);",
+            "for (int i = 0; i < 10; i++) {",
+            "  if (isLoggedIn) {",
+            "    break;",
+            "  }",
+            "  ",
+            "  if (i == 10) {",
+            "    ivy.log.warn(\"Unsuccessful login after retry\");",
+            "  } else {",
+            "    ivy.log.warn(\"Unsuccessful login, retry\");",
+            "    isLoggedIn = ivy.session.loginSessionUser(in.username, in.password);",
+            "    Thread.sleep(500);",
+            "  }",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "login.ivp",
+      "config" : {
+        "callSignature" : "login",
+        "input" : {
+          "params" : [
+            { "name" : "username", "type" : "String" },
+            { "name" : "password", "type" : "String" }
+          ],
+          "map" : {
+            "out.password" : "param.password",
+            "out.username" : "param.username"
+          }
+        },
+        "outLink" : "login.ivp"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : { "id" : "f4", "to" : "f3" }
+    }, {
+      "id" : "f5",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 160 }
+      }
+    }, {
+      "id" : "f6",
+      "type" : "Script",
+      "name" : "logout",
+      "config" : {
+        "output" : {
+          "code" : "ivy.session.logoutSessionUser();"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 160 }
+      },
+      "connect" : { "id" : "f9", "to" : "f5" }
+    }, {
+      "id" : "f7",
+      "type" : "RequestStart",
+      "name" : "logout.ivp",
+      "config" : {
+        "callSignature" : "logout",
+        "outLink" : "logout.ivp"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 160 },
+        "labelOffset" : { "x" : -21, "y" : 17 }
+      },
+      "connect" : { "id" : "f8", "to" : "f6" }
+    } ]
+}

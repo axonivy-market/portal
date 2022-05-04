@@ -1,0 +1,324 @@
+{
+  "format" : "9.4.8",
+  "id" : "14B2A3DC7173EA26",
+  "data" : "ch.ivy.add.portalkit.task.TaskGenerationDataRange",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "generateTask(TaskGenerationDataRange)",
+      "config" : {
+        "callSignature" : "generateTask",
+        "input" : {
+          "params" : [
+            { "name" : "rangeData", "type" : "ch.ivy.add.portalkit.task.TaskGenerationDataRange" }
+          ],
+          "map" : {
+            "out" : "param.rangeData"
+          }
+        },
+        "outLink" : "generateTask.ivp",
+        "task" : {
+          "responsible" : {
+            "role" : "SYSTEM"
+          }
+        },
+        "triggerEnabled" : true,
+        "requestEnabled" : false
+      },
+      "visual" : {
+        "at" : { "x" : 208, "y" : 224 },
+        "size" : { "width" : 26, "height" : 26 },
+        "labelOffset" : { "x" : 14, "y" : 0 }
+      },
+      "connect" : { "id" : "f13", "to" : "f12" }
+    }, {
+      "id" : "f1",
+      "type" : "Alternative",
+      "name" : "in.taskCounter < in.to",
+      "visual" : {
+        "at" : { "x" : 208, "y" : 344 },
+        "size" : { "width" : 28, "height" : 28 },
+        "labelOffset" : { "x" : 14, "y" : 0 }
+      },
+      "connect" : [
+        { "id" : "f6", "to" : "f2", "condition" : "in.taskCounter < in.to", "var" : "in1" },
+        { "id" : "f8", "to" : "f3" }
+      ]
+    }, {
+      "id" : "f2",
+      "type" : "TaskSwitchGateway",
+      "config" : {
+        "outLinks" : [ "TaskA.ivp", "TaskB.ivp" ],
+        "case" : {
+          "name" : "CASE<%=in1.taskCounter%>_<%=in1.structuredData%>",
+          "customFields" : [
+            { "name" : "CustomVarCharField5", "type" : "String", "value" : "in1.structuredData" }
+          ]
+        },
+        "tasks" : {
+          "TaskA" : {
+            "name" : "TASK<%=in1.taskCounter%>_<%=in1.structuredData%>",
+            "customFields" : [
+              { "name" : "CustomVarCharField5", "type" : "String", "value" : "in1.structuredData" }
+            ]
+          },
+          "TaskB" : {
+            "responsible" : {
+              "role" : "SYSTEM"
+            }
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 208, "y" : 432 },
+        "size" : { "width" : 28, "height" : 28 }
+      },
+      "connect" : [
+        { "id" : "f7", "to" : "f4", "condition" : "ivp==\"TaskA.ivp\"" },
+        { "id" : "f10", "to" : "f9", "condition" : "ivp==\"TaskB.ivp\"" }
+      ]
+    }, {
+      "id" : "f3",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 96, "y" : 344 },
+        "size" : { "width" : 26, "height" : 26 }
+      }
+    }, {
+      "id" : "f4",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 208, "y" : 496 },
+        "size" : { "width" : 26, "height" : 26 }
+      }
+    }, {
+      "id" : "f9",
+      "type" : "Script",
+      "name" : "counter+1",
+      "config" : {
+        "output" : {
+          "code" : "in.taskCounter += 1;"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 352, "y" : 432 },
+        "size" : { "width" : 36, "height" : 24 },
+        "labelOffset" : { "x" : 20, "y" : -2 }
+      },
+      "connect" : { "id" : "f11", "to" : "f1", "via" : [ { "x" : 352, "y" : 344 } ] }
+    }, {
+      "id" : "f12",
+      "type" : "Script",
+      "name" : "in.taskCounter = in.from",
+      "config" : {
+        "output" : {
+          "code" : "in.taskCounter = in.from;"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 208, "y" : 288 },
+        "size" : { "width" : 36, "height" : 24 },
+        "labelOffset" : { "x" : 20, "y" : -2 }
+      },
+      "connect" : { "id" : "f5", "to" : "f1" }
+    }, {
+      "id" : "f14",
+      "type" : "Alternative",
+      "name" : "in.taskCounter <= in.to",
+      "visual" : {
+        "at" : { "x" : 608, "y" : 352 },
+        "size" : { "width" : 28, "height" : 28 },
+        "labelOffset" : { "x" : 14, "y" : 0 }
+      },
+      "connect" : [
+        { "id" : "f21", "to" : "f16", "condition" : "in.taskCounter <= in.to", "var" : "in1" },
+        { "id" : "f23", "to" : "f18" }
+      ]
+    }, {
+      "id" : "f15",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 608, "y" : 560 },
+        "size" : { "width" : 26, "height" : 26 }
+      }
+    }, {
+      "id" : "f16",
+      "type" : "TaskSwitchGateway",
+      "config" : {
+        "outLinks" : [ "TaskA.ivp", "TaskB.ivp" ],
+        "tasks" : {
+          "TaskA" : {
+            "responsible" : {
+              "role" : "SYSTEM"
+            }
+          },
+          "TaskB" : {
+            "responsible" : {
+              "role" : "SYSTEM"
+            }
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 608, "y" : 440 },
+        "size" : { "width" : 28, "height" : 28 }
+      },
+      "connect" : [
+        { "id" : "f29", "to" : "f28", "condition" : "ivp==\"TaskA.ivp\"" },
+        { "id" : "f24", "to" : "f17", "condition" : "ivp==\"TaskB.ivp\"" }
+      ]
+    }, {
+      "id" : "f17",
+      "type" : "Script",
+      "name" : [
+        "counter+10",
+        "from + 10"
+      ],
+      "config" : {
+        "output" : {
+          "code" : [
+            "in.from += 10;",
+            "in.taskCounter += 10;"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 752, "y" : 440 },
+        "size" : { "width" : 36, "height" : 24 },
+        "labelOffset" : { "x" : 20, "y" : -2 }
+      },
+      "connect" : { "id" : "f25", "to" : "f14", "via" : [ { "x" : 752, "y" : 352 } ] }
+    }, {
+      "id" : "f18",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 496, "y" : 352 },
+        "size" : { "width" : 26, "height" : 26 }
+      }
+    }, {
+      "id" : "f19",
+      "type" : "RequestStart",
+      "name" : "splitTaskGeneration",
+      "config" : {
+        "callSignature" : "splitTaskGeneration",
+        "input" : {
+          "params" : [
+            { "name" : "rangeData", "type" : "ch.ivy.add.portalkit.task.TaskGenerationDataRange" }
+          ],
+          "map" : {
+            "out" : "param.rangeData"
+          }
+        },
+        "outLink" : "splitTaskGeneration.ivp",
+        "task" : {
+          "responsible" : {
+            "role" : "SYSTEM"
+          }
+        },
+        "triggerEnabled" : true,
+        "requestEnabled" : false
+      },
+      "visual" : {
+        "at" : { "x" : 608, "y" : 224 },
+        "size" : { "width" : 26, "height" : 26 },
+        "labelOffset" : { "x" : 14, "y" : 0 }
+      },
+      "connect" : { "id" : "f26", "to" : "f20" }
+    }, {
+      "id" : "f20",
+      "type" : "Script",
+      "name" : "in.taskCounter = in.from+10",
+      "config" : {
+        "output" : {
+          "code" : "in.taskCounter = in.from+10;"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 608, "y" : 288 },
+        "size" : { "width" : 36, "height" : 24 },
+        "labelOffset" : { "x" : 20, "y" : -2 }
+      },
+      "connect" : { "id" : "f27", "to" : "f14" }
+    }, {
+      "id" : "f28",
+      "type" : "TriggerCall",
+      "name" : [
+        "generateTask",
+        "from->counter"
+      ],
+      "config" : {
+        "processCall" : "Business Processes/createARangeOfTasks:generateTask(ch.ivy.add.portalkit.task.TaskGenerationDataRange)",
+        "call" : {
+          "params" : [
+            { "name" : "rangeData", "type" : "ch.ivy.add.portalkit.task.TaskGenerationDataRange" }
+          ],
+          "map" : {
+            "param.rangeData.from" : "in.from",
+            "param.rangeData.structuredData" : "in.structuredData",
+            "param.rangeData.taskCounter" : "in.taskCounter",
+            "param.rangeData.to" : "in.to"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 608, "y" : 496 },
+        "size" : { "width" : 36, "height" : 24 },
+        "labelOffset" : { "x" : 20, "y" : -2 }
+      },
+      "connect" : { "id" : "f22", "to" : "f15" }
+    }, {
+      "id" : "f30",
+      "type" : "RequestStart",
+      "name" : "generateTasks",
+      "config" : {
+        "callSignature" : "generateTasks",
+        "input" : {
+          "params" : [
+            { "name" : "counter", "type" : "Number" }
+          ],
+          "map" : {
+            "out.taskCounter" : "param.counter"
+          }
+        },
+        "outLink" : "generateTasks.ivp",
+        "task" : {
+          "responsible" : {
+            "role" : "SYSTEM"
+          }
+        },
+        "triggerEnabled" : true,
+        "requestEnabled" : false
+      },
+      "visual" : {
+        "at" : { "x" : 960, "y" : 224 },
+        "size" : { "width" : 26, "height" : 26 },
+        "labelOffset" : { "x" : 14, "y" : 0 }
+      },
+      "connect" : { "id" : "f34", "to" : "f33", "var" : "in1" }
+    }, {
+      "id" : "f31",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 960, "y" : 432 },
+        "size" : { "width" : 26, "height" : 26 }
+      }
+    }, {
+      "id" : "f33",
+      "type" : "TaskSwitchEvent",
+      "config" : {
+        "outLinks" : [ "TaskA.ivp" ],
+        "task" : {
+          "name" : "Task <%=in1.taskCounter%>",
+          "description" : "Sample description <%=in1.taskCounter%>",
+          "expiry" : {
+            "timeout" : "'P2h3m'"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 960, "y" : 320 },
+        "size" : { "width" : 26, "height" : 26 }
+      },
+      "connect" : { "id" : "f32", "to" : "f31", "condition" : "ivp==\"TaskA.ivp\"" }
+    } ]
+}

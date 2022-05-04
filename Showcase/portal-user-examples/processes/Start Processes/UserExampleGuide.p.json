@@ -1,0 +1,204 @@
+{
+  "format" : "9.4.8",
+  "id" : "17236DB1D3DA14C0",
+  "data" : "com.axonivy.portal.userexamples.UserExampleGuideData",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "userExampleGuide.ivp",
+      "config" : {
+        "callSignature" : "userExampleGuide",
+        "case" : {
+          "customFields" : [
+            { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
+          ]
+        },
+        "outLink" : "userExampleGuide.ivp",
+        "startDescription" : "<%=ivy.cms.co(\"/Processes/UserExampleGuide/processDescription\")%>",
+        "startName" : "<%=ivy.cms.co(\"/Processes/UserExampleGuide/name\")%>"
+      },
+      "visual" : {
+        "at" : { "x" : 192, "y" : 480 },
+        "labelOffset" : { "x" : -31, "y" : 18 }
+      },
+      "connect" : { "id" : "f7", "to" : "S31" }
+    }, {
+      "id" : "f1",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 608, "y" : 480 }
+      }
+    }, {
+      "id" : "S20",
+      "type" : "UserBpmnElement",
+      "name" : "Open Login page",
+      "elements" : [ {
+          "id" : "S20-g0",
+          "type" : "EmbeddedStart",
+          "visual" : {
+            "at" : { "x" : 64, "y" : 256 }
+          },
+          "parentConnector" : "f19",
+          "connect" : { "id" : "S20-f2", "to" : "S20-f1" }
+        }, {
+          "id" : "S20-g1",
+          "type" : "EmbeddedEnd",
+          "visual" : {
+            "at" : { "x" : 704, "y" : 256 }
+          },
+          "parentConnector" : "f2"
+        }, {
+          "id" : "S20-f1",
+          "type" : "Script",
+          "name" : "Logout SessionUser",
+          "config" : {
+            "security" : "system",
+            "output" : {
+              "code" : "ivy.session.logoutSessionUser();"
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 232, "y" : 256 },
+            "size" : { "width" : 128, "height" : 44 }
+          },
+          "connect" : { "id" : "S20-f3", "to" : "S20-f4" }
+        }, {
+          "id" : "S20-f4",
+          "type" : "TaskSwitchEvent",
+          "config" : {
+            "case" : {
+              "name" : "Welcome to Portal"
+            },
+            "task" : {
+              "name" : "Welcome to Portal",
+              "skipTasklist" : true
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 600, "y" : 256 }
+          },
+          "connect" : { "id" : "S20-f0", "to" : "S20-g1" }
+        } ],
+      "visual" : {
+        "at" : { "x" : 400, "y" : 224 }
+      },
+      "connect" : { "id" : "f2", "to" : "f5" }
+    }, {
+      "id" : "f4",
+      "type" : "RequestStart",
+      "name" : "startPortalLoginPage.ivp",
+      "config" : {
+        "callSignature" : "startPortalLoginPage",
+        "case" : {
+          "name" : "<%=ivy.cms.co(\"/Processes/LeaveRequest/leaveRequest\")%>",
+          "customFields" : [
+            { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
+          ]
+        },
+        "roleExceptionId" : ">>",
+        "outLink" : "startPortalLoginPage.ivp",
+        "startDescription" : [
+          "This process allow employee to submit their leave request, then the request will be sent to selected approver.",
+          "After approver finish his task, the approval result will be sent back to requester"
+        ],
+        "startCustomFields" : [
+          { "name" : "cssIcon", "value" : "si si-advertising-megaphone-2" }
+        ],
+        "task" : {
+          "name" : "<%=ivy.cms.co(\"/Processes/LeaveRequest/createNewLeaveRequest\")%>"
+        },
+        "wfuser" : "1",
+        "startName" : "<%=ivy.cms.co(\"/Processes/LeaveRequest/leaveRequest\")%>"
+      },
+      "visual" : {
+        "at" : { "x" : 192, "y" : 224 },
+        "labelOffset" : { "x" : -32, "y" : 18 }
+      },
+      "connect" : { "id" : "f19", "to" : "S20" }
+    }, {
+      "id" : "f5",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 608, "y" : 224 }
+      }
+    }, {
+      "id" : "S31",
+      "type" : "UserBpmnElement",
+      "name" : "Start UserGuide page",
+      "elements" : [ {
+          "id" : "S31-f3",
+          "type" : "DialogCall",
+          "name" : "ExampleHomePage",
+          "config" : {
+            "dialogId" : "com.axonivy.portal.userexamples.ExampleHomePage",
+            "startMethod" : "start()"
+          },
+          "visual" : {
+            "at" : { "x" : 272, "y" : 160 },
+            "size" : { "width" : 128, "height" : 44 }
+          },
+          "connect" : { "id" : "S31-f1", "to" : "S31-g1" }
+        }, {
+          "id" : "S31-g0",
+          "type" : "EmbeddedStart",
+          "name" : "in 1",
+          "visual" : {
+            "at" : { "x" : 64, "y" : 160 },
+            "labelOffset" : { "x" : 0, "y" : 5 }
+          },
+          "parentConnector" : "f7",
+          "connect" : { "id" : "S31-f0", "to" : "S31-f3" }
+        }, {
+          "id" : "S31-g1",
+          "type" : "EmbeddedEnd",
+          "name" : "out 1",
+          "visual" : {
+            "at" : { "x" : 464, "y" : 160 },
+            "labelOffset" : { "x" : 0, "y" : 5 }
+          },
+          "parentConnector" : "f8"
+        } ],
+      "visual" : {
+        "at" : { "x" : 408, "y" : 480 },
+        "size" : { "width" : 128, "height" : 44 }
+      },
+      "connect" : { "id" : "f8", "to" : "f1" }
+    }, {
+      "id" : "f3",
+      "type" : "ProcessAnnotation",
+      "name" : [
+        "**To start your Axon Ivy Portal experience. This link redirects you to the Portal login page**",
+        "Please use the below credential to login Portal:",
+        "- account: Developer",
+        "- password: Developer"
+      ],
+      "visual" : {
+        "at" : { "x" : 432, "y" : 104 },
+        "size" : { "width" : 672, "height" : 76 },
+        "labelOffset" : { "x" : -330, "y" : -34 }
+      },
+      "connect" : { "id" : "f9", "to" : "f4" }
+    }, {
+      "id" : "f6",
+      "type" : "ProcessAnnotation",
+      "name" : [
+        "**Portal user example guide**",
+        "In this User Example Guide, you will find some demo processes available in the Axon Ivy Portal.",
+        "Just click on the corresponding link below to get more information."
+      ],
+      "visual" : {
+        "at" : { "x" : 360, "y" : 368 },
+        "size" : { "width" : 528, "height" : 60 },
+        "labelOffset" : { "x" : -259, "y" : -26 }
+      },
+      "connect" : { "id" : "f10", "to" : "f0" }
+    } ],
+  "layout" : {
+    "lanes" : [ {
+        "name" : "User example guide",
+        "offset" : 32,
+        "size" : 544,
+        "lanes" : [ ]
+      } ]
+  }
+}

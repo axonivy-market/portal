@@ -1,0 +1,109 @@
+{
+  "format" : "9.4.8",
+  "id" : "17B85C8E8CCA8F78",
+  "data" : "portal.migration.Login.LoginData",
+  "kind" : "HTML_DIALOG",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start()",
+      "config" : {
+        "callSignature" : "start",
+        "guid" : "17B85C8E8D4A9603"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 192, "y" : 64 }
+      }
+    }, {
+      "id" : "f6",
+      "type" : "HtmlDialogEventStart",
+      "name" : "login",
+      "config" : {
+        "guid" : "17B85CC491521A2C"
+      },
+      "visual" : {
+        "at" : { "x" : 95, "y" : 183 },
+        "size" : { "width" : 20, "height" : 20 },
+        "labelOffset" : { "x" : -9, "y" : 13 }
+      },
+      "connect" : { "id" : "f9", "to" : "f8" }
+    }, {
+      "id" : "f8",
+      "type" : "Script",
+      "name" : "login get user settings",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import org.apache.commons.lang3.StringUtils;",
+            "import ch.ivyteam.ivy.security.IRole;",
+            "import javax.faces.context.FacesContext;",
+            "import javax.faces.application.FacesMessage;",
+            "",
+            "in.loginOk = ivy.session.loginSessionUser(in.username, in.password);",
+            "out.password = null;",
+            "boolean hasPermission = false;",
+            "if (in.loginOk)",
+            "{",
+            "  List<IRole> userRoles = ivy.session.getSessionUser().getRoles();",
+            "  for (IRole role : userRoles) {",
+            "    if (StringUtils.equalsIgnoreCase(\"AXONIVY_PORTAL_ADMIN\", role.getName()))",
+            "    {",
+            "      hasPermission = true;",
+            "      break;",
+            "    }",
+            "  }",
+            "}",
+            "",
+            "if (!in.loginOk || !hasPermission) ",
+            "{",
+            "  String message = in.loginOk ? \"You do not have permission to start this link\" : \"Login failed\";",
+            "  FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, \"\", message));",
+            "  FacesContext.getCurrentInstance().validationFailed();",
+            "  in.loginOk = false;",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 240, "y" : 183 },
+        "size" : { "width" : 128, "height" : 44 }
+      },
+      "connect" : { "id" : "f4", "to" : "f3" }
+    }, {
+      "id" : "f3",
+      "type" : "Alternative",
+      "name" : "is successful?",
+      "visual" : {
+        "at" : { "x" : 384, "y" : 183 },
+        "labelOffset" : { "x" : -35, "y" : -39 }
+      },
+      "connect" : [
+        { "id" : "f13", "to" : "f12", "label" : {
+            "name" : "failed",
+            "segment" : 0.52,
+            "offset" : { "x" : 0, "y" : -13 }
+          }, "condition" : "!in.loginOk" },
+        { "id" : "f11", "to" : "f5" }
+      ]
+    }, {
+      "id" : "f12",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 520, "y" : 183 }
+      }
+    }, {
+      "id" : "f5",
+      "type" : "HtmlDialogExit",
+      "visual" : {
+        "at" : { "x" : 384, "y" : 279 }
+      }
+    } ]
+}

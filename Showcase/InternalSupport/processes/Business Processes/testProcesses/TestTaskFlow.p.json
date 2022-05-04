@@ -1,0 +1,1518 @@
+{
+  "format" : "9.4.8",
+  "id" : "14B2FC03D2E87141",
+  "data" : "internaltest.Data",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "Support Ticket",
+      "config" : {
+        "callSignature" : "CreateSupportTicket",
+        "case" : {
+          "attachToBusinessCase" : false,
+          "customFields" : [
+            { "name" : "CustomVarCharField1", "type" : "String", "value" : "\"Leave 1\"" },
+            { "name" : "CustomVarCharField2", "type" : "String", "value" : "\"Leave 2\"" },
+            { "name" : "CustomVarCharField3", "type" : "String", "value" : "\"Leave 3\"" },
+            { "name" : "CustomVarCharField4", "type" : "String", "value" : "\"Leave 4\"" },
+            { "name" : "CustomVarCharField5", "type" : "String", "value" : "\"Leave 5\"" }
+          ]
+        },
+        "outLink" : "CreateSupportTicket.ivp",
+        "startName" : "Create Support Ticket"
+      },
+      "visual" : {
+        "at" : { "x" : 544, "y" : 64 },
+        "size" : { "width" : 26, "height" : 26 },
+        "labelOffset" : { "x" : 25, "y" : -2 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f22",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 544, "y" : 416 },
+        "size" : { "width" : 26, "height" : 26 }
+      }
+    }, {
+      "id" : "f23",
+      "type" : "TaskSwitchGateway",
+      "name" : "SupportTicket",
+      "config" : {
+        "outLinks" : [ "TaskA.ivp" ],
+        "case" : {
+          "name" : "SupportTicket",
+          "category" : "SupportTicket",
+          "customFields" : [
+            { "name" : "ProcessCategoryCode", "type" : "String", "value" : "\"Ticket Category Code\"" },
+            { "name" : "ProcessCategoryName", "type" : "String", "value" : "\"Ticket Category Name\"" },
+            { "name" : "ProcessCode", "type" : "String", "value" : "\"Ticket Category Code\"" },
+            { "name" : "ProcessName", "type" : "String", "value" : "\"Ticket Category Name\"" }
+          ]
+        },
+        "tasks" : {
+          "TaskA" : {
+            "name" : "SupportTicket",
+            "responsible" : {
+              "userFromAttribute" : "ivy.session.getSessionUserName()"
+            },
+            "priority" : "in1.taskPriority.intValue()",
+            "expiry" : {
+              "timeout" : "new Duration(\"3H\")",
+              "error" : "f38",
+              "responsible" : {
+                "deleteTask" : true
+              }
+            }
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 544, "y" : 288 },
+        "size" : { "width" : 28, "height" : 28 },
+        "labelOffset" : { "x" : 21, "y" : -3 }
+      },
+      "connect" : [
+        { "id" : "f25", "to" : "f22", "condition" : "ivp==\"TaskA.ivp\"" }
+      ]
+    }, {
+      "id" : "f1",
+      "type" : "Script",
+      "name" : [
+        "add case details link",
+        "add contactfolder id link"
+      ],
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.workflow.WorkflowPriority;",
+            "",
+            "in.expiredDate = new Duration(1,0,0,0,0,0);",
+            "in.taskPriority = WorkflowPriority.NORMAL;"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 544, "y" : 192 },
+        "size" : { "width" : 40, "height" : 24 },
+        "labelOffset" : { "x" : 20, "y" : -2 }
+      },
+      "connect" : { "id" : "f3", "to" : "f23", "var" : "in1" }
+    }, {
+      "id" : "f8",
+      "type" : "TaskSwitchEvent",
+      "config" : {
+        "outLinks" : [ "TaskA.ivp" ],
+        "case" : {
+          "name" : "Österreich Resource with ID 1212",
+          "category" : "Resource/Austria"
+        },
+        "task" : {
+          "name" : "Österreich Resource with ID 1212",
+          "expiry" : {
+            "timeout" : "new Duration(\"1D\")",
+            "responsible" : {
+              "deleteTask" : true
+            }
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1072, "y" : 168 },
+        "size" : { "width" : 26, "height" : 26 }
+      },
+      "connect" : { "id" : "f21", "to" : "f10", "condition" : "ivp==\"TaskA.ivp\"" }
+    }, {
+      "id" : "f10",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 1072, "y" : 256 },
+        "size" : { "width" : 26, "height" : 26 }
+      }
+    }, {
+      "id" : "f6",
+      "type" : "RequestStart",
+      "name" : "CreateTaskWithSpecialCharacter.ivp",
+      "config" : {
+        "callSignature" : "CreateTaskWithSpecialCharacter",
+        "outLink" : "CreateTaskWithSpecialCharacter.ivp"
+      },
+      "visual" : {
+        "at" : { "x" : 1072, "y" : 64 },
+        "size" : { "width" : 26, "height" : 26 },
+        "labelOffset" : { "x" : 14, "y" : 0 }
+      },
+      "connect" : { "id" : "f16", "to" : "f8", "var" : "in1" }
+    }, {
+      "id" : "f24",
+      "type" : "DialogCall",
+      "name" : [
+        "Show ",
+        "Task Form"
+      ],
+      "config" : {
+        "dialogId" : "com.axonivy.portal.developerexamples.testdata.LeaveRequestForm",
+        "startMethod" : "start()"
+      },
+      "visual" : {
+        "at" : { "x" : 1646, "y" : 284 },
+        "size" : { "width" : 36, "height" : 24 },
+        "labelOffset" : { "x" : 20, "y" : -2 }
+      },
+      "connect" : { "id" : "f33", "to" : "f20", "via" : [ { "x" : 1646, "y" : 416 } ] }
+    }, {
+      "id" : "f26",
+      "type" : "DialogCall",
+      "name" : [
+        "Show ",
+        "Task Form"
+      ],
+      "config" : {
+        "dialogId" : "com.axonivy.portal.developerexamples.testdata.LeaveRequestForm",
+        "startMethod" : "start()"
+      },
+      "visual" : {
+        "at" : { "x" : 1382, "y" : 284 },
+        "size" : { "width" : 36, "height" : 24 },
+        "labelOffset" : { "x" : 20, "y" : -2 }
+      },
+      "connect" : { "id" : "f36", "to" : "f20", "via" : [ { "x" : 1382, "y" : 416 } ] }
+    }, {
+      "id" : "f27",
+      "type" : "TaskSwitchGateway",
+      "name" : "Create tasks",
+      "config" : {
+        "outLinks" : [ "TaskA.ivp", "TaskB.ivp", "TaskC.ivp" ],
+        "tasks" : {
+          "TaskA" : {
+            "name" : "Annual Leave Request",
+            "description" : "Annual Leave Request Description",
+            "category" : "AnnualLeave",
+            "responsible" : {
+              "userFromAttribute" : "\"demoNotExisted\""
+            },
+            "expiry" : {
+              "timeout" : "new Duration(\"3H\")"
+            },
+            "customFields" : [
+              { "name" : "CustomVarCharField1", "type" : "String", "value" : "\"Annual CustomVarCharField1\"" },
+              { "name" : "CustomVarCharField2", "type" : "String", "value" : "\"Annual CustomVarCharField2\"" },
+              { "name" : "CustomVarCharField3", "type" : "String", "value" : "\"Annual CustomVarCharField3\"" },
+              { "name" : "CustomVarCharField4", "type" : "String", "value" : "\"Annual CustomVarCharField4\"" },
+              { "name" : "CustomVarCharField5", "type" : "String", "value" : "\"Annual Leave\"" }
+            ]
+          },
+          "TaskB" : {
+            "name" : "Sick Leave Request",
+            "description" : "Sick Leave Request Description",
+            "priority" : "HIGH",
+            "expiry" : {
+              "timeout" : "new Duration(\"1D\")"
+            },
+            "customFields" : [
+              { "name" : "CustomVarCharField1", "type" : "String", "value" : "\"Sick CustomVarCharField1\"" },
+              { "name" : "CustomVarCharField2", "type" : "String", "value" : "\"Sick CustomVarCharField2\"" },
+              { "name" : "CustomVarCharField3", "type" : "String", "value" : "\"Sick CustomVarCharField3\"" },
+              { "name" : "CustomVarCharField4", "type" : "String", "value" : "\"Sick CustomVarCharField4\"" },
+              { "name" : "CustomVarCharField5", "type" : "String", "value" : "\"Other Leave/Sick/Long\"" }
+            ]
+          },
+          "TaskC" : {
+            "name" : "Maternity Leave Request",
+            "description" : "Maternity Leave Request Description",
+            "priority" : "LOW",
+            "expiry" : {
+              "timeout" : "new Duration(\"2D\")"
+            },
+            "customFields" : [
+              { "name" : "CustomVarCharField1", "type" : "String", "value" : "\"Maternity CustomVarCharField1\"" },
+              { "name" : "CustomVarCharField2", "type" : "String", "value" : "\"Maternity CustomVarCharField2\"" },
+              { "name" : "CustomVarCharField3", "type" : "String", "value" : "\"Maternity CustomVarCharField3\"" },
+              { "name" : "CustomVarCharField4", "type" : "String", "value" : "\"Maternity CustomVarCharField4\"" },
+              { "name" : "CustomVarCharField5", "type" : "String", "value" : "\"Other Leave/Maternity\"" }
+            ]
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1510, "y" : 180 },
+        "size" : { "width" : 28, "height" : 28 },
+        "labelOffset" : { "x" : 9, "y" : -21 }
+      },
+      "connect" : [
+        { "id" : "f37", "to" : "f26", "via" : [ { "x" : 1382, "y" : 180 } ], "condition" : "ivp==\"TaskA.ivp\"" },
+        { "id" : "f35", "to" : "f28", "condition" : "ivp==\"TaskB.ivp\"" },
+        { "id" : "f31", "to" : "f24", "via" : [ { "x" : 1646, "y" : 180 } ], "condition" : "ivp==\"TaskC.ivp\"" }
+      ]
+    }, {
+      "id" : "f28",
+      "type" : "DialogCall",
+      "name" : [
+        "Show ",
+        "Task Form"
+      ],
+      "config" : {
+        "dialogId" : "com.axonivy.portal.developerexamples.testdata.LeaveRequestForm",
+        "startMethod" : "start()"
+      },
+      "visual" : {
+        "at" : { "x" : 1510, "y" : 284 },
+        "size" : { "width" : 36, "height" : 24 },
+        "labelOffset" : { "x" : 20, "y" : -2 }
+      },
+      "connect" : { "id" : "f46", "to" : "f20" }
+    }, {
+      "id" : "f29",
+      "type" : "RequestStart",
+      "name" : "TestRelatedTaskWithNoResponsible.ivp",
+      "config" : {
+        "callSignature" : "TestRelatedTaskWithNoResponsible",
+        "case" : {
+          "name" : "Leave Request Test For IVYPORTAL-3369",
+          "description" : "Leave Request Description",
+          "attachToBusinessCase" : false,
+          "customFields" : [
+            { "name" : "CustomVarCharField1", "type" : "String", "value" : "\"Leave Request CustomVarCharField1\"" },
+            { "name" : "CustomVarCharField2", "type" : "String", "value" : "\"Leave Request CustomVarCharField2\"" },
+            { "name" : "CustomVarCharField3", "type" : "String", "value" : "\"Leave Request CustomVarCharField3\"" },
+            { "name" : "CustomVarCharField4", "type" : "String", "value" : "\"Leave Request CustomVarCharField4\"" },
+            { "name" : "ProcessCategoryCode", "type" : "String", "value" : "\"pubRequested\"" },
+            { "name" : "ProcessCategoryName", "type" : "String", "value" : "\"Publication Requested\"" },
+            { "name" : "ProcessCode", "type" : "String", "value" : "\"pubRequested\"" },
+            { "name" : "ProcessName", "type" : "String", "value" : "\"Publication Requested\"" },
+            { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
+          ]
+        },
+        "outLink" : "TestRelatedTaskWithNoResponsible.ivp",
+        "startDescription" : "Test for IVYPORTAL-3369",
+        "startName" : "Categoried Leave Request"
+      },
+      "visual" : {
+        "at" : { "x" : 1510, "y" : 52 },
+        "size" : { "width" : 26, "height" : 26 },
+        "labelOffset" : { "x" : 14, "y" : 0 }
+      },
+      "connect" : { "id" : "f34", "to" : "f27", "var" : "in1" }
+    }, {
+      "id" : "f38",
+      "type" : "ErrorStartEvent",
+      "name" : "ExpirationHandler",
+      "visual" : {
+        "at" : { "x" : 800, "y" : 72 },
+        "size" : { "width" : 26, "height" : 26 },
+        "labelOffset" : { "x" : 14, "y" : 0 }
+      },
+      "connect" : { "id" : "f40", "to" : "f39" }
+    }, {
+      "id" : "f39",
+      "type" : "Script",
+      "name" : "increase task priority",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.workflow.WorkflowPriority;",
+            "in.taskPriority = WorkflowPriority.HIGH;"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 800, "y" : 200 },
+        "size" : { "width" : 36, "height" : 24 },
+        "labelOffset" : { "x" : 20, "y" : -2 }
+      },
+      "connect" : { "id" : "f43", "to" : "f41", "var" : "in1" }
+    }, {
+      "id" : "f41",
+      "type" : "TaskSwitchEvent",
+      "name" : "support ticket",
+      "config" : {
+        "outLinks" : [ "TaskA.ivp" ],
+        "case" : {
+          "name" : "SupportTicket",
+          "customFields" : [
+            { "name" : "ProcessCategoryCode", "type" : "String", "value" : "\"Ticket Category Code\"" },
+            { "name" : "ProcessCategoryName", "type" : "String", "value" : "\"Ticket Category Name\"" },
+            { "name" : "ProcessCode", "type" : "String", "value" : "\"Ticket Category Code\"" },
+            { "name" : "ProcessName", "type" : "String", "value" : "\"Ticket Category Name\"" }
+          ]
+        },
+        "task" : {
+          "name" : "SupportTicket",
+          "priority" : "in1.taskPriority.intValue()",
+          "expiry" : {
+            "timeout" : "new Duration(\"1D\")",
+            "error" : "f38"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 800, "y" : 288 },
+        "size" : { "width" : 26, "height" : 26 },
+        "labelOffset" : { "x" : 13, "y" : 0 }
+      },
+      "connect" : { "id" : "f44", "to" : "f42", "condition" : "ivp==\"TaskA.ivp\"" }
+    }, {
+      "id" : "f42",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 800, "y" : 416 },
+        "size" : { "width" : 26, "height" : 26 }
+      }
+    }, {
+      "id" : "f20",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 1510, "y" : 416 },
+        "size" : { "width" : 26, "height" : 26 }
+      }
+    }, {
+      "id" : "f30",
+      "type" : "RequestStart",
+      "name" : "CategoriedPersonalRequest.ivp",
+      "config" : {
+        "callSignature" : "CategoriedPersonalRequest",
+        "outLink" : "CategoriedPersonalRequest.ivp",
+        "startName" : "Categoried Personal Request"
+      },
+      "visual" : {
+        "at" : { "x" : 192, "y" : 512 },
+        "size" : { "width" : 26, "height" : 26 },
+        "labelOffset" : { "x" : 14, "y" : 0 }
+      },
+      "connect" : { "id" : "f49", "to" : "f32", "var" : "in1" }
+    }, {
+      "id" : "f32",
+      "type" : "TaskSwitchGateway",
+      "name" : "Create personal tasks",
+      "config" : {
+        "outLinks" : [ "TaskA.ivp", "TaskB.ivp" ],
+        "tasks" : {
+          "TaskA" : {
+            "name" : "Request raise salary",
+            "category" : "PersonalRequest/RaiseSalary",
+            "responsible" : {
+              "userFromAttribute" : "\"demo\""
+            },
+            "customFields" : [
+              { "name" : "CustomVarCharField5", "type" : "String", "value" : "\"Über\"" }
+            ]
+          },
+          "TaskB" : {
+            "name" : "Request vacation",
+            "category" : "PersonalRequest/Vacation",
+            "responsible" : {
+              "userFromAttribute" : "\"demo\""
+            },
+            "customFields" : [
+              { "name" : "CustomVarCharField5", "type" : "String", "value" : "\"Müller\"" }
+            ]
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 192, "y" : 576 },
+        "size" : { "width" : 28, "height" : 28 },
+        "labelOffset" : { "x" : 14, "y" : 0 }
+      },
+      "connect" : [
+        { "id" : "f50", "to" : "f47", "via" : [ { "x" : 136, "y" : 576 } ], "condition" : "ivp==\"TaskA.ivp\"" },
+        { "id" : "f51", "to" : "f48", "via" : [ { "x" : 248, "y" : 576 } ], "condition" : "ivp==\"TaskB.ivp\"" }
+      ]
+    }, {
+      "id" : "f47",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 136, "y" : 704 },
+        "size" : { "width" : 26, "height" : 26 }
+      }
+    }, {
+      "id" : "f48",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 248, "y" : 704 },
+        "size" : { "width" : 26, "height" : 26 }
+      }
+    }, {
+      "id" : "f66",
+      "type" : "RequestStart",
+      "name" : "testPortalCustomErrorHandler.ivp",
+      "config" : {
+        "callSignature" : "testPortalCustomErrorHandler",
+        "case" : {
+          "customFields" : [
+            { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
+          ]
+        },
+        "outLink" : "testPortalCustomErrorHandler.ivp"
+      },
+      "visual" : {
+        "at" : { "x" : 752, "y" : 504 }
+      },
+      "connect" : { "id" : "f70", "to" : "f69" }
+    }, {
+      "id" : "f67",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 752, "y" : 664 }
+      }
+    }, {
+      "id" : "f69",
+      "type" : "DialogCall",
+      "config" : {
+        "dialogId" : "internaltest.TestPortalCustomErrorHandler",
+        "startMethod" : "start()"
+      },
+      "visual" : {
+        "at" : { "x" : 752, "y" : 584 },
+        "size" : { "width" : 96, "height" : 48 }
+      },
+      "connect" : { "id" : "f68", "to" : "f67" }
+    }, {
+      "id" : "f86",
+      "type" : "DialogCall",
+      "name" : [
+        "Show ",
+        "Task Form"
+      ],
+      "config" : {
+        "dialogId" : "com.axonivy.portal.developerexamples.testdata.LeaveRequestForm",
+        "startMethod" : "start()"
+      },
+      "visual" : {
+        "at" : { "x" : 1010, "y" : 684 },
+        "size" : { "width" : 36, "height" : 24 },
+        "labelOffset" : { "x" : 20, "y" : -2 }
+      },
+      "connect" : { "id" : "f96", "to" : "f89" }
+    }, {
+      "id" : "f87",
+      "type" : "DialogCall",
+      "name" : [
+        "Show ",
+        "Task Form"
+      ],
+      "config" : {
+        "dialogId" : "com.axonivy.portal.developerexamples.testdata.LeaveRequestForm",
+        "startMethod" : "start()"
+      },
+      "visual" : {
+        "at" : { "x" : 1146, "y" : 684 },
+        "size" : { "width" : 36, "height" : 24 },
+        "labelOffset" : { "x" : 20, "y" : -2 }
+      },
+      "connect" : { "id" : "f97", "to" : "f89", "via" : [ { "x" : 1146, "y" : 748 } ] }
+    }, {
+      "id" : "f89",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 1010, "y" : 748 },
+        "size" : { "width" : 26, "height" : 26 }
+      }
+    }, {
+      "id" : "f90",
+      "type" : "TaskSwitchGateway",
+      "name" : "Create tasks",
+      "config" : {
+        "outLinks" : [ "TaskB.ivp", "TaskA.ivp", "TaskC.ivp" ],
+        "case" : {
+          "category" : "DefaultAdditionalCaseDetailsPage"
+        },
+        "tasks" : {
+          "TaskA" : {
+            "name" : "Annual Leave Request Default Case Details Page",
+            "description" : "Annual Leave Request Description",
+            "category" : "AnnualLeave",
+            "responsible" : {
+              "userFromAttribute" : "\"demo\""
+            },
+            "expiry" : {
+              "timeout" : "new Duration(\"3H\")"
+            },
+            "customFields" : [
+              { "name" : "CustomVarCharField1", "type" : "String", "value" : "\"Exterior\"" },
+              { "name" : "CustomVarCharField5", "type" : "String", "value" : "\"Long Do\"" },
+              { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
+            ]
+          },
+          "TaskB" : {
+            "name" : "Sick Leave Request Default Case Details Page",
+            "description" : "Sick Leave Request Description",
+            "category" : "OtherLeave/SickLeave/Long",
+            "priority" : "HIGH",
+            "expiry" : {
+              "timeout" : "new Duration(\"1D\")"
+            },
+            "customFields" : [
+              { "name" : "CustomVarCharField1", "type" : "String", "value" : "\"Interior\"" },
+              { "name" : "CustomVarCharField5", "type" : "String", "value" : "\"Tung Le\"" },
+              { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
+            ]
+          },
+          "TaskC" : {
+            "name" : "Maternity Leave Request Default Case Details Page",
+            "description" : "Maternity Leave Request Description",
+            "category" : "OtherLeave/Maternity",
+            "priority" : "LOW",
+            "expiry" : {
+              "timeout" : "new Duration(\"2D\")"
+            },
+            "customFields" : [
+              { "name" : "CustomVarCharField1", "type" : "String", "value" : "\"Interior\"" },
+              { "name" : "CustomVarCharField5", "type" : "String", "value" : "\"Anh Nguyen\"" },
+              { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
+            ]
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1010, "y" : 628 },
+        "size" : { "width" : 28, "height" : 28 },
+        "labelOffset" : { "x" : 9, "y" : -21 }
+      },
+      "connect" : [
+        { "id" : "f99", "to" : "f91", "via" : [ { "x" : 882, "y" : 628 } ], "condition" : "ivp==\"TaskA.ivp\"" },
+        { "id" : "f94", "to" : "f86", "condition" : "ivp==\"TaskB.ivp\"" },
+        { "id" : "f95", "to" : "f87", "via" : [ { "x" : 1146, "y" : 628 } ], "condition" : "ivp==\"TaskC.ivp\"" }
+      ]
+    }, {
+      "id" : "f91",
+      "type" : "DialogCall",
+      "name" : [
+        "Show ",
+        "Task Form"
+      ],
+      "config" : {
+        "dialogId" : "com.axonivy.portal.developerexamples.testdata.LeaveRequestForm",
+        "startMethod" : "start()"
+      },
+      "visual" : {
+        "at" : { "x" : 882, "y" : 684 },
+        "size" : { "width" : 36, "height" : 24 },
+        "labelOffset" : { "x" : 20, "y" : -2 }
+      },
+      "connect" : { "id" : "f98", "to" : "f89", "via" : [ { "x" : 882, "y" : 748 } ] }
+    }, {
+      "id" : "f92",
+      "type" : "RequestStart",
+      "name" : "DefaultAdditionalCaseDetails.ivp",
+      "config" : {
+        "callSignature" : "DefaultAdditionalCaseDetails",
+        "case" : {
+          "name" : "Leave Request for Default Additional Case Details",
+          "description" : "Leave Request Description for Default Additional Case Details",
+          "customFields" : [
+            { "name" : "CustomDecimalField1", "type" : "Number", "value" : "159753852" },
+            { "name" : "CustomDecimalField3", "type" : "Number", "value" : "745856" },
+            { "name" : "CustomDecimalField5", "type" : "Number", "value" : "1598526" },
+            { "name" : "CustomTimestampField2", "type" : "Timestamp", "value" : "new DateTime(2018, 2, 2, 2, 2 ,2)" },
+            { "name" : "CustomTimestampField3", "type" : "Timestamp", "value" : "new DateTime(2018, 3, 3, 3, 3, 3)" },
+            { "name" : "CustomTimestampField5", "type" : "Timestamp", "value" : "new DateTime(2018, 5, 5, 5, 5, 5)" },
+            { "name" : "CustomVarCharField1", "type" : "String", "value" : "\"CustomVarCharField 1\"" },
+            { "name" : "CustomVarCharField2", "type" : "String", "value" : "\"CustomVarCharField 2\"" },
+            { "name" : "CustomVarCharField3", "type" : "String", "value" : "\"CustomVarCharField 3\"" },
+            { "name" : "CustomVarCharField4", "type" : "String", "value" : "\"CustomVarCharField 4\"" },
+            { "name" : "CustomVarCharField5", "type" : "String", "value" : "\"CustomVarCharField 5\"" },
+            { "name" : "ProcessCategoryCode", "type" : "String", "value" : "\"pubRequested\"" },
+            { "name" : "ProcessCategoryName", "type" : "String", "value" : "\"Publication Requested\"" },
+            { "name" : "ProcessCode", "type" : "String", "value" : "\"pubRequested\"" },
+            { "name" : "ProcessName", "type" : "String", "value" : "\"Publication Requested\"" }
+          ]
+        },
+        "outLink" : "DefaultAdditionalCaseDetails.ivp",
+        "startName" : "Default Additional Case Details"
+      },
+      "visual" : {
+        "at" : { "x" : 1010, "y" : 513 },
+        "size" : { "width" : 26, "height" : 26 },
+        "labelOffset" : { "x" : 14, "y" : 0 }
+      },
+      "connect" : { "id" : "f88", "to" : "f90", "var" : "in1" }
+    }, {
+      "id" : "f93",
+      "type" : "TaskSwitchGateway",
+      "name" : "Create tasks",
+      "config" : {
+        "outLinks" : [ "TaskA.ivp", "TaskB.ivp", "TaskC.ivp", "TaskD.ivp" ],
+        "case" : {
+          "category" : "CaseListPermission"
+        },
+        "tasks" : {
+          "TaskA" : {
+            "name" : "Annual Leave Request Custom Case Details Page (UserA)",
+            "description" : "Annual Leave Request Description",
+            "category" : "AnnualLeave",
+            "responsible" : {
+              "userFromAttribute" : "\"UserA\""
+            },
+            "expiry" : {
+              "timeout" : "new Duration(\"3H\")"
+            },
+            "customFields" : [
+              { "name" : "CustomVarCharField1", "type" : "String", "value" : "\"Exterior\"" },
+              { "name" : "CustomVarCharField5", "type" : "String", "value" : "\"Long Do\"" }
+            ]
+          },
+          "TaskB" : {
+            "name" : "Sick Leave Request Custom Case Details Page (UserB)",
+            "description" : "Sick Leave Request Description",
+            "category" : "OtherLeave/SickLeave/Long",
+            "responsible" : {
+              "userFromAttribute" : "\"UserB\""
+            },
+            "priority" : "HIGH",
+            "expiry" : {
+              "timeout" : "new Duration(\"1D\")"
+            },
+            "customFields" : [
+              { "name" : "CustomVarCharField1", "type" : "String", "value" : "\"Interior\"" },
+              { "name" : "CustomVarCharField5", "type" : "String", "value" : "\"Tung Le\"" }
+            ]
+          },
+          "TaskC" : {
+            "name" : "Maternity Leave Request Custom Case Details Page (UserC)",
+            "description" : "Maternity Leave Request Description",
+            "category" : "OtherLeave/Maternity",
+            "responsible" : {
+              "userFromAttribute" : "\"UserC\""
+            },
+            "priority" : "LOW",
+            "expiry" : {
+              "timeout" : "new Duration(\"2D\")"
+            },
+            "customFields" : [
+              { "name" : "CustomVarCharField1", "type" : "String", "value" : "\"Interior\"" },
+              { "name" : "CustomVarCharField5", "type" : "String", "value" : "\"Anh Nguyen\"" }
+            ]
+          },
+          "TaskD" : {
+            "name" : "Annual Leave Request Custom Case Details Page (UserA)",
+            "description" : "Maternity Leave Request Description",
+            "responsible" : {
+              "userFromAttribute" : "\"UserA\""
+            }
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 191, "y" : 903 },
+        "size" : { "width" : 28, "height" : 28 },
+        "labelOffset" : { "x" : 9, "y" : -21 }
+      },
+      "connect" : [
+        { "id" : "f113", "to" : "f103", "via" : [ { "x" : 63, "y" : 903 } ], "condition" : "ivp==\"TaskA.ivp\"" },
+        { "id" : "f108", "to" : "f104", "condition" : "ivp==\"TaskB.ivp\"" },
+        { "id" : "f110", "to" : "f101", "via" : [ { "x" : 327, "y" : 903 } ], "condition" : "ivp==\"TaskC.ivp\"" },
+        { "id" : "f111", "to" : "f106", "via" : [ { "x" : 456, "y" : 903 } ], "condition" : "ivp==\"TaskD.ivp\"" }
+      ]
+    }, {
+      "id" : "f100",
+      "type" : "RequestStart",
+      "name" : "TestCaseListPermissions.ivp",
+      "config" : {
+        "callSignature" : "TestCaseListPermissions",
+        "case" : {
+          "name" : "Test Case List Permission",
+          "description" : "Test case List Permission",
+          "customFields" : [
+            { "name" : "CustomDecimalField1", "type" : "Number", "value" : "111" },
+            { "name" : "CustomDecimalField2", "type" : "Number", "value" : "222" },
+            { "name" : "CustomDecimalField3", "type" : "Number", "value" : "333" },
+            { "name" : "CustomDecimalField4", "type" : "Number", "value" : "444" },
+            { "name" : "CustomDecimalField5", "type" : "Number", "value" : "555" },
+            { "name" : "CustomTimestampField1", "type" : "Timestamp", "value" : "new DateTime(2018, 1, 1, 1, 1, 1)" },
+            { "name" : "CustomTimestampField2", "type" : "Timestamp", "value" : "new DateTime(2018, 2, 2, 2, 2 ,2)" },
+            { "name" : "CustomTimestampField3", "type" : "Timestamp", "value" : "new DateTime(2018, 3, 3, 3, 3, 3)" },
+            { "name" : "CustomTimestampField4", "type" : "Timestamp", "value" : "new DateTime(2018, 4, 4, 4, 4, 4)" },
+            { "name" : "CustomTimestampField5", "type" : "Timestamp", "value" : "new DateTime(2018, 5, 5, 5, 5, 5)" },
+            { "name" : "CustomVarCharField1", "type" : "String", "value" : "\"CustomizationAdditionalCaseDetails CustomVarCharField1\"" },
+            { "name" : "CustomVarCharField2", "type" : "String", "value" : "\"CustomizationAdditionalCaseDetails CustomVarCharField2\"" },
+            { "name" : "CustomVarCharField3", "type" : "String", "value" : "\"CustomizationAdditionalCaseDetails CustomVarCharField3\"" },
+            { "name" : "CustomVarCharField4", "type" : "String", "value" : "\"CustomizationAdditionalCaseDetails CustomVarCharField4\"" },
+            { "name" : "CustomVarCharField5", "type" : "String", "value" : "\"CustomizationAdditionalCaseDetails CustomVarCharField5\"" },
+            { "name" : "ProcessCategoryCode", "type" : "String", "value" : "\"pubRequested\"" },
+            { "name" : "ProcessCategoryName", "type" : "String", "value" : "\"Publication Requested\"" },
+            { "name" : "ProcessCode", "type" : "String", "value" : "\"pubRequested\"" },
+            { "name" : "ProcessName", "type" : "String", "value" : "\"Publication Requested\"" },
+            { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
+          ]
+        },
+        "outLink" : "TestCaseListPermissions.ivp",
+        "startName" : "Test Case List Permissions"
+      },
+      "visual" : {
+        "at" : { "x" : 191, "y" : 772 },
+        "size" : { "width" : 26, "height" : 26 },
+        "labelOffset" : { "x" : 14, "y" : 0 }
+      },
+      "connect" : { "id" : "f102", "to" : "f93", "var" : "in1" }
+    }, {
+      "id" : "f101",
+      "type" : "DialogCall",
+      "name" : [
+        "Show ",
+        "Task Form"
+      ],
+      "config" : {
+        "dialogId" : "com.axonivy.portal.developerexamples.testdata.LeaveRequestForm",
+        "startMethod" : "start()"
+      },
+      "visual" : {
+        "at" : { "x" : 327, "y" : 959 },
+        "size" : { "width" : 36, "height" : 24 },
+        "labelOffset" : { "x" : 20, "y" : -2 }
+      },
+      "connect" : { "id" : "f109", "to" : "f105", "via" : [ { "x" : 327, "y" : 1023 } ] }
+    }, {
+      "id" : "f103",
+      "type" : "DialogCall",
+      "name" : [
+        "Show ",
+        "Task Form"
+      ],
+      "config" : {
+        "dialogId" : "com.axonivy.portal.developerexamples.testdata.LeaveRequestForm",
+        "startMethod" : "start()"
+      },
+      "visual" : {
+        "at" : { "x" : 63, "y" : 959 },
+        "size" : { "width" : 36, "height" : 24 },
+        "labelOffset" : { "x" : 20, "y" : -2 }
+      },
+      "connect" : { "id" : "f107", "to" : "f105", "via" : [ { "x" : 63, "y" : 1023 } ] }
+    }, {
+      "id" : "f104",
+      "type" : "DialogCall",
+      "name" : [
+        "Show ",
+        "Task Form"
+      ],
+      "config" : {
+        "dialogId" : "com.axonivy.portal.developerexamples.testdata.LeaveRequestForm",
+        "startMethod" : "start()"
+      },
+      "visual" : {
+        "at" : { "x" : 191, "y" : 959 },
+        "size" : { "width" : 36, "height" : 24 },
+        "labelOffset" : { "x" : 20, "y" : -2 }
+      },
+      "connect" : { "id" : "f112", "to" : "f105" }
+    }, {
+      "id" : "f105",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 191, "y" : 1023 },
+        "size" : { "width" : 26, "height" : 26 }
+      }
+    }, {
+      "id" : "f106",
+      "type" : "DialogCall",
+      "name" : [
+        "Show ",
+        "Task Form"
+      ],
+      "config" : {
+        "dialogId" : "com.axonivy.portal.developerexamples.testdata.LeaveRequestForm",
+        "startMethod" : "start()"
+      },
+      "visual" : {
+        "at" : { "x" : 456, "y" : 959 },
+        "size" : { "width" : 36, "height" : 24 },
+        "labelOffset" : { "x" : 20, "y" : -2 }
+      },
+      "connect" : { "id" : "f114", "to" : "f105", "via" : [ { "x" : 456, "y" : 1023 } ] }
+    }, {
+      "id" : "f130",
+      "type" : "RequestStart",
+      "name" : "SaleDepartment.ivp",
+      "config" : {
+        "callSignature" : "SaleDepartment",
+        "case" : {
+          "name" : "Sale Information",
+          "description" : "Sale Information",
+          "customFields" : [
+            { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
+          ]
+        },
+        "outLink" : "SaleDepartment.ivp"
+      },
+      "visual" : {
+        "at" : { "x" : 624, "y" : 816 },
+        "description" : "Sale Information"
+      },
+      "connect" : { "id" : "f133", "to" : "f132", "var" : "in1" }
+    }, {
+      "id" : "f131",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 624, "y" : 1024 }
+      }
+    }, {
+      "id" : "f132",
+      "type" : "UserTask",
+      "config" : {
+        "dialogId" : "internaltest.ui.SaleDepartment",
+        "startMethod" : "start()",
+        "task" : {
+          "name" : "Sale Department Info"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 624, "y" : 928 }
+      },
+      "connect" : { "id" : "f134", "to" : "f131", "condition" : "ivp==\"TaskA.ivp\"" }
+    }, {
+      "id" : "f135",
+      "type" : "RequestStart",
+      "name" : "createTaskWithNotExistedActivator.ivp",
+      "config" : {
+        "callSignature" : "createTaskWithNotExistedActivator",
+        "outLink" : "createTaskWithNotExistedActivator.ivp",
+        "startName" : "Create task with not existed activator"
+      },
+      "visual" : {
+        "at" : { "x" : 208, "y" : 1136 },
+        "labelOffset" : { "x" : 22, "y" : 8 }
+      },
+      "connect" : { "id" : "f138", "to" : "f136", "var" : "in1" }
+    }, {
+      "id" : "f136",
+      "type" : "TaskSwitchEvent",
+      "config" : {
+        "outLinks" : [ "TaskA.ivp" ],
+        "task" : {
+          "name" : "Arrange retro meeting",
+          "responsible" : {
+            "userFromAttribute" : "\"Not exist user\""
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 208, "y" : 1248 }
+      },
+      "connect" : { "id" : "f139", "to" : "f137", "condition" : "ivp==\"TaskA.ivp\"" }
+    }, {
+      "id" : "f137",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 208, "y" : 1344 }
+      }
+    }, {
+      "id" : "f140",
+      "type" : "RequestStart",
+      "name" : "ProcessWithSkipTaskListTask.ivp",
+      "config" : {
+        "callSignature" : "ProcessWithSkipTaskListTask",
+        "case" : {
+          "customFields" : [
+            { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
+          ]
+        },
+        "outLink" : "ProcessWithSkipTaskListTask.ivp",
+        "startName" : "Start Sprint meetings"
+      },
+      "visual" : {
+        "at" : { "x" : 464, "y" : 1184 }
+      },
+      "connect" : { "id" : "f142", "to" : "f141", "var" : "in1" }
+    }, {
+      "id" : "f141",
+      "type" : "TaskSwitchEvent",
+      "config" : {
+        "outLinks" : [ "TaskA.ivp" ],
+        "task" : {
+          "name" : "Planning meeting"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 608, "y" : 1184 }
+      },
+      "connect" : { "id" : "f152", "to" : "f151", "condition" : "ivp==\"TaskA.ivp\"" }
+    }, {
+      "id" : "f145",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 1496, "y" : 1152 }
+      }
+    }, {
+      "id" : "f147",
+      "type" : "TaskSwitchGateway",
+      "config" : {
+        "outLinks" : [ "TaskB.ivp", "TaskA.ivp", "TaskC.ivp" ],
+        "tasks" : {
+          "TaskA" : {
+            "name" : "Planning meeting 2",
+            "skipTasklist" : true
+          },
+          "TaskB" : {
+            "name" : "Estimation meeting",
+            "responsible" : {
+              "role" : "Sales"
+            }
+          },
+          "TaskC" : {
+            "name" : "Planning meeting 3",
+            "responsible" : {
+              "role" : "Sales"
+            }
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 864, "y" : 1184 }
+      },
+      "connect" : [
+        { "id" : "f154", "to" : "f153", "condition" : "ivp==\"TaskA.ivp\"" },
+        { "id" : "f156", "to" : "f155", "condition" : "ivp==\"TaskB.ivp\"" },
+        { "id" : "f160", "to" : "f159", "via" : [ { "x" : 864, "y" : 1127 } ], "condition" : "ivp==\"TaskC.ivp\"" }
+      ]
+    }, {
+      "id" : "f144",
+      "type" : "TaskSwitchEvent",
+      "config" : {
+        "outLinks" : [ "TaskA.ivp" ],
+        "task" : {
+          "name" : "Estimation meeting 2"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1000, "y" : 1280 }
+      },
+      "connect" : { "id" : "f158", "to" : "f157", "condition" : "ivp==\"TaskA.ivp\"" }
+    }, {
+      "id" : "f149",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 1224, "y" : 1280 }
+      }
+    }, {
+      "id" : "f151",
+      "type" : "DialogCall",
+      "config" : {
+        "dialogId" : "internaltest.ui.SaleDepartment",
+        "startMethod" : "start()"
+      },
+      "visual" : {
+        "at" : { "x" : 736, "y" : 1184 },
+        "size" : { "width" : 32, "height" : 24 }
+      },
+      "connect" : { "id" : "f148", "to" : "f147", "var" : "in1" }
+    }, {
+      "id" : "f153",
+      "type" : "DialogCall",
+      "config" : {
+        "dialogId" : "internaltest.ui.SaleDepartment",
+        "startMethod" : "start()"
+      },
+      "visual" : {
+        "at" : { "x" : 992, "y" : 1184 },
+        "size" : { "width" : 40, "height" : 24 }
+      },
+      "connect" : { "id" : "f143", "to" : "f161", "via" : [ { "x" : 1184, "y" : 1184 } ], "var" : "in2" }
+    }, {
+      "id" : "f155",
+      "type" : "DialogCall",
+      "config" : {
+        "dialogId" : "internaltest.ui.SaleDepartment",
+        "startMethod" : "start()"
+      },
+      "visual" : {
+        "at" : { "x" : 864, "y" : 1280 },
+        "size" : { "width" : 40, "height" : 24 }
+      },
+      "connect" : { "id" : "f146", "to" : "f144", "var" : "in1" }
+    }, {
+      "id" : "f157",
+      "type" : "DialogCall",
+      "config" : {
+        "dialogId" : "internaltest.ui.SaleDepartment",
+        "startMethod" : "start()"
+      },
+      "visual" : {
+        "at" : { "x" : 1096, "y" : 1280 },
+        "size" : { "width" : 40, "height" : 24 }
+      },
+      "connect" : { "id" : "f150", "to" : "f149" }
+    }, {
+      "id" : "f159",
+      "type" : "DialogCall",
+      "config" : {
+        "dialogId" : "internaltest.ui.SaleDepartment",
+        "startMethod" : "start()"
+      },
+      "visual" : {
+        "at" : { "x" : 989, "y" : 1127 },
+        "size" : { "width" : 40, "height" : 24 }
+      },
+      "connect" : { "id" : "f162", "to" : "f161", "via" : [ { "x" : 1184, "y" : 1127 } ], "var" : "in1" }
+    }, {
+      "id" : "f161",
+      "type" : "TaskSwitchGateway",
+      "config" : {
+        "outLinks" : [ "TaskA.ivp" ],
+        "tasks" : {
+          "TaskA" : {
+            "name" : "Wait for implementation",
+            "responsible" : {
+              "role" : "SYSTEM"
+            }
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1184, "y" : 1152 }
+      },
+      "connect" : [
+        { "id" : "f164", "to" : "f163", "condition" : "ivp==\"TaskA.ivp\"", "var" : "in1" }
+      ]
+    }, {
+      "id" : "f163",
+      "type" : "TaskSwitchEvent",
+      "config" : {
+        "outLinks" : [ "TaskA.ivp" ],
+        "task" : {
+          "name" : "Review meeting",
+          "responsible" : {
+            "role" : "Sales"
+          },
+          "skipTasklist" : true
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1280, "y" : 1152 }
+      },
+      "connect" : { "id" : "f166", "to" : "f165", "condition" : "ivp==\"TaskA.ivp\"" }
+    }, {
+      "id" : "f165",
+      "type" : "DialogCall",
+      "config" : {
+        "dialogId" : "internaltest.ui.SaleDepartment",
+        "startMethod" : "start()"
+      },
+      "visual" : {
+        "at" : { "x" : 1392, "y" : 1152 },
+        "size" : { "width" : 32, "height" : 24 }
+      },
+      "connect" : { "id" : "f167", "to" : "f145" }
+    }, {
+      "id" : "f168",
+      "type" : "RequestStart",
+      "name" : "processWithSystemNote.ivp",
+      "config" : {
+        "callSignature" : "processWithSystemNote",
+        "case" : {
+          "customFields" : [
+            { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
+          ]
+        },
+        "outLink" : "processWithSystemNote.ivp",
+        "startName" : "Create note"
+      },
+      "visual" : {
+        "at" : { "x" : 856, "y" : 920 },
+        "size" : { "width" : 32, "height" : 32 }
+      },
+      "connect" : { "id" : "f174", "to" : "f172", "var" : "in1" }
+    }, {
+      "id" : "f169",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 1704, "y" : 920 }
+      }
+    }, {
+      "id" : "f170",
+      "type" : "Script",
+      "name" : "Create system note",
+      "config" : {
+        "output" : {
+          "code" : "ivy.case.createNote(ivy.session, \"System note\");"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1112, "y" : 920 },
+        "size" : { "width" : 112, "height" : 56 }
+      },
+      "connect" : { "id" : "f175", "to" : "f171", "var" : "in1" }
+    }, {
+      "id" : "f171",
+      "type" : "TaskSwitchEvent",
+      "config" : {
+        "outLinks" : [ "TaskA.ivp" ],
+        "task" : {
+          "name" : "User: create note",
+          "skipTasklist" : true
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1288, "y" : 920 },
+        "size" : { "width" : 32, "height" : 32 }
+      },
+      "connect" : { "id" : "f178", "to" : "f177", "condition" : "ivp==\"TaskA.ivp\"" }
+    }, {
+      "id" : "f172",
+      "type" : "TaskSwitchEvent",
+      "config" : {
+        "outLinks" : [ "TaskA.ivp" ],
+        "task" : {
+          "name" : "System: create note",
+          "responsible" : {
+            "role" : "SYSTEM"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1000, "y" : 920 },
+        "size" : { "width" : 32, "height" : 32 }
+      },
+      "connect" : { "id" : "f176", "to" : "f170", "condition" : "ivp==\"TaskA.ivp\"" }
+    }, {
+      "id" : "f177",
+      "type" : "Script",
+      "name" : "Create user note",
+      "config" : {
+        "output" : {
+          "code" : "ivy.case.createNote(ivy.session, \"User note\");"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1416, "y" : 920 },
+        "size" : { "width" : 112, "height" : 48 }
+      },
+      "connect" : { "id" : "f180", "to" : "f179" }
+    }, {
+      "id" : "f179",
+      "type" : "DialogCall",
+      "config" : {
+        "dialogId" : "com.axonivy.portal.developerexamples.testdata.LeaveRequestForm",
+        "startMethod" : "start()"
+      },
+      "visual" : {
+        "at" : { "x" : 1576, "y" : 920 }
+      },
+      "connect" : { "id" : "f173", "to" : "f169" }
+    }, {
+      "id" : "f64",
+      "type" : "Script",
+      "name" : "Set business case name",
+      "config" : {
+        "output" : {
+          "code" : "ivy.case.getBusinessCase().setName(\"Leave Request Case Map\");"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 544, "y" : 580 },
+        "size" : { "width" : 144, "height" : 44 }
+      },
+      "connect" : { "id" : "f61", "to" : "f60", "var" : "in1" }
+    }, {
+      "id" : "f62",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 544, "y" : 744 }
+      }
+    }, {
+      "id" : "f59",
+      "type" : "RequestStart",
+      "name" : "LeaveRequest.ivp",
+      "config" : {
+        "callSignature" : "leaveRequest",
+        "outLink" : "leaveRequest.ivp"
+      },
+      "visual" : {
+        "at" : { "x" : 544, "y" : 512 }
+      },
+      "connect" : { "id" : "f65", "to" : "f64" }
+    }, {
+      "id" : "f60",
+      "type" : "UserTask",
+      "name" : "Simple leave request",
+      "config" : {
+        "dialogId" : "com.axonivy.portal.developerexamples.testdata.LeaveRequestForm",
+        "startMethod" : "start()",
+        "task" : {
+          "name" : "Create Leave Request"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 544, "y" : 664 },
+        "size" : { "width" : 128, "height" : 44 }
+      },
+      "connect" : { "id" : "f63", "to" : "f62", "condition" : "ivp==\"TaskA.ivp\"" }
+    }, {
+      "id" : "f9",
+      "type" : "DialogCall",
+      "name" : [
+        "Show ",
+        "Task Form"
+      ],
+      "config" : {
+        "dialogId" : "com.axonivy.portal.developerexamples.testdata.LeaveRequestForm",
+        "startMethod" : "start()"
+      },
+      "visual" : {
+        "at" : { "x" : 72, "y" : 296 },
+        "size" : { "width" : 36, "height" : 24 },
+        "labelOffset" : { "x" : 20, "y" : -2 }
+      },
+      "connect" : { "id" : "f18", "to" : "f45", "via" : [ { "x" : 72, "y" : 416 } ] }
+    }, {
+      "id" : "f11",
+      "type" : "DialogCall",
+      "name" : [
+        "Show ",
+        "Task Form"
+      ],
+      "config" : {
+        "dialogId" : "com.axonivy.portal.developerexamples.testdata.LeaveRequestForm",
+        "startMethod" : "start()"
+      },
+      "visual" : {
+        "at" : { "x" : 200, "y" : 296 },
+        "size" : { "width" : 36, "height" : 24 },
+        "labelOffset" : { "x" : 20, "y" : -2 }
+      },
+      "connect" : { "id" : "f17", "to" : "f45" }
+    }, {
+      "id" : "f5",
+      "type" : "RequestStart",
+      "name" : "CategoriedLeaveRequest.ivp",
+      "config" : {
+        "callSignature" : "CategoriedLeaveRequest",
+        "case" : {
+          "name" : "Leave Request",
+          "description" : "Leave Request Description",
+          "attachToBusinessCase" : false,
+          "customFields" : [
+            { "name" : "CustomVarCharField1", "type" : "String", "value" : "\"Leave Request CustomVarCharField1\"" },
+            { "name" : "CustomVarCharField2", "type" : "String", "value" : "\"Leave Request CustomVarCharField2\"" },
+            { "name" : "CustomVarCharField3", "type" : "String", "value" : "\"Leave Request CustomVarCharField3\"" },
+            { "name" : "CustomVarCharField4", "type" : "String", "value" : "\"Leave Request CustomVarCharField4\"" },
+            { "name" : "Number field", "type" : "Number", "value" : "1000000" },
+            { "name" : "ProcessCategoryCode", "type" : "String", "value" : "\"pubRequested\"" },
+            { "name" : "ProcessCategoryName", "type" : "String", "value" : "\"Publication Requested\"" },
+            { "name" : "ProcessCode", "type" : "String", "value" : "\"pubRequested\"" },
+            { "name" : "ProcessName", "type" : "String", "value" : "\"Publication Requested\"" },
+            { "name" : "Today", "type" : "Timestamp", "value" : "new java.util.Date()" }
+          ]
+        },
+        "outLink" : "CategoriedLeaveRequest.ivp",
+        "startName" : "Categoried Leave Request"
+      },
+      "visual" : {
+        "at" : { "x" : 200, "y" : 64 },
+        "size" : { "width" : 26, "height" : 26 },
+        "labelOffset" : { "x" : 14, "y" : 0 }
+      },
+      "connect" : { "id" : "f4", "to" : "f7", "var" : "in1" }
+    }, {
+      "id" : "f12",
+      "type" : "DialogCall",
+      "name" : [
+        "Show ",
+        "Task Form"
+      ],
+      "config" : {
+        "dialogId" : "com.axonivy.portal.developerexamples.testdata.LeaveRequestForm",
+        "startMethod" : "start()"
+      },
+      "visual" : {
+        "at" : { "x" : 336, "y" : 296 },
+        "size" : { "width" : 36, "height" : 24 },
+        "labelOffset" : { "x" : 20, "y" : -2 }
+      },
+      "connect" : { "id" : "f19", "to" : "f45", "via" : [ { "x" : 336, "y" : 416 } ] }
+    }, {
+      "id" : "f45",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 200, "y" : 416 },
+        "size" : { "width" : 26, "height" : 26 }
+      }
+    }, {
+      "id" : "f7",
+      "type" : "TaskSwitchGateway",
+      "name" : "Create tasks",
+      "config" : {
+        "outLinks" : [ "TaskB.ivp", "TaskA.ivp", "TaskC.ivp" ],
+        "case" : {
+          "name" : "Leave Request",
+          "category" : "LeaveRequest",
+          "customFields" : [
+            { "name" : "CustomDecimalField2", "type" : "Number", "value" : "36" }
+          ]
+        },
+        "tasks" : {
+          "TaskA" : {
+            "name" : "Annual Leave Request",
+            "description" : "Annual Leave Request Description",
+            "category" : "AnnualLeave",
+            "responsible" : {
+              "userFromAttribute" : "\"demo\""
+            },
+            "expiry" : {
+              "timeout" : "new Duration(\"3H\")"
+            },
+            "customFields" : [
+              { "name" : "CustomDecimalField2", "type" : "Number", "value" : "7" },
+              { "name" : "CustomTimestampField1", "type" : "Timestamp", "value" : "new DateTime()" },
+              { "name" : "CustomVarCharField1", "type" : "String", "value" : "\"Exterior\"" },
+              { "name" : "CustomVarCharField5", "type" : "String", "value" : "\"Long Do\"" },
+              { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
+            ]
+          },
+          "TaskB" : {
+            "name" : "Sick Leave Request",
+            "description" : "Sick Leave Request Description",
+            "category" : "OtherLeave/SickLeave/Long",
+            "priority" : "HIGH",
+            "expiry" : {
+              "timeout" : "new Duration(\"1D\")"
+            },
+            "customFields" : [
+              { "name" : "CustomDecimalField2", "type" : "Number", "value" : "14" },
+              { "name" : "CustomTimestampField1", "type" : "Timestamp", "value" : "new DateTime()" },
+              { "name" : "CustomVarCharField1", "type" : "String", "value" : "\"Interior\"" },
+              { "name" : "CustomVarCharField5", "type" : "String", "value" : "\"Tung Le\"" },
+              { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
+            ]
+          },
+          "TaskC" : {
+            "name" : "Maternity Leave Request",
+            "description" : "Maternity Leave Request Description",
+            "category" : "OtherLeave/Maternity",
+            "priority" : "LOW",
+            "expiry" : {
+              "timeout" : "new Duration(\"2D\")"
+            },
+            "customFields" : [
+              { "name" : "CustomDecimalField2", "type" : "Number", "value" : "13" },
+              { "name" : "CustomTimestampField1", "type" : "Timestamp", "value" : "new DateTime()" },
+              { "name" : "CustomVarCharField1", "type" : "String", "value" : "\"Interior\"" },
+              { "name" : "CustomVarCharField5", "type" : "String", "value" : "\"Anh Nguyen\"" },
+              { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
+            ]
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 200, "y" : 192 },
+        "size" : { "width" : 28, "height" : 28 },
+        "labelOffset" : { "x" : 9, "y" : -21 }
+      },
+      "connect" : [
+        { "id" : "f13", "to" : "f9", "via" : [ { "x" : 72, "y" : 192 } ], "condition" : "ivp==\"TaskA.ivp\"" },
+        { "id" : "f14", "to" : "f11", "condition" : "ivp==\"TaskB.ivp\"" },
+        { "id" : "f15", "to" : "f12", "via" : [ { "x" : 336, "y" : 192 } ], "condition" : "ivp==\"TaskC.ivp\"" }
+      ]
+    }, {
+      "id" : "f52",
+      "type" : "RequestStart",
+      "name" : "IFrameInCaseLevel.ivp",
+      "config" : {
+        "callSignature" : "IFrameInCaseLevel",
+        "case" : {
+          "name" : "Sale Information In Iframe",
+          "description" : "Sale Information  In Iframe",
+          "customFields" : [
+            { "name" : "embedInFrame", "type" : "String", "value" : "\"true\"" }
+          ]
+        },
+        "outLink" : "IFrameInCaseLevel.ivp"
+      },
+      "visual" : {
+        "at" : { "x" : 1392, "y" : 536 },
+        "labelOffset" : { "x" : -21, "y" : 17 },
+        "description" : "IFrame in Case level"
+      },
+      "connect" : { "id" : "f55", "to" : "f53" }
+    }, {
+      "id" : "f54",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 1392, "y" : 760 }
+      }
+    }, {
+      "id" : "f53",
+      "type" : "UserTask",
+      "config" : {
+        "dialogId" : "internaltest.ui.SaleDepartment",
+        "startMethod" : "start()",
+        "task" : {
+          "name" : "Sale Department Info"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1392, "y" : 664 }
+      },
+      "connect" : { "id" : "f56", "to" : "f54" }
+    }, {
+      "id" : "f57",
+      "type" : "RequestStart",
+      "name" : "ProcessWithProcessSteps.ivp",
+      "config" : {
+        "callSignature" : "ProcessWithProcessSteps",
+        "outLink" : "ProcessWithProcessSteps.ivp",
+        "startDescription" : "Create task for a process with three process steps which can be show in Porcess Information page",
+        "startName" : "Process With Process Steps"
+      },
+      "visual" : {
+        "at" : { "x" : 192, "y" : 1472 },
+        "labelOffset" : { "x" : -69, "y" : 19 }
+      },
+      "connect" : { "id" : "f72", "to" : "f71", "var" : "in1" }
+    }, {
+      "id" : "f58",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 608, "y" : 1472 }
+      }
+    }, {
+      "id" : "f71",
+      "type" : "TaskSwitchGateway",
+      "config" : {
+        "outLinks" : [ "TaskA.ivp" ],
+        "case" : {
+          "name" : "Process With Process Steps",
+          "description" : "Process With Process Steps"
+        },
+        "tasks" : {
+          "TaskA" : {
+            "name" : "Process With Process Steps",
+            "description" : "Process With Process Steps",
+            "responsible" : {
+              "role" : "CREATOR"
+            }
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 320, "y" : 1472 }
+      },
+      "connect" : [
+        { "id" : "f75", "to" : "f74", "condition" : "ivp==\"TaskA.ivp\"" }
+      ]
+    }, {
+      "id" : "f74",
+      "type" : "DialogCall",
+      "name" : [
+        "Show ",
+        "Task Form"
+      ],
+      "config" : {
+        "dialogId" : "com.axonivy.portal.developerexamples.testdata.LeaveRequestForm",
+        "startMethod" : "start()"
+      },
+      "visual" : {
+        "at" : { "x" : 472, "y" : 1471 },
+        "size" : { "width" : 36, "height" : 24 },
+        "labelOffset" : { "x" : 20, "y" : -2 }
+      },
+      "connect" : { "id" : "f73", "to" : "f58" }
+    } ],
+  "layout" : {
+    "lanes" : [ {
+        "name" : "Create Tasks",
+        "size" : 424
+      } ]
+  }
+}
