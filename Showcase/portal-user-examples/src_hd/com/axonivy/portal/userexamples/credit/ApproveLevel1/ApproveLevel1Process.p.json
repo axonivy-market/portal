@@ -1,0 +1,96 @@
+{
+  "format" : "9.4.8",
+  "id" : "1703246ACFD80155",
+  "data" : "com.axonivy.portal.userexamples.credit.ApproveLevel1.ApproveLevel1Data",
+  "kind" : "HTML_DIALOG",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start()",
+      "config" : {
+        "callSignature" : "start",
+        "guid" : "15B3845CC516F9AE"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : { "id" : "f7", "to" : "f6" }
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "HtmlDialogEventStart",
+      "name" : "approved",
+      "config" : {
+        "guid" : "15B3845CC6181BED",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.dossier.decision.level1Approved" : "true"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 160 }
+      },
+      "connect" : { "id" : "f9", "to" : "f8" }
+    }, {
+      "id" : "f4",
+      "type" : "HtmlDialogExit",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 160 }
+      }
+    }, {
+      "id" : "f6",
+      "type" : "Script",
+      "name" : "Load dossier",
+      "config" : {
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.dossier" : "ivy.repo.get(com.axonivy.portal.userexamples.credit.CreditDossier.class) as com.axonivy.portal.userexamples.credit.CreditDossier"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 },
+        "labelOffset" : { "x" : -40, "y" : -8 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f8",
+      "type" : "Script",
+      "name" : "Save dossier",
+      "config" : {
+        "output" : {
+          "code" : "ivy.repo.save(in.dossier);"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 160 }
+      },
+      "connect" : { "id" : "f5", "to" : "f4" }
+    }, {
+      "id" : "f10",
+      "type" : "HtmlDialogEventStart",
+      "name" : "rejected",
+      "config" : {
+        "guid" : "15B3852F3A0CCC17",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.dossier.decision.level1Approved" : "false",
+            "out.dossier.decision.needsLevel2Approval" : "false"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 94, "y" : 237 }
+      },
+      "connect" : { "id" : "f11", "to" : "f8", "via" : [ { "x" : 224, "y" : 237 } ] }
+    } ]
+}

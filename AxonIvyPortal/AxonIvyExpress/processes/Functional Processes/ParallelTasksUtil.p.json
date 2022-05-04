@@ -1,0 +1,185 @@
+{
+  "format" : "9.4.8",
+  "id" : "1549EAD7E9C3125A",
+  "data" : "gawfs.ParallelTasksUtilData",
+  "kind" : "CALLABLE_SUB",
+  "elements" : [ {
+      "id" : "f1",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 144, "y" : 336 }
+      }
+    }, {
+      "id" : "f17",
+      "type" : "Script",
+      "name" : "counter++",
+      "config" : {
+        "output" : {
+          "code" : "in.counter++;"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 272, "y" : 200 },
+        "size" : { "width" : 36, "height" : 24 },
+        "labelOffset" : { "x" : 20, "y" : -2 }
+      },
+      "connect" : { "id" : "f21", "to" : "f12", "via" : [ { "x" : 272, "y" : 144 } ] }
+    }, {
+      "id" : "f12",
+      "type" : "Alternative",
+      "name" : "for loop",
+      "visual" : {
+        "at" : { "x" : 144, "y" : 144 },
+        "size" : { "width" : 28, "height" : 28 },
+        "labelOffset" : { "x" : 14, "y" : 0 }
+      },
+      "connect" : [
+        { "id" : "f11", "to" : "f10", "condition" : "in.counter >= in.numberOfTasks" },
+        { "id" : "f16", "to" : "f15" }
+      ]
+    }, {
+      "id" : "f15",
+      "type" : "Script",
+      "name" : [
+        "actual",
+        "task"
+      ],
+      "visual" : {
+        "at" : { "x" : 144, "y" : 208 },
+        "size" : { "width" : 36, "height" : 24 },
+        "labelOffset" : { "x" : -68, "y" : -8 }
+      },
+      "connect" : { "id" : "f19", "to" : "f18", "var" : "in1" }
+    }, {
+      "id" : "f18",
+      "type" : "TaskSwitchGateway",
+      "config" : {
+        "outLinks" : [ "TaskA.ivp", "TaskB.ivp" ],
+        "tasks" : {
+          "TaskA" : {
+            "name" : "System Task: Create Task",
+            "responsible" : {
+              "role" : "SYSTEM"
+            }
+          },
+          "TaskB" : {
+            "name" : "System Task: Check for next Task",
+            "responsible" : {
+              "role" : "SYSTEM"
+            }
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 144, "y" : 272 },
+        "size" : { "width" : 28, "height" : 28 }
+      },
+      "connect" : [
+        { "id" : "f2", "to" : "f1", "condition" : "ivp==\"TaskA.ivp\"" },
+        { "id" : "f20", "to" : "f17", "via" : [ { "x" : 272, "y" : 272 } ], "condition" : "ivp==\"TaskB.ivp\"" }
+      ]
+    }, {
+      "id" : "f23",
+      "type" : "CallSubStart",
+      "name" : "splitTasks",
+      "config" : {
+        "callSignature" : "splitTasks",
+        "input" : {
+          "params" : [
+            { "name" : "numberOfTasks", "type" : "Number" }
+          ],
+          "map" : {
+            "out.numberOfTasks" : "param.numberOfTasks"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "counter", "type" : "Number" }
+          ],
+          "map" : {
+            "result.counter" : "in.counter"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 144, "y" : 64 },
+        "labelOffset" : { "x" : 16, "y" : 0 }
+      },
+      "connect" : { "id" : "f0", "to" : "f12" }
+    }, {
+      "id" : "f10",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 48, "y" : 144 }
+      }
+    }, {
+      "id" : "f32",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 528, "y" : 304 },
+        "size" : { "width" : 26, "height" : 26 }
+      }
+    }, {
+      "id" : "f34",
+      "type" : "Alternative",
+      "name" : "has open tasks?",
+      "visual" : {
+        "at" : { "x" : 528, "y" : 240 },
+        "size" : { "width" : 28, "height" : 28 },
+        "labelOffset" : { "x" : -45, "y" : -42 }
+      },
+      "connect" : [
+        { "id" : "f6", "to" : "f36", "label" : {
+            "name" : "yes"
+          }, "condition" : "in.numberOfTasks > 1" },
+        { "id" : "f7", "to" : "f32", "label" : {
+            "name" : "no"
+          } }
+      ]
+    }, {
+      "id" : "f35",
+      "type" : "CallSubStart",
+      "name" : "join()",
+      "config" : {
+        "callSignature" : "join"
+      },
+      "visual" : {
+        "at" : { "x" : 529, "y" : 68 },
+        "size" : { "width" : 26, "height" : 26 },
+        "labelOffset" : { "x" : 14, "y" : 0 }
+      },
+      "connect" : { "id" : "f5", "to" : "f4" }
+    }, {
+      "id" : "f36",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 640, "y" : 240 }
+      }
+    }, {
+      "id" : "f4",
+      "type" : "Script",
+      "name" : "Get number of active tasks",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : "out.numberOfTasks = ivy.case.tasks().allActive().size();"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 528, "y" : 144 },
+        "size" : { "width" : 144, "height" : 44 },
+        "labelOffset" : { "x" : -69, "y" : -8 }
+      },
+      "connect" : { "id" : "f3", "to" : "f34" }
+    } ],
+  "layout" : {
+    "lanes" : [ {
+        "name" : "Split",
+        "size" : 384
+      }, {
+        "name" : "Join",
+        "size" : 320
+      } ],
+    "orientation" : "VERTICAL"
+  }
+}

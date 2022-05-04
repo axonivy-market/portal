@@ -1,0 +1,54 @@
+{
+  "format" : "9.4.8",
+  "id" : "1709A202E7AEC7E8",
+  "data" : "com.axonivy.portal.userexamples.credit.HandleEndPageData",
+  "kind" : "CALLABLE_SUB",
+  "elements" : [ {
+      "id" : "f3",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 369, "y" : 88 }
+      }
+    }, {
+      "id" : "f5",
+      "type" : "CallSubStart",
+      "name" : "handleUserExamplesEndPage()",
+      "config" : {
+        "callSignature" : "handleUserExamplesEndPage",
+        "result" : {
+          "params" : [
+            { "name" : "callbackUrl", "type" : "String" }
+          ],
+          "map" : {
+            "result.callbackUrl" : "in.callbackUrl"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 65, "y" : 88 },
+        "labelOffset" : { "x" : -48, "y" : 17 }
+      },
+      "connect" : { "id" : "f6", "to" : "f4" }
+    }, {
+      "id" : "f4",
+      "type" : "Script",
+      "name" : "get end page url",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.caseId" : "in.caseId"
+          },
+          "code" : [
+            "in.caseId =  ivy.task.getCase().getBusinessCase().getId();",
+            "in.callbackUrl = ivy.html.startRef(\"1709A97D25EAB86E/start.ivp\")+\"?caseId=\" + in.caseId;"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 241, "y" : 88 }
+      },
+      "connect" : { "id" : "f7", "to" : "f3" }
+    } ]
+}

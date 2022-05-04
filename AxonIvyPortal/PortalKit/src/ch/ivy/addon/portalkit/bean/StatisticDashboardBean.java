@@ -24,7 +24,7 @@ import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.service.DateTimeGlobalSettingService;
 import ch.ivy.addon.portalkit.service.StatisticService;
 import ch.ivy.addon.portalkit.statistics.StatisticChart;
-import ch.ivy.addon.portalkit.statistics.StatisticChartDrilldownUtil;
+import ch.ivy.addon.portalkit.statistics.StatisticChartDrilldownUtils;
 import ch.ivy.addon.portalkit.statistics.StatisticFilter;
 import ch.ivyteam.ivy.environment.Ivy;
 
@@ -72,28 +72,28 @@ public class StatisticDashboardBean implements Serializable {
 
   public void drilldownTaskByPriority(ItemSelectEvent event) {
     StatisticChart selectedStatisticChart = getSelectedStatisticChart(event);
-    StatisticChartDrilldownUtil.drilldownTaskByPriority(event, selectedStatisticChart);
+    StatisticChartDrilldownUtils.drilldownTaskByPriority(event, selectedStatisticChart);
   }
 
   public void drilldownCaseByState(ItemSelectEvent event) {
     StatisticChart selectedStatisticChart = getSelectedStatisticChart(event);
-    StatisticChartDrilldownUtil.drilldownCaseByState(event, selectedStatisticChart);
+    StatisticChartDrilldownUtils.drilldownCaseByState(event, selectedStatisticChart);
   }
 
   public void drilldownElapsedTime(ItemSelectEvent event) {
     StatisticChart selectedStatisticChart = getSelectedStatisticChart(event);
-    StatisticChartDrilldownUtil.drilldownElapsedTime(event, selectedStatisticChart);
+    StatisticChartDrilldownUtils.drilldownElapsedTime(event, selectedStatisticChart);
   }
 
   public void onSelectDrilldownTaskByExpiry(ItemSelectEvent event) {
     StatisticChart selectedStatisticChart = getSelectedStatisticChart(event);
     taskByExpiryItemSelectEvent = event;
-    StatisticChartDrilldownUtil.onSelectDrilldownTaskByExpiry(event, selectedStatisticChart);
+    StatisticChartDrilldownUtils.onSelectDrilldownTaskByExpiry(event, selectedStatisticChart);
   }
 
   public void toTaskByExpiryTaskList(ItemSelectEvent event) {
     StatisticChart selectedStatisticChart = getSelectedStatisticChart(event);
-    StatisticChartDrilldownUtil.toTaskByExpiryTaskList(event, selectedStatisticChart);
+    StatisticChartDrilldownUtils.toTaskByExpiryTaskList(event, selectedStatisticChart);
   }
 
   // It's used for "Go to task list" selection from Statistic Dashboard
@@ -104,7 +104,7 @@ public class StatisticDashboardBean implements Serializable {
 
   public void drilldownTaskByExpiry() {
     StatisticChart selectedStatisticChart = getSelectedStatisticChart(taskByExpiryItemSelectEvent);
-    StatisticChartDrilldownUtil.drilldownTaskByExpiry(taskByExpiryItemSelectEvent, selectedStatisticChart);
+    StatisticChartDrilldownUtils.drilldownTaskByExpiry(taskByExpiryItemSelectEvent, selectedStatisticChart);
     releaseJSFEvent();
   }
 

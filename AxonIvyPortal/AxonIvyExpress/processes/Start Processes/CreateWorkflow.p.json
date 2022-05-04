@@ -1,0 +1,125 @@
+{
+  "format" : "9.4.8",
+  "id" : "15798655494F25E1",
+  "data" : "gawfs.createWorkflowData",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "AxonIvyExpressWF.ivp",
+      "config" : {
+        "callSignature" : "AxonIvyExpressWF",
+        "case" : {
+          "name" : "<%=ivy.cms.co(\"/Dialogs/workflowCreation/ProcessName\")%>",
+          "description" : "<%=ivy.cms.co(\"/Dialogs/workflowCreation/ProcessName\")%>",
+          "attachToBusinessCase" : false
+        },
+        "outLink" : "AxonIvyExpressWF.ivp",
+        "task" : {
+          "name" : "<%=ivy.cms.co(\"/Dialogs/Tasks/WorkflowProperties/TaskName\")%>",
+          "description" : "<%=ivy.cms.co(\"/Dialogs/Tasks/WorkflowProperties/TaskDescription\")%>"
+        },
+        "showInStartList" : false,
+        "startName" : "<%=ivy.cms.co(\"/Dialogs/workflowCreation/ProcessName\")%>"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : { "id" : "f11", "to" : "f10" }
+    }, {
+      "id" : "f1",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 584, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "SubProcessCall",
+      "name" : "editWorkflow",
+      "config" : {
+        "processCall" : "Functional Processes/editWorkflow:newWorkflow()"
+      },
+      "visual" : {
+        "at" : { "x" : 440, "y" : 64 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f5",
+      "type" : "RequestStart",
+      "name" : "AxonIvyExpressAdhocWF.ivp",
+      "config" : {
+        "callSignature" : "AxonIvyExpressAdhocWF",
+        "input" : {
+          "params" : [
+            { "name" : "originalTaskId", "type" : "Long" }
+          ],
+          "map" : {
+            "out.originalTaskId" : "param.originalTaskId"
+          }
+        },
+        "outLink" : "AxonIvyExpressAdhocWF.ivp",
+        "showInStartList" : false
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 192 },
+        "labelOffset" : { "x" : -73, "y" : 24 }
+      },
+      "connect" : { "id" : "f13", "to" : "f12" }
+    }, {
+      "id" : "f6",
+      "type" : "SubProcessCall",
+      "name" : "create Adhoc WF",
+      "config" : {
+        "processCall" : "Functional Processes/editWorkflow:newAdhocWorkflow(Long)",
+        "call" : {
+          "params" : [
+            { "name" : "originalTaskId", "type" : "Long" }
+          ],
+          "map" : {
+            "param.originalTaskId" : "in.originalTaskId"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 448, "y" : 192 }
+      },
+      "connect" : { "id" : "f9", "to" : "f8" }
+    }, {
+      "id" : "f8",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 592, "y" : 192 }
+      }
+    }, {
+      "id" : "f10",
+      "type" : "Script",
+      "name" : "Set Task/Case field",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.constant.CustomFields;",
+            "ivy.case.customFields().stringField(CustomFields.IS_EXPRESS_PROCESS).set(\"true\");"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 280, "y" : 64 }
+      },
+      "connect" : { "id" : "f4", "to" : "f3" }
+    }, {
+      "id" : "f12",
+      "type" : "Script",
+      "name" : "Set Task/Case field",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.constant.CustomFields;",
+            "ivy.case.customFields().stringField(CustomFields.IS_EXPRESS_PROCESS).set(\"true\");"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 280, "y" : 192 }
+      },
+      "connect" : { "id" : "f7", "to" : "f6" }
+    } ]
+}

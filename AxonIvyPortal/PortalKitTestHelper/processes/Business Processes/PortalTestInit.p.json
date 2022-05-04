@@ -1,0 +1,22 @@
+{
+  "format" : "9.4.8",
+  "id" : "178E836A8F7CA236",
+  "data" : "portalKit_test.Data",
+  "elements" : [ {
+      "id" : "f1",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "ProgramStart",
+      "config" : {
+        "outerBean" : "ch.ivy.addon.portalkit.bean.PortalTestInitBean"
+      },
+      "visual" : {
+        "at" : { "x" : 112, "y" : 64 }
+      },
+      "connect" : { "id" : "f0", "to" : "f1" }
+    } ]
+}

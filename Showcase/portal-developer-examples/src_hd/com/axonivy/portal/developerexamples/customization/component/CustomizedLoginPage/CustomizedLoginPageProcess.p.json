@@ -1,0 +1,94 @@
+{
+  "format" : "9.4.8",
+  "id" : "176CC37C73C85D55",
+  "data" : "com.axonivy.portal.developerexamples.customization.component.CustomizedLoginPage.CustomizedLoginPageData",
+  "kind" : "HTML_DIALOG",
+  "elements" : [ {
+      "id" : "f4",
+      "type" : "HtmlDialogExit",
+      "visual" : {
+        "at" : { "x" : 399, "y" : 288 },
+        "size" : { "width" : 20, "height" : 20 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "HtmlDialogEventStart",
+      "name" : "login",
+      "config" : {
+        "guid" : "1657B2902F7CC5ED"
+      },
+      "visual" : {
+        "at" : { "x" : 119, "y" : 288 },
+        "size" : { "width" : 20, "height" : 20 },
+        "labelOffset" : { "x" : 13, "y" : 0 }
+      },
+      "connect" : { "id" : "f6", "to" : "f5" }
+    }, {
+      "id" : "f5",
+      "type" : "Script",
+      "name" : [
+        "login",
+        "get user settings"
+      ],
+      "config" : {
+        "output" : {
+          "code" : [
+            "import javax.faces.context.FacesContext;",
+            "import javax.faces.application.FacesMessage;",
+            "import ch.ivyteam.ivy.security.IUser;",
+            "import java.util.Locale;",
+            "in.loginOk = ivy.session.loginSessionUser(in.username, in.password);",
+            "out.password = null;",
+            "if (!in.loginOk) ",
+            "{",
+            "  FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/login/loginFailed\"), \"\"));",
+            "  FacesContext.getCurrentInstance().validationFailed();",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 247, "y" : 288 },
+        "size" : { "width" : 36, "height" : 24 },
+        "labelOffset" : { "x" : 20, "y" : -2 }
+      },
+      "connect" : { "id" : "f7", "to" : "f4" }
+    }, {
+      "id" : "f8",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 320, "y" : 128 },
+        "size" : { "width" : 20, "height" : 20 }
+      }
+    }, {
+      "id" : "f9",
+      "type" : "HtmlDialogStart",
+      "name" : "start(String)",
+      "config" : {
+        "callSignature" : "start",
+        "result" : {
+          "params" : [
+            { "name" : "loginOk", "type" : "Boolean" }
+          ],
+          "map" : {
+            "result.loginOk" : "in.loginOk"
+          }
+        },
+        "input" : {
+          "params" : [
+            { "name" : "callbackUrl", "type" : "String" }
+          ],
+          "map" : {
+            "out.callbackUrl" : "param.callbackUrl"
+          }
+        },
+        "guid" : "176CC396F6456056"
+      },
+      "visual" : {
+        "at" : { "x" : 120, "y" : 128 },
+        "size" : { "width" : 20, "height" : 20 },
+        "labelOffset" : { "x" : 13, "y" : 0 }
+      },
+      "connect" : { "id" : "f10", "to" : "f8" }
+    } ]
+}

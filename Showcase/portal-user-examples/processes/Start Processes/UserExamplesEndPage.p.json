@@ -1,0 +1,53 @@
+{
+  "format" : "9.4.8",
+  "id" : "1709A97D25EAB86E",
+  "data" : "com.axonivy.portal.userexamples.credit.HandleEndPageData",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "start.ivp",
+      "config" : {
+        "callSignature" : "start",
+        "input" : {
+          "params" : [
+            { "name" : "caseId", "type" : "Long" }
+          ],
+          "map" : {
+            "out.caseId" : "param.caseId"
+          }
+        },
+        "showInStartList" : false,
+        "outLink" : "start.ivp"
+      },
+      "visual" : {
+        "at" : { "x" : 88, "y" : 88 }
+      },
+      "connect" : { "id" : "f4", "to" : "f3" }
+    }, {
+      "id" : "f3",
+      "type" : "DialogCall",
+      "name" : "CustomEndPage",
+      "config" : {
+        "dialogId" : "com.axonivy.portal.userexamples.credit.CustomEndPage",
+        "startMethod" : "start(Long)",
+        "call" : {
+          "params" : [
+            { "name" : "caseId", "type" : "Long" }
+          ],
+          "map" : {
+            "param.caseId" : "in.caseId"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 280, "y" : 88 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f1",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 408, "y" : 88 }
+      }
+    } ]
+}

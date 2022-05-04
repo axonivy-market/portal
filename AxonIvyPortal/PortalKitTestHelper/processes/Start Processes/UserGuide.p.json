@@ -1,0 +1,39 @@
+{
+  "format" : "9.4.8",
+  "id" : "1725F65445A6A111",
+  "data" : "portalKit_test.Data",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "start.ivp",
+      "config" : {
+        "callSignature" : "start",
+        "outLink" : "start.ivp",
+        "startName" : "User Guide"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 },
+        "labelOffset" : { "x" : -20, "y" : 17 }
+      },
+      "connect" : { "id" : "f4", "to" : "f3" }
+    }, {
+      "id" : "f1",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "DialogCall",
+      "name" : "UserGuide",
+      "config" : {
+        "dialogId" : "ch.ivy.addon.portalkit.test.UserGuide",
+        "startMethod" : "start()"
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 },
+        "labelOffset" : { "x" : -27, "y" : -8 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    } ]
+}

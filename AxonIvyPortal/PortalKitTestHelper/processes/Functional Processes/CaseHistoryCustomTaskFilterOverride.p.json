@@ -1,0 +1,88 @@
+{
+  "format" : "9.4.8",
+  "id" : "14E53233041A883D",
+  "data" : "portalKit_test.CaseHistoryCustomTaskFilterOverrideData",
+  "kind" : "CALLABLE_SUB",
+  "description" : "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "CallSubStart",
+      "name" : "filterTasks(List<ITask>)",
+      "config" : {
+        "callSignature" : "call",
+        "input" : {
+          "params" : [
+            { "name" : "tasks", "type" : "java.util.List<ch.ivyteam.ivy.workflow.ITask>" }
+          ],
+          "map" : {
+            "out.tasks" : "param.tasks"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "tasks", "type" : "java.util.List<ch.ivyteam.ivy.workflow.ITask>" }
+          ],
+          "map" : {
+            "result.tasks" : "in.filterdTasks"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 64, "y" : 96 },
+        "size" : { "width" : 26, "height" : 26 },
+        "labelOffset" : { "x" : 17, "y" : -6 }
+      },
+      "connect" : { "id" : "f4", "to" : "f3" }
+    }, {
+      "id" : "f1",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 64, "y" : 336 },
+        "size" : { "width" : 26, "height" : 26 }
+      }
+    }, {
+      "id" : "f7",
+      "type" : "ProcessAnnotation",
+      "name" : [
+        "IN: List<ITask>",
+        "OUT: List<ITask>",
+        "",
+        "Use this subprocess to add filter logic ",
+        "in between. (e.g. remove system tasks)"
+      ],
+      "visual" : {
+        "at" : { "x" : 280, "y" : 200 },
+        "size" : { "width" : 224, "height" : 92 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "Script",
+      "name" : [
+        "filter ",
+        "list of tasks"
+      ],
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.workflow.TaskState;",
+            "import java.util.ArrayList;",
+            "import ch.ivyteam.ivy.workflow.ITask;",
+            "",
+            "in.filterdTasks.addAll(in.tasks);",
+            "",
+            "for(ITask itask:in.tasks){",
+            "  if (itask.getActivator()==null || itask.getActivatorName()==null){",
+            "    in.filterdTasks.remove(itask);    ",
+            "  }",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 64, "y" : 208 },
+        "size" : { "width" : 36, "height" : 22 },
+        "labelOffset" : { "x" : 23, "y" : -18 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    } ]
+}

@@ -1,0 +1,52 @@
+{
+  "format" : "9.4.8",
+  "id" : "171E2BB0DB49C362",
+  "data" : "internaltest.Data",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "roleInvolved.ivp",
+      "config" : {
+        "callSignature" : "roleInvolved",
+        "case" : {
+          "name" : "Test Process: role involved"
+        },
+        "outLink" : "roleInvolved.ivp",
+        "task" : {
+          "name" : "Test Process: role involved"
+        },
+        "startName" : "Test Process: role involved"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 },
+        "labelOffset" : { "x" : -37, "y" : 17 }
+      },
+      "connect" : { "id" : "f4", "to" : "f3", "var" : "in1" }
+    }, {
+      "id" : "f1",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 288, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "TaskSwitchGateway",
+      "config" : {
+        "outLinks" : [ "TaskA.ivp" ],
+        "tasks" : {
+          "TaskA" : {
+            "name" : "Task for role involved",
+            "responsible" : {
+              "role" : "TestRoleInvolved"
+            }
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 192, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f7", "to" : "f1", "condition" : "ivp==\"TaskA.ivp\"" }
+      ]
+    } ]
+}
