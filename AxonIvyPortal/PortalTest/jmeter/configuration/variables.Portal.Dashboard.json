@@ -61,10 +61,9 @@
         ]
       },
       {
-        "type": "process",
+        "type": "compact-process",
         "id": "process_1",
         "name": "Process Widget",
-        "displayMode": "COMPACT_MODE",
         "layout": {
           "x": 9, "y": 0, "w": 3, "h": 4
         }
@@ -163,10 +162,9 @@
         ]
       },
       {
-        "type": "process",
+        "type": "compact-process",
         "id": "custom-compact-mode_1",
         "name": "Custom Process Widget",
-        "displayMode": "COMPACT_MODE",
         "layout": {
           "x": 9, "y": 0, "w": 3, "h": 4
         },

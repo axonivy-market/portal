@@ -1,0 +1,26 @@
+StatisticChartWidgetData #class
+ch.ivy.addon.portal.generic.dashboard.component.StatisticChartWidget #namespace
+taskListName String #field
+taskListName PERSISTENT #fieldModifier
+taskQuery ch.ivyteam.ivy.workflow.query.TaskQuery #field
+taskQuery PERSISTENT #fieldModifier
+isDrilldownToTaskList Boolean #field
+isDrilldownToTaskList PERSISTENT #fieldModifier
+selectedItemOfDrilldown String #field
+selectedItemOfDrilldown PERSISTENT #fieldModifier
+selectedStatisticChart ch.ivy.addon.portalkit.statistics.StatisticChart #field
+selectedStatisticChart PERSISTENT #fieldModifier
+showTaskListImmediately Boolean #field
+showTaskListImmediately PERSISTENT #fieldModifier
+caseQuery ch.ivyteam.ivy.workflow.query.CaseQuery #field
+caseQuery PERSISTENT #fieldModifier
+selectedCaseCategory String #field
+selectedCaseCategory PERSISTENT #fieldModifier
+chartNameOfCurrentLanguage String #field
+chartNameOfCurrentLanguage PERSISTENT #fieldModifier
+previousSelectedMonth String #field
+previousSelectedMonth PERSISTENT #fieldModifier
+previousSelectedWeek String #field
+previousSelectedWeek PERSISTENT #fieldModifier
+previousSelectedDay String #field
+previousSelectedDay PERSISTENT #fieldModifier

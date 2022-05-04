@@ -78,13 +78,13 @@ public class CaseDetailsPage extends TemplatePage {
   
   public SelenideElement getNameOfRelatedTask(int index) {
     getRelatedTasksPanel().waitUntil(appear, DEFAULT_TIMEOUT);
-    return $("div[id='case-details-related-task-table'] table tbody").$$("tr").get(index).$$("td")
+    return $("div[id='case-details-related-task-table'] table tbody").waitUntil(appear, DEFAULT_TIMEOUT).$$("tr").get(index).$$("td")
         .findBy(Condition.attributeMatching("class", ".*related-task-name-column.*")).$("span");
   }
   
   public SelenideElement getStateOfRelatedTask(int index) {
     getRelatedTasksPanel().waitUntil(appear, DEFAULT_TIMEOUT);
-    return $("div[id='case-details-related-task-table'] table tbody").$$("tr").get(index).$$("td")
+    return $("div[id='case-details-related-task-table'] table tbody").waitUntil(appear, DEFAULT_TIMEOUT).$$("tr").get(index).$$("td")
         .findBy(Condition.attributeMatching("class", ".*related-task-state-column.*")).$("span span");
   }
 
