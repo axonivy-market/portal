@@ -31,7 +31,7 @@ public class PortalProcessMigrationService extends PortalMigrationService {
     
     migrateUserProcess(app, error);
     
-    migrateUserExternalLink(app);
+    migrateUserExternalLink();
     return error;
   }
 
@@ -55,10 +55,10 @@ public class PortalProcessMigrationService extends PortalMigrationService {
 
   private static void migrateUserProcess(IApplication application, List<String> error) {
     int index = 0;
-    long totalCount = countActiveUserByApp(application.getId());
+    long totalCount = countActiveUser();
 
     do {
-      List<IUser> users = queryActiveUserByApp(index, pageSize, application.getId());
+      List<IUser> users = queryActiveUser(index, pageSize);
 
       updateProcessProperties(users, application, error);
 
@@ -67,12 +67,12 @@ public class PortalProcessMigrationService extends PortalMigrationService {
     } while (index == totalCount);
   }
   
-  private static void migrateUserExternalLink(IApplication application) {
+  private static void migrateUserExternalLink() {
     int index = 0;
-    long totalCount = countActiveUserByApp(application.getId());
+    long totalCount = countActiveUser();
 
     do {
-      List<IUser> users = queryActiveUserByApp(index, pageSize, application.getId());
+      List<IUser> users = queryActiveUser(index, pageSize);
 
       updateUserExternalProperties(users);
 
@@ -97,17 +97,16 @@ public class PortalProcessMigrationService extends PortalMigrationService {
     }
   }
 
-  private static List<IUser> queryActiveUserByApp(int index, int pageSize, long appId) {
-    return createQueryActiveUserByApp(appId).executor().resultsPaged().window(index, pageSize);
+  private static List<IUser> queryActiveUser(int index, int pageSize) {
+    return createQueryActiveUser().executor().resultsPaged().window(index, pageSize);
   }
 
-  private static long countActiveUserByApp(long appId) {
-    return createQueryActiveUserByApp(appId).executor().count();
+  private static long countActiveUser() {
+    return createQueryActiveUser().executor().count();
   }
 
-  private static FilterLink createQueryActiveUserByApp(long appId) {
+  private static FilterLink createQueryActiveUser() {
     return UserQuery.create().where().enabled().isTrue();
-    //TODO consider applicationId(), original code return UserQuery.create().where().enabled().isTrue().and().applicationId().isEqual(appId);
   }
 
   private static IUser findUserInAppByName(IApplication app, String userName) {
