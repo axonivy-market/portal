@@ -1,0 +1,443 @@
+{
+  "format" : "9.4.8",
+  "id" : "15C7B30FB93C827E",
+  "data" : "internaltest.Data",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "start.ivp",
+      "config" : {
+        "callSignature" : "start",
+        "case" : {
+          "customFields" : [
+            { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
+          ]
+        },
+        "task" : {
+          "name" : "Approve Leave Request"
+        },
+        "outLink" : "start.ivp"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : { "id" : "f4", "to" : "f3" }
+    }, {
+      "id" : "f1",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "DialogCall",
+      "config" : {
+        "dialogId" : "internaltest.ui.approveLeave",
+        "startMethod" : "start(String,Date,Date,Boolean,String,internalPortal.ProcessStatus)",
+        "call" : {
+          "params" : [
+            { "name" : "Mitarbeiter", "type" : "String" },
+            { "name" : "Von", "type" : "Date" },
+            { "name" : "Bis", "type" : "Date" },
+            { "name" : "beantragt", "type" : "Boolean" },
+            { "name" : "Vertretung", "type" : "String" },
+            { "name" : "processStatus", "type" : "internalPortal.ProcessStatus" }
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f8",
+      "type" : "RequestStart",
+      "name" : "Fix Hardware",
+      "config" : {
+        "callSignature" : "fixHardware",
+        "case" : {
+          "name" : "Fix Hardware",
+          "customFields" : [
+            { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
+          ]
+        },
+        "outLink" : "fixHardware.ivp",
+        "task" : {
+          "name" : "Fix Hardware",
+          "responsible" : {
+            "role" : "SYSTEM"
+          }
+        },
+        "triggerEnabled" : true,
+        "requestEnabled" : false,
+        "startName" : "Fix Hardware"
+      },
+      "visual" : {
+        "at" : { "x" : 88, "y" : 168 }
+      },
+      "connect" : { "id" : "f26", "to" : "f25" }
+    }, {
+      "id" : "f11",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 544, "y" : 168 }
+      }
+    }, {
+      "id" : "f13",
+      "type" : "RequestStart",
+      "name" : "Install Operation System",
+      "config" : {
+        "callSignature" : "installOperationSystem",
+        "case" : {
+          "name" : "Install Operation System",
+          "customFields" : [
+            { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
+          ]
+        },
+        "outLink" : "installOperationSystem.ivp",
+        "task" : {
+          "responsible" : {
+            "role" : "SYSTEM"
+          }
+        },
+        "triggerEnabled" : true,
+        "requestEnabled" : false,
+        "startName" : "Install Operation System"
+      },
+      "visual" : {
+        "at" : { "x" : 80, "y" : 280 }
+      },
+      "connect" : { "id" : "f40", "to" : "f39" }
+    }, {
+      "id" : "f14",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 528, "y" : 280 }
+      }
+    }, {
+      "id" : "f16",
+      "type" : "TriggerCall",
+      "name" : "ApproveLeave",
+      "config" : {
+        "processCall" : "Business Processes/testCaseMaps/testProcesses/ApproveLeave:installOperationSystem()"
+      },
+      "visual" : {
+        "at" : { "x" : 376, "y" : 168 }
+      },
+      "connect" : { "id" : "f12", "to" : "f11" }
+    }, {
+      "id" : "f15",
+      "type" : "TaskSwitchEvent",
+      "name" : "Install",
+      "config" : {
+        "outLinks" : [ "TaskA.ivp" ],
+        "task" : {
+          "name" : "Install OperationSystem"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 360, "y" : 280 }
+      },
+      "connect" : { "id" : "f19", "to" : "f14", "condition" : "ivp==\"TaskA.ivp\"" }
+    }, {
+      "id" : "f25",
+      "type" : "SubProcessCall",
+      "name" : "HideSystemCase",
+      "config" : {
+        "processCall" : "Functional Processes/HideSystemCase:call(Boolean)",
+        "call" : {
+          "params" : [
+            { "name" : "hideBusinessCase", "type" : "Boolean" }
+          ],
+          "map" : {
+            "param.hideBusinessCase" : "false"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 216, "y" : 168 }
+      },
+      "connect" : { "id" : "f17", "to" : "f16" }
+    }, {
+      "id" : "f27",
+      "type" : "RequestStart",
+      "name" : "Appraisal.ivp",
+      "config" : {
+        "callSignature" : "Appraisal",
+        "case" : {
+          "customFields" : [
+            { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
+          ]
+        },
+        "outLink" : "Appraisal.ivp",
+        "startName" : "Appraisal"
+      },
+      "visual" : {
+        "at" : { "x" : 88, "y" : 376 }
+      },
+      "connect" : { "id" : "f28", "to" : "f29" }
+    }, {
+      "id" : "f29",
+      "type" : "TriggerCall",
+      "name" : "Request form",
+      "config" : {
+        "processCall" : "Business Processes/testCaseMaps/testProcesses/ApproveLeave:RequestForm()"
+      },
+      "visual" : {
+        "at" : { "x" : 336, "y" : 376 }
+      },
+      "connect" : { "id" : "f31", "to" : "f30" }
+    }, {
+      "id" : "f30",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 568, "y" : 376 }
+      }
+    }, {
+      "id" : "f32",
+      "type" : "RequestStart",
+      "name" : "RequestForm",
+      "config" : {
+        "callSignature" : "RequestForm",
+        "case" : {
+          "customFields" : [
+            { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
+          ]
+        },
+        "outLink" : "RequestForm.ivp",
+        "task" : {
+          "responsible" : {
+            "role" : "SYSTEM"
+          }
+        },
+        "triggerEnabled" : true,
+        "requestEnabled" : false
+      },
+      "visual" : {
+        "at" : { "x" : 88, "y" : 456 },
+        "labelOffset" : { "x" : -42, "y" : 17 }
+      },
+      "connect" : { "id" : "f38", "to" : "f37" }
+    }, {
+      "id" : "f33",
+      "type" : "TaskSwitchEvent",
+      "name" : "Request form",
+      "config" : {
+        "outLinks" : [ "TaskA.ivp" ],
+        "task" : {
+          "name" : "Request form",
+          "category" : "RequestForm"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 344, "y" : 456 }
+      },
+      "connect" : { "id" : "f36", "to" : "f35", "condition" : "ivp==\"TaskA.ivp\"" }
+    }, {
+      "id" : "f35",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 456, "y" : 456 }
+      }
+    }, {
+      "id" : "f37",
+      "type" : "SubProcessCall",
+      "name" : "HideSystemCase",
+      "config" : {
+        "processCall" : "Functional Processes/HideSystemCase:call(Boolean)",
+        "call" : {
+          "params" : [
+            { "name" : "hideBusinessCase", "type" : "Boolean" }
+          ],
+          "map" : {
+            "param.hideBusinessCase" : "true"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 216, "y" : 456 }
+      },
+      "connect" : { "id" : "f34", "to" : "f33", "var" : "in1" }
+    }, {
+      "id" : "f39",
+      "type" : "SubProcessCall",
+      "name" : "HideSystemCase",
+      "config" : {
+        "processCall" : "Functional Processes/HideSystemCase:call(Boolean)",
+        "call" : {
+          "params" : [
+            { "name" : "hideBusinessCase", "type" : "Boolean" }
+          ],
+          "map" : {
+            "param.hideBusinessCase" : "false"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 232, "y" : 280 }
+      },
+      "connect" : { "id" : "f18", "to" : "f15", "var" : "in1" }
+    }, {
+      "id" : "f41",
+      "type" : "RequestStart",
+      "name" : "create12CasesWithCategory.ivp",
+      "config" : {
+        "callSignature" : "create12CasesWithCategory",
+        "input" : {
+          "map" : {
+            "out.caseNumber" : "12",
+            "out.count" : "0"
+          }
+        },
+        "case" : {
+          "customFields" : [
+            { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
+          ]
+        },
+        "outLink" : "create12CasesWithCategory.ivp",
+        "startName" : "Create 12 Cases with category"
+      },
+      "visual" : {
+        "at" : { "x" : 88, "y" : 616 }
+      },
+      "connect" : { "id" : "f51", "to" : "f50" }
+    }, {
+      "id" : "f46",
+      "type" : "Alternative",
+      "visual" : {
+        "at" : { "x" : 688, "y" : 616 }
+      },
+      "connect" : [
+        { "id" : "f49", "to" : "f48", "condition" : "in.count == in.caseNumber" },
+        { "id" : "f57", "to" : "f50", "via" : [ { "x" : 688, "y" : 752 }, { "x" : 184, "y" : 752 } ] }
+      ]
+    }, {
+      "id" : "f48",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 816, "y" : 616 }
+      }
+    }, {
+      "id" : "f50",
+      "type" : "Alternative",
+      "visual" : {
+        "at" : { "x" : 184, "y" : 616 }
+      },
+      "connect" : [
+        { "id" : "f42", "to" : "f45" }
+      ]
+    }, {
+      "id" : "f45",
+      "type" : "TriggerCall",
+      "name" : "ApproveLeave",
+      "config" : {
+        "processCall" : "Business Processes/testCaseMaps/testProcesses/ApproveLeave:startACase(Integer)",
+        "call" : {
+          "params" : [
+            { "name" : "count", "type" : "Integer" }
+          ],
+          "map" : {
+            "param.count" : "in.count"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 400, "y" : 616 }
+      },
+      "connect" : { "id" : "f56", "to" : "f52" }
+    }, {
+      "id" : "f43",
+      "type" : "RequestStart",
+      "name" : "startACase(Integer)",
+      "config" : {
+        "callSignature" : "startACase",
+        "input" : {
+          "params" : [
+            { "name" : "count", "type" : "Integer" }
+          ],
+          "map" : {
+            "out.count" : "param.count"
+          }
+        },
+        "case" : {
+          "attachToBusinessCase" : false,
+          "customFields" : [
+            { "name" : "CustomTimestampField1", "type" : "Timestamp", "value" : "new DateTime()" },
+            { "name" : "CustomVarCharField1", "type" : "String", "value" : "\"CustomVarCharField1\" + param.count" }
+          ]
+        },
+        "outLink" : "startACase.ivp",
+        "task" : {
+          "responsible" : {
+            "role" : "SYSTEM"
+          }
+        },
+        "triggerEnabled" : true,
+        "requestEnabled" : false
+      },
+      "visual" : {
+        "at" : { "x" : 72, "y" : 840 }
+      },
+      "connect" : { "id" : "f59", "to" : "f58" }
+    }, {
+      "id" : "f47",
+      "type" : "TaskSwitchEvent",
+      "config" : {
+        "outLinks" : [ "TaskA.ivp" ],
+        "case" : {
+          "name" : "TestCase"
+        },
+        "task" : {
+          "name" : "Task number <%=in1.count%>",
+          "category" : "<%=in1.category%>"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 328, "y" : 840 }
+      },
+      "connect" : { "id" : "f55", "to" : "f54", "condition" : "ivp==\"TaskA.ivp\"" }
+    }, {
+      "id" : "f54",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 472, "y" : 840 }
+      }
+    }, {
+      "id" : "f52",
+      "type" : "Script",
+      "config" : {
+        "output" : {
+          "code" : "in.count++;"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 560, "y" : 616 }
+      },
+      "connect" : { "id" : "f44", "to" : "f46" }
+    }, {
+      "id" : "f58",
+      "type" : "Script",
+      "config" : {
+        "output" : {
+          "code" : [
+            "String a;",
+            "if(in.count % 3 == 0){",
+            "  a = \"CaseGroup/Group1/TestCase\" + in.count;",
+            "  in.category = \"TaskGroup/Group1/TestCase\" + in.count;",
+            "} else if(in.count % 3 == 1) {",
+            "  a = \"CaseGroup/Group2/TestCase\" + in.count;",
+            "  in.category = \"TaskGroup/Group2/TestCase\" + in.count;",
+            "} else {",
+            "  a = \"CaseGroup/Group3/TestCase\" + in.count;",
+            "  in.category = \"TaskGroup/Group3/TestCase\" + in.count;",
+            "}",
+            "ivy.case.setCategoryPath(a);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 200, "y" : 840 }
+      },
+      "connect" : { "id" : "f53", "to" : "f47", "var" : "in1" }
+    } ]
+}

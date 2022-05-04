@@ -1,0 +1,103 @@
+{
+  "format" : "9.4.8",
+  "id" : "16D289860FF9CFCA",
+  "data" : "ch.ivy.add.portalkit.OpenPortalTaskDetailsData",
+  "kind" : "CALLABLE_SUB",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "CallSubStart",
+      "name" : "call(ITask,TaskLazyDataModel,PortalPage,Boolean)",
+      "config" : {
+        "callSignature" : "call",
+        "input" : {
+          "params" : [
+            { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask" },
+            { "name" : "dataModel", "type" : "ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel" },
+            { "name" : "portalPage", "type" : "ch.ivy.addon.portalkit.enums.PortalPage" },
+            { "name" : "isFromTaskList", "type" : "Boolean" }
+          ],
+          "map" : {
+            "out.dataModel" : "param.dataModel",
+            "out.isFromTaskList" : "param.#isFromTaskList is initialized ? param.isFromTaskList : true",
+            "out.portalPage" : "param.portalPage",
+            "out.task" : "param.task"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 },
+        "labelOffset" : { "x" : -64, "y" : 15 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f1",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 160 }
+      }
+    }, {
+      "id" : "f4",
+      "type" : "CallSubStart",
+      "name" : "callInFrame(ITask,TaskLazyDataModel,PortalPage,Boolean)",
+      "config" : {
+        "callSignature" : "callInFrame",
+        "input" : {
+          "params" : [
+            { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask" },
+            { "name" : "dataModel", "type" : "ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel" },
+            { "name" : "portalPage", "type" : "ch.ivy.addon.portalkit.enums.PortalPage" },
+            { "name" : "isFromTaskList", "type" : "Boolean" }
+          ],
+          "map" : {
+            "out.dataModel" : "param.dataModel",
+            "out.isFromTaskList" : "param.#isFromTaskList is initialized ? param.isFromTaskList : true",
+            "out.portalPage" : "param.portalPage",
+            "out.task" : "param.task"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 160 },
+        "labelOffset" : { "x" : -64, "y" : 15 }
+      },
+      "connect" : { "id" : "f5", "to" : "f3" }
+    }, {
+      "id" : "f6",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 288 }
+      }
+    }, {
+      "id" : "f7",
+      "type" : "CallSubStart",
+      "name" : "callFromDashboard(ITask,DashboardTaskLazyDataModel,PortalPage,Boolean)",
+      "config" : {
+        "callSignature" : "callFromDashboard",
+        "input" : {
+          "params" : [
+            { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask" },
+            { "name" : "dataModel", "type" : "ch.ivy.addon.portalkit.datamodel.DashboardTaskLazyDataModel" },
+            { "name" : "portalPage", "type" : "ch.ivy.addon.portalkit.enums.PortalPage" },
+            { "name" : "isFromTaskList", "type" : "Boolean" }
+          ],
+          "map" : {
+            "out.dashboardDataModel" : "param.dataModel",
+            "out.isFromTaskList" : "param.#isFromTaskList is initialized ? param.isFromTaskList : true",
+            "out.portalPage" : "param.portalPage",
+            "out.task" : "param.task"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 288 },
+        "labelOffset" : { "x" : -64, "y" : 15 }
+      },
+      "connect" : { "id" : "f8", "to" : "f6" }
+    } ]
+}

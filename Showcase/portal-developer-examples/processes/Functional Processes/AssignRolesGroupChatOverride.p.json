@@ -1,0 +1,78 @@
+{
+  "format" : "9.4.8",
+  "id" : "16B3FA08E0ADDCE6",
+  "data" : "_com.axonivy.portal.developerexamples.AssignRolesGroupChatOverrideData",
+  "kind" : "CALLABLE_SUB",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "CallSubStart",
+      "name" : "configureRolesForGroupChat(ITask)",
+      "config" : {
+        "callSignature" : "configureRolesForGroupChat",
+        "input" : {
+          "params" : [
+            { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask" }
+          ],
+          "map" : {
+            "out.task" : "param.task"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "roles", "type" : "java.util.List<ch.ivyteam.ivy.security.IRole>" }
+          ],
+          "map" : {
+            "result.roles" : "in.roles"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 72, "y" : 32 },
+        "labelOffset" : { "x" : 5, "y" : 17 }
+      },
+      "connect" : { "id" : "f6", "to" : "f5" }
+    }, {
+      "id" : "f1",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 72, "y" : 240 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "ProcessAnnotation",
+      "name" : [
+        "Use this callable to configure a predefined list of responsible roles for group chat feature. ",
+        "By default, this does nothing. Set value of in.roles to customize this role list.",
+        "",
+        "e.g. set predefined role HR for the process leave request.",
+        "String processPath = in.task.getCase().getProcessStart().getUserFriendlyRequestPath();",
+        "if (processPath.contains(\"Start Processes/CreateTestData/CategoriedLeaveRequest.ivp\")) {",
+        "  in.roles.add(ivy.security.roles().find(\"HR\"));",
+        "}"
+      ],
+      "visual" : {
+        "at" : { "x" : 392, "y" : 144 },
+        "size" : { "width" : 512, "height" : 140 }
+      }
+    }, {
+      "id" : "f5",
+      "type" : "Script",
+      "name" : "Configure",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import java.util.ArrayList;",
+            "String processPath = in.task.getCase().getProcessStart().getUserFriendlyRequestPath();",
+            "if (processPath.contains(\"Start Processes/CreateTestData/CategoriedLeaveRequest.ivp\")) {",
+            "  in.roles.add(ivy.security.roles().find(\"HR\"));",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 72, "y" : 128 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    } ]
+}

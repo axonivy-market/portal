@@ -1,0 +1,105 @@
+{
+  "format" : "9.4.8",
+  "id" : "14E9B792756E0040",
+  "data" : "internaltest.ui.CustomLogin.CustomLoginData",
+  "kind" : "HTML_DIALOG",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start()",
+      "config" : {
+        "callSignature" : "start",
+        "result" : {
+          "params" : [
+            { "name" : "loginOk", "type" : "Boolean" }
+          ],
+          "map" : {
+            "result.loginOk" : "in.loginOk"
+          }
+        },
+        "guid" : "14739D9F00572FE2"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 },
+        "size" : { "width" : 20, "height" : 20 },
+        "labelOffset" : { "x" : 13, "y" : 0 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 96, "y" : 192 },
+        "size" : { "width" : 20, "height" : 20 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "HtmlDialogEventStart",
+      "name" : "login",
+      "config" : {
+        "guid" : "14739DB1F4253947"
+      },
+      "visual" : {
+        "at" : { "x" : 192, "y" : 64 },
+        "size" : { "width" : 20, "height" : 20 },
+        "labelOffset" : { "x" : 13, "y" : 0 }
+      },
+      "connect" : { "id" : "f6", "to" : "f5" }
+    }, {
+      "id" : "f4",
+      "type" : "HtmlDialogExit",
+      "visual" : {
+        "at" : { "x" : 192, "y" : 208 },
+        "size" : { "width" : 20, "height" : 20 }
+      }
+    }, {
+      "id" : "f5",
+      "type" : "Script",
+      "name" : [
+        "login",
+        "get user settings"
+      ],
+      "config" : {
+        "output" : {
+          "code" : [
+            "import javax.faces.context.FacesContext;",
+            "import javax.faces.application.FacesMessage;",
+            "import ch.ivyteam.ivy.security.IUser;",
+            "import java.util.Locale;",
+            "in.loginOk = ivy.session.loginSessionUser(in.username, in.password);",
+            "out.password = null;",
+            "if (!in.loginOk) ",
+            "{",
+            "  FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/login/loginFailed\"), \"\"));",
+            "  FacesContext.getCurrentInstance().validationFailed();",
+            "} else {",
+            "    //set language from user settings or application details",
+            "    IUser sessionUser = ivy.session.getSessionUser();",
+            "    if (sessionUser.getLanguage() != null) {",
+            "      Locale l = ivy.session.getSessionUser().getLanguage();",
+            "      ivy.session.setContentLocale(l);",
+            "      ivy.session.setFormattingLocale(l);",
+            "      ivy.log.debug(\"User Settings: \" + l.getDisplayName());",
+            "    } else {",
+            "      // Application Default",
+            "      Locale default = ivy.request.getApplication().getDefaultEMailLanguage();",
+            "      String language = default.getLanguage();",
+            "      String country = default.getCountry();",
+            "      Locale l = new Locale(language, country, \"APPLICATION_DEFAULT\");",
+            "      ivy.session.setContentLocale(l);",
+            "      ivy.session.setFormattingLocale(l);",
+            "      ivy.log.debug(\"Application Default: \" + l.getDisplayName());",
+            "  }",
+            "  ",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 192, "y" : 128 },
+        "size" : { "width" : 36, "height" : 24 },
+        "labelOffset" : { "x" : 20, "y" : -2 }
+      },
+      "connect" : { "id" : "f7", "to" : "f4" }
+    } ]
+}

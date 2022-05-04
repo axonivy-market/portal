@@ -1,0 +1,134 @@
+{
+  "format" : "9.4.8",
+  "id" : "15493AEB89F5A807",
+  "data" : "ch.ivy.addon.portal.generic.OpenPortalTasksData",
+  "kind" : "CALLABLE_SUB",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "CallSubStart",
+      "name" : "useView(TaskView)",
+      "config" : {
+        "callSignature" : "useView",
+        "input" : {
+          "params" : [
+            { "name" : "taskView", "type" : "ch.ivy.addon.portal.generic.view.TaskView" }
+          ],
+          "map" : {
+            "out.taskView" : "param.taskView"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 112 },
+        "size" : { "width" : 26, "height" : 26 },
+        "labelOffset" : { "x" : 14, "y" : -22 }
+      },
+      "connect" : { "id" : "f7", "to" : "f3" }
+    }, {
+      "id" : "f1",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 640, "y" : 112 },
+        "size" : { "width" : 26, "height" : 26 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "DialogCall",
+      "name" : "PortalTasks",
+      "config" : {
+        "dialogId" : "ch.ivy.addon.portal.generic.PortalTasks",
+        "startMethod" : "useTaskView(TaskView)",
+        "call" : {
+          "params" : [
+            { "name" : "taskView", "type" : "ch.ivy.addon.portal.generic.view.TaskView" }
+          ],
+          "map" : {
+            "param.taskView" : "in.taskView"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 368, "y" : 112 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f4",
+      "type" : "CallSubStart",
+      "name" : "useViewInFrame(TaskView)",
+      "config" : {
+        "callSignature" : "useViewInFrame",
+        "input" : {
+          "params" : [
+            { "name" : "taskView", "type" : "ch.ivy.addon.portal.generic.view.TaskView" }
+          ],
+          "map" : {
+            "out.taskView" : "param.taskView"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 384 },
+        "size" : { "width" : 26, "height" : 26 },
+        "labelOffset" : { "x" : 9, "y" : -30 }
+      },
+      "connect" : { "id" : "f8", "to" : "f6" }
+    }, {
+      "id" : "f5",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 640, "y" : 384 },
+        "size" : { "width" : 26, "height" : 26 }
+      }
+    }, {
+      "id" : "f6",
+      "type" : "DialogCall",
+      "name" : "PortalTaskListInFrame",
+      "config" : {
+        "dialogId" : "ch.ivy.addon.portal.component.iframe.PortalTaskListInFrame",
+        "startMethod" : "start(ch.ivy.addon.portal.generic.view.TaskView)",
+        "call" : {
+          "params" : [
+            { "name" : "taskView", "type" : "ch.ivy.addon.portal.generic.view.TaskView" }
+          ],
+          "map" : {
+            "param.taskView" : "in.taskView"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 376, "y" : 384 },
+        "size" : { "width" : 144, "height" : 44 }
+      },
+      "connect" : { "id" : "f9", "to" : "f5" }
+    }, {
+      "id" : "f10",
+      "type" : "ProcessAnnotation",
+      "name" : [
+        "**Deprecated Note**",
+        "",
+        "**This callable will be removed from Portal 11.",
+        "**To override Portal task widget's UI: you should use Axon Ivy HTMLOverride Dialog to override the PortalTaskListInFrame Html dialog."
+      ],
+      "visual" : {
+        "at" : { "x" : 512, "y" : 496 },
+        "size" : { "width" : 736, "height" : 76 },
+        "labelOffset" : { "x" : -358, "y" : -34 }
+      },
+      "connect" : { "id" : "f11", "to" : "f4" }
+    }, {
+      "id" : "f12",
+      "type" : "ProcessAnnotation",
+      "name" : [
+        "**Deprecated Note**",
+        "",
+        "**This callable will be removed from Portal 11.",
+        "**To override Portal task widget's UI: you should use Axon Ivy HTMLOverride Dialog to override the PortalTasks Html dialog."
+      ],
+      "visual" : {
+        "at" : { "x" : 488, "y" : 208 },
+        "size" : { "width" : 672, "height" : 76 },
+        "labelOffset" : { "x" : -329, "y" : -34 }
+      },
+      "connect" : { "id" : "f13", "to" : "f0" }
+    } ]
+}

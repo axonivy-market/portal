@@ -1,0 +1,108 @@
+{
+  "format" : "9.4.8",
+  "id" : "163AFDE4C30836BD",
+  "data" : "ch.ivy.addon.portal.generic.GlobalSearch.GlobalSearchData",
+  "kind" : "HTML_DIALOG",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start()",
+      "config" : {
+        "callSignature" : "start",
+        "guid" : "163AFD8B43132CEB"
+      },
+      "visual" : {
+        "at" : { "x" : 64, "y" : 96 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 320, "y" : 96 }
+      }
+    }, {
+      "id" : "f4",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 584, "y" : 224 }
+      }
+    }, {
+      "id" : "f8",
+      "type" : "Script",
+      "name" : [
+        "Display message after",
+        "finish or leave task"
+      ],
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.util.GrowlMessageUtils;",
+            "",
+            "if(in.isWorkingOnTask) {",
+            "  GrowlMessageUtils.addFeedbackMessage(in.isTaskFinished, in.iCase);",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 216, "y" : 224 },
+        "size" : { "width" : 144, "height" : 44 }
+      },
+      "connect" : { "id" : "f5", "to" : "f31" }
+    }, {
+      "id" : "f3",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "search(Boolean,ICase)",
+      "config" : {
+        "callSignature" : "search",
+        "input" : {
+          "params" : [
+            { "name" : "isWorkingOnTask", "type" : "Boolean" },
+            { "name" : "iCase", "type" : "ch.ivyteam.ivy.workflow.ICase" }
+          ],
+          "map" : {
+            "out.iCase" : "param.iCase",
+            "out.isWorkingOnTask" : "param.isWorkingOnTask"
+          }
+        },
+        "guid" : "16FA88E321FFCEB1"
+      },
+      "visual" : {
+        "at" : { "x" : 64, "y" : 224 },
+        "labelOffset" : { "x" : -25, "y" : 15 }
+      },
+      "connect" : { "id" : "f9", "to" : "f8" }
+    }, {
+      "id" : "f31",
+      "type" : "Script",
+      "name" : "Navigate to task details",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portal.generic.navigation.PortalNavigator;",
+            "",
+            "PortalNavigator.navigateToPortalGlobalSearch(in.keyword);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 416, "y" : 224 },
+        "size" : { "width" : 128, "height" : 44 },
+        "labelOffset" : { "x" : -59, "y" : -8 }
+      },
+      "connect" : { "id" : "f6", "to" : "f4" }
+    }, {
+      "id" : "f7",
+      "type" : "ProcessAnnotation",
+      "name" : [
+        "Sample scenario to test",
+        "start a task > perform global search"
+      ],
+      "visual" : {
+        "at" : { "x" : 256, "y" : 288 },
+        "size" : { "width" : 208, "height" : 44 }
+      },
+      "connect" : { "id" : "f10", "to" : "f8" }
+    } ]
+}

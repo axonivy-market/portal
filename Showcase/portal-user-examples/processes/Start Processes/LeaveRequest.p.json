@@ -1,0 +1,187 @@
+{
+  "format" : "9.4.8",
+  "id" : "170321BD7F5539D6",
+  "data" : "com.axonivy.portal.userexamples.leaverequest.LeaveRequestProcessData",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "start.ivp",
+      "config" : {
+        "callSignature" : "start",
+        "case" : {
+          "name" : "<%=ivy.cms.co(\"/Processes/LeaveRequest/leaveRequest\")%>",
+          "customFields" : [
+            { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
+          ]
+        },
+        "roleExceptionId" : ">>",
+        "startDescription" : [
+          "This process allow employee to submit their leave request, then the request will be sent to selected approver.",
+          "After approver finish his task, the approval result will be sent back to requester"
+        ],
+        "startCustomFields" : [
+          { "name" : "cssIcon", "value" : "si si-advertising-megaphone-2" }
+        ],
+        "task" : {
+          "name" : "<%=ivy.cms.co(\"/Processes/LeaveRequest/createNewLeaveRequest\")%>"
+        },
+        "outLink" : "start.ivp",
+        "wfuser" : "1",
+        "startName" : "<%=ivy.cms.co(\"/Processes/LeaveRequest/leaveRequest\")%>"
+      },
+      "visual" : {
+        "at" : { "x" : 88, "y" : 248 }
+      },
+      "connect" : { "id" : "f20", "to" : "f18" }
+    }, {
+      "id" : "f18",
+      "type" : "UserTask",
+      "name" : "LeaveRequestCreation",
+      "config" : {
+        "dialogId" : "com.axonivy.portal.userexamples.leaverequest.LeaveRequestCreation",
+        "startMethod" : "start()",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.approver" : "result.approverName",
+            "out.requester" : "result.requesterName"
+          }
+        },
+        "task" : {
+          "name" : "<%=ivy.cms.co(\"/Processes/LeaveRequest/createLeaveRequest\", [ivy.session.getSessionUser().getDisplayName()])%>",
+          "responsible" : {
+            "role" : "SELF"
+          },
+          "skipTasklist" : true
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 280, "y" : 248 },
+        "size" : { "width" : 144, "height" : 44 }
+      },
+      "connect" : { "id" : "f3", "to" : "f4" }
+    }, {
+      "id" : "f4",
+      "type" : "UserTask",
+      "name" : "LeaveRequestApproval",
+      "config" : {
+        "dialogId" : "com.axonivy.portal.userexamples.leaverequest.LeaveRequestApproval",
+        "startMethod" : "start()",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.isApproved" : "result.isApproved"
+          }
+        },
+        "task" : {
+          "name" : "<%=ivy.cms.co(\"/Processes/LeaveRequest/approvalTaskName\", [ivy.security.users().find(in.requester).getDisplayName()])%>",
+          "responsible" : {
+            "userFromAttribute" : "in.approver"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 496, "y" : 248 },
+        "size" : { "width" : 144, "height" : 44 }
+      },
+      "connect" : { "id" : "f2", "to" : "f16" }
+    }, {
+      "id" : "f16",
+      "type" : "UserTask",
+      "name" : "LeaveRequestSummary",
+      "config" : {
+        "dialogId" : "com.axonivy.portal.userexamples.leaverequest.LeaveRequestSummary",
+        "startMethod" : "start()",
+        "task" : {
+          "name" : "<%=in.isApproved? ivy.cms.co(\"/Processes/LeaveRequest/approvalTask\") : ivy.cms.co(\"/Processes/LeaveRequest/rejectedTask\")%>",
+          "responsible" : {
+            "userFromAttribute" : "in.requester"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 720, "y" : 248 },
+        "size" : { "width" : 144, "height" : 44 }
+      },
+      "connect" : { "id" : "f1", "to" : "f28" }
+    }, {
+      "id" : "f5",
+      "type" : "ProcessAnnotation",
+      "name" : [
+        "User goes directly to this task after start the",
+        "process because we enable skipTaskList",
+        "",
+        "In this task, user able to submit his/her  leave request, and choose the approval for the request"
+      ],
+      "visual" : {
+        "at" : { "x" : 360, "y" : 64 },
+        "size" : { "width" : 528, "height" : 76 }
+      },
+      "connect" : { "id" : "f6", "to" : "f18" }
+    }, {
+      "id" : "f7",
+      "type" : "ProcessAnnotation",
+      "name" : "Approval task for leave request, which is assigned to the selected approver in first task",
+      "visual" : {
+        "at" : { "x" : 584, "y" : 408 },
+        "size" : { "width" : 480, "height" : 30 }
+      },
+      "connect" : { "id" : "f8", "to" : "f4" }
+    }, {
+      "id" : "f9",
+      "type" : "ProcessAnnotation",
+      "name" : [
+        "Base on descision in approval task, the task name will be ",
+        "display as approved or rejected. It's assigned back to ",
+        "the person who submit the leave request"
+      ],
+      "visual" : {
+        "at" : { "x" : 984, "y" : 64 },
+        "size" : { "width" : 336, "height" : 60 }
+      },
+      "connect" : { "id" : "f10", "to" : "f16" }
+    }, {
+      "id" : "f11",
+      "type" : "ProcessAnnotation",
+      "name" : [
+        "This process allow employee to submit their leave request, then the request will be sent to selected approver.",
+        "After approver finish his task, the approval result will be sent back to requester"
+      ],
+      "visual" : {
+        "at" : { "x" : 304, "y" : 552 },
+        "size" : { "width" : 608, "height" : 44 }
+      },
+      "connect" : { "id" : "f12", "to" : "f0" }
+    }, {
+      "id" : "f28",
+      "type" : "Script",
+      "name" : "Set end page",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.constant.CustomFields;",
+            "import java.util.Map;",
+            "import ch.ivy.addon.portalkit.enums.PortalLibrary;",
+            "import java.util.Arrays;",
+            "import ch.ivy.addon.portalkit.service.IvyAdapterService;",
+            "",
+            "Map x = IvyAdapterService.startSubProcess(\"handleUserExamplesEndPage()\", null, Arrays.asList(PortalLibrary.AXON_EXPRESS.getValue()));",
+            "String callbackUrl = x.get(\"callbackUrl\") as String;",
+            "ivy.task.customFields().stringField(CustomFields.EXPRESS_END_PAGE_URL.toString()).set(callbackUrl);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 920, "y" : 248 },
+        "labelOffset" : { "x" : -34, "y" : -8 }
+      },
+      "connect" : { "id" : "f14", "to" : "f13" }
+    }, {
+      "id" : "f13",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 1056, "y" : 248 }
+      }
+    } ]
+}
