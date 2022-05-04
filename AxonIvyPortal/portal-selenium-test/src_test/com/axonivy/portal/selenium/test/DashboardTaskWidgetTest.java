@@ -5,40 +5,25 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
-import com.axonivy.portal.selenium.common.Sleeper;
 import com.axonivy.portal.selenium.common.TestAccount;
-import com.axonivy.portal.selenium.page.CaseDetailsWidgetNewDashBoardPage;
-import com.axonivy.portal.selenium.page.CaseEditWidgetNewDashBoardPage;
-import com.axonivy.portal.selenium.page.CaseWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.NewDashboardConfigurationPage;
 import com.axonivy.portal.selenium.page.NewDashboardDetailsEditPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
-import com.axonivy.portal.selenium.page.ProcessWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.TaskEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
-import com.codeborne.selenide.CollectionCondition;
-import com.codeborne.selenide.SelenideElement;
 
 @IvyWebTest(headless = false)
 public class DashboardTaskWidgetTest extends BaseTest {
 
   //WIDGET
-  private static final String YOUR_CASES_WIDGET = "Your Cases";
   private static final String YOUR_TASKS_WIDGET = "Your Tasks";
-  private static final String YOUR_PROCESS_WIDGET = "Your Processes";
 
   // CASES
-  private static final String LEAVE_REQUEST_CASE_NAME = "Leave Request";
-  private static final String ORDER_PIZZA = "Order Pizza";
-  private static final String HIDE_CASE = "Repair Computer";
-  private static final String LEAVE_REQUEST_DEFAULT_CASE= "Leave Request for Default Additional Case Details";
-  private static final String INVESTMENT_REQUEST_CUSTOMIZATION_CASE = "Investment Request";
   private static final String CREATE_12_CASES_WITH_CATEGORY_CASE = "Create 12 Cases with category";
 
   // TASKS
@@ -79,8 +64,7 @@ public class DashboardTaskWidgetTest extends BaseTest {
     taskWidget.applyFilter();
     taskWidget.startFirstTask();
     taskWidget.expand().shouldHaveSize(0);
-    taskWidget.countTasks(REPORT_HIDE_CASE).shouldHaveSize(0);
-    //Sleeper.sleep(3000000);
+    taskWidget.getTaskEmptyMessage().shouldHave(text("There are currently no tasks after applied filter."));
   }
   
   @Test

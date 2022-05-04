@@ -58,13 +58,13 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   public void startFirstTask() {
     $$("span.widget__filter-noti-number").first().waitUntil(appear, DEFAULT_TIMEOUT);
     getColumnOfTaskHasIndex(0, "Start").shouldBe(getClickableCondition()).click();
-    $$("span.widget__filter-noti-number").first().waitUntil(disappears, DEFAULT_TIMEOUT);
+    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
   }
 
   public void startTask(int taskIndex) {
     $$("span.widget__filter-noti-number").first().waitUntil(appear, DEFAULT_TIMEOUT);
     getColumnOfTaskHasIndex(taskIndex, "Start").shouldBe(getClickableCondition()).click();
-    $$("span.widget__filter-noti-number").first().waitUntil(disappears, DEFAULT_TIMEOUT);
+    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
   }
 
   public ElementsCollection countRelatedCases() {
@@ -443,6 +443,10 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   
   public SelenideElement getTheFirstTaskWidgetByColumn(String columnName) {
     return getColumnOfTaskHasIndex(0, columnName);
+  }
+  
+  public SelenideElement getTaskEmptyMessage() {
+    return $("[id$='dashboard-tasks-container'] [id$='empty-message-container']").waitUntil(appear, DEFAULT_TIMEOUT);
   }
   
 }
