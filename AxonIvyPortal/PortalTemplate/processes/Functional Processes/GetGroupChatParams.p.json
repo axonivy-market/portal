@@ -1,0 +1,57 @@
+{
+  "format" : "9.4.8",
+  "id" : "169B8DBA8236AA9F",
+  "data" : "ch.ivy.addon.portal.generic.GetGroupChatParamsData",
+  "kind" : "CALLABLE_SUB",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "CallSubStart",
+      "name" : "getGroupChatParams()",
+      "config" : {
+        "callSignature" : "getGroupChatParams",
+        "input" : {
+          "map" : {
+            "out.params" : "new java.util.HashMap()"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "params", "type" : "java.util.Map" }
+          ],
+          "map" : {
+            "result.params" : "in.params"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : { "id" : "f4", "to" : "f3" }
+    }, {
+      "id" : "f1",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "Script",
+      "name" : "Set params",
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f5",
+      "type" : "ProcessAnnotation",
+      "name" : [
+        "Put parameters to display in group chat name:",
+        "out.params.put(\"accountHolder\", <VALUE>);"
+      ],
+      "visual" : {
+        "at" : { "x" : 304, "y" : 176 },
+        "size" : { "width" : 256, "height" : 44 }
+      },
+      "connect" : { "id" : "f6", "to" : "f3" }
+    } ]
+}

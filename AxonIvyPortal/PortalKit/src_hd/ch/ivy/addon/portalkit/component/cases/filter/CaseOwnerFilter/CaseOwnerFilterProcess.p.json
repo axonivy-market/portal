@@ -1,0 +1,63 @@
+{
+  "format" : "9.4.8",
+  "id" : "17313A70C291401F",
+  "data" : "ch.ivy.addon.portalkit.component.cases.filter.CaseOwnerFilter.CaseOwnerFilterData",
+  "kind" : "HTML_DIALOG",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start()",
+      "config" : {
+        "callSignature" : "start",
+        "guid" : "15F954914E422B7F"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 }
+      }
+    }, {
+      "id" : "f6",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "query(String)",
+      "config" : {
+        "callSignature" : "query",
+        "result" : {
+          "params" : [
+            { "name" : "owners", "type" : "java.util.List<ch.ivy.addon.portalkit.dto.SecurityMemberDTO>" }
+          ],
+          "code" : [
+            "import ch.ivy.addon.portalkit.constant.PortalConstants;",
+            "import ch.ivy.addon.portalkit.util.SecurityMemberUtils;",
+            "",
+            "result.owners = SecurityMemberUtils.findSecurityMembers(in.query, 0, PortalConstants.MAX_USERS_IN_AUTOCOMPLETE);"
+          ]
+        },
+        "input" : {
+          "params" : [
+            { "name" : "query", "type" : "String" }
+          ],
+          "map" : {
+            "out.query" : "param.query"
+          }
+        },
+        "guid" : "17313AEE1F4996A7"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 160 },
+        "labelOffset" : { "x" : -29, "y" : 14 }
+      },
+      "connect" : { "id" : "f8", "to" : "f7" }
+    }, {
+      "id" : "f7",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 288, "y" : 160 }
+      }
+    } ]
+}

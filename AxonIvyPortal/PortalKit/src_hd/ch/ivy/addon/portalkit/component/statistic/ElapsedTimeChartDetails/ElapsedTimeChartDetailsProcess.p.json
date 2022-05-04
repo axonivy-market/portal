@@ -1,0 +1,222 @@
+{
+  "format" : "9.4.8",
+  "id" : "161504784DDFCFC7",
+  "data" : "ch.ivy.addon.portalkit.component.statistic.ElapsedTimeChartDetails.ElapsedTimeChartDetailsData",
+  "kind" : "HTML_DIALOG",
+  "elements" : [ {
+      "id" : "f3",
+      "type" : "HtmlDialogEventStart",
+      "name" : "close",
+      "config" : {
+        "guid" : "161504785367B2A4"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 160 },
+        "labelOffset" : { "x" : -15, "y" : 12 }
+      },
+      "connect" : { "id" : "f5", "to" : "f4" }
+    }, {
+      "id" : "f4",
+      "type" : "HtmlDialogExit",
+      "visual" : {
+        "at" : { "x" : 224, "y" : 160 }
+      }
+    }, {
+      "id" : "f15",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "countCases(CaseSearchCriteria)",
+      "config" : {
+        "callSignature" : "countCases",
+        "result" : {
+          "params" : [
+            { "name" : "totalCases", "type" : "Long" }
+          ],
+          "map" : {
+            "result.totalCases" : "in.totalCases"
+          }
+        },
+        "input" : {
+          "params" : [
+            { "name" : "caseSearchCriteria", "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria" }
+          ],
+          "map" : {
+            "out.caseSearchCriteria" : "param.caseSearchCriteria"
+          }
+        },
+        "guid" : "16AD339444C2C97E"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 352 },
+        "labelOffset" : { "x" : -45, "y" : 14 }
+      },
+      "connect" : { "id" : "f19", "to" : "f18" }
+    }, {
+      "id" : "f20",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 576, "y" : 352 }
+      }
+    }, {
+      "id" : "f6",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "findCases(CaseSearchCriteria,Integer,Integer)",
+      "config" : {
+        "callSignature" : "findCases",
+        "result" : {
+          "params" : [
+            { "name" : "cases", "type" : "List<ch.ivyteam.ivy.workflow.ICase>" }
+          ],
+          "map" : {
+            "result.cases" : "in.cases"
+          }
+        },
+        "input" : {
+          "params" : [
+            { "name" : "caseSearchCriteria", "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria" },
+            { "name" : "startIndex", "type" : "Integer" },
+            { "name" : "count", "type" : "Integer" }
+          ],
+          "map" : {
+            "out.caseSearchCriteria" : "param.caseSearchCriteria",
+            "out.count" : "param.count",
+            "out.startIndex" : "param.startIndex"
+          }
+        },
+        "guid" : "16AD339444E6AFE5"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 256 },
+        "size" : { "width" : 24, "height" : 24 },
+        "labelOffset" : { "x" : -74, "y" : 14 }
+      },
+      "connect" : { "id" : "f8", "to" : "f7" }
+    }, {
+      "id" : "f7",
+      "type" : "SubProcessCall",
+      "name" : "CaseService",
+      "config" : {
+        "processCall" : "Ivy Data Processes/CaseService:findCasesByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria,Integer,Integer)",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.cases" : "result.cases"
+          }
+        },
+        "call" : {
+          "params" : [
+            { "name" : "caseSearchCriteria", "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria" },
+            { "name" : "startIndex", "type" : "Integer" },
+            { "name" : "count", "type" : "Integer" }
+          ],
+          "map" : {
+            "param.caseSearchCriteria" : "in.caseSearchCriteria",
+            "param.startIndex" : "in.startIndex",
+            "param.count" : "in.count"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 360, "y" : 256 }
+      },
+      "connect" : { "id" : "f10", "to" : "f9" }
+    }, {
+      "id" : "f9",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 576, "y" : 256 }
+      }
+    }, {
+      "id" : "f18",
+      "type" : "SubProcessCall",
+      "name" : "CaseService",
+      "config" : {
+        "processCall" : "Ivy Data Processes/CaseService:countCasesByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria)",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.totalCases" : "result.totalCases"
+          }
+        },
+        "call" : {
+          "params" : [
+            { "name" : "caseSearchCriteria", "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria" }
+          ],
+          "map" : {
+            "param.caseSearchCriteria" : "in.caseSearchCriteria"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 360, "y" : 352 }
+      },
+      "connect" : { "id" : "f11", "to" : "f20" }
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 576, "y" : 96 },
+        "size" : { "width" : 22, "height" : 22 }
+      }
+    }, {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start",
+      "config" : {
+        "callSignature" : "start",
+        "guid" : "16AD3D99ECE5523E"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 96 },
+        "size" : { "width" : 22, "height" : 22 },
+        "labelOffset" : { "x" : 14, "y" : 0 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f12",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "initialize(String)",
+      "config" : {
+        "callSignature" : "initialize",
+        "input" : {
+          "params" : [
+            { "name" : "caseCategory", "type" : "String" }
+          ],
+          "map" : {
+            "out.category" : "param.caseCategory"
+          }
+        },
+        "guid" : "16AD87286B4BA607"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 448 }
+      },
+      "connect" : { "id" : "f17", "to" : "f16" }
+    }, {
+      "id" : "f13",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 576, "y" : 448 }
+      }
+    }, {
+      "id" : "f16",
+      "type" : "Script",
+      "name" : "Set CaseCatgory",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.datamodel.internal.ElapsedTimeLazyDataModel;",
+            "import ch.ivy.addon.portalkit.statistics.StatisticChartConstants;",
+            "",
+            "in.dataModel = new ElapsedTimeLazyDataModel();",
+            "if(!ivy.cms.co(StatisticChartConstants.NO_CATEGORY_CMS).equalsIgnoreCase(in.category)) {",
+            "  in.dataModel.setCategory(in.category);",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 256, "y" : 448 }
+      },
+      "connect" : { "id" : "f14", "to" : "f13" }
+    } ]
+}

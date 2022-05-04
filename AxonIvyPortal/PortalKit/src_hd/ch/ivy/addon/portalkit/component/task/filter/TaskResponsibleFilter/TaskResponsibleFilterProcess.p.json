@@ -1,0 +1,63 @@
+{
+  "format" : "9.4.8",
+  "id" : "15DC1795219AF4F0",
+  "data" : "ch.ivy.addon.portalkit.component.task.filter.TaskResponsibleFilter.TaskResponsibleFilterData",
+  "kind" : "HTML_DIALOG",
+  "elements" : [ {
+      "id" : "f6",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "autoCompleteForResponsible(String)",
+      "config" : {
+        "callSignature" : "autoCompleteForResponsible",
+        "result" : {
+          "params" : [
+            { "name" : "responsibles", "type" : "java.util.List<ch.ivy.addon.portalkit.dto.SecurityMemberDTO>" }
+          ],
+          "code" : [
+            "import ch.ivy.addon.portalkit.constant.PortalConstants;",
+            "import ch.ivy.addon.portalkit.util.SecurityMemberUtils;",
+            "",
+            "result.responsibles = SecurityMemberUtils.findSecurityMembers(in.queryAutoComplete, 0, PortalConstants.MAX_USERS_IN_AUTOCOMPLETE);"
+          ]
+        },
+        "input" : {
+          "params" : [
+            { "name" : "query", "type" : "String" }
+          ],
+          "map" : {
+            "out.queryAutoComplete" : "param.query"
+          }
+        },
+        "guid" : "15FB4A9997759979"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 192 },
+        "labelOffset" : { "x" : -57, "y" : 13 }
+      },
+      "connect" : { "id" : "f8", "to" : "f7" }
+    }, {
+      "id" : "f7",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 288, "y" : 192 }
+      }
+    }, {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start()",
+      "config" : {
+        "callSignature" : "start",
+        "guid" : "16827CB81F8394D6"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 96 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 288, "y" : 96 }
+      }
+    } ]
+}

@@ -1,0 +1,233 @@
+{
+  "format" : "9.4.8",
+  "id" : "162F55163FD8DF16",
+  "data" : "ch.ivy.gawfs.workflowExecution.ApprovalForm.ApprovalFormData",
+  "kind" : "HTML_DIALOG",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start(List,List,Integer,Boolean,Long)",
+      "config" : {
+        "callSignature" : "start",
+        "result" : {
+          "params" : [
+            { "name" : "approvalResult", "type" : "gawfs.ApprovalTaskResult" }
+          ],
+          "map" : {
+            "result.approvalResult" : "in.approvalResult"
+          }
+        },
+        "input" : {
+          "params" : [
+            { "name" : "finishedTasks", "type" : "java.util.List<gawfs.TaskDef>" },
+            { "name" : "steps", "type" : "List<String>" },
+            { "name" : "actualStepIndex", "type" : "Integer" },
+            { "name" : "isAdhocProcess", "type" : "Boolean" },
+            { "name" : "originalTaskId", "type" : "Long" }
+          ],
+          "map" : {
+            "out.actualStepIndex" : "param.actualStepIndex",
+            "out.finishedTasks" : "param.finishedTasks",
+            "out.isAdhocProcess" : "param.isAdhocProcess",
+            "out.originalTaskId" : "param.originalTaskId",
+            "out.steps" : "param.steps"
+          }
+        },
+        "guid" : "162F55164217492D"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 },
+        "labelOffset" : { "x" : -16, "y" : 15 }
+      },
+      "connect" : { "id" : "f24", "to" : "f15" }
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 448, "y" : 64 }
+      }
+    }, {
+      "id" : "f6",
+      "type" : "HtmlDialogEventStart",
+      "name" : "closeApprove",
+      "config" : {
+        "guid" : "163066332FC888BC"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 160 }
+      },
+      "connect" : { "id" : "f11", "to" : "f10" }
+    }, {
+      "id" : "f7",
+      "type" : "HtmlDialogEventStart",
+      "name" : "closeDeny",
+      "config" : {
+        "guid" : "1630663828B44965"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 256 }
+      },
+      "connect" : { "id" : "f12", "to" : "f9" }
+    }, {
+      "id" : "f3",
+      "type" : "Script",
+      "name" : "Update history",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.util.AdhocUtils;",
+            "import org.apache.commons.lang3.StringUtils;",
+            "String note = ivy.session.getSessionUserName() + \":\" + ivy.cms.co(\"/Dialogs/WorkflowExecution/ApprovalForm/Approve\"); ",
+            "ivy.case.createNote(ivy.session, note);",
+            "",
+            "if (in.originalTaskId != null && in.originalTaskId > 0) {",
+            "  String approvalComment = ivy.cms.co(\"/Dialogs/WorkflowExecution/ApprovalForm/ApproveComment\") + (StringUtils.isEmpty(in.comment) ? \"\" : (\" - \" + in.comment));",
+            "  AdhocUtils.storeHistory(in.originalTaskId, approvalComment);",
+            "  ivy.case.getBusinessCase().createNote(ivy.session, ivy.task.getName() + \": \" + approvalComment);",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 408, "y" : 160 }
+      },
+      "connect" : { "id" : "f22", "to" : "f21" }
+    }, {
+      "id" : "f5",
+      "type" : "HtmlDialogExit",
+      "visual" : {
+        "at" : { "x" : 704, "y" : 160 }
+      }
+    }, {
+      "id" : "f9",
+      "type" : "Script",
+      "name" : "Update result",
+      "config" : {
+        "output" : {
+          "code" : "in.approvalResult.setIsApproved(false);"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 216, "y" : 256 }
+      },
+      "connect" : { "id" : "f14", "to" : "f13" }
+    }, {
+      "id" : "f10",
+      "type" : "Script",
+      "name" : "Update result",
+      "config" : {
+        "output" : {
+          "code" : "in.approvalResult.setIsApproved(true);"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 216, "y" : 160 }
+      },
+      "connect" : { "id" : "f4", "to" : "f3" }
+    }, {
+      "id" : "f13",
+      "type" : "Script",
+      "name" : "Update history",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import org.apache.commons.lang3.StringUtils;",
+            "import ch.ivy.addon.portalkit.util.AdhocUtils;",
+            "String note = ivy.session.getSessionUserName() + \":\" + ivy.cms.co(\"/Dialogs/WorkflowExecution/ApprovalForm/Reject\"); ",
+            "ivy.case.createNote(ivy.session, note);",
+            "",
+            "if (in.originalTaskId != null && in.originalTaskId > 0) {",
+            "  String approvalComment = ivy.cms.co(\"/Dialogs/WorkflowExecution/ApprovalForm/RejectComment\") + (StringUtils.isEmpty(in.comment) ? \"\" : (\" - \" + in.comment));",
+            "  AdhocUtils.storeHistory(in.originalTaskId, approvalComment);",
+            "  ivy.case.getBusinessCase().createNote(ivy.session, ivy.task.getName() + \": \" + approvalComment);",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 408, "y" : 256 }
+      },
+      "connect" : { "id" : "f23", "to" : "f21", "via" : [ { "x" : 576, "y" : 256 } ] }
+    }, {
+      "id" : "f16",
+      "type" : "HtmlDialogEventStart",
+      "name" : "cancel",
+      "config" : {
+        "guid" : "163066874021794C"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 352 }
+      },
+      "connect" : { "id" : "f18", "to" : "f17" }
+    }, {
+      "id" : "f17",
+      "type" : "Script",
+      "name" : "Reset task",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.publicapi.PortalNavigatorAPI;",
+            "import ch.ivy.addon.portalkit.util.TaskUtils;",
+            "",
+            "TaskUtils.resetTask(ivy.task);",
+            "PortalNavigatorAPI.navigateToPortalEndPage();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 312, "y" : 352 }
+      },
+      "connect" : { "id" : "f20", "to" : "f19" }
+    }, {
+      "id" : "f19",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 448, "y" : 352 }
+      }
+    }, {
+      "id" : "f21",
+      "type" : "Script",
+      "name" : [
+        "update approval",
+        "information"
+      ],
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.security.IUser;",
+            "",
+            "in.approvalResult.setApproverName(ivy.session.getSessionUser().getDisplayName());",
+            "in.approvalResult.setComment(in.comment);",
+            "in.approvalResult.setTaskName(in.steps.get(in.actualStepIndex));",
+            "in.approvalResult.setIndex(in.actualStepIndex);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 576, "y" : 160 },
+        "size" : { "width" : 128, "height" : 44 }
+      },
+      "connect" : { "id" : "f8", "to" : "f5" }
+    }, {
+      "id" : "f15",
+      "type" : "Script",
+      "name" : "Initialize",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import gawfs.TaskDef;",
+            "",
+            "for (TaskDef task : in.finishedTasks) {",
+            "  task.actualApplicant = ivy.security.users().find(task.actualApplicantName);",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 216, "y" : 65 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    } ]
+}

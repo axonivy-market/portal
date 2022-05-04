@@ -1,0 +1,99 @@
+{
+  "format" : "9.4.8",
+  "id" : "17982F86EF698C57",
+  "data" : "ch.ivy.addon.portal.component.ProcessInformation.ProcessInformationData",
+  "kind" : "HTML_DIALOG",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start(String)",
+      "config" : {
+        "callSignature" : "start",
+        "input" : {
+          "params" : [
+            { "name" : "processId", "type" : "String" }
+          ],
+          "map" : {
+            "out.processId" : "param.processId"
+          }
+        },
+        "guid" : "17982F86F32B7C49"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 },
+        "size" : { "width" : 24, "height" : 24 },
+        "labelOffset" : { "x" : -16, "y" : 15 }
+      },
+      "connect" : { "id" : "f8", "to" : "f7" }
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 608, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "HtmlDialogEventStart",
+      "name" : "close",
+      "config" : {
+        "guid" : "17982F86F5BE8724"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 160 }
+      },
+      "connect" : { "id" : "f5", "to" : "f4" }
+    }, {
+      "id" : "f4",
+      "type" : "HtmlDialogExit",
+      "visual" : {
+        "at" : { "x" : 224, "y" : 160 }
+      }
+    }, {
+      "id" : "f7",
+      "type" : "SubProcessCall",
+      "name" : "ProcessService",
+      "config" : {
+        "processCall" : "Ivy Data Processes/ProcessService:findProcesses()",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.userProcesses" : "result.processes"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 264, "y" : 64 }
+      },
+      "connect" : { "id" : "f9", "to" : "f6" }
+    }, {
+      "id" : "f6",
+      "type" : "Script",
+      "name" : [
+        "get selected",
+        "user process"
+      ],
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portal.generic.util.ProcessStepUtils;",
+            "import ch.ivy.addon.portalkit.mapper.UserProcessMapper;",
+            "import ch.ivyteam.ivy.workflow.start.IWebStartable;",
+            "",
+            "for (IWebStartable process : in.userProcesses) {",
+            "  if (process.getId().contentEquals(in.processId)) {",
+            "    in.setSelectedProcess(UserProcessMapper.toUserProcess(process));",
+            "  }",
+            "}",
+            "",
+            "if (in.selectedProcess is initialized) {",
+            "  in.processSteps = ProcessStepUtils.findProcessStepsOfProcess(in.selectedProcess);",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 440, "y" : 64 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    } ]
+}

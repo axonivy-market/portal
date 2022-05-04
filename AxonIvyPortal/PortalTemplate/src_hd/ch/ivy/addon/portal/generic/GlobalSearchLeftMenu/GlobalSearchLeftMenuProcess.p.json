@@ -1,0 +1,61 @@
+{
+  "format" : "9.4.8",
+  "id" : "16CF626AB4B6E5B2",
+  "data" : "ch.ivy.addon.portal.generic.GlobalSearchLeftMenu.GlobalSearchLeftMenuData",
+  "kind" : "HTML_DIALOG",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start()",
+      "config" : {
+        "callSignature" : "start",
+        "guid" : "16CF626AB9D7CE8D"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 }
+      }
+    }, {
+      "id" : "f6",
+      "type" : "SubProcessCall",
+      "name" : "OpenPortalSearch",
+      "config" : {
+        "processCall" : "Functional Processes/OpenPortalSearch:call(String)",
+        "call" : {
+          "params" : [
+            { "name" : "keyword", "type" : "String" }
+          ],
+          "map" : {
+            "param.keyword" : "in.keyword"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 160 }
+      },
+      "connect" : { "id" : "f10", "to" : "f8" }
+    }, {
+      "id" : "f7",
+      "type" : "HtmlDialogEventStart",
+      "name" : "search",
+      "config" : {
+        "guid" : "16CF6284713656E6"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 160 }
+      },
+      "connect" : { "id" : "f9", "to" : "f6" }
+    }, {
+      "id" : "f8",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 160 }
+      }
+    } ]
+}

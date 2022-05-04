@@ -1,0 +1,70 @@
+{
+  "format" : "9.4.8",
+  "id" : "176CC890308520A8",
+  "data" : "com.axonivy.portal.developerexamples.customization.SearchResults.SearchResultsData",
+  "kind" : "HTML_DIALOG",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start(String)",
+      "config" : {
+        "callSignature" : "start",
+        "input" : {
+          "params" : [
+            { "name" : "keyword", "type" : "String" }
+          ],
+          "map" : {
+            "out.activeTabIndex" : "0",
+            "out.dataModel.caseDataModel.notKeepFilter" : "true",
+            "out.dataModel.keyword" : "param.keyword",
+            "out.dataModel.taskDataModel.compactMode" : "false",
+            "out.dataModel.taskDataModel.notKeepFilter" : "true"
+          },
+          "code" : "out.dataModel.search();"
+        },
+        "guid" : "150D5B63FE18100D"
+      },
+      "visual" : {
+        "at" : { "x" : 64, "y" : 96 },
+        "size" : { "width" : 22, "height" : 22 },
+        "labelOffset" : { "x" : -16, "y" : 13 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 344, "y" : 96 },
+        "size" : { "width" : 22, "height" : 22 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "HtmlDialogStart",
+      "name" : "start(SearchResultsDataModel)",
+      "config" : {
+        "callSignature" : "start",
+        "input" : {
+          "params" : [
+            { "name" : "dataModel", "type" : "ch.ivy.addon.portalkit.datamodel.SearchResultsDataModel" },
+            { "name" : "activeTabIndex", "type" : "Number" }
+          ],
+          "map" : {
+            "out.activeTabIndex" : "param.activeTabIndex",
+            "out.dataModel" : "param.dataModel as com.axonivy.portal.developerexamples.component.customize.CustomizedSearchResultsDataModel"
+          }
+        },
+        "guid" : "163AFE8CC44DFD15"
+      },
+      "visual" : {
+        "at" : { "x" : 64, "y" : 192 },
+        "labelOffset" : { "x" : -52, "y" : 19 }
+      },
+      "connect" : { "id" : "f5", "to" : "f4" }
+    }, {
+      "id" : "f4",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 192 }
+      }
+    } ]
+}

@@ -1,0 +1,112 @@
+{
+  "format" : "9.4.8",
+  "id" : "14BEF201D2E3FF7D",
+  "data" : "ch.ivy.addon.portal.generic.PortalHome.PortalHomeData",
+  "kind" : "HTML_DIALOG",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start()",
+      "config" : {
+        "callSignature" : "start",
+        "input" : {
+          "params" : [
+            { "name" : "taskView", "type" : "ch.ivy.addon.portal.generic.view.TaskView" }
+          ],
+          "map" : {
+            "out.isNotLogin" : "ivy.session.isSessionUserUnknown()",
+            "out.taskView" : "param.taskView"
+          }
+        },
+        "guid" : "14BEF201D4239EF7"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : { "id" : "f11", "to" : "f10" }
+    }, {
+      "id" : "f10",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 },
+        "size" : { "width" : 22, "height" : 22 }
+      }
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "getDataModel()",
+      "config" : {
+        "callSignature" : "getDataModel",
+        "input" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria;",
+            "",
+            "TaskSearchCriteria criteria = out.taskView.dataModel.criteria;",
+            "if (out.isNotLogin) {",
+            "  criteria.setInvolvedUsername(ivy.session.getSessionUserName());",
+            "  out.isNotLogin = false;",
+            "}"
+          ]
+        },
+        "result" : {
+          "params" : [
+            { "name" : "dataModel", "type" : "ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel" }
+          ],
+          "map" : {
+            "result.dataModel" : "in.taskView.dataModel"
+          }
+        },
+        "guid" : "15BA979D15878BE6"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 160 },
+        "size" : { "width" : 22, "height" : 22 },
+        "labelOffset" : { "x" : 14, "y" : 0 }
+      },
+      "connect" : { "id" : "f3", "to" : "f2" }
+    }, {
+      "id" : "f2",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 224, "y" : 160 },
+        "size" : { "width" : 22, "height" : 22 }
+      }
+    }, {
+      "id" : "f4",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 221, "y" : 221 },
+        "size" : { "width" : 22, "height" : 22 }
+      }
+    }, {
+      "id" : "f5",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "getStatisticCharts()",
+      "config" : {
+        "callSignature" : "getStatisticCharts",
+        "input" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.service.StatisticService;",
+            "",
+            "StatisticService service = StatisticService.getInstance();",
+            "out.statisticChartList = service.findStatisticCharts();"
+          ]
+        },
+        "result" : {
+          "params" : [
+            { "name" : "statisticChartList", "type" : "java.util.List<ch.ivy.addon.portalkit.statistics.StatisticChart>" }
+          ],
+          "map" : {
+            "result.statisticChartList" : "in.statisticChartList"
+          }
+        },
+        "guid" : "1604F4CCC363BD5A"
+      },
+      "visual" : {
+        "at" : { "x" : 93, "y" : 221 },
+        "size" : { "width" : 22, "height" : 22 },
+        "labelOffset" : { "x" : 14, "y" : 0 }
+      },
+      "connect" : { "id" : "f6", "to" : "f4" }
+    } ]
+}

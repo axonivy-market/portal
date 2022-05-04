@@ -1,0 +1,222 @@
+{
+  "format" : "9.4.8",
+  "id" : "16E5DB746865BCEC",
+  "data" : "com.axonivy.portal.developerexamples.ExampleIFrameData",
+  "elements" : [ {
+      "id" : "f20",
+      "type" : "TaskSwitchGateway",
+      "config" : {
+        "outLinks" : [ "TaskA.ivp", "TaskB.ivp" ],
+        "tasks" : {
+          "TaskA" : {
+            "name" : "Approve Investment (Task in IFrame)",
+            "customFields" : [
+              { "name" : "embedInFrame", "type" : "String", "value" : "\"true\"" }
+            ]
+          },
+          "TaskB" : {
+            "name" : "Serenity Task Template",
+            "customFields" : [
+              { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
+            ]
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 384, "y" : 96 }
+      },
+      "connect" : [
+        { "id" : "f24", "to" : "f15", "label" : {
+            "name" : "Task in IFrame",
+            "segment" : 0.42,
+            "offset" : { "x" : 0, "y" : -11 }
+          }, "condition" : "ivp==\"TaskA.ivp\"" },
+        { "id" : "f1", "to" : "f0", "via" : [ { "x" : 384, "y" : 192 } ], "label" : {
+            "name" : "TaskTemplate",
+            "segment" : 1.46,
+            "offset" : { "x" : 0, "y" : -13 }
+          }, "condition" : "ivp==\"TaskB.ivp\"" }
+      ]
+    }, {
+      "id" : "f13",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 888, "y" : 192 }
+      }
+    }, {
+      "id" : "f15",
+      "type" : "DialogCall",
+      "name" : "Approve",
+      "config" : {
+        "dialogId" : "com.axonivy.portal.developerexamples.testdata.Approve",
+        "startMethod" : "start(com.axonivy.portal.developerexamples.ExampleIFrameData)",
+        "output" : {
+          "map" : {
+            "out" : "result.investmentRequest"
+          }
+        },
+        "call" : {
+          "params" : [
+            { "name" : "investmentRequest", "type" : "com.axonivy.portal.developerexamples.ExampleIFrameData" }
+          ],
+          "map" : {
+            "param.investmentRequest" : "in"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 616, "y" : 96 }
+      },
+      "connect" : { "id" : "f4", "to" : "f3" }
+    }, {
+      "id" : "f12",
+      "type" : "RequestStart",
+      "name" : "CreateInvestment.ivp",
+      "config" : {
+        "callSignature" : "CreateInvestment",
+        "case" : {
+          "name" : "Investment Creation (IFrame + Task custom fields)"
+        },
+        "outLink" : "CreateInvestment.ivp",
+        "task" : {
+          "name" : "Create Investment",
+          "customFields" : [
+            { "name" : "embedInFrame", "type" : "String", "value" : "\"true\"" }
+          ]
+        },
+        "startName" : "Create Investment (IFrame + Task custom fields)"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 96 },
+        "labelOffset" : { "x" : -50, "y" : 19 }
+      },
+      "connect" : { "id" : "f19", "to" : "f21" }
+    }, {
+      "id" : "f0",
+      "type" : "DialogCall",
+      "name" : "SimpleTaskDialog",
+      "config" : {
+        "dialogId" : "com.axonivy.portal.developerexamples.testdata.SimpleTaskDialog",
+        "startMethod" : "start()"
+      },
+      "visual" : {
+        "at" : { "x" : 616, "y" : 192 },
+        "labelOffset" : { "x" : -47, "y" : -8 }
+      },
+      "connect" : { "id" : "f2", "to" : "f13" }
+    }, {
+      "id" : "f3",
+      "type" : "TaskSwitchEvent",
+      "name" : "Review Request",
+      "config" : {
+        "task" : {
+          "name" : "Review Request (Skip Tasklist in IFrame)",
+          "skipTasklist" : true,
+          "customFields" : [
+            { "name" : "embedInFrame", "type" : "String", "value" : "\"true\"" }
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 752, "y" : 96 },
+        "labelOffset" : { "x" : -44, "y" : 22 }
+      },
+      "connect" : { "id" : "f7", "to" : "f6" }
+    }, {
+      "id" : "f6",
+      "type" : "DialogCall",
+      "name" : "Review",
+      "config" : {
+        "dialogId" : "com.axonivy.portal.developerexamples.testdata.Review",
+        "startMethod" : "start(com.axonivy.portal.developerexamples.ExampleIFrameData)",
+        "call" : {
+          "params" : [
+            { "name" : "investmentRequest", "type" : "com.axonivy.portal.developerexamples.ExampleIFrameData" }
+          ],
+          "map" : {
+            "param.investmentRequest" : "in"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 888, "y" : 96 }
+      },
+      "connect" : { "id" : "f5", "to" : "f13" }
+    }, {
+      "id" : "f21",
+      "type" : "DialogCall",
+      "name" : "Create Investment",
+      "config" : {
+        "dialogId" : "com.axonivy.portal.developerexamples.testdata.CreateInvestment",
+        "startMethod" : "start()",
+        "output" : {
+          "map" : {
+            "out" : "result.requestData"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 248, "y" : 96 }
+      },
+      "connect" : { "id" : "f22", "to" : "f20", "var" : "in1" }
+    }, {
+      "id" : "f8",
+      "type" : "RequestStart",
+      "name" : "NavigateInIFrameExample.ivp",
+      "config" : {
+        "callSignature" : "NavigateInIFrameExample",
+        "startCategory" : "IFrameExample",
+        "outLink" : "NavigateInIFrameExample.ivp",
+        "startDescription" : "Example of navigation in IFrame",
+        "startName" : "Navigate back in the IFrame example"
+      },
+      "visual" : {
+        "at" : { "x" : 64, "y" : 352 },
+        "labelOffset" : { "x" : -21, "y" : 17 }
+      },
+      "connect" : { "id" : "f14", "to" : "f11" }
+    }, {
+      "id" : "f9",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 416, "y" : 352 }
+      }
+    }, {
+      "id" : "f11",
+      "type" : "TaskSwitchEvent",
+      "config" : {
+        "case" : {
+          "name" : "Navigate IFrame example",
+          "description" : [
+            "In case your project has navigation button without finishing a task, e.g Cancel, navigate.",
+            "- Home page: call navigateToPortalHome() from class PortalNavigatorInFrameAPI.",
+            "- Previous page: call navigateToPortalEndPage() from class PortalNavigatorInFrameAPI.",
+            "- A specific url: call navigateToUrl(String url) from class PortalNavigatorInFrameAPI."
+          ],
+          "customFields" : [
+            { "name" : "embedInFrame", "type" : "String", "value" : "\"true\"" }
+          ]
+        },
+        "task" : {
+          "name" : "Navigate back in the IFrame example",
+          "skipTasklist" : true
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 160, "y" : 352 }
+      },
+      "connect" : { "id" : "f17", "to" : "f16" }
+    }, {
+      "id" : "f16",
+      "type" : "DialogCall",
+      "name" : "ResetTaskIFrame",
+      "config" : {
+        "dialogId" : "com.axonivy.portal.developerexamples.ResetTaskIFrame",
+        "startMethod" : "start()"
+      },
+      "visual" : {
+        "at" : { "x" : 288, "y" : 352 }
+      },
+      "connect" : { "id" : "f10", "to" : "f9" }
+    } ]
+}

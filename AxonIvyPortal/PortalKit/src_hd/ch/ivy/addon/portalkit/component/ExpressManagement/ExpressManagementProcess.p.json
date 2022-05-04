@@ -1,0 +1,25 @@
+{
+  "format" : "9.4.8",
+  "id" : "16F7F951DB019946",
+  "data" : "ch.ivy.addon.portalkit.component.ExpressManagement.ExpressManagementData",
+  "kind" : "HTML_DIALOG",
+  "elements" : [ {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 280, "y" : 96 }
+      }
+    }, {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start()",
+      "config" : {
+        "callSignature" : "start",
+        "guid" : "16F82C1E20E8A359"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 96 }
+      },
+      "connect" : { "id" : "f12", "to" : "f1" }
+    } ]
+}

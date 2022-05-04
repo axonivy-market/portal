@@ -1,0 +1,498 @@
+{
+  "format" : "9.4.8",
+  "id" : "16BFA568D95D2EA0",
+  "data" : "ch.ivy.addon.portalkit.component.TaskItemDetails.TaskItemDetailsData",
+  "kind" : "HTML_DIALOG",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start(ITask,TaskLazyDataModel,PortalPage)",
+      "config" : {
+        "callSignature" : "start",
+        "input" : {
+          "params" : [
+            { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask" },
+            { "name" : "dataModel", "type" : "ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel" },
+            { "name" : "portalPage", "type" : "ch.ivy.addon.portalkit.enums.PortalPage" }
+          ],
+          "map" : {
+            "out.dataModel" : "param.dataModel",
+            "out.portalPage" : "param.portalPage",
+            "out.task" : "param.task"
+          }
+        },
+        "guid" : "16BBB5787F4A8092"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 },
+        "labelOffset" : { "x" : -16, "y" : 15 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 }
+      }
+    }, {
+      "id" : "f6",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "keepOldNameValue(valueChangeEvent)",
+      "config" : {
+        "callSignature" : "keepOldNameValue",
+        "input" : {
+          "params" : [
+            { "name" : "valueChangeEvent", "type" : "javax.faces.event.ValueChangeEvent" }
+          ],
+          "map" : {
+            "out.oldName" : "param.valueChangeEvent.getOldValue() as String"
+          }
+        },
+        "guid" : "16C0845B607C6BC7"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 160 },
+        "labelOffset" : { "x" : -86, "y" : 15 }
+      },
+      "connect" : { "id" : "f13", "to" : "f7" }
+    }, {
+      "id" : "f7",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 384, "y" : 160 }
+      }
+    }, {
+      "id" : "f8",
+      "type" : "Script",
+      "name" : "Add note",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import java.util.Arrays;",
+            "",
+            "out.task.getCase().createNote(ivy.session, ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/taskList/setNameNote\", Arrays.asList(ivy.session.getSessionUser().getDisplayName(), in.oldName, in.task.getName())));"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 256, "y" : 256 }
+      },
+      "connect" : { "id" : "f12", "to" : "f10" }
+    }, {
+      "id" : "f9",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "updateTask()",
+      "config" : {
+        "callSignature" : "updateTask",
+        "guid" : "16C0845B60E83C7D"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 256 },
+        "labelOffset" : { "x" : -51, "y" : 15 }
+      },
+      "connect" : { "id" : "f11", "to" : "f8" }
+    }, {
+      "id" : "f10",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 384, "y" : 256 }
+      }
+    }, {
+      "id" : "f14",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "openTask()",
+      "config" : {
+        "callSignature" : "openTask",
+        "guid" : "16C23097336B39C2"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 480 },
+        "labelOffset" : { "x" : -46, "y" : 17 }
+      },
+      "connect" : { "id" : "f16", "to" : "f45" }
+    }, {
+      "id" : "f45",
+      "type" : "Script",
+      "name" : "Check if can resume",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.util.TaskUtils;",
+            "import ch.ivy.addon.portalkit.jsf.ManagedBeans;",
+            "import ch.ivy.addon.portalkit.bean.TaskActionBean;",
+            "",
+            "TaskActionBean taskActionBean = ManagedBeans.get(\"taskActionBean\") as TaskActionBean;",
+            "in.task = TaskUtils.findTaskById(in.task.getId());",
+            "out.canUserResumeTask = taskActionBean.canResume(in.task);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 480 },
+        "size" : { "width" : 128, "height" : 44 }
+      },
+      "connect" : { "id" : "f20", "to" : "f77" }
+    }, {
+      "id" : "f15",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 592, "y" : 480 }
+      }
+    }, {
+      "id" : "f77",
+      "type" : "Alternative",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 480 },
+        "size" : { "width" : 28, "height" : 28 }
+      },
+      "connect" : [
+        { "id" : "f3", "to" : "f49", "condition" : "in.canUserResumeTask" },
+        { "id" : "f100", "to" : "f99" }
+      ]
+    }, {
+      "id" : "f68",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 608, "y" : 576 }
+      }
+    }, {
+      "id" : "f66",
+      "type" : "Script",
+      "name" : "Display error",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import org.primefaces.PrimeFaces;",
+            "import ch.ivyteam.ivy.security.IUser;",
+            "import org.apache.commons.lang3.StringUtils;",
+            "import ch.ivyteam.ivy.workflow.TaskState;",
+            "import javax.faces.context.FacesContext;",
+            "import javax.faces.application.FacesMessage;",
+            "",
+            "FacesContext facesContext = FacesContext.getCurrentInstance();",
+            "String notification;",
+            "if(in.task.getState() == TaskState.DONE){",
+            "  notification = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/cannotStartMessages/taskDone\", [in.task.getName()]);",
+            "} else {",
+            "  IUser worker = in.task.getWorkerUser();",
+            "  if (worker != null){",
+            "    String fullName = worker.getFullName();",
+            "    String workerName = StringUtils.isBlank(fullName) ? worker.getName() : worker.getFullName() + \" (\" + worker.getName() + \")\";",
+            "    notification = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/cannotStartMessages/isAnotherUserWorking\", [in.task.name, in.task.getId(), workerName]);",
+            "  } else {",
+            "    notification = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/cannotStartMessages/noPermission\", [in.task.getName()]);",
+            "  }",
+            "}",
+            "",
+            "facesContext.validationFailed();",
+            "facesContext.addMessage(\"portal-global-growl-message\", new FacesMessage(FacesMessage.SEVERITY_INFO, notification, null));",
+            "PrimeFaces.current().ajax().update(\"portal-global-growl\");  "
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 480, "y" : 576 }
+      },
+      "connect" : { "id" : "f71", "to" : "f68" }
+    }, {
+      "id" : "f49",
+      "type" : "Script",
+      "name" : [
+        "Store task end info",
+        "Start task"
+      ],
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.enums.PortalPage;",
+            "import ch.ivy.addon.portalkit.enums.NavigationHistory;",
+            "import ch.ivy.addon.portalkit.dto.TaskEndInfo;",
+            "import ch.ivy.addon.portalkit.service.StickyTaskListService;",
+            "import ch.ivy.addon.portalkit.util.SecurityServiceUtils;",
+            "import javax.faces.context.FacesContext;",
+            "",
+            "TaskEndInfo taskEndInfo = new TaskEndInfo();",
+            "taskEndInfo.setDataModel(in.dataModel);",
+            "taskEndInfo.setPortalPage(in.portalPage);",
+            "taskEndInfo.setIsStartedInTaskDetails(true);",
+            "",
+            "String taskEndInfoSessionAttributeKey = StickyTaskListService.service().getTaskEndInfoSessionAttributeKey(in.task.getId());",
+            "SecurityServiceUtils.setSessionAttribute(taskEndInfoSessionAttributeKey, taskEndInfo);",
+            "",
+            "// Put the \"embedInIFrame\" param to the task start link to open it in the DefaultFramePage process",
+            "// Then this process will open task in IFrame or not based on its \"embedInIFrame\" String custom field",
+            "FacesContext.getCurrentInstance().getExternalContext().redirect(in.task.getStartLinkEmbedded().getRelative());"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 480, "y" : 480 },
+        "size" : { "width" : 128, "height" : 44 },
+        "labelOffset" : { "x" : -44, "y" : -16 }
+      },
+      "connect" : { "id" : "f5", "to" : "f15" }
+    }, {
+      "id" : "f99",
+      "type" : "Alternative",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 576 }
+      },
+      "connect" : [
+        { "id" : "f67", "to" : "f66" }
+      ]
+    }, {
+      "id" : "f30",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "resetAndOpenTask()",
+      "config" : {
+        "callSignature" : "resetAndOpenTask",
+        "guid" : "16D4E180956E8D83"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 368 }
+      },
+      "connect" : { "id" : "f64", "to" : "f35" }
+    }, {
+      "id" : "f35",
+      "type" : "Script",
+      "name" : "Reset task",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.util.TaskUtils;",
+            "",
+            "TaskUtils.resetTask(in.task);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 368 }
+      },
+      "connect" : { "id" : "f17", "to" : "f49", "via" : [ { "x" : 480, "y" : 368 } ] }
+    }, {
+      "id" : "f79",
+      "type" : "Alternative",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 672 }
+      },
+      "connect" : [
+        { "id" : "f92", "to" : "f98", "condition" : "in.canUserResumeTask" },
+        { "id" : "f4", "to" : "f99" }
+      ]
+    }, {
+      "id" : "f98",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 480, "y" : 672 }
+      }
+    }, {
+      "id" : "f97",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "validate(ITask)",
+      "config" : {
+        "callSignature" : "validate",
+        "input" : {
+          "params" : [
+            { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask" }
+          ],
+          "map" : {
+            "out.task" : "param.task"
+          }
+        },
+        "guid" : "16D4E1A305331132"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 672 },
+        "labelOffset" : { "x" : -60, "y" : 16 }
+      },
+      "connect" : { "id" : "f81", "to" : "f80" }
+    }, {
+      "id" : "f80",
+      "type" : "Script",
+      "name" : "Check if can resume",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.jsf.ManagedBeans;",
+            "import ch.ivy.addon.portalkit.bean.TaskActionBean;",
+            "",
+            "TaskActionBean taskActionBean = ManagedBeans.get(\"taskActionBean\") as TaskActionBean;",
+            "out.canUserResumeTask = taskActionBean.canResume(in.task);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 672 },
+        "size" : { "width" : 128, "height" : 44 }
+      },
+      "connect" : { "id" : "f87", "to" : "f79" }
+    }, {
+      "id" : "f18",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "getHideTaskDocumentConfiguration()",
+      "config" : {
+        "callSignature" : "getHideTaskDocumentConfiguration",
+        "guid" : "171F37E3B7068238"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 800 },
+        "labelOffset" : { "x" : -84, "y" : 23 }
+      },
+      "connect" : { "id" : "f23", "to" : "f22" }
+    }, {
+      "id" : "f19",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 512, "y" : 800 }
+      }
+    }, {
+      "id" : "f22",
+      "type" : "Script",
+      "name" : "Find HIDE_TASK_DOCUMENT configuration",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.enums.GlobalVariable;",
+            "import ch.ivy.addon.portalkit.service.GlobalSettingService;",
+            "",
+            "// Get the latest configuration of HIDE_TASK_DOCUMENT in GlobalSettingService",
+            "// If null or empty, will return false",
+            "in.isHideTaskDocument = new GlobalSettingService().findGlobalSettingValueAsBoolean(GlobalVariable.HIDE_TASK_DOCUMENT);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 320, "y" : 800 },
+        "size" : { "width" : 256, "height" : 44 }
+      },
+      "connect" : { "id" : "f21", "to" : "f19" }
+    }, {
+      "id" : "f24",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "destroyTask(ITask)",
+      "config" : {
+        "callSignature" : "destroyTask",
+        "input" : {
+          "params" : [
+            { "name" : "selectedTask", "type" : "ch.ivyteam.ivy.workflow.ITask" }
+          ],
+          "map" : {
+            "out.task" : "param.selectedTask"
+          }
+        },
+        "guid" : "172BB67713C7C1B0"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 928 },
+        "labelOffset" : { "x" : -25, "y" : 15 }
+      },
+      "connect" : { "id" : "f28", "to" : "f27" }
+    }, {
+      "id" : "f25",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 368, "y" : 928 }
+      }
+    }, {
+      "id" : "f27",
+      "type" : "Script",
+      "name" : "Destroy task",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.util.TaskUtils;",
+            "",
+            "Long destroyedTaskId = in.task.getId();",
+            "TaskUtils.destroyTaskById(destroyedTaskId);",
+            "in.task = TaskUtils.findTaskById(destroyedTaskId);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 240, "y" : 928 }
+      },
+      "connect" : { "id" : "f26", "to" : "f25" }
+    }, {
+      "id" : "f31",
+      "type" : "HtmlDialogStart",
+      "name" : "startFromDashboard(ITask,PortalPage)",
+      "config" : {
+        "callSignature" : "startFromDashboard",
+        "input" : {
+          "params" : [
+            { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask" },
+            { "name" : "portalPage", "type" : "ch.ivy.addon.portalkit.enums.PortalPage" }
+          ],
+          "map" : {
+            "out.portalPage" : "param.portalPage",
+            "out.task" : "param.task"
+          }
+        },
+        "guid" : "1773CE142B3C51EE"
+      },
+      "visual" : {
+        "at" : { "x" : 640, "y" : 64 },
+        "labelOffset" : { "x" : -16, "y" : 15 }
+      },
+      "connect" : { "id" : "f32", "to" : "f29" }
+    }, {
+      "id" : "f29",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 928, "y" : 64 }
+      }
+    }, {
+      "id" : "f33",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "expiryTask(ITask)",
+      "config" : {
+        "callSignature" : "expiryTask",
+        "input" : {
+          "params" : [
+            { "name" : "selectedTask", "type" : "ch.ivyteam.ivy.workflow.ITask" }
+          ],
+          "map" : {
+            "out.task" : "param.selectedTask"
+          }
+        },
+        "guid" : "1803BC11F3D7DFB0"
+      },
+      "visual" : {
+        "at" : { "x" : 88, "y" : 1040 },
+        "labelOffset" : { "x" : -25, "y" : 15 }
+      },
+      "connect" : { "id" : "f36", "to" : "f34" }
+    }, {
+      "id" : "f34",
+      "type" : "Script",
+      "name" : "Expiry task",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.util.TaskUtils;",
+            "",
+            "Long taskId = in.task.getId();",
+            "TaskUtils.expiryTaskById(taskId);",
+            "in.task = TaskUtils.findTaskById(taskId);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 240, "y" : 1040 }
+      },
+      "connect" : { "id" : "f38", "to" : "f37" }
+    }, {
+      "id" : "f37",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 368, "y" : 1040 }
+      }
+    } ]
+}
