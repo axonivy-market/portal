@@ -8,7 +8,6 @@ import java.util.List;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.application.property.ICustomProperties;
 import ch.ivyteam.ivy.application.property.ICustomProperty;
-import ch.ivyteam.ivy.environment.Ivy;
 import portalmigration.persistence.converter.BusinessEntityConverter;
 import portalmigration.util.IvyExecutor;
 import portalmigration.version91.persistence.domain.BusinessEntity;
@@ -24,7 +23,7 @@ public abstract class AbstractDao<T extends BusinessEntity> {
   }
 
   public AbstractDao() {
-    this.ivyApplication = Ivy.wf().getApplication();
+    this.ivyApplication = IApplication.current();
   }
 
   public T findById(long id) {

@@ -10,6 +10,7 @@ import javax.faces.bean.ViewScoped;
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.ivydata.factory.LibraryServiceFactory;
 import ch.ivy.addon.portalkit.ivydata.service.ILibraryService;
+import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.application.ILibrary;
 import ch.ivyteam.ivy.application.ReleaseState;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -43,7 +44,7 @@ public class ProjectVersionBean implements Serializable {
   @SuppressWarnings("restriction")
   public void loadProjectVesion() {
     engineVersion = ch.ivyteam.ivy.Advisor.getAdvisor().getVersion().toString();
-    ILibrary portalLibrary = Ivy.wf().getApplication().findReleasedLibrary(PortalLibrary.PORTAL_KIT.getValue());
+    ILibrary portalLibrary = IApplication.current().findReleasedLibrary(PortalLibrary.PORTAL_KIT.getValue());
     portalVersion = portalLibrary.getQualifiedVersion().toString();
     projectLibraries = retrieveProjectLibraries();
   }
