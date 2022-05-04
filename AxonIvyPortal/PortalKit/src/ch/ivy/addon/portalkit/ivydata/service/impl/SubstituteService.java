@@ -45,7 +45,7 @@ public class SubstituteService implements ISubstituteService {
     return IvyExecutor.executeAsSystem(() -> { 
       IvySubstituteResultDTO result = new IvySubstituteResultDTO();
 
-      IApplication application = Ivy.wf().getApplication();
+      IApplication application = IApplication.current();
       IUser user = ServiceUtilities.findUser(username, application);
       List<IvySubstitute> ivySubstitutions = isFindSubstitute? getIvySubstitutes(user) : getIvySubstitutions(user);
       
@@ -141,7 +141,7 @@ public class SubstituteService implements ISubstituteService {
         return Void.class;
       }
 
-      IApplication application = Ivy.wf().getApplication();
+      IApplication application = IApplication.current();
       IUser user = ServiceUtilities.findUser(userDTO.getName(), application);
       deleteSubstitutes(user);
       createSubstitutes(ivySubstitutes, user, application);
