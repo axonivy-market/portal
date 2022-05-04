@@ -1,0 +1,1532 @@
+{
+  "format" : "9.4.8",
+  "id" : "153CACC26D0D4C3D",
+  "data" : "portalKit_test.DataCreationData",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "createTasks(String)",
+      "config" : {
+        "callSignature" : "createTasks",
+        "input" : {
+          "params" : [
+            { "name" : "taskStructureInfo", "type" : "String" }
+          ],
+          "map" : {
+            "out.taskStructureInfo" : "param.taskStructureInfo"
+          }
+        },
+        "case" : {
+          "attachToBusinessCase" : false
+        },
+        "outLink" : "createTasks.ivp",
+        "task" : {
+          "responsible" : {
+            "role" : "SYSTEM"
+          }
+        },
+        "triggerEnabled" : true,
+        "requestEnabled" : false
+      },
+      "visual" : {
+        "at" : { "x" : 64, "y" : 336 },
+        "size" : { "width" : 26, "height" : 26 },
+        "labelOffset" : { "x" : 14, "y" : 0 }
+      },
+      "connect" : { "id" : "f43", "to" : "f23" }
+    }, {
+      "id" : "f1",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 480, "y" : 216 },
+        "size" : { "width" : 26, "height" : 26 }
+      }
+    }, {
+      "id" : "f5",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 480, "y" : 256 },
+        "size" : { "width" : 26, "height" : 26 }
+      }
+    }, {
+      "id" : "f6",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 480, "y" : 288 },
+        "size" : { "width" : 26, "height" : 26 }
+      }
+    }, {
+      "id" : "f23",
+      "type" : "Script",
+      "name" : "set case name",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import org.apache.commons.lang3.StringUtils;",
+            "in.caseName = in.taskStructureInfo + \"_\" + ivy.case.getId();",
+            "in.caseStructureInfo = StringUtils.replace(in.taskStructureInfo,StringUtils.SPACE,\"_\");"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 200, "y" : 336 },
+        "size" : { "width" : 36, "height" : 24 },
+        "labelOffset" : { "x" : -33, "y" : -36 }
+      },
+      "connect" : { "id" : "f4", "to" : "f3", "var" : "in1" }
+    }, {
+      "id" : "f25",
+      "type" : "RequestStart",
+      "name" : "createTestDataWithCategory.ivp",
+      "config" : {
+        "callSignature" : "createTestDataWithCategory",
+        "case" : {
+          "name" : "Create test data with category",
+          "attachToBusinessCase" : false
+        },
+        "outLink" : "createTestDataWithCategory.ivp",
+        "startName" : "Create test data with category"
+      },
+      "visual" : {
+        "at" : { "x" : 64, "y" : 96 },
+        "size" : { "width" : 26, "height" : 26 },
+        "labelOffset" : { "x" : -39, "y" : 20 }
+      },
+      "connect" : { "id" : "f37", "to" : "f24" }
+    }, {
+      "id" : "f28",
+      "type" : "TriggerCall",
+      "name" : "DataCreation",
+      "config" : {
+        "processCall" : "Start Processes/DataCreation:createTasks(String)",
+        "call" : {
+          "params" : [
+            { "name" : "taskStructureInfo", "type" : "String" }
+          ],
+          "map" : {
+            "param.taskStructureInfo" : "in.handler.getNextTaskStructureInfo()"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 640, "y" : 96 },
+        "size" : { "width" : 36, "height" : 24 },
+        "labelOffset" : { "x" : 20, "y" : -2 }
+      },
+      "connect" : { "id" : "f42", "to" : "f41", "via" : [ { "x" : 640, "y" : 48 } ] }
+    }, {
+      "id" : "f30",
+      "type" : "Script",
+      "name" : "init handler",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.test.util.DataCreationHandler;",
+            "if(in.attachToBusinessCase) {",
+            " ivy.case.name = \"Create test data with category attach to one business case\";  ",
+            "}",
+            "in.handler = new DataCreationHandler(in.numOfCats, in.numOfSubCats, in.numOfCasesPerSubCat);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 352, "y" : 96 },
+        "size" : { "width" : 36, "height" : 24 },
+        "labelOffset" : { "x" : -29, "y" : -36 }
+      },
+      "connect" : { "id" : "f33", "to" : "f32" }
+    }, {
+      "id" : "f32",
+      "type" : "Alternative",
+      "visual" : {
+        "at" : { "x" : 416, "y" : 96 },
+        "size" : { "width" : 28, "height" : 28 }
+      },
+      "connect" : [
+        { "id" : "f82", "to" : "f81", "condition" : "in.handler.createMoreTasks()" },
+        { "id" : "f35", "to" : "f34" }
+      ]
+    }, {
+      "id" : "f34",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 416, "y" : 168 },
+        "size" : { "width" : 26, "height" : 26 }
+      }
+    }, {
+      "id" : "f27",
+      "type" : "DialogCall",
+      "config" : {
+        "dialogId" : "ch.ivy.addon.portalkit.test.DefaultDialog",
+        "startMethod" : "start()"
+      },
+      "visual" : {
+        "at" : { "x" : 400, "y" : 264 },
+        "size" : { "width" : 36, "height" : 24 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f41",
+      "type" : "Script",
+      "name" : [
+        "Sleep a bit before",
+        "triggering new process"
+      ],
+      "config" : {
+        "output" : {
+          "code" : "Thread.sleep(10);"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 464, "y" : 48 },
+        "size" : { "width" : 36, "height" : 24 },
+        "labelOffset" : { "x" : 28, "y" : -17 }
+      },
+      "connect" : { "id" : "f26", "to" : "f32", "via" : [ { "x" : 416, "y" : 48 } ] }
+    }, {
+      "id" : "f24",
+      "type" : "DialogCall",
+      "name" : "input number of tasks",
+      "config" : {
+        "dialogId" : "ch.ivy.addon.portalkit.test.DataCreation",
+        "startMethod" : "start()",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.attachToBusinessCase" : "result.attachToBussinessCase",
+            "out.numOfCasesPerSubCat" : "result.numOfCasesPerSubCat",
+            "out.numOfCats" : "result.numOfCats",
+            "out.numOfSubCats" : "result.numOfSubCats"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 264, "y" : 96 },
+        "size" : { "width" : 36, "height" : 24 },
+        "labelOffset" : { "x" : -70, "y" : -34 }
+      },
+      "connect" : { "id" : "f31", "to" : "f30" }
+    }, {
+      "id" : "f3",
+      "type" : "TaskSwitchGateway",
+      "config" : {
+        "outLinks" : [ "TaskA.ivp", "TaskB.ivp", "TaskC.ivp" ],
+        "case" : {
+          "name" : "<%=in1.caseName%>",
+          "category" : "<%=in1.caseStructureInfo%>"
+        },
+        "tasks" : {
+          "TaskA" : {
+            "name" : "<%=in1.caseName%>_A",
+            "category" : "<%=in1.taskStructureInfo%>",
+            "priority" : "LOW"
+          },
+          "TaskB" : {
+            "name" : "<%=in1.caseName%>_B",
+            "category" : "<%=in1.taskStructureInfo%>"
+          },
+          "TaskC" : {
+            "name" : "<%=in1.caseName%>_C",
+            "category" : "<%=in1.taskStructureInfo%>",
+            "priority" : "HIGH"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 288, "y" : 336 },
+        "size" : { "width" : 28, "height" : 28 }
+      },
+      "connect" : [
+        { "id" : "f7", "to" : "f27", "condition" : "ivp==\"TaskA.ivp\"" },
+        { "id" : "f8", "to" : "f5", "condition" : "ivp==\"TaskB.ivp\"" },
+        { "id" : "f9", "to" : "f6", "condition" : "ivp==\"TaskC.ivp\"" }
+      ]
+    }, {
+      "id" : "f10",
+      "type" : "RequestStart",
+      "name" : "DestroyTask",
+      "config" : {
+        "callSignature" : "destroyTask",
+        "outLink" : "destroyTask.ivp"
+      },
+      "visual" : {
+        "at" : { "x" : 64, "y" : 480 },
+        "size" : { "width" : 26, "height" : 26 },
+        "labelOffset" : { "x" : 14, "y" : 0 }
+      },
+      "connect" : { "id" : "f14", "to" : "f13" }
+    }, {
+      "id" : "f11",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 320, "y" : 480 },
+        "size" : { "width" : 26, "height" : 26 }
+      }
+    }, {
+      "id" : "f13",
+      "type" : "DialogCall",
+      "config" : {
+        "dialogId" : "ch.ivy.addon.portalkit.showroom.multiapp.tasks.DestroyTaskPage",
+        "startMethod" : "start()"
+      },
+      "visual" : {
+        "at" : { "x" : 192, "y" : 480 },
+        "size" : { "width" : 36, "height" : 24 }
+      },
+      "connect" : { "id" : "f12", "to" : "f11" }
+    }, {
+      "id" : "f15",
+      "type" : "RequestStart",
+      "name" : "createTestUser.ivp",
+      "config" : {
+        "callSignature" : "createTestUser",
+        "outLink" : "createTestUser.ivp",
+        "startName" : "Create test user"
+      },
+      "visual" : {
+        "at" : { "x" : 64, "y" : 576 }
+      },
+      "connect" : { "id" : "f19", "to" : "f16" }
+    }, {
+      "id" : "f16",
+      "type" : "Script",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import java.util.Locale;",
+            "import ch.ivyteam.ivy.security.user.NewUser;",
+            "if (ivy.security.users().find(\"test_change_password_user\") != null) {",
+            "  ivy.security.users().delete(\"test_change_password_user\");",
+            "}",
+            "NewUser user = NewUser",
+            "    .create(\"test_change_password_user\")",
+            "    .fullName(\"Elton\")",
+            "    .password(\"123\")",
+            "    .language(java.util.Locale.ENGLISH)",
+            "    .toNewUser();",
+            "ivy.security.users().create(user);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 208, "y" : 576 }
+      },
+      "connect" : { "id" : "f18", "to" : "f17" }
+    }, {
+      "id" : "f17",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 336, "y" : 576 }
+      }
+    }, {
+      "id" : "f20",
+      "type" : "RequestStart",
+      "name" : "createRelatedTasksTestUser.ivp",
+      "config" : {
+        "callSignature" : "createRelatedTasksTestUser",
+        "outLink" : "createRelatedTasksTestUser.ivp"
+      },
+      "visual" : {
+        "at" : { "x" : 64, "y" : 736 },
+        "labelOffset" : { "x" : -44, "y" : 26 }
+      },
+      "connect" : { "id" : "f36", "to" : "f22" }
+    }, {
+      "id" : "f21",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 736 }
+      }
+    }, {
+      "id" : "f22",
+      "type" : "Script",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.security.user.NewUser;",
+            "if (ivy.security.users().find(\"test_related_tasks_user\") != null) {",
+            "  ivy.security.users().delete(\"test_related_tasks_user\");",
+            "}",
+            "",
+            "NewUser user = NewUser",
+            "    .create(\"test_related_tasks_user\")",
+            "    .fullName(\"Related Tasks User\")",
+            "    .password(\"+d3m0++\")",
+            "    .language(java.util.Locale.ENGLISH)",
+            "    .toNewUser();",
+            "ivy.security.users().create(user);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 736 }
+      },
+      "connect" : { "id" : "f38", "to" : "f21" }
+    }, {
+      "id" : "f48",
+      "type" : "RequestStart",
+      "name" : "createTestUsers.ivp",
+      "config" : {
+        "callSignature" : "createTestUsers",
+        "outLink" : "createTestUsers.ivp",
+        "startDescription" : "Create multiple test users",
+        "startName" : "Create multiple test users"
+      },
+      "visual" : {
+        "at" : { "x" : 608, "y" : 384 },
+        "description" : "create multiple test users"
+      },
+      "connect" : { "id" : "f56", "to" : "f55" }
+    }, {
+      "id" : "f55",
+      "type" : "DialogCall",
+      "name" : "Input number of user",
+      "config" : {
+        "dialogId" : "ch.ivy.addon.portalkit.test.CreateMultipleTestUsers",
+        "startMethod" : "start()",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.numerOfUsers" : "result.numberOfUsers"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 784, "y" : 384 },
+        "size" : { "width" : 128, "height" : 44 }
+      },
+      "connect" : { "id" : "f57", "to" : "f60" }
+    }, {
+      "id" : "f59",
+      "type" : "Alternative",
+      "visual" : {
+        "at" : { "x" : 1096, "y" : 384 }
+      },
+      "connect" : [
+        { "id" : "f68", "to" : "f61", "condition" : "in.counter <= in.numerOfUsers" },
+        { "id" : "f64", "to" : "f62", "via" : [ { "x" : 1096, "y" : 448 } ] }
+      ]
+    }, {
+      "id" : "f60",
+      "type" : "Script",
+      "name" : [
+        "Count total user ",
+        "in application"
+      ],
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.security.query.UserQuery;",
+            "import ch.ivyteam.ivy.security.IUser;",
+            "",
+            "UserQuery userQuery = ivy.security.users().query();",
+            "List<IUser> users = userQuery.executor().results();",
+            "in.numberOfUsersInApplication = users.size();",
+            "in.counter = 1;"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 968, "y" : 384 },
+        "size" : { "width" : 128, "height" : 44 }
+      },
+      "connect" : { "id" : "f67", "to" : "f59" }
+    }, {
+      "id" : "f61",
+      "type" : "Script",
+      "name" : "Create test user",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import java.util.Locale;",
+            "import ch.ivyteam.ivy.security.user.NewUser;",
+            "",
+            "Integer userIndex =  in.numberOfUsersInApplication + in.counter;",
+            "String username = \"testuser_\" + userIndex;",
+            "",
+            "if (ivy.security.users().find(username) != null) {",
+            "  ivy.security.users().delete(username);",
+            "}",
+            "",
+            "NewUser user = NewUser",
+            "    .create(username)",
+            "    .fullName(username)",
+            "    .password(\"+d3m0++\")",
+            "    .language(java.util.Locale.ENGLISH)",
+            "    .toNewUser();",
+            "ivy.security.users().create(user);",
+            "in.counter++;"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1216, "y" : 384 }
+      },
+      "connect" : { "id" : "f66", "to" : "f63" }
+    }, {
+      "id" : "f62",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 1344, "y" : 448 }
+      }
+    }, {
+      "id" : "f63",
+      "type" : "Alternative",
+      "visual" : {
+        "at" : { "x" : 1344, "y" : 384 }
+      },
+      "connect" : [
+        { "id" : "f65", "to" : "f59", "via" : [ { "x" : 1344, "y" : 296 }, { "x" : 1096, "y" : 296 } ] }
+      ]
+    }, {
+      "id" : "f39",
+      "type" : "Script",
+      "name" : "Hide 2nd task",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.publicapi.CaseAPI;",
+            "import ch.ivy.addon.portalkit.publicapi.TaskAPI;",
+            "TaskAPI.setHidePropertyToHideInPortal(ivy.task);",
+            "CaseAPI.setHidePropertyToHideInPortal(ivy.case);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 978, "y" : 576 }
+      },
+      "connect" : { "id" : "f47", "to" : "f44" }
+    }, {
+      "id" : "f40",
+      "type" : "TaskSwitchEvent",
+      "config" : {
+        "outLinks" : [ "TaskA.ivp" ],
+        "case" : {
+          "name" : "Case contains hidden task"
+        },
+        "task" : {
+          "name" : "Second Hidden Task",
+          "description" : "Task, which has the HIDE additional property, won't be displayed in Portal",
+          "responsible" : {
+            "role" : "SYSTEM"
+          },
+          "skipTasklist" : true
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 856, "y" : 576 }
+      },
+      "connect" : { "id" : "f51", "to" : "f39", "condition" : "ivp==\"TaskA.ivp\"" }
+    }, {
+      "id" : "f44",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 1088, "y" : 576 }
+      }
+    }, {
+      "id" : "f45",
+      "type" : "Script",
+      "name" : "Hide 1st task",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.publicapi.TaskAPI;",
+            "TaskAPI.setHidePropertyToHideInPortal(ivy.task);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 736, "y" : 576 }
+      },
+      "connect" : { "id" : "f49", "to" : "f40", "var" : "in1" }
+    }, {
+      "id" : "f46",
+      "type" : "RequestStart",
+      "name" : "createHiddenTaskAndCase()",
+      "config" : {
+        "callSignature" : "createHiddenTaskAndCase",
+        "case" : {
+          "name" : "Hidden case"
+        },
+        "outLink" : "createHiddenTaskAndCase.ivp",
+        "startDescription" : "Task and Case, which has the HIDE additional property, won't be displayed in Portal",
+        "task" : {
+          "name" : "First hidden Task",
+          "description" : "Task, which has the HIDE additional property, won't be displayed in Portal",
+          "responsible" : {
+            "role" : "SYSTEM"
+          }
+        },
+        "showInStartList" : false,
+        "triggerEnabled" : true,
+        "startName" : "Process contains hidden task and cases"
+      },
+      "visual" : {
+        "at" : { "x" : 616, "y" : 576 },
+        "labelOffset" : { "x" : -91, "y" : 22 }
+      },
+      "connect" : { "id" : "f50", "to" : "f45" }
+    }, {
+      "id" : "f52",
+      "type" : "RequestStart",
+      "name" : "createHiddenTasksAndCases.ivp",
+      "config" : {
+        "callSignature" : "createHiddenTasksAndCases",
+        "case" : {
+          "name" : "Hidden case"
+        },
+        "outLink" : "createHiddenTasksAndCases.ivp",
+        "startDescription" : "Process to create hidden tasks and cases",
+        "startName" : "Process to create hidden tasks and cases"
+      },
+      "visual" : {
+        "at" : { "x" : 912, "y" : 96 }
+      },
+      "connect" : { "id" : "f54", "to" : "f53" }
+    }, {
+      "id" : "f53",
+      "type" : "DialogCall",
+      "name" : "Input number of cases",
+      "config" : {
+        "dialogId" : "ch.ivy.addon.portalkit.test.CreateHiddenTasksAndCases",
+        "startMethod" : "start()",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.numberOfCases" : "result.numberOfCases"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1088, "y" : 96 },
+        "size" : { "width" : 128, "height" : 44 }
+      },
+      "connect" : { "id" : "f69", "to" : "f58" }
+    }, {
+      "id" : "f58",
+      "type" : "Script",
+      "name" : "init counter",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.enums.AdditionalProperty;",
+            "",
+            "in.counter = 1;",
+            "ivy.case.customFields().stringField(AdditionalProperty.HIDE.toString()).set(AdditionalProperty.HIDE.toString());"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1344, "y" : 96 }
+      },
+      "connect" : { "id" : "f71", "to" : "f70" }
+    }, {
+      "id" : "f70",
+      "type" : "Alternative",
+      "visual" : {
+        "at" : { "x" : 1472, "y" : 96 }
+      },
+      "connect" : [
+        { "id" : "f73", "to" : "f72", "condition" : "in.counter <= in.numberOfCases" },
+        { "id" : "f113", "to" : "f112", "var" : "in1" }
+      ]
+    }, {
+      "id" : "f72",
+      "type" : "TriggerCall",
+      "name" : "DataCreation",
+      "config" : {
+        "processCall" : "Start Processes/DataCreation:createHiddenTaskAndCase()"
+      },
+      "visual" : {
+        "at" : { "x" : 1584, "y" : 96 }
+      },
+      "connect" : { "id" : "f77", "to" : "f76" }
+    }, {
+      "id" : "f74",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 1472, "y" : 288 }
+      }
+    }, {
+      "id" : "f76",
+      "type" : "Script",
+      "name" : "increate counter",
+      "config" : {
+        "output" : {
+          "code" : "in.counter++;"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1728, "y" : 96 }
+      },
+      "connect" : { "id" : "f78", "to" : "f70", "via" : [ { "x" : 1728, "y" : 24 }, { "x" : 1472, "y" : 24 } ] }
+    }, {
+      "id" : "f79",
+      "type" : "RequestStart",
+      "name" : "createTaskAttachToBusinessCase(String)",
+      "config" : {
+        "callSignature" : "createTaskAttachToBusinessCase",
+        "input" : {
+          "params" : [
+            { "name" : "taskStructureInfo", "type" : "String" }
+          ],
+          "map" : {
+            "out.taskStructureInfo" : "param.taskStructureInfo"
+          }
+        },
+        "outLink" : "createTaskAttachToBusinessCase.ivp",
+        "task" : {
+          "responsible" : {
+            "role" : "SYSTEM"
+          }
+        },
+        "triggerEnabled" : true,
+        "requestEnabled" : false
+      },
+      "visual" : {
+        "at" : { "x" : 64, "y" : 224 },
+        "labelOffset" : { "x" : -8, "y" : 19 }
+      },
+      "connect" : { "id" : "f80", "to" : "f23" }
+    }, {
+      "id" : "f81",
+      "type" : "Alternative",
+      "visual" : {
+        "at" : { "x" : 512, "y" : 96 }
+      },
+      "connect" : [
+        { "id" : "f29", "to" : "f28", "condition" : "!in.attachToBusinessCase" },
+        { "id" : "f84", "to" : "f83", "via" : [ { "x" : 512, "y" : 160 } ] }
+      ]
+    }, {
+      "id" : "f83",
+      "type" : "TriggerCall",
+      "name" : "DataCreation",
+      "config" : {
+        "processCall" : "Start Processes/DataCreation:createTaskAttachToBusinessCase(String)",
+        "call" : {
+          "params" : [
+            { "name" : "taskStructureInfo", "type" : "String" }
+          ],
+          "map" : {
+            "param.taskStructureInfo" : "in.handler.getNextTaskStructureInfo()"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 640, "y" : 160 }
+      },
+      "connect" : { "id" : "f85", "to" : "f41", "via" : [ { "x" : 752, "y" : 160 }, { "x" : 752, "y" : 48 } ] }
+    }, {
+      "id" : "f86",
+      "type" : "RequestStart",
+      "name" : "hideOrUnHideTaskCase.ivp",
+      "config" : {
+        "callSignature" : "hideOrUnHideTaskCase",
+        "outLink" : "hideOrUnHideTaskCase.ivp"
+      },
+      "visual" : {
+        "at" : { "x" : 64, "y" : 864 },
+        "labelOffset" : { "x" : -26, "y" : 25 }
+      },
+      "connect" : { "id" : "f89", "to" : "f88" }
+    }, {
+      "id" : "f87",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 512, "y" : 864 }
+      }
+    }, {
+      "id" : "f88",
+      "type" : "DialogCall",
+      "name" : "Hide or unhide task case",
+      "config" : {
+        "dialogId" : "ch.ivy.addon.portalkit.test.HideOrUnHideTaskCase",
+        "startMethod" : "start()"
+      },
+      "visual" : {
+        "at" : { "x" : 288, "y" : 864 },
+        "size" : { "width" : 144, "height" : 44 }
+      },
+      "connect" : { "id" : "f90", "to" : "f87" }
+    }, {
+      "id" : "f91",
+      "type" : "RequestStart",
+      "name" : "createCaseHaveCategoryTreeWithCMS.ivp",
+      "config" : {
+        "callSignature" : "createCaseHaveCategoryTreeWithCMS",
+        "outLink" : "createCaseHaveCategoryTreeWithCMS.ivp",
+        "startName" : "Create Case Have Category Tree With CMS"
+      },
+      "visual" : {
+        "at" : { "x" : 64, "y" : 992 },
+        "labelOffset" : { "x" : -44, "y" : 26 }
+      },
+      "connect" : { "id" : "f101", "to" : "f100" }
+    }, {
+      "id" : "f92",
+      "type" : "RequestStart",
+      "name" : "createCaseWithSpecificCategory(java.lang.String)",
+      "config" : {
+        "callSignature" : "createCaseWithSpecificCategory",
+        "input" : {
+          "params" : [
+            { "name" : "caseCategory", "type" : "String" }
+          ],
+          "map" : {
+            "out.caseCategory" : "param.caseCategory"
+          }
+        },
+        "case" : {
+          "attachToBusinessCase" : false
+        },
+        "outLink" : "createCaseWithSpecificCategory.ivp",
+        "task" : {
+          "responsible" : {
+            "role" : "SYSTEM"
+          }
+        },
+        "showInStartList" : false,
+        "triggerEnabled" : true
+      },
+      "visual" : {
+        "at" : { "x" : 608, "y" : 736 },
+        "labelOffset" : { "x" : -148, "y" : 26 }
+      },
+      "connect" : { "id" : "f96", "to" : "f95" }
+    }, {
+      "id" : "f95",
+      "type" : "Script",
+      "config" : {
+        "output" : {
+          "code" : [
+            "ivy.case.setCategoryPath(in.caseCategory);",
+            "ivy.case.setName(\"Case with category path: \" + in.caseCategory);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 736, "y" : 736 }
+      },
+      "connect" : { "id" : "f94", "to" : "f93" }
+    }, {
+      "id" : "f97",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 1088, "y" : 736 }
+      }
+    }, {
+      "id" : "f93",
+      "type" : "TaskSwitchEvent",
+      "config" : {
+        "task" : {
+          "name" : "System Task",
+          "responsible" : {
+            "role" : "SYSTEM"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 880, "y" : 736 }
+      },
+      "connect" : { "id" : "f98", "to" : "f97", "condition" : "ivp==\"TaskA.ivp\"" }
+    }, {
+      "id" : "f99",
+      "type" : "TriggerCall",
+      "name" : [
+        "Create case ",
+        "with specific category"
+      ],
+      "config" : {
+        "processCall" : "Start Processes/DataCreation:createCaseWithSpecificCategory(String)",
+        "call" : {
+          "params" : [
+            { "name" : "caseCategory", "type" : "String" }
+          ],
+          "map" : {
+            "param.caseCategory" : "in.caseCatagories.get(in.counter)"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 528, "y" : 992 },
+        "size" : { "width" : 144, "height" : 44 }
+      },
+      "connect" : { "id" : "f108", "to" : "f110" }
+    }, {
+      "id" : "f100",
+      "type" : "Script",
+      "name" : "Init categories",
+      "config" : {
+        "output" : {
+          "code" : [
+            "in.caseCatagories.add(\"/Test/ETest_1\");",
+            "in.caseCatagories.add(\"/Test/CTest_2\");",
+            "in.caseCatagories.add(\"/Test/BTest_3\");",
+            "in.caseCatagories.add(\"/Test/ATest_4\");",
+            "in.caseCatagories.add(\"/Test/DTest_5\");",
+            "in.numOfCats = in.caseCatagories.size();",
+            "in.counter = 0;"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 240, "y" : 992 }
+      },
+      "connect" : { "id" : "f103", "to" : "f102" }
+    }, {
+      "id" : "f102",
+      "type" : "Alternative",
+      "visual" : {
+        "at" : { "x" : 384, "y" : 992 }
+      },
+      "connect" : [
+        { "id" : "f104", "to" : "f99", "condition" : "in.counter < in.numOfCats" },
+        { "id" : "f106", "to" : "f105" }
+      ]
+    }, {
+      "id" : "f105",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 384, "y" : 1056 }
+      }
+    }, {
+      "id" : "f107",
+      "type" : "Alternative",
+      "visual" : {
+        "at" : { "x" : 832, "y" : 992 }
+      },
+      "connect" : [
+        { "id" : "f109", "to" : "f102", "via" : [ { "x" : 832, "y" : 920 }, { "x" : 384, "y" : 920 } ] }
+      ]
+    }, {
+      "id" : "f110",
+      "type" : "Script",
+      "name" : "increase counter",
+      "config" : {
+        "output" : {
+          "code" : "in.counter++;"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 696, "y" : 992 }
+      },
+      "connect" : { "id" : "f111", "to" : "f107" }
+    }, {
+      "id" : "f112",
+      "type" : "TaskSwitchGateway",
+      "config" : {
+        "outLinks" : [ "TaskA.ivp" ]
+      },
+      "visual" : {
+        "at" : { "x" : 1472, "y" : 192 }
+      },
+      "connect" : [
+        { "id" : "f75", "to" : "f74", "condition" : "ivp==\"TaskA.ivp\"" }
+      ]
+    }, {
+      "id" : "f119",
+      "type" : "RequestStart",
+      "name" : "disableVisibilityUser.ivp",
+      "config" : {
+        "callSignature" : "disableVisibilityUser",
+        "outLink" : "disableVisibilityUser.ivp",
+        "startName" : "Create and disable visibility user"
+      },
+      "visual" : {
+        "at" : { "x" : 992, "y" : 920 },
+        "labelOffset" : { "x" : -75, "y" : 18 }
+      },
+      "connect" : { "id" : "f121", "to" : "f120" }
+    }, {
+      "id" : "f120",
+      "type" : "Script",
+      "name" : "Create disabled user",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.security.user.NewUser;",
+            "import ch.ivyteam.ivy.security.IUser;",
+            "",
+            "IUser user = ivy.security.users().find(\"visibility_test_user\");",
+            "",
+            "if (user != null) {",
+            "  user.disable();",
+            "}",
+            "else {",
+            "  user = ivy.security.users().create(NewUser.create(\"visibility_test_user\").password(\"+d3m0++\").fullName(\"Visibility Test User\").toNewUser());",
+            "  user.disable();",
+            "}",
+            "ivy.log.warn(\"Disable visibility user\");"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1120, "y" : 920 },
+        "size" : { "width" : 128, "height" : 44 }
+      },
+      "connect" : { "id" : "f123", "to" : "f122" }
+    }, {
+      "id" : "f122",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 1248, "y" : 920 }
+      }
+    }, {
+      "id" : "f129",
+      "type" : "RequestStart",
+      "name" : "createTaskAndCaseForDisabledUser.ivp",
+      "config" : {
+        "callSignature" : "createTaskAndCaseForDisabledUser",
+        "case" : {
+          "name" : "Disabled user's case"
+        },
+        "outLink" : "createTaskAndCaseForDisabledUser.ivp",
+        "startName" : "Create task and case for disabled user"
+      },
+      "visual" : {
+        "at" : { "x" : 992, "y" : 1008 },
+        "labelOffset" : { "x" : -100, "y" : 24 }
+      },
+      "connect" : { "id" : "f135", "to" : "f134" }
+    }, {
+      "id" : "f130",
+      "type" : "TaskSwitchEvent",
+      "config" : {
+        "task" : {
+          "name" : "Task for disabled user",
+          "responsible" : {
+            "userFromAttribute" : "\"visibility_test_user\""
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1248, "y" : 1008 }
+      },
+      "connect" : { "id" : "f133", "to" : "f132" }
+    }, {
+      "id" : "f132",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 1376, "y" : 1008 }
+      }
+    }, {
+      "id" : "f134",
+      "type" : "Script",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : "ivy.case.setCreatorUser(ivy.security.users().find(\"visibility_test_user\"));"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1120, "y" : 1008 }
+      },
+      "connect" : { "id" : "f131", "to" : "f130" }
+    }, {
+      "id" : "f124",
+      "type" : "RequestStart",
+      "name" : "enableVisibilityUser.ivp",
+      "config" : {
+        "callSignature" : "enableVisibilityUser",
+        "outLink" : "enableVisibilityUser.ivp",
+        "startName" : "Enable visibility user"
+      },
+      "visual" : {
+        "at" : { "x" : 992, "y" : 848 },
+        "labelOffset" : { "x" : -76, "y" : 17 }
+      },
+      "connect" : { "id" : "f126", "to" : "f125" }
+    }, {
+      "id" : "f125",
+      "type" : "Script",
+      "name" : "Enable visibility user",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.security.user.NewUser;",
+            "import ch.ivyteam.ivy.security.IUser;",
+            "",
+            "IUser user = ivy.security.users().find(\"visibility_test_user\");",
+            "",
+            "if (user != null) {",
+            "  user.enable();",
+            "}",
+            "else {",
+            "  user = ivy.security.users().create(NewUser.create(\"visibility_test_user\").password(\"+d3m0++\").fullName(\"Visibility Test User\").toNewUser());",
+            "  user.enable();",
+            "}",
+            "ivy.log.warn(\"Enable visibility user\");"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1120, "y" : 848 },
+        "size" : { "width" : 128, "height" : 44 }
+      },
+      "connect" : { "id" : "f128", "to" : "f127" }
+    }, {
+      "id" : "f127",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 1248, "y" : 848 }
+      }
+    }, {
+      "id" : "f137",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 448, "y" : 1152 }
+      }
+    }, {
+      "id" : "S10",
+      "type" : "EmbeddedProcess",
+      "name" : "Create 3 tasks with system state",
+      "elements" : [ {
+          "id" : "S10-g0",
+          "type" : "EmbeddedStart",
+          "visual" : {
+            "at" : { "x" : 64, "y" : 256 }
+          },
+          "parentConnector" : "f139",
+          "connect" : { "id" : "S10-f2", "to" : "S10-f1", "var" : "in1" }
+        }, {
+          "id" : "S10-g1",
+          "type" : "EmbeddedEnd",
+          "visual" : {
+            "at" : { "x" : 736, "y" : 256 }
+          },
+          "parentConnector" : "f138"
+        }, {
+          "id" : "S10-f1",
+          "type" : "TaskSwitchGateway",
+          "config" : {
+            "outLinks" : [ "TaskA.ivp", "TaskB.ivp", "TaskC.ivp" ],
+            "tasks" : {
+              "TaskA" : {
+                "name" : "Task Switch A",
+                "skipTasklist" : true
+              },
+              "TaskB" : {
+                "name" : "Task Switch B",
+                "skipTasklist" : true,
+                "delay" : "new Duration(50000)",
+                "customFields" : [
+                  { "name" : "StateExampleTaskSwitchB", "type" : "String", "value" : "\"TaskWillBeDestroyed\"" }
+                ]
+              },
+              "TaskC" : {
+                "name" : "Task Switch C",
+                "skipTasklist" : true,
+                "delay" : "new Duration(50000)"
+              }
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 208, "y" : 256 }
+          },
+          "connect" : [
+            { "id" : "S10-f4", "to" : "S10-f3", "label" : {
+                "name" : "Task A",
+                "offset" : { "x" : 0, "y" : -14 }
+              }, "condition" : "ivp==\"TaskA.ivp\"" },
+            { "id" : "S10-f11", "to" : "S10-f10", "via" : [ { "x" : 208, "y" : 160 } ], "label" : {
+                "name" : "Task B",
+                "segment" : 1.49,
+                "offset" : { "x" : 0, "y" : -11 }
+              }, "condition" : "ivp==\"TaskB.ivp\"" },
+            { "id" : "S10-f7", "to" : "S10-f5", "via" : [ { "x" : 208, "y" : 352 }, { "x" : 640, "y" : 352 } ], "label" : {
+                "name" : "Task C",
+                "segment" : 1.46,
+                "offset" : { "x" : 0, "y" : -13 }
+              }, "condition" : "ivp==\"TaskC.ivp\"", "var" : "in2" }
+          ]
+        }, {
+          "id" : "S10-f3",
+          "type" : "Script",
+          "name" : "Call TaskUtils to destroy task with customField",
+          "config" : {
+            "output" : {
+              "code" : [
+                "import ch.ivy.addon.portalkit.test.util.TaskUtils;",
+                "",
+                "TaskUtils.destroyTaskByCustomField(\"StateExampleTaskSwitchB\");"
+              ]
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 440, "y" : 256 },
+            "size" : { "width" : 272, "height" : 44 }
+          },
+          "connect" : { "id" : "S10-f6", "to" : "S10-f5", "var" : "in1" }
+        }, {
+          "id" : "S10-f5",
+          "type" : "TaskSwitchGateway",
+          "config" : {
+            "outLinks" : [ "TaskA.ivp" ]
+          },
+          "visual" : {
+            "at" : { "x" : 640, "y" : 256 }
+          },
+          "connect" : [
+            { "id" : "S10-f0", "to" : "S10-g1", "condition" : "ivp==\"TaskA.ivp\"" }
+          ]
+        }, {
+          "id" : "S10-f10",
+          "type" : "TaskEnd",
+          "visual" : {
+            "at" : { "x" : 640, "y" : 160 }
+          }
+        } ],
+      "visual" : {
+        "at" : { "x" : 256, "y" : 1152 },
+        "size" : { "width" : 192, "height" : 44 }
+      },
+      "connect" : { "id" : "f138", "to" : "f137" }
+    }, {
+      "id" : "f136",
+      "type" : "RequestStart",
+      "name" : "createTaskWithSystemState.ivp",
+      "config" : {
+        "callSignature" : "createTaskWithSystemState",
+        "case" : {
+          "name" : "Create Tasks With System States"
+        },
+        "outLink" : "createTaskWithSystemState.ivp",
+        "task" : {
+          "name" : "Create Tasks With System States"
+        },
+        "startName" : "Create Task With System State (Ready for join, destroyed, delay)"
+      },
+      "visual" : {
+        "at" : { "x" : 64, "y" : 1152 },
+        "labelOffset" : { "x" : -45, "y" : 28 }
+      },
+      "connect" : { "id" : "f139", "to" : "S10" }
+    }, {
+      "id" : "f140",
+      "type" : "RequestStart",
+      "name" : "createTestUserFavoriteProcess.ivp",
+      "config" : {
+        "callSignature" : "createTestUserFavoriteProcess",
+        "outLink" : "createTestUserFavoriteProcess.ivp",
+        "startName" : "Create Test UserFavorite Processes"
+      },
+      "visual" : {
+        "at" : { "x" : 824, "y" : 1152 },
+        "size" : { "width" : 32, "height" : 32 },
+        "labelOffset" : { "x" : -114, "y" : 25 }
+      },
+      "connect" : { "id" : "f144", "to" : "f142" }
+    }, {
+      "id" : "f141",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 1112, "y" : 1152 }
+      }
+    }, {
+      "id" : "f142",
+      "type" : "Script",
+      "name" : "Create user process",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.enums.ProcessType;",
+            "import ch.ivyteam.ivy.application.IApplication;",
+            "import ch.ivy.addon.portalkit.service.ExternalLinkService;",
+            "import ch.ivy.addon.portalkit.configuration.ExternalLink;",
+            "import ch.ivy.addon.portalkit.service.ExpressProcessService;",
+            "import ch.ivy.addon.portalkit.bo.ExpressProcess;",
+            "import ch.ivy.addon.portalkit.configuration.UserProcess;",
+            "import ch.ivy.addon.portalkit.service.UserProcessService;",
+            "// Create user process",
+            "UserProcessService userProcessService = UserProcessService.getInstance();",
+            "Long testUserId = ivy.session.getSessionUser().getId();",
+            "IApplication application = ivy.wf.getApplication();",
+            "String applicationName = application.getName();",
+            "",
+            "UserProcess userProcess = new UserProcess();",
+            "userProcess.setProcessId(applicationName + \"/InternalSupport/Business Processes/testCaseMaps/caseMapLeaves.icm\");",
+            "userProcess.setProcessType(ProcessType.IVY_PROCESS);",
+            "userProcess.setIndex(1);",
+            "userProcess.setDescription(\"Case Map: Leave Request\");",
+            "userProcess.setProcessName(\"Case Map: Leave Request\");",
+            "userProcess.setIcon(\"fa fa-rocket fa-fw\");",
+            "userProcessService.save(userProcess);",
+            "",
+            "userProcess = new UserProcess();",
+            "userProcess.setProcessId(applicationName + \"/InternalSupport/Business Processes/testProcesses/TestTaskFlow/CreateSupportTicket.ivp\");",
+            "userProcess.setProcessType(ProcessType.IVY_PROCESS);",
+            "userProcess.setIndex(2);",
+            "userProcess.setDescription(\"Create Support Ticket\");",
+            "userProcess.setProcessName(\"Create Support Ticket\");",
+            "userProcess.setIcon(\"fa fa-tags fa-fw\");",
+            "userProcessService.save(userProcess);",
+            "",
+            "userProcess = new UserProcess();",
+            "userProcess.setProcessId(applicationName + \"/InternalSupport/Business Processes/testCaseMaps/testProcesses/ApproveLeave/Appraisal.ivp\");",
+            "userProcess.setProcessType(ProcessType.IVY_PROCESS);",
+            "userProcess.setIndex(3);",
+            "userProcess.setDescription(\"Appraisal\");",
+            "userProcess.setProcessName(\"Appraisal\");",
+            "userProcess.setIcon(\"fa fa-graduation-cap fa-fw\");",
+            "userProcessService.save(userProcess);",
+            "",
+            "ExpressProcess expressProcess = new ExpressProcess();",
+            "expressProcess.ableToEdit = true;",
+            "expressProcess.processName = \"A sample for Express process\";",
+            "expressProcess.processDescription = \"A sample for Express process\";",
+            "expressProcess.readyToExecute = true;",
+            "expressProcess.processFolder = \"test\";",
+            "expressProcess.processType = \"AHWF\";",
+            "expressProcess.processPermissions = [\"#demo\"];",
+            "expressProcess.processOwner = \"#demo\";",
+            "ExpressProcessService expressProcessService = new ExpressProcessService();",
+            "expressProcessService.save(expressProcess);",
+            "",
+            "ExternalLink externalLink = new ExternalLink();",
+            "externalLink.name = \"A sample for External link to Google\";",
+            "externalLink.creatorId = ivy.security.users().find(\"demo\").getId();",
+            "externalLink.setIsPublic(true);",
+            "externalLink.link = \"google.com\";",
+            "ExternalLinkService externalLinkService = ExternalLinkService.getInstance();",
+            "externalLinkService.save(externalLink);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 984, "y" : 1152 },
+        "size" : { "width" : 128, "height" : 44 }
+      },
+      "connect" : { "id" : "f143", "to" : "f141" }
+    }, {
+      "id" : "f145",
+      "type" : "RequestStart",
+      "name" : "createSampleExpressWorkflowProcess.ivp",
+      "config" : {
+        "callSignature" : "createSampleExpressWorkflowProcess",
+        "input" : {
+          "params" : [
+            { "name" : "filePath", "type" : "String" }
+          ],
+          "map" : {
+            "out.expressExportFilePath" : "param.filePath"
+          }
+        },
+        "outLink" : "createSampleExpressWorkflowProcess.ivp",
+        "showInStartList" : false
+      },
+      "visual" : {
+        "at" : { "x" : 816, "y" : 1280 },
+        "labelOffset" : { "x" : -121, "y" : 29 }
+      },
+      "connect" : { "id" : "f148", "to" : "f147" }
+    }, {
+      "id" : "f146",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 1120, "y" : 1280 }
+      }
+    }, {
+      "id" : "f147",
+      "type" : "Script",
+      "name" : "Import Express from file",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import java.util.Map;",
+            "import java.io.FileInputStream;",
+            "import java.io.InputStream;",
+            "import ch.ivy.addon.portalkit.util.ExpressManagementUtils;",
+            "",
+            "Map output = ExpressManagementUtils.initOutputMessage();",
+            "InputStream inputstream = new FileInputStream(in.expressExportFilePath);",
+            "ExpressManagementUtils.installExpressWorkflows(inputstream, output);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 984, "y" : 1280 },
+        "size" : { "width" : 144, "height" : 44 }
+      },
+      "connect" : { "id" : "f149", "to" : "f146" }
+    }, {
+      "id" : "f150",
+      "type" : "RequestStart",
+      "name" : "createThirdPartyApp.ivp",
+      "config" : {
+        "callSignature" : "createThirdPartyApp",
+        "outLink" : "createThirdPartyApp.ivp",
+        "startDescription" : "Create third party app",
+        "startName" : "Create third party app"
+      },
+      "visual" : {
+        "at" : { "x" : 64, "y" : 1280 },
+        "labelOffset" : { "x" : -21, "y" : 17 }
+      },
+      "connect" : { "id" : "f153", "to" : "f152" }
+    }, {
+      "id" : "f151",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 448, "y" : 1280 }
+      }
+    }, {
+      "id" : "f152",
+      "type" : "Script",
+      "name" : "create 3rd app",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;",
+            "import ch.ivy.addon.portalkit.service.IvyCacheService;",
+            "import ch.ivy.addon.portalkit.util.Locales;",
+            "import ch.ivy.addon.portalkit.util.DisplayNameConvertor;",
+            "import ch.ivy.addon.portalkit.configuration.Application;",
+            "import ch.ivy.addon.portalkit.service.RegisteredApplicationService;",
+            "",
+            "DisplayNameConvertor convertor = new DisplayNameConvertor();",
+            "convertor.add(new Locales().getCurrentLocale(), \"Google\");",
+            "",
+            "Application app = new Application();",
+            "app.displayName = convertor.toJson();",
+            "app.link = \"https://www.google.com/\";",
+            "app.menuIcon = \"fa fa-play\";",
+            "app.menuOrdinal = 99;",
+            "app.name = convertor.toJson();",
+            "",
+            "RegisteredApplicationService applicationService = RegisteredApplicationService.getInstance();",
+            "app = applicationService.save(app) as Application;"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 240, "y" : 1280 }
+      },
+      "connect" : { "id" : "f154", "to" : "f151" }
+    }, {
+      "id" : "f114",
+      "type" : "RequestStart",
+      "name" : "testThrowableError.ivp",
+      "config" : {
+        "callSignature" : "testThrowableError",
+        "outLink" : "testThrowableError.ivp"
+      },
+      "visual" : {
+        "at" : { "x" : 64, "y" : 1408 },
+        "labelOffset" : { "x" : -21, "y" : 17 }
+      },
+      "connect" : { "id" : "f157", "to" : "f156" }
+    }, {
+      "id" : "f115",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 384, "y" : 1408 }
+      }
+    }, {
+      "id" : "f117",
+      "type" : "RequestStart",
+      "name" : "startTest500.ivp",
+      "config" : {
+        "callSignature" : "startTest500",
+        "outLink" : "startTest500.ivp"
+      },
+      "visual" : {
+        "at" : { "x" : 64, "y" : 1536 },
+        "labelOffset" : { "x" : -24, "y" : 17 }
+      },
+      "connect" : { "id" : "f159", "to" : "f158" }
+    }, {
+      "id" : "f118",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 384, "y" : 1536 }
+      }
+    }, {
+      "id" : "f156",
+      "type" : "DialogCall",
+      "name" : "Test throwable",
+      "config" : {
+        "dialogId" : "ch.ivy.addon.portalkit.component.IconSelection",
+        "startMethod" : "start()"
+      },
+      "visual" : {
+        "at" : { "x" : 232, "y" : 1408 }
+      },
+      "connect" : { "id" : "f116", "to" : "f115" }
+    }, {
+      "id" : "f158",
+      "type" : "Script",
+      "name" : "Test 500",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.bpm.error.BpmError;",
+            "BpmError.create(\"frame:unsupported:url\").withMessage(\"only relative urls are supported (security reasons)\").throwError();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 208, "y" : 1536 }
+      },
+      "connect" : { "id" : "f155", "to" : "f118" }
+    }, {
+      "id" : "f160",
+      "type" : "RequestStart",
+      "name" : "createUserTaskWidgetFilters.ivp",
+      "config" : {
+        "callSignature" : "createUserTaskWidgetFilters",
+        "outLink" : "createUserTaskWidgetFilters.ivp"
+      },
+      "visual" : {
+        "at" : { "x" : 672, "y" : 1408 },
+        "labelOffset" : { "x" : -102, "y" : 24 }
+      },
+      "connect" : { "id" : "f163", "to" : "f161" }
+    }, {
+      "id" : "f161",
+      "type" : "Script",
+      "name" : "Dummy widget filter",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.dto.dashboard.WidgetFilterModel;",
+            "import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;",
+            "import ch.ivy.addon.portalkit.service.WidgetFilterService;",
+            "",
+            "for (int i = 0; i < 5; i++) {",
+            "  TaskDashboardWidget widget = new TaskDashboardWidget();",
+            "  widget.id = \"task_1\";",
+            "  WidgetFilterModel filterModel = new WidgetFilterModel();",
+            "  filterModel.widgetId = widget.id;",
+            "  filterModel.widgetType = widget.getType();",
+            "  filterModel.widgetName = \"Your tasks\";",
+            "  filterModel.name = \"Tasks Filterset \" + i;",
+            "  WidgetFilterService.getInstance().save(filterModel);",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 784, "y" : 1408 }
+      },
+      "connect" : { "id" : "f164", "to" : "f162" }
+    }, {
+      "id" : "f162",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 896, "y" : 1408 }
+      }
+    } ]
+}

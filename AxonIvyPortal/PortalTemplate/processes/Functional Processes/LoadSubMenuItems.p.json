@@ -1,0 +1,126 @@
+{
+  "format" : "9.4.8",
+  "id" : "15FA4CC33E5D866A",
+  "data" : "ch.ivy.addon.portal.generic.LoadSubMenuItemsData",
+  "kind" : "CALLABLE_SUB",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "CallSubStart",
+      "name" : "loadSubMenuItems()",
+      "config" : {
+        "callSignature" : "loadSubMenuItems",
+        "result" : {
+          "params" : [
+            { "name" : "subMenuItems", "type" : "List<ch.addon.portal.generic.menu.SubMenuItem>" }
+          ],
+          "map" : {
+            "result.subMenuItems" : "in.subMenuItems"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 152 },
+        "labelOffset" : { "x" : 16, "y" : 11 }
+      },
+      "connect" : { "id" : "f4", "to" : "f3" }
+    }, {
+      "id" : "f1",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 96, "y" : 376 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "Script",
+      "name" : "Load menu items",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import org.apache.commons.lang3.StringUtils;",
+            "import Boolean;",
+            "import ch.ivy.addon.portalkit.enums.GlobalVariable;",
+            "import ch.ivy.addon.portalkit.service.GlobalSettingService;",
+            "import ch.ivy.addon.portalkit.util.PermissionUtils;",
+            "import ch.addon.portal.generic.menu.StatisticSubMenuItem;",
+            "import ch.addon.portal.generic.menu.ProcessSubMenuItem;",
+            "import ch.addon.portal.generic.menu.CaseSubMenuItem;",
+            "import ch.addon.portal.generic.menu.TaskSubMenuItem;",
+            "",
+            "if(PermissionUtils.checkAccessFullProcessListPermission()) {",
+            "  in.subMenuItems.add(new ProcessSubMenuItem());",
+            "}",
+            "if(PermissionUtils.checkAccessFullTaskListPermission()) {",
+            "  in.subMenuItems.add(new TaskSubMenuItem());",
+            "}",
+            "if(PermissionUtils.checkAccessFullCaseListPermission()) {",
+            "  in.subMenuItems.add(new CaseSubMenuItem());",
+            "}",
+            "if(PermissionUtils.checkAccessFullStatisticsListPermission()) {",
+            "  GlobalSettingService globalSettingService = new GlobalSettingService();",
+            "  String isHideStatisticStr = globalSettingService.findGlobalSettingValue(GlobalVariable.HIDE_STATISTIC_WIDGET);",
+            "  boolean isHideStatistic = StringUtils.isNotBlank(isHideStatisticStr) ? Boolean.parseBoolean(isHideStatisticStr) : false;",
+            "  if (!isHideStatistic) {",
+            "    in.subMenuItems.add(new StatisticSubMenuItem());",
+            "  }",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 248 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f5",
+      "type" : "ProcessAnnotation",
+      "name" : [
+        "TO REMOVE A DEFAULT SUB MENU ITEM:",
+        "Remove  one of these lines:",
+        "in.subMenuItems.add(new ProcessSubMenuItem());",
+        "in.subMenuItems.add(new TaskSubMenuItem());",
+        "in.subMenuItems.add(new CaseSubMenuItem());",
+        "in.subMenuItems.add(new StatisticSubMenuItem());",
+        "",
+        "PERMISSION CHECK TO SEE SUB MENU ITEM",
+        "In PermissionUtils we provide some methods to check permission to see sub menu item",
+        "- checkAccessFullProcessListPermission() for Process list sub menu item",
+        "- checkAccessFullTaskListPermission() for Task list sub menu item",
+        "- checkAccessFullCaseListPermission() for Case list sub menu item",
+        "- checkAccessFullStatisticsListPermission() for Statistics sub menu item",
+        "",
+        "",
+        "TO CREATE A SUB MENU ITEM:",
+        "",
+        "SubMenuItem subMenuItem = new SubMenuItem();",
+        "subMenuItem.setMenuKind(<MenuKind.CUSTOM> or <MenuKind.EXTERNAL_LINK>);",
+        "subMenuItem.setIcon(<SUB_MENU_ICON>);",
+        "subMenuItem.setLabel(<SUB_MENU_LABEL>);",
+        "subMenuItem.setLink(<SUB_MENU_LINK>);",
+        "",
+        "in.subMenuItems.add(subMenuItem);",
+        "",
+        "OUT: subMenuItems: List<SubMenuItem>",
+        "",
+        "HINT: how to build a menu link",
+        "Axon Ivy link: IProcessStart#getLink() to get absolute/relative path (Refer to Axon Ivy Public API document)",
+        "External link: ",
+        "- www.yourexternallink.com",
+        "- http://www.yourexternallink.com",
+        "",
+        "NOTE:",
+        "If you want to hide Statistic widget, please copy these line of code into your overrided process",
+        "",
+        "GlobalSettingService globalSettingService = new GlobalSettingService();",
+        "String isHideStatisticStr = globalSettingService.findGlobalSettingValue(GlobalVariable.HIDE_STATISTIC_WIDGET);",
+        "boolean isHideStatistic = StringUtils.isNotBlank(isHideStatisticStr) ? Boolean.parseBoolean(isHideStatisticStr) : false;",
+        "if (!isHideStatistic) {",
+        "  in.subMenuItems.add(new StatisticSubMenuItem());",
+        "}"
+      ],
+      "visual" : {
+        "at" : { "x" : 624, "y" : 392 },
+        "size" : { "width" : 656, "height" : 684 }
+      },
+      "connect" : { "id" : "f6", "to" : "f3" }
+    } ]
+}

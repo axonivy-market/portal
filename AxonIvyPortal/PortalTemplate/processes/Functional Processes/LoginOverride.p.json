@@ -1,0 +1,58 @@
+{
+  "format" : "9.4.8",
+  "id" : "16B1CEA6AF5F7E2C",
+  "data" : "portalTemplate.LoginOverrideData",
+  "kind" : "CALLABLE_SUB",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "CallSubStart",
+      "name" : "call()",
+      "config" : {
+        "callSignature" : "call"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : { "id" : "f4", "to" : "f3" }
+    }, {
+      "id" : "f1",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "Script",
+      "name" : [
+        "nofify others ",
+        "if private chat enabled"
+      ],
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portal.chat.ClusterChatEventSender;",
+            "import ch.ivy.addon.portal.chat.ChatService;",
+            "import ch.ivy.addon.portalkit.enums.GlobalVariable;",
+            "import ch.ivy.addon.portal.chat.ChatReferencesContainer;",
+            "import org.apache.commons.lang3.StringUtils;",
+            "import ch.ivy.addon.portalkit.service.GlobalSettingService;",
+            "",
+            "String isEnableChatGlobalVariable = new GlobalSettingService().findGlobalSettingValue(GlobalVariable.ENABLE_PRIVATE_CHAT);",
+            "boolean isEnableChat = StringUtils.isNotBlank(isEnableChatGlobalVariable) ? Boolean.parseBoolean(isEnableChatGlobalVariable) : true;",
+            "if (isEnableChat) {",
+            "  if (ChatReferencesContainer.getChatService() != null && ChatService.IS_STANDARD_MODE) {",
+            "    ChatReferencesContainer.getChatService().handleUserOnline(ivy.session.getSessionUserName());",
+            "  } else {",
+            "    ClusterChatEventSender.handleUserOnline(ivy.session.getSessionUserName());",
+            "  }",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 },
+        "size" : { "width" : 144, "height" : 44 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    } ]
+}

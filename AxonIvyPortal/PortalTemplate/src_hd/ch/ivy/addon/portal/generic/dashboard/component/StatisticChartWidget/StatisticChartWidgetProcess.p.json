@@ -1,0 +1,218 @@
+{
+  "format" : "9.4.8",
+  "id" : "17FF80435B6470D3",
+  "data" : "ch.ivy.addon.portal.generic.dashboard.component.StatisticChartWidget.StatisticChartWidgetData",
+  "kind" : "HTML_DIALOG",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start()",
+      "config" : {
+        "callSignature" : "start",
+        "guid" : "17FF8043641EBB62"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 }
+      }
+    }, {
+      "id" : "f6",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "drilldownCaseByState(StatisticChart,CaseQuery)",
+      "config" : {
+        "callSignature" : "drilldownCaseByState",
+        "input" : {
+          "params" : [
+            { "name" : "selectedStatisticChart", "type" : "ch.ivy.addon.portalkit.statistics.StatisticChart" },
+            { "name" : "caseQuery", "type" : "ch.ivyteam.ivy.workflow.query.CaseQuery" }
+          ],
+          "map" : {
+            "out.caseQuery" : "param.caseQuery",
+            "out.selectedStatisticChart" : "param.selectedStatisticChart"
+          }
+        },
+        "guid" : "17FFE85588CFA06E"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 416 },
+        "labelOffset" : { "x" : -64, "y" : 14 }
+      },
+      "connect" : { "id" : "f8", "to" : "f42" }
+    }, {
+      "id" : "f39",
+      "type" : "Alternative",
+      "visual" : {
+        "at" : { "x" : 200, "y" : 192 }
+      },
+      "connect" : [
+        { "id" : "f37", "to" : "f36", "condition" : "in.showTaskListImmediately || in.isDrilldownToTaskList" },
+        { "id" : "f47", "to" : "f46", "via" : [ { "x" : 200, "y" : 128 } ] }
+      ]
+    }, {
+      "id" : "f7",
+      "type" : "SubProcessCall",
+      "name" : "Navigator",
+      "config" : {
+        "processCall" : "Functional Processes/Navigator:viewTaskForAnalytic(String,ch.ivyteam.ivy.workflow.query.TaskQuery)",
+        "call" : {
+          "params" : [
+            { "name" : "chartName", "type" : "String" },
+            { "name" : "taskQuery", "type" : "ch.ivyteam.ivy.workflow.query.TaskQuery" }
+          ],
+          "map" : {
+            "param.chartName" : "in.taskListName",
+            "param.taskQuery" : "in.taskQuery"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 483, "y" : 344 }
+      }
+    }, {
+      "id" : "f83",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "drilldownTaskByPriority(String,TaskQuery)",
+      "config" : {
+        "callSignature" : "drilldownTaskByPriority",
+        "input" : {
+          "params" : [
+            { "name" : "taskListName", "type" : "String" },
+            { "name" : "taskQuery", "type" : "ch.ivyteam.ivy.workflow.query.TaskQuery" }
+          ],
+          "map" : {
+            "out.taskListName" : "param.taskListName",
+            "out.taskQuery" : "param.taskQuery"
+          }
+        },
+        "guid" : "17FFE85588DA0A15"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 344 },
+        "labelOffset" : { "x" : -64, "y" : 12 }
+      },
+      "connect" : { "id" : "f84", "to" : "f7" }
+    }, {
+      "id" : "f46",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 483, "y" : 128 }
+      }
+    }, {
+      "id" : "f42",
+      "type" : "SubProcessCall",
+      "name" : "Navigator",
+      "config" : {
+        "processCall" : "Functional Processes/Navigator:viewCaseForAnalytic(String,ch.ivyteam.ivy.workflow.query.CaseQuery)",
+        "call" : {
+          "params" : [
+            { "name" : "chartName", "type" : "String" },
+            { "name" : "caseQuery", "type" : "ch.ivyteam.ivy.workflow.query.CaseQuery" }
+          ],
+          "map" : {
+            "param.chartName" : "in.chartNameOfCurrentLanguage",
+            "param.caseQuery" : "in.caseQuery"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 320, "y" : 416 }
+      }
+    }, {
+      "id" : "f36",
+      "type" : "Script",
+      "name" : "Build task query",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.service.StatisticService;",
+            "import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;",
+            "import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;",
+            "import org.apache.commons.lang3.StringUtils;",
+            "import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;",
+            "import ch.ivy.addon.portalkit.service.StatisticService;",
+            "import ch.ivy.addon.portalkit.statistics.StatisticChartQueryUtils;",
+            "import ch.ivy.addon.portalkit.statistics.StatisticChart;",
+            "",
+            "if (StatisticService.selectMonthOfYear(in.selectedItemOfDrilldown))  {",
+            "  in.previousSelectedMonth = in.selectedItemOfDrilldown;",
+            "} else if (StatisticService.selectWeekOfMonth(in.selectedItemOfDrilldown))  {",
+            "  in.previousSelectedWeek = in.selectedItemOfDrilldown;",
+            "} else if (StatisticService.selectDayOfWeek(in.selectedItemOfDrilldown)) {",
+            "  in.previousSelectedDay = in.selectedItemOfDrilldown;",
+            "}",
+            "",
+            "StatisticService service = StatisticService.getInstance();",
+            "in.chartNameOfCurrentLanguage = service.getDisplayNameInUserLanguageForChart(in.selectedStatisticChart).getValue();",
+            "",
+            "in.taskListName = in.chartNameOfCurrentLanguage + \" - \" + in.selectedItemOfDrilldown;",
+            "if (StatisticService.selectHourOfDay(in.selectedItemOfDrilldown)) {",
+            "  in.taskListName += \" \" + ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByExpiry/hour\");",
+            "}",
+            "in.selectedItemOfDrilldown = StringUtils.EMPTY;"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 320, "y" : 192 }
+      },
+      "connect" : { "id" : "f38", "to" : "f7", "via" : [ { "x" : 483, "y" : 192 } ] }
+    }, {
+      "id" : "f41",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "toTaskByExpiryTaskList(String,StatisticChart,TaskQuery)",
+      "config" : {
+        "callSignature" : "toTaskByExpiryTaskList",
+        "input" : {
+          "params" : [
+            { "name" : "selectedItemOfDrilldown", "type" : "String" },
+            { "name" : "selectedStatisticChart", "type" : "ch.ivy.addon.portalkit.statistics.StatisticChart" },
+            { "name" : "taskQuery", "type" : "ch.ivyteam.ivy.workflow.query.TaskQuery" }
+          ],
+          "map" : {
+            "out.selectedItemOfDrilldown" : "param.selectedItemOfDrilldown",
+            "out.selectedStatisticChart" : "param.selectedStatisticChart",
+            "out.taskQuery" : "param.taskQuery"
+          }
+        },
+        "guid" : "17FFE85588D604E1"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 272 },
+        "labelOffset" : { "x" : -66, "y" : 11 }
+      },
+      "connect" : { "id" : "f43", "to" : "f36", "via" : [ { "x" : 320, "y" : 272 } ] }
+    }, {
+      "id" : "f35",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "onSelectDrilldownTaskByExpiry(Boolean,String,StatisticChart,TaskQuery)",
+      "config" : {
+        "callSignature" : "onSelectDrilldownTaskByExpiry",
+        "input" : {
+          "params" : [
+            { "name" : "isDrilldownToTaskList", "type" : "Boolean" },
+            { "name" : "selectedItemOfDrilldown", "type" : "String" },
+            { "name" : "selectedStatisticChart", "type" : "ch.ivy.addon.portalkit.statistics.StatisticChart" },
+            { "name" : "taskQuery", "type" : "ch.ivyteam.ivy.workflow.query.TaskQuery" }
+          ],
+          "map" : {
+            "out.isDrilldownToTaskList" : "param.isDrilldownToTaskList",
+            "out.selectedItemOfDrilldown" : "param.selectedItemOfDrilldown",
+            "out.selectedStatisticChart" : "param.selectedStatisticChart",
+            "out.taskQuery" : "param.taskQuery"
+          }
+        },
+        "guid" : "17FFE85588DC1FA9"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 192 },
+        "labelOffset" : { "x" : -63, "y" : 28 }
+      },
+      "connect" : { "id" : "f40", "to" : "f39" }
+    } ]
+}

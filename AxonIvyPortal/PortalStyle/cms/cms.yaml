@@ -170,10 +170,10 @@ ch.ivy.addon.portalkit.ui.jsf:
   ProcessViewer:
     Breadcrumb: Process Viewer of {0} process
     ProcessDataNotFound: Could not found the Process Data!
-    ProcessDetails: TODO Process details
-    ProcessId: TODO Process Id
-    ProcessInfo: TODO Process Information
-    ProcessInfoIconTooltip: TODO Click to see details of the process start
+    ProcessDetails: Process details
+    ProcessId: Process Id
+    ProcessInfo: Process Information
+    ProcessInfoIconTooltip: Click to see details of the process start
     ProcessViewerText: Process Viewer
     Title: Process Viewer
   TaskDocuments:
@@ -538,8 +538,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     setting: Settings
     showDetail: Show details
     showRelatedCaseInfo: Related case
-    showSystemNotes: TODO System notes
-    showSystemTasks: TODO System tasks
+    showSystemNotes: System notes
+    showSystemTasks: System tasks
     start: Start
     state: State
     status: Status
@@ -700,14 +700,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     SavedFilterHeader: Saved filters
     SearchForFilter: Search for filter
     StatisticWidget:
-      AvailableCharts: TODO Available statistics charts
-      Charts: 'TODO Chart(s): {0}'
-      ConfigurationDescription: TODO You can configure your widget in this configuration area. Please define the chart which will be shown on  your dashboard.
-      EmptyChartDataMessage: TODO We do not have enough data to create a nice chart!
-      FilterChartText: TODO Filter a chart by name
-      PlaceholderChartOption: TODO Select a chart
-      PleaseSelectChart: TODO Please select a chart
-      PreviewText: TODO Please select a chart to see the canvas data
+      AvailableCharts: Available statistics charts
+      Charts: 'Chart(s): {0}'
+      ConfigurationDescription: You can configure your widget in this configuration area. Please define the chart which will be shown on  your dashboard.
+      EmptyChartDataMessage: We do not have enough data to create a nice chart!
+      FilterChartText: Filter a chart by name
+      PlaceholderChartOption: Select a chart
+      PleaseSelectChart: Please select a chart
+      PreviewText: Please select a chart to see the canvas data
     WidgetFilterName: Widget filter name
     WidgetFilters: Widget filters
     actionSelection: Action selection
@@ -726,6 +726,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     configuration:
       CustomWidgetExternalLinkWarning: Some websites are not compatible with iframe due to security concerns. Please contact your administrator if the external website is not working properly.
       Parameters: Parameters
+      SelectYourTemplate: Select your template
       configuration: Configuration
       configurationDescription: You can configure your widget in this configuration area. Please define the required filters as well as columns to be shown.
       customWidgetParamChangedMessage: This process has changed. Click on Update to proceed.
@@ -743,6 +744,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     customWidget: Custom Widget
     customWidgetIntroduction: This widget can display an ivy process or an external webpage.
     dashboardManagement:
+      CreateDashboard: Create Dashboard
       addDashboard: Add dashboard
       dashboardPermission: Dashboard permission
       dashboardTitle: Dashboard title
@@ -767,7 +769,7 @@ ch.ivy.addon.portalkit.ui.jsf:
         RANKING_WINNER_MEDAL: Game, set and match! You did it, all cases are completed!
         SOCCER_PLAYER: Goal! You did it, all cases completed. Short half-time break.
         YOGA_MEDITATE: Well done! All cases are done. Inhale, exhale, relax.
-        noCasesFoundWhenFilter: TODO There are currently no cases after applied filter.
+        noCasesFoundWhenFilter: There are currently no cases considering the applied filter.
       taskWidget:
         BEACH_PALM_SUNBED: You are awesome - all tasks are done. Lean back and enjoy.
         CHARGING_BATTERY_FULL_1: There are currently no tasks. Time to recharge the batteries a little.
@@ -775,7 +777,7 @@ ch.ivy.addon.portalkit.ui.jsf:
         RANKING_WINNER_MEDAL: Game, set and match! You did it, all tasks are completed!
         SOCCER_PLAYER: Goal! You did it, all tasks completed. Short half-time break.
         YOGA_MEDITATE: Well done! All tasks are done. Inhale, exhale, relax.
-        noTasksFoundWhenFilter: TODO There are currently no tasks after applied filter.
+        noTasksFoundWhenFilter: There are currently no tasks after applied filter.
     loading: Loading...
     noCategory: There are no categories
     noDashboard: There are no dashboards. Add at least one dashboard, then add widgets.
@@ -804,6 +806,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     selectEditAction: Which action do you want to procced?
     showFullWidget: Show full widget
     startATask: Start task
+    statisticChartIntroduction: This widget displays available statistic charts.
+    statisticChartWidget: Statistic chart
     switchToViewMode: View Mode
     tasWidgetkInfo:
       expireToday: Expire today
@@ -820,6 +824,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     yourCases: Your Cases
     yourCustomWidget: Your Custom Widget
     yourProcesses: Your Processes
+    yourStatistics: Your Statistics
     yourTasks: Your Tasks
   dateFormatConfiguration:
     dateFormatConfiguration: Date Format Configuration
@@ -1199,6 +1204,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskDetails: Task details
     taskInforDialogTitle: Task information
     taskNotes: Notes
+    triggerEscalation: Trigger Escalation
   taskList:
     deadline: Deadline
     default: Default
@@ -1238,6 +1244,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       EXPIRY_TIME_DESC: Expiry (Newest first)
       PRIORITY_ASC: Priority (High to low)
       PRIORITY_DESC: Priority (Low to high)
+    triggerEscalationNote: 'Escalation has been triggered by {0} ({1}) of task #{2}'
     type: Type
   taskPriority:
     EXCEPTION: EXCEPTION

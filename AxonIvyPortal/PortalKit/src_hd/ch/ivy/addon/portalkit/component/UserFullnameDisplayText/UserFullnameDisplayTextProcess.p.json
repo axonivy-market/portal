@@ -1,0 +1,28 @@
+{
+  "format" : "9.4.8",
+  "id" : "1555DB6ED126E070",
+  "data" : "ch.ivy.addon.portalkit.component.UserFullnameDisplayText.UserFullnameDisplayTextData",
+  "kind" : "HTML_DIALOG",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start()",
+      "config" : {
+        "callSignature" : "start",
+        "guid" : "15493AB38F1A359C"
+      },
+      "visual" : {
+        "at" : { "x" : 64, "y" : 96 },
+        "size" : { "width" : 22, "height" : 22 },
+        "labelOffset" : { "x" : 14, "y" : 0 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 64, "y" : 224 },
+        "size" : { "width" : 22, "height" : 22 }
+      }
+    } ]
+}

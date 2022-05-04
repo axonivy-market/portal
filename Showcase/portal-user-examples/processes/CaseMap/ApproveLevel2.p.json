@@ -1,0 +1,46 @@
+{
+  "format" : "9.4.8",
+  "id" : "170322322BB5393B",
+  "data" : "com.axonivy.portal.userexamples.Data",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "start.ivp",
+      "config" : {
+        "callSignature" : "start",
+        "task" : {
+          "name" : "<%=ivy.cms.co(\"/Processes/CaseMap/approveLevel2\")%>",
+          "expiry" : {
+            "timeout" : "new Duration(\"8h\")"
+          },
+          "customFields" : [
+            { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
+          ]
+        },
+        "showInStartList" : false,
+        "outLink" : "start.ivp",
+        "startName" : "Approve Level 2"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : { "id" : "f4", "to" : "f3" }
+    }, {
+      "id" : "f1",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "DialogCall",
+      "config" : {
+        "dialogId" : "com.axonivy.portal.userexamples.credit.ApproveLevel2",
+        "startMethod" : "start()"
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    } ]
+}

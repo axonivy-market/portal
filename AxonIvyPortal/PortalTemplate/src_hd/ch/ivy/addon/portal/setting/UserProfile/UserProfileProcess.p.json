@@ -1,0 +1,796 @@
+{
+  "format" : "9.4.8",
+  "id" : "172546E1FDEB1FF7",
+  "data" : "ch.ivy.addon.portal.setting.UserProfile.UserProfileData",
+  "kind" : "HTML_DIALOG",
+  "elements" : [ {
+      "id" : "S90",
+      "type" : "EmbeddedProcess",
+      "name" : "Save Sort Setting",
+      "elements" : [ {
+          "id" : "S90-f17",
+          "type" : "Script",
+          "name" : "Save sort fields",
+          "config" : {
+            "output" : {
+              "code" : [
+                "import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;",
+                "UserSettingService.newInstance().saveDefaultSortFieldOfTaskList(in.selectedTaskListSortField, in.selectedTaskListSortDirection);",
+                "UserSettingService.newInstance().saveDefaultSortFieldOfCaseList(in.selectedCaseListSortField, in.selectedCaseListSortDirection);"
+              ]
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 192, "y" : 160 }
+          },
+          "connect" : { "id" : "S90-f1", "to" : "S90-g1" }
+        }, {
+          "id" : "S90-g0",
+          "type" : "EmbeddedStart",
+          "name" : "in 1",
+          "visual" : {
+            "at" : { "x" : 64, "y" : 160 },
+            "labelOffset" : { "x" : 0, "y" : 5 }
+          },
+          "parentConnector" : "f18",
+          "connect" : { "id" : "S90-f0", "to" : "S90-f17" }
+        }, {
+          "id" : "S90-g1",
+          "type" : "EmbeddedEnd",
+          "name" : "out 1",
+          "visual" : {
+            "at" : { "x" : 320, "y" : 160 },
+            "labelOffset" : { "x" : 0, "y" : 5 }
+          },
+          "parentConnector" : "f9"
+        } ],
+      "visual" : {
+        "at" : { "x" : 824, "y" : 280 }
+      },
+      "connect" : { "id" : "f9", "to" : "S00" }
+    }, {
+      "id" : "S80",
+      "type" : "EmbeddedProcess",
+      "name" : "Save Date Format",
+      "elements" : [ {
+          "id" : "S80-f27",
+          "type" : "Script",
+          "name" : "save date format",
+          "config" : {
+            "output" : {
+              "code" : [
+                "import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;",
+                "UserSettingService.newInstance().saveDateFormat(in.selectedDateFormat);"
+              ]
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 192, "y" : 160 }
+          },
+          "connect" : { "id" : "S80-f1", "to" : "S80-g1" }
+        }, {
+          "id" : "S80-g0",
+          "type" : "EmbeddedStart",
+          "name" : "in 1",
+          "visual" : {
+            "at" : { "x" : 64, "y" : 160 },
+            "labelOffset" : { "x" : 0, "y" : 5 }
+          },
+          "parentConnector" : "f5",
+          "connect" : { "id" : "S80-f0", "to" : "S80-f27" }
+        }, {
+          "id" : "S80-g1",
+          "type" : "EmbeddedEnd",
+          "name" : "out 1",
+          "visual" : {
+            "at" : { "x" : 320, "y" : 160 },
+            "labelOffset" : { "x" : 0, "y" : 5 }
+          },
+          "parentConnector" : "f18"
+        } ],
+      "visual" : {
+        "at" : { "x" : 664, "y" : 280 }
+      },
+      "connect" : { "id" : "f18", "to" : "S90" }
+    }, {
+      "id" : "S70",
+      "type" : "EmbeddedProcess",
+      "name" : "Save General Setting",
+      "elements" : [ {
+          "id" : "S70-f28",
+          "type" : "Script",
+          "name" : [
+            "update show user guide",
+            "and selected homepage"
+          ],
+          "config" : {
+            "security" : "system",
+            "output" : {
+              "code" : [
+                "import ch.ivy.addon.portal.generic.bean.UserProfileBean;",
+                "import ch.ivy.addon.portalkit.bean.GuideBean;",
+                "import ch.ivy.addon.portalkit.jsf.ManagedBeans;",
+                "",
+                "GuideBean guideBean =  ManagedBeans.get(\"guideBean\") as GuideBean;",
+                "guideBean.setDontShowAgain(!in.showTutorial);",
+                "",
+                "UserProfileBean userProfileBean =  ManagedBeans.get(\"userProfileBean\") as UserProfileBean;",
+                "userProfileBean.saveHomepage(in.selectedHomepage.getName());"
+              ]
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 216, "y" : 160 },
+            "size" : { "width" : 160, "height" : 44 },
+            "labelOffset" : { "x" : -59, "y" : -16 }
+          },
+          "connect" : { "id" : "S70-f1", "to" : "S70-g1" }
+        }, {
+          "id" : "S70-g0",
+          "type" : "EmbeddedStart",
+          "name" : "in 1",
+          "visual" : {
+            "at" : { "x" : 64, "y" : 160 },
+            "labelOffset" : { "x" : 0, "y" : 5 }
+          },
+          "parentConnector" : "f11",
+          "connect" : { "id" : "S70-f0", "to" : "S70-f28" }
+        }, {
+          "id" : "S70-g1",
+          "type" : "EmbeddedEnd",
+          "name" : "out 1",
+          "visual" : {
+            "at" : { "x" : 384, "y" : 160 },
+            "labelOffset" : { "x" : 0, "y" : 5 }
+          },
+          "parentConnector" : "f5"
+        } ],
+      "visual" : {
+        "at" : { "x" : 512, "y" : 280 },
+        "size" : { "width" : 128, "height" : 44 }
+      },
+      "connect" : { "id" : "f5", "to" : "S80" }
+    }, {
+      "id" : "S60",
+      "type" : "EmbeddedProcess",
+      "name" : "Init Process Setting",
+      "elements" : [ {
+          "id" : "S60-f11",
+          "type" : "Script",
+          "name" : "Load Process modes",
+          "config" : {
+            "output" : {
+              "code" : [
+                "import ch.ivy.addon.portalkit.enums.GlobalVariable;",
+                "import ch.ivy.addon.portalkit.configuration.GlobalSetting;",
+                "import ch.ivy.addon.portalkit.service.GlobalSettingService;",
+                "import org.apache.commons.lang3.StringUtils;",
+                "import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;",
+                "import ch.ivy.addon.portalkit.enums.ProcessMode;",
+                "",
+                "in.processModes.clear();",
+                "GlobalSettingService globalSettingService = new GlobalSettingService();",
+                "GlobalSetting defaultSetting = globalSettingService.findGlobalSettingByGlobalVariable(GlobalVariable.DEFAULT_PROCESS_MODE);",
+                "",
+                "ProcessMode defaultSettingEnum = ProcessMode.valueOf(defaultSetting.value);",
+                "",
+                "String defaultProcessModeSetting = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/MyProfile/defaultOption\", [defaultSettingEnum == null ? \"\" : defaultSettingEnum.getLabel()]);",
+                "in.processModes.add(defaultProcessModeSetting);",
+                "",
+                "for (ProcessMode mode : ProcessMode.values()) {",
+                "  in.processModes.add(mode.getLabel());",
+                "}",
+                "",
+                "String userProcessSetting = UserSettingService.newInstance().getDefaultProcessMode();",
+                "if (StringUtils.isBlank(userProcessSetting) || StringUtils.equalsIgnoreCase(userProcessSetting, UserSettingService.DEFAULT)) {",
+                "  userProcessSetting = defaultProcessModeSetting;",
+                "}",
+                "",
+                "",
+                "in.selectedProcessMode = userProcessSetting;"
+              ]
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 200, "y" : 160 },
+            "size" : { "width" : 128, "height" : 44 }
+          },
+          "connect" : { "id" : "S60-f1", "to" : "S60-g1" }
+        }, {
+          "id" : "S60-g0",
+          "type" : "EmbeddedStart",
+          "name" : "in 1",
+          "visual" : {
+            "at" : { "x" : 3, "y" : 160 },
+            "labelOffset" : { "x" : 0, "y" : 5 }
+          },
+          "parentConnector" : "f20",
+          "connect" : { "id" : "S60-f0", "to" : "S60-f11" }
+        }, {
+          "id" : "S60-g1",
+          "type" : "EmbeddedEnd",
+          "name" : "out 1",
+          "visual" : {
+            "at" : { "x" : 352, "y" : 160 },
+            "labelOffset" : { "x" : 0, "y" : 5 }
+          },
+          "parentConnector" : "f26"
+        } ],
+      "visual" : {
+        "at" : { "x" : 976, "y" : 144 }
+      },
+      "connect" : { "id" : "f26", "to" : "f8" }
+    }, {
+      "id" : "S50",
+      "type" : "EmbeddedProcess",
+      "name" : "Init Date Format Setting",
+      "elements" : [ {
+          "id" : "S50-f25",
+          "type" : "Script",
+          "name" : "init date formats",
+          "config" : {
+            "output" : {
+              "code" : [
+                "import ch.ivyteam.ivy.environment.Ivy;",
+                "import ch.ivy.addon.portalkit.util.UserUtils;",
+                "import org.apache.commons.collections.CollectionUtils;",
+                "import java.util.ArrayList;",
+                "",
+                "if (CollectionUtils.isEmpty(in.dateFormats)) {",
+                "  in.dateFormats = new ArrayList();",
+                "  in.dateFormats.add(\"DEFAULT\");",
+                "  in.dateFormats.add(Ivy.cms().co(\"/patterns/datePattern\"));",
+                "  in.dateFormats.add(Ivy.cms().co(\"/patterns/monthDatePattern\"));",
+                "}",
+                "",
+                "in.selectedDateFormat = UserUtils.getSelectedDateFormat(in.dateFormats);"
+              ]
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 192, "y" : 160 }
+          },
+          "connect" : { "id" : "S50-f1", "to" : "S50-g1" }
+        }, {
+          "id" : "S50-g0",
+          "type" : "EmbeddedStart",
+          "name" : "in 1",
+          "visual" : {
+            "at" : { "x" : 64, "y" : 160 },
+            "labelOffset" : { "x" : 0, "y" : 5 }
+          },
+          "parentConnector" : "f4",
+          "connect" : { "id" : "S50-f0", "to" : "S50-f25" }
+        }, {
+          "id" : "S50-g1",
+          "type" : "EmbeddedEnd",
+          "name" : "out 1",
+          "visual" : {
+            "at" : { "x" : 320, "y" : 160 },
+            "labelOffset" : { "x" : 0, "y" : 5 }
+          },
+          "parentConnector" : "f10"
+        } ],
+      "visual" : {
+        "at" : { "x" : 664, "y" : 144 },
+        "size" : { "width" : 144, "height" : 44 }
+      },
+      "connect" : { "id" : "f10", "to" : "S20" }
+    }, {
+      "id" : "S20",
+      "type" : "EmbeddedProcess",
+      "name" : "Init Sort Setting",
+      "elements" : [ {
+          "id" : "S20-f10",
+          "type" : "Script",
+          "name" : "Init sort directions",
+          "config" : {
+            "output" : {
+              "code" : [
+                "import org.apache.commons.lang3.StringUtils;",
+                "import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;",
+                "import ch.ivy.addon.portalkit.enums.SortDirection;",
+                "import java.util.ArrayList;",
+                "",
+                "if (in.sortDirections == null || in.sortDirections.isEmpty()) {",
+                "  String defaultOption = UserSettingService.DEFAULT;",
+                "",
+                "  in.sortDirections = new ArrayList();",
+                "  in.sortDirections.add(defaultOption);",
+                "  for (SortDirection direction : SortDirection.values()) {",
+                "    in.sortDirections.add(direction.name());",
+                "  }",
+                "",
+                "  in.selectedTaskListSortDirection = UserSettingService.newInstance().getDefaultSortDirectionOfTaskList();",
+                "  if (StringUtils.isBlank(in.selectedTaskListSortDirection)) {",
+                "    in.selectedTaskListSortDirection = defaultOption;",
+                "  }",
+                "",
+                "  in.selectedCaseListSortDirection = UserSettingService.newInstance().getDefaultSortDirectionOfCaseList();",
+                "  if (StringUtils.isBlank(in.selectedCaseListSortDirection)) {",
+                "    in.selectedCaseListSortDirection = defaultOption;",
+                "  }",
+                "}"
+              ]
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 192, "y" : 160 }
+          },
+          "connect" : { "id" : "S20-f23", "to" : "S20-f20" }
+        }, {
+          "id" : "S20-f20",
+          "type" : "Script",
+          "name" : "Init sort fields",
+          "config" : {
+            "output" : {
+              "code" : [
+                "import ch.ivy.addon.portalkit.enums.CaseSortField;",
+                "import ch.ivy.addon.portalkit.enums.TaskSortField;",
+                "import org.apache.commons.lang3.StringUtils;",
+                "import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;",
+                "import java.util.Optional;",
+                "import ch.ivy.addon.portalkit.enums.CaseSortField;",
+                "import ch.ivy.addon.portalkit.enums.TaskSortField;",
+                "import java.util.ArrayList;",
+                "",
+                "String defaultOption = UserSettingService.DEFAULT;",
+                "",
+                "if (in.taskListSortFields == null || in.taskListSortFields.isEmpty()) {",
+                "  in.taskListSortFields = new ArrayList();",
+                "  in.taskListSortFields.add(defaultOption);",
+                "",
+                "  for (TaskSortField sortField : TaskSortField.values()) {",
+                "     // Task category sort not yet available",
+                "    if (StringUtils.isNotBlank(sortField.getLabel()) && sortField != TaskSortField.CATEGORY) {",
+                "      in.taskListSortFields.add(sortField.name());",
+                "    }",
+                "  }",
+                "",
+                "  in.selectedTaskListSortField = Optional.ofNullable(UserSettingService.newInstance().getDefaultSortFieldOfTaskList()).orElse(defaultOption) as String;",
+                "}",
+                "",
+                "if (in.caseListSortFields == null || in.caseListSortFields.isEmpty()) {",
+                "  in.caseListSortFields = new ArrayList();",
+                "  in.caseListSortFields.add(defaultOption);",
+                "",
+                "  ",
+                "  for (CaseSortField sortField : CaseSortField.values()) {",
+                "    // Case category sort not yet available",
+                "    if (StringUtils.isNotBlank(sortField.getLabel()) && sortField != CaseSortField.CATEGORY) {",
+                "      in.caseListSortFields.add(sortField.name());",
+                "    }",
+                "  }",
+                "",
+                "  in.selectedCaseListSortField = Optional.ofNullable(UserSettingService.newInstance().getDefaultSortFieldOfCaseList()).orElse(defaultOption) as String;",
+                "}"
+              ]
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 352, "y" : 160 }
+          },
+          "connect" : { "id" : "S20-f1", "to" : "S20-g1" }
+        }, {
+          "id" : "S20-g0",
+          "type" : "EmbeddedStart",
+          "name" : "in 1",
+          "visual" : {
+            "at" : { "x" : 64, "y" : 160 },
+            "labelOffset" : { "x" : 0, "y" : 5 }
+          },
+          "parentConnector" : "f10",
+          "connect" : { "id" : "S20-f0", "to" : "S20-f10" }
+        }, {
+          "id" : "S20-g1",
+          "type" : "EmbeddedEnd",
+          "name" : "out 1",
+          "visual" : {
+            "at" : { "x" : 480, "y" : 160 },
+            "labelOffset" : { "x" : 0, "y" : 5 }
+          },
+          "parentConnector" : "f20"
+        } ],
+      "visual" : {
+        "at" : { "x" : 824, "y" : 144 }
+      },
+      "connect" : { "id" : "f20", "to" : "S60" }
+    }, {
+      "id" : "S40",
+      "type" : "EmbeddedProcess",
+      "name" : "Init General Setting",
+      "elements" : [ {
+          "id" : "S40-f11",
+          "type" : "Script",
+          "name" : "Init User Guide",
+          "config" : {
+            "output" : {
+              "code" : [
+                "import ch.ivy.addon.portalkit.constant.UserProperty;",
+                "import ch.ivy.addon.portalkit.enums.GlobalVariable;",
+                "import ch.ivy.addon.portalkit.service.GlobalSettingService;",
+                "import ch.ivy.addon.portalkit.bo.Guide;",
+                "",
+                "// Find Global setting for SHOW_USER_GUIDE",
+                "GlobalSettingService globalSettingService = new GlobalSettingService();",
+                "in.disableShowTutorial = !Boolean.parseBoolean(globalSettingService.findGlobalSettingValue(GlobalVariable.SHOW_USER_GUIDE));",
+                "",
+                "// Get isShowGuide from IUser",
+                "in.showTutorial = Boolean.valueOf(ivy.session.getSessionUser().getProperty(UserProperty.SHOW_GUIDE));"
+              ]
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 232, "y" : 160 }
+          },
+          "connect" : { "id" : "S40-f2", "to" : "S40-f4" }
+        }, {
+          "id" : "S40-g0",
+          "type" : "EmbeddedStart",
+          "name" : "in 1",
+          "visual" : {
+            "at" : { "x" : 64, "y" : 160 },
+            "labelOffset" : { "x" : 0, "y" : 5 }
+          },
+          "parentConnector" : "f24",
+          "connect" : { "id" : "S40-f0", "to" : "S40-f11" }
+        }, {
+          "id" : "S40-g1",
+          "type" : "EmbeddedEnd",
+          "name" : "out 1",
+          "visual" : {
+            "at" : { "x" : 584, "y" : 160 },
+            "labelOffset" : { "x" : 0, "y" : 5 }
+          },
+          "parentConnector" : "f4"
+        }, {
+          "id" : "S40-f4",
+          "type" : "Script",
+          "name" : "Load homepages",
+          "config" : {
+            "output" : {
+              "code" : [
+                "import ch.addon.portal.generic.userprofile.homepage.Homepage;",
+                "import ch.addon.portal.generic.userprofile.homepage.HomepageUtils;",
+                "",
+                "Homepage defaultHomepage = HomepageUtils.findDefaultHomepage();",
+                "defaultHomepage.setName(\"\");",
+                "defaultHomepage.setLabel(ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/MyProfile/defaultOption\", [defaultHomepage.getLabel()]));",
+                "out.homepages = HomepageUtils.loadHomepages();",
+                "out.homepages.add(0, defaultHomepage);",
+                "out.selectedHomepage = HomepageUtils.findHomepageInMyProfile();"
+              ]
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 408, "y" : 160 },
+            "labelOffset" : { "x" : -45, "y" : -8 }
+          },
+          "connect" : { "id" : "S40-f1", "to" : "S40-g1" }
+        } ],
+      "visual" : {
+        "at" : { "x" : 504, "y" : 144 }
+      },
+      "connect" : { "id" : "f4", "to" : "S50" }
+    }, {
+      "id" : "S30",
+      "type" : "EmbeddedProcess",
+      "name" : "Init Language",
+      "elements" : [ {
+          "id" : "S30-f11",
+          "type" : "SubProcessCall",
+          "name" : "LanguageService",
+          "config" : {
+            "processCall" : "Ivy Data Processes/LanguageService:findUserLanguages()",
+            "output" : {
+              "map" : {
+                "out" : "in",
+                "out.language" : "result.language"
+              }
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 192, "y" : 160 }
+          },
+          "connect" : { "id" : "S30-f25", "to" : "S30-f9" }
+        }, {
+          "id" : "S30-f9",
+          "type" : "Script",
+          "name" : "Set locale",
+          "config" : {
+            "output" : {
+              "code" : [
+                "import javax.faces.context.FacesContext;",
+                "import ch.ivy.addon.portalkit.util.UserUtils;",
+                "",
+                "UserUtils.setLanguague();"
+              ]
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 344, "y" : 160 }
+          },
+          "connect" : { "id" : "S30-f1", "to" : "S30-g1" }
+        }, {
+          "id" : "S30-g0",
+          "type" : "EmbeddedStart",
+          "name" : "in 1",
+          "visual" : {
+            "at" : { "x" : 64, "y" : 160 },
+            "labelOffset" : { "x" : 0, "y" : 5 }
+          },
+          "parentConnector" : "f7",
+          "connect" : { "id" : "S30-f0", "to" : "S30-f11" }
+        }, {
+          "id" : "S30-g1",
+          "type" : "EmbeddedEnd",
+          "name" : "out 1",
+          "visual" : {
+            "at" : { "x" : 480, "y" : 160 },
+            "labelOffset" : { "x" : 0, "y" : 5 }
+          },
+          "parentConnector" : "f13"
+        } ],
+      "visual" : {
+        "at" : { "x" : 216, "y" : 144 }
+      },
+      "connect" : { "id" : "f13", "to" : "f39" }
+    }, {
+      "id" : "S10",
+      "type" : "EmbeddedProcess",
+      "name" : "Save Language",
+      "elements" : [ {
+          "id" : "S10-f18",
+          "type" : "SubProcessCall",
+          "name" : "LanguageService",
+          "config" : {
+            "processCall" : "Ivy Data Processes/LanguageService:saveUserLanguage(ch.ivy.addon.portalkit.ivydata.bo.IvyLanguage)",
+            "call" : {
+              "params" : [
+                { "name" : "language", "type" : "ch.ivy.addon.portalkit.ivydata.bo.IvyLanguage" }
+              ],
+              "map" : {
+                "param.language" : "in.language"
+              }
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 192, "y" : 160 }
+          },
+          "connect" : { "id" : "S10-f31", "to" : "S10-f20" }
+        }, {
+          "id" : "S10-f20",
+          "type" : "Script",
+          "name" : "Set locale",
+          "config" : {
+            "output" : {
+              "code" : [
+                "import ch.ivy.addon.portalkit.util.UserUtils;",
+                "",
+                "UserUtils.setLanguague();"
+              ]
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 344, "y" : 160 }
+          },
+          "connect" : { "id" : "S10-f1", "to" : "S10-g1" }
+        }, {
+          "id" : "S10-g0",
+          "type" : "EmbeddedStart",
+          "name" : "in 1",
+          "visual" : {
+            "at" : { "x" : 64, "y" : 160 },
+            "labelOffset" : { "x" : 0, "y" : 5 }
+          },
+          "parentConnector" : "f35",
+          "connect" : { "id" : "S10-f0", "to" : "S10-f18" }
+        }, {
+          "id" : "S10-g1",
+          "type" : "EmbeddedEnd",
+          "name" : "out 1",
+          "visual" : {
+            "at" : { "x" : 480, "y" : 160 },
+            "labelOffset" : { "x" : 0, "y" : 5 }
+          },
+          "parentConnector" : "f36"
+        } ],
+      "visual" : {
+        "at" : { "x" : 216, "y" : 280 }
+      },
+      "connect" : { "id" : "f36", "to" : "f45" }
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 }
+      }
+    }, {
+      "id" : "f8",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 1112, "y" : 144 }
+      }
+    }, {
+      "id" : "f12",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "initSettings()",
+      "config" : {
+        "callSignature" : "initSettings",
+        "guid" : "17255599F044D2FD"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 144 },
+        "labelOffset" : { "x" : -22, "y" : 17 }
+      },
+      "connect" : { "id" : "f7", "to" : "S30" }
+    }, {
+      "id" : "f19",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "save()",
+      "config" : {
+        "callSignature" : "save",
+        "guid" : "17255B3EA938571E"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 280 },
+        "labelOffset" : { "x" : -16, "y" : 20 }
+      },
+      "connect" : { "id" : "f35", "to" : "S10" }
+    }, {
+      "id" : "f39",
+      "type" : "SubProcessCall",
+      "name" : "init EmailSetting",
+      "config" : {
+        "processCall" : "Ivy Data Processes/EmailSettingService:findEmailSetting()",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.emailSetting" : "result.ivyEmailSetting"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 360, "y" : 144 }
+      },
+      "connect" : { "id" : "f24", "to" : "S40" }
+    }, {
+      "id" : "f42",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 1288, "y" : 280 }
+      }
+    }, {
+      "id" : "f45",
+      "type" : "SubProcessCall",
+      "name" : "Save EmailSetting",
+      "config" : {
+        "processCall" : "Ivy Data Processes/EmailSettingService:saveEmailSetting(ch.ivy.addon.portalkit.ivydata.bo.IvyEmailSetting)",
+        "call" : {
+          "params" : [
+            { "name" : "emailSetting", "type" : "ch.ivy.addon.portalkit.ivydata.bo.IvyEmailSetting" }
+          ],
+          "map" : {
+            "param.emailSetting" : "in.emailSetting"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 360, "y" : 280 }
+      },
+      "connect" : { "id" : "f11", "to" : "S70" }
+    }, {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start()",
+      "config" : {
+        "callSignature" : "start",
+        "input" : {
+          "code" : [
+            "import ch.ivyteam.util.date.Weekday;",
+            "out.dailySummaryList = [Weekday.MONDAY, Weekday.TUESDAY, Weekday.WEDNESDAY, Weekday.THURSDAY, Weekday.FRIDAY, Weekday.SATURDAY, Weekday.SUNDAY];"
+          ]
+        },
+        "guid" : "172546E1FE4FCAB2"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f21",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 496, "y" : 392 }
+      }
+    }, {
+      "id" : "f16",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "backToHome()",
+      "config" : {
+        "callSignature" : "backToHome",
+        "guid" : "1742004FD7E8D572"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 392 },
+        "labelOffset" : { "x" : -25, "y" : 15 }
+      },
+      "connect" : { "id" : "f15", "to" : "f14" }
+    }, {
+      "id" : "f14",
+      "type" : "Script",
+      "name" : "Back to Home",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.publicapi.PortalNavigatorAPI;",
+            "",
+            "PortalNavigatorAPI.navigateToPortalHome();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 272, "y" : 392 }
+      },
+      "connect" : { "id" : "f22", "to" : "f21" }
+    }, {
+      "id" : "f6",
+      "type" : "Script",
+      "name" : "Back to Home",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.publicapi.PortalNavigatorAPI;",
+            "",
+            "PortalNavigatorAPI.navigateToPortalHome();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1160, "y" : 280 }
+      },
+      "connect" : { "id" : "f3", "to" : "f42" }
+    }, {
+      "id" : "S00",
+      "type" : "EmbeddedProcess",
+      "name" : "Save Process Setting",
+      "elements" : [ {
+          "id" : "S00-g0",
+          "type" : "EmbeddedStart",
+          "visual" : {
+            "at" : { "x" : 0, "y" : 256 }
+          },
+          "parentConnector" : "f9",
+          "connect" : { "id" : "S00-f2", "to" : "S00-f1" }
+        }, {
+          "id" : "S00-g1",
+          "type" : "EmbeddedEnd",
+          "visual" : {
+            "at" : { "x" : 576, "y" : 256 }
+          },
+          "parentConnector" : "f17"
+        }, {
+          "id" : "S00-f1",
+          "type" : "Script",
+          "name" : "Save Process Setting",
+          "config" : {
+            "output" : {
+              "code" : [
+                "import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;",
+                "UserSettingService.newInstance().saveProcessModeSetting(in.selectedProcessMode);"
+              ]
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 288, "y" : 256 },
+            "size" : { "width" : 128, "height" : 44 }
+          },
+          "connect" : { "id" : "S00-f0", "to" : "S00-g1" }
+        } ],
+      "visual" : {
+        "at" : { "x" : 984, "y" : 280 },
+        "size" : { "width" : 128, "height" : 44 }
+      },
+      "connect" : { "id" : "f17", "to" : "f6" }
+    } ]
+}
