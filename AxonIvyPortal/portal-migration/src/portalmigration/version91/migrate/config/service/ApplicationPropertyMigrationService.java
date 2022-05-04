@@ -43,7 +43,7 @@ public class ApplicationPropertyMigrationService {
     
     List<IApplication> ivyApps = new ArrayList<>();
     if (configuredApps.isEmpty()) {
-      ivyApps.add(Ivy.wf().getApplication());
+      ivyApps.add(IApplication.current());
     } else {
       for (Application item : configuredApps) {
         IApplication foundApp = ServerFactory.getServer().getApplicationConfigurationManager().findApplication(item.getName());

@@ -102,7 +102,7 @@ public class ServiceUtilities {
 
   public static IUser findUser(String username) {
     return IvyExecutor.executeAsSystem(() -> {
-      return findUser(username, Ivy.wf().getApplication());
+      return findUser(username, IApplication.current());
     });
   }
 
@@ -127,7 +127,7 @@ public class ServiceUtilities {
   }
 
   public static SecurityMemberDTO findSecurityMemberByName(String securityMemberName) {
-    IApplication app = Ivy.wf().getApplication();
+    IApplication app = IApplication.current();
     SecurityMemberDTO member = null;
     if (securityMemberName.startsWith("#")) {
       member = findSecurityUserByName(securityMemberName.replace("#", ""), app);
