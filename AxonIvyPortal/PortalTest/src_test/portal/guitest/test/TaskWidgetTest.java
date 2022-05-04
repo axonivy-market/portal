@@ -56,7 +56,6 @@ public class TaskWidgetTest extends BaseTest {
     String caseName = casePage.getCaseName();
     assertTrue(relatedCaseName.contains(caseName));
   }
-  
 
   @SuppressWarnings("deprecation")
   @Test
@@ -72,9 +71,7 @@ public class TaskWidgetTest extends BaseTest {
     taskWidgetPage.waitAjaxIndicatorDisappear();
     assertEquals(TaskState.SUSPENDED, taskWidgetPage.getTaskState(0));
   }
-  
-  //////////////////////////
-  
+
   @Test
   public void testStartButtonStatus() {
     login(TestAccount.ADMIN_USER);
@@ -139,7 +136,7 @@ public class TaskWidgetTest extends BaseTest {
   
   @Test
   public void testDisableTaskCount() {
-//    updatePortalSetting(DISABLE_TASK_COUNT_SETTING, "true");
+    updatePortalSetting(DISABLE_TASK_COUNT_SETTING, "true");
     login(TestAccount.ADMIN_USER);
     HomePage homePage = new HomePage();
 
