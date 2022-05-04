@@ -9,6 +9,7 @@ import java.net.UnknownHostException;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
+import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.persistence.PersistencyException;
 
@@ -30,7 +31,7 @@ public class ServerInformationBean implements Serializable {
 
   public String getEnvironment() {
     try {
-      String activeEnvironment = Ivy.wf().getApplication().getActiveEnvironment();
+      String activeEnvironment = IApplication.current().getActiveEnvironment();
       if (isNotEmpty(activeEnvironment)) {
         return activeEnvironment;
       }
