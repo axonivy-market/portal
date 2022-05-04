@@ -1,5 +1,5 @@
 [Ivy]
-164211E97C598DAA 9.4.6 #module
+164211E97C598DAA 9.4.8 #module
 >Proto >Proto Collection #zClass
 Pt0 ExamplePortalStart Big #zClass
 Pt0 B #cInfo
@@ -88,14 +88,12 @@ Pt0 @Alternative f165 '' #zField
 Pt0 @UserDialog f237 '' #zField
 Pt0 @EndTask f133 '' #zField
 Pt0 @StartRequest f215 '' #zField
-Pt0 @GridStep f137 '' #zField
 Pt0 @StartRequest f106 '' #zField
 Pt0 @UserDialog f101 '' #zField
 Pt0 @EndTask f100 '' #zField
 Pt0 @UserDialog f44 '' #zField
 Pt0 @StartRequest f39 '' #zField
 Pt0 @GridStep f118 '' #zField
-Pt0 @GridStep f37 '' #zField
 Pt0 @GridStep f152 '' #zField
 Pt0 @UserDialog f142 '' #zField
 Pt0 @StartRequest f73 '' #zField
@@ -164,7 +162,6 @@ Pt0 @GridStep f86 '' #zField
 Pt0 @PushWFArc f77 '' #zField
 Pt0 @PushWFArc f16 '' #zField
 Pt0 @PushWFArc f181 '' #zField
-Pt0 @PushWFArc f47 '' #zField
 Pt0 @PushWFArc f227 '' #zField
 Pt0 @PushWFArc f186 '' #zField
 Pt0 @PushWFArc f53 '' #zField
@@ -175,7 +172,6 @@ Pt0 @PushWFArc f197 '' #zField
 Pt0 @PushWFArc f136 '' #zField
 Pt0 @PushWFArc f79 '' #zField
 Pt0 @PushWFArc f176 '' #zField
-Pt0 @PushWFArc f43 '' #zField
 Pt0 @PushWFArc f17 '' #zField
 Pt0 @PushWFArc f18 '' #zField
 Pt0 @PushWFArc f135 '' #zField
@@ -207,7 +203,6 @@ Pt0 @PushWFArc f88 '' #zField
 Pt0 @PushWFArc f25 '' #zField
 Pt0 @PushWFArc f211 '' #zField
 Pt0 @PushWFArc f55 '' #zField
-Pt0 @PushWFArc f129 '' #zField
 Pt0 @PushWFArc f233 '' #zField
 Pt0 @PushWFArc f223 '' #zField
 Pt0 @PushWFArc f50 '' #zField
@@ -254,7 +249,6 @@ Pt0 @PushWFArc f141 '' #zField
 Pt0 @PushWFArc f147 '' #zField
 Pt0 @PushWFArc f175 '' #zField
 Pt0 @PushWFArc f42 '' #zField
-Pt0 @PushWFArc f8 '' #zField
 Pt0 @PushWFArc f40 '' #zField
 Pt0 @PushWFArc f104 '' #zField
 Pt0 @PushWFArc f161 '' #zField
@@ -265,12 +259,14 @@ Pt0 @PushWFArc f116 '' #zField
 Pt0 @PushWFArc f160 '' #zField
 Pt0 @PushWFArc f205 '' #zField
 Pt0 @PushWFArc f213 '' #zField
-Pt0 @PushWFArc f41 '' #zField
 Pt0 @PushWFArc f153 '' #zField
 Pt0 @PushWFArc f170 '' #zField
 Pt0 @PushWFArc f20 '' #zField
 Pt0 @PushWFArc f24 '' #zField
 Pt0 @PushWFArc f13 '' #zField
+Pt0 @PushWFArc f43 '' #zField
+Pt0 @PushWFArc f47 '' #zField
+Pt0 @PushWFArc f8 '' #zField
 >Proto Pt0 Pt0 ExamplePortalStart #zField
 Bk6 @TextInP .colors .colors #zField
 Bk6 @TextInP color color #zField
@@ -1231,30 +1227,6 @@ Pt0 f215 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Pt0 f215 @C|.responsibility Everybody #txt
 Pt0 f215 81 561 30 30 -51 19 #rect
-Pt0 f137 actionTable 'out=in;
-' #txt
-Pt0 f137 actionCode 'import ch.ivy.addon.portalkit.enums.PortalLibrary;
-import org.apache.commons.lang3.StringUtils;
-import ch.ivyteam.ivy.workflow.StandardProcessType;
-
-String library = PortalLibrary.PORTAL_TEMPLATE.getValue();
-
-String defaultEndPage = ivy.wf.getStandardProcessImplementationLibrary(StandardProcessType.DEFAULT_PAGES_PROCESS_TYPES);
-
-// if default endpage is null or is portal template but has different group ID
-if (StringUtils.isBlank(defaultEndPage) || (defaultEndPage.endsWith(PortalLibrary.PORTAL_TEMPLATE.getProjectId()) && !library.equals(defaultEndPage))) {
-	ivy.wf.setStandardProcessImplementationLibrary(StandardProcessType.DEFAULT_PAGES_PROCESS_TYPES, library);
-}' #txt
-Pt0 f137 security system #txt
-Pt0 f137 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Set default end page 
-to Portal</name>
-    </language>
-</elementInfo>
-' #txt
-Pt0 f137 280 122 144 44 -53 -16 #rect
 Pt0 f106 outLink PasswordResetPage.ivp #txt
 Pt0 f106 inParamDecl '<String token,String username> param;' #txt
 Pt0 f106 inParamTable 'out.passwordResetToken=param.token;
@@ -1339,30 +1311,6 @@ Pt0 f118 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Pt0 f118 976 906 128 44 -61 -8 #rect
-Pt0 f37 actionTable 'out=in;
-' #txt
-Pt0 f37 actionCode 'import ch.ivy.addon.portalkit.enums.PortalLibrary;
-import org.apache.commons.lang3.StringUtils;
-import ch.ivyteam.ivy.workflow.StandardProcessType;
-
-String library = PortalLibrary.PORTAL_TEMPLATE.getValue();
-
-String defaultEndPage = ivy.wf.getStandardProcessImplementationLibrary(StandardProcessType.DEFAULT_PAGES_PROCESS_TYPES);
-
-// if default endpage is null or is portal template but has different group ID
-if (StringUtils.isBlank(defaultEndPage) || (defaultEndPage.endsWith(PortalLibrary.PORTAL_TEMPLATE.getProjectId()) && !library.equals(defaultEndPage))) {
-	ivy.wf.setStandardProcessImplementationLibrary(StandardProcessType.DEFAULT_PAGES_PROCESS_TYPES, library);
-}' #txt
-Pt0 f37 security system #txt
-Pt0 f37 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Set default end page 
-to Portal</name>
-    </language>
-</elementInfo>
-' #txt
-Pt0 f37 352 842 144 44 -53 -16 #rect
 Pt0 f152 actionTable 'out=in;
 ' #txt
 Pt0 f152 actionCode 'import ch.ivyteam.ivy.workflow.INote;
@@ -1901,7 +1849,7 @@ Pt0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f6 544 842 112 44 -14 -8 #rect
+Pt0 f6 384 842 112 44 -14 -8 #rect
 Pt0 f99 outLink AbsenceManagement.ivp #txt
 Pt0 f99 inParamDecl '<> param;' #txt
 Pt0 f99 requestEnabled true #txt
@@ -2160,8 +2108,6 @@ Pt0 f86 344 1514 160 44 -75 -8 #rect
 Pt0 f77 111 1344 192 1344 #arcP
 Pt0 f16 1008 144 1056 144 #arcP
 Pt0 f181 576 2672 681 2672 #arcP
-Pt0 f47 color default #txt
-Pt0 f47 240 144 280 144 #arcP
 Pt0 f227 911 2112 988 2112 #arcP
 Pt0 f186 576 2512 681 2512 #arcP
 Pt0 f53 111 1824 192 1824 #arcP
@@ -2185,9 +2131,6 @@ Pt0 f136 304 2304 433 2304 #arcP
 Pt0 f79 color default #txt
 Pt0 f79 240 1280 296 1280 #arcP
 Pt0 f176 111 2400 192 2400 #arcP
-Pt0 f43 111 64 352 122 #arcP
-Pt0 f43 1 352 64 #addKink
-Pt0 f43 0 0.7536234472447718 0 0 #arcLabel
 Pt0 f17 408 640 473 640 #arcP
 Pt0 f18 expr in #txt
 Pt0 f18 1088 304 1128 304 #arcP
@@ -2257,7 +2200,6 @@ Pt0 f88 304 1536 344 1536 #arcP
 Pt0 f25 408 513 473 513 #arcP
 Pt0 f211 224 470 224 497 #arcP
 Pt0 f55 352 1824 433 1824 #arcP
-Pt0 f129 424 144 472 144 #arcP
 Pt0 f233 911 2208 992 2208 #arcP
 Pt0 f223 224 1238 224 1264 #arcP
 Pt0 f50 expr in #txt
@@ -2410,7 +2352,6 @@ Pt0 f147 expr out #txt
 Pt0 f147 1104 1728 1312 1728 #arcP
 Pt0 f175 368 2400 433 2400 #arcP
 Pt0 f42 111 864 192 864 #arcP
-Pt0 f8 496 864 544 864 #arcP
 Pt0 f40 1008 304 1056 304 #arcP
 Pt0 f104 111 2112 192 2112 #arcP
 Pt0 f161 expr out #txt
@@ -2450,8 +2391,6 @@ Pt0 f160 911 1920 992 1920 #arcP
 Pt0 f205 224 202 224 160 #arcP
 Pt0 f213 expr out #txt
 Pt0 f213 111 640 208 640 #arcP
-Pt0 f41 expr out #txt
-Pt0 f41 320 864 352 864 #arcP
 Pt0 f153 expr out #txt
 Pt0 f153 1424 1824 1489 1824 #arcP
 Pt0 f170 expr out #txt
@@ -2464,6 +2403,11 @@ Pt0 f24 240 513 296 513 #arcP
 Pt0 f13 111 384 488 320 #arcP
 Pt0 f13 1 488 384 #addKink
 Pt0 f13 0 0.7758746574460319 0 0 #arcLabel
+Pt0 f43 240 144 472 144 #arcP
+Pt0 f47 111 64 488 128 #arcP
+Pt0 f47 1 488 64 #addKink
+Pt0 f47 0 0.6035672307976373 0 0 #arcLabel
+Pt0 f8 320 864 384 864 #arcP
 >Proto Pt0 .colors 'default=;
 ' #txt
 >Proto Pt0 .type ch.ivy.addon.portal.generic.PortalStartData #txt
@@ -3134,8 +3078,6 @@ Pt0 f70 mainOut f33 tail #connect
 Pt0 f33 head f32 mainIn #connect
 Pt0 f32 mainOut f35 tail #connect
 Pt0 f35 head f34 mainIn #connect
-Pt0 f51 mainOut f41 tail #connect
-Pt0 f41 head f37 mainIn #connect
 Pt0 f39 mainOut f42 tail #connect
 Pt0 f42 head f51 mainIn #connect
 Pt0 f19 head f5 in #connect
@@ -3164,8 +3106,6 @@ Pt0 f46 head f45 mainIn #connect
 Pt0 f38 mainOut f93 tail #connect
 Pt0 f93 head f44 mainIn #connect
 Pt0 f0 out f92 tail #connect
-Pt0 f37 mainOut f8 tail #connect
-Pt0 f8 head f6 mainIn #connect
 Pt0 f30 head f22 in #connect
 Pt0 f22 out f50 tail #connect
 Pt0 f50 head f9 mainIn #connect
@@ -3225,12 +3165,8 @@ Pt0 f136 head f133 mainIn #connect
 Pt0 f140 head f139 mainIn #connect
 Pt0 f21 out f49 tail #connect
 Pt0 f21 out f140 tail #connect
-Pt0 f120 mainOut f43 tail #connect
-Pt0 f43 head f137 mainIn #connect
 Pt0 f139 mainOut f23 tail #connect
 Pt0 f23 head f22 in #connect
-Pt0 f137 mainOut f129 tail #connect
-Pt0 f129 head f21 in #connect
 Pt0 f92 head S60 g0 #connect
 Pt0 f18 head S10 g0 #connect
 Pt0 S30 g1 f25 tail #connect
@@ -3299,8 +3235,6 @@ Pt0 f200 mainOut f202 tail #connect
 Pt0 f202 head f201 mainIn #connect
 Pt0 f28 mainOut f204 tail #connect
 Pt0 f204 head f203 in #connect
-Pt0 f203 out f47 tail #connect
-Pt0 f47 head f137 mainIn #connect
 Pt0 f201 mainOut f205 tail #connect
 Pt0 f205 head f203 in #connect
 Pt0 f206 mainOut f208 tail #connect
@@ -3339,6 +3273,12 @@ Pt0 f234 mainOut f238 tail #connect
 Pt0 f238 head f237 mainIn #connect
 Pt0 f237 mainOut f236 tail #connect
 Pt0 f236 head f235 mainIn #connect
+Pt0 f203 out f43 tail #connect
+Pt0 f43 head f21 in #connect
+Pt0 f120 mainOut f47 tail #connect
+Pt0 f47 head f21 in #connect
+Pt0 f51 mainOut f8 tail #connect
+Pt0 f8 head f6 mainIn #connect
 Bk6 f17 mainOut f26 tail #connect
 Bk6 f26 head f23 mainIn #connect
 Bk6 f19 mainOut f39 tail #connect
