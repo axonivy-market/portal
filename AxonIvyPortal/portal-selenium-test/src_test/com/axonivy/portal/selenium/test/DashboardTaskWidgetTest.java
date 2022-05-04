@@ -3,7 +3,7 @@ package com.axonivy.portal.selenium.test;
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
-
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.BeforeEach;
@@ -50,6 +50,13 @@ public class DashboardTaskWidgetTest extends BaseTest {
   private static final String NEW_YOUR_TASK = "New Your Tasks";
   private static final String SUSPENDED = "Suspended";
   private static final String EXPIRE_TODAY = "Expire today";
+  private static final String TASK_NAME = "Task name";
+  private static final String MATERNITY_LEAVE_REQUEST = "Maternity Leave Request";
+  private static final String ANNUAL_LEAVE_REQUEST = "Annual Leave Request";
+  private static final String CATEGORIED_LEAVE_REQUEST = "Categoried Leave Request";
+  private static final String TASK_ID = "Task Id";
+  private static final String EXPIRY = "Expiry";
+  
   
   private NewDashboardPage newDashboardPage;
   
@@ -210,39 +217,33 @@ public class DashboardTaskWidgetTest extends BaseTest {
     redirectToRelativeLink(createTestingTasksUrl);
     login(TestAccount.ADMIN_USER);
     
+    TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
+    taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
     
-    
-    // Sort task on Dashboard
-    /*taskWidgetPage.openCompactSortMenu();
-    taskWidgetPage.selectCompactSortByName("Expiry (Newest first)", 0, "Maternity Leave Request");
-    // Navigate around Portal
-    CaseWidgetPage caseWidgetPage = taskWidgetPage.openCaseList();
-    // Check result at full Task List
-    taskWidgetPage = caseWidgetPage.openTaskList();
-    String selectedSortColumn = taskWidgetPage.getSelectedSortColumn();
-    assertTrue(StringUtils.equalsIgnoreCase("Expiry", selectedSortColumn));
-    String taskName = taskWidgetPage.getTaskListCustomCellValue(0, "task-name");
-    assertTrue(StringUtils.equalsIgnoreCase("Maternity Leave Request", taskName));
-    // Change to another column - which is not include at compact task list
-    taskWidgetPage.sortTaskListByColumn("Name / Description", 0, "task-name", "Annual Leave Request");
-    // Back to Dashboard - compact task list will sort by default column
-    taskWidgetPage.clickOnLogo();
-    // Create new task
-    createTestingTasks();
-    homePage = new HomePage();
-    taskWidgetPage = homePage.getTaskWidget();
-    selectedSortColumn = taskWidgetPage.getSelectedCompactSortLable();
-    assertTrue(StringUtils.equalsIgnoreCase("Creation date (Newest first)", selectedSortColumn));
-    // Change User sort selection
-    UserProfilePage userProfilePage = taskWidgetPage.openMyProfilePage();
-    userProfilePage.selectTaskSortField("Priority");
-    userProfilePage.selectTaskSortDirection("Sort ascending");
-    homePage = userProfilePage.save();
-    // Check result
-    taskWidgetPage = homePage.openTaskList();
-    selectedSortColumn = taskWidgetPage.getSelectedSortColumn();
-    assertTrue(StringUtils.equalsIgnoreCase("Prio", selectedSortColumn));
-    assertEquals("high", taskWidgetPage.getPriorityOfTask(0));*/
+    // Verify default task should be sorted by  Created descending
+    taskWidget.getTaskWidgetHeaderSorted().shouldHave(text("Created"));
+    String sortType = taskWidget.getTaskWidgetHeaderSorted().getAttribute("aria-sort");
+    assertEquals(sortType, "descending");
+    taskWidget.getTheFirstTaskWidgetByColumn(TASK_NAME).shouldHave(text(MATERNITY_LEAVE_REQUEST));
+    // Sort by task name
+    taskWidget.clickOnHeaderTaskByColumn(TASK_NAME);
+    taskWidget.getTaskWidgetHeaderSorted().shouldHave(text(TASK_NAME));
+    sortType = taskWidget.getTaskWidgetHeaderSorted().getAttribute("aria-sort");
+    assertEquals(sortType, "ascending");
+    taskWidget.getTheFirstTaskWidgetByColumn(TASK_NAME).shouldHave(text(ANNUAL_LEAVE_REQUEST));
+    // Sort by task id
+    taskWidget.clickOnHeaderTaskByColumn(TASK_ID);
+    taskWidget.clickOnHeaderTaskByColumn(TASK_ID);
+    taskWidget.getTaskWidgetHeaderSorted().shouldHave(text(TASK_ID));
+    sortType = taskWidget.getTaskWidgetHeaderSorted().getAttribute("aria-sort");
+    assertEquals(sortType, "descending");
+    taskWidget.getTheFirstTaskWidgetByColumn(TASK_NAME).shouldHave(text(MATERNITY_LEAVE_REQUEST));
+    // Sort by task expiry
+    taskWidget.clickOnHeaderTaskByColumn(EXPIRY);
+    taskWidget.getTaskWidgetHeaderSorted().shouldHave(text(EXPIRY));
+    sortType = taskWidget.getTaskWidgetHeaderSorted().getAttribute("aria-sort");
+    assertEquals(sortType, "ascending");
+    taskWidget.getTheFirstTaskWidgetByColumn(TASK_NAME).shouldHave(text(CATEGORIED_LEAVE_REQUEST));
   }
   
 }
