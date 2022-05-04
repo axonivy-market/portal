@@ -11,7 +11,7 @@ import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.service.StatisticService;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
-public class StatisticChartDrilldownUtil {
+public class StatisticChartDrilldownUtils {
   public static final String CLIENT_ID = "clientId";
   public static final String DRILLDOWN_TASK_PRIORITY_METHOD = "#{logic.drilldownTaskByPriority}";
   public static final String DRILLDOWN_CASE_STATE_METHOD = "#{logic.drilldownCaseByState}";
