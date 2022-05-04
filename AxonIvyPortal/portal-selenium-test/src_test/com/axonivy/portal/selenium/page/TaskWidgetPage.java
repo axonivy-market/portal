@@ -71,21 +71,25 @@ public class TaskWidgetPage extends TemplatePage {
     getFilterTasksByKeyword().waitUntil(appear, DEFAULT_TIMEOUT).clear();
     getFilterTasksByKeyword().click();
     getFilterTasksByKeyword().sendKeys(keyword);
+    getFilterTasksByKeyword().hover();
+    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
   }
   
   public void clickOnTaskActionLink(int taskIndex) {
     $(String.format("a[id$='task-list-scroller:%d:task-item:task-action:additional-options:task-side-steps-menu'",
         taskIndex)).waitUntil(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    $(String.format("div[id$='task-list-scroller:%d:task-item:task-action:additional-options:side-steps-panel'",
+        taskIndex)).waitUntil(appear, DEFAULT_TIMEOUT);
   }
   
   private void openTriggerEscalationDialog() {
-    $("a[id$='\\:task-trigger-escalation-command']").waitUntil(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
-    $("div[id$='\\:escalation-task-confirmation-dialog']").waitUntil(Condition.appear, DEFAULT_TIMEOUT);
+    $("a[id$='task-trigger-escalation-command']").waitUntil(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    $("div[id$='escalation-task-confirmation-dialog']").waitUntil(Condition.appear, DEFAULT_TIMEOUT);
   }
   
   public void triggerEscalation() {
     openTriggerEscalationDialog();
-    $("button[id$='\\:confirm-escalation']").waitUntil(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    $("button[id$='confirm-escalation']").waitUntil(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
   }
   
   public SelenideElement getTaskState(int taskRowIndex) {

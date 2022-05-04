@@ -1,0 +1,46 @@
+{
+  "format" : "9.4.8",
+  "id" : "176A77E608A844A8",
+  "data" : "internaltest.Data",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "start.ivp",
+      "config" : {
+        "callSignature" : "start",
+        "outLink" : "start.ivp",
+        "startName" : "Restore Portal Dashboard to default"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 },
+        "labelOffset" : { "x" : -20, "y" : 17 }
+      },
+      "connect" : { "id" : "f4", "to" : "f3" }
+    }, {
+      "id" : "f1",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "Script",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.application.property.ICustomProperty;",
+            "",
+            "List<ICustomProperty> properties = ivy.wf.getApplication().customProperties().findAllStartingWith(\"dashboard.widgets\");",
+            "for (ICustomProperty property : properties) {",
+            "  ivy.wf.getApplication().customProperties().delete(property.getName());",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    } ]
+}

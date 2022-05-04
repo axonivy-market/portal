@@ -1,0 +1,98 @@
+{
+  "format" : "9.4.8",
+  "id" : "16854B53D2D387A2",
+  "data" : "_com.axonivy.portal.developerexamples.BuildTaskQueryOverrideData",
+  "kind" : "CALLABLE_SUB",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "CallSubStart",
+      "name" : "buildTaskQuery()",
+      "config" : {
+        "callSignature" : "buildTaskQuery",
+        "result" : {
+          "params" : [
+            { "name" : "taskQuery", "type" : "ch.ivyteam.ivy.workflow.query.TaskQuery" }
+          ],
+          "map" : {
+            "result.taskQuery" : "in.#taskQuery"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 92, "y" : 64 }
+      },
+      "connect" : { "id" : "f3", "to" : "f2" }
+    }, {
+      "id" : "f1",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 484, "y" : 64 }
+      }
+    }, {
+      "id" : "f5",
+      "type" : "ProcessAnnotation",
+      "name" : [
+        "HINT: build your task query",
+        "",
+        "out.taskQuery = TaskQuery.create().where().customField().stringField(\"CustomVarCharField5\").isLike(\"%HELLO WORLD%\");",
+        "",
+        "If you want to differentiate the customization in home page from customization in other places like task list, ",
+        "just check  the attribute isQueryForHomePage",
+        "",
+        "if (in.isQueryForHomePage) { // in home page",
+        "\tin.taskQuery = TaskQuery.create().where().activatorName().isLike(\"#\");",
+        "}"
+      ],
+      "visual" : {
+        "at" : { "x" : 548, "y" : 226 },
+        "size" : { "width" : 688, "height" : 172 }
+      },
+      "connect" : { "id" : "f6", "to" : "f2" }
+    }, {
+      "id" : "f2",
+      "type" : "Script",
+      "name" : "Build task query",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.workflow.query.TaskQuery;",
+            "",
+            "if (in.isQueryForHomePage) { // in home page",
+            "  in.taskQuery = TaskQuery.create().where().activatorName().isLike(\"#%\");",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 288, "y" : 64 }
+      },
+      "connect" : { "id" : "f4", "to" : "f1" }
+    }, {
+      "id" : "f7",
+      "type" : "CallSubStart",
+      "name" : "buildTaskQuery(Boolean)",
+      "config" : {
+        "callSignature" : "buildTaskQuery",
+        "input" : {
+          "params" : [
+            { "name" : "isQueryForHomePage", "type" : "Boolean" }
+          ],
+          "map" : {
+            "out.isQueryForHomePage" : "param.isQueryForHomePage"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "taskQuery", "type" : "ch.ivyteam.ivy.workflow.query.TaskQuery" }
+          ],
+          "map" : {
+            "result.taskQuery" : "in.#taskQuery"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 160 }
+      },
+      "connect" : { "id" : "f8", "to" : "f2" }
+    } ]
+}

@@ -1,0 +1,87 @@
+{
+  "format" : "9.4.8",
+  "id" : "176CBADCB53CCEEA",
+  "data" : "com.axonivy.portal.developerexamples.showcase.NavigateBackTaskPage.NavigateBackTaskPageData",
+  "kind" : "HTML_DIALOG",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start()",
+      "config" : {
+        "callSignature" : "start",
+        "guid" : "16583DC1AEFC0C09"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "HtmlDialogEventStart",
+      "name" : "back",
+      "config" : {
+        "guid" : "16583DC1B11CF51A"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 200 },
+        "labelOffset" : { "x" : -15, "y" : 12 }
+      },
+      "connect" : { "id" : "f10", "to" : "f9" }
+    }, {
+      "id" : "f6",
+      "type" : "HtmlDialogEventStart",
+      "name" : "finish",
+      "config" : {
+        "guid" : "16583E3EA1B37F47"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 128 },
+        "labelOffset" : { "x" : -19, "y" : 17 }
+      },
+      "connect" : { "id" : "f8", "to" : "f7" }
+    }, {
+      "id" : "f7",
+      "type" : "HtmlDialogExit",
+      "visual" : {
+        "at" : { "x" : 224, "y" : 128 }
+      }
+    }, {
+      "id" : "f4",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 200 }
+      }
+    }, {
+      "id" : "f9",
+      "type" : "Script",
+      "name" : "Navigate back",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.publicapi.PortalNavigatorAPI;",
+            "",
+            "PortalNavigatorAPI.navigateToPortalEndPage();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 232, "y" : 200 }
+      },
+      "connect" : { "id" : "f5", "to" : "f4" }
+    }, {
+      "id" : "f11",
+      "type" : "ProcessAnnotation",
+      "name" : "Call the method navigateToPortalEndPage of PortalNavigatorAPI to navigate back to the previous task list.",
+      "visual" : {
+        "at" : { "x" : 448, "y" : 280 },
+        "size" : { "width" : 592, "height" : 30 }
+      },
+      "connect" : { "id" : "f12", "to" : "f9" }
+    } ]
+}

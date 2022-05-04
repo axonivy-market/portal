@@ -1,0 +1,60 @@
+{
+  "format" : "9.4.8",
+  "id" : "16B40A95DA8F858E",
+  "data" : "com.axonivy.portal.developerexamples.DataProviderForPortalExpressData",
+  "kind" : "CALLABLE_SUB",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "CallSubStart",
+      "name" : "portalExpressDataProvider()",
+      "config" : {
+        "callSignature" : "portalExpressDataProvider",
+        "result" : {
+          "params" : [
+            { "name" : "data", "type" : "List<String>" }
+          ],
+          "map" : {
+            "result.data" : "in.items"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 },
+        "labelOffset" : { "x" : 24, "y" : -1 }
+      },
+      "connect" : { "id" : "f4", "to" : "f3" }
+    }, {
+      "id" : "f1",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 96, "y" : 288 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "Script",
+      "name" : "Load data",
+      "config" : {
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.items" : "java.util.Arrays.asList(\"BMW\", \"Harley Davidson\", \"Honda\", \"Agusta\", \"Triumph\")"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 184 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f5",
+      "type" : "ProcessAnnotation",
+      "name" : [
+        "This process provide the data for portal express.",
+        "The callable subprocess has signature \"portalExpressDataProvider\" and return the list of String."
+      ],
+      "visual" : {
+        "at" : { "x" : 472, "y" : 192 },
+        "size" : { "width" : 528, "height" : 44 }
+      }
+    } ]
+}

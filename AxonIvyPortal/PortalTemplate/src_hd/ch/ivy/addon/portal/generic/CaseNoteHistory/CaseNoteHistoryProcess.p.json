@@ -1,0 +1,58 @@
+{
+  "format" : "9.4.8",
+  "id" : "160347990F681701",
+  "data" : "ch.ivy.addon.portal.generic.CaseNoteHistory.CaseNoteHistoryData",
+  "kind" : "HTML_DIALOG",
+  "elements" : [ {
+      "id" : "f6",
+      "type" : "HtmlDialogStart",
+      "name" : "start(List<History>,String,ICase)",
+      "config" : {
+        "callSignature" : "start",
+        "input" : {
+          "params" : [
+            { "name" : "histories", "type" : "java.util.List<ch.ivy.addon.portalkit.bo.History>" },
+            { "name" : "exportedFileName", "type" : "String" },
+            { "name" : "ivyCase", "type" : "ch.ivyteam.ivy.workflow.ICase" }
+          ],
+          "map" : {
+            "out.exportedFileName" : "param.exportedFileName",
+            "out.filteredHistories" : "param.histories",
+            "out.histories" : "param.histories",
+            "out.ivyCase" : "param.ivyCase"
+          }
+        },
+        "guid" : "163D96CAE1553778"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 96 }
+      },
+      "connect" : { "id" : "f1", "to" : "f0" }
+    }, {
+      "id" : "f7",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 96 }
+      }
+    }, {
+      "id" : "f0",
+      "type" : "Script",
+      "name" : "Read Portal settings",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.enums.GlobalVariable;",
+            "import ch.ivy.addon.portalkit.service.GlobalSettingService;",
+            "GlobalSettingService service = new GlobalSettingService();",
+            "in.showRelatedCaseInfo = in.ivyCase.isBusinessCase() && !service.findGlobalSettingValueAsBoolean(GlobalVariable.HIDE_RELATED_CASE_INFO_FROM_HISTORY);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 96 },
+        "size" : { "width" : 128, "height" : 44 }
+      },
+      "connect" : { "id" : "f2", "to" : "f7" }
+    } ]
+}

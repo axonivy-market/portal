@@ -1,0 +1,63 @@
+{
+  "format" : "9.4.8",
+  "id" : "1657EA461CE412A1",
+  "data" : "_com.axonivy.portal.developerexamples.LogoutPageOverrideData",
+  "kind" : "CALLABLE_SUB",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "CallSubStart",
+      "name" : "getLogoutPage()",
+      "config" : {
+        "callSignature" : "getLogoutPage",
+        "result" : {
+          "params" : [
+            { "name" : "logoutPage", "type" : "String" }
+          ],
+          "map" : {
+            "result.logoutPage" : "in.logoutPage"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : { "id" : "f6", "to" : "f5" }
+    }, {
+      "id" : "f1",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "ProcessAnnotation",
+      "name" : [
+        "This process overrides the LogoutPage process of Portal Template. It set the in.logoutPage to the url of application home apge.",
+        "So whenever user logout of Portal, he will be redirected to the application home page."
+      ],
+      "visual" : {
+        "at" : { "x" : 824, "y" : 56 },
+        "size" : { "width" : 704, "height" : 44 }
+      }
+    }, {
+      "id" : "f5",
+      "type" : "Script",
+      "name" : "Set logout page",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import javax.servlet.http.HttpServletRequest;",
+            "import ch.ivyteam.ivy.request.IRequest;",
+            "import ch.ivy.addon.portalkit.util.RequestUtil;",
+            "import javax.faces.context.FacesContext;",
+            "",
+            "in.logoutPage = ivy.html.applicationHomeRef();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    } ]
+}

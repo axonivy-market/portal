@@ -1,0 +1,150 @@
+{
+  "format" : "9.4.8",
+  "id" : "17AF165647CC8A09",
+  "data" : "portal.migration.MigrationData.MigrationDataData",
+  "kind" : "HTML_DIALOG",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start()",
+      "config" : {
+        "callSignature" : "start",
+        "input" : {
+          "map" : {
+            "out.mustMigrateData" : "true"
+          }
+        },
+        "guid" : "175F959BFAA127EB"
+      },
+      "visual" : {
+        "at" : { "x" : 88, "y" : 64 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "HtmlDialogEventStart",
+      "name" : "close",
+      "config" : {
+        "guid" : "175F959BFB013917"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 480 }
+      },
+      "connect" : { "id" : "f5", "to" : "f4" }
+    }, {
+      "id" : "f4",
+      "type" : "HtmlDialogExit",
+      "visual" : {
+        "at" : { "x" : 224, "y" : 480 }
+      }
+    }, {
+      "id" : "f15",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "proceed()",
+      "config" : {
+        "callSignature" : "proceed",
+        "guid" : "17AF169359777882"
+      },
+      "visual" : {
+        "at" : { "x" : 88, "y" : 176 },
+        "labelOffset" : { "x" : -25, "y" : 15 }
+      },
+      "connect" : { "id" : "f20", "to" : "f18" }
+    }, {
+      "id" : "f17",
+      "type" : "Script",
+      "name" : "Update message",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import javax.faces.context.FacesContext;",
+            "import javax.faces.application.FacesMessage;",
+            "import org.primefaces.component.message.Message;",
+            "",
+            "FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, null, \"The migration was done successfully\");",
+            "FacesContext.getCurrentInstance().addMessage(null, message);",
+            "",
+            "in.mustMigrateData = false;"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 472, "y" : 176 }
+      },
+      "connect" : { "id" : "f22", "to" : "f19" }
+    }, {
+      "id" : "f18",
+      "type" : "Script",
+      "name" : "Migrate data",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import portalmigration.service.PortalMigrationService;",
+            "",
+            "List<String> result = PortalMigrationService.migrate();",
+            "in.hasError = result.isEmpty() ? false : true;",
+            "in.errors = result;"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 216, "y" : 176 }
+      },
+      "connect" : { "id" : "f7", "to" : "f6" }
+    }, {
+      "id" : "f19",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 600, "y" : 176 }
+      }
+    }, {
+      "id" : "f6",
+      "type" : "Alternative",
+      "visual" : {
+        "at" : { "x" : 344, "y" : 176 }
+      },
+      "connect" : [
+        { "id" : "f8", "to" : "f17", "condition" : "!in.hasError" },
+        { "id" : "f12", "to" : "f11" }
+      ]
+    }, {
+      "id" : "f9",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 344, "y" : 368 }
+      }
+    }, {
+      "id" : "f11",
+      "type" : "Script",
+      "name" : "print log",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import javax.faces.context.FacesContext;",
+            "import javax.faces.application.FacesMessage;",
+            "import org.primefaces.component.message.Message;",
+            "",
+            "StringBuilder string = new StringBuilder();",
+            "for (String error : in.errors) {",
+            "  string.append(error);",
+            "  string.append(\"/n\");",
+            "}",
+            "",
+            "FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, \"The migration failed\", string.toString());",
+            "FacesContext.getCurrentInstance().addMessage(null, message);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 344, "y" : 272 }
+      },
+      "connect" : { "id" : "f10", "to" : "f9" }
+    } ]
+}
