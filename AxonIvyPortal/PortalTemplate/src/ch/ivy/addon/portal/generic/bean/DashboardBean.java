@@ -106,7 +106,7 @@ public class DashboardBean implements Serializable {
         continue;
       }
       Dashboard currentDashboard = idToDashboard.remove(dashboardOrder.getDashboardId());
-      if (dashboardOrder.isVisible()) {
+      if (dashboardOrder.isVisible() && currentDashboard != null) {
         collectedDashboards.add(currentDashboard);
       }
     }
