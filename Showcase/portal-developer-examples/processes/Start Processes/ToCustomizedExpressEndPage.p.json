@@ -1,0 +1,47 @@
+{
+  "format" : "9.4.8",
+  "id" : "165A2A9C745EDB5F",
+  "data" : "com.axonivy.portal.developerexamples.HandleEndPageData",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "start.ivp",
+      "config" : {
+        "callSignature" : "start",
+        "case" : {
+          "customFields" : [
+            { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
+          ]
+        },
+        "task" : {
+          "customFields" : [
+            { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
+          ]
+        },
+        "showInStartList" : false,
+        "outLink" : "start.ivp"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : { "id" : "f4", "to" : "f3" }
+    }, {
+      "id" : "f1",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 336, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "DialogCall",
+      "name" : "express endpage",
+      "config" : {
+        "dialogId" : "com.axonivy.portal.developerexamples.customization.CustomizedExpressEndPage",
+        "startMethod" : "start()"
+      },
+      "visual" : {
+        "at" : { "x" : 216, "y" : 64 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    } ]
+}

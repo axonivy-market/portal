@@ -1,0 +1,92 @@
+{
+  "format" : "9.4.8",
+  "id" : "17208192E0AF4185",
+  "data" : "portalKit_test.PortalSettingHelperData",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "updatePortalSetting.ivp",
+      "config" : {
+        "callSignature" : "updatePortalSetting",
+        "input" : {
+          "params" : [
+            { "name" : "settingName", "type" : "String" },
+            { "name" : "settingValue", "type" : "String" }
+          ],
+          "map" : {
+            "out.settingName" : "param.settingName",
+            "out.settingValue" : "param.settingValue"
+          }
+        },
+        "outLink" : "updatePortalSetting.ivp"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 },
+        "labelOffset" : { "x" : -66, "y" : 23 }
+      },
+      "connect" : { "id" : "f4", "to" : "f3" }
+    }, {
+      "id" : "f1",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 536, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "Script",
+      "name" : "Update Portal Setting",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.enums.GlobalVariable;",
+            "import ch.ivy.addon.portalkit.configuration.GlobalSetting;",
+            "import ch.ivy.addon.portalkit.service.GlobalSettingService;",
+            "",
+            "GlobalSettingService globalSettingService = new GlobalSettingService();",
+            "GlobalSetting globalSetting = globalSettingService.findGlobalSettingByGlobalVariable(GlobalVariable.valueOfKey(in.settingName));",
+            "globalSetting.setValue(in.settingValue);",
+            "globalSettingService.save(globalSetting);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 },
+        "size" : { "width" : 128, "height" : 44 }
+      },
+      "connect" : { "id" : "f12", "to" : "f1" }
+    }, {
+      "id" : "f7",
+      "type" : "RequestStart",
+      "name" : "cleanSessionCache.ivp",
+      "config" : {
+        "callSignature" : "cleanSessionCache",
+        "outLink" : "cleanSessionCache.ivp"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 192 },
+        "labelOffset" : { "x" : -56, "y" : 19 }
+      },
+      "connect" : { "id" : "f11", "to" : "f10" }
+    }, {
+      "id" : "f8",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 480, "y" : 192 }
+      }
+    }, {
+      "id" : "f10",
+      "type" : "Script",
+      "name" : "Clean session cache",
+      "config" : {
+        "output" : {
+          "code" : "ivy.datacache.getSessionCache().invalidate();"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 192 },
+        "size" : { "width" : 128, "height" : 44 }
+      },
+      "connect" : { "id" : "f9", "to" : "f8" }
+    } ]
+}

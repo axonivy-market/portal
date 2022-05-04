@@ -1,0 +1,37 @@
+{
+  "format" : "9.4.8",
+  "id" : "1600BDF7CC0AE52F",
+  "data" : "ch.ivy.addon.express.generic.HandleEndPageData",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "start.ivp",
+      "config" : {
+        "callSignature" : "start",
+        "showInStartList" : false,
+        "outLink" : "start.ivp"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : { "id" : "f4", "to" : "f3" }
+    }, {
+      "id" : "f1",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "DialogCall",
+      "name" : "express endpage",
+      "config" : {
+        "dialogId" : "ch.ivy.addon.express.generic.EndPage",
+        "startMethod" : "start()"
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    } ]
+}

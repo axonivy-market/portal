@@ -1,0 +1,62 @@
+{
+  "format" : "9.4.8",
+  "id" : "16150F8167BC0EF5",
+  "data" : "internalPortal.TestStatisticWidgetPage.TestStatisticWidgetPageData",
+  "kind" : "HTML_DIALOG",
+  "elements" : [ {
+      "id" : "f2",
+      "type" : "Script",
+      "name" : "get statistic charts",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.service.StatisticService;",
+            "",
+            "",
+            "StatisticService service = StatisticService.getInstance();",
+            "in.statisticChartList = service.findStatisticCharts();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 471, "y" : 66 },
+        "size" : { "width" : 36, "height" : 24 },
+        "labelOffset" : { "x" : -49, "y" : 14 }
+      },
+      "connect" : { "id" : "f9", "to" : "f1" }
+    }, {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start()",
+      "config" : {
+        "callSignature" : "start",
+        "guid" : "16150F9B6D41C56F"
+      },
+      "visual" : {
+        "at" : { "x" : 68, "y" : 66 },
+        "size" : { "width" : 22, "height" : 22 },
+        "labelOffset" : { "x" : -16, "y" : 13 }
+      },
+      "connect" : { "id" : "f4", "to" : "f8" }
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 580, "y" : 66 },
+        "size" : { "width" : 22, "height" : 22 }
+      }
+    }, {
+      "id" : "f8",
+      "type" : "SubProcessCall",
+      "name" : "BuildTaskQuery",
+      "config" : {
+        "processCall" : "Functional Processes/BuildTaskQuery:buildTaskQuery()"
+      },
+      "visual" : {
+        "at" : { "x" : 332, "y" : 66 },
+        "size" : { "width" : 36, "height" : 24 },
+        "labelOffset" : { "x" : -51, "y" : 18 }
+      },
+      "connect" : { "id" : "f3", "to" : "f2" }
+    } ]
+}

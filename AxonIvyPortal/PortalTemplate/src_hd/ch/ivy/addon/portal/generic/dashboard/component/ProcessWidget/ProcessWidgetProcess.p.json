@@ -1,0 +1,52 @@
+{
+  "format" : "9.4.8",
+  "id" : "178869359E53E7B2",
+  "data" : "ch.ivy.addon.portal.generic.dashboard.component.ProcessWidget.ProcessWidgetData",
+  "kind" : "HTML_DIALOG",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start()",
+      "config" : {
+        "callSignature" : "start",
+        "input" : {
+          "map" : {
+            "out.currentPortalPage" : "\"DASHBOARD\""
+          }
+        },
+        "guid" : "1706725B11A36A72"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : { "id" : "f4", "to" : "f3" }
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "Script",
+      "name" : [
+        "Hide/show",
+        "Information link"
+      ],
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.enums.GlobalVariable;",
+            "import ch.ivy.addon.portalkit.service.GlobalSettingService;",
+            "",
+            "in.showInformationLink = GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_PROCESS_INFORMATION);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 },
+        "size" : { "width" : 128, "height" : 44 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    } ]
+}

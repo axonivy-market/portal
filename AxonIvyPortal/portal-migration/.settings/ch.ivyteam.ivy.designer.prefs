@@ -1,5 +1,5 @@
 ch.ivyteam.ivy.designer.preferences.DataClassPreferencePage\:DEFAULT_DATA_CLASS=portalmigration.Data
 ch.ivyteam.ivy.designer.preferences.DataClassPreferencePage\:DEFAULT_NAMESPACE=portalmigration
 ch.ivyteam.ivy.designer.preferences.DataClassPreferencePage\:useProjectSettings=true
-ch.ivyteam.ivy.project.preferences\:PROJECT_VERSION=94000
+ch.ivyteam.ivy.project.preferences\:PROJECT_VERSION=94001
 eclipse.preferences.version=1

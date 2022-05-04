@@ -1,0 +1,92 @@
+{
+  "format" : "9.4.8",
+  "id" : "14B7775CB7A22AF4",
+  "data" : "ch.ivy.addon.portalkit.test.Confirmation.ConfirmationData",
+  "kind" : "HTML_DIALOG",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start()",
+      "config" : {
+        "callSignature" : "start",
+        "result" : {
+          "params" : [
+            { "name" : "approved", "type" : "Boolean" }
+          ],
+          "map" : {
+            "result.approved" : "in.approved"
+          }
+        },
+        "input" : {
+          "params" : [
+            { "name" : "message", "type" : "String" },
+            { "name" : "title", "type" : "String" }
+          ],
+          "map" : {
+            "out.message" : "param.message",
+            "out.title" : "param.title"
+          }
+        },
+        "guid" : "14B7775CB8651CD0"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 },
+        "size" : { "width" : 20, "height" : 20 },
+        "labelOffset" : { "x" : 13, "y" : 0 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 96, "y" : 160 },
+        "size" : { "width" : 20, "height" : 20 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "HtmlDialogEventStart",
+      "name" : "onClickYes",
+      "config" : {
+        "guid" : "14B7779EAF2248BE",
+        "output" : {
+          "code" : "out.approved = true;"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 288, "y" : 64 },
+        "size" : { "width" : 20, "height" : 20 },
+        "labelOffset" : { "x" : 13, "y" : 0 }
+      },
+      "connect" : { "id" : "f4", "to" : "f6" }
+    }, {
+      "id" : "f6",
+      "type" : "HtmlDialogExit",
+      "visual" : {
+        "at" : { "x" : 288, "y" : 160 },
+        "size" : { "width" : 20, "height" : 20 }
+      }
+    }, {
+      "id" : "f5",
+      "type" : "HtmlDialogEventStart",
+      "name" : "onClickNo",
+      "config" : {
+        "guid" : "14B777E67484A564",
+        "output" : {
+          "code" : "out.approved = false;"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 416, "y" : 64 },
+        "size" : { "width" : 20, "height" : 20 },
+        "labelOffset" : { "x" : 13, "y" : 0 }
+      },
+      "connect" : { "id" : "f8", "to" : "f7" }
+    }, {
+      "id" : "f7",
+      "type" : "HtmlDialogExit",
+      "visual" : {
+        "at" : { "x" : 416, "y" : 160 },
+        "size" : { "width" : 20, "height" : 20 }
+      }
+    } ]
+}

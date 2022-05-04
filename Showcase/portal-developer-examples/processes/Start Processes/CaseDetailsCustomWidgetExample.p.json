@@ -1,0 +1,253 @@
+{
+  "format" : "9.4.8",
+  "id" : "17A2C6D73AB4186E",
+  "data" : "com.axonivy.portal.developerexamples.Data",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "CreateEventTest.ivp",
+      "config" : {
+        "callSignature" : "CreateEventTest",
+        "case" : {
+          "name" : "Create Event: Test custom case details",
+          "description" : "Test custom widgets for case details",
+          "category" : "customWidget",
+          "customFields" : [
+            { "name" : "investmentDescription", "type" : "String", "value" : "\"This text get from Case customFields\"" }
+          ]
+        },
+        "outLink" : "CreateEventTest.ivp",
+        "startDescription" : "Create a case with category is \"customWidget\" to test filters by categories for case details",
+        "startName" : "Create Event for test \"Custom Case Details\""
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 84 },
+        "labelOffset" : { "x" : -21, "y" : 17 }
+      },
+      "connect" : { "id" : "f15", "to" : "f14" }
+    }, {
+      "id" : "f1",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 592, "y" : 20 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "TaskSwitchGateway",
+      "config" : {
+        "outLinks" : [ "TaskA.ivp", "TaskB.ivp", "TaskC.ivp" ],
+        "tasks" : {
+          "TaskA" : {
+            "name" : "Send budget request",
+            "description" : "Test custom widget case details"
+          },
+          "TaskB" : {
+            "name" : "Send invitation",
+            "description" : "Test custom widget case details"
+          },
+          "TaskC" : {
+            "name" : "Wait for approval",
+            "description" : "Test custom widget case details"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 448, "y" : 84 }
+      },
+      "connect" : [
+        { "id" : "f2", "to" : "f1", "via" : [ { "x" : 448, "y" : 20 } ], "condition" : "ivp==\"TaskA.ivp\"" },
+        { "id" : "f7", "to" : "f5", "condition" : "ivp==\"TaskB.ivp\"" },
+        { "id" : "f8", "to" : "f6", "via" : [ { "x" : 448, "y" : 148 } ], "condition" : "ivp==\"TaskC.ivp\"" }
+      ]
+    }, {
+      "id" : "f5",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 592, "y" : 84 }
+      }
+    }, {
+      "id" : "f6",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 592, "y" : 148 }
+      }
+    }, {
+      "id" : "f9",
+      "type" : "SignalStartEvent",
+      "name" : "customcasedetails:tech",
+      "config" : {
+        "signalCode" : "customcasedetails:tech"
+      },
+      "visual" : {
+        "at" : { "x" : 272, "y" : 212 },
+        "labelOffset" : { "x" : 0, "y" : 15 }
+      },
+      "connect" : { "id" : "f13", "to" : "f12" }
+    }, {
+      "id" : "f10",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 592, "y" : 212 }
+      }
+    }, {
+      "id" : "f12",
+      "type" : "TaskSwitchEvent",
+      "config" : {
+        "case" : {
+          "name" : "Signal case of Custom case details"
+        },
+        "task" : {
+          "name" : "Send email",
+          "description" : "Test custom widget case details"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 448, "y" : 212 }
+      },
+      "connect" : { "id" : "f11", "to" : "f10" }
+    }, {
+      "id" : "f14",
+      "type" : "Script",
+      "name" : "Send signal",
+      "config" : {
+        "output" : {
+          "code" : [
+            "// send simple signal",
+            "ivy.wf.signals().send(\"customcasedetails:tech\");"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 280, "y" : 84 }
+      },
+      "connect" : { "id" : "f4", "to" : "f3", "var" : "in1" }
+    }, {
+      "id" : "f16",
+      "type" : "RequestStart",
+      "name" : "startReview.ivp",
+      "config" : {
+        "callSignature" : "startReview",
+        "outLink" : "startReview.ivp",
+        "input" : {
+          "params" : [
+            { "name" : "startedCaseId", "type" : "Long", "desc" : "it will get case.id" },
+            { "name" : "startedCaseCategory", "type" : "String", "desc" : "it will get case.category" },
+            { "name" : "investmentId", "type" : "Number" },
+            { "name" : "investmentDescription", "type" : "String", "desc" : "it will get case.customFields.investmentDescription" }
+          ],
+          "code" : [
+            "out.exampleIFrameData.decision.note = \"Case ID is: \" + param.startedCaseId + \", with Category: \" + param.startedCaseCategory;",
+            "out.exampleIFrameData.investment.company.description = param.investmentDescription;",
+            "out.exampleIFrameData.investment.company.id = String.valueOf(param.startedCaseId);",
+            "out.exampleIFrameData.investment.id = param.investmentId.toString();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 340 },
+        "labelOffset" : { "x" : -21, "y" : 17 }
+      },
+      "connect" : { "id" : "f22", "to" : "f21" }
+    }, {
+      "id" : "f17",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 592, "y" : 340 }
+      }
+    }, {
+      "id" : "f19",
+      "type" : "DialogCall",
+      "name" : "Review",
+      "config" : {
+        "dialogId" : "com.axonivy.portal.developerexamples.testdata.Review",
+        "startMethod" : "start(com.axonivy.portal.developerexamples.ExampleIFrameData)",
+        "call" : {
+          "params" : [
+            { "name" : "investmentRequest", "type" : "com.axonivy.portal.developerexamples.ExampleIFrameData" }
+          ],
+          "map" : {
+            "param.investmentRequest" : "in.exampleIFrameData"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 456, "y" : 340 }
+      },
+      "connect" : { "id" : "f18", "to" : "f17" }
+    }, {
+      "id" : "f21",
+      "type" : "Script",
+      "name" : "additional data",
+      "config" : {
+        "output" : {
+          "code" : [
+            "ivy.log.debug(\"Data from case json: \" + in.exampleIFrameData);",
+            "",
+            "out.exampleIFrameData.decision.isApproved = true;",
+            "out.exampleIFrameData.investment.company.name = \"Test Case details\";",
+            "out.exampleIFrameData.investment.investedMoney = \"2500\";",
+            "out.exampleIFrameData.investment.profit = \"100\";",
+            "out.exampleIFrameData.investment.note = \"Test case details with custom params\";",
+            "out.exampleIFrameData.isReadOnly = true;",
+            "out.exampleIFrameData.investment.profitPercentage = \"99.9\";",
+            "out.exampleIFrameData.investment.setStartDate(new Date());"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 248, "y" : 340 }
+      },
+      "connect" : { "id" : "f20", "to" : "f19" }
+    }, {
+      "id" : "f30",
+      "type" : "RequestStart",
+      "name" : "CreatePersonalRequest.ivp",
+      "config" : {
+        "callSignature" : "CreatePersonalRequest",
+        "outLink" : "CreatePersonalRequest.ivp",
+        "startDescription" : "Create a Destroyed case to test filters by states in case details page",
+        "startName" : "Create Personal Request for test \"Custom Case Details\""
+      },
+      "visual" : {
+        "at" : { "x" : 104, "y" : 480 },
+        "size" : { "width" : 26, "height" : 26 },
+        "labelOffset" : { "x" : -31, "y" : 24 }
+      },
+      "connect" : { "id" : "f24", "to" : "f23" }
+    }, {
+      "id" : "f29",
+      "type" : "Script",
+      "name" : [
+        "destroy case",
+        "redirect to homepage"
+      ],
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.publicapi.PortalNavigatorAPI;",
+            "",
+            "ivy.case.destroy();",
+            "",
+            "PortalNavigatorAPI.navigateToPortalHome();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 360, "y" : 480 },
+        "size" : { "width" : 144, "height" : 44 }
+      }
+    }, {
+      "id" : "f23",
+      "type" : "TaskSwitchEvent",
+      "config" : {
+        "task" : {
+          "skipTasklist" : true
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 200, "y" : 480 }
+      },
+      "connect" : { "id" : "f25", "to" : "f29" }
+    } ]
+}

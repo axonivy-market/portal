@@ -1,0 +1,109 @@
+{
+  "format" : "9.4.8",
+  "id" : "1657E6622F0C0122",
+  "data" : "_com.axonivy.portal.developerexamples.LoadSubMenuItemsOverrideData",
+  "kind" : "CALLABLE_SUB",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "CallSubStart",
+      "name" : "loadSubMenuItems()",
+      "config" : {
+        "callSignature" : "loadSubMenuItems",
+        "result" : {
+          "params" : [
+            { "name" : "subMenuItems", "type" : "List<ch.addon.portal.generic.menu.SubMenuItem>" }
+          ],
+          "map" : {
+            "result.subMenuItems" : "in.subMenuItems"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 152 },
+        "labelOffset" : { "x" : 16, "y" : 11 }
+      },
+      "connect" : { "id" : "f4", "to" : "f3" }
+    }, {
+      "id" : "f1",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 96, "y" : 376 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "Script",
+      "name" : "Load menu items",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;",
+            "",
+            "import org.apache.commons.lang3.StringUtils;",
+            "import ch.ivy.addon.portalkit.enums.GlobalVariable;",
+            "import ch.ivy.addon.portalkit.service.GlobalSettingService;",
+            "import ch.ivy.addon.portalkit.util.PermissionUtils;",
+            "import ch.addon.portal.generic.menu.StatisticSubMenuItem;",
+            "import ch.addon.portal.generic.menu.ProcessSubMenuItem;",
+            "import ch.addon.portal.generic.menu.CaseSubMenuItem;",
+            "import ch.addon.portal.generic.menu.TaskSubMenuItem;",
+            "import ch.ivy.addon.portalkit.enums.MenuKind;",
+            "import ch.addon.portal.generic.menu.SubMenuItem;",
+            "",
+            "if(PermissionUtils.checkAccessFullProcessListPermission()) {",
+            "  in.subMenuItems.add(new ProcessSubMenuItem());",
+            "}",
+            "if(PermissionUtils.checkAccessFullTaskListPermission()) {",
+            "  in.subMenuItems.add(new TaskSubMenuItem());",
+            "}",
+            "if(PermissionUtils.checkAccessFullCaseListPermission()) {",
+            "  in.subMenuItems.add(new CaseSubMenuItem());",
+            "}",
+            "if(PermissionUtils.checkAccessFullStatisticsListPermission()) {",
+            "  GlobalSettingService globalSettingService = new GlobalSettingService();",
+            "  String isHideStatisticStr = globalSettingService.findGlobalSettingValue(GlobalVariable.HIDE_STATISTIC_WIDGET);",
+            "  boolean isHideStatistic = StringUtils.isNotBlank(isHideStatisticStr) ? Boolean.parseBoolean(isHideStatisticStr) : false;",
+            "  if (!isHideStatistic) {",
+            "    in.subMenuItems.add(new StatisticSubMenuItem());",
+            "  }",
+            "}",
+            "",
+            "",
+            "String userExampleGuideLink = ProcessStartAPI.findStartableLinkByUserFriendlyRequestPath(\"Start Processes/UserExampleGuide/userExampleGuide.ivp\");",
+            "if (!StringUtils.isEmpty(userExampleGuideLink)){  ",
+            "  SubMenuItem userExampleGuide = new SubMenuItem();",
+            "  userExampleGuide.setIcon(\"si si-bulb\");",
+            "  userExampleGuide.setName(\"ExampleGuide\");",
+            "  userExampleGuide.setLabel(\"User example guide\");",
+            "  userExampleGuide.setMenuKind(MenuKind.CUSTOM);",
+            "  userExampleGuide.setLink(userExampleGuideLink);",
+            "  in.subMenuItems.add(userExampleGuide);",
+            "}",
+            "",
+            "SubMenuItem google = new SubMenuItem();",
+            "google.setIcon(\"si si-information-circle\");",
+            "google.setLabel(\"Google\");",
+            "google.setMenuKind(MenuKind.EXTERNAL_LINK);",
+            "google.setLink(\"www.google.com\");",
+            "in.subMenuItems.add(google);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 248 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f5",
+      "type" : "ProcessAnnotation",
+      "name" : [
+        "This process overrides LoadSubMenuItems process in Portal Template and add 1 menu item:",
+        "Google: open external link www.google.com."
+      ],
+      "visual" : {
+        "at" : { "x" : 512, "y" : 248 },
+        "size" : { "width" : 528, "height" : 44 }
+      },
+      "connect" : { "id" : "f6", "to" : "f3" }
+    } ]
+}

@@ -1,0 +1,59 @@
+{
+  "format" : "9.4.8",
+  "id" : "164DB506D12B25CF",
+  "data" : "com.axonivy.portal.developerexamples.Data",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "showSampleProcessChain.ivp",
+      "config" : {
+        "callSignature" : "showSampleProcessChain",
+        "case" : {
+          "customFields" : [
+            { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
+          ]
+        },
+        "outLink" : "showSampleProcessChain.ivp",
+        "startDescription" : "Show All Sample Process Chains",
+        "startName" : "Show All Sample Process Chains"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 },
+        "description" : "This process will open a page, which contains 4 process chains."
+      },
+      "connect" : { "id" : "f4", "to" : "f3" }
+    }, {
+      "id" : "f1",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 496, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "DialogCall",
+      "name" : "Show All Sample Process Chains",
+      "config" : {
+        "dialogId" : "com.axonivy.portal.developerexamples.customization.ProcessChainTest",
+        "startMethod" : "start()"
+      },
+      "visual" : {
+        "at" : { "x" : 304, "y" : 64 },
+        "size" : { "width" : 192, "height" : 44 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f5",
+      "type" : "ProcessAnnotation",
+      "name" : [
+        "This process open a page, which contains all process chain types:",
+        "1. shape is circle, direction is horizontal",
+        "2. shape is circle, direction is vertical",
+        "3. shape is line, direction is horizontal",
+        "4. shape is line, direction is vertical"
+      ],
+      "visual" : {
+        "at" : { "x" : 344, "y" : 176 },
+        "size" : { "width" : 368, "height" : 92 }
+      }
+    } ]
+}

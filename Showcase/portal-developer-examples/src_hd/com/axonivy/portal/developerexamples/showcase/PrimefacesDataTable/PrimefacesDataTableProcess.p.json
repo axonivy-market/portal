@@ -1,0 +1,123 @@
+{
+  "format" : "9.4.8",
+  "id" : "169C78AD20FEB2C2",
+  "data" : "com.axonivy.portal.developerexamples.showcase.PrimefacesDataTable.PrimefacesDataTableData",
+  "kind" : "HTML_DIALOG",
+  "elements" : [ {
+      "id" : "f11",
+      "type" : "Script",
+      "name" : "Log",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import javax.faces.context.FacesContext;",
+            "import javax.faces.application.FacesMessage;",
+            "",
+            "Boolean errmessage = FacesContext.getCurrentInstance().getMessageList().size() >= 1 ? true : false;",
+            "",
+            "if(!errmessage)",
+            "{",
+            "  ivy.log.debug(\"Item updated: {0}\", in.selectedScore);",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 232, "y" : 264 }
+      },
+      "connect" : { "id" : "f10", "to" : "f9" }
+    }, {
+      "id" : "f9",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 360, "y" : 264 }
+      }
+    }, {
+      "id" : "f6",
+      "type" : "Script",
+      "name" : "load Data",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.developerexamples.showcase.Score;",
+            "",
+            "",
+            "// init list with some items",
+            "// init the score date with an ivy-Date which has no time. Important for the date filter in the DataTable",
+            "out.scores.add((new Score()).setId(100).setName(\"Beni\").setPoints(2563).setDate(new Date()));",
+            "out.scores.add((new Score()).setId(110).setName(\"Achmed\").setPoints(346).setDate(new Date()));",
+            "out.scores.add((new Score()).setId(221).setName(\"Cyril\").setPoints(4654).setDate(new Date()));",
+            "out.scores.add((new Score()).setId(238).setName(\"Birgit\").setPoints(6666).setDate(new Date()));",
+            "out.scores.add((new Score()).setId(340).setName(\"Maurice\").setPoints(324).setDate(new Date()));",
+            "out.scores.add((new Score()).setId(450).setName(\"Daisy\").setPoints(2679).setDate(new Date()));",
+            "out.scores.add((new Score()).setId(455).setName(\"Yvonne\").setPoints(1324).setDate(new Date()));",
+            "out.scores.add((new Score()).setId(550).setName(\"Nadia\").setPoints(2639).setDate(new Date()));",
+            "out.scores.add((new Score()).setId(634).setName(\"Mike\").setPoints(9324).setDate(new Date()));",
+            "out.scores.add((new Score()).setId(650).setName(\"Peter\").setPoints(2479).setDate(new Date()));",
+            "out.scores.add((new Score()).setId(700).setName(\"Charly\").setPoints(3424).setDate(new Date()));",
+            "out.scores.add((new Score()).setId(850).setName(\"Tim\").setPoints(2889).setDate(new Date()));",
+            "",
+            "// init List data for table Cell edit",
+            "out.scoresList = out.scores;",
+            "",
+            "// init list of names",
+            "for(Score scr : out.scores)",
+            "{",
+            "  out.names.add(scr.name);  ",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 234, "y" : 72 }
+      },
+      "connect" : { "id" : "f7", "to" : "f1" }
+    }, {
+      "id" : "f3",
+      "type" : "HtmlDialogEventStart",
+      "name" : "close",
+      "config" : {
+        "guid" : "169DD4CD81F37B33"
+      },
+      "visual" : {
+        "at" : { "x" : 104, "y" : 168 },
+        "labelOffset" : { "x" : -15, "y" : 12 }
+      },
+      "connect" : { "id" : "f5", "to" : "f4" }
+    }, {
+      "id" : "f4",
+      "type" : "HtmlDialogExit",
+      "visual" : {
+        "at" : { "x" : 232, "y" : 168 }
+      }
+    }, {
+      "id" : "f8",
+      "type" : "HtmlDialogEventStart",
+      "name" : "save",
+      "config" : {
+        "guid" : "169DD4CD820AF17C"
+      },
+      "visual" : {
+        "at" : { "x" : 104, "y" : 264 }
+      },
+      "connect" : { "id" : "f12", "to" : "f11" }
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 360, "y" : 72 }
+      }
+    }, {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start()",
+      "config" : {
+        "callSignature" : "start",
+        "guid" : "169DD4CD820471FD"
+      },
+      "visual" : {
+        "at" : { "x" : 104, "y" : 72 }
+      },
+      "connect" : { "id" : "f2", "to" : "f6" }
+    } ]
+}

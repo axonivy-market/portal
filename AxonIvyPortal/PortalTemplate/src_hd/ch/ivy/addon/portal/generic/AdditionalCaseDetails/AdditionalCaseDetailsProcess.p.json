@@ -1,0 +1,34 @@
+{
+  "format" : "9.4.8",
+  "id" : "160FD493AA8D5416",
+  "data" : "ch.ivy.addon.portal.generic.AdditionalCaseDetails.AdditionalCaseDetailsData",
+  "kind" : "HTML_DIALOG",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start(ICase)",
+      "config" : {
+        "callSignature" : "start",
+        "input" : {
+          "params" : [
+            { "name" : "iCase", "type" : "ch.ivyteam.ivy.workflow.ICase" }
+          ],
+          "map" : {
+            "out.selectedCase" : "param.iCase"
+          }
+        },
+        "guid" : "160FD493ABB7A5B5"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 },
+        "labelOffset" : { "x" : -53, "y" : 15 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 }
+      }
+    } ]
+}

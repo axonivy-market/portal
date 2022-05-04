@@ -86,7 +86,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskDescription: Descripción de tarea
     taskState: Estado de tarea
   CaseDocuments:
-    CaseDocumentsPageTitle: TODO Case Documents
+    CaseDocumentsPageTitle: Documentos del caso
   CaseStatusInformation:
     CurrentTasks:
       currentTasks: Tareas actuales
@@ -170,14 +170,14 @@ ch.ivy.addon.portalkit.ui.jsf:
   ProcessViewer:
     Breadcrumb: Visualización del proceso {0}
     ProcessDataNotFound: No se han encontrado datos del proceso
-    ProcessDetails: TODO Process details
-    ProcessId: TODO Process Id
-    ProcessInfo: TODO Process Information
-    ProcessInfoIconTooltip: TODO Click to see details of the process start
+    ProcessDetails: Detalles del proceso
+    ProcessId: ID del proceso
+    ProcessInfo: Información del proceso
+    ProcessInfoIconTooltip: Haga clic para ver los detalles del inicio del proceso
     ProcessViewerText: Visualizador de procesos
     Title: Visualizador de procesos
   TaskDocuments:
-    TaskDocumentsPageTitle: TODO Task Documents
+    TaskDocumentsPageTitle: Documentos de la tarea
   adminSettings:
     addLanguages: Agregar idiomas
     addNewApplication: Crear nueva aplicación de terceros
@@ -456,8 +456,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     errorFileUploadSize: El tamaño deberá ser inferior a {0}
     errorNotification: Notificación de error
     errorXhr: Error al actualizar el contenido web
-    escalationTaskHeaderText: TODO Trigger Escalation
-    escalationTaskMessage: TODO Expiry is set to now, thus the task expires. Are you sure?
+    escalationTaskHeaderText: Ejecutar escalación
+    escalationTaskMessage: Expiración ahora, por lo que la tarea expira. ¿Está seguro?
     filter:
       from: desde
       moreOptions: Más opciones
@@ -542,9 +542,9 @@ ch.ivy.addon.portalkit.ui.jsf:
     sessionExpriedInTeams: Su sesión expiró. La aplicación se reiniciará.
     setting: Configuración
     showDetail: Mostrar detalles
-    showRelatedCaseInfo: TODO Related case
-    showSystemNotes: TODO System notes
-    showSystemTasks: TODO System tasks
+    showRelatedCaseInfo: Casos relacionados
+    showSystemNotes: Notas del sistema
+    showSystemTasks: Tareas del sistema
     start: Abrir
     state: Estatus
     status: Estado
@@ -700,14 +700,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     SavedFilterHeader: Filtros guardados
     SearchForFilter: Búsqueda del filtro
     StatisticWidget:
-      AvailableCharts: TODO Available statistics charts
-      Charts: 'TODO Chart(s): {0}'
-      ConfigurationDescription: TODO You can configure your widget in this configuration area. Please define the chart which will be shown on  your dashboard.
-      EmptyChartDataMessage: TODO We do not have enough data to create a nice chart!
-      FilterChartText: TODO Filter a chart by name
-      PlaceholderChartOption: TODO Select a chart
-      PleaseSelectChart: TODO Please select a chart
-      PreviewText: TODO Please select a chart to see the canvas data
+      AvailableCharts: Gráficos estadísticos disponibles
+      Charts: 'Gráfico(s): {0}'
+      ConfigurationDescription: Puede configurar su widget en esta área de configuración. Por favor, defina el gráfico que se mostrará en su panel de control.
+      EmptyChartDataMessage: No tenemos suficientes datos para crear un buen gráfico.
+      FilterChartText: Filtrar un gráfico por nombre
+      PlaceholderChartOption: Seleccione un gráfico
+      PleaseSelectChart: Seleccione un gráfico
+      PreviewText: Seleccione un gráfico para ver los datos del lienzo
     WidgetFilterName: Nombre del filtro del widget
     WidgetFilters: Filtros de widgets
     actionSelection: Seleccionar acción
@@ -726,7 +726,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     configuration:
       CustomWidgetExternalLinkWarning: Algunas webs no son compatibles con iframe por motivos de seguridad. Póngase en contacto con su administrador si la web externa no funciona correctamente.
       Parameters: Parámetros
-      SelectYourTemplate: TODO Select your template
+      SelectYourTemplate: Seleccione su plantilla
       configuration: Configuración
       configurationDescription: Puede configurar su widget en esta área de configuración. Por favor, defina los filtros requeridos así como las columnas a mostrar.
       customWidgetParamChangedMessage: Este proceso ha cambiado. Presione aktualizar para continuar.
@@ -744,7 +744,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     customWidget: Widget personalizado
     customWidgetIntroduction: Con este widget puede añadir procesos de Axon Ivy o páginas web externas.
     dashboardManagement:
-      CreateDashboard: TODO Create Dashboard
+      CreateDashboard: Crear tablero
       addDashboard: Añadir tablero
       dashboardPermission: Permiso de tablero
       dashboardTitle: Título del tablero
@@ -763,21 +763,21 @@ ch.ivy.addon.portalkit.ui.jsf:
     fieldIsAdded: El campo {0} está añadido
     iconMessage:
       caseWidget:
-        BEACH_PALM_SUNBED: TODO You are awesome - all cases are done. Lean back and enjoy.
-        CHARGING_BATTERY_FULL_1: TODO There are currently no cases. Time to recharge the batteries a little.
-        COFFEE_OF_HOT: TODO Wow! Good job! All cases are completed. How about a quick coffee break?
-        RANKING_WINNER_MEDAL: TODO Game, set and match! You did it, all cases are completed!
-        SOCCER_PLAYER: TODO Goal! You did it, all cases completed. Short half-time break.
-        YOGA_MEDITATE: TODO Well done! All cases are done. Inhale, exhale, relax.
-        noCasesFoundWhenFilter: TODO There are currently no cases after applied filter.
+        BEACH_PALM_SUNBED: Eres increíble - todos los casos están hechos. Recuéstate y disfruta.
+        CHARGING_BATTERY_FULL_1: There are currently no cases. Time to recharge the batteries a little.
+        COFFEE_OF_HOT: ¡Vaya! ¡Buen trabajo! Todos los casos están completados. ¿Qué tal una pausa rápida para el café?
+        RANKING_WINNER_MEDAL: ¡Juego, set y partido! Lo has conseguido, ¡todos los casos están completados!
+        SOCCER_PLAYER: ¡Gol! Lo has hecho, todos los casos completados. Breve descanso de medio tiempo.
+        YOGA_MEDITATE: ¡Bien hecho! Todos los casos están hechos. Inhala, exhala, relájate.
+        noCasesFoundWhenFilter: Actualmente no hay casos después de aplicar el filtro.
       taskWidget:
-        BEACH_PALM_SUNBED: TODO You are awesome - all tasks are done. Lean back and enjoy.
-        CHARGING_BATTERY_FULL_1: TODO There are currently no tasks. Time to recharge the batteries a little.
-        COFFEE_OF_HOT: TODO Wow! Good job! All tasks are completed. How about a quick coffee break?
-        RANKING_WINNER_MEDAL: TODO Game, set and match! You did it, all tasks are completed!
-        SOCCER_PLAYER: TODO Goal! You did it, all tasks completed. Short half-time break.
-        YOGA_MEDITATE: TODO Well done! All tasks are done. Inhale, exhale, relax.
-        noTasksFoundWhenFilter: TODO There are currently no tasks after applied filter.
+        BEACH_PALM_SUNBED: 'Eres increíble: todas las tareas están hechas. Recuéstate y disfruta.'
+        CHARGING_BATTERY_FULL_1: Actualmente no hay tareas. Es hora de recargar un poco las pilas.
+        COFFEE_OF_HOT: ¡Vaya! ¡Buen trabajo! Todas las tareas están completadas. ¿Qué tal una pausa rápida para el café?
+        RANKING_WINNER_MEDAL: ¡Juego, set y partido! Lo has conseguido, ¡todas las tareas están completadas!
+        SOCCER_PLAYER: ¡Gol! Lo hiciste, todas las tareas completadas. Breve descanso de medio tiempo.
+        YOGA_MEDITATE: Bien hecho. Todas las tareas están hechas. Inhala, exhala, relájate.
+        noTasksFoundWhenFilter: Actualmente no hay tareas después del filtro aplicado.
     loading: Cargando...
     noCategory: No hay categorías
     noDashboard: No hay tableros. Añadir al menos un tablero y widgets.
@@ -806,7 +806,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     selectEditAction: Con qué acción quiere proceder?
     showFullWidget: Mostrar el widget completo
     startATask: Iniciar tarea
-    statisticChartWidget: TODO Statistic chart
+    statisticChartIntroduction: Este widget muestra los gráficos estadísticos disponibles.
+    statisticChartWidget: Gráfico estadístico
     switchToViewMode: Modo de visualización
     tasWidgetkInfo:
       expireToday: Expira hoy
@@ -823,7 +824,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     yourCases: Sus casos
     yourCustomWidget: Su widget personalizado
     yourProcesses: Sus procesos
-    yourStatistics: TODO Your Statistics
+    yourStatistics: Sus estadísticas
     yourTasks: Sus tareas
   dateFormatConfiguration:
     dateFormatConfiguration: Configuración del formato de fecha
@@ -1206,7 +1207,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskDetails: Detalles de tarea
     taskInforDialogTitle: Información de tarea
     taskNotes: Notas
-    triggerEscalation: TODO Trigger Escalation
+    triggerEscalation: Ejecutar escalación
   taskList:
     deadline: Fecha límite
     default: Predeterminado
@@ -1246,7 +1247,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       EXPIRY_TIME_DESC: Fecha de caducidad (nuevos primero)
       PRIORITY_ASC: Prioridad (alta - baja)
       PRIORITY_DESC: Prioridad (baja - alta)
-    triggerEscalationNote: 'TODO Escalation has been triggered by {0} ({1}) of task #{2}'
+    triggerEscalationNote: 'Escalación ha sido ejecutada por {0} ({1}) para la tarea #{2}'
     type: Tipo
   taskPriority:
     EXCEPTION: Excepción
