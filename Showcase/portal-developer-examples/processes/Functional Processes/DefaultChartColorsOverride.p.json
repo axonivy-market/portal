@@ -1,0 +1,107 @@
+{
+  "format" : "9.4.8",
+  "id" : "16DB01132AFEAB36",
+  "data" : "_com.axonivy.portal.developerexamples.DefaultChartColorsOverrideData",
+  "kind" : "CALLABLE_SUB",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "CallSubStart",
+      "name" : "defaultChartColors()",
+      "config" : {
+        "callSignature" : "defaultChartColors",
+        "result" : {
+          "params" : [
+            { "name" : "chartColors", "type" : "ch.ivy.addon.portalkit.statistics.StatisticColors" }
+          ],
+          "map" : {
+            "result.chartColors" : "in.chartColors"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 },
+        "labelOffset" : { "x" : -13, "y" : 17 }
+      },
+      "connect" : { "id" : "f4", "to" : "f3" }
+    }, {
+      "id" : "f1",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 96, "y" : 328 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "Script",
+      "name" : "Default chart colors",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.statistics.StatisticColors;",
+            "",
+            "StatisticColors chartColor = new StatisticColors();",
+            "chartColor.taskExceptionPriority = \"rgb(255, 99, 132)\";",
+            "chartColor.taskHighPriority = \"rgb(54, 162, 235)\";",
+            "chartColor.taskNormalPriority = \"rgb(255, 205, 86)\";",
+            "chartColor.taskLowPriority = StatisticColors.DEFAULT_LOW_PRIORITY_COLOR;",
+            "",
+            "chartColor.createdCase = StatisticColors.DEFAULT_CREATED_CASE_COLOR;",
+            "chartColor.runningCase = StatisticColors.DEFAULT_RUNNING_CASE_COLOR;",
+            "chartColor.doneCase = StatisticColors.DEFAULT_DONE_CASE_COLOR;",
+            "chartColor.failedCase = StatisticColors.DEFAULT_FAILED_CASE_COLOR;",
+            "",
+            "in.chartColors = chartColor;"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 192 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f5",
+      "type" : "ProcessAnnotation",
+      "name" : [
+        "// FOLLOW THIS INSTRUCTION TO OVERRIDE DEFAULT CHART COLORS",
+        "// ALL THE COLORS FOR CHART - PLEASE USE THE RGB COLORS FORMAT",
+        "",
+        "import ch.ivy.addon.portalkit.statistics.StatisticColors;",
+        "",
+        "StatisticColors chartColor = new StatisticColors();",
+        "chartColor.taskExceptionPriority = \"rgb(212, 212, 212)\";",
+        "chartColor.taskHighPriority = \"rgb(255, 90, 90)\";",
+        "chartColor.taskNormalPriority = \"rgb(255, 192, 192)\";",
+        "chartColor.taskLowPriority = \"rgb(150, 220, 130)\";",
+        "",
+        "chartColor.createdCase = \"rgb(255, 99, 132)\";",
+        "chartColor.runningCase = \"rgb(54, 162, 235)\";",
+        "chartColor.doneCase = \"rgb(255, 99, 132)\";",
+        "chartColor.failedCase = \"rgb(212, 212, 212)\";",
+        "",
+        "in.chartColors = chartColor;"
+      ],
+      "visual" : {
+        "at" : { "x" : 448, "y" : 184 },
+        "size" : { "width" : 496, "height" : 328 },
+        "description" : [
+          "// FOLLOW THIS INSTRUCTION TO OVERRIDE DEFAULT CHART COLORS",
+          "// All colors please use the RGB Colors format",
+          "",
+          "import ch.ivy.addon.portalkit.statistics.StatisticColors;",
+          "",
+          "StatisticColors chartColor = new StatisticColors();",
+          "chartColor.taskExceptionPriority = \"rgb(212, 212, 212)\";",
+          "chartColor.taskHighPriority = \"rgb(255, 90, 90)\";",
+          "chartColor.taskNormalPriority = \"rgb(255, 192, 192)\";",
+          "chartColor.taskLowPriority = \"rgb(150, 220, 130)\";",
+          "",
+          "chartColor.createdCase = \"rgb(255, 99, 132)\";",
+          "chartColor.runningCase = \"rgb(54, 162, 235)\";",
+          "chartColor.doneCase = \"rgb(255, 99, 132)\";",
+          "chartColor.failedCase = \"rgb(212, 212, 212)\";",
+          "",
+          "in.chartColors = chartColor;"
+        ]
+      }
+    } ]
+}

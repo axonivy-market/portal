@@ -1,0 +1,25 @@
+{
+  "format" : "9.4.8",
+  "id" : "163F1E482806861D",
+  "data" : "ch.ivy.gawfs.component.ApprovalResult.ApprovalResultData",
+  "kind" : "HTML_DIALOG",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start()",
+      "config" : {
+        "callSignature" : "start",
+        "guid" : "163F1E482A09D7C6"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 }
+      }
+    } ]
+}
