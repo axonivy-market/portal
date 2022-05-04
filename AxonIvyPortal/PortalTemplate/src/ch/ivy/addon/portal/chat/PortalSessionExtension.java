@@ -5,8 +5,6 @@ import static ch.ivy.addon.portal.chat.ChatReferencesContainer.wf;
 
 import java.util.concurrent.Callable;
 
-import org.apache.commons.lang3.StringUtils;
-
 import ch.ivyteam.di.restricted.DiCore;
 import ch.ivyteam.ivy.application.loader.ClassLoaderService;
 import ch.ivyteam.ivy.persistence.IPersistentTransaction;
@@ -58,7 +56,7 @@ public final class PortalSessionExtension implements ISessionExtension {
     }
     try {
       executeWithIvyContext(() -> {
-        if (chatService() != null //TODO fix getHttpSessionIdentifier(), original code if (chatService() != null && StringUtils.isNotBlank(session.getHttpSessionIdentifier()) 
+        if (chatService() != null && !session.getHttpSessionIdentifiers().isEmpty()
             && isLastSessionBoundToUser(session)) {
           chatService().handleUserOffline(session.getSessionUserName());
           ConcurrentChatUtils.removePortalChatResponseHistory(session.getSessionUserName());

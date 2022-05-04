@@ -1,0 +1,210 @@
+{
+  "format" : "9.4.8",
+  "id" : "1791D27754935B10",
+  "data" : "com.axonivy.portal.developerexamples.TaskDetailsCustomWidgetExampleData",
+  "elements" : [ {
+      "id" : "f5",
+      "type" : "DialogCall",
+      "name" : "InvoiceDetails",
+      "config" : {
+        "dialogId" : "com.axonivy.portal.developerexamples.customization.InvoiceDetails",
+        "startMethod" : "start(com.axonivy.portal.developerexamples.Invoice)",
+        "call" : {
+          "params" : [
+            { "name" : "invoice", "type" : "com.axonivy.portal.developerexamples.Invoice" }
+          ],
+          "map" : {
+            "param.invoice" : "in.invoice"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 368, "y" : 48 }
+      },
+      "connect" : { "id" : "f22", "to" : "f3" }
+    }, {
+      "id" : "f12",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 528, "y" : 112 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 528, "y" : 48 }
+      }
+    }, {
+      "id" : "f4",
+      "type" : "RequestStart",
+      "name" : "invoiceDetails.ivp",
+      "config" : {
+        "callSignature" : "invoiceDetails",
+        "input" : {
+          "params" : [
+            { "name" : "invoiceId", "type" : "String" },
+            { "name" : "startedTaskId", "type" : "String" },
+            { "name" : "startedTaskCategory", "type" : "String" },
+            { "name" : "invoiceDescription", "type" : "String" }
+          ],
+          "map" : {
+            "out.invoiceDescription" : "param.invoiceDescription",
+            "out.invoiceId" : "param.invoiceId",
+            "out.taskCategory" : "param.startedTaskCategory",
+            "out.taskId" : "param.startedTaskId"
+          }
+        },
+        "outLink" : "invoiceDetails.ivp",
+        "startName" : "Show invoice details"
+      },
+      "visual" : {
+        "at" : { "x" : 80, "y" : 48 },
+        "labelOffset" : { "x" : -21, "y" : 17 }
+      },
+      "connect" : { "id" : "f15", "to" : "f6" }
+    }, {
+      "id" : "f11",
+      "type" : "DialogCall",
+      "name" : "InvoiceDetails",
+      "config" : {
+        "dialogId" : "com.axonivy.portal.developerexamples.customization.InvoiceDetails",
+        "startMethod" : "start(com.axonivy.portal.developerexamples.Invoice)",
+        "call" : {
+          "params" : [
+            { "name" : "invoice", "type" : "com.axonivy.portal.developerexamples.Invoice" }
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 368, "y" : 208 }
+      },
+      "connect" : { "id" : "f21", "to" : "f13" }
+    }, {
+      "id" : "f8",
+      "type" : "TaskSwitchGateway",
+      "config" : {
+        "outLinks" : [ "TaskA.ivp", "TaskB.ivp", "TaskC.ivp" ],
+        "tasks" : {
+          "TaskA" : {
+            "name" : "Support Customer",
+            "category" : "support"
+          },
+          "TaskB" : {
+            "name" : "Manage Invoice",
+            "category" : "manage",
+            "customFields" : [
+              { "name" : "invoiceDescription", "type" : "String", "value" : "\"Inventory invoice\"" }
+            ]
+          },
+          "TaskC" : {
+            "name" : "Proceed Invoice",
+            "category" : "system"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 208, "y" : 112 }
+      },
+      "connect" : [
+        { "id" : "f17", "to" : "f10", "condition" : "ivp==\"TaskA.ivp\"" },
+        { "id" : "f16", "to" : "f11", "via" : [ { "x" : 208, "y" : 208 } ], "condition" : "ivp==\"TaskB.ivp\"" },
+        { "id" : "f19", "to" : "f14", "via" : [ { "x" : 208, "y" : 304 } ], "condition" : "ivp==\"TaskC.ivp\"" }
+      ]
+    }, {
+      "id" : "f7",
+      "type" : "RequestStart",
+      "name" : "SalesManagement.ivp",
+      "config" : {
+        "callSignature" : "SalesManagement",
+        "outLink" : "SalesManagement.ivp",
+        "startName" : "Sales Management"
+      },
+      "visual" : {
+        "at" : { "x" : 80, "y" : 112 },
+        "labelOffset" : { "x" : -24, "y" : 17 }
+      },
+      "connect" : { "id" : "f20", "to" : "f8", "var" : "in1" }
+    }, {
+      "id" : "f13",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 528, "y" : 208 }
+      }
+    }, {
+      "id" : "f6",
+      "type" : "Script",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.developerexamples.Customer;",
+            "import com.axonivy.portal.developerexamples.Invoice;",
+            "import com.axonivy.portal.developerexamples.Item;",
+            "",
+            "",
+            "Customer customer = new Customer();",
+            "customer.id = \"00001\";",
+            "customer.name = \"Steve\";",
+            "customer.type = \"Normal\";",
+            "",
+            "in.invoice = new Invoice();",
+            "in.invoice.id = in.invoiceId;",
+            "in.invoice.description = in.invoiceDescription;",
+            "in.invoice.taskId = in.taskId;",
+            "in.invoice.taskCategory = in.taskCategory;",
+            "in.invoice.customer = customer;",
+            "",
+            "Item item1 = new Item();",
+            "item1.id = \"001\";",
+            "item1.name = \"Asus P1440FA-FA0674T i3\";",
+            "item1.quantity = 2;",
+            "in.invoice.items.add(item1);",
+            "",
+            "Item item2 = new Item();",
+            "item2.id = \"002\";",
+            "item2.name = \"Lenovo Ideapad L340-15IRH 81LK00FAVN i5 \";",
+            "item2.quantity = 6;",
+            "in.invoice.items.add(item2);",
+            "",
+            "Item item3 = new Item();",
+            "item3.id = \"003\";",
+            "item3.name = \"ThinkPad X1 Carbon Gen 8 FHD\";",
+            "item3.quantity = 1;",
+            "in.invoice.items.add(item3);",
+            "",
+            "Item item4 = new Item();",
+            "item4.id = \"004\";",
+            "item4.name = \"Lenovo ThinkPad X1 Carbon Gen 6\";",
+            "item4.quantity = 6;",
+            "in.invoice.items.add(item4);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 208, "y" : 48 }
+      },
+      "connect" : { "id" : "f9", "to" : "f5" }
+    }, {
+      "id" : "f10",
+      "type" : "DialogCall",
+      "name" : "InvoiceDetails",
+      "config" : {
+        "dialogId" : "com.axonivy.portal.developerexamples.customization.InvoiceDetails",
+        "startMethod" : "start(com.axonivy.portal.developerexamples.Invoice)",
+        "call" : {
+          "params" : [
+            { "name" : "invoice", "type" : "com.axonivy.portal.developerexamples.Invoice" }
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 368, "y" : 112 }
+      },
+      "connect" : { "id" : "f18", "to" : "f12" }
+    }, {
+      "id" : "f14",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 528, "y" : 304 }
+      }
+    } ]
+}

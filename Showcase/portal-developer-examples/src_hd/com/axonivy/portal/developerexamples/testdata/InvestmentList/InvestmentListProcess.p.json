@@ -1,0 +1,102 @@
+{
+  "format" : "9.4.8",
+  "id" : "17B2F3DF898D03CF",
+  "data" : "com.axonivy.portal.developerexamples.testdata.InvestmentList.InvestmentListData",
+  "kind" : "HTML_DIALOG",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start(String,String,String)",
+      "config" : {
+        "callSignature" : "start",
+        "input" : {
+          "params" : [
+            { "name" : "startDate", "type" : "String" },
+            { "name" : "note", "type" : "String" },
+            { "name" : "user", "type" : "String" }
+          ],
+          "map" : {
+            "out.name" : "param.user",
+            "out.note" : "param.note",
+            "out.startDate" : "ch.ivy.addon.portalkit.util.Dates.parse(param.startDate)"
+          }
+        },
+        "guid" : "17B2F3DF8A22ADB7"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 },
+        "labelOffset" : { "x" : -54, "y" : 26 }
+      },
+      "connect" : { "id" : "f7", "to" : "f6" }
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "HtmlDialogEventStart",
+      "name" : "close",
+      "config" : {
+        "guid" : "17B2F3DF8AF6FC3D"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 160 }
+      },
+      "connect" : { "id" : "f5", "to" : "f4" }
+    }, {
+      "id" : "f4",
+      "type" : "HtmlDialogExit",
+      "visual" : {
+        "at" : { "x" : 224, "y" : 160 }
+      }
+    }, {
+      "id" : "f6",
+      "type" : "Script",
+      "name" : "Initialize data",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.developerexamples.Investment;",
+            "Investment investment1 = new com.axonivy.portal.developerexamples.Investment();",
+            "investment1.setId(\"001\");",
+            "investment1.setProfit(\"1,000$\");",
+            "investment1.setProfitPercentage(\"10%\");",
+            "investment1.setStartDate(new Date(\"2021-11-05\"));",
+            "investment1.setInvestedMoney(\"10,000$\");",
+            "",
+            "Investment investment2 = new com.axonivy.portal.developerexamples.Investment();",
+            "investment2.setId(\"002\");",
+            "investment2.setProfit(\"3,500$\");",
+            "investment2.setProfitPercentage(\"7%\");",
+            "investment2.setStartDate(new Date(\"2021-07-05\"));",
+            "investment2.setInvestedMoney(\"50,000$\");",
+            "",
+            "Investment investment3 = new com.axonivy.portal.developerexamples.Investment();",
+            "investment3.setId(\"003\");",
+            "investment3.setProfit(\"157.5$\");",
+            "investment3.setProfitPercentage(\"1.5%\");",
+            "investment3.setStartDate(new Date(\"2021-08-04\"));",
+            "investment3.setInvestedMoney(\"10,500$\");",
+            "",
+            "Investment investment4 = new com.axonivy.portal.developerexamples.Investment();",
+            "investment4.setId(\"004\");",
+            "investment4.setProfit(\"1,500$\");",
+            "investment4.setProfitPercentage(\"15%\");",
+            "investment4.setStartDate(new Date(\"2021-01-15\"));",
+            "investment4.setInvestedMoney(\"10,000$\");",
+            "",
+            "in.investments.add(investment1);",
+            "in.investments.add(investment2);",
+            "in.investments.add(investment3);",
+            "in.investments.add(investment4);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    } ]
+}

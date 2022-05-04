@@ -1,0 +1,50 @@
+{
+  "format" : "9.4.8",
+  "id" : "1749B87B8C1B77BE",
+  "data" : "portalKit_test.PortalGlobalVariableHelperData",
+  "elements" : [ {
+      "id" : "f6",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 336, "y" : 80 }
+      }
+    }, {
+      "id" : "f7",
+      "type" : "Script",
+      "name" : "Update Global Variable",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : "ivy.var.set(in.variableName, in.variableValue);"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 200, "y" : 80 },
+        "size" : { "width" : 144, "height" : 44 }
+      },
+      "connect" : { "id" : "f9", "to" : "f6" }
+    }, {
+      "id" : "f5",
+      "type" : "RequestStart",
+      "name" : "updateGlobalVariable.ivp",
+      "config" : {
+        "callSignature" : "updateGlobalVariable",
+        "input" : {
+          "params" : [
+            { "name" : "variableName", "type" : "String" },
+            { "name" : "variableValue", "type" : "String" }
+          ],
+          "map" : {
+            "out.variableName" : "param.variableName",
+            "out.variableValue" : "param.variableValue"
+          }
+        },
+        "outLink" : "updateGlobalVariable.ivp"
+      },
+      "visual" : {
+        "at" : { "x" : 80, "y" : 80 },
+        "labelOffset" : { "x" : -67, "y" : 21 }
+      },
+      "connect" : { "id" : "f8", "to" : "f7" }
+    } ]
+}

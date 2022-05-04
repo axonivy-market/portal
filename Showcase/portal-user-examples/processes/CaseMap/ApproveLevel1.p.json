@@ -1,0 +1,63 @@
+{
+  "format" : "9.4.8",
+  "id" : "1703222B39B57AE4",
+  "data" : "com.axonivy.portal.userexamples.Data",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "start.ivp",
+      "config" : {
+        "callSignature" : "start",
+        "task" : {
+          "name" : "<%=ivy.cms.co(\"/Processes/CaseMap/approveLevel1\")%>",
+          "expiry" : {
+            "timeout" : "new Duration(\"24h\")"
+          },
+          "customFields" : [
+            { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
+          ]
+        },
+        "showInStartList" : false,
+        "outLink" : "start.ivp",
+        "startName" : "Approve Level 1"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : { "id" : "f6", "to" : "f5" }
+    }, {
+      "id" : "f1",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 520, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "Script",
+      "name" : "log stage",
+      "config" : {
+        "output" : {
+          "code" : "ivy.log.info(\"Business Process is in Stage \" + ivy.case.getBusinessCase().getStage().getName());"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 384, "y" : 64 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f5",
+      "type" : "DialogCall",
+      "name" : [
+        "Approve",
+        "Level 1"
+      ],
+      "config" : {
+        "dialogId" : "com.axonivy.portal.userexamples.credit.ApproveLevel1",
+        "startMethod" : "start()"
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 }
+      },
+      "connect" : { "id" : "f4", "to" : "f3" }
+    } ]
+}

@@ -1,0 +1,146 @@
+{
+  "format" : "9.4.8",
+  "id" : "178A0F7DD8A74A94",
+  "data" : "com.axonivy.portal.developerexamples.showcase.GlobalGrowlIFrame8.GlobalGrowlIFrame8Data",
+  "kind" : "HTML_DIALOG",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start(Boolean)",
+      "config" : {
+        "callSignature" : "start",
+        "input" : {
+          "params" : [
+            { "name" : "isCustomized", "type" : "Boolean" }
+          ],
+          "map" : {
+            "out.isCustomized" : "param.isCustomized"
+          }
+        },
+        "guid" : "178A0F7DDBA91996"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 },
+        "labelOffset" : { "x" : -16, "y" : 15 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 }
+      }
+    }, {
+      "id" : "f13",
+      "type" : "Script",
+      "name" : "reset task",
+      "config" : {
+        "output" : {
+          "code" : "ivy.task.reset();"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 432, "y" : 192 },
+        "labelOffset" : { "x" : -25, "y" : -8 }
+      },
+      "connect" : { "id" : "f19", "to" : "f11" }
+    }, {
+      "id" : "f7",
+      "type" : "HtmlDialogEventStart",
+      "name" : "close",
+      "config" : {
+        "guid" : "178A0FAB70F306AE"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 128 },
+        "labelOffset" : { "x" : -14, "y" : 15 }
+      },
+      "connect" : { "id" : "f17", "to" : "f6" }
+    }, {
+      "id" : "f9",
+      "type" : "Script",
+      "name" : "Display growl",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.publicapi.PortalGlobalGrowInIFrameAPI;",
+            "if (in.isCustomized) {",
+            "  PortalGlobalGrowInIFrameAPI api = new PortalGlobalGrowInIFrameAPI();",
+            "  api.displayCustomizedMessage(\"Task is cancelled\");",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 240, "y" : 192 },
+        "labelOffset" : { "x" : -35, "y" : -8 }
+      },
+      "connect" : { "id" : "f18", "to" : "f13" }
+    }, {
+      "id" : "f6",
+      "type" : "Script",
+      "name" : "Display growl",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.publicapi.PortalGlobalGrowInIFrameAPI;",
+            "if (in.isCustomized) {",
+            "  PortalGlobalGrowInIFrameAPI api = new PortalGlobalGrowInIFrameAPI();",
+            "  api.displayCustomizedMessage(\"Task is finished\");",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 240, "y" : 128 },
+        "labelOffset" : { "x" : -35, "y" : -8 }
+      },
+      "connect" : { "id" : "f14", "to" : "f10" }
+    }, {
+      "id" : "f8",
+      "type" : "HtmlDialogEventStart",
+      "name" : "cancel",
+      "config" : {
+        "guid" : "178A0FAB70F5A1A7"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 192 },
+        "labelOffset" : { "x" : -14, "y" : 15 }
+      },
+      "connect" : { "id" : "f15", "to" : "f9" }
+    }, {
+      "id" : "f11",
+      "type" : "Script",
+      "name" : [
+        "back to task list",
+        "iframe logic"
+      ],
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.publicapi.PortalNavigatorInFrameAPI;",
+            "",
+            "PortalNavigatorInFrameAPI.navigateToPortalEndPage();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 640, "y" : 192 },
+        "size" : { "width" : 128, "height" : 44 },
+        "labelOffset" : { "x" : -40, "y" : -16 }
+      },
+      "connect" : { "id" : "f16", "to" : "f12" }
+    }, {
+      "id" : "f12",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 800, "y" : 192 }
+      }
+    }, {
+      "id" : "f10",
+      "type" : "HtmlDialogExit",
+      "visual" : {
+        "at" : { "x" : 384, "y" : 128 }
+      }
+    } ]
+}

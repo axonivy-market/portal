@@ -1,0 +1,62 @@
+{
+  "format" : "9.4.8",
+  "id" : "1685475D840E6170",
+  "data" : "internaltest.BuildCaseQueryOverrideData",
+  "kind" : "CALLABLE_SUB",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "CallSubStart",
+      "name" : "buildCaseQuery()",
+      "config" : {
+        "callSignature" : "buildCaseQuery",
+        "result" : {
+          "params" : [
+            { "name" : "caseQuery", "type" : "ch.ivyteam.ivy.workflow.query.CaseQuery" }
+          ],
+          "map" : {
+            "result.caseQuery" : "in.#caseQuery"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 92, "y" : 64 }
+      },
+      "connect" : { "id" : "f3", "to" : "f2" }
+    }, {
+      "id" : "f1",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 484, "y" : 64 }
+      }
+    }, {
+      "id" : "f5",
+      "type" : "ProcessAnnotation",
+      "name" : [
+        "HINT: build your case query",
+        "",
+        "import ch.ivyteam.ivy.workflow.query.CaseQuery;",
+        "CaseQuery.businessCases().where().customField().stringField(\"CustomVarCharField5\").isLike(\"%HELLO WORLD%\");"
+      ],
+      "visual" : {
+        "at" : { "x" : 364, "y" : 186 },
+        "size" : { "width" : 656, "height" : 76 }
+      },
+      "connect" : { "id" : "f6", "to" : "f2" }
+    }, {
+      "id" : "f2",
+      "type" : "Script",
+      "name" : "Build case query",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.workflow.query.CaseQuery;",
+            "out.caseQuery = CaseQuery.businessCases().where().name().isEqual(\"Leave Request\");"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 288, "y" : 64 }
+      },
+      "connect" : { "id" : "f4", "to" : "f1" }
+    } ]
+}

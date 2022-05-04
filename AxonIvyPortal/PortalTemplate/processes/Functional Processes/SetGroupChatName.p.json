@@ -1,0 +1,63 @@
+{
+  "format" : "9.4.8",
+  "id" : "169B29B5A9636EE8",
+  "data" : "ch.ivy.addon.portal.generic.SetGroupChatNameData",
+  "kind" : "CALLABLE_SUB",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "CallSubStart",
+      "name" : "setGroupChatName()",
+      "config" : {
+        "callSignature" : "setGroupChatName",
+        "result" : {
+          "params" : [
+            { "name" : "name", "type" : "String" }
+          ],
+          "map" : {
+            "result.name" : "in.name"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : { "id" : "f4", "to" : "f3" }
+    }, {
+      "id" : "f1",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "Script",
+      "name" : "Set group chat name",
+      "config" : {
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.name" : "ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/common/case\") + \"-{caseId}\" + \" {caseName}\""
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 },
+        "size" : { "width" : 128, "height" : 44 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f5",
+      "type" : "ProcessAnnotation",
+      "name" : [
+        "Default case name is: \"Case--{caseId} {caseName}\"",
+        "",
+        "Parameters can be passed through the bracket: {parameter}",
+        "They are available in GroupChat.java and you can add more by overriding the GetGroupChatParams callable process"
+      ],
+      "visual" : {
+        "at" : { "x" : 488, "y" : 168 },
+        "size" : { "width" : 656, "height" : 76 }
+      },
+      "connect" : { "id" : "f6", "to" : "f3" }
+    } ]
+}

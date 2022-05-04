@@ -1,0 +1,351 @@
+{
+  "format" : "9.4.8",
+  "id" : "1773DD760B7F094F",
+  "data" : "ch.ivy.addon.portalkit.component.CaseItemRelatedCases.CaseItemRelatedCasesData",
+  "kind" : "HTML_DIALOG",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start()",
+      "config" : {
+        "callSignature" : "start",
+        "guid" : "167E9A75EF3D0909"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 96 }
+      },
+      "connect" : { "id" : "f13", "to" : "f1" }
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 96 }
+      }
+    }, {
+      "id" : "f18",
+      "type" : "SubProcessCall",
+      "name" : "CaseService",
+      "config" : {
+        "processCall" : "Ivy Data Processes/CaseService:countCasesByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria)",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.totalCases" : "result.totalCases"
+          }
+        },
+        "call" : {
+          "params" : [
+            { "name" : "caseSearchCriteria", "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria" }
+          ],
+          "map" : {
+            "param.caseSearchCriteria" : "in.caseSearchCriteria"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 376, "y" : 288 }
+      },
+      "connect" : { "id" : "f21", "to" : "f20" }
+    }, {
+      "id" : "f20",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 512, "y" : 288 }
+      }
+    }, {
+      "id" : "f9",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 512, "y" : 192 }
+      }
+    }, {
+      "id" : "f6",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "findCases(CaseSearchCriteria,Integer,Integer)",
+      "config" : {
+        "callSignature" : "findCases",
+        "result" : {
+          "params" : [
+            { "name" : "cases", "type" : "java.util.List<ch.ivyteam.ivy.workflow.ICase>" }
+          ],
+          "map" : {
+            "result.cases" : "in.relatedCases"
+          }
+        },
+        "input" : {
+          "params" : [
+            { "name" : "caseSearchCriteria", "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria" },
+            { "name" : "startIndex", "type" : "Integer" },
+            { "name" : "count", "type" : "Integer" }
+          ],
+          "map" : {
+            "out.caseSearchCriteria" : "param.caseSearchCriteria",
+            "out.count" : "param.count",
+            "out.startIndex" : "param.startIndex"
+          }
+        },
+        "guid" : "177470EE84B57948"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 192 },
+        "labelOffset" : { "x" : -48, "y" : 13 }
+      },
+      "connect" : { "id" : "f8", "to" : "f7" }
+    }, {
+      "id" : "f7",
+      "type" : "SubProcessCall",
+      "name" : "CaseService",
+      "config" : {
+        "processCall" : "Ivy Data Processes/CaseService:findCasesByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria,Integer,Integer)",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.relatedCases" : "result.cases"
+          }
+        },
+        "call" : {
+          "params" : [
+            { "name" : "caseSearchCriteria", "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria" },
+            { "name" : "startIndex", "type" : "Integer" },
+            { "name" : "count", "type" : "Integer" }
+          ],
+          "map" : {
+            "param.caseSearchCriteria" : "in.caseSearchCriteria",
+            "param.startIndex" : "in.startIndex",
+            "param.count" : "in.count"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 376, "y" : 192 }
+      },
+      "connect" : { "id" : "f10", "to" : "f9" }
+    }, {
+      "id" : "f15",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "countCases(CaseSearchCriteria)",
+      "config" : {
+        "callSignature" : "countCases",
+        "result" : {
+          "params" : [
+            { "name" : "totalCases", "type" : "Long" }
+          ],
+          "map" : {
+            "result.totalCases" : "in.totalCases"
+          }
+        },
+        "input" : {
+          "params" : [
+            { "name" : "caseSearchCriteria", "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria" }
+          ],
+          "map" : {
+            "out.caseSearchCriteria" : "param.caseSearchCriteria"
+          }
+        },
+        "guid" : "177470EE84B21F55"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 288 },
+        "labelOffset" : { "x" : -45, "y" : 14 }
+      },
+      "connect" : { "id" : "f19", "to" : "f18" }
+    }, {
+      "id" : "f2",
+      "type" : "Script",
+      "name" : "init related case lazy data model",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.datamodel.internal.RelatedCaseLazyDataModel;",
+            "",
+            "in.caseLazyDataModel = new RelatedCaseLazyDataModel(in.iCase.getId());"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 280, "y" : 384 },
+        "size" : { "width" : 192, "height" : 44 }
+      },
+      "connect" : { "id" : "f4", "to" : "f5" }
+    }, {
+      "id" : "f5",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 448, "y" : 384 }
+      }
+    }, {
+      "id" : "f11",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "initData(ICase)",
+      "config" : {
+        "callSignature" : "initData",
+        "input" : {
+          "params" : [
+            { "name" : "iCase", "type" : "ch.ivyteam.ivy.workflow.ICase" }
+          ],
+          "map" : {
+            "out.iCase" : "param.iCase"
+          }
+        },
+        "guid" : "177F659A0ABC7738"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 384 }
+      },
+      "connect" : { "id" : "f3", "to" : "f2" }
+    }, {
+      "id" : "f81",
+      "type" : "SubProcessCall",
+      "name" : "export to excel",
+      "config" : {
+        "processCall" : "Functional Processes/ExportCaseToExcel:exportToExcel(java.util.List<ch.ivyteam.ivy.workflow.ICase>,java.util.List<String>)",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.exportedFile" : "result.exportedFile"
+          }
+        },
+        "call" : {
+          "params" : [
+            { "name" : "collectedCasesForExporting", "type" : "java.util.List<ch.ivyteam.ivy.workflow.ICase>" },
+            { "name" : "columnsVisibility", "type" : "java.util.List<String>" }
+          ],
+          "map" : {
+            "param.collectedCasesForExporting" : "in.collectedCasesForExporting",
+            "param.columnsVisibility" : "in.columnsVisibility"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 720, "y" : 480 }
+      },
+      "connect" : { "id" : "f88", "to" : "f79" }
+    }, {
+      "id" : "f78",
+      "type" : "Alternative",
+      "visual" : {
+        "at" : { "x" : 528, "y" : 480 }
+      },
+      "connect" : [
+        { "id" : "f89", "to" : "f75", "condition" : "in.loopCounter <= in.totalCases / in.maxResultNumberPerQuery" },
+        { "id" : "f86", "to" : "f81" }
+      ]
+    }, {
+      "id" : "f82",
+      "type" : "Script",
+      "name" : "counter++",
+      "config" : {
+        "output" : {
+          "code" : "in.loopCounter++;"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 680, "y" : 608 }
+      },
+      "connect" : { "id" : "f91", "to" : "f78" }
+    }, {
+      "id" : "f75",
+      "type" : "SubProcessCall",
+      "name" : "find cases",
+      "config" : {
+        "processCall" : "Ivy Data Processes/CaseService:findCasesByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria,Integer,Integer)",
+        "call" : {
+          "params" : [
+            { "name" : "caseSearchCriteria", "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria" },
+            { "name" : "startIndex", "type" : "Integer" },
+            { "name" : "count", "type" : "Integer" }
+          ],
+          "map" : {
+            "param.caseSearchCriteria" : "in.caseSearchCriteria",
+            "param.startIndex" : "in.loopCounter * in.maxResultNumberPerQuery",
+            "param.count" : "in.maxResultNumberPerQuery"
+          }
+        },
+        "output" : {
+          "code" : "in.collectedCasesForExporting.addAll(result.cases);"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 528, "y" : 608 }
+      },
+      "connect" : { "id" : "f90", "to" : "f82" }
+    }, {
+      "id" : "f77",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "getExportedFile(List<String>)",
+      "config" : {
+        "callSignature" : "getExportedFile",
+        "result" : {
+          "params" : [
+            { "name" : "exportedFile", "type" : "org.primefaces.model.StreamedContent" }
+          ],
+          "map" : {
+            "result.exportedFile" : "in.exportedFile"
+          }
+        },
+        "input" : {
+          "params" : [
+            { "name" : "columnsVisibility", "type" : "java.util.List<String>" }
+          ],
+          "map" : {
+            "out.columnsVisibility" : "param.columnsVisibility"
+          }
+        },
+        "guid" : "177FB4D6226CF656"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 480 },
+        "labelOffset" : { "x" : -46, "y" : 15 }
+      },
+      "connect" : { "id" : "f87", "to" : "f80" }
+    }, {
+      "id" : "f79",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 912, "y" : 480 }
+      }
+    }, {
+      "id" : "f76",
+      "type" : "Script",
+      "name" : "init data",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import java.util.ArrayList;",
+            "in.loopCounter = 0;",
+            "in.maxResultNumberPerQuery = 100000;",
+            "in.collectedCasesForExporting = new ArrayList();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 424, "y" : 480 }
+      },
+      "connect" : { "id" : "f92", "to" : "f78" }
+    }, {
+      "id" : "f80",
+      "type" : "SubProcessCall",
+      "name" : "count cases",
+      "config" : {
+        "processCall" : "Ivy Data Processes/CaseService:countCasesByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria)",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.totalCases" : "result.totalCases"
+          }
+        },
+        "call" : {
+          "params" : [
+            { "name" : "caseSearchCriteria", "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria" }
+          ],
+          "map" : {
+            "param.caseSearchCriteria" : "in.caseSearchCriteria"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 280, "y" : 480 }
+      },
+      "connect" : { "id" : "f83", "to" : "f76" }
+    } ]
+}

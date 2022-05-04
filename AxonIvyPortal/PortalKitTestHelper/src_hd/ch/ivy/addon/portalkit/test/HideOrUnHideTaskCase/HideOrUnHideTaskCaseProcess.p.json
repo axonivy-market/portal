@@ -1,0 +1,143 @@
+{
+  "format" : "9.4.8",
+  "id" : "169137A20654C01B",
+  "data" : "ch.ivy.addon.portalkit.test.HideOrUnHideTaskCase.HideOrUnHideTaskCaseData",
+  "kind" : "HTML_DIALOG",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start()",
+      "config" : {
+        "callSignature" : "start",
+        "guid" : "169137A2086B150F"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "HtmlDialogEventStart",
+      "name" : "close",
+      "config" : {
+        "guid" : "169137A20B7C72B8"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 160 },
+        "labelOffset" : { "x" : -15, "y" : 12 }
+      },
+      "connect" : { "id" : "f5", "to" : "f4" }
+    }, {
+      "id" : "f4",
+      "type" : "HtmlDialogExit",
+      "visual" : {
+        "at" : { "x" : 224, "y" : 160 }
+      }
+    }, {
+      "id" : "f6",
+      "type" : "HtmlDialogEventStart",
+      "name" : "hide",
+      "config" : {
+        "guid" : "169137C690A4E7BD"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 256 },
+        "labelOffset" : { "x" : -9, "y" : 20 }
+      },
+      "connect" : { "id" : "f9", "to" : "f8" }
+    }, {
+      "id" : "f7",
+      "type" : "HtmlDialogExit",
+      "visual" : {
+        "at" : { "x" : 384, "y" : 256 }
+      }
+    }, {
+      "id" : "f8",
+      "type" : "Script",
+      "name" : "hide",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.publicapi.CaseAPI;",
+            "import ch.ivyteam.ivy.workflow.ICase;",
+            "import ch.ivyteam.ivy.workflow.query.CaseQuery;",
+            "import ch.ivy.addon.portalkit.publicapi.TaskAPI;",
+            "import ch.ivyteam.ivy.workflow.ITask;",
+            "import ch.ivyteam.ivy.workflow.query.TaskQuery;",
+            "",
+            "TaskQuery taskQuery = TaskQuery.create().where().taskId().isEqual(in.taskId);",
+            "ITask task = ivy.wf.getGlobalContext().getTaskQueryExecutor().getResults(taskQuery).get(0) as ITask;",
+            "if (task != null){",
+            "  TaskAPI.setHidePropertyToHideInPortal(task);",
+            "}",
+            "",
+            "CaseQuery caseQuery = CaseQuery.create().where().caseId().isEqual(in.caseId);",
+            "ICase case = ivy.wf.getGlobalContext().getCaseQueryExecutor().getResults(caseQuery).get(0) as ICase;",
+            "if (case != null){",
+            "  CaseAPI.setHidePropertyToHideInPortal(case);",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 240, "y" : 256 }
+      },
+      "connect" : { "id" : "f10", "to" : "f7" }
+    }, {
+      "id" : "f11",
+      "type" : "HtmlDialogEventStart",
+      "name" : "unhide",
+      "config" : {
+        "guid" : "169138F1D5AEA255"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 352 },
+        "labelOffset" : { "x" : -20, "y" : 16 }
+      },
+      "connect" : { "id" : "f14", "to" : "f13" }
+    }, {
+      "id" : "f12",
+      "type" : "HtmlDialogExit",
+      "visual" : {
+        "at" : { "x" : 384, "y" : 352 }
+      }
+    }, {
+      "id" : "f13",
+      "type" : "Script",
+      "name" : "unhide",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.publicapi.CaseAPI;",
+            "import ch.ivy.addon.portalkit.publicapi.TaskAPI;",
+            "import ch.ivyteam.ivy.workflow.ICase;",
+            "import ch.ivyteam.ivy.workflow.query.CaseQuery;",
+            "import ch.ivyteam.ivy.workflow.ITask;",
+            "import ch.ivyteam.ivy.workflow.query.TaskQuery;",
+            "",
+            "TaskQuery taskQuery = TaskQuery.create().where().taskId().isEqual(in.taskId);",
+            "ITask task = ivy.wf.getGlobalContext().getTaskQueryExecutor().getResults(taskQuery).get(0) as ITask;",
+            "if (task != null){",
+            "  TaskAPI.removeHidePropertyToDisplayInPortal(task);",
+            "}",
+            "",
+            "CaseQuery caseQuery = CaseQuery.create().where().caseId().isEqual(in.caseId);",
+            "ICase case = ivy.wf.getGlobalContext().getCaseQueryExecutor().getResults(caseQuery).get(0) as ICase;",
+            "if (case != null){",
+            "  CaseAPI.removeHidePropertyToDisplayInPortal(case);",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 240, "y" : 352 }
+      },
+      "connect" : { "id" : "f15", "to" : "f12" }
+    } ]
+}
