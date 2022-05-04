@@ -1,0 +1,87 @@
+{
+  "format" : "9.4.8",
+  "id" : "1747BF67941CE352",
+  "data" : "ch.ivy.addon.portalkit.component.TaskItemWorkflowEvents.TaskItemWorkflowEventsData",
+  "kind" : "HTML_DIALOG",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start()",
+      "config" : {
+        "callSignature" : "start",
+        "guid" : "1747BF679887637F"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : { "id" : "f1", "to" : "f9" }
+    }, {
+      "id" : "f8",
+      "type" : "Script",
+      "name" : "Find Events",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.bo.History;",
+            "import ch.ivyteam.ivy.workflow.TaskState;",
+            "import ch.ivy.addon.portalkit.util.PermissionUtils;",
+            "import ch.ivy.addon.portalkit.service.HistoryService;",
+            "",
+            "HistoryService historyService = new HistoryService();",
+            "in.workflowEvents.clear();",
+            "if (PermissionUtils.checkReadAllWorkflowEventPermission()) {",
+            "  in.workflowEvents.addAll(historyService.createHistoryForTaskWorkflowEvents(in.task));",
+            "}",
+            "",
+            "if (PermissionUtils.checkReadAllTasksPermission()",
+            "    && (in.task.getState() == TaskState.FAILED || in.task.getState() == TaskState.JOIN_FAILED)) {",
+            "    History failedReason = historyService.createFailedReasonFrom(in.task);",
+            "    failedReason.displayName = \"\";",
+            "    in.workflowEvents.add(failedReason);",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 280, "y" : 192 }
+      },
+      "connect" : { "id" : "f13", "to" : "f11" }
+    }, {
+      "id" : "f11",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 440, "y" : 192 }
+      }
+    }, {
+      "id" : "f9",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 272, "y" : 64 }
+      }
+    }, {
+      "id" : "f10",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "getWorkflowEvents(Long)",
+      "config" : {
+        "callSignature" : "getWorkflowEvents",
+        "input" : {
+          "params" : [
+            { "name" : "taskId", "type" : "Long" }
+          ],
+          "code" : [
+            "import ch.ivy.addon.portalkit.util.TaskUtils;",
+            "if (param.taskId != null) {",
+            "  out.task = TaskUtils.findTaskById(param.taskId);",
+            "}"
+          ]
+        },
+        "guid" : "1747C052FA32B78C"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 192 },
+        "labelOffset" : { "x" : -52, "y" : 18 }
+      },
+      "connect" : { "id" : "f2", "to" : "f8" }
+    } ]
+}

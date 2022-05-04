@@ -1,0 +1,78 @@
+{
+  "format" : "9.4.8",
+  "id" : "163B018AA65AA403",
+  "data" : "ch.ivy.addon.portalkit.component.statistic.CustomVarField.CustomVarFieldData",
+  "kind" : "HTML_DIALOG",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start()",
+      "config" : {
+        "callSignature" : "start",
+        "guid" : "163B018AAA51EB1F"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "HtmlDialogEventStart",
+      "name" : "close",
+      "config" : {
+        "guid" : "163B018AAC28212E"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 160 },
+        "labelOffset" : { "x" : -15, "y" : 12 }
+      },
+      "connect" : { "id" : "f5", "to" : "f4" }
+    }, {
+      "id" : "f4",
+      "type" : "HtmlDialogExit",
+      "visual" : {
+        "at" : { "x" : 224, "y" : 160 }
+      }
+    }, {
+      "id" : "f10",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 353, "y" : 258 }
+      }
+    }, {
+      "id" : "f9",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "addCustomVal()",
+      "config" : {
+        "callSignature" : "addCustomVal",
+        "guid" : "163B02A2C957AD5F"
+      },
+      "visual" : {
+        "at" : { "x" : 97, "y" : 258 }
+      },
+      "connect" : { "id" : "f13", "to" : "f12" }
+    }, {
+      "id" : "f12",
+      "type" : "Script",
+      "config" : {
+        "output" : {
+          "code" : [
+            "if(!in.tempSelectedCustomValues.contains(in.selectedCustomValue)) {",
+            "  in.tempSelectedCustomValues.add(in.selectedCustomValue);",
+            "  in.selectedCustomValue = null;",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 225, "y" : 258 }
+      },
+      "connect" : { "id" : "f11", "to" : "f10" }
+    } ]
+}

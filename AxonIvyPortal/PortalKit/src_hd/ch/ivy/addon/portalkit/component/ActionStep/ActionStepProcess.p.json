@@ -1,0 +1,123 @@
+{
+  "format" : "9.4.8",
+  "id" : "16B6880352B52912",
+  "data" : "ch.ivy.addon.portalkit.component.ActionStep.ActionStepData",
+  "kind" : "HTML_DIALOG",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start()",
+      "config" : {
+        "callSignature" : "start",
+        "guid" : "16B6880355C388FF"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "HtmlDialogEventStart",
+      "name" : "close",
+      "config" : {
+        "guid" : "16B688035827903A"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 384 },
+        "labelOffset" : { "x" : -15, "y" : 12 }
+      },
+      "connect" : { "id" : "f5", "to" : "f4" }
+    }, {
+      "id" : "f4",
+      "type" : "HtmlDialogExit",
+      "visual" : {
+        "at" : { "x" : 224, "y" : 384 }
+      }
+    }, {
+      "id" : "f6",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "openDetails",
+      "config" : {
+        "callSignature" : "openDetails",
+        "input" : {
+          "params" : [
+            { "name" : "iCase", "type" : "ch.ivyteam.ivy.workflow.ICase" },
+            { "name" : "inFrame", "type" : "Boolean" }
+          ],
+          "map" : {
+            "out.iCase" : "param.iCase",
+            "out.inFrame" : "param.inFrame"
+          }
+        },
+        "guid" : "1700AAD6E969D73E"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 160 },
+        "labelOffset" : { "x" : -25, "y" : 15 }
+      },
+      "connect" : { "id" : "f10", "to" : "f9" }
+    }, {
+      "id" : "f7",
+      "type" : "SubProcessCall",
+      "name" : "CaseDetails in frame",
+      "config" : {
+        "processCall" : "Functional Processes/OpenPortalCaseDetailsHook:callForIFrame(ch.ivyteam.ivy.workflow.ICase,Boolean)",
+        "call" : {
+          "params" : [
+            { "name" : "caseData", "type" : "ch.ivyteam.ivy.workflow.ICase" },
+            { "name" : "isShowBackButton", "type" : "Boolean" }
+          ],
+          "map" : {
+            "param.caseData" : "in.iCase",
+            "param.isShowBackButton" : "true"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 432, "y" : 160 },
+        "size" : { "width" : 128, "height" : 44 }
+      }
+    }, {
+      "id" : "f9",
+      "type" : "Alternative",
+      "name" : "open in frame ?",
+      "visual" : {
+        "at" : { "x" : 224, "y" : 160 },
+        "labelOffset" : { "x" : -43, "y" : -40 }
+      },
+      "connect" : [
+        { "id" : "f8", "to" : "f7", "label" : {
+            "name" : "yes",
+            "offset" : { "x" : 0, "y" : -16 }
+          }, "condition" : "in.inFrame" },
+        { "id" : "f12", "to" : "f11", "via" : [ { "x" : 224, "y" : 256 } ] }
+      ]
+    }, {
+      "id" : "f11",
+      "type" : "SubProcessCall",
+      "name" : "OpenPortalCaseDetails",
+      "config" : {
+        "processCall" : "Functional Processes/OpenPortalCaseDetailsHook:call(ch.ivyteam.ivy.workflow.ICase,Boolean)",
+        "call" : {
+          "params" : [
+            { "name" : "caseData", "type" : "ch.ivyteam.ivy.workflow.ICase" },
+            { "name" : "isShowBackButton", "type" : "Boolean" }
+          ],
+          "map" : {
+            "param.caseData" : "in.iCase",
+            "param.isShowBackButton" : "true"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 440, "y" : 256 },
+        "size" : { "width" : 144, "height" : 44 }
+      }
+    } ]
+}

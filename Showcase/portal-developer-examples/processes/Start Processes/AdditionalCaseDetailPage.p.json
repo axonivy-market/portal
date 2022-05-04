@@ -1,0 +1,166 @@
+{
+  "format" : "9.4.8",
+  "id" : "1624D1F5CBEA5332",
+  "data" : "com.axonivy.portal.developerexamples.customization.AdditionalCaseDetailPage",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "createInvestmentRequest.ivp",
+      "config" : {
+        "callSignature" : "createInvestmentRequest",
+        "case" : {
+          "name" : "Investment Request",
+          "description" : "Investment Request for Customized Case Detail Page example",
+          "customFields" : [
+            { "name" : "CustomDecimalField1", "type" : "Number", "value" : "100" },
+            { "name" : "CustomDecimalField2", "type" : "Number", "value" : "2000" },
+            { "name" : "CustomTimestampField1", "type" : "Timestamp", "value" : "new DateTime(2018, 1, 1, 1, 1, 1)" },
+            { "name" : "CustomTimestampField2", "type" : "Timestamp", "value" : "new DateTime(2018, 2, 2, 2, 2, 2)" },
+            { "name" : "CustomVarCharField1", "type" : "String", "value" : "\"Apartment A\"" },
+            { "name" : "CustomVarCharField2", "type" : "String", "value" : "\"Request for new computer\"" }
+          ]
+        },
+        "outLink" : "createInvestmentRequest.ivp",
+        "startDescription" : "Investment Request for Customized Case Detail Page example",
+        "startName" : "Investment Request for Customized Case Detail Page example"
+      },
+      "visual" : {
+        "at" : { "x" : 136, "y" : 184 },
+        "description" : "Investment Request for Customized Case Detail Page example"
+      },
+      "connect" : { "id" : "f6", "to" : "f5" }
+    }, {
+      "id" : "f1",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 552, "y" : 184 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "TaskSwitchEvent",
+      "config" : {
+        "outLinks" : [ "TaskA.ivp" ],
+        "task" : {
+          "name" : "InvestmentRequest"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 456, "y" : 184 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1", "condition" : "ivp==\"TaskA.ivp\"" }
+    }, {
+      "id" : "f5",
+      "type" : "SubProcessCall",
+      "name" : "SetAdditonalCaseDetailPage",
+      "config" : {
+        "processCall" : "Functional Processes/SetAdditonalCaseDetailPage:call(String)",
+        "call" : {
+          "params" : [
+            { "name" : "linkToAddtionalCaseDetailPage", "type" : "String" }
+          ],
+          "map" : {
+            "param.linkToAddtionalCaseDetailPage" : "\"Start Processes/AdditionalCaseDetailPage/showInvestmentRequestCustomFields.ivp\""
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 320, "y" : 184 },
+        "size" : { "width" : 176, "height" : 44 }
+      },
+      "connect" : { "id" : "f4", "to" : "f3", "var" : "in1" }
+    }, {
+      "id" : "f7",
+      "type" : "RequestStart",
+      "name" : "showInvestmentRequestCustomFields.ivp",
+      "config" : {
+        "callSignature" : "showInvestmentRequestCustomFields",
+        "input" : {
+          "params" : [
+            { "name" : "caseId", "type" : "Long" }
+          ],
+          "map" : {
+            "out.caseId" : "param.caseId"
+          }
+        },
+        "case" : {
+          "customFields" : [
+            { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
+          ]
+        },
+        "outLink" : "showInvestmentRequestCustomFields.ivp",
+        "showInStartList" : false
+      },
+      "visual" : {
+        "at" : { "x" : 144, "y" : 64 }
+      },
+      "connect" : { "id" : "f12", "to" : "f10" }
+    }, {
+      "id" : "f8",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 716, "y" : 64 }
+      }
+    }, {
+      "id" : "f9",
+      "type" : "DialogCall",
+      "name" : [
+        "Customization",
+        "Additional Case Details Page"
+      ],
+      "config" : {
+        "dialogId" : "com.axonivy.portal.developerexamples.customization.InvestmentRequestCaseDetailPage",
+        "startMethod" : "start(ch.ivyteam.ivy.workflow.ICase)",
+        "call" : {
+          "params" : [
+            { "name" : "iCase", "type" : "ch.ivyteam.ivy.workflow.ICase" }
+          ],
+          "map" : {
+            "param.iCase" : "in.iCase"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 572, "y" : 64 },
+        "size" : { "width" : 192, "height" : 44 }
+      },
+      "connect" : { "id" : "f11", "to" : "f8" }
+    }, {
+      "id" : "f13",
+      "type" : "ProcessAnnotation",
+      "name" : [
+        "HOW TO CUSTOMIZE CASE DETAIL PAGE:",
+        "We need to do 2 steps:",
+        "",
+        "1. Create the process for the customize case detail page. In this example, it is showInvestmentRequestCustomFields.ivp",
+        "",
+        "2. If you want to have customized case detail page, store the URL of custom page to \"CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE\" additonal property.",
+        "We also provide  the callable process \"SetAdditionalCaseDetailPage\", you could use this if you need information from case only.",
+        "Input for this process is the friendly URL of your customized case detail page. Example: Start Processes/CustomizedCaseDetail/example.ivp",
+        "",
+        "HOW TO RUN THIS EXAMPLE:",
+        "1. Run createInvestmentRequest.ivp process",
+        "",
+        "2. Enter Portal case list, expand Investment Request case, then click to \"Show business details\" button. New tab will open, showing customized case detail page."
+      ],
+      "visual" : {
+        "at" : { "x" : 1232, "y" : 136 },
+        "size" : { "width" : 896, "height" : 268 }
+      }
+    }, {
+      "id" : "f10",
+      "type" : "Script",
+      "name" : "Find case by id",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.util.CaseUtils;",
+            "out.iCase = CaseUtils.findCase(in.caseId);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 352, "y" : 64 }
+      },
+      "connect" : { "id" : "f14", "to" : "f9" }
+    } ]
+}

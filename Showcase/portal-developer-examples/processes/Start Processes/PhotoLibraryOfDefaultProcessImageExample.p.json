@@ -1,0 +1,63 @@
+{
+  "format" : "9.4.8",
+  "id" : "179D499523153784",
+  "data" : "com.axonivy.portal.developerexamples.Data",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "start.ivp",
+      "config" : {
+        "callSignature" : "start",
+        "startCategory" : "Example",
+        "case" : {
+          "customFields" : [
+            { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
+          ]
+        },
+        "startDescription" : "Loading photo for default process image by selection",
+        "startCustomFields" : [
+          { "name" : "cssIcon", "value" : "si si-house-1" },
+          { "name" : "processImage", "value" : "<%=ivy.cms.cr(\"/images/process/INNOVATION\")%>" }
+        ],
+        "outLink" : "start.ivp",
+        "wfuser" : "1",
+        "startName" : "Default Process Image selection example"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : { "id" : "f4", "to" : "f3" }
+    }, {
+      "id" : "f1",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 640, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "DialogCall",
+      "name" : "PhotoLibraryOfDefaultProcessImageExample",
+      "config" : {
+        "dialogId" : "com.axonivy.portal.developerexamples.showcase.PhotoLibraryOfDefaultProcessImageExample",
+        "startMethod" : "start()"
+      },
+      "visual" : {
+        "at" : { "x" : 296, "y" : 64 },
+        "size" : { "width" : 256, "height" : 44 }
+      },
+      "connect" : { "id" : "f6", "to" : "f5" }
+    }, {
+      "id" : "f5",
+      "type" : "TaskSwitchEvent",
+      "config" : {
+        "task" : {
+          "name" : "Task created by Photo Library Of Default Process Image Example",
+          "description" : "Task created by Photo Library Of Default Process Image Example"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 528, "y" : 64 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    } ]
+}

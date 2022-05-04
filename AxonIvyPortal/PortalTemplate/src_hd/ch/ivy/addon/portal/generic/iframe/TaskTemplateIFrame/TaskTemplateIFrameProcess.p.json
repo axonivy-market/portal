@@ -1,0 +1,51 @@
+{
+  "format" : "9.4.8",
+  "id" : "16E1584824AEC16C",
+  "data" : "ch.ivy.addon.portal.generic.iframe.TaskTemplateIFrame.TaskTemplateIFrameData",
+  "kind" : "HTML_DIALOG",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start(String,Number)",
+      "config" : {
+        "callSignature" : "start",
+        "input" : {
+          "params" : [
+            { "name" : "url", "type" : "String" },
+            { "name" : "taskId", "type" : "Number" }
+          ],
+          "map" : {
+            "out.taskId" : "param.taskId",
+            "out.url" : "param.url"
+          }
+        },
+        "guid" : "16E11EC8F88D54A6"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 },
+        "labelOffset" : { "x" : -15, "y" : 15 }
+      },
+      "connect" : { "id" : "f4", "to" : "f3" }
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "Script",
+      "name" : "Find task by id",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : "out.task = ivy.wf.findTask(Long.valueOf(in.taskId));"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 256, "y" : 64 },
+        "labelOffset" : { "x" : -37, "y" : -8 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    } ]
+}

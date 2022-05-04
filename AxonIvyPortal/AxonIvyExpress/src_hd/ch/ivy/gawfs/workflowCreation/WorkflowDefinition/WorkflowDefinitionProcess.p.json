@@ -1,0 +1,912 @@
+{
+  "format" : "9.4.8",
+  "id" : "1576FA61C4EDC8B1",
+  "data" : "ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData",
+  "kind" : "HTML_DIALOG",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start(Data)",
+      "config" : {
+        "callSignature" : "start",
+        "result" : {
+          "params" : [
+            { "name" : "data", "type" : "gawfs.Data" }
+          ],
+          "map" : {
+            "result.data" : "in.data"
+          }
+        },
+        "input" : {
+          "params" : [
+            { "name" : "data", "type" : "gawfs.Data" }
+          ],
+          "map" : {
+            "out.data" : "param.data",
+            "out.originalProcessName" : "param.data.processName"
+          }
+        },
+        "guid" : "1576FA61C9D81A51"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : { "id" : "f7", "to" : "f6" }
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 664, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "HtmlDialogEventStart",
+      "name" : "close",
+      "config" : {
+        "guid" : "1576FA61CAF25C4A"
+      },
+      "visual" : {
+        "at" : { "x" : 760, "y" : 528 },
+        "labelOffset" : { "x" : -15, "y" : 12 }
+      },
+      "connect" : { "id" : "f63", "to" : "f62" }
+    }, {
+      "id" : "f4",
+      "type" : "HtmlDialogExit",
+      "visual" : {
+        "at" : { "x" : 1392, "y" : 528 }
+      }
+    }, {
+      "id" : "f6",
+      "type" : "Script",
+      "name" : "init first task",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.bo.PortalExpressProcess;",
+            "import ch.ivy.gawfs.enums.TaskType;",
+            "import ch.ivy.gawfs.enums.ProcessType;",
+            "import java.util.ArrayList;",
+            "import java.util.Collections;",
+            "import ch.ivyteam.ivy.security.IRole;",
+            "import ch.ivy.gawfs.Helper;",
+            "import gawfs.TaskDef;",
+            "import ch.ivyteam.ivy.security.IUser;",
+            "",
+            "if(!in.data.savedFlag) {",
+            "  ivy.task.setName(ivy.cms.co(\"/Dialogs/workflowCreation/WorkflowDefinition/WorkflowPropertiesStep\"));",
+            "  ivy.task.setDescription(ivy.cms.co(\"/Dialogs/Tasks/WorkflowProperties/TaskDescription\"));",
+            "}",
+            "",
+            "if(in.data.definedTasks.size()<1){",
+            "  TaskDef task = new TaskDef();",
+            "  task.taskType = TaskType.USER_TASK;",
+            "  task.position = 1;",
+            "  task.untilDays = 1;",
+            "  task.responsibles = new ArrayList();",
+            "  in.data.definedTasks.add(task);",
+            "}else{",
+            "  in.data.definedTasks = Helper.sortTasks(in.data.definedTasks);",
+            "}",
+            "",
+            "in.isAssignToUser = true;",
+            "if (!in.data.#isUseDefaultUI is initialized) {",
+            "  in.data.isUseDefaultUI = false;",
+            "}",
+            "",
+            "if (!in.data.#processType is initialized) {",
+            "  in.data.processType = ProcessType.REPEAT;",
+            "}",
+            "in.isRepeatable = in.data.processType != ProcessType.AD_HOC;",
+            "",
+            "if (!in.data.#processIcon is initialized) {",
+            "  in.data.processIcon = PortalExpressProcess.DEFAULT_ICON;",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 },
+        "size" : { "width" : 112, "height" : 40 }
+      },
+      "connect" : { "id" : "f46", "to" : "f45" }
+    }, {
+      "id" : "f9",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "addProcessStep()",
+      "config" : {
+        "callSignature" : "addProcessStep",
+        "guid" : "157748D911FE549A"
+      },
+      "visual" : {
+        "at" : { "x" : 832, "y" : 64 }
+      },
+      "connect" : { "id" : "f11", "to" : "f10" }
+    }, {
+      "id" : "f8",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "deleteProcessStep()",
+      "config" : {
+        "callSignature" : "deleteProcessStep",
+        "guid" : "157748DA5B03C33F"
+      },
+      "visual" : {
+        "at" : { "x" : 832, "y" : 144 }
+      },
+      "connect" : { "id" : "f14", "to" : "f13" }
+    }, {
+      "id" : "f10",
+      "type" : "Script",
+      "name" : "add new ProcessStep",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivy.gawfs.enums.TaskType;",
+            "import java.util.ArrayList;",
+            "import gawfs.TaskDef;",
+            "",
+            "",
+            "TaskDef task = new TaskDef();",
+            "task.taskType = TaskType.USER_TASK;",
+            "task.position = in.data.definedTasks.get(in.data.definedTasks.size()-1).position + 1;",
+            "task.untilDays = 1;",
+            "task.responsibles = new ArrayList();",
+            "",
+            "in.data.definedTasks.add(task);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 984, "y" : 64 },
+        "size" : { "width" : 128, "height" : 44 }
+      },
+      "connect" : { "id" : "f15", "to" : "f89", "via" : [ { "x" : 1184, "y" : 64 } ] }
+    }, {
+      "id" : "f13",
+      "type" : "Script",
+      "name" : "delete last ProcessStep",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import gawfs.TaskDef;",
+            "",
+            "",
+            "TaskDef task = in.data.definedTasks.get(in.data.definedTasks.size()-1);",
+            "",
+            "in.data.definedTasks.remove(task);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 992, "y" : 144 },
+        "size" : { "width" : 144, "height" : 44 }
+      },
+      "connect" : { "id" : "f90", "to" : "f89", "via" : [ { "x" : 1184, "y" : 144 } ] }
+    }, {
+      "id" : "f16",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "iniAssginement(TaskDef)",
+      "config" : {
+        "callSignature" : "initAssginement",
+        "input" : {
+          "params" : [
+            { "name" : "taskDefinition", "type" : "gawfs.TaskDef" }
+          ],
+          "map" : {
+            "out.taskDefinition" : "param.taskDefinition"
+          },
+          "code" : [
+            "int indexOfSelectedTaskDef = out.data.definedTasks.indexOf(param.taskDefinition);",
+            "if (out.data.isUseDefaultUI) {",
+            "  out.selectedResponsibleFieldId =  \"form:defined-tasks-list:\" + indexOfSelectedTaskDef + \":default-task-responsible-input-container\";",
+            "} else {",
+            "  out.selectedResponsibleFieldId =  \"form:defined-tasks-list:\" + indexOfSelectedTaskDef + \":task-responsible-input-container\";",
+            "}"
+          ]
+        },
+        "guid" : "157930AFEEC5B0A0"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 288 }
+      },
+      "connect" : { "id" : "f44", "to" : "f33" }
+    }, {
+      "id" : "f20",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 664, "y" : 288 }
+      }
+    }, {
+      "id" : "f19",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "updateResponsibles()",
+      "config" : {
+        "callSignature" : "updateResponsibles",
+        "guid" : "1579333111525F97"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 384 }
+      },
+      "connect" : { "id" : "f24", "to" : "f23" }
+    }, {
+      "id" : "f23",
+      "type" : "Script",
+      "name" : "update responsibles",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.util.SecurityMemberDisplayNameUtils;",
+            "import org.apache.commons.lang3.StringUtils;",
+            "import ch.ivyteam.ivy.security.ISecurityMember;",
+            "import java.util.ArrayList;",
+            "",
+            "List<String> responsibleNames = new ArrayList();",
+            "if(in.isSelectProcessOwnerResponsibles) {",
+            "  out.data.processCoOwners.clear();",
+            "  ",
+            "  for (ISecurityMember responsible : out.selectedAssigneeList) {",
+            "    out.data.processCoOwners.add(responsible.getMemberName());",
+            "    responsibleNames.add(SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(responsible, responsible.getName()));",
+            "  }",
+            "  ",
+            "  out.data.processCoOwnersDisplayName = String.join(\", \", responsibleNames);",
+            "}",
+            "else{",
+            "  out.taskDefinition.responsibles.clear();",
+            "  ",
+            "  for (ISecurityMember responsible : out.selectedAssigneeList) {",
+            "    out.taskDefinition.responsibles.add(responsible.getMemberName());",
+            "    responsibleNames.add(SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(responsible, responsible.getName()));",
+            "  }  ",
+            "  out.taskDefinition.responsibleDisplayName = String.join(\", \", responsibleNames);",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 256, "y" : 384 },
+        "size" : { "width" : 128, "height" : 44 }
+      },
+      "connect" : { "id" : "f29", "to" : "f27" }
+    }, {
+      "id" : "f25",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "cancel",
+      "config" : {
+        "callSignature" : "cancel",
+        "guid" : "1589422E488B03CA"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 544 }
+      },
+      "connect" : { "id" : "f71", "to" : "f70" }
+    }, {
+      "id" : "f30",
+      "type" : "HtmlDialogExit",
+      "visual" : {
+        "at" : { "x" : 600, "y" : 624 }
+      }
+    }, {
+      "id" : "f28",
+      "type" : "Script",
+      "name" : "Turn on discard flag",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : "in.data.discard = true;"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 312, "y" : 624 },
+        "size" : { "width" : 128, "height" : 44 }
+      },
+      "connect" : { "id" : "f92", "to" : "f91" }
+    }, {
+      "id" : "f17",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "addAssignee()",
+      "config" : {
+        "callSignature" : "addAssignee",
+        "guid" : "1628E5D94C6FDB31"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 776 }
+      },
+      "connect" : { "id" : "f35", "to" : "f34" }
+    }, {
+      "id" : "f18",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 672, "y" : 776 }
+      }
+    }, {
+      "id" : "f36",
+      "type" : "Alternative",
+      "name" : "Validated?",
+      "visual" : {
+        "at" : { "x" : 376, "y" : 776 },
+        "labelOffset" : { "x" : -27, "y" : -37 }
+      },
+      "connect" : [
+        { "id" : "f39", "to" : "f38", "label" : {
+            "name" : "YES",
+            "segment" : 0.43,
+            "offset" : { "x" : 0, "y" : -11 }
+          }, "condition" : "in.isValidAssignee" },
+        { "id" : "f40", "to" : "f18", "via" : [ { "x" : 376, "y" : 832 }, { "x" : 672, "y" : 832 } ], "label" : {
+            "name" : "NO",
+            "segment" : 1.17,
+            "offset" : { "x" : 0, "y" : -10 }
+          } }
+      ]
+    }, {
+      "id" : "f38",
+      "type" : "Script",
+      "name" : "Add assignee",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.security.ISecurityMember;",
+            "",
+            "ISecurityMember selectedAssignee = in.#selectedUser is initialized ",
+            "  ? ivy.security.members().find(in.selectedUser.getMemberName()) : ivy.security.roles().find(in.selectedRole.getMemberName());",
+            "in.selectedAssigneeList.add(selectedAssignee);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 528, "y" : 776 }
+      },
+      "connect" : { "id" : "f21", "to" : "f18" }
+    }, {
+      "id" : "f34",
+      "type" : "Script",
+      "name" : "Validate",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import org.apache.commons.lang3.StringUtils;",
+            "import javax.faces.application.FacesMessage;",
+            "import javax.faces.context.FacesContext;",
+            "import ch.ivyteam.ivy.security.ISecurityMember;",
+            "",
+            "ISecurityMember selectedAssignee = in.#selectedUser is initialized ",
+            "  ? ivy.security.members().find(in.selectedUser.getMemberName()) : ivy.security.roles().find(in.selectedRole.getMemberName());",
+            "in.isValidAssignee = true;",
+            "",
+            "if (!(#selectedAssignee is initialized) || in.selectedAssigneeList.contains(selectedAssignee)) {",
+            "  in.isValidAssignee = false;",
+            "  FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, \"\", ivy.cms.co(\"/Dialogs/agileBPM/define_WF/ErrorSelectInvalidAssignee\")));",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 248, "y" : 776 }
+      },
+      "connect" : { "id" : "f37", "to" : "f36" }
+    }, {
+      "id" : "f41",
+      "type" : "HtmlDialogEventStart",
+      "name" : "changeAssigneeType",
+      "config" : {
+        "guid" : "1628EC1A853E57B8",
+        "output" : {
+          "code" : [
+            "if (out.isAssignToUser) {",
+            "  out.selectedRole = null;",
+            "} else {",
+            "  out.selectedUser = null;",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 680 }
+      },
+      "connect" : { "id" : "f43", "to" : "f42" }
+    }, {
+      "id" : "f42",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 448, "y" : 680 }
+      }
+    }, {
+      "id" : "f27",
+      "type" : "Script",
+      "name" : "Reset dialog inputs",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import java.util.ArrayList;",
+            "",
+            "out.selectedAssigneeList = new ArrayList();",
+            "out.selectedRole = null;",
+            "out.selectedUser = null;",
+            "out.isAssignToUser = true;",
+            "out.isSelectProcessOwnerResponsibles = false;"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 440, "y" : 384 }
+      },
+      "connect" : { "id" : "f22", "to" : "f20", "via" : [ { "x" : 664, "y" : 384 } ] }
+    }, {
+      "id" : "f33",
+      "type" : "Script",
+      "name" : "Initialize dialog",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import javax.faces.context.FacesContext;",
+            "import ch.ivyteam.ivy.security.ISecurityMember;",
+            "",
+            "for (String assigneeName : in.taskDefinition.responsibles) {",
+            "  ISecurityMember assignee = ivy.security.members().find(assigneeName);",
+            "  if (#assignee is initialized) {",
+            "    if (!in.selectedAssigneeList.contains(assignee)) {",
+            "      in.selectedAssigneeList.add(assignee);",
+            "    }",
+            "  }",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 248, "y" : 288 }
+      },
+      "connect" : { "id" : "f26", "to" : "f20" }
+    }, {
+      "id" : "f45",
+      "type" : "Script",
+      "name" : "Initialize default UI",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.gawfs.DragAndDropController;",
+            "import ch.ivy.gawfs.DynaFormController;",
+            "",
+            "in.defaultDragAndDropController = new DragAndDropController();",
+            "in.defaultDragAndDropController.dynaFormController = new DynaFormController(in.defaultDragAndDropController);",
+            "in.defaultDragAndDropController.dynaFormController.initializeDefaultUI();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 384, "y" : 64 }
+      },
+      "connect" : { "id" : "f12", "to" : "f77" }
+    }, {
+      "id" : "f47",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "changeUISetting(Boolean)",
+      "config" : {
+        "callSignature" : "changeUISetting",
+        "input" : {
+          "params" : [
+            { "name" : "isAgreed", "type" : "Boolean" }
+          ],
+          "code" : [
+            "out.resetData = param.isAgreed;",
+            "out.data.isUseDefaultUI = out.resetData ?  out.data.isUseDefaultUI : !out.data.isUseDefaultUI;",
+            "out.data.processType = out.data.processType;"
+          ]
+        },
+        "guid" : "16347C45756F58EB"
+      },
+      "visual" : {
+        "at" : { "x" : 832, "y" : 288 },
+        "labelOffset" : { "x" : -49, "y" : 15 }
+      },
+      "connect" : { "id" : "f60", "to" : "f59" }
+    }, {
+      "id" : "f48",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 1184, "y" : 288 }
+      }
+    }, {
+      "id" : "f49",
+      "type" : "Script",
+      "name" : "Reset defined tasks",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.gawfs.enums.TaskType;",
+            "import java.util.ArrayList;",
+            "import gawfs.TaskDef;",
+            "",
+            "TaskDef task = new TaskDef();",
+            "task.position = 1;",
+            "task.untilDays = 1;",
+            "task.responsibles = new ArrayList();",
+            "",
+            "if (!in.data.isUseDefaultUI) {",
+            "  task.taskType = TaskType.USER_TASK;",
+            "}",
+            "",
+            "in.data.definedTasks.clear();",
+            "in.data.definedTasks.add(task);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1056, "y" : 288 },
+        "size" : { "width" : 128, "height" : 44 }
+      },
+      "connect" : { "id" : "f51", "to" : "f48" }
+    }, {
+      "id" : "f52",
+      "type" : "Script",
+      "name" : [
+        "Update list when",
+        "use default template"
+      ],
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.gawfs.enums.TaskType;",
+            "import gawfs.TaskDef;",
+            "",
+            "if (in.data.isUseDefaultUI) {",
+            "  String nameOfUserTask = in.data.definedTasks.get(0).subject;",
+            "  for (TaskDef taskDef : in.data.definedTasks) {",
+            "      taskDef.taskType = TaskType.USER_TASK;",
+            "      taskDef.dragAndDropController = in.defaultDragAndDropController;",
+            "      taskDef.dynaFormController = in.defaultDragAndDropController.dynaFormController;",
+            "  }",
+            "  in.data.readyToExecute = true;",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1208, "y" : 528 },
+        "size" : { "width" : 144, "height" : 44 }
+      },
+      "connect" : { "id" : "f5", "to" : "f4" }
+    }, {
+      "id" : "f54",
+      "type" : "HtmlDialogEventStart",
+      "name" : "closeDialog",
+      "config" : {
+        "guid" : "163497DDEE05D6E5"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 448 }
+      },
+      "connect" : { "id" : "f55", "to" : "f27", "via" : [ { "x" : 440, "y" : 448 } ] }
+    }, {
+      "id" : "f57",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 1184, "y" : 416 }
+      }
+    }, {
+      "id" : "f56",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "removeSelectedAssignee(ISecurityMember)",
+      "config" : {
+        "callSignature" : "removeSelectedAssignee",
+        "input" : {
+          "params" : [
+            { "name" : "assignee", "type" : "ch.ivyteam.ivy.security.ISecurityMember" }
+          ],
+          "code" : "out.selectedAssigneeList.remove(param.assignee);"
+        },
+        "guid" : "1634EB11643305EE"
+      },
+      "visual" : {
+        "at" : { "x" : 832, "y" : 416 }
+      },
+      "connect" : { "id" : "f58", "to" : "f57" }
+    }, {
+      "id" : "f59",
+      "type" : "Alternative",
+      "name" : "reset data?",
+      "visual" : {
+        "at" : { "x" : 928, "y" : 288 },
+        "labelOffset" : { "x" : -33, "y" : -43 }
+      },
+      "connect" : [
+        { "id" : "f50", "to" : "f49", "condition" : "in.resetData" },
+        { "id" : "f61", "to" : "f48", "via" : [ { "x" : 928, "y" : 336 }, { "x" : 1184, "y" : 336 } ] }
+      ]
+    }, {
+      "id" : "f62",
+      "type" : "Script",
+      "name" : [
+        "Check if ",
+        "process name exists"
+      ],
+      "config" : {
+        "output" : {
+          "code" : [
+            "import org.apache.commons.lang.StringUtils;",
+            "",
+            "import ch.ivy.gawfs.enums.ProcessType;",
+            "import ch.ivy.gawfs.ExpressProcessUtils;",
+            "ExpressProcessUtils utils = new ExpressProcessUtils();",
+            "if(in.data.editFlag || in.data.savedFlag) {",
+            "  in.isValidated = !(!StringUtils.equals(in.originalProcessName, in.data.processName) && in.data.processType == ProcessType.REPEAT && utils.isProcessNameDuplicated(in.data.processName));",
+            "}",
+            "else{",
+            "  in.isValidated = !(in.data.processType == ProcessType.REPEAT && utils.isProcessNameDuplicated(in.data.processName));",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 888, "y" : 528 },
+        "size" : { "width" : 144, "height" : 44 }
+      },
+      "connect" : { "id" : "f65", "to" : "f64" }
+    }, {
+      "id" : "f64",
+      "type" : "Alternative",
+      "visual" : {
+        "at" : { "x" : 1048, "y" : 528 }
+      },
+      "connect" : [
+        { "id" : "f53", "to" : "f52", "condition" : "in.isValidated" },
+        { "id" : "f67", "to" : "f66", "via" : [ { "x" : 1048, "y" : 608 } ] }
+      ]
+    }, {
+      "id" : "f66",
+      "type" : "Script",
+      "name" : "Validation message",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import javax.faces.context.FacesContext;",
+            "import javax.faces.application.FacesMessage;",
+            "",
+            "FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, ivy.cms.co(\"/Dialogs/workflowCreation/WorkflowDefinition/ProcessNameExists\"), \"\");",
+            "FacesContext context = FacesContext.getCurrentInstance();",
+            "context.addMessage(null, message);",
+            "context.validationFailed();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1216, "y" : 608 },
+        "size" : { "width" : 128, "height" : 44 }
+      },
+      "connect" : { "id" : "f69", "to" : "f68" }
+    }, {
+      "id" : "f68",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 1392, "y" : 608 }
+      }
+    }, {
+      "id" : "f70",
+      "type" : "Alternative",
+      "name" : "Is saved task?",
+      "visual" : {
+        "at" : { "x" : 192, "y" : 544 },
+        "labelOffset" : { "x" : -36, "y" : -42 }
+      },
+      "connect" : [
+        { "id" : "f73", "to" : "f72", "condition" : "in.data.savedFlag" },
+        { "id" : "f32", "to" : "f28", "via" : [ { "x" : 192, "y" : 624 } ] }
+      ]
+    }, {
+      "id" : "f72",
+      "type" : "Script",
+      "name" : "Reset task and navigate back",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.publicapi.PortalNavigatorAPI;",
+            "import ch.ivy.addon.portalkit.util.TaskUtils;",
+            "",
+            "TaskUtils.resetTask(ivy.task);",
+            "PortalNavigatorAPI.navigateToPortalEndPage();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 336, "y" : 544 },
+        "size" : { "width" : 176, "height" : 44 }
+      }
+    }, {
+      "id" : "f79",
+      "type" : "HtmlDialogEventStart",
+      "name" : "changeProcessType",
+      "config" : {
+        "guid" : "16D850B9F2D5844D"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 1056 },
+        "labelOffset" : { "x" : -69, "y" : 19 }
+      },
+      "connect" : { "id" : "f83", "to" : "f82" }
+    }, {
+      "id" : "f80",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 448, "y" : 1056 }
+      }
+    }, {
+      "id" : "f82",
+      "type" : "Script",
+      "name" : [
+        "Update info when ",
+        "change process type"
+      ],
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivy.gawfs.ExpressProcessUtils;",
+            "import ch.ivy.gawfs.enums.ProcessType;",
+            "import java.util.ArrayList;",
+            "",
+            "in.isDisplayProcessOwner = false;",
+            "in.data.processCoOwnersDisplayName = null;",
+            "in.data.processCoOwners = new ArrayList();",
+            "if(in.data.#processType == ProcessType.REPEAT) {",
+            "  in.data.processCoOwners.add(ivy.session.getSessionUser().getMemberName());",
+            "  ExpressProcessUtils util = new ExpressProcessUtils();",
+            "  in.data.processCoOwnersDisplayName = util.generateResponsibleDisplayName(in.data.processCoOwners);",
+            "  in.isDisplayProcessOwner = true;",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 264, "y" : 1056 },
+        "size" : { "width" : 144, "height" : 44 }
+      },
+      "connect" : { "id" : "f81", "to" : "f80" }
+    }, {
+      "id" : "f84",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "initProcessStartResponsibles()",
+      "config" : {
+        "callSignature" : "initProcessStartResponsibles",
+        "input" : {
+          "map" : {
+            "out.isSelectProcessOwnerResponsibles" : "true",
+            "out.selectedResponsibleFieldId" : "\"form:process-owner-content\""
+          }
+        },
+        "guid" : "16D8516BA7070FC4"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 928 },
+        "labelOffset" : { "x" : -80, "y" : 20 }
+      },
+      "connect" : { "id" : "f88", "to" : "f87" }
+    }, {
+      "id" : "f85",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 448, "y" : 928 }
+      }
+    }, {
+      "id" : "f87",
+      "type" : "Script",
+      "name" : "Init process owner dialog",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import javax.faces.context.FacesContext;",
+            "import ch.ivyteam.ivy.security.ISecurityMember;",
+            "",
+            "for (String assigneeName : in.data.processCoOwners) {",
+            "  ISecurityMember assignee = ivy.security.members().find(assigneeName);",
+            "  if (#assignee is initialized) {",
+            "    if (!in.selectedAssigneeList.contains(assignee)) {",
+            "      in.selectedAssigneeList.add(assignee);",
+            "    }",
+            "  }",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 264, "y" : 928 },
+        "size" : { "width" : 144, "height" : 44 }
+      },
+      "connect" : { "id" : "f86", "to" : "f85" }
+    }, {
+      "id" : "f74",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "onSwitchProcessType()",
+      "config" : {
+        "callSignature" : "onSwitchProcessType",
+        "guid" : "16FA7081E6A4B0E2"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 160 }
+      },
+      "connect" : { "id" : "f78", "to" : "f76" }
+    }, {
+      "id" : "f77",
+      "type" : "Script",
+      "name" : "Update processOwner",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivy.gawfs.enums.ProcessType;",
+            "import ch.ivy.gawfs.ExpressProcessUtils;",
+            "",
+            "if(in.data.#processType == ProcessType.REPEAT) {",
+            "  in.isDisplayProcessOwner = true;",
+            "",
+            "  if (!in.data.#processCoOwners is initialized || in.data.#processCoOwners.isEmpty()) {",
+            "    in.data.processCoOwners.add(ivy.session.getSessionUser().getMemberName());",
+            "  }",
+            "  ExpressProcessUtils util = new ExpressProcessUtils();",
+            "  in.data.processCoOwnersDisplayName = util.generateResponsibleDisplayName(in.data.processCoOwners);",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 552, "y" : 64 },
+        "size" : { "width" : 128, "height" : 44 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f89",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 1184, "y" : 104 }
+      }
+    }, {
+      "id" : "f76",
+      "type" : "Script",
+      "name" : "Update process type",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.gawfs.enums.ProcessType;",
+            "import ch.ivy.gawfs.ExpressProcessUtils;",
+            "import java.util.ArrayList;",
+            "",
+            "in.data.processType = in.isRepeatable ? ProcessType.REPEAT:ProcessType.AD_HOC;",
+            "in.isDisplayProcessOwner = false;",
+            "in.data.processCoOwnersDisplayName = null;",
+            "in.data.processCoOwners = new ArrayList();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 264, "y" : 160 },
+        "size" : { "width" : 128, "height" : 44 }
+      },
+      "connect" : { "id" : "f75", "to" : "f77", "via" : [ { "x" : 552, "y" : 160 } ] }
+    }, {
+      "id" : "f91",
+      "type" : "Script",
+      "name" : [
+        "Set attr to know",
+        "that task is cancelled"
+      ],
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.enums.SessionAttribute;",
+            "import ch.ivy.addon.portalkit.util.SecurityServiceUtils;",
+            "SecurityServiceUtils.setSessionAttribute(SessionAttribute.IS_TASK_FINISHED.toString(), false);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 472, "y" : 624 },
+        "size" : { "width" : 144, "height" : 44 },
+        "labelOffset" : { "x" : -51, "y" : -16 }
+      },
+      "connect" : { "id" : "f31", "to" : "f30" }
+    } ]
+}

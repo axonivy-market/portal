@@ -1,0 +1,110 @@
+{
+  "format" : "9.4.8",
+  "id" : "1559AE0A76284C44",
+  "data" : "ch.ivy.addon.portalkit.showroom.multiapp.tasks.DestroyTaskPage.DestroyTaskPageData",
+  "kind" : "HTML_DIALOG",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start()",
+      "config" : {
+        "callSignature" : "start",
+        "guid" : "1559AE0A7933579C"
+      },
+      "visual" : {
+        "at" : { "x" : 64, "y" : 96 },
+        "size" : { "width" : 22, "height" : 22 },
+        "labelOffset" : { "x" : 14, "y" : 0 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 64, "y" : 224 },
+        "size" : { "width" : 22, "height" : 22 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "HtmlDialogEventStart",
+      "name" : "close",
+      "config" : {
+        "guid" : "1559AE0A7AEA915D"
+      },
+      "visual" : {
+        "at" : { "x" : 160, "y" : 96 },
+        "size" : { "width" : 22, "height" : 22 },
+        "labelOffset" : { "x" : 14, "y" : 0 }
+      },
+      "connect" : { "id" : "f5", "to" : "f4" }
+    }, {
+      "id" : "f4",
+      "type" : "HtmlDialogExit",
+      "visual" : {
+        "at" : { "x" : 160, "y" : 224 },
+        "size" : { "width" : 22, "height" : 22 }
+      }
+    }, {
+      "id" : "f6",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "destroyTask(Long)",
+      "config" : {
+        "callSignature" : "destroyTask",
+        "guid" : "1559AE82C10CF58D",
+        "input" : {
+          "params" : [
+            { "name" : "taskId", "type" : "Long" }
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 256, "y" : 96 },
+        "size" : { "width" : 22, "height" : 22 },
+        "labelOffset" : { "x" : 14, "y" : 0 }
+      },
+      "connect" : { "id" : "f10", "to" : "f9" }
+    }, {
+      "id" : "f7",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 256, "y" : 224 },
+        "size" : { "width" : 22, "height" : 22 }
+      }
+    }, {
+      "id" : "f9",
+      "type" : "Script",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.workflow.ITask;",
+            "import javax.faces.context.FacesContext;",
+            "import javax.faces.application.FacesMessage;",
+            "import ch.ivyteam.ivy.security.IPermission;",
+            "import ch.ivyteam.ivy.security.ISecurityDescriptor;",
+            "",
+            "ISecurityDescriptor securityDescriptor = ivy.request.getApplication().getSecurityDescriptor();",
+            "if(ivy.session.hasPermission(securityDescriptor,ch.ivyteam.ivy.security.IPermission.TASK_READ) ){",
+            "      ITask task = ivy.wf.findTask(in.taskId);",
+            "      if(task != null) {",
+            "      if(ivy.session.hasPermission(securityDescriptor,ch.ivyteam.ivy.security.IPermission.TASK_DESTROY) && (task.getState().toString() != \"DESTROYED\")) {",
+            "      ivy.wf.findTask(in.taskId).destroy();  ",
+            "      FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,\"Info: \",\"Successful!\"));",
+            "      } else {",
+            "        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,\"Warning!\",\"You don't have permission or task state is Destroyed\"));",
+            "      }",
+            "    } else {",
+            "      FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,\"Warning!\",\"Task is not exist\"));",
+            "    }",
+            "  } else {",
+            "    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,\"Warning!\",\"You don't have permission\"));",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 256, "y" : 160 },
+        "size" : { "width" : 36, "height" : 24 }
+      },
+      "connect" : { "id" : "f8", "to" : "f7" }
+    } ]
+}
