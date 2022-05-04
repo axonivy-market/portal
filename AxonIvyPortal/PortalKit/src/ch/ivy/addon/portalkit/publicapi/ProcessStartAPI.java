@@ -85,7 +85,7 @@ public final class ProcessStartAPI {
 
   private static String findStartableIdByUserFriendlyRequestPath(String friendlyRequestPath) {
     return IvyExecutor.executeAsSystem(() -> {
-      IApplication application = Ivy.wf().getApplication();
+      IApplication application = IApplication.current();
       IProcessStart processStart = findStartableProcessStartByUserFriendlyRequestPath(friendlyRequestPath);
       return processStart != null ? application.getName() + "/" + processStart.getFullUserFriendlyRequestPath() : StringUtils.EMPTY;
     });
@@ -123,14 +123,14 @@ public final class ProcessStartAPI {
         return startElement;
       }
 
-      IApplication application = Ivy.wf().getApplication();
+      IApplication application = IApplication.current();
       return filterPMVForStartElement(friendlyRequestPath, application)
         .findFirst().orElse(null);
     });
   }
   
   private static IProcessStart findStartableProcessStartByUserFriendlyRequestPath(String requestPath) {
-    IApplication application = Ivy.wf().getApplication();
+    IApplication application = IApplication.current();
     return filterPMV(requestPath, application)
       .filter(processStart -> isStartableProcessStart(processStart.getFullUserFriendlyRequestPath()))
       .findFirst().orElse(null);
@@ -168,7 +168,7 @@ public final class ProcessStartAPI {
         return processStart;
       }
 
-      IApplication application = Ivy.wf().getApplication();
+      IApplication application = IApplication.current();
       return filterPMV(requestPath, application)
         .findFirst().orElse(null);
     });

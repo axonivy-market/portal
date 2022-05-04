@@ -116,7 +116,7 @@ public enum PortalSecurity {
     if (CollectionUtils.isEmpty(iPermissions) || securityMember == null) {
       return;
     }
-    ISecurityDescriptor portalSecurity = Ivy.wf().getApplication().getSecurityDescriptor();
+    ISecurityDescriptor portalSecurity = IApplication.current().getSecurityDescriptor();
     
     List<IPermission> denniedPermission = portalSecurity
         .getPermissionAccesses(securityMember)

@@ -33,7 +33,7 @@ public class ProcessStartUtils {
 
   public static IProcessStart findProcessStartByUserFriendlyRequestPath(String requestPath) {
     return IvyExecutor.executeAsSystem(() -> {
-      IApplication application = Ivy.wf().getApplication();
+      IApplication application = IApplication.current();
       IProcessStart processStart = null;
       processStart = findProcessStartByUserFriendlyRequestPathAndPmv(requestPath, Ivy.request().getProcessModelVersion());
       if (processStart != null) {
