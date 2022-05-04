@@ -51,15 +51,17 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     createTasksForTesting();
     // Ready for Join
-    assertTaskActionsByTaskState("Ready for joining", Arrays.asList("Details", "Reset", "Destroy", "Workflow Events", "Process Viewer"));
+    assertTaskActionsByTaskState("Ready for joining",
+        Arrays.asList("Details", "Reset", "Destroy", "Workflow Events", "Process Viewer"));
     // Suspended
-    assertTaskActionsByTaskState("Suspended",
-        Arrays.asList("Details", "Delegate", "Reserve", "Clear expiry", "Destroy", "Trigger Escalation", "Workflow Events", "Process Viewer", "Add Ad-hoc Task"));
+    assertTaskActionsByTaskStateAndName("Sick Leave Request", "Suspended",
+        Arrays.asList("Details", "Delegate", "Reserve", "Clear expiry", "Destroy", "Trigger Escalation",
+            "Workflow Events", "Process Viewer", "Add Ad-hoc Task"));
     // Done
     assertTaskActionsByTaskState("Done", Arrays.asList("Details", "Workflow Events", "Process Viewer"));
     // Delayed
-    assertTaskActionsByTaskState("Delayed",
-        Arrays.asList("Details", "Delegate", "Clear delay", "Destroy", "Workflow Events", "Process Viewer", "Add Ad-hoc Task"));
+    assertTaskActionsByTaskState("Delayed", Arrays.asList("Details", "Delegate", "Clear delay", "Destroy",
+        "Workflow Events", "Process Viewer", "Add Ad-hoc Task"));
     // Destroyed
     assertTaskActionsByTaskState("Destroyed", Arrays.asList("Details", "Workflow Events", "Process Viewer"));
   }
@@ -74,8 +76,8 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     newDashboardPage.waitForAbsencesGrowlMessageDisplay();
 
     // In progress for admin user
-    assertTaskActionsByTaskState("In progress",
-        Arrays.asList("Details", "Reserve", "Reset", "Clear expiry", "Destroy", "Workflow Events", "Process Viewer", "Add Ad-hoc Task"));
+    assertTaskActionsByTaskState("In progress", Arrays.asList("Details", "Reserve", "Reset", "Clear expiry", "Destroy",
+        "Workflow Events", "Process Viewer", "Add Ad-hoc Task"));
 
     login(TestAccount.DEMO_USER);
     createTasksForTesting();
@@ -108,14 +110,13 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     refreshPage();
 
     // Reserved for admin user
-    assertTaskActionsByTaskState("Reserved",
-        Arrays.asList("Details", "Delegate", "Reset", "Clear expiry", "Destroy", "Trigger Escalation", "Workflow Events", "Process Viewer", "Add Ad-hoc Task"));
+    assertTaskActionsByTaskState("Reserved", Arrays.asList("Details", "Delegate", "Reset", "Clear expiry", "Destroy",
+        "Trigger Escalation", "Workflow Events", "Process Viewer", "Add Ad-hoc Task"));
 
     login(TestAccount.DEMO_USER);
     createTasksForTesting();
     // Reserved for normal user
-    assertTaskActionsByTaskState("Reserved",
-        Arrays.asList("Details", "Process Viewer"));
+    assertTaskActionsByTaskState("Reserved", Arrays.asList("Details", "Process Viewer"));
   }
 
   private void createTasksForTesting() {
@@ -133,19 +134,31 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
     taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
     // Failed
-    assertTaskActionsByTaskState("Failed", Arrays.asList("Details", "Reset", "Destroy", "Workflow Events", "Process Viewer"));
+    assertTaskActionsByTaskState("Failed",
+        Arrays.asList("Details", "Reset", "Destroy", "Workflow Events", "Process Viewer"));
     // Join failed
-    assertTaskActionsByTaskState("Join failed", Arrays.asList("Details", "Destroy", "Workflow Events", "Process Viewer"));
+    assertTaskActionsByTaskState("Join failed",
+        Arrays.asList("Details", "Destroy", "Workflow Events", "Process Viewer"));
     // waiting for event
-    assertTaskActionsByTaskState("Waiting for event", Arrays.asList("Details", "Destroy", "Workflow Events", "Process Viewer"));
+    assertTaskActionsByTaskState("Waiting for event",
+        Arrays.asList("Details", "Destroy", "Workflow Events", "Process Viewer"));
   }
 
   private void assertTaskActionsByTaskState(String state, List<String> taskActionsInTask) {
     filterTaskByState(state);
-    ElementsCollection actions = taskWidget.getActiveTaskActions(0);
+    assertTaskAction(0, taskActionsInTask);
+  }
+
+  private void assertTaskActionsByTaskStateAndName(String name, String state, List<String> taskActionsInTask) {
+    filterTaskByNameAndState(name, state);
+    assertTaskAction(0, taskActionsInTask);
+  }
+
+  private void assertTaskAction(int index, List<String> taskActionsInTask) {
+    ElementsCollection actions = taskWidget.getActiveTaskActions(index);
     actions.shouldHaveSize(taskActionsInTask.size());
     assertTrue(actions.texts().containsAll(taskActionsInTask));
-    taskWidget.clickOnTaskActionLink(0);
+    taskWidget.clickOnTaskActionLink(index);
   }
 
   private void filterTaskByState(String state) {

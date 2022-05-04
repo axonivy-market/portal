@@ -100,7 +100,7 @@ public class UserFilterCollection implements Serializable {
       columns = ((CaseDashboardWidget) widget).getFilterableColumns();
     }
     if (DashboardWidgetType.PROCESS == widget.getType()) {
-      columns = ((ProcessDashboardWidget) widget).getFilterableColumns();
+      columns = ((CompactProcessDashboardWidget) widget).getFilterableColumns();
     }
     latestFilterOption.addFilterableColumns(columns);
     setSelectedWidgetFilterIds(getSelectedWidgetFilters()

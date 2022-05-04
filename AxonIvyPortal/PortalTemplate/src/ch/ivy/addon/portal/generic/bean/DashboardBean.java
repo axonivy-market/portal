@@ -5,6 +5,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -20,18 +23,21 @@ import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.dto.WidgetLayout;
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
+import ch.ivy.addon.portalkit.dto.dashboard.CompactProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.CustomDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardOrder;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
-import ch.ivy.addon.portalkit.dto.dashboard.ProcessDashboardWidget;
+import ch.ivy.addon.portalkit.dto.dashboard.SingleProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.WidgetFilterModel;
 import ch.ivy.addon.portalkit.enums.BehaviourWhenClickingOnLineInTaskList;
+import ch.ivy.addon.portalkit.enums.CaseEmptyMessage;
 import ch.ivy.addon.portalkit.enums.DashboardCustomWidgetType;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
+import ch.ivy.addon.portalkit.enums.TaskEmptyMessage;
 import ch.ivy.addon.portalkit.ivydata.service.impl.ProcessService;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
@@ -70,6 +76,8 @@ public class DashboardBean implements Serializable {
   private boolean canEditPublicDashboard;
   private ITask selectedTask;
   private boolean isRunningTaskWhenClickingOnTaskInList;
+  private CaseEmptyMessage noCasesMessage;
+  private TaskEmptyMessage noTasksMessage;
 
   @PostConstruct
   public void init() {
@@ -177,7 +185,9 @@ public class DashboardBean implements Serializable {
       if (StringUtils.isBlank(widget.getName())) {
         widget.setName(translate(cmsUri));
       }
-      WidgetFilterService.getInstance().applyUserFilterFromSession(widget);
+      if (!(widget instanceof SingleProcessDashboardWidget)) {
+        WidgetFilterService.getInstance().applyUserFilterFromSession(widget);
+      }
       DashboardWidgetUtils.removeStyleNewWidget(widget);
     }
   }
@@ -405,7 +415,7 @@ public class DashboardBean implements Serializable {
       filterableColumns.addAll(((CaseDashboardWidget) widget).getFilterableColumns());
     }
     if (DashboardWidgetType.PROCESS == widget.getType()) {
-      filterableColumns.addAll(((ProcessDashboardWidget) widget).getFilterableColumns());
+      filterableColumns.addAll(((CompactProcessDashboardWidget) widget).getFilterableColumns());
     }
     WidgetFilterService.getInstance().buildFilterOptions(widget, filterableColumns);
     WidgetFilterService.getInstance().updateUserFilterOptionMap(widget);
@@ -440,5 +450,25 @@ public class DashboardBean implements Serializable {
 
   public void navigatetoPublicDashboardReorder() {
     PortalNavigator.navigateToDashboardReorder(true);
+  }
+
+  public CaseEmptyMessage getNoCasesMessage() {
+    if (noCasesMessage == null) {
+      List<CaseEmptyMessage> messages = Stream.of(CaseEmptyMessage.values()).collect(Collectors.toList());
+      Random random = new Random();
+      int index = random.ints(0, messages.size()).findFirst().getAsInt();
+      noCasesMessage = messages.get(index);
+    }
+    return noCasesMessage;
+  }
+
+  public TaskEmptyMessage getNoTasksMessage() {
+    if (noTasksMessage == null) {
+      List<TaskEmptyMessage> messages = Stream.of(TaskEmptyMessage.values()).collect(Collectors.toList());
+      Random random = new Random();
+      int index = random.ints(0, messages.size()).findFirst().getAsInt();
+      noTasksMessage = messages.get(index);
+    }
+    return noTasksMessage;
   }
 }

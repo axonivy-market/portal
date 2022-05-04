@@ -106,7 +106,8 @@ public class PortalProcessMigrationService extends PortalMigrationService {
   }
 
   private static FilterLink createQueryActiveUserByApp(long appId) {
-    return UserQuery.create().where().enabled().isTrue().and().applicationId().isEqual(appId);
+    return UserQuery.create().where().enabled().isTrue();
+    //TODO consider applicationId(), original code return UserQuery.create().where().enabled().isTrue().and().applicationId().isEqual(appId);
   }
 
   private static IUser findUserInAppByName(IApplication app, String userName) {

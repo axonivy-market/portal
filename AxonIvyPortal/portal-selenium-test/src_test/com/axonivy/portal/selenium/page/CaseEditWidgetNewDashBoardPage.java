@@ -3,6 +3,7 @@ package com.axonivy.portal.selenium.page;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 
@@ -101,4 +102,106 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
         .shouldBe(getClickableCondition()).click();
   }
 
+  public void openColumnManagementDialog() {
+    $("div[id$='case-widget-preview:dashboard-cases-container']").waitUntil(appear, DEFAULT_TIMEOUT)
+        .$("a[id$='column-toggler']").click();
+    getColumnManagementDialog().waitUntil(appear, DEFAULT_TIMEOUT);
+  }
+
+  public SelenideElement getColumnManagementDialog() {
+    return $("div[id$='column-management-dialog']");
+  }
+
+  public void selectCustomType() {
+    selectFieldType("CUSTOM");
+    getCustomFieldType().waitUntil(appear, DEFAULT_TIMEOUT);
+  }
+
+  public void selectStandardType() {
+    selectFieldType("STANDARD");
+    getCustomFieldType().waitUntil(disappear, DEFAULT_TIMEOUT);
+  }
+
+  private SelenideElement getCustomFieldType() {
+    return getColumnManagementDialog().$("div[id$='custom-field-type-selection']");
+  }
+
+  public void selectFieldType(String type) {
+    getColumnManagementDialog().$("div[id$='field-type-selection']").waitUntil(Condition.appear, DEFAULT_TIMEOUT)
+        .shouldBe(getClickableCondition()).click();
+    $("div[id$='column-management-form:field-type-selection_panel'] li[data-label='" + type + "']").click();
+  }
+
+  public void removeAddedField(String field) {
+    SelenideElement removeLink = getAddedFieldRemoveLink(field);
+    removeLink.click();
+    removeLink.waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
+  }
+
+  public SelenideElement getAddedFieldRemoveLink(String field) {
+    return getColumnManagementDialog().$("tbody td.js-column-field-" + field + " a");
+  }
+
+  public SelenideElement getCustomField(String field) {
+    getCustomFieldSelection().click();
+    SelenideElement customFieldPanel = $("span[id$='column-management-form:custom-field-selection_panel']");
+    customFieldPanel.waitUntil(Condition.appear, DEFAULT_TIMEOUT);
+    getCustomFieldSelection().click();
+    return customFieldPanel.$("li[data-item-value='" + field + "']");
+  }
+
+  public String addFirstCustomField() {
+    selectCustomType();
+    getCustomFieldSelection().click();
+    SelenideElement customFieldPanel = $("span[id$='column-management-form:custom-field-selection_panel']");
+    customFieldPanel.waitUntil(Condition.appear, DEFAULT_TIMEOUT);
+    SelenideElement firstFieldElement = customFieldPanel.$("li").shouldBe(getClickableCondition());
+    String field = firstFieldElement.getText();
+    firstFieldElement.click();
+
+    getFieldDisplayName().clear();
+    getFieldDisplayName().sendKeys(field);
+
+    getColumnManagementDialog().$("button[id$='field-add-btn']").click();
+
+    getAddedFieldRemoveLink(field).waitUntil(Condition.appear, DEFAULT_TIMEOUT);
+    return field;
+  }
+
+  private SelenideElement getCustomFieldSelection() {
+    return getColumnManagementDialog().$("span[id$='custom-field-selection'] button");
+  }
+
+  public SelenideElement getStandardField(String field) {
+    getStandardFieldSelection().click();
+    SelenideElement standardFieldPanel = $("div[id$='column-management-form:standard-field-selection_panel']");
+    standardFieldPanel.waitUntil(Condition.appear, DEFAULT_TIMEOUT);
+    getStandardFieldSelection().click();
+    return standardFieldPanel.$("li[data-label='" + field + "']");
+  }
+
+  public String addFirstStandardField() {
+    getStandardFieldSelection().click();
+    SelenideElement standardFieldPanel = $("div[id$='column-management-form:standard-field-selection_panel']");
+    standardFieldPanel.waitUntil(Condition.appear, DEFAULT_TIMEOUT);
+    SelenideElement firstFieldElement = standardFieldPanel.$("li").shouldBe(getClickableCondition());
+    String field = firstFieldElement.getText();
+    firstFieldElement.click();
+
+    getFieldDisplayName().clear();
+    getFieldDisplayName().sendKeys(field);
+
+    getColumnManagementDialog().$("button[id$='field-add-btn']").click();
+
+    getAddedFieldRemoveLink(field).waitUntil(Condition.appear, DEFAULT_TIMEOUT);
+    return field;
+  }
+
+  private SelenideElement getStandardFieldSelection() {
+    return getColumnManagementDialog().$("div[id$='standard-field-selection'] .ui-selectonemenu-trigger");
+  }
+
+  private SelenideElement getFieldDisplayName() {
+    return getColumnManagementDialog().$("input[id$='field-display-name']");
+  }
 }
