@@ -1,0 +1,127 @@
+{
+  "format" : "9.4.8",
+  "id" : "17099FEAF8325AA8",
+  "data" : "com.axonivy.portal.userexamples.credit.CustomEndPage.CustomEndPageData",
+  "kind" : "HTML_DIALOG",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start(Long)",
+      "config" : {
+        "callSignature" : "start",
+        "input" : {
+          "params" : [
+            { "name" : "caseId", "type" : "Long" }
+          ],
+          "map" : {
+            "out.caseId" : "param.caseId"
+          }
+        },
+        "guid" : "17099FEAF8AFF2B1"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 },
+        "labelOffset" : { "x" : -16, "y" : 15 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "HtmlDialogEventStart",
+      "name" : "close",
+      "config" : {
+        "guid" : "17099FEAF9411114",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.caseId" : "in.caseId"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 160 }
+      },
+      "connect" : { "id" : "f5", "to" : "S40" }
+    }, {
+      "id" : "f4",
+      "type" : "HtmlDialogExit",
+      "visual" : {
+        "at" : { "x" : 376, "y" : 160 }
+      }
+    }, {
+      "id" : "S40",
+      "type" : "EmbeddedProcess",
+      "name" : "Case Details Page",
+      "elements" : [ {
+          "id" : "S40-f106",
+          "type" : "Script",
+          "name" : "Find Case",
+          "config" : {
+            "security" : "system",
+            "output" : {
+              "code" : [
+                "import ch.ivyteam.ivy.workflow.ICase;",
+                "import ch.ivyteam.ivy.workflow.query.CaseQuery;",
+                "",
+                "out.caseSelected = ivy.wf.getCaseQueryExecutor().getFirstResult(CaseQuery.create().where().caseId().isEqual(in.caseId)) as ICase;"
+              ]
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 192, "y" : 160 }
+          },
+          "connect" : { "id" : "S40-f107", "to" : "S40-f104" }
+        }, {
+          "id" : "S40-f104",
+          "type" : "SubProcessCall",
+          "name" : "OpenPortalCaseDetails",
+          "config" : {
+            "processCall" : "Functional Processes/OpenPortalCaseDetailsHook:call(ch.ivyteam.ivy.workflow.ICase,Boolean)",
+            "call" : {
+              "params" : [
+                { "name" : "caseData", "type" : "ch.ivyteam.ivy.workflow.ICase" },
+                { "name" : "isShowBackButton", "type" : "Boolean" }
+              ],
+              "map" : {
+                "param.caseData" : "in.caseSelected",
+                "param.isShowBackButton" : "true"
+              }
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 360, "y" : 160 },
+            "size" : { "width" : 144, "height" : 44 }
+          },
+          "connect" : { "id" : "S40-f1", "to" : "S40-g1" }
+        }, {
+          "id" : "S40-g0",
+          "type" : "EmbeddedStart",
+          "name" : "in 1",
+          "visual" : {
+            "at" : { "x" : 64, "y" : 160 },
+            "labelOffset" : { "x" : 0, "y" : 5 }
+          },
+          "parentConnector" : "f5",
+          "connect" : { "id" : "S40-f0", "to" : "S40-f106" }
+        }, {
+          "id" : "S40-g1",
+          "type" : "EmbeddedEnd",
+          "name" : "out 1",
+          "visual" : {
+            "at" : { "x" : 512, "y" : 160 },
+            "labelOffset" : { "x" : 0, "y" : 5 }
+          },
+          "parentConnector" : "f6"
+        } ],
+      "visual" : {
+        "at" : { "x" : 224, "y" : 160 },
+        "labelOffset" : { "x" : -49, "y" : -8 }
+      },
+      "connect" : { "id" : "f6", "to" : "f4" }
+    } ]
+}

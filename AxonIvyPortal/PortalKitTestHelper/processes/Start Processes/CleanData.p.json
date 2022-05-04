@@ -1,0 +1,472 @@
+{
+  "format" : "9.4.8",
+  "id" : "1511A66AF619A768",
+  "data" : "portalKit_test.Data",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "cleanCompletedCases.ivp",
+      "config" : {
+        "callSignature" : "cleanCompletedCases",
+        "outLink" : "cleanCompletedCases.ivp",
+        "startName" : "Clean completed cases"
+      },
+      "visual" : {
+        "at" : { "x" : 64, "y" : 96 },
+        "size" : { "width" : 26, "height" : 26 },
+        "labelOffset" : { "x" : -57, "y" : -34 }
+      },
+      "connect" : { "id" : "f4", "to" : "f3" }
+    }, {
+      "id" : "f1",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 64, "y" : 288 },
+        "size" : { "width" : 26, "height" : 26 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "Script",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.test.util.TaskUtils;",
+            "TaskUtils.deleteCompletedCases();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 64, "y" : 200 },
+        "size" : { "width" : 36, "height" : 24 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f5",
+      "type" : "Script",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.service.UserProcessService;",
+            "import ch.ivyteam.ivy.security.IUser;",
+            "import ch.ivy.addon.portalkit.test.util.SecurityUtils;",
+            "",
+            "List users = SecurityUtils.findAllUsers();",
+            "String key = UserProcessService.getInstance().getConfigKey();",
+            "for (IUser user : users) {",
+            "  user.removeProperty(key);",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 240, "y" : 200 },
+        "size" : { "width" : 36, "height" : 24 }
+      },
+      "connect" : { "id" : "f9", "to" : "f6" }
+    }, {
+      "id" : "f6",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 240, "y" : 288 },
+        "size" : { "width" : 26, "height" : 26 }
+      }
+    }, {
+      "id" : "f7",
+      "type" : "RequestStart",
+      "name" : "CleanFavoriteProcess.ivp",
+      "config" : {
+        "callSignature" : "CleanFavoriteProcess",
+        "outLink" : "CleanFavoriteProcess.ivp",
+        "startName" : "(For autotest) Clean all favorite processes"
+      },
+      "visual" : {
+        "at" : { "x" : 240, "y" : 96 },
+        "size" : { "width" : 26, "height" : 26 },
+        "labelOffset" : { "x" : -70, "y" : -36 },
+        "description" : "Clean all favorite processes before run UI test"
+      },
+      "connect" : { "id" : "f8", "to" : "f5" }
+    }, {
+      "id" : "f59",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 408, "y" : 288 },
+        "size" : { "width" : 26, "height" : 26 }
+      }
+    }, {
+      "id" : "f57",
+      "type" : "Script",
+      "name" : "clear all tasks & cases",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.test.util.BusinessDataUtils;",
+            "import ch.ivy.addon.portalkit.test.util.TaskConcurrencyUtils;",
+            "import ch.ivy.addon.portalkit.test.util.TaskUtils;",
+            "",
+            "TaskConcurrencyUtils.setInProcess(true);",
+            "TaskUtils.destroyAllCase();",
+            "BusinessDataUtils.clearAllBusinessData();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 408, "y" : 200 },
+        "size" : { "width" : 36, "height" : 24 },
+        "labelOffset" : { "x" : 20, "y" : -2 }
+      },
+      "connect" : { "id" : "f60", "to" : "f59" }
+    }, {
+      "id" : "f61",
+      "type" : "RequestStart",
+      "name" : "cleanAllCasesByDestroying.ivp",
+      "config" : {
+        "callSignature" : "cleanAllCasesByDestroying",
+        "case" : {
+          "attachToBusinessCase" : false
+        },
+        "outLink" : "cleanAllCasesByDestroying.ivp",
+        "startName" : "Clean all cases by destroying and clear all business data"
+      },
+      "visual" : {
+        "at" : { "x" : 408, "y" : 96 },
+        "size" : { "width" : 26, "height" : 26 },
+        "labelOffset" : { "x" : -58, "y" : -39 },
+        "description" : "Detroy all tasks & cases in system & clean all business data"
+      },
+      "connect" : { "id" : "f56", "to" : "f57" }
+    }, {
+      "id" : "f10",
+      "type" : "RequestStart",
+      "name" : "cleanAbsencesAndSubstitues.ivp",
+      "config" : {
+        "callSignature" : "cleanAbsencesAndSubstitues",
+        "outLink" : "cleanAbsencesAndSubstitues.ivp",
+        "startName" : "(For autotest) Clean absences"
+      },
+      "visual" : {
+        "at" : { "x" : 600, "y" : 96 },
+        "size" : { "width" : 26, "height" : 26 },
+        "labelOffset" : { "x" : -57, "y" : -34 }
+      },
+      "connect" : { "id" : "f13", "to" : "f11" }
+    }, {
+      "id" : "f11",
+      "type" : "Script",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.test.util.AbsenceUtils;",
+            "AbsenceUtils.cleanAllAbsencesAndSubstitutes();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 600, "y" : 200 },
+        "size" : { "width" : 36, "height" : 24 }
+      },
+      "connect" : { "id" : "f14", "to" : "f12" }
+    }, {
+      "id" : "f12",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 600, "y" : 288 },
+        "size" : { "width" : 26, "height" : 26 }
+      }
+    }, {
+      "id" : "f15",
+      "type" : "RequestStart",
+      "name" : "cleanupCases.ivp",
+      "config" : {
+        "callSignature" : "cleanupCases",
+        "case" : {
+          "attachToBusinessCase" : false
+        },
+        "outLink" : "cleanupCases.ivp",
+        "startName" : "(For autotest) Clean up all cases and clear all business data"
+      },
+      "visual" : {
+        "at" : { "x" : 736, "y" : 112 },
+        "size" : { "width" : 26, "height" : 26 },
+        "labelOffset" : { "x" : -43, "y" : -32 }
+      },
+      "connect" : { "id" : "f18", "to" : "f16" }
+    }, {
+      "id" : "f16",
+      "type" : "Script",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.test.util.BusinessDataUtils;",
+            "import ch.ivy.addon.portalkit.test.util.CaseUtils;",
+            "CaseUtils.deleteAllCases();",
+            "BusinessDataUtils.clearAllBusinessData();",
+            "ivy.datacache.getAppCache().invalidate();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 736, "y" : 192 },
+        "size" : { "width" : 36, "height" : 24 }
+      },
+      "connect" : { "id" : "f19", "to" : "f17" }
+    }, {
+      "id" : "f17",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 736, "y" : 288 },
+        "size" : { "width" : 26, "height" : 26 }
+      }
+    }, {
+      "id" : "f20",
+      "type" : "RequestStart",
+      "name" : "cleanupGlobalVars",
+      "config" : {
+        "callSignature" : "cleanupGlobalVars",
+        "outLink" : "cleanupGlobalVars.ivp"
+      },
+      "visual" : {
+        "at" : { "x" : 864, "y" : 96 },
+        "labelOffset" : { "x" : -57, "y" : -32 }
+      },
+      "connect" : { "id" : "f24", "to" : "f23" }
+    }, {
+      "id" : "f21",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 864, "y" : 288 }
+      }
+    }, {
+      "id" : "f23",
+      "type" : "Script",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.service.GlobalSettingService;",
+            "GlobalSettingService globalSettingService = new GlobalSettingService();",
+            "globalSettingService.resetAll();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 864, "y" : 192 }
+      },
+      "connect" : { "id" : "f22", "to" : "f21" }
+    }, {
+      "id" : "f25",
+      "type" : "RequestStart",
+      "name" : "cleanPortalPermissions",
+      "config" : {
+        "callSignature" : "cleanPortalPermissions",
+        "outLink" : "cleanPortalPermissions.ivp",
+        "startName" : "Clean Portal permissions"
+      },
+      "visual" : {
+        "at" : { "x" : 1056, "y" : 96 },
+        "labelOffset" : { "x" : -65, "y" : -38 }
+      },
+      "connect" : { "id" : "f29", "to" : "f28" }
+    }, {
+      "id" : "f26",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 1056, "y" : 288 }
+      }
+    }, {
+      "id" : "f28",
+      "type" : "Script",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;",
+            "import ch.ivyteam.ivy.security.IPermission;",
+            "import java.util.Arrays;",
+            "import ch.ivy.addon.portalkit.enums.PortalPermission;",
+            "import ch.ivyteam.ivy.security.restricted.permission.IPermissionGroupRepository;",
+            "import ch.ivyteam.ivy.security.IPermissionGroup;",
+            "import ch.ivy.addon.portalkit.enums.PortalPermissionGroup;",
+            "",
+            "for (PortalPermission permission : PortalPermission.values()) {",
+            "  IPermission iPermission = IPermissionRepository.get().findByName(permission.getValue());",
+            "  if (#iPermission is initialized) {",
+            "    IPermissionRepository.get().delete(iPermission);",
+            "  }",
+            "}",
+            "",
+            "for (PortalPermissionGroup group : PortalPermissionGroup.values()) {",
+            "  IPermissionGroup permissionGroup = IPermissionGroupRepository.get().findByName(group.getValue());",
+            "  if (#permissionGroup is initialized) {",
+            "    IPermissionGroupRepository.get().delete(permissionGroup);",
+            "  }",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1056, "y" : 192 }
+      },
+      "connect" : { "id" : "f27", "to" : "f26" }
+    }, {
+      "id" : "f30",
+      "type" : "RequestStart",
+      "name" : "resetLanguageOfCurrentUser",
+      "config" : {
+        "callSignature" : "resetLanguageOfCurrentUser",
+        "outLink" : "resetLanguageOfCurrentUser.ivp",
+        "startName" : "Reset language of current user"
+      },
+      "visual" : {
+        "at" : { "x" : 1224, "y" : 96 },
+        "labelOffset" : { "x" : -65, "y" : -38 }
+      },
+      "connect" : { "id" : "f33", "to" : "f31" }
+    }, {
+      "id" : "f31",
+      "type" : "Script",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import java.util.Locale;",
+            "",
+            "Locale default = ivy.request.getApplication().getDefaultEMailLanguage();",
+            "ivy.session.getSessionUser().setLanguage(default);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1224, "y" : 192 }
+      },
+      "connect" : { "id" : "f34", "to" : "f32" }
+    }, {
+      "id" : "f32",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 1224, "y" : 288 }
+      }
+    }, {
+      "id" : "f35",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 64, "y" : 560 },
+        "size" : { "width" : 26, "height" : 26 }
+      }
+    }, {
+      "id" : "f36",
+      "type" : "Script",
+      "name" : "clean data",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.constant.UserProperty;",
+            "import ch.ivyteam.ivy.security.IUser;",
+            "import org.apache.commons.collections4.CollectionUtils;",
+            "import ch.ivy.addon.portalkit.configuration.ExternalLink;",
+            "import ch.ivy.addon.portalkit.service.ExternalLinkService;",
+            "import ch.ivy.addon.portalkit.test.util.BusinessDataUtils;",
+            "import ch.ivy.addon.portalkit.test.util.CaseUtils;",
+            "import ch.ivy.addon.portalkit.service.UserProcessService;",
+            "import ch.ivy.addon.portalkit.service.GlobalSettingService;",
+            "import ch.ivy.addon.portalkit.test.util.SecurityUtils;",
+            "",
+            "CaseUtils.deleteAllCases();",
+            "BusinessDataUtils.clearAllBusinessData();",
+            "ivy.datacache.getAppCache().invalidate();",
+            "",
+            "UserProcessService userProcess = UserProcessService.getInstance();",
+            "",
+            "SecurityUtils.updatePermissionsOfTestUsers();",
+            "",
+            "GlobalSettingService globalSettingService = new GlobalSettingService();",
+            "globalSettingService.resetAll();",
+            "List excludedResetVars = [UserProcessService.getInstance().getConfigKey()];",
+            "for (String varName : ivy.var.names()) {",
+            "  if (!excludedResetVars.contains(varName)) {",
+            "    ivy.var.reset(varName);",
+            "  }",
+            "}",
+            "",
+            "List<IUser> users = SecurityUtils.findAllUsers();",
+            "for (IUser user : users) {",
+            "  for (String propertyName : user.getAllPropertyNames()) {",
+            "    user.removeProperty(propertyName);",
+            "  }",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 64, "y" : 416 },
+        "size" : { "width" : 36, "height" : 24 },
+        "labelOffset" : { "x" : 20, "y" : -2 }
+      },
+      "connect" : { "id" : "f41", "to" : "f40" }
+    }, {
+      "id" : "f37",
+      "type" : "RequestStart",
+      "name" : "cleanData.ivp",
+      "config" : {
+        "callSignature" : "cleanData",
+        "outLink" : "cleanData.ivp",
+        "startName" : "Clean data"
+      },
+      "visual" : {
+        "at" : { "x" : 64, "y" : 368 },
+        "size" : { "width" : 26, "height" : 26 },
+        "labelOffset" : { "x" : -57, "y" : -34 }
+      },
+      "connect" : { "id" : "f38", "to" : "f36" }
+    }, {
+      "id" : "f40",
+      "type" : "Script",
+      "name" : "login",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import javax.faces.context.FacesContext;",
+            "import javax.faces.application.FacesMessage;",
+            "import ch.ivyteam.ivy.security.IUser;",
+            "import java.util.Locale;",
+            "ivy.session.loginSessionUser(\"demo\", \"demo\");",
+            "for (int i = 0; i < 5; i++) {",
+            "  if (ivy.session.isSessionUserUnknown()) {",
+            "    if (i == 5) {",
+            "      ivy.log.warn(\"Unsuccessful login after retry (in clean data)\");",
+            "    } else {",
+            "      ivy.log.warn(\"Unsuccessful login, retry (in clean data)\");",
+            "      ivy.session.loginSessionUser(\"demo\", \"demo\");",
+            "      Thread.sleep(500);",
+            "    }",
+            "  } else {",
+            "    break;",
+            "  }",
+            "}",
+            "",
+            "//set language from user settings or application details",
+            "IUser sessionUser = ivy.session.getSessionUser();",
+            "if (sessionUser.getLanguage() != null) {",
+            "  Locale l = ivy.session.getSessionUser().getLanguage();",
+            "  ivy.session.setContentLocale(l);",
+            "  ivy.session.setFormattingLocale(l);",
+            "} else {",
+            "  // Application Default",
+            "  Locale default = ivy.request.getApplication().getDefaultEMailLanguage();",
+            "  String language = default.getLanguage();",
+            "  String country = default.getCountry();",
+            "  Locale l = new Locale(language, country, \"APPLICATION_DEFAULT\");",
+            "  ivy.session.setContentLocale(l);",
+            "  ivy.session.setFormattingLocale(l);",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 64, "y" : 488 }
+      },
+      "connect" : { "id" : "f39", "to" : "f35" }
+    } ]
+}

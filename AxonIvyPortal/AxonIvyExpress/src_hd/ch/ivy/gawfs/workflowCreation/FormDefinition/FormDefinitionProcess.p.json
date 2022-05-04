@@ -1,0 +1,663 @@
+{
+  "format" : "9.4.8",
+  "id" : "1574EBDBE9576CED",
+  "data" : "ch.ivy.gawfs.workflowCreation.FormDefinition.FormDefinitionData",
+  "kind" : "HTML_DIALOG",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start(Data)",
+      "config" : {
+        "callSignature" : "start",
+        "result" : {
+          "params" : [
+            { "name" : "data", "type" : "gawfs.Data" }
+          ],
+          "map" : {
+            "result.data" : "in.data"
+          }
+        },
+        "input" : {
+          "params" : [
+            { "name" : "data", "type" : "gawfs.Data" }
+          ],
+          "map" : {
+            "out.data" : "param.data"
+          }
+        },
+        "guid" : "156E35E680453115"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 },
+        "labelOffset" : { "x" : -28, "y" : 33 }
+      },
+      "connect" : { "id" : "f47", "to" : "f46" }
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 832, "y" : 64 }
+      }
+    }, {
+      "id" : "f4",
+      "type" : "HtmlDialogExit",
+      "visual" : {
+        "at" : { "x" : 720, "y" : 608 }
+      }
+    }, {
+      "id" : "f6",
+      "type" : "Script",
+      "name" : "init createTabs",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.gawfs.DynaFormController;",
+            "",
+            "in.createFileUploadTab = DynaFormController.initializeFileUploadElement();",
+            "in.createInputFieldTab = DynaFormController.initializeInputFieldElement();",
+            "in.createInputAreaTab = DynaFormController.initializeInputAreaElement();",
+            "in.createManyCheckboxTab = DynaFormController.initializeCheckboxElement();",
+            "in.createOneRadioTab = DynaFormController.initializeRadioButtonElement();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 696, "y" : 64 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f8",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "createInputField",
+      "config" : {
+        "callSignature" : "createInputField",
+        "guid" : "15749D9D5247FA7C"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 160 }
+      },
+      "connect" : { "id" : "f10", "to" : "f9" }
+    }, {
+      "id" : "f9",
+      "type" : "Script",
+      "name" : "Add Text Input element",
+      "config" : {
+        "output" : {
+          "code" : [
+            "",
+            "in.createInputFieldTab.id = in.createInputFieldTab.label + new DateTime();",
+            "in.dragAndDropController.availableFormelements.add(in.createInputFieldTab);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 257, "y" : 160 },
+        "size" : { "width" : 128, "height" : 44 }
+      },
+      "connect" : { "id" : "f21", "to" : "f19", "via" : [ { "x" : 576, "y" : 160 } ] }
+    }, {
+      "id" : "f12",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "createInputTextArea()",
+      "config" : {
+        "callSignature" : "createInputTextArea",
+        "guid" : "1574A296AECB0DD4"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 224 }
+      },
+      "connect" : { "id" : "f18", "to" : "f17" }
+    }, {
+      "id" : "f14",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "createManyCheckbox()",
+      "config" : {
+        "callSignature" : "createManyCheckbox",
+        "guid" : "1574A2979225007A"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 288 }
+      },
+      "connect" : { "id" : "f34", "to" : "f33" }
+    }, {
+      "id" : "f15",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "createOneRadio()",
+      "config" : {
+        "callSignature" : "createOneRadio",
+        "guid" : "1574A2984D932DE0"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 352 }
+      },
+      "connect" : { "id" : "f36", "to" : "f35" }
+    }, {
+      "id" : "f16",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "createFileUpload()",
+      "config" : {
+        "callSignature" : "createFileUpload",
+        "guid" : "1574A2991F562461"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 416 }
+      },
+      "connect" : { "id" : "f40", "to" : "f39" }
+    }, {
+      "id" : "f17",
+      "type" : "Script",
+      "name" : "Add Textarea element",
+      "config" : {
+        "output" : {
+          "code" : [
+            "",
+            "in.createInputAreaTab.id = in.createInputAreaTab.label + new DateTime();",
+            "in.dragAndDropController.availableFormelements.add(in.createInputAreaTab);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 257, "y" : 224 },
+        "size" : { "width" : 128, "height" : 44 }
+      },
+      "connect" : { "id" : "f22", "to" : "f19", "via" : [ { "x" : 576, "y" : 224 } ] }
+    }, {
+      "id" : "f19",
+      "type" : "Alternative",
+      "visual" : {
+        "at" : { "x" : 576, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f7", "to" : "f6" }
+      ]
+    }, {
+      "id" : "f11",
+      "type" : "Script",
+      "name" : "Initialize controllers",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.activeTab" : "0"
+          },
+          "code" : [
+            "import org.apache.commons.collections4.CollectionUtils;",
+            "import gawfs.ExternalDataProvider;",
+            "import ch.ivy.gawfs.ExpressProcessUtils;",
+            "import ch.ivy.addon.portalkit.bo.ExpressUserEmail;",
+            "import ch.ivy.gawfs.enums.TaskType;",
+            "import ch.ivy.gawfs.DynaFormController;",
+            "import ch.ivy.gawfs.DragAndDropController;",
+            "import gawfs.TaskDef;",
+            "",
+            "for (TaskDef taskDef : in.data.definedTasks) {",
+            "  if(taskDef.getTaskType() == TaskType.EMAIL) {",
+            "    if(!taskDef.#email is initialized) {",
+            "      taskDef.setEmail(new ExpressUserEmail());  ",
+            "    }  ",
+            "  }",
+            "  else if(taskDef.getTaskType() != TaskType.EMAIL) {",
+            "    taskDef.setEmail(null);",
+            "    if (taskDef.#dynaFormController is initialized) {",
+            "      continue;",
+            "    }",
+            "      taskDef.dragAndDropController = new DragAndDropController();",
+            "      taskDef.dynaFormController = new DynaFormController(taskDef.dragAndDropController);",
+            "      taskDef.dragAndDropController.setDynaFormController(taskDef.dynaFormController);",
+            "      taskDef.dynaFormController.createForm();",
+            "    }",
+            "}",
+            "if(in.data.definedTasks.get(0).taskType != TaskType.EMAIL) {",
+            "  in.dragAndDropController = in.data.definedTasks.get(0).dragAndDropController;",
+            "  in.dynaFormController = in.data.definedTasks.get(0).dynaFormController;",
+            "}",
+            "in.activeTaskIndex = 0;",
+            "ExpressProcessUtils expressUtils = new ExpressProcessUtils();",
+            "in.displayNextBtn = expressUtils.displayNextButton(in.data.definedTasks, in.activeTaskIndex);",
+            "",
+            "in.selectedDataProvider = new ExternalDataProvider();",
+            "in.selectedDataProvider.name = ivy.cms.co(\"/Dialogs/workflowCreation/FormDefinition/NoDataProvider\");",
+            "",
+            "List<ExternalDataProvider> foundDataProviders = expressUtils.findDataProviders();",
+            "if (CollectionUtils.isNotEmpty(foundDataProviders)) {",
+            "  in.dataProviders.add(in.selectedDataProvider);",
+            "  in.dataProviders.addAll(foundDataProviders);",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 440, "y" : 64 },
+        "size" : { "width" : 112, "height" : 48 }
+      },
+      "connect" : { "id" : "f20", "to" : "f19" }
+    }, {
+      "id" : "f33",
+      "type" : "Script",
+      "name" : "Add Checkbox element",
+      "config" : {
+        "output" : {
+          "code" : [
+            "",
+            "in.createManyCheckboxTab.id = in.createManyCheckboxTab.label + new DateTime();",
+            "if (!in.selectedDataProvider.libraryId.isEmpty()) {",
+            "  in.createManyCheckboxTab.options.clear();",
+            "  in.createManyCheckboxTab.optionsStr.clear();",
+            "",
+            "  in.createManyCheckboxTab.addOption(in.selectedDataProvider.libraryId);",
+            "  in.createManyCheckboxTab.addOption(in.selectedDataProvider.signature);",
+            "}",
+            "in.dragAndDropController.availableFormelements.add(in.createManyCheckboxTab);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 265, "y" : 288 },
+        "size" : { "width" : 144, "height" : 44 }
+      },
+      "connect" : { "id" : "f37", "to" : "f19", "via" : [ { "x" : 576, "y" : 288 } ] }
+    }, {
+      "id" : "f35",
+      "type" : "Script",
+      "name" : "Add Radion Button element",
+      "config" : {
+        "output" : {
+          "code" : [
+            "",
+            "in.createOneRadioTab.id = in.createOneRadioTab.label + new DateTime();",
+            "in.dragAndDropController.availableFormelements.add(in.createOneRadioTab);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 273, "y" : 351 },
+        "size" : { "width" : 160, "height" : 44 }
+      },
+      "connect" : { "id" : "f38", "to" : "f19", "via" : [ { "x" : 576, "y" : 351 } ] }
+    }, {
+      "id" : "f39",
+      "type" : "Script",
+      "name" : "Add File Upload element",
+      "config" : {
+        "output" : {
+          "code" : [
+            "",
+            "in.createFileUploadTab.id = in.createFileUploadTab.label + new DateTime();",
+            "in.dragAndDropController.availableFormelements.add(in.createFileUploadTab);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 265, "y" : 416 },
+        "size" : { "width" : 144, "height" : 44 }
+      },
+      "connect" : { "id" : "f41", "to" : "f19", "via" : [ { "x" : 576, "y" : 416 } ] }
+    }, {
+      "id" : "f44",
+      "type" : "HtmlDialogEventStart",
+      "name" : "back",
+      "config" : {
+        "guid" : "15791C3E4B5AA64C",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.data.backFlag" : "true"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 672 }
+      },
+      "connect" : { "id" : "f45", "to" : "f4", "via" : [ { "x" : 720, "y" : 672 } ] }
+    }, {
+      "id" : "f42",
+      "type" : "HtmlDialogEventStart",
+      "name" : "directExecution",
+      "config" : {
+        "guid" : "15798472F333F271"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 608 }
+      },
+      "connect" : { "id" : "f24", "to" : "f23" }
+    }, {
+      "id" : "f51",
+      "type" : "HtmlDialogEventStart",
+      "name" : "cancel",
+      "config" : {
+        "guid" : "158942FA3188C6C0"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 736 }
+      },
+      "connect" : { "id" : "f68", "to" : "f67" }
+    }, {
+      "id" : "f48",
+      "type" : "Script",
+      "name" : "discard = true",
+      "config" : {
+        "output" : {
+          "code" : "in.data.discard = true;"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 328, "y" : 816 }
+      },
+      "connect" : { "id" : "f72", "to" : "f64" }
+    }, {
+      "id" : "f46",
+      "type" : "Script",
+      "name" : "Initialize task",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivy.gawfs.enums.FormElementType;",
+            "",
+            "if(!in.data.savedFlag) {",
+            "  ivy.task.setName(ivy.cms.co(\"/Dialogs/Tasks/FormDefinition/TaskName\"));",
+            "  ivy.task.setDescription(ivy.cms.co(\"/Dialogs/Tasks/FormDefinition/TaskDescription\"));",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 248, "y" : 64 }
+      },
+      "connect" : { "id" : "f13", "to" : "f11" }
+    }, {
+      "id" : "f49",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "moveNextTask()",
+      "config" : {
+        "callSignature" : "moveNextTask",
+        "input" : {
+          "code" : [
+            "import ch.ivy.gawfs.ExpressProcessUtils;",
+            "import ch.ivy.gawfs.enums.TaskType;",
+            "if(out.data.definedTasks.get(out.activeTaskIndex).getTaskType() != TaskType.EMAIL) {",
+            "  out.data.definedTasks.get(out.activeTaskIndex).setDynaFormController(out.dynaFormController);",
+            "  out.data.definedTasks.get(out.activeTaskIndex).setDragAndDropController(out.dragAndDropController);",
+            "",
+            "}",
+            "ExpressProcessUtils expressUtils = new ExpressProcessUtils();",
+            "out.activeTaskIndex = expressUtils.nextAvailableTaskIndex(out.data.definedTasks, out.activeTaskIndex);"
+          ]
+        },
+        "guid" : "162BD04BAE6408C4"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 480 }
+      },
+      "connect" : { "id" : "f57", "to" : "f56" }
+    }, {
+      "id" : "f52",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 576, "y" : 480 }
+      }
+    }, {
+      "id" : "f56",
+      "type" : "Script",
+      "name" : [
+        "Initialize next",
+        "controllers"
+      ],
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.gawfs.ExpressProcessUtils;",
+            "import ch.ivy.gawfs.enums.TaskType;",
+            "import gawfs.TaskDef;",
+            "",
+            "TaskDef nextTaskDef = in.data.definedTasks.get(in.activeTaskIndex);",
+            "if(nextTaskDef.getTaskType() != TaskType.EMAIL) {",
+            "  in.dynaFormController = nextTaskDef.getDynaFormController();",
+            "  in.dragAndDropController = nextTaskDef.getDragAndDropController();",
+            "}",
+            "ExpressProcessUtils expressUtils = new ExpressProcessUtils();",
+            "in.displayNextBtn = expressUtils.displayNextButton(in.data.definedTasks, in.activeTaskIndex);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 248, "y" : 480 }
+      },
+      "connect" : { "id" : "f55", "to" : "f52" }
+    }, {
+      "id" : "f58",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "moveToTask()",
+      "config" : {
+        "callSignature" : "moveToTask",
+        "input" : {
+          "params" : [
+            { "name" : "index", "type" : "Integer" }
+          ],
+          "code" : [
+            "import ch.ivy.gawfs.enums.TaskType;",
+            "if(out.data.definedTasks.get(out.activeTaskIndex).getTaskType() != TaskType.EMAIL) {",
+            "  out.data.definedTasks.get(out.activeTaskIndex).setDynaFormController(out.dynaFormController);",
+            "  out.data.definedTasks.get(out.activeTaskIndex).setDragAndDropController(out.dragAndDropController);",
+            "",
+            "}",
+            "out.activeTaskIndex =param.index;"
+          ]
+        },
+        "guid" : "162BD1499F4DC89A"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 544 }
+      },
+      "connect" : { "id" : "f61", "to" : "f56", "via" : [ { "x" : 248, "y" : 544 } ] }
+    }, {
+      "id" : "f26",
+      "type" : "Alternative",
+      "visual" : {
+        "at" : { "x" : 416, "y" : 608 }
+      },
+      "connect" : [
+        { "id" : "f25", "to" : "f4", "condition" : "in.isAbleToExecute" },
+        { "id" : "f31", "to" : "f52", "via" : [ { "x" : 416, "y" : 480 } ] }
+      ]
+    }, {
+      "id" : "f23",
+      "type" : "Script",
+      "name" : "Check if able to execute wf",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import javax.faces.context.FacesContext;",
+            "import ch.ivy.gawfs.ExpressProcessUtils;",
+            "import javax.faces.application.FacesMessage;",
+            "",
+            "ExpressProcessUtils utils = new ExpressProcessUtils();",
+            "in.isAbleToExecute = utils.canFinishFormDefinition(in.data.definedTasks);",
+            "if(!in.isAbleToExecute){",
+            "  String growlTitle = ivy.cms.co(\"/Dialogs/workflowCreation/FormDefinition/ExecuteWorkflowWarning\");",
+            "  FacesMessage message = new FacesMessage( FacesMessage.SEVERITY_WARN, growlTitle, null);",
+            "  FacesContext.getCurrentInstance().addMessage(null, message);",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 272, "y" : 608 },
+        "size" : { "width" : 160, "height" : 44 }
+      },
+      "connect" : { "id" : "f27", "to" : "f26" }
+    }, {
+      "id" : "f53",
+      "type" : "Script",
+      "name" : "Update current controllers",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.gawfs.enums.TaskType;",
+            "if(out.data.definedTasks.get(out.activeTaskIndex).taskType != TaskType.EMAIL) {",
+            "  out.data.definedTasks.get(out.activeTaskIndex).setDynaFormController(out.dynaFormController);",
+            "  out.data.definedTasks.get(out.activeTaskIndex).setDragAndDropController(out.dragAndDropController);",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 720, "y" : 904 },
+        "size" : { "width" : 160, "height" : 44 }
+      },
+      "connect" : { "id" : "f5", "to" : "f3" }
+    }, {
+      "id" : "f60",
+      "type" : "HtmlDialogEventStart",
+      "name" : "save",
+      "config" : {
+        "guid" : "1638704721DA1E76"
+      },
+      "visual" : {
+        "at" : { "x" : 95, "y" : 904 }
+      },
+      "connect" : { "id" : "f66", "to" : "f53" }
+    }, {
+      "id" : "f62",
+      "type" : "HtmlDialogEventStart",
+      "name" : "finish",
+      "config" : {
+        "guid" : "1638704721E99BED"
+      },
+      "visual" : {
+        "at" : { "x" : 95, "y" : 968 }
+      },
+      "connect" : { "id" : "f50", "to" : "f43" }
+    }, {
+      "id" : "f63",
+      "type" : "Script",
+      "name" : "Marked as finished",
+      "config" : {
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.isTaskFinished" : "true"
+          },
+          "code" : "in.data.readyToExecute = true;"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 536, "y" : 968 }
+      },
+      "connect" : { "id" : "f71", "to" : "f53", "via" : [ { "x" : 720, "y" : 968 } ] }
+    }, {
+      "id" : "f3",
+      "type" : "HtmlDialogExit",
+      "visual" : {
+        "at" : { "x" : 864, "y" : 904 }
+      }
+    }, {
+      "id" : "f28",
+      "type" : "Alternative",
+      "name" : "Validated?",
+      "visual" : {
+        "at" : { "x" : 384, "y" : 968 },
+        "labelOffset" : { "x" : -26, "y" : -34 }
+      },
+      "connect" : [
+        { "id" : "f32", "to" : "f63", "label" : {
+            "name" : "yes",
+            "segment" : 0.44,
+            "offset" : { "x" : 0, "y" : -9 }
+          }, "condition" : "in.isAbleToExecute" },
+        { "id" : "f65", "to" : "f59", "via" : [ { "x" : 384, "y" : 1032 } ], "label" : {
+            "name" : "no",
+            "segment" : 0.35,
+            "offset" : { "x" : 13, "y" : 0 }
+          } }
+      ]
+    }, {
+      "id" : "f43",
+      "type" : "Script",
+      "name" : "Validate",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import javax.faces.context.FacesContext;",
+            "import ch.ivy.gawfs.ExpressProcessUtils;",
+            "import javax.faces.application.FacesMessage;",
+            "",
+            "ExpressProcessUtils utils = new ExpressProcessUtils();",
+            "in.isAbleToExecute = utils.canFinishFormDefinition(in.data.definedTasks);",
+            "if(!in.isAbleToExecute){",
+            "  String growlTitle = ivy.cms.co(\"/Dialogs/workflowCreation/FormDefinition/ExecuteWorkflowWarning\");",
+            "  FacesMessage message = new FacesMessage( FacesMessage.SEVERITY_WARN, growlTitle, null);",
+            "  FacesContext.getCurrentInstance().addMessage(null, message);",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 248, "y" : 968 }
+      },
+      "connect" : { "id" : "f29", "to" : "f28" }
+    }, {
+      "id" : "f59",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 864, "y" : 1032 }
+      }
+    }, {
+      "id" : "f67",
+      "type" : "Alternative",
+      "name" : "Is saved task?",
+      "visual" : {
+        "at" : { "x" : 192, "y" : 736 },
+        "labelOffset" : { "x" : -40, "y" : -39 }
+      },
+      "connect" : [
+        { "id" : "f70", "to" : "f69", "condition" : "in.data.savedFlag" },
+        { "id" : "f54", "to" : "f48", "via" : [ { "x" : 192, "y" : 816 } ] }
+      ]
+    }, {
+      "id" : "f69",
+      "type" : "Script",
+      "name" : [
+        "Reset task and",
+        "navigate back"
+      ],
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.publicapi.PortalNavigatorAPI;",
+            "import ch.ivy.addon.portalkit.util.TaskUtils;",
+            "",
+            "TaskUtils.resetTask(ivy.task);",
+            "PortalNavigatorAPI.navigateToPortalEndPage();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 344, "y" : 736 },
+        "size" : { "width" : 128, "height" : 44 }
+      }
+    }, {
+      "id" : "f64",
+      "type" : "Script",
+      "name" : [
+        "Set attr to know",
+        "that task is cancelled"
+      ],
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.enums.SessionAttribute;",
+            "import ch.ivy.addon.portalkit.util.SecurityServiceUtils;",
+            "SecurityServiceUtils.setSessionAttribute(SessionAttribute.IS_TASK_FINISHED.toString(), false);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 512, "y" : 816 },
+        "size" : { "width" : 144, "height" : 44 },
+        "labelOffset" : { "x" : -51, "y" : -16 }
+      },
+      "connect" : { "id" : "f30", "to" : "f4", "via" : [ { "x" : 720, "y" : 816 } ] }
+    } ]
+}

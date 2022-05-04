@@ -1,0 +1,146 @@
+{
+  "format" : "9.4.8",
+  "id" : "17C597F3BE08B8C1",
+  "data" : "com.axonivy.portal.developerexamples.ResetTaskIFrame.ResetTaskIFrameData",
+  "kind" : "HTML_DIALOG",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start()",
+      "config" : {
+        "callSignature" : "start",
+        "guid" : "17C597F3BEA36134"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "HtmlDialogEventStart",
+      "name" : "proceed",
+      "config" : {
+        "guid" : "17C597F3BF1F5BDA"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 160 },
+        "labelOffset" : { "x" : -15, "y" : 15 }
+      },
+      "connect" : { "id" : "f5", "to" : "f4" }
+    }, {
+      "id" : "f4",
+      "type" : "HtmlDialogExit",
+      "visual" : {
+        "at" : { "x" : 224, "y" : 160 }
+      }
+    }, {
+      "id" : "f6",
+      "type" : "HtmlDialogEventStart",
+      "name" : "cancelToHome",
+      "config" : {
+        "guid" : "17C597FABC0AD89C"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 256 },
+        "labelOffset" : { "x" : -14, "y" : 15 }
+      },
+      "connect" : { "id" : "f8", "to" : "f7" }
+    }, {
+      "id" : "f7",
+      "type" : "Script",
+      "name" : [
+        "Reset task",
+        "Back to homepage"
+      ],
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.publicapi.PortalNavigatorInFrameAPI;",
+            "ivy.task.reset();",
+            "PortalNavigatorInFrameAPI.navigateToUrl(ivy.html.applicationHomeRef());"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 248, "y" : 256 },
+        "size" : { "width" : 128, "height" : 44 }
+      }
+    }, {
+      "id" : "f9",
+      "type" : "HtmlDialogEventStart",
+      "name" : "cancelToEndpage",
+      "config" : {
+        "guid" : "17C597FC9FEB64A4"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 352 },
+        "labelOffset" : { "x" : -14, "y" : 15 }
+      },
+      "connect" : { "id" : "f11", "to" : "f10" }
+    }, {
+      "id" : "f10",
+      "type" : "Script",
+      "name" : [
+        "Reset task",
+        "Back to previous page"
+      ],
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.publicapi.PortalNavigatorInFrameAPI;",
+            "ivy.task.reset();",
+            "PortalNavigatorInFrameAPI.navigateToPortalEndPage();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 248, "y" : 352 },
+        "size" : { "width" : 144, "height" : 44 }
+      }
+    }, {
+      "id" : "f12",
+      "type" : "HtmlDialogEventStart",
+      "name" : "cancelToUrl",
+      "config" : {
+        "guid" : "17C597FCAD4E5D9D"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 448 },
+        "labelOffset" : { "x" : -14, "y" : 15 }
+      },
+      "connect" : { "id" : "f14", "to" : "f13" }
+    }, {
+      "id" : "f13",
+      "type" : "Script",
+      "name" : [
+        "Reset task",
+        "Go to CreateInvestment example"
+      ],
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;",
+            "import ch.ivy.addon.portalkit.publicapi.PortalNavigatorInFrameAPI;",
+            "",
+            "ivy.task.reset();",
+            "",
+            "String friendlyRequestPath = ProcessStartAPI.findStartableLinkByUserFriendlyRequestPath(\"Start Processes/IFrameExample/CreateInvestment.ivp\");",
+            "PortalNavigatorInFrameAPI.navigateToUrl(friendlyRequestPath+ \"?embedInFrame\");"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 280, "y" : 448 },
+        "size" : { "width" : 208, "height" : 44 }
+      }
+    } ]
+}

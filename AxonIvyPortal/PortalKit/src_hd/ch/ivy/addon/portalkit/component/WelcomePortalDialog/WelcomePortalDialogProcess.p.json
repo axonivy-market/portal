@@ -1,0 +1,147 @@
+{
+  "format" : "9.4.8",
+  "id" : "1723B30AE7B858C4",
+  "data" : "ch.ivy.addon.portalkit.component.WelcomePortalDialog.WelcomePortalDialogData",
+  "kind" : "HTML_DIALOG",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start()",
+      "config" : {
+        "callSignature" : "start",
+        "guid" : "15276F281563C3C0"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 96 },
+        "size" : { "width" : 22, "height" : 22 },
+        "labelOffset" : { "x" : -19, "y" : 17 }
+      },
+      "connect" : { "id" : "f7", "to" : "f1" }
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 256, "y" : 96 },
+        "size" : { "width" : 22, "height" : 22 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "Script",
+      "name" : "Builde content included guide link",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import org.apache.commons.lang3.StringUtils;",
+            "import ch.ivy.addon.portalkit.enums.PortalLibrary;",
+            "import ch.ivyteam.ivy.application.ILibrary;",
+            "",
+            "ILibrary portalLibrary = ivy.wf.getApplication().findReleasedLibrary(PortalLibrary.PORTAL_KIT.getValue());",
+            "String portalVersion = portalLibrary.getQualifiedVersion().toString();",
+            "String latestPortalGuideLink = \"https://developer.axonivy.com/portal/dev/doc\";",
+            "String portalGuideLink;",
+            "if (StringUtils.contains(portalVersion, \"SNAPSHOT\")) {",
+            "  portalGuideLink = latestPortalGuideLink;",
+            "} else {",
+            "  portalGuideLink = String.format(\"https://developer.axonivy.com/documentation/portal-guide/%s\", portalVersion);",
+            "}",
+            "",
+            "in.content = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/components/guide/welcome/content\", [portalGuideLink]);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 248, "y" : 192 },
+        "size" : { "width" : 176, "height" : 44 },
+        "labelOffset" : { "x" : -85, "y" : -8 }
+      },
+      "connect" : { "id" : "f8", "to" : "f4" }
+    }, {
+      "id" : "f5",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "buildContent()",
+      "config" : {
+        "callSignature" : "buildContent",
+        "result" : {
+          "params" : [
+            { "name" : "content", "type" : "String" }
+          ],
+          "map" : {
+            "result.content" : "in.content"
+          }
+        },
+        "guid" : "1727DA86A81C804E"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 192 },
+        "labelOffset" : { "x" : -23, "y" : 15 }
+      },
+      "connect" : { "id" : "f6", "to" : "f3" }
+    }, {
+      "id" : "f4",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 416, "y" : 192 }
+      }
+    }, {
+      "id" : "f2",
+      "type" : "Script",
+      "name" : [
+        "Builde mobile content ",
+        "included guide link"
+      ],
+      "config" : {
+        "output" : {
+          "code" : [
+            "import org.apache.commons.lang3.StringUtils;",
+            "import ch.ivy.addon.portalkit.enums.PortalLibrary;",
+            "import ch.ivyteam.ivy.application.ILibrary;",
+            "",
+            "ILibrary portalLibrary = ivy.wf.getApplication().findReleasedLibrary(PortalLibrary.PORTAL_KIT.getValue());",
+            "String portalVersion = portalLibrary.getQualifiedVersion().toString();",
+            "String latestPortalGuideLink = \"https://developer.axonivy.com/portal/dev/doc\";",
+            "String portalGuideLink;",
+            "if (StringUtils.contains(portalVersion, \"SNAPSHOT\")) {",
+            "  portalGuideLink = latestPortalGuideLink;",
+            "} else {",
+            "  portalGuideLink = String.format(\"https://developer.axonivy.com/documentation/portal-guide/\", portalVersion);",
+            "}",
+            "",
+            "in.mobileContent = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/components/guide/welcome/mobileContent\", [\"fa fa-bars\", portalGuideLink]);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 248, "y" : 288 },
+        "size" : { "width" : 144, "height" : 44 },
+        "labelOffset" : { "x" : -52, "y" : -16 }
+      },
+      "connect" : { "id" : "f11", "to" : "f9" }
+    }, {
+      "id" : "f9",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 416, "y" : 288 }
+      }
+    }, {
+      "id" : "f10",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "buildMobileContent()",
+      "config" : {
+        "callSignature" : "buildMobileContent",
+        "result" : {
+          "params" : [
+            { "name" : "mobileContent", "type" : "String" }
+          ],
+          "map" : {
+            "result.mobileContent" : "in.mobileContent"
+          }
+        },
+        "guid" : "17283B867C3E5B76"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 288 },
+        "labelOffset" : { "x" : -23, "y" : 15 }
+      },
+      "connect" : { "id" : "f12", "to" : "f2" }
+    } ]
+}
