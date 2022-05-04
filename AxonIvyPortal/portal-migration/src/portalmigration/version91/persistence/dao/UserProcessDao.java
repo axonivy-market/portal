@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.application.IApplication;
 import portalmigration.version91.persistence.domain.UserProcess;
 
 public class UserProcessDao extends AbstractDao<UserProcess> {
@@ -14,7 +14,7 @@ public class UserProcessDao extends AbstractDao<UserProcess> {
   }
 
   public List<UserProcess> findByUserIdInCurrentApplication(Long userId) {
-    Long applicationId = Ivy.wf().getApplication().getId();
+    Long applicationId = IApplication.current().getId();
     return findAll()
         .stream()
         .filter(userProcess -> (
