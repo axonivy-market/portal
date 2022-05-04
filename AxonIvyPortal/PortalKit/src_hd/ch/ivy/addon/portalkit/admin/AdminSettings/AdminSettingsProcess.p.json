@@ -1,0 +1,1244 @@
+{
+  "format" : "9.4.8",
+  "id" : "150F0B4F8F3CB2CB",
+  "data" : "ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData",
+  "kind" : "HTML_DIALOG",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start()",
+      "config" : {
+        "callSignature" : "start",
+        "input" : {
+          "map" : {
+            "out.resetAllSettings" : "false"
+          }
+        },
+        "guid" : "14B6C3C6330883A7"
+      },
+      "visual" : {
+        "at" : { "x" : 200, "y" : 48 },
+        "size" : { "width" : 20, "height" : 20 },
+        "labelOffset" : { "x" : 13, "y" : 0 }
+      },
+      "connect" : { "id" : "f265", "to" : "f1" }
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 448, "y" : 48 },
+        "size" : { "width" : 20, "height" : 20 }
+      }
+    }, {
+      "id" : "f32",
+      "type" : "HtmlDialogEventStart",
+      "name" : "addNewApp",
+      "config" : {
+        "guid" : "14B719AF780C56D8"
+      },
+      "visual" : {
+        "at" : { "x" : 448, "y" : 168 },
+        "size" : { "width" : 20, "height" : 20 },
+        "labelOffset" : { "x" : 13, "y" : 0 }
+      },
+      "connect" : { "id" : "f36", "to" : "f35" }
+    }, {
+      "id" : "f33",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 448, "y" : 312 },
+        "size" : { "width" : 20, "height" : 20 }
+      }
+    }, {
+      "id" : "f35",
+      "type" : "Script",
+      "name" : "init value",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.configuration.Application;",
+            "import ch.ivy.addon.portalkit.enums.ApplicationType;",
+            "import ch.ivy.addon.portalkit.service.ApplicationMultiLanguage;",
+            "",
+            "in.selectedApp = new Application();",
+            "if (in.applicationList.size() > 0) {",
+            "  in.selectedApp.menuOrdinal = in.applicationList.get(in.applicationList.size() - 1).menuOrdinal + 1;",
+            "} else {",
+            "  in.selectedApp.menuOrdinal = 0;",
+            "}",
+            "in.isAddMode = true;",
+            "in.dialogTitle = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/adminSettings/addNewApplication\");",
+            "",
+            "in.languages = ApplicationMultiLanguage.getThirdPartySupportedLanguage();",
+            "",
+            "in.displayNameInCurrentLanguage = null;",
+            "in.supportedLanguages = new List();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 448, "y" : 240 },
+        "size" : { "width" : 36, "height" : 24 },
+        "labelOffset" : { "x" : 20, "y" : -2 }
+      },
+      "connect" : { "id" : "f34", "to" : "f33" }
+    }, {
+      "id" : "f37",
+      "type" : "HtmlDialogEventStart",
+      "name" : "saveApplication",
+      "config" : {
+        "guid" : "14B71AFE89C4BE23"
+      },
+      "visual" : {
+        "at" : { "x" : 192, "y" : 512 },
+        "size" : { "width" : 20, "height" : 20 },
+        "labelOffset" : { "x" : 13, "y" : 0 }
+      },
+      "connect" : { "id" : "f12", "to" : "f113" }
+    }, {
+      "id" : "f38",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 192, "y" : 1272 },
+        "size" : { "width" : 20, "height" : 20 }
+      }
+    }, {
+      "id" : "f44",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "editApplication(Application)",
+      "config" : {
+        "callSignature" : "editApplication",
+        "input" : {
+          "params" : [
+            { "name" : "application", "type" : "ch.ivy.addon.portalkit.configuration.Application" }
+          ],
+          "map" : {
+            "out.selectedApp" : "param.application"
+          }
+        },
+        "guid" : "14B71B8355747299"
+      },
+      "visual" : {
+        "at" : { "x" : 896, "y" : 152 },
+        "size" : { "width" : 20, "height" : 20 },
+        "labelOffset" : { "x" : 13, "y" : 0 }
+      },
+      "connect" : { "id" : "f263", "to" : "f54" }
+    }, {
+      "id" : "f45",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 896, "y" : 488 },
+        "size" : { "width" : 20, "height" : 20 }
+      }
+    }, {
+      "id" : "f52",
+      "type" : "Script",
+      "name" : "remove from list",
+      "config" : {
+        "output" : {
+          "code" : "in.applicationList.remove(in.selectedApp);"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 192, "y" : 272 },
+        "size" : { "width" : 36, "height" : 24 },
+        "labelOffset" : { "x" : 20, "y" : -2 }
+      },
+      "connect" : { "id" : "f5", "to" : "f48" }
+    }, {
+      "id" : "f54",
+      "type" : "Script",
+      "name" : "set value",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.util.DisplayNameAdaptor;",
+            "import java.util.Locale;",
+            "import ch.ivy.addon.portalkit.util.Locales;",
+            "",
+            "in.isAddMode = false;",
+            "in.dialogTitle = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/adminSettings/editApplication\");",
+            "",
+            "Locale currentLocale = new Locales().getCurrentLocale();",
+            "DisplayNameAdaptor displayNameAdaptor = new DisplayNameAdaptor(in.selectedApp.displayName, currentLocale);",
+            "in.displayNameInCurrentLanguage = displayNameAdaptor.getDisplayNameAsString();",
+            "in.supportedLanguages = new List();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 896, "y" : 224 },
+        "size" : { "width" : 36, "height" : 24 },
+        "labelOffset" : { "x" : 20, "y" : -2 }
+      },
+      "connect" : { "id" : "f11", "to" : "f205" }
+    }, {
+      "id" : "f47",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "submitDeleteApp(Application)",
+      "config" : {
+        "callSignature" : "submitDeleteApp",
+        "input" : {
+          "params" : [
+            { "name" : "application", "type" : "ch.ivy.addon.portalkit.configuration.Application" }
+          ],
+          "code" : [
+            "out.selectedApp = param.application;",
+            "out.confirmMsg  = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/adminSettings/deleteAppConfirmation\");",
+            "//out.objToDelete = 2;"
+          ]
+        },
+        "guid" : "14B7254A2BFCA52B"
+      },
+      "visual" : {
+        "at" : { "x" : 1560, "y" : 152 },
+        "size" : { "width" : 20, "height" : 20 },
+        "labelOffset" : { "x" : 13, "y" : 0 }
+      },
+      "connect" : { "id" : "f59", "to" : "f58" }
+    }, {
+      "id" : "f58",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 1560, "y" : 248 },
+        "size" : { "width" : 20, "height" : 20 }
+      }
+    }, {
+      "id" : "f69",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "editSetting(GlobalSetting)",
+      "config" : {
+        "callSignature" : "editSetting",
+        "input" : {
+          "params" : [
+            { "name" : "setting", "type" : "ch.ivy.addon.portalkit.configuration.GlobalSetting" }
+          ],
+          "map" : {
+            "out.selectedSetting" : "param.setting"
+          }
+        },
+        "guid" : "14B77FA478FB87A1"
+      },
+      "visual" : {
+        "at" : { "x" : 776, "y" : 1488 },
+        "size" : { "width" : 20, "height" : 20 },
+        "labelOffset" : { "x" : 13, "y" : 0 }
+      },
+      "connect" : { "id" : "f73", "to" : "f72" }
+    }, {
+      "id" : "f72",
+      "type" : "Script",
+      "name" : "set value",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.addon.portal.generic.userprofile.homepage.HomepageUtils;",
+            "import ch.ivy.addon.portalkit.enums.GlobalVariable;",
+            "import ch.ivy.addon.portalkit.enums.GlobalVariableType;",
+            "import ch.ivy.addon.portalkit.statistics.StatisticChartConstants;",
+            "import java.util.Arrays;",
+            "import ch.ivy.addon.portalkit.enums.GlobalVariable;",
+            "",
+            "in.isAddMode = false;",
+            "in.dialogTitle = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/adminSettings/editSetting\");",
+            "GlobalVariable globalVariable = GlobalVariable.valueOfKey(in.selectedSetting.key);",
+            "in.settingInputType = globalVariable.getType();",
+            "if (globalVariable.getType() == GlobalVariableType.SELECTION) {",
+            "  in.selectedSetting.value = in.selectedSetting.value.toUpperCase();",
+            "  in.dropDownValues = globalVariable.getOptions();",
+            "} else if (globalVariable == GlobalVariable.DEFAULT_HOMEPAGE) {",
+            "  in.externalDropDownValues = HomepageUtils.getHomepageOptionsForAdminSettings();",
+            "} else if (globalVariable.getType() == GlobalVariableType.EXTERNAL_SELECTION) {",
+            "  in.externalDropDownValues = globalVariable.getExternalOptions();",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 776, "y" : 1576 },
+        "size" : { "width" : 120, "height" : 40 },
+        "labelOffset" : { "x" : -25, "y" : -6 }
+      },
+      "connect" : { "id" : "f17", "to" : "f25" }
+    }, {
+      "id" : "f80",
+      "type" : "HtmlDialogEventStart",
+      "name" : "saveSetting",
+      "config" : {
+        "guid" : "14B784950D872997"
+      },
+      "visual" : {
+        "at" : { "x" : 1072, "y" : 1488 },
+        "size" : { "width" : 20, "height" : 20 },
+        "labelOffset" : { "x" : 13, "y" : 0 }
+      },
+      "connect" : { "id" : "f29", "to" : "f15" }
+    }, {
+      "id" : "f93",
+      "type" : "Script",
+      "name" : "add to list (if in addMode)",
+      "config" : {
+        "output" : {
+          "code" : [
+            "if (in.isAddMode) {",
+            "  in.applicationList.add(in.selectedApp);  ",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 192, "y" : 1096 },
+        "size" : { "width" : 36, "height" : 24 },
+        "labelOffset" : { "x" : 21, "y" : -10 }
+      },
+      "connect" : { "id" : "f26", "to" : "f38" }
+    }, {
+      "id" : "f113",
+      "type" : "Script",
+      "name" : "check duplication",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.configuration.Application;",
+            "",
+            "in.duplicateApp = false;",
+            "for (Application app : in.applicationList) {",
+            "  if (app.name.equals(in.selectedApp.name)){",
+            "    if (in.isAddMode) {",
+            "      in.duplicateApp = true;",
+            "      break;",
+            "    } else {",
+            "        if(!in.selectedApp.id.equals(app.id)){",
+            "          in.duplicateApp = true;",
+            "          break;",
+            "        }",
+            "    }",
+            "  }",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 192, "y" : 600 },
+        "size" : { "width" : 36, "height" : 24 },
+        "labelOffset" : { "x" : 20, "y" : -2 }
+      },
+      "connect" : { "id" : "f116", "to" : "f115" }
+    }, {
+      "id" : "f115",
+      "type" : "Alternative",
+      "name" : "app exist ?",
+      "visual" : {
+        "at" : { "x" : 192, "y" : 688 },
+        "size" : { "width" : 28, "height" : 28 },
+        "labelOffset" : { "x" : 14, "y" : 0 }
+      },
+      "connect" : [
+        { "id" : "f19", "to" : "f209", "condition" : "!in.duplicateApp" },
+        { "id" : "f118", "to" : "f117", "label" : {
+            "name" : "yes",
+            "segment" : 0.68,
+            "offset" : { "x" : 4, "y" : -6 }
+          }, "condition" : "in.duplicateApp" }
+      ]
+    }, {
+      "id" : "f117",
+      "type" : "Script",
+      "name" : "show message",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import javax.faces.application.FacesMessage;",
+            "import org.primefaces.component.inputtext.InputText;",
+            "import javax.faces.context.FacesContext;",
+            "",
+            "InputText ui = FacesContext.getCurrentInstance().getViewRoot().findComponent(\":appDialogForm:portalLink3rd\") as InputText;",
+            "ui.valid = false;",
+            "",
+            "",
+            "FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/adminSettings/duplicatePortalAppMsg\"), null));",
+            "FacesContext.getCurrentInstance().validationFailed();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 344, "y" : 688 },
+        "size" : { "width" : 36, "height" : 24 },
+        "labelOffset" : { "x" : 20, "y" : -2 }
+      },
+      "connect" : { "id" : "f120", "to" : "f119" }
+    }, {
+      "id" : "f119",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 344, "y" : 736 },
+        "size" : { "width" : 20, "height" : 20 }
+      }
+    }, {
+      "id" : "f165",
+      "type" : "HtmlDialogEventStart",
+      "name" : "delete",
+      "config" : {
+        "guid" : "14CD62A3566672A1"
+      },
+      "visual" : {
+        "at" : { "x" : 192, "y" : 136 },
+        "size" : { "width" : 20, "height" : 20 },
+        "labelOffset" : { "x" : 13, "y" : 0 }
+      },
+      "connect" : { "id" : "f22", "to" : "f92" }
+    }, {
+      "id" : "f88",
+      "type" : "Script",
+      "name" : "set value",
+      "config" : {
+        "output" : {
+          "code" : "in.selectedApp.name = in.selectedApp.displayName;"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 192, "y" : 920 },
+        "size" : { "width" : 36, "height" : 24 },
+        "labelOffset" : { "x" : -74, "y" : -6 }
+      },
+      "connect" : { "id" : "f14", "to" : "f40" }
+    }, {
+      "id" : "f176",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "onApplicationReorder(List<Application>,Application)",
+      "config" : {
+        "callSignature" : "onApplicationReorder",
+        "input" : {
+          "params" : [
+            { "name" : "orderedApplicationList", "type" : "java.util.List<ch.ivy.addon.portalkit.configuration.Application>" },
+            { "name" : "selectedApp", "type" : "ch.ivy.addon.portalkit.configuration.Application" }
+          ],
+          "map" : {
+            "out.applicationList" : "param.orderedApplicationList",
+            "out.selectedApp" : "param.selectedApp"
+          }
+        },
+        "guid" : "14E951D887B4F17A"
+      },
+      "visual" : {
+        "at" : { "x" : 1280, "y" : 600 },
+        "size" : { "width" : 20, "height" : 20 },
+        "labelOffset" : { "x" : -74, "y" : 10 }
+      },
+      "connect" : { "id" : "f20", "to" : "f231" }
+    }, {
+      "id" : "f177",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 1280, "y" : 776 },
+        "size" : { "width" : 20, "height" : 20 }
+      }
+    }, {
+      "id" : "f185",
+      "type" : "HtmlDialogEventStart",
+      "name" : "processLanguage",
+      "config" : {
+        "guid" : "14E9B7FC56E87E52"
+      },
+      "visual" : {
+        "at" : { "x" : 624, "y" : 624 },
+        "size" : { "width" : 20, "height" : 20 },
+        "labelOffset" : { "x" : 13, "y" : 0 }
+      },
+      "connect" : { "id" : "f207", "to" : "f202" }
+    }, {
+      "id" : "f202",
+      "type" : "Script",
+      "name" : "process data from GUI",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.dto.DisplayName;",
+            "import ch.ivy.addon.portalkit.util.DisplayNameConvertor;",
+            "import ch.ivy.addon.portalkit.util.Locales;",
+            "",
+            "if (!in.languages.isEmpty()){",
+            "  DisplayNameConvertor displayNameConvertor = new DisplayNameConvertor();",
+            "  ",
+            "  for (DisplayName displayName : in.supportedLanguages) {",
+            "    displayNameConvertor.add(displayName.locale, displayName.value);",
+            "  }",
+            "  in.selectedApp.displayName = displayNameConvertor.toJson();",
+            "  in.displayNameInCurrentLanguage = displayNameConvertor.toString(new Locales().getCurrentLocale());",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 624, "y" : 680 },
+        "size" : { "width" : 36, "height" : 22 },
+        "labelOffset" : { "x" : 20, "y" : -2 }
+      },
+      "connect" : { "id" : "f208", "to" : "f194" }
+    }, {
+      "id" : "f190",
+      "type" : "Script",
+      "name" : "get supported languages",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.loader.ApplicationMultiLanguageNameLoader;",
+            "import ch.ivy.addon.portalkit.dto.DisplayName;",
+            "import ch.ivy.addon.portalkit.util.Locales;",
+            "import ch.ivy.addon.portalkit.util.DisplayNameAdaptor;",
+            "",
+            "if(in.isAddMode){",
+            "  in.supportedLanguages = new ApplicationMultiLanguageNameLoader().currentDisplayName(in.displayNameInCurrentLanguage)",
+            "                                                   .currentDisplayNames(in.supportedLanguages)",
+            "                                                   .supportedLanguages(in.languages)",
+            "                                                   .load();",
+            "} else {",
+            "  java.util.Locale currentLocale = new Locales().getCurrentLocale();",
+            "  DisplayNameAdaptor displayNameAdaptor = new DisplayNameAdaptor(in.selectedApp.displayName, currentLocale);",
+            "  java.util.Map displayNames = displayNameAdaptor.getDisplayNameAsMap();",
+            "  in.supportedLanguages = new ApplicationMultiLanguageNameLoader().currentDisplayName(in.displayNameInCurrentLanguage)",
+            "                                                   .currentDisplayNames(displayNames)",
+            "                                                   .supportedLanguages(in.languages)",
+            "                                                   .load();",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 624, "y" : 1080 },
+        "size" : { "width" : 40, "height" : 24 },
+        "labelOffset" : { "x" : -168, "y" : -6 }
+      },
+      "connect" : { "id" : "f71", "to" : "f188" }
+    }, {
+      "id" : "f194",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 624, "y" : 744 },
+        "size" : { "width" : 20, "height" : 20 }
+      }
+    }, {
+      "id" : "f188",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 624, "y" : 1152 },
+        "size" : { "width" : 20, "height" : 20 }
+      }
+    }, {
+      "id" : "f192",
+      "type" : "HtmlDialogEventStart",
+      "name" : "getLanguageList",
+      "config" : {
+        "guid" : "14E9B7FC57888C9E",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.supportedLanguages" : "new java.util.ArrayList()"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 624, "y" : 856 },
+        "size" : { "width" : 20, "height" : 20 },
+        "labelOffset" : { "x" : 13, "y" : 0 }
+      },
+      "connect" : { "id" : "f7", "to" : "f21" }
+    }, {
+      "id" : "f173",
+      "type" : "Script",
+      "name" : "prepair displayname",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.dto.DisplayName;",
+            "import java.util.Map;",
+            "import java.util.Locale;",
+            "import ch.ivy.addon.portalkit.util.Locales;",
+            "import ch.ivy.addon.portalkit.util.DisplayNameConvertor;",
+            "",
+            "DisplayNameConvertor convertor = new DisplayNameConvertor();",
+            "",
+            "if (in.supportedLanguages.isEmpty()) {",
+            "  if (!in.languages.isEmpty()) {",
+            "    for (String language : in.languages) {",
+            "      convertor.add(new Locale(language),in.displayNameInCurrentLanguage);",
+            "    }",
+            "  }else {",
+            "    convertor.add(new Locales().getCurrentLocale(),in.displayNameInCurrentLanguage);",
+            "  }",
+            "  ",
+            "}else {",
+            "  for (DisplayName displayName: in.supportedLanguages){",
+            "    if(displayName.value.isEmpty()){",
+            "      displayName.value = in.displayNameInCurrentLanguage;",
+            "    }",
+            "    convertor.add(displayName.locale,displayName.value);",
+            "  }",
+            "}",
+            "",
+            "in.selectedApp.displayName = convertor.toJson();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 192, "y" : 816 },
+        "size" : { "width" : 36, "height" : 24 },
+        "labelOffset" : { "x" : -63, "y" : 11 }
+      },
+      "connect" : { "id" : "f3", "to" : "f88" }
+    }, {
+      "id" : "f205",
+      "type" : "Script",
+      "name" : [
+        "load supported languages",
+        "for 3rd party application"
+      ],
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.service.ApplicationMultiLanguage;",
+            "",
+            "",
+            "in.languages = ApplicationMultiLanguage.getThirdPartySupportedLanguage();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 896, "y" : 328 },
+        "size" : { "width" : 36, "height" : 24 },
+        "labelOffset" : { "x" : -92, "y" : 15 }
+      },
+      "connect" : { "id" : "f204", "to" : "f45" }
+    }, {
+      "id" : "f209",
+      "type" : "Alternative",
+      "name" : "is add mode?",
+      "visual" : {
+        "at" : { "x" : 192, "y" : 752 },
+        "size" : { "width" : 28, "height" : 28 },
+        "labelOffset" : { "x" : -91, "y" : -6 }
+      },
+      "connect" : [
+        { "id" : "f211", "to" : "f173", "label" : {
+            "name" : "yes",
+            "segment" : 0.21,
+            "offset" : { "x" : -12, "y" : 0 }
+          }, "condition" : "in.isAddMode" },
+        { "id" : "f213", "to" : "f212", "via" : [ { "x" : 271, "y" : 752 } ], "label" : {
+            "name" : "no",
+            "segment" : 0.12,
+            "offset" : { "x" : 0, "y" : -10 }
+          } }
+      ]
+    }, {
+      "id" : "f212",
+      "type" : "Script",
+      "name" : "update current language",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.dto.DisplayName;",
+            "import ch.ivy.addon.portalkit.util.DisplayNameAdaptor;",
+            "import java.util.Map;",
+            "import java.util.Locale;",
+            "import ch.ivy.addon.portalkit.util.Locales;",
+            "import ch.ivy.addon.portalkit.util.DisplayNameConvertor;",
+            "",
+            "Locale currentLocale = new Locales().getCurrentLocale();",
+            "DisplayNameAdaptor displayNameAdaptor = new DisplayNameAdaptor(in.selectedApp.displayName,currentLocale);",
+            "Map displayNameMap = displayNameAdaptor.getDisplayNameAsMap();",
+            "",
+            "if (in.supportedLanguages.isEmpty()) {",
+            "  if (!in.languages.isEmpty()) {",
+            "    for (String language : in.languages) {",
+            "      if(displayNameMap.get(language).toString().isEmpty()){",
+            "        displayNameAdaptor.add(new Locale(language),in.displayNameInCurrentLanguage);",
+            "      }",
+            "    }",
+            "  }else {",
+            "    displayNameAdaptor.add(currentLocale,in.displayNameInCurrentLanguage);",
+            "  }",
+            "}else {",
+            "  for (DisplayName displayName: in.supportedLanguages){",
+            "    if(displayName.value.isEmpty()){",
+            "      displayName.value = in.displayNameInCurrentLanguage;",
+            "    }",
+            "    displayNameAdaptor.add(displayName.locale,displayName.value);",
+            "  }",
+            "}",
+            "",
+            "displayNameAdaptor.add(currentLocale,in.displayNameInCurrentLanguage);",
+            "in.selectedApp.displayName = displayNameAdaptor.toJson();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 272, "y" : 816 },
+        "size" : { "width" : 35, "height" : 24 },
+        "labelOffset" : { "x" : -17, "y" : 12 }
+      },
+      "connect" : { "id" : "f13", "to" : "f88", "via" : [ { "x" : 271, "y" : 920 } ] }
+    }, {
+      "id" : "f92",
+      "type" : "Script",
+      "name" : "delete application",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.service.RegisteredApplicationService;",
+            "",
+            "RegisteredApplicationService applicationService = RegisteredApplicationService.getInstance();",
+            "applicationService.delete(in.selectedApp.id);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 192, "y" : 208 },
+        "size" : { "width" : 36, "height" : 24 },
+        "labelOffset" : { "x" : 20, "y" : -2 }
+      },
+      "connect" : { "id" : "f53", "to" : "f52" }
+    }, {
+      "id" : "f40",
+      "type" : "Script",
+      "name" : "save application",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.configuration.Application;",
+            "",
+            "import ch.ivy.addon.portalkit.service.RegisteredApplicationService;",
+            "",
+            "RegisteredApplicationService applicationService = RegisteredApplicationService.getInstance();",
+            "in.selectedApp = applicationService.save(in.selectedApp) as Application;"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 192, "y" : 1024 },
+        "size" : { "width" : 36, "height" : 24 },
+        "labelOffset" : { "x" : 20, "y" : -2 }
+      },
+      "connect" : { "id" : "f41", "to" : "f93" }
+    }, {
+      "id" : "f231",
+      "type" : "Script",
+      "name" : "save all applications",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.service.RegisteredApplicationService;",
+            "",
+            "RegisteredApplicationService applicationService = RegisteredApplicationService.getInstance();",
+            "in.applicationList = applicationService.saveAllPublicConfig(in.applicationList);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1280, "y" : 664 },
+        "size" : { "width" : 36, "height" : 24 },
+        "labelOffset" : { "x" : 23, "y" : -7 }
+      },
+      "connect" : { "id" : "f6", "to" : "f177" }
+    }, {
+      "id" : "f15",
+      "type" : "Script",
+      "name" : "save global setting",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.configuration.GlobalSetting;",
+            "",
+            "import ch.ivy.addon.portalkit.service.GlobalSettingService;",
+            "",
+            "GlobalSettingService globalSettingService= new GlobalSettingService();",
+            "in.selectedSetting = globalSettingService.save(in.selectedSetting) as GlobalSetting;",
+            "",
+            "// update related Setting",
+            "globalSettingService.updateRelatedGlobalSettingByGlobalSetting(in.selectedSetting);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1072, "y" : 1576 },
+        "size" : { "width" : 128, "height" : 40 },
+        "labelOffset" : { "x" : -53, "y" : -4 }
+      },
+      "connect" : { "id" : "f16", "to" : "f27" }
+    }, {
+      "id" : "f144",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 1248, "y" : 256 },
+        "size" : { "width" : 22, "height" : 22 }
+      }
+    }, {
+      "id" : "f143",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "getAppNameInCurrentLocale(Application)",
+      "config" : {
+        "callSignature" : "getAppNameInCurrentLocale",
+        "input" : {
+          "params" : [
+            { "name" : "application", "type" : "ch.ivy.addon.portalkit.configuration.Application" }
+          ],
+          "code" : "out.application = param.application;"
+        },
+        "result" : {
+          "params" : [
+            { "name" : "name", "type" : "String" }
+          ],
+          "code" : [
+            "import ch.ivy.addon.portalkit.service.ApplicationMultiLanguage;",
+            "result.name = ApplicationMultiLanguage.getDisplayNameInCurrentLocale(in.application);"
+          ]
+        },
+        "guid" : "1503CBAF85EC7EE8"
+      },
+      "visual" : {
+        "at" : { "x" : 1248, "y" : 160 },
+        "size" : { "width" : 22, "height" : 22 },
+        "labelOffset" : { "x" : 14, "y" : 0 }
+      },
+      "connect" : { "id" : "f145", "to" : "f144" }
+    }, {
+      "id" : "f48",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 192, "y" : 464 },
+        "size" : { "width" : 20, "height" : 20 }
+      }
+    }, {
+      "id" : "f286",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 2016, "y" : 1592 },
+        "size" : { "width" : 20, "height" : 20 }
+      }
+    }, {
+      "id" : "f74",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "submitResetSetting(GlobalSetting)",
+      "config" : {
+        "callSignature" : "submitResetSetting",
+        "input" : {
+          "params" : [
+            { "name" : "setting", "type" : "ch.ivy.addon.portalkit.configuration.GlobalSetting" }
+          ],
+          "code" : [
+            "out.selectedSetting = param.setting;",
+            "out.confirmMsg  = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/adminSettings/resetSettingConfirmation\");",
+            "out.resetAllSettings = false;"
+          ]
+        },
+        "guid" : "163DD18A566F4B85"
+      },
+      "visual" : {
+        "at" : { "x" : 1744, "y" : 1496 },
+        "size" : { "width" : 20, "height" : 20 },
+        "labelOffset" : { "x" : 13, "y" : 0 }
+      },
+      "connect" : { "id" : "f76", "to" : "f75" }
+    }, {
+      "id" : "f285",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "submitResetAllSettings()",
+      "config" : {
+        "callSignature" : "submitResetAllSettings",
+        "input" : {
+          "code" : [
+            "out.confirmMsg  = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/adminSettings/resetAllSettingsConfirmation\");",
+            "out.resetAllSettings = true;"
+          ]
+        },
+        "guid" : "163DD18A56815DFE"
+      },
+      "visual" : {
+        "at" : { "x" : 2016, "y" : 1496 },
+        "size" : { "width" : 20, "height" : 20 },
+        "labelOffset" : { "x" : 13, "y" : 0 }
+      },
+      "connect" : { "id" : "f287", "to" : "f286" }
+    }, {
+      "id" : "f75",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 1744, "y" : 1592 },
+        "size" : { "width" : 20, "height" : 20 }
+      }
+    }, {
+      "id" : "f63",
+      "type" : "Script",
+      "name" : "reset selected setting",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.service.GlobalSettingService;",
+            "GlobalSettingService globalSettingService = new GlobalSettingService();",
+            "globalSettingService.resetGlobalSetting(in.selectedSetting.getKey());",
+            "in.selectedSetting.setValueToDefault();",
+            "",
+            "// update related Setting",
+            "globalSettingService.updateRelatedGlobalSettingByGlobalSetting(in.selectedSetting);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 296, "y" : 1576 },
+        "size" : { "width" : 128, "height" : 44 }
+      },
+      "connect" : { "id" : "f23", "to" : "f277" }
+    }, {
+      "id" : "f277",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 296, "y" : 1704 }
+      }
+    }, {
+      "id" : "f276",
+      "type" : "Script",
+      "name" : "reset all settings",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.enums.GlobalVariable;",
+            "import ch.ivy.addon.portalkit.service.GlobalSettingService;",
+            "GlobalSettingService globalSettingService = new GlobalSettingService();",
+            "int i = 0;",
+            "for (GlobalVariable globalVariable : GlobalVariable.values()) {",
+            "  globalSettingService.resetGlobalSetting(globalVariable.getKey());",
+            "  in.settingList.get(i).setValueToDefault();",
+            "  i++;",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 536, "y" : 1576 }
+      },
+      "connect" : { "id" : "f28", "to" : "f24" }
+    }, {
+      "id" : "f67",
+      "type" : "HtmlDialogEventStart",
+      "name" : "resetValue",
+      "config" : {
+        "guid" : "163DD1F145199579"
+      },
+      "visual" : {
+        "at" : { "x" : 296, "y" : 1488 },
+        "labelOffset" : { "x" : -30, "y" : -33 }
+      },
+      "connect" : { "id" : "f281", "to" : "f63" }
+    }, {
+      "id" : "f278",
+      "type" : "HtmlDialogEventStart",
+      "name" : "resetValues",
+      "config" : {
+        "guid" : "163DD1F1451A5EB6"
+      },
+      "visual" : {
+        "at" : { "x" : 536, "y" : 1488 },
+        "labelOffset" : { "x" : -37, "y" : -32 }
+      },
+      "connect" : { "id" : "f279", "to" : "f276" }
+    }, {
+      "id" : "f9",
+      "type" : "HtmlDialogEventStart",
+      "name" : "initAdminSettingsData",
+      "config" : {
+        "guid" : "1640186953392B88"
+      },
+      "visual" : {
+        "at" : { "x" : 1400, "y" : 1496 },
+        "labelOffset" : { "x" : -59, "y" : 15 }
+      },
+      "connect" : { "id" : "f66", "to" : "f10" }
+    }, {
+      "id" : "f10",
+      "type" : "Script",
+      "name" : "init data",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import javax.faces.application.FacesMessage;",
+            "import javax.faces.context.FacesContext;",
+            "import ch.ivy.addon.portalkit.service.AnnouncementService;",
+            "import ch.ivy.addon.portalkit.service.GlobalSettingService;",
+            "import ch.ivy.addon.portalkit.comparator.ApplicationIndexAscendingComparator;",
+            "import java.util.Collections;",
+            "import ch.ivy.addon.portalkit.service.RegisteredApplicationService;",
+            "",
+            "// Application tab",
+            "RegisteredApplicationService applicationService = RegisteredApplicationService.getInstance();",
+            "in.applicationList  = applicationService.findAll();",
+            "Collections.sort(in.applicationList, new ApplicationIndexAscendingComparator());  ",
+            "",
+            "// Setting tab",
+            "in.settingTabOpened = false;",
+            "GlobalSettingService globalSettingService = new GlobalSettingService();",
+            "in.settingList = globalSettingService.findAll();",
+            "in.filteredSettingList = in.settingList;",
+            "",
+            "// Announcement tab",
+            "in.announcement = AnnouncementService.getInstance().getAnnouncementWithAllSupportedLanguage();",
+            "in.isAnnouncementActivated = AnnouncementService.getInstance().isAnnouncementActivated();",
+            "FacesContext.getCurrentInstance().addMessage(\"adminui:adminTabView:announcement-table\", new FacesMessage(FacesMessage.SEVERITY_INFO, ",
+            "  ivy.cms.co(in.isAnnouncementActivated ? \"/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/announcementsEnabled\"",
+            "  : \"/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/announcementsDisabled\"), null));"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1400, "y" : 1616 }
+      },
+      "connect" : { "id" : "f97", "to" : "f91" }
+    }, {
+      "id" : "f91",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 1400, "y" : 1704 }
+      }
+    }, {
+      "id" : "f55",
+      "type" : "Script",
+      "name" : "clear filter",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.util.PrimeFacesUtils;",
+            "",
+            "if (in.settingTabOpened) {",
+            "  PrimeFacesUtils.executeScript(\"PF('settingTable').clearFilters()\");",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1576, "y" : 1616 }
+      },
+      "connect" : { "id" : "f102", "to" : "f98" }
+    }, {
+      "id" : "f18",
+      "type" : "HtmlDialogEventStart",
+      "name" : "clearSettingTableFilter",
+      "config" : {
+        "guid" : "164024E1B1165F19"
+      },
+      "visual" : {
+        "at" : { "x" : 1576, "y" : 1496 }
+      },
+      "connect" : { "id" : "f100", "to" : "f55" }
+    }, {
+      "id" : "f98",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 1576, "y" : 1704 }
+      }
+    }, {
+      "id" : "f21",
+      "type" : "SubProcessCall",
+      "name" : "LanguageService",
+      "config" : {
+        "processCall" : "Ivy Data Processes/LanguageService:findUserLanguages()",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.languages" : "result.language.supportedLanguages"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 624, "y" : 976 }
+      },
+      "connect" : { "id" : "f70", "to" : "f190" }
+    }, {
+      "id" : "f64",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "publishAnnouncement()",
+      "config" : {
+        "callSignature" : "publishAnnouncement",
+        "guid" : "16A29A0E1F97DE40"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 1944 },
+        "labelOffset" : { "x" : -59, "y" : -35 }
+      },
+      "connect" : { "id" : "f82", "to" : "f81" }
+    }, {
+      "id" : "f65",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "depublishAnnouncement()",
+      "config" : {
+        "callSignature" : "depublishAnnouncement",
+        "guid" : "16A29A0F2F82745C"
+      },
+      "visual" : {
+        "at" : { "x" : 384, "y" : 1944 },
+        "labelOffset" : { "x" : -66, "y" : -35 }
+      },
+      "connect" : { "id" : "f86", "to" : "f85" }
+    }, {
+      "id" : "f68",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 96, "y" : 2112 }
+      }
+    }, {
+      "id" : "f77",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 384, "y" : 2112 }
+      }
+    }, {
+      "id" : "f81",
+      "type" : "Script",
+      "name" : "publish",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import javax.faces.application.FacesMessage;",
+            "import javax.faces.context.FacesContext;",
+            "import ch.ivy.addon.portalkit.service.AnnouncementService;",
+            "AnnouncementService service = AnnouncementService.getInstance();",
+            "in.announcement.setEnabled(true);",
+            "service.save(in.announcement);",
+            "out.isAnnouncementActivated = true;",
+            "FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, ",
+            "  ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/announcementsEnabled\"), null));"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 2040 }
+      },
+      "connect" : { "id" : "f78", "to" : "f68" }
+    }, {
+      "id" : "f85",
+      "type" : "Script",
+      "name" : "depublish",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import javax.faces.application.FacesMessage;",
+            "import javax.faces.context.FacesContext;",
+            "import ch.ivy.addon.portalkit.service.AnnouncementService;",
+            "AnnouncementService service = AnnouncementService.getInstance();",
+            "service.deactivateAnnouncement();",
+            "out.isAnnouncementActivated = false;",
+            "FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, ",
+            "  ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/announcementsDisabled\"), null));"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 384, "y" : 2040 }
+      },
+      "connect" : { "id" : "f79", "to" : "f77" }
+    }, {
+      "id" : "f87",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "isApplicationDefaultEmailLanguage(String)",
+      "config" : {
+        "callSignature" : "isApplicationDefaultEmailLanguage",
+        "input" : {
+          "params" : [
+            { "name" : "language", "type" : "String" }
+          ],
+          "code" : [
+            "import ch.ivy.addon.portalkit.service.AnnouncementService;",
+            "out.isDefaultApplicationLanguage = AnnouncementService.getInstance().isDefaultApplicationLanguage(param.language);"
+          ]
+        },
+        "result" : {
+          "params" : [
+            { "name" : "result", "type" : "Boolean" }
+          ],
+          "map" : {
+            "result.result" : "in.isDefaultApplicationLanguage"
+          }
+        },
+        "guid" : "16A33CB19C2E90CF"
+      },
+      "visual" : {
+        "at" : { "x" : 600, "y" : 1944 },
+        "labelOffset" : { "x" : -113, "y" : -36 }
+      },
+      "connect" : { "id" : "f90", "to" : "f89" }
+    }, {
+      "id" : "f89",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 600, "y" : 2112 }
+      }
+    }, {
+      "id" : "f2",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "onTabChange(Integer)",
+      "config" : {
+        "callSignature" : "onTabChange",
+        "input" : {
+          "params" : [
+            { "name" : "tabIndexActive", "type" : "Integer" }
+          ],
+          "map" : {
+            "out.tabIndexActive" : "param.tabIndexActive"
+          },
+          "code" : [
+            "import ch.ivy.addon.portalkit.util.PrimeFacesUtils;",
+            "",
+            "if (out.tabIndexActive == 1) {",
+            "  out.settingTabOpened = true;",
+            "  PrimeFacesUtils.executeScript(\"PF('settingTable').filter()\");",
+            "}"
+          ]
+        },
+        "guid" : "16F55D573C483035"
+      },
+      "visual" : {
+        "at" : { "x" : 896, "y" : 640 },
+        "labelOffset" : { "x" : -27, "y" : -39 }
+      },
+      "connect" : { "id" : "f61", "to" : "f8" }
+    }, {
+      "id" : "f8",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 896, "y" : 768 }
+      }
+    }, {
+      "id" : "f24",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 536, "y" : 1704 }
+      }
+    }, {
+      "id" : "f25",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 776, "y" : 1704 }
+      }
+    }, {
+      "id" : "f27",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 1072, "y" : 1704 }
+      }
+    } ],
+  "layout" : {
+    "lanes" : [ {
+        "name" : "Start Method",
+        "size" : 112
+      }, {
+        "name" : "Application",
+        "size" : 1312
+      }, {
+        "name" : "Global settings",
+        "size" : 456
+      }, {
+        "name" : "Announcements",
+        "size" : 272
+      } ]
+  }
+}

@@ -1,0 +1,296 @@
+{
+  "format" : "9.4.8",
+  "id" : "16583F0F73864543",
+  "data" : "com.axonivy.portal.developerexamples.Data",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "HideTechnicalRole.ivp",
+      "config" : {
+        "callSignature" : "HideTechnicalRole",
+        "outLink" : "HideTechnicalRole.ivp",
+        "startName" : "Hide Technical Role"
+      },
+      "visual" : {
+        "at" : { "x" : 168, "y" : 72 }
+      },
+      "connect" : { "id" : "f10", "to" : "f9" }
+    }, {
+      "id" : "f1",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 560, "y" : 72 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "RequestStart",
+      "name" : "createHiddenTechnicalTask.ivp",
+      "config" : {
+        "callSignature" : "createHiddenTechnicalTask",
+        "outLink" : "createHiddenTechnicalTask.ivp",
+        "startName" : "Create hidden technical task"
+      },
+      "visual" : {
+        "at" : { "x" : 160, "y" : 336 },
+        "size" : { "width" : 32, "height" : 32 }
+      },
+      "connect" : { "id" : "f5", "to" : "f17" }
+    }, {
+      "id" : "f4",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 712, "y" : 336 },
+        "size" : { "width" : 32, "height" : 32 }
+      }
+    }, {
+      "id" : "f9",
+      "type" : "Script",
+      "name" : "Hide role \"PortalSystem\"",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.enums.AdditionalProperty;",
+            "import ch.ivy.addon.portalkit.publicapi.RoleAPI;",
+            "import ch.ivyteam.ivy.security.IRole;",
+            "IRole role = ivy.security.roles().find(\"PortalSystem\");",
+            "if(#role is initialized) {",
+            "  RoleAPI.setProperty(role, AdditionalProperty.HIDE.toString(), AdditionalProperty.HIDE.toString());",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 368, "y" : 72 },
+        "size" : { "width" : 144, "height" : 44 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f11",
+      "type" : "Script",
+      "name" : "Unhide role \"PortalSystem\"",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.enums.AdditionalProperty;",
+            "import ch.ivy.addon.portalkit.publicapi.RoleAPI;",
+            "import ch.ivyteam.ivy.security.IRole;",
+            "IRole role = ivy.security.roles().find(\"PortalSystem\");",
+            "if(#role is initialized) {",
+            "  RoleAPI.removeProperty(role, AdditionalProperty.HIDE.toString());",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 367, "y" : 173 },
+        "size" : { "width" : 160, "height" : 44 }
+      },
+      "connect" : { "id" : "f15", "to" : "f13" }
+    }, {
+      "id" : "f12",
+      "type" : "RequestStart",
+      "name" : "UnhideTechnicalRole.ivp",
+      "config" : {
+        "callSignature" : "UnhideTechnicalRole",
+        "outLink" : "UnhideTechnicalRole.ivp",
+        "startName" : "Unhide Technical Role"
+      },
+      "visual" : {
+        "at" : { "x" : 167, "y" : 173 }
+      },
+      "connect" : { "id" : "f14", "to" : "f11" }
+    }, {
+      "id" : "f13",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 559, "y" : 173 }
+      }
+    }, {
+      "id" : "f16",
+      "type" : "Script",
+      "name" : "Hide task",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.publicapi.TaskAPI;",
+            "TaskAPI.setHidePropertyToHideInPortal(ivy.task);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 568, "y" : 336 },
+        "size" : { "width" : 120, "height" : 48 }
+      },
+      "connect" : { "id" : "f21", "to" : "f4" }
+    }, {
+      "id" : "f18",
+      "type" : "TaskSwitchEvent",
+      "config" : {
+        "outLinks" : [ "TaskA.ivp" ],
+        "case" : {
+          "name" : "Case contains hidden task"
+        },
+        "task" : {
+          "name" : "Second Hidden Task",
+          "description" : "Task, which has the HIDE additional property, won't be displayed in Portal",
+          "skipTasklist" : true
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 440, "y" : 336 },
+        "size" : { "width" : 32, "height" : 32 }
+      },
+      "connect" : { "id" : "f20", "to" : "f16", "condition" : "ivp==\"TaskA.ivp\"" }
+    }, {
+      "id" : "f17",
+      "type" : "Script",
+      "name" : "Hide task",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.publicapi.TaskAPI;",
+            "TaskAPI.setHidePropertyToHideInPortal(ivy.task);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 320, "y" : 336 },
+        "size" : { "width" : 104, "height" : 48 }
+      },
+      "connect" : { "id" : "f19", "to" : "f18", "var" : "in1" }
+    }, {
+      "id" : "f22",
+      "type" : "ProcessAnnotation",
+      "name" : [
+        "This example demonstrates the hide technical roles feature of Portal",
+        "",
+        "HOW TO RUN THIS EXAMPLE",
+        "Run HideTechnicalRole.ivp to hide the technical role \"Portal System\". ",
+        "After running the process, you should not see the role in role lists of Portal e.g Delegate role list",
+        "",
+        "Run UnhideTechnicalRole.ivp to unhide the role. You should see the role again in role lists."
+      ],
+      "visual" : {
+        "at" : { "x" : 1056, "y" : 120 },
+        "size" : { "width" : 528, "height" : 124 }
+      }
+    }, {
+      "id" : "f23",
+      "type" : "ProcessAnnotation",
+      "name" : [
+        "This example demonstates the hide technical tasks feature of Portal",
+        "",
+        "HOW TO RUN THIS EXAMPLE",
+        "Run createHiddenTechnicalTask.ivp to create a task named \"Second Hidden Task\" which will be auto-completed. ",
+        "Afterwards, login with a user with TASK_READ_ALL permission to see DONE tasks, the task should not be shown in any Portal task lists."
+      ],
+      "visual" : {
+        "at" : { "x" : 1168, "y" : 312 },
+        "size" : { "width" : 752, "height" : 92 }
+      }
+    }, {
+      "id" : "f26",
+      "type" : "ProcessAnnotation",
+      "name" : [
+        "This example demonstates the hide technical cases feature of Portal",
+        "",
+        "HOW TO RUN THIS EXAMPLE",
+        "Run createHiddenTechnicalCase.ivp to create a case named \"Create hidden technical case\" and 2 tasks: \"Report\" & \"Report and hide case\".",
+        "Run \"Report and hide case\" task.  Afterwards, login with a user with CASE_READ_ALL permission to see DONE cases, the case should not be shown in every Portal case lists.",
+        "The tasks of the case should be hidden also in every Portal task lists. "
+      ],
+      "visual" : {
+        "at" : { "x" : 1278, "y" : 506 },
+        "size" : { "width" : 960, "height" : 108 }
+      }
+    }, {
+      "id" : "f27",
+      "type" : "RequestStart",
+      "name" : "createHiddenTechnicalCase.ivp",
+      "config" : {
+        "callSignature" : "createHiddenTechnicalCase",
+        "case" : {
+          "name" : "Repair Computer"
+        },
+        "outLink" : "createHiddenTechnicalCase.ivp",
+        "startName" : "Create hidden technical case"
+      },
+      "visual" : {
+        "at" : { "x" : 136, "y" : 486 }
+      },
+      "connect" : { "id" : "f6", "to" : "f31", "var" : "in1" }
+    }, {
+      "id" : "f29",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 728, "y" : 486 }
+      }
+    }, {
+      "id" : "f30",
+      "type" : "SubProcessCall",
+      "name" : "HideSystemCase",
+      "config" : {
+        "processCall" : "Functional Processes/HideSystemCase:call(Boolean)",
+        "call" : {
+          "params" : [
+            { "name" : "hideBusinessCase", "type" : "Boolean" }
+          ],
+          "map" : {
+            "param.hideBusinessCase" : "true"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 592, "y" : 486 }
+      },
+      "connect" : { "id" : "f34", "to" : "f29" }
+    }, {
+      "id" : "f31",
+      "type" : "TaskSwitchGateway",
+      "config" : {
+        "outLinks" : [ "TaskA.ivp", "TaskB.ivp" ],
+        "tasks" : {
+          "TaskA" : {
+            "name" : "Report and hide case",
+            "description" : "Report and hide case",
+            "responsible" : {
+              "role" : "AXONIVY_PORTAL_ADMIN"
+            }
+          },
+          "TaskB" : {
+            "name" : "Report",
+            "description" : "Report but don't hide case. This task should be hidden if you run \"Report and hide case\" task.",
+            "responsible" : {
+              "role" : "CREATOR"
+            }
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 472, "y" : 486 }
+      },
+      "connect" : [
+        { "id" : "f36", "to" : "f30", "condition" : "ivp==\"TaskA.ivp\"" },
+        { "id" : "f33", "to" : "f29", "via" : [ { "x" : 472, "y" : 560 }, { "x" : 728, "y" : 560 } ], "condition" : "ivp==\"TaskB.ivp\"" }
+      ]
+    } ],
+  "layout" : {
+    "lanes" : [ {
+        "name" : "Hide Technical Stuffs",
+        "offset" : 32,
+        "size" : 640,
+        "lanes" : [ {
+            "name" : "Hide technical roles",
+            "size" : 192
+          }, {
+            "name" : "Hide technical tasks",
+            "size" : 192
+          }, {
+            "name" : "Hide technical cases",
+            "size" : 256
+          } ]
+      } ]
+  }
+}

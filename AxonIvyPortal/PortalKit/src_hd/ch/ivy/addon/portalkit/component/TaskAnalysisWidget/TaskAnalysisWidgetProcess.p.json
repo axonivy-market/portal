@@ -1,0 +1,659 @@
+{
+  "format" : "9.4.8",
+  "id" : "163DD68942416255",
+  "data" : "ch.ivy.addon.portalkit.component.TaskAnalysisWidget.TaskAnalysisWidgetData",
+  "kind" : "HTML_DIALOG",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start(TaskAnalysisLazyDataModel,Long)",
+      "config" : {
+        "callSignature" : "start",
+        "input" : {
+          "params" : [
+            { "name" : "dataModel", "type" : "ch.ivy.addon.portalkit.datamodel.internal.TaskAnalysisLazyDataModel" },
+            { "name" : "filterGroupId", "type" : "Long" }
+          ],
+          "map" : {
+            "out.taskFilterGroupId" : "param.filterGroupId"
+          },
+          "code" : [
+            "if (param.#dataModel is initialized){",
+            "  out.dataModel = param.dataModel;",
+            "}"
+          ]
+        },
+        "guid" : "14FDF92006C61D35"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 },
+        "size" : { "width" : 22, "height" : 22 },
+        "labelOffset" : { "x" : -83, "y" : 20 }
+      },
+      "connect" : { "id" : "f10", "to" : "f8" }
+    }, {
+      "id" : "f94",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "findTasks(TaskSearchCriteria,Integer,Integer)",
+      "config" : {
+        "callSignature" : "findTasks",
+        "result" : {
+          "params" : [
+            { "name" : "tasks", "type" : "java.util.List<ch.ivyteam.ivy.workflow.ITask>" }
+          ],
+          "map" : {
+            "result.tasks" : "in.tasks"
+          }
+        },
+        "input" : {
+          "params" : [
+            { "name" : "criteria", "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria" },
+            { "name" : "startIndex", "type" : "Integer" },
+            { "name" : "count", "type" : "Integer" }
+          ],
+          "map" : {
+            "out.count" : "param.count",
+            "out.startIndex" : "param.startIndex",
+            "out.taskSearchCriteria" : "param.criteria"
+          }
+        },
+        "guid" : "153EF14248ECB35E"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 160 },
+        "size" : { "width" : 22, "height" : 22 },
+        "labelOffset" : { "x" : -76, "y" : 10 }
+      },
+      "connect" : { "id" : "f19", "to" : "f9" }
+    }, {
+      "id" : "f23",
+      "type" : "HtmlDialogEventStart",
+      "name" : "saveFilter",
+      "config" : {
+        "guid" : "15F5844AD96F4A4C"
+      },
+      "visual" : {
+        "at" : { "x" : 80, "y" : 384 }
+      },
+      "connect" : { "id" : "f46", "to" : "f45" }
+    }, {
+      "id" : "f24",
+      "type" : "Script",
+      "name" : "save filter set",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.service.TaskAnalysisFilterService;",
+            "import ch.ivy.addon.portalkit.taskfilter.impl.TaskAnalysisFilterData;",
+            "import ch.ivy.addon.portalkit.enums.FilterType;",
+            "TaskAnalysisFilterService taskFilterService = new TaskAnalysisFilterService();",
+            "TaskAnalysisFilterData taskFilterData = in.dataModel.saveTaskAnalysisFilter(in.filterSetName, in.filterType, in.taskFilterGroupId);",
+            "if(FilterType.ONLY_ME == taskFilterData.type) {",
+            "  in.taskPrivateFilters.add(taskFilterData);",
+            "  in.taskPrivateFilters = taskFilterService.sortFilters(in.taskPrivateFilters) as List;",
+            "} else {",
+            "  in.taskPublicFilters.add(taskFilterData);",
+            "  in.taskPublicFilters = taskFilterService.sortFilters(in.taskPublicFilters) as List;",
+            "}",
+            "in.dataModel.selectedTaskAnalysisFilterData = taskFilterData;"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 464, "y" : 384 }
+      },
+      "connect" : { "id" : "f26", "to" : "f31" }
+    }, {
+      "id" : "f28",
+      "type" : "HtmlDialogEventStart",
+      "name" : "clearSaveFilterDialog",
+      "config" : {
+        "guid" : "15F5BFFC0DEF027B"
+      },
+      "visual" : {
+        "at" : { "x" : 80, "y" : 480 }
+      },
+      "connect" : { "id" : "f32", "to" : "f31" }
+    }, {
+      "id" : "f29",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 600, "y" : 480 }
+      }
+    }, {
+      "id" : "f31",
+      "type" : "Script",
+      "name" : "Clear filter",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.enums.FilterType;",
+            "in.filterType = FilterType.ONLY_ME;",
+            "in.filterSetName = \"\";"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 464, "y" : 480 }
+      },
+      "connect" : { "id" : "f30", "to" : "f29" }
+    }, {
+      "id" : "f27",
+      "type" : "Script",
+      "name" : "load filter set",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.bean.PermissionBean;",
+            "import ch.ivy.addon.portalkit.enums.FilterType;",
+            "import ch.ivy.addon.portalkit.service.TaskAnalysisFilterService;",
+            "TaskAnalysisFilterService taskFilterService = new TaskAnalysisFilterService();",
+            "in.taskPrivateFilters = taskFilterService.getPrivateFilterForCurrentUser(in.taskFilterGroupId) as List;",
+            "in.taskPublicFilters = taskFilterService.getPublicFilter(in.taskFilterGroupId) as List;",
+            "in.taskPublicFilters.add(in.dataModel.buildDefaultTaskAnalysisFilterData());",
+            "in.filterType = FilterType.ONLY_ME;"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 384, "y" : 64 },
+        "size" : { "width" : 96, "height" : 48 },
+        "labelOffset" : { "x" : -38, "y" : -7 }
+      },
+      "connect" : { "id" : "f57", "to" : "f3" }
+    }, {
+      "id" : "f3",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 480, "y" : 64 }
+      }
+    }, {
+      "id" : "f34",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "deleteFilter()",
+      "config" : {
+        "callSignature" : "deleteFilter",
+        "guid" : "15F5C0F9B77406B4"
+      },
+      "visual" : {
+        "at" : { "x" : 80, "y" : 576 }
+      },
+      "connect" : { "id" : "f39", "to" : "f35" }
+    }, {
+      "id" : "f35",
+      "type" : "Script",
+      "name" : "remove filter",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.enums.FilterType;",
+            "import ch.ivy.addon.portalkit.taskfilter.impl.TaskAnalysisFilterData;",
+            "import ch.ivy.addon.portalkit.service.TaskAnalysisFilterService;",
+            "TaskAnalysisFilterService service = new TaskAnalysisFilterService();",
+            "service.delete(in.taskFilterDataToBeRemoved.id);",
+            "if(in.taskFilterDataToBeRemoved.type == FilterType.ONLY_ME) {",
+            "  in.taskPrivateFilters.remove(in.taskFilterDataToBeRemoved);",
+            "} else {",
+            "  in.taskPublicFilters.remove(in.taskFilterDataToBeRemoved);",
+            "}",
+            "if (in.dataModel.isSameTaskFilterData(in.taskFilterDataToBeRemoved)) {",
+            "  in.dataModel.resetFilters();",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 232, "y" : 576 }
+      },
+      "connect" : { "id" : "f40", "to" : "f36" }
+    }, {
+      "id" : "f36",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 400, "y" : 576 }
+      }
+    }, {
+      "id" : "f41",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "setFilterToBeDeleted",
+      "config" : {
+        "callSignature" : "setFilterToBeDeleted",
+        "input" : {
+          "params" : [
+            { "name" : "taskFilterData", "type" : "ch.ivy.addon.portalkit.taskfilter.impl.TaskAnalysisFilterData" }
+          ],
+          "map" : {
+            "out.taskFilterDataToBeRemoved" : "param.taskFilterData"
+          }
+        },
+        "guid" : "15F5C9F2AA5C9BA1"
+      },
+      "visual" : {
+        "at" : { "x" : 80, "y" : 672 },
+        "labelOffset" : { "x" : -51, "y" : 14 }
+      },
+      "connect" : { "id" : "f43", "to" : "f42" }
+    }, {
+      "id" : "f42",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 400, "y" : 672 }
+      }
+    }, {
+      "id" : "f45",
+      "type" : "Script",
+      "name" : "validate",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import javax.faces.application.FacesMessage;",
+            "import javax.faces.context.FacesContext;",
+            "import ch.ivy.addon.portalkit.service.TaskAnalysisFilterService;",
+            "TaskAnalysisFilterService service = new TaskAnalysisFilterService();",
+            "in.isFilterExisted = false;",
+            "if (service.isFilterExisted(in.filterSetName, in.filterType, in.taskFilterGroupId)) {",
+            "  FacesMessage message = new FacesMessage( FacesMessage.SEVERITY_ERROR, ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filterExistedValidationError\"), \"\");",
+            "  FacesContext.getCurrentInstance().addMessage(\"\", message);",
+            "  FacesContext.getCurrentInstance().validationFailed();",
+            "  in.isFilterExisted = true;",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 208, "y" : 384 }
+      },
+      "connect" : { "id" : "f48", "to" : "f47" }
+    }, {
+      "id" : "f47",
+      "type" : "Alternative",
+      "name" : [
+        "is filter",
+        "existed?"
+      ],
+      "visual" : {
+        "at" : { "x" : 336, "y" : 384 }
+      },
+      "connect" : [
+        { "id" : "f25", "to" : "f24", "label" : {
+            "name" : "no"
+          }, "condition" : "in.isFilterExisted == false" },
+        { "id" : "f51", "to" : "f50", "via" : [ { "x" : 336, "y" : 336 } ], "label" : {
+            "name" : "yes",
+            "segment" : 1.3
+          } }
+      ]
+    }, {
+      "id" : "f50",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 592, "y" : 336 }
+      }
+    }, {
+      "id" : "f16",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "applyFilter",
+      "config" : {
+        "callSignature" : "applyFilter",
+        "input" : {
+          "params" : [
+            { "name" : "taskFilterData", "type" : "ch.ivy.addon.portalkit.taskfilter.impl.TaskAnalysisFilterData" }
+          ],
+          "code" : "out.dataModel.applyFilter(param.taskFilterData);"
+        },
+        "guid" : "15F772190BB92384"
+      },
+      "visual" : {
+        "at" : { "x" : 80, "y" : 768 }
+      },
+      "connect" : { "id" : "f20", "to" : "f17" }
+    }, {
+      "id" : "f17",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 400, "y" : 768 }
+      }
+    }, {
+      "id" : "f8",
+      "type" : "Script",
+      "name" : "init data model",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.datamodel.internal.TaskAnalysisLazyDataModel;",
+            "import ch.ivy.addon.portalkit.bean.TaskAnalysisWidgetBean;",
+            "import javax.faces.context.FacesContext;",
+            "",
+            "FacesContext context = FacesContext.getCurrentInstance();",
+            "TaskAnalysisWidgetBean taskAnalysisWidgetBean = context.getApplication().evaluateExpressionGet(context, \"#{taskAnalysisWidgetBean}\", TaskAnalysisWidgetBean.class) as TaskAnalysisWidgetBean;",
+            "if (!in.#dataModel is initialized) {",
+            "  TaskAnalysisLazyDataModel dataModel = new TaskAnalysisLazyDataModel();",
+            "  taskAnalysisWidgetBean.setDataModel(dataModel);",
+            "  in.dataModel = taskAnalysisWidgetBean.dataModel;",
+            "} else {",
+            "  taskAnalysisWidgetBean.setDataModel(in.dataModel);",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 240, "y" : 64 }
+      },
+      "connect" : { "id" : "f1", "to" : "f27" }
+    }, {
+      "id" : "f11",
+      "type" : "HtmlDialogEventStart",
+      "name" : "redirectToStatisticPage",
+      "config" : {
+        "guid" : "1645924828285975"
+      },
+      "visual" : {
+        "at" : { "x" : 80, "y" : 880 }
+      },
+      "connect" : { "id" : "f6", "to" : "f5" }
+    }, {
+      "id" : "f4",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 400, "y" : 880 }
+      }
+    }, {
+      "id" : "f5",
+      "type" : "Script",
+      "name" : "Redirect to Statistic page",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;",
+            "import javax.faces.context.FacesContext;",
+            "",
+            "String statisticPageUrl = ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(\"Start Processes/PortalStart/StatisticPage.ivp\");",
+            "FacesContext.getCurrentInstance().getExternalContext().redirect(statisticPageUrl);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 232, "y" : 880 },
+        "size" : { "width" : 144, "height" : 44 }
+      },
+      "connect" : { "id" : "f12", "to" : "f4" }
+    }, {
+      "id" : "f13",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "getExportedFile()",
+      "config" : {
+        "callSignature" : "getExportedFile",
+        "result" : {
+          "params" : [
+            { "name" : "exportedFile", "type" : "org.primefaces.model.StreamedContent" }
+          ],
+          "map" : {
+            "result.exportedFile" : "in.exportedFile"
+          }
+        },
+        "input" : {
+          "params" : [
+            { "name" : "columnsVisibility", "type" : "java.util.Map" }
+          ],
+          "map" : {
+            "out.columnsVisibility" : "param.columnsVisibility"
+          }
+        },
+        "guid" : "1646EC49808E6672"
+      },
+      "visual" : {
+        "at" : { "x" : 80, "y" : 992 }
+      },
+      "connect" : { "id" : "f65", "to" : "f52" }
+    }, {
+      "id" : "f14",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 776, "y" : 992 }
+      }
+    }, {
+      "id" : "f37",
+      "type" : "Script",
+      "name" : "export excel",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.exporter.internal.TaskAnalysisExporter;",
+            "TaskAnalysisExporter exporter = new TaskAnalysisExporter(in.columnsVisibility);",
+            "in.exportedFile = exporter.getStreamedContent(in.collectedTasksForExporting);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 616, "y" : 992 }
+      },
+      "connect" : { "id" : "f56", "to" : "f14" }
+    }, {
+      "id" : "f15",
+      "type" : "SubProcessCall",
+      "name" : "find tasks",
+      "config" : {
+        "processCall" : "Ivy Data Processes/TaskService:findTasksByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria,Integer,Integer)",
+        "call" : {
+          "params" : [
+            { "name" : "taskSearchCriteria", "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria" },
+            { "name" : "startIndex", "type" : "Integer" },
+            { "name" : "count", "type" : "Integer" }
+          ],
+          "map" : {
+            "param.taskSearchCriteria" : "in.taskSearchCriteria",
+            "param.startIndex" : "in.loopCounter * in.maxResultNumberPerQuery",
+            "param.count" : "in.maxResultNumberPerQuery"
+          }
+        },
+        "output" : {
+          "code" : "in.collectedTasksForExporting.addAll(result.tasks);"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 464, "y" : 1120 }
+      },
+      "connect" : { "id" : "f54", "to" : "f53" }
+    }, {
+      "id" : "f9",
+      "type" : "SubProcessCall",
+      "name" : "TaskService",
+      "config" : {
+        "processCall" : "Ivy Data Processes/TaskService:findTasksByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria,Integer,Integer)",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.tasks" : "result.tasks"
+          }
+        },
+        "call" : {
+          "params" : [
+            { "name" : "taskSearchCriteria", "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria" },
+            { "name" : "startIndex", "type" : "Integer" },
+            { "name" : "count", "type" : "Integer" }
+          ],
+          "map" : {
+            "param.taskSearchCriteria" : "in.taskSearchCriteria",
+            "param.startIndex" : "in.startIndex",
+            "param.count" : "in.count"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 272, "y" : 160 }
+      },
+      "connect" : { "id" : "f33", "to" : "f22" }
+    }, {
+      "id" : "f22",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 416, "y" : 160 }
+      }
+    }, {
+      "id" : "f2",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "countTasks(TaskSearchCriteria)",
+      "config" : {
+        "callSignature" : "countTasks",
+        "result" : {
+          "params" : [
+            { "name" : "totalTasks", "type" : "Long" }
+          ],
+          "map" : {
+            "result.totalTasks" : "in.totalTasks"
+          }
+        },
+        "input" : {
+          "params" : [
+            { "name" : "criteria", "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria" }
+          ],
+          "map" : {
+            "out.taskSearchCriteria" : "param.criteria"
+          }
+        },
+        "guid" : "1682C611F21483D7"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 256 }
+      },
+      "connect" : { "id" : "f44", "to" : "f7" }
+    }, {
+      "id" : "f7",
+      "type" : "SubProcessCall",
+      "name" : "TaskService",
+      "config" : {
+        "processCall" : "Ivy Data Processes/TaskService:countTasksByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria)",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.totalTasks" : "result.totalTasks"
+          }
+        },
+        "call" : {
+          "params" : [
+            { "name" : "taskSearchCriteria", "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria" }
+          ],
+          "map" : {
+            "param.taskSearchCriteria" : "in.taskSearchCriteria"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 272, "y" : 256 }
+      },
+      "connect" : { "id" : "f49", "to" : "f38" }
+    }, {
+      "id" : "f38",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 416, "y" : 256 }
+      }
+    }, {
+      "id" : "f52",
+      "type" : "SubProcessCall",
+      "name" : "count tasks",
+      "config" : {
+        "processCall" : "Ivy Data Processes/TaskService:countTasksByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria)",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.totalTasks" : "result.totalTasks"
+          }
+        },
+        "call" : {
+          "params" : [
+            { "name" : "taskSearchCriteria", "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria" }
+          ],
+          "map" : {
+            "param.taskSearchCriteria" : "in.taskSearchCriteria"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 216, "y" : 992 }
+      },
+      "connect" : { "id" : "f60", "to" : "f59" }
+    }, {
+      "id" : "f53",
+      "type" : "Script",
+      "name" : "counter++",
+      "config" : {
+        "output" : {
+          "code" : "in.loopCounter++;"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 616, "y" : 1120 }
+      },
+      "connect" : { "id" : "f21", "to" : "f18" }
+    }, {
+      "id" : "f18",
+      "type" : "Alternative",
+      "visual" : {
+        "at" : { "x" : 464, "y" : 992 }
+      },
+      "connect" : [
+        { "id" : "f61", "to" : "f15", "condition" : "in.loopCounter <= in.totalTasks / in.maxResultNumberPerQuery" },
+        { "id" : "f62", "to" : "f37" }
+      ]
+    }, {
+      "id" : "f59",
+      "type" : "Script",
+      "name" : "init data",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import java.util.ArrayList;",
+            "in.loopCounter = 0;",
+            "in.maxResultNumberPerQuery = 100000;",
+            "in.collectedTasksForExporting = new ArrayList();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 360, "y" : 992 }
+      },
+      "connect" : { "id" : "f58", "to" : "f18" }
+    }, {
+      "id" : "f55",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "restoreDefaultFilterSet()",
+      "config" : {
+        "callSignature" : "restoreDefaultFilterSet",
+        "guid" : "17055DF5174D824A"
+      },
+      "visual" : {
+        "at" : { "x" : 80, "y" : 1248 },
+        "labelOffset" : { "x" : -47, "y" : 15 }
+      },
+      "connect" : { "id" : "f66", "to" : "f64" }
+    }, {
+      "id" : "f63",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 384, "y" : 1248 }
+      }
+    }, {
+      "id" : "f64",
+      "type" : "Script",
+      "name" : "Apply default filter",
+      "config" : {
+        "output" : {
+          "code" : [
+            "out.dataModel.selectedTaskAnalysisFilterData = null;",
+            "out.dataModel.applyFilter(out.dataModel.defaultTaskAnalysisFilterData);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 248, "y" : 1248 }
+      },
+      "connect" : { "id" : "f67", "to" : "f63" }
+    } ]
+}

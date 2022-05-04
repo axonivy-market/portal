@@ -1,0 +1,46 @@
+{
+  "format" : "9.4.8",
+  "id" : "178ED537303DFF8E",
+  "data" : "com.axonivy.portal.developerexamples.ExampleApplicationProcessesData",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "start.ivp",
+      "config" : {
+        "callSignature" : "start",
+        "outLink" : "start.ivp",
+        "startName" : "Example Application Processes"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : { "id" : "f4", "to" : "f3" }
+    }, {
+      "id" : "f1",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "Script",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.service.UserProcessService;",
+            "String appName = ivy.wf.getApplication().getName();",
+            "String defaultUserProcesses =",
+            "    \"[{\\\"id\\\":\\\"1\\\",\\\"processType\\\":\\\"IVY_PROCESS\\\",\\\"processName\\\":\\\"Alpha Company Task\\\",\\\"icon\\\":\\\"fa-building\\\",\\\"processId\\\":\\\"\"+ appName + ",
+            "    \"/portal-developer-examples/Start Processes/ProcessHistoryComponent/createAlphaCompany.ivp\\\",\\\"index\\\":1},{\\\"id\\\":\\\"2\\\",\\\"processType\\\":\\\"IVY_PROCESS\\\",\\\"processName\\\":\\\"View Alpha Process History\\\",\\\"icon\\\":\\\"fa-list-alt\\\",\\\"processId\\\":\\\"\" + appName + ",
+            "    \"/portal-developer-examples/Start Processes/ProcessHistoryComponent/viewProcessHistoryOfAlphaCompany.ivp\\\",\\\"index\\\":2},{\\\"id\\\":\\\"3\\\",\\\"processType\\\":\\\"IVY_PROCESS\\\",\\\"processName\\\":\\\"View Alpha Process History in Dialog\\\",\\\"icon\\\":\\\"fa-asterisk\\\",\\\"processId\\\":\\\"\" + appName +",
+            "    \"/portal-developer-examples/Start Processes/ProcessHistoryComponent/viewProcessHistoryOfAlphaCompanyInDialog.ivp\\\",\\\"index\\\":3},{\\\"id\\\":\\\"4\\\",\\\"processType\\\":\\\"EXPRESS_PROCESS\\\",\\\"processName\\\":\\\"Favorite Express Process Display Name\\\",\\\"icon\\\":\\\"fa fa-play\\\",\\\"processId\\\":\\\"Your Express Process Name\\\",\\\"index\\\":4},{\\\"id\\\":\\\"5\\\",\\\"processType\\\":\\\"EXTERNAL_LINK\\\",\\\"processName\\\":\\\"Favorite External Process Display Name\\\",\\\"icon\\\":\\\"fa fa-play\\\",\\\"processId\\\":\\\"Your External Link Name\\\",\\\"index\\\":5}]\";",
+            "ivy.var.set(UserProcessService.getInstance().getConfigKey(), defaultUserProcesses);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    } ]
+}

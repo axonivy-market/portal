@@ -1,0 +1,23 @@
+{
+  "format" : "9.4.8",
+  "id" : "1633E7FE0C8BCFA6",
+  "data" : "ch.ivy.add.portalkit.Data",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "ProgramStart",
+      "name" : "Init Portal permissions",
+      "config" : {
+        "outerBean" : "ch.ivy.addon.portalkit.bean.PortalPermissionInitBean"
+      },
+      "visual" : {
+        "at" : { "x" : 160, "y" : 160 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f1",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 160 }
+      }
+    } ]
+}

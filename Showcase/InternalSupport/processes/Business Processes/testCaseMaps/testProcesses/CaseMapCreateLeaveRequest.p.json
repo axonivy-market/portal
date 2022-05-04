@@ -1,0 +1,68 @@
+{
+  "format" : "9.4.8",
+  "id" : "16E3F9428CFA3D20",
+  "data" : "internaltest.CaseMapCreateLeaveRequestData",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "newLeaveRequest.ivp",
+      "config" : {
+        "callSignature" : "newLeaveRequest",
+        "case" : {
+          "name" : "Case Map: Leave Request",
+          "description" : "Case Map: Leave Request",
+          "customFields" : [
+            { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
+          ]
+        },
+        "outLink" : "newLeaveRequest.ivp",
+        "task" : {
+          "name" : "Start Case Map: Create Leave Request 1"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 },
+        "labelOffset" : { "x" : -21, "y" : 17 }
+      },
+      "connect" : { "id" : "f6", "to" : "f5" }
+    }, {
+      "id" : "f1",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 512, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "UserTask",
+      "name" : "NewLeaveRequest",
+      "config" : {
+        "dialogId" : "internaltest.ui.NewLeaveRequest",
+        "startMethod" : "start()",
+        "case" : {
+          "name" : "Case Map: Leave Request",
+          "description" : "Case Map: Leave Request"
+        },
+        "task" : {
+          "name" : "Case Map Leave Request"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 384, "y" : 64 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f5",
+      "type" : "Script",
+      "name" : "set case name",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : "ivy.case.getBusinessCase().setName(\"Business Case Map: Leave Request\");"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 }
+      },
+      "connect" : { "id" : "f9", "to" : "f3" }
+    } ]
+}
