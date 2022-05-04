@@ -3,6 +3,7 @@ package ch.ivy.addon.portal.generic.bean;
 import java.io.Serializable;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -18,6 +19,7 @@ import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
+import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.application.ILibrary;
 import ch.ivyteam.ivy.application.IProcessModelVersion;
 import ch.ivyteam.ivy.casemap.runtime.ICaseMapService;
@@ -195,8 +197,8 @@ public abstract class AbstractTaskTemplateBean implements Serializable {
 
   public void generateCaseDetailInFrame(ICase currentCase) {
     String defaultTemplateLibraryId = Ivy.wf().getStandardProcessImplementationLibrary(StandardProcessType.DEFAULT_PAGES_PROCESS_TYPES);
-    ILibrary defaultTemplateLibrary = Ivy.wf().getApplication().findReleasedLibrary(defaultTemplateLibraryId);
-    IProcessModelVersion defaultTemplatePMV = defaultTemplateLibrary.getProcessModelVersion();
+    ILibrary defaultTemplateLibrary = IApplication.current().findReleasedLibrary(defaultTemplateLibraryId);
+    IProcessModelVersion defaultTemplatePMV = Optional.ofNullable(defaultTemplateLibrary).map(ILibrary::getProcessModelVersion).orElse(null);
     setCaseDetailsLink(PortalNavigator.buildPortalCaseDetailInFrameUrl(currentCase.getId(), defaultTemplatePMV));
   }
 
