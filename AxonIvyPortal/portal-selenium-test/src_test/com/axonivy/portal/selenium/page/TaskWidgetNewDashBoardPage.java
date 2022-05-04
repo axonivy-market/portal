@@ -414,8 +414,35 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
         .waitUntil(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
   }
   
-  public void taskGridSouldBeSortedBy(String sortField, String sortType) {
-    SelenideElement fieldElement =  $(taskWidgetId).waitUntil(appear, DEFAULT_TIMEOUT).$("th.ui-state-active");
-    fieldElement.getAttribute("aria-sort");
+  /* 
+   * return descending or ascending
+   */
+  public SelenideElement getTaskWidgetHeaderSorted() {
+    return  $(taskWidgetId).waitUntil(appear, DEFAULT_TIMEOUT).$("th.ui-state-active");
+    //return fieldElement.getAttribute("aria-sort");
   }
+  
+  /* 
+   * return descending or ascending
+   */
+  /*public SelenideElement getTaskWidgetSortedColumnName() {
+    SelenideElement fieldElement =  $(taskWidgetId).waitUntil(appear, DEFAULT_TIMEOUT).$("th.ui-state-active");
+    //return fieldElement.getText().trim();
+  }*/
+  
+  public void clickOnHeaderTaskByColumn(String columnName) {
+    ElementsCollection elementsTH = $(taskWidgetId).waitUntil(appear, DEFAULT_TIMEOUT).$$("table thead tr th");
+    for (int i = 0; i < elementsTH.size(); i++) {
+      if (elementsTH.get(i).getText().equalsIgnoreCase(columnName)) {
+        elementsTH.get(i).click();
+        $("[id$='ajax-indicator-ajax-indicator_start']").waitUntil(appear, DEFAULT_TIMEOUT);
+        waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
+      }
+    }
+  }
+  
+  public SelenideElement getTheFirstTaskWidgetByColumn(String columnName) {
+    return getColumnOfTaskHasIndex(0, columnName);
+  }
+  
 }
