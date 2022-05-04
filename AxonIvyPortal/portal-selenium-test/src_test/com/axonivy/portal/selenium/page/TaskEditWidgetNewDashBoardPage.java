@@ -92,11 +92,14 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
   public void nextPageTable() {
     $(taskEditWidgetId).waitUntil(appear, DEFAULT_TIMEOUT).$("div[id$='widget-preview']")
     .waitUntil(appear, DEFAULT_TIMEOUT).$("a.ui-paginator-next").shouldBe(getClickableCondition()).click();
+    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
   }
   
   public void save() {
     $(taskEditWidgetId).waitUntil(appear, DEFAULT_TIMEOUT).$("button[id$='widget-configuration-save-button']")
         .shouldBe(getClickableCondition()).click();
+    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
+    $("[id$='task-component:loading']").waitUntil(disappear, DEFAULT_TIMEOUT);
   }
 
 }
