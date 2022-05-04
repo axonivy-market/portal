@@ -13,6 +13,7 @@ import com.axonivy.portal.selenium.page.NewDashboardDetailsEditPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
+import com.codeborne.selenide.CollectionCondition;
 
 @IvyWebTest
 public class DashboardAddWidgetTest extends BaseTest {
@@ -28,13 +29,7 @@ public class DashboardAddWidgetTest extends BaseTest {
   
   @Test
   public void testAddNewCaseList() {
-    redirectToRelativeLink(createTestingTasksUrl);
-    login(TestAccount.ADMIN_USER);
-    newDashboardPage.waitForAbsencesGrowlMessageDisplay();
-    newDashboardPage.openDashboardConfigurationDialog();
-    NewDashboardConfigurationPage configPage = newDashboardPage.navigateToEditPublicDashboardPage();
-    NewDashboardDetailsEditPage newDashboardDetailsEditPage = configPage.navigateToEditDashboardDetailsByName("Dashboard");
-
+    NewDashboardDetailsEditPage newDashboardDetailsEditPage = gotoEditPublicDashboardPage();
     newDashboardDetailsEditPage.addWidget();
     CaseEditWidgetNewDashBoardPage newCaseWidget = newDashboardDetailsEditPage.addNewCaseWidget();
     newCaseWidget.changeWidgetTitle("Your New Cases");
@@ -45,13 +40,7 @@ public class DashboardAddWidgetTest extends BaseTest {
   
   @Test
   public void testAddNewTaskList() {
-    redirectToRelativeLink(createTestingTasksUrl);
-    login(TestAccount.ADMIN_USER);
-    newDashboardPage.waitForAbsencesGrowlMessageDisplay();
-    newDashboardPage.openDashboardConfigurationDialog();
-    NewDashboardConfigurationPage configPage = newDashboardPage.navigateToEditPublicDashboardPage();
-    NewDashboardDetailsEditPage newDashboardDetailsEditPage = configPage.navigateToEditDashboardDetailsByName("Dashboard");
-
+    NewDashboardDetailsEditPage newDashboardDetailsEditPage = gotoEditPublicDashboardPage();
     newDashboardDetailsEditPage.addWidget();
     TaskEditWidgetNewDashBoardPage newTaskWidget = newDashboardDetailsEditPage.addNewTaskWidget();
     newTaskWidget.changeWidgetTitle("Your New Tasks");
@@ -59,5 +48,24 @@ public class DashboardAddWidgetTest extends BaseTest {
     TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget("Your New Tasks");
     taskWidget.expand().shouldHaveSize(1);
   }
-  
+
+  @Test
+  public void testAddNewStatisticChart() {
+    NewDashboardDetailsEditPage newDashboardDetailsEditPage = gotoEditPublicDashboardPage();
+    newDashboardDetailsEditPage.addWidget();
+    var newStatisticWidget = newDashboardDetailsEditPage.addNewStatisticWidget();
+    newStatisticWidget.selectFirstChart();
+    newStatisticWidget.save();
+    var chartWidget = newDashboardPage.selectStatisticWidget();
+    chartWidget.countStatisticCharts().shouldHave(CollectionCondition.sizeGreaterThanOrEqual(1));
+  }
+
+  private NewDashboardDetailsEditPage gotoEditPublicDashboardPage() {
+    redirectToRelativeLink(createTestingTasksUrl);
+    login(TestAccount.ADMIN_USER);
+    newDashboardPage.waitForAbsencesGrowlMessageDisplay();
+    newDashboardPage.openDashboardConfigurationDialog();
+    NewDashboardConfigurationPage configPage = newDashboardPage.navigateToEditPublicDashboardPage();
+    return configPage.navigateToEditDashboardDetailsByName("Dashboard");
+  }
 }

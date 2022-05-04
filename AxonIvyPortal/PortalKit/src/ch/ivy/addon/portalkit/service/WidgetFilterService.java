@@ -15,6 +15,7 @@ import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portalkit.bean.WidgetFilterHelperBean;
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
+import ch.ivy.addon.portalkit.dto.dashboard.CompactProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.FilterColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.ProcessDashboardWidget;
@@ -72,7 +73,7 @@ public class WidgetFilterService extends JsonConfigurationService<WidgetFilterMo
         filterableColumns.addAll(((CaseDashboardWidget) widget).getFilterableColumns());
         break;
       case PROCESS:
-        filterableColumns.addAll(((ProcessDashboardWidget) widget).getFilterableColumns());
+        filterableColumns.addAll(((CompactProcessDashboardWidget) widget).getFilterableColumns());
         break;
       default:
         break;
@@ -129,7 +130,7 @@ public class WidgetFilterService extends JsonConfigurationService<WidgetFilterMo
         case PROCESS:
           var processWidget = (ProcessDashboardWidget) widget;
           if (ProcessWidgetMode.COMPACT_MODE == processWidget.getDisplayMode()) {
-            widgetFilterableColumns.addAll(processWidget.getFilterableColumns());
+            widgetFilterableColumns.addAll(((CompactProcessDashboardWidget) processWidget).getFilterableColumns());
           }
           break;
         default:
@@ -210,7 +211,7 @@ public class WidgetFilterService extends JsonConfigurationService<WidgetFilterMo
         filterableColumns = ((CaseDashboardWidget) widget).getFilterableColumns();
         break;
       case PROCESS:
-        filterableColumns = ((ProcessDashboardWidget) widget).getFilterableColumns();
+        filterableColumns = ((CompactProcessDashboardWidget) widget).getFilterableColumns();
         break;
       default:
         break;

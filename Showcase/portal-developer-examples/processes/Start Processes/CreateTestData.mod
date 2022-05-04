@@ -1008,7 +1008,7 @@ Cs0 f84 actionTable 'out=in1;
 Cs0 f84 taskData 'TaskA.CATEGORY=OtherLeave/SickLeave/Long
 TaskA.DESC=Sick Leave Request Description
 TaskA.EXC=162511D2577DBA88-f88-buffer
-TaskA.EXP=new Duration("3H")
+TaskA.EXP=new Duration("2D")
 TaskA.EXPRI=0
 TaskA.EXTYPE=-1
 TaskA.NAM=Sick Leave Request
@@ -1032,7 +1032,7 @@ Cs0 f89 actionTable 'out=in1;
 ' #txt
 Cs0 f89 taskData 'TaskA.CATEGORY=OtherLeave/SickLeave/Long
 TaskA.DESC=Sick Leave Request Description Escalated
-TaskA.EXP=new Duration("3H")
+TaskA.EXP=new Duration("1D")
 TaskA.EXPRI=0
 TaskA.EXROL=Everybody
 TaskA.EXTYPE=0
