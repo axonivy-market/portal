@@ -1,0 +1,167 @@
+{
+  "format" : "9.4.8",
+  "id" : "176CBAAD82714638",
+  "data" : "com.axonivy.portal.developerexamples.showcase.CustomTaskTemplate.CustomTaskTemplateData",
+  "kind" : "HTML_DIALOG",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start(Data)",
+      "config" : {
+        "callSignature" : "start",
+        "result" : {
+          "params" : [
+            { "name" : "data", "type" : "com.axonivy.portal.developerexamples.showcase.Data" }
+          ],
+          "map" : {
+            "result.data" : "in.data"
+          }
+        },
+        "input" : {
+          "params" : [
+            { "name" : "data", "type" : "com.axonivy.portal.developerexamples.showcase.Data" }
+          ],
+          "map" : {
+            "out.actualStepIndex" : "param.data.actuaStepIndex + 1",
+            "out.data" : "param.data",
+            "out.processChainDirection" : "param.data.processChainDirection",
+            "out.processChainShape" : "param.data.processChainShape"
+          }
+        },
+        "guid" : "16C8374337A6693D"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : { "id" : "f7", "to" : "f6" }
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "HtmlDialogEventStart",
+      "name" : "close",
+      "config" : {
+        "guid" : "16C837433A29385A"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 160 },
+        "labelOffset" : { "x" : -15, "y" : 12 }
+      },
+      "connect" : { "id" : "f5", "to" : "f4" }
+    }, {
+      "id" : "f4",
+      "type" : "HtmlDialogExit",
+      "visual" : {
+        "at" : { "x" : 224, "y" : 160 }
+      }
+    }, {
+      "id" : "f6",
+      "type" : "Script",
+      "name" : "init data",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.developerexamples.showcase.CustomTaskTemplate.CustomTaskTemplateData;",
+            "",
+            "in.steps.add(\"Start\");",
+            "in.steps.add(\"Create request process testing\");",
+            "in.steps.add(\"Clarify process testing\");",
+            "in.steps.add(\"Approve process testing\");",
+            "in.steps.add(\"Manager Approve process testing\");",
+            "in.steps.add(\"Fisnished\");"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f8",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "saveToSession()",
+      "config" : {
+        "callSignature" : "saveToSession",
+        "guid" : "16C9819838F1E711"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 272 }
+      },
+      "connect" : { "id" : "f12", "to" : "f11" }
+    }, {
+      "id" : "f9",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 272 }
+      }
+    }, {
+      "id" : "f11",
+      "type" : "Script",
+      "name" : "save config",
+      "config" : {
+        "output" : {
+          "code" : [
+            "ivy.session.setAttribute(\"taskConfigExampleActualStepIndex\", in.actualStepIndex - 1);",
+            "ivy.session.setAttribute(\"taskConfigExampleProcessChainDirection\", in.processChainDirection);",
+            "ivy.session.setAttribute(\"taskConfigExampleProcessChainShape\", in.processChainShape);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 272 }
+      },
+      "connect" : { "id" : "f10", "to" : "f9" }
+    }, {
+      "id" : "f21",
+      "type" : "Script",
+      "name" : "reload process",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;",
+            "import ch.ivy.addon.portalkit.util.RequestUtil;",
+            "import javax.faces.context.FacesContext;",
+            "import ch.ivy.addon.portalkit.util.SecurityServiceUtils;",
+            "import org.apache.commons.lang3.StringUtils;",
+            "",
+            "String friendlyRequestPath = SecurityServiceUtils.findFriendlyRequestPathContainsKeyword(\"CustomizedTaskTemplate.ivp\");",
+            "if (StringUtils.isEmpty(friendlyRequestPath)) {",
+            "    friendlyRequestPath = \"Start Processes/Showcases/CustomizedTaskTemplate.ivp\";",
+            "}",
+            "",
+            "String requestPath = ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(friendlyRequestPath);",
+            "if (StringUtils.isNotEmpty(requestPath)) {",
+            "    FacesContext.getCurrentInstance().getExternalContext().redirect(requestPath);",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 232, "y" : 384 }
+      },
+      "connect" : { "id" : "f20", "to" : "f19" }
+    }, {
+      "id" : "f18",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "reload()",
+      "config" : {
+        "callSignature" : "reload",
+        "guid" : "16C98491C1920D90"
+      },
+      "visual" : {
+        "at" : { "x" : 88, "y" : 384 }
+      },
+      "connect" : { "id" : "f22", "to" : "f21" }
+    }, {
+      "id" : "f19",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 392, "y" : 384 }
+      }
+    } ]
+}

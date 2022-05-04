@@ -1,0 +1,61 @@
+{
+  "format" : "9.4.8",
+  "id" : "1657B2041502A14A",
+  "data" : "com.axonivy.portal.developerexamples.Data",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "toPageWithCustomLoginPage.ivp",
+      "config" : {
+        "callSignature" : "toPageWithCustomLoginPage",
+        "case" : {
+          "customFields" : [
+            { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
+          ]
+        },
+        "outLink" : "toPageWithCustomLoginPage.ivp",
+        "task" : {
+          "customFields" : [
+            { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
+          ]
+        },
+        "startName" : "Open page with custom login"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : { "id" : "f4", "to" : "f3" }
+    }, {
+      "id" : "f1",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 448, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "DialogCall",
+      "name" : "To Page With Customized Login",
+      "config" : {
+        "dialogId" : "com.axonivy.portal.developerexamples.customization.WelcomePage",
+        "startMethod" : "start()"
+      },
+      "visual" : {
+        "at" : { "x" : 304, "y" : 64 },
+        "size" : { "width" : 192, "height" : 44 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f5",
+      "type" : "ProcessAnnotation",
+      "name" : [
+        "This process demonstrates the login page customization of Portal. It simply open a welcome page which when required to login will open a customized login page",
+        "",
+        "HOW TO RUN THIS EXAMPLE:",
+        "Open toPageWithCustomLoginPage.ivp in portal-developer-examples without a login user in session, the cusomized login page will be opened."
+      ],
+      "visual" : {
+        "at" : { "x" : 970, "y" : 67 },
+        "size" : { "width" : 896, "height" : 76 }
+      }
+    } ]
+}

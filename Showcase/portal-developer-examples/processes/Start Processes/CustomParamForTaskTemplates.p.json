@@ -1,0 +1,75 @@
+{
+  "format" : "9.4.8",
+  "id" : "1718293B3F6E5478",
+  "data" : "com.axonivy.portal.developerexamples.CustomParamForTaskTemplatesData",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "start.ivp",
+      "config" : {
+        "callSignature" : "start",
+        "outLink" : "start.ivp",
+        "startName" : "Templates with custom params"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : { "id" : "f4", "to" : "f3", "var" : "in1" }
+    }, {
+      "id" : "f1",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 504, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "TaskSwitchGateway",
+      "config" : {
+        "outLinks" : [ "TaskB.ivp", "TaskA.ivp" ],
+        "tasks" : {
+          "TaskA" : {
+            "name" : "IFrame task with custom params"
+          },
+          "TaskB" : {
+            "name" : "Task template 8 with custom params",
+            "customFields" : [
+              { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
+            ]
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 192, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f6", "to" : "f5", "condition" : "ivp==\"TaskA.ivp\"" },
+        { "id" : "f8", "to" : "f7", "via" : [ { "x" : 192, "y" : 160 } ], "condition" : "ivp==\"TaskB.ivp\"" }
+      ]
+    }, {
+      "id" : "f5",
+      "type" : "DialogCall",
+      "name" : "CustomParamsForIFrame",
+      "config" : {
+        "dialogId" : "com.axonivy.portal.developerexamples.testdata.CustomParamsForIFrame",
+        "startMethod" : "start()"
+      },
+      "visual" : {
+        "at" : { "x" : 344, "y" : 64 },
+        "size" : { "width" : 160, "height" : 44 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f7",
+      "type" : "DialogCall",
+      "name" : "CustomParamsForTaskTemplate8",
+      "config" : {
+        "dialogId" : "com.axonivy.portal.developerexamples.testdata.CustomParamsForTaskTemplate8",
+        "startMethod" : "start()"
+      },
+      "visual" : {
+        "at" : { "x" : 352, "y" : 160 },
+        "size" : { "width" : 208, "height" : 44 }
+      },
+      "connect" : { "id" : "f9", "to" : "f1", "via" : [ { "x" : 504, "y" : 160 } ] }
+    } ]
+}

@@ -1,0 +1,159 @@
+{
+  "format" : "9.4.8",
+  "id" : "15797DC22608DA55",
+  "data" : "gawfs.GenericPredefinedWorkflowStartData",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "GenericPredefinedProcessStart.ivp",
+      "config" : {
+        "callSignature" : "GenericPredefinedProcessStart",
+        "input" : {
+          "params" : [
+            { "name" : "actualStepIndex", "type" : "Integer" },
+            { "name" : "workflowID", "type" : "String" }
+          ],
+          "map" : {
+            "out.actualStepIndex" : "param.actualStepIndex",
+            "out.workflowID" : "param.workflowID"
+          }
+        },
+        "case" : {
+          "attachToBusinessCase" : false
+        },
+        "outLink" : "GenericPredefinedProcessStart.ivp",
+        "task" : {
+          "name" : "<%=ivy.cms.co(\"/Dialogs/Tasks/CreateWorkflow/TaskName\")%>",
+          "description" : "<%=ivy.cms.co(\"/Dialogs/Tasks/CreateWorkflow/TaskDescription\")%>"
+        },
+        "showInStartList" : false,
+        "startName" : "GenericPredefinedProcessStart (Inputparam: WorkflowID e.g. ?workflowID=24, actualStepIndex e.g. ?actualStepIndex=1)"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : { "id" : "f7", "to" : "f5" }
+    }, {
+      "id" : "f3",
+      "type" : "SubProcessCall",
+      "name" : "executePredefinedWorkflow",
+      "config" : {
+        "processCall" : "Functional Processes/executePredefinedWorkflow:call(Integer,String)",
+        "call" : {
+          "params" : [
+            { "name" : "actualStepIndex", "type" : "Integer" },
+            { "name" : "workflowID", "type" : "String" }
+          ],
+          "map" : {
+            "param.actualStepIndex" : "in.actualStepIndex",
+            "param.workflowID" : "in.workflowID"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 488, "y" : 64 },
+        "size" : { "width" : 160, "height" : 44 }
+      },
+      "connect" : { "id" : "f16", "to" : "f10", "via" : [ { "x" : 624, "y" : 64 } ] }
+    }, {
+      "id" : "f6",
+      "type" : "RequestStart",
+      "name" : "GenericEditProcessStart.ivp",
+      "config" : {
+        "callSignature" : "GenericEditProcessStart",
+        "input" : {
+          "params" : [
+            { "name" : "workflowID", "type" : "String" }
+          ],
+          "map" : {
+            "out.workflowID" : "param.workflowID"
+          }
+        },
+        "case" : {
+          "name" : "<%=ivy.cms.co(\"/Dialogs/Cases/EditWorkflow/CaseName\")%>",
+          "description" : "<%=ivy.cms.co(\"/Dialogs/Cases/EditWorkflow/CaseDescription\")%>",
+          "attachToBusinessCase" : false
+        },
+        "outLink" : "GenericEditProcessStart.ivp",
+        "startDescription" : "Add WorkflowID to the Link like ?workflowID=24",
+        "task" : {
+          "name" : "<%=ivy.cms.co(\"/Dialogs/Tasks/EditWorkflow/TaskName\")%>",
+          "description" : "<%=ivy.cms.co(\"/Dialogs/Tasks/EditWorkflow/TaskDescription\")%>"
+        },
+        "showInStartList" : false,
+        "wfuser" : "1",
+        "startName" : "GenericEditProcessStart(Inputparam: WorkflowID e.g. ?workflowID=24)"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 160 }
+      },
+      "connect" : { "id" : "f11", "to" : "f9" }
+    }, {
+      "id" : "f12",
+      "type" : "SubProcessCall",
+      "name" : "edit",
+      "config" : {
+        "processCall" : "Functional Processes/editWorkflow:editWorkflow(String)",
+        "call" : {
+          "params" : [
+            { "name" : "workflowID", "type" : "String" }
+          ],
+          "map" : {
+            "param.workflowID" : "in.workflowID"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 496, "y" : 160 },
+        "size" : { "width" : 160, "height" : 48 }
+      },
+      "connect" : { "id" : "f2", "to" : "f10" }
+    }, {
+      "id" : "f10",
+      "type" : "Alternative",
+      "visual" : {
+        "at" : { "x" : 624, "y" : 160 }
+      },
+      "connect" : [
+        { "id" : "f1", "to" : "f17" }
+      ]
+    }, {
+      "id" : "f17",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 720, "y" : 160 }
+      }
+    }, {
+      "id" : "f5",
+      "type" : "Script",
+      "name" : "Set Task/Case field",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.constant.CustomFields;",
+            "ivy.case.customFields().stringField(CustomFields.IS_EXPRESS_PROCESS).set(\"true\");"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 280, "y" : 64 }
+      },
+      "connect" : { "id" : "f4", "to" : "f3" }
+    }, {
+      "id" : "f9",
+      "type" : "Script",
+      "name" : "Set Task/Case field",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.constant.CustomFields;",
+            "ivy.case.customFields().stringField(CustomFields.IS_EXPRESS_PROCESS).set(\"true\");"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 280, "y" : 160 }
+      },
+      "connect" : { "id" : "f8", "to" : "f12" }
+    } ]
+}

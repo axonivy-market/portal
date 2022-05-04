@@ -1,0 +1,46 @@
+{
+  "format" : "9.4.8",
+  "id" : "1703222D60B87C28",
+  "data" : "com.axonivy.portal.userexamples.Data",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "start.ivp",
+      "config" : {
+        "callSignature" : "start",
+        "task" : {
+          "name" : "System task : <%=ivy.cms.co(\"/Processes/CaseMap/checkCompanyRegister\")%>",
+          "responsible" : {
+            "role" : "SYSTEM"
+          }
+        },
+        "showInStartList" : false,
+        "outLink" : "start.ivp",
+        "triggerEnabled" : true,
+        "startName" : "Check Company Register"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : { "id" : "f2", "to" : "f3" }
+    }, {
+      "id" : "f1",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 448, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "Script",
+      "name" : "log stage",
+      "config" : {
+        "output" : {
+          "code" : "ivy.log.info(\"Business Process is in Stage \" + ivy.case.getBusinessCase().getStage().getName());"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 273, "y" : 64 }
+      },
+      "connect" : { "id" : "f4", "to" : "f1" }
+    } ]
+}

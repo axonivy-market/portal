@@ -16,7 +16,7 @@ import ch.ivy.addon.portalkit.dto.dashboard.StatisticDashboardWidget;
 import ch.ivy.addon.portalkit.enums.StatisticChartType;
 import ch.ivy.addon.portalkit.service.StatisticService;
 import ch.ivy.addon.portalkit.statistics.StatisticChart;
-import ch.ivy.addon.portalkit.statistics.StatisticChartDrilldownUtil;
+import ch.ivy.addon.portalkit.statistics.StatisticChartDrilldownUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 
 @ViewScoped
@@ -123,7 +123,7 @@ public class DashboardStatisticChartBean implements Serializable {
     if (selectedStatisticChart == null) {
       return;
     }
-    StatisticChartDrilldownUtil.drilldownCaseByState(event, selectedStatisticChart);
+    StatisticChartDrilldownUtils.drilldownCaseByState(event, selectedStatisticChart);
   }
 
   private StatisticChart getSelectedStatisticChart(ItemSelectEvent event) {
@@ -139,7 +139,7 @@ public class DashboardStatisticChartBean implements Serializable {
     if (selectedStatisticChart == null) {
       return;
     }
-    StatisticChartDrilldownUtil.drilldownTaskByPriority(event, selectedStatisticChart);
+    StatisticChartDrilldownUtils.drilldownTaskByPriority(event, selectedStatisticChart);
   }
 
   public void toTaskByExpiryTaskList(ItemSelectEvent event) {
@@ -147,7 +147,7 @@ public class DashboardStatisticChartBean implements Serializable {
     if (selectedStatisticChart == null) {
       return;
     }
-    StatisticChartDrilldownUtil.toTaskByExpiryTaskList(event, selectedStatisticChart);
+    StatisticChartDrilldownUtils.toTaskByExpiryTaskList(event, selectedStatisticChart);
   }
 
 }

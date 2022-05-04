@@ -86,7 +86,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskDescription: Aufgabenbeschreibung
     taskState: Aufgabenstatus
   CaseDocuments:
-    CaseDocumentsPageTitle: TODO Case Documents
+    CaseDocumentsPageTitle: Dokumente zum Vorfall
   CaseStatusInformation:
     CurrentTasks:
       currentTasks: Laufende Aufgaben
@@ -170,14 +170,14 @@ ch.ivy.addon.portalkit.ui.jsf:
   ProcessViewer:
     Breadcrumb: Prozess-Viewer von {0} Prozess
     ProcessDataNotFound: Konnte die Prozessdaten nicht finden!
-    ProcessDetails: TODO Process details
-    ProcessId: TODO Process Id
-    ProcessInfo: TODO Process Information
-    ProcessInfoIconTooltip: TODO Click to see details of the process start
+    ProcessDetails: Prozess-Details
+    ProcessId: Prozess-ID
+    ProcessInfo: Prozess-Informationen
+    ProcessInfoIconTooltip: Klicken Sie hier, um Details zum Prozessstart anzuzeigen
     ProcessViewerText: Prozess-Viewer
     Title: Prozess-Viewer
   TaskDocuments:
-    TaskDocumentsPageTitle: TODO Task Documents
+    TaskDocumentsPageTitle: Aufgaben-Dokumente
   adminSettings:
     addLanguages: Sprachen hinzufügen
     addNewApplication: Neue Drittanwendung hinzufügen
@@ -244,7 +244,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       hideCaseDocument: Auf "true" setzen, um die Dokumentensektion in Vorgangsdetails auszublenden.
       hideChangePasswordButtonNote: 'Auf "true" setzen, um die Option "Passwort ändern" im Top Menu zu deaktivieren. '
       hideLogoutButtonNote: 'Auf "true" setzen, um die Logout Funktion im Top Menu zu deaktivieren. '
-      hideRelatedCaseInfoFromHistory: TODO If true, case history does not display the related case information in the history table.
+      hideRelatedCaseInfoFromHistory: Wenn diese Option auf "true" gesetzt ist, werden die zugehörigen Fallinformationen nicht in der Tabelle "Historie" angezeigt.
       hideStatisticWidget: Setzen Sie den Wert auf "true", um das Statistik-Widget auf der Startseite und im Anwendungsmenü auszublenden.
       hideSystemNotesFromHistory: Wenn diese Option aktiviert ist, werden in den Vorgangs-/Aufgabennotizen keine Systemnotizen für Benutzer ohne Administratorrechte angezeigt.
       hideSystemNotesFromHistoryAdministrator: Wenn diese Option aktiviert ist, werden in den Vorgangs-/Aufgabennotizen keine Systemnotizen für Administratoren angezeigt.
@@ -259,7 +259,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       showButtonIcon: Zum Ein-/Ausschalten des Anzeigesymbols bei Butons im Portal
       showCaseDurationTime: Zum Ein-/Ausschalten der Anzeige der Bearbeitungszeit auf der Vorgangsdetailseite.
       showEnvironmentInfoNote: Zum Ein-/Ausschalten der Anzeige der Environment-Information
-      showErrorLogToConsole: TODO Set to true to enable write error log to browser console
+      showErrorLogToConsole: Auf true setzen, um Fehlerprotokoll in die Browserkonsole zu schreiben
       showGlobalSearch: Zum Ein-/Ausschalten der Anzeige der globalen Suche.
       showLegacyUI: Zum Ein-/Ausschalten der Legacy UI des Dashboards.
       showProcessInformation: Auf "false" setzen, um die Verknüpfung zu Informationen des Prozesses auf der Seite Prozesse (Gittermodus) und Falldetails anzeigen zu deaktivieren.
@@ -540,9 +540,9 @@ ch.ivy.addon.portalkit.ui.jsf:
     sessionExpriedInTeams: Ihre Session ist abgelaufen. Die Anwendung wird neu gestartet.
     setting: Einstellungen
     showDetail: Details anzeigen
-    showRelatedCaseInfo: TODO Related case
-    showSystemNotes: TODO System notes
-    showSystemTasks: TODO System tasks
+    showRelatedCaseInfo: Zugehöriger Vorfall
+    showSystemNotes: Systemhinweise
+    showSystemTasks: Systemaufgaben
     start: Start
     state: Status
     status: Status
@@ -700,14 +700,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     SavedFilterHeader: Saved filters
     SearchForFilter: Search for filter
     StatisticWidget:
-      AvailableCharts: TODO Available statistics charts
-      Charts: 'TODO Chart(s): {0}'
-      ConfigurationDescription: TODO You can configure your widget in this configuration area. Please define the chart which will be shown on  your dashboard.
-      EmptyChartDataMessage: TODO We do not have enough data to create a nice chart!
-      FilterChartText: TODO Filter a chart by name
-      PlaceholderChartOption: TODO Select a chart
-      PleaseSelectChart: TODO Please select a chart
-      PreviewText: TODO Please select a chart to see the canvas data
+      AvailableCharts: Verfügbare Statistikdiagramme
+      Charts: 'Diagramm(e): {0}'
+      ConfigurationDescription: Sie können Ihr Widget in diesem Konfigurationsbereich konfigurieren. Bitte definieren Sie die Grafik, die auf Ihrem Dashboard angezeigt werden soll.
+      EmptyChartDataMessage: Wir haben nicht genug Daten, um ein schönes Diagramm zu erstellen!
+      FilterChartText: Filtern eines Diagramms nach Name
+      PlaceholderChartOption: Wählen Sie ein Diagramm
+      PleaseSelectChart: Bitte wählen Sie ein Diagramm aus
+      PreviewText: Bitte wählen Sie ein Diagramm aus, um die Canvas-Daten zu sehen
     WidgetFilterName: Name des Widget-Filters
     WidgetFilters: Widget-Filter
     actionSelection: Aktion auswählen
@@ -726,7 +726,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     configuration:
       CustomWidgetExternalLinkWarning: Einige Websites sind aufgrund von Sicherheitsbedenken nicht mit iframe kompatibel. Bitte wenden Sie sich an Ihren Administrator, wenn die externe Website nicht ordnungsgemäß funktioniert.
       Parameters: Parameter
-      SelectYourTemplate: TODO Select your template
+      SelectYourTemplate: Wählen Sie Ihre Vorlage
       configuration: Konfiguration
       configurationDescription: In diesem Konfigurationsbereich kann das Widget konfiguriert werden. Bitte definieren Sie die gewünschten Filter sowie die anzuzeigenden Spalten.
       customWidgetParamChangedMessage: Dieser Prozess hat sich geändert. Klicken Sie auf Update, um fortzufahren.
@@ -744,7 +744,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     customWidget: Benutzerdefiniertes Widget
     customWidgetIntroduction: Dieses Widget kann einen Axon Ivy-Prozess oder eine externe Webseite anzeigen.
     dashboardManagement:
-      CreateDashboard: TODO Create Dashboard
+      CreateDashboard: Dashboard erstellen
       addDashboard: Dashbaord hinzufürgen
       dashboardPermission: Dashboard Berechtigung
       dashboardTitle: Dashboard Titel
@@ -763,21 +763,21 @@ ch.ivy.addon.portalkit.ui.jsf:
     fieldIsAdded: Das Feld {0} wurde hinzugefügt
     iconMessage:
       caseWidget:
-        BEACH_PALM_SUNBED: TODO You are awesome - all cases are done. Lean back and enjoy.
-        CHARGING_BATTERY_FULL_1: 'Derzeit keine Vorgänge. Zeit, um die Batterien etwas aufzuladen. '
-        COFFEE_OF_HOT: TODO Wow! Good job! All cases are completed. How about a quick coffee break?
-        RANKING_WINNER_MEDAL: TODO Game, set and match! You did it, all cases are completed!
-        SOCCER_PLAYER: TODO Goal! You did it, all cases completed. Short half-time break.
-        YOGA_MEDITATE: TODO Well done! All cases are done. Inhale, exhale, relax.
-        noCasesFoundWhenFilter: TODO There are currently no cases after applied filter.
+        BEACH_PALM_SUNBED: Sie sind großartig - alle Vorgänge sind erledigt. Lehnen Sie sich zurück und genießen Sie.
+        CHARGING_BATTERY_FULL_1: Zurzeit gibt es keine Vorgänge. Zeit, die Batterien ein wenig aufzuladen.
+        COFFEE_OF_HOT: Wahnsinn! Gut gemacht! Alle Vorgänge sind abgeschlossen. Wie wäre es mit einer kurzen Kaffeepause?
+        RANKING_WINNER_MEDAL: Spiel, Satz und Sieg! Du hast es geschafft, alle Vorgänge sind abgeschlossen!
+        SOCCER_PLAYER: Ziel erreicht! Du hast es geschafft, alle Vorgänge sind abgeschlossen. Kurze Halbzeitpause.
+        YOGA_MEDITATE: Gut gemacht! Alle Vorgänge sind erledigt. Einatmen, ausatmen, entspannen.
+        noCasesFoundWhenFilter: Derzeit gibt es keine Vorgänge nach dem angewandten Filter.
       taskWidget:
-        BEACH_PALM_SUNBED: Du bist großartig - alle Aufgaben sind erledigt. Lehn dich zurück und genieß den Augenblick.
-        CHARGING_BATTERY_FULL_1: TODO There are currently no tasks. Time to recharge the batteries a little.
-        COFFEE_OF_HOT: Wow! Gute Arbeit! Alle Aufgaben sind abgearbeitet. Wie wäre es mit einer kurzen Kaffeepause?
+        BEACH_PALM_SUNBED: Sie sind großartig - alle Aufgaben sind erledigt. Lehnen Sie sich zurück und genießen Sie.
+        CHARGING_BATTERY_FULL_1: Derzeit gibt es keine Aufgaben. Zeit, die Batterien ein wenig aufzuladen.
+        COFFEE_OF_HOT: Wahnsinn! Gut gemacht! Alle Aufgaben sind erledigt. Wie wäre es mit einer kurzen Kaffeepause?
         RANKING_WINNER_MEDAL: Spiel, Satz und Sieg! Du hast es geschafft, alle Aufgaben sind erledigt!
-        SOCCER_PLAYER: Tor! Du hast es geschafft, alle Aufgaben erledigt. Kurze Halbzeitpause.
-        YOGA_MEDITATE: Gut gemacht! Alle Aufgaben sind bearbeitet. Einatmen, ausatmen, entspannen.
-        noTasksFoundWhenFilter: TODO There are currently no tasks after applied filter.
+        SOCCER_PLAYER: Ziel erreicht! Du hast es geschafft, alle Aufgaben sind erledigt. Kurze Halbzeitpause.
+        YOGA_MEDITATE: Gut gemacht! Alle Aufgaben sind erledigt. Einatmen, ausatmen, entspannen.
+        noTasksFoundWhenFilter: Derzeit gibt es keine Aufgaben nach dem angewandten Filter.
     loading: Laden...
     noCategory: Es gibt keine Kategorien
     noDashboard: Keine Dashboards vorhanden. Fügen Sie mindestens ein Dashboard und anschließend Widgets hinzu.
@@ -806,8 +806,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     selectEditAction: Welche Aktion möchten Sie durchführen?
     showFullWidget: Vollständiges Widget anzeigen
     startATask: Aufgabe starten
-    statisticChartIntroduction: TODO This widget displays available statistic charts.
-    statisticChartWidget: TODO Statistic chart
+    statisticChartIntroduction: Dieses Widget zeigt die verfügbaren statistischen Diagramme an.
+    statisticChartWidget: Statistisches Diagramm
     switchToViewMode: Ansichtsmodus
     tasWidgetkInfo:
       expireToday: Ablaufdatum heute
@@ -824,7 +824,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     yourCases: Ihre Vorgänge
     yourCustomWidget: Ihr benutzerdefiniertes Widget
     yourProcesses: Ihre Prozesse
-    yourStatistics: TODO Your Statistics
+    yourStatistics: Ihre Statistiken
     yourTasks: Ihre Aufgaben
   dateFormatConfiguration:
     dateFormatConfiguration: Konfiguration des Datumsformats
@@ -1204,7 +1204,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskDetails: Aufgabendetails
     taskInforDialogTitle: Informationen
     taskNotes: Notizen
-    triggerEscalation: TODO Trigger Escalation
+    triggerEscalation: Eskalation auslösen
   taskList:
     deadline: Frist
     default: Standard
@@ -1244,7 +1244,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       EXPIRY_TIME_DESC: Ablauf (Neuste zuerst)
       PRIORITY_ASC: Priorität (hoch nach niedrig)
       PRIORITY_DESC: Priorität (niedrig nach hoch)
-    triggerEscalationNote: 'TODO Escalation has been triggered by {0} ({1}) of task #{2}'
+    triggerEscalationNote: 'Die Eskalation wurde ausgelöst durch {0} ({1}) der Aufgabe #{2}'
     type: Typ
   taskPriority:
     EXCEPTION: AUSNAHME

@@ -1,0 +1,60 @@
+{
+  "format" : "9.4.8",
+  "id" : "179D696BF6492C34",
+  "data" : "ch.ivy.add.portalkit.GetGroupIdData",
+  "kind" : "CALLABLE_SUB",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "CallSubStart",
+      "name" : "getGroupId()",
+      "config" : {
+        "callSignature" : "getGroupId",
+        "result" : {
+          "params" : [
+            { "name" : "groupId", "type" : "String" }
+          ],
+          "map" : {
+            "result.groupId" : "in.groupId"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 },
+        "labelOffset" : { "x" : -13, "y" : 17 }
+      },
+      "connect" : { "id" : "f4", "to" : "f3" }
+    }, {
+      "id" : "f1",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 416, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "Script",
+      "name" : [
+        "get group id",
+        "in portal kit"
+      ],
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.project.IvyProjectNavigationUtil;",
+            "import ch.ivyteam.ivy.project.IIvyProject;",
+            "import ch.ivyteam.ivy.workflow.IWorkflowProcessModelVersion;",
+            "",
+            "IIvyProject ivyProject = IvyProjectNavigationUtil.getIvyProject(ivy.request.getProcessModelVersion());",
+            "",
+            "if (ivyProject.getLibrary() != null && ivyProject.getLibrary().getId() != null){",
+            "  in.groupId = ivyProject.getLibrary().getId().groupId();",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 288, "y" : 64 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    } ]
+}

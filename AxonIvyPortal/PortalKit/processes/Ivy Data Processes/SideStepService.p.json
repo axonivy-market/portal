@@ -1,0 +1,60 @@
+{
+  "format" : "9.4.8",
+  "id" : "167F3CD1442A57A4",
+  "data" : "ch.ivyteam.wf.processes.SideStepServiceData",
+  "kind" : "CALLABLE_SUB",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "CallSubStart",
+      "name" : "findSideStepsByCriteria(SideStepSearchCriteria)",
+      "config" : {
+        "callSignature" : "findSideStepsByCriteria",
+        "input" : {
+          "params" : [
+            { "name" : "sideStepSearchCriteria", "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.SideStepSearchCriteria" }
+          ],
+          "map" : {
+            "out.sideStepSearchCriteria" : "param.sideStepSearchCriteria"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "sideSteps", "type" : "java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvySideStep>" }
+          ],
+          "map" : {
+            "result.sideSteps" : "in.sideSteps"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 },
+        "labelOffset" : { "x" : -92, "y" : 32 }
+      },
+      "connect" : { "id" : "f4", "to" : "f3" }
+    }, {
+      "id" : "f1",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 448, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "Script",
+      "name" : "Find side steps",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.ivydata.dto.IvySideStepResultDTO;",
+            "import ch.ivy.addon.portalkit.ivydata.service.impl.SideStepService;",
+            "",
+            "IvySideStepResultDTO dto = SideStepService.newInstance().findSideStepsByCriteria(in.sideStepSearchCriteria);",
+            "out.sideSteps = dto.getSideSteps();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 304, "y" : 64 }
+      },
+      "connect" : { "id" : "f6", "to" : "f1" }
+    } ]
+}

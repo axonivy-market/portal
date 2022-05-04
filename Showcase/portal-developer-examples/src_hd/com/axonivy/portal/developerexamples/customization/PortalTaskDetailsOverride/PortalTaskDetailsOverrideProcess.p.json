@@ -1,0 +1,127 @@
+{
+  "format" : "9.4.8",
+  "id" : "176CBB4874D688E6",
+  "data" : "com.axonivy.portal.developerexamples.customization.PortalTaskDetailsOverride.PortalTaskDetailsOverrideData",
+  "kind" : "HTML_DIALOG",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start(ITask,TaskLazyDataModel,PortalPage,Boolean)",
+      "config" : {
+        "callSignature" : "start",
+        "input" : {
+          "params" : [
+            { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask" },
+            { "name" : "dataModel", "type" : "ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel" },
+            { "name" : "portalPage", "type" : "ch.ivy.addon.portalkit.enums.PortalPage" },
+            { "name" : "isFromTaskList", "type" : "Boolean" }
+          ],
+          "map" : {
+            "out.dataModel" : "param.dataModel",
+            "out.isFromTaskList" : "param.isFromTaskList",
+            "out.portalPage" : "param.portalPage",
+            "out.task" : "param.task"
+          }
+        },
+        "guid" : "16C421FBB76376F6"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 96 },
+        "labelOffset" : { "x" : -66, "y" : 25 }
+      },
+      "connect" : { "id" : "f7", "to" : "f6" }
+    }, {
+      "id" : "f4",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 424, "y" : 96 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "HtmlDialogEventStart",
+      "name" : "close",
+      "config" : {
+        "guid" : "16C45AE394A575BF"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 288 },
+        "labelOffset" : { "x" : -15, "y" : 12 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogExit",
+      "visual" : {
+        "at" : { "x" : 224, "y" : 288 }
+      }
+    }, {
+      "id" : "f6",
+      "type" : "Script",
+      "name" : "Check task is started",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.enums.SessionAttribute;",
+            "",
+            "in.isTaskStartedInDetails = ivy.session.getAttribute(SessionAttribute.IS_TASK_STARTED_IN_DETAILS.toString()) as Boolean;"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 256, "y" : 96 },
+        "size" : { "width" : 128, "height" : 44 }
+      },
+      "connect" : { "id" : "f5", "to" : "f4" }
+    }, {
+      "id" : "f9",
+      "type" : "HtmlDialogStart",
+      "name" : "startFromDashboard(ITask,DashboardTaskLazyDataModel,PortalPage,Boolean)",
+      "config" : {
+        "callSignature" : "startFromDashboard",
+        "input" : {
+          "params" : [
+            { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask" },
+            { "name" : "dataModel", "type" : "ch.ivy.addon.portalkit.datamodel.DashboardTaskLazyDataModel" },
+            { "name" : "portalPage", "type" : "ch.ivy.addon.portalkit.enums.PortalPage" },
+            { "name" : "isFromTaskList", "type" : "Boolean" }
+          ],
+          "map" : {
+            "out.dashboardDataModel" : "param.dataModel",
+            "out.isFromTaskList" : "param.isFromTaskList",
+            "out.portalPage" : "param.portalPage",
+            "out.task" : "param.task"
+          }
+        },
+        "guid" : "17AEB168B5E6A631"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 192 },
+        "labelOffset" : { "x" : -79, "y" : 25 }
+      },
+      "connect" : { "id" : "f11", "to" : "f8" }
+    }, {
+      "id" : "f10",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 192 }
+      }
+    }, {
+      "id" : "f8",
+      "type" : "Script",
+      "name" : "Check task is started",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.enums.SessionAttribute;",
+            "",
+            "in.isTaskStartedInDetails = ivy.session.getAttribute(SessionAttribute.IS_TASK_STARTED_IN_DETAILS.toString()) as Boolean;"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 192 },
+        "size" : { "width" : 128, "height" : 44 }
+      },
+      "connect" : { "id" : "f12", "to" : "f10" }
+    } ]
+}

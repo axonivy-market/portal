@@ -1,0 +1,173 @@
+{
+  "format" : "9.4.8",
+  "id" : "153362B0AC312EFB",
+  "data" : "ch.ivy.addon.portalkit.component.CaseItemHistory.CaseItemHistoryData",
+  "kind" : "HTML_DIALOG",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start()",
+      "config" : {
+        "callSignature" : "start",
+        "guid" : "167E9D3052E4370B"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 96 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 288, "y" : 96 }
+      }
+    }, {
+      "id" : "f18",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "initData(ICase)",
+      "config" : {
+        "callSignature" : "initData",
+        "input" : {
+          "params" : [
+            { "name" : "iCase", "type" : "ch.ivyteam.ivy.workflow.ICase" }
+          ],
+          "map" : {
+            "out.iCase" : "param.iCase"
+          }
+        },
+        "guid" : "167E9D324F6C3538"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 192 }
+      },
+      "connect" : { "id" : "f9", "to" : "f8" }
+    }, {
+      "id" : "f26",
+      "type" : "Script",
+      "name" : [
+        "Create histories",
+        "from tasks and notes"
+      ],
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.util.CaseUtils;",
+            "import ch.ivy.addon.portalkit.datamodel.internal.RelatedCaseLazyDataModel;",
+            "import ch.ivy.addon.portalkit.ivydata.dto.IvyCaseResultDTO;",
+            "import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;",
+            "import ch.ivy.addon.portalkit.ivydata.service.impl.CaseService;",
+            "import ch.ivy.addon.portalkit.service.HistoryService;",
+            "import ch.ivyteam.ivy.workflow.CaseState;",
+            "import ch.ivyteam.ivy.workflow.ICase;",
+            "import ch.ivyteam.ivy.workflow.INote;",
+            "import ch.ivyteam.ivy.workflow.ITask;",
+            "import ch.ivyteam.ivy.workflow.TaskState;",
+            "import java.util.ArrayList;",
+            "import java.util.Arrays;",
+            "import org.apache.commons.collections4.CollectionUtils;",
+            "",
+            "List<ITask> finishedTasks = new ArrayList();",
+            "for (ITask task : in.iCase.tasks().all()) {",
+            "  if (task.getState() == TaskState.DONE",
+            "  || task.getState() == TaskState.DESTROYED) {",
+            "    finishedTasks.add(task);",
+            "  }",
+            "}",
+            "",
+            "long selectedCaseId = in.iCase.getId();",
+            "List<ICase> cases = new ArrayList();",
+            "cases.add(in.iCase);",
+            "cases.addAll(CaseUtils.findSubCasesByBusinessCaseId(selectedCaseId));",
+            "",
+            "HistoryService historyService = new HistoryService();",
+            "in.histories = historyService.getCaseHistories(selectedCaseId, finishedTasks, cases, !in.showSystemTasks, !in.showSystemNotes);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 416, "y" : 192 },
+        "size" : { "width" : 144, "height" : 44 }
+      },
+      "connect" : { "id" : "f29", "to" : "f28" }
+    }, {
+      "id" : "f28",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 536, "y" : 192 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "Script",
+      "name" : "Create note",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "in.iCase.createNote(ivy.session, in.noteContent);",
+            "in.noteContent = \"\";"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 288 }
+      },
+      "connect" : { "id" : "f4", "to" : "f26", "via" : [ { "x" : 416, "y" : 288 } ] }
+    }, {
+      "id" : "f7",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "createNote()",
+      "config" : {
+        "callSignature" : "createNote",
+        "guid" : "1682B786CB2C9D0B"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 288 }
+      },
+      "connect" : { "id" : "f25", "to" : "f3" }
+    }, {
+      "id" : "f5",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "loadHistories()",
+      "config" : {
+        "callSignature" : "loadHistories",
+        "guid" : "177234B3CBCDC920"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 384 },
+        "labelOffset" : { "x" : -23, "y" : 15 }
+      },
+      "connect" : { "id" : "f6", "to" : "f26", "via" : [ { "x" : 416, "y" : 384 } ] }
+    }, {
+      "id" : "f8",
+      "type" : "Script",
+      "name" : [
+        "Read Portal settings",
+        "and default values of",
+        "system entries"
+      ],
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.enums.GlobalVariable;",
+            "import ch.ivy.addon.portalkit.util.PermissionUtils;",
+            "import ch.ivy.addon.portalkit.service.GlobalSettingService;",
+            "GlobalSettingService service = new GlobalSettingService();",
+            "out.showSystemNotesChkbox = !service.findHideSystemNotesFromHistorySettingValue();",
+            "out.showSystemTasksChkbox = !service.findHideSystemTasksFromHistorySettingValue();",
+            "out.showRelatedCaseInfoCheckbox = in.iCase.isBusinessCase() && !service.findGlobalSettingValueAsBoolean(GlobalVariable.HIDE_RELATED_CASE_INFO_FROM_HISTORY);",
+            "boolean isAdmin = PermissionUtils.isSessionUserHasAdminRole();",
+            "out.showSystemNotes = isAdmin && out.showSystemNotesChkbox;",
+            "out.showSystemTasks = isAdmin && out.showSystemTasksChkbox;",
+            "out.showRelatedCaseInfo= isAdmin && out.showRelatedCaseInfoCheckbox;"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 192 },
+        "size" : { "width" : 128, "height" : 60 },
+        "labelOffset" : { "x" : -46, "y" : -24 }
+      },
+      "connect" : { "id" : "f10", "to" : "f26" }
+    } ]
+}

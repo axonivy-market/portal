@@ -1,0 +1,176 @@
+{
+  "format" : "9.4.8",
+  "id" : "15F80B590709168C",
+  "data" : "internaltest.Data",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "createTestUsersivp",
+      "config" : {
+        "callSignature" : "createTestUsers",
+        "outLink" : "createTestUsers.ivp"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : { "id" : "f4", "to" : "f3" }
+    }, {
+      "id" : "f1",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "Script",
+      "name" : "Create users for test",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.security.user.NewUser;",
+            "for (int i = 1; i < 30001; i++) {",
+            "  String userName = \"trajan\" + i;",
+            "  String fullUserName = \"Traianus \" + i;",
+            "  String password = \"1\";",
+            "  String email = \"trajan@gmail121212.com\";",
+            "  NewUser user = NewUser",
+            "      .create(userName)",
+            "      .fullName(fullUserName)",
+            "      .password(password)",
+            "      .mailAddress(email)",
+            "      .language(java.util.Locale.ENGLISH)",
+            "      .toNewUser();",
+            "  ivy.security.users().create(user);",
+            "  if (i% 100 == 0) {",
+            "    ivy.log.debug(\"trajan\" + i);",
+            "  }",
+            "}",
+            "",
+            "for (int i = 1; i < 10001; i++) {",
+            "  String userName = \"octavian\" + i;",
+            "  String fullUserName = \"Augustus Caesar \" + i;",
+            "  String password = \"1\";",
+            "  String email = \"octavian@gmail121212.com\";",
+            "  NewUser user = NewUser",
+            "      .create(userName)",
+            "      .fullName(fullUserName)",
+            "      .password(password)",
+            "      .mailAddress(email)",
+            "      .language(java.util.Locale.ENGLISH)",
+            "      .toNewUser();",
+            "  ivy.security.users().create(user);",
+            "  if (i% 100 == 0) {",
+            "    ivy.log.debug(\"octavian\" + i);",
+            "  }",
+            "}",
+            "",
+            "for (int i = 1; i < 5001; i++) {",
+            "  String userName = \"charles\" + i;",
+            "  String fullUserName = \"Charles \" + i;",
+            "  String password = \"1\";",
+            "  String email = \"n1am.main1guyenh1oang@gmail121212.com\";",
+            "  NewUser user = NewUser",
+            "      .create(userName)",
+            "      .fullName(fullUserName)",
+            "      .password(password)",
+            "      .mailAddress(email)",
+            "      .language(java.util.Locale.ENGLISH)",
+            "      .toNewUser();",
+            "  ivy.security.users().create(user);",
+            "  if (i% 100 == 0) {",
+            "    ivy.log.debug(\"charles\" + i);",
+            "  }",
+            "}",
+            "",
+            "for (int i = 1; i < 301; i++) {",
+            "  String userName = \"arthur\" + i;",
+            "  String fullUserName = \"Arthur \" + i;",
+            "  String password = \"1\";",
+            "  String email = \"n1am.main1guyenh1oang@gmail121212.com\";",
+            "  NewUser user = NewUser",
+            "      .create(userName)",
+            "      .fullName(fullUserName)",
+            "      .password(password)",
+            "      .mailAddress(email)",
+            "      .language(java.util.Locale.ENGLISH)",
+            "      .toNewUser();",
+            "  ivy.security.users().create(user);",
+            "  if (i% 100 == 0) {",
+            "    ivy.log.debug(\"arthur\" + i);",
+            "  }",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 },
+        "size" : { "width" : 128, "height" : 44 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f5",
+      "type" : "RequestStart",
+      "name" : "deleteTestUsers.ivp",
+      "config" : {
+        "callSignature" : "deleteTestUsers",
+        "outLink" : "deleteTestUsers.ivp"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 160 }
+      },
+      "connect" : { "id" : "f8", "to" : "f6" }
+    }, {
+      "id" : "f6",
+      "type" : "Script",
+      "name" : "Delete test users",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "for (int i = 1; i < 30001; i++) {",
+            "  String userName = \"trajan\" + i;",
+            "  ivy.security.users().delete(userName);",
+            "  if (i% 100 == 0) {",
+            "    ivy.log.debug(\"trajan\" + i);",
+            "  }",
+            "}",
+            "",
+            "for (int i = 1; i < 10001; i++) {",
+            "  String userName = \"octavian\" + i;",
+            "  ivy.security.users().delete(userName);",
+            "  if (i% 100 == 0) {",
+            "    ivy.log.debug(\"octavian\" + i);",
+            "  }",
+            "}",
+            "",
+            "for (int i = 1; i < 5001; i++) {",
+            "  String userName = \"charles\" + i;",
+            "  ivy.security.users().delete(userName);",
+            "  if (i% 100 == 0) {",
+            "    ivy.log.debug(\"charles\" + i);",
+            "  }",
+            "}",
+            "",
+            "for (int i = 1; i < 301; i++) {",
+            "  String userName = \"arthur\" + i;",
+            "  ivy.security.users().delete(userName);",
+            "  if (i% 100 == 0) {",
+            "    ivy.log.debug(\"arthur\" + i);",
+            "  }",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 216, "y" : 160 }
+      },
+      "connect" : { "id" : "f9", "to" : "f7" }
+    }, {
+      "id" : "f7",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 160 }
+      }
+    } ]
+}

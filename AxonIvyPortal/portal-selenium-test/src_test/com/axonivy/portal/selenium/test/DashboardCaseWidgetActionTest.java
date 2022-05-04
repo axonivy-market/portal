@@ -66,7 +66,7 @@ public class DashboardCaseWidgetActionTest extends BaseTest {
     ElementsCollection actions = caseWidget.getActiveCaseActions(0);
     actions.shouldHaveSize(caseActionsInCase.size());
     assertTrue(actions.texts().containsAll(caseActionsInCase));
-    caseWidget.clickOnCaseActionLink(0);
+    caseWidget.turnOffActionsPanel(0);
   }
 
   private void filterByCaseState(String state) {

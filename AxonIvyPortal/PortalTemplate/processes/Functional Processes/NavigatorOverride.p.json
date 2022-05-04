@@ -1,0 +1,1089 @@
+{
+  "format" : "9.4.8",
+  "id" : "1543D9E65076619B",
+  "data" : "ch.ivy.addon.portal.generic.NavigatorOverrideData",
+  "kind" : "CALLABLE_SUB",
+  "elements" : [ {
+      "id" : "f10",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 64, "y" : 792 },
+        "size" : { "width" : 26, "height" : 26 }
+      }
+    }, {
+      "id" : "f12",
+      "type" : "SubProcessCall",
+      "name" : "OpenPortalTasks",
+      "config" : {
+        "processCall" : "Functional Processes/OpenPortalTasks:useView(ch.ivy.addon.portal.generic.view.TaskView)",
+        "call" : {
+          "params" : [
+            { "name" : "taskView", "type" : "ch.ivy.addon.portal.generic.view.TaskView" }
+          ],
+          "map" : {
+            "param.taskView" : "in.taskView"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 64, "y" : 712 },
+        "size" : { "width" : 36, "height" : 24 },
+        "labelOffset" : { "x" : 20, "y" : -2 }
+      },
+      "connect" : { "id" : "f11", "to" : "f10" }
+    }, {
+      "id" : "f9",
+      "type" : "CallSubStart",
+      "name" : "viewTask(Long,GlobalCaseId,String)",
+      "config" : {
+        "callSignature" : "viewTask",
+        "input" : {
+          "params" : [
+            { "name" : "taskId", "type" : "Long" },
+            { "name" : "caseId", "type" : "ch.ivy.addon.portalkit.dto.GlobalCaseId" },
+            { "name" : "caseName", "type" : "String" }
+          ],
+          "map" : {
+            "out.caseId" : "param.caseId",
+            "out.caseName" : "param.caseName",
+            "out.taskId" : "param.taskId"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 64, "y" : 472 },
+        "size" : { "width" : 26, "height" : 26 },
+        "labelOffset" : { "x" : 14, "y" : 0 }
+      },
+      "connect" : { "id" : "f17", "to" : "f16" }
+    }, {
+      "id" : "f14",
+      "type" : "Script",
+      "name" : "prepareTaskView",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.workflow.ICase;",
+            "import ch.ivy.addon.portalkit.util.PermissionUtils;",
+            "import ch.ivyteam.ivy.workflow.TaskState;",
+            "import ch.ivy.addon.portalkit.util.PermissionUtils;",
+            "import ch.ivy.addon.portalkit.enums.PortalPage;",
+            "import ch.ivy.addon.portalkit.enums.SessionAttribute;",
+            "import ch.ivy.addon.portalkit.util.SecurityServiceUtils;",
+            "import ch.ivy.addon.portalkit.enums.TaskSortField;",
+            "import ch.ivy.addon.portal.generic.view.TaskView;",
+            "import java.util.Arrays;",
+            "import org.apache.commons.lang3.StringUtils;",
+            "",
+            "String pageTitle = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/caseList/headerTitle/technicalCaseOfBusinessCaseAlternativeTitle\", Arrays.asList(\"#\" + in.caseId.id().toString()));",
+            "",
+            "in.taskDataModel.setCaseId(in.caseId.id());",
+            "in.taskDataModel.setSortField(TaskSortField.ID.toString(), true);",
+            "in.taskDataModel.getCriteria().setKeyword(StringUtils.EMPTY);",
+            "in.taskDataModel.setQueryByBusinessCaseId(in.caseId.isBusinessCase());",
+            "in.taskDataModel.setCaseName(in.caseName);",
+            "ICase iCase = ivy.wf.findCase(in.caseId.id());",
+            "boolean isOwner = iCase != null && iCase.getOwner() != null ? iCase.getOwner().isMember(ivy.session, true) : false;",
+            "in.taskDataModel.setAdminQuery(PermissionUtils.checkReadAllTasksPermission() || PermissionUtils.checkTaskReadOwnCaseTasksPermission() || isOwner);",
+            "in.taskDataModel.setInvolvedUsername(ivy.session.getSessionUserName());",
+            "in.taskDataModel.setRelatedTaskDisplayed(true);",
+            "",
+            "in.taskView = TaskView.create()",
+            "                      .canLinkBackCaseDetail(true)",
+            "                      .pageTitle(pageTitle)",
+            "                      .showHeaderToolbar(false)",
+            "                      .dataModel(in.taskDataModel)",
+            "                      .isRelatedTaskView(true).createNewTaskView();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 64, "y" : 640 },
+        "size" : { "width" : 36, "height" : 24 },
+        "labelOffset" : { "x" : 20, "y" : -2 }
+      },
+      "connect" : { "id" : "f13", "to" : "f12" }
+    }, {
+      "id" : "f4",
+      "type" : "ProcessAnnotation",
+      "name" : [
+        "**Technical Note",
+        "**",
+        "This callable is introduced for clients of PortalKit",
+        "to override and implement the functionality",
+        "of redirecting into a HtmlDialog for viewing task.",
+        "",
+        "By default, this is doing nothing. The default implementation, however,",
+        "is put in PortalTemplate."
+      ],
+      "visual" : {
+        "at" : { "x" : 472, "y" : 672 },
+        "size" : { "width" : 496, "height" : 172 },
+        "labelOffset" : { "x" : -238, "y" : -84 }
+      },
+      "connect" : { "id" : "f22", "to" : "f12" }
+    }, {
+      "id" : "f16",
+      "type" : "SubProcessCall",
+      "name" : "Init data model",
+      "config" : {
+        "processCall" : "Functional Processes/InitializeTaskDataModel:call()",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.taskDataModel" : "result.dataModel"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 64, "y" : 560 }
+      },
+      "connect" : { "id" : "f15", "to" : "f14" }
+    }, {
+      "id" : "f20",
+      "type" : "Script",
+      "name" : "prepareTaskView",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.enums.TaskAssigneeType;",
+            "import ch.ivy.addon.portalkit.util.PermissionUtils;",
+            "import ch.ivy.addon.portalkit.enums.TaskSortField;",
+            "import ch.ivy.addon.portal.generic.view.TaskView;",
+            "import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;",
+            "import ch.ivy.addon.portalkit.util.SecurityServiceUtils;",
+            "import ch.ivy.addon.portalkit.enums.SessionAttribute;",
+            "import ch.ivy.addon.portalkit.enums.PortalPage;",
+            "import org.apache.commons.lang3.StringUtils;",
+            "",
+            "String pageTitle = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/taskList/headerTitle/relatedStatisticHeader\") + in.chartName;",
+            "String titleOnMobile = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/common/tasks\");",
+            "",
+            "in.taskDataModel.getCriteria().setCustomTaskQuery(in.taskQuery);",
+            "in.taskDataModel.setAdminQuery(PermissionUtils.checkReadAllTasksPermission());",
+            "in.taskDataModel.getCriteria().setKeyword(StringUtils.EMPTY);",
+            "in.taskDataModel.setTaskAssigneeType(TaskAssigneeType.ALL);",
+            "in.taskDataModel.setNotKeepFilter(true);",
+            "",
+            "in.taskView = TaskView",
+            "                .create()",
+            "                .pageTitle(pageTitle)",
+            "                .withTitleOnMobile(titleOnMobile)",
+            "                .showHeaderToolbar(false)",
+            "                .dataModel(in.taskDataModel)",
+            "                .createNewTaskView();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 865, "y" : 643 },
+        "size" : { "width" : 36, "height" : 24 },
+        "labelOffset" : { "x" : 20, "y" : -2 }
+      },
+      "connect" : { "id" : "f27", "to" : "f23" }
+    }, {
+      "id" : "f23",
+      "type" : "SubProcessCall",
+      "name" : "OpenPortalTasks",
+      "config" : {
+        "processCall" : "Functional Processes/OpenPortalTasks:useView(ch.ivy.addon.portal.generic.view.TaskView)",
+        "call" : {
+          "params" : [
+            { "name" : "taskView", "type" : "ch.ivy.addon.portal.generic.view.TaskView" }
+          ],
+          "map" : {
+            "param.taskView" : "in.taskView"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 865, "y" : 715 },
+        "size" : { "width" : 36, "height" : 24 },
+        "labelOffset" : { "x" : 20, "y" : -2 }
+      },
+      "connect" : { "id" : "f28", "to" : "f24" }
+    }, {
+      "id" : "f24",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 865, "y" : 795 },
+        "size" : { "width" : 26, "height" : 26 }
+      }
+    }, {
+      "id" : "f25",
+      "type" : "CallSubStart",
+      "name" : "viewTaskForAnalytic(String, TaskQuery)",
+      "config" : {
+        "callSignature" : "viewTaskForAnalytic",
+        "input" : {
+          "params" : [
+            { "name" : "chartName", "type" : "String" },
+            { "name" : "taskQuery", "type" : "ch.ivyteam.ivy.workflow.query.TaskQuery" }
+          ],
+          "map" : {
+            "out.chartName" : "param.chartName",
+            "out.taskQuery" : "param.taskQuery"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 865, "y" : 475 },
+        "size" : { "width" : 26, "height" : 26 },
+        "labelOffset" : { "x" : 14, "y" : 0 }
+      },
+      "connect" : { "id" : "f29", "to" : "f26" }
+    }, {
+      "id" : "f26",
+      "type" : "SubProcessCall",
+      "name" : "Init data model",
+      "config" : {
+        "processCall" : "Functional Processes/InitializeTaskDataModel:call()",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.taskDataModel" : "result.dataModel"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 865, "y" : 563 }
+      },
+      "connect" : { "id" : "f30", "to" : "f20" }
+    }, {
+      "id" : "f31",
+      "type" : "Script",
+      "name" : "prepare case view",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import java.util.Arrays;",
+            "import ch.ivy.addon.portal.generic.view.CaseView;",
+            "import ch.ivy.addon.portalkit.util.PermissionUtils;",
+            "import org.apache.commons.lang3.StringUtils;",
+            "",
+            "String pageTitle = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/caseList/headerTitle/relatedStatisticHeader\") + in.chartName;",
+            "// Add a short title for mobile screen",
+            "String titleOnMobile = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/caseList/cases\");",
+            "",
+            "in.caseDataModel.getCriteria().setBusinessCase(true);",
+            "in.caseDataModel.setAdminQuery(PermissionUtils.checkReadAllCasesPermission());",
+            "in.caseDataModel.getCriteria().setCustomCaseQuery(in.caseQuery);",
+            "in.caseDataModel.getCriteria().setKeyword(StringUtils.EMPTY);",
+            "in.caseDataModel.setNotKeepFilter(true);",
+            "",
+            "in.caseView = CaseView.create()",
+            "                .dataModel(in.caseDataModel)",
+            "                .withTitle(pageTitle)",
+            "                .withTitleOnMobile(titleOnMobile)",
+            "                .buildNewView();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 866, "y" : 287 },
+        "size" : { "width" : 36, "height" : 24 },
+        "labelOffset" : { "x" : 20, "y" : -2 }
+      },
+      "connect" : { "id" : "f37", "to" : "f35" }
+    }, {
+      "id" : "f32",
+      "type" : "CallSubStart",
+      "name" : "viewCaseForAnalytic(String, CaseQuery)",
+      "config" : {
+        "callSignature" : "viewCaseForAnalytic",
+        "input" : {
+          "params" : [
+            { "name" : "chartName", "type" : "String" },
+            { "name" : "caseQuery", "type" : "ch.ivyteam.ivy.workflow.query.CaseQuery" }
+          ],
+          "map" : {
+            "out.caseQuery" : "param.caseQuery",
+            "out.chartName" : "param.chartName"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 866, "y" : 95 },
+        "size" : { "width" : 26, "height" : 26 },
+        "labelOffset" : { "x" : 14, "y" : 0 }
+      },
+      "connect" : { "id" : "f38", "to" : "f34" }
+    }, {
+      "id" : "f33",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 866, "y" : 415 },
+        "size" : { "width" : 26, "height" : 26 }
+      }
+    }, {
+      "id" : "f34",
+      "type" : "SubProcessCall",
+      "name" : [
+        "Init case",
+        "data model"
+      ],
+      "config" : {
+        "processCall" : "Functional Processes/InitializeCaseDataModel:call()",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.caseDataModel" : "result.caseDataModel"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 866, "y" : 191 }
+      },
+      "connect" : { "id" : "f36", "to" : "f31" }
+    }, {
+      "id" : "f35",
+      "type" : "SubProcessCall",
+      "name" : "OpenPortalCases",
+      "config" : {
+        "processCall" : "Functional Processes/OpenPortalCases:useView(ch.ivy.addon.portal.generic.view.CaseView)",
+        "call" : {
+          "params" : [
+            { "name" : "view", "type" : "ch.ivy.addon.portal.generic.view.CaseView" }
+          ],
+          "map" : {
+            "param.view" : "in.caseView"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 866, "y" : 351 },
+        "size" : { "width" : 36, "height" : 24 },
+        "labelOffset" : { "x" : 20, "y" : -2 }
+      },
+      "connect" : { "id" : "f39", "to" : "f33" }
+    }, {
+      "id" : "f40",
+      "type" : "ProcessAnnotation",
+      "name" : [
+        "**Technical Note",
+        "**",
+        "This callable is introduced for clients of PortalKit",
+        "to override and implement the functionality",
+        "of redirecting into a HtmlDialog for viewing case.",
+        "",
+        "By default, this is doing nothing. The default implementation, however,",
+        "is put in PortalTemplate."
+      ],
+      "visual" : {
+        "at" : { "x" : 1344, "y" : 217 },
+        "size" : { "width" : 496, "height" : 172 },
+        "labelOffset" : { "x" : -238, "y" : -84 }
+      },
+      "connect" : { "id" : "f41", "to" : "f35" }
+    }, {
+      "id" : "f42",
+      "type" : "ProcessAnnotation",
+      "name" : [
+        "**Technical Note",
+        "**",
+        "This callable is introduced for clients of PortalKit",
+        "to override and implement the functionality",
+        "of redirecting into a HtmlDialog for viewing task.",
+        "",
+        "By default, this is doing nothing. The default implementation, however,",
+        "is put in PortalTemplate."
+      ],
+      "visual" : {
+        "at" : { "x" : 1307, "y" : 642 },
+        "size" : { "width" : 496, "height" : 172 },
+        "labelOffset" : { "x" : -238, "y" : -84 }
+      },
+      "connect" : { "id" : "f43", "to" : "f23" }
+    }, {
+      "id" : "f44",
+      "type" : "CallSubStart",
+      "name" : "viewTechnicalCasesOfBusniessCase(String,GlobalCaseId)",
+      "config" : {
+        "callSignature" : "viewTechnicalCasesOfBusniessCase",
+        "input" : {
+          "params" : [
+            { "name" : "businessCaseName", "type" : "String" },
+            { "name" : "businessCaseId", "type" : "ch.ivy.addon.portalkit.dto.GlobalCaseId" }
+          ],
+          "map" : {
+            "out.caseId" : "param.businessCaseId",
+            "out.caseName" : "param.businessCaseName"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1792, "y" : 96 }
+      },
+      "connect" : { "id" : "f47", "to" : "f46" }
+    }, {
+      "id" : "f45",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 1792, "y" : 480 }
+      }
+    }, {
+      "id" : "f46",
+      "type" : "SubProcessCall",
+      "name" : [
+        "Init case",
+        "data model"
+      ],
+      "config" : {
+        "processCall" : "Functional Processes/InitializeCaseDataModel:call()",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.caseDataModel" : "result.caseDataModel"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1792, "y" : 176 }
+      },
+      "connect" : { "id" : "f50", "to" : "f48" }
+    }, {
+      "id" : "f48",
+      "type" : "Script",
+      "name" : "prepare case view",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.enums.CaseSortField;",
+            "import java.util.Arrays;",
+            "import ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel;",
+            "import ch.ivy.addon.portal.generic.view.CaseView;",
+            "import org.apache.commons.lang3.StringUtils;",
+            "",
+            "// Add a short title for mobile screen",
+            "String title = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/caseList/headerTitle/technicalCaseOfBusinessCaseAlternativeTitle\", Arrays.asList(in.caseId.id().toString()));",
+            "",
+            "in.caseDataModel.getCriteria().setNewQueryCreated(true);",
+            "in.caseDataModel.getCriteria().setKeyword(StringUtils.EMPTY);",
+            "in.caseDataModel.getCriteria().setBusinessCase(false);",
+            "in.caseDataModel.getCriteria().setBusinessCaseId(in.caseId.id());",
+            "in.caseDataModel.getCriteria().setTechnicalCase(true);",
+            "in.caseDataModel.getCriteria().sortField = CaseSortField.NAME.toString();",
+            "in.caseDataModel.setNotKeepFilter(true);",
+            "in.caseView = CaseView.create().dataModel(in.caseDataModel).withTitle(title).setTechnicalCaseView(true).buildNewView();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1792, "y" : 288 }
+      },
+      "connect" : { "id" : "f51", "to" : "f49" }
+    }, {
+      "id" : "f49",
+      "type" : "SubProcessCall",
+      "name" : "OpenPortalCases",
+      "config" : {
+        "processCall" : "Functional Processes/OpenPortalCases:useView(ch.ivy.addon.portal.generic.view.CaseView)",
+        "call" : {
+          "params" : [
+            { "name" : "view", "type" : "ch.ivy.addon.portal.generic.view.CaseView" }
+          ],
+          "map" : {
+            "param.view" : "in.caseView"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1792, "y" : 400 }
+      },
+      "connect" : { "id" : "f52", "to" : "f45" }
+    }, {
+      "id" : "f53",
+      "type" : "ProcessAnnotation",
+      "name" : [
+        "**Technical Note",
+        "**",
+        "This callable is introduced for clients of PortalKit",
+        "to override and implement the functionality",
+        "of redirecting into a HtmlDialog for viewing case.",
+        "",
+        "By default, this is doing nothing. The default implementation, however,",
+        "is put in PortalTemplate."
+      ],
+      "visual" : {
+        "at" : { "x" : 2168, "y" : 273 },
+        "size" : { "width" : 496, "height" : 172 },
+        "labelOffset" : { "x" : -238, "y" : -84 }
+      }
+    }, {
+      "id" : "f5",
+      "type" : "SubProcessCall",
+      "name" : "OpenPortalCaseDetails",
+      "config" : {
+        "processCall" : "Functional Processes/OpenPortalCaseDetailsHook:call(ch.ivyteam.ivy.workflow.ICase,Boolean)",
+        "call" : {
+          "params" : [
+            { "name" : "caseData", "type" : "ch.ivyteam.ivy.workflow.ICase" },
+            { "name" : "isShowBackButton", "type" : "Boolean" }
+          ],
+          "map" : {
+            "param.caseData" : "in.iCase",
+            "param.isShowBackButton" : "true"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 64, "y" : 304 },
+        "size" : { "width" : 36, "height" : 24 },
+        "labelOffset" : { "x" : 20, "y" : -2 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f1",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 64, "y" : 416 },
+        "size" : { "width" : 26, "height" : 26 }
+      }
+    }, {
+      "id" : "f21",
+      "type" : "ProcessAnnotation",
+      "name" : [
+        "**Technical Note",
+        "**",
+        "This callable is introduced for clients of PortalKit",
+        "to override and implement the functionality",
+        "of redirecting into a HtmlDialog for viewing case.",
+        "",
+        "By default, this is doing nothing. The default implementation, however,",
+        "is put in PortalTemplate."
+      ],
+      "visual" : {
+        "at" : { "x" : 512, "y" : 216 },
+        "size" : { "width" : 496, "height" : 172 },
+        "labelOffset" : { "x" : -238, "y" : -84 }
+      },
+      "connect" : { "id" : "f3", "to" : "f5" }
+    }, {
+      "id" : "f0",
+      "type" : "CallSubStart",
+      "name" : "viewCase(GlobalCaseId)",
+      "config" : {
+        "callSignature" : "viewCase",
+        "input" : {
+          "params" : [
+            { "name" : "caseId", "type" : "ch.ivy.addon.portalkit.dto.GlobalCaseId" }
+          ],
+          "map" : {
+            "out.caseId" : "param.caseId"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 64, "y" : 96 },
+        "size" : { "width" : 26, "height" : 26 },
+        "labelOffset" : { "x" : 14, "y" : 0 }
+      },
+      "connect" : { "id" : "f8", "to" : "f7" }
+    }, {
+      "id" : "f7",
+      "type" : "Script",
+      "name" : "prepare case view",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.workflow.query.CaseQuery;",
+            "import ch.ivyteam.ivy.workflow.ICase;",
+            "",
+            "out.iCase = ivy.wf.getGlobalContext().getCaseQueryExecutor().getFirstResult(CaseQuery.create().where().caseId().isEqual(in.caseId.id())) as ICase;"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 64, "y" : 184 },
+        "size" : { "width" : 36, "height" : 24 },
+        "labelOffset" : { "x" : 20, "y" : -2 }
+      },
+      "connect" : { "id" : "f6", "to" : "f5" }
+    }, {
+      "id" : "f54",
+      "type" : "CallSubStart",
+      "name" : "viewRelatedTask(String,GlobalCaseId,String)",
+      "config" : {
+        "callSignature" : "viewRelatedTask",
+        "input" : {
+          "params" : [
+            { "name" : "taskId", "type" : "Long" }
+          ],
+          "map" : {
+            "out.taskId" : "param.taskId"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1792, "y" : 552 },
+        "size" : { "width" : 26, "height" : 26 },
+        "labelOffset" : { "x" : 14, "y" : 0 }
+      },
+      "connect" : { "id" : "f57", "to" : "f56" }
+    }, {
+      "id" : "f19",
+      "type" : "ProcessAnnotation",
+      "name" : [
+        "**Technical Note",
+        "**",
+        "This callable is introduced for clients of PortalKit",
+        "to override and implement the functionality",
+        "of redirecting into a HtmlDialog for viewing task.",
+        "",
+        "By default, this is doing nothing. The default implementation, however,",
+        "is put in PortalTemplate."
+      ],
+      "visual" : {
+        "at" : { "x" : 2104, "y" : 712 },
+        "size" : { "width" : 496, "height" : 172 },
+        "labelOffset" : { "x" : -238, "y" : -84 }
+      }
+    }, {
+      "id" : "f18",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 1792, "y" : 840 },
+        "size" : { "width" : 26, "height" : 26 }
+      }
+    }, {
+      "id" : "f56",
+      "type" : "Script",
+      "name" : "prepare task view",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.workflow.ITask;",
+            "import ch.ivyteam.ivy.workflow.query.TaskQuery;",
+            "",
+            "out.iTask = ivy.wf.getGlobalContext().getTaskQueryExecutor().getFirstResult(TaskQuery.create().where().taskId().isEqual(in.taskId)) as ITask;"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1792, "y" : 648 }
+      },
+      "connect" : { "id" : "f59", "to" : "f58" }
+    }, {
+      "id" : "f58",
+      "type" : "SubProcessCall",
+      "name" : "OpenPortalTaskDetails",
+      "config" : {
+        "processCall" : "Functional Processes/OpenPortalTaskDetailsHook:call(ITask,TaskLazyDataModel,PortalPage,Boolean)",
+        "call" : {
+          "params" : [
+            { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask" },
+            { "name" : "dataModel", "type" : "ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel" },
+            { "name" : "portalPage", "type" : "ch.ivy.addon.portalkit.enums.PortalPage" },
+            { "name" : "isFromTaskList", "type" : "Boolean" }
+          ],
+          "map" : {
+            "param.task" : "in.iTask",
+            "param.portalPage" : "ch.ivy.addon.portalkit.enums.PortalPage.CASE_DETAIL_FROM_TASK",
+            "param.isFromTaskList" : "false"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1792, "y" : 744 },
+        "size" : { "width" : 48, "height" : 24 },
+        "labelOffset" : { "x" : -126, "y" : 28 }
+      },
+      "connect" : { "id" : "f55", "to" : "f18" }
+    }, {
+      "id" : "f60",
+      "type" : "SubProcessCall",
+      "name" : "OpenPortalTasks",
+      "config" : {
+        "processCall" : "Functional Processes/OpenPortalTasks:useViewInFrame(ch.ivy.addon.portal.generic.view.TaskView)",
+        "call" : {
+          "params" : [
+            { "name" : "taskView", "type" : "ch.ivy.addon.portal.generic.view.TaskView" }
+          ],
+          "map" : {
+            "param.taskView" : "in.taskView"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 64, "y" : 1168 },
+        "size" : { "width" : 36, "height" : 24 },
+        "labelOffset" : { "x" : 20, "y" : -2 }
+      },
+      "connect" : { "id" : "f69", "to" : "f62" }
+    }, {
+      "id" : "f61",
+      "type" : "Script",
+      "name" : "prepareTaskView",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.workflow.ICase;",
+            "import ch.ivy.addon.portalkit.util.PermissionUtils;",
+            "import ch.ivyteam.ivy.workflow.TaskState;",
+            "import ch.ivy.addon.portalkit.util.PermissionUtils;",
+            "import ch.ivy.addon.portalkit.enums.PortalPage;",
+            "import ch.ivy.addon.portalkit.enums.SessionAttribute;",
+            "import ch.ivy.addon.portalkit.util.SecurityServiceUtils;",
+            "import ch.ivy.addon.portalkit.enums.TaskSortField;",
+            "import ch.ivy.addon.portal.generic.view.TaskView;",
+            "import java.util.Arrays;",
+            "import org.apache.commons.lang3.StringUtils;",
+            "",
+            "String pageTitle = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/caseList/headerTitle/technicalCaseOfBusinessCaseAlternativeTitle\", Arrays.asList(\"#\" + in.caseId.id().toString()));",
+            "",
+            "in.taskDataModel.setCaseId(in.caseId.id());",
+            "in.taskDataModel.setSortField(TaskSortField.ID.toString(), true);",
+            "in.taskDataModel.getCriteria().setKeyword(StringUtils.EMPTY);",
+            "in.taskDataModel.setQueryByBusinessCaseId(in.caseId.isBusinessCase());",
+            "in.taskDataModel.setCaseName(in.caseName);",
+            "ICase iCase = ivy.wf.findCase(in.caseId.id());",
+            "boolean isOwner = iCase != null && iCase.getOwner() != null ? iCase.getOwner().isMember(ivy.session, true) : false;",
+            "in.taskDataModel.setAdminQuery(PermissionUtils.checkReadAllTasksPermission() || PermissionUtils.checkTaskReadOwnCaseTasksPermission() || isOwner);",
+            "in.taskDataModel.setInvolvedUsername(ivy.session.getSessionUserName());",
+            "in.taskDataModel.setRelatedTaskDisplayed(true);",
+            "",
+            "in.taskView = TaskView.create()",
+            "                      .canLinkBackCaseDetail(true)",
+            "                      .pageTitle(pageTitle)",
+            "                      .showHeaderToolbar(false)",
+            "                      .dataModel(in.taskDataModel)",
+            "                      .isRelatedTaskView(true).createNewTaskView();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 64, "y" : 1096 },
+        "size" : { "width" : 36, "height" : 24 },
+        "labelOffset" : { "x" : 20, "y" : -2 }
+      },
+      "connect" : { "id" : "f68", "to" : "f60" }
+    }, {
+      "id" : "f62",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 64, "y" : 1248 },
+        "size" : { "width" : 26, "height" : 26 }
+      }
+    }, {
+      "id" : "f63",
+      "type" : "SubProcessCall",
+      "name" : "Init data model",
+      "config" : {
+        "processCall" : "Functional Processes/InitializeTaskDataModel:call()",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.taskDataModel" : "result.dataModel"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 64, "y" : 1016 }
+      },
+      "connect" : { "id" : "f66", "to" : "f61" }
+    }, {
+      "id" : "f64",
+      "type" : "CallSubStart",
+      "name" : "viewTaskInFrame(Long,GlobalCaseId,String)",
+      "config" : {
+        "callSignature" : "viewTaskInFrame",
+        "input" : {
+          "params" : [
+            { "name" : "taskId", "type" : "Long" },
+            { "name" : "caseId", "type" : "ch.ivy.addon.portalkit.dto.GlobalCaseId" },
+            { "name" : "caseName", "type" : "String" }
+          ],
+          "map" : {
+            "out.caseId" : "param.caseId",
+            "out.caseName" : "param.caseName",
+            "out.taskId" : "param.taskId"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 64, "y" : 928 },
+        "size" : { "width" : 26, "height" : 26 },
+        "labelOffset" : { "x" : 14, "y" : 0 }
+      },
+      "connect" : { "id" : "f67", "to" : "f63" }
+    }, {
+      "id" : "f65",
+      "type" : "ProcessAnnotation",
+      "name" : [
+        "**Technical Note",
+        "**",
+        "This callable is introduced for clients of PortalKit",
+        "to override and implement the functionality",
+        "of redirecting into a HtmlDialog for viewing task.",
+        "",
+        "By default, this is doing nothing. The default implementation, however,",
+        "is put in PortalTemplate."
+      ],
+      "visual" : {
+        "at" : { "x" : 472, "y" : 1128 },
+        "size" : { "width" : 496, "height" : 172 },
+        "labelOffset" : { "x" : -238, "y" : -84 }
+      }
+    }, {
+      "id" : "f70",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 865, "y" : 1251 },
+        "size" : { "width" : 26, "height" : 26 }
+      }
+    }, {
+      "id" : "f71",
+      "type" : "CallSubStart",
+      "name" : "viewCaseItemDetailsInIFrame(GlobalCaseId)",
+      "config" : {
+        "callSignature" : "viewCaseItemDetailsInIFrame",
+        "input" : {
+          "params" : [
+            { "name" : "caseId", "type" : "ch.ivy.addon.portalkit.dto.GlobalCaseId" }
+          ],
+          "map" : {
+            "out.caseId" : "param.caseId"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 865, "y" : 931 },
+        "size" : { "width" : 26, "height" : 26 },
+        "labelOffset" : { "x" : 14, "y" : 0 }
+      },
+      "connect" : { "id" : "f73", "to" : "f72" }
+    }, {
+      "id" : "f72",
+      "type" : "DialogCall",
+      "name" : "CaseInformationInIFrame",
+      "config" : {
+        "dialogId" : "ch.ivy.addon.portal.component.iframe.CaseInformationInIFrame",
+        "startMethod" : "start(Long,Boolean)",
+        "call" : {
+          "params" : [
+            { "name" : "caseId", "type" : "Long" },
+            { "name" : "showBackButton", "type" : "Boolean" }
+          ],
+          "map" : {
+            "param.caseId" : "in.caseId.id()",
+            "param.showBackButton" : "!in.caseId.isBusinessCase()"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 864, "y" : 1072 },
+        "size" : { "width" : 160, "height" : 44 }
+      },
+      "connect" : { "id" : "f74", "to" : "f70" }
+    }, {
+      "id" : "f75",
+      "type" : "Script",
+      "name" : "prepare task view",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.workflow.ITask;",
+            "import ch.ivyteam.ivy.workflow.query.TaskQuery;",
+            "",
+            "out.iTask = ivy.wf.getGlobalContext().getTaskQueryExecutor().getFirstResult(TaskQuery.create().where().taskId().isEqual(in.taskId)) as ITask;"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1376, "y" : 1024 }
+      },
+      "connect" : { "id" : "f80", "to" : "f76" }
+    }, {
+      "id" : "f76",
+      "type" : "SubProcessCall",
+      "name" : "OpenPortalTaskDetails",
+      "config" : {
+        "processCall" : "Functional Processes/OpenPortalTaskDetailsHook:callInFrame(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,ch.ivy.addon.portalkit.enums.PortalPage,Boolean)",
+        "call" : {
+          "params" : [
+            { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask" },
+            { "name" : "dataModel", "type" : "ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel" },
+            { "name" : "portalPage", "type" : "ch.ivy.addon.portalkit.enums.PortalPage" },
+            { "name" : "isFromTaskList", "type" : "Boolean" }
+          ],
+          "map" : {
+            "param.task" : "in.iTask",
+            "param.portalPage" : "ch.ivy.addon.portalkit.enums.PortalPage.CASE_DETAIL_FROM_TASK",
+            "param.isFromTaskList" : "false"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1376, "y" : 1120 },
+        "size" : { "width" : 48, "height" : 24 },
+        "labelOffset" : { "x" : -126, "y" : 28 }
+      },
+      "connect" : { "id" : "f82", "to" : "f79" }
+    }, {
+      "id" : "f77",
+      "type" : "CallSubStart",
+      "name" : "viewRelatedTaskInFrame(String,GlobalCaseId,String)",
+      "config" : {
+        "callSignature" : "viewRelatedTaskInFrame",
+        "input" : {
+          "params" : [
+            { "name" : "taskId", "type" : "Long" }
+          ],
+          "map" : {
+            "out.taskId" : "param.taskId"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1376, "y" : 928 },
+        "size" : { "width" : 26, "height" : 26 },
+        "labelOffset" : { "x" : 14, "y" : 0 }
+      },
+      "connect" : { "id" : "f81", "to" : "f75" }
+    }, {
+      "id" : "f78",
+      "type" : "ProcessAnnotation",
+      "name" : [
+        "**Technical Note",
+        "**",
+        "This callable is introduced for clients of PortalKit",
+        "to override and implement the functionality",
+        "of redirecting into a HtmlDialog for viewing task.",
+        "",
+        "By default, this is doing nothing. The default implementation, however,",
+        "is put in PortalTemplate."
+      ],
+      "visual" : {
+        "at" : { "x" : 1688, "y" : 1088 },
+        "size" : { "width" : 496, "height" : 172 },
+        "labelOffset" : { "x" : -238, "y" : -84 }
+      }
+    }, {
+      "id" : "f79",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 1376, "y" : 1216 },
+        "size" : { "width" : 26, "height" : 26 }
+      }
+    }, {
+      "id" : "f83",
+      "type" : "SubProcessCall",
+      "name" : [
+        "Init case",
+        "data model"
+      ],
+      "config" : {
+        "processCall" : "Functional Processes/InitializeCaseDataModel:call()",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.caseDataModel" : "result.caseDataModel"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 64, "y" : 1456 }
+      },
+      "connect" : { "id" : "f91", "to" : "f84" }
+    }, {
+      "id" : "f84",
+      "type" : "Script",
+      "name" : "prepare case view",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.enums.CaseSortField;",
+            "import java.util.Arrays;",
+            "import ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel;",
+            "import ch.ivy.addon.portal.generic.view.CaseView;",
+            "import org.apache.commons.lang3.StringUtils;",
+            "",
+            "// Add a short title for mobile screen",
+            "String title = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/caseList/headerTitle/technicalCaseOfBusinessCaseAlternativeTitle\", Arrays.asList(in.caseId.id().toString()));",
+            "",
+            "in.caseDataModel.getCriteria().setNewQueryCreated(true);",
+            "in.caseDataModel.getCriteria().setKeyword(StringUtils.EMPTY);",
+            "in.caseDataModel.getCriteria().setBusinessCase(false);",
+            "in.caseDataModel.getCriteria().setBusinessCaseId(in.caseId.id());",
+            "in.caseDataModel.getCriteria().setTechnicalCase(true);",
+            "in.caseDataModel.getCriteria().sortField = CaseSortField.NAME.toString();",
+            "in.caseDataModel.setNotKeepFilter(true);",
+            "",
+            "in.caseView = CaseView.create().dataModel(in.caseDataModel).withTitle(title).setTechnicalCaseView(true).hideCaseFilter(true).buildNewView();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 64, "y" : 1568 }
+      },
+      "connect" : { "id" : "f90", "to" : "f87" }
+    }, {
+      "id" : "f85",
+      "type" : "ProcessAnnotation",
+      "name" : [
+        "**Technical Note",
+        "**",
+        "This callable is introduced for clients of PortalKit",
+        "to override and implement the functionality",
+        "of redirecting into a HtmlDialog for viewing case.",
+        "",
+        "By default, this is doing nothing. The default implementation, however,",
+        "is put in PortalTemplate."
+      ],
+      "visual" : {
+        "at" : { "x" : 440, "y" : 1553 },
+        "size" : { "width" : 496, "height" : 172 },
+        "labelOffset" : { "x" : -238, "y" : -84 }
+      }
+    }, {
+      "id" : "f86",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 64, "y" : 1760 }
+      }
+    }, {
+      "id" : "f87",
+      "type" : "SubProcessCall",
+      "name" : "OpenPortalCases",
+      "config" : {
+        "processCall" : "Functional Processes/OpenPortalCases:useViewInFrame(ch.ivy.addon.portal.generic.view.CaseView)",
+        "call" : {
+          "params" : [
+            { "name" : "view", "type" : "ch.ivy.addon.portal.generic.view.CaseView" }
+          ],
+          "map" : {
+            "param.view" : "in.caseView"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 64, "y" : 1680 }
+      },
+      "connect" : { "id" : "f92", "to" : "f86" }
+    }, {
+      "id" : "f88",
+      "type" : "CallSubStart",
+      "name" : "viewTechnicalCasesOfBusniessCaseInFrame(String,GlobalCaseId)",
+      "config" : {
+        "callSignature" : "viewTechnicalCasesOfBusniessCaseInFrame",
+        "input" : {
+          "params" : [
+            { "name" : "businessCaseName", "type" : "String" },
+            { "name" : "businessCaseId", "type" : "ch.ivy.addon.portalkit.dto.GlobalCaseId" }
+          ],
+          "map" : {
+            "out.caseId" : "param.businessCaseId",
+            "out.caseName" : "param.businessCaseName"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 64, "y" : 1376 },
+        "labelOffset" : { "x" : 14, "y" : 17 }
+      },
+      "connect" : { "id" : "f89", "to" : "f83" }
+    } ]
+}

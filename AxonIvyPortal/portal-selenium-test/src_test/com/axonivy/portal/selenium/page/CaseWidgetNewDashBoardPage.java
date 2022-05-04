@@ -1,6 +1,7 @@
 package com.axonivy.portal.selenium.page;
 
 import static com.codeborne.selenide.Condition.appear;
+import static com.codeborne.selenide.Condition.disappear;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
@@ -156,6 +157,11 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
   
   public void clickOnCaseActionLink(int caseIndex) {
     getColumnOfCaseHasIndex(caseIndex, "Actions").shouldBe(getClickableCondition()).click();
+  }
+  
+  public void turnOffActionsPanel(int caseIndex) {
+    $$("div.widget__header").filter(text(caseWidgetName)).first().shouldBe(getClickableCondition()).click();
+    $$(String.format("div.js-case-side-steps-panel-case_1-%d", caseIndex)).first().waitUntil(disappear, DEFAULT_TIMEOUT);
   }
   
   public ElementsCollection getActiveCaseActions(int caseIndex) {

@@ -1,0 +1,60 @@
+{
+  "format" : "9.4.8",
+  "id" : "165801CAE71C2982",
+  "data" : "com.axonivy.portal.developerexamples.HandleEndPageData",
+  "kind" : "CALLABLE_SUB",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "CallSubStart",
+      "name" : "handleEndPage()",
+      "config" : {
+        "callSignature" : "handleEndPage",
+        "result" : {
+          "params" : [
+            { "name" : "callbackUrl", "type" : "String" }
+          ],
+          "map" : {
+            "result.callbackUrl" : "in.callbackUrl"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : { "id" : "f4", "to" : "f3" }
+    }, {
+      "id" : "f1",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "Script",
+      "name" : "Set End Page",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;",
+            "",
+            "in.callbackUrl = ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(\"Start Processes/ToCustomizedExpressEndPage/start.ivp\");"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f5",
+      "type" : "ProcessAnnotation",
+      "name" : [
+        "This process overrides HandleEndPage process in AxonIvyExpress. Now when user finish the last task of an ",
+        "Express workflow, he will be redirected to the customized express end page of this example project."
+      ],
+      "visual" : {
+        "at" : { "x" : 724, "y" : 58 },
+        "size" : { "width" : 608, "height" : 60 }
+      }
+    } ]
+}
