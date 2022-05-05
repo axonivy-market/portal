@@ -72,14 +72,14 @@ public class TaskActionTest extends BaseTest {
     taskWidgetPage = taskDetailsPage.goBackToTaskListFromTaskDetails();
 
     // Suspended
-    assertTaskActionsByTaskState("Suspended", Arrays.asList("Details", "Delegate", "Reserve", "Clear expiry", "Destroy", "Workflow Events", "Process Viewer", "Add Ad-hoc Task"));
+    assertTaskActionsByTaskState("Suspended", Arrays.asList("Details", "Delegate", "Reserve", "Clear expiry", "Destroy", "Workflow Events", "Trigger Escalation", "Process Viewer", "Add Ad-hoc Task"));
     taskWidgetPage = taskDetailsPage.goBackToTaskListFromTaskDetails();
 
     // Reserved
     taskWidgetPage.clickOnTaskActionLink(0);
     taskWidgetPage.reserveTask(0);
     taskWidgetPage.waitAjaxIndicatorDisappear();
-    assertTaskActionsByTaskState("Reserved", Arrays.asList("Details", "Delegate", "Reset", "Clear expiry", "Destroy", "Workflow Events", "Process Viewer", "Add Ad-hoc Task"));
+    assertTaskActionsByTaskState("Reserved", Arrays.asList("Details", "Delegate", "Reset", "Clear expiry", "Destroy", "Workflow Events", "Trigger Escalation", "Process Viewer", "Add Ad-hoc Task"));
 
     // In progress
     TaskTemplatePage taskTemplatePage = taskDetailsPage.clickStartTask();
