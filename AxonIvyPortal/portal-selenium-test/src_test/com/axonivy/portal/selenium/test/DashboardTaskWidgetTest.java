@@ -208,7 +208,6 @@ public class DashboardTaskWidgetTest extends BaseTest {
     taskWidget.getTaskWidgetHeaderSorted().shouldHave(text("Created"));
     String sortType = taskWidget.getTaskWidgetHeaderSorted().getAttribute("aria-sort");
     assertEquals(sortType, "descending");
-    taskWidget.getTheFirstTaskWidgetByColumn(TASK_NAME).shouldHave(text(MATERNITY_LEAVE_REQUEST));
     // Sort by task name
     taskWidget.clickOnHeaderTaskByColumn(TASK_NAME);
     taskWidget.getTaskWidgetHeaderSorted().shouldHave(text(TASK_NAME));
