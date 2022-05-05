@@ -75,6 +75,7 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
   public void preview() {
     $(taskEditWidgetId).waitUntil(appear, DEFAULT_TIMEOUT).$("button[id$='preview-button']")
         .shouldBe(getClickableCondition()).click();
+    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
   }
   
   private ElementsCollection getColumnsOfTableWidget() {
