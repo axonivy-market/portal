@@ -7,13 +7,11 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivy.addon.portalkit.publicapi.TaskAPI;
-import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.ISecurityContext;
@@ -176,23 +174,14 @@ public final class TaskUtils {
     });
   }
 
-  public static boolean isTaskCurrentOpeningTask(ITask task){
-	  try {
-  		return ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> {
-  			  var wfTask = Ivy.wfTask();
-  			  var currentTaskAppName = Optional.of(wfTask).map(ITask::getApplication).map(IApplication::getName).orElse("");
-  			  var taskAppName = Optional.of(task).map(ITask::getApplication).map(IApplication::getName).orElse("");
-  			  return task.getState() == TaskState.RESUMED &&
-  					  task.getId() == wfTask.getId() &&
-  					  taskAppName.equals(currentTaskAppName);
-  		});
-  	} catch (Exception e) {
-  		// TODO Auto-generated catch block
-  		Ivy.log().error(e);
-  		return false;
-  	}
+  public static boolean isTaskCurrentOpeningTask(ITask task) {
+    return IvyExecutor.executeAsSystem(() -> {
+      var wfTask = Ivy.wfTask();
+      return wfTask.getApplication().getId() == task.getApplication().getId()
+          && (task.getState() == TaskState.RESUMED || task.getId() == wfTask.getId());
+    });
   }
-  
+
   public static void updateTaskStartedAttribute(boolean status) {
     Ivy.session().setAttribute(SessionAttribute.IS_TASK_STARTED_IN_DETAILS.toString(), status);
   }
