@@ -62,7 +62,6 @@ public class DashboardTaskWidgetTest extends BaseTest {
     taskWidget.filterTaskName(REPORT_HIDE_CASE);
     taskWidget.applyFilter();
     taskWidget.startFirstTask();
-    taskWidget.expand().shouldHaveSize(0);
     taskWidget.getTaskEmptyMessage().shouldHave(text("There are currently no tasks after applied filter."));
   }
   
