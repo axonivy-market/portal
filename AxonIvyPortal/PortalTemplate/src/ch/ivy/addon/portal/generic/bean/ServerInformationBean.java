@@ -32,6 +32,7 @@ public class ServerInformationBean implements Serializable {
   public String getEnvironment() {
     try {
       String activeEnvironment = IApplication.current().getActiveEnvironment();
+
       if (isNotEmpty(activeEnvironment)) {
         return activeEnvironment;
       }
