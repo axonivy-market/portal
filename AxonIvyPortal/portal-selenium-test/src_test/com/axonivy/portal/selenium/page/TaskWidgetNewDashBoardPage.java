@@ -94,6 +94,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
     $("div.filter-overlay-panel__footer").waitUntil(appear, DEFAULT_TIMEOUT).$$("button[id$='apply-button']")
         .filter(text("Apply")).first().shouldBe(getClickableCondition()).click();
     $("div[id$='task-task_1:filter-overlay-panel-0']").waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
+    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
   }
   
   public void resetFilter() {
@@ -332,6 +333,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   private void confirmDestroy() {
     $("div[id$='destroy-task-confirmation-dialog']").waitUntil(appear, DEFAULT_TIMEOUT)
         .$("button[id$='confirm-destruction-dashboard-tasks']").shouldBe(getClickableCondition()).click();
+    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
   }
   
   public SelenideElement destroyTaskLink() {
@@ -435,7 +437,6 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
     for (int i = 0; i < elementsTH.size(); i++) {
       if (elementsTH.get(i).getText().equalsIgnoreCase(columnName)) {
         elementsTH.get(i).click();
-        $("[id$='ajax-indicator-ajax-indicator_start']").waitUntil(appear, DEFAULT_TIMEOUT);
         waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
       }
     }
