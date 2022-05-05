@@ -17,7 +17,7 @@ import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class DashboardTaskWidgetTest extends BaseTest {
 
   //WIDGET
@@ -41,7 +41,6 @@ public class DashboardTaskWidgetTest extends BaseTest {
   private static final String CATEGORIED_LEAVE_REQUEST = "Categoried Leave Request";
   private static final String TASK_ID = "Task Id";
   private static final String EXPIRY = "Expiry";
-  
   
   private NewDashboardPage newDashboardPage;
   
