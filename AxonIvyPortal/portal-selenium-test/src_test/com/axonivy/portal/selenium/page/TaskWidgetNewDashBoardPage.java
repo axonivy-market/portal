@@ -361,12 +361,12 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
   
   public void clickOnButtonWidgetInformation() {
-    getTaskWidgetHeader().$$("a.widget__info-sidebar-link").first()
+    getTaskWidgetHeader().$("a.widget__info-sidebar-link")
         .waitUntil(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
   }
   
   public SelenideElement getExpiryTodayLabelInWidgetInfo() {
-    return $("[id$='expiry-tab']").waitUntil(appear, DEFAULT_TIMEOUT).$$("div div").first().waitUntil(appear, DEFAULT_TIMEOUT);
+    return $("[id$='expiry-tab']").waitUntil(appear, DEFAULT_TIMEOUT).$("div div").waitUntil(appear, DEFAULT_TIMEOUT);
   }
   
   public void clickToExpandNumberOfTaskByState() {
@@ -377,7 +377,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
   
   public SelenideElement getFirstStateLabelInWidgetInfo() {
-    return $("[id$='state-tab']").waitUntil(appear, DEFAULT_TIMEOUT).$$("div div").first().waitUntil(appear, DEFAULT_TIMEOUT);
+    return $("[id$='state-tab']").waitUntil(appear, DEFAULT_TIMEOUT).$("div div").waitUntil(appear, DEFAULT_TIMEOUT);
   }
   
   public void clickToExpandNumberOfTaskByCategory() {
@@ -421,16 +421,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
    */
   public SelenideElement getTaskWidgetHeaderSorted() {
     return  $(taskWidgetId).waitUntil(appear, DEFAULT_TIMEOUT).$("th.ui-state-active");
-    //return fieldElement.getAttribute("aria-sort");
   }
-  
-  /* 
-   * return descending or ascending
-   */
-  /*public SelenideElement getTaskWidgetSortedColumnName() {
-    SelenideElement fieldElement =  $(taskWidgetId).waitUntil(appear, DEFAULT_TIMEOUT).$("th.ui-state-active");
-    //return fieldElement.getText().trim();
-  }*/
   
   public void clickOnHeaderTaskByColumn(String columnName) {
     ElementsCollection elementsTH = $(taskWidgetId).waitUntil(appear, DEFAULT_TIMEOUT).$$("table thead tr th");
