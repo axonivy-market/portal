@@ -78,6 +78,7 @@ public class DashboardBean implements Serializable {
   private boolean isRunningTaskWhenClickingOnTaskInList;
   private CaseEmptyMessage noCasesMessage;
   private TaskEmptyMessage noTasksMessage;
+  private boolean isClickingOnStartTaskIcon = false;
 
   @PostConstruct
   public void init() {
@@ -258,6 +259,10 @@ public class DashboardBean implements Serializable {
   }
 
   public void handleRowSelectEventOnTaskWidget(SelectEvent event) throws IOException {
+    if (isClickingOnStartTaskIcon) {
+      isClickingOnStartTaskIcon = false;
+      return;
+    }
     ITask task = ((ITask) event.getObject());
     selectedTask = task;
     handleSelectedTask(task);
@@ -269,6 +274,11 @@ public class DashboardBean implements Serializable {
     } else {
       navigateToSelectedTaskDetails(task);
     }
+  }
+  
+  public void handleStartTask(ITask task) throws IOException {
+    isClickingOnStartTaskIcon = true;
+    TaskUtils.handleStartTask(task, null, "reset-task-confirmation-dialog");
   }
 
   public void navigateToSelectedTaskDetails(ITask task) {
