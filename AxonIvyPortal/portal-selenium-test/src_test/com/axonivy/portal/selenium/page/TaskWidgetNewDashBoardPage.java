@@ -57,8 +57,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
 
   public void startFirstTask() {
     $$("span.widget__filter-noti-number").first().waitUntil(appear, DEFAULT_TIMEOUT);
-    getColumnOfTaskHasIndex(0, "Start").shouldBe(getClickableCondition()).click();
-    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
+    getColumnOfTaskHasIndex(0, "Start").waitUntil(appear, DEFAULT_TIMEOUT).click();
   }
 
   public void startTask(int taskIndex) {
@@ -441,4 +440,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
     return $("[id$='dashboard-tasks-container'] [id$='empty-message-container']").waitUntil(appear, DEFAULT_TIMEOUT);
   }
   
+  public SelenideElement getGrowlTitle() {
+    return $(".ui-growl-title").waitUntil(appear, DEFAULT_TIMEOUT);
+  }
 }
