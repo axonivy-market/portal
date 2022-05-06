@@ -27,7 +27,7 @@ public class DashboardTaskWidgetTest extends BaseTest {
   private static final String CREATE_12_CASES_WITH_CATEGORY_CASE = "Create 12 Cases with category";
 
   // TASKS
-  private static final String REPORT_HIDE_CASE = "Report and hide case";
+  private static final String REPORT = "Report";
   private static final String SICK_LEAVE_REQUEST = "Sick Leave Request";
   private static final String DESTROYED = "Destroyed";
   private static final String TASK_NUMBER = "Task number";
@@ -54,15 +54,16 @@ public class DashboardTaskWidgetTest extends BaseTest {
   @Test()
   public void testHideTasks() {
     redirectToRelativeLink(hideCaseUrl);
-    login(TestAccount.ADMIN_USER);
+    login(TestAccount.DEMO_USER);
     redirectToNewDashBoard();
     TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
     taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
     taskWidget.openFilterWidget();
-    taskWidget.filterTaskName(REPORT_HIDE_CASE);
+    taskWidget.filterTaskName(REPORT);
     taskWidget.applyFilter();
     taskWidget.startFirstTask();
-    taskWidget.getTaskEmptyMessage().shouldHave(text("There are currently no tasks after applied filter."));
+    taskWidget.getGrowlTitle().shouldHave(text("You have finished the task successfully."));
+    taskWidget.stateOfFirstTask().shouldHave(text(DONE));
   }
   
   @Test
