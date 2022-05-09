@@ -1250,7 +1250,7 @@
             "// Create user process",
             "UserProcessService userProcessService = UserProcessService.getInstance();",
             "Long testUserId = ivy.session.getSessionUser().getId();",
-            "IApplication application = ivy.wf.getApplication();",
+            "IApplication application = IApplication.current();",
             "String applicationName = application.getName();",
             "",
             "UserProcess userProcess = new UserProcess();",
