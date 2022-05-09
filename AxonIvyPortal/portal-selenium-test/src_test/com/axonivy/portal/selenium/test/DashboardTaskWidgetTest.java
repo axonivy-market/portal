@@ -41,6 +41,7 @@ public class DashboardTaskWidgetTest extends BaseTest {
   private static final String CATEGORIED_LEAVE_REQUEST = "Categoried Leave Request";
   private static final String TASK_ID = "Task Id";
   private static final String EXPIRY = "Expiry";
+  private static final String IN_PROGRESS = "In progress";
   
   private NewDashboardPage newDashboardPage;
   
@@ -53,17 +54,17 @@ public class DashboardTaskWidgetTest extends BaseTest {
   
   @Test()
   public void testHideTasks() {
-    redirectToRelativeLink(hideCaseUrl);
-    login(TestAccount.DEMO_USER);
+    redirectToRelativeLink(createTestingTasksUrl);
+    login(TestAccount.ADMIN_USER);
     redirectToNewDashBoard();
     TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
     taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
     taskWidget.openFilterWidget();
-    taskWidget.filterTaskName(REPORT);
+    taskWidget.filterTaskName(SICK_LEAVE_REQUEST);
     taskWidget.applyFilter();
-    taskWidget.startFirstTask();
-    taskWidget.getGrowlTitle().shouldHave(text("You have finished the task successfully."));
-    taskWidget.stateOfFirstTask().shouldHave(text(DONE));
+    taskWidget.startFirstTaskAndWaitShowHomePageButton();
+    taskWidget.clickCancelTask();
+    taskWidget.stateOfFirstTask().shouldHave(text(IN_PROGRESS));
   }
   
   @Test
