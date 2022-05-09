@@ -59,6 +59,12 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
     $$("span.widget__filter-noti-number").first().waitUntil(appear, DEFAULT_TIMEOUT);
     getColumnOfTaskHasIndex(0, "Start").waitUntil(appear, DEFAULT_TIMEOUT).click();
   }
+  
+  public void startFirstTaskAndWaitShowHomePageButton() {
+    $$("span.widget__filter-noti-number").first().waitUntil(appear, DEFAULT_TIMEOUT);
+    getColumnOfTaskHasIndex(0, "Start").waitUntil(appear, DEFAULT_TIMEOUT).click();
+    $(".ui-icon-home").waitUntil(appear, DEFAULT_TIMEOUT);
+  }
 
   public void startTask(int taskIndex) {
     $$("span.widget__filter-noti-number").first().waitUntil(appear, DEFAULT_TIMEOUT);
