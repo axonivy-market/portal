@@ -3,7 +3,7 @@
   xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
   xmlns:pe="http://primefaces.org/ui/extensions" xmlns:jsf="http://xmlns.jcp.org/jsf">
 
-<p:commandLink id="start-task" actionListener="#{dashboardBean.handleStartTask(task)}"
+<p:commandLink id="start-task" actionListener="#{dashboardBean.handleStartTask(task)}" onclick="event.stopPropagation();"
   disabled="#{!taskActionBean.isNotDone(task) or !taskActionBean.canResume(task)}" oncomplete="resetPortalLeftMenuState()">
   <span class="si si-controls-play" />
 </p:commandLink>
