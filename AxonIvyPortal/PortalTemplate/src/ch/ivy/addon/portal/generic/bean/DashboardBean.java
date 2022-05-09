@@ -278,6 +278,7 @@ public class DashboardBean implements Serializable {
   
   public void handleStartTask(ITask task) throws IOException {
     isClickingOnStartTaskIcon = true;
+    selectedTask = task;
     TaskUtils.handleStartTask(task, null, "reset-task-confirmation-dialog");
   }
 
