@@ -460,6 +460,7 @@
         "security" : "system",
         "output" : {
           "code" : [
+            "import ch.ivyteam.ivy.application.IApplication;",
             "import org.apache.commons.lang3.StringUtils;",
             "import java.util.HashMap;",
             "import java.util.Map;",
@@ -472,7 +473,7 @@
             "",
             "",
             "// Update empty chart name",
-            "String defaultEmailLanguage = ivy.wf.getApplication().getDefaultEMailLanguage().getLanguage();",
+            "String defaultEmailLanguage = IApplication.current().getDefaultEMailLanguage().getLanguage();",
             "String defaultChartName = \"\";",
             "for (DisplayName name : in.chartNames) {",
             "  if (defaultEmailLanguage.equalsIgnoreCase(name.locale.toLanguageTag())) {",
@@ -509,7 +510,10 @@
       "config" : {
         "security" : "system",
         "output" : {
-          "code" : "in.isDefaultApplicationLanguage = ivy.wf.getApplication().getDefaultEMailLanguage().getLanguage().equalsIgnoreCase(in.language);"
+          "code" : [
+            "import ch.ivyteam.ivy.application.IApplication;",
+            "in.isDefaultApplicationLanguage = IApplication.current().getDefaultEMailLanguage().getLanguage().equalsIgnoreCase(in.language);"
+          ]
         }
       },
       "visual" : {
