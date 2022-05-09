@@ -31,11 +31,12 @@
       "config" : {
         "output" : {
           "code" : [
+            "import ch.ivyteam.ivy.application.IApplication;",
             "import org.apache.commons.lang3.StringUtils;",
             "import ch.ivy.addon.portalkit.enums.PortalLibrary;",
             "import ch.ivyteam.ivy.application.ILibrary;",
             "",
-            "ILibrary portalLibrary = ivy.wf.getApplication().findReleasedLibrary(PortalLibrary.PORTAL_KIT.getValue());",
+            "ILibrary portalLibrary = IApplication.current().findReleasedLibrary(PortalLibrary.PORTAL_KIT.getValue());",
             "String portalVersion = portalLibrary.getQualifiedVersion().toString();",
             "String latestPortalGuideLink = \"https://developer.axonivy.com/portal/dev/doc\";",
             "String portalGuideLink;",
@@ -92,11 +93,12 @@
       "config" : {
         "output" : {
           "code" : [
+            "import ch.ivyteam.ivy.application.IApplication;",
             "import org.apache.commons.lang3.StringUtils;",
             "import ch.ivy.addon.portalkit.enums.PortalLibrary;",
             "import ch.ivyteam.ivy.application.ILibrary;",
             "",
-            "ILibrary portalLibrary = ivy.wf.getApplication().findReleasedLibrary(PortalLibrary.PORTAL_KIT.getValue());",
+            "ILibrary portalLibrary = IApplication.current().findReleasedLibrary(PortalLibrary.PORTAL_KIT.getValue());",
             "String portalVersion = portalLibrary.getQualifiedVersion().toString();",
             "String latestPortalGuideLink = \"https://developer.axonivy.com/portal/dev/doc\";",
             "String portalGuideLink;",
