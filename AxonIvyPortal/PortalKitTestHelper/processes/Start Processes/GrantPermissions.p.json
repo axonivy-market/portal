@@ -113,7 +113,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 167, "y" : 464 },
+        "at" : { "x" : 168, "y" : 464 },
         "size" : { "width" : 36, "height" : 24 }
       },
       "connect" : { "id" : "f9", "to" : "f7", "via" : [ { "x" : 408, "y" : 464 } ] }
@@ -311,15 +311,16 @@
         "security" : "system",
         "output" : {
           "code" : [
+            "import ch.ivyteam.ivy.application.IApplication;",
             "import ch.ivy.addon.portalkit.enums.PortalPermission;",
             "import ch.ivyteam.ivy.security.IPermission;",
             "import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;",
             "",
-            "IPermission delegateOwnTaskPermission = IPermissionRepository.get().findByName(PortalPermission.TASK_WRITE_ACTIVATOR_OWN_TASKS.getValue());",
+            "IPermission delegateOwnTaskPermission = IPermissionRepository.instance().findByName(PortalPermission.TASK_WRITE_ACTIVATOR_OWN_TASKS.getValue());",
             "if(#delegateOwnTaskPermission is initialized) {",
-            "  ivy.wf.getApplication().getSecurityDescriptor().grantPermission(delegateOwnTaskPermission, ivy.session.getSessionUser());",
+            "  IApplication.current().getSecurityDescriptor().grantPermission(delegateOwnTaskPermission, ivy.session.getSessionUser());",
             "}",
-            "ivy.wf.getApplication().getSecurityDescriptor().denyPermission(IPermission.TASK_WRITE_ACTIVATOR, ivy.session.getSessionUser());"
+            "IApplication.current().getSecurityDescriptor().denyPermission(IPermission.TASK_WRITE_ACTIVATOR, ivy.session.getSessionUser());"
           ]
         }
       },
@@ -349,15 +350,16 @@
         "security" : "system",
         "output" : {
           "code" : [
+            "import ch.ivyteam.ivy.application.IApplication;",
             "import ch.ivy.addon.portalkit.enums.PortalPermission;",
             "import ch.ivyteam.ivy.security.IPermission;",
             "import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;",
             "",
-            "IPermission delegateOwnTaskPermission = IPermissionRepository.get().findByName(PortalPermission.TASK_WRITE_ACTIVATOR_OWN_TASKS.getValue());",
+            "IPermission delegateOwnTaskPermission = IPermissionRepository.instance().findByName(PortalPermission.TASK_WRITE_ACTIVATOR_OWN_TASKS.getValue());",
             "if(#delegateOwnTaskPermission is initialized) {",
-            "  ivy.wf.getApplication().getSecurityDescriptor().denyPermission(delegateOwnTaskPermission, ivy.session.getSessionUser());",
+            "  IApplication.current().getSecurityDescriptor().denyPermission(delegateOwnTaskPermission, ivy.session.getSessionUser());",
             "}",
-            "ivy.wf.getApplication().getSecurityDescriptor().grantPermission(IPermission.TASK_WRITE_ACTIVATOR, ivy.session.getSessionUser());"
+            "IApplication.current().getSecurityDescriptor().grantPermission(IPermission.TASK_WRITE_ACTIVATOR, ivy.session.getSessionUser());"
           ]
         }
       },
@@ -399,63 +401,64 @@
         "security" : "system",
         "output" : {
           "code" : [
+            "import ch.ivyteam.ivy.application.IApplication;",
             "import java.util.Objects;",
             "import ch.ivy.addon.portalkit.enums.PortalPermission;",
             "import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;",
             "import ch.ivyteam.ivy.security.IPermission;",
             "",
-            "IPermission iPermission = IPermissionRepository.get().findByName(PortalPermission.STATISTIC_ADD_DASHBOARD_CHART.getValue());",
+            "IPermission iPermission = IPermissionRepository.instance().findByName(PortalPermission.STATISTIC_ADD_DASHBOARD_CHART.getValue());",
             "    if (Objects.nonNull(iPermission)){",
-            "      ivy.wf.getApplication().getSecurityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());",
+            "      IApplication.current().getSecurityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());",
             "    }",
             "    ",
-            "iPermission = IPermissionRepository.get().findByName(PortalPermission.EXPRESS_CREATE_WORKFLOW.getValue());",
+            "iPermission = IPermissionRepository.instance().findByName(PortalPermission.EXPRESS_CREATE_WORKFLOW.getValue());",
             "    if (Objects.nonNull(iPermission)){",
-            "      ivy.wf.getApplication().getSecurityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());",
+            "      IApplication.current().getSecurityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());",
             "    }",
-            "iPermission = IPermissionRepository.get().findByName(PortalPermission.STATISTIC_ANALYZE_TASK.getValue());",
+            "iPermission = IPermissionRepository.instance().findByName(PortalPermission.STATISTIC_ANALYZE_TASK.getValue());",
             "    if (Objects.nonNull(iPermission)){",
-            "      ivy.wf.getApplication().getSecurityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());",
+            "      IApplication.current().getSecurityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());",
             "    }",
             "",
-            "    iPermission = IPermissionRepository.get().findByName(PortalPermission.SHOW_CASE_DETAILS.getValue());",
+            "    iPermission = IPermissionRepository.instance().findByName(PortalPermission.SHOW_CASE_DETAILS.getValue());",
             "    if (Objects.nonNull(iPermission)){",
-            "      ivy.wf.getApplication().getSecurityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());",
+            "      IApplication.current().getSecurityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());",
             "    }",
             "    ",
-            "    iPermission = IPermissionRepository.get().findByName(PortalPermission.SHOW_ALL_TASKS_OF_CASE.getValue());",
+            "    iPermission = IPermissionRepository.instance().findByName(PortalPermission.SHOW_ALL_TASKS_OF_CASE.getValue());",
             "    if (Objects.nonNull(iPermission)){",
-            "      ivy.wf.getApplication().getSecurityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());",
+            "      IApplication.current().getSecurityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());",
             "    }",
             "    ",
-            "    iPermission = IPermissionRepository.get().findByName(PortalPermission.TASK_CASE_ADD_NOTE.getValue());",
+            "    iPermission = IPermissionRepository.instance().findByName(PortalPermission.TASK_CASE_ADD_NOTE.getValue());",
             "    if (Objects.nonNull(iPermission)){",
-            "      ivy.wf.getApplication().getSecurityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());",
+            "      IApplication.current().getSecurityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());",
             "    }",
             "    ",
-            "    iPermission = IPermissionRepository.get().findByName(PortalPermission.TASK_CASE_SHOW_MORE_NOTE.getValue());",
+            "    iPermission = IPermissionRepository.instance().findByName(PortalPermission.TASK_CASE_SHOW_MORE_NOTE.getValue());",
             "    if (Objects.nonNull(iPermission)){",
-            "      ivy.wf.getApplication().getSecurityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());",
+            "      IApplication.current().getSecurityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());",
             "    }",
             "    ",
-            "    iPermission = IPermissionRepository.get().findByName(PortalPermission.TASK_DISPLAY_RESET_ACTION.getValue());",
+            "    iPermission = IPermissionRepository.instance().findByName(PortalPermission.TASK_DISPLAY_RESET_ACTION.getValue());",
             "    if (Objects.nonNull(iPermission)){",
-            "      ivy.wf.getApplication().getSecurityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());",
+            "      IApplication.current().getSecurityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());",
             "    }",
             "    ",
-            "    iPermission = IPermissionRepository.get().findByName(PortalPermission.TASK_DISPLAY_RESERVE_ACTION.getValue());",
+            "    iPermission = IPermissionRepository.instance().findByName(PortalPermission.TASK_DISPLAY_RESERVE_ACTION.getValue());",
             "    if (Objects.nonNull(iPermission)){",
-            "      ivy.wf.getApplication().getSecurityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());",
+            "      IApplication.current().getSecurityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());",
             "    }",
             "    ",
-            "    iPermission = IPermissionRepository.get().findByName(PortalPermission.TASK_DISPLAY_DELEGATE_ACTION.getValue());",
+            "    iPermission = IPermissionRepository.instance().findByName(PortalPermission.TASK_DISPLAY_DELEGATE_ACTION.getValue());",
             "    if (Objects.nonNull(iPermission)){",
-            "      ivy.wf.getApplication().getSecurityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());",
+            "      IApplication.current().getSecurityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());",
             "    }",
             "    ",
-            "    iPermission = IPermissionRepository.get().findByName(PortalPermission.TASK_DISPLAY_ADDITIONAL_OPTIONS.getValue());",
+            "    iPermission = IPermissionRepository.instance().findByName(PortalPermission.TASK_DISPLAY_ADDITIONAL_OPTIONS.getValue());",
             "    if (Objects.nonNull(iPermission)){",
-            "      ivy.wf.getApplication().getSecurityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());",
+            "      IApplication.current().getSecurityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());",
             "    }"
           ]
         }
@@ -465,95 +468,6 @@
         "size" : { "width" : 40, "height" : 24 }
       },
       "connect" : { "id" : "f50", "to" : "f7", "via" : [ { "x" : 408, "y" : 1136 } ] }
-    }, {
-      "id" : "f53",
-      "type" : "Script",
-      "config" : {
-        "security" : "system",
-        "output" : {
-          "code" : [
-            "import java.util.Objects;",
-            "import ch.ivy.addon.portalkit.enums.PortalPermission;",
-            "import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;",
-            "import ch.ivyteam.ivy.security.IPermission;",
-            "",
-            "IPermission iPermission = IPermissionRepository.get().findByName(PortalPermission.STATISTIC_ADD_DASHBOARD_CHART.getValue());",
-            "    if (Objects.nonNull(iPermission)){",
-            "      ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
-            "    }",
-            "    iPermission = IPermissionRepository.get().findByName(PortalPermission.EXPRESS_CREATE_WORKFLOW.getValue());",
-            "    if (Objects.nonNull(iPermission)){",
-            "      ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
-            "    }",
-            "    iPermission = IPermissionRepository.get().findByName(PortalPermission.STATISTIC_ANALYZE_TASK.getValue());",
-            "    if (Objects.nonNull(iPermission)){",
-            "      ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
-            "    }",
-            "    ",
-            "    /*iPermission = IPermissionRepository.get().findByName(PortalPermission.ACCESS_FULL_PROCESS_LIST.getValue());",
-            "    if (Objects.nonNull(iPermission)){",
-            "      ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
-            "    }*/",
-            "    ",
-            "    iPermission = IPermissionRepository.get().findByName(PortalPermission.ACCESS_FULL_TASK_LIST.getValue());",
-            "    if (Objects.nonNull(iPermission)){",
-            "      ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
-            "    }",
-            "        iPermission = IPermissionRepository.get().findByName(PortalPermission.ACCESS_FULL_CASE_LIST.getValue());",
-            "    if (Objects.nonNull(iPermission)){",
-            "      ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
-            "    }",
-            "        iPermission = IPermissionRepository.get().findByName(PortalPermission.ACCESS_FULL_STATISTICS_LIST.getValue());",
-            "    if (Objects.nonNull(iPermission)){",
-            "      ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
-            "    }",
-            "    ",
-            "    iPermission = IPermissionRepository.get().findByName(PortalPermission.SHOW_CASE_DETAILS.getValue());",
-            "    if (Objects.nonNull(iPermission)){",
-            "      ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
-            "    }",
-            "    ",
-            "    iPermission = IPermissionRepository.get().findByName(PortalPermission.SHOW_ALL_TASKS_OF_CASE.getValue());",
-            "    if (Objects.nonNull(iPermission)){",
-            "      ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
-            "    }",
-            "    ",
-            "    iPermission = IPermissionRepository.get().findByName(PortalPermission.TASK_CASE_ADD_NOTE.getValue());",
-            "    if (Objects.nonNull(iPermission)){",
-            "      ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
-            "    }",
-            "    ",
-            "    iPermission = IPermissionRepository.get().findByName(PortalPermission.TASK_CASE_SHOW_MORE_NOTE.getValue());",
-            "    if (Objects.nonNull(iPermission)){",
-            "      ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
-            "    }",
-            "    ",
-            "    iPermission = IPermissionRepository.get().findByName(PortalPermission.TASK_DISPLAY_RESET_ACTION.getValue());",
-            "    if (Objects.nonNull(iPermission)){",
-            "      ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
-            "    }",
-            "    ",
-            "    iPermission = IPermissionRepository.get().findByName(PortalPermission.TASK_DISPLAY_RESERVE_ACTION.getValue());",
-            "    if (Objects.nonNull(iPermission)){",
-            "      ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
-            "    }",
-            "    ",
-            "    iPermission = IPermissionRepository.get().findByName(PortalPermission.TASK_DISPLAY_DELEGATE_ACTION.getValue());",
-            "    if (Objects.nonNull(iPermission)){",
-            "      ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
-            "    }",
-            "    ",
-            "    iPermission = IPermissionRepository.get().findByName(PortalPermission.TASK_DISPLAY_ADDITIONAL_OPTIONS.getValue());",
-            "    if (Objects.nonNull(iPermission)){",
-            "      ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
-            "    }"
-          ]
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 472, "y" : 336 },
-        "size" : { "width" : 40, "height" : 24 }
-      }
     }, {
       "id" : "f60",
       "type" : "RequestStart",
@@ -583,14 +497,15 @@
         "security" : "system",
         "output" : {
           "code" : [
+            "import ch.ivyteam.ivy.application.IApplication;",
             "import java.util.Objects;",
             "import ch.ivy.addon.portalkit.enums.PortalPermission;",
             "import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;",
             "import ch.ivyteam.ivy.security.IPermission;",
             "",
-            "IPermission iPermission = IPermissionRepository.get().findByName(in.portalPermission);",
+            "IPermission iPermission = IPermissionRepository.instance().findByName(in.portalPermission);",
             "if (Objects.nonNull(iPermission)){",
-            "  ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
+            "  IApplication.current().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
             "}"
           ]
         }
@@ -607,14 +522,15 @@
         "security" : "system",
         "output" : {
           "code" : [
+            "import ch.ivyteam.ivy.application.IApplication;",
             "import java.util.Objects;",
             "import ch.ivy.addon.portalkit.enums.PortalPermission;",
             "import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;",
             "import ch.ivyteam.ivy.security.IPermission;",
             "",
-            "IPermission iPermission = IPermissionRepository.get().findByName(in.portalPermission);",
+            "IPermission iPermission = IPermissionRepository.instance().findByName(in.portalPermission);",
             "if (Objects.nonNull(iPermission)){",
-            "  ivy.wf.getApplication().getSecurityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());",
+            "  IApplication.current().getSecurityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());",
             "}"
           ]
         }
@@ -631,62 +547,63 @@
         "security" : "system",
         "output" : {
           "code" : [
+            "import ch.ivyteam.ivy.application.IApplication;",
             "import java.util.Objects;",
             "import ch.ivy.addon.portalkit.enums.PortalPermission;",
             "import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;",
             "import ch.ivyteam.ivy.security.IPermission;",
             "",
-            "IPermission iPermission = IPermissionRepository.get().findByName(PortalPermission.STATISTIC_ADD_DASHBOARD_CHART.getValue());",
+            "IPermission iPermission = IPermissionRepository.instance().findByName(PortalPermission.STATISTIC_ADD_DASHBOARD_CHART.getValue());",
             "    if (Objects.nonNull(iPermission)){",
-            "      ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
+            "      IApplication.current().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
             "    }",
-            "    iPermission = IPermissionRepository.get().findByName(PortalPermission.EXPRESS_CREATE_WORKFLOW.getValue());",
+            "    iPermission = IPermissionRepository.instance().findByName(PortalPermission.EXPRESS_CREATE_WORKFLOW.getValue());",
             "    if (Objects.nonNull(iPermission)){",
-            "      ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
+            "      IApplication.current().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
             "    }",
-            "    iPermission = IPermissionRepository.get().findByName(PortalPermission.STATISTIC_ANALYZE_TASK.getValue());",
+            "    iPermission = IPermissionRepository.instance().findByName(PortalPermission.STATISTIC_ANALYZE_TASK.getValue());",
             "    if (Objects.nonNull(iPermission)){",
-            "      ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
+            "      IApplication.current().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
             "    }",
             "",
-            "    iPermission = IPermissionRepository.get().findByName(PortalPermission.SHOW_CASE_DETAILS.getValue());",
+            "    iPermission = IPermissionRepository.instance().findByName(PortalPermission.SHOW_CASE_DETAILS.getValue());",
             "    if (Objects.nonNull(iPermission)){",
-            "      ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
+            "      IApplication.current().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
             "    }",
             "    ",
-            "    iPermission = IPermissionRepository.get().findByName(PortalPermission.SHOW_ALL_TASKS_OF_CASE.getValue());",
+            "    iPermission = IPermissionRepository.instance().findByName(PortalPermission.SHOW_ALL_TASKS_OF_CASE.getValue());",
             "    if (Objects.nonNull(iPermission)){",
-            "      ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
+            "      IApplication.current().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
             "    }",
             "    ",
-            "    iPermission = IPermissionRepository.get().findByName(PortalPermission.TASK_CASE_ADD_NOTE.getValue());",
+            "    iPermission = IPermissionRepository.instance().findByName(PortalPermission.TASK_CASE_ADD_NOTE.getValue());",
             "    if (Objects.nonNull(iPermission)){",
-            "      ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
+            "      IApplication.current().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
             "    }",
             "    ",
-            "    iPermission = IPermissionRepository.get().findByName(PortalPermission.TASK_CASE_SHOW_MORE_NOTE.getValue());",
+            "    iPermission = IPermissionRepository.instance().findByName(PortalPermission.TASK_CASE_SHOW_MORE_NOTE.getValue());",
             "    if (Objects.nonNull(iPermission)){",
-            "      ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
+            "      IApplication.current().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
             "    }",
             "    ",
-            "    iPermission = IPermissionRepository.get().findByName(PortalPermission.TASK_DISPLAY_RESET_ACTION.getValue());",
+            "    iPermission = IPermissionRepository.instance().findByName(PortalPermission.TASK_DISPLAY_RESET_ACTION.getValue());",
             "    if (Objects.nonNull(iPermission)){",
-            "      ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
+            "      IApplication.current().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
             "    }",
             "    ",
-            "    iPermission = IPermissionRepository.get().findByName(PortalPermission.TASK_DISPLAY_RESERVE_ACTION.getValue());",
+            "    iPermission = IPermissionRepository.instance().findByName(PortalPermission.TASK_DISPLAY_RESERVE_ACTION.getValue());",
             "    if (Objects.nonNull(iPermission)){",
-            "      ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
+            "      IApplication.current().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
             "    }",
             "    ",
-            "    iPermission = IPermissionRepository.get().findByName(PortalPermission.TASK_DISPLAY_DELEGATE_ACTION.getValue());",
+            "    iPermission = IPermissionRepository.instance().findByName(PortalPermission.TASK_DISPLAY_DELEGATE_ACTION.getValue());",
             "    if (Objects.nonNull(iPermission)){",
-            "      ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
+            "      IApplication.current().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
             "    }",
             "    ",
-            "    iPermission = IPermissionRepository.get().findByName(PortalPermission.TASK_DISPLAY_ADDITIONAL_OPTIONS.getValue());",
+            "    iPermission = IPermissionRepository.instance().findByName(PortalPermission.TASK_DISPLAY_ADDITIONAL_OPTIONS.getValue());",
             "    if (Objects.nonNull(iPermission)){",
-            "      ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
+            "      IApplication.current().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
             "    }"
           ]
         }
@@ -751,29 +668,30 @@
         "security" : "system",
         "output" : {
           "code" : [
+            "import ch.ivyteam.ivy.application.IApplication;",
             "import java.util.Objects;",
             "import ch.ivy.addon.portalkit.enums.PortalPermission;",
             "import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;",
             "import ch.ivyteam.ivy.security.IPermission;",
             "",
-            "IPermission iPermission = IPermissionRepository.get().findByName(PortalPermission.ACCESS_FULL_PROCESS_LIST.getValue());",
+            "IPermission iPermission = IPermissionRepository.instance().findByName(PortalPermission.ACCESS_FULL_PROCESS_LIST.getValue());",
             "if (Objects.nonNull(iPermission)){",
-            "  ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
+            "  IApplication.current().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
             "}",
             "    ",
-            "iPermission = IPermissionRepository.get().findByName(PortalPermission.ACCESS_FULL_TASK_LIST.getValue());",
+            "iPermission = IPermissionRepository.instance().findByName(PortalPermission.ACCESS_FULL_TASK_LIST.getValue());",
             "if (Objects.nonNull(iPermission)){",
-            "  ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
+            "  IApplication.current().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
             "}",
             "",
-            "iPermission = IPermissionRepository.get().findByName(PortalPermission.ACCESS_FULL_CASE_LIST.getValue());",
+            "iPermission = IPermissionRepository.instance().findByName(PortalPermission.ACCESS_FULL_CASE_LIST.getValue());",
             "if (Objects.nonNull(iPermission)){",
-            "  ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
+            "  IApplication.current().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
             "}",
             "",
-            "iPermission = IPermissionRepository.get().findByName(PortalPermission.ACCESS_FULL_STATISTICS_LIST.getValue());",
+            "iPermission = IPermissionRepository.instance().findByName(PortalPermission.ACCESS_FULL_STATISTICS_LIST.getValue());",
             "if (Objects.nonNull(iPermission)){",
-            "  ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
+            "  IApplication.current().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
             "}"
           ]
         }
@@ -790,29 +708,30 @@
         "security" : "system",
         "output" : {
           "code" : [
+            "import ch.ivyteam.ivy.application.IApplication;",
             "import java.util.Objects;",
             "import ch.ivy.addon.portalkit.enums.PortalPermission;",
             "import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;",
             "import ch.ivyteam.ivy.security.IPermission;",
             "",
-            "IPermission iPermission = IPermissionRepository.get().findByName(PortalPermission.ACCESS_FULL_PROCESS_LIST.getValue());",
+            "IPermission iPermission = IPermissionRepository.instance().findByName(PortalPermission.ACCESS_FULL_PROCESS_LIST.getValue());",
             "if (Objects.nonNull(iPermission)){",
-            "  ivy.wf.getApplication().getSecurityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());",
+            "  IApplication.current().getSecurityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());",
             "}",
             "    ",
-            "iPermission = IPermissionRepository.get().findByName(PortalPermission.ACCESS_FULL_TASK_LIST.getValue());",
+            "iPermission = IPermissionRepository.instance().findByName(PortalPermission.ACCESS_FULL_TASK_LIST.getValue());",
             "if (Objects.nonNull(iPermission)){",
-            "  ivy.wf.getApplication().getSecurityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());",
+            "  IApplication.current().getSecurityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());",
             "}",
             "    ",
-            "iPermission = IPermissionRepository.get().findByName(PortalPermission.ACCESS_FULL_CASE_LIST.getValue());",
+            "iPermission = IPermissionRepository.instance().findByName(PortalPermission.ACCESS_FULL_CASE_LIST.getValue());",
             "if (Objects.nonNull(iPermission)){",
-            "  ivy.wf.getApplication().getSecurityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());",
+            "  IApplication.current().getSecurityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());",
             "}",
             "    ",
-            "iPermission = IPermissionRepository.get().findByName(PortalPermission.ACCESS_FULL_STATISTICS_LIST.getValue());",
+            "iPermission = IPermissionRepository.instance().findByName(PortalPermission.ACCESS_FULL_STATISTICS_LIST.getValue());",
             "if (Objects.nonNull(iPermission)){",
-            "  ivy.wf.getApplication().getSecurityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());",
+            "  IApplication.current().getSecurityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());",
             "}"
           ]
         }
@@ -850,14 +769,15 @@
         "security" : "system",
         "output" : {
           "code" : [
+            "import ch.ivyteam.ivy.application.IApplication;",
             "import java.util.Objects;",
             "import ch.ivy.addon.portalkit.enums.PortalPermission;",
             "import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;",
             "import ch.ivyteam.ivy.security.IPermission;",
             "",
-            "IPermission iPermission = IPermissionRepository.get().findByName(in.portalPermission);",
+            "IPermission iPermission = IPermissionRepository.instance().findByName(in.portalPermission);",
             "if (Objects.nonNull(iPermission)){",
-            "  ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
+            "  IApplication.current().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
             "}"
           ]
         }
@@ -895,14 +815,15 @@
         "security" : "system",
         "output" : {
           "code" : [
+            "import ch.ivyteam.ivy.application.IApplication;",
             "import java.util.Objects;",
             "import ch.ivy.addon.portalkit.enums.PortalPermission;",
             "import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;",
             "import ch.ivyteam.ivy.security.IPermission;",
             "",
-            "IPermission iPermission = IPermissionRepository.get().findByName(in.portalPermission);",
+            "IPermission iPermission = IPermissionRepository.instance().findByName(in.portalPermission);",
             "if (Objects.nonNull(iPermission)){",
-            "  ivy.wf.getApplication().getSecurityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());",
+            "  IApplication.current().getSecurityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());",
             "}"
           ]
         }
@@ -986,14 +907,15 @@
         "security" : "system",
         "output" : {
           "code" : [
+            "import ch.ivyteam.ivy.application.IApplication;",
             "import java.util.Objects;",
             "import ch.ivy.addon.portalkit.enums.PortalPermission;",
             "import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;",
             "import ch.ivyteam.ivy.security.IPermission;",
             "",
-            "IPermission iPermission = IPermissionRepository.get().findByName(PortalPermission.TASK_RESET_READY_FOR_JOIN.getValue());",
+            "IPermission iPermission = IPermissionRepository.instance().findByName(PortalPermission.TASK_RESET_READY_FOR_JOIN.getValue());",
             "if (Objects.nonNull(iPermission)){",
-            "  ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
+            "  IApplication.current().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
             "}"
           ]
         }
@@ -1010,14 +932,15 @@
         "security" : "system",
         "output" : {
           "code" : [
+            "import ch.ivyteam.ivy.application.IApplication;",
             "import java.util.Objects;",
             "import ch.ivy.addon.portalkit.enums.PortalPermission;",
             "import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;",
             "import ch.ivyteam.ivy.security.IPermission;",
             "",
-            "IPermission iPermission = IPermissionRepository.get().findByName(PortalPermission.TASK_RESET_READY_FOR_JOIN.getValue());",
+            "IPermission iPermission = IPermissionRepository.instance().findByName(PortalPermission.TASK_RESET_READY_FOR_JOIN.getValue());",
             "if (Objects.nonNull(iPermission)){",
-            "  ivy.wf.getApplication().getSecurityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());",
+            "  IApplication.current().getSecurityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());",
             "}"
           ]
         }
@@ -1340,6 +1263,7 @@
         "security" : "system",
         "output" : {
           "code" : [
+            "import ch.ivyteam.ivy.application.IApplication;",
             "import java.util.Objects;",
             "import ch.ivy.addon.portalkit.enums.PortalPermission;",
             "import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;",
@@ -1347,7 +1271,7 @@
             "",
             "IPermission iPermission = IPermissionRepository.instance().findByName(PortalPermission.DASHBOARD_WRITE_OWN.getValue());",
             "if (Objects.nonNull(iPermission)){",
-            "  ivy.wf.getApplication().getSecurityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());",
+            "  IApplication.current().getSecurityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());",
             "}"
           ]
         }
@@ -1356,7 +1280,7 @@
         "at" : { "x" : 688, "y" : 1184 },
         "size" : { "width" : 40, "height" : 24 }
       },
-      "connect" : { "id" : "f136", "to" : "f7", "via" : [ { "x" : 408, "y" : 1184 }, { "x" : 408, "y" : 528 } ] }
+      "connect" : { "id" : "f136", "to" : "f7", "via" : [ { "x" : 408, "y" : 1184 } ] }
     }, {
       "id" : "f125",
       "type" : "RequestStart",
@@ -1390,6 +1314,7 @@
         "security" : "system",
         "output" : {
           "code" : [
+            "import ch.ivyteam.ivy.application.IApplication;",
             "import java.util.Objects;",
             "import ch.ivy.addon.portalkit.enums.PortalPermission;",
             "import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;",
@@ -1397,7 +1322,7 @@
             "",
             "IPermission iPermission = IPermissionRepository.instance().findByName(PortalPermission.DASHBOARD_WRITE_OWN.getValue());",
             "if (Objects.nonNull(iPermission)){",
-            "  ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
+            "  IApplication.current().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
             "}"
           ]
         }
@@ -1414,6 +1339,7 @@
         "security" : "system",
         "output" : {
           "code" : [
+            "import ch.ivyteam.ivy.application.IApplication;",
             "import java.util.Objects;",
             "import ch.ivy.addon.portalkit.enums.PortalPermission;",
             "import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;",
@@ -1421,7 +1347,7 @@
             "",
             "IPermission iPermission = IPermissionRepository.instance().findByName(PortalPermission.DASHBOARD_WRITE_PUBLIC.getValue());",
             "if (Objects.nonNull(iPermission)){",
-            "  ivy.wf.getApplication().getSecurityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());",
+            "  IApplication.current().getSecurityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());",
             "}"
           ]
         }
@@ -1451,6 +1377,7 @@
         "security" : "system",
         "output" : {
           "code" : [
+            "import ch.ivyteam.ivy.application.IApplication;",
             "import java.util.Objects;",
             "import ch.ivy.addon.portalkit.enums.PortalPermission;",
             "import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;",
@@ -1458,7 +1385,7 @@
             "",
             "IPermission iPermission = IPermissionRepository.instance().findByName(PortalPermission.DASHBOARD_WRITE_PUBLIC.getValue());",
             "if (Objects.nonNull(iPermission)){",
-            "  ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
+            "  IApplication.current().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
             "}"
           ]
         }
@@ -1486,7 +1413,6 @@
     "lanes" : [ {
         "name" : "Request start",
         "size" : 1160
-      } ],
-    "orientation" : "VERTICAL"
+      } ]
   }
 }

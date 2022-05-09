@@ -29,11 +29,12 @@
         "security" : "system",
         "output" : {
           "code" : [
-            "import ch.ivyteam.ivy.application.property.ICustomProperty;",
+            "import ch.ivyteam.ivy.vars.Variable;",
             "",
-            "List<ICustomProperty> properties = ivy.wf.getApplication().customProperties().findAllStartingWith(\"dashboard.widgets\");",
-            "for (ICustomProperty property : properties) {",
-            "  ivy.wf.getApplication().customProperties().delete(property.getName());",
+            "for (Variable property : ivy.var.all()) {",
+            "  if(property.name().startsWith(\"dashboard.widgets\")) {",
+            "    ivy.var.reset(property.name());",
+            "  }",
             "}"
           ]
         }

@@ -27,8 +27,9 @@
       "config" : {
         "output" : {
           "code" : [
+            "import ch.ivyteam.ivy.application.IApplication;",
             "import ch.ivy.addon.portalkit.service.UserProcessService;",
-            "String appName = ivy.wf.getApplication().getName();",
+            "String appName = IApplication.current().getName();",
             "String defaultUserProcesses =",
             "    \"[{\\\"id\\\":\\\"1\\\",\\\"processType\\\":\\\"IVY_PROCESS\\\",\\\"processName\\\":\\\"Alpha Company Task\\\",\\\"icon\\\":\\\"fa-building\\\",\\\"processId\\\":\\\"\"+ appName + ",
             "    \"/portal-developer-examples/Start Processes/ProcessHistoryComponent/createAlphaCompany.ivp\\\",\\\"index\\\":1},{\\\"id\\\":\\\"2\\\",\\\"processType\\\":\\\"IVY_PROCESS\\\",\\\"processName\\\":\\\"View Alpha Process History\\\",\\\"icon\\\":\\\"fa-list-alt\\\",\\\"processId\\\":\\\"\" + appName + ",
