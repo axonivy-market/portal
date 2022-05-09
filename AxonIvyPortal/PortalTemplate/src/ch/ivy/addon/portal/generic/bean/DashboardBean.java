@@ -259,16 +259,20 @@ public class DashboardBean implements Serializable {
 
   public void handleRowSelectEventOnTaskWidget(SelectEvent event) throws IOException {
     ITask task = ((ITask) event.getObject());
-    selectedTask = task;
     handleSelectedTask(task);
   }
 
-  public void handleSelectedTask(ITask task) throws IOException {
+  private void handleSelectedTask(ITask task) throws IOException {
     if (isRunningTaskWhenClickingOnTaskInList) {
-      TaskUtils.handleStartTask(task, null, "reset-task-confirmation-dialog");
+      handleStartTask(task);
     } else {
       navigateToSelectedTaskDetails(task);
     }
+  }
+  
+  public void handleStartTask(ITask task) throws IOException {
+    selectedTask = task;
+    TaskUtils.handleStartTask(task, null, "reset-task-confirmation-dialog");
   }
 
   public void navigateToSelectedTaskDetails(ITask task) {
