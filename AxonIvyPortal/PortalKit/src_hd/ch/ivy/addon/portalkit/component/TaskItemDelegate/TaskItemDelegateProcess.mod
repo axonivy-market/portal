@@ -186,9 +186,7 @@ in.isUserDelegated = true;
 in.delegatedSecurityMember = null;
 in.application = in.task.getApplication();
 in.selectedRole = null;
-in.selectedUser = null;
-
-' #txt
+in.selectedUser = null;' #txt
 Ts0 f87 security system #txt
 Ts0 f87 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -319,6 +317,8 @@ Ts0 f82 @|UdMethodIcon #fIcon
 Ts0 f89 actionTable 'out=in;
 ' #txt
 Ts0 f89 actionCode 'in.canDelegateTask = !(in.rolesToDelegate.isEmpty() && in.usersToDelegate.isEmpty());
+in.isEmptyUsers = in.usersToDelegate.isEmpty();
+in.isEmptyRoles = in.rolesToDelegate.isEmpty();
 
 if (in.canDelegateTask) {
 	if (in.rolesToDelegate.isEmpty()) {
