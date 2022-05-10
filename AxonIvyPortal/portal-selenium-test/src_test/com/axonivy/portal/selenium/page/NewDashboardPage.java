@@ -30,6 +30,10 @@ public class NewDashboardPage extends TemplatePage {
   public TaskWidgetNewDashBoardPage selectTaskWidget(String taskWidgetName) {
     return new TaskWidgetNewDashBoardPage(taskWidgetName);
   }
+  
+  public ProcessWidgetNewDashBoardPage selectProcessWidget(String processWidgetName) {
+    return new ProcessWidgetNewDashBoardPage(processWidgetName);
+  }
 
   public void waitForAbsencesGrowlMessageDisplay() {
     $("div[id='portal-global-growl_container']").waitUntil(appear, DEFAULT_TIMEOUT).$("div.ui-growl-message")
