@@ -19,7 +19,7 @@ import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
 import com.codeborne.selenide.Condition;
 
-@IvyWebTest
+@IvyWebTest(headless = false, browser= "FIREFOX")
 public class EscalationTaskTest extends BaseTest {
 
   // WIDGET NAME
@@ -70,7 +70,7 @@ public class EscalationTaskTest extends BaseTest {
     taskWidgetPage.triggerEscalation();
     taskWidgetPage.filterTasksBy(SICK_LEAVE_REQUEST_ESCALATED);
     assertTrue(taskWidgetPage.getFilterTasksByKeyword().attr("value").equalsIgnoreCase(SICK_LEAVE_REQUEST_ESCALATED));
-    assertTrue(taskWidgetPage.getPriorityOfTask(0).equalsIgnoreCase("exception"));
+    assertTrue(taskWidgetPage.getPriorityOfTask().equalsIgnoreCase("high"));
     taskWidgetPage.countTasks().shouldHaveSize(1);
   }
   
