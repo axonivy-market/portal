@@ -57,14 +57,19 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
 
   public void startFirstTask() {
     $$("span.widget__filter-noti-number").first().waitUntil(appear, DEFAULT_TIMEOUT);
-    getColumnOfTaskHasIndex(0, "Start").shouldBe(getClickableCondition()).click();
-    $$("span.widget__filter-noti-number").first().waitUntil(disappears, DEFAULT_TIMEOUT);
+    getColumnOfTaskHasIndex(0, "Start").waitUntil(appear, DEFAULT_TIMEOUT).click();
+  }
+  
+  public void startFirstTaskAndWaitShowHomePageButton() {
+    $$("span.widget__filter-noti-number").first().waitUntil(appear, DEFAULT_TIMEOUT);
+    getColumnOfTaskHasIndex(0, "Start").waitUntil(appear, DEFAULT_TIMEOUT).click();
+    $(".ui-icon-home").waitUntil(appear, DEFAULT_TIMEOUT);
   }
 
   public void startTask(int taskIndex) {
     $$("span.widget__filter-noti-number").first().waitUntil(appear, DEFAULT_TIMEOUT);
     getColumnOfTaskHasIndex(taskIndex, "Start").shouldBe(getClickableCondition()).click();
-    $$("span.widget__filter-noti-number").first().waitUntil(disappears, DEFAULT_TIMEOUT);
+    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
   }
 
   public ElementsCollection countRelatedCases() {
@@ -72,7 +77,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void openFilterWidget() {
-    $$("div.table-widget-panel").filter(text(taskWidgetName)).first().$("a.widget__filter-sidebar-link")
+    getTaskWidgetHeader().$("a.widget__filter-sidebar-link")
         .waitUntil(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
     $("[id$=':widget-saved-filters-items").waitUntil(appear, DEFAULT_TIMEOUT);
   }
@@ -80,6 +85,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   public void filterTaskName(String input) {
     var taskNameFilter = $("div[id$='widget-filter-content']").waitUntil(appear, DEFAULT_TIMEOUT)
         .$(".ui-inputfield.text-field-input-name");
+    taskNameFilter.clear();
     taskNameFilter.sendKeys(input);
   }
 
@@ -93,6 +99,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
     $("div.filter-overlay-panel__footer").waitUntil(appear, DEFAULT_TIMEOUT).$$("button[id$='apply-button']")
         .filter(text("Apply")).first().shouldBe(getClickableCondition()).click();
     $("div[id$='task-task_1:filter-overlay-panel-0']").waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
+    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
   }
   
   public void resetFilter() {
@@ -306,5 +313,140 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
     getActiveTaskActions(taskIndex).filter(text("Trigger Escalation")).first().shouldBe(getClickableCondition()).click();
     $("div[id='escalation-task-confirmation-dialog']").waitUntil(Condition.appear, DEFAULT_TIMEOUT);
     $("button[id='confirm-escalation-dashboard-tasks']").waitUntil(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+  }
+  
+  private ElementsCollection getColumnsOfTableWidget() {
+    return $(taskWidgetId).waitUntil(appear, DEFAULT_TIMEOUT).$$("table tbody tr td");
+  }
+  
+  private ElementsCollection getTasksOfTaskWidgetHasName(String taskName) {
+    return getAllTasksOfTaskWidget().filter(text(taskName));
+  }
+  
+  private ElementsCollection getAllTasksOfTaskWidget() {
+    return getColumnsOfTableWidget().filter(Condition.cssClass("dashboard-tasks__name"));
+  }
+  
+  public ElementsCollection countTasks(String taskName) {
+    return getTasksOfTaskWidgetHasName(taskName);
+  }
+  
+  public ElementsCollection countAllTasks() {
+    return getAllTasksOfTaskWidget();
+  }
+  
+  private void confirmDestroy() {
+    $("div[id$='destroy-task-confirmation-dialog']").waitUntil(appear, DEFAULT_TIMEOUT)
+        .$("button[id$='confirm-destruction-dashboard-tasks']").shouldBe(getClickableCondition()).click();
+    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
+  }
+  
+  public SelenideElement destroyTaskLink() {
+    return $("a[id$='task-destroy-command']");
+  }
+  
+  public void destroy() {
+    destroyTaskLink().shouldBe(getClickableCondition()).click();
+    confirmDestroy();
+  }
+  
+  public SelenideElement stateOfFirstTask() {
+    return getColumnOfTaskHasIndex(0, FILTER_TASK_STATE).waitUntil(appear, DEFAULT_TIMEOUT);
+  }
+  
+  public TaskEditWidgetNewDashBoardPage openEditTaskWidget() {
+    $$("div.table-widget-panel div.widget__header").filter(text(taskWidgetName)).first()
+        .waitUntil(appear, DEFAULT_TIMEOUT).$("div[id$='widget-header-actions']").$("a[class^='ui-commandlink'][id*='edit-widget']")
+        .shouldBe(getClickableCondition()).click();
+    return new TaskEditWidgetNewDashBoardPage();
+  }
+  
+  private SelenideElement getTaskWidgetHeader() {
+    return $$("div.table-widget-panel").filter(text(taskWidgetName)).first();
+  }
+  
+  public void clickOnButtonWidgetInformation() {
+    getTaskWidgetHeader().$("a.widget__info-sidebar-link")
+        .waitUntil(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+  }
+  
+  public SelenideElement getExpiryTodayLabelInWidgetInfo() {
+    return $("[id$='expiry-tab']").waitUntil(appear, DEFAULT_TIMEOUT).$("div div").waitUntil(appear, DEFAULT_TIMEOUT);
+  }
+  
+  public void clickToExpandNumberOfTaskByState() {
+    SelenideElement element = $("[id$='state-tab_header']").waitUntil(appear, DEFAULT_TIMEOUT);
+    if("false".equalsIgnoreCase(element.getAttribute("aria-expanded"))){
+      element.click();
+    }
+  }
+  
+  public SelenideElement getFirstStateLabelInWidgetInfo() {
+    return $("[id$='state-tab']").waitUntil(appear, DEFAULT_TIMEOUT).$("div div").waitUntil(appear, DEFAULT_TIMEOUT);
+  }
+  
+  public void clickToExpandNumberOfTaskByCategory() {
+    SelenideElement element = $("[id$='category-tab_header']").waitUntil(appear, DEFAULT_TIMEOUT);
+    if("false".equalsIgnoreCase(element.getAttribute("aria-expanded"))){
+      element.click();
+    }
+  }
+  
+  public void clickToExpandPredefinedFilters() {
+    SelenideElement element = $("[id$='filter-tab_header']").waitUntil(appear, DEFAULT_TIMEOUT);
+    if("false".equalsIgnoreCase(element.getAttribute("aria-expanded"))){
+      element.click();
+    }
+  }
+  
+  public void closeWidgetInformationDialog() {
+    $("div.info-overlay-panel__footer").$("a[onclick*='hide']").click();
+  }
+  
+  public void clickOnButtonExpandTaskWidget() {
+    getTaskWidgetHeader().$("a.expand-link")
+        .waitUntil(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+  }
+  
+  public ElementsCollection getExpandedTaskWidget() {
+    return $("div.expand-fullscreen").$$("div.widget__header").filter(text(taskWidgetName));
+  }
+  
+  public ElementsCollection getExpandedWidget() {
+    return $$("div.expand-fullscreen");
+  }
+  
+  public void clickOnButtonCollapseTaskWidget() {
+    getTaskWidgetHeader().$("a.collapse-link")
+        .waitUntil(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+  }
+  
+  /* 
+   * return descending or ascending
+   */
+  public SelenideElement getTaskWidgetHeaderSorted() {
+    return  $(taskWidgetId).waitUntil(appear, DEFAULT_TIMEOUT).$("th.ui-state-active");
+  }
+  
+  public void clickOnHeaderTaskByColumn(String columnName) {
+    ElementsCollection elementsTH = $(taskWidgetId).waitUntil(appear, DEFAULT_TIMEOUT).$$("table thead tr th");
+    for (int i = 0; i < elementsTH.size(); i++) {
+      if (elementsTH.get(i).getText().equalsIgnoreCase(columnName)) {
+        elementsTH.get(i).click();
+        waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
+      }
+    }
+  }
+  
+  public SelenideElement getTheFirstTaskWidgetByColumn(String columnName) {
+    return getColumnOfTaskHasIndex(0, columnName);
+  }
+  
+  public SelenideElement getTaskEmptyMessage() {
+    return $("[id$='dashboard-tasks-container'] [id$='empty-message-container']").waitUntil(appear, DEFAULT_TIMEOUT);
+  }
+  
+  public SelenideElement getGrowlTitle() {
+    return $(".ui-growl-title").waitUntil(appear, DEFAULT_TIMEOUT);
   }
 }
