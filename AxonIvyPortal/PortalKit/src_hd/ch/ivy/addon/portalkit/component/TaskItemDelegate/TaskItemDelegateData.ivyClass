@@ -26,3 +26,7 @@ selectedRole ch.ivy.addon.portalkit.dto.RoleDTO #field
 selectedRole PERSISTENT #fieldModifier
 taskDelegationComment String #field
 taskDelegationComment PERSISTENT #fieldModifier
+isEmptyUsers Boolean #field
+isEmptyUsers PERSISTENT #fieldModifier
+isEmptyRoles Boolean #field
+isEmptyRoles PERSISTENT #fieldModifier

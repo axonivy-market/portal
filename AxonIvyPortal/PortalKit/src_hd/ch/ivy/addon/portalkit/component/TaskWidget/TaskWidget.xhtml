@@ -366,7 +366,8 @@
   <!-- Delegate Task Dialog -->
   <ic:ch.ivy.addon.portalkit.component.TaskItemDelegate id="task-item-delegate-component" dataModel="#{data.dataModel}"
     task="#{taskWidgetBean.getSelectedTaskItem()}"
-    componentToUpdate="#{p:component('task-start')}" />
+    componentToUpdate="#{p:component('task-start')}"
+    onDelegateComplete="taskWidget.setupScrollbar();"/>
 
   <!-- Workflow Event of Task Dialog -->
   <ic:ch.ivy.addon.portalkit.component.TaskItemWorkflowEvents id="task-workflow-event-component"
