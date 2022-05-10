@@ -80,7 +80,7 @@ public class TaskWidgetPage extends TemplatePage {
     $(String.format("a[id$='task-list-scroller:%d:task-item:task-action:additional-options:task-side-steps-menu'",
         taskIndex)).waitUntil(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
     $(String.format("div[id$='task-list-scroller:%d:task-item:task-action:additional-options:side-steps-panel'",
-        taskIndex)).waitUntil(appear, DEFAULT_TIMEOUT);
+        taskIndex)).waitUntil(appear, DEFAULT_TIMEOUT).$(".ui-overlaypanel-content").waitUntil(appear, DEFAULT_TIMEOUT);
   }
   
   private void openTriggerEscalationDialog() {
@@ -98,8 +98,8 @@ public class TaskWidgetPage extends TemplatePage {
         taskRowIndex)).waitUntil(Condition.appear, DEFAULT_TIMEOUT).$("span");
   }
   
-  public String getPriorityOfTask(int row) {
-    String priorityClassName = $("span[id$='" + row +":task-item:task-priority-component:task-priority'] > span > i").attr("class");
+  public String getPriorityOfTask() {
+    String priorityClassName = $("span[id$='task-priority']").$("span").$("i").attr("class");
     if (priorityClassName.contains("low-priority")) {
       return "low";
     } else if (priorityClassName.contains("normal-priority")) {
