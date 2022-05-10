@@ -105,6 +105,17 @@ public class BehaviourWhenClickingOnTaskLineTest extends BaseTest {
     redirectToRelativeLink(createTestingTasksUrl);
     redirectToNewDashBoard();
     TaskWidgetNewDashBoardPage taskWidgetNewDashBoardPage = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
+    taskWidgetNewDashBoardPage.openTask(TASK_MATERNITY_LEAVE_REQUEST);
+    taskDetailsPage.getInformationPanel().should(Condition.appear);
+  }
+
+  @Test
+  public void testOpenTaskDetailsWhenClickingOnStartTaskInNewDashboard() {
+    updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), ACCESS_TASK_DETAILS);
+    login(TestAccount.DEMO_USER);
+    redirectToRelativeLink(createTestingTasksUrl);
+    redirectToNewDashBoard();
+    TaskWidgetNewDashBoardPage taskWidgetNewDashBoardPage = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
     taskWidgetNewDashBoardPage.openFilterWidget();
     taskWidgetNewDashBoardPage.filterTaskName(TASK_MATERNITY_LEAVE_REQUEST);
     taskWidgetNewDashBoardPage.applyFilter();
