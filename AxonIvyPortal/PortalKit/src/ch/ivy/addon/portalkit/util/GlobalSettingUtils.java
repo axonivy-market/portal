@@ -9,7 +9,8 @@ import ch.ivy.addon.portalkit.enums.GlobalVariableType;
 public class GlobalSettingUtils {
   public static String getSettingDisplayValue(GlobalVariable variable, String value) {
     if (variable.getType() == GlobalVariableType.SELECTION) {
-      return GlobalVariable.Option.valueOf(value).translate();
+      // Fix bug: can not find Enum of variable with lower case value for migrating from 7.x to 8.0.25
+      return GlobalVariable.Option.valueOf(value.toUpperCase()).translate();
     } else if (variable.getType() == GlobalVariableType.EXTERNAL_SELECTION && MapUtils.isNotEmpty(variable.getExternalOptions())) {
       Object object = variable.getExternalOptions().get(value);
       return getDisplayValue(object);
