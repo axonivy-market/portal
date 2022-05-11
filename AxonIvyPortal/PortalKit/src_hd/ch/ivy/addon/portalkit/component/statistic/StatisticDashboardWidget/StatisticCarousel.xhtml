@@ -6,8 +6,8 @@
 <h:outputScript name="chart-carousel.js" library="js" rendered="#{cc.attrs.compactMode}"/>
 <p:carousel id="statistic-carousel" circular="true" headerText="" 
   styleClass="statistic-carousel js-statistic-carousel #{data.statisticChartList.size() > 1 ? 'many-statistics':''} #{data.statisticChartList.isEmpty() ? '':'card'}"
-  numVisible="1" value="#{data.statisticChartList}" var="chart" binding="#{carouselStatistic}" itemStyleClass="statistic-carousel-item js-statistic-carousel-item"
-  rendered="#{!cc.attrs.isDrilldownElapsedTime}" widgetVar="carouselChart" pageLinks="0" responsive="true">
+  numVisible="1" value="#{data.statisticChartList}" var="chart" binding="#{carouselStatistic}"
+  rendered="#{!cc.attrs.isDrilldownElapsedTime}" widgetVar="carouselChart">
 
   <h:panelGroup styleClass="statistic-carousel-content">
     <h:panelGroup styleClass="hidden-carousel-title">
