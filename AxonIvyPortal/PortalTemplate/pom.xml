@@ -21,11 +21,6 @@
   </distributionManagement>
   <repositories>
     <repository>
-      <releases>
-        <enabled>true</enabled>
-        <updatePolicy>always</updatePolicy>
-        <checksumPolicy>warn</checksumPolicy>
-      </releases>
       <name>Axonivy Repo</name>
       <id>maven.axonivy.com</id>
       <url>https://maven.axonivy.com/</url>
