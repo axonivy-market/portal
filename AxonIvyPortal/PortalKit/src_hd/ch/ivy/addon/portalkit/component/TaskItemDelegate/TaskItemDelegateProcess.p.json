@@ -372,6 +372,8 @@
         "output" : {
           "code" : [
             "in.canDelegateTask = !(in.rolesToDelegate.isEmpty() && in.usersToDelegate.isEmpty());",
+            "in.isEmptyUsers = in.usersToDelegate.isEmpty();",
+            "in.isEmptyRoles = in.rolesToDelegate.isEmpty();",
             "",
             "if (in.canDelegateTask) {",
             "  if (in.rolesToDelegate.isEmpty()) {",
