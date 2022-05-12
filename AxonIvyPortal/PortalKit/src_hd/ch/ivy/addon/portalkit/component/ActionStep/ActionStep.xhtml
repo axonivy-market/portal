@@ -16,7 +16,7 @@
   <cc:attribute name="renderShowDetailAction" default="true" type="java.lang.Boolean" />
   <cc:attribute name="readOnly" default="false" />
   <cc:attribute name="inFrame" default="false"/>
-  <cc:attribute name="isPreviewMode" default="false"/>
+  <cc:attribute name="isPreviewMode" default="false" type="java.lang.Boolean"/>
 </cc:interface>
 
 <cc:implementation>
@@ -28,9 +28,10 @@
   <c:set var="showProcessOverview" value="#{caseActionBean.showProcessOverviewLink(case) and !inFrame}"/>
   <c:set var="showProcessViewer" value="#{caseActionBean.showProcessViewer(case)}"/>
   <c:set var="showSeparator" value="#{renderDestroyAction or showAdditionalCaseDetails or showOpenCaseDetail or showProcessOverview or showProcessViewer}"/>
+  <c:set var="isPreviewMode" value="#{cc.attrs.isPreviewMode}"/>
 
   <p:link id="#{cc.attrs.actionLinkId}" onclick="event.stopPropagation(); return false;"
-    styleClass="#{cc.attrs.taskId} action-link portal-icon" disabled="#{cc.attrs.readOnly or cc.attrs.isPreviewMode}">
+    styleClass="#{isPreviewMode ? '' : cc.attrs.actionLinkStyleClass} #{cc.attrs.taskId} action-link portal-icon" disabled="#{cc.attrs.readOnly or isPreviewMode}">
     <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}" styleClass="task-action-item-label" />
     <i class="si si-arrow-down-1" />
   </p:link>
