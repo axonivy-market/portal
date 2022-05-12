@@ -3,6 +3,7 @@ package ch.ivy.addon.portalkit.util;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -11,6 +12,7 @@ import java.util.stream.Collectors;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
+import org.apache.commons.collections.MapUtils;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 import org.primefaces.model.DefaultTreeNode;
@@ -30,6 +32,10 @@ public final class AbsenceAndSubstituteUtils {
   }
 
   public static Set<IvyAbsence> flatIvyAbsenceMap(Map<String, Set<IvyAbsence>> ivyAbsencesByUser) {
+    if(MapUtils.isEmpty(ivyAbsencesByUser)) {
+      Ivy.log().error("TEST ivyAbsencesByUser is " + (ivyAbsencesByUser == null ? "null" : ivyAbsencesByUser.size()));
+      return new HashSet<>();
+    }
     return ivyAbsencesByUser.values().stream().flatMap(Set::stream).collect(Collectors.toSet());
   }
   
