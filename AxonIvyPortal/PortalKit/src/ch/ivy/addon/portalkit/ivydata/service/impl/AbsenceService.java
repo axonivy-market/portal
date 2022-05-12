@@ -41,7 +41,6 @@ public class AbsenceService implements IAbsenceService {
       Map<String, Set<IvyAbsence>> ivyAbsencesByUser = new HashMap<>();
       result.setIvyAbsencesByUser(ivyAbsencesByUser);
       if (CollectionUtils.isEmpty(apps)) {
-        Ivy.log().error("TEST findAbsences apps is " + (apps == null ? "null" : apps.size()));
         return result;
       }
 
@@ -73,8 +72,6 @@ public class AbsenceService implements IAbsenceService {
         }
       });
       result.setErrors(errors);
-      //result.setIvyAbsencesByUser(ivyAbsencesByUser);
-      Ivy.log().error("TEST findAbsences ivyAbsencesByUser is " + (ivyAbsencesByUser == null ? "null" : ivyAbsencesByUser.size()));
       return result;
     });
   }
