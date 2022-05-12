@@ -194,7 +194,7 @@ public final class TaskUtils {
   public static boolean isTaskCurrentOpeningTask(ITask task){
     return IvyExecutor.executeAsSystem(() -> {
       var wfTask = Ivy.wfTask();
-      return task.getState() == TaskState.RESUMED && task.getId() == wfTask.getId();
+      return task.getState() == TaskState.RESUMED || task.getId() == wfTask.getId();
     });
   }
   
