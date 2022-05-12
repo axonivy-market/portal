@@ -196,10 +196,7 @@ public abstract class AbstractTaskTemplateBean implements Serializable {
   }
 
   public void generateCaseDetailInFrame(ICase currentCase) {
-    String defaultTemplateLibraryId = Ivy.wf().getStandardProcessImplementationLibrary(StandardProcessType.DEFAULT_PAGES_PROCESS_TYPES);
-    ILibrary defaultTemplateLibrary = IApplication.current().findReleasedLibrary(defaultTemplateLibraryId);
-    IProcessModelVersion defaultTemplatePMV = Optional.ofNullable(defaultTemplateLibrary).map(ILibrary::getProcessModelVersion).orElse(null);
-    setCaseDetailsLink(PortalNavigator.buildPortalCaseDetailInFrameUrl(currentCase.getId(), defaultTemplatePMV));
+    setCaseDetailsLink(PortalNavigator.buildPortalCaseDetailInFrameUrl(currentCase.getId()));
   }
 
   public Long getIntervalForPollingWhenOpenCaseDetails() {
