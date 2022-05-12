@@ -251,6 +251,12 @@ public final class PortalNavigator extends BaseNavigator{
     params.put("caseId", String.valueOf(caseId));
     return buildUrlByKeywordInPMV(PORTAL_CASE_DETAILS_IN_IFRAME_START, processModelVersion, PORTAL_CASE_DETAILS_IN_FRAME, params);
   }
+
+  public static String buildPortalCaseDetailInFrameUrl(Long caseId) {
+    Map<String, String> params = new HashMap<>();
+    params.put("caseId", String.valueOf(caseId));
+    return buildUrlByKeyword(PORTAL_CASE_DETAILS_IN_IFRAME_START, PORTAL_CASE_DETAILS_IN_FRAME, params);
+  }
   
   /**
    * Generate URL for process information page of selected process
