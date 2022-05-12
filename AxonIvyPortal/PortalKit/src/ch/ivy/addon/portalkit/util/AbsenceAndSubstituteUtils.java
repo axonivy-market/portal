@@ -47,16 +47,18 @@ public final class AbsenceAndSubstituteUtils {
    */
   public static TreeNode buildSustitute(Map<IvyApplication, List<IvySubstitute>> ivySubtitutesByApp) {
     TreeNode substituteRoot = new DefaultTreeNode(new SubstituteNode(), null);
-    PermissionCheckerService permissionService = new PermissionCheckerService();
-    for (Map.Entry<IvyApplication,List<IvySubstitute>> entry : ivySubtitutesByApp.entrySet()) {
-      IvyApplication ivyApplication = entry.getKey();
-      if (permissionService.hasAtLeaseOnePermissionOnApp(ivyApplication.getName(), IPermission.USER_CREATE_OWN_SUBSTITUTE, IPermission.USER_CREATE_SUBSTITUTE)){
-        TreeNode appNode =
-            new DefaultTreeNode(new SubstituteNode(ivyApplication.getDisplayName(), null, false, ivyApplication.getName()), substituteRoot);
-        appNode.setExpanded(true);
-  
-        for (int i = 0; i < entry.getValue().size(); i++) {
-          createSubstituteNode(appNode, entry.getValue().get(i), ivyApplication.getName()).setRowKey("node_" + i);
+    if (MapUtils.isNotEmpty(ivySubtitutesByApp)) {
+      PermissionCheckerService permissionService = new PermissionCheckerService();
+      for (Map.Entry<IvyApplication,List<IvySubstitute>> entry : ivySubtitutesByApp.entrySet()) {
+        IvyApplication ivyApplication = entry.getKey();
+        if (permissionService.hasAtLeaseOnePermissionOnApp(ivyApplication.getName(), IPermission.USER_CREATE_OWN_SUBSTITUTE, IPermission.USER_CREATE_SUBSTITUTE)){
+          TreeNode appNode =
+              new DefaultTreeNode(new SubstituteNode(ivyApplication.getDisplayName(), null, false, ivyApplication.getName()), substituteRoot);
+          appNode.setExpanded(true);
+
+          for (int i = 0; i < entry.getValue().size(); i++) {
+            createSubstituteNode(appNode, entry.getValue().get(i), ivyApplication.getName()).setRowKey("node_" + i);
+          }
         }
       }
     }
