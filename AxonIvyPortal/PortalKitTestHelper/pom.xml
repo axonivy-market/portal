@@ -17,19 +17,8 @@
         <checksumPolicy>warn</checksumPolicy>
       </releases>
       <name>Axonivy Repo</name>
-      <id>release-repo</id>
-      <url>http://repo.axonivy.com/artifactory/libs-release/</url>
-      <layout>default</layout>
-    </repository>
-    <repository>
-      <snapshots>
-        <enabled>true</enabled>
-        <updatePolicy>never</updatePolicy>
-        <checksumPolicy>fail</checksumPolicy>
-      </snapshots>
-      <name>Axonivy Repo</name>
-      <id>snapshots-repo</id>
-      <url>http://repo.axonivy.com/artifactory/libs-snapshot/</url>
+      <id>maven.axonivy.com</id>
+      <url>https://maven.axonivy.com/</url>
       <layout>default</layout>
     </repository>
   </repositories>
