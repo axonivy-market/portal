@@ -29,7 +29,7 @@
   <c:set var="showSeparator" value="#{renderDestroyAction or showAdditionalCaseDetails or showOpenCaseDetail or showProcessOverview or showProcessViewer}"/>
 
   <p:link id="#{cc.attrs.actionLinkId}" onclick="event.stopPropagation(); return false;"
-    styleClass="#{cc.attrs.actionLinkStyleClass} #{cc.attrs.taskId} action-link portal-icon" disabled="#{cc.attrs.readOnly or cc.attrs.isPreviewMode}">
+    styleClass="#{cc.attrs.taskId} action-link portal-icon" disabled="#{cc.attrs.readOnly or cc.attrs.isPreviewMode}">
     <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}" styleClass="task-action-item-label" />
     <i class="si si-arrow-down-1" />
   </p:link>
