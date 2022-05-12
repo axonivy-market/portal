@@ -38,12 +38,14 @@ public class AbsenceService implements IAbsenceService {
   public IvyAbsenceResultDTO findAbsences(String username, List<String> apps) {
     return IvyExecutor.executeAsSystem(() -> { 
       IvyAbsenceResultDTO result = new IvyAbsenceResultDTO();
+      Map<String, Set<IvyAbsence>> ivyAbsencesByUser = new HashMap<>();
+      result.setIvyAbsencesByUser(ivyAbsencesByUser);
       if (CollectionUtils.isEmpty(apps)) {
+        Ivy.log().error("TEST findAbsences apps is " + (apps == null ? "null" : apps.size()));
         return result;
       }
 
       List<PortalIvyDataException> errors = new ArrayList<>();
-      Map<String, Set<IvyAbsence>> ivyAbsencesByUser = new HashMap<>();
       apps.forEach(app -> { 
         try {
           IApplication application = ServiceUtilities.findApp(app);
@@ -71,7 +73,8 @@ public class AbsenceService implements IAbsenceService {
         }
       });
       result.setErrors(errors);
-      result.setIvyAbsencesByUser(ivyAbsencesByUser);
+      //result.setIvyAbsencesByUser(ivyAbsencesByUser);
+      Ivy.log().error("TEST findAbsences ivyAbsencesByUser is " + (ivyAbsencesByUser == null ? "null" : ivyAbsencesByUser.size()));
       return result;
     });
   }
