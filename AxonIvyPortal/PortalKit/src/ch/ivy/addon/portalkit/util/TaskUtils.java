@@ -12,6 +12,7 @@ import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivy.addon.portalkit.publicapi.TaskAPI;
+import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.ISecurityContext;
@@ -53,7 +54,7 @@ public final class TaskUtils {
         iWorkflowSession.parkTask(task);
         return null;
       } finally {
-        if (iWorkflowSession != null && !Objects.equals(Ivy.wf().getApplication(), task.getApplication())) {
+        if (iWorkflowSession != null && !Objects.equals(IApplication.current(), task.getApplication())) {
           ISecurityContext securityContext = task.getApplication().getSecurityContext();
           securityContext.destroySession(iWorkflowSession.getIdentifier());
         }

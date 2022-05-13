@@ -189,7 +189,7 @@ public class ServiceUtilities {
   }
 
   public static IWorkflowSession findUserWorkflowSession(String username, IApplication app) {
-    if (Objects.equals(Ivy.wf().getApplication(), app)) {
+    if (Objects.equals(IApplication.current(), app)) {
       return Ivy.session();
     }
 
@@ -276,7 +276,7 @@ public class ServiceUtilities {
   }
 
   public static SecurityMemberDTO findSecurityMemberByName(String securityMemberName) {
-    IApplication app = Ivy.wf().getApplication();
+    IApplication app = IApplication.current();
     SecurityMemberDTO member = null;
     if (securityMemberName.startsWith("#")) {
       member = findSecurityUserByName(securityMemberName.replace("#", ""), app);

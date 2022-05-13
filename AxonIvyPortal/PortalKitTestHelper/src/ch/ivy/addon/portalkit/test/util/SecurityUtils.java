@@ -284,7 +284,7 @@ public class SecurityUtils {
   }
 
   private static void updatePermissionsOfAdminUser() {
-    IApplication application = Ivy.wf().getApplication();
+    IApplication application = IApplication.current();
     IUser admin = application.getSecurityContext().findUser("admin");
 
     if (admin != null) {
@@ -300,7 +300,7 @@ public class SecurityUtils {
   }
 
   private static void updatePermissionsOfDemoUser() {
-    IApplication application = Ivy.wf().getApplication();
+    IApplication application = IApplication.current();
     IUser demo = application.getSecurityContext().findUser("demo");
     for (IPermission iPermission : DEMO_DENIED_PERMISSIONS) {
       application.getSecurityDescriptor().denyPermission(iPermission, demo);

@@ -12,7 +12,7 @@ public class PermissionCheckerService {
 
   public boolean hasPermission(IPermission permission) {
     IWorkflowSession currentSession = Ivy.session();
-    ISecurityDescriptor applicationSecurityDescriptor = Ivy.wf().getApplication().getSecurityDescriptor();
+    ISecurityDescriptor applicationSecurityDescriptor = IApplication.current().getSecurityDescriptor();
     return currentSession.hasPermission(applicationSecurityDescriptor, permission);
   }
 

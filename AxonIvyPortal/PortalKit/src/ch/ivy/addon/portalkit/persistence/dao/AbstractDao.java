@@ -24,7 +24,7 @@ public abstract class AbstractDao<T extends BusinessEntity> {
   }
 
   public AbstractDao() {
-    this.ivyApplication = Ivy.wf().getApplication();
+    this.ivyApplication = IApplication.current();
   }
 
   /**

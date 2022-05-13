@@ -5,6 +5,7 @@ import static org.apache.commons.lang.StringUtils.isNotEmpty;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
+import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.persistence.PersistencyException;
 
@@ -25,7 +26,7 @@ public class ServerInformation {
 
   private String getActiveEnvironment() {
     try {
-      String activeEnvironment = Ivy.wf().getApplication().getActiveEnvironment();
+      String activeEnvironment = IApplication.current().getActiveEnvironment();
       if (isNotEmpty(activeEnvironment)) {
         return activeEnvironment;
       }

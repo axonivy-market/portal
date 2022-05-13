@@ -12,6 +12,7 @@ import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.enums.PortalPermissionGroup;
 import ch.ivy.addon.portalkit.loader.PortalSettingLoader;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
+import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.eventstart.AbstractProcessStartEventBean;
 import ch.ivyteam.ivy.process.eventstart.IProcessStartEventBeanRuntime;
@@ -147,7 +148,7 @@ public class PortalPermissionInitBean extends AbstractProcessStartEventBean {
 
   private IPermissionGroup createPortalPermissionGroup() {
     IPermissionGroup rootGroup =
-        Ivy.wf().getApplication().getSecurityDescriptor().getSecurityDescriptorType().getRootPermissionGroup();
+        IApplication.current().getSecurityDescriptor().getSecurityDescriptorType().getRootPermissionGroup();
     return createPermissionsGroup(rootGroup, PortalPermissionGroup.PORTAL_PERMISSION_GROUP);
   }
 

@@ -265,7 +265,7 @@ public class AbstractDaoTest {
     IWorkflowContext workflowContext = mock(IWorkflowContext.class);
     IApplication iApplication = mock(IApplication.class);
     when(Ivy.wf()).thenReturn(workflowContext);
-    when(workflowContext.getApplication()).thenReturn(iApplication);
+    when(IApplication.current()).thenReturn(iApplication);
     
     AbstractDao<BusinessEntity> abstractDao = new AbstractDao<BusinessEntity>() {};
     

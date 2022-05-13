@@ -34,6 +34,7 @@ import ch.ivy.addon.portalkit.service.IvyCacheService;
 import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
+import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.TaskState;
@@ -211,7 +212,7 @@ public class UserMenuBean implements Serializable {
   }
 
   private boolean isDefaultPortalApp() {
-    return PortalConstants.PORTAL_APPLICATION_NAME.equals(Ivy.wf().getApplication().getName());
+    return PortalConstants.PORTAL_APPLICATION_NAME.equals(IApplication.current().getName());
   }
   
   private long getDefaultClientSideTimeout() {

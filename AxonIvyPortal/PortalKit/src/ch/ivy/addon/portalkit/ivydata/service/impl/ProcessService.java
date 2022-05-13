@@ -53,7 +53,7 @@ public class ProcessService implements IProcessService {
           Ivy.log().error("Error in getting processes of user {0} within app {1}", ex, criteria.getUsername(), app);
           errors.add(new PortalIvyDataException(app, PortalIvyDataErrorType.FAIL_TO_LOAD_PROCESS.toString()));
         } finally {
-          if (session != null && application != null && !Objects.equals(Ivy.wf().getApplication(), application)) {
+          if (session != null && application != null && !Objects.equals(IApplication.current(), application)) {
             ISecurityContext securityContext = application.getSecurityContext();
             securityContext.destroySession(session.getIdentifier());
           }
