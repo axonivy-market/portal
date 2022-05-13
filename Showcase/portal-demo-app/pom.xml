@@ -7,35 +7,19 @@
   <packaging>pom</packaging>
   <distributionManagement>
     <repository>
-      <id>repo.axonivy.io</id>
-      <url>https://repo.axonivy.io/artifactory/ext-release-local/</url>
+      <id>nexus.axonivy.com</id>
+      <url>https://nexus.axonivy.com/repository/maven-releases/</url>
     </repository>
     <snapshotRepository>
-      <id>repo.axonivy.io</id>
-      <url>https://repo.axonivy.io/artifactory/ext-snapshot-local/</url>
+      <id>nexus.axonivy.com</id>
+      <url>https://nexus.axonivy.com/repository/maven-snapshots/</url>
     </snapshotRepository>
   </distributionManagement>
   <repositories>
     <repository>
-      <releases>
-        <enabled>true</enabled>
-        <updatePolicy>always</updatePolicy>
-        <checksumPolicy>warn</checksumPolicy>
-      </releases>
       <name>Axonivy Repo</name>
-      <id>release-repo</id>
-      <url>http://repo.axonivy.com/artifactory/libs-release/</url>
-      <layout>default</layout>
-    </repository>
-    <repository>
-      <snapshots>
-        <enabled>true</enabled>
-        <updatePolicy>never</updatePolicy>
-        <checksumPolicy>fail</checksumPolicy>
-      </snapshots>
-      <name>Axonivy Repo</name>
-      <id>snapshots-repo</id>
-      <url>http://repo.axonivy.com/artifactory/libs-snapshot/</url>
+      <id>maven.axonivy.com</id>
+      <url>https://maven.axonivy.com/</url>
       <layout>default</layout>
     </repository>
   </repositories>

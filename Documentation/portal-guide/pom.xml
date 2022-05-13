@@ -106,6 +106,13 @@
 
   <repositories>
     <repository>
+      <name>Axonivy Repo</name>
+      <id>maven.axonivy.com</id>
+      <url>https://maven.axonivy.com/</url>
+      <layout>default</layout>
+    </repository>
+
+    <repository>
       <id>portal.release</id>
       <url>https://repo.axonivy.io/artifactory/ext-release-local</url>
       <releases>
