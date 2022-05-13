@@ -38,6 +38,7 @@ import ch.ivyteam.ivy.workflow.category.CategoryTree;
 import ch.ivyteam.ivy.workflow.internal.WorkflowManager;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
+@SuppressWarnings("restriction")
 public class CaseService implements ICaseService {
 
   private CaseService() {
@@ -118,7 +119,6 @@ public class CaseService implements ICaseService {
     return caseQuery;
   }
   
-  @SuppressWarnings("restriction")
   @Override
   public IvyCaseResultDTO findCategoriesByCriteria(CaseCategorySearchCriteria criteria) {
     return IvyExecutor.executeAsSystem(() -> {

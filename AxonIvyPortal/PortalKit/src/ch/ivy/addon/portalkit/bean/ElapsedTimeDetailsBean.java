@@ -14,6 +14,7 @@ import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
 import ch.ivy.addon.portalkit.service.StatisticService;
 import ch.ivy.addon.portalkit.statistics.StatisticChart;
 import ch.ivy.addon.portalkit.statistics.StatisticChartConstants;
+import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
 
 @ManagedBean
@@ -31,7 +32,7 @@ public class ElapsedTimeDetailsBean implements Serializable {
   public void initialize(String caseCategory, StatisticChart statisticChart) {
     setSelectedCaseCategory(caseCategory);
     String currentLanguage =
-        LanguageService.newInstance().findUserLanguages(Ivy.session().getSessionUserName(), Arrays.asList(Ivy.wf().getApplication().getName())).getIvyLanguages().get(0).getUserLanguage();
+        LanguageService.newInstance().findUserLanguages(Ivy.session().getSessionUserName(), Arrays.asList(IApplication.current().getName())).getIvyLanguages().get(0).getUserLanguage();
     chartName = CollectionUtils.emptyIfNull(statisticChart.getNames()).stream()
         .filter(name -> StatisticService.equalsDisplayNameLocale(name, currentLanguage))
         .map(DisplayName::getValue)

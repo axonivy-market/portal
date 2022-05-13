@@ -35,6 +35,7 @@ import ch.ivy.addon.portalkit.service.UserProcessService;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
+import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
 
 @ManagedBean
@@ -128,7 +129,7 @@ private static final long serialVersionUID = -5889375917550618261L;
     return IvyExecutor.executeAsSystem(() -> {
       List<String> languages = new ArrayList<>();
       IvyLanguageResultDTO ivyLanguageResult = LanguageService.newInstance()
-          .findUserLanguages(Ivy.session().getSessionUserName(), Arrays.asList(Ivy.wf().getApplication().getName()));
+          .findUserLanguages(Ivy.session().getSessionUserName(), Arrays.asList(IApplication.current().getName()));
       if (CollectionUtils.isNotEmpty(ivyLanguageResult.getIvyLanguages())) {
         languages = ivyLanguageResult.getIvyLanguages().get(0).getSupportedLanguages();
       }
@@ -372,7 +373,7 @@ private static final long serialVersionUID = -5889375917550618261L;
 
   private Locale getApplicationDefaultLanguage() {
     return IvyExecutor.executeAsSystem(() -> {
-      return Ivy.wf().getApplication().getDefaultEMailLanguage();
+      return IApplication.current().getDefaultEMailLanguage();
     });
   }
 }

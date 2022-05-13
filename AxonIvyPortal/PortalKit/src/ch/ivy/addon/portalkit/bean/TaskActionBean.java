@@ -24,6 +24,7 @@ import ch.ivy.addon.portalkit.support.UrlDetector;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
+import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.request.RequestUriFactory;
 import ch.ivyteam.ivy.security.IPermission;
@@ -115,7 +116,7 @@ public class TaskActionBean implements Serializable {
       session = ServiceUtilities.findUserWorkflowSession(Ivy.session().getSessionUserName(), task.getApplication());
       return task.canUserResumeTask(session).wasSuccessful();
     } finally {
-      if (session != null && !Objects.equals(Ivy.wf().getApplication(), task.getApplication())) {
+      if (session != null && !Objects.equals(IApplication.current(), task.getApplication())) {
         ISecurityContext securityContext = task.getApplication().getSecurityContext();
         securityContext.destroySession(session.getIdentifier());
       }

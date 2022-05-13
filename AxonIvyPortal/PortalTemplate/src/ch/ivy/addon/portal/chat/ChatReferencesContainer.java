@@ -32,7 +32,7 @@ public final class ChatReferencesContainer {
   }
 
   public static IApplication getApplication() {
-    return wf().getApplication();
+    return IApplication.current();
   }
 
 

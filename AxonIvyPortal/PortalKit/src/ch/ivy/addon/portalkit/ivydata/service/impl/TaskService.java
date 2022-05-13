@@ -37,6 +37,7 @@ import ch.ivyteam.ivy.workflow.internal.WorkflowManager;
 import ch.ivyteam.ivy.workflow.query.ITaskQueryExecutor;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
+@SuppressWarnings("restriction")
 public class TaskService implements ITaskService {
 
   private TaskService() {
@@ -116,7 +117,6 @@ public class TaskService implements ITaskService {
     return TaskQuery.create().where().customField().stringField(AdditionalProperty.HIDE.toString()).isNull();
   }
 
-  @SuppressWarnings("restriction")
   @Override
   public IvyTaskResultDTO findCategoriesByCriteria(TaskCategorySearchCriteria criteria) { 
     return IvyExecutor.executeAsSystem(() -> {

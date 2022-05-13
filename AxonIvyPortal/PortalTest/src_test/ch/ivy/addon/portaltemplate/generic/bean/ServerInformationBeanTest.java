@@ -34,7 +34,7 @@ public class ServerInformationBeanTest {
     IWorkflowContext workflowContext = mock(IWorkflowContext.class);
     mockStatic(Ivy.class);
     when(Ivy.wf()).thenReturn(workflowContext);
-    when(workflowContext.getApplication()).thenReturn(application);
+    when(IApplication.current()).thenReturn(application);
     when(application.getActiveEnvironment()).thenReturn(StringUtils.EMPTY);
     ServerInformationBean informationBean = new ServerInformationBean();
     assertEquals("Default", informationBean.getEnvironment());
@@ -47,7 +47,7 @@ public class ServerInformationBeanTest {
     IWorkflowContext workflowContext = mock(IWorkflowContext.class);
     mockStatic(Ivy.class);
     when(Ivy.wf()).thenReturn(workflowContext);
-    when(workflowContext.getApplication()).thenReturn(application);
+    when(IApplication.current()).thenReturn(application);
     when(application.getActiveEnvironment()).thenReturn("Server");
     assertEquals("Server", informationBean.getEnvironment());
   }
