@@ -1,6 +1,7 @@
 package com.axonivy.portal.selenium.test;
 
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
+import static com.codeborne.selenide.Condition.text;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -25,6 +26,7 @@ public class BehaviourWhenClickingOnTaskLineTest extends BaseTest {
   private static final String ACCESS_TASK_DETAILS = "ACCESS_TASK_DETAILS";
   private static final String TASK_MATERNITY_LEAVE_REQUEST = "Maternity Leave Request";
   private static final String CASE_LEAVE_REQUEST = "Leave Request";
+  private static final String IN_PROGRESS = "In progress";
   private TaskWidgetPage taskWidgetPage;
   private TaskDetailsPage taskDetailsPage;
   private NewDashboardPage newDashboardPage;
@@ -105,5 +107,20 @@ public class BehaviourWhenClickingOnTaskLineTest extends BaseTest {
     TaskWidgetNewDashBoardPage taskWidgetNewDashBoardPage = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
     taskWidgetNewDashBoardPage.openTask(TASK_MATERNITY_LEAVE_REQUEST);
     taskDetailsPage.getInformationPanel().should(Condition.appear);
+  }
+
+  @Test
+  public void testOpenTaskDetailsWhenClickingOnStartTaskInNewDashboard() {
+    updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), ACCESS_TASK_DETAILS);
+    login(TestAccount.DEMO_USER);
+    redirectToRelativeLink(createTestingTasksUrl);
+    redirectToNewDashBoard();
+    TaskWidgetNewDashBoardPage taskWidgetNewDashBoardPage = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
+    taskWidgetNewDashBoardPage.openFilterWidget();
+    taskWidgetNewDashBoardPage.filterTaskName(TASK_MATERNITY_LEAVE_REQUEST);
+    taskWidgetNewDashBoardPage.applyFilter();
+    taskWidgetNewDashBoardPage.startFirstTaskAndWaitShowHomePageButton();
+    taskWidgetNewDashBoardPage.clickCancelTask();
+    taskWidgetNewDashBoardPage.stateOfFirstTask().shouldHave(text(IN_PROGRESS));
   }
 }
