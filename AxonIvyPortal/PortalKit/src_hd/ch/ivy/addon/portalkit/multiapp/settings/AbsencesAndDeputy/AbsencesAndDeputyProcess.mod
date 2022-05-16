@@ -1381,8 +1381,7 @@ As0 f75 456 330 112 44 -27 -8 #rect
 As0 f75 @|StepIcon #fIcon
 As0 f93 actionTable 'out=in;
 ' #txt
-As0 f93 actionCode 'import ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence;
-import ch.ivy.addon.portalkit.util.Dates;
+As0 f93 actionCode 'import ch.ivy.addon.portalkit.util.Dates;
 
 java.util.Date endOfDate = Dates.toEndOfDate(in.selectedAbsence.getUntil());
 in.selectedAbsence.setUntil(endOfDate);
@@ -1493,8 +1492,7 @@ As0 f151 109 64 168 64 #arcP
 As0 f58 280 64 339 64 #arcP
 As0 f153 actionTable 'out=in;
 ' #txt
-As0 f153 actionCode 'import ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence;
-import ch.ivy.addon.portalkit.util.Dates;
+As0 f153 actionCode 'import ch.ivy.addon.portalkit.util.Dates;
 
 java.util.Date endOfDate = Dates.toEndOfDate(in.selectedAbsence.getUntil());
 in.selectedAbsence.setUntil(endOfDate);' #txt
