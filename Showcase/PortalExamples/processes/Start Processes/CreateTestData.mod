@@ -70,6 +70,16 @@ Cs0 @PushWFArc f63 '' #zField
 Cs0 @PushWFArc f62 '' #zField
 Cs0 @PushWFArc f39 '' #zField
 Cs0 @PushWFArc f60 '' #zField
+Cs0 @StartRequest f25 '' #zField
+Cs0 @EndTask f26 '' #zField
+Cs0 @TaskSwitch f27 '' #zField
+Cs0 @TaskSwitch f28 '' #zField
+Cs0 @StartRequest f29 '' #zField
+Cs0 @EndTask f30 '' #zField
+Cs0 @TkArc f31 '' #zField
+Cs0 @TkArc f32 '' #zField
+Cs0 @PushWFArc f33 '' #zField
+Cs0 @PushWFArc f34 '' #zField
 >Proto Cs0 Cs0 CreateTestData #zField
 Ct0 @TextInP .type .type #zField
 Ct0 @TextInP .processKind .processKind #zField
@@ -660,6 +670,72 @@ Cs0 f39 224 816 276 896 #arcP
 Cs0 f39 1 224 896 #addKink
 Cs0 f39 1 0.7917182054721094 0 0 #arcLabel
 Cs0 f60 111 800 208 800 #arcP
+Cs0 f25 outLink createTaskForEmployeeA.ivp #txt
+Cs0 f25 inParamDecl '<> param;' #txt
+Cs0 f25 requestEnabled true #txt
+Cs0 f25 triggerEnabled false #txt
+Cs0 f25 callSignature createTaskForEmployeeA() #txt
+Cs0 f25 startName 'Create Task For Employee A' #txt
+Cs0 f25 caseData businessCase.attach=true #txt
+Cs0 f25 showInStartList 1 #txt
+Cs0 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>createTaskForEmployeeA.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f25 @C|.responsibility Everybody #txt
+Cs0 f25 81 977 30 30 -21 17 #rect
+Cs0 f25 @|StartRequestIcon #fIcon
+Cs0 f26 433 977 30 30 0 15 #rect
+Cs0 f26 @|EndIcon #fIcon
+Cs0 f27 actionTable 'out=in1;
+' #txt
+Cs0 f27 outLinks "TaskA.ivp" #txt
+Cs0 f27 caseData 'case.name=Case for employee Carol Danver
+customFields.NUMBER.employeeId=2' #txt
+Cs0 f27 taskData 'TaskA.NAM=Task for employee Carol Danver' #txt
+Cs0 f27 240 1096 32 32 0 16 #rect
+Cs0 f27 @|TaskSwitchIcon #fIcon
+Cs0 f28 actionTable 'out=in1;
+' #txt
+Cs0 f28 outLinks "TaskA.ivp" #txt
+Cs0 f28 caseData 'case.name=Case for Employee Peter Parker
+customFields.NUMBER.employeeId=1' #txt
+Cs0 f28 taskData 'TaskA.NAM=Task for Employee Peter Parker' #txt
+Cs0 f28 240 976 32 32 0 16 #rect
+Cs0 f28 @|TaskSwitchIcon #fIcon
+Cs0 f29 outLink createTaskForEmployeeB.ivp #txt
+Cs0 f29 inParamDecl '<> param;' #txt
+Cs0 f29 requestEnabled true #txt
+Cs0 f29 triggerEnabled false #txt
+Cs0 f29 callSignature createTaskForEmployeeB() #txt
+Cs0 f29 startName 'Create Task For Employee B' #txt
+Cs0 f29 caseData businessCase.attach=true #txt
+Cs0 f29 showInStartList 1 #txt
+Cs0 f29 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>createTaskForEmployeeB.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f29 @C|.responsibility Everybody #txt
+Cs0 f29 81 1097 30 30 -21 17 #rect
+Cs0 f29 @|StartRequestIcon #fIcon
+Cs0 f30 433 1097 30 30 0 15 #rect
+Cs0 f30 @|EndIcon #fIcon
+Cs0 f31 var in1 #txt
+Cs0 f31 111 1112 240 1112 #arcP
+Cs0 f32 var in1 #txt
+Cs0 f32 111 992 240 992 #arcP
+Cs0 f33 expr data #txt
+Cs0 f33 outCond ivp=="TaskA.ivp" #txt
+Cs0 f33 272 992 433 992 #arcP
+Cs0 f34 expr data #txt
+Cs0 f34 outCond ivp=="TaskA.ivp" #txt
+Cs0 f34 272 1112 433 1112 #arcP
 >Proto Cs0 .type ch.ivyteam.ivy.project.portal.examples.Data #txt
 >Proto Cs0 .processKind NORMAL #txt
 >Proto Cs0 0 0 32 24 18 0 #rect
@@ -891,6 +967,14 @@ Cs0 f68 mainOut f62 tail #connect
 Cs0 f62 head S30 g2 #connect
 Cs0 f51 out f63 tail #connect
 Cs0 f63 head S20 g2 #connect
+Cs0 f25 mainOut f32 tail #connect
+Cs0 f32 head f28 in #connect
+Cs0 f28 out f33 tail #connect
+Cs0 f33 head f26 mainIn #connect
+Cs0 f29 mainOut f31 tail #connect
+Cs0 f31 head f27 in #connect
+Cs0 f27 out f34 tail #connect
+Cs0 f34 head f30 mainIn #connect
 Ct0 f2 mainOut f0 tail #connect
 Ct0 f0 head f63 in #connect
 Ct0 g2 m f4 tail #connect

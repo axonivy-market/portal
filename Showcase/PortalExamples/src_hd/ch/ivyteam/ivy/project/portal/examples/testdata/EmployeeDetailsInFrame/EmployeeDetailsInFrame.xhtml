@@ -1,0 +1,44 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:ic="http://ivyteam.ch/jsf/component"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+<h:body>
+	<ui:composition template="/layouts/frame-8.xhtml">
+		<ui:define name="title">Employee Details In Frame</ui:define>
+		<ui:define name="content">
+			<div class="ui-g">
+				<div class="ui-g-2">
+					<h:outputLabel value="ID" for="id" />
+				</div>
+				<div class="ui-g-4">
+					<h:outputText id="id" value="#{data.employee.id}" />
+				</div>
+				<div class="ui-g-2">
+					<h:outputLabel value="City" for="city" />
+				</div>
+				<div class="ui-g-4">
+					<h:outputText id="city" value="#{data.employee.city}" />
+				</div>
+				<div class="ui-g-2">
+					<h:outputLabel value="First Name" for="first-name" />
+				</div>
+				<div class="ui-g-4">
+					<h:outputText id="first-name" value="#{data.employee.firstName}" />
+				</div>
+				<div class="ui-g-2">
+					<h:outputLabel value="Last Name" for="last-name" />
+				</div>
+				<div class="ui-g-4">
+					<h:outputText id="last-name" value="#{data.employee.lastName}" />
+				</div>
+			</div>
+			<script>
+				window.caseId = "#{employeeDetailsBean.findCaseByEmployeeId(data.employee.id).getId()}";
+			</script>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>
