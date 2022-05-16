@@ -235,7 +235,7 @@
       "visual" : {
         "at" : { "x" : 1144, "y" : 592 }
       },
-      "connect" : { "id" : "f58", "to" : "f47", "via" : [ { "x" : 1248, "y" : 592 } ] }
+      "connect" : { "id" : "f58", "to" : "f47", "via" : [ { "x" : 1376, "y" : 592 } ] }
     }, {
       "id" : "f98",
       "type" : "Alternative",
@@ -360,7 +360,7 @@
       "visual" : {
         "at" : { "x" : 716, "y" : 320 }
       },
-      "connect" : { "id" : "f50", "to" : "f47", "via" : [ { "x" : 1248, "y" : 320 } ] }
+      "connect" : { "id" : "f50", "to" : "f47", "via" : [ { "x" : 1376, "y" : 320 } ] }
     }, {
       "id" : "f19",
       "type" : "HtmlDialogEnd",
@@ -676,7 +676,7 @@
       "visual" : {
         "at" : { "x" : 336, "y" : 528 }
       },
-      "connect" : { "id" : "f21", "to" : "f121" }
+      "connect" : { "id" : "f67", "to" : "f65" }
     }, {
       "id" : "f121",
       "type" : "Script",
@@ -694,7 +694,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 528, "y" : 528 }
+        "at" : { "x" : 656, "y" : 528 }
       },
       "connect" : { "id" : "f60", "to" : "f28" }
     }, {
@@ -754,7 +754,7 @@
       "id" : "f100",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 1376, "y" : 424 }
+        "at" : { "x" : 1504, "y" : 424 }
       }
     }, {
       "id" : "f45",
@@ -1025,7 +1025,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 1248, "y" : 424 }
+        "at" : { "x" : 1376, "y" : 424 }
       },
       "connect" : { "id" : "f18", "to" : "f100" }
     }, {
@@ -1051,9 +1051,9 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 716, "y" : 528 }
+        "at" : { "x" : 844, "y" : 528 }
       },
-      "connect" : { "id" : "f27", "to" : "f47", "via" : [ { "x" : 1248, "y" : 528 } ] }
+      "connect" : { "id" : "f27", "to" : "f47", "via" : [ { "x" : 1376, "y" : 528 } ] }
     }, {
       "id" : "f66",
       "type" : "HtmlDialogMethodStart",
@@ -1267,5 +1267,27 @@
         "at" : { "x" : 336, "y" : 424 }
       },
       "connect" : { "id" : "f64", "to" : "f101" }
+    }, {
+      "id" : "f65",
+      "type" : "Script",
+      "name" : [
+        "Set end date",
+        "to selected absence"
+      ],
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.util.Dates;",
+            "",
+            "java.util.Date endOfDate = Dates.toEndOfDate(in.selectedAbsence.getUntil());",
+            "in.selectedAbsence.setUntil(endOfDate);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 496, "y" : 528 },
+        "size" : { "width" : 144, "height" : 44 }
+      },
+      "connect" : { "id" : "f21", "to" : "f121" }
     } ]
 }
