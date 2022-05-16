@@ -1,0 +1,8 @@
+EmployeeDetailsInFrameData #class
+ch.ivyteam.ivy.project.portal.examples.testdata.EmployeeDetailsInFrame #namespace
+employee ch.ivyteam.ivy.project.portal.examples.Employee #field
+employee PERSISTENT #fieldModifier
+employeeId Integer #field
+employeeId PERSISTENT #fieldModifier
+foundCase ch.ivyteam.ivy.workflow.ICase #field
+foundCase PERSISTENT #fieldModifier
