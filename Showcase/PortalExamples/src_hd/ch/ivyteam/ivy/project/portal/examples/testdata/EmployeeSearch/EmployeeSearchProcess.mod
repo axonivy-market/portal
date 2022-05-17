@@ -14,9 +14,6 @@ Es0 @UdProcessEnd f1 '' #zField
 Es0 @UdEvent f3 '' #zField
 Es0 @UdExitEnd f4 '' #zField
 Es0 @PushWFArc f5 '' #zField
-Es0 @GridStep f7 '' #zField
-Es0 @UdMethod f6 '' #zField
-Es0 @PushWFArc f8 '' #zField
 Es0 @GridStep f9 '' #zField
 Es0 @PushWFArc f10 '' #zField
 Es0 @PushWFArc f2 '' #zField
@@ -27,7 +24,9 @@ Es0 @PushWFArc f13 '' #zField
 Es0 f0 guid 180B2268AD0E2F01 #txt
 Es0 f0 method start() #txt
 Es0 f0 inParameterDecl '<> param;' #txt
-Es0 f0 outParameterDecl '<> result;' #txt
+Es0 f0 outParameterDecl '<Integer employeeId> result;' #txt
+Es0 f0 outParameterMapAction 'result.employeeId=in.employeeId;
+' #txt
 Es0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -54,43 +53,6 @@ Es0 f3 @|UdEventIcon #fIcon
 Es0 f4 211 147 26 26 0 12 #rect
 Es0 f4 @|UdExitEndIcon #fIcon
 Es0 f5 109 160 211 160 #arcP
-Es0 f7 actionTable 'out=in;
-' #txt
-Es0 f7 actionCode 'import ch.ivy.addon.portalkit.util.RequestUtil;
-import org.primefaces.PrimeFaces;
-import javax.faces.context.FacesContext;
-import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
-
-String requestPath = "Start Processes/CustomCaseInfomationForTaskTemplate/employeeDetails.ivp";
-String url = ProcessStartAPI.findLinkByFriendlyRequestPath(ivy.request.getApplication(), requestPath);
-RequestUtil.redirect(String.format("%s?%s=%s&%s", url, "employeeId", in.employeeId, "&embedInFrame"));
-
-' #txt
-Es0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>redirect</name>
-    </language>
-</elementInfo>
-' #txt
-Es0 f7 168 234 112 44 -20 -8 #rect
-Es0 f7 @|StepIcon #fIcon
-Es0 f6 guid 180B22BCD95F1050 #txt
-Es0 f6 method edit(Integer) #txt
-Es0 f6 inParameterDecl '<Integer employeeId> param;' #txt
-Es0 f6 inParameterMapAction 'out.employeeId=param.employeeId;
-' #txt
-Es0 f6 outParameterDecl '<> result;' #txt
-Es0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>edit(Integer)</name>
-    </language>
-</elementInfo>
-' #txt
-Es0 f6 83 243 26 26 -25 15 #rect
-Es0 f6 @|UdMethodIcon #fIcon
-Es0 f8 109 256 168 256 #arcP
 Es0 f9 actionTable 'out=in;
 ' #txt
 Es0 f9 actionCode 'import ch.ivyteam.ivy.project.portal.examples.Employee;
@@ -132,7 +94,7 @@ Es0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Es0 f11 83 339 26 26 -25 15 #rect
+Es0 f11 83 243 26 26 -25 15 #rect
 Es0 f11 @|UdMethodIcon #fIcon
 Es0 f12 actionTable 'out=in;
 ' #txt
@@ -153,17 +115,15 @@ Es0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Es0 f12 168 330 112 44 -20 -8 #rect
+Es0 f12 168 234 112 44 -20 -8 #rect
 Es0 f12 @|StepIcon #fIcon
-Es0 f13 109 352 168 352 #arcP
+Es0 f13 109 256 168 256 #arcP
 >Proto Es0 .type ch.ivyteam.ivy.project.portal.examples.testdata.EmployeeSearch.EmployeeSearchData #txt
 >Proto Es0 .processKind HTML_DIALOG #txt
 >Proto Es0 -8 -8 16 16 16 26 #rect
 >Proto Es0 '' #fIcon
 Es0 f3 mainOut f5 tail #connect
 Es0 f5 head f4 mainIn #connect
-Es0 f6 mainOut f8 tail #connect
-Es0 f8 head f7 mainIn #connect
 Es0 f0 mainOut f10 tail #connect
 Es0 f10 head f9 mainIn #connect
 Es0 f9 mainOut f2 tail #connect

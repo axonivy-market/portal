@@ -24,9 +24,6 @@
 						<h:outputText value="#{employee.city}" />
 					</p:column>
 					<p:column>
-						<p:commandLink value="Details" actionListener="#{logic.edit(employee.id)}" />
-					</p:column>
-					<p:column>
 						<p:commandLink value="Details in frame" actionListener="#{logic.detailsInFrame(employee.id)}" />
 					</p:column>
 				</p:dataTable>
