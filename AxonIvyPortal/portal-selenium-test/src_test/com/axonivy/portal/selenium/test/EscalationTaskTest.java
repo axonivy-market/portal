@@ -69,6 +69,9 @@ public class EscalationTaskTest extends BaseTest {
     taskWidgetPage.countTasks().shouldHaveSize(1);
     taskWidgetPage.clickOnTaskActionLink(0);
     taskWidgetPage.triggerEscalation();
+    // Try to refresh data
+    refreshPage();
+    taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.filterTasksBy(SICK_LEAVE_REQUEST_ESCALATED);
     assertTrue(taskWidgetPage.getFilterTasksByKeyword().attr("value").equalsIgnoreCase(SICK_LEAVE_REQUEST_ESCALATED));
     assertTrue(taskWidgetPage.getPriorityOfTask().equalsIgnoreCase("high"));
