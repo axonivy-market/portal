@@ -74,12 +74,15 @@
       "name" : "details(Integer)",
       "config" : {
         "callSignature" : "details",
-        "guid" : "180D53D660E46913",
         "input" : {
           "params" : [
             { "name" : "employeeId", "type" : "Integer" }
-          ]
-        }
+          ],
+          "map" : {
+            "out.employeeId" : "param.employeeId"
+          }
+        },
+        "guid" : "180D53D660E46913"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 256 },
