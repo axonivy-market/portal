@@ -19,7 +19,6 @@ import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
 import com.codeborne.selenide.Condition;
 
-@IvyWebTest(headless = false, browser= "FIREFOX")
 public class EscalationTaskTest extends BaseTest {
 
   // WIDGET NAME
