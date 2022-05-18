@@ -6,8 +6,8 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:pe="http://primefaces.org/ui/extensions">
 <h:body>
-	<ui:composition template="/layouts/BasicTemplate.xhtml">
-		<ui:define name="simplePageContent">
+	<ui:composition template="/layouts/frame-8.xhtml">
+		<ui:define name="content">
 			<h:form id="form">
 				<p:messages />
 				<p:dataTable value="#{data.employees}" var="employee">
@@ -24,7 +24,7 @@
 						<h:outputText value="#{employee.city}" />
 					</p:column>
 					<p:column>
-						<p:commandLink value="Details" actionListener="#{logic.details(employee.id)}" />
+						<p:commandLink value="Details in frame" actionListener="#{logic.detailsInFrame(employee.id)}" />
 					</p:column>
 				</p:dataTable>
 				<br />
