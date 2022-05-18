@@ -6,6 +6,8 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.Selenide;
@@ -98,8 +100,13 @@ public class TaskWidgetPage extends TemplatePage {
         taskRowIndex)).waitUntil(Condition.appear, DEFAULT_TIMEOUT).$("span");
   }
   
-  public String getPriorityOfTask() {
-    String priorityClassName = $("span[id$='task-priority']").$("span").$("i").attr("class");
+  public String getPriorityOfTask(int taskIndex) {
+    var priorityClassName = $(String.format("span[id$=':%d:task-item:task-priority-component:task-priority']", taskIndex))
+          .waitUntil(appear, DEFAULT_TIMEOUT)
+          .$("span.priority-icon").$("i.priority").attr("class");
+    if (StringUtils.isBlank(priorityClassName)) {
+      return priorityClassName;
+    }
     if (priorityClassName.contains("low-priority")) {
       return "low";
     } else if (priorityClassName.contains("normal-priority")) {
