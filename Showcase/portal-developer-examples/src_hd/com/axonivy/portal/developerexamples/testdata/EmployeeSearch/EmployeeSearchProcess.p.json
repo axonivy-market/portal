@@ -1,0 +1,111 @@
+{
+  "format" : "9.4.8",
+  "id" : "180D53829FC36BF2",
+  "data" : "com.axonivy.portal.developerexamples.testdata.EmployeeSearch.EmployeeSearchData",
+  "kind" : "HTML_DIALOG",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start()",
+      "config" : {
+        "callSignature" : "start",
+        "guid" : "180D5382A1D18DCC"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : { "id" : "f7", "to" : "f6" }
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "HtmlDialogEventStart",
+      "name" : "close",
+      "config" : {
+        "guid" : "180D5382A232448C"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 160 }
+      },
+      "connect" : { "id" : "f5", "to" : "f4" }
+    }, {
+      "id" : "f4",
+      "type" : "HtmlDialogExit",
+      "visual" : {
+        "at" : { "x" : 224, "y" : 160 }
+      }
+    }, {
+      "id" : "f6",
+      "type" : "Script",
+      "name" : "Init test data",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.developerexamples.Employee;",
+            "",
+            "Employee a = new Employee();",
+            "a.id = 1;",
+            "a.firstName = \"Peter\";",
+            "a.lastName = \"Parker\";",
+            "a.city = \"New York\";",
+            "",
+            "Employee b = new Employee();",
+            "b.id = 2;",
+            "b.firstName = \"Carol\";",
+            "b.lastName = \"Danver\";",
+            "b.city = \"Los Angeles\";",
+            "",
+            "in.employees.add(a);",
+            "in.employees.add(b);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f8",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "details(Integer)",
+      "config" : {
+        "callSignature" : "details",
+        "guid" : "180D53D660E46913",
+        "input" : {
+          "params" : [
+            { "name" : "employeeId", "type" : "Integer" }
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 256 },
+        "labelOffset" : { "x" : -25, "y" : 15 }
+      },
+      "connect" : { "id" : "f10", "to" : "f9" }
+    }, {
+      "id" : "f9",
+      "type" : "Script",
+      "name" : "redirect",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.util.RequestUtil;",
+            "import org.primefaces.PrimeFaces;",
+            "import javax.faces.context.FacesContext;",
+            "import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;",
+            "",
+            "String requestPath = \"Start Processes/CustomCaseInfomationForTaskTemplate/employeeDetails.ivp\";",
+            "String url = ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(requestPath);",
+            "RequestUtil.redirect(String.format(\"%s?%s=%s\", url, \"employeeId\", in.employeeId));"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 256 }
+      }
+    } ]
+}
