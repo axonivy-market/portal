@@ -11,10 +11,6 @@ import ch.ivyteam.ivy.workflow.query.CaseQuery;
 @ManagedBean
 @ViewScoped
 public class EmployeeDetailsBean implements Serializable {
-
-  /**
-   * 
-   */
   private static final long serialVersionUID = 5155631623709862316L;
 
   public ICase findCaseByEmployeeId(Integer employeeId) {
