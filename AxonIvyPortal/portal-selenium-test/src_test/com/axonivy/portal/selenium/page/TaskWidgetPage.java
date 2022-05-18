@@ -77,10 +77,10 @@ public class TaskWidgetPage extends TemplatePage {
   }
   
   public void clickOnTaskActionLink(int taskIndex) {
-    $(String.format("a[id$='task-list-scroller:%d:task-item:task-action:additional-options:task-side-steps-menu']",
-        taskIndex)).waitUntil(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
-    $(String.format("div[id$='task-list-scroller:%d:task-item:task-action:additional-options:side-steps-panel'].ui-connected-overlay-enter-done",
-        taskIndex)).waitUntil(appear, DEFAULT_TIMEOUT);
+    $(String.format("a[id$=':%d:task-item:task-action:additional-options:task-side-steps-menu']", taskIndex))
+      .waitUntil(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    $(String.format("div[id$=':%d:task-item:task-action:additional-options:side-steps-panel']", taskIndex))
+      .waitUntil(appear, DEFAULT_TIMEOUT);
   }
   
   private void openTriggerEscalationDialog() {

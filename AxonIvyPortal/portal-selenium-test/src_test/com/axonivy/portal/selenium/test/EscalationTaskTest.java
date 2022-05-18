@@ -19,6 +19,7 @@ import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
 import com.codeborne.selenide.Condition;
 
+@IvyWebTest
 public class EscalationTaskTest extends BaseTest {
 
   // WIDGET NAME
@@ -65,6 +66,7 @@ public class EscalationTaskTest extends BaseTest {
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.filterTasksBy(SICK_LEAVE_REQUEST);
     assertTrue(taskWidgetPage.getFilterTasksByKeyword().attr("value").equals(SICK_LEAVE_REQUEST));
+    taskWidgetPage.countTasks().shouldHaveSize(1);
     taskWidgetPage.clickOnTaskActionLink(0);
     taskWidgetPage.triggerEscalation();
     taskWidgetPage.filterTasksBy(SICK_LEAVE_REQUEST_ESCALATED);
