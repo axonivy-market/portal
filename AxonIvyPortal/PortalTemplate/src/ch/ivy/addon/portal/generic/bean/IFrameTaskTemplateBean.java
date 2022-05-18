@@ -26,7 +26,9 @@ import ch.ivy.addon.portalkit.util.GrowlMessageUtils;
 import ch.ivyteam.ivy.dialog.execution.api.DialogInstance;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.request.OpenRedirectVulnerabilityUtil;
+import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.ITask;
+import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
 @ManagedBean(name = "iFrameTaskTemplateBean")
 @ViewScoped
@@ -35,6 +37,7 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
   private static final long serialVersionUID = 1L;
   
   public static final String TASK_ID_PARAM = "taskId";
+  public static final String CASE_ID_PARAM = "caseId";
   private static final String URL_PARAM = "url";
   private static final String IS_SHOW_ALL_STEPS_PARAM = "isShowAllSteps";
   private static final String PROCESS_CHAIN_SHAPE_PARAM = "processChainShape";
@@ -61,6 +64,9 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
   private boolean isHideCaseInfo = true;
   private boolean isWorkingOnATask = true;
   private Map<String, Object> overridePortalGrowlMap = new HashMap<>();
+
+  private Integer caseId = null;
+  private ICase caseToDisplay;
   
   private PortalNavigator navigator = new PortalNavigator();
 
@@ -156,7 +162,13 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
     isHideCaseInfo = Optional.ofNullable(requestParamMap.get(IS_HIDE_CASE_INFO)).map(BooleanUtils::toBoolean).orElse(false);
     isHideTaskName = Optional.ofNullable(requestParamMap.get(IS_HIDE_TASK_NAME)).map(BooleanUtils::toBoolean).orElse(false);
     isHideTaskAction = Optional.ofNullable(requestParamMap.get(IS_HIDE_TASK_ACTION)).map(BooleanUtils::toBoolean).orElse(false);
+    caseId = Optional.ofNullable(requestParamMap.get(CASE_ID_PARAM)).map(p -> StringUtils.isNotBlank(p) ? Integer.parseInt(p) : null).orElse(null);
     isWorkingOnATask = Optional.ofNullable(requestParamMap.get(IS_WORKING_ON_A_TASK)).map(p -> StringUtils.isNotBlank(p) ? BooleanUtils.toBoolean(p) : true).get();
+
+    if(caseId != null) {
+      CaseQuery query = CaseQuery.create();
+      caseToDisplay = query.where().caseId().isEqual(caseId).executor().firstResult();
+    }
   }
 
   private Map<String, String> getRequestParameterMap() {
@@ -207,5 +219,13 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
   
   public boolean getIsWorkingOnATask() {
     return isWorkingOnATask;
+  }
+
+  public ICase getCaseToDisplay() {
+    return caseToDisplay;
+  }
+
+  public void setCaseToDisplay(ICase caseToDisplay) {
+    this.caseToDisplay = caseToDisplay;
   }
 }

@@ -1,0 +1,6 @@
+EmployeeSearchData #class
+ch.ivyteam.ivy.project.portal.examples.testdata.EmployeeSearch #namespace
+employees List<ch.ivyteam.ivy.project.portal.examples.Employee> #field
+employees PERSISTENT #fieldModifier
+employeeId Integer #field
+employeeId PERSISTENT #fieldModifier
