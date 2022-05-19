@@ -204,9 +204,6 @@ The parameter ``case`` only accept an object of type ``ICase``, please refer to 
 
    <ui:param name="case" value="#{someBean.getExternalCase()}" /> 
 
-.. _components-layout-templates-task-template-7:
-
-
 Task list template
 ------------------
 
