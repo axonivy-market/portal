@@ -6,6 +6,8 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.Selenide;
@@ -77,10 +79,10 @@ public class TaskWidgetPage extends TemplatePage {
   }
   
   public void clickOnTaskActionLink(int taskIndex) {
-    $(String.format("a[id$='task-list-scroller:%d:task-item:task-action:additional-options:task-side-steps-menu']",
-        taskIndex)).waitUntil(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
-    $(String.format("div[id$='task-list-scroller:%d:task-item:task-action:additional-options:side-steps-panel'].ui-connected-overlay-enter-done",
-        taskIndex)).waitUntil(appear, DEFAULT_TIMEOUT);
+    $(String.format("a[id$=':%d:task-item:task-action:additional-options:task-side-steps-menu']", taskIndex))
+      .waitUntil(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    $(String.format("div[id$=':%d:task-item:task-action:additional-options:side-steps-panel']", taskIndex))
+      .waitUntil(appear, DEFAULT_TIMEOUT);
   }
   
   private void openTriggerEscalationDialog() {
@@ -98,8 +100,13 @@ public class TaskWidgetPage extends TemplatePage {
         taskRowIndex)).waitUntil(Condition.appear, DEFAULT_TIMEOUT).$("span");
   }
   
-  public String getPriorityOfTask() {
-    String priorityClassName = $("span[id$='task-priority']").$("span").$("i").attr("class");
+  public String getPriorityOfTask(int taskIndex) {
+    var priorityClassName = $(String.format("span[id$=':%d:task-item:task-priority-component:task-priority']", taskIndex))
+          .waitUntil(appear, DEFAULT_TIMEOUT)
+          .$("span.priority-icon").$("i.priority").attr("class");
+    if (StringUtils.isBlank(priorityClassName)) {
+      return priorityClassName;
+    }
     if (priorityClassName.contains("low-priority")) {
       return "low";
     } else if (priorityClassName.contains("normal-priority")) {
