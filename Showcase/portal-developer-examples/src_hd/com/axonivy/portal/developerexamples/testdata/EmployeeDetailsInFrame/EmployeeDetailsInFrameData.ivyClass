@@ -1,0 +1,6 @@
+EmployeeDetailsInFrameData #class
+com.axonivy.portal.developerexamples.testdata.EmployeeDetailsInFrame #namespace
+employee com.axonivy.portal.developerexamples.Employee #field
+employee PERSISTENT #fieldModifier
+employeeId Integer #field
+employeeId PERSISTENT #fieldModifier

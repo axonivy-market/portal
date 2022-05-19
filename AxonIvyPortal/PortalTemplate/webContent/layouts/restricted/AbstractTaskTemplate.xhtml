@@ -40,7 +40,7 @@
       <p:growl id="task-template-growl" />
       <div class="task-template-container #{taskTemplateContainerStyleClass}">
       
-        <c:set var="case" value="#{currentTask.getCase().getBusinessCase()}" scope="request" />
+        <c:set var="case" value="#{case ne null ? case : currentTask.getCase().getBusinessCase()}" />
         <c:set var="isSideStepDisabled" value="#{!abstractTaskTemplateBean.checkSideStepsEnabled(case)}" scope="request" />
         <ui:insert name="breadCrumb" />
   
