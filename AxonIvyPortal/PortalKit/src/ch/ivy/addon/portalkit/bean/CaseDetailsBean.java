@@ -134,16 +134,29 @@ public class CaseDetailsBean extends AbstractConfigurableContentBean<CaseDetails
 
   public void handleRowSelectEventOnRelatedTaskList(SelectEvent event) throws IOException {
     ITask task = (ITask) event.getObject();
-    selectedTask = task;
-    handleSelectedTask(task);
+    boolean isInFrame = (boolean) event.getComponent().getAttributes().get("inFrame");
+    handleSelectedTaskInDialog(task, isInFrame);
   }
-
-  public void handleSelectedTask(ITask task) throws IOException {
+  
+  private void handleSelectedTaskInDialog(ITask task, boolean isInFrame) throws IOException {    
+    if(isInFrame) {
+      navigateToSelectedTaskDetails(task);
+    }else {
+      handleSelectedTaskInCaseDetailsList(task);
+    }
+  }
+  
+  private void handleSelectedTaskInCaseDetailsList(ITask task) throws IOException {    
     if (isRunningTaskWhenClickingOnTaskInList) {
-      TaskUtils.handleStartTask(task, PortalPage.CASE_DETAIL_FROM_TASK, "reset-task-confirmation-dialog");
+      handleStartTask(task);
     } else {
       navigateToSelectedTaskDetails(task);
     }
+  }
+  
+  private void handleStartTask(ITask task) throws IOException {
+    selectedTask = task;
+    TaskUtils.handleStartTask(task, PortalPage.CASE_DETAIL_FROM_TASK, "reset-task-confirmation-dialog");
   }
 
   public void navigateToSelectedTaskDetails(ITask task) {
