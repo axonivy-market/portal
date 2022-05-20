@@ -168,7 +168,7 @@ public class DashboardScreenshotTest extends ScreenshotTest {
 
     // Take screenshot of widget filter panel
     newDashboardPage.clickWidgetFilter(0);
-    newDashboardPage.findElementByCssSelector("input[id$=':filter-form-0:search-saved-filter-input']").click();
+    newDashboardPage.clickByCssSelector("input[id$=':filter-form-0:search-saved-filter-input']");
     WebElement taskFilterOverlayPanel = newDashboardPage.getFilterOverlayPanel(0);
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(taskFilterOverlayPanel, ScreenshotUtil.NEW_DASHBOARD_FOLDER + "widget-filter", new ScreenshotMargin(20));
     taskFilterOverlayPanel.findElement(By.className("ui-overlaypanel-footer__cancel")).click();
