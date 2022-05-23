@@ -9,7 +9,7 @@
   fitViewport="true" responsive="true" modal="true" dynamic="true">
   <f:event listener="#{dashboardDetailModificationBean.initSampleWidgets()}" type="preRenderComponent"/>
 
-  <p:dataView id="new-widget-dialog-content" var="sample" value="#{dashboardDetailModificationBean.samples}" columns="1"
+  <p:dataGrid id="new-widget-dialog-content" var="sample" value="#{dashboardDetailModificationBean.samples}" columns="1"
     styleClass="new-widget-dialog__content">
     <p:panel styleClass="new-widget-dialog__item">
       <p:panelGrid columns="3" styleClass="ui-panelgrid-blank">
@@ -27,7 +27,7 @@
           icon="si si-add" onstart="getPortalGridsCurrentRow();"/>
       </p:panelGrid>
     </p:panel>
-  </p:dataView>
+  </p:dataGrid>
   <f:facet name="footer">
     <p:commandButton id="new-widget-close-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
       type="button" onclick="PF('new-widget-dialog').hide()" process="@none" icon="si si-close"
