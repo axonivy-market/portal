@@ -26,9 +26,7 @@ import ch.ivy.addon.portalkit.util.GrowlMessageUtils;
 import ch.ivyteam.ivy.dialog.execution.api.DialogInstance;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.request.OpenRedirectVulnerabilityUtil;
-import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.ITask;
-import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
 @ManagedBean(name = "iFrameTaskTemplateBean")
 @ViewScoped
@@ -66,7 +64,6 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
   private Map<String, Object> overridePortalGrowlMap = new HashMap<>();
 
   private Integer caseId = null;
-  private ICase caseToDisplay;
   
   private PortalNavigator navigator = new PortalNavigator();
 
@@ -164,11 +161,6 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
     isHideTaskAction = Optional.ofNullable(requestParamMap.get(IS_HIDE_TASK_ACTION)).map(BooleanUtils::toBoolean).orElse(false);
     caseId = Optional.ofNullable(requestParamMap.get(CASE_ID_PARAM)).map(p -> StringUtils.isNotBlank(p) ? Integer.parseInt(p) : null).orElse(null);
     isWorkingOnATask = Optional.ofNullable(requestParamMap.get(IS_WORKING_ON_A_TASK)).map(p -> StringUtils.isNotBlank(p) ? BooleanUtils.toBoolean(p) : true).get();
-
-    if(caseId != null) {
-      CaseQuery query = CaseQuery.create();
-      caseToDisplay = query.where().caseId().isEqual(caseId).executor().firstResult();
-    }
   }
 
   private Map<String, String> getRequestParameterMap() {
@@ -221,11 +213,11 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
     return isWorkingOnATask;
   }
 
-  public ICase getCaseToDisplay() {
-    return caseToDisplay;
+  public Integer getCaseId() {
+    return caseId;
   }
 
-  public void setCaseToDisplay(ICase caseToDisplay) {
-    this.caseToDisplay = caseToDisplay;
+  public void setCaseId(Integer caseId) {
+    this.caseId = caseId;
   }
 }
