@@ -1,6 +1,5 @@
 package ch.ivy.addon.portalkit.bean;
 
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
@@ -99,7 +98,7 @@ public class ExpressManagementBean implements Serializable {
     return displayName;
   }
 
-  public void importExpress(FileUploadEvent event) throws IOException {
+  public void importExpress(FileUploadEvent event) {
     importExpressFile = event.getFile();
     validate();
     if (isError) {
@@ -116,7 +115,7 @@ public class ExpressManagementBean implements Serializable {
     return exportExpressFile;
   }
 
-  private void validate() throws IOException {
+  private void validate() {
     isError = false;
     importOutput = StringUtils.EMPTY;
 

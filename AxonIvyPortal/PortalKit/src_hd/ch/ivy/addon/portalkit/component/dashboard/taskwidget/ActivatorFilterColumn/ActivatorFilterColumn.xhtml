@@ -17,7 +17,7 @@
       <p:autoComplete id="responsibles" value="#{cc.attrs.selectedResponsibles}"
         completeMethod="#{cc.attrs.responsibleCompleteMethod}" var="responsible" itemValue="#{responsible}"
         itemLabel="#{responsible.briefDisplayNameWithState}" converter="pojoConverter" cache="true" maxResults="100"
-        multiple="true" moreText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..." scrollHeight="210"
+        multiple="true" moreTextSelect="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..." scrollHeight="210"
         dropdown="true" size="35" dynamic="true" styleClass="task-configuration__responsibles" forceSelection="true">
         <p:column>
           <i class="si #{responsible.isUser() ? 'si-single-neutral-actions' : 'si-multiple-neutral-1'} u-mar-right-5" />

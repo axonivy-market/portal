@@ -1,6 +1,5 @@
 package ch.ivy.addon.portal.generic.bean;
 
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -188,7 +187,7 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
     this.editingDashboards = editingDashboards;
   }
 
-  public void dashboardPermissionListener(SelectEvent event) {
+  public void dashboardPermissionListener(SelectEvent<Object> event) {
     SecurityMemberDTO selectedItem = (SecurityMemberDTO) event.getObject();
     SecurityMemberDTO duplicatedItem = null;
 
@@ -241,7 +240,7 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
     PrimeFaces.current().executeScript("resetPortalLeftMenuState()");
   }
 
-  public void resetTaskAndCreateDashboard(ITask task) throws IOException {
+  public void resetTaskAndCreateDashboard(ITask task) {
     IvyComponentLogicCaller<ITask> leaveTask = new IvyComponentLogicCaller<>();
     ITask relatedTask = task != null ? task : Ivy.wfTask();
     String componentId = Attrs.currentContext().getBuildInAttribute("clientId");
@@ -252,7 +251,7 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
     navigateToDashboardDetailsPage(this.selectedEditingDashboard.getId());
   }
 
-  public void reserveTaskAndCreateDashboard(ITask task) throws IOException {
+  public void reserveTaskAndCreateDashboard(ITask task) {
     IvyComponentLogicCaller<ITask> reserveTask = new IvyComponentLogicCaller<>();
     ITask relatedTask = task != null ? task : Ivy.wfTask();
     String componentId = Attrs.currentContext().getBuildInAttribute("clientId");
