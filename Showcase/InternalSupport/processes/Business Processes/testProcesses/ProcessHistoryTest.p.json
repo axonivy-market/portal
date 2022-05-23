@@ -103,7 +103,10 @@
       "config" : {
         "security" : "system",
         "output" : {
-          "code" : "ivy.case.setProcess(\"Resource Inspection\", \"Resource Inspection\");"
+          "code" : [
+            "ivy.case.customFields().stringField(\"ProcessCode\").set(\"Resource Inspection\");",
+            "ivy.case.customFields().stringField(\"ProcessName\").set(\"Resource Inspection\");"
+          ]
         }
       },
       "visual" : {

@@ -17,7 +17,7 @@
       completeMethod="#{logic.autoCompleteForResponsible}" value="#{cc.attrs.filter.selectedResponsible}"
       var="responsible" itemValue="#{responsible}" itemLabel="#{responsible.briefDisplayNameWithState}"
       converter="pojoConverter" cache="true" maxResults="100"
-      moreTextSelect="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..."
+      moreText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..."
       styleClass="responsible-list-filter">
       <p:column>
         <i class="si #{responsible.isUser() ? 'si-single-neutral-actions' : 'si-multiple-neutral-1'} u-mar-right-5" />

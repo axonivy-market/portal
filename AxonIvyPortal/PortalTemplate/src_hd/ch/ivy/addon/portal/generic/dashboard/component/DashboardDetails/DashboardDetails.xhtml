@@ -51,7 +51,7 @@
             value="#{managedBean.selectedEditingDashboard.permissionDTOs}" var="responsible"
             itemValue="#{responsible}" itemLabel="#{responsible.briefDisplayNameWithState}" converter="pojoConverter"
             cache="true" maxResults="100" multiple="true"
-            moreTextSelect="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..." dynamic="true" forceSelection="true">
+            moreText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..." dynamic="true" forceSelection="true">
             <p:ajax event="itemSelect" listener="#{managedBean.dashboardPermissionListener}"
               update="dashboard-permission" global="false" />
             <p:column>

@@ -9,7 +9,7 @@ public class ProcessWidgetNewDashBoardPage extends TemplatePage {
 
   private static final String YOUR_PROCESSES_WIDGET = "Your Processes";
 
-  private String processWidgetId;
+  String processWidgetId;
   private String processWidgetName;
 
   public ProcessWidgetNewDashBoardPage() {
