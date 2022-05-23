@@ -63,7 +63,7 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
   private boolean isWorkingOnATask = true;
   private Map<String, Object> overridePortalGrowlMap = new HashMap<>();
 
-  private Integer caseId = null;
+  private Long caseId = null;
 
   public void useTaskInIFrame() {
     keepOverridePortalGrowl();
@@ -153,7 +153,7 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
     isHideTaskName = Optional.ofNullable(requestParamMap.get(IS_HIDE_TASK_NAME)).map(BooleanUtils::toBoolean).orElse(false);
     isHideTaskAction = Optional.ofNullable(requestParamMap.get(IS_HIDE_TASK_ACTION)).map(BooleanUtils::toBoolean).orElse(false);
     isWorkingOnATask = Optional.ofNullable(requestParamMap.get(IS_WORKING_ON_A_TASK)).map(p -> StringUtils.isNotBlank(p) ? BooleanUtils.toBoolean(p) : true).get();
-    setCaseId(Optional.ofNullable(requestParamMap.get(CASE_ID_PARAM)).map(p -> StringUtils.isNotBlank(p) ? Integer.parseInt(p) : null).orElse(null));
+    caseId = Optional.ofNullable(requestParamMap.get(CASE_ID_PARAM)).map(p -> StringUtils.isNotBlank(p) ? Long.parseLong(p) : null).orElse(null);
   }
 
   private Map<String, String> getRequestParameterMap() {
@@ -211,11 +211,11 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
     return StringUtils.defaultString(requestParamMap.get(VIEW_NAME));
   }
 
-public Integer getCaseId() {
+public Long getCaseId() {
 	return caseId;
 }
 
-public void setCaseId(Integer caseId) {
+public void setCaseId(Long caseId) {
 	this.caseId = caseId;
 }
 }
