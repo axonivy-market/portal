@@ -7,7 +7,7 @@
 	>
 <h:body>
 	<ui:composition template="/layouts/TaskTemplate-8.xhtml">
-		<ui:param name="case" value="#{data.foundCase}" />
+		<ui:param name="caseId" value="#{data.foundCase.getId()}" />
 		<ui:define name="content">
 			<div class="ui-g">
 				<div class="ui-g-2">

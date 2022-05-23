@@ -230,8 +230,6 @@ If you migrate Portal since previous versions to TaskTemplate-8, please follow b
 
 - The ``<ui:define name="dynamicTabs" />`` is removed, design your TabView if needed.
 
-- The ``<ui:param name="caseId" />`` to show the Case Information is removed, now use ``<ui:param name="task" />`` to show the business case of this task.
-
 Refer to ``TaskTemplate-8.xhtml`` for params and template areas.
 
 +----------------------------------------+-------------------------------+
@@ -247,12 +245,13 @@ External case information
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
 By default, TaskTemplate-8 will show business case details of the working task in the Case Information dialog.
-But you can modify it to show details of another case instead by using parameter ``case``.
-The parameter ``case`` only accept an object of type ``ICase``, please refer to example below.
+But you can modify it to show details of another case instead by using parameter ``caseId``.
+The parameter ``caseId`` only accept case ID of an existing case, if Portal cannot find the case it will show
+business case details of the working task instead. Please refer to example below.
 
 .. code-block:: html
 
-   <ui:param name="case" value="#{someBean.getExternalCase()}" /> 
+   <ui:param name="caseId" value="123456" /> 
 
 .. _components-layout-templates-task-template-7:
 
