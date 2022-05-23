@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>ch.ivyteam.ivy.project.portal</groupId>
   <artifactId>portalKitTestHelper</artifactId>
-  <version>9.1.0.0-SNAPSHOT</version>
+  <version>9.4.0-m225</version>
   <packaging>iar</packaging>
   <properties>
     <build.plugin.version>9.3.1</build.plugin.version>
@@ -21,7 +21,7 @@
     <dependency>
       <groupId>ch.ivyteam.ivy.project.portal</groupId>
       <artifactId>portalKit</artifactId>
-      <version>9.1.0.0-SNAPSHOT</version>
+      <version>9.4.0-m225</version>
       <type>iar</type>
     </dependency>
   </dependencies>

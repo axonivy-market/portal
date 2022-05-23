@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>portal.migration</groupId>
   <artifactId>portal-migration</artifactId>
-  <version>9.4.0</version>
+  <version>9.4.0-m225</version>
   <packaging>iar</packaging>
   <build>
     <plugins>
