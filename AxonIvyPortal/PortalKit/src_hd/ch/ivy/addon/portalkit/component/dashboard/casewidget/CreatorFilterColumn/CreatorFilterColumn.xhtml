@@ -19,7 +19,7 @@
         value="#{cc.attrs.selectedCreators}"
         var="creator" itemValue="#{creator}" itemLabel="#{creator.briefDisplayNameWithState}"
         converter="pojoConverter" cache="true" maxResults="100" multiple="true"
-        moreText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..."
+        moreTextSelect="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..."
         dynamic="true" forceSelection="true" styleClass="case-configuration__creators">
         <p:column>
           <i class="si #{creator.isUser() ? 'si-single-neutral-actions' : 'si-multiple-neutral-1'} u-mar-right-5" />

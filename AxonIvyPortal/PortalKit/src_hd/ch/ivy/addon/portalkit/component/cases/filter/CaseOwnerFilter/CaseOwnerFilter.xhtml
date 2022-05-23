@@ -19,7 +19,7 @@
       completeMethod="#{logic.query}" value="#{cc.attrs.filter.selectedOwner}"
       var="owner" itemValue="#{owner}" itemLabel="#{owner.briefDisplayNameWithState}"
       converter="pojoConverter" cache="true" maxResults="100"
-      moreText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..."
+      moreTextSelect="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..."
       styleClass="responsible-list-filter">
       <p:column>
         <i class="si #{owner.isUser() ? 'si-single-neutral-actions' : 'si-multiple-neutral-1'} u-mar-right-5" />

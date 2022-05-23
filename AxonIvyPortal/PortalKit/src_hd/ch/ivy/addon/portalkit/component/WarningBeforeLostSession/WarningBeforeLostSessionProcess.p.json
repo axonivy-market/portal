@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.8",
+  "format" : "9.4.10",
   "id" : "15F80B73A255C137",
   "data" : "ch.ivy.addon.portalkit.component.WarningBeforeLostSession.WarningBeforeLostSessionData",
   "kind" : "HTML_DIALOG",
@@ -71,7 +71,7 @@
       "type" : "SubProcessCall",
       "name" : "Logout",
       "config" : {
-        "processCall" : "Functional Processes/Logout:call(Boolean,ITask)",
+        "processCall" : "Functional Processes/Logout:call(Boolean,ch.ivyteam.ivy.workflow.ITask)",
         "call" : {
           "params" : [
             { "name" : "isTaskReserve", "type" : "Boolean" },

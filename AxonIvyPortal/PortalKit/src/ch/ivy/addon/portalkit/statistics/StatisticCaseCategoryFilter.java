@@ -10,6 +10,7 @@ import org.primefaces.model.CheckboxTreeNode;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import ch.ivy.addon.portalkit.bo.CategoryNode;
 import ch.ivy.addon.portalkit.util.CaseTreeUtils;
 import ch.ivy.addon.portalkit.util.CaseUtils;
 import ch.ivy.addon.portalkit.util.CategoryUtils;
@@ -21,9 +22,9 @@ public class StatisticCaseCategoryFilter implements Serializable {
   private static final long serialVersionUID = -1200590667880254731L;
 
   @JsonIgnore
-  private CheckboxTreeNode[] categories = new CheckboxTreeNode[] {};
+  private CheckboxTreeNode<CategoryNode>[] categories;
   @JsonIgnore
-  private CheckboxTreeNode root;
+  private CheckboxTreeNode<CategoryNode> root;
 
   private List<String> categoryPaths = new ArrayList<>();
 
@@ -43,23 +44,23 @@ public class StatisticCaseCategoryFilter implements Serializable {
     return caseQuery;
   }
 
-  public CheckboxTreeNode[] getCategories() {
+  public CheckboxTreeNode<CategoryNode>[] getCategories() {
     return categories;
   }
 
-  public void setCategories(CheckboxTreeNode[] categories) {
+  public void setCategories(CheckboxTreeNode<CategoryNode>[] categories) {
     this.categories = categories;
     this.categoryPaths = CategoryUtils.getCategoryPaths(categories);
   }
 
-  public CheckboxTreeNode getRoot() {
+  public CheckboxTreeNode<CategoryNode> getRoot() {
     if (root == null) {
       root = CaseTreeUtils.buildCaseCategoryCheckboxTreeRoot();
     }
     return root;
   }
 
-  public void setRoot(CheckboxTreeNode root) {
+  public void setRoot(CheckboxTreeNode<CategoryNode> root) {
     this.root = root;
   }
 

@@ -50,7 +50,7 @@ public class DragAndDropController implements Serializable {
     updateForm();
   }
 
-  public void onFieldDropHeader(DragDropEvent ddEvent) {
+  public void onFieldDropHeader(DragDropEvent<Object> ddEvent) {
     Formelement droppedFormelement = ((Formelement) ddEvent.getData());
 
     if (droppedFormelement.getType().equals(FORM_ELEMENT_FILE_UPLOAD)) {
@@ -81,7 +81,7 @@ public class DragAndDropController implements Serializable {
     updateForm();
   }
 
-  public void onFieldDropLeftPanel(DragDropEvent ddEvent) {
+  public void onFieldDropLeftPanel(DragDropEvent<Object> ddEvent) {
     Formelement droppedFormelement = ((Formelement) ddEvent.getData());
 
     if (droppedFormelement.getType().equals(FORM_ELEMENT_FILE_UPLOAD)) {
@@ -102,7 +102,7 @@ public class DragAndDropController implements Serializable {
     updateForm();
   }
 
-  public void onFieldDropRightPanel(DragDropEvent ddEvent) {
+  public void onFieldDropRightPanel(DragDropEvent<Object> ddEvent) {
     Formelement droppedFormelement = ((Formelement) ddEvent.getData());
 
     if (droppedFormelement.getType().equals(FORM_ELEMENT_FILE_UPLOAD)) {
@@ -123,7 +123,7 @@ public class DragAndDropController implements Serializable {
     updateForm();
   }
 
-  public void onFieldDropFooter(DragDropEvent ddEvent) {
+  public void onFieldDropFooter(DragDropEvent<Object> ddEvent) {
     Formelement droppedFormelement = ((Formelement) ddEvent.getData());
 
     if (droppedFormelement.getType().equals(FORM_ELEMENT_FILE_UPLOAD)) {
