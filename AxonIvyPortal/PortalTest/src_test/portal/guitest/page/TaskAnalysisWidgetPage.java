@@ -188,7 +188,7 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
 
   public void enterDataToSaveFilterSet(String filterSetName, boolean isPersonalFilter) {
     click(By.id("task-widget:filter-save-action"));
-    waitAjaxIndicatorDisappear();
+    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
     waitForElementDisplayed(By.id("task-widget:filter-save-form:save-filter-set-name-input"), true);
     enterKeys(findElementById("task-widget:filter-save-form:save-filter-set-name-input"), filterSetName);
     waitUntilAnimationFinished(DEFAULT_TIMEOUT, "save-filter-set-dialog .ui-inputtext", "class");

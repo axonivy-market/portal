@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.8",
+  "format" : "9.4.10",
   "id" : "1549EAD7E9C3125A",
   "data" : "gawfs.ParallelTasksUtilData",
   "kind" : "CALLABLE_SUB",
@@ -179,7 +179,6 @@
       }, {
         "name" : "Join",
         "size" : 320
-      } ],
-    "orientation" : "VERTICAL"
+      } ]
   }
 }

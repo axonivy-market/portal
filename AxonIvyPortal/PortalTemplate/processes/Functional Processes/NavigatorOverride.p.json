@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.8",
+  "format" : "9.4.10",
   "id" : "1543D9E65076619B",
   "data" : "ch.ivy.addon.portal.generic.NavigatorOverrideData",
   "kind" : "CALLABLE_SUB",
@@ -670,7 +670,7 @@
       "type" : "SubProcessCall",
       "name" : "OpenPortalTaskDetails",
       "config" : {
-        "processCall" : "Functional Processes/OpenPortalTaskDetailsHook:call(ITask,TaskLazyDataModel,PortalPage,Boolean)",
+        "processCall" : "Functional Processes/OpenPortalTaskDetailsHook:call(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,ch.ivy.addon.portalkit.enums.PortalPage,Boolean)",
         "call" : {
           "params" : [
             { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask" },

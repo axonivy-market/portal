@@ -11,6 +11,7 @@ import org.primefaces.model.CheckboxTreeNode;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
+import ch.ivy.addon.portalkit.bo.CategoryNode;
 import ch.ivy.addon.portalkit.enums.ProcessType;
 import ch.ivy.addon.portalkit.util.CategoryUtils;
 import ch.ivy.addon.portalkit.util.ProcessTreeUtils;
@@ -26,9 +27,9 @@ public class DashboardProcessUserFilter implements Serializable {
 
   private String processName;
   @JsonIgnore
-  private CheckboxTreeNode categoryTree;
+  private CheckboxTreeNode<CategoryNode> categoryTree;
   @JsonIgnore
-  private CheckboxTreeNode[] categoryNodes;
+  private CheckboxTreeNode<CategoryNode>[] categoryNodes;
 
   private List<String> categories;
 
@@ -61,19 +62,19 @@ public class DashboardProcessUserFilter implements Serializable {
     this.processName = "";
   }
 
-  public CheckboxTreeNode[] getCategoryNodes() {
+  public CheckboxTreeNode<CategoryNode>[] getCategoryNodes() {
     return categoryNodes;
   }
 
-  public void setCategoryNodes(CheckboxTreeNode[] categoryNodes) {
+  public void setCategoryNodes(CheckboxTreeNode<CategoryNode>[] categoryNodes) {
     this.categoryNodes= categoryNodes;
   }
 
-  public CheckboxTreeNode getCategoryTree() {
+  public CheckboxTreeNode<CategoryNode> getCategoryTree() {
     return categoryTree;
   }
 
-  public void setCategoryTree(CheckboxTreeNode categoryTree) {
+  public void setCategoryTree(CheckboxTreeNode<CategoryNode> categoryTree) {
     this.categoryTree = categoryTree;
   }
 
