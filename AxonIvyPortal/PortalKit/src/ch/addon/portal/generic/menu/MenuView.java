@@ -341,14 +341,14 @@ public class MenuView implements Serializable {
   }
 
   private MenuItem buildPortalHomeMenuItem() {
-    DefaultMenuItem menuItem = new DefaultMenuItem();
+    DefaultMenuItem menuItem = DefaultMenuItem.builder().build();
     menuItem.setIcon("si si-house-chimney-2 portal-icon");
     menuItem.setOnclick("navigateToPortalHome();");
     return menuItem;
   }
 
   private DefaultMenuItem buildMenuItemFromPortalSubMenuItem(SubMenuItem subMenuItem) {
-    DefaultMenuItem menuItem = new DefaultMenuItem();
+    DefaultMenuItem menuItem = DefaultMenuItem.builder().build();
     menuItem.setIcon(SI_SI_ARROW_RIGHT_1_SMALL);
     menuItem.setValue(subMenuItem.getLabel());
     menuItem.setUrl(null);
@@ -380,7 +380,7 @@ public class MenuView implements Serializable {
   }
 
   private MenuItem buildTaskDetailsMenuItem(ITask userTask) {
-    DefaultMenuItem menuItem = new DefaultMenuItem();
+    DefaultMenuItem menuItem = DefaultMenuItem.builder().build();
     menuItem.setIcon(SI_SI_ARROW_RIGHT_1_SMALL);
     String taskName = StringUtils.isEmpty(userTask.getName()) ? Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskNameNotAvailable") : userTask.getName();
     menuItem.setValue(String.join(": ", Ivy.cms().co("/Labels/Task"), taskName));
@@ -390,7 +390,7 @@ public class MenuView implements Serializable {
   }
 
   private MenuItem buildCaseDetailsMenuItem(ICase userCase) {
-    DefaultMenuItem menuItem = new DefaultMenuItem();
+    DefaultMenuItem menuItem = DefaultMenuItem.builder().build();
     menuItem.setIcon(SI_SI_ARROW_RIGHT_1_SMALL);
     menuItem.setValue(String.join(": ", Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/case"), userCase.getName()));
     menuItem.setUrl("#");
@@ -399,7 +399,7 @@ public class MenuView implements Serializable {
   }
 
   private MenuItem buildExpressBusinessMenuItem(String caseId) {
-    DefaultMenuItem menuItem = new DefaultMenuItem();
+    DefaultMenuItem menuItem = DefaultMenuItem.builder().build();
     menuItem.setIcon(SI_SI_ARROW_RIGHT_1_SMALL);
     menuItem.setValue(Ivy.cms().co("/Dialogs/ch/ivy/addon/express/generic/expressWorkflowName", Arrays.asList(caseId)));
     menuItem.setUrl("#");
@@ -408,7 +408,7 @@ public class MenuView implements Serializable {
   }
 
   private MenuItem buildGenericMenuItem(String cms) {
-    DefaultMenuItem menuItem = new DefaultMenuItem();
+    DefaultMenuItem menuItem = DefaultMenuItem.builder().build();
     menuItem.setIcon(SI_SI_ARROW_RIGHT_1_SMALL);
     menuItem.setValue(Ivy.cms().co(cms));
     menuItem.setUrl("#");

@@ -13,28 +13,28 @@ import org.primefaces.model.TreeNode;
 @ViewScoped
 public class TreeView implements Serializable {
 	private static final long serialVersionUID = 7782960801078745575L;
-	private TreeNode root;
+	private TreeNode<Object> root;
      
     @PostConstruct
     public void init() {
-        root = new DefaultTreeNode("Root", null);
-        TreeNode node0 = new DefaultTreeNode("Node 0", root);
-        TreeNode node1 = new DefaultTreeNode("Node 1", root);
+        root = new DefaultTreeNode<Object>("Root", null);
+        TreeNode<Object> node0 = new DefaultTreeNode<Object>("Node 0", root);
+        TreeNode<Object> node1 = new DefaultTreeNode<Object>("Node 1", root);
          
-        TreeNode node00 = new DefaultTreeNode("Node 0.0", node0);
-        TreeNode node01 = new DefaultTreeNode("Node 0.1", node0);
+        TreeNode<Object> node00 = new DefaultTreeNode<Object>("Node 0.0", node0);
+        TreeNode<Object> node01 = new DefaultTreeNode<Object>("Node 0.1", node0);
          
-        TreeNode node10 = new DefaultTreeNode("Node 1.0", node1);
+        TreeNode<Object> node10 = new DefaultTreeNode<Object>("Node 1.0", node1);
          
-        node1.getChildren().add(new DefaultTreeNode("Node 1.1"));
-        node00.getChildren().add(new DefaultTreeNode("Node 0.0.0"));
-        node00.getChildren().add(new DefaultTreeNode("Node 0.0.1"));
-        node01.getChildren().add(new DefaultTreeNode("Node 0.1.0"));
-        node10.getChildren().add(new DefaultTreeNode("Node 1.0.0"));
-        root.getChildren().add(new DefaultTreeNode("Node 2"));
+        node1.getChildren().add(new DefaultTreeNode<Object>("Node 1.1"));
+        node00.getChildren().add(new DefaultTreeNode<Object>("Node 0.0.0"));
+        node00.getChildren().add(new DefaultTreeNode<Object>("Node 0.0.1"));
+        node01.getChildren().add(new DefaultTreeNode<Object>("Node 0.1.0"));
+        node10.getChildren().add(new DefaultTreeNode<Object>("Node 1.0.0"));
+        root.getChildren().add(new DefaultTreeNode<Object>("Node 2"));
     }
  
-    public TreeNode getRoot() {
+    public TreeNode<Object> getRoot() {
         return root;
     }
 }

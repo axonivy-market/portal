@@ -252,12 +252,12 @@ public class DashboardBean implements Serializable {
     return FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
   }
 
-  public void navigateToSelectedTaskDetails(SelectEvent event) {
+  public void navigateToSelectedTaskDetails(SelectEvent<Object> event) {
     Long taskId = ((ITask) event.getObject()).getId();
     PortalNavigator.navigateToPortalTaskDetails(taskId);
   }
 
-  public void handleRowSelectEventOnTaskWidget(SelectEvent event) throws IOException {
+  public void handleRowSelectEventOnTaskWidget(SelectEvent<Object> event) throws IOException {
     ITask task = ((ITask) event.getObject());
     handleSelectedTask(task);
   }
@@ -279,7 +279,7 @@ public class DashboardBean implements Serializable {
     PortalNavigator.navigateToPortalTaskDetails(task.getId());
   }
 
-  public void navigateToSelectedCaseDetails(SelectEvent event) {
+  public void navigateToSelectedCaseDetails(SelectEvent<Object> event) {
     Long caseId = ((ICase) event.getObject()).getId();
     PortalNavigator.navigateToPortalCaseDetails(caseId);
   }
