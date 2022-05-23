@@ -160,6 +160,7 @@ public class DashboardScreenshotTest extends ScreenshotTest {
 
   @Test
   public void screenshotNewDashboardUserGuide() throws IOException {
+    login(TestAccount.ADMIN_USER);
     updatePortalSetting(SHOW_LEGACY_UI .getKey(), "false");
     showNewDashboard();
     newDashboardPage = new NewDashboardPage();
