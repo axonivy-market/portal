@@ -64,16 +64,16 @@
           </pe:dynaFormControl>
 
           <pe:dynaFormControl type="ManyCheckbox" styleClass="dyna-form-dl-div many-checkbox">
-            <p:dataList value="#{dynaData.value}" var="checkItem" type="definition">
+            <p:dataView value="#{dynaData.value}" var="checkItem" type="definition">
               <i class="si si-check-2" aria-hidden="true" /> #{checkItem}
-            </p:dataList>
+            </p:dataView>
           </pe:dynaFormControl>
 
           <pe:dynaFormControl type="OneRadio" styleClass="dyna-form-dl-div one-radio">
-            <p:dataList value="#{dynaData.value}" var="checkItem" type="definition"
+            <p:dataView value="#{dynaData.value}" var="checkItem" type="definition"
               emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/NoSelection')}">
               <i class="si si-check-circle-1" aria-hidden="true" /> #{checkItem}
-            </p:dataList>
+            </p:dataView>
           </pe:dynaFormControl>
 
           <pe:dynaFormControl type="FileUpload" for="fileUpload">

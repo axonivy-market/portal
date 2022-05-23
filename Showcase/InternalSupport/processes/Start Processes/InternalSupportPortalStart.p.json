@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.8",
+  "format" : "9.4.10",
   "id" : "164211FF9482BB44",
   "data" : "ch.ivy.addon.portal.generic.PortalStartData",
   "elements" : [ {
@@ -203,10 +203,11 @@
         "security" : "system",
         "output" : {
           "code" : [
+            "import ch.ivy.addon.portalkit.util.TaskUtils;",
             "import ch.ivyteam.ivy.workflow.ITask;",
             "import ch.ivyteam.ivy.bpm.error.BpmError;",
             "",
-            "ITask task = ivy.wf.findTask(in.endedTaskId);",
+            "ITask task = TaskUtils.findTaskById(in.endedTaskId);",
             "if (!in.callbackUrl.startsWith(task.getApplication().getContextPath())) {",
             "  BpmError.create(\"frame:unsupported:url\").withMessage(\"only relative urls are supported (security reasons)\").throwError();",
             "}"
@@ -1709,14 +1710,7 @@
         "at" : { "x" : 784, "y" : 320 }
       },
       "connect" : [
-        { "id" : "f30", "to" : "f22", "label" : {
-            "name" : [
-              "Start process/task",
-              "not in Portal"
-            ],
-            "segment" : 0.47,
-            "offset" : { "x" : 5, "y" : 3 }
-          }, "condition" : "in.#portalPage == null" },
+        { "id" : "f30", "to" : "f22", "condition" : "in.#portalPage == null" },
         { "id" : "f36", "to" : "S70", "condition" : "!in.backFromTaskDetails" },
         { "id" : "f19", "to" : "f5", "via" : [ { "x" : 784, "y" : 400 }, { "x" : 1072, "y" : 400 } ] }
       ]
