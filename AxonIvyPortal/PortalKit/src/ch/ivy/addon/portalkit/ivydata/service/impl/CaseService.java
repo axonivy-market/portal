@@ -25,7 +25,6 @@ import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.service.ICaseService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
-import ch.ivyteam.di.restricted.DiCore;
 import ch.ivyteam.ivy.application.ActivityState;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -33,9 +32,7 @@ import ch.ivyteam.ivy.scripting.objects.Recordset;
 import ch.ivyteam.ivy.server.ServerFactory;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.ICase;
-import ch.ivyteam.ivy.workflow.IWorkflowManager;
 import ch.ivyteam.ivy.workflow.category.CategoryTree;
-import ch.ivyteam.ivy.workflow.internal.WorkflowManager;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
 public class CaseService implements ICaseService {
@@ -117,15 +114,13 @@ public class CaseService implements ICaseService {
     });
     return caseQuery;
   }
-  
-  @SuppressWarnings("restriction")
+
   @Override
   public IvyCaseResultDTO findCategoriesByCriteria(CaseCategorySearchCriteria criteria) {
     return IvyExecutor.executeAsSystem(() -> {
       IvyCaseResultDTO result = new IvyCaseResultDTO();
       try {
-        IWorkflowManager manager = DiCore.getGlobalInjector().getInstance(WorkflowManager.class);
-        CaseQuery finalQuery = criteria.createQuery(manager.getCaseQueryExecutor());
+        CaseQuery finalQuery = criteria.createQuery(Ivy.wf().getCaseQueryExecutor());
         
         if (criteria.hasApps()) {
           if (criteria.hasInvolvedUsername()) {
