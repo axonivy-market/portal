@@ -21,7 +21,6 @@ import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.service.ITaskService;
 import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
-import ch.ivyteam.di.restricted.DiCore;
 import ch.ivyteam.ivy.application.ActivityState;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -30,10 +29,8 @@ import ch.ivyteam.ivy.scripting.objects.Recordset;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.server.ServerFactory;
 import ch.ivyteam.ivy.workflow.ITask;
-import ch.ivyteam.ivy.workflow.IWorkflowManager;
 import ch.ivyteam.ivy.workflow.WorkflowPriority;
 import ch.ivyteam.ivy.workflow.category.CategoryTree;
-import ch.ivyteam.ivy.workflow.internal.WorkflowManager;
 import ch.ivyteam.ivy.workflow.query.ITaskQueryExecutor;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
@@ -116,14 +113,12 @@ public class TaskService implements ITaskService {
     return TaskQuery.create().where().customField().stringField(AdditionalProperty.HIDE.toString()).isNull();
   }
 
-  @SuppressWarnings("restriction")
   @Override
   public IvyTaskResultDTO findCategoriesByCriteria(TaskCategorySearchCriteria criteria) { 
     return IvyExecutor.executeAsSystem(() -> {
       IvyTaskResultDTO result = new IvyTaskResultDTO();
       try {
-        IWorkflowManager manager = DiCore.getGlobalInjector().getInstance(WorkflowManager.class);
-        TaskQuery finalQuery = criteria.createQuery(manager.getTaskQueryExecutor());
+        TaskQuery finalQuery = criteria.createQuery(Ivy.wf().getTaskQueryExecutor());
         
         if (criteria.hasApps()) {
           if (criteria.hasInvolvedUsername()) {

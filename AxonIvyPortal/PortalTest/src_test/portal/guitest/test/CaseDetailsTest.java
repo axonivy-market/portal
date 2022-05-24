@@ -35,9 +35,9 @@ public class CaseDetailsTest extends BaseTest {
     redirectToRelativeLink(createTestingTasksUrl);
     redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     login(TestAccount.ADMIN_USER);
+    grantSpecificPortalPermission(PortalPermission.TASK_CASE_ADD_NOTE);
 
     homePage = new HomePage();
-    grantSpecificPortalPermission(PortalPermission.TASK_CASE_ADD_NOTE);
     MainMenuPage mainMenuPage = homePage.openMainMenu();
     CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
     detailsPage = casePage.openDetailsOfCaseHasName("Leave Request");
