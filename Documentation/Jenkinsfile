@@ -17,7 +17,7 @@ pipeline {
           docker.withRegistry('', 'docker.io') {
             docker.image('maven:3.6.3-jdk-11-slim').inside {
               version = getCurrentVersion()
-              maven cmd: 'clean process-resources -Divy.engine.version=[9.3.0,] -Divy.engine.list.url=https://jenkins.ivyteam.io/job/ivy-core_product/job/release%252F9.3/lastSuccessfulBuild/artifact/workspace/ch.ivyteam.ivy.server.product/target/products/ -Divy.engine.os.arch=Windows_x64 -f Documentation/public-api/pom.xml'
+              maven cmd: 'clean process-resources -Divy.engine.version=[9.3.0,] -Divy.engine.list.url=https://jenkins.ivyteam.io/job/core_product/job/release%252F9.3/lastSuccessfulBuild/artifact/workspace/ch.ivyteam.ivy.server.product/target/products/ -Divy.engine.os.arch=Windows_x64 -f Documentation/public-api/pom.xml'
               maven cmd: 'clean generate-resources -f Documentation/pom.xml'
             }
             
