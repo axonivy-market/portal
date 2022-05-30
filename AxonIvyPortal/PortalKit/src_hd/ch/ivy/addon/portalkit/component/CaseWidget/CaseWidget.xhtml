@@ -42,7 +42,7 @@
                   <span>#{data.dataModel.isSelectedDefaultFilter() ? data.dataModel.defaultCaseFilterData.filterName : data.dataModel.selectedFilterData == null ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/NoSelection') : data.dataModel.selectedFilterData.filterName}</span>
                 </p:commandLink>
                 <p:overlayPanel id="filter-name-overlay-panel" styleClass="filter-name-overlay-panel" for="filter-name"
-                  hideEffect="fade" my="left top" at="left bottom">
+                  my="left top" at="left bottom">
                   <h:panelGroup id="private-filters" rendered="#{not empty data.publicFilters}">
                     <div class="filter-type-label">
                       <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/publicFilter')}</span>
@@ -64,7 +64,7 @@
                       </div>
                     </ui:repeat>
                   </h:panelGroup>
-                  <p:separator rendered="#{not empty data.publicFilters and not empty data.privateFilters}" styleClass="filter-separator" />
+                  <p:divider rendered="#{not empty data.publicFilters and not empty data.privateFilters}" styleClass="filter-separator" />
                   <h:panelGroup id="public-filters" rendered="#{not empty data.privateFilters}">
                     <div class="filter-type-label">
                       <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/privateFilter')}</span>

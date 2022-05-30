@@ -51,6 +51,7 @@ public class TaskWidgetPage extends TemplatePage {
     WaitHelper.assertTrueWithWait(() -> isElementDisplayed(By.cssSelector("a[id$=':task-list-link:task-list-link']")));
     WebElement fullModeButton = findElementById(taskWidgetId + ":task-list-link:task-list-link");
     click(fullModeButton);
+    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
     WaitHelper.assertTrueWithWait(() -> isElementDisplayed(By.cssSelector("[id$=':filter-save-action']")));
     waitForLocatorDisplayed("id('" + taskWidgetId + ":filter-save-action')");
   }
@@ -592,6 +593,8 @@ public class TaskWidgetPage extends TemplatePage {
     WebElement filterNameInput = findElementById(taskWidgetId + ":filter-save-form:save-filter-set-name-input");
     enterKeys(filterNameInput, filterName);
     click(findElementById(taskWidgetId + ":filter-save-form:filter-save-command"));
+    waitForElementDisplayed(By.cssSelector("div[id$=':save-filter-set-dialog']"), false);
+    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
     WaitHelper.assertTrueWithWait(() -> filterName.equals(findElementByCssSelector("a[id$='filter-name']").getText()));
   }
 
@@ -628,7 +631,7 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public boolean isExistedFilter(String filterName) {
-    findElementById("task-widget:filter-selection-form:filter-name").click();
+    clickByCssSelector("a[id$=':filter-selection-form:filter-name']");
     List<WebElement> saveFilters = findListElementsByCssSelector("a[id$='user-defined-filter']");
     return saveFilters.stream().anyMatch(filter -> StringUtils.equals(filter.getText(), filterName));
   }

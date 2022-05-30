@@ -1,22 +1,15 @@
 package com.axonivy.portal.selenium.page;
 
-import static com.codeborne.selenide.Condition.appear;
-import static com.codeborne.selenide.Condition.disappears;
 import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-import com.codeborne.selenide.CollectionCondition;
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
-import com.codeborne.selenide.SelenideElement;
 
 public class ProcessWidgetNewDashBoardPage extends TemplatePage {
 
   private static final String YOUR_PROCESSES_WIDGET = "Your Processes";
-  private static final String FILTER_TASK_STATE = "State";
 
-  private String processWidgetId;
+  String processWidgetId;
   private String processWidgetName;
 
   public ProcessWidgetNewDashBoardPage() {

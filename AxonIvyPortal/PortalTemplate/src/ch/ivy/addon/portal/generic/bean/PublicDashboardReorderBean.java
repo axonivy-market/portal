@@ -50,7 +50,7 @@ public class PublicDashboardReorderBean extends DashboardReorderBean implements 
       }
     }
     newDashboards.addAll(idToDashboard.values());
-    String dashboardsAsSJSON = BusinessEntityConverter.entityToJsonValue(newDashboards);;
+    String dashboardsAsSJSON = BusinessEntityConverter.entityToJsonValue(newDashboards);
    Ivy.var().set(PortalVariable.DASHBOARD.key, dashboardsAsSJSON);
   }
 
