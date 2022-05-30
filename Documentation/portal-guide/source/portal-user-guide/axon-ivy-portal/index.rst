@@ -3,65 +3,67 @@
 Axon Ivy Portal
 ***************
    
-**Axon Ivy Portal** is the centerpiece for your daily work with the
-applications you / your company implemented using the Axon Ivy.
-With a web-based, modern interface the Portal provides you with key
+**|axon-ivy| Portal** is the centerpiece for your daily work with the
+applications you or your company implemented using |axon-ivy|.
+With a web-based, modern interface, the Portal provides you with key
 functionalities on all your devices:
 
--  Access your / your company’s applications and start new cases
+-  Access your applications and start new cases
 
--  Manage and fulfil tasks assigned to you or your roles
+-  Manage and fulfill tasks assigned to you or your roles
 
--  Understand what’s going on by using on-the-spot statistics and
+-  Understand what is going on by using on-the-spot statistics and
    historic data on all your cases and tasks
 
--  Improve your Axon Ivy Portal experience and efficiency through the
+-  Improve your |axon-ivy| Portal experience and efficiency through the
    built-in customization options
 
 This document provides you – as a business user – with a comprehensive
-overview about the Axon Ivy Portal, its features and functionalities.
+overview of the |axon-ivy| Portal, its features and functionalities.
 
 .. Hint::
 	The look and feel shown in the screenshots of this document, as well as the
-	presented features are part of the default standard Axon Ivy Portal. However,
-	the Axon Ivy Portal is highly configurable, thus your company’s Portal might
+	features presented are part of the standard |axon-ivy| Portal. However,
+	the |axon-ivy| Portal is highly configurable, thus, the Portal of your company might
 	have a different look and feel, and some features might be disabled by your
 	administrator.
 
-To start your Axon Ivy Portal experience, use the link provided to you by your
-administrator. Following the link, the Axon Ivy Portal will ask for your login
-credentials.
+To start your |axon-ivy| Portal experience, open the link provided by your
+administrator in a web browser. The |axon-ivy| Portal will ask you to enter your
+login credentials.
 
 |login-screen|
    
 .. Hint:: 
-   Depending on your company’s infrastructure, you might be automatically logged in
-   by the single-sign-on (SSO). In this case you’ll directly be forwarded to the
-   Axon Ivy Portal Dashboard. 
+   Depending on your infrastructure, you might be automatically logged in 
+   using single-sign-on (SSO). In this case, you will be forwarded directly to the
+   |axon-ivy| Portal Dashboard. 
 
-   If ivy Security System is used, you can click on :guilabel:`Forgot my password` to reset
-   in case you forget it.
+   If the Ivy Security System is used, you can click on 
+   :guilabel:`Forgot my password` to reset it.
 
-After successful login, you’ll see the Axon Ivy Portal Homepage and your
+After successful login, you will see the |axon-ivy| Portal Homepage and your
 personal dashboard. All your activities can be managed from this central entry
-point. In detail these are:
+point. The Portal Homepage has the following elements:
 
-#. The Axon Ivy Portal header on the top is always visible and provides
-   you with a global search, key information about the Portal and options to
-   configure your personal user account. See  :ref:`portal-header` for
+#. The |axon-ivy| Portal header at the top is always visible and provides
+   you with a global search field, key information about the Portal and options to
+   configure your personal user account. See :ref:`portal-header` for
    details.
    
    |axon-ivy-portal-header|
 
-#. The menu on the left side is always available and gives you access to
-   all processes, cases, tasks and other features of the Axon Ivy Portal. If the menu is minimised, you could hover to the menu to enlarge it. You
-   may enlarge permanently the menu by clicking on |pin-icon| icon in the top left corner.
+#. The menu on the left side is always visible and gives you access to
+   all processes, cases, tasks and other features of the |axon-ivy| Portal. 
+   If the menu is minimized, hover over the menu to enlarge it. You
+   may permanently enlarge the menu by clicking on the |pin-icon| icon in 
+   the top left hand corner.
    
    |axon-ivy-portal-menu|
 
-#. In the center you see your personal dashboard providing you instant
-   access to your processes, cases, tasks and performance indicators. See
-   :ref:`dashboard` for a detailed introduction.
+#. In the center, you see your personal dashboard providing you access to your
+   processes, cases, tasks and performance indicators. See :ref:`dashboard` for
+   a detailed description.
 
    |axon-ivy-portal|
 
