@@ -280,12 +280,10 @@ public class SecurityUtils {
   }
 
   private static void updatePermissionsOfAdminUser() {
-    IApplication application = IApplication.current();
-    IUser admin = application.getSecurityContext().users().find("admin");
-
+    var admin = Ivy.security().users().find("admin");
     if (admin != null) {
       for (IPermission permission : ADMIN_PERMISSIONS) {
-        application.getSecurityDescriptor().grantPermission(permission, admin);
+        IApplication.current().getSecurityDescriptor().grantPermission(permission, admin);
       }
     }
   }
@@ -296,13 +294,15 @@ public class SecurityUtils {
   }
 
   private static void updatePermissionsOfDemoUser() {
-    IApplication application = IApplication.current();
-    IUser demo = application.getSecurityContext().users().find("demo");
+    var demo = Ivy.security().users().find("demo");
+    if (demo == null) {
+      return;
+    }
     for (IPermission iPermission : DEMO_DENIED_PERMISSIONS) {
-      application.getSecurityDescriptor().denyPermission(iPermission, demo);
+      IApplication.current().getSecurityDescriptor().denyPermission(iPermission, demo);
     }
     for (IPermission permission : DEMO_GRANTED_PERMISSIONS) {
-      application.getSecurityDescriptor().grantPermission(permission, demo);
+      IApplication.current().getSecurityDescriptor().grantPermission(permission, demo);
     }
   }
 }

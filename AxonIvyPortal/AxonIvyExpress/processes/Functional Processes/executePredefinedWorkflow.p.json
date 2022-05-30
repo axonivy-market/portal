@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.8",
+  "format" : "9.4.10",
   "id" : "163729F2CBAE7BE4",
   "data" : "gawfs.ExecutePredefinedWorkflowData",
   "kind" : "CALLABLE_SUB",
@@ -779,7 +779,7 @@
           "name" : "final workflow review",
           "config" : {
             "dialogId" : "ch.ivy.gawfs.workflowExecution.FinalReviewForm",
-            "startMethod" : "start(java.util.List<gawfs.TaskDef>,java.util.List<String>,java.lang.Integer)",
+            "startMethod" : "start(java.util.List<gawfs.TaskDef>,java.util.List<String>,Integer)",
             "call" : {
               "params" : [
                 { "name" : "finishedTasks", "type" : "java.util.List<gawfs.TaskDef>" },

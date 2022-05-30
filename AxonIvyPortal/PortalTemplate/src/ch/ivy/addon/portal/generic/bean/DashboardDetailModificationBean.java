@@ -219,6 +219,10 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   }
 
   public void saveWidget() {
+    if (CollectionUtils.isEmpty(this.getSelectedDashboard().getWidgets())) {
+      this.getSelectedDashboard().setWidgets(new ArrayList<>());
+    }
+    List<DashboardWidget> widgets = this.getSelectedDashboard().getWidgets();
     switch (widget.getType()) {
       case PROCESS:
         ProcessDashboardWidget processWidget = (ProcessDashboardWidget) this.widget;
@@ -239,7 +243,6 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
         } else if (processWidget.getDisplayMode() == ProcessWidgetMode.IMAGE_MODE) {
           updateProcessWidget((SingleProcessDashboardWidget) processWidget, 6, 2);
         }
-        List<DashboardWidget> widgets = selectedDashboard.getWidgets();
         DashboardWidget dashboardWidget =
             widgets.stream().filter(w -> widget.getId().equals(w.getId()) && w.getType() == DashboardWidgetType.PROCESS)
                 .findFirst().orElse(null);
@@ -262,10 +265,6 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     updateWidgetPosition(widget);
     resetUserFilter();
     this.widget.buildPredefinedFilterData();
-    if (CollectionUtils.isEmpty(this.getSelectedDashboard().getWidgets())) {
-      this.getSelectedDashboard().setWidgets(new ArrayList<>());
-    }
-    List<DashboardWidget> widgets = this.getSelectedDashboard().getWidgets();
     if (widgets.contains(this.widget)) {
       widgets.set(widgets.indexOf(this.widget), this.widget);
     } else {
