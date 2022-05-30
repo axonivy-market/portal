@@ -3,23 +3,24 @@
 Full Case List
 **************
 
-The **Full Case List** page shows you all cases you’re involved in.
-This page provides you with extended information on the cases, as well
+The **Full Case List** page shows you all cases you are involved in.
+This page provides you with extended information on the cases as well
 as advanced search and filter capabilities. You can reach the page by
-using the |case-icon| :guilabel:`Cases` link in the Axon Ivy Portal menu.
+selecting |case-icon| :guilabel:`Cases` in the |axon-ivy| Portal menu.
 
 .. hint:: 
-   Depending on the roles you hold in the application and the configuration of
-   the Axon Ivy Portal, you might see not only the cases you’re involved in but
-   all cases.                      
+   The set of cases you see in the Portal depends on the roles you hold 
+   in both the application and the |axon-ivy| Portal. Administrators 
+   (having role AXONIVY_PORTAL_ADMIN) see all cases.                      
 
 |navigate-to-full-cases-list-page|
 
-On the top of the **Full Case List** page you see next to the heading :guilabel:`Cases`
-in brackets the overall number of cases shown to you. Below you find the filter feature. The usage will be explained in
-the HowTo’s further down this chapter. Finally, you see the list of cases.
+On the top of the **Full Case List** page, next to the heading
+:guilabel:`Cases`, you see the overall number of cases shown to you, in
+brackets. Below, you find the filter feature. Their usage will be explained below in
+the HowTo’s section. Finally, you see the list of cases.
 
-For each case the following key information is shown in the list:
+For each case, the list shows the following key information:
 
 #. Name and Description
 
@@ -35,52 +36,46 @@ For each case the following key information is shown in the list:
 
 |case-key-information|
 
-Furthermore, at the end of each row you find a set of key features in
-handling cases:
+At the end of each row you find a set of key features to handle cases:
 
 #. Detail
 
 #. :guilabel:`Actions` for further actions
 
-Finally, you have the possibility to access the full set of the case
-data by clinking the case Name/Description.
+To access the full set of case data, click on the case Name/Description.
 
 |case-details|
 
-The case details are separated into 4 different sections:
+The case details are separated into four different sections:
 
-#. Data and Description, you find various metadata concerning the case and description.
+#. Data and Description: Contain various metadata of the case and its description.
 
    |case-details-data-description|
 
-#. Related running tasks and cases, you find a list of all related running cases and
-   tasks. Moving the mouse over the tasks shows you the state and the
-   responsible user of the task. To show all related tasks see the HowTo
-   below.
+#. Related running tasks and cases: Contains a list of all related running cases
+   and tasks. Moving the mouse over a task shows you both state and responsible
+   user. To show all related tasks see the HowTo below.
 
    |case-details-related-tasks-cases|
 
-
-#. Histories, the Axon Ivy Portal adds notes
-   here for state changes of the case. You may add additional notes
-   which is described below.
+#. Histories: The |axon-ivy| Portal adds notes here for state changes of the
+   case. You may add your own notes as described below.
 
    |case-details-histories|
 
-#. Documents, you find an area for documents that were
-   attached to the case. You may add or delete documents as
-   described in the HowTo’s below.
+#. Documents: Here, documents attached to the case are listed. You
+   may add or delete documents as described in the HowTo’s below.
 
    |case-details-documents|
 
 .. _howto-use-existing-filter-1:
 
-HowTo: Use existing filter
+HowTo: Use Existing Filter
 --------------------------
 
 .. hint:: 
    If there are no public filters and you didn’t create any filters so far,
-   there might be no filters available. In this case, you must create a filter
+   there might be no filters available. In this case, you have to create a filter
    first. This is described in detail in :ref:`howto-create-new-filter-1`.
    
 
@@ -90,134 +85,135 @@ HowTo: Use existing filter
 
 .. _howto-create-new-filter-1:
 
-HowTo: Create new filter
+HowTo: Create New Filter
 ------------------------
 
-#. Click on the button :guilabel:`More` to select one of the available filters.
+#. Click on :guilabel:`More` to select one of the available filters.
    For a list of available filters, see Table 3: Case filter criteria.
 
 #. Click on the newly added filter and configure it.
 
-#. Add more filters by clicking on the button :guilabel:`More` again.
+#. Add more filters by clicking on :guilabel:`More` again.
 
-#. Drop filters by clicking on the |delete-circle-icon| icon next to
-   the filter.
+#. Drop filters by clicking on |delete-circle-icon| next to the filter.
 
-#. When finished, click on the button :guilabel:`Save filter`.
+#. When finished, click on :guilabel:`Save filter`.
 
 #. The dialog :guilabel:`Save filter` is opened.
 
-#. Under :guilabel:`Filter name`, provide a recognizable name for the filter.
+#. In :guilabel:`Filter name`, provide a descriptive name for the filter.
 
-#. Under :guilabel:`Filter visibility`, you can select if the filter is only
-   visible for you or shall be available to all users.
+#. In :guilabel:`Filter visibility`, define if the filter is only
+   visible to you or to all users.
 
-#. Save the filter by clicking the button :guilabel:`Ok`.
+#. Save the filter by clicking :guilabel:`Ok`.
 
 |how-to-create-case-filter|
 
 
 .. centered:: Case filter criteria
 
-+-----------------------------------+-----------------------------------+
-| Criteria                          | Description                       |
-+===================================+===================================+
-| ID                                | The filter lets you specify the   |
-|                                   | case identify number              |
-+-----------------------------------+-----------------------------------+
-| Name                              | The filter lets you specify the   |
-|                                   | case name                         |
-+-----------------------------------+-----------------------------------+
-| Created (from / to)               | The filter lets you specify in    |
-|                                   | which time period the case was    |
-|                                   | created.                          |
-+-----------------------------------+-----------------------------------+
-| Creator                           | The filter lets you specify the   |
-|                                   | user who created the case.        |
-+-----------------------------------+-----------------------------------+
-| Description                       | The filter lets you search for    |
-|                                   | keywords within the case          |
-|                                   | description.                      |
-+-----------------------------------+-----------------------------------+
-| Finished (from / to)              | The filter lets you specify in    |
-|                                   | which time period the case was    |
-|                                   | finished                          |
-+-----------------------------------+-----------------------------------+
-| State                             | The filter lets you specify the   |
-|                                   | case state                        |
-+-----------------------------------+-----------------------------------+
++-----------------------+-----------------------------------+
+| Criteria              | Description                       |
++=======================+===================================+
+|  ID                   |  Specify the ID of the case       |
+|                       |                                   |
++-----------------------+-----------------------------------+
+|  Name                 |  Specify the case name            |
+|                       |                                   |
++-----------------------+-----------------------------------+
+|  Created (from / to)  |  Specify the period in which the  |
+|                       |  case has been created.           |
+|                       |                                   |
++-----------------------+-----------------------------------+
+|  Creator              |  Specify the user who has created |
+|                       |  the case.                        |
++-----------------------+-----------------------------------+
+|  Description          |  Search for keywords within the   |
+|                       |  case description.                |
+|                       |                                   |
++-----------------------+-----------------------------------+
+|  Finished (from / to) |  Specify the period in which the  |
+|                       |  case has been finished.          |
++-----------------------+-----------------------------------+
+|  State                |  Specify the case state           |
+|                       |                                   |
++-----------------------+-----------------------------------+
 
 .. hint:: 
-   #. You may also start the creation of a new filter by selecting an existing
-      filter first, reconfiguring it and saving it. 
+   #. Alternatively, start the creation of a new filter by selecting an existing
+      filter first. Then, reconfigure it and save it under a new name. 
 
    #. Depending on your permissions you might only be allowed to save filters for
       yourself.
 
-HowTo: Configure displayed cases in the Full Case List
+HowTo: Configure Displayed Cases in the Full Case List
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-#. To choose columns to display, click on :guilabel:`Manage columns`. Then you could choose displayed columns by checking the related checkboxes.
+#. To choose columns to display, click on :guilabel:`Manage columns`. Select
+   columns to display by checking the related checkboxes.
 
-#. To sort data, click on the column header. To change sort direction, click on that column header one more time.
-   Note that some columns do not support sorting.
+#. To sort data, click on the column header. To change sort direction, click on
+   that column header one more time. Note that some columns do not support
+   sorting.
 
 HowTo: Move and Resize Widgets in Case Details
 ----------------------------------------------
-1. Open the case details of a case
+1. Open the case details
 
 2. Click on the **Switch to Edit Mode** button to drag, drop and resize widgets.
 
 |how-to-switch-to-edit-mode|
 
 
-3. Click on the **Save** button to save current state of page and switch to readonly mode.
+3. Click on the **Save** button to save the current state of the page and switch
+   to read-only mode.
 
 |how-to-switch-to-view-mode|
 
 
-4. Click **Reset** button to reset to default configuration.
+4. Click the **Reset** button to reset the widget to its default configuration.
 
 |how-to-reset-to-default|
 
 .. _howto-attach-a-document-to-the-case-1:
 
-HowTo: Attach a document to the case
+HowTo: Attach a Document to the Case
 ------------------------------------
 
-#. Open the case details of a case
+#. Open the case details
 
-#. Click the link |add-icon| :guilabel:`Add document` 
+#. Click |add-icon| :guilabel:`Add document` 
 
 #. The :guilabel:`Add document` dialog is opened
 
-#. Upload a file by using the :guilabel:`Select` button or by simply dragging
-   the file into the dialog.
+#. To upload a file, click :guilabel:`Select` or simply drag the file into the
+   dialog.
 
-#. Click the button :guilabel:`Close` to close the dialog
+#. Click :guilabel:`Close` close the dialog
 
 |how-to-attach-document-to-case|
 
 .. _howto-remove-an-attachment-from-the-case-1:
 
-HowTo: Remove an attachment from the case
+HowTo: Remove an Attachment from the Case
 -----------------------------------------
 
-#. Open the case details of a task
+#. Open the case details
 
 #. Click on the |delete-icon| button next to the
    attachment you want to remove.
 
 #. A confirmation dialog is opened
 
-#. Confirm the deletion with the button :guilabel:`Delete` 
+#. Click :guilabel:`Delete` to remove the attachment
 
 |how-to-delete-an-attachment-from-case|
 
-HowTo: Add a note to a case
+HowTo: Add a Note to a Case
 ---------------------------
 
-#. Open the case details of a case
+#. Open the case details
 
 #. Click on the |add-icon| :guilabel:`Add note` link below the notes section.
 
@@ -225,52 +221,50 @@ HowTo: Add a note to a case
 
 #. Enter your note.
 
-#. Confirm your note by clicking the button :guilabel:`Save` .
+#. To save your note, click :guilabel:`Save`.
 
 |how-to-add-task-note|
 
-HowTo: Export a case history
+HowTo: Export a Case History
 ----------------------------
 
-#. Open the case details of a case
+#. Open the case details
 
-#. Click on the |show-more-icon| :guilabel:`Show more` link below the notes section
+#. Click on |show-more-icon| :guilabel:`Show more` below the notes section
 
    |how-to-show-note-details|
 
-#. A new page with the case history is opened
+#. A page containing the case history is opened
 
-#. You may export the history by clicking on the button :guilabel:`Export to Excel` 
+#. To export the case history, click on :guilabel:`Export to Excel` 
 
    |export-case-history|
 
 HowTo: Export Case List
 -----------------------
 
-You may export the Case List by clicking on the button **Export to Excel**.
+To export the Case List, click on **Export to Excel**.
 
 |export-to-excel-button|
 
-HowTo: Manipulate related tasks inside case details
+HowTo: Manipulate Related Tasks Inside Case Details
 ---------------------------------------------------
 
-#. Open the case details of a case
+#. Open the case details
 
-#. Scroll to related tasks section
+#. Scroll to **Related Tasks of Case** 
 
 |case-details-related-tasks-cases|
 
 This section shows you the related tasks of this case.
 
 .. hint:: 
-   Depending on the roles you hold
-   in the application and the     
-   configuration of the Axon Ivy  
-   Portal, you might see not only 
-   the tasks belonging to you but 
-   all open tasks.                
+   What you see here depends on the roles granted to you in both the application 
+   and the |axon-ivy| Portal. Administrators can see all open tasks.
 
-For each task the following key information is shown in the list, you can change it by click on :guilabel:`Manage columns`:
+The list shows the following key information for each task. To change the
+columns displayed, click on :guilabel:`Manage columns`. Select from the
+following columns:
 
 - Priority
 
@@ -288,14 +282,14 @@ For each task the following key information is shown in the list, you can change
 
 - State
 
-Furthermore, at the end of each row you find a side step menu of key features in
-handling tasks:
+At the end of each row, a side step menu is available. It offers the following
+actions:
 
 - Reset Task
 
 - Delegate Task
 
-- Reserve
+- Reserve Task
 
 - Destroy Task
 
@@ -303,19 +297,20 @@ handling tasks:
 
 - Add Ad-hoc Task
 
-Finally, you have the possibility to access the full set of the task
-data by clicking on the row containing the task.
+To access the full set of the task data, click on the row containing the
+task.
 
-HowTo: Manipulate related cases inside case details
+HowTo: Manipulate Related Cases Inside Case Details
 ---------------------------------------------------
 
 #. Open the case details
 
-#. Scroll to related cases section (this section is shown if case has related case).
+#. Scroll to **Related Cases** section. This section is shown only if the case
+   has related cases.
 
 |case-details|
 
-The following information is shown by default, you can change it by click on :guilabel:`Manage columns`:
+By default, the following information is shown. To change it, click on :guilabel:`Manage columns` to select from:
 
 - Name
 
@@ -333,7 +328,7 @@ The following information is shown by default, you can change it by click on :gu
 
 - Category
 
-Action column provides actions in handling case:
+The Action column provides these actions to handle the related case:
 
 - Case details
 
@@ -341,24 +336,27 @@ Action column provides actions in handling case:
 
 - Side step
 
-Click on row will navigate to detail of related case. 
-You can export the related case list by clicking on the button :guilabel:`Export to Excel`.
+To see the details of the related case, click on its row. To export the related
+case list, click on :guilabel:`Export to Excel`.
 
 .. _how-to-show-process-viewer:
 
 HowTo: Show Process Viewer
 --------------------------
 
-| Portal provides a page to let users can see the visual viewer of the process start.
-  Users can access this page by clicking on the :guilabel:`Process Viewer` option in the :guilabel:`Action` menu.
-| This option is available on the case and task details page, also the full case/task list page.
-|
+| Portal provides a visual representation of the process flow of the current case or task. To open the viewer, select :guilabel:`Process Viewer` in the :guilabel:`Action` menu.
+| You find this option on the following pages:
 
-#. Click on the :guilabel:`Action` menu
+   - Case details
+   - Task details
+   - Full case list
+   - Full task list
 
-#. Click on the :guilabel:`Process Viewer` option
+#. Click on :guilabel:`Action`
 
-#. A new tab of the browser is opened and users can see the process viewer with details information
+#. Click on :guilabel:`Process Viewer`
+
+#. Portal opens a new browser tab. You see the process viewer.
 
 |portal-process-viewer|
 
