@@ -20,6 +20,7 @@
     <!-- processChainDirection: VERTICAL or HORIZONTAL (default) -->
     <!-- processChainShape: LINE or CIRCLE (default) -->
     <!-- announcementInvisible: false or true (default) -->
+    <!-- caseId: ID of case to be displayed in case information -->
     <!-- PASS PARAMS TO THIS TEMPLATE VIA JAVASCRIPT IN YOUR HTML DIALOG: -->
     <!-- <script> -->
     <!--   // Follow one of these formats to set process steps: -->
@@ -46,6 +47,10 @@
     <!--   window.processChainDirection = "VERTICAL"; -->
     <!--   window.processChainShape = "LINE"; -->
     <!--   window.announcementInvisible = false; -->
+
+    <!--   Use this code to show case details of a case different from current case of working task
+           by send the case ID of that case. -->
+    <!--   window.caseId = 123456; -->
     <!-- </script> -->
 
     <!-- When define param processSteps, please make sure that you added jsp function tag to your XHTML file: -->
@@ -64,6 +69,7 @@
     <ui:param name="processChainDirection" value="#{iFrameTaskTemplateBean.processChainDirection}" />
     <ui:param name="processChainShape" value="#{iFrameTaskTemplateBean.processChainShape}" />
     <ui:param name="announcementInvisible" value="#{iFrameTaskTemplateBean.announcementInvisible}" />
+    <ui:param name="caseId" value="#{iFrameTaskTemplateBean.caseId}" />
     <ui:param name="announcementStyleClass" value="annoucement-in-frame-template js-annoucement-in-frame-template u-invisibility" />
     <ui:param name="taskTemplateContainerStyleClass" value="u-invisibility" />
     <ui:param name="viewName" value="#{iFrameTaskTemplateBean.viewName}"/>

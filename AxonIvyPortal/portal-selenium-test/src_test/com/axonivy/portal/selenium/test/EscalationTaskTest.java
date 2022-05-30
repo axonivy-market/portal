@@ -69,10 +69,13 @@ public class EscalationTaskTest extends BaseTest {
     taskWidgetPage.countTasks().shouldHaveSize(1);
     taskWidgetPage.clickOnTaskActionLink(0);
     taskWidgetPage.triggerEscalation();
+    // Try to refresh data
+    refreshPage();
+    taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.filterTasksBy(SICK_LEAVE_REQUEST_ESCALATED);
     assertTrue(taskWidgetPage.getFilterTasksByKeyword().attr("value").equalsIgnoreCase(SICK_LEAVE_REQUEST_ESCALATED));
-    assertTrue(taskWidgetPage.getPriorityOfTask().equalsIgnoreCase("high"));
     taskWidgetPage.countTasks().shouldHaveSize(1);
+    assertTrue(taskWidgetPage.getPriorityOfTask(0).equalsIgnoreCase("high"));
   }
   
   @Test
@@ -88,6 +91,7 @@ public class EscalationTaskTest extends BaseTest {
     caseDetailsPage.clickRelatedTaskActionButton(1);
     caseDetailsPage.triggerEscalationTask(1);
     refreshPage();
+    caseDetailsPage = new CaseDetailsPage();
     caseDetailsPage.getNameOfRelatedTask(1).shouldHave(Condition.text(SICK_LEAVE_REQUEST));
     caseDetailsPage.getStateOfRelatedTask(1).shouldHave(Condition.text("Destroyed"));
     caseDetailsPage.getNameOfRelatedTask(3).shouldHave(Condition.text(SICK_LEAVE_REQUEST_ESCALATED));
