@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.8",
+  "format" : "9.4.10",
   "id" : "15493AEB89F5A807",
   "data" : "ch.ivy.addon.portal.generic.OpenPortalTasksData",
   "kind" : "CALLABLE_SUB",
@@ -37,7 +37,7 @@
       "name" : "PortalTasks",
       "config" : {
         "dialogId" : "ch.ivy.addon.portal.generic.PortalTasks",
-        "startMethod" : "useTaskView(TaskView)",
+        "startMethod" : "useTaskView(ch.ivy.addon.portal.generic.view.TaskView)",
         "call" : {
           "params" : [
             { "name" : "taskView", "type" : "ch.ivy.addon.portal.generic.view.TaskView" }

@@ -11,6 +11,7 @@ import org.primefaces.model.CheckboxTreeNode;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import ch.ivy.addon.portalkit.bo.CategoryNode;
 import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivy.addon.portalkit.util.CategoryUtils;
@@ -22,13 +23,13 @@ public class CategoryColumnModel extends TaskColumnModel {
   private static final long serialVersionUID = 2890439587578791422L;
 
   @JsonIgnore
-  private CheckboxTreeNode categoryTree;
+  private CheckboxTreeNode<CategoryNode> categoryTree;
   @JsonIgnore
-  private CheckboxTreeNode[] selectionCategoryNodes;
+  private CheckboxTreeNode<CategoryNode>[] selectionCategoryNodes;
   @JsonIgnore
-  private CheckboxTreeNode userCategoryTree;
+  private CheckboxTreeNode<CategoryNode> userCategoryTree;
   @JsonIgnore
-  private CheckboxTreeNode[] userSelectionCategoryNodes;
+  private CheckboxTreeNode<CategoryNode>[] userSelectionCategoryNodes;
 
   @Override
   public void initDefaultValue() {
@@ -61,7 +62,7 @@ public class CategoryColumnModel extends TaskColumnModel {
   }
 
   @JsonIgnore
-  public String generateFriendlyCategoryPath(List<String> filterList, CheckboxTreeNode[] treeNodes) {
+  public String generateFriendlyCategoryPath(List<String> filterList, CheckboxTreeNode<CategoryNode>[] treeNodes) {
     var paths = Optional.ofNullable(filterList).orElse(new ArrayList<>());
     if (CollectionUtils.isEmpty(filterList) && treeNodes != null && treeNodes.length > 0) {
       paths = Optional.ofNullable(CategoryUtils.getCategoryPaths(treeNodes)).orElse(new ArrayList<>());
@@ -70,12 +71,12 @@ public class CategoryColumnModel extends TaskColumnModel {
   }
 
   @JsonIgnore
-  public CheckboxTreeNode[] getCategoryNodes() {
+  public CheckboxTreeNode<CategoryNode>[] getCategoryNodes() {
     return selectionCategoryNodes;
   }
 
   @JsonIgnore
-  public void setCategoryNodes(CheckboxTreeNode[] categoryNodes) {
+  public void setCategoryNodes(CheckboxTreeNode<CategoryNode>[] categoryNodes) {
     this.selectionCategoryNodes = categoryNodes;
   }
 
@@ -86,36 +87,36 @@ public class CategoryColumnModel extends TaskColumnModel {
   }
 
   @JsonIgnore
-  public CheckboxTreeNode getCategoryTree() {
+  public CheckboxTreeNode<CategoryNode> getCategoryTree() {
     return categoryTree;
   }
 
   @JsonIgnore
-  public void setCategoryTree(CheckboxTreeNode categoryTree) {
+  public void setCategoryTree(CheckboxTreeNode<CategoryNode> categoryTree) {
     this.categoryTree = categoryTree;
   }
 
-  public CheckboxTreeNode[] getSelectionCategoryNodes() {
+  public CheckboxTreeNode<CategoryNode>[] getSelectionCategoryNodes() {
     return selectionCategoryNodes;
   }
 
-  public void setSelectionCategoryNodes(CheckboxTreeNode[] selectionCategoryNodes) {
+  public void setSelectionCategoryNodes(CheckboxTreeNode<CategoryNode>[] selectionCategoryNodes) {
     this.selectionCategoryNodes = selectionCategoryNodes;
   }
 
-  public CheckboxTreeNode getUserCategoryTree() {
+  public CheckboxTreeNode<CategoryNode> getUserCategoryTree() {
     return userCategoryTree;
   }
 
-  public void setUserCategoryTree(CheckboxTreeNode userCategoryTree) {
+  public void setUserCategoryTree(CheckboxTreeNode<CategoryNode> userCategoryTree) {
     this.userCategoryTree = userCategoryTree;
   }
 
-  public CheckboxTreeNode[] getUserSelectionCategoryNodes() {
+  public CheckboxTreeNode<CategoryNode>[] getUserSelectionCategoryNodes() {
     return userSelectionCategoryNodes;
   }
 
-  public void setUserSelectionCategoryNodes(CheckboxTreeNode[] userSelectionCategoryNodes) {
+  public void setUserSelectionCategoryNodes(CheckboxTreeNode<CategoryNode>[] userSelectionCategoryNodes) {
     this.userSelectionCategoryNodes = userSelectionCategoryNodes;
   }
 

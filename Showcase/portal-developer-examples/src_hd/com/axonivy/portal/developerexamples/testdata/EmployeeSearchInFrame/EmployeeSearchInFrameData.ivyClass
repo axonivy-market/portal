@@ -1,0 +1,6 @@
+EmployeeSearchInFrameData #class
+com.axonivy.portal.developerexamples.testdata.EmployeeSearchInFrame #namespace
+employees java.util.List<com.axonivy.portal.developerexamples.Employee> #field
+employees PERSISTENT #fieldModifier
+employeeId Integer #field
+employeeId PERSISTENT #fieldModifier

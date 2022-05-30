@@ -1,0 +1,312 @@
+{
+  "format" : "9.4.10",
+  "id" : "180D50804A2BF9E9",
+  "data" : "com.axonivy.portal.developerexamples.Data",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "createTaskForEmployeeA.ivp",
+      "config" : {
+        "callSignature" : "createTaskForEmployeeA",
+        "outLink" : "createTaskForEmployeeA.ivp",
+        "startName" : "Create Task For Employee A"
+      },
+      "visual" : {
+        "at" : { "x" : 64, "y" : 48 },
+        "labelOffset" : { "x" : -21, "y" : 17 }
+      },
+      "connect" : { "id" : "f3", "to" : "f2", "var" : "in1" }
+    }, {
+      "id" : "f1",
+      "type" : "RequestStart",
+      "name" : "createTaskForEmployeeB.ivp",
+      "config" : {
+        "callSignature" : "createTaskForEmployeeB",
+        "outLink" : "createTaskForEmployeeB.ivp",
+        "startName" : "Create Task For Employee B"
+      },
+      "visual" : {
+        "at" : { "x" : 64, "y" : 128 },
+        "labelOffset" : { "x" : -24, "y" : 17 }
+      },
+      "connect" : { "id" : "f8", "to" : "f6", "var" : "in1" }
+    }, {
+      "id" : "f2",
+      "type" : "TaskSwitchGateway",
+      "config" : {
+        "outLinks" : [ "TaskA.ivp" ],
+        "case" : {
+          "name" : "Case for Employee Peter Parker",
+          "customFields" : [
+            { "name" : "employeeId", "type" : "Number", "value" : "1" }
+          ]
+        },
+        "tasks" : {
+          "TaskA" : {
+            "name" : "Task for Employee Peter Parker"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 256, "y" : 48 }
+      },
+      "connect" : [
+        { "id" : "f5", "to" : "f4", "condition" : "ivp==\"TaskA.ivp\"" }
+      ]
+    }, {
+      "id" : "f4",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 416, "y" : 48 }
+      }
+    }, {
+      "id" : "f6",
+      "type" : "TaskSwitchGateway",
+      "config" : {
+        "outLinks" : [ "TaskA.ivp" ],
+        "case" : {
+          "name" : "Case for employee Carol Danver",
+          "customFields" : [
+            { "name" : "employeeId", "type" : "Number", "value" : "2" }
+          ]
+        },
+        "tasks" : {
+          "TaskA" : {
+            "name" : "Task for employee Carol Danver"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 256, "y" : 128 }
+      },
+      "connect" : [
+        { "id" : "f9", "to" : "f7", "condition" : "ivp==\"TaskA.ivp\"" }
+      ]
+    }, {
+      "id" : "f7",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 416, "y" : 128 }
+      }
+    }, {
+      "id" : "f13",
+      "type" : "ProcessAnnotation",
+      "name" : [
+        "CREATE TEST DATA:",
+        "",
+        "Run createTaskForEmployeeA.ivp and createTaskForEmployeeB.ivp processes to create test data.",
+        "These processes will create cases which has customField \"employeeId\" = 1 and \"employeeId\" =2."
+      ],
+      "visual" : {
+        "at" : { "x" : 752, "y" : 88 },
+        "size" : { "width" : 544, "height" : 76 }
+      }
+    }, {
+      "id" : "f10",
+      "type" : "RequestStart",
+      "name" : "employeeSearchInFrame.ivp",
+      "config" : {
+        "callSignature" : "employeeSearchInFrame",
+        "case" : {
+          "name" : "Case of Search list"
+        },
+        "outLink" : "employeeSearchInFrame.ivp",
+        "startName" : "Employee Search In Iframe"
+      },
+      "visual" : {
+        "at" : { "x" : 64, "y" : 256 },
+        "labelOffset" : { "x" : -26, "y" : 20 }
+      },
+      "connect" : { "id" : "f14", "to" : "f12" }
+    }, {
+      "id" : "f11",
+      "type" : "RequestStart",
+      "name" : "employeeDetailsInFrame.ivp",
+      "config" : {
+        "callSignature" : "employeeDetailsInFrame",
+        "input" : {
+          "params" : [
+            { "name" : "employeeId", "type" : "Integer" }
+          ],
+          "map" : {
+            "out.employeeInfo.id" : "param.employeeId"
+          }
+        },
+        "case" : {
+          "name" : "Case for Employee details in frame"
+        },
+        "outLink" : "employeeDetailsInFrame.ivp",
+        "showInStartList" : false,
+        "startName" : "Employee Details in frame"
+      },
+      "visual" : {
+        "at" : { "x" : 64, "y" : 352 },
+        "labelOffset" : { "x" : -24, "y" : 21 }
+      },
+      "connect" : { "id" : "f19", "to" : "f17" }
+    }, {
+      "id" : "f12",
+      "type" : "DialogCall",
+      "name" : "EmployeeSearchInFrame",
+      "config" : {
+        "dialogId" : "com.axonivy.portal.developerexamples.testdata.EmployeeSearchInFrame",
+        "startMethod" : "start()"
+      },
+      "visual" : {
+        "at" : { "x" : 264, "y" : 256 },
+        "size" : { "width" : 144, "height" : 44 }
+      },
+      "connect" : { "id" : "f16", "to" : "f15" }
+    }, {
+      "id" : "f15",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 416, "y" : 256 }
+      }
+    }, {
+      "id" : "f17",
+      "type" : "DialogCall",
+      "name" : "EmployeeDetailsInFrame",
+      "config" : {
+        "dialogId" : "com.axonivy.portal.developerexamples.testdata.EmployeeDetailsInFrame",
+        "startMethod" : "start(Integer)",
+        "call" : {
+          "params" : [
+            { "name" : "employeeId", "type" : "Integer" }
+          ],
+          "map" : {
+            "param.employeeId" : "in.employeeInfo.id"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 264, "y" : 352 },
+        "size" : { "width" : 144, "height" : 44 }
+      },
+      "connect" : { "id" : "f20", "to" : "f18" }
+    }, {
+      "id" : "f18",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 416, "y" : 352 }
+      }
+    }, {
+      "id" : "f21",
+      "type" : "ProcessAnnotation",
+      "name" : [
+        "HOW TO RUN THIS EXAMPLE",
+        "",
+        "   - Run employeeSearchInFrame.ivp to open a list of employees.",
+        "   - Click link \"Details in frame\" on any row of employee.",
+        "   - It will navigate to the employee details page.",
+        "   - Click \"Case Information\" button on the top right of the employee details page.",
+        "   - Now you will see that it will show the case details of the case you created  above instead of case details of working task"
+      ],
+      "visual" : {
+        "at" : { "x" : 816, "y" : 304 },
+        "size" : { "width" : 672, "height" : 124 }
+      }
+    }, {
+      "id" : "f22",
+      "type" : "RequestStart",
+      "name" : "employeeSearch.ivp",
+      "config" : {
+        "callSignature" : "employeeSearch",
+        "case" : {
+          "name" : "Case of Search list",
+          "customFields" : [
+            { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
+          ]
+        },
+        "outLink" : "employeeSearch.ivp",
+        "startName" : "Employee Search"
+      },
+      "visual" : {
+        "at" : { "x" : 64, "y" : 512 },
+        "labelOffset" : { "x" : -21, "y" : 17 }
+      },
+      "connect" : { "id" : "f26", "to" : "f24" }
+    }, {
+      "id" : "f23",
+      "type" : "RequestStart",
+      "name" : "employeeDetails.ivp",
+      "config" : {
+        "callSignature" : "employeeDetails",
+        "input" : {
+          "params" : [
+            { "name" : "employeeId", "type" : "Integer" }
+          ],
+          "map" : {
+            "out.employeeInfo.id" : "param.employeeId"
+          }
+        },
+        "case" : {
+          "name" : "Case for Employee details",
+          "customFields" : [
+            { "name" : "embedInFrame", "type" : "String", "value" : "\"false\"" }
+          ]
+        },
+        "outLink" : "employeeDetails.ivp"
+      },
+      "visual" : {
+        "at" : { "x" : 64, "y" : 608 },
+        "labelOffset" : { "x" : -24, "y" : 17 }
+      },
+      "connect" : { "id" : "f27", "to" : "f25" }
+    }, {
+      "id" : "f24",
+      "type" : "DialogCall",
+      "name" : "EmployeeSearch",
+      "config" : {
+        "dialogId" : "com.axonivy.portal.developerexamples.testdata.EmployeeSearch",
+        "startMethod" : "start()"
+      },
+      "visual" : {
+        "at" : { "x" : 240, "y" : 512 }
+      },
+      "connect" : { "id" : "f30", "to" : "f28" }
+    }, {
+      "id" : "f25",
+      "type" : "DialogCall",
+      "name" : "EmployeeDetails",
+      "config" : {
+        "dialogId" : "com.axonivy.portal.developerexamples.testdata.EmployeeDetails",
+        "startMethod" : "start(Integer)",
+        "call" : {
+          "params" : [
+            { "name" : "employeeId", "type" : "Integer" }
+          ],
+          "map" : {
+            "param.employeeId" : "in.employeeInfo.id"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 248, "y" : 608 }
+      },
+      "connect" : { "id" : "f31", "to" : "f29" }
+    }, {
+      "id" : "f28",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 416, "y" : 512 }
+      }
+    }, {
+      "id" : "f29",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 416, "y" : 608 }
+      }
+    } ],
+  "layout" : {
+    "lanes" : [ {
+        "size" : 192
+      }, {
+        "name" : "Example for IFrameTaskTemplate",
+        "size" : 256
+      }, {
+        "name" : "Example for TaskTemplate-8",
+        "size" : 216
+      } ]
+  }
+}

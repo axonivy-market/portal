@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.8",
+  "format" : "9.4.10",
   "id" : "16285772A1F890EE",
   "data" : "ch.ivy.add.portalkit.UploadDocumentCheckerData",
   "kind" : "CALLABLE_SUB",
@@ -90,15 +90,7 @@
         "at" : { "x" : 96, "y" : 176 },
         "size" : { "width" : 144, "height" : 44 }
       },
-      "connect" : { "id" : "f13", "to" : "f12", "label" : {
-          "name" : [
-            "Pass extension check and",
-            "enable virus scanner",
-            "in upload file"
-          ],
-          "segment" : 0.71,
-          "offset" : { "x" : 87, "y" : 0 }
-        } }
+      "connect" : { "id" : "f13", "to" : "f12" }
     }, {
       "id" : "f7",
       "type" : "Alternative",
@@ -146,15 +138,7 @@
         "at" : { "x" : 96, "y" : 336 },
         "size" : { "width" : 144, "height" : 44 }
       },
-      "connect" : { "id" : "f8", "to" : "f7", "label" : {
-          "name" : [
-            "Pass extension, virus check and",
-            "enable script checking",
-            "in upload file"
-          ],
-          "segment" : 0.81,
-          "offset" : { "x" : 87, "y" : 0 }
-        } }
+      "connect" : { "id" : "f8", "to" : "f7" }
     }, {
       "id" : "f12",
       "type" : "Alternative",

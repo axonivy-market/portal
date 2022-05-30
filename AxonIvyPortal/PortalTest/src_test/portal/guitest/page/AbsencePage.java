@@ -36,7 +36,6 @@ public class AbsencePage extends TemplatePage {
 		return findListElementsByCssSelector("td.absence-period").size();
 	}
 
-	@SuppressWarnings("deprecation")
   public void showAbsencesInThePast(boolean shown) {
 		WebElement checkBox = findElementByCssSelector("input[id*='show-absence-in-the-past']");
 		boolean checkBoxSelected = checkBox.isSelected();

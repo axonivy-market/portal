@@ -64,7 +64,7 @@
           
         <ic:ch.ivy.addon.portalkit.component.AdvancedFilter id="<FILTER_ID>" ...>
             ...
-              <p:ajax update="@([id$='<FILTER_ID>:filter-open-form']) @form #{p:component('task-view-container')}"
+              <p:ajax update="@([id$='<FILTER_ID>:filter-open-form']) @form #{p:resolveFirstComponentWithId('task-view-container', view).clientId}"
             global="false" oncomplete="taskWidget.setupScrollbar(); taskWidget.setupHeader()" />
             ...
           </ic:ch.ivy.addon.portalkit.component.AdvancedFilter>
