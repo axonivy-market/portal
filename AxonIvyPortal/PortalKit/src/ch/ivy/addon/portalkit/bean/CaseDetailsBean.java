@@ -135,8 +135,7 @@ public class CaseDetailsBean extends AbstractConfigurableContentBean<CaseDetails
 
   public void handleRowSelectEventOnRelatedTaskList(SelectEvent<Object> event) throws IOException {
     ITask task = (ITask) event.getObject();
-    boolean isInFrame = (boolean) event.getComponent().getAttributes().get("inFrame");
-    handleSelectedTaskInDialog(task, isInFrame);
+    handleSelectedTaskInDialog(task, inFrame);
   }
   
   private void handleSelectedTaskInDialog(ITask task, boolean isInFrame) throws IOException {
