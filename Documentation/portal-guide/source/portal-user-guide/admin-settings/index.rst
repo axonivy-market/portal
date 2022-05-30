@@ -3,49 +3,49 @@
 Admin Settings
 **************
 
-Only users have role ``AXONIVY_PORTAL_ADMIN`` could access :guilabel:`Admin settings` user menu item. They could update Portal settings, show/hide announcement.
+Only users who have granted the role ``AXONIVY_PORTAL_ADMIN`` can see and access the :guilabel:`Admin settings` user menu item. They can update Portal settings, as well as define, show and hide the announcement.
 
-Select :guilabel:`Admin settings` user menu item.
+Select the :guilabel:`Admin settings` user menu item.
 
    |select-admin-settings|
 
 .. _add-third-party-application:
 
-HowTo: Add third party application
-----------------------------------
+HowTo: Add a Third Party Application
+------------------------------------
 
-#. Select :guilabel:`Applications` tab.
+#. Select the :guilabel:`Applications` tab.
 
    |applications|
 
-#. Click on :guilabel:`New` to add new third party applications, then dialog :guilabel:`Add new third party application` is displayed.
+#. Click on :guilabel:`New` to add a new third party application. Dialog :guilabel:`Add new third party application` is displayed.
 
    |add-application|
 
-#. To change menu icon, click on :guilabel:`Change`.
+#. To change its menu icon, click on :guilabel:`Change`.
 
-#. Enter :guilabel:`Display name`, to specify different display name for different language, click on :guilabel:`Add languages`.
+#. Enter :guilabel:`Display name` to specify its display name in an additional language, click on :guilabel:`Add languages`.
 
-#. Enter :guilabel:`Link`, e.g. http://www.google.com.
+#. Enter its URL in :guilabel:`Link`, e.g. http://www.google.com.
 
 #. Click on :guilabel:`Ok`.
 
 .. _update-portal-settings:
 
-HowTo: Update Portal settings
+HowTo: Update Portal Settings
 -----------------------------
 
-#. Select :guilabel:`Settings` tab. All available settings with their default value and description are listed in this place.
+#. Select the :guilabel:`Settings` tab. All available settings with their default values and descriptions are listed in the table.
 
    |global-settings|
 
-#. To update Portal settings, click on |edit-icon| button.
+#. To update Portal settings, click on the |edit-icon| button.
 
    |edit-global-settings|
 
-#. To reset to default value of each setting, click on |undo-icon| button.
+#. To reset a setting to its default value, click on the |undo-icon| button.
 
-#. To reset to default value of all settings, click on :guilabel:`Restore all to defaults`.
+#. To reset all settings to their default values, click on :guilabel:`Restore all to defaults`.
 
 .. note:: Portal settings could be configured in :dev-url:`Axon Ivy Cockpit </doc/nightly/engine-guide/tool-reference/engine-cockpit/configuration.html#engine-cockpit-variables>`.
 
@@ -57,18 +57,18 @@ HowTo: Update Portal settings
   :class: longtable
   :widths: 20 20 60
 
-HowTo: Show/Hide announcement
------------------------------
+HowTo: Show/Hide the Announcement
+---------------------------------
 
-#. Select :guilabel:`Announcements` tab.
+#. Select the :guilabel:`Announcements` tab.
 
    |announcement|
 
-#. Input announcement.
+#. Input your announcement text.
 
-#. To show announcement, click on :guilabel:`Enable`.
+#. To show the announcement, click on :guilabel:`Enable`.
 
-#. To hide announcement when announcement is showing, click on :guilabel:`Disable`.
+#. If the announcement is enabled, hide it again by clicking on :guilabel:`Disable`.
 
 .. include:: ../includes/_common-icon.rst
 
