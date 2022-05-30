@@ -1,0 +1,8 @@
+EmployeeDetailsData #class
+com.axonivy.portal.developerexamples.testdata.EmployeeDetails #namespace
+employee com.axonivy.portal.developerexamples.Employee #field
+employee PERSISTENT #fieldModifier
+employeeId Integer #field
+employeeId PERSISTENT #fieldModifier
+foundCase ch.ivyteam.ivy.workflow.ICase #field
+foundCase PERSISTENT #fieldModifier

@@ -1,0 +1,97 @@
+{
+  "format" : "9.4.10",
+  "id" : "180D53FCBBD7744A",
+  "data" : "com.axonivy.portal.developerexamples.testdata.EmployeeDetails.EmployeeDetailsData",
+  "kind" : "HTML_DIALOG",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start(Integer)",
+      "config" : {
+        "callSignature" : "start",
+        "input" : {
+          "params" : [
+            { "name" : "employeeId", "type" : "Integer" }
+          ],
+          "map" : {
+            "out.employeeId" : "param.employeeId"
+          }
+        },
+        "guid" : "180D53FCBC1C37EF"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 },
+        "labelOffset" : { "x" : -16, "y" : 15 }
+      },
+      "connect" : { "id" : "f7", "to" : "f6" }
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 512, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "HtmlDialogEventStart",
+      "name" : "close",
+      "config" : {
+        "guid" : "180D53FCBC92A03C"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 160 }
+      },
+      "connect" : { "id" : "f5", "to" : "f4" }
+    }, {
+      "id" : "f4",
+      "type" : "HtmlDialogExit",
+      "visual" : {
+        "at" : { "x" : 224, "y" : 160 }
+      }
+    }, {
+      "id" : "f6",
+      "type" : "Script",
+      "name" : "Init data",
+      "config" : {
+        "output" : {
+          "code" : [
+            "if (in.employeeId == 1) {",
+            "  in.employee.id = 1;",
+            "  in.employee.firstName = \"Peter\";",
+            "  in.employee.lastName = \"Parker\";",
+            "  in.employee.city = \"New York\";",
+            "} else {",
+            "  in.employee.id = 2;",
+            "  in.employee.firstName = \"Carol\";",
+            "  in.employee.lastName = \"Danver\";",
+            "  in.employee.city = \"Los Angeles\";",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 }
+      },
+      "connect" : { "id" : "f9", "to" : "f8" }
+    }, {
+      "id" : "f8",
+      "type" : "Script",
+      "name" : "Find case",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.workflow.ICase;",
+            "import ch.ivyteam.ivy.workflow.query.CaseQuery;",
+            "",
+            "CaseQuery query = CaseQuery.create();",
+            "query.where().customField().numberField(\"employeeId\").isEqual(in.employee.id);",
+            "",
+            "in.foundCase = query.executor().firstResult() as ICase;"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 384, "y" : 64 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    } ]
+}

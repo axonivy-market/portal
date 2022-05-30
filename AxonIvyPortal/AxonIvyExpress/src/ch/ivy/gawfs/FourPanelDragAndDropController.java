@@ -46,7 +46,7 @@ public class FourPanelDragAndDropController extends CommonDragAndDropController 
   }
 
   @Override
-  public void onFieldDrop(DragDropEvent ddEvent) {
+  public void onFieldDrop(DragDropEvent<Object> ddEvent) {
     String[] dragInfo = StringUtils.split(ddEvent.getDragId(), SEPARATOR_CHAR);
     String[] dropInfo = StringUtils.split(ddEvent.getDropId(), SEPARATOR_CHAR);
     if (dragInfo.length != NUMBER_DRAG_EVENT_INFO || dropInfo.length != NUMBER_DROP_EVENT_INFO || StringUtils.equals(dropInfo[1], dragInfo[1])) {

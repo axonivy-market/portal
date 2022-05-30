@@ -132,7 +132,7 @@ public class CaseDetailsBean extends AbstractConfigurableContentBean<CaseDetails
     return dataModel.getSelectedColumns().contains(columnName);
   }
 
-  public void handleRowSelectEventOnRelatedTaskList(SelectEvent event) throws IOException {
+  public void handleRowSelectEventOnRelatedTaskList(SelectEvent<Object> event) throws IOException {
     ITask task = (ITask) event.getObject();
     boolean isInFrame = (boolean) event.getComponent().getAttributes().get("inFrame");
     handleSelectedTaskInDialog(task, isInFrame);
@@ -168,7 +168,7 @@ public class CaseDetailsBean extends AbstractConfigurableContentBean<CaseDetails
     }
   }
 
-  public void navigateToSelectedCaseDetails(SelectEvent event) {
+  public void navigateToSelectedCaseDetails(SelectEvent<Object> event) {
     Long caseId = ((ICase) event.getObject()).getId();
     navigateToCaseDetails(caseId);
   }

@@ -39,7 +39,7 @@
           </p:commandLink>
 
           <p:overlayPanel id="filter-name-overlay-panel" styleClass="filter-name-overlay-panel" for="filter-name"
-            hideEffect="fade" my="left top" at="left bottom">
+            my="left top" at="left bottom">
             <h:panelGroup id="public-filters" rendered="#{not empty data.taskPublicFilters}">
               <div class="filter-type-label">
                 <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/publicFilter')}" />
@@ -59,7 +59,7 @@
                 </h:panelGroup>
               </ui:repeat>
             </h:panelGroup>
-            <p:separator rendered="#{not empty data.taskPublicFilters and not empty data.taskPrivateFilters}"
+            <p:divider rendered="#{not empty data.taskPublicFilters and not empty data.taskPrivateFilters}"
               styleClass="filter-separator" />
             <h:panelGroup id="private-filters" rendered="#{not empty data.taskPrivateFilters}">
               <div class="filter-type-label">
