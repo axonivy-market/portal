@@ -3,10 +3,9 @@
 Full Process List
 *****************
 
-The **Full Process List** page gives you an overview of all the
-processes in the application that are accessible to you. You can reach
-the page by using the :guilabel:`Processes` link in the
-Axon Ivy Portal menu.
+The **Full Process List** page gives you an overview of all the processes in the
+application available to you. To open the page, click :guilabel:`Processes` in
+the |axon-ivy| Portal menu.
 
 |navigate-to-full-process-list|
 
@@ -21,24 +20,25 @@ Express workflows are described in detail in :ref:`axon-ivy-express`.
    #. External link icon
    #. Change view mode
 
-Process mode
-------------
+Process Display Mode
+--------------------
 
-In the **Full Process List**, we provided three modes for displaying the process list.
-By default, **Image mode** is activated. You can change the default process mode in :guilabel:`My Profile` page.
+The **Full Process List** provides three modes to display the process list. By
+default, **Image mode** is activated. To change the default process display mode
+in :guilabel:`My Profile`.
 
-Image mode
+Image Mode
 ^^^^^^^^^^
 
 |portal-process-image-view-page|
 
 .. hint:: 
-   You can change process default image by changing
-   value of Portal Setting **Portal.Processes.DefaultImage**.
+   To change the default image of processes, change
+   the Portal setting **Portal.Processes.DefaultImage**.
    
    See :ref:`values_of_default_image`.
 
-Grid mode
+Grid Mode
 ^^^^^^^^^
 
 |portal-process-grid-view-page|
@@ -49,21 +49,18 @@ Compact Mode
 
 |portal-process-list-view-page|
 
-
-If you’re looking for a specific process, you can search your keyword in search field 
-marked in the image above. The search will look up your keyword in process names, 
-process descriptions and process categories, then filter the process list accordingly.
+To find a specific process, search by keywords in the search field (top left
+below the home icon in the image above). The search will look in process names,
+process descriptions and process categories, then filter the process list
+accordingly.
 
 .. warning:: 
-   Don’t confuse the process search
-   with the global Axon Ivy Portal 
-   search which you find in the    
-   header area of the Portal.      
+   Don’t confuse the process search with the global |axon-ivy| Portal 
+   search which you find in the header area of the Portal.
 
-When you select a process from the list, a new case of this process is started.
-Please be aware, that after you finished your activities in the case you will be
-re-directed to the **Dashboard**  and not the :guilabel:`Full Process
-List`.
+To start a new instance of a process, select the process in the list. We call
+this instance a **case**. After you finish your activities in the case, you will
+be re-directed to the **Dashboard**, not to the :guilabel:`Full Process List`.
 
 .. _values_of_default_image:
 
