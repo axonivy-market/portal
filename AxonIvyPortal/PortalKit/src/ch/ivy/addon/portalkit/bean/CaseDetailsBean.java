@@ -16,6 +16,7 @@ import org.primefaces.event.SelectEvent;
 import org.primefaces.model.SortMeta;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
+import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.datamodel.internal.RelatedCaseLazyDataModel;
 import ch.ivy.addon.portalkit.dto.casedetails.CaseDetails;
 import ch.ivy.addon.portalkit.enums.BehaviourWhenClickingOnLineInTaskList;
@@ -138,7 +139,7 @@ public class CaseDetailsBean extends AbstractConfigurableContentBean<CaseDetails
     handleSelectedTaskInDialog(task, isInFrame);
   }
   
-  private void handleSelectedTaskInDialog(ITask task, boolean isInFrame) throws IOException {    
+  private void handleSelectedTaskInDialog(ITask task, boolean isInFrame) throws IOException {
     if(isInFrame) {
       navigateToSelectedTaskDetails(task);
     }else {
@@ -146,7 +147,7 @@ public class CaseDetailsBean extends AbstractConfigurableContentBean<CaseDetails
     }
   }
   
-  private void handleSelectedTaskInCaseDetailsList(ITask task) throws IOException {    
+  private void handleSelectedTaskInCaseDetailsList(ITask task) throws IOException {
     if (isRunningTaskWhenClickingOnTaskInList) {
       handleStartTask(task);
     } else {
@@ -156,7 +157,7 @@ public class CaseDetailsBean extends AbstractConfigurableContentBean<CaseDetails
   
   private void handleStartTask(ITask task) throws IOException {
     selectedTask = task;
-    TaskUtils.handleStartTask(task, PortalPage.CASE_DETAIL_FROM_TASK, "reset-task-confirmation-dialog");
+    TaskUtils.handleStartTask(task, PortalPage.CASE_DETAIL_FROM_TASK, PortalConstants.RESET_TASK_CONFIRMATION_DIALOG);
   }
 
   public void navigateToSelectedTaskDetails(ITask task) {
