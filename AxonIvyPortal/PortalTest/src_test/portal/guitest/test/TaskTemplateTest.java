@@ -110,12 +110,14 @@ public class TaskTemplateTest extends BaseTest {
   public void testReserveWorkingTaskByClickingOnLogo() {
     redirectToRelativeLink(simplePaymentUrl);
     login(TestAccount.ADMIN_USER);
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     HomePage home = new HomePage();
     home.waitForPageLoaded();
     TaskTemplatePage taskTemplatePage = startATaskAndOpenCaseInfo();
     taskTemplatePage.clickOnLogo();
     WorkingTaskDialogPage dialogPage = new WorkingTaskDialogPage();
     dialogPage.reserveTask();
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     TaskWidgetPage taskWidget = new TaskWidgetPage();
     taskWidget.expand();
     Assert.assertTrue(taskWidget.isTaskStateReserved(0));
