@@ -53,7 +53,7 @@ public class SecurityService implements ISecurityService {
    * @return {@link List}
    */
   private List<UserDTO> queryUsers(String query, IApplication app, int startIndex, int count, List<String> fromRoles, List<String> excludedUsernames) {
-    UserQuery userQuery = app.getSecurityContext().users().query().orderBy().fullName();
+    UserQuery userQuery = app.getSecurityContext().users().query();
 
     IFilterQuery filterQuery = createFilterQuery(query, userQuery);
 
@@ -191,7 +191,7 @@ public class SecurityService implements ISecurityService {
   }
 
   private List<UserDTO> queryAllUsers(IApplication application, int startIndex, int count, List<String> fromRoles, List<String> excludedUsernames) {
-    UserQuery userQuery = application.getSecurityContext().users().query().orderBy().fullName();
+    UserQuery userQuery = application.getSecurityContext().users().query();
     IFilterQuery filterQuery = userQuery.where();
 
     if (CollectionUtils.isNotEmpty(fromRoles)) {
