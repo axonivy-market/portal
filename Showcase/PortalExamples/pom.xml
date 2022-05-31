@@ -6,7 +6,7 @@
   <version>8.0.0.0-SNAPSHOT</version>
   <packaging>iar</packaging>
   <properties>
-    <build.plugin.version>8.0.6</build.plugin.version>
+    <build.plugin.version>8.0.7</build.plugin.version>
     <ivy.engine.version>8.0.26</ivy.engine.version>
   </properties>
   <distributionManagement>
@@ -21,11 +21,6 @@
   </distributionManagement>
   <repositories>
     <repository>
-      <releases>
-        <enabled>true</enabled>
-        <updatePolicy>always</updatePolicy>
-        <checksumPolicy>warn</checksumPolicy>
-      </releases>
       <name>Axonivy Repo</name>
       <id>maven.axonivy.com</id>
       <url>https://maven.axonivy.com/</url>

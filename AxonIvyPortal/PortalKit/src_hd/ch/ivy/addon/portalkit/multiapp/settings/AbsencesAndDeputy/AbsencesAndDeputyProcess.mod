@@ -60,7 +60,6 @@ As0 @PushWFArc f91 '' #zField
 As0 @PushWFArc f128 '' #zField
 As0 @UdEvent f32 '' #zField
 As0 @CallSub f111 '' #zField
-As0 @PushWFArc f119 '' #zField
 As0 @GridStep f120 '' #zField
 As0 @PushWFArc f121 '' #zField
 As0 @GridStep f1 '' #zField
@@ -165,6 +164,9 @@ As0 @PushWFArc f144 '' #zField
 As0 @GridStep f150 '' #zField
 As0 @PushWFArc f151 '' #zField
 As0 @PushWFArc f58 '' #zField
+As0 @GridStep f153 '' #zField
+As0 @PushWFArc f155 '' #zField
+As0 @PushWFArc f119 '' #zField
 >Proto As0 As0 AbsencesAndDeputyProcess #zField
 As0 f0 guid 1679C986E063D36E #txt
 As0 f0 method start() #txt
@@ -630,10 +632,8 @@ As0 f111 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f111 168 490 112 44 -44 -8 #rect
+As0 f111 328 490 112 44 -44 -8 #rect
 As0 f111 @|CallSubIcon #fIcon
-As0 f119 expr out #txt
-As0 f119 109 512 168 512 #arcP
 As0 f120 actionTable 'out=in;
 ' #txt
 As0 f120 actionCode 'import ch.ivy.addon.portalkit.util.BeanUtils;
@@ -647,10 +647,10 @@ if have</name>
     </language>
 </elementInfo>
 ' #txt
-As0 f120 328 490 128 44 -40 -16 #rect
+As0 f120 488 490 128 44 -40 -16 #rect
 As0 f120 @|StepIcon #fIcon
 As0 f121 expr out #txt
-As0 f121 280 512 328 512 #arcP
+As0 f121 440 512 488 512 #arcP
 As0 f1 actionTable 'out=in;
 ' #txt
 As0 f1 actionCode 'import ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence;
@@ -1050,10 +1050,10 @@ As0 f123 expr out #txt
 As0 f123 1616 256 1656 176 #arcP
 As0 f123 1 1656 256 #addKink
 As0 f123 0 0.51542288529873 0 0 #arcLabel
-As0 f125 627 499 26 26 0 12 #rect
+As0 f125 787 499 26 26 0 12 #rect
 As0 f125 @|UdProcessEndIcon #fIcon
 As0 f126 expr out #txt
-As0 f126 456 512 627 512 #arcP
+As0 f126 616 512 787 512 #arcP
 As0 f126 0 0.41717001380558716 0 0 #arcLabel
 As0 f22 processCall 'Ivy Data Processes/AbsenceService:createAbsence(ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence)' #txt
 As0 f22 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence absence> param;' #txt
@@ -1381,8 +1381,7 @@ As0 f75 456 330 112 44 -27 -8 #rect
 As0 f75 @|StepIcon #fIcon
 As0 f93 actionTable 'out=in;
 ' #txt
-As0 f93 actionCode 'import ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence;
-import ch.ivy.addon.portalkit.util.Dates;
+As0 f93 actionCode 'import ch.ivy.addon.portalkit.util.Dates;
 
 java.util.Date endOfDate = Dates.toEndOfDate(in.selectedAbsence.getUntil());
 in.selectedAbsence.setUntil(endOfDate);
@@ -1491,6 +1490,25 @@ As0 f150 @|StepIcon #fIcon
 As0 f151 expr out #txt
 As0 f151 109 64 168 64 #arcP
 As0 f58 280 64 339 64 #arcP
+As0 f153 actionTable 'out=in;
+' #txt
+As0 f153 actionCode 'import ch.ivy.addon.portalkit.util.Dates;
+
+java.util.Date endOfDate = Dates.toEndOfDate(in.selectedAbsence.getUntil());
+in.selectedAbsence.setUntil(endOfDate);' #txt
+As0 f153 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Set end date&#13;
+to selected absence</name>
+    </language>
+</elementInfo>
+' #txt
+As0 f153 152 490 144 44 -51 -16 #rect
+As0 f153 @|StepIcon #fIcon
+As0 f155 expr out #txt
+As0 f155 109 512 152 512 #arcP
+As0 f119 296 512 328 512 #arcP
 >Proto As0 .type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
 >Proto As0 .processKind HTML_DIALOG #txt
 >Proto As0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1558,8 +1576,6 @@ As0 f6 mainOut f91 tail #connect
 As0 f91 head f90 in #connect
 As0 f90 out f128 tail #connect
 As0 f128 head f7 mainIn #connect
-As0 f32 mainOut f119 tail #connect
-As0 f119 head f111 mainIn #connect
 As0 f111 mainOut f121 tail #connect
 As0 f121 head f120 mainIn #connect
 As0 f39 mainOut f8 tail #connect
@@ -1672,3 +1688,7 @@ As0 f0 mainOut f151 tail #connect
 As0 f151 head f150 mainIn #connect
 As0 f150 mainOut f58 tail #connect
 As0 f58 head f18 mainIn #connect
+As0 f32 mainOut f155 tail #connect
+As0 f155 head f153 mainIn #connect
+As0 f153 mainOut f119 tail #connect
+As0 f119 head f111 mainIn #connect

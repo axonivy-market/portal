@@ -32,8 +32,7 @@ public final class AbsenceAndSubstituteUtils {
   }
 
   public static Set<IvyAbsence> flatIvyAbsenceMap(Map<String, Set<IvyAbsence>> ivyAbsencesByUser) {
-    if(MapUtils.isEmpty(ivyAbsencesByUser)) {
-      Ivy.log().error("TEST ivyAbsencesByUser is " + (ivyAbsencesByUser == null ? "null" : ivyAbsencesByUser.size()));
+    if (MapUtils.isEmpty(ivyAbsencesByUser)) {
       return new HashSet<>();
     }
     return ivyAbsencesByUser.values().stream().flatMap(Set::stream).collect(Collectors.toSet());
