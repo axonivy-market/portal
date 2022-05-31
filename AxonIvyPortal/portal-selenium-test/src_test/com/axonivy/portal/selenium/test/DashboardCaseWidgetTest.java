@@ -30,7 +30,6 @@ public class DashboardCaseWidgetTest extends BaseTest {
   // CASES
   private static final String LEAVE_REQUEST_CASE_NAME = "Leave Request";
   private static final String ORDER_PIZZA = "Order Pizza";
-  private static final String HIDE_CASE = "Repair Computer";
   private static final String LEAVE_REQUEST_DEFAULT_CASE= "Leave Request for Default Additional Case Details";
   private static final String INVESTMENT_REQUEST_CUSTOMIZATION_CASE = "Investment Request";
   private static final String CREATE_12_CASES_WITH_CATEGORY_CASE = "Create 12 Cases with category";

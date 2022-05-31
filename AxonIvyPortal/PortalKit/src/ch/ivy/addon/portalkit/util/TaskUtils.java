@@ -249,7 +249,7 @@ public final class TaskUtils {
     }
   }
 
-  private static void handleStartResumedTask(ITask task, String dialog) throws IOException {
+  private static void handleStartResumedTask(ITask task, String dialog) {
     if (canResume(task)) {
       PrimeFaces.current().executeScript("PF('" + dialog + "').show();");
     } else {
@@ -320,12 +320,15 @@ public final class TaskUtils {
   
   public static void expiryTaskById(Long taskId) {
     ITask task = findTaskById(taskId);
-    if (task != null) {
-      if (task.getExpiryActivator() == null && task.getExpiryTimestamp() == null) {
-        task.setExpiryActivator(task.getActivator());
-      }
-      task.setExpiryTimestamp(new Date());
+    if (task == null) {
+      return;
     }
+
+    if (task.getExpiryActivator() == null && task.getExpiryTimestamp() == null) {
+      task.setExpiryActivator(task.getActivator());
+    }
+    task.setExpiryTimestamp(new Date());
+
     IUser user = Ivy.session().getSessionUser();
     String fullName = user.getFullName();
     String userName = StringUtils.substring(user.getMemberName(), 1);
