@@ -16,6 +16,7 @@ import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
+import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.casemap.runtime.ICaseMapService;
 import ch.ivyteam.ivy.casemap.runtime.model.ICaseMap;
 import ch.ivyteam.ivy.casemap.runtime.model.IStage;
@@ -44,7 +45,7 @@ public abstract class AbstractTaskTemplateBean implements Serializable {
 
   public void startAdhoc(Long taskId) {
     PortalNavigator portalNavigator = new PortalNavigator();
-    ProcessStartCollector processStartCollector = new ProcessStartCollector(Ivy.wf().getApplication());
+    ProcessStartCollector processStartCollector = new ProcessStartCollector(IApplication.current());
     String url = processStartCollector.findExpressAdhocWFLink();
     url = url + "?originalTaskId=" + taskId;
     portalNavigator.redirect(url);
@@ -57,7 +58,7 @@ public abstract class AbstractTaskTemplateBean implements Serializable {
   }
 
   public boolean hasExpressAdhocWF() {
-    ProcessStartCollector processStartCollector = new ProcessStartCollector(Ivy.wf().getApplication());
+    ProcessStartCollector processStartCollector = new ProcessStartCollector(IApplication.current());
     String adhocUrl = processStartCollector.findExpressAdhocWFLink();
     return !adhocUrl.isEmpty();
   }

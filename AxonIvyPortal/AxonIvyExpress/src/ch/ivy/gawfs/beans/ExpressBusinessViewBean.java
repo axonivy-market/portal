@@ -15,7 +15,7 @@ import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.util.ExecutingExpressProcessUtils;
 import ch.ivy.gawfs.enums.TaskType;
-import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.ICase;
@@ -112,7 +112,7 @@ public class ExpressBusinessViewBean implements Serializable {
   private IUser findActualApplicantByUsername(String userName) {
     IUser applicantUser = null;
     try {
-      applicantUser = ServiceUtilities.findUser(userName, Ivy.wf().getApplication());
+      applicantUser = ServiceUtilities.findUser(userName, IApplication.current());
     } catch (PortalIvyDataException e) {
       e.printStackTrace();
     }

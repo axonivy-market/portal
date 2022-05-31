@@ -114,7 +114,7 @@ public class CaseService implements ICaseService {
     });
     return caseQuery;
   }
-
+  
   @Override
   public IvyCaseResultDTO findCategoriesByCriteria(CaseCategorySearchCriteria criteria) {
     return IvyExecutor.executeAsSystem(() -> {

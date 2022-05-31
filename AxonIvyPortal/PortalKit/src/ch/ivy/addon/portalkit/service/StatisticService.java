@@ -127,6 +127,7 @@ import ch.ivy.addon.portalkit.statistics.StatisticChartQueryUtils;
 import ch.ivy.addon.portalkit.statistics.StatisticChartTimeUtils;
 import ch.ivy.addon.portalkit.statistics.StatisticColors;
 import ch.ivy.addon.portalkit.statistics.StatisticFilter;
+import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.business.data.store.BusinessDataInfo;
 import ch.ivyteam.ivy.business.data.store.search.Filter;
 import ch.ivyteam.ivy.business.data.store.search.Result;
@@ -1179,7 +1180,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     DisplayName defaultDisplayName = new DisplayName();
     defaultDisplayName.setLocale(Ivy.session().getContentLocale());
     defaultDisplayName.setValue("");
-    List<String> appLanguages = Arrays.asList(Ivy.wf().getApplication().getName());
+    List<String> appLanguages = Arrays.asList(IApplication.current().getName());
     String userName = Ivy.session().getSessionUserName();
     DisplayName currentDisplayName = CollectionUtils.emptyIfNull(statisticChart.getNames()).stream()
         .filter(name -> StatisticService.equalsDisplayNameLocale(name, LanguageService.newInstance().findUserLanguages(userName, appLanguages).getIvyLanguages().get(0).getUserLanguage()))
