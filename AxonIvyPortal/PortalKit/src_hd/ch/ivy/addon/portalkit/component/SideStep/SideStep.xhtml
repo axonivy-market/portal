@@ -115,7 +115,7 @@
 
     <h:panelGroup id="task-additional-actions" layout="block" rendered="#{cc.attrs.renderedAdditionalAction}">
       <f:event listener="#{sideStepBean.getSideSteps(task.getId(), task.case.getId(), cc.attrs.isAdhocExcluded)}" type="preRenderComponent" />
-      <p:separator styleClass="u-separator" />
+      <p:divider styleClass="u-separator" />
       <p:commandLink rendered="#{empty sideStepBean.currentSideSteps}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noSideSteps')}"
         styleClass="option-item" />
       <ui:repeat var="sideStep" value="#{sideStepBean.currentSideSteps}">

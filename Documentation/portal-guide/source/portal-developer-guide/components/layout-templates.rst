@@ -119,6 +119,10 @@ Inside your UI, you can configure these parameters which will be rendered by the
       window.processChainShape = "LINE";
       window.announcementInvisible = false;
       window.viewName = "TASK_DETAIL";
+
+      // Use this code to show case details of a case different from current case of working task.
+      // by send the case ID of that case.
+      window.caseId = 123456;
    </script>
 
 .. note::
@@ -188,6 +192,18 @@ Refer to ``TaskTemplate-8.xhtml`` for params and template areas.
 +----------------------------------------+-------------------------------+
 
 .. _components-layout-templates-task-list-template:
+
+External case information
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+By default, TaskTemplate-8 will show business case details of the working task in the Case Information dialog.
+But you can modify it to show details of another case instead by using parameter ``caseId``.
+The parameter ``caseId`` only accept case ID of an existing case, if Portal cannot find the case it will show
+business case details of the working task instead. Please refer to example below.
+
+.. code-block:: html
+
+   <ui:param name="caseId" value="123456" /> 
 
 Task list template
 ------------------

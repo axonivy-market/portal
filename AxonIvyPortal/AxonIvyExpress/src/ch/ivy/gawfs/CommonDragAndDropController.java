@@ -25,7 +25,7 @@ public abstract class CommonDragAndDropController {
     finalUsedFormelements = new ArrayList<>();
   }
 
-  public void onFieldDrop(DragDropEvent ddEvent) {
+  public void onFieldDrop(DragDropEvent<Object> ddEvent) {
     throw new NotImplementedException(ddEvent.getDragId() + SEPARATOR_CHAR + ddEvent.getDropId());
   }
 

@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.8",
+  "format" : "9.4.10",
   "id" : "1540379C4B7261E4",
   "data" : "ch.ivy.addon.portal.generic.OpenPortalCasesData",
   "kind" : "CALLABLE_SUB",
@@ -37,7 +37,7 @@
       "name" : "PortalCases",
       "config" : {
         "dialogId" : "ch.ivy.addon.portal.generic.PortalCases",
-        "startMethod" : "useView(CaseView)",
+        "startMethod" : "useView(ch.ivy.addon.portal.generic.view.CaseView)",
         "call" : {
           "params" : [
             { "name" : "caseView", "type" : "ch.ivy.addon.portal.generic.view.CaseView" }

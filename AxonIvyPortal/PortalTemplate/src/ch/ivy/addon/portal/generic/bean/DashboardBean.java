@@ -20,6 +20,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.primefaces.event.SelectEvent;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
+import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.dto.WidgetLayout;
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
@@ -252,12 +253,12 @@ public class DashboardBean implements Serializable {
     return FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
   }
 
-  public void navigateToSelectedTaskDetails(SelectEvent event) {
+  public void navigateToSelectedTaskDetails(SelectEvent<Object> event) {
     Long taskId = ((ITask) event.getObject()).getId();
     PortalNavigator.navigateToPortalTaskDetails(taskId);
   }
 
-  public void handleRowSelectEventOnTaskWidget(SelectEvent event) throws IOException {
+  public void handleRowSelectEventOnTaskWidget(SelectEvent<Object> event) throws IOException {
     ITask task = ((ITask) event.getObject());
     handleSelectedTask(task);
   }
@@ -272,14 +273,14 @@ public class DashboardBean implements Serializable {
   
   public void handleStartTask(ITask task) throws IOException {
     selectedTask = task;
-    TaskUtils.handleStartTask(task, null, "reset-task-confirmation-dialog");
+    TaskUtils.handleStartTask(task, null, PortalConstants.RESET_TASK_CONFIRMATION_DIALOG);
   }
 
   public void navigateToSelectedTaskDetails(ITask task) {
     PortalNavigator.navigateToPortalTaskDetails(task.getId());
   }
 
-  public void navigateToSelectedCaseDetails(SelectEvent event) {
+  public void navigateToSelectedCaseDetails(SelectEvent<Object> event) {
     Long caseId = ((ICase) event.getObject()).getId();
     PortalNavigator.navigateToPortalCaseDetails(caseId);
   }
