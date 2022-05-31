@@ -349,8 +349,9 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
 
   /**
    * <p>
-   * If your customized task list has new columns/fields, please extend the {@code taskQuery}
-   * parameter with the sort query for these fields.
+   * If your customized task list in {@link #getDefaultColumns()} or customized sort options in
+   * {@link #getPortalTaskSort()} has new columns/fields, please extend the {@code taskQuery} parameter with the sort
+   * query for these fields.
    * </p>
    * <p>
    * <b>Example: </b> <code><pre>
@@ -558,6 +559,15 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
 
   /**
    * @hidden
+   */
+  public void validateAndBuildTaskSort() {
+    String sortColumn = SortFieldUtil.extractSortColumn(UserUtils.getSessionTaskSortAttribute());
+    if (!getDefaultColumns().contains(sortColumn)) {
+      updateSortCriteria(TaskSortField.ID.name(), true, false);
+    }
+  }
+  /**
+   * @hidden
    * @param selectedFilters
    */
   public void setSelectedFilters(List<TaskFilter> selectedFilters) {
@@ -754,6 +764,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
         buildCompactModeTaskSort();
       }
     } else {
+      validateAndBuildTaskSort();
       if (filterContainer != null) {
         if (selectedFilters.contains(filterContainer.getStateFilter())) {
           criteria.setIncludedStates(new ArrayList<>());
@@ -1070,11 +1081,11 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
    * IMPORTANT: Item in this list must follow pattern : column name + "_ASC" or column name +
    * "_DESC"
    * 
-   * E.g your customize portal column are Arrays.asList{"PRIORITY", "NAME", "ID" , "ACTIVATOR",
-   * "CREATION_TIME", "EXPIRY_TIME", "customVarCharField5", "customVarCharField1"} You can have sort
-   * fields like: return Arrays.asList("CREATION_TIME_ASC", "CREATION_TIME_DESC",
+   * E.g your customize portal columns are Arrays.asList{"PRIORITY", "NAME", "ID" , "ACTIVATOR",
+   * "CREATION_TIME", "customVarCharField5", "customVarCharField1"} You can have sort
+   * fields like: return Arrays.asList("CREATION_TIME_ASC", "CREATION_TIME_DESC", "EXPIRY_TIME_ASC", "EXPIRY_TIME_DESC",
    * "customVarCharField5_ASC", "customVarCharField5_DESC", "customVarCharField1_ASC",
-   * "customVarCharField1_DESC"}
+   * "customVarCharField1_DESC"}, even if customize portal columns do not have EXPIRY_TIME column
    * 
    * @return list of sort criteria
    */
@@ -1111,7 +1122,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
    */
   public void sort(String sortField) {
     String sortColumn = SortFieldUtil.extractSortColumn(sortField);
-    if (getDefaultColumns().contains(sortColumn)) {
+    if (getDefaultColumns().contains(sortColumn) || getPortalTaskSort().contains(sortField)) {
       setSortField(sortColumn, !SortFieldUtil.isAscendingSort(sortField));
       return;
     }
