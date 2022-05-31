@@ -170,6 +170,9 @@ Migrate to 9.3
 #. Portal date filter such as TaskCreationDateFilter, CaseCreationDateFilter... messages ``<p:messages for="..." />`` have been added for each calendar component to validate date format.
    If you use have any customized date filters in your project, update template accordingly.
 
+#. The callable process ``DefaultChart.mod``, ``DefaultUserProcess.mod`` is removed. It is replaced by the :dev-url:`Variables </doc/nightly/designer-guide/configuration/variables.html>` configuration approach,
+   refer to :ref:`Default Chart <customization-default-chart>` and :ref:`Default User Process <customization-default-user-process>` for more information
+
 Migrate 9.1 to 9.2
 ------------------
 
