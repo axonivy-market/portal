@@ -35,7 +35,6 @@ import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.category.CategoryTree;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
-@SuppressWarnings("restriction")
 public class CaseService implements ICaseService {
 
   private CaseService() {
