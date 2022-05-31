@@ -48,12 +48,13 @@ public class SubstituteService implements ISubstituteService {
   public IvySubstituteResultDTO findSubstitutes(String username, List<String> apps) {
     return IvyExecutor.executeAsSystem(() -> { 
       IvySubstituteResultDTO result = new IvySubstituteResultDTO();
+      Map<IvyApplication, List<IvySubstitute>> ivySubstitutesByApp = new HashMap<>();
+      result.setIvySubstitutesByApp(ivySubstitutesByApp);
       if (CollectionUtils.isEmpty(apps)) {
         return result;
       }
 
       List<PortalIvyDataException> errors = new ArrayList<>();
-      Map<IvyApplication, List<IvySubstitute>> ivySubstitutesByApp = new HashMap<>();
       List<Application> applications = new ApplicationDao().findByNames(apps);
       apps.stream().forEach(appName -> {
         try {
@@ -70,7 +71,6 @@ public class SubstituteService implements ISubstituteService {
         }
       });
       result.setErrors(errors);
-      result.setIvySubstitutesByApp(ivySubstitutesByApp);
       return result;
     });
   }

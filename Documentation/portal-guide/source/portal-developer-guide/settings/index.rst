@@ -368,7 +368,7 @@ Personal case permission
 
 -  CHANGE CASE NAME
 
-   Delete case function will be enabled if session user has
+   Change case name function will be enabled if session user has
    ``IPermission.CASE_WRITE_NAME``.
 
    .. important::
@@ -376,7 +376,7 @@ Personal case permission
 
 -  CHANGE CASE DESCRIPTION
 
-   Delete case function will be enabled if session user has
+   Change case description function will be enabled if session user has
    ``IPermission.CASE_WRITE_DESCRIPTION``.
 
    .. important::

@@ -1,0 +1,6 @@
+EmployeeSearchInFrameData #class
+ch.ivyteam.ivy.project.portal.examples.testdata.EmployeeSearchInFrame #namespace
+employees java.util.List<ch.ivyteam.ivy.project.portal.examples.Employee> #field
+employees PERSISTENT #fieldModifier
+employeeId Integer #field
+employeeId PERSISTENT #fieldModifier
