@@ -27,7 +27,6 @@ public class DashboardTaskWidgetTest extends BaseTest {
   private static final String CREATE_12_CASES_WITH_CATEGORY_CASE = "Create 12 Cases with category";
 
   // TASKS
-  private static final String REPORT = "Report";
   private static final String SICK_LEAVE_REQUEST = "Sick Leave Request";
   private static final String DESTROYED = "Destroyed";
   private static final String TASK_NUMBER = "Task number";

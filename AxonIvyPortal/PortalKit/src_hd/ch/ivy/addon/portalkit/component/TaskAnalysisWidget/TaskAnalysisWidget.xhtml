@@ -59,7 +59,7 @@
                 </h:panelGroup>
               </ui:repeat>
             </h:panelGroup>
-            <p:separator rendered="#{not empty data.taskPublicFilters and not empty data.taskPrivateFilters}"
+            <p:divider rendered="#{not empty data.taskPublicFilters and not empty data.taskPrivateFilters}"
               styleClass="filter-separator" />
             <h:panelGroup id="private-filters" rendered="#{not empty data.taskPrivateFilters}">
               <div class="filter-type-label">
