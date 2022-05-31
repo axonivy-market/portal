@@ -20,7 +20,7 @@ public class AdminSettingBean implements Serializable {
 
   private static final long serialVersionUID = 1506137118077215366L;
 
-  public void onTabChange(TabChangeEvent tabChangeEvent) {
+  public void onTabChange(TabChangeEvent<Object> tabChangeEvent) {
     if (tabChangeEvent.getComponent() instanceof TabView) {
       TabView tabView = (TabView) tabChangeEvent.getComponent();
       Integer activeTabIndex = tabView.getChildren().indexOf(tabChangeEvent.getTab());

@@ -64,7 +64,7 @@
                       </div>
                     </ui:repeat>
                   </h:panelGroup>
-                  <p:separator rendered="#{not empty data.publicFilters and not empty data.privateFilters}" styleClass="filter-separator" />
+                  <p:divider rendered="#{not empty data.publicFilters and not empty data.privateFilters}" styleClass="filter-separator" />
                   <h:panelGroup id="public-filters" rendered="#{not empty data.privateFilters}">
                     <div class="filter-type-label">
                       <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/privateFilter')}</span>

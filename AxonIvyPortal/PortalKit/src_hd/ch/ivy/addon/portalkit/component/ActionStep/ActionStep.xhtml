@@ -74,7 +74,7 @@
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/ProcessViewer/ProcessViewerText')}" />
     </p:link>
 
-    <p:separator styleClass="case-action-separator" rendered="#{showSeparator}" />
+    <p:divider styleClass="case-action-separator" rendered="#{showSeparator}" />
 
     <h:panelGroup id="side-steps">
       <f:event listener="#{sideStepBean.getSideSteps(cc.attrs.taskId, case.id, cc.attrs.isAdhocExcluded)}" type="preRenderComponent" />
