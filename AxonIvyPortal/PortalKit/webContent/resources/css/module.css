@@ -3638,12 +3638,18 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   .statistic-carousel .ui-carousel .ui-carousel-header .ui-carousel-header-title {
     max-width: 70% !important;
   }
+  .statistic-carousel .statistic-carousel-item {
+    max-height: 25rem;
+  }
 }
 
 /* Medium screen */
 @media screen and (min-width: 64.063em) and (max-width: 90.062em) {
   .statistic-carousel .ui-carousel .ui-carousel-header .ui-carousel-header-title {
     max-width: 72% !important;
+  }
+  .statistic-carousel .statistic-carousel-item {
+    max-height: 25rem;
   }
 }
 
@@ -3654,6 +3660,9 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   }
   .statistic-details-dialog {
     width: 600px !important;
+  }
+  .statistic-carousel .statistic-carousel-item {
+    max-height: 40rem;
   }
 }
 
