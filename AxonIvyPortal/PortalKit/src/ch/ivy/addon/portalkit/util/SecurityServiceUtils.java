@@ -53,7 +53,7 @@ public class SecurityServiceUtils {
    */
   public static String findProcessByUserFriendlyRequestPath(String processStartSignature) {
     return IvyExecutor.executeAsSystem(() -> {
-      ProcessStartCollector processStartCollector = new ProcessStartCollector(Ivy.wf().getApplication());
+      ProcessStartCollector processStartCollector = new ProcessStartCollector(IApplication.current());
       IProcessStart processStart =
           processStartCollector.findProcessStartByUserFriendlyRequestPath(processStartSignature);
       if (processStart != null) {
@@ -123,7 +123,7 @@ public class SecurityServiceUtils {
   
   public static String findFriendlyRequestPathContainsKeyword(String keyword){
     return IvyExecutor.executeAsSystem(() -> {
-      ProcessStartCollector collector = new ProcessStartCollector(Ivy.wf().getApplication());
+      ProcessStartCollector collector = new ProcessStartCollector(IApplication.current());
       Object portalStartPmvId = getSessionAttribute(SessionAttribute.PORTAL_START_PMV_ID.toString());
       return collector.findFriendlyRequestPathContainsKeyword(keyword, portalStartPmvId);
     });

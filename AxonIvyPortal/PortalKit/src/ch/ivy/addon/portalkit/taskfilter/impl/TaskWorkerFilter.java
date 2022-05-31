@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import ch.ivy.addon.portalkit.dto.UserDTO;
 import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilter;
+import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
@@ -76,7 +77,7 @@ public class TaskWorkerFilter extends TaskFilter {
    */
   private void findWorker(String memberName) {
     if (selectedWorker == null || !StringUtils.equals(selectedWorkerMemberName, selectedWorker.getMemberName())) {
-      setSelectedWorker(ServiceUtilities.findUserDTO(memberName.replaceFirst("#", ""), Ivy.wf().getApplication()));
+      setSelectedWorker(ServiceUtilities.findUserDTO(memberName.replaceFirst("#", ""), IApplication.current()));
     }
   }
 

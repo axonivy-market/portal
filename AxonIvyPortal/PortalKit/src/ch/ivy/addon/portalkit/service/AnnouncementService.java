@@ -91,7 +91,7 @@ public class AnnouncementService extends BusinessDataService<Announcement> {
   }
 
   private String getDefaultEmailLanguage() {
-    return Ivy.wf().getApplication().getDefaultEMailLanguage().getLanguage();
+    return IApplication.current().getDefaultEMailLanguage().getLanguage();
   }
 
   public void activateAnnouncement() throws InterruptedException {

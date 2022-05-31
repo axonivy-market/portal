@@ -34,6 +34,7 @@ import ch.ivyteam.ivy.workflow.category.CategoryTree;
 import ch.ivyteam.ivy.workflow.query.ITaskQueryExecutor;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
+@SuppressWarnings("restriction")
 public class TaskService implements ITaskService {
 
   private TaskService() {
