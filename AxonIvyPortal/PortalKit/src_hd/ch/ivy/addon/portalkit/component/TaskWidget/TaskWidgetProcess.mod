@@ -800,8 +800,9 @@ Ts0 f75 actionTable 'out=in;
 Ts0 f75 actionCode '
 if(in.dataModel.compactMode) {
 	in.selectedSort = in.dataModel.getSelectedCompactSort();
-}
-' #txt
+} else {
+	in.dataModel.validateAndBuildTaskSort();
+}' #txt
 Ts0 f75 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
