@@ -16,6 +16,7 @@ import org.primefaces.event.SelectEvent;
 import org.primefaces.model.SortMeta;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
+import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.datamodel.internal.RelatedCaseLazyDataModel;
 import ch.ivy.addon.portalkit.dto.casedetails.CaseDetails;
 import ch.ivy.addon.portalkit.enums.BehaviourWhenClickingOnLineInTaskList;
@@ -132,18 +133,30 @@ public class CaseDetailsBean extends AbstractConfigurableContentBean<CaseDetails
     return dataModel.getSelectedColumns().contains(columnName);
   }
 
-  public void handleRowSelectEventOnRelatedTaskList(SelectEvent event) throws IOException {
+  public void handleRowSelectEventOnRelatedTaskList(SelectEvent<Object> event) throws IOException {
     ITask task = (ITask) event.getObject();
-    selectedTask = task;
-    handleSelectedTask(task);
+    handleSelectedTaskInDialog(task, inFrame);
   }
-
-  public void handleSelectedTask(ITask task) throws IOException {
+  
+  private void handleSelectedTaskInDialog(ITask task, boolean isInFrame) throws IOException {
+    if(isInFrame) {
+      navigateToSelectedTaskDetails(task);
+    }else {
+      handleSelectedTaskInCaseDetailsList(task);
+    }
+  }
+  
+  private void handleSelectedTaskInCaseDetailsList(ITask task) throws IOException {
     if (isRunningTaskWhenClickingOnTaskInList) {
-      TaskUtils.handleStartTask(task, PortalPage.CASE_DETAIL_FROM_TASK, "reset-task-confirmation-dialog");
+      handleStartTask(task);
     } else {
       navigateToSelectedTaskDetails(task);
     }
+  }
+  
+  private void handleStartTask(ITask task) throws IOException {
+    selectedTask = task;
+    TaskUtils.handleStartTask(task, PortalPage.CASE_DETAIL_FROM_TASK, PortalConstants.RESET_TASK_CONFIRMATION_DIALOG);
   }
 
   public void navigateToSelectedTaskDetails(ITask task) {
@@ -155,7 +168,7 @@ public class CaseDetailsBean extends AbstractConfigurableContentBean<CaseDetails
     }
   }
 
-  public void navigateToSelectedCaseDetails(SelectEvent event) {
+  public void navigateToSelectedCaseDetails(SelectEvent<Object> event) {
     Long caseId = ((ICase) event.getObject()).getId();
     navigateToCaseDetails(caseId);
   }

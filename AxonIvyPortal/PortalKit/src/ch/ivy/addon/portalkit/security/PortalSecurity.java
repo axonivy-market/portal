@@ -32,9 +32,7 @@ public enum PortalSecurity {
   }
   
   private static class Permissions {
-    @SuppressWarnings("deprecation")
     private static final List<IPermission> ADMIN_USER_ADDITIONAL = Arrays.asList(
-            IPermission.ADMINISTRATE_WORKFLOW,
             IPermission.TASK_READ_ALL,
             IPermission.TASK_PARK_OWN_WORKING_TASK,
             IPermission.TASK_WRITE_ACTIVATOR,

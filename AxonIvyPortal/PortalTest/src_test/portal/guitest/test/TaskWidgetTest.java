@@ -100,6 +100,7 @@ public class TaskWidgetTest extends BaseTest {
   public void testDestroyTask() {
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(GRANT_DESTROY_TASK_URL);
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     HomePage homePage = new HomePage();
     TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
     taskWidgetPage.expand();

@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.8",
+  "format" : "9.4.10",
   "id" : "15B1EA24CCF377E8",
   "data" : "internaltest.Data",
   "elements" : [ {
@@ -490,7 +490,6 @@
         "size" : 384
       }, {
         "size" : 608
-      } ],
-    "orientation" : "VERTICAL"
+      } ]
   }
 }

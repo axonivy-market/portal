@@ -123,7 +123,7 @@ public class CaseDocumentService {
     return false;
   }
 
-  public static boolean isDocumentTypeHasVirus(UploadedFile uploadedFile) throws IOException {
+  public static boolean isDocumentTypeHasVirus(UploadedFile uploadedFile) {
 	  VirusScannerService service = new VirusScannerService(VirusScanner.class.getClassLoader());
 	  try {
 		service.performVirusScan(uploadedFile);

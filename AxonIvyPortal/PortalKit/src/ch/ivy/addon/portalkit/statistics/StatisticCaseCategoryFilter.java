@@ -22,7 +22,7 @@ public class StatisticCaseCategoryFilter implements Serializable {
   private static final long serialVersionUID = -1200590667880254731L;
 
   @JsonIgnore
-  private CheckboxTreeNode<CategoryNode>[] categories = new CheckboxTreeNode[] {};
+  private CheckboxTreeNode<CategoryNode>[] categories;
   @JsonIgnore
   private CheckboxTreeNode<CategoryNode> root;
 
