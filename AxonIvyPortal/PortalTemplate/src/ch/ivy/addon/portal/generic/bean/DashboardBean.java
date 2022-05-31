@@ -20,6 +20,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.primefaces.event.SelectEvent;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
+import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.dto.WidgetLayout;
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
@@ -272,7 +273,7 @@ public class DashboardBean implements Serializable {
   
   public void handleStartTask(ITask task) throws IOException {
     selectedTask = task;
-    TaskUtils.handleStartTask(task, null, "reset-task-confirmation-dialog");
+    TaskUtils.handleStartTask(task, null, PortalConstants.RESET_TASK_CONFIRMATION_DIALOG);
   }
 
   public void navigateToSelectedTaskDetails(ITask task) {
