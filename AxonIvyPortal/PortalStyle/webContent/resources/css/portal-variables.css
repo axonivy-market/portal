@@ -166,8 +166,7 @@
   --statistic-carousel-header-color: var(--ivy-portal-color-black);
   --statistic-link-hover-backround-color: var(--ivy-primary-color-grey-pale);
   --statistic-link-hover-border: var(--ivy-primary-color-grey-light);
-  --chart-container-separator-border: 1px solid #F4F4F4;
-  --chart-container-separator-border-radius: 0;
+  --chart-container-separator-border-top: 2px solid #F4F4F4;
   --chart-label-default-exception-priority-color: var(--ivy-primary-color-white);
   --chart-label-default-high-priority-color: var(--ivy-primary-color-white);
   --chart-label-default-normal-priority-color: var(--ivy-primary-color-white);
@@ -251,6 +250,7 @@
   --details-document-add-link-font-weight: 400;
   --case-detail-header-font-weight: bold;
   --history-button-container-font-weight: bold;
+  --case-detail-separator-border-color: #eee;
   --case-detail-paginator-header-corner-top-background-color: hsla(180, 1%, 85%,0.5);
   --case-detail-paginator-hover-button-background-color: hsla(180, 1%, 85%,0.5);
   --case-description-text-color-hightlight: var(--ivy-primary-color-black);
@@ -311,6 +311,7 @@
   --task-detail-action-item-hover-background-color: transparent;
   --task-detail-header-font-weight: bold;
   --task-detail-section-title-font-weight: bold;
+  --task-detail-separator-border-color: #eee;
   --task-start-info-header-font-weight: bold;
   --task-start-info-task-id-font-weight: normal;
   --task-name-input-font-weight: bold;
@@ -505,6 +506,7 @@
   --action-step-text-color: var(--ivy-primary-color-grey-medium);
   --action-step-hover-text-color: var(--ivy-primary-color-grey-dark);
   --action-step-disabled-text-color: var(--ivy-primary-color-grey-medium);
+  --action-step-separator-border-color: #eee;
   --place-holder-text-color: var(--ivy-primary-color-grey-medium);
   --text-tab-default-color: var(--ivy-primary-color-grey-medium);
   --no-item-icon-font-size: 8rem;
