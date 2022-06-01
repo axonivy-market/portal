@@ -47,7 +47,6 @@ public class CustomizedTaskLazyDataModel extends TaskLazyDataModel {
     return Arrays.asList("PRIORITY", "NAME", "ACTIVATOR", "ID", "CREATION_TIME", "customVarCharField5", "customTimestampField1");
   }
 
-  
   @Override
   public String getColumnLabel(String column) {
     return Ivy.cms().co("/DefaultColumns/" + column);
