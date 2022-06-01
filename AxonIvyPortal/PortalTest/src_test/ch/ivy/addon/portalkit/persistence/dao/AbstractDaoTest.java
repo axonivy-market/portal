@@ -2,6 +2,7 @@ package ch.ivy.addon.portalkit.persistence.dao;
 
 import static org.junit.Assert.assertEquals;
 import static org.powermock.api.mockito.PowerMockito.mock;
+import static org.powermock.api.mockito.PowerMockito.mockStatic;
 import static org.powermock.api.mockito.PowerMockito.when;
 
 import java.util.ArrayList;
@@ -259,12 +260,11 @@ public class AbstractDaoTest {
   }
   
   @Test
-  @PrepareForTest({Ivy.class})
+  @PrepareForTest({Ivy.class,IApplication.class})
   public void testDetermineEntityType() throws Exception{
     PowerMockito.mockStatic(Ivy.class);
-    IWorkflowContext workflowContext = mock(IWorkflowContext.class);
     IApplication iApplication = mock(IApplication.class);
-    when(Ivy.wf()).thenReturn(workflowContext);
+    mockStatic(IApplication.class);
     when(IApplication.current()).thenReturn(iApplication);
     
     AbstractDao<BusinessEntity> abstractDao = new AbstractDao<BusinessEntity>() {};
