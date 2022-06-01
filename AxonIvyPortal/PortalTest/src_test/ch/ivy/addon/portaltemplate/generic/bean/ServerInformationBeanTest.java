@@ -28,12 +28,11 @@ public class ServerInformationBeanTest {
   }
   
   @Test
-  @PrepareForTest(Ivy.class)
+  @PrepareForTest({Ivy.class,IApplication.class})
   public void testGetEnvironmentInCaseNotHaveActiveEnv() {
     IApplication application = mock(IApplication.class);
-    IWorkflowContext workflowContext = mock(IWorkflowContext.class);
     mockStatic(Ivy.class);
-    when(Ivy.wf()).thenReturn(workflowContext);
+    mockStatic(IApplication.class);
     when(IApplication.current()).thenReturn(application);
     when(application.getActiveEnvironment()).thenReturn(StringUtils.EMPTY);
     ServerInformationBean informationBean = new ServerInformationBean();
@@ -41,12 +40,11 @@ public class ServerInformationBeanTest {
   }
   
   @Test
-  @PrepareForTest(Ivy.class)
+  @PrepareForTest({Ivy.class,IApplication.class})
   public void testGetEnvironmentInCaseHaveActiveEnv() {
     IApplication application = mock(IApplication.class);
-    IWorkflowContext workflowContext = mock(IWorkflowContext.class);
     mockStatic(Ivy.class);
-    when(Ivy.wf()).thenReturn(workflowContext);
+    mockStatic(IApplication.class);
     when(IApplication.current()).thenReturn(application);
     when(application.getActiveEnvironment()).thenReturn("Server");
     assertEquals("Server", informationBean.getEnvironment());
