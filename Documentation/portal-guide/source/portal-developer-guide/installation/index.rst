@@ -117,16 +117,16 @@ In engine
 Migrate 9.3 to 9.4
 ------------------
 
-If you configured Process widgets in your own dashboards as described in :ref:`configure-new-dashboard-proces-widget`, 
-you need to adapt JSON as follows:
+#. If you configured Process widgets in your own dashboards as described in :ref:`configure-new-dashboard-proces-widget`, 
+   you need to adapt JSON as follows:
 
-* Search text ``"type":"process"``, then find related ``displayMode`` of that Process widget.
-* If ``displayMode`` is ``COMPACT_MODE``, change ``type`` to ``compact-process``.
-* If ``displayMode`` is ``COMBINED_MODE``, change ``type`` to ``combined-process``.
-* If ``displayMode`` is ``FULL_MODE``, change ``type`` to ``full-process``.
-* If ``displayMode`` is ``IMAGE_MODE``, change ``type`` to ``image-process``.
+   * Search text ``"type":"process"``, then find related ``displayMode`` of that Process widget.
+   * If ``displayMode`` is ``COMPACT_MODE``, change ``type`` to ``compact-process``.
+   * If ``displayMode`` is ``COMBINED_MODE``, change ``type`` to ``combined-process``.
+   * If ``displayMode`` is ``FULL_MODE``, change ``type`` to ``full-process``.
+   * If ``displayMode`` is ``IMAGE_MODE``, change ``type`` to ``image-process``.
 
-For example:
+   For example:
 
    In 9.3, JSON is
 
@@ -145,6 +145,10 @@ For example:
       "layout":{"id":null,"styleClass":null,"style":null,"w":3,"h":8,"x":5,"y":0}}
 
    ..
+
+#. The ``customization.css`` file has been removed, in case you use it in your project, please switch to using
+   :dev-url:`Engine Branding </doc/nightly/designer-guide/user-interface/branding/branding-engine.html>` to customize styling
+
 
 Migrate to 9.3
 --------------
@@ -169,6 +173,10 @@ Migrate to 9.3
 
 #. Portal date filter such as TaskCreationDateFilter, CaseCreationDateFilter... messages ``<p:messages for="..." />`` have been added for each calendar component to validate date format.
    If you use have any customized date filters in your project, update template accordingly.
+
+#. The callable process ``DefaultChart.mod``, ``DefaultUserProcess.mod`` has been removed. They are replaced by
+   the :dev-url:`Variables </doc/nightly/designer-guide/configuration/variables.html>` configuration approach,
+   refer to :ref:`Default Chart <customization-default-chart>` and :ref:`Default User Process <customization-default-user-process>` for more information
 
 Migrate 9.1 to 9.2
 ------------------
