@@ -716,7 +716,7 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   padding: 0 !important;
 }
 
-.action-steps-panel .case-action-separator, .options-panel hr.u-separator {
+.action-steps-panel .case-action-separator, .options-panel .task-action-separator {
   width: 100%;
   margin: 0;
   border-collapse: unset;
@@ -2212,6 +2212,10 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 .case-details-separator {
   margin: 20px 0 20px 0;
   opacity: 0.5;
+}
+
+.case-details-separator::before {
+  border-top: 1px solid var(--case-detail-separator-border-color);
 }
 
 .case-details {
@@ -3769,8 +3773,12 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   justify-content: space-between;
 }
 
-.edit-statistic-container .chart-list .chart-container .separator {
-  margin: 0px -23px 16px -23px;
+.edit-statistic-container .chart-list .separator::before {
+  top: -87px;
+}
+
+.edit-statistic-container .chart-list .separator-helper {
+  height: 2px;
 }
 
 .edit-statistic-container .chart-list .chart-container .label, .chart-filter-header-text {
@@ -4869,6 +4877,10 @@ _:-ms-fullscreen, :root .content-link-history {
 .separator-task-detail {
   margin: 25px 0 22px 0;
   opacity: 0.5;
+}
+
+.separator-task-detail::before {
+  border-top: 1px solid var(--task-detail-separator-border-color);
 }
 
 .task-detail-state {
