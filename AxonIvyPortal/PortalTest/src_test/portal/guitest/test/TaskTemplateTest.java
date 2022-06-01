@@ -26,7 +26,7 @@ import portal.guitest.page.WorkingTaskDialogPage;
 
 public class TaskTemplateTest extends BaseTest {
 
-  private String createImpersistentTaskUrl = "portal-developer-examples/169BDE2F368D6EC4/PrimefacesElements.ivp";
+  private String createImpersistentTaskUrl = "portal-developer-examples/169BDE2F368D6EC4/ApplicationShowcase.ivp";
 
   @Override
   @Before
