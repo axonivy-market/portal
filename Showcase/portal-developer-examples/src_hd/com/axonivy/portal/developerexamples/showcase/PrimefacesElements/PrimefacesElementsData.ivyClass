@@ -1,8 +1,0 @@
-PrimefacesElementsData #class
-com.axonivy.portal.developerexamples.showcase.PrimefacesElements #namespace
-data com.axonivy.portal.developerexamples.showcase.Data #field
-data PERSISTENT #fieldModifier
-persons org.primefaces.model.DualListModel #field
-persons PERSISTENT #fieldModifier
-cities java.util.List<String> #field
-cities PERSISTENT #fieldModifier
