@@ -78,7 +78,7 @@
                   title="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/startAdHocTooltip')}"
                   icon="si si-move-to-bottom" oncomplete="PF('adhoc-task-reset-confirmation-dialog').show()" />
 
-                <p:divider
+                <p:divider styleClass="separator"
                   rendered="#{abstractTaskTemplateBean.hasAdhocTasks(currentTask) or (empty isShowStartAdhocButton? (abstractTaskTemplateBean.hasExpressAdhocWF() and currentTask.isPersistent()) : isShowStartAdhocButton)}" />
 
                 <p:menuitem id="side-steps-menu" styleClass="empty-side-steps" global="false"
@@ -139,7 +139,7 @@
                   rendered="#{chatRendererBean.isGroupChatRendered and !(currentTask.state eq 'CREATED') and !chatRendererBean.isExpressCreationTask()}"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/chat/createProcessChat')}" update="chat-assignee-dialog" />
     
-                <p:divider
+                <p:divider styleClass="separator"
                     rendered="#{abstractTaskTemplateBean.hasAdhocTasks(currentTask) or (empty isShowStartAdhocButton? (abstractTaskTemplateBean.hasExpressAdhocWF() and currentTask.isPersistent()) : isShowStartAdhocButton)}" />
     
                 <p:menuitem id="side-steps-menu" styleClass="empty-side-steps" global="false"

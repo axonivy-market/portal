@@ -691,9 +691,8 @@ _::-moz-progress-bar, body:last-child .statistic-carousel .ui-carousel-header .u
   font-weight: var(--chart-name-font-weight);
   line-height: var(--chart-name-line-height); }
 
-.edit-statistic-container .chart-list .chart-container .separator {
-  border: var(--chart-container-separator-border);
-  border-radius: var(--chart-container-separator-border-radius); }
+.edit-statistic-container .chart-list .separator::before {
+  border-top: var(--chart-container-separator-border-top);}
 
 .chart-filter-header-text {
   font-size: var(--chart-filter-header-font-size); }
@@ -1329,8 +1328,8 @@ body .ui-inputfield.case-detail-name-input {
   background: var(--case-header-action-cell-button-background-color);
   outline: var(--case-header-action-cell-button-background-color); }
 
-.action-steps-panel .case-action-separator,
-.options-panel hr.u-separator {
+.action-steps-panel .case-action-separator::before,
+.options-panel .task-action-separator::before {
   border: 0.8px solid var(--case-action-separator-border-color); }
 
 .case-list-item {
@@ -1384,6 +1383,10 @@ body .ui-inputfield.case-detail-name-input {
 
 .action-steps-panel .action-icon {
   font-size: var(--large-font-size); }
+
+.action-steps-panel .separator::before {
+  border-top: 2px solid var(--action-step-separator-border-color);
+}
 
 .case-header-name-desc-cell .case-header-name-cell {
   font-weight: var(--case-item-name-font-weight);
@@ -1504,8 +1507,12 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
 .task-start-list .description-cell {
   color: var(--task-start-list-description-cell); }
 
-.filter-name-overlay-panel .filter-separator.ui-separator {
-  border-bottom: 1px solid var(--task-filter-separator-border-bottom); }
+.filter-name-overlay-panel .filter-separator {
+  margin-top: 7px;
+  margin-bottom: 7px;}
+
+.filter-name-overlay-panel .filter-separator::before {
+  border: 1px solid var(--task-filter-separator-border-bottom); }
 
 .task-view-container .ui-datascroller,
 .task-view-container .ui-datascroller .ui-datascroller-content {
