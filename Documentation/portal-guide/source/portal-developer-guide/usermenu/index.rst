@@ -16,7 +16,7 @@ Available style of user menu :
 
 - Start Ivy Process
 
-- Start the Express process
+- Start the Portal Express process
 
 You can predefine user menus, and details of each menu
 by configuring Global Variable **Portal.UserMenu**.
