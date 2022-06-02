@@ -103,8 +103,9 @@ public class StatisticFilter implements Cloneable {
   }
 
   private List<IRole> findDistinctRoles() {
-    List<IRole> distinctRoles = findRolesByCallableProcess().stream()
-        .filter(role -> role != null && Ivy.session().hasRole(role, false))
+    List<IRole> distinctRoles = Ivy.session().getSessionUser()
+        .getAllRoles()
+        .stream()
         .sorted((r1, r2) -> StringUtils.compareIgnoreCase(r1.getDisplayName(), r2.getDisplayName()))
         .collect(Collectors.toList());
     return distinctRoles;
