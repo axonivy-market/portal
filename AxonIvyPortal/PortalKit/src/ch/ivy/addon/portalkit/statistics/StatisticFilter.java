@@ -14,12 +14,10 @@ import static ch.ivyteam.ivy.workflow.WorkflowPriority.NORMAL;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
@@ -29,6 +27,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.enums.StatisticTimePeriodSelection;
+import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivy.addon.portalkit.persistence.domain.Application;
 import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
@@ -103,8 +102,7 @@ public class StatisticFilter implements Cloneable {
   }
 
   private List<IRole> findDistinctRoles() {
-    List<IRole> distinctRoles = Ivy.session().getSessionUser()
-        .getAllRoles()
+    List<IRole> distinctRoles = findRolesByCallableProcess()
         .stream()
         .sorted((r1, r2) -> StringUtils.compareIgnoreCase(r1.getDisplayName(), r2.getDisplayName()))
         .collect(Collectors.toList());
@@ -124,18 +122,12 @@ public class StatisticFilter implements Cloneable {
       List<String> apps = service.findAllIvyApplications().stream().map(Application::getName).collect(Collectors.toList());
       
       if (Ivy.request().getApplication().getName().equals(PortalConstants.PORTAL_APPLICATION_NAME) && !apps.isEmpty()) {
-        List<IRole> roles =
-            SubProcessCall.withPath(PortalConstants.SECURITY_SERVICE_CALLABLE).withStartName("findRolesOverAllApplications")
-                .call(Ivy.session().getSessionUserName())
-                .get("roles", List.class);
-        return roles.stream()
-            .collect(Collectors.collectingAndThen(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(IRole::getName))), ArrayList::new));
+        return SubProcessCall.withPath(PortalConstants.SECURITY_SERVICE_CALLABLE).withStartName("findRolesOfUserOverAllApplications")
+              .call(Ivy.session().getSessionUserName())
+              .get("roles", List.class);
       }
 
-      return SubProcessCall.withPath(PortalConstants.SECURITY_SERVICE_CALLABLE)
-          .withStartName("findRoles")
-          .call(Ivy.request().getApplication())
-          .get("roles", List.class);
+      return ServiceUtilities.findAllRolesOfUser(Ivy.request().getApplication(), Ivy.session().getSessionUserName());
       });
   }
 
