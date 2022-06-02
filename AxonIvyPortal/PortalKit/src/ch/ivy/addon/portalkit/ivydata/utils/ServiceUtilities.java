@@ -60,7 +60,7 @@ public class ServiceUtilities {
   }
 
   /**
-   * Finds all of the users within the given app, except the roles have the HIDE property
+   * Finds all of roles within the given app, except the roles have the HIDE property
    *
    * @param app
    * @return roles
