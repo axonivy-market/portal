@@ -70,9 +70,8 @@
             value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/CaseOwner')}" />
         </div>
         <div class="ui-xl-9 ui-lg-8 ui-md-8 ui-sm-8 ui-g-4 u-no-padding-left text-ellipsis">
-          <ic:ch.ivy.addon.portalkit.component.SecurityMemberDisplayName id="case-owner-full-name" rendered="#{case.getOwner().isUser()}"
+          <ic:ch.ivy.addon.portalkit.component.SecurityMemberDisplayName id="case-owner-full-name"
             securityMember="#{case.getOwner()}" securityMemberName="#{case.ownerName}" />
-          <h:outputText value="#{case.getOwner().getDisplayName()}" rendered="#{not case.getOwner().isUser()}" />
           <h:outputText id="empty-case-owner" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable')}" rendered="#{empty case.getOwner()}" />
         </div>
       </h:panelGroup>
