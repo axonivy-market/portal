@@ -78,7 +78,7 @@ function of these columns work:
 *  Introduce a java class extends TaskLazyDataModel
 
 *  Override the ``extendSort`` method and extend the sort function for
-   the added columns (see the method's Javadoc comments)
+   the added columns in the ``getDefaultColumns()`` and ``getPortalTaskSort()`` methods (see the method's Javadoc comments)
 
 *  Default taskList supports user to config display/hide column
 
@@ -121,11 +121,9 @@ function of these columns work:
 .. _customization-task-widget-how-to-overide-ui-task-filter:
 
 .. important:: 
-   The sort options of the compact task list depend on the default columns defined in the ``TaskLazyDataModel``.
+   You can customize sort options of the compact task list by overriding the ``getPortalTaskSort()`` method (see the method's Javadoc comments).
    
-   That means if you removed a default column in the ``getDefaultColumns()`` method, make sure that options related to that column are removed from the compact task sort options, by overriding the ``getPortalTaskSort()`` method.
-
-   -  e.g: If you removed ``EXPIRY_TIME`` column from ``getDefaultColumns()``, remove two options related to ``EXPIRY_TIME`` in ``getPortalTaskSort()`` method: ``EXPIRY_TIME_AS``, ``EXPIRY_TIME_DESC``.
+   The sort options can have columns are not in the ``getDefaultColumns()`` method.
 
 Task filter
 -----------

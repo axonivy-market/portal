@@ -7,7 +7,6 @@ import ch.ivy.addon.portalkit.taskfilter.TaskFilterContainer;
 import ch.ivy.addon.portalkit.taskfilter.impl.TaskCategoryFilter;
 import ch.ivy.addon.portalkit.taskfilter.impl.TaskCreationDateFilter;
 import ch.ivy.addon.portalkit.taskfilter.impl.TaskDescriptionFilter;
-import ch.ivy.addon.portalkit.taskfilter.impl.TaskExpiredDateFilter;
 import ch.ivy.addon.portalkit.taskfilter.impl.TaskIdFilter;
 import ch.ivy.addon.portalkit.taskfilter.impl.TaskNameFilter;
 import ch.ivy.addon.portalkit.taskfilter.impl.TaskPriorityFilter;
@@ -23,7 +22,6 @@ public class CustomizedTaskFilterContainer extends TaskFilterContainer {
   private TaskNameFilter nameFilter = new TaskNameFilter();
   private TaskDescriptionFilter descriptionFilter = new TaskDescriptionFilter();
   private TaskCreationDateFilter creationDateFilter = new TaskCreationDateFilter();
-  private TaskExpiredDateFilter expiredDateFilter = new TaskExpiredDateFilter();
   private TaskResponsibleFilter responsibleFilter = new TaskResponsibleFilter();
   private CustomerNameFilter customerNameFilter = new CustomerNameFilter();
   private ShipmentDateFilter shipmentDateFilter = new ShipmentDateFilter();
@@ -34,7 +32,6 @@ public class CustomizedTaskFilterContainer extends TaskFilterContainer {
     filters.remove(stateFilter);
     filters.add(descriptionFilter);
     filters.add(creationDateFilter);
-    filters.add(expiredDateFilter);
     filters.add(responsibleFilter);
     filters.add(customerNameFilter);
     filters.add(shipmentDateFilter);
@@ -57,14 +54,6 @@ public class CustomizedTaskFilterContainer extends TaskFilterContainer {
 
   public void setCreationDateFilter(TaskCreationDateFilter creationDateFilter) {
     this.creationDateFilter = creationDateFilter;
-  }
-
-  public TaskExpiredDateFilter getExpiredDateFilter() {
-    return expiredDateFilter;
-  }
-
-  public void setExpiredDateFilter(TaskExpiredDateFilter expiredDateFilter) {
-    this.expiredDateFilter = expiredDateFilter;
   }
 
   public TaskResponsibleFilter getResponsibleFilter() {
