@@ -1528,5 +1528,64 @@
       "visual" : {
         "at" : { "x" : 896, "y" : 1408 }
       }
+    }, {
+      "id" : "f165",
+      "type" : "RequestStart",
+      "name" : "create5kRoles.ivp",
+      "config" : {
+        "callSignature" : "create5kRoles",
+        "outLink" : "create5kRoles.ivp",
+        "startDescription" : "For ticket IVYPORTAL-13607",
+        "startName" : "Create 5k roles to test"
+      },
+      "visual" : {
+        "at" : { "x" : 56, "y" : 1648 },
+        "labelOffset" : { "x" : -21, "y" : 17 }
+      },
+      "connect" : { "id" : "f168", "to" : "f167" }
+    }, {
+      "id" : "f166",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 384, "y" : 1648 }
+      }
+    }, {
+      "id" : "f167",
+      "type" : "Script",
+      "name" : "Create 5000 roles",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.security.role.NewRole;",
+            "import ch.ivyteam.ivy.security.IRole;",
+            "",
+            "NewRole serviceIntegrationTeamNewRole = NewRole",
+            "     .create(\"SERVICE_INTEGRATION_TEAM\")",
+            "     .displayName(\"Service Integration Team\")",
+            "     .description(\"Service Integration Team\")",
+            "     .toNewRole();",
+            "IRole serviceIntegrationTeam = ivy.security.roles().create(serviceIntegrationTeamNewRole);",
+            "",
+            "NewRole projectEditorNewRole = NewRole",
+            "     .create(\"PROJECT_EDITOR\")",
+            "     .displayName(\"Project Editor\")",
+            "     .description(\"Project Editor\")",
+            "     .toNewRole();",
+            "IRole projectEditor = ivy.security.roles().create(projectEditorNewRole);",
+            "",
+            "for (int i = 0; i < 5000; i ++){",
+            "  IRole role = ivy.security.roles().create(\"PROJECT_EDITOR_\" + i);",
+            "  projectEditor.addRoleMember(role);",
+            "  role.addRoleMember(serviceIntegrationTeam);",
+            "  ",
+            "}",
+            "ivy.session.getSessionUser().addRole(serviceIntegrationTeam);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 208, "y" : 1648 }
+      },
+      "connect" : { "id" : "f169", "to" : "f166" }
     } ]
 }
