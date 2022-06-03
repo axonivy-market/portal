@@ -7,7 +7,7 @@
   <packaging>iar</packaging>
   <properties>
     <build.plugin.version>8.0.7</build.plugin.version>
-    <ivy.engine.version>8.0.26</ivy.engine.version>
+    <ivy.engine.version>8.0.27</ivy.engine.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <powermock.version>2.0.2</powermock.version>
   </properties>
