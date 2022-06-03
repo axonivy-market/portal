@@ -8,9 +8,9 @@ User menu
 Introduction
 ------------
 
-The user menu is configurable, user can add, remove and edit it.
+The user menu is configurable, user can add, remove and edit user item.
 
-Available style of user menu :
+Available styles of user item:
 
 - Open external link
 
@@ -18,7 +18,7 @@ Available style of user menu :
 
 - Start the Portal Express process
 
-You can predefine user menus, and details of each menu
+You can predefine user menu items, and details of each item
 by configuring Global Variable **Portal.UserMenu**.
 
 .. _customization-user-menu-definition:
@@ -26,12 +26,14 @@ by configuring Global Variable **Portal.UserMenu**.
 Define your own user menu
 --------------------------
 
-Portal support multiple configurable user menu, they will be displayed below the default user menu.
+Portal support multiple configurable user item, they will be displayed below the default user item.
 
-You can predefine user menus id, title, permissions to see, and URL
-for each user menu.
+You can predefine user item id, title, permissions to see, and URL
+for each user item.
 
-Below is a JSON example for the configuration of user menus.
+|user-menu-configuration|
+
+Below is a JSON example for the configuration of user items.
 
 .. code-block:: html
 
@@ -61,35 +63,37 @@ Below is a JSON example for the configuration of user menus.
 
 ..
 
-Structure of JSON for each user menu:
+Structure of JSON for each user item:
 
-    ``id``: ID for identifying user menu
+    ``id``: ID for identifying user item
 
-    ``title``: title of user menu. You can input a string as user menu
+    ``title``: title of user item. You can input a string as user item
     title, or can use CMS by using prefix ``cms:`` before your CMS URI
-    to define user menu title in multilingual
+    to define user item title in multilingual
 
-    ``permissions``: roles can see the user menu.
+    ``permissions``: users and roles can see the user item.
 
     .. tip::
-       If you don't define ``permissions`` for a user menu, every user can see it.
+       If you don't define ``permissions`` for a user item, every user can see it.
 
-    ``url``: the URL of the external webpage or Ivy process starts or the naming Express process you want to redirect.
+    ``url``: the URL of the external webpage or Ivy process start or the name Portal Express process you want to redirect.
 
     .. tip::
         URL Ivy process starts: relative link to the ivy process.
 
           - e.g: ``Start Processes/CreateTestData/CreateTestDataForCustomizedDashboard.ivp``
 
-        URL Express process starts: the naming of express process.
+        URL Express process starts: the name of Portal Express process.
 
           - e.g: ``Portal Express process``
 
     ``params``: parameters for Ivy process above, each parameter can be defined key, value as follows:
 
-      - key : name of the parameter for Ivy process described in attribute ``processStart``.
+      - key : name of the parameter for Ivy process described in attribute ``url``.
 
       - value: predefined value for the parameter.
 
     .. tip::
        Params are not required in case the URL of an external webpage or Express process.
+
+.. |user-menu-configuration| image:: ../../screenshots/settings/user-menu-configuration.png
