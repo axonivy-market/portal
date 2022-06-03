@@ -60,7 +60,8 @@
         widgetVar="case-histories">
 
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/columnContent')}"
-          sortBy="#{history.content}" filterable="false" styleClass="u-truncate-text history-note ui-sm-12">
+          sortBy="#{history.content}" filterable="false"
+          styleClass="u-truncate-text history-note ui-g-4 ui-xl-4 ui-lg-6 ui-md-6 ui-sm-12">
           <h:outputText>
             <p:link id="show-task-note-link"
               value="#{empty history.content ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noTaskName') : history.content}"
@@ -76,7 +77,7 @@
 
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/relatedCase')}"
           sortBy="#{history.displayCaseName}"
-          styleClass="u-truncate-text history-related-case ui-sm-12"
+          styleClass="u-truncate-text history-related-case ui-g-4 ui-xl-4 ui-lg-6 ui-md-6 ui-sm-hidden"
           rendered="#{case.isBusinessCase() and data.showRelatedCaseInfo}">
           <p:commandLink id="related-case-link" value="#{history.displayCaseName}"
             rendered="#{not empty history.displayCaseName}"
@@ -85,7 +86,8 @@
         </p:column>
 
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/author')}"
-          sortBy="#{history.displayName}" styleClass="case-document-author u-truncate-text ui-sm-hidden">
+          sortBy="#{history.displayName}"
+          styleClass="case-document-author u-truncate-text ui-g-2 ui-xl-2 ui-lg-hidden ui-md-hidden ui-sm-hidden">
           <h:outputText value="#{history.displayName}"
             styleClass="history-fullname">
             <i class="si si-check-circle-1" jsf:id="done-task"
@@ -101,7 +103,8 @@
         </p:column>
 
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/creationDate')}"
-          sortBy="#{history.timestamp}" styleClass="case-history-date u-truncate-text ui-sm-hidden">
+          sortBy="#{history.timestamp}"
+          styleClass="case-history-date u-truncate-text ui-g-2 ui-xl-2 ui-lg-hidden ui-md-hidden ui-sm-hidden">
           <h:outputText value="#{history.timestamp}">
             <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}"/>
           </h:outputText>
