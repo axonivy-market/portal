@@ -46,7 +46,8 @@
           emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
           currentPageReportTemplate="{currentPage} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/curentReportOf')} {totalPages}">
           <p:column id="document-name" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/name')}"
-            sortBy="#{document.name}" styleClass="u-truncate-text ui-sm-12">
+            sortBy="#{document.name}"
+            styleClass="u-truncate-text document-name ui-g-6 ui-xl-6 ui-lg-8 ui-md-12 ui-sm-12">
             <h:panelGroup layout="block" rendered="#{document ne null}" styleClass="case-document-name">
               <p:commandLink ajax="false" id="download"
                 styleClass="download-command case-document-name-text u-truncate-text">
@@ -68,7 +69,7 @@
 
           <p:column id="document-author"
             headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/author')}"
-            styleClass="case-document-author u-truncate-text ui-sm-hidden"
+            styleClass="case-document-author u-truncate-text ui-g-3 ui-xl-3 ui-lg-4 ui-md-hidden ui-sm-hidden"
             sortBy="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(document.creation.user, document.creation.user.name)}">
             <h:outputText
               value="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(document.creation.user, document.creation.user.name)}" />
@@ -76,7 +77,8 @@
 
           <p:column id="document-creation"
             headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/creationDate')}"
-            styleClass="case-history-date u-truncate-text ui-sm-hidden" sortBy="#{document.creation.timestamp}">
+            styleClass="case-history-date u-truncate-text ui-g-3 ui-xl-3 ui-lg-hidden ui-md-hidden ui-sm-hidden"
+            sortBy="#{document.creation.timestamp}">
             <h:outputText value="#{document.creation.timestamp}">
               <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}"/>
             </h:outputText>
