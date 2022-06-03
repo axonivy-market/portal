@@ -485,7 +485,6 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 }
 
 .case-history-date, .case-document-author, .task-history-date, .task-document-author {
-  width: 20%;
   text-align: center !important;
 }
 
