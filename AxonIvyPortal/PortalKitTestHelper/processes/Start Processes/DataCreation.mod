@@ -1351,7 +1351,26 @@ Dt0 f133 actionTable 'out=in;
 ' #txt
 Dt0 f133 actionCode 'import ch.ivyteam.ivy.security.IRole;
 
+// CLEAN UP
+IRole roleMembershipDelete = ivy.wf.getApplication().getSecurityContext().findRole("SERVICE_INTEGRATION_TEAM");
+if (roleMembershipDelete != null){
+	roleMembershipDelete.delete();
+}
 
+IRole projectEditorDelete = ivy.wf.getApplication().getSecurityContext().findRole("PROJECT_EDITOR");
+if (projectEditorDelete != null){
+	projectEditorDelete.delete();
+}
+
+for (int i = 0; i < 5000; i ++){
+	IRole role = ivy.wf.getApplication().getSecurityContext().findRole("PROJECT_EDITOR_" + i);
+	if (role != null){
+		role.delete();
+	}
+}
+
+
+// CREATE
 IRole roleMembership = ivy.wf.getApplication().getSecurityContext().getTopLevelRole()
 .createChildRole("SERVICE_INTEGRATION_TEAM", "Service Integration Team", "", false);
 
@@ -1360,10 +1379,10 @@ IRole projectEditor = ivy.wf.getApplication().getSecurityContext().getTopLevelRo
 
 for (int i = 0; i < 5000; i ++){
 IRole role = projectEditor.createChildRole("PROJECT_EDITOR_" + i, "Editor for Project_" + i, "", false);
-
 role.addRoleMember(roleMembership);
+
 }
-' #txt
+ivy.session.getSessionUser().addRole(roleMembership);' #txt
 Dt0 f133 security system #txt
 Dt0 f133 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
