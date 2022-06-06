@@ -17,9 +17,9 @@ CaseWidget contains 2 parts:
 
 ..
 
-.. important:: 
+.. important::
       - Case header customization currently support responsive design. Refer to :ref:`this part <customization-case-widget-responsive-layout>` for more detail.
-   
+
       - Case header's buttons cannot be modified (they stay where they are)
 
 .. _customization-case-widget-how-to-override-ui:
@@ -107,11 +107,11 @@ function of these columns work:
       ``rendered="#{caseView.dataModel.isSelectedColumn('YOUR_CUSTOM_COLUMN')}"``
 
       For example: Show custom field ``customer name`` which stored in
-      ``case.customFields().stringField("CustomerName")``
-    
+      ``case.customFields().stringField("CustomVarCharField1")``
+
     .. code-block:: html
-    
-       <ic:ch.ivy.addon.portalkit.component.cases.column.CaseCustomField id="case-customer-name-component" panelGroupId="customVarCharField1-column-case-header-panel" componentId="customVarCharField1-column-case-header-text" column="customVarCharField1" dataModel="#{caseView.dataModel}" labelValue="#{case.customFields().stringField("CustomerName")}" />
+
+       <ic:ch.ivy.addon.portalkit.component.cases.column.CaseCustomField id="case-customer-name-component" panelGroupId="customVarCharField1-column-case-header-panel" componentId="customVarCharField1-column-case-header-text" column="customVarCharField1" dataModel="#{caseView.dataModel}" labelValue="#{case.customFields().stringField("CustomVarCharField1")}" />
 
 -  Use Axon Ivy Override to override the ``InitializeCaseDataModel``
    callable and initialize data model by your customized one.
@@ -192,7 +192,7 @@ case list after navigating to case list from your page:
       dataModel.getCriteria().setAdminQuery(true); // Display the cases of all users
       out.caseView = CaseView.create().dataModel(dataModel)
       .withTitle("My Cases").buildNewView();
-               
+
 
 .. _customization-case-widget-responsive-layout:
 
@@ -222,7 +222,7 @@ You can refer to ``PortalExamples`` project for examples
             sortable="true" dataModel="#{caseView.dataModel}" />
             <ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="customTimestampField1-column-header"
             styleClass="TexAlCenter customized-case-header-column"
-            responsiveStyleClass="u-hidden-lg-down 
+            responsiveStyleClass="u-hidden-lg-down
             js-hidden-when-expand-menu "
             value="#{ivy.cms.co('/DefaultColumns/caseList/customTimestampField1')}" sortedField="customTimestampField1"
             sortable="true" dataModel="#{caseView.dataModel}" />
@@ -246,13 +246,13 @@ You can refer to ``PortalExamples`` project for examples
             dataModel="#{caseView.getDataModel()}" />
 
             <!-- New field -->
-            <h:panelGroup styleClass="customized-case-header-column js-hidden-when-expand-menu 
+            <h:panelGroup styleClass="customized-case-header-column js-hidden-when-expand-menu
             u-hidden-lg-down"
             rendered="#{caseView.dataModel.isSelectedColumn('customVarCharField1')}">
             <h:outputText value="#{case.customFields().stringField('CustomVarCharField1').getOrNull()}"
             styleClass="case-header-default-cell customized-case-header-column" />
             </h:panelGroup>
-            <h:panelGroup styleClass="customized-case-header-column js-hidden-when-expand-menu 
+            <h:panelGroup styleClass="customized-case-header-column js-hidden-when-expand-menu
             u-hidden-lg-down"
             rendered="#{caseView.dataModel.isSelectedColumn('customTimestampField1')}">
             <h:outputText value="#{case.customFields().timestampField('CustomTimestampField1').getOrNull()}"
@@ -282,7 +282,7 @@ You can refer to ``PortalExamples`` project for examples
             sortable="true" dataModel="#{caseView.dataModel}" />
             <ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="customTimestampField1-column-header"
             styleClass="TexAlCenter customized-case-header-column"
-            responsiveStyleClass="u-hidden-lg-down 
+            responsiveStyleClass="u-hidden-lg-down
             js-hidden-when-expand-menu "
             value="#{ivy.cms.co('/DefaultColumns/caseList/customTimestampField1')}" sortedField="customTimestampField1"
             sortable="true" dataModel="#{caseView.dataModel}" />
@@ -312,7 +312,7 @@ You can refer to ``PortalExamples`` project for examples
             <h:outputText value="#{case.customFields().stringField('CustomVarCharField1').getOrNull()}"
             styleClass="case-header-default-cell customized-case-header-column" />
             </h:panelGroup>
-            <h:panelGroup styleClass="customized-case-header-column u-hidden-lg-down 
+            <h:panelGroup styleClass="customized-case-header-column u-hidden-lg-down
             js-hidden-when-expand-menu "
             rendered="#{caseView.dataModel.isSelectedColumn('customTimestampField1')}">
             <h:outputText value="#{case.customFields().timestampField('CustomTimestampField1').getOrNull()}"
