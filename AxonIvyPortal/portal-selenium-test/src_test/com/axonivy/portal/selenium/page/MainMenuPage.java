@@ -21,4 +21,8 @@ public class MainMenuPage extends TemplatePage {
   public void openProcessList() {
     $(".layout-menu li[role='menuitem'] a.ripplelink.PROCESS").waitUntil(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
   }
+  
+  public void openUserSettingMenu() {
+    $("a[id='user-settings-menu']").waitUntil(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+  }
 }
