@@ -107,11 +107,11 @@ function of these columns work:
       ``rendered="#{caseView.dataModel.isSelectedColumn('YOUR_CUSTOM_COLUMN')}"``
 
       For example: Show custom field ``customer name`` which stored in
-      ``case.customVarCharField1``
+      ``case.customFields().stringField("CustomerName")``
     
     .. code-block:: html
     
-       <ic:ch.ivy.addon.portalkit.component.cases.column.CaseCustomField id="case-customer-name-component" panelGroupId="customVarCharField1-column-case-header-panel" componentId="customVarCharField1-column-case-header-text" column="customVarCharField1" dataModel="#{caseView.dataModel}" labelValue="#{case.customVarCharField1}" />
+       <ic:ch.ivy.addon.portalkit.component.cases.column.CaseCustomField id="case-customer-name-component" panelGroupId="customVarCharField1-column-case-header-panel" componentId="customVarCharField1-column-case-header-text" column="customVarCharField1" dataModel="#{caseView.dataModel}" labelValue="#{case.customFields().stringField("CustomerName")}" />
 
 -  Use Axon Ivy Override to override the ``InitializeCaseDataModel``
    callable and initialize data model by your customized one.
