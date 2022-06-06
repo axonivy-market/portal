@@ -105,11 +105,11 @@ function of these columns work:
       rendered="#{taskView.dataModel.isSelectedColumn('YOUR_CUSTOM_COLUMN')}"
 
       For example: Show custom field ``customer name`` which stored in
-      ``task.customVarCharField5``
+      ``task..customFields().stringField("CustomVarCharField5")``
 
       .. code-block:: html
-      
-         <ic:ch.ivy.addon.portalkit.component.task.column.TaskCustomField id="customer-name-component" componentId="customer-name" column="customVarCharField5" dataModel="#{taskView.dataModel}" labelValue="#{task.customVarCharField5}" />
+
+         <ic:ch.ivy.addon.portalkit.component.task.column.TaskCustomField id="customer-name-component" componentId="customer-name" column="customVarCharField5" dataModel="#{taskView.dataModel}" labelValue="#{task.customFields().stringField("CustomVarCharField5")}" />
 
 *  Use Axon Ivy Override to override the ``InitializeTaskDataModel``
    callable and initialize data model by your customized one.
