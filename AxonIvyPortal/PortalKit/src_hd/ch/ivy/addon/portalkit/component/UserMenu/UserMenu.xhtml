@@ -1,0 +1,21 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+  xmlns:jsf="http://xmlns.jcp.org/jsf">
+<cc:interface componentType="IvyComponent">
+    <cc:attribute name="menu" type="ch.ivy.addon.portalkit.dto.UserMenu" required="true"/>
+    <cc:attribute name="index" required="true"/>
+    <cc:attribute name="task" required="true"/>
+    <cc:attribute name="isWorkingOnATask" type="java.lang.Boolean" required="true"/>
+</cc:interface>
+<cc:implementation>
+  <c:set var="menu" value="#{cc.attrs.menu}" />
+  <c:set var="index" value="#{cc.attrs.index}" />
+  <c:set var="task" value="#{not empty cc.attrs.task ? cc.attrs.task : ivy.task}" />
+  <c:set var="isWorkingOnATask" value="#{cc.attrs.isWorkingOnATask}" />
+  <c:set var="hasAttribute" value="#{not empty menu.attributes}" />
+       <p:commandLink id="menu-configuration-#{index}" value="#{menu.title}" 
+       actionListener="#{userMenuBean.navigateToURLOrDisplayWorkingTaskWarning(menu,isWorkingOnATask, task)}"/>
+ </cc:implementation>
+</html>
