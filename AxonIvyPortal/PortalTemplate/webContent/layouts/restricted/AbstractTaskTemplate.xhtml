@@ -29,9 +29,9 @@
             </ui:insert>
 
             <h:panelGroup id="vertical-task-template-tasks-command" class="task-template-tasks-command" rendered="#{!(isHideCaseInfo and isHideTaskAction) and processChainDirection eq 'VERTICAL'}">
-              <p:commandButton id="vertical-case-info" type="button" 
+              <p:commandButton id="vertical-case-info" process="@none" update="case-info-dialog"
                 title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/caseInformation')}" icon="fa fa-info"
-                onclick="PF('case-info-dialog').show()" rendered="#{!isHideCaseInfo}" />
+                oncomplete="PF('case-info-dialog').show()" rendered="#{!isHideCaseInfo}" />
               <p:spacer width="10" />
               <p:commandButton id="vertical-task-actions" type="button" rendered="#{!isHideTaskAction}"
                 title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}" icon="ui-icon-menu" />
@@ -86,9 +86,9 @@
           </h:panelGroup>
 
           <h:panelGroup id="horizontal-task-template-tasks-command" styleClass="task-template-tasks-command" rendered="#{!(isHideCaseInfo and isHideTaskAction) and processChainDirection ne 'VERTICAL'}">
-            <p:commandButton id="horizontal-case-info" type="button"
+            <p:commandButton id="horizontal-case-info" process="@none" update="case-info-dialog"
               title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/caseInformation')}" icon="fa fa-info"
-              onclick="PF('case-info-dialog').show()" rendered="#{!isHideCaseInfo}" />
+              oncomplete="PF('case-info-dialog').show()" rendered="#{!isHideCaseInfo}" />
             <p:spacer width="10" />
             <p:commandButton id="horizontal-task-actions" type="button" rendered="#{!isHideTaskAction}" 
               title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}" icon="ui-icon-menu" />
