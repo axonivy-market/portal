@@ -15,7 +15,6 @@ import com.codeborne.selenide.Condition;
 
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 
-@IvyWebTest(headless = false)
 public class UserMenuConfigurationTest extends BaseTest {
   
   private NewDashboardPage newDashboardPage;
