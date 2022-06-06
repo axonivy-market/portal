@@ -58,6 +58,9 @@ Variables:
     # For switch on/off the display legacy UI.
     ShowLegacyUI: false
 
+    # You can define the own user menu via this JSON file.
+    # It will be shown as the your user menu in the user menu settings.
+    # [file: json]
     UserMenu:
       # If true, the logout button on top menu will be hidden, otherwise it will be shown.
       HideLogoutMenu: false

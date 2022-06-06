@@ -1,0 +1,45 @@
+[{ "id": "f281e1ee7fb54bcda8d7a0c64ba46fc8",
+   "processName": "Portal Express process",
+   "processDescription": "Process",
+   "processType": "AHWF",
+   "processPermissions": ["Everybody"],
+   "processOwner": "#portaladmin externalId:889",
+   "processFolder": "8e9870b2-0179-46eb-bdb8",
+   "readyToExecute": true,
+   "processCoOwners": ["#demo externalId:9CA"],
+   "icon": "fa-codepen",
+   "taskDefinitions": [{
+      "type": "USER_TASK",
+      "responsibles": ["Everybody"],
+      "subject": "Express user task",
+      "description": "Express user task",
+      "taskPosition": 1,
+      "untilDays": 2,
+      "formElements": [{
+         "elementID": "Input area2020-09-07 04:57:05",
+         "label": "Input area",
+         "required": true,
+         "intSetting": 7,
+         "elementType": "InputTextArea",
+         "optionStrs": [""],
+         "elementPosition": "HEADER",
+         "indexInPanel": 0
+         }]
+      }, {
+         "type": "EMAIL",
+         "responsibles": [],
+         "taskPosition": 2,
+         "untilDays": 3,
+         "email": {
+            "recipients": "wawatest@ivy.io",
+            "responseTo": "wawa@mail.io",
+            "subject": "Verify Express process",
+            "content": "<p>Email content</p>",
+            "attachments": [],
+            "empty": false
+         }
+      }
+   ],
+   "ableToEdit": true,
+   "useDefaultUI": false
+}]
