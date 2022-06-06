@@ -54,10 +54,6 @@ public abstract class DashboardReorderBean implements Serializable {
     return Ivy.session().getSessionUser();
   }
 
-  public void handleActivation(DashboardOrder dashboardOrder) {
-    dashboardOrder.setVisible(!dashboardOrder.isVisible());
-  }
-
   public void backToHome() {
     PortalNavigator.navigateToDashboard();
   }

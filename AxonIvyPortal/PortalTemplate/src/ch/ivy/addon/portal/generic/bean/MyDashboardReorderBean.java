@@ -53,5 +53,8 @@ public class MyDashboardReorderBean extends DashboardReorderBean implements Seri
     return collectedOrders;
   }
 
+  public void handleActivation(DashboardOrder dashboardOrder) {
+    dashboardOrder.setVisible(!dashboardOrder.isVisible());
+  }
 }
 
