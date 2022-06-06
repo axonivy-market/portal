@@ -69,7 +69,7 @@ public class BaseTest {
       "portalTemplate/1549F58C18A6C562/DashboardReorder.ivp?isPublicDashboard=%s";
   protected String createSampleDashboardUrl = "portalKitTestHelper/17F2050944B46BB0/createSampleDashboard.ivp";
   protected String createTestingEscalationTasksUrl = "portal-developer-examples/162511D2577DBA88/CreateTaskForEscalation.ivp";
-  protected String createPublicDashboadByJSonFileUrl = "PortalKitTestHelper/17F2050944B46BB0/createPublicDashboardByJSonFile.ivp?filePath=";
+  protected String createJSonFileUrl = "PortalKitTestHelper/153CACC26D0D4C3D/createJSonFile.ivp?filePath=%s&key=%s";
 
   protected void redirectToNewDashBoard() {
     open(EngineUrl.createProcessUrl(PORTAL_HOME_PAGE_URL));
@@ -215,6 +215,17 @@ public class BaseTest {
   
   public void goToCaseNoteHistoryPage(String caseId) {
     redirectToRelativeLink(String.format(showCaseNoteHistoryUrl, caseId));
- }
+  }
+  
+  public void createJSonFile(String jsonFile, String key) {
+    var path = System.getProperty("user.dir") + "\\resources\\testFile\\" + jsonFile;
+    String filepath = "";
+    try {
+      filepath = URLEncoder.encode(path, "UTF-8");
+    } catch (UnsupportedEncodingException e) {
+      e.printStackTrace();
+    }
+    redirectToRelativeLink(String.format(createJSonFileUrl,filepath,key));
+  }
   
 }
