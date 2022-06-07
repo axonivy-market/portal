@@ -111,7 +111,7 @@ function of these columns work:
 
     .. code-block:: html
 
-       <ic:ch.ivy.addon.portalkit.component.cases.column.CaseCustomField id="case-customer-name-component" panelGroupId="customVarCharField1-column-case-header-panel" componentId="customVarCharField1-column-case-header-text" column="customVarCharField1" dataModel="#{caseView.dataModel}" labelValue="#{case.customFields().stringField("CustomVarCharField1")}" />
+       <ic:ch.ivy.addon.portalkit.component.cases.column.CaseCustomField id="case-customer-name-component" panelGroupId="customVarCharField1-column-case-header-panel" componentId="customVarCharField1-column-case-header-text" column="customVarCharField1" dataModel="#{caseView.dataModel}" labelValue="#{case.customFields().stringField('CustomVarCharField1')}" />
 
 -  Use Axon Ivy Override to override the ``InitializeCaseDataModel``
    callable and initialize data model by your customized one.
