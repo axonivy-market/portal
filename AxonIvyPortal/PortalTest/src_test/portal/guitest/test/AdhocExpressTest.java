@@ -1,6 +1,7 @@
 package portal.guitest.test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
 import java.util.List;
@@ -53,7 +54,7 @@ public class AdhocExpressTest extends BaseTest {
     //create tasks in adhoc page
     ExpressProcessPage expressPage = new ExpressProcessPage();
     String processName = expressPage.getProcessName();
-    assertEquals(String.format("AdHoc Process for Task %s - Maternity Leave Request", taskId), processName);
+    assertTrue(processName.startsWith(String.format("AdHoc Process for Task %s -", taskId)));
     ExpressResponsible responsible = new ExpressResponsible("demo", false);
     List<ExpressResponsible> responsibles = Arrays.asList(responsible);
     expressPage.createDefaultTask(0, defaultTaskName1, responsibles);
