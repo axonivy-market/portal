@@ -252,4 +252,8 @@ public class ColumnManagementBean {
   public List<String> getExistingFields() {
     return this.columnsBeforeSave.stream().map(ColumnModel::getField).collect(Collectors.toList());
   }
+
+  public void handleVisibility(ColumnModel column) {
+    column.setVisible(!column.getVisible());
+  }
 }
