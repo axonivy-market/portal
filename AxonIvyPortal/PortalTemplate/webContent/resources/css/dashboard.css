@@ -15,8 +15,7 @@
 
 .new-widget-dialog__item {
   text-align: left;
-  border: none;
-  border-bottom: 1px solid #d8d8d8;
+  padding: 0.5em;
 }
 
 .ui-resizable-handle {
@@ -702,7 +701,7 @@ body .dashboard__table--preview.ui-datatable tbody tr.ui-state-hover {
   height: 75px;
 }
 
-.new-widget-dialog__icon {
+span.new-widget-dialog__icon.si {
   font-size: 40px;
   text-align: center;
   width: 100%;

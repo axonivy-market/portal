@@ -10,12 +10,19 @@
   <p:panelGrid id="form-elements-container" styleClass="form-elements-container card ui-g-12 u-no-padding-top" layout="grid" columns="2"
     columnClasses="form-elements-1st-column, form-elements-2nd-column">
 
-    <p:fieldset id="available-formelements-field" styleClass="available-formelements-field"
-      legend="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/FieldSetAvailableFormelements')}">
-
-      <p:dataGrid id="available-form-elements" var="formelement" styleClass="available-form-elements"
-        emptyMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/NoFormelementsAvailable')}"
-        value="#{data.dragAndDropController.availableFormelements}" columns="1">
+    <p:dataView var="formelement"
+      id="available-form-elements"
+      styleClass="available-form-elements"
+      value="#{data.dragAndDropController.availableFormelements}"
+      listIcon="si si-module-three-1"
+      layout="list">
+      <f:facet name="header">
+        <span class="available-form-elements-title">#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/FieldSetAvailableFormelements')}</span>
+      </f:facet>
+      <f:facet name="emptyMessage">
+        <span>#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/NoFormelementsAvailable')}</span>
+      </f:facet>
+      <p:dataViewListItem>
         <p:panel id="pnl" styleClass="TexAlCenter vertical-align-middle available-elements-panel ui-g card">
           <div class="u-text-align-left ui-g-12">
             <div class="ui-g">
@@ -39,16 +46,21 @@
           </div>
         </p:panel>
         <p:draggable for="pnl" revert="true" stack=".ui-panel" />
-      </p:dataGrid>
-    </p:fieldset>
+      </p:dataViewListItem>
+    </p:dataView>
 
-    <p:fieldset id="selected-formelements-field" styleClass="selected-formelements-field"
-      legend="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/FieldSetFormelementsPlacing')}">
-      <p:commandButton id="show-preview-button" value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/Preview')}"
-        styleClass="Fright show-preview-button" icon="#{visibilityBean.generateButtonIcon('si si-search')}" oncomplete="PF('preview-dialog').show();"
-        actionListener="#{data.dragAndDropController.updateForm}" process="@this" />
+    <p:panel id="selected-formelements-field" styleClass="selected-formelements-field"
+      header="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/FieldSetFormelementsPlacing')}">
+      <f:facet name="actions">
+        <p:commandButton id="show-preview-button"
+          value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/Preview')}"
+          styleClass="Fright show-preview-button" icon="#{visibilityBean.generateButtonIcon('si si-search')}"
+          oncomplete="PF('preview-dialog').show();"
+          actionListener="#{data.dragAndDropController.updateForm}"
+          process="@this" />
+      </f:facet>
 
-      <p:panelGrid styleClass="ui-g-12 form-definition-table">
+      <p:panelGrid styleClass="form-definition-table">
         <p:row id="selected-form-elements-header-fieldset" styleClass="TexAlCenter form-definition-border-color">
           <p:column colspan="2">
 
@@ -59,34 +71,41 @@
                 <br />
                 <br />
               </p:outputPanel>
-              <h:outputText value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/BroadHeaderArea')}"
-                rendered="#{not empty data.dragAndDropController.selectedFormelementsHeader}" />
-              <p:dataGrid id="selected-formelements-header" var="formelement" styleClass="no-border selected-form-elements-header"
+              <p:dataView id="selected-formelements-header"
+                styleClass="no-border selected-form-elements-header"
+                var="formelement"
                 value="#{data.dragAndDropController.selectedFormelementsHeader}"
-                rendered="#{not empty data.dragAndDropController.selectedFormelementsHeader}" columns="1">
-                <p:panel id="pnl" styleClass="TexAlCenter vertical-align-middle available-elements-panel ui-g card">
-                  <div class="u-text-align-left ui-g-12">
-                    <div class="ui-g">
-                      <div class="ui-g-12 u-padding-0">
-                        <div class="available-elements-image">
-                          <p:graphicImage library="ivy-cms" name="/Layouts/Icons/#{formelement.type.value}" width="55" />
+                rendered="#{not empty data.dragAndDropController.selectedFormelementsHeader}"
+                layout="list"
+                listIcon="si si-cog">
+                <f:facet name="header">
+                  <h:outputText value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/BroadHeaderArea')}"/>
+                </f:facet>
+                <p:dataViewListItem>
+                  <p:panel id="pnl" styleClass="TexAlCenter vertical-align-middle available-elements-panel ui-g card">
+                    <div class="u-text-align-left ui-g-12">
+                      <div class="ui-g">
+                        <div class="ui-g-12 u-padding-0">
+                          <div class="available-elements-image">
+                            <p:graphicImage library="ivy-cms" name="/Layouts/Icons/#{formelement.type.value}" width="55" />
+                          </div>
+  
+                          <div class="available-elements-action-btn">
+                            <p:commandButton icon="si si-bin-1" styleClass="placement-form-element-remove-btn"
+                              actionListener="#{data.dragAndDropController.resetFormelementHeader(formelement)}"
+                              process="form:selected-formelements-header" update="form">
+                            </p:commandButton>
+                          </div>
                         </div>
-
-                        <div class="available-elements-action-btn">
-                          <p:commandButton icon="si si-bin-1" styleClass="placement-form-element-remove-btn"
-                            actionListener="#{data.dragAndDropController.resetFormelementHeader(formelement)}"
-                            process="form:selected-formelements-header" update="form">
-                          </p:commandButton>
+  
+                        <div class="ui-g-12 available-elements-label-col u-padding-0">
+                          <label class="available-elements-label">#{formelement.label}</label>
                         </div>
-                      </div>
-
-                      <div class="ui-g-12 available-elements-label-col u-padding-0">
-                        <label class="available-elements-label">#{formelement.label}</label>
                       </div>
                     </div>
-                  </div>
-                </p:panel>
-              </p:dataGrid>
+                  </p:panel>
+                </p:dataViewListItem>
+              </p:dataView>
 
               <p:droppable for="selected-form-elements-header-panel" tolerance="pointer" activeStyleClass="ui-state-highlight"
                 datasource="form:available-form-elements" onDrop="handleDrop" hoverStyleClass="hover-drop-section">
@@ -107,36 +126,42 @@
                 <br />
                 <br />
               </p:outputPanel>
-              <h:outputText value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/LeftColumn')}"
-                rendered="#{not empty data.dragAndDropController.selectedFormelementsLeftPanel}" />
 
-              <p:dataGrid id="selected-formelements-left-panel" var="formelement" styleClass="no-border selected-form-elements-left-panel" columns="1"
+              <p:dataView id="selected-formelements-left-panel"
+                var="formelement"
+                styleClass="no-border selected-form-elements-left-panel"
                 value="#{data.dragAndDropController.selectedFormelementsLeftPanel}"
-                rendered="#{not empty data.dragAndDropController.selectedFormelementsLeftPanel}">
+                rendered="#{not empty data.dragAndDropController.selectedFormelementsLeftPanel}"
+                layout="list"
+                listIcon="si si-cog">
+                <f:facet name="header">
+                  <h:outputText value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/LeftColumn')}"/>
+                </f:facet>
+                <p:dataViewListItem>
+                  <p:panel id="pnl" styleClass="TexAlCenter vertical-align-middle available-elements-panel ui-g card">
+                    <div class="u-text-align-left ui-g-12">
+                      <div class="ui-g">
+                        <div class="ui-g-12 u-padding-0">
+                          <div class="available-elements-image">
+                            <p:graphicImage library="ivy-cms" name="/Layouts/Icons/#{formelement.type.value}" width="55" />
+                          </div>
 
-                <p:panel id="pnl" styleClass="TexAlCenter vertical-align-middle available-elements-panel ui-g card">
-                  <div class="u-text-align-left ui-g-12">
-                    <div class="ui-g">
-                      <div class="ui-g-12 u-padding-0">
-                        <div class="available-elements-image">
-                          <p:graphicImage library="ivy-cms" name="/Layouts/Icons/#{formelement.type.value}" width="55" />
+                          <div class="available-elements-action-btn">
+                            <p:commandButton icon="si si-bin-1" styleClass="placement-form-element-remove-btn"
+                              actionListener="#{data.dragAndDropController.resetFormelementLeftPanel(formelement)}"
+                              process="form:selected-formelements-left-panel" update="form">
+                            </p:commandButton>
+                          </div>
                         </div>
 
-                        <div class="available-elements-action-btn">
-                          <p:commandButton icon="si si-bin-1" styleClass="placement-form-element-remove-btn"
-                            actionListener="#{data.dragAndDropController.resetFormelementLeftPanel(formelement)}"
-                            process="form:selected-formelements-left-panel" update="form">
-                          </p:commandButton>
+                        <div class="ui-g-12 available-elements-label-col u-padding-0">
+                          <label class="available-elements-label">#{formelement.label}</label>
                         </div>
-                      </div>
-
-                      <div class="ui-g-12 available-elements-label-col u-padding-0">
-                        <label class="available-elements-label">#{formelement.label}</label>
                       </div>
                     </div>
-                  </div>
-                </p:panel>
-              </p:dataGrid>
+                  </p:panel>
+                </p:dataViewListItem>
+              </p:dataView>
 
               <p:droppable for="selected-form-elements-leftpanel-panel" tolerance="pointer" activeStyleClass="ui-state-highlight"
                 hoverStyleClass="hover-drop-section" datasource="form:available-form-elements" onDrop="handleDrop">
@@ -154,37 +179,42 @@
                 <br />
                 <br />
               </p:outputPanel>
-              <h:outputText value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/RightColumn')}"
-                rendered="#{not empty data.dragAndDropController.selectedFormelementsRightPanel}" />
 
-              <p:dataGrid id="selected-formelements-right-panel" var="formelement"
-                styleClass="no-border TexAlCenter selected-form-elements-right-panel" columns="1"
+              <p:dataView id="selected-formelements-right-panel"
+                var="formelement"
+                styleClass="no-border TexAlCenter selected-form-elements-right-panel"
                 value="#{data.dragAndDropController.selectedFormelementsRightPanel}"
-                rendered="#{not empty data.dragAndDropController.selectedFormelementsRightPanel}">
+                rendered="#{not empty data.dragAndDropController.selectedFormelementsRightPanel}"
+                layout="list"
+                listIcon="si si-cog">
+                <f:facet name="header">
+                  <h:outputText value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/RightColumn')}"/>
+                </f:facet>
+                <p:dataViewListItem>
+                  <p:panel id="pnl" styleClass="TexAlCenter vertical-align-middle available-elements-panel ui-g card">
+                    <div class="u-text-align-left ui-g-12">
+                      <div class="ui-g">
+                        <div class="ui-g-12 u-padding-0">
+                          <div class="available-elements-image">
+                            <p:graphicImage library="ivy-cms" name="/Layouts/Icons/#{formelement.type.value}" width="55" />
+                          </div>
 
-                <p:panel id="pnl" styleClass="TexAlCenter vertical-align-middle available-elements-panel ui-g card">
-                  <div class="u-text-align-left ui-g-12">
-                    <div class="ui-g">
-                      <div class="ui-g-12 u-padding-0">
-                        <div class="available-elements-image">
-                          <p:graphicImage library="ivy-cms" name="/Layouts/Icons/#{formelement.type.value}" width="55" />
+                          <div class="available-elements-action-btn">
+                            <p:commandButton icon="si si-bin-1" styleClass="placement-form-element-remove-btn"
+                              actionListener="#{data.dragAndDropController.resetFormelementRightPanel(formelement)}"
+                              process="form:selected-formelements-right-panel" update="form">
+                            </p:commandButton>
+                          </div>
                         </div>
 
-                        <div class="available-elements-action-btn">
-                          <p:commandButton icon="si si-bin-1" styleClass="placement-form-element-remove-btn"
-                            actionListener="#{data.dragAndDropController.resetFormelementRightPanel(formelement)}"
-                            process="form:selected-formelements-right-panel" update="form">
-                          </p:commandButton>
+                        <div class="ui-g-12 available-elements-label-col u-padding-0">
+                          <label class="available-elements-label">#{formelement.label}</label>
                         </div>
-                      </div>
-
-                      <div class="ui-g-12 available-elements-label-col u-padding-0">
-                        <label class="available-elements-label">#{formelement.label}</label>
                       </div>
                     </div>
-                  </div>
-                </p:panel>
-              </p:dataGrid>
+                  </p:panel>
+                </p:dataViewListItem>
+              </p:dataView>
 
               <p:droppable for="selected-form-elements-rightpanel-panel" tolerance="pointer" activeStyleClass="ui-state-highlight"
                 hoverStyleClass="hover-drop-section" datasource="form:available-form-elements" onDrop="handleDrop">
@@ -206,36 +236,42 @@
                 <br />
                 <br />
               </p:outputPanel>
-              <h:outputText value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/BroadFooterArea')}"
-                rendered="#{not empty data.dragAndDropController.selectedFormelementsFooter}" />
 
-              <p:dataGrid id="selected-formelements-footer" var="formelement" value="#{data.dragAndDropController.selectedFormelementsFooter}"
+              <p:dataView id="selected-formelements-footer"
+                var="formelement"
+                value="#{data.dragAndDropController.selectedFormelementsFooter}"
                 rendered="#{not empty data.dragAndDropController.selectedFormelementsFooter}"
-                styleClass="no-border TexAlCenter selected-form-elements-footer" columns="1">
+                styleClass="no-border TexAlCenter selected-form-elements-footer"
+                layout="list"
+                listIcon="si si-cog">
+                <f:facet name="header">
+                  <h:outputText value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/BroadFooterArea')}"/>
+                </f:facet>
+                <p:dataViewListItem>
+                  <p:panel id="pnl" styleClass="TexAlCenter vertical-align-middle available-elements-panel ui-g card">
+                    <div class="u-text-align-left ui-g-12">
+                      <div class="ui-g">
+                        <div class="ui-g-12 u-padding-0">
+                          <div class="available-elements-image">
+                            <p:graphicImage library="ivy-cms" name="/Layouts/Icons/#{formelement.type.value}" width="55" />
+                          </div>
 
-                <p:panel id="pnl" styleClass="TexAlCenter vertical-align-middle available-elements-panel ui-g card">
-                  <div class="u-text-align-left ui-g-12">
-                    <div class="ui-g">
-                      <div class="ui-g-12 u-padding-0">
-                        <div class="available-elements-image">
-                          <p:graphicImage library="ivy-cms" name="/Layouts/Icons/#{formelement.type.value}" width="55" />
+                          <div class="available-elements-action-btn">
+                            <p:commandButton icon="si si-bin-1" styleClass="placement-form-element-remove-btn"
+                              actionListener="#{data.dragAndDropController.resetFormelementFooter(formelement)}"
+                              process="form:selected-formelements-footer" update="form">
+                            </p:commandButton>
+                          </div>
                         </div>
 
-                        <div class="available-elements-action-btn">
-                          <p:commandButton icon="si si-bin-1" styleClass="placement-form-element-remove-btn"
-                            actionListener="#{data.dragAndDropController.resetFormelementFooter(formelement)}"
-                            process="form:selected-formelements-footer" update="form">
-                          </p:commandButton>
+                        <div class="ui-g-12 available-elements-label-col u-padding-0">
+                          <label class="available-elements-label">#{formelement.label}</label>
                         </div>
-                      </div>
-
-                      <div class="ui-g-12 available-elements-label-col u-padding-0">
-                        <label class="available-elements-label">#{formelement.label}</label>
                       </div>
                     </div>
-                  </div>
-                </p:panel>
-              </p:dataGrid>
+                  </p:panel>
+                </p:dataViewListItem>
+              </p:dataView>
 
               <p:droppable for="selected-form-elements-footer-panel" tolerance="pointer" activeStyleClass="ui-state-highlight"
                 hoverStyleClass="hover-drop-section" datasource="form:available-form-elements" onDrop="handleDrop">
@@ -248,7 +284,7 @@
           </p:column>
         </p:row>
       </p:panelGrid>
-    </p:fieldset>
+    </p:panel>
   </p:panelGrid>
 
   <p:dialog id="preview-dialog" widgetVar="preview-dialog" styleClass="preview-dialog" width="70%" closable="true" modal="true" draggable="false"

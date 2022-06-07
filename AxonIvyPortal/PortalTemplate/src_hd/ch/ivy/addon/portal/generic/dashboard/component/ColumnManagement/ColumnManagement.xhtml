@@ -19,9 +19,18 @@
         draggableRows="true" rowDragSelector="i.si-move-expand-vertical">
         <p:ajax event="rowReorder" global="false" />
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/visible')}" width="70" styleClass="u-text-align-center">
-          <p:selectBooleanCheckbox id="column-visibility-checkbox" value="#{column.visible}">
-            <p:ajax event="change" global="false" />
-          </p:selectBooleanCheckbox>
+          <p:commandLink id="toggle-visibility" styleClass="ui-selectbooleancheckbox ui-chkbox ui-widget" process="@this"
+            global="false" actionListener="#{columnManagementBean.handleVisibility(column)}"
+            update="column-management-datatable">
+            <h:panelGroup id="visible-state" rendered="#{column.visible}"
+              class="ui-chkbox-box ui-widget ui-corner-all ui-state-default ui-state-active">
+              <span class="ui-chkbox-icon ui-icon ui-icon-check ui-c"></span>
+            </h:panelGroup>
+            <h:panelGroup id="invisible-state" rendered="#{!column.visible}"
+              class="ui-chkbox-box ui-widget ui-corner-all ui-state-default">
+              <span class="ui-chkbox-icon ui-icon ui-icon-blank ui-c"></span>
+            </h:panelGroup>
+          </p:commandLink>
         </p:column>
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/field')}">
           #{column.field}
