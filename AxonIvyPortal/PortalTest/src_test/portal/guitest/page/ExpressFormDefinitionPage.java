@@ -147,7 +147,7 @@ public class ExpressFormDefinitionPage extends TemplatePage {
 	}
 
 	public void moveAllElementToDragAndDrogPanel() {
-		int size = driver.findElements(By.xpath("//div[@id='form:available-form-elements_content']/table/tbody/tr")).size();
+		int size = driver.findElements(By.xpath("//div[@id='form:available-form-elements_content']/ul/li")).size();
 		int startIndex = size - 1;
 		for (int i = startIndex; i >= 0; i--) {
 		  if(i == startIndex) {

@@ -5,35 +5,44 @@
 
 <p:dialog id="new-widget-dialog" widgetVar="new-widget-dialog"
   header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/createWidget')}"
-  appendTo="@(body)" closeOnEscape="true" draggable="false"
-  fitViewport="true" responsive="true" modal="true" dynamic="true">
+  appendTo="@(body)" closeOnEscape="true"
+  fitViewport="true" responsive="true"
+  modal="true" dynamic="true"
+  position="center center"
+  onShow="PF('new-widget-dialog').initPosition()">
   <f:event listener="#{dashboardDetailModificationBean.initSampleWidgets()}" type="preRenderComponent"/>
 
-  <p:dataGrid id="new-widget-dialog-content" var="sample" value="#{dashboardDetailModificationBean.samples}" columns="1"
-    styleClass="new-widget-dialog__content">
-    <p:panel styleClass="new-widget-dialog__item">
-      <p:panelGrid columns="3" styleClass="ui-panelgrid-blank">
-        <p:graphicImage library="images" name="#{sample.image}" styleClass="new-widget-dialog__image" rendered="#{!sample.useIcon}" />
-        <h:panelGroup layout="block" rendered="#{sample.useIcon}" styleClass="new-widget-dialog__image" >
-          <span class="#{sample.image} new-widget-dialog__icon" />
-        </h:panelGroup>
-        <p:panelGrid styleClass="ui-panelgrid-blank new-widget-dialog__item-content" columns="1">
-          <p:outputLabel id="sample-name" value="#{sample.name}" styleClass="new-widget-dialog__widget-name"/>
-          <p:outputLabel value="#{sample.introduction}" styleClass="new-widget-dialog__introduction"/>
+  <div class="new-widget-dialog__content portal-card-container">
+    <p:repeat id="new-widget-dialog-content"
+      var="sample"
+      value="#{dashboardDetailModificationBean.samples}">
+      <div class="new-widget-dialog__item card">
+        <p:panelGrid columns="3" styleClass="ui-panelgrid-blank">
+          <p:graphicImage library="images" name="#{sample.image}" styleClass="new-widget-dialog__image" rendered="#{!sample.useIcon}" />
+          <h:panelGroup layout="block" rendered="#{sample.useIcon}" styleClass="new-widget-dialog__image" >
+            <span class="#{sample.image} new-widget-dialog__icon" />
+          </h:panelGroup>
+          <p:panelGrid styleClass="ui-panelgrid-blank new-widget-dialog__item-content" columns="1">
+            <p:outputLabel id="sample-name" value="#{sample.name}" styleClass="new-widget-dialog__widget-name"/>
+            <p:outputLabel value="#{sample.introduction}" styleClass="new-widget-dialog__introduction"/>
+          </p:panelGrid>
+          <p:commandButton id="add-widget" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/addWidget')}"
+            actionListener="#{dashboardDetailModificationBean.create(sample)}" update="new-widget-configuration-dialog widget-configuration-form"
+            oncomplete="PF('new-widget-configuration-dialog').show(); PF('new-widget-dialog').hide();"
+            icon="si si-add" onstart="getPortalGridsCurrentRow();"/>
         </p:panelGrid>
-        <p:commandButton id="add-widget" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/addWidget')}"
-          actionListener="#{dashboardDetailModificationBean.create(sample)}" update="new-widget-configuration-dialog widget-configuration-form"
-          oncomplete="PF('new-widget-configuration-dialog').show(); PF('new-widget-dialog').hide();"
-          icon="si si-add" onstart="getPortalGridsCurrentRow();"/>
-      </p:panelGrid>
-    </p:panel>
-  </p:dataGrid>
-  <f:facet name="footer">
-    <p:commandButton id="new-widget-close-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
-      type="button" onclick="PF('new-widget-dialog').hide()" process="@none" icon="si si-close"
-      styleClass="secondary-btn"/>
-    <p:spacer width="15px"/>
-  </f:facet>
+      </div>
+    </p:repeat>
+  </div>
+
+  <div class="new-widget-dialog__footer ui-g-12 u-text-align-right MarTop10">
+    <p:commandLink id="new-widget-close-button"
+      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+      onclick="PF('new-widget-dialog').hide()"
+      process="@this"
+      update="@this"
+      global="false"/>
+  </div>
 </p:dialog>
 
 <p:dialog id="new-widget-configuration-dialog" widgetVar="new-widget-configuration-dialog"
