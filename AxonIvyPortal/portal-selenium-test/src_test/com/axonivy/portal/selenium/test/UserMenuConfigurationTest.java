@@ -16,18 +16,18 @@ import com.codeborne.selenide.Condition;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 
 public class UserMenuConfigurationTest extends BaseTest {
-  
+
   private NewDashboardPage newDashboardPage;
   private MainMenuPage mainMenuPage;
-  
+
   @Override
   @BeforeEach
   public void setup() {
     super.setup();
     mainMenuPage = new MainMenuPage();
-    newDashboardPage = new NewDashboardPage();   
+    newDashboardPage = new NewDashboardPage();
   }
-  
+
   @Test
   public void testUserMenuExternalLink() {
     login(TestAccount.DEMO_USER);
@@ -37,7 +37,7 @@ public class UserMenuConfigurationTest extends BaseTest {
     UserMenuPage userMenu = new UserMenuPage();
     userMenu.findMenu("Axon Ivy").shouldBe(Condition.appear);
   }
-  
+
   @Test
   public void testUserMenuIvyProcessStarts() {
     login(TestAccount.ADMIN_USER);
@@ -50,7 +50,7 @@ public class UserMenuConfigurationTest extends BaseTest {
     ReorderDashboardPage reorderDashBoardPage = new ReorderDashboardPage();
     reorderDashBoardPage.findRowWithDashboardName("Dashboard").shouldBe(Condition.appear);
   }
-  
+
   @Test
   public void testUserMenuPortalExpressProcess() {
     login(TestAccount.ADMIN_USER);
