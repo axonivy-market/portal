@@ -282,8 +282,14 @@
   box-sizing: border-box;
 }
 
+.available-form-elements.ui-dataview-list .available-form-elements-title,
+.selected-formelements-field.ui-panel .ui-panel-titlebar .ui-panel-title {
+  font-weight: 700;
+  float: left;
+}
+
 .show-preview-button {
-  margin-bottom: 15px;
+  margin: 7px auto;
 }
 
 .ui-draggable:hover {
@@ -304,19 +310,12 @@
 .form-definition-table {
   border-collapse: separate;
   height: 100%;
+  width: 100%;
 }
 
 .form-definition-table td.ui-panelgrid-cell {
-  padding: 10px;
+  padding: 0;
   height: 100%;
-}
-
-.form-definition-table tr:first-child td.ui-panelgrid-cell {
-  padding-bottom: 0;
-}
-
-.form-definition-table tr:last-child td.ui-panelgrid-cell {
-  padding-top: 0;
 }
 
 .form-definition-table .selected-formelements-panel {
