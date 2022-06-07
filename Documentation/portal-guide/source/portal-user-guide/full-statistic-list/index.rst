@@ -165,9 +165,9 @@ HowTo: Create chart
 | Task priorities                   | Select which task categories      |
 |                                   | should be included in the chart.  |
 +-----------------------------------+-----------------------------------+
-| CustomVarFields 1-5               | If some business specific data is |
+| Custom fields                     | If some business specific data is |
 |                                   | included in these                 |
-|                                   | CustomVarFields, you can select   |
+|                                   | custom fields, you can select     |
 |                                   | these fields for further          |
 |                                   | filtering.                        |
 +-----------------------------------+-----------------------------------+
