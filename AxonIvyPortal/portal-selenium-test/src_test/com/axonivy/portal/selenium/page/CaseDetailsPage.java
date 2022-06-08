@@ -15,6 +15,11 @@ public class CaseDetailsPage extends TemplatePage {
   private static final String RELATED_TASKS_OF_CASES = "Related Tasks of Case";
   private static final String HISTORY = "History";
 
+  public static CaseDetailsPage newInstance() {
+    $("#time-information").waitUntil(appear, DEFAULT_TIMEOUT);
+    return new CaseDetailsPage();
+  }
+
   @Override
   protected String getLoadedLocator() {
     return "id('case-item-details:case-details-container:case-detail-body')";
@@ -99,4 +104,14 @@ public class CaseDetailsPage extends TemplatePage {
     $("div[id$='\\:escalation-task-confirmation-dialog']").waitUntil(Condition.appear, DEFAULT_TIMEOUT);
     $("button[id$='\\:confirm-escalation']").waitUntil(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
   }
+
+
+  public SelenideElement getCreatorAvatar() {
+    return $(".security-member-container > .has-avatar > .ui-avatar").waitUntil(appear, DEFAULT_TIMEOUT);
+  }
+
+  public SelenideElement getHistoryAuthorAvatar() {
+    return $(".case-document-author > .has-avatar > .ui-avatar").waitUntil(appear, DEFAULT_TIMEOUT);
+  }
+
 }

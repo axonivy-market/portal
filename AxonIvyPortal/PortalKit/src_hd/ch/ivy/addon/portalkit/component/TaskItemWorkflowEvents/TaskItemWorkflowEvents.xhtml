@@ -1,6 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
   xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
-  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+  xmlns:pc="http://xmlns.jcp.org/jsf/composite/components">
 
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="taskId" shortDescription="Task id" type="java.lang.Long" />
@@ -50,12 +51,12 @@
         </h:panelGroup>
       </p:column>
 
-      <p:column width="200" sortBy="#{event.involvedUsername}"
-        styleClass="note-history-fullname-column">
+      <p:column width="200" sortBy="#{event.involvedUsername}">
         <f:facet name="header">
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/author')}" />
         </f:facet>
-        <h:outputText value="#{event.involvedUsername}" />
+        <pc:securityMemberNameAndAvatar
+          displayName="#{event.involvedUsername}" securityMember="#{event.involvedUser}" />
       </p:column>
 
       <p:column width="200" sortBy="#{event.timestamp}" field="timestamp" filterable="false" styleClass="u-hidden-sm-down">

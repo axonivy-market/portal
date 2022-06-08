@@ -16,6 +16,7 @@ public class SecurityMemberDTOMapper {
     result.setDisplayName(userDTO.getDisplayName());
     result.setMemberName(userDTO.getMemberName());
     result.setName(userDTO.getName());
+    result.setEMailAddress(userDTO.getEmail());
     result.setUser(true);
     result.setEnabled(userDTO.isEnabled());
     

@@ -74,7 +74,8 @@ public class ChatPage extends TemplatePage {
       waitAjaxIndicatorDisappear();
       type(By.cssSelector("input[id$='selection_input']"), responsible);
       waitForElementDisplayed(By.id("chat-assignee-selection-form:chat-role-selection-component:chat-role-selection_panel"), true);
-      click(By.xpath("//*[@id='chat-assignee-selection-form:chat-role-selection-component:chat-role-selection_panel']/ul/li/span"));
+      click(By.cssSelector(
+          "span[id='chat-assignee-selection-form:chat-role-selection-component:chat-role-selection_panel'] .gravatar"));
     } else {
       type(By.cssSelector("input[id$='selection_input']"), responsible);
       waitForElementDisplayed(By.cssSelector("span[id$='chat-user-selection_panel']"), true);

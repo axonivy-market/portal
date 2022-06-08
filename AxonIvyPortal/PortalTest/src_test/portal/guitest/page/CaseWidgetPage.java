@@ -137,7 +137,7 @@ public class CaseWidgetPage extends TemplatePage {
 	}
 	
 	public String getCreatorAt(int index) {
-    List<WebElement> creators = findListElementsByClassName("case-header-creator-cell");
+    List<WebElement> creators = findListElementsByCssSelector(".case-header-creator-cell .name-after-avatar");
     return creators.get(index).getText();
   }
 
@@ -342,8 +342,8 @@ public class CaseWidgetPage extends TemplatePage {
 		WebElement responsible = findElementByCssSelector("input[id$='creator-filter:filter-input-form:creator-component:creator-select_input']");
 		type(responsible, text);
 		waitAjaxIndicatorDisappear();
-		waitForElementDisplayedByCssSelector("i[class*='si-single-neutral-actions']");
-		click(By.cssSelector("i[class*='si-single-neutral-actions']"));
+		waitForElementDisplayedByCssSelector("div[id*='creator-filter'] .ui-avatar-text");
+		click(By.cssSelector("div[id*='creator-filter'] .ui-avatar-text"));
 		waitAjaxIndicatorDisappear();
 		click(By.cssSelector("button[id$='creator-filter:filter-input-form:update-command']"));
 		waitAjaxIndicatorDisappear();
@@ -415,8 +415,8 @@ public class CaseWidgetPage extends TemplatePage {
     WebElement owner = findElementByCssSelector("input[id$='owner-filter:filter-input-form:owner_input']");
     type(owner, text);
     waitAjaxIndicatorDisappear();
-    waitForElementDisplayedByCssSelector("i[class*='si-single-neutral-actions']");
-    click(By.cssSelector("i[class*='si-single-neutral-actions']"));
+    waitForElementDisplayedByCssSelector("div[id*='owner-filter'] .ui-avatar-text");
+    click(By.cssSelector("div[id*='owner-filter'] .ui-avatar-text"));
     waitAjaxIndicatorDisappear();
     click(By.cssSelector("button[id$='owner-filter:filter-input-form:update-command']"));
     waitAjaxIndicatorDisappear();

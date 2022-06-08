@@ -1,7 +1,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
   xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:ic="http://ivyteam.ch/jsf/component"
   xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
-  xmlns:c="http://java.sun.com/jsp/jstl/core">
+  xmlns:c="http://java.sun.com/jsp/jstl/core"
+  xmlns:pc="http://xmlns.jcp.org/jsf/composite/components">
 <h:body>
   <h:panelGroup id="statistic-result-list" layout="block" styleClass="statistic-result-list MarTop10">
     <h:form id="statistic-result-form">
@@ -45,7 +46,9 @@
 
         <p:column id="case-creator" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/caseCreator')}" sortable="false" width="200"
           visible="#{taskAnalysisWidgetBean.columns['CASE_CREATOR']}" exportable="#{taskAnalysisWidgetBean.columns['CASE_CREATOR']}">
-          <h:outputText value="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(task.case.creatorUser, task.case.creatorUserName)}" />
+          <pc:securityMemberNameAndAvatar
+            displayName="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(task.case.creatorUser, task.case.creatorUserName)}"
+            securityMember="#{task.case.creatorUser}" />
         </p:column>
         
         <p:column id="case-state" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/caseState')}" sortable="false" width="120"
@@ -79,12 +82,16 @@
         <p:column id="task-activator" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/taskResponsible')}" field="TASK_ACTIVATOR" sortBy="#{TASK_ACTIVATOR}" filterable="false" width="200"
           visible="#{taskAnalysisWidgetBean.columns['TASK_ACTIVATOR']}"
           exportable="#{taskAnalysisWidgetBean.columns['TASK_ACTIVATOR']}">
-          <h:outputText value="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(task.activator, task.activatorName)}" />
+          <pc:securityMemberNameAndAvatar
+            displayName="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(task.activator, task.activatorName)}"
+            securityMember="#{task.activator}" />
         </p:column>
 
         <p:column id="task-worker" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/taskWorker')}" field="TASK_WORKER" sortBy="#{TASK_WORKER}" filterable="false" width="200"
           visible="#{taskAnalysisWidgetBean.columns['TASK_WORKER']}" exportable="#{taskAnalysisWidgetBean.columns['TASK_WORKER']}">
-          <h:outputText value="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(task.workerUser, task.workerUserName)}"/>
+          <pc:securityMemberNameAndAvatar
+            displayName="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(task.workerUser, task.workerUserName)}"
+            securityMember="#{task.workerUser}" />
         </p:column>
 
         <p:column id="task-priority" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/taskPriority')}" field="TASK_PRIORITY" sortBy="#{TASK_PRIORITY}" filterable="false"
@@ -124,7 +131,9 @@
         <p:column id="case-owner" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/caseOwner')}" sortable="false" width="200"
           visible="#{taskAnalysisWidgetBean.columns['CASE_OWNER']}" exportable="#{taskAnalysisWidgetBean.columns['CASE_OWNER']}"
           rendered="#{taskAnalysisWidgetBean.isCaseOwnerEnabled()}">
-          <h:outputText value="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(task.case.owner, task.case.ownerName)}" />
+          <pc:securityMemberNameAndAvatar
+            displayName="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(task.case.owner, task.case.ownerName)}"
+            securityMember="#{task.case.owner}" />
         </p:column>
       </p:dataTable>
     </h:form>
