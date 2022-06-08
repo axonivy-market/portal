@@ -60,6 +60,7 @@
             "import java.util.Arrays;",
             "",
             "in.definedRoleNames = Arrays.asList(\"CostObject\", \"GeneralManager\");",
+            "in.definedRoleNamesForEverybody = Arrays.asList(\"Everybody\");",
             "String costObject1UserName = \"costObject1\";",
             "IUser costObject1 = ivy.security.users().find(costObject1UserName);",
             "if (costObject1 == null) {",

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang.WordUtils;
 
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.dto.RoleDTO;
@@ -19,6 +20,8 @@ import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.security.IUser;
 
 public class SecurityMemberUtils {
+
+  private static final int MAX_CHARACTER_NUMBER_OF_NAME_INITIALS = 2;
 
   public static SecurityMemberDTO getCurrentSessionUserAsSecurityMemberDTO() {
     return IvyExecutor.executeAsSystem(() -> {
@@ -88,6 +91,14 @@ public class SecurityMemberUtils {
       }
       return cms("roleMembersTooltipFormat", Arrays.asList(header, "", usersBuilder));
     });
+  }
+
+  public static String getNameInitials(String displayName) {
+    String fullInitials = WordUtils.initials(displayName);
+    if (fullInitials.length() <= MAX_CHARACTER_NUMBER_OF_NAME_INITIALS) {
+      return fullInitials;
+    }
+    return fullInitials.substring(0, MAX_CHARACTER_NUMBER_OF_NAME_INITIALS);
   }
 
   private static String cms(String url, List<Object> params) {

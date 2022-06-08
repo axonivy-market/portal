@@ -7,10 +7,12 @@ import java.util.Arrays;
 import org.junit.Test;
 import org.openqa.selenium.Dimension;
 
+import ch.ivy.addon.portalkit.util.ConfigurationJsonUtil;
 import ch.ivy.addon.portalkit.util.ScreenshotMargin;
 import ch.ivy.addon.portalkit.util.ScreenshotUtil;
 import portal.guitest.common.ScreenshotTest;
 import portal.guitest.common.TestAccount;
+import portal.guitest.common.Variable;
 import portal.guitest.page.AbsencePage;
 import portal.guitest.page.AdminSettingsPage;
 import portal.guitest.page.ChangePasswordPage;
@@ -119,5 +121,17 @@ public class SettingScreenshotTest extends ScreenshotTest {
     NewAbsencePage newAbsencePage = absencePage.openNewAbsenceDialog();
     newAbsencePage.input(fullname, from, till, comment);
     newAbsencePage.proceed();
+  }
+  
+  @Test
+  public void screenshotUserMenuConfiguration() throws IOException {
+    login(TestAccount.ADMIN_USER);
+    ConfigurationJsonUtil.updateJSONSetting("custom-user-menu.json", Variable.USER_MENU);
+    ScreenshotUtil.resizeBrowser(new Dimension(1500, 1000));
+    showNewDashboard();
+    newDashboardPage = new NewDashboardPage();
+    newDashboardPage.getUserSettings();
+    executeDecorateJs("highlightUserMenuConfiguration()");
+    ScreenshotUtil.captureHalfTopPageScreenShot(ScreenshotUtil.SETTINGS_FOLDER + "user-menu-configuration");
   }
 }

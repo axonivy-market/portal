@@ -1,0 +1,23 @@
+[
+    {
+        "id" : "axon-ivy",
+        "title" : "Axon Ivy",
+        "permissions": ["#demo"],
+        "url" : "https://www.axonivy.com/"
+    },
+    {
+        "id" : "express",
+        "title" : "Portal Express process",
+        "permissions": ["Everybody"],
+        "url" : "Portal Express process"
+    },
+    {
+        "id" : "re-order-dashboard",
+        "title" : "cms:/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/reorderDashboard",
+        "permissions": ["Employee", "AXONIVY_PORTAL_ADMIN", "#daniel"],
+        "url": "Start Processes/ExamplePortalStart/DashboardReorder.ivp",
+        "params": {
+            "isPublicDashboard":"false"
+    	}
+    }
+]

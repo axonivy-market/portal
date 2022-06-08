@@ -1,7 +1,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
   xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
   xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
-  xmlns:jsf="http://xmlns.jcp.org/jsf">
+  xmlns:jsf="http://xmlns.jcp.org/jsf"
+  xmlns:pc="http://xmlns.jcp.org/jsf/composite/components">
 
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="caseCategory" required="true" />
@@ -41,7 +42,9 @@
 
         <p:column id="case-creator" styleClass="case-creator js-elapsed-case"
           headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATOR')}" sortable="false">
-          <h:outputText value="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(elapsedTimeDetail.getCreatorUser(), elapsedTimeDetail.getCreatorUserName())}"/>
+          <pc:securityMemberNameAndAvatar
+            displayName="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(elapsedTimeDetail.getCreatorUser(), elapsedTimeDetail.getCreatorUserName())}"
+            securityMember="#{elapsedTimeDetail.getCreatorUser()}" />
         </p:column>
 
         <p:column id="case-created" styleClass="case-created js-elapsed-case" 
