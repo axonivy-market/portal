@@ -132,6 +132,21 @@ public abstract class AbstractTaskTemplateBean implements Serializable {
     });
   }
 
+  public static IUser getUserByUsernameAndExternalId(String username, String externalId) {
+    if (StringUtils.isBlank(username)) {
+      return null;
+    }
+    return IvyExecutor.executeAsSystem(() -> {
+      IUser user = UserUtils.findUserByUsername(username);
+      if (user == null) {
+        UserQuery query = Ivy.security().users().query();
+        query.where().externalId().isEqual(externalId);
+        user = query.executor().firstResult();
+      }
+      return user;
+    });
+  }
+
   public boolean checkSideStepsEnabled(ICase iCase) {
     return CollectionUtils.isNotEmpty(generateSideStepList(iCase));
   }

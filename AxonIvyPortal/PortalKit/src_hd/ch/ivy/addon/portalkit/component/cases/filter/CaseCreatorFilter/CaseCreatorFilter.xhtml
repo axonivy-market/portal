@@ -1,6 +1,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html"
   xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
-  xmlns:p="http://primefaces.org/ui" xmlns:f="http://xmlns.jcp.org/jsf/core">
+  xmlns:p="http://primefaces.org/ui" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:pc="http://xmlns.jcp.org/jsf/composite/components"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="componentId" default="creator-filter" />
@@ -18,8 +20,12 @@
     <ic:ch.ivy.addon.portalkit.component.UserSelection id="creator-component" componentId="creator-select" size="35"
       selectedUser="#{cc.attrs.filter.selectedCreator}" autoCompleteStyleClass="responsible-list-filter">
       <p:column>
-        <i class="si si-single-neutral-actions u-mar-right-5" />
-        <h:outputText value="#{cc.attrs.filter.formatName(user)}" />
+        <pc:securityMemberNameAndAvatar securityMember="#{user}"
+          displayName="#{cc.attrs.filter.formatName(user)}">
+          <f:facet name="alternativeAvatar">
+            <h:outputText rendered="#{not avatarBean.isShowAvatar()}" styleClass="si si-single-neutral-actions u-mar-right-5" />
+          </f:facet>
+        </pc:securityMemberNameAndAvatar>
       </p:column>
     </ic:ch.ivy.addon.portalkit.component.UserSelection>
   </ic:ch.ivy.addon.portalkit.component.cases.filter.AdvancedFilter>

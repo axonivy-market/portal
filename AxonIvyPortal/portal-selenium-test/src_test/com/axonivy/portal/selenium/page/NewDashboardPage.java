@@ -781,6 +781,10 @@ public class NewDashboardPage extends TemplatePage {
 
   public SelenideElement getTaskWidgetEmptyMessageWhenFilter() {
     return getTaskWidgetContainer().$("div[id$='empty-message-when-filter']");
-
   }
+
+  public SelenideElement getUserMenuAvatar() {
+    return $("#user-settings-menu > .has-avatar >.ui-avatar").waitUntil(appear, DEFAULT_TIMEOUT);
+  }
+
 }

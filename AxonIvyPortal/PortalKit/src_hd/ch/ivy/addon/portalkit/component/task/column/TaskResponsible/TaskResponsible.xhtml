@@ -8,14 +8,16 @@
   <cc:attribute name="styleClass" />
   <cc:attribute name="dataModel" />
   <cc:attribute name="responsiveStyleClass" default="u-hidden-md-down js-hidden-when-expand-menu" 
-  shortDescription="style class support responsive layout"/>
+    shortDescription="style class support responsive layout"/>
+  <cc:attribute name="renderDeputyInfo" default="false" />
 </cc:interface>
 
 <cc:implementation>
   <h:panelGroup rendered="#{cc.attrs.dataModel.isSelectedColumn('ACTIVATOR')}">
     <ic:ch.ivy.addon.portalkit.component.SecurityMemberDisplayName textId="#{cc.attrs.componentId}" securityMember="#{cc.attrs.responsible}"
-      securityMemberName="#{cc.attrs.responsibleName}" styleClass="responsible-cell #{cc.attrs.styleClass} #{cc.attrs.responsiveStyleClass}"
-      alwaysShowAsText="true" />
+      securityMemberName="#{cc.attrs.responsibleName}" styleClass="#{cc.attrs.styleClass}"
+      securityMemberContainerStyleClass="responsible-cell #{cc.attrs.responsiveStyleClass}"
+      alwaysShowAsText="true" renderDeputyInfo="#{cc.attrs.renderDeputyInfo}" />
   </h:panelGroup>
 </cc:implementation>
 </html>
