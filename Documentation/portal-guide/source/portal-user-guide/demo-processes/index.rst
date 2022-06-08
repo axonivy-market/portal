@@ -3,9 +3,9 @@
 Demo Processes
 **************
 
-When you start the |axon-ivy| Engine in demo mode, you will see the project
+When you start the Axon Ivy Engine in demo mode, you will see the project
 **portal-user-examples**. In this project, we provide some simple examples.
-You can play with them to have the feeling how |axon-ivy| and Portal work.
+You can play with them to have the feeling how Axon Ivy and Portal work.
 
 .. hint:: 
    You can use these accounts to log in to Portal in demo mode:
