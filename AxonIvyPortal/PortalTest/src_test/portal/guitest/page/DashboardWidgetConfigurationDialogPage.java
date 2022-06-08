@@ -64,10 +64,20 @@ public class DashboardWidgetConfigurationDialogPage extends TemplatePage {
     List<WebElement> columnRows =
        configurationDialog.findElement(By.id(MANAGE_COLUMN_TABLE_CONTENT_ID)).findElements(By.cssSelector("tr"));
 
-    for (WebElement columnRow : columnRows) {
+    for (int i = 0; i < columnRows.size(); i++) {
+      int indexOfRow = i + 1;
+      WebElement columnRow =
+          findElementByCssSelector(
+              "#" + MANAGE_COLUMN_TABLE_CONTENT_ID.replace(":", "\\:") + " tr:nth-child(" + indexOfRow + ")");
+
       WebElement nameCell = columnRow.findElements(By.cssSelector("td")).get(1);
       if (columns.contains(nameCell.getText())) {
-        columnRow.findElements(By.cssSelector("td")).get(0).findElement(By.className("ui-chkbox")).click();
+        WebElement checkbox =
+            columnRow.findElements(By.cssSelector("td")).get(0).findElement(By.className("ui-chkbox"));
+        String checkboxId = checkbox.getAttribute("id");
+        checkbox.click();
+        waitForElementPresent(By.cssSelector("#" + checkboxId.replace(":", "\\:") + " .ui-icon-blank"), true,
+            DEFAULT_TIMEOUT);
       }
     }
 

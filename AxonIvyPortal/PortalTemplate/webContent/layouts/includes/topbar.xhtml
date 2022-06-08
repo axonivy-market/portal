@@ -39,8 +39,8 @@
       </li>
 
       <li class="setting-container">
-        <a href="#" id="user-settings-menu" onclick="hideDashboardOverlayPanels()"> <span
-          class="user-name">#{userMenuBean.loggedInUser}</span>
+        <a href="#" id="user-settings-menu" onclick="hideDashboardOverlayPanels()">
+          <pc:securityMemberNameAndAvatar displayName="#{userMenuBean.loggedInUser}" securityMember="#{ivy.session.sessionUser}" displayNameStyleClass="user-name" />
         </a>
         <ul id="user-setting-container">
            <li><p:commandLink id="user-profile" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/userProfile/myProfileTitle')}"

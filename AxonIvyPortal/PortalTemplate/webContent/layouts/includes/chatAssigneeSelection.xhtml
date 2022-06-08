@@ -23,7 +23,8 @@
         isRenderedMessage="false" rendered="#{chatAssigneeBean.isAssignToUser}"
         autoCompletePanelStyleClass="chat-user-selection">
         <p:column>
-          <h:outputText value="#{securityMemberDisplayNameFormatBean.generateFullDisplayNameForUserDTO(user)}" />
+          <pc:securityMemberNameAndAvatar securityMember="#{user}"
+            displayName="#{securityMemberDisplayNameFormatBean.generateFullDisplayNameForUserDTO(user)}" />
         </p:column>
         <f:facet name="event">
           <p:ajax event="itemSelect" update="chat-assignee-selection-form:chat-add-assignee-button" />
@@ -38,6 +39,10 @@
           <p:ajax event="query" global="false" />
           <p:ajax event="itemSelect" update="chat-assignee-selection-form:chat-add-assignee-button" />
         </f:facet>
+        <p:column>
+          <pc:securityMemberNameAndAvatar
+            securityMember="#{role}" displayName="#{role.getDisplayName()}"  />
+        </p:column> 
       </ic:ch.ivy.addon.portalkit.component.RoleSelection>
     </div>
 
@@ -55,8 +60,12 @@
         <ui:repeat var="assignee" value="#{chatAssigneeBean.selectedAssignees}">
           <div class="ui-g">
             <div class="ui-g-12">
-              <h:outputText id="chat-assign-type-icon" class="si #{assignee.isUser() ? 'si-single-neutral-actions' : 'si-multiple-neutral-1'} u-mar-right-5" />
-              <h:outputText value="#{assignee.briefDisplayNameWithState}" />
+              <pc:securityMemberNameAndAvatar securityMember="#{assignee}"
+              displayName="#{assignee.briefDisplayNameWithState}" >
+                <f:facet name="alternativeAvatar">
+                  <h:outputText id="chat-assign-type-icon" rendered="#{not avatarBean.isShowAvatar()}" styleClass="si #{assignee.isUser() ? 'si-single-neutral-actions' : 'si-multiple-neutral-1'} u-mar-right-5" />
+                </f:facet>
+              </pc:securityMemberNameAndAvatar>
               <p:commandLink id="chat-delete-assignee" styleClass="si si-bin-1 chat-delete-assignee"
                 rendered="#{assignee ne ivy.session.getSessionUser()}"
                 actionListener="#{chatAssigneeBean.removeAssignee(assignee)}" update="#{p:resolveFirstComponentWithId('chat-assignee-selection-panel', view).clientId}" />

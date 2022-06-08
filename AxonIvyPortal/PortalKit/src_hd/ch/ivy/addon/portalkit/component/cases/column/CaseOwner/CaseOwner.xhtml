@@ -16,7 +16,8 @@
   <c:set var="dataModel" value="#{cc.attrs.dataModel}" />
 
   <ic:ch.ivy.addon.portalkit.component.SecurityMemberDisplayName id="#{cc.attrs.componentId}"
-    styleClass="case-header-creator-cell #{cc.attrs.styleClass} #{cc.attrs.responsiveStyleClass}" securityMember="#{case.getOwner()}"
+    styleClass="#{cc.attrs.styleClass}" securityMember="#{case.getOwner()}"
+    securityMemberContainerStyleClass="case-header-creator-cell #{cc.attrs.responsiveStyleClass}"
     securityMemberName="#{case.getOwnerName()}" rendered="#{dataModel.isSelectedColumn('OWNER')}"
     alwaysShowAsText="true" />
 </cc:implementation>

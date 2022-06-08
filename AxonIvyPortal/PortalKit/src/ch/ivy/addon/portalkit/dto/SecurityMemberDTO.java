@@ -14,6 +14,7 @@ public class SecurityMemberDTO implements Serializable {
   private String name;
   private String displayName;
   private String memberName;
+  private String eMailAddress;
   private boolean isUser;
   private boolean isEnabled;
 
@@ -28,6 +29,7 @@ public class SecurityMemberDTO implements Serializable {
     if(securityMember.isUser()) {
       IUser user = (IUser) securityMember;
       this.isEnabled = user.isEnabled();
+      this.eMailAddress = user.getEMailAddress();
     }
     else {
       this.isEnabled = true;
@@ -64,6 +66,14 @@ public class SecurityMemberDTO implements Serializable {
 
   public void setMemberName(String memberName) {
     this.memberName = memberName;
+  }
+
+  public String getEMailAddress() {
+    return eMailAddress;
+  }
+
+  public void setEMailAddress(String eMailAddress) {
+    this.eMailAddress = eMailAddress;
   }
 
   public boolean isUser() {
