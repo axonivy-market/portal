@@ -146,7 +146,7 @@ How to customize Task item details UI
 
 Refer to ``portal-developer-examples`` project for examples.
 
-#. Introduce an |axon-ivy| project which has ``PortalTemplate`` as a
+#. Introduce an Axon Ivy project which has ``PortalTemplate`` as a
    required library.
 
 #. To customize task item details, you must customize Portal Home first.
