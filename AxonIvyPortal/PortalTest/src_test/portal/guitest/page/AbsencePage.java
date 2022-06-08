@@ -57,9 +57,9 @@ public class AbsencePage extends TemplatePage {
     return findElementByCssSelector(deputiesSelector).getText();
   }
   
-	public List<String> getIAMDeputyFor() {
+  public String getIAMDeputyFor() {
     List<WebElement> noteAuthorElements = findListElementsByCssSelector("tbody[id*='substitution-table_data'] > tr > td");
-    return noteAuthorElements.stream().map(w -> w.getText()).collect(Collectors.toList());
+    return noteAuthorElements.stream().map(w -> w.getText()).collect(Collectors.joining());
   }
 
   public int indexOfDeputyRole(DeputyRoleType deputyRoleType) {
@@ -153,7 +153,7 @@ public class AbsencePage extends TemplatePage {
 	
 	public String getSubstitutedByAdmin(int rowIndex) {
 	  WebElement deputyForTable = findElementByCssSelector("[id$=':substitution-table']");
-	  WebElement deputyFor = deputyForTable.findElement(By.cssSelector(String.format("[id$='%d:substitution-for']", rowIndex)));
+    WebElement deputyFor = deputyForTable.findElements(By.cssSelector(".name-after-avatar")).get(rowIndex);
 	  return deputyFor.getText();
 	}
 	

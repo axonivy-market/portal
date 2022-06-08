@@ -156,6 +156,7 @@ public class HistoryService {
           StringUtils.EMPTY));
 
       history.setTaskState(event.getTaskState());
+      history.setInvolvedUser(event.getUser());
       history.setInvolvedUsername(SecurityMemberDisplayNameUtils.generateFullDisplayNameForUser(event.getUser(), event.getUserName()));
 
       history.setTimestamp(event.getEventTimestamp());
