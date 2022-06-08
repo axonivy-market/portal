@@ -256,6 +256,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       hideYear: Auf "true" um das Jahr auszublenden, andernfalls wird es angezeigt.
       loggedInUserFormat: Definiert das Format, um den eingeloggten Benutzer anzuzeigen
       refreshTaskListIntervalNote: Intervall in Sekunden um die Aufgabenliste neu zu laden.
+      showAvatar: Zum Ein- und Ausschalten der Anzeige von Benutzer-/Rollenavataren.
       showButtonIcon: Zum Ein-/Ausschalten des Anzeigesymbols bei Butons im Portal
       showCaseDurationTime: Zum Ein-/Ausschalten der Anzeige der Bearbeitungszeit auf der Vorgangsdetailseite.
       showEnvironmentInfoNote: Zum Ein-/Ausschalten der Anzeige der Environment-Information
@@ -549,6 +550,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     switchToDesktopVersion: Zur Desktop-Version wechseln
     taskCanceledAndLeftSuccessfully: Sie haben die Aufgabe abgebrochen. Sie finden die Aufgabe im Dashboard oder in Ihrer Aufgabenliste.
     taskFinishedSuccessfully: Sie haben die Aufgabe erfolgreich abgeschlossen
+    taskFromSubstitution: Sie sehen diese Aufgabe, weil Sie der Stellvertreter sind
     taskName: Aufgabenname
     tasks: Aufgaben
     theCasemap: Die Case Map

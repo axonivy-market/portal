@@ -121,7 +121,10 @@ public class SecurityMemberDisplayNameUtils {
     return String.format(FORMAT_DISABLED_USER, Ivy.cms().co(DISABLED_USER_PREFIX_CMS), displayName);
   }
 
-  private static String stripSharpCharacterFromSecurityMemberName(String username) {
+  public static String stripSharpCharacterFromSecurityMemberName(String username) {
+    if (username == null) {
+      return "";
+    }
     return username.startsWith("#") ? username.substring(1) : username;
   }
 

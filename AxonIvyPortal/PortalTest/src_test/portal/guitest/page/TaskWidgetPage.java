@@ -370,7 +370,7 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public String getResponsibleOfTaskAt(int index) {
-    List<WebElement> responsibles = findListElementsByClassName("responsible-cell");
+    List<WebElement> responsibles = findListElementsByCssSelector(".responsible-cell .name-after-avatar");
     return responsibles.get(index).getText();
   }
 
@@ -469,8 +469,9 @@ public class TaskWidgetPage extends TemplatePage {
     type(responsible, text);
     waitAjaxIndicatorDisappear();
     ensureNoBackgroundRequest();
-    waitForElementDisplayedByCssSelector("span[id$='responsible-filter:filter-input-form:responsible_panel']");
-    click(By.cssSelector("i[class*='neutral']"));
+    waitForElementDisplayedByCssSelector(
+        "span[id$='responsible-filter:filter-input-form:responsible_panel'] .gravatar");
+    click(By.cssSelector("span[id$='responsible-filter:filter-input-form:responsible_panel'] .gravatar"));
     waitAjaxIndicatorDisappear();
     click(By.cssSelector("button[id$='responsible-filter:filter-input-form:update-command']"));
     waitAjaxIndicatorDisappear();
@@ -884,14 +885,14 @@ public class TaskWidgetPage extends TemplatePage {
       type(By.cssSelector("input[id$='group-activator-select_input']"), responsibleName);
       waitForElementDisplayed(By.cssSelector("span[id$='group-activator-select_panel']"), true);
       List<WebElement> foundRoles =
-          findElementByCssSelector("span[id$='group-activator-select_panel").findElements(By.tagName("li"));
+          findListElementsByCssSelector("span[id$='group-activator-select_panel'] .gravatar");
       click(foundRoles.get(0));
     } else {
       waitForElementDisplayed(By.cssSelector("input[id$='user-activator-select_input']"), true);
       type(By.cssSelector("input[id$='user-activator-select_input']"), responsibleName);
       waitForElementDisplayed(By.cssSelector("span[id$='user-activator-select_panel']"), true);
       List<WebElement> foundUsers =
-          findElementByCssSelector("span[id$='user-activator-select_panel']").findElements(By.tagName("tr"));
+          findListElementsByCssSelector("span[id$='user-activator-select_panel'] .name-after-avatar");
       click(foundUsers.get(0));
     }
     waitAjaxIndicatorDisappear();
