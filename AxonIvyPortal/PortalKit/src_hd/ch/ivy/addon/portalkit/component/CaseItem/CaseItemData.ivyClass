@@ -2,3 +2,5 @@ CaseItemData #class
 ch.ivy.addon.portalkit.component.CaseItem #namespace
 iCase ch.ivyteam.ivy.workflow.ICase #field
 iCase PERSISTENT #fieldModifier
+isCallFromProcessHistory Boolean #field
+isCallFromProcessHistory PERSISTENT #fieldModifier

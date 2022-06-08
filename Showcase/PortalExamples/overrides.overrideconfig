@@ -1,4 +1,10 @@
 {
+  /HTML_DIALOG {
+    /ch.ivy.addon.portalkit.component.PageHeader "ch.ivyteam.ivy.project.portal.examples.component.PageHeaderOverride"
+    /ch.ivy.addon.portalkit.component.UserWithEnvironmentInfo "ch.ivyteam.ivy.project.portal.examples.component.UserWithEnvironmentInfoOverride"
+    /ch.ivy.addon.portalkit.component.PageFooter "ch.ivyteam.ivy.project.portal.examples.component.PageFooterOverride"
+    /ch.ivy.addon.portal.generic.ProcessHistoryCaseDetails "ch.ivy.addon.portal.generic.ProcessHistoryCaseDetailsOverride"
+  }
   /PROCESS {
     /Functional-Processes.DefaultChart "Functional Processes/DefaultChartOverride"
     /Functional-Processes.CalculateTaskDelegate "Functional Processes/CalculateTaskDelegateOverride"
@@ -19,10 +25,5 @@
     /Functional-Processes.OpenPortalTaskDetailsHook "Functional Processes/OpenPortalTaskDetailsOverride"
     /Functional-Processes.DefaultStatisticCustomField "Functional Processes/DefaultStatisticCustomFieldOverride"
     /Functional-Processes.OpenPortalCases "Functional Processes/OpenPortalCasesOverride"
-  }
-  /HTML_DIALOG {
-    /ch.ivy.addon.portalkit.component.PageHeader "ch.ivyteam.ivy.project.portal.examples.component.PageHeaderOverride"
-    /ch.ivy.addon.portalkit.component.UserWithEnvironmentInfo "ch.ivyteam.ivy.project.portal.examples.component.UserWithEnvironmentInfoOverride"
-    /ch.ivy.addon.portalkit.component.PageFooter "ch.ivyteam.ivy.project.portal.examples.component.PageFooterOverride"
   }
 }

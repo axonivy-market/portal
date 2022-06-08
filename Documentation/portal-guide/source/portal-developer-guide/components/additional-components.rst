@@ -67,6 +67,15 @@ for more details.
 			  <ic:ch.ivy.addon.portal.component.ProcessHistory businessEntityId="resourceA247" chunkSize="6" scrollHeight="400" />
 			</p:dialog>
 
+.. note:: 
+
+      If you use this component in an Iframe, you must run set parameter
+      ``isOpenInIframe`` to ``true``. For example:
+
+.. code-block:: html
+
+      <ic:ch.ivy.addon.portal.component.ProcessHistory businessEntityId="resourceA247" isOpenInIframe="true" />
+
 .. important:: 
    
       If your process has a Trigger component or sends a signal to start

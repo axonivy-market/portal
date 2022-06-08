@@ -1,0 +1,4 @@
+OpenProcessHistoryCaseDetailsHookData #class
+portalkit #namespace
+caseData ch.ivyteam.ivy.workflow.ICase #field
+isShowBackButton Boolean #field

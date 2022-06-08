@@ -1,0 +1,8 @@
+ProcessHistoryCaseDetailsOverrideData #class
+ch.ivy.addon.portal.generic.ProcessHistoryCaseDetailsOverride #namespace
+caseInfo ch.ivyteam.ivy.workflow.ICase #field
+caseInfo PERSISTENT #fieldModifier
+isShowBackButton Boolean #field
+isShowBackButton PERSISTENT #fieldModifier
+isTaskStartedInDetails Boolean #field
+isTaskStartedInDetails PERSISTENT #fieldModifier
