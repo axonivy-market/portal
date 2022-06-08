@@ -76,7 +76,7 @@ Migration notes
 
 This document informs you in detail about incompatibilities that were
 introduced between Portal versions and tells you what needs to be done
-to make your existing Portal working with current |axon-ivy| engine.
+to make your existing Portal working with current Axon Ivy engine.
 
 How to migrate
 --------------
@@ -88,7 +88,7 @@ How to migrate
    In order to migrate Portal, you need to migrate Axon Ivy, refer
    :dev-url:`Axon Ivy migration
    notes </doc/nightly/axonivy/migration/index.html>`.
-   Changes in |axon-ivy| could lead to problems if customer project is not
+   Changes in Axon Ivy could lead to problems if customer project is not
    migrated properly.
 
 In designer
