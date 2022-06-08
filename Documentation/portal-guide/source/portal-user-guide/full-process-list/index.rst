@@ -5,7 +5,7 @@ Full Process List
 
 The **Full Process List** page gives you an overview of all the processes in the
 application available to you. To open the page, click :guilabel:`Processes` in
-the |axon-ivy| Portal menu.
+the Axon Ivy Portal menu.
 
 |navigate-to-full-process-list|
 
@@ -55,7 +55,7 @@ process descriptions and process categories, then filter the process list
 accordingly.
 
 .. warning:: 
-   Don’t confuse the process search with the global |axon-ivy| Portal 
+   Don’t confuse the process search with the global Axon Ivy Portal 
    search which you find in the header area of the Portal.
 
 To start a new instance of a process, select the process in the list. We call
