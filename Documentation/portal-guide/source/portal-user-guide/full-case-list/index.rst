@@ -6,11 +6,11 @@ Full Case List
 The **Full Case List** page shows you all cases you are involved in.
 This page provides you with extended information on the cases as well
 as advanced search and filter capabilities. You can reach the page by
-selecting |case-icon| :guilabel:`Cases` in the |axon-ivy| Portal menu.
+selecting |case-icon| :guilabel:`Cases` in the Axon Ivy Portal menu.
 
 .. hint:: 
    The set of cases you see in the Portal depends on the roles you hold 
-   in both the application and the |axon-ivy| Portal. Administrators 
+   in both the application and the Axon Ivy Portal. Administrators 
    (having role AXONIVY_PORTAL_ADMIN) see all cases.                      
 
 |navigate-to-full-cases-list-page|
@@ -58,7 +58,7 @@ The case details are separated into four different sections:
 
    |case-details-related-tasks-cases|
 
-#. Histories: The |axon-ivy| Portal adds notes here for state changes of the
+#. Histories: The Axon Ivy Portal adds notes here for state changes of the
    case. You may add your own notes as described below.
 
    |case-details-histories|
@@ -260,7 +260,7 @@ This section shows you the related tasks of this case.
 
 .. hint:: 
    What you see here depends on the roles granted to you in both the application 
-   and the |axon-ivy| Portal. Administrators can see all open tasks.
+   and the Axon Ivy Portal. Administrators can see all open tasks.
 
 The list shows the following key information for each task. To change the
 columns displayed, click on :guilabel:`Manage columns`. Select from the

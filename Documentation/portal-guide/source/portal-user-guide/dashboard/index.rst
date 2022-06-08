@@ -3,9 +3,9 @@
 Legacy Dashboard
 ****************
 
-The |axon-ivy| Portal Dashboard is the first page you see after having logged
+The Axon Ivy Portal Dashboard is the first page you see after having logged
 in. You can always get back to the dashboard using the **Dashboard** link in the
-|axon-ivy| Portal menu. Alternatively, you can click on the logo in
+Axon Ivy Portal menu. Alternatively, you can click on the logo in
 the header.
 
 |dash-board|
@@ -28,7 +28,7 @@ Process Favorites
 
 The  **Process favorites** you find in **Processes** at the left. They allow you
 to quickly access the processes you need most often in your daily work. To make
-full use of this feature, the |axon-ivy| Portal offers you an easy way to
+full use of this feature, the Axon Ivy Portal offers you an easy way to
 configure the process favorites to your personal needs. 
 
 |process-favorites|
@@ -42,7 +42,7 @@ The process favorites are divided into two areas:
    configured by your administrator. Therefore, you may use but not change them.
 
 To the right of the Processes header, you see a link ``Show all processes``.
-This quick link routes you to the **Full Process List** page of the |axon-ivy|
+This quick link routes you to the **Full Process List** page of the Axon Ivy
 Portal. Please refer to :ref:`full-process-list` for detailed information.
 
 If there is a red warning icon on the right side of a process, it indicates that
@@ -146,13 +146,13 @@ from the task list and start working on it.
 
 You see the number of tasks right next to the heading :guilabel:`Tasks`. Further
 right you find the link ``Show full task list``. This quick link
-routes you to the **Task List** page of the |axon-ivy| Portal. Please refer to
+routes you to the **Task List** page of the Axon Ivy Portal. Please refer to
 :ref:`full-task-list` for detailed information.
 
 Right below the heading :guilabel:`Task`, you find the following features which
 help you find the correct tasks:
 
-#. The |axon-ivy| Portal searches for your keyword in the task ID, name and
+#. The Axon Ivy Portal searches for your keyword in the task ID, name and
    description of the tasks in your task list.
 #. On the right side of the Tasks section, you can select the desired sort criteria (:guilabel:`Creation Date` :guilabel:`Expiry` :guilabel:`Priority`). 
 
@@ -189,7 +189,7 @@ the overall situation at a glance.
 
 
 Next to the heading you find a link ``Show all charts``. This quick link
-routes you the :guilabel:`Statistics` page of the |axon-ivy| Portal. Please refer
+routes you the :guilabel:`Statistics` page of the Axon Ivy Portal. Please refer
 to :ref:`full-statistic-list` for more detailed information.
 
 Within header of the chart, you find two navigation buttons (|pre-icon|,
