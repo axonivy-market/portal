@@ -449,4 +449,9 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   public SelenideElement getGrowlTitle() {
     return $(".ui-growl-title").waitUntil(appear, DEFAULT_TIMEOUT);
   }
+
+
+  public SelenideElement getResponsibleAvatar() {
+    return $(".dashboard-tasks__responsible > .has-avatar > .ui-avatar").waitUntil(appear, DEFAULT_TIMEOUT);
+  }
 }

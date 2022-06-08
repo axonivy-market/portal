@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
   xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:ic="http://ivyteam.ch/jsf/component"
   xmlns:p="http://primefaces.org/ui" xmlns:c="http://java.sun.com/jsp/jstl/core"
-  xmlns:pe="http://primefaces.org/ui/extensions">
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pc="http://xmlns.jcp.org/jsf/composite/components" >
 <h:body>
   <ui:composition template="/layouts/BasicTemplate.xhtml">
     <!-- THIS TEMPLATE IS ONLY USED BY PORTAL. DON'T USE IT -->
@@ -285,9 +285,12 @@
             value="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/noteOfResultFromAdhocProcess')}" />
           <br />
           <p:spacer height="20"></p:spacer>
-          <p:dataTable id="adhoc-task-history-table" value="#{abstractTaskTemplateBean.getAllAdhocHistories(currentTask)}" var="history">
+          <p:dataTable id="adhoc-task-history-table" value="#{abstractTaskTemplateBean.getAllAdhocHistories(currentTask)}" var="history"
+            reflow="true">
             <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/author')}">
-              <h:outputText value="#{abstractTaskTemplateBean.getUserByUsernameAndExternalName(history.authorUsername, history.externalSecurityId)}" />
+              <pc:securityMemberNameAndAvatar securityMember="#{abstractTaskTemplateBean.getUserByUsernameAndExternalId(history.authorUsername, history.externalSecurityId)}"
+                displayName="#{abstractTaskTemplateBean.getUserByUsernameAndExternalName(history.authorUsername, history.externalSecurityId)}"
+                containerStyleClass="adhoc-task-history-author" />
             </p:column>
             <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/timestamp')}">
               <h:outputText value="#{history.timestamp}">

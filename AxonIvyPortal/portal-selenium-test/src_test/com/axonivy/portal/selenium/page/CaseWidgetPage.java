@@ -12,6 +12,13 @@ import com.codeborne.selenide.SelenideElement;
 
 public class CaseWidgetPage extends TemplatePage {
 
+  public CaseWidgetPage() {}
+
+  public static CaseWidgetPage newInstance() {
+    $(".js-case-widget-header").waitUntil(appear, DEFAULT_TIMEOUT);
+    return new CaseWidgetPage();
+  }
+
   @Override
   protected String getLoadedLocator() {
     return "//*[contains(@id,'case-view')]";
@@ -41,5 +48,9 @@ public class CaseWidgetPage extends TemplatePage {
   
   public ElementsCollection countCases() {
     return $$("div[id$='case-widget:case-list'] ul li");
+  }
+
+  public SelenideElement getCreatorAvatar() {
+    return $(".security-member-container > .has-avatar > .ui-avatar").waitUntil(appear, DEFAULT_TIMEOUT);
   }
 }
