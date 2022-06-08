@@ -407,7 +407,7 @@ public abstract class TemplatePage extends AbstractPage {
   }
   
   public String getLoggedInUserFormat() {
-    return getText(By.id("user-settings-menu"));
+    return getText(By.cssSelector("#user-settings-menu .name-after-avatar"));
   }
 
   public ChatPage getChat() {

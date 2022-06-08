@@ -17,7 +17,7 @@ contains 2 parts:
 
 .. important::
    - Task header customization currently support responsive design. Refer to :ref:`this part <customization-task-widget-responsive-layout>` for more detail.
-                  
+
    - Task header's buttons cannot be modified (they stay where they are)
 
 .. _customization-task-widget-how-to-overide-ui:
@@ -90,11 +90,11 @@ function of these columns work:
       rendered="#{taskView.dataModel.isSelectedColumn('YOUR_CUSTOM_COLUMN')}"
 
       For example: Show custom field ``customer name`` which stored in
-      ``task.customVarCharField5``
+      ``task.customFields().stringField('CustomVarCharField5')``
 
       .. code-block:: html
-      
-         <ic:ch.ivy.addon.portalkit.component.task.column.TaskCustomField id="customer-name-component" componentId="customer-name" column="customVarCharField5" dataModel="#{taskView.dataModel}" labelValue="#{task.customVarCharField5}" />
+
+         <ic:ch.ivy.addon.portalkit.component.task.column.TaskCustomField id="customer-name-component" componentId="customer-name" column="customVarCharField5" dataModel="#{taskView.dataModel}" labelValue="#{task.customFields().stringField('CustomVarCharField5')}" />
 
 *  Use |axon-ivy| Override to override the ``InitializeTaskDataModel``
    callable and initialize data model by your customized one.
@@ -103,9 +103,9 @@ function of these columns work:
    should be passed as a parameter to components (refer to
    ``PortalTasks.xhtml``).
 
-.. important:: 
+.. important::
    The sort options of the compact task list depend on the default columns defined in the ``TaskLazyDataModel``.
-   
+
    That means if you removed a default column in the ``getDefaultColumns()`` method, make sure that options related to that column are removed from the compact task sort options, by overriding the ``getPortalTaskSort()`` method.
 
    -  e.g: If you removed ``EXPIRY_TIME`` column from ``getDefaultColumns()``, remove two options related to ``EXPIRY_TIME`` in ``getPortalTaskSort()`` method: ``EXPIRY_TIME_AS``, ``EXPIRY_TIME_DESC``.
@@ -174,9 +174,9 @@ How to override task widget's data query
 -  If you want to apply a query for only Home page task list, not for
    Full mode task list, use attribute isQueryForHomePage in BuildTaskQuery
    callable process to specify the query for Home page task list
-   
+
    *E.g:*
-   
+
    .. code-block:: java
 
       if (in.isQueryForHomePage) { // in home page
@@ -197,9 +197,9 @@ How to override task widget's data query
 
       TaskLazyDataModel dataModel = new TaskLazyDataModel();
       // Set your TaskQuery
-      dataModel.getCriteria().setCustomTaskQuery(YOUR_TASK_QUERY); 
+      dataModel.getCriteria().setCustomTaskQuery(YOUR_TASK_QUERY);
       // Display the tasks of all users
-      dataModel.getCriteria().setAdminQuery(true); 
+      dataModel.getCriteria().setAdminQuery(true);
       out.taskView = TaskView.create().dataModel(dataModel)
       .showHeaderToolbar(false).createNewTaskView();
 
@@ -290,7 +290,7 @@ You can refer to ``portal-developer-examples`` project for examples
             <ic:ch.ivy.addon.portalkit.component.task.column.TaskListHeader dataModel="#{taskView.dataModel}" />
             <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{taskView.dataModel}"
             styleClass="TexAlCenter" componentId="task-custom" sortField="customVarCharField5"
-            value="#{ivy.cms.co('/DefaultColumns/customVarCharField5')}" 
+            value="#{ivy.cms.co('/DefaultColumns/customVarCharField5')}"
             responsiveStyleClass="u-hidden-lg-down" />
             <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{taskView.dataModel}"
             styleClass="TexAlCenter" componentId="task-custom" sortField="customTimestampField1"
@@ -312,8 +312,8 @@ You can refer to ``portal-developer-examples`` project for examples
             <ic:ch.ivy.addon.portalkit.component.task.column.TaskId value="#{task.getId()}" dataModel="#{taskView.dataModel}" />
             <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate
             rendered="#{taskView.dataModel.isSelectedColumn('CREATION_TIME')}" componentId="creation-time"
-            value="#{task.startTimestamp}" 
-            responsiveStyleClass="u-hidden-md-down 
+            value="#{task.startTimestamp}"
+            responsiveStyleClass="u-hidden-md-down
             js-hidden-when-expand-menu" />
             <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate
             rendered="#{taskView.dataModel.isSelectedColumn('EXPIRY_TIME')}" componentId="expiry-time"
@@ -348,7 +348,7 @@ You can refer to ``portal-developer-examples`` project for examples
             <ic:ch.ivy.addon.portalkit.component.task.column.TaskListHeader dataModel="#{taskView.dataModel}" />
             <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{taskView.dataModel}"
             styleClass="TexAlCenter" componentId="task-custom" sortField="customVarCharField5"
-            value="#{ivy.cms.co('/DefaultColumns/customVarCharField5')}" 
+            value="#{ivy.cms.co('/DefaultColumns/customVarCharField5')}"
             responsiveStyleClass="u-hidden-lg-down" />
             <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{taskView.dataModel}"
             styleClass="TexAlCenter" componentId="task-custom" sortField="customTimestampField1"
@@ -370,8 +370,8 @@ You can refer to ``portal-developer-examples`` project for examples
             <ic:ch.ivy.addon.portalkit.component.task.column.TaskId value="#{task.getId()}" dataModel="#{taskView.dataModel}" />
             <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate
             rendered="#{taskView.dataModel.isSelectedColumn('CREATION_TIME')}" componentId="creation-time"
-            value="#{task.startTimestamp}" 
-            responsiveStyleClass="u-hidden-md-down 
+            value="#{task.startTimestamp}"
+            responsiveStyleClass="u-hidden-md-down
             js-hidden-when-expand-menu" />
             <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate
             rendered="#{taskView.dataModel.isSelectedColumn('EXPIRY_TIME')}" componentId="expiry-time"

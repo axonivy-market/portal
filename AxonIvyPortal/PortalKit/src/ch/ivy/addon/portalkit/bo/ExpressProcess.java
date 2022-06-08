@@ -7,6 +7,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import ch.ivy.addon.portalkit.configuration.AbstractConfiguration;
+import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
+import ch.ivy.addon.portalkit.util.SecurityMemberDisplayNameUtils;
+import ch.ivyteam.ivy.security.IUser;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ExpressProcess extends AbstractConfiguration implements Serializable {
@@ -25,6 +28,9 @@ public class ExpressProcess extends AbstractConfiguration implements Serializabl
   @JsonIgnore
   private boolean isAbleToEdit;
   private List<ExpressTaskDefinition> taskDefinitions;
+  @JsonIgnore
+  private IUser processOwnerUser;
+
 
   public ExpressProcess() {
     setIsPublic(true);
@@ -125,4 +131,13 @@ public class ExpressProcess extends AbstractConfiguration implements Serializabl
   public void setTaskDefinitions(List<ExpressTaskDefinition> taskDefinitions) {
     this.taskDefinitions = taskDefinitions;
   }
+
+  public IUser getProcessOwnerUser() {
+    if (processOwnerUser == null) {
+      processOwnerUser = ServiceUtilities
+          .findUser(SecurityMemberDisplayNameUtils.stripSharpCharacterFromSecurityMemberName(processOwner));
+    }
+    return processOwnerUser;
+  }
+
 }

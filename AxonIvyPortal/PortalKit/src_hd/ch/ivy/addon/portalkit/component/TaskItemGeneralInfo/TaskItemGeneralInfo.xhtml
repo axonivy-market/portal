@@ -127,7 +127,8 @@
         </div>
         <div class="ui-xl-8 ui-lg-8 ui-md-8 ui-sm-8 ui-g-4 u-no-padding-left text-ellipsis">
           <ic:ch.ivy.addon.portalkit.component.SecurityMemberDisplayName id="task-worker" styleClass="text-ellipsis"
-            securityMember="#{task.getWorkerUser()}" securityMemberName="#{task.getWorkerUserName()}" />
+            securityMember="#{task.getWorkerUser()}" securityMemberName="#{task.getWorkerUserName()}"
+            securityMemberContainerStyleClass="task-security-member-container" />
         </div>
       </h:panelGroup>
 
@@ -140,7 +141,8 @@
         <div class="ui-xl-8 ui-lg-8 ui-md-8 ui-sm-8 ui-g-4 u-no-padding-left text-ellipsis">
           <ic:ch.ivy.addon.portalkit.component.SecurityMemberDisplayName id="task-activator"
            securityMember="#{task.getActivator()}" securityMemberName="#{task.getActivatorName()}"
-           styleClass="text-ellipsis task-activator" />
+           styleClass="text-ellipsis task-activator"
+           securityMemberContainerStyleClass="task-security-member-container" />
         </div>
       </h:panelGroup>
 
@@ -153,7 +155,8 @@
         <div class="ui-xl-8 ui-lg-8 ui-md-8 ui-sm-8 ui-g-4 u-no-padding-left text-ellipsis">
           <ic:ch.ivy.addon.portalkit.component.SecurityMemberDisplayName id="task-expiry-activator-name" securityMember="#{task.getExpiryActivator()}"
             securityMemberName="#{task.getExpiryActivatorName()}" styleClass="text-ellipsis task-expiry-activator-name"
-            roleNameStyleClass="ui-md-hidden ui-sm-hidden"/>
+            roleNameStyleClass="ui-md-hidden ui-sm-hidden"
+            securityMemberContainerStyleClass="task-security-member-container"/>
           <p:link rendered="#{taskActionBean.canChangeTaskExpiryActivator(task) and !cc.attrs.readOnly}"
             styleClass="task-expiry-activator-edit"
             href="#"

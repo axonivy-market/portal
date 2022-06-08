@@ -1,7 +1,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
   xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
   xmlns:pe="http://primefaces.org/ui/extensions" xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:jsf="http://xmlns.jcp.org/jsf"
-  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+  xmlns:pc="http://xmlns.jcp.org/jsf/composite/components">
 
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="widget" type="ch.ivy.addon.portalkit.dto.dashboard.ProcessDashboardWidget" required="true" />
@@ -52,7 +53,9 @@
         
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATOR')}" sortable="true" sortBy="#{creator}" field="creator" filterable="false"
           styleClass="dashboard-cases__creator u-hidden-sm-down" width="150">
-          <h:outputText value="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(caseItem.creatorUser, caseItem.creatorUser.memberName)}" />
+          <pc:securityMemberNameAndAvatar
+            securityMember="#{caseItem.creatorUser}"
+            displayName="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(caseItem.creatorUser, caseItem.creatorUser.memberName)}" />
         </p:column>
       </p:dataTable>
     </h:panelGroup>

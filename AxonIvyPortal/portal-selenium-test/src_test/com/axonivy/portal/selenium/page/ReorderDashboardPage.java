@@ -34,7 +34,7 @@ public class ReorderDashboardPage extends TemplatePage {
     return new NewDashboardPage();
   }
 
-  private SelenideElement findRowWithDashboardName(String dashboardName) {
+  public SelenideElement findRowWithDashboardName(String dashboardName) {
     return $$("span[id$='dashboard-title']").stream().filter(e -> e.getText().equals(dashboardName)).findFirst().get();
   }
 }
