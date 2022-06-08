@@ -8,7 +8,7 @@ One way to consume statistics is through your personal dashboard (see
 **Full Statistics** page provides you with the perfect toolset. You can
 consume statistics and charts here at one glance and have the chance to set up
 your own statistics. You can reach the page by using the 
-:guilabel:`Statistics` link in the |axon-ivy| Portal menu.
+:guilabel:`Statistics` link in the Axon Ivy Portal menu.
 
 .. hint::
    The statistics allow you to evaluate case and task data only. Business data
