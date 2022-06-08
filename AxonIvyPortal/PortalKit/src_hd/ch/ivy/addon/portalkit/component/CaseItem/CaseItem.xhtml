@@ -12,6 +12,7 @@
   <cc:attribute name="enableCaseAction" default="true" />
   <cc:attribute name="canDestroyCase" default="true" />
   <cc:attribute name="rowIndex" />
+  <cc:attribute name="isOpenInIframe" default="false" />
   <cc:facet name="caseHeader" shortDescription="Header content of one case item" />
 </cc:interface>
 
@@ -24,7 +25,7 @@
   <div id="#{cc.clientId}" class="js-case-item case-list-item #{cc.attrs.itemStyleClass}">
     <h:panelGroup id="case-item-container" styleClass="case-header-container case-header-data" layout="block">
       <h:panelGroup id="case-info-row" styleClass="case-info-row js-case-start-link">
-        <p:ajax event="click" listener="#{logic.openDetails(case)}" />
+        <p:ajax event="click" listener="#{logic.openDetails(case, cc.attrs.isOpenInIframe)}" />
         <cc:renderFacet name="caseHeader" />
       </h:panelGroup>
 

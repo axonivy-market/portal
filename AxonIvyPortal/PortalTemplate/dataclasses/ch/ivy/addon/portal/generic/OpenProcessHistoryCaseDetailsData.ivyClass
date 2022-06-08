@@ -1,0 +1,4 @@
+OpenProcessHistoryCaseDetailsData #class
+ch.ivy.addon.portal.generic #namespace
+caseData ch.ivyteam.ivy.workflow.ICase #field
+isShowBackButton Boolean #field
