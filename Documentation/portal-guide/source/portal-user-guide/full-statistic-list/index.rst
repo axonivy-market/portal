@@ -10,10 +10,10 @@ consume statistics and charts here at one glance and have the chance to set up
 your own statistics. You can reach the page by using the 
 :guilabel:`Statistics` link in the |axon-ivy| Portal menu.
 
-.. hint:: 
+.. hint::
    The statistics allow you to evaluate case and task data only. Business data
    from your processes is not available in these statistics and must be
-   considered separately.                      
+   considered separately.
 
 |navigate-to-full-statistics-page|
 
@@ -51,13 +51,13 @@ HowTo: Create chart
 
 #. Select and configure one or more of the available filters (see Chart filter criteria).
 
-#. Click :guilabel:`Add to dashboard` 
+#. Click :guilabel:`Add to dashboard`
 
 #. The :guilabel:`Add statistic chart to dashboard` dialog is opened
 
 #. Enter unique names in supported languages for the chart
 
-#. Create the chart with the button :guilabel:`Ok` 
+#. Create the chart with the button :guilabel:`Ok`
 
 |charts-configuration-page|
 
@@ -164,9 +164,9 @@ HowTo: Create chart
 | Task priorities                   | Select which task categories      |
 |                                   | should be included in the chart.  |
 +-----------------------------------+-----------------------------------+
-| CustomVarFields 1-5               | If some business specific data is |
+| Custom fields                     | If some business specific data is |
 |                                   | included in these                 |
-|                                   | CustomVarFields, you can select   |
+|                                   | custom fields, you can select     |
 |                                   | these fields for further          |
 |                                   | filtering.                        |
 +-----------------------------------+-----------------------------------+
@@ -232,7 +232,7 @@ HowTo: Create new filter
 .. hint::
 
       #. You may also start the creation of a new filter by selecting an existing
-         filter first, reconfiguring it and saving it. 
+         filter first, reconfiguring it and saving it.
 
       #. Depending on your permissions you might only be allowed to save filters for
          yourself.
@@ -250,7 +250,7 @@ HowTo: Configure displayed tasks
 HowTo: Export to excel
 ^^^^^^^^^^^^^^^^^^^^^^
 
-#. All the data that you filtered with selected columns and sort order will be exported. 
+#. All the data that you filtered with selected columns and sort order will be exported.
    Refer to :ref:`task-analysis-filter-tasks` and :ref:`task-analysis-display-tasks` for configuration.
 
 #. In Task Analysis page, click on :guilabel:`Export to Excel`.

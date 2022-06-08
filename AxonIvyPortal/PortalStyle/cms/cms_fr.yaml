@@ -256,6 +256,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       hideYear: Définissez la valeur true, l'année sera cachée, sinon elle sera montrée.
       loggedInUserFormat: L'option pour afficher le format de l'utilisateur connecté
       refreshTaskListIntervalNote: Intervalle d'actualisation de la liste des tâches en secondes.
+      showAvatar: Pour activer/désactiver l'affichage des avatars des utilisateurs/rôles.
       showButtonIcon: Pour activer/désactiver l'icône d'affichage dans le bouton.
       showCaseDurationTime: Pour activer/désactiver l'affichage de la durée dans la page des détails de l'affaire.
       showEnvironmentInfoNote: Pour activer/désactiver l'affichage des informations sur l'environnement.
@@ -549,6 +550,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     switchToDesktopVersion: Passer à la version de bureau
     taskCanceledAndLeftSuccessfully: Vous avez annulé et quitté la tâche avec succès. Vous pouvez trouver la tâche dans le tableau de bord ou dans votre liste de tâches.
     taskFinishedSuccessfully: Vous avez terminé la tâche avec succès
+    taskFromSubstitution: Vous voyez cette tâche parce que vous êtes l'adjoint
     taskName: Nom de tâche
     tasks: Tâches
     theCasemap: La carte des cas

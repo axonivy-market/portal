@@ -60,7 +60,8 @@ public enum Variable {
   CASE_FILTER( "Portal.Cases.CaseFilters"),
   CASE_DETAIL("Portal.CaseDetails"),
   SHOW_LEGACY_UI("Portal.ShowLegacyUI"),
-  HIDE_RELATED_CASE_INFO_FROM_HISTORY("Portal.Histories.HideRelatedCaseInfo");
+  HIDE_RELATED_CASE_INFO_FROM_HISTORY("Portal.Histories.HideRelatedCaseInfo"),
+  USER_MENU("Portal.UserMenu");
 
   private String key;
 

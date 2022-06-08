@@ -18,10 +18,10 @@ public class NewDashboardPage extends TemplatePage {
   private static final String IVY_PROCESS = "IVY_PROCESS";
   public static final String SRC_ATTRIBUTE = "src";
   public static final String IMAGE_URI_PATTERN = ".*PROCESSMODELING.*";
-  private static final String SHOWCASE_DATA_TABLE = "Showcase Data Table";
-  private static final String SHOWCASE_DATA_TABLE_SAVED_FILTER_NAME = "Showcase Data Table filter";
+  private static final String SHOWCASE_NAME = "Showcase";
+  private static final String SHOWCASE_DATA_TABLE_SAVED_FILTER_NAME = "Showcase filter";
   private static final String MY_FILTER = "My filter";
-  private static final String DATA_TABLE = "DataTable";
+  private static final String SHOWCASE = "Showcase";
 
   public CaseWidgetNewDashBoardPage selectCaseWidget(String caseWidgetName) {
     return new CaseWidgetNewDashBoardPage(caseWidgetName);
@@ -448,25 +448,25 @@ public class NewDashboardPage extends TemplatePage {
   private void testSaveResetApplyCompactModeProcessFilter(boolean isExpanded) {
     // Save filter
     openCompactModeProcessFilterPanel(isExpanded);
-    selectCompactModeProcessFilter(isExpanded, SHOWCASE_DATA_TABLE, IVY_PROCESS, DATA_TABLE);
+    selectCompactModeProcessFilter(isExpanded, SHOWCASE_NAME, IVY_PROCESS, SHOWCASE);
     saveCompactModeProcessFilter(isExpanded, SHOWCASE_DATA_TABLE_SAVED_FILTER_NAME);
     getCompactModeProcessFilterPanelSavedFilter(isExpanded, 0).waitUntil(Condition.appear, DEFAULT_TIMEOUT)
         .shouldHave(Condition.exactTextCaseSensitive(SHOWCASE_DATA_TABLE_SAVED_FILTER_NAME));
     // Apply filter
     applyCompactModeProcessFilterPanel(isExpanded);
     getCompactModeProcessDisplayedFirstProcessItemName()
-        .shouldHave(Condition.exactTextCaseSensitive(SHOWCASE_DATA_TABLE));
+        .shouldHave(Condition.exactTextCaseSensitive("Showcase Application"));
     // Reset filter
     openCompactModeProcessFilterPanel(isExpanded);
     resetCompactModeProcessFilterPanel(isExpanded);
     getCompactModeProcessDisplayedFirstProcessItemName()
-        .shouldNotHave(Condition.exactTextCaseSensitive(SHOWCASE_DATA_TABLE));
+        .shouldNotHave(Condition.exactTextCaseSensitive("Showcase Application"));
     // Apply saved filter
     openCompactModeProcessFilterPanel(isExpanded);
     selectCompactModeProcessSavedFilter(isExpanded, SHOWCASE_DATA_TABLE_SAVED_FILTER_NAME);
     applyCompactModeProcessFilterPanel(isExpanded);
     getCompactModeProcessDisplayedFirstProcessItemName()
-        .shouldHave(Condition.exactTextCaseSensitive(SHOWCASE_DATA_TABLE));
+        .shouldHave(Condition.exactTextCaseSensitive("Showcase Application"));
   }
 
   public void saveCompactModeProcessFilter(boolean isExpanded, String savedFilterName) {
@@ -567,7 +567,7 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   private void testCreateCompactModeProcessFilters(boolean isExpanded) {
-    selectCompactModeProcessFilter(isExpanded, SHOWCASE_DATA_TABLE, "IVY_PROCESS", DATA_TABLE);
+    selectCompactModeProcessFilter(isExpanded, SHOWCASE_NAME, "IVY_PROCESS", SHOWCASE);
     saveCompactModeProcessFilter(isExpanded, MY_FILTER);
     getCompactModeProcessFilterPanelSavedFilter(isExpanded, 0).waitUntil(Condition.appear, DEFAULT_TIMEOUT)
         .shouldHave(Condition.exactTextCaseSensitive(MY_FILTER));
@@ -781,6 +781,10 @@ public class NewDashboardPage extends TemplatePage {
 
   public SelenideElement getTaskWidgetEmptyMessageWhenFilter() {
     return getTaskWidgetContainer().$("div[id$='empty-message-when-filter']");
-
   }
+
+  public SelenideElement getUserMenuAvatar() {
+    return $("#user-settings-menu > .has-avatar >.ui-avatar").waitUntil(appear, DEFAULT_TIMEOUT);
+  }
+
 }
