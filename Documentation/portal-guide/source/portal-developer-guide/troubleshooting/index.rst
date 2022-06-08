@@ -5,7 +5,7 @@ Troubleshooting
 ===============
 
 Here you will find solutions to some of the most common problems related
-to Axon Ivy Portal.
+to |axon-ivy| Portal.
 
 If you can't find your solution here there are some other sources which
 could help:

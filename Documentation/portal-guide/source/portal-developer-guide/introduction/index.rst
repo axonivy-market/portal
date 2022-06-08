@@ -6,14 +6,14 @@ Introduction
 Portal Developer Guide provides information to set up, configure, customize 
 Portal so that it could fit customer need.
 
-The Individual Dashboard for Axon Ivy Portal 9.3 refers to :ref:`introduction-new-and-note-worthy-9.3`.
+The Individual Dashboard for |axon-ivy| Portal 9.3 refers to :ref:`introduction-new-and-note-worthy-9.3`.
  
 - Customizable Dashboard
 - Default Widgets
 - Custom Widgets
 - Adjustable Look for Process List
 
-More UX for Axon Ivy Portal 9.2, refer to :ref:`introduction-new-and-note-worthy-9.2`.
+More UX for |axon-ivy| Portal 9.2, refer to :ref:`introduction-new-and-note-worthy-9.2`.
 
 - Enhanced forgot password features
 - Simplified tasks and cases export
@@ -38,11 +38,11 @@ For example, separating HR tasks from Finance tasks provides a better overview a
 
 Default Widgets
 ^^^^^^^^^^^^^^^
-Axon Ivy Portal supports a sophisticated concept featuring default widgets for Process Starts, Task Lists, and Case Lists.
+|axon-ivy| Portal supports a sophisticated concept featuring default widgets for Process Starts, Task Lists, and Case Lists.
 
 |default-widgets|
 
-Processes, tasks, and cases are essential when it comes to business process automation and workflow management. Therefore, the Axon Ivy Portal gives you full power by providing these standard widgets out-of-the-box.
+Processes, tasks, and cases are essential when it comes to business process automation and workflow management. Therefore, the |axon-ivy| Portal gives you full power by providing these standard widgets out-of-the-box.
 
 |default-widgets-configuration|
 
@@ -56,12 +56,12 @@ Individuality is king. End-users can easily create custom widgets in the dashboa
 
 There are two different widgets types available:
 
-- Axon Ivy Process
+- |axon-ivy| Process
 - External URL
 
 An external URL embeds the corresponding website into your dashboard. This feature is helpful to integrate enterprise content management systems or knowledge sites.
 
-Specify your Axon Ivy Process as a widget element and display your process directly in your custom dashboard.
+Specify your |axon-ivy| Process as a widget element and display your process directly in your custom dashboard.
 
 Adjustable Look for Process List
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -88,14 +88,14 @@ Task/Case details are well structured, user can drag and drop the widgets and th
 
 Enhanced forgot password features
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Users can reset their passwords easily using the standard password reset feature integrated in Axon Ivy Portal
+Users can reset their passwords easily using the standard password reset feature integrated in |axon-ivy| Portal
 
 |login-screen|
 |send-email-screen|
 
 Simplified tasks and cases export
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-We have listened to you! Business users requested to export specific lists from Axon Ivy Portal to perform further analysis in Microsoft Excel. 
+We have listened to you! Business users requested to export specific lists from |axon-ivy| Portal to perform further analysis in Microsoft Excel. 
 Now they have the possibility to export any list with one mouse click.
 
 |task-key-information|
@@ -117,7 +117,7 @@ Only you know the details and therefore, any detail page for tasks or cases can 
 Advanced user specific settings
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Make it your own way with the Axon Ivy Portal. Users can optimize process work and customize the Axon Ivy Portal to their own taste.
+Make it your own way with the |axon-ivy| Portal. Users can optimize process work and customize the |axon-ivy| Portal to their own taste.
 
 |my-profile-save|
 

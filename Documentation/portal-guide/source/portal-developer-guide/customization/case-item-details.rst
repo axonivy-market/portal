@@ -126,7 +126,7 @@ How to custom Case details UI
 
 Refer to ``portal-developer-examples`` project for examples.
 
-#. Introduce an Axon Ivy project which has ``PortalTemplate`` as a
+#. Introduce an |axon-ivy| project which has ``PortalTemplate`` as a
    required library.
 
 #. To customize case detail, you must customize Portal Home first.

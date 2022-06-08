@@ -5,12 +5,12 @@ Full Task List
 
 The **Full Task List** page shows you the tasks, as well as, advanced search and filter
 capabilities. You can reach the page by using the |task-list-icon| :guilabel:`Tasks` 
-link in the Axon Ivy Portal menu.
+link in the |axon-ivy| Portal menu.
 
 .. hint:: 
    Depending on the roles you hold
    in the application and the     
-   configuration of the Axon Ivy  
+   configuration of the |axon-ivy|  
    Portal, you might see not only 
    the tasks belonging to you but 
    all open tasks.     
