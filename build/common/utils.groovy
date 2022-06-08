@@ -43,6 +43,7 @@ def stopWindowsService(String serviceName) {
   @echo off
     sc query "${serviceName}" | find /i "RUNNING"
     if not "%ERRORLEVEL%"=="1" (net stop "${serviceName}")
+    exit 0
   """
 }
 

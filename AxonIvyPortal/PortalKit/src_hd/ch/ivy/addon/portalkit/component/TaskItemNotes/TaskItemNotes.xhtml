@@ -60,8 +60,6 @@
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/author')}" 
           sortBy="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(note.writter, note.writterName)}"
           styleClass="task-document-author u-truncate-text ui-g-3 ui-xl-3 ui-lg-4 ui-md-hidden ui-sm-hidden">
-          <i class="si si-notes-quill" />
-          <p:spacer width="5" />
           <ic:ch.ivy.addon.portalkit.component.SecurityMemberDisplayName securityMemberName="#{note.writterName}" securityMember="#{note.writter}" />
         </p:column>
 
