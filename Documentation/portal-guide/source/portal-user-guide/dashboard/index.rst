@@ -5,7 +5,7 @@ Legacy Dashboard
 
 The |axon-ivy| Portal Dashboard is the first page you see after having logged
 in. You can always get back to the dashboard using the **Dashboard** link in the
-|axon-ivy| Portal menu. Alternatively, you can click on the |axon-ivy| logo in
+|axon-ivy| Portal menu. Alternatively, you can click on the logo in
 the header.
 
 |dash-board|
@@ -13,44 +13,40 @@ the header.
 The dashboard itself is divided into three sections:
 
 #. At the left, manage quick links to the processes you use most often in your daily work. The
-   section Processes is described in `Process Favorites`_.
+   section **Processes** is described in `Process Favorites`_.
 
 #. In the center, you see the **Tasks** section. Here you see all the open tasks
    assigned to you, your organizational unit or your roles. These tasks require
-   your personal attention. The section is described in `Personal Tasks`_.
+   your attention. The section is described in `Personal Tasks`_.
 
-#. At the right, you see the **Statistics** section. The charts in this
-   section provide you with basic information on the performance of your
-   cases and tasks. This section is described in `Statistics`_.
+#. On the right, you see the **Statistics** section. Its charts provide you with
+   basic information on the performance of your cases and tasks. This section is
+   described in `Statistics`_.
 
 Process Favorites
 -----------------
 
-The  **Process favorites** you find in :guilabel:`Processes` on the left side of
-your dashboard. They allow you to conveniently access the processes you need
-most often in your daily work. Therefore, the process favorites are a key
-feature to enhance your |axon-ivy| Portal experience and increase your
-efficiency. To make full use of this feature the |axon-ivy| Portal offers you an
-easy way to configure the process favorites to your personal needs. 
+The  **Process favorites** you find in **Processes** at the left. They allow you
+to quickly access the processes you need most often in your daily work. To make
+full use of this feature, the |axon-ivy| Portal offers you an easy way to
+configure the process favorites to your personal needs. 
 
 |process-favorites|
 
 The process favorites are divided into two areas:
 
--  At the top you find the :guilabel:`User Favorites` which you need to
-   configure before you can use them. You may add here processes as well
-   as external links.
+-  At the top, you find the **User Favorites** which you need to configure
+   before you can use them. You may add here processes and external links.
 
--  Below the User Favourites, you find the :guilabel:`Application Favorites`.
-   They are configured by your administrator. Therefore, you may use but not
-   change them.
+-  Below the User Favourites, you find the **Application Favorites**. They are
+   configured by your administrator. Therefore, you may use but not change them.
 
-To the right of the Processes header, you see a link :guilabel:`Show all processes`.
-This quick link routes you to the **Full Process List** page of the
-|axon-ivy| Portal. Please refer to :ref:`full-process-list` for detailed information.
+To the right of the Processes header, you see a link ``Show all processes``.
+This quick link routes you to the **Full Process List** page of the |axon-ivy|
+Portal. Please refer to :ref:`full-process-list` for detailed information.
 
 If there is a red warning icon on the right side of a process, it indicates that
-this process link has changed. Your process favorite will not work.
+this process has changed its status and thus, the does no longer work.
 
 |broken-link-process|
 
@@ -62,22 +58,21 @@ and add the correct process link by following :ref:`HowTo: Add a process as a us
 HowTo: Add a Process as a User Favorite
 ---------------------------------------
 
-#. Click on the link :guilabel:`Add new process` which you find next to the
-   heading :guilabel:`User Favorites`.
+#. Click on the link ``Add new process`` which you find next to the
+   heading **User Favorites**.
 
-#. The dialog :guilabel:`Add new user process` opens.
+#. The dialog **Add new user process** opens.
 
-#. Use the dropdown menu of the :guilabel:`Selected process` to select the
-   process you want to add.
+#. Use the dropdown menu ``Selected process`` to select the process you want to
+   add.
 
-#. The :guilabel:`Display name` contains the default process name. To add
-   multilingual names for your favorite processes, use :guilabel:`Add languages`
-   button
+#. The ``Display name`` contains the default process name. To add multilingual
+   names for your favorite processes, use :guilabel:`Add languages`.
 
-#. To change the :guilabel:`Icon` of the process, click |change-icon|
-   :guilabel:`Change` and select your preferred icon from the list.
+#. To change the icon of the process, click |change-icon| :guilabel:`Change` and
+   select your preferred icon from the list.
 
-#. Confirm your configuration by clicking the button :guilabel:`Add`.
+#. Confirm your configuration by clicking :guilabel:`Add`.
 
 |how-to-add-process-favorite|
 
@@ -90,7 +85,7 @@ HowTo: Add a Process as a User Favorite
 
    -  To add multiple languages to the favorite process display names, you need
       to create the "AppInfo/SupportedLanguages" CMS entry which defines how
-      many languages your application supports. See "Language settings" below
+      many languages your application supports. See :ref:`Language settings` below
       for details.
 
 .. _howto-delete-a-process-as-a-user-favorite:
@@ -98,7 +93,7 @@ HowTo: Add a Process as a User Favorite
 HowTo: Delete a Process from User Favorites
 -------------------------------------------
 
-#. Click on the link :guilabel:`Edit processes` next to the heading :guilabel:`User Favorites`.
+#. Click on the ``Edit processes`` next to the heading :guilabel:`User Favorites`.
 
 #. Click on the |trash-icon| :guilabel:`Delete` symbol next to process / processes
    you wish to remove from your user favorites.
@@ -118,7 +113,7 @@ Sort by Name
 ^^^^^^^^^^^^
 
 To order your processes and external links in an alphabetical order
-you can use the link :guilabel:`Sort by name` next to the heading :guilabel:`User Favorites`.
+you can use the link ``Sort by name`` next to the heading :guilabel:`User Favorites`.
 
 |how-to-order-process-favorites-by-name|
 
@@ -150,7 +145,7 @@ from the task list and start working on it.
 
 
 You see the number of tasks right next to the heading :guilabel:`Tasks`. Further
-right you find the link :guilabel:`Show full task list`. This quick link
+right you find the link ``Show full task list``. This quick link
 routes you to the **Task List** page of the |axon-ivy| Portal. Please refer to
 :ref:`full-task-list` for detailed information.
 
@@ -193,7 +188,7 @@ the overall situation at a glance.
 |dashboard-statistics-section|
 
 
-Next to the heading you find a link :guilabel:`Show all charts`. This quick link
+Next to the heading you find a link ``Show all charts``. This quick link
 routes you the :guilabel:`Statistics` page of the |axon-ivy| Portal. Please refer
 to :ref:`full-statistic-list` for more detailed information.
 

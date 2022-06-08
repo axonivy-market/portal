@@ -119,7 +119,7 @@ the basic structure of JSON of case widget
 Custom columns
 --------------
 
-Axon Ivy supports custom fields for a case.
+|axon-ivy| supports custom fields for a case.
 You can show them on the case widget in form of a column.
 
 More, you can predefine which column to show, and other attributes such as header,
