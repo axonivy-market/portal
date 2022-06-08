@@ -69,5 +69,5 @@ This project is an extended project from PortalTemplate. It provides:
 
 .. |process-module-structure| image:: images/process-module-structure.png
 
-Axon Ivy Express also provides an AdHoc process feature. When Express is deployed, user can start an AdHoc process from any task. 
+|axon-ivy| Express also provides an AdHoc process feature. When Express is deployed, user can start an AdHoc process from any task. 
 Adhoc allows user to define more process steps and will be executed before current task.

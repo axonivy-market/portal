@@ -13,12 +13,12 @@ applications and share them with your colleagues. These capabilities are
 also known as No-Code Application Platforms or Citizen Developer
 Platforms. Therefore, it is the perfect tool for you to digitize your
 processes and create standardization, reliability and traceability. Some
-of the key features of Axon Ivy Express are:
+of the key features of |axon-ivy| Express are:
 
 -  It is a **No Coding Toolset**, allowing business users without an IT
    background to create processes.
 
--  The **Axon Ivy Portal Integration**, allows business users to
+-  The **|axon-ivy| Portal Integration**, allows business users to
    implement processes without IT department involvement.
 
 -  The **Seamless Integration** into |axon-ivy|
@@ -30,11 +30,11 @@ of the key features of Axon Ivy Express are:
    user dialogs for each task.
 
 You can reach |axon-ivy| Express by either using the :guilabel:`Processes` link
-in the Axon Ivy Portal menu.
+in the |axon-ivy| Portal menu.
 
 |navigate-to-axon-ivy-express|
 
-Below the heading **Processes**, you see the link :guilabel:`Create express workflow`.
+Below the heading **Processes**, you see the link ``Create express workflow``.
 This feature is explained in detail in `Axon Ivy Express`_. Below
 you find the process category **Express Workflows** with a list of
 predefined processes.
@@ -44,11 +44,11 @@ predefined processes.
 HowTo: Create an Express Workflow
 ---------------------------------
 
-#. Click on the link :guilabel:`Create Express Workflow` 
+#. Click on ``Create Express Workflow``.
 
-#. The :guilabel:`Express Workflow` editor is opened
+#. The :guilabel:`Express Workflow` editor is opened.
 
-#. Define the :guilabel:`Type of process` :
+#. Define the :guilabel:`Type of process`:
 
    -  Use the option *One time* if you want to execute the
       process only once.
