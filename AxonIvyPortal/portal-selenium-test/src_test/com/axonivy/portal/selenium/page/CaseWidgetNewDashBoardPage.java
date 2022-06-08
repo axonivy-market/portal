@@ -179,4 +179,8 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
     $("div[id$='destroy-case-confirmation-dialog']").waitUntil(appear, DEFAULT_TIMEOUT)
         .$("button[id$='confirm-destruction-dashboard-cases']").shouldBe(getClickableCondition()).click();
   }
+
+  public SelenideElement getCreatorAvatar() {
+    return $(".dashboard-cases__creator > .has-avatar > .ui-avatar").waitUntil(appear, DEFAULT_TIMEOUT);
+  }
 }

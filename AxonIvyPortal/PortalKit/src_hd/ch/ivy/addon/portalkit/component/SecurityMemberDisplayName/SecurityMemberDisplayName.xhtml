@@ -2,7 +2,9 @@
   xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
   xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
   xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
-  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+  xmlns:pc="http://xmlns.jcp.org/jsf/composite/components">
+
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="textId" default="user" />
   <cc:attribute name="securityMember" />
@@ -10,6 +12,8 @@
   <cc:attribute name="alwaysShowAsText" default="false" shortDescription="To force display the user name with simple text format"/>
   <cc:attribute name="styleClass" />
   <cc:attribute name="roleNameStyleClass" />
+  <cc:attribute name="securityMemberContainerStyleClass" />
+  <cc:attribute name="renderDeputyInfo" default="false" />
 </cc:interface>
 
 <cc:implementation>
@@ -19,11 +23,22 @@
 
   <f:event listener="#{securityMemberDisplayNameBean.init()}" type="preRenderComponent" />
   <!-- Display User name as text format -->
-  <h:panelGroup>
-    <h:panelGroup id="#{cc.attrs.textId}"
-      styleClass="#{cc.attrs.styleClass}">
-      <h:outputText id="#{cc.attrs.textId}-text" value="#{securityMemberDisplayNameBean.getBriefDisplayName(securityMember, memberName)}"/>
+  <h:panelGroup id="security-member-container" layout="block" styleClass="security-member-container #{cc.attrs.securityMemberContainerStyleClass}">
+    <div class="#{avatarBean.isShowAvatar() ? 'has-avatar' : ''} #{cc.attrs.renderDeputyInfo and task.getActivator() != null and ivy.session.isMemberThroughActiveSubstitution(task.getActivator()) ? 'has-deputy-info' : ''}">
+      <pc:avatar securityMember="#{securityMember}" rendered="#{securityMember != null}"/>
+      <h:panelGroup id="#{cc.attrs.textId}"
+        styleClass="#{cc.attrs.styleClass} #{securityMember == null ? 'u-no-padding-left' : ''} #{avatarBean.isShowAvatar() ? 'name-after-avatar' : ''}">
+        <h:outputText id="#{cc.attrs.textId}-text" value="#{securityMemberDisplayNameBean.getBriefDisplayName(securityMember, memberName)}"/>
+      </h:panelGroup>
+    </div>
+    <h:panelGroup id="deputy-info"
+      rendered="#{cc.attrs.renderDeputyInfo and task.getActivator() != null and ivy.session.isMemberThroughActiveSubstitution(task.getActivator())}">
+      <i class="si si-information-circle" />
     </h:panelGroup>
+    <p:tooltip for="deputy-info" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/taskFromSubstitution')}"
+      trackMouse="true" hideEvent="mouseleave click"
+      rendered="#{cc.attrs.renderDeputyInfo and task.getActivator() != null and ivy.session.isMemberThroughActiveSubstitution(task.getActivator())}" />
+
     <p:tooltip rendered="#{securityMemberDisplayNameBean.isRenderDisplayNameTooltip(securityMember)}"
       for="#{cc.attrs.textId}-text"
       value="#{securityMemberDisplayNameBean.getFullDisplayName(securityMember, memberName)}"
@@ -31,6 +46,7 @@
       styleClass="security-member-tooltip"
       at="right center"
       my="left center" />
+
     <ui:fragment rendered="#{securityMemberDisplayNameBean.isRenderGroupUsersAsTooltip(securityMember, alwaysShowAsText)}">
       <f:event listener="#{logic.loadUsersForTooltip(securityMember)}" type="preRenderComponent" />
       <p:tooltip for="#{cc.attrs.textId}-text"
@@ -91,10 +107,9 @@
             chunkSize="21"
             rendered="#{not empty data.memberNames}"
             styleClass="user-data-scroller ui-g-12 u-no-padding-top">
-            <h:outputText rendered="#{not empty user.name}"
-              value="#{securityMemberDisplayNameBean.getFullDisplayNameForUserDTO(user)}"
-              styleClass="user-name" />
-            <h:outputText rendered="#{totalMember >= 100 and empty user.name}" value="#{user.displayName}" />
+            <pc:securityMemberNameAndAvatar securityMember="#{user}"
+              displayName="#{securityMemberDisplayNameBean.getFullDisplayNameForUserDTO(user)}" />
+            <h:outputText rendered="#{totalMember >= 100 and empty user.name}" value="#{user.displayName}"/>
             <f:facet name="loader">
               <p:link rendered="#{totalMember gt 20}" href="#">
                 <i class="fa fa-angle-double-down u-mar-right-5" />

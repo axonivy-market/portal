@@ -2,7 +2,8 @@
   xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
   xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
   xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
-  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:jsf="http://xmlns.jcp.org/jsf">
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:jsf="http://xmlns.jcp.org/jsf"
+  xmlns:pc="http://xmlns.jcp.org/jsf/composite/components">
 
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="case" type="ch.ivyteam.ivy.workflow.ICase" />
@@ -62,12 +63,14 @@
         
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATOR')}" styleClass="responsible-column" field="CREATOR" sortBy="#{CREATOR}" filterable="false"
           visible="#{caseDetailsBean.isDisplayColumn(data.caseLazyDataModel, 'CREATOR')}">
-          <h:outputText value="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(case.creatorUser, case.creatorUserName)}" />
-        </p:column>
+          <pc:securityMemberNameAndAvatar securityMember="#{case.creatorUser}"
+            displayName="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(case.creatorUser, case.creatorUserName)}" />
+          </p:column>
         
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/OWNER')}" styleClass="owner-column" sortBy="#{OWNER}" filterable="false" field="OWNER" rendered="#{caseBean.isCaseOwnerEnabled()}"
           visible="#{caseDetailsBean.isDisplayColumn(data.caseLazyDataModel, 'OWNER')}">
-          <h:outputText value="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(case.owner, case.ownerName)}" />
+          <pc:securityMemberNameAndAvatar securityMember="#{case.owner}"
+            displayName="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(case.owner, case.ownerName)}" />
         </p:column>
         
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATION_TIME')}" field="CREATION_TIME" sortBy="#{CREATION_TIME}" filterable="false" styleClass="created-column u-hidden-md-down"

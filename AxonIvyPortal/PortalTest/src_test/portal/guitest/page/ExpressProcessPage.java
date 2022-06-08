@@ -101,7 +101,8 @@ public class ExpressProcessPage extends TemplatePage {
       waitForElementDisplayed(By.id("assignee-selection-form:role-selection-component:role-selection_input"), true);
       type(By.id("assignee-selection-form:role-selection-component:role-selection_input"), responsible);
       waitForElementDisplayed(By.id("assignee-selection-form:role-selection-component:role-selection_panel"), true);
-      click(By.xpath("//*[@id='assignee-selection-form:role-selection-component:role-selection_panel']/ul/li/span"));
+      click(
+          By.cssSelector("span[id='assignee-selection-form:role-selection-component:role-selection_panel'] .gravatar"));
     } else {
       type(By.id("assignee-selection-form:user-selection-component:user-selection_input"), responsible);
       waitForElementDisplayed(By.id("assignee-selection-form:user-selection-component:user-selection_panel"), true);

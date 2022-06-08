@@ -508,6 +508,12 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   right: 4px;
 }
 
+@media screen and (max-width: 40em) {
+  .case-details-documents thead tr th {
+    border-right: 1px solid #d8d8d8;
+  }
+}
+
 /********************************** CASE ITEM SIMILAR TO TASK ITEM CLASSES **********************************/
 .case-widget-container .case-widget-top-header {
   position: relative;
@@ -598,7 +604,18 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   flex: 0 0 100px;
 }
 
-.case-header-data .case-header-creator-cell,
+.case-header-data .case-header-creator-cell {
+  flex: 0 0 145px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 10px;
+}
+
+.case-header-creator-cell .name-after-avatar {
+  width: 145px;
+}
+
 .case-header-data .case-header-category-cell {
   flex: 0 0 135px;
   white-space: nowrap;
@@ -1874,6 +1891,10 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 
 .task-start-list .responsible-cell {
   flex: 0 0 110px;
+}
+
+.responsible-cell .name-after-avatar {
+  width: 110px;
 }
 
 .task-start-list .category-cell {
@@ -4797,6 +4818,10 @@ _:-ms-fullscreen, :root .content-link-history {
   max-height: 50vh;
   width: 35vw;
 }
+
+.adhoc-task-history-author {
+  display: inline;
+}
 /* ===================== END ADHOC ======================= */
 
 /* =================== ADD CHAT ============================= */
@@ -5585,6 +5610,10 @@ body span.ui-commandlink .si {
   padding: 0;
 }
 
+.role-and-user-information .task-security-member-container > div {
+  display: inline-block;
+}
+
 .portal-process-viewer-form.has-error-message,
 .task-details-panel-title {
   font-size: 16px;
@@ -5720,6 +5749,10 @@ body span.ui-commandlink .si {
   padding-top: 4px;
   margin-left: 15px;
   list-style-type: disc;
+}
+
+.ui-overlaypanel.user-of-role .user-data-scroller .ui-datascroller-content.ui-widget-content .ui-datascroller-list .has-avatar {
+  margin-bottom: 5px;
 }
 
 @media screen and (max-width: 40em) {
@@ -6212,4 +6245,93 @@ a.dashboard-configuration-dialog__action-row label {
 
 .dashboard-configuration-dialog__form {
   width: 100%;
+}
+
+.ui-avatar.gravatar {
+  background-color: var(--ivy-primary-color-grey-light);
+  vertical-align: middle;
+  float: left;
+  margin-right: 6px;
+  width: 2.5rem;
+  height: 2.5rem;
+  pointer-events: none;
+}
+.ui-avatar.gravatar > img {
+  z-index: 1;
+}
+
+.security-member-table-cell {
+  vertical-align: middle;
+}
+
+.security-member-container {
+  display: inline;
+}
+
+.setting-container .ui-avatar.gravatar {
+  margin-top: 0;
+}
+
+.has-avatar {
+  position: relative;
+  display: inline-block;
+}
+
+.has-avatar .ui-avatar {
+  position: absolute;
+  top: -4px;
+}
+
+.name-after-avatar {
+  display: flex;
+  padding-left: 3rem;
+}
+
+.responsible-cell .has-avatar,
+.case-header-creator-cell .has-avatar {
+  line-height: 2.5rem;
+  height: 2.5rem;
+  margin-top: 2px;
+}
+
+.responsible-cell .has-avatar .ui-avatar,
+.case-header-creator-cell .has-avatar .ui-avatar {
+  top: 0;
+}
+
+.responsible-cell .name-after-avatar,
+.case-header-creator-cell .name-after-avatar {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
+}
+
+.responsible-cell .has-deputy-info {
+  display: inline-block;
+  width: calc(100% - 18px);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: text-bottom;
+}
+
+.dashboard-tasks__responsible .has-deputy-info .name-after-avatar {
+  position: relative;
+  width: 100%;
+  padding-right: 20px;
+  white-space: nowrap;
+}
+
+.dashboard-tasks__responsible .has-deputy-info .deputy-info {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.dashboard-tasks__responsible {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#user-settings-menu .has-avatar .ui-avatar {
+  top: 0;
 }

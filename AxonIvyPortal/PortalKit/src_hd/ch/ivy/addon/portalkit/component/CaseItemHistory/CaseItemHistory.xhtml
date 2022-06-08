@@ -2,7 +2,8 @@
   xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
   xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
   xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
-  xmlns:jsf="http://xmlns.jcp.org/jsf" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+  xmlns:jsf="http://xmlns.jcp.org/jsf" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+  xmlns:pc="http://xmlns.jcp.org/jsf/composite/components">
 
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="case" type="ch.ivyteam.ivy.workflow.ICase" />
@@ -57,7 +58,7 @@
         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
         emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
         currentPageReportTemplate="{currentPage} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/curentReportOf')} {totalPages}"
-        widgetVar="case-histories">
+        widgetVar="case-histories" styleClass="case-histories">
 
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/columnContent')}"
           sortBy="#{history.content}" filterable="false"
@@ -88,18 +89,21 @@
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/author')}"
           sortBy="#{history.displayName}"
           styleClass="case-document-author u-truncate-text ui-g-2 ui-xl-2 ui-lg-hidden ui-md-hidden ui-sm-hidden">
-          <h:outputText value="#{history.displayName}"
-            styleClass="history-fullname">
-            <i class="si si-check-circle-1" jsf:id="done-task"
-              jsf:rendered="#{history.type eq 'TASK' and history.taskState.toString() eq 'DONE'}" />
-            <i class="si si-alert-circle" jsf:id="destroyed-task"
-              jsf:rendered="#{history.type eq 'TASK' and history.taskState.toString() eq 'DESTROYED'}" />
-            <i class="si si-alert-circle" jsf:id="zombie-task"
-              jsf:rendered="#{history.type eq 'TASK' and history.taskState.toString() eq 'ZOMBIE'}" />
-            <i class="si si-check-circle-1" jsf:id="created-task"
-              jsf:rendered="#{history.type eq 'TASK' and history.taskState.toString() eq 'CREATED'}" />
-            <i class="si si-notes-quill" jsf:rendered="#{history.type eq 'NOTE'}" />
-          </h:outputText>
+          <pc:securityMemberNameAndAvatar 
+            displayName="#{history.displayName}" securityMember="#{history.involvedUser}"
+            displayNameStyleClass="history-fullname">
+            <f:facet name="alternativeAvatar">
+              <i class="si si-check-circle-1" jsf:id="done-task"
+              jsf:rendered="#{not avatarBean.isShowAvatar() and history.type eq 'TASK' and history.taskState.toString() eq 'DONE'}" />
+              <i class="si si-alert-circle" jsf:id="destroyed-task"
+              jsf:rendered="#{not avatarBean.isShowAvatar() and history.type eq 'TASK' and history.taskState.toString() eq 'DESTROYED'}" />
+              <i class="si si-alert-circle" jsf:id="zombie-task"
+              jsf:rendered="#{not avatarBean.isShowAvatar() and history.type eq 'TASK' and history.taskState.toString() eq 'ZOMBIE'}" />
+              <i class="si si-check-circle-1" jsf:id="created-task"
+              jsf:rendered="#{not avatarBean.isShowAvatar() and history.type eq 'TASK' and history.taskState.toString() eq 'CREATED'}" />
+              <i class="si si-notes-quill" jsf:rendered="#{not avatarBean.isShowAvatar() and history.type eq 'NOTE'}" />
+            </f:facet>
+          </pc:securityMemberNameAndAvatar>
         </p:column>
 
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/creationDate')}"
