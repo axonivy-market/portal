@@ -29,7 +29,7 @@ How to override case widget's UI
 
 Refer to ``portal-developer-examples`` project for examples
 
-#. Introduce an Axon Ivy project which has ``PortalTemplate`` as a
+#. Introduce an |axon-ivy| project which has ``PortalTemplate`` as a
    required library.
 
 #. To customize case widget, you must customize Portal Home first. Refer
@@ -99,7 +99,7 @@ function of these columns work:
     
        <ic:ch.ivy.addon.portalkit.component.cases.column.CaseCustomField id="case-customer-name-component" panelGroupId="customVarCharField1-column-case-header-panel" componentId="customVarCharField1-column-case-header-text" column="customVarCharField1" dataModel="#{caseView.dataModel}" labelValue="#{case.customVarCharField1}" />
 
--  Use Axon Ivy Override to override the ``InitializeCaseDataModel``
+-  Use |axon-ivy| Override to override the ``InitializeCaseDataModel``
    callable and initialize data model by your customized one.
 
 -  In your customized Portal cases HTMLDialog, the customized data model
@@ -134,7 +134,7 @@ Case filter
    ``initFilterContainer`` method and initialize filter container (see
    javadoc comments)
 
--  Use Axon Ivy Override to override the ``InitializeCaseDataModel``
+-  Use |axon-ivy| Override to override the ``InitializeCaseDataModel``
    callable and initialize data model by your customized one.
 
 -  In your customized Portal cases HTMLDialog, the customized data model

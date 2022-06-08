@@ -6,10 +6,10 @@ Dashboard
 Introduction
 ------------
 
-The Axon Ivy Portal Dashboard is the first page you encounter after
+The |axon-ivy| Portal Dashboard is the first page you encounter after
 successful login. You can always get back to the dashboard using the 
-**Dashboard** link in the Axon Ivy Portal navigation menu.
-Alternatively, you can click on the Axon Ivy logo in the header.
+**Dashboard** link in the |axon-ivy| Portal navigation menu.
+Alternatively, you can click on the logo image at the top left of the header.
 
 The dashboard itself contains a set of widgets arranged on the page,
 according to the defined standards in your company. 
@@ -20,7 +20,7 @@ The following default widgets are available:
 
 #. **Task list widget**: This widget displays relevant task information according to defined settings.
 
-#. **Case list widget**: This widget displays relevant case information according to defined settings
+#. **Case list widget**: This widget displays relevant case information according to defined settings.
 
 #. **Process list widget**: This widget displays available process starts. You can choose between different formats.
 
@@ -37,11 +37,11 @@ Each default widget has the following standard features:
    |widget-info|
 
 If you have the permission, you can re-size, re-arrange, create, or delete widgets
-using the **Edit** buttonin the upper right corner of your dashboard:
+using the **Edit** button in the upper right corner of your dashboard:
 
 |edit-widget|
 
-In edit mode, you will be able to:
+In edit mode, you can:
 
    - **Move widgets using drag-and-drop**: click on the widget you want to move and drop again. Helper lines will support you.
 
@@ -56,37 +56,39 @@ In edit mode, you will be able to:
 Add a new widget
 ----------------
 
-To add a new widget in the edit mode, press on the ``+ Add widget`` button and select one of
-the available widgets to add:
+To add a new widget in the edit mode, press on the :guilabel:`+ Add widget`
+button and select one of the available widgets to add:
 
 |add-widget|
 
 Task list widget
 ================
 
-Adding a task list widget will give you total flexibility about what you want to see and how.
+Adding a task list widget will give you total flexibility about what you want to
+see and how.
 
 |task-list-widget|
 
-The Configuration panel:
+**Configuration panel**
 
-On the left side, you can define the widget name, establish the main configuration for your widget,
-and get a preview of it by clicking on the preview button.
+On the left side, define the widget name, establish the main configuration for
+your widget, and get a preview of it by clicking on the preview button.
 
 |task-list-widget-configuration|
 
-The Table configuration panel:
+**Table configuration panel**
 
-The right side of the configuration wizard will allow you to edit the default sorting by clicking
-on them and the order of the columns as well as the displayed columns by clicking on the
-link ``Manage Columns``:
+Edit the default sort order of the table rows by clicking on the column headers
+and define the order of the columns as well as the displayed set of columns by
+clicking on the link ``Manage Columns`` at the top right. You get the following
+dialog:
 
 |task-list-widget-table-configuration|
 
 In the column management panel, you will find two sections:
 
-   #. Add field section: add any available field to your table
-   #. Table section: configure the table itself as follows:
+   #. Add field section: add any available field to your widget table
+   #. Columns section: configure the widget table itself as follows:
  
       - Enable visibility
       - Reorder the columns by drag and drop using the arrows |move-expand-vertical|
@@ -95,29 +97,33 @@ In the column management panel, you will find two sections:
 Case list widget
 ================
 
-Adding a case list widget will give you total flexibility about what you want to see and how.
+Adding a case list widget will give you total flexibility about what you want to
+see and how.
 
 |case-list-widget|
 
-The Configuration panel:
+**Configuration panel**
 
-On the left side, you can define the widget name, establish the main configuration for your widget,
-and get a preview of it by clicking on the preview button.
+On the left side, you can define the widget name, establish the main
+configuration for your widget, and get a preview of it by clicking on the
+preview button.
 
 |case-list-widget-configuration|
 
-The Table configuration panel:
+**Table configuration panel**
 
-The right side of the configuration wizard will allow you to edit the default sorting by clicking
-on them and the order of the columns as well as the displayed columns by clicking on the
-link ``Manage Columns``:
+This panel allows you to:
+
+-  Edit the default sort order of the table rows by clicking on the column headers
+-  define the order of the columns 
+-  define the displayed set of columns by clicking on the link ``Manage Columns`` at the top right. You get the following dialog:
 
 |case-list-widget-table-configuration|
 
-In the column management panel, you will find two sections:
+In the table configuration panel, you find two sections:
 
-   #. Add field section: add any available field to your table
-   #. Table section: configure the table itself as follows:
+   #. Add field section: add any available field to your widget table
+   #. Columns section: configure the widget table itself as follows:
 
       - Enable visibility
       - Reorder the columns by drag and drop using the arrows |move-expand-vertical|
@@ -126,7 +132,7 @@ In the column management panel, you will find two sections:
 Process list widget
 ===================
 
-There are four process widgets available:
+There are four process widget modes available:
 
    - Combined mode
    - Compact mode
@@ -135,7 +141,7 @@ There are four process widgets available:
 
 |process-widget-modes|
 
-Combined mode:
+**Combined mode**
 
 This widget displays the selected process start and all related cases and tasks combined
 in one single widget. This widget configuration will help you find tasks specifically to
@@ -143,21 +149,21 @@ a particular process:
 
 |process-widget-combined-mode|
 
-Compact mode:
+**Compact mode**
 
-This widget will display a list of all selected process starts.
+This widget displays a list of all selected process starts.
 
 |process-widget-compact-mode|
 
-Full mode:
+**Full mode**
 
 You can create a widget with a card layout including an icon for a single process.
 
 |process-widget-full-mode|
 
-Image mode:
+**Image mode**
 
-You can create a widget with a card layout, including a nice looking picture for a single process.
+You can create a widget with a card layout, including a nice picture for a single process.
 
 |process-widget-image-mode|
 
