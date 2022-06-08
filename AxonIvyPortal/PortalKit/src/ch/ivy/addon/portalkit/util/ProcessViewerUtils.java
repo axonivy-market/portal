@@ -14,11 +14,20 @@ import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.constant.CustomFields;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.ivydata.service.impl.ProcessService;
+import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
+import ch.ivyteam.ivy.casemap.runtime.ICaseMapService;
+import ch.ivyteam.ivy.casemap.runtime.model.ICaseMap;
+import ch.ivyteam.ivy.casemap.runtime.start.CaseMapViewerUrl;
+import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.model.value.WebLink;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.IProcessStart;
+import ch.ivyteam.ivy.workflow.IStartElement;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
+import ch.ivyteam.ivy.workflow.start.ProcessViewerUrl;
 
+@SuppressWarnings("restriction")
 public class ProcessViewerUtils {
 
   private static final String START_PROCESS_PORTAL_PROCESS_VIEWER_PAGE = "Start Processes/PortalStart/PortalProcessViewer.ivp";
@@ -30,11 +39,6 @@ public class ProcessViewerUtils {
     return Objects.isNull(CaseUtils.findCase(caseId)) ? false : true;
   }
 
-  public static String getProcessViewerIframeURL(Long caseId, String processId) {
-    var selectedProcess = findWebStartable(caseId, processId);
-    return Objects.isNull(selectedProcess) ? DEFAULT_LINK : selectedProcess.viewerLink().getRelative();
-  }
-
   public static IWebStartable findWebStartable(Long caseId, String processId) {
     String startProcessLink = "";
     var selectedCase = CaseUtils.findCase(caseId);
@@ -44,6 +48,13 @@ public class ProcessViewerUtils {
     if (caseId == null || selectedCase == null) {
       startProcessLink = processId;
     }
+    if (isCaseMap(selectedCase)) {
+      ICaseMap caseMap =
+          Ivy.get(ICaseMapService.class).getCaseMapService(selectedCase.getBusinessCase()).find().current();
+      return getWebStartables().stream()
+          .filter(filterById(caseMap.getUuid().toString())).findFirst()
+          .orElse(null);
+    }
     return getWebStartables().stream()
         .filter(filterByRelativeLink(startProcessLink)).findFirst()
         .orElse(null);
@@ -51,6 +62,10 @@ public class ProcessViewerUtils {
 
   private static Predicate<? super IWebStartable> filterByRelativeLink(String startProcessId) {
     return webStartable -> StringUtils.equals(startProcessId, webStartable.getLink().getRelative());
+  }
+  
+  private static Predicate<? super IWebStartable> filterById(String startProcessId) {
+    return webStartable -> webStartable.getLink().getRelative().contains(startProcessId);
   }
 
   private static List<IWebStartable> getWebStartables() {
@@ -107,13 +122,30 @@ public class ProcessViewerUtils {
   }
 
   public static boolean isCaseMap(ICase caze) {
-    return !Objects.isNull(caze) && caze.getProcessStart().getLink().getRelative().endsWith(".icm");
+    return !Objects.isNull(caze) && Ivy.get(ICaseMapService.class).getCaseMapService(caze.getBusinessCase()).find().current() != null;
   }
 
   public static boolean isShowProcessViewer(ICase caze) {
-    if (isExpressCase(caze) || isCaseMap(caze) || !caze.isBusinessCase()) {
+    if (isExpressCase(caze) || !caze.isBusinessCase()) {
       return false;
     }
     return GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.ENABLE_PROCESS_VIEWER);
+  }
+  
+  public static WebLink getViewerWebLink(Long caseId, String processId) {
+    var selectedCase = CaseUtils.findCase(caseId);
+    if (selectedCase != null && !isExpressCase(selectedCase)) {
+      if (isCaseMap(selectedCase)) {
+        ICaseMap caseMap =
+            Ivy.get(ICaseMapService.class).getCaseMapService(selectedCase.getBusinessCase()).find().current();
+        return new CaseMapViewerUrl.Builder(caseMap).toWebLink();
+      } else {
+        String friendlyRequestPath = selectedCase.getProcessStart().getUserFriendlyRequestPath();
+        IStartElement element = ProcessStartAPI.findStartElementByProcessStartFriendlyRequestPath(friendlyRequestPath);
+        return new ProcessViewerUrl.Builder(element).toWebLink();
+      }
+    }
+    var webStartable = findWebStartable(caseId, processId);
+    return webStartable.viewerLink();
   }
 }
