@@ -1,6 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
   xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
-  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+  xmlns:pc="http://xmlns.jcp.org/jsf/composite/components">
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="detailDialogId" required="true" />
   <cc:attribute name="managedBean" required="true" />
@@ -55,8 +56,12 @@
             <p:ajax event="itemSelect" listener="#{managedBean.dashboardPermissionListener}"
               update="dashboard-permission" global="false" />
             <p:column>
-              <i class="fa #{responsible.isUser() ? 'fa-user' : 'fa-users'} u-mar-right-5" />
-              <h:outputText value="#{dashboardTaskFilterBean.formatName(responsible)}" />
+              <pc:securityMemberNameAndAvatar
+                displayName="#{dashboardTaskFilterBean.formatName(responsible)}" securityMember="#{responsible}">
+                <f:facet name="alternativeAvatar">
+                  <h:outputText rendered="#{not avatarBean.isShowAvatar()}" styleClass="fa #{responsible.isUser() ? 'fa-user' : 'fa-users'} u-mar-right-5" />
+                </f:facet>
+              </pc:securityMemberNameAndAvatar>
             </p:column>
           </p:autoComplete>
         </h:panelGroup>

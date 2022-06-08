@@ -19,6 +19,11 @@ public class TaskDetailsPage extends TemplatePage {
 
   public TaskDetailsPage() {}
 
+  public static TaskDetailsPage newInstance() {
+    $("#role-and-user-information").waitUntil(appear, DEFAULT_TIMEOUT);
+    return new TaskDetailsPage();
+  }
+
   public void addNote(String noteContent) {
     $("a[id$=':task-notes:add-note-command']").waitUntil(appear, DEFAULT_TIMEOUT);
     $("a[id$=':task-notes:add-note-command']").click();
@@ -78,5 +83,9 @@ public class TaskDetailsPage extends TemplatePage {
   
   public void back() {
     $("[id$=':task-detail-title-form:back-to-previous-page']").waitUntil(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+  }
+
+  public SelenideElement getResponsibleAvatar() {
+    return $(".security-member-container > .has-avatar > .ui-avatar").waitUntil(appear, DEFAULT_TIMEOUT);
   }
 }

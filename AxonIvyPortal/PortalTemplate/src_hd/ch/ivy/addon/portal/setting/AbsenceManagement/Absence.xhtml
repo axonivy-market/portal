@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
   xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
   xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
-  xmlns:pe="http://primefaces.org/ui/extensions">
+  xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:pc="http://xmlns.jcp.org/jsf/composite/components">
 
 <ui:composition>
   <p:dialog widgetVar="absence-dialog"
@@ -36,7 +37,9 @@
               floatingLabel="true"
               autoCompleteStyleClass="absence-user-selection">
               <p:column>
-                <h:outputText value="#{securityMemberDisplayNameFormatBean.generateFullDisplayNameForUserDTO(user)}" />
+                <pc:securityMemberNameAndAvatar
+                  displayName="#{securityMemberDisplayNameFormatBean.generateFullDisplayNameForUserDTO(user)}"
+                  securityMember="#{user}" />
               </p:column>
               <f:facet name="event">
                 <p:ajax event="itemSelect" listener="#{logic.userSelectInAbsence}" update="#{p:resolveFirstComponentWithId('absence-messages', view).clientId} #{p:resolveFirstComponentWithId('save-absence', view).clientId}" />

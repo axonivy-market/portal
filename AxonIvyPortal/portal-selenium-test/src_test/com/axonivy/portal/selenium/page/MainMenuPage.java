@@ -10,16 +10,19 @@ public class MainMenuPage extends TemplatePage {
     return "id('left-menu')";
   }
 
-  public void openTaskList() {
+  public TaskWidgetPage openTaskList() {
     $(".layout-menu li[role='menuitem'] a.ripplelink.TASK").waitUntil(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    return TaskWidgetPage.newInstance();
   }
 
-  public void openCaseList() {
+  public CaseWidgetPage openCaseList() {
     $(".layout-menu li[role='menuitem'] a.ripplelink.CASE").waitUntil(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    return CaseWidgetPage.newInstance();
   }
 
-  public void openProcessList() {
+  public ProcessWidgetPage openProcessList() {
     $(".layout-menu li[role='menuitem'] a.ripplelink.PROCESS").waitUntil(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    return new ProcessWidgetPage();
   }
   
   public void openUserSettingMenu() {

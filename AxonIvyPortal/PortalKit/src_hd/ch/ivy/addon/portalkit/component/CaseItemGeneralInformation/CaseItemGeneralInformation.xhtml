@@ -38,7 +38,8 @@
         </div>
         <div class="ui-g-12 no-padding-column text-content last-line text-ellipsis">
           <h:panelGroup id="case-state" styleClass="case-header-default-cell">
-            <ic:ch.ivy.addon.portalkit.component.cases.column.CaseState case="#{case}" showIndicatorBesideText="true" />
+            <ic:ch.ivy.addon.portalkit.component.cases.column.CaseState case="#{case}" showIndicatorBesideText="true"
+              responsiveStyleClass="note-history-state" />
           </h:panelGroup>
         </div>
       </div>
@@ -65,25 +66,26 @@
       
       <h:panelGroup styleClass="ui-g-12 content-field" layout="block"
         rendered="#{(caseDetailsBean.showNotAvailableData and empty case.getOwner()) or not empty case.getOwner()}">
-        <div class="ui-xl-3 ui-lg-4 ui-md-4 ui-sm-4 ui-g-2 u-no-padding-left min-width-column-task-details-when-resize">
+        <div class="ui-xl-3 ui-lg-4 ui-md-4 ui-sm-5 ui-g-2 u-no-padding-left min-width-column-task-details-when-resize">
           <h:outputText styleClass="task-detail-column-title text-ellipsis"
             value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/CaseOwner')}" />
         </div>
-        <div class="ui-xl-9 ui-lg-8 ui-md-8 ui-sm-8 ui-g-4 u-no-padding-left text-ellipsis">
-          <ic:ch.ivy.addon.portalkit.component.SecurityMemberDisplayName id="case-owner-full-name"
-            securityMember="#{case.getOwner()}" securityMemberName="#{case.ownerName}" />
-          <h:outputText id="empty-case-owner" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable')}" rendered="#{empty case.getOwner()}" />
+        <div class="ui-xl-9 ui-lg-8 ui-md-8 ui-sm-7 ui-g-4 u-no-padding-left text-ellipsis">
+          <ic:ch.ivy.addon.portalkit.component.SecurityMemberDisplayName id="case-owner-user-name"
+            securityMember="#{case.getOwner()}" securityMemberName="#{case.ownerName}"
+            styleClass="text-ellipsis" />
         </div>
       </h:panelGroup>
 
       <h:panelGroup styleClass="ui-g-12 content-field" layout="block">
-        <div class="ui-xl-3 ui-lg-4 ui-md-4 ui-sm-4 ui-g-2 u-no-padding-left min-width-column-task-details-when-resize">
+        <div class="ui-xl-3 ui-lg-4 ui-md-4 ui-sm-5 ui-g-2 u-no-padding-left min-width-column-task-details-when-resize">
           <h:outputText styleClass="task-detail-column-title text-ellipsis"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATOR')}" />
         </div>
-        <div class="ui-xl-9 ui-lg-8 ui-md-8 ui-sm-8 ui-g-4 u-no-padding-left text-ellipsis">
+        <div class="ui-xl-9 ui-lg-8 ui-md-8 ui-sm-7 ui-g-4 u-no-padding-left text-ellipsis">
           <ic:ch.ivy.addon.portalkit.component.SecurityMemberDisplayName id="case-creator-full-name" 
-            securityMember="#{case.getCreatorUser()}" securityMemberName="#{case.creatorUserName}" />
+            securityMember="#{case.getCreatorUser()}" securityMemberName="#{case.creatorUserName}"
+            styleClass="text-ellipsis" />
         </div>
       </h:panelGroup>
     </div>
@@ -95,11 +97,11 @@
 
       <h:panelGroup styleClass="ui-g-12 content-field" layout="block"
         rendered="#{(caseDetailsBean.showNotAvailableData and empty case.getBusinessCase().id and empty case.getBusinessCase().getName()) or not empty case.getBusinessCase().id or not empty case.getBusinessCase().getName()}">
-        <div class="ui-xl-3 ui-lg-4 ui-md-4 ui-sm-4 ui-g-2 u-no-padding-left min-width-column-task-details-when-resize">
+        <div class="ui-xl-3 ui-lg-4 ui-md-4 ui-sm-5 ui-g-2 u-no-padding-left min-width-column-task-details-when-resize">
           <h:outputText styleClass="task-detail-column-title text-ellipsis"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/businessCase')}" />
         </div>
-        <div class="ui-xl-9 ui-lg-8 ui-md-8 ui-sm-8 ui-g-4 u-no-padding-left u-truncate-text">
+        <div class="ui-xl-9 ui-lg-8 ui-md-8 ui-sm-7 ui-g-4 u-no-padding-left u-truncate-text">
           <p:commandLink id="related-business-case" styleClass="case-detail-business-case" disabled="#{cc.attrs.readOnly}"
             value="##{case.getBusinessCase().id} #{case.getBusinessCase().getName()}"
             actionListener="#{caseDetailsBean.navigateToCaseDetails(case.getBusinessCase().id)}"
@@ -115,11 +117,11 @@
       </div>
 
       <h:panelGroup styleClass="ui-g-12 content-field" layout="block">
-        <div class="ui-xl-3 ui-lg-4 ui-md-4 ui-sm-4 ui-g-2 u-no-padding-left min-width-column-task-details-when-resize">
+        <div class="ui-xl-3 ui-lg-4 ui-md-4 ui-sm-5 ui-g-2 u-no-padding-left min-width-column-task-details-when-resize">
           <h:outputText styleClass="task-detail-column-title"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/create')}" />
         </div>
-        <div class="ui-xl-9 ui-lg-8 ui-md-8 ui-sm-8 ui-g-4 u-no-padding-left text-ellipsis">
+        <div class="ui-xl-9 ui-lg-8 ui-md-8 ui-sm-7 ui-g-4 u-no-padding-left text-ellipsis">
           <h:outputText id="case-start-time" value="#{case.startTimestamp}">
             <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}"/>
           </h:outputText>
@@ -128,11 +130,11 @@
 
       <h:panelGroup styleClass="ui-g-12 content-field" layout="block"
         rendered="#{(caseDetailsBean.showNotAvailableData and empty case.endTimestamp) or not empty case.endTimestamp}">
-        <div class="ui-xl-3 ui-lg-4 ui-md-4 ui-sm-4 ui-g-2 u-no-padding-left min-width-column-task-details-when-resize">
+        <div class="ui-xl-3 ui-lg-4 ui-md-4 ui-sm-5 ui-g-2 u-no-padding-left min-width-column-task-details-when-resize">
           <h:outputText styleClass="task-detail-column-title"
             value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/Finished')}" />
         </div>
-        <div class="ui-xl-9 ui-lg-8 ui-md-8 ui-sm-8 ui-g-4 u-no-padding-left text-ellipsis">
+        <div class="ui-xl-9 ui-lg-8 ui-md-8 ui-sm-7 ui-g-4 u-no-padding-left text-ellipsis">
           <h:outputText id="case-end-time" value="#{case.endTimestamp}" rendered="#{not empty case.endTimestamp}">
             <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}"/>
           </h:outputText>
@@ -141,11 +143,11 @@
       </h:panelGroup>
 
       <h:panelGroup styleClass="ui-g-12 content-field" layout="block">
-        <div class="ui-xl-3 ui-lg-4 ui-md-4 ui-sm-4 ui-g-2 u-no-padding-left min-width-column-task-details-when-resize">
+        <div class="ui-xl-3 ui-lg-4 ui-md-4 ui-sm-5 ui-g-2 u-no-padding-left min-width-column-task-details-when-resize">
           <h:outputText styleClass="task-detail-column-title"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/processingTime')}" />
         </div>
-        <div class="ui-xl-9 ui-lg-8 ui-md-8 ui-sm-8 ui-g-4 u-no-padding-left text-ellipsis">
+        <div class="ui-xl-9 ui-lg-8 ui-md-8 ui-sm-7 ui-g-4 u-no-padding-left text-ellipsis">
           <h:outputText id="case-duration-time" value="#{caseBean.getDurationOfCase(case)}"/>
         </div>
       </h:panelGroup>
