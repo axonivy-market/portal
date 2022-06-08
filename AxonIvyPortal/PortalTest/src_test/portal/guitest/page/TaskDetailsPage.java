@@ -39,7 +39,7 @@ public class TaskDetailsPage extends TemplatePage {
   }
 
   public List<String> getTaskNoteAuthors() {
-    List<WebElement> noteAuthorElements = findListElementsByCssSelector("td.task-document-author");
+    List<WebElement> noteAuthorElements = findListElementsByCssSelector("td.task-document-author .name-after-avatar");
     return noteAuthorElements.stream().map(w -> w.getText()).collect(Collectors.toList());
   }
 
@@ -268,14 +268,16 @@ public class TaskDetailsPage extends TemplatePage {
       waitForElementDisplayed(By.cssSelector("input[id$='group-activator-select_input']"), true);
       type(By.cssSelector("input[id$='group-activator-select_input']"), responsibleName);
       waitForElementDisplayed(By.cssSelector("span[id$='group-activator-select_panel']"), true);
-      List<WebElement> foundRoles = findElementByCssSelector("span[id$='group-activator-select_panel").findElements(By.tagName("li"));
+      List<WebElement> foundRoles =
+          findListElementsByCssSelector("span[id$='group-activator-select_panel'] .name-after-avatar");
       click(foundRoles.get(0));
     }
     else {
       waitForElementDisplayed(By.cssSelector("input[id$='user-activator-select_input']"), true);
       type(By.cssSelector("input[id$='user-activator-select_input']"), responsibleName);
       waitForElementDisplayed(By.cssSelector("span[id$='user-activator-select_panel']"), true);
-      List<WebElement> foundUsers = findElementByCssSelector("span[id$='user-activator-select_panel']").findElements(By.tagName("tr"));
+      List<WebElement> foundUsers =
+          findListElementsByCssSelector("span[id$='user-activator-select_panel'] .name-after-avatar");
       click(foundUsers.get(0));
     }
     waitAjaxIndicatorDisappear();
@@ -425,8 +427,8 @@ public class TaskDetailsPage extends TemplatePage {
         waitForElementDisplayed(By.cssSelector("input[id$=':user-expiry-activator-select_input']"), true);
         type(By.cssSelector("input[id$=':user-expiry-activator-select_input']"), activatorName);
         waitForElementDisplayed(By.cssSelector("span[id$=':user-expiry-activator-select_panel']"), true);
-        List<WebElement> foundUsers = findElementByCssSelector("span[id$=':user-expiry-activator-select_panel']")
-            .findElements(By.tagName("tr"));
+        List<WebElement> foundUsers =
+            findListElementsByCssSelector("span[id$=':user-expiry-activator-select_panel'] .name-after-avatar");
         click(foundUsers.get(0));
       } else {
         List<WebElement> radioButtonLabels = findListElementsByCssSelector("table[id$='task-escalation-activator-form:activator-type-select'] label");
@@ -434,7 +436,8 @@ public class TaskDetailsPage extends TemplatePage {
         waitForElementDisplayed(By.cssSelector("input[id$=':group-expiry-activator-select_input']"), true);
         type(By.cssSelector("input[id$=':group-expiry-activator-select_input']"), activatorName);
         waitForElementDisplayed(By.cssSelector("span[id$=':group-expiry-activator-select_panel']"), true);
-        List<WebElement> foundRoles = findElementByCssSelector("span[id$=':group-expiry-activator-select_panel").findElements(By.tagName("li"));
+        List<WebElement> foundRoles =
+            findListElementsByCssSelector("span[id$=':group-expiry-activator-select_panel'] .name-after-avatar");
         click(foundRoles.get(0));
       }
       waitForElementEnabled(By.cssSelector("button[id$=':task-escalation-activator-form:assign-task-command']"), true, DEFAULT_TIMEOUT);

@@ -230,7 +230,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public String getHistoryAuthor() {
-    return findElementByCssSelector(AUTHOR_USER_CSS_SELECTOR).getText();
+    return findElementByCssSelector(".history-fullname").getText();
   }
 
   public void clickViewNote() {
@@ -245,7 +245,8 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public List<String> getCaseNoteAuthors() {
-    List<WebElement> noteAuthorElements = findListElementsByCssSelector(".si-notes-quill + span.history-fullname");
+    List<WebElement> noteAuthorElements =
+        findListElementsByCssSelector("span.history-fullname");
     return noteAuthorElements.stream().map(w -> w.getText()).collect(Collectors.toList());
   }
 
@@ -622,7 +623,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public String getResponsibleOfRelatedTaskAt(int index) {
-    List<WebElement> responsibles = findListElementsByCssSelector("td.related-task-responsible-column");
+    List<WebElement> responsibles = findListElementsByCssSelector("td.related-task-responsible-column .name-after-avatar");
     return responsibles.get(index).getText();
   }
 
@@ -652,14 +653,14 @@ public class CaseDetailsPage extends TemplatePage {
       type(By.cssSelector("input[id$='group-activator-select_input']"), responsibleName);
       waitForElementDisplayed(By.cssSelector("span[id$='group-activator-select_panel']"), true);
       List<WebElement> foundRoles =
-          findElementByCssSelector("span[id$='group-activator-select_panel").findElements(By.tagName("li"));
+          findListElementsByCssSelector("span[id$='group-activator-select_panel'] .name-after-avatar");
       foundRoles.get(0).click();
     } else {
       waitForElementDisplayed(By.cssSelector("input[id$='user-activator-select_input']"), true);
       type(By.cssSelector("input[id$='user-activator-select_input']"), responsibleName);
       waitForElementDisplayed(By.cssSelector("span[id$='user-activator-select_panel']"), true);
       List<WebElement> foundUsers =
-          findElementByCssSelector("span[id$='user-activator-select_panel']").findElements(By.tagName("tr"));
+          findListElementsByCssSelector("span[id$='user-activator-select_panel'] .name-after-avatar");
       foundUsers.get(0).click();
     }
     waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);

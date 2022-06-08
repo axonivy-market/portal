@@ -253,7 +253,7 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
     WebElement responsible = findElementByCssSelector("input[id*='"+filterIdName+"-filter:filter-input-form:']");
     type(responsible, user);
     waitAjaxIndicatorDisappear();
-    waitForElementExisted("i[class*='si-single-neutral-actions']", true, 5);
+    waitForElementExisted("div[id*='" + filterIdName + "-filter'] .ui-avatar-text", true, 5);
     click(By.cssSelector("tr[class$='ui-state-highlight']"));
     waitAjaxIndicatorDisappear();
     click(By.cssSelector("button[id$='"+filterIdName+"-filter:filter-input-form:update-command']"));
@@ -295,8 +295,8 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
     //enterKeys(responsible, text);
     type(responsible,user);
     waitForElementDisplayedByCssSelector("span[id$='responsible-filter:filter-input-form:responsible_panel']");
-    waitForElementDisplayedByCssSelector("i[class*='si-single-neutral-actions']",5);
-    click(By.cssSelector("i[class*='si-single-neutral-actions']"));
+    waitForElementDisplayedByCssSelector("div[id*='responsible-filter'] .ui-avatar-text", 5);
+    click(By.cssSelector("div[id*='responsible-filter'] .ui-avatar-text"));
     waitAjaxIndicatorDisappear();
     click(By.cssSelector("button[id$='responsible-filter:filter-input-form:update-command']"));
     waitAjaxIndicatorDisappear();
@@ -310,8 +310,8 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
         findElementByCssSelector("input[id$='owner-filter:filter-input-form:owner_input']");
     type(owner, user);
     waitForElementDisplayedByCssSelector("span[id$='owner-filter:filter-input-form:owner_panel']");
-    waitForElementDisplayedByCssSelector("i[class*='si-single-neutral-actions']", 5);
-    click(By.cssSelector("i[class*='si-single-neutral-actions']"));
+    waitForElementDisplayedByCssSelector("div[id*='owner-filter'] .ui-avatar-text", 5);
+    click(By.cssSelector("div[id*='owner-filter'] .ui-avatar-text"));
     click(By.cssSelector("button[id$='owner-filter:filter-input-form:update-command']"));
     waitAjaxIndicatorDisappear();
   }

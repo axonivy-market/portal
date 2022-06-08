@@ -15,6 +15,13 @@ import com.codeborne.selenide.SelenideElement;
 
 public class TaskWidgetPage extends TemplatePage {
 
+  public TaskWidgetPage() {}
+
+  public static TaskWidgetPage newInstance() {
+    $(".js-task-widget-header").waitUntil(appear, DEFAULT_TIMEOUT);
+    return new TaskWidgetPage();
+  }
+
   @Override
   protected String getLoadedLocator() {
     return "//*[contains(@id,'task-widget:task-view')]";
@@ -116,5 +123,9 @@ public class TaskWidgetPage extends TemplatePage {
     } else {
       return "exception";
     }
+  }
+
+  public SelenideElement getResponsibleAvatar() {
+    return $(".security-member-container > .has-avatar > .ui-avatar").waitUntil(appear, DEFAULT_TIMEOUT);
   }
 }
