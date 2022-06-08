@@ -236,6 +236,11 @@ a.left-sidebar-menu-icon {
   padding-bottom: 60px;
 }
 
+.note-history-container .note-history-state {
+  width: 100%;
+  float: none;
+}
+
 .additional-case-details-data-grid {
   margin-left: 15px;
 }
@@ -288,6 +293,10 @@ a.left-sidebar-menu-icon {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.process-history.process-history-list.process-history-list-cell-default.name-after-avatar {
+  padding-left: 3rem;
 }
 
 .process-history.process-history-list.process-history-list-cell-default.process-history-list-width-120,

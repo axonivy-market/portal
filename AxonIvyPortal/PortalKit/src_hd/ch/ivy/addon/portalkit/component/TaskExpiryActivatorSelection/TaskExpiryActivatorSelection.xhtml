@@ -1,6 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
   xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
-  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+  xmlns:pc="http://xmlns.jcp.org/jsf/composite/components" >
 
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="task" />
@@ -49,7 +50,9 @@
             completeMethod="#{logic.autoCompleteForUser}"
             isRenderedMessage="false">
             <p:column>
-              <h:outputText value="#{securityMemberDisplayNameFormatBean.generateFullDisplayNameForUserDTO(user)}" />
+              <pc:securityMemberNameAndAvatar
+                displayName="#{securityMemberDisplayNameFormatBean.generateFullDisplayNameForUserDTO(user)}"
+                securityMember="#{user}" />
             </p:column>
             <f:facet name="event">
               <p:ajax event="itemSelect" listener="#{data.setIsDisabledAssignButton(false)}" update="#{cc.clientId}:task-escalation-activator-form:assign-task-command" />
@@ -65,6 +68,10 @@
             queryDelay="500"
             completeMethod="#{logic.autoCompleteForRole}"
             isRenderedMessage="false">
+            <p:column>
+              <pc:securityMemberNameAndAvatar
+                displayName="#{role.getDisplayName()}" securityMember="#{role}" />
+            </p:column>
             <f:facet name="event">
               <p:ajax event="itemSelect" listener="#{data.setIsDisabledAssignButton(false)}" update="#{cc.clientId}:task-escalation-activator-form:assign-task-command" />
             </f:facet>

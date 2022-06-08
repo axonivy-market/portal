@@ -12,3 +12,5 @@ excludedUsernames java.util.List<String> #field
 excludedUsernames PERSISTENT #fieldModifier
 selectedUserForInsertChildren ch.ivy.addon.portalkit.dto.UserDTO #field
 selectedUserForInsertChildren PERSISTENT #fieldModifier
+definedRoleNamesForEverybody java.util.List<String> #field
+definedRoleNamesForEverybody PERSISTENT #fieldModifier

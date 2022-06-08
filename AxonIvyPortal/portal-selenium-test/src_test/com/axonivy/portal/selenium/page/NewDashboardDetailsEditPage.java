@@ -33,8 +33,8 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
   }
 
   private void addWidgetByName(String name) {
-    $("div[id='new-widget-dialog-content_content']").waitUntil(appear, DEFAULT_TIMEOUT)
-        .$$("div.new-widget-dialog__item").filter(text(name)).first().$("div.ui-widget-content")
+    $("div[id$='new-widget-dialog_content']").waitUntil(appear, DEFAULT_TIMEOUT)
+        .$$("div.new-widget-dialog__item").filter(text(name)).first().$("tr.ui-widget-content")
         .$("button[id^='new-widget-dialog-content']").shouldBe(getClickableCondition()).click();
   }
 
