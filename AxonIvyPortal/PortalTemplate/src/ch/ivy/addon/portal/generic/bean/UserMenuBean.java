@@ -19,14 +19,19 @@ import org.primefaces.PrimeFaces;
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.bean.IvyComponentLogicCaller;
 import ch.ivy.addon.portalkit.bean.PortalExceptionBean;
+import ch.ivy.addon.portalkit.bo.ExpressProcess;
+import ch.ivy.addon.portalkit.dto.UserMenu;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.service.AnnouncementService;
+import ch.ivy.addon.portalkit.service.ExpressProcessService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.IvyAdapterService;
 import ch.ivy.addon.portalkit.service.IvyCacheService;
+import ch.ivy.addon.portalkit.service.ProcessStartCollector;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ITask;
@@ -317,5 +322,39 @@ public class UserMenuBean implements Serializable {
     Map<String, Object> response = IvyAdapterService.startSubProcess("getLogoutPage()", null,
             Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
     return (String) response.get("logoutPage");
+  }
+  
+  public void navigateToURLOrDisplayWorkingTaskWarning(UserMenu menu, boolean isWorkingOnATask, ITask task) throws IOException {
+    if (isWorkingOnATask && task.getState() != TaskState.DONE) {
+      openTaskLosingConfirmationDialog();
+      targetPage = getURLFromUserMenu(menu);
+    } else {
+      executeJSResetPortalMenuState();
+      getExternalContext().redirect(getURLFromUserMenu(menu));
+    }
+  }
+  
+  private String getURLFromUserMenu(UserMenu menu) {
+    if (StringUtils.isNotBlank(menu.getUrl())) {
+      if (menu.getUrl().contains(".ivp")) {
+        return PortalNavigator.buildUrlByKeyword(menu.getUrl(), menu.getUrl(), menu.getParams());
+      } else {
+        if (menu.getUrl().contains("http")) {
+          return menu.getUrl();
+        } else {
+          ProcessStartCollector processStartCollector = new ProcessStartCollector();
+          String expressStartLink = processStartCollector.findExpressWorkflowStartLink();
+          if (StringUtils.isNotBlank(expressStartLink)) {
+            ExpressProcess workflow = ExpressProcessService.getInstance().findExpressProcessByName(menu.getUrl());
+            if (workflow != null && PermissionUtils.checkAbleToStartAndAbleToEditExpressWorkflow(workflow)
+                && StringUtils.isNotBlank(workflow.getId())) {
+              menu.setUrl(expressStartLink + "?workflowID=" + workflow.getId());
+            }
+          }
+        }
+      }
+      return menu.getUrl();
+    }
+    return "";
   }
 }

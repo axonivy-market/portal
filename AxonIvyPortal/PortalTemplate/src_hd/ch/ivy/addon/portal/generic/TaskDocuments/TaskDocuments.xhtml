@@ -1,7 +1,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
   xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
   xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
-  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+  xmlns:pc="http://xmlns.jcp.org/jsf/composite/components">
 
 <h:body>
   <ui:composition template="/layouts/BasicTemplate.xhtml">
@@ -63,10 +64,12 @@
 
             <c:set var="documentAuthorName" value="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(document.creation.user, document.creation.user.name)}"/>
             <p:column id="document-author" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/author')}"
-              styleClass="task-document-author u-truncate-text ui-sm-hidden" width="15%"
+              styleClass="task-document-author u-truncate-text ui-sm-hidden"
+              width="15%"
               sortBy="#{documentAuthorName}"
               filterBy="#{documentAuthorName}" filterMatchMode="contains">
-              <h:outputText value="#{documentAuthorName}" />
+              <pc:securityMemberNameAndAvatar
+                displayName="#{documentAuthorName}" securityMember="#{document.creation.user}" />
             </p:column>
   
             <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/creationDate')}"

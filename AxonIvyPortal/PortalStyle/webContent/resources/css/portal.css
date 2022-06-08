@@ -1108,13 +1108,45 @@ body .ui-datepicker .ui-timepicker-div dl dd {
   }
 
   .task-item-body .ui-datatable thead th:first-child,
-  .case-detail-body .case-details-item .ui-datatable .name-column,
-  .case-detail-body .case-details-item .ui-datatable .history-note {
+  .case-detail-body .ui-datatable thead th.document-name,
+  .case-detail-body .case-details-item .ui-datatable th.name-column,
+  .case-detail-body .case-details-item .ui-datatable th.history-note {
     border-right: 1px solid var(--data-table-border-color);
   }
 
   .case-detail-body .case-details-related-task-table .related-task-name-column {
     border-left: 1px solid var(--data-table-border-color);
+  }
+}
+
+@media screen and (min-width: 40.063em) {
+  .task-item-body .ui-datatable thead th:first-child,
+  .case-detail-body .ui-datatable thead th.document-name,
+  .case-detail-body .ui-datatable th.history-related-case,
+  .case-detail-body .case-details-item .ui-datatable .name-column {
+    border-right: 1px solid var(--data-table-border-color);
+  }
+}
+
+@media screen and (min-width: 64.063em) {
+  .task-item-body .ui-datatable thead th:first-child,
+  .case-detail-body .ui-datatable thead th.document-name,
+  .case-detail-body .case-details-item .ui-datatable .name-column,
+  .case-detail-body .case-details-item .ui-datatable .history-note {
+    border-right: none;
+  }
+  .task-item-body .ui-datatable th.task-document-author,
+  .case-detail-body .ui-datatable th.case-document-author,
+  .case-detail-body .ui-datatable th.history-related-case {
+    border-right: 1px solid var(--data-table-border-color);
+  }
+}
+
+@media screen and (min-width: 90.063em) {
+  .task-item-body .ui-datatable th.task-document-author,
+  .case-detail-body .ui-datatable th.case-document-author,
+  .case-detail-body .ui-datatable th.history-related-case {
+    border-right: none;
   }
 }
 
@@ -1728,9 +1760,6 @@ body .available-elements-action-btn .ui-button.ui-button-icon-only .ui-icon {
 .form-definition-table .ui-state-highlight,
 .form-definition-table .hover-drop-section {
   color: var(--form-elements-panel-hover-drop-section-label-color); }
-
-.form-definition-table {
-  border: solid 4px var(--form-definition-table-border); }
 
 .form-definition-table .selected-formelements-panel {
   border: dashed 2px var(--form-definition-table-selected-panel-border); }

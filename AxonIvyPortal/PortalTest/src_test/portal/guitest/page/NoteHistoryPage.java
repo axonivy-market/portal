@@ -53,7 +53,8 @@ public class NoteHistoryPage extends TemplatePage {
   }
   
   public List<String> getNoteAuthors() {
-    List<WebElement> noteAuthorElements = findListElementsByCssSelector("td.note-history-fullname-column");
+    List<WebElement> noteAuthorElements =
+        findListElementsByCssSelector("td.note-history-fullname-column .name-after-avatar");
     return noteAuthorElements.stream().map(w -> w.getText()).collect(Collectors.toList());
   }
 

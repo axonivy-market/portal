@@ -254,6 +254,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       hideYear: Set to true, year will be hidden, otherwise it will be shown.
       loggedInUserFormat: The option to show logged-in user format
       refreshTaskListIntervalNote: Task list refresh interval in seconds.
+      showAvatar: For switch on/off the display of user/role avatars.
       showButtonIcon: For switch on/off the display icons in button.
       showCaseDurationTime: For switch on/off the display of the duration time in case details page.
       showEnvironmentInfoNote: For switch on/off the display of environment information.
@@ -548,6 +549,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     switchToDesktopVersion: Switch to desktop version
     taskCanceledAndLeftSuccessfully: You have cancelled and left the task successfully. You can find the task in the dashboard or your task list.
     taskFinishedSuccessfully: You have finished the task successfully
+    taskFromSubstitution: You see this task because you are the deputy
     taskName: Task name
     tasks: Tasks
     theCasemap: The case map

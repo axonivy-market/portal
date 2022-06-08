@@ -28,13 +28,13 @@ public class DashboardProcessWidgetTest extends BaseTest {
   private static final String POINTER_EVENTS_PROPERTY = "pointer-events";
   private static final String TITLE_ATTRIBUTE = "title";
   private static final String APPRAISAL = "Appraisal";
-  private static final String SHOWCASE_DATA_TABLE_CATEGORY = "Showcase/DataTable";
+  private static final String SHOWCASE_CUSTOMIZED_CATEGORY = "Showcase/Customized";
   private static final String LEAVE_REQUEST_TEST_FOR_IVYPORTAL_3369 = "Leave Request Test For IVYPORTAL-3369";
   private static final String TEST_FOR_IVYPORTAL_3369 = "Test for IVYPORTAL-3369";
-  private static final String START_DATA_TABLE_SHOWCASE = "Start DataTable Showcase";
+  private static final String START_APPLICATION_SHOWCASE = "Start Application Showcase";
   private static final String CATEGORIED_LEAVE_REQUEST = "Categoried Leave Request";
-  private static final String DATA_TABLE = "DataTable";
-  private static final String SHOWCASE_DATA_TABLE = "Showcase Data Table";
+  private static final String SHOWCASE = "Showcase";
+  private static final String SHOWCASE_APPLICATION = "Showcase Application";
   private static final String ACCESS_TASK_DETAILS = "ACCESS_TASK_DETAILS";
   private NewDashboardPage newDashboardPage;
   private static final long DEFAULT_TIMEOUT = 45000;
@@ -87,7 +87,7 @@ public class DashboardProcessWidgetTest extends BaseTest {
   public void testStartImageProcess() {
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
-    editProcessWidgetConfiguration.selectImageModeAndSaveWidget(SHOWCASE_DATA_TABLE);
+    editProcessWidgetConfiguration.selectImageModeAndSaveWidget(SHOWCASE_APPLICATION);
     newDashboardPage.getStartButton().shouldBe(Condition.disabled);
     backToNewDashboardPage();
     newDashboardPage.getStartButton().shouldBe(Condition.enabled);
@@ -95,14 +95,14 @@ public class DashboardProcessWidgetTest extends BaseTest {
 
     TaskTemplatePage taskTemplatePage = new TaskTemplatePage();
     taskTemplatePage.getDisplayedTaskTitle()
-        .shouldHave(Condition.attribute(TITLE_ATTRIBUTE, START_DATA_TABLE_SHOWCASE));
+        .shouldHave(Condition.attribute(TITLE_ATTRIBUTE, START_APPLICATION_SHOWCASE));
   }
 
   @Test
   public void testMoreInfoLinkImageProcess() {
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
-    editProcessWidgetConfiguration.selectImageModeAndSaveWidget(SHOWCASE_DATA_TABLE);
+    editProcessWidgetConfiguration.selectImageModeAndSaveWidget(SHOWCASE_APPLICATION);
     newDashboardPage.getDisabledMoreInformationLink().shouldBe(Condition.appear);
     backToNewDashboardPage();
     newDashboardPage.getMoreInformationLink().shouldBe(Condition.appear);
@@ -151,7 +151,7 @@ public class DashboardProcessWidgetTest extends BaseTest {
   public void testStartFullModeProcess() {
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
-    editProcessWidgetConfiguration.selectFullModeProcessAndSaveWidget(SHOWCASE_DATA_TABLE);
+    editProcessWidgetConfiguration.selectFullModeProcessAndSaveWidget(SHOWCASE_APPLICATION);
     newDashboardPage.getStartButton().shouldBe(Condition.disabled);
 
     backToNewDashboardPage();
@@ -159,14 +159,14 @@ public class DashboardProcessWidgetTest extends BaseTest {
     newDashboardPage.startProcess();
     TaskTemplatePage taskTemplatePage = new TaskTemplatePage();
     taskTemplatePage.getDisplayedTaskTitle()
-        .shouldHave(Condition.attribute(TITLE_ATTRIBUTE, START_DATA_TABLE_SHOWCASE));
+        .shouldHave(Condition.attribute(TITLE_ATTRIBUTE, START_APPLICATION_SHOWCASE));
   }
 
   @Test
   public void testMoreInfoLinkFullModeProcess() {
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
-    editProcessWidgetConfiguration.selectFullModeProcessAndSaveWidget(SHOWCASE_DATA_TABLE);
+    editProcessWidgetConfiguration.selectFullModeProcessAndSaveWidget(SHOWCASE_APPLICATION);
     newDashboardPage.getDisabledMoreInformationLink().shouldBe(Condition.appear);
 
     backToNewDashboardPage();
@@ -235,7 +235,7 @@ public class DashboardProcessWidgetTest extends BaseTest {
   public void testStartCombinedModeProcess() {
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
-    editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(SHOWCASE_DATA_TABLE);
+    editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(SHOWCASE_APPLICATION);
     newDashboardPage.getStartButton().shouldBe(Condition.disabled);
 
     backToNewDashboardPage();
@@ -244,14 +244,14 @@ public class DashboardProcessWidgetTest extends BaseTest {
 
     TaskTemplatePage taskTemplatePage = new TaskTemplatePage();
     taskTemplatePage.getDisplayedTaskTitle()
-        .shouldHave(Condition.attribute(TITLE_ATTRIBUTE, START_DATA_TABLE_SHOWCASE));
+        .shouldHave(Condition.attribute(TITLE_ATTRIBUTE, START_APPLICATION_SHOWCASE));
   }
 
   @Test
   public void testStartCombinedModeProcessWhenExpanded() {
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
-    editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(SHOWCASE_DATA_TABLE);
+    editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(SHOWCASE_APPLICATION);
     newDashboardPage.getStartButton().shouldBe(Condition.disabled);
 
     backToNewDashboardPage();
@@ -261,7 +261,7 @@ public class DashboardProcessWidgetTest extends BaseTest {
 
     TaskTemplatePage taskTemplatePage = new TaskTemplatePage();
     taskTemplatePage.getDisplayedTaskTitle()
-        .shouldHave(Condition.attribute(TITLE_ATTRIBUTE, START_DATA_TABLE_SHOWCASE));
+        .shouldHave(Condition.attribute(TITLE_ATTRIBUTE, START_APPLICATION_SHOWCASE));
   }
 
   @Test
@@ -398,29 +398,29 @@ public class DashboardProcessWidgetTest extends BaseTest {
   public void testPreviewCompactModeProcessFilterCategory() {
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
-    editProcessWidgetConfiguration.previewCompactModeProcessFilterCategory(DATA_TABLE);
+    editProcessWidgetConfiguration.previewCompactModeProcessFilterCategory(SHOWCASE);
     editProcessWidgetConfiguration.getCompactModeProcessDisabledFirstProcessItemName().shouldBe(Condition.appear)
-        .shouldHave(Condition.exactTextCaseSensitive(SHOWCASE_DATA_TABLE));
+        .shouldHave(Condition.exactTextCaseSensitive("Customization for TaskTemplate"));
   }
 
   @Test
   public void testPreviewCompactModeProcessFilterProcess() {
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
-    editProcessWidgetConfiguration.previewCompactModeProcessFilterProcess(SHOWCASE_DATA_TABLE);
+    editProcessWidgetConfiguration.previewCompactModeProcessFilterProcess(SHOWCASE_APPLICATION);
     editProcessWidgetConfiguration.getCompactModeProcessDisabledFirstProcessItemName().shouldBe(Condition.appear)
-        .shouldHave(Condition.exactTextCaseSensitive(SHOWCASE_DATA_TABLE));
+        .shouldHave(Condition.exactTextCaseSensitive(SHOWCASE_APPLICATION));
   }
 
   @Test
   public void testChangeCompactModeProcess() {
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
-    editProcessWidgetConfiguration.changeCompactModeProcessAndSaveWidget(DATA_TABLE, SHOWCASE_DATA_TABLE);
+    editProcessWidgetConfiguration.changeCompactModeProcessAndSaveWidget(SHOWCASE, SHOWCASE_APPLICATION);
 
-    newDashboardPage.getWidgetByName(SHOWCASE_DATA_TABLE).shouldBe(Condition.appear);
+    newDashboardPage.getWidgetByName(SHOWCASE_APPLICATION).shouldBe(Condition.appear);
     newDashboardPage.getCompactModeProcessDisplayedDisabledFirstProcessItemName()
-        .shouldHave(Condition.exactTextCaseSensitive(SHOWCASE_DATA_TABLE));
+        .shouldHave(Condition.exactTextCaseSensitive(SHOWCASE_APPLICATION));
   }
 
   @Test
@@ -432,87 +432,87 @@ public class DashboardProcessWidgetTest extends BaseTest {
 
   @Test
   public void testStartCompactModeProcess() {
-    newDashboardPage.startCompactModeProcessByProcessName(SHOWCASE_DATA_TABLE);
+    newDashboardPage.startCompactModeProcessByProcessName(SHOWCASE_APPLICATION);
 
     TaskTemplatePage taskTemplatePage = new TaskTemplatePage();
     taskTemplatePage.getDisplayedTaskTitle()
-        .shouldHave(Condition.attribute(TITLE_ATTRIBUTE, START_DATA_TABLE_SHOWCASE));
+        .shouldHave(Condition.attribute(TITLE_ATTRIBUTE, START_APPLICATION_SHOWCASE));
   }
 
   @Test
   public void testStartCompactModeProcessWhenExpanded() {
     newDashboardPage.checkDisplayedCompactModeProcessContainer();
     newDashboardPage.expandCompactModeProcess();
-    newDashboardPage.startCompactModeProcessByProcessName(SHOWCASE_DATA_TABLE);
+    newDashboardPage.startCompactModeProcessByProcessName(SHOWCASE_APPLICATION);
 
     TaskTemplatePage taskTemplatePage = new TaskTemplatePage();
     taskTemplatePage.getDisplayedTaskTitle()
-        .shouldHave(Condition.attribute(TITLE_ATTRIBUTE, START_DATA_TABLE_SHOWCASE));
+        .shouldHave(Condition.attribute(TITLE_ATTRIBUTE, START_APPLICATION_SHOWCASE));
   }
 
   @Test
   public void testFilterCompactModeProcessFilterProcessName() {
     newDashboardPage.getCompactModeProcessDisplayedFirstProcessItemName()
-        .shouldNotHave(Condition.exactTextCaseSensitive(SHOWCASE_DATA_TABLE));
+        .shouldNotHave(Condition.exactTextCaseSensitive(SHOWCASE_APPLICATION));
 
-    newDashboardPage.applyFilterCompactModeProcessProcessName(SHOWCASE_DATA_TABLE);
+    newDashboardPage.applyFilterCompactModeProcessProcessName(SHOWCASE_APPLICATION);
 
     newDashboardPage.getCompactModeProcessDisplayedFirstProcessItemName()
-        .shouldHave(Condition.exactTextCaseSensitive(SHOWCASE_DATA_TABLE));
+        .shouldHave(Condition.exactTextCaseSensitive(SHOWCASE_APPLICATION));
   }
 
   @Test
   public void testFilterCompactModeProcessFilterProcessNameWhenExpanded() {
     newDashboardPage.getCompactModeProcessDisplayedFirstProcessItemName()
-        .shouldNotHave(Condition.exactTextCaseSensitive(SHOWCASE_DATA_TABLE));
+        .shouldNotHave(Condition.exactTextCaseSensitive(SHOWCASE_APPLICATION));
 
     newDashboardPage.expandCompactModeProcess();
-    newDashboardPage.applyFilterCompactModeProcessProcessNameWhenExpanded(SHOWCASE_DATA_TABLE);
+    newDashboardPage.applyFilterCompactModeProcessProcessNameWhenExpanded(SHOWCASE_APPLICATION);
 
     newDashboardPage.getCompactModeProcessDisplayedFirstProcessItemName()
-        .shouldHave(Condition.exactTextCaseSensitive(SHOWCASE_DATA_TABLE));
+        .shouldHave(Condition.exactTextCaseSensitive(SHOWCASE_APPLICATION));
   }
 
   @Test
   public void testFilterCompactModeProcessFilterProcessType() {
-    newDashboardPage.checkCompactModeProcessDisplayedProcessItem(SHOWCASE_DATA_TABLE);
+    newDashboardPage.checkCompactModeProcessDisplayedProcessItem(SHOWCASE_APPLICATION);
 
     newDashboardPage.applyFilterCompactModeProcessProcessType(EXPRESS_PROCESS);
 
-    newDashboardPage.checkCompactModeProcessDisappearedProcessItem(SHOWCASE_DATA_TABLE);
+    newDashboardPage.checkCompactModeProcessDisappearedProcessItem(SHOWCASE_APPLICATION);
   }
 
   @Test
   public void testFilterCompactModeProcessFilterProcessTypeWhenExpanded() {
-    newDashboardPage.checkCompactModeProcessDisplayedProcessItem(SHOWCASE_DATA_TABLE);
+    newDashboardPage.checkCompactModeProcessDisplayedProcessItem(SHOWCASE_APPLICATION);
 
     newDashboardPage.expandCompactModeProcess();
     newDashboardPage.applyFilterCompactModeProcessProcessTypeWhenExpanded(EXPRESS_PROCESS);
 
-    newDashboardPage.checkCompactModeProcessDisappearedProcessItem(SHOWCASE_DATA_TABLE);
+    newDashboardPage.checkCompactModeProcessDisappearedProcessItem(SHOWCASE_APPLICATION);
   }
 
   @Test
   public void testFilterCompactModeProcessFilterCategory() {
     newDashboardPage.getCompactModeProcessDisplayedFirstProcessItemName()
-        .shouldNotHave(Condition.exactTextCaseSensitive(SHOWCASE_DATA_TABLE));
+        .shouldNotHave(Condition.exactTextCaseSensitive(SHOWCASE_APPLICATION));
 
-    newDashboardPage.applyFilterCompactModeProcessCategory(DATA_TABLE);
+    newDashboardPage.applyFilterCompactModeProcessCategory(SHOWCASE);
 
     newDashboardPage.getCompactModeProcessDisplayedFirstProcessItemName()
-        .shouldHave(Condition.exactTextCaseSensitive(SHOWCASE_DATA_TABLE));
+        .shouldHave(Condition.exactTextCaseSensitive("Customization for TaskTemplate"));
   }
 
   @Test
   public void testFilterCompactModeProcessFilterCategoryWhenExpanded() {
     newDashboardPage.getCompactModeProcessDisplayedFirstProcessItemName()
-        .shouldNotHave(Condition.exactTextCaseSensitive(SHOWCASE_DATA_TABLE));
+        .shouldNotHave(Condition.exactTextCaseSensitive(SHOWCASE_APPLICATION));
 
     newDashboardPage.expandCompactModeProcess();
-    newDashboardPage.applyFilterCompactModeProcessCategoryWhenExpanded(DATA_TABLE);
+    newDashboardPage.applyFilterCompactModeProcessCategoryWhenExpanded(SHOWCASE);
 
     newDashboardPage.getCompactModeProcessDisplayedFirstProcessItemName()
-        .shouldHave(Condition.exactTextCaseSensitive(SHOWCASE_DATA_TABLE));
+        .shouldHave(Condition.exactTextCaseSensitive("Customization for TaskTemplate"));
   }
 
   @Test
@@ -526,14 +526,14 @@ public class DashboardProcessWidgetTest extends BaseTest {
   @Test
   public void testSaveResetApplyCompactModeProcessFilter() {
     newDashboardPage.getCompactModeProcessDisplayedFirstProcessItemName()
-        .shouldNotHave(Condition.exactTextCaseSensitive(SHOWCASE_DATA_TABLE));
+        .shouldNotHave(Condition.exactTextCaseSensitive(SHOWCASE_APPLICATION));
     newDashboardPage.testSaveResetApplyCompactModeProcessFilter();
   }
 
   @Test
   public void testSaveResetApplyCompactModeProcessFilterWhenExpanded() {
     newDashboardPage.getCompactModeProcessDisplayedFirstProcessItemName()
-        .shouldNotHave(Condition.exactTextCaseSensitive(SHOWCASE_DATA_TABLE));
+        .shouldNotHave(Condition.exactTextCaseSensitive(SHOWCASE_APPLICATION));
     newDashboardPage.expandCompactModeProcess();
     newDashboardPage.testSaveResetApplyCompactModeProcessFilterWhenExpanded();
   }
@@ -580,11 +580,11 @@ public class DashboardProcessWidgetTest extends BaseTest {
     // Change to COMPACT_MODE
     newDashboardDetailsEditPage = navigateToEditDashboardDetails();
     editProcessWidgetConfiguration = newDashboardDetailsEditPage.editFullModeProcess();
-    editProcessWidgetConfiguration.changeToCompactModeProcess(DATA_TABLE, SHOWCASE_DATA_TABLE);
+    editProcessWidgetConfiguration.changeToCompactModeProcess(SHOWCASE, SHOWCASE_APPLICATION);
     editProcessWidgetConfiguration.getCompactModeProcessCategoryFilter()
-        .shouldHave(Condition.value(SHOWCASE_DATA_TABLE_CATEGORY));
+        .shouldHave(Condition.value(SHOWCASE_CUSTOMIZED_CATEGORY));
     editProcessWidgetConfiguration.getCompactModeProcessSelectedProcess()
-        .shouldHave(Condition.exactTextCaseSensitive(SHOWCASE_DATA_TABLE));
+        .shouldHave(Condition.exactTextCaseSensitive(SHOWCASE_APPLICATION));
 
     // Change to FULL_MODE
     editProcessWidgetConfiguration.selectFullMode();
@@ -594,7 +594,7 @@ public class DashboardProcessWidgetTest extends BaseTest {
     // Change to COMPACT_MODE
     editProcessWidgetConfiguration.selectCompactMode();
     editProcessWidgetConfiguration.getCompactModeProcessCategoryFilter()
-        .shouldNotHave(Condition.value(SHOWCASE_DATA_TABLE_CATEGORY));
+        .shouldNotHave(Condition.value(SHOWCASE_CUSTOMIZED_CATEGORY));
 
     // Change to IMAGE_MODE
     editProcessWidgetConfiguration.selectImageMode();
@@ -611,7 +611,7 @@ public class DashboardProcessWidgetTest extends BaseTest {
   public void testSavedDataWhenChangeProcessDisplayMode() {
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
-    editProcessWidgetConfiguration.changeCompactModeProcessAndSaveWidget(DATA_TABLE, SHOWCASE_DATA_TABLE);
+    editProcessWidgetConfiguration.changeCompactModeProcessAndSaveWidget(SHOWCASE, SHOWCASE_APPLICATION);
     backToNewDashboardPage();
 
     // Change to FULL_MODE from COMPACT_MODE
@@ -625,11 +625,11 @@ public class DashboardProcessWidgetTest extends BaseTest {
     editProcessWidgetConfiguration = newDashboardDetailsEditPage.editFullModeProcess();
     editProcessWidgetConfiguration.selectCompactMode();
     editProcessWidgetConfiguration.getCompactModeProcessDisplayedCategoryFilter()
-        .shouldNotHave(Condition.value(SHOWCASE_DATA_TABLE_CATEGORY));
+        .shouldNotHave(Condition.value(SHOWCASE_CUSTOMIZED_CATEGORY));
     editProcessWidgetConfiguration.getCompactModeProcessSelectedProcess().shouldNotBe(Condition.exist);
 
     // Change to COMPACT_MODE from FULL_MODE
-    editProcessWidgetConfiguration.changeToCompactModeProcess(DATA_TABLE, SHOWCASE_DATA_TABLE);
+    editProcessWidgetConfiguration.changeToCompactModeProcess(SHOWCASE, SHOWCASE_APPLICATION);
     editProcessWidgetConfiguration.clickSaveProcessWidget();
     backToNewDashboardPage();
 

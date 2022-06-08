@@ -1,6 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
   xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
-  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:jsf="http://xmlns.jcp.org/jsf">
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:jsf="http://xmlns.jcp.org/jsf"
+  xmlns:pc="http://xmlns.jcp.org/jsf/composite/components">
 
 <p:tab id="state-tab">
   <p:remoteCommand id="build-statistic-case-states-#{widget.id}" name="buildStatisticCaseStates#{widget.id}"
@@ -88,9 +89,13 @@
           </div>
           <div class="ui-g-8">
             <ui:repeat var="creator" value="#{field.creators}">
-              <div>
-                <i class="fa #{creator.isUser() ? 'fa-user' : 'fa-users'} u-mar-right-5" />
-                <h:outputText value="#{dashboardCaseFilterBean.formatName(creator)}" />
+              <div class="#{avatarBean.isShowAvatar() ? 'owner-name-with-avatar' : ''}">
+                <pc:securityMemberNameAndAvatar
+                  displayName="#{dashboardCaseFilterBean.formatName(creator)}" securityMember="#{creator}">
+                  <f:facet name="alternativeAvatar">
+                    <h:outputText rendered="#{not avatarBean.isShowAvatar()}" styleClass="fa #{creator.isUser() ? 'fa-user' : 'fa-users'} u-mar-right-5" />
+                  </f:facet>
+                </pc:securityMemberNameAndAvatar>
               </div>
             </ui:repeat>
           </div>
@@ -102,9 +107,13 @@
           </div>
           <div class="ui-g-8">
             <ui:repeat var="owner" value="#{field.owners}">
-              <div>
-                <i class="fa #{owner.isUser() ? 'fa-user' : 'fa-users'} u-mar-right-5" />
-                <h:outputText value="#{dashboardCaseFilterBean.formatName(owner)}" />
+              <div class="#{avatarBean.isShowAvatar() ? 'owner-name-with-avatar' : ''}">
+                <pc:securityMemberNameAndAvatar
+                  displayName="#{dashboardCaseFilterBean.formatName(owner)}" securityMember="#{owner}">
+                  <f:facet name="alternativeAvatar">
+                    <h:outputText rendered="#{not avatarBean.isShowAvatar()}" styleClass="fa #{owner.isUser() ? 'fa-user' : 'fa-users'} u-mar-right-5" />
+                  </f:facet>
+                </pc:securityMemberNameAndAvatar>
               </div>
             </ui:repeat>
           </div>

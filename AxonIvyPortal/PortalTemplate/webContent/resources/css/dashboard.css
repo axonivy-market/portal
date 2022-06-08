@@ -15,8 +15,7 @@
 
 .new-widget-dialog__item {
   text-align: left;
-  border: none;
-  border-bottom: 1px solid #d8d8d8;
+  padding: 0.5em;
 }
 
 .ui-resizable-handle {
@@ -543,6 +542,11 @@ body .ui-calendar.task-configuration__calendar .ui-datepicker-trigger {
   right: -13px;
 }
 
+.widget-info-panel .owner-name-with-avatar,
+.widget-info-panel .owner-name-with-avatar .has-avatar {
+  margin-bottom: 5px;
+}
+
 .dashboard-cases--table table,
 .dashboard-tasks--table table {
   min-width: 100%;
@@ -702,7 +706,7 @@ body .dashboard__table--preview.ui-datatable tbody tr.ui-state-hover {
   height: 75px;
 }
 
-.new-widget-dialog__icon {
+span.new-widget-dialog__icon.si {
   font-size: 40px;
   text-align: center;
   width: 100%;
@@ -886,6 +890,7 @@ body .dashboard__table--preview.ui-datatable tbody tr.ui-state-hover {
 
 .process-task-case-container {
   padding: 2rem;
+  margin-top: 5rem;
 }
 
 .widget-preview--combined {
@@ -907,6 +912,7 @@ body .dashboard__table--preview.ui-datatable tbody tr.ui-state-hover {
 .dashboard-compact-process-item.process-start-list-item-name-text {
   width: calc(100% - 40px);
 }
+
 .dashboard-tasks--table .revelent-tasks__more {
   text-align: center;
   width: 90px;
@@ -914,8 +920,16 @@ body .dashboard__table--preview.ui-datatable tbody tr.ui-state-hover {
 .dashboard-tasks--table .revelent-tasks__expiry {
   width: 100px;
 }
+
 .dashboard-tasks--table .revelent-tasks__name {
   font-weight: var(--process-grid-name-font-weight);
+}
+
+@media(max-width: 767px) {
+  .dashboard-tasks--table .revelent-tasks__name {
+    width: 100%;
+    border-right: 1px solid #d8d8d8;
+  }
 }
 
 .dashboard-cases--table td.revelent-cases__name span{
@@ -1207,4 +1221,8 @@ body .dashboard__table--preview.ui-datatable tbody tr.ui-state-hover {
 
 .total-available-charts {
   font-weight: bold;
+}
+
+.has-avatar .case-info-avatar {
+  float: unset;
 }
