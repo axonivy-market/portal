@@ -106,6 +106,7 @@
       global="false" async="true" process="@this"
       oncomplete="loadWidgetFirstTime('js-loading-chart-#{widget.id}', 'js-dashboard-statistic-chart-#{widget.id}')" />
 
+    <p:poll id="thanh-test-chart-2" interval="3" update="@([id$='TaskByPriority'])" global="false" process="@this" partialSubmit="true"/>
     <h:panelGroup id="statistic-chart-widget__content" rendered="#{chart ne null}" layout="block"
       styleClass="statistic-chart-widget__content widget__content widget__content">
 
@@ -119,7 +120,7 @@
           <p class="empty-message-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/StatisticWidget/EmptyChartDataMessage')}</p>
         </h:panelGroup>
         <h:panelGroup rendered="#{!widget.chartEmpty}">
-          <p:donutChart model="#{chart.donutChartModel}"
+          <p:donutChart id="TaskByPriority" model="#{chart.donutChartModel}"
             rendered="#{dashboardStatisticChartBean.isTaskByPriority(chart)}"
             styleClass="statistic-chart-widget__canvas">
             <f:attribute name="selectedChartId" value="#{chart.id}" />
