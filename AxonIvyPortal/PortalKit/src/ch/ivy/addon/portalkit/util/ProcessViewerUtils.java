@@ -50,7 +50,7 @@ public class ProcessViewerUtils {
     }
     if (isCaseMap(selectedCase)) {
       ICaseMap caseMap =
-          Ivy.get(ICaseMapService.class).getCaseMapService(selectedCase.getBusinessCase()).find().current();
+          findCaseMapByCase(selectedCase);
       return getWebStartables().stream()
           .filter(filterById(caseMap.getUuid().toString())).findFirst()
           .orElse(null);
@@ -122,7 +122,7 @@ public class ProcessViewerUtils {
   }
 
   public static boolean isCaseMap(ICase caze) {
-    return !Objects.isNull(caze) && Ivy.get(ICaseMapService.class).getCaseMapService(caze.getBusinessCase()).find().current() != null;
+    return !Objects.isNull(findCaseMapByCase(caze));
   }
 
   public static boolean isShowProcessViewer(ICase caze) {
@@ -137,7 +137,7 @@ public class ProcessViewerUtils {
     if (selectedCase != null && !isExpressCase(selectedCase)) {
       if (isCaseMap(selectedCase)) {
         ICaseMap caseMap =
-            Ivy.get(ICaseMapService.class).getCaseMapService(selectedCase.getBusinessCase()).find().current();
+            findCaseMapByCase(selectedCase);
         return new CaseMapViewerUrl.Builder(caseMap).toWebLink();
       } else {
         String friendlyRequestPath = selectedCase.getProcessStart().getUserFriendlyRequestPath();
@@ -147,5 +147,12 @@ public class ProcessViewerUtils {
     }
     var webStartable = findWebStartable(caseId, processId);
     return webStartable.viewerLink();
+  }
+  
+  public static ICaseMap findCaseMapByCase(ICase caze) {
+    if (Objects.isNull(caze)) {
+      return null;
+    }
+    return Ivy.get(ICaseMapService.class).getCaseMapService(caze.getBusinessCase()).find().current();
   }
 }
