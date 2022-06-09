@@ -71,6 +71,15 @@ Pt0 @PushWFArc f61 '' #zField
 Pt0 @PushWFArc f57 '' #zField
 Pt0 @StartSub f55 '' #zField
 Pt0 @PushWFArc f59 '' #zField
+Pt0 @EndSub f63 '' #zField
+Pt0 @GridStep f64 '' #zField
+Pt0 @CallSub f65 '' #zField
+Pt0 @GridStep f68 '' #zField
+Pt0 @StartSub f70 '' #zField
+Pt0 @PushWFArc f71 '' #zField
+Pt0 @PushWFArc f74 '' #zField
+Pt0 @PushWFArc f76 '' #zField
+Pt0 @PushWFArc f77 '' #zField
 >Proto Pt0 Pt0 SecurityService #zField
 Pt0 f0 inParamDecl '<String username,String query,Integer startIndex,Integer count,java.util.List<String> fromRoles,java.util.List<String> excludedUsernames> param;' #txt
 Pt0 f0 inParamTable 'out.count=param.count;
@@ -635,6 +644,86 @@ Pt0 f55 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Pt0 f55 129 753 30 30 -67 22 #rect
 Pt0 f55 @|StartSubIcon #fIcon
 Pt0 f59 159 768 208 768 #arcP
+Pt0 f63 785 881 30 30 0 15 #rect
+Pt0 f63 @|EndSubIcon #fIcon
+Pt0 f64 actionTable 'out=in;
+' #txt
+Pt0 f64 actionCode 'import ch.ivy.addon.portalkit.ivydata.service.impl.SecurityService;
+import ch.ivy.addon.portalkit.ivydata.dto.IvySecurityResultDTO;
+
+IvySecurityResultDTO dto = SecurityService.newInstance().findRoles(in.apps, in.username);
+out.roles = dto.roles;
+out.errors = dto.errors;
+' #txt
+Pt0 f64 security system #txt
+Pt0 f64 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Find roles</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f64 448 874 112 44 -27 -8 #rect
+Pt0 f64 @|StepIcon #fIcon
+Pt0 f65 processCall 'Functional Processes/ErrorHandler:handle(List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException>)' #txt
+Pt0 f65 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;' #txt
+Pt0 f65 requestMappingAction 'param.exceptions=in.errors;
+' #txt
+Pt0 f65 responseActionDecl 'ch.ivyteam.wf.processes.SecurityServiceData out;
+' #txt
+Pt0 f65 responseMappingAction 'out=in;
+' #txt
+Pt0 f65 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>ErrorHandler</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f65 616 874 112 44 -35 -8 #rect
+Pt0 f65 @|CallSubIcon #fIcon
+Pt0 f68 actionTable 'out=in;
+' #txt
+Pt0 f68 actionCode 'import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
+
+RegisteredApplicationService service = new RegisteredApplicationService();
+out.apps = service.findActiveIvyAppsUserCanWorkOn(in.username);
+' #txt
+Pt0 f68 security system #txt
+Pt0 f68 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Find applications can work on</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f68 224 874 176 44 -81 -8 #rect
+Pt0 f68 @|StepIcon #fIcon
+Pt0 f70 inParamDecl '<String username> param;' #txt
+Pt0 f70 inParamTable 'out.username=param.username;
+' #txt
+Pt0 f70 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> errors,java.util.List<ch.ivyteam.ivy.security.IRole> roles> result;' #txt
+Pt0 f70 outParamTable 'result.errors=in.errors;
+result.roles=in.roles;
+' #txt
+Pt0 f70 callSignature findRolesOfUserOverAllApplications(String) #txt
+Pt0 f70 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>findRolesOfUserOverAllApplications(String)</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f70 129 881 30 30 -87 22 #rect
+Pt0 f70 @|StartSubIcon #fIcon
+Pt0 f71 expr out #txt
+Pt0 f71 400 896 448 896 #arcP
+Pt0 f74 expr out #txt
+Pt0 f74 159 896 224 896 #arcP
+Pt0 f76 expr out #txt
+Pt0 f76 728 896 785 896 #arcP
+Pt0 f77 expr out #txt
+Pt0 f77 560 896 616 896 #arcP
 >Proto Pt0 .type ch.ivyteam.wf.processes.SecurityServiceData #txt
 >Proto Pt0 .processKind CALLABLE_SUB #txt
 >Proto Pt0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -715,3 +804,11 @@ Pt0 f60 mainOut f57 tail #connect
 Pt0 f57 head f56 mainIn #connect
 Pt0 f55 mainOut f59 tail #connect
 Pt0 f59 head f58 mainIn #connect
+Pt0 f68 mainOut f71 tail #connect
+Pt0 f71 head f64 mainIn #connect
+Pt0 f64 mainOut f77 tail #connect
+Pt0 f77 head f65 mainIn #connect
+Pt0 f70 mainOut f74 tail #connect
+Pt0 f74 head f68 mainIn #connect
+Pt0 f65 mainOut f76 tail #connect
+Pt0 f76 head f63 mainIn #connect
