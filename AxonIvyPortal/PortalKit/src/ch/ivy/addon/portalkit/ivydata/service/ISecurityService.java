@@ -32,7 +32,7 @@ public interface ISecurityService {
   IvySecurityResultDTO findUsers(String query, IApplication app, int startIndex, int count, List<String> fromRoles, List<String> excludedUsernames);
   
   /**
-   * Gets roles of the given application name
+   * Gets roles of multiple applications
    * @param apps
    * @return {@link IvySecurityResultDTO}
    */
@@ -83,4 +83,11 @@ public interface ISecurityService {
    */
   IvySecurityResultDTO findAllUsersOfRoles(IApplication app, int startIndex, int count, List<String> fromRoles, List<String> excludedUsernames);
 
+  /**
+   * Gets roles from multiple applications which user has direct or indirect
+   * @param apps
+   * @param userName  
+   * @return {@link IvySecurityResultDTO}
+   */
+  IvySecurityResultDTO findRoles(List<String> apps, String userName);
 }

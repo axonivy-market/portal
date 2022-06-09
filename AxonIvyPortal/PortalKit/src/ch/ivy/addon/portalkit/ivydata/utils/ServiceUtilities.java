@@ -309,5 +309,27 @@ public class ServiceUtilities {
     List<SecurityMemberDTO> members = SecurityMemberDTOMapper.mapFromRoleDTOs(roles);
     return CollectionUtils.isEmpty(members) ? null : members.get(0);
   }
+  
+  public static List<IRole> getAllVisibleIvyRolesOfUser(IApplication app, String userName) {
+    IUser findUser = app.getSecurityContext().findUser(userName);
+    if (findUser != null) {
+      List<IRole> roles = findUser.getAllRoles();
+      roles.removeIf(role -> role.getProperty(AdditionalProperty.HIDE.toString()) != null);
+      return roles;
+    } 
+    return new ArrayList<>();
+  }
+  
+  /**
+   * Finds all of the roles within the given app of user, except the roles have the HIDE property
+   * 
+   * @param app
+   * @param userName 
+   * @return roles
+   */
+  public static List<IRole> findAllRolesOfUser(IApplication app, String userName) {
+    requireNonNull(app);
+    return getAllVisibleIvyRolesOfUser(app, userName);
+  }
 
 }
