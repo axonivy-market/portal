@@ -12,10 +12,12 @@
   <cc:attribute name="isDrilldownExpiryChart" default="false" />
   <cc:attribute name="showTaskListImmediately" default="false" />
   <cc:attribute name="isBackFromDrilldown" default="false" />
+  <cc:attribute name="idChartDisplay" default="#{data.isCompactMode ? 'statistic-carousel-container':'statistic-chart-repeater-container'}" />
   <cc:facet name="emptyDataPlace" shortDescription="user can override empty message with this place" />
 </cc:interface>
 
 <cc:implementation>
+  <c:set var="idChartDisplay" value="#{data.isCompactMode ? 'statistic-carousel-container':'statistic-chart-repeater-container'}"/>
   <f:event listener="#{logic.initialize(cc.attrs.statisticChartList,cc.attrs.showTaskListImmediately, cc.attrs.isBackFromDrilldown, cc.attrs.compactMode, cc.attrs.isDrilldownExpiryChart)}"
     type="preRenderComponent" />
   <h:panelGroup id="statistic-container" layout="block" styleClass="ui-g-12 u-padding-0">
@@ -126,6 +128,8 @@
       <ic:ch.ivy.addon.portalkit.component.statistic.ElapsedTimeChartDetails id="elapsed-time-chart-details"
         caseCategory="#{data.selectedCaseCategory}" statisticChart="#{data.selectedStatisticChart}" />
     </h:panelGroup>
+    <p:outputLabel value="#{data.statisticChartList}"></p:outputLabel>
+    <p:outputLabel value="#{idChartDisplay}"></p:outputLabel>
   </h:panelGroup>
 
   <h:form id="statistic-form" styleClass="u-hidden">
@@ -133,6 +137,11 @@
       update="#{data.isReloadChartContent ? p:resolveFirstComponentWithId(data.isCompactMode ? 'statistic-carousel-container':'statistic-chart-repeater-container', view).clientId  : '' }"
       global="false" action="#{logic.generateChartModel}" async="true"
       immediate="true" process="@this" partialSubmit="true"/>
+
+<!--     <p:poll id="thanh-test-chart-1" interval="3" update="@([id$='statistic-carousel-container'])" global="false"
+      process="@this" partialSubmit="true" async="true" immediate="true" listener="#{logic.regenerateChartModel(data.statisticChartList)}"/> -->
+    <p:poll id="thanh-test-chart-1" interval="3" update="@([id$= #{idChartDisplay}])" global="false"
+      process="@this" partialSubmit="true" async="true" immediate="true" listener="#{logic.regenerateChartModel(data.statisticChartList)}"/>
 
     <p:remoteCommand rendered="#{cc.attrs.compactMode}" name="updateStatisticCarousel" update="@([id$='statistic-carousel-container'])" 
       global="false" immediate="true" process="@this" partialSubmit="true"/>
