@@ -23,6 +23,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.apache.commons.lang3.StringUtils;
+
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.persistence.PersistencyException;
@@ -177,23 +179,6 @@ public class SecurityUtils {
               } catch (InterruptedException ie) {
                 // NOP
               }
-              // } catch (PersistencyException pe) {
-              // Ivy.log().error("Cannot connect for roles:"+pe);
-              // Ivy.log().error("Retries left:"+t);
-              // t--;
-              // int s = 1;
-              // if (Ivy.session() != null) {
-              // s = Ivy.session().getIdentifier()+1;
-              // while (s>10) {
-              // s = s / 2;
-              // }
-              // }
-              // try {
-              // Thread.sleep(1000 * s); //wait N secs
-              // }
-              // catch (InterruptedException ie) {
-              // //NOP
-              // }
             }
           }
           return false;
@@ -237,7 +222,7 @@ public class SecurityUtils {
             List<IUser> result1 = new ArrayList<IUser>();
             List<IUser> users = Ivy.security().users().paged().stream().collect(Collectors.toList());
             for (IUser u : users) {
-              if (u.getId() != Ivy.security().users().system().getId()) {
+              if (!StringUtils.equals(u.getSecurityMemberId(), Ivy.security().users().system().getSecurityMemberId())) {
                 result1.add(u);
               }
             }

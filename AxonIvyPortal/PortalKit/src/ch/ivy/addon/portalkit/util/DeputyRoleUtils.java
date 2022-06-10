@@ -34,7 +34,7 @@ public class DeputyRoleUtils {
         IRole substitutionRole = ivySubstitute.getSubstitionRole();
         DeputyRoleType deputyRoleType = null;
         if (substitutionRole != null) {
-          deputyRoleKey = String.valueOf(substitutionRole.getId());
+          deputyRoleKey = substitutionRole.getSecurityMemberId();
           deputyRoleType = DeputyRoleType.TASK_FOR_ROLE;
         } else if(SubstitutionType.PERMANENT.equals(ivySubstitute.getSubstitutionType())) {
           deputyRoleKey = personalTaskPermanentKey;

@@ -71,6 +71,7 @@ public class ExpressManagementUtils {
    * @return List of Express workflow
    */
   public static List<ExpressProcess> findExpressProcesses() {
+    
     List<ExpressProcess> expressProcesses = new ArrayList<>();
     List<ExpressProcess> workflows = ExpressProcessService.getInstance().findReadyToExecuteProcessByProcessType(REPEAT_EXPRESS);
     for (ExpressProcess wf : workflows) {
