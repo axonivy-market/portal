@@ -63,7 +63,7 @@ public final class ChatMessageManager {
   }
 
   private static void replaceSenderAndRecipientNamesByIds(ChatMessage message) {
-    message.setSender(Long.toString(ChatGroupUtils.findUserByUsername(message.getSender()).getId()));
+    message.setSender(ChatGroupUtils.findUserByUsername(message.getSender()).getSecurityMemberId());
     message.setRecipients(replaceUsernameByUserId(message.getRecipients()));
   }
 
@@ -71,7 +71,7 @@ public final class ChatMessageManager {
     List<String> updatedParticipants = new ArrayList<>();
     for (String participant : participants) {
       IUser participantUser = ChatGroupUtils.findUserByUsername(participant);
-      updatedParticipants.add(Long.toString(participantUser.getId()));
+      updatedParticipants.add(participantUser.getSecurityMemberId());
     }
     return updatedParticipants;
   }
@@ -148,7 +148,7 @@ public final class ChatMessageManager {
 
   private static void saveGroupMessageToFile(ChatMessage message, String filepath) {
     String senderName = message.getSender();
-    message.setSender("#".concat(Long.toString(ChatGroupUtils.findUserByUsername(message.getSender()).getId())));
+    message.setSender("#".concat(ChatGroupUtils.findUserByUsername(message.getSender()).getSecurityMemberId()));
     String convertedMessage = new Gson().toJson(message);
     try {
       File conversation = new File(filepath);
@@ -240,7 +240,7 @@ public final class ChatMessageManager {
 
   private static String getSenderId(String sender) {
     if (StringUtils.isNotBlank(sender) && !isGroupChat(sender)) {
-      return Long.toString(findUser(sender).getId());
+      return findUser(sender).getSecurityMemberId();
     }
     return sender;
   }
@@ -253,7 +253,7 @@ public final class ChatMessageManager {
   }
 
   private static IUser findUserById(String senderId) {
-    return wf().getSecurityContext().users().find(Long.valueOf(senderId));
+    return wf().getSecurityContext().users().findById(senderId);
   }
 
   public static void storeUnreadMessageForGroupChat(ChatMessage message, long caseId) {
