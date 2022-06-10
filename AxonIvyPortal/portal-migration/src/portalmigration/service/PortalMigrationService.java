@@ -7,10 +7,9 @@ import org.apache.commons.lang3.StringUtils;
 
 import ch.ivyteam.ivy.application.ActivityState;
 import ch.ivyteam.ivy.application.IApplication;
-import ch.ivyteam.ivy.application.IApplicationConfigurationManager;
 import ch.ivyteam.ivy.application.ILibrary;
+import ch.ivyteam.ivy.application.app.IApplicationRepository;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.server.ServerFactory;
 import portalmigration.enums.PortalLibrary;
 import portalmigration.version91.migrate.config.service.ApplicationPropertyMigrationService;
 import portalmigration.version91.migrate.statistic.service.StatisticMigrationService;
@@ -67,9 +66,8 @@ public class PortalMigrationService {
   }
 
   protected static List<IApplication> getPortalApps() {
-    List<IApplication> applications = applicationManager().getApplications();
     List<IApplication> portalApps = new ArrayList<>();
-    for (IApplication app : applications) {
+    for (var app : IApplicationRepository.instance().all()) {
       List<ILibrary> libraries = app.getLibraries();
       for (ILibrary lib : libraries) {
         if (StringUtils.endsWith(lib.getId(), PortalLibrary.PORTAL_TEMPLATE.getProjectId())
@@ -80,9 +78,5 @@ public class PortalMigrationService {
       }
     }
     return portalApps;
-  }
-
-  private static IApplicationConfigurationManager applicationManager() {
-    return ServerFactory.getServer().getApplicationConfigurationManager();
   }
 }
