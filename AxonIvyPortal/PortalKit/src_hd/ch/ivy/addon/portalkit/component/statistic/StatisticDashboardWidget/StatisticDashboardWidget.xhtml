@@ -138,10 +138,8 @@
       global="false" action="#{logic.generateChartModel}" async="true"
       immediate="true" process="@this" partialSubmit="true"/>
 
-<!--     <p:poll id="thanh-test-chart-1" interval="3" update="@([id$='statistic-carousel-container'])" global="false"
-      process="@this" partialSubmit="true" async="true" immediate="true" listener="#{logic.regenerateChartModel(data.statisticChartList)}"/> -->
-    <p:poll id="thanh-test-chart-1" interval="3" update="@([id$= #{idChartDisplay}])" global="false"
-      process="@this" partialSubmit="true" async="true" immediate="true" listener="#{logic.regenerateChartModel(data.statisticChartList)}"/>
+    <p:poll id="thanh-test-chart-1" interval="#{statisticChartCreationBean.statisticChartsPolling}" update="@([id$=#{idChartDisplay}])" global="false"
+      process="@this" partialSubmit="true" async="true" immediate="true" listener="#{logic.regenerateChartModel(data.statisticChartList)}" rendered="#{statisticChartCreationBean.statisticChartsPolling ne 0}"/>
 
     <p:remoteCommand rendered="#{cc.attrs.compactMode}" name="updateStatisticCarousel" update="@([id$='statistic-carousel-container'])" 
       global="false" immediate="true" process="@this" partialSubmit="true"/>
