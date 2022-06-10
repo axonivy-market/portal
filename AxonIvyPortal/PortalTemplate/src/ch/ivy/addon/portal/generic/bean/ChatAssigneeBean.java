@@ -157,7 +157,7 @@ public class ChatAssigneeBean implements Serializable {
     if (existedGroupChat != null) {
       Set<String> assigneeNames = existedGroupChat.getAssigneeNames();
       if (CollectionUtils.isNotEmpty(assigneeNames)) {
-        assigneeNames.add("#".concat(Long.toString(Ivy.session().getSessionUser().getId())));
+        assigneeNames.add("#".concat(Ivy.session().getSessionUser().getSecurityMemberId()));
         String groupChatName = getGroupChatName(existedGroupChat);
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO,
             Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/chat/joinedProcessChat",

@@ -67,8 +67,9 @@ public abstract class AbstractFilterService<T extends AbstractFilterData<?>> ext
 
   public List<T> getPrivateFilterForCurrentUser(Long filterGroupId) {
     try {
+      long id = Long.valueOf(Ivy.session().getSessionUser().getSecurityMemberId());
       Filter<T> privateFilterQuery =
-          repo().search(getType()).numberField(USER_ID).isEqualTo(Ivy.session().getSessionUser().getId()).and()
+          repo().search(getType()).numberField(USER_ID).isEqualTo(id).and()
               .textField(FILTER_TYPE).isEqualToIgnoringCase(ONLY_ME.name()).and().numberField(FILTER_GROUP_ID)
               .isEqualTo(filterGroupId);
       Result<T> queryResult = privateFilterQuery.orderBy().textField(FILTER_NAME).ascending().limit(LIMIT_20).execute();
@@ -102,7 +103,8 @@ public abstract class AbstractFilterService<T extends AbstractFilterData<?>> ext
   public boolean isFilterExisted(String name, FilterType type, Long filterGroupId) {
     switch (type) {
       case ONLY_ME:
-        return repo().search(getType()).numberField(USER_ID).isEqualTo(Ivy.session().getSessionUser().getId()).and()
+        long id = Long.valueOf(Ivy.session().getSessionUser().getSecurityMemberId());
+        return repo().search(getType()).numberField(USER_ID).isEqualTo(id).and()
             .textField(FILTER_TYPE).isEqualToIgnoringCase(ONLY_ME.name()).and().textField(FILTER_NAME)
             .isEqualToIgnoringCase(name).and().numberField(FILTER_GROUP_ID).isEqualTo(filterGroupId).limit(1).execute().count() > 0;
       case ALL_ADMINS:
@@ -126,15 +128,15 @@ public abstract class AbstractFilterService<T extends AbstractFilterData<?>> ext
         isDeleteFilterEnabled = true;
         break;
       default:
-        boolean isOwnerOfFilter = Optional.ofNullable(Ivy.session().getSessionUser()).map(IUser::getId).orElse(-1L)
-            .equals(filterData.getUserId());
+        Long sessionUserId = Long.valueOf(Optional.ofNullable(Ivy.session().getSessionUser()).map(IUser::getSecurityMemberId).orElse("-1"));
+        boolean isOwnerOfFilter = sessionUserId.equals(filterData.getUserId());
         boolean isAdmin = new PermissionBean().hasAdminPermission();
         isDeleteFilterEnabled = isOwnerOfFilter || isAdmin;
         break;
     }
     return isDeleteFilterEnabled;
   }
-
+  
   /**
    * Get list of private filter by filter type 
    * @param firstIndex index of first entity
