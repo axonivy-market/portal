@@ -69,7 +69,13 @@
             "  // Show error",
             "  in.isError = true;",
             "}",
-            "in.webStartable = webStartable;"
+            "in.webStartable = webStartable;",
+            "",
+            "in.webLink = ProcessViewerUtils.getViewerWebLink(in.caseId, in.processId);",
+            "if (in.webLink == null) {",
+            "  // Show error",
+            "  in.isError = true;",
+            "}"
           ]
         }
       },
