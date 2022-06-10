@@ -37,7 +37,6 @@ public class ProcessItemActionBean extends ProcessWidgetBean {
   }
 
   public boolean isShowProcessViewer(Process process) {
-    return this.showProcessViewer && process.getType() == ProcessType.IVY_PROCESS
-        && !isCaseMap(process);
+    return this.showProcessViewer && process.getType() == ProcessType.IVY_PROCESS;
   }
 }

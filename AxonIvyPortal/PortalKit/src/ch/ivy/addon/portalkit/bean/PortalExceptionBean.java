@@ -12,9 +12,8 @@ import org.primefaces.application.exceptionhandler.ExceptionInfo;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
+import ch.ivyteam.ivy.application.IApplicationConfigurationManager;
 import ch.ivyteam.ivy.bpm.error.BpmError;
-import ch.ivyteam.ivy.server.ServerFactory;
-import ch.ivyteam.ivy.system.ISystemProperty;
 import ch.ivyteam.util.IvyRuntimeException;
 
 @ManagedBean
@@ -35,8 +34,7 @@ public class PortalExceptionBean implements Serializable {
   }
 
   private boolean findShowErrorDetailSystemProperty() {
-    ISystemProperty systemProp = ServerFactory.getServer()
-        .getApplicationConfigurationManager().getSystemProp(SHOW_STACK_TRACE);
+    var systemProp = IApplicationConfigurationManager.instance().getSystemProp(SHOW_STACK_TRACE);
     return systemProp.getBooleanValue();
   }
 
@@ -50,7 +48,7 @@ public class PortalExceptionBean implements Serializable {
           BpmError bpmError = (BpmError) exception.getCause();
           this.errorId = bpmError.getId();
           this.processElement = getStringValue(bpmError.getThreadLocalValue(PROCESS_ELEMENT));
-          this.pmv = getStringValue(bpmError.getThreadLocalValue(PMV)); 
+          this.pmv = getStringValue(bpmError.getThreadLocalValue(PMV));
         } else {
           IvyRuntimeException ivyRuntimeException = new IvyRuntimeException(exception);
           this.errorId = ivyRuntimeException.getId();
@@ -64,7 +62,7 @@ public class PortalExceptionBean implements Serializable {
   private String getStringValue(Object object) {
     return Objects.toString(object, "");
   }
-  
+
   public ExceptionInfo getExceptionInfo() {
     return exceptionInfo;
   }
@@ -80,7 +78,7 @@ public class PortalExceptionBean implements Serializable {
   public String getProcessElement() {
     return processElement;
   }
-  
+
   public boolean getIsShowErrorLogToConsole() {
     return new GlobalSettingService().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_ERROR_LOG_TO_CONSOLE);
   }
