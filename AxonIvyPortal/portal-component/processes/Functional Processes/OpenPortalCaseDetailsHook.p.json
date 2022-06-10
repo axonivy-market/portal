@@ -1,0 +1,35 @@
+{
+  "format" : "9.4.10",
+  "id" : "180FE8A208E4D985",
+  "data" : "com.axonivy.portal.component.OpenPortalCaseDetailsHookData",
+  "kind" : "CALLABLE_SUB",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "CallSubStart",
+      "name" : "call(ICase,Boolean)",
+      "config" : {
+        "callSignature" : "call",
+        "input" : {
+          "params" : [
+            { "name" : "caseData", "type" : "ch.ivyteam.ivy.workflow.ICase" },
+            { "name" : "isShowBackButton", "type" : "Boolean" }
+          ],
+          "map" : {
+            "out.caseView" : "param.caseData",
+            "out.isShowBackButton" : "param.isShowBackButton"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 },
+        "labelOffset" : { "x" : -13, "y" : 17 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f1",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 64 }
+      }
+    } ]
+}
