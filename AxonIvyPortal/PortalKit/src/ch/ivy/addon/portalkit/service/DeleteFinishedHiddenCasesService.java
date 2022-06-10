@@ -13,14 +13,14 @@ import ch.ivyteam.ivy.application.ILibrary;
 import ch.ivyteam.ivy.application.IProcessModel;
 import ch.ivyteam.ivy.application.IProcessModelVersion;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.server.ServerFactory;
+import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery;
 
 public class DeleteFinishedHiddenCasesService {
- 
+
   private static final String DELETE_ALL_FINISHED_HIDDEN_CASES = "PortalDeleteAllFinishedHiddenCases";
 
   public void deleteFinishedHiddenCases() {
@@ -68,10 +68,10 @@ public class DeleteFinishedHiddenCasesService {
     currentDate = new java.util.Date();
     Ivy.log().info("***Job for deleting finished hidden cases (deleted " + numOfDeletedCases + " cases) has ended at: " + currentDate);
   }
-  
+
   private IProcessModelVersion findPortalPMVByLibraryId(IApplication app, String libraryId) {
     try {
-      return ServerFactory.getServer().getSecurityManager().executeAsSystem(()->{
+      return Sudo.call(()->{
         List<IProcessModel> pms = app.getProcessModels();
         for (IProcessModel pm : pms) {
           IProcessModelVersion pmv = pm.getReleasedProcessModelVersion();

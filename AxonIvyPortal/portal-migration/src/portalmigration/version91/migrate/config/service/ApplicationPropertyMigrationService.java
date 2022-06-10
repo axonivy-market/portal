@@ -1,7 +1,5 @@
 package portalmigration.version91.migrate.config.service;
 
-import static ch.ivyteam.ivy.server.ServerFactory.getServer;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -12,9 +10,9 @@ import org.apache.commons.lang3.StringUtils;
 
 import ch.ivyteam.ivy.application.ActivityState;
 import ch.ivyteam.ivy.application.IApplication;
+import ch.ivyteam.ivy.application.app.IApplicationRepository;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUser;
-import ch.ivyteam.ivy.server.ServerFactory;
 import ch.ivyteam.ivy.workflow.WorkflowNavigationUtil;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 import portalmigration.enums.ProcessType;
@@ -36,29 +34,29 @@ public class ApplicationPropertyMigrationService {
     if (systemApp == null) {
       Ivy.log().error("SYSTEM application not found");
       return;
-    } 
+    }
     ApplicationDao applicationDao = new ApplicationDao();
     applicationDao.setIvyApplication(systemApp);
     List<Application> configuredApps = applicationDao.findAll().stream().filter(app -> app.getServerId() != null).collect(Collectors.toList());
-    
+
     List<IApplication> ivyApps = new ArrayList<>();
     if (configuredApps.isEmpty()) {
       ivyApps.add(IApplication.current());
     } else {
       for (Application item : configuredApps) {
-        IApplication foundApp = ServerFactory.getServer().getApplicationConfigurationManager().findApplication(item.getName());
+        var foundApp = IApplicationRepository.instance().findByName(item.getName()).orElse(null);
         if (foundApp != null && foundApp.getActivityState() == ActivityState.ACTIVE) {
           ivyApps.add(foundApp);
         }
       }
     }
-    
+
     migrateThirdPartyApplication(ivyApps);
     // Must migrate external link before user process
     migrateExternalLink(ivyApps);
     migrateUserProcess(ivyApps);
     migrateGlobalSetting(ivyApps);
-    
+
   }
 
   private static void migrateThirdPartyApplication(List<IApplication> ivyApps) {
@@ -68,12 +66,12 @@ public class ApplicationPropertyMigrationService {
     applicationDao.setIvyApplication(systemApp);
     List<Application> findAll = applicationDao.findAll();
     List<Application> thirdPartyApps = findAll.stream().filter(app -> app.getServerId() == null).collect(Collectors.toList());
-    
+
     if (!thirdPartyApps.isEmpty()) {
       for (IApplication app : ivyApps) {
         ApplicationDao currentApplicationDao = new ApplicationDao();
         currentApplicationDao.setIvyApplication(app);
-        
+
         thirdPartyApps.forEach(thirdApp ->{
           Application item = new Application();
           item.setDisplayName(thirdApp.getDisplayName());
@@ -109,13 +107,13 @@ public class ApplicationPropertyMigrationService {
           } else {
             username = userProcess.getUserName();
           }
-          
-          
+
+
           for (IApplication app : ivyApps) {
-            
+
             userProcessDao.setIvyApplication(app);
             UserProcess item = new UserProcess();
-          
+
             item.setApplicationId(app.getId());
             item.setDefaultProcess(userProcess.isDefaultProcess());
             item.setDescription(userProcess.getDescription());
@@ -124,30 +122,30 @@ public class ApplicationPropertyMigrationService {
             item.setLink(StringUtils.isNotBlank(userProcess.getWorkflowId()) ? userProcess.getLink() : updateAppForLink(userProcess.getLink(), app.getName()));
             item.setNames(userProcess.getNames());
             item.setProcessName(userProcess.getProcessName());
-            
+
             item.setExternalLink(userProcess.isExternalLink());
             item.setWorkflowId(userProcess.getWorkflowId());
-            
+
             // Update workflow id for external link since id is changed
             if (item.isExternalLink()) {
               List<ExternalLink> list = savedExternalLink.get(app.getId());
               ExternalLink found = list.stream().filter(link -> link.getLink().equals(item.getLink()) && link.getName().equals(item.getProcessName())).findFirst().orElse(null);
               if (found != null) {
                 item.setWorkflowId(found.getId().toString());
-              } 
+              }
             }
-            
+
             Long findUserId = findUserId(username, app);
             item.setUserId(findUserId);
-            
-            
+
+
             if (StringUtils.isNotBlank(item.getWorkflowId())) {
               item.setProcessType(userProcess.isExternalLink()? ProcessType.EXTERNAL_LINK : ProcessType.EXPRESS_PROCESS);
               item.setProcessId(item.getWorkflowId());
             } else {
               IUser user = findUserId(item.getUserId(), app);
               if (user != null) {
-                
+
                 List<IWebStartable> startables = WorkflowNavigationUtil.getWorkflowContext(app).getStartables(user);
                 startables.forEach(x -> {
                   if (x.getLink().getRelativeEncoded().equals(item.getLink())) {
@@ -157,33 +155,33 @@ public class ApplicationPropertyMigrationService {
               }
               item.setProcessType(ProcessType.IVY_PROCESS);
             }
-            
+
             if (StringUtils.isNotBlank(item.getProcessId())) {
               item.setLink("");
             }
-            
+
             userProcessDao.save(item);
           }
 
       }
     }
   }
-  
+
   private static IUser findUserId(Long userId, IApplication app) {
     return IvyExecutor.executeAsSystem(() ->{
       return app.getSecurityContext().users().find(userId);
     });
   }
-  
+
   private static Long findUserId(String username, IApplication application) {
     return IvyExecutor.executeAsSystem(() ->{
       IUser findUser = application.getSecurityContext().users().find(username);
       return findUser != null ? findUser.getId() : -1;
     });
   }
-  
+
   private static void migrateExternalLink(List<IApplication> ivyApps) {
-    
+
     ExternalLinkDao systemExternalLinkDao = new ExternalLinkDao();
     systemExternalLinkDao.setIvyApplication(getSystemApp());
     List<ExternalLink> allExternalLink = systemExternalLinkDao.findAll();
@@ -204,12 +202,12 @@ public class ApplicationPropertyMigrationService {
         }
         for (IApplication app : ivyApps) {
           externalLinkDao.setIvyApplication(app);
-          
+
           ExternalLink item = new ExternalLink();
           item.setLink(link.getLink());
           item.setName(link.getName());
           item.setPublic(link.isPublic());
-          
+
           Long findUserId = findUserId(username, app);
           item.setCreatorId(findUserId);
           ExternalLink save = externalLinkDao.save(item);
@@ -223,7 +221,7 @@ public class ApplicationPropertyMigrationService {
       }
     }
   }
-  
+
   private static void migrateGlobalSetting(List<IApplication> ivyApps) {
     List<GlobalSetting> result = new ArrayList<>();
     GlobalSettingDao globalSettingDao = new GlobalSettingDao();
@@ -237,17 +235,17 @@ public class ApplicationPropertyMigrationService {
             GlobalSetting item = new GlobalSetting();
             item.setKey(setting.getKey());
             item.setValue(setting.getValue());
-            
+
             result.add(item);
           });
           currentAppGlobalSettingDao.saveAll(result);
         }
     }
-    
+
   }
-  
+
   private static IApplication getSystemApp() {
-    return IvyExecutor.executeAsSystem(() -> getServer().getApplicationConfigurationManager().getSystemApplication());
+    return IvyExecutor.executeAsSystem(() -> IApplicationRepository.instance().system().orElse(null));
   }
 
   private static String updateAppForLink(String link, String appName) {
