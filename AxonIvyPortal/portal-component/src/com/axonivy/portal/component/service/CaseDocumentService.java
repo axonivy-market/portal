@@ -118,10 +118,10 @@ public class CaseDocumentService {
     return false;
   }
 
-  public static boolean isDocumentTypeHasVirus(UploadedFile uploadedFile) throws IOException {
+  public static boolean isDocumentTypeHasVirus(UploadedFile uploadedFile) {
     VirusScannerService service = new VirusScannerService(VirusScanner.class.getClassLoader());
     try {
-      service.performVirusScan(uploadedFile.getInputStream());
+      service.performVirusScan(uploadedFile);
     } catch (VirusException e) {
       Ivy.log().error(e);
       return true;

@@ -11,6 +11,7 @@
   <cc:attribute name="downloadRendered" default="true" />
   <cc:attribute name="deleteRendered" default="true" />
   <cc:attribute name="messageRendered" default="true" />
+  <cc:attribute name="renderChooseUploadIcon" default="true" />
   
   <cc:attribute name="fileLimit" type="Integer" shortDescription="Number of files are in the given ICase" default="-1" />
   <cc:attribute name="uploadText" default="#{ivy.cms.co('/Dialogs/com/axonivy/portal/component/DocumentTable/Upload')}" />
@@ -18,17 +19,18 @@
 
   <cc:attribute name="downloadText" default="#{ivy.cms.co('/Dialogs/com/axonivy/portal/component/DocumentTable/Download')}" />
   <cc:attribute name="downloadTitle" default="#{ivy.cms.co('/Dialogs/com/axonivy/portal/component/DocumentTable/Download')}" />
-  <cc:attribute name="downloadIcon" default="fa-download" />
+  <cc:attribute name="downloadIcon" default="si si-download-bottom" />
   <cc:attribute name="downloadStyleClass" />
 
   <cc:attribute name="deleteText" default="#{ivy.cms.co('/Dialogs/com/axonivy/portal/component/DocumentTable/Delete')}" />
   <cc:attribute name="deleteTitle" default="#{ivy.cms.co('/Dialogs/com/axonivy/portal/component/DocumentTable/Delete')}" />
-  <cc:attribute name="deleteIcon" default="fa-trash-o" />
+  <cc:attribute name="deleteIcon" default="si si-bin-1" />
   <cc:attribute name="deleteStyleClass" />
   <cc:attribute name="updatedComponentAfterDeleted" />
   
   <cc:attribute name="selectedType" />
   <cc:attribute name="typeSelectionItems" shortDescription="Use #{documentUploadBean.documentTypes} if there are no custom Document Type" />
+  <cc:attribute name="notInDynaform" default="true" />
   
   <cc:attribute name="enableScriptCheckingForUploadedDocument" default="false" />
   <cc:attribute name="enableVirusScannerForUploadedDocument" default="false" />
@@ -47,6 +49,7 @@
   <div id="#{cc.clientId}" class="document-table-component">
 
     <cc:renderFacet name="componentHeader" />
+    <p:dataTable id="empty-table" value="#{data.emptyList}" rendered="#{not cc.attrs.notInDynaform}" styleClass="document-empty-table"/>
 
     <p:messages id="document-messages" for="document-messages" rendered="#{cc.attrs.messageRendered}" />
     <p:dataTable id="document-table" value="#{data.documents}" var="document"
@@ -89,9 +92,10 @@
     <div class="ui-g">
       <h:panelGroup layout="block" rendered="#{cc.attrs.typeColumnRendered or cc.attrs.uploadRendered}" styleClass="upload-container ui-g-12">
         <p:fileUpload id="document-upload" mode="advanced" auto="true" dragDropSupport="true"
+          chooseIcon="#{cc.attrs.renderChooseUploadIcon? 'si si-add-small' : '' }"
           listener="#{logic.upload}"
           rendered="#{cc.attrs.uploadRendered}"
-          update="document-table document-messages #{cc.attrs.updatedComponentAfterUploaded}"
+          update="document-table empty-table document-messages #{cc.attrs.updatedComponentAfterUploaded}"
           invalidSizeMessage="#{documentUploadBean.getFileUploadInvalidSizeMessage()}" 
           label="#{not empty cc.attrs.uploadText ? cc.attrs.uploadText : ivy.cms.co('/Dialogs/com/axonivy/portal/component/DocumentTable/Upload')}"
           cancelLabel="#{ivy.cms.co('/Dialogs/com/axonivy/portal/component/Common/Cancel')}"
@@ -107,7 +111,7 @@
       </h:panelGroup>
     </div>
     
-    <cc:renderFacet name="componentFooter" />
+    <cc:renderFacet name="componentFooter" rendered="#{cc.attrs.notInDynaform}"/>
 
     <p:dialog id="document-delete-dialog" widgetVar="document-delete-dialog" appendTo="@(body)" closable="true"
       closeOnEscape="true" modal="true" draggable="false" rendered="#{cc.attrs.deleteRendered}"
