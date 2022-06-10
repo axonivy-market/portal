@@ -14,7 +14,7 @@ public class RoleDTO {
   }
   
   public RoleDTO(IRole iRole) {
-    id = iRole.getId();
+    id = Long.valueOf(iRole.getSecurityMemberId());
     name = iRole.getName();
     displayName = iRole.getDisplayName();
     memberName = iRole.getMemberName();

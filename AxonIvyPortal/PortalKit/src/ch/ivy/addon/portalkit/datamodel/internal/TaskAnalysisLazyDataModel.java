@@ -192,7 +192,7 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
     taskAnalysisFilterData.setTaskFilters(taskFiltersToSave);
     List<CaseFilter> filtersToSave = new ArrayList<>(selectedCaseFilters);
     taskAnalysisFilterData.setCaseFilters(filtersToSave);
-    taskAnalysisFilterData.setUserId(Ivy.session().getSessionUser().getId());
+    taskAnalysisFilterData.setUserId(Long.valueOf(Ivy.session().getSessionUser().getSecurityMemberId()));
     taskAnalysisFilterData.setFilterGroupId(taskFilterGroupId);
     taskAnalysisFilterData.setFilterName(filterName);
     taskAnalysisFilterData.setType(filterType);
