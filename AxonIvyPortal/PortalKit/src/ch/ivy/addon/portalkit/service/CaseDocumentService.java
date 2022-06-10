@@ -23,7 +23,7 @@ import ch.ivy.addon.portalkit.ivydata.bo.IvyDocument;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.persistence.PersistencyException;
-import ch.ivyteam.ivy.security.SecurityManagerFactory;
+import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.document.IDocument;
 import ch.ivyteam.ivy.workflow.document.IDocumentService;
@@ -149,7 +149,7 @@ public class CaseDocumentService {
 
   private IDocumentService documentsOf(ICase iCase) {
     try {
-      return SecurityManagerFactory.getSecurityManager().executeAsSystem(() -> iCase.documents());
+      return Sudo.call(iCase::documents);
     } catch (Exception e) {
       throw new PortalException(e);
     }
@@ -157,7 +157,7 @@ public class CaseDocumentService {
 
   private List<IDocument> getAllDocumentsOf(ICase iCase) {
     try {
-      return SecurityManagerFactory.getSecurityManager().executeAsSystem(() -> iCase.documents().getAll());
+      return Sudo.call(() -> iCase.documents().getAll());
     } catch (Exception e) {
       throw new PortalException(e);
     }
