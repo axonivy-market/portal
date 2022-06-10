@@ -1,0 +1,123 @@
+.document-table-component .align-center-column {
+  text-align: center;
+}
+
+.document-table-component .margin-top-5 {
+  margin-top: 5px;
+}
+
+.document-table-component .margin-top-10 {
+  margin-top: 10px;
+}
+
+.document-table-component .upload-container {
+  margin-top: 10px;
+  padding-right: 0 !important;
+}
+
+@media screen and (max-width: 40em) {
+  .document-table-component .upload-container {
+    padding-right: 0.5em !important;
+  }
+}
+
+.document-table-component .upload-container > * {
+  float: right;
+}
+
+.document-table-component .upload-container .upload-button {
+  padding: 0 !important;
+}
+
+.document-table-component .upload-container .type-selection, .document-table-component .upload-container .type-selection-label {
+  margin-right: 5px;
+}
+
+.document-table-component .upload-container .ui-widget.ui-selectonemenu,
+.document-table-component .upload-container .ui-widget.ui-outputlabel {
+  margin-top: 5px;
+}
+
+.document-table-component .upload-container .ui-widget.ui-fileupload {
+  margin-top: 0;
+  margin-left: 10px;
+}
+
+.document-table-component .upload-container .ui-widget.ui-fileupload .ui-fileupload-buttonbar {
+  padding: 0;
+  background-color: transparent !important;
+  border: none !important;
+}
+
+.document-table-component .upload-container .ui-widget.ui-fileupload .ui-fileupload-buttonbar .ui-widget.ui-button {
+  float: right !important;
+  margin-right: 0;
+}
+
+.document-table-component .upload-container .ui-widget.ui-fileupload .ui-fileupload-content {
+  border: none;
+  padding-right: 0;
+  padding-bottom: 0;
+}
+
+.document-table-component .upload-container .ui-widget.ui-fileupload .ui-fileupload-content .ui-fileupload-messages {
+  margin-top: 30px;
+}
+
+.document-table-component .document-action-column {
+  width: 100px;
+} 
+
+.document-table-component .document-size-column {
+  width: 150px;
+}
+
+.document-table-component .document-type-column {
+  width: 200px;
+}
+
+.document-table-component .document-name-column span,
+.document-table-component .document-type-column span {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media screen and (min-width: 64.063em) and (max-width: 90.062em) {
+  .document-table-component .document-size-column {
+    width: 100px;
+  }
+
+  .document-table-component .document-type-column {
+    width: 150px;
+  }
+}
+
+@media screen and (min-width: 40.063em) and (max-width: 64.062em) {
+  .document-table-component .document-size-column,
+  .document-table-component .document-type-column {
+    width: auto;
+  } 
+}
+
+@media screen and (max-width: 40em) {
+  .document-table-component .document-size-column {
+    display: none;
+  }
+
+  .document-table-component .document-name-column,
+  .document-table-component .document-type-column,
+  .document-table-component .document-action-column {
+    width: 33.4%;
+  }
+}
+
+@media screen and (max-width: 28em) {
+  .document-table-component .document-type-column {
+    width: 145px;
+  }
+}
+
+.document-table-component .upload-container .ui-fileupload-files {
+  margin-top: 20px;
+}
