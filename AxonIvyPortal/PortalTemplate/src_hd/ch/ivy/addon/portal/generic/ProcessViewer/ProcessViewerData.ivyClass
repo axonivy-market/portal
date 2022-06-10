@@ -16,3 +16,5 @@ activator ch.ivyteam.ivy.security.ISecurityMember #field
 activator PERSISTENT #fieldModifier
 category String #field
 category PERSISTENT #fieldModifier
+webLink ch.ivyteam.ivy.model.value.WebLink #field
+webLink PERSISTENT #fieldModifier
