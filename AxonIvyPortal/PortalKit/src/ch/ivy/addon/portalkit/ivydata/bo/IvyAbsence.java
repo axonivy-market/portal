@@ -11,7 +11,6 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import ch.ivy.addon.portalkit.dto.UserDTO;
 import ch.ivy.addon.portalkit.service.DateTimeGlobalSettingService;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.server.ServerFactory;
 
 public class IvyAbsence {
 
@@ -19,7 +18,7 @@ public class IvyAbsence {
   private Date from;
   private Date until;
   private String comment;
-  
+
   public UserDTO getUser() {
     return user;
   }
@@ -51,36 +50,27 @@ public class IvyAbsence {
   public void setComment(String comment) {
     this.comment = comment;
   }
-  
+
   public String getUsername() {
     return user != null ? user.getName() : StringUtils.EMPTY;
   }
-  
+
   public String getFullname() {
     return user != null ? user.getDisplayName() : StringUtils.EMPTY;
   }
-  
+
   public String getPeriod() {
     DateFormat formatter = new SimpleDateFormat(DateTimeGlobalSettingService.getInstance().getGlobalSettingPattern(), Ivy.session().getContentLocale());
     return String.format("%s - %s", formatter.format(from), formatter.format(until));
   }
-  
+
   @Override
   public int hashCode() {
-    try {
-        return ServerFactory.getServer().getSecurityManager().executeAsSystem(this::generateHashCode);
-      } catch (Exception e) {
-        Ivy.log().error(e);
-      }
-  	return 0;
-  }
-  
-  private int generateHashCode() {
-	  return new HashCodeBuilder()
-		        .append(user.getName())
-		        .append(from)
-		        .append(until)
-		        .toHashCode();
+    return new HashCodeBuilder()
+            .append(user.getName())
+            .append(from)
+            .append(until)
+            .toHashCode();
   }
 
   @Override
@@ -92,7 +82,7 @@ public class IvyAbsence {
           .append(from, other.from)
           .append(until, other.until)
           .isEquals();
-    } 
+    }
     return false;
   }
 }

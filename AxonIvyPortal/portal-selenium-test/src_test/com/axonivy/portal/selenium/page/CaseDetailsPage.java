@@ -2,6 +2,7 @@ package com.axonivy.portal.selenium.page;
 
 import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.disappear;
+import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
@@ -111,7 +112,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public SelenideElement getHistoryAuthorAvatar() {
-    return $(".case-document-author > .has-avatar > .ui-avatar").waitUntil(appear, DEFAULT_TIMEOUT);
+    return $(".case-document-author > .has-avatar > .ui-avatar").waitUntil(exist, DEFAULT_TIMEOUT);
   }
 
 }
