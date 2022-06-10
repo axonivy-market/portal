@@ -1,0 +1,68 @@
+Dialogs:
+  com:
+    axonivy:
+      portal:
+        component:
+          Common:
+            Cancel: Cancelar
+            ConfirmForDelete: ¿Está seguro que quiere borrar este artículo?
+            Confirmation: Confirmación
+            More: Mas
+            'No': 'No'
+            RequiredFieldMessage: este campo es obligatorio
+            'Yes': Sí
+          DocumentTable:
+            BasicDocumentType:
+              CONTRACT: Contrato
+              DOCUMENTATION: Documentación
+              EMAIL: Email
+              INFORMATION: Información
+              OTHERS: Otros
+            Delete: Borrar
+            DeleteDocumentNote: '{0} ha eliminado {1}'
+            DeleteSuceed: Archivo eliminado con éxito
+            Download: Descargar
+            EmptyFileMessage: El archivo no puede estar vacío
+            ErrorFileUploadSize: El tamaño deberá ser inferior a {0}
+            FileContainScript: ¡Este archivo no puede cargarse porque contiene algunos scripts!
+            FileContainVirus: 'Carga fallida, ¡se ha detectado un virus/infección! '
+            FileFunction: Funciones
+            FileLimitMessage: ¡El máximo numero de archivos ha sido subido!
+            InvalidFileMessage: Tipo de archivo no permitido
+            Name: Nombre de archivo
+            NoFile: ¡No se encuentran archivos!
+            Size: Tamaño de archivo
+            Type: Tipo
+            Upload: Cargar archivo nuevo
+            UploadDocumentNote: '{0} ha subido {1}'
+            UploadFailed: Se produjo un error al cargar este archivo. Por favor, pregunte a su administrador por este problema.
+            UploadFileExists: El archivo {0} ya existe
+            UploadSucceed: El archivo ha sido añadido con éxito
+          Enums:
+            PortalIvyDataErrorType:
+              APP_NOT_FOUND: Aplicación no encontrada
+              FAIL_TO_COUNT_CASE: Error al contar los casos
+              FAIL_TO_LOAD_CASE: Error al cargar el caso
+          ProcessChain:
+            currentStepIsNotDefined: El paso ({0}) de la cadena de proceso no está definido
+          ProcessHistory:
+            CaseColumn:
+              CreationTime: Creado
+              Creator: Creador
+              Id: ID del caso
+              Name: Nombre
+              ProcessName: Nombre del proceso
+              State: 'Estatus '
+            CaseNameNotAvailable: '[Nombre del caso no disponible]'
+            CaseState:
+              CREATED: Creado
+              DESTROYED: Destruido
+              DONE: Hecho
+              FAILED: Ha fallado
+              RUNNING: En progreso
+            DefaultEmptyMessage: No hay casos
+            NoDescription: Sin descripción
+            NoName: Sin nombre
+            NotAvailable: NA
+Labels:
+  disabledUserPrefix: (inactivo)
