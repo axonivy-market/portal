@@ -1,0 +1,25 @@
+{
+  "format" : "9.4.10",
+  "id" : "180975ACFFBC3EAE",
+  "data" : "com.axonivy.portal.component.UserSelection.UserSelectionData",
+  "kind" : "HTML_DIALOG",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start()",
+      "config" : {
+        "callSignature" : "start",
+        "guid" : "1701DB2EB182D39E"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 240, "y" : 64 }
+      }
+    } ]
+}
