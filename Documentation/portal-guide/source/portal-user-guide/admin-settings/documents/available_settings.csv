@@ -63,3 +63,6 @@ Portal.ProcessViewer,TRUE,Set this property to true to enable process viewer opt
 Portal.Histories.HideRelatedCaseInfo,FALSE,"If true, case history does not display the related case information in the history table."
 Portal.ShowErrorLogToConsole, FALSE, Set to true to enable write error log to browser console
 Portal.ShowAvatar, TRUE, For switch on/off the display of user/role avatars.
+Portal.StatisticChartsPolling,0,"| Statistic charts polling in seconds, Default value is 0, it means live chart polling is disable.
+| If the value is less than 10, live chart polling is disable.
+| If the value is more than or equal 10, live chart polling is enable."
