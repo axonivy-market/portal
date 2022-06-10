@@ -9,16 +9,17 @@ import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
 import ch.ivyteam.ivy.application.ActivityState;
 import ch.ivyteam.ivy.application.IApplication;
+import ch.ivyteam.ivy.application.app.IApplicationRepository;
 import ch.ivyteam.ivy.data.cache.IDataCache;
 import ch.ivyteam.ivy.data.cache.IDataCacheEntry;
 import ch.ivyteam.ivy.data.cache.IDataCacheGroup;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.server.ServerFactory;
+import ch.ivyteam.ivy.security.exec.Sudo;
 
 public class IvyCacheService {
 
   private IvyCacheService() {}
-  
+
   public static IvyCacheService newInstance() {
     return new IvyCacheService();
   }
@@ -54,7 +55,7 @@ public class IvyCacheService {
     verifyIdentifier(groupIdentifier, identifier);
     sessionCache().setEntry(groupIdentifier, identifier, value);
   }
-  
+
   /**
    * Invalidate a group in session with the groupIdentifier
    * @param groupIdentifier
@@ -65,7 +66,7 @@ public class IvyCacheService {
       sessionCache().invalidateGroup(group);
     }
   }
-  
+
   /**
    * Invalidate the data of entry in session cache entry with key is groupIdentifier and identifier
    * @param groupIdentifier
@@ -84,18 +85,18 @@ public class IvyCacheService {
 
   /**
    * Add or update an object to application cache based on groupName and entryName
-   * @param groupName 
-   * @param entryName 
+   * @param groupName
+   * @param entryName
    * @param value
    */
   public void setApplicationCache(String groupName, String entryName, Object value) {
     applicationCache().setEntry(groupName, entryName, value);
   }
-  
+
   /**
    * Get an application cache based on groupName and entryName
-   * @param groupName 
-   * @param entryName 
+   * @param groupName
+   * @param entryName
    * @return value
    */
   public Object getApplicationCache(String groupName, String entryName) {
@@ -103,7 +104,7 @@ public class IvyCacheService {
     if (entry != null && entry.isValid()) {
       return entry.getValue();
     }
-    return null; 
+    return null;
   }
 
   public void invalidateApplicationCacheByGroupName(String groupName) {
@@ -121,8 +122,8 @@ public class IvyCacheService {
   //TODO: after switch to application scope for all configuration, we don't need this method, just clear cache on current app
   public void invalidateApplicationCacheForAllAvailableApplications(String cacheGroupName) {
     try {
-      ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> {
-        List<IApplication> ivyApplications = ServerFactory.getServer().getApplicationConfigurationManager().getApplications();
+      Sudo.call(() -> {
+        List<IApplication> ivyApplications = IApplicationRepository.instance().all();
         ivyApplications.forEach(app -> {
           if(isActive(app)) {
             IDataCache cache = app.getAdapter(IDataCache.class);
@@ -141,28 +142,28 @@ public class IvyCacheService {
       Ivy.log().error(e);
     }
   }
-  
+
   public void cacheLogoutPage(String logoutUrl) {
     setSessionCache(IvyCacheIdentifier.LOGOUT_PAGE_CACHE_GROUP_NAME, IvyCacheIdentifier.LOGOUT_PAGE_CACHE_ENTRY_NAME, logoutUrl);
   }
-  
+
   public String getLogoutPageFromCache() {
     Optional<Object> result = getSessionCacheValue(IvyCacheIdentifier.LOGOUT_PAGE_CACHE_GROUP_NAME, IvyCacheIdentifier.LOGOUT_PAGE_CACHE_ENTRY_NAME);
     if (!result.isEmpty()) {
       return String.valueOf(result.get());
     }
-    
+
     return StringUtils.EMPTY;
   }
 
   private IDataCache sessionCache() {
     return Ivy.datacache().getSessionCache();
   }
-  
+
   private IDataCache applicationCache() {
     return Ivy.datacache().getAppCache();
   }
-  
+
   private boolean isActive(IApplication ivyApplication) {
     return ivyApplication.getActivityState() == ActivityState.ACTIVE;
   }
