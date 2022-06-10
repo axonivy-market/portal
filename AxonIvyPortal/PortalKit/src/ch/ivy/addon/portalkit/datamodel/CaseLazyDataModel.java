@@ -349,7 +349,7 @@ public class CaseLazyDataModel extends LazyDataModel7<ICase> {
     List<CaseFilter> filtersToSave = new ArrayList<>(selectedFilters);
     filterData.setFilters(filtersToSave);
     filterData.setKeyword(criteria.getKeyword());
-    filterData.setUserId(Ivy.session().getSessionUser().getId());
+    filterData.setUserId(Long.valueOf(Ivy.session().getSessionUser().getSecurityMemberId()));
     filterData.setFilterGroupId(filterGroupId);
     filterData.setFilterName(filterName);
     filterData.setType(filterType);
@@ -587,7 +587,7 @@ public class CaseLazyDataModel extends LazyDataModel7<ICase> {
 
   protected void initSelectedColumns() {
     CaseColumnsConfigurationService service = CaseColumnsConfigurationService.getInstance();
-    Long userId = Optional.ofNullable(Ivy.session().getSessionUser()).map(IUser::getId).orElse(null);
+    Long userId = Optional.ofNullable(Ivy.session().getSessionUser()).map(IUser::getSecurityMemberId).map(id -> Long.valueOf(id)).orElse(null);
     Long applicationId = Ivy.request().getApplication().getId();
     Long processModelId = Ivy.request().getProcessModel().getId();
     if (userId != null) {
@@ -618,7 +618,7 @@ public class CaseLazyDataModel extends LazyDataModel7<ICase> {
     Long processModelId = Ivy.request().getProcessModel().getId();
     Long applicationId = Ivy.request().getApplication().getId();
     CaseColumnsConfiguration caseColumnsConfiguration = service.getConfiguration(applicationId,
-        Ivy.session().getSessionUser().getId(), processModelId);
+        Long.valueOf(Ivy.session().getSessionUser().getSecurityMemberId()), processModelId);
     if (caseColumnsConfiguration != null) {
       updateCaseColumnsConfiguration(caseColumnsConfiguration);
     } else {
@@ -631,7 +631,7 @@ public class CaseLazyDataModel extends LazyDataModel7<ICase> {
   private CaseColumnsConfiguration createNewCaseColumnsConfigurationData() {
     CaseColumnsConfiguration caseColumnsConfiguration = new CaseColumnsConfiguration();
     caseColumnsConfiguration.setProcessModelId(Ivy.request().getProcessModel().getId());
-    caseColumnsConfiguration.setUserId(Ivy.session().getSessionUser().getId());
+    caseColumnsConfiguration.setUserId(Long.valueOf(Ivy.session().getSessionUser().getSecurityMemberId()));
     caseColumnsConfiguration.setApplicationId(Ivy.request().getApplication().getId());
     caseColumnsConfiguration.setSelectedColumns(new ArrayList<>());
     updateCaseColumnsConfiguration(caseColumnsConfiguration);

@@ -15,7 +15,6 @@ import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.persistence.query.IPagedResult;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.security.IRole;
-import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.security.IUser;
 
@@ -61,7 +60,7 @@ public class SecurityMemberUtils {
 
   public static ISecurityMember findISecurityMemberFromRoleDTO(RoleDTO roleDTO) {
     return IvyExecutor.executeAsSystem(() -> {
-      return ((ISecurityContext)Ivy.security()).findRole(roleDTO.getId());
+      return Ivy.security().roles().findById(String.valueOf(roleDTO.getId()));
     });
   }
 

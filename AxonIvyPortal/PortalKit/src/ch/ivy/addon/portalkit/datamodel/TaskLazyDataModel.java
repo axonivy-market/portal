@@ -693,7 +693,7 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
     List<TaskFilter> taskFilters = new ArrayList<>(selectedFilters);
     taskFilterData.setFilters(taskFilters);
     taskFilterData.setKeyword(criteria.getKeyword());
-    taskFilterData.setUserId(Ivy.session().getSessionUser().getId());
+    taskFilterData.setUserId(Long.valueOf(Ivy.session().getSessionUser().getSecurityMemberId()));
     taskFilterData.setFilterGroupId(taskFilterGroupId);
     taskFilterData.setFilterName(filterName);
     taskFilterData.setType(filterType);
@@ -869,7 +869,10 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
 
   protected void initSelectedColumns() {
     TaskColumnsConfigurationService service = TaskColumnsConfigurationService.getInstance();
-    Long userId = Optional.ofNullable(Ivy.session().getSessionUser()).map(IUser::getId).orElse(null);
+    Long userId = Optional.ofNullable(Ivy.session().getSessionUser())
+        .map(IUser::getSecurityMemberId)
+        .map(id -> Long.valueOf(id))
+        .orElse(null);
     Long applicationId = Ivy.request().getApplication().getId();
     Long processModelId = Ivy.request().getProcessModel().getId();
     if (userId != null) {
@@ -998,7 +1001,7 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
     Long applicationId = Ivy.request().getApplication().getId();
     Long processModelId = Ivy.request().getProcessModel().getId();
     TaskColumnsConfiguration taskColumnsConfiguration =
-        service.getConfiguration(applicationId, Ivy.session().getSessionUser().getId(), processModelId);
+        service.getConfiguration(applicationId, Long.valueOf(Ivy.session().getSessionUser().getSecurityMemberId()), processModelId);
     if (taskColumnsConfiguration != null) {
       updateTaskColumnsConfiguration(taskColumnsConfiguration);
     } else {
@@ -1011,7 +1014,7 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
   private TaskColumnsConfiguration createNewTaskColumnsConfigurationData() {
     TaskColumnsConfiguration taskColumnsConfiguration = new TaskColumnsConfiguration();
     taskColumnsConfiguration.setProcessModelId(Ivy.request().getProcessModel().getId());
-    taskColumnsConfiguration.setUserId(Ivy.session().getSessionUser().getId());
+    taskColumnsConfiguration.setUserId(Long.valueOf(Ivy.session().getSessionUser().getSecurityMemberId()));
     taskColumnsConfiguration.setApplicationId(Ivy.request().getApplication().getId());
     updateTaskColumnsConfiguration(taskColumnsConfiguration);
     return taskColumnsConfiguration;
