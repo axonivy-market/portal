@@ -6,7 +6,7 @@ import java.util.Optional;
 import javax.faces.context.FacesContext;
 
 import ch.ivy.addon.portalkit.service.exception.PortalException;
-import ch.ivyteam.ivy.security.internal.SecurityManager;
+import ch.ivyteam.ivy.security.exec.Sudo;
 
 public class ManagedBeans {
 
@@ -15,12 +15,12 @@ public class ManagedBeans {
   /**
    * Returns the instance of the specified {@code beanName} from the current {@code FacesContext}.
    * If the bean cannot be obtained, {@code RuntimeException} will be thrown.
-   * @param beanName 
-   * 
+   * @param beanName
+   *
    * @return instance of the bean associating with {@code beanName}. Never returns {@code null}.
    * @throws NoSuchElementException if the bean is not present at the time of this invocation
    * @see #find(String)
-   * 
+   *
    */
   public static <T> T get(final String beanName) {
     Optional<T> beanInstance = find(beanName);
@@ -38,13 +38,13 @@ public class ManagedBeans {
    * this method will not throw exception if the bean is not present. However, the client of this
    * method should check for present of the bean via the returned {@code Optional}, otherwise,
    * you'll get {@link NoSuchElementException}
-   * @param beanName 
+   * @param beanName
    *
    * @return an instance of {@code Optional}. Never returns {@code null}
    */
   public static <T> Optional<T> find(final String beanName) {
     try {
-      return SecurityManager.getSecurityManager().executeAsSystem(
+      return Sudo.call(
           () -> {
             FacesContext context = FacesContext.getCurrentInstance();
 
