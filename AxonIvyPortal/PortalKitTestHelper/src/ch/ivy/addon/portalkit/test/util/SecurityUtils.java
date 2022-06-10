@@ -21,7 +21,6 @@ import static ch.ivyteam.ivy.security.IPermission.USER_READ_SUBSTITUTES;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.Callable;
 import java.util.stream.Collectors;
 
 import ch.ivyteam.ivy.application.IApplication;
@@ -30,8 +29,8 @@ import ch.ivyteam.ivy.persistence.PersistencyException;
 import ch.ivyteam.ivy.security.IPermission;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.IUser;
+import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;
-import ch.ivyteam.ivy.server.ServerFactory;
 import ch.ivyteam.ivy.workflow.IWorkflowSession;
 
 public class SecurityUtils {
@@ -105,45 +104,40 @@ public class SecurityUtils {
    * @throws Exception user
    */
   public static boolean hasRole(final IUser user, final String rolename) throws PersistencyException, Exception {
-    // return Ivy.wf().getSecurityContext().executeAsSystemUser(
-    return ServerFactory.getServer().getSecurityManager().executeAsSystem( // this is faster because
-                                                                           // no additional
-                                                                           // security issue
-        new Callable<Boolean>() {
-          @Override
-          public Boolean call() throws Exception {
-            int t = 5; // number retries
-            while (t >= 0) {
-              try {
-                IRole role = Ivy.security().roles().find(rolename);
-                if (role != null) {
-                  // return role.getAllUsers().contains(user);
-                  return user.getAllRoles().contains(role); // allowed by EON-Security, configured
-                                                            // correctly in
-                                                            // LDAP-Setting of server (do not use
-                                                            // "groups of a user")
-                }
-                t = -1;
-              } catch (Exception ise) {
-                Ivy.log().error("Cannot connect for roles:" + ise);
-                Ivy.log().error("Retries left:" + t);
-                t--;
-                int s = 1;
-                if (Ivy.session() != null) {
-                  s = Ivy.session().getIdentifier() + 1;
-                  while (s > 10) {
-                    s = s / 2;
-                  }
-                }
-                try {
-                  Thread.sleep(1000 * s); // wait N secs
-                } catch (InterruptedException ie) {
-                  // NOP
+   // this is faster because  no additional security issue
+    return Sudo.call(
+        () -> {
+          int t = 5; // number retries
+          while (t >= 0) {
+            try {
+              IRole role = Ivy.security().roles().find(rolename);
+              if (role != null) {
+                // return role.getAllUsers().contains(user);
+                return user.getAllRoles().contains(role); // allowed by EON-Security, configured
+                                                          // correctly in
+                                                          // LDAP-Setting of server (do not use
+                                                          // "groups of a user")
+              }
+              t = -1;
+            } catch (Exception ise) {
+              Ivy.log().error("Cannot connect for roles:" + ise);
+              Ivy.log().error("Retries left:" + t);
+              t--;
+              int s = 1;
+              if (Ivy.session() != null) {
+                s = Ivy.session().getIdentifier() + 1;
+                while (s > 10) {
+                  s = s / 2;
                 }
               }
+              try {
+                Thread.sleep(1000 * s); // wait N secs
+              } catch (InterruptedException ie) {
+                // NOP
+              }
             }
-            return false;
           }
+          return false;
         });
   }
 
@@ -157,58 +151,52 @@ public class SecurityUtils {
    * @throws Exception Exception
    */
   public static boolean hasRole(final IWorkflowSession session, final String rolename) throws Exception {
-    // return Ivy.wf().getSecurityContext().executeAsSystemUser(
-    return ServerFactory.getServer().getSecurityManager().executeAsSystem( // this is faster because
-                                                                           // no additional
-                                                                           // security issue
-        new Callable<Boolean>() {
-          @Override
-          public Boolean call() throws Exception {
-            int t = 5; // number retries
-            while (t >= 0) {
-              try {
-                IRole role = Ivy.security().roles().find(rolename);
-                if (role != null) {
-                  return session.hasRole(role, true);
-                }
-                t = -1;
-              } catch (Exception ise) {
-                Ivy.log().error("Cannot connect for roles:" + ise);
-                Ivy.log().error("Retries left:" + t);
-                t--;
-                int s = 1;
-                if (Ivy.session() != null) {
-                  s = Ivy.session().getIdentifier() + 1;
-                  while (s > 10) {
-                    s = s / 2;
-                  }
-                }
-                try {
-                  Thread.sleep(1000 * s); // wait N secs
-                } catch (InterruptedException ie) {
-                  // NOP
-                }
-                // } catch (PersistencyException pe) {
-                // Ivy.log().error("Cannot connect for roles:"+pe);
-                // Ivy.log().error("Retries left:"+t);
-                // t--;
-                // int s = 1;
-                // if (Ivy.session() != null) {
-                // s = Ivy.session().getIdentifier()+1;
-                // while (s>10) {
-                // s = s / 2;
-                // }
-                // }
-                // try {
-                // Thread.sleep(1000 * s); //wait N secs
-                // }
-                // catch (InterruptedException ie) {
-                // //NOP
-                // }
+    return Sudo.call(
+        () -> {
+          int t = 5; // number retries
+          while (t >= 0) {
+            try {
+              IRole role = Ivy.security().roles().find(rolename);
+              if (role != null) {
+                return session.hasRole(role, true);
               }
+              t = -1;
+            } catch (Exception ise) {
+              Ivy.log().error("Cannot connect for roles:" + ise);
+              Ivy.log().error("Retries left:" + t);
+              t--;
+              int s = 1;
+              if (Ivy.session() != null) {
+                s = Ivy.session().getIdentifier() + 1;
+                while (s > 10) {
+                  s = s / 2;
+                }
+              }
+              try {
+                Thread.sleep(1000 * s); // wait N secs
+              } catch (InterruptedException ie) {
+                // NOP
+              }
+              // } catch (PersistencyException pe) {
+              // Ivy.log().error("Cannot connect for roles:"+pe);
+              // Ivy.log().error("Retries left:"+t);
+              // t--;
+              // int s = 1;
+              // if (Ivy.session() != null) {
+              // s = Ivy.session().getIdentifier()+1;
+              // while (s>10) {
+              // s = s / 2;
+              // }
+              // }
+              // try {
+              // Thread.sleep(1000 * s); //wait N secs
+              // }
+              // catch (InterruptedException ie) {
+              // //NOP
+              // }
             }
-            return false;
           }
+          return false;
         });
   }
 
@@ -221,25 +209,16 @@ public class SecurityUtils {
    */
   public static List<IUser> findUsersForRole(final String rolename) {
     List<IUser> result = new ArrayList<IUser>();
-
     try {
-      // result = Ivy.wf().getSecurityContext().executeAsSystemUser(
-      result = ServerFactory.getServer().getSecurityManager().executeAsSystem( // this is faster
-                                                                               // because no
-                                                                               // additional
-                                                                               // security issue
-          new Callable<List<IUser>>() {
-            @Override
-            public List<IUser> call() throws Exception {
-              List<IUser> result = new ArrayList<IUser>();
-
-              IRole role = Ivy.security().roles().find(rolename);
-              if (role != null) {
-                result = role.users().allPaged().stream().collect(Collectors.toList());
-              }
-              return result;
-            }
-          });
+      result = Sudo.call(
+              () -> {
+                List<IUser> result1 = new ArrayList<IUser>();
+                IRole role = Ivy.security().roles().find(rolename);
+                if (role != null) {
+                  result1 = role.users().allPaged().stream().collect(Collectors.toList());
+                }
+                return result1;
+              });
     } catch (Exception e) {
     }
     return result;
@@ -252,26 +231,17 @@ public class SecurityUtils {
    */
   public static List<IUser> findAllUsers() {
     List<IUser> result = new ArrayList<IUser>();
-
     try {
-      // result = Ivy.wf().getSecurityContext().executeAsSystemUser(
-      result = ServerFactory.getServer().getSecurityManager().executeAsSystem( // this is faster
-                                                                               // because no
-                                                                               // additional
-                                                                               // security issue
-          new Callable<List<IUser>>() {
-            @Override
-            public List<IUser> call() throws Exception {
-              List<IUser> result = new ArrayList<IUser>();
-
-              List<IUser> users = Ivy.security().users().paged().stream().collect(Collectors.toList());
-              for (IUser u : users) {
-                if (u.getId() != Ivy.security().users().system().getId()) {
-                  result.add(u);
-                }
+      result = Sudo.call(
+          () -> {
+            List<IUser> result1 = new ArrayList<IUser>();
+            List<IUser> users = Ivy.security().users().paged().stream().collect(Collectors.toList());
+            for (IUser u : users) {
+              if (u.getId() != Ivy.security().users().system().getId()) {
+                result1.add(u);
               }
-              return result;
             }
+            return result1;
           });
     } catch (Exception e) {
     }
