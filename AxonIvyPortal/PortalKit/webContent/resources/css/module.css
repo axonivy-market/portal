@@ -3903,6 +3903,11 @@ _:-ms-fullscreen, :root .content-link-history {
   margin-left: 5px;
 }
 
+.task-action-item .task-open-detail-action-icon {
+  width: 14.25px;
+  height: 18px;
+}
+
 .action-button.task-action-item {
   height: 28px;
   padding: 0 16px;
