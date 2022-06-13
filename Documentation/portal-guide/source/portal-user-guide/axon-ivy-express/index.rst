@@ -228,9 +228,7 @@ After you have completed an Express workflow, you can check its summary data by 
 HowTo: Show Business Summary
 """"""""""""""""""""""""""""
 
-#. Go to the :ref:`Case List <full-case-list>` page and open the link ``Action`` of your case.
-
-#. Click on the link ``Show Business details``.
+#. Go to the :ref:`Case List <full-case-list>` page and open the link ``Actions`` , ``Business details``.
 
    |express-case|
 
