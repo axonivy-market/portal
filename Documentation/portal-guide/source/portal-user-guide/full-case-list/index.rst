@@ -215,7 +215,7 @@ HowTo: Add a Note to a Case
 
 #. Open the case details
 
-#. Click on the |add-icon| :guilabel:`Add note` link below the notes section.
+#. Click on the |add-icon| ``Add note`` link below the notes section.
 
 #. The :guilabel:`Add note` dialog is opened.
 

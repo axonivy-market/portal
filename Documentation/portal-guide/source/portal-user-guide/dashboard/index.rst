@@ -67,9 +67,9 @@ HowTo: Add a Process as a User Favorite
    add.
 
 #. The ``Display name`` contains the default process name. To add multilingual
-   names for your favorite processes, use :guilabel:`Add languages`.
+   names for your favorite processes, click :guilabel:`Add languages`.
 
-#. To change the icon of the process, click |change-icon| :guilabel:`Change` and
+#. To change the icon of the process, click |change-icon| ``Change`` and
    select your preferred icon from the list.
 
 #. Confirm your configuration by clicking :guilabel:`Add`.
@@ -85,8 +85,8 @@ HowTo: Add a Process as a User Favorite
 
    -  To add multiple languages to the favorite process display names, you need
       to create the "AppInfo/SupportedLanguages" CMS entry which defines how
-      many languages your application supports. See :ref:`Language settings` below
-      for details.
+      many languages your application supports. See :ref:`Language Settings
+      <language-settings>` in :ref:`My Profile <my-profile>` for details.
 
 .. _howto-delete-a-process-as-a-user-favorite:
 
@@ -98,7 +98,7 @@ HowTo: Delete a Process from User Favorites
 #. Click on the |trash-icon| :guilabel:`Delete` symbol next to process / processes
    you wish to remove from your user favorites.
 
-#. Confirm the removal by clicking :guilabel:`Save` next to the heading :guilabel:`User Favorites`.
+#. Confirm the removal by clicking ``Save`` below :guilabel:`User Favorites`.
 
 |how-to-delete-process-favorites-1|
 
@@ -121,11 +121,11 @@ Edit Processes
 ^^^^^^^^^^^^^^
 
 #. To order your processes in an individual order, click on the link
-   :guilabel:`Edit processes` next to the heading :guilabel:`User Favorites`.
+   ``Edit processes`` next to the heading :guilabel:`User Favorites`.
 
 #. To change the order of your processes, drag and drop processes.
 
-#. Confirm the current order by clicking :guilabel:`Save` next to the heading :guilabel:`User Favorites`.
+#. Confirm the current order by clicking ``Save`` below :guilabel:`User Favorites`.
 
 |how-to-delete-process-favorites-1|
 
@@ -144,8 +144,8 @@ from the task list and start working on it.
 |personal-tasks|
 
 
-You see the number of tasks right next to the heading :guilabel:`Tasks`. Further
-right you find the link ``Show full task list``. This quick link
+You see the number of tasks right next to the heading :guilabel:`Tasks`. At the 
+right, you find the link ``Show full task list``. This quick link
 routes you to the **Task List** page of the Axon Ivy Portal. Please refer to
 :ref:`full-task-list` for detailed information.
 
@@ -154,7 +154,8 @@ help you find the correct tasks:
 
 #. The Axon Ivy Portal searches for your keyword in the task ID, name and
    description of the tasks in your task list.
-#. On the right side of the Tasks section, you can select the desired sort criteria (:guilabel:`Creation Date` :guilabel:`Expiry` :guilabel:`Priority`). 
+#. On the right side of the Tasks section, you can select the desired sort criteria 
+   (:guilabel:`Creation Date` :guilabel:`Expiry` :guilabel:`Priority`). 
 
 |personal-tasks-sort-and-search-features|
 
@@ -190,7 +191,7 @@ the overall situation at a glance.
 
 Next to the heading you find a link ``Show all charts``. This quick link
 routes you the :guilabel:`Statistics` page of the Axon Ivy Portal. Please refer
-to :ref:`full-statistic-list` for more detailed information.
+to :ref:`full-statistic-list` for detailed information.
 
 Within header of the chart, you find two navigation buttons (|pre-icon|,
 |next-icon|) allowing you to toggle between the available charts. Each chart
