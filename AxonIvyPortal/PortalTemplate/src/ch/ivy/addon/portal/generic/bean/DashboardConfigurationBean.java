@@ -19,6 +19,7 @@ import org.primefaces.event.SelectEvent;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.bean.IvyComponentLogicCaller;
+import ch.ivy.addon.portalkit.constant.DashboardConstants;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.dto.SecurityMemberDTO;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
@@ -267,6 +268,13 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
     for(DashboardWidget widget : this.selectedEditingDashboard.getWidgets()) {
       widget.setId(DashboardWidgetUtils.generateNewWidgetId(widget.getType()));
     }
+  }
+
+  public void createDashboardFromScratch() {
+    String selectedEditingDashboardId = this.selectedEditingDashboard.getId();
+    this.selectedEditingDashboard.setTemplateId(DashboardConstants.CREATE_FROM_SCRATCH);
+    this.selectedEditingDashboard.setId(selectedEditingDashboardId);
+    this.selectedEditingDashboard.setWidgets(new ArrayList<>());
   }
 
   public boolean isDashboardCreation() {

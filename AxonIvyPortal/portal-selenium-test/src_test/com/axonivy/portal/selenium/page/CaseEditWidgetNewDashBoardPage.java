@@ -100,6 +100,7 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
   public void save() {
     $(caseEditWidgetId).waitUntil(appear, DEFAULT_TIMEOUT).$("button[id$='widget-configuration-save-button']")
         .shouldBe(getClickableCondition()).click();
+    $("div[id$='new-widget-configuration-dialog']").waitUntil(hidden, DEFAULT_TIMEOUT);
   }
 
   public void openColumnManagementDialog() {

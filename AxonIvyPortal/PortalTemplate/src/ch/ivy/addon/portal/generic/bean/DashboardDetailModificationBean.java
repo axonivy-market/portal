@@ -78,7 +78,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   private boolean isPublicDashboard;
   private List<String> categories;
   private String restoreDashboardMessage;
-  private boolean foundTemplate;
+  private Optional<DashboardTemplate> foundTemplate;
 
   @PostConstruct
   public void initConfigration() {
@@ -87,7 +87,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     super.init();
     isReadOnlyMode = false;
     ((DashboardProcessBean) ManagedBeans.get("dashboardProcessBean")).addPropertyChangeListener(this);
-    foundTemplate =  findSelectedTemplate(getSelectedDashboard().getTemplateId()).isPresent();
+    foundTemplate = findSelectedTemplate(getSelectedDashboard().getTemplateId());
   }
 
   public void initSampleWidgets() {
@@ -110,10 +110,8 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
       // If errors like parsing JSON errors, ignore them
       Ivy.log().error(e);
     }
-    var editDashboard = collectedDashboards.stream()
-          .filter(d -> d.getId().contentEquals(selectedDashboardId))
-          .findFirst().get();
-    return Arrays.asList(new Dashboard(editDashboard));
+    return collectedDashboards.stream()
+        .filter(dashboard -> dashboard.getId().equals(selectedDashboardId)).collect(Collectors.toList());
   }
 
   private WidgetSample taskSample() {
@@ -148,7 +146,11 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     } else {
       var foundTemplate = findSelectedTemplate(getSelectedDashboard().getTemplateId());
       foundTemplate.ifPresent(template -> {
-        selectedDashboard.setWidgets(new ArrayList<>(template.getDashboard().getWidgets()));
+        if (DashboardConstants.CREATE_FROM_SCRATCH.equals(template.getId())) {
+          selectedDashboard.setWidgets(new ArrayList<>());
+        } else {
+          selectedDashboard.setWidgets(new ArrayList<>(template.getDashboard().getWidgets()));
+        }
       });
       for(DashboardWidget widget : getSelectedDashboard().getWidgets()) {
         widget.setId(DashboardWidgetUtils.generateNewWidgetId(widget.getType()));
@@ -531,7 +533,6 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
 
   public String getRestoreDashboardMessage() {
     if (StringUtils.isBlank(restoreDashboardMessage)) {
-      var foundTemplate = findSelectedTemplate(getSelectedDashboard().getTemplateId());
       if (foundTemplate.isPresent()) {
         restoreDashboardMessage = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/RestoreDefaultDashboardMessage",
             Arrays.asList(foundTemplate.get().getTitle()));
@@ -541,11 +542,17 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   }
 
   private Optional<DashboardTemplate> findSelectedTemplate(String templateId) {
+    if (DashboardConstants.CREATE_FROM_SCRATCH.equals(templateId)) {
+      DashboardTemplate scratchDashboard = new DashboardTemplate();
+      scratchDashboard.setId(DashboardConstants.CREATE_FROM_SCRATCH);
+      scratchDashboard.setTitle(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfigurationDialog/CreateFromScratch"));
+      return Optional.of(scratchDashboard);
+    }
     return CollectionUtils.emptyIfNull(getDashboardTemplates()).stream()
         .filter(template -> template.getId().equals(templateId)).findFirst();
   }
 
-  public boolean isFoundTemplate() {
+  public Optional<DashboardTemplate> getFoundTemplate() {
     return foundTemplate;
   }
 
