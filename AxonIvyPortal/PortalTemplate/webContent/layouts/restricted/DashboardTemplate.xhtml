@@ -51,8 +51,8 @@
         </div>
 
           <h:form id="dashboard-remote-command-form" prependId="false">
-            <p:remoteCommand name="saveConfigurationCommand" actionListener="#{managedBean.save()}" global="false" />
-            <p:remoteCommand name="updateDashboardWidget" update="grid-stack" oncomplete="loadGrid(); return false;" />
+            <p:remoteCommand name="saveConfigurationCommand" actionListener="#{managedBean.save()}" global="false" update="#{cc.clientId}:grid-stack"/>
+            <p:remoteCommand name="updateDashboardWidget" update="#{cc.clientId}:grid-stack" oncomplete="loadGrid(); return false;" />
             <p:remoteCommand name="saveWidgetState" actionListener="#{managedBean.saveSelectedWidget()}" global="false"/>
             <p:remoteCommand name="loadAllWidgetSavedFilters" actionListener="#{dashboardBean.loadAllWidgetSavedFilters()}"
               global="false" process="@this" immediate="true" partialSubmit="true"
