@@ -13,7 +13,8 @@
         #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/SelectYourTemplate')}
       </span>
       <p:commandLink id="create-from-scratch" styleClass="ui-g-12 dashboard-configuration-dialog__action-row"
-        onclick="PF('#{cc.attrs.detailDialogWidgetVar}').show()" global="false">
+        oncomplete="PF('#{cc.attrs.detailDialogWidgetVar}').show()" global="false"
+        actionListener="#{cc.attrs.managedBean.createDashboardFromScratch()}">
         <div class="ui-g-2">
           <span class="si si-common-file-add dashboard-configuration-dialog__action-row-icon" />
         </div>
