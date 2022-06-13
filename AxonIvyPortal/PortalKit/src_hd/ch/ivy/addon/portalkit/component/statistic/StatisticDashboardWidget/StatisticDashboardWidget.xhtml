@@ -12,7 +12,6 @@
   <cc:attribute name="isDrilldownExpiryChart" default="false" />
   <cc:attribute name="showTaskListImmediately" default="false" />
   <cc:attribute name="isBackFromDrilldown" default="false" />
-  <cc:attribute name="idChartDisplay" default="#{data.isCompactMode ? 'statistic-carousel-container':'statistic-chart-repeater-container'}" />
   <cc:facet name="emptyDataPlace" shortDescription="user can override empty message with this place" />
 </cc:interface>
 
@@ -128,8 +127,6 @@
       <ic:ch.ivy.addon.portalkit.component.statistic.ElapsedTimeChartDetails id="elapsed-time-chart-details"
         caseCategory="#{data.selectedCaseCategory}" statisticChart="#{data.selectedStatisticChart}" />
     </h:panelGroup>
-    <p:outputLabel value="#{data.statisticChartList}"></p:outputLabel>
-    <p:outputLabel value="#{idChartDisplay}"></p:outputLabel>
   </h:panelGroup>
 
   <h:form id="statistic-form" styleClass="u-hidden">
@@ -138,7 +135,7 @@
       global="false" action="#{logic.generateChartModel}" async="true"
       immediate="true" process="@this" partialSubmit="true"/>
 
-    <p:poll id="thanh-test-chart-1" interval="#{statisticChartCreationBean.statisticChartsPolling}" update="@([id$=#{idChartDisplay}])" global="false"
+    <p:poll id="chart_model_poll" interval="#{statisticChartCreationBean.statisticChartsPolling}" update="@([id$=#{idChartDisplay}])" global="false"
       process="@this" partialSubmit="true" async="true" immediate="true" listener="#{logic.regenerateChartModel(data.statisticChartList)}" rendered="#{statisticChartCreationBean.statisticChartsPolling ne 0}"/>
 
     <p:remoteCommand rendered="#{cc.attrs.compactMode}" name="updateStatisticCarousel" update="@([id$='statistic-carousel-container'])" 

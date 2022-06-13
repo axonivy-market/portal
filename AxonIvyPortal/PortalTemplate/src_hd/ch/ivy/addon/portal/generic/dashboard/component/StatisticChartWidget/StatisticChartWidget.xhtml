@@ -106,7 +106,7 @@
       global="false" async="true" process="@this"
       oncomplete="loadWidgetFirstTime('js-loading-chart-#{widget.id}', 'js-dashboard-statistic-chart-#{widget.id}')" />
 
-    <p:poll id="thanh-test-chart-2" interval="#{statisticChartCreationBean.statisticChartsPolling}" update="@([id$='TaskByPriority'])" global="false"
+    <p:poll id="chart_model_dashboard_poll" interval="#{statisticChartCreationBean.statisticChartsPolling}" update="@([id$='task_by_priority_chart'])" global="false"
      process="@this" partialSubmit="true" async="true" immediate="true" listener="#{logic.regenerateChartModelDashboard(chart)}" rendered="#{statisticChartCreationBean.statisticChartsPolling ne 0}"/>
     <h:panelGroup id="statistic-chart-widget__content" rendered="#{chart ne null}" layout="block"
       styleClass="statistic-chart-widget__content widget__content widget__content">
@@ -121,7 +121,7 @@
           <p class="empty-message-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/StatisticWidget/EmptyChartDataMessage')}</p>
         </h:panelGroup>
         <h:panelGroup rendered="#{!widget.chartEmpty}">
-          <p:donutChart id="TaskByPriority" model="#{chart.donutChartModel}"
+          <p:donutChart id="task_by_priority_chart" model="#{chart.donutChartModel}"
             rendered="#{dashboardStatisticChartBean.isTaskByPriority(chart)}"
             styleClass="statistic-chart-widget__canvas">
             <f:attribute name="selectedChartId" value="#{chart.id}" />
