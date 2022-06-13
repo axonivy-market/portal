@@ -2,6 +2,7 @@ package ch.ivy.addon.portal.chat;
 
 import static ch.ivy.addon.portal.chat.ChatReferencesContainer.getChatService;
 import static ch.ivy.addon.portal.chat.ChatReferencesContainer.log;
+import static ch.ivy.addon.portal.chat.ChatReferencesContainer.wf;
 import static ch.ivy.addon.portal.chat.ClusterChatAction.CLUSTER_CHAT_ACTION_PREFIX;
 
 import java.util.ArrayList;
@@ -11,7 +12,6 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.util.IvyExecutor;
-import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.event.ISystemEventListener;
 import ch.ivyteam.ivy.event.SystemEvent;
 import ch.ivyteam.ivy.event.SystemEventCategory;
@@ -46,12 +46,12 @@ public class ClusterChatEventListener implements ISystemEventListener {
   }
 
   private void subscribeToSystemEvents() {
-    IApplication.current().addSystemEventListener(EnumSet.of(SystemEventCategory.THIRD_PARTY), this);
+	wf().getApplication().addSystemEventListener(EnumSet.of(SystemEventCategory.THIRD_PARTY), this);
     listeners.add(this);
   }
 
   private void unsubscribeToSystemEvents() {
-    IApplication.current().removeSystemEventListener(EnumSet.of(SystemEventCategory.THIRD_PARTY), this);
+	wf().getApplication().removeSystemEventListener(EnumSet.of(SystemEventCategory.THIRD_PARTY), this);
   }
 
   private static void clearAllListeners() {
