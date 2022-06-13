@@ -1,504 +1,549 @@
-[{
-	"title" : "Default template",
-	"description" : "Create dashboard with 1 Task list, 1 Case list, and 1 Process list",
-	"icon" : "si-layout-dashboard",
-	"dashboard" : {
-		"id" : "",
-		"title" : "public 4",
-		"widgets" : [{
-				"type" : "task",
-				"id" : "",
-				"name" : "Your Tasks",
-				"layout" : {
-					"id" : null,
-					"styleClass" : null,
-					"style" : null,
-					"w" : 9,
-					"h" : 5,
-					"x" : 0,
-					"y" : 0
-				},
-				"rowsPerPage" : 10,
-				"sortDescending" : true,
-				"columns" : [{
-						"header" : "cms:/ch.ivy.addon.portalkit.ui.jsf/common/start",
-						"field" : "start",
-						"styleClass" : "dashboard-tasks__start u-text-align-center",
-						"style" : "width: 80px",
-						"visible" : true,
-						"sortable" : false,
-						"format" : "STRING",
-						"filterType" : "LIKE"
-					}, {
-						"header" : "cms:/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/abbreviation/PRIORITY",
-						"field" : "priority",
-						"styleClass" : "dashboard-tasks__priority u-text-align-center",
-						"style" : "width: 80px",
-						"visible" : true,
-						"sortable" : true,
-						"format" : "CUSTOM",
-						"filterType" : "LIKE"
-					}, {
-						"header" : "cms:/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ID",
-						"field" : "id",
-						"styleClass" : "dashboard-tasks__id u-text-align-center u-padding-0",
-						"visible" : true,
-						"sortable" : true,
-						"format" : "STRING",
-						"filterType" : "LIKE"
-					}, {
-						"header" : "cms:/ch.ivy.addon.portalkit.ui.jsf/common/taskName",
-						"field" : "name",
-						"styleClass" : "dashboard-tasks__name",
-						"visible" : true,
-						"sortable" : true,
-						"format" : "STRING",
-						"filterType" : "LIKE"
-					}, {
-						"header" : "cms:/ch.ivy.addon.portalkit.ui.jsf/common/description",
-						"field" : "description",
-						"styleClass" : "dashboard-tasks__description",
-						"style" : "width: 250px",
-						"visible" : true,
-						"sortable" : false,
-						"format" : "STRING",
-						"filterType" : "LIKE"
-					}, {
-						"header" : "cms:/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR",
-						"field" : "activator",
-						"styleClass" : "dashboard-tasks__responsible",
-						"style" : "width: 150px",
-						"visible" : true,
-						"sortable" : true,
-						"format" : "CUSTOM",
-						"filterType" : "LIKE"
-					}, {
-						"header" : "cms:/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/STATE",
-						"field" : "state",
-						"styleClass" : "dashboard-tasks__state u-text-align-center",
-						"style" : "width: 120px",
-						"visible" : true,
-						"sortable" : true,
-						"format" : "CUSTOM",
-						"filterType" : "LIKE"
-					}, {
-						"header" : "cms:/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/CREATION_TIME",
-						"field" : "startTimestamp",
-						"styleClass" : "dashboard-tasks__created-date u-text-align-center",
-						"style" : "width: 100px",
-						"visible" : true,
-						"sortable" : true,
-						"format" : "TIMESTAMP",
-						"filterType" : "LIKE"
-					}, {
-						"header" : "cms:/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/EXPIRY_TIME",
-						"field" : "expiryTimestamp",
-						"styleClass" : "dashboard-tasks__expiry-date u-text-align-center u-padding-0",
-						"style" : "width: 120px",
-						"visible" : true,
-						"sortable" : true,
-						"format" : "TIMESTAMP",
-						"filterType" : "LIKE"
-					}, {
-						"header" : "cms:/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/CATEGORY",
-						"field" : "category",
-						"styleClass" : "dashboard-tasks__category u-text-align-center",
-						"style" : "width: 120px",
-						"visible" : true,
-						"sortable" : false,
-						"format" : "CUSTOM",
-						"filterType" : "LIKE"
-					}, {
-						"header" : "cms:/ch.ivy.addon.portalkit.ui.jsf/common/action",
-						"field" : "actions",
-						"styleClass" : "dashboard-tasks__actions",
-						"style" : "width: 100px",
-						"visible" : true,
-						"sortable" : false,
-						"format" : "CUSTOM",
-						"filterType" : "LIKE"
-					}
-				],
-				"canWorkOn" : false,
-				"sortField" : "ID"
-			}, {
-				"type" : "case",
-				"id" : "",
-				"name" : "Your Cases",
-				"layout" : {
-					"id" : null,
-					"styleClass" : null,
-					"style" : null,
-					"w" : 9,
-					"h" : 5,
-					"x" : 0,
-					"y" : 5
-				},
-				"rowsPerPage" : 10,
-				"sortDescending" : true,
-				"columns" : [{
-						"header" : "cms:/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/ID",
-						"field" : "id",
-						"styleClass" : "dashboard-cases__id u-text-align-center u-padding-0",
-						"visible" : true,
-						"sortable" : true,
-						"format" : "STRING",
-						"filterType" : "LIKE"
-					}, {
-						"header" : "cms:/ch.ivy.addon.portalkit.ui.jsf/common/caseName",
-						"field" : "name",
-						"styleClass" : "dashboard-cases__name",
-						"visible" : true,
-						"sortable" : true,
-						"format" : "STRING",
-						"filterType" : "LIKE"
-					}, {
-						"header" : "cms:/ch.ivy.addon.portalkit.ui.jsf/common/description",
-						"field" : "description",
-						"styleClass" : "dashboard-cases__description",
-						"style" : "width: 250px",
-						"visible" : true,
-						"sortable" : false,
-						"format" : "STRING",
-						"filterType" : "LIKE"
-					}, {
-						"header" : "cms:/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/STATE",
-						"field" : "state",
-						"styleClass" : "dashboard-cases__state u-text-align-center",
-						"style" : "width: 120px",
-						"visible" : true,
-						"sortable" : true,
-						"format" : "CUSTOM",
-						"filterType" : "LIKE"
-					}, {
-						"header" : "cms:/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATOR",
-						"field" : "creator",
-						"styleClass" : "dashboard-cases__creator",
-						"style" : "width: 150px",
-						"visible" : true,
-						"sortable" : true,
-						"format" : "CUSTOM",
-						"filterType" : "LIKE"
-					}, {
-						"header" : "cms:/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATION_TIME",
-						"field" : "startTimestamp",
-						"styleClass" : "dashboard-cases__created-date u-text-align-center",
-						"style" : "width: 100px",
-						"visible" : true,
-						"sortable" : true,
-						"format" : "TIMESTAMP",
-						"filterType" : "LIKE"
-					}, {
-						"header" : "cms:/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/FINISHED_TIME",
-						"field" : "endTimestamp",
-						"styleClass" : "dashboard-cases__finished-date u-text-align-center",
-						"visible" : true,
-						"sortable" : true,
-						"format" : "TIMESTAMP",
-						"filterType" : "LIKE"
-					}, {
-						"header" : "cms:/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/OWNER",
-						"field" : "owner",
-						"styleClass" : "dashboard-cases__owner",
-						"style" : "width: 150px",
-						"visible" : true,
-						"sortable" : true,
-						"format" : "CUSTOM",
-						"filterType" : "LIKE"
-					}, {
-						"header" : "cms:/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/CATEGORY",
-						"field" : "category",
-						"styleClass" : "dashboard-tasks__category u-text-align-center",
-						"style" : "width: 120px",
-						"visible" : true,
-						"sortable" : false,
-						"format" : "CUSTOM",
-						"filterType" : "LIKE"
-					}, {
-						"header" : "cms:/ch.ivy.addon.portalkit.ui.jsf/common/action",
-						"field" : "actions",
-						"styleClass" : "dashboard-cases__actions",
-						"style" : "width: 100px",
-						"visible" : true,
-						"sortable" : false,
-						"format" : "CUSTOM",
-						"filterType" : "LIKE"
-					}
-				],
-				"sortField" : "ID"
-			}, {
-				"type" : "compact-process",
-				"id" : "",
-				"name" : "Your Processes",
-				"layout" : {
-					"id" : null,
-					"styleClass" : null,
-					"style" : null,
-					"w" : 3,
-					"h" : 10,
-					"x" : 9,
-					"y" : 0
-				}
-			}
-		],
-		"permissions" : ["Everybody"]
-	}
-} , {
-	"title" : "Two Task list dashboard",
-	"description" : "Create dashboard with 2 Task lists and 1 Process list",
-	"icon" : "si-layout-dashboard",
-	"dashboard" : {
-		"id" : "",
-		"title" : "Two Task list dashboard",
-		"widgets" : [{
-				"type" : "task",
-				"id" : "",
-				"name" : "Open Tasks",
-				"layout" : {
-					"id" : null,
-					"styleClass" : null,
-					"style" : null,
-					"w" : 9,
-					"h" : 5,
-					"x" : 0,
-					"y" : 0
-				},
-				"rowsPerPage" : 10,
-				"sortDescending" : true,
-				"columns" : [{
-						"header" : "cms:/ch.ivy.addon.portalkit.ui.jsf/common/start",
-						"field" : "start",
-						"styleClass" : "dashboard-tasks__start u-text-align-center",
-						"style" : "width: 80px",
-						"visible" : true,
-						"sortable" : false,
-						"format" : "STRING",
-						"filterType" : "LIKE"
-					}, {
-						"header" : "cms:/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/abbreviation/PRIORITY",
-						"field" : "priority",
-						"styleClass" : "dashboard-tasks__priority u-text-align-center",
-						"style" : "width: 80px",
-						"visible" : true,
-						"sortable" : true,
-						"format" : "CUSTOM",
-						"filterType" : "LIKE"
-					}, {
-						"header" : "cms:/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ID",
-						"field" : "id",
-						"styleClass" : "dashboard-tasks__id u-text-align-center u-padding-0",
-						"visible" : true,
-						"sortable" : true,
-						"format" : "STRING",
-						"filterType" : "LIKE"
-					}, {
-						"header" : "cms:/ch.ivy.addon.portalkit.ui.jsf/common/taskName",
-						"field" : "name",
-						"styleClass" : "dashboard-tasks__name",
-						"visible" : true,
-						"sortable" : true,
-						"format" : "STRING",
-						"filterType" : "LIKE"
-					}, {
-						"header" : "cms:/ch.ivy.addon.portalkit.ui.jsf/common/description",
-						"field" : "description",
-						"styleClass" : "dashboard-tasks__description",
-						"style" : "width: 250px",
-						"visible" : true,
-						"sortable" : false,
-						"format" : "STRING",
-						"filterType" : "LIKE"
-					}, {
-						"header" : "cms:/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR",
-						"field" : "activator",
-						"styleClass" : "dashboard-tasks__responsible",
-						"style" : "width: 150px",
-						"visible" : true,
-						"sortable" : true,
-						"format" : "CUSTOM",
-						"filterType" : "LIKE"
-					}, {
-						"header" : "cms:/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/STATE",
-						"field" : "state",
-						"styleClass" : "dashboard-tasks__state u-text-align-center",
-						"style" : "width: 120px",
-						"visible" : true,
-						"sortable" : true,
-						"format" : "CUSTOM",
-						"filterList" : ["SUSPENDED"],
-						"filterType" : "LIKE"
-					}, {
-						"header" : "cms:/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/CREATION_TIME",
-						"field" : "startTimestamp",
-						"styleClass" : "dashboard-tasks__created-date u-text-align-center",
-						"style" : "width: 100px",
-						"visible" : true,
-						"sortable" : true,
-						"format" : "TIMESTAMP",
-						"filterType" : "LIKE"
-					}, {
-						"header" : "cms:/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/EXPIRY_TIME",
-						"field" : "expiryTimestamp",
-						"styleClass" : "dashboard-tasks__expiry-date u-text-align-center u-padding-0",
-						"style" : "width: 120px",
-						"visible" : true,
-						"sortable" : true,
-						"format" : "TIMESTAMP",
-						"filterType" : "LIKE"
-					}, {
-						"header" : "cms:/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/CATEGORY",
-						"field" : "category",
-						"styleClass" : "dashboard-tasks__category u-text-align-center",
-						"style" : "width: 120px",
-						"visible" : true,
-						"sortable" : false,
-						"format" : "CUSTOM",
-						"filterType" : "LIKE"
-					}, {
-						"header" : "cms:/ch.ivy.addon.portalkit.ui.jsf/common/action",
-						"field" : "actions",
-						"styleClass" : "dashboard-tasks__actions",
-						"style" : "width: 100px",
-						"visible" : true,
-						"sortable" : false,
-						"format" : "CUSTOM",
-						"filterType" : "LIKE"
-					}
-				],
-				"canWorkOn" : true,
-				"sortField" : "ID"
-			}, {
-				"type" : "task",
-				"id" : "",
-				"name" : "Working Tasks",
-				"layout" : {
-					"id" : null,
-					"styleClass" : null,
-					"style" : null,
-					"w" : 9,
-					"h" : 5,
-					"x" : 0,
-					"y" : 5
-				},
-				"rowsPerPage" : 10,
-				"sortDescending" : true,
-				"columns" : [{
-						"header" : "cms:/ch.ivy.addon.portalkit.ui.jsf/common/start",
-						"field" : "start",
-						"styleClass" : "dashboard-tasks__start u-text-align-center",
-						"style" : "width: 80px",
-						"visible" : true,
-						"sortable" : false,
-						"format" : "STRING",
-						"filterType" : "LIKE"
-					}, {
-						"header" : "cms:/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/abbreviation/PRIORITY",
-						"field" : "priority",
-						"styleClass" : "dashboard-tasks__priority u-text-align-center",
-						"style" : "width: 80px",
-						"visible" : true,
-						"sortable" : true,
-						"format" : "CUSTOM",
-						"filterType" : "LIKE"
-					}, {
-						"header" : "cms:/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ID",
-						"field" : "id",
-						"styleClass" : "dashboard-tasks__id u-text-align-center u-padding-0",
-						"visible" : true,
-						"sortable" : true,
-						"format" : "STRING",
-						"filterType" : "LIKE"
-					}, {
-						"header" : "cms:/ch.ivy.addon.portalkit.ui.jsf/common/taskName",
-						"field" : "name",
-						"styleClass" : "dashboard-tasks__name",
-						"visible" : true,
-						"sortable" : true,
-						"format" : "STRING",
-						"filterType" : "LIKE"
-					}, {
-						"header" : "cms:/ch.ivy.addon.portalkit.ui.jsf/common/description",
-						"field" : "description",
-						"styleClass" : "dashboard-tasks__description",
-						"style" : "width: 250px",
-						"visible" : true,
-						"sortable" : false,
-						"format" : "STRING",
-						"filterType" : "LIKE"
-					}, {
-						"header" : "cms:/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR",
-						"field" : "activator",
-						"styleClass" : "dashboard-tasks__responsible",
-						"style" : "width: 150px",
-						"visible" : true,
-						"sortable" : true,
-						"format" : "CUSTOM",
-						"filterType" : "LIKE"
-					}, {
-						"header" : "cms:/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/STATE",
-						"field" : "state",
-						"styleClass" : "dashboard-tasks__state u-text-align-center",
-						"style" : "width: 120px",
-						"visible" : true,
-						"sortable" : true,
-						"format" : "CUSTOM",
-						"filterList" : ["PARKED", "RESUMED"],
-						"filterType" : "LIKE"
-					}, {
-						"header" : "cms:/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/CREATION_TIME",
-						"field" : "startTimestamp",
-						"styleClass" : "dashboard-tasks__created-date u-text-align-center",
-						"style" : "width: 100px",
-						"visible" : true,
-						"sortable" : true,
-						"format" : "TIMESTAMP",
-						"filterType" : "LIKE"
-					}, {
-						"header" : "cms:/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/EXPIRY_TIME",
-						"field" : "expiryTimestamp",
-						"styleClass" : "dashboard-tasks__expiry-date u-text-align-center u-padding-0",
-						"style" : "width: 120px",
-						"visible" : true,
-						"sortable" : true,
-						"format" : "TIMESTAMP",
-						"filterType" : "LIKE"
-					}, {
-						"header" : "cms:/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/CATEGORY",
-						"field" : "category",
-						"styleClass" : "dashboard-tasks__category u-text-align-center",
-						"style" : "width: 120px",
-						"visible" : true,
-						"sortable" : false,
-						"format" : "CUSTOM",
-						"filterType" : "LIKE"
-					}, {
-						"header" : "cms:/ch.ivy.addon.portalkit.ui.jsf/common/action",
-						"field" : "actions",
-						"styleClass" : "dashboard-tasks__actions",
-						"style" : "width: 100px",
-						"visible" : true,
-						"sortable" : false,
-						"format" : "CUSTOM",
-						"filterType" : "LIKE"
-					}
-				],
-				"canWorkOn" : false,
-				"sortField" : "ID"
-			}, {
-				"type" : "compact-process",
-				"id" : "",
-				"name" : "Your Processes",
-				"layout" : {
-					"id" : null,
-					"styleClass" : null,
-					"style" : null,
-					"w" : 3,
-					"h" : 10,
-					"x" : 9,
-					"y" : 0
-				}
-			}
-		],
-		"permissions" : ["Everybody"]
-	}
-}]
+[
+  {
+    "id": "default-portal-dashboard-template",
+    "title": "Default template",
+    "description": "Create dashboard with 1 Task list, 1 Case list, and 1 Process list",
+    "icon": "si-layout-dashboard",
+    "dashboard": {
+      "id": "public-4",
+      "title": "public 4",
+      "widgets": [
+        {
+          "type": "task",
+          "id": "",
+          "name": "Your Tasks",
+          "layout": {
+            "w": 9,
+            "h": 5,
+            "x": 0,
+            "y": 0
+          },
+          "rowsPerPage": 10,
+          "sortDescending": true,
+          "columns": [
+            {
+              "header": "cms:/ch.ivy.addon.portalkit.ui.jsf/common/start",
+              "field": "start",
+              "styleClass": "dashboard-tasks__start u-text-align-center",
+              "style": "width: 80px",
+              "visible": true,
+              "sortable": false,
+              "format": "STRING",
+              "filterType": "LIKE"
+            },
+            {
+              "header": "cms:/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/abbreviation/PRIORITY",
+              "field": "priority",
+              "styleClass": "dashboard-tasks__priority u-text-align-center",
+              "style": "width: 80px",
+              "visible": true,
+              "sortable": true,
+              "format": "CUSTOM",
+              "filterType": "LIKE"
+            },
+            {
+              "header": "cms:/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ID",
+              "field": "id",
+              "styleClass": "dashboard-tasks__id u-text-align-center u-padding-0",
+              "visible": true,
+              "sortable": true,
+              "format": "STRING",
+              "filterType": "LIKE"
+            },
+            {
+              "header": "cms:/ch.ivy.addon.portalkit.ui.jsf/common/taskName",
+              "field": "name",
+              "styleClass": "dashboard-tasks__name",
+              "visible": true,
+              "sortable": true,
+              "format": "STRING",
+              "filterType": "LIKE"
+            },
+            {
+              "header": "cms:/ch.ivy.addon.portalkit.ui.jsf/common/description",
+              "field": "description",
+              "styleClass": "dashboard-tasks__description",
+              "style": "width: 250px",
+              "visible": true,
+              "sortable": false,
+              "format": "STRING",
+              "filterType": "LIKE"
+            },
+            {
+              "header": "cms:/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR",
+              "field": "activator",
+              "styleClass": "dashboard-tasks__responsible",
+              "style": "width: 150px",
+              "visible": true,
+              "sortable": true,
+              "format": "CUSTOM",
+              "filterType": "LIKE"
+            },
+            {
+              "header": "cms:/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/STATE",
+              "field": "state",
+              "styleClass": "dashboard-tasks__state u-text-align-center",
+              "style": "width: 120px",
+              "visible": true,
+              "sortable": true,
+              "format": "CUSTOM",
+              "filterType": "LIKE"
+            },
+            {
+              "header": "cms:/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/CREATION_TIME",
+              "field": "startTimestamp",
+              "styleClass": "dashboard-tasks__created-date u-text-align-center",
+              "style": "width: 100px",
+              "visible": true,
+              "sortable": true,
+              "format": "TIMESTAMP",
+              "filterType": "LIKE"
+            },
+            {
+              "header": "cms:/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/EXPIRY_TIME",
+              "field": "expiryTimestamp",
+              "styleClass": "dashboard-tasks__expiry-date u-text-align-center u-padding-0",
+              "style": "width: 120px",
+              "visible": true,
+              "sortable": true,
+              "format": "TIMESTAMP",
+              "filterType": "LIKE"
+            },
+            {
+              "header": "cms:/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/CATEGORY",
+              "field": "category",
+              "styleClass": "dashboard-tasks__category u-text-align-center",
+              "style": "width: 120px",
+              "visible": true,
+              "sortable": false,
+              "format": "CUSTOM",
+              "filterType": "LIKE"
+            },
+            {
+              "header": "cms:/ch.ivy.addon.portalkit.ui.jsf/common/action",
+              "field": "actions",
+              "styleClass": "dashboard-tasks__actions",
+              "style": "width: 100px",
+              "visible": true,
+              "sortable": false,
+              "format": "CUSTOM",
+              "filterType": "LIKE"
+            }
+          ],
+          "canWorkOn": false,
+          "sortField": "ID"
+        },
+        {
+          "type": "case",
+          "id": "",
+          "name": "Your Cases",
+          "layout": {
+            "w": 9,
+            "h": 5,
+            "x": 0,
+            "y": 5
+          },
+          "rowsPerPage": 10,
+          "sortDescending": true,
+          "columns": [
+            {
+              "header": "cms:/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/ID",
+              "field": "id",
+              "styleClass": "dashboard-cases__id u-text-align-center u-padding-0",
+              "visible": true,
+              "sortable": true,
+              "format": "STRING",
+              "filterType": "LIKE"
+            },
+            {
+              "header": "cms:/ch.ivy.addon.portalkit.ui.jsf/common/caseName",
+              "field": "name",
+              "styleClass": "dashboard-cases__name",
+              "visible": true,
+              "sortable": true,
+              "format": "STRING",
+              "filterType": "LIKE"
+            },
+            {
+              "header": "cms:/ch.ivy.addon.portalkit.ui.jsf/common/description",
+              "field": "description",
+              "styleClass": "dashboard-cases__description",
+              "style": "width: 250px",
+              "visible": true,
+              "sortable": false,
+              "format": "STRING",
+              "filterType": "LIKE"
+            },
+            {
+              "header": "cms:/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/STATE",
+              "field": "state",
+              "styleClass": "dashboard-cases__state u-text-align-center",
+              "style": "width: 120px",
+              "visible": true,
+              "sortable": true,
+              "format": "CUSTOM",
+              "filterType": "LIKE"
+            },
+            {
+              "header": "cms:/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATOR",
+              "field": "creator",
+              "styleClass": "dashboard-cases__creator",
+              "style": "width: 150px",
+              "visible": true,
+              "sortable": true,
+              "format": "CUSTOM",
+              "filterType": "LIKE"
+            },
+            {
+              "header": "cms:/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATION_TIME",
+              "field": "startTimestamp",
+              "styleClass": "dashboard-cases__created-date u-text-align-center",
+              "style": "width: 100px",
+              "visible": true,
+              "sortable": true,
+              "format": "TIMESTAMP",
+              "filterType": "LIKE"
+            },
+            {
+              "header": "cms:/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/FINISHED_TIME",
+              "field": "endTimestamp",
+              "styleClass": "dashboard-cases__finished-date u-text-align-center",
+              "visible": true,
+              "sortable": true,
+              "format": "TIMESTAMP",
+              "filterType": "LIKE"
+            },
+            {
+              "header": "cms:/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/OWNER",
+              "field": "owner",
+              "styleClass": "dashboard-cases__owner",
+              "style": "width: 150px",
+              "visible": true,
+              "sortable": true,
+              "format": "CUSTOM",
+              "filterType": "LIKE"
+            },
+            {
+              "header": "cms:/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/CATEGORY",
+              "field": "category",
+              "styleClass": "dashboard-tasks__category u-text-align-center",
+              "style": "width: 120px",
+              "visible": true,
+              "sortable": false,
+              "format": "CUSTOM",
+              "filterType": "LIKE"
+            },
+            {
+              "header": "cms:/ch.ivy.addon.portalkit.ui.jsf/common/action",
+              "field": "actions",
+              "styleClass": "dashboard-cases__actions",
+              "style": "width: 100px",
+              "visible": true,
+              "sortable": false,
+              "format": "CUSTOM",
+              "filterType": "LIKE"
+            }
+          ],
+          "sortField": "ID"
+        },
+        {
+          "type": "compact-process",
+          "id": "",
+          "name": "Your Processes",
+          "layout": {
+            "w": 3,
+            "h": 10,
+            "x": 9,
+            "y": 0
+          }
+        }
+      ],
+      "permissions": [
+        "Everybody"
+      ]
+    }
+  },
+  {
+    "id": "two-task-widget-dashboard-template",
+    "title": "Two Task list dashboard",
+    "description": "Create dashboard with 2 Task lists and 1 Process list",
+    "icon": "si-layout-dashboard",
+    "dashboard": {
+      "id": "",
+      "title": "Two Task list dashboard",
+      "widgets": [
+        {
+          "type": "task",
+          "id": "",
+          "name": "Open Tasks",
+          "layout": {
+            "w": 9,
+            "h": 5,
+            "x": 0,
+            "y": 0
+          },
+          "rowsPerPage": 10,
+          "sortDescending": true,
+          "columns": [
+            {
+              "header": "cms:/ch.ivy.addon.portalkit.ui.jsf/common/start",
+              "field": "start",
+              "styleClass": "dashboard-tasks__start u-text-align-center",
+              "style": "width: 80px",
+              "visible": true,
+              "sortable": false,
+              "format": "STRING",
+              "filterType": "LIKE"
+            },
+            {
+              "header": "cms:/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/abbreviation/PRIORITY",
+              "field": "priority",
+              "styleClass": "dashboard-tasks__priority u-text-align-center",
+              "style": "width: 80px",
+              "visible": true,
+              "sortable": true,
+              "format": "CUSTOM",
+              "filterType": "LIKE"
+            },
+            {
+              "header": "cms:/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ID",
+              "field": "id",
+              "styleClass": "dashboard-tasks__id u-text-align-center u-padding-0",
+              "visible": true,
+              "sortable": true,
+              "format": "STRING",
+              "filterType": "LIKE"
+            },
+            {
+              "header": "cms:/ch.ivy.addon.portalkit.ui.jsf/common/taskName",
+              "field": "name",
+              "styleClass": "dashboard-tasks__name",
+              "visible": true,
+              "sortable": true,
+              "format": "STRING",
+              "filterType": "LIKE"
+            },
+            {
+              "header": "cms:/ch.ivy.addon.portalkit.ui.jsf/common/description",
+              "field": "description",
+              "styleClass": "dashboard-tasks__description",
+              "style": "width: 250px",
+              "visible": true,
+              "sortable": false,
+              "format": "STRING",
+              "filterType": "LIKE"
+            },
+            {
+              "header": "cms:/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR",
+              "field": "activator",
+              "styleClass": "dashboard-tasks__responsible",
+              "style": "width: 150px",
+              "visible": true,
+              "sortable": true,
+              "format": "CUSTOM",
+              "filterType": "LIKE"
+            },
+            {
+              "header": "cms:/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/STATE",
+              "field": "state",
+              "styleClass": "dashboard-tasks__state u-text-align-center",
+              "style": "width: 120px",
+              "visible": true,
+              "sortable": true,
+              "format": "CUSTOM",
+              "filterList": [
+                "SUSPENDED"
+              ],
+              "filterType": "LIKE"
+            },
+            {
+              "header": "cms:/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/CREATION_TIME",
+              "field": "startTimestamp",
+              "styleClass": "dashboard-tasks__created-date u-text-align-center",
+              "style": "width: 100px",
+              "visible": true,
+              "sortable": true,
+              "format": "TIMESTAMP",
+              "filterType": "LIKE"
+            },
+            {
+              "header": "cms:/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/EXPIRY_TIME",
+              "field": "expiryTimestamp",
+              "styleClass": "dashboard-tasks__expiry-date u-text-align-center u-padding-0",
+              "style": "width: 120px",
+              "visible": true,
+              "sortable": true,
+              "format": "TIMESTAMP",
+              "filterType": "LIKE"
+            },
+            {
+              "header": "cms:/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/CATEGORY",
+              "field": "category",
+              "styleClass": "dashboard-tasks__category u-text-align-center",
+              "style": "width: 120px",
+              "visible": true,
+              "sortable": false,
+              "format": "CUSTOM",
+              "filterType": "LIKE"
+            },
+            {
+              "header": "cms:/ch.ivy.addon.portalkit.ui.jsf/common/action",
+              "field": "actions",
+              "styleClass": "dashboard-tasks__actions",
+              "style": "width: 100px",
+              "visible": true,
+              "sortable": false,
+              "format": "CUSTOM",
+              "filterType": "LIKE"
+            }
+          ],
+          "canWorkOn": true,
+          "sortField": "ID"
+        },
+        {
+          "type": "task",
+          "id": "",
+          "name": "Working Tasks",
+          "layout": {
+            "w": 9,
+            "h": 5,
+            "x": 0,
+            "y": 5
+          },
+          "rowsPerPage": 10,
+          "sortDescending": true,
+          "columns": [
+            {
+              "header": "cms:/ch.ivy.addon.portalkit.ui.jsf/common/start",
+              "field": "start",
+              "styleClass": "dashboard-tasks__start u-text-align-center",
+              "style": "width: 80px",
+              "visible": true,
+              "sortable": false,
+              "format": "STRING",
+              "filterType": "LIKE"
+            },
+            {
+              "header": "cms:/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/abbreviation/PRIORITY",
+              "field": "priority",
+              "styleClass": "dashboard-tasks__priority u-text-align-center",
+              "style": "width: 80px",
+              "visible": true,
+              "sortable": true,
+              "format": "CUSTOM",
+              "filterType": "LIKE"
+            },
+            {
+              "header": "cms:/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ID",
+              "field": "id",
+              "styleClass": "dashboard-tasks__id u-text-align-center u-padding-0",
+              "visible": true,
+              "sortable": true,
+              "format": "STRING",
+              "filterType": "LIKE"
+            },
+            {
+              "header": "cms:/ch.ivy.addon.portalkit.ui.jsf/common/taskName",
+              "field": "name",
+              "styleClass": "dashboard-tasks__name",
+              "visible": true,
+              "sortable": true,
+              "format": "STRING",
+              "filterType": "LIKE"
+            },
+            {
+              "header": "cms:/ch.ivy.addon.portalkit.ui.jsf/common/description",
+              "field": "description",
+              "styleClass": "dashboard-tasks__description",
+              "style": "width: 250px",
+              "visible": true,
+              "sortable": false,
+              "format": "STRING",
+              "filterType": "LIKE"
+            },
+            {
+              "header": "cms:/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR",
+              "field": "activator",
+              "styleClass": "dashboard-tasks__responsible",
+              "style": "width: 150px",
+              "visible": true,
+              "sortable": true,
+              "format": "CUSTOM",
+              "filterType": "LIKE"
+            },
+            {
+              "header": "cms:/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/STATE",
+              "field": "state",
+              "styleClass": "dashboard-tasks__state u-text-align-center",
+              "style": "width: 120px",
+              "visible": true,
+              "sortable": true,
+              "format": "CUSTOM",
+              "filterList": [
+                "PARKED",
+                "RESUMED"
+              ],
+              "filterType": "LIKE"
+            },
+            {
+              "header": "cms:/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/CREATION_TIME",
+              "field": "startTimestamp",
+              "styleClass": "dashboard-tasks__created-date u-text-align-center",
+              "style": "width: 100px",
+              "visible": true,
+              "sortable": true,
+              "format": "TIMESTAMP",
+              "filterType": "LIKE"
+            },
+            {
+              "header": "cms:/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/EXPIRY_TIME",
+              "field": "expiryTimestamp",
+              "styleClass": "dashboard-tasks__expiry-date u-text-align-center u-padding-0",
+              "style": "width: 120px",
+              "visible": true,
+              "sortable": true,
+              "format": "TIMESTAMP",
+              "filterType": "LIKE"
+            },
+            {
+              "header": "cms:/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/CATEGORY",
+              "field": "category",
+              "styleClass": "dashboard-tasks__category u-text-align-center",
+              "style": "width: 120px",
+              "visible": true,
+              "sortable": false,
+              "format": "CUSTOM",
+              "filterType": "LIKE"
+            },
+            {
+              "header": "cms:/ch.ivy.addon.portalkit.ui.jsf/common/action",
+              "field": "actions",
+              "styleClass": "dashboard-tasks__actions",
+              "style": "width: 100px",
+              "visible": true,
+              "sortable": false,
+              "format": "CUSTOM",
+              "filterType": "LIKE"
+            }
+          ],
+          "canWorkOn": false,
+          "sortField": "ID"
+        },
+        {
+          "type": "compact-process",
+          "id": "",
+          "name": "Your Processes",
+          "layout": {
+            "w": 3,
+            "h": 10,
+            "x": 9,
+            "y": 0
+          }
+        }
+      ],
+      "permissions": [
+        "Everybody"
+      ]
+    }
+  }
+]
