@@ -7,6 +7,6 @@ public class DashboardConstants {
   public static final String NEW_WIDGET_STYLE_CLASS = "new-widget";
   public static final int MAX_NOTI_FILTERS = 9;
   public static final String MAX_NOTI_PATTERN = "%d+";
-  public static final String CREATE_FROM_SCRATCH = "create_from_scratch";
+  public static final String CREATE_FROM_SCRATCH = "create-from-scratch";
 
 }
