@@ -76,7 +76,7 @@ HowTo: Edit process icon in Image mode
 #. Click on more menu item in the process card item.
 #. Click on |edit-icon| :guilabel:`Edit` menu item.
 #. The dialog **Edit process information** is opened.
-#. Click on :guilabel:`Change` link, besides the current icon.
+#. Click on the link ``Change`` besides the current icon.
 #. The dialog :guilabel:`Selecting icon` is opened, and choose new icon.
 #. Press on :guilabel:`Save` button, and process icon is changed
 
