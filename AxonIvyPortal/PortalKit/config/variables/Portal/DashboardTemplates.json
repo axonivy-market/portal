@@ -6,6 +6,7 @@
     "icon": "si-layout-dashboard",
     "dashboard": {
       "id": "public-4",
+      "templateId": "default-portal-dashboard-template",
       "title": "public 4",
       "widgets": [
         {
@@ -270,6 +271,7 @@
     "icon": "si-layout-dashboard",
     "dashboard": {
       "id": "",
+      "templateId": "two-task-widget-dashboard-template",
       "title": "Two Task list dashboard",
       "widgets": [
         {
