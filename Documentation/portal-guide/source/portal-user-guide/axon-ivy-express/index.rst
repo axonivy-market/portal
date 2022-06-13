@@ -29,14 +29,13 @@ of the key features of Axon Ivy Express are:
    different task types, set responsibilities and due dates and define
    user dialogs for each task.
 
-You can reach Axon Ivy Express by either using the :guilabel:`Processes` link
+You can reach Axon Ivy Express by using the link ``Processes``
 in the Axon Ivy Portal menu.
 
 |navigate-to-axon-ivy-express|
 
-Below the heading **Processes**, you see the link ``Create express workflow``.
-This feature is explained in detail in `Axon Ivy Express`_. Below
-you find the process category **Express Workflows** with a list of
+Below the heading **Processes**, you see the link ``Create Express Workflow``.
+Below, you find the process category **Express Workflows** with a list of
 predefined processes.
 
 |start-link-for-axon-ivy-express|
@@ -71,7 +70,7 @@ HowTo: Create an Express Workflow
    encourage you to use the description to provide details about your
    process.
 
-#. Click on the :guilabel:`Change` link beside :guilabel:`Icon` to select the icon best suited for your process.
+#. Click on the link ``Change`` beside :guilabel:`Icon` to select the icon best suited for your process.
 
    |express-workflow-process-properties|
 
@@ -229,9 +228,9 @@ After you have completed an Express workflow, you can check its summary data by 
 HowTo: Show Business Summary
 """"""""""""""""""""""""""""
 
-#. Go to the :ref:`Case List <full-case-list>` page and open the :guilabel:`Action` link of your case.
+#. Go to the :ref:`Case List <full-case-list>` page and open the link ``Action`` of your case.
 
-#. Find the :guilabel:`Show Business details` link and click it.
+#. Click on the link ``Show Business details``.
 
    |express-case|
 
