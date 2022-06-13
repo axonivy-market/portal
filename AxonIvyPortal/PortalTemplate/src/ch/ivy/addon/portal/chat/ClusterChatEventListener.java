@@ -46,12 +46,12 @@ public class ClusterChatEventListener implements ISystemEventListener {
   }
 
   private void subscribeToSystemEvents() {
-	wf().getApplication().addSystemEventListener(EnumSet.of(SystemEventCategory.THIRD_PARTY), this);
+    wf().getApplication().addSystemEventListener(EnumSet.of(SystemEventCategory.THIRD_PARTY), this);
     listeners.add(this);
   }
 
   private void unsubscribeToSystemEvents() {
-	wf().getApplication().removeSystemEventListener(EnumSet.of(SystemEventCategory.THIRD_PARTY), this);
+    wf().getApplication().removeSystemEventListener(EnumSet.of(SystemEventCategory.THIRD_PARTY), this);
   }
 
   private static void clearAllListeners() {
