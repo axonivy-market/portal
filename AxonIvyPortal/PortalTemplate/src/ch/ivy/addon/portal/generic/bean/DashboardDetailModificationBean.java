@@ -38,6 +38,7 @@ import ch.ivy.addon.portalkit.dto.dashboard.CompactProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.CustomDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.CustomDashboardWidgetParam;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
+import ch.ivy.addon.portalkit.dto.dashboard.DashboardTemplate;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.FullProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.ImageProcessDashboardWidget;
@@ -75,8 +76,9 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   private Long portalGridsCurrentRow;
   private String selectedDashboardId;
   private boolean isPublicDashboard;
-  private Dashboard originalDashboard;
   private List<String> categories;
+  private String restoreDashboardMessage;
+  private boolean foundTemplate;
 
   @PostConstruct
   public void initConfigration() {
@@ -85,6 +87,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     super.init();
     isReadOnlyMode = false;
     ((DashboardProcessBean) ManagedBeans.get("dashboardProcessBean")).addPropertyChangeListener(this);
+    foundTemplate =  findSelectedTemplate(getSelectedDashboard().getTemplateId()).isPresent();
   }
 
   public void initSampleWidgets() {
@@ -96,7 +99,6 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   @Override
   protected List<Dashboard> collectDashboards() {
     List<Dashboard> collectedDashboards = new ArrayList<>();
-    List<Dashboard> result = new ArrayList<>();
     try {
       if (isPublicDashboard) {
         collectedDashboards = DashboardUtils.getPublicDashboards();
@@ -104,18 +106,14 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
         String dashboardInUserProperty = readDashboardBySessionUser();
         collectedDashboards = getVisibleDashboards(dashboardInUserProperty);
       }
-
-      if (originalDashboard == null) {
-        originalDashboard = collectedDashboards.stream().filter(d -> d.getId().contentEquals(selectedDashboardId)).findFirst().get();
-      }
-
-      result.add(new Dashboard(originalDashboard));
     } catch (PortalException e) {
       // If errors like parsing JSON errors, ignore them
       Ivy.log().error(e);
     }
-
-    return result;
+    var editDashboard = collectedDashboards.stream()
+          .filter(d -> d.getId().contentEquals(selectedDashboardId))
+          .findFirst().get();
+    return Arrays.asList(new Dashboard(editDashboard));
   }
 
   private WidgetSample taskSample() {
@@ -144,8 +142,21 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   }
 
   public void restore() {
-    selectedDashboard = new Dashboard(originalDashboard);
+    selectedDashboardId = getSelectedDashboard().getId();
+    if (StringUtils.isBlank(getSelectedDashboard().getTemplateId())) {
+      selectedDashboard.setWidgets(new ArrayList<>());
+    } else {
+      var foundTemplate = findSelectedTemplate(getSelectedDashboard().getTemplateId());
+      foundTemplate.ifPresent(template -> {
+        selectedDashboard.setWidgets(new ArrayList<>(template.getDashboard().getWidgets()));
+      });
+      for(DashboardWidget widget : getSelectedDashboard().getWidgets()) {
+        widget.setId(DashboardWidgetUtils.generateNewWidgetId(widget.getType()));
+      }
+    }
     buildWidgetModels(getSelectedDashboard());
+    save();
+    PortalNavigator.navigateToDashboardDetailsPage(selectedDashboardId, isPublicDashboard);
   }
 
   public void create(WidgetSample sample) {
@@ -516,6 +527,26 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
 
   public boolean isPublicDashboard() {
     return isPublicDashboard;
+  }
+
+  public String getRestoreDashboardMessage() {
+    if (StringUtils.isBlank(restoreDashboardMessage)) {
+      var foundTemplate = findSelectedTemplate(getSelectedDashboard().getTemplateId());
+      if (foundTemplate.isPresent()) {
+        restoreDashboardMessage = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/RestoreDefaultDashboardMessage",
+            Arrays.asList(foundTemplate.get().getTitle()));
+      }
+    }
+    return restoreDashboardMessage;
+  }
+
+  private Optional<DashboardTemplate> findSelectedTemplate(String templateId) {
+    return CollectionUtils.emptyIfNull(getDashboardTemplates()).stream()
+        .filter(template -> template.getId().equals(templateId)).findFirst();
+  }
+
+  public boolean isFoundTemplate() {
+    return foundTemplate;
   }
 
   @Override

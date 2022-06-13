@@ -12,9 +12,17 @@
 
 <p:dialog id="dashboard-configuration-dialog" widgetVar="dashboard-configuration-dialog" 
   header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfigurationDialog/ConfigureDashboard')}"
-  appendTo="@(body)" closeOnEscape="true" draggable="false" fitViewport="true" responsive="true" modal="true" resizable="false">
+  appendTo="@(body)"
+  closeOnEscape="true"
+  draggable="false"
+  fitViewport="true"
+  responsive="true"
+  modal="true"
+  resizable="false"
+  dynamic="true">
   <div class="ui-g dashboard-configuration-dialog__content">
     <h:form id="configuration-form" styleClass="dashboard-configuration-dialog__form">
+      <f:event listener="#{dashboardConfigurationBean.loadDashboardTemplate()}" type="preRenderComponent"/>
       <h:panelGroup id="private-dashboard-configuration-section" layout="block" styleClass="ui-g-12" rendered="#{dashboardBean.canEditPrivateDashboard}">
         <span class="dashboard-configuration-dialog__config-title">
           #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfigurationDialog/PrivateDashboardConfiguration')}

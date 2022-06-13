@@ -19,9 +19,9 @@
         </div>
         <div class="ui-g-10">
           <p:outputLabel styleClass="dashboard-configuration-dialog__action-row-label"
-            value="Create from scratch" />
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfigurationDialog/CreateFromScratch')}" />
           <p:outputLabel styleClass="dashboard-configuration-dialog__action-row-description"
-            value="Create your own dashboard from scratch"/>
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfigurationDialog/CreateFromScratchDescription')}"/>
         </div>
       </p:commandLink>
       <ui:repeat var="template" value="#{dashboardConfigurationBean.dashboardTemplates}" varStatus="status">

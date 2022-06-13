@@ -93,9 +93,11 @@
         <p:commandButton id="dashboard-create-button"
           rendered="#{cc.attrs.isDashboardCreation}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/CreateDashboard')}"
-          icon="#{visibilityBean.generateButtonIcon('si si-add-small')}">
-          <p:ajax event="click" listener="#{managedBean.createDashboard(isWorkingOnATask, task)}" update="dashboard-detail-form" process="dashboard-detail-form" partialSubmit="true" />
-        </p:commandButton>
+          icon="#{visibilityBean.generateButtonIcon('si si-add-small')}"
+          actionListener="#{managedBean.createDashboard(isWorkingOnATask, task)}"
+          process="dashboard-detail-form"
+          update="dashboard-detail-form"
+          partialSubmit="true" />
       </h:panelGroup>
     </f:facet>
   </p:dialog>
