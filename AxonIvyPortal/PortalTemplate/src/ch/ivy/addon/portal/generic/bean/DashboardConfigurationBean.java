@@ -48,19 +48,16 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
   private Dashboard selectedEditingDashboard;
   private List<Dashboard> editingDashboards;
   private boolean isDashboardCreation;
-  private List<DashboardTemplate> dashboardTemplates;
 
   @PostConstruct
   public void initConfigration() {
     isPublicDashboard = Attrs.currentContext().getAttribute("#{data.isPublicDashboard}", Boolean.class);
     updateTitle();
     collectDashboardsForManagement();
-    this.dashboardTemplates = DashboardUtils.getDashboardTemplates();
   }
 
   public String getBreadcrumb() {
-    return
-        isPublicDashboard ? BreadCrumbKind.EDIT_PUBLIC_DASHBOARD.name() : BreadCrumbKind.EDIT_PRIVATE_DASHBOARD.name();
+    return isPublicDashboard ? BreadCrumbKind.EDIT_PUBLIC_DASHBOARD.name() : BreadCrumbKind.EDIT_PRIVATE_DASHBOARD.name();
   }
 
   private void updateTitle() {
@@ -265,6 +262,7 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
   public void onSelectTemplate(DashboardTemplate template) {
     String selectedEditingDashboardId = this.selectedEditingDashboard.getId();
     this.selectedEditingDashboard = template.getDashboard();
+    this.selectedEditingDashboard.setTemplateId(template.getId());
     this.selectedEditingDashboard.setId(selectedEditingDashboardId);
     for(DashboardWidget widget : this.selectedEditingDashboard.getWidgets()) {
       widget.setId(DashboardWidgetUtils.generateNewWidgetId(widget.getType()));
@@ -285,14 +283,6 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
 
   public void setPublicDashboard(boolean isPublicDashboard) {
     this.isPublicDashboard = isPublicDashboard;
-  }
-
-  public List<DashboardTemplate> getDashboardTemplates() {
-    return dashboardTemplates;
-  }
-
-  public void setDashboardTemplates(List<DashboardTemplate> dashboardTemplates) {
-    this.dashboardTemplates = dashboardTemplates;
   }
 
   public String generateDashboardPermisisonForDisplay(Dashboard dashboard) {

@@ -24,7 +24,7 @@
   <ui:insert name="dialogContentSection" />
   
   <h:panelGroup layout="block" rendered="#{not empty dialogContent}" class="u-text-align-center portal-dialog-content">
-    #{dialogContent}
+    <h:outputText value="#{dialogContent}" escape="false"/>
   </h:panelGroup>
   
   <f:facet name="footer">

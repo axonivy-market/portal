@@ -16,14 +16,26 @@
         <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}</span>
       </p:commandLink>
 
-      <p:commandButton id="restore-button" styleClass="secondary-btn dashboard__restore-button"
-        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
-        type="button" icon="si si-button-refresh-arrows"
-        onclick="PF('restore-confirm-dialog').show()" />
+      <h:panelGroup id="restore-button-group" styleClass="restore-button-group">
+        <p:commandButton id="restore-button" styleClass="secondary-btn dashboard__restore-button"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
+          type="button" icon="si si-button-refresh-arrows"
+          onclick="PF('restore-confirm-dialog').show()"
+          disabled="#{!dashboardDetailModificationBean.foundTemplate}" />
+        <p:tooltip styleClass="restore-dashboard-tooltip"
+          for="#{cc.clientId}:restore-button-group" id="restore-button-tooltip"
+          trackMouse="true"
+          hideEvent="mouseleave click"
+          rendered="#{!dashboardDetailModificationBean.foundTemplate}"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/RestoreDefaultDashboardTemplateTooltip')}"/>
+      </h:panelGroup>
 
       <p:commandButton id="add-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/addWidget')}"
-        type="button" icon="si si-add"
-        onclick="PF('new-widget-dialog').show()" styleClass="u-hidden-md-down u-mar-right-15" />
+        icon="si si-add"
+        actionListener="#{dashboardDetailModificationBean.initSampleWidgets()}"
+        update="new-widget-dialog"
+        process="@this"
+        oncomplete="PF('new-widget-dialog').show()" styleClass="u-hidden-md-down u-mar-right-15" />
     </ui:define>
 
     <ui:define name="additionalRemoteCommand">
@@ -47,16 +59,18 @@
         <ui:param name="iconClass" value="si si-road-sign-warning" />
         <ui:param name="iconStyleClass" value="portal-dialog-warning-icon" />
         <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/restoreDefaultHeader')}" />
-        <ui:param name="dialogContent" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/restoreDefaultMessage')}" />
+        <ui:param name="dialogContent" value="#{dashboardDetailModificationBean.restoreDashboardMessage}" />
 
         <ui:define name="dialogFooter">
           <p:link href="#" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" onclick="PF('restore-confirm-dialog').hide();"
-            styleClass="u-mar-right-15" />
-          <p:commandButton id="reset-dashboard-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/restore')}"
+            styleClass="u-mar-right-15 cancel-reset-dashboard-link" />
+          <p:commandButton id="reset-dashboard-button" widgetVar="reset-dashboard-button"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/restore')}"
+            rendered="#{dashboardDetailModificationBean.foundTemplate}"
             actionListener="#{dashboardDetailModificationBean.restore()}"
             update="grid-stack dashboard-title-container dashboard-title-dropdown-container dashboard-header-action"
             icon="#{visibilityBean.generateButtonIcon('si si-button-refresh-arrows')}"
-            oncomplete="PF('restore-confirm-dialog').hide(); loadGrid();" />
+            onclick="disabledResetDashboardActions()"/>
         </ui:define>
       </ui:decorate>
 
