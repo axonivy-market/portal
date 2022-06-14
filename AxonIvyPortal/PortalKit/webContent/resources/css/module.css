@@ -769,6 +769,14 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   width: 80vw !important;
 }
 
+.case-info-dialog.ui-dialog .ui-dialog-title {
+  width: calc(100% - 34px);
+}
+
+.case-info-dialog.ui-dialog .ui-dialog-title .case-infor-title {
+  width: 100%;
+}
+
 .case-info-dialog.ui-dialog .ui-dialog-content.ui-widget-content {
   padding: 0;
 }
