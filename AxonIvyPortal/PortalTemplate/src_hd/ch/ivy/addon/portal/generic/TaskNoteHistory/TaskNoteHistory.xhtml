@@ -23,7 +23,7 @@
 
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/STATE')}" />
           <ic:ch.ivy.addon.portalkit.component.task.column.TaskState id="task-state" state="#{data.task.state}"
-            showIndicatorBesideText="true" />
+            showIndicatorBesideText="true" responsiveStyleClass=""/>
         </h:panelGrid>
 
           <h:form id="form" onkeypress="if (event.keyCode == 13) { return false; }" styleClass="note-history-container ui-g-12 u-no-padding-top">
