@@ -2029,6 +2029,16 @@ body .ui-datepicker tbody td.ui-datepicker-today a, body .ui-datepicker tbody td
   border: solid 1px var(--accent-light-color);
 }
 
+/* Modify style to make date highlighted by circle on phone */
+body .ui-datepicker-touch-ui.ui-datepicker td a, body .ui-datepicker-touch-ui.ui-datepicker td span {
+  padding: 0px 0px;
+}
+
+/* Modify style because th is too high on phone */
+body .ui-datepicker-touch-ui.ui-datepicker th {
+  padding: 0.7em 0.3em;
+}
+
 body .ui-slider .ui-slider-handle {
   background-color: var(--accent-light-color);
 }

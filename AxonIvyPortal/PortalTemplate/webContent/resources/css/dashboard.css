@@ -506,7 +506,7 @@ body .ui-calendar.task-configuration__calendar .ui-datepicker-trigger {
 
 @media screen and (max-width: 40em) {
   .widget-info-panel {
-    width: auto;
+    width: 100%;
   }
 }
 
@@ -675,7 +675,9 @@ body .dashboard__table--preview.ui-datatable tbody tr.ui-state-hover {
 @media screen and (max-width: 40em) {
   .dashboard-cases__name,
   .dashboard-tasks__name {
-    width: 100%;
+    min-width: 120px;
+    width: auto;
+    max-width: 100%;
   }
   
   .dashboard-cases__actions,
