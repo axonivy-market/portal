@@ -3,8 +3,8 @@ package ch.ivy.addon.portalkit.enums;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.axonivy.portal.component.document.DocumentExtensionConstants;
 import ch.ivy.addon.portalkit.bean.TaskWidgetBean;
-import ch.ivy.addon.portalkit.document.DocumentExtensionConstants;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public enum GlobalVariable {

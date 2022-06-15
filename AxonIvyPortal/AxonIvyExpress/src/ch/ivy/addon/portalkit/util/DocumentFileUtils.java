@@ -19,6 +19,7 @@ import ch.ivyteam.ivy.workflow.document.IDocument;
 import ch.ivyteam.ivy.workflow.document.IDocumentService;
 import ch.ivyteam.ivy.workflow.document.Path;
 
+@SuppressWarnings("deprecation")
 public class DocumentFileUtils {
   
   private DocumentFileUtils() {}

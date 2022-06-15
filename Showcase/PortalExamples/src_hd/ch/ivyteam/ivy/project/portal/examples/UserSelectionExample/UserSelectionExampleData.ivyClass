@@ -2,13 +2,13 @@ UserSelectionExampleData #class
 ch.ivyteam.ivy.project.portal.examples.UserSelectionExample #namespace
 definedRoleNames List<String> #field
 definedRoleNames PERSISTENT #fieldModifier
-selectedUserForDefinedRoles ch.ivy.addon.portalkit.dto.UserDTO #field
+selectedUserForDefinedRoles com.axonivy.portal.component.dto.UserDTO #field
 selectedUserForDefinedRoles PERSISTENT #fieldModifier
-selectedUser ch.ivy.addon.portalkit.dto.UserDTO #field
+selectedUser com.axonivy.portal.component.dto.UserDTO #field
 selectedUser PERSISTENT #fieldModifier
-selectedUserForReadOnlyField ch.ivy.addon.portalkit.dto.UserDTO #field
+selectedUserForReadOnlyField com.axonivy.portal.component.dto.UserDTO #field
 selectedUserForReadOnlyField PERSISTENT #fieldModifier
 excludedUsernames java.util.List<String> #field
 excludedUsernames PERSISTENT #fieldModifier
-selectedUserForInsertChildren ch.ivy.addon.portalkit.dto.UserDTO #field
+selectedUserForInsertChildren com.axonivy.portal.component.dto.UserDTO #field
 selectedUserForInsertChildren PERSISTENT #fieldModifier

@@ -5,6 +5,7 @@ import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portalkit.dto.UserDTO;
 import ch.ivyteam.ivy.security.IRole;
 
+@SuppressWarnings("deprecation")
 public class IvySubstitute {
 
   private IRole substitionRole;

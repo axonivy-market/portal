@@ -5,7 +5,7 @@ import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import ch.ivy.addon.portalkit.enums.DocumentType;
+import com.axonivy.portal.component.enums.DocumentType;
 import ch.ivyteam.ivy.project.portal.examples.enums.ExtendedDocumentType;
 
 @ManagedBean

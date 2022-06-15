@@ -4,6 +4,11 @@ import java.util.List;
 
 import com.google.common.collect.ImmutableList;
 
+/**
+ * @deprecated use DocumentExtensionConstants in package com.axonivy.portal.component.document
+ *
+ */
+@Deprecated(since="8.0.27")
 public class DocumentExtensionConstants {
   
   public static final List<String> ALLOWED_WORD_FORMAT = ImmutableList.of("doc", "docx", "docm", "dot", "dotm", "dotx");

@@ -1,5 +1,0 @@
-DownloadDocumentOverrideData #class
-_ch.ivyteam.ivy.project.portal.examples #namespace
-streamedContent org.primefaces.model.StreamedContent #field
-businessCase ch.ivyteam.ivy.workflow.ICase #field
-document ch.ivy.addon.portalkit.ivydata.bo.IvyDocument #field
