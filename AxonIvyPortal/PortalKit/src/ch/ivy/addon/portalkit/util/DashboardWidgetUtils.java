@@ -190,8 +190,13 @@ public class DashboardWidgetUtils {
   }
 
   public static List<WidgetLayout> getWidgetLayoutFromRequest(Map<String, String> requestParamMap) {
-    String nodes = Optional.ofNullable(requestParamMap.get("nodes")).orElse(StringUtils.EMPTY);
-    return Arrays.asList(BusinessEntityConverter.jsonValueToEntity(nodes, WidgetLayout[].class));
+    var widgetLayouts = new ArrayList<WidgetLayout>();
+    var nodes = Optional.ofNullable(requestParamMap.get("nodes"));
+    nodes.ifPresent(jsonNodes -> {
+      widgetLayouts.addAll(Arrays.asList(BusinessEntityConverter
+          .jsonValueToEntity(jsonNodes, WidgetLayout[].class)));
+    });
+    return widgetLayouts;
   }
 
   public static boolean hasPredefinedFilter(DashboardWidget widget) {
