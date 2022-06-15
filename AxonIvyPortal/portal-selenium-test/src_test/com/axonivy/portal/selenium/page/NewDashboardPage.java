@@ -712,7 +712,7 @@ public class NewDashboardPage extends TemplatePage {
     }
 
     createDashboardDialog.$("button[id$='dashboard-create-button']").click();
-    createDashboardDialog.waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
+    $("div[id$='dashboard-detail-dialog']").waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
   }
 
 

@@ -30,6 +30,8 @@
     -->
 
 <h:panelGroup id="#{panelId}" styleClass="table-widget-panel #{panelStyleClass}" layout="block">
+  <c:set var="isRenderFilter" value="#{empty isRenderFilter ? 'true': isRenderFilter}" scope="request"/>
+
   <div class="widget__header">
     <h:panelGroup id="widget__header" class="widget__header-title text-ellipsis">#{not empty widget.name ? widget.name : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/yourWidget')}</h:panelGroup>
     <p:tooltip for="widget__header" value="#{not empty widget.name ? widget.name : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/yourWidget')}" trackMouse="true" hideEvent="mouseleave click"/>
@@ -67,27 +69,27 @@
         name="applyWidgetFilterCommand#{index}"
         oncomplete="PF('filter-overlay-panel-#{index}').hide(); #{onCompleteApplyFilters};"
         update="widget-header-actions #{componentToUpdateOnApplyFilter}"
-        global="false" process="@this" partialSubmit="true" immediate="true" />
+        global="false" process="@this" partialSubmit="true" immediate="true"/>
 
       <p:link id="filter-sidebar-link-#{index}"
         href="#"
-        rendered="#{empty isRenderFilter ? 'true': isRenderFilter}"
+        rendered="#{isRenderFilter}"
         styleClass="widget__filter-sidebar-link si si-filter-1 #{widget.userDefinedFiltersCount.isPresent()}  u-mar-right-15">
         <h:outputText rendered="#{widget.userDefinedFiltersCount.isPresent()}" value="#{widget.userDefinedFiltersCount.get()}"
           styleClass="widget__filter-noti-number"/>
       </p:link>
       <p:tooltip for="filter-sidebar-link-#{index}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/availableFilters')}"
-        trackMouse="true" hideEvent="mouseleave click" rendered="#{empty isRenderFilter ? 'true': isRenderFilter}" />
+        trackMouse="true" hideEvent="mouseleave click" rendered="#{isRenderFilter}" />
 
       <p:link id="expanded-filter-sidebar-link-#{index}"
         href="#"
-        rendered="#{empty isRenderFilter ? 'true': isRenderFilter}"
+        rendered="#{isRenderFilter}"
         styleClass="widget__filter-sidebar-link si si-filter-1 #{widget.userDefinedFiltersCount.isPresent()}  u-mar-right-15 expanded-link">
         <h:outputText rendered="#{widget.userDefinedFiltersCount.isPresent()}" value="#{widget.userDefinedFiltersCount.get()}"
           styleClass="widget__filter-noti-number"/>
       </p:link>
       <p:tooltip for="expanded-filter-sidebar-link-#{index}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/availableFilters')}"
-        trackMouse="true" hideEvent="mouseleave click" rendered="#{empty isRenderFilter ? 'true': isRenderFilter}" />
+        trackMouse="true" hideEvent="mouseleave click" rendered="#{isRenderFilter}" />
 
       <p:link id="info-sidebar-link-#{index}"
         href="#"
@@ -208,7 +210,7 @@
 
       <p:overlayPanel id="filter-overlay-panel-#{index}" widgetVar="filter-overlay-panel-#{index}"
         for="filter-sidebar-link-#{index}"
-        rendered="#{empty isRenderFilter ? 'true': isRenderFilter}"
+        rendered="#{isRenderFilter}"
         appendTo="@(#grid-stack)"
         styleClass="filter-overlay-panel js-dashboard-overlay-panel"
         dismissable="false"
@@ -277,7 +279,7 @@
       <!-- Overlay panel for filter when expand widget -->
       <p:overlayPanel id="expanded-filter-overlay-panel-#{index}" widgetVar="expanded-filter-overlay-panel-#{index}"
         for="expanded-filter-sidebar-link-#{index}"
-        rendered="#{empty isRenderFilter ? 'true': isRenderFilter}"
+        rendered="#{isRenderFilter}"
         styleClass="filter-overlay-panel"
         dismissable="false"
         dynamic="true"
