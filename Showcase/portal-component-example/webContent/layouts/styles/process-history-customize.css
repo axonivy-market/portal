@@ -1,0 +1,14 @@
+:root {
+  --process-history-header-border-bottom-color: #D9DADA;
+  --process-history-unsortable-header-font-size: 1.4rem;
+  --process-history-unsortable-header-text-color: #9C9D9D;
+  --process-history-description-text-color: brown;
+  --process-history-item-background-color: rgba(var(--white, #000000), 0.2);
+  --process-history-item-border-bottom-color: #D9DADA;
+  --process-history-item-border-hover: 1px solid #90DDE9;
+  --process-history-item-background-hover: rgba(144, 221, 233, 0.24);
+  --process-history-state-in-progress-color: orange;
+  --process-history-state-done-or-resume-color: #4EB41C;
+  --process-history-empty-message-label-color: var(--black, #FFFFFF);
+  --process-history-empty-message-label-font-size: 1.2rem;
+}

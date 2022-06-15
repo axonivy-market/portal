@@ -1,9 +1,10 @@
 [Ivy]
-1701DB2EAC42F069 7.5.0 #module
+18122A08104C8871 7.5.0 #module
 >Proto >Proto Collection #zClass
 Us0 UserSelectionProcess Big #zClass
 Us0 RD #cInfo
 Us0 #process
+Us0 @AnnotationInP-0n ai ai #zField
 Us0 @TextInP .type .type #zField
 Us0 @TextInP .processKind .processKind #zField
 Us0 @TextInP .xml .xml #zField
@@ -12,7 +13,7 @@ Us0 @UdInit f0 '' #zField
 Us0 @UdProcessEnd f1 '' #zField
 Us0 @PushWFArc f2 '' #zField
 >Proto Us0 Us0 UserSelectionProcess #zField
-Us0 f0 guid 1701DB2EB182D39E #txt
+Us0 f0 guid 18122A08152D9BC6 #txt
 Us0 f0 method start() #txt
 Us0 f0 inParameterDecl '<> param;' #txt
 Us0 f0 outParameterDecl '<> result;' #txt
@@ -25,9 +26,9 @@ Us0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Us0 f0 83 51 26 26 -16 15 #rect
 Us0 f0 @|UdInitIcon #fIcon
-Us0 f1 227 51 26 26 0 12 #rect
+Us0 f1 211 51 26 26 0 12 #rect
 Us0 f1 @|UdProcessEndIcon #fIcon
-Us0 f2 109 64 227 64 #arcP
+Us0 f2 109 64 211 64 #arcP
 >Proto Us0 .type ch.ivy.addon.portalkit.component.UserSelection.UserSelectionData #txt
 >Proto Us0 .processKind HTML_DIALOG #txt
 >Proto Us0 -8 -8 16 16 16 26 #rect

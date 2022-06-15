@@ -23,7 +23,6 @@ Cs0 @UdProcessEnd f43 '' #zField
 Cs0 @PushWFArc f45 '' #zField
 Cs0 @PushWFArc f46 '' #zField
 Cs0 @UdMethod f6 '' #zField
-Cs0 @GridStep f15 '' #zField
 Cs0 @UdProcessEnd f7 '' #zField
 Cs0 @UdProcessEnd f11 '' #zField
 Cs0 @PushWFArc f44 '' #zField
@@ -43,17 +42,21 @@ Cs0 @PushWFArc f23 '' #zField
 Cs0 @UdMethod f24 '' #zField
 Cs0 @PushWFArc f25 '' #zField
 Cs0 @PushWFArc f8 '' #zField
-Cs0 @CallSub f9 '' #zField
-Cs0 @PushWFArc f27 '' #zField
-Cs0 @GridStep f28 '' #zField
-Cs0 @PushWFArc f29 '' #zField
-Cs0 @PushWFArc f2 '' #zField
-Cs0 @PushWFArc f26 '' #zField
 Cs0 @UdMethod f30 '' #zField
 Cs0 @GridStep f31 '' #zField
 Cs0 @PushWFArc f32 '' #zField
 Cs0 @UdProcessEnd f33 '' #zField
 Cs0 @PushWFArc f34 '' #zField
+Cs0 @UdMethod f36 '' #zField
+Cs0 @GridStep f37 '' #zField
+Cs0 @GridStep f38 '' #zField
+Cs0 @CallSub f39 '' #zField
+Cs0 @PushWFArc f47 '' #zField
+Cs0 @PushWFArc f48 '' #zField
+Cs0 @PushWFArc f49 '' #zField
+Cs0 @UdProcessEnd f50 '' #zField
+Cs0 @PushWFArc f51 '' #zField
+Cs0 @PushWFArc f2 '' #zField
 >Proto Cs0 Cs0 ChartCreationWidgetProcess #zField
 Cs0 f0 guid 15FFC669CAD8BE32 #txt
 Cs0 f0 method start() #txt
@@ -70,7 +73,7 @@ Cs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Cs0 f0 99 51 26 26 -16 15 #rect
 Cs0 f0 @|UdInitIcon #fIcon
-Cs0 f1 827 51 26 26 0 12 #rect
+Cs0 f1 435 51 26 26 0 12 #rect
 Cs0 f1 @|UdProcessEndIcon #fIcon
 Cs0 f3 guid 15FFC669CBAE4804 #txt
 Cs0 f3 actionTable 'out=in;
@@ -211,44 +214,6 @@ Cs0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Cs0 f6 99 243 26 26 -26 15 #rect
 Cs0 f6 @|UdMethodIcon #fIcon
-Cs0 f15 actionTable 'out=in;
-' #txt
-Cs0 f15 actionCode 'import java.util.Locale;
-import ch.ivy.addon.portalkit.dto.DisplayName;
-
-import java.util.Arrays;
-import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
-import org.apache.commons.lang3.ObjectUtils;
-import ch.ivy.addon.portalkit.statistics.StatisticFilter;
-import java.util.ArrayList;
-
-if (!(in.statisticChartList is initialized)) {
-	in.statisticChartList = new ArrayList();
-}
-
-in.statisticFilter = new StatisticFilter();
-in.statisticFilter.init();
-in.oldStatisticFilter = ObjectUtils.clone(in.statisticFilter) as StatisticFilter;
-
-List<String> supportedLanguages = LanguageService.newInstance().findUserLanguages(ivy.session.getSessionUserName(), Arrays.asList(ivy.wf.getApplication().getName())).ivyLanguages.get(0).getSupportedLanguages();
-for (String language : supportedLanguages) {
-	DisplayName name = new DisplayName();
-	name.setLocale(Locale.forLanguageTag(language));
-	name.setValue("");
-	in.chartNames.add(name);
-}' #txt
-Cs0 f15 security system #txt
-Cs0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Initialize</name>
-        <nameStyle>10
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Cs0 f15 246 42 112 44 -22 -8 #rect
-Cs0 f15 @|StepIcon #fIcon
 Cs0 f7 435 243 26 26 0 12 #rect
 Cs0 f7 @|UdProcessEndIcon #fIcon
 Cs0 f11 435 1011 26 26 0 12 #rect
@@ -432,45 +397,6 @@ Cs0 f25 1 448 832 #addKink
 Cs0 f25 0 0.9649071720549873 0 0 #arcLabel
 Cs0 f8 expr out #txt
 Cs0 f8 125 256 435 256 #arcP
-Cs0 f9 processCall 'Functional Processes/DefaultStatisticCustomField:createDefaultStatisticCustomFields()' #txt
-Cs0 f9 requestActionDecl '<> param;' #txt
-Cs0 f9 responseActionDecl 'ch.ivy.addon.portalkit.component.statistic.ChartCreationWidget.ChartCreationWidgetData out;
-' #txt
-Cs0 f9 responseMappingAction 'out=in;
-out.customFields=result.customFields;
-' #txt
-Cs0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>get custom fields</name>
-    </language>
-</elementInfo>
-' #txt
-Cs0 f9 448 42 112 44 -47 -8 #rect
-Cs0 f9 @|CallSubIcon #fIcon
-Cs0 f27 expr out #txt
-Cs0 f27 358 64 448 64 #arcP
-Cs0 f28 actionTable 'out=in;
-' #txt
-Cs0 f28 actionCode 'import java.util.ArrayList;
-for (String field : in.customFields){
-	in.statisticFilter.customFieldFilters.put(field, new ArrayList());	
-}
-' #txt
-Cs0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>init custom fields</name>
-    </language>
-</elementInfo>
-' #txt
-Cs0 f28 640 42 112 44 -46 -8 #rect
-Cs0 f28 @|StepIcon #fIcon
-Cs0 f29 expr out #txt
-Cs0 f29 560 64 640 64 #arcP
-Cs0 f2 expr out #txt
-Cs0 f2 752 64 827 64 #arcP
-Cs0 f26 125 64 246 64 #arcP
 Cs0 f30 guid 17626B68E4372FE2 #txt
 Cs0 f30 method isApplicationDefaultEmailLanguage(String) #txt
 Cs0 f30 inParameterDecl '<String language> param;' #txt
@@ -486,7 +412,7 @@ Cs0 f30 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f30 83 1139 26 26 -71 21 #rect
+Cs0 f30 99 1139 26 26 -71 21 #rect
 Cs0 f30 @|UdMethodIcon #fIcon
 Cs0 f31 actionTable 'out=in;
 ' #txt
@@ -501,10 +427,101 @@ Cs0 f31 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Cs0 f31 248 1130 112 44 -45 -8 #rect
 Cs0 f31 @|StepIcon #fIcon
-Cs0 f32 109 1152 248 1152 #arcP
+Cs0 f32 125 1152 248 1152 #arcP
 Cs0 f33 435 1139 26 26 0 12 #rect
 Cs0 f33 @|UdProcessEndIcon #fIcon
 Cs0 f34 360 1152 435 1152 #arcP
+Cs0 f36 guid 181221FBFEF5C398 #txt
+Cs0 f36 method initializeRoleAndCustomField() #txt
+Cs0 f36 inParameterDecl '<> param;' #txt
+Cs0 f36 outParameterDecl '<> result;' #txt
+Cs0 f36 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>initializeRoleAndCustomField()</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f36 99 1235 26 26 -80 20 #rect
+Cs0 f36 @|UdMethodIcon #fIcon
+Cs0 f37 actionTable 'out=in;
+' #txt
+Cs0 f37 actionCode 'import java.util.ArrayList;
+for (String field : in.customFields){
+	in.statisticFilter.customFieldFilters.put(field, new ArrayList());	
+}
+' #txt
+Cs0 f37 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>init custom fields</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f37 624 1226 112 44 -46 -8 #rect
+Cs0 f37 @|StepIcon #fIcon
+Cs0 f38 actionTable 'out=in;
+' #txt
+Cs0 f38 actionCode 'import java.util.Locale;
+import ch.ivy.addon.portalkit.dto.DisplayName;
+import java.util.Arrays;
+import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
+import org.apache.commons.lang3.ObjectUtils;
+import ch.ivy.addon.portalkit.statistics.StatisticFilter;
+import java.util.ArrayList;
+
+if (!(in.statisticChartList is initialized)) {
+	in.statisticChartList = new ArrayList();
+}
+
+in.statisticFilter = new StatisticFilter();
+in.statisticFilter.init();
+in.oldStatisticFilter = ObjectUtils.clone(in.statisticFilter) as StatisticFilter;
+
+List<String> supportedLanguages = LanguageService.newInstance().findUserLanguages(ivy.session.getSessionUserName(), Arrays.asList(ivy.wf.getApplication().getName())).ivyLanguages.get(0).getSupportedLanguages();
+for (String language : supportedLanguages) {
+	DisplayName name = new DisplayName();
+	name.setLocale(Locale.forLanguageTag(language));
+	name.setValue("");
+	in.chartNames.add(name);
+}' #txt
+Cs0 f38 security system #txt
+Cs0 f38 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Initialize</name>
+        <nameStyle>10
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f38 230 1226 112 44 -22 -8 #rect
+Cs0 f38 @|StepIcon #fIcon
+Cs0 f39 processCall 'Functional Processes/DefaultStatisticCustomField:createDefaultStatisticCustomFields()' #txt
+Cs0 f39 requestActionDecl '<> param;' #txt
+Cs0 f39 responseActionDecl 'ch.ivy.addon.portalkit.component.statistic.ChartCreationWidget.ChartCreationWidgetData out;
+' #txt
+Cs0 f39 responseMappingAction 'out=in;
+out.customFields=result.customFields;
+' #txt
+Cs0 f39 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>get custom fields</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f39 432 1226 112 44 -47 -8 #rect
+Cs0 f39 @|CallSubIcon #fIcon
+Cs0 f47 expr out #txt
+Cs0 f47 544 1248 624 1248 #arcP
+Cs0 f48 expr out #txt
+Cs0 f48 342 1248 432 1248 #arcP
+Cs0 f49 125 1248 230 1248 #arcP
+Cs0 f50 787 1235 26 26 0 12 #rect
+Cs0 f50 @|UdProcessEndIcon #fIcon
+Cs0 f51 736 1248 787 1248 #arcP
+Cs0 f2 125 64 435 64 #arcP
 >Proto Cs0 .type ch.ivy.addon.portalkit.component.statistic.ChartCreationWidget.ChartCreationWidgetData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -541,15 +558,17 @@ Cs0 f24 mainOut f25 tail #connect
 Cs0 f25 head f43 mainIn #connect
 Cs0 f6 mainOut f8 tail #connect
 Cs0 f8 head f7 mainIn #connect
-Cs0 f15 mainOut f27 tail #connect
-Cs0 f27 head f9 mainIn #connect
-Cs0 f9 mainOut f29 tail #connect
-Cs0 f29 head f28 mainIn #connect
-Cs0 f28 mainOut f2 tail #connect
-Cs0 f2 head f1 mainIn #connect
-Cs0 f0 mainOut f26 tail #connect
-Cs0 f26 head f15 mainIn #connect
 Cs0 f30 mainOut f32 tail #connect
 Cs0 f32 head f31 mainIn #connect
 Cs0 f31 mainOut f34 tail #connect
 Cs0 f34 head f33 mainIn #connect
+Cs0 f38 mainOut f48 tail #connect
+Cs0 f48 head f39 mainIn #connect
+Cs0 f39 mainOut f47 tail #connect
+Cs0 f47 head f37 mainIn #connect
+Cs0 f36 mainOut f49 tail #connect
+Cs0 f49 head f38 mainIn #connect
+Cs0 f37 mainOut f51 tail #connect
+Cs0 f51 head f50 mainIn #connect
+Cs0 f0 mainOut f2 tail #connect
+Cs0 f2 head f1 mainIn #connect

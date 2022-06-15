@@ -3,6 +3,7 @@ package ch.ivy.addon.portalkit.bo;
 import ch.ivy.addon.portalkit.dto.UserDTO;
 import ch.ivy.addon.portalkit.ivydata.bo.IvySubstitute;
 
+@SuppressWarnings("deprecation")
 public class SubstituteNode {
 
   private String name;

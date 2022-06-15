@@ -9,12 +9,15 @@
   
 <!--
 DESCRIPTION:
-This is the default template to use the serenity-ivy theme as well as Iframes approach.
+This is the default template to use the serenity-ivy theme as well as iFrames approach.
 
 PORTAL:
 If you are using the Axon.ivy Portal, you can pass several parameters to portal to use some portal features (e.g. process chain).
 You'll find the list of parameters here: https://developer.axonivy.com/portal/8.0/doc/portal-developer-guide/components/layout-templates.html#components-layout-templates-iframe-task-template
 For further information about iframes and usage in portal please refer to: https://developer.axonivy.com/portal/8.0/doc/portal-developer-guide/iframe/index.html
+
+CUSTOMIZATION:
+If you want to customize this theme please take a look at our documentation: @designer-guide@/user-interface/user-dialogs.html#color-customizing
 -->
   
 <h:head>
@@ -25,6 +28,7 @@ For further information about iframes and usage in portal please refer to: https
   <h:outputStylesheet name="css/layout-ivy.css" library="serenity-layout" />
   <h:outputStylesheet name="layouts/styles/ivy-common-8.css" />
   <h:outputStylesheet name="layouts/styles/progress-loader.css" />
+  <h:outputScript name="js/layout.js" library="serenity-layout" />
 </h:head>
 <h:body>
   <ui:include src="/layouts/includes/progress-loader.xhtml" />
@@ -37,6 +41,12 @@ For further information about iframes and usage in portal please refer to: https
   <ui:insert name="exception">
     <ui:include src="/layouts/includes/exception.xhtml" />
   </ui:insert>
+
+  <!-- optional Portal parameters:
+  <script>
+    window.
+  </script>
+  -->
 
 </h:body>
 </html>

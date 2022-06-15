@@ -147,6 +147,11 @@ Dt0 @EndTask f128 '' #zField
 Dt0 @GridStep f130 '' #zField
 Dt0 @PushWFArc f131 '' #zField
 Dt0 @PushWFArc f129 '' #zField
+Dt0 @StartRequest f132 '' #zField
+Dt0 @GridStep f133 '' #zField
+Dt0 @PushWFArc f134 '' #zField
+Dt0 @EndTask f136 '' #zField
+Dt0 @PushWFArc f137 '' #zField
 >Proto Dt0 Dt0 DataCreation #zField
 Ct0 @TextInP .type .type #zField
 Ct0 @TextInP .processKind .processKind #zField
@@ -1324,6 +1329,75 @@ Dt0 f130 136 1610 112 44 -38 -8 #rect
 Dt0 f130 @|StepIcon #fIcon
 Dt0 f131 79 1632 136 1632 #arcP
 Dt0 f129 248 1632 305 1632 #arcP
+Dt0 f132 outLink create5kRoles.ivp #txt
+Dt0 f132 inParamDecl '<> param;' #txt
+Dt0 f132 requestEnabled true #txt
+Dt0 f132 triggerEnabled false #txt
+Dt0 f132 callSignature create5kRoles() #txt
+Dt0 f132 startName 'Create 5k roles to test' #txt
+Dt0 f132 startDescription 'For ticket IVYPORTAL-13607' #txt
+Dt0 f132 caseData businessCase.attach=true #txt
+Dt0 f132 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>create5kRoles.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Dt0 f132 @C|.responsibility Everybody #txt
+Dt0 f132 49 1745 30 30 -21 17 #rect
+Dt0 f132 @|StartRequestIcon #fIcon
+Dt0 f133 actionTable 'out=in;
+' #txt
+Dt0 f133 actionCode 'import ch.ivyteam.ivy.security.IRole;
+
+// CLEAN UP
+IRole roleMembershipDelete = ivy.wf.getApplication().getSecurityContext().findRole("SERVICE_INTEGRATION_TEAM");
+if (roleMembershipDelete != null){
+	roleMembershipDelete.delete();
+}
+
+IRole projectEditorDelete = ivy.wf.getApplication().getSecurityContext().findRole("PROJECT_EDITOR");
+if (projectEditorDelete != null){
+	projectEditorDelete.delete();
+}
+
+for (int i = 0; i < 5000; i ++){
+	IRole role = ivy.wf.getApplication().getSecurityContext().findRole("PROJECT_EDITOR_" + i);
+	if (role != null){
+		role.delete();
+	}
+}
+
+
+// CREATE
+IRole roleMembership = ivy.wf.getApplication().getSecurityContext().getTopLevelRole()
+.createChildRole("SERVICE_INTEGRATION_TEAM", "Service Integration Team", "", false);
+
+IRole projectEditor = ivy.wf.getApplication().getSecurityContext().getTopLevelRole()
+.createChildRole("PROJECT_EDITOR", "Project Editor", "", false);
+
+for (int i = 0; i < 5000; i ++){
+IRole role = projectEditor.createChildRole("PROJECT_EDITOR_" + i, "Editor for Project_" + i, "", false);
+role.addRoleMember(roleMembership);
+
+}
+ivy.session.getSessionUser().addRole(roleMembership);' #txt
+Dt0 f133 security system #txt
+Dt0 f133 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Create 5000 roles &#13;
+</name>
+    </language>
+</elementInfo>
+' #txt
+Dt0 f133 152 1738 128 44 -44 -16 #rect
+Dt0 f133 @|StepIcon #fIcon
+Dt0 f134 79 1760 152 1760 #arcP
+Dt0 f136 305 1745 30 30 0 15 #rect
+Dt0 f136 @|EndIcon #fIcon
+Dt0 f137 280 1760 305 1760 #arcP
 >Proto Dt0 .type portalKit_test.DataCreationData #txt
 >Proto Dt0 .processKind NORMAL #txt
 >Proto Dt0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1559,6 +1633,10 @@ Dt0 f127 mainOut f131 tail #connect
 Dt0 f131 head f130 mainIn #connect
 Dt0 f130 mainOut f129 tail #connect
 Dt0 f129 head f128 mainIn #connect
+Dt0 f132 mainOut f134 tail #connect
+Dt0 f134 head f133 mainIn #connect
+Dt0 f133 mainOut f137 tail #connect
+Dt0 f137 head f136 mainIn #connect
 Ct0 f139 head f127 mainIn #connect
 Ct0 f141 head f122 in #connect
 Ct0 g0 m f0 tail #connect

@@ -11,6 +11,7 @@ import ch.ivy.addon.portalkit.dto.UserDTO;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
 
+@SuppressWarnings("deprecation")
 public class UserLazyDataModel extends LazyDataModel<UserDTO> {
 
   private static final long serialVersionUID = -6160701869558198527L;

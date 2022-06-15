@@ -25,6 +25,7 @@ import ch.ivyteam.ivy.security.IUserAbsence;
 import ch.ivyteam.ivy.server.ServerFactory;
 import ch.ivyteam.ivy.workflow.IWorkflowSession;
 
+@SuppressWarnings("deprecation")
 public class UserUtils {
 
   private static final String APPLICATION_DEFAULT = "APPLICATION_DEFAULT";

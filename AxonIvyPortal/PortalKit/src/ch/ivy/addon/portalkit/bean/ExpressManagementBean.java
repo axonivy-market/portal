@@ -19,6 +19,7 @@ import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.security.IUser;
 
+@SuppressWarnings("deprecation")
 @ManagedBean
 @ViewScoped
 public class ExpressManagementBean implements Serializable {

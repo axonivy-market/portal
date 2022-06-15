@@ -30,6 +30,11 @@ import ch.ivyteam.ivy.workflow.document.IDocument;
 import ch.ivyteam.ivy.workflow.document.IDocumentService;
 import ch.ivyteam.ivy.workflow.document.Path;
 
+/**
+ * @deprecated use CaseDocumentService in com.axonivy.portal.component.service
+ *
+ */
+@Deprecated(since="8.0.27")
 public class CaseDocumentService {
 
   public static final String EXPRESS_UPLOAD_FOLDER = "AxonIvyExpress";
