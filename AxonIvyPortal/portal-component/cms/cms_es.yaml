@@ -59,7 +59,9 @@ Dialogs:
               DESTROYED: Destruido
               DONE: Hecho
               FAILED: Ha fallado
+              OPEN: Pendiente
               RUNNING: En progreso
+              ZOMBIE: Zombie
             DefaultEmptyMessage: No hay casos
             NoDescription: Sin descripción
             NoName: Sin nombre

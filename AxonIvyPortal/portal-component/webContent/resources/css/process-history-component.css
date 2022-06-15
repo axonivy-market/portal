@@ -172,3 +172,33 @@
     display: none !important;
   }
 }
+
+.state-column .case-state {
+  border-radius: var(--state-border-radius);
+  font-size: var(--state-font-size);
+  line-height: var(--state-line-height);
+  border: 1px solid;
+  display: inline-block;
+  white-space: nowrap;
+  box-sizing: border-box;
+  width: fit-content;
+  padding: 0 8px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-width: 90px;
+}
+
+.state-column .running-case-state {
+  background: var(--state-running-background);
+  border-color: var(--state-running-background);
+}
+
+.state-column .done-case-state {
+  background: var(--state-done-background);
+  border-color: var(--state-done-background);
+}
+
+.state-column .created-case-state {
+  background: var(--state-open-color);
+  border-color: var(--state-open-color);
+}
