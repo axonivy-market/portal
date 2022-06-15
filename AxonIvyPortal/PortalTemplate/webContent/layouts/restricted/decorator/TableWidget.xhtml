@@ -30,10 +30,11 @@
     -->
 
 <h:panelGroup id="#{panelId}" styleClass="table-widget-panel #{panelStyleClass}" layout="block">
+  <c:set var="isRenderFilter" value="#{empty isRenderFilter ? 'true': isRenderFilter}" scope="request"/>
+
   <div class="widget__header">
     <h:panelGroup id="widget__header" class="widget__header-title text-ellipsis">#{not empty widget.name ? widget.name : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/yourWidget')}</h:panelGroup>
     <p:tooltip for="widget__header" value="#{not empty widget.name ? widget.name : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/yourWidget')}" trackMouse="true" hideEvent="mouseleave click"/>
-    <c:set var="isRenderFilter" value="#{empty isRenderFilter ? 'true': isRenderFilter}" scope="request"/>
 
     <h:panelGroup id="widget-header-actions" styleClass="widget__header-actions" layout="block">
       <!-- remote-command to load data for saved filter panel -->
