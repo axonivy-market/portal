@@ -33,6 +33,7 @@ public class ProcessViewerUtils {
   private static final String START_PROCESS_PORTAL_PROCESS_VIEWER_PAGE = "Start Processes/PortalStart/PortalProcessViewer.ivp";
   private static final String TEXT_SEPARATOR = "/";
   public static final String DEFAULT_LINK = "#";
+  private static final int PROJECT_NAME_INDEX = 3;
   private static List<IWebStartable> webStartables;
 
   public static boolean isValidCase(Long caseId) {
@@ -145,8 +146,29 @@ public class ProcessViewerUtils {
         return new ProcessViewerUrl.Builder(element).toWebLink();
       }
     }
-    var webStartable = findWebStartable(caseId, processId);
-    return webStartable.viewerLink();
+    
+    String projectName = getProjectNameFromProcessId(processId);
+    
+    IWebStartable selectedProcess = findWebStartable(caseId, processId);
+    var selectedProcessId = selectedProcess.getId();
+    var friendlyRequestPath = selectedProcessId.substring(selectedProcessId.indexOf(projectName) + projectName.length() + 1);
+    IStartElement element = ProcessStartAPI.findStartElementByProcessStartFriendlyRequestPath(friendlyRequestPath);
+    return new ProcessViewerUrl.Builder(element).toWebLink();
+
+  }
+  
+  /**
+   * Get Project Name From ProcessId
+   * @param processId process id e.g "/designer/pro/InternalSupport/15C7B30FB93C827E/Appraisal.ivp"
+   * @return project name or empty string ex. InternalSupport
+   */
+  private static String getProjectNameFromProcessId(String processId) {
+    String[] projectNames = processId.split("/");
+    String projectName = "";
+    if(projectNames.length > PROJECT_NAME_INDEX) {
+      projectName = projectNames[PROJECT_NAME_INDEX];
+    }
+    return projectName;
   }
   
   public static ICaseMap findCaseMapByCase(ICase caze) {
