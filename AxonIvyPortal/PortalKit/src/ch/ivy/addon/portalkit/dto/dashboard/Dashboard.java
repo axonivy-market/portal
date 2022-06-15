@@ -17,6 +17,7 @@ import ch.ivyteam.ivy.environment.Ivy;
 public class Dashboard extends AbstractConfiguration implements Serializable {
 
   private static final long serialVersionUID = 4580715578128184706L;
+  private String templateId;
   private String title;
   private String description;
   private List<DashboardWidget> widgets;
@@ -30,6 +31,7 @@ public class Dashboard extends AbstractConfiguration implements Serializable {
 
   public Dashboard(Dashboard dashboard) {
     setId(dashboard.getId());
+    setTemplateId(dashboard.getTemplateId());
     setIsPublic(dashboard.getIsPublic());
     title = dashboard.title;
     description = dashboard.description;
@@ -94,6 +96,14 @@ public class Dashboard extends AbstractConfiguration implements Serializable {
 
   public void setDisplayedPermission(String displayedPermission) {
     this.displayedPermission = displayedPermission;
+  }
+
+  public String getTemplateId() {
+    return templateId;
+  }
+
+  public void setTemplateId(String templateId) {
+    this.templateId = templateId;
   }
 
   @Override
