@@ -59,7 +59,9 @@ Dialogs:
               DESTROYED: Gelöscht
               DONE: Erledigt
               FAILED: Fehlgeschlagen
+              OPEN: Offen
               RUNNING: in Bearbeitung
+              ZOMBIE: Zombie
             DefaultEmptyMessage: Keine Vorgänge verfügbar
             NoDescription: Keine Beschreibung vorhanden
             NoName: kein Name

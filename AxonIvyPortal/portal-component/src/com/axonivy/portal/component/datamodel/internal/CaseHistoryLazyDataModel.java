@@ -7,21 +7,18 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
-import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
 
 import com.axonivy.portal.component.enums.AdditionalProperty;
 import com.axonivy.portal.component.enums.CaseSortField;
 import com.axonivy.portal.component.ivydata.searchcriteria.CaseSearchCriteria;
 import com.axonivy.portal.component.service.IvyAdapterService;
-import com.axonivy.portal.component.service.RegisteredApplicationService;
 import com.axonivy.portal.component.util.PermissionUtils;
 
-import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.jsf.primefaces.legazy.LazyDataModel7;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
-import ch.ivyteam.ivy.jsf.primefaces.legazy.LazyDataModel7;
 
 public class CaseHistoryLazyDataModel extends LazyDataModel7<ICase> {
 
@@ -38,12 +35,6 @@ public class CaseHistoryLazyDataModel extends LazyDataModel7<ICase> {
     data = new ArrayList<>();
     criteria = buildInitSearchCriteria(isCaseOwnerEnabled);
     setAdminQuery(PermissionUtils.checkReadAllCasesPermission());
-    setInvolvedApplications();
-  }
-
-  protected void setInvolvedApplications() {
-    RegisteredApplicationService service = new RegisteredApplicationService();
-    criteria.setApps(service.findActiveIvyAppsBasedOnConfiguration(Ivy.session().getSessionUserName()));
   }
 
   public void setAdminQuery(boolean isAdminQuery) {
@@ -52,10 +43,9 @@ public class CaseHistoryLazyDataModel extends LazyDataModel7<ICase> {
 
   private CaseSearchCriteria buildInitSearchCriteria(boolean isCaseOwnerEnabled) {
     CaseSearchCriteria crit = new CaseSearchCriteria();
-    crit.setInvolvedUsername(Ivy.session().getSessionUserName());
     crit.setBusinessCase(true);
     crit.setIncludedStates(new ArrayList<>(Arrays.asList(CaseState.CREATED, CaseState.RUNNING, CaseState.DONE)));
-    crit.setSortField(CaseSortField.ID.toString());
+    crit.setSortField(CaseSortField.ID.name());
     crit.setSortDescending(true);
     crit.setCaseOwnerEnabled(isCaseOwnerEnabled);
     return crit;

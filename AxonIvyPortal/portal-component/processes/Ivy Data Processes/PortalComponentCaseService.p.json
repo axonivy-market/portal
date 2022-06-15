@@ -41,7 +41,7 @@
       "id" : "f1",
       "type" : "CallSubEnd",
       "visual" : {
-        "at" : { "x" : 576, "y" : 96 }
+        "at" : { "x" : 416, "y" : 96 }
       }
     }, {
       "id" : "f6",
@@ -62,31 +62,12 @@
       "visual" : {
         "at" : { "x" : 248, "y" : 96 }
       },
-      "connect" : { "id" : "f8", "to" : "f5" }
-    }, {
-      "id" : "f5",
-      "type" : "SubProcessCall",
-      "name" : "ErrorHandler",
-      "config" : {
-        "processCall" : "Functional Processes/PortalComponentErrorHandler:handle(java.util.List<com.axonivy.portal.component.ivydata.exception.PortalIvyDataException>)",
-        "call" : {
-          "params" : [
-            { "name" : "exceptions", "type" : "java.util.List<com.axonivy.portal.component.ivydata.exception.PortalIvyDataException>" }
-          ],
-          "map" : {
-            "param.exceptions" : "in.errors"
-          }
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 432, "y" : 96 }
-      },
       "connect" : { "id" : "f3", "to" : "f1" }
     }, {
       "id" : "f9",
       "type" : "CallSubEnd",
       "visual" : {
-        "at" : { "x" : 576, "y" : 200 }
+        "at" : { "x" : 416, "y" : 200 }
       }
     }, {
       "id" : "f11",
@@ -99,15 +80,14 @@
             "import com.axonivy.portal.component.ivydata.dto.IvyCaseResultDTO;",
             "",
             "IvyCaseResultDTO dto = CaseService.newInstance().countCasesByCriteria(in.caseSearchCriteria);",
-            "out.totalCases = dto.totalCases;",
-            "out.errors = dto.errors;"
+            "out.totalCases = dto.totalCases;"
           ]
         }
       },
       "visual" : {
         "at" : { "x" : 248, "y" : 200 }
       },
-      "connect" : { "id" : "f16", "to" : "f13" }
+      "connect" : { "id" : "f4", "to" : "f9" }
     }, {
       "id" : "f12",
       "type" : "CallSubStart",
@@ -138,25 +118,6 @@
         "labelOffset" : { "x" : -89, "y" : 26 }
       },
       "connect" : { "id" : "f2", "to" : "f11" }
-    }, {
-      "id" : "f13",
-      "type" : "SubProcessCall",
-      "name" : "ErrorHandler",
-      "config" : {
-        "processCall" : "Functional Processes/PortalComponentErrorHandler:handle(java.util.List<com.axonivy.portal.component.ivydata.exception.PortalIvyDataException>)",
-        "call" : {
-          "params" : [
-            { "name" : "exceptions", "type" : "java.util.List<com.axonivy.portal.component.ivydata.exception.PortalIvyDataException>" }
-          ],
-          "map" : {
-            "param.exceptions" : "in.errors"
-          }
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 432, "y" : 200 }
-      },
-      "connect" : { "id" : "f15", "to" : "f9" }
     } ],
   "layout" : {
     "lanes" : [ {
