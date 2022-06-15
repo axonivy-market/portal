@@ -49,6 +49,7 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
   private Dashboard selectedEditingDashboard;
   private List<Dashboard> editingDashboards;
   private boolean isDashboardCreation;
+  private boolean isSelectingTemplate;
 
   @PostConstruct
   public void initConfigration() {
@@ -207,6 +208,7 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
     configureOnAddDashboard();
     selectedEditingDashboard.setIsPublic(isPublicDashboard);
     this.setPublicDashboard(isPublicDashboard);
+    setSelectingTemplate(true);
   }
 
   public void onAddDashboard() {
@@ -295,5 +297,13 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
 
   public String generateDashboardPermisisonForDisplay(Dashboard dashboard) {
     return String.join(", ", dashboard.getPermissions());
+  }
+
+  public boolean isSelectingTemplate() {
+    return isSelectingTemplate;
+  }
+
+  public void setSelectingTemplate(boolean isSelectingTemplate) {
+    this.isSelectingTemplate = isSelectingTemplate;
   }
 }
