@@ -1,0 +1,25 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions">
+<h:body>
+  <ui:composition template="/layouts/frame-8-customization.xhtml">
+    <ui:define name="title">Process History Component Example</ui:define>
+    <ui:define name="content">
+      <h:panelGroup rendered="#{data.showProcessHistoriesOfAlphaCompany}">
+        <h1>Process history of Alpha Company</h1>
+        <ic:com.axonivy.portal.component.ProcessHistory businessEntityId="alpha" chunkSize="12" dateTimePattern="dd.MM.yyyy" />
+      </h:panelGroup>
+      <h:panelGroup rendered="#{data.showProcessHistoriesOfBetaCompany}">
+        <h1>Process history of Beta Company</h1>
+        <p:commandButton id="process-history-dialog-button" value="Open process history dialog" process="@this"
+          oncomplete="PF('process-history-dialog').show()" update="process-history-dialog" />
+        <p:dialog widgetVar="process-history-dialog" id="process-history-dialog" width="800" height="500" resizable="false"
+          header="Process history of Beta Company" modal="true" onShow="processHistory.setup();">
+          <ic:com.axonivy.portal.component.ProcessHistory businessEntityId="beta" chunkSize="10" scrollHeight="400" />
+        </p:dialog>
+      </h:panelGroup>
+      <h:outputStylesheet name="layouts/styles/process-history-customize.css" />
+    </ui:define>
+  </ui:composition>
+</h:body>
+</html>

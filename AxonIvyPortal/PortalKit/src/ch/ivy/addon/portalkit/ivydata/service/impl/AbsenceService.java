@@ -25,6 +25,7 @@ import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.security.IUserAbsence;
 
+@SuppressWarnings("deprecation")
 public class AbsenceService implements IAbsenceService {
 
   private AbsenceService() {

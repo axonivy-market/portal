@@ -4,7 +4,11 @@ import java.io.Serializable;
 
 import ch.ivyteam.ivy.security.ISecurityMember;
 
-// Serializable is required to send system event when creating group chat in cluster mode
+/**
+ * @deprecated use SecurityMemberDTO in package com.axonivy.portal.component.dto
+ *
+ */
+@Deprecated(since="8.0.27")
 public class SecurityMemberDTO implements Serializable {
 
   private static final long serialVersionUID = 5152412894300680832L;

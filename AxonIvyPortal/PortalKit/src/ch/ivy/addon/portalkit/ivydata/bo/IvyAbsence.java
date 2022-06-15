@@ -10,6 +10,7 @@ import ch.ivy.addon.portalkit.dto.UserDTO;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.server.ServerFactory;
 
+@SuppressWarnings("deprecation")
 public class IvyAbsence {
 
   private UserDTO user;

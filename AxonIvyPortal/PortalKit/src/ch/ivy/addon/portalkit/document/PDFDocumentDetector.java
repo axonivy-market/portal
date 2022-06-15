@@ -9,7 +9,12 @@ import com.itextpdf.text.pdf.PdfReader;
 
 import ch.ivyteam.ivy.environment.Ivy;
 
-public class PDFDocumentDetector implements DocumentDetector{
+/**
+ * @deprecated use PDFDocumentDetector in package com.axonivy.portal.component.document
+ *
+ */
+@Deprecated(since="8.0.27")
+public class PDFDocumentDetector implements DocumentDetector {
   
   @Override
   public boolean isSafe(InputStream inputStream) {

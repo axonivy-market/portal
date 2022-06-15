@@ -21,6 +21,7 @@ import ch.ivy.addon.portalkit.service.PermissionCheckerService;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 
+@SuppressWarnings("deprecation")
 @ManagedBean
 @ViewScoped
 public class AbsenceBean implements Serializable {

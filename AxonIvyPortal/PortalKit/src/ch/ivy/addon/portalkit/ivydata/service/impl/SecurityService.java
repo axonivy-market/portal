@@ -33,6 +33,7 @@ import ch.ivyteam.ivy.security.query.UserQuery;
 import ch.ivyteam.ivy.security.query.UserQuery.IFilterQuery;
 import ch.ivyteam.ivy.server.ServerFactory;
 
+@SuppressWarnings("deprecation")
 public class SecurityService implements ISecurityService {
 
   private SecurityService() {}
@@ -334,5 +335,28 @@ public class SecurityService implements ISecurityService {
         .stream()
         .map(UserDTO::new)
         .collect(Collectors.toList());
+  }
+
+  @Override
+  public IvySecurityResultDTO findRoles(List<String> apps, String userName) {
+    return IvyExecutor.executeAsSystem(() -> { 
+      IvySecurityResultDTO result = new IvySecurityResultDTO();
+      if (CollectionUtils.isEmpty(apps)) {
+        return result;
+      }
+      List<PortalIvyDataException> errors = new ArrayList<>();
+      List<IRole> roles = new ArrayList<>();
+      for (String appName : apps) {
+        try {
+          IApplication app = ServiceUtilities.findApp(appName);
+          roles.addAll(ServiceUtilities.findAllRolesOfUser(app, userName));
+        } catch (PortalIvyDataException e) {
+          errors.add(e);
+        } 
+      }
+      result.setErrors(errors);
+      result.setRoles(roles);
+      return result;
+    });
   }
 }

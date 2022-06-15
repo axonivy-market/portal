@@ -39,7 +39,7 @@ pipeline {
             utils.extractEngine(v['engineDir'], params.engineDownloadURL)
           }
           echo "====================Build Portal modules===================="
-          def modules = ['AxonIvyPortal/PortalStyle', 'AxonIvyPortal/PortalKit', 'AxonIvyPortal/PortalTemplate', 'AxonIvyPortal/AxonIvyExpress', 'AxonIvyPortal/PortalKitTestHelper', 'Showcase/PortalExamples', 'Showcase/InternalSupport', 'AxonIvyPortal/PortalApp']
+          def modules = ['AxonIvyPortal/portal-component', 'AxonIvyPortal/PortalStyle', 'AxonIvyPortal/PortalKit', 'AxonIvyPortal/PortalTemplate', 'AxonIvyPortal/AxonIvyExpress', 'AxonIvyPortal/PortalKitTestHelper', 'Showcase/PortalExamples', 'Showcase/InternalSupport', 'Showcase/portal-component-example', 'AxonIvyPortal/PortalApp']
           for (module in modules) {
             bat "mvn clean install -f ${module}/pom.xml -Divy.engine.directory=${masterNodeDir}"
           }

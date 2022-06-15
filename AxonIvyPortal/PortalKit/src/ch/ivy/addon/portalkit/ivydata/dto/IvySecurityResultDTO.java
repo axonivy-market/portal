@@ -8,6 +8,7 @@ import ch.ivy.addon.portalkit.dto.SecurityMemberDTO;
 import ch.ivy.addon.portalkit.dto.UserDTO;
 import ch.ivyteam.ivy.security.IRole;
 
+@SuppressWarnings("deprecation")
 public class IvySecurityResultDTO extends AbstractResultDTO {
 
   private Map<String, List<UserDTO>> usersByApp;

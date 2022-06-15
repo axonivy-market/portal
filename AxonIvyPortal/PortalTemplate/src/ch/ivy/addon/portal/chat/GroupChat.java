@@ -14,6 +14,7 @@ import ch.ivy.addon.portalkit.dto.SecurityMemberDTO;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.server.ServerFactory;
 
+@SuppressWarnings("deprecation")
 public class GroupChat implements Serializable {
 
   private static final long serialVersionUID = -3091897713010721574L;

@@ -10,6 +10,11 @@ import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.scripting.objects.File;
 import ch.ivyteam.ivy.workflow.document.IDocument;
 
+/**
+ * @deprecated use IvyDocumentTransformer in package com.axonivy.portal.component.document
+ *
+ */
+@Deprecated(since="8.0.27")
 public class IvyDocumentTransformer {
   public IvyDocument transform(IDocument document) {
     IvyDocument result = new IvyDocument();

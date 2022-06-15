@@ -1,6 +1,6 @@
 package ch.ivyteam.ivy.project.portal.examples.enums;
 
-import ch.ivy.addon.portalkit.enums.DocumentType;
+import com.axonivy.portal.component.enums.DocumentType;
 
 public enum ExtendedDocumentType implements DocumentType {
 

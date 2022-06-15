@@ -47,6 +47,7 @@ import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.businesscase.IBusinessCase;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
+@SuppressWarnings("deprecation")
 @ManagedBean
 @ViewScoped
 public class ChatAssigneeBean implements Serializable {

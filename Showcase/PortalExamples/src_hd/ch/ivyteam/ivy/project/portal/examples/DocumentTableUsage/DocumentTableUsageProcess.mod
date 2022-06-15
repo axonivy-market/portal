@@ -13,10 +13,10 @@ Ds0 @TextInP .xml .xml #zField
 Ds0 @TextInP .responsibility .responsibility #zField
 Ds0 @UdInit f0 '' #zField
 Ds0 @UdProcessEnd f1 '' #zField
-Ds0 @PushWFArc f2 '' #zField
 Ds0 @UdEvent f3 '' #zField
 Ds0 @UdExitEnd f4 '' #zField
 Ds0 @PushWFArc f5 '' #zField
+Ds0 @PushWFArc f2 '' #zField
 >Proto Ds0 Ds0 DocumentTableUsageProcess #zField
 Ds0 f0 guid 16B44730ED781E72 #txt
 Ds0 f0 method start() #txt
@@ -33,8 +33,6 @@ Ds0 f0 83 51 26 26 -16 15 #rect
 Ds0 f0 @|UdInitIcon #fIcon
 Ds0 f1 211 51 26 26 0 12 #rect
 Ds0 f1 @|UdProcessEndIcon #fIcon
-Ds0 f2 expr out #txt
-Ds0 f2 109 64 211 64 #arcP
 Ds0 f3 guid 16B44730F007935B #txt
 Ds0 f3 actionTable 'out=in;
 ' #txt
@@ -51,11 +49,12 @@ Ds0 f4 211 147 26 26 0 12 #rect
 Ds0 f4 @|UdExitEndIcon #fIcon
 Ds0 f5 expr out #txt
 Ds0 f5 109 160 211 160 #arcP
+Ds0 f2 109 64 211 64 #arcP
 >Proto Ds0 .type ch.ivyteam.ivy.project.portal.examples.DocumentTableUsage.DocumentTableUsageData #txt
 >Proto Ds0 .processKind HTML_DIALOG #txt
 >Proto Ds0 -8 -8 16 16 16 26 #rect
 >Proto Ds0 '' #fIcon
-Ds0 f0 mainOut f2 tail #connect
-Ds0 f2 head f1 mainIn #connect
 Ds0 f3 mainOut f5 tail #connect
 Ds0 f5 head f4 mainIn #connect
+Ds0 f0 mainOut f2 tail #connect
+Ds0 f2 head f1 mainIn #connect
