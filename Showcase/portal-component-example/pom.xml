@@ -16,7 +16,7 @@
   </dependencies>
   <properties>
     <build.plugin.version>8.0.7</build.plugin.version>
-    <ivy.engine.version>8.0.26</ivy.engine.version>
+    <ivy.engine.version>8.0.27</ivy.engine.version>
   </properties>
   <distributionManagement>
     <repository>
