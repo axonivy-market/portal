@@ -1,0 +1,9 @@
+{
+  /PROCESS {
+    /Functional-Processes.DeleteDocumentItem "Functional Processes/DeleteDocumentItemOverride"
+    /Functional-Processes.UploadDocumentItem "Functional Processes/UploadDocumentItemOverride"
+    /Functional-Processes.GetDocumentItems "Functional Processes/GetDocumentItemsOverride"
+    /Functional-Processes.DownloadDocumentItem "Functional Processes/DownloadDocumentItemOverride"
+  }
+  /HTML_DIALOG *
+}

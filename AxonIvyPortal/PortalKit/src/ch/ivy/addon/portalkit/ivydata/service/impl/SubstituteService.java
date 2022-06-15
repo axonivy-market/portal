@@ -33,6 +33,7 @@ import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.security.IUserSubstitute;
 
+@SuppressWarnings("deprecation")
 public class SubstituteService implements ISubstituteService {
 
   private static final String ROLE_EVERYBODY = "Everybody";

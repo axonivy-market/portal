@@ -13,6 +13,7 @@ import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
+@SuppressWarnings("deprecation")
 public class TaskWorkerFilter extends TaskFilter {
 
   @JsonIgnore

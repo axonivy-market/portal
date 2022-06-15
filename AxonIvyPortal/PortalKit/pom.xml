@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <groupId>ch.ivyteam.ivy.project.portal</groupId>
   <artifactId>portalKit</artifactId>
@@ -19,18 +20,16 @@
       <url>https://nexus.axonivy.com/repository/maven-snapshots/</url>
     </snapshotRepository>
   </distributionManagement>
-  <repositories>
-    <repository>
-      <name>Axonivy Repo</name>
-      <id>maven.axonivy.com</id>
-      <url>https://maven.axonivy.com/</url>
-      <layout>default</layout>
-    </repository>
-  </repositories>
   <dependencies>
     <dependency>
       <groupId>ch.ivyteam.ivy.project.portal</groupId>
       <artifactId>portalStyle</artifactId>
+      <version>8.0.0.0-SNAPSHOT</version>
+      <type>iar</type>
+    </dependency>
+    <dependency>
+      <groupId>com.axonivy.portal</groupId>
+      <artifactId>portal-component</artifactId>
       <version>8.0.0.0-SNAPSHOT</version>
       <type>iar</type>
     </dependency>
@@ -56,7 +55,42 @@
       <version>2.1.1</version>
     </dependency>
   </dependencies>
+  <repositories>
+    <repository>
+      <id>maven.axonivy.com</id>
+      <name>Axonivy Repo</name>
+      <url>https://maven.axonivy.com/</url>
+    </repository>
+  </repositories>
   <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.eclipse.m2e</groupId>
+          <artifactId>lifecycle-mapping</artifactId>
+          <version>1.0.0</version>
+          <configuration>
+            <lifecycleMappingMetadata>
+              <pluginExecutions>
+                <pluginExecution>
+                  <pluginExecutionFilter>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-dependency-plugin</artifactId>
+                    <versionRange>[2.8,)</versionRange>
+                    <goals>
+                      <goal>copy-dependencies</goal>
+                    </goals>
+                  </pluginExecutionFilter>
+                  <action>
+                    <ignore></ignore>
+                  </action>
+                </pluginExecution>
+              </pluginExecutions>
+            </lifecycleMappingMetadata>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
     <plugins>
       <plugin>
         <groupId>com.axonivy.ivy.ci</groupId>
@@ -86,39 +120,5 @@
         </executions>
       </plugin>
     </plugins>
-    <pluginManagement>
-      <plugins>
-        <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
-        <plugin>
-          <groupId>org.eclipse.m2e</groupId>
-          <artifactId>lifecycle-mapping</artifactId>
-          <version>1.0.0</version>
-          <configuration>
-            <lifecycleMappingMetadata>
-              <pluginExecutions>
-                <pluginExecution>
-                  <pluginExecutionFilter>
-                    <groupId>
-                      org.apache.maven.plugins
-                    </groupId>
-                    <artifactId>
-                      maven-dependency-plugin
-                    </artifactId>
-                    <versionRange>[2.8,)</versionRange>
-                    <goals>
-                      <goal>copy-dependencies</goal>
-                    </goals>
-                  </pluginExecutionFilter>
-                  <action>
-                    <ignore>
-                    </ignore>
-                  </action>
-                </pluginExecution>
-              </pluginExecutions>
-            </lifecycleMappingMetadata>
-          </configuration>
-        </plugin>
-      </plugins>
-    </pluginManagement>
   </build>
 </project>

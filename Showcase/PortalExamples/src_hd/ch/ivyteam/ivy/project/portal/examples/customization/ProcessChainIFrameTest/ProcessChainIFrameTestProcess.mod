@@ -73,7 +73,7 @@ Ps0 f7 179 243 26 26 0 12 #rect
 Ps0 f7 @|UdProcessEndIcon #fIcon
 Ps0 f9 actionTable 'out=in;
 ' #txt
-Ps0 f9 actionCode 'in.actualCurrentIndex = 0;' #txt
+Ps0 f9 actionCode 'in.actualCurrentIndex = 2;' #txt
 Ps0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

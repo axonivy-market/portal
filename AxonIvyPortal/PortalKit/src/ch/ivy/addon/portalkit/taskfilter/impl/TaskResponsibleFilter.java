@@ -12,6 +12,7 @@ import ch.ivy.addon.portalkit.taskfilter.TaskFilter;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
+@SuppressWarnings("deprecation")
 public class TaskResponsibleFilter extends TaskFilter {
   @JsonIgnore
   private SecurityMemberDTO selectedResponsible;

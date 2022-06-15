@@ -33,6 +33,7 @@ import ch.ivyteam.ivy.security.query.UserQuery;
 import ch.ivyteam.ivy.security.query.UserQuery.IFilterQuery;
 import ch.ivyteam.ivy.server.ServerFactory;
 
+@SuppressWarnings("deprecation")
 public class SecurityService implements ISecurityService {
 
   private SecurityService() {}

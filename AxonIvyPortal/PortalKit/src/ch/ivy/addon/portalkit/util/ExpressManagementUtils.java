@@ -43,6 +43,7 @@ import ch.ivyteam.ivy.business.data.store.BusinessDataInfo;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUser;
 
+@SuppressWarnings("deprecation")
 public class ExpressManagementUtils {
 
   private static final String VERSION = "version";
