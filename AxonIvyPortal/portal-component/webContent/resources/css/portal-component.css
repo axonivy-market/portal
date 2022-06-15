@@ -36,5 +36,10 @@
   --process-history-state-done-or-resume-color: #4EB41C;
   --process-history-empty-message-label-color: var(--black, #FFFFFF);
   --process-history-empty-message-label-font-size: 1.2rem;
-
+  --state-border-radius: 10px;
+  --state-font-size: 12px;
+  --state-line-height: 16px;
+  --state-running-background: #FFE896;
+  --state-done-background: #D4EBA2;
+  --state-open-color: #C9C9C9;
 }

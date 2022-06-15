@@ -70,7 +70,7 @@ public class ProcessHistoryComponentBean implements Serializable {
     return getDisplayState(iCase.getState());
   }
 
-  private String getDisplayState(CaseState caseState) {
+  public String getDisplayState(CaseState caseState) {
     if (caseState == CaseState.CREATED || caseState == CaseState.RUNNING) {
       return Ivy.cms().co("/Dialogs/com/axonivy/portal/component/ProcessHistory/CaseState/RUNNING");
     }

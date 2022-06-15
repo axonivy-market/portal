@@ -59,7 +59,9 @@ Dialogs:
               DESTROYED: Supprimé
               DONE: Terminé
               FAILED: Échoué
+              OPEN: Ouverte
               RUNNING: En cours
+              ZOMBIE: Zombie
             DefaultEmptyMessage: Il n'y a pas de dossiers
             NoDescription: Aucune description
             NoName: Aucun nom

@@ -91,8 +91,8 @@
             <h:outputText id="case-id-cell" value="#{case.id}" rendered="#{processHistoryComponentBean.dataModel.isSelectedColumn('ID')}"
               styleClass="case-header-id-cell case-header-default-cell process-history process-history-list process-history-list-cell-default u-hidden-sm-down" />
 
-            <!-- Column PROCESS NAME -->
-            <h:outputText value="#{case.processName}" rendered="#{processHistoryComponentBean.dataModel.isSelectedColumn('PROCESS_NAME')}"
+            <!-- Column CATEGORY -->
+            <h:outputText value="#{case.category}"
               styleClass="process-history process-history-list process-history-list-cell-default process-history-list-width-120 u-hidden-sm-down" />
 
             <!-- Column CREATION TIME -->
@@ -111,12 +111,9 @@
 
             <!-- Column STATE-->
             <h:panelGroup rendered="#{processHistoryComponentBean.dataModel.isSelectedColumn('STATE')}" id="case-state-cell"
-              styleClass="case-header-default-cell process-history process-history-list process-history-list-cell-default u-hidden-sm-down">
-              <h:panelGroup id="case-state-cell-in-progress" styleClass="fa fa-play-circle case-state-in-progress"
-                rendered="#{case.state eq 'CREATED' or case.state eq 'RUNNING'}" />
-              <h:panelGroup id="case-state-cell-done" styleClass="fa fa-check-circle case-state-done" rendered="#{case.state eq 'DONE'}" />
-              <h:panelGroup id="case-state-cell-destroyed" rendered="#{case.state eq 'DESTROYED' or case.state eq 'ZOMBIE'}"
-                styleClass="fa fa-exclamation-circle case-state-zombie-destroyed" />
+              styleClass="case-header-default-cell state-column process-history process-history-list process-history-list-cell-default u-hidden-sm-down">
+              <h:outputText value="#{processHistoryComponentBean.getDisplayState(case.state)}"
+                styleClass="case-state #{case.state.toString().toLowerCase()}-case-state" />
             </h:panelGroup>
             <p:tooltip for="case-state-cell" value="#{processHistoryComponentBean.getState(case)}" trackMouse="true" hideEvent="mouseleave click" />
 
