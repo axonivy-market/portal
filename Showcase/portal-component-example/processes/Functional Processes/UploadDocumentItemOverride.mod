@@ -193,7 +193,7 @@ param.enableVirusScannerForUploadedDocument=in.enableVirusScannerForUploadedDocu
 param.enableScriptCheckingForUploadedDocument=in.enableScriptCheckingForUploadedDocument;
 param.allowedUploadFileTypes=in.allowedUploadFileTypes;
 ' #txt
-Ut0 f75 responseActionDecl 'examples.override.UploadDocumentItemOverrideData out;
+Ut0 f75 responseActionDecl 'com.axonivy.portal.component.example.override.UploadDocumentItemOverrideData out;
 ' #txt
 Ut0 f75 responseMappingAction 'out=in;
 out.message=result.message;
@@ -315,7 +315,7 @@ Ut0 f4 @|StepIcon #fIcon
 Ut0 f8 expr out #txt
 Ut0 f8 1168 128 1216 128 #arcP
 Ut0 f2 1344 128 1393 128 #arcP
->Proto Ut0 .type examples.override.UploadDocumentItemOverrideData #txt
+>Proto Ut0 .type com.axonivy.portal.component.example.override.UploadDocumentItemOverrideData #txt
 >Proto Ut0 .processKind CALLABLE_SUB #txt
 >Proto Ut0 0 0 32 24 18 0 #rect
 >Proto Ut0 @|BIcon #fIcon

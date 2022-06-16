@@ -99,7 +99,7 @@ Some mandatory fields when mapping:&#13;
 Gt0 f5 32 186 624 108 -305 -48 #rect
 Gt0 f5 @|IBIcon #fIcon
 Gt0 f6 344 186 90 78 #arcP
->Proto Gt0 .type examples.override.GetDocumentItemsOverrideData #txt
+>Proto Gt0 .type com.axonivy.portal.component.example.override.GetDocumentItemsOverrideData #txt
 >Proto Gt0 .processKind CALLABLE_SUB #txt
 >Proto Gt0 0 0 32 24 18 0 #rect
 >Proto Gt0 @|BIcon #fIcon
