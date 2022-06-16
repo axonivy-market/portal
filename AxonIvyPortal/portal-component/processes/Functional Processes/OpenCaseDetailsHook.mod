@@ -18,7 +18,9 @@ Oa0 f0 inParamTable 'out.caseView=param.caseView;
 out.isOpenInFrame=param.isOpenInFrame;
 out.isShowBackButton=param.isShowBackButton;
 ' #txt
-Oa0 f0 outParamDecl '<> result;' #txt
+Oa0 f0 outParamDecl '<String caseDetailsUrl> result;' #txt
+Oa0 f0 outParamTable 'result.caseDetailsUrl=in.caseDetailsUrl;
+' #txt
 Oa0 f0 callSignature call(ch.ivyteam.ivy.workflow.ICase,Boolean,Boolean) #txt
 Oa0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

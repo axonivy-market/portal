@@ -136,6 +136,13 @@
   <h:outputScript name="process-history-component.js" library="js" />
   <script type="text/javascript">
     processHistory.setup(#{processHistoryComponentBean.dataModel.rowCount eq 0});
+    
+    function navigateToCaseDetailsInFrame(url) {
+      debugger;
+      if (window !== window.parent) {
+        window.parent.location.href = url;
+      }
+    }
   </script>
 
 </cc:implementation>
