@@ -1,9 +1,4 @@
 {
-  /HTML_DIALOG {
-    /ch.ivy.addon.portalkit.component.PageHeader "ch.ivyteam.ivy.project.portal.examples.component.PageHeaderOverride"
-    /ch.ivy.addon.portalkit.component.UserWithEnvironmentInfo "ch.ivyteam.ivy.project.portal.examples.component.UserWithEnvironmentInfoOverride"
-    /ch.ivy.addon.portalkit.component.PageFooter "ch.ivyteam.ivy.project.portal.examples.component.PageFooterOverride"
-  }
   /PROCESS {
     /Functional-Processes.DefaultChart "Functional Processes/DefaultChartOverride"
     /Functional-Processes.CalculateTaskDelegate "Functional Processes/CalculateTaskDelegateOverride"
@@ -15,6 +10,7 @@
     /Functional-Processes.GetGroupChatParams "Functional Processes/GetGroupChatParamsOverride"
     /Functional-Processes.OpenPortalSearch "Functional Processes/OpenPortalSearchOverride"
     /Functional-Processes.GetDocumentItems "Functional Processes/GetDocumentItemsOverride"
+    /Functional-Processes.OpenProcessHistoryInFrameDetailsHook "Functional Processes/OpenProcessHistoryInFrameDetailsOverride"
     /Functional-Processes.SetGroupChatName "Functional Processes/SetGroupChatNameOverride"
     /Functional-Processes.InitializeCaseDataModel "Functional Processes/InitializeCaseDataModelOverride"
     /Functional-Processes.OpenPortalCaseDetailsHook "Functional Processes/OpenPortalCaseDetailsOverride"
@@ -24,5 +20,10 @@
     /Functional-Processes.OpenPortalTaskDetailsHook "Functional Processes/OpenPortalTaskDetailsOverride"
     /Functional-Processes.DefaultStatisticCustomField "Functional Processes/DefaultStatisticCustomFieldOverride"
     /Functional-Processes.OpenPortalCases "Functional Processes/OpenPortalCasesOverride"
+  }
+  /HTML_DIALOG {
+    /ch.ivy.addon.portalkit.component.PageHeader "ch.ivyteam.ivy.project.portal.examples.component.PageHeaderOverride"
+    /ch.ivy.addon.portalkit.component.UserWithEnvironmentInfo "ch.ivyteam.ivy.project.portal.examples.component.UserWithEnvironmentInfoOverride"
+    /ch.ivy.addon.portalkit.component.PageFooter "ch.ivyteam.ivy.project.portal.examples.component.PageFooterOverride"
   }
 }

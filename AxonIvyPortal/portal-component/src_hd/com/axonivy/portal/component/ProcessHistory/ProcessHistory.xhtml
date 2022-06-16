@@ -10,6 +10,7 @@
   <cc:attribute name="emptyMessage" default="#{ivy.cms.co('/Dialogs/com/axonivy/portal/component/ProcessHistory/DefaultEmptyMessage')}" />
   <cc:attribute name="showCasesOfOwner" default="false" />
   <cc:attribute name="dateTimePattern" default="dd.MM.yyyy HH:mm" />
+  <cc:attribute name="openInFrame" />
 </cc:interface>
 
 <cc:implementation>
@@ -75,7 +76,7 @@
       <div id="case-item" class="js-case-item case-list-item #{rowIndex % 2 == 0 ? 'case-even-row' : 'case-odd-row'}">
         <h:panelGroup id="case-item-container" styleClass="case-header-container case-header-data" layout="block">
           <h:panelGroup id="case-info-row" styleClass="case-info-row js-case-start-link">
-            <p:ajax event="click" listener="#{logic.openDetails(case)}" />
+            <p:ajax event="click" listener="#{logic.openDetails(case, cc.attrs.openInFrame)}" />
 
             <!-- Column NAME -->
             <h:panelGroup class="case-header-name-desc-cell u-truncate-text" layout="block">
