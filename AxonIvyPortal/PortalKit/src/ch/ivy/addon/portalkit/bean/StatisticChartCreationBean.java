@@ -373,10 +373,7 @@ public class StatisticChartCreationBean implements Serializable {
   public long getStatisticChartsPolling() {
     String clientSideTimeoutInMinute = new GlobalSettingService().findGlobalSettingValue(GlobalVariable.STATISTIC_CHARTS_POLLING);
     if (StringUtils.isNotBlank(clientSideTimeoutInMinute)) {
-      Long timeoutInMinute = Long.valueOf(clientSideTimeoutInMinute);
-      if (timeoutInMinute >= 10) {
-        return timeoutInMinute;
-      }
+      return Long.valueOf(clientSideTimeoutInMinute);
     }
     return 0;
   }
