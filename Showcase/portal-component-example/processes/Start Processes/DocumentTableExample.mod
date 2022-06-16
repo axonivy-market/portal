@@ -56,7 +56,7 @@ De0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 De0 f0 @C|.responsibility Everybody #txt
 De0 f0 97 193 30 30 -99 19 #rect
 De0 f0 @|StartRequestIcon #fIcon
-De0 f6 dialogId examples.CustomizedDocumentTableExample #txt
+De0 f6 dialogId com.axonivy.portal.component.example.CustomizedDocumentTableExample #txt
 De0 f6 startMethod start() #txt
 De0 f6 requestActionDecl '<> param;' #txt
 De0 f6 responseMappingAction 'out=in;
@@ -74,7 +74,7 @@ De0 f1 545 193 30 30 0 15 #rect
 De0 f1 @|EndIcon #fIcon
 De0 f2 440 208 545 208 #arcP
 De0 f7 127 208 232 208 #arcP
-De0 f8 dialogId examples.DocumentTableExample #txt
+De0 f8 dialogId com.axonivy.portal.component.example.DocumentTableExample #txt
 De0 f8 startMethod start() #txt
 De0 f8 requestActionDecl '<> param;' #txt
 De0 f8 responseMappingAction 'out=in;
@@ -90,7 +90,7 @@ De0 f8 228 56 216 48 -68 -8 #rect
 De0 f8 @|UserDialogIcon #fIcon
 De0 f9 127 80 228 80 #arcP
 De0 f5 444 80 545 80 #arcP
->Proto De0 .type examples.DocumentTableExampleData #txt
+>Proto De0 .type com.axonivy.portal.component.example.DocumentTableExampleData #txt
 >Proto De0 .processKind NORMAL #txt
 >Proto De0 0 0 32 24 18 0 #rect
 >Proto De0 @|BIcon #fIcon

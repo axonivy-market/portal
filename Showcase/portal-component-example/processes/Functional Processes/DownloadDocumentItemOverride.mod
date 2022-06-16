@@ -70,7 +70,7 @@ Dt0 f5 @|IBIcon #fIcon
 Dt0 f6 312 185 109 70 #arcP
 Dt0 f6 1 328 184 #addKink
 Dt0 f6 1 0.17730234612572468 0 0 #arcLabel
->Proto Dt0 .type examples.override.DownloadDocumentItemOverrideData #txt
+>Proto Dt0 .type com.axonivy.portal.component.example.override.DownloadDocumentItemOverrideData #txt
 >Proto Dt0 .processKind CALLABLE_SUB #txt
 >Proto Dt0 0 0 32 24 18 0 #rect
 >Proto Dt0 @|BIcon #fIcon

@@ -1,6 +1,0 @@
-ProcessChainExampleData #class
-examples.ProcessChainExample #namespace
-actualCurrentIndex Integer #field
-actualCurrentIndex PERSISTENT #fieldModifier
-steps List<String> #field
-steps PERSISTENT #fieldModifier

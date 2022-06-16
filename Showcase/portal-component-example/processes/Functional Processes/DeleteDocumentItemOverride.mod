@@ -75,7 +75,7 @@ Dt0 f5 @|IBIcon #fIcon
 Dt0 f6 256 177 108 71 #arcP
 Dt0 f6 1 288 176 #addKink
 Dt0 f6 1 0.1223567143640977 0 0 #arcLabel
->Proto Dt0 .type examples.override.DeleteDocumentItemOverrideData #txt
+>Proto Dt0 .type com.axonivy.portal.component.example.override.DeleteDocumentItemOverrideData #txt
 >Proto Dt0 .processKind CALLABLE_SUB #txt
 >Proto Dt0 0 0 32 24 18 0 #rect
 >Proto Dt0 @|BIcon #fIcon
