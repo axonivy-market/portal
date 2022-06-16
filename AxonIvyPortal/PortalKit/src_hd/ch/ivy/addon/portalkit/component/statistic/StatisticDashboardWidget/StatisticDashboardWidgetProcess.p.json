@@ -903,10 +903,8 @@
           "code" : [
             "import ch.ivy.addon.portalkit.service.StatisticService;",
             "",
-            "",
             "StatisticService service = StatisticService.getInstance();",
-            "service.generateChartModelForStatisticCharts(in.statisticChartList);",
-            "//service.loadStatisticCharts(in.statisticChartList);"
+            "service.generateChartModelForStatisticCharts(in.statisticChartList);"
           ]
         }
       },
