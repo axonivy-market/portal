@@ -24,7 +24,6 @@ import ch.ivyteam.ivy.model.value.WebLink;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivyteam.ivy.workflow.IStartElement;
-import ch.ivyteam.ivy.workflow.start.IProcessWebStartable;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 import ch.ivyteam.ivy.workflow.start.ProcessViewerUrl;
 
@@ -36,34 +35,12 @@ public class ProcessViewerUtils {
   public static final String DEFAULT_LINK = "#";
   private static final int PROJECT_NAME_INDEX = 3;
   private static List<IWebStartable> webStartables;
-  private static List<IProcessWebStartable> webProcessStartables;
 
   public static boolean isValidCase(Long caseId) {
     return Objects.isNull(CaseUtils.findCase(caseId)) ? false : true;
   }
 
   public static IWebStartable findWebStartable(Long caseId, String processId) {
-    String startProcessLink = "";
-    var selectedCase = CaseUtils.findCase(caseId);
-    if (selectedCase != null && !isExpressCase(selectedCase)) {
-      startProcessLink = selectedCase.getProcessStart().getLink().getRelative();
-    }
-    if (caseId == null || selectedCase == null) {
-      startProcessLink = processId;
-    }
-    if (isCaseMap(selectedCase)) {
-      ICaseMap caseMap =
-          findCaseMapByCase(selectedCase);
-      return getWebStartables().stream()
-          .filter(filterById(caseMap.getUuid().toString())).findFirst()
-          .orElse(null);
-    }
-    return getWebStartables().stream()
-        .filter(filterByRelativeLink(startProcessLink)).findFirst()
-        .orElse(null);
-  }
-  
-  public static IProcessWebStartable findProcessWebStartable(String processId) {
     String startProcessLink = "";
     var selectedCase = CaseUtils.findCase(caseId);
     if (selectedCase != null && !isExpressCase(selectedCase)) {
@@ -98,13 +75,6 @@ public class ProcessViewerUtils {
     }
     return webStartables;
   }
-  
-  /*private static List<IProcessWebStartable> getProcessWebStartables() {
-    if (CollectionUtils.isEmpty(webProcessStartables)) {
-      webProcessStartables = ProcessService.newInstance().findProcesses();
-    }
-    return webProcessStartables;
-  }*/
 
   public static String getStartProcessViewerPageUri(ICase selectedCase) {
     if (isExpressCase(selectedCase)) {
@@ -176,18 +146,14 @@ public class ProcessViewerUtils {
         return new ProcessViewerUrl.Builder(element).toWebLink();
       }
     }
-    var webStartable = findWebStartable(caseId, processId);
-    //IStartElement element = ProcessStartAPI.findStartElementByProcessStartFriendlyRequestPath;
-    if (webStartable instanceof IProcessWebStartable)
-      return ProcessViewerUrl.Builder((IStartElement) webStartable);
     
-    /*String projectName = getProjectNameFromProcessId(processId);
+    String projectName = getProjectNameFromProcessId(processId);
     
     IWebStartable selectedProcess = findWebStartable(caseId, processId);
     var selectedProcessId = selectedProcess.getId();
     var friendlyRequestPath = selectedProcessId.substring(selectedProcessId.indexOf(projectName) + projectName.length() + 1);
     IStartElement element = ProcessStartAPI.findStartElementByProcessStartFriendlyRequestPath(friendlyRequestPath);
-    return new ProcessViewerUrl.Builder(element).toWebLink();*/
+    return new ProcessViewerUrl.Builder(element).toWebLink();
 
   }
   
@@ -207,13 +173,6 @@ public class ProcessViewerUtils {
   
   public static ICaseMap findCaseMapByCase(ICase caze) {
     if (Objects.isNull(caze)) {
-      return null;
-    }
-    return Ivy.get(ICaseMapService.class).getCaseMapService(caze.getBusinessCase()).find().current();
-  }
-  
-  public static IProcessWebStartable findProcessByProcessId(String id) {
-    if (Objects.isNull(id)) {
       return null;
     }
     return Ivy.get(ICaseMapService.class).getCaseMapService(caze.getBusinessCase()).find().current();
