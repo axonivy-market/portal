@@ -5148,13 +5148,13 @@ body .ui-picklist .ui-picklist-filter-container .ui-icon {
   bottom: 5px;
   right: 7px;
 }
-@media screen and (max-width: 40em) {
+@media screen and (max-width: 1320px) {
   .display-full-text {
     display: none !important;
   }
 }
 
-@media screen and (min-width: 40.063em) {
+@media screen and (min-width: 1320px) {
   .display-short-text {
     display: none !important;
   }
