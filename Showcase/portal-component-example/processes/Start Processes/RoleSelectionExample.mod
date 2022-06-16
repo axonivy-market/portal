@@ -17,26 +17,26 @@ Re0 @TaskSwitchSimple f12 '' #zField
 Re0 @PushWFArc f13 '' #zField
 Re0 @TkArc f14 '' #zField
 >Proto Re0 Re0 RoleSelectionExample #zField
-Re0 f0 outLink start.ivp #txt
+Re0 f0 outLink showRoleSelectionExamples.ivp #txt
 Re0 f0 inParamDecl '<> param;' #txt
 Re0 f0 requestEnabled true #txt
 Re0 f0 triggerEnabled false #txt
-Re0 f0 callSignature start() #txt
+Re0 f0 callSignature showRoleSelectionExamples() #txt
 Re0 f0 startName 'Role Selection Example' #txt
 Re0 f0 caseData businessCase.attach=true #txt
 Re0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>start.ivp</name>
+        <name>showRoleSelectionExamples.ivp</name>
     </language>
 </elementInfo>
 ' #txt
 Re0 f0 @C|.responsibility Everybody #txt
-Re0 f0 81 49 30 30 -21 17 #rect
+Re0 f0 81 49 30 30 -80 15 #rect
 Re0 f0 @|StartRequestIcon #fIcon
 Re0 f1 561 49 30 30 0 15 #rect
 Re0 f1 @|EndIcon #fIcon
-Re0 f10 dialogId examples.RoleSelectionExample #txt
+Re0 f10 dialogId com.axonivy.portal.component.example.RoleSelectionExample #txt
 Re0 f10 startMethod start() #txt
 Re0 f10 requestActionDecl '<> param;' #txt
 Re0 f10 responseMappingAction 'out=in;
@@ -62,7 +62,7 @@ Re0 f12 433 49 30 30 0 16 #rect
 Re0 f12 @|TaskSwitchSimpleIcon #fIcon
 Re0 f13 463 64 561 64 #arcP
 Re0 f14 344 64 433 64 #arcP
->Proto Re0 .type examples.RoleSelectionExampleData #txt
+>Proto Re0 .type com.axonivy.portal.component.example.RoleSelectionExampleData #txt
 >Proto Re0 .processKind NORMAL #txt
 >Proto Re0 0 0 32 24 18 0 #rect
 >Proto Re0 @|BIcon #fIcon

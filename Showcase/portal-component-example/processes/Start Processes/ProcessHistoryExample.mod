@@ -76,7 +76,7 @@ Pt0 f0 129 33 30 30 -111 17 #rect
 Pt0 f0 @|StartRequestIcon #fIcon
 Pt0 f1 609 33 30 30 0 15 #rect
 Pt0 f1 @|EndIcon #fIcon
-Pt0 f3 dialogId examples.ProcessHistoryExample #txt
+Pt0 f3 dialogId com.axonivy.portal.component.example.ProcessHistoryExample #txt
 Pt0 f3 startMethod start(Boolean,Boolean) #txt
 Pt0 f3 requestActionDecl '<Boolean showProcessHistoriesOfAlphaCompany,Boolean showProcessHistoriesOfBetaCompany> param;' #txt
 Pt0 f3 requestMappingAction 'param.showProcessHistoriesOfAlphaCompany=true;
@@ -200,7 +200,7 @@ Pt0 f11 outCond ivp=="TaskA.ivp" #txt
 Pt0 f11 719 144 801 144 #arcP
 Pt0 f12 617 321 30 30 0 15 #rect
 Pt0 f12 @|EndIcon #fIcon
-Pt0 f13 dialogId examples.ProcessHistoryExample #txt
+Pt0 f13 dialogId com.axonivy.portal.component.example.ProcessHistoryExample #txt
 Pt0 f13 startMethod start(Boolean,Boolean) #txt
 Pt0 f13 requestActionDecl '<Boolean showProcessHistoriesOfAlphaCompany,Boolean showProcessHistoriesOfBetaCompany> param;' #txt
 Pt0 f13 requestMappingAction 'param.showProcessHistoriesOfAlphaCompany=false;
@@ -418,7 +418,7 @@ HOW TO RUN THIS EXAMPLE:
 ' #txt
 Pt0 f34 872 362 832 140 -412 -64 #rect
 Pt0 f34 @|IBIcon #fIcon
->Proto Pt0 .type examples.ProcessHistoryExampleData #txt
+>Proto Pt0 .type com.axonivy.portal.component.example.ProcessHistoryExampleData #txt
 >Proto Pt0 .processKind NORMAL #txt
 >Proto Pt0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

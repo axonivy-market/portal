@@ -1,4 +1,4 @@
-ch.ivyteam.ivy.designer.preferences.DataClassPreferencePage\:DEFAULT_DATA_CLASS=examples.UserSelectionExampleData
+ch.ivyteam.ivy.designer.preferences.DataClassPreferencePage\:DEFAULT_DATA_CLASS=com.axonivy.portal.component.example.UserSelectionExampleData
 ch.ivyteam.ivy.designer.preferences.DataClassPreferencePage\:DEFAULT_NAMESPACE=examples
 ch.ivyteam.ivy.project.preferences\:PROJECT_VERSION=80000
 eclipse.preferences.version=1

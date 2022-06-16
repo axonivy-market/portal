@@ -17,26 +17,26 @@ Ue0 @TaskSwitchSimple f5 '' #zField
 Ue0 @TkArc f6 '' #zField
 Ue0 @PushWFArc f2 '' #zField
 >Proto Ue0 Ue0 UserSelectionExample #zField
-Ue0 f0 outLink start.ivp #txt
+Ue0 f0 outLink showUserSelectionExamples.ivp #txt
 Ue0 f0 inParamDecl '<> param;' #txt
 Ue0 f0 requestEnabled true #txt
 Ue0 f0 triggerEnabled false #txt
-Ue0 f0 callSignature start() #txt
+Ue0 f0 callSignature showUserSelectionExamples() #txt
 Ue0 f0 startName 'User Selection Example' #txt
 Ue0 f0 caseData businessCase.attach=true #txt
 Ue0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>start.ivp</name>
+        <name>showUserSelectionExamples.ivp</name>
     </language>
 </elementInfo>
 ' #txt
 Ue0 f0 @C|.responsibility Everybody #txt
-Ue0 f0 81 49 30 30 -21 17 #rect
+Ue0 f0 81 49 30 30 -80 16 #rect
 Ue0 f0 @|StartRequestIcon #fIcon
 Ue0 f1 561 49 30 30 0 15 #rect
 Ue0 f1 @|EndIcon #fIcon
-Ue0 f3 dialogId examples.UserSelectionExample #txt
+Ue0 f3 dialogId com.axonivy.portal.component.example.UserSelectionExample #txt
 Ue0 f3 startMethod start() #txt
 Ue0 f3 requestActionDecl '<> param;' #txt
 Ue0 f3 responseMappingAction 'out=in;
@@ -62,7 +62,7 @@ Ue0 f5 433 49 30 30 0 16 #rect
 Ue0 f5 @|TaskSwitchSimpleIcon #fIcon
 Ue0 f6 344 64 433 64 #arcP
 Ue0 f2 463 64 561 64 #arcP
->Proto Ue0 .type examples.UserSelectionExampleData #txt
+>Proto Ue0 .type com.axonivy.portal.component.example.UserSelectionExampleData #txt
 >Proto Ue0 .processKind NORMAL #txt
 >Proto Ue0 0 0 32 24 18 0 #rect
 >Proto Ue0 @|BIcon #fIcon
