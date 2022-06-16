@@ -289,7 +289,7 @@ public class UserUtils {
 
   private static String getDefaultPatternByLocale(Locale locale) {
     SimpleDateFormat simpleDateFormat =
-        (SimpleDateFormat) SimpleDateFormat.getDateInstance(SimpleDateFormat.DEFAULT, locale);
+        (SimpleDateFormat) DateFormat.getDateInstance(DateFormat.DEFAULT, locale);
     return simpleDateFormat.toLocalizedPattern();
   }
 
