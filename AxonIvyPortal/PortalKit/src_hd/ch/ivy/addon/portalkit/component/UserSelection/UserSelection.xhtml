@@ -1,17 +1,19 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:f="http://xmlns.jcp.org/jsf/core"      
-	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:cc="http://xmlns.jcp.org/jsf/composite"
-	xmlns:ic="http://ivyteam.ch/jsf/component"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:pe="http://primefaces.org/ui/extensions"
-	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" >
+  xmlns:f="http://xmlns.jcp.org/jsf/core"      
+  xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+  xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" >
+
+<!-- DEPRECATED: Use <ic:com.axonivy.portal.component.UserSelection /> of portal-component project instead. -->
 
 <cc:interface componentType="IvyComponent">
   <!-- autocomplete attributes -->
   <cc:attribute name="fromRoleNames" type="java.util.List" 
-  	shortDescription="User list will be loaded based on this list. All users will be loaded if you don't define."/>
+    shortDescription="User list will be loaded based on this list. All users will be loaded if you don't define."/>
   <cc:attribute name="componentId" default="user-selection" />
   <cc:attribute name="selectedUser" type="ch.ivy.addon.portalkit.dto.UserDTO" required="true" />
   <cc:attribute name="excludedUsernames" type="java.util.List" 
@@ -65,7 +67,7 @@
         styleClass="#{cc.attrs.labelStyleClass}" />
     </h:panelGroup>
   
-    <c:set var="completeMethod" value="#{not empty cc.attrs.completeMethod ? cc.attrs.completeMethod : userSelectionBean.completeUserMethod}" />
+    <c:set var="completeMethod" value="#{not empty cc.attrs.completeMethod ? cc.attrs.completeMethod : deprecatedUserSelectionBean.completeUserMethod}" />
     <h:panelGroup id="#{cc.attrs.componentId}-autocomplete-panel" layout="block"
       styleClass="#{cc.attrs.autoCompletePanelStyleClass} md-inputfield">
       <p:autoComplete id="#{cc.attrs.componentId}" value="#{cc.attrs.selectedUser}" scrollHeight="#{cc.attrs.scrollHeight}"

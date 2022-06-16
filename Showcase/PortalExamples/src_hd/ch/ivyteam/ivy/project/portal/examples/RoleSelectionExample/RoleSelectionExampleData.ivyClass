@@ -2,15 +2,15 @@ RoleSelectionExampleData #class
 ch.ivyteam.ivy.project.portal.examples.RoleSelectionExample #namespace
 definedRoleNames List<String> #field
 definedRoleNames PERSISTENT #fieldModifier
-selectedRoleForDefinedRoles ch.ivy.addon.portalkit.dto.RoleDTO #field
+selectedRoleForDefinedRoles com.axonivy.portal.component.dto.RoleDTO #field
 selectedRoleForDefinedRoles PERSISTENT #fieldModifier
-selectedRoleForReadOnlyField ch.ivy.addon.portalkit.dto.RoleDTO #field
+selectedRoleForReadOnlyField com.axonivy.portal.component.dto.RoleDTO #field
 selectedRoleForReadOnlyField PERSISTENT #fieldModifier
-selectedRole ch.ivy.addon.portalkit.dto.RoleDTO #field
+selectedRole com.axonivy.portal.component.dto.RoleDTO #field
 selectedRole PERSISTENT #fieldModifier
 excludedRoleNames java.util.List<String> #field
 excludedRoleNames PERSISTENT #fieldModifier
-selectedRoleForInsertChildren ch.ivy.addon.portalkit.dto.RoleDTO #field
+selectedRoleForInsertChildren com.axonivy.portal.component.dto.RoleDTO #field
 selectedRoleForInsertChildren PERSISTENT #fieldModifier
-selectedRoleForDefault ch.ivy.addon.portalkit.dto.RoleDTO #field
+selectedRoleForDefault com.axonivy.portal.component.dto.RoleDTO #field
 selectedRoleForDefault PERSISTENT #fieldModifier

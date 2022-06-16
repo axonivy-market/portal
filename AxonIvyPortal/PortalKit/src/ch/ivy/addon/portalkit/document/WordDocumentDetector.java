@@ -7,6 +7,11 @@ import org.apache.poi.poifs.macros.VBAMacroReader;
 
 import ch.ivyteam.ivy.environment.Ivy;
 
+/**
+ * @deprecated use WordDocumentDetector in package com.axonivy.portal.component.document
+ *
+ */
+@Deprecated(since="8.0.27")
 public class WordDocumentDetector implements DocumentDetector{
   
   @Override

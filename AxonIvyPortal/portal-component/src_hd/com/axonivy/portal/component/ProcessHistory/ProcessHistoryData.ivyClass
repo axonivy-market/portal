@@ -1,0 +1,6 @@
+ProcessHistoryData #class
+com.axonivy.portal.component.ProcessHistory #namespace
+businessEntityId String #field
+businessEntityId PERSISTENT #fieldModifier
+iCase ch.ivyteam.ivy.workflow.ICase #field
+iCase PERSISTENT #fieldModifier

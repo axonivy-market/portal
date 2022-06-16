@@ -497,6 +497,8 @@ can interact with workflow's task which assigned to him.
 Administrator can creates, updates and deletes all workflows in the
 application.
 
+.. _virus_scanning_setting:
+
 Virus Scanning Setting 
 ======================
 

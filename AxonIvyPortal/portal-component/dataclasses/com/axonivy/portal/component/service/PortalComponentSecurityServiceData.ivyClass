@@ -1,0 +1,15 @@
+PortalComponentSecurityServiceData #class
+com.axonivy.portal.component.service #namespace
+application ch.ivyteam.ivy.application.IApplication #field
+apps List<String> #field
+count Integer #field
+errors java.util.List<com.axonivy.portal.component.ivydata.exception.PortalIvyDataException> #field
+query String #field
+roleDTOs java.util.List<com.axonivy.portal.component.dto.RoleDTO> #field
+fromRoles java.util.List<String> #field
+roles java.util.List<ch.ivyteam.ivy.security.IRole> #field
+securityMembers java.util.List<com.axonivy.portal.component.dto.SecurityMemberDTO> #field
+startIndex Integer #field
+username String #field
+users java.util.List<com.axonivy.portal.component.dto.UserDTO> #field
+excludedUsernames java.util.List<String> #field

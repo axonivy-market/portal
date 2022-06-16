@@ -184,7 +184,12 @@ html {
 	margin-top: 6px;
 }
 
-.assign-task-to-selected-user {
+.mg-top-20 {
+  margin-top: 20px;
+}
+
+.assign-task-to-selected-user,
+.assign-task-to-selected-role {
 	margin-top: 15px;
 	float:right;
 }
@@ -200,6 +205,7 @@ html {
 .user-selection-component-header {
 	margin-left: 10px;
 }
+
 @media screen and (max-width: 40em) {
   .document-table-component .document-creator-column,
   .document-table-component .document-created-column,

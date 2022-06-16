@@ -7,6 +7,7 @@ import ch.ivy.addon.portalkit.dto.RoleDTO;
 import ch.ivy.addon.portalkit.dto.SecurityMemberDTO;
 import ch.ivy.addon.portalkit.dto.UserDTO;
 
+@SuppressWarnings("deprecation")
 public class SecurityMemberDTOMapper {
   
   public static SecurityMemberDTO mapFromUserDTO(UserDTO userDTO) {

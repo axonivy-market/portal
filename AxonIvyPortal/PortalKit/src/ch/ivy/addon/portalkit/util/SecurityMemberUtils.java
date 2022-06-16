@@ -19,6 +19,7 @@ import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.security.IUser;
 
+@SuppressWarnings("deprecation")
 public class SecurityMemberUtils {
 
   private static final String NONAME_PATTERN = "<%s> (%s)";

@@ -1,0 +1,67 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions">
+<h:body>
+  <ui:composition template="/layouts/frame-8.xhtml">
+    <ui:define name="title">User Selection Component In IFrame Example</ui:define>
+    <ui:define name="content">
+      <h:outputStylesheet library="css" name="examples.css" />
+      <h1 class="user-selection-component-header">User Selection Component In IFrame Example</h1>
+      <h:form id="form">
+        <div class="ui-g">
+          <div class="ui-g-8 ui-xl-5 ui-md-5 ui-sm-12">
+            <ic:com.axonivy.portal.component.UserSelection componentId="read-only-user-autocomplete"
+              selectedUser="#{data.selectedUserForReadOnlyField}" isRenderedMessage="false"
+              label="Read only user selection" labelPanelStyleClass="ui-g-6 ui-md-6 ui-sm-12"
+              autoCompleteStyleClass="width-100" autoCompletePanelStyleClass="ui-g-5 ui-sm-12" isReadOnly="true"
+              hightlight="false" />
+          </div>
+          <div class="ui-g-4 ui-xl-4 ui-md-5 ui-sm-12">
+            <ic:com.axonivy.portal.component.UserSelection componentId="all-user-autocomplete" hightlight="false"
+              selectedUser="#{data.selectedUser}" label="Loading with all users (exclude gm1, gm2, admin)"
+              autoCompleteStyleClass="width-100" autoCompletePanelStyleClass="ui-g-12 floating-label-margin-top"
+              excludedUsernames="#{data.excludedUsernames}" isRequired="true" floatingLabel="true" />
+          </div>
+        </div>
+        <div class="ui-g mg-top-20">
+          <div class="ui-g-8 ui-xl-5 ui-md-5 ui-sm-12">
+            <ic:com.axonivy.portal.component.UserSelection componentId="user-by-role-autocomplete"
+              fromRoleNames="#{data.definedRoleNames}" selectedUser="#{data.selectedUserForDefinedRoles}"
+              isRequired="true" autoCompleteStyleClass="width-100" label="Users from defined rolenames"
+              labelPanelStyleClass="ui-g-6 ui-md-6 ui-sm-12" autoCompletePanelStyleClass="ui-g-5 ui-sm-12" />
+          </div>
+          <div class="ui-g-4 ui-xl-4 ui-md-5 ui-sm-12">
+            <ic:com.axonivy.portal.component.UserSelection id="item-select-event-component"
+              componentId="item-select-event-for-user-selection" fromRoleNames="#{data.definedRoleNames}"
+              selectedUser="#{data.selectedUserForInsertChildren}" label="Demonstrate facet and children"
+              autoCompleteStyleClass="width-100" autoCompletePanelStyleClass="ui-g-12 floating-label-margin-top"
+              isRequired="true" floatingLabel="true">
+              <p:column>
+                <h:outputText value="#{userFormatBean.formatWithTip(user.displayName, user.name)}" />
+              </p:column>
+              <f:facet name="event">
+                <p:ajax event="itemSelect" listener="#{logic.showSelectedUser}"
+                  update="#{p:component('item-select-event-for-user-selection-message')}" />
+              </f:facet>
+            </ic:com.axonivy.portal.component.UserSelection>
+          </div>
+        </div>
+        <div class="ui-g assign-task-to-selected-user-panel display-block">
+          <div class="ui-g-8 ui-xl-5 ui-md-6 ui-sm-12" />
+          <div class="ui-g-4 ui-xl-4 ui-md-6 ui-sm-12">
+            <p:commandButton update="@form" value="Assign selected user from defined roles to next task"
+              actionListener="#{logic.finish}" styleClass=" assign-task-to-selected-user" />
+          </div>
+        </div>
+      </h:form>
+      <script>
+        window.isHideCaseInfo = true;
+        window.isHideTaskAction = true;
+        window.isHideTaskName = true;
+        window.isWorkingOnATask = false;
+      </script>
+    </ui:define>
+  </ui:composition>
+</h:body>
+</html>
