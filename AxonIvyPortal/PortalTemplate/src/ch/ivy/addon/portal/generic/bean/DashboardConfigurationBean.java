@@ -127,7 +127,7 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
       displayedPermission = "";
       permissions = new ArrayList<>();
     }
-
+    collectDashboardsForManagement();
     selectedEditingDashboard.setDisplayedPermission(displayedPermission);
     selectedEditingDashboard.setPermissions(permissions);
     if (!editingDashboards.contains(selectedEditingDashboard)) {
