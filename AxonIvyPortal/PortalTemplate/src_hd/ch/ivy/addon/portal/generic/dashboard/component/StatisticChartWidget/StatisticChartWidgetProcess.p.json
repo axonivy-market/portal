@@ -214,5 +214,55 @@
         "labelOffset" : { "x" : -63, "y" : 28 }
       },
       "connect" : { "id" : "f40", "to" : "f39" }
+    }, {
+      "id" : "f3",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "regenerateChartModelDashboard(StatisticChart)",
+      "config" : {
+        "callSignature" : "regenerateChartModelDashboard",
+        "input" : {
+          "params" : [
+            { "name" : "statisticChart", "type" : "ch.ivy.addon.portalkit.statistics.StatisticChart" }
+          ],
+          "map" : {
+            "out.selectedStatisticChart" : "param.statisticChart"
+          }
+        },
+        "guid" : "181481996D7DCD2E"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 600 },
+        "labelOffset" : { "x" : -25, "y" : 15 }
+      },
+      "connect" : { "id" : "f9", "to" : "f4" }
+    }, {
+      "id" : "f4",
+      "type" : "Script",
+      "name" : "Generate chart",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import java.util.ArrayList;",
+            "import ch.ivy.addon.portalkit.statistics.StatisticChart;",
+            "import ch.ivy.addon.portalkit.service.StatisticService;",
+            "",
+            "",
+            "StatisticService service = StatisticService.getInstance();",
+            "List<StatisticChart> charts = new ArrayList<StatisticChart>();",
+            "charts.add(in.selectedStatisticChart);",
+            "service.generateChartModelForStatisticCharts(charts);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 408, "y" : 600 }
+      },
+      "connect" : { "id" : "f10", "to" : "f5" }
+    }, {
+      "id" : "f5",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 632, "y" : 600 }
+      }
     } ]
 }
