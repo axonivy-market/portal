@@ -107,7 +107,7 @@
       oncomplete="loadWidgetFirstTime('js-loading-chart-#{widget.id}', 'js-dashboard-statistic-chart-#{widget.id}')" />
 
     <p:poll id="chart_model_dashboard_poll" interval="#{statisticChartCreationBean.statisticChartsPolling}" update="@([id$='task_by_priority_chart'])" global="false"
-     process="@this" partialSubmit="true" async="true" immediate="true" listener="#{logic.regenerateChartModelDashboard(chart)}" rendered="#{statisticChartCreationBean.statisticChartsPolling ne 0}"/>
+     process="@this" partialSubmit="true" async="true" immediate="true" listener="#{logic.regenerateChartModelDashboard(chart)}" rendered="#{statisticChartCreationBean.statisticChartsPolling ge 10}"/>
     <h:panelGroup id="statistic-chart-widget__content" rendered="#{chart ne null}" layout="block"
       styleClass="statistic-chart-widget__content widget__content widget__content">
 
