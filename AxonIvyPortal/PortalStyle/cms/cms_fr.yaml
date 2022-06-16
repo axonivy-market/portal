@@ -266,6 +266,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       showProcessInformation: Définissez la valeur false pour désactiver le lien vers l'option Afficher les informations du processus sur la page processus (mode grille) et détails du cas.
       showTaskDurationTime: Pour activer/désactiver l'affichage de la durée dans la page des détails de la tâche.
       showUserGuide: 'Active le guide d''utilisation interactif "premiers pas" dans le portail lors de la première connexion. '
+      statisticChartsPolling: Définissez cette propriété inférieure à 10 pour désactiver la mise à jour du graphique de statistiques en temps réel avec l'interrogation. La valeur par défaut est 0, ce qui signifie que l'interrogation du graphique en temps réel est désactivée, définissez cette propriété
+        supérieure ou égale à 10 pour activer la mise à jour du graphique en temps réel.
       uploadDocumentWhiteListExtensionNote: 'Laissez la valeur vide si vous autorisez toutes les extensions. Si juste autoriser quelques extensions, listez les extensions ici, séparées par des virgules. Exemple: pdf, txt, doc, docx.'
     key: Clé
     link: Lien
