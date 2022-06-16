@@ -14,12 +14,14 @@
   <cc:attribute name="isBackFromDrilldown" default="false" />
   <cc:attribute name="idChartDisplay" default="" />
   <cc:attribute name="statisticChartsPolling" default="0" type="java.lang.Integer"/>
+  <cc:attribute name="minimumPolling" default="0" type="java.lang.Integer"/>
   <cc:facet name="emptyDataPlace" shortDescription="user can override empty message with this place" />
 </cc:interface>
 
 <cc:implementation>
   <c:set var="idChartDisplay" value="#{data.isCompactMode ? 'statistic-carousel-container':'statistic-chart-repeater-container'}"/>
   <c:set var="statisticChartsPolling" value="#{statisticChartCreationBean.statisticChartsPolling}"/>
+  <c:set var="minimumPolling" value="#{statisticChartCreationBean.minimumPolling}"/>
   <f:event listener="#{logic.initialize(cc.attrs.statisticChartList,cc.attrs.showTaskListImmediately, cc.attrs.isBackFromDrilldown, cc.attrs.compactMode, cc.attrs.isDrilldownExpiryChart)}"
     type="preRenderComponent" />
   <h:panelGroup id="statistic-container" layout="block" styleClass="ui-g-12 u-padding-0">
@@ -138,8 +140,8 @@
       global="false" action="#{logic.generateChartModel}" async="true"
       immediate="true" process="@this" partialSubmit="true"/>
 
-    <p:poll id="chart_model_poll" interval="#{statisticChartCreationBean.statisticChartsPolling}" update="@([id$=#{idChartDisplay}])" global="false"
-      process="@this" partialSubmit="true" async="true" immediate="true" listener="#{logic.regenerateChartModel(data.statisticChartList)}" rendered="#{statisticChartCreationBean.statisticChartsPolling ge 10}"/>
+    <p:poll id="chart_model_poll" interval="#{statisticChartsPolling}" update="@([id$=#{idChartDisplay}])" global="false"
+      process="@this" partialSubmit="true" async="true" immediate="true" listener="#{logic.regenerateChartModel(data.statisticChartList)}" rendered="#{statisticChartsPolling ge minimumPolling}"/>
 
     <p:remoteCommand rendered="#{cc.attrs.compactMode}" name="updateStatisticCarousel" update="@([id$='statistic-carousel-container'])" 
       global="false" immediate="true" process="@this" partialSubmit="true"/>
