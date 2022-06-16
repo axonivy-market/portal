@@ -267,6 +267,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       showProcessInformation: Cambiar a falso para desactivar el enlace "Más información" en la página de Procesos (modo cuadrícula) y Detalles del caso.
       showTaskDurationTime: Activar o desactivar la visibilidad de la duración de la tarea en detalles de tarea.
       showUserGuide: Activa la guía de usuario interactiva "primeros pasos" en el portal durante el primer acceso del usuario.
+      statisticChartsPolling: Establezca esta propiedad a menos de 10 para deshabilitar la actualización del gráfico de estadísticas en vivo con el sondeo. El valor por defecto es 0, lo que significa que el sondeo del gráfico en vivo está deshabilitado, establezca esta propiedad más o igual a 10 para
+        habilitar la actualización del gráfico en vivo
       uploadDocumentWhiteListExtensionNote: 'Dejar libre, sie quiere permitir todos los anexos. Si quiere reducir los formatos permitidos, cree una lista separada por coma. Por ejemplo: pdf, txt, doc, docx.'
     key: Llave
     link: Enlazar
