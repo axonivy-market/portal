@@ -964,13 +964,18 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   text-align: center;
 }
 
+.case-detail-body .case-details-related-task-table .related-task-complete-on-column {
+  width: 136px;
+  text-align: center;
+}
+
 .case-detail-body .case-details-related-task-table .related-task-state-column {
   width: 120px;
   text-align: center;
 }
 
 .case-detail-body .case-details-related-task-table .related-task-more-column {
-  width: 238px;
+  width: 196px;
   text-align: center;
 }
 
@@ -1027,6 +1032,11 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   .case-detail-body .case-details-related-task-table .related-task-created-column,
   .case-detail-body .related-task-column-config {
     display: none;
+  }
+
+  .case-detail-body .name-column,
+  .case-detail-body .case-details-related-task-table .related-task-name-column {
+    width: 100%;
   }
 }
 @media screen and (min-width: 90.063em) {
