@@ -4,6 +4,8 @@
   xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
   xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
+<!-- DEPRECATED: Use <ic:com.axonivy.portal.component.RoleSelection /> of portal-component project instead. -->
+
 <cc:interface componentType="IvyComponent">
   <!-- autoComplete attributes -->
   <cc:attribute name="componentId" default="role-selection" />
@@ -57,7 +59,7 @@
   </h:panelGroup>
 
   <c:set var="completeMethod"
-    value="#{not empty cc.attrs.completeMethod ? cc.attrs.completeMethod : roleSelectionBean.completeRoleMethod}" />
+    value="#{not empty cc.attrs.completeMethod ? cc.attrs.completeMethod : deprecatedRoleSelectionBean.completeRoleMethod}" />
   <h:panelGroup id="#{cc.attrs.componentId}-autocomplete-panel" layout="block"
     styleClass="md-inputfield #{cc.attrs.autoCompletePanelStyleClass}">
     <p:autoComplete id="#{cc.attrs.componentId}" value="#{cc.attrs.selectedRole}"

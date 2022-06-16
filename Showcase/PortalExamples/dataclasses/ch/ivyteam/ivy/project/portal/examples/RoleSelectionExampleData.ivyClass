@@ -1,4 +1,4 @@
 RoleSelectionExampleData #class
 ch.ivyteam.ivy.project.portal.examples #namespace
-selectedRole ch.ivy.addon.portalkit.dto.RoleDTO #field
+selectedRole com.axonivy.portal.component.dto.RoleDTO #field
 selectedRole PERSISTENT #fieldModifier

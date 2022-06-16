@@ -25,6 +25,7 @@ import ch.ivyteam.ivy.business.data.store.BusinessDataInfo;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
 
+@SuppressWarnings("deprecation")
 public class CleanUpObsoletedUserDataService {
 
   private static final int OFFSET_SIZE = 100;

@@ -1,0 +1,56 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions">
+<h:body>
+  <ui:composition template="/layouts/frame-8-customization.xhtml">
+    <ui:define name="title">Process Chain Component Example</ui:define>
+    <ui:define name="content">
+      <h:form id="form" styleClass="process-chain-test-form ui-g">
+        <div class="ui-g-12">
+          <div class="process-chain-test-button">
+            <h:panelGroup styleClass="MarTop5 DispBlock" id="command-group">
+              <p:commandButton value="Next Step" actionListener="#{logic.next}" id="next-button" process="@form" update="@form">
+              </p:commandButton>
+            </h:panelGroup>
+          </div>
+        </div>
+        <div class="ui-g-12">
+          <h2>Horizontal Circle</h2>
+        </div>
+        <div class="ui-g-12">
+          <ic:com.axonivy.portal.component.ProcessChain id="process-chain-circle-horizontal" componentId="component-circle-horizontal" shape="CIRCLE"
+            direction="HORIZONTAL" isShowAllSteps="false" actualStepIndex="#{data.actualCurrentIndex}" steps="#{data.steps}" />
+        </div>
+        <div class="ui-g-12">
+          <h2>Horizontal Line</h2>
+        </div>
+        <div class="ui-g-12">
+          <ic:com.axonivy.portal.component.ProcessChain id="process-chain-line-horizontal" componentId="component-line-horizontal" shape="LINE"
+            direction="HORIZONTAL" isShowAllSteps="false" actualStepIndex="#{data.actualCurrentIndex}" steps="#{data.steps}" />
+        </div>
+        <div class="ui-g-2 ui-sm-hidden">
+          <h2>Vertical Circle</h2>
+        </div>
+        <div class="ui-xl-hidden ui-lg-hidden ui-md-hidden ui-sm-12">
+          <h2>Vertical Circle On Mobile</h2>
+        </div>
+        <div class="ui-g-4 ui-sm-12">
+          <ic:com.axonivy.portal.component.ProcessChain id="process-chain-circle-vertical" componentId="component-circle-vertical" shape="CIRCLE"
+            direction="VERTICAL" isShowAllSteps="false" actualStepIndex="#{data.actualCurrentIndex}" steps="#{data.steps}" />
+        </div>
+        <div class="ui-g-2 ui-sm-hidden">
+          <h2>Vertical Line</h2>
+        </div>
+        <div class="ui-xl-hidden ui-lg-hidden ui-md-hidden ui-sm-12">
+          <h2>Vertical Line On Mobile</h2>
+        </div>
+        <div class="ui-g-4 ui-sm-12">
+          <ic:com.axonivy.portal.component.ProcessChain id="process-chain-line-vertical" componentId="component-line-vertical" shape="LINE"
+            direction="VERTICAL" isShowAllSteps="false" actualStepIndex="#{data.actualCurrentIndex}" steps="#{data.steps}" />
+        </div>
+      </h:form>
+      <h:outputStylesheet name="layouts/styles/process-chain-customize.css" />
+    </ui:define>
+  </ui:composition>
+</h:body>
+</html>

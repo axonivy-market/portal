@@ -3,10 +3,11 @@ package ch.ivy.addon.portalkit.enums;
 import java.util.HashMap;
 import java.util.Map;
 
-import ch.ivy.addon.portalkit.bean.TaskWidgetBean;
 import ch.ivy.addon.portalkit.document.DocumentExtensionConstants;
+import ch.ivy.addon.portalkit.bean.TaskWidgetBean;
 import ch.ivyteam.ivy.environment.Ivy;
 
+@SuppressWarnings("deprecation")
 public enum GlobalVariable {
   
   HIDE_LOGOUT_BUTTON(GlobalVariableType.SELECTION, Option.FALSE.toString(), "hideLogoutButtonNote"),

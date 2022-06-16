@@ -145,6 +145,15 @@ In engine
    project.
 4. Follow detailed migration notes for each version below.
 
+Migrate 8.0.x to 8.0.27
+-----------------------
+1. :ref:`The deprecated User Selection component <components-additional-components-old-user-selection>` is still working well without further migration. But if you want to upgrade it to :ref:`the new User Selection component <components-additional-components-user-selection>`, please follow :ref:`these migration steps <components-additional-components-migrate-from-old-user-selection>`.
+2. :ref:`The deprecated Role Selection component <components-additional-components-old-role-selection>` is still working well without further migration. But if you want to upgrade it to :ref:`the new Role Selection component <components-additional-components-role-selection>`, please follow :ref:`these migration steps <components-additional-components-migrate-from-old-role-selection>`.
+3. :ref:`The deprecated Document Table component <components-additional-components-old-document-table>` is still working well without further migration. But if you want to upgrade it to :ref:`the new Document Table component <components-additional-components-document-table>`, please follow :ref:`these migration steps <components-additional-components-migrate-from-old-document-table>`.
+4. :ref:`The deprecated Process History component <components-additional-components-old-process-history>` is still working well without further migration. But if you want to upgrade it to :ref:`the new Process History component <components-additional-components-process-history>`, please follow :ref:`these migration steps <components-additional-components-migrate-from-old-process-history>`.
+5. :ref:`The deprecated Document Chain component <components-additional-components-old-process-chain>` is still working well without further migration. But if you want to upgrade it to :ref:`the new Process Chain component <components-additional-components-process-chain>`, please follow :ref:`these migration steps <components-additional-components-migrate-from-old-process-chain>`.
+
+
 Migrate 8.0.x to 8.0.19
 -----------------------
 Portal date filter such as TaskCreationDateFilter, CaseCreationDateFilter... messages ``<p:messages for="..." />`` have been added for each calendar component to validate date format. 
@@ -237,6 +246,21 @@ Release notes
 
 This part lists all relevant changes since the last official product
 releases of Axon Ivy.
+
+Changes in 8.0.27
+-----------------
+
+- Introduce some components in new ``portal-component`` project.
+
+   - :ref:`User Selection Component <components-additional-components-user-selection>`
+
+   - :ref:`Role Selection Component <components-additional-components-role-selection>`
+
+   - :ref:`Document Table Component <components-additional-components-document-table>`
+
+   - :ref:`Process History Component <components-additional-components-process-history>`
+
+   - :ref:`Process Chain Component <components-additional-components-process-chain>`
 
 Changes in 8.0.25
 -----------------

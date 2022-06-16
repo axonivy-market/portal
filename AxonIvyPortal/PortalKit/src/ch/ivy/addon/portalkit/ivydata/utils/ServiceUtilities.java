@@ -38,6 +38,7 @@ import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.server.ServerFactory;
 import ch.ivyteam.ivy.workflow.IWorkflowSession;
 
+@SuppressWarnings("deprecation")
 public class ServiceUtilities {
 
   private ServiceUtilities() {}

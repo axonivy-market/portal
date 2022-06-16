@@ -1,15 +1,6 @@
 package ch.ivy.addon.portalkit.bean;
 
-import static ch.ivy.addon.portalkit.document.DocumentExtensionConstants.ALLOWED_EXCEL_FORMAT;
-import static ch.ivy.addon.portalkit.document.DocumentExtensionConstants.ALLOWED_PDF_FORMAT;
-import static ch.ivy.addon.portalkit.document.DocumentExtensionConstants.ALLOWED_WORD_FORMAT;
-import static ch.ivy.addon.portalkit.document.DocumentExtensionConstants.ARCHIVE_FORMAT;
-import static ch.ivy.addon.portalkit.document.DocumentExtensionConstants.CSV_FORMAT;
-import static ch.ivy.addon.portalkit.document.DocumentExtensionConstants.EMAIL_FORMAT;
-import static ch.ivy.addon.portalkit.document.DocumentExtensionConstants.IMAGE_FORMAT;
-import static ch.ivy.addon.portalkit.document.DocumentExtensionConstants.POWER_POINT_FORMAT;
-import static ch.ivy.addon.portalkit.document.DocumentExtensionConstants.TEXT_FORMAT;
-import static ch.ivy.addon.portalkit.document.DocumentExtensionConstants.XML_FORMAT;
+import static ch.ivy.addon.portalkit.document.DocumentExtensionConstants.*;
 
 import java.io.Serializable;
 
@@ -54,6 +45,7 @@ public class DocumentIconBean implements Serializable {
    * @param documentName is a name of file
    * @return return css class for icon
    */
+  @SuppressWarnings("deprecation")
   public static String getIconCssClass(String documentName) {
     String iconClass = StringUtils.EMPTY;
     if (StringUtils.isNotEmpty(documentName)) {

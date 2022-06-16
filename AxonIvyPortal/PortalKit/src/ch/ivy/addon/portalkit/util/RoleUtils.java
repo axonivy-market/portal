@@ -29,6 +29,7 @@ import ch.ivyteam.ivy.security.IUser;
  * 
  * @author bolt
  */
+@SuppressWarnings("deprecation")
 public final class RoleUtils {
 
   private static final String HIDE_IN_DELEGATION = "HIDE_IN_DELEGATION";
