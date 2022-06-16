@@ -1122,8 +1122,7 @@ body .ui-datepicker .ui-timepicker-div dl dd {
 @media screen and (min-width: 40.063em) {
   .task-item-body .ui-datatable thead th:first-child,
   .case-detail-body .ui-datatable thead th.document-name,
-  .case-detail-body .ui-datatable th.history-related-case,
-  .case-detail-body .case-details-item .ui-datatable .name-column {
+  .case-detail-body .ui-datatable th.history-related-case {
     border-right: 1px solid var(--data-table-border-color);
   }
 }
@@ -1131,7 +1130,6 @@ body .ui-datepicker .ui-timepicker-div dl dd {
 @media screen and (min-width: 64.063em) {
   .task-item-body .ui-datatable thead th:first-child,
   .case-detail-body .ui-datatable thead th.document-name,
-  .case-detail-body .case-details-item .ui-datatable .name-column,
   .case-detail-body .case-details-item .ui-datatable .history-note {
     border-right: none;
   }
