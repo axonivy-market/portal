@@ -16,11 +16,11 @@ Cs0 @UdProcessEnd f1 '' #zField
 Cs0 @PushWFArc f2 '' #zField
 Cs0 @UdMethod f3 '' #zField
 Cs0 @CallSub f5 '' #zField
-Cs0 @CallSub f4 '' #zField
 Cs0 @Alternative f7 '' #zField
 Cs0 @PushWFArc f8 '' #zField
-Cs0 @PushWFArc f9 '' #zField
 Cs0 @PushWFArc f6 '' #zField
+Cs0 @GridStep f10 '' #zField
+Cs0 @PushWFArc f11 '' #zField
 >Proto Cs0 Cs0 CaseItemProcess #zField
 Cs0 f0 guid 168031B841CA9289 #txt
 Cs0 f0 method start() #txt
@@ -71,22 +71,6 @@ Cs0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Cs0 f5 296 170 144 44 -65 -8 #rect
 Cs0 f5 @|CallSubIcon #fIcon
-Cs0 f4 processCall 'Functional Processes/OpenProcessHistoryCaseDetailsHook:call(ch.ivyteam.ivy.workflow.ICase,Boolean)' #txt
-Cs0 f4 requestActionDecl '<ch.ivyteam.ivy.workflow.ICase caseData,Boolean isShowBackButton> param;' #txt
-Cs0 f4 requestMappingAction 'param.caseData=in.iCase;
-param.isShowBackButton=true;
-' #txt
-Cs0 f4 responseMappingAction 'out=in;
-' #txt
-Cs0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>OpenProcessHistoryCaseDetails</name>
-    </language>
-</elementInfo>
-' #txt
-Cs0 f4 288 298 192 44 -91 -8 #rect
-Cs0 f4 @|CallSubIcon #fIcon
 Cs0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -98,18 +82,6 @@ process history?</name>
 Cs0 f7 192 176 32 32 -46 -57 #rect
 Cs0 f7 @|AlternativeIcon #fIcon
 Cs0 f8 109 192 192 192 #arcP
-Cs0 f9 expr in #txt
-Cs0 f9 outCond 'in.isCallFromProcessHistory == true' #txt
-Cs0 f9 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>yes</name>
-    </language>
-</elementInfo>
-' #txt
-Cs0 f9 208 208 288 320 #arcP
-Cs0 f9 1 208 320 #addKink
-Cs0 f9 0 0.8571428571428571 15 0 #arcLabel
 Cs0 f6 expr in #txt
 Cs0 f6 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -120,6 +92,41 @@ Cs0 f6 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Cs0 f6 224 192 296 192 #arcP
 Cs0 f6 0 0.4583333333333333 0 8 #arcLabel
+Cs0 f10 actionTable 'out=in;
+' #txt
+Cs0 f10 actionCode 'import javax.faces.context.FacesContext;
+import ch.ivy.addon.portalkit.util.CaseUtils;
+import org.apache.commons.lang3.StringUtils;
+import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
+
+String customizePortalFriendlyRequestPath = SecurityServiceUtils.findFriendlyRequestPathContainsKeyword("CaseDetailsPage.ivp");
+if (StringUtils.isEmpty(customizePortalFriendlyRequestPath)) {
+  customizePortalFriendlyRequestPath = "Start Processes/PortalStart/CaseDetailsPage.ivp";
+}
+    
+FacesContext.getCurrentInstance().getExternalContext().redirect(CaseUtils.getProcessStartUriWithCaseParameters(in.iCase, customizePortalFriendlyRequestPath));' #txt
+Cs0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Navigate to&#13;
+case details</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f10 296 298 112 44 -33 -16 #rect
+Cs0 f10 @|StepIcon #fIcon
+Cs0 f11 expr in #txt
+Cs0 f11 outCond 'in.isCallFromProcessHistory == true' #txt
+Cs0 f11 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>yes</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f11 208 208 296 320 #arcP
+Cs0 f11 1 208 320 #addKink
+Cs0 f11 0 0.8571428571428571 15 0 #arcLabel
 >Proto Cs0 .type ch.ivy.addon.portalkit.component.CaseItem.CaseItemData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 -8 -8 16 16 16 26 #rect
@@ -128,7 +135,7 @@ Cs0 f0 mainOut f2 tail #connect
 Cs0 f2 head f1 mainIn #connect
 Cs0 f3 mainOut f8 tail #connect
 Cs0 f8 head f7 in #connect
-Cs0 f7 out f9 tail #connect
-Cs0 f9 head f4 mainIn #connect
-Cs0 f7 out f6 tail #connect
 Cs0 f6 head f5 mainIn #connect
+Cs0 f7 out f11 tail #connect
+Cs0 f11 head f10 mainIn #connect
+Cs0 f7 out f6 tail #connect
