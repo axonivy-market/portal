@@ -266,6 +266,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       showProcessInformation: Auf "false" setzen, um die Verknüpfung zu Informationen des Prozesses auf der Seite Prozesse (Gittermodus) und Falldetails anzeigen zu deaktivieren.
       showTaskDurationTime: Zum Ein-/Ausschalten der Anzeige der Bearbeitungszeit auf der Aufgabendetailseite.
       showUserGuide: 'Aktiviert die interaktive Benutzeranleitung "erste Schritte" im Portal bei erstmaliger Anmeldung. '
+      statisticChartsPolling: TODO
       uploadDocumentWhiteListExtensionNote: 'Leer lassen, falls Sie alle Formate erlauben. Falls Sie nur eine geringe Anzahl an Formate erlauben möchten (White list), können Sie diese hier, mit Komma getrennt, aufführen. Z.B.: pdf, txt, doc, docx.'
     key: Schlüssel
     link: Link
