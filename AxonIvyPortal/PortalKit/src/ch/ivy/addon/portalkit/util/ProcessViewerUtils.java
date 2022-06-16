@@ -24,6 +24,8 @@ import ch.ivyteam.ivy.model.value.WebLink;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivyteam.ivy.workflow.IStartElement;
+import ch.ivyteam.ivy.workflow.start.ICaseMapWebStartable;
+import ch.ivyteam.ivy.workflow.start.IProcessWebStartable;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 import ch.ivyteam.ivy.workflow.start.ProcessViewerUrl;
 
@@ -147,28 +149,13 @@ public class ProcessViewerUtils {
       }
     }
     
-    String projectName = getProjectNameFromProcessId(processId);
-    
-    IWebStartable selectedProcess = findWebStartable(caseId, processId);
-    var selectedProcessId = selectedProcess.getId();
-    var friendlyRequestPath = selectedProcessId.substring(selectedProcessId.indexOf(projectName) + projectName.length() + 1);
-    IStartElement element = ProcessStartAPI.findStartElementByProcessStartFriendlyRequestPath(friendlyRequestPath);
-    return new ProcessViewerUrl.Builder(element).toWebLink();
-
-  }
-  
-  /**
-   * Get Project Name From ProcessId
-   * @param processId process id e.g "/designer/pro/InternalSupport/15C7B30FB93C827E/Appraisal.ivp"
-   * @return project name or empty string ex. InternalSupport
-   */
-  private static String getProjectNameFromProcessId(String processId) {
-    String[] projectNames = processId.split("/");
-    String projectName = "";
-    if(projectNames.length > PROJECT_NAME_INDEX) {
-      projectName = projectNames[PROJECT_NAME_INDEX];
+    var webStartable = findWebStartable(caseId, processId);
+    if(webStartable instanceof ICaseMapWebStartable) {
+      return CaseMapViewerUrl.of((ICaseMapWebStartable) webStartable).toWebLink();
+    } else {
+      return ProcessViewerUrl.of((IProcessWebStartable) webStartable).toWebLink();
     }
-    return projectName;
+
   }
   
   public static ICaseMap findCaseMapByCase(ICase caze) {
