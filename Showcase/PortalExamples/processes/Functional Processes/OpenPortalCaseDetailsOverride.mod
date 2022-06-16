@@ -1,9 +1,10 @@
 [Ivy]
-1816A7D8A871E281 7.5.0 #module
+1816B8337C036391 7.5.0 #module
 >Proto >Proto Collection #zClass
 Ok0 OpenPortalCaseDetailsHook Big #zClass
 Ok0 B #cInfo
 Ok0 #process
+Ok0 @AnnotationInP-0n ai ai #zField
 Ok0 @TextInP .type .type #zField
 Ok0 @TextInP .processKind .processKind #zField
 Ok0 @TextInP .xml .xml #zField
@@ -29,7 +30,7 @@ Ok0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ok0 f0 81 49 30 30 -13 17 #rect
 Ok0 f0 @|StartSubIcon #fIcon
-Ok0 f1 337 49 30 30 0 15 #rect
+Ok0 f1 353 49 30 30 0 15 #rect
 Ok0 f1 @|EndSubIcon #fIcon
 Ok0 f3 dialogId ch.ivyteam.ivy.project.portal.examples.component.customize.CaseItemDetails #txt
 Ok0 f3 startMethod start(ch.ivyteam.ivy.workflow.ICase,Boolean) #txt
@@ -46,11 +47,11 @@ Ok0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ok0 f3 168 42 112 44 -46 -8 #rect
+Ok0 f3 184 42 112 44 -46 -8 #rect
 Ok0 f3 @|UserDialogIcon #fIcon
-Ok0 f4 111 64 168 64 #arcP
-Ok0 f2 280 64 337 64 #arcP
->Proto Ok0 .type _ch.ivyteam.ivy.project.portal.examples.OpenPortalCaseDetailsHookOverrideData #txt
+Ok0 f4 111 64 184 64 #arcP
+Ok0 f2 296 64 353 64 #arcP
+>Proto Ok0 .type _ch.ivyteam.ivy.project.portal.examples.OpenPortalCaseDetailsOverrideData #txt
 >Proto Ok0 .processKind CALLABLE_SUB #txt
 >Proto Ok0 0 0 32 24 18 0 #rect
 >Proto Ok0 @|BIcon #fIcon

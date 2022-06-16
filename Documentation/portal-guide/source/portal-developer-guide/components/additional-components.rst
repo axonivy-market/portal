@@ -159,6 +159,8 @@ Attributes of this component:
 
 Please refer to ``ProcessHistoryExample`` process in ``portal-component-example`` project for more details.
 
+Please refer to ``ProcessHistoryComponent`` process in  ``PortalExamples`` for more details how to customize new Process History with Portal.
+
 If you want to customize its style,
 please refer to :ref:`Styles Customization <components-additional-components-styles-customization>`
 for more details.
@@ -183,6 +185,9 @@ Migrate from Deprecated Process History
 
 2. Consider updating value of new attributes ``showCasesOfOwner`` and ``dateTimePattern`` by your business.
 
+3. From the project you want to use the new component, override the subprocess ``OpenCaseDetailsHook.mod``.
+
+4. If you use Portal, copy content of the subprocess ``OpenPortalCaseDetails.mod`` in ``PortalTemplate`` project to the overrided subprocess ``OpenCaseDetailsHook.mod``.
 
 .. _components-additional-component-task-analysis:
 

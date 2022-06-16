@@ -1,10 +1,10 @@
 {
+  /HTML_DIALOG *
   /PROCESS {
-    /Functional-Processes.UploadDocumentItem "Functional Processes/UploadDocumentItemOverride"
     /Functional-Processes.DeleteDocumentItem "Functional Processes/DeleteDocumentItemOverride"
+    /Functional-Processes.UploadDocumentItem "Functional Processes/UploadDocumentItemOverride"
     /Functional-Processes.GetDocumentItems "Functional Processes/GetDocumentItemsOverride"
     /Functional-Processes.DownloadDocumentItem "Functional Processes/DownloadDocumentItemOverride"
-    /Functional-Processes.OpenPortalCaseDetailsHook "Functional Processes/OpenPortalCaseDetailsHookOverride"
+    /Functional-Processes.OpenCaseDetailsHook "Functional Processes/OpenCaseDetailsHookOverride"
   }
-  /HTML_DIALOG *
 }

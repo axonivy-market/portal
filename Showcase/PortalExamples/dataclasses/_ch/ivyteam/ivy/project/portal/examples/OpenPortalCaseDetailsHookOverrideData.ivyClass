@@ -1,4 +1,0 @@
-OpenPortalCaseDetailsHookOverrideData #class
-_ch.ivyteam.ivy.project.portal.examples #namespace
-caseView ch.ivyteam.ivy.workflow.ICase #field
-isShowBackButton Boolean #field
