@@ -50,6 +50,7 @@ public class StatisticChartCreationBean implements Serializable {
   private Map<String, List<String>> customFieldFilters = new HashMap<>();
 
   public static final int CASE_CATEGORIES_TYPE = 0;
+  public static final int MINIMUM_POLLING = 10;
 
   @PostConstruct
   public void init() {
@@ -376,5 +377,9 @@ public class StatisticChartCreationBean implements Serializable {
       return Long.valueOf(clientSideTimeoutInMinute);
     }
     return 0;
+  }
+  
+  public int getMinimumPolling() {
+    return MINIMUM_POLLING;
   }
 }
