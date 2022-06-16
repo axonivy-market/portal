@@ -875,6 +875,12 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   font-weight: normal;
 }
 
+@media screen and (max-width: 1030px) {
+  body .ui-chkbox.task-history-checkbox {
+    display: none;
+  }
+}
+
 .case-task-note-histories {
   white-space: pre-wrap;
 }
