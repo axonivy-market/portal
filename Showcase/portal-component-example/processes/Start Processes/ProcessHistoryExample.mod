@@ -37,12 +37,12 @@ Pt0 @InfoButton f34 '' #zField
 Pt0 @UserDialog f2 '' #zField
 Pt0 @PushWFArc f3 '' #zField
 Pt0 @PushWFArc f4 '' #zField
-Pt0 @CallSub f5 '' #zField
-Pt0 @PushWFArc f9 '' #zField
-Pt0 @TkArc f10 '' #zField
 Pt0 @UserDialog f13 '' #zField
 Pt0 @PushWFArc f15 '' #zField
 Pt0 @PushWFArc f16 '' #zField
+Pt0 @CallSub f5 '' #zField
+Pt0 @PushWFArc f9 '' #zField
+Pt0 @TkArc f10 '' #zField
 Pt0 @CallSub f21 '' #zField
 Pt0 @PushWFArc f24 '' #zField
 Pt0 @TkArc f32 '' #zField
@@ -148,7 +148,7 @@ Pt0 f20 159 144 296 144 #arcP
 Pt0 f11 expr data #txt
 Pt0 f11 outCond ivp=="TaskA.ivp" #txt
 Pt0 f11 719 144 801 144 #arcP
-Pt0 f12 617 313 30 30 0 15 #rect
+Pt0 f12 617 321 30 30 0 15 #rect
 Pt0 f12 @|EndIcon #fIcon
 Pt0 f14 outLink viewProcessHistoryOfBetaCompany.ivp #txt
 Pt0 f14 inParamDecl '<> param;' #txt
@@ -175,7 +175,7 @@ Pt0 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Pt0 f14 @C|.responsibility Everybody #txt
-Pt0 f14 129 313 30 30 -108 17 #rect
+Pt0 f14 129 321 30 30 -108 17 #rect
 Pt0 f14 @|StartRequestIcon #fIcon
 Pt0 f17 outLink createBetaCompany.ivp #txt
 Pt0 f17 inParamDecl '<> param;' #txt
@@ -203,9 +203,9 @@ Pt0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Pt0 f17 @C|.responsibility Everybody #txt
-Pt0 f17 129 409 30 30 -65 17 #rect
+Pt0 f17 129 417 30 30 -65 17 #rect
 Pt0 f17 @|StartRequestIcon #fIcon
-Pt0 f18 769 409 30 30 0 15 #rect
+Pt0 f18 769 417 30 30 0 15 #rect
 Pt0 f18 @|EndIcon #fIcon
 Pt0 f23 actionTable 'out=in;
 ' #txt
@@ -219,10 +219,10 @@ code name</name>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f23 296 402 112 44 -33 -16 #rect
+Pt0 f23 296 410 112 44 -33 -16 #rect
 Pt0 f23 @|StepIcon #fIcon
 Pt0 f25 expr out #txt
-Pt0 f25 159 424 296 424 #arcP
+Pt0 f25 159 432 296 432 #arcP
 Pt0 f22 actionTable 'out=in1;
 ' #txt
 Pt0 f22 outLinks "TaskA.ivp" #txt
@@ -244,7 +244,7 @@ Pt0 f22 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f22 529 505 30 30 -40 17 #rect
+Pt0 f22 529 513 30 30 -40 17 #rect
 Pt0 f22 @|TaskSwitchSimpleIcon #fIcon
 Pt0 f31 signalCode ch:axonivy:portal:example:createbetacompany #txt
 Pt0 f31 attachToBusinessCase true #txt
@@ -257,7 +257,7 @@ Pt0 f31 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f31 129 505 30 30 -78 17 #rect
+Pt0 f31 129 513 30 30 -78 17 #rect
 Pt0 f31 @|SignalStartEventIcon #fIcon
 Pt0 f26 actionTable 'out=in;
 ' #txt
@@ -272,17 +272,17 @@ Pt0 f26 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f26 488 402 176 44 -84 -8 #rect
+Pt0 f26 488 410 176 44 -84 -8 #rect
 Pt0 f26 @|StepIcon #fIcon
 Pt0 f27 expr out #txt
-Pt0 f27 408 424 488 424 #arcP
+Pt0 f27 408 432 488 432 #arcP
 Pt0 f28 expr out #txt
-Pt0 f28 664 424 769 424 #arcP
-Pt0 f29 673 505 30 30 0 15 #rect
+Pt0 f28 664 432 769 432 #arcP
+Pt0 f29 673 513 30 30 0 15 #rect
 Pt0 f29 @|EndIcon #fIcon
 Pt0 f30 expr data #txt
 Pt0 f30 outCond ivp=="TaskA.ivp" #txt
-Pt0 f30 559 520 673 520 #arcP
+Pt0 f30 559 528 673 528 #arcP
 Pt0 f33 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -317,9 +317,9 @@ HOW TO RUN THIS EXAMPLE:
     </language>
 </elementInfo>
 ' #txt
-Pt0 f34 872 354 832 140 -412 -64 #rect
+Pt0 f34 872 362 832 140 -412 -64 #rect
 Pt0 f34 @|IBIcon #fIcon
-Pt0 f2 dialogId examples.ProcessHistoryExample #txt
+Pt0 f2 dialogId com.axonivy.portal.component.example.ProcessHistoryExample #txt
 Pt0 f2 startMethod start(Boolean,Boolean) #txt
 Pt0 f2 requestActionDecl '<Boolean showProcessHistoriesOfAlphaCompany,Boolean showProcessHistoriesOfBetaCompany> param;' #txt
 Pt0 f2 requestMappingAction 'param.showProcessHistoriesOfAlphaCompany=true;
@@ -338,24 +338,7 @@ Pt0 f2 296 26 192 44 -88 -8 #rect
 Pt0 f2 @|UserDialogIcon #fIcon
 Pt0 f3 159 48 296 48 #arcP
 Pt0 f4 488 48 609 48 #arcP
-Pt0 f5 processCall 'Functional Processes/SetCaseBusinessEntity:call(String)' #txt
-Pt0 f5 requestActionDecl '<String businessEntityId> param;' #txt
-Pt0 f5 requestMappingAction 'param.businessEntityId="alpha";
-' #txt
-Pt0 f5 responseMappingAction 'out=in;
-' #txt
-Pt0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>SetCaseBusinessEntity</name>
-    </language>
-</elementInfo>
-' #txt
-Pt0 f5 456 122 144 44 -65 -8 #rect
-Pt0 f5 @|CallSubIcon #fIcon
-Pt0 f9 408 144 456 144 #arcP
-Pt0 f10 600 144 689 144 #arcP
-Pt0 f13 dialogId examples.ProcessHistoryExample #txt
+Pt0 f13 dialogId com.axonivy.portal.component.example.ProcessHistoryExample #txt
 Pt0 f13 startMethod start(Boolean,Boolean) #txt
 Pt0 f13 requestActionDecl '<Boolean showProcessHistoriesOfAlphaCompany,Boolean showProcessHistoriesOfBetaCompany> param;' #txt
 Pt0 f13 requestMappingAction 'param.showProcessHistoriesOfAlphaCompany=false;
@@ -370,10 +353,28 @@ Pt0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f13 296 306 176 44 -85 -8 #rect
+Pt0 f13 296 314 176 44 -85 -8 #rect
 Pt0 f13 @|UserDialogIcon #fIcon
-Pt0 f15 159 328 296 328 #arcP
-Pt0 f16 472 328 617 328 #arcP
+Pt0 f15 159 336 296 336 #arcP
+Pt0 f16 472 336 617 336 #arcP
+Pt0 f16 0 0.49999999999999994 0 0 #arcLabel
+Pt0 f5 processCall 'Functional Processes/SetCaseBusinessEntity:call(String)' #txt
+Pt0 f5 requestActionDecl '<String businessEntityId> param;' #txt
+Pt0 f5 requestMappingAction 'param.businessEntityId="alpha";
+' #txt
+Pt0 f5 responseMappingAction 'out=in;
+' #txt
+Pt0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>SetCaseBusinessEntity</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f5 480 122 144 44 -65 -8 #rect
+Pt0 f5 @|CallSubIcon #fIcon
+Pt0 f9 408 144 480 144 #arcP
+Pt0 f10 624 144 689 144 #arcP
 Pt0 f21 processCall 'Functional Processes/SetCaseBusinessEntity:call(String)' #txt
 Pt0 f21 requestActionDecl '<String businessEntityId> param;' #txt
 Pt0 f21 requestMappingAction 'param.businessEntityId="beta";
@@ -387,11 +388,11 @@ Pt0 f21 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f21 296 498 144 44 -65 -8 #rect
+Pt0 f21 264 506 144 44 -65 -8 #rect
 Pt0 f21 @|CallSubIcon #fIcon
-Pt0 f24 159 520 296 520 #arcP
-Pt0 f32 440 520 529 520 #arcP
->Proto Pt0 .type examples.ProcessHistoryExampleData #txt
+Pt0 f24 159 528 264 528 #arcP
+Pt0 f32 408 528 529 528 #arcP
+>Proto Pt0 .type com.axonivy.portal.component.example.ProcessHistoryExampleData #txt
 >Proto Pt0 .processKind NORMAL #txt
 >Proto Pt0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -401,7 +402,7 @@ Pt0 f32 440 520 529 520 #arcP
         <swimlaneLabel>Beta</swimlaneLabel>
     </language>
     <swimlaneOrientation>false</swimlaneOrientation>
-    <swimlaneSize>224</swimlaneSize>
+    <swimlaneSize>232</swimlaneSize>
     <swimlaneSize>352</swimlaneSize>
     <swimlaneColor gradient="false">-1</swimlaneColor>
     <swimlaneColor gradient="false">-1</swimlaneColor>
@@ -429,14 +430,14 @@ Pt0 f0 mainOut f3 tail #connect
 Pt0 f3 head f2 mainIn #connect
 Pt0 f2 mainOut f4 tail #connect
 Pt0 f4 head f1 mainIn #connect
-Pt0 f19 mainOut f9 tail #connect
-Pt0 f9 head f5 mainIn #connect
-Pt0 f5 mainOut f10 tail #connect
-Pt0 f10 head f7 in #connect
 Pt0 f14 mainOut f15 tail #connect
 Pt0 f15 head f13 mainIn #connect
 Pt0 f13 mainOut f16 tail #connect
 Pt0 f16 head f12 mainIn #connect
+Pt0 f19 mainOut f9 tail #connect
+Pt0 f9 head f5 mainIn #connect
+Pt0 f5 mainOut f10 tail #connect
+Pt0 f10 head f7 in #connect
 Pt0 f31 mainOut f24 tail #connect
 Pt0 f24 head f21 mainIn #connect
 Pt0 f21 mainOut f32 tail #connect

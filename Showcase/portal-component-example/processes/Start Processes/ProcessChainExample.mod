@@ -17,24 +17,24 @@ Pe0 @PushWFArc f14 '' #zField
 >Proto Pe0 Pe0 ProcessChainExample #zField
 Pe0 f12 481 65 30 30 0 15 #rect
 Pe0 f12 @|EndIcon #fIcon
-Pe0 f10 outLink start.ivp #txt
+Pe0 f10 outLink showProcessChainExamples.ivp #txt
 Pe0 f10 inParamDecl '<> param;' #txt
 Pe0 f10 requestEnabled true #txt
 Pe0 f10 triggerEnabled false #txt
-Pe0 f10 callSignature start() #txt
+Pe0 f10 callSignature showProcessChainExamples() #txt
 Pe0 f10 startName 'Process Chain Example' #txt
 Pe0 f10 caseData businessCase.attach=true #txt
 Pe0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>start.ivp</name>
+        <name>showProcessChainExamples.ivp</name>
     </language>
 </elementInfo>
 ' #txt
 Pe0 f10 @C|.responsibility Everybody #txt
-Pe0 f10 65 65 30 30 -43 11 #rect
+Pe0 f10 65 65 30 30 -64 16 #rect
 Pe0 f10 @|StartRequestIcon #fIcon
-Pe0 f11 dialogId examples.ProcessChainExample #txt
+Pe0 f11 dialogId com.axonivy.portal.component.example.ProcessChainExample #txt
 Pe0 f11 startMethod start() #txt
 Pe0 f11 requestActionDecl '<> param;' #txt
 Pe0 f11 responseMappingAction 'out=in;
@@ -50,7 +50,7 @@ Pe0 f11 224 58 144 44 -63 -8 #rect
 Pe0 f11 @|UserDialogIcon #fIcon
 Pe0 f13 368 80 481 80 #arcP
 Pe0 f14 95 80 224 80 #arcP
->Proto Pe0 .type examples.ProcessChainExampleData #txt
+>Proto Pe0 .type com.axonivy.portal.component.example.ProcessChainExampleData #txt
 >Proto Pe0 .processKind NORMAL #txt
 >Proto Pe0 0 0 32 24 18 0 #rect
 >Proto Pe0 @|BIcon #fIcon

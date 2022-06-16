@@ -1,6 +1,6 @@
 package ch.ivy.addon.portalkit.bean;
 
-import static com.axonivy.portal.component.document.DocumentExtensionConstants.*;
+import static ch.ivy.addon.portalkit.document.DocumentExtensionConstants.*;
 
 import java.io.Serializable;
 
@@ -45,6 +45,7 @@ public class DocumentIconBean implements Serializable {
    * @param documentName is a name of file
    * @return return css class for icon
    */
+  @SuppressWarnings("deprecation")
   public static String getIconCssClass(String documentName) {
     String iconClass = StringUtils.EMPTY;
     if (StringUtils.isNotEmpty(documentName)) {
