@@ -215,7 +215,7 @@ HowTo: Attach a document to the case
 ------------------------------------
 
 #. Open the task details of a task
-#. Click the link |add-icon| :guilabel:`Add document` 
+#. Click the link |add-icon| ``Add document`` 
 
 #. The :guilabel:`Add document` dialog is opened
 
@@ -245,7 +245,7 @@ HowTo: Add a note to a task
 
 #. Open the task details of a task
 
-#. Click on the |add-icon| :guilabel:`Add note` link below the notes section
+#. Click on the link |add-icon| ``Add note`` below the notes section
 
 #. The :guilabel:`Add note` dialog is opened
 
@@ -260,7 +260,7 @@ HowTo: Export a task history
 
 #. Open the task details of a task
 
-#. Click on the |show-more-icon| :guilabel:`Show more` link below the notes section
+#. Click on the link |show-more-icon| ``Show more`` below the notes section
 
    |how-to-show-note-details|
 
@@ -281,9 +281,9 @@ HowTo: Show Workflow Events
 
 #. Open the task details of a task
 
-#. Click on the :guilabel:`Actions` link on the right top corner of the **Data and Description** section
+#. Click on the link ``Actions`` on the right top corner of the **Data and Description** section
 
-#. Click :guilabel:`Workflow Events` link on the overlay panel to see Workflow Events dialog
+#. Click the link ``Workflow Events`` on the overlay panel to see Workflow Events dialog
 
 **Workflow Events dialog**
 
