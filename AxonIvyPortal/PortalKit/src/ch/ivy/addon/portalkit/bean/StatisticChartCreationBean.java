@@ -20,8 +20,10 @@ import ch.ivy.addon.portalkit.bo.CaseStateStatistic;
 import ch.ivy.addon.portalkit.bo.ElapsedTimeStatistic;
 import ch.ivy.addon.portalkit.bo.ExpiryStatistic;
 import ch.ivy.addon.portalkit.bo.PriorityStatistic;
+import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.StatisticChartType;
 import ch.ivy.addon.portalkit.enums.StatisticTimePeriodSelection;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.StatisticService;
 import ch.ivy.addon.portalkit.statistics.StatisticChartQueryUtils;
 import ch.ivy.addon.portalkit.statistics.StatisticFilter;
@@ -48,6 +50,7 @@ public class StatisticChartCreationBean implements Serializable {
   private Map<String, List<String>> customFieldFilters = new HashMap<>();
 
   public static final int CASE_CATEGORIES_TYPE = 0;
+  public static final int MINIMUM_POLLING = 10;
 
   @PostConstruct
   public void init() {
@@ -366,5 +369,17 @@ public class StatisticChartCreationBean implements Serializable {
   
   public void setCustomFieldFilter(String customFieldName, List<String> values) {
     this.customFieldFilters.put(customFieldName, values);
+  }
+  
+  public long getStatisticChartsPolling() {
+    String clientSideTimeoutInMinute = new GlobalSettingService().findGlobalSettingValue(GlobalVariable.STATISTIC_CHARTS_POLLING);
+    if (StringUtils.isNotBlank(clientSideTimeoutInMinute)) {
+      return Long.valueOf(clientSideTimeoutInMinute);
+    }
+    return 0;
+  }
+  
+  public int getMinimumPolling() {
+    return MINIMUM_POLLING;
   }
 }
