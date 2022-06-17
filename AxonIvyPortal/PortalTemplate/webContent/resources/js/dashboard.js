@@ -151,7 +151,6 @@ function expandFullscreen(index, widgetId) {
   
   var isSafari = /iPad|iPhone|iPod/.test(navigator.platform);
   if (isSafari) {
-    alert('1');
     $(widget.get(0)).parent().addClass('expand-fullscreen');
     $(widget.get(0)).closest('.js-dashboard__body').addClass('expand-fullscreen');
     $(widget.get(0)).closest('.js-layout-content').addClass('expand-fullscreen');
