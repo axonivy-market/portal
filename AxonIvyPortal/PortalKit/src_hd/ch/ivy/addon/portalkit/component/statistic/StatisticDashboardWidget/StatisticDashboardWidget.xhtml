@@ -16,6 +16,9 @@
 </cc:interface>
 
 <cc:implementation>
+  <c:set var="idChartDisplay" value="#{data.isCompactMode ? 'statistic-carousel-container':'statistic-chart-repeater-container'}" scope="request"/>
+  <c:set var="statisticChartsPolling" value="#{statisticChartCreationBean.statisticChartsPolling}" scope="request"/>
+  <c:set var="minimumPolling" value="#{statisticChartCreationBean.minimumPolling}" scope="request"/>
   <f:event listener="#{logic.initialize(cc.attrs.statisticChartList,cc.attrs.showTaskListImmediately, cc.attrs.isBackFromDrilldown, cc.attrs.compactMode, cc.attrs.isDrilldownExpiryChart)}"
     type="preRenderComponent" />
   <h:panelGroup id="statistic-container" layout="block" styleClass="ui-g-12 u-padding-0">
@@ -133,6 +136,9 @@
       update="#{data.isReloadChartContent ? p:resolveFirstComponentWithId(data.isCompactMode ? 'statistic-carousel-container':'statistic-chart-repeater-container', view).clientId  : '' }"
       global="false" action="#{logic.generateChartModel}" async="true"
       immediate="true" process="@this" partialSubmit="true"/>
+
+    <p:poll id="chart_model_poll" interval="#{statisticChartsPolling}" update="@([id$=#{idChartDisplay}])" global="false"
+      process="@this" partialSubmit="true" async="true" immediate="true" listener="#{logic.regenerateChartModel(data.statisticChartList)}" rendered="#{statisticChartsPolling ge minimumPolling}"/>
 
     <p:remoteCommand rendered="#{cc.attrs.compactMode}" name="updateStatisticCarousel" update="@([id$='statistic-carousel-container'])" 
       global="false" immediate="true" process="@this" partialSubmit="true"/>
