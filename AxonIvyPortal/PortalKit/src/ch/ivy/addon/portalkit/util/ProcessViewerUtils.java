@@ -19,13 +19,17 @@ import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivyteam.ivy.casemap.runtime.ICaseMapService;
 import ch.ivyteam.ivy.casemap.runtime.model.ICaseMap;
 import ch.ivyteam.ivy.casemap.runtime.start.CaseMapViewerUrl;
+import ch.ivyteam.ivy.casemap.runtime.start.CaseMapViewerUrl.CaseMapViewerMode;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.model.value.WebLink;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivyteam.ivy.workflow.IStartElement;
+import ch.ivyteam.ivy.workflow.start.ICaseMapWebStartable;
+import ch.ivyteam.ivy.workflow.start.IProcessWebStartable;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 import ch.ivyteam.ivy.workflow.start.ProcessViewerUrl;
+import ch.ivyteam.ivy.workflow.start.ProcessViewerUrl.ProcessViewerMode;
 
 @SuppressWarnings("restriction")
 public class ProcessViewerUtils {
@@ -138,15 +142,21 @@ public class ProcessViewerUtils {
       if (isCaseMap(selectedCase)) {
         ICaseMap caseMap =
             findCaseMapByCase(selectedCase);
-        return new CaseMapViewerUrl.Builder(caseMap).toWebLink();
+        return CaseMapViewerUrl.of(caseMap).mode(CaseMapViewerMode.VIEWER).toWebLink();
       } else {
         String friendlyRequestPath = selectedCase.getProcessStart().getUserFriendlyRequestPath();
         IStartElement element = ProcessStartAPI.findStartElementByProcessStartFriendlyRequestPath(friendlyRequestPath);
-        return new ProcessViewerUrl.Builder(element).toWebLink();
+        return ProcessViewerUrl.of(element).mode(ProcessViewerMode.VIEWER).toWebLink();
       }
     }
+    
     var webStartable = findWebStartable(caseId, processId);
-    return webStartable.viewerLink();
+    if(webStartable instanceof ICaseMapWebStartable) {
+      return CaseMapViewerUrl.of((ICaseMapWebStartable) webStartable).mode(CaseMapViewerMode.VIEWER).toWebLink();
+    } else {
+      return ProcessViewerUrl.of((IProcessWebStartable) webStartable).mode(ProcessViewerMode.VIEWER).toWebLink();
+    }
+
   }
   
   public static ICaseMap findCaseMapByCase(ICase caze) {

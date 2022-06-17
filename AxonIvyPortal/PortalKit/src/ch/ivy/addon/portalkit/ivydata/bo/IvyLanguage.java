@@ -29,7 +29,7 @@ public class IvyLanguage {
 
   private String getDisplayLanguage(String item) {
     Locale displayedLocale = Locale.forLanguageTag(item);
-    return displayedLocale.getDisplayLanguage(Ivy.session().getContentLocale());
+    return displayedLocale.getDisplayName(Ivy.session().getContentLocale());
   }
 
   /**
