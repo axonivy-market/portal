@@ -73,7 +73,7 @@ If your application is using Iframe approach of Portal, set attribute ``isOpenIn
 
 .. note:: 
 
-      If you use this component in an Iframe, you must run set parameter
+      If you use this component in an Iframe, you must set parameter
       ``isOpenInIframe`` to ``true``. For example:
 
 .. code-block:: html
@@ -829,7 +829,7 @@ Introduction
 -  This component is used for choosing a role from a role list defined by a role name list.
    If you don't define role name list, all roles will be loaded.
    It includes 1 label, 1 autocomplete and 1 message element to display message related to that autocomplete element.
--  This component is a part of project portal-component, which is independent from Portal. You don't need to import Portal projects to use it.
+-  This component is a part of ``portal-component`` project, which is independent from Portal. You don't need to import Portal projects to use it.
 
 How to use
 ^^^^^^^^^^
@@ -867,7 +867,7 @@ Code example:
          isRequired="true" floatingLabel="true" />
 
 .. tip::
-   Autocomplete element of role selection component allows inserting children and ajax event (Refer to ``RoleSelection.xhtml`` of portal-component project).
+   Autocomplete element of role selection component allows inserting children and ajax event (Refer to ``RoleSelection.xhtml`` of ``portal-component`` project).
    Any child in RoleSelection component will be re-parented into this autocomplete at the point of ``insertChildren`` tag.
    We introduce a facet named ``event`` for autocomplete so that ajax event can be nested.
 
