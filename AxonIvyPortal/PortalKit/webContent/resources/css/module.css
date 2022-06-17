@@ -5273,6 +5273,7 @@ body .ui-widget-header.portal-breadcrumb a {
 	display: flex;
 	float: left;
 	margin-left: 0;
+	line-height: 1.65;
 }
 
 .layout-wrapper .layout-main .layout-topbar .layout-topbar-menu-wrapper .topbar-menu>li.breadcrumb-container >form {
