@@ -100,7 +100,7 @@
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}" styleClass="more-column ui-sm-hidden">
           <div class="case-header-action-cell">
             <ic:ch.ivy.addon.portalkit.component.ActionStep id="action-step-component" actionLinkId="action-steps-menu"
-              actionLinkStyleClass="ui-button-text-only" case="#{case}" isAdhocExcluded="true" inFrame="#{cc.attrs.inFrame}"/>
+              actionLinkStyleClass="ui-button-text-only" case="#{case}" isAdhocExcluded="true" inFrame="#{cc.attrs.inFrame}" onDestroyComplete="PF('destroy-case-dialog').show()"/>
           </div>
         </p:column>
       </p:dataTable>
