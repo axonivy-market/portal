@@ -14,7 +14,6 @@ import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivy.addon.portalkit.publicapi.TaskAPI;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.security.IUser;
@@ -151,9 +150,6 @@ public final class TaskUtils {
         IUser user = Ivy.session().getSessionUser();
         if (user == null) {
           return null;
-        }
-        for (IRole role : user.getRoles()) {
-          taskQuery2 = taskQuery2.where().or().roleIsInvolved(role);
         }
         return Ivy.wf().getTaskQueryExecutor().getFirstResult(taskQuery1.where().and(taskQuery2));
       } catch (Exception e) {
