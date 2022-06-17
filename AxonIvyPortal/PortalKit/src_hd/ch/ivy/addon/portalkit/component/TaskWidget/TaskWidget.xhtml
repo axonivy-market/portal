@@ -183,7 +183,7 @@
                     value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
                     icon="#{visibilityBean.generateButtonIcon('si si-check-1')}"
                     update="@(.filter-container) @(.filter-selection-form) @(.task-view-container) #{cc.clientId}:hidden-task-count"
-                    oncomplete="taskWidget.setupScrollbar(); taskWidget.updateTaskCountToBreadcrumb();"
+                    oncomplete="taskWidget.showTaskFilter(); taskWidget.setupScrollbar(); taskWidget.updateTaskCountToBreadcrumb();"
                     process="@(filter-add-form)"
                     actionListener="#{data.dataModel.updateSelectedFilter}" />
                 </h:panelGroup>
