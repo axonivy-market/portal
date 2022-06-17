@@ -1,23 +1,24 @@
 .. _customization-navigateback:
 
-Navigate back
+Navigate Back
 =============
 
 .. _customization-navigateback.introduction:
 
-When a task finishes, Portal will navigate back to previous page. For
-example if a task is started from homepage, go back to homepage.
-In case task is started from task list, go back to task list
-after finish.
+When a task finishes, the Portal navigates back to the previous page. For
+example, if a task is started from the homepage, it redirects to the homepage.
+If a task is started from a task list, it redirects to that task list
+after the task is finished.
 
-In case your project has navigation button without finishing a task, e.g Cancel
+If your project has a navigation button that does not finish a task, e.g Cancel,
+you have to implement the following:
 
-In IFrame:
+If using an IFrame:
 
 -  Previous page: call ``navigateToPortalEndPage()`` from class ``PortalNavigatorInFrameAPI``.
--  A specific url: call ``navigateToUrl(String url)`` from class ``PortalNavigatorInFrameAPI``.
+-  A specific URL: call ``navigateToUrl(String url)`` from class ``PortalNavigatorInFrameAPI``.
 
-Not in IFrame:
+Without IFrame:
 
 -  Home page: call ``navigateToPortalHome()`` from class ``PortalNavigatorAPI``.
 -  Previous page: call ``navigateToPortalEndPage()`` from class ``PortalNavigatorAPI``.

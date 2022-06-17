@@ -8,20 +8,19 @@ Change password process
 Introduction
 ------------
 
-In Portal, the ``Change password process`` helps users to change their
-current password, you can customize this process to add more handling
-when user change password.
+In Portal, the ``Change password process`` allows users to change their current
+password. You can customize this process, e.g. to check new passwords against
+leaked passwords databases when the user changes his password.
 
 .. _customization-change-password-process-customization:
 
 Customization
 -------------
 
-Create a callable sub process in your project with the
-``changePassword(String,String)`` signature, make sure this signature is
-unique in your application. It must return an enums
-``ChangePasswordStatus`` and the ``message`` showing to user (you can
-override this process in PortalKit):
+Create a callable subprocess in your project with the signature
+``changePassword(String,String)``. Make sure that this signature is unique in
+your application. It has to return an enumeration ``ChangePasswordStatus`` and the
+``message`` to be shown to the user. You can override this process in PortalKit.
 
 |change-password-process|
 

@@ -1,17 +1,20 @@
 .. _page-header-footer:
 
-Page header and footer
+Page Header And Footer
 ======================
 
-The ``PageHeader`` component shows header and the ``PageFooter`` component shows footer in every page.
+The components ``PageHeader`` and ``PageFooter``show the header and footer applied to every Portal page.
 
 |page-header-footer|
 
-You could add header and footer to every page by overriding the ``PageHeader`` and ``PageFooter`` Html Dialogs.
-Refer to :dev-url:`Axon Ivy HtmlOverride wizard </doc/nightly/designer-guide/how-to/overrides.html?#override-new-wizard>` to override HTML dialogs.
+You can add a customized header and footer to every page by overriding the
+``PageHeader`` and ``PageFooter`` Html Dialogs. 
+Refer to :dev-url:`Axon Ivy HtmlOverride wizard
+</doc/nightly/designer-guide/how-to/overrides.html?#override-new-wizard>` to
+override HTML dialogs.
 
-If you use Case Scope, you need to copy the ``PortalStart`` process from ``PortalTemplate`` to your project and
-it is ensured that the process request is issued through your project instead of PortalTemplate
-
+If you use Case Scope, you need to copy the ``PortalStart`` process from
+``PortalTemplate`` to your project. This ensures that the process request is
+issued through your project instead of the (standard) PortalTemplate.
 
 .. |page-header-footer| image:: ../../screenshots/dashboard/page-header-footer.png
