@@ -41,9 +41,9 @@ Cs0 f2 expr out #txt
 Cs0 f2 109 96 307 96 #arcP
 Cs0 f3 guid 16DCE2B01E7553A8 #txt
 Cs0 f3 method openDetails(ch.ivyteam.ivy.workflow.ICase,Boolean) #txt
-Cs0 f3 inParameterDecl '<ch.ivyteam.ivy.workflow.ICase iCase,Boolean isCallFromProcessHistory> param;' #txt
+Cs0 f3 inParameterDecl '<ch.ivyteam.ivy.workflow.ICase iCase,Boolean isOpenInFrame> param;' #txt
 Cs0 f3 inParameterMapAction 'out.iCase=param.iCase;
-out.isCallFromProcessHistory=param.isCallFromProcessHistory;
+out.isOpenInFrame=param.isOpenInFrame;
 ' #txt
 Cs0 f3 outParameterDecl '<> result;' #txt
 Cs0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -94,7 +94,7 @@ Cs0 f6 224 192 296 192 #arcP
 Cs0 f6 0 0.4583333333333333 0 8 #arcLabel
 Cs0 f10 actionTable 'out=in;
 ' #txt
-Cs0 f10 actionCode 'import javax.faces.context.FacesContext;
+Cs0 f10 actionCode 'import com.axonivy.portal.component.util.PortalNavigatorInFrameAPI;
 import ch.ivy.addon.portalkit.util.CaseUtils;
 import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
@@ -103,8 +103,7 @@ String customizePortalFriendlyRequestPath = SecurityServiceUtils.findFriendlyReq
 if (StringUtils.isEmpty(customizePortalFriendlyRequestPath)) {
   customizePortalFriendlyRequestPath = "Start Processes/PortalStart/CaseDetailsPage.ivp";
 }
-    
-FacesContext.getCurrentInstance().getExternalContext().redirect(CaseUtils.getProcessStartUriWithCaseParameters(in.iCase, customizePortalFriendlyRequestPath));' #txt
+PortalNavigatorInFrameAPI.navigateToUrl(CaseUtils.getProcessStartUriWithCaseParameters(in.iCase, customizePortalFriendlyRequestPath));' #txt
 Cs0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -116,7 +115,7 @@ case details</name>
 Cs0 f10 296 298 112 44 -33 -16 #rect
 Cs0 f10 @|StepIcon #fIcon
 Cs0 f11 expr in #txt
-Cs0 f11 outCond 'in.isCallFromProcessHistory == true' #txt
+Cs0 f11 outCond 'in.isOpenInFrame == true' #txt
 Cs0 f11 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
