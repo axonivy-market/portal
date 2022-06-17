@@ -873,5 +873,50 @@
         { "id" : "f68", "to" : "f3", "via" : [ { "x" : 808, "y" : 232 }, { "x" : 1080, "y" : 232 } ], "condition" : "in.isFinishLoadCharts" },
         { "id" : "f67", "to" : "S10" }
       ]
+    }, {
+      "id" : "f58",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "regenerateChartModel",
+      "config" : {
+        "callSignature" : "regenerateChartModel",
+        "input" : {
+          "params" : [
+            { "name" : "statisticChartList", "type" : "java.util.List<ch.ivy.addon.portalkit.statistics.StatisticChart>" }
+          ],
+          "map" : {
+            "out.statisticChartList" : "param.statisticChartList"
+          }
+        },
+        "guid" : "18142119F2A1776C"
+      },
+      "visual" : {
+        "at" : { "x" : 88, "y" : 872 },
+        "labelOffset" : { "x" : -25, "y" : 15 }
+      },
+      "connect" : { "id" : "f74", "to" : "f71" }
+    }, {
+      "id" : "f71",
+      "type" : "Script",
+      "name" : "Generate chart",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.service.StatisticService;",
+            "",
+            "StatisticService service = StatisticService.getInstance();",
+            "service.generateChartModelForStatisticCharts(in.statisticChartList);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 312, "y" : 872 }
+      },
+      "connect" : { "id" : "f75", "to" : "f73" }
+    }, {
+      "id" : "f73",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 464, "y" : 872 }
+      }
     } ]
 }

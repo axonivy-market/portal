@@ -61,4 +61,7 @@ Portal.UserMenu.HideLogoutMenu,FALSE,"If true, the logout button on top menu wil
 Portal.ProcessViewer,TRUE,"Set this property to true to enable process viewer option in Task/Case actions."
 Portal.Histories.HideRelatedCaseInfo,FALSE,"If true, case history does not display the related case information in the history table."
 Portal.ShowErrorLogToConsole,FALSE,"If true, write error log to browser console."
-Portal.ShowAvatar,TRUE,"For switch on/off the display of user/role avatars."
+Portal.ShowAvatar,TRUE,"If true, switch on the display of user/role avatars."
+Portal.StatisticChartsPolling,0,"| Statistic charts polling in seconds, Default value is 0.
+| If the value is less than 10, live chart polling is disabled.
+| If the value is more than or equal to 10, live chart polling is enabled."
