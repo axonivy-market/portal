@@ -997,7 +997,7 @@ span.new-widget-dialog__icon.si {
 
 @media screen and (max-width: 40em) {
   .dashboard-processes-container--combined .process-widget--combined {
-    height: calc(100% - 40rem);
+    height: 230px;
     margin-top: 0 !important;
   }
 
