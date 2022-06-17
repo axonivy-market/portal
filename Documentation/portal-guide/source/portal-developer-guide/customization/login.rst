@@ -3,13 +3,13 @@
 Login
 =====
 
-Login page
+Login Page
 ----------
 
 |login-default|
 
-To replace default login page, extend existing templates with
-``ui:define name="login"`` to define your new login component like below
+To replace the default login page, add ``ui:define name="login"`` to the
+existing template to define your new login component as shown below
 
 .. code-block:: html
 
@@ -20,24 +20,28 @@ To replace default login page, extend existing templates with
     </ui:composition>
 ..
 
-Login background
+Login Background
 ----------------
-To change the default login background image, simply add or replace the image in ``configuration/applications/<APPNAME>/branding/background.jpg`` by your image.
+To change the default login background image, simply add or replace the image in
+``configuration/applications/<APPNAME>/branding/background.jpg``with your image.
 
-Refer to :dev-url:`Engine Branding </doc/nightly/designer-guide/user-interface/branding/branding-engine.html#>` for more detail.
+Refer to :dev-url:`Engine Branding </doc/nightly/designer-guide/user-interface/branding/branding-engine.html#>` for details.
 
 .. tip::
-  - We recommend using an image with size is 1920x1080 pixels.
+  - We recommend using an image with 1920x1080 pixels.
 
-  - Images are supported with every known extension, e.g. ``.jpg``, ``.png``, ``.svg``. However, if there are multiple files with different extensions (e.g. a ``background.jpg`` and a ``background.png``) in the same directory, the first found will be chosen.
+  - Portal supports ``.jpg``, ``.png``, ``.svg`` extensions for background
+    images. If there are multiple files with different extensions (e.g.
+    a ``background.jpg`` and a ``background.png``) in the same directory, the
+    first found will be chosen.
 
-Login error page
+Login Error Page
 ----------------
 
 |login-error-page|
 
-This page is to show error message instead of Login page when you are using external authentication
-and the user is not created in your application user list.
+This page is to show an error message instead of the Login page when you are using external authentication
+and the user is not available in your application user list.
 
 To replace default login error page, extend existing templates with
 ``ui:define name="loginErrorPage"`` to define your new login error component like below
