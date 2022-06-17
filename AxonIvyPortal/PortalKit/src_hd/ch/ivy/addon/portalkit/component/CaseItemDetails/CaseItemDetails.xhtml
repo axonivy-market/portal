@@ -177,7 +177,7 @@
         onclick="PF('destroy-case-dialog').hide();" styleClass="u-mar-right-15" />
       <p:commandButton id="confirm-destruction" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}"
         icon="#{visibilityBean.generateButtonIcon('si si-remove')}"
-        actionListener="#{caseWidgetBean.destroyCase(case)}"
+        actionListener="#{caseWidgetBean.destroyCase(caseWidgetBean.selectedCase)}"
         oncomplete="backToPrevPage(#{caseWidgetBean.willNavigateBack()});" />
     </ui:define>
   </ui:decorate>
