@@ -12,6 +12,7 @@
 	<cc:attribute name="scrollHeight" />
 	<cc:attribute name="emptyMessage"
 		default="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/defaultEmptyMessage')}" />
+	<cc:attribute name="isOpenInFrame" default="false" />
 </cc:interface>
 
 <cc:implementation>
@@ -69,7 +70,8 @@
 			scrollHeight="#{cc.attrs.scrollHeight}" chunkSize="#{cc.attrs.chunkSize}" lazy="true" mode="inline"
 			rowIndexVar="rowIndex" styleClass="js-case-list" buffer="70" widgetVar="process-history-scroller">
 			<ic:ch.ivy.addon.portalkit.component.CaseItem case="#{case}" id="case-item" enableCaseAction="false"
-				itemStyleClass="#{rowIndex % 2 == 0 ? 'case-even-row' : 'case-odd-row'}">
+				itemStyleClass="#{rowIndex % 2 == 0 ? 'case-even-row' : 'case-odd-row'}"
+				isOpenInFrame="#{cc.attrs.isOpenInFrame == 'true' ? true : false}">
 				<f:facet name="caseHeader">
 					<h:panelGroup class="case-header-name-desc-cell u-truncate-text" layout="block">
 						<ic:ch.ivy.addon.portalkit.component.cases.column.CaseName case="#{case}" 

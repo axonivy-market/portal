@@ -11,6 +11,7 @@
     /Functional-Processes.DeleteDocumentItem "Functional Processes/DeleteDocumentItemOverride"
     /Functional-Processes.AssignRolesGroupChat "Functional Processes/AssignRolesGroupChatOverride"
     /Functional-Processes.InitializeTaskDataModel "Functional Processes/InitializeTaskDataModelOverride"
+    /Functional-Processes.OpenCaseDetailsHook "Functional Processes/OpenCaseDetailsHookOverride"
     /Functional-Processes.DownloadDocumentItem "Functional Processes/DownloadDocumentItemOverride"
     /Functional-Processes.GetGroupChatParams "Functional Processes/GetGroupChatParamsOverride"
     /Functional-Processes.OpenPortalSearch "Functional Processes/OpenPortalSearchOverride"
