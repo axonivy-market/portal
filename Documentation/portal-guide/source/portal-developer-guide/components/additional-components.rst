@@ -58,6 +58,8 @@ This component using style of Portal, so if you want to customize its style,
 please refer to :ref:`customization-portal-logos-and-colors-change-portal-background`
 for more details.
 
+If your application is using Iframe approach of Portal, set attribute ``isOpenInFrame`` to ``true``.
+
 .. note:: 
 
       If you use this component in a dialog, you must run this script
