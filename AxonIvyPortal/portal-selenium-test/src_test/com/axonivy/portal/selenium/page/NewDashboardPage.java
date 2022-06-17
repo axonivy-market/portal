@@ -682,6 +682,14 @@ public class NewDashboardPage extends TemplatePage {
     $("div[id$='create-new-dashboard-section']").$("a[id$='" + templateIndex + ":template']").click();
     inputCreateDashboardDialog(newName, newDescription, permissions);
   }
+  
+  public void reorderPublicDashboard() {
+    $("a[id$=':reorder-public-dashboard']").waitUntil(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+  }
+  
+  public void reorderPrivateDashboard() {
+    $("a[id$=':reorder-private-dashboard']").waitUntil(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+  }
 
   private void inputCreateDashboardDialog(String newName, String newDescription, List<String> permissions) {
     SelenideElement createDashboardDialog = $("div[id$='dashboard-detail-dialog']");
@@ -732,6 +740,15 @@ public class NewDashboardPage extends TemplatePage {
 
   public ElementsCollection getDashboardCollection() {
     return $$("a.dashboard__title");
+  }
+  
+  public SelenideElement getDashboardActive() {
+    return $("a.dashboard__title--active").waitUntil(appear, DEFAULT_TIMEOUT);
+  }
+  
+  public void selectDashboard(int index) {
+    $$("a.dashboard__title").get(index).shouldBe(getClickableCondition()).click();
+    $("a.dashboard__title--active").waitUntil(appear, DEFAULT_TIMEOUT);
   }
 
   public void waitPageDisplay() {
