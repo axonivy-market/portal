@@ -82,11 +82,9 @@ Ps0 f6 699 147 26 26 0 12 #rect
 Ps0 f6 @|UdProcessEndIcon #fIcon
 Ps0 f9 actionTable 'out=in;
 ' #txt
-Ps0 f9 actionCode 'import org.primefaces.context.RequestContext;
-import org.primefaces.PrimeFaces;
+Ps0 f9 actionCode 'import com.axonivy.portal.component.util.PortalNavigatorInFrameAPI;
 
-ivy.log.error("navigateToCaseDetailsInFrame(" + in.caseDetailsUrl + ")");
-PrimeFaces.current().executeScript("navigateToCaseDetailsInFrame(''" + in.caseDetailsUrl + "'')");' #txt
+PortalNavigatorInFrameAPI.navigateToUrl(in.caseDetailsUrl);' #txt
 Ps0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

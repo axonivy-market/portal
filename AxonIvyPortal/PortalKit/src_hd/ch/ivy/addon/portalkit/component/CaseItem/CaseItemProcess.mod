@@ -49,11 +49,11 @@ Cs0 f3 outParameterDecl '<> result;' #txt
 Cs0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>openDetails(iCase)</name>
+        <name>openDetails(ICase, Boolean)</name>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f3 83 179 26 26 -25 15 #rect
+Cs0 f3 83 179 26 26 -61 19 #rect
 Cs0 f3 @|UdMethodIcon #fIcon
 Cs0 f5 processCall 'Functional Processes/OpenPortalCaseDetailsHook:call(ch.ivyteam.ivy.workflow.ICase,Boolean)' #txt
 Cs0 f5 requestActionDecl '<ch.ivyteam.ivy.workflow.ICase caseData,Boolean isShowBackButton> param;' #txt

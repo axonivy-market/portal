@@ -187,7 +187,17 @@ Migrate from Deprecated Process History
 
 3. From the project you want to use the new component, override the subprocess ``OpenCaseDetailsHook.mod``.
 
-4. If you use Portal, copy content of the subprocess ``OpenPortalCaseDetails.mod`` in ``PortalTemplate`` project to the overrided subprocess ``OpenCaseDetailsHook.mod``.
+4. If your application using Portal without IFrame:
+   
+   - Copy content of the subprocess ``OpenPortalCaseDetails.mod`` in ``PortalTemplate`` project to the overrided subprocess ``OpenCaseDetailsHook.mod``.
+
+5. If your application using Portal with IFrame:
+   
+   - Set attribute ``isOpenInFrame`` to ``true``.
+   
+   - Modify the subprocess ``OpenCaseDetailsHook.mod`` to generate ``caseDetailsUrl``. Process History component will navigate to this URL when user click on case item.
+   
+   - Please refer to subprocess ``OpenCaseDetailsHookOverride.mod`` in ``PortalExamples`` project to see how to generate this link from Portal.
 
 .. _components-additional-component-task-analysis:
 
