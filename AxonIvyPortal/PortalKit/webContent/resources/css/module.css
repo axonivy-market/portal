@@ -4305,3 +4305,14 @@ body .ui-dialog.ui-widget.export-express-dialog {
 .security-member-tooltip .tooltip-body.no-user {
   padding-left: 0;
 }
+
+/** Case information iframe ---- Start-----**/
+.iframe-body .layout-main,
+.iframe-body .layout-content {
+  height: 100%;
+}
+
+.iframe-body .layout-content {
+  padding: 0 10px;
+}
+/** Case information iframe ---- end-----**/

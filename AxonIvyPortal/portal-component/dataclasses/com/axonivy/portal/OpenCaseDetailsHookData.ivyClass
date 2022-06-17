@@ -1,0 +1,6 @@
+OpenCaseDetailsHookData #class
+com.axonivy.portal #namespace
+caseView ch.ivyteam.ivy.workflow.ICase #field
+isShowBackButton Boolean #field
+isOpenInFrame Boolean #field
+caseDetailsUrl String #field

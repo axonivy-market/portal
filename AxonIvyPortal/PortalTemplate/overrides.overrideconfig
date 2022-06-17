@@ -1,4 +1,5 @@
 {
+  /HTML_DIALOG *
   /PROCESS {
     /Functional-Processes.Navigator "Functional Processes/NavigatorOverride"
     /Functional-Processes.OpenPortalCaseDetailsHook "Functional Processes/OpenPortalCaseDetails"

@@ -58,6 +58,8 @@ This component using style of Portal, so if you want to customize its style,
 please refer to :ref:`customization-portal-logos-and-colors-change-portal-background`
 for more details.
 
+If your application is using Iframe approach of Portal, set attribute ``isOpenInFrame`` to ``true``.
+
 .. note:: 
 
       If you use this component in a dialog, you must run this script
@@ -68,6 +70,15 @@ for more details.
 			<p:dialog widgetVar="process-history-dialog" id="process-history-dialog" width="800" height="500" header="Process history of Resource A247" onShow="processHistory.setup();">
 			  <ic:ch.ivy.addon.portal.component.ProcessHistory businessEntityId="resourceA247" chunkSize="6" scrollHeight="400" />
 			</p:dialog>
+
+.. note:: 
+
+      If you use this component in an Iframe, you must set parameter
+      ``isOpenInIframe`` to ``true``. For example:
+
+.. code-block:: html
+
+      <ic:ch.ivy.addon.portal.component.ProcessHistory businessEntityId="resourceA247" isOpenInIframe="true" />
 
 .. important:: 
    
@@ -150,6 +161,8 @@ Attributes of this component:
 
 Please refer to ``ProcessHistoryExample`` process in ``portal-component-example`` project for more details.
 
+Please refer to ``ProcessHistoryComponent`` process in  ``PortalExamples`` for more details how to customize new Process History with Portal.
+
 If you want to customize its style,
 please refer to :ref:`Styles Customization <components-additional-components-styles-customization>`
 for more details.
@@ -174,6 +187,19 @@ Migrate from Deprecated Process History
 
 2. Consider updating value of new attributes ``showCasesOfOwner`` and ``dateTimePattern`` by your business.
 
+3. From the project you want to use the new component, override the subprocess ``OpenCaseDetailsHook.mod``.
+
+4. If your application using Portal without IFrame:
+   
+   - Copy content of the subprocess ``OpenPortalCaseDetails.mod`` in ``PortalTemplate`` project to the overrided subprocess ``OpenCaseDetailsHook.mod``.
+
+5. If your application using Portal with IFrame:
+   
+   - Set attribute ``isOpenInFrame`` to ``true``.
+   
+   - Modify the subprocess ``OpenCaseDetailsHook.mod`` to generate ``caseDetailsUrl``. Process History component will navigate to this URL when user click on case item.
+   
+   - Please refer to subprocess ``OpenCaseDetailsHookOverride.mod`` in ``PortalExamples`` project to see how to generate this link from Portal.
 
 .. _components-additional-component-task-analysis:
 
@@ -803,7 +829,7 @@ Introduction
 -  This component is used for choosing a role from a role list defined by a role name list.
    If you don't define role name list, all roles will be loaded.
    It includes 1 label, 1 autocomplete and 1 message element to display message related to that autocomplete element.
--  This component is a part of project portal-component, which is independent from Portal. You don't need to import Portal projects to use it.
+-  This component is a part of ``portal-component`` project, which is independent from Portal. You don't need to import Portal projects to use it.
 
 How to use
 ^^^^^^^^^^
@@ -841,7 +867,7 @@ Code example:
          isRequired="true" floatingLabel="true" />
 
 .. tip::
-   Autocomplete element of role selection component allows inserting children and ajax event (Refer to ``RoleSelection.xhtml`` of portal-component project).
+   Autocomplete element of role selection component allows inserting children and ajax event (Refer to ``RoleSelection.xhtml`` of ``portal-component`` project).
    Any child in RoleSelection component will be re-parented into this autocomplete at the point of ``insertChildren`` tag.
    We introduce a facet named ``event`` for autocomplete so that ajax event can be nested.
 
