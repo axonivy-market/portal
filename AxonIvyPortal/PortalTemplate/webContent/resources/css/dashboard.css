@@ -1226,3 +1226,21 @@ span.new-widget-dialog__icon.si {
 .has-avatar .case-info-avatar {
   float: unset;
 }
+
+.dashboard-template-name-message {
+  padding: 2px 5px;
+  background: var(--ivy-primary-color-light);
+  border: 1px solid var(--ivy-primary-color);
+  border-radius: 5px;
+  margin: 5px auto;
+  font-size: var(--small-font-size);
+}
+
+.restore-button-group {
+  margin: auto;
+  padding: 10px 0;
+}
+
+.restore-dashboard-tooltip {
+  max-width: 300px;
+}

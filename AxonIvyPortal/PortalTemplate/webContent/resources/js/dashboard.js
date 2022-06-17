@@ -93,6 +93,11 @@ function toggleCategoryInfo(e) {
   categoryToggle.toggleClass("si-add-circle").toggleClass("si-subtract-circle");
 }
 
+function disabledResetDashboardActions() {
+  PF('reset-dashboard-button').disable();
+  $('.cancel-reset-dashboard-link').addClass('ui-state-disabled');
+}
+
 function removeWidgetContent(widgetId) {
   var removeWidgetId = '.grid-stack-item[gs-id="' + widgetId + '"]';
   $(removeWidgetId).remove();
