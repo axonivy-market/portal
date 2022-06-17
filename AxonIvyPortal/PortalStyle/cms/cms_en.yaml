@@ -264,7 +264,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       showProcessInformation: Set to false to disable link to Show Information of process on Processes page (grid mode) and Case Details.
       showTaskDurationTime: For switch on/off the display of the duration time in task details page.
       showUserGuide: 'Activates the interactive user guide "first steps" in the portal at first login. '
-      statisticChartsPolling: Set this property less than 10 to disable updating live statistic chart with polling. Default value is 0, It means live chart polling is disable, Set this property more than or equal 10 to enable updating live chart
+      statisticChartsPolling: Set this property less than 10 to disable updating live statistic chart with polling. Default value is 0, It means live chart polling is disabled, Set this property more than or equal 10 to enable updating live chart
       uploadDocumentWhiteListExtensionNote: 'Leave value empty if you allow all extensions. If just allow some extensions, list out extensions here, separated by comma. Example: pdf, txt, doc, docx.'
     key: Key
     link: Link
