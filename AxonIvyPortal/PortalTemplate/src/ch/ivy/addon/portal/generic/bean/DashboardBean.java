@@ -28,6 +28,7 @@ import ch.ivy.addon.portalkit.dto.dashboard.CompactProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.CustomDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardOrder;
+import ch.ivy.addon.portalkit.dto.dashboard.DashboardTemplate;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.SingleProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
@@ -38,6 +39,7 @@ import ch.ivy.addon.portalkit.enums.DashboardCustomWidgetType;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
+import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.enums.TaskEmptyMessage;
 import ch.ivy.addon.portalkit.ivydata.service.impl.ProcessService;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
@@ -79,6 +81,7 @@ public class DashboardBean implements Serializable {
   private boolean isRunningTaskWhenClickingOnTaskInList;
   private CaseEmptyMessage noCasesMessage;
   private TaskEmptyMessage noTasksMessage;
+  private List<DashboardTemplate> dashboardTemplates;
 
   @PostConstruct
   public void init() {
@@ -89,7 +92,14 @@ public class DashboardBean implements Serializable {
     isReadOnlyMode = true;
     dashboards = collectDashboards();
     if (CollectionUtils.isNotEmpty(dashboards)) {
-      selectedDashboard = dashboards.get(0);
+      selectedDashboardId = readDashboardFromSession();
+      currentDashboardIndex = findIndexOfDashboardById(selectedDashboardId);
+      selectedDashboard = dashboards.get(currentDashboardIndex);
+      // can not find dashboard by dashboard id session in view mode
+      if (StringUtils.isBlank(selectedDashboardId)
+          || (!selectedDashboardId.equalsIgnoreCase(selectedDashboard.getId()) && dashboards.size() > 1)) {
+        storeDashboardInSession(selectedDashboard.getId());
+      }
     }
     buildWidgetModels(selectedDashboard);
     isRunningTaskWhenClickingOnTaskInList = new GlobalSettingService()
@@ -114,6 +124,10 @@ public class DashboardBean implements Serializable {
     collectedDashboards.addAll(idToDashboard.values());
 
     return collectedDashboards;
+  }
+
+  public void loadDashboardTemplate() {
+    this.dashboardTemplates = DashboardUtils.getDashboardTemplates();
   }
 
   protected boolean isMobileDevice() {
@@ -297,13 +311,14 @@ public class DashboardBean implements Serializable {
   public void onDashboardChange(int index) {
     currentDashboardIndex = index;
     selectedDashboard = dashboards.get(index);
+    storeDashboardInSession(selectedDashboard.getId());
     buildWidgetModels(selectedDashboard);
   }
 
   public void onDashboardChangeByDropdown() {
     if (selectedDashboardId != null) {
-      currentDashboardIndex = dashboards.indexOf(dashboards.stream()
-          .filter(dashboard -> dashboard.getId().contentEquals(selectedDashboardId)).findFirst().orElse(null));
+      currentDashboardIndex = findIndexOfDashboardById(selectedDashboardId);
+      storeDashboardInSession(selectedDashboardId);
       selectedDashboard = dashboards.get(currentDashboardIndex);
       buildWidgetModels(selectedDashboard);
     }
@@ -475,5 +490,36 @@ public class DashboardBean implements Serializable {
       noTasksMessage = messages.get(index);
     }
     return noTasksMessage;
+  }
+
+  public List<DashboardTemplate> getDashboardTemplates() {
+    if (CollectionUtils.isEmpty(dashboardTemplates)) {
+      loadDashboardTemplate();
+    }
+    return dashboardTemplates;
+  }
+
+  public void setDashboardTemplates(List<DashboardTemplate> dashboardTemplates) {
+    this.dashboardTemplates = dashboardTemplates;
+  }
+  
+  private String readDashboardFromSession() {
+    return (String) Ivy.session().getAttribute(SessionAttribute.SECLTED_DASHBOARD_ID.toString());
+  }
+  
+  private void storeDashboardInSession(String id) {
+    Ivy.session().setAttribute(SessionAttribute.SECLTED_DASHBOARD_ID.toString(), id);
+  }
+  
+  private int findIndexOfDashboardById(String selectedDashboardId) {
+    int currentDashboardIndex = 0;
+    if(StringUtils.isNotBlank(selectedDashboardId)) {
+      currentDashboardIndex = dashboards.indexOf(dashboards.stream()
+          .filter(dashboard -> dashboard.getId().contentEquals(selectedDashboardId)).findFirst().orElse(null));
+      if(currentDashboardIndex == -1) {
+        currentDashboardIndex = 0;
+      }
+    }
+    return currentDashboardIndex;
   }
 }
