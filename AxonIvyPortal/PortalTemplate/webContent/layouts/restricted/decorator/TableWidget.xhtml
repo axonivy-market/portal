@@ -216,7 +216,7 @@
         onShow="loadUserFilters#{index}(); #{onFilterOverlayPanelShow};">
         <h:form id="filter-form-#{index}">
           <h:panelGroup id="filter-overlaypanel-content-#{index}" styleClass="ui-g" layout="block">
-            <h:panelGroup id="saved-filters-container" styleClass="ui-g-4 u-padding-0 saved-filter" layout="block">
+            <h:panelGroup id="saved-filters-container" styleClass="ui-g-4 u-padding-0 saved-filter ui-sm-12" layout="block">
               <ui:include src="/layouts/restricted/includes/WidgetFilter.xhtml">
                 <ui:param name="widget" value="#{widget}" />
                 <ui:param name="index" value="#{index}" />
@@ -225,7 +225,7 @@
               </ui:include>
             </h:panelGroup>
   
-            <h:panelGroup id="widget-filter-content" styleClass="ui-g-8 u-padding-0"
+            <h:panelGroup id="widget-filter-content" styleClass="ui-g-8 u-padding-0 ui-sm-12"
               layout="block">
               <div class="ui-g-12 filter-overlay-panel__header">
                 <strong class="ui-g-12">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/Filter/FilterOptionHeader')}</strong>
@@ -284,7 +284,7 @@
         onShow="loadExpandedUserFilters#{index}(); #{onFilterOverlayPanelShow};">
         <h:form id="expanded-filter-form-#{index}">
           <h:panelGroup id="expanded-filter-overlaypanel-content-#{index}" styleClass="ui-g" layout="block">
-            <h:panelGroup id="saved-filters-container" styleClass="ui-g-4 u-padding-0 saved-filter" layout="block">
+            <h:panelGroup id="saved-filters-container" styleClass="ui-g-4 u-padding-0 saved-filter ui-sm-12" layout="block">
               <ui:include src="/layouts/restricted/includes/WidgetFilter.xhtml">
                 <ui:param name="widget" value="#{widget}" />
                 <ui:param name="index" value="#{index}" />
@@ -293,7 +293,7 @@
               </ui:include>
             </h:panelGroup>
   
-            <h:panelGroup id="widget-filter-content" styleClass="ui-g-8 u-padding-0"
+            <h:panelGroup id="widget-filter-content" styleClass="ui-g-8 u-padding-0 ui-sm-12"
               layout="block">
               <div class="ui-g-12 filter-overlay-panel__header">
                 <strong class="ui-g-12">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/Filter/FilterOptionHeader')}</strong>
