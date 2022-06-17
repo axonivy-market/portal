@@ -1,21 +1,24 @@
 .. _configure-new-dashboard-custom-widget:
 
-Configure custom widget
+Configure Custom Widget
 ========================
 
-Define an Ivy process for the custom widget
+.. _define-an-ivy-process-for-the-custom-widget:
+
+Define An Ivy Process For The Custom Widget
 -------------------------------------------
 
-The custom widget can display a predefined Ivy process inside it.
-This solution allows users to work directly on Portal Dashboard.
+The custom widget can display a predefined Ivy process. This solution allows
+users to work directly on the Portal Dashboard instead of opening another page.
 
-First, the developer needs to create a specific process for Portal Dashboard:
+First, the developer needs to create a specific process for the Portal
+Dashboard:
 
-   Set value for process' custom field ``isDashboardProcess`` to true.
+   Set custom field ``isDashboardProcess`` for the process to true.
 
    |dashboard-custom-field|
 
-   Parameters for the process must be a String variable and named in a special format: ``type__name``
+   Parameters for the process have to be a String variable and named in a special format: ``type__name``
 
    |dashboard-custom-params|
 
@@ -40,11 +43,11 @@ First, the developer needs to create a specific process for Portal Dashboard:
 
    |dashboard-custom-widget-configuration|
 
-Define a custom widget using JSON
+Define A Custom Widget Using JSON
 ---------------------------------
 
-Custom widget of Portal dashboard is a widget that allows users to interact
-with an external webpage or an Ivy process on the dashboard through iframes.
+A custom dashboard widget allows users to interact with an external webpage or
+an Ivy process on the dashboard through iframes.
 
 Below is a standard JSON definition of the custom widget in the Portal dashboard.
 
@@ -63,24 +66,26 @@ Below is a standard JSON definition of the custom widget in the Portal dashboard
       }
    ..
 
-the basic structure of JSON of custom widget
+The basic JSON structure of the custom widget
 
-   ``type``: type of widget. Use ``custom`` to mark that this widget is a custom widget
+   ``type``: type of widget. Use ``custom`` to mark that this widget is a custom
+   widget.
 
-   ``id``: ID of the widget
+   ``id``: ID of the widget.
 
-   ``name``: Name of the widget on UI
+   ``name``: Name of the widget on UI.
 
-   ``data``: data for customization. Please refer to below sections to understand how to use this field.
+   ``data``: data for customization. Please refer to the following sections to
+   understand how to use this field.
 
-Define External webpage
+Define External Webpage
 -----------------------
 
-The custom widget can allow users to embed an external webpage into Portal dashboard.
-This feature is extremely useful for a company using another system besides Axon Ivy.
-Now users can interact with multiple systems on the Portal dashboard.
+You can use the custom widget to embed an external webpage into the Portal dashboard.
+This feature is extremely useful for a company using other applications besides Axon Ivy.
+Now users can interact with multiple systems from the Portal dashboard.
 
-JSON structure
+The JSON structure is the following:
 
    .. code-block:: html
 
@@ -97,17 +102,18 @@ JSON structure
       }
    ..
 
-Attribute explanation
+Attribute explanation:
 
    ``url``: the URL of the external webpage you want to show.
 
 .. warning::
-	Some external website restricted to load in iFrame. So please be aware of external website security policy when you use it in custom widget.
+	Some external websites do not allow to be loaded in IFrames. You have to make sure 
+   that their security policy allows the embedding if you want to use these pages in your custom widget.
 
-Define Ivy process
+Define Ivy Process
 ------------------
 
-Developer can predefine a custom widget by declaring it in JSON file:
+The Developer can predefine a custom widget by declaring it in a JSON file:
 
 JSON structure
 
@@ -143,21 +149,27 @@ JSON structure
       }
    ..
 
-Before you continue, please read the section **Define an Ivy process for custom widget** above to understand the relation between name and type.
+Before you continue, please read the section :ref:`Define An Ivy Process for the
+Custom Widget<define-an-ivy-process-for-the-custom-widget>` above to understand
+the relation between name and type.
 
 Attributes explanation
 
-   ``processStart``: relative link to the ivy process which will be displayed in custom widget
+   ``processStart``: relative link to the Ivy process that will be displayed in custom widget
 
-   ``params``: parameters for ivy process above, each parameter can be defined as follows:
+   ``params``: parameters for the Ivy process above. Each parameter can be defined as follows:
 
-      - name of the parameter for Ivy process described in attribute ``processStart``.
+      - name: name of the parameter
 
       - value: predefined value for the parameter.
 
-      - type: desire type for the parameter to be shown on configuration dialog of Custom widget. There are four types: ``string``, ``user``, ``date``, ``boolean``.
+      - type: The desired data type for the parameter to be shown in the
+        configuration dialog of the custom widget. There are four types:
+        ``string``, ``user``, ``date``, ``boolean``.
 
-         - type ``string``: Mark that the parameter is a normal String. In the configuration dialog, the user can edit this parameter in an input text field.
+         - type ``string``: Marks the parameter as a normal String. In the
+           configuration dialog, the user can edit this parameter in an input
+           text field.
 
          .. code-block:: html
 
@@ -174,9 +186,9 @@ Attributes explanation
             }
          ..
 
-         - type ``user``: Mark that the parameter is the username of an Ivy user.
-           In the configuration dialog, the user can edit this parameter by choosing a user from the dropdown to select user.
-           This type only accepts the username of an Ivy user as a value.
+         - type ``user``: The parameter value is an Axon Ivy username. In the
+           configuration dialog, the user can edit this parameter by choosing a
+           user from a dropdown. Only Ivy usernames are accepted as values.
 
          .. code-block:: html
 
@@ -193,9 +205,9 @@ Attributes explanation
             }
          ..
 
-         - type ``date``: Mark that the parameter is a date.
-           In the configuration dialog, the user can edit this parameter with a date picker.
-           This type only accepts date formats dd.MM.yyyy and MM/dd/yyyy.
+         - type ``date``: The parameter value is a date. In the configuration
+           dialog, the user can edit this parameter with a date picker. This
+           type only accepts date formats dd.MM.yyyy and MM/dd/yyyy.
 
          .. code-block:: html
 
@@ -212,12 +224,15 @@ Attributes explanation
             }
          ..
 
-         - type ``boolean``: Mark that the parameter is a boolean variable.
-           On configuration dialog, this field will be rendered as radio buttons, user can choose between true or false by click the radio buttons.
-           This type only accept two values ``true`` or ``false``.
+         - type ``boolean``: The parameter is a boolean. In the configuration
+           dialog, this field will be rendered as a radio button: The user can
+           choose between true or false by clicking the respective radio button.
+           This type only accepts the values ``true`` or ``false``.
 
-Please refer to JSON file variables.Portal.Dashboard.json and process ``DashboardCustomWidgetExample/investmentList.ivp``
-in project ``portal-developer-examples`` for more details about how to define Ivy process for the custom widget.
+Please refer to JSON file ``variables.Portal.Dashboard.json`` and process
+``DashboardCustomWidgetExample/investmentList.ivp`` in project
+``portal-developer-examples`` for details about how to define the Ivy process for
+the custom widget.
 
 .. |dashboard-custom-field| image:: images/new-dashboard-custom-widget/process-custom-field.png
 .. |dashboard-custom-params| image:: images/new-dashboard-custom-widget/process-custom-params.png
