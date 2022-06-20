@@ -44,7 +44,7 @@ public class StatisticScreenshotTest extends ScreenshotTest {
     statisticWidgetPage.switchCreateMode();
     statisticWidgetPage.waitForAllChartLoaded();
     statisticWidgetPage.closeMainMenu();
-    ScreenshotUtil.resizeBrowser(new Dimension(1366, 1366));
+    ScreenshotUtil.resizeBrowser(new Dimension(1920, 1366));
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.STATISTIC_WIDGET_FOLDER + "chart-creation-page");
     statisticWidgetPage.createTaskByPriorityChart();
     statisticWidgetPage.createTaskByExpiryChart();
