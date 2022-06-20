@@ -13,7 +13,7 @@
       </p:selectOneRadio>
 
       <h:panelGroup id="select-assignee" layout="block" styleClass="select-assignee">
-        <ic:ch.ivy.addon.portalkit.component.UserSelection
+        <ic:com.axonivy.portal.component.UserSelection
           id="user-selection-component"
           selectedUser="#{data.selectedUser}" queryDelay="500"
           rendered="#{data.isAssignToUser}" isRenderedMessage="false" >
@@ -24,9 +24,9 @@
           <f:facet name="event">
             <p:ajax event="itemSelect" update="assignee-selection-form:add-assignee-button" />
           </f:facet>
-        </ic:ch.ivy.addon.portalkit.component.UserSelection>
+        </ic:com.axonivy.portal.component.UserSelection>
         
-        <ic:ch.ivy.addon.portalkit.component.RoleSelection id="role-selection-component" scrollHeight="400"
+        <ic:com.axonivy.portal.component.RoleSelection id="role-selection-component" scrollHeight="400"
           componentId="role-selection" selectedRole="#{data.selectedRole}" rendered="#{!data.isAssignToUser}"
           cache="true" queryDelay="500" excludedRoleNames="#{workflowDefinitionBean.excludedRoleNames}"
           isRenderedMessage="false">
@@ -37,7 +37,7 @@
           <f:facet name="event">
             <p:ajax event="itemSelect" update="assignee-selection-form:add-assignee-button" />
           </f:facet>
-        </ic:ch.ivy.addon.portalkit.component.RoleSelection>
+        </ic:com.axonivy.portal.component.RoleSelection>
           
         <p:commandButton id="add-assignee-button" styleClass="add-assignee-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}"
           disabled="#{data.selectedUser == null and data.selectedRole == null}" icon="#{visibilityBean.generateButtonIcon('si si-add-small')}" actionListener="#{logic.addAssignee}" global="false"
