@@ -617,15 +617,12 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 }
 
 .case-header-data .case-header-category-cell {
-  flex: 0 0 135px;
+  flex: 1 0 135px;
+  max-width: 200px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   padding-right: 10px;
-}
-
-.case-header-data .case-header-category-cell {
-  flex: 0 0 200px;
 }
 
 .case-info-row {
@@ -1864,16 +1861,6 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   min-width: 105px;
 }
 
-.task-category-info{
-  text-align: left;	
-  display: block;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  width: 200px;
-  padding-right: 10px;
-}
-
 .task-start-info-header-full-mode {
   padding-left: 7px;
 }
@@ -1922,11 +1909,15 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 }
 
 .task-start-list .category-cell {
-  flex: 0 0 200px;
-  text-align: center;
+  flex: 1 0 70px;
+  max-width: 200px;
+  padding-right: 10px;
 }
 
-.task-start-list .name-cell, .task-start-list .description-cell, .task-start-list .responsible-cell {
+.task-start-list .name-cell,
+.task-start-list .description-cell,
+.task-start-list .responsible-cell,
+.task-start-list .category-cell {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
