@@ -80,8 +80,12 @@
           </pe:dynaFormControl>
 
           <pe:dynaFormControl type="FileUpload" for="fileUpload">
-            <ic:ch.ivy.addon.portalkit.component.document.DocumentTable id="fileUpload" uploadRendered="false" deleteRendered="false" typeColumnRendered="false"
-              fileLimit="#{dynaData.intSetting}" iCase="#{cc.attrs.expressCase}" notInDynaform="false" />
+            <ic:com.axonivy.portal.component.DocumentTable id="fileUpload" uploadRendered="false" deleteRendered="false" typeColumnRendered="false"
+              fileLimit="#{dynaData.intSetting}" iCase="#{cc.attrs.expressCase}" notInDynaform="false"
+              typeSelectionItems="#{masterDataBean.documentTypes}"
+              allowedUploadFileTypes="#{expressBusinessViewBean.allowedUploadFileType}"
+              enableScriptCheckingForUploadedDocument="#{expressBusinessViewBean.enableScriptCheckingForUploadedDocument}"
+              enableVirusScannerForUploadedDocument="#{expressBusinessViewBean.enableVirusScannerForUploadedDocument}" />
           </pe:dynaFormControl>
 
           <pe:dynaFormControl type="Spacer" for="spacer">
