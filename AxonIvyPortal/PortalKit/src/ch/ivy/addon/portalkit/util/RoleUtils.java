@@ -14,8 +14,9 @@ import java.util.stream.Stream;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import com.axonivy.portal.component.dto.RoleDTO;
+
 import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
-import ch.ivy.addon.portalkit.dto.RoleDTO;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.publicapi.RoleAPI;
 import ch.ivy.addon.portalkit.service.IvyCacheService;
