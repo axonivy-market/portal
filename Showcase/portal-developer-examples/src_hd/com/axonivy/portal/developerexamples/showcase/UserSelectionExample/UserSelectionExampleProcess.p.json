@@ -11,7 +11,7 @@
         "callSignature" : "start",
         "result" : {
           "params" : [
-            { "name" : "selectedUserForDefinedRoles", "type" : "ch.ivy.addon.portalkit.dto.UserDTO" }
+            { "name" : "selectedUserForDefinedRoles", "type" : "com.axonivy.portal.component.dto.UserDTO" }
           ],
           "map" : {
             "result.selectedUserForDefinedRoles" : "in.selectedUserForDefinedRoles"
@@ -54,9 +54,9 @@
         "security" : "system",
         "output" : {
           "code" : [
+            "import com.axonivy.portal.component.dto.UserDTO;",
             "import ch.ivyteam.ivy.security.IRole;",
             "import ch.ivyteam.ivy.security.IUser;",
-            "import ch.ivy.addon.portalkit.dto.UserDTO;",
             "import java.util.Arrays;",
             "",
             "in.definedRoleNames = Arrays.asList(\"CostObject\", \"GeneralManager\");",

@@ -8,7 +8,8 @@ import javax.el.MethodExpression;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import ch.ivy.addon.portalkit.dto.RoleDTO;
+import com.axonivy.portal.component.dto.RoleDTO;
+
 import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.util.BeanUtils;
 import ch.ivy.addon.portalkit.util.RoleUtils;
