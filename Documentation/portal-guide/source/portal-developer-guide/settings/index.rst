@@ -177,13 +177,15 @@ Language settings
 
 -  To add new language to Portal, what you have to do is
 
-   -  Add new language locale to cms entry of Portal Style ``/AppInfo/SupportedLanguages`` 
-   -  Export all CMS entries of Portal Style to excel file
-   -  Add translation of new language for all CMS entries
-   -  Import file excel back, then redeploy Portal Style
-   -  This is sample how to add new Spanish to Portal
-
-      |add-new-language|
+   -  Open CMS item ``/AppInfo/SupportedLanguages`` in Portal Style, then add new language for example Italian 
+      |add-new-item-to-cms-language|
+   -  Add new language locale to all items, you can input either language code ``it`` or language code with country ``it-CH``. If you use language code with country, refer to `Java supported locales <https://www.oracle.com/java/technologies/javase/jdk11-suported-locales.html>`_ .
+   
+      |add-new-item-to-cms-language-after|
+   -  Export all CMS entries of Portal Style to excel file then add translation of new language for all CMS entries
+      |export-cms|
+   -  Import file excel back.
+   -  Redeploy Portal Style.
 
 Role configuration
 ==================
@@ -579,3 +581,6 @@ Global variables
 .. |language-settings| image:: images/settings/language-settings.png
 .. |add-new-language| image:: images/settings/add-new-language.png
 .. |multi-portal-open-settings| image:: images/settings/multi-portal-open-settings.png
+.. |add-new-item-to-cms-language| image:: images/settings/add-new-item-to-cms-language.png 
+.. |add-new-item-to-cms-language-after| image:: images/settings/add-new-item-to-cms-language-after.png
+.. |export-cms| image:: images/settings/export-cms.png   
