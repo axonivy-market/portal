@@ -61,9 +61,13 @@
                   </pe:dynaFormControl>
   
                   <pe:dynaFormControl type="FileUpload" for="fileUploadComponent">
-                    <ic:ch.ivy.addon.portalkit.component.document.DocumentTable id="fileUploadComponent" typeColumnRendered="false"
+                    <ic:com.axonivy.portal.component.DocumentTable id="fileUploadComponent" typeColumnRendered="false"
                       messageRendered="false" renderChooseUploadIcon="#{visibilityBean.showButtonIcon}"
-                      fileLimit="#{dynaData.intSetting}" notInDynaform="false" />
+                      fileLimit="#{dynaData.intSetting}" notInDynaform="false"
+                      typeSelectionItems="#{masterDataBean.documentTypes}"
+                      allowedUploadFileTypes="#{expressBusinessViewBean.allowedUploadFileType}"
+                      enableScriptCheckingForUploadedDocument="#{expressBusinessViewBean.enableScriptCheckingForUploadedDocument}"
+                      enableVirusScannerForUploadedDocument="#{expressBusinessViewBean.enableVirusScannerForUploadedDocument}" />
                   </pe:dynaFormControl>
   
                   <pe:dynaFormControl type="ManyCheckbox" for="many-checkbox" styleClass="many-checkbox">
