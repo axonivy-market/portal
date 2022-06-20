@@ -1,6 +1,7 @@
 package ch.ivy.addon.portalkit.ivydata.bo;
 
-import ch.ivy.addon.portalkit.dto.UserDTO;
+import com.axonivy.portal.component.dto.UserDTO;
+
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.IUser;

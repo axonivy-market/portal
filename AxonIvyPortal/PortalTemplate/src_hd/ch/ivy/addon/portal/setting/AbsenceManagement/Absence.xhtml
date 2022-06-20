@@ -24,7 +24,7 @@
       <h:panelGroup id="input-adsence-data-section" layout="block">
         <div id="absence-panel-grid" class="ui-fluid ui-g absence-panel-grid">
           <h:panelGroup layout="block" styleClass="ui-g-12" rendered="#{data.canCreateAbsenceForOtherUsers}">
-            <ic:ch.ivy.addon.portalkit.component.UserSelection id="absence-selection-component"
+            <ic:com.axonivy.portal.component.UserSelection id="absence-selection-component"
               componentId="absence-username"
               selectedUser="#{data.selectedUser}"
               isRenderedMessage="false"
@@ -44,7 +44,7 @@
               <f:facet name="event">
                 <p:ajax event="itemSelect" listener="#{logic.userSelectInAbsence}" update="#{p:resolveFirstComponentWithId('absence-messages', view).clientId} #{p:resolveFirstComponentWithId('save-absence', view).clientId}" />
               </f:facet>
-            </ic:ch.ivy.addon.portalkit.component.UserSelection>
+            </ic:com.axonivy.portal.component.UserSelection>
           </h:panelGroup>
           <div class="ui-g-5 ui-sm-12">
             <div class="md-inputfield">
