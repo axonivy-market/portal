@@ -814,6 +814,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     tasWidgetkInfo:
       expireToday: Ablaufdatum heute
       expiryThisWeek: Ablaufdatum diese Woche
+      numberOfTasks: Aufgabe(n)
       numberOfTasksByCategory: Anzahl der Aufgaben nach Kategorie
       numberOfTasksByState: Anzahl der Aufgaben nach Status
       predefinedFilters: Vordefinierte Filter
