@@ -24,36 +24,46 @@
     }, {
       "id" : "f5",
       "type" : "SubProcessCall",
-      "name" : "OpenPortalCaseDetails",
+      "name" : "OpenCaseDetails",
       "config" : {
-        "processCall" : "Functional Processes/OpenPortalCaseDetailsHook:call(ch.ivyteam.ivy.workflow.ICase,Boolean)",
+        "processCall" : "Functional Processes/OpenCaseDetailsHook:call(ch.ivyteam.ivy.workflow.ICase,Boolean,Boolean)",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.caseDetailsUrl" : "result.caseDetailsUrl"
+          }
+        },
         "call" : {
           "params" : [
-            { "name" : "caseData", "type" : "ch.ivyteam.ivy.workflow.ICase" },
-            { "name" : "isShowBackButton", "type" : "Boolean" }
+            { "name" : "caseView", "type" : "ch.ivyteam.ivy.workflow.ICase" },
+            { "name" : "isShowBackButton", "type" : "Boolean" },
+            { "name" : "isOpenInFrame", "type" : "Boolean" }
           ],
           "map" : {
-            "param.caseData" : "in.iCase",
-            "param.isShowBackButton" : "true"
+            "param.caseView" : "in.iCase",
+            "param.isShowBackButton" : "true",
+            "param.isOpenInFrame" : "in.isOpenInFrame"
           }
         }
       },
       "visual" : {
-        "at" : { "x" : 296, "y" : 160 },
-        "size" : { "width" : 144, "height" : 44 }
-      }
+        "at" : { "x" : 296, "y" : 160 }
+      },
+      "connect" : { "id" : "f7", "to" : "f4" }
     }, {
       "id" : "f3",
       "type" : "HtmlDialogMethodStart",
-      "name" : "openDetails(iCase)",
+      "name" : "openDetails(ICase, Boolean)",
       "config" : {
         "callSignature" : "openDetails",
         "input" : {
           "params" : [
-            { "name" : "iCase", "type" : "ch.ivyteam.ivy.workflow.ICase" }
+            { "name" : "iCase", "type" : "ch.ivyteam.ivy.workflow.ICase" },
+            { "name" : "isOpenInFrame", "type" : "Boolean" }
           ],
           "map" : {
-            "out.iCase" : "param.iCase"
+            "out.iCase" : "param.iCase",
+            "out.isOpenInFrame" : "param.isOpenInFrame"
           }
         },
         "guid" : "1811D800009FD86C"
@@ -63,5 +73,49 @@
         "labelOffset" : { "x" : -25, "y" : 15 }
       },
       "connect" : { "id" : "f6", "to" : "f5" }
+    }, {
+      "id" : "f4",
+      "type" : "Alternative",
+      "name" : "Is using Iframe with Portal?",
+      "visual" : {
+        "at" : { "x" : 448, "y" : 160 },
+        "labelOffset" : { "x" : -64, "y" : -41 }
+      },
+      "connect" : [
+        { "id" : "f9", "to" : "f8", "label" : {
+            "name" : "yes",
+            "segment" : 0.42,
+            "offset" : { "x" : 0, "y" : 10 }
+          }, "condition" : "in.isOpenInFrame" },
+        { "id" : "f12", "to" : "f10", "via" : [ { "x" : 448, "y" : 256 }, { "x" : 808, "y" : 256 } ], "label" : {
+            "name" : "no",
+            "segment" : 1.18,
+            "offset" : { "x" : 0, "y" : -10 }
+          } }
+      ]
+    }, {
+      "id" : "f8",
+      "type" : "Script",
+      "name" : "Navigate to case details",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.component.util.PortalNavigatorInFrameAPI;",
+            "",
+            "PortalNavigatorInFrameAPI.navigateToUrl(in.caseDetailsUrl);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 648, "y" : 160 },
+        "size" : { "width" : 144, "height" : 44 }
+      },
+      "connect" : { "id" : "f11", "to" : "f10" }
+    }, {
+      "id" : "f10",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 808, "y" : 160 }
+      }
     } ]
 }
