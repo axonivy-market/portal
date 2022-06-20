@@ -12,6 +12,7 @@ import org.apache.commons.collections4.CollectionUtils;
 
 import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivy.addon.portalkit.jsf.Attrs;
+import ch.ivy.addon.portalkit.service.CaseDocumentService;
 import ch.ivy.addon.portalkit.util.ExecutingExpressProcessUtils;
 import ch.ivy.gawfs.enums.TaskType;
 import ch.ivyteam.ivy.application.IApplication;
@@ -106,6 +107,18 @@ public class ExpressBusinessViewBean implements Serializable {
       TaskDef approvalResult = finishedTasks.get(finishedTasks.size() - 1);
       approvalResult.setApprovalResultList(approvalTaskResults);
     }
+  }
+
+  public List<String> getAllowedUploadFileType() {
+    return CaseDocumentService.getAllowedUploadFileType();
+  }
+
+  public boolean getEnableScriptCheckingForUploadedDocument() {
+    return CaseDocumentService.enableScriptCheckingForUploadedDocument();
+  }
+
+  public boolean getEnableVirusScannerForUploadedDocument() {
+    return CaseDocumentService.enableVirusScannerForUploadedDocument();
   }
 
   private IUser findActualApplicantByUsername(String userName) {
