@@ -860,7 +860,7 @@ DisplayNameConvertor convertor = new DisplayNameConvertor();
 if (in.supportedLanguages.isEmpty()) {
 	if (!in.languages.isEmpty()) {
 		for (String language : in.languages) {
-			convertor.add(new Locale(language),in.displayNameInCurrentLanguage);
+			convertor.add(Locale.forLanguageTag(language),in.displayNameInCurrentLanguage);
 		}
 	}else {
 		convertor.add(new Locales().getCurrentLocale(),in.displayNameInCurrentLanguage);
@@ -1046,7 +1046,7 @@ if (in.supportedLanguages.isEmpty()) {
 	if (!in.languages.isEmpty()) {
 		for (String language : in.languages) {
 			if(displayNameMap.get(language).toString().isEmpty()){
-				displayNameAdaptor.add(new Locale(language),in.displayNameInCurrentLanguage);
+				displayNameAdaptor.add(Locale.forLanguageTag(language),in.displayNameInCurrentLanguage);
 			}
 		}
 	}else {
