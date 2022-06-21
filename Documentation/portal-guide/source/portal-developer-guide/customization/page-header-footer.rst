@@ -3,7 +3,7 @@
 Page Header And Footer
 ======================
 
-The components ``PageHeader`` and ``PageFooter``show the header and footer applied to every Portal page.
+The components ``PageHeader`` and ``PageFooter`` show the header and footer applied to every Portal page.
 
 |page-header-footer|
 
