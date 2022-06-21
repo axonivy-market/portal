@@ -81,7 +81,6 @@ public class TaskWidgetPage extends TemplatePage {
     getFilterTasksByKeyword().click();
     getFilterTasksByKeyword().sendKeys(keyword);
     getFilterTasksByKeyword().hover();
-    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
     $("div[id$='task-widget:task-view-container']").waitUntil(appear, DEFAULT_TIMEOUT);
   }
   
