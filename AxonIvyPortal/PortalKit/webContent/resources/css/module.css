@@ -5510,41 +5510,12 @@ height: 260px;
 .case-map-stage hr{
 clear: both;
 }
-@media (max-width: 768px) {
-.process-overview-layout-content{
-overflow-y:auto;
-height:85%;	
-}
-}
-@media (min-width: 769px) {
-.process-overview-layout-content{
-overflow-y:auto;
-height:100%;	
-}
-}
-@media (max-width: 768px) {
-.case-map-detail-layout-content{
-overflow-y:auto;
-height:85%;	
-}
-}
-@media (min-width: 769px) {
-.case-map-detail-layout-content{
-overflow-y:auto;
-height:100%;	
-}
-}
-@media (max-width: 768px) {
-.case-map-overview-layout-content{
-overflow-y:auto;
-height:85%;	
-}
-}
-@media (min-width: 769px) {
-.case-map-overview-layout-content{
-overflow-y:auto;
-height:100%;	
-}
+
+.process-overview-layout-content,
+.case-map-detail-layout-content,
+.case-map-overview-layout-content {
+  overflow-y:auto;
+  height:100%;
 }
 .case-details-row-space span.si {
   vertical-align: text-top;
