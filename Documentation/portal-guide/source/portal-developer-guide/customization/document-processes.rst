@@ -34,7 +34,7 @@ Customization
    .. table::
 
     +-----------------------------------+-----------------------------------+
-    | Subprocess                       | Description                       |
+    | Subprocess                        | Description                       |
     +===================================+===================================+
     | GetDocumentList                   | After get document list from DMS, |
     |                                   | convert them into                 |
@@ -46,7 +46,7 @@ Customization
     |                                   | - name                            |
     |                                   | - contentType                     |
     +-----------------------------------+-----------------------------------+
-    | UploadDocument                    | Override this subprocess to      |
+    | UploadDocument                    | Override this subprocess to       |
     |                                   | upload your file. This sub        |
     |                                   | process also contains some        |
     |                                   | validations, so if you override   |
@@ -56,6 +56,6 @@ Customization
     | DownloadDocument                  | Override this subprocess to       |
     |                                   | download file from DMS.           |
     +-----------------------------------+-----------------------------------+
-    | DeleteDocument                    | Override this subprocess to      |
+    | DeleteDocument                    | Override this subprocess to       |
     |                                   | delete file in DMS                |
     +-----------------------------------+-----------------------------------+

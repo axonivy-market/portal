@@ -56,7 +56,7 @@ Collapsed Menu Logo
 
 -  Modify the CMS entry ``PortalStyle/images/logo/SmallCorporateLogo`` to update
    homepage logo when left-hand menu is collapsed. File type is PNG. **Only use
-   this approach if you don't have SVG file. **
+   this approach if you don't have SVG file.**
 
    .. tip::
       - We recommend using an image with a size of 42 pixels by 42 pixels to fit the left menu size when it's collapsed.
@@ -70,7 +70,7 @@ Login Logo
    the login logo. File type is SVG.
 
 -  Modify the CMS entry ``PortalStyle/images/logo/loginLogo`` to update
-   the login logo. File type is PNG. **Only use this approach if you don't have SVG file.* *
+   the login logo. File type is PNG. **Only use this approach if you don't have SVG file.**
 
    .. tip::
       - We recommend using an image with size is 50x50 pixels.

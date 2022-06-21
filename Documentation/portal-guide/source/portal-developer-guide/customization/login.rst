@@ -22,8 +22,9 @@ existing template to define your new login component as shown below
 
 Login Background
 ----------------
+
 To change the default login background image, simply add or replace the image in
-``configuration/applications/<APPNAME>/branding/background.jpg``with your image.
+``configuration/applications/<APPNAME>/branding/background.jpg`` with your image.
 
 Refer to :dev-url:`Engine Branding </doc/nightly/designer-guide/user-interface/branding/branding-engine.html#>` for details.
 
