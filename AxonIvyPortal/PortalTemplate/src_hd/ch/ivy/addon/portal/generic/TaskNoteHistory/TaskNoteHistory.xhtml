@@ -39,7 +39,7 @@
               <p:dataTable id="notes-table" widgetVar="notesTable" var="note" sortBy="#{caseTaskNoteHistoryBean.taskHistorySortByCreationTimestamp}"
                 value="#{data.notes}" filteredValue="#{data.filteredNotes}"
                 emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
-                reflow="true" scrollable="true">
+                reflow="true" scrollable="true" lazy="false">
 
                 <p:column sortBy="#{note.message}" filterBy="#{note.message}" filterMatchMode="contains"
                   width="65%">
