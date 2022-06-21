@@ -6,9 +6,9 @@ experience and many more aspects. In addition to this documentation, please refe
 You find ``portal-developer-examples`` in the engine demo mode or import them into your designer under ``Ivy Projects``.
 
 .. note::
-	If you copy ``PortalStart.p.json`` to your project for customization, you have to set default pages to your project.
+   If you copy ``PortalStart.p.json`` to your project for customization, you have to set default pages to your project.
    Follow this chapter to customize standard processes:
-	:dev-url:`Standard Processes </doc/nightly/designer-guide/user-interface/standard-processes/index.html>`
+   :dev-url:`Standard Processes </doc/nightly/designer-guide/user-interface/standard-processes/index.html>`
 
 |engine-demo-mode|
 

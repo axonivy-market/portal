@@ -107,7 +107,7 @@ Attribute explanation:
    ``url``: the URL of the external webpage you want to show.
 
 .. warning::
-	Some external websites do not allow to be loaded in IFrames. You have to make sure 
+   Some external websites do not allow to be loaded in IFrames. You have to make sure 
    that their security policy allows the embedding if you want to use these pages in your custom widget.
 
 Define Ivy Process
