@@ -46,7 +46,7 @@
           paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
           emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
           currentPageReportTemplate="{currentPage} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/curentReportOf')} {totalPages}"
-          styleClass="case-details-documents">
+          styleClass="case-details-documents" lazy="false">
           <p:column id="document-name" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/name')}"
             sortBy="#{document.name}"
             styleClass="u-truncate-text document-name ui-g-6 ui-xl-6 ui-lg-8 ui-md-12 ui-sm-12">

@@ -96,7 +96,7 @@
                       paginatorPosition="bottom"
                       pageLinks="3"
                       paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
-                      currentPageReportTemplate="{currentPage} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/curentReportOf')} {totalPages}">
+                      currentPageReportTemplate="{currentPage} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/curentReportOf')} {totalPages}" lazy="false">
                       <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/period')}"
                         sortBy="#{absence.period}" styleClass="absence-period">
                         <h:outputText value="#{absence.period}" styleClass="absence-column-value"/>
@@ -155,7 +155,7 @@
                       paginatorPosition="bottom"
                       pageLinks="3"
                       paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
-                      currentPageReportTemplate="{currentPage} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/curentReportOf')} {totalPages}">
+                      currentPageReportTemplate="{currentPage} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/curentReportOf')} {totalPages}" lazy="false">
                       <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/applicationAndRole')}"
                         sortBy="#{deputyRole.deputyRoleDisplayName}" sortOrder="ASC">
                         <h:outputText value="#{deputyRole.deputyRoleDisplayName}" styleClass="substition-role-display-name absence-column-value" />
@@ -203,7 +203,7 @@
                     pageLinks="3"
                     sortMode="single"
                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
-                    currentPageReportTemplate="{currentPage} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/curentReportOf')} {totalPages}">
+                    currentPageReportTemplate="{currentPage} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/curentReportOf')}  lazy="false"{totalPages}">
                     <p:column headerText="#{ivy.cms.co(data.isSupervisor ? '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/selectedDeputyFor' : '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/deputyFor')}"
                       sortBy="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(substitution.ownerUser, substitution.ownerUser.name)}">
                       <pc:securityMemberNameAndAvatar
