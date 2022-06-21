@@ -127,7 +127,6 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
       displayedPermission = "";
       permissions = new ArrayList<>();
     }
-    collectDashboardsForManagement();
     selectedEditingDashboard.setDisplayedPermission(displayedPermission);
     selectedEditingDashboard.setPermissions(permissions);
     if (!editingDashboards.contains(selectedEditingDashboard)) {
@@ -227,6 +226,7 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
       openTaskLosingConfirmationDialog();
     } else {
       executeJSResetPortalMenuState();
+      collectDashboardsForManagement();
       saveDashboardDetail();
       navigateToDashboardDetailsPage(this.selectedEditingDashboard.getId());
     }
@@ -246,7 +246,7 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
     String componentId = Attrs.currentContext().getBuildInAttribute("clientId");
     leaveTask.invokeComponentLogic(componentId, "#{logic.leave}", new Object[] {relatedTask.getCase()});
     TaskUtils.resetTask(relatedTask);
-
+    collectDashboardsForManagement();
     saveDashboardDetail();
     navigateToDashboardDetailsPage(this.selectedEditingDashboard.getId());
   }
@@ -257,7 +257,7 @@ public class DashboardConfigurationBean extends DashboardBean implements Seriali
     String componentId = Attrs.currentContext().getBuildInAttribute("clientId");
     reserveTask.invokeComponentLogic(componentId, "#{logic.reserve}", new Object[] {relatedTask.getCase()});
     TaskUtils.parkTask(relatedTask);
-
+    collectDashboardsForManagement();
     saveDashboardDetail();
     navigateToDashboardDetailsPage(this.selectedEditingDashboard.getId());
   }
