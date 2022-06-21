@@ -54,13 +54,19 @@
   padding-right: 0;
 }
 
+.dashboard__header {
+  padding-top: 0;
+}
+
 .dashboard__title-container {
+  padding-top: 0;
   padding-left: 0;
 }
 
 .dashboard__title-flex-container {
   display: flex;
   flex-wrap: wrap;
+  padding-right: 0;
 }
 
 .dashboard__title-inline-flex-container {
@@ -69,8 +75,8 @@
 
 .dashboard-header__action {
   padding-right: 0;
-  padding-top: 1.4rem;
-  height: 54px;
+  padding-top: 1rem;
+  height: 49px;
 }
 
 .dashboard__body {
