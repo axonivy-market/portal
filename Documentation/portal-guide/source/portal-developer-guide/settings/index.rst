@@ -579,7 +579,6 @@ Global variables
 .. |multi-application-without-portal| image:: images/settings/multi-application-without-portal.png
 .. |language-precedence| image:: images/settings/language-precedence.png
 .. |language-settings| image:: images/settings/language-settings.png
-.. |add-new-language| image:: images/settings/add-new-language.png
 .. |multi-portal-open-settings| image:: images/settings/multi-portal-open-settings.png
 .. |add-new-item-to-cms-language| image:: images/settings/add-new-item-to-cms-language.png 
 .. |add-new-item-to-cms-language-after| image:: images/settings/add-new-item-to-cms-language-after.png
