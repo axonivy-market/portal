@@ -178,7 +178,7 @@
           <div class="ui-g-12 md-inputfield support-process-language-field">
             <p:inputText id="support-language" value="#{displayName.value}"
               required="#{compactProcessWidgetBean.isRequiredLanguage(displayName.locale)}"/>
-            <p:outputLabel value="#{displayName.locale.getDisplayLanguage()} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}" for="support-language" />
+            <p:outputLabel value="#{displayName.locale.getDisplayName()} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}" for="support-language" />
             <p:message for="support-language" />
           </div>
         </ui:repeat>
