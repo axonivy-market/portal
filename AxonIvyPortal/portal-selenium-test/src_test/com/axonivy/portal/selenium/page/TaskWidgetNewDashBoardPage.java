@@ -15,6 +15,8 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
 
   private static final String YOUR_TASKS_WIDGET = "Your Tasks";
   private static final String FILTER_TASK_STATE = "State";
+  private static final String DESCENDING = "descending";
+  private static final String ASCENDING = "ascending";
 
   private String taskWidgetId;
   private String taskWidgetName;
@@ -47,6 +49,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public ElementsCollection expand() {
+    $$("div.widget__header").filter(text(taskWidgetName)).first().waitUntil(appear, DEFAULT_TIMEOUT);
     return $$("div.widget__header").filter(text(taskWidgetName));
   }
 
@@ -69,7 +72,6 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   public void startTask(int taskIndex) {
     $$("span.widget__filter-noti-number").first().waitUntil(appear, DEFAULT_TIMEOUT);
     getColumnOfTaskHasIndex(taskIndex, "Start").shouldBe(getClickableCondition()).click();
-    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
   }
 
   public ElementsCollection countRelatedCases() {
@@ -99,7 +101,6 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
     $("div.filter-overlay-panel__footer").waitUntil(appear, DEFAULT_TIMEOUT).$$("button[id$='apply-button']")
         .filter(text("Apply")).first().shouldBe(getClickableCondition()).click();
     $("div[id$='task-task_1:filter-overlay-panel-0']").waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
-    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
   }
   
   public void resetFilter() {
@@ -306,7 +307,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
   
   public void clickCancelTask() {
-    $("a[id$='button-cancel']").shouldBe(getClickableCondition()).click();
+    $("a[id$='button-cancel']").waitUntil(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
   
   public void triggerEscalationTask(int taskIndex) {
@@ -338,7 +339,6 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   private void confirmDestroy() {
     $("div[id$='destroy-task-confirmation-dialog']").waitUntil(appear, DEFAULT_TIMEOUT)
         .$("button[id$='confirm-destruction-dashboard-tasks']").shouldBe(getClickableCondition()).click();
-    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
   }
   
   public SelenideElement destroyTaskLink() {
@@ -428,12 +428,22 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
     return  $(taskWidgetId).waitUntil(appear, DEFAULT_TIMEOUT).$("th.ui-state-active");
   }
   
+  /* 
+   * sortType descending or ascending
+   */
+  public void waitForSortingFinished(String sortType) {
+    if("descending".equalsIgnoreCase(sortType)) {
+      $(taskWidgetId).waitUntil(appear, DEFAULT_TIMEOUT).$("th.ui-state-active").waitUntil(Condition.attribute("aria-sort", DESCENDING), DEFAULT_TIMEOUT);
+    }else {
+      $(taskWidgetId).waitUntil(appear, DEFAULT_TIMEOUT).$("th.ui-state-active").waitUntil(Condition.attribute("aria-sort", ASCENDING), DEFAULT_TIMEOUT);
+    }
+  }
+  
   public void clickOnHeaderTaskByColumn(String columnName) {
     ElementsCollection elementsTH = $(taskWidgetId).waitUntil(appear, DEFAULT_TIMEOUT).$$("table thead tr th");
     for (int i = 0; i < elementsTH.size(); i++) {
       if (elementsTH.get(i).getText().equalsIgnoreCase(columnName)) {
         elementsTH.get(i).click();
-        waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
       }
     }
   }
