@@ -47,10 +47,10 @@ Follow these steps to use the IFrame approach:
    
    - Engine level:
    
-   	- The **Portal Administrator** can define globally that all of the tasks
-      running on the engine are started inside IFrames by using the
-      ``Portal.EmbedInFrame`` Portal setting. refer to
-      :ref:`update-portal-settings`
+     - The **Portal Administrator** can define globally that all of the tasks
+       running on the engine are started inside IFrames by using the
+       ``Portal.EmbedInFrame`` Portal setting. refer to
+       :ref:`update-portal-settings`
 
 
 Customization
