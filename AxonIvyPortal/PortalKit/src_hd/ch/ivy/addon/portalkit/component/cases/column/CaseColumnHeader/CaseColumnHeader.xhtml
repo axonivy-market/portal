@@ -26,7 +26,6 @@
 		update="#{componentToBeUpdated} #{p:resolveFirstComponentWithId('widget-column-header', view).clientId} #{p:resolveFirstComponentWithId('case-list', view).clientId} #{p:resolveFirstComponentWithId('case-list-scroller', view).clientId} @(.hidden-case-count)"
 		rendered="#{sortable and dataModel.isSelectedColumn(sortedField)}" oncomplete="caseWidget.setUpScrollbar(); caseWidget.setupHeader(); caseWidget.updateCaseCountToBreadcrumb();">
 		<f:actionListener binding="#{logic.sort(sortedField, dataModel.sortField eq sortedField and !dataModel.isSortDescending())}" />
-		<f:actionListener binding="#{caseWidgetBean.setExpandedCaseId(0,false)}" />
 		<h:outputText value="#{value}" />
 		<i class="sort-icon fa fa-angle-down" jsf:rendered="#{dataModel.sortField eq sortedField and dataModel.isSortDescending()}" />
 		<i class="sort-icon fa fa-angle-up" jsf:rendered="#{dataModel.sortField eq sortedField and !dataModel.isSortDescending()}" />
