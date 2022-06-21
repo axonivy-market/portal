@@ -670,7 +670,6 @@ Data model:
 .. |global-settings| image:: ../../screenshots/settings/global-settings.png
 .. |global-setting-edit| image:: ../../screenshots/settings/edit-global-settings.png
 .. |language-precedence| image:: images/settings/language-precedence.png
-.. |add-new-language| image:: images/settings/add-new-language.png
 .. |select-admin-settings| image:: ../../screenshots/settings/select-admin-settings.png
 .. |add-new-item-to-cms-language| image:: images/settings/add-new-item-to-cms-language.png 
 .. |add-new-item-to-cms-language-after| image:: images/settings/add-new-item-to-cms-language-after.png
