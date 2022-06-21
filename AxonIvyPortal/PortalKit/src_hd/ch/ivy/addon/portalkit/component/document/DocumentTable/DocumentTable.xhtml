@@ -45,12 +45,12 @@
   <div id="#{cc.clientId}" class="document-table-component">
 
     <cc:renderFacet name="componentHeader" />
-    <p:dataTable id="empty-table" value="#{data.emptyList}" rendered="#{not cc.attrs.notInDynaform}" styleClass="document-empty-table"/>
+    <p:dataTable id="empty-table" value="#{data.emptyList}" rendered="#{not cc.attrs.notInDynaform}" styleClass="document-empty-table" lazy="false"/>
     
     <p:messages id="document-messages" for="document-messages" rendered="#{cc.attrs.messageRendered}" />
     <p:dataTable id="document-table" value="#{data.documents}" var="document" 
       emptyMessage="#{ivy.cms.co('/Dialogs/components/CaseDocument/NoFiles')}" styleClass="margin-top-5"
-      widgetVar="fileTableVar">
+      widgetVar="fileTableVar" lazy="false">
       <f:event type="preRenderComponent" listener="#{logic.renderTable()}" />
 
       <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/name')}"

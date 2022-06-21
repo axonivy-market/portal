@@ -26,7 +26,7 @@
       <div class="ui-g-12 card approval-result-content">
         <p:outputLabel id="form-approval-label" value="#{ivy.cms.co('/Dialogs/WorkflowExecution/FinishedTasksForm/ApprovalResult')}"
           styleClass="review-content-title" />
-        <p:dataTable id="approval-result-table" value="#{approvalResultGroup}" var="approval" styleClass="approval-result-table">
+        <p:dataTable id="approval-result-table" value="#{approvalResultGroup}" var="approval" styleClass="approval-result-table" lazy="false">
           <p:column headerText="#{ivy.cms.co('/Dialogs/WorkflowExecution/FinalReviewForm/approver')}" sortBy="#{approval.approverName}">
             <h:outputText value="#{approval.approverName}" />
           </p:column>
