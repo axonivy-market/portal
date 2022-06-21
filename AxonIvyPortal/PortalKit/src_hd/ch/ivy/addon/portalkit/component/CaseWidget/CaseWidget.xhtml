@@ -164,11 +164,11 @@
 
             <!-- Reset filter button -->
             <h:panelGroup id="reset-filter-button-container"
-              styleClass="reset-filter-button-container #{data.dataModel.selectedFilterData == null and !data.dataModel.isSelectedDefaultFilter() and !cc.attrs.isTechnicalCaseView ? 'filter-reset-action filter-add-container' : ''}"
+              styleClass="reset-filter-button-container #{data.dataModel.selectedFilterData == null and !data.dataModel.isSelectedDefaultFilter() and !cc.attrs.isTechnicalCaseView ? 'filter-reset-action filter-add-container' : ''} u-hidden-md-down js-filter-reset-action"
               layout="block">
               <p:commandLink id="filter-reset-action"
                 rendered="#{data.dataModel.selectedFilterData == null and !data.dataModel.isSelectedDefaultFilter() and !cc.attrs.isTechnicalCaseView}"
-                styleClass="u-hidden-md-down js-filter-reset-action" onclick="PF('reset-filter-set-dialog').show();"
+                onclick="PF('reset-filter-set-dialog').show();"
                 global="false">
                 <span class="si si-button-refresh-arrows u-mar-right-5" />
                 <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}" />
