@@ -30,13 +30,13 @@ Language Settings
 
    |language-precedence|
 
-If the user email language setting is the application default, the application
-default language is applied.
+   If the user email language setting is the application default, the application
+   default language is applied.
 
-If the user selects a language in email settings, this language is appplied.
+   If the user selects a language in email settings, this language is appplied.
 
-To configure languages of Portal applications, refer to
-:ref:`language-settings`.
+   To configure languages of Portal applications, refer to
+   :ref:`language-settings`.
 
 -  For multiple languages, the CMS key ``/AppInfo/SupportedLanguages`` has to
    exist in your application. This CMS entry is located in Portal Style. It
@@ -51,15 +51,21 @@ To configure languages of Portal applications, refer to
    -  The process model version (PMV), containing this CMS, has to be active
 
 -  To add a new language to Portal, what you have to do is
+   -  Open CMS item ``/AppInfo/SupportedLanguages`` in Portal Style, then add new language for example Italian
 
-   -  Add a new language locale to the PortalStyle CMS entry ``/AppInfo/SupportedLanguages`` 
-   -  Export all CMS entries of Portal Style to an Excel file
-   -  Add translations for the new language to all CMS entries
-   -  Import the excel file, then redeploy PortalStyle
-   
-Here is an example on how to add the new language Spanish to the Portal:
+      |add-new-item-to-cms-language|
 
-|add-new-language|
+   -  Add new language locale to all items, you can input either language code ``it`` or language code with country ``it-CH``. If you use language code with country, refer to `Java supported locales <https://www.oracle.com/java/technologies/javase/jdk11-suported-locales.html>`_ .
+
+      |add-new-item-to-cms-language-after|
+
+   -  Export all CMS entries of Portal Style to excel file then add translation of new language for all CMS entries
+
+      |export-cms|
+
+   -  Import file excel back.
+   -  Redeploy PortalStyle.
+
 
 Role Configuration
 ==================
@@ -674,6 +680,7 @@ Data model:
 .. |global-settings| image:: ../../screenshots/settings/global-settings.png
 .. |global-setting-edit| image:: ../../screenshots/settings/edit-global-settings.png
 .. |language-precedence| image:: images/settings/language-precedence.png
-.. |add-new-language| image:: images/settings/add-new-language.png
 .. |select-admin-settings| image:: ../../screenshots/settings/select-admin-settings.png
-
+.. |add-new-item-to-cms-language| image:: images/settings/add-new-item-to-cms-language.png 
+.. |add-new-item-to-cms-language-after| image:: images/settings/add-new-item-to-cms-language-after.png
+.. |export-cms| image:: images/settings/export-cms.png   
