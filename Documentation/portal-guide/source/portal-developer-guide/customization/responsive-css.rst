@@ -8,15 +8,15 @@ Responsive CSS
 Introduction
 ------------
 
-Portal has some utility css classes to support show/hide elements on
+Portal has some utility CSS classes to support show/hide elements on
 different resolutions.
 
 .. _customization-responsive-css-detail:
 
-Bootstrap based responsive css
+Bootstrap Based Responsive CSS
 ------------------------------
 
-These classes was created base on bootstrap responsive. For more detail, refer to
+These classes was created base on bootstrap responsive. For detail, refer to
 `Bootstrap <https://v4-alpha.getbootstrap.com/layout/responsive-utilities/#available-classes>`_
 
 
