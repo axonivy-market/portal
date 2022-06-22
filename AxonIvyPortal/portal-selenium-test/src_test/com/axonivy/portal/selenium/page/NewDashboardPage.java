@@ -640,7 +640,7 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public NewDashboardConfigurationPage navigateToEditPublicDashboardPage() {
-    $("a[id$=':edit-public-dashboard']").click();
+    $("a[id$=':edit-public-dashboard']").waitUntil(Condition.appear, DEFAULT_TIMEOUT).click();
     NewDashboardConfigurationPage newDashboardConfigurationPage = new NewDashboardConfigurationPage();
     newDashboardConfigurationPage.waitPageDisplay();
     return newDashboardConfigurationPage;

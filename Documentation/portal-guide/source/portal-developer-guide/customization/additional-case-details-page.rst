@@ -1,6 +1,6 @@
 .. _customization-additionalcasedetailspage:
 
-Additional case detail page
+Additional Case Detail Page
 ============================
 
 .. _customization-additionalcasedetailspage.introduction:
@@ -8,32 +8,31 @@ Additional case detail page
 Introduction
 ------------
 
-The additional case detail page shows all custom fields of a case by
-clicking on ``Show business details`` link in case detail.
+The Additional Case detail page shows all custom fields of a case. It is opened
+by clicking on ``Show business details`` in Case detail.
 
-You can customize this page for each case by providing a relative URL to
-case.
+You can customize this page for each case by providing a relative URL to case.
 
 .. _customization-additionalcasedetailspage.customization:
 
 Customization
 -------------
 
-#. Create a new additional case detail UI and a start process which
-   will display the new UI.
+#. Create a new Additional Case details UI and a start process that will display
+   the new UI.
 
    |customization-additional-case-details-page|
 
-#. When create task, store the URL of start process in
-   ``CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE`` custom fields of case. You
-   could use ``SetAdditonalCaseDetailPage.mod`` callable process, and input the
-   friendly URL of process as parameter.
+#. When creating a task, store the URL of the start process in the custom field
+   ``CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE``  of the associated case. You
+   may use the ``SetAdditonalCaseDetailPage.p.json`` callable process, and input the
+   friendly URL of this process as a parameter.
 
    |set-additonal-case-detail-page-callable-process|
 
 
-#. Only if your custom additional case page uses iFrame, then you need some more settings
-   Window property in your page 
+#. If your custom Additional Case details page uses an IFrame, you need to set some additional
+   Window properties on your page: 
 
    - window.isHideCaseInfo = true;
    - window.isHideTaskAction = true;
@@ -43,7 +42,7 @@ Customization
 
    |customization-additional-case-details-page-iframe|
 
-   In your custom start process, create a custom string field name for case with name: ``embedInFrame``, value ``true``
+   In your custom start process, create a custom string field name for the case named ``embedInFrame``, value ``true``
 
    |start-case-details-page-iframe|
 
