@@ -1,6 +1,6 @@
 .. _customization-express-external-data-provider:
 
-Express external data provider
+Express External Data Provider
 ==============================
 
 .. _customization-express-external-data-provider-introduction:
@@ -8,36 +8,33 @@ Express external data provider
 Introduction
 ------------
 
-In Portal express we can provide the external data for checkbox values
-when creating form, like a product catalogue can be maintained in the
-background and the process calls this data provider.
+In Portal Express, we can provide the external data for checkbox values
+when creating form, like a product catalog that can be maintained in the
+background; the process calls this data provider.
 
 .. _customization-express-external-data-provider-customization:
 
 Customization
 -------------
 
-#. Create a callable subprocess that has signature
+#. Create a callable subprocess that has the signature
    "portalExpressDataProvider"
 
    |callable-sub-process|
 
-   The subprocess return the list of String:
+   The subprocess returns a list of strings:
 
    |callable-sub-process-result|
 
-   Below is an example that use Database element to read the data from
-   DB as a data provider.
+   Below is an example that uses the Database element to read the data from a
+   database as a data provider.
 
-   In the DB tab:
+   In the Database tab, set these fields:
 
    -  Kind of Query: choose "Read query"
-
    -  Database: select the database name
-
    -  Table: select the table name
-
-   -  Fields: choose "Specified Fields" and tick one column that use for
+   -  Fields: choose "Specified Fields" and tick one column that is used as the
       data provider.
 
    |database|
@@ -50,14 +47,13 @@ Customization
 
 #. Create new Express Workflow
 
-   In the form creation, choose Checkbox and select the data provider in
-   the dropdown list. Then fill the label of check box and press Create
-   button. You can drag and drop the checkbox element to the Placement
-   of form elements and preview the values of the checkbox.
+   In the form creation, choose Checkbox and select the data provider in the
+   dropdown list. Then set the label of the check box and press the
+   :guilabel:`Create` button. You can drag and drop the checkbox element to its
+   intended location and preview the values of the checkbox.
 
-   Note: The first item in the dropdown list is "Special static data
-   provider", it means that user will provide the values of the checkbox
-   manually.
+   Note: The first item in the dropdown list is "Special static data provider",
+   it means that the user will provide the values of the checkbox manually.
 
    |express-workflow|
 
