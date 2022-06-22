@@ -261,7 +261,7 @@ Introduction
    1. Support to display all working steps or display only helpful steps as
       begin, last, current, previous current, next current steps.
 
-   2. Support to change the sharp of process chain: circle or line.
+   2. Support to change the shape of process chain: circle or line.
 
    3. Support to change the direction of process chain: horizontal or vertical.
 
@@ -319,7 +319,7 @@ Introduction
 
    -  Support to display all working steps or display only helpful steps as begin, last, current, previous current, next current steps.
 
-   -  Support to change the sharp of process chain: circle or line.
+   -  Support to change the shape of process chain: circle or line.
 
    -  Support to change the direction of process chain: horizontal or vertical.
 
