@@ -33,10 +33,10 @@ Language Settings
    If the user email language setting is the application default, the application
    default language is applied.
 
-   If the user selects a language in email settings, this language is appplied.
+   If the user selects a language in email settings, this language is applied.
 
-   To configure languages of Portal applications, refer to
-   :ref:`language-settings`.
+   To configure the languages of Portal applications, refer to
+   :ref:`language-settings` in :ref:`my-profile` in the Portal User Guide.
 
 -  For multiple languages, the CMS key ``/AppInfo/SupportedLanguages`` has to
    exist in your application. This CMS entry is located in Portal Style. It
@@ -46,26 +46,26 @@ Language Settings
    The rules for this list are:
 
    -  This list must not contain spaces
-   -  Each entry has to be a display name of a Locale
+   -  Each entry has to be either a language code (en) or a language-country code (en-US) of a Java Locale (see below)
    -  Entries are separated by comma
-   -  The process model version (PMV), containing this CMS, has to be active
+   -  The process model version (PMV) containing this CMS entry has to be active.
 
 -  To add a new language to Portal, what you have to do is:
 
-   -  Open CMS item ``/AppInfo/SupportedLanguages`` in Portal Style, then add new language for example Italian
+   -  Open CMS item ``/AppInfo/SupportedLanguages`` in Portal Style, then add the new language, for example, Italian
 
       |add-new-item-to-cms-language|
 
-   -  Add new language locale to all items, you can input either language code ``it`` or language code with country ``it-CH``. 
+   -  Add the new language locale to all items. You can input either the language code ``it`` or the language code with country ``it-CH``. 
       If you use language code with country, refer to `Java supported locales <https://www.oracle.com/java/technologies/javase/jdk11-suported-locales.html>`_ .
 
       |add-new-item-to-cms-language-after|
 
-   -  Export all CMS entries of Portal Style to excel file then add translation of new language for all CMS entries
+   -  Export all CMS entries of Portal Style to an Excel file, then add the translations for the new language for all CMS entries
 
       |export-cms|
 
-   -  Import file excel back.
+   -  Import the Excel file.
    -  Redeploy PortalStyle.
 
 
@@ -144,7 +144,7 @@ Task Permissions
 
 - Reserve
 
-   To see the reserve action, the user needs permission
+   To see the Reserve action, the user needs permission
    ``PortalPermission.TASK_DISPLAY_RESERVE_ACTION``.
 
    To reserve a task, the user needs permission
@@ -160,7 +160,7 @@ Task Permissions
    ``IPermission.TASK_WRITE_DESCRIPTION``.
 
    .. important::
-      Task state cannot be one of following values:
+      A terminated task cannot be changed. Therefore, the task state cannot be one of the following values:
       DONE, DESTROYED, FAILED.
 
 - Change deadline
@@ -233,7 +233,7 @@ Administrators can interact with all workflows in the application.
 Administrators can create, update and delete all workflows in the application.
 
 Normal users can update and delete workflows that have been created by them and can interact
-with tasks that have been assigned to him.
+with tasks that have been assigned to them.
 
 
 Other Permissions
@@ -327,9 +327,13 @@ Virus Scanning is enabled. You can change the variable ``EnableVirusScanner`` to
 ``false`` in ``PortalKit/config/variables.yaml`` if you want to disable virus
 scanning.
 
-
 Reference: `How to check if uploaded files contain a virus
 <https://community.axonivy.com/d/144-how-to-check-if-a-uploaded-files-contain-a-virus/>`_.
+
+.. warning::
+   Files that are checked for viruses are uploaded to VirusTotal. If you may 
+   not store the data of your application on servers outside the internal 
+   network or a given country, you might want to refrain from using this solution.
 
 Variables
 =========
