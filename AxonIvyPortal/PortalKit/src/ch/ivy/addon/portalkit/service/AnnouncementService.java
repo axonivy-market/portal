@@ -51,7 +51,7 @@ public class AnnouncementService {
     String language;
     Locale locale = Ivy.session().getSessionUser().getLanguage();
     if (locale != null) {
-      language = locale.getLanguage();
+      language = locale.toLanguageTag();
     } else {
       language = getDefaultEmailLanguage();
     }
@@ -114,7 +114,7 @@ public class AnnouncementService {
 
 
   private String getDefaultEmailLanguage() {
-    return IApplication.current().getDefaultEMailLanguage().getLanguage();
+    return IApplication.current().getDefaultEMailLanguage().toLanguageTag();
   }
 
   private Announcement getAnnouncement() {

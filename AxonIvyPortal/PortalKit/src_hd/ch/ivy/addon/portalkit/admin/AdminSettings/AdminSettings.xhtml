@@ -414,7 +414,7 @@
       <h:dataTable value="#{data.supportedLanguages}" rendered="#{data.supportedLanguages.isEmpty() eq 'false'}"
         var="supportedLanguage">
         <h:column>
-          <h:outputText value="#{supportedLanguage.locale.getDisplayLanguage()}" />
+          <h:outputText value="#{supportedLanguage.locale.getDisplayName()}" />
         </h:column>
         <h:column>
           <p:inputText value="#{supportedLanguage.value}" />
