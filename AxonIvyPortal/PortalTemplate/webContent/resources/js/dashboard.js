@@ -236,3 +236,16 @@ function loadWidgetFirstTime(loadingClass, widgetClass) {
     widget.removeClass('u-invisibility');
   }
 }
+
+function setupTableWidget(widgetClass) {
+  var widget = $('.' + widgetClass);
+  if (widget.length > 0) {
+    var tableWidgetPanel = widget.find('.table-widget-panel');
+    if(tableWidgetPanel.length > 0) {
+      var widgetContent = widget.find('.widget__content');
+      if(widgetContent.length > 0) {
+        widgetContent.outerHeight(widget.height() - 44);
+      }
+    }
+  }
+}
