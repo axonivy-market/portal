@@ -1,29 +1,29 @@
 .. _customization-process-image:
 
-Process image
-=====================
+Process Image
+=============
 
 .. _customization-process-image-introduction:
 
 Introduction
 ------------
 
-When you want to customize process image, you should follow this section
-to override process image of Portal.
+To customize the process image, follow this section to override the process
+image of Portal.
 
 .. _customization-process-image-customization:
 
-Define your own process image
--------------------------------------
+Define Your Own Process Image
+-----------------------------
 
-#. Create a CMS object with image type in your project.
+#. Create a CMS object with type image in your project.
 
 #. Define a custom field ``processImage`` in :guilabel:`Custom Fields` of the process start.
-   Value of this custom field is CMS object which you created at first step.
+   The value of this custom field is the CMS object which you created above.
 
    |define-process-image|
 
-#. Go to full process list page and search your customized process.
+#. Go to the full process list page and search your customized process.
 
    |image-process-list|
 
