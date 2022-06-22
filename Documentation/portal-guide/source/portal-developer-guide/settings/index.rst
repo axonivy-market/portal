@@ -50,12 +50,14 @@ Language Settings
    -  Entries are separated by comma
    -  The process model version (PMV), containing this CMS, has to be active
 
--  To add a new language to Portal, what you have to do is
+-  To add a new language to Portal, what you have to do is:
+
    -  Open CMS item ``/AppInfo/SupportedLanguages`` in Portal Style, then add new language for example Italian
 
       |add-new-item-to-cms-language|
 
-   -  Add new language locale to all items, you can input either language code ``it`` or language code with country ``it-CH``. If you use language code with country, refer to `Java supported locales <https://www.oracle.com/java/technologies/javase/jdk11-suported-locales.html>`_ .
+   -  Add new language locale to all items, you can input either language code ``it`` or language code with country ``it-CH``. 
+      If you use language code with country, refer to `Java supported locales <https://www.oracle.com/java/technologies/javase/jdk11-suported-locales.html>`_ .
 
       |add-new-item-to-cms-language-after|
 
