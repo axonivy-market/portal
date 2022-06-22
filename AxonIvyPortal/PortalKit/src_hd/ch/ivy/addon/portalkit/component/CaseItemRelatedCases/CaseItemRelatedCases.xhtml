@@ -45,7 +45,7 @@
         sortBy="#{caseDetailsBean.sortById}" styleClass="related-cases" rowHover="true" selectionMode="single"
         currentPageReportTemplate="{currentPage} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/curentReportOf')} {totalPages}">
         <p:ajax event="rowSelect" listener="#{caseDetailsBean.navigateToSelectedCaseDetails}" />
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}" field="NAME" sortBy="#{NAME}" filterable="false" styleClass="name-column u-truncate-text ui-sm-12"
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}" field="NAME" sortBy="#{NAME}" filterable="false" styleClass="related-case-name name-column u-truncate-text ui-sm-12"
           visible="#{caseDetailsBean.isDisplayColumn(data.caseLazyDataModel, 'NAME')}">
           <h:outputText value="#{case.name}" title="#{case.name}" styleClass="case-name-value"/>
           <h:outputText value="#{caseWidgetBean.formatCaseDescription(case.description)}" styleClass="case-description-value"/>
