@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.10",
+  "format" : "9.4.11",
   "id" : "180CC29030DF7407",
   "data" : "com.axonivy.portal.component.UploadDocumentItemCheckerData",
   "kind" : "CALLABLE_SUB",
@@ -9,6 +9,7 @@
       "name" : "call(UploadedFile,Boolean,Boolean,String)",
       "config" : {
         "callSignature" : "call",
+        ".name" : "call(UploadedFile,Boolean,Boolean,String)",
         "input" : {
           "params" : [
             { "name" : "uploadFile", "type" : "org.primefaces.model.file.UploadedFile" },
@@ -51,6 +52,7 @@
       "name" : "Check file contains code",
       "config" : {
         "security" : "system",
+        ".name" : "Check file contains code",
         "output" : {
           "code" : [
             "import com.axonivy.portal.component.enums.UploadDocumentCheckStatus;",
@@ -79,6 +81,10 @@
         "in whitelist"
       ],
       "config" : {
+        ".name" : [
+          "Check file extension",
+          "in whitelist"
+        ],
         "output" : {
           "code" : [
             "import com.axonivy.portal.component.service.CaseDocumentService;",
@@ -126,6 +132,7 @@
       "name" : "Check file contains virus",
       "config" : {
         "security" : "system",
+        ".name" : "Check file contains virus",
         "output" : {
           "code" : [
             "import com.axonivy.portal.component.enums.UploadDocumentCheckStatus;",

@@ -1,0 +1,9 @@
+# == Variables ==
+# 
+# You can define here your project Variables.
+# If you want to define/override a Variable for a specific Environment, 
+# add an additional ‘variables.yaml’ file in a subdirectory in the ‘Config’ folder: 
+# '<project>/Config/_<environment>/variables.yaml
+#
+Variables:
+#  myVariable: value

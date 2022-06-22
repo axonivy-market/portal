@@ -1,0 +1,41 @@
+{
+  "format" : "9.4.11",
+  "id" : "181897243F2BFDD3",
+  "data" : "com.axonivy.portal.component.example.ProcessChainExampleData",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "showProcessChainExamples.ivp",
+      "config" : {
+        "callSignature" : "showProcessChainExamples",
+        ".name" : "showProcessChainExamples.ivp",
+        "outLink" : "showProcessChainExamples.ivp",
+        "startName" : "Process Chain Example"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 },
+        "labelOffset" : { "x" : -62, "y" : 21 }
+      },
+      "connect" : { "id" : "f4", "to" : "f3" }
+    }, {
+      "id" : "f1",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 448, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "DialogCall",
+      "name" : "ProcessChainExample",
+      "config" : {
+        "dialogId" : "com.axonivy.portal.component.example.ProcessChainExample",
+        "startMethod" : "start()",
+        ".name" : "ProcessChainExample"
+      },
+      "visual" : {
+        "at" : { "x" : 296, "y" : 64 },
+        "size" : { "width" : 144, "height" : 44 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    } ]
+}
