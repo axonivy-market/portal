@@ -20,6 +20,7 @@
   modal="true"
   resizable="false"
   dynamic="true">
+  <p:ajax event="close" oncomplete="hideCreateDashboardSection()" update="@(.dashboard-detail-form) #{cc.clientId}:template-selection-container"/>
   <div class="ui-g dashboard-configuration-dialog__content">
     <h:form id="configuration-form" styleClass="dashboard-configuration-dialog__form">
       <h:panelGroup id="private-dashboard-configuration-section" layout="block" styleClass="ui-g-12" rendered="#{dashboardBean.canEditPrivateDashboard}">
