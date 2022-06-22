@@ -24,5 +24,3 @@ uploadDocumentCheckStatus ch.ivy.addon.portalkit.enums.UploadDocumentCheckStatus
 uploadDocumentCheckStatus PERSISTENT #fieldModifier
 uploadedDocument ch.ivyteam.ivy.workflow.document.IDocument #field
 uploadedDocument PERSISTENT #fieldModifier
-emptyList java.util.List<String> #field
-emptyList PERSISTENT #fieldModifier

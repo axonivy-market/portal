@@ -3,58 +3,73 @@
 Settings
 ********
 
-This section covers Portal role, permissions and some settings.
+This section covers Portal roles, permissions and other settings.
 
 |portal-header|
 
 .. _settings-admin-settings:
 
-Configure Portal settings
+Configure Portal Settings
 =========================
 
 To manually configure Portal settings, refer to :ref:`update-portal-settings`.
 
 Portal settings are stored as :dev-url:`Variables </doc/nightly/designer-guide/configuration/variables.html>`.
 
-In development, it is a quite tedious task to configure Portal settings after restarting Designer. You could update value of Variables in
-``PortalKit/config/variables.yaml`` for the settings that you want to configure, it could survive after restarting Designer.
+In development, it is a quite tedious task to configure Portal settings after
+restarting Designer. Therefore, update your variables in
+``PortalKit/config/variables.yaml`` for the settings that you want to configure.
+This survives restarting Designer.
 
 .. _settings-language:
 
-Language settings
+Language Settings
 =================
 
--  Below is applied language setting precedence:
+-  We use the following language setting precedence:
 
    |language-precedence|
 
-If user email language setting is application default, language would be applied by application email language setting.
+   If the user email language setting is the application default, the application
+   default language is applied.
 
-If user selects a language in email setting, language would be appplied by this selection.
+   If the user selects a language in email settings, this language is applied.
 
-To configure languages of Portal applications, refer to :ref:`language-settings`.
+   To configure the languages of Portal applications, refer to
+   :ref:`language-settings` in :ref:`my-profile` in the Portal User Guide.
 
--  For multiple languages, the CMS key ``/AppInfo/SupportedLanguages``
-   must exist in your application. This CMS entry is
-   in Portal Style. It contains list of all languages supported by
-   your application, separated by comma.
+-  For multiple languages, the CMS key ``/AppInfo/SupportedLanguages`` has to
+   exist in your application. This CMS entry is located in Portal Style. It
+   contains a comma separated list of all languages supported by your
+   application.
 
-   -  Must not contain spaces
-   -  Same as display name of Locale
-   -  Separated by comma
-   -  Process model version, which has this CMS, must active
+   The rules for this list are:
 
--  To add new language to Portal, what you have to do is
+   -  This list must not contain spaces
+   -  Each entry has to be either a language code (en) or a language-country code (en-US) of a Java Locale (see below)
+   -  Entries are separated by comma
+   -  The process model version (PMV) containing this CMS entry has to be active.
 
-   -  Add new language locale to cms entry of Portal Style ``/AppInfo/SupportedLanguages`` 
-   -  Export all CMS entries of Portal Style to excel file
-   -  Add translation of new language for all CMS entries
-   -  Import file excel back, then redeploy Portal Style
-   -  This is sample how to add new Spanish to portal
+-  To add a new language to Portal, what you have to do is:
 
-|add-new-language|
+   -  Open CMS item ``/AppInfo/SupportedLanguages`` in Portal Style, then add the new language, for example, Italian
 
-Role configuration
+      |add-new-item-to-cms-language|
+
+   -  Add the new language locale to all items. You can input either the language code ``it`` or the language code with country ``it-CH``. 
+      If you use language code with country, refer to `Java supported locales <https://www.oracle.com/java/technologies/javase/jdk11-suported-locales.html>`_ .
+
+      |add-new-item-to-cms-language-after|
+
+   -  Export all CMS entries of Portal Style to an Excel file, then add the translations for the new language for all CMS entries
+
+      |export-cms|
+
+   -  Import the Excel file.
+   -  Redeploy PortalStyle.
+
+
+Role Configuration
 ==================
 
 .. table:: 
@@ -62,80 +77,82 @@ Role configuration
    +-----------------------------------+-----------------------------------+
    | PortalKit roles                   | Rights                            |
    +===================================+===================================+
-   | AXONIVY_PORTAL_ADMIN              | User belong to this role can      |
-   |                                   | handle AdminUI page, configure    |
-   |                                   | the internal role properties,     |
-   |                                   | create public filters. Users who  |
-   |                                   | own this role need some           |
-   |                                   | permissions.                      |
+   | AXONIVY_PORTAL_ADMIN              | User having to this role can      |
+   |                                   | access the Portal Admin page,     |
+   |                                   | configure internal role           |
+   |                                   | properties, and create public     |
+   |                                   | filters. Users who own this role  |
+   |                                   | need some permissions.            |
    |                                   |                                   |   
    +-----------------------------------+-----------------------------------+
 
 .. _settings-permission-settings:
 
-Permission settings
+Permission Settings
 ===================
 
-Permissions can be configured in :dev-url:`Cockpit
-</doc/nightly/engine-guide/tool-reference/engine-cockpit/security.html>`.
-In the security area, you will find all these permission in the Group
-"PortalPermissions"
+Configure permissions in the :dev-url:`Engine Cockpit
+</doc/nightly/engine-guide/tool-reference/engine-cockpit/security.html>`. In the
+security area, you will find all these permission in group "PortalPermissions".
 
-Task permission
----------------
+Task Permissions
+----------------
 - Add note
 
    User needs permission: ``PortalPermission.TASK_CASE_ADD_NOTE``.
 
 - Delegate
 
-   To show delegate action, user needs permission:
+   To be able to delegate, the user needs permission
    ``PortalPermission.TASK_DISPLAY_DELEGATE_ACTION``.
 
-   To delegate personal or group tasks, user needs permission:
-   ``TaskWriteActivatorOwnTasks`` (This permission belongs to Portal
-   permission group and it is not assigned to role Everybody by
-   default). 
+   To delegate personal or group tasks, user needs permission
+   ``TaskWriteActivatorOwnTasks``. This permission belongs to the
+   PortalPermissions group. It is not assigned to role Everybody by default. 
    
-   To delegate all tasks in task list, user needs permission:
+   To delegate all tasks in a task list, the user needs permission
    ``IPermission.TASK_WRITE_ACTIVATOR``.
 
    .. important::
-      Task state cannot be one of the following values:
+      Only tasks ready for user processing can be delegated.
+      Therefore, the task state cannot be one of the following:
       CREATED, DONE, DESTROYED, RESUMED, FAILED.
 
 - Reset
 
-   To show reset action, user needs permission:
+   To see the reset action, the user needs permission
    ``PortalPermission.TASK_DISPLAY_RESET_ACTION``.
 
-   To reset task, user needs permission:
+   To reset tasks, the user needs permission:
    ``IPermission.TASK_RESET_OWN_WORKING_TASK`` or
    ``PortalPermission.TASK_RESET_READY_FOR_JOIN`` or
    ``IPermission.TASK_RESET``.
 
    .. important::
-      Task state has to be one of following values: RESUMED, PARKED, READY_FOR_JOIN, FAILED.
+      This only works for tasks in one of following states: RESUMED, 
+      PARKED, READY_FOR_JOIN, FAILED.
 
    
 - Delete
 
-   User needs permission:
+   To see the Delete Task action, the user needs permission
    ``IPermission.TASK_DESTROY``.
 
    .. important::
-      Task state isn't DESTROYED or DONE.
+      Delete Task only works if the task state is not already DESTROYED 
+      or DONE.
 
 - Reserve
 
-   To show reserve action, user needs permission: 
+   To see the Reserve action, the user needs permission
    ``PortalPermission.TASK_DISPLAY_RESERVE_ACTION``.
 
-   To reserve task, user needs permission: 
+   To reserve a task, the user needs permission
    ``IPermission.TASK_PARK_OWN_WORKING_TASK``.
 
    .. important::
-      Task state has to be one of following values: CREATED, RESUMED, SUSPENDED.
+      Reservation is only possible if the task is in one of the following 
+      states: CREATED, RESUMED, SUSPENDED.
 
 - Change description
 
@@ -143,91 +160,83 @@ Task permission
    ``IPermission.TASK_WRITE_DESCRIPTION``.
 
    .. important::
-      Task state cannot be one of following values:
+      A terminated task cannot be changed. Therefore, the task state cannot be one of the following values:
       DONE, DESTROYED, FAILED.
 
 - Change deadline
 
-   User needs permission: 
+   User needs permission
    ``IPermission.TASK_WRITE_EXPIRY_TIMESTAMP``.
 
    .. important::
-      Task state cannot be one of following values:
+      To change an expiry date, the task cannot be in one of the following states:
       DONE, DESTROYED, FAILED.
 
 - Change priority
 
-   User needs permission: 
+   User needs permission 
    ``IPermission.TASK_WRITE_ORIGINAL_PRIORITY``.
 
    .. important::
-      Task state cannot be one of following values:
+      To change task priority, the task cannot be in the following states:
       DONE, DESTROYED, FAILED.
 
 - Display additional options
 
-   To show additional action, user needs permission: 
+   To see additional actions, the user needs permission
    ``PortalPermission.TASK_DISPLAY_ADDITIONAL_OPTIONS``.
 
-Case permission
----------------
+Case Permissions
+----------------
 
 - Add note
 
-   User needs permission: ``PortalPermission.TASK_CASE_ADD_NOTE``.
+   User needs permission ``PortalPermission.TASK_CASE_ADD_NOTE``.
 
 - Delete
 
-   User needs permission: 
-   ``IPermission.CASE_DESTROY``.
+   User needs permission ``IPermission.CASE_DESTROY``.
 
    .. important::
-      Case state must be RUNNING.
+      Case state has to be RUNNING.
 
 - Change description
 
-   User needs permission: 
-   ``IPermission.CASE_WRITE_DESCRIPTION``.
+   User needs permission ``IPermission.CASE_WRITE_DESCRIPTION``.
 
    .. important::
       Case state cannot be DESTROYED.
 
 - See related tasks of case
 
-   To show related tasks action, user needs permission: 
+   To see the related tasks action, the user needs permission
    ``PortalPermission.SHOW_ALL_TASKS_OF_CASE``.
 
-   To see related tasks, user needs permission: 
-   ``IPermission.TASK_READ_OWN_CASE_TASKS`` or
-   ``IPermission.TASK_READ_ALL``.
+   To see related tasks, user needs permission
+   ``IPermission.TASK_READ_OWN_CASE_TASKS`` or ``IPermission.TASK_READ_ALL``.
 
    .. important::
       Case state cannot be DESTROYED.
 
 - Display show detail link
 
-   User needs permission: 
-   ``PortalPermission.SHOW_CASE_DETAILS``.
-   This permission is not assigned to role Everybody by default.
+   User needs permission ``PortalPermission.SHOW_CASE_DETAILS``. By default, this permission
+   is not assigned to role Everybody.
 
-Administrator permission can see all tasks/cases in the application
+Normal users can only see the tasks and cases that they can work on.
 
-Normal users can only see their tasks/cases they can work on.
+Administrators can see all tasks/cases in the application. The require
+Permissions ``IPermission.TASK_READ_ALL``, ``IPermission.CASE_READ_ALL``.
 
-Administrator can see all tasks/cases in the application.
+Administrators can interact with all workflows in the application.
 
-Permissions needed: ``IPermission.TASK_READ_ALL``,
-``IPermission.CASE_READ_ALL`` .
+Administrators can create, update and delete all workflows in the application.
 
-Administrator permission can interact with all workflows in the application
+Normal users can update and delete workflows that have been created by them and can interact
+with tasks that have been assigned to them.
 
-Normal user can update and delete workflow which created by him and
-can interact with workflow's task which assigned to him.
 
-Administrator can create, update and deletes all workflows in the
-application.
-
-Other permissions
+Other Permissions
 -----------------
 
 .. table:: 
@@ -279,7 +288,7 @@ Other permissions
  |           | Access to full case list, it's  | ``PortalPermission.ACCESS_FULL_CASE_LIST``         |
  |           | "Cases" on the left menu        |                                                    |
  |           +---------------------------------+----------------------------------------------------+
- |           | Access to statistic, it's       | ``PortalPermission.ACCESS_FULL_STATISTICS_LIST``   |
+ |           | Access to statistics it's       | ``PortalPermission.ACCESS_FULL_STATISTICS_LIST``   |
  |           | "Statistics" on the left menu   |                                                    |
  |           | and link "Show all charts" on   |                                                    |
  |           | Dashboard                       |                                                    |
@@ -294,10 +303,10 @@ Other permissions
  |           | add it to User Favorite         |                                                    |
  +-----------+---------------------------------+----------------------------------------------------+
 
-Virus Scanning Setting 
-======================
+Virus Scanning Settings
+=======================
 
-PrimeFaces is delivered with one implementation of that interface that uses
+PrimeFaces is delivered with one implementation of the interface that uses
 `VirusTotal <https://www.virustotal.com/>`_. To enable `VirusTotal
 <https://www.virustotal.com/>`_ you need to create a community account at the
 `VirusTotal website <https://www.virustotal.com/>`_. You receive an API key once
@@ -307,27 +316,29 @@ configuration/web.xml file:
    .. code-block:: xml
 
       <context-param>
-      <param-name>primefaces.virusscan.VIRUSTOTAL_KEY</param-name>
-      <param-value>PUT YOUR API KEY HERE</param-value> 
+         <param-name>primefaces.virusscan.VIRUSTOTAL_KEY</param-name>
+         <param-value>PUT YOUR API KEY HERE</param-value> 
       </context-param>
 
    ..
 
-By default after configured context-param in the web XML file, the Virus
-Scanning is enabled. You could update the value of the variable
-``EnableVirusScanner`` to ``false`` in ``PortalKit/config/variables.yaml`` that
-you want to disable.
-
+By default, after you configured the context-param in the web XML file, the
+Virus Scanning is enabled. You can change the variable ``EnableVirusScanner`` to
+``false`` in ``PortalKit/config/variables.yaml`` if you want to disable virus
+scanning.
 
 Reference: `How to check if uploaded files contain a virus
 <https://community.axonivy.com/d/144-how-to-check-if-a-uploaded-files-contain-a-virus/>`_.
 
-Global variables
-================
+.. warning::
+   Files that are checked for viruses are uploaded to VirusTotal. If you may 
+   not store the data of your application on servers outside the internal 
+   network or a given country, you might want to refrain from using this solution.
 
 Variables
----------
-These variables are storing as key, value. Can edit in the cockpit only.
+=========
+
+These variables are stored as key-value pairs. They have to be edited in the Engine Cockpit.
 
 .. table:: 
 
@@ -335,9 +346,9 @@ These variables are storing as key, value. Can edit in the cockpit only.
    | Variable                                    | Default                       | Description                 |
    |                                             | value                         |                             |
    +=============================================+===============================+=============================+
-   | PortalStartTimeCleanObsoletedDataExpression | 0 0 6 \* \* ?                 | Cron expression define      |
+   | PortalStartTimeCleanObsoletedDataExpression | 0 0 6 \* \* ?                 | Cron expression defines     |
    |                                             |                               | the time to clean up data   |
-   |                                             |                               | of obsoleted users. E.g.:   |
+   |                                             |                               | of obsolete users. E.g.:    |
    |                                             |                               | expression for at 6AM       |
    |                                             |                               | every day is                |
    |                                             |                               | ``0 0 6 * * ?`` . Refer     |
@@ -352,45 +363,46 @@ These variables are storing as key, value. Can edit in the cockpit only.
    |                                             |                               | variable.                   |
    +---------------------------------------------+-------------------------------+-----------------------------+
    | PortalDeleteAllFinishedHiddenCases          | false                         | If set to ``true``, the     |
-   |                                             |                               | cron job runs daily (at     |
-   |                                             |                               | 6.AM as default) will       |
-   |                                             |                               | clean all finished hidden   |
-   |                                             |                               | cases in engine.            |
-   |                                             |                               | Otherwise, just hidden      |
-   |                                             |                               | cases which were            |
-   |                                             |                               | generated by Portal will    |
-   |                                             |                               | be deleted.                 |
+   |                                             |                               | above cron job runs daily   |
+   |                                             |                               | and will remove all         |
+   |                                             |                               | finished hidden cases on    |
+   |                                             |                               | the engine.                 |
+   |                                             |                               | Otherwise, just cases which |
+   |                                             |                               | were generated by this      |
+   |                                             |                               | Portal will be deleted.     |
    +---------------------------------------------+-------------------------------+-----------------------------+
    | PortalHiddenTaskCaseExcluded                | true                          | By default, Portal will     |
    |                                             |                               | query tasks and cases       |
-   |                                             |                               | which don't have hide       |
-   |                                             |                               | information. Set it to      |
-   |                                             |                               | ``false``, Portal will      |
-   |                                             |                               | ignore this additional      |
-   |                                             |                               | property.                   |
+   |                                             |                               | which are not hidden. If    |
+   |                                             |                               | set to ``false``, Portal    |
+   |                                             |                               | will ignore this property.  |
    +---------------------------------------------+-------------------------------+-----------------------------+
-   | PortalLoginPageDisplay                      | true                          |By default, Portal will      |
-   |                                             |                               |redirect to Login Page if    |
-   |                                             |                               |login is required and user   |
-   |                                             |                               |is unknown. Set it to false  |
-   |                                             |                               |to redirect to login error   |
-   |                                             |                               |page and hide Logout in      |
-   |                                             |                               |User menu when you are using |
-   |                                             |                               |external authentication and  |
-   |                                             |                               |the user is not created in   |
-   |                                             |                               |your application user list.  |
+   | PortalLoginPageDisplay                      | true                          | By default, Portal will     |
+   |                                             |                               | redirect to Login Page if   |
+   |                                             |                               | login is required and the   |
+   |                                             |                               | user is unknown.            |
+   |                                             |                               | Set to ``false`` to         |
+   |                                             |                               | redirect to the login error |
+   |                                             |                               | page and hide Logout in the |
+   |                                             |                               | User menu (when you use     |
+   |                                             |                               | external authentication and |
+   |                                             |                               | the user is not present in  |
+   |                                             |                               | your application user list. |
    +---------------------------------------------+-------------------------------+-----------------------------+
 
 
 Configuration
 -------------
 
-These variables are storing in JSON format, can edit on the cockpit, or using the UI on the Portal Admin setting.
+These variables are stored in JSON format. You can edit them in the cockpit, or
+use the UI on the Portal Admin settings.
 
 
-Portal.Announcement
+Portal Announcement
 ^^^^^^^^^^^^^^^^^^^
-The standard announcement for Portal included general information (e.g. Downtime, Changes, etc.). This message can be seen by all portal users.
+The standard announcement for Portal is intended to be used for general
+information (e.g. Downtime, Changes, etc.). This message can be seen by all
+Portal users.
 
 Filename: ``variables.Portal.Announcement.json``
 
@@ -413,9 +425,10 @@ Data model:
 -  ``enabled``: the status of the announcement, true shows the announcement
 
 
-Portal.ThirdPartyApplications
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-You can define your custom menu item via this JSON file. It will be included on the left menu.
+Third Party Applications Linked Into Portal
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+You can define your custom menu item in the following JSON file. It will be included in
+the left menu.
 
 Filename: ``variables.Portal.ThirdPartyApplications.json``
 
@@ -432,18 +445,21 @@ Data model:
       }
    ]
 
-- ``id``: the identification number of a third-party application, auto-generated by UUID
-- ``displayName``: the display name of the app that shows in the left menu, support multi-language
-- ``menuIcon``: the style class of app icon that shows in the left menu
-- ``menuOrdinal``: index of app that uses to sort menu items in the left menu
-- ``name``: the name of third-party app
-- ``link``: the URL of third-party app
+- ``id``: the identification number of a third-party application. It is an
+  auto-generated UUID.
+- ``displayName``: the display name of the app that is shown in the left menu.
+  Supports multi-language.
+- ``menuIcon``: the style class of the app icon that shows in the left menu.
+- ``menuOrdinal``: index of the app. Used to sort menu items in the left menu.
+- ``name``: the name of third-party app.
+- ``link``: the URL of third-party app.
 
 .. _portal-statistic-charts:
 
-Portal.StatisticCharts
-^^^^^^^^^^^^^^^^^^^^^^
-You can define the standard statistic charts via this JSON file. It will be shown as the default charts on the statistic page.
+Portal Statistic Charts
+^^^^^^^^^^^^^^^^^^^^^^^
+You can define the standard statistic charts via the following JSON file. They
+will be shown as the default charts on the statistic page.
 
 Filename: ``variables.Portal.StatisticCharts.json``
 
@@ -475,32 +491,34 @@ Data model:
       "position": 6
    }]
 
--  ``id``: the identification of chart, auto-generated by UUID
--  ``names``: the display name of the chart, support multi-language by defined locale and value
+-  ``id``: the identification of chart. An auto-generated UUID.
+-  ``names``: the display name of the chart. Supports multi-language.
 -  ``type``: type of chart such as ``TASK_BY_PRIORITY``, ``CASES_BY_STATE``, ``CASES_BY_FINISHED_TASK``, ``CASES_BY_FINISHED_TIME``, ``TASK_BY_EXPIRY`` and ``ELAPSED_TIME_BY_CASE_CATEGORY``
--  ``filter``: list filters apply for each chart
+-  ``filter``: list filters to apply for each chart
 
    -  ``timePeriodSelection``: type of period filter such as ``CUSTOM``, ``LAST_WEEK``, ``LAST_MONTH`` and ``LAST_6_MONTH``
    -  ``createdDateFrom``: start time for custom period filter
    -  ``createdDateTo``: end time for custom period filter
    -  ``selectedCaseCategories``: case category filter
    -  ``selectedRoles``: role filter
-   -  ``isAllRolesSelected``: indicator to inform that selected all roles or not
+   -  ``isAllRolesSelected``: indicator to inform if all roles are selected.
    -  ``selectedCaseStates``: case state filter
-   -  ``isAllCaseStatesSelected``: indicator to inform that selected all states or not
+   -  ``isAllCaseStatesSelected``: indicator to inform if all case states are selected.
    -  ``selectedTaskPriorities``: task priority filter
-   -  ``isAllTaskPrioritiesSelected``: indicator to inform that selected all priorities or not
+   -  ``isAllTaskPrioritiesSelected``: indicator to inform if all priorities are selected.
    -  ``customFieldFilters``: list CustomField name filters, define by ``ICase.customFields()``
 
       -  ``CustomVarCharField``: name of ``ICase.customFields()``
 
--  ``position``: position index of chart that uses to sort chart in the UI
+-  ``position``: position index of chart. Used to order the charts in the UI
 
 .. _portal-dashboard-favorite-processes:
 
-Portal.Dashboard.FavoriteProcesses
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-You can include your custom application favorites processes via this JSON file. It will be shown as the processes in the application favorite section.
+Portal Dashboard Favorite Processes
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+You can include the favorite processes of your custom application via the following
+JSON file. It will be shown as the processes in the application favorite
+section.
 
 Filename: ``variables.Portal.Dashboard.FavoriteProcesses.json``
 
@@ -534,17 +552,17 @@ Data model:
       "index": 1
    }]
 
-- ``id``: the identification of a process, auto-generated by UUID
-- ``processType``: type of a process such as ``EXPRESS_PROCESS``, ``EXTERNAL_LINK``, ``IVY_PROCESS``
-- ``processName``: the display name of a process
--  ``names``: the display name of a process, support multi-language by defined locale and value
-- ``icon``: the style class of the process icon
-- ``processId``: the process id of the process start in ivy
-- ``index``: the index number to sort the processes in the dashboard
+- ``id``: the identification of a process. auto-generated UUID.
+- ``processType``: type of a process such as ``EXPRESS_PROCESS``, ``EXTERNAL_LINK``, ``IVY_PROCESS``.
+- ``processName``: the display name of a process.
+-  ``names``: the display name of a process. support multi-language.
+- ``icon``: the style class of the process icon.
+- ``processId``: the process id of the process start.
+- ``index``: the index number to order the processes in the dashboard.
 
-Portal.Processes.ExternalLinks
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-The standard external links of Portal.
+Portal Processes External Links
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The standard external links of the Portal are defined in the following file:
 
 Filename: ``variables.Portal.Processes.ExternalLinks.json``
 
@@ -568,9 +586,9 @@ Data model:
 - ``description``: the description of a link
 
 
-Portal.Processes.ExpressProcesses
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-The standard express processes of Portal.
+Portal Express Processes
+^^^^^^^^^^^^^^^^^^^^^^^^
+The standard express processes of the Portal are defined in this file:
 
 Filename: ``variables.Portal.Processes.ExpressProcesses.json``
 
@@ -668,6 +686,7 @@ Data model:
 .. |global-settings| image:: ../../screenshots/settings/global-settings.png
 .. |global-setting-edit| image:: ../../screenshots/settings/edit-global-settings.png
 .. |language-precedence| image:: images/settings/language-precedence.png
-.. |add-new-language| image:: images/settings/add-new-language.png
 .. |select-admin-settings| image:: ../../screenshots/settings/select-admin-settings.png
-
+.. |add-new-item-to-cms-language| image:: images/settings/add-new-item-to-cms-language.png 
+.. |add-new-item-to-cms-language-after| image:: images/settings/add-new-item-to-cms-language-after.png
+.. |export-cms| image:: images/settings/export-cms.png   
