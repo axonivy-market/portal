@@ -10,7 +10,7 @@ import com.axonivy.portal.component.example.enums.ExtendedDocumentType;
 
 @ManagedBean
 @ViewScoped
-public class documentTableExampleBean implements Serializable {
+public class DocumentTableExampleBean implements Serializable {
 
   private static final long serialVersionUID = -4285398008730925598L;
 
