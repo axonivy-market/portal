@@ -49,7 +49,7 @@ String everybodyRoleName = "Everybody";
 IRole everybodyRole = ivy.wf.getSecurityContext().findRole(everybodyRoleName);
 in.selectedRoleForReadOnlyField = new RoleDTO(everybodyRole);
 Ivy.log().info("selected Role for read only field: " + in.selectedRoleForReadOnlyField.getDisplayName());
-in.excludedRoleNames = Arrays.asList("CaseOwner", "GeneralManager");
+in.excludedRoleNames = Arrays.asList("Tester", "Supporter");
 in.definedRoleNames = Arrays.asList("Everybody");' #txt
 Ds0 f12 security system #txt
 Ds0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

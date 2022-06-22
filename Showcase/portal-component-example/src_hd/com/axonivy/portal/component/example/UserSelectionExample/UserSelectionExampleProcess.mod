@@ -48,18 +48,18 @@ import ch.ivyteam.ivy.security.IUser;
 import com.axonivy.portal.component.dto.UserDTO;
 import java.util.Arrays;
 
-in.definedRoleNames = Arrays.asList("CostObject", "GeneralManager");
-String costObject1UserName = "costObject1";
-IUser costObject1 = ivy.wf.getSecurityContext().findUser(costObject1UserName);
-if (costObject1 == null) {
-  costObject1 = ivy.wf.getSecurityContext().createUser(costObject1UserName, "Cost Object 1", "", Locale.GERMAN, "", "");
-  IRole costObject = ivy.wf.getSecurityContext().findRole("CostObject");
-  if (costObject != null) {
-  	costObject1.addRole(costObject);
+in.definedRoleNames = Arrays.asList("BackendDeveloper", "Tester");
+String backendDev1UserName = "backendDev1";
+IUser backendDev1 = ivy.wf.getSecurityContext().findUser(backendDev1UserName);
+if (backendDev1 == null) {
+  backendDev1 = ivy.wf.getSecurityContext().createUser(backendDev1UserName, "Backend Developer 1", "", Locale.GERMAN, "", "");
+  IRole backendDev = ivy.wf.getSecurityContext().findRole("BackendDeveloper");
+  if (backendDev != null) {
+  	backendDev1.addRole(backendDev);
   }
 }
-in.selectedUserForReadOnlyField = new UserDTO(costObject1);
-in.excludedUsernames = Arrays.asList("gm1", "gm2", "admin");' #txt
+in.selectedUserForReadOnlyField = new UserDTO(backendDev1);
+in.excludedUsernames = Arrays.asList("supporter", "tester");' #txt
 Ds0 f6 security system #txt
 Ds0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
