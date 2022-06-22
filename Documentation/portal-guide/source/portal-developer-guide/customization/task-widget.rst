@@ -4,7 +4,7 @@ Task widget
 ===========
 
 TaskWidget is a built-in component of Portal which contains the tasks
-users can interact with. In order to show needed task's information,
+users can interact with. To show needed task's information,
 Portal supports overriding concept for TaskWidget. Each TaskWidget
 contains 2 parts:
 
@@ -16,13 +16,13 @@ contains 2 parts:
    display the tasks as you want
 
 .. important::
-   - Task header customization currently support responsive design. Refer to :ref:`this part <customization-task-widget-responsive-layout>` for more detail.
+   - Task header customization currently support responsive design. Refer to :ref:`this part <customization-task-widget-responsive-layout>` for detail.
 
    - Task header's buttons cannot be modified (they stay where they are)
 
 .. _customization-task-widget-how-to-overide-ui:
 
-How to override task widget's UI
+How To Override Task Widget's UI
 --------------------------------
 
 Refer to ``portal-developer-examples`` project for examples
@@ -50,7 +50,7 @@ Refer to ``portal-developer-examples`` project for examples
 
 .. _customization-task-widget-how-to-overide-ui-task-header:
 
-Task List Header and Task header
+Task List Header And Task Header
 --------------------------------
 
 Refer to the ``taskListHeader (1)`` and ``taskHeader (2)`` sections in
@@ -60,7 +60,7 @@ function of these columns work:
 
 |task-list|
 
-*  Introduce a java class extends TaskLazyDataModel
+*  Introduce a Java class which extends TaskLazyDataModel
 
 *  Override the ``extendSort`` method and extend the sort function for
    the added columns (see the method's Javadoc comments)
@@ -74,7 +74,7 @@ function of these columns work:
       to display checkboxes in Config columns panel and display/hide
       sortFields (see the methods' Javadoc comments)
 
-   *  To add cms for checkboxes's label, add new entries to folder
+   *  To add CMS for checkboxes's label, add new entries to folder
       ``/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/`` in
       ``PortalStyle`` or override method ``getColumnLabel``\ (see the
       methods' Javadoc comments)
@@ -113,13 +113,13 @@ function of these columns work:
 
 .. _customization-task-widget-how-to-overide-ui-task-filter:
 
-Task filter
+Task Filter
 -----------
 
 -  Refer to the ``taskFilter`` section in ``PortalTasks.xhtml`` of
    PortalTemplate.
 
--  In order to introduce new filter, create a new java class extends
+-  To introduce new filter, create a new Java class extends
    TaskFilter and override its methods (see javadoc comments)
 
    #. Filter ``label()`` and ``value()`` method.
@@ -128,14 +128,14 @@ Task filter
 
    |task-filter|
 
--  Introduce a java class extends TaskFilterContainer. This filter
+-  Introduce a Java class which extends TaskFilterContainer. This filter
    container contains your filters, you can reuse default filters, refer
    to ``DefaultTaskFilterContainer.java``
 
    .. tip:: StateFilter is added as default to container. If you don't need
                it, use this code in constructor: ``filters.remove(stateFilter);``
 
--  Introduce a java class extends TaskLazyDataModel. Override the
+-  Introduce a Java class which extends TaskLazyDataModel. Override the
    ``initFilterContainer`` method and initialize filter container (see
    javadoc comments)
 
@@ -165,7 +165,7 @@ Task filter
 
 .. _customization-task-widget-how-to-override-data-query:
 
-How to override task widget's data query
+How To Override Task Widget's Data Query
 ----------------------------------------
 
 -  Override the
@@ -205,10 +205,10 @@ How to override task widget's data query
 
 .. _customization-task-widget-how-to-override-export-feature:
 
-How to override export feature
+How To Override Export Feature
 ------------------------------
 
-#. Extend the TaskExporter java class of PortalKit.
+#. Extend the TaskExporter Java class of PortalKit.
 
    -  Override the ``getColumnName`` method.
 
@@ -236,7 +236,7 @@ How to override export feature
          }
       }
 
-#. Override the ExportTaskToExcel callable process and apply your extended TaskExporter java class.
+#. Override the ExportTaskToExcel callable process and apply your extended TaskExporter Java class.
 
    .. code-block:: java
 
@@ -245,7 +245,7 @@ How to override export feature
 
 .. _customization-task-widget-custom-task-delegate:
 
-Custom task delegate
+Custom Task Delegate
 --------------------
 
 Portal allows to customize the list of users and roles that a task can
@@ -269,7 +269,7 @@ be delegated to. This can be done following these steps:
 
 .. _customization-task-widget-responsive-layout:
 
-How to make responsive task list
+How To Make Responsive Task List
 --------------------------------
 
 If you have customized task list and want it responsive on different

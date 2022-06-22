@@ -1,9 +1,9 @@
 .. _configure-new-dashboard-template:
 
-Configure Dashboard template
+Configure Dashboard Template
 ============================
 
-JSON definition
+JSON Definition
 ---------------
 
 Below is a sample JSON definition of a Portal dashboard template.
@@ -29,12 +29,21 @@ Below is a sample JSON definition of a Portal dashboard template.
 
 The structure of JSON of dashboard template
 
-   ``id``: ID to identifying template, it's **mandatory** field and must be **unique**.
+   ``id``: ID to identify the template, it is a **mandatory** field and has to
+   be **unique**.
 
-   ``title``: Title for the template item in the :guilabel:`Select your template` dialog. You can input a string, or use CMS by using prefix ``cms:`` before your CMS URI to define title in multilingual.
+   ``title``: Title for the template in dialog :guilabel:`Select your template`.
+   You can enter a string, or create a multilingual title by prefixing your CMS
+   URI with ``cms:``.
 
-   ``description``: Description of the template item in the :guilabel:`Select your template` dialog. You can input a string, or use CMS by using prefix ``cms:`` before your CMS URI to define description in multilingual.
+   ``description``: Description of the template in the :guilabel:`Select your
+   template` dialog. You can enter a string, or create a multilingual
+   description by prefixing your CMS URI with ``cms:``.
 
-   ``icon``: Icon of the template item in the :guilabel:`Select your template` dialog. Portal only supports `Streamline icons <https://dev.demo.ivyteam.io/demo-app/faces/view/html-dialog-demos$1/icons.xhtml>`_.
+   ``icon``: Icon of the template item in dialog :guilabel:`Select your
+   template`. Portal only supports `Streamline icons
+   <https://dev.demo.ivyteam.io/demo-app/faces/view/html-dialog-demos$1/icons.xhtml>`_.
 
-   ``dashboard``: Details of the dashboard will be used as the template. Refer to :ref:`Configure dashboard <customization-new-dashboard>` for more details related to dashboard configurations.
+   ``dashboard``: Details of the dashboard will be used as the template. Refer
+   to :ref:`Configure dashboard <customization-new-dashboard>` for details
+   related to dashboard configurations.

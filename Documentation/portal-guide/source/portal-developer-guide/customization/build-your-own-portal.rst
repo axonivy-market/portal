@@ -1,18 +1,18 @@
 .. _customization-build-your-own-portal:
 
-Build your own Portal
+Build Your Own Portal
 =====================
 
 .. _customization-build-your-own-portal-build-your-own-portal-using-portal-kit:
 
-Build your own Portal using PortalKit
+BUild Your Own Portal Using Portalkit
 -------------------------------------
 
 #. Create a new project that depends on ``PortalTemplate``.
 
 #. Create new home page
 
-   - Create a new ``HTML Dialog`` for your home page and then use ``ui:composition`` to define template which you use inside. If you want to keep the look of default homepage, then choose ``DefaultHomePageTemplate``.
+   - Create a new ``HTML Dialog`` for your home page and then use ``ui:composition`` to define the template you use in it. If you want to keep the look of the default homepage, choose ``DefaultHomePageTemplate``.
 
      .. tip:: Find more information about templates at :ref:`Layout templates <components-layout-templates>`.
      ..
