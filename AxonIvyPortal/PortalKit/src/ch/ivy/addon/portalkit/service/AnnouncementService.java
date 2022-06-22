@@ -95,14 +95,15 @@ public class AnnouncementService {
     } else {
       languageToAnnouncements = new HashMap<>();
     }
-
+    
     IvyLanguageResultDTO ivyLanguage = LanguageService.newInstance().findUserLanguages();
 
     List<String> supportedLanguages = ivyLanguage.getIvyLanguage().getSupportedLanguages();
+    
 
     List<LocalizationContent> contentsWithAllSupportedLanguages = supportedLanguages.stream().map(language -> {
       if (languageToAnnouncements.containsKey(language.toLowerCase())) {
-        return languageToAnnouncements.get(language);
+        return languageToAnnouncements.get(language.toLowerCase());
       } else {
         return new LocalizationContent(language, null);
       }
