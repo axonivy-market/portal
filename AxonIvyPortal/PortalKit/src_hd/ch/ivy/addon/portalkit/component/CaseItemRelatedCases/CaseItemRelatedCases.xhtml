@@ -100,7 +100,7 @@
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}" styleClass="more-column ui-sm-hidden">
           <div class="case-header-action-cell">
             <ic:ch.ivy.addon.portalkit.component.ActionStep id="action-step-component" actionLinkId="action-steps-menu"
-              actionLinkStyleClass="ui-button-text-only" case="#{case}" isAdhocExcluded="true" inFrame="#{cc.attrs.inFrame}"/>
+              actionLinkStyleClass="ui-button-text-only" case="#{case}" isAdhocExcluded="true" inFrame="#{cc.attrs.inFrame}" onDestroyComplete="PF('destroy-related-case-dialog').show()"/>
           </div>
         </p:column>
       </p:dataTable>
@@ -112,6 +112,27 @@
     <div>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/waitingDownloadMessage')}</div>
     <h:panelGroup layout="block" rendered="#{data.caseLazyDataModel.rowCount gt caseWidgetBean.getMaxCaseNumberInExcel()}">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/downloadZipFileExplanation')}</h:panelGroup>
   </p:dialog>
+  
+  <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
+    <ui:param name="id" value="destroy-related-case-confirmation-dialog" />
+    <ui:param name="widgetVar" value="destroy-related-case-dialog" />
+    <ui:param name="appendTo" value="@(body)" />
+    <ui:param name="iconClass" value="si si-delete-1" />
+    <ui:param name="iconStyleClass" value="portal-dialog-error-icon" />
+    <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroyCaseHeaderText')}" />
+    <ui:param name="dialogContent" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/destroyCaseMessage')}" />
+  
+    <ui:define name="dialogFooter">
+      <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+        onclick="PF('destroy-case-dialog').hide();" styleClass="u-mar-right-15" />
+      <p:commandButton id="confirm-destruction" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}"
+        icon="#{visibilityBean.generateButtonIcon('si si-remove')}"
+        actionListener="#{caseWidgetBean.destroyCase(caseWidgetBean.selectedCase)}"
+        update="related-cases"
+        process="@this"
+        oncomplete="PF('destroy-related-case-dialog').hide();" />
+    </ui:define>
+  </ui:decorate>
     
   <script type="text/javascript">
     function startRelatedCaseExportToExcel() {
