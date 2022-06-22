@@ -1,6 +1,6 @@
 .. _customization-default-chart:
 
-Default chart
+Default Chart
 =============
 
 .. _customization-default-chart-introduction:
@@ -8,14 +8,14 @@ Default chart
 Introduction
 ------------
 
-In legacy Portal homepage, by default there is a chart named "Tasks by
-Priority". But you can create your default chart.
+In the legacy Portal home page, by default, there is a chart named "Tasks by
+Priority". However, you can create your default chart.
 
 .. _customization-default-chart-customization:
 
 Customization
 -------------
 
-Default chart configuration is stored as 
+Default chart configuration is stored in 
 :dev-url:`Variables </doc/nightly/designer-guide/configuration/variables.html>`.
-You could update the variable :ref:`portal-statistic-charts` to customize default charts.
+Update variable :ref:`portal-statistic-charts` to customize the default charts.
