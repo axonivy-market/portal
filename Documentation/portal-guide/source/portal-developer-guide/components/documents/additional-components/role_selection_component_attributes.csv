@@ -1,29 +1,29 @@
-Name,Default,Type,Description
-fromRoleNames,null,List<String>,Child Role list will be loaded based on this list. All roles will be loaded if you don't define.
-componentId,role-selection,String,Id of role autocomplete.
-selectedRole,null,RoleDTO,Required input and output value for selected role.
-excludedRolenames,null,List<String>,Roles will be excluded from role selection. This is applied if you use default completeMethod.
-requiredMessage,This field is required,String,Message to be displayed when role autocomplete validation fails.
-forceSelection,true,Boolean,Only accepts role from the list when it's enabled.
-minQueryLength,1,Boolean,Number of characters to be typed before starting to query.
-completeMethod,completeRole,Method Expression, method for role autocomplete.
-isDisabled,false,Boolean,Disable Role Selection.
-isRequired,false,Boolean,Marks Role Selection as required.
-isReadOnly,false,Boolean,Cannot change role when it's enabled.
-isRenderedMessage,true,Boolean,Specify the rendering of message for role field.
-hightlight,true,Boolean,Highlights the first suggested role automatically.
-floatingLabel,false,Boolean,Display label with floating style and labelPanelStyleClass can't be applied if it’s enabled.
-autocompleteStyleClass,null,String,Style class of role autocomplete.
-autoCompletePanelStyleClass,null,String, Style class of role autocomplete panel.
-inputStyleClass,null,String,Style class of role autocomplete input.
-labelPanelStyleClass,null,String, Style class of label panel.
-labelStyleClass,null,String, Style class of label.
-label,null,String,Text of label for role selection component.
-size,null,Integer,Number of characters used to determine the width of the input element.
-messageStyleClass,null,String,Style class of message.
-itemLabel,displayName,String,Displayed text of selected role item and roles in dropdown list.
-cache,true,Boolean,Autocomplete caches the searched result list if it's enabled.
-moreText,More...,String,The text shown in panel when the suggested list is greater than maxResults.
-queryDelay,300,Integer,Delay to wait in milliseconds before sending each query to the server.
-maxResults,100,Integer,Maximum number of results to be displayed.
-scrollHeight,400,Integer,scrollHeight attribute of primefaces autocomplete.
+Name,Default,Type,"Description"
+fromRoleNames,null,List<String>,"Child Role list will be loaded based on this list. If empty, all roles will be loaded."
+componentId,role-selection,String,"Id of role autocomplete."
+selectedRole,null,RoleDTO,"Required input and output value for selected role."
+excludedRolenames,null,List<String>,"Roles to be excluded from role selection. Applied if you use default completeMethod."
+requiredMessage,This field is required,String,"Message to be displayed when role autocomplete validation fails."
+forceSelection,true,Boolean,"If true, only accept roles from the given list."
+minQueryLength,1,Boolean,"Number of characters to be typed before starting to offer autocomplete."
+completeMethod,completeRole,Method Expression,"Method for role autocomplete."
+isDisabled,false,Boolean,"If true, Role Selection is disabled."
+isRequired,false,Boolean,"If true, Marks Role Selection is required."
+isReadOnly,false,Boolean,"If true, user cannot change role."
+isRenderedMessage,true,Boolean,"Specify the rendering of message for role field."
+hightlight,true,Boolean,"Highlights the first suggested role automatically."
+floatingLabel,false,Boolean,"If true, display label with floating style and labelPanelStyleClass can't be applied."
+autocompleteStyleClass,null,String,"Style class of role autocomplete."
+autoCompletePanelStyleClass,null,String,"Style class of role autocomplete panel."
+inputStyleClass,null,String,"Style class of role autocomplete input."
+labelPanelStyleClass,null,String,"Style class of label panel."
+labelStyleClass,null,String,"Style class of label."
+label,null,String,"Text of label for role selection component."
+size,null,Integer,"Number of characters. usesed to determine the width of the input element."
+messageStyleClass,null,String,"Message style class."
+itemLabel,displayName,String,"Displayed text of selected role and roles in dropdown list."
+cache,true,Boolean,"If true, autocomplete caches the search result list."
+moreText,More...,String,"The text shown in panel when the suggested list is greater than maxResults."
+queryDelay,300,Integer,"Delay in milliseconds before sending a query to the server."
+maxResults,100,Integer,"Maximum number of results to be displayed."
+scrollHeight,400,Integer,"scrollHeight attribute of primefaces autocomplete."
