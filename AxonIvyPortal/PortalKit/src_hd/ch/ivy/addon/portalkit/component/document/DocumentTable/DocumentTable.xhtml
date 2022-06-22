@@ -30,7 +30,6 @@
   
   <cc:attribute name="selectedType" />
   <cc:attribute name="typeSelectionItems" shortDescription="Use #{masterDataBean.documentTypes} if there are no custom Document Type" />
-  <cc:attribute name="notInDynaform" default="true" />
 </cc:interface>
 
 <cc:implementation>
@@ -45,10 +44,9 @@
   <div id="#{cc.clientId}" class="document-table-component">
 
     <cc:renderFacet name="componentHeader" />
-    <p:dataTable id="empty-table" value="#{data.emptyList}" rendered="#{not cc.attrs.notInDynaform}" styleClass="document-empty-table"/>
-    
+
     <p:messages id="document-messages" for="document-messages" rendered="#{cc.attrs.messageRendered}" />
-    <p:dataTable id="document-table" value="#{data.documents}" var="document" 
+    <p:dataTable id="document-table" value="#{data.documents}" var="document"
       emptyMessage="#{ivy.cms.co('/Dialogs/components/CaseDocument/NoFiles')}" styleClass="margin-top-5"
       widgetVar="fileTableVar">
       <f:event type="preRenderComponent" listener="#{logic.renderTable()}" />
@@ -57,7 +55,7 @@
         rendered="#{cc.attrs.nameColumnRendered}" styleClass="document-name-column">
         <h:outputText id="name" value="#{document.name}" title="#{document.name}" />
       </p:column>
-      <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/size')}" 
+      <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/size')}"
         rendered="#{cc.attrs.sizeColumnRendered}" styleClass="document-size-column">
         <h:outputText id="size" value="#{document.userFriendlySize}" title="#{document.userFriendlySize}" />
       </p:column>
@@ -91,7 +89,7 @@
           chooseIcon="#{cc.attrs.renderChooseUploadIcon? 'si si-add-small' : '' }"
           listener="#{logic.upload}"
           rendered="#{cc.attrs.uploadRendered}"
-          update="document-table empty-table document-messages #{cc.attrs.updatedComponentAfterUploaded}"
+          update="document-table document-messages #{cc.attrs.updatedComponentAfterUploaded}"
           invalidSizeMessage="#{masterDataBean.getFileUploadInvalidSizeMessage()}" 
           label="#{not empty cc.attrs.uploadText ? cc.attrs.uploadText : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/upload')}"
           cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
@@ -108,7 +106,8 @@
           
       </h:panelGroup>
     </div>
-    <cc:renderFacet name="componentFooter" rendered="#{cc.attrs.notInDynaform}"/>
+    
+    <cc:renderFacet name="componentFooter" />
 
     <p:dialog id="document-delete-dialog" widgetVar="document-delete-dialog" appendTo="@(body)" closable="true"
       closeOnEscape="true" modal="true" draggable="false" rendered="#{cc.attrs.deleteRendered}"
@@ -118,7 +117,7 @@
       <f:facet name="footer">
         <p:commandButton id="document-deletion-yes"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}" process="@this"
-          update="document-table empty-table document-messages #{cc.attrs.updatedComponentAfterDeleted}"
+          update="document-table document-messages #{cc.attrs.updatedComponentAfterDeleted}"
           actionListener="#{logic.delete}" oncomplete="PF('document-delete-dialog').hide();" />
         <p:commandButton id="document-deletion-no" styleClass="portal-cancel-button"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}" type="button"
