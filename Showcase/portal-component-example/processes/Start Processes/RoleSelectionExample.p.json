@@ -1,0 +1,68 @@
+{
+  "format" : "9.4.11",
+  "id" : "181899823E886ABB",
+  "data" : "com.axonivy.portal.component.example.RoleSelectionExampleData",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "showRoleSelectionExamples.ivp",
+      "config" : {
+        "callSignature" : "showRoleSelectionExamples",
+        ".name" : "showRoleSelectionExamples.ivp",
+        "outLink" : "showRoleSelectionExamples.ivp",
+        "startName" : "Role Selection Example"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 },
+        "labelOffset" : { "x" : -78, "y" : 19 }
+      },
+      "connect" : { "id" : "f4", "to" : "f3" }
+    }, {
+      "id" : "f1",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 544, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "DialogCall",
+      "name" : "RoleSelectionExample",
+      "config" : {
+        "dialogId" : "com.axonivy.portal.component.example.RoleSelectionExample",
+        "startMethod" : "start(String)",
+        ".name" : "RoleSelectionExample",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.selectedRole" : "result.selectedRole"
+          }
+        },
+        "call" : {
+          "params" : [
+            { "name" : "selectedRole", "type" : "String" }
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 280, "y" : 64 },
+        "size" : { "width" : 144, "height" : 44 }
+      },
+      "connect" : { "id" : "f6", "to" : "f5" }
+    }, {
+      "id" : "f5",
+      "type" : "TaskSwitchEvent",
+      "config" : {
+        "task" : {
+          "name" : "Task created by Role Selection Example",
+          "description" : "This task is created by Role Selection Example",
+          "responsible" : {
+            "roleFromAttribute" : "in1.selectedRole.getMemberName()"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 448, "y" : 64 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    } ]
+}
