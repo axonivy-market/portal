@@ -7,7 +7,7 @@ One way to consume statistics is through your personal dashboard (see
 :ref:`dashboard`). If you need a deeper insight in what is going on, the
 **Full Statistics** page provides you with the perfect toolset. You can
 consume statistics and charts here at one glance and have the chance to set up
-your own statistics. You can reach the page by using the
+your own statistics. You can reach the page by using the 
 :guilabel:`Statistics` link in the Axon Ivy Portal menu.
 
 .. hint::
@@ -43,21 +43,21 @@ created. Each chart provides you with the following features:
 HowTo: Create chart
 -------------------
 
-#. Use the link :guilabel:`Add new chart`
+#. Click on the link ``Add new chart``. 
 
-#. You are routed to the Chart Configuration page
+#. You are routed to the Chart Configuration page.
 
-#. Select one of the available chart types (see Available charts)
+#. Select one of the available chart types (see Available charts).
 
 #. Select and configure one or more of the available filters (see Chart filter criteria).
 
-#. Click :guilabel:`Add to dashboard`
+#. Click :guilabel:`Add to dashboard`.
 
-#. The :guilabel:`Add statistic chart to dashboard` dialog is opened
+#. The :guilabel:`Add statistic chart to dashboard` dialog is opened.
 
-#. Enter unique names in supported languages for the chart
+#. Enter unique names in supported languages for the chart.
 
-#. Create the chart with the button :guilabel:`Ok`
+#. Create the chart by clicking :guilabel:`Ok`.
 
 |charts-configuration-page|
 
@@ -183,11 +183,11 @@ helps you query tasks with filters, then you could export data to excel for furt
 HowTo: Access task analysis
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-On the Full Statistics page, click on :guilabel:`Task Analysis`.
+On the Full Statistics page, click on ``Task Analysis``.
 
 |navigate-to-task-analysis|
 
-Task Analysis page is displayed as below.
+The Task Analysis page is displayed:
 
 |task-analysis|
 
@@ -253,7 +253,7 @@ HowTo: Export to excel
 #. All the data that you filtered with selected columns and sort order will be exported.
    Refer to :ref:`task-analysis-filter-tasks` and :ref:`task-analysis-display-tasks` for configuration.
 
-#. In Task Analysis page, click on :guilabel:`Export to Excel`.
+#. In Task Analysis page, click on ``Export to Excel``.
 
 #. You could use exported excel file to do further analysis by excel or import it to third-party applications to analyze more.
 
