@@ -128,7 +128,7 @@
       <p:commandButton id="confirm-destruction" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}"
         icon="#{visibilityBean.generateButtonIcon('si si-remove')}"
         actionListener="#{caseWidgetBean.destroyCase(caseWidgetBean.selectedCase)}"
-        update="related-cases"
+        update="@([id$='related-cases']) @([id$='history-container']) @([id$='related-tasks'])"
         process="@this"
         oncomplete="PF('destroy-related-case-dialog').hide();" />
     </ui:define>
