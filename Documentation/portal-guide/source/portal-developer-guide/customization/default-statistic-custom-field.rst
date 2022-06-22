@@ -1,6 +1,6 @@
 .. _customization-default-custom-field:
 
-Default statistic custom field
+Default Statistic Custom Field
 ==============================
 
 .. _customization-default-custom-field-introduction:
@@ -8,9 +8,9 @@ Default statistic custom field
 Introduction
 ------------
 
-In Portal statistic, when user add new chart, statistic filter will
-displays default 5 custom string fields ``CustomVarCharField1`` to
-``CustomVarCharField5``, you can customize them by your own custom
+In the Portal statistics, when a user adds a new chart, the statistic filter will
+display the five default custom string fields ``CustomVarCharField1`` to
+``CustomVarCharField5``. You can customize them with your custom
 string fields.
 
 |default-custom-field|
@@ -20,10 +20,10 @@ string fields.
 Customization
 -------------
 
-Create an override which overrides sub process
-``createDefaultStatisticCustomField()`` in ``DefaultStatisticCustomField.mod`` process in PortalKit. This sub process
-return a list of custom string fields. Follow instruction to create
-default custom fields.
+Create an override that overrides subprocess
+``createDefaultStatisticCustomField()`` in ``DefaultStatisticCustomField.p.json``
+process in PortalKit. This subprocess return a list of custom string fields.
+Follow instruction to create default custom fields.
 
 |custom-field|
 
