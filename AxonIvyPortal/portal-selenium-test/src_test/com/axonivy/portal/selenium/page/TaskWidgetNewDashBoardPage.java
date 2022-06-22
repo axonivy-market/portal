@@ -339,6 +339,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   private void confirmDestroy() {
     $("div[id$='destroy-task-confirmation-dialog']").waitUntil(appear, DEFAULT_TIMEOUT)
         .$("button[id$='confirm-destruction-dashboard-tasks']").shouldBe(getClickableCondition()).click();
+    $("button[id$='confirm-destruction-dashboard-tasks']").waitUntil(disappears, DEFAULT_TIMEOUT);
   }
   
   public SelenideElement destroyTaskLink() {
