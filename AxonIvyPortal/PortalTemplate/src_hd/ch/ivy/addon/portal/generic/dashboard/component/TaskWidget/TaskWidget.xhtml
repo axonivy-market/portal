@@ -22,7 +22,7 @@
 
   <p:remoteCommand id="rcLoadTaskFirstTime" autoRun="true" actionListener="#{taskWidget.dataModel.loadFirstTime()}" 
     update="dashboard-tasks-container" global="false" async="true" process="@this"
-    oncomplete="loadWidgetFirstTime('js-loading-#{taskWidget.id}', 'js-dashboard-tasks-container-#{taskWidget.id}'); setupTableWidget('js-dashboard-widget-#{taskWidget.id}'); #{cc.attrs.onCompleteLoadWidget}" />
+    oncomplete="loadWidgetFirstTime('js-loading-#{taskWidget.id}', 'js-dashboard-tasks-container-#{taskWidget.id}'); #{cc.attrs.onCompleteLoadWidget}" />
   <div class="ui-g">
     <h:outputText id="loading" styleClass="js-loading-#{taskWidget.id}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/loading')}"/>
       
