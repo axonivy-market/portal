@@ -53,7 +53,7 @@ public class CustomWidgetUtils {
   }
 
   public static String getUserPropertyByKeyPattern(IUser user, String keyPattern) {
-    return getPropertyByKeyPattern(Long.valueOf(user.getSecurityMemberId()), keyPattern);
+    return getPropertyByKeyPattern(user.getId(), keyPattern);
   }
 
   private static String getPrefixKey(String[] keyParts) {

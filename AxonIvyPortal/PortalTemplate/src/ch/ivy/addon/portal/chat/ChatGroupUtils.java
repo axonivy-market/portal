@@ -83,7 +83,7 @@ public class ChatGroupUtils {
   public static Set<String> getAllUsersFromUserIdsAndRoleNames(Set<String> assigneeNames) {
     Set<String> userNames = new HashSet<>();
     List<String> userNamesOnly = assigneeNames.stream().filter(name -> name.startsWith(USER_IDENTIFIER))
-        .map(name -> wf().getSecurityContext().users().findById(name.substring(1)).getName())
+        .map(name -> wf().getSecurityContext().users().find(Long.parseLong(name.substring(1))).getName())
         .collect(Collectors.toList());
 
     Set<String> roleNamesOnly =
@@ -94,7 +94,7 @@ public class ChatGroupUtils {
   }
 
   public static IUser findUserByUserId(Long userId) {
-    return wf().getSecurityContext().users().findById(String.valueOf(userId));
+    return wf().getSecurityContext().users().find(userId);
   }
 
   public static IUser findUserByUsername(String username) {
