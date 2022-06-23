@@ -26,7 +26,7 @@
           var="express" value="#{expressManagementBean.expressProcesses}" selection="#{expressManagementBean.selectedExpressProcesses}"
           styleClass="express-workflow-summary-table admin-table" rowKey="#{express.processName}"
           emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
-          scrollable="true" scrollHeight="240" reflow="true">
+          scrollable="true" scrollHeight="240" reflow="true" lazy="false">
 
           <p:ajax event="toggleSelect" update="#{p:resolveFirstComponentWithId('export-express-btn', view).clientId}" />
           <p:ajax event="rowSelectCheckbox" update="#{p:resolveFirstComponentWithId('export-express-btn', view).clientId}" global="false" />

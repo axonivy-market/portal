@@ -22,7 +22,7 @@
                 <p:dataTable value="#{publicDashboardReorderBean.dashboardOrders}" var="dashboard" id="dashboard-table"
                   draggableRows="true" rowDragSelector="i.si-move-expand-vertical"
                   styleClass="admin-table application-table" widgetVar="dashboard-table"
-                  emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}">
+                  emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}" lazy="false">
                   <p:ajax event="rowReorder" global="false" update="dashboard-table" />
                   <p:column
                     headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/dashboardTitle')}"

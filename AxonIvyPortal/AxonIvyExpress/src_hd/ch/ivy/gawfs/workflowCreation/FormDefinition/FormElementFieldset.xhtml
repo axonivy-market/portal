@@ -162,7 +162,7 @@
                   <p:dataTable id="many-checkbox-options" var="option" rowIndexVar="rowIndex"
                     rendered="#{data.selectedDataProvider.name eq ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/NoDataProvider')}"
                     value="#{data.createManyCheckboxTab.options}" styleClass="express-many-checkbox-options express-table-no-header form-element-input-checkbox-table"
-                    emptyMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/NoCheckboxFieldYet')}">
+                    emptyMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/NoCheckboxFieldYet')}" lazy="false">
 
                     <f:facet name="header">
                       <div class="ui-g">
@@ -229,7 +229,7 @@
 
             <div class="ui-g-5 ui-lg-5 ui-md-6">
               <p:dataTable id="one-radio-options" var="option" value="#{data.createOneRadioTab.options}"
-                emptyMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/NoOptionboxFieldsYet')}" styleClass="express-table-no-header express-many-checkbox-options">
+                emptyMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/NoOptionboxFieldsYet')}" styleClass="express-table-no-header express-many-checkbox-options" lazy="false">
                 <f:facet name="header">
                   <div class="ui-g">
                     <div class="ui-g-12">

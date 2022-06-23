@@ -286,7 +286,7 @@
           <br />
           <p:spacer height="20"></p:spacer>
           <p:dataTable id="adhoc-task-history-table" value="#{abstractTaskTemplateBean.getAllAdhocHistories(currentTask)}" var="history"
-            reflow="true">
+            reflow="true" lazy="false">
             <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/author')}">
               <pc:securityMemberNameAndAvatar securityMember="#{abstractTaskTemplateBean.getUserByUsernameAndExternalId(history.authorUsername, history.externalSecurityId)}"
                 displayName="#{abstractTaskTemplateBean.getUserByUsernameAndExternalName(history.authorUsername, history.externalSecurityId)}"
