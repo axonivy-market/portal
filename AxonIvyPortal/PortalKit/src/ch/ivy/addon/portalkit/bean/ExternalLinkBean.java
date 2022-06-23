@@ -39,7 +39,7 @@ private static final long serialVersionUID = 4772777911430826945L;
 
   public ExternalLink saveNewExternalLink() {
     IUser sessionUser = Ivy.session().getSessionUser();
-    externalLink.setCreatorId(Long.valueOf(sessionUser.getSecurityMemberId()));
+    externalLink.setCreatorId(sessionUser.getId());
     String processLink = correctLink(externalLink.getLink());
     externalLink.setLink(processLink);
 
