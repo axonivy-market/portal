@@ -27,6 +27,7 @@ import ch.ivyteam.ivy.workflow.IStartElement;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 import ch.ivyteam.ivy.workflow.start.ProcessViewerUrl;
 
+@SuppressWarnings("restriction")
 public class ProcessViewerUtils {
 
   private static final String START_PROCESS_PORTAL_PROCESS_VIEWER_PAGE = "Start Processes/PortalStart/PortalProcessViewer.ivp";

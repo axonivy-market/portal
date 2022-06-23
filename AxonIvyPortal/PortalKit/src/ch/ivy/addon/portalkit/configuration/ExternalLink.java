@@ -40,7 +40,7 @@ public class ExternalLink extends AbstractConfiguration {
 
   @JsonIgnore
   public boolean isAbleToEdit() {
-    return this.creatorId == null ? true : this.creatorId == Long.valueOf(Ivy.session().getSessionUser().getSecurityMemberId());
+    return this.creatorId == null ? true : this.creatorId == Ivy.session().getSessionUser().getId();
   }
 
   public String getDescription() {
