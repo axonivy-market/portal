@@ -48,7 +48,7 @@
     <p:messages id="document-messages" for="document-messages" rendered="#{cc.attrs.messageRendered}" />
     <p:dataTable id="document-table" value="#{data.documents}" var="document"
       emptyMessage="#{ivy.cms.co('/Dialogs/components/CaseDocument/NoFiles')}" styleClass="margin-top-5"
-      widgetVar="fileTableVar">
+      widgetVar="fileTableVar" lazy="false">
       <f:event type="preRenderComponent" listener="#{logic.renderTable()}" />
 
       <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/name')}"
@@ -106,7 +106,7 @@
           
       </h:panelGroup>
     </div>
-    
+
     <cc:renderFacet name="componentFooter" />
 
     <p:dialog id="document-delete-dialog" widgetVar="document-delete-dialog" appendTo="@(body)" closable="true"

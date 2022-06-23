@@ -17,7 +17,7 @@
               <h2>#{dashboardConfigurationBean.title}</h2>
             </div>
             <div class="ui-g-12">
-              <p:dataTable id="dashboard-table" value="#{dashboardConfigurationBean.editingDashboards}" var="dashboard">
+              <p:dataTable id="dashboard-table" value="#{dashboardConfigurationBean.editingDashboards}" var="dashboard" lazy="false">
                 <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/dashboardTitle')}" width="20%">
                   <h:outputText value="#{dashboard.title}" />
                 </p:column>
