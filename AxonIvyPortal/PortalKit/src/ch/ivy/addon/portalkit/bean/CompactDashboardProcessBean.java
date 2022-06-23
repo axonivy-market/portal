@@ -102,6 +102,7 @@ public class CompactDashboardProcessBean
         || (StringUtils.isBlank(process.getCategory()) && hasNoCategory);
   }
 
+  @Override
   public void preview() {
     dashboardProcessBean.preview();
     List<DashboardProcess> displayProcesses = new ArrayList<>();
