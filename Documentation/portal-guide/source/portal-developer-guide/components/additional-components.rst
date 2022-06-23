@@ -35,15 +35,16 @@ Introduction
 How to use
 ^^^^^^^^^^
 
-First you need to link the cases to the business entity. Call the
-subprocess ``SetCaseBusinessEntity`` in the process which need to be
-linked and input an identifier unique to your business entity. The
-subprocess will set the id to the additional property
-"CASE_BUSINESS_ENTITY_PROPERTY" of the business case.
+1. Link the cases to the business entity.
+
+   Call the subprocess ``SetCaseBusinessEntity`` in the process which need to be
+   linked and input an identifier unique to your business entity. The
+   subprocess will set the id to the additional property
+   "CASE_BUSINESS_ENTITY_PROPERTY" of the business case.
 
 |set-business-entity-id-sub-process|
 
-Include the process history component into your page:
+2. Include the process history component into your page:
 
 .. code-block:: html
 
@@ -60,7 +61,7 @@ Attributes of this component:
   :class: longtable
   :widths: 1 1 1 3
 
-.. note:: 
+.. note::
 
       If you use this component in a dialog, you must run this script
       ``processHistory.setup();`` when the dialog is shown. For example:
@@ -72,12 +73,14 @@ Attributes of this component:
       <ic:com.axonivy.portal.component.ProcessHistory businessEntityId="beta" chunkSize="10" scrollHeight="400" />
    </p:dialog>
 
+3. Override callable subprocess ``OpenPortalCaseDetails`` to implement navigate action to case details of the selected case.
+
 Please refer to ``ProcessHistoryExample`` process in ``portal-component-example`` project for more details how to use Process History without Portal.
 
 Please refer to ``ProcessHistoryComponent`` process in  ``portal-developer-examples`` for more details how to customize Process History with Portal.
 
 If you want to customize its style,
-please refer to :ref:`Styles Customization <components-additional-components-styles-customization>`
+please refer to :ref:`components-additional-components-styles-customization`
 for more details.
 
 .. important:: 
@@ -99,19 +102,19 @@ Migrate from Deprecated Process History
 
 #. Consider updating value of new attributes ``showCasesOfOwner`` and ``dateTimePattern`` by your business.
 
-#. From the project you want to use the new component, override the subprocess ``OpenCaseDetailsHook.mod``.
+#. Optional: Override the subprocess ``OpenCaseDetailsHook`` to handle navigation when click on a case from the Process History list.
 
-#. If your application using Portal without IFrame:
-   
-   - Copy content of the subprocess ``OpenPortalCaseDetails.mod`` in ``PortalTemplate`` project to the overrided subprocess ``OpenCaseDetailsHook.mod``.
+   For application using Portal without IFrame:
 
-#. If your application using Portal with IFrame:
+      + Copy content of the subprocess ``OpenPortalCaseDetails`` in ``PortalTemplate`` project to the overrided subprocess ``OpenCaseDetailsHook``.
+
+   For application using Portal with IFrame:
    
-   - Set attribute ``isOpenInFrame`` to ``true``.
+      + Set attribute ``isOpenInFrame`` to ``true``.
    
-   - Modify the subprocess ``OpenCaseDetailsHook.mod`` to generate ``caseDetailsUrl``. Process History component will navigate to this URL when user click on case item.
+      + Modify the subprocess ``OpenCaseDetailsHook`` to generate ``caseDetailsUrl``. Process History component will navigate to this URL when user click on case item.
    
-   - Please refer to subprocess ``OpenCaseDetailsHookOverride.mod`` in ``PortalExamples`` project to see how to generate this link from Portal.
+      + Please refer to subprocess ``OpenCaseDetailsHookOverride`` in ``portal-developer-examples`` project to see how to generate this link from Portal.
 .. _components-additional-component-task-analysis:
 
 Task Analysis
@@ -214,7 +217,7 @@ Attributes of this component:
 
 
 If you want to customize its style,
-please refer to :ref:`Styles Customization <components-additional-components-styles-customization>`
+please refer to :ref:`components-additional-components-styles-customization`
 for more details.
 
 .. _components-additional-components-migrate-from-old-process-chain:
@@ -364,6 +367,24 @@ Attributes of this component:
   :widths: 1 1 1 3
 
 .. _components-additional-components-migrate-from-old-document-table:
+
+Script checking and virus scanning
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Document Table has options to check harmful scripts and viruses inside the file before uploading it to the system.
+
+   - Set attribute ``enableScriptCheckingForUploadedDocument`` to enable check harmful scripts option.
+   - Set attribute ``enableVirusScannerForUploadedDocument`` to enable virus scanning option.
+
+Code example:
+
+.. code-block:: html
+
+   <ic:com.axonivy.portal.component.DocumentTable id="document-table-component"
+      enableScriptCheckingForUploadedDocument="true"
+      enableVirusScannerForUploadedDocument="true" />
+
+Please refer to :ref:`settings-virus-scanning-setting` for more details about virus scanning.
 
 Migrate from Deprecated Document Table
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -642,6 +663,7 @@ Portal provides a helpful bean ``ch.ivy.addon.portalkit.util.CronByGlobalVariabl
 There is a online `Cron Maker <http://www.cronmaker.com>`_ could help you to create your own cron job pattern.
 
 .. _components-additional-components-styles-customization:
+
 Styles Customization
 --------------------
 
@@ -656,7 +678,7 @@ How to customize
 
    .. code-block:: html
 
-      <ui:composition template="/layouts/basic-8.xhtml">
+      <ui:composition template="/layouts/basic-10.xhtml">
          <ui:define name="title">test</ui:define>
          <ui:define name="content">
             <ic:com.axonivy.portal.component.ProcessHistory businessEntityId="alpha" chunkSize="12" scrollHeight="600" />
