@@ -5,6 +5,11 @@ pipeline {
     buildDiscarder(logRotator(numToKeepStr: '60', artifactNumToKeepStr: '60'))
   }
 
+  triggers {
+    pollSCM '0 7 * * *'
+    cron('0 21 * * *')
+  }
+
   tools { 
       maven '3.6' 
       jdk '11' 
