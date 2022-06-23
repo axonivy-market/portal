@@ -30,7 +30,7 @@
           <h:outputText id="application-name" value="#{entry.key}:" />
         </div>
         <div class="ui-g-9 ui-sm-12">
-          <p:dataTable id="application-project-version-table" value="#{entry.value}" var="library" styleClass="project-version-table" reflow="true">
+          <p:dataTable id="application-project-version-table" value="#{entry.value}" var="library" styleClass="project-version-table" reflow="true" lazy="false">
             <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/projectName')}">
               <h:outputText id="project-name" value="#{library.getProcessModelVersion().getProcessModel().getName()}" />
             </p:column>
