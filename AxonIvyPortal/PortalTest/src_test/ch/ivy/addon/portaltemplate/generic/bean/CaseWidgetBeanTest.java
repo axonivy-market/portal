@@ -40,6 +40,7 @@ public class CaseWidgetBeanTest {
     caseWidgetBean = new CaseWidgetBean();
   }
   
+  @SuppressWarnings("deprecation")
   @Test
   @PrepareForTest({CaseWidgetBean.class, CaseUtils.class, PermissionUtils.class, FacesContext.class})
   public void testGetAdditionalCaseDetailsPageUri() throws Exception {
