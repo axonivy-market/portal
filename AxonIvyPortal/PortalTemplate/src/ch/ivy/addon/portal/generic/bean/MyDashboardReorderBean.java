@@ -21,7 +21,6 @@ import ch.ivy.addon.portalkit.util.DashboardUtils;
 public class MyDashboardReorderBean extends DashboardReorderBean implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  @Override
   @PostConstruct
   public void initConfigration() {
     super.initConfigration();

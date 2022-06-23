@@ -20,7 +20,7 @@ public class UserDTO {
     this.memberName = user.getMemberName();
     this.displayName = user.getDisplayName();
     this.email = user.getEMailAddress();
-    this.id = Long.valueOf(user.getSecurityMemberId());
+    this.id = user.getId();
     this.isEnabled = user.isEnabled();
   }
   

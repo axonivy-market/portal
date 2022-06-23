@@ -37,7 +37,6 @@ public class ImageDashboardProcessBean
     dashboardProcessBean.preRender(widget);
   }
 
-  @Override
   public void onChangeDisplayMode() {
     ImageProcessDashboardWidget newWidget = new ImageProcessDashboardWidget(dashboardProcessBean.getWidget());
     dashboardProcessBean.updateWidget(newWidget);
