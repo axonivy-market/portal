@@ -36,7 +36,7 @@
             filteredValue="#{data.filteredDocuments}"
             emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
             reflow="true" scrollable="true"
-            styleClass="ui-g-12">
+            styleClass="ui-g-12" lazy="false">
 
             <p:column id="document-name" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/name')}"
               sortBy="#{document.name}"

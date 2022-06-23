@@ -43,7 +43,7 @@
           <p:messages id="applicationMsg" showDetail="true" escape="false" closable="true" />
           <p:dataTable value="#{data.applicationList}" var="app" id="applicationTable" draggableRows="true"
             reflow="true" styleClass="admin-table application-table" widgetVar="applicationTable"
-            emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}">
+            emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}" lazy="false">
             <p:ajax event="rowReorder" listener="#{adminSettingBean.onApplicationReorder}" update="applicationTable" />
 
             <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/type')}"
@@ -97,7 +97,7 @@
         <p:dataTable id="settingTable" styleClass="admin-table global-setting-table" value="#{data.settingList}"
           filteredValue="#{data.filteredSettingList}" var="setting" widgetVar="settingTable"
           emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}" scrollable="true"
-          scrollHeight="240" reflow="true">
+          scrollHeight="240" reflow="true" lazy="false">
           <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/key')}"
             filterBy="#{setting.key}" filterMatchMode="contains" styleClass="settings-table-key-column">
             <h:outputText value="#{setting.key}" styleClass="setting-key" />
