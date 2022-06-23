@@ -621,6 +621,10 @@ body .ui-calendar.task-configuration__calendar .ui-datepicker-trigger {
   margin: 10px 10px 12px;
 }
 
+.dashboard-tasks__start-container {
+  width: 100%;
+}
+
 .dashboard-tasks__start .ui-commandlink {
   padding: .5em 2em;
 }
