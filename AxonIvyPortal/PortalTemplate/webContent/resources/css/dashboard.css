@@ -144,6 +144,38 @@
   max-height: calc(100% - 44px);
 }
 
+/* CSS specific to iOS devices */
+@supports (-webkit-touch-callout: none) {
+  @media screen and (min-width: 40.063em) and (max-width: 64.062em) {
+    .widget__content {
+      overflow: auto;
+      padding: 10px;
+      height: -webkit-fill-available;
+    }
+  }
+
+  @media screen and (max-width: 40em) {
+    .widget__content {
+      overflow: auto;
+      padding: 10px 10px 22px 10px;
+      height: -webkit-fill-available;
+    }
+
+    .widget__content.process-widget.dashboard-widget-panel-container {
+      overflow: auto;
+      height: -webkit-fill-available;
+    }
+
+    .compact-processes-container.widget-content span.process-start-list-item:last-child {
+      margin-bottom: 45px;
+    }
+
+    .expand-fullscreen .compact-processes-container.widget-content span.process-start-list-item:last-child {
+      margin-bottom: 10px;
+    }
+  }
+}
+
 .expand-fullscreen .widget__content {
    max-height: 95%;
 }
@@ -617,8 +649,8 @@ body .ui-calendar.task-configuration__calendar .ui-datepicker-trigger {
   padding: 0 0 0;
 }
 
-.process-widget-component.widget__content .compact-processes-container .process-start-list-item {
-  margin: 10px 10px 12px;
+.compact-processes-container .process-start-list-item:last-child {
+  margin-bottom: 0;
 }
 
 .dashboard-tasks__start-container {
