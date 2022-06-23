@@ -294,6 +294,8 @@ Other permissions
  |           | add it to User Favorite         |                                                    |
  +-----------+---------------------------------+----------------------------------------------------+
 
+.. _settings-virus-scanning-setting:
+
 Virus Scanning Setting 
 ======================
 
