@@ -261,7 +261,7 @@ public class UserUtils {
 
   public static IUser findUserByUserId(Long userId) {
     return IvyExecutor.executeAsSystem(() -> {
-      return Ivy.security().users().findById(String.valueOf(userId));
+      return Ivy.security().users().find(userId);
     });
   }
 

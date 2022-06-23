@@ -21,7 +21,7 @@ public class SecurityMemberDTO implements Serializable {
   public SecurityMemberDTO() {}
 
   public SecurityMemberDTO(ISecurityMember securityMember) {
-    this.id = Long.valueOf(securityMember.getSecurityMemberId());
+    this.id = securityMember.getId();
     this.name = securityMember.getName();
     this.displayName = securityMember.getDisplayName();
     this.memberName = securityMember.getMemberName();
