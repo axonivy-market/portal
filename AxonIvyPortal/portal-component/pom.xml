@@ -20,6 +20,14 @@
       <url>https://nexus.axonivy.com/repository/maven-snapshots/</url>
     </snapshotRepository>
   </distributionManagement>
+  <repositories>
+    <repository>
+      <name>Axonivy Repo</name>
+      <id>maven.axonivy.com</id>
+      <url>https://maven.axonivy.com/</url>
+      <layout>default</layout>
+    </repository>
+  </repositories>
   <build>
     <plugins>
       <plugin>
@@ -27,7 +35,22 @@
         <artifactId>project-build-plugin</artifactId>
         <version>${build.plugin.version}</version>
         <extensions>true</extensions>
+        <configuration>
+          <compilerWarnings>false</compilerWarnings>
+        </configuration>
       </plugin>
     </plugins>
   </build>
+  <pluginRepositories>
+    <pluginRepository>
+      <id>central.snapshots</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+      <snapshots>
+        <updatePolicy>always</updatePolicy>
+      </snapshots>
+    </pluginRepository>
+  </pluginRepositories>
 </project>

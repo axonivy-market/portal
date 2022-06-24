@@ -390,7 +390,9 @@ Migrate from Deprecated Document Table
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 1. Replace the code in HTML files: ``ic:ch.ivy.addon.portalkit.component.document.DocumentTable`` to ``ic:com.axonivy.portal.component.DocumentTable``.
+
 2. Consider updating value of new attributes ``enableScriptCheckingForUploadedDocument``, ``enableVirusScannerForUploadedDocument`` and ``allowedUploadFileTypes`` by your business.
+
 3. Override sub processes if you want and adapt your business accordingly.
 
    +-----------------------------------+--------------------------+
@@ -404,6 +406,12 @@ Migrate from Deprecated Document Table
    +-----------------------------------+--------------------------+
    | DownloadDocumentItem              | DownloadDocument         |
    +-----------------------------------+--------------------------+
+
+4. If you customized IvyDocument which extended from class ``ch.ivy.addon.portalkit.ivydata.bo.IvyDocument``,
+   please change it to be extended from class ``com.axonivy.portal.component.ivydata.bo.IvyDocument``.
+
+5. Attributes ``typeSelectionItems`` and ``selectedType`` now using ``com.axonivy.portal.component.enums.DocumentType``.
+   Therefore, if you customized document types, please use ``com.axonivy.portal.component.enums.DocumentType`` instead of ``ch.ivy.addon.portalkit.enums.DocumentType``.
 
 .. note::
    You can remove redundant overridden configurations, sub processes and data classes
