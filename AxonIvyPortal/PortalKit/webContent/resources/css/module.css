@@ -5981,6 +5981,13 @@ body span.ui-commandlink .si {
   justify-content: end;
 }
 
+@supports (-webkit-touch-callout: none) {
+    .image-process-container .image-process-item .card-item.card.image-widget-mode {
+      padding: 0;
+      height: -webkit-fill-available;
+    }
+}
+
 .image-process-container .image-process-item .card-item.card.image-widget-mode .image-process-item-container {
   width: inherit;
   position: relative;
@@ -6030,6 +6037,12 @@ body span.ui-commandlink .si {
 .image-process-container .image-process-item .card-item.card.image-widget-mode .image-view-form .process-description {
   min-height: 24px;
   height: 100%;
+}
+
+@supports (-webkit-touch-callout: none) {
+    .image-process-container .image-process-item .card-item.card.image-widget-mode .image-view-form .process-description {
+      height: -webkit-fill-available;
+    }
 }
 
 .image-process-container .image-process-item .card-item.card.image-widget-mode .image-view-form .start-process-image-widget {
