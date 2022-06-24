@@ -1,6 +1,5 @@
 {
-  /HTML_DIALOG {
-    /ch.ivy.addon.portalkit.component.PageHeader "com.axonivy.portal.developerexamples.customization.component.PageHeaderOverride"
+  /HTML_    /ch.ivy.addon.portalkit.component.PageHeader "com.axonivy.portal.developerexamples.customization.component.PageHeaderOverride"
     /ch.ivy.addon.portal.component.CaseInformation "com.axonivy.portal.developerexamples.customization.component.CaseInformationOverride"
     /ch.ivy.addon.portalkit.component.UserWithEnvironmentInfo "com.axonivy.portal.developerexamples.customization.component.UserWithEnvironmentInfoOverride"
     /ch.ivy.addon.portal.generic.PortalCases "com.axonivy.portal.developerexamples.customization.CaseWidget"
@@ -17,6 +16,7 @@
     /Functional-Processes.AssignRolesGroupChat "Functional Processes/AssignRolesGroupChatOverride"
     /Functional-Processes.ResetPassword "Functional Processes/ResetPasswordOverride"
     /Functional-Processes.InitializeTaskDataModel "Functional Processes/InitializeTaskDataModelOverride"
+    /Functional-Processes.OpenCaseDetailsHook "Functional Processes/OpenCaseDetailsHookOverride"
     /Functional-Processes.GetGroupChatParams "Functional Processes/GetGroupChatParamsOverride"
     /Functional-Processes.SendPasswordResetEmail "Functional Processes/SendPasswordResetEmailOverride"
     /Functional-Processes.LoadSubMenuItems "Functional Processes/LoadSubMenuItemsOverride"
