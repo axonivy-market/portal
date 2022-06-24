@@ -16,7 +16,7 @@
       <ui:include src="FieldAdd.xhtml" />
 
       <p:dataTable id="column-management-datatable" value="#{columnManagementBean.columnsBeforeSave}" var="column"
-        draggableRows="true" rowDragSelector="i.si-move-expand-vertical">
+        draggableRows="true" rowDragSelector="i.si-move-expand-vertical" lazy="false">
         <p:ajax event="rowReorder" global="false" />
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/visible')}" width="70" styleClass="u-text-align-center">
           <p:commandLink id="toggle-visibility" styleClass="ui-selectbooleancheckbox ui-chkbox ui-widget" process="@this"

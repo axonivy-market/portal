@@ -92,7 +92,7 @@
         </div>
         <div class="ui-g-12 u-no-padding-top">
           <p:dataTable id="attachment-table" value="#{email.attachments}" var="attachment" filteredValue="#{emailBean.filteredAttachments}"
-            emptyMessage="#{ivy.cms.co('/Dialogs/components/CaseDocument/NoFiles')}" styleClass="MarTop5" widgetVar="attachmentTableVar">
+            emptyMessage="#{ivy.cms.co('/Dialogs/components/CaseDocument/NoFiles')}" styleClass="MarTop5" widgetVar="attachmentTableVar" lazy="false">
             <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/name')}" styleClass="email-attachment-text" >
               <h:outputText value="#{attachment.name}" title="#{attachment.name}"/>
             </p:column>

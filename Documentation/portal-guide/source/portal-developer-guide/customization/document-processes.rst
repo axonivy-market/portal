@@ -28,13 +28,13 @@ Customization
    home <customization-portal-home>` to set new home
    page.
 
-#. Override 4 ``Document sub processes`` described in table below to
+#. Override 4 ``Document subprocesses`` described in table below to
    customize document functions.
 
    .. table::
 
     +-----------------------------------+-----------------------------------+
-    | Sub process                       | Description                       |
+    | Subprocess                        | Description                       |
     +===================================+===================================+
     | GetDocumentList                   | After get document list from DMS, |
     |                                   | convert them into                 |
@@ -46,7 +46,7 @@ Customization
     |                                   | - name                            |
     |                                   | - contentType                     |
     +-----------------------------------+-----------------------------------+
-    | UploadDocument                    | Override this sub process to      |
+    | UploadDocument                    | Override this subprocess to       |
     |                                   | upload your file. This sub        |
     |                                   | process also contains some        |
     |                                   | validations, so if you override   |
@@ -56,6 +56,6 @@ Customization
     | DownloadDocument                  | Override this subprocess to       |
     |                                   | download file from DMS.           |
     +-----------------------------------+-----------------------------------+
-    | DeleteDocument                    | Override this sub process to      |
+    | DeleteDocument                    | Override this subprocess to       |
     |                                   | delete file in DMS                |
     +-----------------------------------+-----------------------------------+

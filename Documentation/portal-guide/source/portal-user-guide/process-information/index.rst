@@ -3,30 +3,29 @@
 Process Information
 *******************
 
-The **Process Information** page shows you information of the selected process.
-Beside basic information such as process name and description, you can see
-advance information such as process steps and more.
+The **Process Information** page shows you information about the selected process.
+Besides basic information such as process name and description, you can see
+advanced information like process steps and more.
 
-Process steps is a list of steps you will perform after you start process.
-These process steps are defined by process developer and designed to help
-you understand details of process better.
-
+Process steps are a list of steps you will perform once you start the process.
+These process steps are defined by the process developer.
 
 Basic information
 ^^^^^^^^^^^^^^^^^
 
-The **Process Information** page not only shows you basic information
-of the selected process such as process name, description, but also
-detailed information of the process in form of process steps. You
-can reach this page by using:
+The **Process Information** page not only shows you basic information of the
+selected process such as process name and description, but also detailed
+information in the form of process steps.
 
--   :guilabel:`More information` link of a process in full Process List (grid mode).
+To reach this page, 
 
+- click on link ``More information`` of a process in the full Process List in
+  grid mode.
 
 |more-information-link|
 
--   :guilabel:`Show process overview` link in Case details page of a case started by the process.
-
+- click on link ``Show process overview`` on the Case details page of a case
+  started by this process.
 
 |process-overview-link|
 
@@ -35,12 +34,12 @@ Process steps
 
 |process-information|
 
-On the top of the **Process Information** page you see basic information of the process
-such as process name and description.
+At the top of the **Process Information** page, you see basic process
+information like name and description.
 
-Depend on the process, you can see process steps which are defined by developers.
-These process steps can give you a clear vision about the flow of the process so
-you can have better knowledge and work more efficiency with it.
+Depending on the process, you can see process steps that are defined by its
+developers. These process steps give you a clear picture of the flow of the
+process so you can work more efficiently with it.
 
 
 .. |more-information-link| image:: ../../screenshots/process/information/more-information-link.png

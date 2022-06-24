@@ -5,7 +5,7 @@ Additional Components
 
 .. _components-additional-component-process-history:
 
-Process history
+Process History
 ---------------
 
 .. _components-additional-component-process-history-introduction:
@@ -27,14 +27,13 @@ In a dialog
 
 .. _components-additional-component-process-history-how-to-use:
 
-How to use
+How to Use
 ^^^^^^^^^^
 
-First you need to link the cases to the business entity. Call the
-subprocess ``SetBusinessEntityId`` in the process which need to be
-linked and input an identifier unique to your business entity. The
-subprocess will set the id to the additional property
-"CASE_BUSINESS_ENTITY_PROPERTY" of the business case.
+First, you have to link the cases to the business entity. Call the subprocess
+``SetBusinessEntityId`` in each process which needs to be linked and input an
+identifier unique to your business entity. The subprocess will set the id to the
+additional property "CASE_BUSINESS_ENTITY_PROPERTY" of the business case.
 
 |set-business-entity-id-sub-process|
 
@@ -47,15 +46,15 @@ Include the process history component into your page:
 The value of the attribute ``businessEntityId`` must match the id input
 into the subprocess in the first step.
 
-By default the component will load 20 cases at a time. You can change
-this by setting the attribute ``chunkSize`` to the number you want. You
-should use this attribute alongside with the attribute ``scrollHeight``
-to configure the scroll bar of the list.
+By default, the component will load 20 cases at a time. You can change this by
+setting the attribute ``chunkSize`` to the number you want. You should use this
+attribute alongside the attribute ``scrollHeight`` to configure the scroll bar
+of the list.
 
 .. note:: 
 
-      If you use this component in a dialog, you must run this script
-      ``processHistory.setup();`` when the dialog is shown. For example:
+      If you use this component in a dialog, you have to run script
+      ``processHistory.setup();`` when the dialog is shown, e.g.:
 
 .. code-block:: html
 
@@ -69,8 +68,7 @@ to configure the scroll bar of the list.
       another process with the option "Attach to Business Case that
       triggered this process" selected, the current case of the process
       will become a technical case and will not be loaded into the process
-      history list. In this case you need to call the
-      SetBusinessEntityId
+      history list. In this case, you need to call the ``SetBusinessEntityId``
       subprocess after the first Trigger or signal sending step.
 
 .. _components-additional-component-task-analysis:
@@ -83,31 +81,32 @@ Task Analysis
 Introduction
 ^^^^^^^^^^^^
 
-Task Analysis component of Portal provides features for the user's own permission StatisticAnalyzeTask in PortalTaskPermissions refer to 
-:dev-url:`Security section in
-Cockpit </doc/nightly/engine-guide/tool-reference/engine-cockpit/security.html>`
-to analyze  not only tasks but also cases. These features are:
+The Portal's Task Analysis component provides features in accordance with the
+user's permission StatisticAnalyzeTask in PortalTaskPermissions. Refer to
+:dev-url:`Security section in Cockpit
+</doc/nightly/engine-guide/tool-reference/engine-cockpit/security.html>` to
+analyze not only tasks but also cases. These features are:
 
-#. Set of filters for both tasks and cases which allow user to filter
-   and to find tasks, cases more better. More, user can create and
-   manage their own filter set for future usage.
+#. Sets of filters for both tasks and cases which allow to filter
+   and find tasks and cases easier. Additionally, user can create and
+   manage their own filter sets.
 
 #. Dynamic result table with lots of information for both task and case.
 
-#. Support export result as Excel files (currently we only support .xlsx
+#. Export results into an Excel files (currently we only support .xlsx
    extension).
 
 |task-analysis|
 
 .. _components-additional-component-task-analysis-how-to-use:
 
-How to use
+How to Use
 ^^^^^^^^^^
 
-Task Analysis component is integrated into Statistic widget. You can use
-this component directly when open Statistic widget. If you want to use
-this component, you only have to redirect to Task Analysis component
-with following code:
+The Task Analysis component is integrated into the Statistics widget. You can
+use this component directly when opening the Statistics widget. If you want to
+use this component, you only have to redirect to the Task Analysis component
+with the following code:
 
 .. code-block:: java
 
@@ -129,27 +128,25 @@ Process Chain
 Introduction
 ^^^^^^^^^^^^
 
-Process Chain component of Portal provides features for users to know
-status of all steps in a process: the step's working, these steps are
-done, these steps are not done. These features are:
+The Process Chain component provides status information for all steps in a
+process: the currently executable steps, done steps, open steps. Its features are:
 
-#. Support to display all working steps or display only helpful steps as
-   begin, last, current, previous current, next current steps.
+#. Display all currently executable steps, or display only helpful steps like
+   begin, last, current, previous, next steps.
 
-#. Support to change the shape of process chain: circle or line.
+#. Change the shape of the process chain: circle or line.
 
-#. Support to change the direction of process chain: horizontal or vertical.
+#. Change the orientation of the process chain: horizontal or vertical.
 
 |process-chain|
 
 .. _components-additional-component-process-chain-how-to-use:
 
-How to use
+How to Use
 ^^^^^^^^^^
 
-Process Chain component can be integrated in any widget by including
-this component into a page. In order to use this component in a page,
-include this component to this page with following code:
+You can integrate the Process Chain component in any widget by including
+the component in a page with following code:
 
 .. code-block:: html
 
@@ -157,24 +154,20 @@ include this component to this page with following code:
 		componentId="component-circle-horizontal" shape="CIRCLE" direction="HORIZONTAL"
 		isShowAllSteps="FALSE" actualStepIndex="#{data.actualCurrentIndex}" steps="#{data.steps}" />
 
-#. Must to set value for ``actualStepIndex`` parameter. This is current
-   step index.
+#. You have to set the parameters
 
-#. Must to set value for ``steps`` parameter. This is list of working
-   steps.
+   -  ``actualStepIndex``. This is the index of the current step.
+   -  ``steps``. This is list of working steps.
 
-#. Can change ``shape`` parameter to ``CIRCLE`` or ``LINE`` based on the
-   requirement. Default value of this is ``CIRCLE``.
+#. You may change the parameters
 
-#. Can change ``direction`` parameter to ``HORIZONTAL`` or ``VERTICAL``
-   based on the requirement. Default value of this is ``HORIZONTAL``.
-
-#. Can change ``isShowAllSteps`` parameter to ``TRUE`` or ``FALSE``
-   based on the requirement. Default value of this is ``FALSE``.
+   -  ``shape`` to ``CIRCLE`` or ``LINE`` according to your requirements. Default is ``CIRCLE``.
+   -  ``direction`` to ``HORIZONTAL`` or ``VERTICAL`` . Default is ``HORIZONTAL``.
+   -  ``isShowAllSteps`` to ``TRUE`` or ``FALSE`` . Default is ``FALSE``.
 
 .. _components-additional-component-global-growl:
 
-Global growl
+Global Growl
 ------------
 
 .. _components-additional-component-global-growl-introduction:
@@ -182,39 +175,38 @@ Global growl
 Introduction
 ^^^^^^^^^^^^
 
-This component is a global growl introduced in BasicTemplate, you can
-use it to display your messages in Portal.
+This component is a global growl introduced in BasicTemplate. You can use it to
+display your messages in Portal using this code:
 
 .. code-block:: html
 
     <p:growl id="portal-global-growl" widgetVar="portal-global-growl" for="portal-global-growl-message" escape="false" showDetail="true" />
 
 
-Display growl after finishing a task
+Display Growl After Finishing a Task
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-After a task is finished, growl message appears as default via the
-``Portal.DisplayMessageAfterFinishTask`` Portal variable.
+After a task is finished, a growl message appears if ``Portal.DisplayMessageAfterFinishTask`` is true.
 
 |example-global-growl-finished-task|
 
 .. _components-additional-component-global-growl-display-growl-after-finish-task:
 
-Display growl after leaving a task
+Display Growl After Leaving a Task
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-If ``Portal.DisplayMessageAfterFinishTask`` Portal variable is true, growl message will be displayed after a task is left.
+After the user cancels a task, a growl message is displayed if ``Portal.DisplayMessageAfterFinishTask`` is true.
 
 |example-global-growl-cancelled-task|
 
 .. _components-additional-component-global-growl-display-growl-after-cancel-task:
 
-Customization global growl message for task not using IFrame
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Customize the Global Growl Message for a Task without using IFrames
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-For each task, you can turn it off or override it. Firstly, when you
-submit form to interact task, you need to put the ``overridePortalGrowl``
-key to flash object with any value
+For each task, you can turn the growl message display off or override it.
+Initially, when you submit the form to the interacting task, you need to set the
+``overridePortalGrowl`` key in the associated flash object:
 
 ::
 
@@ -222,8 +214,9 @@ key to flash object with any value
    flash.put("overridePortalGrowl", true);
    flash.setRedirect(true);
 
-It's enough if you want to turn it off. To override the message, add
-``facesMessage`` to this component. You can customize for each action as finish or cancellation a task.
+If you want to turn the global growl message off, that is all that is required.
+To override the message with your own, add ``facesMessage`` to this component.
+You can customize the message for finished or cancelled tasks separately.
 
 ::
 
@@ -241,11 +234,12 @@ It's enough if you want to turn it off. To override the message, add
    flash.setRedirect(true);
    flash.setKeepMessages(true);
 
-Customization global growl message for task using IFrame
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Customize the Global Growl Message for a Task using IFrames
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-If ``Portal.DisplayMessageAfterFinishTask`` Portal variable is true, before a task is finished/left, you can trigger displaying
-customized message after task is finished/left by calling below API:
+If ``Portal.DisplayMessageAfterFinishTask`` is true, before a task is finished
+or cancelled, you can trigger the display of a customized message by calling the
+API below:
 
 ::
 
@@ -254,23 +248,23 @@ customized message after task is finished/left by calling below API:
    PortalGlobalGrowInIFrameAPI api = new PortalGlobalGrowInIFrameAPI();
    api.displayCustomizedMessage("Your customized message");
 
-Please refer to GlobalGrowl Start Process in portal-developer-examples project for more details.
+Please refer to GlobalGrowl Start Process in the portal-developer-examples project for details.
 
 .. _components-additional-component-document-table:
 
-Document table
+Document Table
 --------------
 
-This component is case document table with the features: upload,
-download and delete.
+This component is a case document table with the features display, upload,
+download and delete document entries.
 
 |document-table|
 
-You can override the ``GetDocumentList``, ``UploadDocument``,
-``DeleteDocument``, ``DownloadDocument`` sub processes to extend these
-features, and add more columns, remove default columns in document
-table. Refer to the ``DocumentTableComponent`` process in portal-developer-examples
-project
+To extend these features, you can override the ``GetDocumentList``,
+``UploadDocument``, ``DeleteDocument``, ``DownloadDocument`` subprocesses. You
+can also add additional and remove default columns in the document table. Find
+examples in the ``DocumentTableComponent`` process in portal-developer-examples
+project.
 
 .. _components-additional-components-user-selection:
 
@@ -280,16 +274,16 @@ User Selection
 Introduction
 ^^^^^^^^^^^^
 
-This component is used for choosing a user from a user list defined by a role name list.
-If you don't define role name list, all users will be loaded. 
-It includes 1 label, 1 autocomplete and 1 message element to display message related to that autocomplete element.
+This component is used for selecting a single user from a list of users defined by a role name list.
+If you don't define the role name list, all users will be loaded. 
+It includes a label, an autocomplete and one message element to display a message related to that autocomplete element.
 
-How to use
+How to Use
 ^^^^^^^^^^
 
-You can include this component to any page. This component supports 2 styles of displaying a label.
+You can insert this component into any page. This component supports two styles to display a label.
 
-#. Default style
+#. Default Style
 
    |user-selection|
 
@@ -297,14 +291,14 @@ You can include this component to any page. This component supports 2 styles of 
 
    .. code-block:: html
 
-      <ic:ch.ivy.addon.portalkit.component.UserSelection 
+      <ic:ch.ivy.addon.portalkit.component.UserSelection
             componentId="user-by-role-autocomplete"
             fromRoleNames="#{data.definedRoleNames}"
             selectedUser="#{data.selectedUserForDefinedRoles}"
             isRequired="true"
             label="Users from defined rolenames"/>
 
-#. Floating label
+#. Floating Label
 
    |user-selection-floating-label|
 
@@ -320,13 +314,17 @@ You can include this component to any page. This component supports 2 styles of 
             isRequired="true" floatingLabel="true" />
 
 .. tip::
-   Autocomplete element of user selection component allows inserting children and ajax event (Refer to ``UserSelection.xtml``).
-   Any child in UserSelection component will be re-parented into this autocomplete at the point of ``insertChildren`` tag.
-   We introduce a facet named ``event`` for autocomplete so that ajax event can be nested.
+   The autocomplete element of the user selection component allows to
+   insert children and ajax events (Refer to ``UserSelection.xhtml``).
+   Any child in the UserSelection component will be re-parented into
+   this autocomplete at the location of the ``insertChildren`` tag.
+   We introduce a facet named ``event`` for autocomplete so that the 
+   ajax event can be nested, as well.
 
-For example: 
+An example: 
 
-I want to display user in dropdown list with format <Full name> (<username>) and when I select a user, a message will be displayed.
+I want to display users in a dropdown list formatted as "<Full name>
+(<username>)". When I select a user, a message shall be displayed.
 
 |user-selection-with-children-and-ajax-event|
 
@@ -350,9 +348,10 @@ I want to display user in dropdown list with format <Full name> (<username>) and
          </f:facet>
       </ic:ch.ivy.addon.portalkit.component.UserSelection>
 
-Please refer to ``UserSelectionExample.xhtml`` in ``portal-developer-examples`` for more details.
+Please refer to ``UserSelectionExample.xhtml`` in ``portal-developer-examples``
+for details.
 
-Attributes of this component:
+This component offers the following attributes:
 
 .. csv-table::
   :file: documents/additional-components/user_selection_component_attributes.csv
@@ -368,16 +367,18 @@ Role Selection
 Introduction
 ^^^^^^^^^^^^
 
-This component is used for choosing a role from a role list defined by a role name list.
-If you don't define role name list, all roles will be loaded.
-It includes 1 label, 1 autocomplete and 1 message element to display message related to that autocomplete element.
+This component is used to select a role from a given list of roles. If you don't
+define the role list, all roles will be loaded. It includes one label, one
+autocomplete and one message element to display messages related to this
+autocomplete element.
 
-How to use
+How to Use
 ^^^^^^^^^^
 
-You can include this component to any page. This component supports 2 styles of displaying a label.
+You can insert this component into any page. This component offers the following
+two styles to display its label.
 
-#. Default style
+#. Default Style
 
    |role-selection|
 
@@ -392,7 +393,7 @@ You can include this component to any page. This component supports 2 styles of 
          isRequired="true"
          label="Roles from defined role names"/>
 
-#. Floating label
+#. Floating Label
 
 |role-selection-floating-label|
 
@@ -408,13 +409,17 @@ You can include this component to any page. This component supports 2 styles of 
          isRequired="true" floatingLabel="true" />
 
 .. tip::
-   Autocomplete element of role selection component allows inserting children and ajax event (Refer to ``RoleSelection.xtml``).
-   Any child in RoleSelection component will be re-parented into this autocomplete at the point of ``insertChildren`` tag.
-   We introduce a facet named ``event`` for autocomplete so that ajax event can be nested.
-
+   The autocomplete element of the role selection component allows you to
+   insert children and ajax events (Refer to ``RoleSelection.xhtml``).
+   Any child in the RoleSelection component will be re-parented into this
+   autocomplete at the location of the ``insertChildren`` tag. We
+   introduced a facet named ``event`` for autocomplete so that the ajax
+   event can be nested, as well.
+     
 For example: 
 
-I want to display role in dropdown list with format <Display Name> (<Member Name>) and when I select a role, a message will be displayed.
+I want to display roles in dropdown list formatted as "<Display Name> (<Member
+Name>)". When I select a role, a message shall be displayed.
 
 |role-selection-with-children-and-ajax-event|
 
@@ -440,9 +445,10 @@ I want to display role in dropdown list with format <Display Name> (<Member Name
          </f:facet>
       </ic:ch.ivy.addon.portalkit.component.RoleSelection>
 
-Please refer to ``RoleSelectionExample.xhtml`` in ``portal-developer-examples`` for more details.
+Please refer to ``RoleSelectionExample.xhtml`` in ``portal-developer-examples``
+for details.
 
-Attributes of this component:
+This component offers the following attributes:
 
 .. csv-table::
   :file: documents/additional-components/role_selection_component_attributes.csv
@@ -452,15 +458,15 @@ Attributes of this component:
 
 .. _components-additional-portal-dialog-with-icon:
 
-Portal dialog with icon
+Portal Dialog with Icon
 -----------------------
 
 Introduction
 ^^^^^^^^^^^^
 
-This decorator is used to display dialog with big icon and header in the middle, and below is dialog content.
+This decorator is used to display a dialog with a big icon and a header in the middle; the content is shown below.
 
-How to use
+How to Use
 ^^^^^^^^^^
 
 .. code-block:: html
@@ -485,14 +491,16 @@ How to use
          </ui:define>
       </ui:decorate>
 
-Please refer to ``PortalDialogExample.xhtml`` in ``portal-developer-examples`` for more examples.
+Please refer to ``PortalDialogExample.xhtml`` in ``portal-developer-examples``
+for examples.
 
-This decorator provide 2 custom sections:
+This decorator provides two custom sections:
 
-- ``dialogFooter``: you have to define this section, it contains footer of dialog.
-- ``dialogContentSection``: this is optional, if you want to use your custom style for your dialog content, please define this section.
+-  ``dialogFooter``: The footer of the dialog. Required.
+-  ``dialogContentSection``: If you want to use your custom style for
+   the dialog content, define this section. Optional.
 
-Parameters of this decorator:
+This decorator offers the following parameters:
 
 .. csv-table::
   :file: documents/additional-components/portal_dialog_decorator.csv
@@ -500,11 +508,18 @@ Parameters of this decorator:
   :class: longtable
   :widths: 20 10 25 45
 
-Portal cronjob trigger
+Portal Cronjob Trigger
 ----------------------
-Portal provides a helpful bean ``ch.ivy.addon.portalkit.util.CronByGlobalVariableTriggerStartEventBean`` using the Quartz framework which help trigger cron job by global variable. The global variable should contains the cron job Pattern, to trigger to process on the right time.
 
-There is a online `Cron Maker <http://www.cronmaker.com>`_ could help you to create your own cron job pattern.
+Portal provides the helper bean
+``ch.ivy.addon.portalkit.util.CronByGlobalVariableTriggerStartEventBean``. It
+uses the Quartz framework to trigger cron jobs using a variable to define
+the trigger schedule. The variable has to contain a cron job pattern to
+trigger the process as required.
+
+To generate cron patterns, use the online site `Cron Maker
+<http://www.cronmaker.com>`_. It makes creating your own cron job patterns a
+breeze.
 
 .. |process-history-example| image:: ../../screenshots/components/process-history-example.png
 .. |process-history-dialog-example| image:: ../../screenshots/components/process-history-dialog-example.png

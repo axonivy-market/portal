@@ -1,6 +1,6 @@
 .. _customization-default-chart-colors:
 
-Default chart color
+Default Chart Color
 *******************
 
 .. _customization-default-chart-colors-introduction:
@@ -8,18 +8,21 @@ Default chart color
 Introduction
 ------------
 
-In Portal, statistic color is set by ``DefaultCharColor`` sub process. But you can create your default chart color.
+In Portal, the statistic color is set by ``DefaultCharColor`` subprocess, but
+you customize the default chart color.
 
 .. _override-Statistic-colors:
 
 Customization
 -------------
 
-Create an override which overrides sub process ``DefaultChartColors`` in PortalKit. This sub process return a list of default chart colors. Follow instruction to create chart color.
+Create an override that overrides subprocess ``DefaultChartColors`` in
+PortalKit. This subprocess returns a list of default chart colors. Follow
+these instructions to define the chart color.
 
 |default-chart-color|
 
-Portal introduces **StatisticColors** object. We use it to build **DataSet** color, also provide some default constant, you can refer.
+Portal introduces the **StatisticColors** object. We use it to build a color **DataSet** and to provide some default constants which you can reference.
 
 .. code-block:: java
 
@@ -94,7 +97,7 @@ Portal introduces **StatisticColors** object. We use it to build **DataSet** col
 
 ..
 
-You can override data labels color by re-define value of below variables in ``customization.css``:
+You can override data label colors by re-defining the values of the variables in ``customization.css`` below:
 
  - ``--chart-label-default-exception-priority-color`` to override label color of exception priority task
  - ``--chart-label-default-high-priority-color`` to override label color of high priority task
@@ -111,7 +114,7 @@ You can override data labels color by re-define value of below variables in ``cu
  - ``--chart-label-default-task-month-color`` to override label color of this month task
  - ``--chart-label-default-task-year-color`` to override label color of this year task
 
-In Portal home, you can override color of Statistic Carousel header by re-define value of below variables in ``customization.css``:
+In Portal home, you can override the color of the Statistic Carousel header by re-defining the value of the variables in ``customization.css`` below:
 
  - ``--statistic-panel-header`` to override background color of Carousel header
  - ``--statistic-panel-header-border`` to override border color of Carousel header

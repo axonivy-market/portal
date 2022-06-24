@@ -243,7 +243,7 @@
                 <p:dataTable id="quick-filter-table" value="#{dashboardBean.widgetFilters}" var="quickFilter"
                   widgetVar="quick-filter-table" scrollHeight="300" scrollable="true" reflow="true"
                   selection="#{dashboardBean.deleteFilters}" rowKey="#{quickFilter.name}"
-                  emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/EmptyFilterMessage')}">
+                  emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/EmptyFilterMessage')}" lazy="false">
 
                   <p:column selectionMode="multiple" styleClass="saved-filter-selection-column" width="40"/>
 

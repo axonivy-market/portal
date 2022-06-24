@@ -132,7 +132,7 @@
 
     <ui:define name="custom-search">
       <p:tab title="Employees">
-        <p:dataTable id="employee-table" value="#{data.dataModel.employees}" var="emp" sortBy="#{emp.firstName}">
+        <p:dataTable id="employee-table" value="#{data.dataModel.employees}" var="emp" sortBy="#{emp.firstName}" lazy="false">
           <p:column headerText="First Name" sortBy="#{emp.firstName}" filterBy="#{emp.firstName}">
             <h:outputText value="#{emp.firstName}" />
           </p:column>
