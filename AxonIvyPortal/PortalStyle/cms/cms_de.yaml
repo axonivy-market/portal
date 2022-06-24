@@ -266,6 +266,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       showProcessInformation: Auf "false" setzen, um die Verknüpfung zu Informationen des Prozesses auf der Seite Prozesse (Gittermodus) und Falldetails anzeigen zu deaktivieren.
       showTaskDurationTime: Zum Ein-/Ausschalten der Anzeige der Bearbeitungszeit auf der Aufgabendetailseite.
       showUserGuide: 'Aktiviert die interaktive Benutzeranleitung "erste Schritte" im Portal bei erstmaliger Anmeldung. '
+      statisticChartsPolling: Setzen Sie diese Eigenschaft auf einen Wert kleiner als 10, um die Aktualisierung des Live-Diagramms mit Abfrage zu deaktivieren. Der Standardwert ist 0, was bedeutet, dass die Abfrage der Live-Statistik deaktiviert ist. Setzen Sie diese Eigenschaft auf mehr als oder gleich
+        10, um die Aktualisierung der Live-Statistik zu aktivieren.
       uploadDocumentWhiteListExtensionNote: 'Leer lassen, falls Sie alle Formate erlauben. Falls Sie nur eine geringe Anzahl an Formate erlauben möchten (White list), können Sie diese hier, mit Komma getrennt, aufführen. Z.B.: pdf, txt, doc, docx.'
     key: Schlüssel
     link: Link
@@ -680,6 +682,8 @@ ch.ivy.addon.portalkit.ui.jsf:
   dashboard:
     DashboardConfigurationDialog:
       ConfigureDashboard: Dashboard-Konfiguration
+      CreateFromScratch: Von Grund auf neu erstellen
+      CreateFromScratchDescription: Erstellen Sie Ihr eigenes Dashboard von Grund auf
       CreateNewPrivateDashboard: Create new private dashboard
       CreateNewPublicDashboard: Neues öffentliches Dashboard erstellen
       EditPrivateDashboards: Private Dashboards bearbeiten
@@ -698,6 +702,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     ManageFilter: Filterverwaltung
     NoData: Keine Daten
     NoSavedFilterMessage: Kein gespeicherter Filter gefunden. Versuchen Sie, einen neuen zu erstellen, indem Sie auf die Schaltfläche Filter speichern klicken.
+    RestoreDefaultDashboardMessage: If you proceed, you will loose all widgets created by yourself. The standard settings of <span class="dashboard-template-name-message">{0}</span> will be applied.
     SaveNewWidgetFilterHeader: Save a new widget filter
     SavedFilterHeader: Saved filters
     SearchForFilter: Search for filter
@@ -728,6 +733,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     configuration:
       CustomWidgetExternalLinkWarning: Einige Websites sind aufgrund von Sicherheitsbedenken nicht mit iframe kompatibel. Bitte wenden Sie sich an Ihren Administrator, wenn die externe Website nicht ordnungsgemäß funktioniert.
       Parameters: Parameter
+      RestoreDefaultDashboardTemplateTooltip: Wir können die Vorlage für Ihr Dashboard nicht finden und es daher nicht auf die Standardkonfiguration zurücksetzen. Bitte erkundigen Sie sich bei Ihrem Administrator nach weiteren Details!
       SelectYourTemplate: Wählen Sie Ihre Vorlage
       configuration: Konfiguration
       configurationDescription: In diesem Konfigurationsbereich kann das Widget konfiguriert werden. Bitte definieren Sie die gewünschten Filter sowie die anzuzeigenden Spalten.

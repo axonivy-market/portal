@@ -58,7 +58,7 @@
                     <h3>Invoices</h3>
                 </div>
                 <div class="ui-g-12">
-                    <p:dataTable value="#{data.invoice.items}" var="item" reflow="true">
+                    <p:dataTable value="#{data.invoice.items}" var="item" reflow="true" lazy="false">
                         <p:column headerText="ID" width="100">
                             <h:outputText value="#{item.id}" />
                         </p:column>

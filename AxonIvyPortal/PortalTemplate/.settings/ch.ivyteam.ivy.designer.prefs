@@ -14,5 +14,6 @@ ch.ivyteam.ivy.designer.preferences.editor.ProcessEditorPreferencePage\:NET_BACK
 ch.ivyteam.ivy.designer.preferences.editor.ProcessEditorPreferencePage\:NET_GRID_COLOR=212,212,212
 ch.ivyteam.ivy.designer.preferences.editor.ProcessEditorPreferencePage\:SHOW_GRID=true
 ch.ivyteam.ivy.designer.preferences.editor.ProcessEditorPreferencePage\:useProjectSettings=true
+ch.ivyteam.ivy.project.preferences\:PRIMEFACES_VERSION=11
 ch.ivyteam.ivy.project.preferences\:PROJECT_VERSION=94003
 eclipse.preferences.version=1
