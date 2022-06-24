@@ -8,7 +8,7 @@
     <ui:define name="content">
 			<h:form id="form">
 				<p:messages />
-				<p:dataTable value="#{data.employees}" var="employee">
+				<p:dataTable value="#{data.employees}" var="employee" lazy="false">
 					<p:column headerText="ID">
 						<h:outputText value="#{employee.id}" />
 					</p:column>
