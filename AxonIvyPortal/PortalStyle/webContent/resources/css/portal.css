@@ -2255,3 +2255,7 @@ body.in-dialog .ui-widget-overlay {
 .dashboard-configuration-dialog__action-row-icon {
   color: var(--primary-dark-text-color);
 }
+
+#reorder-button:hover {
+  cursor: move;
+}

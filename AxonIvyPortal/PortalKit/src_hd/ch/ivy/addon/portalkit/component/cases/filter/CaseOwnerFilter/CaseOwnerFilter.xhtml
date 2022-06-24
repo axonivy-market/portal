@@ -21,7 +21,7 @@
       completeMethod="#{logic.query}" value="#{cc.attrs.filter.selectedOwner}"
       var="owner" itemValue="#{owner}" itemLabel="#{owner.briefDisplayNameWithState}"
       converter="pojoConverter" cache="true" maxResults="100"
-      moreText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..."
+      moreTextSelect="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..."
       styleClass="responsible-list-filter">
       <p:column>
         <pc:securityMemberNameAndAvatar securityMember="#{owner}"
