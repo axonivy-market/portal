@@ -74,7 +74,7 @@ public class AnnouncementService extends BusinessDataService<Announcement> {
     String language;
     Locale locale = Ivy.session().getSessionUser().getEMailLanguage();
     if (locale != null) {
-      language = locale.getLanguage();
+      language = locale.toLanguageTag();
     } else {
       language = getDefaultEmailLanguage();
     }
@@ -91,7 +91,7 @@ public class AnnouncementService extends BusinessDataService<Announcement> {
   }
 
   private String getDefaultEmailLanguage() {
-    return IApplication.current().getDefaultEMailLanguage().getLanguage();
+    return IApplication.current().getDefaultEMailLanguage().toLanguageTag();
   }
 
   public void activateAnnouncement() throws InterruptedException {
