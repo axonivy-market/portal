@@ -1012,17 +1012,7 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   }
 }
 
-@media screen and (min-width: 40.063em) {
-  .case-detail-body .case-details-item .ui-datatable .related-case-name.name-column {
-    border-right: none;
-  }
-}
-
 @media screen and (max-width: 90.062em) {
-  .case-detail-body .related-case-name.name-column {
-    width: 100%;
-  }
-
   .case-detail-body .name-column .case-description-value,
   .case-detail-body .case-details-related-task-table .related-task-name-column .task-description-value {
     display: block;
@@ -1047,6 +1037,12 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   }
 }
 
+@media screen and (min-width: 90.063em) {
+  .case-detail-body .name-column .case-description-value,
+  .case-detail-body .case-details-related-task-table .related-task-name-column .task-description-value {
+    display: none;
+  }
+}
 /********************************** END CASE ITEM **********************************/
 
 /********************************** START PROCESSES **********************************/
