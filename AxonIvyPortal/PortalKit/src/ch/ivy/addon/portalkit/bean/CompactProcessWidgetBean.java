@@ -118,7 +118,7 @@ private static final long serialVersionUID = -5889375917550618261L;
     List<DisplayName> displayNames = new ArrayList<>();
     for (String language : languages) {
       DisplayName displayName = new DisplayName();
-      displayName.setLocale(new Locale(language));
+      displayName.setLocale(Locale.forLanguageTag(language));
       displayName.setValue(this.editingProcess.getProcessName());
       displayNames.add(displayName);
     }
