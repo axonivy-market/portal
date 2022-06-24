@@ -20,7 +20,7 @@ Customization
 
    |new-end-page|
 
-#. Create a callable sub process in your project with the
+#. Create a callable subprocess in your project with the
    ``handleEndPage()`` signature, make sure this signature is unique in
    your application. It must return start link of new end page you
    define in step 1.

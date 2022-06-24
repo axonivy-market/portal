@@ -17,7 +17,7 @@
               <h2>#{dashboardConfigurationBean.title}</h2>
             </div>
             <div class="ui-g-12">
-              <p:dataTable id="dashboard-table" value="#{dashboardConfigurationBean.editingDashboards}" var="dashboard">
+              <p:dataTable id="dashboard-table" value="#{dashboardConfigurationBean.editingDashboards}" var="dashboard" lazy="false">
                 <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/dashboardTitle')}" width="20%">
                   <h:outputText value="#{dashboard.title}" />
                 </p:column>
@@ -72,7 +72,8 @@
 
       <p:dialog id="dashboard-creation-menu-dialog" widgetVar="dashboard-creation-menu-dialog"
         header="#{data.isPublicDashboard ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfigurationDialog/CreateNewPublicDashboard') : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfigurationDialog/CreateNewPrivateDashboard')}"
-        appendTo="@(body)" closeOnEscape="true" draggable="false" fitViewport="true" responsive="true" modal="true" resizable="false">
+        appendTo="@(body)" closeOnEscape="true" draggable="false" fitViewport="true" responsive="true" modal="true" resizable="false"
+        dynamic="true">
         <div class="ui-g dashboard-configuration-dialog__content">
           <ic:ch.ivy.addon.portal.generic.dashboard.component.DashboardCreationMenu 
             managedBean="#{dashboardConfigurationBean}"
