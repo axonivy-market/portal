@@ -198,8 +198,8 @@
             <h:panelGroup id="chart-name-input-panel" styleClass="md-inputfield add-statistic-panel ui-fluid">
               <p:inputText id="chart-name-input" value="#{name.value}" maxlength="200"
                 required="#{logic.isApplicationDefaultEmailLanguage(name.locale.toLanguageTag())}"
-                requiredMessage="#{name.locale.getDisplayLanguage()} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/name')}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" />
-              <p:outputLabel value="#{name.locale.getDisplayLanguage()} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/name')}" for="chart-name-input" />
+                requiredMessage="#{name.locale.getDisplayName()} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/name')}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" />
+              <p:outputLabel value="#{name.locale.getDisplayName()} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/name')}" for="chart-name-input" />
             </h:panelGroup>
           </ui:repeat>
         </h:panelGrid>
