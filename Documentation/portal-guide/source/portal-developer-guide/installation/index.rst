@@ -149,6 +149,21 @@ Migrate 9.3 to 9.4
 #. The ``customization.css`` file has been removed, in case you use it in your project, please switch to using
    :dev-url:`Engine Branding </doc/nightly/designer-guide/user-interface/branding/branding-engine.html>` to customize styling
 
+#. Since 9.4 we moved some components and classes of Portal to the independent project ``portal-component``. Please follow these steps to migrate
+
+   - Class ``ch.ivy.addon.portalkit.dto.RoleDTO`` is removed. Please use class ``com.axonivy.portal.component.dto.RoleDTO`` in ``portal-component`` project instead.
+
+   - Class ``ch.ivy.addon.portalkit.dto.UserDTO`` is removed. Please use class ``com.axonivy.portal.component.dto.UserDTO`` in ``portal-component`` project instead.
+
+   - :ref:`Migration steps <components-additional-components-migrate-from-old-user-selection>` for the new :ref:`User Selection <components-additional-components-user-selection>` component.
+
+   - :ref:`Migration steps <components-additional-components-migrate-from-old-role-selection>` for the new :ref:`Role Selection <components-additional-components-role-selection>` component.
+
+   - :ref:`Migration steps <components-additional-components-migrate-from-old-document-table>` for the new :ref:`Document Table <components-additional-components-document-table>` component.
+
+   - :ref:`Migration steps <components-additional-components-migrate-from-old-process-history>` for the new :ref:`Process History <components-additional-component-process-history>` component.
+
+   - :ref:`Migration steps <components-additional-components-migrate-from-old-process-chain>` for the new :ref:`Process Chain <components-additional-component-process-chain>` component.
 
 Migrate to 9.3
 --------------
