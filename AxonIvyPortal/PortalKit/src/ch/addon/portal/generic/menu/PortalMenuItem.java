@@ -44,6 +44,7 @@ public class PortalMenuItem extends DefaultMenuItem {
   public PortalMenuItem() { }
 
   public PortalMenuItem(PortalMenuBuilder builder) {
+    this.setId(builder.menuKind.toString());
     this.setValue(builder.name);
     this.setIcon(builder.icon);
     this.setIconPos(DEFAULT_ICON_POSITION);
