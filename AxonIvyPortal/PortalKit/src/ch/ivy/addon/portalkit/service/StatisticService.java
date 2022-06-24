@@ -1182,8 +1182,10 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     defaultDisplayName.setValue("");
     List<String> appLanguages = Arrays.asList(IApplication.current().getName());
     String userName = Ivy.session().getSessionUserName();
+    
+    String userLanguage = LanguageService.newInstance().findUserLanguages(userName, appLanguages).getIvyLanguages().get(0).getUserLanguage();
     DisplayName currentDisplayName = CollectionUtils.emptyIfNull(statisticChart.getNames()).stream()
-        .filter(name -> StatisticService.equalsDisplayNameLocale(name, LanguageService.newInstance().findUserLanguages(userName, appLanguages).getIvyLanguages().get(0).getUserLanguage()))
+        .filter(name -> StatisticService.equalsDisplayNameLocale(name, userLanguage))
         .findFirst().orElse(defaultDisplayName);
     return currentDisplayName;
   }
@@ -1447,7 +1449,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
   }
 
   public static boolean equalsDisplayNameLocale(DisplayName displayName, String language) {
-    return StringUtils.equals(displayName.getLocale().toLanguageTag(), language);
+    return StringUtils.equalsIgnoreCase(displayName.getLocale().toLanguageTag(), language);
   }
 
   public void removeStatisticChartsByUserId(long userId) throws InterruptedException {
