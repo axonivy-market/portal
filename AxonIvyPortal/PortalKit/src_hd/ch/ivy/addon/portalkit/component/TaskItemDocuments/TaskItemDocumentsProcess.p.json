@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.10",
+  "format" : "9.4.11",
   "id" : "1549452C001D8A69",
   "data" : "ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData",
   "kind" : "HTML_DIALOG",
@@ -27,6 +27,7 @@
       "name" : "initData(ITask)",
       "config" : {
         "callSignature" : "initData",
+        ".name" : "initData(ITask)",
         "input" : {
           "params" : [
             { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask" }
@@ -53,6 +54,7 @@
       "name" : "uploadDocument(FileUploadEvent)",
       "config" : {
         "callSignature" : "uploadDocument",
+        ".name" : "uploadDocument(FileUploadEvent)",
         "input" : {
           "params" : [
             { "name" : "uploadEvent", "type" : "org.primefaces.event.FileUploadEvent" }
@@ -72,6 +74,9 @@
       "id" : "f41",
       "type" : "Alternative",
       "name" : "Upload successfully?",
+      "config" : {
+        ".name" : "Upload successfully?"
+      },
       "visual" : {
         "at" : { "x" : 408, "y" : 288 },
         "labelOffset" : { "x" : -54, "y" : -39 }
@@ -81,7 +86,7 @@
             "name" : "YES",
             "segment" : 0.29,
             "offset" : { "x" : -2, "y" : -7 }
-          }, "condition" : "in.uploadDocumentCheckStatus == ch.ivy.addon.portalkit.enums.UploadDocumentCheckStatus.OK" },
+          }, "condition" : "in.uploadDocumentCheckStatus == com.axonivy.portal.component.enums.UploadDocumentCheckStatus.OK" },
         { "id" : "f86", "to" : "f67" }
       ]
     }, {
@@ -104,6 +109,7 @@
       "type" : "Script",
       "name" : "Show error message",
       "config" : {
+        ".name" : "Show error message",
         "output" : {
           "code" : [
             "import javax.faces.application.FacesMessage;",
@@ -130,6 +136,7 @@
       "name" : "downloadDocument(IvyDocument)",
       "config" : {
         "callSignature" : "downloadDocument",
+        ".name" : "downloadDocument(IvyDocument)",
         "result" : {
           "params" : [
             { "name" : "streamedContent", "type" : "org.primefaces.model.StreamedContent" }
@@ -140,7 +147,7 @@
         },
         "input" : {
           "params" : [
-            { "name" : "document", "type" : "ch.ivy.addon.portalkit.ivydata.bo.IvyDocument" }
+            { "name" : "document", "type" : "com.axonivy.portal.component.ivydata.bo.IvyDocument" }
           ],
           "map" : {
             "out.document" : "param.document"
@@ -159,6 +166,7 @@
       "name" : "resetMessageUploadDocument()",
       "config" : {
         "callSignature" : "resetMessageUploadDocument",
+        ".name" : "resetMessageUploadDocument()",
         "guid" : "168272AA0A252382"
       },
       "visual" : {
@@ -177,6 +185,7 @@
       "type" : "Script",
       "name" : "Reset messages",
       "config" : {
+        ".name" : "Reset messages",
         "output" : {
           "code" : [
             "import java.util.Iterator;",
@@ -201,6 +210,7 @@
       "name" : "deleteDocument()",
       "config" : {
         "callSignature" : "deleteDocument",
+        ".name" : "deleteDocument()",
         "guid" : "168272BBCF5B4078"
       },
       "visual" : {
@@ -221,6 +231,10 @@
         "message"
       ],
       "config" : {
+        ".name" : [
+          "Show success",
+          "message"
+        ],
         "output" : {
           "code" : [
             "import javax.faces.application.FacesMessage;",
@@ -243,6 +257,10 @@
         "message"
       ],
       "config" : {
+        ".name" : [
+          "Show success",
+          "message"
+        ],
         "output" : {
           "code" : [
             "import javax.faces.application.FacesMessage;",
@@ -262,6 +280,7 @@
       "type" : "SubProcessCall",
       "name" : "Find documents",
       "config" : {
+        ".name" : "Find documents",
         "processCall" : "Functional Processes/GetDocumentList:call(ch.ivyteam.ivy.workflow.ICase)",
         "output" : {
           "map" : {
@@ -288,6 +307,7 @@
       "name" : "Find business case",
       "config" : {
         "security" : "system",
+        ".name" : "Find business case",
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.service.CaseDocumentService;",
@@ -306,6 +326,7 @@
       "type" : "SubProcessCall",
       "name" : "Find documents",
       "config" : {
+        ".name" : "Find documents",
         "processCall" : "Functional Processes/GetDocumentList:call(ch.ivyteam.ivy.workflow.ICase)",
         "output" : {
           "map" : {
@@ -331,7 +352,8 @@
       "type" : "SubProcessCall",
       "name" : "UploadDocument",
       "config" : {
-        "processCall" : "Functional Processes/UploadDocument:call(ch.ivyteam.ivy.workflow.ICase,org.primefaces.model.file.UploadedFile)",
+        ".name" : "UploadDocument",
+        "processCall" : "Functional Processes/UploadDocument:call(ch.ivyteam.ivy.workflow.ICase,org.primefaces.model.file.UploadedFile,Boolean,Boolean,String)",
         "output" : {
           "map" : {
             "out" : "in",
@@ -342,7 +364,10 @@
         "call" : {
           "params" : [
             { "name" : "businessCase", "type" : "ch.ivyteam.ivy.workflow.ICase" },
-            { "name" : "uploadedFile", "type" : "org.primefaces.model.file.UploadedFile" }
+            { "name" : "uploadedFile", "type" : "org.primefaces.model.file.UploadedFile" },
+            { "name" : "enableScriptCheckingForUploadedDocument", "type" : "Boolean" },
+            { "name" : "enableVirusScannerForUploadedDocument", "type" : "Boolean" },
+            { "name" : "allowedUploadFileTypes", "type" : "String" }
           ],
           "map" : {
             "param.businessCase" : "in.businessCase",
@@ -359,7 +384,8 @@
       "type" : "SubProcessCall",
       "name" : "Download Document",
       "config" : {
-        "processCall" : "Functional Processes/DownloadDocument:call(ch.ivyteam.ivy.workflow.ICase,ch.ivy.addon.portalkit.ivydata.bo.IvyDocument)",
+        ".name" : "Download Document",
+        "processCall" : "Functional Processes/DownloadDocument:call(ch.ivyteam.ivy.workflow.ICase,com.axonivy.portal.component.ivydata.bo.IvyDocument)",
         "output" : {
           "map" : {
             "out" : "in",
@@ -369,7 +395,7 @@
         "call" : {
           "params" : [
             { "name" : "bussinessCase", "type" : "ch.ivyteam.ivy.workflow.ICase" },
-            { "name" : "document", "type" : "ch.ivy.addon.portalkit.ivydata.bo.IvyDocument" }
+            { "name" : "document", "type" : "com.axonivy.portal.component.ivydata.bo.IvyDocument" }
           ],
           "map" : {
             "param.bussinessCase" : "in.businessCase",
@@ -387,6 +413,7 @@
       "type" : "SubProcessCall",
       "name" : "Find documents",
       "config" : {
+        ".name" : "Find documents",
         "processCall" : "Functional Processes/GetDocumentList:call(ch.ivyteam.ivy.workflow.ICase)",
         "output" : {
           "map" : {
@@ -412,7 +439,8 @@
       "type" : "SubProcessCall",
       "name" : "Delete Document",
       "config" : {
-        "processCall" : "Functional Processes/DeleteDocument:call(ch.ivyteam.ivy.workflow.ICase,ch.ivy.addon.portalkit.ivydata.bo.IvyDocument)",
+        ".name" : "Delete Document",
+        "processCall" : "Functional Processes/DeleteDocument:call(ch.ivyteam.ivy.workflow.ICase,com.axonivy.portal.component.ivydata.bo.IvyDocument)",
         "output" : {
           "map" : {
             "out" : "in",
@@ -422,7 +450,7 @@
         "call" : {
           "params" : [
             { "name" : "businessCase", "type" : "ch.ivyteam.ivy.workflow.ICase" },
-            { "name" : "document", "type" : "ch.ivy.addon.portalkit.ivydata.bo.IvyDocument" }
+            { "name" : "document", "type" : "com.axonivy.portal.component.ivydata.bo.IvyDocument" }
           ],
           "map" : {
             "param.businessCase" : "in.businessCase",
@@ -439,6 +467,7 @@
       "type" : "Script",
       "name" : "Release JSF Event",
       "config" : {
+        ".name" : "Release JSF Event",
         "output" : {
           "code" : [
             "// Do not store JSF Event in a Html Dialog data field",

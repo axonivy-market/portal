@@ -12,12 +12,6 @@ Dialogs:
             RequiredFieldMessage: este campo es obligatorio
             'Yes': Sí
           DocumentTable:
-            BasicDocumentType:
-              CONTRACT: Contrato
-              DOCUMENTATION: Documentación
-              EMAIL: Email
-              INFORMATION: Información
-              OTHERS: Otros
             Delete: Borrar
             DeleteDocumentNote: '{0} ha eliminado {1}'
             DeleteSuceed: Archivo eliminado con éxito
@@ -39,6 +33,12 @@ Dialogs:
             UploadFileExists: El archivo {0} ya existe
             UploadSucceed: El archivo ha sido añadido con éxito
           Enums:
+            BasicDocumentType:
+              CONTRACT: Contrato
+              DOCUMENTATION: Documentación
+              EMAIL: Email
+              INFORMATION: Información
+              OTHERS: Otros
             PortalIvyDataErrorType:
               APP_NOT_FOUND: Aplicación no encontrada
               FAIL_TO_COUNT_CASE: Error al contar los casos
