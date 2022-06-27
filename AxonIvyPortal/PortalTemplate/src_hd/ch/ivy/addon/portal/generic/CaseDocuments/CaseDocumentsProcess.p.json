@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.10",
+  "format" : "9.4.11",
   "id" : "18022687D24C1D82",
   "data" : "ch.ivy.addon.portal.generic.CaseDocuments.CaseDocumentsData",
   "kind" : "HTML_DIALOG",
@@ -9,6 +9,7 @@
       "name" : "start(Long)",
       "config" : {
         "callSignature" : "start",
+        ".name" : "start(Long)",
         "input" : {
           "params" : [
             { "name" : "caseId", "type" : "Long" }
@@ -36,6 +37,7 @@
       "type" : "HtmlDialogEventStart",
       "name" : "close",
       "config" : {
+        ".name" : "close",
         "guid" : "1802215F5712F489"
       },
       "visual" : {
@@ -53,6 +55,7 @@
       "type" : "SubProcessCall",
       "name" : "Find documents",
       "config" : {
+        ".name" : "Find documents",
         "processCall" : "Functional Processes/GetDocumentList:call(ch.ivyteam.ivy.workflow.ICase)",
         "output" : {
           "map" : {
@@ -79,6 +82,7 @@
       "name" : "initData()",
       "config" : {
         "callSignature" : "initData",
+        ".name" : "initData()",
         "guid" : "1802244D8B3A4339"
       },
       "visual" : {
@@ -97,7 +101,8 @@
       "type" : "SubProcessCall",
       "name" : "Delete Document",
       "config" : {
-        "processCall" : "Functional Processes/DeleteDocument:call(ch.ivyteam.ivy.workflow.ICase,ch.ivy.addon.portalkit.ivydata.bo.IvyDocument)",
+        ".name" : "Delete Document",
+        "processCall" : "Functional Processes/DeleteDocument:call(ch.ivyteam.ivy.workflow.ICase,com.axonivy.portal.component.ivydata.bo.IvyDocument)",
         "output" : {
           "map" : {
             "out" : "in",
@@ -107,7 +112,7 @@
         "call" : {
           "params" : [
             { "name" : "businessCase", "type" : "ch.ivyteam.ivy.workflow.ICase" },
-            { "name" : "document", "type" : "ch.ivy.addon.portalkit.ivydata.bo.IvyDocument" }
+            { "name" : "document", "type" : "com.axonivy.portal.component.ivydata.bo.IvyDocument" }
           ],
           "map" : {
             "param.businessCase" : "in.selectedCase",
@@ -136,6 +141,7 @@
       "type" : "SubProcessCall",
       "name" : "Find documents",
       "config" : {
+        ".name" : "Find documents",
         "processCall" : "Functional Processes/GetDocumentList:call(ch.ivyteam.ivy.workflow.ICase)",
         "output" : {
           "map" : {
@@ -164,6 +170,10 @@
         "message"
       ],
       "config" : {
+        ".name" : [
+          "Show delete",
+          "message"
+        ],
         "output" : {
           "code" : [
             "import javax.faces.application.FacesMessage;",
@@ -183,6 +193,7 @@
       "name" : "downloadDocument(IvyDocument)",
       "config" : {
         "callSignature" : "downloadDocument",
+        ".name" : "downloadDocument(IvyDocument)",
         "result" : {
           "params" : [
             { "name" : "streamedContent", "type" : "org.primefaces.model.StreamedContent" }
@@ -193,7 +204,7 @@
         },
         "input" : {
           "params" : [
-            { "name" : "document", "type" : "ch.ivy.addon.portalkit.ivydata.bo.IvyDocument" }
+            { "name" : "document", "type" : "com.axonivy.portal.component.ivydata.bo.IvyDocument" }
           ],
           "map" : {
             "out.document" : "param.document"
@@ -211,7 +222,8 @@
       "type" : "SubProcessCall",
       "name" : "Download Document",
       "config" : {
-        "processCall" : "Functional Processes/DownloadDocument:call(ch.ivyteam.ivy.workflow.ICase,ch.ivy.addon.portalkit.ivydata.bo.IvyDocument)",
+        ".name" : "Download Document",
+        "processCall" : "Functional Processes/DownloadDocument:call(ch.ivyteam.ivy.workflow.ICase,com.axonivy.portal.component.ivydata.bo.IvyDocument)",
         "output" : {
           "map" : {
             "out" : "in",
@@ -221,7 +233,7 @@
         "call" : {
           "params" : [
             { "name" : "bussinessCase", "type" : "ch.ivyteam.ivy.workflow.ICase" },
-            { "name" : "document", "type" : "ch.ivy.addon.portalkit.ivydata.bo.IvyDocument" }
+            { "name" : "document", "type" : "com.axonivy.portal.component.ivydata.bo.IvyDocument" }
           ],
           "map" : {
             "param.bussinessCase" : "in.selectedCase",
@@ -240,6 +252,7 @@
       "name" : "deleteDocument()",
       "config" : {
         "callSignature" : "deleteDocument",
+        ".name" : "deleteDocument()",
         "guid" : "18040F4FD2418511"
       },
       "visual" : {

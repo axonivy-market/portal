@@ -50,9 +50,9 @@
         <ic:com.axonivy.portal.component.DocumentTable id="fileUploadComponent" uploadRendered="false"
           fileLimit="#{dynaData.intSetting}" typeColumnRendered="false" notInDynaform="false"
           typeSelectionItems="#{masterDataBean.documentTypes}"
-          allowedUploadFileTypes="#{expressBusinessViewBean.allowedUploadFileType}"
-          enableScriptCheckingForUploadedDocument="#{expressBusinessViewBean.enableScriptCheckingForUploadedDocument}"
-          enableVirusScannerForUploadedDocument="#{expressBusinessViewBean.enableVirusScannerForUploadedDocument}" />
+          allowedUploadFileTypes="#{userTaskFormBean.allowedUploadFileType}"
+          enableScriptCheckingForUploadedDocument="#{userTaskFormBean.enableScriptCheckingForUploadedDocument}"
+          enableVirusScannerForUploadedDocument="#{userTaskFormBean.enableVirusScannerForUploadedDocument}" />
       </pe:dynaFormControl>
 
       <pe:dynaFormControl type="Spacer" for="spacer">
