@@ -149,7 +149,24 @@ Migrate 9.3 to 9.4
 #. The ``customization.css`` file has been removed, in case you use it in your project, please switch to using
    :dev-url:`Engine Branding </doc/nightly/designer-guide/user-interface/branding/branding-engine.html>` to customize styling
 
-#. Since 9.4 we moved some components and classes of Portal to the independent project ``portal-component``. Please follow these steps to migrate
+#. Sub processes related to documents are moved to the independent project ``portal-component``.
+   If you customized these processes, please override the correspond sub process again and added your customization to it.
+   
+   Below are list of deprecated processes in ``PortalKit`` project and new processes in ``portal-component`` project.
+   
+   +-----------------------------------+--------------------------+
+   | New sub process                   | Deprecated sub process   |
+   +===================================+==========================+
+   | GetDocumentItems                  | GetDocumentList          |
+   +-----------------------------------+--------------------------+
+   | UploadDocumentItem                | UploadDocument           |
+   +-----------------------------------+--------------------------+
+   | DeleteDocumentItem                | DeleteDocument           |
+   +-----------------------------------+--------------------------+
+   | DownloadDocumentItem              | DownloadDocument         |
+   +-----------------------------------+--------------------------+
+
+#. Some components and classes of Portal are moved to the independent project ``portal-component``. Please follow these steps to migrate
 
    - Class ``ch.ivy.addon.portalkit.dto.RoleDTO`` is removed. Please use class ``com.axonivy.portal.component.dto.RoleDTO`` in ``portal-component`` project instead.
 

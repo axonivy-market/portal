@@ -39,10 +39,6 @@
   font-weight: var(--process-chain-current-circle-horizontal-step-title-font-weight);
 }
 
-.line-process-chain {
-  float: left;
-}
-
 .line-process-chain .line-horizontal-process-step .line-horizontal-step-container {
     background-color: var(--process-chain-menu-color);
 }

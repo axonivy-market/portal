@@ -1,5 +1,5 @@
-UploadDocumentData #class
-ch.ivy.add.portalkit #namespace
+UploadDocumentItemOverrideData #class
+_com.axonivy.portal.developerexamples #namespace
 businessCase ch.ivyteam.ivy.workflow.ICase #field
 message String #field
 status com.axonivy.portal.component.enums.UploadDocumentCheckStatus #field

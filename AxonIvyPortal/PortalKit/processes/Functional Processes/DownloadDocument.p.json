@@ -1,6 +1,6 @@
 {
-  "format" : "9.4.10",
-  "id" : "16AB5FD24113C5D2",
+  "format" : "9.4.11",
+  "id" : "181955722F9C4CD9",
   "data" : "ch.ivy.add.portalkit.DownloadDocumentData",
   "kind" : "CALLABLE_SUB",
   "elements" : [ {
@@ -9,10 +9,11 @@
       "name" : "call(ICase,IvyDocument)",
       "config" : {
         "callSignature" : "call",
+        ".name" : "call(ICase,IvyDocument)",
         "input" : {
           "params" : [
             { "name" : "bussinessCase", "type" : "ch.ivyteam.ivy.workflow.ICase" },
-            { "name" : "document", "type" : "ch.ivy.addon.portalkit.ivydata.bo.IvyDocument" }
+            { "name" : "document", "type" : "com.axonivy.portal.component.ivydata.bo.IvyDocument" }
           ],
           "map" : {
             "out.businessCase" : "param.bussinessCase",
@@ -42,9 +43,10 @@
     }, {
       "id" : "f3",
       "type" : "Script",
-      "name" : "Download document",
+      "name" : "Download document item",
       "config" : {
         "security" : "system",
+        ".name" : "Download document item",
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.service.CaseDocumentService;",
@@ -55,13 +57,16 @@
       },
       "visual" : {
         "at" : { "x" : 224, "y" : 64 },
-        "size" : { "width" : 128, "height" : 44 }
+        "size" : { "width" : 160, "height" : 44 }
       },
       "connect" : { "id" : "f2", "to" : "f1" }
     }, {
       "id" : "f5",
       "type" : "ProcessAnnotation",
       "name" : "Override this subprocess to download file from DMS",
+      "config" : {
+        ".name" : "Override this subprocess to download file from DMS"
+      },
       "visual" : {
         "at" : { "x" : 312, "y" : 200 },
         "size" : { "width" : 288, "height" : 30 }

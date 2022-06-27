@@ -9,7 +9,7 @@ public enum BasicDocumentType implements DocumentType {
   @Override
   public String toString() {
     String translatedEnum =
-        Ivy.cms().co("/Dialogs/com/axonivy/portal/component/DocumentTable/" + getClass().getSimpleName() + "/" + name());
+        Ivy.cms().co("/Dialogs/com/axonivy/portal/component/Enums/" + getClass().getSimpleName() + "/" + name());
     return translatedEnum.isEmpty() ? name() : translatedEnum;
   }
 }

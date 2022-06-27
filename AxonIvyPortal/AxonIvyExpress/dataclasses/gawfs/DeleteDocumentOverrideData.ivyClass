@@ -1,5 +1,0 @@
-DeleteDocumentOverrideData #class
-gawfs #namespace
-document ch.ivy.addon.portalkit.ivydata.bo.IvyDocument #field
-businessCase ch.ivyteam.ivy.workflow.ICase #field
-message String #field

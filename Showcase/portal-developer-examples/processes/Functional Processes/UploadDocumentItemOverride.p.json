@@ -1,21 +1,34 @@
 {
-  "format" : "9.4.10",
-  "id" : "16B448019DA1C83E",
-  "data" : "_com.axonivy.portal.developerexamples.UploadDocumentOverrideData",
+  "format" : "9.4.11",
+  "id" : "181A2C6663215202",
+  "data" : "_com.axonivy.portal.developerexamples.UploadDocumentItemOverrideData",
   "kind" : "CALLABLE_SUB",
   "elements" : [ {
       "id" : "f0",
       "type" : "CallSubStart",
-      "name" : "call(ICase,UploadedFile)",
+      "name" : [
+        "call(ICase,UploadedFile,",
+        "Boolean,Boolean,String)"
+      ],
       "config" : {
         "callSignature" : "call",
+        ".name" : [
+          "call(ICase,UploadedFile,",
+          "Boolean,Boolean,String)"
+        ],
         "input" : {
           "params" : [
             { "name" : "businessCase", "type" : "ch.ivyteam.ivy.workflow.ICase" },
-            { "name" : "uploadedFile", "type" : "org.primefaces.model.file.UploadedFile" }
+            { "name" : "uploadedFile", "type" : "org.primefaces.model.file.UploadedFile" },
+            { "name" : "enableScriptCheckingForUploadedDocument", "type" : "Boolean" },
+            { "name" : "enableVirusScannerForUploadedDocument", "type" : "Boolean" },
+            { "name" : "allowedUploadFileTypes", "type" : "String" }
           ],
           "map" : {
+            "out.allowedUploadFileTypes" : "param.allowedUploadFileTypes",
             "out.businessCase" : "param.businessCase",
+            "out.enableScriptCheckingForUploadedDocument" : "param.enableScriptCheckingForUploadedDocument",
+            "out.enableVirusScannerForUploadedDocument" : "param.enableVirusScannerForUploadedDocument",
             "out.uploadedFile" : "param.uploadedFile"
           }
         },
@@ -23,7 +36,7 @@
           "params" : [
             { "name" : "uploadedDocument", "type" : "ch.ivyteam.ivy.workflow.document.IDocument" },
             { "name" : "message", "type" : "String" },
-            { "name" : "status", "type" : "ch.ivy.addon.portalkit.enums.UploadDocumentCheckStatus" }
+            { "name" : "status", "type" : "com.axonivy.portal.component.enums.UploadDocumentCheckStatus" }
           ],
           "map" : {
             "result.uploadedDocument" : "in.uploadedDocument",
@@ -34,40 +47,41 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 128 },
-        "labelOffset" : { "x" : -76, "y" : 15 }
+        "labelOffset" : { "x" : -60, "y" : -46 }
       },
       "connect" : { "id" : "f3", "to" : "f36" }
     }, {
       "id" : "f1",
       "type" : "CallSubEnd",
       "visual" : {
-        "at" : { "x" : 1376, "y" : 128 }
+        "at" : { "x" : 1408, "y" : 128 }
       }
     }, {
       "id" : "f36",
       "type" : "Script",
       "name" : "Validate",
       "config" : {
+        ".name" : "Validate",
         "output" : {
           "code" : [
-            "import ch.ivy.addon.portalkit.enums.UploadDocumentCheckStatus;",
+            "import com.axonivy.portal.component.masterdata.MasterData;",
+            "import com.axonivy.portal.component.enums.UploadDocumentCheckStatus;",
             "import org.apache.commons.io.FileUtils;",
             "import java.util.Arrays;",
-            "import ch.ivy.addon.portalkit.masterdata.MasterData;",
             "",
             "in.message = \"\";",
             "in.status = UploadDocumentCheckStatus.OK;",
             "",
             "if (in.uploadedFile == null) {",
-            "  in.message = ivy.cms.co(\"/Dialogs/components/CaseDocument/invalidFileMessage\");",
+            "  in.message = ivy.cms.co(\"/Dialogs/com/axonivy/portal/component/DocumentTable/InvalidFileMessage\");",
             "  in.status = UploadDocumentCheckStatus.FAIL;",
             "} else if (in.uploadedFile.getSize() == 0) {",
-            "  in.message = ivy.cms.co(\"/Dialogs/components/CaseDocument/emptyFileMessage\");",
+            "  in.message = ivy.cms.co(\"/Dialogs/com/axonivy/portal/component/DocumentTable/EmptyFileMessage\");",
             "  in.status = UploadDocumentCheckStatus.FAIL;",
             "} else {",
             "  Long maxFileUploadSize = MasterData.getFileUploadSizeLimit();",
             "  if (in.uploadedFile.getSize() > maxFileUploadSize) {",
-            "    in.message = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/common/errorFileUploadSize\", Arrays.asList(FileUtils.byteCountToDisplaySize(maxFileUploadSize)));",
+            "    in.message = ivy.cms.co(\"/Dialogs/com/axonivy/portal/component/DocumentTable/ErrorFileUploadSize\", Arrays.asList(FileUtils.byteCountToDisplaySize(maxFileUploadSize)));",
             "  }",
             "  in.status = UploadDocumentCheckStatus.FAIL;",
             "}"
@@ -82,6 +96,9 @@
       "id" : "f72",
       "type" : "Alternative",
       "name" : "Not exist?",
+      "config" : {
+        ".name" : "Not exist?"
+      },
       "visual" : {
         "at" : { "x" : 920, "y" : 128 },
         "labelOffset" : { "x" : -27, "y" : -34 }
@@ -91,23 +108,28 @@
             "name" : "YES",
             "segment" : 0.3,
             "offset" : { "x" : 0, "y" : -12 }
-          }, "condition" : "in.status == ch.ivy.addon.portalkit.enums.UploadDocumentCheckStatus.OK" },
+          }, "condition" : "in.status == com.axonivy.portal.component.enums.UploadDocumentCheckStatus.OK" },
         { "id" : "f88", "to" : "f73" }
       ]
     }, {
       "id" : "f71",
       "type" : "Script",
       "name" : [
-        "Upload document",
+        "Upload document item",
         "and create note"
       ],
       "config" : {
         "security" : "system",
+        ".name" : [
+          "Upload document item",
+          "and create note"
+        ],
         "output" : {
           "code" : [
-            "import ch.ivy.addon.portalkit.service.CaseDocumentService;",
-            "import ch.ivy.addon.portalkit.enums.UploadDocumentCheckStatus;",
+            "import com.axonivy.portal.component.service.CaseDocumentService;",
+            "import com.axonivy.portal.component.enums.UploadDocumentCheckStatus;",
             "import java.util.Arrays;",
+            "import org.primefaces.model.file.UploadedFile;",
             "",
             "out.message = \"\";",
             "out.status = UploadDocumentCheckStatus.OK;",
@@ -115,11 +137,11 @@
             "out.uploadedDocument = CaseDocumentService.newInstance(in.businessCase).upload(fileName, in.uploadedFile.getInputStream());",
             "",
             "if (out.#uploadedDocument != null) {  ",
-            "  String note = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/documentFiles/uploadDocumentNote\", Arrays.asList(ivy.session.getSessionUserName(), fileName));",
-            "  in.businessCase.createNote(ivy.session, \"Customized: \" + note);",
-            "  out.message = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/documentFiles/uploadSucceed\");",
+            "  String note = ivy.cms.co(\"/Dialogs/com/axonivy/portal/component/DocumentTable/UploadDocumentNote\", Arrays.asList(ivy.session.getSessionUserName(), fileName));",
+            "  in.businessCase.createNote(ivy.session, note);",
+            "  out.message = ivy.cms.co(\"/Dialogs/com/axonivy/portal/component/DocumentTable/UploadSucceed\");",
             "} else {",
-            "  out.message = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/documentFiles/uploadFailed\");",
+            "  out.message = ivy.cms.co(\"/Dialogs/com/axonivy/portal/component/DocumentTable/UploadFailed\");",
             "  out.status = UploadDocumentCheckStatus.FAIL;",
             "}"
           ]
@@ -127,7 +149,7 @@
       },
       "visual" : {
         "at" : { "x" : 1088, "y" : 128 },
-        "size" : { "width" : 128, "height" : 44 }
+        "size" : { "width" : 160, "height" : 44 }
       },
       "connect" : { "id" : "f8", "to" : "f4" }
     }, {
@@ -136,16 +158,18 @@
       "name" : "Check exist",
       "config" : {
         "security" : "system",
+        ".name" : "Check exist",
         "output" : {
           "code" : [
-            "import ch.ivy.addon.portalkit.enums.UploadDocumentCheckStatus;",
-            "import ch.ivy.addon.portalkit.service.CaseDocumentService;",
+            "import com.axonivy.portal.component.enums.UploadDocumentCheckStatus;",
+            "import org.primefaces.model.file.UploadedFile;",
+            "import com.axonivy.portal.component.service.CaseDocumentService;",
             "",
             "String fileName = in.uploadedFile.getFileName();",
             "boolean doesDocumentExist = CaseDocumentService.newInstance(in.businessCase).doesDocumentExist(fileName);",
             "",
             "if (doesDocumentExist) {",
-            "  in.message = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/documentFiles/uploadFileExists\", [fileName]);",
+            "  in.message = ivy.cms.co(\"/Dialogs/com/axonivy/portal/component/DocumentTable/UploadFileExists\", [fileName]);",
             "  in.status = UploadDocumentCheckStatus.FAIL;",
             "}"
           ]
@@ -171,12 +195,15 @@
         "at" : { "x" : 920, "y" : 224 }
       },
       "connect" : [
-        { "id" : "f7", "to" : "f1", "via" : [ { "x" : 1376, "y" : 224 } ] }
+        { "id" : "f7", "to" : "f1", "via" : [ { "x" : 1408, "y" : 224 } ] }
       ]
     }, {
       "id" : "f70",
       "type" : "Alternative",
       "name" : "valid file?",
+      "config" : {
+        ".name" : "valid file?"
+      },
       "visual" : {
         "at" : { "x" : 376, "y" : 128 },
         "size" : { "width" : 28, "height" : 28 },
@@ -198,6 +225,9 @@
       "id" : "f53",
       "type" : "Alternative",
       "name" : "Document check",
+      "config" : {
+        ".name" : "Document check"
+      },
       "visual" : {
         "at" : { "x" : 664, "y" : 128 },
         "labelOffset" : { "x" : -54, "y" : -37 }
@@ -207,15 +237,16 @@
             "name" : "OK",
             "segment" : 0.33,
             "offset" : { "x" : 0, "y" : -8 }
-          }, "condition" : "in.status == ch.ivy.addon.portalkit.enums.UploadDocumentCheckStatus.OK" },
+          }, "condition" : "in.status == com.axonivy.portal.component.enums.UploadDocumentCheckStatus.OK" },
         { "id" : "f90", "to" : "f74" }
       ]
     }, {
       "id" : "f75",
       "type" : "SubProcessCall",
-      "name" : "UploadDocumentChecker",
+      "name" : "UploadDocumentItemChecker",
       "config" : {
-        "processCall" : "Functional Processes/UploadDocumentChecker:call(org.primefaces.model.file.UploadedFile)",
+        ".name" : "UploadDocumentItemChecker",
+        "processCall" : "Functional Processes/UploadDocumentItemChecker:call(org.primefaces.model.file.UploadedFile,Boolean,Boolean,String)",
         "output" : {
           "map" : {
             "out" : "in",
@@ -225,16 +256,22 @@
         },
         "call" : {
           "params" : [
-            { "name" : "uploadFile", "type" : "org.primefaces.model.file.UploadedFile" }
+            { "name" : "uploadFile", "type" : "org.primefaces.model.file.UploadedFile" },
+            { "name" : "enableVirusScannerForUploadedDocument", "type" : "Boolean" },
+            { "name" : "enableScriptCheckingForUploadedDocument", "type" : "Boolean" },
+            { "name" : "allowedUploadFileTypes", "type" : "String" }
           ],
           "map" : {
-            "param.uploadFile" : "in.uploadedFile"
+            "param.uploadFile" : "in.uploadedFile",
+            "param.enableVirusScannerForUploadedDocument" : "in.enableVirusScannerForUploadedDocument",
+            "param.enableScriptCheckingForUploadedDocument" : "in.enableScriptCheckingForUploadedDocument",
+            "param.allowedUploadFileTypes" : "in.allowedUploadFileTypes"
           }
         }
       },
       "visual" : {
         "at" : { "x" : 520, "y" : 128 },
-        "size" : { "width" : 160, "height" : 44 }
+        "size" : { "width" : 176, "height" : 44 }
       },
       "connect" : { "id" : "f80", "to" : "f53" }
     }, {
@@ -244,8 +281,14 @@
         "Override this sub process to upload your file to DMS",
         "This sub process also contains some validation, so if you override it, you have to implement validation by your own"
       ],
+      "config" : {
+        ".name" : [
+          "Override this sub process to upload your file to DMS",
+          "This sub process also contains some validation, so if you override it, you have to implement validation by your own"
+        ]
+      },
       "visual" : {
-        "at" : { "x" : 504, "y" : 344 },
+        "at" : { "x" : 480, "y" : 344 },
         "size" : { "width" : 640, "height" : 44 }
       },
       "connect" : { "id" : "f6", "to" : "f0" }
@@ -257,6 +300,10 @@
         "customer info"
       ],
       "config" : {
+        ".name" : [
+          "Customize: add",
+          "customer info"
+        ],
         "output" : {
           "code" : [
             "import java.util.Random;",
@@ -268,7 +315,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 1248, "y" : 128 },
+        "at" : { "x" : 1280, "y" : 128 },
         "size" : { "width" : 128, "height" : 44 }
       },
       "connect" : { "id" : "f2", "to" : "f1" }
