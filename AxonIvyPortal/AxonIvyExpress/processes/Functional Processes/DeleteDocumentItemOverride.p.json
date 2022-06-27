@@ -1,7 +1,7 @@
 {
   "format" : "9.4.11",
-  "id" : "18195523B9765157",
-  "data" : "ch.ivy.add.portalkit.DeleteDocumentData",
+  "id" : "18195757E4ACDFBC",
+  "data" : "gawfs.DeleteDocumentItemOverrideData",
   "kind" : "CALLABLE_SUB",
   "elements" : [ {
       "id" : "f0",
@@ -51,9 +51,6 @@
             "import java.util.Arrays;",
             "",
             "in.businessCase.documents().delete(Long.valueOf(in.document.id));",
-            "",
-            "String note = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/documentFiles/deleteDocumentNote\", Arrays.asList(ivy.session.getSessionUserName(), in.document.getName()));",
-            "in.businessCase.createNote(ivy.session, note);",
             "in.message = ivy.cms.co(\"/Dialogs/components/CaseDocument/deleteSucceed\");"
           ]
         }

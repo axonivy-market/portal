@@ -12,12 +12,6 @@ Dialogs:
             RequiredFieldMessage: This field is required
             'Yes': 'Yes'
           DocumentTable:
-            BasicDocumentType:
-              CONTRACT: Contract
-              DOCUMENTATION: Documentation
-              EMAIL: Email
-              INFORMATION: Information
-              OTHERS: Others
             Delete: Delete
             DeleteDocumentNote: '{0} has deleted {1}'
             DeleteSuceed: File deleted successfully
@@ -39,6 +33,12 @@ Dialogs:
             UploadFileExists: File {0} already exists
             UploadSucceed: The file was uploaded successfully
           Enums:
+            BasicDocumentType:
+              CONTRACT: Contract
+              DOCUMENTATION: Documentation
+              EMAIL: Email
+              INFORMATION: Information
+              OTHERS: Others
             PortalIvyDataErrorType:
               APP_NOT_FOUND: Application not found
               FAIL_TO_COUNT_CASE: Failed to count case
