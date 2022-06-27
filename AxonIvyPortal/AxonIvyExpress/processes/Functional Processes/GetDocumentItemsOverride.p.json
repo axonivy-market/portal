@@ -1,7 +1,7 @@
 {
-  "format" : "9.4.10",
-  "id" : "16B25F2844868AE2",
-  "data" : "gawfs.GetDocumentListOverrideData",
+  "format" : "9.4.11",
+  "id" : "18195745C94C1140",
+  "data" : "gawfs.GetDocumentItemsOverrideData",
   "kind" : "CALLABLE_SUB",
   "elements" : [ {
       "id" : "f0",
@@ -9,6 +9,7 @@
       "name" : "call(ICase)",
       "config" : {
         "callSignature" : "call",
+        ".name" : "call(ICase)",
         "input" : {
           "params" : [
             { "name" : "businessCase", "type" : "ch.ivyteam.ivy.workflow.ICase" }
@@ -19,7 +20,7 @@
         },
         "result" : {
           "params" : [
-            { "name" : "documents", "type" : "java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvyDocument>" },
+            { "name" : "documents", "type" : "java.util.List<com.axonivy.portal.component.ivydata.bo.IvyDocument>" },
             { "name" : "message", "type" : "String" }
           ],
           "map" : {
@@ -42,9 +43,10 @@
     }, {
       "id" : "f3",
       "type" : "Script",
-      "name" : "get document list",
+      "name" : "get document items",
       "config" : {
         "security" : "system",
+        ".name" : "get document items",
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.util.DocumentFileUtils;",
@@ -54,8 +56,33 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 224, "y" : 64 }
+        "at" : { "x" : 224, "y" : 64 },
+        "size" : { "width" : 128, "height" : 44 }
       },
       "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f5",
+      "type" : "ProcessAnnotation",
+      "name" : [
+        "After get document list from DMS, convert them into List<ch.ivy.addon.portal.component.ivydata.bo.IvyDocument>",
+        "Some mandatory fields when mapping:",
+        "- id",
+        "- name",
+        "- contentType"
+      ],
+      "config" : {
+        ".name" : [
+          "After get document list from DMS, convert them into List<ch.ivy.addon.portal.component.ivydata.bo.IvyDocument>",
+          "Some mandatory fields when mapping:",
+          "- id",
+          "- name",
+          "- contentType"
+        ]
+      },
+      "visual" : {
+        "at" : { "x" : 344, "y" : 240 },
+        "size" : { "width" : 624, "height" : 108 }
+      },
+      "connect" : { "id" : "f6", "to" : "f0" }
     } ]
 }

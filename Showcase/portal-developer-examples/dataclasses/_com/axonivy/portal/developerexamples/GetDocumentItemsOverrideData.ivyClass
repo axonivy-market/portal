@@ -1,4 +1,4 @@
-GetDocumentListOverrideData #class
+GetDocumentItemsOverrideData #class
 _com.axonivy.portal.developerexamples #namespace
 businessCase ch.ivyteam.ivy.workflow.ICase #field
 message String #field
