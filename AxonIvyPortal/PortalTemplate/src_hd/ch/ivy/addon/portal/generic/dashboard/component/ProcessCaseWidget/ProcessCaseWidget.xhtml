@@ -25,7 +25,7 @@
     <h:panelGroup id="dashboard-process-cases-container" layout="block"
       styleClass="ui-g-12 u-padding-0 js-dashboard-cases-container-#{widget.id} u-display-none">
       <p:dataTable id="dashboard-process-cases" widgetVar="dashboard-cases-#{widget.id}" value="#{widget.caseDataModel}" var="caseItem"
-        paginatorAlwaysVisible="false" rows="#{widget.rowsPerPage}" paginator="true" paginatorPosition="bottom" lazy="true"
+        paginatorAlwaysVisible="true" rows="#{widget.rowsPerPage}" paginator="true" paginatorPosition="bottom" lazy="true"
         paginatorTemplate="{PreviousPageLink} {PageLinks} {NextPageLink} {RowsPerPageDropdown}" pageLinks="5"
         rowsPerPageTemplate="5,10,20,50"
         sortBy="#{widget.sortByName}"
