@@ -33,9 +33,8 @@
   margin-right: 5px;
 }
 
-.document-table-component .upload-container .ui-widget.ui-selectonemenu,
-.document-table-component .upload-container .ui-widget.ui-outputlabel {
-  margin-top: 5px;
+.document-table-component .upload-container .type-selection-label {
+  line-height: 2.5;
 }
 
 .document-table-component .upload-container .ui-widget.ui-fileupload {
@@ -81,6 +80,10 @@
   display: block;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.document-table-component .document-action-column .ui-commandlink:hover {
+  text-decoration: none;
 }
 
 @media screen and (min-width: 64.063em) and (max-width: 90.062em) {

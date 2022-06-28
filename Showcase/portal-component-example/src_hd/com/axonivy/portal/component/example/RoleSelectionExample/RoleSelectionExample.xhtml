@@ -9,18 +9,16 @@
       <h:outputStylesheet name="/layouts/styles/example.css" />
       <h:form id="form">
         <h1 class="user-selection-component-header">Role Selection Examples</h1>
-        <div class="ui-g" style="margin-bottom: 20px;">
-          <div id="default-role-selection-component" class="ui-g-8 ui-xl-4 ui-md-6 ui-sm-12">
-            <ic:com.axonivy.portal.component.RoleSelection componentId="default-role-autocomplete" selectedRole="#{data.selectedRole}"
-              isRenderedMessage="true" label="Default role selection" labelPanelStyleClass="ui-g-5 ui-md-6 ui-sm-12"
-              autoCompleteStyleClass="width-100" autoCompletePanelStyleClass="ui-g-5 ui-sm-12" hightlight="false" isRequired="true" />
-          </div>
-          <div class="ui-g-4 ui-xl-5 ui-md-6 ui-sm-12">
+        <div class="ui-g ui-fluid" style="margin-bottom: 20px;">
+          <ic:com.axonivy.portal.component.RoleSelection componentId="default-role-autocomplete" selectedRole="#{data.selectedRole}"
+            isRenderedMessage="true" label="Default role selection" labelPanelStyleClass="ui-g-2 ui-md-3 ui-sm-12"
+            autoCompleteStyleClass="width-100" autoCompletePanelStyleClass="ui-g-4 ui-sm-12" hightlight="false" isRequired="true" />
+          <div class="ui-g-2 ui-xl-2 ui-md-4 ui-sm-12">
             <p:commandButton id="assign-selected-role-btn" update="@form" value="Assign selected role to next task"
               actionListener="#{logic.finish}" styleClass="assign-task-to-selected-role" />
           </div>
         </div>
-        <div class="ui-g" style="margin-bottom: 20px;">
+        <div class="ui-g ui-fluid" style="margin-bottom: 20px;">
           <div class="ui-g-8 ui-xl-4 ui-md-6 ui-sm-12">
             <ic:com.axonivy.portal.component.RoleSelection componentId="read-only-role-autocomplete"
               selectedRole="#{data.selectedRoleForReadOnlyField}" isRenderedMessage="false" label="Read only role selection"
@@ -34,7 +32,7 @@
               excludedRoleNames="#{data.excludedRoleNames}" floatingLabel="true" />
           </div>
         </div>
-        <div class="ui-g">
+        <div class="ui-g ui-fluid">
           <div id="role-from-defined-role-component" class="ui-g-8 ui-xl-4 ui-md-6 ui-sm-12">
             <ic:com.axonivy.portal.component.RoleSelection componentId="role-from-defined-role-autocomplete" fromRoleNames="#{data.definedRoleNames}"
               selectedRole="#{data.selectedRoleForDefinedRoles}" autoCompleteStyleClass="width-100" label="Roles from defined role names"
