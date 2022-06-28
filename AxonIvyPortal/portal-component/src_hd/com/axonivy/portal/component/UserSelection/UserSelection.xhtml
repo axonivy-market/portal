@@ -51,7 +51,7 @@
 
   <c:set var="completeMethod" value="#{not empty cc.attrs.completeMethod ? cc.attrs.completeMethod : userSelectionBean.completeUserMethod}" />
   <h:panelGroup id="#{cc.attrs.componentId}-autocomplete-panel" layout="block"
-    styleClass="#{cc.attrs.autoCompletePanelStyleClass} md-inputfield">
+    styleClass="#{cc.attrs.autoCompletePanelStyleClass} #{cc.attrs.floatingLabel ? 'ui-float-label' : ''}">
     <p:autoComplete id="#{cc.attrs.componentId}"
       value="#{cc.attrs.selectedUser}"
       scrollHeight="#{cc.attrs.scrollHeight}"
@@ -72,7 +72,7 @@
       disabled="#{cc.attrs.isDisabled}"
       readonly="#{cc.attrs.isReadOnly}"
       requiredMessage="#{cc.attrs.requiredMessage}"
-      moreTextSelect="#{cc.attrs.moreText}"
+      moreText="#{cc.attrs.moreText}"
       queryDelay="#{cc.attrs.queryDelay}"
       maxResults="#{cc.attrs.maxResults}"
       inputStyleClass="#{cc.attrs.inputStyleClass}">
@@ -84,10 +84,10 @@
       for="#{cc.attrs.componentId}"
       styleClass="#{cc.attrs.labelStyleClass}"
       rendered="#{cc.attrs.floatingLabel}" />
-    <p:message id="#{cc.attrs.componentId}-message"
+  </h:panelGroup>
+  <p:message id="#{cc.attrs.componentId}-message"
       for="#{cc.attrs.componentId}"
       rendered="#{cc.attrs.isRenderedMessage}"
       styleClass="#{cc.attrs.messageStyleClass}" />
-  </h:panelGroup>
 </cc:implementation>
 </html>
