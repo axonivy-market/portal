@@ -779,7 +779,7 @@
               </elementProp>
               <elementProp name="user-menu-required-login:main-navigator:main-menu_menuid" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">process</stringProp>
+                <stringProp name="Argument.value">process_1</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">user-menu-required-login:main-navigator:main-menu_menuid</stringProp>
@@ -952,7 +952,7 @@
               </elementProp>
               <elementProp name="user-menu-required-login:main-navigator:main-menu_menuid" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">task</stringProp>
+                <stringProp name="Argument.value">task_2</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">user-menu-required-login:main-navigator:main-menu_menuid</stringProp>
@@ -1577,7 +1577,7 @@
               </elementProp>
               <elementProp name="user-menu-required-login:main-navigator:main-menu_menuid" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">case</stringProp>
+                <stringProp name="Argument.value">case_3</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">user-menu-required-login:main-navigator:main-menu_menuid</stringProp>
@@ -2336,7 +2336,7 @@
               </elementProp>
               <elementProp name="user-menu-required-login:main-navigator:main-menu_menuid" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">statistics</stringProp>
+                <stringProp name="Argument.value">statistics_4</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">user-menu-required-login:main-navigator:main-menu_menuid</stringProp>

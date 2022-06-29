@@ -73,18 +73,21 @@ public class MenuView implements Serializable {
   public void buildPortalLeftMenu(ITask workingTask, boolean isWorkingOnATask) {
     initTaskParams(workingTask, isWorkingOnATask);
     mainMenuModel = new DefaultMenuModel();
-    mainMenuModel.getElements().add(buildDashboardItem());
+    mainMenuModel.getElements().add(buildDashboardItem()); // menuIndex = 0
 
     List<SubMenuItem> subMenuItems = PortalMenuNavigator.callSubMenuItemsProcess();
+    int menuIndex = 1;
     for (SubMenuItem subMenu : subMenuItems) {
-      DefaultMenuItem item = buildSubMenuItem(subMenu);
+      DefaultMenuItem item = buildSubMenuItem(subMenu, menuIndex);
       mainMenuModel.getElements().add(item);
+      menuIndex++;
     }
     
     List<Application> thirdPartyApps = PortalMenuNavigator.getThirdPartyApps();
     for (Application app : thirdPartyApps) {
-      DefaultMenuItem item = buildThirdPartyItem(app);
+      DefaultMenuItem item = buildThirdPartyItem(app, menuIndex);
       mainMenuModel.getElements().add(item);
+      menuIndex++;
     }
     mainMenuModel.generateUniqueIds();
   }
@@ -94,12 +97,13 @@ public class MenuView implements Serializable {
     this.isWorkingOnATask = isWorkingOnATask;
   }
 
-  private DefaultMenuItem buildSubMenuItem(SubMenuItem subMenuItem) {
+  private DefaultMenuItem buildSubMenuItem(SubMenuItem subMenuItem, int menuIndex) {
     boolean isExternalLink = isExternalLink(subMenuItem);
     DefaultMenuItem item = new PortalMenuBuilder(subMenuItem.getLabel(), subMenuItem.getMenuKind(), isWorkingOnATask)
         .url(subMenuItem.buildLink())
         .icon(subMenuItem.getIcon())
         .cleanParam(isExternalLink)
+        .menuIndex(menuIndex)
         .build();
     return item;
   }
@@ -109,7 +113,7 @@ public class MenuView implements Serializable {
         || !UrlUtils.isIvyUrl(subMenuItem.getLink());
   }
 
-  private DefaultMenuItem buildThirdPartyItem(Application application) {
+  private DefaultMenuItem buildThirdPartyItem(Application application, int menuIndex) {
     String menuIcon = StringUtils.defaultString(application.getMenuIcon());
     String iconClass = (menuIcon.startsWith("fa") ? "fa " : "si ") + menuIcon;
     return new PortalMenuBuilder(ApplicationMultiLanguage.getDisplayNameInCurrentLocale(application), MenuKind.THIRD_PARTY, this.isWorkingOnATask)
@@ -117,6 +121,7 @@ public class MenuView implements Serializable {
         .url(UrlUtils.buildUrl(application.getLink()))
         .workingTaskId(this.workingTaskId)
         .cleanParam(true)
+        .menuIndex(menuIndex)
         .build();
   }
 
