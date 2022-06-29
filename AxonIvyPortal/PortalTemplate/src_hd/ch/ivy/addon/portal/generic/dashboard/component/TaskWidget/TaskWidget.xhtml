@@ -38,7 +38,7 @@
         paginator="true" paginatorPosition="bottom" lazy="true" paginatorTemplate="{PreviousPageLink} {PageLinks} {NextPageLink} {RowsPerPageDropdown}"
         rows="#{taskWidget.rowsPerPage}"
         rowsPerPageTemplate="5,10,20,50"
-        paginatorAlwaysVisible="false"
+        paginatorAlwaysVisible="true"
         pageLinks="5" sortBy="#{taskWidget.sortBy}"
         rowIndexVar="rowIndex" rowHover="#{isReadOnlyMode}" selectionMode="single"
         styleClass="dashboard-tasks--table #{isReadOnlyMode ? '' : 'dashboard__table--edit'} #{isPreviewMode ? 'dashboard__table--preview' : ''} #{!isPreviewMode and taskWidget.taskCount lt 1 ? 'u-display-none' : ''}"
