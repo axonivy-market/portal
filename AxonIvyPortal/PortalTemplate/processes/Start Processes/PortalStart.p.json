@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.10",
+  "format" : "9.4.11",
   "id" : "1549F58C18A6C562",
   "data" : "ch.ivy.addon.portal.generic.PortalStartData",
   "elements" : [ {
@@ -2923,5 +2923,37 @@
         "at" : { "x" : 1048, "y" : 2304 }
       },
       "connect" : { "id" : "f236", "to" : "f235" }
+    }, {
+      "id" : "f37",
+      "type" : "RequestStart",
+      "name" : "PortalManagement.ivp",
+      "config" : {
+        "callSignature" : "PortalManagement",
+        "outLink" : "PortalManagement.ivp",
+        "showInStartList" : false
+      },
+      "visual" : {
+        "at" : { "x" : 896, "y" : 2400 },
+        "labelOffset" : { "x" : -52, "y" : 17 }
+      },
+      "connect" : { "id" : "f239", "to" : "f137" }
+    }, {
+      "id" : "f41",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 1216, "y" : 2400 }
+      }
+    }, {
+      "id" : "f137",
+      "type" : "DialogCall",
+      "name" : "PortalManagement",
+      "config" : {
+        "dialogId" : "ch.ivy.addon.portal.setting.PortalManagement",
+        "startMethod" : "start()"
+      },
+      "visual" : {
+        "at" : { "x" : 1048, "y" : 2400 }
+      },
+      "connect" : { "id" : "f129", "to" : "f41" }
     } ]
 }
