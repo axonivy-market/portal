@@ -205,7 +205,6 @@ public class MenuView implements Serializable {
       case EDIT_PUBLIC_DASHBOARD:
         buildBreadCrumbForEditPublicDashboard();
         break;
-
       case REORDER_MY_DASHBOARD:
         buildBreadCrumbForReorderMyDashboard();
         break;
@@ -217,6 +216,10 @@ public class MenuView implements Serializable {
         break;
       case PROCESS_VIEWER:
         buildBreadCrumbForProcessViewer(userCase);
+        break;
+      case PORTAL_MANAGEMENT:
+        setPortalHomeMenuToBreadcrumbModel();
+        breadcrumbModel.getElements().add(buildGenericMenuItem("/ch.ivy.addon.portalkit.ui.jsf/PortalManagement/AdminSetting"));
         break;
       default:
         break;

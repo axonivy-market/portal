@@ -14,33 +14,32 @@ import portal.guitest.common.Sleeper;
 
 public class AdminSettingsPage extends TemplatePage {
 
-  private static final String DIALOG_TITLE = "admin-ui-dialog_title";
+  private static final String PORTAL_MANAGEMENT_PAGE_ID = "portal-management-container";
 
   public AdminSettingsPage() {
-    waitForElementDisplayed(By.id(DIALOG_TITLE), true);
+    waitForElementDisplayed(By.id(PORTAL_MANAGEMENT_PAGE_ID), true);
   }
 
   @Override
   protected String getLoadedLocator() {
-    return "id('" + DIALOG_TITLE + "')";
+    return "id('" + PORTAL_MANAGEMENT_PAGE_ID + "')";
   }
 
   @Override
   public boolean isDisplayed() {
-    return findElementById(DIALOG_TITLE).isDisplayed();
+    return findElementById(PORTAL_MANAGEMENT_PAGE_ID).isDisplayed();
   }
 
   @SuppressWarnings("deprecation")
   public void openSettingTab() {
-    WebElement settingTabLink = findElementByXpath("//a[@href='#adminui:adminTabView:settingTab']");
+    WebElement settingTabLink = findElementByCssSelector("a[href$='#admin-setting-component:adminTabView:setting-tab']");
     click(settingTabLink);
-    waitForElementPresent(By.id("adminui:adminTabView:settingForm"), true);
+    waitForElementPresent(By.cssSelector("[id$=':adminTabView:settingForm']"), true);
     waitAjaxIndicatorDisappear();
   }
 
   private void editGlobalVariable(String variableName, String variableValue, boolean isBooleanType) {
-    WebElement table = findElementById("adminui:adminTabView:settingTable");
-    List<WebElement> tableRows = table.findElements(By.tagName("tr"));
+    List<WebElement> tableRows = getAdminTable().findElements(By.tagName("tr"));
     for (WebElement row : tableRows) {
       List<WebElement> columns = row.findElements(By.tagName("td"));
       if (!CollectionUtils.isEmpty(columns)) {
@@ -48,7 +47,7 @@ public class AdminSettingsPage extends TemplatePage {
         if (keyColumn.getText().equals(variableName)) {
           WebElement editButton = row.findElement(By.cssSelector("a[id$=edit]"));
           click(editButton);
-          waitForElementPresent(By.id("adminui:settingDialogForm"), true);
+          waitForElementPresent(By.cssSelector("[id$=':settingDialogForm']"), true);
           saveGlobalVariable(variableValue, isBooleanType);
           return;
         }
@@ -57,8 +56,7 @@ public class AdminSettingsPage extends TemplatePage {
   }
 
   private void resetGlobalVariable(String variableName) {
-    WebElement table = findElementById("adminui:adminTabView:settingTable");
-    List<WebElement> tableRows = table.findElements(By.tagName("tr"));
+    List<WebElement> tableRows = getAdminTable().findElements(By.tagName("tr"));
     for (WebElement row : tableRows) {
       List<WebElement> columns = row.findElements(By.tagName("td"));
       if (!CollectionUtils.isEmpty(columns)) {
@@ -66,9 +64,9 @@ public class AdminSettingsPage extends TemplatePage {
         if (keyColumn.getText().equals(variableName)) {
           WebElement editButton = row.findElement(By.cssSelector("a[id$=reset]"));
           click(editButton);
-          waitForElementPresent(By.id("adminui:resetConfirmationDialog"), true);
+          waitForElementPresent(By.cssSelector("[id$=':resetConfirmationDialog']"), true);
           waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
-          WebElement restoreButton = findElementById("adminui:reset-setting");
+          WebElement restoreButton = findElementById("admin-setting-component:reset-setting");
           click(restoreButton);
           return;
         }
@@ -76,42 +74,39 @@ public class AdminSettingsPage extends TemplatePage {
     }
   }
 
+  private WebElement getAdminTable() {
+    return findElementByCssSelector("[id$=':adminTabView:settingTable']");
+  }
+
   public void resetAllSettings() {
     openSettingTab();
-    WebElement restoreAllToDefaultButton = findElementById("adminui:adminTabView:restore-all-to-default-button");
+    WebElement restoreAllToDefaultButton = findElementById("admin-setting-component:adminTabView:restore-all-to-default-button");
     click(restoreAllToDefaultButton);
-    waitForElementPresent(By.id("adminui:reset-settings"), true);
-    WebElement restoreButton = findElementById("adminui:reset-settings");
+    waitForElementPresent(By.id("admin-setting-component:reset-settings"), true);
+    WebElement restoreButton = findElementById("admin-setting-component:reset-settings");
     click(restoreButton);
     closeConfirmationDialog();
   }
 
   private void saveGlobalVariable(String value, boolean isBooleanType) {
     if (!isBooleanType) {
-      WebElement valueInput = findElementById("adminui:valueSetting");
+      WebElement valueInput = findElementById("admin-setting-component:valueSetting");
       valueInput.clear();
       valueInput.sendKeys(value);
     } else {
-      click(By.id("adminui:valueSetting_label"));
-      waitForElementDisplayed(By.id("adminui:valueSetting_panel"), true);
+      click(By.id("admin-setting-component:valueSetting_label"));
+      waitForElementDisplayed(By.id("admin-setting-component:valueSetting_panel"), true);
       boolean boolValue = Boolean.parseBoolean(value);
       int index = boolValue ? 1 : 0;
-      click(By.id(String.format("adminui:valueSetting_%d", index)));
+      click(By.id(String.format("admin-setting-component:valueSetting_%d", index)));
     }
-    WebElement saveButton = findElementById("adminui:save-setting");
+    WebElement saveButton = findElementById("admin-setting-component:save-setting");
     click(saveButton);
   }
 
-  public void closeAdminSettingDialog() {
-    WebElement closeButton = findElementById("close-button");
+  public void clickOnbackToHomepageOnAdminSetting() {
+    WebElement closeButton = findElementById("back-to-home-button");
     click(closeButton);
-    waitForElementDisplayed(By.id("dialog-closing-information"), true);
-  }
-
-  public void closeInformConfigDialog() {
-    String closeButtonId = "close-dialog-button";
-    click(findElementById(closeButtonId));
-    waitForElementReallyDisplayed(By.id(closeButtonId), false);
   }
 
   public void setClientSideTimeout(String timeout) {
@@ -121,8 +116,7 @@ public class AdminSettingsPage extends TemplatePage {
   }
 
   public void closeConfirmationDialog() {
-    closeAdminSettingDialog();
-    closeInformConfigDialog();
+    clickOnbackToHomepageOnAdminSetting();
   }
 
   public void setEnviromentInfo() {
@@ -155,20 +149,31 @@ public class AdminSettingsPage extends TemplatePage {
 
   @SuppressWarnings("deprecation")
   public AnnouncementPage openAnnouncementTab() {
-    WebElement settingTabLink = findElementByXpath("//a[@href='#adminui:adminTabView:announcement-tab']");
+    WebElement settingTabLink = findElementByXpath("//a[@href='#admin-setting-component:adminTabView:announcement-tab']");
     click(settingTabLink);
-    waitForElementPresent(By.id("adminui:adminTabView:announcement-tab"), true);
+    waitForElementPresent(By.id("admin-setting-component:adminTabView:announcement-tab"), true);
     waitAjaxIndicatorDisappear();
     return new AnnouncementPage();
   }
 
   @SuppressWarnings("deprecation")
   public ExpressManagementPage openExpressManagementTab() {
-    WebElement settingTabLink = findElementByXpath("//a[@href='#adminui:adminTabView:express-management-tab']");
+    WebElement settingTabLink = findElementByXpath("//a[@href='#admin-setting-component:adminTabView:express-management-tab']");
     click(settingTabLink);
-    waitForElementPresent(By.id("adminui:adminTabView:express-management-tab"), true);
+    waitForElementPresent(By.id("admin-setting-component:adminTabView:express-management-tab"), true);
     waitAjaxIndicatorDisappear();
     return new ExpressManagementPage();
+  }
+
+  public RoleAssignmentPage openRoleAssignmentTab() {
+    waitForElementDisplayed(By.cssSelector("[id$='admin-setting-component:adminTabView']"), true);
+    clickByCssSelector("a[href='#admin-setting-component:adminTabView:role-management-tab']");
+    waitForElementPresent(By.cssSelector("[id$=':role-management-component:role-management-form:role-tree-table']"), true);
+    return new RoleAssignmentPage();
+  }
+
+  public boolean isRoleAssingmentTabViewPresent() {
+    return isElementPresent(By.cssSelector("a[href='#admin-setting-component:adminTabView:role-management-tab']"));
   }
   
   public WebElement getAdminSettingDialog() {
@@ -176,16 +181,16 @@ public class AdminSettingsPage extends TemplatePage {
   }
   
   public WebElement getAddApplicationDialog( ) {
-    click(By.id("adminui:adminTabView:add-application-btn"));
-    waitForElementDisplayed(By.id("adminui:appDialog"), true);
+    click(By.id("admin-setting-component:adminTabView:add-application-btn"));
+    waitForElementDisplayed(By.id("admin-setting-component:appDialog"), true);
     Sleeper.sleep(300);//Wait a bit focus effects, just only use this for capture screenshot
-    return findElementById("adminui:appDialog");
+    return findElementById("admin-setting-component:appDialog");
   }
   
   public WebElement getEditSettingDialogOfFirstRow() {
-    click(By.id("adminui:adminTabView:settingTable:0:edit"));
-    waitForElementDisplayed(By.id("adminui:settingDialog"), true);
+    click(By.id("admin-setting-component:adminTabView:settingTable:0:edit"));
+    waitForElementDisplayed(By.id("admin-setting-component:settingDialog"), true);
     Sleeper.sleep(300);//Wait a bit focus effects, just only use this for capture screenshot
-    return findElementById("adminui:settingDialog");
+    return findElementById("admin-setting-component:settingDialog");
   }
 }
