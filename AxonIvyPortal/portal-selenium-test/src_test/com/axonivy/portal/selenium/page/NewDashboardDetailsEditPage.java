@@ -77,6 +77,11 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
     getRemoveWidgetButton().click();
     getRemoveWidgetDialog().waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
   }
+  
+  public void clickOnRemoveWidgetButton() {
+    getRemoveWidgetButton().waitUntil(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    getRemoveWidgetButton().waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
+  }
 
   private void openDeleteCombinedModeProcessDialog() {
     $(".process-grid-item__action--combined .si-bin-1").waitUntil(Condition.appear, DEFAULT_TIMEOUT).click();
