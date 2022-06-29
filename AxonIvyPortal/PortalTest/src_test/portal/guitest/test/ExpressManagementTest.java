@@ -17,6 +17,7 @@ import com.jayway.awaitility.Duration;
 
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.FileHelper;
+import portal.guitest.common.Sleeper;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.AdminSettingsPage;
 import portal.guitest.page.CaseDetailsPage;
@@ -106,7 +107,6 @@ public class ExpressManagementTest extends BaseTest {
   public void testViewExpressBusinessData() {
     prepareExpressWorkflowStep();
     completeExpressWorkflowTasks(FIRST_COMMENT, SECOND_COMMENT);
-    
     openAdditionalBusinessPage(REQUEST_NEW_RESOURCE_PROCESS);
     
     ExpressBusinessViewPage expressBusiness = new ExpressBusinessViewPage();
@@ -149,9 +149,6 @@ public class ExpressManagementTest extends BaseTest {
     taskWidgetPage.clickOnTaskStatesAndApply(Arrays.asList("Suspended"));
     executeSendEmailTask();
     executeReviewTask();
-    // back to home and refresh task list data
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
-    gotoTaskList();
     taskWidgetPage.resetFilter();
     taskWidgetPage.clickOnTaskStatesAndApply(Arrays.asList("Suspended"));
     executeApprovalTask(firstComment);

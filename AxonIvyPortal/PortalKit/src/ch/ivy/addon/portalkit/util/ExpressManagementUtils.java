@@ -10,9 +10,8 @@ import static org.apache.commons.lang3.StringUtils.LF;
 import static org.apache.commons.lang3.StringUtils.SPACE;
 
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
 import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -35,11 +34,7 @@ import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 import org.primefaces.model.file.UploadedFile;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
+import com.fasterxml.jackson.databind.JsonNode;
 
 import ch.ivy.addon.portalkit.bo.ExpressFormElement;
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
@@ -63,7 +58,6 @@ public class ExpressManagementUtils {
   private static final String REPEAT_EXPRESS = "AHWF";
   private static final String JSON_EXTENSION = "json";
   private static final String EXTERNAL_ID_PREFIX = " externalId:";
-  private static Gson gson = new GsonBuilder().serializeNulls().create();
 
   /**
    * Find express repeat workflow list which are ready to execute and start
@@ -136,16 +130,16 @@ public class ExpressManagementUtils {
   }
 
   public static Map<ExpressMessageType, Object> installExpressWorkflows(InputStream expressInputstream, Map<ExpressMessageType, Object> outputMessages) {
-    JsonObject jsonObject = extractJsonObject(expressInputstream);
-    if (jsonObject != null) {
-      Integer version = jsonObject.get(VERSION).getAsInt();
+    JsonNode jsonNode = extractJsonObject(expressInputstream);
+    if (jsonNode != null) {
+      var version = jsonNode.get(VERSION).asInt();
       if (!validateExpressVersion(outputMessages, version)) {
         List<ExpressProcess> expressProcesses = new ArrayList<>();
-        JsonElement workflowsElement = jsonObject.get(EXPRESS_WORKFLOW);
+        var expressWorkflowNode = jsonNode.get(EXPRESS_WORKFLOW);
         if (version == 1) {
-          expressProcesses = proceedForOldWorkflow(workflowsElement);
+          expressProcesses = proceedForOldWorkflow(expressWorkflowNode);
         } else if (version == 2) {
-          expressProcesses = BusinessEntityConverter.jsonValueToEntities(workflowsElement.toString(), ExpressProcess.class);
+          expressProcesses = BusinessEntityConverter.jsonValueToEntities(expressWorkflowNode.toString(), ExpressProcess.class);
         }
         processExpressJsonObject(outputMessages, expressProcesses);
       }
@@ -153,47 +147,57 @@ public class ExpressManagementUtils {
     return outputMessages;
   }
 
-  private static JsonObject extractJsonObject(InputStream expressInputstream) {
-    Reader reader = new InputStreamReader(expressInputstream, StandardCharsets.UTF_8);
-    JsonObject jsonObject = gson.fromJson(reader, JsonObject.class);
-    return jsonObject;
+  private static JsonNode extractJsonObject(InputStream expressInputstream) {
+    try {
+      return BusinessEntityConverter.getObjectMapper().readTree(expressInputstream);
+    } catch (IOException e) {
+      e.printStackTrace();
+      Ivy.log().error("Cannot paste JSON", e.getMessage());
+    }
+    return null;
   }
 
-  private static List<ExpressProcess> proceedForOldWorkflow(JsonElement workflowsElement) {
+  private static List<ExpressProcess> proceedForOldWorkflow(JsonNode expressWorkflowNode) {
     List<ExpressProcess> expressProcesses = new ArrayList<>();
-    for (JsonElement element : workflowsElement.getAsJsonArray()) {
-      JsonObject jsonObject = element.getAsJsonObject();
-      ExpressProcess process = gson.fromJson(jsonObject.get("expressProcess"), ExpressProcess.class);
-      Map<Integer, ExpressTaskDefinition> expressTaskDefinitionMap = proceedOldTaskDefinition(jsonObject);
-      process.setTaskDefinitions(new ArrayList<>(expressTaskDefinitionMap.values()));
-      expressProcesses.add(process);
+    if (expressWorkflowNode.isArray()) {
+      var expressIterator = expressWorkflowNode.iterator();
+      while (expressIterator.hasNext()) {
+        JsonNode jsonNode = expressIterator.next();
+        ExpressProcess process = BusinessEntityConverter.jsonValueToEntity(jsonNode.get("expressProcess").toString(), ExpressProcess.class);
+        Map<Integer, ExpressTaskDefinition> expressTaskDefinitionMap = proceedOldTaskDefinition(jsonNode);
+        process.setTaskDefinitions(new ArrayList<>(expressTaskDefinitionMap.values()));
+        expressProcesses.add(process);
+      }
     }
     return expressProcesses;
   }
 
-  private static  Map<Integer, ExpressTaskDefinition> proceedOldTaskDefinition(JsonObject jsonObject) {
+  private static  Map<Integer, ExpressTaskDefinition> proceedOldTaskDefinition(JsonNode jsonNode) {
     Map<Integer, ExpressTaskDefinition> expressTaskDefinitionMap = new HashMap<>();
-    JsonArray expressTaskDefinitionArray = jsonObject.get("expressTaskDefinitions").getAsJsonArray();
-    for (JsonElement taskDefJson : expressTaskDefinitionArray) {
-      int taskPosition = extractTaskPositionNode(taskDefJson);
-      expressTaskDefinitionMap.put(taskPosition, gson.fromJson(taskDefJson, ExpressTaskDefinition.class));
+    var expressTaskDefinitionNode = jsonNode.get("expressTaskDefinitions");
+    if (expressTaskDefinitionNode.isArray()) {
+      var taskDefinitionIterator = expressTaskDefinitionNode.iterator();
+      while (taskDefinitionIterator.hasNext()) {
+        var taskDefinitionNode = taskDefinitionIterator.next();
+        int taskPosition = taskDefinitionNode.get("taskPosition").asInt();
+        expressTaskDefinitionMap.put(taskPosition, BusinessEntityConverter.jsonValueToEntity(taskDefinitionNode.toString(), ExpressTaskDefinition.class));
+      }
     }
 
-    JsonArray expressFormElementArray = jsonObject.get("expressFormElements").getAsJsonArray();
-    for (JsonElement formElementJson : expressFormElementArray) {
-      int taskPosition = extractTaskPositionNode(formElementJson);
-
-      ExpressTaskDefinition expressTaskDefinition = expressTaskDefinitionMap.get(taskPosition);
-      if (expressTaskDefinition.getFormElements() == null) {
-        expressTaskDefinition.setFormElements(new ArrayList<>());
+    var expressFormElementNode = jsonNode.get("expressFormElements");
+    if (expressFormElementNode.isArray()) {
+      var formElementIterator = expressFormElementNode.iterator();
+      while (formElementIterator.hasNext()) {
+        var formElementNode = formElementIterator.next();
+        int taskPosition = formElementNode.get("taskPosition").asInt();
+        ExpressTaskDefinition expressTaskDefinition = expressTaskDefinitionMap.get(taskPosition);
+        if (expressTaskDefinition.getFormElements() == null) {
+          expressTaskDefinition.setFormElements(new ArrayList<>());
+        }
+        expressTaskDefinition.getFormElements().add(BusinessEntityConverter.jsonValueToEntity(formElementNode.toString(), ExpressFormElement.class));
       }
-      expressTaskDefinition.getFormElements().add(gson.fromJson(formElementJson, ExpressFormElement.class));
     }
     return expressTaskDefinitionMap;
-  }
-
-  private static int extractTaskPositionNode(JsonElement jsonElement) {
-    return jsonElement.getAsJsonObject().get("taskPosition").getAsInt();
   }
 
   private static void processExpressJsonObject(Map<ExpressMessageType, Object> outputMessages, List<ExpressProcess> expressProcesses) {
@@ -346,13 +350,23 @@ public class ExpressManagementUtils {
    * @return a StreamedContent with content type as a JSON file
    */
   public static StreamedContent exportExpressProcess(List<ExpressProcess> selectedExpressProcesses) {
-    Gson gson = new Gson();
-    JsonElement jsonElement = gson.toJsonTree(selectedExpressProcesses);
-    JsonObject jsonObject = new JsonObject();
-    jsonObject.addProperty(VERSION, 2);
-    jsonObject.add(EXPRESS_WORKFLOW, jsonElement);
+    var rootNode = BusinessEntityConverter.getObjectMapper().createObjectNode();
+    rootNode.put(VERSION, 2);
+    var arrayExpress = rootNode.putArray(EXPRESS_WORKFLOW);
+    CollectionUtils.emptyIfNull(selectedExpressProcesses).forEach(express -> {
+      var expressAsJson = BusinessEntityConverter.entityToJsonValue(express);
+      JsonNode expressNode = null;
+      try {
+        expressNode = BusinessEntityConverter.getObjectMapper().readTree(expressAsJson);
+      } catch (Exception e) {
+        Ivy.log().warn("Cannot paste express object", e.getMessage());
+      }
+      if (expressNode != null) {
+        arrayExpress.add(expressNode);
+      }
+    });
 
-    InputStream inputStream = new ByteArrayInputStream(jsonObject.toString().getBytes(StandardCharsets.UTF_8));
+    InputStream inputStream = new ByteArrayInputStream(rootNode.toString().getBytes(StandardCharsets.UTF_8));
     return DefaultStreamedContent
         .builder()
         .stream(() -> inputStream)

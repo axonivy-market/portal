@@ -801,9 +801,9 @@ public class TaskWidgetPage extends TemplatePage {
 
   @SuppressWarnings("deprecation")
   public void resetFilter() {
-    click(By.cssSelector("[id$='task-widget:filter-reset-action']"));
+    clickByCssSelector("[id$='task-widget:filter-reset-action']");
     waitAjaxIndicatorDisappear();
-    click(By.cssSelector("[id$='task-widget:filter-reset-command']"));
+    clickByCssSelector("[id$='task-widget:filter-reset-command']");
     waitForElementDisplayed(By.id("task-widget:reset-filter-set-dialog"), false);
   }
 
