@@ -1,7 +1,5 @@
 package portal.guitest.document.screenshot;
 
-import static org.junit.Assert.assertTrue;
-
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Arrays;
@@ -41,19 +39,19 @@ public class SettingScreenshotTest extends ScreenshotTest {
     ScreenshotUtil.resizeBrowser(new Dimension(1366, 800));
     refreshHomePage();
     AdminSettingsPage adminSettingsPage = homePage.openAdminSettings();
-    ScreenshotUtil.captureElementWithMarginOptionScreenshot(adminSettingsPage.getAdminSettingDialog(), ScreenshotUtil.SETTINGS_FOLDER + "applications", new ScreenshotMargin(20));
+    ScreenshotUtil.captureElementWithMarginOptionScreenshot(adminSettingsPage.getAdminSettingContainer(), ScreenshotUtil.SETTINGS_FOLDER + "applications", new ScreenshotMargin(20));
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(adminSettingsPage.getAddApplicationDialog(), ScreenshotUtil.SETTINGS_FOLDER + "add-application", new ScreenshotMargin(20));
 
     refreshHomePage();
     adminSettingsPage = homePage.openAdminSettings();
     adminSettingsPage.openSettingTab();
-    ScreenshotUtil.captureElementWithMarginOptionScreenshot(adminSettingsPage.getAdminSettingDialog(), ScreenshotUtil.SETTINGS_FOLDER + "global-settings", new ScreenshotMargin(20));
+    ScreenshotUtil.captureElementWithMarginOptionScreenshot(adminSettingsPage.getAdminSettingContainer(), ScreenshotUtil.SETTINGS_FOLDER + "global-settings", new ScreenshotMargin(20));
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(adminSettingsPage.getEditSettingDialogOfFirstRow(), ScreenshotUtil.SETTINGS_FOLDER + "edit-global-settings", new ScreenshotMargin(20));
     
     refreshHomePage();
     adminSettingsPage = homePage.openAdminSettings();
     adminSettingsPage.openAnnouncementTab();
-    ScreenshotUtil.captureElementWithMarginOptionScreenshot(adminSettingsPage.getAdminSettingDialog(), ScreenshotUtil.SETTINGS_FOLDER + "announcement", new ScreenshotMargin(20));
+    ScreenshotUtil.captureElementWithMarginOptionScreenshot(adminSettingsPage.getAdminSettingContainer(), ScreenshotUtil.SETTINGS_FOLDER + "announcement", new ScreenshotMargin(20));
 
     refreshHomePage();
     ChangePasswordPage changePasswordPage = homePage.openChangePasswordPage();

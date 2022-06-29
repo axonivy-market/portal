@@ -176,8 +176,8 @@ public class AdminSettingsPage extends TemplatePage {
     return isElementPresent(By.cssSelector("a[href='#admin-setting-component:adminTabView:role-management-tab']"));
   }
   
-  public WebElement getAdminSettingDialog() {
-    return findElementById("admin-ui-dialog");
+  public WebElement getAdminSettingContainer() {
+    return findElementById("admin-settings-container");
   }
   
   public WebElement getAddApplicationDialog( ) {
