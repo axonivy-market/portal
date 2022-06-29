@@ -1,5 +1,7 @@
 package portal.guitest.document.screenshot;
 
+import static org.junit.Assert.assertTrue;
+
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Arrays;
@@ -133,5 +135,21 @@ public class SettingScreenshotTest extends ScreenshotTest {
     newDashboardPage.getUserSettings();
     executeDecorateJs("highlightUserMenuConfiguration()");
     ScreenshotUtil.captureHalfTopPageScreenShot(ScreenshotUtil.SETTINGS_FOLDER + "user-menu-configuration");
+  }
+
+  @Test
+  public void screenshotRoleAssignment() throws IOException {
+    login(TestAccount.ADMIN_USER);
+    ScreenshotUtil.resizeBrowser(new Dimension(1050, 850));
+    homePage = new HomePage();
+    var adminSettingsPage = homePage.openAdminSettings();
+    var roleAssignmentTab = adminSettingsPage.openRoleAssignmentTab();
+    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.SETTINGS_FOLDER + "role-assignment-tab");
+    ScreenshotUtil.resizeBrowser(new Dimension(1050, 1200));
+    roleAssignmentTab.openRoleCreationDialog();
+    roleAssignmentTab.getRoleInfoDialogContent();
+    ScreenshotUtil.captureElementWithMarginOptionScreenshot(roleAssignmentTab.getRoleInfoDialogContent(),
+        ScreenshotUtil.SETTINGS_FOLDER + "role-assignment-creation-dialog", new ScreenshotMargin(60, 30));
+    roleAssignmentTab.clickOnCancelLinkOfRoleDialog();
   }
 }

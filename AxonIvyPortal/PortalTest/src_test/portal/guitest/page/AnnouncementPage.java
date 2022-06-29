@@ -6,7 +6,7 @@ public class AnnouncementPage extends TemplatePage {
 
   @Override
   protected String getLoadedLocator() {
-    return "id('adminui:adminTabView:announcement-tab')";
+    return "id('admin-setting-component:adminTabView:announcement-tab')";
   }
 
   public String getInfoSummary() {
