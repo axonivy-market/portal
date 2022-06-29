@@ -155,12 +155,12 @@ public class PortalExpressScreenshotTest extends ScreenshotTest {
     expressManagementPage.clickOnCloseButton();
     expressManagementPage.clickOnSelectAllExpresses();
     executeDecorateJs("highlightExportExpress()");
-    WebElement adminDialog = adminSettingsPage.getAdminSettingDialog();
-    ScreenshotUtil.captureElementWithMarginOptionScreenshot(adminDialog, ScreenshotUtil.EXPRESS_MANAGEMENT_FOLDER + "express-export-tab", new ScreenshotMargin(40));
+    WebElement adminDialog = adminSettingsPage.getAdminSettingContainer();
+    ScreenshotUtil.captureElementWithMarginOptionScreenshot(adminDialog, ScreenshotUtil.EXPRESS_MANAGEMENT_FOLDER + "express-export-tab", new ScreenshotMargin(60));
     executeDecorateJs("cleanHighlightExportExpress()");
     expressManagementPage.clickOnExportButton();
     WebElement exportDialog = expressManagementPage.getExportExpressDialog();
-    ScreenshotUtil.captureElementWithMarginOptionScreenshot(exportDialog, ScreenshotUtil.EXPRESS_MANAGEMENT_FOLDER + "export-list-summary", new ScreenshotMargin(40));
+    ScreenshotUtil.captureElementWithMarginOptionScreenshot(exportDialog, ScreenshotUtil.EXPRESS_MANAGEMENT_FOLDER + "export-list-summary", new ScreenshotMargin(60));
   }
   
   @Test
