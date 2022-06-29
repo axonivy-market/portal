@@ -35,6 +35,7 @@ public class PortalMenuItem extends DefaultMenuItem {
   public static final String DEFAULT_MENU_COMMAND_METHOD = "#{menuView.onClickMenuItem}";
   public static final String DEFAULT_EXTERNAL_ON_CLICK_METHOD = "MainMenu.removeActiveOnExternalMenu()";
   public static final String DEFAULT_ON_CLICK_PATTERN = "onClickMenuItem(this, %s, %s);";
+  public static final String MENU_ITEM_ID_FORMAT = "%s_%s";
 
   public final static String BREADCRUMB_DESTINATION = "destination";
   public final static String DEFAULT_DASHBOARD_ICON = "si si-layout-dashboard";
@@ -44,7 +45,7 @@ public class PortalMenuItem extends DefaultMenuItem {
   public PortalMenuItem() { }
 
   public PortalMenuItem(PortalMenuBuilder builder) {
-    this.setId(builder.menuKind.toString());
+    this.setId(String.format(MENU_ITEM_ID_FORMAT, builder.menuKind.toString(), builder.menuIndex));
     this.setValue(builder.name);
     this.setIcon(builder.icon);
     this.setIconPos(DEFAULT_ICON_POSITION);
@@ -142,6 +143,7 @@ public class PortalMenuItem extends DefaultMenuItem {
     private boolean isWorkingOnATask;
     private boolean disabled;
     private boolean isCleanParams;
+    private int menuIndex;
 
     public PortalMenuBuilder(String name, MenuKind menuKind, boolean isWorkingOnATask) {
       this.name = name;
@@ -214,9 +216,13 @@ public class PortalMenuItem extends DefaultMenuItem {
       return this;
     }
 
+    public PortalMenuBuilder menuIndex(int menuIndex) {
+      this.menuIndex = menuIndex;
+      return this;
+    }
+
     public PortalMenuItem build() {
       return new PortalMenuItem(this);
     }
   }
 }
-
