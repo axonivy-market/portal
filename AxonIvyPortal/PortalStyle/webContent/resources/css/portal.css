@@ -2029,7 +2029,7 @@ body .ui-datepicker tbody td.ui-datepicker-today a, body .ui-datepicker tbody td
 
 /* Modify style to make date highlighted by circle on phone */
 body .ui-datepicker-touch-ui.ui-datepicker td a, body .ui-datepicker-touch-ui.ui-datepicker td span {
-  padding: 0px 0px;
+  padding: 0;
 }
 
 /* Modify style because th is too high on phone */
