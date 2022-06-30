@@ -25,7 +25,7 @@
         <h:outputStylesheet library="css" name="dashboard.css" />
         <div class="dashboard__header ui-g-12 js-dashboard__header">
 
-          <h:panelGroup id="dashboard-title-container" styleClass="u-hidden-sm-down #{managedBean.isReadOnlyMode ? 'dashboard__title-flex-container ui-g-12' : 'dashboard__title-inline-flex-container ui-lg-8 ui-md-7'} dashboard__title-container">
+          <h:panelGroup id="dashboard-title-container" styleClass="u-hidden-sm-down #{managedBean.isReadOnlyMode ? 'dashboard__title-container--flex ui-g-12' : 'dashboard__title-container--inline-flex ui-lg-8 ui-md-7'} dashboard__title-container">
             <c:forEach var="dashboard" items="#{managedBean.dashboards}" varStatus="dashboardStatus">
               <p:commandLink id="dashboard-title-#{dashboardStatus.index}" actionListener="#{managedBean.onDashboardChange(dashboardStatus.index)}"
                 update="grid-stack dashboard-title-container dashboard-title-dropdown-container" process="@this"
