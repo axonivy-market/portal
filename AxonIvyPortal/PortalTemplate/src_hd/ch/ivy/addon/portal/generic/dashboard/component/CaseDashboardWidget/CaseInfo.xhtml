@@ -17,7 +17,7 @@
     <ui:repeat value="#{widget.caseByStateStatistic.entrySet()}" var="entry">
       <div class="ui-g-8">
         <ic:ch.ivy.addon.portalkit.component.cases.column.CaseState case="" state="#{entry.key}"
-          alwaysShowState="true"/>
+          alwaysShowState="true" responsiveStyleClass="" />
       </div>
       <div class="ui-g-4">
         <span>#{entry.value} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/caseWidgetInfo/numberOfCase')}</span>
@@ -77,7 +77,7 @@
           <div class="ui-g-8">
             <ui:repeat var="state" value="#{field.states}">
               <ic:ch.ivy.addon.portalkit.component.cases.column.CaseState case="" state="#{state}"
-                alwaysShowState="true" stateStyleClass="u-mar-right-5"/>
+                alwaysShowState="true" stateStyleClass="u-mar-right-5" responsiveStyleClass="" />
             </ui:repeat>
           </div>
         </h:panelGroup>

@@ -132,6 +132,10 @@ function setupScrollbar() {
   }
 }
 
+function isSafariBrowser() {
+  return /iPad|iPhone|iPod/.test(navigator.platform);
+}
+
 function expandFullscreen(index, widgetId) {
   var widget = $('div.grid-stack-item[gs-id = "' + widgetId + '"]');
   widget.addClass('expand-fullscreen');
@@ -153,11 +157,28 @@ function expandFullscreen(index, widgetId) {
   if ($("div[id $= " + infoOverlayId + "]").length > 0 && PF(infoOverlayId).isVisible()) {
     PF(infoOverlayId).hide();
   }
+  
+  var isSafari = isSafariBrowser();
+  if (isSafari) {
+    $(widget.get(0)).parent().addClass('expand-fullscreen');
+    $(widget.get(0)).closest('.js-dashboard__body').addClass('expand-fullscreen');
+    $(widget.get(0)).closest('.js-layout-content').addClass('expand-fullscreen');
+  }
+  
 }
 
 function collapseFullscreen(index, widgetId) {
   var widget = $('div.grid-stack-item[gs-id = "' + widgetId + '"]');
   widget.removeClass('expand-fullscreen');
+
+  var isSafari = isSafariBrowser();
+
+  if (isSafari) {
+    $(widget.get(0)).parent().removeClass('expand-fullscreen');
+    $(widget.get(0)).closest('.js-dashboard__body').removeClass('expand-fullscreen');
+    $(widget.get(0)).closest('.js-layout-content').removeClass('expand-fullscreen');
+    
+  }
 
   $(widget.get(0)).parent('.grid-stack').height(originalGridstackHeight);
 
