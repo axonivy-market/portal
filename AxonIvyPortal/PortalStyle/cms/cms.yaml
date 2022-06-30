@@ -167,6 +167,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     showTutorial: Show Welcome Tour
     taskListConfigDescription: In this area you can configure the task list according to your requirements.
     taskListConfiguration: Task list configuration
+  PortalManagement:
+    AdminSetting: Admin settings
   ProcessViewer:
     Breadcrumb: Process Viewer of {0} process
     ProcessDataNotFound: Could not found the Process Data!
@@ -207,7 +209,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     deleteAppConfirmation: Are you sure to delete this application ?
     dialogclosinginformation:
       dialogHeader: Portal configuration closed
-      informMessage: Modifications in portal settings require a restart of your session. In case you use Single Sign On you need to restart your web browser as well.
+      informMessage: Modifications in portal settings require a refresh of the current page for the new configuration to take effect.
     duplicatePortalAppMsg: This application already exists, please choose another application.
     editApplication: Edit application
     editSetting: Edit setting
@@ -390,6 +392,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     viewParticipant: View participants
   common:
     BusinessCaseInformation: Business Case Information
+    CollapseAll: Collapse all
+    ExpandAll: Expand all
     NoSelection: No Selection
     ResetToDefaultHeaderText: Reset to default settings?
     RoleUserInformation: Role and User Information
@@ -557,6 +561,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     typeAdmin: All administrators
     typeAllUsers: All users
     typeOnlyMe: Only me
+    user: '{0} user'
     users: Users
     via: via
     viewExpired: Your current view expired. You will be redirected to the home page.
@@ -944,7 +949,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     addNewProcessDialogHeader: Add new user process
     backToOverview: Back to overview
     brokenLinkProcess: The process link is broken. Please update your favorites or contact the administrator
-    collapseAll: '- Collapse all'
     defaultProcesses: Application Favorites
     deleteExpressWorkflowTooltip: Delete Express Workflow
     deleteExternalLinkTooltip: Delete external link
@@ -959,7 +963,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       dialogHeaderTitle: Edit information for {0}
     editExpressWorkflowTooltip: Edit Express Workflow
     editProcesses: Edit processes
-    expandAll: + Expand all
     expressWorkflow: Express workflow
     externalLink: External link
     externalLinkVisibility: Visibility

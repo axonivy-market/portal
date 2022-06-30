@@ -41,7 +41,7 @@ public class LocalizationContent {
   public String getLanguageDisplayName() {
     if (StringUtils.isEmpty(languageDisplayName)) {
       Locale displayedLocale = Locale.forLanguageTag(language);
-      languageDisplayName = displayedLocale.getDisplayLanguage(Ivy.session().getContentLocale());
+      languageDisplayName = displayedLocale.getDisplayName(Ivy.session().getContentLocale());
     }
     return languageDisplayName;
   }

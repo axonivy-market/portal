@@ -1304,7 +1304,6 @@ span.new-widget-dialog__icon.si {
 
 .dashboard-template-name-message {
   padding: 2px 5px;
-  background: var(--ivy-primary-color-light);
   border: 1px solid var(--ivy-primary-color);
   border-radius: 5px;
   margin: 5px auto;
