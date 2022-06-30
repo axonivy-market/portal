@@ -163,10 +163,11 @@
           <div class="ui-g-12 u-no-padding-top u-no-padding-bottom">
             <p:messages redisplay="false" />
           </div>
-          <h:panelGroup rendered="#{creationMode and roleManagementBean.canMoveRole}" layout="block">
+          <h:panelGroup rendered="#{creationMode}" layout="block">
             <ic:ch.ivy.addon.portalkit.component.RoleSelection id="parent-role" componentId="parent-role-selection"
               selectedRole="#{roleManagementBean.selectedParentRole}"
-              isRequired="true"
+              isRequired="#{roleManagementBean.canMoveRole}"
+              isDisabled="#{!roleManagementBean.canMoveRole}"
               label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/ParentRole')}"
               labelPanelStyleClass="ui-g-4 ui-lg-3 ui-md-4 ui-sm-12 role-management-label"
               autoCompletePanelStyleClass="ui-g-8 ui-lg-9 ui-md-8 ui-sm-12 role-management-value"
