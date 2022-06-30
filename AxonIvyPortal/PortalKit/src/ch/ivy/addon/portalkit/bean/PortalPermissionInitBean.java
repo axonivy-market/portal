@@ -105,7 +105,9 @@ public class PortalPermissionInitBean extends AbstractProcessStartEventBean {
 
   private List<IPermission> getGeneralPermissions() {
     List<IPermission> result = getPortalPermissionsByGroup(PortalPermissionGroup.GENERAL_PERMISSIONS_GROUP);
-    result.addAll(Arrays.asList(IPermission.DOCUMENT_WRITE, IPermission.DOCUMENT_OF_INVOLVED_CASE_WRITE, IPermission.DOCUMENT_READ));
+    result.addAll(Arrays.asList(IPermission.DOCUMENT_WRITE, IPermission.DOCUMENT_OF_INVOLVED_CASE_WRITE,
+        IPermission.DOCUMENT_READ, IPermission.ROLE_READ_ALL, IPermission.ROLE_CREATE, IPermission.ROLE_DELETE,
+        IPermission.ROLE_MOVE));
     return result;
   }
 
