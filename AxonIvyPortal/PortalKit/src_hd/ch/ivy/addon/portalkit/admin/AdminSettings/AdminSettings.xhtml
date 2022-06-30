@@ -1,5 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
@@ -7,8 +5,8 @@
 	xmlns:pe="http://primefaces.org/ui/extensions">
 
 <cc:interface componentType="IvyComponent">
-  <cc:attribute name="onTabChange" />
 </cc:interface>
+
 <cc:implementation>
   <p:outputPanel id="loginPanel" styleClass="admin-settings-no-permission-message" layout="block"
     rendered="#{!permissionBean.hasAdminPermission()}">
@@ -17,11 +15,12 @@
   </p:outputPanel>
 
   <!-- TAB VIEW -->
-  <p:tabView id="adminTabView" rendered="#{permissionBean.hasAdminPermission()}">
+  <p:tabView id="adminTabView" rendered="#{permissionBean.hasAdminPermission()}" activeIndex="0" dynamic="true">
+    <f:event listener="#{adminSettingBean.initAdminTabViewConfig()}" type="preRenderComponent"/>
+    <p:ajax event="tabChange" listener="#{adminSettingBean.onTabChange}"/>
 
-    <p:ajax event="tabChange" listener="#{adminSettingBean.onTabChange}" onstart="refreshExpressManagement();" oncomplete="#{cc.attrs.onTabChange}"/>
     <!-- APPLICATION TAB -->
-    <p:tab id="applicationTab" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/applications')}">
+    <p:tab id="application-tab" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/applications')}">
       <h:form prependId="false" id="applicationForm">
         <p:outputPanel styleClass="ui-messages ui-widget">
           <p:outputPanel styleClass="ui-messages-info ui-corner-all">
@@ -35,12 +34,11 @@
           <p:commandButton id="add-application-btn" actionListener="#{logic.addNewApp}" oncomplete="PF('appDialog').show()" resetValues="true"
             styleClass="new-app" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/new')}" icon="#{visibilityBean.generateButtonIcon('si si-add-small')}"
             update=":#{p:resolveFirstComponentWithId('appDialog', view).clientId}" />
-            
         </h:panelGroup>
 
         <!-- Applications Table -->
         <h:panelGroup id="applicationPanel" layout="block">
-          <p:messages id="applicationMsg" showDetail="true" escape="false" closable="true" />
+          <p:messages id="applicationMsg" showDetail="true" escape="false" closable="true" redisplay="false"/>
           <p:dataTable value="#{data.applicationList}" var="app" id="applicationTable" draggableRows="true"
             reflow="true" styleClass="admin-table application-table" widgetVar="applicationTable"
             emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}" lazy="false">
@@ -81,12 +79,13 @@
     </p:tab>
 
     <!-- SETTINGS TAB -->
-    <p:tab id="settingTab" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/setting')}">
+    <p:tab id="setting-tab" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/setting')}">
       <h:form prependId="false" id="settingForm">
         <p:remoteCommand name="initAdminSettingsData" actionListener="#{logic.initAdminSettingsData}" process="@this" immediate="true"
           update=":#{p:resolveFirstComponentWithId('applicationTable', view).clientId} :#{p:resolveFirstComponentWithId('settingTable', view).clientId} :#{p:resolveFirstComponentWithId('announcement-table', view).clientId}
           :#{p:resolveFirstComponentWithId('action-group', view).clientId} :#{p:resolveFirstComponentWithId('announcement-validation-messages', view).clientId}" />
-        <p:remoteCommand name="clearFilter" actionListener="#{logic.clearSettingTableFilter}" process="@this" immediate="true" />
+        <p:remoteCommand name="clearFilter" process="@this" immediate="true" oncomplete="PF('settingTable').clearFilters()"/>
+
         <h:panelGroup layout="block" styleClass="setting-tab-action-buttons">
           <p:commandButton id="restore-all-to-default-button" icon="#{visibilityBean.generateButtonIcon('si si-button-refresh-arrows')}"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/restoreAllToDefault')}"
@@ -97,7 +96,7 @@
         <p:dataTable id="settingTable" styleClass="admin-table global-setting-table" value="#{data.settingList}"
           filteredValue="#{data.filteredSettingList}" var="setting" widgetVar="settingTable"
           emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}" scrollable="true"
-          scrollHeight="240" reflow="true" lazy="false">
+          reflow="true" scrollHeight="550" lazy="false">
           <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/key')}"
             filterBy="#{setting.key}" filterMatchMode="contains" styleClass="settings-table-key-column">
             <h:outputText value="#{setting.key}" styleClass="setting-key" />
@@ -135,29 +134,37 @@
     </p:tab>
     <p:tab id="announcement-tab"
       title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/tabTitle')}">
-      <p:messages id="announcement-information-messages" for="adminui:adminTabView:announcement-table" />
-      <p:messages id="announcement-validation-messages" />
-      <h:form prependId="false" id="announcement-form">
+      <p:messages id="announcement-validation-messages" redisplay="false" />
 
-        <h:panelGroup id="action-group" styleClass="announcement-tab-action-buttons" layout="block">
+      <h:form prependId="false" id="announcement-form"
+        styleClass="ui-g">
+        <h:panelGroup id="action-group" styleClass="announcement-tab-action-buttons ui-g-12 u-padding-0" layout="block">
           <div class="announcement-information">#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/information")}</div>
-          <p:commandButton id="publish-announcement" process="@form" disabled="#{data.isAnnouncementActivated}"
+          <p:commandButton id="publish-announcement"
+            process="announcement-form"
+            disabled="#{data.isAnnouncementActivated}"
             icon="#{visibilityBean.generateButtonIcon('si si-check-circle-1')}"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/enable')}"
             actionListener="#{logic.publishAnnouncement()}"
-            update="#{cc.clientId}:adminTabView:announcement-table #{cc.clientId}:adminTabView:announcement-validation-messages #{cc.clientId}:adminTabView:announcement-information-messages #{cc.clientId}:adminTabView:action-group" />
-          <p:spacer width="5px" />
-          <p:commandButton id="delete-announcement" process="@form" actionListener="#{logic.depublishAnnouncement()}"
+            update="#{cc.clientId}:adminTabView:announcement-table #{cc.clientId}:adminTabView:announcement-validation-messages action-group"
+            styleClass="u-mar-right-5"/>
+          <p:commandButton id="delete-announcement"
+            process="announcement-form"
+            actionListener="#{logic.depublishAnnouncement()}"
             icon="#{visibilityBean.generateButtonIcon('si si-delete')}"
             disabled="#{not data.isAnnouncementActivated}"
-            update="#{cc.clientId}:adminTabView:announcement-validation-messages #{cc.clientId}:adminTabView:announcement-information-messages #{cc.clientId}:adminTabView:action-group"
+            update="#{cc.clientId}:adminTabView:announcement-validation-messages action-group"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/disable')}">
           </p:commandButton>
         </h:panelGroup>
-        <p:dataTable id="announcement-table" styleClass="admin-table announcement-table" value="#{data.announcement.contents}" var="announcement"
-          widgetVar="announcement-table" reflow="true" lazy="false"
-          emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}" scrollable="true"
-          scrollHeight="215">
+
+        <p:dataTable id="announcement-table"
+          styleClass="announcement-table ui-g-12 u-padding-0"
+          value="#{data.announcement.contents}"
+          var="announcement"
+          widgetVar="announcement-table"
+          reflow="true" lazy="false"
+          emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}">
           <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/languageSetting/language')}" styleClass="application-language-header">
             <p:outputLabel for="announcement-input" value="#{announcement.getLanguageDisplayName()}" />
           </p:column>
@@ -171,25 +178,17 @@
     </p:tab>
 
     <!-- EXPRESS MANAGEMENT  -->
-    <p:tab id="express-management-tab" rendered="#{expressManagementBean.isShowExpressManagementTab()}"
+    <p:tab id="express-management-tab" rendered="#{adminSettingBean.showExpressManagementTab}"
       title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressManagement')}">
       <ic:ch.ivy.addon.portalkit.component.ExpressManagement id="express-management-component" />
     </p:tab>
+
+    <!-- ROLE MANAGEMENT  -->
+    <p:tab id="role-management-tab" rendered="#{adminSettingBean.showRoleManagementTab}"
+      title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/TitlePage')}">
+      <ic:ch.ivy.addon.portalkit.component.RoleManagement id="role-management-component"/>
+    </p:tab>
   </p:tabView>
-  
-  <!-- Clean selection on Express table when change tab -->
-  <script type="text/javascript">
-      function refreshExpressManagement() {
-        var expressTab = $('[id$=":express-management-tab"]');
-        if (expressTab.length > 0) {
-          var expressManagementTable = $('[id$=":express-workflow-summary-table"]');
-           if (expressManagementTable.length > 0) {
-            PF('express-workflow-summary-table').unselectAllRows();
-            PF('export-express-btn').disable();
-          } 
-        }
-      }
-  </script>
 
   <!-- APPLICATION DIALOG-->
   <p:dialog header="#{data.dialogTitle}" id="appDialog" onShow="$('body').css({overflow:'hidden'})"
@@ -319,7 +318,7 @@
           
           <c:if test="#{data.settingInputType.toString() == 'SELECTION'}">
             <p:selectOneMenu value="#{data.selectedSetting.value}" id="valueSetting" styleClass="value-setting-dropdown">
-              <f:selectItems value="#{data.dropDownValues}" var="value" itemLabel="#{value.translate()}" />
+              <f:selectItems value="#{data.dropDownValues}" var="value" itemLabel="#{adminSettingBean.getDropdownItemlabel(value)}" />
             </p:selectOneMenu>
           </c:if>
           
@@ -345,10 +344,9 @@
           <p:commandButton id="save-setting" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
             icon="#{visibilityBean.generateButtonIcon('si si-check-1')}"
             actionListener="#{logic.saveSetting}" styleClass="confirm-save-setting-button"
-            oncomplete="if (!args.validationFailed){ PF('settingDialog').hide(); PF('settingTable').clearFilters()}"
+            oncomplete="if (!args.validationFailed){ PF('settingDialog').hide();}"
             update=":#{p:resolveFirstComponentWithId('settingForm', view).clientId} @form" process="@form" widgetVar="saveSettingButton"
             onclick="PF('saveSettingButton').disable();" />
-         
         </h:panelGroup>
       </p:outputPanel>
     </h:form>
@@ -392,14 +390,14 @@
           icon="#{visibilityBean.generateButtonIcon('si si-button-refresh-arrows')}"
           actionListener="#{logic.resetValues}"
           oncomplete="PF('resetConfirmation').hide(); PF('settingTable').clearFilters();"
-          update=":#{p:resolveFirstComponentWithId('settingForm', view).clientId}" />
+          update="@(.admin-table.global-setting-table)" />
       </c:if>
       <c:if test="#{!data.resetAllSettings}">
         <p:commandButton id="reset-setting" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/restore')}"
           icon="#{visibilityBean.generateButtonIcon('si si-button-refresh-arrows')}"
           actionListener="#{logic.resetValue}"
-          oncomplete="PF('resetConfirmation').hide(); PF('settingTable').clearFilters();"
-          update=":#{p:resolveFirstComponentWithId('settingForm', view).clientId}" />
+          oncomplete="PF('resetConfirmation').hide();"
+          update="@(.admin-table.global-setting-table)" />
       </c:if>
     </ui:define>
   </ui:decorate>
@@ -414,7 +412,7 @@
       <h:dataTable value="#{data.supportedLanguages}" rendered="#{data.supportedLanguages.isEmpty() eq 'false'}"
         var="supportedLanguage">
         <h:column>
-          <h:outputText value="#{supportedLanguage.locale.getDisplayLanguage()}" />
+          <h:outputText value="#{supportedLanguage.locale.getDisplayName()}" />
         </h:column>
         <h:column>
           <p:inputText value="#{supportedLanguage.value}" />
