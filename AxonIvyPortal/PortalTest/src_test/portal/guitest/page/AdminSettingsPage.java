@@ -165,11 +165,11 @@ public class AdminSettingsPage extends TemplatePage {
     return new ExpressManagementPage();
   }
 
-  public RoleAssignmentPage openRoleAssignmentTab() {
+  public RoleManagementPage openRoleManagementTab() {
     waitForElementDisplayed(By.cssSelector("[id$='admin-setting-component:adminTabView']"), true);
     clickByCssSelector("a[href='#admin-setting-component:adminTabView:role-management-tab']");
     waitForElementPresent(By.cssSelector("[id$=':role-management-component:role-management-form:role-tree-table']"), true);
-    return new RoleAssignmentPage();
+    return new RoleManagementPage();
   }
 
   public boolean isRoleAssingmentTabViewPresent() {
