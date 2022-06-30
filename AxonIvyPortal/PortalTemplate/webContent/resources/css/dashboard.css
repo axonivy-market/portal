@@ -63,13 +63,13 @@
   padding-left: 0;
 }
 
-.dashboard__title-flex-container {
+.dashboard__title-container--flex {
   display: flex;
   flex-wrap: wrap;
   padding-right: 0;
 }
 
-.dashboard__title-inline-flex-container {
+.dashboard__title-container--inline-flex {
   display: inline-flex;
 }
 
@@ -979,39 +979,39 @@ span.new-widget-dialog__icon.si {
   width: calc(100% - 40px);
 }
 
-.dashboard-tasks--table .revelent-tasks__more {
+.dashboard-tasks--table .relevant-tasks__more {
   text-align: center;
   width: 90px;
 }
-.dashboard-tasks--table .revelent-tasks__expiry {
+.dashboard-tasks--table .relevant-tasks__expiry {
   width: 100px;
   text-align: center;
 }
 
-.dashboard-tasks--table .revelent-tasks__name,
-.dashboard-cases--table .revelent-cases__name {
+.dashboard-tasks--table .relevant-tasks__name,
+.dashboard-cases--table .relevant-cases__name {
   font-weight: var(--process-grid-name-font-weight);
 }
 
-.dashboard-tasks--table .revelent-tasks__name,
-.dashboard-tasks--table .revelent-tasks__description,
-.dashboard-cases--table .revelent-cases__name,
-.dashboard-cases--table .revelent-cases__description {
+.dashboard-tasks--table .relevant-tasks__name,
+.dashboard-tasks--table .relevant-tasks__description,
+.dashboard-cases--table .relevant-cases__name,
+.dashboard-cases--table .relevant-cases__description {
   width: 180px;
 }
 
 @media(max-width: 767px) {
-  .dashboard-tasks--table .revelent-tasks__name,
-  .dashboard-cases--table .revelent-cases__name {
+  .dashboard-tasks--table .relevant-tasks__name,
+  .dashboard-cases--table .relevant-cases__name {
     width: 100%;
     border-right: 1px solid #d8d8d8;
   }
 }
 
-.dashboard-tasks--table td.revelent-tasks__name span,
-.dashboard-tasks--table td.revelent-tasks__description span,
-.dashboard-tasks--table td.revelent-tasks__name span,
-.dashboard-cases--table td.revelent-cases__description span {
+.dashboard-tasks--table td.relevant-tasks__name span,
+.dashboard-tasks--table td.relevant-tasks__description span,
+.dashboard-tasks--table td.relevant-tasks__name span,
+.dashboard-cases--table td.relevant-cases__description span {
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
