@@ -12,9 +12,9 @@
 </cc:interface>
 
 <cc:implementation>
-  <h:panelGroup styleClass="category-cell #{cc.attrs.responsiveStyleClass}">
+  <h:panelGroup>
     <h:outputText id="#{cc.attrs.componentId}" value="#{cc.attrs.value}"
-      styleClass="task-category-info #{cc.attrs.styleClass} #{cc.attrs.responsiveStyleClass}" />
+      styleClass="category-cell #{cc.attrs.styleClass} #{cc.attrs.responsiveStyleClass}" />
     <p:tooltip id="category-tooltip" for="#{cc.attrs.componentId}"
       value="#{cc.attrs.tooltip}" styleClass="#{cc.attrs.categoryTooltipStyleClass}" trackMouse="true" hideEvent="mouseleave click"/>
   </h:panelGroup>
