@@ -37,27 +37,23 @@ public class SettingScreenshotTest extends ScreenshotTest {
     homePage.waitForStatisticRendered();
     
     ScreenshotUtil.resizeBrowser(new Dimension(1366, 800));
-    refreshHomePage();
     AdminSettingsPage adminSettingsPage = homePage.openAdminSettings();
-    ScreenshotUtil.captureElementWithMarginOptionScreenshot(adminSettingsPage.getAdminSettingContainer(), ScreenshotUtil.SETTINGS_FOLDER + "applications", new ScreenshotMargin(20));
+    ScreenshotUtil.captureElementWithMarginOptionScreenshot(adminSettingsPage.getAdminSettingContainer(), ScreenshotUtil.SETTINGS_FOLDER + "applications", new ScreenshotMargin(5, 20));
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(adminSettingsPage.getAddApplicationDialog(), ScreenshotUtil.SETTINGS_FOLDER + "add-application", new ScreenshotMargin(20));
 
-    refreshHomePage();
+    ScreenshotUtil.resizeBrowser(new Dimension(1366, 1000));
     adminSettingsPage = homePage.openAdminSettings();
     adminSettingsPage.openSettingTab();
-    ScreenshotUtil.captureElementWithMarginOptionScreenshot(adminSettingsPage.getAdminSettingContainer(), ScreenshotUtil.SETTINGS_FOLDER + "global-settings", new ScreenshotMargin(20));
+    ScreenshotUtil.captureElementWithMarginOptionScreenshot(adminSettingsPage.getAdminSettingContainer(), ScreenshotUtil.SETTINGS_FOLDER + "global-settings", new ScreenshotMargin(5, 20));
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(adminSettingsPage.getEditSettingDialogOfFirstRow(), ScreenshotUtil.SETTINGS_FOLDER + "edit-global-settings", new ScreenshotMargin(20));
-    
-    refreshHomePage();
+
     adminSettingsPage = homePage.openAdminSettings();
     adminSettingsPage.openAnnouncementTab();
-    ScreenshotUtil.captureElementWithMarginOptionScreenshot(adminSettingsPage.getAdminSettingContainer(), ScreenshotUtil.SETTINGS_FOLDER + "announcement", new ScreenshotMargin(20));
+    ScreenshotUtil.captureElementWithMarginOptionScreenshot(adminSettingsPage.getAdminSettingContainer(), ScreenshotUtil.SETTINGS_FOLDER + "announcement", new ScreenshotMargin(5, 20));
 
-    refreshHomePage();
     ChangePasswordPage changePasswordPage = homePage.openChangePasswordPage();
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(changePasswordPage.getChangePasswordDialog(), ScreenshotUtil.SETTINGS_FOLDER + "change-password", new ScreenshotMargin(20));
-    
-    refreshHomePage();
+
     ProjectVersionPage projectVersionPage = homePage.openProjectVersionPage();
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(projectVersionPage.getProjectVersionDialog(), ScreenshotUtil.SETTINGS_FOLDER + "portal-version-information", new ScreenshotMargin(20));
   }
@@ -107,12 +103,7 @@ public class SettingScreenshotTest extends ScreenshotTest {
     absencePage.setDeputy(Arrays.asList(TestAccount.DEMO_USER.getFullName(), TestAccount.GUEST_USER.getFullName()), 0);
     ScreenshotUtil.captureElementScreenshot(absencePage.getAbsenceForm(), ScreenshotUtil.SETTINGS_FOLDER + "set-deputy");
   }
-  
-  private void refreshHomePage() {
-    refreshPage();
-    homePage.waitForStatisticRendered();
-  }
-  
+
   private void createAbsenceForCurrentUser(LocalDate from, LocalDate till, String comment, AbsencePage absencePage) {
     createAbsence("", from, till, comment, absencePage);
   }
@@ -141,7 +132,7 @@ public class SettingScreenshotTest extends ScreenshotTest {
     ScreenshotUtil.resizeBrowser(new Dimension(1050, 850));
     homePage = new HomePage();
     var adminSettingsPage = homePage.openAdminSettings();
-    var roleAssignmentTab = adminSettingsPage.openRoleAssignmentTab();
+    var roleAssignmentTab = adminSettingsPage.openRoleManagementTab();
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.SETTINGS_FOLDER + "role-assignment-tab");
     ScreenshotUtil.resizeBrowser(new Dimension(1050, 1200));
     roleAssignmentTab.openRoleCreationDialog();
