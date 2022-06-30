@@ -27,7 +27,7 @@ a.left-sidebar-menu-icon {
 
 .global-search-icon {
   position: absolute;
-  top: 25%;
+  top: 20%;
   right: 5px;
 }
 
@@ -36,7 +36,7 @@ a.left-sidebar-menu-icon {
 }
 
 .global-search-input {
-  padding: 6px 24px 6px 6px !important;
+  padding: 4px 24px 4px 6px !important;
 }
 
 .mobile-global-search-container .global-search-input {
