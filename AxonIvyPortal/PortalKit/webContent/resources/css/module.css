@@ -2923,9 +2923,10 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 }
 
 .setting-tab-action-buttons, .application-tab-action-buttons, .application-selection-action-buttons,
-.announcement-tab-action-buttons {
+.announcement-tab-action-buttons, .express-workflow-summary-actions-container,
+.create-role-container {
   text-align: right;
-  margin: 5px 0;
+  margin: .5em 0;
 }
 
 .admin-settings-form-input {
@@ -2955,10 +2956,6 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 .global-setting-table .ui-datatable-scrollable-header table tr th span.ui-column-title {
   display: block;
   height: 40px;
-}
-
-.global-setting-table, .announcement-table {
-  width: 100%;
 }
 
 .settings-table-key-column {
@@ -3004,14 +3001,6 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 
 .admin-application {
   margin-top: 10px;
-}
-
-.admin-table {
-  display: inline-block;
-}
-
-.admin-table.application-table {
-  width: 100%;
 }
 
 .app-dialog {
@@ -4143,6 +4132,10 @@ height: 340px;
   border-bottom-right-radius: 5px;
 }
 
+.admin-settings-container>.card {
+  min-height: 300px;
+}
+
 .admin-settings-container .ui-panelgrid-cell.ui-grid-col-3 {
   position: relative;
 }
@@ -5218,10 +5211,6 @@ body .ui-dialog.ui-widget.export-express-dialog .ui-dialog-titlebar.ui-widget-he
   display: flex;
   justify-content: flex-start;
   align-items: center;
-}
-
-.express-workflow-summary-table {
-  line-height: 1;
 }
 
 .express-workflow-summary-table .ui-paginator.ui-paginator-top,
@@ -6334,4 +6323,97 @@ a.dashboard-configuration-dialog__action-row label {
 
 #user-settings-menu .has-avatar .ui-avatar {
   top: 0;
+}
+
+/* =================== ROLE MANAGEMENT ====================== */
+.role-assigned-users-tooltip {
+  max-width: 350px;
+}
+
+.delete-role-dialog-content {
+  padding: 0.5em 2em;
+}
+
+.role-management-title {
+  margin: auto;
+}
+
+.user-assign-selection .width-100,
+.role-management-value .width-100,
+.user-assign-selection .width-100 .ui-autocomplete-input,
+.role-management-value .width-100 .ui-autocomplete-input,
+.user-assign-actions button {
+    width: 100%;
+}
+
+.role-details-dialog {
+  max-width: 750px;
+}
+
+.user-assign-selection, .user-assign-actions {
+  float: left;
+  margin: auto;
+}
+
+.user-assign-selection {
+  width: calc(100% - 100px);
+}
+
+.user-assign-actions {
+  width: 100px;
+  padding-left: 15px;
+}
+
+.role-tree-table-header,
+.users-role-table-header {
+  align-items: center;
+  justify-content: space-between;
+  display: flex !important;
+}
+
+.users-of-role-table-checkbox {
+  width: 50px;
+  text-align: center
+}
+
+.role-filter-container {
+  width: calc(100% - 100px);
+}
+
+.role-actions-container {
+  width: 100px;
+}
+
+.role-tree-table tbody tr.dummy td {
+  color: var(--ivy-primary-color);
+  font-style: italic;
+}
+
+.role-tree-table .role-name-column .role-username {
+  opacity: 0.6;
+  font-style: italic;
+  margin-left: .5rem;
+}
+
+.users-assigned-role-column {
+  max-width: 200px;
+}
+
+.users-of-role-container {
+  display: flex;
+  padding: 0;
+  vertical-align: middle;
+  align-content: center;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+}
+
+.users-of-role-container .user-displayname {
+  width: calc(100% - 100px);
+}
+
+.users-of-role-container .action-group {
+  width: 100px;
+  text-align:right
 }

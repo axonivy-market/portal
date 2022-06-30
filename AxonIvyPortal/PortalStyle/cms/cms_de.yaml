@@ -167,6 +167,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     showTutorial: Willkommenstour anzeigen
     taskListConfigDescription: In diesem Bereich können Sie den Arbeitsplan entsprechend Ihren Anforderungen konfigurieren.
     taskListConfiguration: Konfiguration der Aufgabenliste
+  PortalManagement:
+    AdminSetting: Administration
   ProcessViewer:
     Breadcrumb: Prozess-Viewer von {0} Prozess
     ProcessDataNotFound: Konnte die Prozessdaten nicht finden!
@@ -207,13 +209,15 @@ ch.ivy.addon.portalkit.ui.jsf:
     deleteAppConfirmation: Sind Sie sicher, dass Sie diese Anwendung entfernen möchten?
     dialogclosinginformation:
       dialogHeader: Einstellungen abgeschlossen
-      informMessage: Starten Sie Ihre Anwendung neu, um Ihre Änderungen zu sehen. Bei Verwendung von Single Sign On müssen Sie zusätzlich den Browser neustarten.
+      informMessage: Änderungen an den Portaleinstellungen erfordern eine Aktualisierung der aktuellen Seite, damit die neue Konfiguration wirksam wird.
     duplicatePortalAppMsg: 'Diese Anwendung existiert bereits. Bitte wählen Sie eine andere Anwendung. '
     editApplication: Anwendungseinstellungen ändern
     editSetting: Einstellungen ändern
     embedInFrame: Prozess/Task in Iframes Modus starten
     emptySupportedLanguages: Es werden keine weiteren Sprachen unterstützt
     globalVariableNote:
+      RoleDirectChildrenLimit: 'Die eingestellte Zahl steuert die Anzahl der direkten untergeordneten Rollen, die auf der Registerkarte Rollenverwaltung angezeigt werden. Gültige Zahl: 10, 50, 100'
+      RoleParentLimit: 'Die eingestellte Zahl steuert die Anzahl der übergeordneten Rollen, die beim Filtern von Rollen auf der Registerkarte Rollenverwaltung angezeigt werden. Gültige Zahl: 10, 50, 100'
       behaviourWhenClickingOnLineInTaskList: Zum Umschalten des Verhaltens (Ausführen der Aufgabe oder Aufrufen der Aufgabendetails) beim Klicken auf eine Zeile in der Aufgabenliste, im Aufgaben-Widget des Dashboards und bei verwandten Aufgaben auf der Seite mit den Vorgangsdetails.
       chatMaxConnection: 'Die gesetzte Nummer steuert die Anzahl der erlaubten Tabs mit aktiven Chat. Falls mehr Tabs geöffnet werden, wird der Chat in inaktive Tabs deaktiviert. Erlaubte Werte zw. 1-5 '
       chatResponseTimeout: Chat-Antwort-Time-out in Sekunden, Standardwert ist 0 und bedeutet kein Time-out. Wenn Chat-Nachrichten durch den Reverse-Proxy Nginx gehen, muss das Chat-Antwort-Time-out kleiner sein als das Nginx-Time-out, z. B. kleiner als 60 Sekunden.
@@ -393,6 +397,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     viewParticipant: Teilnehmer anzeigen
   common:
     BusinessCaseInformation: Business Case Informationen
+    CollapseAll: Alles zuklappen
+    ExpandAll: Alles aufklappen
     NoSelection: Keine Auswahl
     ResetToDefaultHeaderText: Auf Standard-Einstellungen zurücksetzen?
     RoleUserInformation: Rollen- und Benutzerinformationen
@@ -563,6 +569,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     typeAdmin: Alle Administratoren
     typeAllUsers: Alle Benutzer
     typeOnlyMe: Nur für mich
+    user: '{0} Benutzer'
     users: Benutzer
     via: schrieb
     viewExpired: Ihre aktuelle Bearbeitungsmaske ist abgelaufen und kann nicht weiter bearbeitet werden. Sie werden auf die Startseite umgeleitet.
@@ -575,6 +582,41 @@ ch.ivy.addon.portalkit.ui.jsf:
     years: Jahre
     'yes': Ja
   components:
+    RoleManagement:
+      AssignUsersToRole: Benutzer einer Rolle zuordnen
+      AssignedUser: Zugewiesene Benutzer
+      CannotDeleteRoleTooltip: Sie können diese Rolle aufgrund fehlender Berechtigungen nicht löschen
+      CannotEditRoleTooltip: Sie können diese Rolle aufgrund fehlender Berechtigungen nicht bearbeiten
+      CannotManageRoleTooltip: Sie können diese Rolle nicht verwalten, da es sich nicht um eine dynamische Rolle handelt.
+      CreateRole: Neue Rolle erstellen
+      DeleteButtonTitle: Rolle löschen
+      EditButtonTitle: Rolleninfo bearbeiten
+      FilteredRoles: Gefilterte Rollen
+      ListUsers: Benutzer der Rolle {0}
+      Messages:
+        ConfirmDeleteRole: Sind Sie sicher, dass Sie sie löschen wollen?
+        ConfirmDeleteUserOfRole: Sind Sie sicher, dass Sie die Benutzer aus der Rolle entfernen wollen?
+        CreateRoleFailed: Rolle {0} konnte nicht erstellt werden
+        CreateRoleSuccess: Rolle {0} erfolgreich erstellt
+        DuplicateRole: Rolle {0} existiert bereits im System, versuchen Sie es mit einem anderen Namen
+        MaxSearchLimit: Die aktuelle Suche hat mehr als {0} Ergebnisse
+        ParentRoleIsRequired: Elternrolle ist ein Pflichtfeld
+        RemoveRoleSuccess: Rolle {0} erfolgreich entfernt
+        RoleNameNotBeEmpty: Der Rollenname darf nicht leer sein
+        RoleNotFound: Keine Rollen gefunden
+        SearchToSeeMoreRole: Bitte benutzen Sie die Suche, um eine bestimmte Rolle zu finden ({0} weitere Rollen)
+        UpdateRoleSuccess: Rolle {0} erfolgreich aktualisiert
+        UserOfRoleNotFound: Kein Benutzer besitzt diese Rolle
+      NumberUsers: '{0} Benutzern'
+      ParentRole: Rolle der Eltern
+      RemovingRoleHeader: Entfernen der "{0}"-Rolle?
+      RoleDetails: Details zur Rolle {0}
+      RoleInformation: Informationen zur Rolle
+      RoleName: Name der Rolle
+      SearchRole: Suche nach Rolle
+      TitlePage: Rollenmanagement
+      UserAssignment: Benutzerzuordnung
+      UserSelectionLabel: Benutzer suchen, der dieser Rolle hinzugefügt werden soll
     SecurityMemberDisplayName:
       filterByUsername: Nach Benutzernamen filtern
       filterToSee: Filtern, um mehr anzuzeigen
@@ -951,7 +993,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     addNewProcessDialogHeader: Neuen Prozess hinzufügen
     backToOverview: Zurück zur Übersicht
     brokenLinkProcess: Der Prozess-Link ist ungültig. Bitte aktualisieren Sie Ihre Favoriten oder kontaktieren Sie den Administrator
-    collapseAll: '- Alles zuklappen'
     defaultProcesses: Anwendungs-Favoriten
     deleteExpressWorkflowTooltip: Express Workflow entfernen
     deleteExternalLinkTooltip: Externen Link löschen
@@ -966,7 +1007,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       dialogHeaderTitle: Informationen bearbeiten für {0}
     editExpressWorkflowTooltip: Express Workflow bearbeiten
     editProcesses: Prozesse bearbeiten
-    expandAll: + Alles aufklappen
     expressWorkflow: Express Workflow
     externalLink: Externer Link
     externalLinkVisibility: Sichtbarkeit
