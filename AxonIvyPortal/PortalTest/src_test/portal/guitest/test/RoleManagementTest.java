@@ -13,16 +13,16 @@ import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.AdminSettingsPage;
 import portal.guitest.page.HomePage;
-import portal.guitest.page.RoleAssignmentPage;
+import portal.guitest.page.RoleManagementPage;
 
-public class RoleAssignmentTest extends BaseTest {
+public class RoleManagementTest extends BaseTest {
 
   private static final String DENY_SPECIFIC_PERMISSION = "portalKitTestHelper/14DE09882B540AD5/denySpecificPortalPermission.ivp?portalPermission=%s";
   private static final String GRANT_SPECIFIC_PERMISSION = "portalKitTestHelper/14DE09882B540AD5/grantSpecificPortalPermission.ivp?portalPermission=%s";
 
   private HomePage homePage;
   private AdminSettingsPage adminSettingsPage;
-  private RoleAssignmentPage roleAssignmentPage;
+  private RoleManagementPage roleManagementPage;
 
   @Before
   @Override
@@ -35,7 +35,7 @@ public class RoleAssignmentTest extends BaseTest {
   @Test
   public void testVisibilityForRoleManagementTab() {
     accessToRoleManagement();
-    assertTrue("RoleAssignment tab is not displayed", roleAssignmentPage.isDisplayed());
+    assertTrue("RoleAssignment tab is not displayed", roleManagementPage.isDisplayed());
 
     // Admin lacks RoleReadAll permission
     redirectToRelativeLink(String.format(DENY_SPECIFIC_PERMISSION, "RoleReadAll"));
@@ -48,15 +48,15 @@ public class RoleAssignmentTest extends BaseTest {
   public void testVisibilityForCreatingRoleButton() {
     redirectToRelativeLink(String.format(GRANT_SPECIFIC_PERMISSION, "RoleReadAll"));
     accessToRoleManagement();
-    assertTrue("Create role button is not displayed", roleAssignmentPage.isCreateNewRoleButtonPresent());
-    roleAssignmentPage.openRoleCreationDialog();
-    assertTrue("Role info dialog is not displayed", roleAssignmentPage.getRoleInfoDialogContent().isDisplayed());
-    roleAssignmentPage.clickOnCancelLinkOfRoleDialog();
+    assertTrue("Create role button is not displayed", roleManagementPage.isCreateNewRoleButtonPresent());
+    roleManagementPage.openRoleCreationDialog();
+    assertTrue("Role info dialog is not displayed", roleManagementPage.getRoleInfoDialogContent().isDisplayed());
+    roleManagementPage.clickOnCancelLinkOfRoleDialog();
 
     // Admin lacks RoleCreate permission
     redirectToRelativeLink(String.format(DENY_SPECIFIC_PERMISSION, "RoleCreate"));
     accessToRoleManagement();
-    assertFalse("Create role button is displayed", roleAssignmentPage.isCreateNewRoleButtonPresent());
+    assertFalse("Create role button is displayed", roleManagementPage.isCreateNewRoleButtonPresent());
   }
 
   @Test
@@ -64,7 +64,7 @@ public class RoleAssignmentTest extends BaseTest {
     redirectToRelativeLink(String.format(GRANT_SPECIFIC_PERMISSION, "RoleReadAll"));
     redirectToRelativeLink(String.format(GRANT_SPECIFIC_PERMISSION, "RoleCreate"));
     var roleName = "NewRole" + UUID.randomUUID();
-    RoleAssignmentPage roleAssignmentPage = gotoRoleAssignmentAndCreateNewRole(roleName);
+    RoleManagementPage roleAssignmentPage = gotoRoleAssignmentAndCreateNewRole(roleName);
     assertTrue("New Role is not appear on tree", roleAssignmentPage.getRoleNamesInRoleTreeTable().contains(roleName));
     var deleteLinkClasses = roleAssignmentPage.getDeleteActionEnableForRole(roleName).getAttribute("class");
     assertFalse("User can not click on delele New Role", deleteLinkClasses.contains("ui-state-disabled"));
@@ -94,28 +94,28 @@ public class RoleAssignmentTest extends BaseTest {
     redirectToRelativeLink(String.format(GRANT_SPECIFIC_PERMISSION, "RoleMove"));
 
     var roleName = "NewRole" + UUID.randomUUID();
-    roleAssignmentPage = gotoRoleAssignmentAndCreateNewRole(roleName);
-    assertTrue("New Role is not appear on tree", roleAssignmentPage.getRoleNamesInRoleTreeTable().contains(roleName));
+    roleManagementPage = gotoRoleAssignmentAndCreateNewRole(roleName);
+    assertTrue("New Role is not appear on tree", roleManagementPage.getRoleNamesInRoleTreeTable().contains(roleName));
 
     // Admin lacks RoleCreate permission then he cannot edit role
     redirectToRelativeLink(String.format(DENY_SPECIFIC_PERMISSION, "RoleCreate"));
     accessToRoleManagement();
-    var editLinkClasses = roleAssignmentPage.getEditActionEnableForRole(roleName).getAttribute("class");
+    var editLinkClasses = roleManagementPage.getEditActionEnableForRole(roleName).getAttribute("class");
     assertTrue("User can click on edit New Role",
         editLinkClasses.contains("ui-state-disabled action-column-icon-button"));
 
     redirectToRelativeLink(String.format(GRANT_SPECIFIC_PERMISSION, "RoleCreate"));
     accessToRoleManagement();
-    assertTrue("RoleAssignment tab is not displayed", roleAssignmentPage.isDisplayed());
-    editLinkClasses = roleAssignmentPage.getEditActionEnableForRole(roleName).getAttribute("class");
+    assertTrue("RoleAssignment tab is not displayed", roleManagementPage.isDisplayed());
+    editLinkClasses = roleManagementPage.getEditActionEnableForRole(roleName).getAttribute("class");
     assertFalse("User can not click on edit New Role", editLinkClasses.contains("ui-state-disabled"));
-    roleAssignmentPage.clickOnEditRole(roleName);
+    roleManagementPage.clickOnEditRole(roleName);
     var roleDisplayName = "RoleDisplayName is edited";
-    roleAssignmentPage.enterRoleAdditionalInformation(roleDisplayName, "RoleDescription is edited");
-    roleAssignmentPage.clickOnSaveRoleButtonDialog();
-    assertTrue("New Role is not appears on tree", roleAssignmentPage.getRoleNamesInRoleTreeTable().contains(roleName));
+    roleManagementPage.enterRoleAdditionalInformation(roleDisplayName, "RoleDescription is edited");
+    roleManagementPage.clickOnSaveRoleButtonDialog();
+    assertTrue("New Role is not appears on tree", roleManagementPage.getRoleNamesInRoleTreeTable().contains(roleName));
     assertTrue("RoleDisplayname is not be changed",
-        roleAssignmentPage.getRoleDisplayNameInRoleTreeTable().contains(roleDisplayName));
+        roleManagementPage.getRoleDisplayNameInRoleTreeTable().contains(roleDisplayName));
   }
 
   @Test
@@ -123,7 +123,7 @@ public class RoleAssignmentTest extends BaseTest {
     redirectToRelativeLink(String.format(GRANT_SPECIFIC_PERMISSION, "RoleReadAll"));
     redirectToRelativeLink(String.format(GRANT_SPECIFIC_PERMISSION, "RoleCreate"));
     var roleName = "NewRole" + UUID.randomUUID();
-    RoleAssignmentPage roleAssignmentPage = gotoRoleAssignmentAndCreateNewRole(roleName);
+    RoleManagementPage roleAssignmentPage = gotoRoleAssignmentAndCreateNewRole(roleName);
     assertTrue("New Role is not appear on tree", roleAssignmentPage.getRoleNamesInRoleTreeTable().contains(roleName));
     var totalUsers = roleAssignmentPage.getTotalUsersOfRoleInRoleTreeTable(roleName);
     var assignUsersLinkClasses =
@@ -141,14 +141,16 @@ public class RoleAssignmentTest extends BaseTest {
     redirectToRelativeLink(String.format(GRANT_SPECIFIC_PERMISSION, "RoleCreate"));
     accessToRoleManagement();
     var roleName = "HR";
-    var totalUsers = roleAssignmentPage.getTotalUsersOfRoleInRoleTreeTable(roleName);
     var assignUsersLinkClasses =
-        roleAssignmentPage.getAssigningUsersActionEnableForRole(roleName).getAttribute("class");
+        roleManagementPage.getAssigningUsersActionEnableForRole(roleName).getAttribute("class");
     assertFalse("User can not click on AssignUsers", assignUsersLinkClasses.contains("ui-state-disabled"));
-    roleAssignmentPage.assignUsersToRole(roleName, Arrays.asList("david", "admin"));
-    roleAssignmentPage.clickOnCloseAssignUsersButton();
+    roleManagementPage.removeAllUsersOfRole(roleName);
+    roleManagementPage.clickOnCloseAssignUsersButton();
+    var totalUsers = roleManagementPage.getTotalUsersOfRoleInRoleTreeTable(roleName);
+    roleManagementPage.assignUsersToRole(roleName, Arrays.asList("admin", "demo", "david"));
+    roleManagementPage.clickOnCloseAssignUsersButton();
     assertFalse("Total users of role is the same",
-        totalUsers.equalsIgnoreCase(roleAssignmentPage.getTotalUsersOfRoleInRoleTreeTable(roleName)));
+        totalUsers.equalsIgnoreCase(roleManagementPage.getTotalUsersOfRoleInRoleTreeTable(roleName)));
   }
 
   @Test
@@ -156,26 +158,26 @@ public class RoleAssignmentTest extends BaseTest {
     redirectToRelativeLink(String.format(GRANT_SPECIFIC_PERMISSION, "RoleReadAll"));
     accessToRoleManagement();
     var roleName = "HR";
-    roleAssignmentPage.filterRoleTreeTableByRoleName(roleName);
+    roleManagementPage.filterRoleTreeTableByRoleName(roleName);
     assertTrue("RoleAssignment tab is displayed",
-        roleAssignmentPage.getRoleNamesInRoleTreeTable().equalsIgnoreCase("(Everybody);(HR)"));
+        roleManagementPage.getRoleNamesInRoleTreeTable().equalsIgnoreCase("(Everybody);(HR)"));
   }
 
-  private RoleAssignmentPage gotoRoleAssignmentAndCreateNewRole(String roleName) {
+  private RoleManagementPage gotoRoleAssignmentAndCreateNewRole(String roleName) {
     accessToRoleManagement();
-    roleAssignmentPage.openRoleCreationDialog();
-    roleAssignmentPage.createNewRoleWithData("Everybody", roleName, "New Role", "NewRoleDescription",
+    roleManagementPage.openRoleCreationDialog();
+    roleManagementPage.createNewRoleWithData("Everybody", roleName, "New Role", "NewRoleDescription",
         Arrays.asList("admin"));
-    roleAssignmentPage.clickOnSaveRoleButtonDialog();
-    return roleAssignmentPage;
+    roleManagementPage.clickOnSaveRoleButtonDialog();
+    return roleManagementPage;
   }
 
-  private RoleAssignmentPage accessToRoleManagement() {
+  private RoleManagementPage accessToRoleManagement() {
     redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     var adminSettingsPage = new HomePage().openAdminSettings();
     assertTrue("RoleAssignment tab is displayed", adminSettingsPage.isRoleAssingmentTabViewPresent());
-    roleAssignmentPage = adminSettingsPage.openRoleAssignmentTab();
-    return roleAssignmentPage;
+    roleManagementPage = adminSettingsPage.openRoleManagementTab();
+    return roleManagementPage;
   }
 
 }

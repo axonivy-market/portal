@@ -8,12 +8,12 @@ import org.openqa.selenium.WebElement;
 
 import portal.guitest.common.WaitHelper;
 
-public class RoleAssignmentPage extends TemplatePage {
+public class RoleManagementPage extends TemplatePage {
 
   private static final String ROLE_ASSINGMENT_PAGE_ID =
       "admin-setting-component:adminTabView:role-management-component:role-management-form";
 
-  public RoleAssignmentPage() {
+  public RoleManagementPage() {
     waitForElementDisplayed(By.id(ROLE_ASSINGMENT_PAGE_ID), true);
   }
 
@@ -225,5 +225,19 @@ public class RoleAssignmentPage extends TemplatePage {
     WaitHelper.assertTrueWithWait(() -> {
       return !roleNames.equalsIgnoreCase(getRoleNamesInRoleTreeTable());
     });
+  }
+
+  public void removeAllUsersOfRole(String roleName) {
+    clickOnAssignUsersToRole(roleName);
+    waitForElementDisplayed(By.cssSelector("[id$=':manage-role-details-form:users-of-role-table']"), true);
+    removeUserOfRole(0);
+  }
+
+  private void removeUserOfRole(int index) {
+    var usersTable = findElementByCssSelector("[id$=':manage-role-details-form:users-of-role-table_data']");
+    if (isElementPresent(By.cssSelector("a[id$=':delete-user-link']"))) {
+      click(usersTable.findElements(By.cssSelector("a[id$=':delete-user-link']")).get(index));
+      removeUserOfRole(0);
+    }
   }
 }
