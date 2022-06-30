@@ -183,7 +183,7 @@
                     value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
                     icon="#{visibilityBean.generateButtonIcon('si si-check-1')}"
                     update="@(.filter-container) @(.filter-selection-form) @(.task-view-container) #{cc.clientId}:hidden-task-count"
-                    oncomplete="taskWidget.setupScrollbar(); taskWidget.updateTaskCountToBreadcrumb();"
+                    oncomplete="taskWidget.showTaskFilter(); taskWidget.setupScrollbar(); taskWidget.updateTaskCountToBreadcrumb();"
                     process="@(filter-add-form)"
                     actionListener="#{data.dataModel.updateSelectedFilter}" />
                 </h:panelGroup>
@@ -192,11 +192,11 @@
 
             <!-- Reset filter button -->
             <h:panelGroup id="reset-filter-button-container"
-              styleClass="reset-filter-button-container #{data.dataModel.selectedTaskFilterData == null and !data.dataModel.isSelectedDefaultFilter() ? 'filter-reset-action' : ''}"
+              styleClass="reset-filter-button-container #{data.dataModel.selectedTaskFilterData == null and !data.dataModel.isSelectedDefaultFilter() ? 'filter-reset-action' : ''} js-filter-reset-action u-hidden-md-down"
               layout="block">
               <p:commandLink id="filter-reset-action"
                 rendered="#{data.dataModel.selectedTaskFilterData == null and !data.dataModel.isSelectedDefaultFilter()}"
-                styleClass="js-filter-reset-action u-hidden-md-down" onclick="PF('reset-filter-set-dialog').show();"
+                onclick="PF('reset-filter-set-dialog').show();"
                 global="false">
                 <i class="si si-button-refresh-arrows u-mar-right-5" />
                 <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}" />

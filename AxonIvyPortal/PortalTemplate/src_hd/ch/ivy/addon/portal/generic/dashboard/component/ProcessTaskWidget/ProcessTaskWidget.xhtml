@@ -35,7 +35,7 @@
         <p:ajax event="rowSelect" listener="#{dashboardBean.handleRowSelectEventOnTaskWidget}" disabled="#{!isReadOnlyMode or isPreviewMode}" />
         
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}" sortable="true" sortBy="#{name}" field="name" filterable="false"
-          styleClass="revelent-tasks__name">
+          styleClass="relevant-tasks__name">
           <span class="u-hidden-sm-down"><h:outputText value="#{task.name}" /></span>
           <h:panelGroup layout="block" styleClass="u-hidden-md-up">
             <h:outputText value="#{task.name}" title="#{task.name}" styleClass="dashboard-tasks__column-small-screen-name"/>
@@ -43,17 +43,17 @@
           </h:panelGroup>
         </p:column>
         
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}" sortable="true" sortBy="#{description}" field="description" filterable="false" styleClass="dashboard-cases__description u-hidden-sm-down">
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}" sortable="true" sortBy="#{description}" field="description" filterable="false" styleClass="relevant-tasks__description u-hidden-sm-down">
           <span><h:outputText value="#{task.description}" /></span>
         </p:column>
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/EXPIRY_TIME')}" sortable="true" sortBy="#{expiryTimestamp}" field="expiryTimestamp" filterable="false" styleClass="revelent-tasks__expiry u-hidden-sm-down">
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/EXPIRY_TIME')}" sortable="true" sortBy="#{expiryTimestamp}" field="expiryTimestamp" filterable="false" styleClass="relevant-tasks__expiry u-hidden-sm-down">
           <h:outputText styleClass="u-text-align-center" value="#{task.expiryTimestamp}">
             <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}"/>
           </h:outputText>
         </p:column>
         
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}"
-          styleClass="revelent-tasks__more u-hidden-sm-down">
+          styleClass="relevant-tasks__more u-hidden-sm-down">
           <div id="action-cell-#{rowIndex}" class="task-header-action-cell">
             <div class="action-container">
               <p:commandLink id="task-action-component" disabled="#{!taskActionBean.isNotDone(task) or !taskActionBean.canResume(task) or isPreviewMode or !isReadOnlyMode}"
