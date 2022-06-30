@@ -113,8 +113,8 @@ import ch.ivy.addon.portalkit.bo.PriorityStatistic;
 import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.dto.DisplayName;
-import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
+import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.enums.StatisticChartType;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCustomFieldSearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
@@ -1352,7 +1352,7 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
   }
 
   public static boolean equalsDisplayNameLocale(DisplayName displayName, String language) {
-    return StringUtils.equals(displayName.getLocale().toLanguageTag(), language);
+    return StringUtils.equalsIgnoreCase(displayName.getLocale().toLanguageTag(), language);
   }
 
   public boolean isDefaultChart(List<StatisticChart> statisticCharts) {
