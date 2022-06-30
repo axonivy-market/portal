@@ -35,7 +35,7 @@
           </div>
   
           <p:overlayPanel id="widget-filter-category-panel" for="widget-filter-category"
-            appendTo="widget-filter-category-container" dynamic="true"
+            appendTo="@(body)" dynamic="true"
             styleClass="widget-configuration__category-panel #{cc.attrs.overlayCategoryStyleClass}"
             onHide="$(this.targetElement).parents('.widget-configuration__category').find('.portal-cancel-button').click();">
   

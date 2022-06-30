@@ -34,7 +34,7 @@
         <p:ajax event="rowSelect" listener="#{dashboardBean.navigateToSelectedCaseDetails}" disabled="#{!isReadOnlyMode or isPreviewMode}" />
 
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}" sortable="true" sortBy="#{name}" field="name" filterable="false"
-          styleClass="revelent-cases__name">
+          styleClass="relevant-cases__name">
           <span class="u-hidden-sm-down"><h:outputText value="#{caseItem.name}" /></span>
           <h:panelGroup layout="block" styleClass="u-hidden-md-up">
             <h:outputText value="#{caseItem.name}" title="#{caseItem.name}" styleClass="dashboard-cases__column-small-screen-name"/>
@@ -42,7 +42,7 @@
           </h:panelGroup>
         </p:column>
         
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}" styleClass="dashboard-cases__description u-hidden-sm-down">
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}" styleClass="relevant-cases__description u-hidden-sm-down">
           <span><h:outputText value="#{caseItem.description}" /></span>
         </p:column>
         

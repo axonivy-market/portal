@@ -617,15 +617,12 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 }
 
 .case-header-data .case-header-category-cell {
-  flex: 0 0 135px;
+  flex: 1 0 135px;
+  max-width: 200px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   padding-right: 10px;
-}
-
-.case-header-data .case-header-category-cell {
-  flex: 0 0 200px;
 }
 
 .case-info-row {
@@ -769,6 +766,14 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   width: 80vw !important;
 }
 
+.case-info-dialog.ui-dialog .ui-dialog-title {
+  width: calc(100% - 34px);
+}
+
+.case-info-dialog.ui-dialog .ui-dialog-title .case-infor-title {
+  width: 100%;
+}
+
 .case-info-dialog.ui-dialog .ui-dialog-content.ui-widget-content {
   padding: 0;
 }
@@ -867,6 +872,12 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   font-weight: normal;
 }
 
+@media screen and (max-width: 1030px) {
+  body .ui-chkbox.task-history-checkbox {
+    display: none;
+  }
+}
+
 .case-task-note-histories {
   white-space: pre-wrap;
 }
@@ -950,13 +961,18 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   text-align: center;
 }
 
+.case-detail-body .case-details-related-task-table .related-task-complete-on-column {
+  width: 136px;
+  text-align: center;
+}
+
 .case-detail-body .case-details-related-task-table .related-task-state-column {
   width: 120px;
   text-align: center;
 }
 
 .case-detail-body .case-details-related-task-table .related-task-more-column {
-  width: 238px;
+  width: 196px;
   text-align: center;
 }
 
@@ -996,17 +1012,7 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   }
 }
 
-@media screen and (min-width: 40.063em) {
-  .case-detail-body .case-details-item .ui-datatable .related-case-name.name-column {
-    border-right: none;
-  }
-}
-
 @media screen and (max-width: 90.062em) {
-  .case-detail-body .related-case-name.name-column {
-    width: 100%;
-  }
-
   .case-detail-body .name-column .case-description-value,
   .case-detail-body .case-details-related-task-table .related-task-name-column .task-description-value {
     display: block;
@@ -1024,8 +1030,19 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   .case-detail-body .related-task-column-config {
     display: none;
   }
+
+  .case-detail-body .name-column,
+  .case-detail-body .case-details-related-task-table .related-task-name-column {
+    width: 100%;
+  }
 }
 
+@media screen and (min-width: 90.063em) {
+  .case-detail-body .name-column .case-description-value,
+  .case-detail-body .case-details-related-task-table .related-task-name-column .task-description-value {
+    display: none;
+  }
+}
 /********************************** END CASE ITEM **********************************/
 
 /********************************** START PROCESSES **********************************/
@@ -1844,16 +1861,6 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   min-width: 105px;
 }
 
-.task-category-info{
-  text-align: left;	
-  display: block;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  width: 200px;
-  padding-right: 10px;
-}
-
 .task-start-info-header-full-mode {
   padding-left: 7px;
 }
@@ -1902,11 +1909,15 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 }
 
 .task-start-list .category-cell {
-  flex: 0 0 200px;
-  text-align: center;
+  flex: 1 0 70px;
+  max-width: 200px;
+  padding-right: 10px;
 }
 
-.task-start-list .name-cell, .task-start-list .description-cell, .task-start-list .responsible-cell {
+.task-start-list .name-cell,
+.task-start-list .description-cell,
+.task-start-list .responsible-cell,
+.task-start-list .category-cell {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -5137,13 +5148,13 @@ body .ui-picklist .ui-picklist-filter-container .ui-icon {
   bottom: 5px;
   right: 7px;
 }
-@media screen and (max-width: 40em) {
+@media screen and (max-width: 1320px) {
   .display-full-text {
     display: none !important;
   }
 }
 
-@media screen and (min-width: 40.063em) {
+@media screen and (min-width: 1320px) {
   .display-short-text {
     display: none !important;
   }
@@ -5242,6 +5253,7 @@ body .ui-widget-header.portal-breadcrumb a {
 	display: flex;
 	float: left;
 	margin-left: 0;
+	line-height: 1.65;
 }
 
 .layout-wrapper .layout-main .layout-topbar .layout-topbar-menu-wrapper .topbar-menu>li.breadcrumb-container >form {
@@ -5487,41 +5499,12 @@ height: 260px;
 .case-map-stage hr{
 clear: both;
 }
-@media (max-width: 768px) {
-.process-overview-layout-content{
-overflow-y:auto;
-height:85%;	
-}
-}
-@media (min-width: 769px) {
-.process-overview-layout-content{
-overflow-y:auto;
-height:100%;	
-}
-}
-@media (max-width: 768px) {
-.case-map-detail-layout-content{
-overflow-y:auto;
-height:85%;	
-}
-}
-@media (min-width: 769px) {
-.case-map-detail-layout-content{
-overflow-y:auto;
-height:100%;	
-}
-}
-@media (max-width: 768px) {
-.case-map-overview-layout-content{
-overflow-y:auto;
-height:85%;	
-}
-}
-@media (min-width: 769px) {
-.case-map-overview-layout-content{
-overflow-y:auto;
-height:100%;	
-}
+
+.process-overview-layout-content,
+.case-map-detail-layout-content,
+.case-map-overview-layout-content {
+  overflow-y:auto;
+  height:100%;
 }
 .case-details-row-space span.si {
   vertical-align: text-top;
@@ -5983,6 +5966,13 @@ body span.ui-commandlink .si {
   justify-content: end;
 }
 
+@supports (-webkit-touch-callout: none) {
+    .image-process-container .image-process-item .card-item.card.image-widget-mode {
+      padding: 0;
+      height: -webkit-fill-available;
+    }
+}
+
 .image-process-container .image-process-item .card-item.card.image-widget-mode .image-process-item-container {
   width: inherit;
   position: relative;
@@ -6032,6 +6022,12 @@ body span.ui-commandlink .si {
 .image-process-container .image-process-item .card-item.card.image-widget-mode .image-view-form .process-description {
   min-height: 24px;
   height: 100%;
+}
+
+@supports (-webkit-touch-callout: none) {
+    .image-process-container .image-process-item .card-item.card.image-widget-mode .image-view-form .process-description {
+      height: -webkit-fill-available;
+    }
 }
 
 .image-process-container .image-process-item .card-item.card.image-widget-mode .image-view-form .start-process-image-widget {
