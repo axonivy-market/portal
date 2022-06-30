@@ -170,7 +170,7 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public SelenideElement getCombinedModeProcessFirstTaskName() {
-    return $("div[id$=':dashboard-process-tasks-container'] td.revelent-tasks__name");
+    return $("div[id$=':dashboard-process-tasks-container'] td.relevant-tasks__name");
   }
 
   public SelenideElement getCasesTab() {
@@ -178,7 +178,7 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public SelenideElement getCombinedModeProcessFirstCaseName() {
-    return $("div[id$=':dashboard-process-cases-container'] td.revelent-cases__name");
+    return $("div[id$=':dashboard-process-cases-container'] td.relevant-cases__name");
   }
 
   public void startCombinedModeProcessFirstTask() {
