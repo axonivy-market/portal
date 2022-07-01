@@ -51,7 +51,7 @@ public class DashboardTaskWidgetTest extends BaseTest {
     newDashboardPage = new NewDashboardPage();
   }
   
-  @Test()
+  @Test
   public void testHideTasks() {
     redirectToRelativeLink(createTestingTasksUrl);
     login(TestAccount.ADMIN_USER);

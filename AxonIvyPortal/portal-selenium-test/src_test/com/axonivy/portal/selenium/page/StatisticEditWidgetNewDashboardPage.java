@@ -1,7 +1,8 @@
 package com.axonivy.portal.selenium.page;
 
-import static com.codeborne.selenide.Condition.*;
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Condition.appear;
+import static com.codeborne.selenide.Condition.disappear;
+import static com.codeborne.selenide.Selenide.$;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
@@ -10,7 +11,7 @@ public class StatisticEditWidgetNewDashboardPage extends TemplatePage {
 
   @Override
   protected String getLoadedLocator() {
-    return "id('widget-configuration-form:new-widget-configuration-component:preview-statistic')";
+    return ".statistic-configuration__select-chart";
   }
 
   private SelenideElement widgetTitle() {

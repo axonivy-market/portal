@@ -25,7 +25,6 @@ public class DashboardCaseWidgetActionTest extends BaseTest {
   private static final String ACCESS_TASK_DETAILS = "ACCESS_TASK_DETAILS";
 
   private NewDashboardPage newDashboardPage;
-  private CaseWidgetNewDashBoardPage caseWidget;
 
   @Override
   @BeforeEach
@@ -39,7 +38,7 @@ public class DashboardCaseWidgetActionTest extends BaseTest {
   public void testVisibilityCaseActionForNormalUser() {
     login(TestAccount.DEMO_USER);
     redirectToNewDashBoard();
-    caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
+    newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
     // In progress
     assertCaseActionsByCaseState("In progress", Arrays.asList("Details", "Process overview", "Process Viewer"));
   }
@@ -50,7 +49,7 @@ public class DashboardCaseWidgetActionTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(create12CasesWithCategoryUrl);
     redirectToNewDashBoard();
-    caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
+    CaseWidgetNewDashBoardPage caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
     // In progress
     assertCaseActionsByCaseState("In progress", Arrays.asList("Details", "Process overview", "Business details", "Destroy", "Process Viewer"));
     // Done
@@ -63,6 +62,7 @@ public class DashboardCaseWidgetActionTest extends BaseTest {
 
   private void assertCaseActionsByCaseState(String state, List<String> caseActionsInCase) {
     filterByCaseState(state);
+    CaseWidgetNewDashBoardPage caseWidget = new CaseWidgetNewDashBoardPage();
     ElementsCollection actions = caseWidget.getActiveCaseActions(0);
     actions.shouldHaveSize(caseActionsInCase.size());
     assertTrue(actions.texts().containsAll(caseActionsInCase));
@@ -70,6 +70,7 @@ public class DashboardCaseWidgetActionTest extends BaseTest {
   }
 
   private void filterByCaseState(String state) {
+    CaseWidgetNewDashBoardPage caseWidget = new CaseWidgetNewDashBoardPage();
     caseWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
     caseWidget.openFilterWidget();
     caseWidget.resetFilter();

@@ -14,14 +14,7 @@ public class TaskDetailsPage extends TemplatePage {
 
   @Override
   protected String getLoadedLocator() {
-    return "id('task-detail-template:task-detail-container')";
-  }
-
-  public TaskDetailsPage() {}
-
-  public static TaskDetailsPage newInstance() {
-    $("#role-and-user-information").waitUntil(appear, DEFAULT_TIMEOUT);
-    return new TaskDetailsPage();
+    return "#role-and-user-information";
   }
 
   public void addNote(String noteContent) {
@@ -38,10 +31,11 @@ public class TaskDetailsPage extends TemplatePage {
     return $$("span[id$=':task-notes:task-history-content-container'] table tbody tr td a").filter(text(content));
   }
 
-  public void gotoTechnicalCase() {
+  public CaseDetailsPage gotoTechnicalCase() {
     $("a[id$=':general-information:related-technical-case']").waitUntil(appear, DEFAULT_TIMEOUT);
     $("a[id$=':general-information:related-technical-case']").click();
     $("div[id$=':general-information:business-case-information']").waitUntil(appear, DEFAULT_TIMEOUT);
+    return new CaseDetailsPage();
   }
 
   public void gotoBusinessCase() {

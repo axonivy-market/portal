@@ -18,6 +18,11 @@ public class ProcessWidgetNewDashBoardPage extends TemplatePage {
     this("form[id$='process-list']", YOUR_PROCESSES_WIDGET);
   }
 
+  @Override
+  protected String getLoadedLocator() {
+    return "[id$='dashboard-cases-container']";
+  }
+
   public ProcessWidgetNewDashBoardPage(String processWidgetName) {
     this("div[id$='dashboard-process']", processWidgetName);
   }

@@ -7,9 +7,10 @@ import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 
 public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
+
   @Override
   protected String getLoadedLocator() {
-    return "//*[contains(@id,'new-widget-configuration-dialog')]";
+    return "[id$='process-display-mode']";
   }
 
   public void selectImageModeAndSaveWidget(String processName) {
