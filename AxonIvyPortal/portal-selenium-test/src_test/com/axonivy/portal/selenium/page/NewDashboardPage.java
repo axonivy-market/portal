@@ -23,6 +23,11 @@ public class NewDashboardPage extends TemplatePage {
   private static final String MY_FILTER = "My filter";
   private static final String SHOWCASE = "Showcase";
 
+  @Override
+  protected String getLoadedLocator() {
+    return ".dashboard__header";
+  }
+
   public CaseWidgetNewDashBoardPage selectCaseWidget(String caseWidgetName) {
     return new CaseWidgetNewDashBoardPage(caseWidgetName);
   }
@@ -641,16 +646,12 @@ public class NewDashboardPage extends TemplatePage {
 
   public NewDashboardConfigurationPage navigateToEditPublicDashboardPage() {
     $("a[id$=':edit-public-dashboard']").waitUntil(Condition.appear, DEFAULT_TIMEOUT).click();
-    NewDashboardConfigurationPage newDashboardConfigurationPage = new NewDashboardConfigurationPage();
-    newDashboardConfigurationPage.waitPageDisplay();
-    return newDashboardConfigurationPage;
+    return new NewDashboardConfigurationPage();
   }
 
   public NewDashboardConfigurationPage navigateToEditPrivateDashboardPage() {
     $("a[id$=':edit-private-dashboard']").click();
-    NewDashboardConfigurationPage newDashboardConfigurationPage = new NewDashboardConfigurationPage();
-    newDashboardConfigurationPage.waitPageDisplay();
-    return newDashboardConfigurationPage;
+    return new NewDashboardConfigurationPage();
   }
 
   public void openCreatePublicDashboardMenu() {
@@ -749,10 +750,6 @@ public class NewDashboardPage extends TemplatePage {
   public void selectDashboard(int index) {
     $$("a.dashboard__title").get(index).shouldBe(getClickableCondition()).click();
     $("a.dashboard__title--active").waitUntil(appear, DEFAULT_TIMEOUT);
-  }
-
-  public void waitPageDisplay() {
-    $("a.dashboard__title").waitUntil(disappears, DEFAULT_TIMEOUT);
   }
 
   public StatisticWidgetDashboardPage selectStatisticWidget() {
