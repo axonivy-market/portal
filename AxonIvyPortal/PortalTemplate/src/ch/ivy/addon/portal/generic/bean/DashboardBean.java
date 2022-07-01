@@ -504,11 +504,11 @@ public class DashboardBean implements Serializable {
   }
   
   private String readDashboardFromSession() {
-    return (String) Ivy.session().getAttribute(SessionAttribute.SECLTED_DASHBOARD_ID.toString());
+    return (String) Ivy.session().getAttribute(SessionAttribute.SELECTED_DASHBOARD_ID.toString());
   }
   
   private void storeDashboardInSession(String id) {
-    Ivy.session().setAttribute(SessionAttribute.SECLTED_DASHBOARD_ID.toString(), id);
+    Ivy.session().setAttribute(SessionAttribute.SELECTED_DASHBOARD_ID.toString(), id);
   }
   
   private int findIndexOfDashboardById(String selectedDashboardId) {
