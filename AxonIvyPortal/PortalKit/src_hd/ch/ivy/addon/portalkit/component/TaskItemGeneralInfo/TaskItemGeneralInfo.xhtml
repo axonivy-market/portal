@@ -86,7 +86,7 @@
         <div class="ui-g-12 no-padding-column text-content last-line text-ellipsis">
           <h:panelGroup id="task-detail-state" styleClass="state-cell default-task-cell">
             <ic:ch.ivy.addon.portalkit.component.task.column.TaskState
-              state="#{task.state}" showIndicatorBesideText="true"/>
+              state="#{task.state}" showIndicatorBesideText="true" responsiveStyleClass="" />
           </h:panelGroup>
           <p:tooltip rendered="#{state == 'FAILED' or state == 'JOIN_FAILED'}" for="task-detail-state"
             value="#{taskBean.getTaskFailedReason(task)}" trackMouse="true" hideEvent="mouseleave click" />
