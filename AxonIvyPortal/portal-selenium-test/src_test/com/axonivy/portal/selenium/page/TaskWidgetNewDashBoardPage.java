@@ -6,6 +6,7 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
@@ -34,6 +35,11 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
     this.taskWidgetName = taskWidgetName;
   }
 
+  @Override
+  protected String getLoadedLocator() {
+    return "[id$='dashboard-tasks-container']";
+  }
+
   private int getIndexWidgetByColumn(String columnName) {
     ElementsCollection elementsTH = $(taskWidgetId).waitUntil(appear, DEFAULT_TIMEOUT).$$("table thead tr th");
     for (int i = 0; i < elementsTH.size(); i++) {
@@ -60,7 +66,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
 
   public void startFirstTask() {
     $$("span.widget__filter-noti-number").first().waitUntil(appear, DEFAULT_TIMEOUT);
-    getColumnOfTaskHasIndex(0, "Start").waitUntil(appear, DEFAULT_TIMEOUT).click();
+    WaitHelper.waitForNavigation(() -> getColumnOfTaskHasIndex(0, "Start").waitUntil(appear, DEFAULT_TIMEOUT).click());
   }
   
   public void startFirstTaskAndWaitShowHomePageButton() {

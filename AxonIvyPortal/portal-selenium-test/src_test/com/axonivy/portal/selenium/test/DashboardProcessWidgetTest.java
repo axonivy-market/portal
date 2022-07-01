@@ -43,9 +43,9 @@ public class DashboardProcessWidgetTest extends BaseTest {
   @BeforeEach
   public void setup() {
     super.setup();
-    newDashboardPage = new NewDashboardPage();
     login(TestAccount.ADMIN_USER);
     redirectToNewDashBoard();
+    newDashboardPage = new NewDashboardPage();
   }
 
   @Test

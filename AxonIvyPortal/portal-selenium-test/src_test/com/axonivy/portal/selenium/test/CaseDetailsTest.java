@@ -29,14 +29,11 @@ public class CaseDetailsTest extends BaseTest {
 
   private static final String ACCESS_TASK_DETAILS = "ACCESS_TASK_DETAILS";
 
-  private CaseDetailsPage caseDetailsPage;
-
   @Override
   @BeforeEach
   public void setup() {
     super.setup();
     updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), ACCESS_TASK_DETAILS);
-    caseDetailsPage = new CaseDetailsPage();
     grantSpecificPortalPermission(PortalPermission.TASK_CASE_ADD_NOTE);
   }
 
@@ -47,7 +44,7 @@ public class CaseDetailsTest extends BaseTest {
     MainMenuPage mainMenuPage = new MainMenuPage();
     mainMenuPage.openCaseList();
     CaseWidgetPage caseWidgetPage = new CaseWidgetPage();
-    caseWidgetPage.openCase(ORDER_PIZZA);
+    CaseDetailsPage caseDetailsPage = caseWidgetPage.openCase(ORDER_PIZZA);
     caseDetailsPage.getRelatedCasesComponent().shouldHave(sizeGreaterThanOrEqual(1));
     caseDetailsPage.getHitoriesComponent().shouldHave(sizeGreaterThanOrEqual(1));
     caseDetailsPage.addNote(NOTE_BUSINESS_CASE);
@@ -64,7 +61,7 @@ public class CaseDetailsTest extends BaseTest {
     MainMenuPage mainMenuPage = new MainMenuPage();
     mainMenuPage.openCaseList();
     CaseWidgetPage caseWidgetPage = new CaseWidgetPage();
-    caseWidgetPage.openCase(ORDER_PIZZA);
+    CaseDetailsPage caseDetailsPage = caseWidgetPage.openCase(ORDER_PIZZA);
     caseDetailsPage.getRelatedCasesComponent().shouldHave(sizeGreaterThanOrEqual(1));
     caseDetailsPage.gotoCaseDetailsPageOfRelatedCase(TAKE_ORDER_AND_MAKE_PIZZA);
     caseDetailsPage.getHitoriesComponent().shouldHave(sizeGreaterThanOrEqual(1));

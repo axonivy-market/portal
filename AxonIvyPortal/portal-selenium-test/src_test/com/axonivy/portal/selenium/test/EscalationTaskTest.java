@@ -29,9 +29,6 @@ public class EscalationTaskTest extends BaseTest {
   private static final String ACCESS_TASK_DETAILS = "ACCESS_TASK_DETAILS";
   private static final String TRIGGER_ESCALATION_CASE= "Create Test Data For Trigger Escalation";
   
-  private NewDashboardPage newDashboardPage;
-  private TaskWidgetNewDashBoardPage taskWidget;
-  
   @Override
   @BeforeEach
   public void setup() {
@@ -43,11 +40,9 @@ public class EscalationTaskTest extends BaseTest {
   public void testTriggerEscalationTaskOnTaskDetails() {
     updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), ACCESS_TASK_DETAILS);
     login(TestAccount.ADMIN_USER);
-    MainMenuPage mainMenuPage = new MainMenuPage();
-    TaskDetailsPage taskDetailsPage = new TaskDetailsPage();
-    mainMenuPage.openTaskList();
-    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+    TaskWidgetPage taskWidgetPage = new MainMenuPage().openTaskList();
     taskWidgetPage.openTask(SICK_LEAVE_REQUEST);
+    TaskDetailsPage taskDetailsPage = new TaskDetailsPage();
     taskDetailsPage.openActionPanel();
     taskDetailsPage.triggerEscalation();
     taskDetailsPage.getPriorityOfTask().shouldHave(Condition.text("EXCEPTION"));
@@ -83,10 +78,8 @@ public class EscalationTaskTest extends BaseTest {
     updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), ACCESS_TASK_DETAILS);
     login(TestAccount.ADMIN_USER);
     MainMenuPage mainMenuPage = new MainMenuPage();
-    mainMenuPage.openCaseList();
-    CaseDetailsPage caseDetailsPage = new CaseDetailsPage();
-    CaseWidgetPage caseWidgetPage = new CaseWidgetPage();
-    caseWidgetPage.openCase(TRIGGER_ESCALATION_CASE);
+    CaseWidgetPage caseWidgetPage = mainMenuPage.openCaseList();
+    CaseDetailsPage caseDetailsPage = caseWidgetPage.openCase(TRIGGER_ESCALATION_CASE);
     caseDetailsPage.getNameOfRelatedTask(1).shouldHave(Condition.text(SICK_LEAVE_REQUEST));
     caseDetailsPage.clickRelatedTaskActionButton(1);
     caseDetailsPage.triggerEscalationTask(1);
@@ -100,15 +93,16 @@ public class EscalationTaskTest extends BaseTest {
   @Test
   public void testTriggerEscalationTaskWidgetOfDashboard() {
     login(TestAccount.ADMIN_USER);
-    newDashboardPage = new NewDashboardPage();
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
     redirectToNewDashBoard();
-    taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
+    TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
     filterTaskByNameAndState(SICK_LEAVE_REQUEST,"Suspended");
     taskWidget.triggerEscalationTask(0);
     filterTaskByNameAndState(SICK_LEAVE_REQUEST,"Destroyed");
   }
   
   private void filterTaskByNameAndState(String name, String state) {
+    TaskWidgetNewDashBoardPage taskWidget = new TaskWidgetNewDashBoardPage();
     taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
     taskWidget.openFilterWidget();
     taskWidget.resetFilter();
