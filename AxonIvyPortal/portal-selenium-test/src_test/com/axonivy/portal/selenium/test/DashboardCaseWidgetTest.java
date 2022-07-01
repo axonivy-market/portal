@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.TestAccount;
-import com.axonivy.portal.selenium.page.CaseDetailsWidgetNewDashBoardPage;
+import com.axonivy.portal.selenium.page.CaseDetailsPage;
 import com.axonivy.portal.selenium.page.CaseEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.CaseWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.NewDashboardConfigurationPage;
@@ -46,7 +46,7 @@ public class DashboardCaseWidgetTest extends BaseTest {
     newDashboardPage = new NewDashboardPage();
   }
 
-  @Test()
+  @Test
   public void testHideCase() {
     redirectToRelativeLink(hideCaseUrl);
     login(TestAccount.ADMIN_USER);
@@ -71,7 +71,7 @@ public class DashboardCaseWidgetTest extends BaseTest {
     redirectToNewDashBoard();
     CaseWidgetNewDashBoardPage caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
     caseWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
-    CaseDetailsWidgetNewDashBoardPage detailsCase = caseWidget.openDetailsFirstCase();
+    CaseDetailsPage detailsCase = caseWidget.openDetailsFirstCase();
     detailsCase.openActionPanel();
     detailsCase.destroy();
     refreshPage();
@@ -87,7 +87,7 @@ public class DashboardCaseWidgetTest extends BaseTest {
     redirectToNewDashBoard();
     CaseWidgetNewDashBoardPage caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
     caseWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
-    CaseDetailsWidgetNewDashBoardPage detailsCase = caseWidget.openDetailsFirstCase();
+    CaseDetailsPage detailsCase = caseWidget.openDetailsFirstCase();
     detailsCase.openActionPanel();
     detailsCase.destroyLink().shouldNotHave(visible);
   }
@@ -99,7 +99,7 @@ public class DashboardCaseWidgetTest extends BaseTest {
     redirectToNewDashBoard();
     CaseWidgetNewDashBoardPage caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
     caseWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
-    CaseDetailsWidgetNewDashBoardPage detailsCase = caseWidget.openDetailsCase(LEAVE_REQUEST_CASE_NAME);
+    CaseDetailsPage detailsCase = caseWidget.openDetailsCase(LEAVE_REQUEST_CASE_NAME);
     detailsCase.countRelatedTasks().shouldHaveSize(4);
   }
 
@@ -110,7 +110,7 @@ public class DashboardCaseWidgetTest extends BaseTest {
     redirectToNewDashBoard();
     CaseWidgetNewDashBoardPage caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
     caseWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
-    CaseDetailsWidgetNewDashBoardPage detailsCase = caseWidget.openDetailsCase(ORDER_PIZZA);
+    CaseDetailsPage detailsCase = caseWidget.openDetailsCase(ORDER_PIZZA);
     detailsCase.countRelatedCases().shouldHaveSize(1);
   }
   
@@ -124,7 +124,7 @@ public class DashboardCaseWidgetTest extends BaseTest {
     caseWidget.openFilterWidget();
     caseWidget.filterCaseName(LEAVE_REQUEST_DEFAULT_CASE);
     caseWidget.applyFilter();
-    CaseDetailsWidgetNewDashBoardPage detailsCase = caseWidget.openDetailsFirstCase();
+    CaseDetailsPage detailsCase = caseWidget.openDetailsFirstCase();
     detailsCase.openActionPanel();
     detailsCase.openAdditionalCaseDetailsPage();
     newDashboardPage.switchLastBrowserTab();
@@ -142,7 +142,7 @@ public class DashboardCaseWidgetTest extends BaseTest {
     caseWidget.openFilterWidget();
     caseWidget.filterCaseName(INVESTMENT_REQUEST_CUSTOMIZATION_CASE);
     caseWidget.applyFilter();
-    CaseDetailsWidgetNewDashBoardPage detailsCase = caseWidget.openDetailsFirstCase();
+    CaseDetailsPage detailsCase = caseWidget.openDetailsFirstCase();
     detailsCase.openActionPanel();
     detailsCase.openAdditionalCaseDetailsPage();
     newDashboardPage.switchLastBrowserTab();

@@ -9,8 +9,10 @@ import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 
 public class NewDashboardDetailsEditPage extends TemplatePage {
-  public void waitPageDisplay() {
-    $("a.dashboard__title").waitUntil(Condition.appear, DEFAULT_TIMEOUT);
+
+  @Override
+  protected String getLoadedLocator() {
+    return "#add-button";
   }
 
   public void addWidget() {
@@ -40,9 +42,7 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
 
   public NewDashboardConfigurationPage backToConfigurationPage() {
     $("a[id='back-to-configuration']").click();
-    NewDashboardConfigurationPage configurationPage = new NewDashboardConfigurationPage();
-    configurationPage.waitPageDisplay();
-    return configurationPage;
+    return new NewDashboardConfigurationPage();
   }
 
   public void deleteCompactModeProcess() {

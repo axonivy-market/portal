@@ -20,7 +20,6 @@ import ch.ivy.addon.portalkit.enums.PortalVariable;
 public class DashboardRestoreConfigurationTest extends BaseTest {
 
   private NewDashboardPage newDashboardPage;
-  private NewDashboardDetailsEditPage newDashboardDetailsEditPage;
   private static final String CASE_WIDGET_NAME = "Your New Cases Widget";
   private static final String DASHBOARD_NAME = "New public dashboard";
   private static final String DASHBOARD_DESCRIPTION = "New public dashboard description";
@@ -44,6 +43,7 @@ public class DashboardRestoreConfigurationTest extends BaseTest {
     newDashboardPage.createPublicDashboardFromScratch(DASHBOARD_NAME, DASHBOARD_DESCRIPTION, DASHBOARD_PERMISSION);
     verifyEditingDashboardContent(DASHBOARD_NAME, CollectionCondition.empty);
     addNewCaseWidget();
+    NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
     newDashboardDetailsEditPage.getWidgets().shouldHave(CollectionCondition.size(1));
     verifyRestoreDashboardMessage("Create from scratch");
     newDashboardDetailsEditPage.restoreDashboardToStandard();
@@ -56,6 +56,7 @@ public class DashboardRestoreConfigurationTest extends BaseTest {
     newDashboardPage.openCreatePublicDashboardMenu();
     newDashboardPage.createPublicDashboardFromTemplate(DASHBOARD_NAME, DASHBOARD_DESCRIPTION, DASHBOARD_PERMISSION, 0);
     verifyEditingDashboardContent(DASHBOARD_NAME, CollectionCondition.size(3));
+    NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
     newDashboardDetailsEditPage.deleteCompactModeProcess();
     newDashboardDetailsEditPage.getWidgets().shouldHave(CollectionCondition.size(2));
     verifyRestoreDashboardMessage("Default template");
@@ -72,18 +73,19 @@ public class DashboardRestoreConfigurationTest extends BaseTest {
     var configPage = newDashboardPage.navigateToEditPublicDashboardPage();
     configPage.navigateToEditDashboardDetailsByName(dashboardName);
     verifyEditingDashboardContent(dashboardName, CollectionCondition.size(1));
+    NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
     var restoreButton = newDashboardDetailsEditPage.getRestoreDashboardButton();
     restoreButton.shouldHave(Condition.cssClass("ui-state-disabled"));
   }
 
   private void verifyEditingDashboardContent(String dashboardName, CollectionCondition collectionCondition) {
-    newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
-    newDashboardDetailsEditPage.waitPageDisplay();
+    NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
     newDashboardDetailsEditPage.getTitleByIndex(0).shouldBe(Condition.exactText(dashboardName));
     newDashboardDetailsEditPage.getWidgets().shouldBe(collectionCondition);
   }
 
   private void addNewCaseWidget() {
+    NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
     newDashboardDetailsEditPage.addWidget();
     var newCaseWidget = newDashboardDetailsEditPage.addNewCaseWidget();
     newCaseWidget.changeWidgetTitle(CASE_WIDGET_NAME);
@@ -93,6 +95,7 @@ public class DashboardRestoreConfigurationTest extends BaseTest {
   }
 
   private void verifyRestoreDashboardMessage(String templateName) {
+    NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
     newDashboardDetailsEditPage.clickOnRestoreDashboard();
     var message = newDashboardDetailsEditPage.getRestoreDashboardMessage();
     message.shouldHave(Condition.text(templateName));

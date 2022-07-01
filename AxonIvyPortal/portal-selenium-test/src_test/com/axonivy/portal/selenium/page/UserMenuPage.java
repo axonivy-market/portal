@@ -8,12 +8,15 @@ import com.codeborne.selenide.SelenideElement;
 
 public class UserMenuPage extends TemplatePage {
 
-  public UserMenuPage() {
-    $("[id='user-setting-container']").waitUntil(appear, DEFAULT_TIMEOUT);
+  private static final String USER_SETTING_CONTAINER_SELECTOR = "[id='user-setting-container']";
+
+  @Override
+  protected String getLoadedLocator() {
+    return USER_SETTING_CONTAINER_SELECTOR;
   }
 
   public SelenideElement findMenu(String title) {
-    return $("[id='user-setting-container']").waitUntil(appear, DEFAULT_TIMEOUT).$$("li").filter(Condition.text(title)).first();
+    return $(USER_SETTING_CONTAINER_SELECTOR).waitUntil(appear, DEFAULT_TIMEOUT).$$("li").filter(Condition.text(title)).first();
   }
   
   public void accessMenu(String title) {
