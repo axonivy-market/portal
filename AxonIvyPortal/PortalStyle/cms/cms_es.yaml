@@ -167,6 +167,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     showTutorial: Mostrar tour de bienvenida
     taskListConfigDescription: En esta sección puede confirar la lista de tareas.
     taskListConfiguration: Configuración lista de tareas
+  PortalManagement:
+    AdminSetting: Configuración de administrador
   ProcessViewer:
     Breadcrumb: Visualización del proceso {0}
     ProcessDataNotFound: No se han encontrado datos del proceso
@@ -207,13 +209,15 @@ ch.ivy.addon.portalkit.ui.jsf:
     deleteAppConfirmation: ¿Seguro que quiere eliminar esta aplicación?
     dialogclosinginformation:
       dialogHeader: Configuración del portal cerrada
-      informMessage: Las modificaciones en la configuración del portal requieren el reinicio de su sesión. En caso de que use inicio de sesión único también debe reiniciar su navegador web.
+      informMessage: Las modificaciones en la configuración del portal requieren una actualización de la página actual para que la nueva configuración surta efecto.
     duplicatePortalAppMsg: Esta aplicación ya existe, por favor elija otra.
     editApplication: Editar aplicación
     editSetting: Editar la configuración
     embedInFrame: Empezar un proceso o tarea en modo iFrames
     emptySupportedLanguages: No se admiten idiomas adicionales
     globalVariableNote:
+      RoleDirectChildrenLimit: 'El número establecido controla la cantidad de roles hijos directos que se muestra en la pestaña de gestión de roles. Número válido: 10, 50, 100'
+      RoleParentLimit: 'El número establecido controla la cantidad de roles padre que se muestra al filtrar los roles en la pestaña Gestión de roles. Número válido: 5, 10, 20'
       behaviourWhenClickingOnLineInTaskList: Para cambiar los comportamientos (ejecutar la tarea o acceder a los detalles de la tarea) al hacer clic en una línea de la lista de tareas, el widget de tareas del tablero y las tareas relacionadas en la página de detalles del caso.
       chatMaxConnection: 'El número establecido controla la cantidad de pestañas permitidas con el chat activo. Si se abren más pestañas, el chat se desactivará en las pestañas inactivas. Valores permitidos entre 1-5 '
       chatResponseTimeout: Tiempo de respuesta del chat en segundos, el valor por defecto es 0 y significa que no hay tiempo de espera. Si los mensajes de chat pasan por el proxy inverso Nginx, el tiempo de espera de la respuesta del chat debe ser menor que el tiempo de espera de Nginx, por ejemplo, menos
@@ -267,6 +271,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       showProcessInformation: Cambiar a falso para desactivar el enlace "Más información" en la página de Procesos (modo cuadrícula) y Detalles del caso.
       showTaskDurationTime: Activar o desactivar la visibilidad de la duración de la tarea en detalles de tarea.
       showUserGuide: Activa la guía de usuario interactiva "primeros pasos" en el portal durante el primer acceso del usuario.
+      statisticChartsPolling: Establezca esta propiedad a menos de 10 para deshabilitar la actualización del gráfico de estadísticas en vivo con el sondeo. El valor por defecto es 0, lo que significa que el sondeo del gráfico en vivo está deshabilitado, establezca esta propiedad más o igual a 10 para
+        habilitar la actualización del gráfico en vivo
       uploadDocumentWhiteListExtensionNote: 'Dejar libre, sie quiere permitir todos los anexos. Si quiere reducir los formatos permitidos, cree una lista separada por coma. Por ejemplo: pdf, txt, doc, docx.'
     key: Llave
     link: Enlazar
@@ -393,6 +399,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     viewParticipant: Mostrar participantes
   common:
     BusinessCaseInformation: Información sobre el caso de negocio
+    CollapseAll: Cerrar todo
+    ExpandAll: Abrir todo
     NoSelection: Sin selección
     ResetToDefaultHeaderText: ¿Restablecer la configuración por defecto?
     RoleUserInformation: Informaciones de rol y usuario
@@ -563,6 +571,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     typeAdmin: Todos los administradores
     typeAllUsers: Todos los usuarios
     typeOnlyMe: Solo yo
+    user: '{0} usuario'
     users: Usuarios
     via: vía
     viewExpired: Su vista actual expiró. Serás redirigido a la página de inicio.
@@ -575,6 +584,41 @@ ch.ivy.addon.portalkit.ui.jsf:
     years: Años
     'yes': Sí
   components:
+    RoleManagement:
+      AssignUsersToRole: Asignar usuarios a la función
+      AssignedUser: Usuarios asignados
+      CannotDeleteRoleTooltip: No se puede eliminar este rol por falta de permisos
+      CannotEditRoleTooltip: No puede editar este rol por falta de permisos
+      CannotManageRoleTooltip: No se puede gestionar esta función porque no es dinámica
+      CreateRole: Crear un nuevo rol
+      DeleteButtonTitle: Borrar el papel
+      EditButtonTitle: Editar la información del rol
+      FilteredRoles: Funciones filtradas
+      ListUsers: Usuarios de la función {0}
+      Messages:
+        ConfirmDeleteRole: ¿Estás seguro de que quieres borrarlo?
+        ConfirmDeleteUserOfRole: ¿Estás seguro de que quieres sacar a los usuarios del papel?
+        CreateRoleFailed: El rol {0} no pudo ser creado
+        CreateRoleSuccess: Rol {0} creado con éxito
+        DuplicateRole: El rol {0} ya existe en el sistema, inténtelo con otro nombre
+        MaxSearchLimit: La búsqueda actual tiene más de {0} resultados
+        ParentRoleIsRequired: La función de los padres es un campo obligatorio
+        RemoveRoleSuccess: Rol {0} eliminado con éxito
+        RoleNameNotBeEmpty: El nombre de la función no debe estar vacío
+        RoleNotFound: No se ha encontrado ningún papel
+        SearchToSeeMoreRole: Por favor, utilice la búsqueda para encontrar un rol específico ({0} más roles)
+        UpdateRoleSuccess: Rol {0} actualizado con éxito
+        UserOfRoleNotFound: Ningún usuario posee este rol
+      NumberUsers: '{0} usuarios'
+      ParentRole: Papel de los padres
+      RemovingRoleHeader: ¿Suprimir el papel "{0}"?
+      RoleDetails: Detalles de la función {0}
+      RoleInformation: Información sobre el papel
+      RoleName: Nombre del rol
+      SearchRole: Búsqueda del papel
+      TitlePage: Gestión de funciones
+      UserAssignment: Asignación de usuarios
+      UserSelectionLabel: Buscar usuario para añadir a este rol
     SecurityMemberDisplayName:
       filterByUsername: Filtrar por nombre de usuario
       filterToSee: Filtrar para ver más
@@ -680,6 +724,8 @@ ch.ivy.addon.portalkit.ui.jsf:
   dashboard:
     DashboardConfigurationDialog:
       ConfigureDashboard: Configuración de tablero
+      CreateFromScratch: Crear desde cero
+      CreateFromScratchDescription: Cree su propio panel de control desde cero
       CreateNewPrivateDashboard: Create new private dashboard
       CreateNewPublicDashboard: Crear un tablero público
       EditPrivateDashboards: Editar sus tableros privados
@@ -698,6 +744,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     ManageFilter: Gestión de filtros
     NoData: No hay datos
     NoSavedFilterMessage: No se ha encontrado ningún filtro guardado. Intente crear uno nuevo haciendo clic en el botón Guardar filtro
+    RestoreDefaultDashboardMessage: If you proceed, you will loose all widgets created by yourself. The standard settings of <span class="dashboard-template-name-message">{0}</span> will be applied.
     SaveNewWidgetFilterHeader: Guardar un nuevo filtro de widget
     SavedFilterHeader: Filtros guardados
     SearchForFilter: Búsqueda del filtro
@@ -728,6 +775,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     configuration:
       CustomWidgetExternalLinkWarning: Algunas webs no son compatibles con iframe por motivos de seguridad. Póngase en contacto con su administrador si la web externa no funciona correctamente.
       Parameters: Parámetros
+      RestoreDefaultDashboardTemplateTooltip: No podemos encontrar la plantilla de su panel de control, por lo que no podemos restablecer la configuración estándar. Por favor, consulte con su administrador para obtener más detalles.
       SelectYourTemplate: Seleccione su plantilla
       configuration: Configuración
       configurationDescription: Puede configurar su widget en esta área de configuración. Por favor, defina los filtros requeridos así como las columnas a mostrar.
@@ -814,6 +862,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     tasWidgetkInfo:
       expireToday: Expira hoy
       expiryThisWeek: Expira esta semana
+      numberOfTasks: tarea(s)
       numberOfTasksByCategory: Número de tareas por categoría
       numberOfTasksByState: Número de tareas por estado
       predefinedFilters: Filtros predefinidos
@@ -944,7 +993,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     addNewProcessDialogHeader: Agregar nuevo proceso de usuario
     backToOverview: De regreso a la visión general
     brokenLinkProcess: El enlace no funciona. Por favor, actualice sus favoritos o contacte al administrador.
-    collapseAll: '- Cerrar todo'
     defaultProcesses: Favoritos de la aplicación
     deleteExpressWorkflowTooltip: Eliminar Express Workflow
     deleteExternalLinkTooltip: Borrar enlace externo
@@ -959,7 +1007,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       dialogHeaderTitle: Editar información para {0}
     editExpressWorkflowTooltip: Editar Express Workflow
     editProcesses: Editar procesos
-    expandAll: + Abrir todo
     expressWorkflow: Workflow Express
     externalLink: Enlace externo
     externalLinkVisibility: Visibilidad

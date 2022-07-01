@@ -13,7 +13,7 @@ public class DisplayNameConvertor {
   private Map<String, String> displayNames = new HashMap<>();
 
   public DisplayNameConvertor add(Locale locale, String displayName) {
-    displayNames.put(locale.getLanguage(), displayName);
+    displayNames.put(locale.toLanguageTag(), displayName);
     return this;
   }
 
@@ -22,7 +22,7 @@ public class DisplayNameConvertor {
   }
 
   public String toString(Locale locale) {
-    return displayNames.get(locale.getLanguage());
+    return displayNames.get(locale.toLanguageTag());
   }
 
   public Map<String, String> getDisplayNameAsMap() {
@@ -36,7 +36,7 @@ public class DisplayNameConvertor {
     while (keys.hasNext()) {
       String key = keys.next();
       String value = jsonObject.getString(key);
-      displayName.add(new Locale(key), value);
+      displayName.add(Locale.forLanguageTag(key), value);
     }
     return displayName;
   }

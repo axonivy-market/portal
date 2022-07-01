@@ -1122,8 +1122,7 @@ body .ui-datepicker .ui-timepicker-div dl dd {
 @media screen and (min-width: 40.063em) {
   .task-item-body .ui-datatable thead th:first-child,
   .case-detail-body .ui-datatable thead th.document-name,
-  .case-detail-body .ui-datatable th.history-related-case,
-  .case-detail-body .case-details-item .ui-datatable .name-column {
+  .case-detail-body .ui-datatable th.history-related-case {
     border-right: 1px solid var(--data-table-border-color);
   }
 }
@@ -1131,7 +1130,6 @@ body .ui-datepicker .ui-timepicker-div dl dd {
 @media screen and (min-width: 64.063em) {
   .task-item-body .ui-datatable thead th:first-child,
   .case-detail-body .ui-datatable thead th.document-name,
-  .case-detail-body .case-details-item .ui-datatable .name-column,
   .case-detail-body .case-details-item .ui-datatable .history-note {
     border-right: none;
   }
@@ -2029,6 +2027,16 @@ body .ui-datepicker tbody td.ui-datepicker-today a, body .ui-datepicker tbody td
   border: solid 1px var(--accent-light-color);
 }
 
+/* Modify style to make date highlighted by circle on phone */
+body .ui-datepicker-touch-ui.ui-datepicker td a, body .ui-datepicker-touch-ui.ui-datepicker td span {
+  padding: 0;
+}
+
+/* Modify style because th is too high on phone */
+body .ui-datepicker-touch-ui.ui-datepicker th {
+  padding: 0.7em 0.3em;
+}
+
 body .ui-slider .ui-slider-handle {
   background-color: var(--accent-light-color);
 }
@@ -2246,4 +2254,8 @@ body.in-dialog .ui-widget-overlay {
 
 .dashboard-configuration-dialog__action-row-icon {
   color: var(--primary-dark-text-color);
+}
+
+#reorder-button:hover {
+  cursor: move;
 }

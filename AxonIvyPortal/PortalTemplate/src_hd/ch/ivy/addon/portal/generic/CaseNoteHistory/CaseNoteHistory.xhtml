@@ -50,7 +50,7 @@
             <p:dataTable id="notes-table" widgetVar="notesTable" var="history" sortBy="#{caseTaskNoteHistoryBean.caseHistorySortByTimestamp}"
               value="#{data.histories}" filteredValue="#{data.filteredHistories}"
               emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
-              reflow="true">
+              reflow="true" lazy="false">
               <p:column sortBy="#{caseTaskNoteHistoryBean.getCaseNoteContent(history)}"
                 filterBy="#{caseTaskNoteHistoryBean.getCaseNoteContent(history)}" filterMatchMode="contains"
                 styleClass="u-truncate-text history-note"

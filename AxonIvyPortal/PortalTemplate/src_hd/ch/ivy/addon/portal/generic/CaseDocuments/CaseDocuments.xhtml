@@ -25,7 +25,7 @@
 
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/STATE')}" />
           <ic:ch.ivy.addon.portalkit.component.cases.column.CaseState case="#{data.selectedCase}"
-            showIndicatorBesideText="true"/>
+            showIndicatorBesideText="true" responsiveStyleClass="" />
         </h:panelGrid>
 
         <h:form id="case-doc-form" styleClass="document-container ui-g-12 u-no-padding-top">
@@ -36,7 +36,7 @@
             filteredValue="#{data.filteredDocuments}"
             emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
             reflow="true" scrollable="true"
-            styleClass="ui-g-12">
+            styleClass="ui-g-12" lazy="false">
 
             <p:column id="document-name" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/name')}"
               sortBy="#{document.name}"

@@ -33,7 +33,7 @@ public enum GlobalVariable {
   ENABLE_GROUP_CHAT("Portal.Chat.EnableGroup", GlobalVariableType.SELECTION, Option.FALSE.toString(), "enableGroupChat"),
   ENABLE_PRIVATE_CHAT("Portal.Chat.EnablePrivate", GlobalVariableType.SELECTION, Option.FALSE.toString(), "enablePrivateChat"),
   CHAT_RESPONSE_TIMEOUT("Portal.Chat.ResponseTimeout", GlobalVariableType.NUMBER, "0", "chatResponseTimeout"),
-  CHAT_MAX_CONNECTION("Portal.Chat.MaxConnection", GlobalVariableType.NUMBER, "3", "chatMaxConnection"),
+  CHAT_MAX_CONNECTION("Portal.Chat.MaxConnection", GlobalVariableType.SELECTION, "3", "chatMaxConnection", new Object[] { 1, 2, 3, 4, 5}),
   ENABLE_CASE_OWNER("Portal.Cases.EnableOwner", GlobalVariableType.SELECTION, Option.FALSE.toString(), "enableCaseOwner"),
   DISABLE_CASE_COUNT("Portal.Cases.DisableCount", GlobalVariableType.SELECTION, Option.FALSE.toString(), "disableCaseCount"),
   REFRESH_TASK_LIST_INTERVAL("Portal.Tasks.RefreshInterval", GlobalVariableType.NUMBER, String.valueOf(TaskWidgetBean.DEFAULT_TASK_LIST_REFRESH_INTERVAL), "refreshTaskListIntervalNote"),
@@ -65,13 +65,17 @@ public enum GlobalVariable {
   ENABLE_PROCESS_VIEWER("Portal.ProcessViewer", GlobalVariableType.SELECTION, Option.TRUE.toString(), "enableProcessViewer"),
   HIDE_RELATED_CASE_INFO_FROM_HISTORY("Portal.Histories.HideRelatedCaseInfo", GlobalVariableType.SELECTION, Option.TRUE.toString(), "hideRelatedCaseInfoFromHistory"),
   SHOW_ERROR_LOG_TO_CONSOLE("Portal.ShowErrorLogToConsole", GlobalVariableType.SELECTION, Option.FALSE.toString(), "showErrorLogToConsole"),
-  SHOW_AVATAR("Portal.ShowAvatar",GlobalVariableType.SELECTION,Option.TRUE.toString(),"showAvatar");
+  SHOW_AVATAR("Portal.ShowAvatar",GlobalVariableType.SELECTION,Option.TRUE.toString(),"showAvatar"),
+  STATISTIC_CHARTS_POLLING("Portal.StatisticChartsPolling", GlobalVariableType.NUMBER, "0", "statisticChartsPolling"),
+  ROLE_DIRECT_CHILDREN_LIMIT("Portal.RoleDirectChildrenLimit", GlobalVariableType.SELECTION, "50", "RoleDirectChildrenLimit", new Object[] { 10, 50, 100}),
+  ROLE_PARENT_LIMIT("Portal.RoleParentLimit", GlobalVariableType.SELECTION, "10", "RoleParentLimit", new Object[] { 5, 10, 20});
   
   private String key;
   private GlobalVariableType type;
   private String defaultValue;
   private String noteCMS;
   private Option[] options;
+  private Object[] objectOptions;
   private Map<String, Object> externalOptions;
   private static Map<String, GlobalVariable> keyToVariable =
       Stream.of(GlobalVariable.values()).collect(Collectors.toMap(GlobalVariable::getKey, v -> v));
@@ -123,7 +127,15 @@ public enum GlobalVariable {
     this.noteCMS = noteCMS;
     this.externalOptions = externalOptions;
   }
-  
+
+  private GlobalVariable(String key, GlobalVariableType type, String defaultValue, String noteCMS, Object[] objectOptions) {
+    this.key = key;
+    this.type = type;
+    this.defaultValue = defaultValue;
+    this.noteCMS = noteCMS;
+    this.objectOptions = objectOptions;
+  }
+
   public String getKey() {
     return key;
   }
@@ -139,11 +151,15 @@ public enum GlobalVariable {
   public String getNote() {
     return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/adminSettings/globalVariableNote/" + noteCMS);
   }
-  
+
   public Object[] getOptions() {
     return options;
   }
-  
+
+  public Object[] getObjectOptions() {
+    return objectOptions;
+  }
+
   public Map<String, Object> getExternalOptions() {
     return externalOptions;
   }
@@ -185,7 +201,6 @@ public enum GlobalVariable {
     }
     return result;
   }
-  
 
   private static Map<String, Object> getProcessMode() {
     Map<String, Object> result = new HashMap<>();

@@ -43,12 +43,12 @@ public class ApplicationMultiLanguageNameLoader {
 
     for (String language : supportedLanguages) {
       DisplayName displayName = new DisplayName();
-      Locale locale = new Locale(language);
+      Locale locale = Locale.forLanguageTag(language);
       displayName.setLocale(locale);
       if (canUpdateDisplayNameInCurrentLanguage(locale)) {
         displayName.setValue(currentDisplayName);
       } else {
-        displayName.setValue(currentDisplayNames.get(locale.getLanguage()));
+        displayName.setValue(currentDisplayNames.get(locale.toLanguageTag()));
       }
       displayNames.add(displayName);
     }
@@ -57,8 +57,8 @@ public class ApplicationMultiLanguageNameLoader {
   }
 
   private boolean isCurrentLocaleAndNotNullDisplayName(Locale locale) {
-    String currentLanguage = new Locales().getCurrentLocale().getLanguage();
-    return null != currentDisplayName && locale.getLanguage().equals(currentLanguage);
+    String currentLanguage = new Locales().getCurrentLocale().toLanguageTag();
+    return null != currentDisplayName && locale.toLanguageTag().equals(currentLanguage);
   }
 
   private boolean isOverridedCurrentDisplayNames() {
