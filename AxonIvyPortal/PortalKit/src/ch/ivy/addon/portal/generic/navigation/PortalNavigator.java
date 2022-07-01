@@ -32,6 +32,7 @@ public final class PortalNavigator extends BaseNavigator{
   private static final String PORTAL_TASK_DETAILS_IN_FRAME = "Start Processes/PortalStart/TaskDetailsPageInFrame.ivp";
   private static final String PORTAL_GLOBAL_SEARCH = "Start Processes/PortalStart/GlobalSearchPage.ivp";
   private static final String PORTAL_USER_PROFILE =  "Start Processes/PortalStart/UserProfile.ivp";
+  private static final String PORTAL_MANAGEMENT =  "Start Processes/PortalStart/PortalManagement.ivp";
   private static final String PORTAL_ABSENCE_MANAGEMENT =  "Start Processes/PortalStart/AbsenceManagement.ivp";
   private static final String PORTAL_FORGOT_PASSWORD = "Start Processes/PortalStart/ForgotPasswordPage.ivp";
   private static final String PORTAL_PASSWORD_RESET = "Start Processes/PortalStart/PasswordResetPage.ivp";
@@ -289,5 +290,9 @@ public final class PortalNavigator extends BaseNavigator{
       return e.getKey() + "=" + URLEncoder.encode(e.getValue(), StandardCharsets.ISO_8859_1);
     }).collect(Collectors.joining("&"));
     return requestPath + (StringUtils.isNotBlank(paramStr) ? "?" + paramStr : StringUtils.EMPTY);
+  }
+
+  public static String buildPortalManagementUrl() {
+    return buildUrlByKeyword("PortalManagement.ivp", PORTAL_MANAGEMENT, new HashMap<>());
   }
 }

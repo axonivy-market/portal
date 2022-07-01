@@ -84,7 +84,7 @@ New & Noteworthy 9.2
 Task/Case details configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Task/Case details are well structured, user can drag and drop the widgets and they can be configured via Global variable (JSON file).
+Task/Case details are well structured, user can drag and drop the widgets and they can be configured via variable (JSON file).
 
 Enhanced forgot password features
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -124,12 +124,12 @@ Make it your own way with the Axon Ivy Portal. Users can optimize process work a
 New override approach
 ^^^^^^^^^^^^^^^^^^^^^
 
-Portal uses HTML Dialog Override instead of Sub Process Override for customization.
+Portal uses HTML Dialog Override instead of Subprocess Override for customization.
 
 User and role selection component
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-If you need user and role selection, use Portal component instead of implementing yourself. For more details refer to :ref:`components-additional-components-user-selection` 
+If you need user and role selection, use Portal component instead of implementing yourself. For details refer to :ref:`components-additional-components-user-selection` 
 and :ref:`components-additional-components-role-selection`.
 
 New & Noteworthy 9.1

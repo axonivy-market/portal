@@ -22,6 +22,7 @@ public class PublicDashboardReorderBean extends DashboardReorderBean implements 
 
   private static final long serialVersionUID = 1L;
 
+  @Override
   @PostConstruct
   public void initConfigration() {
     super.initConfigration();

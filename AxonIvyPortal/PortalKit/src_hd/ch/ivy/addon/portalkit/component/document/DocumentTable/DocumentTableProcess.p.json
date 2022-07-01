@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.10",
+  "format" : "9.4.11",
   "id" : "16B1B70EE89C4939",
   "data" : "ch.ivy.addon.portalkit.component.document.DocumentTable.DocumentTableData",
   "kind" : "HTML_DIALOG",
@@ -9,6 +9,7 @@
       "name" : "start(ICase)",
       "config" : {
         "callSignature" : "start",
+        ".name" : "start(ICase)",
         "input" : {
           "params" : [
             { "name" : "iCase", "type" : "ch.ivyteam.ivy.workflow.ICase" }
@@ -36,6 +37,7 @@
       "name" : "renderTable()",
       "config" : {
         "callSignature" : "renderTable",
+        ".name" : "renderTable()",
         "guid" : "16B1C835D6DF8ED1"
       },
       "visual" : {
@@ -48,6 +50,7 @@
       "type" : "SubProcessCall",
       "name" : "GetDocumentList",
       "config" : {
+        ".name" : "GetDocumentList",
         "processCall" : "Functional Processes/GetDocumentList:call(ch.ivyteam.ivy.workflow.ICase)",
         "output" : {
           "map" : {
@@ -81,6 +84,7 @@
       "name" : "upload(FileUploadEvent)",
       "config" : {
         "callSignature" : "upload",
+        ".name" : "upload(FileUploadEvent)",
         "input" : {
           "params" : [
             { "name" : "event", "type" : "org.primefaces.event.FileUploadEvent" }
@@ -99,6 +103,9 @@
       "id" : "f28",
       "type" : "Alternative",
       "name" : "Upload successfully?",
+      "config" : {
+        ".name" : "Upload successfully?"
+      },
       "visual" : {
         "at" : { "x" : 512, "y" : 384 },
         "labelOffset" : { "x" : -54, "y" : -39 }
@@ -116,6 +123,7 @@
       "type" : "Script",
       "name" : "Show error message",
       "config" : {
+        ".name" : "Show error message",
         "output" : {
           "code" : [
             "import javax.faces.application.FacesMessage;",
@@ -141,6 +149,7 @@
       "type" : "SubProcessCall",
       "name" : "UploadDocument",
       "config" : {
+        ".name" : "UploadDocument",
         "processCall" : "Functional Processes/UploadDocument:call(ch.ivyteam.ivy.workflow.ICase,org.primefaces.model.file.UploadedFile)",
         "output" : {
           "map" : {
@@ -173,6 +182,10 @@
         "message"
       ],
       "config" : {
+        ".name" : [
+          "Show success",
+          "message"
+        ],
         "output" : {
           "code" : [
             "import javax.faces.application.FacesMessage;",
@@ -193,6 +206,7 @@
       "name" : "setFileLimit(Integer)",
       "config" : {
         "callSignature" : "setFileLimit",
+        ".name" : "setFileLimit(Integer)",
         "input" : {
           "params" : [
             { "name" : "fileLimit", "type" : "Integer" }
@@ -219,6 +233,7 @@
       "name" : "delete()",
       "config" : {
         "callSignature" : "delete",
+        ".name" : "delete()",
         "guid" : "16B213CA436B66B2"
       },
       "visual" : {
@@ -230,6 +245,7 @@
       "type" : "SubProcessCall",
       "name" : "Delete Document",
       "config" : {
+        ".name" : "Delete Document",
         "processCall" : "Functional Processes/DeleteDocument:call(ch.ivyteam.ivy.workflow.ICase,ch.ivy.addon.portalkit.ivydata.bo.IvyDocument)",
         "output" : {
           "map" : {
@@ -260,6 +276,10 @@
         "message"
       ],
       "config" : {
+        ".name" : [
+          "Show delete",
+          "message"
+        ],
         "output" : {
           "code" : [
             "import javax.faces.application.FacesMessage;",
@@ -285,6 +305,7 @@
       "name" : "download(IvyDocument)",
       "config" : {
         "callSignature" : "download",
+        ".name" : "download(IvyDocument)",
         "result" : {
           "params" : [
             { "name" : "streamedContent", "type" : "org.primefaces.model.StreamedContent" }
@@ -312,6 +333,7 @@
       "type" : "SubProcessCall",
       "name" : "DownloadDocument",
       "config" : {
+        ".name" : "DownloadDocument",
         "processCall" : "Functional Processes/DownloadDocument:call(ch.ivyteam.ivy.workflow.ICase,ch.ivy.addon.portalkit.ivydata.bo.IvyDocument)",
         "output" : {
           "map" : {
@@ -348,6 +370,12 @@
         "not exceed",
         "limit of documents?"
       ],
+      "config" : {
+        ".name" : [
+          "not exceed",
+          "limit of documents?"
+        ]
+      },
       "visual" : {
         "at" : { "x" : 224, "y" : 384 },
         "labelOffset" : { "x" : -68, "y" : -48 }
@@ -367,6 +395,10 @@
         "limit of documents error message"
       ],
       "config" : {
+        ".name" : [
+          "Set error message to",
+          "limit of documents error message"
+        ],
         "output" : {
           "code" : "out.message = ivy.cms.co(\"/Dialogs/components/CaseDocument/fileLimitMessage\") + \" (max.\" + in.fileLimit + \")\";"
         }
@@ -393,6 +425,10 @@
         "if it is not empty"
       ],
       "config" : {
+        ".name" : [
+          "Store document type",
+          "if it is not empty"
+        ],
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.document.DocumentCustomField;",
@@ -415,6 +451,7 @@
       "name" : "renderComponent(String,Boolean,DocumentType)",
       "config" : {
         "callSignature" : "renderComponent",
+        ".name" : "renderComponent(String,Boolean,DocumentType)",
         "input" : {
           "params" : [
             { "name" : "messageComponentId", "type" : "String" },
@@ -445,6 +482,7 @@
       "type" : "Script",
       "name" : "Release JSF Event",
       "config" : {
+        ".name" : "Release JSF Event",
         "output" : {
           "code" : [
             "// Do not store JSF Event in a Html Dialog data field",
