@@ -12,7 +12,15 @@
 
 <p:dialog id="dashboard-configuration-dialog" widgetVar="dashboard-configuration-dialog" 
   header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfigurationDialog/ConfigureDashboard')}"
-  appendTo="@(body)" closeOnEscape="true" draggable="false" fitViewport="true" responsive="true" modal="true" resizable="false">
+  appendTo="@(body)"
+  closeOnEscape="true"
+  draggable="false"
+  fitViewport="true"
+  responsive="true"
+  modal="true"
+  resizable="false"
+  dynamic="true">
+  <p:ajax event="close" oncomplete="hideCreateDashboardSection()" update="@(.dashboard-detail-form) #{cc.clientId}:template-selection-container"/>
   <div class="ui-g dashboard-configuration-dialog__content">
     <h:form id="configuration-form" styleClass="dashboard-configuration-dialog__form">
       <h:panelGroup id="private-dashboard-configuration-section" layout="block" styleClass="ui-g-12" rendered="#{dashboardBean.canEditPrivateDashboard}">
@@ -21,7 +29,7 @@
         </span>
         <p:commandLink id="create-private-dashboard" styleClass="ui-g ui-g-12 dashboard-configuration-dialog__action-row"
           actionListener="#{dashboardConfigurationBean.onAddDashboard(false)}"
-          oncomplete="showCreateDashboardSection();" global="false" update="@(.dashboard-detail-form)">
+          oncomplete="showCreateDashboardSection();" update="@(.dashboard-detail-form) #{cc.clientId}:template-selection-container">
           <div class="ui-g-2">
             <span class="si si-add dashboard-configuration-dialog__action-row-icon" />
           </div>
@@ -64,7 +72,7 @@
         </span>
         <p:commandLink id="create-public-dashboard" styleClass="ui-g ui-g-12 dashboard-configuration-dialog__action-row "
           actionListener="#{dashboardConfigurationBean.onAddDashboard(true)}"
-          oncomplete="showCreateDashboardSection();" global="false" update="@(.dashboard-detail-form)">
+          oncomplete="showCreateDashboardSection();" update="@(.dashboard-detail-form) #{cc.clientId}:template-selection-container">
           <div class="ui-g-2">
             <span class="si si-add dashboard-configuration-dialog__action-row-icon" />
           </div>
@@ -102,10 +110,14 @@
       </h:panelGroup>
     </h:form>
 
-    <ic:ch.ivy.addon.portal.generic.dashboard.component.DashboardCreationMenu 
-      managedBean="#{dashboardConfigurationBean}"
-      detailDialogWidgetVar="dashboard-detail-dialog"
-      isPublicDashboard="#{data.isPublicDashboard}" />
+    <h:panelGroup id="template-selection-container">
+      <ui:fragment rendered="#{dashboardConfigurationBean.selectingTemplate}">
+        <ic:ch.ivy.addon.portal.generic.dashboard.component.DashboardCreationMenu
+          managedBean="#{dashboardConfigurationBean}"
+          detailDialogWidgetVar="dashboard-detail-dialog"
+          isPublicDashboard="#{data.isPublicDashboard}" />
+      </ui:fragment>
+    </h:panelGroup>
   </div>
   <f:facet name="footer">
     <h:panelGroup layout="block" styleClass="u-text-align-right">

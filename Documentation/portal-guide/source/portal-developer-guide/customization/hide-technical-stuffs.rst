@@ -1,17 +1,19 @@
 .. _customization-hideTechnicalStuffs:
 
-Hide technical stuff
+Hide Technical Stuff
 ====================
 
-Hide technical roles
+Depending on the value of Ivy variable ``PortalHiddenTaskCaseExcluded``, hidden
+tasks and cases are shown (FALSE) or hidden (TRUE). Default value is TRUE.
+
+Hide Technical Roles
 --------------------
 
-A technical role is the role which is not displayed anywhere (e.g.
-delegate, absence management). AXONIVY_PORTAL_ADMIN is a technical role
-by default.
+A technical role is not displayed anywhere (e.g. in delegation or absence
+management). AXONIVY_PORTAL_ADMIN is a technical role by default.
 
 To mark a role as a technical role, set the **HIDE** property with any
-value to the role.
+value on the role.
 
 .. tip:: Use the utility method of Portal:
       
@@ -21,11 +23,12 @@ value to the role.
          ch.ivy.addon.portalkit.publicapi.RoleAPI.removeProperty([YOUR_ROLE], ch.ivy.addon.portalkit.enums.AdditionalProperty.HIDE.toString())
 
 
-Hide technical tasks
+Hide Technical Tasks
 --------------------
 
-A technical task is the task which is not displayed in any task lists of
-Portal.
+A technical task is not displayed in any task lists of Portal.
+
+To mark a task as a technical task, use our utility methods in TaskAPI.
 
 .. tip:: Use the utility methods of Portal:
       
@@ -34,17 +37,15 @@ Portal.
       - Reverse it:
          ch.ivy.addon.portalkit.publicapi.TaskAPI.removeHidePropertyToDisplayInPortal(ITask)
 
-Hide technical cases
+Hide Technical Cases
 --------------------
 
-A technical case is the case which is not displayed in any case lists of
-Portal.
+A technical case is not displayed in any case lists of Portal.
 
-Tasks belong to the technical case is considered as technical tasks and
-should be hide as well.
+Tasks belonging to a technical case are considered technical tasks and should be
+hidden as well.
 
-To mark a case as a technical case, make sure Ivy global variable
-``PortalHiddenTaskCaseExcluded`` is set to true. Follow tip
+To mark a case as a technical case, use our utility methods in CaseAPI.
 
 .. tip:: Use the utility methods of Portal:
 

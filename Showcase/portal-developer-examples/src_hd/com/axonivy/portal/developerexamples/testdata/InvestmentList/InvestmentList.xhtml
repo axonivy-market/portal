@@ -30,7 +30,7 @@
               <h:outputLabel value="Portfolio" />
             </div>
 	        <div class="ui-g-12">
-	          <p:dataTable id="investment-table" value="#{data.investments}" var="investment">
+	          <p:dataTable id="investment-table" value="#{data.investments}" var="investment" lazy="false">
 	            <p:column headerText="ID">
 	              <h:outputText value="#{investment.id}" />
 	            </p:column>

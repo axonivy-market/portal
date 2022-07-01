@@ -1,5 +1,6 @@
 [{
     "id": "1",
+    "templateId": "default-portal-dashboard-template",
     "title": "cms:/ch.ivy.addon.portalkit.ui.jsf/common/dashboard",
     "widgets": [
       {

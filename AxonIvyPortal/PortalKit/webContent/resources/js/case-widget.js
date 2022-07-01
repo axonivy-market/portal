@@ -13,6 +13,13 @@ function CaseWidget() {
       $('.js-filter-save-action').toggleClass('u-hidden-md-down');
     },
 
+    showCaseFilter: function() {
+      $('.js-advanced-filter-component').removeClass('u-hidden-md-down');
+      $('.js-filter-add-action').removeClass('u-hidden-md-down');
+      $('.js-filter-reset-action').removeClass('u-hidden-md-down');
+      $('.js-filter-save-action').removeClass('u-hidden-md-down');
+    },
+
     setUpScrollbar: function() {
       var childElements = $('.js-case-item');
       if (childElements.length > 0) {

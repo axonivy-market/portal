@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.10",
+  "format" : "9.4.11",
   "id" : "153361016FE4213A",
   "data" : "ch.ivy.addon.portalkit.component.CaseItemDocument.CaseItemDocumentData",
   "kind" : "HTML_DIALOG",
@@ -27,6 +27,7 @@
       "name" : "initData(ICase)",
       "config" : {
         "callSignature" : "initData",
+        ".name" : "initData(ICase)",
         "input" : {
           "params" : [
             { "name" : "iCase", "type" : "ch.ivyteam.ivy.workflow.ICase" }
@@ -53,6 +54,7 @@
       "name" : "uploadDocument(FileUploadEvent)",
       "config" : {
         "callSignature" : "uploadDocument",
+        ".name" : "uploadDocument(FileUploadEvent)",
         "input" : {
           "params" : [
             { "name" : "event", "type" : "org.primefaces.event.FileUploadEvent" }
@@ -73,6 +75,7 @@
       "type" : "Script",
       "name" : "Show error message",
       "config" : {
+        ".name" : "Show error message",
         "output" : {
           "code" : [
             "import javax.faces.application.FacesMessage;",
@@ -99,6 +102,7 @@
       "name" : "downloadDocument(IvyDocument)",
       "config" : {
         "callSignature" : "downloadDocument",
+        ".name" : "downloadDocument(IvyDocument)",
         "result" : {
           "params" : [
             { "name" : "streamedContent", "type" : "org.primefaces.model.StreamedContent" }
@@ -134,6 +138,7 @@
       "name" : "resetDataUploadDialog()",
       "config" : {
         "callSignature" : "resetDataUploadDialog",
+        ".name" : "resetDataUploadDialog()",
         "guid" : "168030614DDB1EA9"
       },
       "visual" : {
@@ -145,6 +150,7 @@
       "type" : "Script",
       "name" : "Reset messages",
       "config" : {
+        ".name" : "Reset messages",
         "output" : {
           "code" : [
             "import java.util.Iterator;",
@@ -175,6 +181,7 @@
       "name" : "deleteDocument()",
       "config" : {
         "callSignature" : "deleteDocument",
+        ".name" : "deleteDocument()",
         "guid" : "168030735CFC1630"
       },
       "visual" : {
@@ -191,6 +198,9 @@
       "id" : "f28",
       "type" : "Alternative",
       "name" : "Upload successfully?",
+      "config" : {
+        ".name" : "Upload successfully?"
+      },
       "visual" : {
         "at" : { "x" : 488, "y" : 288 },
         "labelOffset" : { "x" : -54, "y" : -39 }
@@ -220,6 +230,10 @@
         "message"
       ],
       "config" : {
+        ".name" : [
+          "Show success",
+          "message"
+        ],
         "output" : {
           "code" : [
             "import javax.faces.application.FacesMessage;",
@@ -242,6 +256,10 @@
         "message"
       ],
       "config" : {
+        ".name" : [
+          "Show delete",
+          "message"
+        ],
         "output" : {
           "code" : [
             "import javax.faces.application.FacesMessage;",
@@ -260,6 +278,7 @@
       "type" : "SubProcessCall",
       "name" : "Find documents",
       "config" : {
+        ".name" : "Find documents",
         "processCall" : "Functional Processes/GetDocumentList:call(ch.ivyteam.ivy.workflow.ICase)",
         "output" : {
           "map" : {
@@ -285,6 +304,7 @@
       "type" : "SubProcessCall",
       "name" : "Find documents",
       "config" : {
+        ".name" : "Find documents",
         "processCall" : "Functional Processes/GetDocumentList:call(ch.ivyteam.ivy.workflow.ICase)",
         "output" : {
           "map" : {
@@ -310,6 +330,7 @@
       "type" : "SubProcessCall",
       "name" : "Find documents",
       "config" : {
+        ".name" : "Find documents",
         "processCall" : "Functional Processes/GetDocumentList:call(ch.ivyteam.ivy.workflow.ICase)",
         "output" : {
           "map" : {
@@ -335,6 +356,7 @@
       "type" : "SubProcessCall",
       "name" : "UploadDocument",
       "config" : {
+        ".name" : "UploadDocument",
         "processCall" : "Functional Processes/UploadDocument:call(ch.ivyteam.ivy.workflow.ICase,org.primefaces.model.file.UploadedFile)",
         "output" : {
           "map" : {
@@ -363,6 +385,7 @@
       "type" : "SubProcessCall",
       "name" : "Download Document",
       "config" : {
+        ".name" : "Download Document",
         "processCall" : "Functional Processes/DownloadDocument:call(ch.ivyteam.ivy.workflow.ICase,ch.ivy.addon.portalkit.ivydata.bo.IvyDocument)",
         "output" : {
           "map" : {
@@ -391,6 +414,7 @@
       "type" : "SubProcessCall",
       "name" : "Delete Document",
       "config" : {
+        ".name" : "Delete Document",
         "processCall" : "Functional Processes/DeleteDocument:call(ch.ivyteam.ivy.workflow.ICase,ch.ivy.addon.portalkit.ivydata.bo.IvyDocument)",
         "output" : {
           "map" : {
@@ -418,6 +442,7 @@
       "type" : "Script",
       "name" : "Release JSF Event",
       "config" : {
+        ".name" : "Release JSF Event",
         "output" : {
           "code" : [
             "// Do not store JSF Event in a Html Dialog data field",

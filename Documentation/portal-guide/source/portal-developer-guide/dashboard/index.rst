@@ -1,6 +1,6 @@
 .. _customization-new-dashboard:
 
-Portal dashboard
+Portal Dashboard
 ================
 
 .. _customization-portal-dashboard-introduction:
@@ -8,44 +8,41 @@ Portal dashboard
 Introduction
 ------------
 
-Portal Dashboard is a flexible page, user can add, remove and edit widgets filters.
-Users can custom layout just by drag & drop in multiple dashboards.
+Portal Dashboard is a flexible page where you can add, remove and edit widgets and filters.
+Users can customize the layout just by dragging & dropping between multiple dashboards.
 
-More, there is an easy way for users to predefine a lot of details for each dashboard,
+There is an easy way for users to predefine a lot of details for each dashboard,
 each widget such as predefined filters, columns, UI, and styles.
 
-Available widgets of Portal dashboard
+Available widgets of Portal dashboard are:
 
 - Task widget
-
 - Case widget
-
 - Process widget
-
 - Statistic widget
-
 - Custom widget
 
 You can predefine Portal dashboards, and details of each widget
-by configuring Global Variable **Portal.Dashboard**.
+by configuring variable **Portal.Dashboard**.
 
 .. _customization-dashboards-customization:
 
-Define your own dashboards
---------------------------
+Define Your Dashboard
+---------------------
 
-Portal support multiple dashboards, they will be displayed as tabs.
+Portal allows for multiple dashboards. They will be displayed as tabs.
 
-You can predefine dashboards id, title, permissions to access, and widgets
-for each dashboard.
+You can predefine dashboard id, title, permissions to access, and widgets
+for each dashboard separately.
 
-Below is a JSON example for the configuration of dashboards.
+Below find a JSON example for the configuration of dashboards.
 
 .. code-block:: html
 
    [
       {
          "id": "default-dashboard",
+         "templateId": "template-id"
          "title": "cms:/dashboard/DefaultDashboard",
          "widgets": [
             {
@@ -83,13 +80,15 @@ Below is a JSON example for the configuration of dashboards.
 
 ..
 
-Structure of JSON for each dashboard:
+Structure of the JSON for each dashboard:
 
-   ``id``: ID for identifying dashboard
+   ``id``: ID to identifying dashboard.
+
+   ``templateId``: the key to identify the predefined template this dashboard is referring to.
 
    ``title``: title of dashboard. You can input a string as dashboard
    title, or can use CMS by using prefix ``cms:`` before your CMS URI
-   to define dashboard title in multilingual
+   to define dashboard title in multilingual.
 
    ``permissions``: roles can access the dashboard.
 
@@ -97,17 +96,17 @@ Structure of JSON for each dashboard:
       If you don't define ``permissions`` for a dashboard, every user can see it.
 
    ``widgets``: definition of widgets dashboard. There are four types of
-   widget ``task``, ``case``, ``process``, and ``custom``. Refer
-   to the next sections to learn more about the configurations of each widget
+   widget: ``task``, ``case``, ``process``, and ``custom``. Refer
+   to the next sections to learn more about the configurations of each widget.
 
    .. warning::
       Widget ``id`` must be unique between dashboards.
 
-Configure dashboard widgets
+Configure Dashboard Widgets
 ---------------------------
 
-Below are details of JSON configuration for each widget of the Portal dashboard.
-They will help you understand how to configure widget efficiency.
+Below are details of the JSON configuration for each widget of the Portal dashboard.
+They will help you understand how to configure the widget efficiency.
 
 .. toctree::
    :maxdepth: 1
@@ -119,26 +118,26 @@ They will help you understand how to configure widget efficiency.
    new-dashboard-custom-widget
 
 .. tip:: 
-   To quickly understand how the JSON of custom dashboard looks like.
+   To get an understanding of the JSON structure of the custom dashboard,
 
    - Refer to ``variables.Portal.Dashboard.json`` file in ``portal-developer-examples/resources/files`` project.
    - Copy to the corresponding application folder located in the designer.
 
       - e.g: AxonIvyDesigner9.3.0/configuration/applications/designer
 
-   - Start the process ``Start Processes/CreateTestData/CreateTestDataForCustomizedDashboard.ivp`` in ``portal-developer-examples`` project.
-   - Open Portal new dashboard to check new custom layout.
+   - Start the process ``Start Processes/CreateTestData/CreateTestDataForCustomizedDashboard.ivp`` in the ``portal-developer-examples`` project.
+   - Open the new Portal dashboard to check the new custom layout.
 
-   About how to configure Variables, refer to :dev-url:`Axon Ivy Variables </doc/nightly/designer-guide/configuration/variables.html>`
+   To configure variables, refer to :dev-url:`Axon Ivy Variables </doc/nightly/designer-guide/configuration/variables.html>`
 
-Configure dashboard templates
+Configure Dashboard Templates
 -----------------------------
 
-Portal provides predefined dashboard templates to help users reduce time and complication when create dashboard.
-Users can quickly create a dashboard just by input some information such as dashboard name, choose one of these
-predefined templates and modify details to fit their needs.
+Portal provides predefined dashboard templates to help users reduce time and complication when creating a dashboard.
+Users can quickly create a dashboard just by entering a few items such as dashboard name, choosing one of the
+predefined templates, and modifying details to fit their needs.
 
-These templates are configurable by modify the global variable ``DashboardTemplates.json``.
+These templates are configurable using variable ``DashboardTemplates.json``.
 
 .. toctree::
    :maxdepth: 1

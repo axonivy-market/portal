@@ -167,6 +167,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     showTutorial: Show Welcome Tour
     taskListConfigDescription: In this area you can configure the task list according to your requirements.
     taskListConfiguration: Task list configuration
+  PortalManagement:
+    AdminSetting: Admin settings
   ProcessViewer:
     Breadcrumb: Process Viewer of {0} process
     ProcessDataNotFound: Could not found the Process Data!
@@ -207,13 +209,15 @@ ch.ivy.addon.portalkit.ui.jsf:
     deleteAppConfirmation: Are you sure to delete this application ?
     dialogclosinginformation:
       dialogHeader: Portal configuration closed
-      informMessage: Modifications in portal settings require a restart of your session. In case you use Single Sign On you need to restart your web browser as well.
+      informMessage: Modifications in portal settings require a refresh of the current page for the new configuration to take effect.
     duplicatePortalAppMsg: This application already exists, please choose another application.
     editApplication: Edit application
     editSetting: Edit setting
     embedInFrame: Start a process/task in IFrame mode
     emptySupportedLanguages: No additional languages are supported
     globalVariableNote:
+      RoleDirectChildrenLimit: 'The set number controls the amount of direct children roles that is shown in Role Management tab. Valid number: 10, 50, 100'
+      RoleParentLimit: 'The set number controls the amount of parent roles that is shown when filtering roles in Role Management tab. Valid number: 5, 10, 20'
       behaviourWhenClickingOnLineInTaskList: For switch behaviours (run the task or access task details) when clicking on a line in task list, task widget of dashboard and related tasks  in case details page.
       chatMaxConnection: 'The set number controls the amount of tabs allowed with active chat. If more tabs are opened, the chat will be disabled in inactive tabs. Allowed values between 1-5 '
       chatResponseTimeout: Chat response timeout in seconds, default value is 0 and means no timeout. If chat messages go through the reverse proxy Nginx, chat response timeout must be less than the Nginx timeout, e.g. less than 60 seconds.
@@ -264,6 +268,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       showProcessInformation: Set to false to disable link to Show Information of process on Processes page (grid mode) and Case Details.
       showTaskDurationTime: For switch on/off the display of the duration time in task details page.
       showUserGuide: 'Activates the interactive user guide "first steps" in the portal at first login. '
+      statisticChartsPolling: Set this property less than 10 to disable updating live statistic chart with polling. Default value is 0, It means live chart polling is disabled, Set this property more than or equal 10 to enable updating live chart
       uploadDocumentWhiteListExtensionNote: 'Leave value empty if you allow all extensions. If just allow some extensions, list out extensions here, separated by comma. Example: pdf, txt, doc, docx.'
     key: Key
     link: Link
@@ -390,6 +395,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     viewParticipant: View participants
   common:
     BusinessCaseInformation: Business Case Information
+    CollapseAll: Collapse all
+    ExpandAll: Expand all
     NoSelection: No Selection
     ResetToDefaultHeaderText: Reset to default settings?
     RoleUserInformation: Role and User Information
@@ -560,6 +567,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     typeAdmin: All administrators
     typeAllUsers: All users
     typeOnlyMe: Only me
+    user: '{0} user'
     users: Users
     via: via
     viewExpired: Your current view expired. You will be redirected to the home page.
@@ -572,6 +580,41 @@ ch.ivy.addon.portalkit.ui.jsf:
     years: years
     'yes': 'Yes'
   components:
+    RoleManagement:
+      AssignUsersToRole: Assign users to role
+      AssignedUser: Assigned users
+      CannotDeleteRoleTooltip: You cannot delete this role due to lack of permissions
+      CannotEditRoleTooltip: You cannot edit this role due to lack of permissions
+      CannotManageRoleTooltip: You cannot manage this role because it is not a dynamic one
+      CreateRole: Create new role
+      DeleteButtonTitle: Delete role
+      EditButtonTitle: Edit role info
+      FilteredRoles: Filtered roles
+      ListUsers: Users of role {0}
+      Messages:
+        ConfirmDeleteRole: Are you sure you want to delete it?
+        ConfirmDeleteUserOfRole: Are you sure you want to remomve there users out of the role?
+        CreateRoleFailed: Role {0} could not be created
+        CreateRoleSuccess: Role {0} created successfully
+        DuplicateRole: Role {0} already exists in the system, try with other name
+        MaxSearchLimit: The current search has more than {0} results
+        ParentRoleIsRequired: Parent role is mandatory field
+        RemoveRoleSuccess: Role {0} removed successfully
+        RoleNameNotBeEmpty: Role name must not be empty
+        RoleNotFound: No roles found
+        SearchToSeeMoreRole: Please use the search to find a specific role ({0} more roles)
+        UpdateRoleSuccess: Role {0} updated successfully
+        UserOfRoleNotFound: No users own this role
+      NumberUsers: '{0} users'
+      ParentRole: Parent role
+      RemovingRoleHeader: Removing the "{0}" role?
+      RoleDetails: Role details {0}
+      RoleInformation: Role information
+      RoleName: Role name
+      SearchRole: Search for role
+      TitlePage: Role Management
+      UserAssignment: User assignment
+      UserSelectionLabel: Search user to add to this role
     SecurityMemberDisplayName:
       filterByUsername: Filter by user name
       filterToSee: Filter to see more
@@ -682,6 +725,8 @@ ch.ivy.addon.portalkit.ui.jsf:
   dashboard:
     DashboardConfigurationDialog:
       ConfigureDashboard: Dashboard configuration
+      CreateFromScratch: Create from scratch
+      CreateFromScratchDescription: Create your own dashboard from scratch
       CreateNewPrivateDashboard: Create new private dashboard
       CreateNewPublicDashboard: Create new public dashboard
       EditPrivateDashboards: Edit your private dashboards
@@ -700,6 +745,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     ManageFilter: Manage filters
     NoData: No data
     NoSavedFilterMessage: No saved filter found. Try to create a new by click on Save Filter button
+    RestoreDefaultDashboardMessage: If you proceed, you will loose all widgets created by yourself. The standard settings of <span class="dashboard-template-name-message">{0}</span> will be applied.
     SaveNewWidgetFilterHeader: Save a new widget filter
     SavedFilterHeader: Saved filters
     SearchForFilter: Search for filter
@@ -730,6 +776,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     configuration:
       CustomWidgetExternalLinkWarning: Some websites are not compatible with iframe due to security concerns. Please contact your administrator if the external website is not working properly.
       Parameters: Parameters
+      RestoreDefaultDashboardTemplateTooltip: We cannot find the template of your dashboard, so we cannot reset it to the standard configuration. Please check with your administrator for more details!
       SelectYourTemplate: Select your template
       configuration: Configuration
       configurationDescription: You can configure your widget in this configuration area. Please define the required filters as well as columns to be shown.
@@ -816,6 +863,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     tasWidgetkInfo:
       expireToday: Expire today
       expiryThisWeek: Expire this week
+      numberOfTasks: task(s)
       numberOfTasksByCategory: Number of tasks by category
       numberOfTasksByState: Number of tasks by state
       predefinedFilters: Predefined filters
@@ -946,7 +994,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     addNewProcessDialogHeader: Add new user process
     backToOverview: Back to overview
     brokenLinkProcess: The process link is broken. Please update your favorites or contact the administrator
-    collapseAll: '- Collapse all'
     defaultProcesses: Application Favorites
     deleteExpressWorkflowTooltip: Delete Express Workflow
     deleteExternalLinkTooltip: Delete external link
@@ -961,7 +1008,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       dialogHeaderTitle: Edit information for {0}
     editExpressWorkflowTooltip: Edit Express Workflow
     editProcesses: Edit processes
-    expandAll: + Expand all
     expressWorkflow: Express workflow
     externalLink: External link
     externalLinkVisibility: Visibility

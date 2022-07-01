@@ -1,15 +1,15 @@
 .. _configure-new-dashboard-task-widget:
 
-Configure Task widget
+Configure Task Widget
 =====================
 
-Define Task widget
+Define Task Widget
 ------------------
 
-Task widget of Portal dashboard is an interactable task list. Refer
-to (link to task widget of the dashboard) for more details.
+The Task widget of the Portal dashboard is an interactive task list. Refer
+to (link to task widget of the dashboard) for details.
 
-Below is a sample JSON definition of the task widget in the Portal dashboard
+Below is a sample JSON definition of a task widget in the Portal dashboard
 
 .. code-block:: html
 
@@ -52,15 +52,15 @@ Below is a sample JSON definition of the task widget in the Portal dashboard
    }
 ..
 
-The basic structure of JSON of Task widget
+The basic JSON structure of a Task widget
 
-   ``type``: type of widget. Use ``task`` to mark that this widget is a task widget
+   ``type``: type of widget. Use ``task`` for a task widget
 
    ``id``: ID of the widget
 
-   ``name``: Name of the widget on UI
+   ``name``: Name of the widget on the UI
 
-   ``layout``: layout definition of task widget
+   ``layout``: layout definition of the widget
 
       ``x``: HTML DOM Style ``left`` will be calculated by formula ``x / 12 * 100%``
 
@@ -70,23 +70,24 @@ The basic structure of JSON of Task widget
 
       ``h``: HTML DOM Style ``height`` will be calculated by formula ``60 * h + 20 * (h - 1)``
 
-      ``styleClass`` (optional): add CSS Classes to HTML DOM of Task widget
+      ``styleClass`` (optional): add CSS Classes to HTML DOM of the widget
 
-      ``style`` (optional): add inline style to HTML DOM of Task widget
+      ``style`` (optional): add inline style to HTML DOM of the widget
 
-   ``sortField``: default sort field for task widget
+   ``sortField``: default sort field for the widget
 
-   ``sortDescending``: sort direction of the default sort field is descending or not. The default value is "false"
+   ``sortDescending``: sort direction of the default sort field. The default value is "false" (sort ascending)
 
-   ``rowsPerPage``: the number of tasks can be displayed on one page of the task widget. 
+   ``rowsPerPage``: maximum number of tasks can be displayed on one page of the task widget. 
    The default value is 10 rows per page
 
-   ``columns``: column configurations for each column in the task widget. You can predefine
-   filters, styles, visibility,... of columns and define custom columns also
+   ``columns``: column configurations for each of the columns in the widget. You
+   can predefine filters, styles, visibility,... of columns and define custom
+   columns, too:
 
       ``field``: the field name of the column
          
-         For standard column, ``field`` must be one of these columns
+         For standard columns, ``field`` must be one of these:
          
             - ``start``: column which contains start button to start the task directly.
   
@@ -108,25 +109,24 @@ The basic structure of JSON of Task widget
             
             - ``actions``: for further actions: access task details, reset task, delegate task, reserve, destroy task, trigger escalation task and add Ad-hoc task
 
-         For custom column, ``field`` is the name of a task custom field.
-         Portal will use the value of ``field`` attribute to get the value of the column.
+         For custom columns, ``field`` is the name of a task custom field.
+         Portal will use the value of ``field`` to get the value of the column.
 
       ``canWorkOn``: filter only tasks that the current user can work on. The default value is "false".
 
       ``visible``: visibility of a column. The default value is "true".
       Set to "false" to hide the column.
 
-      ``header``: header text of the column. You can input a string, or can use
-      CMS by using prefix ``cms:`` before your CMS URI to define header
-      in multilingual.
+      ``header``: header text of the column. You can enter a string, or use
+      CMS by adding prefix ``cms:`` in front of your CMS URI to define a multilingual header.
 
-Custom columns
+Custom Columns
 --------------
 
-Axon Ivy supports custom fields for the task.
-You can show them on the Task widget in form of a column.
+Axon Ivy supports custom fields for tasks. You can show them in the Task widget
+as a column.
 
-More, you can predefine which column to show, and other attributes such as header,
+You can predefine which column to show, and other attributes such as header,
 filter, format. Below is a standard JSON of a custom column.
 
 .. code-block:: html
@@ -146,18 +146,21 @@ filter, format. Below is a standard JSON of a custom column.
 
 ..
 
-Besides attributes explained in the previous section, a custom column has two differences:
+Besides attributes explained in the previous section, a custom column has two
+differences:
 
-   - ``format``: Type of custom column. There are four formats ``string``, ``text``, ``number``, and ``timestamp``.
+   - ``format``: Type of custom column. There are four formats ``string``,
+     ``text``, ``number``, and ``timestamp``.
 
-   - ``field``: this attribute is the name of the task's custom field which will be used to get data for the column.
+   - ``field``: this attribute is the name of the task's custom field which will
+     be used to get data for the column.
 
-Filter conditions
+Filter Conditions
 -----------------
 
-You can predefined filter conditions for most columns of the task widget.
-Each column has different conditions, some columns only accept a list, some only accept
-a string, and some only accept a string in a special format such as date-time.
+You can predefine filter conditions for most columns of the task widget. Each
+column has different conditions, some columns only accept a list, some only a
+string, and some only a string in a special format such as date-time.
 
 Below is the list of filterable columns and their corresponding filter conditions.
 
@@ -178,11 +181,10 @@ Below is the list of filterable columns and their corresponding filter condition
 
       ..
 
-      This column only accepts a list of role names or usernames
-      (if you want to filter by username, put a hashtag before the name)
-      as filter conditions for the task's responsible username.
-      If you define a string such as "#peter", the task widget will show tasks which
-      responsible's username is "peter".
+      This column only accepts a list of role names or usernames (if you want to
+      filter by username, put a hashtag before the name) as filter conditions
+      for the task's responsible username. If you define a string such as
+      "#peter", the task widget will show tasks that have been created by "peter".
 
    - ``name``
 
@@ -265,9 +267,9 @@ Below is the list of filterable columns and their corresponding filter condition
          }
       ..
 
-      This column  only accepts a list of task states' names as the filter condition.
+      This column only accepts a list of task state names as its filter condition.
       If you define a list of states in ``filterList``, the task widget will show
-      tasks that have states listed in ``filterList``. 
+      tasks that are in one of the states listed in ``filterList``. 
 
       Refer to :dev-url:`Task States </doc/nightly/public-api/ch/ivyteam/ivy/workflow/TaskState.html>` for
       available task states.
@@ -291,9 +293,9 @@ Below is the list of filterable columns and their corresponding filter condition
 
       ..
 
-      This column accepts 2 filter conditions ``filterFrom`` and ``filterTo`` as boundaries
+      This column accepts two filter conditions ``filterFrom`` and ``filterTo`` as boundaries
       of a range of dates. If you define dates for ``filterFrom`` and ``filterTo``,
-      the task widget will show tasks have created dates between the dates defined.
+      the task widget will show tasks that have been created between the dates defined.
 
       Acceptable date formats: ``dd.MM.yyyy`` and ``MM/dd/yyyy``.
 
@@ -315,8 +317,8 @@ Below is the list of filterable columns and their corresponding filter condition
 
       ..
 
-      This column accepts 2 filter conditions ``filterFrom`` and ``filterTo`` as boundaries
+      This column accepts two filter conditions ``filterFrom`` and ``filterTo`` as boundaries
       of a range of dates. If you define dates for ``filterFrom`` and ``filterTo``,
-      the task widget will show tasks have expiry dates between the dates defined.
+      the task widget will show tasks that have expiry dates between the dates defined.
 
       Acceptable date formats: ``dd.MM.yyyy`` and ``MM/dd/yyyy``.

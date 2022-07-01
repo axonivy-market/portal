@@ -1,13 +1,13 @@
 .. _configure-new-dashboard-case-widget:
 
-Configure Case widget
+Configure Case Widget
 =====================
 
-Define Case widget
+Define Case Widget
 ------------------
 
-The case widget of the Portal dashboard is an interactable case list. Refer
-to (link to case widget of the dashboard) for more details.
+The case widget of the Portal dashboard is an interactive case list. Refer
+to (link to case widget of the dashboard) for details.
 
 Below is a sample JSON definition of the case widget in the Portal dashboard.
 
@@ -52,41 +52,42 @@ Below is a sample JSON definition of the case widget in the Portal dashboard.
    }
 ..
 
-the basic structure of JSON of case widget
+The basic JSON structure of the case widget
+-  ``type``: type of widget. Use ``case`` for a case widget
 
-   ``type``: type of widget. Use ``case`` to mark that this widget is a case widget
+-  ``id``: ID of the widget
 
-   ``id``: ID of the widget
+-  ``name``: Name of the widget on the UI
 
-   ``name``: Name of the widget on UI
+-  ``layout``: layout definition of the case widget
 
-   ``layout``: layout definition of case widget
+   -  ``x``: HTML DOM Style ``left`` will be calculated by formula ``x / 12 * 100%``
 
-      ``x``: HTML DOM Style ``left`` will be calculated by formula ``x / 12 * 100%``
+   -  ``y``: HTML DOM Style ``top`` will be calculated by formula ``y / 12 * 100%``
 
-      ``y``: HTML DOM Style ``top`` will be calculated by formula ``y / 12 * 100%``
+   -  ``w``: HTML DOM Style ``width`` will be calculated by formula ``60 * w + 20 * (w - 1)``
 
-      ``w``: HTML DOM Style ``width`` will be calculated by formula ``60 * w + 20 * (w - 1)``
+   -  ``h``: HTML DOM Style ``height`` will be calculated by formula ``60 * h + 20 * (h - 1)``
 
-      ``h``: HTML DOM Style ``height`` will be calculated by formula ``60 * h + 20 * (h - 1)``
+   -  ``styleClass`` (optional): add CSS classes to HTML DOM of Case widget
 
-      ``styleClass`` (optional): add CSS Classes to HTML DOM of Case widget
+   -  ``style`` (optional): add inline style to HTML DOM of Case widget
 
-      ``style`` (optional): add inline style to HTML DOM of Case widget
+-  ``sortField``: default sort field for Case widget
 
-   ``sortField``: default sort field for Case widget
+-  ``sortDescending``: default sort direction of the default sort field. The
+   default value is "false" (sort direction is ascending)
 
-   ``sortDescending``: sort direction of the default sort field is descending or not. The default value is "false"
+-  ``rowsPerPage``: maximum number of cases that are displayed on one page of
+   the case widget. The default is 10 rows per page
 
-   ``rowsPerPage``: the number of cases can be displayed on one page of the case widget. 
-   The default value is 10 rows per page
+-  ``columns``: column configurations for each column in the case widget. You
+   can predefine filters, styles, visibility,... of columns and define custom
+   columns, too.
 
-   ``columns``: column configurations for each column in the case widget. You can predefine
-   filters, styles, visibility,... of columns and define custom columns also
-
-      ``field``: field name of the column
+   -  ``field``: field name of the column
          
-         For standard column, ``field`` must be one of these columns
+         For a standard column, ``field`` must be one of these:
 
             - ``id``: case ID
 
@@ -98,31 +99,33 @@ the basic structure of JSON of case widget
 
             - ``creator``: case creator
 
-            - ``startTimestamp``: created date and time of the case
+            - ``startTimestamp``: creation date and time of the case
 
             - ``endTimestamp``: end date and time of the case
 
             - ``owner``: case owner
 
-            - ``actions``: for further actions: access case details, business details case, destroy case
+            - ``actions``: for further actions like ``access case details``,
+              ``case business details``, ``destroy case``
 
-         For custom column, ``field`` is the name of a case custom field.
-         Portal will use the value of ``field`` attribute to get the value of the column.
+         For custom columns, ``field`` is the name of a case custom field.
+         Portal will use the value of the ``field`` attribute to get the value
+         of the column.
 
-      ``visible``: visibility of a column. The default value is "true".
-      Set to "false" to hide the column.
+   -  ``visible``: visibility of a column. The default value is "true". Set to
+      "false" to hide the column.
 
-      ``header``: header text of the column. You can input a string, or can use
-      CMS by using prefix ``cms:`` before your CMS URI to define header
-      in multilingual.
+   -  ``header``: header text of the column. You can input a string, or you can
+      use the CMS by setting prefix ``cms:`` before your CMS URI to define a
+      multilingual column header.
 
-Custom columns
+Custom Columns
 --------------
 
-Axon Ivy supports custom fields for a case.
-You can show them on the case widget in form of a column.
+The Portal supports custom fields for a case. You can show them on the case widget
+as a column.
 
-More, you can predefine which column to show, and other attributes such as header,
+You can predefine which column to show, and other attributes such as header,
 filter, format. Below is a standard JSON of a custom column.
 
 .. code-block:: html
@@ -142,20 +145,24 @@ filter, format. Below is a standard JSON of a custom column.
 
 ..
 
-Besides attributes explained in the previous section, a custom column has two differences:
+Besides the attributes explained in the previous section, a custom column has
+two differences:
 
-   - ``format``: Type of custom column. There are four formats ``string``, ``text``, ``number``, and ``timestamp``.
+   - ``field``: this attribute is the name of the case's custom field which will
+     be used to get data for the column.
 
-   - ``field``: this attribute is the name of the case's custom field which will be used to get data for the column.
+   - ``format``: Type of custom column. There are four formats ``string``,
+     ``text``, ``number``, and ``timestamp``.
 
-Filter conditions
+Filter Conditions
 -----------------
 
-You can predefined filter conditions for most columns of the case widget.
-Each column has different conditions, some columns only accept a list, some only accept
-a string, and some only accept a string in a special format such as date-time.
+You can predefined filter conditions for most columns of the case widget. Each
+column has different conditions. Some columns only accept a list, some only a
+string, and some only accept a string in a special format such as date-time.
 
-Below is the list of filterable columns and their corresponding filter conditions.
+Below is the list of filterable columns and their corresponding filter
+conditions.
 
    - ``name``
 
@@ -174,9 +181,9 @@ Below is the list of filterable columns and their corresponding filter condition
 
       ..
 
-      This column only accepts a string as the filter condition for the case name.
-      If you define a string such as "request", the case widget will show cases that
-      contain the "request" word in its name.
+      This column only accepts a string as the filter condition for the case
+      name. If you define a string such as "request", the case widget will only
+      show cases that contain the word "request" in their name.
 
    - ``description``
 
@@ -196,8 +203,8 @@ Below is the list of filterable columns and their corresponding filter condition
       ..
 
       This column only accepts a string as the filter condition for the case description.
-      If you define a string such as "request", the case widget will show cases that
-      contain the "request" word in its description.
+      If you define a string such as "request", the case widget will only show cases that
+      contain the word "request" in their description.
 
    - ``state``: Case state
 
@@ -215,8 +222,8 @@ Below is the list of filterable columns and their corresponding filter condition
          }
       ..
 
-      This column only accepts a list of case states' names as the filter condition.
-      If you define a list of states in ``filterList``, the case widget will show cases that have
+      This column only accepts a list of case state names as the filter condition.
+      If you define a list of states in ``filterList``, the case widget will only show cases that have
       states listed in ``filterList``. 
 
       Refer to :dev-url:`Case States </doc/nightly/public-api/ch/ivyteam/ivy/workflow/CaseState.html>` for
@@ -239,11 +246,10 @@ Below is the list of filterable columns and their corresponding filter condition
 
       ..
 
-      This column only accepts a list of role names or usernames
-      (if you want to filter by username, put a hashtag before the name) as filter 
-      conditions for the case's responsible username.
-      If you define a string such as "#peter", the case widget will show cases that
-      the creator's  username is "peter".
+      This column only accepts a list of role names or usernames (if you want to
+      filter by username, put a hashtag (#) before the name) as filter conditions
+      for the case creator's username. If you define a string such as
+      "#peter", the case widget will show cases that have been created by "peter".
 
    - ``startTimestamp``: Case's created date
 
@@ -263,9 +269,9 @@ Below is the list of filterable columns and their corresponding filter condition
 
       ..
 
-      This column accepts 2 filter conditions ``filterFrom`` and ``filterTo`` as boundaries
+      This column accepts two filter conditions ``filterFrom`` and ``filterTo`` as boundaries
       of a range of dates. If you define dates for ``filterFrom`` and ``filterTo``,
-      case widget will show cases have created date between the dates defined.
+      the case widget will show cases with a created date between the dates defined.
 
       Acceptable date formats: ``dd.MM.yyyy`` and ``MM/dd/yyyy``.
 
@@ -287,8 +293,8 @@ Below is the list of filterable columns and their corresponding filter condition
 
       ..
 
-      This column accepts 2 filter conditions ``filterFrom`` and ``filterTo`` as boundaries
+      This column accepts two filter conditions ``filterFrom`` and ``filterTo`` as boundaries
       of a range of dates. If you define dates for ``filterFrom`` and ``filterTo``,
-      case widget will show cases have expiry date between the dates defined.
+      case widget will show cases with an expiry date between the dates defined.
 
       Acceptable date formats: ``dd.MM.yyyy`` and ``MM/dd/yyyy``.
