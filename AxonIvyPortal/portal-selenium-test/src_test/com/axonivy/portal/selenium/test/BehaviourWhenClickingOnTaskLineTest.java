@@ -15,6 +15,7 @@ import com.axonivy.portal.selenium.page.CaseWidgetPage;
 import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskDetailsPage;
+import com.axonivy.portal.selenium.page.TaskTemplatePage;
 import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
 import com.codeborne.selenide.Condition;
@@ -27,23 +28,11 @@ public class BehaviourWhenClickingOnTaskLineTest extends BaseTest {
   private static final String TASK_MATERNITY_LEAVE_REQUEST = "Maternity Leave Request";
   private static final String CASE_LEAVE_REQUEST = "Leave Request";
   private static final String IN_PROGRESS = "In progress";
-  private TaskWidgetPage taskWidgetPage;
-  private TaskDetailsPage taskDetailsPage;
-  private NewDashboardPage newDashboardPage;
-  private MainMenuPage mainMenuPage;
-  private CaseWidgetPage caseWidgetPage;
-  private CaseDetailsPage caseDetailsPage;
 
   @Override
   @BeforeEach
   public void setup() {
     super.setup();
-    taskWidgetPage = new TaskWidgetPage();
-    taskDetailsPage = new TaskDetailsPage();
-    newDashboardPage = new NewDashboardPage();
-    mainMenuPage = new MainMenuPage();
-    caseWidgetPage = new CaseWidgetPage();
-    caseDetailsPage = new CaseDetailsPage();
   }
 
   @Test
@@ -51,9 +40,10 @@ public class BehaviourWhenClickingOnTaskLineTest extends BaseTest {
     redirectToRelativeLink(createTestingTasksUrl);
     login(TestAccount.DEMO_USER);
     MainMenuPage mainMenuPage = new MainMenuPage();
-    mainMenuPage.openTaskList();
+    TaskWidgetPage taskWidgetPage = mainMenuPage.openTaskList();
     taskWidgetPage.runTaskWithRunTheTaskBehaviour(0);
-    taskWidgetPage.getStartedTaskTemplateTitle().shouldHave(Condition.attribute("title", TASK_MATERNITY_LEAVE_REQUEST));
+    new TaskTemplatePage().getStartedTaskTemplateTitle()
+        .shouldHave(Condition.attribute("title", TASK_MATERNITY_LEAVE_REQUEST));
   }
 
   @Test
@@ -61,19 +51,21 @@ public class BehaviourWhenClickingOnTaskLineTest extends BaseTest {
     updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), ACCESS_TASK_DETAILS);
     redirectToRelativeLink(createTestingTasksUrl);
     login(TestAccount.DEMO_USER);
+    MainMenuPage mainMenuPage = new MainMenuPage();
     mainMenuPage.openTaskList();
-    taskWidgetPage.openTaskWithAccessTaskDetailsBehaviour(0);
-    taskDetailsPage.getInformationPanel().should(Condition.appear);
+    new TaskWidgetPage().openTaskWithAccessTaskDetailsBehaviour(0);
+    new TaskDetailsPage().getInformationPanel().should(Condition.appear);
   }
 
   @Test
   public void testRunTaskWhenClickingOnTaskLineInCaseDetails() {
     redirectToRelativeLink(createTestingTasksUrl);
     login(TestAccount.DEMO_USER);
-    mainMenuPage.openCaseList();
-    caseWidgetPage.openCase(CASE_LEAVE_REQUEST);
+    CaseWidgetPage caseWidgetPage = new MainMenuPage().openCaseList();
+    CaseDetailsPage caseDetailsPage = caseWidgetPage.openCase(CASE_LEAVE_REQUEST);
     caseDetailsPage.openTaskWithRunTheTaskBehaviour(TASK_MATERNITY_LEAVE_REQUEST);
-    caseWidgetPage.getStartedTaskTemplateTitle().shouldHave(Condition.attribute("title", TASK_MATERNITY_LEAVE_REQUEST));
+    new TaskTemplatePage().getStartedTaskTemplateTitle()
+        .shouldHave(Condition.attribute("title", TASK_MATERNITY_LEAVE_REQUEST));
   }
 
   @Test
@@ -81,10 +73,9 @@ public class BehaviourWhenClickingOnTaskLineTest extends BaseTest {
     updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), ACCESS_TASK_DETAILS);
     redirectToRelativeLink(createTestingTasksUrl);
     login(TestAccount.DEMO_USER);
-    mainMenuPage.openCaseList();
-    caseWidgetPage.openCase(CASE_LEAVE_REQUEST);
+    CaseDetailsPage caseDetailsPage = new MainMenuPage().openCaseList().openCase(CASE_LEAVE_REQUEST);
     caseDetailsPage.openTaskWithRunTheTaskBehaviour(TASK_MATERNITY_LEAVE_REQUEST);
-    taskDetailsPage.getInformationPanel().should(Condition.appear);
+    new TaskDetailsPage().getInformationPanel().should(Condition.appear);
   }
 
   @Test
@@ -92,10 +83,11 @@ public class BehaviourWhenClickingOnTaskLineTest extends BaseTest {
     login(TestAccount.DEMO_USER);
     redirectToRelativeLink(createTestingTasksUrl);
     redirectToNewDashBoard();
-    TaskWidgetNewDashBoardPage taskWidgetNewDashBoardPage = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
+    TaskWidgetNewDashBoardPage taskWidgetNewDashBoardPage = new NewDashboardPage().selectTaskWidget(YOUR_TASKS_WIDGET);
     taskWidgetNewDashBoardPage.expand().shouldHave(sizeGreaterThanOrEqual(1));
     taskWidgetNewDashBoardPage.openTask(TASK_MATERNITY_LEAVE_REQUEST);
-    caseWidgetPage.getStartedTaskTemplateTitle().shouldHave(Condition.attribute("title", TASK_MATERNITY_LEAVE_REQUEST));
+    new TaskTemplatePage().getStartedTaskTemplateTitle()
+        .shouldHave(Condition.attribute("title", TASK_MATERNITY_LEAVE_REQUEST));
   }
 
   @Test
@@ -104,9 +96,9 @@ public class BehaviourWhenClickingOnTaskLineTest extends BaseTest {
     login(TestAccount.DEMO_USER);
     redirectToRelativeLink(createTestingTasksUrl);
     redirectToNewDashBoard();
-    TaskWidgetNewDashBoardPage taskWidgetNewDashBoardPage = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
+    TaskWidgetNewDashBoardPage taskWidgetNewDashBoardPage = new NewDashboardPage().selectTaskWidget(YOUR_TASKS_WIDGET);
     taskWidgetNewDashBoardPage.openTask(TASK_MATERNITY_LEAVE_REQUEST);
-    taskDetailsPage.getInformationPanel().should(Condition.appear);
+    new TaskDetailsPage().getInformationPanel().should(Condition.appear);
   }
 
   @Test
@@ -115,7 +107,7 @@ public class BehaviourWhenClickingOnTaskLineTest extends BaseTest {
     login(TestAccount.DEMO_USER);
     redirectToRelativeLink(createTestingTasksUrl);
     redirectToNewDashBoard();
-    TaskWidgetNewDashBoardPage taskWidgetNewDashBoardPage = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
+    TaskWidgetNewDashBoardPage taskWidgetNewDashBoardPage = new NewDashboardPage().selectTaskWidget(YOUR_TASKS_WIDGET);
     taskWidgetNewDashBoardPage.openFilterWidget();
     taskWidgetNewDashBoardPage.filterTaskName(TASK_MATERNITY_LEAVE_REQUEST);
     taskWidgetNewDashBoardPage.applyFilter();

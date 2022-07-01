@@ -1,7 +1,9 @@
 package com.axonivy.portal.selenium.page;
 
-import static com.codeborne.selenide.Condition.*;
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Condition.appear;
+import static com.codeborne.selenide.Condition.disappear;
+import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Selenide.$;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
@@ -204,5 +206,10 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
 
   private SelenideElement getFieldDisplayName() {
     return getColumnManagementDialog().$("input[id$='field-display-name']");
+  }
+
+  @Override
+  protected String getLoadedLocator() {
+    return ".case-configuration__creators";
   }
 }

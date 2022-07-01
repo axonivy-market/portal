@@ -30,8 +30,8 @@ public class StickyNavigationDashboardTest extends BaseTest {
   @BeforeEach
   public void setup() {
     super.setup();
-    newDashboardPage = new NewDashboardPage();
     login(TestAccount.ADMIN_USER);
+    newDashboardPage = new NewDashboardPage();
   }
   
   @Test
@@ -116,7 +116,6 @@ public class StickyNavigationDashboardTest extends BaseTest {
     newDashboardPage.openCreatePrivateDashboardMenu();
     newDashboardPage.createPrivateDashboardFromScratch(name, description);
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
-    newDashboardDetailsEditPage.waitPageDisplay();
     newDashboardDetailsEditPage.backToConfigurationPage().navigateToNewDashboardPage();
     newDashboardPage.getDashboardActive().shouldBe(Condition.text("New public dashboard 1"));
   }
@@ -136,7 +135,6 @@ public class StickyNavigationDashboardTest extends BaseTest {
     newDashboardPage.openCreatePublicDashboardMenu();
     newDashboardPage.createPublicDashboardFromScratch(name, description, permissions);
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
-    newDashboardDetailsEditPage.waitPageDisplay();
     newDashboardDetailsEditPage.backToConfigurationPage().navigateToNewDashboardPage();
     newDashboardPage.getDashboardActive().shouldBe(Condition.text("New public dashboard 1"));
   }
