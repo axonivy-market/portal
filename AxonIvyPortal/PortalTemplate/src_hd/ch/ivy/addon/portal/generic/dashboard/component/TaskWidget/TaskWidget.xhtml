@@ -38,7 +38,7 @@
         paginator="true" paginatorPosition="bottom" lazy="true" paginatorTemplate="{PreviousPageLink} {PageLinks} {NextPageLink} {RowsPerPageDropdown}"
         rows="#{taskWidget.rowsPerPage}"
         rowsPerPageTemplate="5,10,20,50"
-        paginatorAlwaysVisible="false"
+        paginatorAlwaysVisible="true"
         pageLinks="5" sortBy="#{taskWidget.sortBy}"
         rowIndexVar="rowIndex" rowHover="#{isReadOnlyMode}" selectionMode="single"
         styleClass="dashboard-tasks--table #{isReadOnlyMode ? '' : 'dashboard__table--edit'} #{isPreviewMode ? 'dashboard__table--preview' : ''} #{!isPreviewMode and taskWidget.taskCount lt 1 ? 'u-display-none' : ''}"
@@ -47,15 +47,15 @@
         <p:ajax event="page" oncomplete="saveWidgetState()" />
         <p:ajax event="rowSelect" listener="#{dashboardBean.handleRowSelectEventOnTaskWidget}" disabled="#{!isReadOnlyMode}" />
 
-        <p:columns id="dashboard-tasks-columns" var="column" value="#{taskWidget.columns}" headerText="#{column.headerText}" styleClass="#{column.styleClass} #{(column.field eq 'start' or column.field eq 'name' or column.field eq 'start' or column.field eq 'actions') ? '' : 'u-hidden-sm-down'}"
+        <p:columns id="dashboard-tasks-columns" var="column" value="#{taskWidget.columns}" headerText="#{column.headerText}" styleClass="#{column.styleClass} #{(column.field eq 'start' or column.field eq 'name' or column.field eq 'actions') ? '' : 'u-hidden-sm-down'}"
           visible="#{column.visible}" field="#{column.field}" filterable="false"
           sortBy="#{column.field}" sortable="#{column.sortable}"
           style="#{column.format eq 'TIMESTAMP' or column.format eq 'NUMBER' ? 'text-align: center;' : ''} #{column.style}">
 
-          <h:panelGroup rendered="#{column.field eq 'start'}">
+          <h:panelGroup rendered="#{column.field eq 'start'}" styleClass="dashboard-tasks__start-container">
             <ui:include src="StartCell.xhtml" />
           </h:panelGroup>
-          
+
           <h:panelGroup rendered="#{column.field eq 'priority'}">
             <ic:ch.ivy.addon.portalkit.component.task.column.TaskPriority priority="#{task.priority}" alwaysShowPriority="true" />
           </h:panelGroup>

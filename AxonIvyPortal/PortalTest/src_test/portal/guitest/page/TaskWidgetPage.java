@@ -63,7 +63,7 @@ public class TaskWidgetPage extends TemplatePage {
 
   public TaskDetailsPage openTaskDetailsFromActionMenu(int index) {
     sideStepMenuOnActionButton(index);
-    String detailOptionCssSelector = "a[id$='task-open-detail-command']";
+    String detailOptionCssSelector = "a[id$='additional-options:task-open-detail-command']";
     waitForElementDisplayed(By.cssSelector(detailOptionCssSelector), true);
     click(By.cssSelector(detailOptionCssSelector));
     return new TaskDetailsPage();
@@ -801,9 +801,9 @@ public class TaskWidgetPage extends TemplatePage {
 
   @SuppressWarnings("deprecation")
   public void resetFilter() {
-    click(By.cssSelector("[id$='task-widget:filter-reset-action']"));
+    clickByCssSelector("[id$='task-widget:filter-reset-action']");
     waitAjaxIndicatorDisappear();
-    click(By.cssSelector("[id$='task-widget:filter-reset-command']"));
+    clickByCssSelector("[id$='task-widget:filter-reset-command']");
     waitForElementDisplayed(By.id("task-widget:reset-filter-set-dialog"), false);
   }
 

@@ -14,7 +14,7 @@
             id="additional-case-detail-table" 
             value="#{data.ivyCase.customFields().all()}" 
             var="item"
-            reflow="true">
+            reflow="true" lazy="false">
             <f:facet name="header">
 		        <h:outputText value="Investment Request Custom Fields"/>
 		    </f:facet>

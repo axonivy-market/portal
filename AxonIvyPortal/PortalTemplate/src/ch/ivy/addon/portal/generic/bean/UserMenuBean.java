@@ -142,7 +142,17 @@ public class UserMenuBean implements Serializable {
       navigateToHomePage();
     }
   }
-  
+
+  public void navigateToPortalManagementDisplayWorkingTaskWarning(boolean isWorkingOnATask, ITask task) throws IOException {
+    if (isWorkingOnATask && task.getState() != TaskState.DONE) {
+      openTaskLosingConfirmationDialog();
+      targetPage = getPortalManagementUrl();
+    } else {
+      executeJSResetPortalMenuState();
+      navigateToPortalManagement();
+    }
+  }
+
   public void navigateToUserProfileOrDisplayWorkingTaskWarning(boolean isWorkingOnATask, ITask task) throws IOException {
     if (isWorkingOnATask && task.getState() != TaskState.DONE) {
       openTaskLosingConfirmationDialog();
@@ -307,7 +317,15 @@ public class UserMenuBean implements Serializable {
   private String getUserProfileUrl() {
     return PortalNavigator.buildUserProfileUrl();
   }
-  
+
+  private void navigateToPortalManagement() throws IOException {
+    getExternalContext().redirect(getPortalManagementUrl());
+  }
+
+  private String getPortalManagementUrl() {
+    return PortalNavigator.buildPortalManagementUrl();
+  }
+
   private long getDefaultClientSideTimeout() {
     ExternalContext externalContext = getExternalContext();
     long serverSideTimeOutInMillisecond = externalContext.getSessionMaxInactiveInterval() * DateUtils.MILLIS_PER_SECOND;

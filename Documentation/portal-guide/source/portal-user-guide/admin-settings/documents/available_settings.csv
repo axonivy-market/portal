@@ -1,65 +1,67 @@
-Key,Default value,Note
-Portal.CaseDetails.HideDocument,FALSE,"Set to true, the document section in case detail page will be hidden, otherwise it will be shown. "
-Portal.CaseDetails.HideUploadDocumentForDoneCase,FALSE,Set to true to deny upload (also delete) document after a case is done. 
-Portal.CaseDetails.ShowDurationTime,TRUE,For switch on/off the display of the duration time in case details page. 
-Portal.Cases.DisableCount,FALSE,Set to true to disable counting case in case list 
+Key,"Default value",Note
+Portal.CaseDetails.HideDocument,FALSE,"Set to true, the document section in case detail page will be hidden, otherwise it will be shown."
+Portal.CaseDetails.HideUploadDocumentForDoneCase,FALSE,"Set to true to deny upload (also delete) document after a case is done."
+Portal.CaseDetails.ShowDurationTime,TRUE,"For switch on/off the display of the duration time in case details page."
+Portal.Cases.DisableCount,FALSE,"Set to true to disable counting case in case list."
 Portal.Cases.EnableOwner,FALSE,"| Set to true to enable filtering case owner when cases are queried. This setting affects all case 
-| queries e.g. for case list, global search, statistic. "
-Portal.Cases.SortDirection ,Sort descending ,Default sort direction of case list 
-Portal.Cases.SortField,Case Id,Default sort field of case list 
-Portal.Chat.EnableGroup,FALSE,Set this property to true to enable group chat function 
-Portal.Chat.EnablePrivate,FALSE,Set this property to true to enable private chat function 
-Portal.Chat.MaxConnection ,3,"| The set number controls the amount of tabs allowed with active chat. If more tabs are opened,
-| the chat will be disabled in inactive tabs. Allowed values between 1-5 "
+| queries e.g. for case list, global search, statistic."
+Portal.Cases.SortDirection,"Sort descending","Default sort direction of case list."
+Portal.Cases.SortField,"Case Id","Default sort field of the case list."
+Portal.Chat.EnableGroup,FALSE,"Set this property to true to enable group chat function."
+Portal.Chat.EnablePrivate,FALSE,"Set this property to true to enable private chat function."
+Portal.Chat.MaxConnection,3,"| The set number controls the amount of tabs allowed with active chat. If more tabs are opened,
+| the chat will be disabled in inactive tabs. Allowed values are 1 to 5."
 Portal.Chat.ResponseTimeout,0,"| Chat response timeout in seconds, default value is 0 and means no timeout. If chat messages go through 
-| the reverse proxy Nginx, chat response timeout must be less than the Nginx timeout, e.g. less than 60 seconds. "
-Portal.ClientSideTimeout,0,"| Client side timeout in minutes, must be more than 0 and less than the server side timeout (e.g. 25 seconds).
-| Default value is 0, it means default client side timeout is applied.
-| Default client side timeout is server side timeout minus 3 minutes. "
-Portal.Dashboard.HideStatisticWidget,FALSE,Set to true to hide Statistic widget from homepage and application menu. 
-Portal.Dashboard.ShowUserFavorites ,TRUE,"If this property is disabled, do not display user favorites section of process list in Portal home. "
-Portal.Dashboard.ShowUserGuide,TRUE,Activates the interactive user guide "first steps" in the portal at first login. 
-Portal.DateTimeFormat.DateFilterWithTime,FALSE,"Set to true to enable date filtering with time. This setting affects on task list, case list, and statistics. "
-Portal.DateTimeFormat.HideTime,FALSE,Set to true to hide hours and minutes next to date. 
-Portal.DateTimeFormat.HideYear,FALSE,"Set to true, year will be hidden, otherwise it will be shown. "
-Portal.DisplayMessageAfterFinishTask,TRUE,A feedback message will be displayed after user finishes or leaves a task. 
-Portal.DisplayUsersOfRole,FALSE,"| This setting is using for SecurityMemberDisplayName component. If the SecurityMember is a role, set this setting to true to 
-| list out all users of this role. If set to true, icon info is shown beside the role name. "
-Portal.Document.EnableScriptChecking,FALSE,"Set to true to enable script checking for uploaded document. Currently this function supports checking for PDF, Excel, Word. "
-Portal.Document.EnableVirusScanner,FALSE,Set to true to enable virus scanner for uploaded document. Currently this function is using API VIRUSTOTAL. 
+| the reverse proxy Nginx, chat response timeout must be less than the Nginx timeout, e.g. less than 60 seconds."
+Portal.ClientSideTimeout,0,"| Client side timeout in minutes. Has to be more than 0 and less than the server side timeout (e.g. 25 minutes).
+| Default value is 0, which means that the default client side timeout is applied.
+| Default client side timeout is server side timeout minus 3 minutes."
+Portal.Dashboard.HideStatisticWidget,FALSE,"If true, hide Statistic widget from homepage and application menu."
+Portal.Dashboard.ShowUserFavorites,TRUE,"If true, display user favorites section of process list in Portal home."
+Portal.Dashboard.ShowUserGuide,TRUE,"If true, show interactive user guide ""first steps"" in the portal at first login."
+Portal.DateTimeFormat.DateFilterWithTime,FALSE,"Set to true to enable date filtering with time. This setting affects on task list, case list, and statistics."
+Portal.DateTimeFormat.HideTime,FALSE,"Set to true to hide hours and minutes next to date."
+Portal.DateTimeFormat.HideYear,FALSE,"Set to true, year will be hidden, otherwise it will be shown."
+Portal.DisplayMessageAfterFinishTask,TRUE,"A feedback message will be displayed after user finishes or leaves a task."
+Portal.DisplayUsersOfRole,FALSE,"| Controls the SecurityMemberDisplayName component.| If true and the SecurityMember is a role, lists all users of this role under the info icon besides the role name."
+Portal.Document.EnableScriptChecking,FALSE,"If true, enables checking uploaded documents for scripting. Supports PDF, Excel, Word."
+Portal.Document.EnableVirusScanner,FALSE,"Set to true to enable virus scanner for uploaded document. Currently this function uses the VIRUSTOTAL API."
 Portal.Document.WhitelistExtension,"| doc, docx, xls,
 | xlsx, xlsm, csv,
 | pdf, ppt, pptx,
 | txt, zip, jpg,
 | jpeg, bmp, png","| Leave value empty if you allow all extensions. If just allow some extensions, list out extensions here,
-| separated by comma. Example: pdf, txt, doc, docx. "
-Portal.EmbedInFrame,TRUE,Set to true to start a process/task in IFrame mode 
-Portal.ExpressEndPage,TRUE,Display the custom end page at the end of each Express process. 
-Portal.Histories.HideSystemNotes,TRUE,"If true, case/task note does not display any system notes for non-administrator users. "
-Portal.Histories.HideSystemNotesForAdministrator,FALSE,"If true, case/task note does not display any system notes for administrator. "
-Portal.Histories.HideSystemTasks,TRUE,"If true, case note does not display any system tasks for non-administrator users. "
-Portal.Histories.HideSystemTasksForAdministrator,FALSE,"If true, case note does not display any system tasks for administrator. "
-Portal.Homepage,Dashboard,"| To set the standard homepage which will be redirect to when clicking on home icon or logo.
-| This setting also applies to the ends page after finished a task."
-Portal.LoggedInUserFormat,Display name,The option to show logged-in user format 
-Portal.Processes.DefaultImage,DEFAULT ,The standard setting of default image that will be displayed in the image process list. 
-Portal.Processes.Mode,Image ,The standard setting of view mode in the process list. 
-Portal.Processes.ShowInformation,TRUE,Set to false to disable link to Show Information of process on Processes page (grid mode) and Case Details. 
-Portal.ShowButtonIcon,TRUE,For switch on/off the display icons in button. 
-Portal.ShowEnvironmentInfo,FALSE,For switch on/off the display of environment information. 
-Portal.ShowGlobalSearch,TRUE,For switch on/off the display of the global search. 
-Portal.ShowLegacyUI,FALSE,For switch on/off the display of the legacy UI. 
-Portal.TaskDetails.HideDocument,FALSE,"Set to true, the document section in task detail page will be hidden, otherwise it will be shown. "
-Portal.TaskDetails.ShowDurationTime,TRUE,For switch on/off the display of the duration time in task details page. 
-Portal.Tasks.DisableCount,FALSE,Set to true to disable counting task in task list 
-Portal.Tasks.RefreshInterval,10000,Task list refresh interval in seconds. 
-Portal.Tasks.SortDirection,Sort descending,Default sort direction of task list 
-Portal.Tasks.SortField,Task Id,Default sort field of task list 
-Portal.Tasks.BehaviourWhenClickingOnLineInTaskList,Run the task,"| Default behaviours (run the task or access task details) when clicking
-| on a line in task list, task widget of dashboard and related tasks in case details page. "
-Portal.UserMenu.HideChangePasswordMenu ,FALSE,"Set to true, the change password option in top menu will be hidden, otherwise it will be shown. "
-Portal.UserMenu.HideLogoutMenu ,FALSE,"If true, the logout button on top menu will be hidden, otherwise it will be shown. "
-Portal.ProcessViewer,TRUE,Set this property to true to enable process viewer option in Task/Case actions
+| separated by comma. Example: pdf, txt, doc, docx."
+Portal.EmbedInFrame,TRUE,"If true, start a process/task in IFrame mode."
+Portal.ExpressEndPage,TRUE,"If true, display the custom end page at the end of each Express process."
+Portal.Histories.HideSystemNotes,TRUE,"If true, case/task note does not display any system notes for non-administrator users."
+Portal.Histories.HideSystemNotesForAdministrator,FALSE,"If true, case/task note does not display any system notes for administrator."
+Portal.Histories.HideSystemTasks,TRUE,"If true, case note does not display any system tasks for non-administrator users."
+Portal.Histories.HideSystemTasksForAdministrator,FALSE,"If true, case note does not display any system tasks for administrator."
+Portal.Homepage,Dashboard,"| Define the standard homepage which will be redirected to when clicking on home icon or logo.
+| This setting also applies to the end page for finished tasks."
+Portal.LoggedInUserFormat,"Display name","The option to show logged-in user format."
+Portal.Processes.DefaultImage,DEFAULT,"The standard setting of default image that will be displayed in the image process list."
+Portal.Processes.Mode,Image,"The standard setting of view mode in the process list."
+Portal.Processes.ShowInformation,TRUE,"Set to false to disable link to Show Information of process on Processes page (grid mode) and Case Details."
+Portal.ShowButtonIcon,TRUE,"If true, show icons in buttons."
+Portal.ShowEnvironmentInfo,FALSE,"If true, show environment information."
+Portal.ShowGlobalSearch,TRUE,"If true, display the global search box."
+Portal.ShowLegacyUI,FALSE,"For switch on/off the display of the legacy UI."
+Portal.TaskDetails.HideDocument,FALSE,"If true, the document section in task detail page will be hidden, otherwise it will be shown."
+Portal.TaskDetails.ShowDurationTime,TRUE,"For switch on/off the display of the duration time in task details page."
+Portal.Tasks.DisableCount,FALSE,"Set to true to disable counting task in task list."
+Portal.Tasks.RefreshInterval,10000,"Task list refresh interval in seconds."
+Portal.Tasks.SortDirection,"Sort descending","Default sort direction of task list."
+Portal.Tasks.SortField,"Task Id","Default sort field of task list."
+Portal.Tasks.BehaviourWhenClickingOnLineInTaskList,"Run the task","| Default behaviours (run the task or access task details) when clicking
+| on a line in task list, task widget of dashboard and related tasks in case details page."
+Portal.UserMenu.HideChangePasswordMenu,FALSE,"Set to true, the change password option in top menu will be hidden, otherwise it will be shown."
+Portal.UserMenu.HideLogoutMenu,FALSE,"If true, the logout button on top menu will be hidden, otherwise it will be shown."
+Portal.ProcessViewer,TRUE,"Set this property to true to enable process viewer option in Task/Case actions."
 Portal.Histories.HideRelatedCaseInfo,FALSE,"If true, case history does not display the related case information in the history table."
-Portal.ShowErrorLogToConsole, FALSE, Set to true to enable write error log to browser console
-Portal.ShowAvatar, TRUE, For switch on/off the display of user/role avatars.
+Portal.ShowErrorLogToConsole,FALSE,"If true, write error log to browser console."
+Portal.ShowAvatar,TRUE,"If true, switch on the display of user/role avatars."
+Portal.StatisticChartsPolling,0,"| Statistic charts polling in seconds, Default value is 0.
+| If the value is less than 10, live chart polling is disabled.
+| If the value is more than or equal to 10, live chart polling is enabled."

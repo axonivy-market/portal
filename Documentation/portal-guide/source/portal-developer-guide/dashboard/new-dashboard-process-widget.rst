@@ -1,15 +1,15 @@
 .. _configure-new-dashboard-proces-widget:
 
-Configure Process widget
+Configure Process Widget
 ========================
 
-Define Process widget
+Define Process Widget
 ---------------------
 
-Process widget of Portal dashboard is a flexible Process list with three modes.
-Refer to (link to process widget of the dashboard) for more details.
+The Process widget of the Portal dashboard is a flexible Process list with three modes.
+Refer to (link to process widget of the dashboard) for details.
 
-Basic JSON structure of process widget:
+The basic structure of the JSON of a process widget is as follows:
 
    .. code-block:: html
 
@@ -23,10 +23,11 @@ Basic JSON structure of process widget:
       }
    ..
 
-The basic structure of JSON of Process widget
+The basic structure of the JSON of a Process widget
 
-``type``: type of process widget. There are four types for related display modes: ``compact-process`` (compact mode), 
-``combined-process`` (combined mode), ``full-process`` (full mode), and ``image-process`` (image mode).
+``type``: type of process widget. There are four types for related display
+modes: ``compact-process`` (compact mode), ``combined-process`` (combined mode),
+``full-process`` (full mode), and ``image-process`` (image mode).
 
    ``id``: ID of the widget
 
@@ -46,13 +47,13 @@ The basic structure of JSON of Process widget
 
       ``style`` (optional): add inline style to HTML DOM of widget
 
-Each mode has differences in its JSON definition. Refer to the below sections to understand
-how to define the process widget in these modes properly.
+Each mode has differences in its JSON definition. Refer to the below sections to
+understand how to define the process widget in these modes properly.
 
-Compact mode
+Compact Mode
 ------------
 
-Below is a standard JSON definition of Process widget compact mode
+Below is a standard JSON definition of aProcess widget in compact mode
 
    .. code-block:: html
 
@@ -68,21 +69,22 @@ Below is a standard JSON definition of Process widget compact mode
       }
    ..
 
-``processPaths``: friendly user request path of the processes that you want to show.
+``processPaths``: userfriendly request path of the processes that you want to
+show.
 
-``categories``: categories of processes that you want to show.
-Process widget will show all processes that belonged to these categories.
+``categories``: categories of processes that you want to show. Process widget
+will show all processes that belonged to these categories.
 
-If you define both ``processPaths`` and ``categories``, the process widget will show 
-processes by ``processPaths``.
+If you define both ``processPaths`` and ``categories``, the process widget will
+show processes by ``processPaths``.
 
-If you don't define these attributes, the process widget will show all
-available processes by default.
+If you don't define these attributes, the process widget will show all available
+processes by default.
 
-Combined mode
+Combined Mode
 -------------
 
-Below is a standard JSON definition of Process widget combined mode
+Below is a standard JSON definition of a Process widget in combined mode
 
    .. code-block:: html
 
@@ -98,16 +100,16 @@ Below is a standard JSON definition of Process widget combined mode
       }
    ..
 
-``processPath``: friendly user request path of the process you want to display in combined mode.
-Process widget will show all tasks and cases of this process also.
+``processPath``: user friendly request path of the process you want to display.
+The Process widget will show all tasks and cases of this process, too.
 
-``rowsPerPage``: the number of tasks/cases can be displayed on one page. 
+``rowsPerPage``: the number of tasks/cases that are displayed on one page. 
 If you don't define this attribute, the default value is 5 rows per page.
 
 Full mode
 ---------
 
-Below is a standard JSON definition of Process widget full mode
+Below is a standard JSON definition of a Process widget in full mode
 
    .. code-block:: html
 
@@ -122,12 +124,10 @@ Below is a standard JSON definition of Process widget full mode
       }
    ..
 
-``processPath``: friendly user request path of the process you want to display in full mode.
-
-Image mode
+Image Mode
 ----------
 
-Below is a standard JSON definition of Process widget image mode
+Below is a standard JSON definition of the Process widget in image mode
 
    .. code-block:: html
 
@@ -141,6 +141,3 @@ Below is a standard JSON definition of Process widget image mode
          "processPath": "Start Processes/Request/createNewRequest.ivp"
       }
    ..
-
-``processPath``: friendly user request path of the process you want to display in image mode.
-
