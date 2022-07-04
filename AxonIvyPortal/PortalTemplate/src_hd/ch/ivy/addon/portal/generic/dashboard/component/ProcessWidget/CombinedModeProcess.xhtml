@@ -38,7 +38,7 @@
 <h:panelGroup styleClass="process-widget--full process-widget--combined ui-g-4 ui-sm-12" layout="block" rendered="#{widget.process ne null}">
   <c:set var="isExpress" value="#{dashboardProcessBean.isExpressProcess(widget.process)}" />
 
-  <h:form id="process-item" styleClass="ui-g-12 process-grid-item u-padding-0 widget-height-100" target="#{processTarget}">
+  <h:form id="process-item-#{widget.id}" styleClass="ui-g-12 process-grid-item u-padding-0 widget-height-100" target="#{processTarget}">
     <div class="ui-g-12 #{isExpress ? 'express-workflow' : ''} #{isExternalLink ? 'external-link' : ''} combined-process widget-height-100">
       <h:panelGroup id="process-item" layout="block" styleClass="grid-view-form TexAlCenter Fleft">
         <!-- Process Icon -->
