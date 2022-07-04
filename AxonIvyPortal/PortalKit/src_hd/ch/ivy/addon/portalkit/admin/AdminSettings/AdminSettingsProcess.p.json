@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.11",
+  "format" : "9.4.14",
   "id" : "150F0B4F8F3CB2CB",
   "data" : "ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData",
   "kind" : "HTML_DIALOG",
@@ -34,7 +34,6 @@
       "type" : "HtmlDialogEventStart",
       "name" : "addNewApp",
       "config" : {
-        ".name" : "addNewApp",
         "guid" : "14B719AF780C56D8"
       },
       "visual" : {
@@ -48,7 +47,6 @@
       "type" : "Script",
       "name" : "init value for add new",
       "config" : {
-        ".name" : "init value for add new",
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.configuration.Application;",
@@ -81,7 +79,6 @@
       "type" : "HtmlDialogEventStart",
       "name" : "saveApplication",
       "config" : {
-        ".name" : "saveApplication",
         "guid" : "14B71AFE89C4BE23"
       },
       "visual" : {
@@ -96,7 +93,6 @@
       "name" : "editApplication(Application)",
       "config" : {
         "callSignature" : "editApplication",
-        ".name" : "editApplication(Application)",
         "input" : {
           "params" : [
             { "name" : "application", "type" : "ch.ivy.addon.portalkit.configuration.Application" }
@@ -118,7 +114,6 @@
       "type" : "Script",
       "name" : "set value for app",
       "config" : {
-        ".name" : "set value for app",
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.util.DisplayNameAdaptor;",
@@ -145,7 +140,6 @@
       "name" : "submitDeleteApp(Application)",
       "config" : {
         "callSignature" : "submitDeleteApp",
-        ".name" : "submitDeleteApp(Application)",
         "input" : {
           "params" : [
             { "name" : "application", "type" : "ch.ivy.addon.portalkit.configuration.Application" }
@@ -170,7 +164,6 @@
       "name" : "editSetting(GlobalSetting)",
       "config" : {
         "callSignature" : "editSetting",
-        ".name" : "editSetting(GlobalSetting)",
         "input" : {
           "params" : [
             { "name" : "setting", "type" : "ch.ivy.addon.portalkit.configuration.GlobalSetting" }
@@ -193,7 +186,6 @@
       "name" : "set value",
       "config" : {
         "security" : "system",
-        ".name" : "set value",
         "output" : {
           "code" : [
             "import ch.addon.portal.generic.userprofile.homepage.HomepageUtils;",
@@ -230,7 +222,6 @@
       "type" : "HtmlDialogEventStart",
       "name" : "saveSetting",
       "config" : {
-        ".name" : "saveSetting",
         "guid" : "14B784950D872997"
       },
       "visual" : {
@@ -247,10 +238,6 @@
         "if in addMode"
       ],
       "config" : {
-        ".name" : [
-          "consider add to list",
-          "if in addMode"
-        ],
         "output" : {
           "code" : [
             "if (in.isAddMode) {",
@@ -269,7 +256,6 @@
       "type" : "Script",
       "name" : "check duplicate",
       "config" : {
-        ".name" : "check duplicate",
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.configuration.Application;",
@@ -299,9 +285,6 @@
       "id" : "f115",
       "type" : "Alternative",
       "name" : "app exist ?",
-      "config" : {
-        ".name" : "app exist ?"
-      },
       "visual" : {
         "at" : { "x" : 1072, "y" : 336 },
         "size" : { "width" : 28, "height" : 28 },
@@ -320,7 +303,6 @@
       "type" : "Script",
       "name" : "show messages",
       "config" : {
-        ".name" : "show messages",
         "output" : {
           "code" : [
             "import javax.faces.application.FacesMessage;",
@@ -352,7 +334,6 @@
       "type" : "HtmlDialogEventStart",
       "name" : "delete",
       "config" : {
-        ".name" : "delete",
         "guid" : "14CD62A3566672A1"
       },
       "visual" : {
@@ -366,7 +347,6 @@
       "type" : "Script",
       "name" : "set value",
       "config" : {
-        ".name" : "set value",
         "output" : {
           "code" : "in.selectedApp.name = in.selectedApp.displayName;"
         }
@@ -387,7 +367,6 @@
       "type" : "Script",
       "name" : "process data from UI",
       "config" : {
-        ".name" : "process data from UI",
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.dto.DisplayName;",
@@ -416,7 +395,6 @@
       "type" : "Script",
       "name" : "get supported languages",
       "config" : {
-        ".name" : "get supported languages",
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.loader.ApplicationMultiLanguageNameLoader;",
@@ -465,7 +443,6 @@
       "type" : "HtmlDialogEventStart",
       "name" : "getLanguageList",
       "config" : {
-        ".name" : "getLanguageList",
         "guid" : "14E9B7FC57888C9E",
         "output" : {
           "map" : {
@@ -485,7 +462,6 @@
       "type" : "Script",
       "name" : "prepair displayname",
       "config" : {
-        ".name" : "prepair displayname",
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.dto.DisplayName;",
@@ -531,10 +507,6 @@
         "for 3rd party app"
       ],
       "config" : {
-        ".name" : [
-          "load supported languages",
-          "for 3rd party app"
-        ],
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.service.ApplicationMultiLanguage;",
@@ -553,9 +525,6 @@
       "id" : "f209",
       "type" : "Alternative",
       "name" : "is add mode?",
-      "config" : {
-        ".name" : "is add mode?"
-      },
       "visual" : {
         "at" : { "x" : 1072, "y" : 416 },
         "size" : { "width" : 28, "height" : 28 },
@@ -578,7 +547,6 @@
       "type" : "Script",
       "name" : "update current language",
       "config" : {
-        ".name" : "update current language",
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.dto.DisplayName;",
@@ -626,7 +594,6 @@
       "type" : "Script",
       "name" : "delete app",
       "config" : {
-        ".name" : "delete app",
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.service.RegisteredApplicationService;",
@@ -648,7 +615,6 @@
       "type" : "Script",
       "name" : "save app",
       "config" : {
-        ".name" : "save app",
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.configuration.Application;",
@@ -669,7 +635,6 @@
       "type" : "Script",
       "name" : "save all apps",
       "config" : {
-        ".name" : "save all apps",
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.service.RegisteredApplicationService;",
@@ -688,7 +653,6 @@
       "type" : "Script",
       "name" : "save global setting",
       "config" : {
-        ".name" : "save global setting",
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.configuration.GlobalSetting;",
@@ -713,7 +677,6 @@
       "name" : "getAppNameInCurrentLocale(Application)",
       "config" : {
         "callSignature" : "getAppNameInCurrentLocale",
-        ".name" : "getAppNameInCurrentLocale(Application)",
         "input" : {
           "params" : [
             { "name" : "application", "type" : "ch.ivy.addon.portalkit.configuration.Application" }
@@ -750,7 +713,6 @@
       "name" : "submitResetSetting(GlobalSetting)",
       "config" : {
         "callSignature" : "submitResetSetting",
-        ".name" : "submitResetSetting(GlobalSetting)",
         "input" : {
           "params" : [
             { "name" : "setting", "type" : "ch.ivy.addon.portalkit.configuration.GlobalSetting" }
@@ -775,7 +737,6 @@
       "name" : "submitResetAllSettings()",
       "config" : {
         "callSignature" : "submitResetAllSettings",
-        ".name" : "submitResetAllSettings()",
         "input" : {
           "code" : [
             "out.confirmMsg  = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/adminSettings/resetAllSettingsConfirmation\");",
@@ -802,7 +763,6 @@
       "type" : "Script",
       "name" : "reset selected setting",
       "config" : {
-        ".name" : "reset selected setting",
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.service.GlobalSettingService;",
@@ -825,7 +785,6 @@
       "type" : "Script",
       "name" : "reset all settings",
       "config" : {
-        ".name" : "reset all settings",
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.enums.GlobalVariable;",
@@ -849,7 +808,6 @@
       "type" : "HtmlDialogEventStart",
       "name" : "resetValue",
       "config" : {
-        ".name" : "resetValue",
         "guid" : "163DD1F145199579"
       },
       "visual" : {
@@ -862,7 +820,6 @@
       "type" : "HtmlDialogEventStart",
       "name" : "resetValues",
       "config" : {
-        ".name" : "resetValues",
         "guid" : "163DD1F1451A5EB6"
       },
       "visual" : {
@@ -875,7 +832,6 @@
       "type" : "Script",
       "name" : "init data",
       "config" : {
-        ".name" : "init data",
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.service.GlobalSettingService;",
@@ -896,7 +852,6 @@
       "type" : "SubProcessCall",
       "name" : "LanguageService",
       "config" : {
-        ".name" : "LanguageService",
         "processCall" : "Ivy Data Processes/LanguageService:findUserLanguages()",
         "output" : {
           "map" : {
@@ -915,7 +870,6 @@
       "name" : "publishAnnouncement()",
       "config" : {
         "callSignature" : "publishAnnouncement",
-        ".name" : "publishAnnouncement()",
         "guid" : "16A29A0E1F97DE40"
       },
       "visual" : {
@@ -929,7 +883,6 @@
       "name" : "depublishAnnouncement()",
       "config" : {
         "callSignature" : "depublishAnnouncement",
-        ".name" : "depublishAnnouncement()",
         "guid" : "16A29A0F2F82745C"
       },
       "visual" : {
@@ -942,7 +895,6 @@
       "type" : "Script",
       "name" : "publish",
       "config" : {
-        ".name" : "publish",
         "output" : {
           "code" : [
             "import javax.faces.application.FacesMessage;",
@@ -966,7 +918,6 @@
       "type" : "Script",
       "name" : "depublish",
       "config" : {
-        ".name" : "depublish",
         "output" : {
           "code" : [
             "import javax.faces.application.FacesMessage;",
@@ -990,7 +941,6 @@
       "name" : "isApplicationDefaultEmailLanguage(String)",
       "config" : {
         "callSignature" : "isApplicationDefaultEmailLanguage",
-        ".name" : "isApplicationDefaultEmailLanguage(String)",
         "input" : {
           "params" : [
             { "name" : "language", "type" : "String" }
@@ -1026,7 +976,6 @@
       "type" : "Script",
       "name" : "init app data",
       "config" : {
-        ".name" : "init app data",
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.comparator.ApplicationIndexAscendingComparator;",
@@ -1050,7 +999,6 @@
       "name" : "onApplicationReorder(List<Application>,Application)",
       "config" : {
         "callSignature" : "onApplicationReorder",
-        ".name" : "onApplicationReorder(List<Application>,Application)",
         "input" : {
           "params" : [
             { "name" : "orderedApplicationList", "type" : "java.util.List<ch.ivy.addon.portalkit.configuration.Application>" },
@@ -1074,7 +1022,6 @@
       "type" : "HtmlDialogEventStart",
       "name" : "processLanguage",
       "config" : {
-        ".name" : "processLanguage",
         "guid" : "14E9B7FC56E87E52"
       },
       "visual" : {
@@ -1118,7 +1065,6 @@
       "type" : "Script",
       "name" : "init data",
       "config" : {
-        ".name" : "init data",
         "output" : {
           "code" : [
             "import javax.faces.application.FacesMessage;",
@@ -1144,7 +1090,6 @@
       "name" : "initApplicationSettings()",
       "config" : {
         "callSignature" : "initApplicationSettings",
-        ".name" : "initApplicationSettings()",
         "guid" : "1816136F73A1406F"
       },
       "visual" : {
@@ -1158,7 +1103,6 @@
       "name" : "initAdminSettings()",
       "config" : {
         "callSignature" : "initAdminSettings",
-        ".name" : "initAdminSettings()",
         "guid" : "1816138474B8F445"
       },
       "visual" : {
@@ -1178,7 +1122,6 @@
       "name" : "initAnnouncementSettings()",
       "config" : {
         "callSignature" : "initAnnouncementSettings",
-        ".name" : "initAnnouncementSettings()",
         "guid" : "1816139068BE6768"
       },
       "visual" : {
@@ -1197,7 +1140,6 @@
       "type" : "Script",
       "name" : "update messages",
       "config" : {
-        ".name" : "update messages",
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.bean.AdminSettingBean;",
@@ -1220,7 +1162,6 @@
       "type" : "Script",
       "name" : "update messages",
       "config" : {
-        ".name" : "update messages",
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.bean.AdminSettingBean;",
@@ -1249,7 +1190,6 @@
       "type" : "Script",
       "name" : "update messages",
       "config" : {
-        ".name" : "update messages",
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.bean.AdminSettingBean;",
