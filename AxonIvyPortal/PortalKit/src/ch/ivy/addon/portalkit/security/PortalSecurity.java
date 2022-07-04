@@ -118,7 +118,7 @@ public enum PortalSecurity {
     if (CollectionUtils.isEmpty(iPermissions) || securityMember == null) {
       return;
     }
-    ISecurityDescriptor portalSecurity = IApplication.current().getSecurityDescriptor();
+    ISecurityDescriptor portalSecurity = ISecurityContext.current().securityDescriptor();
     
     List<IPermission> denniedPermission = portalSecurity
         .getPermissionAccesses(securityMember)
