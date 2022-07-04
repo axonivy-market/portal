@@ -23,11 +23,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.persistence.PersistencyException;
 import ch.ivyteam.ivy.security.IPermission;
 import ch.ivyteam.ivy.security.IRole;
+import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;
@@ -253,7 +253,7 @@ public class SecurityUtils {
     var admin = Ivy.security().users().find("admin");
     if (admin != null) {
       for (IPermission permission : ADMIN_PERMISSIONS) {
-        IApplication.current().getSecurityDescriptor().grantPermission(permission, admin);
+        ISecurityContext.current().securityDescriptor().grantPermission(permission, admin);
       }
     }
   }
@@ -269,10 +269,10 @@ public class SecurityUtils {
       return;
     }
     for (IPermission iPermission : DEMO_DENIED_PERMISSIONS) {
-      IApplication.current().getSecurityDescriptor().denyPermission(iPermission, demo);
+      ISecurityContext.current().securityDescriptor().denyPermission(iPermission, demo);
     }
     for (IPermission permission : DEMO_GRANTED_PERMISSIONS) {
-      IApplication.current().getSecurityDescriptor().grantPermission(permission, demo);
+      ISecurityContext.current().securityDescriptor().grantPermission(permission, demo);
     }
   }
 }

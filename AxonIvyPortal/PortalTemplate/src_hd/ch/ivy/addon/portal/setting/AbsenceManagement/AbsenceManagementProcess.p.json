@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.10",
+  "format" : "9.4.14",
   "id" : "1756E0BE3BCBAD12",
   "data" : "ch.ivy.addon.portal.setting.AbsenceManagement.AbsenceManagementData",
   "kind" : "HTML_DIALOG",
@@ -1255,10 +1255,9 @@
         "security" : "system",
         "output" : {
           "code" : [
-            "import ch.ivyteam.ivy.application.IApplication;",
             "import ch.ivy.addon.portalkit.util.DeputyRoleUtils;",
             "",
-            "in.substitutes = DeputyRoleUtils.getSubstitutesFromDeputyRoles(in.deputyRoles, IApplication.current());"
+            "in.substitutes = DeputyRoleUtils.getSubstitutesFromDeputyRoles(in.deputyRoles);"
           ]
         }
       },
