@@ -269,7 +269,7 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   private SelenideElement getCompactModeProcessCategoryFilterPanel() {
-    return $("span[id$=':compact-filter'] div[id$=':widget-filter-category-panel']");
+    return $("div[id$=':widget-filter-category-panel']");
   }
 
   private SelenideElement getFilterApplyButton() {
