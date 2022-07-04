@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.11",
+  "format" : "9.4.14",
   "id" : "169C767D49174098",
   "data" : "com.axonivy.portal.developerexamples.showcase.ApplicationDialog.ApplicationDialogData",
   "kind" : "HTML_DIALOG",
@@ -13,9 +13,6 @@
       "id" : "f6",
       "type" : "Script",
       "name" : "Init",
-      "config" : {
-        ".name" : "Init"
-      },
       "visual" : {
         "at" : { "x" : 256, "y" : 64 }
       },
@@ -26,7 +23,6 @@
       "name" : "delete(File)",
       "config" : {
         "callSignature" : "delete",
-        ".name" : "delete(File)",
         "input" : {
           "params" : [
             { "name" : "file", "type" : "com.axonivy.portal.developerexamples.showcase.GdprFile" }
@@ -48,7 +44,6 @@
       "name" : "Delete",
       "config" : {
         "security" : "system",
-        ".name" : "Delete",
         "output" : {
           "code" : [
             "try{",
@@ -72,7 +67,6 @@
       "type" : "HtmlDialogEventStart",
       "name" : "proceed",
       "config" : {
-        ".name" : "proceed",
         "guid" : "169C76B36E1CC2C6"
       },
       "visual" : {
@@ -91,7 +85,6 @@
       "type" : "Script",
       "name" : "Set URL",
       "config" : {
-        ".name" : "Set URL",
         "output" : {
           "code" : [
             "import org.apache.commons.io.FileUtils;",
@@ -126,7 +119,6 @@
       "type" : "HtmlDialogEventStart",
       "name" : "selectPeriod",
       "config" : {
-        ".name" : "selectPeriod",
         "guid" : "169C76B36E183099"
       },
       "visual" : {
@@ -140,7 +132,6 @@
       "name" : "start(GdprRequest)",
       "config" : {
         "callSignature" : "start",
-        ".name" : "start(GdprRequest)",
         "input" : {
           "params" : [
             { "name" : "gdprRequest", "type" : "com.axonivy.portal.developerexamples.showcase.GdprRequest" }
@@ -161,7 +152,6 @@
       "type" : "HtmlDialogEventStart",
       "name" : "close",
       "config" : {
-        ".name" : "close",
         "guid" : "169C76B36E13A297"
       },
       "visual" : {
@@ -175,7 +165,6 @@
       "name" : "handleFileUploader(FileUploadEvent)",
       "config" : {
         "callSignature" : "handleFileUploader",
-        ".name" : "handleFileUploader(FileUploadEvent)",
         "input" : {
           "params" : [
             { "name" : "event", "type" : "org.primefaces.event.FileUploadEvent" }
@@ -232,7 +221,6 @@
       "name" : "Download",
       "config" : {
         "security" : "system",
-        ".name" : "Download",
         "output" : {
           "code" : [
             "import com.axonivy.portal.developerexamples.util.FileUtils;",
@@ -277,7 +265,6 @@
       "name" : "show(File)",
       "config" : {
         "callSignature" : "show",
-        ".name" : "show(File)",
         "input" : {
           "params" : [
             { "name" : "file", "type" : "com.axonivy.portal.developerexamples.showcase.GdprFile" }
