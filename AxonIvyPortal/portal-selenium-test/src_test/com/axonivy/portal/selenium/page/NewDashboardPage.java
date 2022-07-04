@@ -357,25 +357,25 @@ public class NewDashboardPage extends TemplatePage {
 
   public void filterCompactModeProcessCategory(boolean isExpanded, String category) {
     getCompactModeProcessFilterPanelCategory(isExpanded).shouldBe(Condition.appear).click();
-    ElementsCollection categories = getCompactModeProcessCategoryFilterPanel(isExpanded)
+    ElementsCollection categories = getCompactModeProcessCategoryFilterPanel()
         .waitUntil(Condition.appear, DEFAULT_TIMEOUT).$$(".ui-treenode-label");
     categories.filter(Condition.exactTextCaseSensitive("All Categories")).first().click();
     categories.filter(Condition.exactTextCaseSensitive(category)).first()
         .waitUntil(Condition.not(Condition.cssClass("ui-state-highlight")), DEFAULT_TIMEOUT).click();
-    getCompactModeProcessCategoryFilterPanelApplyButton(isExpanded).click();
-    getCompactModeProcessCategoryFilterPanel(isExpanded).waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
+    getCompactModeProcessCategoryFilterPanelApplyButton().click();
+    getCompactModeProcessCategoryFilterPanel().waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
   }
 
   public SelenideElement getCompactModeProcessFilterPanelCategory(boolean isExpanded) {
     return getCompactModeProcessFilterPanel(isExpanded).$("input[id$=':widget-filter-category']");
   }
 
-  public SelenideElement getCompactModeProcessCategoryFilterPanel(boolean isExpanded) {
+  public SelenideElement getCompactModeProcessCategoryFilterPanel() {
     return $("div[id$=':widget-filter-category-panel']");
   }
 
-  public SelenideElement getCompactModeProcessCategoryFilterPanelApplyButton(boolean isExpanded) {
-    return getCompactModeProcessFilterPanel(isExpanded).$("button[id$=':update-command']");
+  public SelenideElement getCompactModeProcessCategoryFilterPanelApplyButton() {
+    return getCompactModeProcessCategoryFilterPanel().$("button[id$=':update-command']");
   }
 
   public void expandCompactModeProcess() {
