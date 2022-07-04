@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.11",
+  "format" : "9.4.14",
   "id" : "16B267B1A01CFA7E",
   "data" : "gawfs.UploadDocumentOverrideData",
   "kind" : "CALLABLE_SUB",
@@ -9,7 +9,6 @@
       "name" : "call(ICase,UploadedFile)",
       "config" : {
         "callSignature" : "call",
-        ".name" : "call(ICase,UploadedFile)",
         "input" : {
           "params" : [
             { "name" : "businessCase", "type" : "ch.ivyteam.ivy.workflow.ICase" },
@@ -49,7 +48,6 @@
       "type" : "Script",
       "name" : "Validate",
       "config" : {
-        ".name" : "Validate",
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.enums.UploadDocumentCheckStatus;",
@@ -84,9 +82,6 @@
       "id" : "f72",
       "type" : "Alternative",
       "name" : "Not exist?",
-      "config" : {
-        ".name" : "Not exist?"
-      },
       "visual" : {
         "at" : { "x" : 920, "y" : 120 },
         "labelOffset" : { "x" : -27, "y" : -34 }
@@ -105,7 +100,6 @@
       "name" : "Upload document",
       "config" : {
         "security" : "system",
-        ".name" : "Upload document",
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.util.DocumentFileUtils;",
@@ -135,7 +129,6 @@
       "name" : "Check exist",
       "config" : {
         "security" : "system",
-        ".name" : "Check exist",
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.util.DocumentFileUtils;",
@@ -179,9 +172,6 @@
       "id" : "f70",
       "type" : "Alternative",
       "name" : "valid file?",
-      "config" : {
-        ".name" : "valid file?"
-      },
       "visual" : {
         "at" : { "x" : 376, "y" : 120 },
         "size" : { "width" : 28, "height" : 28 },
@@ -203,9 +193,6 @@
       "id" : "f53",
       "type" : "Alternative",
       "name" : "Document check",
-      "config" : {
-        ".name" : "Document check"
-      },
       "visual" : {
         "at" : { "x" : 664, "y" : 120 },
         "labelOffset" : { "x" : -54, "y" : -37 }
@@ -223,7 +210,6 @@
       "type" : "SubProcessCall",
       "name" : "UploadDocumentChecker",
       "config" : {
-        ".name" : "UploadDocumentChecker",
         "processCall" : "Functional Processes/UploadDocumentChecker:call(org.primefaces.model.file.UploadedFile)",
         "output" : {
           "map" : {
