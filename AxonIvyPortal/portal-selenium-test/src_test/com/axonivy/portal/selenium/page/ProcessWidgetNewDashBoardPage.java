@@ -15,7 +15,7 @@ public class ProcessWidgetNewDashBoardPage extends TemplatePage {
   private String processWidgetName;
 
   public ProcessWidgetNewDashBoardPage() {
-    this("form[id$='process-list']", YOUR_PROCESSES_WIDGET);
+    this("div[id$='process-list']", YOUR_PROCESSES_WIDGET);
   }
 
   @Override
