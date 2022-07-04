@@ -371,7 +371,7 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public SelenideElement getCompactModeProcessCategoryFilterPanel(boolean isExpanded) {
-    return getCompactModeProcessFilterPanel(isExpanded).$("div[id$=':widget-filter-category-panel']");
+    return $("div[id$=':widget-filter-category-panel']");
   }
 
   public SelenideElement getCompactModeProcessCategoryFilterPanelApplyButton(boolean isExpanded) {
