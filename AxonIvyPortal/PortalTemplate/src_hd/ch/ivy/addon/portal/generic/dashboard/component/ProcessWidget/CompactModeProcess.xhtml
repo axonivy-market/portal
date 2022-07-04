@@ -5,7 +5,7 @@
   xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
 <ui:composition>
-  <h:panelGroup id="process-list" layout="block" styleClass="compact-processes-container widget-content" rendered="#{not empty processes}">
+  <h:form id="process-list" styleClass="compact-processes-container widget-content" rendered="#{not empty processes}">
     <ui:repeat varStatus="status" var="process" value="#{processes}">
       <span class="process-start-list-item">
         <p:commandLink actionListener="#{compactDashboardProcessBean.startProcessWithCompactMode(process)}" disabled="#{!isReadOnlyMode or isInConfiguration}"
@@ -33,6 +33,6 @@
         </p:commandLink>
       </span>
     </ui:repeat>
-  </h:panelGroup>
+  </h:form>
 </ui:composition>
 </html>
