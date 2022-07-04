@@ -167,7 +167,7 @@ public class DashboardWidgetConfigurationDialogPage extends TemplatePage {
   }
   
   public void waitForCompactProcessLoadedAfterClickPreview() {
-    waitForElementDisplayed(By.cssSelector("form[id$=':process-list'] .process-start-list-item"), true);
+    waitForElementDisplayed(By.cssSelector("div[id$=':process-list'] .process-start-list-item"), true);
     waitUntilAnimationFinished(DEFAULT_TIMEOUT, "ajax-indicator\\\\:ajax-indicator-ajax-indicator_start", ID_PROPERTY);
     waitUntilAnimationFinished(45, "process-start-list-item", "class");
   }
