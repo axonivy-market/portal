@@ -6389,28 +6389,8 @@ a.dashboard-configuration-dialog__action-row label {
   font-style: italic;
 }
 
-.role-tree-table .role-name-column .role-username {
-  opacity: 0.6;
-  font-style: italic;
-  margin-left: .5rem;
-}
-
 .users-assigned-role-column {
   max-width: 200px;
-}
-
-.users-of-role-container {
-  display: flex;
-  padding: 0;
-  vertical-align: middle;
-  align-content: center;
-  justify-content: space-around;
-  align-items: center;
-  flex-direction: row;
-}
-
-.users-of-role-container .user-displayname {
-  width: calc(100% - 100px);
 }
 
 .users-of-role-container .action-group {

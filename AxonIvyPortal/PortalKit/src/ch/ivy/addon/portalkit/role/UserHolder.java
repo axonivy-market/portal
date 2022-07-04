@@ -3,6 +3,8 @@ package ch.ivy.addon.portalkit.role;
 import java.io.Serializable;
 import java.util.Objects;
 
+import org.apache.commons.lang3.StringUtils;
+
 import ch.ivy.addon.portalkit.dto.UserDTO;
 import ch.ivyteam.ivy.security.IUser;
 
@@ -11,19 +13,28 @@ public class UserHolder implements Serializable {
   private static final long serialVersionUID = -3387169339793283968L;
   private String name;
   private String displayName;
-  private UserDTO userDTO;
+  private IUser iUser;
+  private boolean isDirectlyAssignedRole;
 
   public UserHolder() {}
 
   public UserHolder(UserDTO userDTO) {
     this.name = userDTO.getName();
     this.displayName = userDTO.getDisplayName();
-    this.userDTO = userDTO;
   }
 
   public UserHolder(IUser iUser) {
+    this.iUser = iUser;
     this.name = iUser.getName();
     this.displayName = iUser.getDisplayName();
+  }
+
+  public UserHolder(IUser iUser, String roleName) {
+    this.iUser = iUser;
+    this.name = iUser.getName();
+    this.displayName = iUser.getDisplayName();
+    this.isDirectlyAssignedRole = iUser.getRoles().stream()
+        .filter(role -> StringUtils.equals(role.getName(), roleName)).findAny().isPresent();
   }
 
   public UserHolder(String name, String displayName) {
@@ -47,12 +58,20 @@ public class UserHolder implements Serializable {
     this.displayName = displayName;
   }
 
-  public UserDTO getUserDTO() {
-    return userDTO;
+  public IUser getiUser() {
+    return iUser;
   }
 
-  public void setUserDTO(UserDTO userDTO) {
-    this.userDTO = userDTO;
+  public void setiUser(IUser iUser) {
+    this.iUser = iUser;
+  }
+
+  public boolean isDirectlyAssignedRole() {
+    return isDirectlyAssignedRole;
+  }
+
+  public void setDirectlyAssignedRole(boolean isDirectlyAssignedRole) {
+    this.isDirectlyAssignedRole = isDirectlyAssignedRole;
   }
 
   @Override
