@@ -25,14 +25,14 @@
 
     <h:panelGroup id="dashboard-processes-container" layout="block"
       styleClass="ui-g-12 u-padding-0 js-dashboard-processes-container-#{widget.id} u-display-none #{displayMode eq 'COMBINED_MODE' and widget.process != null ? 'dashboard-processes-container--combined' : ''}">
-      <c:if test="#{widget.displayMode eq 'COMPACT_MODE'}">
+      <ui:fragment rendered="#{widget.displayMode eq 'COMPACT_MODE'}">
         <ui:include src="CompactModeProcess.xhtml">
           <ui:param name="processes" value="#{widget.displayProcesses}" />
           <ui:param name="isReadOnlyMode" value="#{isReadOnlyMode}" />
           <ui:param name="isInConfiguration" value="#{cc.attrs.isInConfiguration}" />
         </ui:include>
-      </c:if>
-      <c:if test="#{widget.displayMode eq 'FULL_MODE' and widget.process ne null}">
+      </ui:fragment>
+      <ui:fragment rendered="#{widget.displayMode eq 'FULL_MODE' and widget.process ne null}">
         <ic:ch.ivy.addon.portalkit.component.process.ProcessGridItem id="process-grid-item"
           process="#{widget.process}" managedBean="#{dashboardProcessBean}"
           readOnlyMode="#{cc.attrs.isInConfiguration or !isReadOnlyMode}"
@@ -47,23 +47,23 @@
           processStyleClass="ui-g-12 u-padding-0 process-widget--full"
           processIconStyleClass="process-grid-view__icon"
           isInConfiguration="#{cc.attrs.isInConfiguration}"/>
-      </c:if>
-      <c:if test="#{widget.displayMode eq 'COMBINED_MODE' and widget.process ne null}">
+      </ui:fragment>
+      <ui:fragment rendered="#{widget.displayMode eq 'COMBINED_MODE' and widget.process ne null}">
         <ui:include src="CombinedModeProcess.xhtml">
           <ui:param name="widget" value="#{widget}" />
           <ui:param name="isReadOnlyMode" value="#{isReadOnlyMode}" />
           <ui:param name="isInConfiguration" value="#{cc.attrs.isInConfiguration}" />
           <ui:param name="index" value="#{index}" />
         </ui:include>
-      </c:if>
-      <c:if test="#{widget.displayMode eq 'IMAGE_MODE' and widget.process ne null}">
+      </ui:fragment>
+      <ui:fragment rendered="#{widget.displayMode eq 'IMAGE_MODE' and widget.process ne null}">
         <ui:include src="ImageModeProcess.xhtml">
           <ui:param name="widget" value="#{widget}" />
           <ui:param name="process" value="#{widget.process}" />
           <ui:param name="isReadOnlyMode" value="#{isReadOnlyMode}" />
           <ui:param name="isInConfiguration" value="#{cc.attrs.isInConfiguration}" />
         </ui:include>
-      </c:if>
+      </ui:fragment>
 
       <h:panelGroup id="empty-process"
         rendered="#{(displayMode eq 'COMBINED_MODE' or displayMode eq 'FULL_MODE' or displayMode eq 'IMAGE_MODE') and widget.process eq null}">
