@@ -584,7 +584,9 @@ ch.ivy.addon.portalkit.ui.jsf:
     RoleManagement:
       AssignUsersToRole: Attribuer des rôles aux utilisateurs
       AssignedUser: Utilisateurs assignés
+      AvailableUsers: Utilisateurs disponibles
       CannotDeleteRoleTooltip: Vous ne pouvez pas supprimer ce rôle en raison d'un manque de permissions.
+      CannotDeleteUserTooltip: Vous ne pouvez pas supprimer les utilisateurs de l'appartenance au rôle
       CannotEditRoleTooltip: Vous ne pouvez pas modifier ce rôle en raison d'un manque de permissions.
       CannotManageRoleTooltip: Vous ne pouvez pas gérer ce rôle car il n'est pas dynamique.
       CreateRole: Créer un nouveau rôle
@@ -592,24 +594,27 @@ ch.ivy.addon.portalkit.ui.jsf:
       EditButtonTitle: Modifier les informations sur le rôle
       FilteredRoles: Rôles filtrés
       ListUsers: Utilisateurs du rôle {0}
+      MemberOfRole: Membre du rôle de membre
       Messages:
         ConfirmDeleteRole: Vous êtes sûr de vouloir le supprimer ?
         ConfirmDeleteUserOfRole: Êtes-vous sûr de vouloir retirer ces utilisateurs du rôle ?
-        CreateRoleFailed: Le rôle {0} n'a pas pu être créé
-        CreateRoleSuccess: Rôle {0} créé avec succès
-        DuplicateRole: Le rôle {0} existe déjà dans le système, essayez avec un autre nom.
+        CreateRoleFailed: Le rôle "{0}" n'a pas pu être créé
+        CreateRoleSuccess: Rôle "{0}" créé avec succès
+        DuplicateRole: Le rôle "{0}" existe déjà dans le système, essayez avec un autre nom.
         MaxSearchLimit: La recherche actuelle a plus de {0} résultats
+        NotFoundRole: Impossible de trouver le "{0}" dans le système.
         ParentRoleIsRequired: Le rôle des parents est un champ obligatoire
-        RemoveRoleSuccess: Rôle {0} supprimé avec succès
+        RemoveRoleSuccess: Rôle "{0}" supprimé avec succès
         RoleNameNotBeEmpty: Le nom du rôle ne doit pas être vide
         RoleNotFound: Aucun rôle trouvé
         SearchToSeeMoreRole: Veuillez utiliser la recherche pour trouver un rôle spécifique ({0} plus de rôles).
-        UpdateRoleSuccess: Le rôle {0} a été mis à jour avec succès
+        UpdateRoleSuccess: Le rôle "{0}" a été mis à jour avec succès
         UserOfRoleNotFound: Aucun utilisateur ne possède ce rôle
       NumberUsers: '{0} utilisateurs'
       ParentRole: Le rôle des parents
       RemovingRoleHeader: Suppression du rôle "{0}" ?
-      RoleDetails: Détails du rôle {0}
+      RoleCreation: Création de rôles
+      RoleDetails: Détails du rôle "{0}"
       RoleInformation: Informations sur le rôle
       RoleName: Nom du rôle
       SearchRole: Recherche de rôle

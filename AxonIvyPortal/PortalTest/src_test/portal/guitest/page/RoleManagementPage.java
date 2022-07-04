@@ -65,29 +65,8 @@ public class RoleManagementPage extends TemplatePage {
     var roleNameInput = findElementByCssSelector("[id$=':manage-role-details-form:role-name']");
     roleNameInput.sendKeys(roleName);
 
-    // Fill role display name data
-    var roleDisplayNameInput = findElementByCssSelector("[id$=':manage-role-details-form:role-display-name']");
-    roleDisplayNameInput.sendKeys(roleDisplayName);
-
-    // Fill role description data
-    var roleDescriptionInput = findElementByCssSelector("[id$=':manage-role-details-form:role-description']");
-    roleDescriptionInput.sendKeys(roleDescription);
-
-    // Assign users for role
-    for (var userName : members) {
-      var usersAssignmentInput = findElementByCssSelector("[id$=':manage-role-details-form:user-assignment-selection:user-selection_input']");
-      usersAssignmentInput.clear();
-      usersAssignmentInput.sendKeys(userName);
-      waitForElementDisplayed(By.cssSelector("[id$=':manage-role-details-form:user-assignment-selection:user-selection_panel"), true);
-      var userSelectionPanel = findElementByCssSelector("[id$=':manage-role-details-form:user-assignment-selection:user-selection_panel");
-      var userOption = userSelectionPanel.findElements(By.cssSelector(".ui-autocomplete-item.ui-autocomplete-row")).get(0);
-      click(userOption);
-
-      waitForElementDisplayed(By.cssSelector("[id$=':manage-role-details-form:user-assignment-selection:user-selection_panel"), false);
-      waitForElementEnabled(By.cssSelector("button[id$=':manage-role-details-form:add-new-user']"), true, DEFAULT_TIMEOUT);
-      clickByCssSelector("button[id$=':manage-role-details-form:add-new-user']");
-      waitForElementEnabled(By.cssSelector("button[id$=':manage-role-details-form:add-new-user']"), false, DEFAULT_TIMEOUT);
-    }
+    enterRoleAdditionalInformation(roleDisplayName, roleDescription);
+    assignUsersToRole(members);
   }
 
   public String getRoleNamesInRoleTreeTable() {
@@ -102,7 +81,7 @@ public class RoleManagementPage extends TemplatePage {
 
   public String getTotalUsersOfRoleInRoleTreeTable(String roleName) {
     for (var row : getRolesOnTheTreeTable()) {
-      if (row.findElement(By.cssSelector("span.role-username")).getText().equalsIgnoreCase(String.format("(%s)", roleName))) {
+      if (row.findElement(By.cssSelector("span.role-username")).getText().equalsIgnoreCase(roleName)) {
         return row.findElement(By.cssSelector("span[id$=':role-assigned-users-text']")).getText();
       }
     }
@@ -150,7 +129,7 @@ public class RoleManagementPage extends TemplatePage {
   public WebElement findActionForRoleByName(String roleName, String actionId) {
     for (var role : getRolesOnTheTreeTable()) {
       var roleNameColumn = role.findElement(By.cssSelector("td.role-name-column span.role-username"));
-      if (roleNameColumn.getText().equalsIgnoreCase(String.format("(%s)", roleName))) {
+      if (roleNameColumn.getText().equalsIgnoreCase(roleName)) {
         return role.findElement(By.cssSelector("td.role-actions-column [id$=':" + actionId + "']"));
       }
     }
@@ -195,7 +174,10 @@ public class RoleManagementPage extends TemplatePage {
 
   public void assignUsersToRole(String roleName, List<String> members) {
     clickOnAssignUsersToRole(roleName);
-    // Assign users for role
+    assignUsersToRole(members);
+  }
+
+  private void assignUsersToRole(List<String> members) {
     for (var userName : members) {
       var usersAssignmentInput = findElementByCssSelector("[id$=':manage-role-details-form:user-assignment-selection:user-selection_input']");
       usersAssignmentInput.clear();
@@ -234,9 +216,10 @@ public class RoleManagementPage extends TemplatePage {
   }
 
   private void removeUserOfRole(int index) {
-    var usersTable = findElementByCssSelector("[id$=':manage-role-details-form:users-of-role-table_data']");
-    if (isElementPresent(By.cssSelector("a[id$=':delete-user-link']"))) {
-      click(usersTable.findElements(By.cssSelector("a[id$=':delete-user-link']")).get(index));
+    waitForElementDisplayed(By.cssSelector("[id$=':manage-role-details-form:users-of-role-table_data']"), true);
+    if (isElementDisplayed(By.cssSelector("a[id$=':delete-user-link']"))
+        && isElementEnabled(By.cssSelector("a[id$=':delete-user-link']"))) {
+      click(findListElementsByCssSelector("a[id$=':delete-user-link']").get(index));
       removeUserOfRole(0);
     }
   }
