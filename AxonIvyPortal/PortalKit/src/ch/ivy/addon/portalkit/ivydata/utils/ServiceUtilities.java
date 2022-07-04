@@ -24,12 +24,20 @@ import ch.ivyteam.ivy.application.IProcessModel;
 import ch.ivyteam.ivy.application.IProcessModelVersion;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.ISecurityConstants;
+import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.IUser;
 
 public class ServiceUtilities {
 
   private ServiceUtilities() {}
 
+  /**
+   * @deprecated use {@link ServiceUtilities#findUser(String)} instead
+   * @param username
+   * @param app
+   * @return list of user
+   */
+  @Deprecated(forRemoval = true)
   public static IUser findUser(final String username, IApplication app) {
     Objects.requireNonNull(username, "The username must not be null");
     requireNonNull(app);
@@ -37,7 +45,7 @@ public class ServiceUtilities {
     IUser user = app.getSecurityContext().users().find(username);
     return user;
   }
-
+  
   private static void requireNonNull(IApplication app) {
     Objects.requireNonNull(app, "The application must not be null");
   }
@@ -45,13 +53,28 @@ public class ServiceUtilities {
   /**
    * Finds all of the users within the given app, except the system user
    *
+   * @deprecated use {@link ServiceUtilities#findAllUsers()} instead 
    * @param app
    * @return users
    */
+  @Deprecated(forRemoval=true)
   public static List<IUser> findAllUsers(IApplication app) {
     requireNonNull(app);
-
     return app.getSecurityContext()
+      .users()
+      .paged()
+      .stream()
+      .filter(user -> !StringUtils.equals(ISecurityConstants.SYSTEM_USER_NAME, user.getName()))
+      .collect(Collectors.toList());
+  }
+  
+  /**
+   * Finds all of the users within the current application, except the system user
+   *
+   * @return users
+   */
+  public static List<IUser> findAllUsers() {
+    return ISecurityContext.current()
       .users()
       .paged()
       .stream()
@@ -61,7 +84,6 @@ public class ServiceUtilities {
 
   /**
    * Finds all of the users within the given app, except the roles have the HIDE property
-   *
    * @param app
    * @return roles
    */
@@ -82,7 +104,7 @@ public class ServiceUtilities {
     IvyCacheService.newInstance().setSessionCache(app.getName(), IvyCacheIdentifier.ROLES_IN_APPLICATION, roles);
     return roles;
   }
-
+  
   public static List<IProcessModelVersion> getActiveReleasedPmvs(IApplication app) {
     requireNonNull(app);
 
@@ -101,19 +123,39 @@ public class ServiceUtilities {
 
   public static IUser findUser(String username) {
     return IvyExecutor.executeAsSystem(() -> {
-      return findUser(username, IApplication.current());
+      return ISecurityContext.current().users().find(username);
     });
   }
 
-  public static UserDTO findUserDTO(final String username, IApplication app) {
+  public static UserDTO findUserDTO(final String username) {
     Objects.requireNonNull(username, "The username must not be null");
-    requireNonNull(app);
     return IvyExecutor.executeAsSystem(() -> {
-      IUser user = app.getSecurityContext().users().find(username);
+      IUser user = ISecurityContext.current().users().find(username);
+      return new UserDTO(user);
+    });
+  }
+  
+  /**
+   * @deprecated Use {@link ServiceUtilities#findUserDTO(String)} instead
+   * @param username
+   * @param application
+   * @return user
+   */
+  @Deprecated(forRemoval = true)
+  public static UserDTO findUserDTO(final String username, final IApplication application) {
+    Objects.requireNonNull(username, "The username must not be null");
+    return IvyExecutor.executeAsSystem(() -> {
+      IUser user = application.getSecurityContext().users().find(username);
       return new UserDTO(user);
     });
   }
 
+  /**
+   * @deprecated use {@link ServiceUtilities#findAllRoleDTO()} instead
+   * @param app
+   * @return list of {@link UserDTO}
+   */
+  @Deprecated(forRemoval = true)
   public static List<RoleDTO> findAllRoleDTO(IApplication app) {
     requireNonNull(app);
     return IvyExecutor.executeAsSystem(() -> {
@@ -124,32 +166,40 @@ public class ServiceUtilities {
           .collect(Collectors.toList());
     });
   }
+  
+  public static List<RoleDTO> findAllRoleDTO() {
+    return IvyExecutor.executeAsSystem(() -> {
+      return CollectionUtils.emptyIfNull(ISecurityContext.current().roles().all())
+          .stream()
+          .filter(role -> role.getProperty(AdditionalProperty.HIDE.toString()) == null)
+          .map(role -> new RoleDTO(role))
+          .collect(Collectors.toList());
+    });
+  }
 
   public static SecurityMemberDTO findSecurityMemberByName(String securityMemberName) {
-    IApplication app = IApplication.current();
     SecurityMemberDTO member = null;
     if (securityMemberName.startsWith("#")) {
-      member = findSecurityUserByName(securityMemberName.replace("#", ""), app);
+      member = findSecurityUserByName(securityMemberName.replace("#", ""));
     } else {
-      member = findSecurityRoleByName(securityMemberName, app);
+      member = findSecurityRoleByName(securityMemberName);
     }
 
     return member;
   }
 
-  private static SecurityMemberDTO findSecurityUserByName(String securityMemberName, IApplication app) {
+  private static SecurityMemberDTO findSecurityUserByName(String securityMemberName) {
     UserDTO userDTO = null;
-    userDTO = findUserDTO(securityMemberName, app);
+    userDTO = findUserDTO(securityMemberName);
     return SecurityMemberDTOMapper.mapFromUserDTO(userDTO);
   }
 
-  private static SecurityMemberDTO findSecurityRoleByName(String securityMemberName, IApplication app) {
+  private static SecurityMemberDTO findSecurityRoleByName(String securityMemberName) {
     List<RoleDTO> roles = null;
-    roles = findAllRoleDTO(app).stream()
+    roles = findAllRoleDTO().stream()
             .filter(role -> StringUtils.equalsIgnoreCase(role.getName(), securityMemberName))
             .collect(Collectors.toList());
     List<SecurityMemberDTO> members = SecurityMemberDTOMapper.mapFromRoleDTOs(roles);
     return CollectionUtils.isEmpty(members) ? null : members.get(0);
   }
-
 }
