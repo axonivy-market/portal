@@ -1,12 +1,12 @@
 Name,Default,Type,Description
-nameColumnRendered,true,Boolean,"Boolean value to specify the rendering of the name column, when set to false name column will not be rendered."
-sizeColumnRendered,true,Boolean,"Boolean value to specify the rendering of the size column, when set to false size column will not be rendered."
-typeColumnRendered,true,Boolean,"Boolean value to specify the rendering of the type column, when set to false type column will not be rendered."
-functionColumnRendered,true,Boolean,"Boolean value to specify the rendering of the function column, when set to false function column will not be rendered."
-uploadRendered,true,Boolean,"Boolean value to specify the rendering of the upload icon, when set to false upload icon will not be rendered."
-downloadRendered,true,Boolean,"Boolean value to specify the rendering of the download icon, when set to false download icon will not be rendered."
-deleteRendered,true,Boolean,"Boolean value to specify the rendering of the delete icon, when set to false delete icon will not be rendered."
-messageRendered,true,Boolean,"Boolean value to specify the rendering of the message, when set to false message will not be rendered."
+nameColumnRendered,TRUE,Boolean,"Boolean value to specify the rendering of the name column, when set to false name column will not be rendered."
+sizeColumnRendered,TRUE,Boolean,"Boolean value to specify the rendering of the size column, when set to false size column will not be rendered."
+typeColumnRendered,TRUE,Boolean,"Boolean value to specify the rendering of the type column, when set to false type column will not be rendered."
+functionColumnRendered,TRUE,Boolean,"Boolean value to specify the rendering of the function column, when set to false function column will not be rendered."
+uploadRendered,TRUE,Boolean,"Boolean value to specify the rendering of the upload icon, when set to false upload icon will not be rendered."
+downloadRendered,TRUE,Boolean,"Boolean value to specify the rendering of the download icon, when set to false download icon will not be rendered."
+deleteRendered,TRUE,Boolean,"Boolean value to specify the rendering of the delete icon, when set to false delete icon will not be rendered."
+messageRendered,TRUE,Boolean,"Boolean value to specify the rendering of the message, when set to false message will not be rendered."
 fileLimit,-1,Integer,Number of files are in the given ICase.
 updatedComponentAfterUploaded,null,String,Component will be triggered the update after document is uploaded.
 downloadIcon,fa-download,String,Icon class will be displayed in download link.
@@ -16,6 +16,6 @@ deleteStyleClass,null,String,Styles for delete link.
 updatedComponentAfterDeleted,null,String,Component will be triggered the update after document is deleted.
 selectedType,,String,"String value to specify the selected document types, by default it will be first element in ``typeSelectionItems``."
 typeSelectionItems,"DOCUMENTATION,CONTRACT,INFORMATION,EMAIL,OTHERS",String,String value to specify the list of document type.
-enableScriptCheckingForUploadedDocument,false,Boolean,"Boolean value to specify the script checking, when set to false script checking will not be executed."
-enableVirusScannerForUploadedDocument,false,Boolean,"Boolean value to specify the virus scanning, when set to false virus scanning will not be executed. Refer to :ref:`Virus Scanning Setting<virus_scanning_setting>` for more details."
+enableScriptCheckingForUploadedDocument,FALSE,Boolean,"Boolean value to specify the script checking, when set to false script checking will not be executed."
+enableVirusScannerForUploadedDocument,FALSE,Boolean,"Boolean value to specify the virus scanning, when set to false virus scanning will not be executed. Refer to :ref:`Virus Scanning Setting<settings-virus-scanning-setting>` for more details."
 allowedUploadFileTypes,"doc,docx,xls,xlsx,xlsm,csv,pdf,ppt,pptx,txt,zip,jpg,jpeg,bmp,png",String,String value to specify the list of file extension that can be uploaded.
