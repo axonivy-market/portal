@@ -27,7 +27,7 @@
 
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/STATE')}" />
           <ic:ch.ivy.addon.portalkit.component.task.column.TaskState id="task-state" state="#{data.task.state}"
-            showIndicatorBesideText="true" />
+            showIndicatorBesideText="true" responsiveStyleClass="" />
         </h:panelGrid>
 
         <h:form id="task-doc-form" styleClass="document-container ui-g-12 u-no-padding-top">
@@ -38,7 +38,7 @@
             filteredValue="#{data.filteredDocuments}"
             emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
             reflow="true" scrollable="true"
-            styleClass="ui-g-12">
+            styleClass="ui-g-12" lazy="false">
   
             <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/name')}"
               sortBy="#{document.name}"

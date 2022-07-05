@@ -36,7 +36,6 @@ public class CaseWidgetBean implements Serializable {
 
   private static final long serialVersionUID = 1L;
 
-  private Long expandedCaseId;
   private ICase selectedCase;
   private boolean isShowAllTasksOfCase;
   private boolean isShowFullCaseList;
@@ -44,17 +43,8 @@ public class CaseWidgetBean implements Serializable {
   private CaseLazyDataModel dataModel;
 
   public CaseWidgetBean() {
-    expandedCaseId = -1L;
     isShowAllTasksOfCase = PermissionUtils.hasPortalPermission(PortalPermission.SHOW_ALL_TASKS_OF_CASE);
     isShowFullCaseList = PermissionUtils.checkAccessFullCaseListPermission();
-  }
-
-  public Long getExpandedCaseId() {
-    return expandedCaseId;
-  }
-
-  public void setExpandedCaseId(Long expandedCaseId, boolean alreadyExpanded) {
-    this.expandedCaseId = alreadyExpanded ? 0L : expandedCaseId;
   }
 
   public ICase getSelectedCase() {

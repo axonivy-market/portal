@@ -23,6 +23,11 @@ public class NewDashboardPage extends TemplatePage {
   private static final String MY_FILTER = "My filter";
   private static final String SHOWCASE = "Showcase";
 
+  @Override
+  protected String getLoadedLocator() {
+    return ".dashboard__header";
+  }
+
   public CaseWidgetNewDashBoardPage selectCaseWidget(String caseWidgetName) {
     return new CaseWidgetNewDashBoardPage(caseWidgetName);
   }
@@ -170,7 +175,7 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public SelenideElement getCombinedModeProcessFirstTaskName() {
-    return $("div[id$=':dashboard-process-tasks-container'] td.revelent-tasks__name");
+    return $("div[id$=':dashboard-process-tasks-container'] td.relevant-tasks__name");
   }
 
   public SelenideElement getCasesTab() {
@@ -178,7 +183,7 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public SelenideElement getCombinedModeProcessFirstCaseName() {
-    return $("div[id$=':dashboard-process-cases-container'] td.revelent-cases__name");
+    return $("div[id$=':dashboard-process-cases-container'] td.relevant-cases__name");
   }
 
   public void startCombinedModeProcessFirstTask() {
@@ -352,25 +357,25 @@ public class NewDashboardPage extends TemplatePage {
 
   public void filterCompactModeProcessCategory(boolean isExpanded, String category) {
     getCompactModeProcessFilterPanelCategory(isExpanded).shouldBe(Condition.appear).click();
-    ElementsCollection categories = getCompactModeProcessCategoryFilterPanel(isExpanded)
+    ElementsCollection categories = getCompactModeProcessCategoryFilterPanel()
         .waitUntil(Condition.appear, DEFAULT_TIMEOUT).$$(".ui-treenode-label");
     categories.filter(Condition.exactTextCaseSensitive("All Categories")).first().click();
     categories.filter(Condition.exactTextCaseSensitive(category)).first()
         .waitUntil(Condition.not(Condition.cssClass("ui-state-highlight")), DEFAULT_TIMEOUT).click();
-    getCompactModeProcessCategoryFilterPanelApplyButton(isExpanded).click();
-    getCompactModeProcessCategoryFilterPanel(isExpanded).waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
+    getCompactModeProcessCategoryFilterPanelApplyButton().click();
+    getCompactModeProcessCategoryFilterPanel().waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
   }
 
   public SelenideElement getCompactModeProcessFilterPanelCategory(boolean isExpanded) {
     return getCompactModeProcessFilterPanel(isExpanded).$("input[id$=':widget-filter-category']");
   }
 
-  public SelenideElement getCompactModeProcessCategoryFilterPanel(boolean isExpanded) {
-    return getCompactModeProcessFilterPanel(isExpanded).$("div[id$=':widget-filter-category-panel']");
+  public SelenideElement getCompactModeProcessCategoryFilterPanel() {
+    return $("div[id$=':widget-filter-category-panel']");
   }
 
-  public SelenideElement getCompactModeProcessCategoryFilterPanelApplyButton(boolean isExpanded) {
-    return getCompactModeProcessFilterPanel(isExpanded).$("button[id$=':update-command']");
+  public SelenideElement getCompactModeProcessCategoryFilterPanelApplyButton() {
+    return getCompactModeProcessCategoryFilterPanel().$("button[id$=':update-command']");
   }
 
   public void expandCompactModeProcess() {
@@ -640,17 +645,13 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public NewDashboardConfigurationPage navigateToEditPublicDashboardPage() {
-    $("a[id$=':edit-public-dashboard']").click();
-    NewDashboardConfigurationPage newDashboardConfigurationPage = new NewDashboardConfigurationPage();
-    newDashboardConfigurationPage.waitPageDisplay();
-    return newDashboardConfigurationPage;
+    $("a[id$=':edit-public-dashboard']").waitUntil(Condition.appear, DEFAULT_TIMEOUT).click();
+    return new NewDashboardConfigurationPage();
   }
 
   public NewDashboardConfigurationPage navigateToEditPrivateDashboardPage() {
     $("a[id$=':edit-private-dashboard']").click();
-    NewDashboardConfigurationPage newDashboardConfigurationPage = new NewDashboardConfigurationPage();
-    newDashboardConfigurationPage.waitPageDisplay();
-    return newDashboardConfigurationPage;
+    return new NewDashboardConfigurationPage();
   }
 
   public void openCreatePublicDashboardMenu() {
@@ -682,6 +683,14 @@ public class NewDashboardPage extends TemplatePage {
     $("div[id$='create-new-dashboard-section']").$("a[id$='" + templateIndex + ":template']").click();
     inputCreateDashboardDialog(newName, newDescription, permissions);
   }
+  
+  public void reorderPublicDashboard() {
+    $("a[id$=':reorder-public-dashboard']").waitUntil(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+  }
+  
+  public void reorderPrivateDashboard() {
+    $("a[id$=':reorder-private-dashboard']").waitUntil(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+  }
 
   private void inputCreateDashboardDialog(String newName, String newDescription, List<String> permissions) {
     SelenideElement createDashboardDialog = $("div[id$='dashboard-detail-dialog']");
@@ -712,7 +721,7 @@ public class NewDashboardPage extends TemplatePage {
     }
 
     createDashboardDialog.$("button[id$='dashboard-create-button']").click();
-    createDashboardDialog.waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
+    $("div[id$='dashboard-detail-dialog']").waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
   }
 
 
@@ -733,9 +742,14 @@ public class NewDashboardPage extends TemplatePage {
   public ElementsCollection getDashboardCollection() {
     return $$("a.dashboard__title");
   }
-
-  public void waitPageDisplay() {
-    $("a.dashboard__title").waitUntil(disappears, DEFAULT_TIMEOUT);
+  
+  public SelenideElement getDashboardActive() {
+    return $("a.dashboard__title--active").waitUntil(appear, DEFAULT_TIMEOUT);
+  }
+  
+  public void selectDashboard(int index) {
+    $$("a.dashboard__title").get(index).shouldBe(getClickableCondition()).click();
+    $("a.dashboard__title--active").waitUntil(appear, DEFAULT_TIMEOUT);
   }
 
   public StatisticWidgetDashboardPage selectStatisticWidget() {

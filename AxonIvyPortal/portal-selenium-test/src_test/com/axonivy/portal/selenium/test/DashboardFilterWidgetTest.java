@@ -29,11 +29,11 @@ public class DashboardFilterWidgetTest extends BaseTest {
   @BeforeEach
   public void setup() {
     super.setup();
-    dashboardPage = new NewDashboardPage();
     redirectToRelativeLink(create12CasesWithCategoryUrl);
+    dashboardPage = new NewDashboardPage();
   }
 
-  @Test()
+  @Test
   public void testSaveNewWidgetFilter() {
     TaskWidgetNewDashBoardPage taskWidget = createWidgetFilterForDemoUser();
     assumeTrue(taskWidget.hasSavedFilterItem("Tasks filter"));

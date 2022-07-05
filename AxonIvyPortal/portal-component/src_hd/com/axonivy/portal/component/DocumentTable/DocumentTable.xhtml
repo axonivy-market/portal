@@ -30,7 +30,6 @@
   
   <cc:attribute name="selectedType" />
   <cc:attribute name="typeSelectionItems" shortDescription="Use #{documentUploadBean.documentTypes} if there are no custom Document Type" />
-  <cc:attribute name="notInDynaform" default="true" />
   
   <cc:attribute name="enableScriptCheckingForUploadedDocument" default="false" />
   <cc:attribute name="enableVirusScannerForUploadedDocument" default="false" />
@@ -49,7 +48,6 @@
   <div id="#{cc.clientId}" class="document-table-component">
 
     <cc:renderFacet name="componentHeader" />
-    <p:dataTable id="empty-table" value="#{data.emptyList}" rendered="#{not cc.attrs.notInDynaform}" styleClass="document-empty-table" lazy="false"/>
 
     <p:messages id="document-messages" for="document-messages" rendered="#{cc.attrs.messageRendered}" />
     <p:dataTable id="document-table" value="#{data.documents}" var="document"
@@ -95,7 +93,7 @@
           chooseIcon="#{cc.attrs.renderChooseUploadIcon? 'si si-add-small' : '' }"
           listener="#{logic.upload}"
           rendered="#{cc.attrs.uploadRendered}"
-          update="document-table empty-table document-messages #{cc.attrs.updatedComponentAfterUploaded}"
+          update="document-table document-messages #{cc.attrs.updatedComponentAfterUploaded}"
           invalidSizeMessage="#{documentUploadBean.getFileUploadInvalidSizeMessage()}" 
           label="#{not empty cc.attrs.uploadText ? cc.attrs.uploadText : ivy.cms.co('/Dialogs/com/axonivy/portal/component/DocumentTable/Upload')}"
           cancelLabel="#{ivy.cms.co('/Dialogs/com/axonivy/portal/component/Common/Cancel')}"
@@ -110,8 +108,8 @@
         <p:outputLabel for="type-selection" value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/component/DocumentTable/Type')}: " styleClass="type-selection-label" rendered="#{cc.attrs.typeColumnRendered}" />
       </h:panelGroup>
     </div>
-    
-    <cc:renderFacet name="componentFooter" rendered="#{cc.attrs.notInDynaform}"/>
+
+    <cc:renderFacet name="componentFooter" />
 
     <p:dialog id="document-delete-dialog" widgetVar="document-delete-dialog" appendTo="@(body)" closable="true"
       closeOnEscape="true" modal="true" draggable="false" rendered="#{cc.attrs.deleteRendered}"

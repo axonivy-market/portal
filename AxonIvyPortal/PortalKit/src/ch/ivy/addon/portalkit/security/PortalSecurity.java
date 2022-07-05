@@ -55,7 +55,11 @@ public enum PortalSecurity {
             IPermission.USER_READ_ABSENCES,
             IPermission.USER_READ_SUBSTITUTES,
             IPermission.DOCUMENT_WRITE,
-            IPermission.WORKFLOW_EVENT_READ_ALL);
+            IPermission.WORKFLOW_EVENT_READ_ALL,
+            IPermission.ROLE_READ_ALL,
+            IPermission.ROLE_CREATE,
+            IPermission.ROLE_DELETE,
+            IPermission.ROLE_MOVE);
   
     private static final List<IPermission> DEMO_USER_ADDITIONAL = Arrays.asList(IPermission.DOCUMENT_WRITE);
   

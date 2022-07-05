@@ -15,6 +15,7 @@ import ch.ivy.addon.portalkit.bean.IvyComponentLogicCaller;
 import ch.ivy.addon.portalkit.enums.CaseSortField;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.jsf.primefaces.legazy.LazyDataModel7;
 import ch.ivyteam.ivy.workflow.CaseState;
@@ -42,6 +43,7 @@ public class RelatedCaseLazyDataModel extends LazyDataModel7<ICase> {
     data = new ArrayList<>();
     caseWidgetComponentId = "related-cases-widget";
     buildCriteria(businessCaseId);
+    setAdminQuery(PermissionUtils.checkReadAllCasesPermission());
     initColumnsConfiguration();
   }
 
@@ -58,6 +60,10 @@ public class RelatedCaseLazyDataModel extends LazyDataModel7<ICase> {
     List<ICase> foundCases = findCases(criteria, first, pageSize);
     data.addAll(foundCases);
     return foundCases;
+  }
+  
+  private void setAdminQuery(boolean isAdminQuery) {
+    criteria.extendStatesQueryByPermission(isAdminQuery);
   }
 
   public void initColumnsConfiguration() {

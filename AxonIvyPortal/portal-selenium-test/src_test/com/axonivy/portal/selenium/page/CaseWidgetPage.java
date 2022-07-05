@@ -12,22 +12,16 @@ import com.codeborne.selenide.SelenideElement;
 
 public class CaseWidgetPage extends TemplatePage {
 
-  public CaseWidgetPage() {}
-
-  public static CaseWidgetPage newInstance() {
-    $(".js-case-widget-header").waitUntil(appear, DEFAULT_TIMEOUT);
-    return new CaseWidgetPage();
-  }
-
   @Override
   protected String getLoadedLocator() {
-    return "//*[contains(@id,'case-view')]";
+    return ".js-case-widget-header";
   }
 
-  public void openCase(String caseName) {
+  public CaseDetailsPage openCase(String caseName) {
     $("div[id='case-widget:case-list']").waitUntil(appear, DEFAULT_TIMEOUT);
     $$("div[id='case-widget:case-list'] ul li div[id$=':case-item'] span.case-info-row span.case-header-name-cell")
         .filter(text(caseName)).first().click();
+    return new CaseDetailsPage();
   }
 
   public void filterCasesByCreatedDate(String fromCreatedDate, String toCreatedDate) {

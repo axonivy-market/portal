@@ -12,8 +12,7 @@ import ch.ivyteam.ivy.process.call.ISubProcessStart;
 import ch.ivyteam.ivy.process.call.SubProcessRunner;
 import ch.ivyteam.ivy.process.call.SubProcessSearchFilter;
 import ch.ivyteam.ivy.process.call.SubProcessSearchFilter.Builder;
-import ch.ivyteam.ivy.security.ISecurityManager;
-import ch.ivyteam.ivy.security.SecurityManagerFactory;
+import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.service.ServiceException;
 import ch.ivyteam.ivy.workflow.ITask;
 
@@ -24,15 +23,14 @@ public class IvyAdapterService {
 
   /**
    * Executes the given {@link Callable} as System-User.
-   * 
+   *
    * @param callable The {@link Callable} to be executed.
-   * 
+   *
    * @return The return value of the {@link Callable}.
    */
   public static <V> V executeCallableAsSystem(Callable<V> callable) {
     try {
-      ISecurityManager securityManager = SecurityManagerFactory.getSecurityManager();
-      return securityManager.executeAsSystem(callable);
+      return Sudo.call(callable);
     } catch (NoSuchFieldException e) {
       String message = "Field not found.";
       Ivy.log().error(message);
@@ -47,7 +45,7 @@ public class IvyAdapterService {
   /**
    * Calls the sub process with the given subProcessSignature with the given parameters that are not from excluded
    * libraries. Exactly one sub process with the given signature is expected.
-   * 
+   *
    * @param subProcessSignature The signature of the sub process to be triggered.
    * @param parameters The parameters to pass to the process.
    * @param excludedLibraries The subprocess from these libraries name will be excluded
@@ -106,9 +104,9 @@ public class IvyAdapterService {
           defaultsubProcessStart = subProcessStart;
         }
       }
-      return foundSubProcessStart != null && 
-          foundSubProcessStart.getProcessModelVersion() != null && 
-          foundSubProcessStart.getProcessModelVersion().getActivityState() == ActivityState.ACTIVE 
+      return foundSubProcessStart != null &&
+          foundSubProcessStart.getProcessModelVersion() != null &&
+          foundSubProcessStart.getProcessModelVersion().getActivityState() == ActivityState.ACTIVE
           ? foundSubProcessStart : defaultsubProcessStart;
     }
   }
@@ -141,7 +139,7 @@ public class IvyAdapterService {
       }
     }
   }
-  
+
   /**
    * @param task
    * @return whether task embed in IFrame
