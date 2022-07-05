@@ -65,3 +65,7 @@ Portal.ShowAvatar,TRUE,"If true, switch on the display of user/role avatars."
 Portal.StatisticChartsPolling,0,"| Statistic charts polling in seconds, Default value is 0.
 | If the value is less than 10, live chart polling is disabled.
 | If the value is more than or equal to 10, live chart polling is enabled."
+Portal.RoleDirectChildrenLimit,"50","| Controls the number of direct child roles that are shown in the Role Management tab.
+| Valid numbers: 10, 50, 100"
+Portal.RoleParentLimit,"10","| Controls the number of parent roles that are shown when filtering roles in the Role Management tab.
+| Valid number: 5, 10, 20"
