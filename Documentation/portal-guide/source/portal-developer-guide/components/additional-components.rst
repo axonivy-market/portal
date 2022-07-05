@@ -115,6 +115,7 @@ Migrate from Deprecated Process History
       + Modify the subprocess ``OpenCaseDetailsHook`` to generate ``caseDetailsUrl``. Process History component will navigate to this URL when user click on case item.
    
       + Please refer to subprocess ``OpenCaseDetailsHookOverride`` in ``portal-developer-examples`` project to see how to generate this link from Portal.
+
 .. _components-additional-component-task-analysis:
 
 Task Analysis
@@ -207,7 +208,6 @@ Please refer to ``ProcessChainExample`` process in ``portal-component-example`` 
    - Must set value for ``steps`` parameter. This is list of working steps.
 
 Attributes of this component:
-
 
 .. csv-table::
   :file: documents/additional-components/process_chain_component_attributes.csv
