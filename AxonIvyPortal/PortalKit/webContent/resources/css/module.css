@@ -2980,7 +2980,7 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 }
 
 .announcement-information {
-  margin: 1rem 0;
+  max-width: calc(100% - 200px);
   float: left;
   text-align: left;
 }
@@ -6327,7 +6327,7 @@ a.dashboard-configuration-dialog__action-row label {
 
 /* =================== ROLE MANAGEMENT ====================== */
 .role-assigned-users-tooltip {
-  max-width: 350px;
+  max-width: 500px;
 }
 
 .delete-role-dialog-content {

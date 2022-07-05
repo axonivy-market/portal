@@ -70,32 +70,22 @@ public class RoleManagementPage extends TemplatePage {
   }
 
   public String getRoleNamesInRoleTreeTable() {
-    return getRoleTreeTable().findElements(By.cssSelector("tbody tr.role span.role-username")).stream()
+    return getRoleTreeTable().findElements(By.cssSelector("tbody tr.role span[id$=':role-username']")).stream()
         .map(WebElement::getText).collect(Collectors.joining(";"));
   }
 
   public String getRoleDisplayNameInRoleTreeTable() {
-    return getRoleTreeTable().findElements(By.cssSelector("tbody tr.role span.role-displayname")).stream()
+    return getRoleTreeTable().findElements(By.cssSelector("tbody tr.role span[id$=':role-displayname']")).stream()
         .map(WebElement::getText).collect(Collectors.joining(";"));
   }
 
   public String getTotalUsersOfRoleInRoleTreeTable(String roleName) {
     for (var row : getRolesOnTheTreeTable()) {
-      if (row.findElement(By.cssSelector("span.role-username")).getText().equalsIgnoreCase(roleName)) {
+      if (row.findElement(By.cssSelector("span[id$=':role-username']")).getText().equalsIgnoreCase(roleName)) {
         return row.findElement(By.cssSelector("span[id$=':role-assigned-users-text']")).getText();
       }
     }
     return "";
-  }
-
-  public List<WebElement> getActionsGroupOnRole(String roleName) {
-    for (var role : getRolesOnTheTreeTable()) {
-      var roleNameColumn = role.findElement(By.cssSelector("td.role-name-column span.role-username"));
-      if (roleNameColumn.getText().equalsIgnoreCase(roleName)) {
-        return role.findElements(By.cssSelector("td.role-actions-column a.action-column-icon-button"));
-      }
-    }
-    return null;
   }
 
   public WebElement getDeleteActionEnableForRole(String roleName) {
@@ -128,7 +118,7 @@ public class RoleManagementPage extends TemplatePage {
 
   public WebElement findActionForRoleByName(String roleName, String actionId) {
     for (var role : getRolesOnTheTreeTable()) {
-      var roleNameColumn = role.findElement(By.cssSelector("td.role-name-column span.role-username"));
+      var roleNameColumn = role.findElement(By.cssSelector("td.role-name-column span[id$=':role-username']"));
       if (roleNameColumn.getText().equalsIgnoreCase(roleName)) {
         return role.findElement(By.cssSelector("td.role-actions-column [id$=':" + actionId + "']"));
       }
