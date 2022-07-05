@@ -143,9 +143,7 @@ public class ProcessViewerUtils {
             findCaseMapByCase(selectedCase);
         return CaseMapViewerUrl.of(caseMap).mode(CaseMapViewerMode.VIEWER).toWebLink();
       } else {
-        String friendlyRequestPath = selectedCase.getProcessStart().getUserFriendlyRequestPath();
-        IStartElement element = ProcessStartAPI.findStartElementByProcessStartFriendlyRequestPath(friendlyRequestPath);
-        return ProcessViewerUrl.of(element).mode(ProcessViewerMode.VIEWER).toWebLink();
+        return ProcessViewerUrl.of(selectedCase).mode(ProcessViewerMode.VIEWER).toWebLink();
       }
     }
     
