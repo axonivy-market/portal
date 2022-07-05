@@ -32,6 +32,11 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
     this.caseWidgetName = caseWidgetName;
   }
 
+  @Override
+  protected String getLoadedLocator() {
+    return "[id$='dashboard-cases-container']";
+  }
+
   private int getIndexWidgetByColumn(String columnName) {
     ElementsCollection elementsTH = $(caseWidgetId).waitUntil(appear, DEFAULT_TIMEOUT).$$("table thead tr th");
     for (int i = 0; i < elementsTH.size(); i++) {
@@ -62,18 +67,18 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
     return getColumnsOfTableWidget().get(index);
   }
 
-  public CaseDetailsWidgetNewDashBoardPage openDetailsCase(String caseName) {
+  public CaseDetailsPage openDetailsCase(String caseName) {
     getCasesOfCaseWidgetHasName(caseName).first().shouldBe(getClickableCondition()).click();
-    return new CaseDetailsWidgetNewDashBoardPage();
+    return new CaseDetailsPage();
   }
 
   public ElementsCollection countCases(String caseName) {
     return getCasesOfCaseWidgetHasName(caseName);
   }
 
-  public CaseDetailsWidgetNewDashBoardPage openDetailsFirstCase() {
+  public CaseDetailsPage openDetailsFirstCase() {
     getCaseOfCaseWidgetHasIndex(0).shouldBe(getClickableCondition()).click();
-    return new CaseDetailsWidgetNewDashBoardPage();
+    return new CaseDetailsPage();
   }
 
   private SelenideElement getColumnOfCaseHasIndex(int index, String columnName) {

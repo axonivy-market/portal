@@ -1,6 +1,6 @@
 {
-  "format" : "9.4.11",
-  "id" : "18195523B9765157",
+  "format" : "9.4.14",
+  "id" : "16AC05A855359627",
   "data" : "ch.ivy.add.portalkit.DeleteDocumentData",
   "kind" : "CALLABLE_SUB",
   "elements" : [ {

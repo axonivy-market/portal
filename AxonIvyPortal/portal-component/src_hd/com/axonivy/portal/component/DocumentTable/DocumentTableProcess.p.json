@@ -1,6 +1,6 @@
 {
-  "format" : "9.4.11",
-  "id" : "180F9F472CD8C95D",
+  "format" : "9.4.14",
+  "id" : "16B1B70EE89C4939",
   "data" : "com.axonivy.portal.component.DocumentTable.DocumentTableData",
   "kind" : "HTML_DIALOG",
   "elements" : [ {

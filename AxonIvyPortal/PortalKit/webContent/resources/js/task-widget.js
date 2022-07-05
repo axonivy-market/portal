@@ -86,6 +86,13 @@ function TaskWidget() {
       $('.js-filter-save-action').toggleClass('u-hidden-md-down');
     },
 
+    showTaskFilter: function() {
+      $('.js-advanced-filter-component').removeClass('u-hidden-md-down');
+      $('.js-filter-add-action').removeClass('u-hidden-md-down');
+      $('.js-filter-reset-action').removeClass('u-hidden-md-down');
+      $('.js-filter-save-action').removeClass('u-hidden-md-down');
+    },
+
     updateTaskCountToBreadcrumb: function() {
       var $hiddenTaskCountElem = $(".js-hidden-task-count");
       // $hiddenTaskCountElem is not rendered if task count is disabled. So that do not update task count to breadcrumb.
