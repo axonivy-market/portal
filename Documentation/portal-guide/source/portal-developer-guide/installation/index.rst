@@ -389,6 +389,7 @@ Changes in 9.1
 .. |css_variable| raw:: html
 
    <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties" target="_blank">CSS Variable</a>
+
 .. |css_variable_convert| raw:: html
 
    <a href="https://www.npmjs.com/package/sass-to-css-variables" target="_blank">SASS to CSS Variables</a>
