@@ -16,12 +16,12 @@ import org.primefaces.event.TabChangeEvent;
 import ch.addon.portal.generic.userprofile.homepage.HomepageUtils;
 import ch.ivy.addon.portalkit.configuration.Application;
 import ch.ivy.addon.portalkit.enums.GlobalVariable.Option;
+import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.PrimeFacesUtils;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.security.IPermission;
 
 @ManagedBean
 @ViewScoped
@@ -44,7 +44,7 @@ public class AdminSettingBean implements Serializable {
       return;
     }
     isShowExpressManagementTab = new ProcessStartCollector().findExpressCreationProcess() != null;
-    isShowRoleManagementTab = canSeeRoleAssignment();
+    isShowRoleManagementTab = canSeeRoleManagement();
     initApplicationTab();
   }
 
@@ -125,8 +125,8 @@ public class AdminSettingBean implements Serializable {
     PrimeFaces.current().ajax().update("portal-management-messages");
   }
 
-  private boolean canSeeRoleAssignment() {
-    return PermissionUtils.hasPermission(IPermission.ROLE_READ_ALL);
+  private boolean canSeeRoleManagement() {
+    return PermissionUtils.hasPortalPermission(PortalPermission.ROLE_MANAGEMENT);
   }
 
   public String getDropdownItemlabel(Object item) {

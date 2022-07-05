@@ -127,18 +127,18 @@ public class SettingScreenshotTest extends ScreenshotTest {
   }
 
   @Test
-  public void screenshotRoleAssignment() throws IOException {
+  public void screenshotRoleManagement() throws IOException {
     login(TestAccount.ADMIN_USER);
     ScreenshotUtil.resizeBrowser(new Dimension(1050, 850));
     homePage = new HomePage();
     var adminSettingsPage = homePage.openAdminSettings();
-    var roleAssignmentTab = adminSettingsPage.openRoleManagementTab();
+    var roleManagementTab = adminSettingsPage.openRoleManagementTab();
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.SETTINGS_FOLDER + "role-assignment-tab");
     ScreenshotUtil.resizeBrowser(new Dimension(1050, 1200));
-    roleAssignmentTab.openRoleCreationDialog();
-    roleAssignmentTab.getRoleInfoDialogContent();
-    ScreenshotUtil.captureElementWithMarginOptionScreenshot(roleAssignmentTab.getRoleInfoDialogContent(),
+    roleManagementTab.openRoleCreationDialog();
+    roleManagementTab.getRoleInfoDialogContent();
+    ScreenshotUtil.captureElementWithMarginOptionScreenshot(roleManagementTab.getRoleInfoDialogContent(),
         ScreenshotUtil.SETTINGS_FOLDER + "role-assignment-creation-dialog", new ScreenshotMargin(60, 30));
-    roleAssignmentTab.clickOnCancelLinkOfRoleDialog();
+    roleManagementTab.clickOnCancelLinkOfRoleDialog();
   }
 }

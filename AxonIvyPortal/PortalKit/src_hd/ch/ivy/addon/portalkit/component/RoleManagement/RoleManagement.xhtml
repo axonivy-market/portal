@@ -16,7 +16,7 @@
       <p:commandButton id="create-role-button"
         icon="si si-add"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/CreateRole')}"
-        actionListener="#{roleManagementBean.prepareAddingNewGroup()}"
+        actionListener="#{roleManagementBean.prepareAddingNewRole()}"
         oncomplete="PF('role-details-dialog').show()"
         update="@(.manage-role-details-form) #{cc.clientId}:role-details-dialog"
         process="@this"
@@ -64,21 +64,28 @@
         </f:facet>
 
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/RoleName')}"
-          styleClass="role-name-column">
-          <h:panelGroup>
-            <h:outputText rendered="#{not empty role.displayName}" styleClass="role-displayname" value="#{role.displayName}"/>
-            <h:outputText rendered="#{not empty role.name}" styleClass="role-username" value="(#{role.name})"/>
-          </h:panelGroup>
+          styleClass="role-name-column u-truncate-text">
+          <h:outputText id="role-username" styleClass="role-username" value="#{role.name}"/>
+          <p:tooltip for="role-username" value="#{role.name}" trackMouse="true" hideEvent="mouseleave click" styleClass="role-assigned-users-tooltip"/>
+        </p:column>
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/displayName')}"
+          styleClass="u-hidden-sm-down u-truncate-text">
+          <h:outputText id="role-displayname" styleClass="role-displayname" value="#{role.displayName}"/>
+          <p:tooltip for="role-displayname" value="#{role.displayName}" trackMouse="true" hideEvent="mouseleave click" styleClass="role-assigned-users-tooltip"/>
+        </p:column>
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}"
+          styleClass="u-hidden-sm-down u-truncate-text">
+          <h:outputText id="role-description" styleClass="role-displayname" value="#{role.description}"/>
+          <p:tooltip for="role-description" value="#{role.description}" trackMouse="true" hideEvent="mouseleave click" styleClass="role-assigned-users-tooltip"/>
         </p:column>
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/AssignedUser')}"
-          styleClass="users-assigned-role-column">
-          <h:panelGroup>
-            <h:outputText id="role-assigned-users-text" value="#{role.assignedUsersAsText}" />
-            <p:tooltip for="role-assigned-users-text"
-              rendered="#{role.totalAssignedUsers gt 0}"
-              value="#{role.assignedUsersTooltip}"
-              styleClass="role-assigned-users-tooltip" />
-          </h:panelGroup>
+          styleClass="users-assigned-role-column u-hidden-xs-down"
+          width="150px">
+          <h:outputText id="role-assigned-users-text" value="#{role.assignedUsersAsText}" />
+          <p:tooltip for="role-assigned-users-text"
+            rendered="#{role.totalAssignedUsers gt 0}"
+            value="#{role.assignedUsersTooltip}"
+            styleClass="role-assigned-users-tooltip" />
         </p:column>
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
           styleClass="u-text-align-center role-actions-column"
@@ -144,10 +151,10 @@
     responsive="true"
     styleClass="role-details-dialog">
     <c:set var="creationMode" value="#{roleManagementBean.creationMode}" scope="request"/>
-    <c:set var="groupNameTitle" value="#{creationMode ? '' : roleManagementBean.selectedRole.name}" scope="request"/>
+    <c:set var="selectedRoleName" value="#{creationMode ? '' : roleManagementBean.selectedRole.name}" scope="request"/>
 
     <f:facet name="header">
-      <h:outputText styleClass="role-details-header" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/RoleDetails', [groupNameTitle])}"/>
+      <h:outputText styleClass="role-details-header" value="#{roleManagementBean.roleInformationHeaderDialog}"/>
     </f:facet>
 
     <h:form id="manage-role-details-form"
@@ -172,7 +179,8 @@
               labelPanelStyleClass="ui-g-4 ui-lg-3 ui-md-4 ui-sm-12 role-management-label"
               autoCompletePanelStyleClass="ui-g-8 ui-lg-9 ui-md-8 ui-sm-12 role-management-value"
               autoCompleteStyleClass="width-100"
-              requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/Messages/ParentRoleIsRequired')}">
+              requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/Messages/ParentRoleIsRequired')}"
+              isRenderedMessage="false">
               <p:column>
                 <pc:securityMemberNameAndAvatar securityMember="#{role}"
                   displayName="#{role.getDisplayName()}"
@@ -220,13 +228,14 @@
               widgetVar="user-assignment-fieldset">
               <div class="ui-g">
                 <h:panelGroup id="user-assignment-group" layout="block"
-                  styleClass="ui-g-12 MarTop20 u-no-padding-left u-no-padding-right user-assignment-group">
+                  styleClass="ui-g-12 u-no-padding-left u-no-padding-right user-assignment-group">
                   <h:panelGroup class="user-assign-selection" layout="block">
                     <ic:ch.ivy.addon.portalkit.component.UserSelection id="user-assignment-selection"
                       selectedUser="#{roleManagementBean.selectedUser}"
+                      label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/AvailableUsers')}"
+                      labelPanelStyleClass="ui-g-4 ui-lg-3 ui-md-4 ui-sm-12 role-management-label"
+                      autoCompletePanelStyleClass="ui-g-8 ui-lg-9 ui-md-8 ui-sm-12 role-management-value"
                       autoCompleteStyleClass="width-100"
-                      floatingLabel="true"
-                      label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/UserSelectionLabel')}"
                       excludedUsernames="#{roleManagementBean.distinctExcludedUsernames}">
                       <p:column styleClass="ui-g-12">
                         <pc:securityMemberNameAndAvatar securityMember="#{user}"
@@ -269,29 +278,37 @@
             selectionPageOnly="false"
             rowKey="#{user.name}">
             <f:facet name="header">
-              <h:outputText styleClass="FontBold" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/ListUsers', [groupNameTitle])}"/>
+              <div class="TexAlLeft">
+                <h:outputText styleClass="FontBold" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/ListUsers', [selectedRoleName])}"/>
+              </div>
             </f:facet>
 
             <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/displayName')}"
-              filterable="true" filterBy="#{user.displayName}">
-              <h:panelGroup styleClass="ui-g-12 u-padding-0 users-of-role-container" layout="block">
-              <h:panelGroup styleClass="user-displayname">
-                <pc:securityMemberNameAndAvatar securityMember="#{user.userDTO}"
-                  displayName="#{securityMemberDisplayNameFormatBean.generateFullDisplayNameForUserDTO(user.userDTO)}"
-                  displayNameStyleClass="u-truncate-text" />
+              filterable="true"
+              filterBy="#{user.displayName}">
+              <h:panelGroup styleClass="users-of-role-container">
+                <pc:securityMemberNameAndAvatar securityMember="#{user.iUser}"
+                  displayName="#{securityMemberDisplayNameFormatBean.generateFullDisplayNameForSecurityMember(user.iUser, user.name)}"
+                  displayNameStyleClass="u-truncate-text" containerStyleClass="user-displayname" />
               </h:panelGroup>
-                <h:panelGroup styleClass="action-group">
-                  <p:commandLink id="delete-user-link"
-                    title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
-                    styleClass="action-column-icon-button"
-                    update="users-of-role-table #{cc.clientId}:manage-role-details-form:user-assignment-group"
-                    process="@this"
-                    partialSubmit="true"
-                    actionListener="#{roleManagementBean.removeUserOutOfRole(user)}">
-                    <i class="si si-bin-1"/>
-                  </p:commandLink>
-                </h:panelGroup>
-                </h:panelGroup>
+            </p:column>
+            <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/information')}">
+              <h:outputText styleClass="role-membership"
+                value="#{!user.directlyAssignedRole ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/MemberOfRole'):''}" />
+            </p:column>
+            <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
+              styleClass="action-group TexAlCenter" width="100px">
+              <h:panelGroup id="user-of-role-action-group">
+                <p:commandLink id="delete-user-link" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
+                  styleClass="action-column-icon-button"
+                  update="users-of-role-table #{cc.clientId}:manage-role-details-form:user-assignment-group"
+                  process="@this" partialSubmit="true" actionListener="#{roleManagementBean.removeUserOutOfRole(user)}"
+                  disabled="#{!user.directlyAssignedRole}">
+                  <i class="si si-bin-1" />
+                </p:commandLink>
+              </h:panelGroup>
+              <p:tooltip for="user-of-role-action-group" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/CannotDeleteUserTooltip')}"
+                rendered="#{!user.directlyAssignedRole}"/>
             </p:column>
           </p:dataTable>
         </div>
@@ -314,7 +331,7 @@
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
           process="manage-role-details-form"
           update="manage-role-details-form #{cc.clientId}:role-management-form:role-tree-table"
-          actionListener="#{roleManagementBean.createOrUpdateGroup()}"
+          actionListener="#{roleManagementBean.createOrUpdateRole()}"
           onclick="if (#{roleManagementBean.canModifyUserAssignment}) {PF('users-of-role-table').clearFilters();}"
           oncomplete="if(!args.validationFailed) {PF('role-tree-table').clearFilters();PF('role-details-dialog').hide();} PF('role-details-dialog').initPosition()"
           partialSubmit="true" />
@@ -351,7 +368,7 @@
         icon="#{visibilityBean.generateButtonIcon('si si-check-1')}"
         oncomplete="PF('role-tree-table').clearFilters(); PF('delete-role-dialog').hide()"
         global="false"
-        actionListener="#{roleManagementBean.deleteGroup()}" />
+        actionListener="#{roleManagementBean.deleteSelectedRole()}" />
     </ui:define>
   </ui:decorate>
 

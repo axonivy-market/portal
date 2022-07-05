@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.11",
+  "format" : "9.4.14",
   "id" : "16285772A1F890EE",
   "data" : "ch.ivy.add.portalkit.UploadDocumentCheckerData",
   "kind" : "CALLABLE_SUB",
@@ -9,7 +9,6 @@
       "name" : "call(UploadedFile)",
       "config" : {
         "callSignature" : "call",
-        ".name" : "call(UploadedFile)",
         "input" : {
           "params" : [
             { "name" : "uploadFile", "type" : "org.primefaces.model.file.UploadedFile" }
@@ -45,7 +44,6 @@
       "name" : "Check file contains code",
       "config" : {
         "security" : "system",
-        ".name" : "Check file contains code",
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.enums.UploadDocumentCheckStatus;",
@@ -74,10 +72,6 @@
         "in whitelist"
       ],
       "config" : {
-        ".name" : [
-          "Check file extension",
-          "in whitelist"
-        ],
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.service.CaseDocumentService;",
@@ -125,7 +119,6 @@
       "name" : "Check file contains virus",
       "config" : {
         "security" : "system",
-        ".name" : "Check file contains virus",
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.enums.UploadDocumentCheckStatus;",
