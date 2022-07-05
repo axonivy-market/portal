@@ -22,8 +22,6 @@ selectedSetting PERSISTENT #fieldModifier
 settingList List<ch.ivy.addon.portalkit.configuration.GlobalSetting> #field
 settingList PERSISTENT #fieldModifier
 supportedLanguages List<ch.ivy.addon.portalkit.dto.DisplayName> #field
-tabIndexActive java.lang.Integer #field
-tabIndexActive PERSISTENT #fieldModifier
 resetAllSettings Boolean #field
 resetAllSettings PERSISTENT #fieldModifier
 settingInputType ch.ivy.addon.portalkit.enums.GlobalVariableType #field
@@ -36,8 +34,6 @@ externalDropDownValues 'external options, for example: homepages, task/case colu
 externalDropDownValues PERSISTENT #fieldModifier
 filteredSettingList List<ch.ivy.addon.portalkit.configuration.GlobalSetting> #field
 filteredSettingList PERSISTENT #fieldModifier
-settingTabOpened Boolean #field
-settingTabOpened PERSISTENT #fieldModifier
 isDefaultApplicationLanguage Boolean #field
 isDefaultApplicationLanguage PERSISTENT #fieldModifier
 isAnnouncementActivated Boolean #field

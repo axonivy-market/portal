@@ -1,41 +1,41 @@
 .. _customization-portal-home:
 
-Legacy Portal home
+Legacy Portal Home
 ==================
 
 .. _customization-portal-home-before-beginning:
 
-Before beginning
+Before You Begin
 ----------------
 
 This guide assumes that you are already familiar with CSS to integrate
-your own widgets.
+your widgets.
 
 .. _customization-portal-home-introduction:
 
 Introduction
 ------------
 
-The default home page of Portal has three built-in widgets in order:
-``Process widget (1)``, ``Task widget (2)``, ``Statistic widget (3)``. If it does
-not fit your needs, you can replace it by your own one. We decided that
-based on screen size, widget may become hidden, not smaller.
+The default Portal home page has three built-in widgets in this order:
+``Process widget (1)``, ``Task widget (2)``, ``Statistic widget (3)``. If that does
+not fit your needs, you can replace it with your customized ones. We decided that
+based on screen size, widgets may become hidden, not smaller.
 
 |home-page-template|
 
 .. _customization-portal-home-basic-usage:
 
-Basic usage
+Basic Usage
 -----------
 
-Following these steps to have your own Portal Home:
+Follow these steps to create your customzied Portal Home:
 
-#. Create a new home page which uses the
-   ``DefaultHomePageTemplate.xhtml`` template. By doing this, your new
-   home page will inherit the widgets from the default home page and has
-   a place holder for your own widgets.
+#. Create a new home page that uses the template
+   ``DefaultHomePageTemplate.xhtml``. This way, your new home page will
+   inherit the widgets from the default home page and is a placeholder for
+   your widgets.
 
-   Your custom home page should look like below:
+   Your custom home page should look like this:
 
    .. code-block:: html
    
@@ -45,30 +45,30 @@ Following these steps to have your own Portal Home:
       </ui:define>
       </ui:composition>
 
-#. Create a new process start named ``DefaultApplicationHomePage.ivp`` for the new
-   home page. Now you will use this process start as the entry point of
-   your Portal instead of the default one. To let Portal know about
-   your new Portal home, you have to set default pages to your project, follow this chapter to customize standard processes:
-   :dev-url:`Standard Processes </doc/nightly/designer-guide/user-interface/standard-processes/index.html>`
+#. Create a new processstart named ``DefaultApplicationHomePage.ivp`` for your
+   new home page. Now you will use this processstart as the entry point of your
+   Portal instead of the default one. To make Portal aware of your new Portal
+   home, you have to set the default pages to your project, as detailed in
+   :dev-url:`Standard Processes
+   </doc/nightly/designer-guide/user-interface/standard-processes/index.html>`
 
 
 .. _customization-portal-home-advanced-usage:
 
-Advanced usage
+Advanced Usage
 --------------
 
-The ``DefaultHomePageTemplate.xhtml`` template supports some
-customizations.
+The template ``DefaultHomePageTemplate.xhtml`` supports some customizations.
 
 .. _customization-portal-home-advanced-usage-display-hide-the-default-widgets:
 
-Display/hide the default widgets
---------------------------------
+Display or Hide the Default Widgets
+-----------------------------------
 
-The template has three parameters: ``displayProcessWidget``,
+This template has three parameters: ``displayProcessWidget``,
 ``displayTaskWidget``, ``displayStatisticWidget`` to display or hide the
-default widgets. Their default values are true, you can set them to
-boolean values (true/false) to display or hide them as you need.
+default widgets. Their default values are true. You can set them to
+boolean values (true/false) to display or hide them as needed.
 
 .. code-block:: html
 
@@ -82,11 +82,10 @@ boolean values (true/false) to display or hide them as you need.
 
 .. _customization-portal-home-advanced-usage-customize-the-default-widget-sections:
 
-Customize the default widget's sections
+Customize The Default Widget's Sections
 ---------------------------------------
 
-The template has the placeholders to redefine the default widgets'
-sections.
+The template includes placeholders to redefine the default widgets' sections.
 
 .. code-block:: html
 
@@ -105,12 +104,12 @@ sections.
 
 .. _customization-portal-home-advanced-usage-add-your-own-widgets:
 
-Add your own widgets
---------------------
+Adding Your Own Widgets
+-----------------------
 
-The template has a placeholder to add your own widgets. Your own
-widgets' default positions are next to statistic widget, you can change
-them by setting the default widgets' positions.
+The template has a placeholder to add your own widgets. Your own widgets'
+default positions are next to statistics widget. You can change them by setting
+the default widgets' positions.
 
 .. code-block:: html
 
@@ -121,14 +120,14 @@ them by setting the default widgets' positions.
    </ui:composition>
 ..
 
-.. note:: This custom widget will show below the 3 default widget
+.. note:: This custom widget will show below the three default widget
 
 .. _customization-portal-home-advanced-usage-change-the-pages-title:
 
-Change the page's title
+Changing The Page Title
 -----------------------
 
-The default page title is Dashboard. Apply the following code to change it:
+The default page title is **Dashboard**. Use the following code to change it:
 
 .. code-block:: html
 
@@ -138,14 +137,14 @@ The default page title is Dashboard. Apply the following code to change it:
 
 .. _customization-portal-home-user-guide:
 
-Customize user guide
---------------------
+Customizing User Guide
+----------------------
 
-When user guide is shown, default order of guide steps is Welcome > Main Menu > Processes > Tasks > Username > Statistics.
-If you want to customize the guide, define the sections and using the ``GuideOverlayPanel`` components, 
-refer to ``CustomizedGuide.xhtml`` in the ``portal-developer-examples`` project. 
+When the user guide is shown, the default order of guide steps is Welcome > Main Menu > Processes > Tasks > Username > Statistics.
+If you want to customize the guide, define the sections and put them into the ``GuideOverlayPanel`` component.
+Refer to ``CustomizedGuide.xhtml`` in the ``portal-developer-examples`` project. 
 
-The supported sections: ``welcomeGuide``, ``mainMenuGuide``, ``processWidgetGuide``, ``taskWidgetGuide``, ``statisticWidgetGuide``, ``userSettingsGuide``
+The supported sections are: ``welcomeGuide``, ``mainMenuGuide``, ``processWidgetGuide``, ``taskWidgetGuide``, ``statisticWidgetGuide``, ``userSettingsGuide``
 
 .. code-block:: html
 
@@ -165,6 +164,6 @@ The supported sections: ``welcomeGuide``, ``mainMenuGuide``, ``processWidgetGuid
 	    rendered="#{guideBean.isGuideShown}" />
 	</ui:define>
 ..
-
+   
 
 .. |home-page-template| image:: ../../screenshots/dashboard/dashboard-3-sections.png

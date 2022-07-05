@@ -44,16 +44,16 @@
         </a>
         <ul id="user-setting-container">
            <li><p:commandLink id="user-profile" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/userProfile/myProfileTitle')}"
-          	actionListener="#{userMenuBean.navigateToUserProfileOrDisplayWorkingTaskWarning(isWorkingOnATask, task)}" /></li>
+            actionListener="#{userMenuBean.navigateToUserProfileOrDisplayWorkingTaskWarning(isWorkingOnATask, task)}" /></li>
 
           <li jsf:rendered="#{dashboardBean.canEditPrivateDashboard or dashboardBean.canEditPublicDashboard}">
             <p:commandLink id="dashboard-configuration" rendered="#{!adminSettingBean.isShowLegacyUI()}"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfigurationDialog/ConfigureDashboard')}"
               onclick="PF('dashboard-configuration-dialog').show();" global="false"/></li>
 
-          <li>
-            <p:link id="adminui-menu-item" href="#" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/adminSettings')}"  
-              onclick="PF('adminUI').show(); $('#user-setting-container').click()" rendered="#{permissionBean.hasAdminPermission()}" />
+          <li jsf:rendered="#{permissionBean.hasAdminPermission()}">
+            <p:commandLink id="adminui-menu-item" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/adminSettings')}"
+              actionListener="#{userMenuBean.navigateToPortalManagementDisplayWorkingTaskWarning(isWorkingOnATask, task)}" />
           </li>
 
           <li><p:commandLink id="absence-menu-item" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/absences')}"
@@ -115,26 +115,6 @@
       <h:form id="change-password-form">
         <ic:ch.ivy.addon.portalkit.multiapp.settings.PasswordSetting id="password-setting" dialogName="changePasswordDialog" />
       </h:form>
-    </p:dialog>
-
-    <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/adminSettings')}" closeOnEscape="true" widgetVar="adminUI"
-      id="admin-ui-dialog" resizable="false" styleClass="admin-ui-dialog" modal="true" draggable="true" appendTo="@(body)" dynamic="true" rendered="#{permissionBean.hasAdminPermission()}"
-      onShow="initAdminSettingsData(); PF('adminUI').initPosition();" onHide="PF('dialogClosingInformation').show();" width="80vw" responsive="true" fitViewport="true">
-      <ic:ch.ivy.addon.portalkit.admin.AdminSettings id="adminui" onTabChange="PF('adminUI').initPosition();"/>
-      <div class="ui-dialog-footer">
-        <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" id="close-button" type="button"
-        icon="#{visibilityBean.generateButtonIcon('si si-remove')}" onclick="clearFilter(); PF('adminUI').hide();" />
-      </div>
-    </p:dialog>
-
-    <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/dialogclosinginformation/dialogHeader')}" width="50%"
-      closeOnEscape="true" widgetVar="dialogClosingInformation" id="dialog-closing-information" resizable="false" modal="true" draggable="false"
-      appendTo="@(body)" dynamic="true" styleClass="dialog-closing-information" responsive="true">
-      <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/dialogclosinginformation/informMessage')}" for="dialog-closing-information"/>
-      <f:facet name="footer">
-        <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" id="close-dialog-button"
-          icon="#{visibilityBean.generateButtonIcon('si si-check-1')}" type="button" onclick="window.location.reload();" />
-      </f:facet>
     </p:dialog>
 
     <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/header')}" styleClass="project-info-dialog" width="1000"

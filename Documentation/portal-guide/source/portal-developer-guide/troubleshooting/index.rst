@@ -4,8 +4,8 @@
 Troubleshooting
 ===============
 
-Here you will find solutions to some of the most common problems related
-to Axon Ivy Portal.
+Here, we present solutions to some of the most common problems related
+to the Axon Ivy Portal.
 
 If you can't find your solution here there are some other sources which
 could help:
@@ -29,40 +29,27 @@ could help:
 
 .. _troubleshooting-ie-security-problem:
 
-IE Security Problem
-===================
+Portal Installation with Reverse Proxy
+======================================
 
-If you start Portal in Internet Explorer installed on Windows Server
-then Portal application may not work correctly. The reason could be
-**Internet Explorer Enhanced Security Configuration** is enabled by
-default which means ActiveX Controls and scripting are disabled, so
-Internet sites may not display in Internet Explorer as you expect.
+If you install the Portal in an environment that uses a reverse proxy (Nginx,
+IIS or Apache httpd), you have to define the proxy in the Axon Ivy Engine
+configuration.
 
-To fix this, you may turn off **Internet Explorer Enhanced Security
-Configuration** if you are running in Windows Server. Another way is
-adding that site to the Trusted sites zone in Internet Explorer.
-
-.. _troubleshooting-portal-install-with-iis:
-
-Portal install with IIS
-=======================
-
-It could be a problem when install Portal with IIS with proxy, depends
-on your environment. Consider to configure if your IIS is called via
-proxy. Add ``-Dhttp.proxyHost`` to ``VM argument`` could help.
-
-Update default pages
+Update Default Pages
 ====================
-If you copy ``PortalStart.mod`` to your project for customization, 
-you need to follow this chapter to customize standard processes in your designer and engine:
-:dev-url:`Standard Processes </doc/nightly/designer-guide/user-interface/standard-processes/index.html>`
+If you copy ``PortalStart.p.json`` to your project for customization, you need
+to follow this chapter to customize the standard processes in your designer and
+engine: :dev-url:`Standard Processes</doc/nightly/designer-guide/user-interface/standard-processes/index.html>`
 
-For example, below is the default setting:
+For example, if you start with the default settings:
 
 .. literalinclude:: files/app-designer.yaml
   :language: yaml
 
-And your Portal project has different package and name, such as: ``com.example:customizedPortal``. Then you can change the configuration as below:
+and your Portal project has a different package and name, such as:
+``com.example:customizedPortal``, then you have to change the configuration as
+shown below:
 
 .. literalinclude:: files/app-designer-customized.yaml
   :language: yaml

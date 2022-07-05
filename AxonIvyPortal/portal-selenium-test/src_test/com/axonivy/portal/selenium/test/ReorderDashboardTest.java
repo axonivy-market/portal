@@ -1,5 +1,8 @@
 package com.axonivy.portal.selenium.test;
 
+import static com.codeborne.selenide.Condition.exist;
+import static com.codeborne.selenide.Selenide.$;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -22,8 +25,8 @@ public class ReorderDashboardTest extends BaseTest {
 
   // Public dashboard order: public 1, public 2, public 3 (only for role CostObject)
   // Private dashboard order: private 1, private 2
-  @Test()
-  public void tesReorderMyDashboard() {
+  @Test
+  public void testReorderMyDashboard() {
     redirectToRelativeLink(createSampleDashboardUrl);
     makeSureNotAbleToReorderPublicDashboard();
     redirectToRelativeLink(String.format(reorderDashboardUrl, "false"));
@@ -39,8 +42,8 @@ public class ReorderDashboardTest extends BaseTest {
     dashboardCollection.get(2).shouldBe(Condition.text("public 2"));
   }
 
-  @Test()
-  public void tesReorderPublicDashboard() {
+  @Test
+  public void testReorderPublicDashboard() {
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(createSampleDashboardUrl);
     redirectToRelativeLink(String.format(reorderDashboardUrl, "true"));
@@ -56,6 +59,7 @@ public class ReorderDashboardTest extends BaseTest {
 
   private void makeSureNotAbleToReorderPublicDashboard() {
     redirectToRelativeLink(String.format(reorderDashboardUrl, "true"));
-    new NewDashboardPage().waitPageDisplay();
+    new NewDashboardPage().waitPageLoaded();
+    $("#add-button").shouldNot(exist);
   }
 }

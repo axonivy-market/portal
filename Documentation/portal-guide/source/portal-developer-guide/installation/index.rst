@@ -3,29 +3,27 @@
 Installation
 ************
 
-Installation section describes all steps, that are necessary for install and setup Portal.
-If you install your application first time then it’s important to start with Basic installation. It describes all initial steps that must be done for first installation.
-If application is already installed and initial prepared, refer
-to `Migration notes`_ to migrate it.
+The Installation section describes all steps necessary to install and configure
+the Portal. If you install your application the first time, then it is important
+to start with the Basic installation. This section describes all initial steps
+that must be done for the first installation. If the application is already
+installed and configured, refer to `Migration notes`_ to migrate it.
 
-Basic installation
+Basic Installation
 ==================
 
-Project modules
+Project Modules
 ---------------
 
-The application consists of 4 process modules. For detailed information
-of each module, refer to :ref:`architecture`.
+The application consists of four process modules. For detailed information
+on each module, refer to :ref:`architecture`.
 
 -  PortalStyle
-
 -  PortalKit
-
 -  PortalTemplate
-
 -  AxonIvyExpress
 
-The project deployment of Ivy project are described in :dev-url:`project
+The deployment of Ivy projects is described in :dev-url:`project
 deployment </doc/nightly/engine-guide/deployment/index.html>`
 .
 
@@ -38,10 +36,11 @@ Designer
 Import Portal modules to Designer.
 
 
-Engine without license (demo mode)
+Engine Without License (Demo Mode)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The engine automatically deploys the Portal application with default users.
+The engine automatically deploys the Portal application with the following set
+of default users:
 
 .. table:: 
 
@@ -50,7 +49,7 @@ The engine automatically deploys the Portal application with default users.
    +=======================+=======================+=======================+
    | admin                 | admin                 | This user has all     |
    |                       |                       | Portal permissions,   |
-   |                       |                       | can access to Portal  |
+   |                       |                       | can access Portal     |
    |                       |                       | Admin Settings.       |
    +-----------------------+-----------------------+-----------------------+
    | demo                  | demo                  | This user has         |
@@ -58,54 +57,54 @@ The engine automatically deploys the Portal application with default users.
    |                       |                       | user absences.        |
    +-----------------------+-----------------------+-----------------------+
    | guest                 | guest                 | Default normal user   |
-   |                       |                       | of portal.            |
+   |                       |                       | of the portal.        |
    +-----------------------+-----------------------+-----------------------+
 
 
-Engine with license (production mode)
+Engine With License (Production Mode)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The engine does not deploy anything, you need to deploy and configure Portal application 
-manually.
+The engine does not deploy anything, you need to deploy and configure the Portal
+application manually.
 
 
 .. _installation-migration-notes:
 
-Migration notes
+Migration Notes
 ===============
 
 This document informs you in detail about incompatibilities that were
 introduced between Portal versions and tells you what needs to be done
 to make your existing Portal working with current Axon Ivy engine.
 
-How to migrate
+How To Migrate
 --------------
    
 .. important:: 
-   If you call any Portal API which is not mentioned in the document. It could be changed or removed without inform. Don't forget
-   to re-implement the concerning API in your own project.
+   If you call any Portal API which is not mentioned in the API documentation, 
+   it may have changed or have been removed. Don't forget to re-implement the 
+   APIs concerned in your own project.
 
-   In order to migrate Portal, you need to migrate Axon Ivy, refer
-   :dev-url:`Axon Ivy migration
-   notes </doc/nightly/axonivy/migration/index.html>`.
-   Changes in Axon Ivy could lead to problems if customer project is not
-   migrated properly.
+   To migrate the Portal, you need to migrate Axon Ivy first. Refer to the
+   :dev-url:`Axon Ivy Migration Notes
+   </doc/nightly/axonivy/migration/index.html>`. Changes in Axon Ivy could lead
+   to problems if a customer project is not migrated properly.
 
-In designer
+In Designer
 -----------
 
-#. Replace all Portal projects
-#. Update PortalTemplate dependency of customer project in pom.xml.
-#. If PortalStyle is customized, copy logo, customization.scss,
-   font-faces.scss, customized stuff from old to new PortalStyle, run
-   maven to compile CSS.
+#. Replace all Portal projects by the versions of the new release.
+#. Update PortalTemplate dependency of the customer project in pom.xml.
+#. If PortalStyle has been customized, copy logo, customization.scss,
+   font-faces.scss, and your other customizations from the old to new
+   PortalStyle, then run maven to compile CSS.
 #. Follow detailed migration notes for each version below.
-#. If customization needs copying code from Portal, merge changes
-   between two versions of Portal for copied code.
+#. If customization needs copying code from Portal, merge changes between the
+   two versions of the Portal for copied code.
 
 ..
 
-In engine
+In Engine
 ---------
 
 #. Convert database schema if needed.
@@ -114,7 +113,7 @@ In engine
    project.
 #. Follow detailed migration notes for each version below.
 
-Migrate 9.3 to 9.4
+Migrate 9.3 To 9.4
 ------------------
 
 #. If you configured Process widgets in your own dashboards as described in :ref:`configure-new-dashboard-proces-widget`, 
@@ -186,7 +185,7 @@ Migrate 9.3 to 9.4
 
    - :ref:`Migration steps <components-additional-components-migrate-from-old-process-chain>` for the new :ref:`Process Chain <components-additional-component-process-chain>` component.
 
-Migrate to 9.3
+Migrate To 9.3
 --------------
 
 #. Deploy :download:`portal-migration.iar <documents/portal-migration-9.3.0.iar>` project to your Ivy application and run it by access link
@@ -200,9 +199,9 @@ Migrate to 9.3
       * Run migration process only once
 
 #. We changed the way to navigate to Task Analysis component. Process ``Start Processes/TaskAnalysis/start.ivp`` is moved to new place ``Start Processes/PortalStart/showTaskAnalysis.ivp``. 
-   Refer to :ref:`Task Analysis call<components-additional-component-task-analysis-how-to-use>` for more details.
+   Refer to :ref:`Task Analysis call<components-additional-component-task-analysis-how-to-use>` for details.
 
-#. We moved the configuration of announcement, thirdparty applications, default statistic charts, application favorite processes, public external links and express processes from the BusinessData to ivy variables.
+#. We moved the configuration of announcement, thirdparty applications, default statistic charts, application favorite processes, public external links and express processes from the BusinessData tovariables.
 
 #. Copy the PortalStart process from PortalTemplate to your project because we changed something relate to DefaultApplicationHomePage.ivp and PortalDashboardConfiguration.ivp.
    Then apply your customization to the PortalStart in your project.
@@ -210,11 +209,11 @@ Migrate to 9.3
 #. Portal date filter such as TaskCreationDateFilter, CaseCreationDateFilter... messages ``<p:messages for="..." />`` have been added for each calendar component to validate date format.
    If you use have any customized date filters in your project, update template accordingly.
 
-#. The callable process ``DefaultChart.mod``, ``DefaultUserProcess.mod`` has been removed. They are replaced by
+#. The callable process ``DefaultChart.p.json``, ``DefaultUserProcess.p.json`` has been removed. They are replaced by
    the :dev-url:`Variables </doc/nightly/designer-guide/configuration/variables.html>` configuration approach,
    refer to :ref:`Default Chart <customization-default-chart>` and :ref:`Default User Process <customization-default-user-process>` for more information
 
-Migrate 9.1 to 9.2
+Migrate 9.1 To 9.2
 ------------------
 
 #. Deploy :download:`MigrateData.iar <documents/MigrateData.iar>` project to your Ivy application and run it by access link
@@ -229,7 +228,7 @@ Migrate 9.1 to 9.2
 
 #. We remove implementation of Portal multiple applications. So that you need to adapt some points below:
 
-   - Adapt start process signature of ``PasswordService`` in ``ChangePassword.mod`` if you overrode this callable.
+   - Adapt start process signature of ``PasswordService`` in ``ChangePassword.p.json`` if you overrode this callable.
    - If you are using ``ProcessStartCollector``, replace constructor ``ProcessStartCollector(application)`` with ``ProcessStartCollector()``.
    - If you have TaskLazyDataModel, CaseLazyDataModel customization, remove ``setInvolvedApplications()`` method, ``setInvolvedUsername`` in search criteria.   
 
@@ -239,7 +238,7 @@ Migrate 9.1 to 9.2
 
 #. If you have TaskLazyDataModel, CaseLazyDataModel customization, follow :ref:`How to override export feature of Task list <customization-task-widget-how-to-override-export-feature>` and :ref:`How to override export feature of Case list <customization-case-widget-how-to-override-export-feature>` to customize label and value of custom columns that will be exported.
 
-#. Deprecated callable processes: ``OpenPortalSearch.mod``, ``OpenPortalTasks.mod``, ``OpenPortalTaskDetails.mod``, ``OpenPortalCases.mod``, ``OpenPortalCaseDetails.mod`` process.
+#. Deprecated callable processes: ``OpenPortalSearch.p.json``, ``OpenPortalTasks.p.json``, ``OpenPortalTaskDetails.p.json``, ``OpenPortalCases.p.json``, ``OpenPortalCaseDetails.p.json`` process.
 
    Portal recommends using :dev-url:`Axon Ivy HtmlOverride wizard </doc/nightly/designer-guide/how-to/overrides.html?#override-new-wizard>` to customize ``Portal HTML Dialog``
 
@@ -251,7 +250,7 @@ Migrate 9.1 to 9.2
 
 9. If you have ``caseItemDetailCustomTop`` or ``caseItemDetailCustomMiddle`` or ``caseItemDetailCustomBottom`` customization, follow :ref:`How to override CaseItemDetail <customization-case-item-details>` to add these custom widgets.
 
-Migrate 8.x to 9.1
+Migrate 8.X To 9.1
 ------------------
 
 #. Remove the ``views`` field in SubMenuItem.java. Adapt it if you overrode the ``LoadSubMenuItems`` callable process
@@ -260,40 +259,66 @@ Migrate 8.x to 9.1
 
 #. Add parameter ``<ui:param name="viewName" value="CASE" />`` to your customized ``PortalCasesTemplate`` to displayed breadcrumb of Case list.
 
-#. Ivy core enhanced the Ivy URI, so Portal needs to make a migration. Deploy :download:`PortalUrlMigration.iar <documents/PortalUrlMigration.iar>` project to any Ivy Application then run ``migratePortalUrl.ivp`` once and wait until it is redirected to another page without error (E.g: Homepage). It is recommended to remove it after the migration.
+#. Ivy core has enhanced the Ivy URI, so Portal needs to make a migration. For
+   each of your applications, execute the following steps: 
 
-#. HOMEPAGE_URL (single Portal app mode) and registered application link (multi Portal app mode) are not available anymore. To let Portal know about your new Portal home, you have to set default pages to your project, follow this chapter to customize standard processes: :dev-url:`Standard Processes </doc/nightly/designer-guide/user-interface/standard-processes/index.html>`
+   #. Deploy process model :download:`PortalUrlMigration.iar <documents/PortalUrlMigration.iar>`
+      to your Ivy Application.
+      
+   #. run ``migratePortalUrl.ivp`` once and wait until it is redirected to
+      another page (i.e. the Homepage) without error. 
+      
+   #. Remove the process model ``migratePortalUrl.ivp`` after successfully migrating.
 
-#. Portal now uses |css_variable| instead of SASS. Therefore you must convert SASS syntax to new CSS variable or use online tool such as |css_variable_convert| to convert it.
+#. HOMEPAGE_URL (single Portal app mode) and registered application link (multi
+   Portal app mode) are not available anymore. To let Portal know where your new
+   Portal home page is, you have to set default pages in your project.
+   Follow this chapter to customize standard processes: 
+   :dev-url:`Standard Processes </doc/nightly/designer-guide/user-interface/standard-processes/index.html>`
 
-#. If administrator activate the ``Portal.Cases.EnableOwner`` Portal settings and there is a customized case list, customize this field to this case list, e.g. add filter, column configuration, header.
+#. Portal now uses |css_variable| instead of SASS. Therefore, you have to convert
+   the SASS syntax to the new CSS variables or use online tools such as
+   |css_variable_convert| to convert it.
 
-#. From 9.1, Ivy engine use new mechanism to synchronize user data, therefore Portal must adapt some data related to users. Some data must be migrated to work properly. Please follow these steps to migrate data of your application:
+#. If the Engine Administrator activates the ``Portal.Cases.EnableOwner``
+   setting and you have a customized case list, customize this field to this
+   case list, e.g. add filter, column configuration, header.
 
-   - Deploy :download:`MigrateRelatedDataOfUserTo9.iar <documents/MigrateRelatedDataOfUserTo9.iar>` project to your Ivy application.
+#. Starting in 9.1, the Ivy engine uses a new mechanism to synchronize user
+   data. Therefore, the Portal has to adapt some data related to users. Some
+   data has to be migrated to work properly. Please follow these steps to
+   migrate the existing data of your application:
+
+   - Deploy process model :download:`MigrateRelatedDataOfUserTo9.iar
+     <documents/MigrateRelatedDataOfUserTo9.iar>` to your application.
 
    - Run ``migratePrivateChat.ivp`` to migrate private chat messages.
 
    - Run ``migrateGroupChat.ivp`` to migrate group chat.
 
-   - Run ``migrateUserProcessesAndExternalLinks.ivp`` to migrate user processes and external links.
+   - Run ``migrateUserProcessesAndExternalLinks.ivp`` to migrate user processes
+     and external links.
 
-   - Run ``migrateExpressProcesses.ivp`` to migrate Express processes, please skip this step if your application does not have Express.
+   - Run ``migrateExpressProcesses.ivp`` to migrate Express processes. Please
+     skip this step if your application does not include Express.
 
    - Restart Ivy engine.
 
 #. Use ``pageContent`` to define your section in ``BasicTemplate.xhtml`` instead of ``simplePageContent``.
 
-#. ``TaskTemplate-7`` is removed, change it to ``TaskTemplate-8``. ``TaskTemplate`` is also removed, change it to ``frame-8`` (provided by Ivy).
+#. ``TaskTemplate-7`` has been removed, change it to ``TaskTemplate-8``. ``TaskTemplate`` has been removed, too, change it to ``frame-8`` (provided by Ivy).
 
-#. The ``MenuKind`` enum has one more entry: EXTERNAL_LINK, use it if your item is an external link, and use CUSTOM if yours is an internal link.
+#. The ``MenuKind`` enum has one more entry: EXTERNAL_LINK. Use it if your item
+   is an external link. Use CUSTOM if it is an internal link.
 
-#. The ``PortalNavigatorInFrameAPI#navigateToPortalHome`` method is deprecated, redirect to ivy.html.applicationHomeRef() in your page instead.
+#. The ``PortalNavigatorInFrameAPI#navigateToPortalHome`` method is deprecated,
+   redirect to ivy.html.applicationHomeRef() in your page instead.
 
-Migrate 8.x to 9.2
+Migrate 8.x To 9.x
 ------------------
 
-You need to do all steps in ``Migrate 8.x to 9.1`` and ``Migrate 9.1 to 9.2``
+You need to do all steps starting at ``Migrate 8.x To ...`` up to and including
+``Migrate ... To 9.x``
 
 .. _installation-release-notes:
 
@@ -311,7 +336,7 @@ Changes in 9.4
 
 - Introduce new ``Task ID``, ``Task Name``, ``Case ID`` and ``Case Name`` filter in the Portal full task list and case list.
 
-- Introduce the ``Process Viewer`` page, user can get the visual viewer of the process start. See more details :ref:`Show Process Viewer <how-to-show-process-viewer>`
+- Introduce the ``Process Viewer`` page, user can get the visual viewer of the process start. See details :ref:`Show Process Viewer <how-to-show-process-viewer>`
 
 Changes in 9.3
 --------------
@@ -336,7 +361,7 @@ Changes in 9.2
 
 - Introduce new Portal Setting ``Portal.ShowButtonIcon`` to control visibility of icon of button in Portal.
 
-- Introduce new global variable named ``PortalLoginPageDisplay`` to show Login page or hide it then show error page instead.
+- Introduce new variable named ``PortalLoginPageDisplay`` to show Login page or hide it then show error page instead.
 
 - No multiple applications anymore, Portal now only works in current application. It means administrator can not add new Ivy application.
 
@@ -356,7 +381,7 @@ Changes in 9.1
 
 - Introduce new Portal Setting ``Portal.ShowButtonIcon`` to control visibility of icon of button in Portal.
 
-- Introduce new Portal dialog with icon decorator. Refer to :ref:`this section <components-additional-portal-dialog-with-icon>` for more detail.
+- Introduce new Portal dialog with icon decorator. Refer to :ref:`this section <components-additional-portal-dialog-with-icon>` for detail.
 
 - TaskTemplate-7, TaskTemplate and TwoColumnTemplate are removed.
 

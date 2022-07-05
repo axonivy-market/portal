@@ -23,7 +23,6 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
   private static final String YOUR_TASKS_WIDGET = "Your Tasks";
 
   private NewDashboardPage newDashboardPage;
-  TaskWidgetNewDashBoardPage taskWidget;
 
   @Override
   @BeforeEach
@@ -71,6 +70,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     createTasksForTesting();
     filterTaskByNameAndState("Sick Leave Request", "Suspended");
+    TaskWidgetNewDashBoardPage taskWidget = new TaskWidgetNewDashBoardPage();
     taskWidget.startTask(0);
     taskWidget.clickCancelTask();
     newDashboardPage.waitForAbsencesGrowlMessageDisplay();
@@ -91,6 +91,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
   }
 
   private void filterTaskByNameAndState(String name, String state) {
+    TaskWidgetNewDashBoardPage taskWidget = new TaskWidgetNewDashBoardPage();
     taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
     taskWidget.openFilterWidget();
     taskWidget.resetFilter();
@@ -106,6 +107,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     createTasksForTesting();
     filterTaskByNameAndState("Maternity Leave Request", "Suspended");
+    TaskWidgetNewDashBoardPage taskWidget = new TaskWidgetNewDashBoardPage();
     taskWidget.reserveTask(0);
     refreshPage();
 
@@ -122,6 +124,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
   private void createTasksForTesting() {
     redirectToRelativeLink(createTaskWithSystemState);
     redirectToNewDashBoard();
+    TaskWidgetNewDashBoardPage taskWidget = new TaskWidgetNewDashBoardPage();
     taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
     taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
   }
@@ -131,6 +134,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(createTechnicalStateUrl);
     redirectToNewDashBoard();
+    TaskWidgetNewDashBoardPage taskWidget = new TaskWidgetNewDashBoardPage();
     taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
     taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
     // Failed
@@ -155,6 +159,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
   }
 
   private void assertTaskAction(int index, List<String> taskActionsInTask) {
+    TaskWidgetNewDashBoardPage taskWidget = new TaskWidgetNewDashBoardPage();
     ElementsCollection actions = taskWidget.getActiveTaskActions(index);
     actions.shouldHaveSize(taskActionsInTask.size());
     assertTrue(actions.texts().containsAll(taskActionsInTask));
@@ -162,6 +167,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
   }
 
   private void filterTaskByState(String state) {
+    TaskWidgetNewDashBoardPage taskWidget = new TaskWidgetNewDashBoardPage();
     taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
     taskWidget.openFilterWidget();
     taskWidget.resetFilter();

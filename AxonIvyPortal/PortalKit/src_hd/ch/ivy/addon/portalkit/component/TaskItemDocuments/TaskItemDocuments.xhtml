@@ -46,7 +46,7 @@
           pageLinks="3" rows="#{cc.attrs.documentWidget.rowPerPage}" rowsPerPageTemplate="5,10,20,50"
           paginatorPosition="bottom" emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
           paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-          currentPageReportTemplate="{currentPage} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/curentReportOf')} {totalPages}">
+          currentPageReportTemplate="{currentPage} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/curentReportOf')} {totalPages}" lazy="false">
           <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/name')}"
             sortBy="#{document.name}"
             styleClass="u-truncate-text ui-g-6 ui-xl-6 ui-lg-8 ui-md-12 ui-sm-12">

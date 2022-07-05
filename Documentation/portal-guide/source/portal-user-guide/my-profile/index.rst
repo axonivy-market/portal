@@ -11,13 +11,12 @@ General settings
 ----------------
 
 **General settings** allows you to configure some settings according to your requirements. This area
-contains :guilabel:`Selected homepage`, :guilabel:`Process list configuration`,
-:guilabel:`Task list configuration`, :guilabel:`Case list configuration` and :guilabel:`Show Welcome Tour`.
+contains :guilabel:`Selected homepage` and :guilabel:`Show Welcome Tour`.
 
 Process list configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-This section has available options which help you to configure your personal Process list.
+This section has available options which help you to configure your Process list.
 These are options you can modify:
 
 .. table::
@@ -25,17 +24,16 @@ These are options you can modify:
    +-----------------------+-----------------------------------------------+
    | Option                | Description                                   |
    +=======================+===============================================+
-   | Default view mode     | Your standard view mode when open the process |
+   | Default view mode     | Standard view mode when you open the process  |
    |                       | list.                                         |
-   |                       |                                               |
-   |                       | Portal will get default value which is defined|
-   |                       | by admin if you don't select any option.      |
    +-----------------------+-----------------------------------------------+
+
+Portal will use the default value defined by the administrator if you don't select an option.  
 
 Task list configuration
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-This section has available options which help you to modify your personal Task list.
+This section has available options which help you to modify your Task list.
 These are options you can modify:
 
 .. table:: 
@@ -43,36 +41,33 @@ These are options you can modify:
    +-----------------------+-----------------------------------------------+
    | Option                | Description                                   |
    +=======================+===============================================+
-   | Default sort field    | Your default sort field when open a task list.|
-   |                       | Portal will get default value which is defined|
-   |                       | by admin if you don't select any option.      |
+   | Default sort field    | Default sort field when you open a task list. |
    +-----------------------+-----------------------------------------------+
-   | Default sort direction| Your default sort direction when open a task  |
+   | Default sort direction| Default sort direction when you open a task   |
    |                       | list.                                         |
-   |                       | Portal will get default value which is defined|
-   |                       | by admin if you don't select any option.      |
    +-----------------------+-----------------------------------------------+
+
+
+Portal will use the default value defined by the administrator if you don't select an option.  
 
 Case list configuration
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-This section has available options which help you to modify your personal Case list.
+This section has available options which help you to modify your Case list.
 These are options you can modify:
 
 .. table:: 
 
-   +-----------------------+-----------------------------------------------+
-   | Option                | Description                                   |
-   +=======================+===============================================+
-   | Default sort field    | Your default sort field when open a case list.|
-   |                       | Portal will get default value which is defined|
-   |                       | by admin if you don't select any option.      |
-   +-----------------------+-----------------------------------------------+
-   | Default sort direction| Your default sort direction when open a case  |
-   |                       | list.                                         |
-   |                       | Portal will get default value which is defined|
-   |                       | by admin if you don't select any option.      |
-   +-----------------------+-----------------------------------------------+
+   +-----------------------+------------------------------------------------+
+   | Option                | Description                                    |
+   +=======================+================================================+
+   | Default sort field    | Default sort field when you open a case list.  |
+   +-----------------------+------------------------------------------------+
+   | Default sort direction| Default sort direction when you open a case    |
+   |                       | list.                                          |
+   +-----------------------+------------------------------------------------+
+
+Portal will use the default value defined by the administrator if you don't select an option.  
 
 .. _language-settings:
 
@@ -86,11 +81,8 @@ well. The following languages are currently supported in the Axon Ivy
 Portal:
 
 -  English
-
 -  German
-
 -  French
-
 -  Spanish
 
 .. hint:: 
@@ -110,26 +102,29 @@ Email settings
 --------------
 
 **Email settings** allows you to configure your
-preferences related to standard email notifications send by the Axon Ivy
+preferences related to standard email notifications sent by the Axon Ivy
 Engine.
 
 .. hint:: 
-   If configured by your company’s application, you might also be able to configure application specific email notifications.   
+   If configured by applications of your company, you might also be able to 
+   configure application specific email notifications.   
 ..
 
-Toggle button :guilabel:`Receive email notification on task assignment` allows you to 
-specify if you want to receive an instant notification when a task is assigned to you or one of the roles you hold.
+The switch :guilabel:`Receive email notification on task assignment` allows you to 
+specify if you want to receive an instant notification when a task is assigned to 
+you or one of the roles you hold.
 
-Toggle button :guilabel:`Receive further emails from application` allows you to activate / deactivate further email notifications.
+The switch :guilabel:`Receive further emails from application` allows you 
+to activate or deactivate further email notifications.
 
-Toggle button :guilabel:`Receive daily summary at` allows you to specify the weekdays 
-when you receive a summary of all tasks assigned to you or one of your roles.
+The daily checkboxes :guilabel:`Receive daily summary at` allow you to specify the weekdays 
+on which you receive a summary of all tasks assigned to you or one of your roles.
 
 Date format configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-This section has available options which help you to format date fields by your selection.
-These are options you can select:
+This section allows you to configure the date field format.
+These are the options:
 
 .. table:: 
 

@@ -5,34 +5,36 @@
   xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
 <ui:composition>
-  <h:form id="process-list" styleClass="compact-processes-container widget-content" rendered="#{not empty processes}">
-    <ui:repeat varStatus="status" var="process" value="#{processes}">
-      <span class="process-start-list-item">
-        <p:commandLink actionListener="#{compactDashboardProcessBean.startProcessWithCompactMode(process)}" disabled="#{!isReadOnlyMode or isInConfiguration}"
-          target="#{dashboardProcessBean.targetToStartProcess(process)}" ajax="#{!dashboardProcessBean.isExternalLink(process)}" styleClass="process-item">
-          <h:panelGroup layout="block" class="process-start-list-item-icon">
-            <span class="#{iconSelectionBean.generateIconWithFontFamily(process.getIcon())}" />
-          </h:panelGroup>
-          <div class="process-start-list-item-name">
-            <h:outputText id="process-name-process-item" value="#{process.name}" styleClass="dashboard-compact-process-item process-start-list-item-name-text u-truncate-text" />
-            <p:tooltip for="process-name-process-item" value="#{process.name}" />
-          </div>
-          <div class="process-item-action-container">
-            <h:panelGroup styleClass="process-start-list-item-action u-hidden-md-down" rendered="#{not empty process.description}">
-              <h:outputText id="info-workflow" styleClass="si si-information-circle process-description process-item" />
-              <p:tooltip id="info-workflow-tooltip" for="info-workflow" value="#{process.description}" position="top" trackMouse="true" hideEvent="mouseleave click"
-                styleClass="js-process-start-list-item-description" />
+  <h:form rendered="#{not empty processes}">
+    <h:panelGroup id="process-list" layout="block" styleClass="compact-processes-container widget-content">
+      <ui:repeat varStatus="status" var="process" value="#{processes}">
+        <span class="process-start-list-item">
+          <p:commandLink actionListener="#{compactDashboardProcessBean.startProcessWithCompactMode(process)}" disabled="#{!isReadOnlyMode or isInConfiguration}"
+            target="#{dashboardProcessBean.targetToStartProcess(process)}" ajax="#{!dashboardProcessBean.isExternalLink(process)}" styleClass="process-item">
+            <h:panelGroup layout="block" class="process-start-list-item-icon">
+              <span class="#{iconSelectionBean.generateIconWithFontFamily(process.getIcon())}" />
             </h:panelGroup>
-            <h:panelGroup styleClass="process-start-list-item-action" rendered="#{compactDashboardProcessBean.isBrokenLink(process)}">
-              <h:outputText id="warning-icon" styleClass="si si-road-sign-warning warning-icon" />
-              <p:tooltip id="warning-icon-tooltip" for="warning-icon" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/brokenLinkProcess')}" position="top" trackMouse="true"
-                hideEvent="mouseleave click" />
-            </h:panelGroup>
-            <h:panelGroup id="open-process-start" class="si si-arrow-right-1 open-icon" />
-          </div>
-        </p:commandLink>
-      </span>
-    </ui:repeat>
+            <div class="process-start-list-item-name">
+              <h:outputText id="process-name-process-item" value="#{process.name}" styleClass="dashboard-compact-process-item process-start-list-item-name-text u-truncate-text" />
+              <p:tooltip for="process-name-process-item" value="#{process.name}" />
+            </div>
+            <div class="process-item-action-container">
+              <h:panelGroup styleClass="process-start-list-item-action u-hidden-md-down" rendered="#{not empty process.description}">
+                <h:outputText id="info-workflow" styleClass="si si-information-circle process-description process-item" />
+                <p:tooltip id="info-workflow-tooltip" for="info-workflow" value="#{process.description}" position="top" trackMouse="true" hideEvent="mouseleave click"
+                  styleClass="js-process-start-list-item-description" />
+              </h:panelGroup>
+              <h:panelGroup styleClass="process-start-list-item-action" rendered="#{compactDashboardProcessBean.isBrokenLink(process)}">
+                <h:outputText id="warning-icon" styleClass="si si-road-sign-warning warning-icon" />
+                <p:tooltip id="warning-icon-tooltip" for="warning-icon" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/brokenLinkProcess')}" position="top" trackMouse="true"
+                  hideEvent="mouseleave click" />
+              </h:panelGroup>
+              <h:panelGroup id="open-process-start" class="si si-arrow-right-1 open-icon" />
+            </div>
+          </p:commandLink>
+        </span>
+      </ui:repeat>
+    </h:panelGroup>
   </h:form>
 </ui:composition>
 </html>

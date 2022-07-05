@@ -174,8 +174,13 @@
            update="case-info-dialog"
            oncomplete="PF('case-info-dialog').show()" />
         <p:dialog id="case-info-dialog" resizable="false" fitViewport="true" width="95vw" height="80vh"
-          header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/searchResult/case')}: #{case.name}" closeOnEscape="true" draggable="false" responsive="true"
+          closeOnEscape="true" draggable="false" responsive="true"
           widgetVar="case-info-dialog" appendTo="@(body)" modal="true" styleClass="case-info-dialog">
+          <f:facet name="header">
+            <h:panelGroup layout="block" styleClass="case-infor-title u-truncate-text">
+              <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/searchResult/case')}: #{case.name}" />
+            </h:panelGroup>
+          </f:facet>
           <ui:insert name="caseDetails">
             <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portal.generic/CaseDetailsTemplate/noCaseId')}"
               rendered="#{caseWidgetBean.isHiddenCase(case)}" />
@@ -286,7 +291,7 @@
           <br />
           <p:spacer height="20"></p:spacer>
           <p:dataTable id="adhoc-task-history-table" value="#{abstractTaskTemplateBean.getAllAdhocHistories(currentTask)}" var="history"
-            reflow="true">
+            reflow="true" lazy="false">
             <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/author')}">
               <pc:securityMemberNameAndAvatar securityMember="#{abstractTaskTemplateBean.getUserByUsernameAndExternalId(history.authorUsername, history.externalSecurityId)}"
                 displayName="#{abstractTaskTemplateBean.getUserByUsernameAndExternalName(history.authorUsername, history.externalSecurityId)}"

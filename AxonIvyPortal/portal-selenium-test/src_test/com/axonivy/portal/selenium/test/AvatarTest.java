@@ -51,7 +51,7 @@ public class AvatarTest extends BaseTest {
 
     // Check task details
     taskWidgetPage.openTask(SICK_LEAVE_REQUEST);
-    TaskDetailsPage taskDetailsPage = TaskDetailsPage.newInstance();
+    TaskDetailsPage taskDetailsPage = new TaskDetailsPage();
     assertTrue(taskDetailsPage.getResponsibleAvatar().exists());
 
     // Check case list
@@ -59,8 +59,7 @@ public class AvatarTest extends BaseTest {
     assertTrue(caseWidgetPage.getCreatorAvatar().exists());
 
     // Check case details
-    caseWidgetPage.openCase("Leave Request");
-    CaseDetailsPage caseDetailsPage = CaseDetailsPage.newInstance();
+    CaseDetailsPage caseDetailsPage = caseWidgetPage.openCase("Leave Request");
     assertTrue(caseDetailsPage.getCreatorAvatar().exists());
     assertTrue(caseDetailsPage.getHistoryAuthorAvatar().exists());
   }

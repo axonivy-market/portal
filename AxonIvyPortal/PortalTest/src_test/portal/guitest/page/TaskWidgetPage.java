@@ -51,7 +51,6 @@ public class TaskWidgetPage extends TemplatePage {
     WaitHelper.assertTrueWithWait(() -> isElementDisplayed(By.cssSelector("a[id$=':task-list-link:task-list-link']")));
     WebElement fullModeButton = findElementById(taskWidgetId + ":task-list-link:task-list-link");
     click(fullModeButton);
-    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
     WaitHelper.assertTrueWithWait(() -> isElementDisplayed(By.cssSelector("[id$=':filter-save-action']")));
     waitForLocatorDisplayed("id('" + taskWidgetId + ":filter-save-action')");
   }
@@ -63,7 +62,7 @@ public class TaskWidgetPage extends TemplatePage {
 
   public TaskDetailsPage openTaskDetailsFromActionMenu(int index) {
     sideStepMenuOnActionButton(index);
-    String detailOptionCssSelector = "a[id$='task-open-detail-command']";
+    String detailOptionCssSelector = "a[id$='additional-options:task-open-detail-command']";
     waitForElementDisplayed(By.cssSelector(detailOptionCssSelector), true);
     click(By.cssSelector(detailOptionCssSelector));
     return new TaskDetailsPage();
@@ -801,9 +800,9 @@ public class TaskWidgetPage extends TemplatePage {
 
   @SuppressWarnings("deprecation")
   public void resetFilter() {
-    click(By.cssSelector("[id$='task-widget:filter-reset-action']"));
+    clickByCssSelector("[id$='task-widget:filter-reset-action']");
     waitAjaxIndicatorDisappear();
-    click(By.cssSelector("[id$='task-widget:filter-reset-command']"));
+    clickByCssSelector("[id$='task-widget:filter-reset-command']");
     waitForElementDisplayed(By.id("task-widget:reset-filter-set-dialog"), false);
   }
 

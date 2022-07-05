@@ -9,8 +9,10 @@ import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 
 public class NewDashboardConfigurationPage extends TemplatePage {
-  public void waitPageDisplay() {
-    $("#dashboard-configuration-container").waitUntil(Condition.appear, DEFAULT_TIMEOUT);
+
+  @Override
+  protected String getLoadedLocator() {
+    return "#dashboard-configuration-container";
   }
 
   public ElementsCollection getDashboardRows() {
@@ -40,7 +42,6 @@ public class NewDashboardConfigurationPage extends TemplatePage {
     if (dashboardRow != null) {
       dashboardRow.$("a[id$=':configure-dashboard']").click();
       NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
-      newDashboardDetailsEditPage.waitPageDisplay();
       return newDashboardDetailsEditPage;
     }
     return null;
