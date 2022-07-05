@@ -478,6 +478,8 @@ in.statisticFilter = new StatisticFilter();
 in.statisticFilter.init();
 in.oldStatisticFilter = ObjectUtils.clone(in.statisticFilter) as StatisticFilter;
 
+in.chartNames = new ArrayList();
+
 List<String> supportedLanguages = LanguageService.newInstance().findUserLanguages(ivy.session.getSessionUserName(), Arrays.asList(ivy.wf.getApplication().getName())).ivyLanguages.get(0).getSupportedLanguages();
 for (String language : supportedLanguages) {
 	DisplayName name = new DisplayName();
