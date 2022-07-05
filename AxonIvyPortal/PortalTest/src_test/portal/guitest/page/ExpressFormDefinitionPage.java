@@ -156,7 +156,7 @@ public class ExpressFormDefinitionPage extends TemplatePage {
       } else {
         moveFormElementToPanel(i, getRandomPosition());
       }
-      waitForElementDisplayed(By.id("form:available-form-elements:" + i + ":pnl"), false, TIME_OUT);
+      waitForElementExisted("[id$='form:available-form-elements:" + i + ":pnl']", false, DEFAULT_TIMEOUT);
     }
   }
 
