@@ -213,28 +213,16 @@ the component in a page with following code:
 		<ic:com.axonivy.portal.component.ProcessChain id="process-chain-circle-horizontal" componentId="component-circle-horizontal" shape="CIRCLE" direction="HORIZONTAL"
          isShowAllSteps="false" actualStepIndex="0" steps="#{['Step 1','Step 2','Step 3','Step 4','Step 5','Step 6','Step 7','Step 8','Step 9']}" />
 
-#. Must to set value for ``actualStepIndex`` parameter. This is current
-   step index.
-Please refer to ``ProcessChainExample`` process in ``portal-component-example`` project for more details.
+#. You have to set the parameters
 
-#. Must to set value for ``steps`` parameter. This is list of working
-   steps.
-.. important:: 
+   -  ``actualStepIndex``. This is the index of the current step.
+   -  ``steps``. This is list of working steps.
 
+#. You may change the parameters
 
-#. Can change ``shape`` parameter to ``CIRCLE`` or ``LINE`` based on the
-   requirement. Default value of this is ``CIRCLE``.
-   - Must set value for ``actualStepIndex`` parameter. This is current step index.
-   - Must set value for ``steps`` parameter. This is list of working steps.
-
-#. Can change ``direction`` parameter to ``HORIZONTAL`` or ``VERTICAL``
-   based on the requirement. Default value of this is ``HORIZONTAL``.
-Attributes of this component:
-
-
-
-#. Can change ``isShowAllSteps`` parameter to ``TRUE`` or ``FALSE``
-   based on the requirement. Default value of this is ``FALSE``.
+   -  ``shape`` to ``CIRCLE`` or ``LINE`` according to your requirements. Default is ``CIRCLE``.
+   -  ``direction`` to ``HORIZONTAL`` or ``VERTICAL`` . Default is ``HORIZONTAL``.
+   -  ``isShowAllSteps`` to ``TRUE`` or ``FALSE`` . Default is ``FALSE``.
 
 .. csv-table::
   :file: documents/additional-components/process_chain_component_attributes.csv
@@ -402,6 +390,7 @@ Document Table has options to check harmful scripts and viruses inside the file 
 
    - Set attribute ``enableScriptCheckingForUploadedDocument`` to enable check harmful scripts option.
    - Set attribute ``enableVirusScannerForUploadedDocument`` to enable virus scanning option.
+
 
 Code example:
 
@@ -717,6 +706,8 @@ trigger the process as required.
 To generate cron patterns, use the online site `Cron Maker
 <http://www.cronmaker.com>`_. It makes creating your own cron job patterns a
 breeze.
+
+.. _components-additional-components-styles-customization:
 
 Styles Customization
 --------------------
