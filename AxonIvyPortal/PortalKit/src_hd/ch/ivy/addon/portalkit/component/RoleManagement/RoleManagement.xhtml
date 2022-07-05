@@ -64,33 +64,28 @@
         </f:facet>
 
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/RoleName')}"
-          styleClass="role-name-column">
-          <h:panelGroup>
-            <h:outputText styleClass="role-username" value="#{role.name}"/>
-          </h:panelGroup>
+          styleClass="role-name-column u-truncate-text">
+          <h:outputText id="role-username" styleClass="role-username" value="#{role.name}"/>
+          <p:tooltip for="role-username" value="#{role.name}" trackMouse="true" hideEvent="mouseleave click" styleClass="role-assigned-users-tooltip"/>
         </p:column>
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/displayName')}"
-          styleClass="u-hidden-sm-down">
-          <h:panelGroup>
-            <h:outputText styleClass="role-displayname" value="#{role.displayName}"/>
-          </h:panelGroup>
+          styleClass="u-hidden-sm-down u-truncate-text">
+          <h:outputText id="role-displayname" styleClass="role-displayname" value="#{role.displayName}"/>
+          <p:tooltip for="role-displayname" value="#{role.displayName}" trackMouse="true" hideEvent="mouseleave click" styleClass="role-assigned-users-tooltip"/>
         </p:column>
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}"
-          styleClass="u-hidden-sm-down">
-          <h:panelGroup>
-            <h:outputText styleClass="role-displayname" value="#{role.description}"/>
-          </h:panelGroup>
+          styleClass="u-hidden-sm-down u-truncate-text">
+          <h:outputText id="role-description" styleClass="role-displayname" value="#{role.description}"/>
+          <p:tooltip for="role-description" value="#{role.description}" trackMouse="true" hideEvent="mouseleave click" styleClass="role-assigned-users-tooltip"/>
         </p:column>
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/AssignedUser')}"
           styleClass="users-assigned-role-column u-hidden-xs-down"
           width="150px">
-          <h:panelGroup>
-            <h:outputText id="role-assigned-users-text" value="#{role.assignedUsersAsText}" />
-            <p:tooltip for="role-assigned-users-text"
-              rendered="#{role.totalAssignedUsers gt 0}"
-              value="#{role.assignedUsersTooltip}"
-              styleClass="role-assigned-users-tooltip" />
-          </h:panelGroup>
+          <h:outputText id="role-assigned-users-text" value="#{role.assignedUsersAsText}" />
+          <p:tooltip for="role-assigned-users-text"
+            rendered="#{role.totalAssignedUsers gt 0}"
+            value="#{role.assignedUsersTooltip}"
+            styleClass="role-assigned-users-tooltip" />
         </p:column>
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
           styleClass="u-text-align-center role-actions-column"
