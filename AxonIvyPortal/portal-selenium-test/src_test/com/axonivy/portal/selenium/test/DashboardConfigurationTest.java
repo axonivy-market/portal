@@ -30,6 +30,7 @@ public class DashboardConfigurationTest extends BaseTest {
   private static final String YOUR_TASKS_WIDGET = "Your Tasks";
   private static final String YOUR_CASES_WIDGET = "Your Cases";
   private static final String YOUR_PROCESS_WIDGET = "Your Processes";
+  private static final String NEW_PRIVATE_DASHBOARD = "New private dashboard";
 
   @Override
   @BeforeEach
@@ -378,6 +379,47 @@ public class DashboardConfigurationTest extends BaseTest {
     LinkNavigator.redirectToEditPublicDashboard();
     NewDashboardConfigurationPage configPage = new NewDashboardConfigurationPage();
     configPage.navigateToEditDashboardDetailsByName("Dashboard");
+    ProcessWidgetNewDashBoardPage processWidget = newDashboardPage.selectProcessWidget(YOUR_PROCESS_WIDGET);
+    processWidget.deleteProcessWidget();
+    NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
+    newDashboardDetailsEditPage.clickOnRemoveWidgetButton();
+    newDashboardPage.selectTaskWidget("").expand().shouldHaveSize(2);
+  }
+  
+  @Test
+  public void testDeleteTaskWidgetForPrivateDashboard() {
+    testAddPrivateDashboardUseTemplate();
+    LinkNavigator.redirectToEditPrivateDashboard();
+    NewDashboardConfigurationPage configPage = new NewDashboardConfigurationPage();
+    configPage.navigateToEditDashboardDetailsByName(NEW_PRIVATE_DASHBOARD);
+    TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
+    taskWidget.deleteTaskWidget();
+    NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
+    newDashboardDetailsEditPage.clickOnRemoveWidgetButton();
+    newDashboardPage.selectTaskWidget("").expand().shouldHaveSize(2);
+  }
+  
+  @Test
+  public void testDeleteCaseWidgetForPrivateDashboard() {   
+    testAddPrivateDashboardUseTemplate();
+    LinkNavigator.redirectToEditPrivateDashboard();
+    NewDashboardConfigurationPage configPage = new NewDashboardConfigurationPage();
+    configPage.navigateToEditDashboardDetailsByName(NEW_PRIVATE_DASHBOARD);
+    
+    CaseWidgetNewDashBoardPage caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
+    caseWidget.deleteCaseWidget();
+    NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
+    newDashboardDetailsEditPage.clickOnRemoveWidgetButton();
+    newDashboardPage.selectTaskWidget("").expand().shouldHaveSize(2);
+  }
+  
+  @Test
+  public void testDeleteProcessesWidgetForPrivateDashboard() {   
+    testAddPrivateDashboardUseTemplate();
+    LinkNavigator.redirectToEditPrivateDashboard();
+    NewDashboardConfigurationPage configPage = new NewDashboardConfigurationPage();
+    configPage.navigateToEditDashboardDetailsByName(NEW_PRIVATE_DASHBOARD);
+    
     ProcessWidgetNewDashBoardPage processWidget = newDashboardPage.selectProcessWidget(YOUR_PROCESS_WIDGET);
     processWidget.deleteProcessWidget();
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();

@@ -186,7 +186,7 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
   
   public void deleteCaseWidget() {
     $$("div.table-widget-panel div.widget__header").filter(text(caseWidgetName)).first()
-        .waitUntil(appear, DEFAULT_TIMEOUT).$("div[id$='widget-header-actions']").$("a[class^='ui-commandlink'][id*='delete-widget']")
+        .waitUntil(appear, DEFAULT_TIMEOUT).$("div[id$='widget-header-actions']").$("a.ui-commandlink[id*='delete-widget']")
         .shouldBe(getClickableCondition()).click();
   }
 }
