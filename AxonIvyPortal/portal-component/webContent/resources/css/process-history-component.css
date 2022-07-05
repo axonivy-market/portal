@@ -132,12 +132,14 @@
   color: var(--process-history-description-text-color);
 }
 
-.process-history-component .case-state-in-progress {
-  color: var(--process-history-state-in-progress-color);
+.process-history-component .state-column .running-case-state {
+  background: var(--process-history-state-in-progress-color);
+  border-color: var(--process-history-state-in-progress-color);
 }
 
-.process-history-component .case-state-done {
-  color: var(--process-history-state-done-or-resume-color);
+.process-history-component .state-column .done-case-state {
+  background: var(--process-history-state-done-or-resume-color);
+  border-color: var(--process-history-state-done-or-resume-color);
 }
 
 .process-history-component.process-history-list .ui-widget-content {
