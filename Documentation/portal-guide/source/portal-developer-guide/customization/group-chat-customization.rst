@@ -1,6 +1,6 @@
 .. _customization-group-chat:
 
-Group chat customization
+Group Chat Customization
 ========================
 
 .. _customization-group-chat-introduction:
@@ -8,32 +8,31 @@ Group chat customization
 Introduction
 ------------
 
-Group chat feature supports us to customize Group chat header, Group
-chat name, Confirgured role list for each process.
+The group chat feature allows you to customize the Group chat header, the Group
+chat name, and the configured role list for each process.
 
 .. _customization-group-chat-customize-group-chat-header:
 
-Customize group chat header
+Customize Group Chat Header
 ---------------------------
 
-Override group chat title/header via ``groupChatHeader`` CMS entry.
+Override group chat header using the ``groupChatHeader`` CMS entry.
 
 |customize-group-chat-header|
 
 .. _customization-group-chat-customize-group-chat-name:
 
-Customize group chat name
+Customize Group Chat Name
 -------------------------
 
-#. Introduce an Axon Ivy project which has ``PortalTemplate`` as a
+#. Create an Axon Ivy project which has ``PortalTemplate`` as a
    required library.
 
-#. Override ``SetGroupChatName`` process to customize group chat name,
-   follow its note to change group chat name.
+#. Override process ``SetGroupChatName``, then, Follow these steps:
 
    |customize-group-chat-name|
 
-   Open ``Set group chat name`` script and change the name variable to *your group chat name*, for example:
+   Open ``Set group chat name`` script and change the variable ``name`` to *your group chat name*, for example:
 
    .. code-block:: java
 
@@ -42,11 +41,11 @@ Customize group chat name
 
 
 #. If you have parameters which are not available in GroupChat.java,
-   override ``GetGroupChatParams`` callable process and follow its note.
+   override the ``GetGroupChatParams`` callable process and follow these steps:
 
    |customize-group-chat-name-params|
 
-   Open ``Set param`` script and add your parameters to the params variable, for example:
+   Open the ``Set param`` script and add your parameters to the params variable, for example:
    
    .. code-block:: java
    
@@ -55,10 +54,10 @@ Customize group chat name
 
 .. _customization-group-chat-customize-predefined-roles:
 
-Customize predefined responsible roles
+Customize Predefined Responsible Roles
 --------------------------------------
 
-Override ``AssignRolesGroupChat`` process to customize predefined
+Override the ``AssignRolesGroupChat`` process to customize predefined
 responsible roles, follow its note to configure.
 
 |customize-predefined-roles|

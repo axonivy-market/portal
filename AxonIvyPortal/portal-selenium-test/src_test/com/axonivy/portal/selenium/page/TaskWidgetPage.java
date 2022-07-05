@@ -15,16 +15,9 @@ import com.codeborne.selenide.SelenideElement;
 
 public class TaskWidgetPage extends TemplatePage {
 
-  public TaskWidgetPage() {}
-
-  public static TaskWidgetPage newInstance() {
-    $(".js-task-widget-header").waitUntil(appear, DEFAULT_TIMEOUT);
-    return new TaskWidgetPage();
-  }
-
   @Override
   protected String getLoadedLocator() {
-    return "//*[contains(@id,'task-widget:task-view')]";
+    return ".js-task-widget-header";
   }
 
   public void openTask(String taskName) {
@@ -81,7 +74,6 @@ public class TaskWidgetPage extends TemplatePage {
     getFilterTasksByKeyword().click();
     getFilterTasksByKeyword().sendKeys(keyword);
     getFilterTasksByKeyword().hover();
-    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
     $("div[id$='task-widget:task-view-container']").waitUntil(appear, DEFAULT_TIMEOUT);
   }
   

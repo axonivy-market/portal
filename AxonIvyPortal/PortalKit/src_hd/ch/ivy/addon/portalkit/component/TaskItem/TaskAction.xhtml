@@ -11,13 +11,18 @@
     <div class="action-container">
       <p:commandLink id="task-action-component" actionListener="#{logic.openTask(task,dataModel)}"
         disabled="#{!taskActionBean.isNotDone(task) or !taskActionBean.canResume(task)}" rendered="#{task.state != 'RESUMED' and !cc.attrs.readOnly}" onstart="event.stopPropagation();"
-        styleClass="task-action-item start-task-action" oncomplete="resetPortalLeftMenuState()">
+        styleClass="task-action-item start-task-action #{taskWidgetBean.runningTaskWhenClickingOnTaskInList ? 'u-hidden-md-down' : ''}" oncomplete="resetPortalLeftMenuState()">
         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}" styleClass="task-action-item-label u-hidden-lg-down" />
         <i class="si si-arrow-right-1 icon-compact-mode" />
       </p:commandLink>
 
+      <p:commandLink id="task-open-detail-command" styleClass="task-action-item u-hidden-lg-up"
+        actionListener="#{logic.openDetails(task, dataModel, cc.attrs.inFrame)}" rendered="#{taskWidgetBean.runningTaskWhenClickingOnTaskInList}">
+        <i class="si si-information-circle icon-compact-mode" />
+      </p:commandLink>
+
       <p:commandLink id="resume-task-action-component" disabled="#{!taskActionBean.isNotDone(task) or !taskActionBean.canResume(task)}"
-        rendered="#{task.state == 'RESUMED' and !cc.attrs.readOnly}" styleClass="task-action-item start-task-action">
+        rendered="#{task.state == 'RESUMED' and !cc.attrs.readOnly}" styleClass="task-action-item start-task-action #{taskWidgetBean.runningTaskWhenClickingOnTaskInList ? 'u-hidden-md-down' : ''}">
         <f:setPropertyActionListener value="#{task.id}" target="#{taskWidgetBean.selectedTaskItemId}"/>
         <p:ajax event="click" listener="#{logic.validate(task, dataModel)}" onstart="event.stopPropagation();"
           oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('reset-task-dialog').show();}" />

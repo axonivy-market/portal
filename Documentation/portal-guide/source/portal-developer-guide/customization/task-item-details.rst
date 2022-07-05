@@ -5,7 +5,7 @@ Task item details
 
 TaskItemDetails is a built-in component of Portal which contains the
 role, user, task, case and time information which users can interact with.
-In order to show needed task's information,
+To show needed task's information,
 Portal supports you to override concepts of TaskItemDetails component.
 
 Each TaskItemDetails contains
@@ -20,7 +20,7 @@ Each TaskItemDetails contains
 
 |task-standard|
 
-.. important:: All visible widgets will be configured in :ref:`Global Variable Portal.TaskDetails<task-details-configuration-variable>`.
+.. important:: All visible widgets will be configured in :ref:`Variable Portal.TaskDetails<task-details-configuration-variable>`.
 
 
 .. _task-details-configuration-variable:
@@ -28,8 +28,8 @@ Each TaskItemDetails contains
 How to configure widgets in task details
 ----------------------------------------
 
--  Settings of all visible widgets on task details page are saved in **Global Variable Portal.TaskDetails**.
--  Cockpit Administrator can configure widgets via global variable **Portal.TaskDetails** on Cockpit settings page.
+-  Settings of all visible widgets on task details page are saved in **variable Portal.TaskDetails**.
+-  Cockpit Administrator can configure widgets via variable **Portal.TaskDetails** on Cockpit settings page.
    |edit-variable-portal-task-case-details|
 
 -  Default configuration includes 3 widgets.
@@ -114,21 +114,21 @@ How to configure widgets in task details
 
    ``data`` (for custom widget): data for custom widget using iframe
 
-      ``type``: type of custom widget which is not using Iframe. There are two type ``taskItemDetailCustomPanelTop`` and ``taskItemDetailCustomPanelBottom``
+      ``type``: type of custom widget which is not using IFrame. There are two type ``taskItemDetailCustomPanelTop`` and ``taskItemDetailCustomPanelBottom``
 
       ``url``: URL for external website
 
-      ``processStart``: relative link to the ivy process which will be displayed in custom widget
+      ``processStart``: relative link to the Ivy process which will be displayed in the custom widget
 
-      ``params``: paramters for ivy process above, each parameter can be defined as follows:
+      ``params``: parameters for the Ivy process above, each parameter can be defined as follows:
 
-         - Key name that will be parameter name for ivy process above. Note: don't use ``taskId``.
+         - Key name that will be parameter name for the Ivy process above. Note: don't use ``taskId``.
 
-         - Key value for task: must start with ``task.``. Support 2 values: ``task.id``, ``task.category``.
+         - Key value for task has to start with ``task.``. Supported are two values: ``task.id``, ``task.category``.
 
-         - Key value for task custom fields: must start with ``task.customFields.``, follow by custom field name.
+         - Key value for task custom fields have to start with ``task.customFields.``, follow by the custom field name.
 
-         - Other key value will be treated as hard code value.
+         - Other key values will be treated as hard coded values.
 
 .. important::
    -  **Do not change** ``type`` of widgets.
@@ -209,7 +209,7 @@ Show Custom Panels (Widgets)
 
 There are **two steps** for adding new custom panels.
 
-#. **Cockpit admin** must configure global variable :ref:`Portal.TaskDetails<task-details-configuration-variable>`
+#. The **Engine administrator** has to configure variable :ref:`Portal.TaskDetails<task-details-configuration-variable>`
    on Cockpit Page to add custom widgets.
 
    .. _task-details-custom-configuration-variable-example:
@@ -265,13 +265,13 @@ There are **two steps** for adding new custom panels.
 
    ..
 
-#. To customize task details which do not use Iframe, refer to the ``taskItemDetailCustomPanel*`` section in ``PortalTaskDetails.xhtml`` of PortalTemplate.
+#. To customize task details which do not use IFrame, refer to the ``taskItemDetailCustomPanel*`` section in ``PortalTaskDetails.xhtml`` of PortalTemplate.
 
    -  We need to define the ``ui:define`` tag with the valid name such as
       ``taskItemDetailCustomPanelTop`` and ``taskItemDetailCustomPanelBottom``.
    
       The ``taskItemDetailCustomPanel*`` will be displayed
-      base on value of global variable
+      based on the value of variable
       :ref:`Portal.TaskDetails<task-details-configuration-variable>`.
    
    -  Add your custom code into ``<ui:define name="taskItemDetailCustomPanel*"></ui:define>`` tags.
@@ -350,13 +350,13 @@ There are **two steps** for adding new custom panels.
       |task-customized-top|
       |task-customized-bottom|
 
-#. To customize task details use Iframe, please make sure
+#. To customize task details use IFrame, please make sure
 
    -  Must input parameter ``url`` if you want to use external URL.
 
-   -  Must input parameter ``ivy`` if you want to use ivy start process.
+   -  Must input parameter ``ivy`` if you want to usestart process.
 
-   -  If you use ivy start process, you can predefine parameter for ``params``.
+   -  If you usestart process, you can predefine parameter for ``params``.
 
       Customized task details using external URL
 
@@ -389,7 +389,7 @@ There are **two steps** for adding new custom panels.
 
       |task-customized-iframe-url|
 
-      Customized task details using ivy process start, please refer to ``TaskDetailsCustomWidgetExample`` process in ``portal-developer-examples`` for more details
+      Customized task details usingprocess start, please refer to ``TaskDetailsCustomWidgetExample`` process in ``portal-developer-examples`` for details
 
       .. code-block:: html
 

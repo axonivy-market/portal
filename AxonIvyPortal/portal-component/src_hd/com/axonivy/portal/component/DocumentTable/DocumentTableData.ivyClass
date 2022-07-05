@@ -30,5 +30,3 @@ enableScriptCheckingForUploadedDocument Boolean #field
 enableScriptCheckingForUploadedDocument PERSISTENT #fieldModifier
 allowedUploadFileTypes String #field
 allowedUploadFileTypes PERSISTENT #fieldModifier
-emptyList java.util.List<com.axonivy.portal.component.ivydata.bo.IvyDocument> #field
-emptyList PERSISTENT #fieldModifier

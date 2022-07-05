@@ -50,7 +50,7 @@
             styleClass="si si-delete-2 advanced-filter-icon #{cc.attrs.removeIconStyleClass}"
             actionListener="#{dataModel.removeFilter(taskFilter)}" global="false"
             update="@(.filter-container) @(.advanced-filter-container) @(.filter-add-container) @(.filter-selection-form) @(.task-view-container) @(.filter-buttons-container) @(.hidden-task-count)"
-            oncomplete="#{empty cc.attrs.resultContainerUpdated ? 'taskWidget.setupScrollbar(); taskWidget.setupHeader(); taskWidget.updateTaskCountToBreadcrumb();' : ''}">
+            oncomplete="#{empty cc.attrs.resultContainerUpdated ? 'taskWidget.showTaskFilter(); taskWidget.setupScrollbar(); taskWidget.setupHeader(); taskWidget.updateTaskCountToBreadcrumb();' : ''}">
             <f:actionListener binding="#{cc.attrs.removeListener}" />
           </p:commandLink>
         </h:panelGroup>

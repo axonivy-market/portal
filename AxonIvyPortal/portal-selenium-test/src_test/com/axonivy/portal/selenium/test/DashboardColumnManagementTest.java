@@ -24,10 +24,10 @@ public class DashboardColumnManagementTest extends BaseTest {
   @BeforeEach
   public void setup() {
     super.setup();
-    newDashboardPage = new NewDashboardPage();
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(createTestingTasksUrl);
     redirectToNewDashBoard();
+    newDashboardPage = new NewDashboardPage();
   }
 
 
