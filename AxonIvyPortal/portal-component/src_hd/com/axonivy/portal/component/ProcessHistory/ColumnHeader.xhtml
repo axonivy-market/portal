@@ -6,7 +6,7 @@
 
 <ui:composition>
   <h:form styleClass="#{styleHeaderClass}">
-    <p:commandLink id="#{id}" styleClass="#{styleClass} #{processHistoryComponentBean.dataModel.sortField eq sortedField ? 'is-selected' : ''}"
+    <p:commandLink id="#{id}" styleClass="#{styleClass} #{processHistoryComponentBean.dataModel.sortField eq sortedField ? 'is-selected' : ''} case-list-unsortable-header-cell"
       partialSubmit="true" process="@this" update="#{cc.clientId}:widget-column-header #{cc.clientId}:case-list-scroller"
       rendered="#{sortable eq true}" oncomplete="caseWidget.setupHeader()">
       <f:actionListener
