@@ -5,7 +5,7 @@ Portal Chat
 
 .. _components-portal-chat-chat-feature:
 
-Chat feature
+Chat Feature
 ------------
 
 |chat|
@@ -15,19 +15,19 @@ Chat feature
 Information
 -----------
 
-- To use chat, refer to :ref:`portal-chat`
+- To use Portal chat, refer to :ref:`portal-chat`
 
-- Chat feature is reimplemented from Ivy 7.4.
+- The chat feature has been rewritten in Ivy 7.4.
 
-- If browsers access Portal through  a reverse proxy Nginx, set Portal setting **Portal.Chat.ResponseTimeout** a number less than Nginx timeout to make chat work properly.
+- If browsers access Portal through a reverse proxy like Nginx, set Portal setting **Portal.Chat.ResponseTimeout** to less than the Nginx timeout (usually 60 seconds) to prevent connection abortions.
 
-- Each tab uses one long-polling request for chat. Browsers limit the number of long-polling request for one domain, max number could be six or more.
-  To handle this limitation, Portal introduces Portal setting **Portal.Chat.MaxConnection**, default value is 3. If fourth tab is open, chat in one inactive tab will be deactivated.
-  If you select deactivated chat tab again, all chat information will be refreshed and chat is activated again, then chat in another tab will be deactivated.
+- Each tab uses one long-polling request for chat. Browsers limit the number of parallel long-polling requests for one domain. The maximumis usually six or more.
+  To handle this limitation, Portal introduced the setting **Portal.Chat.MaxConnection**. Default value is 3. If a fourth tab is opened, chat in one inactive tab will be deactivated.
+  If you select a tab where chat has been deactivated, all chat information will be refreshed and chat is activated again. If there are still more than MaxConnection chat tabs open, chat in another tab will be deactivated.
 
-- Group chat supports some customizations, refer to :ref:`Group chat customization <customization-group-chat>` for more details.
+- Group chat supports some customizations, refer to :ref:`Group chat customization <customization-group-chat>` for details.
 
-- If your system uses an additional **Valve**, then we recommend adding the support async in the ``Context.xml`` file, this file is available in :dev-url:`File Reference </doc/8.0/engine-guide/configuration/files/context-xml.html>`.
+- If your system uses an additional Tomcat **Valve**, then we recommend to add asyncSupported in file ``Context.xml``. An example file is available at :dev-url:`File Reference </doc/8.0/engine-guide/configuration/files/context-xml.html>`.
 
   .. code-block:: html
 
@@ -38,11 +38,11 @@ Information
 
 .. _components-portal-chat-limitation:
 
-Limitation of current Portal Chat
----------------------------------
+Limitations Of Current Portal Chat
+----------------------------------
 
-Portal Chat does not support cross application chat. That means users are
+Portal Chat does not support cross-application chat. That means users are
 able to chat with other users in the current application, but they cannot chat
-with users in other application.
+with users in other applications.
 
 .. |chat| image:: ../../screenshots/chat/chat.png

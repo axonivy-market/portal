@@ -1,5 +1,8 @@
 var Portal = {
   init : function(responsiveToolkit) {
+    // Swipe on mobile can cause problems with scroll
+    PrimeFaces.widget.Paginator.prototype.bindSwipeEvents = function() {}
+
     if ($('form.login-form').length > 0) {
       return;
     }

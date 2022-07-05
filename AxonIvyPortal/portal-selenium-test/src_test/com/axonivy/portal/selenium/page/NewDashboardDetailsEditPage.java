@@ -9,8 +9,10 @@ import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 
 public class NewDashboardDetailsEditPage extends TemplatePage {
-  public void waitPageDisplay() {
-    $("a.dashboard__title").waitUntil(Condition.appear, DEFAULT_TIMEOUT);
+
+  @Override
+  protected String getLoadedLocator() {
+    return "#add-button";
   }
 
   public void addWidget() {
@@ -40,9 +42,7 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
 
   public NewDashboardConfigurationPage backToConfigurationPage() {
     $("a[id='back-to-configuration']").click();
-    NewDashboardConfigurationPage configurationPage = new NewDashboardConfigurationPage();
-    configurationPage.waitPageDisplay();
-    return configurationPage;
+    return new NewDashboardConfigurationPage();
   }
 
   public void deleteCompactModeProcess() {
@@ -113,5 +113,26 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
 
   public ElementsCollection getWidgets() {
     return $("div[id='dashboard-body']").$$("div.grid-stack-item");
+  }
+
+  public void clickOnRestoreDashboard() {
+    $("[id$='restore-button-group']").waitUntil(appear, DEFAULT_TIMEOUT).$("button[id$='restore-button']")
+        .waitUntil(Condition.exist, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    $("div[id$='restore-confirm-dialog']").waitUntil(appear, DEFAULT_TIMEOUT);
+  }
+
+  public SelenideElement getRestoreDashboardMessage() {
+    return $("div[id$='restore-confirm-dialog']").waitUntil(appear, DEFAULT_TIMEOUT)
+        .$("span.dashboard-template-name-message").waitUntil(appear, DEFAULT_TIMEOUT);
+  }
+
+  public void restoreDashboardToStandard() {
+    $("div[id$='restore-confirm-dialog']").waitUntil(appear, DEFAULT_TIMEOUT).$("button[id$='reset-dashboard-button']")
+        .waitUntil(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+  }
+
+  public SelenideElement getRestoreDashboardButton() {
+    return $("[id$='restore-button-group']").waitUntil(appear, DEFAULT_TIMEOUT).$("button[id$='restore-button']")
+        .waitUntil(Condition.exist, DEFAULT_TIMEOUT);
   }
 }

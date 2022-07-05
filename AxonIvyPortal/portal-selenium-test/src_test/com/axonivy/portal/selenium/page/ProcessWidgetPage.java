@@ -7,7 +7,7 @@ import com.codeborne.selenide.Condition;
 public class ProcessWidgetPage extends TemplatePage {
   @Override
   protected String getLoadedLocator() {
-    return "//*[contains(@id,'process-list')]";
+    return ".view-mode-text";
   }
   
   public void addExternalLink(String name, String link, String iconClass) {
