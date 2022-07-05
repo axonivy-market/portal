@@ -1,7 +1,6 @@
 package ch.ivy.addon.portalkit.role;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -16,7 +15,10 @@ import org.primefaces.model.FilterMeta;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortMeta;
 
-import ch.ivy.addon.portalkit.ivydata.service.impl.SecurityService;
+import ch.ivyteam.ivy.security.IRole;
+import ch.ivyteam.ivy.security.ISecurityContext;
+import ch.ivyteam.ivy.security.query.UserQuery;
+import ch.ivyteam.ivy.security.query.UserQuery.IFilterQuery;
 
 public class UserAssignedDataModel extends LazyDataModel<UserHolder> {
 
@@ -96,6 +98,7 @@ public class UserAssignedDataModel extends LazyDataModel<UserHolder> {
     }
     this.sources.addAll(resutl);
     CollectionUtils.emptyIfNull(getExcludedUsernames()).addAll(resutl.stream()
+        .filter(UserHolder::isDirectlyAssignedRole)
         .map(UserHolder::getName).collect(Collectors.toList()));
     return resutl;
   }
@@ -107,11 +110,27 @@ public class UserAssignedDataModel extends LazyDataModel<UserHolder> {
 
   private List<UserHolder> findUserByCriteria(int first, int pageSize, Map<String, FilterMeta> filterBy) {
     extractFilterValue(filterBy);
-    var result = SecurityService.newInstance()
-        .findUsers(this.queryBuilder.toString(), first, pageSize, Arrays.asList(fromRole), null)
-        .getUsers().stream()
-        .map(UserHolder::new).collect(Collectors.toList());
-    return result;
+    UserQuery userQuery = ISecurityContext.current().users().query();
+    IFilterQuery filterQuery = userQuery.where();
+    var query = queryBuilder.toString();
+    if (StringUtils.isNotBlank(query)) {
+      String containingQuery = "%" + query + "%";
+      filterQuery.fullName().isLikeIgnoreCase(containingQuery).or().name().isLikeIgnoreCase(containingQuery);
+    }
+
+    if (StringUtils.isNotBlank(fromRole)) {
+      IRole iRole = ISecurityContext.current().roles().find(fromRole);
+      if (Objects.nonNull(iRole)) {
+        UserQuery hasRolesQuery = UserQuery.create();
+        IFilterQuery hasRolesFilter = hasRolesQuery.where();
+        hasRolesFilter.or().hasRole(iRole);
+        filterQuery.andOverall(hasRolesQuery);
+      }
+    }
+    var users = userQuery.orderBy().fullName().name().executor().results(first, pageSize).stream()
+        .map(iUser -> new UserHolder(iUser, fromRole))
+        .collect(Collectors.toList());
+    return users;
   }
 
   private void extractFilterValue(Map<String, FilterMeta> filterBy) {
