@@ -166,11 +166,15 @@ Migrate 9.3 to 9.4
    | DownloadDocumentItem              | DownloadDocument         |
    +-----------------------------------+--------------------------+
 
-#. Some components and classes of Portal are moved to the independent project ``portal-component``. Please follow these steps to migrate
+#. Some classes of Portal are moved to the independent project ``portal-component``. Please refer to below table to migrate them correctly
 
-   - Class ``ch.ivy.addon.portalkit.dto.RoleDTO`` is removed. Please use class ``com.axonivy.portal.component.dto.RoleDTO`` in ``portal-component`` project instead.
+   .. csv-table::
+      :file: documents/class_replacement_9.4.csv
+      :header-rows: 1
+      :class: longtable
+      :widths: 1 1
 
-   - Class ``ch.ivy.addon.portalkit.dto.UserDTO`` is removed. Please use class ``com.axonivy.portal.component.dto.UserDTO`` in ``portal-component`` project instead.
+#. Some components of Portal are moved to the independent project ``portal-component``. Please follow these steps to migrate
 
    - :ref:`Migration steps <components-additional-components-migrate-from-old-user-selection>` for the new :ref:`User Selection <components-additional-components-user-selection>` component.
 
