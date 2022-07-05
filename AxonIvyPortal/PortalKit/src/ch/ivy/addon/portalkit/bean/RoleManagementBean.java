@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.faces.application.FacesMessage;
+import javax.faces.application.FacesMessage.Severity;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
@@ -34,7 +35,6 @@ import ch.ivyteam.ivy.security.role.NewRole;
 public class RoleManagementBean implements Serializable {
   private static final long serialVersionUID = -4867516739222351669L;
 
-  private static final String GROWL_MESSAGE_ID = "role-management-growl-message";
   private IRole roleTopLevel;
   private ISecurity security;
   private RoleTreeDataModel roleTreeModel;
@@ -63,7 +63,7 @@ public class RoleManagementBean implements Serializable {
     canMoveRole = PermissionUtils.hasPermission(IPermission.ROLE_MOVE);
   }
 
-  public void prepareAddingNewGroup() {
+  public void prepareAddingNewRole() {
     setCreationMode(true);
     setCanModifyRoleInformation(true);
     setCanModifyUserAssignment(true);
@@ -123,23 +123,19 @@ public class RoleManagementBean implements Serializable {
     }
   }
 
-  public void createOrUpdateGroup() {
+  public void createOrUpdateRole() {
     var isReloadTree = false;
-    var faces = FacesContext.getCurrentInstance();
-    var message = new FacesMessage(FacesMessage.SEVERITY_INFO, EMPTY, EMPTY);
     var existedRole = RoleUtils.findRole(selectedRole.getName());
     if (isCreationMode && nonNull(existedRole)) {
-      faces.validationFailed();
-      message.setSeverity(FacesMessage.SEVERITY_ERROR);
-      message.setSummary(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/Messages/DuplicateRole", Arrays.asList(existedRole.getName())));
-      faces.addMessage(null, message);
+      FacesContext.getCurrentInstance().validationFailed();
+      addRoleGrowlMessage(FacesMessage.SEVERITY_ERROR, "/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/Messages/DuplicateRole", existedRole.getName());
       return;
     }
 
     if (nonNull(existedRole)) {
       existedRole.setDisplayNameTemplate(selectedRole.getDisplayName());
       existedRole.setDisplayDescriptionTemplate(selectedRole.getDescription());
-      message.setSummary(cms("/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/Messages/UpdateRoleSuccess", selectedRole.getName()));
+      addRoleGrowlMessage(FacesMessage.SEVERITY_INFO, "/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/Messages/UpdateRoleSuccess", selectedRole.getName());
     } else {
       var parentRole = RoleUtils.findRole(selectedParentRole.getName());
       if (isNull(parentRole)) {
@@ -153,11 +149,9 @@ public class RoleManagementBean implements Serializable {
               .toNewRole();
         existedRole = getSecurity().roles().create(newRole);
         isReloadTree = true;
-        message.setSummary(cms("/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/Messages/CreateRoleSuccess", selectedRole.getName()));
+        addRoleGrowlMessage(FacesMessage.SEVERITY_INFO, "/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/Messages/CreateRoleSuccess", selectedRole.getName());
       } catch (Exception ex) {
-        message.setSeverity(FacesMessage.SEVERITY_ERROR);
-        message.setSummary(cms("/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/Messages/CreateRoleFailed", selectedRole.getName()));
-        message.setDetail(ex.getMessage());
+        addRoleGrowlMessage(FacesMessage.SEVERITY_ERROR, "/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/Messages/CreateRoleFailed", selectedRole.getName());
       }
     }
     if (nonNull(existedRole)) {
@@ -168,22 +162,24 @@ public class RoleManagementBean implements Serializable {
       roleTreeModel.getRoles().add(new RoleHolder(existedRole));
       roleTreeModel.reloadTree();
     }
-    faces.addMessage(GROWL_MESSAGE_ID, message);
     setCreationMode(false);
   }
 
-  public void deleteGroup() {
+  public void deleteSelectedRole() {
     if (isNull(selectedRole)) {
       return;
     }
+    var existedRole = getSecurity().roles().find(selectedRole.getName());
+    if (existedRole == null) {
+      addRoleGrowlMessage(FacesMessage.SEVERITY_WARN, "/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/Messages/NotFoundRole", selectedRole.getName());
+      return;
+    }
+
     getSecurity().roles().delete(selectedRole.getName());
     roleTreeModel.getRoles().clear();
     roleTreeModel.setFilterKeyword(EMPTY);
     roleTreeModel.reloadTree();
-    var message = new FacesMessage(FacesMessage.SEVERITY_INFO,
-        cms("/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/Messages/RemoveRoleSuccess", selectedRole.getName()),
-        EMPTY);
-    FacesContext.getCurrentInstance().addMessage(GROWL_MESSAGE_ID, message);
+    addRoleGrowlMessage(FacesMessage.SEVERITY_INFO, "/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/Messages/RemoveRoleSuccess", selectedRole.getName());
   }
 
   private void assignUsersToRole(IRole existedRole) {
@@ -212,6 +208,17 @@ public class RoleManagementBean implements Serializable {
 
   public List<String> getDistinctExcludedUsernames() {
     return userAssignmentModel.getExcludedUsernames().stream().distinct().collect(Collectors.toList());
+  }
+
+  private void addRoleGrowlMessage(Severity severity, String cmsURL, Object... cmsParam) {
+    var message = new FacesMessage(severity, cms(cmsURL, cmsParam), EMPTY);
+    FacesContext.getCurrentInstance().addMessage("role-management-growl-message", message);
+  }
+
+  public String getRoleInformationHeaderDialog() {
+    var roleName = isNull(getSelectedRole()) ? EMPTY : getSelectedRole().getName();
+    var cmsURL = isCreationMode() ? "/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/RoleCreation" : "/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/RoleDetails";
+    return cms(cmsURL, roleName);
   }
 
   private ISecurity getSecurity() {

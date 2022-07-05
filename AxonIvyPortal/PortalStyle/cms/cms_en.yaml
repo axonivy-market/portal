@@ -583,7 +583,9 @@ ch.ivy.addon.portalkit.ui.jsf:
     RoleManagement:
       AssignUsersToRole: Assign users to role
       AssignedUser: Assigned users
+      AvailableUsers: Available users
       CannotDeleteRoleTooltip: You cannot delete this role due to lack of permissions
+      CannotDeleteUserTooltip: You cannot delete users of the role membership
       CannotEditRoleTooltip: You cannot edit this role due to lack of permissions
       CannotManageRoleTooltip: You cannot manage this role because it is not a dynamic one
       CreateRole: Create new role
@@ -591,24 +593,27 @@ ch.ivy.addon.portalkit.ui.jsf:
       EditButtonTitle: Edit role info
       FilteredRoles: Filtered roles
       ListUsers: Users of role {0}
+      MemberOfRole: Member of role membership
       Messages:
         ConfirmDeleteRole: Are you sure you want to delete it?
         ConfirmDeleteUserOfRole: Are you sure you want to remomve there users out of the role?
-        CreateRoleFailed: Role {0} could not be created
-        CreateRoleSuccess: Role {0} created successfully
-        DuplicateRole: Role {0} already exists in the system, try with other name
+        CreateRoleFailed: Role "{0}" could not be created
+        CreateRoleSuccess: Role "{0}" created successfully
+        DuplicateRole: Role "{0}" already exists in the system, try with other name
         MaxSearchLimit: The current search has more than {0} results
+        NotFoundRole: Cannot find the "{0}" in the system
         ParentRoleIsRequired: Parent role is mandatory field
-        RemoveRoleSuccess: Role {0} removed successfully
+        RemoveRoleSuccess: Role "{0}" removed successfully
         RoleNameNotBeEmpty: Role name must not be empty
         RoleNotFound: No roles found
         SearchToSeeMoreRole: Please use the search to find a specific role ({0} more roles)
-        UpdateRoleSuccess: Role {0} updated successfully
+        UpdateRoleSuccess: Role "{0}" updated successfully
         UserOfRoleNotFound: No users own this role
       NumberUsers: '{0} users'
       ParentRole: Parent role
       RemovingRoleHeader: Removing the "{0}" role?
-      RoleDetails: Role details {0}
+      RoleCreation: Role Creation
+      RoleDetails: Role details "{0}"
       RoleInformation: Role information
       RoleName: Role name
       SearchRole: Search for role

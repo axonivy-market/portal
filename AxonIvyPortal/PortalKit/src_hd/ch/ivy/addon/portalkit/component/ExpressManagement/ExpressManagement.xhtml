@@ -33,7 +33,7 @@
           var="express" value="#{expressManagementBean.expressProcesses}" selection="#{expressManagementBean.selectedExpressProcesses}"
           styleClass="express-workflow-summary-table" rowKey="#{express.processName}"
           emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
-          scrollable="true" scrollHeight="550" reflow="true" lazy="false">
+          scrollable="true" scrollHeight="500" reflow="true" lazy="false">
 
           <p:ajax event="toggleSelect" update="#{cc.clientId}:express-management-form:export-express-btn" process="@this"/>
           <p:ajax event="rowSelectCheckbox" update="#{cc.clientId}:express-management-form:export-express-btn" process="@this" global="false"/>
