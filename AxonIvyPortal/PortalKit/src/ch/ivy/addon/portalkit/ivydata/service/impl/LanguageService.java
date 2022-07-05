@@ -18,6 +18,8 @@ import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.application.IProcessModelVersion;
 import ch.ivyteam.ivy.cm.exec.ContentManagement;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.language.LanguageConfigurator;
+import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.IUser;
 
 public class LanguageService implements ILanguageService {
@@ -46,7 +48,8 @@ public class LanguageService implements ILanguageService {
     List<IProcessModelVersion> activeReleasedPmvs = ServiceUtilities.getActiveReleasedPmvs(currentApp);
     List<String> supportedLanguages = getSupportedLanguagesFromPmvs(activeReleasedPmvs);
     if (CollectionUtils.isEmpty(supportedLanguages)) {
-      supportedLanguages.add(currentApp.getDefaultEMailLanguage().toString());
+      Locale defaultLocale = new LanguageConfigurator(ISecurityContext.current()).content();
+      supportedLanguages.add(defaultLocale.toLanguageTag());
     }
 
     ivyLanguage.setAppName(currentApp.getName());
