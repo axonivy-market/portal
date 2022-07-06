@@ -19,13 +19,11 @@ import com.axonivy.portal.selenium.page.MainMenuPage;
 public class CaseFilterTest extends BaseTest {
 
   private static final String EMPTY = "";
-  private CaseWidgetPage caseWidgetPage;
 
   @Override
   @BeforeEach
   public void setup() {
     super.setup();
-    caseWidgetPage = new CaseWidgetPage();
   }
 
   @Test
@@ -35,6 +33,7 @@ public class CaseFilterTest extends BaseTest {
     MainMenuPage mainMenuPage = new MainMenuPage();
     mainMenuPage.openCaseList();
     String fromInputText = new SimpleDateFormat(DateTimePattern.DATE_PATTERN).format(new Date());
+    CaseWidgetPage caseWidgetPage = new CaseWidgetPage();
     caseWidgetPage.filterCasesByCreatedDate(fromInputText, EMPTY);
     caseWidgetPage.countCases().shouldHave(sizeGreaterThanOrEqual(1));
   }

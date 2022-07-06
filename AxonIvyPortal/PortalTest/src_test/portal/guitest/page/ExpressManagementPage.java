@@ -16,7 +16,7 @@ public class ExpressManagementPage extends TemplatePage {
 
   @Override
   protected String getLoadedLocator() {
-    return "id('adminui:adminTabView:express-management-component:express-management-form')";
+    return "id('admin-setting-component:adminTabView:express-management-component:express-management-form')";
   }
 
   public void openImportDialog() {
@@ -51,8 +51,8 @@ public class ExpressManagementPage extends TemplatePage {
   public void clickOnDeployExpress() {
     WebElement deployButton = waitForDeployButtonEnabled();
     click(deployButton);
-    waitForElementDisplayed(By.id("adminui:adminTabView:express-management-component:import-express-form:impress-export-output"), true);
-    waitForElementEnabled(By.id("adminui:adminTabView:express-management-component:close-import-express"), true, DEFAULT_TIMEOUT);
+    waitForElementDisplayed(By.id("admin-setting-component:adminTabView:express-management-component:import-express-form:impress-export-output"), true);
+    waitForElementEnabled(By.id("admin-setting-component:adminTabView:express-management-component:close-import-express"), true, DEFAULT_TIMEOUT);
     waitUntilAnimationFinished(DEFAULT_TIMEOUT, "adminui\\\\:adminTabView\\\\:express-management-component\\\\:close-import-express", ID_PROPERTY);
   }
 
@@ -89,7 +89,7 @@ public class ExpressManagementPage extends TemplatePage {
   public void clickOnExportButton() {
     waitForElementEnabled(By.cssSelector("[id$=':express-management-component:express-management-form:export-express-btn']"), true, DEFAULT_TIMEOUT);
     click(findElementByCssSelector("[id$=':express-management-component:express-management-form:export-express-btn']"));
-    waitForElementDisplayed(By.id("adminui:adminTabView:express-management-component:export-express-dialog"), true);
+    waitForElementDisplayed(By.id("admin-setting-component:adminTabView:express-management-component:export-express-dialog"), true);
   }
 
   public WebElement getExportExpressDialog() {

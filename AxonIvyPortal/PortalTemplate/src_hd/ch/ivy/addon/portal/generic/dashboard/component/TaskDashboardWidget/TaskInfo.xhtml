@@ -18,13 +18,13 @@
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/tasWidgetkInfo/expireToday')}" />
     </div>
     <div class="ui-g-4">
-      <span>#{widget.numberOfTasksExpireToday} #{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/tasks")}</span>
+      <span>#{widget.numberOfTasksExpireToday} #{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/tasWidgetkInfo/numberOfTasks")}</span>
     </div>
     <div class="ui-g-8">
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/tasWidgetkInfo/expiryThisWeek')}" />
     </div>
     <div class="ui-g-4">
-      <span>#{widget.numberOfTasksExpireThisWeek} #{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/tasks")}</span>
+      <span>#{widget.numberOfTasksExpireThisWeek} #{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/tasWidgetkInfo/numberOfTasks")}</span>
     </div>
   </h:panelGroup>
 </p:tab>
@@ -43,10 +43,10 @@
     <ui:repeat value="#{widget.taskByStateStatistic.entrySet()}" var="entry">
       <div class="ui-g-8">
         <ic:ch.ivy.addon.portalkit.component.task.column.TaskState state="#{entry.key}"
-          alwaysShowState="true" />
+          alwaysShowState="true" responsiveStyleClass="" />
       </div>
       <div class="ui-g-4">
-        <span>#{entry.value} #{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/tasks")}</span>
+        <span>#{entry.value} #{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/tasWidgetkInfo/numberOfTasks")}</span>
       </div>
     </ui:repeat>
   </h:panelGroup>
@@ -71,7 +71,7 @@
         <p:tooltip for="category" value="#{empty entry.key ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noCategory') : entry.key}"
           trackMouse="true" />
         <div class="ui-g-4">
-          <span>#{entry.value} #{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/tasks")}</span>
+          <span>#{entry.value} #{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/tasWidgetkInfo/numberOfTasks")}</span>
         </div>
       </ui:repeat>
     </div>
@@ -116,7 +116,7 @@
           <div class="ui-g-8">
             <ui:repeat var="state" value="#{field.states}">
               <ic:ch.ivy.addon.portalkit.component.task.column.TaskState state="#{state}"
-                alwaysShowState="true" stateStyleClass="u-mar-right-5"/>
+                alwaysShowState="true" stateStyleClass="u-mar-right-5" responsiveStyleClass="" />
             </ui:repeat>
           </div>
         </h:panelGroup>

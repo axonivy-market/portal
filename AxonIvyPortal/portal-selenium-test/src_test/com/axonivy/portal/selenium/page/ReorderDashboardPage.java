@@ -11,8 +11,9 @@ import com.codeborne.selenide.SelenideElement;
 
 public class ReorderDashboardPage extends TemplatePage {
 
-  public ReorderDashboardPage() {
-    $("i#reorder-button").waitUntil(appear, DEFAULT_TIMEOUT);
+  @Override
+  protected String getLoadedLocator() {
+    return "i#reorder-button";
   }
 
   public void toggleVisibility(String dashboardName) {

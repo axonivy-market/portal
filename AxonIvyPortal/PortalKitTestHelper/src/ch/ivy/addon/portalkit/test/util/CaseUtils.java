@@ -5,7 +5,6 @@ import java.util.concurrent.Callable;
 import ch.ivyteam.ivy.Advisor;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISecurityContext;
-import ch.ivyteam.ivy.security.SecurityManagerFactory;
 import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.workflow.ICase;
 
@@ -30,15 +29,12 @@ public class CaseUtils {
   }
 
   public static void deleteAllCases() throws Exception {
-    SecurityManagerFactory.getSecurityManager().executeAsSystem(new Callable<Void>() {
-      @Override
-      public Void call() throws Exception {
-        Advisor.getAdvisor().setTesting(true);
-        Ivy.wf().deleteAllCases();
-        Advisor.getAdvisor().setTesting(false);
-        Ivy.log().warn("**********All cases are deleted*****************");
-        return null;
-      }
+    Sudo.call(() -> {
+      Advisor.getAdvisor().setTesting(true);
+      Ivy.wf().deleteAllCases();
+      Advisor.getAdvisor().setTesting(false);
+      Ivy.log().warn("**********All cases are deleted*****************");
+      return null;
     });
   }
 }

@@ -10,8 +10,6 @@
   modal="true" dynamic="true"
   position="center center"
   onShow="PF('new-widget-dialog').initPosition()">
-  <f:event listener="#{dashboardDetailModificationBean.initSampleWidgets()}" type="preRenderComponent"/>
-
   <div class="new-widget-dialog__content portal-card-container">
     <p:repeat id="new-widget-dialog-content"
       var="sample"

@@ -146,19 +146,19 @@ public class ExpressFormDefinitionPage extends TemplatePage {
 		click(By.id(String.format("form:create-tabs:input-field-type_%d", inputTypeIndex)));
 	}
 
-	public void moveAllElementToDragAndDrogPanel() {
-		int size = driver.findElements(By.xpath("//div[@id='form:available-form-elements_content']/ul/li")).size();
-		int startIndex = size - 1;
-		for (int i = startIndex; i >= 0; i--) {
-		  if(i == startIndex) {
-		    moveFormElementToPanel(i, RIGHT_POSITION);
-		  }
-		  else {
-		    moveFormElementToPanel(i, getRandomPosition());
-		  }
-		
-		}
-	}
+  public void moveAllElementToDragAndDrogPanel() {
+    int size = driver.findElements(By.xpath("//div[@id='form:available-form-elements_content']/ul/li")).size();
+    int startIndex = size - 1;
+    for (int i = startIndex; i >= 0; i--) {
+      waitForElementDisplayed(By.id("form:available-form-elements:" + i + ":pnl"), true, TIME_OUT);
+      if (i == startIndex) {
+        moveFormElementToPanel(i, RIGHT_POSITION);
+      } else {
+        moveFormElementToPanel(i, getRandomPosition());
+      }
+      waitForElementExisted("[id$='form:available-form-elements:" + i + ":pnl']", false, DEFAULT_TIMEOUT);
+    }
+  }
 
   private void moveFormElementToPanel(int index, String position) {
     var formElementSelector = String.format("[id$='form:available-form-elements:%d:pnl_content']", index);
