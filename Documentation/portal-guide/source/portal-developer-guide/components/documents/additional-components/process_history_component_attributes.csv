@@ -1,0 +1,7 @@
+Name,Default,Type,Description
+businessEntityId,,String,"The value of this attribute must match the id input into the subprocess in the first step."
+chunkSize,20,Integer,Integer value to size of cases that will be loaded when scroll down.
+scrollHeight,600,Integer,Integer value to configure the height of the list.
+emptyMessage,There are no cases,String,The message will be displayed if there are no cases.
+showCasesOfOwner,false,Boolean,"Boolean value to specify the displaying cases of owner, when set to true cases of owner will be displayed."
+dateTimePattern,"dd.MM.yyyy HH:mm",String,"Datetime pattern for ``created`` column."
