@@ -11,6 +11,7 @@ import ch.ivy.addon.portalkit.enums.BehaviourWhenClickingOnLineInTaskList;
 import ch.ivy.addon.portalkit.enums.CaseSortField;
 import ch.ivy.addon.portalkit.enums.DefaultImage;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
+import ch.ivy.addon.portalkit.enums.GlobalVariable.Option;
 import ch.ivy.addon.portalkit.enums.GlobalVariableType;
 import ch.ivy.addon.portalkit.enums.ProcessMode;
 import ch.ivy.addon.portalkit.enums.SortDirection;
@@ -53,7 +54,10 @@ public class GlobalSetting extends AbstractConfiguration {
     GlobalVariable variable = GlobalVariable.valueOfKey(key);
     String defaultValue = variable.getDefaultValue();
     if (variable.getType() == GlobalVariableType.SELECTION) {
-      return GlobalVariable.Option.valueOf(StringUtils.upperCase(defaultValue)).translate();
+      if (variable.getOptions() instanceof Option[]) {
+        return GlobalVariable.Option.valueOf(StringUtils.upperCase(defaultValue)).translate();
+      }
+      return defaultValue;
     } else if (variable == GlobalVariable.DEFAULT_HOMEPAGE) {
       return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/dashboard");
     } else if (variable.getType() == GlobalVariableType.EXTERNAL_SELECTION && MapUtils.isNotEmpty(variable.getExternalOptions())) {
@@ -67,7 +71,10 @@ public class GlobalSetting extends AbstractConfiguration {
   public String getDisplayValue() {
     GlobalVariable variable = GlobalVariable.valueOfKey(key);
     if (variable.getType() == GlobalVariableType.SELECTION) {
-      return GlobalVariable.Option.valueOf(StringUtils.upperCase(value)).translate();
+      if (variable.getOptions() instanceof Option[]) {
+        return GlobalVariable.Option.valueOf(StringUtils.upperCase(value)).translate();
+      }
+      return value;
     } else if (variable == GlobalVariable.DEFAULT_HOMEPAGE) {
       return HomepageUtils.findDefaultHomepage().getLabel();
     } else if (variable.getType() == GlobalVariableType.EXTERNAL_SELECTION && MapUtils.isNotEmpty(variable.getExternalOptions())) {

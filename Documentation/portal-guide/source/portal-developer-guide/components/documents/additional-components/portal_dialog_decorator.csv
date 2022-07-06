@@ -4,12 +4,12 @@ widgetVar,Yes,,Dialog's widget bar
 closable,No,false,Defines if close icon should be displayed or not.
 closeOnEscape,No,true,Defines if dialog should close when escape key is pressed.
 maxWidth,No,500px,Defines max-width of dialog.
-styleClass,No,,Defines styleClass for dialog
+styleClass,No,,Defines styleClass for dialog.
 responsive,No,true,"In responsive mode, dialog adjusts itself based on screen width."
-rendered,No,true,"Boolean value to specify the rendering of the component, when set to false component will not be rendered."
-dynamic,No,false,Dynamic mode allows dialog to fetch it's contents before it's shown rather than on page load which is useful to  reduce initial page load times. Default is false.
+rendered,No,true,"If false, component will not be rendered."
+dynamic,No,false,Dynamic mode allows dialog to fetch its contents before it is shown rather than on page load which is useful to reduce initial page load times.
 appendTo,No,,Alternative to appendToBody. Appends the dialog to the given search expression.
 iconClass,No,icon ivyicon-information-circle,Icon classes.
-iconStyleClass,No,portal-dialog-info-icon,"Specific additional style for icon, color for example. We already provided 3 classes: portal-dialog-info-icon, portal-dialog-warning-icon, portal-dialog-error-icon"
+iconStyleClass,No,portal-dialog-info-icon,"Specific additional style for icon, e.g. color. We already provide three classes: portal-dialog-info-icon, portal-dialog-warning-icon, portal-dialog-error-icon"
 headerText,No,Are you sure?,Dialog header text.
-dialogContent,No,,"Dialog's content. If you don't have this parameter, please define dialogContentSection"
+dialogContent,No,,"Dialog's content. If you don't specify this parameter, please define dialogContentSection"

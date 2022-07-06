@@ -20,7 +20,7 @@
         value="#{cc.attrs.selectedOwners}"
         var="owner" itemValue="#{owner}" itemLabel="#{owner.briefDisplayNameWithState}"
         converter="pojoConverter" cache="true" maxResults="100" multiple="true"
-        moreText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..."
+        moreTextSelect="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..."
         dynamic="true" forceSelection="true" styleClass="case-configuration__owners">
         <p:column>
           <pc:securityMemberNameAndAvatar
