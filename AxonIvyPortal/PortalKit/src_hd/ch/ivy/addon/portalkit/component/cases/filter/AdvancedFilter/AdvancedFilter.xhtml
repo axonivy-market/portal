@@ -47,7 +47,7 @@
           styleClass="si si-delete-2 advanced-filter-icon #{cc.attrs.removeIconStyleClass}"
           actionListener="#{dataModel.removeFilter(caseFilter)}" global="false"
           update="@(.filter-container) @(.advanced-filter-container) @(.filter-add-container) @(.filter-selection-form) @(.case-list) @(.hidden-case-count)"
-          oncomplete="#{empty cc.attrs.resultContainerUpdated ? 'caseWidget.setUpScrollbar();caseWidget.setupHeader(); caseWidget.updateCaseCountToBreadcrumb();' : ''}">
+          oncomplete="#{empty cc.attrs.resultContainerUpdated ? 'caseWidget.showCaseFilter(); caseWidget.setUpScrollbar(); caseWidget.setupHeader(); caseWidget.updateCaseCountToBreadcrumb();' : ''}">
           <f:actionListener binding="#{cc.attrs.removeListener}" />
         </p:commandLink>
       </h:panelGroup>

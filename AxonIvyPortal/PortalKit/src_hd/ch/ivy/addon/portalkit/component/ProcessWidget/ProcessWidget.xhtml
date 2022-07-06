@@ -131,9 +131,11 @@
           <p:commandLink styleClass="process-nav-item js-process-nav-item js-process-starts-with-reset" value="All"
             onclick="resetGridViewProcesses(event)" global="false" rendered="#{processWidgetBean.viewMode ne 'COMPACT'}" />
           <p:commandLink id="expand-all-btn" rendered="#{processWidgetBean.compactMode}" onclick="expandOrCollapseAllCategories(true); return false;"
-            styleClass="si si-add expand-collapse-btn process-nav-item" />
+            styleClass="si si-add expand-collapse-btn process-nav-item"
+            title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ExpandAll')}" />
           <p:commandLink id="collapse-all-btn" rendered="#{processWidgetBean.compactMode}" onclick="expandOrCollapseAllCategories(false); return false;"
-            styleClass="si si-subtract expand-collapse-btn process-nav-item" />
+            styleClass="si si-subtract expand-collapse-btn process-nav-item"
+            title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/CollapseAll')}" />
 
           <ui:repeat value="#{processWidgetBean.getAllAlphabeticalCharacters().entrySet().toArray()}" var="character">
             <p:commandLink value="#{character.value}" styleClass="process-nav-item js-process-nav-item js-process-starts-with-#{character.key}"

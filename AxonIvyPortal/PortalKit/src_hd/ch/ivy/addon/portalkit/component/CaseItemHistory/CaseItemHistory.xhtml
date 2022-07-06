@@ -15,10 +15,10 @@
   <div class="case-details-item #{cc.attrs.styleClass} ui-g">
 
     <div class="case-detail-section-title ui-g-12">
-      <div class="ui-g-4 u-truncate-text u-padding-0 task-details-panel-title">
+      <div class="ui-g-3 u-truncate-text u-padding-0 task-details-panel-title">
         <i class="si si-synchronize-arrow-clock" /> #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/history')}
       </div>
-      <div class="ui-g-8 u-padding-0">
+      <div class="ui-g-9 u-padding-0">
         <h:panelGroup layout="block" styleClass="case-details-note-add">
           <p:link id="show-more-note-link" disabled="#{empty data.histories}"
             styleClass="case-details-document-add-link note-show-more-link js-note-show-more-link" target="_blank"
@@ -58,11 +58,11 @@
         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
         emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
         currentPageReportTemplate="{currentPage} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/curentReportOf')} {totalPages}"
-        widgetVar="case-histories" styleClass="case-histories">
+        widgetVar="case-histories" styleClass="case-histories" lazy="false">
 
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/columnContent')}"
           sortBy="#{history.content}" filterable="false"
-          styleClass="u-truncate-text history-note ui-g-4 ui-xl-4 ui-lg-6 ui-md-6 ui-sm-12">
+          styleClass="u-truncate-text history-note #{case.isBusinessCase() and data.showRelatedCaseInfo ? 'ui-xl-4 ui-lg-6 ui-md-6' : 'ui-xl-8 ui-lg-8 ui-md-8'} ui-sm-12">
           <h:outputText>
             <p:link id="show-task-note-link"
               value="#{empty history.content ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noTaskName') : history.content}"
@@ -78,7 +78,7 @@
 
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/relatedCase')}"
           sortBy="#{history.displayCaseName}"
-          styleClass="u-truncate-text history-related-case ui-g-4 ui-xl-4 ui-lg-6 ui-md-6 ui-sm-hidden"
+          styleClass="u-truncate-text history-related-case ui-xl-4 ui-lg-6 ui-md-6 ui-sm-hidden"
           rendered="#{case.isBusinessCase() and data.showRelatedCaseInfo}">
           <p:commandLink id="related-case-link" value="#{history.displayCaseName}"
             rendered="#{not empty history.displayCaseName}"
@@ -88,7 +88,7 @@
 
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/author')}"
           sortBy="#{history.displayName}"
-          styleClass="case-document-author u-truncate-text ui-g-2 ui-xl-2 ui-lg-hidden ui-md-hidden ui-sm-hidden">
+          styleClass="case-document-author u-truncate-text ui-xl-2 ui-lg-hidden ui-md-hidden ui-sm-hidden">
           <pc:securityMemberNameAndAvatar 
             displayName="#{history.displayName}" securityMember="#{history.involvedUser}"
             displayNameStyleClass="history-fullname">
@@ -108,7 +108,7 @@
 
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/creationDate')}"
           sortBy="#{history.timestamp}"
-          styleClass="case-history-date u-truncate-text ui-g-2 ui-xl-2 ui-lg-hidden ui-md-hidden ui-sm-hidden">
+          styleClass="case-history-date u-truncate-text #{case.isBusinessCase() and data.showRelatedCaseInfo ? 'ui-xl-2 ui-lg-hidden ui-md-hidden' : 'ui-xl-2 ui-lg-4 ui-md-4'} ui-sm-hidden">
           <h:outputText value="#{history.timestamp}">
             <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}"/>
           </h:outputText>

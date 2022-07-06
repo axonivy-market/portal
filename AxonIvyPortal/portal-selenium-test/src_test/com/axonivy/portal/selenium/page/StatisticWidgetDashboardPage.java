@@ -12,7 +12,7 @@ public class StatisticWidgetDashboardPage extends TemplatePage {
 
   @Override
   protected String getLoadedLocator() {
-    return "//*[contains(@class,'statistic-chart-widget')]";
+    return ".statistic-chart-widget__content";
   }
   public ElementsCollection countStatisticCharts() {
     return $$("span.statistic-chart-widget__header");

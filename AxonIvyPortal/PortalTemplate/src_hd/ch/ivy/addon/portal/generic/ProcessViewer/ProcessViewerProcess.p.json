@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.10",
+  "format" : "9.4.14",
   "id" : "17FABECA599F49AF",
   "data" : "ch.ivy.addon.portal.generic.ProcessViewer.ProcessViewerData",
   "kind" : "HTML_DIALOG",
@@ -69,7 +69,13 @@
             "  // Show error",
             "  in.isError = true;",
             "}",
-            "in.webStartable = webStartable;"
+            "in.webStartable = webStartable;",
+            "",
+            "in.webLink = ProcessViewerUtils.getViewerWebLink(in.caseId, in.processId);",
+            "if (in.webLink == null) {",
+            "  // Show error",
+            "  in.isError = true;",
+            "}"
           ]
         }
       },

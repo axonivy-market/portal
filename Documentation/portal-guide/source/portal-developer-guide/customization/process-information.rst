@@ -1,6 +1,6 @@
 .. _customization-process-information:
 
-Process information
+Process Information
 ===================
 
 .. _customization-process-information-introduction:
@@ -8,47 +8,47 @@ Process information
 Introduction
 ------------
 
-When you want to customize your own Process information page such as add
-a case list related to the selected process, you should follow this section
-to override built-in Process information page of Portal.
+When you want to customize the Process information page, e.g. to add a case list
+related to the selected process, follow this section to override the built-in
+Portal Process information page.
 
 .. _customization-process-information-customization:
 
-Define your own process steps
+Define Your Own Process Steps
 -----------------------------
 
-You can describe details and steps of each process easily by define
+You can describe the details and steps of each process easily by defining
 process steps for it.
 
 #. Create a CMS object with type ``source`` in your project with this path:
-   ``Processes\Example\processStep``
+   ``Processes\*Example*\processStep``
 
-   ``Example`` is the process start signature name (Example.ivp)
+   ``*Example*`` is the process start signature name (Example.ivp)
 
 #. Format of process step:
 
-   -  Header lines for process step are start with ``#`` (hashtag) symbol
+   -  Header lines for process step start with the ``#`` (hashtag) symbol.
 
-   -  Other lines are descriptions of each steps
+   -  Other lines are descriptions of each step.
 
    |process-step|
 
 
    .. tip::
-      You can define as much steps as you want.
-      But we recommend you to define maximum 3 steps for better look and feel.
+      You can define as many steps as you want. However, we recommend 
+      defining at most three steps to have a better look and feel.
 
 Customization
 -------------
 
-#. Override HTML dialog ``ch.ivy.addon.portal.component.ProcessInformation``
+#. Override the HTML dialog ``ch.ivy.addon.portal.component.ProcessInformation``
    of project ``PortalTemplate``.
 
-#. Copy content and logic of HTML dialog ``ch.ivy.addon.portal.component.ProcessInformation``
-   to your overrided HTML dialog.
+#. Copy content and logic of the HTML dialog ``ch.ivy.addon.portal.component.ProcessInformation``
+   to your overridden HTML dialog.
 
-#. Define your customization in ``processInfo`` section. This section will be displayed
-   below process steps section.
+#. Define your customization in the ``processInfo`` section. This section will be displayed
+   below the process steps section.
 
    .. code-block:: html
 
@@ -58,6 +58,6 @@ Customization
 
    .. tip::
       Please refer to HTML dialog ``CustomizedProcessInformation``
-      of project ``portal-developer-examples`` for more details about customization.
+      of project ``portal-developer-examples`` for details.
 
 .. |process-step| image:: images/process-information/process-step.png

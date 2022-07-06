@@ -10,6 +10,7 @@ import java.awt.Insets;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.Callable;
+import java.util.Collections;
 
 import javax.swing.JTextField;
 
@@ -33,6 +34,7 @@ import ch.ivyteam.ivy.request.RequestException;
 import ch.ivyteam.ivy.service.ServiceException;
 import ch.ivyteam.ivy.vars.Variable;
 import ch.ivyteam.ivy.vars.Variables;
+import ch.ivyteam.log.Logger;
 
 /**
  * Cron Expsression Start Event Bean. This bean gets a cron expression via the
@@ -50,6 +52,7 @@ public class CronByGlobalVariableTriggerStartEventBean extends AbstractProcessSt
   private String triggerIdentifier;
   private static final String RUNTIME_KEY = "eventRuntime";
   private static final Object SYN_OBJECT = new Object();
+  private static Map<String, Long> startedJobs = Collections.synchronizedMap(new HashMap<String, Long>());
 
 
   /**
@@ -131,24 +134,44 @@ public class CronByGlobalVariableTriggerStartEventBean extends AbstractProcessSt
           .getJobDataMap().get(RUNTIME_KEY);
 
       if (eventRuntime != null) {
-        try {
-          eventRuntime.executeAsSystem(new Callable<Void>() {
-            @Override
-            public Void call() throws Exception {
-              String triggerName = context.getTrigger().getJobKey().getName();
-              String firingReason = "Cron Trigger started " + triggerName;
-              Map<String, Object> parameters = new HashMap<>();
-              eventRuntime.fireProcessStartEventRequest(null, firingReason, parameters);
-              return null;
-            }
-          });
-          eventRuntime.getRuntimeLogLogger().info(
-              "Next fire of " + context.getTrigger().getJobKey().getName() + ": "
-                  + context.getTrigger().getNextFireTime());
-        } catch (RequestException e) {
-          eventRuntime.getRuntimeLogLogger().error(e);
-        } catch (Exception e) {
-          getEventBeanRuntime().getRuntimeLogLogger().error(e);
+        final Logger log = eventRuntime.getRuntimeLogLogger();
+        final String triggerIdentifier = context.getTrigger().getJobKey().getName();
+        Throwable throwable = null;
+
+        Long jobStartTs = startedJobs.get(triggerIdentifier);
+        String nextRun = String.format("Next fire at %1$tF %1$tT.", context.getTrigger().getNextFireTime());
+        if (jobStartTs != null) {
+          log.warn ("Not starting job {0}, since an instance is currently running (the instance is running since {1} ms). {2}",
+              triggerIdentifier, System.currentTimeMillis() - jobStartTs, nextRun);
+        } else {
+          log.info ("Starting job {0}", triggerIdentifier);
+          long startTs = System.currentTimeMillis();
+          startedJobs.put(triggerIdentifier, startTs);
+          try {
+            eventRuntime.executeAsSystem(new Callable<Void>() {
+              @Override
+              public Void call() throws Exception {
+                String firingReason = "Cron Trigger started " + triggerIdentifier;
+                Map<String, Object> parameters = new HashMap<>();
+                eventRuntime.fireProcessStartEventRequest(null, firingReason, parameters);
+                return null;
+              }
+            });
+          } catch (Throwable t) {
+              log.error("Exception while trying to execute cron job {0}. Note, the exception might have been shown already.", t, triggerIdentifier);
+              throwable = t;
+          } finally {
+              startedJobs.remove(triggerIdentifier);
+          }
+          
+          long endTs = System.currentTimeMillis();
+          String stats = String.format("execution time %.3f", (endTs - startTs) / 1000.0);
+          if (throwable != null) {
+            log.error ("Job {0} ended with error {1} ({2})", triggerIdentifier, throwable, stats);
+          }
+          else {
+            log.info ("Job {0} ended normally ({1})", triggerIdentifier, stats);
+          }
         }
       }
     }

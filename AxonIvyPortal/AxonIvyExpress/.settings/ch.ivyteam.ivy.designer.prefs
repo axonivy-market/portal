@@ -11,5 +11,6 @@ ch.ivyteam.ivy.designer.preferences.ProcessEnginePreferencePage\:NUMBER_OF_EXECU
 ch.ivyteam.ivy.designer.preferences.ProcessEnginePreferencePage\:NUMBER_OF_REQUESTS_FOR_WHICH_TO_KEEP_PROCESS_DATA_IN_HISTORY=10
 ch.ivyteam.ivy.designer.preferences.ProcessEnginePreferencePage\:START_ENGINES_ON_DESIGNER_START=true
 ch.ivyteam.ivy.designer.preferences.ProcessEnginePreferencePage\:useProjectSettings=true
-ch.ivyteam.ivy.project.preferences\:PROJECT_VERSION=94003
+ch.ivyteam.ivy.project.preferences\:PRIMEFACES_VERSION=11
+ch.ivyteam.ivy.project.preferences\:PROJECT_VERSION=94004
 eclipse.preferences.version=1

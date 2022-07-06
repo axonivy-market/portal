@@ -188,7 +188,7 @@
 					<h:panelGroup id="pdfFileGroup">
 						<p:dataTable id="fileTable" value="#{data.gdprRequest.files}"
 							var="file" scrollable="false" selectionMode="single"
-							rowKey="#{file.file.name}" selection="#{data.selectedGdprFile}">
+							rowKey="#{file.file.name}" selection="#{data.selectedGdprFile}" lazy="false">
 							<p:column headerText="#{ivy.cms.co('/Labels/tableName')}"
 								sortBy="#{file.file.name}" style="width:80%">
 								<h:outputText value="#{file.file.name}"
