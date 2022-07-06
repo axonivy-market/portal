@@ -9,7 +9,7 @@ public class TaskTemplatePage extends TemplatePage {
 
   @Override
   protected String getLoadedLocator() {
-    return "id('content-container')";
+    return "#content-container";
   }
 
   public SelenideElement getDisplayedTaskTitle() {
@@ -18,5 +18,9 @@ public class TaskTemplatePage extends TemplatePage {
 
   private SelenideElement getTaskTitle() {
     return $("span[id='title']");
+  }
+
+  public SelenideElement getStartedTaskTemplateTitle() {
+    return $("span[id='title']").waitUntil(Condition.appear, DEFAULT_TIMEOUT);
   }
 }

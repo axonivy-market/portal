@@ -11,7 +11,7 @@ public class ProcessInformationPage extends TemplatePage {
 
   @Override
   protected String getLoadedLocator() {
-    return "//*[contains(@id,'process-information')]";
+    return "#process-information";
   }
 
   public SelenideElement getDisplayedBackLink() {

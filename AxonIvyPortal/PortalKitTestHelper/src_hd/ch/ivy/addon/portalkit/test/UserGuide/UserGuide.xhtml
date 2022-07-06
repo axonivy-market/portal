@@ -11,7 +11,7 @@
       </h1>
 
       <h:form id="form">
-        <p:dataTable id="user-table" value="#{data.users}" var="user" sortBy="#{user.name}">
+        <p:dataTable id="user-table" value="#{data.users}" var="user" sortBy="#{user.name}" lazy="false">
           <f:event listener="#{logic.load}" type="preRenderComponent" />
           <p:column headerText="User" sortBy="#{user.name}">#{user.name}</p:column>
           <p:column headerText="Is Guide Shown">

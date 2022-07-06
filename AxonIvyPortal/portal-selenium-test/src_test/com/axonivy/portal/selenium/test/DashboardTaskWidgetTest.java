@@ -51,7 +51,7 @@ public class DashboardTaskWidgetTest extends BaseTest {
     newDashboardPage = new NewDashboardPage();
   }
   
-  @Test()
+  @Test
   public void testHideTasks() {
     redirectToRelativeLink(createTestingTasksUrl);
     login(TestAccount.ADMIN_USER);
@@ -134,10 +134,13 @@ public class DashboardTaskWidgetTest extends BaseTest {
     taskEditWidget.clickOnStateToShowDropdown();
     taskEditWidget.selectState(SUSPENDED);
     taskEditWidget.preview();
+    taskEditWidget.waitPageSelected(1);
     taskEditWidget.countAllTasks().shouldHaveSize(5);
     taskEditWidget.nextPageTable();
+    taskEditWidget.waitPageSelected(2);
     taskEditWidget.countAllTasks().shouldHaveSize(5);
     taskEditWidget.nextPageTable();
+    taskEditWidget.waitPageSelected(3);
     taskEditWidget.countAllTasks().shouldHaveSize(2);
     taskEditWidget.save();
     TaskWidgetNewDashBoardPage taskWidgetEdited = newDashboardPage.selectTaskWidget(NEW_YOUR_TASK);
@@ -215,7 +218,9 @@ public class DashboardTaskWidgetTest extends BaseTest {
     taskWidget.getTheFirstTaskWidgetByColumn(TASK_NAME).shouldHave(text(ANNUAL_LEAVE_REQUEST));
     // Sort by task id
     taskWidget.clickOnHeaderTaskByColumn(TASK_ID);
+    taskWidget.waitForSortingFinished("ascending");
     taskWidget.clickOnHeaderTaskByColumn(TASK_ID);
+    taskWidget.waitForSortingFinished("descending");
     taskWidget.getTaskWidgetHeaderSorted().shouldHave(text(TASK_ID));
     sortType = taskWidget.getTaskWidgetHeaderSorted().getAttribute("aria-sort");
     assertEquals(sortType, "descending");
