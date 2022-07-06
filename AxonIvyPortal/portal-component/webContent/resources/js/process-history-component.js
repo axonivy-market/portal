@@ -1,34 +1,126 @@
 var Portal = {
-  // Remove u-invisibility class when DOM is pasted already
+  init : function(responsiveToolkit) {
+    // Swipe on mobile can cause problems with scroll
+    PrimeFaces.widget.Paginator.prototype.bindSwipeEvents = function() {}
+
+    if ($('form.login-form').length > 0) {
+      return;
+    }
+    // Update menuitem when access page by direct link
+    MainMenu.init(responsiveToolkit);
+    
+    //Add very small timeout when page ready, fix responsive problem for IE 11
+    setTimeout(function() {
+      responsiveToolkit.updateLayoutWithoutAnimation();
+    }, 1);
+    
+    this.updateLayoutContent();
+    this.updateBreadcrumb();
+
+    var resizeTimer;
+    // Update screen when window size is changed
+    $(window).resize(function() {
+      Portal.updateLayoutContent();
+
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(function() {
+        responsiveToolkit.updateLayoutWithoutAnimation();
+      }, 250);
+      Portal.updateGuide();
+    });
+  },
+  
+  updateGuide : function() {
+    var $guidePanel = $('.guide-panel:visible');
+    if ($guidePanel.length > 0) {
+      var id = $guidePanel.attr('id');
+      if (id !== undefined) {
+        var guidePanelObject = window[id.substring(id.lastIndexOf(':') + 1)];
+        if (guidePanelObject !== undefined) {
+          guidePanelObject.show();
+        }
+      }
+    }
+  },
+  
   updateLayoutContent : function() {
     var ua = window.navigator.userAgent;
     var isIE = /MSIE|Trident/.test(ua);
     var fullHeight= '100vh';
-    if (!isIE ) {
+    if (!isIE) {
       var vh = window.innerHeight * 0.01;
       document.documentElement.style.setProperty('--vh', vh + 'px');
       fullHeight = 'var(--vh, 1vh) * 100';
     }
 
-    var headerHeight = $('#portal-template-header').outerHeight();
-    var footerHeight = $('#portal-template-footer').outerHeight();
-    var envHeight = $('#portal-environment').outerHeight();
-    var layoutTopbarHeight = $('.layout-topbar').outerHeight();
+    var headerHeight = $('.js-portal-template-header').outerHeight(true)||0;
+    var footerHeight = $('.js-portal-template-footer').outerHeight(true)||0;
     var headerFooterHeight = headerHeight + footerHeight;
-    $('.js-position-topbar').height(layoutTopbarHeight); 
-    $('.js-left-sidebar').css('top', headerHeight + 'px').css('height', 'calc(100% - ' + (headerFooterHeight - envHeight) + 'px)');
-    $('.js-layout-main').css('margin-top', headerHeight + 'px').css('height', 'calc(100% - ' + headerFooterHeight + 'px)');
-    $('.js-layout-content').css('height', 'calc(' + fullHeight + ' - ' + (headerFooterHeight + layoutTopbarHeight) + 'px)');
-    $('.js-layout-content').css('padding-top', '0px');
+    var layoutTopbarHeight = $('.layout-topbar').outerHeight(true)||0;
+    $('.js-position-topbar').height(layoutTopbarHeight);
+    if ($('.js-layout-wrapper').hasClass('u-invisibility')) {
+      var envHeight = $('#portal-environment').outerHeight();
+    }
 
+    $('.js-left-sidebar').css('top', headerHeight + 'px').css('height', 'calc(100vh - ' + (headerFooterHeight - envHeight) + 'px)');
+    $('.js-layout-main').css('margin-top', headerHeight + 'px').css('height', 'calc(100vh - ' + headerFooterHeight + 'px)');
+    $('.js-layout-wrapper').removeClass('u-invisibility');
+
+    var topbarWithHeaderFooterHeight = (layoutTopbarHeight + headerFooterHeight);
+    $('.js-layout-content').css('height', 'calc(' + fullHeight + ' - ' + topbarWithHeaderFooterHeight + 'px)');
     var chatPanel = $('.js-chat-panel');
-    if (chatPanel.length == 1) {
+    if (chatPanel.length > 0) {
       chatPanel.css('height', 'calc(100% - ' + (headerFooterHeight - envHeight) + 'px)');
       chatPanel.css('top', headerHeight + 'px');
       chatPanel.css('bottom', footerHeight + 'px');
     }
+  },
 
-    $('.js-layout-wrapper').removeClass('u-invisibility');
+  updateBreadcrumb : function() {
+    var topMenuElements = $("#top-menu").find("> li");
+    var breadCrumb = $("#top-menu").find("> li.breadcrumb-container");
+    var breadCrumbMembers = breadCrumb.find("li");
+
+    if (breadCrumbMembers.length == 0) {
+      return;
+    }
+
+    var updateBreadcrumbTimeout;
+    clearTimeout(updateBreadcrumbTimeout);
+
+    updateBreadcrumbTimeout = setTimeout(function() {
+        var usedWidthOfTopMenu = 0;
+        var layoutWrapper = $('.js-layout-wrapper');
+        topMenuElements.each(function(i, val) {
+          if (!val.classList.contains("breadcrumb-container")) {
+            usedWidthOfTopMenu += $(val).outerWidth(true);
+          }
+        });
+
+        var toggleMenuIcon = $('.left-sidebar-menu-icon');
+        if (toggleMenuIcon.is(":visible")) {
+          usedWidthOfTopMenu += toggleMenuIcon.outerWidth(true);
+        }
+
+        var breadCrumbWidth = "calc(100% - " + usedWidthOfTopMenu + "px)";
+        breadCrumb.css({"display": "block", "width" : breadCrumbWidth});
+        if(!layoutWrapper.hasClass('has-breadcrumb')) {
+          layoutWrapper.addClass('has-breadcrumb');
+        }
+
+        var breadcrumbWidthWithoutCurrentStep = 0;
+        breadCrumbMembers.each(function(i, val) {
+          if (i != breadCrumbMembers.length - 1) {
+            breadcrumbWidthWithoutCurrentStep += val.offsetWidth;
+          }
+        });
+        var currentBreadcrumb = $(breadCrumbMembers.get(breadCrumbMembers.length - 1));
+        currentBreadcrumb.css("max-width", "calc(100% - " + breadcrumbWidthWithoutCurrentStep + "px)");
+        if (currentBreadcrumb.get(0).offsetWidth == 0) {
+          breadCrumb.css("display", "none");
+          layoutWrapper.removeClass('has-breadcrumb');
+        }
+      }, 100);
   }
 }
 
