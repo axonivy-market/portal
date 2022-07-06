@@ -19,13 +19,11 @@ import com.axonivy.portal.selenium.page.TaskWidgetPage;
 public class TaskFilterTest extends BaseTest {
 
   private static final String EMPTY = "";
-  private TaskWidgetPage taskWidgetPage;
 
   @Override
   @BeforeEach
   public void setup() {
     super.setup();
-    taskWidgetPage = new TaskWidgetPage();
   }
 
   @Test
@@ -33,7 +31,7 @@ public class TaskFilterTest extends BaseTest {
     redirectToRelativeLink(createTestingTasksUrl);
     login(TestAccount.ADMIN_USER);
     MainMenuPage mainMenuPage = new MainMenuPage();
-    mainMenuPage.openTaskList();
+    TaskWidgetPage taskWidgetPage = mainMenuPage.openTaskList();
     taskWidgetPage.openAdvancedFilter("Created (from/to)", "created");
     String fromInputText = new SimpleDateFormat(DateTimePattern.DATE_PATTERN).format(new Date());
     taskWidgetPage.filterTasksByCreatedDate(fromInputText, EMPTY);

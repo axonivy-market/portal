@@ -1,7 +1,9 @@
 package com.axonivy.portal.selenium.page;
 
-import static com.codeborne.selenide.Condition.*;
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Condition.appear;
+import static com.codeborne.selenide.Condition.disappear;
+import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Selenide.$;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
@@ -19,6 +21,11 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
 
   public TaskEditWidgetNewDashBoardPage(String taskWidgetId) {
     this.taskEditWidgetId = taskWidgetId;
+  }
+
+  @Override
+  protected String getLoadedLocator() {
+    return ".task-configuration__responsibles";
   }
 
   private SelenideElement widgetTitle() {
@@ -75,7 +82,6 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
   public void preview() {
     $(taskEditWidgetId).waitUntil(appear, DEFAULT_TIMEOUT).$("button[id$='preview-button']")
         .shouldBe(getClickableCondition()).click();
-    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
   }
   
   private ElementsCollection getColumnsOfTableWidget() {
@@ -90,16 +96,20 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
     return getAllTasksOfTaskWidget();
   }
   
+  
   public void nextPageTable() {
     $(taskEditWidgetId).waitUntil(appear, DEFAULT_TIMEOUT).$("div[id$='widget-preview']")
-    .waitUntil(appear, DEFAULT_TIMEOUT).$("a.ui-paginator-next").shouldBe(getClickableCondition()).click();
-    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
+    .waitUntil(appear, DEFAULT_TIMEOUT).$("a.ui-paginator-next").waitUntil(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
+  
+  public void waitPageSelected(int pageNumber) {
+    $(taskEditWidgetId).waitUntil(appear, DEFAULT_TIMEOUT).$("div[id$='widget-preview']")
+    .waitUntil(appear, DEFAULT_TIMEOUT).$$("a.ui-paginator-page").get(pageNumber-1).waitUntil(Condition.attributeMatching("class", ".*ui-state-active.*"), DEFAULT_TIMEOUT);
   }
   
   public void save() {
     $(taskEditWidgetId).waitUntil(appear, DEFAULT_TIMEOUT).$("button[id$='widget-configuration-save-button']")
         .shouldBe(getClickableCondition()).click();
-    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
     $("[id$='task-component:loading']").waitUntil(disappear, DEFAULT_TIMEOUT);
   }
 

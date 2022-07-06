@@ -1,52 +1,54 @@
 .. _customization-case-widget:
 
-Case widget
+Case Widget
 ===========
 
-CaseWidget is a built-in component of Portal which contains the cases
-which users can interact with. In order to show needed case's
-information, Portal supports overriding concept for CaseWidget. Each
-CaseWidget contains 2 parts:
+CaseWidget is a built-in component of the Portal that contains the cases which
+users can interact with. To show needed case information, the Portal allows to
+override the CaseWidget. Each CaseWidget consists of two parts:
 
 #. :ref:`UI <customization-case-widget-how-to-override-ui>` :
    CaseListHeader, CaseHeader and CaseFilter
 
 #. :ref:`Data
    query <customization-case-widget-how-to-override-data-query>`
-   : display the cases as you want by modifying data query
+   : select and display the cases you need by modifying the data query
 
 ..
 
 .. important::
-      - Case header customization currently support responsive design. Refer to :ref:`this part <customization-case-widget-responsive-layout>` for more detail.
+      - The case header customization currently supports responsive design. Refer to :ref:`this part <customization-case-widget-responsive-layout>` for details.
 
-      - Case header's buttons cannot be modified (they stay where they are)
+      - The case header buttons cannot be modified (they stay where they are).
 
 .. _customization-case-widget-how-to-override-ui:
 
-How to override case widget's UI
---------------------------------
+How to Override the Case Widget UI
+----------------------------------
 
-Refer to ``portal-developer-examples`` project for examples
+We provide a code sample in ``portal-developer-examples``.
 
-#. Introduce an Axon Ivy project which has ``PortalTemplate`` as a
+Follow these steps to override the case Widget UI:
+
+#. Create an Axon Ivy project and add ``PortalTemplate`` as a
    required library.
 
-#. To customize case widget, you must customize Portal Home first. Refer
-   to :ref:`Customize Portal
-   home <customization-portal-home>` to set new home
+#. To customize the case widget, you have to customize Portal Home first. Refer to
+   :ref:`Customize Portal home <customization-portal-home>` to create and set a new home
    page.
 
-#. Copy the ``PortalStart`` process from ``PortalTemplate`` to your
-   project. Point PortalHome element to your custom home page in
-   previous step. This process is new home page and administrator should
-   register this link by Portal's Admin Settings.
+#. Copy the ``PortalStart`` process from ``PortalTemplate`` to your project.
+   Point the PortalHome element to your custom home page created in the previous
+   step. This process is the new home page. The Portal administrator has to
+   register this link in the Portal Admin Settings.
 
-#. Use :dev-url:`Axon Ivy HtmlOverride wizard </doc/nightly/designer-guide/how-to/overrides.html?#override-new-wizard>` to override ``PortalCases`` HTML dialog.
+#. Use :dev-url:`Axon Ivy HtmlOverride wizard
+   </doc/nightly/designer-guide/how-to/overrides.html?#override-new-wizard>` to
+   override the ``PortalCases`` HTML dialog.
 
-   .. tip:: This action overrides ``Case widget`` in: CaseList page, Case Search result.
+   .. tip:: This action overrides ``Case widget`` in the CaseList page and the Case Search result page.
 
-#. After previous steps, you can override :ref:`CaseHeader and
+#. After you completed these steps, you can override :ref:`CaseHeader and
    CaseListHeader <customization-case-widget-how-to-override-ui-case-header>`
    and
    :ref:`CaseFilter <customization-case-widget-how-to-override-case-filter>`
@@ -57,65 +59,68 @@ Case List Header and Case Header
 --------------------------------
 
 Refer to the ``caseListHeader (1)`` and ``caseHeader (2)`` sections in
-``PortalCases.xhtml`` of PortalTemplate. In case your case widget has
-new columns, you should override CaseLazyDataModel to make the sort
+``PortalCases.xhtml`` in project PortalTemplate. If your case widget has
+new columns, you have to override the CaseLazyDataModel to make the sort
 function of these columns work:
 
 |case-list|
 
--  Introduce a java class extends CaseLazyDataModel
+-  Create a Java class that which extends CaseLazyDataModel
 
 -  Override the ``extendSort`` method and extend the sort function for
-   the added columns (see the method's Javadoc comments)
+   the added columns (see the method's Javadoc comments).
 
--  Default caseList supports user to config display/hide column: ``Custom SortFields (1)``, ``Custom Checkboxes (2)`` and ``Custom header column (3)``.
+-  The default case list allows the user to configure display or hide the following columns: 
+   -  ``Custom SortFields (1)``
+   -  ``Custom Checkboxes (2)``
+   -  ``Custom header column (3)``.
 
    |case-columns-configuration|
 
-   -  In case you have new columns, override method
-      ``getDefaultColumns`` of the extended class from CaseLazyDataModel
-      to display checkboxes in Config columns panel and display/hide
-      sortFields (see the methods' Javadoc comments)
+   -  If you added new columns, override method ``getDefaultColumns`` of the
+      extended class from CaseLazyDataModel to display checkboxes in the
+      configure columns panel and hide or display sortFields (see the methods'
+      Javadoc comments).
 
-   -  To add cms for checkboxes's label, add new entries to folder
+   -  To add a CMS for checkbox label, add new entries to folder
       ``/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/`` in
-      ``PortalStyle`` or override method ``getColumnLabel``\ (see the
-      methods' Javadoc comments)
+      ``PortalStyle`` or override method ``getColumnLabel``\ (see the methods'
+      Javadoc comments)
 
-   -  In ``caseListHeader`` section, use ``CaseColumnHeader`` component
+   -  In the ``caseListHeader`` section, use the ``CaseColumnHeader`` component
 
-   -  In ``caseHeader`` section, use ``CaseCustomField`` component for
-      each additional column. This component will handle display/hide
-      new columns on case list.
+   -  In the ``caseHeader`` section, use the ``CaseCustomField`` component for
+      each additional column. This component will handle display/hide new
+      columns on case list.
 
-      Currently, CaseCustomField only supports text field. If you want
-      to create your own component, remember to add
+      Currently, CaseCustomField only supports text fields. If you want to create
+      your own component, remember to add
       ``rendered="#{caseView.dataModel.isSelectedColumn('YOUR_CUSTOM_COLUMN')}"``
 
-      For example: Show custom field ``customer name`` which stored in
+      To show the custom field ``customer name`` stored in
       ``case.customFields().stringField('CustomVarCharField1')``
 
     .. code-block:: html
 
        <ic:ch.ivy.addon.portalkit.component.cases.column.CaseCustomField id="case-customer-name-component" panelGroupId="customVarCharField1-column-case-header-panel" componentId="customVarCharField1-column-case-header-text" column="customVarCharField1" dataModel="#{caseView.dataModel}" labelValue="#{case.customFields().stringField('CustomVarCharField1')}" />
 
--  Use Axon Ivy Override to override the ``InitializeCaseDataModel``
-   callable and initialize data model by your customized one.
+-  Use Axon Ivy Override to override the ``InitializeCaseDataModel`` callable
+   and initialize the data model with your customized one.
 
--  In your customized Portal cases HTMLDialog, the customized data model
-   should be passed as a parameter to components (refer to
+-  In your customized Cases HTMLDialog, the customized data model
+   has to be passed as a parameter to components (refer to
    ``PortalCases.xhtml``).
 
 .. _customization-case-widget-how-to-override-case-filter:
 
-Case filter
+Case Filter
 -----------
 
 -  Refer to the ``caseFilter`` section in ``PortalCases.xhtml`` of
    PortalTemplate.
 
--  In order to introduce new filter, create a new java class extends
-   CaseFilter and override its methods (see javadoc comments)
+-  To add a new filter, create a new Java class which extends
+   CaseFilter and overrides its methods (see javadoc comments)
 
    #. Filter ``label()`` and ``value()`` method.
    #. Filter ``resetValue()`` is called when click on ``X`` icon.
@@ -123,54 +128,54 @@ Case filter
 
    |case-filter|
 
--  Introduce a java class extends CaseFilterContainer. This filter
+-  Introduce a Java class which extends CaseFilterContainer. This filter
    container contains your filters, you can reuse default filters, refer
    to ``DefaultCaseFilterContainer.java``
 
-   .. tip:: StateFilter is added as default to container. If you don't need
+   .. tip:: StateFilter is added as a default to the case filter container. If you don't need
       it, use this code in constructor: ``filters.remove(stateFilter);``
 
--  Introduce a java class extends CaseLazyDataModel. Override the
+-  Create a Java class which extends CaseLazyDataModel. Override the
    ``initFilterContainer`` method and initialize filter container (see
    javadoc comments)
 
 -  Use Axon Ivy Override to override the ``InitializeCaseDataModel``
    callable and initialize data model by your customized one.
 
--  In your customized Portal cases HTMLDialog, the customized data model
-   and filter container should be passed as parameters to components
+-  In your customized Cases HTMLDialog, the customized data model
+   and filter container have to be passed as parameters to components
    (refer to ``PortalCases.xhtml``).
 
--  Portal supports storing/restoring filters. Your filter class (extends
-   ``CaseFilter``) is stored in business data. Properties stored user
-   input values should be persisted, properties controlled logic should
-   not be persisted to reduce persisted data size in business data. Use
-   annotation ``@JsonIgnore`` to exclude properties. By default, Portal
-   takes care storing/restoring filters. If you want to customize
-   storing/restoring filter data, do it in your data model class
-   (extends ``CaseLazyDataModel`` class).
+-  Portal supports storing and loading filters. Your filter class (that extends
+   ``CaseFilter``) is stored in business data. Persist properties that store
+   user input values. Do not persist properties controlled by logic, as this
+   would unnecessarily increase the amount of data stored in business data. Use
+   annotation ``@JsonIgnore`` to exclude properties. By default, Portal takes
+   care of storing and loading filters. If you want to customize the persisted
+   filter data, do it in your data model class (which extends
+   ``CaseLazyDataModel``).
 
--  By default, filters are stored/restored in process model level. You
+-  By default, filters are stored and loaded at process model level. You
    can change this by setting the ui:param ``filterGroupId`` in
    ``PortalCases.xhtml`` to a new Long value.
 
    .. tip:: If you have multiple case lists in your project, you may want to
-      set ``filterGroupId`` to an unique identifier for each of your
+      set ``filterGroupId`` to a unique identifier for each of your
       ``PortalCases.xhtml`` across your projects
 
 .. _customization-case-widget-how-to-override-data-query:
 
-How to override case widget's data query
+How to Override Case Widget's Data Query
 ----------------------------------------
 
-Override the ``BuildCaseQuery`` callable process of PortalKit and build
-your own query to effect the data of case widget.
+Override the ``BuildCaseQuery`` callable process of PortalKit to build
+a query that changes the data passed to the case widget.
 
-Apply the following steps in case you would like to provide data for
-case list after navigating to case list from your page:
+To provide data to the case list after navigating to case list from your page,
+apply the following steps:
 
 -  Use the ``OpenPortalCases`` callable process with the ``CaseView``
-   parameter. It is used to define which information are displayed in
+   parameter. It is used to define which information is displayed in
    CaseWidget.
 
 -  Refer to CaseView, CaseSearchCriteria to build your CaseView
@@ -185,10 +190,10 @@ case list after navigating to case list from your page:
 
 .. _customization-case-widget-how-to-override-export-feature:
 
-How to override export feature
-------------------------------
+How to Override the Export Feature
+----------------------------------
 
-#. Extend the CaseExporter java class of PortalKit.
+#. Extend the CaseExporter Java class of PortalKit.
 
    -  Override the ``getColumnName`` method.
 
@@ -216,7 +221,7 @@ How to override export feature
          }
       }
 
-#. Override the ExportCaseToExcel callable process and apply your extended CaseExporter java class.
+#. Override the ExportCaseToExcel callable process and apply your extended CaseExporter Java class.
 
    .. code-block:: java
 
@@ -225,13 +230,11 @@ How to override export feature
 
 .. _customization-case-widget-responsive-layout:
 
-How to make responsive case list
---------------------------------
+How to Make a Responsive Case List
+----------------------------------
 
-If you have customized case list and want it responsive on different
-screen sizes, please follow below steps.
-
-You can refer to ``portal-developer-examples`` project for examples
+If you have customized the case list and want it to be responsive, implement the following steps.
+You can refer to ``portal-developer-examples`` project for examples.
 
 #. Add responsiveStyleClass param (in case you're using Portal
    component), or styleClass (in case you're using Primefaces or JSF
@@ -291,13 +294,13 @@ You can refer to ``portal-developer-examples`` project for examples
             </h:panelGroup>
       </ui:define>
 
-   .. tip:: ``CaseCustomField`` component has default
-      responsiveStyleClass is ``u-hidden-sm-down``
+   .. tip:: The ``CaseCustomField`` component has a default
+      responsiveStyleClass ``u-hidden-sm-down``
 
-2. Responsiveness could be broken when you anchor left menu. In this
-   case, to maintain the responsiveness, you could hide some columns by
-   add ``js-hidden-when-expand-menu`` to responsiveStyleClass or
-   styleClass param of caseListHeader and caseHeader.
+2. Anchoring the left menu breaks responsiveness. To maintain the
+   responsiveness, you could hide some columns by adding
+   ``js-hidden-when-expand-menu`` to the responsiveStyleClass or styleClass parameter of
+   caseListHeader and caseHeader.
 
    .. code-block:: html
       :emphasize-lines: 5,11,35,41
@@ -351,8 +354,8 @@ You can refer to ``portal-developer-examples`` project for examples
             </h:panelGroup>
       </ui:define>
 
-   .. tip:: The smallest browser width you can anchor the left menu is
-          1025. So you could reduce width of browser to 1025 to test and decide which columns need to be hidden.
+   .. tip:: The smallest browser width you can anchor the left menu is 1025. 
+      To test which columns need to be hidden, reduce your window's width to 1025.
 
 .. |case-filter| image:: ../../screenshots/case/customization/case-filter.png
 .. |case-columns-configuration| image:: ../../screenshots/case/customization/case-columns-configuration.png

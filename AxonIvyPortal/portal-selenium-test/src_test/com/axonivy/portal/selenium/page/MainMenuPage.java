@@ -7,17 +7,17 @@ public class MainMenuPage extends TemplatePage {
 
   @Override
   protected String getLoadedLocator() {
-    return "id('left-menu')";
+    return ".layout-menu li[role='menuitem'] a.ripplelink.DASHBOARD";
   }
 
   public TaskWidgetPage openTaskList() {
     $(".layout-menu li[role='menuitem'] a.ripplelink.TASK").waitUntil(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
-    return TaskWidgetPage.newInstance();
+    return new TaskWidgetPage();
   }
 
   public CaseWidgetPage openCaseList() {
     $(".layout-menu li[role='menuitem'] a.ripplelink.CASE").waitUntil(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
-    return CaseWidgetPage.newInstance();
+    return new CaseWidgetPage();
   }
 
   public ProcessWidgetPage openProcessList() {

@@ -8,9 +8,9 @@ User menu
 Introduction
 ------------
 
-The user menu is configurable, user can add, remove and edit user item.
+The user menu is configurable. The user can add, remove and edit user items.
 
-Available styles of user item:
+These types of user items are available:
 
 - Open external link
 
@@ -18,18 +18,19 @@ Available styles of user item:
 
 - Start the Portal Express process
 
-You can predefine user menu items, and details of each item
-by configuring Global Variable **Portal.UserMenu**.
+You can predefine user menu items and details of each item
+by configuring variable **Portal.UserMenu**.
 
 .. _customization-user-menu-definition:
 
-Define your own user menu
---------------------------
+Define Your Own User Menu
+-------------------------
 
-Portal support multiple configurable user item, they will be displayed below the default user item.
+Portal supports multiple configurable user items. They will be displayed below
+the default user item.
 
-You can predefine user item id, title, permissions to see, and URL
-for each user item.
+You can predefine user item id, title, permissions to see, and URL for each user
+item.
 
 |user-menu-configuration|
 
@@ -65,35 +66,35 @@ Below is a JSON example for the configuration of user items.
 
 Structure of JSON for each user item:
 
-    ``id``: ID for identifying user item
+    ``id``: ID of the user item
 
-    ``title``: title of user item. You can input a string as user item
-    title, or can use CMS by using prefix ``cms:`` before your CMS URI
-    to define user item title in multilingual
+    ``title``: title of user item. You can enter a string as a user item
+    title, or can use CMS by adding prefix ``cms:`` before your CMS URI
+    to define a multilingual user item title.
 
-    ``permissions``: users and roles can see the user item.
+    ``permissions``: users and roles that can see the user item.
 
     .. tip::
        If you don't define ``permissions`` for a user item, every user can see it.
 
-    ``url``: the URL of the external webpage or Ivy process start or the name Portal Express process you want to redirect.
+    ``url``: the URL of the external webpage, Ivy process start, or the name of the Portal Express process you want to redirect to.
 
     .. tip::
-        URL Ivy process starts: relative link to the ivy process.
+        Ivy process start URLs are a **relative link** to the process.
 
           - e.g: ``Start Processes/CreateTestData/CreateTestDataForCustomizedDashboard.ivp``
 
-        URL Express process starts: the name of Portal Express process.
+        Express process start URLs are the **name** of the Portal Express process.
 
           - e.g: ``Portal Express process``
 
-    ``params``: parameters for Ivy process above, each parameter can be defined key, value as follows:
+    ``params``: parameters for the Ivy process defined above. Each parameter can
+    be defined as a key-value pair as follows:
 
-      - key : name of the parameter for Ivy process described in attribute ``url``.
-
+      - key : name of the parameter for the Ivy process.
       - value: predefined value for the parameter.
 
     .. tip::
-       Params are not required in case the URL of an external webpage or Express process.
+       Params are not required if the URL denotes an external webpage or an Express process.
 
 .. |user-menu-configuration| image:: ../../screenshots/settings/user-menu-configuration.png

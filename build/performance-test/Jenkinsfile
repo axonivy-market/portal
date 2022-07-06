@@ -4,7 +4,7 @@ pipeline {
   options {
     buildDiscarder(logRotator(numToKeepStr: '200', artifactNumToKeepStr: '5'))
   }
-  
+
   triggers {
     cron('0 13 * * *')
   }

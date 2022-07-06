@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -24,7 +23,6 @@ import ch.ivy.addon.portalkit.dto.SecurityMemberDTO;
 import ch.ivy.addon.portalkit.enums.ExpressMessageType;
 import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivy.addon.portalkit.service.CaseDocumentService;
-import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.util.ExpressManagementUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
@@ -37,7 +35,6 @@ public class ExpressManagementBean implements Serializable {
   private static final long serialVersionUID = -6072339110563610370L;
 
   private List<SecurityMemberDTO> activeMemberList;
-  private boolean isShowExpressManagementTab;
   private List<ExpressProcess> expressProcesses;
   private List<ExpressProcess> selectedExpressProcesses;
   private StreamedContent exportExpressFile;
@@ -46,11 +43,6 @@ public class ExpressManagementBean implements Serializable {
   private String importStatus;
   private FacesMessage validateMessage;
   private Boolean isError;
-
-  @PostConstruct
-  public void initManagement() {
-    isShowExpressManagementTab = new ProcessStartCollector().findExpressCreationProcess() != null;
-  }
 
   public void initWorkflowSummaryTable() {
     activeMemberList = findAllActiveUser();
@@ -156,14 +148,6 @@ public class ExpressManagementBean implements Serializable {
     if (importStatus.equalsIgnoreCase(ExpressMessageType.FAILED.getLabel())) {
       isError = true;
     }
-  }
-
-  public boolean isShowExpressManagementTab() {
-    return isShowExpressManagementTab;
-  }
-
-  public void setShowExpressManagementTab(boolean isShowExpressManagementTab) {
-    this.isShowExpressManagementTab = isShowExpressManagementTab;
   }
 
   public List<ExpressProcess> getExpressProcesses() {

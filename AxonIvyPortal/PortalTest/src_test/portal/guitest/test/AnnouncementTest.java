@@ -30,9 +30,8 @@ public class AnnouncementTest extends BaseTest {
     announcementPage.setAnnoucement(0, "lies mich");
     announcementPage.setAnnoucement(1, "Readme1");
     announcementPage.publish();
-    adminSettingsPage.closeAdminSettingDialog();
-    adminSettingsPage.closeInformConfigDialog();
-
+    adminSettingsPage.clickOnbackToHomepageOnAdminSetting();
+    homePage = new HomePage();
     UserProfilePage userProfilePage = homePage.openMyProfilePage();
     userProfilePage.selectLanguage(0);
     userProfilePage.save();
@@ -62,9 +61,8 @@ public class AnnouncementTest extends BaseTest {
     
     announcementPage.setAnnoucement(1, "Readme1");
     announcementPage.publish();
-    adminSettingsPage.closeAdminSettingDialog();
-    adminSettingsPage.closeInformConfigDialog();
-    
+    adminSettingsPage.clickOnbackToHomepageOnAdminSetting();
+    homePage = new HomePage();
     assertEquals("Readme1", homePage.getAnnouncementMessage());
   }
 

@@ -167,6 +167,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     showTutorial: Show Welcome Tour
     taskListConfigDescription: In this area you can configure the task list according to your requirements.
     taskListConfiguration: Task list configuration
+  PortalManagement:
+    AdminSetting: Admin settings
   ProcessViewer:
     Breadcrumb: Process Viewer of {0} process
     ProcessDataNotFound: Could not found the Process Data!
@@ -207,7 +209,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     deleteAppConfirmation: Are you sure to delete this application ?
     dialogclosinginformation:
       dialogHeader: Portal configuration closed
-      informMessage: Modifications in portal settings require a restart of your session. In case you use Single Sign On you need to restart your web browser as well.
+      informMessage: Modifications in portal settings require a refresh of the current page for the new configuration to take effect.
     duplicatePortalAppMsg: This application already exists, please choose another application.
     editApplication: Edit application
     editSetting: Edit setting
@@ -263,6 +265,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       showProcessInformation: Set to false to disable link to Show Information of process on Processes page (grid mode) and Case Details.
       showTaskDurationTime: For switch on/off the display of the duration time in task details page.
       showUserGuide: 'Activates the interactive user guide "first steps" in the portal at first login. '
+      statisticChartsPolling: Set this property less than 10 to disable updating live statistic chart with polling. Default value is 0, It means live chart polling is disabled, Set this property more than or equal 10 to enable updating live chart
       uploadDocumentWhiteListExtensionNote: 'Leave value empty if you allow all extensions. If just allow some extensions, list out extensions here, separated by comma. Example: pdf, txt, doc, docx.'
     key: Key
     link: Link
@@ -389,6 +392,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     viewParticipant: View participants
   common:
     BusinessCaseInformation: Business Case Information
+    CollapseAll: Collapse all
+    ExpandAll: Expand all
     NoSelection: No Selection
     ResetToDefaultHeaderText: Reset to default settings?
     RoleUserInformation: Role and User Information
@@ -556,6 +561,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     typeAdmin: All administrators
     typeAllUsers: All users
     typeOnlyMe: Only me
+    user: '{0} user'
     users: Users
     via: via
     viewExpired: Your current view expired. You will be redirected to the home page.
@@ -812,6 +818,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     tasWidgetkInfo:
       expireToday: Expire today
       expiryThisWeek: Expire this week
+      numberOfTasks: task(s)
       numberOfTasksByCategory: Number of tasks by category
       numberOfTasksByState: Number of tasks by state
       predefinedFilters: Predefined filters
@@ -942,7 +949,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     addNewProcessDialogHeader: Add new user process
     backToOverview: Back to overview
     brokenLinkProcess: The process link is broken. Please update your favorites or contact the administrator
-    collapseAll: '- Collapse all'
     defaultProcesses: Application Favorites
     deleteExpressWorkflowTooltip: Delete Express Workflow
     deleteExternalLinkTooltip: Delete external link
@@ -957,7 +963,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       dialogHeaderTitle: Edit information for {0}
     editExpressWorkflowTooltip: Edit Express Workflow
     editProcesses: Edit processes
-    expandAll: + Expand all
     expressWorkflow: Express workflow
     externalLink: External link
     externalLinkVisibility: Visibility
