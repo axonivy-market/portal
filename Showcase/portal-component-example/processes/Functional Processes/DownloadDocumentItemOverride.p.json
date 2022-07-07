@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.11",
+  "format" : "9.4.14",
   "id" : "181896A7116AD6D9",
   "data" : "com.axonivy.portal.component.example.override.DownloadDocumentItemOverrideData",
   "kind" : "CALLABLE_SUB",
@@ -9,7 +9,6 @@
       "name" : "call(ICase,IvyDocument)",
       "config" : {
         "callSignature" : "call",
-        ".name" : "call(ICase,IvyDocument)",
         "input" : {
           "params" : [
             { "name" : "bussinessCase", "type" : "ch.ivyteam.ivy.workflow.ICase" },
@@ -46,7 +45,6 @@
       "name" : "Download document item",
       "config" : {
         "security" : "system",
-        ".name" : "Download document item",
         "output" : {
           "code" : [
             "import com.axonivy.portal.component.service.CaseDocumentService;",
@@ -65,9 +63,6 @@
       "id" : "f5",
       "type" : "ProcessAnnotation",
       "name" : "Override this subprocess to download file from DMS",
-      "config" : {
-        ".name" : "Override this subprocess to download file from DMS"
-      },
       "visual" : {
         "at" : { "x" : 312, "y" : 200 },
         "size" : { "width" : 288, "height" : 30 }
