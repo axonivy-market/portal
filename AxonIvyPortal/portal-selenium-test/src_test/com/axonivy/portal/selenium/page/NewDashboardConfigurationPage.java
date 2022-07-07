@@ -168,7 +168,6 @@ public class NewDashboardConfigurationPage extends TemplatePage {
 
     createDashboardDialog.$("button[id$='dashboard-create-button']").click();
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
-    newDashboardDetailsEditPage.waitPageDisplay();
   }
 
   public SelenideElement getDashboardCellByNameAndPosition(String dashboardName, int position) {
