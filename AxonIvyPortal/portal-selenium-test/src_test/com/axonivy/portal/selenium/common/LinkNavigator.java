@@ -4,7 +4,7 @@ import static com.codeborne.selenide.Selenide.open;
 
 public class LinkNavigator {
   private static String portalDashboardConfigurationUrl =
-      "portalTemplate/1549F58C18A6C562/PortalDashboardConfiguration.ivp?isPublicDashboard=true";
+      "portalTemplate/1549F58C18A6C562/PortalDashboardConfiguration.ivp?isPublicDashboard=%s";
 
   public static void redirectToRelativeLink(String relativeProcessStartUrl) {
     try {
@@ -15,6 +15,10 @@ public class LinkNavigator {
   }
 
   public static void redirectToEditPublicDashboard() {
-    redirectToRelativeLink(portalDashboardConfigurationUrl);
+    redirectToRelativeLink(String.format(portalDashboardConfigurationUrl, "true"));
+  }
+  
+  public static void redirectToEditPrivateDashboard() {
+    redirectToRelativeLink(String.format(portalDashboardConfigurationUrl, "false"));
   }
 }
