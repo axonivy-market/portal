@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.11",
+  "format" : "9.4.14",
   "id" : "181898F114A731AB",
   "data" : "com.axonivy.portal.component.example.override.OpenCaseDetailsHookOverrideData",
   "kind" : "CALLABLE_SUB",
@@ -9,7 +9,6 @@
       "name" : "call(ICase,Boolean,Boolean)",
       "config" : {
         "callSignature" : "call",
-        ".name" : "call(ICase,Boolean,Boolean)",
         "input" : {
           "params" : [
             { "name" : "caseView", "type" : "ch.ivyteam.ivy.workflow.ICase" },
@@ -49,7 +48,6 @@
       "config" : {
         "dialogId" : "com.axonivy.portal.component.example.ProcessHistoryDetailsExample",
         "startMethod" : "start(ch.ivyteam.ivy.workflow.ICase)",
-        ".name" : "ProcessHistoryDetailsExample",
         "call" : {
           "params" : [
             { "name" : "caseView", "type" : "ch.ivyteam.ivy.workflow.ICase" }

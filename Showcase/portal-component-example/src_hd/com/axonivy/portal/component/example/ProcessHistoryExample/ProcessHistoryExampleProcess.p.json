@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.11",
+  "format" : "9.4.14",
   "id" : "1818980EC9955786",
   "data" : "com.axonivy.portal.component.example.ProcessHistoryExample.ProcessHistoryExampleData",
   "kind" : "HTML_DIALOG",
@@ -9,7 +9,6 @@
       "name" : "start(Boolean,Boolean)",
       "config" : {
         "callSignature" : "start",
-        ".name" : "start(Boolean,Boolean)",
         "input" : {
           "params" : [
             { "name" : "showProcessHistoriesOfAlphaCompany", "type" : "Boolean" },
@@ -38,7 +37,6 @@
       "type" : "HtmlDialogEventStart",
       "name" : "close",
       "config" : {
-        ".name" : "close",
         "guid" : "1818980EC9E65033"
       },
       "visual" : {

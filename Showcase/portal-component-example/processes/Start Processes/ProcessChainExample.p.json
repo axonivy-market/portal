@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.11",
+  "format" : "9.4.14",
   "id" : "181897243F2BFDD3",
   "data" : "com.axonivy.portal.component.example.ProcessChainExampleData",
   "elements" : [ {
@@ -8,7 +8,6 @@
       "name" : "showProcessChainExamples.ivp",
       "config" : {
         "callSignature" : "showProcessChainExamples",
-        ".name" : "showProcessChainExamples.ivp",
         "outLink" : "showProcessChainExamples.ivp",
         "startName" : "Process Chain Example"
       },
@@ -29,8 +28,7 @@
       "name" : "ProcessChainExample",
       "config" : {
         "dialogId" : "com.axonivy.portal.component.example.ProcessChainExample",
-        "startMethod" : "start()",
-        ".name" : "ProcessChainExample"
+        "startMethod" : "start()"
       },
       "visual" : {
         "at" : { "x" : 296, "y" : 64 },

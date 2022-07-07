@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.11",
+  "format" : "9.4.14",
   "id" : "181899823E886ABB",
   "data" : "com.axonivy.portal.component.example.RoleSelectionExampleData",
   "elements" : [ {
@@ -8,7 +8,6 @@
       "name" : "showRoleSelectionExamples.ivp",
       "config" : {
         "callSignature" : "showRoleSelectionExamples",
-        ".name" : "showRoleSelectionExamples.ivp",
         "outLink" : "showRoleSelectionExamples.ivp",
         "startName" : "Role Selection Example"
       },
@@ -30,7 +29,6 @@
       "config" : {
         "dialogId" : "com.axonivy.portal.component.example.RoleSelectionExample",
         "startMethod" : "start(String)",
-        ".name" : "RoleSelectionExample",
         "output" : {
           "map" : {
             "out" : "in",

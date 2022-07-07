@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.11",
+  "format" : "9.4.14",
   "id" : "1818961DF63F4295",
   "data" : "com.axonivy.portal.component.example.override.UploadDocumentItemOverrideData",
   "kind" : "CALLABLE_SUB",
@@ -12,10 +12,6 @@
       ],
       "config" : {
         "callSignature" : "call",
-        ".name" : [
-          "call(ICase,UploadedFile,",
-          "Boolean,Boolean,String)"
-        ],
         "input" : {
           "params" : [
             { "name" : "businessCase", "type" : "ch.ivyteam.ivy.workflow.ICase" },
@@ -61,7 +57,6 @@
       "type" : "Script",
       "name" : "Validate",
       "config" : {
-        ".name" : "Validate",
         "output" : {
           "code" : [
             "import com.axonivy.portal.component.masterdata.MasterData;",
@@ -96,9 +91,6 @@
       "id" : "f72",
       "type" : "Alternative",
       "name" : "Not exist?",
-      "config" : {
-        ".name" : "Not exist?"
-      },
       "visual" : {
         "at" : { "x" : 920, "y" : 128 },
         "labelOffset" : { "x" : -27, "y" : -34 }
@@ -120,10 +112,6 @@
       ],
       "config" : {
         "security" : "system",
-        ".name" : [
-          "Upload document item",
-          "and create note"
-        ],
         "output" : {
           "code" : [
             "import com.axonivy.portal.component.service.CaseDocumentService;",
@@ -158,7 +146,6 @@
       "name" : "Check exist",
       "config" : {
         "security" : "system",
-        ".name" : "Check exist",
         "output" : {
           "code" : [
             "import com.axonivy.portal.component.enums.UploadDocumentCheckStatus;",
@@ -201,9 +188,6 @@
       "id" : "f70",
       "type" : "Alternative",
       "name" : "valid file?",
-      "config" : {
-        ".name" : "valid file?"
-      },
       "visual" : {
         "at" : { "x" : 376, "y" : 128 },
         "size" : { "width" : 28, "height" : 28 },
@@ -225,9 +209,6 @@
       "id" : "f53",
       "type" : "Alternative",
       "name" : "Document check",
-      "config" : {
-        ".name" : "Document check"
-      },
       "visual" : {
         "at" : { "x" : 664, "y" : 128 },
         "labelOffset" : { "x" : -54, "y" : -37 }
@@ -245,7 +226,6 @@
       "type" : "SubProcessCall",
       "name" : "UploadDocumentItemChecker",
       "config" : {
-        ".name" : "UploadDocumentItemChecker",
         "processCall" : "Functional Processes/UploadDocumentItemChecker:call(org.primefaces.model.file.UploadedFile,Boolean,Boolean,String)",
         "output" : {
           "map" : {
@@ -281,12 +261,6 @@
         "Override this sub process to upload your file to DMS",
         "This sub process also contains some validation, so if you override it, you have to implement validation by your own"
       ],
-      "config" : {
-        ".name" : [
-          "Override this sub process to upload your file to DMS",
-          "This sub process also contains some validation, so if you override it, you have to implement validation by your own"
-        ]
-      },
       "visual" : {
         "at" : { "x" : 480, "y" : 344 },
         "size" : { "width" : 640, "height" : 44 }
@@ -300,10 +274,6 @@
         "customer info"
       ],
       "config" : {
-        ".name" : [
-          "Customize: add",
-          "customer info"
-        ],
         "output" : {
           "code" : [
             "import java.util.Random;",
