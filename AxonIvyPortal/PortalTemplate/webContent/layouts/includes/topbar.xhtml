@@ -47,7 +47,7 @@
             actionListener="#{userMenuBean.navigateToUserProfileOrDisplayWorkingTaskWarning(isWorkingOnATask, task)}" /></li>
 
           <li jsf:rendered="#{dashboardBean.canEditPrivateDashboard or dashboardBean.canEditPublicDashboard}">
-            <p:commandLink id="dashboard-configuration" rendered="#{!adminSettingBean.isShowLegacyUI()}"
+            <p:commandLink id="dashboard-configuration" rendered="#{!menuView.isShowLegacyUI()}"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfigurationDialog/ConfigureDashboard')}"
               onclick="PF('dashboard-configuration-dialog').show();" global="false"/></li>
 
