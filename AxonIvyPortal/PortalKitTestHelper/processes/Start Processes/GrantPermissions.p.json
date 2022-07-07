@@ -556,6 +556,7 @@
         "security" : "system",
         "output" : {
           "code" : [
+            "import ch.ivyteam.ivy.security.ISecurityContext;",
             "import ch.ivyteam.ivy.application.IApplication;",
             "import java.util.Objects;",
             "import ch.ivy.addon.portalkit.enums.PortalPermission;",
@@ -996,9 +997,10 @@
         "security" : "system",
         "output" : {
           "code" : [
+            "import ch.ivyteam.ivy.security.ISecurityContext;",
             "import ch.ivyteam.ivy.security.IPermission;",
             "",
-            "ivy.task.getApplication().getSecurityDescriptor().grantPermission(IPermission.TASK_DESTROY, ivy.session.getSessionUser());"
+            "ISecurityContext.current().securityDescriptor().grantPermission(IPermission.TASK_DESTROY, ivy.session.getSessionUser());"
           ]
         }
       },
@@ -1059,14 +1061,15 @@
         "security" : "system",
         "output" : {
           "code" : [
+            "import ch.ivyteam.ivy.security.ISecurityContext;",
             "import ch.ivyteam.ivy.security.IPermission;",
             "",
-            "ivy.task.getApplication().getSecurityDescriptor().grantPermission(IPermission.USER_READ_ABSENCES, ivy.session.getSessionUser());",
-            "ivy.task.getApplication().getSecurityDescriptor().denyPermission(IPermission.USER_CREATE_ABSENCE, ivy.session.getSessionUser());",
-            "ivy.task.getApplication().getSecurityDescriptor().denyPermission(IPermission.USER_DELETE_ABSENCE, ivy.session.getSessionUser());",
+            "ISecurityContext.current().securityDescriptor().grantPermission(IPermission.USER_READ_ABSENCES, ivy.session.getSessionUser());",
+            "ISecurityContext.current().securityDescriptor().denyPermission(IPermission.USER_CREATE_ABSENCE, ivy.session.getSessionUser());",
+            "ISecurityContext.current().securityDescriptor().denyPermission(IPermission.USER_DELETE_ABSENCE, ivy.session.getSessionUser());",
             "",
-            "ivy.task.getApplication().getSecurityDescriptor().grantPermission(IPermission.USER_DELETE_OWN_ABSENCE, ivy.session.getSessionUser());",
-            "ivy.task.getApplication().getSecurityDescriptor().grantPermission(IPermission.USER_CREATE_OWN_ABSENCE, ivy.session.getSessionUser());"
+            "ISecurityContext.current().securityDescriptor().grantPermission(IPermission.USER_DELETE_OWN_ABSENCE, ivy.session.getSessionUser());",
+            "ISecurityContext.current().securityDescriptor().grantPermission(IPermission.USER_CREATE_OWN_ABSENCE, ivy.session.getSessionUser());"
           ]
         }
       },
