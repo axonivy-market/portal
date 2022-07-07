@@ -1077,6 +1077,11 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   .add-external-link-dialog {
     min-width: 96vw;
   }
+  .announcement-information,
+  .announcement-action {
+    width: 100%;
+    max-width: 100% !important;
+  }
 }
 
 /* Small screen */
