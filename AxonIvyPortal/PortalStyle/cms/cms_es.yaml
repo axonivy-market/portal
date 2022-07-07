@@ -1,5 +1,5 @@
 AppInfo:
-  SupportedLanguages: de,en,fr,es
+  SupportedLanguagesRENAME: de,en,fr,es
 Categories:
   AdhocExpressTasks:
     name: Tareas Adhoc de Express
