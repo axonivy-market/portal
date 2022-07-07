@@ -40,4 +40,10 @@ public class ProcessWidgetNewDashBoardPage extends TemplatePage {
     $(processWidgetId).waitUntil(appear, DEFAULT_TIMEOUT).$$("span.process-start-list-item").filter(text(processName))
         .first().$("a").shouldBe(getClickableCondition()).click();
   }
+  
+  public void deleteProcessWidget() {
+    $$("div.table-widget-panel div.widget__header").filter(text(processWidgetName)).first()
+        .waitUntil(appear, DEFAULT_TIMEOUT).$("div[id$='widget-header-actions']").$("a.ui-commandlink[id*='delete-widget']")
+        .shouldBe(getClickableCondition()).click();
+  }
 }
