@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.11",
+  "format" : "9.4.14",
   "id" : "1818999DCC4266A8",
   "data" : "com.axonivy.portal.component.example.RoleSelectionExample.RoleSelectionExampleData",
   "kind" : "HTML_DIALOG",
@@ -39,7 +39,6 @@
       "type" : "HtmlDialogEventStart",
       "name" : "finish",
       "config" : {
-        ".name" : "finish",
         "guid" : "1818999DCC740D4E"
       },
       "visual" : {
@@ -57,7 +56,6 @@
       "type" : "Script",
       "name" : "Init data",
       "config" : {
-        ".name" : "Init data",
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.environment.Ivy;",
@@ -83,7 +81,6 @@
       "type" : "HtmlDialogEventStart",
       "name" : "showSelectedRole",
       "config" : {
-        ".name" : "showSelectedRole",
         "guid" : "18189A159B2FA96A",
         "output" : {
           "code" : [

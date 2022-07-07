@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.11",
+  "format" : "9.4.14",
   "id" : "18194DC8969D797B",
   "data" : "_com.axonivy.portal.developerexamples.OpenCaseDetailsHookOverrideData",
   "kind" : "CALLABLE_SUB",
@@ -9,7 +9,6 @@
       "name" : "call(ICase,Boolean,Boolean)",
       "config" : {
         "callSignature" : "call",
-        ".name" : "call(ICase,Boolean,Boolean)",
         "input" : {
           "params" : [
             { "name" : "caseView", "type" : "ch.ivyteam.ivy.workflow.ICase" },
@@ -46,9 +45,6 @@
       "id" : "f3",
       "type" : "Alternative",
       "name" : "Is open in Iframe ?",
-      "config" : {
-        ".name" : "Is open in Iframe ?"
-      },
       "visual" : {
         "at" : { "x" : 224, "y" : 64 },
         "labelOffset" : { "x" : -48, "y" : -37 }
@@ -70,7 +66,6 @@
       "type" : "Script",
       "name" : "get case details URL",
       "config" : {
-        ".name" : "get case details URL",
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;",
@@ -92,7 +87,6 @@
       "config" : {
         "dialogId" : "com.axonivy.portal.developerexamples.customization.PortalCaseDetailsOverride",
         "startMethod" : "start(ch.ivyteam.ivy.workflow.ICase,Boolean)",
-        ".name" : "PortalCaseDetailsOverride",
         "call" : {
           "params" : [
             { "name" : "caseInfo", "type" : "ch.ivyteam.ivy.workflow.ICase" },

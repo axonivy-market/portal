@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.11",
+  "format" : "9.4.14",
   "id" : "18189731173CA5D4",
   "data" : "com.axonivy.portal.component.example.ProcessChainExample.ProcessChainExampleData",
   "kind" : "HTML_DIALOG",
@@ -26,7 +26,6 @@
       "type" : "HtmlDialogEventStart",
       "name" : "close",
       "config" : {
-        ".name" : "close",
         "guid" : "181897311778B802"
       },
       "visual" : {
@@ -44,7 +43,6 @@
       "type" : "Script",
       "name" : "Init data",
       "config" : {
-        ".name" : "Init data",
         "output" : {
           "code" : [
             "import java.util.Arrays;",
@@ -63,7 +61,6 @@
       "type" : "HtmlDialogEventStart",
       "name" : "next",
       "config" : {
-        ".name" : "next",
         "guid" : "1818974AB43CB235",
         "output" : {
           "code" : [

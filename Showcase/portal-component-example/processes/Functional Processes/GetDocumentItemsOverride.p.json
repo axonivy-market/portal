@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.11",
+  "format" : "9.4.14",
   "id" : "181896D0888A183D",
   "data" : "com.axonivy.portal.component.example.override.GetDocumentItemsOverrideData",
   "kind" : "CALLABLE_SUB",
@@ -9,7 +9,6 @@
       "name" : "call(ICase)",
       "config" : {
         "callSignature" : "call",
-        ".name" : "call(ICase)",
         "input" : {
           "params" : [
             { "name" : "businessCase", "type" : "ch.ivyteam.ivy.workflow.ICase" }
@@ -46,7 +45,6 @@
       "name" : "get document items",
       "config" : {
         "security" : "system",
-        ".name" : "get document items",
         "output" : {
           "code" : [
             "import com.axonivy.portal.component.example.enums.ExtendedDocumentType;",
@@ -95,15 +93,6 @@
         "- name",
         "- contentType"
       ],
-      "config" : {
-        ".name" : [
-          "After get document list from DMS, convert them into List<ch.ivy.addon.portal.component.ivydata.bo.IvyDocument>",
-          "Some mandatory fields when mapping:",
-          "- id",
-          "- name",
-          "- contentType"
-        ]
-      },
       "visual" : {
         "at" : { "x" : 344, "y" : 240 },
         "size" : { "width" : 624, "height" : 108 }

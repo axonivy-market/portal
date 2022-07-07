@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.11",
+  "format" : "9.4.14",
   "id" : "18189AF10B521DF4",
   "data" : "com.axonivy.portal.component.example.UserSelectionExampleData",
   "elements" : [ {
@@ -8,7 +8,6 @@
       "name" : "showUserSelectionExamples.ivp",
       "config" : {
         "callSignature" : "showUserSelectionExamples",
-        ".name" : "showUserSelectionExamples.ivp",
         "outLink" : "showUserSelectionExamples.ivp",
         "startName" : "User Selection Example"
       },
@@ -30,7 +29,6 @@
       "config" : {
         "dialogId" : "com.axonivy.portal.component.example.UserSelectionExample",
         "startMethod" : "start()",
-        ".name" : "UserSelectionExample",
         "output" : {
           "map" : {
             "out" : "in",
