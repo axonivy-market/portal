@@ -127,8 +127,11 @@ public class RoleManagementBean implements Serializable {
     var isReloadTree = false;
     var existedRole = RoleUtils.findRole(selectedRole.getName());
     if (isCreationMode && nonNull(existedRole)) {
+      var message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+          cms("/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/Messages/DuplicateRole", existedRole.getName()),
+          EMPTY);
+      FacesContext.getCurrentInstance().addMessage(null, message);
       FacesContext.getCurrentInstance().validationFailed();
-      addRoleGrowlMessage(FacesMessage.SEVERITY_ERROR, "/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/Messages/DuplicateRole", existedRole.getName());
       return;
     }
 
