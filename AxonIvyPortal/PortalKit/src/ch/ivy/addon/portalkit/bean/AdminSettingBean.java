@@ -13,7 +13,6 @@ import org.primefaces.component.tabview.TabView;
 import org.primefaces.event.ReorderEvent;
 import org.primefaces.event.TabChangeEvent;
 
-import ch.addon.portal.generic.userprofile.homepage.HomepageUtils;
 import ch.ivy.addon.portalkit.configuration.Application;
 import ch.ivy.addon.portalkit.enums.GlobalVariable.Option;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
@@ -73,10 +72,6 @@ public class AdminSettingBean implements Serializable {
       }
     }
     isTabChangeEventTriggered = true;
-  }
-
-  public boolean isShowLegacyUI() {
-    return HomepageUtils.isShowLegacyUI();
   }
 
   private void initApplicationTab() {

@@ -6341,27 +6341,12 @@ a.dashboard-configuration-dialog__action-row label {
 .user-assign-selection .width-100,
 .role-management-value .width-100,
 .user-assign-selection .width-100 .ui-autocomplete-input,
-.role-management-value .width-100 .ui-autocomplete-input,
-.user-assign-actions button {
-    width: 100%;
+.role-management-value .width-100 .ui-autocomplete-input {
+  width: 100%;
 }
 
 .role-details-dialog {
   max-width: 750px;
-}
-
-.user-assign-selection, .user-assign-actions {
-  float: left;
-  margin: auto;
-}
-
-.user-assign-selection {
-  width: calc(100% - 100px);
-}
-
-.user-assign-actions {
-  width: 100px;
-  padding-left: 15px;
 }
 
 .role-tree-table-header,
