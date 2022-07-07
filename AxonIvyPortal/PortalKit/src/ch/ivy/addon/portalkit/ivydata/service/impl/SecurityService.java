@@ -100,8 +100,7 @@ public class SecurityService implements ISecurityService {
   public IvySecurityResultDTO findRoles() {
     return IvyExecutor.executeAsSystem(() -> {
       IvySecurityResultDTO result = new IvySecurityResultDTO();
-      IApplication app = IApplication.current();
-      List<IRole> roles = ServiceUtilities.findAllRoles(app);
+      List<IRole> roles = ServiceUtilities.findAllRoles();
       result.setRoles(roles);
       return result;
     });

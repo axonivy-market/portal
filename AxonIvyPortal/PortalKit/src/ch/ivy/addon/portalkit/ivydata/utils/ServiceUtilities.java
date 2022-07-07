@@ -83,11 +83,13 @@ public class ServiceUtilities {
   }
 
   /**
-   * Finds all of the users within the given app, except the roles have the HIDE property
+   * Finds all of the roles within the given app, except the roles have the HIDE property
+   * @deprecated use {@link ServiceUtilities#findAllRoles()} instead
    * @param app
    * @return roles
    */
   @SuppressWarnings("unchecked")
+  @Deprecated(forRemoval=true)
   public static List<IRole> findAllRoles(IApplication app) {
     requireNonNull(app);
 
@@ -102,6 +104,26 @@ public class ServiceUtilities {
     roles.sort((u1, u2) -> StringUtils.compareIgnoreCase(u1.getDisplayName(), u2.getDisplayName()));
 
     IvyCacheService.newInstance().setSessionCache(app.getName(), IvyCacheIdentifier.ROLES_IN_APPLICATION, roles);
+    return roles;
+  }
+  
+  /**
+   * Finds all of the roles in security context, except the roles have the HIDE property
+   * @return roles
+   */
+  @SuppressWarnings("unchecked")
+  public static List<IRole> findAllRoles() {
+    Optional<Object> cacheValueOpt =
+        IvyCacheService.newInstance().getSessionCacheValue(ISecurityContext.current().getName(), IvyCacheIdentifier.ROLES_IN_SECURITY_CONTEXT);
+    if (cacheValueOpt.isPresent()) {
+      return (List<IRole>) cacheValueOpt.get();
+    }
+
+    List<IRole> roles = new ArrayList<>(ISecurityContext.current().roles().all());
+    roles.removeIf(role -> role.getProperty(AdditionalProperty.HIDE.toString()) != null);
+    roles.sort((u1, u2) -> StringUtils.compareIgnoreCase(u1.getDisplayName(), u2.getDisplayName()));
+
+    IvyCacheService.newInstance().setSessionCache(ISecurityContext.current().getName(), IvyCacheIdentifier.ROLES_IN_SECURITY_CONTEXT, roles);
     return roles;
   }
   
