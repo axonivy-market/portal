@@ -1,4 +1,11 @@
 
+def init() {
+  configFileProvider(
+      [configFile(fileId: 'properties-config', variable: 'PROPERTIES_CONFIG')]) {
+      props = readProperties  file: "${env.PROPERTIES_CONFIG}"
+  }
+}
+
 def stopAllElasticSearchs() {
   echo "====================Turn off Elastics Search port from 19200 to 19210===================="
   powershell '''
@@ -50,12 +57,8 @@ def stopWindowsService(String serviceName) {
 def remoteDesktop() {
   closeAllRemoteDesktopConnections()
   echo '====================Setup remote desktop connections to Portal slave===================='
-  configFileProvider(
-      [configFile(fileId: 'properties-config', variable: 'PROPERTIES_CONFIG')]) {
-      props = readProperties  file: "${env.PROPERTIES_CONFIG}"
-      //e.g. remoteDesktopCmd=D:/tools/remote-desktop-plus/rdp.exe /v:10.123.1.193 /domain:wawa.vn /u:wawa /p:W4w4@CH$ /w:2560 /h:1440 /noclose
-      bat "${props.remoteDesktopCmd}"
-  }
+  //e.g. remoteDesktopCmd=D:/tools/remote-desktop-plus/rdp.exe /v:10.123.1.193 /domain:wawa.vn /u:wawa /p:W4w4@CH$ /w:2560 /h:1440 /noclose
+  bat "${props.remoteDesktopCmd}"
 }
 
 def closeAllRemoteDesktopConnections() {
