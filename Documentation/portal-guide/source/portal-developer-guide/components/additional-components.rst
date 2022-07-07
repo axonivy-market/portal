@@ -25,11 +25,11 @@ In a dialog
 
 |process-history-dialog-example|
 
-This component is a part of the ``portal-component`` project, which is independent of Portal. You don't need to import Portal projects to use it.
+This component is a part of project ``portal-component``, which is independent of the Portal. You don't need to import the Portal projects to use it.
 
 .. note::
 
-      If you use this component in Portal, redirect to case details page when clicking on a row line.
+      If you use this component in Portal, redirect to case details page when clicking on a row.
 
 .. _components-additional-component-process-history-how-to-use:
 
@@ -43,7 +43,7 @@ additional property "CASE_BUSINESS_ENTITY_PROPERTY" of the business case.
 
 #. Link the cases to the business entity.
 
-   Call the subprocess ``SetCaseBusinessEntity`` in the process which need to be
+   Call the subprocess ``SetCaseBusinessEntity`` in the process which needs to be
    linked and input an identifier unique to your business entity. The
    subprocess will set the id to the additional property
    "CASE_BUSINESS_ENTITY_PROPERTY" of the business case.
@@ -86,15 +86,14 @@ additional property "CASE_BUSINESS_ENTITY_PROPERTY" of the business case.
          <ic:com.axonivy.portal.component.ProcessHistory businessEntityId="beta" chunkSize="10" scrollHeight="400" />
             </p:dialog>
 
-3. Override the callable subprocess ``OpenCaseDetailsHook`` to handle navigation when click on a case from the Process History component.
+3. Override the callable subprocess ``OpenCaseDetailsHook`` to handle navigation when clicking on a case in the Process History component.
 
-   Please refer to the ``ProcessHistoryExample`` process in the ``portal-component-example`` project for more details on how to use Process History without Portal.
+   Please refer to the process ``ProcessHistoryExample`` in the project ``portal-component-example`` for more details on how to use the Process History without the Portal.
 
-   Please refer to the ``ProcessHistoryComponent`` process in the ``portal-developer-examples`` for more details on how to customize Process History with Portal.
+   Please refer to the process ``ProcessHistoryComponent`` in the project ``portal-developer-examples`` for more details on how to customize the Process History with the Portal.
 
    If you want to customize its style,
-   please refer to :ref:`components-additional-components-styles-customization`
-   for more details.
+   please refer to :ref:`components-additional-components-style-customization`.
 
    .. important:: 
       
@@ -110,23 +109,23 @@ additional property "CASE_BUSINESS_ENTITY_PROPERTY" of the business case.
 Migrate from Deprecated Process History
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-#. Replace code in HTML files from ``ic:ch.ivy.addon.portal.component.ProcessHistory`` to ``ic:com.axonivy.portal.component.ProcessHistory``.
+#. Replace code in HTML files: replace ``ic:ch.ivy.addon.portal.component.ProcessHistory`` with ``ic:com.axonivy.portal.component.ProcessHistory``.
 
 #. Consider updating value of new attributes ``showCasesOfOwner`` and ``dateTimePattern`` by your business.
 
-#. Optional: Override the subprocess ``OpenCaseDetailsHook`` to handle navigation when clicking on a case from the Process History component.
+#. Optional: Override the subprocess ``OpenCaseDetailsHook`` to handle navigation when clicking on a case in the Process History component.
 
-   For applications using Portal without IFrame:
+   For applications using the Portal without IFrame:
 
-      + Copy content of the subprocess ``OpenPortalCaseDetails`` in ``PortalTemplate`` project to the overridden subprocess ``OpenCaseDetailsHook``.
+      + Copy the contents of the subprocess ``OpenPortalCaseDetails`` in the project ``PortalTemplate`` to the overridden subprocess ``OpenCaseDetailsHook``.
 
-   For applications using Portal with IFrame:
+   For applications using the Portal with an IFrame:
    
       + Set attribute ``isOpenInFrame`` to ``true``.
    
-      + Modify the subprocess ``OpenCaseDetailsHook`` to generate ``caseDetailsUrl``. Process History component will navigate to this URL when user clicks on a case.
+      + Modify the subprocess ``OpenCaseDetailsHook`` to generate ``caseDetailsUrl``. Process History component will navigate to this URL when the user clicks on a case.
    
-      + Please refer to subprocess ``OpenCaseDetailsHookOverride`` in ``portal-developer-examples`` project to see how to generate this link from Portal.
+      + Please refer to the subprocess ``OpenCaseDetailsHookOverride`` in project ``portal-developer-examples`` to see how to generate this link in the Portal.
 
 .. _components-additional-component-task-analysis:
 
@@ -195,7 +194,7 @@ process: the currently executable steps, done steps, and open steps. Its feature
 
 #. Change the orientation of the process chain: horizontal or vertical.
 
-This component is a part of the ``portal-component`` project, which is independent of Portal. You don't need to import Portal projects to use it.
+This component is a part of project ``portal-component``, which is independent of the Portal. You don't need to import the Portal projects to use it.
 
 |process-chain|
 
@@ -231,15 +230,14 @@ the component on a page with following code:
 
 
 If you want to customize its style,
-please refer to :ref:`components-additional-components-styles-customization`
-for more details.
+please refer to :ref:`components-additional-components-style-customization`.
 
 .. _components-additional-components-migrate-from-old-process-chain:
 
 Migrate from Deprecated Process Chain
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-- Replace code in HTML files from ``ch.ivy.addon.portalkit.singleapp.process.ProcessChain`` to ``com.axonivy.portal.component.ProcessChain``.
+- Replace code in HTML files: replace ``ch.ivy.addon.portalkit.singleapp.process.ProcessChain`` with ``com.axonivy.portal.component.ProcessChain``.
 
 .. _components-additional-component-global-growl:
 
@@ -334,14 +332,14 @@ Document Table
 This component is a case document table with the features display, upload,
 download and delete document entries.
 
-This component is a part of the ``portal-component`` project, which is independent of Portal. You don't need to import Portal projects to use it.
+This component is a part of project ``portal-component``, which is independent of the Portal. You don't need to import the Portal projects to use it.
 
 |document-table|
 
 To extend features of this component, please override these subprocesses: ``GetDocumentItems``,
 ``UploadDocumentItem``, ``DeleteDocumentItem``, and ``DownloadDocumentItem``.
 You can also add a new column or remove default columns of the document table.
-Find examples in the ``DocumentTableComponent`` process in portal-developer-examples project.
+Find examples in process ``DocumentTableComponent`` in project portal-developer-examples.
 
 Code Example:
 
@@ -352,7 +350,7 @@ Code Example:
          allowedUploadFileTypes="doc,docx,xls,xlsx,xlsm,csv,pdf,ppt,pptx,txt"
          typeSelectionItems="#{documentTableExampleBean.documentTypes}">
          <f:facet name="componentHeader">
-            <h2>This is customized document table component header</h2>
+            <h2>This is the customized document table component header</h2>
          </f:facet>
          <p:column headerText="Creator" styleClass="document-creator-column">
             <h:outputText id="creator" value="#{document.creation.userName}" title="#{document.creation.userName}" />
@@ -364,13 +362,13 @@ Code Example:
             <h:outputText id="customer" value="#{document.customer}" title="#{document.customer}" />
          </p:column>
          <f:facet name="componentFooter">
-            <h2>This is customized document table component footer</h2>
+            <h2>This is the customized document table component footer</h2>
          </f:facet>
       </ic:com.axonivy.portal.component.DocumentTable>
    </h:form>
 
 
-Refer to the ``DocumentTableExample`` process in ``portal-component-example`` project for more details.
+Refer to process ``DocumentTableExample`` in project ``portal-component-example`` for more details.
 
 Attributes of this component:
 
@@ -384,11 +382,10 @@ Attributes of this component:
 Script checking and virus scanning
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Document Table has options to check harmful scripts and viruses inside the file before uploading it to the system.
+The Document Table has options to check for harmful scripts and viruses inside the file before uploading it to the system.
 
-   - Set attribute ``enableScriptCheckingForUploadedDocument`` to ``true`` to enable check harmful scripts option.
-   - Set attribute ``enableVirusScannerForUploadedDocument`` to ``true`` to enable virus scanning option.
-
+   - Set ``enableScriptCheckingForUploadedDocument`` to ``true`` to check for harmful scripts.
+   - Set ``enableVirusScannerForUploadedDocument`` to ``true`` to enable virus scanning.
 
 Code example:
 
@@ -398,18 +395,18 @@ Code example:
       enableScriptCheckingForUploadedDocument="true"
       enableVirusScannerForUploadedDocument="true" />
 
-Please refer to :ref:`settings-virus-scanning-setting` for more details about virus scanning option.
+Please refer to :ref:`settings-virus-scanning-setting` for more details about virus scanning.
 
 .. _components-additional-components-migrate-from-old-document-table:
 
 Migrate from Deprecated Document Table
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-#. Replace code in HTML files from ``ic:ch.ivy.addon.portalkit.component.document.DocumentTable`` to ``ic:com.axonivy.portal.component.DocumentTable``.
+#. Replace code in HTML files: replace ``ic:ch.ivy.addon.portalkit.component.document.DocumentTable`` with ``ic:com.axonivy.portal.component.DocumentTable``.
 
 #. Consider updating value of new attributes ``enableScriptCheckingForUploadedDocument``, ``enableVirusScannerForUploadedDocument`` and ``allowedUploadFileTypes`` by your business.
 
-#. Override sub processes if you want and adapt your business accordingly.
+#. Override subprocesses if you want and adapt your business accordingly.
 
    +-----------------------------------+--------------------------+
    | New sub process                   | Deprecated sub process   |
@@ -423,16 +420,14 @@ Migrate from Deprecated Document Table
    | DownloadDocumentItem              | DownloadDocument         |
    +-----------------------------------+--------------------------+
 
-#. If you customized IvyDocument which extended from class ``ch.ivy.addon.portalkit.ivydata.bo.IvyDocument``,
-   please change it to be extended from class ``com.axonivy.portal.component.ivydata.bo.IvyDocument``.
+#. If you have customized IvyDocument make sure to extend it from class ``com.axonivy.portal.component.ivydata.bo.IvyDocument``.
 
-#. Attributes ``typeSelectionItems`` and ``selectedType`` now using ``com.axonivy.portal.component.enums.DocumentType``.
-   Therefore, if you customized document types, please use ``com.axonivy.portal.component.enums.DocumentType`` instead of ``ch.ivy.addon.portalkit.enums.DocumentType``.
+#. Attributes ``typeSelectionItems`` and ``selectedType`` now use ``com.axonivy.portal.component.enums.DocumentType``.
+   Please replace ``ch.ivy.addon.portalkit.enums.DocumentType`` with ``com.axonivy.portal.component.enums.DocumentType``.
 
 .. note::
-   You can remove redundant overridden configurations, sub processes and data classes
-   such as GetDocumentListOverride, UploadDocumentOverride, ...
-   If you don't remove it, no problem.
+   Please remove redundant overridden configurations, subprocesses, and data classes such as GetDocumentListOverride,
+   UploadDocumentOverride, etc.
 
 .. _components-additional-components-user-selection:
 
@@ -446,7 +441,7 @@ This component is used for selecting a single user from a list of users defined 
 If you don't define the role name list, all users will be loaded. 
 It includes a label, an autocomplete and one message element to display a message related to that autocomplete element.
 
-This component is a part of the ``portal-component`` project, which is independent of Portal. You don't need to import Portal projects to use it.
+This component is a part of project ``portal-component``, which is independent of the Portal. You don't need to import the Portal projects to use it.
 
 How to Use
 ^^^^^^^^^^
@@ -514,7 +509,7 @@ I want to display users in a dropdown list formatted as "<Full name>
          </f:facet>
    </ic:com.axonivy.portal.component.UserSelection>
 
-Please refer to ``UserSelectionExample.xhtml`` in ``portal-component-example`` project for more details.
+Please refer to ``UserSelectionExample.xhtml`` in project ``portal-component-example`` for more details.
 
 This component offers the following attributes:
 
@@ -529,11 +524,11 @@ This component offers the following attributes:
 Migrate from Deprecated User Selection
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-#. Replace code in HTML files from ``ic:ch.ivy.addon.portalkit.component.UserSelection`` to ``ic:com.axonivy.portal.component.UserSelection``.
+#. Replace code in HTML files: replace ``ic:ch.ivy.addon.portalkit.component.UserSelection`` with ``ic:com.axonivy.portal.component.UserSelection``.
 
-#. Use ``com.axonivy.portal.component.dto.UserDTO`` instead of ``ch.ivy.addon.portalkit.dto.UserDTO``.
+#. Replace ``ch.ivy.addon.portalkit.dto.UserDTO`` with ``com.axonivy.portal.component.dto.UserDTO``.
 
-   .. note:: If you stored ch.ivy.addon.portalkit.dto.UserDTO class in your database, you must update it manually.
+   .. note:: If you stored class ``ch.ivy.addon.portalkit.dto.UserDTO`` in your database, you have to update the database manually.
 
 .. _components-additional-components-role-selection:
 
@@ -548,7 +543,7 @@ define the role list, all roles will be loaded. It includes one label, one
 autocomplete and one message element to display messages related to this
 autocomplete element.
 
-This component is a part of the ``portal-component`` project, which is independent of Portal. You don't need to import Portal projects to use it.
+This component is a part of project ``portal-component``, which is independent of the Portal. You don't need to import the Portal projects to use it.
 
 How to Use
 ^^^^^^^^^^
@@ -637,11 +632,11 @@ This component offers the following attributes:
 
 Migrate from Deprecated Role Selection
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-#. Replace code in HTML files from ``ic:ch.ivy.addon.portalkit.component.RoleSelection`` to ``ic:com.axonivy.portal.component.RoleSelection``.
+#. Replace code in HTML files: replace ``ic:ch.ivy.addon.portalkit.component.RoleSelection`` with ``ic:com.axonivy.portal.component.RoleSelection``.
 
-#. Use ``com.axonivy.portal.component.dto.RoleDTO`` instead of ``ch.ivy.addon.portalkit.dto.RoleDTO``.
+#. Replace ``ch.ivy.addon.portalkit.dto.RoleDTO`` with ``com.axonivy.portal.component.dto.RoleDTO``.
 
-   .. note:: If you stored ch.ivy.addon.portalkit.dto.RoleDTO class in your database, you must update it manually.
+   .. note:: If you stored class ``ch.ivy.addon.portalkit.dto.RoleDTO`` in your database, you have to update the database manually.
 
 .. _components-additional-portal-dialog-with-icon:
 
@@ -708,12 +703,12 @@ To generate cron patterns, use the online site `Cron Maker
 <http://www.cronmaker.com>`_. It makes creating your own cron job patterns a
 breeze.
 
-.. _components-additional-components-styles-customization:
+.. _components-additional-components-style-customization:
 
-Styles Customization
+Style Customization
 --------------------
 
-This customization only supports for new components of ``portal-component`` project.
+This customization is only available for the components in the new project ``portal-component``.
 
 How to customize
 ^^^^^^^^^^^^^^^^
@@ -733,7 +728,7 @@ How to customize
       </ui:composition>
 
    .. note::
-      You must place your css file in a ``<h:outputStylesheet />`` below the component to override defined styles.
+      You have to place your css file in a ``<h:outputStylesheet />`` below the component to override defined styles.
 
 2. Within this file you can override default css variables of components. For example, the \--process-history-description-text-color:
 
