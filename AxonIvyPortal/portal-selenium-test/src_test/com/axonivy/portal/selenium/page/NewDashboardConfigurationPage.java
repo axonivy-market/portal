@@ -16,7 +16,7 @@ public class NewDashboardConfigurationPage extends TemplatePage {
   }
 
   public ElementsCollection getDashboardRows() {
-    SelenideElement dashboardTable = $("tbody[id='dashboard-form:dashboard-table_data']");
+    SelenideElement dashboardTable = $("tbody[id='dashboard-form:dashboard-table_data']").waitUntil(Condition.appear, DEFAULT_TIMEOUT);
     return dashboardTable.$$("tr:not(.ui-datatable-empty-message)");
   }
 
@@ -89,6 +89,17 @@ public class NewDashboardConfigurationPage extends TemplatePage {
     editDashboardDialog.$("button[id$='dashboard-detail-save-button']").click();
     editDashboardDialog.waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
   }
+  
+  public void editPrivateDashboardInfo(String newName, String newDescription) {
+    SelenideElement editDashboardDialog = getEditDashboardDialog();
+    editDashboardDialog.$("input[id$=':dashboard-title']").clear();
+    editDashboardDialog.$("input[id$=':dashboard-title']").sendKeys(newName);
+    editDashboardDialog.$("input[id$=':dashboard-description']").clear();
+    editDashboardDialog.$("input[id$=':dashboard-description']").sendKeys(newDescription);
+    
+    editDashboardDialog.$("button[id$='dashboard-detail-save-button']").click();
+    editDashboardDialog.waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
+  }
 
   public NewDashboardPage navigateToNewDashboardPage() {
     $("a[id='dashboard-form:cancel-button']").click();
@@ -156,7 +167,7 @@ public class NewDashboardConfigurationPage extends TemplatePage {
     }
 
     createDashboardDialog.$("button[id$='dashboard-create-button']").click();
-    createDashboardDialog.waitUntil(Condition.disappear, DEFAULT_TIMEOUT);
+    NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
   }
 
   public SelenideElement getDashboardCellByNameAndPosition(String dashboardName, int position) {
