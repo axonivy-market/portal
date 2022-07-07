@@ -253,7 +253,6 @@ public class DashboardConfigurationTest extends BaseTest {
     newDashboardPage.createPublicDashboardFromTemplate(name, description, permissions, 1);
 
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
-    newDashboardDetailsEditPage.waitPageDisplay();
     newDashboardDetailsEditPage.getTitleByIndex(0).shouldBe(Condition.exactText(name));
     newDashboardDetailsEditPage.getWidgets().shouldBe(CollectionCondition.size(3));
 
@@ -271,7 +270,6 @@ public class DashboardConfigurationTest extends BaseTest {
     newDashboardPage.createPrivateDashboardFromTemplate(name, description, 1);
 
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
-    newDashboardDetailsEditPage.waitPageDisplay();
     newDashboardDetailsEditPage.getTitleByIndex(0).shouldBe(Condition.exactText(name));
     newDashboardDetailsEditPage.getWidgets().shouldBe(CollectionCondition.size(3));
 
@@ -291,7 +289,6 @@ public class DashboardConfigurationTest extends BaseTest {
     configPage.createPublicDashboardFromTemplate(name, description, permissions, 1);
 
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
-    newDashboardDetailsEditPage.waitPageDisplay();
     newDashboardDetailsEditPage.getTitleByIndex(0).shouldBe(Condition.exactText(name));
     newDashboardDetailsEditPage.getWidgets().shouldBe(CollectionCondition.size(3));
 
@@ -309,7 +306,6 @@ public class DashboardConfigurationTest extends BaseTest {
     configPage.createPrivateDashboardFromTemplate(name, description, 1);
 
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
-    newDashboardDetailsEditPage.waitPageDisplay();
     newDashboardDetailsEditPage.getTitleByIndex(0).shouldBe(Condition.exactText(name));
     newDashboardDetailsEditPage.getWidgets().shouldBe(CollectionCondition.size(3));
 

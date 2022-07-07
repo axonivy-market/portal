@@ -265,6 +265,7 @@
             </div>
           </f:facet>
 
+          <c:set var="showInheritedMembership" value="#{!user.directlyAssignedRole and !roleManagementBean.creationMode}"/>
           <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/displayName')}"
             filterable="true"
             filterBy="#{user.displayName}">
@@ -277,7 +278,7 @@
           </p:column>
           <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/information')}">
             <h:outputText styleClass="role-membership"
-              value="#{!user.directlyAssignedRole ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/InheritedMembership'):''}" />
+              value="#{showInheritedMembership ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/InheritedMembership'):''}" />
           </p:column>
           <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
             styleClass="action-group TexAlCenter" width="100px">
@@ -287,13 +288,13 @@
                 update="users-of-role-table #{cc.clientId}:manage-role-details-form:user-assignment-group"
                 process="@this" partialSubmit="true"
                 actionListener="#{roleManagementBean.removeUserOutOfRole(user)}"
-                disabled="#{!user.directlyAssignedRole and !creationMode}">
+                disabled="#{showInheritedMembership}">
                 <i class="si si-bin-1" />
               </p:commandLink>
             </h:panelGroup>
             <p:tooltip for="user-of-role-action-group"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/CannotDeleteUserTooltip')}"
-              rendered="#{!user.directlyAssignedRole and !creationMode}" />
+              rendered="#{showInheritedMembership}" />
           </p:column>
         </p:dataTable>
       </h:panelGroup>
