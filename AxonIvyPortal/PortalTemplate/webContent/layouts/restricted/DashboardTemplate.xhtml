@@ -10,7 +10,7 @@
 
     <ui:define name="pageContent">
       <script type="text/javascript">
-        if("${adminSettingBean.isShowLegacyUI()}"==="true") {
+        if("${menuView.isShowLegacyUI()}"==="true") {
           window.location = "${menuView.getDashboardLink()}";
         }
       </script>
