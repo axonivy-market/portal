@@ -135,22 +135,24 @@
         styleClass="ui-g">
         <h:panelGroup id="action-group" styleClass="announcement-tab-action-buttons ui-g-12 u-padding-0" layout="block">
           <div class="announcement-information">#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/information")}</div>
-          <p:commandButton id="publish-announcement"
-            process="announcement-form"
-            disabled="#{data.isAnnouncementActivated}"
-            icon="#{visibilityBean.generateButtonIcon('si si-check-circle-1')}"
-            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/enable')}"
-            actionListener="#{logic.publishAnnouncement()}"
-            update="#{cc.clientId}:adminTabView:announcement-table #{cc.clientId}:adminTabView:announcement-validation-messages action-group"
-            styleClass="u-mar-right-5"/>
-          <p:commandButton id="delete-announcement"
-            process="announcement-form"
-            actionListener="#{logic.depublishAnnouncement()}"
-            icon="#{visibilityBean.generateButtonIcon('si si-delete')}"
-            disabled="#{not data.isAnnouncementActivated}"
-            update="#{cc.clientId}:adminTabView:announcement-validation-messages action-group"
-            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/disable')}">
-          </p:commandButton>
+          <div class="announcement-action">
+            <p:commandButton id="publish-announcement"
+              process="announcement-form"
+              disabled="#{data.isAnnouncementActivated}"
+              icon="#{visibilityBean.generateButtonIcon('si si-check-circle-1')}"
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/enable')}"
+              actionListener="#{logic.publishAnnouncement()}"
+              update="#{cc.clientId}:adminTabView:announcement-table #{cc.clientId}:adminTabView:announcement-validation-messages action-group"
+              styleClass="u-mar-right-5"/>
+            <p:commandButton id="delete-announcement"
+              process="announcement-form"
+              actionListener="#{logic.depublishAnnouncement()}"
+              icon="#{visibilityBean.generateButtonIcon('si si-delete')}"
+              disabled="#{not data.isAnnouncementActivated}"
+              update="#{cc.clientId}:adminTabView:announcement-validation-messages action-group"
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/disable')}">
+            </p:commandButton>
+          </div>
         </h:panelGroup>
 
         <p:dataTable id="announcement-table"
@@ -160,7 +162,7 @@
           widgetVar="announcement-table"
           reflow="true" lazy="false"
           emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}">
-          <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/languageSetting/language')}" styleClass="application-language-header">
+          <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/languageSetting/Language')}" styleClass="application-language-header">
             <p:outputLabel for="announcement-input" value="#{announcement.getLanguageDisplayName()}" />
           </p:column>
           <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/announcement')}">

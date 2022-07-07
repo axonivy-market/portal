@@ -13,7 +13,7 @@
     <ui:define name="title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/dashboard')}</ui:define>
     <ui:define name="pageContent">
       <script type="text/javascript">
-        if("${adminSettingBean.isShowLegacyUI()}"==="false") {
+        if("${menuView.isShowLegacyUI()}"==="false") {
           window.location = "${menuView.getDashboardLink()}";
         }
       </script>
