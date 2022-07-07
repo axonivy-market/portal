@@ -1,7 +1,7 @@
 {
   "format" : "9.4.14",
   "id" : "16B25F2844868AE2",
-  "data" : "gawfs.GetDocumentListOverrideData",
+  "data" : "gawfs.GetDocumentItemsOverrideData",
   "kind" : "CALLABLE_SUB",
   "elements" : [ {
       "id" : "f0",
@@ -9,7 +9,6 @@
       "name" : "call(ICase)",
       "config" : {
         "callSignature" : "call",
-        ".name" : "call(ICase)",
         "input" : {
           "params" : [
             { "name" : "businessCase", "type" : "ch.ivyteam.ivy.workflow.ICase" }
@@ -46,7 +45,6 @@
       "name" : "get document items",
       "config" : {
         "security" : "system",
-        ".name" : "get document items",
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.util.DocumentFileUtils;",
@@ -70,15 +68,6 @@
         "- name",
         "- contentType"
       ],
-      "config" : {
-        ".name" : [
-          "After get document list from DMS, convert them into List<ch.ivy.addon.portal.component.ivydata.bo.IvyDocument>",
-          "Some mandatory fields when mapping:",
-          "- id",
-          "- name",
-          "- contentType"
-        ]
-      },
       "visual" : {
         "at" : { "x" : 344, "y" : 240 },
         "size" : { "width" : 624, "height" : 108 }

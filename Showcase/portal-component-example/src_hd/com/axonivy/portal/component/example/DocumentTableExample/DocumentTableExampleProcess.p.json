@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.11",
+  "format" : "9.4.14",
   "id" : "181893C96BAB1893",
   "data" : "com.axonivy.portal.component.example.DocumentTableExample.DocumentTableExampleData",
   "kind" : "HTML_DIALOG",
@@ -26,7 +26,6 @@
       "type" : "HtmlDialogEventStart",
       "name" : "close",
       "config" : {
-        ".name" : "close",
         "guid" : "181893C96C1BAF44"
       },
       "visual" : {

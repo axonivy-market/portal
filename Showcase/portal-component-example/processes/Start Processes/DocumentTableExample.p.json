@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.11",
+  "format" : "9.4.14",
   "id" : "1818938E7EBC9329",
   "data" : "com.axonivy.portal.component.example.DocumentTableExampleData",
   "elements" : [ {
@@ -8,7 +8,6 @@
       "name" : "showDefaultDocumentTableExample.ivp",
       "config" : {
         "callSignature" : "showDefaultDocumentTableExample",
-        ".name" : "showDefaultDocumentTableExample.ivp",
         "outLink" : "showDefaultDocumentTableExample.ivp",
         "startName" : "Show Default Document Table Example"
       },
@@ -29,8 +28,7 @@
       "name" : "DocumentTableExample",
       "config" : {
         "dialogId" : "com.axonivy.portal.component.example.DocumentTableExample",
-        "startMethod" : "start()",
-        ".name" : "DocumentTableExample"
+        "startMethod" : "start()"
       },
       "visual" : {
         "at" : { "x" : 328, "y" : 64 },
@@ -43,7 +41,6 @@
       "name" : "showCustomizedDocumentTableExample.ivp",
       "config" : {
         "callSignature" : "showCustomizedDocumentTableExample",
-        ".name" : "showCustomizedDocumentTableExample.ivp",
         "outLink" : "showCustomizedDocumentTableExample.ivp",
         "startName" : "Show Customized Document Table Example"
       },
@@ -58,8 +55,7 @@
       "name" : "CustomizedDocumentTableExample",
       "config" : {
         "dialogId" : "com.axonivy.portal.component.example.CustomizedDocumentTableExample",
-        "startMethod" : "start()",
-        ".name" : "CustomizedDocumentTableExample"
+        "startMethod" : "start()"
       },
       "visual" : {
         "at" : { "x" : 360, "y" : 192 },

@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.11",
+  "format" : "9.4.14",
   "id" : "1818968119A51953",
   "data" : "com.axonivy.portal.component.example.override.DeleteDocumentItemOverrideData",
   "kind" : "CALLABLE_SUB",
@@ -9,7 +9,6 @@
       "name" : "call(ICase,IvyDocument)",
       "config" : {
         "callSignature" : "call",
-        ".name" : "call(ICase,IvyDocument)",
         "input" : {
           "params" : [
             { "name" : "businessCase", "type" : "ch.ivyteam.ivy.workflow.ICase" },
@@ -46,7 +45,6 @@
       "name" : "Delete document item",
       "config" : {
         "security" : "system",
-        ".name" : "Delete document item",
         "output" : {
           "code" : [
             "import java.util.Arrays;",
@@ -69,9 +67,6 @@
       "id" : "f5",
       "type" : "ProcessAnnotation",
       "name" : "Override this sub process to delete file in DMS",
-      "config" : {
-        ".name" : "Override this sub process to delete file in DMS"
-      },
       "visual" : {
         "at" : { "x" : 256, "y" : 192 },
         "size" : { "width" : 256, "height" : 30 }

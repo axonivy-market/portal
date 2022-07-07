@@ -1,7 +1,7 @@
 {
   "format" : "9.4.14",
   "id" : "16B266ED2EA90665",
-  "data" : "gawfs.DeleteDocumentOverrideData",
+  "data" : "gawfs.DeleteDocumentItemOverrideData",
   "kind" : "CALLABLE_SUB",
   "elements" : [ {
       "id" : "f0",
@@ -9,7 +9,6 @@
       "name" : "call(ICase,IvyDocument)",
       "config" : {
         "callSignature" : "call",
-        ".name" : "call(ICase,IvyDocument)",
         "input" : {
           "params" : [
             { "name" : "businessCase", "type" : "ch.ivyteam.ivy.workflow.ICase" },
@@ -45,7 +44,6 @@
       "type" : "Script",
       "name" : "Delete document item",
       "config" : {
-        ".name" : "Delete document item",
         "output" : {
           "code" : [
             "import java.util.Arrays;",
@@ -64,9 +62,6 @@
       "id" : "f5",
       "type" : "ProcessAnnotation",
       "name" : "Override this sub process to delete file in DMS",
-      "config" : {
-        ".name" : "Override this sub process to delete file in DMS"
-      },
       "visual" : {
         "at" : { "x" : 288, "y" : 184 },
         "size" : { "width" : 256, "height" : 40 }
