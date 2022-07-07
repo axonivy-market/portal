@@ -54,6 +54,8 @@ HowTo: Update Portal Settings
    Portal settings are stored as Axon Ivy variables and can be configured in the 
    :dev-url:`Axon Ivy Cockpit </doc/nightly/engine-guide/tool-reference/engine-cockpit/configuration.html#engine-cockpit-variables>`.
 
+.. _portal-available-settings:
+
 .. centered:: Available settings
 
 .. csv-table::
@@ -75,6 +77,35 @@ HowTo: Show/Hide the Announcement
 
 #. If the announcement is enabled, hide it again by clicking on :guilabel:`Disable`.
 
+HowTo: Manage Roles
+------------------------------
+Portal provides the :guilabel:`Role Management` section in the :guilabel:`Admin Settings` area, where the user can manage roles.
+
+| To see the :guilabel:`Role Management` tab, the user has to have the ``RoleManagement`` permission.
+| To manage roles, the user also has to own these permissions:
+
+  - ``RoleCreate``: create a new dynamic role
+  - ``RoleDelete``: delete a dynamic role
+  - ``RoleMove``: can select the parent role at the :guilabel:`Create new role` step, by default the system will use ``Everybody``
+
+#. Select the :guilabel:`Role Management` tab.
+
+   |role-assignment-tab|
+
+#. Click on the :guilabel:`Create new role` button and fill in the data.
+
+   |role-assignment-creation-dialog|
+
+#. After filling all mandatory fields, click on the :guilabel:`Save` button to create the role.
+
+#. On the role tree table, you will see the new role.
+
+#. The user can manage this new role by editing role properties, assigning users to the role, and deleting the role using the actions available on the :guilabel:`Actions` column.
+
+.. note::
+   Portal also provides two advanced configurations to control the number of roles that are shown in the :guilabel:`Role Management` tab.
+   Refer to :ref:`Settings Variables <portal-available-settings>` for more information.
+
 .. include:: ../includes/_common-icon.rst
 
 .. |applications| image:: ../../screenshots/settings/applications.png
@@ -83,3 +114,5 @@ HowTo: Show/Hide the Announcement
 .. |select-admin-settings| image:: ../../screenshots/settings/select-admin-settings.png
 .. |global-settings| image:: ../../screenshots/settings/global-settings.png
 .. |edit-global-settings| image:: ../../screenshots/settings/edit-global-settings.png
+.. |role-assignment-tab| image:: ../../screenshots/settings/role-assignment-tab.png
+.. |role-assignment-creation-dialog| image:: ../../screenshots/settings/role-assignment-creation-dialog.png
