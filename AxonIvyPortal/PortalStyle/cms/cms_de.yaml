@@ -949,6 +949,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     iconSelectionDialogHeader: Symbol auswählen
     seachIconByNamePlaceHolder: Icon anhand des Namens suchen
   languageSetting:
+    Language: Sprache
     cannotSetEmailLanguage: Sprache kann nicht als Emailbenachrichtigungssprache gewählt werden.
     languageSetting: Spracheinstellungen
     saveLanguageHasWSErrors: Fehler beim Speichern der Sprache

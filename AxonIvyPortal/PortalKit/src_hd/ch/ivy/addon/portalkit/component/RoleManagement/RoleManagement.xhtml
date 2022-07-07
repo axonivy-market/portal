@@ -149,7 +149,8 @@
     modal="true"
     fitViewport="true"
     responsive="true"
-    styleClass="role-details-dialog">
+    styleClass="role-details-dialog"
+    appendTo="@(body)">
     <c:set var="creationMode" value="#{roleManagementBean.creationMode}" scope="request"/>
     <c:set var="selectedRoleName" value="#{creationMode ? '' : roleManagementBean.selectedRole.name}" scope="request"/>
 
