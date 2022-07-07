@@ -11,6 +11,7 @@ import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IPermission;
 import ch.ivyteam.ivy.security.IRole;
+import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.ISecurityDescriptor;
 import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.security.IUser;
@@ -35,7 +36,7 @@ public class PermissionUtils {
   }
 
   private static ISecurityDescriptor getSecurityDescriptor() {
-    return Ivy.request().getApplication().getSecurityDescriptor();
+    return ISecurityContext.current().securityDescriptor();
   }
 
   /**
