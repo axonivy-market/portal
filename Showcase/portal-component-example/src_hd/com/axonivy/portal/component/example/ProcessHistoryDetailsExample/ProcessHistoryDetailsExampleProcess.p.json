@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.11",
+  "format" : "9.4.14",
   "id" : "181898FC86666195",
   "data" : "com.axonivy.portal.component.example.ProcessHistoryDetailsExample.ProcessHistoryDetailsExampleData",
   "kind" : "HTML_DIALOG",
@@ -9,7 +9,6 @@
       "name" : "start(ICase)",
       "config" : {
         "callSignature" : "start",
-        ".name" : "start(ICase)",
         "input" : {
           "params" : [
             { "name" : "caseView", "type" : "ch.ivyteam.ivy.workflow.ICase" }
@@ -36,7 +35,6 @@
       "type" : "HtmlDialogEventStart",
       "name" : "close",
       "config" : {
-        ".name" : "close",
         "guid" : "181898FC86B6A4C3"
       },
       "visual" : {

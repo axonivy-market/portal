@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.11",
+  "format" : "9.4.14",
   "id" : "18189B0AEEFA7D89",
   "data" : "com.axonivy.portal.component.example.UserSelectionExample.UserSelectionExampleData",
   "kind" : "HTML_DIALOG",
@@ -34,7 +34,6 @@
       "type" : "HtmlDialogEventStart",
       "name" : "finish",
       "config" : {
-        ".name" : "finish",
         "guid" : "18189B0AEF397ED9"
       },
       "visual" : {
@@ -52,7 +51,6 @@
       "type" : "Script",
       "name" : "Init data",
       "config" : {
-        ".name" : "Init data",
         "output" : {
           "code" : [
             "import java.util.Locale;",
@@ -85,7 +83,6 @@
       "type" : "HtmlDialogEventStart",
       "name" : "showSelectedUser",
       "config" : {
-        ".name" : "showSelectedUser",
         "guid" : "18189B78B8650A2F",
         "output" : {
           "code" : [

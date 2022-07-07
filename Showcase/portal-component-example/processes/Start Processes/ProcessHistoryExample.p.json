@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.11",
+  "format" : "9.4.14",
   "id" : "1818977D467E3129",
   "data" : "com.axonivy.portal.component.example.ProcessHistoryExampleData",
   "elements" : [ {
@@ -8,7 +8,6 @@
       "name" : "viewProcessHistoryOfAlphaCompany.ivp",
       "config" : {
         "callSignature" : "viewProcessHistoryOfAlphaCompany",
-        ".name" : "viewProcessHistoryOfAlphaCompany.ivp",
         "outLink" : "viewProcessHistoryOfAlphaCompany.ivp",
         "startName" : "View Process History of Alpha Company in new page"
       },
@@ -29,7 +28,6 @@
       "name" : "createAlphaCompany.ivp",
       "config" : {
         "callSignature" : "createAlphaCompany",
-        ".name" : "createAlphaCompany.ivp",
         "case" : {
           "name" : "Alpha Company"
         },
@@ -49,10 +47,6 @@
         "code name"
       ],
       "config" : {
-        ".name" : [
-          "Set process",
-          "code name"
-        ],
         "output" : {
           "code" : "ivy.case.setCategoryPath(\"Alpha Company\");"
         }
@@ -66,7 +60,6 @@
       "type" : "SubProcessCall",
       "name" : "SetCaseBusinessEntity",
       "config" : {
-        ".name" : "SetCaseBusinessEntity",
         "processCall" : "Functional Processes/SetCaseBusinessEntity:call(String)",
         "call" : {
           "params" : [
@@ -87,7 +80,6 @@
       "type" : "TaskSwitchEvent",
       "name" : "Alpha Company",
       "config" : {
-        ".name" : "Alpha Company",
         "task" : {
           "name" : "Alpha Company"
         }
@@ -116,18 +108,6 @@
         "1. Run createAlphaCompany.ivp process",
         "2. Enter viewProcessHistoryOfAlphaCompany.ivp process, process history of Alpha Company will be shown"
       ],
-      "config" : {
-        ".name" : [
-          "In this example, we create case for Alpha Company, then create a new page to view the process history of Alpha Company",
-          "",
-          "createAlphaCompany =>  create alpha company business case",
-          "viewProcessHistoryOfAlphaCompany => view process history of alpha company in new page",
-          "",
-          "HOW TO RUN THIS EXAMPLE:",
-          "1. Run createAlphaCompany.ivp process",
-          "2. Enter viewProcessHistoryOfAlphaCompany.ivp process, process history of Alpha Company will be shown"
-        ]
-      },
       "visual" : {
         "at" : { "x" : 1200, "y" : 112 },
         "size" : { "width" : 672, "height" : 168 }
@@ -139,7 +119,6 @@
       "config" : {
         "dialogId" : "com.axonivy.portal.component.example.ProcessHistoryExample",
         "startMethod" : "start(Boolean,Boolean)",
-        ".name" : "Alpha Company Process History",
         "call" : {
           "params" : [
             { "name" : "showProcessHistoriesOfAlphaCompany", "type" : "Boolean" },
@@ -162,7 +141,6 @@
       "name" : "viewProcessHistoryOfBetaCompany.ivp",
       "config" : {
         "callSignature" : "viewProcessHistoryOfBetaCompany",
-        ".name" : "viewProcessHistoryOfBetaCompany.ivp",
         "outLink" : "viewProcessHistoryOfBetaCompany.ivp",
         "startName" : "View Process history of beta company in dialog"
       },
@@ -178,7 +156,6 @@
       "config" : {
         "dialogId" : "com.axonivy.portal.component.example.ProcessHistoryExample",
         "startMethod" : "start(Boolean,Boolean)",
-        ".name" : "Beta Company Process History",
         "call" : {
           "params" : [
             { "name" : "showProcessHistoriesOfAlphaCompany", "type" : "Boolean" },
@@ -207,7 +184,6 @@
       "name" : "createBetaCompany.ivp",
       "config" : {
         "callSignature" : "createBetaCompany",
-        ".name" : "createBetaCompany.ivp",
         "case" : {
           "name" : "Beta Company"
         },
@@ -227,10 +203,6 @@
         "code name"
       ],
       "config" : {
-        ".name" : [
-          "Set process",
-          "code name"
-        ],
         "output" : {
           "code" : "ivy.case.setCategoryPath(\"Beta Company\");"
         }
@@ -244,7 +216,6 @@
       "type" : "Script",
       "name" : "Send signal to create company",
       "config" : {
-        ".name" : "Send signal to create company",
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.process.model.value.SignalCode;",
@@ -270,7 +241,6 @@
       "type" : "SignalStartEvent",
       "name" : "Signal create Beta Company",
       "config" : {
-        ".name" : "Signal create Beta Company",
         "signalCode" : "ch:axonivy:portal:example:createbetacompany"
       },
       "visual" : {
@@ -283,7 +253,6 @@
       "type" : "SubProcessCall",
       "name" : "SetCaseBusinessEntity",
       "config" : {
-        ".name" : "SetCaseBusinessEntity",
         "processCall" : "Functional Processes/SetCaseBusinessEntity:call(String)",
         "call" : {
           "params" : [
@@ -304,7 +273,6 @@
       "type" : "TaskSwitchEvent",
       "name" : "Beta Company",
       "config" : {
-        ".name" : "Beta Company",
         "task" : {
           "name" : "Beta Company"
         }
@@ -333,18 +301,6 @@
         "1. Run createBetaCompany.ivp process",
         "2. Run viewProcessHistoryOfBetaCompany.ivp process, then click \"Open process history dialog\" button. Process history of Beta company will be shown"
       ],
-      "config" : {
-        ".name" : [
-          "In this example, we create case for Beta Company by sending a signal, then create a dialog to view the process history of Beta Company",
-          "",
-          "createBetaCompany =>  create beta company business case (with signal)",
-          "viewProcessHistoryOfBetaCompany => view process history of beta company in a dialog",
-          "",
-          "HOW TO RUN THIS EXAMPLE:",
-          "1. Run createBetaCompany.ivp process",
-          "2. Run viewProcessHistoryOfBetaCompany.ivp process, then click \"Open process history dialog\" button. Process history of Beta company will be shown"
-        ]
-      },
       "visual" : {
         "at" : { "x" : 1280, "y" : 392 },
         "size" : { "width" : 832, "height" : 176 }
