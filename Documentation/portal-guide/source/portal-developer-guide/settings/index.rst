@@ -381,15 +381,15 @@ These variables are stored as key-value pairs. They have to be edited in the Eng
    +---------------------------------------------+-------------------------------+-----------------------------+
    | PortalLoginPageDisplay                      | true                          |By default, Portal will      |
    |                                             |                               |redirect to Login Page if    |
-   |                                             |                               | login is required and the   |
-   |                                             |                               | user is unknown.            |
-   |                                             |                               | Set to ``false`` to         |
-   |                                             |                               | redirect to the login error |
-   |                                             |                               | page and hide Logout in the |
-   |                                             |                               | User menu (when you use     |
+   |                                             |                               |login is required and the    |
+   |                                             |                               |user is unknown.             |
+   |                                             |                               |Set to ``false`` to          |
+   |                                             |                               |redirect to the login error  |
+   |                                             |                               |page and hide Logout in the  |
+   |                                             |                               |User menu (when you use      |
    |                                             |                               |external authentication and  |
-   |                                             |                               | the user is not present in  |
-   |                                             |                               |your application user list.  |
+   |                                             |                               |the user is not present in   |
+   |                                             |                               |your application user list.) |
    +---------------------------------------------+-------------------------------+-----------------------------+
 
 
