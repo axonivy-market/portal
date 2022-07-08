@@ -1,0 +1,4 @@
+OpenPortalCaseDetailsHookData #class
+com.axonivy.portal.component #namespace
+caseView ch.ivyteam.ivy.workflow.ICase #field
+isShowBackButton Boolean #field

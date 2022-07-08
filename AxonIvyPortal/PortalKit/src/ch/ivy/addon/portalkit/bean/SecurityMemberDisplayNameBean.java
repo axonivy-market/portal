@@ -8,7 +8,8 @@ import javax.faces.bean.ViewScoped;
 
 import org.apache.commons.lang3.BooleanUtils;
 
-import ch.ivy.addon.portalkit.dto.UserDTO;
+import com.axonivy.portal.component.dto.UserDTO;
+
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.SecurityMemberDisplayNameUtils;

@@ -1,0 +1,52 @@
+{
+  "format" : "9.4.14",
+  "id" : "161936E158EBC57F",
+  "data" : "com.axonivy.portal.component.SetCaseBusinessEntityData",
+  "kind" : "CALLABLE_SUB",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "CallSubStart",
+      "name" : "call(String)",
+      "config" : {
+        "callSignature" : "call",
+        "input" : {
+          "params" : [
+            { "name" : "businessEntityId", "type" : "String" }
+          ],
+          "map" : {
+            "out.caseBusinessEntity" : "param.businessEntityId"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : { "id" : "f4", "to" : "f3" }
+    }, {
+      "id" : "f1",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 432, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "Script",
+      "name" : "Set case business entity to case",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.component.enums.AdditionalProperty;",
+            "import ch.ivyteam.ivy.workflow.ICase;",
+            "",
+            "ivy.case.getBusinessCase().customFields().textField(AdditionalProperty.CASE_BUSINESS_ENTITY_PROPERTY.toString()).set(in.caseBusinessEntity);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 264, "y" : 64 },
+        "size" : { "width" : 192, "height" : 44 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    } ]
+}
