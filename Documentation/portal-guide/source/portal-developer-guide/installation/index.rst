@@ -148,6 +148,42 @@ Migrate 9.3 To 9.4
 #. The ``customization.css`` file has been removed, in case you use it in your project, please switch to using
    :dev-url:`Engine Branding </doc/nightly/designer-guide/user-interface/branding/branding-engine.html>` to customize styling
 
+#. Sub processes related to documents are moved to the independent project ``portal-component``.
+   If you customized these processes, please override the correspond sub process again and added your customization to it.
+   
+   Below is a list of deprecated processes in project ``PortalKit`` and new processes in project ``portal-component``.
+   
+   +-----------------------------------+--------------------------+
+   | New subprocess                    | Deprecated subprocess    |
+   +===================================+==========================+
+   | GetDocumentItems                  | GetDocumentList          |
+   +-----------------------------------+--------------------------+
+   | UploadDocumentItem                | UploadDocument           |
+   +-----------------------------------+--------------------------+
+   | DeleteDocumentItem                | DeleteDocument           |
+   +-----------------------------------+--------------------------+
+   | DownloadDocumentItem              | DownloadDocument         |
+   +-----------------------------------+--------------------------+
+
+#. Some classes of the Portal have been moved to the independent project ``portal-component``. Please refer to below table to migrate them correctly
+
+   .. csv-table::
+      :file: documents/class_replacement_9.4.csv
+      :header-rows: 1
+      :class: longtable
+      :widths: 1 1
+
+#. Some components of the Portal have been moved to the independent project ``portal-component``. Please follow these steps to migrate them:
+
+   - :ref:`Migration steps <components-additional-components-migrate-from-old-user-selection>` for the new :ref:`User Selection <components-additional-components-user-selection>` component.
+
+   - :ref:`Migration steps <components-additional-components-migrate-from-old-role-selection>` for the new :ref:`Role Selection <components-additional-components-role-selection>` component.
+
+   - :ref:`Migration steps <components-additional-components-migrate-from-old-document-table>` for the new :ref:`Document Table <components-additional-components-document-table>` component.
+
+   - :ref:`Migration steps <components-additional-components-migrate-from-old-process-history>` for the new :ref:`Process History <components-additional-component-process-history>` component.
+
+   - :ref:`Migration steps <components-additional-components-migrate-from-old-process-chain>` for the new :ref:`Process Chain <components-additional-component-process-chain>` component.
 
 Migrate To 9.3
 --------------
@@ -353,6 +389,7 @@ Changes in 9.1
 .. |css_variable| raw:: html
 
    <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties" target="_blank">CSS Variable</a>
+
 .. |css_variable_convert| raw:: html
 
    <a href="https://www.npmjs.com/package/sass-to-css-variables" target="_blank">SASS to CSS Variables</a>
