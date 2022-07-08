@@ -96,10 +96,11 @@
         "security" : "system",
         "output" : {
           "code" : [
+            "import ch.ivyteam.ivy.security.ISecurityContext;",
             "import gawfs.TaskDef;",
             "",
             "for (TaskDef task : in.finishedTasks) {",
-            "  task.actualApplicant = ivy.security.users().find(task.actualApplicantName);",
+            "  task.actualApplicant = ISecurityContext.current().users().find(task.actualApplicantName);",
             "}"
           ]
         }

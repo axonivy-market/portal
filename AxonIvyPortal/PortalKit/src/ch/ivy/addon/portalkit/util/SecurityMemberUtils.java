@@ -62,13 +62,13 @@ public class SecurityMemberUtils {
 
   public static ISecurityMember findISecurityMemberFromRoleDTO(RoleDTO roleDTO) {
     return IvyExecutor.executeAsSystem(() -> {
-      return ((ISecurityContext)Ivy.security()).findRole(roleDTO.getId());
+      return ISecurityContext.current().findRole(roleDTO.getId());
     });
   }
 
   public static String buildTooltipFromUsers(String roleName) {
     return IvyExecutor.executeAsSystem(() -> {
-      IRole role = Ivy.security().roles().find(roleName);
+      IRole role = ISecurityContext.current().roles().find(roleName);
       IPagedResult<IUser> result = role.users().assignedPaged(10);
       List<IUser> users = result.page(1);
       long totalCount = result.count();

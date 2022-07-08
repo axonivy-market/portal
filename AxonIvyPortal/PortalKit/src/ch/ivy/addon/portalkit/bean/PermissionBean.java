@@ -7,6 +7,7 @@ import javax.faces.bean.RequestScoped;
 
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IRole;
+import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.workflow.IWorkflowSession;
 
 /**
@@ -32,7 +33,7 @@ public class PermissionBean implements Serializable {
         return false;
       }
 
-      IRole adminRole = Ivy.security().roles().find(AXONIVY_PORTAL_ADMIN);
+      IRole adminRole = ISecurityContext.current().roles().find(AXONIVY_PORTAL_ADMIN);
       return sessionUser.hasRole(adminRole, true);
     } catch (Exception e) {
       Ivy.log().error(e);
