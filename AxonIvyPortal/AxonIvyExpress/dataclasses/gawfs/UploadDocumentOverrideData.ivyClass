@@ -1,7 +1,0 @@
-UploadDocumentOverrideData #class
-gawfs #namespace
-status ch.ivy.addon.portalkit.enums.UploadDocumentCheckStatus #field
-message String #field
-uploadedFile org.primefaces.model.file.UploadedFile #field
-businessCase ch.ivyteam.ivy.workflow.ICase #field
-uploadedDocument ch.ivyteam.ivy.workflow.document.IDocument #field
