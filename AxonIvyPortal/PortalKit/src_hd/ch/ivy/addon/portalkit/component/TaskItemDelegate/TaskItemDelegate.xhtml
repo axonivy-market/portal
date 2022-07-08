@@ -39,7 +39,7 @@
         </h:panelGroup>
 
         <h:panelGroup id="select-delegate-panel" layout="block" styleClass="select-delegate-panel">
-          <ic:ch.ivy.addon.portalkit.component.UserSelection id="user-activator-component" 
+          <ic:com.axonivy.portal.component.UserSelection id="user-activator-component" 
             componentId="user-activator-select" selectedUser="#{data.selectedUser}"
             rendered="#{data.isUserDelegated}" completeMethod="#{logic.autoCompleteForUserDelegate}"
             isRenderedMessage="false">
@@ -51,9 +51,9 @@
               <p:ajax event="itemSelect" listener="#{data.setDisabledDelegateButton(false)}"
                 update="#{cc.clientId}:task-delegate-form:proceed-task-delegate-command" />
            </f:facet>
-          </ic:ch.ivy.addon.portalkit.component.UserSelection>
+          </ic:com.axonivy.portal.component.UserSelection>
 
-          <ic:ch.ivy.addon.portalkit.component.RoleSelection id="group-activator-select-component" scrollHeight="400"
+          <ic:com.axonivy.portal.component.RoleSelection id="group-activator-select-component" scrollHeight="400"
             componentId="group-activator-select" selectedRole="#{data.selectedRole}" rendered="#{!data.isUserDelegated}"
             cache="true" queryDelay="500" completeMethod="#{logic.autoCompleteForRoleDelegate}"
             isRenderedMessage="false">
@@ -65,7 +65,7 @@
               <p:ajax event="itemSelect" listener="#{data.setDisabledDelegateButton(false)}"
                 update="#{cc.clientId}:task-delegate-form:proceed-task-delegate-command" />
             </f:facet>
-          </ic:ch.ivy.addon.portalkit.component.RoleSelection>
+          </ic:com.axonivy.portal.component.RoleSelection>
           
         </h:panelGroup>
 
