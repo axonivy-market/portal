@@ -11,8 +11,11 @@
       </h1>
 
       <h:form id="form">
-        <ic:ch.ivy.addon.portalkit.component.document.DocumentTable id="document-table-component"
-          typeSelectionItems="#{documentTableUsageBean.documentTypes}">
+        <ic:com.axonivy.portal.component.DocumentTable id="document-table-component"
+          typeSelectionItems="#{documentTableUsageBean.documentTypes}"
+          allowedUploadFileTypes="#{documentTableUsageBean.allowedUploadFileType}"
+          enableScriptCheckingForUploadedDocument="#{documentTableUsageBean.enableScriptCheckingForUploadedDocument}"
+          enableVirusScannerForUploadedDocument="#{documentTableUsageBean.enableVirusScannerForUploadedDocument}">
           <f:facet name="componentHeader">
             <h2>
               This is customized document table component header
@@ -32,7 +35,7 @@
               This is customized document table component footer
             </h2>
           </f:facet>
-        </ic:ch.ivy.addon.portalkit.component.document.DocumentTable>
+        </ic:com.axonivy.portal.component.DocumentTable>
       </h:form>
 
     </ui:define>

@@ -4,9 +4,9 @@ import java.util.Optional;
 
 import org.apache.commons.lang.StringUtils;
 
+import com.axonivy.portal.component.dto.UserDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import ch.ivy.addon.portalkit.dto.UserDTO;
 import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilter;
 import ch.ivy.addon.portalkit.util.SecurityMemberDisplayNameUtils;

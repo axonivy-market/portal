@@ -1,4 +1,4 @@
 CustomWidgetConfigurationData #class
 ch.ivy.addon.portal.generic.dashboard.component.CustomWidgetConfiguration #namespace
-user ch.ivy.addon.portalkit.dto.UserDTO #field
+user com.axonivy.portal.component.dto.UserDTO #field
 user PERSISTENT #fieldModifier
