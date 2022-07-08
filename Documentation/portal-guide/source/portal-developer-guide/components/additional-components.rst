@@ -111,7 +111,9 @@ Migrate from Deprecated Process History
 
 #. Replace code in HTML files: replace ``ic:ch.ivy.addon.portal.component.ProcessHistory`` with ``ic:com.axonivy.portal.component.ProcessHistory``.
 
-#. Consider updating value of new attributes ``showCasesOfOwner`` and ``dateTimePattern`` by your business.
+#. Optional: set ``showCaseOfOwner`` to ``true`` if you want to show the cases owned by the login user.
+
+#. Optional: set ``dateTimePattern`` to a specific date/time pattern if you want to show the date/time in a unique format different from the default format (dd:MM.yyyy HH:mm).
 
 #. Optional: Override the subprocess ``OpenCaseDetailsHook`` to handle navigation when clicking on a case in the Process History component.
 
@@ -404,7 +406,7 @@ Migrate from Deprecated Document Table
 
 #. Replace code in HTML files: replace ``ic:ch.ivy.addon.portalkit.component.document.DocumentTable`` with ``ic:com.axonivy.portal.component.DocumentTable``.
 
-#. Consider updating value of new attributes ``enableScriptCheckingForUploadedDocument``, ``enableVirusScannerForUploadedDocument`` and ``allowedUploadFileTypes`` by your business.
+#. Consider updating value of new attributes ``enableScriptCheckingForUploadedDocument``, ``enableVirusScannerForUploadedDocument`` and ``allowedUploadFileTypes`` as required.
 
 #. Override subprocesses if you want and adapt your business accordingly.
 
