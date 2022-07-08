@@ -35,7 +35,10 @@
       "config" : {
         "security" : "system",
         "output" : {
-          "code" : "ivy.case.setOwner(ivy.security.users().find(\"demo\"));"
+          "code" : [
+            "import ch.ivyteam.ivy.security.ISecurityContext;",
+            "ivy.case.setOwner(ISecurityContext.current().users().find(\"demo\"));"
+          ]
         }
       },
       "visual" : {
@@ -122,7 +125,10 @@
       "config" : {
         "security" : "system",
         "output" : {
-          "code" : "ivy.case.setOwner(ivy.security.roles().find(\"CaseOwner\"));"
+          "code" : [
+            "import ch.ivyteam.ivy.security.ISecurityContext;",
+            "ivy.case.setOwner(ISecurityContext.current().roles().find(\"CaseOwner\"));"
+          ]
         }
       },
       "visual" : {
