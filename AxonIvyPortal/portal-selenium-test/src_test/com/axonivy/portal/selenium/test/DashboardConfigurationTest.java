@@ -345,7 +345,7 @@ public class DashboardConfigurationTest extends BaseTest {
     taskWidget.deleteTaskWidget();
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
     newDashboardDetailsEditPage.clickOnRemoveWidgetButton();
-    newDashboardPage.selectTaskWidget("").expand().shouldHaveSize(2);
+    newDashboardPage.selectCaseWidget("").expand().shouldHaveSize(2);
   }
   
   @Test
@@ -384,7 +384,7 @@ public class DashboardConfigurationTest extends BaseTest {
     taskWidget.deleteTaskWidget();
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
     newDashboardDetailsEditPage.clickOnRemoveWidgetButton();
-    newDashboardPage.selectTaskWidget("").expand().shouldHaveSize(2);
+    newDashboardPage.selectCaseWidget("").expand().shouldHaveSize(2);
   }
   
   @Test
