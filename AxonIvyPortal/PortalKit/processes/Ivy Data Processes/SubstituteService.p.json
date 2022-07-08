@@ -116,7 +116,7 @@
         "callSignature" : "saveSubstitutes",
         "input" : {
           "params" : [
-            { "name" : "userDTO", "type" : "ch.ivy.addon.portalkit.dto.UserDTO" },
+            { "name" : "userDTO", "type" : "com.axonivy.portal.component.dto.UserDTO" },
             { "name" : "substitutes", "type" : "java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvySubstitute>" }
           ],
           "map" : {

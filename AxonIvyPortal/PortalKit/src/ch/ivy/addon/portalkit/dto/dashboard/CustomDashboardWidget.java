@@ -7,9 +7,9 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
 
+import com.axonivy.portal.component.dto.UserDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import ch.ivy.addon.portalkit.dto.UserDTO;
 import ch.ivy.addon.portalkit.dto.WidgetLayout;
 import ch.ivy.addon.portalkit.dto.widget.DashboardCustomWidgetData;
 import ch.ivy.addon.portalkit.enums.DashboardCustomParamType;

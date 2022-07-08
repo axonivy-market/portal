@@ -1,0 +1,72 @@
+{
+  "format" : "9.4.14",
+  "id" : "181896A7116AD6D9",
+  "data" : "com.axonivy.portal.component.example.override.DownloadDocumentItemOverrideData",
+  "kind" : "CALLABLE_SUB",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "CallSubStart",
+      "name" : "call(ICase,IvyDocument)",
+      "config" : {
+        "callSignature" : "call",
+        "input" : {
+          "params" : [
+            { "name" : "bussinessCase", "type" : "ch.ivyteam.ivy.workflow.ICase" },
+            { "name" : "document", "type" : "com.axonivy.portal.component.ivydata.bo.IvyDocument" }
+          ],
+          "map" : {
+            "out.businessCase" : "param.bussinessCase",
+            "out.document" : "param.document"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "streamedContent", "type" : "org.primefaces.model.StreamedContent" }
+          ],
+          "map" : {
+            "result.streamedContent" : "in.streamedContent"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 },
+        "labelOffset" : { "x" : -76, "y" : 30 }
+      },
+      "connect" : { "id" : "f4", "to" : "f3" }
+    }, {
+      "id" : "f1",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "Script",
+      "name" : "Download document item",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.component.service.CaseDocumentService;",
+            "",
+            "ivy.log.warn(\"Call to override process download document item\");",
+            "out.streamedContent = CaseDocumentService.newInstance(in.businessCase).download(in.document);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 },
+        "size" : { "width" : 160, "height" : 44 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f5",
+      "type" : "ProcessAnnotation",
+      "name" : "Override this subprocess to download file from DMS",
+      "visual" : {
+        "at" : { "x" : 312, "y" : 200 },
+        "size" : { "width" : 288, "height" : 30 }
+      },
+      "connect" : { "id" : "f6", "to" : "f0", "via" : [ { "x" : 328, "y" : 184 } ] }
+    } ]
+}
