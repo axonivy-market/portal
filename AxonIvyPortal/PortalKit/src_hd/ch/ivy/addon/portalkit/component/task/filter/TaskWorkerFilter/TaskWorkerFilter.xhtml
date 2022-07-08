@@ -17,7 +17,7 @@
     taskFilter="#{cc.attrs.filter}" selectedFilters="#{cc.attrs.selectedFilters}"
     resultContainerUpdated="#{cc.attrs.resultContainerUpdated}"
     dataModel="#{cc.attrs.dataModel}" dismissableOverlayPanel="false">
-    <ic:ch.ivy.addon.portalkit.component.UserSelection id="worker-component" componentId="worker-select"
+    <ic:com.axonivy.portal.component.UserSelection id="worker-component" componentId="worker-select"
       selectedUser="#{cc.attrs.filter.selectedWorker}" size="35"
       autoCompleteStyleClass="responsible-list-filter">
       <p:column>
@@ -29,7 +29,7 @@
           </f:facet>
         </pc:securityMemberNameAndAvatar>
       </p:column>
-    </ic:ch.ivy.addon.portalkit.component.UserSelection>
+    </ic:com.axonivy.portal.component.UserSelection>
   </ic:ch.ivy.addon.portalkit.component.task.filter.AdvancedFilter>
 </cc:implementation>
 </html>

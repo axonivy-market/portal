@@ -9,10 +9,11 @@
       "name" : "call(ICase,IvyDocument)",
       "config" : {
         "callSignature" : "call",
+        ".name" : "call(ICase,IvyDocument)",
         "input" : {
           "params" : [
             { "name" : "businessCase", "type" : "ch.ivyteam.ivy.workflow.ICase" },
-            { "name" : "document", "type" : "ch.ivy.addon.portalkit.ivydata.bo.IvyDocument" }
+            { "name" : "document", "type" : "com.axonivy.portal.component.ivydata.bo.IvyDocument" }
           ],
           "map" : {
             "out.businessCase" : "param.businessCase",
@@ -30,21 +31,21 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 },
-        "labelOffset" : { "x" : -81, "y" : 26 }
+        "labelOffset" : { "x" : -73, "y" : 17 }
       },
       "connect" : { "id" : "f4", "to" : "f3" }
     }, {
       "id" : "f1",
       "type" : "CallSubEnd",
       "visual" : {
-        "at" : { "x" : 352, "y" : 64 }
+        "at" : { "x" : 416, "y" : 64 }
       }
     }, {
       "id" : "f3",
       "type" : "Script",
-      "name" : "Delete document",
+      "name" : "Delete document item",
       "config" : {
-        "security" : "system",
+        ".name" : "Delete document item",
         "output" : {
           "code" : [
             "import java.util.Arrays;",
@@ -58,17 +59,21 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 224, "y" : 64 }
+        "at" : { "x" : 256, "y" : 64 },
+        "size" : { "width" : 128, "height" : 44 }
       },
       "connect" : { "id" : "f2", "to" : "f1" }
     }, {
       "id" : "f5",
       "type" : "ProcessAnnotation",
       "name" : "Override this sub process to delete file in DMS",
-      "visual" : {
-        "at" : { "x" : 256, "y" : 192 },
-        "size" : { "width" : 256, "height" : 30 }
+      "config" : {
+        ".name" : "Override this sub process to delete file in DMS"
       },
-      "connect" : { "id" : "f6", "to" : "f0", "via" : [ { "x" : 288, "y" : 176 } ] }
+      "visual" : {
+        "at" : { "x" : 288, "y" : 184 },
+        "size" : { "width" : 256, "height" : 40 }
+      },
+      "connect" : { "id" : "f6", "to" : "f0" }
     } ]
 }
