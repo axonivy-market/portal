@@ -1,0 +1,8 @@
+PortalKit,portal-component
+ch.ivy.addon.portalkit.dto.RoleDTO,com.axonivy.portal.component.dto.RoleDTO
+ch.ivy.addon.portalkit.dto.UserDTO,com.axonivy.portal.component.dto.UserDTO
+ch.ivy.addon.portalkit.ivydata.bo.IvyDocument,com.axonivy.portal.component.ivydata.bo.IvyDocument
+ch.ivy.addon.portalkit.document.IvyDocumentTransformer,com.axonivy.portal.component.document.IvyDocumentTransformer
+ch.ivy.addon.portalkit.enums.DocumentType,com.axonivy.portal.component.enums.DocumentType
+ch.ivy.addon.portalkit.enums.BasicDocumentType,com.axonivy.portal.component.enums.BasicDocumentType
+ch.ivy.addon.portalkit.enums.UploadDocumentCheckStatus,com.axonivy.portal.component.enums.UploadDocumentCheckStatus

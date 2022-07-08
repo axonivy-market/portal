@@ -30,6 +30,7 @@ pipeline {
       steps {
         script {
           def utils = load 'build/common/utils.groovy'
+          utils.init()
           downloadPortalRelease()
 
           echo '====================Check out tag of Portal latest successful release===================='
