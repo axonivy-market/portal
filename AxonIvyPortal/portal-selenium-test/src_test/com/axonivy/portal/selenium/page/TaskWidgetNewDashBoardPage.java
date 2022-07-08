@@ -368,6 +368,12 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
     return new TaskEditWidgetNewDashBoardPage();
   }
   
+  public void deleteTaskWidget() {
+    $$("div.table-widget-panel div.widget__header").filter(text(taskWidgetName)).first()
+        .waitUntil(appear, DEFAULT_TIMEOUT).$("div[id$='widget-header-actions']").$("a.ui-commandlink[id*='delete-widget']")
+        .shouldBe(getClickableCondition()).click();
+  }
+  
   private SelenideElement getTaskWidgetHeader() {
     return $$("div.table-widget-panel").filter(text(taskWidgetName)).first();
   }

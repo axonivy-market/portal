@@ -15,11 +15,12 @@ import org.primefaces.virusscan.VirusException;
 import org.primefaces.virusscan.VirusScanner;
 import org.primefaces.virusscan.VirusScannerService;
 
+import com.axonivy.portal.component.ivydata.bo.IvyDocument;
+
 import ch.ivy.addon.portalkit.configuration.GlobalSetting;
 import ch.ivy.addon.portalkit.document.DocumentDetector;
 import ch.ivy.addon.portalkit.document.DocumentDetectorFactory;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
-import ch.ivy.addon.portalkit.ivydata.bo.IvyDocument;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.persistence.PersistencyException;
@@ -163,7 +164,7 @@ public class CaseDocumentService {
     }
   }
 
-  private static List<String> getAllowedUploadFileType() {
+  public static List<String> getAllowedUploadFileType() {
     GlobalSettingService globalSettingService = new GlobalSettingService();
     GlobalSetting documentSetting =
         globalSettingService.findGlobalSettingByGlobalVariable(GlobalVariable.UPLOAD_DOCUMENT_WHITELIST_EXTENSION);

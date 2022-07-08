@@ -17,7 +17,7 @@
     caseFilter="#{cc.attrs.filter}" selectedFilters="#{cc.attrs.selectedFilters}"
     resultContainerUpdated="#{cc.attrs.resultContainerUpdated}" dataModel="#{cc.attrs.dataModel}"
     dismissableOverlayPanel="false">
-    <ic:ch.ivy.addon.portalkit.component.UserSelection id="creator-component" componentId="creator-select" size="35"
+    <ic:com.axonivy.portal.component.UserSelection id="creator-component" componentId="creator-select" size="35"
       selectedUser="#{cc.attrs.filter.selectedCreator}" autoCompleteStyleClass="responsible-list-filter">
       <p:column>
         <pc:securityMemberNameAndAvatar securityMember="#{user}"
@@ -27,7 +27,7 @@
           </f:facet>
         </pc:securityMemberNameAndAvatar>
       </p:column>
-    </ic:ch.ivy.addon.portalkit.component.UserSelection>
+    </ic:com.axonivy.portal.component.UserSelection>
   </ic:ch.ivy.addon.portalkit.component.cases.filter.AdvancedFilter>
 </cc:implementation>
 </html>
