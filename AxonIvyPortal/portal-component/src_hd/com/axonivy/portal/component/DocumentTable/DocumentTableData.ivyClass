@@ -1,0 +1,32 @@
+DocumentTableData #class
+com.axonivy.portal.component.DocumentTable #namespace
+documents java.util.List<com.axonivy.portal.component.ivydata.bo.IvyDocument> #field
+documents PERSISTENT #fieldModifier
+event org.primefaces.event.FileUploadEvent #field
+event PERSISTENT #fieldModifier
+fileLimit Integer #field
+fileLimit PERSISTENT #fieldModifier
+ivyCase ch.ivyteam.ivy.workflow.ICase #field
+ivyCase PERSISTENT #fieldModifier
+message String #field
+message PERSISTENT #fieldModifier
+messageComponentId String #field
+messageComponentId PERSISTENT #fieldModifier
+selectedDocument com.axonivy.portal.component.ivydata.bo.IvyDocument #field
+selectedDocument PERSISTENT #fieldModifier
+streamedContent org.primefaces.model.StreamedContent #field
+streamedContent PERSISTENT #fieldModifier
+typeColumnRendered Boolean #field
+typeColumnRendered PERSISTENT #fieldModifier
+typeSelection com.axonivy.portal.component.enums.DocumentType #field
+typeSelection PERSISTENT #fieldModifier
+uploadDocumentCheckStatus com.axonivy.portal.component.enums.UploadDocumentCheckStatus #field
+uploadDocumentCheckStatus PERSISTENT #fieldModifier
+uploadedDocument ch.ivyteam.ivy.workflow.document.IDocument #field
+uploadedDocument PERSISTENT #fieldModifier
+enableVirusScannerForUploadedDocument Boolean #field
+enableVirusScannerForUploadedDocument PERSISTENT #fieldModifier
+enableScriptCheckingForUploadedDocument Boolean #field
+enableScriptCheckingForUploadedDocument PERSISTENT #fieldModifier
+allowedUploadFileTypes String #field
+allowedUploadFileTypes PERSISTENT #fieldModifier

@@ -1,0 +1,16 @@
+UserSelectionExampleData #class
+com.axonivy.portal.component.example.UserSelectionExample #namespace
+definedRoleNames List<String> #field
+definedRoleNames PERSISTENT #fieldModifier
+selectedUserForDefinedRoles com.axonivy.portal.component.dto.UserDTO #field
+selectedUserForDefinedRoles PERSISTENT #fieldModifier
+selectedUser com.axonivy.portal.component.dto.UserDTO #field
+selectedUser PERSISTENT #fieldModifier
+selectedUserForReadOnlyField com.axonivy.portal.component.dto.UserDTO #field
+selectedUserForReadOnlyField PERSISTENT #fieldModifier
+excludedUsernames List<String> #field
+excludedUsernames PERSISTENT #fieldModifier
+selectedUserForExcludingUsers com.axonivy.portal.component.dto.UserDTO #field
+selectedUserForExcludingUsers PERSISTENT #fieldModifier
+selectedUserForInsertChildren com.axonivy.portal.component.dto.UserDTO #field
+selectedUserForInsertChildren PERSISTENT #fieldModifier
