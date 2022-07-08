@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<userConfig>
+    <user>
+        <username>backendDev1</username>
+        <fullName>Backend Developer 1</fullName>
+        <role>BackendDeveloper</role>
+    </user>
+    <user>
+        <username>backendDev2</username>
+        <fullName>Backend Developer 2</fullName>
+        <role>BackendDeveloper</role>
+    </user>
+    <user>
+        <username>supporter</username>
+        <fullName>Supporter</fullName>
+        <role>Supporter</role>
+    </user>
+    <user>
+        <username>tester</username>
+        <fullName>Tester User</fullName>
+        <role>Tester</role>
+    </user>
+    <user>
+        <username>pm</username>
+        <fullName>Project Manager User</fullName>
+        <role>ProjectManager</role>
+    </user>
+</userConfig>

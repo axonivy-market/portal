@@ -1,0 +1,66 @@
+{
+  "format" : "9.4.14",
+  "id" : "181898F114A731AB",
+  "data" : "com.axonivy.portal.component.example.override.OpenCaseDetailsHookOverrideData",
+  "kind" : "CALLABLE_SUB",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "CallSubStart",
+      "name" : "call(ICase,Boolean,Boolean)",
+      "config" : {
+        "callSignature" : "call",
+        "input" : {
+          "params" : [
+            { "name" : "caseView", "type" : "ch.ivyteam.ivy.workflow.ICase" },
+            { "name" : "isShowBackButton", "type" : "Boolean" },
+            { "name" : "isOpenInFrame", "type" : "Boolean" }
+          ],
+          "map" : {
+            "out.caseView" : "param.caseView",
+            "out.isOpenInFrame" : "param.isOpenInFrame",
+            "out.isShowBackButton" : "param.isShowBackButton"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "caseDetailsUrl", "type" : "String" }
+          ],
+          "map" : {
+            "result.caseDetailsUrl" : "in.caseDetailsUrl"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 },
+        "labelOffset" : { "x" : -57, "y" : 18 }
+      },
+      "connect" : { "id" : "f4", "to" : "f3" }
+    }, {
+      "id" : "f1",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 480, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "DialogCall",
+      "name" : "ProcessHistoryDetailsExample",
+      "config" : {
+        "dialogId" : "com.axonivy.portal.component.example.ProcessHistoryDetailsExample",
+        "startMethod" : "start(ch.ivyteam.ivy.workflow.ICase)",
+        "call" : {
+          "params" : [
+            { "name" : "caseView", "type" : "ch.ivyteam.ivy.workflow.ICase" }
+          ],
+          "map" : {
+            "param.caseView" : "in.caseView"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 312, "y" : 64 },
+        "size" : { "width" : 176, "height" : 44 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    } ]
+}

@@ -2,7 +2,7 @@ LeaveRequestApprovalData #class
 com.axonivy.portal.userexamples.leaverequest.LeaveRequestApproval #namespace
 leaveRequestData com.axonivy.portal.userexamples.leaverequest.LeaveRequest #field
 leaveRequestData PERSISTENT #fieldModifier
-requester ch.ivy.addon.portalkit.dto.UserDTO #field
+requester com.axonivy.portal.component.dto.UserDTO #field
 requester PERSISTENT #fieldModifier
-approver ch.ivy.addon.portalkit.dto.UserDTO #field
+approver com.axonivy.portal.component.dto.UserDTO #field
 approver PERSISTENT #fieldModifier

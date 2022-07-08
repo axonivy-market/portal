@@ -3,9 +3,9 @@ package ch.ivy.addon.portalkit.dto.dashboard;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.axonivy.portal.component.dto.UserDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import ch.ivy.addon.portalkit.dto.UserDTO;
 import ch.ivy.addon.portalkit.enums.DashboardCustomParamType;
 
 public class CustomDashboardWidgetParam implements Serializable {
