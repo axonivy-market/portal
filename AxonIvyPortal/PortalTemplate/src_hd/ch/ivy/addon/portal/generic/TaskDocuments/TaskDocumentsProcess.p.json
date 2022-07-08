@@ -9,6 +9,7 @@
       "name" : "start(Long)",
       "config" : {
         "callSignature" : "start",
+        ".name" : "start(Long)",
         "input" : {
           "params" : [
             { "name" : "taskId", "type" : "Long" }
@@ -36,6 +37,7 @@
       "type" : "HtmlDialogEventStart",
       "name" : "close",
       "config" : {
+        ".name" : "close",
         "guid" : "1802215F5712F489"
       },
       "visual" : {
@@ -53,6 +55,7 @@
       "type" : "SubProcessCall",
       "name" : "Find documents",
       "config" : {
+        ".name" : "Find documents",
         "processCall" : "Functional Processes/GetDocumentList:call(ch.ivyteam.ivy.workflow.ICase)",
         "output" : {
           "map" : {
@@ -79,6 +82,7 @@
       "name" : "initData()",
       "config" : {
         "callSignature" : "initData",
+        ".name" : "initData()",
         "guid" : "1802244D8B3A4339"
       },
       "visual" : {
@@ -103,7 +107,8 @@
       "type" : "SubProcessCall",
       "name" : "Download Document",
       "config" : {
-        "processCall" : "Functional Processes/DownloadDocument:call(ch.ivyteam.ivy.workflow.ICase,ch.ivy.addon.portalkit.ivydata.bo.IvyDocument)",
+        ".name" : "Download Document",
+        "processCall" : "Functional Processes/DownloadDocument:call(ch.ivyteam.ivy.workflow.ICase,com.axonivy.portal.component.ivydata.bo.IvyDocument)",
         "output" : {
           "map" : {
             "out" : "in",
@@ -113,7 +118,7 @@
         "call" : {
           "params" : [
             { "name" : "bussinessCase", "type" : "ch.ivyteam.ivy.workflow.ICase" },
-            { "name" : "document", "type" : "ch.ivy.addon.portalkit.ivydata.bo.IvyDocument" }
+            { "name" : "document", "type" : "com.axonivy.portal.component.ivydata.bo.IvyDocument" }
           ],
           "map" : {
             "param.bussinessCase" : "in.task.getCase().getBusinessCase()",
@@ -132,6 +137,7 @@
       "name" : "deleteDocument()",
       "config" : {
         "callSignature" : "deleteDocument",
+        ".name" : "deleteDocument()",
         "guid" : "180402B1B9EC50AB"
       },
       "visual" : {
@@ -143,6 +149,7 @@
       "type" : "SubProcessCall",
       "name" : "Find documents",
       "config" : {
+        ".name" : "Find documents",
         "processCall" : "Functional Processes/GetDocumentList:call(ch.ivyteam.ivy.workflow.ICase)",
         "output" : {
           "map" : {
@@ -177,6 +184,10 @@
         "message"
       ],
       "config" : {
+        ".name" : [
+          "Show success",
+          "message"
+        ],
         "output" : {
           "code" : [
             "import javax.faces.application.FacesMessage;",
@@ -196,7 +207,8 @@
       "type" : "SubProcessCall",
       "name" : "Delete Document",
       "config" : {
-        "processCall" : "Functional Processes/DeleteDocument:call(ch.ivyteam.ivy.workflow.ICase,ch.ivy.addon.portalkit.ivydata.bo.IvyDocument)",
+        ".name" : "Delete Document",
+        "processCall" : "Functional Processes/DeleteDocument:call(ch.ivyteam.ivy.workflow.ICase,com.axonivy.portal.component.ivydata.bo.IvyDocument)",
         "output" : {
           "map" : {
             "out" : "in",
@@ -206,7 +218,7 @@
         "call" : {
           "params" : [
             { "name" : "businessCase", "type" : "ch.ivyteam.ivy.workflow.ICase" },
-            { "name" : "document", "type" : "ch.ivy.addon.portalkit.ivydata.bo.IvyDocument" }
+            { "name" : "document", "type" : "com.axonivy.portal.component.ivydata.bo.IvyDocument" }
           ],
           "map" : {
             "param.businessCase" : "in.task.getCase().getBusinessCase()",
@@ -224,6 +236,7 @@
       "name" : "downloadDocument(IvyDocument)",
       "config" : {
         "callSignature" : "downloadDocument",
+        ".name" : "downloadDocument(IvyDocument)",
         "result" : {
           "params" : [
             { "name" : "streamedContent", "type" : "org.primefaces.model.StreamedContent" }
@@ -234,7 +247,7 @@
         },
         "input" : {
           "params" : [
-            { "name" : "document", "type" : "ch.ivy.addon.portalkit.ivydata.bo.IvyDocument" }
+            { "name" : "document", "type" : "com.axonivy.portal.component.ivydata.bo.IvyDocument" }
           ],
           "map" : {
             "out.document" : "param.document"

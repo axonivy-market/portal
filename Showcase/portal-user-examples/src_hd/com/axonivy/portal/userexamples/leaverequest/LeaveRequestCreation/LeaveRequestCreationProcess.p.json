@@ -56,9 +56,8 @@
         "security" : "system",
         "output" : {
           "code" : [
+            "import com.axonivy.portal.component.dto.UserDTO;",
             "import java.util.Arrays;",
-            "",
-            "import ch.ivy.addon.portalkit.dto.UserDTO;",
             "import ch.ivy.addon.portalkit.util.UserUtils;",
             "import com.axonivy.portal.userexamples.enums.LeaveType;",
             "import java.util.Arrays;",

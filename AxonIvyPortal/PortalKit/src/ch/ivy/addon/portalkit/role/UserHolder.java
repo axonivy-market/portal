@@ -5,7 +5,7 @@ import java.util.Objects;
 
 import org.apache.commons.lang3.StringUtils;
 
-import ch.ivy.addon.portalkit.dto.UserDTO;
+import com.axonivy.portal.component.dto.UserDTO;
 import ch.ivyteam.ivy.security.IUser;
 
 public class UserHolder implements Serializable {

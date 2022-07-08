@@ -1,0 +1,318 @@
+{
+  "format" : "9.4.14",
+  "id" : "1818977D467E3129",
+  "data" : "com.axonivy.portal.component.example.ProcessHistoryExampleData",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "viewProcessHistoryOfAlphaCompany.ivp",
+      "config" : {
+        "callSignature" : "viewProcessHistoryOfAlphaCompany",
+        "outLink" : "viewProcessHistoryOfAlphaCompany.ivp",
+        "startName" : "View Process History of Alpha Company in new page"
+      },
+      "visual" : {
+        "at" : { "x" : 128, "y" : 64 },
+        "labelOffset" : { "x" : -94, "y" : 18 }
+      },
+      "connect" : { "id" : "f14", "to" : "f13" }
+    }, {
+      "id" : "f1",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 800, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "RequestStart",
+      "name" : "createAlphaCompany.ivp",
+      "config" : {
+        "callSignature" : "createAlphaCompany",
+        "case" : {
+          "name" : "Alpha Company"
+        },
+        "outLink" : "createAlphaCompany.ivp",
+        "startName" : "Create Alpha Company"
+      },
+      "visual" : {
+        "at" : { "x" : 128, "y" : 160 },
+        "labelOffset" : { "x" : -56, "y" : 15 }
+      },
+      "connect" : { "id" : "f5", "to" : "f4" }
+    }, {
+      "id" : "f4",
+      "type" : "Script",
+      "name" : [
+        "Set process",
+        "code name"
+      ],
+      "config" : {
+        "output" : {
+          "code" : "ivy.case.setCategoryPath(\"Alpha Company\");"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 344, "y" : 160 }
+      },
+      "connect" : { "id" : "f7", "to" : "f6" }
+    }, {
+      "id" : "f6",
+      "type" : "SubProcessCall",
+      "name" : "SetCaseBusinessEntity",
+      "config" : {
+        "processCall" : "Functional Processes/SetCaseBusinessEntity:call(String)",
+        "call" : {
+          "params" : [
+            { "name" : "businessEntityId", "type" : "String" }
+          ],
+          "map" : {
+            "param.businessEntityId" : "\"alpha\""
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 520, "y" : 160 },
+        "size" : { "width" : 144, "height" : 44 }
+      },
+      "connect" : { "id" : "f10", "to" : "f8" }
+    }, {
+      "id" : "f8",
+      "type" : "TaskSwitchEvent",
+      "name" : "Alpha Company",
+      "config" : {
+        "task" : {
+          "name" : "Alpha Company"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 704, "y" : 160 },
+        "labelOffset" : { "x" : -32, "y" : 16 }
+      },
+      "connect" : { "id" : "f11", "to" : "f9" }
+    }, {
+      "id" : "f9",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 800, "y" : 160 }
+      }
+    }, {
+      "id" : "f12",
+      "type" : "ProcessAnnotation",
+      "name" : [
+        "In this example, we create case for Alpha Company, then create a new page to view the process history of Alpha Company",
+        "",
+        "createAlphaCompany =>  create alpha company business case",
+        "viewProcessHistoryOfAlphaCompany => view process history of alpha company in new page",
+        "",
+        "HOW TO RUN THIS EXAMPLE:",
+        "1. Run createAlphaCompany.ivp process",
+        "2. Enter viewProcessHistoryOfAlphaCompany.ivp process, process history of Alpha Company will be shown"
+      ],
+      "visual" : {
+        "at" : { "x" : 1200, "y" : 112 },
+        "size" : { "width" : 672, "height" : 168 }
+      }
+    }, {
+      "id" : "f13",
+      "type" : "DialogCall",
+      "name" : "Alpha Company Process History",
+      "config" : {
+        "dialogId" : "com.axonivy.portal.component.example.ProcessHistoryExample",
+        "startMethod" : "start(Boolean,Boolean)",
+        "call" : {
+          "params" : [
+            { "name" : "showProcessHistoriesOfAlphaCompany", "type" : "Boolean" },
+            { "name" : "showProcessHistoriesOfBetaCompany", "type" : "Boolean" }
+          ],
+          "map" : {
+            "param.showProcessHistoriesOfAlphaCompany" : "true",
+            "param.showProcessHistoriesOfBetaCompany" : "false"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 384, "y" : 64 },
+        "size" : { "width" : 192, "height" : 44 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f15",
+      "type" : "RequestStart",
+      "name" : "viewProcessHistoryOfBetaCompany.ivp",
+      "config" : {
+        "callSignature" : "viewProcessHistoryOfBetaCompany",
+        "outLink" : "viewProcessHistoryOfBetaCompany.ivp",
+        "startName" : "View Process history of beta company in dialog"
+      },
+      "visual" : {
+        "at" : { "x" : 128, "y" : 320 },
+        "labelOffset" : { "x" : -90, "y" : 16 }
+      },
+      "connect" : { "id" : "f17", "to" : "f16" }
+    }, {
+      "id" : "f16",
+      "type" : "DialogCall",
+      "name" : "Beta Company Process History",
+      "config" : {
+        "dialogId" : "com.axonivy.portal.component.example.ProcessHistoryExample",
+        "startMethod" : "start(Boolean,Boolean)",
+        "call" : {
+          "params" : [
+            { "name" : "showProcessHistoriesOfAlphaCompany", "type" : "Boolean" },
+            { "name" : "showProcessHistoriesOfBetaCompany", "type" : "Boolean" }
+          ],
+          "map" : {
+            "param.showProcessHistoriesOfAlphaCompany" : "false",
+            "param.showProcessHistoriesOfBetaCompany" : "true"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 376, "y" : 320 },
+        "size" : { "width" : 176, "height" : 44 }
+      },
+      "connect" : { "id" : "f19", "to" : "f18" }
+    }, {
+      "id" : "f18",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 800, "y" : 320 }
+      }
+    }, {
+      "id" : "f20",
+      "type" : "RequestStart",
+      "name" : "createBetaCompany.ivp",
+      "config" : {
+        "callSignature" : "createBetaCompany",
+        "case" : {
+          "name" : "Beta Company"
+        },
+        "outLink" : "createBetaCompany.ivp",
+        "startName" : "Create Beta Company"
+      },
+      "visual" : {
+        "at" : { "x" : 128, "y" : 416 },
+        "labelOffset" : { "x" : -60, "y" : 15 }
+      },
+      "connect" : { "id" : "f22", "to" : "f21" }
+    }, {
+      "id" : "f21",
+      "type" : "Script",
+      "name" : [
+        "Set process",
+        "code name"
+      ],
+      "config" : {
+        "output" : {
+          "code" : "ivy.case.setCategoryPath(\"Beta Company\");"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 344, "y" : 416 }
+      },
+      "connect" : { "id" : "f24", "to" : "f23" }
+    }, {
+      "id" : "f23",
+      "type" : "Script",
+      "name" : "Send signal to create company",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.process.model.value.SignalCode;",
+            "",
+            "SignalCode code = new SignalCode(\"ch:axonivy:portal:example:createbetacompany\");",
+            "ivy.wf.signals().send(code);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 536, "y" : 416 },
+        "size" : { "width" : 176, "height" : 44 }
+      },
+      "connect" : { "id" : "f26", "to" : "f25" }
+    }, {
+      "id" : "f25",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 800, "y" : 416 }
+      }
+    }, {
+      "id" : "f27",
+      "type" : "SignalStartEvent",
+      "name" : "Signal create Beta Company",
+      "config" : {
+        "signalCode" : "ch:axonivy:portal:example:createbetacompany"
+      },
+      "visual" : {
+        "at" : { "x" : 128, "y" : 512 },
+        "labelOffset" : { "x" : -61, "y" : 17 }
+      },
+      "connect" : { "id" : "f29", "to" : "f28" }
+    }, {
+      "id" : "f28",
+      "type" : "SubProcessCall",
+      "name" : "SetCaseBusinessEntity",
+      "config" : {
+        "processCall" : "Functional Processes/SetCaseBusinessEntity:call(String)",
+        "call" : {
+          "params" : [
+            { "name" : "businessEntityId", "type" : "String" }
+          ],
+          "map" : {
+            "param.businessEntityId" : "\"beta\""
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 520, "y" : 512 },
+        "size" : { "width" : 144, "height" : 44 }
+      },
+      "connect" : { "id" : "f31", "to" : "f30" }
+    }, {
+      "id" : "f30",
+      "type" : "TaskSwitchEvent",
+      "name" : "Beta Company",
+      "config" : {
+        "task" : {
+          "name" : "Beta Company"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 704, "y" : 512 },
+        "labelOffset" : { "x" : -34, "y" : 16 }
+      },
+      "connect" : { "id" : "f33", "to" : "f32" }
+    }, {
+      "id" : "f32",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 800, "y" : 512 }
+      }
+    }, {
+      "id" : "f34",
+      "type" : "ProcessAnnotation",
+      "name" : [
+        "In this example, we create case for Beta Company by sending a signal, then create a dialog to view the process history of Beta Company",
+        "",
+        "createBetaCompany =>  create beta company business case (with signal)",
+        "viewProcessHistoryOfBetaCompany => view process history of beta company in a dialog",
+        "",
+        "HOW TO RUN THIS EXAMPLE:",
+        "1. Run createBetaCompany.ivp process",
+        "2. Run viewProcessHistoryOfBetaCompany.ivp process, then click \"Open process history dialog\" button. Process history of Beta company will be shown"
+      ],
+      "visual" : {
+        "at" : { "x" : 1280, "y" : 392 },
+        "size" : { "width" : 832, "height" : 176 }
+      }
+    } ],
+  "layout" : {
+    "lanes" : [ {
+        "name" : "Alpha",
+        "size" : 256
+      }, {
+        "name" : "Beta",
+        "size" : 320
+      } ]
+  }
+}
