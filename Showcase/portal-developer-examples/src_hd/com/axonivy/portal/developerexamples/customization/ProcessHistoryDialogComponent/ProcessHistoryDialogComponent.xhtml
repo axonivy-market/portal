@@ -26,10 +26,10 @@
           <br/>
           <br/>
           
-          <p:dialog widgetVar="process-history-dialog" id="process-history-dialog" width="800" resizable="false" fitViewport="true"
+          <p:dialog widgetVar="process-history-dialog" id="process-history-dialog" width="90%" resizable="false" fitViewport="true"
             header="Below is the history of the process to open Alpha company" modal="true" onShow="processHistory.setup();"
             styleClass="process-history-dialog">
-            <ic:ch.ivy.addon.portal.component.ProcessHistory businessEntityId="alpha" chunkSize="10" scrollHeight="400" />
+            <ic:com.axonivy.portal.component.ProcessHistory businessEntityId="alpha" chunkSize="10" scrollHeight="400" />
           </p:dialog>
         </div>
       </div>
