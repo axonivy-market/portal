@@ -1,0 +1,72 @@
+{
+  "format" : "9.4.14",
+  "id" : "1818938E7EBC9329",
+  "data" : "com.axonivy.portal.component.example.DocumentTableExampleData",
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "showDefaultDocumentTableExample.ivp",
+      "config" : {
+        "callSignature" : "showDefaultDocumentTableExample",
+        "outLink" : "showDefaultDocumentTableExample.ivp",
+        "startName" : "Show Default Document Table Example"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 },
+        "labelOffset" : { "x" : -57, "y" : 22 }
+      },
+      "connect" : { "id" : "f4", "to" : "f3" }
+    }, {
+      "id" : "f1",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 576, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "DialogCall",
+      "name" : "DocumentTableExample",
+      "config" : {
+        "dialogId" : "com.axonivy.portal.component.example.DocumentTableExample",
+        "startMethod" : "start()"
+      },
+      "visual" : {
+        "at" : { "x" : 328, "y" : 64 },
+        "size" : { "width" : 144, "height" : 44 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f5",
+      "type" : "RequestStart",
+      "name" : "showCustomizedDocumentTableExample.ivp",
+      "config" : {
+        "callSignature" : "showCustomizedDocumentTableExample",
+        "outLink" : "showCustomizedDocumentTableExample.ivp",
+        "startName" : "Show Customized Document Table Example"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 192 },
+        "labelOffset" : { "x" : -66, "y" : 21 }
+      },
+      "connect" : { "id" : "f8", "to" : "f6" }
+    }, {
+      "id" : "f6",
+      "type" : "DialogCall",
+      "name" : "CustomizedDocumentTableExample",
+      "config" : {
+        "dialogId" : "com.axonivy.portal.component.example.CustomizedDocumentTableExample",
+        "startMethod" : "start()"
+      },
+      "visual" : {
+        "at" : { "x" : 360, "y" : 192 },
+        "size" : { "width" : 208, "height" : 44 }
+      },
+      "connect" : { "id" : "f9", "to" : "f7" }
+    }, {
+      "id" : "f7",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 576, "y" : 192 }
+      }
+    } ]
+}
