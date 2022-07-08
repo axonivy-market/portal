@@ -40,10 +40,9 @@ import ch.ivyteam.ivy.workflow.IWorkflowSession;
 @ManagedBean
 @ViewScoped
 public class MenuView implements Serializable {
-  private static final String SI_SI_ARROW_RIGHT_1_SMALL = "si si-arrow-right-1-small";
-
   private static final long serialVersionUID = 3188259472933435953L;
 
+  private static final String SI_SI_ARROW_RIGHT_1_SMALL = "si si-arrow-right-1-small";
   private final static String DASHBOARD = "/ch.ivy.addon.portalkit.ui.jsf/common/dashboard";
   public final static String SELECTED_MENU_ID = "selectedMenuId";
   public final static String PREV_SELECTED_MENU_ID = "prevSelectedMenuId";
@@ -111,6 +110,10 @@ public class MenuView implements Serializable {
   private boolean isExternalLink(SubMenuItem subMenuItem) {
     return subMenuItem.getMenuKind() == MenuKind.EXTERNAL_LINK || subMenuItem.getMenuKind() == MenuKind.THIRD_PARTY
         || !UrlUtils.isIvyUrl(subMenuItem.getLink());
+  }
+
+  public boolean isShowLegacyUI() {
+    return HomepageUtils.isShowLegacyUI();
   }
 
   private DefaultMenuItem buildThirdPartyItem(Application application, int menuIndex) {
