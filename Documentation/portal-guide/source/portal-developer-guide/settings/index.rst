@@ -303,6 +303,8 @@ Other Permissions
  |           | add it to User Favorite         |                                                    |
  +-----------+---------------------------------+----------------------------------------------------+
 
+.. _settings-virus-scanning-setting:
+
 Virus Scanning Settings
 =======================
 
@@ -316,8 +318,8 @@ configuration/web.xml file:
    .. code-block:: xml
 
       <context-param>
-         <param-name>primefaces.virusscan.VIRUSTOTAL_KEY</param-name>
-         <param-value>PUT YOUR API KEY HERE</param-value> 
+      <param-name>primefaces.virusscan.VIRUSTOTAL_KEY</param-name>
+      <param-value>PUT YOUR API KEY HERE</param-value> 
       </context-param>
 
    ..
@@ -377,17 +379,17 @@ These variables are stored as key-value pairs. They have to be edited in the Eng
    |                                             |                               | set to ``false``, Portal    |
    |                                             |                               | will ignore this property.  |
    +---------------------------------------------+-------------------------------+-----------------------------+
-   | PortalLoginPageDisplay                      | true                          | By default, Portal will     |
-   |                                             |                               | redirect to Login Page if   |
+   | PortalLoginPageDisplay                      | true                          |By default, Portal will      |
+   |                                             |                               |redirect to Login Page if    |
    |                                             |                               | login is required and the   |
    |                                             |                               | user is unknown.            |
    |                                             |                               | Set to ``false`` to         |
    |                                             |                               | redirect to the login error |
    |                                             |                               | page and hide Logout in the |
    |                                             |                               | User menu (when you use     |
-   |                                             |                               | external authentication and |
+   |                                             |                               |external authentication and  |
    |                                             |                               | the user is not present in  |
-   |                                             |                               | your application user list. |
+   |                                             |                               |your application user list.  |
    +---------------------------------------------+-------------------------------+-----------------------------+
 
 

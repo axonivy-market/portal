@@ -15,7 +15,7 @@ pipeline {
   }
 
   parameters {
-      string(name: 'modulesMustBeBuilt', defaultValue: '', description: 'Define modules must be built. By default, only modules which have code changes since the last successful build are built. Available modules: PortalStyle,PortalKit,PortalTemplate,AxonIvyExpress,PortalKitTestHelper,portal-user-examples,portal-developer-examples,InternalSupport. E.g. PortalStyle code is changed, then set this property value PortalKit,PortalTemplate => PortalStyle,PortalKit,PortalTemplate will be built.')
+      string(name: 'modulesMustBeBuilt', defaultValue: '', description: 'Define modules must be built. By default, only modules which have code changes since the last successful build are built. Available modules: portal-component,PortalStyle,PortalKit,PortalTemplate,AxonIvyExpress,PortalKitTestHelper,portal-user-examples,portal-developer-examples,InternalSupport,portal-component-example. E.g. PortalStyle code is changed, then set this property value PortalKit,PortalTemplate => PortalStyle,PortalKit,PortalTemplate will be built.')
       choice(name: 'engine', choices: ['singleAppEngine', 'multiAppsEngine'], description: 'Which engine to deploy? If multiAppsEngine, deploy all modules.')
 
   }
@@ -29,7 +29,7 @@ pipeline {
           applications = config[params.engine]['applications']
           engineDir = config[params.engine]['engineDir']
 
-          def modules = ['AxonIvyPortal/PortalStyle', 'AxonIvyPortal/PortalKit', 'AxonIvyPortal/PortalTemplate', 'AxonIvyPortal/AxonIvyExpress', 'AxonIvyPortal/PortalKitTestHelper', 'Showcase/portal-user-examples', 'Showcase/portal-developer-examples', 'Showcase/InternalSupport']
+          def modules = ['AxonIvyPortal/portal-component', 'AxonIvyPortal/PortalStyle', 'AxonIvyPortal/PortalKit', 'AxonIvyPortal/PortalTemplate', 'AxonIvyPortal/AxonIvyExpress', 'AxonIvyPortal/PortalKitTestHelper', 'Showcase/portal-user-examples', 'Showcase/portal-developer-examples', 'Showcase/InternalSupport', 'Showcase/portal-component-example']
           def changeLog = ''
           if (env.GIT_PREVIOUS_SUCCESSFUL_COMMIT) {
             changeLog = bat(script: "git diff --name-only ${env.GIT_COMMIT} ${env.GIT_PREVIOUS_SUCCESSFUL_COMMIT}", returnStdout: true)

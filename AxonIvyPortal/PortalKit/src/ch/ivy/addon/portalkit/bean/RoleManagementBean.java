@@ -15,8 +15,9 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
-import ch.ivy.addon.portalkit.dto.RoleDTO;
-import ch.ivy.addon.portalkit.dto.UserDTO;
+import com.axonivy.portal.component.dto.RoleDTO;
+import com.axonivy.portal.component.dto.UserDTO;
+
 import ch.ivy.addon.portalkit.role.RoleHolder;
 import ch.ivy.addon.portalkit.role.RoleTreeDataModel;
 import ch.ivy.addon.portalkit.role.UserAssignedDataModel;
@@ -127,8 +128,11 @@ public class RoleManagementBean implements Serializable {
     var isReloadTree = false;
     var existedRole = RoleUtils.findRole(selectedRole.getName());
     if (isCreationMode && nonNull(existedRole)) {
+      var message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+          cms("/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/Messages/DuplicateRole", existedRole.getName()),
+          EMPTY);
+      FacesContext.getCurrentInstance().addMessage(null, message);
       FacesContext.getCurrentInstance().validationFailed();
-      addRoleGrowlMessage(FacesMessage.SEVERITY_ERROR, "/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/Messages/DuplicateRole", existedRole.getName());
       return;
     }
 

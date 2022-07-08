@@ -8,7 +8,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
-import ch.ivy.addon.portalkit.dto.UserDTO;
+import com.axonivy.portal.component.dto.UserDTO;
+
 import ch.ivy.addon.portalkit.service.DateTimeGlobalSettingService;
 import ch.ivyteam.ivy.environment.Ivy;
 
