@@ -11,7 +11,6 @@ import java.util.stream.Stream;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.enums.PortalPermissionGroup;
 import ch.ivy.addon.portalkit.security.PortalSecurity;
-import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.eventstart.AbstractProcessStartEventBean;
 import ch.ivyteam.ivy.process.eventstart.IProcessStartEventBeanRuntime;
 import ch.ivyteam.ivy.security.IPermission;
@@ -129,7 +128,7 @@ public class PortalPermissionInitBean extends AbstractProcessStartEventBean {
   }
 
   private void grantPortalPermissionsForEverybody(List<PortalPermission> iPermissions) {
-    IRole everybody = Ivy.security().roles().find(ISecurityConstants.TOP_LEVEL_ROLE_NAME);
+    IRole everybody = ISecurityContext.current().roles().find(ISecurityConstants.TOP_LEVEL_ROLE_NAME);
     PortalSecurity.INSTANCE.grantPermissionsToForSecurityMember(iPermissions, everybody);
   }
 
