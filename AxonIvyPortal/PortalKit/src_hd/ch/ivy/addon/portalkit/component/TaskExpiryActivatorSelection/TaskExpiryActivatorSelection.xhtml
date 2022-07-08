@@ -43,7 +43,7 @@
 
         <h:panelGroup id="select-assignee-panel" layout="block"
           styleClass="select-assignee-panel ui-g-12 ui-fluid">
-          <ic:ch.ivy.addon.portalkit.component.UserSelection id="user-expiry-activator-component"
+          <ic:com.axonivy.portal.component.UserSelection id="user-expiry-activator-component"
             componentId="user-expiry-activator-select"
             selectedUser="#{data.selectedUser}"
             rendered="#{data.isUserAssigned}"
@@ -57,9 +57,9 @@
             <f:facet name="event">
               <p:ajax event="itemSelect" listener="#{data.setIsDisabledAssignButton(false)}" update="#{cc.clientId}:task-escalation-activator-form:assign-task-command" />
             </f:facet>
-          </ic:ch.ivy.addon.portalkit.component.UserSelection>
+          </ic:com.axonivy.portal.component.UserSelection>
 
-          <ic:ch.ivy.addon.portalkit.component.RoleSelection id="group-expiry-activator-select-component"
+          <ic:com.axonivy.portal.component.RoleSelection id="group-expiry-activator-select-component"
             scrollHeight="400"
             componentId="group-expiry-activator-select"
             selectedRole="#{data.selectedRole}"
@@ -75,7 +75,7 @@
             <f:facet name="event">
               <p:ajax event="itemSelect" listener="#{data.setIsDisabledAssignButton(false)}" update="#{cc.clientId}:task-escalation-activator-form:assign-task-command" />
             </f:facet>
-          </ic:ch.ivy.addon.portalkit.component.RoleSelection>
+          </ic:com.axonivy.portal.component.RoleSelection>
         </h:panelGroup>
 
         <h:panelGroup id="assign-comment-panel" layout="block"
