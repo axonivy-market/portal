@@ -303,6 +303,8 @@ Other Permissions
  |           | add it to User Favorite         |                                                    |
  +-----------+---------------------------------+----------------------------------------------------+
 
+.. _settings-virus-scanning-setting:
+
 Virus Scanning Settings
 =======================
 
