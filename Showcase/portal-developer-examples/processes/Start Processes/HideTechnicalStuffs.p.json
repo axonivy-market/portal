@@ -49,6 +49,7 @@
       "config" : {
         "output" : {
           "code" : [
+            "import ch.ivyteam.ivy.security.ISecurityContext;",
             "import ch.ivy.addon.portalkit.enums.AdditionalProperty;",
             "import ch.ivy.addon.portalkit.publicapi.RoleAPI;",
             "import ch.ivyteam.ivy.security.IRole;",
@@ -71,6 +72,7 @@
       "config" : {
         "output" : {
           "code" : [
+            "import ch.ivyteam.ivy.security.ISecurityContext;",
             "import ch.ivy.addon.portalkit.enums.AdditionalProperty;",
             "import ch.ivy.addon.portalkit.publicapi.RoleAPI;",
             "import ch.ivyteam.ivy.security.IRole;",
