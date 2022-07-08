@@ -125,6 +125,7 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
     List<WebElement> categoryTreeLabels = findChildElementsByClassName(selectionElement, "ui-treenode-label");
     //Find parent node of tree first and uncheck it
     WebElement parentNodeOfTree = categoryTreeLabels.stream().findFirst().get();
+    waitForElementDisplayed(parentNodeOfTree, true);
     click(parentNodeOfTree);
     for (WebElement labelElement : categoryTreeLabels) {
       if (selectedCategory.contains(labelElement.getText())) {
@@ -167,6 +168,7 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
     List<WebElement> categoryTreeLabels = findChildElementsByClassName(selectionElement, "ui-treenode-label");
     //Find parent node of tree first and uncheck it
     WebElement parentNodeOfTree = categoryTreeLabels.stream().findFirst().get();
+    waitForElementDisplayed(parentNodeOfTree, true);
     click(parentNodeOfTree);  
     for (WebElement labelElement : categoryTreeLabels) {
       if (selectedCategory.contains(labelElement.getText())) {
