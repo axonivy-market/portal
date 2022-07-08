@@ -37,13 +37,9 @@ public class ServiceUtilities {
    * @param app
    * @return list of user
    */
-  @Deprecated(forRemoval = true)
-  public static IUser findUser(final String username, IApplication app) {
-    Objects.requireNonNull(username, "The username must not be null");
-    requireNonNull(app);
-
-    IUser user = app.getSecurityContext().users().find(username);
-    return user;
+  @Deprecated(forRemoval = true, since = "9.4")
+  public static IUser findUser(final String username, @SuppressWarnings("unused") IApplication app) {
+    return findUser(username);
   }
   
   private static void requireNonNull(IApplication app) {
@@ -57,15 +53,9 @@ public class ServiceUtilities {
    * @param app
    * @return users
    */
-  @Deprecated(forRemoval=true)
-  public static List<IUser> findAllUsers(IApplication app) {
-    requireNonNull(app);
-    return app.getSecurityContext()
-      .users()
-      .paged()
-      .stream()
-      .filter(user -> !StringUtils.equals(ISecurityConstants.SYSTEM_USER_NAME, user.getName()))
-      .collect(Collectors.toList());
+  @Deprecated(forRemoval=true, since = "9.4")
+  public static List<IUser> findAllUsers(@SuppressWarnings("unused") IApplication app) {
+    return findAllUsers();
   }
   
   /**
@@ -88,23 +78,9 @@ public class ServiceUtilities {
    * @param app
    * @return roles
    */
-  @SuppressWarnings("unchecked")
-  @Deprecated(forRemoval=true)
-  public static List<IRole> findAllRoles(IApplication app) {
-    requireNonNull(app);
-
-    Optional<Object> cacheValueOpt =
-        IvyCacheService.newInstance().getSessionCacheValue(app.getName(), IvyCacheIdentifier.ROLES_IN_APPLICATION);
-    if (cacheValueOpt.isPresent()) {
-      return (List<IRole>) cacheValueOpt.get();
-    }
-
-    List<IRole> roles = new ArrayList<>(app.getSecurityContext().roles().all());
-    roles.removeIf(role -> role.getProperty(AdditionalProperty.HIDE.toString()) != null);
-    roles.sort((u1, u2) -> StringUtils.compareIgnoreCase(u1.getDisplayName(), u2.getDisplayName()));
-
-    IvyCacheService.newInstance().setSessionCache(app.getName(), IvyCacheIdentifier.ROLES_IN_APPLICATION, roles);
-    return roles;
+  @Deprecated(forRemoval=true, since = "9.4")
+  public static List<IRole> findAllRoles(@SuppressWarnings("unused") IApplication app) {
+    return findAllRoles();
   }
   
   /**
@@ -130,9 +106,12 @@ public class ServiceUtilities {
   public static List<IProcessModelVersion> getActiveReleasedPmvs(IApplication app) {
     requireNonNull(app);
 
-    return app.getProcessModels().stream().filter(pm -> pm.getActivityState() == ActivityState.ACTIVE)
-        .map(IProcessModel::getReleasedProcessModelVersion)
-        .filter(pmv -> pmv != null && pmv.getActivityState() == ActivityState.ACTIVE).collect(Collectors.toList());
+    return app.getProcessModels()
+          .stream()
+          .filter(pm -> pm.getActivityState() == ActivityState.ACTIVE)
+          .map(IProcessModel::getReleasedProcessModelVersion)
+          .filter(pmv -> pmv != null && pmv.getActivityState() == ActivityState.ACTIVE)
+          .collect(Collectors.toList());
   }
 
   public static IvyApplication toIvyApplication(String appName, String appDisplayName) {
@@ -163,13 +142,9 @@ public class ServiceUtilities {
    * @param application
    * @return user
    */
-  @Deprecated(forRemoval = true)
-  public static UserDTO findUserDTO(final String username, final IApplication application) {
-    Objects.requireNonNull(username, "The username must not be null");
-    return IvyExecutor.executeAsSystem(() -> {
-      IUser user = application.getSecurityContext().users().find(username);
-      return new UserDTO(user);
-    });
+  @Deprecated(forRemoval = true, since = "9.4")
+  public static UserDTO findUserDTO(final String username, @SuppressWarnings("unused") final IApplication application) {
+    return findUserDTO(username);
   }
 
   /**
@@ -177,16 +152,9 @@ public class ServiceUtilities {
    * @param app
    * @return list of {@link UserDTO}
    */
-  @Deprecated(forRemoval = true)
-  public static List<RoleDTO> findAllRoleDTO(IApplication app) {
-    requireNonNull(app);
-    return IvyExecutor.executeAsSystem(() -> {
-      return CollectionUtils.emptyIfNull(app.getSecurityContext().roles().all())
-          .stream()
-          .filter(role -> role.getProperty(AdditionalProperty.HIDE.toString()) == null)
-          .map(role -> new RoleDTO(role))
-          .collect(Collectors.toList());
-    });
+  @Deprecated(forRemoval = true, since = "9.4")
+  public static List<RoleDTO> findAllRoleDTO(@SuppressWarnings("unused") IApplication app) {
+    return findAllRoleDTO();
   }
   
   public static List<RoleDTO> findAllRoleDTO() {
