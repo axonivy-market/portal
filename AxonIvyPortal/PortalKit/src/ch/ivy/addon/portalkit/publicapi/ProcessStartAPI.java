@@ -139,9 +139,14 @@ public final class ProcessStartAPI {
         return startElement;
       }
 
-      IApplication application = IApplication.current();
-      return filterPMVForStartElement(friendlyRequestPath, application)
-        .findFirst().orElse(null);
+      List<IApplication> applicationsInSecurityContext = IApplicationRepository.instance().allOf(ISecurityContext.current());
+      for (IApplication app : applicationsInSecurityContext) {
+        IStartElement findStartElement = filterPMVForStartElement(friendlyRequestPath, app).findFirst().orElse(null);
+        if (findStartElement != null) {
+          return findStartElement;
+        }
+      }
+      return null;
     });
   }
   
@@ -182,10 +187,15 @@ public final class ProcessStartAPI {
       if (processStart != null) {
         return processStart;
       }
-
-      IApplication application = IApplication.current();
-      return filterPMV(requestPath, application)
-        .findFirst().orElse(null);
+      List<IApplication> applicationsInSecurityContext = IApplicationRepository.instance().allOf(ISecurityContext.current());
+      
+      for (IApplication app : applicationsInSecurityContext) {
+        IProcessStart findProcessStart = filterPMV(requestPath, app).findFirst().orElse(null);
+        if (findProcessStart != null) {
+          return findProcessStart;
+        }
+      }
+      return null;
     });
   }
 
