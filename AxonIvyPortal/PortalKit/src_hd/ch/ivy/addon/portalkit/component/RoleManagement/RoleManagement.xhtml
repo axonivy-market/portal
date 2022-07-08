@@ -171,7 +171,8 @@
             <p:messages redisplay="false" />
           </div>
           <h:panelGroup rendered="#{creationMode}" layout="block">
-            <ic:com.axonivy.portal.component.RoleSelection id="parent-role" componentId="parent-role-selection"
+            <ic:com.axonivy.portal.component.RoleSelection id="parent-role"
+              componentId="parent-role-selection"
               selectedRole="#{roleManagementBean.selectedParentRole}"
               isRequired="#{roleManagementBean.canMoveRole}"
               isDisabled="#{!roleManagementBean.canMoveRole}"

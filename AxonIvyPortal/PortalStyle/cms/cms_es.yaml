@@ -588,16 +588,16 @@ ch.ivy.addon.portalkit.ui.jsf:
       AssignUsersToRole: Asignar usuarios a la función
       AssignedUser: Usuarios asignados
       AvailableUsers: Usuarios disponibles
-      CannotDeleteRoleTooltip: No se puede eliminar este rol por falta de permisos
-      CannotDeleteUserTooltip: No se puede eliminar a los usuarios de la membresía de rol
-      CannotEditRoleTooltip: No puede editar este rol por falta de permisos
-      CannotManageRoleTooltip: No se puede gestionar esta función porque no es dinámica
+      CannotDeleteRoleTooltip: No tiene permiso para eliminar esta función. Póngase en contacto con el administrador del sistema.
+      CannotDeleteUserTooltip: Sólo puede editar las asignaciones directas de funciones, pero no las afiliaciones heredadas.
+      CannotEditRoleTooltip: No tiene permiso para cambiar la información de los roles. Póngase en contacto con el administrador del sistema.
+      CannotManageRoleTooltip: Sólo se puede modificar la información de los roles que no participan en ningún proceso.
       CreateRole: Crear un nuevo rol
       DeleteButtonTitle: Borrar el papel
       EditButtonTitle: Editar la información del rol
       FilteredRoles: Funciones filtradas
+      InheritedMembership: Afiliación heredada
       ListUsers: Usuarios de la función {0}
-      MemberOfRole: Miembro de la afiliación a la función
       Messages:
         ConfirmDeleteRole: ¿Estás seguro de que quieres borrarlo?
         ConfirmDeleteUserOfRole: ¿Estás seguro de que quieres sacar a los usuarios del papel?
@@ -606,9 +606,9 @@ ch.ivy.addon.portalkit.ui.jsf:
         DuplicateRole: El rol "{0}" ya existe en el sistema, inténtelo con otro nombre
         MaxSearchLimit: La búsqueda actual tiene más de {0} resultados
         NotFoundRole: No se encuentra el "{0}" en el sistema
-        ParentRoleIsRequired: La función de los padres es un campo obligatorio
+        ParentRoleIsRequired: El papel de los padres es obligatorio
         RemoveRoleSuccess: Rol "{0}" eliminado con éxito
-        RoleNameNotBeEmpty: El nombre de la función no debe estar vacío
+        RoleNameIsRequired: El nombre del rol es obligatorio
         RoleNotFound: No se ha encontrado ningún papel
         SearchToSeeMoreRole: Por favor, utilice la búsqueda para encontrar un rol específico ({0} más roles)
         UpdateRoleSuccess: Rol "{0}" actualizado con éxito
@@ -949,6 +949,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     iconSelectionDialogHeader: Seleccionar ícono
     seachIconByNamePlaceHolder: Buscar símbolo por nombre
   languageSetting:
+    Language: Idioma
     cannotSetEmailLanguage: El idioma no se puede configurar como idioma de notificación de correo electrónico.
     languageSetting: Ajustes de idioma
     saveLanguageHasWSErrors: Error al guardar el idioma
