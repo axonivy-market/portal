@@ -18,7 +18,6 @@ import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.ITask;
-import ch.ivyteam.ivy.workflow.IWorkflowSession;
 
 public class PermissionUtils {
   private static final String ADMIN_ROLE = "AXONIVY_PORTAL_ADMIN";
@@ -32,20 +31,20 @@ public class PermissionUtils {
    * @return True : has read all tasks permission
    */
   public static boolean checkReadAllTasksPermission() {
-    return ISecurityContext.current().hasPermission(getSecurityDescriptor(), IPermission.TASK_READ_ALL);
+    return hasPermission(IPermission.TASK_READ_ALL);
   }
 
   private static ISecurityDescriptor getSecurityDescriptor() {
     return ISecurityContext.current().securityDescriptor();
   }
-
+  
   /**
    * Check if current user has read all cases permission
    *
    * @return True : has read all cases permission
    */
   public static boolean checkReadAllCasesPermission() {
-    return ISecurityContext.current().hasPermission(getSecurityDescriptor(), IPermission.CASE_READ_ALL);
+    return hasPermission(IPermission.CASE_READ_ALL);
   }
 
   /**
@@ -54,7 +53,7 @@ public class PermissionUtils {
    * @return True : has task read own case tasks permission
    */
   public static boolean checkTaskReadOwnCaseTasksPermission() {
-    return ISecurityContext.current().hasPermission(getSecurityDescriptor(), IPermission.TASK_READ_OWN_CASE_TASKS);
+    return hasPermission(IPermission.TASK_READ_OWN_CASE_TASKS);
   }
 
   /**
@@ -63,7 +62,7 @@ public class PermissionUtils {
    * @return True : has document write permission
    */
   public static boolean checkDocumentWritePermission() {
-    return ISecurityContext.current().hasPermission(getSecurityDescriptor(), IPermission.DOCUMENT_WRITE);
+    return hasPermission(IPermission.DOCUMENT_WRITE);
   }
 
   /**
@@ -72,7 +71,7 @@ public class PermissionUtils {
    * @return True : has task document of involved case write permission
    */
   public static boolean checkDocumentOfInvolvedCaseWritePermission() {
-    return ISecurityContext.current().hasPermission(getSecurityDescriptor(), IPermission.DOCUMENT_OF_INVOLVED_CASE_WRITE);
+    return hasPermission(IPermission.DOCUMENT_OF_INVOLVED_CASE_WRITE);
   }
 
   /**
@@ -80,7 +79,7 @@ public class PermissionUtils {
    * @return True : has task destroy permission
    */
   public static boolean checkDestroyTaskPermission() {
-    return ISecurityContext.current().hasPermission(getSecurityDescriptor(), IPermission.TASK_DESTROY);
+    return hasPermission(IPermission.TASK_DESTROY);
   }
 
   /**
@@ -158,7 +157,7 @@ public class PermissionUtils {
     if (Objects.isNull(iPermission)) {
       return false;
     }
-    return ISecurityContext.current().hasPermission(getSecurityDescriptor(), iPermission);
+    return hasPermission(iPermission);
   }
 
   /**
@@ -231,8 +230,7 @@ public class PermissionUtils {
   }
 
   public static boolean hasPermission(IPermission permission) {
-    IWorkflowSession currentSession = Ivy.session();
-    return currentSession.hasPermission(getSecurityDescriptor(), permission);
+    return Ivy.session().hasPermission(getSecurityDescriptor(), permission);
   }
 
   public static boolean hasAllPermissions(IPermission permission, IPermission... permissions) {
@@ -256,7 +254,6 @@ public class PermissionUtils {
    * @return true if current user has permission.
    */
   public static boolean checkReadAllWorkflowEventPermission() {
-    return ISecurityContext.current().hasPermission(getSecurityDescriptor(), IPermission.WORKFLOW_EVENT_READ_ALL);
+    return hasPermission(IPermission.WORKFLOW_EVENT_READ_ALL);
   }
-
 }
