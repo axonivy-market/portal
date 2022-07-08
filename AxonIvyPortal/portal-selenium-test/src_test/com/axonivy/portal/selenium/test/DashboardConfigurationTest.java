@@ -8,10 +8,14 @@ import org.junit.jupiter.api.Test;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
+import com.axonivy.portal.selenium.common.LinkNavigator;
 import com.axonivy.portal.selenium.common.TestAccount;
+import com.axonivy.portal.selenium.page.CaseWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.NewDashboardConfigurationPage;
 import com.axonivy.portal.selenium.page.NewDashboardDetailsEditPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
+import com.axonivy.portal.selenium.page.ProcessWidgetNewDashBoardPage;
+import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
@@ -20,6 +24,13 @@ import com.codeborne.selenide.SelenideElement;
 public class DashboardConfigurationTest extends BaseTest {
 
   private NewDashboardPage newDashboardPage;
+  private static final String PRIVATE_1 = "private 1";
+  private static final String EDITED_PRIVATE_DASHBOARD_1 = "Editted Private Dashboard 1";
+  private static final String DASHBOARD_1_DESCRIPTION = "dashboard 1 description";
+  private static final String YOUR_TASKS_WIDGET = "Your Tasks";
+  private static final String YOUR_CASES_WIDGET = "Your Cases";
+  private static final String YOUR_PROCESS_WIDGET = "Your Processes";
+  private static final String NEW_PRIVATE_DASHBOARD = "New private dashboard";
 
   @Override
   @BeforeEach
@@ -229,7 +240,181 @@ public class DashboardConfigurationTest extends BaseTest {
     configPage = newDashboardDetailsEditPage.backToConfigurationPage();
     checkPrivateDashboardExistOnList(configPage, name, description);
   }
+  
+  @Test
+  public void testAddPublishDashboardTwoTaskListDashboard() {
+    String name = "New public dashboard two task list";
+    String description = "New public dashboard description";
+    List<String> permissions = new ArrayList<>();
+    permissions.add("Cost Object (CostObject)");
 
+    newDashboardPage.openDashboardConfigurationDialog();
+    newDashboardPage.openCreatePublicDashboardMenu();
+    newDashboardPage.createPublicDashboardFromTemplate(name, description, permissions, 1);
+
+    NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
+    newDashboardDetailsEditPage.getTitleByIndex(0).shouldBe(Condition.exactText(name));
+    newDashboardDetailsEditPage.getWidgets().shouldBe(CollectionCondition.size(3));
+
+    NewDashboardConfigurationPage configPage = newDashboardDetailsEditPage.backToConfigurationPage();
+    checkDashboardExistOnList(configPage, name, description);
+  }
+
+  @Test
+  public void testAddPrivateDashboardTwoTaskListDashboard() {
+    String name = "New private dashboard two task list";
+    String description = "New private dashboard description";
+
+    newDashboardPage.openDashboardConfigurationDialog();
+    newDashboardPage.openCreatePrivateDashboardMenu();
+    newDashboardPage.createPrivateDashboardFromTemplate(name, description, 1);
+
+    NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
+    newDashboardDetailsEditPage.getTitleByIndex(0).shouldBe(Condition.exactText(name));
+    newDashboardDetailsEditPage.getWidgets().shouldBe(CollectionCondition.size(3));
+
+    NewDashboardConfigurationPage configPage = newDashboardDetailsEditPage.backToConfigurationPage();
+    checkPrivateDashboardExistOnList(configPage, name, description);
+  }
+  
+  @Test
+  public void testOpenConfigurationPageThenAddPublishDashboardTwoTaskListDashboard() {
+    String name = "New public dashboard two task list";
+    String description = "New public dashboard description";
+    List<String> permissions = new ArrayList<>();
+    permissions.add("Cost Object (CostObject)");
+
+    LinkNavigator.redirectToEditPublicDashboard();
+    NewDashboardConfigurationPage configPage = new NewDashboardConfigurationPage();
+    configPage.createPublicDashboardFromTemplate(name, description, permissions, 1);
+
+    NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
+    newDashboardDetailsEditPage.getTitleByIndex(0).shouldBe(Condition.exactText(name));
+    newDashboardDetailsEditPage.getWidgets().shouldBe(CollectionCondition.size(3));
+
+    configPage = newDashboardDetailsEditPage.backToConfigurationPage();
+    checkDashboardExistOnList(configPage, name, description);
+  }
+
+  @Test
+  public void testOpenConfigurationPageThenAddPrivateDashboardTwoTaskListDashboard() {
+    String name = "New private dashboard two task list";
+    String description = "New private dashboard description";
+
+    LinkNavigator.redirectToEditPrivateDashboard();
+    NewDashboardConfigurationPage configPage = new NewDashboardConfigurationPage();
+    configPage.createPrivateDashboardFromTemplate(name, description, 1);
+
+    NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
+    newDashboardDetailsEditPage.getTitleByIndex(0).shouldBe(Condition.exactText(name));
+    newDashboardDetailsEditPage.getWidgets().shouldBe(CollectionCondition.size(3));
+
+    configPage = newDashboardDetailsEditPage.backToConfigurationPage();
+    checkPrivateDashboardExistOnList(configPage, name, description);
+  }
+  
+  @Test
+  public void testEditPrivateDashboardInfo() {
+    redirectToRelativeLink(createSampleDashboardUrl);
+    LinkNavigator.redirectToEditPrivateDashboard();
+    NewDashboardConfigurationPage configPage = new NewDashboardConfigurationPage();
+    configPage.clickEditDashboardByName(PRIVATE_1);
+    configPage.editPrivateDashboardInfo(EDITED_PRIVATE_DASHBOARD_1, DASHBOARD_1_DESCRIPTION);
+    SelenideElement dashboard = configPage.getDashboardRowByName(EDITED_PRIVATE_DASHBOARD_1);
+    dashboard.shouldBe(Condition.appear);
+    dashboard.$("td:nth-child(1)").shouldHave(Condition.exactText(EDITED_PRIVATE_DASHBOARD_1));
+    dashboard.$("td:nth-child(2)").shouldHave(Condition.exactText(DASHBOARD_1_DESCRIPTION));
+  }
+
+  @Test
+  public void testDeletePrivateDashboard() {
+    redirectToRelativeLink(createSampleDashboardUrl);
+    LinkNavigator.redirectToEditPrivateDashboard();
+    NewDashboardConfigurationPage configPage = new NewDashboardConfigurationPage();
+    configPage.clickDeleteDashboardByName(PRIVATE_1);
+    configPage.getDashboardRows().shouldHaveSize(1);
+  }
+  
+  @Test
+  public void testDeleteTaskWidgetForPublicDashboard() {
+    redirectToRelativeLink(createTestingTasksUrl);
+    LinkNavigator.redirectToEditPublicDashboard();
+    NewDashboardConfigurationPage configPage = new NewDashboardConfigurationPage();
+    configPage.navigateToEditDashboardDetailsByName("Dashboard");
+    TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
+    taskWidget.deleteTaskWidget();
+    NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
+    newDashboardDetailsEditPage.clickOnRemoveWidgetButton();
+    newDashboardPage.selectTaskWidget("").expand().shouldHaveSize(2);
+  }
+  
+  @Test
+  public void testDeleteCaseWidgetForPublicDashboard() {
+    redirectToRelativeLink(createTestingTasksUrl);
+    LinkNavigator.redirectToEditPublicDashboard();
+    NewDashboardConfigurationPage configPage = new NewDashboardConfigurationPage();
+    configPage.navigateToEditDashboardDetailsByName("Dashboard");
+    CaseWidgetNewDashBoardPage caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
+    caseWidget.deleteCaseWidget();
+    NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
+    newDashboardDetailsEditPage.clickOnRemoveWidgetButton();
+    newDashboardPage.selectTaskWidget("").expand().shouldHaveSize(2);
+  }
+  
+  @Test
+  public void testDeleteProcessesWidgetForPublicDashboard() {
+    redirectToRelativeLink(createTestingTasksUrl);
+    LinkNavigator.redirectToEditPublicDashboard();
+    NewDashboardConfigurationPage configPage = new NewDashboardConfigurationPage();
+    configPage.navigateToEditDashboardDetailsByName("Dashboard");
+    ProcessWidgetNewDashBoardPage processWidget = newDashboardPage.selectProcessWidget(YOUR_PROCESS_WIDGET);
+    processWidget.deleteProcessWidget();
+    NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
+    newDashboardDetailsEditPage.clickOnRemoveWidgetButton();
+    newDashboardPage.selectTaskWidget("").expand().shouldHaveSize(2);
+  }
+  
+  @Test
+  public void testDeleteTaskWidgetForPrivateDashboard() {
+    testAddPrivateDashboardUseTemplate();
+    LinkNavigator.redirectToEditPrivateDashboard();
+    NewDashboardConfigurationPage configPage = new NewDashboardConfigurationPage();
+    configPage.navigateToEditDashboardDetailsByName(NEW_PRIVATE_DASHBOARD);
+    TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
+    taskWidget.deleteTaskWidget();
+    NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
+    newDashboardDetailsEditPage.clickOnRemoveWidgetButton();
+    newDashboardPage.selectTaskWidget("").expand().shouldHaveSize(2);
+  }
+  
+  @Test
+  public void testDeleteCaseWidgetForPrivateDashboard() {   
+    testAddPrivateDashboardUseTemplate();
+    LinkNavigator.redirectToEditPrivateDashboard();
+    NewDashboardConfigurationPage configPage = new NewDashboardConfigurationPage();
+    configPage.navigateToEditDashboardDetailsByName(NEW_PRIVATE_DASHBOARD);
+    
+    CaseWidgetNewDashBoardPage caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
+    caseWidget.deleteCaseWidget();
+    NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
+    newDashboardDetailsEditPage.clickOnRemoveWidgetButton();
+    newDashboardPage.selectTaskWidget("").expand().shouldHaveSize(2);
+  }
+  
+  @Test
+  public void testDeleteProcessesWidgetForPrivateDashboard() {   
+    testAddPrivateDashboardUseTemplate();
+    LinkNavigator.redirectToEditPrivateDashboard();
+    NewDashboardConfigurationPage configPage = new NewDashboardConfigurationPage();
+    configPage.navigateToEditDashboardDetailsByName(NEW_PRIVATE_DASHBOARD);
+    
+    ProcessWidgetNewDashBoardPage processWidget = newDashboardPage.selectProcessWidget(YOUR_PROCESS_WIDGET);
+    processWidget.deleteProcessWidget();
+    NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
+    newDashboardDetailsEditPage.clickOnRemoveWidgetButton();
+    newDashboardPage.selectTaskWidget("").expand().shouldHaveSize(2);
+  }
+  
   private void checkDashboardExistOnList(NewDashboardConfigurationPage configPage, String name, String description) {
     SelenideElement dashboard = configPage.getDashboardRowByName(name);
     dashboard.shouldBe(Condition.appear);
