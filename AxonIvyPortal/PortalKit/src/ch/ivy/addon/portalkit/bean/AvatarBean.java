@@ -4,9 +4,10 @@ import java.io.Serializable;
 
 import javax.faces.bean.ManagedBean;
 
-import ch.ivy.addon.portalkit.dto.RoleDTO;
+import com.axonivy.portal.component.dto.RoleDTO;
+import com.axonivy.portal.component.dto.UserDTO;
+
 import ch.ivy.addon.portalkit.dto.SecurityMemberDTO;
-import ch.ivy.addon.portalkit.dto.UserDTO;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.SecurityMemberUtils;

@@ -413,10 +413,10 @@
         "callSignature" : "autoCompleteForSubstituteOnApp",
         "result" : {
           "params" : [
-            { "name" : "users", "type" : "java.util.List<ch.ivy.addon.portalkit.dto.UserDTO>" }
+            { "name" : "users", "type" : "java.util.List<com.axonivy.portal.component.dto.UserDTO>" }
           ],
           "code" : [
-            "import ch.ivy.addon.portalkit.dto.UserDTO;",
+            "import com.axonivy.portal.component.dto.UserDTO;",
             "import ch.ivy.addon.portalkit.util.UserUtils;",
             "",
             "java.util.List<UserDTO> users = UserUtils.filterOut(in.users, in.selectedAbsenceUser);",
@@ -526,10 +526,10 @@
         "security" : "system",
         "output" : {
           "code" : [
+            "import com.axonivy.portal.component.dto.UserDTO;",
             "import ch.ivyteam.ivy.security.IPermission;",
             "import ch.ivy.addon.portalkit.util.PermissionUtils;",
             "import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;",
-            "import ch.ivy.addon.portalkit.dto.UserDTO;",
             "import ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence;",
             "",
             "UserDTO currentUserDTO = in.canCreateAbsenceForOtherUsers ? ",
@@ -559,7 +559,7 @@
         "callSignature" : "autoCompleteForUserOnApp",
         "result" : {
           "params" : [
-            { "name" : "users", "type" : "java.util.List<ch.ivy.addon.portalkit.dto.UserDTO>" }
+            { "name" : "users", "type" : "java.util.List<com.axonivy.portal.component.dto.UserDTO>" }
           ],
           "map" : {
             "result.users" : "in.users"
@@ -887,10 +887,10 @@
       "type" : "SubProcessCall",
       "name" : "save substitutes",
       "config" : {
-        "processCall" : "Ivy Data Processes/SubstituteService:saveSubstitutes(ch.ivy.addon.portalkit.dto.UserDTO,java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvySubstitute>)",
+        "processCall" : "Ivy Data Processes/SubstituteService:saveSubstitutes(com.axonivy.portal.component.dto.UserDTO,java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvySubstitute>)",
         "call" : {
           "params" : [
-            { "name" : "userDTO", "type" : "ch.ivy.addon.portalkit.dto.UserDTO" },
+            { "name" : "userDTO", "type" : "com.axonivy.portal.component.dto.UserDTO" },
             { "name" : "substitutes", "type" : "java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvySubstitute>" }
           ],
           "map" : {
@@ -942,9 +942,9 @@
         "security" : "system",
         "output" : {
           "code" : [
+            "import com.axonivy.portal.component.dto.UserDTO;",
             "import ch.ivyteam.ivy.security.IPermission;",
             "import ch.ivy.addon.portalkit.util.PermissionUtils;",
-            "import ch.ivy.addon.portalkit.dto.UserDTO;",
             "import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;",
             "",
             "in.selectedAbsenceUser = new UserDTO(ivy.session.getSessionUser());",

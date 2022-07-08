@@ -1,6 +1,6 @@
 TaskItemDocumentsData #class
 ch.ivy.addon.portalkit.component.TaskItemDocuments #namespace
-document ch.ivy.addon.portalkit.ivydata.bo.IvyDocument #field
+document com.axonivy.portal.component.ivydata.bo.IvyDocument #field
 document PERSISTENT #fieldModifier
 documentContent javax.activation.DataHandler #field
 documentContent PERSISTENT #fieldModifier
@@ -8,7 +8,7 @@ streamedContent org.primefaces.model.StreamedContent #field
 streamedContent PERSISTENT #fieldModifier
 documentId Long #field
 documentId PERSISTENT #fieldModifier
-documents java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvyDocument> #field
+documents java.util.List<com.axonivy.portal.component.ivydata.bo.IvyDocument> #field
 documents PERSISTENT #fieldModifier
 documentUploadEvent org.primefaces.event.FileUploadEvent #field
 documentUploadEvent PERSISTENT #fieldModifier
@@ -20,7 +20,7 @@ task ch.ivyteam.ivy.workflow.ITask #field
 task PERSISTENT #fieldModifier
 uploadDocumentCheckMessage String #field
 uploadDocumentCheckMessage PERSISTENT #fieldModifier
-uploadDocumentCheckStatus ch.ivy.addon.portalkit.enums.UploadDocumentCheckStatus #field
+uploadDocumentCheckStatus com.axonivy.portal.component.enums.UploadDocumentCheckStatus #field
 uploadDocumentCheckStatus PERSISTENT #fieldModifier
 businessCase ch.ivyteam.ivy.workflow.ICase #field
 businessCase PERSISTENT #fieldModifier
