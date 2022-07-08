@@ -21,7 +21,8 @@ import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivyteam.ivy.workflow.IWorkflowProcessModelVersion;
 
 public class ProcessStartCollector {
-  @Deprecated
+  @SuppressWarnings("unused")
+  @Deprecated(forRemoval = true, since = "9.4")
   private final IApplication application;
   private final List<IApplication> applicationsInSecurityContext;
   private static final String EXPRESS_CREATE_FRIENDLY_REQUEST_PATH =
@@ -43,33 +44,10 @@ public class ProcessStartCollector {
    * @param application 
    * @deprecated Use ProcessStartCollector() instead
    */
-  @Deprecated
+  @Deprecated(forRemoval = true, since = "9.4")
   public ProcessStartCollector(IApplication application) {
     this.application = application;
     this.applicationsInSecurityContext = IApplicationRepository.instance().allOf(ISecurityContext.current());
-  }
-
-  @SuppressWarnings("unused")
-  private List<IProcessStart> findProcessStartRequestPathContainsKeyword(String keyword) {
-    List<IProcessStart> processStarts = findProcessStartRequestPathContainsKeywordAndPmv(keyword, Ivy.wfTask().getProcessModelVersion());
-    if (CollectionUtils.isNotEmpty(processStarts)) {
-      return processStarts;
-    }
-
-    List<IProcessModel> processModels = application.getProcessModelsSortedByName();
-
-    for (IProcessModel processModel : processModels) {
-      Optional<List<IProcessStart>> processStartsOptional = Optional.of(processModel)
-        .filter(this::isActive)
-        .map(IProcessModel::getReleasedProcessModelVersion)
-        .filter(this::isActive)
-        .map(p -> findProcessStartRequestPathContainsKeywordAndPmv(keyword, p))
-        .filter(CollectionUtils::isNotEmpty);
-      if (processStartsOptional.isPresent()) {
-        return processStartsOptional.get();
-      }
-    }
-    return processStarts;
   }
   
   /**
