@@ -1,0 +1,7 @@
+Name,Default,Type,Description
+componentId,process-chain-component-id,String,"The component identifier."
+steps,,,List of step in the process chain.
+actualStepIndex,0,Integer,"Actual step index or current step index."
+direction,HORIZONTAL,String,"Direction of process chain: VERTICAL, HORIZONTAL."
+shape,CIRCLE,String,"Shape of process chain: CIRCLE, LINE."
+isShowAllSteps,false,Boolean,"Show all steps of the process chain."
