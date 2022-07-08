@@ -1,8 +1,8 @@
 CaseItemDocumentData #class
 ch.ivy.addon.portalkit.component.CaseItemDocument #namespace
-document ch.ivy.addon.portalkit.ivydata.bo.IvyDocument #field
+document com.axonivy.portal.component.ivydata.bo.IvyDocument #field
 document PERSISTENT #fieldModifier
-documents java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvyDocument> #field
+documents java.util.List<com.axonivy.portal.component.ivydata.bo.IvyDocument> #field
 documents PERSISTENT #fieldModifier
 documentUploadEvent org.primefaces.event.FileUploadEvent #field
 documentUploadEvent PERSISTENT #fieldModifier
@@ -16,7 +16,7 @@ streamedContent org.primefaces.model.StreamedContent #field
 streamedContent PERSISTENT #fieldModifier
 uploadDocumentCheckMessage String #field
 uploadDocumentCheckMessage PERSISTENT #fieldModifier
-uploadDocumentCheckStatus ch.ivy.addon.portalkit.enums.UploadDocumentCheckStatus #field
+uploadDocumentCheckStatus com.axonivy.portal.component.enums.UploadDocumentCheckStatus #field
 uploadDocumentCheckStatus PERSISTENT #fieldModifier
 deleteDocumentMessage String #field
 deleteDocumentMessage PERSISTENT #fieldModifier

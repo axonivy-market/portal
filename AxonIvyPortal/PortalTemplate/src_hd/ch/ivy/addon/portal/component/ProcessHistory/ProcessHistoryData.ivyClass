@@ -1,4 +1,0 @@
-ProcessHistoryData #class
-ch.ivy.addon.portal.component.ProcessHistory #namespace
-businessEntityId String #field
-businessEntityId PERSISTENT #fieldModifier

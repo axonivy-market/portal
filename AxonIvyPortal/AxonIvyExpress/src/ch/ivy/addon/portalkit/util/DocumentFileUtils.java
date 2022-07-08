@@ -10,8 +10,9 @@ import java.util.List;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.io.FilenameUtils;
 
-import ch.ivy.addon.portalkit.document.IvyDocumentTransformer;
-import ch.ivy.addon.portalkit.ivydata.bo.IvyDocument;
+import com.axonivy.portal.component.document.IvyDocumentTransformer;
+import com.axonivy.portal.component.ivydata.bo.IvyDocument;
+
 import ch.ivy.addon.portalkit.service.CaseDocumentService;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ICase;
