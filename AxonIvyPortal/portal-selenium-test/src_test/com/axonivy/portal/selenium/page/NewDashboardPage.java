@@ -634,7 +634,7 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public SelenideElement getConfigureDashboardMenu() {
-    $("#user-settings-menu").click();
+    $("#user-settings-menu").waitUntil(Condition.appear, DEFAULT_TIMEOUT).click();
     $("#user-setting-container").waitUntil(Condition.appear, DEFAULT_TIMEOUT);
     return $("#dashboard-configuration");
   }
@@ -642,6 +642,7 @@ public class NewDashboardPage extends TemplatePage {
   public void openDashboardConfigurationDialog() {
     SelenideElement configureButton = getConfigureDashboardMenu();
     configureButton.click();
+    $("div[id$=':dashboard-configuration-dialog']").waitUntil(Condition.appear, DEFAULT_TIMEOUT);
   }
 
   public NewDashboardConfigurationPage navigateToEditPublicDashboardPage() {
@@ -655,12 +656,12 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public void openCreatePublicDashboardMenu() {
-    $("a[id$=':create-public-dashboard']").click();
+    $("a[id$=':create-public-dashboard']").waitUntil(Condition.appear, DEFAULT_TIMEOUT).click();
     $("div[id$='create-new-dashboard-section']").waitUntil(Condition.appear, DEFAULT_TIMEOUT);
   }
 
   public void openCreatePrivateDashboardMenu() {
-    $("a[id$=':create-private-dashboard']").click();
+    $("a[id$=':create-private-dashboard']").waitUntil(Condition.appear, DEFAULT_TIMEOUT).click();
     $("div[id$='create-new-dashboard-section']").waitUntil(Condition.appear, DEFAULT_TIMEOUT);
   }
 

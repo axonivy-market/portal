@@ -151,10 +151,10 @@ Migrate 9.3 To 9.4
 #. Sub processes related to documents are moved to the independent project ``portal-component``.
    If you customized these processes, please override the correspond sub process again and added your customization to it.
    
-   Below are list of deprecated processes in ``PortalKit`` project and new processes in ``portal-component`` project.
+   Below is a list of deprecated processes in project ``PortalKit`` and new processes in project ``portal-component``.
    
    +-----------------------------------+--------------------------+
-   | New sub process                   | Deprecated sub process   |
+   | New subprocess                    | Deprecated subprocess    |
    +===================================+==========================+
    | GetDocumentItems                  | GetDocumentList          |
    +-----------------------------------+--------------------------+
@@ -165,7 +165,7 @@ Migrate 9.3 To 9.4
    | DownloadDocumentItem              | DownloadDocument         |
    +-----------------------------------+--------------------------+
 
-#. Some classes of Portal are moved to the independent project ``portal-component``. Please refer to below table to migrate them correctly
+#. Some classes of the Portal have been moved to the independent project ``portal-component``. Please refer to below table to migrate them correctly
 
    .. csv-table::
       :file: documents/class_replacement_9.4.csv
@@ -173,7 +173,7 @@ Migrate 9.3 To 9.4
       :class: longtable
       :widths: 1 1
 
-#. Some components of Portal are moved to the independent project ``portal-component``. Please follow these steps to migrate
+#. Some components of the Portal have been moved to the independent project ``portal-component``. Please follow these steps to migrate them:
 
    - :ref:`Migration steps <components-additional-components-migrate-from-old-user-selection>` for the new :ref:`User Selection <components-additional-components-user-selection>` component.
 
