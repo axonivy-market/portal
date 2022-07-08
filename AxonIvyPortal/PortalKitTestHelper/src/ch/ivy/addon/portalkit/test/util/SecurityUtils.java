@@ -110,7 +110,7 @@ public class SecurityUtils {
           int t = 5; // number retries
           while (t >= 0) {
             try {
-              IRole role = Ivy.security().roles().find(rolename);
+              IRole role = ISecurityContext.current().roles().find(rolename);
               if (role != null) {
                 // return role.getAllUsers().contains(user);
                 return user.getAllRoles().contains(role); // allowed by EON-Security, configured
@@ -156,7 +156,7 @@ public class SecurityUtils {
           int t = 5; // number retries
           while (t >= 0) {
             try {
-              IRole role = Ivy.security().roles().find(rolename);
+              IRole role = ISecurityContext.current().roles().find(rolename);
               if (role != null) {
                 return session.hasRole(role, true);
               }
@@ -177,23 +177,6 @@ public class SecurityUtils {
               } catch (InterruptedException ie) {
                 // NOP
               }
-              // } catch (PersistencyException pe) {
-              // Ivy.log().error("Cannot connect for roles:"+pe);
-              // Ivy.log().error("Retries left:"+t);
-              // t--;
-              // int s = 1;
-              // if (Ivy.session() != null) {
-              // s = Ivy.session().getIdentifier()+1;
-              // while (s>10) {
-              // s = s / 2;
-              // }
-              // }
-              // try {
-              // Thread.sleep(1000 * s); //wait N secs
-              // }
-              // catch (InterruptedException ie) {
-              // //NOP
-              // }
             }
           }
           return false;
@@ -213,7 +196,7 @@ public class SecurityUtils {
       result = Sudo.call(
               () -> {
                 List<IUser> result1 = new ArrayList<IUser>();
-                IRole role = Ivy.security().roles().find(rolename);
+                IRole role = ISecurityContext.current().roles().find(rolename);
                 if (role != null) {
                   result1 = role.users().allPaged().stream().collect(Collectors.toList());
                 }
@@ -235,9 +218,9 @@ public class SecurityUtils {
       result = Sudo.call(
           () -> {
             List<IUser> result1 = new ArrayList<IUser>();
-            List<IUser> users = Ivy.security().users().paged().stream().collect(Collectors.toList());
+            List<IUser> users = ISecurityContext.current().users().paged().stream().collect(Collectors.toList());
             for (IUser u : users) {
-              if (u.getId() != Ivy.security().users().system().getId()) {
+              if (u.getId() != ISecurityContext.current().users().system().getId()) {
                 result1.add(u);
               }
             }
@@ -250,7 +233,7 @@ public class SecurityUtils {
   }
 
   private static void updatePermissionsOfAdminUser() {
-    var admin = Ivy.security().users().find("admin");
+    var admin = ISecurityContext.current().users().find("admin");
     if (admin != null) {
       for (IPermission permission : ADMIN_PERMISSIONS) {
         ISecurityContext.current().securityDescriptor().grantPermission(permission, admin);
@@ -264,7 +247,7 @@ public class SecurityUtils {
   }
 
   private static void updatePermissionsOfDemoUser() {
-    var demo = Ivy.security().users().find("demo");
+    var demo = ISecurityContext.current().users().find("demo");
     if (demo == null) {
       return;
     }

@@ -20,7 +20,6 @@ import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.publicapi.RoleAPI;
 import ch.ivy.addon.portalkit.service.IvyCacheService;
 import ch.ivyteam.api.PublicAPI;
-import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.IUser;
@@ -45,7 +44,7 @@ public final class RoleUtils {
   @PublicAPI
   public static List<IRole> getAllRoles() {
     return IvyExecutor.executeAsSystem(() -> {
-      return Ivy.security().roles().all();
+      return ISecurityContext.current().roles().all();
     });
   }
 
@@ -58,7 +57,7 @@ public final class RoleUtils {
   @PublicAPI
   public static IRole findRole(String name) {
     return IvyExecutor.executeAsSystem(() -> {
-      return Ivy.security().roles().find(name);
+      return ISecurityContext.current().roles().find(name);
     });
   }
 
@@ -185,16 +184,16 @@ public final class RoleUtils {
   }
 
   /**
-   * Get all roles of current Ivy Application exclude some roles has properties HIDE_IN_DELEGATION and HIDE
+   * Get all roles of security context exclude some roles has properties HIDE_IN_DELEGATION and HIDE
    *
-   * @return List<IRole> : All roles of current Ivy Application exclude some roles has properties
+   * @return List<IRole> : All roles of security context exclude some roles has properties
    *         HIDE_IN_DELEGATION
    *         HIDE
    */
   public static List<IRole> getRolesForDelegate() {
     return IvyExecutor.executeAsSystem(() -> {
       List<IRole> roles = new ArrayList<>();
-      List<IRole> securityRolesTmp = filterVisibleRoles(Ivy.security().roles().all());
+      List<IRole> securityRolesTmp = filterVisibleRoles(ISecurityContext.current().roles().all());
       for (IRole role : securityRolesTmp) {
         // Ignore the role has value in property HIDE_IN_DELEGATION
         if (role.getProperty(HIDE_IN_DELEGATION) != null) {

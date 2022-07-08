@@ -258,13 +258,13 @@ public class UserUtils {
 
   public static IUser findUserByUsername(String username) {
     return IvyExecutor.executeAsSystem(() -> {
-      return Ivy.security().users().find(username);
+      return ISecurityContext.current().users().find(username);
     });
   }
 
   public static IUser findUserByUserId(Long userId) {
     return IvyExecutor.executeAsSystem(() -> {
-      return Ivy.security().users().find(userId);
+      return ISecurityContext.current().users().find(userId);
     });
   }
 
