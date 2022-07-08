@@ -1,0 +1,70 @@
+Dialogs:
+  com:
+    axonivy:
+      portal:
+        component:
+          Common:
+            Cancel: Cancel
+            ConfirmForDelete: Are you sure you want to delete this item?
+            Confirmation: Confirmation
+            More: More
+            'No': 'No'
+            RequiredFieldMessage: This field is required
+            'Yes': 'Yes'
+          DocumentTable:
+            Delete: Delete
+            DeleteDocumentNote: '{0} has deleted {1}'
+            DeleteSuceed: File deleted successfully
+            Download: Download
+            EmptyFileMessage: File size should not be empty
+            ErrorFileUploadSize: The file size must be lower than {0}
+            FileContainScript: This file is not allowed to upload because it contains some script!
+            FileContainVirus: Upload failed, virus/infection detected!
+            FileFunction: Functions
+            FileLimitMessage: The maximum number of files are already uploaded!
+            InvalidFileMessage: This file type is not accepted!
+            Name: Filename
+            NoFile: No files are found!
+            Size: File size
+            Type: Type
+            Upload: Upload new file
+            UploadDocumentNote: '{0} has uploaded {1}'
+            UploadFailed: An error occurred while uploading this file. Please ask your administrator for this issue.
+            UploadFileExists: File {0} already exists
+            UploadSucceed: The file was uploaded successfully
+          Enums:
+            BasicDocumentType:
+              CONTRACT: Contract
+              DOCUMENTATION: Documentation
+              EMAIL: Email
+              INFORMATION: Information
+              OTHERS: Others
+            PortalIvyDataErrorType:
+              APP_NOT_FOUND: Application not found
+              FAIL_TO_COUNT_CASE: Failed to count case
+              FAIL_TO_LOAD_CASE: Failed to load case
+          ProcessChain:
+            currentStepIsNotDefined: Current step ({0}) of process chain is not defined
+          ProcessHistory:
+            CaseColumn:
+              CreationTime: Created
+              Creator: Creator
+              Id: Case Id
+              Name: Name
+              ProcessName: Process name
+              State: State
+            CaseNameNotAvailable: '[Case name not available]'
+            CaseState:
+              CREATED: Created
+              DESTROYED: Destroyed
+              DONE: Done
+              FAILED: Failed
+              OPEN: Open
+              RUNNING: In progress
+              ZOMBIE: Zombie
+            DefaultEmptyMessage: There are no cases
+            NoDescription: No description
+            NoName: no name
+            NotAvailable: NA
+Labels:
+  disabledUserPrefix: (disabled)

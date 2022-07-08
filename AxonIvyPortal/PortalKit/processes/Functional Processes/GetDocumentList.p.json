@@ -9,6 +9,7 @@
       "name" : "call(ICase)",
       "config" : {
         "callSignature" : "call",
+        ".name" : "call(ICase)",
         "input" : {
           "params" : [
             { "name" : "businessCase", "type" : "ch.ivyteam.ivy.workflow.ICase" }
@@ -19,7 +20,7 @@
         },
         "result" : {
           "params" : [
-            { "name" : "documents", "type" : "java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvyDocument>" },
+            { "name" : "documents", "type" : "java.util.List<com.axonivy.portal.component.ivydata.bo.IvyDocument>" },
             { "name" : "message", "type" : "String" }
           ],
           "map" : {
@@ -42,16 +43,17 @@
     }, {
       "id" : "f3",
       "type" : "Script",
-      "name" : "get document list",
+      "name" : "get document items",
       "config" : {
         "security" : "system",
+        ".name" : "get document items",
         "output" : {
           "code" : [
+            "import com.axonivy.portal.component.enums.BasicDocumentType;",
+            "import com.axonivy.portal.component.document.IvyDocumentTransformer;",
+            "import com.axonivy.portal.component.ivydata.bo.IvyDocument;",
             "import ch.ivy.addon.portalkit.document.DocumentCustomField;",
             "import org.apache.commons.lang3.StringUtils;",
-            "import ch.ivy.addon.portalkit.enums.BasicDocumentType;",
-            "import ch.ivy.addon.portalkit.ivydata.bo.IvyDocument;",
-            "import ch.ivy.addon.portalkit.document.IvyDocumentTransformer;",
             "import ch.ivyteam.ivy.workflow.document.IDocument;",
             "import ch.ivyteam.ivy.workflow.ICase;",
             "import ch.ivy.addon.portalkit.constant.PortalConstants;",
@@ -73,22 +75,32 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 224, "y" : 64 }
+        "at" : { "x" : 224, "y" : 64 },
+        "size" : { "width" : 128, "height" : 44 }
       },
       "connect" : { "id" : "f2", "to" : "f1" }
     }, {
       "id" : "f5",
       "type" : "ProcessAnnotation",
       "name" : [
-        "After get document list from DMS, convert them into List<ch.ivy.addon.portalkit.ivydata.bo.IvyDocument>",
+        "After get document list from DMS, convert them into List<ch.ivy.addon.portal.component.ivydata.bo.IvyDocument>",
         "Some mandatory fields when mapping:",
         "- id",
         "- name",
         "- contentType"
       ],
+      "config" : {
+        ".name" : [
+          "After get document list from DMS, convert them into List<ch.ivy.addon.portal.component.ivydata.bo.IvyDocument>",
+          "Some mandatory fields when mapping:",
+          "- id",
+          "- name",
+          "- contentType"
+        ]
+      },
       "visual" : {
         "at" : { "x" : 344, "y" : 240 },
-        "size" : { "width" : 576, "height" : 108 }
+        "size" : { "width" : 624, "height" : 108 }
       },
       "connect" : { "id" : "f6", "to" : "f0" }
     } ]

@@ -1,12 +1,14 @@
 package ch.ivy.gawfs.beans;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
 import org.apache.commons.lang3.StringUtils;
 
+import ch.ivy.addon.portalkit.service.CaseDocumentService;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUser;
 
@@ -31,5 +33,17 @@ public class UserTaskFormBean implements Serializable {
     } else {
       return String.format(USER_NAME_FORMAT, user.getDisplayName(), user.getName());
     }
+  }
+
+  public List<String> getAllowedUploadFileType() {
+    return CaseDocumentService.getAllowedUploadFileType();
+  }
+
+  public boolean getEnableScriptCheckingForUploadedDocument() {
+    return CaseDocumentService.enableScriptCheckingForUploadedDocument();
+  }
+
+  public boolean getEnableVirusScannerForUploadedDocument() {
+    return CaseDocumentService.enableVirusScannerForUploadedDocument();
   }
 }
