@@ -1,7 +1,0 @@
-UploadDocumentOverrideData #class
-_com.axonivy.portal.developerexamples #namespace
-businessCase ch.ivyteam.ivy.workflow.ICase #field
-message String #field
-status ch.ivy.addon.portalkit.enums.UploadDocumentCheckStatus #field
-uploadedDocument ch.ivyteam.ivy.workflow.document.IDocument #field
-uploadedFile org.primefaces.model.file.UploadedFile #field

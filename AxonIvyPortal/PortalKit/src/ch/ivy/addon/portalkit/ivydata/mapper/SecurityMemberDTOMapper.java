@@ -3,9 +3,10 @@ package ch.ivy.addon.portalkit.ivydata.mapper;
 import java.util.ArrayList;
 import java.util.List;
 
-import ch.ivy.addon.portalkit.dto.RoleDTO;
+import com.axonivy.portal.component.dto.RoleDTO;
+import com.axonivy.portal.component.dto.UserDTO;
+
 import ch.ivy.addon.portalkit.dto.SecurityMemberDTO;
-import ch.ivy.addon.portalkit.dto.UserDTO;
 
 public class SecurityMemberDTOMapper {
   

@@ -9,9 +9,10 @@ import javax.faces.bean.SessionScoped;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.BooleanUtils;
 
+import com.axonivy.portal.component.enums.BasicDocumentType;
+import com.axonivy.portal.component.enums.DocumentType;
+
 import ch.ivy.addon.portalkit.enums.ApplicationType;
-import ch.ivy.addon.portalkit.enums.BasicDocumentType;
-import ch.ivy.addon.portalkit.enums.DocumentType;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivy.addon.portalkit.masterdata.AwesomeIcon;
