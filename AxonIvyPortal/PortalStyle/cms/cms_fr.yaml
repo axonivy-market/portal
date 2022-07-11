@@ -583,16 +583,16 @@ ch.ivy.addon.portalkit.ui.jsf:
       AssignUsersToRole: Attribuer des rôles aux utilisateurs
       AssignedUser: Utilisateurs assignés
       AvailableUsers: Utilisateurs disponibles
-      CannotDeleteRoleTooltip: Vous ne pouvez pas supprimer ce rôle en raison d'un manque de permissions.
-      CannotDeleteUserTooltip: Vous ne pouvez pas supprimer les utilisateurs de l'appartenance au rôle
-      CannotEditRoleTooltip: Vous ne pouvez pas modifier ce rôle en raison d'un manque de permissions.
-      CannotManageRoleTooltip: Vous ne pouvez pas gérer ce rôle car il n'est pas dynamique.
+      CannotDeleteRoleTooltip: Vous n'avez pas la permission de supprimer ce rôle. Veuillez contacter votre administrateur système.
+      CannotDeleteUserTooltip: Vous pouvez uniquement modifier les affectations de rôle directes, mais pas les affiliations héritées.
+      CannotEditRoleTooltip: Vous n'avez pas l'autorisation de modifier les informations relatives aux rôles. Veuillez contacter votre administrateur système.
+      CannotManageRoleTooltip: Vous ne pouvez modifier les informations relatives aux rôles que pour les rôles qui ne sont pas impliqués dans un processus.
       CreateRole: Créer un nouveau rôle
       DeleteButtonTitle: Supprimer le rôle
       EditButtonTitle: Modifier les informations sur le rôle
       FilteredRoles: Rôles filtrés
+      InheritedMembership: Adhésion héritée
       ListUsers: Utilisateurs du rôle {0}
-      MemberOfRole: Membre du rôle de membre
       Messages:
         ConfirmDeleteRole: Vous êtes sûr de vouloir le supprimer ?
         ConfirmDeleteUserOfRole: Êtes-vous sûr de vouloir retirer ces utilisateurs du rôle ?
@@ -601,9 +601,9 @@ ch.ivy.addon.portalkit.ui.jsf:
         DuplicateRole: Le rôle "{0}" existe déjà dans le système, essayez avec un autre nom.
         MaxSearchLimit: La recherche actuelle a plus de {0} résultats
         NotFoundRole: Impossible de trouver le "{0}" dans le système.
-        ParentRoleIsRequired: Le rôle des parents est un champ obligatoire
+        ParentRoleIsRequired: Le rôle des parents est obligatoire
         RemoveRoleSuccess: Rôle "{0}" supprimé avec succès
-        RoleNameNotBeEmpty: Le nom du rôle ne doit pas être vide
+        RoleNameIsRequired: Le nom du rôle est obligatoire
         RoleNotFound: Aucun rôle trouvé
         SearchToSeeMoreRole: Veuillez utiliser la recherche pour trouver un rôle spécifique ({0} plus de rôles).
         UpdateRoleSuccess: Le rôle "{0}" a été mis à jour avec succès
@@ -943,6 +943,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     iconSelectionDialogHeader: Choisir une icône
     seachIconByNamePlaceHolder: Recherche Icon par nom
   languageSetting:
+    Language: Langue
     cannotSetEmailLanguage: La langue ne peut pas être définie comme langue de notification par courrier électronique.
     languageSetting: Paramètres de langue
     saveLanguageHasWSErrors: Erreur d'enregistrement de la langue

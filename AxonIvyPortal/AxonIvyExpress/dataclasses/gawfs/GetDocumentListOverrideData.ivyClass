@@ -1,5 +1,0 @@
-GetDocumentListOverrideData #class
-gawfs #namespace
-businessCase ch.ivyteam.ivy.workflow.ICase #field
-message String #field
-documents java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvyDocument> #field

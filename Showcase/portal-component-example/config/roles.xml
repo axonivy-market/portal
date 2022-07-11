@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<role>
+    <identifier>Everybody</identifier>
+    <role>
+        <identifier>Tester</identifier>
+        <displayName>Tester</displayName>
+    </role>
+    <role>
+        <identifier>Supporter</identifier>
+        <displayName>Supporter</displayName>
+    </role>
+    <role>
+        <identifier>UiDesigner</identifier>
+        <displayName>UI Designer</displayName>
+    </role>
+    <role>
+        <identifier>BackendDeveloper</identifier>
+        <displayName>Backend Developer</displayName>
+    </role>
+    <role>
+        <identifier>ProjectManager</identifier>
+        <displayName>Project Manager</displayName>
+    </role>
+</role>

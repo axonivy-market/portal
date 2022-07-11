@@ -76,10 +76,14 @@
                 </p:selectOneRadio>
               </pe:dynaFormControl>
 
-              <pe:dynaFormControl type="FileUpload" for="fileUploadComponent">
-                <ic:ch.ivy.addon.portalkit.component.document.DocumentTable id="fileUploadComponent" typeColumnRendered="false"
+              <pe:dynaFormControl type="FileUpload" for="fileUploadComponent" >
+                <ic:com.axonivy.portal.component.DocumentTable id="fileUploadComponent" typeColumnRendered="false"
                   messageRendered="false" renderChooseUploadIcon="#{visibilityBean.showButtonIcon}"
-                  fileLimit="#{dynaData.intSetting}" />
+                  fileLimit="#{dynaData.intSetting}"
+                  typeSelectionItems="#{masterDataBean.documentTypes}"
+                  allowedUploadFileTypes="#{userTaskFormBean.allowedUploadFileType}"
+                  enableScriptCheckingForUploadedDocument="#{userTaskFormBean.enableScriptCheckingForUploadedDocument}"
+                  enableVirusScannerForUploadedDocument="#{userTaskFormBean.enableVirusScannerForUploadedDocument}" />
               </pe:dynaFormControl>
 
               <pe:dynaFormControl type="Spacer" for="spacer">
