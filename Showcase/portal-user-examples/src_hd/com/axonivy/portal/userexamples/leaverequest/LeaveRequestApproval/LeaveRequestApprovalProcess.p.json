@@ -61,7 +61,7 @@
         "security" : "system",
         "output" : {
           "code" : [
-            "import ch.ivy.addon.portalkit.dto.UserDTO;",
+            "import com.axonivy.portal.component.dto.UserDTO;",
             "import com.axonivy.portal.userexamples.leaverequest.LeaveRequest;",
             "in.leaveRequestData = ivy.repo.get(LeaveRequest.class) as LeaveRequest;",
             "",

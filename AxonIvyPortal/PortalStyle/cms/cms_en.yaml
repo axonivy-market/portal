@@ -582,16 +582,16 @@ ch.ivy.addon.portalkit.ui.jsf:
       AssignUsersToRole: Assign users to role
       AssignedUser: Assigned users
       AvailableUsers: Available users
-      CannotDeleteRoleTooltip: You cannot delete this role due to lack of permissions
-      CannotDeleteUserTooltip: You cannot delete users of the role membership
-      CannotEditRoleTooltip: You cannot edit this role due to lack of permissions
-      CannotManageRoleTooltip: You cannot manage this role because it is not a dynamic one
+      CannotDeleteRoleTooltip: You do not have the permission to delete this role. Please contact your system administrator.
+      CannotDeleteUserTooltip: You can only edit direct role assignments but not inherited memberships.
+      CannotEditRoleTooltip: You do not have the permission to change role information. Please contact your system administrator.
+      CannotManageRoleTooltip: You can only change role information for roles which are not involved in any process.
       CreateRole: Create new role
       DeleteButtonTitle: Delete role
       EditButtonTitle: Edit role info
       FilteredRoles: Filtered roles
+      InheritedMembership: Inherited membership
       ListUsers: Users of role {0}
-      MemberOfRole: Member of role membership
       Messages:
         ConfirmDeleteRole: Are you sure you want to delete it?
         ConfirmDeleteUserOfRole: Are you sure you want to remomve there users out of the role?
@@ -600,9 +600,9 @@ ch.ivy.addon.portalkit.ui.jsf:
         DuplicateRole: Role "{0}" already exists in the system, try with other name
         MaxSearchLimit: The current search has more than {0} results
         NotFoundRole: Cannot find the "{0}" in the system
-        ParentRoleIsRequired: Parent role is mandatory field
+        ParentRoleIsRequired: Parent role is mandatory
         RemoveRoleSuccess: Role "{0}" removed successfully
-        RoleNameNotBeEmpty: Role name must not be empty
+        RoleNameIsRequired: Role name is mandatory
         RoleNotFound: No roles found
         SearchToSeeMoreRole: Please use the search to find a specific role ({0} more roles)
         UpdateRoleSuccess: Role "{0}" updated successfully
@@ -948,6 +948,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     iconSelectionDialogHeader: Selecting icon
     seachIconByNamePlaceHolder: Search icon by name
   languageSetting:
+    Language: Language
     cannotSetEmailLanguage: Language cannot be set as email notification language.
     languageSetting: Language settings
     saveLanguageHasWSErrors: Language save error.
