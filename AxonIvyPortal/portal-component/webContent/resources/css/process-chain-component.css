@@ -1,0 +1,453 @@
+/*Style for stages process chain -----------------------------------------------------------------------------------*/
+.circle-process-chain .circle-horizontal-process-step.visited .circle-horizontal-step-container span:before {
+    border-color: var(--process-chain-menu-color);
+}
+
+.circle-process-chain .circle-horizontal-process-step.waiting .circle-horizontal-step-container {
+  border: solid 2px var(--process-chain-menu-color);
+  background-color: var(--process-chain-circle-horizontal-waiting-step-number-container-background-color);
+}
+
+.circle-process-chain .circle-horizontal-process-step .circle-horizontal-step-container {
+  background-color: var(--process-chain-menu-color);
+  border: solid 2px var(--process-chain-circle-step-container-border);
+}
+
+.circle-process-chain .circle-vertical-process-step.visited .circle-vertical-step-container span:before {
+    border-color: var(--process-chain-menu-color);
+}
+
+.circle-process-chain .circle-vertical-process-step.current .circle-vertical-step-title {
+  font-weight: var(--process-chain-current-circle-vertical-step-title-font-weight);
+}
+
+.circle-process-chain .circle-vertical-process-step.waiting .circle-vertical-step-container {
+  border: solid 2px var(--process-chain-menu-color);
+  background-color: var(--process-chain-circle-vertical-step-container-background-color);
+}
+
+.circle-process-chain .circle-vertical-process-step .circle-vertical-step-container {
+  background-color: var(--process-chain-menu-color);
+  border: solid 2px var(--process-chain-circle-step-container-border);
+}
+
+.circle-process-chain .circle-vertical-process-step:not(:last-child) .circle-vertical-step-container .step-number-container:after {
+  border-left: 3px solid var(--process-chain-circle-vertical-step-number-container-border);
+}
+
+.circle-process-chain .circle-horizontal-process-step.current .circle-horizontal-step-title {
+  font-weight: var(--process-chain-current-circle-horizontal-step-title-font-weight);
+}
+
+.line-process-chain .line-horizontal-process-step .line-horizontal-step-container {
+    background-color: var(--process-chain-menu-color);
+}
+
+.line-process-chain .line-horizontal-process-step.current .line-horizontal-step-title {
+  font-weight: var(--process-chain-current-line-horizontal-step-title-font-weight);
+}
+
+.line-process-chain .line-horizontal-process-step.hide-left-steps {
+    background: repeating-linear-gradient(90deg, var(--process-chain-menu-color), var(--process-chain-menu-color) 10px, var(--process-chain-body-background-color) 10px, var(--process-chain-body-background-color) 20px);
+}
+
+.line-process-chain .line-horizontal-process-step.hide-right-steps {
+    background: repeating-linear-gradient(90deg, #e0e0e0, #e0e0e0 10px, var(--process-chain-body-background-color) 10px, var(--process-chain-body-background-color) 20px);
+}
+
+.line-process-chain .line-vertical-process-step .line-vertical-step-container {
+    background-color: var(--process-chain-menu-color);
+}
+
+.line-process-chain .line-vertical-process-step.hide-left-steps {
+    background: repeating-linear-gradient(180deg, var(--process-chain-menu-color), var(--process-chain-menu-color) 10px, var(--process-chain-body-background-color) 10px, var(--process-chain-body-background-color) 20px);
+}
+
+.line-process-chain .line-vertical-process-step.hide-right-steps {
+    background: repeating-linear-gradient(180deg, #e0e0e0, #e0e0e0 10px, var(--process-chain-body-background-color) 10px, var(--process-chain-body-background-color) 20px);
+}
+
+.line-process-chain .line-horizontal-process-step.waiting .line-horizontal-step-container,
+.line-process-chain .line-vertical-process-step.waiting .line-vertical-step-container {
+  background-color: var(--process-chain-line-waiting-step-background-color);
+}
+
+.line-process-chain .line-vertical-process-step.current .line-vertical-step-title {
+  font-weight: var(--process-chain-current-line-vertical-step-title-font-weight);
+}
+
+.current .cicrle-step-container, .visited .cicrle-step-container,
+.process-chain-mobile-container .circle-horizontal-process-step {
+    color: var(--process-chain-circle-step-number-color);
+}
+
+.circle-horizontal-step-container:not(.right-steps) .step-number-container:after {
+  border-top-color: var(--process-chain-circle-horizontal-step-number-container-border-top);
+}
+  
+.circle-horizontal-step-container:not(.last-step) .step-number-container:after {
+    border-top: 3px dashed var(--process-chain-circle-horizontal-step-number-container-border-top);
+  }
+
+.circle-horizontal-step-container.last-step .step-number-container:after {
+  border-top: 3px dashed var(--process-chain-circle-horizontal-step-number-container-border-top);
+}
+  
+.circle-horizontal-step-container .step-number-container:before {
+  border-top: 3px solid var(--process-chain-circle-horizontal-step-number-container-border-top-color);
+}
+
+.circle-horizontal-process-step:not(:last-child) .circle-horizontal-step-container .step-number-container:after {
+  border-top: 3px solid var(--process-chain-circle-horizontal-step-number-container-border-top);
+}
+
+.circle-horizontal-process-step.visited .circle-horizontal-step-container .step-number-container:after {
+  color: var(--process-chain-circle-horizontal-step-number-container-border-top-color);
+}
+
+.circle-process-chain .circle-horizontal-process-step,
+.circle-process-chain .circle-vertical-process-step,
+.line-process-chain .line-vertical-process-step {
+  font-size: var(--process-chain-process-step-font-size);
+}
+
+.process-chain-container {
+  flex: 1 0 auto;
+  text-align: right;
+}
+
+@media (max-width: 1024px) {
+  .process-chain-container.horizontal-process-chain-container {
+    order: 2;
+  }
+  .process-chain-container.vertical-process-chain-container {
+    display: none !important;
+  }
+  .task-name-vertical-process-chain, .task-name-vertical-process-chain.vertical-chain-shape-line,
+  .task-template-button.vertical-process-chain.vertical-chain-shape-line,
+  .task-template-button.vertical-process-chain {
+    margin-left: auto !important;
+  }
+  .task-template-content.vertical-process-chain, .task-template-content.vertical-process-chain.vertical-chain-shape-line,
+  .task-template-button.vertical-process-chain, .task-template-button.vertical-process-chain.vertical-chain-shape-line {
+    width: 100% !important;
+  }
+  .process-chain-container {
+    flex: 1 0 100% !important;
+    text-align: center !important;
+  }
+  .circle-process-chain .circle-horizontal-step-title {
+    margin-bottom: 2px !important;
+  }
+  .circle-horizontal-step-container .step-number-container:after,
+  .circle-horizontal-step-container .step-number-container:before {
+    display: inline-block;
+    content: "";
+    width: 20px;
+    line-height: 0;
+    margin-right: -20px;
+  }
+  _:-ms-fullscreen, :root .circle-horizontal-step-container .step-number-container:after,
+    .circle-horizontal-step-container .step-number-container:before {
+    margin: 0;
+    margin-left: -3px;
+  }
+  .circle-horizontal-step-container .step-number-container:after {
+    transform: translate(30px, -6px);
+    border-top-style: dashed;
+  }
+  .circle-horizontal-step-container .step-number-container:before {
+    transform: translate(-30px, -2px);
+    border-top-style: dashed;
+  }
+  _:-ms-fullscreen, :root .circle-horizontal-step-container .step-number-container:before {
+    margin-left: -18px;
+    -ms-transform: translateX(-150%);
+  }
+}
+
+@media (max-width: 1024px) {
+  .circle-process-chain .circle-horizontal-step-title {
+    margin-bottom: 2px !important;
+  }
+  .circle-horizontal-process-step.left-steps {
+    padding-right: 5px;
+  }
+  .circle-horizontal-step-container .step-number-container:after,
+  .circle-horizontal-step-container.right-steps .step-number-container:after,
+  .circle-horizontal-step-container.left-steps .step-number-container:before {
+    margin: 0;
+    position: absolute;
+    display: inline-block;
+    content: "";
+    width: 20px;
+  }
+  .circle-horizontal-step-container .step-number-container:after,
+  .circle-horizontal-step-container.right-steps .step-number-container:after {
+    top: 20px;
+  }
+  .circle-horizontal-step-container.left-steps .step-number-container:before {
+    top: 15px;
+  }
+  .circle-horizontal-step-container:not(.right-steps) .step-number-container:after {
+    width: 0 !important;
+  }
+  .circle-horizontal-step-container .step-number-container:before {
+    transform: translate(20px, 5px);
+    border-top-style: dashed;
+  }
+  .circle-horizontal-step-container .step-number-container:before {
+    transform: translate(-49px, -1px);
+    border-top-style: dashed;
+  }
+}
+
+/* CIRCLE HONRIZONTAL***/
+.circle-process-chain .circle-horizontal-process-step, .circle-process-chain .circle-vertical-process-step {
+  width: 140px;
+  display: inline-block;
+  text-align: center;
+}
+
+.circle-process-chain .circle-horizontal-process-step {
+  margin: 5px -2px;
+}
+
+.circle-horizontal-process-step:not(:last-child) .circle-horizontal-step-container .step-number-container:after {
+  position: absolute;
+  top: 15px;
+  content: "";
+  width: 90px;
+  margin: 0 15px;
+  transform: translate(4px, 0);
+}
+
+_:-ms-fullscreen, :root .circle-horizontal-process-step:not(:last-child) .circle-horizontal-step-container .step-number-container:after {
+  top: 1.5rem !important;
+  margin-left: 0.6em;
+}
+
+.circle-process-chain .circle-horizontal-process-step.hide-steps:not(:last-child) .circle-horizontal-step-container .step-number-container:after {
+  border-top-style: dashed;
+}
+
+.circle-process-chain .circle-horizontal-process-step .circle-horizontal-step-container,
+.circle-process-chain .circle-vertical-process-step .circle-vertical-step-container {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.circle-process-chain .circle-horizontal-step-title {
+  margin-bottom: 4px;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+}
+
+/** CIRCLE VERTICAL */
+.circle-process-chain .vertical-process-chain {
+  position: relative;
+  top: 20px;
+  right: 20px;
+  clear: both;
+  float: left;
+  width: 140px;
+}
+
+.circle-process-chain .circle-vertical-process-step {
+  height: 100px;
+  overflow: hidden;
+  word-break: break-all;
+}
+
+.circle-process-chain .circle-vertical-process-step:not(:last-child) .circle-vertical-step-container .step-number-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.circle-process-chain .circle-vertical-process-step:not(:last-child) .circle-vertical-step-container .step-number-container:after {
+  position: absolute;
+  display: block;
+  content: "";
+  height: 50px;
+  top: 40px;
+}
+
+_:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(:last-child) .circle-vertical-step-container .step-number-container:after {
+  margin-left: 2px; 
+}
+
+.circle-process-chain .circle-vertical-process-step.hide-steps:not(:last-child) .circle-vertical-step-container .step-number-container:after {
+  border-left-style: dashed;
+}
+
+.circle-process-chain .circle-vertical-process-step .circle-vertical-step-container {
+  float: left;
+}
+
+.circle-process-chain .circle-vertical-step-title {
+  padding-top: 10px;
+  padding-left: 5px;
+  display: flex;
+  width: calc(100% - 50px);
+  text-align: left;
+}
+
+/** LINE HORIZONTAL*/
+@media screen and (max-width: 40em) {
+  .line-process-chain .line-horizontal-process-step .line-horizontal-step-container {
+    width: 80% !important;
+    margin: auto;
+  }
+  .line-process-chain .line-horizontal-step-title {
+    margin-bottom: 2px !important;
+  }
+  .line-process-chain .line-horizontal-process-step.hide-left-steps {
+    width: 50px !important;
+  }
+}
+
+.line-process-chain .line-horizontal-process-step {
+  width: 130px;
+  display: inline-block;
+  text-align: center;
+  vertical-align: bottom !important;
+  font-size: var(--process-chain-process-step-font-size);
+}
+
+.line-process-chain .line-horizontal-process-step.hide-right-steps,
+.line-process-chain .line-horizontal-process-step.hide-left-steps {
+  width: 50px;
+  height: 10px;
+  margin: 0 10px;
+  vertical-align: bottom !important;
+}
+
+.line-process-chain .line-horizontal-process-step.hide-right-steps {
+  margin: 0px 0px 0px 10px !important;
+}
+
+.line-process-chain .line-horizontal-process-step .line-horizontal-step-container {
+  height: 10px;
+  width: 99%;
+}
+
+.line-process-chain .line-horizontal-step-title {
+  margin-bottom: 5px;
+  display: block;
+  overflow: hidden;
+}
+
+/** LINE VERTICAL*/
+.vertical-process-chain-container {
+  display: inline-block;
+  width: 140px;
+  float: left;
+}
+
+.vertical-process-chain-container.vertical-chain-shape-line {
+  width: 70px;
+}
+
+.task-template-content.vertical-process-chain, .task-template-button.vertical-process-chain {
+  display: inline-block;
+  width: calc(100% - 140px);
+}
+
+.task-template-content.vertical-process-chain.vertical-chain-shape-line,
+.task-template-button.vertical-process-chain.vertical-chain-shape-line {
+  width: calc(100% - 70px);
+}
+
+.task-name-vertical-process-chain {
+  margin-left: 140px;
+}
+
+.task-name-vertical-process-chain.vertical-chain-shape-line {
+  margin-left: 70px;
+}
+
+.line-process-chain.vertical-process-chain {
+  float: left;
+}
+
+.line-process-chain .line-vertical-process-step {
+  width: 70px;
+  height: 120px;
+  text-align: center;
+}
+
+.line-process-chain .line-vertical-process-step.hide-left-steps {
+  width: 10px;
+  height: 40px;
+  margin: 9px 0px 0px 0px;
+}
+
+.line-process-chain .line-vertical-process-step.hide-right-steps {
+  width: 10px;
+  height: 40px;
+  margin: 9px 0px 0px 0px;
+}
+
+.line-process-chain .line-vertical-process-step .line-vertical-step-container {
+  height: 99%;
+  width: 10px;
+  float: left;
+  width: 10px;
+}
+
+.line-process-chain .line-vertical-step-title {
+  margin-bottom: 10px;
+  display: block;
+  overflow: hidden;
+  padding-top: 49px;
+}
+
+.task-template-button {
+  min-height: 35px;
+  margin: auto;
+  margin-bottom: 15px;
+  float: right;
+  position: relative;
+  width: 100%;
+}
+
+/* Responsive Class */
+@media screen and (max-width: 40em) {
+  .ui-sm-hidden {
+    display: none !important;
+  }
+}
+
+@media screen and (min-width: 40.063em) and (max-width: 64.062em) {
+  .ui-md-hidden {
+    display: none !important;
+  }
+}
+
+@media screen and (min-width: 64.063em) and (max-width: 90.062em) {
+  .ui-lg-hidden {
+    display: none !important;
+  }
+}
+
+@media screen and (min-width: 90.063em) {
+  .ui-xl-hidden {
+    display: none !important;
+  }
+}
+
+.u-truncate-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

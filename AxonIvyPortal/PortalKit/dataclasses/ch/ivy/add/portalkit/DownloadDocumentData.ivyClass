@@ -2,4 +2,4 @@ DownloadDocumentData #class
 ch.ivy.add.portalkit #namespace
 streamedContent org.primefaces.model.StreamedContent #field
 businessCase ch.ivyteam.ivy.workflow.ICase #field
-document ch.ivy.addon.portalkit.ivydata.bo.IvyDocument #field
+document com.axonivy.portal.component.ivydata.bo.IvyDocument #field

@@ -43,7 +43,7 @@
       "config" : {
         "output" : {
           "code" : [
-            "import ch.ivy.addon.portalkit.dto.UserDTO;",
+            "import com.axonivy.portal.component.dto.UserDTO;",
             "if (in.memberNames.size() >= 100) {",
             "  UserDTO user = new UserDTO();",
             "  user.displayName = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/components/SecurityMemberDisplayName/filterToSee\").concat(\" ...\");",
