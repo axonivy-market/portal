@@ -135,16 +135,13 @@
                   <h:outputText id="format-language-selection-label" styleClass="language-selection-label ui-g-12"
                     value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/languageSetting/selectedFormattingLanguage')}" />
                   <div class="ui-g-12">
-                    <p:autoComplete id="format-language-selection" scrollHeight="210" dropdown="true" 
-                      completeMethod="#{logic.completeFormatLanguage}" 
-                      value="#{data.language.userFormatLanguage}" var="language"
+                    <p:autoComplete id="format-language-selection" scrollHeight="210" dropdown="true" size="60"
+                      completeMethod="#{logic.completeFormattingLanguage}"
+                      value="#{data.language.itemFormattingLanguage}" var="language"
                       itemValue="#{language}" itemLabel="#{language.label}" converter="pojoConverter"
                       cache="true" maxResults="100"
                       moreText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..." dynamic="true" >
                     </p:autoComplete>
-                    <!-- <p:selectOneMenu id="format-language-selection" value="#{data.language.userFormatLanguage}">
-                      <f:selectItems value="#{data.language.formatLanguages}" />
-                    </p:selectOneMenu> -->
                   </div>
                 </div>
               </div>
