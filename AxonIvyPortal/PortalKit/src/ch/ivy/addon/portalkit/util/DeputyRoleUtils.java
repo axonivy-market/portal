@@ -13,9 +13,8 @@ import ch.ivy.addon.portalkit.dto.DeputyRole;
 import ch.ivy.addon.portalkit.enums.DeputyRoleType;
 import ch.ivy.addon.portalkit.ivydata.bo.IvySubstitute;
 import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
-import ch.ivyteam.ivy.application.IApplication;
-import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IRole;
+import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.security.SubstitutionType;
@@ -52,7 +51,7 @@ public class DeputyRoleUtils {
         }
 
         UserDTO substituteUser = ivySubstitute.getSubstituteUser();
-        ISecurityMember assignee = substituteUser != null ? Ivy.security().members().find(substituteUser.getMemberName()) : null;
+        ISecurityMember assignee = substituteUser != null ? ISecurityContext.current().members().find(substituteUser.getMemberName()) : null;
         if (assignee != null) {
           deputyRole.addDeputy(assignee);
         }
@@ -74,21 +73,21 @@ public class DeputyRoleUtils {
     return deputyRole;
   }
 
-  public static List<IvySubstitute> getSubstitutesFromDeputyRoles(List<DeputyRole> deputyRoles, IApplication application) {
+  public static List<IvySubstitute> getSubstitutesFromDeputyRoles(List<DeputyRole> deputyRoles) {
     List<IvySubstitute> ivySubstitutes = new ArrayList<>();
     if (CollectionUtils.isNotEmpty(deputyRoles)) {
       for (DeputyRole deputyRole : deputyRoles) {
-        ivySubstitutes.addAll(getSubstitutesFromDeputyRole(deputyRole, application));
+        ivySubstitutes.addAll(getSubstitutesFromDeputyRole(deputyRole));
       }
     }
     return ivySubstitutes;
   }
 
-  public static List<IvySubstitute> getSubstitutesFromDeputyRole(DeputyRole deputyRole, IApplication application) {
+  public static List<IvySubstitute> getSubstitutesFromDeputyRole(DeputyRole deputyRole) {
     List<IvySubstitute> ivySubstitutes = new ArrayList<>();
     if (deputyRole != null && CollectionUtils.isNotEmpty(deputyRole.getDeputies())) {
       for (ISecurityMember securityMember : deputyRole.getDeputies()) {
-        IUser substituteUser = ServiceUtilities.findUser(securityMember.getName(), application);
+        IUser substituteUser = ServiceUtilities.findUser(securityMember.getName());
         if (substituteUser != null) {
           IvySubstitute ivySubstitute = initIvySubstitute(deputyRole, substituteUser);
 

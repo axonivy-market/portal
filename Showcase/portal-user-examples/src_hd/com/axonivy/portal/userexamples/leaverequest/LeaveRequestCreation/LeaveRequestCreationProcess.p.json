@@ -56,6 +56,7 @@
         "security" : "system",
         "output" : {
           "code" : [
+            "import ch.ivyteam.ivy.security.ISecurityContext;",
             "import com.axonivy.portal.component.dto.UserDTO;",
             "import java.util.Arrays;",
             "import ch.ivy.addon.portalkit.util.UserUtils;",
@@ -71,7 +72,7 @@
             "}",
             "",
             "",
-            "in.requester = new UserDTO(ivy.security.users().find(in.leaveRequestData.getRequesterUsername()));",
+            "in.requester = new UserDTO(ISecurityContext.current().users().find(in.leaveRequestData.getRequesterUsername()));",
             "in.leaveTypes = LeaveType.class.getEnumConstants();",
             "in.approvers = UserUtils.findUsers(\"\", 0, -1, [], []);"
           ]
