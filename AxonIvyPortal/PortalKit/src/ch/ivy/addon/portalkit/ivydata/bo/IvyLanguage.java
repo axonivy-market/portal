@@ -6,16 +6,18 @@ import java.util.Locale;
 
 import javax.faces.model.SelectItem;
 
+import ch.ivyteam.ivy.environment.Ivy;
+
 public class IvyLanguage {
 
   @Deprecated(forRemoval = true, since = "9.4")
   private String appName;
-//  private String appDisplayName;
   private String userLanguage;
   private List<String> supportedLanguages;
   private List<SelectItem> items = new ArrayList<>();
-  private SelectItem userFormattingLanguage;
+  private String userFormattingLanguage;
   private List<String> supportedFormattingLanguages;
+  private SelectItem itemFormattingLanguage;
   private List<SelectItem> itemFormattingLanguages = new ArrayList<>();
 
   public List<SelectItem> getLanguages() {
@@ -46,12 +48,12 @@ public class IvyLanguage {
     if (Locale.ROOT.equals(locale) || locale == null) {
       return ""; 
     }
-    return String.format("%s (%s)", locale.getDisplayName(/* Ivy.session().getContentLocale() */), locale.toString());
+    return String.format("%s (%s)", locale.getDisplayName(Ivy.session().getContentLocale()), locale.toString());
   }
 
   private String toDisplayNameLanguage(String languageTag) {
     Locale displayedLocale = Locale.forLanguageTag(languageTag);
-    return displayedLocale.getDisplayName(/* Ivy.session().getContentLocale() */);
+    return displayedLocale.getDisplayName(Ivy.session().getContentLocale());
   }
 
   /**
@@ -118,11 +120,19 @@ public class IvyLanguage {
     this.supportedFormattingLanguages = supportedFormattingLanguages;
   }
 
-  public SelectItem getUserFormattingLanguage() {
-    return userFormattingLanguage;
+  public void setUserFormattingLanguage(String userFormattingLanguage) {
+    this.userFormattingLanguage = userFormattingLanguage;
   }
 
-  public void setUserFormattingLanguage(SelectItem userFormattingLanguage) {
-    this.userFormattingLanguage = userFormattingLanguage;
+  public SelectItem getItemFormattingLanguage() {
+    return itemFormattingLanguage;
+  }
+
+  public void setItemFormattingLanguage(SelectItem itemFormattingLanguage) {
+    this.itemFormattingLanguage = itemFormattingLanguage;
+  }
+  
+  public void initItemFormattingLanguage() {
+    this.itemFormattingLanguage = new SelectItem(this.userFormattingLanguage, toDisplayNameFormattingLanguage(this.userFormattingLanguage));
   }
 }
