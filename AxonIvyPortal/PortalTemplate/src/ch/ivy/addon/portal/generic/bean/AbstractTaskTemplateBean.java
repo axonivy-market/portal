@@ -23,6 +23,7 @@ import ch.ivyteam.ivy.casemap.runtime.model.ICaseMap;
 import ch.ivyteam.ivy.casemap.runtime.model.IStage;
 import ch.ivyteam.ivy.casemap.runtime.model.IStartableSideStep;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.security.query.UserQuery;
 import ch.ivyteam.ivy.workflow.ICase;
@@ -124,7 +125,7 @@ public abstract class AbstractTaskTemplateBean implements Serializable {
     return IvyExecutor.executeAsSystem(() -> {
       IUser user = UserUtils.findUserByUsername(username);
       if (user == null) {
-        UserQuery query = Ivy.security().users().query();
+        UserQuery query = ISecurityContext.current().users().query();
         query.where().externalId().isEqual(externalId);
         user = query.executor().firstResult();
       }
@@ -139,7 +140,7 @@ public abstract class AbstractTaskTemplateBean implements Serializable {
     return IvyExecutor.executeAsSystem(() -> {
       IUser user = UserUtils.findUserByUsername(username);
       if (user == null) {
-        UserQuery query = Ivy.security().users().query();
+        UserQuery query = ISecurityContext.current().users().query();
         query.where().externalId().isEqual(externalId);
         user = query.executor().firstResult();
       }

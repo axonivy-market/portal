@@ -15,7 +15,7 @@ import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
 
-@IvyWebTest
+@IvyWebTest(headless = false)
 public class TaskFilterTest extends BaseTest {
 
   private static final String EMPTY = "";

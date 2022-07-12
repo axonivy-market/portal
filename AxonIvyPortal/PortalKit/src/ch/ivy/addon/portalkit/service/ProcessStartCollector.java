@@ -14,12 +14,17 @@ import ch.ivyteam.ivy.application.ActivityState;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.application.IProcessModel;
 import ch.ivyteam.ivy.application.IProcessModelVersion;
+import ch.ivyteam.ivy.application.app.IApplicationRepository;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivyteam.ivy.workflow.IWorkflowProcessModelVersion;
 
 public class ProcessStartCollector {
+  @SuppressWarnings("unused")
+  @Deprecated(forRemoval = true, since = "9.4")
   private final IApplication application;
+  private final List<IApplication> applicationsInSecurityContext;
   private static final String EXPRESS_CREATE_FRIENDLY_REQUEST_PATH =
       "Start Processes/CreateWorkflow/AxonIvyExpressWF.ivp";
   private static final String EXPRESS_ADHOC_WF_FRIENDLY_REQUEST_PATH =  "Start Processes/CreateWorkflow/AxonIvyExpressAdhocWF.ivp";
@@ -30,39 +35,19 @@ public class ProcessStartCollector {
   private static final String EXPRESS_BUSINESS_VIEW_REQUEST_PATH = "Start Processes/ExpressStart/startExpressBusinessView.ivp";
 
   public ProcessStartCollector() {
-    this.application = Ivy.request().getApplication();
+    this.application = null;
+    this.applicationsInSecurityContext = IApplicationRepository.instance().allOf(ISecurityContext.current());
+    
   }
   
   /**
    * @param application 
    * @deprecated Use ProcessStartCollector() instead
    */
-  @Deprecated
+  @Deprecated(forRemoval = true, since = "9.4")
   public ProcessStartCollector(IApplication application) {
     this.application = application;
-  }
-
-  @SuppressWarnings("unused")
-  private List<IProcessStart> findProcessStartRequestPathContainsKeyword(String keyword) {
-    List<IProcessStart> processStarts = findProcessStartRequestPathContainsKeywordAndPmv(keyword, Ivy.wfTask().getProcessModelVersion());
-    if (CollectionUtils.isNotEmpty(processStarts)) {
-      return processStarts;
-    }
-
-    List<IProcessModel> processModels = application.getProcessModelsSortedByName();
-
-    for (IProcessModel processModel : processModels) {
-      Optional<List<IProcessStart>> processStartsOptional = Optional.of(processModel)
-        .filter(this::isActive)
-        .map(IProcessModel::getReleasedProcessModelVersion)
-        .filter(this::isActive)
-        .map(p -> findProcessStartRequestPathContainsKeywordAndPmv(keyword, p))
-        .filter(CollectionUtils::isNotEmpty);
-      if (processStartsOptional.isPresent()) {
-        return processStartsOptional.get();
-      }
-    }
-    return processStarts;
+    this.applicationsInSecurityContext = IApplicationRepository.instance().allOf(ISecurityContext.current());
   }
   
   /**
@@ -73,8 +58,13 @@ public class ProcessStartCollector {
    * @return user friendly request path
    */
   public String findFriendlyRequestPathContainsKeyword(String keyword, Object portalStartPmvId) {
-    IProcessModelVersion findProcessModelVersion = portalStartPmvId == null ? Ivy.wfTask().getProcessModelVersion() : 
-      application.findProcessModelVersion(portalStartPmvId);
+    IProcessModelVersion findPMV = null;
+    for (IApplication app : applicationsInSecurityContext) {
+      if(app.findProcessModelVersion(portalStartPmvId) != null) {
+        findPMV = app.findProcessModelVersion(portalStartPmvId);
+      }
+    }
+    IProcessModelVersion findProcessModelVersion = portalStartPmvId == null ? Ivy.wfTask().getProcessModelVersion() : findPMV;
     return findFriendlyRequestPathContainsKeywordInPMV(keyword, findProcessModelVersion);
   }
 
@@ -103,7 +93,10 @@ public class ProcessStartCollector {
   }
 
   private IProcessStart findStartableProcessStartByUserFriendlyRequestPath(String requestPath) {
-    List<IProcessModel> processModels = application.getProcessModelsSortedByName();
+    List<IProcessModel> processModels = applicationsInSecurityContext.stream()
+                                        .map(IApplication::getProcessModelsSortedByName)
+                                        .flatMap(List::stream)
+                                        .collect(Collectors.toList());
     for (IProcessModel processModel : processModels) {
       Optional<IProcessStart> processStartOptional = Optional.of(processModel)
         .filter(this::isActive)

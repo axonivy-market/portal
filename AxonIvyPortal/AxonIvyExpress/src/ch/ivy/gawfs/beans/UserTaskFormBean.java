@@ -9,7 +9,7 @@ import javax.faces.bean.RequestScoped;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.service.CaseDocumentService;
-import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.IUser;
 
 @ManagedBean
@@ -26,7 +26,7 @@ public class UserTaskFormBean implements Serializable {
    * @return user name
    */
   public String generateUserName(String userMemberName) {
-    IUser user = Ivy.security().users().find(userMemberName);
+    IUser user = ISecurityContext.current().users().find(userMemberName);
 
     if (StringUtils.isBlank(user.getDisplayName())) {
       return user.getName();
