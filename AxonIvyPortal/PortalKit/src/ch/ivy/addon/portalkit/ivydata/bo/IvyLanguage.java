@@ -6,30 +6,52 @@ import java.util.Locale;
 
 import javax.faces.model.SelectItem;
 
-import ch.ivyteam.ivy.environment.Ivy;
-
 public class IvyLanguage {
 
+  @Deprecated(forRemoval = true, since = "9.4")
   private String appName;
-  private String appDisplayName;
+//  private String appDisplayName;
   private String userLanguage;
   private List<String> supportedLanguages;
   private List<SelectItem> items = new ArrayList<>();
+  private SelectItem userFormattingLanguage;
+  private List<String> supportedFormattingLanguages;
+  private List<SelectItem> itemFormattingLanguages = new ArrayList<>();
 
   public List<SelectItem> getLanguages() {
     items.clear();
     if (supportedLanguages != null) {
       for (String item : supportedLanguages) {
-        SelectItem it = new SelectItem(item.toLowerCase(), getDisplayLanguage(item.toLowerCase()));
+        SelectItem it = new SelectItem(item.toLowerCase(), toDisplayNameLanguage(item.toLowerCase()));
         items.add(it);
       }
     }
     return items;
   }
+  
+  public List<SelectItem> getFormattingLanguages() {
+    itemFormattingLanguages.clear();
+    if (supportedFormattingLanguages != null) {
+      for (String item : supportedFormattingLanguages) {
+        String displayName = toDisplayNameFormattingLanguage(item);
+        SelectItem it = new SelectItem(item.toLowerCase(), displayName);
+        itemFormattingLanguages.add(it);
+      }
+    }
+    return itemFormattingLanguages;
+  }
+  
+  private String toDisplayNameFormattingLanguage(String languageTag) {
+    Locale locale = Locale.forLanguageTag(languageTag);
+    if (Locale.ROOT.equals(locale) || locale == null) {
+      return ""; 
+    }
+    return String.format("%s (%s)", locale.getDisplayName(/* Ivy.session().getContentLocale() */), locale.toString());
+  }
 
-  private String getDisplayLanguage(String item) {
-    Locale displayedLocale = Locale.forLanguageTag(item);
-    return displayedLocale.getDisplayName(Ivy.session().getContentLocale());
+  private String toDisplayNameLanguage(String languageTag) {
+    Locale displayedLocale = Locale.forLanguageTag(languageTag);
+    return displayedLocale.getDisplayName(/* Ivy.session().getContentLocale() */);
   }
 
   /**
@@ -37,6 +59,7 @@ public class IvyLanguage {
    * 
    * @return Returns the appName
    */
+  @Deprecated(forRemoval = true, since = "9.4")
   public String getAppName() {
     return appName;
   }
@@ -46,26 +69,9 @@ public class IvyLanguage {
    * 
    * @param appName The appName to set
    */
+  @Deprecated(forRemoval = true, since = "9.4")
   public void setAppName(String appName) {
     this.appName = appName;
-  }
-
-  /**
-   * Gets the appDisplayName
-   * 
-   * @return Returns the appDisplayName
-   */
-  public String getAppDisplayName() {
-    return appDisplayName;
-  }
-
-  /**
-   * Sets the appDisplayName
-   * 
-   * @param appDisplayName The appDisplayName to set
-   */
-  public void setAppDisplayName(String appDisplayName) {
-    this.appDisplayName = appDisplayName;
   }
 
   /**
@@ -102,5 +108,21 @@ public class IvyLanguage {
    */
   public void setSupportedLanguages(List<String> supportedLanguages) {
     this.supportedLanguages = supportedLanguages;
+  }
+
+  public List<String> getSupportedFormattingLanguages() {
+    return supportedFormattingLanguages;
+  }
+
+  public void setSupportedFormattingLanguages(List<String> supportedFormattingLanguages) {
+    this.supportedFormattingLanguages = supportedFormattingLanguages;
+  }
+
+  public SelectItem getUserFormattingLanguage() {
+    return userFormattingLanguage;
+  }
+
+  public void setUserFormattingLanguage(SelectItem userFormattingLanguage) {
+    this.userFormattingLanguage = userFormattingLanguage;
   }
 }

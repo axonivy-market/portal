@@ -61,12 +61,13 @@
         "security" : "system",
         "output" : {
           "code" : [
+            "import ch.ivyteam.ivy.security.ISecurityContext;",
             "import com.axonivy.portal.component.dto.UserDTO;",
             "import com.axonivy.portal.userexamples.leaverequest.LeaveRequest;",
             "in.leaveRequestData = ivy.repo.get(LeaveRequest.class) as LeaveRequest;",
             "",
-            "in.requester = new UserDTO(ivy.security.users().find(in.leaveRequestData.requesterUsername));",
-            "in.approver = new UserDTO(ivy.security.users().find(in.leaveRequestData.approverUsername));"
+            "in.requester = new UserDTO(ISecurityContext.current().users().find(in.leaveRequestData.requesterUsername));",
+            "in.approver = new UserDTO(ISecurityContext.current().users().find(in.leaveRequestData.approverUsername));"
           ]
         }
       },
