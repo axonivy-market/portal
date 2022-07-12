@@ -350,10 +350,11 @@
       "config" : {
         "output" : {
           "code" : [
+            "import ch.ivyteam.ivy.security.ISecurityContext;",
             "import ch.ivyteam.ivy.security.ISecurityMember;",
             "",
             "ISecurityMember selectedAssignee = in.#selectedUser is initialized ",
-            "  ? ivy.security.members().find(in.selectedUser.getMemberName()) : ivy.security.roles().find(in.selectedRole.getMemberName());",
+            "  ? ISecurityContext.current().members().find(in.selectedUser.getMemberName()) : ISecurityContext.current().roles().find(in.selectedRole.getMemberName());",
             "in.selectedAssigneeList.add(selectedAssignee);"
           ]
         }
@@ -369,13 +370,14 @@
       "config" : {
         "output" : {
           "code" : [
+            "import ch.ivyteam.ivy.security.ISecurityContext;",
             "import org.apache.commons.lang3.StringUtils;",
             "import javax.faces.application.FacesMessage;",
             "import javax.faces.context.FacesContext;",
             "import ch.ivyteam.ivy.security.ISecurityMember;",
             "",
             "ISecurityMember selectedAssignee = in.#selectedUser is initialized ",
-            "  ? ivy.security.members().find(in.selectedUser.getMemberName()) : ivy.security.roles().find(in.selectedRole.getMemberName());",
+            "  ? ISecurityContext.current().members().find(in.selectedUser.getMemberName()) : ISecurityContext.current().roles().find(in.selectedRole.getMemberName());",
             "in.isValidAssignee = true;",
             "",
             "if (!(#selectedAssignee is initialized) || in.selectedAssigneeList.contains(selectedAssignee)) {",
@@ -443,11 +445,12 @@
       "config" : {
         "output" : {
           "code" : [
+            "import ch.ivyteam.ivy.security.ISecurityContext;",
             "import javax.faces.context.FacesContext;",
             "import ch.ivyteam.ivy.security.ISecurityMember;",
             "",
             "for (String assigneeName : in.taskDefinition.responsibles) {",
-            "  ISecurityMember assignee = ivy.security.members().find(assigneeName);",
+            "  ISecurityMember assignee = ISecurityContext.current().members().find(assigneeName);",
             "  if (#assignee is initialized) {",
             "    if (!in.selectedAssigneeList.contains(assignee)) {",
             "      in.selectedAssigneeList.add(assignee);",
@@ -798,11 +801,12 @@
       "config" : {
         "output" : {
           "code" : [
+            "import ch.ivyteam.ivy.security.ISecurityContext;",
             "import javax.faces.context.FacesContext;",
             "import ch.ivyteam.ivy.security.ISecurityMember;",
             "",
             "for (String assigneeName : in.data.processCoOwners) {",
-            "  ISecurityMember assignee = ivy.security.members().find(assigneeName);",
+            "  ISecurityMember assignee = ISecurityContext.current().members().find(assigneeName);",
             "  if (#assignee is initialized) {",
             "    if (!in.selectedAssigneeList.contains(assignee)) {",
             "      in.selectedAssigneeList.add(assignee);",
