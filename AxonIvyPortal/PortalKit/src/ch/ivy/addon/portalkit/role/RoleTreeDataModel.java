@@ -11,7 +11,7 @@ import org.primefaces.event.NodeExpandEvent;
 import org.primefaces.model.DefaultTreeNode;
 import org.primefaces.model.TreeNode;
 
-import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.security.ISecurityContext;
 
 public class RoleTreeDataModel implements Serializable {
 
@@ -75,13 +75,13 @@ public class RoleTreeDataModel implements Serializable {
   }
 
   private void buildTree() {
-    var node = new LazyRoleTreeNode(Ivy.wf().getSecurityContext().roles().topLevel(), false, false, true, rootTreeNode);
+    var node = new LazyRoleTreeNode(ISecurityContext.current().roles().topLevel(), false, false, true, rootTreeNode);
     node.setExpanded(true);
   }
 
   public Set<RoleHolder> getRoles() {
-    if (CollectionUtils.isEmpty(roles)) {
-      roles = Ivy.wf().getSecurityContext().roles().all().stream().map(role -> new RoleHolder(role))
+    if (CollectionUtils.isEmpty(roles)) { 
+      roles = ISecurityContext.current().roles().all().stream().map(role -> new RoleHolder(role))
           .collect(Collectors.toSet());
     }
     return roles;

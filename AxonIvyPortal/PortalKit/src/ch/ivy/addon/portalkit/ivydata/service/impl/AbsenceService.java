@@ -17,7 +17,6 @@ import ch.ivy.addon.portalkit.ivydata.service.IAbsenceService;
 import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivy.addon.portalkit.util.UserUtils;
-import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.security.IUserAbsence;
 
@@ -36,9 +35,8 @@ public class AbsenceService implements IAbsenceService {
       IvyAbsenceResultDTO result = new IvyAbsenceResultDTO();
 
       Map<String, Set<IvyAbsence>> ivyAbsencesByUser = new HashMap<>();
-      IApplication application = IApplication.current();
       if (StringUtils.isBlank(username)) {
-          ServiceUtilities.findAllUsers(application).forEach(user -> {
+          ServiceUtilities.findAllUsers().forEach(user -> {
           if (ivyAbsencesByUser.containsKey(user.getName())) {
             ivyAbsencesByUser.get(user.getName()).addAll(getAbsences(user));
           } else {
@@ -46,7 +44,7 @@ public class AbsenceService implements IAbsenceService {
           }
         });
       } else {
-        IUser user = ServiceUtilities.findUser(username, application);
+        IUser user = ServiceUtilities.findUser(username);
         if (ivyAbsencesByUser.containsKey(user.getName())) {
           ivyAbsencesByUser.get(username).addAll(getAbsences(user));
         } else {
@@ -80,8 +78,7 @@ public class AbsenceService implements IAbsenceService {
   public void createAbsence(IvyAbsence ivyAbsence) {
     IvyExecutor.executeAsSystem(() -> { 
 
-      IApplication application = IApplication.current();
-      IUser user = ServiceUtilities.findUser(ivyAbsence.getUsername(), application);
+      IUser user = ServiceUtilities.findUser(ivyAbsence.getUsername());
       user.createAbsence(ivyAbsence.getFrom(), ivyAbsence.getUntil(), ivyAbsence.getComment());
       return Void.class;
     });
@@ -90,8 +87,7 @@ public class AbsenceService implements IAbsenceService {
   @Override
   public void updateAbsences(String username, Set<IvyAbsence> ivyAbsences) {
     IvyExecutor.executeAsSystem(() -> { 
-      IApplication application = IApplication.current();
-      IUser user = ServiceUtilities.findUser(username, application);
+      IUser user = ServiceUtilities.findUser(username);
       for (IUserAbsence userAbsence : user.getAbsences()) {
         user.deleteAbsence(userAbsence);
       }
@@ -105,8 +101,7 @@ public class AbsenceService implements IAbsenceService {
   @Override
   public void deleteAbsence(IvyAbsence ivyAbsence) {
     IvyExecutor.executeAsSystem(() -> { 
-      IApplication application = IApplication.current();
-      IUser user = ServiceUtilities.findUser(ivyAbsence.getUsername(), application);
+      IUser user = ServiceUtilities.findUser(ivyAbsence.getUsername());
       for (IUserAbsence userAbsence : user.getAbsences()) {
         if (userAbsence.getStartTimestamp().equals(ivyAbsence.getFrom()) && userAbsence.getStopTimestamp().equals(ivyAbsence.getUntil())) {
           user.deleteAbsence(userAbsence);

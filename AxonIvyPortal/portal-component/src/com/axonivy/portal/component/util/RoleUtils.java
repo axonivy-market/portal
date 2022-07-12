@@ -13,8 +13,8 @@ import org.apache.commons.lang3.StringUtils;
 import com.axonivy.portal.component.dto.RoleDTO;
 import com.axonivy.portal.component.enums.AdditionalProperty;
 
-import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IRole;
+import ch.ivyteam.ivy.security.ISecurityContext;
 
 public final class RoleUtils {
 
@@ -64,7 +64,7 @@ public final class RoleUtils {
    */
   public static IRole findRole(String name) {
     return IvyExecutor.executeAsSystem(() -> {
-      return Ivy.security().roles().find(name);
+      return ISecurityContext.current().roles().find(name);
     });
   }
 
@@ -101,7 +101,7 @@ public final class RoleUtils {
    */
   public static List<IRole> getAllRoles() {
     return IvyExecutor.executeAsSystem(() -> {
-      return Ivy.security().roles().all();
+      return ISecurityContext.current().roles().all();
     });
   }
 

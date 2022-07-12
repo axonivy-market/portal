@@ -951,6 +951,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     cannotSetEmailLanguage: El idioma no se puede configurar como idioma de notificación de correo electrónico.
     languageSetting: Ajustes de idioma
     saveLanguageHasWSErrors: Error al guardar el idioma
+    selectedFormattingLanguage: Seleccione el idioma del formulario
     selectedLanguage: Lenguaje seleccionado
   login:
     login: Iniciar sesión

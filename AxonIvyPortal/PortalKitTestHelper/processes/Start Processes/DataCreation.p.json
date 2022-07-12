@@ -295,10 +295,11 @@
         "security" : "system",
         "output" : {
           "code" : [
+            "import ch.ivyteam.ivy.security.ISecurityContext;",
             "import java.util.Locale;",
             "import ch.ivyteam.ivy.security.user.NewUser;",
-            "if (ivy.security.users().find(\"test_change_password_user\") != null) {",
-            "  ivy.security.users().delete(\"test_change_password_user\");",
+            "if (ISecurityContext.current().users().find(\"test_change_password_user\") != null) {",
+            "  ISecurityContext.current().users().delete(\"test_change_password_user\");",
             "}",
             "NewUser user = NewUser",
             "    .create(\"test_change_password_user\")",
@@ -306,7 +307,7 @@
             "    .password(\"123\")",
             "    .language(java.util.Locale.ENGLISH)",
             "    .toNewUser();",
-            "ivy.security.users().create(user);"
+            "ISecurityContext.current().users().create(user);"
           ]
         }
       },
@@ -346,9 +347,10 @@
         "security" : "system",
         "output" : {
           "code" : [
+            "import ch.ivyteam.ivy.security.ISecurityContext;",
             "import ch.ivyteam.ivy.security.user.NewUser;",
-            "if (ivy.security.users().find(\"test_related_tasks_user\") != null) {",
-            "  ivy.security.users().delete(\"test_related_tasks_user\");",
+            "if (ISecurityContext.current().users().find(\"test_related_tasks_user\") != null) {",
+            "  ISecurityContext.current().users().delete(\"test_related_tasks_user\");",
             "}",
             "",
             "NewUser user = NewUser",
@@ -357,7 +359,7 @@
             "    .password(\"+d3m0++\")",
             "    .language(java.util.Locale.ENGLISH)",
             "    .toNewUser();",
-            "ivy.security.users().create(user);"
+            "ISecurityContext.current().users().create(user);"
           ]
         }
       },
@@ -420,10 +422,11 @@
         "security" : "system",
         "output" : {
           "code" : [
+            "import ch.ivyteam.ivy.security.ISecurityContext;",
             "import ch.ivyteam.ivy.security.query.UserQuery;",
             "import ch.ivyteam.ivy.security.IUser;",
             "",
-            "UserQuery userQuery = ivy.security.users().query();",
+            "UserQuery userQuery = ISecurityContext.current().users().query();",
             "List<IUser> users = userQuery.executor().results();",
             "in.numberOfUsersInApplication = users.size();",
             "in.counter = 1;"
@@ -443,14 +446,15 @@
         "security" : "system",
         "output" : {
           "code" : [
+            "import ch.ivyteam.ivy.security.ISecurityContext;",
             "import java.util.Locale;",
             "import ch.ivyteam.ivy.security.user.NewUser;",
             "",
             "Integer userIndex =  in.numberOfUsersInApplication + in.counter;",
             "String username = \"testuser_\" + userIndex;",
             "",
-            "if (ivy.security.users().find(username) != null) {",
-            "  ivy.security.users().delete(username);",
+            "if (ISecurityContext.current().users().find(username) != null) {",
+            "  ISecurityContext.current().users().delete(username);",
             "}",
             "",
             "NewUser user = NewUser",
@@ -459,7 +463,7 @@
             "    .password(\"+d3m0++\")",
             "    .language(java.util.Locale.ENGLISH)",
             "    .toNewUser();",
-            "ivy.security.users().create(user);",
+            "ISecurityContext.current().users().create(user);",
             "in.counter++;"
           ]
         }
@@ -953,16 +957,17 @@
         "security" : "system",
         "output" : {
           "code" : [
+            "import ch.ivyteam.ivy.security.ISecurityContext;",
             "import ch.ivyteam.ivy.security.user.NewUser;",
             "import ch.ivyteam.ivy.security.IUser;",
             "",
-            "IUser user = ivy.security.users().find(\"visibility_test_user\");",
+            "IUser user = ISecurityContext.current().users().find(\"visibility_test_user\");",
             "",
             "if (user != null) {",
             "  user.disable();",
             "}",
             "else {",
-            "  user = ivy.security.users().create(NewUser.create(\"visibility_test_user\").password(\"+d3m0++\").fullName(\"Visibility Test User\").toNewUser());",
+            "  user = ISecurityContext.current().users().create(NewUser.create(\"visibility_test_user\").password(\"+d3m0++\").fullName(\"Visibility Test User\").toNewUser());",
             "  user.disable();",
             "}",
             "ivy.log.warn(\"Disable visibility user\");"
@@ -1024,7 +1029,10 @@
       "config" : {
         "security" : "system",
         "output" : {
-          "code" : "ivy.case.setCreatorUser(ivy.security.users().find(\"visibility_test_user\"));"
+          "code" : [
+            "import ch.ivyteam.ivy.security.ISecurityContext;",
+            "ivy.case.setCreatorUser(ISecurityContext.current().users().find(\"visibility_test_user\"));"
+          ]
         }
       },
       "visual" : {
@@ -1053,16 +1061,17 @@
         "security" : "system",
         "output" : {
           "code" : [
+            "import ch.ivyteam.ivy.security.ISecurityContext;",
             "import ch.ivyteam.ivy.security.user.NewUser;",
             "import ch.ivyteam.ivy.security.IUser;",
             "",
-            "IUser user = ivy.security.users().find(\"visibility_test_user\");",
+            "IUser user = ISecurityContext.current().users().find(\"visibility_test_user\");",
             "",
             "if (user != null) {",
             "  user.enable();",
             "}",
             "else {",
-            "  user = ivy.security.users().create(NewUser.create(\"visibility_test_user\").password(\"+d3m0++\").fullName(\"Visibility Test User\").toNewUser());",
+            "  user = ISecurityContext.current().users().create(NewUser.create(\"visibility_test_user\").password(\"+d3m0++\").fullName(\"Visibility Test User\").toNewUser());",
             "  user.enable();",
             "}",
             "ivy.log.warn(\"Enable visibility user\");"
@@ -1239,6 +1248,7 @@
       "config" : {
         "output" : {
           "code" : [
+            "import ch.ivyteam.ivy.security.ISecurityContext;",
             "import ch.ivy.addon.portalkit.enums.ProcessType;",
             "import ch.ivyteam.ivy.application.IApplication;",
             "import ch.ivy.addon.portalkit.service.ExternalLinkService;",
@@ -1294,7 +1304,7 @@
             "",
             "ExternalLink externalLink = new ExternalLink();",
             "externalLink.name = \"A sample for External link to Google\";",
-            "externalLink.creatorId = ivy.security.users().find(\"demo\").getId();",
+            "externalLink.creatorId = ISecurityContext.current().users().find(\"demo\").getId();",
             "externalLink.setIsPublic(true);",
             "externalLink.link = \"google.com\";",
             "ExternalLinkService externalLinkService = ExternalLinkService.getInstance();",

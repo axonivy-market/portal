@@ -11,14 +11,13 @@ import java.util.stream.Stream;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.enums.PortalPermissionGroup;
 import ch.ivy.addon.portalkit.security.PortalSecurity;
-import ch.ivyteam.ivy.application.IApplication;
-import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.eventstart.AbstractProcessStartEventBean;
 import ch.ivyteam.ivy.process.eventstart.IProcessStartEventBeanRuntime;
 import ch.ivyteam.ivy.security.IPermission;
 import ch.ivyteam.ivy.security.IPermissionGroup;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.ISecurityConstants;
+import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.restricted.permission.IPermissionGroupRepository;
 import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;
 
@@ -129,7 +128,7 @@ public class PortalPermissionInitBean extends AbstractProcessStartEventBean {
   }
 
   private void grantPortalPermissionsForEverybody(List<PortalPermission> iPermissions) {
-    IRole everybody = Ivy.security().roles().find(ISecurityConstants.TOP_LEVEL_ROLE_NAME);
+    IRole everybody = ISecurityContext.current().roles().find(ISecurityConstants.TOP_LEVEL_ROLE_NAME);
     PortalSecurity.INSTANCE.grantPermissionsToForSecurityMember(iPermissions, everybody);
   }
 
@@ -139,7 +138,7 @@ public class PortalPermissionInitBean extends AbstractProcessStartEventBean {
   }
 
   private IPermissionGroup createPortalPermissionGroup() {
-    IPermissionGroup rootGroup = IApplication.current().getSecurityDescriptor().getSecurityDescriptorType().getRootPermissionGroup();
+    IPermissionGroup rootGroup = ISecurityContext.current().securityDescriptor().getSecurityDescriptorType().getRootPermissionGroup();
     return createPermissionsGroup(rootGroup, PortalPermissionGroup.PORTAL_PERMISSION_GROUP);
   }
 
