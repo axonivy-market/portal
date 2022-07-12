@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.15",
   "id" : "172546E1FDEB1FF7",
   "data" : "ch.ivy.addon.portal.setting.UserProfile.UserProfileData",
   "kind" : "HTML_DIALOG",
@@ -795,9 +795,9 @@
     }, {
       "id" : "f23",
       "type" : "HtmlDialogMethodStart",
-      "name" : "completeFormatLanguage(String)",
+      "name" : "completeFormattingLanguage(String)",
       "config" : {
-        "callSignature" : "completeFormatLanguage",
+        "callSignature" : "completeFormattingLanguage",
         "result" : {
           "params" : [
             { "name" : "result", "type" : "java.util.List<javax.faces.model.SelectItem>" }
