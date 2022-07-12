@@ -11,7 +11,7 @@ import ch.ivyteam.ivy.workflow.ICase;
 @SuppressWarnings("restriction")
 public class CaseUtils {
   public static void createSystemNote(final ICase wfCase, final String note) {
-    final ISecurityContext s = (ISecurityContext)Ivy.security();
+    final ISecurityContext s = ISecurityContext.current();
     var systemUserSession = Sudo.get(() -> s.sessions().systemUser());
     try {
       s.executeAs(new Callable<Void>() {

@@ -23,8 +23,10 @@ import ch.ivy.addon.portalkit.service.DateTimeGlobalSettingService;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilter;
 import ch.ivy.addon.portalkit.taskfilter.impl.TaskFilterData;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.language.LanguageConfigurator;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.request.IHttpRequest;
+import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.security.IUserAbsence;
 import ch.ivyteam.ivy.workflow.IWorkflowSession;
@@ -60,7 +62,7 @@ public class UserUtils {
         l = sessionUser.getLanguage();
       } else {
         // Application Default
-        Locale defaultApplicationLocal = Ivy.request().getApplication().getDefaultEMailLanguage();
+        Locale defaultApplicationLocal = new LanguageConfigurator(ISecurityContext.current()).content();
         l = new Locale(defaultApplicationLocal.getLanguage(), defaultApplicationLocal.getCountry(),
             APPLICATION_DEFAULT);
       }
@@ -256,13 +258,13 @@ public class UserUtils {
 
   public static IUser findUserByUsername(String username) {
     return IvyExecutor.executeAsSystem(() -> {
-      return Ivy.security().users().find(username);
+      return ISecurityContext.current().users().find(username);
     });
   }
 
   public static IUser findUserByUserId(Long userId) {
     return IvyExecutor.executeAsSystem(() -> {
-      return Ivy.security().users().find(userId);
+      return ISecurityContext.current().users().find(userId);
     });
   }
 

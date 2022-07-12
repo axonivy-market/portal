@@ -3,6 +3,7 @@ package ch.ivy.addon.portalkit.util;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -16,7 +17,9 @@ import ch.ivyteam.ivy.application.ActivityState;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.application.IProcessModel;
 import ch.ivyteam.ivy.application.IProcessModelVersion;
+import ch.ivyteam.ivy.application.app.IApplicationRepository;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivyteam.ivy.workflow.IWorkflowProcessModelVersion;
 
@@ -33,14 +36,18 @@ public class ProcessStartUtils {
 
   public static IProcessStart findProcessStartByUserFriendlyRequestPath(String requestPath) {
     return IvyExecutor.executeAsSystem(() -> {
-      IApplication application = IApplication.current();
       IProcessStart processStart = null;
       processStart = findProcessStartByUserFriendlyRequestPathAndPmv(requestPath, Ivy.request().getProcessModelVersion());
       if (processStart != null) {
         return processStart;
       }
 
-      List<IProcessModel> processModels = application.getProcessModelsSortedByName();
+      List<IApplication> applicationsInSecurityContext = IApplicationRepository.instance().allOf(ISecurityContext.current());
+      
+      List<IProcessModel> processModels = applicationsInSecurityContext.stream()
+                                          .map(IApplication::getProcessModelsSortedByName)
+                                          .flatMap(List::stream)
+                                          .collect(Collectors.toList());
 
       for (IProcessModel processModel : processModels) {
         Optional<IProcessStart> processStartOptional =
