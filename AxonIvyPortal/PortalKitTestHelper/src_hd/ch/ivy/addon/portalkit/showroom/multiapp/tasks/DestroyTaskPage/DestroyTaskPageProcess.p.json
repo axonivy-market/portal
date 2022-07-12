@@ -76,13 +76,14 @@
       "config" : {
         "output" : {
           "code" : [
+            "import ch.ivyteam.ivy.security.ISecurityContext;",
             "import ch.ivyteam.ivy.workflow.ITask;",
             "import javax.faces.context.FacesContext;",
             "import javax.faces.application.FacesMessage;",
             "import ch.ivyteam.ivy.security.IPermission;",
             "import ch.ivyteam.ivy.security.ISecurityDescriptor;",
             "",
-            "ISecurityDescriptor securityDescriptor = ivy.request.getApplication().getSecurityDescriptor();",
+            "ISecurityDescriptor securityDescriptor = ISecurityContext.current().securityDescriptor();",
             "if(ivy.session.hasPermission(securityDescriptor,ch.ivyteam.ivy.security.IPermission.TASK_READ) ){",
             "      ITask task = ivy.wf.findTask(in.taskId);",
             "      if(task != null) {",

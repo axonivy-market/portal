@@ -9,6 +9,7 @@ import ch.ivy.addon.portalkit.enums.ProcessType;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.util.ExpressManagementUtils;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.security.IUser;
 
@@ -30,12 +31,12 @@ public class PortalExpressProcess implements Process {
     String processOwner = ExpressManagementUtils.getValidMemberName(process.getProcessOwner());
     String processOwnerName = StringUtils.isNotBlank(processOwner) ? processOwner.substring(1) : null;
 
-    IUser user = processOwnerName != null ? Ivy.security().users().find(processOwnerName) : null;
+    IUser user = processOwnerName != null ? ISecurityContext.current().users().find(processOwnerName) : null;
 
     this.processOwnerDisplayName = Optional.ofNullable(user).map(IUser::getDisplayName).orElse(Ivy.cms().co(NOT_AVAILABLE_CMS));
     
     for (String username : this.process.getProcessPermissions()) {
-      ISecurityMember assignee = Ivy.security().members().find(username);
+      ISecurityMember assignee = ISecurityContext.current().members().find(username);
       String ableStartName = Optional.ofNullable(assignee).map(ISecurityMember::getDisplayName).orElse(Ivy.cms().co(NOT_AVAILABLE_CMS));
       this.ableToStart = StringUtils.isBlank(ableToStart) ? ableStartName : String.join(";", ableToStart, ableStartName);
     }
