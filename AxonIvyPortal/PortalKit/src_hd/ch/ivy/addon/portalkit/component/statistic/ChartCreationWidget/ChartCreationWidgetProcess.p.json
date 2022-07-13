@@ -460,7 +460,8 @@
         "security" : "system",
         "output" : {
           "code" : [
-            "import ch.ivyteam.ivy.application.IApplication;",
+            "import ch.ivyteam.ivy.language.LanguageConfigurator;",
+            "import ch.ivyteam.ivy.security.ISecurityContext;",
             "import org.apache.commons.lang3.StringUtils;",
             "import java.util.HashMap;",
             "import java.util.Map;",
@@ -473,7 +474,7 @@
             "",
             "",
             "// Update empty chart name",
-            "String defaultEmailLanguage = IApplication.current().getDefaultEMailLanguage().getLanguage();",
+            "String defaultEmailLanguage = new LanguageConfigurator(ISecurityContext.current()).content().toLanguageTag();",
             "String defaultChartName = \"\";",
             "for (DisplayName name : in.chartNames) {",
             "  if (defaultEmailLanguage.equalsIgnoreCase(name.locale.toLanguageTag())) {",
@@ -511,8 +512,13 @@
         "security" : "system",
         "output" : {
           "code" : [
+            "import ch.ivyteam.ivy.security.ISecurityContext;",
+            "import ch.ivyteam.ivy.language.LanguageConfigurator;",
+            "import java.util.Locale;",
             "import ch.ivyteam.ivy.application.IApplication;",
-            "in.isDefaultApplicationLanguage = IApplication.current().getDefaultEMailLanguage().getLanguage().equalsIgnoreCase(in.language);"
+            "",
+            "Locale defaultLocale = new LanguageConfigurator(ISecurityContext.current()).content();",
+            "in.isDefaultApplicationLanguage = defaultLocale.toLanguageTag().equalsIgnoreCase(in.language);"
           ]
         }
       },

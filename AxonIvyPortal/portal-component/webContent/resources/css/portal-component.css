@@ -1,0 +1,45 @@
+:root {
+
+/* CSS variables for process chain component */
+  --process-chain-process-step-font-size: 12px;
+  --process-chain-body-background-color: rgba(0,0,0,0);
+  --process-chain-menu-color: var(--primary-color, hsl(195, 100%, 29%));
+  --process-chain-link-color: #D9DADA;
+  
+  --process-chain-circle-step-number-color: var(--primary-text-color, hsl(0, 0%, 100%));
+  --process-chain-circle-step-container-border: var(--primary-color, hsl(195, 100%, 29%));
+
+  --process-chain-circle-vertical-step-number-container-border: var(--process-chain-link-color);
+  --process-chain-circle-vertical-step-container-background-color: var(--process-chain-body-background-color);
+
+  --process-chain-circle-horizontal-step-number-container-border-top: var(--process-chain-link-color);
+  --process-chain-circle-horizontal-step-number-container-border-top-color: var(--primary-color, hsl(195, 100%, 29%));
+  --process-chain-circle-horizontal-waiting-step-number-container-background-color: var(--process-chain-body-background-color);
+
+  --process-chain-line-waiting-step-background-color: var(--primary-color, hsl(195, 100%, 29%));
+  
+  --process-chain-current-circle-horizontal-step-title-font-weight: bold;
+  --process-chain-current-circle-vertical-step-title-font-weight: bold;
+  --process-chain-current-line-horizontal-step-title-font-weight: bold;
+  --process-chain-current-line-vertical-step-title-font-weight: bold;
+
+/* CSS variables for process history component */
+  --process-history-header-border-bottom-color: #D9DADA;
+  --process-history-unsortable-header-font-size: 1.4rem;
+  --process-history-unsortable-header-text-color: #9C9D9D;
+  --process-history-description-text-color: #9C9D9D;
+  --process-history-item-background-color: rgba(var(--white, #000000), 0.2);
+  --process-history-item-border-bottom-color: #D9DADA;
+  --process-history-item-border-hover: 1px solid #90DDE9;
+  --process-history-item-background-hover: rgba(144, 221, 233, 0.24);
+  --process-history-state-in-progress-color: rgba(7, 140, 255, 1);
+  --process-history-state-done-or-resume-color: #4EB41C;
+  --process-history-empty-message-label-color: var(--black, #FFFFFF);
+  --process-history-empty-message-label-font-size: 1.2rem;
+  --state-border-radius: 10px;
+  --state-font-size: 12px;
+  --state-line-height: 16px;
+  --state-running-background: #FFE896;
+  --state-done-background: #D4EBA2;
+  --state-open-color: #C9C9C9;
+}
