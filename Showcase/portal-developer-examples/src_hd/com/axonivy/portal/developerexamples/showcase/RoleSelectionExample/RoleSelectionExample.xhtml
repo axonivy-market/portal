@@ -9,7 +9,7 @@
       <h:form id="form">
         <div class="ui-g">
           <div id="default-role-selection-component" class="ui-g-8 ui-xl-4 ui-md-6 ui-sm-12">
-            <ic:ch.ivy.addon.portalkit.component.RoleSelection componentId="default-role-autocomplete" selectedRole="#{data.selectedRoleForDefault}" isRenderedMessage="false"
+            <ic:com.axonivy.portal.component.RoleSelection componentId="default-role-autocomplete" selectedRole="#{data.selectedRoleForDefault}" isRenderedMessage="false"
               label="Default role selection" labelPanelStyleClass="ui-g-5 ui-md-6 ui-sm-12" autoCompleteStyleClass="width-100" autoCompletePanelStyleClass="ui-g-5 ui-sm-12" isRequired="true"
               hightlight="false" />
           </div>
@@ -17,37 +17,37 @@
         </div>
         <div class="ui-g">
           <div id="avatar-role-selection-component" class="ui-g-8 ui-xl-4 ui-md-6 ui-sm-12">
-            <ic:ch.ivy.addon.portalkit.component.RoleSelection componentId="avatar-role-autocomplete" selectedRole="#{data.selectedRoleForAvatar}" isRenderedMessage="false"
+            <ic:com.axonivy.portal.component.RoleSelection componentId="avatar-role-autocomplete" selectedRole="#{data.selectedRoleForAvatar}" isRenderedMessage="false"
               label="Role selection with avatar" labelPanelStyleClass="ui-g-5 ui-md-6 ui-sm-12" autoCompleteStyleClass="width-100" autoCompletePanelStyleClass="ui-g-5 ui-sm-12"
               hightlight="false" >
               <p:column>
                 <pc:securityMemberNameAndAvatar
                   securityMember="#{role}" displayName="#{role.getDisplayName()}"  />
               </p:column> 
-            </ic:ch.ivy.addon.portalkit.component.RoleSelection>
+            </ic:com.axonivy.portal.component.RoleSelection>
           </div>
           <div id="floating-label-component" class="ui-g-4 ui-xl-3 ui-md-6 ui-sm-12"></div>
         </div>
         <div class="ui-g">
           <div class="ui-g-8 ui-xl-4 ui-md-6 ui-sm-12">
-            <ic:ch.ivy.addon.portalkit.component.RoleSelection componentId="read-only-role-autocomplete" selectedRole="#{data.selectedRoleForReadOnlyField}" isRenderedMessage="false"
+            <ic:com.axonivy.portal.component.RoleSelection componentId="read-only-role-autocomplete" selectedRole="#{data.selectedRoleForReadOnlyField}" isRenderedMessage="false"
               label="Read only role selection" labelPanelStyleClass="ui-g-5 ui-md-6 ui-sm-12" autoCompleteStyleClass="width-100" autoCompletePanelStyleClass="ui-g-5 ui-sm-12" isReadOnly="true"
               hightlight="false" />
           </div>
           <div id="floating-label-and-exclude-role-component" class="ui-g-4 ui-xl-3 ui-md-6 ui-sm-12">
-            <ic:ch.ivy.addon.portalkit.component.RoleSelection componentId="floating-label-and-exclude-role-autocomplete" hightlight="false" selectedRole="#{data.selectedRole}"
+            <ic:com.axonivy.portal.component.RoleSelection componentId="floating-label-and-exclude-role-autocomplete" hightlight="false" selectedRole="#{data.selectedRole}"
               label="Loading with all roles (exclude CaseOwner, GeneralManager)" autoCompleteStyleClass="width-100" autoCompletePanelStyleClass="ui-g-12 floating-label-margin-top"
               excludedRoleNames="#{data.excludedRoleNames}" isRequired="true" floatingLabel="true" />
           </div>
         </div>
         <div class="ui-g">
           <div id="role-from-defined-role-component" class="ui-g-8 ui-xl-4 ui-md-6 ui-sm-12">
-            <ic:ch.ivy.addon.portalkit.component.RoleSelection componentId="role-from-defined-role-autocomplete" fromRoleNames="#{data.definedRoleNames}"
+            <ic:com.axonivy.portal.component.RoleSelection componentId="role-from-defined-role-autocomplete" fromRoleNames="#{data.definedRoleNames}"
               selectedRole="#{data.selectedRoleForDefinedRoles}" isRequired="true" autoCompleteStyleClass="width-100" label="Roles from defined role names"
               labelPanelStyleClass="ui-g-5 ui-md-6 ui-sm-12" autoCompletePanelStyleClass="ui-g-5 ui-sm-12" />
           </div>
           <div id="item-select-with-ajax-event-component" class="ui-g-4 ui-xl-3 ui-md-6 ui-sm-12">
-            <ic:ch.ivy.addon.portalkit.component.RoleSelection id="item-select-event-component" componentId="item-select-event-for-role-selection" fromRoleNames="#{data.definedRoleNames}"
+            <ic:com.axonivy.portal.component.RoleSelection id="item-select-event-component" componentId="item-select-event-for-role-selection" fromRoleNames="#{data.definedRoleNames}"
               selectedRole="#{data.selectedRoleForInsertChildren}" label="Demonstrate facet and children" autoCompleteStyleClass="width-100"
               autoCompletePanelStyleClass="ui-g-12 floating-label-margin-top" isRequired="true" floatingLabel="true">
               <p:column>
@@ -56,7 +56,7 @@
               <f:facet name="event">
                 <p:ajax event="itemSelect" listener="#{logic.showSelectedRole}" update="#{p:resolveFirstComponentWithId('item-select-event-for-role-selection-message', view).clientId}" />
               </f:facet>
-            </ic:ch.ivy.addon.portalkit.component.RoleSelection>
+            </ic:com.axonivy.portal.component.RoleSelection>
           </div>
         </div>
         <div class="ui-g assign-task-to-selected-role-panel display-block">
