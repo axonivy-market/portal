@@ -7,8 +7,6 @@ import java.util.stream.Collectors;
 import org.apache.commons.collections4.CollectionUtils;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
-import ch.ivyteam.ivy.application.IApplication;
-import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IPermission;
 import ch.ivyteam.ivy.security.IPermissionAccess;
 import ch.ivyteam.ivy.security.ISecurityConstants;
@@ -77,14 +75,13 @@ public enum PortalSecurity {
   }
 
   public void assignPermissionsToDefaultUsers() {
-    IApplication portalApplication = Ivy.request().getApplication();
-    ISecurityContext securityContext = portalApplication.getSecurityContext();
+    ISecurityContext securityContext = ISecurityContext.current();
     IUserRepository userRepo = securityContext.users();
     boolean isIvySecurity = securityContext.getExternalSecuritySystemName()
         .equals(ISecurityConstants.IVY_ENGINE_SECURITY_SYSTEM_PROVIDER_NAME);
     if ((EngineMode.is(EngineMode.DEMO) || EngineMode.isEmbeddedInDesigner()) && isIvySecurity) {
       IUser adminUser = userRepo.findWithExternalLookup(Username.ADMIN);
-      ISecurityDescriptor securityDescriptor = portalApplication.getSecurityDescriptor();
+      ISecurityDescriptor securityDescriptor = securityContext.securityDescriptor();
       if (adminUser != null) {
         for (IPermission permission : Permissions.ADMIN_USER_ADDITIONAL) {
           securityDescriptor.grantPermission(permission, adminUser);
@@ -118,7 +115,7 @@ public enum PortalSecurity {
     if (CollectionUtils.isEmpty(iPermissions) || securityMember == null) {
       return;
     }
-    ISecurityDescriptor portalSecurity = IApplication.current().getSecurityDescriptor();
+    ISecurityDescriptor portalSecurity = ISecurityContext.current().securityDescriptor();
     
     List<IPermission> denniedPermission = portalSecurity
         .getPermissionAccesses(securityMember)

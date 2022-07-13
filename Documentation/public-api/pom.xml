@@ -71,9 +71,11 @@
         <artifactId>maven-javadoc-plugin</artifactId>
         <version>3.2.0</version>
         <configuration>
-          <sourcepath>../../AxonIvyPortal/PortalKit/src</sourcepath>
+		  <!--On Windows, replace character : by character ;-->
+          <sourcepath>../../AxonIvyPortal/PortalKit/src:../../AxonIvyPortal/portal-component/src</sourcepath>
           <subpackages>ch.ivy.addon.portalkit.publicapi, ch.ivy.addon.portalkit.datamodel, ch.ivy.addon.portalkit.exporter, 
-            ch.ivy.addon.portalkit.taskfilter, ch.ivy.addon.portalkit.casefilter, ch.ivy.addon.portalkit.filter</subpackages>
+            ch.ivy.addon.portalkit.taskfilter, ch.ivy.addon.portalkit.casefilter, ch.ivy.addon.portalkit.filter, 
+			com.axonivy.portal.component.dto</subpackages>
           <additionalOptions>
             <additionalOption>-classpath</additionalOption>
             <!--On Windows, replace character : by character ;-->

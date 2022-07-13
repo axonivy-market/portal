@@ -18,7 +18,7 @@
     </div>
 
     <div id="chat-select-assignee" class="ui-g-12">
-      <ic:ch.ivy.addon.portalkit.component.UserSelection id="chat-user-selection-component"
+      <ic:com.axonivy.portal.component.UserSelection id="chat-user-selection-component"
         componentId="chat-user-selection" queryDelay="500" selectedUser="#{chatAssigneeBean.selectedUser}"
         isRenderedMessage="false" rendered="#{chatAssigneeBean.isAssignToUser}"
         autoCompletePanelStyleClass="chat-user-selection">
@@ -29,9 +29,9 @@
         <f:facet name="event">
           <p:ajax event="itemSelect" update="chat-assignee-selection-form:chat-add-assignee-button" />
         </f:facet>
-      </ic:ch.ivy.addon.portalkit.component.UserSelection>
+      </ic:com.axonivy.portal.component.UserSelection>
 
-      <ic:ch.ivy.addon.portalkit.component.RoleSelection id="chat-role-selection-component"
+      <ic:com.axonivy.portal.component.RoleSelection id="chat-role-selection-component"
         componentId="chat-role-selection" selectedRole="#{chatAssigneeBean.selectedRole}" queryDelay="500" cache="true"
         rendered="#{not chatAssigneeBean.isAssignToUser}" inputStyleClass="chat-role-selection-input" scrollHeight="400"
         autoCompleteStyleClass="chat-role-selection" isRenderedMessage="false">
@@ -43,7 +43,7 @@
           <pc:securityMemberNameAndAvatar
             securityMember="#{role}" displayName="#{role.getDisplayName()}"  />
         </p:column> 
-      </ic:ch.ivy.addon.portalkit.component.RoleSelection>
+      </ic:com.axonivy.portal.component.RoleSelection>
     </div>
 
     <div class="ui-g-12 chat-add-assignee-button-grid">

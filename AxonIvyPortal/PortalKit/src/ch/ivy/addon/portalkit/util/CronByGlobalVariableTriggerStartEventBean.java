@@ -7,10 +7,10 @@ import static org.quartz.TriggerBuilder.newTrigger;
 import java.awt.Container;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.Callable;
-import java.util.Collections;
 
 import javax.swing.JTextField;
 
@@ -30,7 +30,6 @@ import ch.ivyteam.ivy.process.eventstart.AbstractProcessStartEventBean;
 import ch.ivyteam.ivy.process.eventstart.IProcessStartEventBeanRuntime;
 import ch.ivyteam.ivy.process.extension.IProcessExtensionConfigurationEditorEnvironment;
 import ch.ivyteam.ivy.process.extension.impl.AbstractProcessExtensionConfigurationEditor;
-import ch.ivyteam.ivy.request.RequestException;
 import ch.ivyteam.ivy.service.ServiceException;
 import ch.ivyteam.ivy.vars.Variable;
 import ch.ivyteam.ivy.vars.Variables;
