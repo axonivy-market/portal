@@ -1,7 +1,10 @@
 package ch.ivy.addon.portalkit.ivydata.mapper;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
+import org.apache.commons.collections4.CollectionUtils;
 
 import com.axonivy.portal.component.dto.RoleDTO;
 import com.axonivy.portal.component.dto.UserDTO;
@@ -24,20 +27,6 @@ public class SecurityMemberDTOMapper {
     return result;
   }
   
-  public static List<SecurityMemberDTO> mapFromUserDTOs(List<UserDTO> userDTOs) {
-    List<SecurityMemberDTO> result = new ArrayList<>();
-
-    for (UserDTO m : userDTOs) {
-      SecurityMemberDTO member = mapFromUserDTO(m);
-
-      if (null != member) {
-        result.add(member);
-      }
-    }
-
-    return result;
-  }
-  
   public static SecurityMemberDTO mapFromRoleDTO(RoleDTO roleDTO) {
     SecurityMemberDTO result = new SecurityMemberDTO();
     
@@ -51,17 +40,18 @@ public class SecurityMemberDTOMapper {
     return result;
   }
   
+  public static List<SecurityMemberDTO> mapFromUserDTOs(List<UserDTO> userDTOs) {
+    return map(userDTOs, user -> mapFromUserDTO(user));
+  }
+  
   public static List<SecurityMemberDTO> mapFromRoleDTOs(List<RoleDTO> roleDTOs) {
-    List<SecurityMemberDTO> result = new ArrayList<>();
-
-    for (RoleDTO m : roleDTOs) {
-      SecurityMemberDTO member = mapFromRoleDTO(m);
-
-      if (null != member) {
-        result.add(member);
-      }
-    }
-
-    return result;
+    return map(roleDTOs, role -> mapFromRoleDTO(role));
+  }
+  
+  private static <T, R> List<R> map(List<T> list, Function<T, R> function){
+    return CollectionUtils.emptyIfNull(list)
+        .stream()
+        .map(function)
+        .collect(Collectors.toList());
   }
 }

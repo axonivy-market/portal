@@ -25,20 +25,24 @@ import ch.ivyteam.ivy.application.IProcessModel;
 import ch.ivyteam.ivy.application.IProcessModelVersion;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.ISecurityConstants;
+import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.IUser;
 
 public class ServiceUtilities {
 
   private ServiceUtilities() {}
 
-  public static IUser findUser(final String username, IApplication app) {
-    Objects.requireNonNull(username, "The username must not be null");
-    requireNonNull(app);
-
-    IUser user = app.getSecurityContext().users().find(username);
-    return user;
+  /**
+   * @deprecated use {@link ServiceUtilities#findUser(String)} instead
+   * @param username
+   * @param app
+   * @return list of user
+   */
+  @Deprecated(forRemoval = true, since = "9.4")
+  public static IUser findUser(final String username, @SuppressWarnings("unused") IApplication app) {
+    return findUser(username);
   }
-
+  
   private static void requireNonNull(IApplication app) {
     Objects.requireNonNull(app, "The application must not be null");
   }
@@ -46,13 +50,22 @@ public class ServiceUtilities {
   /**
    * Finds all of the users within the given app, except the system user
    *
+   * @deprecated use {@link ServiceUtilities#findAllUsers()} instead 
    * @param app
    * @return users
    */
-  public static List<IUser> findAllUsers(IApplication app) {
-    requireNonNull(app);
-
-    return app.getSecurityContext()
+  @Deprecated(forRemoval=true, since = "9.4")
+  public static List<IUser> findAllUsers(@SuppressWarnings("unused") IApplication app) {
+    return findAllUsers();
+  }
+  
+  /**
+   * Finds all of the users within the current application, except the system user
+   *
+   * @return users
+   */
+  public static List<IUser> findAllUsers() {
+    return ISecurityContext.current()
       .users()
       .paged()
       .stream()
@@ -61,35 +74,45 @@ public class ServiceUtilities {
   }
 
   /**
-   * Finds all of the users within the given app, except the roles have the HIDE property
-   *
+   * Finds all of the roles within the given app, except the roles have the HIDE property
+   * @deprecated use {@link ServiceUtilities#findAllRoles()} instead
    * @param app
    * @return roles
    */
+  @Deprecated(forRemoval=true, since = "9.4")
+  public static List<IRole> findAllRoles(@SuppressWarnings("unused") IApplication app) {
+    return findAllRoles();
+  }
+  
+  /**
+   * Finds all of the roles in security context, except the roles have the HIDE property
+   * @return roles
+   */
   @SuppressWarnings("unchecked")
-  public static List<IRole> findAllRoles(IApplication app) {
-    requireNonNull(app);
-
+  public static List<IRole> findAllRoles() {
     Optional<Object> cacheValueOpt =
-        IvyCacheService.newInstance().getSessionCacheValue(app.getName(), IvyCacheIdentifier.ROLES_IN_APPLICATION);
+        IvyCacheService.newInstance().getSessionCacheValue(ISecurityContext.current().getName(), IvyCacheIdentifier.ROLES_IN_SECURITY_CONTEXT);
     if (cacheValueOpt.isPresent()) {
       return (List<IRole>) cacheValueOpt.get();
     }
 
-    List<IRole> roles = new ArrayList<>(app.getSecurityContext().roles().all());
+    List<IRole> roles = new ArrayList<>(ISecurityContext.current().roles().all());
     roles.removeIf(role -> role.getProperty(AdditionalProperty.HIDE.toString()) != null);
     roles.sort((u1, u2) -> StringUtils.compareIgnoreCase(u1.getDisplayName(), u2.getDisplayName()));
 
-    IvyCacheService.newInstance().setSessionCache(app.getName(), IvyCacheIdentifier.ROLES_IN_APPLICATION, roles);
+    IvyCacheService.newInstance().setSessionCache(ISecurityContext.current().getName(), IvyCacheIdentifier.ROLES_IN_SECURITY_CONTEXT, roles);
     return roles;
   }
-
+  
   public static List<IProcessModelVersion> getActiveReleasedPmvs(IApplication app) {
     requireNonNull(app);
 
-    return app.getProcessModels().stream().filter(pm -> pm.getActivityState() == ActivityState.ACTIVE)
-        .map(IProcessModel::getReleasedProcessModelVersion)
-        .filter(pmv -> pmv != null && pmv.getActivityState() == ActivityState.ACTIVE).collect(Collectors.toList());
+    return app.getProcessModels()
+          .stream()
+          .filter(pm -> pm.getActivityState() == ActivityState.ACTIVE)
+          .map(IProcessModel::getReleasedProcessModelVersion)
+          .filter(pmv -> pmv != null && pmv.getActivityState() == ActivityState.ACTIVE)
+          .collect(Collectors.toList());
   }
 
   public static IvyApplication toIvyApplication(String appName, String appDisplayName) {
@@ -102,23 +125,42 @@ public class ServiceUtilities {
 
   public static IUser findUser(String username) {
     return IvyExecutor.executeAsSystem(() -> {
-      return findUser(username, IApplication.current());
+      return ISecurityContext.current().users().find(username);
     });
   }
 
-  public static UserDTO findUserDTO(final String username, IApplication app) {
+  public static UserDTO findUserDTO(final String username) {
     Objects.requireNonNull(username, "The username must not be null");
-    requireNonNull(app);
     return IvyExecutor.executeAsSystem(() -> {
-      IUser user = app.getSecurityContext().users().find(username);
-      return new UserDTO(user);
+      IUser user = ISecurityContext.current().users().find(username);
+      return user == null? null : new UserDTO(user);
     });
   }
+  
+  /**
+   * @deprecated Use {@link ServiceUtilities#findUserDTO(String)} instead
+   * @param username
+   * @param application
+   * @return user
+   */
+  @Deprecated(forRemoval = true, since = "9.4")
+  public static UserDTO findUserDTO(final String username, @SuppressWarnings("unused") final IApplication application) {
+    return findUserDTO(username);
+  }
 
-  public static List<RoleDTO> findAllRoleDTO(IApplication app) {
-    requireNonNull(app);
+  /**
+   * @deprecated use {@link ServiceUtilities#findAllRoleDTO()} instead
+   * @param app
+   * @return list of {@link UserDTO}
+   */
+  @Deprecated(forRemoval = true, since = "9.4")
+  public static List<RoleDTO> findAllRoleDTO(@SuppressWarnings("unused") IApplication app) {
+    return findAllRoleDTO();
+  }
+  
+  public static List<RoleDTO> findAllRoleDTO() {
     return IvyExecutor.executeAsSystem(() -> {
-      return CollectionUtils.emptyIfNull(app.getSecurityContext().roles().all())
+      return CollectionUtils.emptyIfNull(ISecurityContext.current().roles().all())
           .stream()
           .filter(role -> role.getProperty(AdditionalProperty.HIDE.toString()) == null)
           .map(role -> new RoleDTO(role))
@@ -127,30 +169,21 @@ public class ServiceUtilities {
   }
 
   public static SecurityMemberDTO findSecurityMemberByName(String securityMemberName) {
-    IApplication app = IApplication.current();
-    SecurityMemberDTO member = null;
     if (securityMemberName.startsWith("#")) {
-      member = findSecurityUserByName(securityMemberName.replace("#", ""), app);
-    } else {
-      member = findSecurityRoleByName(securityMemberName, app);
-    }
-
-    return member;
+      return findSecurityUserByName(securityMemberName.replace("#", ""));
+    } 
+    return findSecurityRoleByName(securityMemberName);
   }
 
-  private static SecurityMemberDTO findSecurityUserByName(String securityMemberName, IApplication app) {
-    UserDTO userDTO = null;
-    userDTO = findUserDTO(securityMemberName, app);
-    return SecurityMemberDTOMapper.mapFromUserDTO(userDTO);
+  private static SecurityMemberDTO findSecurityUserByName(String securityMemberName) {
+    IUser findUser = findUser(securityMemberName);
+    return findUser == null ? null : new SecurityMemberDTO(findUser);
   }
 
-  private static SecurityMemberDTO findSecurityRoleByName(String securityMemberName, IApplication app) {
-    List<RoleDTO> roles = null;
-    roles = findAllRoleDTO(app).stream()
-            .filter(role -> StringUtils.equalsIgnoreCase(role.getName(), securityMemberName))
-            .collect(Collectors.toList());
-    List<SecurityMemberDTO> members = SecurityMemberDTOMapper.mapFromRoleDTOs(roles);
-    return CollectionUtils.isEmpty(members) ? null : members.get(0);
+  private static SecurityMemberDTO findSecurityRoleByName(String securityMemberName) {
+    List<RoleDTO> roles = findAllRoleDTO().stream()
+                        .filter(role -> StringUtils.equalsIgnoreCase(role.getName(), securityMemberName))
+                        .collect(Collectors.toList());
+    return SecurityMemberDTOMapper.mapFromRoleDTOs(roles).stream().findFirst().orElse(null);
   }
-
 }
