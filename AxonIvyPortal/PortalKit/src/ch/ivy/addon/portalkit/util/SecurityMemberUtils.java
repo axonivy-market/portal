@@ -7,10 +7,11 @@ import java.util.stream.Collectors;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang.WordUtils;
 
+import com.axonivy.portal.component.dto.RoleDTO;
+import com.axonivy.portal.component.dto.UserDTO;
+
 import ch.ivy.addon.portalkit.constant.PortalConstants;
-import ch.ivy.addon.portalkit.dto.RoleDTO;
 import ch.ivy.addon.portalkit.dto.SecurityMemberDTO;
-import ch.ivy.addon.portalkit.dto.UserDTO;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.persistence.query.IPagedResult;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
@@ -61,13 +62,13 @@ public class SecurityMemberUtils {
 
   public static ISecurityMember findISecurityMemberFromRoleDTO(RoleDTO roleDTO) {
     return IvyExecutor.executeAsSystem(() -> {
-      return ((ISecurityContext)Ivy.security()).findRole(roleDTO.getId());
+      return ISecurityContext.current().findRole(roleDTO.getId());
     });
   }
 
   public static String buildTooltipFromUsers(String roleName) {
     return IvyExecutor.executeAsSystem(() -> {
-      IRole role = Ivy.security().roles().find(roleName);
+      IRole role = ISecurityContext.current().roles().find(roleName);
       IPagedResult<IUser> result = role.users().assignedPaged(10);
       List<IUser> users = result.page(1);
       long totalCount = result.count();

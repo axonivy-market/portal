@@ -15,8 +15,9 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
-import ch.ivy.addon.portalkit.dto.RoleDTO;
-import ch.ivy.addon.portalkit.dto.UserDTO;
+import com.axonivy.portal.component.dto.RoleDTO;
+import com.axonivy.portal.component.dto.UserDTO;
+
 import ch.ivy.addon.portalkit.role.RoleHolder;
 import ch.ivy.addon.portalkit.role.RoleTreeDataModel;
 import ch.ivy.addon.portalkit.role.UserAssignedDataModel;
@@ -26,7 +27,7 @@ import ch.ivy.addon.portalkit.util.RoleUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IPermission;
 import ch.ivyteam.ivy.security.IRole;
-import ch.ivyteam.ivy.security.ISecurity;
+import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.security.role.NewRole;
 
@@ -36,7 +37,6 @@ public class RoleManagementBean implements Serializable {
   private static final long serialVersionUID = -4867516739222351669L;
 
   private IRole roleTopLevel;
-  private ISecurity security;
   private RoleTreeDataModel roleTreeModel;
   private UserAssignedDataModel userAssignmentModel;
   private RoleHolder selectedRole;
@@ -51,7 +51,7 @@ public class RoleManagementBean implements Serializable {
   private boolean canModifyUserAssignment;
 
   public void initRoleManagement() {
-    roleTopLevel = getSecurity().roles().topLevel();
+    roleTopLevel = ISecurityContext.current().roles().topLevel();
     roleTreeModel = new RoleTreeDataModel();
     roleTreeModel.reloadTree();
     initPermission();
@@ -127,8 +127,11 @@ public class RoleManagementBean implements Serializable {
     var isReloadTree = false;
     var existedRole = RoleUtils.findRole(selectedRole.getName());
     if (isCreationMode && nonNull(existedRole)) {
+      var message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+          cms("/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/Messages/DuplicateRole", existedRole.getName()),
+          EMPTY);
+      FacesContext.getCurrentInstance().addMessage(null, message);
       FacesContext.getCurrentInstance().validationFailed();
-      addRoleGrowlMessage(FacesMessage.SEVERITY_ERROR, "/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/Messages/DuplicateRole", existedRole.getName());
       return;
     }
 
@@ -147,7 +150,7 @@ public class RoleManagementBean implements Serializable {
               .displayName(selectedRole.getDisplayName())
               .description(selectedRole.getDescription())
               .toNewRole();
-        existedRole = getSecurity().roles().create(newRole);
+        existedRole = ISecurityContext.current().roles().create(newRole);
         isReloadTree = true;
         addRoleGrowlMessage(FacesMessage.SEVERITY_INFO, "/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/Messages/CreateRoleSuccess", selectedRole.getName());
       } catch (Exception ex) {
@@ -169,13 +172,13 @@ public class RoleManagementBean implements Serializable {
     if (isNull(selectedRole)) {
       return;
     }
-    var existedRole = getSecurity().roles().find(selectedRole.getName());
+    var existedRole = ISecurityContext.current().roles().find(selectedRole.getName());
     if (existedRole == null) {
       addRoleGrowlMessage(FacesMessage.SEVERITY_WARN, "/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/Messages/NotFoundRole", selectedRole.getName());
       return;
     }
 
-    getSecurity().roles().delete(selectedRole.getName());
+    ISecurityContext.current().roles().delete(selectedRole.getName());
     roleTreeModel.getRoles().clear();
     roleTreeModel.setFilterKeyword(EMPTY);
     roleTreeModel.reloadTree();
@@ -193,10 +196,13 @@ public class RoleManagementBean implements Serializable {
     if (isNull(existedRole)) {
       return;
     }
-    IUser foundUser = getSecurity().users().find(userName);
+    IUser foundUser = ISecurityContext.current().users().find(userName);
     if (nonNull(foundUser)) {
-      foundUser.getRoles().stream().filter(role -> role.getSecurityMemberId().equals(existedRole.getSecurityMemberId()))
-          .findFirst().ifPresentOrElse((user) -> {
+      foundUser.getRoles()
+          .stream()
+          .filter(role -> role.getSecurityMemberId().equals(existedRole.getSecurityMemberId()))
+          .findFirst()
+          .ifPresentOrElse((user) -> {
             if (isRemove) {
               foundUser.removeRole(existedRole);
             }
@@ -219,13 +225,6 @@ public class RoleManagementBean implements Serializable {
     var roleName = isNull(getSelectedRole()) ? EMPTY : getSelectedRole().getName();
     var cmsURL = isCreationMode() ? "/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/RoleCreation" : "/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/RoleDetails";
     return cms(cmsURL, roleName);
-  }
-
-  private ISecurity getSecurity() {
-    if (isNull(security)) {
-      security = Ivy.security();
-    }
-    return security;
   }
 
   private String cms(String cmsURL, Object... param) {

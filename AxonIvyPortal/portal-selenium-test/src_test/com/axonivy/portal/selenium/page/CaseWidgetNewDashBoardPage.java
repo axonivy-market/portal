@@ -188,4 +188,10 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
   public SelenideElement getCreatorAvatar() {
     return $(".dashboard-cases__creator > .has-avatar > .ui-avatar").waitUntil(appear, DEFAULT_TIMEOUT);
   }
+  
+  public void deleteCaseWidget() {
+    $$("div.table-widget-panel div.widget__header").filter(text(caseWidgetName)).first()
+        .waitUntil(appear, DEFAULT_TIMEOUT).$("div[id$='widget-header-actions']").$("a.ui-commandlink[id*='delete-widget']")
+        .shouldBe(getClickableCondition()).click();
+  }
 }

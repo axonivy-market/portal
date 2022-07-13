@@ -9,7 +9,11 @@ import ch.ivy.addon.portalkit.bo.ProcessStep;
 import ch.ivy.addon.portalkit.configuration.UserProcess;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivyteam.ivy.application.IApplication;
+import ch.ivyteam.ivy.application.IProcessModel;
+import ch.ivyteam.ivy.application.IProcessModelVersion;
+import ch.ivyteam.ivy.application.app.IApplicationRepository;
 import ch.ivyteam.ivy.cm.exec.ContentManagement;
+import ch.ivyteam.ivy.security.ISecurityContext;
 
 public class ProcessStepUtils {
 
@@ -34,11 +38,24 @@ public class ProcessStepUtils {
     String processModelName = processParts[processParts.length - 3];
 
     return IvyExecutor.executeAsSystem(() -> {
-      ContentManagement contentManagement = ContentManagement.of(ContentManagement
-          .cms(IApplication.current().findProcessModel(processModelName).getReleasedProcessModelVersion()));
-      String processSteps = contentManagement
-          .co(SLASH.concat(PROCESSES_CMS_URI).concat(SLASH).concat(processName).concat(SLASH).concat(PROCESS_STEP));
-        return StringUtils.isBlank(processSteps) ? null : convertToProcessStep(processSteps);
+      IProcessModelVersion releasedProcessModelVersion = null;
+      List<IApplication> applicationsInSecurityContext = IApplicationRepository.instance().allOf(ISecurityContext.current());
+      for (IApplication app : applicationsInSecurityContext) {
+        IProcessModel findProcessModel = app.findProcessModel(processModelName);
+        if (findProcessModel != null) {
+          releasedProcessModelVersion = findProcessModel.getReleasedProcessModelVersion();
+        }
+      }
+      
+      if (releasedProcessModelVersion != null) {
+        ContentManagement contentManagement = ContentManagement.of(ContentManagement.cms(releasedProcessModelVersion));
+        String processSteps = contentManagement.co(SLASH.concat(PROCESSES_CMS_URI).concat(SLASH).concat(processName).concat(SLASH).concat(PROCESS_STEP));
+        if (StringUtils.isNotBlank(processSteps)) {
+          return convertToProcessStep(processSteps);
+        }
+      }
+      
+      return null;
       });
   }
 
