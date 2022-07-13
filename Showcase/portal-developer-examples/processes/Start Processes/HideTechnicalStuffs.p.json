@@ -49,10 +49,11 @@
       "config" : {
         "output" : {
           "code" : [
+            "import ch.ivyteam.ivy.security.ISecurityContext;",
             "import ch.ivy.addon.portalkit.enums.AdditionalProperty;",
             "import ch.ivy.addon.portalkit.publicapi.RoleAPI;",
             "import ch.ivyteam.ivy.security.IRole;",
-            "IRole role = ivy.security.roles().find(\"PortalSystem\");",
+            "IRole role = ISecurityContext.current().roles().find(\"PortalSystem\");",
             "if(#role is initialized) {",
             "  RoleAPI.setProperty(role, AdditionalProperty.HIDE.toString(), AdditionalProperty.HIDE.toString());",
             "}"
@@ -71,10 +72,11 @@
       "config" : {
         "output" : {
           "code" : [
+            "import ch.ivyteam.ivy.security.ISecurityContext;",
             "import ch.ivy.addon.portalkit.enums.AdditionalProperty;",
             "import ch.ivy.addon.portalkit.publicapi.RoleAPI;",
             "import ch.ivyteam.ivy.security.IRole;",
-            "IRole role = ivy.security.roles().find(\"PortalSystem\");",
+            "IRole role = ISecurityContext.current().roles().find(\"PortalSystem\");",
             "if(#role is initialized) {",
             "  RoleAPI.removeProperty(role, AdditionalProperty.HIDE.toString());",
             "}"

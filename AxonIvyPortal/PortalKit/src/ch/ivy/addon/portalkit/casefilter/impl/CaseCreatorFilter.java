@@ -4,14 +4,13 @@ import java.util.Optional;
 
 import org.apache.commons.lang.StringUtils;
 
+import com.axonivy.portal.component.dto.UserDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import ch.ivy.addon.portalkit.casefilter.CaseFilter;
-import ch.ivy.addon.portalkit.dto.UserDTO;
 import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivy.addon.portalkit.util.CaseUtils;
 import ch.ivy.addon.portalkit.util.SecurityMemberDisplayNameUtils;
-import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
@@ -75,7 +74,7 @@ public class CaseCreatorFilter extends CaseFilter {
    */
   private void findCreator(String memberName) {
     if (selectedCreator == null || !StringUtils.equals(memberName, selectedCreator.getName())) {
-      setSelectedCreator(ServiceUtilities.findUserDTO(memberName.replaceFirst("#", ""), IApplication.current()));
+      setSelectedCreator(ServiceUtilities.findUserDTO(memberName.replaceFirst("#", "")));
     }
   }
 

@@ -11,7 +11,7 @@
         "callSignature" : "start",
         "result" : {
           "params" : [
-            { "name" : "selectedRoleForDefault", "type" : "ch.ivy.addon.portalkit.dto.RoleDTO" }
+            { "name" : "selectedRoleForDefault", "type" : "com.axonivy.portal.component.dto.RoleDTO" }
           ],
           "map" : {
             "result.selectedRoleForDefault" : "in.selectedRoleForDefault"
@@ -54,13 +54,14 @@
         "security" : "system",
         "output" : {
           "code" : [
+            "import ch.ivyteam.ivy.security.ISecurityContext;",
+            "import com.axonivy.portal.component.dto.RoleDTO;",
             "import ch.ivyteam.ivy.environment.Ivy;",
-            "import ch.ivy.addon.portalkit.dto.RoleDTO;",
             "import ch.ivyteam.ivy.security.IRole;",
             "import java.util.Arrays;",
             "",
             "String everybodyRoleName = \"Everybody\";",
-            "IRole everybodyRole = ivy.security.roles().find(everybodyRoleName);",
+            "IRole everybodyRole = ISecurityContext.current().roles().find(everybodyRoleName);",
             "in.selectedRoleForReadOnlyField = new RoleDTO(everybodyRole);",
             "Ivy.log().info(\"selected Role for read only field: \" + in.selectedRoleForReadOnlyField.getDisplayName());",
             "in.excludedRoleNames = Arrays.asList(\"CaseOwner\", \"GeneralManager\");",
