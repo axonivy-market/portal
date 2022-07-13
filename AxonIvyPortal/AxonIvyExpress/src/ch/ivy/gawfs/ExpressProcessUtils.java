@@ -30,6 +30,7 @@ import ch.ivyteam.ivy.process.call.SubProcessRunner;
 import ch.ivyteam.ivy.process.call.SubProcessSearchFilter;
 import ch.ivyteam.ivy.process.call.SubProcessSearchFilter.Builder;
 import ch.ivyteam.ivy.security.IRole;
+import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.security.IUser;
 import gawfs.Data;
@@ -171,7 +172,7 @@ public class ExpressProcessUtils {
   public static String generateResponsibleDisplayName(List<String> responsibleNames) {
     return CollectionUtils.emptyIfNull(responsibleNames)
       .stream()
-      .map(responsibleName -> Ivy.security().members().find(responsibleName))
+      .map(responsibleName -> ISecurityContext.current().members().find(responsibleName))
       .filter(securityMember -> securityMember != null)
       .map(securityMember -> SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(securityMember, securityMember.getName()))
       .collect(Collectors.joining(", "));
@@ -213,7 +214,7 @@ public class ExpressProcessUtils {
   
   private List<String> getEmailAddressFromSecurityMember(String memberName) {
     List<String> emailAddresses = new ArrayList<>(); 
-    ISecurityMember securityMember = Ivy.security().members().find(memberName);
+    ISecurityMember securityMember = ISecurityContext.current().members().find(memberName);
     if (securityMember != null) {
       if (securityMember.isUser()) {
         IUser iuser = (IUser) securityMember;

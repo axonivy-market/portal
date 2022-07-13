@@ -330,9 +330,11 @@
       "config" : {
         "output" : {
           "code" : [
+            "import ch.ivyteam.ivy.security.ISecurityContext;",
+            "import ch.ivyteam.ivy.language.LanguageConfigurator;",
             "import java.util.Locale;",
             "",
-            "Locale default = ivy.request.getApplication().getDefaultEMailLanguage();",
+            "Locale default = new LanguageConfigurator(ISecurityContext.current()).content();",
             "ivy.session.getSessionUser().setLanguage(default);"
           ]
         }
@@ -427,6 +429,8 @@
       "config" : {
         "output" : {
           "code" : [
+            "import ch.ivyteam.ivy.security.ISecurityContext;",
+            "import ch.ivyteam.ivy.language.LanguageConfigurator;",
             "import javax.faces.context.FacesContext;",
             "import javax.faces.application.FacesMessage;",
             "import ch.ivyteam.ivy.security.IUser;",
@@ -454,7 +458,7 @@
             "  ivy.session.setFormattingLocale(l);",
             "} else {",
             "  // Application Default",
-            "  Locale default = ivy.request.getApplication().getDefaultEMailLanguage();",
+            "  Locale default = new LanguageConfigurator(ISecurityContext.current()).content();",
             "  String language = default.getLanguage();",
             "  String country = default.getCountry();",
             "  Locale l = new Locale(language, country, \"APPLICATION_DEFAULT\");",

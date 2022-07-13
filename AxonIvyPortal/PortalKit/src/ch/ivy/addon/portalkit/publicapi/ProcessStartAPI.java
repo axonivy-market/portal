@@ -1,5 +1,6 @@
 package ch.ivy.addon.portalkit.publicapi;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.stream.Stream;
 
@@ -16,7 +17,9 @@ import ch.ivyteam.ivy.application.ActivityState;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.application.IProcessModel;
 import ch.ivyteam.ivy.application.IProcessModelVersion;
+import ch.ivyteam.ivy.application.app.IApplicationRepository;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivyteam.ivy.workflow.IStartElement;
 import ch.ivyteam.ivy.workflow.IWorkflowProcessModelVersion;
@@ -35,8 +38,15 @@ public final class ProcessStartAPI {
    */
   public static String findStartableLinkByUserFriendlyRequestPath(String friendlyRequestPath) {
     return IvyExecutor.executeAsSystem(() -> {
-      IProcessStart processStart = findStartableProcessStartByUserFriendlyRequestPath(friendlyRequestPath);
-        return processStart != null ? processStart.getLink().getRelative() : StringUtils.EMPTY; 
+      List<IApplication> applicationsInSecurityContext = IApplicationRepository.instance().allOf(ISecurityContext.current());
+      IProcessStart processStart = null;
+      for (IApplication app : applicationsInSecurityContext) {
+        processStart = findStartableProcessStartByUserFriendlyRequestPath(friendlyRequestPath, app);
+        if (processStart != null) {
+          return processStart.getLink().getRelative();
+        }
+      }
+      return StringUtils.EMPTY; 
     });
   }
 
@@ -85,9 +95,15 @@ public final class ProcessStartAPI {
 
   private static String findStartableIdByUserFriendlyRequestPath(String friendlyRequestPath) {
     return IvyExecutor.executeAsSystem(() -> {
-      IApplication application = IApplication.current();
-      IProcessStart processStart = findStartableProcessStartByUserFriendlyRequestPath(friendlyRequestPath);
-      return processStart != null ? application.getName() + "/" + processStart.getFullUserFriendlyRequestPath() : StringUtils.EMPTY;
+      List<IApplication> applicationsInSecurityContext = IApplicationRepository.instance().allOf(ISecurityContext.current());
+      IProcessStart processStart = null;
+      for (IApplication app : applicationsInSecurityContext) {
+        processStart = findStartableProcessStartByUserFriendlyRequestPath(friendlyRequestPath, app);
+        if (processStart != null) {
+          return app.getName() + "/" + processStart.getFullUserFriendlyRequestPath();
+        }
+      }
+      return StringUtils.EMPTY;
     });
   }
 
@@ -123,14 +139,18 @@ public final class ProcessStartAPI {
         return startElement;
       }
 
-      IApplication application = IApplication.current();
-      return filterPMVForStartElement(friendlyRequestPath, application)
-        .findFirst().orElse(null);
+      List<IApplication> applicationsInSecurityContext = IApplicationRepository.instance().allOf(ISecurityContext.current());
+      for (IApplication app : applicationsInSecurityContext) {
+        IStartElement findStartElement = filterPMVForStartElement(friendlyRequestPath, app).findFirst().orElse(null);
+        if (findStartElement != null) {
+          return findStartElement;
+        }
+      }
+      return null;
     });
   }
   
-  private static IProcessStart findStartableProcessStartByUserFriendlyRequestPath(String requestPath) {
-    IApplication application = IApplication.current();
+  private static IProcessStart findStartableProcessStartByUserFriendlyRequestPath(String requestPath, IApplication application) {
     return filterPMV(requestPath, application)
       .filter(processStart -> isStartableProcessStart(processStart.getFullUserFriendlyRequestPath()))
       .findFirst().orElse(null);
@@ -167,10 +187,15 @@ public final class ProcessStartAPI {
       if (processStart != null) {
         return processStart;
       }
-
-      IApplication application = IApplication.current();
-      return filterPMV(requestPath, application)
-        .findFirst().orElse(null);
+      List<IApplication> applicationsInSecurityContext = IApplicationRepository.instance().allOf(ISecurityContext.current());
+      
+      for (IApplication app : applicationsInSecurityContext) {
+        IProcessStart findProcessStart = filterPMV(requestPath, app).findFirst().orElse(null);
+        if (findProcessStart != null) {
+          return findProcessStart;
+        }
+      }
+      return null;
     });
   }
 

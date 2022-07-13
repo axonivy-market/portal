@@ -47,7 +47,7 @@
         "e.g. set predefined role HR for the process leave request.",
         "String processPath = in.task.getCase().getProcessStart().getUserFriendlyRequestPath();",
         "if (processPath.contains(\"Start Processes/CreateTestData/CategoriedLeaveRequest.ivp\")) {",
-        "  in.roles.add(ivy.security.roles().find(\"HR\"));",
+        "  in.roles.add(ISecurityContext.current().roles().find(\"HR\"));",
         "}"
       ],
       "visual" : {

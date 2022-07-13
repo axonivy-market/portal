@@ -1092,6 +1092,7 @@
       "config" : {
         "output" : {
           "code" : [
+            "import ch.ivyteam.ivy.security.ISecurityContext;",
             "import java.util.Arrays;",
             "import ch.ivy.addon.portalkit.enums.DeputyRoleType;",
             "import ch.ivy.addon.portalkit.util.DeputyRoleUtils;",
@@ -1099,7 +1100,7 @@
             "import javax.faces.context.FacesContext;",
             "import ch.ivyteam.ivy.security.ISecurityMember;",
             "",
-            "ISecurityMember selectedAssignee = in.#selectedDeputy is initialized ? ivy.security.members().find(in.selectedDeputy.getMemberName()) : null;",
+            "ISecurityMember selectedAssignee = in.#selectedDeputy is initialized ? ISecurityContext.current().members().find(in.selectedDeputy.getMemberName()) : null;",
             "if (!(#selectedAssignee is initialized) || in.selectedDeputies.contains(selectedAssignee)) {",
             "  FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, \"\", ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/errorSelectInvalidDeputy\")));",
             "} else if (DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE.equals(in.selectedDeputyRole.deputyRoleType) && DeputyRoleUtils.isSecurityMemberSelectedInDeputyRoleByType(in.deputyRoles, DeputyRoleType.PERSONAL_TASK_PERMANENT, selectedAssignee)) {",
@@ -1115,7 +1116,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 248, "y" : 1152 }
+        "at" : { "x" : 256, "y" : 1152 }
       },
       "connect" : { "id" : "f29", "to" : "f41" }
     }, {
@@ -1255,10 +1256,9 @@
         "security" : "system",
         "output" : {
           "code" : [
-            "import ch.ivyteam.ivy.application.IApplication;",
             "import ch.ivy.addon.portalkit.util.DeputyRoleUtils;",
             "",
-            "in.substitutes = DeputyRoleUtils.getSubstitutesFromDeputyRoles(in.deputyRoles, IApplication.current());"
+            "in.substitutes = DeputyRoleUtils.getSubstitutesFromDeputyRoles(in.deputyRoles);"
           ]
         }
       },
