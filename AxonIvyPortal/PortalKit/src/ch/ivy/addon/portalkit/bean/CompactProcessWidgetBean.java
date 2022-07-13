@@ -47,8 +47,9 @@ import ch.ivy.addon.portalkit.service.UserProcessService;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.ProcessStartUtils;
-import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.language.LanguageConfigurator;
+import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 @Deprecated(since = "9.3")
@@ -521,7 +522,7 @@ private static final long serialVersionUID = -5889375917550618261L;
 
   private Locale getApplicationDefaultLanguage() {
     return IvyExecutor.executeAsSystem(() -> {
-      return IApplication.current().getDefaultEMailLanguage();
+      return new LanguageConfigurator(ISecurityContext.current()).content();
     });
   }
 

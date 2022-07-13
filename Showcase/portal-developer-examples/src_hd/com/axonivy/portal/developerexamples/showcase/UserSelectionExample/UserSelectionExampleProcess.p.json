@@ -54,6 +54,7 @@
         "security" : "system",
         "output" : {
           "code" : [
+            "import ch.ivyteam.ivy.security.ISecurityContext;",
             "import com.axonivy.portal.component.dto.UserDTO;",
             "import ch.ivyteam.ivy.security.IRole;",
             "import ch.ivyteam.ivy.security.IUser;",
@@ -62,11 +63,11 @@
             "in.definedRoleNames = Arrays.asList(\"CostObject\", \"GeneralManager\");",
             "in.definedRoleNamesForEverybody = Arrays.asList(\"Everybody\");",
             "String costObject1UserName = \"costObject1\";",
-            "IUser costObject1 = ivy.security.users().find(costObject1UserName);",
+            "IUser costObject1 = ISecurityContext.current().users().find(costObject1UserName);",
             "if (costObject1 == null) {",
-            "  costObject1 = ivy.security.users().create(costObject1UserName, \"\");",
+            "  costObject1 = ISecurityContext.current().users().create(costObject1UserName, \"\");",
             "  costObject1.setFullName(\"Cost Object 1\");",
-            "  IRole costObject = ivy.security.roles().find(\"CostObject\");",
+            "  IRole costObject = ISecurityContext.current().roles().find(\"CostObject\");",
             "  if (costObject != null) {",
             "    costObject1.addRole(costObject);",
             "  }",

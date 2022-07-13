@@ -26,12 +26,10 @@ import org.apache.commons.lang3.StringUtils;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-import ch.ivy.addon.portalkit.constant.PortalConstants;
+import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.enums.StatisticTimePeriodSelection;
-import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.WorkflowPriority;
@@ -91,7 +89,6 @@ public class StatisticFilter implements Cloneable {
 
     // Initialize list of case categories
     caseCategories = new StatisticCaseCategoryFilter();
-
   }
 
   private void extendCaseStatesForAdmin() {
@@ -101,8 +98,10 @@ public class StatisticFilter implements Cloneable {
   }
 
   private List<IRole> findDistinctRoles() {
-    List<IRole> distinctRoles = findRolesByCallableProcess().stream()
-        .filter(role -> role != null && Ivy.session().hasRole(role, false))
+    List<IRole> allRoles = Ivy.session().getSessionUser().getAllRoles();
+    allRoles.removeIf(role -> role.getProperty(AdditionalProperty.HIDE.toString()) != null);
+    List<IRole> distinctRoles = allRoles
+        .stream()
         .sorted((r1, r2) -> StringUtils.compareIgnoreCase(r1.getDisplayName(), r2.getDisplayName()))
         .collect(Collectors.toList());
     return distinctRoles;
@@ -112,16 +111,6 @@ public class StatisticFilter implements Cloneable {
     this.roles.clear();
     this.roles.add(Ivy.session().getSessionUser());
     this.roles.addAll(findDistinctRoles());
-  }
-  
-  @SuppressWarnings("unchecked")
-  private List<IRole> findRolesByCallableProcess() {
-    return IvyExecutor.executeAsSystem(() -> {
-      return SubProcessCall.withPath(PortalConstants.SECURITY_SERVICE_CALLABLE)
-          .withStartName("findRoles")
-          .call()
-          .get("roles", List.class);
-    });
   }
 
   public Date getCreatedDateFrom() {

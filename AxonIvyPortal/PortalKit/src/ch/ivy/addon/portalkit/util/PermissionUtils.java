@@ -11,13 +11,13 @@ import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IPermission;
 import ch.ivyteam.ivy.security.IRole;
+import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.ISecurityDescriptor;
 import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.ITask;
-import ch.ivyteam.ivy.workflow.IWorkflowSession;
 
 public class PermissionUtils {
   private static final String ADMIN_ROLE = "AXONIVY_PORTAL_ADMIN";
@@ -31,20 +31,20 @@ public class PermissionUtils {
    * @return True : has read all tasks permission
    */
   public static boolean checkReadAllTasksPermission() {
-    return Ivy.session().hasPermission(getSecurityDescriptor(), IPermission.TASK_READ_ALL);
+    return hasPermission(IPermission.TASK_READ_ALL);
   }
 
   private static ISecurityDescriptor getSecurityDescriptor() {
-    return Ivy.request().getApplication().getSecurityDescriptor();
+    return ISecurityContext.current().securityDescriptor();
   }
-
+  
   /**
    * Check if current user has read all cases permission
    *
    * @return True : has read all cases permission
    */
   public static boolean checkReadAllCasesPermission() {
-    return Ivy.session().hasPermission(getSecurityDescriptor(), IPermission.CASE_READ_ALL);
+    return hasPermission(IPermission.CASE_READ_ALL);
   }
 
   /**
@@ -53,7 +53,7 @@ public class PermissionUtils {
    * @return True : has task read own case tasks permission
    */
   public static boolean checkTaskReadOwnCaseTasksPermission() {
-    return Ivy.session().hasPermission(getSecurityDescriptor(), IPermission.TASK_READ_OWN_CASE_TASKS);
+    return hasPermission(IPermission.TASK_READ_OWN_CASE_TASKS);
   }
 
   /**
@@ -62,7 +62,7 @@ public class PermissionUtils {
    * @return True : has document write permission
    */
   public static boolean checkDocumentWritePermission() {
-    return Ivy.session().hasPermission(getSecurityDescriptor(), IPermission.DOCUMENT_WRITE);
+    return hasPermission(IPermission.DOCUMENT_WRITE);
   }
 
   /**
@@ -71,7 +71,7 @@ public class PermissionUtils {
    * @return True : has task document of involved case write permission
    */
   public static boolean checkDocumentOfInvolvedCaseWritePermission() {
-    return Ivy.session().hasPermission(getSecurityDescriptor(), IPermission.DOCUMENT_OF_INVOLVED_CASE_WRITE);
+    return hasPermission(IPermission.DOCUMENT_OF_INVOLVED_CASE_WRITE);
   }
 
   /**
@@ -79,7 +79,7 @@ public class PermissionUtils {
    * @return True : has task destroy permission
    */
   public static boolean checkDestroyTaskPermission() {
-    return Ivy.session().hasPermission(getSecurityDescriptor(), IPermission.TASK_DESTROY);
+    return hasPermission(IPermission.TASK_DESTROY);
   }
 
   /**
@@ -92,7 +92,7 @@ public class PermissionUtils {
   public static boolean checkAbleToStartAndAbleToEditExpressWorkflow(ExpressProcess workflow) {
     String validProcessOwnerName = ExpressManagementUtils.getValidMemberName(workflow.getProcessOwner());
     boolean isWorkflowOwner = StringUtils.isNotBlank(validProcessOwnerName) ? Ivy.session().canActAsUser(
-        Ivy.security().users().find(validProcessOwnerName.substring(1))) : false;
+        ISecurityContext.current().users().find(validProcessOwnerName.substring(1))) : false;
     boolean hasAdminRole = isSessionUserHasAdminRole();
 
     if (isWorkflowOwner || hasAdminRole) {
@@ -124,7 +124,7 @@ public class PermissionUtils {
     }
 
     String memberNameWithoutExternalId = getMemberNameWithoutExternalId(memberName);
-    ISecurityMember member = Ivy.security().members().find(memberNameWithoutExternalId);
+    ISecurityMember member = ISecurityContext.current().members().find(memberNameWithoutExternalId);
     if(member != null) {
       boolean isAssignedUser = member.isUser() && Ivy.session().canActAsUser((IUser) member);
       boolean hasAssignedRole = !member.isUser() && Ivy.session().hasRole((IRole) member, false);
@@ -139,7 +139,7 @@ public class PermissionUtils {
   }
 
   public static boolean isSessionUserHasAdminRole() {
-    return Ivy.session().hasRole(Ivy.security().roles().find(ADMIN_ROLE), false);
+    return Ivy.session().hasRole(ISecurityContext.current().roles().find(ADMIN_ROLE), false);
   }
 
   public static boolean doesSessionUserHaveRole(String roleName) {
@@ -157,7 +157,7 @@ public class PermissionUtils {
     if (Objects.isNull(iPermission)) {
       return false;
     }
-    return Ivy.session().hasPermission(getSecurityDescriptor(), iPermission);
+    return hasPermission(iPermission);
   }
 
   /**
@@ -230,8 +230,7 @@ public class PermissionUtils {
   }
 
   public static boolean hasPermission(IPermission permission) {
-    IWorkflowSession currentSession = Ivy.session();
-    return currentSession.hasPermission(getSecurityDescriptor(), permission);
+    return Ivy.session().hasPermission(getSecurityDescriptor(), permission);
   }
 
   public static boolean hasAllPermissions(IPermission permission, IPermission... permissions) {
@@ -255,7 +254,6 @@ public class PermissionUtils {
    * @return true if current user has permission.
    */
   public static boolean checkReadAllWorkflowEventPermission() {
-    return Ivy.session().hasPermission(getSecurityDescriptor(), IPermission.WORKFLOW_EVENT_READ_ALL);
+    return hasPermission(IPermission.WORKFLOW_EVENT_READ_ALL);
   }
-
 }

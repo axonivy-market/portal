@@ -19,12 +19,12 @@
       "visual" : {
         "at" : { "x" : 112, "y" : 64 }
       },
-      "connect" : { "id" : "f33", "to" : "f15" }
+      "connect" : { "id" : "f47", "to" : "f39" }
     }, {
       "id" : "f1",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 848, "y" : 64 }
+        "at" : { "x" : 1336, "y" : 88 }
       }
     }, {
       "id" : "f3",
@@ -172,7 +172,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 310, "y" : 64 }
+        "at" : { "x" : 776, "y" : 88 }
       },
       "connect" : { "id" : "f27", "to" : "f9" }
     }, {
@@ -358,7 +358,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 512, "y" : 64 }
+        "at" : { "x" : 976, "y" : 88 }
       },
       "connect" : { "id" : "f29", "to" : "f28" }
     }, {
@@ -376,7 +376,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 704, "y" : 64 }
+        "at" : { "x" : 1192, "y" : 88 }
       },
       "connect" : { "id" : "f2", "to" : "f1" }
     }, {
@@ -460,7 +460,8 @@
         "security" : "system",
         "output" : {
           "code" : [
-            "import ch.ivyteam.ivy.application.IApplication;",
+            "import ch.ivyteam.ivy.language.LanguageConfigurator;",
+            "import ch.ivyteam.ivy.security.ISecurityContext;",
             "import org.apache.commons.lang3.StringUtils;",
             "import java.util.HashMap;",
             "import java.util.Map;",
@@ -473,7 +474,7 @@
             "",
             "",
             "// Update empty chart name",
-            "String defaultEmailLanguage = IApplication.current().getDefaultEMailLanguage().getLanguage();",
+            "String defaultEmailLanguage = new LanguageConfigurator(ISecurityContext.current()).content().toLanguageTag();",
             "String defaultChartName = \"\";",
             "for (DisplayName name : in.chartNames) {",
             "  if (defaultEmailLanguage.equalsIgnoreCase(name.locale.toLanguageTag())) {",
@@ -511,8 +512,13 @@
         "security" : "system",
         "output" : {
           "code" : [
+            "import ch.ivyteam.ivy.security.ISecurityContext;",
+            "import ch.ivyteam.ivy.language.LanguageConfigurator;",
+            "import java.util.Locale;",
             "import ch.ivyteam.ivy.application.IApplication;",
-            "in.isDefaultApplicationLanguage = IApplication.current().getDefaultEMailLanguage().getLanguage().equalsIgnoreCase(in.language);"
+            "",
+            "Locale defaultLocale = new LanguageConfigurator(ISecurityContext.current()).content();",
+            "in.isDefaultApplicationLanguage = defaultLocale.toLanguageTag().equalsIgnoreCase(in.language);"
           ]
         }
       },
@@ -520,5 +526,24 @@
         "at" : { "x" : 304, "y" : 1256 }
       },
       "connect" : { "id" : "f37", "to" : "f89" }
+    }, {
+      "id" : "f38",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "initializeRoleAndCustomField()",
+      "config" : {
+        "callSignature" : "initializeRoleAndCustomField",
+        "guid" : "181229E2D2BA036C"
+      },
+      "visual" : {
+        "at" : { "x" : 544, "y" : 88 },
+        "labelOffset" : { "x" : -23, "y" : 15 }
+      },
+      "connect" : { "id" : "f33", "to" : "f15" }
+    }, {
+      "id" : "f39",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 448, "y" : 64 }
+      }
     } ]
 }

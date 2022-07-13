@@ -1,5 +1,5 @@
 {
-  "format" : "9.4.14",
+  "format" : "9.4.15",
   "id" : "17236DB1D3DA14C0",
   "data" : "com.axonivy.portal.userexamples.UserExampleGuideData",
   "elements" : [ {
@@ -15,6 +15,9 @@
         },
         "outLink" : "userExampleGuide.ivp",
         "startDescription" : "<%=ivy.cms.co(\"/Processes/UserExampleGuide/processDescription\")%>",
+        "startCustomFields" : [
+          { "name" : "cssIcon", "value" : "si si-help-wheel" }
+        ],
         "startName" : "<%=ivy.cms.co(\"/Processes/UserExampleGuide/name\")%>"
       },
       "visual" : {
@@ -89,26 +92,10 @@
       "name" : "startPortalLoginPage.ivp",
       "config" : {
         "callSignature" : "startPortalLoginPage",
-        "case" : {
-          "name" : "<%=ivy.cms.co(\"/Processes/LeaveRequest/leaveRequest\")%>",
-          "customFields" : [
-            { "name" : "embedInFrame", "type" : "String", "value" : "\"true\"" }
-          ]
-        },
-        "roleExceptionId" : ">>",
         "outLink" : "startPortalLoginPage.ivp",
-        "startDescription" : [
-          "This process allow employee to submit their leave request, then the request will be sent to selected approver.",
-          "After approver finish his task, the approval result will be sent back to requester"
-        ],
         "startCustomFields" : [
-          { "name" : "cssIcon", "value" : "si si-advertising-megaphone-2" }
-        ],
-        "task" : {
-          "name" : "<%=ivy.cms.co(\"/Processes/LeaveRequest/createNewLeaveRequest\")%>"
-        },
-        "wfuser" : "1",
-        "startName" : "<%=ivy.cms.co(\"/Processes/LeaveRequest/leaveRequest\")%>"
+          { "name" : "cssIcon", "value" : "si si-login-3" }
+        ]
       },
       "visual" : {
         "at" : { "x" : 192, "y" : 224 },

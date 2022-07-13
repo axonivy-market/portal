@@ -1,5 +1,8 @@
 package ch.ivy.addon.portalkit.role;
 
+import static java.util.Objects.isNull;
+import static java.util.Objects.nonNull;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -15,8 +18,7 @@ import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IRole;
-import static java.util.Objects.isNull;
-import static java.util.Objects.nonNull;
+import ch.ivyteam.ivy.security.ISecurityContext;
 
 public class LazyRoleTreeNode extends DefaultTreeNode<RoleHolder> {
 
@@ -99,7 +101,7 @@ public class LazyRoleTreeNode extends DefaultTreeNode<RoleHolder> {
     }
     var foundRoles = roles.stream().filter(role -> StringUtils.containsIgnoreCase(role.getName(), filter)).collect(Collectors.toList());
     if (CollectionUtils.isNotEmpty(foundRoles)) {
-      var topRole = new RoleHolder(Ivy.wf().getSecurityContext().roles().topLevel());
+      var topRole = new RoleHolder(ISecurityContext.current().roles().topLevel());
       var everyBody = new DefaultTreeNode<>(DEFAULT_ROLE_TYPE, topRole, filteredTreeNode);
       everyBody.setExpanded(true);
 
