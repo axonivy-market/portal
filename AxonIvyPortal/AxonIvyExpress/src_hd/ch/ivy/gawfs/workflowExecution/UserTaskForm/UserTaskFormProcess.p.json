@@ -63,13 +63,14 @@
         "security" : "system",
         "output" : {
           "code" : [
+            "import ch.ivyteam.ivy.security.ISecurityContext;",
             "import ch.ivyteam.ivy.security.IUser;",
             "import gawfs.TaskDef;",
             "",
             "in.executePredefinedWorkflowData.currentTask.dynaFormController.createForm();",
             "",
             "for (TaskDef task : in.executePredefinedWorkflowData.finishedTasks) {",
-            "  task.actualApplicant = ivy.security.users().find(task.actualApplicantName);",
+            "  task.actualApplicant = ISecurityContext.current().users().find(task.actualApplicantName);",
             "}"
           ]
         }

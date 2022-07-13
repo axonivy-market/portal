@@ -46,6 +46,7 @@ import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.service.DateTimeGlobalSettingService;
 import ch.ivy.addon.portalkit.service.ExpressProcessService;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.security.query.UserQuery;
@@ -410,7 +411,7 @@ public class ExpressManagementUtils {
         return securityName;
       }
     } else {
-      ISecurityMember securityMember = Ivy.security().members().find(securityName);
+      ISecurityMember securityMember = ISecurityContext.current().members().find(securityName);
       return securityMember == null ? securityName : securityMember.getMemberName();
     }
   }
@@ -429,11 +430,11 @@ public class ExpressManagementUtils {
 
     ISecurityMember responsible;
     if (memberName.contains(EXTERNAL_ID_PREFIX)) {
-      UserQuery query = Ivy.security().users().query();
+      UserQuery query = ISecurityContext.current().users().query();
       responsible = query.where().externalId().isEqual(memberName.split(EXTERNAL_ID_PREFIX)[1]).executor().firstResult();
       result = Optional.ofNullable(responsible).map(ISecurityMember::getMemberName).orElse("");
     } else {
-      responsible = Ivy.security().members().find(memberName);
+      responsible = ISecurityContext.current().members().find(memberName);
       if (responsible != null) {
         result = Optional.ofNullable(responsible).map(ISecurityMember::getMemberName).orElse("");
       }
