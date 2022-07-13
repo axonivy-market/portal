@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang.WordUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.component.dto.RoleDTO;
 import com.axonivy.portal.component.dto.UserDTO;
@@ -23,6 +24,7 @@ import ch.ivyteam.ivy.security.IUser;
 public class SecurityMemberUtils {
 
   private static final int MAX_CHARACTER_NUMBER_OF_NAME_INITIALS = 2;
+  private static final String PREFIX_CMS = "/ch.ivy.addon.portalkit.ui.jsf/components/SecurityMemberDisplayName/";
 
   public static SecurityMemberDTO getCurrentSessionUserAsSecurityMemberDTO() {
     return IvyExecutor.executeAsSystem(() -> {
@@ -96,20 +98,15 @@ public class SecurityMemberUtils {
 
   public static String getNameInitials(String displayName) {
     String fullInitials = WordUtils.initials(displayName);
-    if (fullInitials.length() <= MAX_CHARACTER_NUMBER_OF_NAME_INITIALS) {
-      return fullInitials;
-    }
-    return fullInitials.substring(0, MAX_CHARACTER_NUMBER_OF_NAME_INITIALS);
+    return StringUtils.substring(fullInitials, 0, MAX_CHARACTER_NUMBER_OF_NAME_INITIALS);
   }
-
+  
   private static String cms(String url, List<Object> params) {
-    String securityMemberCms = "/ch.ivy.addon.portalkit.ui.jsf/components/SecurityMemberDisplayName/".concat(url);
-    return Ivy.cms().co(securityMemberCms, params);
+    return Ivy.cms().co(PREFIX_CMS.concat(url), params);
   }
 
   private static String cms(String url) {
-    String securityMemberCms = "/ch.ivy.addon.portalkit.ui.jsf/components/SecurityMemberDisplayName/".concat(url);
-    return Ivy.cms().co(securityMemberCms);
+    return Ivy.cms().co(PREFIX_CMS.concat(url));
   }
 
 }
