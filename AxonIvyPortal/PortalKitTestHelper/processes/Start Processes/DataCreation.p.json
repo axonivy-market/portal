@@ -1592,5 +1592,75 @@
       "visual" : {
         "at" : { "x" : 384, "y" : 1664 }
       }
+    }, {
+      "id" : "f170",
+      "type" : "RequestStart",
+      "name" : "create5kRoles.ivp",
+      "config" : {
+        "callSignature" : "create5kRoles",
+        "outLink" : "create5kRoles.ivp",
+        "startDescription" : "Create 5000 roles to test IVYPORTAL-13607",
+        "startName" : "Create 5000 roles"
+      },
+      "visual" : {
+        "at" : { "x" : 576, "y" : 1632 },
+        "labelOffset" : { "x" : -21, "y" : 17 }
+      },
+      "connect" : { "id" : "f173", "to" : "f172" }
+    }, {
+      "id" : "f171",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 904, "y" : 1632 }
+      }
+    }, {
+      "id" : "f172",
+      "type" : "Script",
+      "name" : "create 5k roles",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.security.IRole;",
+            "import ch.ivyteam.ivy.security.role.NewRole;",
+            "",
+            "// CLEAN UP\",",
+            "ivy.security.roles().delete(\"SERVICE_INTEGRATION_TEAM\");",
+            "ivy.security.roles().delete(\"PROJECT_EDITOR\");",
+            "           ",
+            "for (int i = 0; i < 5000; i ++){",
+            "  ivy.security.roles().delete(\"PROJECT_EDITOR_\" + i);",
+            "}",
+            "",
+            "// CREATE",
+            "NewRole serviceIntegrationTeamNewRole = NewRole",
+            ".create(\"SERVICE_INTEGRATION_TEAM\")",
+            ".displayName(\"Service Integration Team\")",
+            ".description(\"Service Integration Team\")",
+            ".toNewRole();",
+            "",
+            "IRole serviceIntegrationTeam = ivy.security.roles().create(serviceIntegrationTeamNewRole);",
+            "",
+            "NewRole projectEditorNewRole = NewRole",
+            ".create(\"PROJECT_EDITOR\")",
+            ".displayName(\"Project Editor\")",
+            ".description(\"Project Editor\")",
+            ".toNewRole();",
+            "",
+            "IRole projectEditor = ivy.security.roles().create(projectEditorNewRole);",
+            "for (int i = 0; i < 5000; i ++){",
+            "  IRole role = ivy.security.roles().create(\"PROJECT_EDITOR_\" + i);",
+            "  projectEditor.addRoleMember(role);",
+            "  role.addRoleMember(serviceIntegrationTeam);",
+            "}",
+            "",
+            "ivy.session.getSessionUser().addRole(serviceIntegrationTeam);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 744, "y" : 1632 }
+      },
+      "connect" : { "id" : "f174", "to" : "f171" }
     } ]
 }
