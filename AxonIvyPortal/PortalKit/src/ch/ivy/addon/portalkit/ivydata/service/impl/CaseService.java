@@ -90,7 +90,7 @@ public class CaseService implements ICaseService {
       caseQuery = CaseQuery.businessCases();
     }
 
-//    caseQuery.where().or().currentUserIsInvolved();
+    caseQuery.where().or().currentUserIsInvolved();
     if (GlobalSettingService.getInstance().isCaseOwnerEnabled()) {
       caseQuery.where().or().currentUserIsOwner();
     }

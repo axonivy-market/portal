@@ -133,7 +133,7 @@ public class ServiceUtilities {
     Objects.requireNonNull(username, "The username must not be null");
     return IvyExecutor.executeAsSystem(() -> {
       IUser user = ISecurityContext.current().users().find(username);
-      return user == null? new UserDTO() : new UserDTO(user);
+      return user == null? null : new UserDTO(user);
     });
   }
   
@@ -176,9 +176,8 @@ public class ServiceUtilities {
   }
 
   private static SecurityMemberDTO findSecurityUserByName(String securityMemberName) {
-    UserDTO userDTO = null;
-    userDTO = findUserDTO(securityMemberName);
-    return SecurityMemberDTOMapper.mapFromUserDTO(userDTO);
+    IUser findUser = findUser(securityMemberName);
+    return findUser == null ? null : new SecurityMemberDTO(findUser);
   }
 
   private static SecurityMemberDTO findSecurityRoleByName(String securityMemberName) {
