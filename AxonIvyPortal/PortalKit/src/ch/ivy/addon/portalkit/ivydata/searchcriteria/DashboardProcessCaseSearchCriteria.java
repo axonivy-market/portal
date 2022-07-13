@@ -36,7 +36,7 @@ public class DashboardProcessCaseSearchCriteria {
       queryExpressProcessCasesByCategoryPath(query);
     }
     queryStates(query);
-    queryIsInvolved(query);
+//    queryIsInvolved(query);
     return query;
   }
 

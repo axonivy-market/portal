@@ -133,7 +133,7 @@ public class ServiceUtilities {
     Objects.requireNonNull(username, "The username must not be null");
     return IvyExecutor.executeAsSystem(() -> {
       IUser user = ISecurityContext.current().users().find(username);
-      return new UserDTO(user);
+      return user == null? new UserDTO() : new UserDTO(user);
     });
   }
   
@@ -169,14 +169,10 @@ public class ServiceUtilities {
   }
 
   public static SecurityMemberDTO findSecurityMemberByName(String securityMemberName) {
-    SecurityMemberDTO member = null;
     if (securityMemberName.startsWith("#")) {
-      member = findSecurityUserByName(securityMemberName.replace("#", ""));
-    } else {
-      member = findSecurityRoleByName(securityMemberName);
-    }
-
-    return member;
+      return findSecurityUserByName(securityMemberName.replace("#", ""));
+    } 
+    return findSecurityRoleByName(securityMemberName);
   }
 
   private static SecurityMemberDTO findSecurityUserByName(String securityMemberName) {
@@ -186,11 +182,9 @@ public class ServiceUtilities {
   }
 
   private static SecurityMemberDTO findSecurityRoleByName(String securityMemberName) {
-    List<RoleDTO> roles = null;
-    roles = findAllRoleDTO().stream()
-            .filter(role -> StringUtils.equalsIgnoreCase(role.getName(), securityMemberName))
-            .collect(Collectors.toList());
-    List<SecurityMemberDTO> members = SecurityMemberDTOMapper.mapFromRoleDTOs(roles);
-    return CollectionUtils.isEmpty(members) ? null : members.get(0);
+    List<RoleDTO> roles = findAllRoleDTO().stream()
+                        .filter(role -> StringUtils.equalsIgnoreCase(role.getName(), securityMemberName))
+                        .collect(Collectors.toList());
+    return SecurityMemberDTOMapper.mapFromRoleDTOs(roles).stream().findFirst().orElse(null);
   }
 }
