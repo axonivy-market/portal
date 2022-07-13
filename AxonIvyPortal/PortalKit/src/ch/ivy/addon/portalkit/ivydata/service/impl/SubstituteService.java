@@ -14,7 +14,6 @@ import ch.ivy.addon.portalkit.ivydata.dto.IvySubstituteResultDTO;
 import ch.ivy.addon.portalkit.ivydata.service.ISubstituteService;
 import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
-import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.security.IUserSubstitute;
@@ -45,8 +44,7 @@ public class SubstituteService implements ISubstituteService {
     return IvyExecutor.executeAsSystem(() -> { 
       IvySubstituteResultDTO result = new IvySubstituteResultDTO();
 
-      IApplication application = IApplication.current();
-      IUser user = ServiceUtilities.findUser(username, application);
+      IUser user = ServiceUtilities.findUser(username);
       List<IvySubstitute> ivySubstitutions = isFindSubstitute? getIvySubstitutes(user) : getIvySubstitutions(user);
       
       result.setIvySubstitutes(ivySubstitutions);
@@ -115,10 +113,10 @@ public class SubstituteService implements ISubstituteService {
     return ivySubstitute;
   }
 
-  private void createSubstitutes(List<IvySubstitute> substitutes, IUser user, IApplication application){
+  private void createSubstitutes(List<IvySubstitute> substitutes, IUser user){
     for (IvySubstitute ivySubstitute : substitutes) {
       if (ivySubstitute.getSubstituteUser() != null) {
-        IUser iUser = ServiceUtilities.findUser(ivySubstitute.getSubstituteUser().getName(), application);
+        IUser iUser = ServiceUtilities.findUser(ivySubstitute.getSubstituteUser().getName());
         if (ivySubstitute.getSubstitionRole() == null) {
           user.createSubstitute(iUser, "", ivySubstitute.getSubstitutionType());
         } else {
@@ -141,10 +139,9 @@ public class SubstituteService implements ISubstituteService {
         return Void.class;
       }
 
-      IApplication application = IApplication.current();
-      IUser user = ServiceUtilities.findUser(userDTO.getName(), application);
+      IUser user = ServiceUtilities.findUser(userDTO.getName());
       deleteSubstitutes(user);
-      createSubstitutes(ivySubstitutes, user, application);
+      createSubstitutes(ivySubstitutes, user);
       return Void.class;
     });
   }
