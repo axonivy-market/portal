@@ -39,7 +39,7 @@ Language Settings
    :ref:`language-settings` in :ref:`my-profile` in the Portal User Guide.
 
 -  For multiple languages, the CMS key ``/AppInfo/SupportedLanguages`` has to
-   exist in your application. This CMS entry is located in Portal Style. It
+   exist in your application. This CMS entry is located in PortalKit. It
    contains a comma separated list of all languages supported by your
    application.
 
@@ -52,7 +52,7 @@ Language Settings
 
 -  To add a new language to Portal, what you have to do is:
 
-   -  Open CMS item ``/AppInfo/SupportedLanguages`` in Portal Style, then add the new language, for example, Italian
+   -  Open CMS item ``/AppInfo/SupportedLanguages`` in PortalKit, then add the new language, for example, Italian
 
       |add-new-item-to-cms-language|
 
@@ -61,12 +61,12 @@ Language Settings
 
       |add-new-item-to-cms-language-after|
 
-   -  Export all CMS entries of Portal Style to an Excel file, then add the translations for the new language for all CMS entries
+   -  Export all CMS entries of PortalKit to an Excel file, then add the translations for the new language for all CMS entries
 
       |export-cms|
 
    -  Import the Excel file.
-   -  Redeploy PortalStyle.
+   -  Redeploy PortalKit.
 
 
 Role Configuration
