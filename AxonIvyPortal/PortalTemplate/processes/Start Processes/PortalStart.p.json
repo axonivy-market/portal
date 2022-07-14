@@ -2386,7 +2386,7 @@
         "showInStartList" : false
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 2544 },
+        "at" : { "x" : 96, "y" : 2512 },
         "labelOffset" : { "x" : -45, "y" : 21 }
       },
       "connect" : { "id" : "f198", "to" : "f193" }
@@ -2409,7 +2409,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 280, "y" : 2544 },
+        "at" : { "x" : 280, "y" : 2512 },
         "size" : { "width" : 208, "height" : 44 }
       },
       "connect" : { "id" : "f199", "to" : "f195" }
@@ -2417,7 +2417,7 @@
       "id" : "f195",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 464, "y" : 2544 }
+        "at" : { "x" : 464, "y" : 2512 }
       }
     }, {
       "id" : "f200",
@@ -2742,7 +2742,7 @@
         "showInStartList" : false
       },
       "visual" : {
-        "at" : { "x" : 896, "y" : 2400 },
+        "at" : { "x" : 896, "y" : 2408 },
         "labelOffset" : { "x" : -52, "y" : 17 }
       },
       "connect" : { "id" : "f239", "to" : "f137" }
@@ -2750,7 +2750,7 @@
       "id" : "f41",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 1216, "y" : 2400 }
+        "at" : { "x" : 1216, "y" : 2408 }
       }
     }, {
       "id" : "f137",
@@ -2761,14 +2761,14 @@
         "startMethod" : "start()"
       },
       "visual" : {
-        "at" : { "x" : 1048, "y" : 2400 }
+        "at" : { "x" : 1048, "y" : 2408 }
       },
       "connect" : { "id" : "f129", "to" : "f41" }
     }, {
       "id" : "f241",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 464, "y" : 2424 }
+        "at" : { "x" : 464, "y" : 2408 }
       }
     }, {
       "id" : "f243",
@@ -2779,12 +2779,12 @@
         "startMethod" : "start()"
       },
       "visual" : {
-        "at" : { "x" : 264, "y" : 2424 },
+        "at" : { "x" : 264, "y" : 2408 },
         "size" : { "width" : 176, "height" : 44 }
       },
       "connect" : { "id" : "f242", "to" : "f241" }
     }, {
-      "id" : "f150",
+      "id" : "f177",
       "type" : "RequestStart",
       "name" : "PortalDashboardConfiguration.ivp",
       "config" : {
@@ -2793,7 +2793,7 @@
         "showInStartList" : false
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 2424 },
+        "at" : { "x" : 96, "y" : 2408 },
         "labelOffset" : { "x" : -84, "y" : 17 }
       },
       "connect" : { "id" : "f173", "to" : "f243" }
