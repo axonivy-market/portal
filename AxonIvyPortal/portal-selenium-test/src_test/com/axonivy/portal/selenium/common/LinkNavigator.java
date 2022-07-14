@@ -3,8 +3,7 @@ package com.axonivy.portal.selenium.common;
 import static com.codeborne.selenide.Selenide.open;
 
 public class LinkNavigator {
-  private static String portalDashboardConfigurationUrl =
-      "portalTemplate/1549F58C18A6C562/PortalDashboardConfiguration.ivp?isPublicDashboard=%s";
+  private static String portalDashboardConfigurationUrl = "portalTemplate/1549F58C18A6C562/PortalDashboardConfiguration.ivp";
 
   public static void redirectToRelativeLink(String relativeProcessStartUrl) {
     try {
@@ -14,11 +13,8 @@ public class LinkNavigator {
     }
   }
 
-  public static void redirectToEditPublicDashboard() {
-    redirectToRelativeLink(String.format(portalDashboardConfigurationUrl, "true"));
+  public static void redirectToPortalDashboardConfiguration() {
+    redirectToRelativeLink(String.format(portalDashboardConfigurationUrl));
   }
-  
-  public static void redirectToEditPrivateDashboard() {
-    redirectToRelativeLink(String.format(portalDashboardConfigurationUrl, "false"));
-  }
+
 }

@@ -13,7 +13,6 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -50,7 +49,6 @@ import ch.ivy.addon.portalkit.service.WidgetFilterService;
 import ch.ivy.addon.portalkit.support.HtmlParser;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
-import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISecurityConstants;
@@ -72,11 +70,8 @@ public class DashboardBean implements Serializable {
   protected DashboardWidget widget;
   protected boolean isReadOnlyMode;
   private int currentDashboardIndex;
-  private boolean canEdit;
   private List<WidgetFilterModel> widgetFilters;
   private List<WidgetFilterModel> deleteFilters;
-  private boolean canEditPrivateDashboard;
-  private boolean canEditPublicDashboard;
   private ITask selectedTask;
   private boolean isRunningTaskWhenClickingOnTaskInList;
   private CaseEmptyMessage noCasesMessage;
@@ -85,9 +80,6 @@ public class DashboardBean implements Serializable {
 
   @PostConstruct
   public void init() {
-    boolean isMobileDevice = isMobileDevice();
-    canEditPrivateDashboard = PermissionUtils.hasDashboardWriteOwnPermission() && !isMobileDevice;
-    canEditPublicDashboard = PermissionUtils.hasDashboardWritePublicPermission() && !isMobileDevice;
     currentDashboardIndex = 0;
     isReadOnlyMode = true;
     dashboards = collectDashboards();
@@ -128,12 +120,6 @@ public class DashboardBean implements Serializable {
 
   public void loadDashboardTemplate() {
     this.dashboardTemplates = DashboardUtils.getDashboardTemplates();
-  }
-
-  protected boolean isMobileDevice() {
-    HttpServletRequest request =(HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
-    String userAgent = request.getHeader("user-agent");
-    return userAgent.matches(".*Android.*|.*webOS.*|.*iPhone.*|.*iPad.*|.*iPod.*|.*BlackBerry.*|.*IEMobile.*|.*Opera Mini.*");
   }
 
   public void mergeUserDashboard() {
@@ -360,18 +346,6 @@ public class DashboardBean implements Serializable {
     this.currentDashboardIndex = currentDashboardIndex;
   }
 
-  public boolean getCanEdit() {
-    return canEdit;
-  }
-
-  public boolean getCanEditPrivateDashboard() {
-    return canEditPrivateDashboard;
-  }
-
-  public boolean getCanEditPublicDashboard() {
-    return canEditPublicDashboard;
-  }
-
   public boolean getIsEditMode() {
     return false;
   }
@@ -462,14 +436,6 @@ public class DashboardBean implements Serializable {
 
   public void setDeleteFilters(List<WidgetFilterModel> deleteFilters) {
     this.deleteFilters = deleteFilters;
-  }
-
-  public void navigatetoMyDashboardReorder() {
-    PortalNavigator.navigateToDashboardReorder(false);
-  }
-
-  public void navigatetoPublicDashboardReorder() {
-    PortalNavigator.navigateToDashboardReorder(true);
   }
 
   public CaseEmptyMessage getNoCasesMessage() {

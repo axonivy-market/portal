@@ -1,23 +1,34 @@
 [
     {
-        "id" : "axon-ivy",
-        "title" : "Axon Ivy",
-        "permissions": ["#demo"],
-        "url" : "https://www.axonivy.com/"
+        "id": "axon-ivy",
+        "title": "Axon Ivy",
+        "permissions": [
+            "#demo"
+        ],
+        "url": "https://www.axonivy.com/"
     },
     {
-        "id" : "express",
-        "title" : "Portal Express process",
-        "permissions": ["Everybody"],
-        "url" : "Portal Express process"
+        "id": "express",
+        "title": "Portal Express process",
+        "permissions": [
+            "Everybody"
+        ],
+        "url": "Portal Express process"
     },
     {
-        "id" : "re-order-dashboard",
-        "title" : "cms:/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/reorderDashboard",
-        "permissions": ["Employee", "AXONIVY_PORTAL_ADMIN", "#daniel"],
-        "url": "Start Processes/ExamplePortalStart/DashboardReorder.ivp",
+        "id": "alpha-company",
+        "title": "cms:/Processes/CreateInvestment/name",
+        "permissions": [
+            "Employee",
+            "AXONIVY_PORTAL_ADMIN",
+            "#daniel"
+        ],
+        "url": "Start Processes/DashboardCustomWidgetExample/investmentList.ivp",
         "params": {
-            "isPublicDashboard":"false"
-    	}
+            "embedInFrame" : "true",
+            "user__customer": "demo",
+            "date__startDate": "11/19/2021",
+            "string__note": "a short note for user"
+        }
     }
 ]
