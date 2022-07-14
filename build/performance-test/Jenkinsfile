@@ -29,8 +29,8 @@ pipeline {
           engineServiceName = 'Axon.ivyEngineTrunk'
           utils.startWindowsService(engineServiceName)
 
-          def buildPluginVersion = readMavenPom(file: 'AxonIvyPortal/PortalStyle/pom.xml').getProperties().getProperty("build.plugin.version")
-          def modules = ['AxonIvyPortal/portal-component', 'AxonIvyPortal/PortalStyle', 'AxonIvyPortal/PortalKit', 'AxonIvyPortal/PortalTemplate', 'AxonIvyPortal/AxonIvyExpress']
+          def buildPluginVersion = readMavenPom(file: 'AxonIvyPortal/portal-component/pom.xml').getProperties().getProperty("build.plugin.version")
+          def modules = ['AxonIvyPortal/portal-component', 'AxonIvyPortal/PortalKit', 'AxonIvyPortal/PortalTemplate', 'AxonIvyPortal/AxonIvyExpress']
           for (module in modules) {
             bat "mvn clean install -f ${module}/pom.xml"
             bat "mvn com.axonivy.ivy.ci:project-build-plugin:${buildPluginVersion}:deploy-to-engine -f ${module}/pom.xml -Divy.deploy.engine.app=%portalApplicationName% -Divy.deploy.engine.dir=%engineDir% -Divy.test.engine=MODIFY_EXISTING"
