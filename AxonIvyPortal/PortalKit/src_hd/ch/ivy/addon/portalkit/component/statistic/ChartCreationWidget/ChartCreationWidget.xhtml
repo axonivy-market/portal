@@ -8,6 +8,7 @@
 </cc:interface>
 
 <cc:implementation>
+  <f:event listener="#{logic.initializeRoleAndCustomField}" type="preRenderComponent" />
   <h:form id="chart-management-form" styleClass="portal-card-container">
     <!-- Init Data for chart - auto run -->
     <p:remoteCommand id="init-filter-command" name="initFilter" autoRun="true" update="statistic-filter" global="false" immediate="true"
